@@ -2,50 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC34C197F6E
-	for <lists+usrp-users@lfdr.de>; Mon, 30 Mar 2020 17:20:35 +0200 (CEST)
-Received: from [::1] (port=52416 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 688CB19815A
+	for <lists+usrp-users@lfdr.de>; Mon, 30 Mar 2020 18:36:21 +0200 (CEST)
+Received: from [::1] (port=44166 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jIwDI-0004KP-GK; Mon, 30 Mar 2020 11:20:32 -0400
-Received: from mail-yb1-f175.google.com ([209.85.219.175]:45691)
+	id 1jIxOd-0004Cd-7f; Mon, 30 Mar 2020 12:36:19 -0400
+Received: from mail-qt1-f169.google.com ([209.85.160.169]:33869)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <sam.reiter8@gmail.com>)
- id 1jIwDE-0004Dw-HA
- for usrp-users@lists.ettus.com; Mon, 30 Mar 2020 11:20:28 -0400
-Received: by mail-yb1-f175.google.com with SMTP id g6so9234695ybh.12
- for <usrp-users@lists.ettus.com>; Mon, 30 Mar 2020 08:20:08 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jIxOZ-00047i-W5
+ for usrp-users@lists.ettus.com; Mon, 30 Mar 2020 12:36:16 -0400
+Received: by mail-qt1-f169.google.com with SMTP id 10so15630880qtp.1
+ for <usrp-users@lists.ettus.com>; Mon, 30 Mar 2020 09:35:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=xeJRUvDijbTkhZmYSfNE3l1dPkArQAF56i3eyRoY62c=;
- b=sQ1CJlkHshUx7XpwozF/TjtzgLIBIIkJ1PvyYCmVfXmXHfjXk0JFAtQic9ZgVzCWpY
- 52DfJ89C3en9B7oQDEZYaixFIe30qVlqUQTvDFw5LQ4r/X/R2nzQVe35GDIrfp5jE2eO
- rFlolGiChhu80sZuqRLlGcdJ8+3CpMW2DjWctMW3fBlXDkURVh0vsRiqVThrJ6R3ljPH
- Vn5QSi9VPIKCZuYhBjUAIfcPfBE3aDUQcsLkR35s91ZidY9D6xKrZA81Q6VpmRiD0QW3
- yNcRTIdhMBVyeSCLI5fbGlrz5sfg9mitSOitEn+J10LlweVzqymhilz1vo6qLhErbeqA
- Fuig==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=kjOtyAf+0GjvP0FdQzzSHy1qI4ViKhrDxFGmaXhFy7A=;
+ b=BU29BhspWvLm8KWhVLFkXukoTRofg3cFG0TUvkTAkS89gvGGeLFKWdceZciFcbV7tQ
+ 1qlYbYCNSFZEVQjVXdWJtrp8VNjtMD23DYXnqbTB+iRHcXlAFGrYm/uZ87IL8J7T54C1
+ Z7Mmnj1QA7ktZ+lh8OxG8lEX31VALhgr0EBIWbPZUsqKPFD0P6YnbGs8ErQ1n2VeQGBC
+ gyxnUTMRFYeUyu6+JwB9lTnm9XlI3bm/PfRQrNRxQsBYiLa0mIp0Hf6XEQpu3aqrZZso
+ 4fPrlfsvRRbIgd96PuoMibMSeCDRhb019R1wubpX9L8mIKqPhC9WevW0zx5UQm1LbW1A
+ fSkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=xeJRUvDijbTkhZmYSfNE3l1dPkArQAF56i3eyRoY62c=;
- b=eP5ahmc1J7BLvsHRnPgpRXULVMKb73acv1PZY0YD57X66LbvIQjt5q2ObyGlMg9x89
- 8lylGpgIDVOMZGksHS/mTwsbqeD/KTosMUjiHPQFStoyeJ95ciXW2qP/vuv3+KgN7ccO
- 36RgJw9fxLXAOI1Noy5UN8TpXbuOAOCQsfvAgkP6CRFngIw9JTpNCLtaY33aVRoVpUR3
- l61FJXAu+SsVZEeHQ4hwpnMUhitG3OlLcDpN8l6Q/N0HuXjNvy3VMJOV7utMgdRVBROO
- 8I3omLNKvDIh60Pvo0qv5NgrfUL+ig1cq6gD2sxh/6JXt87u3ZzjFfhU4pQ+Mg/eb6wV
- TEQg==
-X-Gm-Message-State: ANhLgQ2CuyVH+oWYBWWikN0EGn9QoH60Y9pluQchj/Il59e7PcMmyH50
- yjFDDgwourmHfp0IjLYSv6TkFbzz+ntr7JkkpAE=
-X-Google-Smtp-Source: ADFU+vsFMLKAzcN5gFZwPy6OXsaiv4ZvflTt03LFo3Aj2MhyMQvOPJyU/+3dZbjmiHpxSglkEPf8cbNgFj57c394Dzg=
-X-Received: by 2002:a25:b8c5:: with SMTP id g5mr20129409ybm.64.1585581587777; 
- Mon, 30 Mar 2020 08:19:47 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=kjOtyAf+0GjvP0FdQzzSHy1qI4ViKhrDxFGmaXhFy7A=;
+ b=MlqQbopxMtCF/rFM40a//B5vd6Kr7/bPFa06IQ+iGv/T0EDWnN/ZO1YVSJ0mfWoG9O
+ hRDD/uuLzlOlOXWvohhSUY0sAr5tdJpKJgoCyM7AgtrpONg9SbWN3DLRSRKFj+b3u/DE
+ /KLBhWsxp0jft8jAD+QFhLnjFkFsdXuVeR3NN36AKVZhLqtvpEE7HTU2uj1wE8OWetzt
+ S+gRLuyM1O+3nhNg15Yki2szSZXIvR43lAjTHXwc/Xxxe6bSE486kKdkyqZwQYjs3q4M
+ spYcnB3TkYJ5pfvwXjz+gUyJ9HU+XeIHjdVuI0mZJzYbSh1SUQ26xBZ/PwCT729lLHy8
+ 9L7Q==
+X-Gm-Message-State: ANhLgQ0eXQ8rw0N8AMCFvvIrBEWNDDvL1EWWRbdK08xRFfaTarzgpfll
+ /1hm3+KIAZBigWgJDM6DWHo0Ap8z
+X-Google-Smtp-Source: ADFU+vuWFEZp0RFNWxqIPYmUnDQ1OHsObdXkQOjaYXFxDmrDuUoiVK6dDC1L5FF7oLaTJfdIIHepTw==
+X-Received: by 2002:ac8:7b2f:: with SMTP id l15mr810109qtu.320.1585586135155; 
+ Mon, 30 Mar 2020 09:35:35 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-12-204.dsl.bell.ca.
+ [174.95.12.204])
+ by smtp.googlemail.com with ESMTPSA id o81sm11009252qke.24.2020.03.30.09.35.33
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 30 Mar 2020 09:35:33 -0700 (PDT)
+Message-ID: <5E821FD4.3020708@gmail.com>
+Date: Mon, 30 Mar 2020 12:35:32 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
 References: <10F7328F6AD1354BA6DD787687B66B9001A3050D6A@Maui.in.dynetics.com>
-In-Reply-To: <10F7328F6AD1354BA6DD787687B66B9001A3050D6A@Maui.in.dynetics.com>
-Date: Mon, 30 Mar 2020 10:19:49 -0500
-Message-ID: <CADBWrHi0youfPJH1+VVg5AM7bX_DsBt2vmkP09XAJxevzPmBAg@mail.gmail.com>
-To: "Carmichael, Ryan" <Ryan.Carmichael@dynetics.com>
+ <CADBWrHi0youfPJH1+VVg5AM7bX_DsBt2vmkP09XAJxevzPmBAg@mail.gmail.com>
+In-Reply-To: <CADBWrHi0youfPJH1+VVg5AM7bX_DsBt2vmkP09XAJxevzPmBAg@mail.gmail.com>
 Subject: Re: [USRP-users] X310 UHD 3.15 Lockups
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -58,10 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Sam Reiter <sam.reiter8@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5903673978422636404=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1080553345142847189=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,246 +83,293 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5903673978422636404==
-Content-Type: multipart/alternative; boundary="0000000000004d4b9705a213fb9a"
+This is a multi-part message in MIME format.
+--===============1080553345142847189==
+Content-Type: multipart/alternative;
+ boundary="------------050201000000070302000907"
 
---0000000000004d4b9705a213fb9a
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------050201000000070302000907
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Ryan,
-
-In that example, line 93 sets the USRP's internal sense of time to 0.0s,
-after which point this sense of time ticks up. Any timed commands you issue
-to the USRP need to occur in the future, relative to the USRP's sense of
-time. In this case, you have to give a "--secs" value greater than 0.0 +
-the latency for the stream command to be processed and sent to the radio
-over Ethernet (probably hundreds of microseconds).
-
-As far as initialization of timespec, I'm not sure what it should
-initialize to by default. But for the intermittent, race-condition-esque
-behavior you're describing, it couldn't hurt to set all of those times
-explicitly.
-
--Sam
-
-On Mon, Mar 30, 2020 at 9:37 AM Carmichael, Ryan <
-Ryan.Carmichael@dynetics.com> wrote:
-
-> *From:* Sam Reiter <sam.reiter8@gmail.com>
-> *Sent:* Sunday, March 29, 2020 1:15 PM
-> *To:* Carmichael, Ryan <Ryan.Carmichael@dynetics.com>
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* [EXTERNAL] Re: [USRP-users] X310 UHD 3.15 Lockups
+On 03/30/2020 11:19 AM, Sam Reiter via USRP-users wrote:
+> Ryan,
 >
+> In that example, line 93 sets the USRP's internal sense of time to 
+> 0.0s, after which point this sense of time ticks up. Any timed 
+> commands you issue to the USRP need to occur in the future, relative 
+> to the USRP's sense of time. In this case, you have to give a "--secs" 
+> value greater than 0.0 + the latency for the stream command to be 
+> processed and sent to the radio over Ethernet (probably hundreds of 
+> microseconds).
 >
->
-> I would suspect that your setting of the time_spec with an uninitialized
-> value could be a problem. rx_multi_samples sets up multi-channel RX with =
-an
-> initialized time_spec:
->
->
->
->
-> https://github.com/EttusResearch/uhd/blob/UHD-3.15.LTS/host/examples/rx_m=
-ulti_samples.cpp
->
->
->
-> Can you compile and run that example on 3.15?
->
->
+> As far as initialization of timespec, I'm not sure what it should 
+> initialize to by default. But for the intermittent, 
+> race-condition-esque behavior you're describing, it couldn't hurt to 
+> set all of those times explicitly.
 >
 > -Sam
->
->
->
->
->
->
->
-> Sam,
->
->
->
-> Thanks for the suggestion. time_spec uninitialized takes the default of
-> zero, right?
->
->
->
-> If I run rx_multi_samples with --secs 0, I get an error =E2=80=9CError: R=
-eceiver
-> error ERROR_CODE_LATE_COMMAND=E2=80=9D, which we aren=E2=80=99t seeing in=
- our usage
-> (instead we just see it never return).
->
->
->
-> If I run rx_multi_samples with another value (like --secs 0.1) it works
-> fine.
->
->
->
-> But the code I showed works 99.9% of the time. But when we run it for
-> hours on end, it eventually locks up. I can try running rx_multi_samples
-> with a very large --nsamps but that testing will take a while.
->
->
->
-> Thanks,
->
-> Ryan
->
-> * ------------------------------ The information contained in this
-> message, and any attachments, may contain privileged and/or proprietary
-> information that is intended solely for the person or entity to which it =
-is
-> addressed. Moreover, it may contain export restricted technical data
-> controlled by Export Administration Regulations (EAR) or the Internationa=
-l
-> Traffic in Arms Regulations (ITAR). Any review, retransmission,
-> dissemination, or re-export to foreign or domestic entities by anyone oth=
-er
-> than the intended recipient in accordance with EAR and/or ITAR regulation=
-s
-> is prohibited. *
->
-
---0000000000004d4b9705a213fb9a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Ryan,<div><br></div><div>In that example, line 93 sets the=
- USRP&#39;s internal sense of time to 0.0s, after which point this sense of=
- time ticks up. Any timed commands you issue to the USRP need to occur in t=
-he future, relative to the USRP&#39;s sense of time. In this case, you have=
- to give a &quot;--secs&quot; value greater than 0.0=C2=A0+ the latency for=
- the stream command to be processed and sent to the radio over Ethernet (pr=
-obably hundreds of microseconds).</div><div><br></div><div>As far as initia=
-lization=C2=A0of timespec, I&#39;m not sure what it should initialize to by=
- default. But for the intermittent, race-condition-esque behavior you&#39;r=
-e describing, it couldn&#39;t hurt to set all of those times explicitly.=C2=
-=A0</div><div><br></div><div>-Sam</div></div><br><div class=3D"gmail_quote"=
-><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Mar 30, 2020 at 9:37 AM Carm=
-ichael, Ryan &lt;<a href=3D"mailto:Ryan.Carmichael@dynetics.com" target=3D"=
-_blank">Ryan.Carmichael@dynetics.com</a>&gt; wrote:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex">
+Local variables aren't explicitly initialized to anything in particular, 
+at least in C, and as I recall, C++ as well.  Since they reside on the 
+stack,
+   they'll have whatever in them unless explicitly initialized.
 
 
+>
+> On Mon, Mar 30, 2020 at 9:37 AM Carmichael, Ryan 
+> <Ryan.Carmichael@dynetics.com <mailto:Ryan.Carmichael@dynetics.com>> 
+> wrote:
+>
+>     *From:*Sam Reiter <sam.reiter8@gmail.com
+>     <mailto:sam.reiter8@gmail.com>>
+>     *Sent:* Sunday, March 29, 2020 1:15 PM
+>     *To:* Carmichael, Ryan <Ryan.Carmichael@dynetics.com
+>     <mailto:Ryan.Carmichael@dynetics.com>>
+>     *Cc:* usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
+>     *Subject:* [EXTERNAL] Re: [USRP-users] X310 UHD 3.15 Lockups
+>
+>     I would suspect that your setting of the time_spec with an
+>     uninitialized value could be a problem. rx_multi_samples sets up
+>     multi-channel RX with an initialized time_spec:
+>
+>     https://github.com/EttusResearch/uhd/blob/UHD-3.15.LTS/host/examples/rx_multi_samples.cpp
+>
+>     Can you compile and run that example on 3.15?
+>
+>     -Sam
+>
+>     Sam,
+>
+>     Thanks for the suggestion. time_spec uninitialized takes the
+>     default of zero, right?
+>
+>     If I run rx_multi_samples with --secs 0, I get an error “Error:
+>     Receiver error ERROR_CODE_LATE_COMMAND”, which we aren’t seeing in
+>     our usage (instead we just see it never return).
+>
+>     If I run rx_multi_samples with another value (like --secs 0.1) it
+>     works fine.
+>
+>     But the code I showed works 99.9% of the time. But when we run it
+>     for hours on end, it eventually locks up. I can try running
+>     rx_multi_samples with a very large --nsamps but that testing will
+>     take a while.
+>
+>     Thanks,
+>
+>     Ryan
+>
+>     /
+>     ------------------------------------------------------------------------
+>
+>     The information contained in this message, and any attachments,
+>     may contain privileged and/or proprietary information that is
+>     intended solely for the person or entity to which it is addressed.
+>     Moreover, it may contain export restricted technical data
+>     controlled by Export Administration Regulations (EAR) or the
+>     International Traffic in Arms Regulations (ITAR). Any review,
+>     retransmission, dissemination, or re-export to foreign or domestic
+>     entities by anyone other than the intended recipient in accordance
+>     with EAR and/or ITAR regulations is prohibited.
+>
+>     /
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
 
+--------------050201000000070302000907
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-<div lang=3D"EN-US">
-<div>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;font-family:Calibri=
-,sans-serif">From:</span></b><span style=3D"font-size:11pt;font-family:Cali=
-bri,sans-serif"> Sam Reiter &lt;<a href=3D"mailto:sam.reiter8@gmail.com" ta=
-rget=3D"_blank">sam.reiter8@gmail.com</a>&gt;
-<br>
-<b>Sent:</b> Sunday, March 29, 2020 1:15 PM<br>
-<b>To:</b> Carmichael, Ryan &lt;<a href=3D"mailto:Ryan.Carmichael@dynetics.=
-com" target=3D"_blank">Ryan.Carmichael@dynetics.com</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a><br>
-<b>Subject:</b> [EXTERNAL] Re: [USRP-users] X310 UHD 3.15 Lockups<u></u><u>=
-</u></span></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal">I would suspect that your setting of the time_spec w=
-ith an uninitialized value could be a problem. rx_multi_samples sets up mul=
-ti-channel RX with an initialized time_spec:<u></u><u></u></p>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><a href=3D"https://github.com/EttusResearch/uhd/blob=
-/UHD-3.15.LTS/host/examples/rx_multi_samples.cpp" target=3D"_blank">https:/=
-/github.com/EttusResearch/uhd/blob/UHD-3.15.LTS/host/examples/rx_multi_samp=
-les.cpp</a><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Can you compile and run that example on 3.15?<u></u>=
-<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">-Sam<span style=3D"color:rgb(31,73,125)"><u></u><u><=
-/u></span></p>
-<div style=3D"border-top:none;border-right:none;border-left:none;border-bot=
-tom:1pt solid windowtext;padding:0in 0in 1pt">
-<p class=3D"MsoNormal" style=3D"border:none;padding:0in"><span style=3D"fon=
-t-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=
-=A0<u></u></span></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Sam,<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Thanks for the suggestion. time_spec uniniti=
-alized takes the default of zero, right?
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">If I run rx_multi_samples with --secs 0, I g=
-et an error =E2=80=9CError: Receiver error ERROR_CODE_LATE_COMMAND=E2=80=9D=
-, which we aren=E2=80=99t seeing in our usage (instead we just
- see it never return).<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">If I run rx_multi_samples with another value=
- (like --secs 0.1) it works fine.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">But the code I showed works 99.9% of the tim=
-e. But when we run it for hours on end, it eventually locks up. I can try r=
-unning rx_multi_samples with a very large
- --nsamps but that testing will take a while.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Thanks,<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Ryan
-<u></u><u></u></span></p>
-</div>
-</div>
-</div>
-<i><br>
-<hr>
-<p style=3D"font-size:8pt;line-height:9pt">The information contained in thi=
-s message, and any attachments, may contain privileged and/or proprietary i=
-nformation that is intended solely for the person or entity to which it is =
-addressed.
- Moreover, it may contain export restricted technical data controlled by Ex=
-port Administration Regulations (EAR) or the International Traffic in Arms =
-Regulations (ITAR). Any review, retransmission, dissemination, or re-export=
- to foreign or domestic entities
- by anyone other than the intended recipient in accordance with EAR and/or =
-ITAR regulations is prohibited.</p>
-</i>
-</div>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 03/30/2020 11:19 AM, Sam Reiter via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CADBWrHi0youfPJH1+VVg5AM7bX_DsBt2vmkP09XAJxevzPmBAg@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">Ryan,
+        <div><br>
+        </div>
+        <div>In that example, line 93 sets the USRP's internal sense of
+          time to 0.0s, after which point this sense of time ticks up.
+          Any timed commands you issue to the USRP need to occur in the
+          future, relative to the USRP's sense of time. In this case,
+          you have to give a "--secs" value greater than 0.0 + the
+          latency for the stream command to be processed and sent to the
+          radio over Ethernet (probably hundreds of microseconds).</div>
+        <div><br>
+        </div>
+        <div>As far as initialization of timespec, I'm not sure what it
+          should initialize to by default. But for the intermittent,
+          race-condition-esque behavior you're describing, it couldn't
+          hurt to set all of those times explicitly. </div>
+        <div><br>
+        </div>
+        <div>-Sam</div>
+      </div>
+    </blockquote>
+    Local variables aren't explicitly initialized to anything in
+    particular, at least in C, and as I recall, C++ as well.  Since they
+    reside on the stack,<br>
+      they'll have whatever in them unless explicitly initialized.<br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:CADBWrHi0youfPJH1+VVg5AM7bX_DsBt2vmkP09XAJxevzPmBAg@mail.gmail.com"
+      type="cite"><br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Mon, Mar 30, 2020 at 9:37
+          AM Carmichael, Ryan &lt;<a moz-do-not-send="true"
+            href="mailto:Ryan.Carmichael@dynetics.com" target="_blank">Ryan.Carmichael@dynetics.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div lang="EN-US">
+            <div>
+              <p class="MsoNormal"><b><span
+                    style="font-size:11pt;font-family:Calibri,sans-serif">From:</span></b><span
+                  style="font-size:11pt;font-family:Calibri,sans-serif">
+                  Sam Reiter &lt;<a moz-do-not-send="true"
+                    href="mailto:sam.reiter8@gmail.com" target="_blank">sam.reiter8@gmail.com</a>&gt;
+                  <br>
+                  <b>Sent:</b> Sunday, March 29, 2020 1:15 PM<br>
+                  <b>To:</b> Carmichael, Ryan &lt;<a
+                    moz-do-not-send="true"
+                    href="mailto:Ryan.Carmichael@dynetics.com"
+                    target="_blank">Ryan.Carmichael@dynetics.com</a>&gt;<br>
+                  <b>Cc:</b> <a moz-do-not-send="true"
+                    href="mailto:usrp-users@lists.ettus.com"
+                    target="_blank">usrp-users@lists.ettus.com</a><br>
+                  <b>Subject:</b> [EXTERNAL] Re: [USRP-users] X310 UHD
+                  3.15 Lockups</span></p>
+              <p class="MsoNormal"> </p>
+              <div>
+                <p class="MsoNormal">I would suspect that your setting
+                  of the time_spec with an uninitialized value could be
+                  a problem. rx_multi_samples sets up multi-channel RX
+                  with an initialized time_spec:</p>
+                <div>
+                  <p class="MsoNormal"> </p>
+                </div>
+                <div>
+                  <p class="MsoNormal"><a moz-do-not-send="true"
+href="https://github.com/EttusResearch/uhd/blob/UHD-3.15.LTS/host/examples/rx_multi_samples.cpp"
+                      target="_blank">https://github.com/EttusResearch/uhd/blob/UHD-3.15.LTS/host/examples/rx_multi_samples.cpp</a></p>
+                </div>
+                <div>
+                  <p class="MsoNormal"> </p>
+                </div>
+                <div>
+                  <p class="MsoNormal">Can you compile and run that
+                    example on 3.15?</p>
+                </div>
+                <div>
+                  <p class="MsoNormal"> </p>
+                </div>
+                <div>
+                  <p class="MsoNormal">-Sam<span
+                      style="color:rgb(31,73,125)"></span></p>
+                  <div
+                    style="border-top:none;border-right:none;border-left:none;border-bottom:1pt
+                    solid windowtext;padding:0in 0in 1pt">
+                    <p class="MsoNormal" style="border:none;padding:0in"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
+                  </div>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">Sam,</span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">Thanks
+                      for the suggestion. time_spec uninitialized takes
+                      the default of zero, right?
+                    </span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">If
+                      I run rx_multi_samples with --secs 0, I get an
+                      error “Error: Receiver error
+                      ERROR_CODE_LATE_COMMAND”, which we aren’t seeing
+                      in our usage (instead we just see it never
+                      return).</span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">If
+                      I run rx_multi_samples with another value (like
+                      --secs 0.1) it works fine.</span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">But
+                      the code I showed works 99.9% of the time. But
+                      when we run it for hours on end, it eventually
+                      locks up. I can try running rx_multi_samples with
+                      a very large --nsamps but that testing will take a
+                      while.</span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">Thanks,</span></p>
+                  <p class="MsoNormal"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">Ryan
+                    </span></p>
+                </div>
+              </div>
+            </div>
+            <i><br>
+              <hr>
+              <p style="font-size:8pt;line-height:9pt">The information
+                contained in this message, and any attachments, may
+                contain privileged and/or proprietary information that
+                is intended solely for the person or entity to which it
+                is addressed. Moreover, it may contain export restricted
+                technical data controlled by Export Administration
+                Regulations (EAR) or the International Traffic in Arms
+                Regulations (ITAR). Any review, retransmission,
+                dissemination, or re-export to foreign or domestic
+                entities by anyone other than the intended recipient in
+                accordance with EAR and/or ITAR regulations is
+                prohibited.</p>
+            </i>
+          </div>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
-</blockquote></div>
-
---0000000000004d4b9705a213fb9a--
+--------------050201000000070302000907--
 
 
---===============5903673978422636404==
+--===============1080553345142847189==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -325,5 +380,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5903673978422636404==--
+--===============1080553345142847189==--
 
