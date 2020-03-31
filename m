@@ -2,59 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 688CB19815A
-	for <lists+usrp-users@lfdr.de>; Mon, 30 Mar 2020 18:36:21 +0200 (CEST)
-Received: from [::1] (port=44166 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73987199ADF
+	for <lists+usrp-users@lfdr.de>; Tue, 31 Mar 2020 18:05:52 +0200 (CEST)
+Received: from [::1] (port=57316 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jIxOd-0004Cd-7f; Mon, 30 Mar 2020 12:36:19 -0400
-Received: from mail-qt1-f169.google.com ([209.85.160.169]:33869)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jIxOZ-00047i-W5
- for usrp-users@lists.ettus.com; Mon, 30 Mar 2020 12:36:16 -0400
-Received: by mail-qt1-f169.google.com with SMTP id 10so15630880qtp.1
- for <usrp-users@lists.ettus.com>; Mon, 30 Mar 2020 09:35:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=kjOtyAf+0GjvP0FdQzzSHy1qI4ViKhrDxFGmaXhFy7A=;
- b=BU29BhspWvLm8KWhVLFkXukoTRofg3cFG0TUvkTAkS89gvGGeLFKWdceZciFcbV7tQ
- 1qlYbYCNSFZEVQjVXdWJtrp8VNjtMD23DYXnqbTB+iRHcXlAFGrYm/uZ87IL8J7T54C1
- Z7Mmnj1QA7ktZ+lh8OxG8lEX31VALhgr0EBIWbPZUsqKPFD0P6YnbGs8ErQ1n2VeQGBC
- gyxnUTMRFYeUyu6+JwB9lTnm9XlI3bm/PfRQrNRxQsBYiLa0mIp0Hf6XEQpu3aqrZZso
- 4fPrlfsvRRbIgd96PuoMibMSeCDRhb019R1wubpX9L8mIKqPhC9WevW0zx5UQm1LbW1A
- fSkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=kjOtyAf+0GjvP0FdQzzSHy1qI4ViKhrDxFGmaXhFy7A=;
- b=MlqQbopxMtCF/rFM40a//B5vd6Kr7/bPFa06IQ+iGv/T0EDWnN/ZO1YVSJ0mfWoG9O
- hRDD/uuLzlOlOXWvohhSUY0sAr5tdJpKJgoCyM7AgtrpONg9SbWN3DLRSRKFj+b3u/DE
- /KLBhWsxp0jft8jAD+QFhLnjFkFsdXuVeR3NN36AKVZhLqtvpEE7HTU2uj1wE8OWetzt
- S+gRLuyM1O+3nhNg15Yki2szSZXIvR43lAjTHXwc/Xxxe6bSE486kKdkyqZwQYjs3q4M
- spYcnB3TkYJ5pfvwXjz+gUyJ9HU+XeIHjdVuI0mZJzYbSh1SUQ26xBZ/PwCT729lLHy8
- 9L7Q==
-X-Gm-Message-State: ANhLgQ0eXQ8rw0N8AMCFvvIrBEWNDDvL1EWWRbdK08xRFfaTarzgpfll
- /1hm3+KIAZBigWgJDM6DWHo0Ap8z
-X-Google-Smtp-Source: ADFU+vuWFEZp0RFNWxqIPYmUnDQ1OHsObdXkQOjaYXFxDmrDuUoiVK6dDC1L5FF7oLaTJfdIIHepTw==
-X-Received: by 2002:ac8:7b2f:: with SMTP id l15mr810109qtu.320.1585586135155; 
- Mon, 30 Mar 2020 09:35:35 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-12-204.dsl.bell.ca.
- [174.95.12.204])
- by smtp.googlemail.com with ESMTPSA id o81sm11009252qke.24.2020.03.30.09.35.33
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 30 Mar 2020 09:35:33 -0700 (PDT)
-Message-ID: <5E821FD4.3020708@gmail.com>
-Date: Mon, 30 Mar 2020 12:35:32 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1jJJOf-0000zl-CY; Tue, 31 Mar 2020 12:05:49 -0400
+Received: from barracuda.dynetics.com ([204.154.192.66]:33718)
+ by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
+ (Exim 4.93)
+ (envelope-from <btv1==35954d73932==Ryan.Carmichael@dynetics.com>)
+ id 1jJJOb-0000tw-0U
+ for usrp-users@lists.ettus.com; Tue, 31 Mar 2020 12:05:45 -0400
+X-ASG-Debug-ID: 1585671371-1030374ec68dbfd0001-5wTQH4
+Received: from MX2.in.dynetics.com (MX2.in.dynetics.com [10.1.15.131]) by
+ barracuda.dynetics.com with ESMTP id DMVQ2AZRibHL4AWW (version=TLSv1.2
+ cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NO);
+ Tue, 31 Mar 2020 11:16:11 -0500 (CDT)
+X-Barracuda-Envelope-From: Ryan.Carmichael@dynetics.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.1.15.131
+Received: from MAUI.in.dynetics.com ([169.254.1.66]) by MX2.in.dynetics.com
+ ([10.1.15.131]) with mapi id 14.03.0487.000; Tue, 31 Mar 2020 11:05:03 -0500
+X-Barracuda-RBL-IP: 169.254.1.66
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] X310 UHD 3.15 Lockups
+X-ASG-Orig-Subj: Re: [USRP-users] X310 UHD 3.15 Lockups
+Thread-Index: AdYHdVTNm18sqkQAS2mqD/8oAIUmYg==
+Date: Tue, 31 Mar 2020 16:05:02 +0000
+Message-ID: <10F7328F6AD1354BA6DD787687B66B9001A305111D@Maui.in.dynetics.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.120.129.85]
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <10F7328F6AD1354BA6DD787687B66B9001A3050D6A@Maui.in.dynetics.com>
- <CADBWrHi0youfPJH1+VVg5AM7bX_DsBt2vmkP09XAJxevzPmBAg@mail.gmail.com>
-In-Reply-To: <CADBWrHi0youfPJH1+VVg5AM7bX_DsBt2vmkP09XAJxevzPmBAg@mail.gmail.com>
+X-Barracuda-Connect: MX2.in.dynetics.com[10.1.15.131]
+X-Barracuda-Start-Time: 1585671371
+X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA384
+X-Barracuda-URL: https://barracuda.in.dynetics.com:443/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at dynetics.com
+X-Barracuda-Scan-Msg-Size: 12256
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No,
+ SCORE=0.00 using per-user scores of TAG_LEVEL=1000.0
+ QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.80920
+ Rule breakdown below
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ 0.00 HTML_MESSAGE           BODY: HTML included in message
 Subject: Re: [USRP-users] X310 UHD 3.15 Lockups
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -67,9 +64,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1080553345142847189=="
+From: "Carmichael, Ryan via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Carmichael, Ryan" <Ryan.Carmichael@dynetics.com>
+Content-Type: multipart/mixed; boundary="===============3413259649707460765=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,293 +80,241 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============1080553345142847189==
+--===============3413259649707460765==
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="------------050201000000070302000907"
+	boundary="_000_10F7328F6AD1354BA6DD787687B66B9001A305111DMauiindynetic_"
 
-This is a multi-part message in MIME format.
---------------050201000000070302000907
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_10F7328F6AD1354BA6DD787687B66B9001A305111DMauiindynetic_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 03/30/2020 11:19 AM, Sam Reiter via USRP-users wrote:
-> Ryan,
->
-> In that example, line 93 sets the USRP's internal sense of time to 
-> 0.0s, after which point this sense of time ticks up. Any timed 
-> commands you issue to the USRP need to occur in the future, relative 
-> to the USRP's sense of time. In this case, you have to give a "--secs" 
-> value greater than 0.0 + the latency for the stream command to be 
-> processed and sent to the radio over Ethernet (probably hundreds of 
-> microseconds).
->
-> As far as initialization of timespec, I'm not sure what it should 
-> initialize to by default. But for the intermittent, 
-> race-condition-esque behavior you're describing, it couldn't hurt to 
-> set all of those times explicitly.
->
-> -Sam
-Local variables aren't explicitly initialized to anything in particular, 
-at least in C, and as I recall, C++ as well.  Since they reside on the 
-stack,
-   they'll have whatever in them unless explicitly initialized.
+RnJvbTogU2FtIFJlaXRlciA8c2FtLnJlaXRlcjhAZ21haWwuY29tPg0KU2VudDogTW9uZGF5LCBN
+YXJjaCAzMCwgMjAyMCAxMDoyMCBBTQ0KVG86IENhcm1pY2hhZWwsIFJ5YW4gPFJ5YW4uQ2FybWlj
+aGFlbEBkeW5ldGljcy5jb20+DQpDYzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1Ympl
+Y3Q6IFtFWFRFUk5BTF0gUmU6IFtVU1JQLXVzZXJzXSBYMzEwIFVIRCAzLjE1IExvY2t1cHMNCg0K
+UnlhbiwNCg0KSW4gdGhhdCBleGFtcGxlLCBsaW5lIDkzIHNldHMgdGhlIFVTUlAncyBpbnRlcm5h
+bCBzZW5zZSBvZiB0aW1lIHRvIDAuMHMsIGFmdGVyIHdoaWNoIHBvaW50IHRoaXMgc2Vuc2Ugb2Yg
+dGltZSB0aWNrcyB1cC4gQW55IHRpbWVkIGNvbW1hbmRzIHlvdSBpc3N1ZSB0byB0aGUgVVNSUCBu
+ZWVkIHRvIG9jY3VyIGluIHRoZSBmdXR1cmUsIHJlbGF0aXZlIHRvIHRoZSBVU1JQJ3Mgc2Vuc2Ug
+b2YgdGltZS4gSW4gdGhpcyBjYXNlLCB5b3UgaGF2ZSB0byBnaXZlIGEgIi0tc2VjcyIgdmFsdWUg
+Z3JlYXRlciB0aGFuIDAuMCArIHRoZSBsYXRlbmN5IGZvciB0aGUgc3RyZWFtIGNvbW1hbmQgdG8g
+YmUgcHJvY2Vzc2VkIGFuZCBzZW50IHRvIHRoZSByYWRpbyBvdmVyIEV0aGVybmV0IChwcm9iYWJs
+eSBodW5kcmVkcyBvZiBtaWNyb3NlY29uZHMpLg0KDQpBcyBmYXIgYXMgaW5pdGlhbGl6YXRpb24g
+b2YgdGltZXNwZWMsIEknbSBub3Qgc3VyZSB3aGF0IGl0IHNob3VsZCBpbml0aWFsaXplIHRvIGJ5
+IGRlZmF1bHQuIEJ1dCBmb3IgdGhlIGludGVybWl0dGVudCwgcmFjZS1jb25kaXRpb24tZXNxdWUg
+YmVoYXZpb3IgeW91J3JlIGRlc2NyaWJpbmcsIGl0IGNvdWxkbid0IGh1cnQgdG8gc2V0IGFsbCBv
+ZiB0aG9zZSB0aW1lcyBleHBsaWNpdGx5Lg0KDQotU2FtDQoNCg0KU28sIGp1c3QgdG8gY2xhcmlm
+eSwgdGhlIHN0cmVhbV9jbWQuaHBwIGRvY3VtZW50YXRpb24gc2F5czoNCg0KKiBUaGUgc3RyZWFt
+IG5vdyBwYXJhbWV0ZXIgY29udHJvbHMgd2hlbiB0aGUgc3RyZWFtIGJlZ2lucy4NCiogV2hlbiB0
+cnVlLCB0aGUgZGV2aWNlIHdpbGwgYmVnaW4gc3RyZWFtaW5nIEFTQVAuIFdoZW4gZmFsc2UsDQoq
+IHRoZSBkZXZpY2Ugd2lsbCBiZWdpbiBzdHJlYW1pbmcgYXQgYSB0aW1lIHNwZWNpZmllZCBieSB0
+aW1lX3NwZWMuDQoNCk15IGNvZGUgc25pcHBldCB3YXM6DQoNCiAgICB1aGQ6OnN0cmVhbV9jbWRf
+dCByeFN0cmVhbUNtZCh1aGQ6OnN0cmVhbV9jbWRfdDo6U1RSRUFNX01PREVfTlVNX1NBTVBTX0FO
+RF9ET05FKTsNCiAgICByeFN0cmVhbUNtZC5zdHJlYW1fbm93ID0gdHJ1ZTsNCiAgICByeFN0cmVh
+bUNtZC50aW1lX3NwZWMgPSB1aGQ6OnRpbWVfc3BlY190KCk7DQoNCg0KU28gc2luY2UgSSBoYWQg
+c3RyZWFtX25vdyBzZXQgdG8gdHJ1ZSwgSSBiZWxpZXZlIG5vIG1hdHRlciB3aGF0IHRpbWVfc3Bl
+YyBpcyBzZXQgdG8sIGl0IHNob3VsZCBub3QgY2F1c2UgaXNzdWVzLiBJbiB0aGUgZXhhbXBsZSBy
+eF9tdWx0aV9zYW1wbGVzIHdl4oCZcmUgdGFsa2luZyBhYm91dCwgdGhleSBzZXQgc3RyZWFtX25v
+dyB0byBmYWxzZSwgc28gdGhlaXIgdGltZV9zcGVjIGFjdHVhbGx5IG1hdHRlcnMuDQoNClRoYW5r
+cywNClJ5YW4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCg0KVGhlIGluZm9y
+bWF0aW9uIGNvbnRhaW5lZCBpbiB0aGlzIG1lc3NhZ2UsIGFuZCBhbnkgYXR0YWNobWVudHMsIG1h
+eSBjb250YWluIHByaXZpbGVnZWQgYW5kL29yIHByb3ByaWV0YXJ5IGluZm9ybWF0aW9uIHRoYXQg
+aXMgaW50ZW5kZWQgc29sZWx5IGZvciB0aGUgcGVyc29uIG9yIGVudGl0eSB0byB3aGljaCBpdCBp
+cyBhZGRyZXNzZWQuIE1vcmVvdmVyLCBpdCBtYXkgY29udGFpbiBleHBvcnQgcmVzdHJpY3RlZCB0
+ZWNobmljYWwgZGF0YSBjb250cm9sbGVkIGJ5IEV4cG9ydCBBZG1pbmlzdHJhdGlvbiBSZWd1bGF0
+aW9ucyAoRUFSKSBvciB0aGUgSW50ZXJuYXRpb25hbCBUcmFmZmljIGluIEFybXMgUmVndWxhdGlv
+bnMgKElUQVIpLiBBbnkgcmV2aWV3LCByZXRyYW5zbWlzc2lvbiwgZGlzc2VtaW5hdGlvbiwgb3Ig
+cmUtZXhwb3J0IHRvIGZvcmVpZ24gb3IgZG9tZXN0aWMgZW50aXRpZXMgYnkgYW55b25lIG90aGVy
+IHRoYW4gdGhlIGludGVuZGVkIHJlY2lwaWVudCBpbiBhY2NvcmRhbmNlIHdpdGggRUFSIGFuZC9v
+ciBJVEFSIHJlZ3VsYXRpb25zIGlzIHByb2hpYml0ZWQuDQo=
 
+--_000_10F7328F6AD1354BA6DD787687B66B9001A305111DMauiindynetic_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
->
-> On Mon, Mar 30, 2020 at 9:37 AM Carmichael, Ryan 
-> <Ryan.Carmichael@dynetics.com <mailto:Ryan.Carmichael@dynetics.com>> 
-> wrote:
->
->     *From:*Sam Reiter <sam.reiter8@gmail.com
->     <mailto:sam.reiter8@gmail.com>>
->     *Sent:* Sunday, March 29, 2020 1:15 PM
->     *To:* Carmichael, Ryan <Ryan.Carmichael@dynetics.com
->     <mailto:Ryan.Carmichael@dynetics.com>>
->     *Cc:* usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
->     *Subject:* [EXTERNAL] Re: [USRP-users] X310 UHD 3.15 Lockups
->
->     I would suspect that your setting of the time_spec with an
->     uninitialized value could be a problem. rx_multi_samples sets up
->     multi-channel RX with an initialized time_spec:
->
->     https://github.com/EttusResearch/uhd/blob/UHD-3.15.LTS/host/examples/rx_multi_samples.cpp
->
->     Can you compile and run that example on 3.15?
->
->     -Sam
->
->     Sam,
->
->     Thanks for the suggestion. time_spec uninitialized takes the
->     default of zero, right?
->
->     If I run rx_multi_samples with --secs 0, I get an error “Error:
->     Receiver error ERROR_CODE_LATE_COMMAND”, which we aren’t seeing in
->     our usage (instead we just see it never return).
->
->     If I run rx_multi_samples with another value (like --secs 0.1) it
->     works fine.
->
->     But the code I showed works 99.9% of the time. But when we run it
->     for hours on end, it eventually locks up. I can try running
->     rx_multi_samples with a very large --nsamps but that testing will
->     take a while.
->
->     Thanks,
->
->     Ryan
->
->     /
->     ------------------------------------------------------------------------
->
->     The information contained in this message, and any attachments,
->     may contain privileged and/or proprietary information that is
->     intended solely for the person or entity to which it is addressed.
->     Moreover, it may contain export restricted technical data
->     controlled by Export Administration Regulations (EAR) or the
->     International Traffic in Arms Regulations (ITAR). Any review,
->     retransmission, dissemination, or re-export to foreign or domestic
->     entities by anyone other than the intended recipient in accordance
->     with EAR and/or ITAR regulations is prohibited.
->
->     /
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
+CXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMg
+MiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1
+IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
+IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0
+b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcg
+Um9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
+aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
+OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
+Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnANCgl7
+bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1tYXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdp
+bi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6
+MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIs
+c2VyaWY7fQ0KcC5Nc29MaXN0UGFyYWdyYXBoLCBsaS5Nc29MaXN0UGFyYWdyYXBoLCBkaXYuTXNv
+TGlzdFBhcmFncmFwaA0KCXttc28tc3R5bGUtcHJpb3JpdHk6MzQ7DQoJbWFyZ2luLXRvcDowaW47
+DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltYXJnaW4tYm90dG9tOjBpbjsNCgltYXJnaW4tbGVmdDou
+NWluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnAubXNvbm9ybWFsMCwgbGkubXNvbm9y
+bWFsMCwgZGl2Lm1zb25vcm1hbDANCgl7bXNvLXN0eWxlLW5hbWU6bXNvbm9ybWFsOw0KCW1zby1t
+YXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdpbi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1ib3R0
+b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9u
+dC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsc2VyaWY7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTkNCgl7
+bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNh
+bnMtc2VyaWY7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUt
+dHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpA
+cGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEu
+MGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7
+fQ0KLyogTGlzdCBEZWZpbml0aW9ucyAqLw0KQGxpc3QgbDANCgl7bXNvLWxpc3QtaWQ6MjEzNzIx
+MjA2MzsNCgltc28tbGlzdC10eXBlOmh5YnJpZDsNCgltc28tbGlzdC10ZW1wbGF0ZS1pZHM6MTg4
+MzY4NzM1MiAxMzM0NzI3MzUwIDY3Njk4NjkxIDY3Njk4NjkzIDY3Njk4Njg5IDY3Njk4NjkxIDY3
+Njk4NjkzIDY3Njk4Njg5IDY3Njk4NjkxIDY3Njk4NjkzO30NCkBsaXN0IGwwOmxldmVsMQ0KCXtt
+c28tbGV2ZWwtc3RhcnQtYXQ6NTsNCgltc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJ
+bXNvLWxldmVsLXRleHQ6LTsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwt
+bnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5
+OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWZvbnQtZmFtaWx5OkNhbGlicmk7
+fQ0KQGxpc3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCglt
+c28tbGV2ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1u
+dW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6
+IkNvdXJpZXIgTmV3Ijt9DQpAbGlzdCBsMDpsZXZlbDMNCgl7bXNvLWxldmVsLW51bWJlci1mb3Jt
+YXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9u
+ZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWlu
+Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDQNCgl7bXNvLWxldmVs
+LW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwt
+dGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1p
+bmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7
+bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Om87DQoJbXNv
+LWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0K
+CXRleHQtaW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCkBsaXN0
+IGwwOmxldmVsNg0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVs
+LXRleHQ674KnOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXIt
+cG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6V2luZ2Rp
+bmdzO30NCkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7
+DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1s
+ZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1m
+YW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsOA0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1h
+dDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6bzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsN
+Cgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0K
+CWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxpc3QgbDA6bGV2ZWw5DQoJe21zby1sZXZl
+bC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVs
+LXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQt
+aW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0Kb2wNCgl7bWFyZ2luLWJv
+dHRvbTowaW47fQ0KdWwNCgl7bWFyZ2luLWJvdHRvbTowaW47fQ0KLS0+PC9zdHlsZT48IS0tW2lm
+IGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9
+IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxv
+OnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIx
+IiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkg
+bGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29y
+ZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJv
+bTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IFNhbSBSZWl0ZXIgJmx0O3NhbS5yZWl0ZXI4
+QGdtYWlsLmNvbSZndDsNCjxicj4NCjxiPlNlbnQ6PC9iPiBNb25kYXksIE1hcmNoIDMwLCAyMDIw
+IDEwOjIwIEFNPGJyPg0KPGI+VG86PC9iPiBDYXJtaWNoYWVsLCBSeWFuICZsdDtSeWFuLkNhcm1p
+Y2hhZWxAZHluZXRpY3MuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gdXNycC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW0VYVEVSTkFMXSBSZTogW1VTUlAtdXNlcnNd
+IFgzMTAgVUhEIDMuMTUgTG9ja3VwczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPlJ5YW4sPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
+cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5J
+biB0aGF0IGV4YW1wbGUsIGxpbmUgOTMgc2V0cyB0aGUgVVNSUCdzIGludGVybmFsIHNlbnNlIG9m
+IHRpbWUgdG8gMC4wcywgYWZ0ZXIgd2hpY2ggcG9pbnQgdGhpcyBzZW5zZSBvZiB0aW1lIHRpY2tz
+IHVwLiBBbnkgdGltZWQgY29tbWFuZHMgeW91IGlzc3VlIHRvIHRoZSBVU1JQIG5lZWQgdG8gb2Nj
+dXIgaW4gdGhlIGZ1dHVyZSwgcmVsYXRpdmUgdG8gdGhlIFVTUlAncyBzZW5zZSBvZiB0aW1lLiBJ
+biB0aGlzDQogY2FzZSwgeW91IGhhdmUgdG8gZ2l2ZSBhICZxdW90Oy0tc2VjcyZxdW90OyB2YWx1
+ZSBncmVhdGVyIHRoYW4gMC4wJm5ic3A7JiM0MzsgdGhlIGxhdGVuY3kgZm9yIHRoZSBzdHJlYW0g
+Y29tbWFuZCB0byBiZSBwcm9jZXNzZWQgYW5kIHNlbnQgdG8gdGhlIHJhZGlvIG92ZXIgRXRoZXJu
+ZXQgKHByb2JhYmx5IGh1bmRyZWRzIG9mIG1pY3Jvc2Vjb25kcykuPG86cD48L286cD48L3A+DQo8
+L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkFzIGZhciBhcyBpbml0aWFsaXph
+dGlvbiZuYnNwO29mIHRpbWVzcGVjLCBJJ20gbm90IHN1cmUgd2hhdCBpdCBzaG91bGQgaW5pdGlh
+bGl6ZSB0byBieSBkZWZhdWx0LiBCdXQgZm9yIHRoZSBpbnRlcm1pdHRlbnQsIHJhY2UtY29uZGl0
+aW9uLWVzcXVlIGJlaGF2aW9yIHlvdSdyZSBkZXNjcmliaW5nLCBpdCBjb3VsZG4ndCBodXJ0IHRv
+IHNldCBhbGwgb2YgdGhvc2UgdGltZXMgZXhwbGljaXRseS4mbmJzcDs8bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+LVNhbTxzcGFuIHN0eWxlPSJj
+b2xvcjojMUY0OTdEIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJtc28tZWxl
+bWVudDpwYXJhLWJvcmRlci1kaXY7Ym9yZGVyOm5vbmU7Ym9yZGVyLWJvdHRvbTpzb2xpZCB3aW5k
+b3d0ZXh0IDEuMHB0O3BhZGRpbmc6MGluIDBpbiAxLjBwdCAwaW4iPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCIgc3R5bGU9ImJvcmRlcjpub25lO3BhZGRpbmc6MGluIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
+b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
+cXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2Nv
+bG9yOiMxRjQ5N0QiPlNvLCBqdXN0IHRvIGNsYXJpZnksIHRoZSBzdHJlYW1fY21kLmhwcCBkb2N1
+bWVudGF0aW9uIHNheXM6PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
+Ij4qIFRoZSBzdHJlYW0gbm93IHBhcmFtZXRlciBjb250cm9scyB3aGVuIHRoZSBzdHJlYW0gYmVn
+aW5zLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
+cy1zZXJpZjtjb2xvcjojMUY0OTdEIj4qIFdoZW4gdHJ1ZSwgdGhlIGRldmljZSB3aWxsIGJlZ2lu
+IHN0cmVhbWluZyBBU0FQLiBXaGVuIGZhbHNlLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj4qIHRoZSBkZXZp
+Y2Ugd2lsbCBiZWdpbiBzdHJlYW1pbmcgYXQgYSB0aW1lIHNwZWNpZmllZCBieSB0aW1lX3NwZWMu
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
+cmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5NeSBjb2RlIHNuaXBw
+ZXQgd2FzOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+Jm5ic3A7
+Jm5ic3A7Jm5ic3A7IHVoZDo6c3RyZWFtX2NtZF90IHJ4U3RyZWFtQ21kKHVoZDo6c3RyZWFtX2Nt
+ZF90OjpTVFJFQU1fTU9ERV9OVU1fU0FNUFNfQU5EX0RPTkUpOzxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj4m
+bmJzcDsmbmJzcDsmbmJzcDsgcnhTdHJlYW1DbWQuc3RyZWFtX25vdyA9IHRydWU7PG86cD48L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OiMxRjQ5N0QiPiZuYnNwOyZuYnNwOyZuYnNwOyByeFN0cmVhbUNtZC50aW1lX3NwZWMgPSB1aGQ6
+OnRpbWVfc3BlY190KCk7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+U28gc2luY2UgSSBoYWQgc3RyZWFtX25vdyBzZXQg
+dG8gdHJ1ZSwgSSBiZWxpZXZlIG5vIG1hdHRlciB3aGF0IHRpbWVfc3BlYyBpcyBzZXQgdG8sIGl0
+IHNob3VsZCBub3QgY2F1c2UgaXNzdWVzLiBJbiB0aGUgZXhhbXBsZSByeF9tdWx0aV9zYW1wbGVz
+IHdl4oCZcmUgdGFsa2luZw0KIGFib3V0LCB0aGV5IHNldCBzdHJlYW1fbm93IHRvIGZhbHNlLCBz
+byB0aGVpciB0aW1lX3NwZWMgYWN0dWFsbHkgbWF0dGVycy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
+LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86
+cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
+LXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoYW5rcyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+UnlhbjxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxpPjxicj4NCjxocj4N
+CjxwIHN0eWxlPSJmb250LXNpemU6OHB0OyBsaW5lLWhlaWdodDo5cHQ7IGZvbnQtc3R5bGU6bW9u
+b3NwYWNlIj5UaGUgaW5mb3JtYXRpb24gY29udGFpbmVkIGluIHRoaXMgbWVzc2FnZSwgYW5kIGFu
+eSBhdHRhY2htZW50cywgbWF5IGNvbnRhaW4gcHJpdmlsZWdlZCBhbmQvb3IgcHJvcHJpZXRhcnkg
+aW5mb3JtYXRpb24gdGhhdCBpcyBpbnRlbmRlZCBzb2xlbHkgZm9yIHRoZSBwZXJzb24gb3IgZW50
+aXR5IHRvIHdoaWNoIGl0IGlzIGFkZHJlc3NlZC4NCiBNb3Jlb3ZlciwgaXQgbWF5IGNvbnRhaW4g
+ZXhwb3J0IHJlc3RyaWN0ZWQgdGVjaG5pY2FsIGRhdGEgY29udHJvbGxlZCBieSBFeHBvcnQgQWRt
+aW5pc3RyYXRpb24gUmVndWxhdGlvbnMgKEVBUikgb3IgdGhlIEludGVybmF0aW9uYWwgVHJhZmZp
+YyBpbiBBcm1zIFJlZ3VsYXRpb25zIChJVEFSKS4gQW55IHJldmlldywgcmV0cmFuc21pc3Npb24s
+IGRpc3NlbWluYXRpb24sIG9yIHJlLWV4cG9ydCB0byBmb3JlaWduIG9yIGRvbWVzdGljIGVudGl0
+aWVzDQogYnkgYW55b25lIG90aGVyIHRoYW4gdGhlIGludGVuZGVkIHJlY2lwaWVudCBpbiBhY2Nv
+cmRhbmNlIHdpdGggRUFSIGFuZC9vciBJVEFSIHJlZ3VsYXRpb25zIGlzIHByb2hpYml0ZWQuPC9w
+Pg0KPC9pPg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-
---------------050201000000070302000907
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 03/30/2020 11:19 AM, Sam Reiter via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CADBWrHi0youfPJH1+VVg5AM7bX_DsBt2vmkP09XAJxevzPmBAg@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Ryan,
-        <div><br>
-        </div>
-        <div>In that example, line 93 sets the USRP's internal sense of
-          time to 0.0s, after which point this sense of time ticks up.
-          Any timed commands you issue to the USRP need to occur in the
-          future, relative to the USRP's sense of time. In this case,
-          you have to give a "--secs" value greater than 0.0 + the
-          latency for the stream command to be processed and sent to the
-          radio over Ethernet (probably hundreds of microseconds).</div>
-        <div><br>
-        </div>
-        <div>As far as initialization of timespec, I'm not sure what it
-          should initialize to by default. But for the intermittent,
-          race-condition-esque behavior you're describing, it couldn't
-          hurt to set all of those times explicitly. </div>
-        <div><br>
-        </div>
-        <div>-Sam</div>
-      </div>
-    </blockquote>
-    Local variables aren't explicitly initialized to anything in
-    particular, at least in C, and as I recall, C++ as well.  Since they
-    reside on the stack,<br>
-      they'll have whatever in them unless explicitly initialized.<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CADBWrHi0youfPJH1+VVg5AM7bX_DsBt2vmkP09XAJxevzPmBAg@mail.gmail.com"
-      type="cite"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Mon, Mar 30, 2020 at 9:37
-          AM Carmichael, Ryan &lt;<a moz-do-not-send="true"
-            href="mailto:Ryan.Carmichael@dynetics.com" target="_blank">Ryan.Carmichael@dynetics.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div lang="EN-US">
-            <div>
-              <p class="MsoNormal"><b><span
-                    style="font-size:11pt;font-family:Calibri,sans-serif">From:</span></b><span
-                  style="font-size:11pt;font-family:Calibri,sans-serif">
-                  Sam Reiter &lt;<a moz-do-not-send="true"
-                    href="mailto:sam.reiter8@gmail.com" target="_blank">sam.reiter8@gmail.com</a>&gt;
-                  <br>
-                  <b>Sent:</b> Sunday, March 29, 2020 1:15 PM<br>
-                  <b>To:</b> Carmichael, Ryan &lt;<a
-                    moz-do-not-send="true"
-                    href="mailto:Ryan.Carmichael@dynetics.com"
-                    target="_blank">Ryan.Carmichael@dynetics.com</a>&gt;<br>
-                  <b>Cc:</b> <a moz-do-not-send="true"
-                    href="mailto:usrp-users@lists.ettus.com"
-                    target="_blank">usrp-users@lists.ettus.com</a><br>
-                  <b>Subject:</b> [EXTERNAL] Re: [USRP-users] X310 UHD
-                  3.15 Lockups</span></p>
-              <p class="MsoNormal"> </p>
-              <div>
-                <p class="MsoNormal">I would suspect that your setting
-                  of the time_spec with an uninitialized value could be
-                  a problem. rx_multi_samples sets up multi-channel RX
-                  with an initialized time_spec:</p>
-                <div>
-                  <p class="MsoNormal"> </p>
-                </div>
-                <div>
-                  <p class="MsoNormal"><a moz-do-not-send="true"
-href="https://github.com/EttusResearch/uhd/blob/UHD-3.15.LTS/host/examples/rx_multi_samples.cpp"
-                      target="_blank">https://github.com/EttusResearch/uhd/blob/UHD-3.15.LTS/host/examples/rx_multi_samples.cpp</a></p>
-                </div>
-                <div>
-                  <p class="MsoNormal"> </p>
-                </div>
-                <div>
-                  <p class="MsoNormal">Can you compile and run that
-                    example on 3.15?</p>
-                </div>
-                <div>
-                  <p class="MsoNormal"> </p>
-                </div>
-                <div>
-                  <p class="MsoNormal">-Sam<span
-                      style="color:rgb(31,73,125)"></span></p>
-                  <div
-                    style="border-top:none;border-right:none;border-left:none;border-bottom:1pt
-                    solid windowtext;padding:0in 0in 1pt">
-                    <p class="MsoNormal" style="border:none;padding:0in"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
-                  </div>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">Sam,</span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">Thanks
-                      for the suggestion. time_spec uninitialized takes
-                      the default of zero, right?
-                    </span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">If
-                      I run rx_multi_samples with --secs 0, I get an
-                      error “Error: Receiver error
-                      ERROR_CODE_LATE_COMMAND”, which we aren’t seeing
-                      in our usage (instead we just see it never
-                      return).</span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">If
-                      I run rx_multi_samples with another value (like
-                      --secs 0.1) it works fine.</span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">But
-                      the code I showed works 99.9% of the time. But
-                      when we run it for hours on end, it eventually
-                      locks up. I can try running rx_multi_samples with
-                      a very large --nsamps but that testing will take a
-                      while.</span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"> </span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">Thanks,</span></p>
-                  <p class="MsoNormal"><span
-style="font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">Ryan
-                    </span></p>
-                </div>
-              </div>
-            </div>
-            <i><br>
-              <hr>
-              <p style="font-size:8pt;line-height:9pt">The information
-                contained in this message, and any attachments, may
-                contain privileged and/or proprietary information that
-                is intended solely for the person or entity to which it
-                is addressed. Moreover, it may contain export restricted
-                technical data controlled by Export Administration
-                Regulations (EAR) or the International Traffic in Arms
-                Regulations (ITAR). Any review, retransmission,
-                dissemination, or re-export to foreign or domestic
-                entities by anyone other than the intended recipient in
-                accordance with EAR and/or ITAR regulations is
-                prohibited.</p>
-            </i>
-          </div>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------050201000000070302000907--
+--_000_10F7328F6AD1354BA6DD787687B66B9001A305111DMauiindynetic_--
 
 
---===============1080553345142847189==
+--===============3413259649707460765==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -380,5 +325,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1080553345142847189==--
+--===============3413259649707460765==--
 
