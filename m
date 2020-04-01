@@ -2,57 +2,78 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73987199ADF
-	for <lists+usrp-users@lfdr.de>; Tue, 31 Mar 2020 18:05:52 +0200 (CEST)
-Received: from [::1] (port=57316 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB2FE19ADC7
+	for <lists+usrp-users@lfdr.de>; Wed,  1 Apr 2020 16:26:33 +0200 (CEST)
+Received: from [::1] (port=58668 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jJJOf-0000zl-CY; Tue, 31 Mar 2020 12:05:49 -0400
-Received: from barracuda.dynetics.com ([204.154.192.66]:33718)
- by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
- (Exim 4.93)
- (envelope-from <btv1==35954d73932==Ryan.Carmichael@dynetics.com>)
- id 1jJJOb-0000tw-0U
- for usrp-users@lists.ettus.com; Tue, 31 Mar 2020 12:05:45 -0400
-X-ASG-Debug-ID: 1585671371-1030374ec68dbfd0001-5wTQH4
-Received: from MX2.in.dynetics.com (MX2.in.dynetics.com [10.1.15.131]) by
- barracuda.dynetics.com with ESMTP id DMVQ2AZRibHL4AWW (version=TLSv1.2
- cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NO);
- Tue, 31 Mar 2020 11:16:11 -0500 (CDT)
-X-Barracuda-Envelope-From: Ryan.Carmichael@dynetics.com
-X-Barracuda-RBL-Trusted-Forwarder: 10.1.15.131
-Received: from MAUI.in.dynetics.com ([169.254.1.66]) by MX2.in.dynetics.com
- ([10.1.15.131]) with mapi id 14.03.0487.000; Tue, 31 Mar 2020 11:05:03 -0500
-X-Barracuda-RBL-IP: 169.254.1.66
+	id 1jJeK4-0007ax-KY; Wed, 01 Apr 2020 10:26:28 -0400
+Received: from mail-mw2nam12olkn2031.outbound.protection.outlook.com
+ ([40.92.23.31]:30048 helo=NAM12-MW2-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <e070832@hotmail.com>) id 1jJeK0-0007Lc-KW
+ for usrp-users@lists.ettus.com; Wed, 01 Apr 2020 10:26:24 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nPalAXc7OvH8guy/z4LI9h9wUKDSMnYwA4viYou0wkRj0TFQBMy1Ab3bad/Q29d8M1DjLbHuqDS5L0EC980fXQxzzNUTeftCAGDwAQIxVpNtZ07bQUaRjBoLgRQCFivuOZkjB0WoWsKyOJ7oxwHtXtlCHwco7v6CJDGSLtXwZ9Yzy/50QD9f4SLk7eS9zBCgP2976uMPexyCUxd8Fjn7X45yR4oynEWairpSaamJ/6sBL/EMPucewNlc7o/ApYLkGOzzKrTRuvn277pTRnjRJBBIODZUKM1OmhbCzfAL8t7e4wPU++bEsu5ZyBXYZlGLTt0sz3qIhuDaE2nWvDIzIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mH3JkufO1tdX7LDygZ6Ea9zwpMtsY1DlEbt5VKznLjE=;
+ b=ZYjWj5k7b9X0gZclIvOO6Glip0Ve5a7TsfTe16gneKIgAVqQsU9r8X9kJxWJ3MZqh8PgHuMmLf8P34sDfq5Kcn1gbOOxqMHw+KXuSXy9evp7A96ubawQGXUTxDNBEWzXzWsXgXwKnostWh+HRtIsdfe19QVGctlERTkVMHqbiBmubq/NUMlmWINctYDTFdR0qWBY53L4UDoUu+c6Y2VNejkVwL2N+pQBrKa+9ZTdv+9wCYCX1qWdVd5BiXiK1VAhl8539dToGiXGs9kuGpIMmyWBPZwUE54URChWJlmPhOHqg64dZ07xMwlpFmvo4HKaNCG5G1Hzl27AyJyEsp5ELA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mH3JkufO1tdX7LDygZ6Ea9zwpMtsY1DlEbt5VKznLjE=;
+ b=QXa3KG04uxvS9Ng8zWsindn0b94L80IjQMb2B740zCDQJ61AyZfeVB2ikXTYeGxoXpSdNXc1vMo07vmN58NMNjJwXbDk4ICePe9PCQfCiyE+EDV3iRvjgP8ej5cvPP7WUrwbww2mf8jAcJd3M7+sT54IfwFhHMkxLRLqZ5K9IG4xX3JuPbFrizoNQ2mWuYbFE9HA76x9Q2cSmmOHohRdcmWBUAHsewagNK6OLipYgc8haDXnjVSNXr6ELu6ftVVaMO1UWWnCU016gSC0WEULJUzYdqwcnblCsiT3zzTKamcvIqpZpK9hgwo9OvsP5UbuWiRn+/ZFyLi4NrHR8MGYrQ==
+Received: from DM6NAM12FT039.eop-nam12.prod.protection.outlook.com
+ (2a01:111:e400:fc64::43) by
+ DM6NAM12HT194.eop-nam12.prod.protection.outlook.com (2a01:111:e400:fc64::121)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.9; Wed, 1 Apr
+ 2020 14:25:41 +0000
+Received: from DM6PR19MB2668.namprd19.prod.outlook.com
+ (2a01:111:e400:fc64::49) by DM6NAM12FT039.mail.protection.outlook.com
+ (2a01:111:e400:fc64::315) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.9 via Frontend
+ Transport; Wed, 1 Apr 2020 14:25:41 +0000
+Received: from DM6PR19MB2668.namprd19.prod.outlook.com
+ ([fe80::d5b1:1ab1:8cb6:b6e2]) by DM6PR19MB2668.namprd19.prod.outlook.com
+ ([fe80::d5b1:1ab1:8cb6:b6e2%5]) with mapi id 15.20.2878.014; Wed, 1 Apr 2020
+ 14:25:41 +0000
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] X310 UHD 3.15 Lockups
-X-ASG-Orig-Subj: Re: [USRP-users] X310 UHD 3.15 Lockups
-Thread-Index: AdYHdVTNm18sqkQAS2mqD/8oAIUmYg==
-Date: Tue, 31 Mar 2020 16:05:02 +0000
-Message-ID: <10F7328F6AD1354BA6DD787687B66B9001A305111D@Maui.in.dynetics.com>
+Thread-Topic: Setting Up E310 Environment - Build Error
+Thread-Index: AQHWCC6QhvnHfv+YzUaRxyHsSq3gyg==
+Date: Wed, 1 Apr 2020 14:25:41 +0000
+Message-ID: <DM6PR19MB26685023DD12B54B630A352AA4C90@DM6PR19MB2668.namprd19.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.120.129.85]
+x-incomingtopheadermarker: OriginalChecksum:DDE2F01D321E10E81E679141160BC2F8DC93F18DA388B9C85BF7221C917AF7F1;
+ UpperCasedChecksum:4F099ECE7CE93834E6CF46D0395F09846C88E1F2F51FC233C7C0C4E2CE01880B;
+ SizeAsReceived:6667; Count:42
+x-tmn: [nMF8mEgkw5Y7iqNQXHilLU3LyQoIJcLy]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 42
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: fa1746d5-7ce3-41a6-6804-08d7d6488eaa
+x-ms-traffictypediagnostic: DM6NAM12HT194:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: g7XBRflG8p6wUC3IIsiCb6n7TM6NKdfT0sQgOMlXKxq1M4C3AyFqXvMsZpuZA7kkwKxUFsdrHeCosOVayEXVfrM98L1HTUHFgOGZnjIBv7uPy+i6a0kn0OzgaoUe/KHCq0adL19y3/EUYh0naR908xbqpXqdsVhYHmumRHgRNvnlf+0jAVSXnU5IB6I+/HZGA1tav3Xijc1D5zL+luE/c8QCt/Hm1+nUt0PUTT8yVFU=
+x-ms-exchange-antispam-messagedata: 2MtXp0ZHysyMsS0KOxvw6bP79by1CePw+E+kLiDlmKEDGqzPHvi05xpdL/REFTYwEPOkzJRC+HBurdlmzfPau+yjBO+nYa5x5twFWnl5ihHkLHW/ujQfFpovZAJeJlff5eFIzKNxA1eGZnrFL7wOFA==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-Barracuda-Connect: MX2.in.dynetics.com[10.1.15.131]
-X-Barracuda-Start-Time: 1585671371
-X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA384
-X-Barracuda-URL: https://barracuda.in.dynetics.com:443/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at dynetics.com
-X-Barracuda-Scan-Msg-Size: 12256
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No,
- SCORE=0.00 using per-user scores of TAG_LEVEL=1000.0
- QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.80920
- Rule breakdown below
- pts rule name              description
- ---- ---------------------- --------------------------------------------------
- 0.00 HTML_MESSAGE           BODY: HTML included in message
-Subject: Re: [USRP-users] X310 UHD 3.15 Lockups
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa1746d5-7ce3-41a6-6804-08d7d6488eaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Apr 2020 14:25:41.4706 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6NAM12HT194
+Subject: [USRP-users] Setting Up E310 Environment - Build Error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,9 +85,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Carmichael, Ryan via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Carmichael, Ryan" <Ryan.Carmichael@dynetics.com>
-Content-Type: multipart/mixed; boundary="===============3413259649707460765=="
+From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jeff S <e070832@hotmail.com>
+Content-Type: multipart/mixed; boundary="===============0022166061187320599=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,241 +101,275 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3413259649707460765==
+--===============0022166061187320599==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_10F7328F6AD1354BA6DD787687B66B9001A305111DMauiindynetic_"
+	boundary="_000_DM6PR19MB26685023DD12B54B630A352AA4C90DM6PR19MB2668namp_"
 
---_000_10F7328F6AD1354BA6DD787687B66B9001A305111DMauiindynetic_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_DM6PR19MB26685023DD12B54B630A352AA4C90DM6PR19MB2668namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-RnJvbTogU2FtIFJlaXRlciA8c2FtLnJlaXRlcjhAZ21haWwuY29tPg0KU2VudDogTW9uZGF5LCBN
-YXJjaCAzMCwgMjAyMCAxMDoyMCBBTQ0KVG86IENhcm1pY2hhZWwsIFJ5YW4gPFJ5YW4uQ2FybWlj
-aGFlbEBkeW5ldGljcy5jb20+DQpDYzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1Ympl
-Y3Q6IFtFWFRFUk5BTF0gUmU6IFtVU1JQLXVzZXJzXSBYMzEwIFVIRCAzLjE1IExvY2t1cHMNCg0K
-UnlhbiwNCg0KSW4gdGhhdCBleGFtcGxlLCBsaW5lIDkzIHNldHMgdGhlIFVTUlAncyBpbnRlcm5h
-bCBzZW5zZSBvZiB0aW1lIHRvIDAuMHMsIGFmdGVyIHdoaWNoIHBvaW50IHRoaXMgc2Vuc2Ugb2Yg
-dGltZSB0aWNrcyB1cC4gQW55IHRpbWVkIGNvbW1hbmRzIHlvdSBpc3N1ZSB0byB0aGUgVVNSUCBu
-ZWVkIHRvIG9jY3VyIGluIHRoZSBmdXR1cmUsIHJlbGF0aXZlIHRvIHRoZSBVU1JQJ3Mgc2Vuc2Ug
-b2YgdGltZS4gSW4gdGhpcyBjYXNlLCB5b3UgaGF2ZSB0byBnaXZlIGEgIi0tc2VjcyIgdmFsdWUg
-Z3JlYXRlciB0aGFuIDAuMCArIHRoZSBsYXRlbmN5IGZvciB0aGUgc3RyZWFtIGNvbW1hbmQgdG8g
-YmUgcHJvY2Vzc2VkIGFuZCBzZW50IHRvIHRoZSByYWRpbyBvdmVyIEV0aGVybmV0IChwcm9iYWJs
-eSBodW5kcmVkcyBvZiBtaWNyb3NlY29uZHMpLg0KDQpBcyBmYXIgYXMgaW5pdGlhbGl6YXRpb24g
-b2YgdGltZXNwZWMsIEknbSBub3Qgc3VyZSB3aGF0IGl0IHNob3VsZCBpbml0aWFsaXplIHRvIGJ5
-IGRlZmF1bHQuIEJ1dCBmb3IgdGhlIGludGVybWl0dGVudCwgcmFjZS1jb25kaXRpb24tZXNxdWUg
-YmVoYXZpb3IgeW91J3JlIGRlc2NyaWJpbmcsIGl0IGNvdWxkbid0IGh1cnQgdG8gc2V0IGFsbCBv
-ZiB0aG9zZSB0aW1lcyBleHBsaWNpdGx5Lg0KDQotU2FtDQoNCg0KU28sIGp1c3QgdG8gY2xhcmlm
-eSwgdGhlIHN0cmVhbV9jbWQuaHBwIGRvY3VtZW50YXRpb24gc2F5czoNCg0KKiBUaGUgc3RyZWFt
-IG5vdyBwYXJhbWV0ZXIgY29udHJvbHMgd2hlbiB0aGUgc3RyZWFtIGJlZ2lucy4NCiogV2hlbiB0
-cnVlLCB0aGUgZGV2aWNlIHdpbGwgYmVnaW4gc3RyZWFtaW5nIEFTQVAuIFdoZW4gZmFsc2UsDQoq
-IHRoZSBkZXZpY2Ugd2lsbCBiZWdpbiBzdHJlYW1pbmcgYXQgYSB0aW1lIHNwZWNpZmllZCBieSB0
-aW1lX3NwZWMuDQoNCk15IGNvZGUgc25pcHBldCB3YXM6DQoNCiAgICB1aGQ6OnN0cmVhbV9jbWRf
-dCByeFN0cmVhbUNtZCh1aGQ6OnN0cmVhbV9jbWRfdDo6U1RSRUFNX01PREVfTlVNX1NBTVBTX0FO
-RF9ET05FKTsNCiAgICByeFN0cmVhbUNtZC5zdHJlYW1fbm93ID0gdHJ1ZTsNCiAgICByeFN0cmVh
-bUNtZC50aW1lX3NwZWMgPSB1aGQ6OnRpbWVfc3BlY190KCk7DQoNCg0KU28gc2luY2UgSSBoYWQg
-c3RyZWFtX25vdyBzZXQgdG8gdHJ1ZSwgSSBiZWxpZXZlIG5vIG1hdHRlciB3aGF0IHRpbWVfc3Bl
-YyBpcyBzZXQgdG8sIGl0IHNob3VsZCBub3QgY2F1c2UgaXNzdWVzLiBJbiB0aGUgZXhhbXBsZSBy
-eF9tdWx0aV9zYW1wbGVzIHdl4oCZcmUgdGFsa2luZyBhYm91dCwgdGhleSBzZXQgc3RyZWFtX25v
-dyB0byBmYWxzZSwgc28gdGhlaXIgdGltZV9zcGVjIGFjdHVhbGx5IG1hdHRlcnMuDQoNClRoYW5r
-cywNClJ5YW4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCg0KVGhlIGluZm9y
-bWF0aW9uIGNvbnRhaW5lZCBpbiB0aGlzIG1lc3NhZ2UsIGFuZCBhbnkgYXR0YWNobWVudHMsIG1h
-eSBjb250YWluIHByaXZpbGVnZWQgYW5kL29yIHByb3ByaWV0YXJ5IGluZm9ybWF0aW9uIHRoYXQg
-aXMgaW50ZW5kZWQgc29sZWx5IGZvciB0aGUgcGVyc29uIG9yIGVudGl0eSB0byB3aGljaCBpdCBp
-cyBhZGRyZXNzZWQuIE1vcmVvdmVyLCBpdCBtYXkgY29udGFpbiBleHBvcnQgcmVzdHJpY3RlZCB0
-ZWNobmljYWwgZGF0YSBjb250cm9sbGVkIGJ5IEV4cG9ydCBBZG1pbmlzdHJhdGlvbiBSZWd1bGF0
-aW9ucyAoRUFSKSBvciB0aGUgSW50ZXJuYXRpb25hbCBUcmFmZmljIGluIEFybXMgUmVndWxhdGlv
-bnMgKElUQVIpLiBBbnkgcmV2aWV3LCByZXRyYW5zbWlzc2lvbiwgZGlzc2VtaW5hdGlvbiwgb3Ig
-cmUtZXhwb3J0IHRvIGZvcmVpZ24gb3IgZG9tZXN0aWMgZW50aXRpZXMgYnkgYW55b25lIG90aGVy
-IHRoYW4gdGhlIGludGVuZGVkIHJlY2lwaWVudCBpbiBhY2NvcmRhbmNlIHdpdGggRUFSIGFuZC9v
-ciBJVEFSIHJlZ3VsYXRpb25zIGlzIHByb2hpYml0ZWQuDQo=
+I am trying to combine the install using a custom prefix (https://kb.ettus.=
+com/Building_and_Installing_UHD_and_GNU_Radio_to_a_Custom_Prefix) and while=
+ following S/W Dev on E3xx (https://kb.ettus.com/Software_Development_on_th=
+e_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source).  I'm =
+using Ubuntu 18.04.
 
---_000_10F7328F6AD1354BA6DD787687B66B9001A305111DMauiindynetic_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
-
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
-CXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMg
-MiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1
-IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
-IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0
-b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcg
-Um9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
-aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
-OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
-Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnANCgl7
-bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1tYXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdp
-bi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6
-MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIs
-c2VyaWY7fQ0KcC5Nc29MaXN0UGFyYWdyYXBoLCBsaS5Nc29MaXN0UGFyYWdyYXBoLCBkaXYuTXNv
-TGlzdFBhcmFncmFwaA0KCXttc28tc3R5bGUtcHJpb3JpdHk6MzQ7DQoJbWFyZ2luLXRvcDowaW47
-DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltYXJnaW4tYm90dG9tOjBpbjsNCgltYXJnaW4tbGVmdDou
-NWluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnAubXNvbm9ybWFsMCwgbGkubXNvbm9y
-bWFsMCwgZGl2Lm1zb25vcm1hbDANCgl7bXNvLXN0eWxlLW5hbWU6bXNvbm9ybWFsOw0KCW1zby1t
-YXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdpbi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1ib3R0
-b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9u
-dC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsc2VyaWY7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTkNCgl7
-bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNh
-bnMtc2VyaWY7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUt
-dHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpA
-cGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEu
-MGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7
-fQ0KLyogTGlzdCBEZWZpbml0aW9ucyAqLw0KQGxpc3QgbDANCgl7bXNvLWxpc3QtaWQ6MjEzNzIx
-MjA2MzsNCgltc28tbGlzdC10eXBlOmh5YnJpZDsNCgltc28tbGlzdC10ZW1wbGF0ZS1pZHM6MTg4
-MzY4NzM1MiAxMzM0NzI3MzUwIDY3Njk4NjkxIDY3Njk4NjkzIDY3Njk4Njg5IDY3Njk4NjkxIDY3
-Njk4NjkzIDY3Njk4Njg5IDY3Njk4NjkxIDY3Njk4NjkzO30NCkBsaXN0IGwwOmxldmVsMQ0KCXtt
-c28tbGV2ZWwtc3RhcnQtYXQ6NTsNCgltc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJ
-bXNvLWxldmVsLXRleHQ6LTsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwt
-bnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5
-OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWZvbnQtZmFtaWx5OkNhbGlicmk7
-fQ0KQGxpc3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCglt
-c28tbGV2ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1u
-dW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6
-IkNvdXJpZXIgTmV3Ijt9DQpAbGlzdCBsMDpsZXZlbDMNCgl7bXNvLWxldmVsLW51bWJlci1mb3Jt
-YXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9u
-ZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWlu
-Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDQNCgl7bXNvLWxldmVs
-LW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwt
-dGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1p
-bmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7
-bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Om87DQoJbXNv
-LWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0K
-CXRleHQtaW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCkBsaXN0
-IGwwOmxldmVsNg0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVs
-LXRleHQ674KnOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXIt
-cG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6V2luZ2Rp
-bmdzO30NCkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7
-DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1s
-ZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1m
-YW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsOA0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1h
-dDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6bzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsN
-Cgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0K
-CWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxpc3QgbDA6bGV2ZWw5DQoJe21zby1sZXZl
-bC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVs
-LXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQt
-aW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0Kb2wNCgl7bWFyZ2luLWJv
-dHRvbTowaW47fQ0KdWwNCgl7bWFyZ2luLWJvdHRvbTowaW47fQ0KLS0+PC9zdHlsZT48IS0tW2lm
-IGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9
-IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxv
-OnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIx
-IiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkg
-bGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29y
-ZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJv
-bTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IFNhbSBSZWl0ZXIgJmx0O3NhbS5yZWl0ZXI4
-QGdtYWlsLmNvbSZndDsNCjxicj4NCjxiPlNlbnQ6PC9iPiBNb25kYXksIE1hcmNoIDMwLCAyMDIw
-IDEwOjIwIEFNPGJyPg0KPGI+VG86PC9iPiBDYXJtaWNoYWVsLCBSeWFuICZsdDtSeWFuLkNhcm1p
-Y2hhZWxAZHluZXRpY3MuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gdXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW0VYVEVSTkFMXSBSZTogW1VTUlAtdXNlcnNd
-IFgzMTAgVUhEIDMuMTUgTG9ja3VwczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPlJ5YW4sPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
-cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5J
-biB0aGF0IGV4YW1wbGUsIGxpbmUgOTMgc2V0cyB0aGUgVVNSUCdzIGludGVybmFsIHNlbnNlIG9m
-IHRpbWUgdG8gMC4wcywgYWZ0ZXIgd2hpY2ggcG9pbnQgdGhpcyBzZW5zZSBvZiB0aW1lIHRpY2tz
-IHVwLiBBbnkgdGltZWQgY29tbWFuZHMgeW91IGlzc3VlIHRvIHRoZSBVU1JQIG5lZWQgdG8gb2Nj
-dXIgaW4gdGhlIGZ1dHVyZSwgcmVsYXRpdmUgdG8gdGhlIFVTUlAncyBzZW5zZSBvZiB0aW1lLiBJ
-biB0aGlzDQogY2FzZSwgeW91IGhhdmUgdG8gZ2l2ZSBhICZxdW90Oy0tc2VjcyZxdW90OyB2YWx1
-ZSBncmVhdGVyIHRoYW4gMC4wJm5ic3A7JiM0MzsgdGhlIGxhdGVuY3kgZm9yIHRoZSBzdHJlYW0g
-Y29tbWFuZCB0byBiZSBwcm9jZXNzZWQgYW5kIHNlbnQgdG8gdGhlIHJhZGlvIG92ZXIgRXRoZXJu
-ZXQgKHByb2JhYmx5IGh1bmRyZWRzIG9mIG1pY3Jvc2Vjb25kcykuPG86cD48L286cD48L3A+DQo8
-L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
-CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkFzIGZhciBhcyBpbml0aWFsaXph
-dGlvbiZuYnNwO29mIHRpbWVzcGVjLCBJJ20gbm90IHN1cmUgd2hhdCBpdCBzaG91bGQgaW5pdGlh
-bGl6ZSB0byBieSBkZWZhdWx0LiBCdXQgZm9yIHRoZSBpbnRlcm1pdHRlbnQsIHJhY2UtY29uZGl0
-aW9uLWVzcXVlIGJlaGF2aW9yIHlvdSdyZSBkZXNjcmliaW5nLCBpdCBjb3VsZG4ndCBodXJ0IHRv
-IHNldCBhbGwgb2YgdGhvc2UgdGltZXMgZXhwbGljaXRseS4mbmJzcDs8bzpwPjwvbzpwPjwvcD4N
-CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
-Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+LVNhbTxzcGFuIHN0eWxlPSJj
-b2xvcjojMUY0OTdEIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJtc28tZWxl
-bWVudDpwYXJhLWJvcmRlci1kaXY7Ym9yZGVyOm5vbmU7Ym9yZGVyLWJvdHRvbTpzb2xpZCB3aW5k
-b3d0ZXh0IDEuMHB0O3BhZGRpbmc6MGluIDBpbiAxLjBwdCAwaW4iPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCIgc3R5bGU9ImJvcmRlcjpub25lO3BhZGRpbmc6MGluIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
-b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
-cXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2Nv
-bG9yOiMxRjQ5N0QiPlNvLCBqdXN0IHRvIGNsYXJpZnksIHRoZSBzdHJlYW1fY21kLmhwcCBkb2N1
-bWVudGF0aW9uIHNheXM6PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
-Ij4qIFRoZSBzdHJlYW0gbm93IHBhcmFtZXRlciBjb250cm9scyB3aGVuIHRoZSBzdHJlYW0gYmVn
-aW5zLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
-cy1zZXJpZjtjb2xvcjojMUY0OTdEIj4qIFdoZW4gdHJ1ZSwgdGhlIGRldmljZSB3aWxsIGJlZ2lu
-IHN0cmVhbWluZyBBU0FQLiBXaGVuIGZhbHNlLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj4qIHRoZSBkZXZp
-Y2Ugd2lsbCBiZWdpbiBzdHJlYW1pbmcgYXQgYSB0aW1lIHNwZWNpZmllZCBieSB0aW1lX3NwZWMu
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
-cmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5NeSBjb2RlIHNuaXBw
-ZXQgd2FzOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
-bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+Jm5ic3A7
-Jm5ic3A7Jm5ic3A7IHVoZDo6c3RyZWFtX2NtZF90IHJ4U3RyZWFtQ21kKHVoZDo6c3RyZWFtX2Nt
-ZF90OjpTVFJFQU1fTU9ERV9OVU1fU0FNUFNfQU5EX0RPTkUpOzxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj4m
-bmJzcDsmbmJzcDsmbmJzcDsgcnhTdHJlYW1DbWQuc3RyZWFtX25vdyA9IHRydWU7PG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
-OiMxRjQ5N0QiPiZuYnNwOyZuYnNwOyZuYnNwOyByeFN0cmVhbUNtZC50aW1lX3NwZWMgPSB1aGQ6
-OnRpbWVfc3BlY190KCk7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+U28gc2luY2UgSSBoYWQgc3RyZWFtX25vdyBzZXQg
-dG8gdHJ1ZSwgSSBiZWxpZXZlIG5vIG1hdHRlciB3aGF0IHRpbWVfc3BlYyBpcyBzZXQgdG8sIGl0
-IHNob3VsZCBub3QgY2F1c2UgaXNzdWVzLiBJbiB0aGUgZXhhbXBsZSByeF9tdWx0aV9zYW1wbGVz
-IHdl4oCZcmUgdGFsa2luZw0KIGFib3V0LCB0aGV5IHNldCBzdHJlYW1fbm93IHRvIGZhbHNlLCBz
-byB0aGVpciB0aW1lX3NwZWMgYWN0dWFsbHkgbWF0dGVycy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86
-cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
-LXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoYW5rcyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
-eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+UnlhbjxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxpPjxicj4NCjxocj4N
-CjxwIHN0eWxlPSJmb250LXNpemU6OHB0OyBsaW5lLWhlaWdodDo5cHQ7IGZvbnQtc3R5bGU6bW9u
-b3NwYWNlIj5UaGUgaW5mb3JtYXRpb24gY29udGFpbmVkIGluIHRoaXMgbWVzc2FnZSwgYW5kIGFu
-eSBhdHRhY2htZW50cywgbWF5IGNvbnRhaW4gcHJpdmlsZWdlZCBhbmQvb3IgcHJvcHJpZXRhcnkg
-aW5mb3JtYXRpb24gdGhhdCBpcyBpbnRlbmRlZCBzb2xlbHkgZm9yIHRoZSBwZXJzb24gb3IgZW50
-aXR5IHRvIHdoaWNoIGl0IGlzIGFkZHJlc3NlZC4NCiBNb3Jlb3ZlciwgaXQgbWF5IGNvbnRhaW4g
-ZXhwb3J0IHJlc3RyaWN0ZWQgdGVjaG5pY2FsIGRhdGEgY29udHJvbGxlZCBieSBFeHBvcnQgQWRt
-aW5pc3RyYXRpb24gUmVndWxhdGlvbnMgKEVBUikgb3IgdGhlIEludGVybmF0aW9uYWwgVHJhZmZp
-YyBpbiBBcm1zIFJlZ3VsYXRpb25zIChJVEFSKS4gQW55IHJldmlldywgcmV0cmFuc21pc3Npb24s
-IGRpc3NlbWluYXRpb24sIG9yIHJlLWV4cG9ydCB0byBmb3JlaWduIG9yIGRvbWVzdGljIGVudGl0
-aWVzDQogYnkgYW55b25lIG90aGVyIHRoYW4gdGhlIGludGVuZGVkIHJlY2lwaWVudCBpbiBhY2Nv
-cmRhbmNlIHdpdGggRUFSIGFuZC9vciBJVEFSIHJlZ3VsYXRpb25zIGlzIHByb2hpYml0ZWQuPC9w
-Pg0KPC9pPg0KPC9ib2R5Pg0KPC9odG1sPg0K
-
---_000_10F7328F6AD1354BA6DD787687B66B9001A305111DMauiindynetic_--
+I am getting the following error:
 
 
---===============3413259649707460765==
+[ 86%] Building CXX object gr-uhd/swig/CMakeFiles/_uhd_swig.dir/uhd_swigPYT=
+HON_wrap.cxx.o
+/home/sdr/sdr/e310/rfnoc/src/gnuradio/build/gr-uhd/swig/uhd_swigPYTHON_wrap=
+.cxx: In function =91PyObject* _wrap_time_spec_t_get_system_time(PyObject*,=
+ PyObject*)=92:
+/home/sdr/sdr/e310/rfnoc/src/gnuradio/build/gr-uhd/swig/uhd_swigPYTHON_wrap=
+.cxx:20234:34: error: =91get_system_time=92 is not a member of =91uhd::time=
+_spec_t=92
+       result =3D uhd::time_spec_t::get_system_time();
+                                  ^~~~~~~~~~~~~~~
+gr-uhd/swig/CMakeFiles/_uhd_swig.dir/build.make:70: recipe for target 'gr-u=
+hd/swig/CMakeFiles/_uhd_swig.dir/uhd_swigPYTHON_wrap.cxx.o' failed
+make[2]: *** [gr-uhd/swig/CMakeFiles/_uhd_swig.dir/uhd_swigPYTHON_wrap.cxx.=
+o] Error 1
+CMakeFiles/Makefile2:15011: recipe for target 'gr-uhd/swig/CMakeFiles/_uhd_=
+swig.dir/all' failed
+make[1]: *** [gr-uhd/swig/CMakeFiles/_uhd_swig.dir/all] Error 2
+Makefile:162: recipe for target 'all' failed
+make: *** [all] Error 2
+
+
+The commands I used to get to the above point are (tried to copy accurately=
+ from my history):
+
+$ git clone --recursive https://github.com/EttusResearch/uhd
+$ cd uhd
+$ git checkout v3.15.0.0
+$ git submodule update --init --recursive
+$ mkdir host/build
+$ cd host/build
+$ cmake -DCMAKE_INSTALL_PREFIX=3D~/sdr/e310/rfnoc/installs -DENABLE_E300=3D=
+ON -DENABLE_GPSD=3DON -DENABLE_RFNOC=3DON ../
+$ make -j6
+$ make install
+$ cd ~/sdr/e310/rfnoc/src/
+$ git clone --recursive https://github.com/gnuradio/gnuradio
+$ cd gnuradio
+$ git checkout maint-3.7
+$ git submodule update --init --recursive
+$ mkdir build
+$ cd build
+$ cmake -DCMAKE_INSTALL_PREFIX=3D~/sdr/e310/rfnoc/installs -DUHD_DIR=3D~/sd=
+r/e310/rfnoc/installs/lib/cmake/uhd/ -DUHD_INCLUDE_DIRS=3D~/sdr/e310/rfnoc/=
+installs/include/ -DUHD_LIBRARIES=3D~/sdr/e310/rfnoc/installs/lib/libuhd.so=
+ ../
+$ make -j4
+
+I did the same thing using a git checkout of uhd v3.14.1.1 first, which was=
+ how it was defined in the second link above, and got the same results.
+
+I have seen where this was a problem in the past, and some people updated t=
+he file that had showed the problem.  Others redid their build of UHD with =
+a newer version.  Those issues were about two years old, and it seems that =
+it still shows up in some situations.  Is it due to my trying to combine tw=
+o Application Notes?  Is the recomendation to update uhd_swigPYTHON_wrap.cx=
+x still one solution?
+
+Regards,
+Jeff
+
+
+--_000_DM6PR19MB26685023DD12B54B630A352AA4C90DM6PR19MB2668namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+I am trying to combine the install using a custom prefix (<a href=3D"https:=
+//kb.ettus.com/Building_and_Installing_UHD_and_GNU_Radio_to_a_Custom_Prefix=
+" id=3D"LPlnk486457">https://kb.ettus.com/Building_and_Installing_UHD_and_G=
+NU_Radio_to_a_Custom_Prefix</a>) and
+ while following S/W Dev on E3xx (<a href=3D"https://kb.ettus.com/Software_=
+Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_fr=
+om_Source" id=3D"LPlnk662888">https://kb.ettus.com/Software_Development_on_=
+the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a>).=
+&nbsp;
+ I'm using Ubuntu 18.04.<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+I am getting the following error:</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<blockquote style=3D"margin-top: 0px; margin-bottom: 0px;">
+<pre>[ 86%] <font color=3D"#4E9A06">Building CXX object gr-uhd/swig/CMakeFi=
+les/_uhd_swig.dir/uhd_swigPYTHON_wrap.cxx.o</font>=0A=
+<b>/home/sdr/sdr/e310/rfnoc/src/gnuradio/build/gr-uhd/swig/uhd_swigPYTHON_w=
+rap.cxx:</b> In function =91<b>PyObject* _wrap_time_spec_t_get_system_time(=
+PyObject*, PyObject*)</b>=92:=0A=
+<b>/home/sdr/sdr/e310/rfnoc/src/gnuradio/build/gr-uhd/swig/uhd_swigPYTHON_w=
+rap.cxx:20234:34:</b> <font color=3D"#EF2929"><b>error: </b></font>=91<b>ge=
+t_system_time</b>=92 is not a member of =91<b>uhd::time_spec_t</b>=92=0A=
+       result =3D uhd::time_spec_t::<font color=3D"#EF2929"><b>get_system_t=
+ime</b></font>();=0A=
+                                  <font color=3D"#EF2929"><b>^~~~~~~~~~~~~~=
+~</b></font>=0A=
+gr-uhd/swig/CMakeFiles/_uhd_swig.dir/build.make:70: recipe for target 'gr-u=
+hd/swig/CMakeFiles/_uhd_swig.dir/uhd_swigPYTHON_wrap.cxx.o' failed=0A=
+make[2]: *** [gr-uhd/swig/CMakeFiles/_uhd_swig.dir/uhd_swigPYTHON_wrap.cxx.=
+o] Error 1=0A=
+CMakeFiles/Makefile2:15011: recipe for target 'gr-uhd/swig/CMakeFiles/_uhd_=
+swig.dir/all' failed=0A=
+make[1]: *** [gr-uhd/swig/CMakeFiles/_uhd_swig.dir/all] Error 2=0A=
+Makefile:162: recipe for target 'all' failed=0A=
+make: *** [all] Error 2=0A=
+</pre>
+</blockquote>
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+The commands I used to get to the above point are (tried to copy accurately=
+ from my history):</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<blockquote style=3D"margin-top: 0px; margin-bottom: 0px;">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ git clone --recursive <a href=3D"https://github.com/EttusResearch/uhd" id=
+=3D"LPNoLP341576">
+https://github.com/EttusResearch/uhd</a></div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ cd uhd<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ git checkout v3.15.0.0</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ git submodule update --init --recursive<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ mkdir host/build</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ cd host/build</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ cmake -DCMAKE_INSTALL_PREFIX=3D~/sdr/e310/rfnoc/installs -DENABLE_E300=3D=
+ON -DENABLE_GPSD=3DON -DENABLE_RFNOC=3DON ../<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ make -j6</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ make install</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ cd ~/sdr/e310/rfnoc/src/<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ git clone --recursive <a href=3D"https://github.com/gnuradio/gnuradio" id=
+=3D"LPNoLP833507">
+https://github.com/gnuradio/gnuradio</a><br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ cd gnuradio</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ git checkout maint-3.7<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ git submodule update --init --recursive<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ mkdir build</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ cd build</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ cmake -DCMAKE_INSTALL_PREFIX=3D~/sdr/e310/rfnoc/installs -DUHD_DIR=3D~/sd=
+r/e310/rfnoc/installs/lib/cmake/uhd/ -DUHD_INCLUDE_DIRS=3D~/sdr/e310/rfnoc/=
+installs/include/ -DUHD_LIBRARIES=3D~/sdr/e310/rfnoc/installs/lib/libuhd.so=
+ ../</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+$ make -j4<br>
+</div>
+<div></div>
+</blockquote>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+I did the same thing using a git checkout of uhd v3.14.1.1 first, which was=
+ how it was defined in the second link above, and got the same results.</di=
+v>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+I have seen where this was a problem in the past, and some people updated t=
+he file that had showed the problem.&nbsp; Others redid their build of UHD =
+with a newer version.&nbsp; Those issues were about two years old, and it s=
+eems that it still shows up in some situations.&nbsp;
+ Is it due to my trying to combine two Application Notes?&nbsp; Is the reco=
+mendation to update
+<b>uhd_swigPYTHON_wrap.cxx</b> still one solution?<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Regards,</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Jeff<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+</body>
+</html>
+
+--_000_DM6PR19MB26685023DD12B54B630A352AA4C90DM6PR19MB2668namp_--
+
+
+--===============0022166061187320599==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -325,5 +380,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3413259649707460765==--
+--===============0022166061187320599==--
 
