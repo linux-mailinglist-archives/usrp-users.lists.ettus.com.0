@@ -2,51 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 809B219C1F4
-	for <lists+usrp-users@lfdr.de>; Thu,  2 Apr 2020 15:21:25 +0200 (CEST)
-Received: from [::1] (port=60396 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 218E319C73D
+	for <lists+usrp-users@lfdr.de>; Thu,  2 Apr 2020 18:40:24 +0200 (CEST)
+Received: from [::1] (port=37064 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jJzma-0002jE-Fp; Thu, 02 Apr 2020 09:21:20 -0400
-Received: from mail-vs1-f52.google.com ([209.85.217.52]:43419)
+	id 1jK2t5-0004hv-7q; Thu, 02 Apr 2020 12:40:15 -0400
+Received: from mail-qt1-f171.google.com ([209.85.160.171]:39619)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
- id 1jJzmX-0002gB-AF
- for usrp-users@lists.ettus.com; Thu, 02 Apr 2020 09:21:17 -0400
-Received: by mail-vs1-f52.google.com with SMTP id w185so2220701vsw.10
- for <usrp-users@lists.ettus.com>; Thu, 02 Apr 2020 06:20:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=fMU3Flo4ARm4npEKXjCEEArN3Ep4Z9/vgxfYBiEG5tI=;
- b=RP9auwuzyif4EIBrEUS4QZXhYlse3qRA34y8G2T1rCppWB+JkHQLKFj9kCyufN8oc6
- IAtO19D4x4lQPcSPX9aJEgdELHi6eK7lISZ8h0cQpsRsLqSMRT3FOgBfLf+HyI82rT+T
- Dw9Z8geugMiFESYRxvl0b0SB5XQQq+gJk92Y7KdYLbWPir7QU7r1qV6AxovrEMAesi0L
- y3KNYYldp/nMM4xvlo08h+vAQ9Z4FvzyckJiVMGS1ChMUEz1afmO4QsUTVipFOM0fWoG
- HS0Qiwq+tmsNPY6rxH5GzQLMnqLSX4GWpf5RyhBhdoMZEhIjgGbp4g9I4QzLNJASfBR6
- BaaQ==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jK2t1-0004bW-Fm
+ for usrp-users@lists.ettus.com; Thu, 02 Apr 2020 12:40:11 -0400
+Received: by mail-qt1-f171.google.com with SMTP id f20so3833246qtq.6
+ for <usrp-users@lists.ettus.com>; Thu, 02 Apr 2020 09:39:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=71qjQTgEUu/JGwYOxO95uvvOeHUKRGvKnWZvTuqhoOI=;
+ b=J6b1MvKL1BZxZfjxJg749mce9v9686qXDmpmffbBc2WFtTtEQsObQPPCYKX3EM/1AG
+ acWKlqoAsbzsKRTIpOIe/Zpn1WeS5nX585dL9QhlFfpgMqYi7Kd1HGPlLhco397qMq/W
+ h1T47YzVuUsjqtPR+2fwU2LkbRQdsvpR3m7EeuglHX4/qwl4XgslAC2ygvgVIrMvRadL
+ 1fIVwjmGHRhJ09CwJGHd4+AENTg/sNNmHNh3nbWERHjaE3MFPrEw29ApbuvIZeIXb2ET
+ a53Wg/b2T7hR9pP0a3s40zoqz0wR75I3pVzmHCN5/ZZHVSEh5UZWRHcgrybNPe4JG0qe
+ pCoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=fMU3Flo4ARm4npEKXjCEEArN3Ep4Z9/vgxfYBiEG5tI=;
- b=J/dzDxkqefZ7v7oZqSgZnrDPsyCPPXhhNE05yHvKB1WDtE7ecF7UjcP3JgrnRi+wFA
- TyQYq2de9VUQVSmDvo9Y46xbLBF78EiKwwjOGPpXzTAipxsmnODVcQgoF/vetnJZEVvB
- lo2uoXVxRUBKKpsjtKCjK5PNCZlxtuP25fFsD0MNp7+uBNDmTm610B4wvAXZpKct5cV2
- 43GXUpq89HHOGjNrlJ3IUWjp+04bOUXZiJJYSTzbntCaboQI0In/aNMiqC9XKxLiYM3i
- ME2EQQPRu4VbYlt7jhXLsGB5W5BRoobcafJUaBvnOq4Nu0oNtnq+Ssi36xLl/2AizTZ4
- 2t1A==
-X-Gm-Message-State: AGi0PuZJi6Dp8JRBwCMM0HRIZYqcA0d8u3MFJRojU+Xwqh4WTarb79Do
- jA4R+18T7WqHz3ZeioVJvj9/zNv3rpsYQuPP+vOq+xG/
-X-Google-Smtp-Source: APiQypJikJtKnZT7423o5cHhujOsE/zTGwiWNQpEAvl3ArvVubFKQsF6+s7SDl8kT8sAax/t8UcV4rZaaJE60WPu9ME=
-X-Received: by 2002:a67:1dc2:: with SMTP id d185mr2179885vsd.107.1585833636358; 
- Thu, 02 Apr 2020 06:20:36 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=71qjQTgEUu/JGwYOxO95uvvOeHUKRGvKnWZvTuqhoOI=;
+ b=R+mXFqYaYtXpYW5eMOPzOJb2vG/fdNT7Jb1NHES/VxiwXZrBeUsDLL8xCHSp3sSTrh
+ 2JyvPETYorY2l79fbcd9yzj0342ek9sY7MKesvoQDWmkIqwdSlHKOPRtRVqs7FSb+XVo
+ bUMDsKQ70Gfw8ix1O0IkhfDgkvoz/HYnwI2KblJHA5lmysTHiECVsjp+tPnJSI3qmtTm
+ 1f+BSmSvGAG1yz2ZSUymY1DpCLw+zyxvbg8GiSQld6WujXE35g9mzXVT1qNuTGNW3QEH
+ iPsj4rc4eT1GyUE35MYpehhgmaI6UJTKp0s+tkgptmgWPSKYtm91bx9p2LgnYgkQ97y7
+ UBGA==
+X-Gm-Message-State: AGi0PuZvzX+UtX/CUXx5gaBIuNd84sGhb20AJfIHMBgl7oMyAPfpbmZq
+ iwrm/iznf/4h1UXJyhPolSVLgbf6
+X-Google-Smtp-Source: APiQypJkRzup2xEurGFbEMacel9dU0pPeeONldWzx86phMdV9pjZmUgmRN3z+aNmbHAO8h/HGxREhQ==
+X-Received: by 2002:aed:3c4b:: with SMTP id u11mr3862172qte.208.1585845570675; 
+ Thu, 02 Apr 2020 09:39:30 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-12-204.dsl.bell.ca.
+ [174.95.12.204])
+ by smtp.googlemail.com with ESMTPSA id x9sm4038167qtk.7.2020.04.02.09.39.29
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 02 Apr 2020 09:39:29 -0700 (PDT)
+Message-ID: <5E861541.2070708@gmail.com>
+Date: Thu, 02 Apr 2020 12:39:29 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
 References: <CA+5Ly01=7x-ryDNRW_TZqrBP9buQpgyG4+vdmbZ2ZbA27oKsww@mail.gmail.com>
 In-Reply-To: <CA+5Ly01=7x-ryDNRW_TZqrBP9buQpgyG4+vdmbZ2ZbA27oKsww@mail.gmail.com>
-Date: Thu, 2 Apr 2020 09:20:25 -0400
-Message-ID: <CAGNhwTMi4nrsaF4GJM+jQM8Dh7cK8iAXnvwJ-Hro3ZkaCDr=3A@mail.gmail.com>
-To: fe8769 <fe8769@gmail.com>
 Subject: Re: [USRP-users] B210 configuration
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -59,10 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Cc: USRP list <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4848752782378885478=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1514814663920781619=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,34 +82,21 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4848752782378885478==
-Content-Type: multipart/alternative; boundary="00000000000091f30c05a24eaaa5"
+This is a multi-part message in MIME format.
+--===============1514814663920781619==
+Content-Type: multipart/alternative;
+ boundary="------------060109000707020406000408"
 
---00000000000091f30c05a24eaaa5
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------060109000707020406000408
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi fe8769 - Although you're clearly trying to use an Ettus B210 USRP, your
-query is really about the API used by SoapySDRUtil and osmocom_fft to
-access the SDR hardware. I'd guess that most folks here use UHD -- and do
-not use SoapySDR or gr-osmosdr -- for their USRP work -- though there are
-probably a few outliers, and I'd encourage those folks to pipe up if they
-know how to access a B210 via those interfaces! I think you'll have better
-luck making your inquiry on the email lists / forums for SoapySDR and/or
-gr-osmosdr. Good luck! - MLD
---
-Michael Dickens
-Ettus Research Technical Support
-Email: support@ettus.com
-Web: https://ettus.com/
-
-
-On Thu, Apr 2, 2020 at 3:42 AM fe8769 via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
+On 04/02/2020 03:41 AM, fe8769 via USRP-users wrote:
 > Hello
 >
-> I try to configure channel 1 on B210 with osmocom_fft but I can't access
-> to it
+> I try to configure channel 1 on B210 with osmocom_fft but I can't 
+> access to it
 >
 > the cmd :
 >
@@ -151,89 +144,170 @@ usrp-users@lists.ettus.com> wrote:
 >
 > osmocom_fft -a uhd,subdev=FE-RX2 -s 1000000 -g 40 -f 392M -A RX2
 >
-> osmocom_fft -a uhd,"nchan=FE-TX1","subdev=A:A A:B" -s 1000000 -g 40 -f
+> osmocom_fft -a uhd,"nchan=FE-TX1","subdev=A:A A:B" -s 1000000 -g 40 -f 
 > 392M -A TX/RX
 >
 >
-> What is the exact usage of osmocom_fft to access channel 1 ? or the exact
-> usage of soapy driver ?
+> What is the exact usage of osmocom_fft to access channel 1 ? or the 
+> exact usage of soapy driver ?
 >
 > Thanks for answer
 >
 >
-> --
+> -- 
+>
+>
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---00000000000091f30c05a24eaaa5
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi=C2=A0fe8769 - Although you&#39;re clearly trying to use=
- an Ettus B210 USRP, your query is really about the API used by=C2=A0SoapyS=
-DRUtil and=C2=A0osmocom_fft to access the SDR hardware. I&#39;d guess that =
-most folks here use UHD -- and do not use SoapySDR or gr-osmosdr -- for the=
-ir USRP work -- though there are probably a few outliers, and I&#39;d encou=
-rage=C2=A0those folks to pipe up if they know how to access a B210 via thos=
-e interfaces! I think you&#39;ll have better luck=C2=A0making your inquiry =
-on the email lists / forums for SoapySDR and/or gr-osmosdr. Good luck! - ML=
-D<div><div>--<br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signatu=
-re" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"lt=
-r">Michael Dickens<br>Ettus Research Technical Support<br>Email: <a href=3D=
-"mailto:support@ettus.com" target=3D"_blank">support@ettus.com</a><br>Web: =
-<a href=3D"https://ettus.com/" target=3D"_blank">https://ettus.com/</a></di=
-v></div></div></div></div><br></div></div></div><br><div class=3D"gmail_quo=
-te"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Apr 2, 2020 at 3:42 AM fe=
-8769 via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-=
-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex"><div dir=3D"ltr"><div>Hello</div><div><br></div><div>I=
- try to configure channel 1 on B210 with osmocom_fft but I can&#39;t access=
- to it</div><div><br></div><div>the cmd :</div><div><br></div><div>SoapySDR=
-Util --probe=3D&quot;driver=3Duhd,type=3Db200&quot; <br></div><div><br></di=
-v><div>shows :</div><div><br></div><div>=C2=A0rx0_antenna=3DRX2<br>=C2=A0 r=
-x0_id=3DUnknown (0xffff)<br>=C2=A0 rx0_serial=3D<br>=C2=A0 rx0_subdev_name=
-=3DFE-RX2<br>=C2=A0 rx0_subdev_spec=3DA:A A:B<br>=C2=A0 rx1_antenna=3DRX2<b=
-r>=C2=A0 rx1_id=3DUnknown (0xffff)<br>=C2=A0 rx1_serial=3D<br>=C2=A0 rx1_su=
-bdev_name=3DFE-RX1<br>=C2=A0 rx1_subdev_spec=3DA:A A:B<br>=C2=A0 tx0_antenn=
-a=3DTX/RX<br>=C2=A0 tx0_id=3DUnknown (0xffff)<br>=C2=A0 tx0_serial=3D<br>=
-=C2=A0 tx0_subdev_name=3DFE-TX2<br>=C2=A0 tx0_subdev_spec=3DA:A A:B<br>=C2=
-=A0 tx1_antenna=3DTX/RX<br>=C2=A0 tx1_id=3DUnknown (0xffff)<br>=C2=A0 tx1_s=
-erial=3D<br>=C2=A0 tx1_subdev_name=3DFE-TX1<br>=C2=A0 tx1_subdev_spec=3DA:A=
- A:B</div><div><br></div><div>these 2 lines are working fine <br></div><div=
-><br></div><div>SoapySDRUtil --args=3D&quot;driver=3Duhd&quot; --rate=3D10e=
-6 --channels=3D0 --direction=3DRX</div><div>SoapySDRUtil --args=3D&quot;dri=
-ver=3Duhd&quot; --rate=3D10e6 --channels=3D1 --direction=3DRX</div><div><br=
-></div><div>Trying all these lines are always addressing channel 0</div><di=
-v><br></div><div>osmocom_fft -a uhd -s 1000000 -g 40 -f 392M <br><br>osmoco=
-m_fft -a uhd -s 1000000 -g 40 -f 392M -v<br><br>osmocom_fft -a uhd,nchan=3D=
-0,subdev=3DA:B -s 1000000 -g 40 -f 392M -A TX/RX<br><br>osmocom_fft -a uhd,=
-nchan=3D0,subdev=3DA:B -s 1000000 -g 40 -f 392M -A RX2<br><br>osmocom_fft -=
-a uhd -s 1000000 -g 40 -f 392M -A FE-RX2<br><br>osmocom_fft -a uhd,subdev=
-=3DFE-RX2 -s 1000000 -g 40 -f 392M -A RX2<br><br>osmocom_fft -a uhd,&quot;n=
-chan=3DFE-TX1&quot;,&quot;subdev=3DA:A A:B&quot; -s 1000000 -g 40 -f 392M -=
-A TX/RX</div><div><br></div><div><br></div><div>What is the exact usage of =
-osmocom_fft to access channel 1 ? or the exact usage of soapy driver ?<br><=
-/div><div><br></div><div>Thanks for answer<br></div><div><br></div><div><br=
-></div><div>-- <br><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr">=
-<div><img width=3D"79" height=3D"96"></div></div></div></div></div></div></=
-div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000091f30c05a24eaaa5--
+For osmosdr applications:
 
 
---===============4848752782378885478==
+uhd,type=b200,nchan=1,subdev=A:A        gives you the first channel
+uhd,type=b200,nchan=1,subdev=A:B        gives you the second channel
+
+
+
+--------------060109000707020406000408
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 04/02/2020 03:41 AM, fe8769 via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CA+5Ly01=7x-ryDNRW_TZqrBP9buQpgyG4+vdmbZ2ZbA27oKsww@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>Hello</div>
+        <div><br>
+        </div>
+        <div>I try to configure channel 1 on B210 with osmocom_fft but I
+          can't access to it</div>
+        <div><br>
+        </div>
+        <div>the cmd :</div>
+        <div><br>
+        </div>
+        <div>SoapySDRUtil --probe="driver=uhd,type=b200" <br>
+        </div>
+        <div><br>
+        </div>
+        <div>shows :</div>
+        <div><br>
+        </div>
+        <div> rx0_antenna=RX2<br>
+            rx0_id=Unknown (0xffff)<br>
+            rx0_serial=<br>
+            rx0_subdev_name=FE-RX2<br>
+            rx0_subdev_spec=A:A A:B<br>
+            rx1_antenna=RX2<br>
+            rx1_id=Unknown (0xffff)<br>
+            rx1_serial=<br>
+            rx1_subdev_name=FE-RX1<br>
+            rx1_subdev_spec=A:A A:B<br>
+            tx0_antenna=TX/RX<br>
+            tx0_id=Unknown (0xffff)<br>
+            tx0_serial=<br>
+            tx0_subdev_name=FE-TX2<br>
+            tx0_subdev_spec=A:A A:B<br>
+            tx1_antenna=TX/RX<br>
+            tx1_id=Unknown (0xffff)<br>
+            tx1_serial=<br>
+            tx1_subdev_name=FE-TX1<br>
+            tx1_subdev_spec=A:A A:B</div>
+        <div><br>
+        </div>
+        <div>these 2 lines are working fine <br>
+        </div>
+        <div><br>
+        </div>
+        <div>SoapySDRUtil --args="driver=uhd" --rate=10e6 --channels=0
+          --direction=RX</div>
+        <div>SoapySDRUtil --args="driver=uhd" --rate=10e6 --channels=1
+          --direction=RX</div>
+        <div><br>
+        </div>
+        <div>Trying all these lines are always addressing channel 0</div>
+        <div><br>
+        </div>
+        <div>osmocom_fft -a uhd -s 1000000 -g 40 -f 392M <br>
+          <br>
+          osmocom_fft -a uhd -s 1000000 -g 40 -f 392M -v<br>
+          <br>
+          osmocom_fft -a uhd,nchan=0,subdev=A:B -s 1000000 -g 40 -f 392M
+          -A TX/RX<br>
+          <br>
+          osmocom_fft -a uhd,nchan=0,subdev=A:B -s 1000000 -g 40 -f 392M
+          -A RX2<br>
+          <br>
+          osmocom_fft -a uhd -s 1000000 -g 40 -f 392M -A FE-RX2<br>
+          <br>
+          osmocom_fft -a uhd,subdev=FE-RX2 -s 1000000 -g 40 -f 392M -A
+          RX2<br>
+          <br>
+          osmocom_fft -a uhd,"nchan=FE-TX1","subdev=A:A A:B" -s 1000000
+          -g 40 -f 392M -A TX/RX</div>
+        <div><br>
+        </div>
+        <div><br>
+        </div>
+        <div>What is the exact usage of osmocom_fft to access channel 1
+          ? or the exact usage of soapy driver ?<br>
+        </div>
+        <div><br>
+        </div>
+        <div>Thanks for answer<br>
+        </div>
+        <div><br>
+        </div>
+        <div><br>
+        </div>
+        <div>-- <br>
+          <div dir="ltr" class="gmail_signature"
+            data-smartmail="gmail_signature">
+            <div dir="ltr">
+              <div>
+                <div dir="ltr">
+                  <div><img moz-do-not-send="true"
+src="https://docs.google.com/uc?id=0B1OSZ13OuYs5YkhObWxySTJ6VmM&amp;export=download"
+                      height="96" width="79"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    For osmosdr applications:<br>
+    <br>
+    <br>
+    uhd,type=b200,nchan=1,subdev=A:A        gives you the first channel<br>
+    uhd,type=b200,nchan=1,subdev=A:B        gives you the second channel<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------060109000707020406000408--
+
+
+--===============1514814663920781619==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -244,5 +318,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4848752782378885478==--
+--===============1514814663920781619==--
 
