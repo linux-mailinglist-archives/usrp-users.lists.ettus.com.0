@@ -2,50 +2,78 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E786B1A2B8B
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Apr 2020 23:56:03 +0200 (CEST)
-Received: from [::1] (port=58176 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3029D1A381E
+	for <lists+usrp-users@lfdr.de>; Thu,  9 Apr 2020 18:37:44 +0200 (CEST)
+Received: from [::1] (port=38146 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jMIfx-0003zP-SA; Wed, 08 Apr 2020 17:56:01 -0400
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:45641)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <bpadalino@gmail.com>) id 1jMIfu-0003ss-AK
- for usrp-users@lists.ettus.com; Wed, 08 Apr 2020 17:55:58 -0400
-Received: by mail-ot1-f52.google.com with SMTP id 60so5537523otl.12
- for <usrp-users@lists.ettus.com>; Wed, 08 Apr 2020 14:55:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=/4FusAS/OflpYGJMN5hC0BUghvTKz5VvaLsNjkjuINo=;
- b=YydyBIuuGlhLJ4xe2KSRhyTcPV6KWqUU6sDCoFTIy7JeRetdcyAqgscNGTMnp0Tp6t
- 7qoGxHbBLBxkk3+lBPHv9Z9FW6RDc22sDL0v31JfbARpq7wjP8osRPPvXMW8gAqDR22h
- P4pawk6VAFM8djGWIMr6xoiGkKW0s5qHp7SwCq7y8FuwXjCi+lQkj48gEaaKY3D+uUkQ
- egQGCbWE5F/RxPnyjQ8G52KgZZMw6hzdU45uEyA8WboAYSefqv9NIWFdnQH29g5v7k3v
- 1tl2fA48RW3yZG+SvPn459VVjQMF8SMs1AW50pb3ueOE6e36VVKY9SHMspe1s9nVoBfr
- DE5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=/4FusAS/OflpYGJMN5hC0BUghvTKz5VvaLsNjkjuINo=;
- b=eQ9g12aQ0Ks3D9VOcyw7nBxPgDsKojein5Y4pJ797x/daX6WXyLY7Wsh3Z52Nus378
- IzJjyA9rFNPECiUW9JXRgeXgo3pisZrR1WAfmBovAjKuxAzSEfVQU6viXeRkJ8Oiolhb
- xKrfTz/d9VRgBSMJlZDPkImo9YXy7xvebPu5UIx8osPpcTOL3zaMaT6K5heMptcZd+Fb
- O76l4G9GhifyYcrN73dGJVeBGse/VWbTx2vyBx71Dm0pNNCYGsCzH3FwpG5N8CLDkKdR
- 5NxsJqzJZw0K2di2JHb3HJIiFKpzHFLdqxpgYs3lzrx5+7Ca+Ykom/GkzfRPNxiw9b9x
- DlsA==
-X-Gm-Message-State: AGi0PuaWE8uziUeaz1KZIy76KWvdcJM5BTs3MSA1NR6btViJDtXPIE2x
- MIXFPG75S8At2kAoYfJAZ7v938o8AYanRhX6mY8=
-X-Google-Smtp-Source: APiQypJ1ExNFHKTTLS/oBjUOVvlZBJHI00lJBSNqw96aLFImi0AAd1eq+xpw8EFDG1YIuMtxQOXX7yRpxMZSxldJF6E=
-X-Received: by 2002:a4a:3ed7:: with SMTP id t206mr7619422oot.61.1586382917572; 
- Wed, 08 Apr 2020 14:55:17 -0700 (PDT)
+	id 1jMaBP-0003yp-8r; Thu, 09 Apr 2020 12:37:39 -0400
+Received: from us-smtp-1.mimecast.com ([205.139.110.61]:36926
+ helo=us-smtp-delivery-1.mimecast.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+ (Exim 4.93) (envelope-from <fsalomon@mathworks.com>)
+ id 1jMaBL-0003rR-AG
+ for usrp-users@lists.ettus.com; Thu, 09 Apr 2020 12:37:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mathworks.com;
+ s=mimecast20180117; t=1586450214;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type;
+ bh=kJ2BXvK7JFCCTUtTUu5f6gHbhqTZFsPWv1rdDN4KCGY=;
+ b=UfGXConwffL7MJLjo2m13Hg4dUW/AIXpxrPA4C97nxtVSCYq3fPhLdDBoO7rZJfF1rXrIJ
+ t0l9KZIi+lxYQPFVFTgoE/jnI/JMMVhKVIpLOvZl2XbB7dM/JaJw943wS2Piv+qZ5DY4P0
+ Y5lsWGdr4yt5RWJkuZWLLL1U89C+dLk=
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11lp2170.outbound.protection.outlook.com [104.47.56.170])
+ (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-54-1fTJdvneMzi5hq579X8UjA-1; Thu, 09 Apr 2020 12:36:52 -0400
+X-MC-Unique: 1fTJdvneMzi5hq579X8UjA-1
+Received: from MN2PR05MB6158.namprd05.prod.outlook.com (2603:10b6:208:d2::30)
+ by MN2PR05MB6430.namprd05.prod.outlook.com (2603:10b6:208:da::30)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.13; Thu, 9 Apr
+ 2020 16:36:49 +0000
+Received: from MN2PR05MB6158.namprd05.prod.outlook.com
+ ([fe80::cc14:becb:bf4b:ca51]) by MN2PR05MB6158.namprd05.prod.outlook.com
+ ([fe80::cc14:becb:bf4b:ca51%6]) with mapi id 15.20.2900.012; Thu, 9 Apr 2020
+ 16:36:49 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: E312 fails to run uhd_usrp_probe from host
+Thread-Index: AQHWDoyBZqBu4cu+/Uy4/sNpG7j+Pw==
+Date: Thu, 9 Apr 2020 16:36:48 +0000
+Message-ID: <MN2PR05MB6158024B384B2167EDE0F3A1CCC10@MN2PR05MB6158.namprd05.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2.29.222.202]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7757d4e2-e15b-4553-6972-08d7dca43356
+x-ms-traffictypediagnostic: MN2PR05MB6430:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MN2PR05MB64301A0168F1E0B3F930B445CCC10@MN2PR05MB6430.namprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4714;
+x-forefront-prvs: 0368E78B5B
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR05MB6158.namprd05.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(10009020)(4636009)(136003)(396003)(376002)(366004)(346002)(39860400002)(6506007)(7696005)(8676002)(186003)(55016002)(86362001)(81156014)(33656002)(9686003)(2906002)(64756008)(71200400001)(66446008)(19627405001)(966005)(81166007)(316002)(76116006)(52536014)(8936002)(66946007)(5660300002)(66476007)(66556008)(478600001)(6916009)(26005)(19623455009);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: LDGNNld6iS/EN6Y1SHud1b23ovHg7DRT5V81+SObeFTsk7x9EXbooTsYqOSOww4hpw2ocdLAzwIfRY8nVENADhtWIwlCvrC9smLajrkcu3lyLDoyExmMI0HOA9jgNQ8PrRrN4ENACs9zkMwdAsl+rLK2arA+4CKHqT9+orfm5lemVwAqKYwWYup0JtjG2Kqq95WwpL1GcI7+d22KXzEmmJ0u2iKFosSIpUo1yMcmCTQAfcu+rc5HJMxYbYTic42YOaHg+MfFKx9YC1Dpkxd/SQW/d6SylPl7gqDOCDebpsR0UnIQICel1rNeehbFF7Q63X+jAGROr2x1A4IFFgtfh3N8apN89Qtei4f8eTcKbGUM3eBfiVCmAcpNWKVWonJS1rLNqdCroCXVJ+6HQZOZphcMhjSx2j8qfWOggnj0Z2ySQEeH6t/9R2pYnAv3Tu5ulTlkIi8j1+z41suvs9WNb5ZgKz746kibo03KTUFIG+3GYuaDBnFH4qY6aPyEE5HqRehjof0S1RgOOvuQDYAg6wDjHFEJ1k6xyVeG5mkS/qpJR9tNHvuLsQK1xfttgfy+bULq+xQA4VbhOr/ukyTdCQ==
+x-ms-exchange-antispam-messagedata: d8U966HCfzjtjrTOX+W/BM/Bp2bGyUfjudoE1Vm6eB+woFtmJXA+IDneXDtxjfDypKAsFn3JnCNhGyLOjfYabQQ25gNVtUqkt9s3gDQuaz1fl1y/vb2h55w1rt6xckBA37yNjMfccrSVVIIbKuqlQw==
 MIME-Version: 1.0
-References: <5e8e46e6.1c69fb81.932e0.0af0SMTPIN_ADDED_MISSING@mx.google.com>
-In-Reply-To: <5e8e46e6.1c69fb81.932e0.0af0SMTPIN_ADDED_MISSING@mx.google.com>
-Date: Wed, 8 Apr 2020 17:55:06 -0400
-Message-ID: <CAEXYVK5BR_Rx9UUCN6X3+GENqhSkD3j1wwtDJ3PqU9xabBW_sw@mail.gmail.com>
-To: "Tillson, Bob (US)" <robert.tillson@baesystems.com>
-Subject: Re: [USRP-users] UBX 10-500 MHz Question
+X-OriginatorOrg: mathworks.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7757d4e2-e15b-4553-6972-08d7dca43356
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Apr 2020 16:36:48.9563 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 99dd3a11-4348-4468-9bdd-e5072b1dc1e6
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: V9joU+uB2uW0atSbd+jYc4eAcUpGFm50WVs7PYQbzDOpE0o87yQcTOv4KRCHqumpqJn4jee6n4OEwVIqKgJyxQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR05MB6430
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: mathworks.com
+Subject: [USRP-users] E312 fails to run uhd_usrp_probe from host
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,10 +85,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Cc: "usrp-users \(usrp-users@lists.ettus.com\)" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9201908324562708183=="
+From: Francisco Salomon via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Francisco Salomon <fsalomon@mathworks.com>
+Content-Type: multipart/mixed; boundary="===============7528701192393742126=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,108 +101,198 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9201908324562708183==
-Content-Type: multipart/alternative; boundary="000000000000479dd605a2ce8e37"
+--===============7528701192393742126==
+Content-Language: en-GB
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR05MB6158024B384B2167EDE0F3A1CCC10MN2PR05MB6158namp_"
 
---000000000000479dd605a2ce8e37
-Content-Type: text/plain; charset="UTF-8"
+--_000_MN2PR05MB6158024B384B2167EDE0F3A1CCC10MN2PR05MB6158namp_
+Content-Type: text/plain; charset=WINDOWS-1252
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 8, 2020 at 5:49 PM Tillson, Bob (US) via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Hi all,
+I'm trying uhd_usrp_probe on my host to get information of my E312 (when I =
+run it locally on the E312 it's fine), and it fails to get the data with th=
+e following error:
 
-> so with the UBX-160 on an X310, there is the following caveat:
->
->
->
-> * The UBX 160 transmitter path has 160 MHz of bandwidth throughout the
-> full frequency range of the device; the receiver path has 84 MHz of
-> bandwidth for center frequencies from 10 MHz to 500 MHz.
->
->
->
-> I guess my question is how does this manifest itself?
->
+me@myhost: ~/rfnoc/uhd$ uhd_usrp_probe --args type=3De3xx,addr=3D192.168.3.=
+2
+[INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700; UHD_3.15.0.HEAD-0-=
+gaea0e2de
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+92.168.3.2,type=3De3xx,product=3De310_sg3,serial=3D30D84C7,claimed=3DFalse,=
+addr=3D192.168.3.2
+[INFO] [MPM.PeriphManager] Found 1 daughterboard(s).
+[ERROR] [MPMD] Failure during block enumeration: RuntimeError: Error during=
+ RPC call to `request_xport'. Error message: rpc::rpc_error during call
+[INFO] [MPM.PeriphManager] init() called with device args `mgmt_addr=3D192.=
+168.3.2,product=3De310_sg3'.
+[ERROR] [MPM.RPCServer] Uncaught exception in method request_xport :
+ Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/usrp_mpm/rpc_server.py", line 182,=
+ in new_claimed_function
+    return function(*args)
+  File "/usr/lib/python3.5/site-packages/usrp_mpm/periph_manager/e31x.py", =
+line 525, in request_xport
+    assert self.mboard_info['rpc_connection'] in ('local')
+AssertionError
+Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
 
-Check the schematic block diagram:
+Have you seen this kind of error for E310/E310?
+Does E312 accept requests from the host?
+I did manage to load the FPGA image from the host by running:
+me@myhost:~rfnoc/uhd$ uhd_image_loader --args type=3De3xx,addr=3D192.168.3.=
+2
 
-  https://files.ettus.com/schematics/ubx/ubx.pdf
+The sdcard image on the E312 is the one from http://files.ettus.com/binarie=
+s/cache/e3xx/meta-ettus-v3.15.0.0/e3xx_e310_sg3_sdimg_default-v3.15.0.0.zip=
+, and I think the UHD version on the E312 matches the one on the host:
+root@ni-e31x-30D84C7:~# uhd_config_info --version
+UHD 3.15.0.0-0-gaea0e2de
+me@myhost: ~/rfnoc/uhd$  uhd_config_info --version
+UHD 3.15.0.HEAD-0-gaea0e2de
 
+Any clue?
+Many thanks!
 
->
->
-> If I ask for 100 MHz of BW, do I get 84 or does it fail?
->
->
->
-> How would I get 84 given the requirement of sample rate be an even diviso=
-r
-> of 200 MHz clock?
->
->
->
-> If I wanted 100 in that range, would there be any way to get it from a
-> single channel in that band?  Most other cards don=E2=80=99t seem to have=
- the BW in
-> that range.
->
+Francisco
 
-It shouldn't fail, and you will just get filtered output.  They're just
-analog filters in the signal path.
-
-Brian
-
---000000000000479dd605a2ce8e37
-Content-Type: text/html; charset="UTF-8"
+--_000_MN2PR05MB6158024B384B2167EDE0F3A1CCC10MN2PR05MB6158namp_
+Content-Type: text/html; charset=WINDOWS-1252
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Wed, Apr 8, 2020 at 5:49 PM Tillson, B=
-ob (US) via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">us=
-rp-users@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex">
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+Hi all,&nbsp;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+I'm trying uhd_usrp_probe on my host to get information of my E312 (when I =
+run it locally on the E312&nbsp;it's fine), and it fails to get the data wi=
+th the following error:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<span><br>
+</span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<span>me@myhost: ~/rfnoc/uhd$&nbsp;</span>uhd_usrp_probe --args type=3De3xx=
+,addr=3D192.168.3.2</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<div>[INFO] [UHD] linux; GNU C&#43;&#43; version 8.3.0; Boost_106700; UHD_3=
+.15.0.HEAD-0-gaea0e2de<br>
+</div>
+<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
+r=3D192.168.3.2,type=3De3xx,product=3De310_sg3,serial=3D30D84C7,claimed=3DF=
+alse,addr=3D192.168.3.2<br>
+</div>
+<div>[INFO] [MPM.PeriphManager] Found 1 daughterboard(s).<br>
+</div>
+<div>[ERROR] [MPMD] Failure during block enumeration: RuntimeError: Error d=
+uring RPC call to `request_xport'. Error message: rpc::rpc_error during cal=
+l<br>
+</div>
+<div>[INFO] [MPM.PeriphManager] init() called with device args `mgmt_addr=
+=3D192.168.3.2,product=3De310_sg3'.<br>
+</div>
+<div>[ERROR] [MPM.RPCServer] Uncaught exception in method request_xport : <=
+br>
+</div>
+<div>&nbsp;Traceback (most recent call last):<br>
+</div>
+<div>&nbsp; File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/rpc_server=
+.py&quot;, line 182, in new_claimed_function<br>
+</div>
+<div>&nbsp; &nbsp; return function(*args)<br>
+</div>
+<div>&nbsp; File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/periph_man=
+ager/e31x.py&quot;, line 525, in request_xport<br>
+</div>
+<div>&nbsp; &nbsp; assert self.mboard_info['rpc_connection'] in ('local')<b=
+r>
+</div>
+<div>AssertionError</div>
+<div>Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()<br>
+</div>
+<span></span><br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+Have you seen this kind of error for E310/E310?&nbsp;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+Does E312 accept requests from the host?</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+</div>
+I did manage to load the FPGA image from the host by running:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<span>me@myhost:~rfnoc/uhd$ uhd_image_loader --args type=3De3xx,addr=3D192.=
+168.3.2</span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+The sdcard image on the E312 is the one from&nbsp;<span style=3D"font-famil=
+y: Calibri, Arial, Helvetica, sans-serif; color: rgb(0, 0, 0); background-c=
+olor: rgb(255, 255, 255); display: inline !important;"><a href=3D"http://fi=
+les.ettus.com/binaries/cache/e3xx/meta-ettus-v3.15.0.0/e3xx_e310_sg3_sdimg_=
+default-v3.15.0.0.zip" style=3D"" id=3D"LPlnk528920">http://files.ettus.com=
+/binaries/cache/e3xx/meta-ettus-v3.15.0.0/e3xx_e310_sg3_sdimg_default-v3.15=
+.0.0.zip</a>,
+ and I think</span><span style=3D"font-family: Calibri, Arial, Helvetica, s=
+ans-serif; font-size: 12pt;">&nbsp;the UHD version on the E312 matches the =
+one on the host:</span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<span>root@ni-e31x-30D84C7:~# uhd_config_info --version<br>
+</span>
+<div>UHD 3.15.0.0-0-gaea0e2de<br>
+</div>
+<span></span><span>me@myhost: ~/rfnoc/uhd$&nbsp; u<span>hd_config_info --ve=
+rsion<br>
+</span>
+<div>UHD 3.15.0.HEAD-0-gaea0e2de<br>
+</div>
+<span></span></span><br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+Any clue?</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+Many thanks!</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+Francisco</div>
+</body>
+</html>
+
+--_000_MN2PR05MB6158024B384B2167EDE0F3A1CCC10MN2PR05MB6158namp_--
 
 
 
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_-8306936781498416835WordSection1">
-<p class=3D"MsoNormal">so with the UBX-160 on an X310, there is the followi=
-ng caveat:<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:13.5pt;font-family:Arial,sa=
-ns-serif;color:rgb(51,51,51)">* The UBX 160 transmitter path has 160 MHz of=
- bandwidth throughout the full frequency range of the device; the receiver =
-path has 84 MHz of bandwidth for center
- frequencies from 10 MHz to 500 MHz.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I guess my question is how does this manifest itself=
-?</p></div></div></blockquote><div><br></div><div>Check the schematic block=
- diagram:</div><div><br></div><div>=C2=A0=C2=A0<a href=3D"https://files.ett=
-us.com/schematics/ubx/ubx.pdf">https://files.ettus.com/schematics/ubx/ubx.p=
-df</a></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex"><div lang=3D"EN-US"><div class=3D"gmail-m_-8306936781498416835WordSecti=
-on1"><p class=3D"MsoNormal"><u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">If I ask for 100 MHz of BW, do I get 84 or does it f=
-ail?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">How would I get 84 given the requirement of sample r=
-ate be an even divisor of 200 MHz clock?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">If I wanted 100 in that range, would there be any wa=
-y to get it from a single channel in that band?=C2=A0 Most other cards don=
-=E2=80=99t seem to have the BW in that range.</p></div></div></blockquote><=
-div><br></div><div>It shouldn&#39;t fail, and you will just get filtered ou=
-tput.=C2=A0 They&#39;re just analog filters in the signal path.</div><div><=
-br></div><div>Brian</div></div></div>
-
---000000000000479dd605a2ce8e37--
-
-
---===============9201908324562708183==
+--===============7528701192393742126==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -186,5 +303,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9201908324562708183==--
+--===============7528701192393742126==--
+
 
