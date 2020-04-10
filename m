@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 028451A3DF4
-	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2020 04:06:31 +0200 (CEST)
-Received: from [::1] (port=40078 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B50E31A3E32
+	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2020 04:27:53 +0200 (CEST)
+Received: from [::1] (port=45098 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jMj3t-00022h-Dz; Thu, 09 Apr 2020 22:06:29 -0400
-Received: from mail-qt1-f173.google.com ([209.85.160.173]:45130)
+	id 1jMjOX-00033D-Tj; Thu, 09 Apr 2020 22:27:49 -0400
+Received: from mail-qk1-f172.google.com ([209.85.222.172]:36358)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jMj3n-0001vH-Ms
- for usrp-users@lists.ettus.com; Thu, 09 Apr 2020 22:06:23 -0400
-Received: by mail-qt1-f173.google.com with SMTP id 71so472545qtc.12
- for <usrp-users@lists.ettus.com>; Thu, 09 Apr 2020 19:06:03 -0700 (PDT)
+ id 1jMjOR-0002vv-IS
+ for usrp-users@lists.ettus.com; Thu, 09 Apr 2020 22:27:43 -0400
+Received: by mail-qk1-f172.google.com with SMTP id l25so954497qkk.3
+ for <usrp-users@lists.ettus.com>; Thu, 09 Apr 2020 19:27:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:cc:subject
  :references:in-reply-to;
- bh=/bY/o03ctKdn41S6RSiMwVHXpO3s+mOiiEmLqUq60nI=;
- b=Ku2CIje7UupCN/jTtfahTjpmkOA+X5ONM/a3Qeq11+PFQ6k7yvby9H1Wdx6MGloA3N
- NSi8yeI5Rlq+rp0Fw+hvyyXRA8qadiyBYB21NGHDrpC9J6s3H/B7vaI9JHRPsf9MD8LI
- etM3RphKtgUyq2gZVyDuk/OrH92gVQ9nUU2UQ27BMnSvSYDwc6IZ/auaLvBVS1FiqwJh
- LUmrbmw2zqW6tiQ9nGClkHY+GS4TUcvIQNMpetibCB9SRtcSaONEFt9Uh2TdX79VffqB
- lDr/XQe+9R5p2RlFbNcxvQqg+Oa6ujTZhTGRZvN8XqbjvlHk3HdPq7HQeQNSFljXQYgS
- qWsw==
+ bh=s/yQPlaKhVYPt5OobahOwTUgvvXhzrOQPLQW/jvV2Mc=;
+ b=r2noMn8jwk4H921zjvjxfWd1Wfbj9bypkUDJ/MClru1L062l02Q9EJdxY23iyN78B4
+ 6h+RiWMqKhX3pDiJOiO4l+skmXaVR2ryKU+AAl7mU3PfHBAOpKjxQPzzh158sc0wzTSH
+ +s+h1sMNHzbFi3qauicDgyL7GmaeFu2Yuo5GwQKq5U3pR5hyR8rA8p5HKcH4wyLTP7ZP
+ VSaNc5la6YOMq0qbC4kFDLRiUfLbuKxpTKJcgKb3/h1eSUpDdBr9DVW0N1JmqVRRuQnJ
+ hC/pb2Piyz/GQbCA8xJIPrkZsmo3sWL/E8XZoMcVF5fPYOTBZjS14RdIDLCf+F04M7ty
+ JgPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :cc:subject:references:in-reply-to;
- bh=/bY/o03ctKdn41S6RSiMwVHXpO3s+mOiiEmLqUq60nI=;
- b=fD9l5vjXQTQdciMiuqaY5BBLB+qUkku9i2+uYdKavbPtc2WHAS15/9RWG0mTgN9IYI
- wkFL6npHCHiIqNRs1WtpEcCi3abbFcqB3ZNmREDYlE62eWUHbjKSuI8b/3vq8Bpnrm9Z
- eBzCkhjdEruaTwCQBCk6l7rV7jpmGPUq0hnBZWcnzRrbTmbH106vGhJ3v6ELvYm6LVZU
- ziX1WtN5gOtv4m3zkvx03XWoGSf5BB8LSeIR9tQhXrqLSKRkTlCQ15hRPh20UbgY32+2
- SwPtyWHBf5NMlVDSUjHsEUxgn/+EsAhq6WLfuvRW6Nn0l0ni78QqSZwDiYOGmHOJ66e0
- 3Q0A==
-X-Gm-Message-State: AGi0Pua6uX1vAnj9pzcBO9LzHz6++xVRY8fmmqRSXAIm4ICP/ZGaI5+4
- IEMJhRVwn1hBwCKA5xqkbzMFO+BYZAY=
-X-Google-Smtp-Source: APiQypLQrRRGC6JJwEuS/FHdU4A1M3K/aQNKS5HMUsdlR66DKgHZPDzdKxb0yc4HhvPpkQKgTahojA==
-X-Received: by 2002:ac8:7199:: with SMTP id w25mr2456489qto.86.1586484342716; 
- Thu, 09 Apr 2020 19:05:42 -0700 (PDT)
+ bh=s/yQPlaKhVYPt5OobahOwTUgvvXhzrOQPLQW/jvV2Mc=;
+ b=f16ZL0bMiYa6GSRTiHbK1YatyOTb56U8x+kynNwEUiqjOzZysVjqZuqsUxHEXaB1JX
+ 6B0Kcea/dhzExM31aTPiq19F9rx2jh18RGm/GMvIPVsfnbRVHrHkcNvKZIalGnCyAFF+
+ hqZHkTZV9y4JbXAtiAan07MrFyX1+Xr/iIjb6MaGmeboZZYROeP/AfBTQVZWwrV35mxG
+ 3lZ9nydOH5bEBfqAGsvwqRFFWetGr36iySvySE2TDTF8c6HBgU6Kij0AtVsS5UgdbCb4
+ KJYhwGgR4YJnurJTtQExjYlwpB//2D+FeKoElR4CmWQqRwja6tSEebnnFO5a2wTjCgm0
+ 5E1Q==
+X-Gm-Message-State: AGi0PuZVPUbPXA19DDpeI/WFHu94eRJYJb9G9xYkcJdxebqLREJEqY3n
+ IyCCiZ6sMPFK0kK8wuuvuZp/2GCptLQ=
+X-Google-Smtp-Source: APiQypKFpsBfwRLEN8hm3zgGNQjzPKAuLa7Ux/9vzV6R81qU3/n3F+uEXJ4gGaQa6+Y+fBPMs+OGtw==
+X-Received: by 2002:a37:a915:: with SMTP id s21mr2068402qke.436.1586485622649; 
+ Thu, 09 Apr 2020 19:27:02 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-12-204.dsl.bell.ca.
  [174.95.12.204])
- by smtp.googlemail.com with ESMTPSA id s32sm584097qth.43.2020.04.09.19.05.41
+ by smtp.googlemail.com with ESMTPSA id e17sm728129qtw.1.2020.04.09.19.27.01
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 09 Apr 2020 19:05:42 -0700 (PDT)
-Message-ID: <5E8FD475.20706@gmail.com>
-Date: Thu, 09 Apr 2020 22:05:41 -0400
+ Thu, 09 Apr 2020 19:27:01 -0700 (PDT)
+Message-ID: <5E8FD975.7050702@gmail.com>
+Date: Thu, 09 Apr 2020 22:27:01 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
@@ -56,7 +56,9 @@ To: =?UTF-8?B?RnJhbmNpc2NvIEdhbGxhcmRvIGzDs3Bleg==?=
 References: <CAEtk-vVLGVfr5BNpuuenjo9S=mTu-UoRFJNb+9JLQBjprrJ09Q@mail.gmail.com>
  <5E8FAD9A.6080904@gmail.com>
  <CAEtk-vW2dDG6iiJ_a6iAy8bcW66YTzRQWZtTfb4Fb+FGBhRebQ@mail.gmail.com>
-In-Reply-To: <CAEtk-vW2dDG6iiJ_a6iAy8bcW66YTzRQWZtTfb4Fb+FGBhRebQ@mail.gmail.com>
+ <5E8FD475.20706@gmail.com>
+ <CAEtk-vXM5EEBAr1ExwjqqNMP8FUB1KZM=3Bf9XscL79Kk18dpA@mail.gmail.com>
+In-Reply-To: <CAEtk-vXM5EEBAr1ExwjqqNMP8FUB1KZM=3Bf9XscL79Kk18dpA@mail.gmail.com>
 Subject: Re: [USRP-users] USRP not working?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -72,7 +74,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============4486557495623919489=="
+Content-Type: multipart/mixed; boundary="===============6325861797672227497=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,177 +89,211 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============4486557495623919489==
+--===============6325861797672227497==
 Content-Type: multipart/alternative;
- boundary="------------080009000302050307050003"
+ boundary="------------020009070505080408070106"
 
 This is a multi-part message in MIME format.
---------------080009000302050307050003
+--------------020009070505080408070106
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 04/09/2020 09:56 PM, Francisco Gallardo lópez wrote:
-> Hi Marcus,
+On 04/09/2020 10:02 PM, Francisco Gallardo lópez wrote:
+> Indeed... 😫
 >
-> Thanks a lot for your prompt and insightful feedback.
+> "linux; GNU C++ version 5.3.1 20151219; Boost_105800; 
+> UHD_003.009.002-0-unknown
 >
-> So, now the gain is 80 dBs, and the sampling rate is now 9MHz.
-A further comment is that the sample rate is necessarily constrained to 
-be a strict-integer fraction of the master clock rate, so 9Msps
-   is not a valid sample rate, and it would have warned you about that.  
-8MHz is the  most you can expect with full-width samples
-   across the bus.
+> -- Opening a USRP1 device...
+> -- Using FPGA clock rate of 64.000000MHz...
+>
+> UHD Warning:
+>     The hardware does not support the requested RX sample rate:
+>     Target sample rate: 9.000000 MSps
+> Actual sample rate: 8.000000 MSps"
+>
+> It was setting the Sampling rate to 8 on its own.
+>
+> Thanks!
+Sure, but if your processing assumes that the sample-rate you've asked 
+for is the one being delivered, it can get pretty confused as to what's
+   going on...
 
 
-> I think I was right with the B:0 subdev spec.
-> The signal I see now in the time window makes more sense. (Thanks for 
-> the pointing me to the gain problem).
 >
-> You are right, GNSS signals are buried in noise, but I was 
-> expecting to see at least the noise.
+> El vie., 10 abr. 2020 a las 4:05, Marcus D. Leech 
+> (<patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>>) escribió:
 >
-> now_we_are_talking.png
->
-> I generated the search space and although I don't clearly see the ACF 
-> peak in the Search Space yet, at least things seem to be more on its 
-> way now.
->
-> maybe.png
->
-> Thanks, Marcus!
-> Fran
->
+>     On 04/09/2020 09:56 PM, Francisco Gallardo lópez wrote:
+>>     Hi Marcus,
+>>
+>>     Thanks a lot for your prompt and insightful feedback.
+>>
+>>     So, now the gain is 80 dBs, and the sampling rate is now 9MHz.
+>     A further comment is that the sample rate is necessarily
+>     constrained to be a strict-integer fraction of the master clock
+>     rate, so 9Msps
+>       is not a valid sample rate, and it would have warned you about
+>     that.  8MHz is the  most you can expect with full-width samples
+>       across the bus.
 >
 >
->
->
-> El vie., 10 abr. 2020 a las 1:20, Marcus D. Leech via USRP-users 
-> (<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>) 
-> escribió:
->
->     On 04/09/2020 04:22 PM, Francisco Gallardo lópez via USRP-users wrote:
+>>     I think I was right with the B:0 subdev spec.
+>>     The signal I see now in the time window makes more sense. (Thanks
+>>     for the pointing me to the gain problem).
 >>
->>     Hi all,
+>>     You are right, GNSS signals are buried in noise, but I was
+>>     expecting to see at least the noise.
 >>
->>     I am trying to make a setup to capture GNSS signals.
+>>     now_we_are_talking.png
 >>
->>     I bought a very cheap antenna, a power supply and I am using a
->>     USRP1. The setup more or less looks like this:
+>>     I generated the search space and although I don't clearly see the
+>>     ACF peak in the Search Space yet, at least things seem to be more
+>>     on its way now.
 >>
->>     Antenna <-> DC_Blocker <-> USRP_Daughterboard (DBSRX2 USRP) <-> USRP1
+>>     maybe.png
 >>
->>     A PSU is connected to the DC_Blocker providing with 5V DC. I
->>     checked with a voltmeter; everything was fine (and the DC is not
->>     getting to the USRP).
->>
->>     The Daughterboard is connected to the RXB socket in the
->>     motherboard (see the pictures).
->>
->>     I am using the GRC to record the signal, and you can find the
->>     diagram in the links below.
->>
->>     I created a small Python program to read the recorded signals, as
->>     I was unsure whether I had a problem in the reader I did the same
->>     with a Sine signal generated by the GRC. As you can see in the
->>     picture, the Python program can read and plot the sine signal.
->>     But when it comes to the recorded signal from the USRP, it plots
->>     something strange. It seems like either I did not configure the
->>     USRP source signal properly or I have an HW problem (which could
->>     perfectly be the case).
->>
->>     The signal I see (and the QT time Sink shows something inline
->>     with it) with the USRP source is some kind of transient signal
->>     and then 0. It does not matter what "Mb0: Subdev spec" I set (I
->>     think it should be B:0) and "CH0: Antenna" is "TX/RX", the other
->>     option was RX2, I tried with both.
->>
->>     Signal "from" the antenna and the USRP:
->>     image.png
->>
->>     The signal generated with the GRC sine source then recorded to a
->>     file and plotted with the same Python program (so I guess the
->>     Python program is fine).
->>
->>     image.png
->>
->>     You can see the pictures of the recorded signals and the
->>     configuration in the GRC USRP source.
->>
->>     Any idea on whether I configured the GRC USRP source wrong or
->>     shall I look into the HW part?
->>
->>     Thanks!
+>>     Thanks, Marcus!
 >>     Fran
 >>
->>     GRC USRP source configuration 1:
->>     https://drive.google.com/file/d/1IQaOqLtZGeoXpD1stHZQ1dPb8_UJqT2z/view
->>     <https://drive.google.com/file/d/1IQaOqLtZGeoXpD1stHZQ1dPb8_UJqT2z/view>GRC
->>     USRP source configuration 2:
->>     https://drive.google.com/file/d/1yQ41eD51suVBg2Ahzu6yWanXCmYzq80z/view GRC
->>     USRP source configuration 3:
->>     https://drive.google.com/file/d/1dT37br1MpMp7c1wwGROBLt7C47MZIsas/view GRC
->>     USRP source configuration 4:
->>     https://drive.google.com/file/d/1gQrivWyLzu5xEk-z-zGF-j7xVvkMt5NC/view
->>
->>     GRC diagram: (GRC file)
->>     https://drive.google.com/file/d/1PICfljNcf2TF-lLb01rHUA2AQvyznHAO/view?usp=sharing
->>
->>     Picture of the USRP with the daughterboard disconnected:
->>     https://drive.google.com/file/d/1FvUju99H_Zm0rjZpJ5y4DREX5dFzVFbU/view Picture
->>     of the USRP with the daughterboard connected:
->>     https://drive.google.com/file/d/14MP5uofLP1sz08-mBDeVDHoH9DAWaMsU/view
->>
->>     Signal recorded with the antenna (A:B and Chain RX2)
->>     https://drive.google.com/file/d/1LGB-ErfakBUFWnEqMflxj1mznFsqvmAi/view
->>
->>     Signal recorded with the antenna (B and Chain TX/RX)
->>     https://drive.google.com/file/d/1xXy8pTOv9mmCll851CC8fzgiTTI-xH9p/view
->>
->>     Sine signal generated with the GRC and plotted with the same
->>     python program:
->>     https://drive.google.com/file/d/1kRBr5HFlEmYAe2OgKFwkkHl8GGQCxUDT/view
->>
->>     The code of the Python reader:
->>     https://github.com/fgallardo/sandbox/blob/master/USRP_recorded_signal_reader.py
 >>
 >>
->>     _______________________________________________
->>     USRP-users mailing list
->>     USRP-users@lists.ettus.com  <mailto:USRP-users@lists.ettus.com>
->>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->     So much to comment on:
->
->     The USRP1 has a *fixed* master-clock rate of 64MHz.
->
->     A sample rate of 32Ksps is not possible on the USRP1, and the
->     lowest possible sample rate is 64e6/25 == 250e3.
->
->     The RF gain range on the DBSRX2 goes up to about 87dB, so you're
->     67dB below the highest RF gain setting.  Try changing it to 70dB.
->
->     Also, the magnitude of the samples coming out of the radio will be
->     very small, so if your time-domain plot is set to a larger range, you
->       won't apparently "see" anything at the scaling you have.
->
->     Further, the GNSS signals are all spread-spectrum, and
->     noise-like.  You won't see anything other than noise in both time
->     and frequency-domain
->       plots.
->
->
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>>
+>>     El vie., 10 abr. 2020 a las 1:20, Marcus D. Leech via USRP-users
+>>     (<usrp-users@lists.ettus.com
+>>     <mailto:usrp-users@lists.ettus.com>>) escribió:
+>>
+>>         On 04/09/2020 04:22 PM, Francisco Gallardo lópez via
+>>         USRP-users wrote:
+>>>
+>>>         Hi all,
+>>>
+>>>         I am trying to make a setup to capture GNSS signals.
+>>>
+>>>         I bought a very cheap antenna, a power supply and I am using
+>>>         a USRP1. The setup more or less looks like this:
+>>>
+>>>         Antenna <-> DC_Blocker <-> USRP_Daughterboard (DBSRX2 USRP)
+>>>         <-> USRP1
+>>>
+>>>         A PSU is connected to the DC_Blocker providing with 5V DC. I
+>>>         checked with a voltmeter; everything was fine (and the DC is
+>>>         not getting to the USRP).
+>>>
+>>>         The Daughterboard is connected to the RXB socket in the
+>>>         motherboard (see the pictures).
+>>>
+>>>         I am using the GRC to record the signal, and you can find
+>>>         the diagram in the links below.
+>>>
+>>>         I created a small Python program to read the recorded
+>>>         signals, as I was unsure whether I had a problem in the
+>>>         reader I did the same with a Sine signal generated by the
+>>>         GRC. As you can see in the picture, the Python program can
+>>>         read and plot the sine signal. But when it comes to the
+>>>         recorded signal from the USRP, it plots something strange.
+>>>         It seems like either I did not configure the USRP source
+>>>         signal properly or I have an HW problem (which could
+>>>         perfectly be the case).
+>>>
+>>>         The signal I see (and the QT time Sink shows something
+>>>         inline with it) with the USRP source is some kind of
+>>>         transient signal and then 0. It does not matter what "Mb0:
+>>>         Subdev spec" I set (I think it should be B:0) and "CH0:
+>>>         Antenna" is "TX/RX", the other option was RX2, I tried with
+>>>         both.
+>>>
+>>>         Signal "from" the antenna and the USRP:
+>>>         image.png
+>>>
+>>>         The signal generated with the GRC sine source then recorded
+>>>         to a file and plotted with the same Python program (so I
+>>>         guess the Python program is fine).
+>>>
+>>>         image.png
+>>>
+>>>         You can see the pictures of the recorded signals and the
+>>>         configuration in the GRC USRP source.
+>>>
+>>>         Any idea on whether I configured the GRC USRP source wrong
+>>>         or shall I look into the HW part?
+>>>
+>>>         Thanks!
+>>>         Fran
+>>>
+>>>         GRC USRP source configuration 1:
+>>>         https://drive.google.com/file/d/1IQaOqLtZGeoXpD1stHZQ1dPb8_UJqT2z/view
+>>>         <https://drive.google.com/file/d/1IQaOqLtZGeoXpD1stHZQ1dPb8_UJqT2z/view>GRC
+>>>         USRP source configuration 2:
+>>>         https://drive.google.com/file/d/1yQ41eD51suVBg2Ahzu6yWanXCmYzq80z/view GRC
+>>>         USRP source configuration 3:
+>>>         https://drive.google.com/file/d/1dT37br1MpMp7c1wwGROBLt7C47MZIsas/view GRC
+>>>         USRP source configuration 4:
+>>>         https://drive.google.com/file/d/1gQrivWyLzu5xEk-z-zGF-j7xVvkMt5NC/view
+>>>
+>>>         GRC diagram: (GRC file)
+>>>         https://drive.google.com/file/d/1PICfljNcf2TF-lLb01rHUA2AQvyznHAO/view?usp=sharing
+>>>
+>>>         Picture of the USRP with the daughterboard disconnected:
+>>>         https://drive.google.com/file/d/1FvUju99H_Zm0rjZpJ5y4DREX5dFzVFbU/view Picture
+>>>         of the USRP with the daughterboard connected:
+>>>         https://drive.google.com/file/d/14MP5uofLP1sz08-mBDeVDHoH9DAWaMsU/view
+>>>
+>>>         Signal recorded with the antenna (A:B and Chain RX2)
+>>>         https://drive.google.com/file/d/1LGB-ErfakBUFWnEqMflxj1mznFsqvmAi/view
+>>>
+>>>         Signal recorded with the antenna (B and Chain TX/RX)
+>>>         https://drive.google.com/file/d/1xXy8pTOv9mmCll851CC8fzgiTTI-xH9p/view
+>>>
+>>>         Sine signal generated with the GRC and plotted with the same
+>>>         python program:
+>>>         https://drive.google.com/file/d/1kRBr5HFlEmYAe2OgKFwkkHl8GGQCxUDT/view
+>>>
+>>>         The code of the Python reader:
+>>>         https://github.com/fgallardo/sandbox/blob/master/USRP_recorded_signal_reader.py
+>>>
+>>>
+>>>         _______________________________________________
+>>>         USRP-users mailing list
+>>>         USRP-users@lists.ettus.com  <mailto:USRP-users@lists.ettus.com>
+>>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>         So much to comment on:
+>>
+>>         The USRP1 has a *fixed* master-clock rate of 64MHz.
+>>
+>>         A sample rate of 32Ksps is not possible on the USRP1, and the
+>>         lowest possible sample rate is 64e6/25 == 250e3.
+>>
+>>         The RF gain range on the DBSRX2 goes up to about 87dB, so
+>>         you're 67dB below the highest RF gain setting.  Try changing
+>>         it to 70dB.
+>>
+>>         Also, the magnitude of the samples coming out of the radio
+>>         will be very small, so if your time-domain plot is set to a
+>>         larger range, you
+>>           won't apparently "see" anything at the scaling you have.
+>>
+>>         Further, the GNSS signals are all spread-spectrum, and
+>>         noise-like.  You won't see anything other than noise in both
+>>         time and frequency-domain
+>>           plots.
+>>
+>>
+>>         _______________________________________________
+>>         USRP-users mailing list
+>>         USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 >
 
 
---------------080009000302050307050003
+--------------020009070505080408070106
 Content-Type: multipart/related;
- boundary="------------010806090403070809020205"
+ boundary="------------020103070403030801010505"
 
 
---------------010806090403070809020205
+--------------020103070403030801010505
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -266,249 +302,325 @@ Content-Transfer-Encoding: 8bit
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   </head>
   <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 04/09/2020 09:56 PM, Francisco
+    <div class="moz-cite-prefix">On 04/09/2020 10:02 PM, Francisco
       Gallardo lópez wrote:<br>
     </div>
     <blockquote
-cite="mid:CAEtk-vW2dDG6iiJ_a6iAy8bcW66YTzRQWZtTfb4Fb+FGBhRebQ@mail.gmail.com"
+cite="mid:CAEtk-vXM5EEBAr1ExwjqqNMP8FUB1KZM=3Bf9XscL79Kk18dpA@mail.gmail.com"
       type="cite">
-      <div dir="ltr">Hi Marcus,
+      <div dir="ltr">Indeed... 😫
         <div><br>
+          <div>"linux; GNU C++ version 5.3.1 20151219; Boost_105800;
+            UHD_003.009.002-0-unknown</div>
+          <br>
+          -- Opening a USRP1 device...<br>
+          -- Using FPGA clock rate of 64.000000MHz...<br>
+          <br>
+          UHD Warning:<br>
+              The hardware does not support the requested RX sample
+          rate:<br>
+              Target sample rate: 9.000000 MSps<br>
+              <span style="background-color:rgb(255,255,0)">Actual
+            sample rate: 8.000000 MSps</span>"
+          <div><br>
+          </div>
+          <div>It was setting the Sampling rate to 8 on its own.</div>
+          <div><br>
+          </div>
+          <div>Thanks!</div>
         </div>
-        <div>Thanks a lot for your prompt and insightful feedback.</div>
-        <div><br>
-        </div>
-        <div>So, now the gain is 80 dBs, and the sampling rate is now
-          9MHz.</div>
       </div>
     </blockquote>
-    A further comment is that the sample rate is necessarily constrained
-    to be a strict-integer fraction of the master clock rate, so 9Msps<br>
-      is not a valid sample rate, and it would have warned you about
-    that.  8MHz is the  most you can expect with full-width samples<br>
-      across the bus.<br>
+    Sure, but if your processing assumes that the sample-rate you've
+    asked for is the one being delivered, it can get pretty confused as
+    to what's<br>
+      going on...<br>
     <br>
     <br>
     <blockquote
-cite="mid:CAEtk-vW2dDG6iiJ_a6iAy8bcW66YTzRQWZtTfb4Fb+FGBhRebQ@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div>
-          <div>I think I was right with the B:0 subdev spec. </div>
-        </div>
-        <div>The signal I see now in the time window makes more sense.
-          (Thanks for the pointing me to the gain problem).</div>
-        <div><br>
-        </div>
-        <div>You are right, GNSS signals are buried in noise, but I was
-          expecting to see at least the noise.</div>
-        <div><br>
-        </div>
-        <div><img src="cid:part1.03070706.08010502@gmail.com"
-            alt="now_we_are_talking.png" height="423" width="562"><br>
-        </div>
-        <div><br>
-        </div>
-        <div>I generated the search space and although I don't clearly
-          see the ACF peak in the Search Space yet, at least things seem
-          to be more on its way now.</div>
-        <div><br>
-        </div>
-        <div>
-          <div><img src="cid:part2.04010304.05070001@gmail.com"
-              alt="maybe.png" height="431" width="562"><br>
-          </div>
-        </div>
-        <div><br>
-        </div>
-        <div>Thanks, Marcus!</div>
-        <div>Fran</div>
-        <div><br>
-        </div>
-        <div><br>
-        </div>
-        <div><br>
-        </div>
-        <div><br>
-        </div>
-      </div>
-      <br>
+cite="mid:CAEtk-vXM5EEBAr1ExwjqqNMP8FUB1KZM=3Bf9XscL79Kk18dpA@mail.gmail.com"
+      type="cite"><br>
       <div class="gmail_quote">
         <div dir="ltr" class="gmail_attr">El vie., 10 abr. 2020 a las
-          1:20, Marcus D. Leech via USRP-users (&lt;<a
-            moz-do-not-send="true"
-            href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;)
+          4:05, Marcus D. Leech (&lt;<a moz-do-not-send="true"
+            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;)
           escribió:<br>
         </div>
         <blockquote class="gmail_quote" style="margin:0px 0px 0px
           0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
           <div bgcolor="#FFFFFF">
-            <div>On 04/09/2020 04:22 PM, Francisco Gallardo lópez via
-              USRP-users wrote:<br>
+            <div>On 04/09/2020 09:56 PM, Francisco Gallardo lópez wrote:<br>
             </div>
             <blockquote type="cite">
+              <div dir="ltr">Hi Marcus,
+                <div><br>
+                </div>
+                <div>Thanks a lot for your prompt and insightful
+                  feedback.</div>
+                <div><br>
+                </div>
+                <div>So, now the gain is 80 dBs, and the sampling rate
+                  is now 9MHz.</div>
+              </div>
+            </blockquote>
+            A further comment is that the sample rate is necessarily
+            constrained to be a strict-integer fraction of the master
+            clock rate, so 9Msps<br>
+              is not a valid sample rate, and it would have warned you
+            about that.  8MHz is the  most you can expect with
+            full-width samples<br>
+              across the bus.<br>
+            <br>
+            <br>
+            <blockquote type="cite">
               <div dir="ltr">
-                <p>Hi all,</p>
-                <p>I am trying to make a setup to capture GNSS signals.</p>
-                <p>I bought a very cheap antenna, a power supply and I
-                  am using a USRP1. The setup more or less looks like
-                  this:</p>
-                <div>Antenna &lt;-&gt; DC_Blocker &lt;-&gt;
-                  USRP_Daughterboard (DBSRX2 USRP) &lt;-&gt; USRP1<br>
-                  <br>
-                  A PSU is connected to the DC_Blocker providing with 5V
-                  DC. I checked with a voltmeter; everything was fine
-                  (and the DC is not getting to the USRP).<br>
-                  <br>
-                  The Daughterboard is connected to the RXB socket in
-                  the motherboard (see the pictures).<br>
-                  <br>
-                  I am using the GRC to record the signal, and you can
-                  find the diagram in the links below.<br>
+                <div>
+                  <div>I think I was right with the B:0 subdev spec. </div>
+                </div>
+                <div>The signal I see now in the time window makes more
+                  sense. (Thanks for the pointing me to the gain
+                  problem).</div>
+                <div><br>
+                </div>
+                <div>You are right, GNSS signals are buried in noise,
+                  but I was expecting to see at least the noise.</div>
+                <div><br>
+                </div>
+                <div><img src="cid:part2.01000901.02020305@gmail.com"
+                    alt="now_we_are_talking.png" height="423"
+                    width="562"><br>
                 </div>
                 <div><br>
-                  I created a small Python program to read the recorded
-                  signals, as I was unsure whether I had a problem in
-                  the reader I did the same with a Sine signal generated
-                  by the GRC. As you can see in the picture, the Python
-                  program can read and plot the sine signal. But when it
-                  comes to the recorded signal from the USRP, it plots
-                  something strange. It seems like either I did not
-                  configure the USRP source signal properly or I have an
-                  HW problem (which could perfectly be the case).<br>
-                  <br>
-                  The signal I see (and the QT time Sink shows something
-                  inline with it) with the USRP source is some kind of
-                  transient signal and then 0. It does not matter what
-                  "Mb0: Subdev spec" I set (I think it should be B:0)
-                  and "CH0: Antenna" is "TX/RX", the other option was
-                  RX2, I tried with both.<br>
-                  <br>
-                  Signal "from" the antenna and the USRP:<br>
+                </div>
+                <div>I generated the search space and although I
+                  don't clearly see the ACF peak in the Search Space
+                  yet, at least things seem to be more on its way now.</div>
+                <div><br>
                 </div>
                 <div>
-                  <div><img src="cid:part4.04000500.05030701@gmail.com"
-                      alt="image.png" style="outline: 0px;" height="242"
-                      width="452"><br>
+                  <div><img src="cid:part3.06080305.05050902@gmail.com"
+                      alt="maybe.png" height="431" width="562"><br>
                   </div>
                 </div>
                 <div><br>
                 </div>
-                <div>The signal generated with the GRC sine source then
-                  recorded to a file and plotted with the same Python
-                  program (so I guess the Python program is fine).<br>
+                <div>Thanks, Marcus!</div>
+                <div>Fran</div>
+                <div><br>
                 </div>
                 <div><br>
                 </div>
-                <div>
-                  <div><img src="cid:part5.04070604.05020600@gmail.com"
-                      alt="image.png" style="outline: 0px;" height="241"
-                      width="452"><br>
-                  </div>
+                <div><br>
                 </div>
                 <div><br>
                 </div>
-                <div>You can see the pictures of the recorded signals
-                  and the configuration in the GRC USRP source.<br>
-                  <br>
-                  Any idea on whether I configured the GRC USRP source
-                  wrong or shall I look into the HW part?<br>
-                  <br>
-                  Thanks! </div>
-                <div>Fran<br>
-                  <br>
-                  GRC USRP source configuration 1: <a
-                    moz-do-not-send="true"
-href="https://drive.google.com/file/d/1IQaOqLtZGeoXpD1stHZQ1dPb8_UJqT2z/view"
-                    target="_blank">https://drive.google.com/file/d/1IQaOqLtZGeoXpD1stHZQ1dPb8_UJqT2z/view </a>GRC
-
-                  USRP source configuration 2: <a moz-do-not-send="true"
-href="https://drive.google.com/file/d/1yQ41eD51suVBg2Ahzu6yWanXCmYzq80z/view"
-                    target="_blank">https://drive.google.com/file/d/1yQ41eD51suVBg2Ahzu6yWanXCmYzq80z/view</a> GRC
-
-                  USRP source configuration 3: <a moz-do-not-send="true"
-href="https://drive.google.com/file/d/1dT37br1MpMp7c1wwGROBLt7C47MZIsas/view"
-                    target="_blank">https://drive.google.com/file/d/1dT37br1MpMp7c1wwGROBLt7C47MZIsas/view</a> GRC
-
-                  USRP source configuration 4: <a moz-do-not-send="true"
-href="https://drive.google.com/file/d/1gQrivWyLzu5xEk-z-zGF-j7xVvkMt5NC/view"
-                    target="_blank">https://drive.google.com/file/d/1gQrivWyLzu5xEk-z-zGF-j7xVvkMt5NC/view<br>
-                  </a><br>
-                  GRC diagram: (GRC file) <a moz-do-not-send="true"
-href="https://drive.google.com/file/d/1PICfljNcf2TF-lLb01rHUA2AQvyznHAO/view?usp=sharing"
-                    target="_blank">https://drive.google.com/file/d/1PICfljNcf2TF-lLb01rHUA2AQvyznHAO/view?usp=sharing</a><br>
-                  <br>
-                  Picture of the USRP with the daughterboard
-                  disconnected: <a moz-do-not-send="true"
-href="https://drive.google.com/file/d/1FvUju99H_Zm0rjZpJ5y4DREX5dFzVFbU/view"
-                    target="_blank">https://drive.google.com/file/d/1FvUju99H_Zm0rjZpJ5y4DREX5dFzVFbU/view</a> Picture
-
-                  of the USRP with the daughterboard connected: <a
-                    moz-do-not-send="true"
-href="https://drive.google.com/file/d/14MP5uofLP1sz08-mBDeVDHoH9DAWaMsU/view"
-                    target="_blank">https://drive.google.com/file/d/14MP5uofLP1sz08-mBDeVDHoH9DAWaMsU/view</a><br>
-                  <br>
-                  Signal recorded with the antenna (A:B and Chain RX2) <a
-                    moz-do-not-send="true"
-href="https://drive.google.com/file/d/1LGB-ErfakBUFWnEqMflxj1mznFsqvmAi/view"
-                    target="_blank">https://drive.google.com/file/d/1LGB-ErfakBUFWnEqMflxj1mznFsqvmAi/view</a><br>
-                  <br>
-                  Signal recorded with the antenna (B and Chain TX/RX) <a
-                    moz-do-not-send="true"
-href="https://drive.google.com/file/d/1xXy8pTOv9mmCll851CC8fzgiTTI-xH9p/view"
-                    target="_blank">https://drive.google.com/file/d/1xXy8pTOv9mmCll851CC8fzgiTTI-xH9p/view</a><br>
-                  <br>
-                  Sine signal generated with the GRC and plotted with
-                  the same python program: <a moz-do-not-send="true"
-href="https://drive.google.com/file/d/1kRBr5HFlEmYAe2OgKFwkkHl8GGQCxUDT/view"
-                    target="_blank">https://drive.google.com/file/d/1kRBr5HFlEmYAe2OgKFwkkHl8GGQCxUDT/view</a><br>
-                </div>
-                <div><br>
-                </div>
-                <div>The code of the Python reader:</div>
-                <div><a moz-do-not-send="true"
-href="https://github.com/fgallardo/sandbox/blob/master/USRP_recorded_signal_reader.py"
-                    target="_blank">https://github.com/fgallardo/sandbox/blob/master/USRP_recorded_signal_reader.py</a></div>
               </div>
               <br>
-              <fieldset></fieldset>
-              <br>
-              <pre>_______________________________________________
+              <div class="gmail_quote">
+                <div dir="ltr" class="gmail_attr">El vie., 10 abr. 2020
+                  a las 1:20, Marcus D. Leech via USRP-users (&lt;<a
+                    moz-do-not-send="true"
+                    href="mailto:usrp-users@lists.ettus.com"
+                    target="_blank">usrp-users@lists.ettus.com</a>&gt;)
+                  escribió:<br>
+                </div>
+                <blockquote class="gmail_quote" style="margin:0px 0px
+                  0px 0.8ex;border-left:1px solid
+                  rgb(204,204,204);padding-left:1ex">
+                  <div bgcolor="#FFFFFF">
+                    <div>On 04/09/2020 04:22 PM, Francisco Gallardo
+                      lópez via USRP-users wrote:<br>
+                    </div>
+                    <blockquote type="cite">
+                      <div dir="ltr">
+                        <p>Hi all,</p>
+                        <p>I am trying to make a setup to capture GNSS
+                          signals.</p>
+                        <p>I bought a very cheap antenna, a power supply
+                          and I am using a USRP1. The setup more or less
+                          looks like this:</p>
+                        <div>Antenna &lt;-&gt; DC_Blocker &lt;-&gt;
+                          USRP_Daughterboard (DBSRX2 USRP) &lt;-&gt;
+                          USRP1<br>
+                          <br>
+                          A PSU is connected to the DC_Blocker providing
+                          with 5V DC. I checked with a voltmeter;
+                          everything was fine (and the DC is not getting
+                          to the USRP).<br>
+                          <br>
+                          The Daughterboard is connected to the RXB
+                          socket in the motherboard (see the pictures).<br>
+                          <br>
+                          I am using the GRC to record the signal, and
+                          you can find the diagram in the links below.<br>
+                        </div>
+                        <div><br>
+                          I created a small Python program to read the
+                          recorded signals, as I was unsure whether I
+                          had a problem in the reader I did the same
+                          with a Sine signal generated by the GRC. As
+                          you can see in the picture, the Python program
+                          can read and plot the sine signal. But when it
+                          comes to the recorded signal from the USRP, it
+                          plots something strange. It seems like either
+                          I did not configure the USRP source signal
+                          properly or I have an HW problem (which could
+                          perfectly be the case).<br>
+                          <br>
+                          The signal I see (and the QT time Sink shows
+                          something inline with it) with the USRP source
+                          is some kind of transient signal and then 0.
+                          It does not matter what "Mb0: Subdev spec" I
+                          set (I think it should be B:0) and "CH0:
+                          Antenna" is "TX/RX", the other option was RX2,
+                          I tried with both.<br>
+                          <br>
+                          Signal "from" the antenna and the USRP:<br>
+                        </div>
+                        <div>
+                          <div><img
+                              src="cid:part5.06010602.07060407@gmail.com"
+                              alt="image.png" style="outline: 0px;"
+                              height="242" width="452"><br>
+                          </div>
+                        </div>
+                        <div><br>
+                        </div>
+                        <div>The signal generated with the GRC sine
+                          source then recorded to a file and plotted
+                          with the same Python program (so I guess the
+                          Python program is fine).<br>
+                        </div>
+                        <div><br>
+                        </div>
+                        <div>
+                          <div><img
+                              src="cid:part6.05010704.06060602@gmail.com"
+                              alt="image.png" style="outline: 0px;"
+                              height="241" width="452"><br>
+                          </div>
+                        </div>
+                        <div><br>
+                        </div>
+                        <div>You can see the pictures of the recorded
+                          signals and the configuration in the GRC USRP
+                          source.<br>
+                          <br>
+                          Any idea on whether I configured the GRC USRP
+                          source wrong or shall I look into the HW part?<br>
+                          <br>
+                          Thanks! </div>
+                        <div>Fran<br>
+                          <br>
+                          GRC USRP source configuration 1: <a
+                            moz-do-not-send="true"
+href="https://drive.google.com/file/d/1IQaOqLtZGeoXpD1stHZQ1dPb8_UJqT2z/view"
+                            target="_blank">https://drive.google.com/file/d/1IQaOqLtZGeoXpD1stHZQ1dPb8_UJqT2z/view </a>GRC
+
+
+                          USRP source configuration 2: <a
+                            moz-do-not-send="true"
+href="https://drive.google.com/file/d/1yQ41eD51suVBg2Ahzu6yWanXCmYzq80z/view"
+                            target="_blank">https://drive.google.com/file/d/1yQ41eD51suVBg2Ahzu6yWanXCmYzq80z/view</a> GRC
+
+
+                          USRP source configuration 3: <a
+                            moz-do-not-send="true"
+href="https://drive.google.com/file/d/1dT37br1MpMp7c1wwGROBLt7C47MZIsas/view"
+                            target="_blank">https://drive.google.com/file/d/1dT37br1MpMp7c1wwGROBLt7C47MZIsas/view</a> GRC
+
+
+                          USRP source configuration 4: <a
+                            moz-do-not-send="true"
+href="https://drive.google.com/file/d/1gQrivWyLzu5xEk-z-zGF-j7xVvkMt5NC/view"
+                            target="_blank">https://drive.google.com/file/d/1gQrivWyLzu5xEk-z-zGF-j7xVvkMt5NC/view<br>
+                          </a><br>
+                          GRC diagram: (GRC file) <a
+                            moz-do-not-send="true"
+href="https://drive.google.com/file/d/1PICfljNcf2TF-lLb01rHUA2AQvyznHAO/view?usp=sharing"
+                            target="_blank">https://drive.google.com/file/d/1PICfljNcf2TF-lLb01rHUA2AQvyznHAO/view?usp=sharing</a><br>
+                          <br>
+                          Picture of the USRP with the daughterboard
+                          disconnected: <a moz-do-not-send="true"
+href="https://drive.google.com/file/d/1FvUju99H_Zm0rjZpJ5y4DREX5dFzVFbU/view"
+                            target="_blank">https://drive.google.com/file/d/1FvUju99H_Zm0rjZpJ5y4DREX5dFzVFbU/view</a> Picture
+
+
+                          of the USRP with the daughterboard connected: <a
+                            moz-do-not-send="true"
+href="https://drive.google.com/file/d/14MP5uofLP1sz08-mBDeVDHoH9DAWaMsU/view"
+                            target="_blank">https://drive.google.com/file/d/14MP5uofLP1sz08-mBDeVDHoH9DAWaMsU/view</a><br>
+                          <br>
+                          Signal recorded with the antenna (A:B and
+                          Chain RX2) <a moz-do-not-send="true"
+href="https://drive.google.com/file/d/1LGB-ErfakBUFWnEqMflxj1mznFsqvmAi/view"
+                            target="_blank">https://drive.google.com/file/d/1LGB-ErfakBUFWnEqMflxj1mznFsqvmAi/view</a><br>
+                          <br>
+                          Signal recorded with the antenna (B and Chain
+                          TX/RX) <a moz-do-not-send="true"
+href="https://drive.google.com/file/d/1xXy8pTOv9mmCll851CC8fzgiTTI-xH9p/view"
+                            target="_blank">https://drive.google.com/file/d/1xXy8pTOv9mmCll851CC8fzgiTTI-xH9p/view</a><br>
+                          <br>
+                          Sine signal generated with the GRC and plotted
+                          with the same python program: <a
+                            moz-do-not-send="true"
+href="https://drive.google.com/file/d/1kRBr5HFlEmYAe2OgKFwkkHl8GGQCxUDT/view"
+                            target="_blank">https://drive.google.com/file/d/1kRBr5HFlEmYAe2OgKFwkkHl8GGQCxUDT/view</a><br>
+                        </div>
+                        <div><br>
+                        </div>
+                        <div>The code of the Python reader:</div>
+                        <div><a moz-do-not-send="true"
+href="https://github.com/fgallardo/sandbox/blob/master/USRP_recorded_signal_reader.py"
+                            target="_blank">https://github.com/fgallardo/sandbox/blob/master/USRP_recorded_signal_reader.py</a></div>
+                      </div>
+                      <br>
+                      <fieldset></fieldset>
+                      <br>
+                      <pre>_______________________________________________
 USRP-users mailing list
 <a moz-do-not-send="true" href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a>
 <a moz-do-not-send="true" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
 </pre>
+                    </blockquote>
+                    So much to comment on:<br>
+                    <br>
+                    The USRP1 has a *fixed* master-clock rate of 64MHz.<br>
+                    <br>
+                    A sample rate of 32Ksps is not possible on the
+                    USRP1, and the lowest possible sample rate is
+                    64e6/25 == 250e3.<br>
+                    <br>
+                    The RF gain range on the DBSRX2 goes up to about
+                    87dB, so you're 67dB below the highest RF gain
+                    setting.  Try changing it to 70dB.<br>
+                    <br>
+                    Also, the magnitude of the samples coming out of the
+                    radio will be very small, so if your time-domain
+                    plot is set to a larger range, you<br>
+                      won't apparently "see" anything at the scaling you
+                    have.<br>
+                    <br>
+                    Further, the GNSS signals are all spread-spectrum,
+                    and noise-like.  You won't see anything other than
+                    noise in both time and frequency-domain<br>
+                      plots.<br>
+                    <br>
+                    <br>
+                  </div>
+                  _______________________________________________<br>
+                  USRP-users mailing list<br>
+                  <a moz-do-not-send="true"
+                    href="mailto:USRP-users@lists.ettus.com"
+                    target="_blank">USRP-users@lists.ettus.com</a><br>
+                  <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                    rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+                </blockquote>
+              </div>
             </blockquote>
-            So much to comment on:<br>
-            <br>
-            The USRP1 has a *fixed* master-clock rate of 64MHz.<br>
-            <br>
-            A sample rate of 32Ksps is not possible on the USRP1, and
-            the lowest possible sample rate is 64e6/25 == 250e3.<br>
-            <br>
-            The RF gain range on the DBSRX2 goes up to about 87dB, so
-            you're 67dB below the highest RF gain setting.  Try changing
-            it to 70dB.<br>
-            <br>
-            Also, the magnitude of the samples coming out of the radio
-            will be very small, so if your time-domain plot is set to a
-            larger range, you<br>
-              won't apparently "see" anything at the scaling you have.<br>
-            <br>
-            Further, the GNSS signals are all spread-spectrum, and
-            noise-like.  You won't see anything other than noise in both
-            time and frequency-domain<br>
-              plots.<br>
-            <br>
             <br>
           </div>
-          _______________________________________________<br>
-          USRP-users mailing list<br>
-          <a moz-do-not-send="true"
-            href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-          <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-            rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
         </blockquote>
       </div>
     </blockquote>
@@ -516,10 +628,10 @@ href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
   </body>
 </html>
 
---------------010806090403070809020205
+--------------020103070403030801010505
 Content-Type: image/png
 Content-Transfer-Encoding: base64
-Content-ID: <part1.03070706.08010502@gmail.com>
+Content-ID: <part2.01000901.02020305@gmail.com>
 
 iVBORw0KGgoAAAANSUhEUgAAAl0AAAHHCAIAAAAK9XrEAAAABGdBTUEAALGPC/xhBQAAACBj
 SFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+g
@@ -1527,10 +1639,10 @@ F2L4CEtgvRsEQRAE0eGSeVQEQRAEYQnURQRBEATRgbqIIAiCIDpQFxEEQRBEB+oigiAIguhA
 XUQQBEEQHaiLCIIgCKIDdRFBEARBdKAuIgiCIIgO1EUEQRAE0YG6iCAIgiA6UBcRBEEQRAfq
 IoIgCILoQF1EEARBEB2oiwiCIAiiA3URQRAEQXSgLiIIgiCIDtRFBEEQBNGBuoggCIIgOv4P
 om7aY5UFescAAAAASUVORK5CYII=
---------------010806090403070809020205
+--------------020103070403030801010505
 Content-Type: image/png
 Content-Transfer-Encoding: base64
-Content-ID: <part2.04010304.05070001@gmail.com>
+Content-ID: <part3.06080305.05050902@gmail.com>
 
 iVBORw0KGgoAAAANSUhEUgAAAkoAAAHBCAIAAAAZ3gNIAAAABGdBTUEAALGPC/xhBQAAACBj
 SFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+g
@@ -3772,10 +3884,10 @@ RCKRVEOkvEkkEomkGiLlTSKRSCTVEClvEolEIqmGSHmTSCQSSTVEyptEIpFIqiFS3iQSiURS
 DZHyJpFIJJJqiJQ3iUQikVRDpLxJJBKJpBoi5U0ikUgk1RApbxKJRCKphkh5k0gkEkk1RMqb
 RCKRSKohUt4kEolEUg2R8iaRSCSSaoiUN4lEIpFUQ6S8SSQSiaQaIuVNIpFIJNUQKW8SiUQi
 qYZIeZNIJBJJNUTKm0QikUiqIVLeJBKJRFIN+X+j9qQmh8YwPgAAAABJRU5ErkJggg==
---------------010806090403070809020205
+--------------020103070403030801010505
 Content-Type: image/png
 Content-Transfer-Encoding: base64
-Content-ID: <part4.04000500.05030701@gmail.com>
+Content-ID: <part5.06010602.07060407@gmail.com>
 
 iVBORw0KGgoAAAANSUhEUgAABHMAAAJhCAYAAADCG/zdAAAgAElEQVR4AezdC3wU1dn48Sck
 xJAbFQUiioKBRIJoWhDEEnjBF4IXwFdbUbxBkNZoa1qLFEKt/i2kRJAKSquiRMUqWK0YKBqs
@@ -4599,10 +4711,10 @@ TnOoc04EEEAAAQQQQAABBBBAAAEEEEDASwGCOV7CsRsCCCCAAAIIIIAAAggggAACCCDQHAIE
 c5pDnXMigAACCCCAAAIIIIAAAggggAACXgoQzPESjt0QQAABBBBAAAEEEEAAAQQQQACB5hAg
 mNMc6pwTAQQQQAABBBBAAAEEEEAAAQQQ8FKAYI6XcOyGAAIIIIAAAggggAACCCCAAAIINIfA
 /wPOflTTkBm9HAAAAABJRU5ErkJggg==
---------------010806090403070809020205
+--------------020103070403030801010505
 Content-Type: image/png
 Content-Transfer-Encoding: base64
-Content-ID: <part5.04070604.05020600@gmail.com>
+Content-ID: <part6.05010704.06060602@gmail.com>
 
 iVBORw0KGgoAAAANSUhEUgAABHEAAAJdCAYAAAC1Vus2AAAgAElEQVR4AeydCdRlRXXvC2la
 VAYBGYyCYDezgAYEB8AAakNDgKciDyER8fEiJFGChCBEkxURQQgrGt/CFWLQPBQcHzTQ0KCg
@@ -6728,12 +6840,12 @@ AREQAREQAUcCCuI4AtPhIiACIiACIiACIiACIiACIiACIiACItAGAQVx2qCua4qACIiACIiA
 CIiACIiACIiACIiACIiAIwEFcRyB6XAREAEREAEREAEREAEREAEREAEREAERaIOAgjhtUNc1
 RUAEREAEREAEREAEREAEREAEREAERMCRgII4jsB0uAiIgAiIgAiIgAiIgAiIgAiIgAiIgAi0
 QeD/AbbpREFEQ4/IAAAAAElFTkSuQmCC
---------------010806090403070809020205--
+--------------020103070403030801010505--
 
---------------080009000302050307050003--
+--------------020009070505080408070106--
 
 
---===============4486557495623919489==
+--===============6325861797672227497==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -6744,5 +6856,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4486557495623919489==--
+--===============6325861797672227497==--
 
