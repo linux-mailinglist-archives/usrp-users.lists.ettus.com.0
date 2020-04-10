@@ -2,61 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC8591A47AF
-	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2020 16:57:20 +0200 (CEST)
-Received: from [::1] (port=43548 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E4EF1A49B8
+	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2020 20:13:17 +0200 (CEST)
+Received: from [::1] (port=51138 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jMv5q-0003Lx-1q; Fri, 10 Apr 2020 10:57:18 -0400
-Received: from mail-qv1-f42.google.com ([209.85.219.42]:34203)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jMv5m-0003GQ-IM
- for usrp-users@lists.ettus.com; Fri, 10 Apr 2020 10:57:14 -0400
-Received: by mail-qv1-f42.google.com with SMTP id s18so1043717qvn.1
- for <usrp-users@lists.ettus.com>; Fri, 10 Apr 2020 07:56:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=LQf2ZtRhsHkZxU3wyrR4H/9o3K6G1vkLwHJrORU5hrU=;
- b=Kwhj1ZmGgBs86DdiZZDvWZiN/EYDblNDof5cgAGXSuBvRPM9tO/pjY+eCYGCD1k0zg
- YC2SKMZlVVimi6i0b1N4n3UdT75skNQpXoUFI4+INSy5erckHUKEFCdq0TZCFl4HmbLU
- 0Phz4YNpZrN4L+CRtSoBcbmpv3uqKJJqutGHII1UN0aDsu5qkog/v2mcCroH4ff1jI3l
- cASRmVCk6OOhPwnDGGgyfkGYX/wQguYv+mGNDI6fJYWUi5wp+proQOHobMMAvnRjwWz5
- EpdAoM4iq4VV4MOzRhulMJAnjV8AGKfybCtcvVMuW6NBr0l3K7V2R/1GzWduUsIT5Cca
- riJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=LQf2ZtRhsHkZxU3wyrR4H/9o3K6G1vkLwHJrORU5hrU=;
- b=GeVgTkXKpTrzVKZDhV3QBhc2pWGHR2n2PwZw0+SctCqn+kJM578UCjYfNDhRWrTgCG
- mkBoTNaOUVj8Ad3I+bOGGY8Z8zItXbZEVvMS+uWZk//1/4S6TjxS6XKo2+Lj0SDoBAJo
- pVPWXKwQ/hTi23AJCSdFgfnTu+2nCld1DSHp34DLnfISrIUf2V17QWxig3OZUbH+4eCF
- L6IjgpXmf7OJaWII6ZoGRpLNiW/s0rpkPozaDTGxnCygTladgHJZqcgSipv9DpM7AzBt
- 7AB9F9Wd0Gv/4G2q2pMKdcafO8q0IGLoFE+T+bcSwVuxZ6HCLZXj36nxL+Mw0IzFrc+r
- 8zCg==
-X-Gm-Message-State: AGi0PubKf+YivqdBVwGWyAdG4b+yp8mIzMlZ2nTSOn47Jwqm0+E9xuXI
- wXFjHOfviHdPO5dR1Adr7bJ/bIRGTOs=
-X-Google-Smtp-Source: APiQypLa0B9FIavUReRZoY4YlbV9wUjPZYqs89DlfZuBwA7ZJaci/YzUOOG7/tGz8HdBoeByPwv/TA==
-X-Received: by 2002:a0c:e848:: with SMTP id l8mr5585774qvo.82.1586530593760;
- Fri, 10 Apr 2020 07:56:33 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-12-204.dsl.bell.ca.
- [174.95.12.204])
- by smtp.googlemail.com with ESMTPSA id n63sm1758941qka.80.2020.04.10.07.56.33
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 10 Apr 2020 07:56:33 -0700 (PDT)
-Message-ID: <5E90891F.6060508@gmail.com>
-Date: Fri, 10 Apr 2020 10:56:31 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1jMy9Q-0001sX-9S; Fri, 10 Apr 2020 14:13:12 -0400
+Received: from clt-mbsout-02.mbs.boeing.net ([130.76.144.163]:30522)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <kenneth.c.clark2@boeing.com>)
+ id 1jMy9M-0001nN-2S
+ for usrp-users@lists.ettus.com; Fri, 10 Apr 2020 14:13:08 -0400
+Received: from localhost (localhost [127.0.0.1])
+ by clt-mbsout-02.mbs.boeing.net (8.15.2/8.15.2/DOWNSTREAM_MBSOUT) with SMTP id
+ 03AICOHI032534; Fri, 10 Apr 2020 14:12:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=boeing.com;
+ s=boeing-s1912; t=1586542346;
+ bh=n/Awybl3WMilO0fGKx0SfR1EVeMokyfoZAtpwhsz/So=;
+ h=From:To:CC:Subject:Date:From;
+ b=Qh4nFPnHPDJvAhUTX5UKkgvW3BfNZQVJVaMWMF6JG+iUa1p1bwXaZV6h+c4+xkj2S
+ OOjvnKSK+yGLPuh1QpDfKPzsD9+TL0QyrX5ifohqEEAZtMKsCRO4xAAGQQ/SzstYND
+ 0XF3jzB2hw5MgMKV4gX84GnR0fNmzciH7F2TQm7goRJAgW27xy0PM2nbz7dLlaM1uD
+ nOj5UMRDbbTLxc6ggNM8nm5rVAidQ14fzqOzEbtgCpggPyx3QypT3HfN/i+LQpkckS
+ R9ScuR/jlGoAIegPxO2tSRnGnH1ezCw1jy63Ba07L0jHxQdKAuJM4YqlIU366gW5Ub
+ 5f+qT1QYzF/bA==
+Received: from XCH16-05-08.nos.boeing.com (xch16-05-08.nos.boeing.com
+ [144.115.66.92])
+ by clt-mbsout-02.mbs.boeing.net (8.15.2/8.15.2/UPSTREAM_MBSOUT) with ESMTPS id
+ 03AICCDn031355
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=FAIL)
+ for <usrp-users@lists.ettus.com>; Fri, 10 Apr 2020 14:12:12 -0400
+Received: from XCH16-05-12.nos.boeing.com (144.115.66.96) by
+ XCH16-05-08.nos.boeing.com (144.115.66.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.1.1913.5; Fri, 10 Apr 2020 11:12:11 -0700
+Received: from XCH16-05-12.nos.boeing.com ([fe80::2853:a628:2b4e:d669]) by
+ XCH16-05-12.nos.boeing.com ([fe80::2853:a628:2b4e:d669%11]) with mapi id
+ 15.01.1913.005; Fri, 10 Apr 2020 11:12:11 -0700
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Controlling B205mini GPIO pins from the FPGA?
+Thread-Index: AdYPYvDPJpjyf4zQRESw6ssx9VIedw==
+Date: Fri, 10 Apr 2020 18:12:11 +0000
+Message-ID: <4558c03f51754d30bb5dbf0326b3e776@boeing.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [144.115.204.6]
+x-tm-snts-smtp: 3B923100F1132E56506218B2BE342BA0346E4310998BBB0EFD5768A00968A8A72000:8
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <MN2PR05MB6158024B384B2167EDE0F3A1CCC10@MN2PR05MB6158.namprd05.prod.outlook.com>
- <BYAPR03MB4678BE943BAAE738CFFB24B4D3C10@BYAPR03MB4678.namprd03.prod.outlook.com>
- <CADBWrHjmRmKZ55Ud33HbENZPb91FtQLsnQywwjK6mE8rqTGtWw@mail.gmail.com>
-In-Reply-To: <CADBWrHjmRmKZ55Ud33HbENZPb91FtQLsnQywwjK6mE8rqTGtWw@mail.gmail.com>
-Subject: Re: [USRP-users] E312 fails to run uhd_usrp_probe from host
+X-TM-AS-GCONF: 00
+Subject: [USRP-users] Controlling B205mini GPIO pins from the FPGA?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,9 +64,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0883048298541344814=="
+From: "Clark \(US\), Kenneth C via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Clark \(US\), Kenneth C" <kenneth.c.clark2@boeing.com>
+Cc: "Clark \(US\), Kenneth C" <kenneth.c.clark2@boeing.com>
+Content-Type: multipart/mixed; boundary="===============4024023748427373799=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,167 +81,167 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============0883048298541344814==
+--===============4024023748427373799==
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="------------080103040201040902030509"
+	boundary="_000_4558c03f51754d30bb5dbf0326b3e776boeingcom_"
 
-This is a multi-part message in MIME format.
---------------080103040201040902030509
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--_000_4558c03f51754d30bb5dbf0326b3e776boeingcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 04/10/2020 09:15 AM, Sam Reiter via USRP-users wrote:
-> Francisco,
+Hello,
+
+I am modifying the FPGA code (from version 7.0) for the B205mini.
+
+I would like to control the GPIO pins from the FPGA code.
+
+Control via the example GPIO host executable works fine.
+
+I have tried hijacking the function in "radio_legacy.v" which I think is co=
+ntrolling them.
+
+  generate
+      if (FP_GPIO !=3D 0) begin: add_fp_gpio
+         gpio_atr #(.BASE(SR_FP_GPIO), .WIDTH(10), .FAB_CTRL_EN(0) ) fp_gpi=
+o_atr
+            (.clk(radio_clk),.reset(radio_rst),
+            .set_stb(set_stb),.set_addr(set_addr),.set_data(set_data),
+           .rx(run_rx), .tx(run_tx),
+            .gpio_in(fp_gpio_in), .gpio_out(fp_gpio_out), .gpio_ddr(fp_gpio=
+_ddr),
+            .gpio_out_fab(10'h000 /* no fabric control */), .gpio_sw_rb(fp_=
+gpio_readback));
+      end
+   endgenerate
+
+In particular replacing the fp_gpio_out with my own register.
+
+But so far all that does is cause the host GPIO program to no longer be abl=
+e to control the pins (as expected), but the FPGA values are not coming out=
+ either.
+
+I would appreciate any examples, hints, tips/tricks to get this to work.
+
+Thanks,
+
+Ken Clark
+
+
+--_000_4558c03f51754d30bb5dbf0326b3e776boeingcom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> The FPGA update sounds like a good step. I also notice that the 
-> 'addr'  argument you pass seems to be interpreted as a 'mgmt_addr' 
-> based on the [INFO] output. In newer embedded devices like the N3xx, I 
-> wouldn't expect you to be able to successfully run a uhd_usrp_probe 
-> over that mgmt address - you can't pass CHDR packets over the mgmt 
-> interface. On the N3xx, I'd tell you to connect over the SFP+ port(s) 
-> and try again. The E312 obviously doesn't have SFP+ ports, so I think 
-> you'd need to set it up to operate in "network mode" to enable this 
-> CHDR streaming over the RJ45. I'm not sure what the state of network 
-> mode is on the E31x in UHD 3.15.
->
-> Alternatively, you could try SSH'ing into your E312 over that mgmt 
-> port, and then run the uhd_usrp_probe directly on the device. I'd 
-> expect that to work over the mgmt port every time.
->
-> -Sam
-See:
-
-https://files.ettus.com/manual/page_usrp_e3xx.html#e31x_migration
-
-
-The Network Mode is no longer supported on E31x with the MPM-based UHD.
-
-
->
->     UHD 3.15.0.HEAD-0-gaea0e2de
->
->     Any clue?
->     Many thanks!
->
->     Francisco
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-
---------------080103040201040902030509
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 04/10/2020 09:15 AM, Sam Reiter via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CADBWrHjmRmKZ55Ud33HbENZPb91FtQLsnQywwjK6mE8rqTGtWw@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Francisco,
-        <div><br>
-        </div>
-        <div>The FPGA update sounds like a good step. I also notice that
-          the 'addr'  argument you pass seems to be interpreted as a
-          'mgmt_addr' based on the [INFO] output. In newer embedded
-          devices like the N3xx, I wouldn't expect you to be able to
-          successfully run a uhd_usrp_probe over that mgmt address - you
-          can't pass CHDR packets over the mgmt interface. On the N3xx,
-          I'd tell you to connect over the SFP+ port(s) and try again.
-          The E312 obviously doesn't have SFP+ ports, so I think you'd
-          need to set it up to operate in "network mode" to enable this
-          CHDR streaming over the RJ45. I'm not sure what the state of
-          network mode is on the E31x in UHD 3.15. </div>
-        <div><br>
-        </div>
-        <div>Alternatively, you could try SSH'ing into your E312 over
-          that mgmt port, and then run the uhd_usrp_probe directly on
-          the device. I'd expect that to work over the mgmt port every
-          time.</div>
-        <div><br>
-        </div>
-        <div>-Sam</div>
-      </div>
-    </blockquote>
-    See:<br>
-    <br>
-    <a class="moz-txt-link-freetext" href="https://files.ettus.com/manual/page_usrp_e3xx.html#e31x_migration">https://files.ettus.com/manual/page_usrp_e3xx.html#e31x_migration</a><br>
-    <br>
-    <br>
-    The Network Mode is no longer supported on E31x with the MPM-based
-    UHD.<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CADBWrHjmRmKZ55Ud33HbENZPb91FtQLsnQywwjK6mE8rqTGtWw@mail.gmail.com"
-      type="cite"><span><br>
-      </span>
-      <div class="gmail_quote">
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir="ltr">
-            <div dir="ltr">
-              <div
-style="font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0);background-color:rgb(255,255,255)"><span>
-                  <div>UHD 3.15.0.HEAD-0-gaea0e2de<br>
-                  </div>
-                  <span></span></span><br>
-              </div>
-              <div
-style="font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0);background-color:rgb(255,255,255)">Any
-                clue?</div>
-              <div
-style="font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0);background-color:rgb(255,255,255)">Many
-                thanks!</div>
-              <div
-style="font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0);background-color:rgb(255,255,255)"><br>
-              </div>
-              <div
-style="font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0);background-color:rgb(255,255,255)">Francisco</div>
-            </div>
-          </div>
-          _______________________________________________<br>
-          USRP-users mailing list<br>
-          <a moz-do-not-send="true"
-            href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-          <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-            rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am modifying the FPGA code (from version 7.0) for =
+the B205mini.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I would like to control the GPIO pins from the FPGA =
+code.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Control via the example GPIO host executable works f=
+ine.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have tried hijacking the function in &#8220;radio_=
+legacy.v&#8221; which I think is controlling them.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp; generate<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (FP_GPIO !=3D 0) b=
+egin: add_fp_gpio<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gpi=
+o_atr #(.BASE(SR_FP_GPIO), .WIDTH(10), .FAB_CTRL_EN(0) ) fp_gpio_atr<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; (.clk(radio_clk),.reset(radio_rst),<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; .set_stb(set_stb),.set_addr(set_addr),.set_data(set_data),<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;.rx(run_rx), .tx(run_tx),<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; .gpio_in(fp_gpio_in), .gpio_out(fp_gpio_out), .gpio_ddr(fp_g=
+pio_ddr),<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; .gpio_out_fab(10'h000 /* no fabric control */), .gpio_sw_rb(=
+fp_gpio_readback));<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp; endgenerate<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">In particular replacing the fp_gpio_out with my own =
+register.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">But so far all that does is cause the host GPIO prog=
+ram to no longer be able to control the pins (as expected), but the FPGA va=
+lues are not coming out either.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I would appreciate any examples, hints, tips/tricks =
+to get this to work.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Ken Clark<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
 </html>
 
---------------080103040201040902030509--
+--_000_4558c03f51754d30bb5dbf0326b3e776boeingcom_--
 
 
---===============0883048298541344814==
+
+--===============4024023748427373799==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -255,5 +252,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0883048298541344814==--
+--===============4024023748427373799==--
+
 
