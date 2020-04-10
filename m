@@ -2,50 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F4201A4B17
-	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2020 22:23:47 +0200 (CEST)
-Received: from [::1] (port=42978 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C20F1A4B73
+	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2020 22:52:16 +0200 (CEST)
+Received: from [::1] (port=47502 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jN0Bg-0007d8-Tu; Fri, 10 Apr 2020 16:23:40 -0400
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:43875)
+	id 1jN0dI-0000QO-T6; Fri, 10 Apr 2020 16:52:12 -0400
+Received: from mail-ua1-f50.google.com ([209.85.222.50]:44694)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <dwwkelly@gmail.com>) id 1jN0Bc-0007UQ-RK
- for usrp-users@lists.ettus.com; Fri, 10 Apr 2020 16:23:36 -0400
-Received: by mail-ot1-f52.google.com with SMTP id n25so2908396otr.10
- for <usrp-users@lists.ettus.com>; Fri, 10 Apr 2020 13:23:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
+ id 1jN0dE-0000K7-Qj
+ for usrp-users@lists.ettus.com; Fri, 10 Apr 2020 16:52:08 -0400
+Received: by mail-ua1-f50.google.com with SMTP id 74so1058404uau.11
+ for <usrp-users@lists.ettus.com>; Fri, 10 Apr 2020 13:51:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=g9Ijtkq/BvIsk77qoK912VQJgIAPYiE6fKwe6y9LsCc=;
- b=TC9/pmKSBIu9BKdK+PLj3X+QgAnXQFxkEQYpTwOBclrFN5K1ZM/9qvRiD2G8/YMb6y
- eUx1PFa29gDh8UTixL7fR6BaWLMHaK/OsCqnik2PFE9WvtG9LxD3pAFFW9cnOYKMlrBq
- lKKEdHGueMRJcfmjwkXpyMZRO626drvhiRTGF7iO5j2moIjpq+1Ob7EGoGXLIQliXQJI
- Qb+ja9OItkTbh0KarpNddTHy/Ut3cSFad/8KyqydcDWuuOljopvBxkikfqzdFUOmCmx2
- qy+w0LtmKc955cuReNAWwX86aNCDC/ipt4YkgHLOsXZHEWVUU7KtPknsADKIowIobI8N
- FsjA==
+ :cc; bh=dwLqlp0agcxYoBWOFd5sJRsoEvNEbh35kg+FTiGg8Xs=;
+ b=lfbi3O/xXD89jzMBFgp+T/9RdQxxv41Ug3DRida5+XtpRZ5BG9rA0EntXfdYZNJXaj
+ mzl0tCv5F22wxtqtjU/P34NBRtZ8MzHBvFeH/zXWORpbI1cw7/T3keLX93VEPzmxDnQI
+ /Zd0k3qX9xtLcK+f1FepCm0So/WGRmJGP1X/YewV/xs6NVmTwuS58DhsrU7s4PqZxiSy
+ x6doiz1zQJPBOaT056ZhU0p9Sb8gcQNV86hyRQl+94FkDk/Wvuz1/OGwF4vJHgPB+cqN
+ dY9IWZkyPRW6pdcGKIEPzUefFa4lMf/1Y2D3c4os/kktD2UGUrFTaxuDgCDBgJV2tDmj
+ 6WUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=g9Ijtkq/BvIsk77qoK912VQJgIAPYiE6fKwe6y9LsCc=;
- b=Mh1UPPW06KPY4bwmZR9znqZjp8ZvJsSdqEwnkobhdAYYKhlBF2eYGQSnh7q5RLvk2u
- bLw1clyTUjrHWVV19L2wPNyEZnKWrhPFrIedaxgd4duwvkQY6u8kwty+lAGQfRZwdHtg
- g/zoiVRpb9kmt59ekrF0QD0XZPT8KZcgOcHONszwsHjcuNAU42WxzPTdIzJZK83ghIpN
- RidQvLQZCxF52fs2F7KGRtn1k9nv9H/tyRLCB24MYftiG/6/6tuUYSIyihN6PY4B+2i7
- r9oH4/mfpgQ7rhDchOoBkrULGT/9MYS26gj370ugrOVpwkMtjti650l2EwbbyEB85Avz
- K1FQ==
-X-Gm-Message-State: AGi0PuZzSaWGzQYcV1/jZ+Sjw/w6VqEvHippCh78SBw6n5WDaLLnviTT
- svdwqfFatQDsOmRnvjPKKOu7MXwjfjpVHEKiQf3h0kg/
-X-Google-Smtp-Source: APiQypKQ+zEWOpqAfUwL975lFCpOX7pMyR49dzRAWJ85mkrTK6M46xPet1Vcg4eQpGX7rqa+AmUb/9UX14okPXZY9vo=
-X-Received: by 2002:a05:6830:208c:: with SMTP id
- y12mr5846754otq.77.1586550175881; 
- Fri, 10 Apr 2020 13:22:55 -0700 (PDT)
+ bh=dwLqlp0agcxYoBWOFd5sJRsoEvNEbh35kg+FTiGg8Xs=;
+ b=gVxhtpyaadq43rt9q7JZ1pjxh0ZuqJBNzRpDlFwYF7+YwMb2BufrTOuzzIAgRWzUk/
+ xIPrAcQF1GsRxdI3Iq7ftA1jw0ps9ch05mySHvsqujDZ4y3e5txZbU5Oq418jJUcd7Eh
+ jjXvrEptgor55zVnYj5kpSl4N3HO1TPhRxTFUV4taUWatesSV1AqG0UIWxEQuXTX/y6R
+ JKaXaUrCv36wqrvzddQ7qepxeU+4gaDf7yVugIokqD4perfvwJ82EkS5TAAzvqUZmtqJ
+ UXBNfJv7z1q2TYygeKp2JegLfYhM/M54Vh2xAtKF2+w7EPkFcumWHD+bjCFJskc1fyvi
+ esYg==
+X-Gm-Message-State: AGi0PubqigUop4mgk3SKROrjqqmX4Pe3QUDfKYvaRq9W1z1g1+OpI59Q
+ j5VwIJmXqXYzuvGsnu/EmGnc/FFwtV4y7GoP0MvzEIyM
+X-Google-Smtp-Source: APiQypLF34P+v7YOAZZXx5bmT2R5yG6WvsbxyiL1DaYzRTx2SanRbVm8rYpmzIC8E745trCwoAbPm07OO8henTRnx6Y=
+X-Received: by 2002:ab0:63c3:: with SMTP id i3mr4512904uap.127.1586551888191; 
+ Fri, 10 Apr 2020 13:51:28 -0700 (PDT)
 MIME-Version: 1.0
 References: <331d9c2e396b4f499b1af018f335899c@dlr.de>
-In-Reply-To: <331d9c2e396b4f499b1af018f335899c@dlr.de>
-Date: Fri, 10 Apr 2020 16:22:45 -0400
-Message-ID: <CAANLyuajEUuAZ8CamF4F=1pT9_F4H9cU6MiQjDxn+tNGen6_7Q@mail.gmail.com>
-To: Emanuel.Staudinger@dlr.de
+ <CAANLyuajEUuAZ8CamF4F=1pT9_F4H9cU6MiQjDxn+tNGen6_7Q@mail.gmail.com>
+In-Reply-To: <CAANLyuajEUuAZ8CamF4F=1pT9_F4H9cU6MiQjDxn+tNGen6_7Q@mail.gmail.com>
+Date: Fri, 10 Apr 2020 16:51:17 -0400
+Message-ID: <CAGNhwTPNq6gvHDqBMafCfSC6W9PNarmZFbPxSPabT_J+EqJNgA@mail.gmail.com>
+To: Devin Kelly <dwwkelly@gmail.com>
 Subject: Re: [USRP-users] GPIOs timed commands
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -58,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Devin Kelly via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Devin Kelly <dwwkelly@gmail.com>
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
 Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5880134921428032521=="
+Content-Type: multipart/mixed; boundary="===============2116482343325361423=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,59 +77,83 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5880134921428032521==
-Content-Type: multipart/alternative; boundary="000000000000a72a2b05a2f57f11"
+--===============2116482343325361423==
+Content-Type: multipart/alternative; boundary="000000000000b6b5a305a2f5e59d"
 
---000000000000a72a2b05a2f57f11
+--000000000000b6b5a305a2f5e59d
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Emanuel,
+Maybe this KB info is what you're looking for?
+<
+https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD#Example:_Using_Timed_Commands_to_Control_GPIO
+ >
+Maybe not, too. Worth a look IMHO. - MLD
 
-Did you get the timed GPIO commands to work for you?
-
-Thanks,
-Devin
-
-On Thu, Dec 5, 2019 at 3:34 AM Emanuel via USRP-users <
+On Fri, Apr 10, 2020 at 4:23 PM Devin Kelly via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> Hi everybody,
+> Hi Emanuel,
 >
+> Did you get the timed GPIO commands to work for you?
 >
+> Thanks,
+> Devin
 >
-> could the GPIOs, e.g., on a B200mini be set/unset precisely in time
-> (limited to the sampling rate used)?
+> On Thu, Dec 5, 2019 at 3:34 AM Emanuel via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
 >
->
->
-> Best regards,
->
-> Emanuel
+>> Hi everybody,
+>>
+>>
+>>
+>> could the GPIOs, e.g., on a B200mini be set/unset precisely in time
+>> (limited to the sampling rate used)?
+>>
+>>
+>>
+>> Best regards,
+>>
+>> Emanuel
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000a72a2b05a2f57f11
+--000000000000b6b5a305a2f5e59d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Emanuel,</div><div><br></div><div>Did you get the =
-timed GPIO commands to work for you?</div><div><br></div><div>Thanks,<br></=
-div><div>Devin<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Thu, Dec 5, 2019 at 3:34 AM Emanuel via USRP-use=
-rs &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus=
-.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex">
+<div dir=3D"ltr">Maybe this KB info is what you&#39;re looking=C2=A0for?<di=
+v>&lt;=C2=A0<a href=3D"https://kb.ettus.com/Synchronizing_USRP_Events_Using=
+_Timed_Commands_in_UHD#Example:_Using_Timed_Commands_to_Control_GPIO">https=
+://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD#Examp=
+le:_Using_Timed_Commands_to_Control_GPIO</a>=C2=A0&gt;</div><div>Maybe not,=
+ too. Worth a look IMHO. - MLD</div></div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Fri, Apr 10, 2020 at 4:23 PM Devin K=
+elly via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-=
+users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"><div dir=3D"ltr"><div>Hi Emanuel,</div><div><br></div>=
+<div>Did you get the timed GPIO commands to work for you?</div><div><br></d=
+iv><div>Thanks,<br></div><div>Devin<br></div></div><br><div class=3D"gmail_=
+quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Dec 5, 2019 at 3:34 AM=
+ Emanuel via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" t=
+arget=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex">
 
 
 
 
 
 <div lang=3D"EN-US">
-<div class=3D"gmail-m_2112747411556059915WordSection1">
+<div>
 <p class=3D"MsoNormal">Hi everybody,<u></u><u></u></p>
 <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal">could the GPIOs, e.g., on a B200mini be set/unset pr=
@@ -146,11 +172,19 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---000000000000a72a2b05a2f57f11--
+--000000000000b6b5a305a2f5e59d--
 
 
---===============5880134921428032521==
+--===============2116482343325361423==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -161,5 +195,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5880134921428032521==--
+--===============2116482343325361423==--
 
