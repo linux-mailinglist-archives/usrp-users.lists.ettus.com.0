@@ -2,53 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C20F1A4B73
-	for <lists+usrp-users@lfdr.de>; Fri, 10 Apr 2020 22:52:16 +0200 (CEST)
-Received: from [::1] (port=47502 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2678A1A666D
+	for <lists+usrp-users@lfdr.de>; Mon, 13 Apr 2020 14:49:00 +0200 (CEST)
+Received: from [::1] (port=53720 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jN0dI-0000QO-T6; Fri, 10 Apr 2020 16:52:12 -0400
-Received: from mail-ua1-f50.google.com ([209.85.222.50]:44694)
+	id 1jNyWF-0000Me-4p; Mon, 13 Apr 2020 08:48:55 -0400
+Received: from mail-wr1-f49.google.com ([209.85.221.49]:35751)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
- id 1jN0dE-0000K7-Qj
- for usrp-users@lists.ettus.com; Fri, 10 Apr 2020 16:52:08 -0400
-Received: by mail-ua1-f50.google.com with SMTP id 74so1058404uau.11
- for <usrp-users@lists.ettus.com>; Fri, 10 Apr 2020 13:51:48 -0700 (PDT)
+ (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
+ id 1jNyWB-0000Iz-HH
+ for usrp-users@lists.ettus.com; Mon, 13 Apr 2020 08:48:51 -0400
+Received: by mail-wr1-f49.google.com with SMTP id x18so5704906wrq.2
+ for <usrp-users@lists.ettus.com>; Mon, 13 Apr 2020 05:48:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=dwLqlp0agcxYoBWOFd5sJRsoEvNEbh35kg+FTiGg8Xs=;
- b=lfbi3O/xXD89jzMBFgp+T/9RdQxxv41Ug3DRida5+XtpRZ5BG9rA0EntXfdYZNJXaj
- mzl0tCv5F22wxtqtjU/P34NBRtZ8MzHBvFeH/zXWORpbI1cw7/T3keLX93VEPzmxDnQI
- /Zd0k3qX9xtLcK+f1FepCm0So/WGRmJGP1X/YewV/xs6NVmTwuS58DhsrU7s4PqZxiSy
- x6doiz1zQJPBOaT056ZhU0p9Sb8gcQNV86hyRQl+94FkDk/Wvuz1/OGwF4vJHgPB+cqN
- dY9IWZkyPRW6pdcGKIEPzUefFa4lMf/1Y2D3c4os/kktD2UGUrFTaxuDgCDBgJV2tDmj
- 6WUg==
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-language:content-transfer-encoding;
+ bh=6DHS0tZn3yZG/QBrt6a3tSqJB8EjiWR4HmY7DhE3hqo=;
+ b=IJ7P6/H2bYI0eKN+OjTrpGWc2POIwaEamaSplvb4tUrXZW1knnbRekh7tN+vt6Sf0V
+ Kn0e+yKwBVu+Di2kyEcR9s4sU1o2crBzVr5vrwkCg6GI0P+WVXli1SeZ4ECBwee5M9K8
+ 3/DWPJEMNTIW/Y0O6629Xn2gSYRtOa/9Ul6RKDzgYhOWP5fVoNkdTZMFyszOCYDSfSlV
+ rujNT9RO0ix9Dj3tBAqTLLW1Lakpc8XWquagrU1RwQ41k5kxilpeDbJVElZpw5YXo6YX
+ /Yijl9B+kPoRRxGfW8uJRkDpPvyWG3FZggYNIZZgJWHfCWRfa0OZe9w7LqkYaDCGGEsz
+ dIJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=dwLqlp0agcxYoBWOFd5sJRsoEvNEbh35kg+FTiGg8Xs=;
- b=gVxhtpyaadq43rt9q7JZ1pjxh0ZuqJBNzRpDlFwYF7+YwMb2BufrTOuzzIAgRWzUk/
- xIPrAcQF1GsRxdI3Iq7ftA1jw0ps9ch05mySHvsqujDZ4y3e5txZbU5Oq418jJUcd7Eh
- jjXvrEptgor55zVnYj5kpSl4N3HO1TPhRxTFUV4taUWatesSV1AqG0UIWxEQuXTX/y6R
- JKaXaUrCv36wqrvzddQ7qepxeU+4gaDf7yVugIokqD4perfvwJ82EkS5TAAzvqUZmtqJ
- UXBNfJv7z1q2TYygeKp2JegLfYhM/M54Vh2xAtKF2+w7EPkFcumWHD+bjCFJskc1fyvi
- esYg==
-X-Gm-Message-State: AGi0PubqigUop4mgk3SKROrjqqmX4Pe3QUDfKYvaRq9W1z1g1+OpI59Q
- j5VwIJmXqXYzuvGsnu/EmGnc/FFwtV4y7GoP0MvzEIyM
-X-Google-Smtp-Source: APiQypLF34P+v7YOAZZXx5bmT2R5yG6WvsbxyiL1DaYzRTx2SanRbVm8rYpmzIC8E745trCwoAbPm07OO8henTRnx6Y=
-X-Received: by 2002:ab0:63c3:: with SMTP id i3mr4512904uap.127.1586551888191; 
- Fri, 10 Apr 2020 13:51:28 -0700 (PDT)
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=6DHS0tZn3yZG/QBrt6a3tSqJB8EjiWR4HmY7DhE3hqo=;
+ b=bOxpic5d+5AcUrHHYkMZ3JjWG7fwobgf/0gAbqNAc5KV9UWy3lV4t512+RsVzBSGrR
+ 23h0b5l7bJSj884EuUurHphPjrFlOqO6nQ8eTrXAOsu4ESnxYyRlMgL2SEil60kwDUtZ
+ WKZviQ4grBCbCwb6H/CPRxu3qWTNvBe44vZycGO4B2HSTo9JR8YlT6rhzjMh/ChgiEfX
+ JkNtG+u9SJUY0Vqhui1AhnLbhinLvd3pliYbU9oILULp9wR/GM8KiiV/dhzM/ox7LuT1
+ o9QPlXTRfYd7oMN+4DHGF/BiSgLlrnGRiI2MWRgJ7XCm+lNUGEb/ER+OpkwYxdzisCYY
+ fF6Q==
+X-Gm-Message-State: AGi0PubbLVpc1+7od9WKnjk5pcmeeT2kW9AOdn4X6pD+uJ0bOSDxJfX1
+ FQdow6QJrbIUF24PUd2GS9uyOupAqdp9Cw==
+X-Google-Smtp-Source: APiQypLFT0QNN82uy/NCjAbuSOPXJolTXkT+GWu5a7iB9dfc786t7DcGhK2hfrmDUoKoOEbRQPOsAw==
+X-Received: by 2002:adf:b1c6:: with SMTP id r6mr18029712wra.49.1586782090030; 
+ Mon, 13 Apr 2020 05:48:10 -0700 (PDT)
+Received: from [192.168.128.8]
+ (HSI-KBW-46-223-163-196.hsi.kabel-badenwuerttemberg.de. [46.223.163.196])
+ by smtp.gmail.com with ESMTPSA id y7sm15327363wmb.43.2020.04.13.05.48.09
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 13 Apr 2020 05:48:09 -0700 (PDT)
+To: usrp-users@lists.ettus.com
+References: <5e8e46e6.1c69fb81.5b237.1285SMTPIN_ADDED_MISSING@mx.google.com>
+ <CADBWrHhf5==32f2jTq8_2TNMOE1W8aucdiuSWOiRgEYGj_avMg@mail.gmail.com>
+Message-ID: <1670730f-772e-0818-8e3a-825fee7dc9d5@ettus.com>
+Date: Mon, 13 Apr 2020 14:48:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-References: <331d9c2e396b4f499b1af018f335899c@dlr.de>
- <CAANLyuajEUuAZ8CamF4F=1pT9_F4H9cU6MiQjDxn+tNGen6_7Q@mail.gmail.com>
-In-Reply-To: <CAANLyuajEUuAZ8CamF4F=1pT9_F4H9cU6MiQjDxn+tNGen6_7Q@mail.gmail.com>
-Date: Fri, 10 Apr 2020 16:51:17 -0400
-Message-ID: <CAGNhwTPNq6gvHDqBMafCfSC6W9PNarmZFbPxSPabT_J+EqJNgA@mail.gmail.com>
-To: Devin Kelly <dwwkelly@gmail.com>
-Subject: Re: [USRP-users] GPIOs timed commands
+In-Reply-To: <CADBWrHhf5==32f2jTq8_2TNMOE1W8aucdiuSWOiRgEYGj_avMg@mail.gmail.com>
+Content-Language: en-US
+Subject: Re: [USRP-users] UBX 10-500 MHz Question
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,10 +71,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2116482343325361423=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,123 +89,60 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2116482343325361423==
-Content-Type: multipart/alternative; boundary="000000000000b6b5a305a2f5e59d"
-
---000000000000b6b5a305a2f5e59d
-Content-Type: text/plain; charset="UTF-8"
-
-Maybe this KB info is what you're looking for?
-<
-https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD#Example:_Using_Timed_Commands_to_Control_GPIO
- >
-Maybe not, too. Worth a look IMHO. - MLD
-
-On Fri, Apr 10, 2020 at 4:23 PM Devin Kelly via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi Emanuel,
->
-> Did you get the timed GPIO commands to work for you?
->
-> Thanks,
-> Devin
->
-> On Thu, Dec 5, 2019 at 3:34 AM Emanuel via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hi everybody,
->>
->>
->>
->> could the GPIOs, e.g., on a B200mini be set/unset precisely in time
->> (limited to the sampling rate used)?
->>
->>
->>
->> Best regards,
->>
->> Emanuel
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000b6b5a305a2f5e59d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Maybe this KB info is what you&#39;re looking=C2=A0for?<di=
-v>&lt;=C2=A0<a href=3D"https://kb.ettus.com/Synchronizing_USRP_Events_Using=
-_Timed_Commands_in_UHD#Example:_Using_Timed_Commands_to_Control_GPIO">https=
-://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD#Examp=
-le:_Using_Timed_Commands_to_Control_GPIO</a>=C2=A0&gt;</div><div>Maybe not,=
- too. Worth a look IMHO. - MLD</div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Fri, Apr 10, 2020 at 4:23 PM Devin K=
-elly via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-=
-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex"><div dir=3D"ltr"><div>Hi Emanuel,</div><div><br></div>=
-<div>Did you get the timed GPIO commands to work for you?</div><div><br></d=
-iv><div>Thanks,<br></div><div>Devin<br></div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Dec 5, 2019 at 3:34 AM=
- Emanuel via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" t=
-arget=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US">
-<div>
-<p class=3D"MsoNormal">Hi everybody,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">could the GPIOs, e.g., on a B200mini be set/unset pr=
-ecisely in time (limited to the sampling rate used)?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Best regards,<u></u><u></u></p>
-<p class=3D"MsoNormal">Emanuel<u></u><u></u></p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000b6b5a305a2f5e59d--
-
-
---===============2116482343325361423==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2116482343325361423==--
-
+SGkgQm9iLCBoaSBTYW0sCgp0b3Agb2YgbXkgaGVhZCwgVUJYLTE2MCBkb2Vzbid0IGV2ZW4gaGF2
+ZSBhZGp1c3RhYmxlIGJhbmR3aWR0aAooYmFzaWNhbGx5LCBvZiB0aGUgbW9kZXJuIGRldmljZXMs
+IG9ubHkgQUQ5eHh4LWJhc2VkIHN5c3RlbXMgaGF2ZSkuIFNvLAp5ZWFoLCB5b3UnbGwgYWx3YXlz
+IGdldCBhIHR3by1zaWRlZDg0IE1IeiBhbmFsb2cgYmFuZHdpZHRoICh0aGF0J3MgaG93CnlvdSBn
+ZXQgMTYwIE1IeiBpbiBjb21wbGV4IGJhc2ViYW5kKS4gWW91J2xsIG5vdGljZSB3aGVuIG92ZXJz
+YW1wbGluZyBhdAoyMDAgTVMvcyB0aGF0IGFuYWxvZyBmaWx0ZXJzIGFyZSBxdWl0ZSBhIGJpdCB3
+b3JzZSB0aGFuIHdoYXQncwpyZWxhdGl2ZWx5IGVhc3kgdG8gZG8gaW4gZGlnaXRhbCBmaWx0ZXJp
+bmcgaW4gYW4gRlBHQSBhdCB0aGVzZSByYXRlLgoKT24gY2xhc3NpYyBHZW4tMyBEREMgY2hhaW4g
+KEkgZG8gdGhpbmsgdGhhdCdzIHRoZSBzYW1lIGZvciB0aGUgbmV3ZXIKUkZOb0MgY2hhaW4pLCB5
+ZXMsIHRoZXJlJ3MgdHdvIDItZGVjaW1hdGluZyBoYWxmLWJhbmQgRklScyB3aXRoIHVwd2FyZHMK
+b2YgNDAgdGFwcywgYW5kIGEgQ0lDIHRvIGRvIHRoZSByZXN0IG9mIHRoZSBkZWNpbWF0aW9uLiBT
+bywgaWYgeW91IHVzZSBhCnNhbXBsaW5nIHJhdGUgdGhhdCBkaXZpZGVzIHRoZSBtYXN0ZXIgY2xv
+Y2sgcmF0ZSBieSA0LCB5b3UgZ2V0IHR3byBIQnMsCmlmIGl0IGRvZXNuJ3QgZGl2aWRlIGJ5IDQs
+IGJ1dCBieSAyLCB5b3Ugc3RpbGwgZ2V0IG9uZSBvZiB0aGVzZSBuaWNlcgpIQnMsIGFuZCBmb3Ig
+b2RkIGZhY3RvcnMsIHlvdSdsbCBmdWxseSBoYXZlIHRvIHJlbHkgb24gdGhlIENJQy4gVGhhdCdz
+Cm5vdCBuZWNlc3NhcmlseSB0ZXJyaWJsZSwgYnV0IENJQ3MgZG8gaGF2ZSBzaW5jwrIteSBzaGFw
+ZSwgc28gdGhhdCdzIGEKYml0IG9mIHJvbGxvZmYgYXQgdGhlIGVkZ2VzLgoKQ2hlZXJzLApNYXJj
+dXMKT24gMTAuMDQuMjAgMDU6NDQsIFNhbSBSZWl0ZXIgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4g
+Qm9iLAo+IAo+IFRoZSA4NE1IeiBiYW5kd2lkdGggY29uc3RyYWludCBpcyBiZWNhdXNlIG9mIHRo
+ZSBhbmFsb2cgYmFuZHBhc3MgZmlsdGVyCj4gWzFdIG9uIHRoZSBVQlgncyBSWCBzaWduYWwgcGF0
+aCBbMl0uIEknZCBndWVzcyB0aGF0IFVIRCB3aWxsIHllbGwgYXQgeW91Cj4gaWYgeW91IGZlZWQg
+aW4gYW4gaW52YWxpZCBiYW5kd2lkdGgsIGJ1dCBJJ3ZlIG5ldmVyIHRyaWVkIGl0LiBJZiBJCj4g
+cmVtZW1iZXIgY29ycmVjdGx5LCB5b3UgY2FuIHNhbXBsZSBhdCByYXRlcyB0aGF0IGFyZW4ndCBh
+biBldmVuIGRpdmlzaW9uCj4gb2YgdGhlIE1DUiwgeW91J2xsIGp1c3QgZW5kIHVwIHVzaW5nIGEg
+Q0lDIGZpbHRlciB0aGF0IGNhdXNlcyByb2xsb2ZmIGluCj4geW91ciBzcGVjdHJ1bSBbM10uCj4g
+Cj4gLSBTYW0KPiAKPiBbMV3CoGh0dHBzOi8vd3d3Lm1vdXNlci5jb20vZGF0YXNoZWV0LzIvNDEy
+LzU1OTE2LTE1MDQ3MTcucGRmCj4gWzJdwqBodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9zY2hlbWF0
+aWNzL3VieC9VQlgtMTYwX3JldkUucGRmCj4gWzNdwqBodHRwczovL3dpdGVzdGxhYi5wb2x5LmVk
+dS9ibG9nL3doeS1kb2VzLW15LXJlY2VpdmVkLXNwZWN0cnVtLWRyb29wLWF0LXRoZS1lZGdlcy8K
+PiAKPiBPbiBXZWQsIEFwciA4LCAyMDIwIGF0IDQ6NDkgUE0gVGlsbHNvbiwgQm9iIChVUykgdmlh
+IFVTUlAtdXNlcnMKPiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzp1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbT4+IHdyb3RlOgo+IAo+ICAgICBzbyB3aXRoIHRoZSBVQlgtMTYw
+IG9uIGFuIFgzMTAsIHRoZXJlIGlzIHRoZSBmb2xsb3dpbmcgY2F2ZWF0Ol9fX18KPiAKPiAgICAg
+X1/CoF9fCj4gCj4gICAgICogVGhlIFVCWCAxNjAgdHJhbnNtaXR0ZXIgcGF0aCBoYXMgMTYwIE1I
+eiBvZiBiYW5kd2lkdGggdGhyb3VnaG91dAo+ICAgICB0aGUgZnVsbCBmcmVxdWVuY3kgcmFuZ2Ug
+b2YgdGhlIGRldmljZTsgdGhlIHJlY2VpdmVyIHBhdGggaGFzIDg0IE1Iego+ICAgICBvZiBiYW5k
+d2lkdGggZm9yIGNlbnRlciBmcmVxdWVuY2llcyBmcm9tIDEwIE1IeiB0byA1MDAgTUh6Ll9fX18K
+PiAKPiAgICAgX1/CoF9fCj4gCj4gICAgIEkgZ3Vlc3MgbXkgcXVlc3Rpb24gaXMgaG93IGRvZXMg
+dGhpcyBtYW5pZmVzdCBpdHNlbGY/X19fXwo+IAo+ICAgICBfX8KgX18KPiAKPiAgICAgSWYgSSBh
+c2sgZm9yIDEwMCBNSHogb2YgQlcsIGRvIEkgZ2V0IDg0IG9yIGRvZXMgaXQgZmFpbD9fX19fCj4g
+Cj4gICAgIF9fwqBfXwo+IAo+ICAgICBIb3cgd291bGQgSSBnZXQgODQgZ2l2ZW4gdGhlIHJlcXVp
+cmVtZW50IG9mIHNhbXBsZSByYXRlIGJlIGFuIGV2ZW4KPiAgICAgZGl2aXNvciBvZiAyMDAgTUh6
+IGNsb2NrP19fX18KPiAKPiAgICAgX1/CoF9fCj4gCj4gICAgIElmIEkgd2FudGVkIDEwMCBpbiB0
+aGF0IHJhbmdlLCB3b3VsZCB0aGVyZSBiZSBhbnkgd2F5IHRvIGdldCBpdCBmcm9tCj4gICAgIGEg
+c2luZ2xlIGNoYW5uZWwgaW4gdGhhdCBiYW5kP8KgIE1vc3Qgb3RoZXIgY2FyZHMgZG9u4oCZdCBz
+ZWVtIHRvIGhhdmUKPiAgICAgdGhlIEJXIGluIHRoYXQgcmFuZ2UuX19fXwo+IAo+ICAgICBfX8Kg
+X18KPiAKPiAgICAgVGhhbmtzLF9fX18KPiAKPiAgICAgX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KPiAgICAgVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiAg
+ICAgVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbT4KPiAgICAgaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
+cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xp
+c3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQ
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
+dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
