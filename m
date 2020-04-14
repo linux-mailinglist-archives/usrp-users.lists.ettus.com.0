@@ -2,69 +2,78 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 500CF1A73C2
-	for <lists+usrp-users@lfdr.de>; Tue, 14 Apr 2020 08:35:06 +0200 (CEST)
-Received: from [::1] (port=43208 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5BDD1A7839
+	for <lists+usrp-users@lfdr.de>; Tue, 14 Apr 2020 12:15:16 +0200 (CEST)
+Received: from [::1] (port=57708 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jOF9y-0000Z4-4a; Tue, 14 Apr 2020 02:35:02 -0400
-Received: from mailin.dlr.de ([194.94.201.12]:33440)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Emanuel.Staudinger@dlr.de>)
- id 1jOF9u-0000SR-66
- for usrp-users@lists.ettus.com; Tue, 14 Apr 2020 02:34:58 -0400
-IronPort-SDR: kVDIIdVQN5BsXm7WGE8pmVKqBzvaoTAOIktIXNpweVMisyL6DWBY213k/fg8FXwOW4EkaUPQuW
- UiNuJ1C6FRzg==
-IronPort-PHdr: =?us-ascii?q?9a23=3A9wWcYhK545qUbd4VstmcpTZWNBhigK39O0sv0r?=
- =?us-ascii?q?FitYgXKvj9rarrMEGX3/hxlliBBdydt6sZzbGO+Pm4ACRAuc/H7CleNsQUFl?=
- =?us-ascii?q?cssoY/oU8JOIa9E0r1LfrnPWQRPf9pcxtbxUy9KlVfA83kZlff8TWY5D8WHQ?=
- =?us-ascii?q?jjZ0IufrymUoHdgN6q2O+s5pbdfxtHhCanYbN1MR66sRjdutMZjId/Kqs90B?=
- =?us-ascii?q?XErmdHd+hL2W9kOE+YkxLg6sut5pJu/Dlctv07+8JcTan2erkzQKBFAjghL2?=
- =?us-ascii?q?0668rnuAXZQwCS/HUcSGIWkhRJAwjB8h73W4r6vzX5uORgxiSUJNX6Qr8oVz?=
- =?us-ascii?q?us6adrUwLohzwcNzEl6mHXi9d/g7xdrRm8uhFw2Y/UYIWSNPpjYqPQeM4RSG?=
- =?us-ascii?q?RdUspNUSFKH4WxZJYNAeUcJ+ZVt4nzqUUToxuiCweiB+3vxT1JhnDq0qI3yP?=
- =?us-ascii?q?4uHR3E3AE6A94CrHbZodPoP6kSS+C1y6zIwC3EYv1Z3Dfy8o7Icg0/rvGIR7?=
- =?us-ascii?q?5+bNbRxlMyFwzYj1WQr4PlMC2P1ukWrmeb6/BgWfiyhGE5sgx8pCWkyMkrio?=
- =?us-ascii?q?nMnI0Vy1bE+D1nz4YpOd24VVV7bcS4H5tXsiGXMZZ9TMA6Q2xwpSo21qcKtY?=
- =?us-ascii?q?O4cSUF0pgr2hDSZv+df4SW7R/vTPudLDVmiH5/Zr6zmgy+/VWix+D9TMW4zU?=
- =?us-ascii?q?5GriRbndTPqnwA0hne5dabRvRm8Eqs3CuD2x7P5u5fJE05kbTXK5A8zbM1mJ?=
- =?us-ascii?q?cesUDOEy/wlU7rlqGZbF8k9fKt6+n/Z7XmoYKTOJFshwHlN6QuhtS/AeMlMg?=
- =?us-ascii?q?gSR2Sb+fqz1Lnk/UDhTrtEiPM4nKbZvp7aIsoVpam3DRVL3oss5BiwDimr3M?=
- =?us-ascii?q?4ZnXkBMFJFYgiIg5L0NFHKOvD0F+qwjEq0nDdqwfDJIKHhD43QInTfirvtYL?=
- =?us-ascii?q?Vw5kFGxAYuw91S5IhYBq8OLf7rX0/+rt3YDhs3MwyuxObnDc1w2IwbWW2VBK?=
- =?us-ascii?q?+ZLb3dsVuS6uwyP+mDfpIVtyv8K/gj6P7hk2U5lEQAcqmtx5sbcm23Eep+L0?=
- =?us-ascii?q?WDfXXsmssBEXsNvgcmSezqiUGNUT5JaHmsW6Iw/Cw0CIO6AofAWI+thqeB0T?=
- =?us-ascii?q?ylEZ1KemBGF0uMHW30eIWDXvcGcDiSLdN5kjwYSbihTJcs2gygtQ70yLpoMO?=
- =?us-ascii?q?7U+ikYtJ/429h14vfclRA29TBuE8ud1GSNRXlunmwUXz82wLx/oUtlx1eeyq?=
- =?us-ascii?q?h4meRYGcVO5/NSTAg6L4Xcwvd+C9DzQQLBYsyJREy4TdW6HTExU8kxz8USbE?=
- =?us-ascii?q?Z6HtXxxizEin6vArQVnrGPQpA1+aHR2WPZKtph1m2A364k2R1uFsdQKm6rgq?=
- =?us-ascii?q?pu3wfWDo/N1U6ekvD5W74b2XuZ2WKKy3eDuAdjTAdtXaTDUn0FTkfSt5L16x?=
- =?us-ascii?q?WRHPeVFb07P14Zmoa5IaxQZ4ixgA=3D=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2GyAABaWJVe/xiKuApmHAEBAQEBBwE?=
- =?us-ascii?q?BEQEEBAEBgWoEAQELAYEkgV0TgTEKhBKDSY1Gm0IKCgEBAQEBAQEBAQcBGAE?=
- =?us-ascii?q?OCAQBAYREAheCHjcGDgIDAQwBAQYBAQEBAQUEAQEChj8MgjsigXMsQ1USAQE?=
- =?us-ascii?q?eAgEDAQEhCkELEAIBRwMCAgIlAQoUEQEBBAENBQiDH4F+gQ2tWoEyhACBToU?=
- =?us-ascii?q?AgTgBjk6BEYNOgmcBAwGBOV+CXIJeBJEWhgqaNweBSoh5iV2FbSWDWIt6jFe?=
- =?us-ascii?q?PU4kykxgCBAIEBQIVgT8pYoEZcU+CAmcJRxgNmhsXg1CKVXQCAY0mgTWBEAE?=
- =?us-ascii?q?B?=
-X-IronPort-AV: E=Sophos;i="5.72,381,1580770800"; d="scan'208,217";a="34389864"
-To: <michael.dickens@ettus.com>, <dwwkelly@gmail.com>
-Thread-Topic: [USRP-users] GPIOs timed commands
-Thread-Index: AdWrRn1Fq1nUqsi+SkupwTNLNRY/GhkHop6AAAD/G4AAr1tI4A==
-Date: Tue, 14 Apr 2020 06:34:15 +0000
-Message-ID: <4034c38a95254f6d8fe37403e5b7f1d1@dlr.de>
-References: <331d9c2e396b4f499b1af018f335899c@dlr.de>
- <CAANLyuajEUuAZ8CamF4F=1pT9_F4H9cU6MiQjDxn+tNGen6_7Q@mail.gmail.com>
- <CAGNhwTPNq6gvHDqBMafCfSC6W9PNarmZFbPxSPabT_J+EqJNgA@mail.gmail.com>
-In-Reply-To: <CAGNhwTPNq6gvHDqBMafCfSC6W9PNarmZFbPxSPabT_J+EqJNgA@mail.gmail.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
+	id 1jOIb0-0006fV-7P; Tue, 14 Apr 2020 06:15:10 -0400
+Received: from us-smtp-1.mimecast.com ([207.211.31.81]:53273
+ helo=us-smtp-delivery-1.mimecast.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+ (Exim 4.93) (envelope-from <fsalomon@mathworks.com>)
+ id 1jOIaw-0006b7-6B
+ for usrp-users@lists.ettus.com; Tue, 14 Apr 2020 06:15:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mathworks.com;
+ s=mimecast20180117; t=1586859265;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type;
+ bh=QUSfmmIrQ0/TSXo0xjgLuQxXur3JYND9geVaDN3MDEM=;
+ b=UxNIIa+GMBftJiHHzYYFz/4vathfOu0FsfewAZEdzohBTsj4zddizlvkCN6nnWZyHbNUBq
+ LwhqI1xqB7O7dR+nm5VGBTgVjqkbv7RigIxIf06eU4x+y7wGwHqIjyXbw2CV77OgWMOj0w
+ Rbdrkt7i9Roc0YQrykorf5VJS1ouBp4=
+Received: from NAM04-BN3-obe.outbound.protection.outlook.com
+ (mail-bn3nam04lp2056.outbound.protection.outlook.com [104.47.46.56]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ us-mta-371-C28vAVmJPHKzergjhcUt7A-1; Tue, 14 Apr 2020 06:14:23 -0400
+X-MC-Unique: C28vAVmJPHKzergjhcUt7A-1
+Received: from MN2PR05MB6158.namprd05.prod.outlook.com (2603:10b6:208:d2::30)
+ by MN2PR05MB6544.namprd05.prod.outlook.com (2603:10b6:208:d5::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.21; Tue, 14 Apr
+ 2020 10:14:22 +0000
+Received: from MN2PR05MB6158.namprd05.prod.outlook.com
+ ([fe80::cc14:becb:bf4b:ca51]) by MN2PR05MB6158.namprd05.prod.outlook.com
+ ([fe80::cc14:becb:bf4b:ca51%6]) with mapi id 15.20.2921.024; Tue, 14 Apr 2020
+ 10:14:22 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Bitstream on E312 - Failed to load
+Thread-Index: AQHWEkFRX7envxTRHkuMOXiOoWAljA==
+Date: Tue, 14 Apr 2020 10:14:22 +0000
+Message-ID: <MN2PR05MB615836FD69E9F479FBCF3A76CCDA0@MN2PR05MB6158.namprd05.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-tm-snts-smtp: BA2AF220519E91BCAAB9AB4858DA8AEDC50AB62471E504F54D41D38BD259671D2000:8
+x-originating-ip: [2.29.222.202]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f2add4c2-d6bb-40e7-3324-08d7e05c9a32
+x-ms-traffictypediagnostic: MN2PR05MB6544:
+x-microsoft-antispam-prvs: <MN2PR05MB6544A22AE3A29C8E17D4EE1FCCDA0@MN2PR05MB6544.namprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0373D94D15
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR05MB6158.namprd05.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(10009020)(4636009)(366004)(136003)(39860400002)(346002)(376002)(396003)(76116006)(316002)(186003)(6506007)(7696005)(33656002)(71200400001)(26005)(66946007)(86362001)(66556008)(64756008)(66446008)(66476007)(81156014)(52536014)(9686003)(6916009)(55016002)(19627405001)(2906002)(966005)(8676002)(8936002)(5660300002)(478600001)(19623455009);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Y+FArkf3wzcbtYk/w3ebHfH2IEjHDVLM5jOMwWw5s7YGg6d9o2udCTBmRlkwgYHz04uW1CTZg9DWhlAD9cinAWT8ssPJD3xGpeFarHmktNd0qN19pZjqSwJWqYjDbKeb7BsqTXb5mGaAu9Y2QvTBMV+qo3yzmb2QiZLtkPZmJ6ylQmveBXjC37JurxkqUr86PKizowKP5SF8IHaIs5Nc3eKwzGkGOrzhUeeR2WJvuTLtJAITreTQErCaySkroprZYGNtqQ7LLkX4OOceDoPNIeWpXS8vkkGwO0Gz9R+TXsp/MkycGqAGXre5Eg/SCK3mL9m33QNQHLPTMdHK3w7dMFOA8mcHW0+N6oJK5Orn2sbBIsurBdilVYZyYRreusAa/Y4mLNTDo0dOaNmrDlpgEu30/cdqgLrB5vhO3Ef4Y34C68i1n+55a94TP7px8KOQFpSxzBOJj6GRjF3HaFZ36wKcYBWt5CFg+oLGfeywqYxL0Dx/wq5LkA2Yg9mJeewl8VGt7uyE+hgXpnrNKSJ7xWecdRkCoTdwFYGAAi8kF5oknIQrfi2jV+wxgDKE9zb5AuEpaMcXI/9CCKnU79VaGQ==
+x-ms-exchange-antispam-messagedata: DswaI8urFYPvRKOQSxf+jU10AnDJDkgKbY6Lqayg5tTfWi09GgENRrmG3MlGu40zzCkxaaGKXUCng2JYWiB3TH0T4+4+42raZ29W93LIzMAQbxKOrflzYl1rxkh4BQ/Qjy2nXydAbhSk6jV8EGbQEw==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Subject: Re: [USRP-users] GPIOs timed commands
+X-OriginatorOrg: mathworks.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2add4c2-d6bb-40e7-3324-08d7e05c9a32
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Apr 2020 10:14:22.3529 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 99dd3a11-4348-4468-9bdd-e5072b1dc1e6
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pXBAOWjZzz46LujYnTdWsVUOk/IC5mgAHlogo33A7znF1SmSrLPZDlbFEDeXTc7BmpTkkOb9/mvDELBJOZ0AmQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR05MB6544
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: mathworks.com
+Subject: [USRP-users] Bitstream on E312 - Failed to load
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,10 +85,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Emanuel via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Emanuel.Staudinger@dlr.de
-Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============4362995183693072007=="
+From: Francisco Salomon via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Francisco Salomon <fsalomon@mathworks.com>
+Content-Type: multipart/mixed; boundary="===============0160162807330962763=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -93,169 +101,455 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4362995183693072007==
-Content-Language: de-DE
+--===============0160162807330962763==
+Content-Language: en-GB
 Content-Type: multipart/alternative;
-	boundary="_000_4034c38a95254f6d8fe37403e5b7f1d1dlrde_"
+	boundary="_000_MN2PR05MB615836FD69E9F479FBCF3A76CCDA0MN2PR05MB6158namp_"
 
---_000_4034c38a95254f6d8fe37403e5b7f1d1dlrde_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_MN2PR05MB615836FD69E9F479FBCF3A76CCDA0MN2PR05MB6158namp_
+Content-Type: text/plain; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
 
-SGkgTWljaGFlbCBhbmQgRGV2aW4sDQoNClRoYW5r4oCZcyBmb3IgY2hlY2tpbmcgYmFjayBhbmQg
-dGhlIGhpbnRzLiBJIGRpZCBub3QgdHJ5IHlldCBkdWUgdG8gb3RoZXIgd29yay4NCg0KQmVzdCBy
-ZWdhcmRzLA0KRW1hbnVlbA0KDQpWb246IE1pY2hhZWwgRGlja2VucyBbbWFpbHRvOm1pY2hhZWwu
-ZGlja2Vuc0BldHR1cy5jb21dDQpHZXNlbmRldDogRnJlaXRhZywgMTAuIEFwcmlsIDIwMjAgMjI6
-NTENCkFuOiBEZXZpbiBLZWxseQ0KQ2M6IFN0YXVkaW5nZXIsIEVtYW51ZWw7IHVzcnAtdXNlcnMN
-CkJldHJlZmY6IFJlOiBbVVNSUC11c2Vyc10gR1BJT3MgdGltZWQgY29tbWFuZHMNCg0KTWF5YmUg
-dGhpcyBLQiBpbmZvIGlzIHdoYXQgeW91J3JlIGxvb2tpbmcgZm9yPw0KPCBodHRwczovL2tiLmV0
-dHVzLmNvbS9TeW5jaHJvbml6aW5nX1VTUlBfRXZlbnRzX1VzaW5nX1RpbWVkX0NvbW1hbmRzX2lu
-X1VIRCNFeGFtcGxlOl9Vc2luZ19UaW1lZF9Db21tYW5kc190b19Db250cm9sX0dQSU8gPg0KTWF5
-YmUgbm90LCB0b28uIFdvcnRoIGEgbG9vayBJTUhPLiAtIE1MRA0KDQpPbiBGcmksIEFwciAxMCwg
-MjAyMCBhdCA0OjIzIFBNIERldmluIEtlbGx5IHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+PiB3cm90ZToN
-CkhpIEVtYW51ZWwsDQoNCkRpZCB5b3UgZ2V0IHRoZSB0aW1lZCBHUElPIGNvbW1hbmRzIHRvIHdv
-cmsgZm9yIHlvdT8NCg0KVGhhbmtzLA0KRGV2aW4NCg0KT24gVGh1LCBEZWMgNSwgMjAxOSBhdCAz
-OjM0IEFNIEVtYW51ZWwgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-PG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+IHdyb3RlOg0KSGkgZXZlcnlib2R5
-LA0KDQpjb3VsZCB0aGUgR1BJT3MsIGUuZy4sIG9uIGEgQjIwMG1pbmkgYmUgc2V0L3Vuc2V0IHBy
-ZWNpc2VseSBpbiB0aW1lIChsaW1pdGVkIHRvIHRoZSBzYW1wbGluZyByYXRlIHVzZWQpPw0KDQpC
-ZXN0IHJlZ2FyZHMsDQpFbWFudWVsDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QNClVTUlAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCmh0dHA6Ly9saXN0
-cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0DQpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86VVNSUC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
-dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20NCg==
+BLOT:  [ERROR] [MPMD] Failure during block enumeration: EnvironmentError: I=
+OError when loading custom bitstream on E312
 
---_000_4034c38a95254f6d8fe37403e5b7f1d1dlrde_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hello,
+I've built a custom bitstream for the E310 (with blocks from library, no cu=
+stom blocks) by using this commands:
+$ cd ~/rfnoc/src/uhd-fpga/usrp3/tools/scripts
+$ ./uhd_image_builder.py window fft -d e310 -t E310_RFNOC_sg3 -m 5 --fill-w=
+ith-fifos
+More details about tools as postdata.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FLU1haWxGb3JtYXR2b3JsYWdl
-MTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
-cmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21z
-by1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1z
-ZXJpZiI7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24x
-DQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgMi4wY20g
-NzAuODVwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwv
-c3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJl
-ZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNv
-IDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0i
-ZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwv
-aGVhZD4NCjxib2R5IGxhbmc9IkRFIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYg
-Y2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
-bnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SGkgTWljaGFlbCBhbmQgRGV2aW4sPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNl
-cmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVv
-dDs7Y29sb3I6IzFGNDk3RCI+VGhhbmvigJlzIGZvciBjaGVja2luZyBiYWNrIGFuZCB0aGUgaGlu
-dHMuIEkgZGlkIG5vdCB0cnkgeWV0IGR1ZSB0byBvdGhlciB3b3JrLjxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9u
-dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
-c2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
-dW90Oztjb2xvcjojMUY0OTdEIj5CZXN0IHJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
-dW90Oztjb2xvcjojMUY0OTdEIj5FbWFudWVsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
-Ij5Wb246PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWls
-eTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+IE1pY2hhZWwgRGlj
-a2VucyBbbWFpbHRvOm1pY2hhZWwuZGlja2Vuc0BldHR1cy5jb21dDQo8YnI+DQo8Yj5HZXNlbmRl
-dDo8L2I+IEZyZWl0YWcsIDEwLiBBcHJpbCAyMDIwIDIyOjUxPGJyPg0KPGI+QW46PC9iPiBEZXZp
-biBLZWxseTxicj4NCjxiPkNjOjwvYj4gU3RhdWRpbmdlciwgRW1hbnVlbDsgdXNycC11c2Vyczxi
-cj4NCjxiPkJldHJlZmY6PC9iPiBSZTogW1VTUlAtdXNlcnNdIEdQSU9zIHRpbWVkIGNvbW1hbmRz
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
-L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TWF5YmUgdGhpcyBLQiBpbmZv
-IGlzIHdoYXQgeW91J3JlIGxvb2tpbmcmbmJzcDtmb3I/PG86cD48L286cD48L3A+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+Jmx0OyZuYnNwOzxhIGhyZWY9Imh0dHBzOi8va2IuZXR0dXMu
-Y29tL1N5bmNocm9uaXppbmdfVVNSUF9FdmVudHNfVXNpbmdfVGltZWRfQ29tbWFuZHNfaW5fVUhE
-I0V4YW1wbGU6X1VzaW5nX1RpbWVkX0NvbW1hbmRzX3RvX0NvbnRyb2xfR1BJTyI+aHR0cHM6Ly9r
-Yi5ldHR1cy5jb20vU3luY2hyb25pemluZ19VU1JQX0V2ZW50c19Vc2luZ19UaW1lZF9Db21tYW5k
-c19pbl9VSEQjRXhhbXBsZTpfVXNpbmdfVGltZWRfQ29tbWFuZHNfdG9fQ29udHJvbF9HUElPPC9h
-PiZuYnNwOyZndDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPk1heWJlIG5vdCwgdG9vLiBXb3J0aCBhIGxvb2sgSU1ITy4gLSBNTEQ8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gRnJpLCBBcHIg
-MTAsIDIwMjAgYXQgNDoyMyBQTSBEZXZpbiBLZWxseSB2aWEgVVNSUC11c2VycyAmbHQ7PGEgaHJl
-Zj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90
-ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRk
-aW5nOjBjbSAwY20gMGNtIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20i
-Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IaSBFbWFudWVsLDxvOnA+PC9v
-OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
-L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5EaWQgeW91IGdl
-dCB0aGUgdGltZWQgR1BJTyBjb21tYW5kcyB0byB3b3JrIGZvciB5b3U/PG86cD48L286cD48L3A+
-DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyw8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkRldmluPG86cD48L286
-cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
-L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFRodSwgRGVj
-IDUsIDIwMTkgYXQgMzozNCBBTSBFbWFudWVsIHZpYSBVU1JQLXVzZXJzICZsdDs8YSBocmVmPSJt
-YWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj51c3JwLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+
-DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0ND
-QyAxLjBwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdp
-bi1yaWdodDowY20iPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
-bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFu
-IGxhbmc9IkVOLVVTIj5IaSBldmVyeWJvZHksPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
-Ym90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7PG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDph
-dXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyI+Y291bGQg
-dGhlIEdQSU9zLCBlLmcuLCBvbiBhIEIyMDBtaW5pIGJlIHNldC91bnNldCBwcmVjaXNlbHkgaW4g
-dGltZSAobGltaXRlZCB0byB0aGUgc2FtcGxpbmcgcmF0ZSB1c2VkKT88bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
-dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1h
-cmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9
-IkVOLVVTIj5CZXN0IHJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9t
-LWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyI+RW1hbnVlbDxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFpbGluZyBs
-aXN0PGJyPg0KPGEgaHJlZj0ibWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJn
-ZXQ9Il9ibGFuayI+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KPGEgaHJlZj0i
-aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMu
-ZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
-L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC9hPjxvOnA+PC9vOnA+PC9wPg0K
-PC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFpbGlu
-ZyBsaXN0PGJyPg0KPGEgaHJlZj0ibWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0
-YXJnZXQ9Il9ibGFuayI+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KPGEgaHJl
-Zj0iaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
-dHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWls
-bWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC9hPjxvOnA+PC9vOnA+PC9w
-Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+I found an issue during the building stage but managed to fix it as per des=
+cribed here: http://ettus.80997.x6.nabble.com/USRP-users-Default-RFNoC-imag=
+e-for-N310-does-not-compile-td13951.html
 
---_000_4034c38a95254f6d8fe37403e5b7f1d1dlrde_--
+Then, I flashed an E312 (same as E310 I guess) with sdcard image from http:=
+//files.ettus.com/binaries/cache/e3xx/meta-ettus-v3.15.0.0/e3xx_e310_sg3_sd=
+img_default-v3.15.0.0.zip
+The system runs OK, and uhd_usrp_probe shows no problem. Logging in over th=
+e serial port, I got several warnings about potential memory leaks (like "W=
+ARNING: memory leak will occur if overlay removed, property: /__symbols__/d=
+evctrl"), but I guess that's unrelated. So far so good. Embedded UHD versio=
+ns copied as postdata, but it's basically what you get from the sdcard imag=
+e, I haven't changed anything.
+
+So I copied my new bitstream to the E312, and to loaded it, with a few warn=
+ings, the main one related to a DTS file  not found:
+root@ni-e31x-30D84C7:~# uhd_image_loader --fpga-path=3D/tmp/e31x.bit  --arg=
+s=3D"type=3De3xx,reset"
+[INFO] [UHD] linux; GNU C++ version 8.2.0; Boost_106800; UHD_3.15.0.0-0-gae=
+a0e2de
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3De3xx,product=3De310_sg3,serial=3D30D84C7,claimed=3DFalse,sk=
+ip_init=3D1
+...
+WARNING] [MPMD IMAGE LOADER] RuntimeError: Component file does not exist: /=
+tmp/e31x.dts
+[WARNING] [MPM.PeriphManager] Skipping HW/SW compatibility check!
+[WARNING] [MPM.GPSDIface] Could not connect to GPSd! None of the GPS sensor=
+s will work!
+...
+
+And then, I got this error trying uhd_usrp_probe:
+root@ni-e31x-30D84C7:~# uhd_usrp_probe
+...
+[INFO] [0/Window_0] Initializing block control (NOC ID: 0xD053000000000000)
+[WARNING] [RFNOC] Can't find a block controller for key FFT, using default =
+block controller!
+[INFO] [0/FFT_0] Initializing block control (NOC ID: 0xFF70000000000000)
+[WARNING] [RFNOC] Can't find a block controller for key fosphor, using defa=
+ult block controller!
+[INFO] [0/fosphor_0] Initializing block control (NOC ID: 0x666F000000000000=
+)
+[ERROR] [MPMD] Failure during block enumeration: EnvironmentError: IOError:=
+ [0/fosphor_0] sr_write() failed: AssertionError: not _outstanding_seqs.emp=
+ty()
+  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) [wit=
+h uhd::endianness_t _endianness =3D (uhd::endianness_t)1; uint64_t =3D long=
+ long unsigned int]
+  at /cache/workdir/OE_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.0.0/bui=
+ld/tmp-musl/work/cortexa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0/git/ho=
+st/lib/rfnoc/ctrl_iface.cpp:139
+
+I was confused because I didn't include any fosphor block, but also because=
+ of that dts file warning when loading.
+So I rebuilt the bitstream, cleaning the previous environment (-c option) a=
+nd including a FOSPHOR block, just in case by running:
+$ ./uhd_image_builder.py fft window fosphor -d e310 -t E310_RFNOC_sg3 -m 8 =
+--fill-with-fifos -c
+
+Then I reloaded the new bitstream, and I got the same error.
+
+So my questions are:
+- Have you seen this error before? Any idea to fix it?
+- Could that be related to the lack of dts file? If that's the case, how ca=
+n I generate it?
+
+Any help will be much appreciated.
+Many thanks!
+
+Francisco
+
+PD:
+My host's tools are:
+$ uhd_config_info --print-all
+UHD 3.15.0.git-71-g18bc320d
+Build date: Wed, 25 Sep 2019 11:43:40
+C compiler: GNU 6.3.0
+C++ compiler: GNU 6.3.0
+C flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUHD_=
+LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLOR
+C++ flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUH=
+D_LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLOR -f=
+visibility=3Dhidden -fvisibility-inlines-hidden
+Enabled components: LibUHD, LibUHD - C API, Examples, Utils, Tests, USB, B1=
+00, B200, USRP1, USRP2, X300, N230, MPMD, N300, N320, E320, E300, OctoClock
+Install prefix: ~/rfnoc
+Boost version: 1.62
+Libusb version: 1.0.23
+Package path: ~/rfnoc
+Images directory:
+ABI version string: 3.15.0
+
+The E312 tools are:
+root@ni-e31x-30D84C7:~# uhd_config_info --print-all
+UHD 3.15.0.0-0-gaea0e2de
+Build date: Wed, 01 Jan 2020 07:56:24
+C compiler: GNU 8.2.0
+C++ compiler: GNU 8.2.0
+C flags: -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_ASIO_DISABLE_STD_STRING_VIE=
+W -DBOOST_ASIO_DISABLE_STD_EXPERIMENTAL_STRING_VIEW -DUHD_RFNOC_ENABLED -DH=
+AVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUHD_LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_=
+FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLOR -DHAVE_LIBERIO -march=3Darmv7-a -mth=
+umb -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-a9  --sysroot=3D/cache/w=
+orkdir/OE_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/w=
+ork/cortexa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0/recipe-sysroot  -O2=
+ -pipe -g -feliminate-unused-debug-types -fdebug-prefix-map=3D/cache/workdi=
+r/OE_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/work/c=
+ortexa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0=3D/usr/src/debug/uhd/3.1=
+5.0.0-r0 -fdebug-prefix-map=3D/cache/workdir/OE_Fedora_25_64_0/build_oe/bui=
+ld_e310_sg3_v3.15.0.0/build/tmp-musl/work/cortexa9t2hf-neon-oe-linux-muslea=
+bi/uhd/3.15.0.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/cache/workdir/OE=
+_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/work/corte=
+xa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0/recipe-sysroot-native=3D   -=
+march=3Darmv7-a -mthumb -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-a9  =
+--sysroot=3D/cache/workdir/OE_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.=
+0.0/build/tmp-musl/work/cortexa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0=
+/recipe-sysroot
+C++ flags: -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_ASIO_DISABLE_STD_STRING_V=
+IEW -DBOOST_ASIO_DISABLE_STD_EXPERIMENTAL_STRING_VIEW -DUHD_RFNOC_ENABLED -=
+DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUHD_LOG_CONSOLE_LEVEL=3D2 -DUHD_LO=
+G_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLOR -DHAVE_LIBERIO -march=3Darmv7-a -m=
+thumb -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-a9  --sysroot=3D/cache=
+/workdir/OE_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl=
+/work/cortexa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0/recipe-sysroot  -=
+O2 -pipe -g -feliminate-unused-debug-types -fdebug-prefix-map=3D/cache/work=
+dir/OE_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/work=
+/cortexa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0=3D/usr/src/debug/uhd/3=
+.15.0.0-r0 -fdebug-prefix-map=3D/cache/workdir/OE_Fedora_25_64_0/build_oe/b=
+uild_e310_sg3_v3.15.0.0/build/tmp-musl/work/cortexa9t2hf-neon-oe-linux-musl=
+eabi/uhd/3.15.0.0-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/cache/workdir/=
+OE_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/work/cor=
+texa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0/recipe-sysroot-native=3D  =
+-fvisibility-inlines-hidden  -march=3Darmv7-a -mthumb -mfpu=3Dneon -mfloat-=
+abi=3Dhard -mcpu=3Dcortex-a9  --sysroot=3D/cache/workdir/OE_Fedora_25_64_0/=
+build_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/work/cortexa9t2hf-neon-oe-=
+linux-musleabi/uhd/3.15.0.0-r0/recipe-sysroot -fvisibility=3Dhidden -fvisib=
+ility-inlines-hidden
+Enabled components: LibUHD, LibUHD - C API, Examples, Utils, Tests, LIBERIO=
+, MPMD, N300, N320, E320, E300, OctoClock
+Install prefix: /usr
+Boost version: 1.68
+Libusb version: N/A
+Package path: /usr
+Images directory: /usr/share/uhd/images
+ABI version string: 3.15.0
 
 
---===============4362995183693072007==
+--_000_MN2PR05MB615836FD69E9F479FBCF3A76CCDA0MN2PR05MB6158namp_
+Content-Type: text/html; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; color: rgb(0, 0, 0); background-color: rgb(255, 255, 2=
+55);">
+<div style=3D"margin: 0px">BLOT: &nbsp;[ERROR] [MPMD] Failure during block =
+enumeration: EnvironmentError: IOError when loading custom bitstream on E31=
+2<br>
+</div>
+<div style=3D"margin: 0px"><br>
+</div>
+<div style=3D"margin: 0px">Hello,<br>
+</div>
+<div style=3D"margin: 0px">I've built a custom bitstream for the E310 (with=
+ blocks from library, no custom blocks) by using this commands:<br>
+</div>
+<div style=3D"margin: 0px">$ cd ~/rfnoc/src/uhd-fpga/usrp3/tools/scripts<br=
+>
+</div>
+<div style=3D"margin: 0px">$ ./uhd_image_builder.py window fft -d e310 -t E=
+310_RFNOC_sg3 -m 5 --fill-with-fifos<br>
+</div>
+<div style=3D"margin: 0px">More details about tools as postdata.<br>
+</div>
+<div style=3D"margin: 0px"><br>
+</div>
+<div style=3D"margin: 0px">I found an issue during the building stage but m=
+anaged to fix it as per described here: http://ettus.80997.x6.nabble.com/US=
+RP-users-Default-RFNoC-image-for-N310-does-not-compile-td13951.html<br>
+</div>
+<div style=3D"margin: 0px"><br>
+</div>
+<div style=3D"margin: 0px">Then, I flashed an E312 (same as E310 I guess) w=
+ith sdcard image from http://files.ettus.com/binaries/cache/e3xx/meta-ettus=
+-v3.15.0.0/e3xx_e310_sg3_sdimg_default-v3.15.0.0.zip<br>
+</div>
+<div style=3D"margin: 0px">The system runs OK, and uhd_usrp_probe shows no =
+problem. Logging in over the serial port, I got several warnings about pote=
+ntial memory leaks (like &quot;WARNING: memory leak will occur if overlay r=
+emoved, property: /__symbols__/devctrl&quot;),
+ but I guess that's unrelated. So far so good. Embedded UHD versions copied=
+ as postdata, but it's basically what you get from the sdcard image, I have=
+n't changed anything.<br>
+</div>
+<div style=3D"margin: 0px"><br>
+</div>
+<div style=3D"margin: 0px">So I copied my new bitstream to the E312, and to=
+ loaded it, with a few warnings, the main one related to a DTS file&nbsp; n=
+ot found:<br>
+</div>
+<div style=3D"margin: 0px">root@ni-e31x-30D84C7:~# uhd_image_loader --fpga-=
+path=3D/tmp/e31x.bit &nbsp;--args=3D&quot;type=3De3xx,reset&quot;<br>
+</div>
+<div style=3D"margin: 0px">[INFO] [UHD] linux; GNU C&#43;&#43; version 8.2.=
+0; Boost_106800; UHD_3.15.0.0-0-gaea0e2de<br>
+</div>
+<div style=3D"margin: 0px">[INFO] [MPMD] Initializing 1 device(s) in parall=
+el with args: mgmt_addr=3D127.0.0.1,type=3De3xx,product=3De310_sg3,serial=
+=3D30D84C7,claimed=3DFalse,skip_init=3D1<br>
+</div>
+<div style=3D"margin: 0px">...<br>
+</div>
+<div style=3D"margin: 0px">WARNING] [MPMD IMAGE LOADER] RuntimeError: Compo=
+nent file does not exist: /tmp/e31x.dts<br>
+</div>
+<div style=3D"margin: 0px">[WARNING] [MPM.PeriphManager] Skipping HW/SW com=
+patibility check!<br>
+</div>
+<div style=3D"margin: 0px">[WARNING] [MPM.GPSDIface] Could not connect to G=
+PSd! None of the GPS sensors will work!<br>
+</div>
+<div style=3D"margin: 0px">...<br>
+</div>
+<div style=3D"margin: 0px"><br>
+</div>
+<div style=3D"margin: 0px">And then, I got this error trying uhd_usrp_probe=
+:<br>
+</div>
+<div style=3D"margin: 0px">root@ni-e31x-30D84C7:~# uhd_usrp_probe<br>
+</div>
+<div style=3D"margin: 0px">...</div>
+<div style=3D"margin: 0px">[INFO] [0/Window_0] Initializing block control (=
+NOC ID: 0xD053000000000000)<br>
+</div>
+<div style=3D"margin: 0px">[WARNING] [RFNOC] Can't find a block controller =
+for key FFT, using default block controller!<br>
+</div>
+<div style=3D"margin: 0px">[INFO] [0/FFT_0] Initializing block control (NOC=
+ ID: 0xFF70000000000000)<br>
+</div>
+<div style=3D"margin: 0px">[WARNING] [RFNOC] Can't find a block controller =
+for key fosphor, using default block controller!<br>
+</div>
+<div style=3D"margin: 0px">[INFO] [0/fosphor_0] Initializing block control =
+(NOC ID: 0x666F000000000000)<br>
+</div>
+<div style=3D"margin: 0px">[ERROR] [MPMD] Failure during block enumeration:=
+ EnvironmentError: IOError: [0/fosphor_0] sr_write() failed: AssertionError=
+: not _outstanding_seqs.empty()<br>
+</div>
+<div style=3D"margin: 0px">&nbsp; in uint64_t ctrl_iface_impl&lt;_endiannes=
+s&gt;::wait_for_ack(bool, double) [with uhd::endianness_t _endianness =3D (=
+uhd::endianness_t)1; uint64_t =3D long long unsigned int]<br>
+</div>
+<div style=3D"margin: 0px">&nbsp; at /cache/workdir/OE_Fedora_25_64_0/build=
+_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/work/cortexa9t2hf-neon-oe-linux=
+-musleabi/uhd/3.15.0.0-r0/git/host/lib/rfnoc/ctrl_iface.cpp:139<br>
+</div>
+<div style=3D"margin: 0px"><br>
+</div>
+<div style=3D"margin: 0px">I was confused because I didn't include any fosp=
+hor block, but also because of that dts file warning when loading.<br>
+</div>
+<div style=3D"margin: 0px">So I rebuilt the bitstream, cleaning the previou=
+s environment (-c option) and including a FOSPHOR block, just in case by ru=
+nning:</div>
+<div style=3D"margin: 0px"><span>$ ./uhd_image_builder.py fft window fospho=
+r -d e310 -t E310_RFNOC_sg3 -m 8 --fill-with-fifos -c<br>
+</span><span></span><br>
+</div>
+<div style=3D"margin: 0px">Then I reloaded the new bitstream, and I got the=
+ same error.</div>
+<div style=3D"margin: 0px"><br>
+</div>
+<div style=3D"margin: 0px">So my questions are:<br>
+</div>
+<div style=3D"margin: 0px">- Have you seen this error before? Any idea to f=
+ix it?<br>
+</div>
+<div style=3D"margin: 0px">- Could that be related to the lack of dts file?=
+ If that's the case, how can I generate it?<br>
+</div>
+<div style=3D"margin: 0px"><br>
+</div>
+<div style=3D"margin: 0px">Any help will be much appreciated.</div>
+<div style=3D"margin: 0px">Many thanks!<br>
+</div>
+<div style=3D"margin: 0px"><br>
+</div>
+<div style=3D"margin: 0px">Francisco<br>
+</div>
+<div style=3D"margin: 0px"><br>
+</div>
+<div style=3D"margin: 0px">PD:</div>
+<div style=3D"margin: 0px">My host's tools are:<br>
+</div>
+<div style=3D"margin: 0px"><span style=3D"margin: 0px">$ uhd_config_info --=
+print-all<br>
+</span>
+<div style=3D"margin: 0px">UHD 3.15.0.git-71-g18bc320d<br>
+</div>
+<div style=3D"margin: 0px">Build date: Wed, 25 Sep 2019 11:43:40<br>
+</div>
+<div style=3D"margin: 0px">C compiler: GNU 6.3.0<br>
+</div>
+<div style=3D"margin: 0px">C&#43;&#43; compiler: GNU 6.3.0<br>
+</div>
+<div style=3D"margin: 0px">C flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DU=
+HD_LOG_MIN_LEVEL=3D1 -DUHD_LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -=
+DUHD_LOG_CONSOLE_COLOR<br>
+</div>
+<div style=3D"margin: 0px">C&#43;&#43; flags: -DUHD_RFNOC_ENABLED -DHAVE_CO=
+NFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUHD_LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_L=
+EVEL=3D2 -DUHD_LOG_CONSOLE_COLOR -fvisibility=3Dhidden -fvisibility-inlines=
+-hidden<br>
+</div>
+<div style=3D"margin: 0px">Enabled components: LibUHD, LibUHD - C API, Exam=
+ples, Utils, Tests, USB, B100, B200, USRP1, USRP2, X300, N230, MPMD, N300, =
+N320, E320, E300, OctoClock<br>
+</div>
+<div style=3D"margin: 0px">Install prefix: ~/rfnoc<br>
+</div>
+<div style=3D"margin: 0px">Boost version: 1.62<br>
+</div>
+<div style=3D"margin: 0px">Libusb version: 1.0.23<br>
+</div>
+<div style=3D"margin: 0px">Package path: ~/rfnoc<br>
+</div>
+<div style=3D"margin: 0px">Images directory:<br>
+</div>
+<span style=3D"margin: 0px">ABI version string: 3.15.0</span><br>
+</div>
+<div style=3D"margin: 0px"><span style=3D"margin: 0px"><br>
+</span></div>
+<span style=3D"margin: 0px">The E312 tools are:</span><br>
+</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; color: rgb(0, 0, 0); background-color: rgb(255, 255, 2=
+55);">
+<span style=3D"margin: 0px">
+<div style=3D"margin: 0px">root@ni-e31x-30D84C7:~# uhd_config_info --print-=
+all<br>
+</div>
+<div style=3D"margin: 0px">UHD 3.15.0.0-0-gaea0e2de<br>
+</div>
+<div style=3D"margin: 0px">Build date: Wed, 01 Jan 2020 07:56:24<br>
+</div>
+<div style=3D"margin: 0px">C compiler: GNU 8.2.0<br>
+</div>
+<div style=3D"margin: 0px">C&#43;&#43; compiler: GNU 8.2.0<br>
+</div>
+<div style=3D"margin: 0px">C flags: -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_=
+ASIO_DISABLE_STD_STRING_VIEW -DBOOST_ASIO_DISABLE_STD_EXPERIMENTAL_STRING_V=
+IEW -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUHD_LOG_C=
+ONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2
+ -DUHD_LOG_CONSOLE_COLOR -DHAVE_LIBERIO -march=3Darmv7-a -mthumb -mfpu=3Dne=
+on -mfloat-abi=3Dhard -mcpu=3Dcortex-a9 &nbsp;--sysroot=3D/cache/workdir/OE=
+_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/work/corte=
+xa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0/recipe-sysroot
+ &nbsp;-O2 -pipe -g -feliminate-unused-debug-types -fdebug-prefix-map=3D/ca=
+che/workdir/OE_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.0.0/build/tmp-m=
+usl/work/cortexa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0=3D/usr/src/deb=
+ug/uhd/3.15.0.0-r0 -fdebug-prefix-map=3D/cache/workdir/OE_Fedora_25_64_0/bu=
+ild_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/work/cortexa9t2hf-neon-oe-li=
+nux-musleabi/uhd/3.15.0.0-r0/recipe-sysroot=3D
+ -fdebug-prefix-map=3D/cache/workdir/OE_Fedora_25_64_0/build_oe/build_e310_=
+sg3_v3.15.0.0/build/tmp-musl/work/cortexa9t2hf-neon-oe-linux-musleabi/uhd/3=
+.15.0.0-r0/recipe-sysroot-native=3D &nbsp; -march=3Darmv7-a -mthumb -mfpu=
+=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-a9 &nbsp;--sysroot=3D/cache/workd=
+ir/OE_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/work/=
+cortexa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0/recipe-sysroot<br>
+</div>
+<div style=3D"margin: 0px">C&#43;&#43; flags: -DBOOST_ERROR_CODE_HEADER_ONL=
+Y -DBOOST_ASIO_DISABLE_STD_STRING_VIEW -DBOOST_ASIO_DISABLE_STD_EXPERIMENTA=
+L_STRING_VIEW -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -=
+DUHD_LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2
+ -DUHD_LOG_CONSOLE_COLOR -DHAVE_LIBERIO -march=3Darmv7-a -mthumb -mfpu=3Dne=
+on -mfloat-abi=3Dhard -mcpu=3Dcortex-a9 &nbsp;--sysroot=3D/cache/workdir/OE=
+_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/work/corte=
+xa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0/recipe-sysroot
+ &nbsp;-O2 -pipe -g -feliminate-unused-debug-types -fdebug-prefix-map=3D/ca=
+che/workdir/OE_Fedora_25_64_0/build_oe/build_e310_sg3_v3.15.0.0/build/tmp-m=
+usl/work/cortexa9t2hf-neon-oe-linux-musleabi/uhd/3.15.0.0-r0=3D/usr/src/deb=
+ug/uhd/3.15.0.0-r0 -fdebug-prefix-map=3D/cache/workdir/OE_Fedora_25_64_0/bu=
+ild_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/work/cortexa9t2hf-neon-oe-li=
+nux-musleabi/uhd/3.15.0.0-r0/recipe-sysroot=3D
+ -fdebug-prefix-map=3D/cache/workdir/OE_Fedora_25_64_0/build_oe/build_e310_=
+sg3_v3.15.0.0/build/tmp-musl/work/cortexa9t2hf-neon-oe-linux-musleabi/uhd/3=
+.15.0.0-r0/recipe-sysroot-native=3D &nbsp;-fvisibility-inlines-hidden &nbsp=
+;-march=3Darmv7-a -mthumb -mfpu=3Dneon -mfloat-abi=3Dhard
+ -mcpu=3Dcortex-a9 &nbsp;--sysroot=3D/cache/workdir/OE_Fedora_25_64_0/build=
+_oe/build_e310_sg3_v3.15.0.0/build/tmp-musl/work/cortexa9t2hf-neon-oe-linux=
+-musleabi/uhd/3.15.0.0-r0/recipe-sysroot -fvisibility=3Dhidden -fvisibility=
+-inlines-hidden<br>
+</div>
+<div style=3D"margin: 0px">Enabled components: LibUHD, LibUHD - C API, Exam=
+ples, Utils, Tests, LIBERIO, MPMD, N300, N320, E320, E300, OctoClock<br>
+</div>
+<div style=3D"margin: 0px">Install prefix: /usr<br>
+</div>
+<div style=3D"margin: 0px">Boost version: 1.68<br>
+</div>
+<div style=3D"margin: 0px">Libusb version: N/A<br>
+</div>
+<div style=3D"margin: 0px">Package path: /usr<br>
+</div>
+<div style=3D"margin: 0px">Images directory: /usr/share/uhd/images<br>
+</div>
+<div style=3D"margin: 0px">ABI version string: 3.15.0</div>
+</span></div>
+<br>
+</div>
+</body>
+</html>
+
+--_000_MN2PR05MB615836FD69E9F479FBCF3A76CCDA0MN2PR05MB6158namp_--
+
+
+
+--===============0160162807330962763==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -266,5 +560,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4362995183693072007==--
+--===============0160162807330962763==--
+
 
