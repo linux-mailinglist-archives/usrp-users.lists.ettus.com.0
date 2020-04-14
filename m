@@ -2,61 +2,69 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 862D51A6C76
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Apr 2020 21:28:36 +0200 (CEST)
-Received: from [::1] (port=42866 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 500CF1A73C2
+	for <lists+usrp-users@lfdr.de>; Tue, 14 Apr 2020 08:35:06 +0200 (CEST)
+Received: from [::1] (port=43208 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jO4kz-0007Fi-UP; Mon, 13 Apr 2020 15:28:33 -0400
-Received: from mail-qk1-f169.google.com ([209.85.222.169]:34604)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <101science@gmail.com>)
- id 1jO4kw-00077b-P5
- for usrp-users@lists.ettus.com; Mon, 13 Apr 2020 15:28:30 -0400
-Received: by mail-qk1-f169.google.com with SMTP id t3so6879804qkg.1
- for <usrp-users@lists.ettus.com>; Mon, 13 Apr 2020 12:28:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:date:message-id:subject:from:to:cc:in-reply-to
- :references:user-agent;
- bh=Dk+G8NYNrYUHw805Zq5LlNYKblYTBFykDxSkTZs4EBM=;
- b=KE7ZBYzZD7ZU6q/G098PHU2lyr46uQHJO7cKF+05KeR3mYsa4tgty/l1VbNpY+q6pv
- q/e1XmWi5UUKQyxCGauwXf91uRwCJVjcs1scQBv8fFFdZtHh2Dc5Wis6ASIKQyt+kCsg
- fPU+fRB29Xbxu4VWNQtYi4hppYfX01E2gOcHWEmo716Ik9T3lizXSZw8wJismHeJ2uJV
- YrtQ5GH24p0ojHLhV0Y60MoY+l9C89+X1m08lNgHJrM4NhDRVPdNjoZmS/NTzASEy1ZO
- xop9MQ8PCpwln8keS/9bItq8cmmb/rrSP5hqx1qndCAackMB0bJw+sSDlIVLZysc6fC8
- njYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:message-id:subject:from:to:cc
- :in-reply-to:references:user-agent;
- bh=Dk+G8NYNrYUHw805Zq5LlNYKblYTBFykDxSkTZs4EBM=;
- b=V/2XjY5Ow8u7hSlQjRLLtUgsUADZwGVGANxdeWq5FL5ycQB/maTvdNnpVnwIDkK6sl
- CkNupVZSrhD+8QbgOGVIrBgUtj/3vZ7eEQFNWHGCq9MLiUpzKFUb45Jh+2N1+T53N7Ib
- ePbF/EwtF22a0TbHAyNwrxKy5gKOGKGbyLqSf/3wbCdXXV4Nou7/VKVSo1KvOXHa2Usx
- vgxmwFbNTcDMp5k5u28+SJi5btcHvpT61I6wOzFl56SXWZ0Zj689Gjf5xoDXUpuAwBCp
- bImKn4KOJn+03d3qMUWNlpxAY4Kp+C+ffDleMtic5ZnmhQEX2sw6V1qQJrgCFFdkVmiv
- T32A==
-X-Gm-Message-State: AGi0PuaZ3L8U3LsY3AGYdafEnvtJi5o6T8nSpQWcdofSubZzLKnbxKxl
- hk2KLgQsdGVtBp+ur5tokXc=
-X-Google-Smtp-Source: APiQypLJFUlbr1zt+lZkFYBj88DJPbBePrDW1KmsA2V0Ix0G3kPIAvZYH/AJMBC2QWl93V21qWQDoA==
-X-Received: by 2002:a37:a486:: with SMTP id
- n128mr15604845qke.140.1586806070227; 
- Mon, 13 Apr 2020 12:27:50 -0700 (PDT)
-Received: from [192.168.0.215] (h69-131-192-186.nlsnga.dsl.dynamic.tds.net.
- [69.131.192.186])
- by smtp.gmail.com with ESMTPSA id x124sm9025706qkc.70.2020.04.13.12.27.49
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 13 Apr 2020 12:27:49 -0700 (PDT)
+	id 1jOF9y-0000Z4-4a; Tue, 14 Apr 2020 02:35:02 -0400
+Received: from mailin.dlr.de ([194.94.201.12]:33440)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <Emanuel.Staudinger@dlr.de>)
+ id 1jOF9u-0000SR-66
+ for usrp-users@lists.ettus.com; Tue, 14 Apr 2020 02:34:58 -0400
+IronPort-SDR: kVDIIdVQN5BsXm7WGE8pmVKqBzvaoTAOIktIXNpweVMisyL6DWBY213k/fg8FXwOW4EkaUPQuW
+ UiNuJ1C6FRzg==
+IronPort-PHdr: =?us-ascii?q?9a23=3A9wWcYhK545qUbd4VstmcpTZWNBhigK39O0sv0r?=
+ =?us-ascii?q?FitYgXKvj9rarrMEGX3/hxlliBBdydt6sZzbGO+Pm4ACRAuc/H7CleNsQUFl?=
+ =?us-ascii?q?cssoY/oU8JOIa9E0r1LfrnPWQRPf9pcxtbxUy9KlVfA83kZlff8TWY5D8WHQ?=
+ =?us-ascii?q?jjZ0IufrymUoHdgN6q2O+s5pbdfxtHhCanYbN1MR66sRjdutMZjId/Kqs90B?=
+ =?us-ascii?q?XErmdHd+hL2W9kOE+YkxLg6sut5pJu/Dlctv07+8JcTan2erkzQKBFAjghL2?=
+ =?us-ascii?q?0668rnuAXZQwCS/HUcSGIWkhRJAwjB8h73W4r6vzX5uORgxiSUJNX6Qr8oVz?=
+ =?us-ascii?q?us6adrUwLohzwcNzEl6mHXi9d/g7xdrRm8uhFw2Y/UYIWSNPpjYqPQeM4RSG?=
+ =?us-ascii?q?RdUspNUSFKH4WxZJYNAeUcJ+ZVt4nzqUUToxuiCweiB+3vxT1JhnDq0qI3yP?=
+ =?us-ascii?q?4uHR3E3AE6A94CrHbZodPoP6kSS+C1y6zIwC3EYv1Z3Dfy8o7Icg0/rvGIR7?=
+ =?us-ascii?q?5+bNbRxlMyFwzYj1WQr4PlMC2P1ukWrmeb6/BgWfiyhGE5sgx8pCWkyMkrio?=
+ =?us-ascii?q?nMnI0Vy1bE+D1nz4YpOd24VVV7bcS4H5tXsiGXMZZ9TMA6Q2xwpSo21qcKtY?=
+ =?us-ascii?q?O4cSUF0pgr2hDSZv+df4SW7R/vTPudLDVmiH5/Zr6zmgy+/VWix+D9TMW4zU?=
+ =?us-ascii?q?5GriRbndTPqnwA0hne5dabRvRm8Eqs3CuD2x7P5u5fJE05kbTXK5A8zbM1mJ?=
+ =?us-ascii?q?cesUDOEy/wlU7rlqGZbF8k9fKt6+n/Z7XmoYKTOJFshwHlN6QuhtS/AeMlMg?=
+ =?us-ascii?q?gSR2Sb+fqz1Lnk/UDhTrtEiPM4nKbZvp7aIsoVpam3DRVL3oss5BiwDimr3M?=
+ =?us-ascii?q?4ZnXkBMFJFYgiIg5L0NFHKOvD0F+qwjEq0nDdqwfDJIKHhD43QInTfirvtYL?=
+ =?us-ascii?q?Vw5kFGxAYuw91S5IhYBq8OLf7rX0/+rt3YDhs3MwyuxObnDc1w2IwbWW2VBK?=
+ =?us-ascii?q?+ZLb3dsVuS6uwyP+mDfpIVtyv8K/gj6P7hk2U5lEQAcqmtx5sbcm23Eep+L0?=
+ =?us-ascii?q?WDfXXsmssBEXsNvgcmSezqiUGNUT5JaHmsW6Iw/Cw0CIO6AofAWI+thqeB0T?=
+ =?us-ascii?q?ylEZ1KemBGF0uMHW30eIWDXvcGcDiSLdN5kjwYSbihTJcs2gygtQ70yLpoMO?=
+ =?us-ascii?q?7U+ikYtJ/429h14vfclRA29TBuE8ud1GSNRXlunmwUXz82wLx/oUtlx1eeyq?=
+ =?us-ascii?q?h4meRYGcVO5/NSTAg6L4Xcwvd+C9DzQQLBYsyJREy4TdW6HTExU8kxz8USbE?=
+ =?us-ascii?q?Z6HtXxxizEin6vArQVnrGPQpA1+aHR2WPZKtph1m2A364k2R1uFsdQKm6rgq?=
+ =?us-ascii?q?pu3wfWDo/N1U6ekvD5W74b2XuZ2WKKy3eDuAdjTAdtXaTDUn0FTkfSt5L16x?=
+ =?us-ascii?q?WRHPeVFb07P14Zmoa5IaxQZ4ixgA=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2GyAABaWJVe/xiKuApmHAEBAQEBBwE?=
+ =?us-ascii?q?BEQEEBAEBgWoEAQELAYEkgV0TgTEKhBKDSY1Gm0IKCgEBAQEBAQEBAQcBGAE?=
+ =?us-ascii?q?OCAQBAYREAheCHjcGDgIDAQwBAQYBAQEBAQUEAQEChj8MgjsigXMsQ1USAQE?=
+ =?us-ascii?q?eAgEDAQEhCkELEAIBRwMCAgIlAQoUEQEBBAENBQiDH4F+gQ2tWoEyhACBToU?=
+ =?us-ascii?q?AgTgBjk6BEYNOgmcBAwGBOV+CXIJeBJEWhgqaNweBSoh5iV2FbSWDWIt6jFe?=
+ =?us-ascii?q?PU4kykxgCBAIEBQIVgT8pYoEZcU+CAmcJRxgNmhsXg1CKVXQCAY0mgTWBEAE?=
+ =?us-ascii?q?B?=
+X-IronPort-AV: E=Sophos;i="5.72,381,1580770800"; d="scan'208,217";a="34389864"
+To: <michael.dickens@ettus.com>, <dwwkelly@gmail.com>
+Thread-Topic: [USRP-users] GPIOs timed commands
+Thread-Index: AdWrRn1Fq1nUqsi+SkupwTNLNRY/GhkHop6AAAD/G4AAr1tI4A==
+Date: Tue, 14 Apr 2020 06:34:15 +0000
+Message-ID: <4034c38a95254f6d8fe37403e5b7f1d1@dlr.de>
+References: <331d9c2e396b4f499b1af018f335899c@dlr.de>
+ <CAANLyuajEUuAZ8CamF4F=1pT9_F4H9cU6MiQjDxn+tNGen6_7Q@mail.gmail.com>
+ <CAGNhwTPNq6gvHDqBMafCfSC6W9PNarmZFbPxSPabT_J+EqJNgA@mail.gmail.com>
+In-Reply-To: <CAGNhwTPNq6gvHDqBMafCfSC6W9PNarmZFbPxSPabT_J+EqJNgA@mail.gmail.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-tm-snts-smtp: BA2AF220519E91BCAAB9AB4858DA8AEDC50AB62471E504F54D41D38BD259671D2000:8
 MIME-Version: 1.0
-Date: Mon, 13 Apr 2020 15:27:38 -0400
-Message-ID: <Mailbird-04320bbf-ee41-435c-89dd-bf96d296fab4@gmail.com>
-To: "Marcus D Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <826A2CAB-9970-42C9-8E53-A4872C0E94AD@gmail.com>
-References: <F8D7B678-10F4-40E7-9209-7ED7781FB9EC@gmail.com>
- <826A2CAB-9970-42C9-8E53-A4872C0E94AD@gmail.com>
-User-Agent: Mailbird/2.8.1.0
-X-Mailbird-ID: Mailbird-04320bbf-ee41-435c-89dd-bf96d296fab4@gmail.com
-Subject: Re: [USRP-users] USRP-users Digest, Vol 116, Issue 9
+Subject: Re: [USRP-users] GPIOs timed commands
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,10 +76,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Larry Dodd via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Larry Dodd <101science@gmail.com>
+From: Emanuel via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Emanuel.Staudinger@dlr.de
 Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============2928132126283730993=="
+Content-Type: multipart/mixed; boundary="===============4362995183693072007=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,296 +93,169 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2928132126283730993==
+--===============4362995183693072007==
+Content-Language: de-DE
 Content-Type: multipart/alternative;
- boundary="----=_NextPart_43786926.076254922715"
+	boundary="_000_4034c38a95254f6d8fe37403e5b7f1d1dlrde_"
 
-------=_NextPart_43786926.076254922715
-Content-Type: text/plain;
- charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_4034c38a95254f6d8fe37403e5b7f1d1dlrde_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Marcus
-OK Thanks very much.=C2=A0 Appreciate the help.
-Larry
-On 4/13/2020 2:11:00 PM, Marcus D Leech <patchvonbraun@gmail.com> wrote:
-An N210 with an LFRX card will suit your needs.
+SGkgTWljaGFlbCBhbmQgRGV2aW4sDQoNClRoYW5r4oCZcyBmb3IgY2hlY2tpbmcgYmFjayBhbmQg
+dGhlIGhpbnRzLiBJIGRpZCBub3QgdHJ5IHlldCBkdWUgdG8gb3RoZXIgd29yay4NCg0KQmVzdCBy
+ZWdhcmRzLA0KRW1hbnVlbA0KDQpWb246IE1pY2hhZWwgRGlja2VucyBbbWFpbHRvOm1pY2hhZWwu
+ZGlja2Vuc0BldHR1cy5jb21dDQpHZXNlbmRldDogRnJlaXRhZywgMTAuIEFwcmlsIDIwMjAgMjI6
+NTENCkFuOiBEZXZpbiBLZWxseQ0KQ2M6IFN0YXVkaW5nZXIsIEVtYW51ZWw7IHVzcnAtdXNlcnMN
+CkJldHJlZmY6IFJlOiBbVVNSUC11c2Vyc10gR1BJT3MgdGltZWQgY29tbWFuZHMNCg0KTWF5YmUg
+dGhpcyBLQiBpbmZvIGlzIHdoYXQgeW91J3JlIGxvb2tpbmcgZm9yPw0KPCBodHRwczovL2tiLmV0
+dHVzLmNvbS9TeW5jaHJvbml6aW5nX1VTUlBfRXZlbnRzX1VzaW5nX1RpbWVkX0NvbW1hbmRzX2lu
+X1VIRCNFeGFtcGxlOl9Vc2luZ19UaW1lZF9Db21tYW5kc190b19Db250cm9sX0dQSU8gPg0KTWF5
+YmUgbm90LCB0b28uIFdvcnRoIGEgbG9vayBJTUhPLiAtIE1MRA0KDQpPbiBGcmksIEFwciAxMCwg
+MjAyMCBhdCA0OjIzIFBNIERldmluIEtlbGx5IHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+PiB3cm90ZToN
+CkhpIEVtYW51ZWwsDQoNCkRpZCB5b3UgZ2V0IHRoZSB0aW1lZCBHUElPIGNvbW1hbmRzIHRvIHdv
+cmsgZm9yIHlvdT8NCg0KVGhhbmtzLA0KRGV2aW4NCg0KT24gVGh1LCBEZWMgNSwgMjAxOSBhdCAz
+OjM0IEFNIEVtYW51ZWwgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+PG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+IHdyb3RlOg0KSGkgZXZlcnlib2R5
+LA0KDQpjb3VsZCB0aGUgR1BJT3MsIGUuZy4sIG9uIGEgQjIwMG1pbmkgYmUgc2V0L3Vuc2V0IHBy
+ZWNpc2VseSBpbiB0aW1lIChsaW1pdGVkIHRvIHRoZSBzYW1wbGluZyByYXRlIHVzZWQpPw0KDQpC
+ZXN0IHJlZ2FyZHMsDQpFbWFudWVsDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QNClVTUlAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCmh0dHA6Ly9saXN0
+cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0DQpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86VVNSUC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
+dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20NCg==
 
-You could also consider a B200 with an external upconverter.
+--_000_4034c38a95254f6d8fe37403e5b7f1d1dlrde_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Sent from my iPhone
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FLU1haWxGb3JtYXR2b3JsYWdl
+MTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
+cmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21z
+by1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1z
+ZXJpZiI7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24x
+DQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgMi4wY20g
+NzAuODVwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwv
+c3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJl
+ZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNv
+IDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0i
+ZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwv
+aGVhZD4NCjxib2R5IGxhbmc9IkRFIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYg
+Y2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
+bnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SGkgTWljaGFlbCBhbmQgRGV2aW4sPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNl
+cmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVv
+dDs7Y29sb3I6IzFGNDk3RCI+VGhhbmvigJlzIGZvciBjaGVja2luZyBiYWNrIGFuZCB0aGUgaGlu
+dHMuIEkgZGlkIG5vdCB0cnkgeWV0IGR1ZSB0byBvdGhlciB3b3JrLjxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90Oztjb2xvcjojMUY0OTdEIj5CZXN0IHJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90Oztjb2xvcjojMUY0OTdEIj5FbWFudWVsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
+Ij5Wb246PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWls
+eTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+IE1pY2hhZWwgRGlj
+a2VucyBbbWFpbHRvOm1pY2hhZWwuZGlja2Vuc0BldHR1cy5jb21dDQo8YnI+DQo8Yj5HZXNlbmRl
+dDo8L2I+IEZyZWl0YWcsIDEwLiBBcHJpbCAyMDIwIDIyOjUxPGJyPg0KPGI+QW46PC9iPiBEZXZp
+biBLZWxseTxicj4NCjxiPkNjOjwvYj4gU3RhdWRpbmdlciwgRW1hbnVlbDsgdXNycC11c2Vyczxi
+cj4NCjxiPkJldHJlZmY6PC9iPiBSZTogW1VTUlAtdXNlcnNdIEdQSU9zIHRpbWVkIGNvbW1hbmRz
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
+L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TWF5YmUgdGhpcyBLQiBpbmZv
+IGlzIHdoYXQgeW91J3JlIGxvb2tpbmcmbmJzcDtmb3I/PG86cD48L286cD48L3A+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+Jmx0OyZuYnNwOzxhIGhyZWY9Imh0dHBzOi8va2IuZXR0dXMu
+Y29tL1N5bmNocm9uaXppbmdfVVNSUF9FdmVudHNfVXNpbmdfVGltZWRfQ29tbWFuZHNfaW5fVUhE
+I0V4YW1wbGU6X1VzaW5nX1RpbWVkX0NvbW1hbmRzX3RvX0NvbnRyb2xfR1BJTyI+aHR0cHM6Ly9r
+Yi5ldHR1cy5jb20vU3luY2hyb25pemluZ19VU1JQX0V2ZW50c19Vc2luZ19UaW1lZF9Db21tYW5k
+c19pbl9VSEQjRXhhbXBsZTpfVXNpbmdfVGltZWRfQ29tbWFuZHNfdG9fQ29udHJvbF9HUElPPC9h
+PiZuYnNwOyZndDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPk1heWJlIG5vdCwgdG9vLiBXb3J0aCBhIGxvb2sgSU1ITy4gLSBNTEQ8bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gRnJpLCBBcHIg
+MTAsIDIwMjAgYXQgNDoyMyBQTSBEZXZpbiBLZWxseSB2aWEgVVNSUC11c2VycyAmbHQ7PGEgaHJl
+Zj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90
+ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRk
+aW5nOjBjbSAwY20gMGNtIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20i
+Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IaSBFbWFudWVsLDxvOnA+PC9v
+OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
+L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5EaWQgeW91IGdl
+dCB0aGUgdGltZWQgR1BJTyBjb21tYW5kcyB0byB3b3JrIGZvciB5b3U/PG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyw8bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkRldmluPG86cD48L286
+cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
+L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFRodSwgRGVj
+IDUsIDIwMTkgYXQgMzozNCBBTSBFbWFudWVsIHZpYSBVU1JQLXVzZXJzICZsdDs8YSBocmVmPSJt
+YWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj51c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+
+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0ND
+QyAxLjBwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdp
+bi1yaWdodDowY20iPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
+bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFu
+IGxhbmc9IkVOLVVTIj5IaSBldmVyeWJvZHksPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
+Ym90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7PG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDph
+dXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyI+Y291bGQg
+dGhlIEdQSU9zLCBlLmcuLCBvbiBhIEIyMDBtaW5pIGJlIHNldC91bnNldCBwcmVjaXNlbHkgaW4g
+dGltZSAobGltaXRlZCB0byB0aGUgc2FtcGxpbmcgcmF0ZSB1c2VkKT88bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
+dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1h
+cmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9
+IkVOLVVTIj5CZXN0IHJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9t
+LWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyI+RW1hbnVlbDxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFpbGluZyBs
+aXN0PGJyPg0KPGEgaHJlZj0ibWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJn
+ZXQ9Il9ibGFuayI+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KPGEgaHJlZj0i
+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMu
+ZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
+L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC9hPjxvOnA+PC9vOnA+PC9wPg0K
+PC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFpbGlu
+ZyBsaXN0PGJyPg0KPGEgaHJlZj0ibWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0
+YXJnZXQ9Il9ibGFuayI+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KPGEgaHJl
+Zj0iaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
+dHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWls
+bWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC9hPjxvOnA+PC9vOnA+PC9w
+Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-> On Apr 13, 2020, at 1:59 PM, Larry Dodd via USRP-users wrote:
->
-> =EF=BB=BFSam Or Anyone,
-> My requirement is for 15 MHz bandwidth for monitoring 15 to 30 MHz. No de=
-modulation required. I=E2=80=99m confused as to which USRP unit would work =
-for this requirement. Any help will be appreciated. I don=E2=80=99t mind th=
-e cost but don=E2=80=99t want to get one that won=E2=80=99t fit my requirem=
-ent. It will be for monitoring Jupiter storms and solar flares. Thanks.
-> Larry, K4LED
->
->> On Apr 13, 2020, at 12:20 PM, usrp-users-request@lists.ettus.com wrote:
->>
->> =EF=BB=BFSend USRP-users mailing list submissions to
->> usrp-users@lists.ettus.com
->>
->> To subscribe or unsubscribe via the World Wide Web, visit
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->> or, via email, send a message with subject or body 'help' to
->> usrp-users-request@lists.ettus.com
->>
->> You can reach the person managing the list at
->> usrp-users-owner@lists.ettus.com
->>
->> When replying, please edit your Subject line so it is more specific
->> than "Re: Contents of USRP-users digest..."
->>
->>
->> Today's Topics:
->>
->> 1. Re: UBX 10-500 MHz Question (Marcus M?ller)
->>
->>
->> ----------------------------------------------------------------------
->>
->> Message: 1
->> Date: Mon, 13 Apr 2020 14:48:08 +0200
->> From: Marcus M?ller
->> To: usrp-users@lists.ettus.com
->> Subject: Re: [USRP-users] UBX 10-500 MHz Question
->> Message-ID: <1670730f-772e-0818-8e3a-825fee7dc9d5@ettus.com>
->> Content-Type: text/plain; charset=3Dutf-8
->>
->> Hi Bob, hi Sam,
->>
->> top of my head, UBX-160 doesn't even have adjustable bandwidth
->> (basically, of the modern devices, only AD9xxx-based systems have). So,
->> yeah, you'll always get a two-sided84 MHz analog bandwidth (that's how
->> you get 160 MHz in complex baseband). You'll notice when oversampling at
->> 200 MS/s that analog filters are quite a bit worse than what's
->> relatively easy to do in digital filtering in an FPGA at these rate.
->>
->> On classic Gen-3 DDC chain (I do think that's the same for the newer
->> RFNoC chain), yes, there's two 2-decimating half-band FIRs with upwards
->> of 40 taps, and a CIC to do the rest of the decimation. So, if you use a
->> sampling rate that divides the master clock rate by 4, you get two HBs,
->> if it doesn't divide by 4, but by 2, you still get one of these nicer
->> HBs, and for odd factors, you'll fully have to rely on the CIC. That's
->> not necessarily terrible, but CICs do have sinc?-y shape, so that's a
->> bit of rolloff at the edges.
->>
->> Cheers,
->> Marcus
->>>> On 10.04.20 05:44, Sam Reiter via USRP-users wrote:
->>> Bob,
->>>
->>> The 84MHz bandwidth constraint is because of the analog bandpass filter
->>> [1] on the UBX's RX signal path [2]. I'd guess that UHD will yell at you
->>> if you feed in an invalid bandwidth, but I've never tried it. If I
->>> remember correctly, you can sample at rates that aren't an even division
->>> of the MCR, you'll just end up using a CIC filter that causes rolloff in
->>> your spectrum [3].
->>>
->>> - Sam
->>>
->>> [1]?https://www.mouser.com/datasheet/2/412/55916-1504717.pdf
->>> [2]?https://files.ettus.com/schematics/ubx/UBX-160_revE.pdf
->>> [3]?https://witestlab.poly.edu/blog/why-does-my-received-spectrum-droop=
--at-the-edges/
->>>
->>> On Wed, Apr 8, 2020 at 4:49 PM Tillson, Bob (US) via USRP-users
->>> > wrote:
->>>
->>> so with the UBX-160 on an X310, there is the following caveat:____
->>>
->>> __?__
->>>
->>> * The UBX 160 transmitter path has 160 MHz of bandwidth throughout
->>> the full frequency range of the device; the receiver path has 84 MHz
->>> of bandwidth for center frequencies from 10 MHz to 500 MHz.____
->>>
->>> __?__
->>>
->>> I guess my question is how does this manifest itself?____
->>>
->>> __?__
->>>
->>> If I ask for 100 MHz of BW, do I get 84 or does it fail?____
->>>
->>> __?__
->>>
->>> How would I get 84 given the requirement of sample rate be an even
->>> divisor of 200 MHz clock?____
->>>
->>> __?__
->>>
->>> If I wanted 100 in that range, would there be any way to get it from
->>> a single channel in that band?? Most other cards don?t seem to have
->>> the BW in that range.____
->>>
->>> __?__
->>>
->>> Thanks,____
->>>
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>>
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>
->>
->>
->> ------------------------------
->>
->> Subject: Digest Footer
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->>
->> ------------------------------
->>
->> End of USRP-users Digest, Vol 116, Issue 9
->> ******************************************
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-------=_NextPart_43786926.076254922715
-Content-Type: text/html;
- charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div id=3D"__MailbirdStyleContent" style=3D"font-size: 10pt;font-family: Ar=
-ial;color: #000000">=0A                                        =0A         =
-                               =0A                                         =
-   =0A                                        =0A                          =
-              =0A                                        Marcus<div class=
-=3D"mb_sig"></div>=0A                                        =0A           =
-                             <div>OK Thanks very much.&nbsp; Appreciate the=
- help.</div><div>Larry</div><blockquote class=3D"history_container" type=3D=
-"cite" style=3D"border-left-style: solid;border-width: 1px;margin-top: 20px=
-;margin-left: 0px;padding-left: 10px;min-width: 500px">=0A                 =
-       <p style=3D"color: #AAAAAA; margin-top: 10px;">On 4/13/2020 2:11:00 =
-PM, Marcus D Leech &lt;patchvonbraun@gmail.com&gt; wrote:</p><div style=3D"=
-font-family:Arial,Helvetica,sans-serif">An N210 with an LFRX card will suit=
- your needs. =0A<br>=0A<br>You could also consider a B200 with an external =
-upconverter. =0A<br>=0A<br>Sent from my iPhone=0A<br>=0A<br>&gt; On Apr 13,=
- 2020, at 1:59 PM, Larry Dodd via USRP-users <usrp-users@lists.ettus.com> w=
-rote:=0A<br>&gt; =0A<br>&gt; =EF=BB=BFSam Or Anyone,=0A<br>&gt; My requirem=
-ent is for 15 MHz bandwidth for monitoring 15 to 30 MHz. No demodulation re=
-quired. I=E2=80=99m confused as to which USRP unit would work for this requ=
-irement.  Any help will be appreciated. I don=E2=80=99t mind the cost but d=
-on=E2=80=99t want to get one that won=E2=80=99t fit my requirement. It will=
- be for monitoring Jupiter storms and solar flares. Thanks. =0A<br>&gt; Lar=
-ry, K4LED =0A<br>&gt; =0A<br>&gt;&gt; On Apr 13, 2020, at 12:20 PM, usrp-us=
-ers-request@lists.ettus.com wrote:=0A<br>&gt;&gt; =0A<br>&gt;&gt; =EF=BB=BF=
-Send USRP-users mailing list submissions to=0A<br>&gt;&gt;   usrp-users@lis=
-ts.ettus.com=0A<br>&gt;&gt; =0A<br>&gt;&gt; To subscribe or unsubscribe via=
- the World Wide Web, visit=0A<br>&gt;&gt;   http://lists.ettus.com/mailman/=
-listinfo/usrp-users_lists.ettus.com=0A<br>&gt;&gt; or, via email, send a me=
-ssage with subject or body 'help' to=0A<br>&gt;&gt;   usrp-users-request@li=
-sts.ettus.com=0A<br>&gt;&gt; =0A<br>&gt;&gt; You can reach the person manag=
-ing the list at=0A<br>&gt;&gt;   usrp-users-owner@lists.ettus.com=0A<br>&gt=
-;&gt; =0A<br>&gt;&gt; When replying, please edit your Subject line so it is=
- more specific=0A<br>&gt;&gt; than "Re: Contents of USRP-users digest..."=
-=0A<br>&gt;&gt; =0A<br>&gt;&gt; =0A<br>&gt;&gt; Today's Topics:=0A<br>&gt;&=
-gt; =0A<br>&gt;&gt;  1. Re: UBX 10-500 MHz Question (Marcus M?ller)=0A<br>&=
-gt;&gt; =0A<br>&gt;&gt; =0A<br>&gt;&gt; -----------------------------------=
------------------------------------=0A<br>&gt;&gt; =0A<br>&gt;&gt; Message:=
- 1=0A<br>&gt;&gt; Date: Mon, 13 Apr 2020 14:48:08 +0200=0A<br>&gt;&gt; From=
-: Marcus M?ller <marcus.mueller@ettus.com>=0A<br>&gt;&gt; To: usrp-users@li=
-sts.ettus.com=0A<br>&gt;&gt; Subject: Re: [USRP-users] UBX 10-500 MHz Quest=
-ion=0A<br>&gt;&gt; Message-ID: &lt;1670730f-772e-0818-8e3a-825fee7dc9d5@ett=
-us.com&gt;=0A<br>&gt;&gt; Content-Type: text/plain; charset=3Dutf-8=0A<br>&=
-gt;&gt; =0A<br>&gt;&gt; Hi Bob, hi Sam,=0A<br>&gt;&gt; =0A<br>&gt;&gt; top =
-of my head, UBX-160 doesn't even have adjustable bandwidth=0A<br>&gt;&gt; (=
-basically, of the modern devices, only AD9xxx-based systems have). So,=0A<b=
-r>&gt;&gt; yeah, you'll always get a two-sided84 MHz analog bandwidth (that=
-'s how=0A<br>&gt;&gt; you get 160 MHz in complex baseband). You'll notice w=
-hen oversampling at=0A<br>&gt;&gt; 200 MS/s that analog filters are quite a=
- bit worse than what's=0A<br>&gt;&gt; relatively easy to do in digital filt=
-ering in an FPGA at these rate.=0A<br>&gt;&gt; =0A<br>&gt;&gt; On classic G=
-en-3 DDC chain (I do think that's the same for the newer=0A<br>&gt;&gt; RFN=
-oC chain), yes, there's two 2-decimating half-band FIRs with upwards=0A<br>=
-&gt;&gt; of 40 taps, and a CIC to do the rest of the decimation. So, if you=
- use a=0A<br>&gt;&gt; sampling rate that divides the master clock rate by 4=
-, you get two HBs,=0A<br>&gt;&gt; if it doesn't divide by 4, but by 2, you =
-still get one of these nicer=0A<br>&gt;&gt; HBs, and for odd factors, you'l=
-l fully have to rely on the CIC. That's=0A<br>&gt;&gt; not necessarily terr=
-ible, but CICs do have sinc?-y shape, so that's a=0A<br>&gt;&gt; bit of rol=
-loff at the edges.=0A<br>&gt;&gt; =0A<br>&gt;&gt; Cheers,=0A<br>&gt;&gt; Ma=
-rcus=0A<br>&gt;&gt;&gt;&gt; On 10.04.20 05:44, Sam Reiter via USRP-users wr=
-ote:=0A<br>&gt;&gt;&gt; Bob,=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt; The 84M=
-Hz bandwidth constraint is because of the analog bandpass filter=0A<br>&gt;=
-&gt;&gt; [1] on the UBX's RX signal path [2]. I'd guess that UHD will yell =
-at you=0A<br>&gt;&gt;&gt; if you feed in an invalid bandwidth, but I've nev=
-er tried it. If I=0A<br>&gt;&gt;&gt; remember correctly, you can sample at =
-rates that aren't an even division=0A<br>&gt;&gt;&gt; of the MCR, you'll ju=
-st end up using a CIC filter that causes rolloff in=0A<br>&gt;&gt;&gt; your=
- spectrum [3].=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt; - Sam=0A<br>&gt;&gt;&=
-gt; =0A<br>&gt;&gt;&gt; [1]?https://www.mouser.com/datasheet/2/412/55916-15=
-04717.pdf=0A<br>&gt;&gt;&gt; [2]?https://files.ettus.com/schematics/ubx/UBX=
--160_revE.pdf=0A<br>&gt;&gt;&gt; [3]?https://witestlab.poly.edu/blog/why-do=
-es-my-received-spectrum-droop-at-the-edges/=0A<br>&gt;&gt;&gt; =0A<br>&gt;&=
-gt;&gt; On Wed, Apr 8, 2020 at 4:49 PM Tillson, Bob (US) via USRP-users=0A<=
-br>&gt;&gt;&gt; <usrp-users@lists.ettus.com></usrp-users@lists.ettus.com><m=
-ailto:usrp-users@lists.ettus.com>&gt; wrote:=0A<br>&gt;&gt;&gt; =0A<br>&gt;=
-&gt;&gt;   so with the UBX-160 on an X310, there is the following caveat:__=
-__=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt;   __?__=0A<br>&gt;&gt;&gt; =0A<br=
->&gt;&gt;&gt;   * The UBX 160 transmitter path has 160 MHz of bandwidth thr=
-oughout=0A<br>&gt;&gt;&gt;   the full frequency range of the device; the re=
-ceiver path has 84 MHz=0A<br>&gt;&gt;&gt;   of bandwidth for center frequen=
-cies from 10 MHz to 500 MHz.____=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt;   _=
-_?__=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt;   I guess my question is how do=
-es this manifest itself?____=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt;   __?__=
-=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt;   If I ask for 100 MHz of BW, do I =
-get 84 or does it fail?____=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt;   __?__=
-=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt;   How would I get 84 given the requ=
-irement of sample rate be an even=0A<br>&gt;&gt;&gt;   divisor of 200 MHz c=
-lock?____=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt;   __?__=0A<br>&gt;&gt;&gt;=
- =0A<br>&gt;&gt;&gt;   If I wanted 100 in that range, would there be any wa=
-y to get it from=0A<br>&gt;&gt;&gt;   a single channel in that band?? Most =
-other cards don?t seem to have=0A<br>&gt;&gt;&gt;   the BW in that range.__=
-__=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt;   __?__=0A<br>&gt;&gt;&gt; =0A<br=
->&gt;&gt;&gt;   Thanks,____=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt;   ______=
-_________________________________________=0A<br>&gt;&gt;&gt;   USRP-users m=
-ailing list=0A<br>&gt;&gt;&gt;   USRP-users@lists.ettus.com <mailto:usrp-us=
-ers@lists.ettus.com>=0A<br>&gt;&gt;&gt;   http://lists.ettus.com/mailman/li=
-stinfo/usrp-users_lists.ettus.com=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt;&gt; =
-=0A<br>&gt;&gt;&gt; _______________________________________________=0A<br>&=
-gt;&gt;&gt; USRP-users mailing list=0A<br>&gt;&gt;&gt; USRP-users@lists.ett=
-us.com=0A<br>&gt;&gt;&gt; http://lists.ettus.com/mailman/listinfo/usrp-user=
-s_lists.ettus.com=0A<br>&gt;&gt;&gt; =0A<br>&gt;&gt; =0A<br>&gt;&gt; =0A<br=
->&gt;&gt; =0A<br>&gt;&gt; ------------------------------=0A<br>&gt;&gt; =0A=
-<br>&gt;&gt; Subject: Digest Footer=0A<br>&gt;&gt; =0A<br>&gt;&gt; ________=
-_______________________________________=0A<br>&gt;&gt; USRP-users mailing l=
-ist=0A<br>&gt;&gt; USRP-users@lists.ettus.com=0A<br>&gt;&gt; http://lists.e=
-ttus.com/mailman/listinfo/usrp-users_lists.ettus.com=0A<br>&gt;&gt; =0A<br>=
-&gt;&gt; =0A<br>&gt;&gt; ------------------------------=0A<br>&gt;&gt; =0A<=
-br>&gt;&gt; End of USRP-users Digest, Vol 116, Issue 9=0A<br>&gt;&gt; *****=
-*************************************=0A<br>&gt; =0A<br>&gt; ______________=
-_________________________________=0A<br>&gt; USRP-users mailing list=0A<br>=
-&gt; USRP-users@lists.ettus.com=0A<br>&gt; http://lists.ettus.com/mailman/l=
-istinfo/usrp-users_lists.ettus.com=0A<br></mailto:usrp-users@lists.ettus.co=
-m></mailto:usrp-users@lists.ettus.com><!--1670730f-772e-0818-8e3a-825fee7dc=
-9d5@ettus.com--></marcus.mueller@ettus.com></usrp-users@lists.ettus.com></d=
-iv></blockquote></div>
-------=_NextPart_43786926.076254922715--
+--_000_4034c38a95254f6d8fe37403e5b7f1d1dlrde_--
 
 
---===============2928132126283730993==
+--===============4362995183693072007==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -385,5 +266,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2928132126283730993==--
+--===============4362995183693072007==--
 
