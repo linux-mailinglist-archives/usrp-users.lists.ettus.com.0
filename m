@@ -2,50 +2,90 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F18C1AB066
-	for <lists+usrp-users@lfdr.de>; Wed, 15 Apr 2020 20:13:48 +0200 (CEST)
-Received: from [::1] (port=38094 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E19C1ABAAE
+	for <lists+usrp-users@lfdr.de>; Thu, 16 Apr 2020 10:00:08 +0200 (CEST)
+Received: from [::1] (port=50216 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jOmXe-0007Lk-M7; Wed, 15 Apr 2020 14:13:42 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:39179)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jOmXa-00079T-Lp
- for usrp-users@lists.ettus.com; Wed, 15 Apr 2020 14:13:38 -0400
-Received: by mail-ot1-f46.google.com with SMTP id m13so817384otf.6
- for <usrp-users@lists.ettus.com>; Wed, 15 Apr 2020 11:13:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=n5lw29tkTx0Z/RrR6rFleMVKypQkA9yuTCter3sNRY4=;
- b=QOlntRWrdMbj0Y4aGv9cS2lBAtrXFcDMRQcq8Ag9DwhMowrcT/fyBK3wArkU+MuxLA
- zlJJG/jBBKPjdsAhlkGCXdYDtb2AEwiC8lp1qe6CDhop8J5E5B3JzEybEIFlTrkgnf7P
- gL3O7zTZvUqjCTi5obA0MrHIPfJN27SuvlWUOe9+hEv6gERGACjCcJ3I0KIJZJUWEjQs
- dOD9C5ngZzHPq0/imf/l0Er1iGK2TFNzmDIPWdYMzKjN4+fw2VQ09BYlvbvoTn2cyh0q
- wl8ur4XELdgDEWmYZYBJqgMnPyUwXv+60hKZ7ixsn+dk3bsqXEPBENXNEum9HpJbEaWj
- iURg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=n5lw29tkTx0Z/RrR6rFleMVKypQkA9yuTCter3sNRY4=;
- b=QqnVygtKSw/Ay2M7cyMGDIuhFxaogseSufcT+MbWYhitroF47YC1oSBorMamAXh5Na
- JD6EEntXmu8TUJ+OjbTLRnFbmqPYTVMxztDnlM1cSAuyMrEO6KS1xE/6nPmKW/Uxr6Ec
- NY5o/yEmPuNGWLAIpt6SoXdIcZ/7hCKENb/LEnzmcoWKvLL7yO7MWz9xF3pu/XKZqBsN
- rQ10gHu+MSC7Y9Y0Hi8EsBZRs60jqDH8AG3w3d/kk4AELW3YJSv6uFZ0dH9y04VJEFPt
- SLWZqyKXPl6ewbdE70uv/Br6951fvAa+KOi7eAf6d9kto68O5cjZmLTWlseIbGuFR7x/
- p3mQ==
-X-Gm-Message-State: AGi0Puawq+h9HpLIk0Nf+WW3R/yKa3yd5bmur+19Ih32xngs1R6z1BnE
- vYzYWPpxHDBGm4yg5n+6O9D5iWy54aLAMgjoplPZexQL95I=
-X-Google-Smtp-Source: APiQypIs1ymY3bebnX6PnKn6hoBuKumLe/ePT0WbKTUZKJPi4Yv9o0tcESZX3asgxLpuuumkd1kDbq9MAUsNOvVGFhM=
-X-Received: by 2002:a9d:4ee:: with SMTP id 101mr22882735otm.301.1586974377753; 
- Wed, 15 Apr 2020 11:12:57 -0700 (PDT)
-MIME-Version: 1.0
+	id 1jOzRK-0001KH-OV; Thu, 16 Apr 2020 04:00:02 -0400
+Received: from mail-eopbgr60104.outbound.protection.outlook.com
+ ([40.107.6.104]:47467 helo=EUR04-DB3-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <demel@ant.uni-bremen.de>)
+ id 1jOzRF-0001GW-4D
+ for usrp-users@lists.ettus.com; Thu, 16 Apr 2020 03:59:57 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N4r9SSkINSAV/Lwl4/wGCi+75WZa/PtrW2f4mwhSsc+MyasZ0weckVyFwOhbywKbJsZzUZFSYl0toEmplBtqgWg2e7Z5r/0fF7VhU7nn1MKcsTB8do6RhOqSinLx4kKGtSUwutpAB/TRaCL3UOUrY6kWkacrCz0EtgnKxcx045Xaq39BhOIawiAvfRzxg4iEkxr5lhFOT0Tz+poaQitK9wbTN302r2DLknmVS2zLKPStgIpUHJ1SjZcV+kkEAYkueDTAiIVorlhoWUz/kGZiYI2dOyqJmP8K4PSUPotA4m3w+FZZ3NIVP3+dMFX7p547c2DT3/3dWtLn32OZ2tpkXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j7jgWsrwO9QDUdxKLISVVdm3jx8WQH5Blel6WMZ5J2g=;
+ b=hK/DC2IssSz9v7bYugYvHh2Fk4RB1hXvBOe7UX6PDnmgSnPaavaW2EeQ2jnJGuD2BfSYzMu98TR13F233z/ED1TaxgNbj/hs+gsiU0GDspIqSMv+WrCZqWxEMvsL8vzlqG2mmKvn+nyVNE8HgXhkpob5/zgisBuGVUCbHyI3tM0tZgPDJyZB8Cbl92wOdoy0OHfnQROb4mEufpJegipTxZj5yEdkoYm0GxVgIQ9cdiIlhf+pe1hz3VLRilR5dr31uNvu2rBbYY16HmNenCNbb3kMs8XTidGqadGs9bnRd+igSMwABuJjrfm7KHMzaMWT+5e3jEPRC817IYHd09nCXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
+ header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j7jgWsrwO9QDUdxKLISVVdm3jx8WQH5Blel6WMZ5J2g=;
+ b=sM7V8tg9anoaWU1LMWRb1dzUr5IZMbXxvAj3n3ecPncGNDXYqR4ECv37xfskZFQbRBLcs4zSeCjsAy+pLiXNFPxqi9FMo3kCk0ercHN5JVoV3zseK9qDGRl7rUVTLKMSwv/lxgGxHbuBAqG9SMle5XO2wfEZv/O2dB1mbi70jtg=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=demel@ant.uni-bremen.de; 
+Received: from AM6PR0402MB3398.eurprd04.prod.outlook.com (2603:10a6:209:6::15)
+ by AM6PR0402MB3399.eurprd04.prod.outlook.com (2603:10a6:209:7::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.17; Thu, 16 Apr
+ 2020 07:59:15 +0000
+Received: from AM6PR0402MB3398.eurprd04.prod.outlook.com
+ ([fe80::91ba:d0f9:3491:9c20]) by AM6PR0402MB3398.eurprd04.prod.outlook.com
+ ([fe80::91ba:d0f9:3491:9c20%7]) with mapi id 15.20.2900.028; Thu, 16 Apr 2020
+ 07:59:15 +0000
+To: Rob Kossler <rkossler@nd.edu>
 References: <c94fdf66-0e4a-4d70-9456-208a25085ee2@ant.uni-bremen.de>
  <c355c495-fb7f-f870-935b-69d94c530108@ant.uni-bremen.de>
-In-Reply-To: <c355c495-fb7f-f870-935b-69d94c530108@ant.uni-bremen.de>
-Date: Wed, 15 Apr 2020 14:12:46 -0400
-Message-ID: <CAB__hTQ4PyTRNujwWj10b3COSJPeGHEsXPMQKCR=0sTfb=Rb7A@mail.gmail.com>
-To: Johannes Demel <demel@ant.uni-bremen.de>
+ <CAB__hTQ4PyTRNujwWj10b3COSJPeGHEsXPMQKCR=0sTfb=Rb7A@mail.gmail.com>
+Message-ID: <3cbd1e23-f209-d1a4-d85c-5b9b4ee64c93@ant.uni-bremen.de>
+Date: Thu, 16 Apr 2020 09:59:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+In-Reply-To: <CAB__hTQ4PyTRNujwWj10b3COSJPeGHEsXPMQKCR=0sTfb=Rb7A@mail.gmail.com>
+Content-Language: en-US
+X-ClientProxiedBy: AM3PR04CA0132.eurprd04.prod.outlook.com (2603:10a6:207::16)
+ To AM6PR0402MB3398.eurprd04.prod.outlook.com
+ (2603:10a6:209:6::15)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from rangun.ant.uni-bremen.de
+ (2003:ca:7f19:4e00:2824:43dc:2e1d:1f52) by
+ AM3PR04CA0132.eurprd04.prod.outlook.com (2603:10a6:207::16) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2921.25 via Frontend Transport; Thu, 16 Apr 2020 07:59:14 +0000
+X-Originating-IP: [2003:ca:7f19:4e00:2824:43dc:2e1d:1f52]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cbf4953f-3c69-42db-6a0e-08d7e1dc0e87
+X-MS-TrafficTypeDiagnostic: AM6PR0402MB3399:
+X-Microsoft-Antispam-PRVS: <AM6PR0402MB3399B77F41B7234E1142584BA9D80@AM6PR0402MB3399.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-Forefront-PRVS: 0375972289
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:AM6PR0402MB3398.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(10019020)(396003)(346002)(39830400003)(376002)(136003)(366004)(786003)(7696005)(86362001)(31686004)(186003)(5660300002)(316002)(16526019)(4326008)(31696002)(53546011)(966005)(52116002)(8676002)(6486002)(2616005)(508600001)(8936002)(66946007)(66556008)(2906002)(81156014)(6916009)(66476007);
+ DIR:OUT; SFP:1102; 
+Received-SPF: None (protection.outlook.com: ant.uni-bremen.de does not
+ designate permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gNI0NY9gGMfVMcN+/KChp1D6SRMtSTWi7+9yKMeat0LpXfIY3inDsqiSPKnz9E81PL5E/yVz8oOjp8GW+ksHhdOWADIkt4d8+ttF+yZP0PS3TawV4BFy5gT0M6kZg9cXsZQ5AMhSEGu8xv7iHe5mWxBXVe+xbColadZRHWYG22ye6x2/ovShIoRTpRcHEp6HVk/zqgP3Nq5AnTuO9Kqb8EnFnVzwu7GgJLdQJJeN/NPxUY+74oNP/9U4MIz8rOb8vhZbfr2GB/1yLZC+SVKz9eU5jhH37JI6C1CDzskRs9xWa/UzE/uLDVoJ+6phbGDthJ4+IzIGl83befpGS+HqJ73I2jlpIatE9AslC1Fau+2aC+VVoFQals50YIhkuky9zrMR2fSQvEXeC7IXHBy+3v8WIak9EUWjFq+Ze7iQp65qJb4NFuzRn4UwhE7T4giQWTXlnMNbJfwGUg7t/0IVmASzcCvEQWWVaL0lZSXVN79lyAmjSqllOLcN4PC9iMUb/BVGi8fYiotJuX4FnBMosg==
+X-MS-Exchange-AntiSpam-MessageData: lORReuWQUTpPH6YNGdgJupk5Bb85RG08FR3J3dOwzRd+lanfyrfvTu4uqxeShkwb69MieY+sM8ekwPIIPOMEMsq6/SyRlx6EwZFNQLk7CNzjyj3HcB6yaHYCP2//3ZCg/MoNpKxRC88/ZmgrBRk24TM7izzshqESyJerDYTQM9FR+iYP7dvY8vZ/kOK8Mg+sDHxEZxiw0IoBn0rxVG7GBw==
+X-OriginatorOrg: ant.uni-bremen.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: cbf4953f-3c69-42db-6a0e-08d7e1dc0e87
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2020 07:59:15.0214 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f018440b-2792-4fa0-b2bd-233acaf88ad2
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TLC7dCxT7+p1m15KeLo/SqCIxz+hyWPzzBCci/T1bexivYt8eT67Zw4NMcKCkFqrMjiTUgpD8pWvEnQ867FgVg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR0402MB3399
 Subject: Re: [USRP-users] N310 remote management
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -58,10 +98,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
+From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
 Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1597712894361880896=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,367 +116,151 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1597712894361880896==
-Content-Type: multipart/alternative; boundary="0000000000000e06b305a3584409"
-
---0000000000000e06b305a3584409
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Johannes,
-I don't really have any direct answers to your questions.  But, a couple of
-remarks:
-
-   - It's not clear to me if you've completely lost access to any N310s or
-   if you've just lost access through the 1Gb RJ45.  If you still have access
-   via the SFP port, perhaps you can ssh into it and run "ip addr show" or
-   something like that to determine what the 1Gb port IP address presently
-   is.  Perhaps you can ping that from your network.
-   - You mentioned that you've had N310 issues that persist after a
-   reboot.  That is curious because it is not my experience.  The issues that
-   I've had have all gone away after rebooting.
-   - Not that this will be useful right now, but it is pretty cheap to buy
-   wifi-controlled smart outlets so that you could remotely remove/apply
-   power.  You can also set a flag on the N310 such that it will boot
-   automatically following a power failure.
-   - My experience with X310s matches yours in that they generally behave
-   themselves (relative to N310s behavior)
-
-Rob
-
-On Wed, Apr 15, 2020 at 5:36 AM Johannes Demel via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi all,
->
-> I want to give you all an update on my experience with my issues so far.
->
-> So far I didn't hear back from anyone on the mailing list, thus I went
-> forward and had someone update my network configuration.
->
-> First off, N310s are usable with both management and stream ports
-> connected. It is just important to assign those ports to different
-> subnets that are separated via their subnet masks. I assume this is
-> basic network knowledge which I had chosen to ignore.
->
-> My new network setup looks like this:
-> I have 4 N310s connected. All 4 of them have their management ports
-> connected to our network with its own subnet etc. Just like all other
-> machines are connected to this network.
-> Currently I use 2 machines with Intel X710-DA2 NICs. Each machine is
-> directly connected to 2 N310s via SFP+ cables. This setup works nicely.
-> Just put each N310 into its own subet and you're good to go.
->
->  From another machine in our network `uhd_find_devices` may look like this:
-> Device Address:
->      serial: XXXXXX
->      claimed: False
->      mgmt_addr: x.x.x.149
->      product: n310
->      reachable: No
->      type: n3xx
->
->
-> On the machine where the N310 is connected with its streaming port:
-> Device Address:
->      serial: XXXXXX
->      addr: y.y.y.217
->      claimed: False
->      mgmt_addr: x.x.x.149
->      mgmt_addr: y.y.y.217
->      product: n310
->      type: n3xx
->
-> Besides `uhd_find_devices` I check each USRP with `uhd_usrp_probe` which
-> I consider a good quick check. And further I run `benchmark_rate` with
-> each USRP to confirm that it is still able to stream samples.
->
->
-> So far so good. BUT:
->
-> What I observe is that these N310s tend to disappear from the network
-> after a week or so. I could use them last Thursday but today half of
-> them disappeared. That happened before and triggered my initial email.
->
-> Even with all N310s connected via their management ports, by now only 2
-> out of 4 are reachable via network. `uhd_find_devices` can't find them
-> anymore. Not even their management address.
->
-> Also, after a few days all N310s did not work as well as they did after
-> boot. And it didn't help to reboot them via `reboot now`. My experience
-> in such situations is that it just helps to have physical access to
-> them. Unplug them etc. And of course, this is impossible at the moment.
->
-> Interestingly, I have 2 X310s connected to another machine and these
-> X310s are still up and running. I never had issues with these devices
-> disappearing after a while.
->
-> I use all USRPs with UHD 3.15LTS. All SDimages are flashed with this
-> version.
-> I use this guide for bmaptool to flash all of them:
->
-> https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card#Using_bmaptool_to_write_the_disk_image
-> It's way faster than `dd`.
-> X310s are in sync with UHD3.15LTS via `uhd_images_downloader &&
-> uhd_image_loader`.
->
-> It would be great to be able to manage those N310s remotely over a
-> longer period of time. Occasional reboot wouldn't be an issue as long as
-> all devices are reliably available without quirks.
->
-> Did I stumble over a known issue here? Is this something new? Are my
-> devices broken? How do I debug this? Is something else going on? Do I
-> need to provide more info?
->
-> Cheers
-> Johannes
->
->
-> On 27.03.20 09:41, Johannes Demel via USRP-users wrote:
-> > Hi all,
-> >
-> > last week I set up the N310s we have with UHD3.15LTS to run in our
-> > network. By now, most of them are not accessible remotely anymore. Since
-> > I don't have physical access to them anymore, I'd like to figure out a
-> > way to reliably manage them before someone fixes the immediate issue for
-> > me.
-> >
-> > I've seen 2 error patterns.
-> >
-> > 1. A N310 may not get a lock on its PLL anymore. Even after a reboot or
-> > "force_reinit=1"
-> >
-> > 2. N310s disappear from the network. Or they are unresponsive or I can't
-> > log into them via ssh anymore to reboot them.
-> >
-> > I use Ubuntu 18.04 with UHD3.15LTS without any RFNoC.
-> >
-> > Currently, all N310s are only connected via an SFP+ port. In the past, I
-> > had issues with an additional connection via the management port. So I
-> > currently do not connect them via the management port.
-> >
-> > Does it help to connect the USRPs via their management port? Would I be
-> > able to manage them more reliably?
-> >
-> > How do I make this setup work? Is it sufficient to assign them to
-> > different subnets? Can I assign them different IP addresses on the same
-> > subnet? Do I need to physically separate the two networks?
-> >
-> > It would be great to hear from people's experience how to set up their
-> > N310s.
-> >
-> > Cheers
-> > Johannes
-> >
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000000e06b305a3584409
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Johannes,<div>I don&#39;t really have =
-any direct answers to your questions.=C2=A0 But, a couple of remarks:</div>=
-<div><ul><li>It&#39;s not clear to me if you&#39;ve completely lost access =
-to any N310s or if you&#39;ve just lost access through the 1Gb RJ45.=C2=A0 =
-If you still have access via the SFP port, perhaps you can ssh into it and =
-run &quot;ip addr show&quot; or something like that to determine what the 1=
-Gb port IP address presently is.=C2=A0 Perhaps you can ping that from your =
-network.</li><li>You mentioned that you&#39;ve had N310 issues that persist=
- after a reboot.=C2=A0 That is curious because it is not my experience.=C2=
-=A0 The issues that I&#39;ve had have all gone away after rebooting.</li><l=
-i>Not that this will be useful right now, but it is pretty cheap to buy wif=
-i-controlled smart outlets so that you could remotely remove/apply power.=
-=C2=A0 You can also set a flag on the N310 such that it will boot automatic=
-ally following a power failure.</li><li>My experience with X310s matches yo=
-urs in that they generally behave themselves (relative to N310s behavior)</=
-li></ul><div>Rob</div></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Wed, Apr 15, 2020 at 5:36 AM Johannes Deme=
-l via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-use=
-rs@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">Hi all,<br>
-<br>
-I want to give you all an update on my experience with my issues so far.<br=
->
-<br>
-So far I didn&#39;t hear back from anyone on the mailing list, thus I went =
-<br>
-forward and had someone update my network configuration.<br>
-<br>
-First off, N310s are usable with both management and stream ports <br>
-connected. It is just important to assign those ports to different <br>
-subnets that are separated via their subnet masks. I assume this is <br>
-basic network knowledge which I had chosen to ignore.<br>
-<br>
-My new network setup looks like this:<br>
-I have 4 N310s connected. All 4 of them have their management ports <br>
-connected to our network with its own subnet etc. Just like all other <br>
-machines are connected to this network.<br>
-Currently I use 2 machines with Intel X710-DA2 NICs. Each machine is <br>
-directly connected to 2 N310s via SFP+ cables. This setup works nicely. <br=
->
-Just put each N310 into its own subet and you&#39;re good to go.<br>
-<br>
-=C2=A0From another machine in our network `uhd_find_devices` may look like =
-this:<br>
-Device Address:<br>
-=C2=A0 =C2=A0 =C2=A0serial: XXXXXX<br>
-=C2=A0 =C2=A0 =C2=A0claimed: False<br>
-=C2=A0 =C2=A0 =C2=A0mgmt_addr: x.x.x.149<br>
-=C2=A0 =C2=A0 =C2=A0product: n310<br>
-=C2=A0 =C2=A0 =C2=A0reachable: No<br>
-=C2=A0 =C2=A0 =C2=A0type: n3xx<br>
-<br>
-<br>
-On the machine where the N310 is connected with its streaming port:<br>
-Device Address:<br>
-=C2=A0 =C2=A0 =C2=A0serial: XXXXXX<br>
-=C2=A0 =C2=A0 =C2=A0addr: y.y.y.217<br>
-=C2=A0 =C2=A0 =C2=A0claimed: False<br>
-=C2=A0 =C2=A0 =C2=A0mgmt_addr: x.x.x.149<br>
-=C2=A0 =C2=A0 =C2=A0mgmt_addr: y.y.y.217<br>
-=C2=A0 =C2=A0 =C2=A0product: n310<br>
-=C2=A0 =C2=A0 =C2=A0type: n3xx<br>
-<br>
-Besides `uhd_find_devices` I check each USRP with `uhd_usrp_probe` which <b=
-r>
-I consider a good quick check. And further I run `benchmark_rate` with <br>
-each USRP to confirm that it is still able to stream samples.<br>
-<br>
-<br>
-So far so good. BUT:<br>
-<br>
-What I observe is that these N310s tend to disappear from the network <br>
-after a week or so. I could use them last Thursday but today half of <br>
-them disappeared. That happened before and triggered my initial email.<br>
-<br>
-Even with all N310s connected via their management ports, by now only 2 <br=
->
-out of 4 are reachable via network. `uhd_find_devices` can&#39;t find them =
-<br>
-anymore. Not even their management address.<br>
-<br>
-Also, after a few days all N310s did not work as well as they did after <br=
->
-boot. And it didn&#39;t help to reboot them via `reboot now`. My experience=
- <br>
-in such situations is that it just helps to have physical access to <br>
-them. Unplug them etc. And of course, this is impossible at the moment.<br>
-<br>
-Interestingly, I have 2 X310s connected to another machine and these <br>
-X310s are still up and running. I never had issues with these devices <br>
-disappearing after a while.<br>
-<br>
-I use all USRPs with UHD 3.15LTS. All SDimages are flashed with this <br>
-version.<br>
-I use this guide for bmaptool to flash all of them:<br>
-<a href=3D"https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_=
-a_SD_Card#Using_bmaptool_to_write_the_disk_image" rel=3D"noreferrer" target=
-=3D"_blank">https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to=
-_a_SD_Card#Using_bmaptool_to_write_the_disk_image</a><br>
-It&#39;s way faster than `dd`.<br>
-X310s are in sync with UHD3.15LTS via `uhd_images_downloader &amp;&amp; <br=
->
-uhd_image_loader`.<br>
-<br>
-It would be great to be able to manage those N310s remotely over a <br>
-longer period of time. Occasional reboot wouldn&#39;t be an issue as long a=
-s <br>
-all devices are reliably available without quirks.<br>
-<br>
-Did I stumble over a known issue here? Is this something new? Are my <br>
-devices broken? How do I debug this? Is something else going on? Do I <br>
-need to provide more info?<br>
-<br>
-Cheers<br>
-Johannes<br>
-<br>
-<br>
-On 27.03.20 09:41, Johannes Demel via USRP-users wrote:<br>
-&gt; Hi all,<br>
-&gt; <br>
-&gt; last week I set up the N310s we have with UHD3.15LTS to run in our <br=
->
-&gt; network. By now, most of them are not accessible remotely anymore. Sin=
-ce <br>
-&gt; I don&#39;t have physical access to them anymore, I&#39;d like to figu=
-re out a <br>
-&gt; way to reliably manage them before someone fixes the immediate issue f=
-or <br>
-&gt; me.<br>
-&gt; <br>
-&gt; I&#39;ve seen 2 error patterns.<br>
-&gt; <br>
-&gt; 1. A N310 may not get a lock on its PLL anymore. Even after a reboot o=
-r <br>
-&gt; &quot;force_reinit=3D1&quot;<br>
-&gt; <br>
-&gt; 2. N310s disappear from the network. Or they are unresponsive or I can=
-&#39;t <br>
-&gt; log into them via ssh anymore to reboot them.<br>
-&gt; <br>
-&gt; I use Ubuntu 18.04 with UHD3.15LTS without any RFNoC.<br>
-&gt; <br>
-&gt; Currently, all N310s are only connected via an SFP+ port. In the past,=
- I <br>
-&gt; had issues with an additional connection via the management port. So I=
- <br>
-&gt; currently do not connect them via the management port.<br>
-&gt; <br>
-&gt; Does it help to connect the USRPs via their management port? Would I b=
-e <br>
-&gt; able to manage them more reliably?<br>
-&gt; <br>
-&gt; How do I make this setup work? Is it sufficient to assign them to <br>
-&gt; different subnets? Can I assign them different IP addresses on the sam=
-e <br>
-&gt; subnet? Do I need to physically separate the two networks?<br>
-&gt; <br>
-&gt; It would be great to hear from people&#39;s experience how to set up t=
-heir <br>
-&gt; N310s.<br>
-&gt; <br>
-&gt; Cheers<br>
-&gt; Johannes<br>
-&gt; <br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-
---0000000000000e06b305a3584409--
-
-
---===============1597712894361880896==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============1597712894361880896==--
-
+SGkgUm9iLAoKdGhhbmtzIGZvciB5b3VyIHJlcGx5LiBPZiBjb3Vyc2UsIEknZCBsaWtlIHRvIGNs
+YXJpZnkgYXMgbXVjaCBhcyAKcG9zc2libGUuIEkgYW5zd2VyIGluIGxpbmUuCgpDaGVlcnMKSm9o
+YW5uZXMKCk9uIDE1LjA0LjIwIDIwOjEyLCBSb2IgS29zc2xlciB3cm90ZToKPiBIaSBKb2hhbm5l
+cywKPiBJIGRvbid0IHJlYWxseSBoYXZlIGFueSBkaXJlY3QgYW5zd2VycyB0byB5b3VyIHF1ZXN0
+aW9ucy7CoCBCdXQsIGEgY291cGxlIAo+IG9mIHJlbWFya3M6Cj4gCj4gICAqIEl0J3Mgbm90IGNs
+ZWFyIHRvIG1lIGlmIHlvdSd2ZSBjb21wbGV0ZWx5IGxvc3QgYWNjZXNzIHRvIGFueSBOMzEwcwo+
+ICAgICBvciBpZiB5b3UndmUganVzdCBsb3N0IGFjY2VzcyB0aHJvdWdoIHRoZSAxR2IgUko0NS7C
+oCBJZiB5b3Ugc3RpbGwKPiAgICAgaGF2ZSBhY2Nlc3MgdmlhIHRoZSBTRlAgcG9ydCwgcGVyaGFw
+cyB5b3UgY2FuIHNzaCBpbnRvIGl0IGFuZCBydW4KPiAgICAgImlwIGFkZHIgc2hvdyIgb3Igc29t
+ZXRoaW5nIGxpa2UgdGhhdCB0byBkZXRlcm1pbmUgd2hhdCB0aGUgMUdiIHBvcnQKPiAgICAgSVAg
+YWRkcmVzcyBwcmVzZW50bHkgaXMuwqAgUGVyaGFwcyB5b3UgY2FuIHBpbmcgdGhhdCBmcm9tIHlv
+dXIgbmV0d29yay4KSSBsb3N0IGFjY2VzcyB0byB0aGVtIGNvbXBsZXRlbHkuIFRoZXkgZG9uJ3Qg
+c2hvdyB1cCB3aXRoIApgdWhkX2ZpbmRfZGV2aWNlc2AgYW55bW9yZS4gVGhleSBjYW4ndCBiZSBk
+aXNjb3ZlcmVkIHdpdGggYG5tYXAgLXNuYCAKZXRjLiBObyBwaW5nLiBBbHNvLCBib3RoIHRoZWly
+IGludGVyZmFjZXMgYXJlIGRvd24gdGhlIFJKNDUgbWFuYWdlbWVudCAKcG9ydCBhbmQgdGhlIFNG
+UCsgcG9ydC4KCj4gICAqIFlvdSBtZW50aW9uZWQgdGhhdCB5b3UndmUgaGFkIE4zMTAgaXNzdWVz
+IHRoYXQgcGVyc2lzdCBhZnRlciBhCj4gICAgIHJlYm9vdC7CoCBUaGF0IGlzIGN1cmlvdXMgYmVj
+YXVzZSBpdCBpcyBub3QgbXkgZXhwZXJpZW5jZS7CoCBUaGUKPiAgICAgaXNzdWVzIHRoYXQgSSd2
+ZSBoYWQgaGF2ZSBhbGwgZ29uZSBhd2F5IGFmdGVyIHJlYm9vdGluZy4KVGhhdCB3YXMgbXkgaG9w
+ZSBhbmQgZXhwZXJpZW5jZSB0b28uCiogVGhlIE4zMTAgZmFpbHMgdG8gc2V0dGxlIHNvbWUgaW50
+ZXJuYWwgaW5pdC4gKGUuZy4gUExMIGxvY2spIGFuZCB0aHVzIApJIGNhbid0IHJ1biBhbnkgdGVz
+dHMgZS5nLiBgdWhkX3VzcnBfcHJvYmVgIG9yIGBiZW5jaG1hcmtfcmF0ZWAuIE9mIApjb3Vyc2Ug
+YW55dGhpbmcgZWxzZSBmYWlscyB0b28uCiogTWVhc3VyZWQgbGF0ZW5jeSBqdW1wcyB3aWxkbHku
+IFdpdGggcmVhbC10aW1lIHNjaGVkdWxpbmcgYW5kIGRpcmVjdGx5IAphdHRhY2hlZCBVU1JQcywg
+SSB1c3VhbGx5IHNlZSBlMmUgbGF0ZW5jaWVzIChwYWNrZXQgZW50ZXJpbmcgVFggY2hhaW4sIApw
+YWNrZXQgbGVhdmluZyBSWCBjaGFpbikgYmVsb3cgMW1zLiBBZnRlciBydW5uaW5nIHRob3NlIFVT
+UlBzIGZvciBhIApjb3VwbGUgb2YgZGF5cywgdGhpcyBiZWhhdmlvciBzdWRkZW5seSBjaGFuZ2Vk
+LiBOb3cgbGF0ZW5jeSBmb2xsb3dzIGEgCnNhdyBsaW5lLiBKdW1waW5nIHRvIH4uM3MgYW5kIGdv
+aW5nIGRvd24gZ3JhZHVhbGx5IHRvIDwxbXMgZm9yIG9uZSBmcmFtZSAKdGhlbiBqdW1waW5nIHVw
+IGFnYWluLiBJZiBJIHJlbW92ZSBteSBoYXJkd2FyZSBmcm9tIHRoaXMgYXBwbGljYXRpb24gKEkg
+Cmp1c3QgY29ubmVjdCBteSBUWCB0byBteSBSWCBjaGFpbiBpbiBHUkMpIGxhdGVuY3kgc3RheXMg
+YmVsb3cgMW1zLiBTaW5jZSAKaXQgd29ya2VkIGZvciBhIHdoaWxlIHdpdGggaGFyZHdhcmUgYW5k
+IHRoZW4gc3VkZGVubHkgc3RvcHBlZCwgSSBzdXNwZWN0IAp0aGVyZSdzIHNtdGggd3Jvbmcgd2l0
+aCB0aG9zZSBOMzEwcy4gUmVib290IGRpZG4ndCBoZWxwLgoKPiAgICogTm90IHRoYXQgdGhpcyB3
+aWxsIGJlIHVzZWZ1bCByaWdodCBub3csIGJ1dCBpdCBpcyBwcmV0dHkgY2hlYXAgdG8KPiAgICAg
+YnV5IHdpZmktY29udHJvbGxlZCBzbWFydCBvdXRsZXRzIHNvIHRoYXQgeW91IGNvdWxkIHJlbW90
+ZWx5Cj4gICAgIHJlbW92ZS9hcHBseSBwb3dlci7CoCBZb3UgY2FuIGFsc28gc2V0IGEgZmxhZyBv
+biB0aGUgTjMxMCBzdWNoIHRoYXQKPiAgICAgaXQgd2lsbCBib290IGF1dG9tYXRpY2FsbHkgZm9s
+bG93aW5nIGEgcG93ZXIgZmFpbHVyZS4KSSdsbCBwcm9iYWJseSBoYXZlIHRvIGdvIHRoYXQgcm91
+dGUuIEFuZCBJJ20gc2FkIEkgaGF2ZSB0by4KCj4gICAqIE15IGV4cGVyaWVuY2Ugd2l0aCBYMzEw
+cyBtYXRjaGVzIHlvdXJzIGluIHRoYXQgdGhleSBnZW5lcmFsbHkgYmVoYXZlCj4gICAgIHRoZW1z
+ZWx2ZXMgKHJlbGF0aXZlIHRvIE4zMTBzIGJlaGF2aW9yKQo+IAo+IFJvYgo+IAo+IE9uIFdlZCwg
+QXByIDE1LCAyMDIwIGF0IDU6MzYgQU0gSm9oYW5uZXMgRGVtZWwgdmlhIFVTUlAtdXNlcnMgCj4g
+PHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20+PiB3cm90ZToKPiAKPiAgICAgSGkgYWxsLAo+IAo+ICAgICBJIHdhbnQgdG8gZ2l2ZSB5
+b3UgYWxsIGFuIHVwZGF0ZSBvbiBteSBleHBlcmllbmNlIHdpdGggbXkgaXNzdWVzIHNvIGZhci4K
+PiAKPiAgICAgU28gZmFyIEkgZGlkbid0IGhlYXIgYmFjayBmcm9tIGFueW9uZSBvbiB0aGUgbWFp
+bGluZyBsaXN0LCB0aHVzIEkgd2VudAo+ICAgICBmb3J3YXJkIGFuZCBoYWQgc29tZW9uZSB1cGRh
+dGUgbXkgbmV0d29yayBjb25maWd1cmF0aW9uLgo+IAo+ICAgICBGaXJzdCBvZmYsIE4zMTBzIGFy
+ZSB1c2FibGUgd2l0aCBib3RoIG1hbmFnZW1lbnQgYW5kIHN0cmVhbSBwb3J0cwo+ICAgICBjb25u
+ZWN0ZWQuIEl0IGlzIGp1c3QgaW1wb3J0YW50IHRvIGFzc2lnbiB0aG9zZSBwb3J0cyB0byBkaWZm
+ZXJlbnQKPiAgICAgc3VibmV0cyB0aGF0IGFyZSBzZXBhcmF0ZWQgdmlhIHRoZWlyIHN1Ym5ldCBt
+YXNrcy4gSSBhc3N1bWUgdGhpcyBpcwo+ICAgICBiYXNpYyBuZXR3b3JrIGtub3dsZWRnZSB3aGlj
+aCBJIGhhZCBjaG9zZW4gdG8gaWdub3JlLgo+IAo+ICAgICBNeSBuZXcgbmV0d29yayBzZXR1cCBs
+b29rcyBsaWtlIHRoaXM6Cj4gICAgIEkgaGF2ZSA0IE4zMTBzIGNvbm5lY3RlZC4gQWxsIDQgb2Yg
+dGhlbSBoYXZlIHRoZWlyIG1hbmFnZW1lbnQgcG9ydHMKPiAgICAgY29ubmVjdGVkIHRvIG91ciBu
+ZXR3b3JrIHdpdGggaXRzIG93biBzdWJuZXQgZXRjLiBKdXN0IGxpa2UgYWxsIG90aGVyCj4gICAg
+IG1hY2hpbmVzIGFyZSBjb25uZWN0ZWQgdG8gdGhpcyBuZXR3b3JrLgo+ICAgICBDdXJyZW50bHkg
+SSB1c2UgMiBtYWNoaW5lcyB3aXRoIEludGVsIFg3MTAtREEyIE5JQ3MuIEVhY2ggbWFjaGluZSBp
+cwo+ICAgICBkaXJlY3RseSBjb25uZWN0ZWQgdG8gMiBOMzEwcyB2aWEgU0ZQKyBjYWJsZXMuIFRo
+aXMgc2V0dXAgd29ya3MgbmljZWx5Lgo+ICAgICBKdXN0IHB1dCBlYWNoIE4zMTAgaW50byBpdHMg
+b3duIHN1YmV0IGFuZCB5b3UncmUgZ29vZCB0byBnby4KPiAKPiAgICAgIMKgRnJvbSBhbm90aGVy
+IG1hY2hpbmUgaW4gb3VyIG5ldHdvcmsgYHVoZF9maW5kX2RldmljZXNgIG1heSBsb29rCj4gICAg
+IGxpa2UgdGhpczoKPiAgICAgRGV2aWNlIEFkZHJlc3M6Cj4gICAgICDCoCDCoCDCoHNlcmlhbDog
+WFhYWFhYCj4gICAgICDCoCDCoCDCoGNsYWltZWQ6IEZhbHNlCj4gICAgICDCoCDCoCDCoG1nbXRf
+YWRkcjogeC54LnguMTQ5Cj4gICAgICDCoCDCoCDCoHByb2R1Y3Q6IG4zMTAKPiAgICAgIMKgIMKg
+IMKgcmVhY2hhYmxlOiBObwo+ICAgICAgwqAgwqAgwqB0eXBlOiBuM3h4Cj4gCj4gCj4gICAgIE9u
+IHRoZSBtYWNoaW5lIHdoZXJlIHRoZSBOMzEwIGlzIGNvbm5lY3RlZCB3aXRoIGl0cyBzdHJlYW1p
+bmcgcG9ydDoKPiAgICAgRGV2aWNlIEFkZHJlc3M6Cj4gICAgICDCoCDCoCDCoHNlcmlhbDogWFhY
+WFhYCj4gICAgICDCoCDCoCDCoGFkZHI6IHkueS55LjIxNwo+ICAgICAgwqAgwqAgwqBjbGFpbWVk
+OiBGYWxzZQo+ICAgICAgwqAgwqAgwqBtZ210X2FkZHI6IHgueC54LjE0OQo+ICAgICAgwqAgwqAg
+wqBtZ210X2FkZHI6IHkueS55LjIxNwo+ICAgICAgwqAgwqAgwqBwcm9kdWN0OiBuMzEwCj4gICAg
+ICDCoCDCoCDCoHR5cGU6IG4zeHgKPiAKPiAgICAgQmVzaWRlcyBgdWhkX2ZpbmRfZGV2aWNlc2Ag
+SSBjaGVjayBlYWNoIFVTUlAgd2l0aCBgdWhkX3VzcnBfcHJvYmVgCj4gICAgIHdoaWNoCj4gICAg
+IEkgY29uc2lkZXIgYSBnb29kIHF1aWNrIGNoZWNrLiBBbmQgZnVydGhlciBJIHJ1biBgYmVuY2ht
+YXJrX3JhdGVgIHdpdGgKPiAgICAgZWFjaCBVU1JQIHRvIGNvbmZpcm0gdGhhdCBpdCBpcyBzdGls
+bCBhYmxlIHRvIHN0cmVhbSBzYW1wbGVzLgo+IAo+IAo+ICAgICBTbyBmYXIgc28gZ29vZC4gQlVU
+Ogo+IAo+ICAgICBXaGF0IEkgb2JzZXJ2ZSBpcyB0aGF0IHRoZXNlIE4zMTBzIHRlbmQgdG8gZGlz
+YXBwZWFyIGZyb20gdGhlIG5ldHdvcmsKPiAgICAgYWZ0ZXIgYSB3ZWVrIG9yIHNvLiBJIGNvdWxk
+IHVzZSB0aGVtIGxhc3QgVGh1cnNkYXkgYnV0IHRvZGF5IGhhbGYgb2YKPiAgICAgdGhlbSBkaXNh
+cHBlYXJlZC4gVGhhdCBoYXBwZW5lZCBiZWZvcmUgYW5kIHRyaWdnZXJlZCBteSBpbml0aWFsIGVt
+YWlsLgo+IAo+ICAgICBFdmVuIHdpdGggYWxsIE4zMTBzIGNvbm5lY3RlZCB2aWEgdGhlaXIgbWFu
+YWdlbWVudCBwb3J0cywgYnkgbm93IG9ubHkgMgo+ICAgICBvdXQgb2YgNCBhcmUgcmVhY2hhYmxl
+IHZpYSBuZXR3b3JrLiBgdWhkX2ZpbmRfZGV2aWNlc2AgY2FuJ3QgZmluZCB0aGVtCj4gICAgIGFu
+eW1vcmUuIE5vdCBldmVuIHRoZWlyIG1hbmFnZW1lbnQgYWRkcmVzcy4KPiAKPiAgICAgQWxzbywg
+YWZ0ZXIgYSBmZXcgZGF5cyBhbGwgTjMxMHMgZGlkIG5vdCB3b3JrIGFzIHdlbGwgYXMgdGhleSBk
+aWQgYWZ0ZXIKPiAgICAgYm9vdC4gQW5kIGl0IGRpZG4ndCBoZWxwIHRvIHJlYm9vdCB0aGVtIHZp
+YSBgcmVib290IG5vd2AuIE15IGV4cGVyaWVuY2UKPiAgICAgaW4gc3VjaCBzaXR1YXRpb25zIGlz
+IHRoYXQgaXQganVzdCBoZWxwcyB0byBoYXZlIHBoeXNpY2FsIGFjY2VzcyB0bwo+ICAgICB0aGVt
+LiBVbnBsdWcgdGhlbSBldGMuIEFuZCBvZiBjb3Vyc2UsIHRoaXMgaXMgaW1wb3NzaWJsZSBhdCB0
+aGUgbW9tZW50Lgo+IAo+ICAgICBJbnRlcmVzdGluZ2x5LCBJIGhhdmUgMiBYMzEwcyBjb25uZWN0
+ZWQgdG8gYW5vdGhlciBtYWNoaW5lIGFuZCB0aGVzZQo+ICAgICBYMzEwcyBhcmUgc3RpbGwgdXAg
+YW5kIHJ1bm5pbmcuIEkgbmV2ZXIgaGFkIGlzc3VlcyB3aXRoIHRoZXNlIGRldmljZXMKPiAgICAg
+ZGlzYXBwZWFyaW5nIGFmdGVyIGEgd2hpbGUuCj4gCj4gICAgIEkgdXNlIGFsbCBVU1JQcyB3aXRo
+IFVIRCAzLjE1TFRTLiBBbGwgU0RpbWFnZXMgYXJlIGZsYXNoZWQgd2l0aCB0aGlzCj4gICAgIHZl
+cnNpb24uCj4gICAgIEkgdXNlIHRoaXMgZ3VpZGUgZm9yIGJtYXB0b29sIHRvIGZsYXNoIGFsbCBv
+ZiB0aGVtOgo+ICAgICBodHRwczovL2tiLmV0dHVzLmNvbS9Xcml0aW5nX3RoZV9VU1JQX0ZpbGVf
+U3lzdGVtX0Rpc2tfSW1hZ2VfdG9fYV9TRF9DYXJkI1VzaW5nX2JtYXB0b29sX3RvX3dyaXRlX3Ro
+ZV9kaXNrX2ltYWdlCj4gICAgIEl0J3Mgd2F5IGZhc3RlciB0aGFuIGBkZGAuCj4gICAgIFgzMTBz
+IGFyZSBpbiBzeW5jIHdpdGggVUhEMy4xNUxUUyB2aWEgYHVoZF9pbWFnZXNfZG93bmxvYWRlciAm
+Jgo+ICAgICB1aGRfaW1hZ2VfbG9hZGVyYC4KPiAKPiAgICAgSXQgd291bGQgYmUgZ3JlYXQgdG8g
+YmUgYWJsZSB0byBtYW5hZ2UgdGhvc2UgTjMxMHMgcmVtb3RlbHkgb3ZlciBhCj4gICAgIGxvbmdl
+ciBwZXJpb2Qgb2YgdGltZS4gT2NjYXNpb25hbCByZWJvb3Qgd291bGRuJ3QgYmUgYW4gaXNzdWUg
+YXMKPiAgICAgbG9uZyBhcwo+ICAgICBhbGwgZGV2aWNlcyBhcmUgcmVsaWFibHkgYXZhaWxhYmxl
+IHdpdGhvdXQgcXVpcmtzLgo+IAo+ICAgICBEaWQgSSBzdHVtYmxlIG92ZXIgYSBrbm93biBpc3N1
+ZSBoZXJlPyBJcyB0aGlzIHNvbWV0aGluZyBuZXc/IEFyZSBteQo+ICAgICBkZXZpY2VzIGJyb2tl
+bj8gSG93IGRvIEkgZGVidWcgdGhpcz8gSXMgc29tZXRoaW5nIGVsc2UgZ29pbmcgb24/IERvIEkK
+PiAgICAgbmVlZCB0byBwcm92aWRlIG1vcmUgaW5mbz8KPiAKPiAgICAgQ2hlZXJzCj4gICAgIEpv
+aGFubmVzCj4gCj4gCj4gICAgIE9uIDI3LjAzLjIwIDA5OjQxLCBKb2hhbm5lcyBEZW1lbCB2aWEg
+VVNSUC11c2VycyB3cm90ZToKPiAgICAgID4gSGkgYWxsLAo+ICAgICAgPgo+ICAgICAgPiBsYXN0
+IHdlZWsgSSBzZXQgdXAgdGhlIE4zMTBzIHdlIGhhdmUgd2l0aCBVSEQzLjE1TFRTIHRvIHJ1biBp
+biBvdXIKPiAgICAgID4gbmV0d29yay4gQnkgbm93LCBtb3N0IG9mIHRoZW0gYXJlIG5vdCBhY2Nl
+c3NpYmxlIHJlbW90ZWx5Cj4gICAgIGFueW1vcmUuIFNpbmNlCj4gICAgICA+IEkgZG9uJ3QgaGF2
+ZSBwaHlzaWNhbCBhY2Nlc3MgdG8gdGhlbSBhbnltb3JlLCBJJ2QgbGlrZSB0byBmaWd1cmUKPiAg
+ICAgb3V0IGEKPiAgICAgID4gd2F5IHRvIHJlbGlhYmx5IG1hbmFnZSB0aGVtIGJlZm9yZSBzb21l
+b25lIGZpeGVzIHRoZSBpbW1lZGlhdGUKPiAgICAgaXNzdWUgZm9yCj4gICAgICA+IG1lLgo+ICAg
+ICAgPgo+ICAgICAgPiBJJ3ZlIHNlZW4gMiBlcnJvciBwYXR0ZXJucy4KPiAgICAgID4KPiAgICAg
+ID4gMS4gQSBOMzEwIG1heSBub3QgZ2V0IGEgbG9jayBvbiBpdHMgUExMIGFueW1vcmUuIEV2ZW4g
+YWZ0ZXIgYQo+ICAgICByZWJvb3Qgb3IKPiAgICAgID4gImZvcmNlX3JlaW5pdD0xIgo+ICAgICAg
+Pgo+ICAgICAgPiAyLiBOMzEwcyBkaXNhcHBlYXIgZnJvbSB0aGUgbmV0d29yay4gT3IgdGhleSBh
+cmUgdW5yZXNwb25zaXZlIG9yCj4gICAgIEkgY2FuJ3QKPiAgICAgID4gbG9nIGludG8gdGhlbSB2
+aWEgc3NoIGFueW1vcmUgdG8gcmVib290IHRoZW0uCj4gICAgICA+Cj4gICAgICA+IEkgdXNlIFVi
+dW50dSAxOC4wNCB3aXRoIFVIRDMuMTVMVFMgd2l0aG91dCBhbnkgUkZOb0MuCj4gICAgICA+Cj4g
+ICAgICA+IEN1cnJlbnRseSwgYWxsIE4zMTBzIGFyZSBvbmx5IGNvbm5lY3RlZCB2aWEgYW4gU0ZQ
+KyBwb3J0LiBJbiB0aGUKPiAgICAgcGFzdCwgSQo+ICAgICAgPiBoYWQgaXNzdWVzIHdpdGggYW4g
+YWRkaXRpb25hbCBjb25uZWN0aW9uIHZpYSB0aGUgbWFuYWdlbWVudCBwb3J0Lgo+ICAgICBTbyBJ
+Cj4gICAgICA+IGN1cnJlbnRseSBkbyBub3QgY29ubmVjdCB0aGVtIHZpYSB0aGUgbWFuYWdlbWVu
+dCBwb3J0Lgo+ICAgICAgPgo+ICAgICAgPiBEb2VzIGl0IGhlbHAgdG8gY29ubmVjdCB0aGUgVVNS
+UHMgdmlhIHRoZWlyIG1hbmFnZW1lbnQgcG9ydD8KPiAgICAgV291bGQgSSBiZQo+ICAgICAgPiBh
+YmxlIHRvIG1hbmFnZSB0aGVtIG1vcmUgcmVsaWFibHk/Cj4gICAgICA+Cj4gICAgICA+IEhvdyBk
+byBJIG1ha2UgdGhpcyBzZXR1cCB3b3JrPyBJcyBpdCBzdWZmaWNpZW50IHRvIGFzc2lnbiB0aGVt
+IHRvCj4gICAgICA+IGRpZmZlcmVudCBzdWJuZXRzPyBDYW4gSSBhc3NpZ24gdGhlbSBkaWZmZXJl
+bnQgSVAgYWRkcmVzc2VzIG9uCj4gICAgIHRoZSBzYW1lCj4gICAgICA+IHN1Ym5ldD8gRG8gSSBu
+ZWVkIHRvIHBoeXNpY2FsbHkgc2VwYXJhdGUgdGhlIHR3byBuZXR3b3Jrcz8KPiAgICAgID4KPiAg
+ICAgID4gSXQgd291bGQgYmUgZ3JlYXQgdG8gaGVhciBmcm9tIHBlb3BsZSdzIGV4cGVyaWVuY2Ug
+aG93IHRvIHNldCB1cAo+ICAgICB0aGVpcgo+ICAgICAgPiBOMzEwcy4KPiAgICAgID4KPiAgICAg
+ID4gQ2hlZXJzCj4gICAgICA+IEpvaGFubmVzCj4gICAgICA+Cj4gICAgICA+IF9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gICAgICA+IFVTUlAtdXNlcnMg
+bWFpbGluZyBsaXN0Cj4gICAgICA+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxtYWlsdG86
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Cj4gICAgICA+IGh0dHA6Ly9saXN0cy5ldHR1cy5j
+b20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+IAo+ICAgICBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ICAgICBVU1JQ
+LXVzZXJzIG1haWxpbmcgbGlzdAo+ICAgICBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFp
+bHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+ICAgICBodHRwOi8vbGlzdHMuZXR0dXMu
+Y29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFp
+bGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5j
+b20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
