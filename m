@@ -2,53 +2,84 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B1BD1AE8AB
-	for <lists+usrp-users@lfdr.de>; Sat, 18 Apr 2020 01:42:22 +0200 (CEST)
-Received: from [::1] (port=44710 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA5B11AF554
+	for <lists+usrp-users@lfdr.de>; Sun, 19 Apr 2020 00:22:19 +0200 (CEST)
+Received: from [::1] (port=48140 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jPack-0006vl-Ao; Fri, 17 Apr 2020 19:42:18 -0400
-Received: from mail-io1-f53.google.com ([209.85.166.53]:35529)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <adray0001@gmail.com>) id 1jPacg-0006r2-1m
- for usrp-users@lists.ettus.com; Fri, 17 Apr 2020 19:42:14 -0400
-Received: by mail-io1-f53.google.com with SMTP id w20so4275184iob.2
- for <usrp-users@lists.ettus.com>; Fri, 17 Apr 2020 16:41:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=vULxPKkARZ6xn3iyZ3NQjkm4qG7PTRXum/d790cJwso=;
- b=CgLMU/GvYs/rV2Mjv0unEx+1Fg8CTFagQN9AX+FsRkL0WJVYqu5b5I1M7Csi1kLrdF
- BsCf+9Z8uIsOnXm//XODz4bgfJT9wQiebQEKkL7wQzMlaLS8+iLlskPF4gq+SlubCgKn
- 9rXXyQtrndyW2PTFrN68PzxcWTyaZm/C26QHzI5ThP9VFTQ3bLcRb8Wm3IBKuLXPqZ+x
- iqvqjs+aFl+/QEbGYj8h2Bl4YxFGEt4UhMFM5zCLUmpqe1t/B5/afjKQ6a5uO7MQKQ5L
- r6W6bfTX8+o9gYUo12tjpZrst4o0HIFPLJNMcZUvOvYFiCAoSzA2FTfcieYtRWEc9B7x
- 5Kvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=vULxPKkARZ6xn3iyZ3NQjkm4qG7PTRXum/d790cJwso=;
- b=XjkbExWxSu8vcKNsNZE1iPAb0eT/91ITlQGOzYbtE5M8XPshhfy473Q2Q/Km6B+zHc
- mgkaXcenckMcJqSBAkuIKd/NABNwvLSYW+huWp5mXueqqW60D6WCpRrziDXPXcZBz6cn
- obkORSHSaEKE4dF7d4pXivL+QiY/5MkaMxyVkqJAP2miIA+bkvLdoibq0+PyCtr8XsLP
- SgXxD6/+1cKNDQsVLzUFBDupolJK93PstwkR+/NAMPXoDOK5ry5hryGCw2vNyjfFxIoz
- e7sAxmryX2hKJruq8WCcElY9n3RX2BkYeZJ0NwQGFgnQ+KWX8QNlMdeixcXr7muBcOpA
- cNog==
-X-Gm-Message-State: AGi0PubpRHtwY5wj7wBtfqSsr7l5KvdXYaBwkr3+fsY7W3Vb25CeWOT4
- jJ//bWbYB0LbdjfZ9CaTZy9OLQcfVmxaM4TOmJM=
-X-Google-Smtp-Source: APiQypIHpa8dc9Fv1nYpJGaCSbrxWcwX8UALufWhJChU93r0OIoEddlNH3Rm3FUpTh7lKYpJrRisnHvPh/NF/KwmBtM=
-X-Received: by 2002:a5d:8459:: with SMTP id w25mr5690029ior.35.1587166893190; 
- Fri, 17 Apr 2020 16:41:33 -0700 (PDT)
+	id 1jPvqn-0001eF-VD; Sat, 18 Apr 2020 18:22:13 -0400
+Received: from mail-oln040092254095.outbound.protection.outlook.com
+ ([40.92.254.95]:45568 helo=APC01-PU1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <snehasish.cse@live.com>)
+ id 1jPvqj-0001aW-TD
+ for usrp-users@lists.ettus.com; Sat, 18 Apr 2020 18:22:10 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aUUgeHl4cywUHyD05dfsQ5vP3wrei/9Je0m2yLGlYQF5AjG/IHoSH08Nw2t9pJJXhVad2pefFnqweIXw26Dg8/S37bY8VwqcASRlDw271UdvXJy0VKdrFKycFaTXH37e4J67BqjhcVd5Dt/g4x81PKXF45StCZF42gc7J6PTFsHbnFfsIx9kPQ98EjL9gjSYZKdut0g8Q/DZl4BR9t8m+1q/FM24ci6lCAjpMLtNEvF5p0dErJkyl+sIQYeA1wJQ3EXV9ZEVKIt/Yla0HRpA4m6zc7FWYhANp2TV2nqHURd3jJ1veGqpl6A7dtpxByEboSrXcEVysoD3LqswVEm++w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lajrkT6PUsGKcNZeo7BBoeKM4S2Eficeckkc6oKs+FM=;
+ b=MnCusfCGLHDYQe7iouIhhB0RZGHnqwewmnl4kTphMBPsors9O+oGyRzOCePtZJYH27cmRNm0ycp5CxvtuYGfjgxa6EJI2JqNUEwLcQrOtxiQQcD7PfbXRD8LlWPyt5mvQ3F0og1i33WmFW9ANtcQr7Jm2O0VhTelXq2zxVhsPwsM3kyYcyQ8jRjHSyBsykqkz4vq0qCg7St5/sZo7sxQSwO/1v0UTNi2g5Xq4lCs3Cw4dCBHsuTwTsevFMcdNjfaTEyctMYJxMsqPsQKV1H96JLRq/rbGdeY1uz1LEEZxjqF2gulVMWwcB60Q0HA1wmBl0FhNVGcg+oNYWdgG4K6kg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lajrkT6PUsGKcNZeo7BBoeKM4S2Eficeckkc6oKs+FM=;
+ b=Uqnd5KQrGf30zy4VkbBsQu/RvGUa96XdAIPd7kzXkUgyUzlK7ssDSCFz2gVs09aO5HAH0kvWk0A0sRKXvQDYVhpqDiNnWVyCggrUi2oz3+FhPVOQZULX1UcyQB2X2uzJzxrri8pk2StvbPlw6qomVFoG0ADdI6INHrjih3xUe7I6Nya7I7tZ8Rk1IeOBd2Z1apHsK7KmQDODJZtIL3DXyrs1lSBsaajYn8uLFYSJAhJlv1FKQuWq0HKuT1yL+43M9J/FVvppgLHKSQiib2kdEh3OukLCsSHpv0Le5hcrXI0CtA462JBwrelAlFK6bUEjYVSQ7r690l4jZfG2EmAfKA==
+Received: from SG2APC01FT063.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebd::43) by
+ SG2APC01HT059.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebd::263)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.25; Sat, 18 Apr
+ 2020 22:21:25 +0000
+Received: from BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM (10.152.250.59) by
+ SG2APC01FT063.mail.protection.outlook.com (10.152.251.186) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2921.25 via Frontend Transport; Sat, 18 Apr 2020 22:21:25 +0000
+Received: from BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::847d:5ffa:5836:553d]) by BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::847d:5ffa:5836:553d%7]) with mapi id 15.20.2921.027; Sat, 18 Apr 2020
+ 22:21:25 +0000
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Thread-Topic: [USRP-users] Fractional downsampling in rfnoc
+Thread-Index: AQHWFD4S3p9nAtH5HEib5hstP8Q0q6h9d92AgAH+gWw=
+Date: Sat, 18 Apr 2020 22:21:25 +0000
+Message-ID: <BM1PR01MB33488D7B9DC5AE9AF435234088D60@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
+References: <BM1PR01MB33485647B95F4EB1A185B53E88D80@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>,
+ <CAL7q81tGgXZQDNxq9FGViThnFkWE+3YSeLaebKrqP6OqCw1XvA@mail.gmail.com>
+In-Reply-To: <CAL7q81tGgXZQDNxq9FGViThnFkWE+3YSeLaebKrqP6OqCw1XvA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:59F61E113FA2C2E0E91DEEA2900304867727E30404D7C103CECE98A0E5965CFC;
+ UpperCasedChecksum:8D2A87E715CD6E4FF2D3EBFCA46ECBAF9EED05DFB1C61580BDF5115928347AB3;
+ SizeAsReceived:7068; Count:46
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [y/uOxdjyuTh5ZhiOTSFFKnXxm36dLBlc]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 46
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: f2217a71-4fdb-48ae-c771-08d7e3e6d546
+x-ms-traffictypediagnostic: SG2APC01HT059:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ZM24e5qnudVXuck1CKH4Gb1GA4TJ6GjHinC6JlDpxe6mV7DgkdSYEZVx7417qD8t0ob8c8bmFedZkvpadwmpalT2K8ZbhJhzuat5DUYLtUDCmGm7ZPE+e+koCR4tBKS7NyOQsIZ2y4H6KbtMIrtquMbRIGGQLWjSu/eUhHwTKOV8UmKM9N/X1itEn31bAGFWOgaV9TvuFGDEUshFIMizBdML829rsjeo57CPU5XYDejLkV1YOPf5gWdf7PjpMs3K
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:0; SRV:;
+ IPV:NLI; SFV:NSPM; H:BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFTY:; SFS:; DIR:OUT; SFP:1901; 
+x-ms-exchange-antispam-messagedata: H/LcutQs9E99aKr+QPbJ+QYQB58Xqb2lWU3584fqY4xzuSYw7X8yrnUebVGPj9cs58izceKif42MUqeLcZrB7YDLPq8VmJSjvPJP0K3ojkRHKzg+cu3Dfu29A8PBxfTJi9yf8ceCxrOCl+8lbHBvTQ==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CAPRRyxupfiy8YpfrZR_xfAq4jQdhQq-JaaF_CUK3B6X820F6=g@mail.gmail.com>
- <CAGNhwTP+9VjAP=NphtoFcJmNn7wd5Rhd3N7z5K1ugtMa+94FUg@mail.gmail.com>
- <CAB__hTRZbQAuzbnJ1vQX8ZszRpzqnUhO_ozu0nTOPzrkQ=PP0w@mail.gmail.com>
- <CAGNhwTOMH8Ef3pCu2pHc=Ww9ENaoHCUY6Dz0KJ76cd9kL-H1xQ@mail.gmail.com>
-In-Reply-To: <CAGNhwTOMH8Ef3pCu2pHc=Ww9ENaoHCUY6Dz0KJ76cd9kL-H1xQ@mail.gmail.com>
-Date: Sat, 18 Apr 2020 02:41:22 +0300
-Message-ID: <CAPRRyxvAx3TMtG5fKR2A8-3NGsPd3=rZtSdcdqu8511=+KeB_Q@mail.gmail.com>
-To: Michael Dickens <michael.dickens@ettus.com>
-Subject: Re: [USRP-users] GPIO setup via gnuradio
+X-OriginatorOrg: live.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2217a71-4fdb-48ae-c771-08d7e3e6d546
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Apr 2020 22:21:25.5533 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2APC01HT059
+Subject: Re: [USRP-users] Fractional downsampling in rfnoc
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,11 +91,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>,
- discuss-gnuradio <discuss-gnuradio@gnu.org>, Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============8482623466267711925=="
+From: Snehasish Kar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Snehasish Kar <snehasish.cse@live.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6081944126273604408=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,181 +108,177 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8482623466267711925==
-Content-Type: multipart/alternative; boundary="000000000000de364705a38516a8"
+--===============6081944126273604408==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BM1PR01MB33488D7B9DC5AE9AF435234088D60BM1PR01MB3348INDP_"
 
---000000000000de364705a38516a8
-Content-Type: text/plain; charset="UTF-8"
+--_000_BM1PR01MB33488D7B9DC5AE9AF435234088D60BM1PR01MB3348INDP_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Honestly, I have worked very little with gnuradio and do not quite
-understand what it means to transfer a UHD USRP object. If it does not make
-it difficult for you to show how it works, I will greatly appreciate it.
+Hello Jonathon
 
-=D0=BF=D1=82, 17 =D0=B0=D0=BF=D1=80. 2020 =D0=B3. =D0=B2 21:27, Michael Dic=
-kens <michael.dickens@ettus.com>:
+Tried building the fractional downsampler from synchronous labs and have en=
+countered the following error:
+source file was generated for simulation and is not permitted as input to s=
+ynthesis [/home/snehasish/rfnoc-SynchronousLabs/rfnoc/fpga-src/fract_dec_fi=
+lter.vhd:241995]
 
-> Ohh ... nice! I didn't know gr-uhd provided that interface! A quick searc=
-h
-> shows it's in GR as of sometime in version 3.7 .. not sure how far back,
-> but certainly in the current release. Good to know!
->
-> Note that this gr-uhd GPIO API is available in Python (via SWIG) as well
-> as C++ ... BUT: it is not exposed into GRC.
->
-> Hence, to use the UHD GPIO API inside GRC, you'll still need to do what I
-> wrote previously: provide the UHD USRP object to your custom GRC block
-> (whether Python or C++), and then it can manipulate the USRP GPIO via the
-> gr-uhd Python provided API, or directly in C++ via the UHD C++ API for GP=
-IO.
->
-> Fun fun fun! - MLD
->
->
-> On Fri, Apr 17, 2020 at 1:36 PM Rob Kossler <rkossler@nd.edu> wrote:
->
->> The following link (GR documentation) shows some UHD GPIO functionality.
->> https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__block.html
->>
->> On Fri, Apr 17, 2020 at 10:27 AM Michael Dickens via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
->>
->>> Hi Ivan - I'm assuming you mean configure and control a USRP's GPIO via
->>> UHD in GNU Radio?
->>>
->>> In theory this should be possible, at least in C++ and of course it
->>> requires that the specific USRP have GPIO ...
->>>
->>> I'm not sure if there's a Python GPIO API as of UHD 3.15, but if there
->>> is then that method should work about the same as the C++ method.
->>>
->>> You'd have to get access to the instantiated USRP object, then you can
->>> use that object to issue GPIO related calls. See these pages for more i=
-nfo
->>> about GPIO in UHD:
->>>
->>> < https://files.ettus.com/manual/page_gpio_api.html >
->>>
->>> <
->>> https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_=
-UHD#Example:_Using_Timed_Commands_to_Control_GPIO
->>>  >
->>>
->>> <
->>> https://github.com/EttusResearch/uhd/blob/master/host/examples/gpio.cpp
->>>  >
->>>
->>> I can't think of a current GNU Radio block that handles UHD USRP GPIO.
->>> If you look around & can't find one, then you'd need to create a custom=
- GNU
->>> Radio block to handle this. You would pass your new block the USRP obje=
-ct,
->>> which you'd then use for the GPIO calls ... using Python or C++ dependi=
-ng
->>> on which API is available for your specific UHD.
->>>
->>> Maybe there's another way that I don't know of? If so hopefully others
->>> will add to the discussion!
->>>
->>> Hope this is useful! - MLD
->>>
->>> On Fri, Apr 17, 2020 at 9:15 AM Ivan Zahartchuk via USRP-users <
->>> usrp-users@lists.ettus.com> wrote:
->>>
->>>> Hello. Please tell me if it is possible to configure GPIO using
->>>> gnuradio. I want to use RFNOC blocks and switch an external device usi=
-ng
->>>> GPIO
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>
+Can you please help me with it.
 
---000000000000de364705a38516a8
-Content-Type: text/html; charset="UTF-8"
+Regards
+Snehasish
+________________________________
+From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Sent: Friday, April 17, 2020 9:22 PM
+To: Snehasish Kar <snehasish.cse@live.com>
+Cc: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Fractional downsampling in rfnoc
+
+Hello Snehasish,
+
+Unfortunately, the standard library of blocks does not have a Fractional De=
+cimator. Your best bet is to try to use the one made by Synchronous Labs a =
+few years ago. Their code is on github here: https://github.com/Synchronous=
+Labs/rfnoc-SynchronousLabs. Since it was built, RFNoC has had some changes =
+that will need to be fixed, but I think this is your only option versus wri=
+ting one from scratch.
+
+Jonathon
+
+On Thu, Apr 16, 2020 at 6:35 PM Snehasish Kar via USRP-users <usrp-users@li=
+sts.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
+Hello
+
+I am trying to use the RFNOC based M/2 channelizer from https://github.com/=
+theseus-cores/theseus-cores/releases/tag/v1.1.0 . I am trying to divide 25 =
+MHz spectrum into 124 subchannels each of bandwidth 200KHz. I am capturing =
+the signal at 200msps and I need to decimate it to 25.6msps(25MHz/128 chann=
+els). Please help me in understanding how this can be achieved using RFNoC,=
+ is there=92s any block already defined for fractional downsampling.
+
+Thanks & Regards
+Snehasish
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--_000_BM1PR01MB33488D7B9DC5AE9AF435234088D60BM1PR01MB3348INDP_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br class=3D"gmail-Apple-interchange-newline"><span style=
-=3D"font-family:arial,sans-serif;font-size:28px;white-space:pre-wrap;backgr=
-ound-color:rgb(248,249,250)"></span>Honestly, I have worked very little wit=
-h gnuradio and do not quite understand what it means to transfer a UHD USRP=
- object. If it does not make it difficult for you to show how it works, I w=
-ill greatly appreciate it.<br></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">=D0=BF=D1=82, 17 =D0=B0=D0=BF=D1=80. 2020 =D0=
-=B3. =D0=B2 21:27, Michael Dickens &lt;<a href=3D"mailto:michael.dickens@et=
-tus.com">michael.dickens@ettus.com</a>&gt;:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" s=
-tyle=3D"font-family:verdana,sans-serif">Ohh ... nice! I didn&#39;t know gr-=
-uhd provided that interface! A quick search shows it&#39;s in GR as of some=
-time in version 3.7 .. not sure how far back, but certainly in the current =
-release. Good to know!</div><div class=3D"gmail_default" style=3D"font-fami=
-ly:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font=
--family:verdana,sans-serif">Note that this gr-uhd GPIO API is available in =
-Python (via SWIG) as well as C++ ... BUT: it is not exposed into GRC.</div>=
-<div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><br><=
-/div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif">=
-Hence, to use the UHD GPIO API inside GRC, you&#39;ll still need to do what=
- I wrote previously: provide the UHD USRP object to your custom GRC block (=
-whether Python or C++), and then it can manipulate the USRP GPIO via the gr=
--uhd Python provided API, or directly in C++ via the UHD C++ API for GPIO.<=
-/div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif">=
-<br></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-se=
-rif">Fun fun fun! - MLD</div><br></div><br><div class=3D"gmail_quote"><div =
-dir=3D"ltr" class=3D"gmail_attr">On Fri, Apr 17, 2020 at 1:36 PM Rob Kossle=
-r &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div dir=3D"ltr"><div>The following link (GR documentation) shows some UHD G=
-PIO functionality.</div><a href=3D"https://www.gnuradio.org/doc/doxygen/cla=
-ssgr_1_1uhd_1_1usrp__block.html" target=3D"_blank">https://www.gnuradio.org=
-/doc/doxygen/classgr_1_1uhd_1_1usrp__block.html</a><br></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Apr 17, 2020=
- at 10:27 AM Michael Dickens via USRP-users &lt;<a href=3D"mailto:usrp-user=
-s@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wro=
-te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
-ltr"><div dir=3D"ltr">Hi Ivan - I&#39;m assuming you mean configure and con=
-trol a USRP&#39;s GPIO via UHD in GNU Radio?</div><div dir=3D"ltr"><br></di=
-v><div dir=3D"ltr">In theory this should be possible, at least in C++ and o=
-f course it requires that the specific USRP have GPIO ...=C2=A0</div><div d=
-ir=3D"ltr"><br></div><div dir=3D"ltr">I&#39;m not sure if there&#39;s a Pyt=
-hon GPIO API as of UHD 3.15, but if there is then that method should work a=
-bout the same as the C++ method.<div><br></div><div>You&#39;d have to get a=
-ccess to the instantiated USRP object, then you can use that object to issu=
-e GPIO related calls. See these pages for more info about GPIO in UHD:</div=
-><div><br><div>&lt;=C2=A0<a href=3D"https://files.ettus.com/manual/page_gpi=
-o_api.html" target=3D"_blank">https://files.ettus.com/manual/page_gpio_api.=
-html</a> &gt;</div><div><br></div><div>&lt;=C2=A0<a href=3D"https://kb.ettu=
-s.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD#Example:_Using_=
-Timed_Commands_to_Control_GPIO" target=3D"_blank">https://kb.ettus.com/Sync=
-hronizing_USRP_Events_Using_Timed_Commands_in_UHD#Example:_Using_Timed_Comm=
-ands_to_Control_GPIO</a>=C2=A0&gt;<br></div><div><br></div><div>&lt;=C2=A0<=
-a href=3D"https://github.com/EttusResearch/uhd/blob/master/host/examples/gp=
-io.cpp" target=3D"_blank">https://github.com/EttusResearch/uhd/blob/master/=
-host/examples/gpio.cpp</a>=C2=A0&gt;</div><div><br></div><div>I can&#39;t t=
-hink of a current GNU Radio block that handles UHD USRP GPIO. If you look a=
-round &amp; can&#39;t find one, then you&#39;d need to create a custom GNU =
-Radio block to handle this. You would pass your new block the USRP object, =
-which you&#39;d then use for the GPIO calls ... using Python or C++ dependi=
-ng on which API is available for your specific UHD.</div><div><br></div><di=
-v>Maybe there&#39;s another way that I don&#39;t know of? If so hopefully o=
-thers will add to the discussion!</div><div><br></div><div>Hope this is use=
-ful! - MLD</div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
- class=3D"gmail_attr">On Fri, Apr 17, 2020 at 9:15 AM Ivan Zahartchuk via U=
-SRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blan=
-k">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div dir=3D"ltr">Hello. Please tell me if it i=
-s possible to configure  GPIO using gnuradio. I want to use RFNOC blocks an=
-d switch an external device using GPIO</div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Hello Jonathon <br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Tried building the fractional downsampler from synchronous labs and have en=
+countered the following error:</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<span>source file was generated for simulation and is not permitted as inpu=
+t to synthesis [/home/snehasish/rfnoc-SynchronousLabs/rfnoc/fpga-src/fract_=
+dec_filter.vhd:241995]</span></div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Can you please help me with it.<br>
+<span></span><span></span></div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Regards</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Snehasish<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Jonathon Pendlum &lt;=
+jonathon.pendlum@ettus.com&gt;<br>
+<b>Sent:</b> Friday, April 17, 2020 9:22 PM<br>
+<b>To:</b> Snehasish Kar &lt;snehasish.cse@live.com&gt;<br>
+<b>Cc:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
+>
+<b>Subject:</b> Re: [USRP-users] Fractional downsampling in rfnoc</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">Hello Snehasish,
+<div><br>
+</div>
+<div>Unfortunately, the standard library of blocks does not have a Fraction=
+al Decimator. Your best bet is to try to use the one made by Synchronous La=
+bs a few years ago. Their code is on github here:&nbsp;<a href=3D"https://g=
+ithub.com/SynchronousLabs/rfnoc-SynchronousLabs">https://github.com/Synchro=
+nousLabs/rfnoc-SynchronousLabs</a>.
+ Since it was built, RFNoC has had some changes that will need to be fixed,=
+ but I think this is your only option versus writing one from scratch.</div=
+>
+<div><br>
+</div>
+<div>Jonathon</div>
+</div>
+<br>
+<div class=3D"x_gmail_quote">
+<div dir=3D"ltr" class=3D"x_gmail_attr">On Thu, Apr 16, 2020 at 6:35 PM Sne=
+hasish Kar via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com"=
+>usrp-users@lists.ettus.com</a>&gt; wrote:<br>
+</div>
+<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bord=
+er-left:1px solid rgb(204,204,204); padding-left:1ex">
+<div>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div>Hello&nbsp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">I am trying to use the RFNOC based M/2 channelizer from&nb=
+sp;<a href=3D"https://github.com/theseus-cores/theseus-cores/releases/tag/v=
+1.1.0" target=3D"_blank">https://github.com/theseus-cores/theseus-cores/rel=
+eases/tag/v1.1.0</a>&nbsp;. I am trying to divide
+ 25 MHz spectrum into 124 subchannels each of bandwidth 200KHz. I am captur=
+ing the signal at 200msps and I need to decimate it to 25.6msps(25MHz/128 c=
+hannels).&nbsp;Please help me in understanding how this can be achieved usi=
+ng RFNoC, is there=92s any block already
+ defined for fractional downsampling.</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Thanks &amp; Regards&nbsp;</div>
+<div dir=3D"ltr">Snehasish&nbsp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div id=3D"x_gmail-m_-7099343062042280710ms-outlook-mobile-signature">Get <=
+a href=3D"https://aka.ms/o0ukef" target=3D"_blank">
+Outlook for iOS</a></div>
+</div>
+</div>
+</div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -260,22 +286,16 @@ lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
+</blockquote>
+</div>
+</div>
+</body>
+</html>
 
---000000000000de364705a38516a8--
+--_000_BM1PR01MB33488D7B9DC5AE9AF435234088D60BM1PR01MB3348INDP_--
 
 
---===============8482623466267711925==
+--===============6081944126273604408==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -286,5 +306,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8482623466267711925==--
+--===============6081944126273604408==--
 
