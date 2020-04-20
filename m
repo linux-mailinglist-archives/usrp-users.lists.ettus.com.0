@@ -2,62 +2,87 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C76D1B1468
-	for <lists+usrp-users@lfdr.de>; Mon, 20 Apr 2020 20:24:04 +0200 (CEST)
-Received: from [::1] (port=34036 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC25F1B1472
+	for <lists+usrp-users@lfdr.de>; Mon, 20 Apr 2020 20:26:45 +0200 (CEST)
+Received: from [::1] (port=37794 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jQb5O-0001li-Pu; Mon, 20 Apr 2020 14:24:02 -0400
-Received: from mxcp02out.l3harris.com ([166.20.196.24]:19783)
+	id 1jQb80-0002TX-SJ; Mon, 20 Apr 2020 14:26:44 -0400
+Received: from mail-oln040092004069.outbound.protection.outlook.com
+ ([40.92.4.69]:1600 helo=NAM02-CY1-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <prvs=3720f0ab8=Dan.Harris@l3harris.com>)
- id 1jQb5L-0001Ro-3B
- for usrp-users@lists.ettus.com; Mon, 20 Apr 2020 14:23:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=l3harris.com; i=@l3harris.com; q=dns/txt; s=mail;
- t=1587407039; x=1618943039;
- h=from:to:subject:date:message-id:mime-version;
- bh=IziSnNDA+zCW3Os68Ioc9uTx4mH7ad9sxjooI619KmI=;
- b=TtqzHpTYNMMAdvXhLN+RkbQYtZe89ClwhvdeT8E4ieHOSTd6L6zkTD/V
- YaF4OTrqPGdCkXT+mCqjwZxzsk3BF84QC4OTnkFFdKVwQ47J6AbVWBtFE
- M6IAH7YVd1o1rEoxpodhAlQQ+eoQf0VAjbvnYaR2e3MnX/FvVM4DJXVP5
- RhIVn2By8/MdXga9LXCnAoL/pnTbMWiaxYgkBVY/VRBtlLh4kFJrAu+/i
- GcbWuh+hD+G5qG8tl/5guIJl9tnQzLoENEiNHalLA0Sf3CgAvNU6cX2ff
- 5uaoFBeyetNvC7lzx20BOQeImCV292jH6CqarNjLK2+mNyJFC8qXVdzD7 w==;
-Received: from unknown (HELO mlbxsmtp03.harris.com) ([192.52.234.95])
- by mxcp02out.l3harris.com with ESMTP/TLS/DHE-RSA-AES256-SHA256;
- 20 Apr 2020 18:23:18 +0000
-X-AuditID: c034ea5e-97bff70000000a9b-f5-5e9de895b2bb
-Received: from MLBXCH13.cs.myharris.net ( [10.64.224.131])
- (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
- (Client did not present a certificate)
- by mlbxsmtp03.harris.com (mail) with SMTP id D1.32.02715.598ED9E5;
- Mon, 20 Apr 2020 14:23:17 -0400 (EDT)
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Cygwin build of E310_SG3
-Thread-Index: AdYXPSd+rSWSqZqBRcuOdOf2k6nLjw==
-Date: Mon, 20 Apr 2020 18:23:16 +0000
-Message-ID: <eb1fa60c44c4410a814e83a4fdf45df9@MLBXCH12.cs.myharris.net>
+ (Exim 4.93) (envelope-from <e070832@hotmail.com>) id 1jQb7w-0002LN-9O
+ for usrp-users@lists.ettus.com; Mon, 20 Apr 2020 14:26:40 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=msV/GCF5Iibw6kckn74gE5I7qOlX3pLz0+H6/wSzIpjqUC1XmD0lt3OmDGrB+LF3nSXmT9RzoAyAMG4R2fBJD9LOTBzYmwiKhQJR5YyMEGj5fm9hP3cP11D9qghd2NMJaa+TBhIoWITKKglXqt8r4+9S0FOjCeH+OTKGhHhbAW9RWguSwpaqz1srPiuF+xdvX7dfsIY9273vMquk+9mXUXfoIjNQ5fnJrA5IzofWLQ7Oe+J15FgmKBV19qOVD7dbv2YUWoFW9F8y1FpHnQ7Ouh+cQxr5lG/kdaOieDhe1U311MExc3256pTEY2aaj8GojC+HB1b+8lzEJHyAsfAZWw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RhioJfnbfBTBnbiHrFXc6jrIvQHFMaa3Lx2WuQ6+3sM=;
+ b=Z/ZEYaz1n/e4uqstoGYCTv5jvClzEYJBORzSb1GktBmCOyCn3YFo7a5ohvhAmosE59+KkUX+TlDdt/sYRn+2YE01T7MYAoTlFonDKxl9hhhEEFQm9VFi7WNFit4hVU3QDnfxbS7NMEHgnqFKijrvZA1c3wRuFrXvp2u7JAIlmx+ukegd4ETjEdrrtBi++Fu297bfaMOB2zeVDpQibNXS9DxfHqh0Sh+EUSr7S2lV8auuZ38BTlSIpudlefE8vcaawgZf1NNb+vtxHnFsBybQ/94JQw84A/Wyjd3ZGos/LjNGE1M0gdtFyUliifb2bYOGeNHmGiGFAe8iHCiSTZfknQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RhioJfnbfBTBnbiHrFXc6jrIvQHFMaa3Lx2WuQ6+3sM=;
+ b=e9H/Ur0ee4E1GYgI4V3WAxd8Zx01OU+7gyWAbDS/mP2Gc9dpRpzzMYN4N5L4uUuctQnT3kz+Uu1ufITM3Viv+QmUDerLGgR70dR4Z5QzMieQqAPe8rP76fwNbtTN2NWYcpTlRAGr8TlqnQCudbCh5IHUH3i2TT9pW7D/OXLlF4AyCND1p/jrI8246QrJ/p5/EtpSPko33IUVfNsHu2jRheX/00lGaNlb1rYKsMMMPMhwybFjkRVW1Tq7R5VmCj+G1UvFkHBvXh0/ezI5KeF5Hgvcpq/xnRQ3xq66cZUCF5J1rTAmgwecOvYfZruud62tbneqyjsFgntlQka8dYYxIg==
+Received: from CY1NAM02FT029.eop-nam02.prod.protection.outlook.com
+ (10.152.74.52) by CY1NAM02HT014.eop-nam02.prod.protection.outlook.com
+ (10.152.75.4) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.25; Mon, 20 Apr
+ 2020 18:25:58 +0000
+Received: from BN8PR19MB2659.namprd19.prod.outlook.com
+ (2a01:111:e400:7e45::4e) by CY1NAM02FT029.mail.protection.outlook.com
+ (2a01:111:e400:7e45::399) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.25 via Frontend
+ Transport; Mon, 20 Apr 2020 18:25:58 +0000
+Received: from BN8PR19MB2659.namprd19.prod.outlook.com
+ ([fe80::998:affc:1787:81d9]) by BN8PR19MB2659.namprd19.prod.outlook.com
+ ([fe80::998:affc:1787:81d9%4]) with mapi id 15.20.2921.027; Mon, 20 Apr 2020
+ 18:25:58 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, AKINYELE
+ ITAMAKINDE <aitamakinde@abuad.edu.ng>, Kyle A Logue <kyle.a.logue@aero.org>
+Thread-Topic: [USRP-users] Conversion of .dat file to a readable data using
+ GNU octave
+Thread-Index: AQHWEzJ85ex9dHh2wUKhWI0dQ/nRAaiCS3mAgAAOzM4=
+Date: Mon, 20 Apr 2020 18:25:57 +0000
+Message-ID: <BN8PR19MB265976BB8C07918290652993A4D40@BN8PR19MB2659.namprd19.prod.outlook.com>
+References: <CAD-eGGoiu=aswUWerQ7cDVYm-FVmJ6jRSoe+9WcKNdfPTsKW-g@mail.gmail.com>,
+ <BY5PR09MB4520E299D24A13BDA43947A5B9D40@BY5PR09MB4520.namprd09.prod.outlook.com>
+In-Reply-To: <BY5PR09MB4520E299D24A13BDA43947A5B9D40@BY5PR09MB4520.namprd09.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL1Byb2Zlc3Npb25hbFNhbXBsZSIsImlkIjoiN2IyYWZhZGQtNWExYS00MWI1LTllMjItMjM5NTg1ZWE4Y2Y4IiwicHJvcHMiOlt7Im4iOiJDTEFTU0lGSUNBVElPTiIsInZhbHMiOlt7InZhbHVlIjoiR2VuZXJhbCJ9XX1dfSwiU3ViamVjdExhYmVscyI6W10sIlRNQ1ZlcnNpb24iOiIxOC44LjE5MTAuMTQwIiwiVHJ1c3RlZExhYmVsSGFzaCI6InRJWjlvdXcxSlNnN2NOcDBIY05kTm1HbVpnUWE5Q2lGamkzTFpSSXhZNmtubmttd3FuM3l0bElFMkNwOFF3UnAifQ==
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.64.224.66]
+x-incomingtopheadermarker: OriginalChecksum:FEADE19AAF4B7859FC7C7932F9F88CC4F5941664A40C2A17E801C1953C080275;
+ UpperCasedChecksum:58BB5C6D85CFDC8B615459E3C79801BB6A880021BD3003E1879C27C11C742CEC;
+ SizeAsReceived:7157; Count:45
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [0raFCuwIW6R1pT6VyooBeOtXGg9R51wr]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 45
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 1f0d48af-bffa-43b7-9808-08d7e5584568
+x-ms-traffictypediagnostic: CY1NAM02HT014:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: qtyCFR5u5rL+fbu7nmxXIEwElGRXy5sLPOlzUG+4w5DgNsHCMoWR8pdQgG3drX5DMocCHST7HXPLoy/b4jQYGz6Dk3Vfi/vN1JLFgStNqRdpS86i46P9XbzrxLOF9E0upfXU+iR8k7MPCaWdztiLsAY5WuTrTxacjnd9M/vujz83+zcXOdJINoPakDWNpeU5WMXQCGF9alKE3JX6rwgq+Q==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:0; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR19MB2659.namprd19.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:; SFS:; DIR:OUT; SFP:1901; 
+x-ms-exchange-antispam-messagedata: Qdkpqg+6yDN3oIdoMKFtkru7BR8/8luOiu488Fn+wE7hwmU/Cf08vCobG8CaNQu6//1tbrElq9F2XL7uVydA+3sdR3JHtF0OGc2xqUMgPCKI83H0tSR8/7GoPyycb3qRILI3coeoU2Q52BGlwcQEuw==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrCLMWRmVeSWpSXmKPExsXC5fCgWXfqi7lxBj+P6llc6JzD7sDoMXHl
- IeYAxigum5TUnMyy1CJ9uwSujNWLLjMX3FnCWLH3dGQD47GpjF2MnBwSAiYSO5dPZ+li5OIQ
- Euhnkrj/fTKQw8HBJqArMemJB0iNiICtxJ9ZC5lBbGEBRYnD3fdZIOJqEhdm/WGFsPUkpkw5
- zQRiswioSixfdwmsnlfAXaKtcz47iM0oICbx/dQasBpmAXGJW0/mM0HcICCxZM95ZghbVOLl
- 43+sIPdICJxllvi67TYbRMJAYuvSfWC3SQgoSDxakQsxJ1fi4p3nbBC7BCVOznzCMoFRaBaS
- FbOQlM1CUgYR15FYsPsTG4StLbFs4WtmGPvMgcdMyOILGNlXMYrm5iRVFOeWFBgY62UkFhVl
- Fusl5+duYgTGxAGTV3E7GFe/sj/EyMTBeIhRgoNZSYQ3xWZunBBvSmJlVWpRfnxRaU5q8SFG
- aQ4WJXHemLtAKYH0xJLU7NTUgtQimCwTB6dUA6PljelrLzn+v7jY443EmyXMu18ferJHMmfb
- lic3Az799ux21np7qv6N64aV85/8z96673ZouXHaF4ba/dGXzz2MebSu896mtrPFR1IkTXkF
- osJ9l5XLeD/S2+4hfDHINrBymsFd/mdXTJQ9Z/RlR67n4mvduSxyWfGSvc9ailfP77j08amo
- 7fVkJZbijERDLeai4kQA/sbq4ncCAAA=
-Subject: [USRP-users] Cygwin build of E310_SG3
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f0d48af-bffa-43b7-9808-08d7e5584568
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2020 18:25:57.9310 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1NAM02HT014
+Subject: Re: [USRP-users] Conversion of .dat file to a readable data using
+ GNU octave
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,9 +94,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Harris, Dan via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Harris, Dan" <Dan.Harris@L3Harris.com>
-Content-Type: multipart/mixed; boundary="===============6583258015192160448=="
+From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jeff S <e070832@hotmail.com>
+Content-Type: multipart/mixed; boundary="===============3402170790222277731=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,429 +110,143 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6583258015192160448==
+--===============3402170790222277731==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_eb1fa60c44c4410a814e83a4fdf45df9MLBXCH12csmyharrisnet_"
+	boundary="_000_BN8PR19MB265976BB8C07918290652993A4D40BN8PR19MB2659namp_"
 
---_000_eb1fa60c44c4410a814e83a4fdf45df9MLBXCH12csmyharrisnet_
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+--_000_BN8PR19MB265976BB8C07918290652993A4D40BN8PR19MB2659namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+S3lsZSBpcyBjb3JyZWN0LiAgQW5kIHRvIGJlIHNwZWNpZmljIGV4YW1wbGUgKHNpbmNlIEkgbGlr
+ZSB0aGVtLCBzdGVwIGJ5IHN0ZXApLCBJIGRvIGVzc2VudGlhbGx5IHRoZSBzYW1lIHRoaW5nIGxp
+a2U6DQoNCj4+IEluRmlsZUlEID0gZm9wZW4oJ215ZmlsZS5kYXQnKTsNCj4+IEEgPSBmcmVhZChJ
+bkZpbGVJRCwnZmxvYXQzMicpOyAgJSBSZWFkIGluIHBlciBLeWxlJ3MgZGVzY3JpcHRpb24NCj4+
+IGZjbG9zZShJbkZpbGVJRCk7DQo+PiBCID0gW0EoMToyOmVuZCksIEEoMjoyOmVuZCldOyAgJSBT
+cGxpdCBvdXQgUmUgJiBJbWFnDQo+PiBwbG90KEIpDQoNCkplZmYNCg0KX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18NCkZyb206IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnMtYm91bmNlc0Bs
+aXN0cy5ldHR1cy5jb20+IG9uIGJlaGFsZiBvZiBLeWxlIEEgTG9ndWUgdmlhIFVTUlAtdXNlcnMg
+PHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KU2VudDogTW9uZGF5LCBBcHJpbCAyMCwgMjAy
+MCAxMjoyNyBQTQ0KVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDx1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbT47IEFLSU5ZRUxFIElUQU1BS0lOREUgPGFpdGFtYWtpbmRlQGFidWFkLmVk
+dS5uZz4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gQ29udmVyc2lvbiBvZiAuZGF0IGZpbGUg
+dG8gYSByZWFkYWJsZSBkYXRhIHVzaW5nIEdOVSBvY3RhdmUNCg0KQXNzdW1pbmcgeW91IGhhdmUg
+eW91ciBmaWxlIHNpbmsgY29uZmlndXJlZCB0byBjb21wbGV4LCB0aGUgZGF0YSAod2hpY2ggeW91
+IHNob3VsZG4ndCBqdXN0IHNhdmUgYXMgLmRhdCAtIGNvbnNpZGVyIC5mYzMyIG9yIHNpZ21mKSBz
+aG91bGQgc2ltcGx5IGJlIGludGVybGVhdmVkIGZsb2F0MzIuIFNvIGl0IGxvb2tzIGxpa2UNCg0K
+WyhmbG9hdDMyIHJlYWwpLCAoZmxvYXQzMiBpbWFnKSwgKGZsb2F0MzIgcmVhbCksIChmbG9hdDMy
+IGltYWcpLCAuLi4gXQ0KDQppbiBweXRob24geW91IGNhbiByZWFkIHRoYXQgdy9gbnAuZnJvbWZp
+bGUoeHl6LCBkdHlwZT1ucC5jb21wbGV4NjQpYC4gVGhlcmUgbXVzdCBiZSBhbiBlcXVpdmFsZW50
+IGluIG9jdGF2ZS4NCg0KS3lsZSBMb2d1ZQ0KRW5naW5lZXJpbmcgTWFuYWdlciDimp0gQ29tbSBT
+b2Z0d2FyZSBJbXBsZW1lbnRhdGlvbiBEZXB0DQpUaGUgQWVyb3NwYWNlIENvcnBvcmF0aW9uDQpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KRnJvbTogVVNSUC11c2VycyA8dXNycC11
+c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVzLmNvbT4gb24gYmVoYWxmIG9mIEFLSU5ZRUxFIElUQU1B
+S0lOREUgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KU2VudDog
+V2VkbmVzZGF5LCBBcHJpbCAxNSwgMjAyMCAwNzozMA0KVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClN1YmplY3Q6IFtVU1JQLXVzZXJz
+XSBDb252ZXJzaW9uIG9mIC5kYXQgZmlsZSB0byBhIHJlYWRhYmxlIGRhdGEgdXNpbmcgR05VIG9j
+dGF2ZQ0KDQpJIGFtIHdvcmtpbmcgb24gY2hhbm5lbCBzb3VuZGluZyB1c2luZyBVU1JQIGFuZCBH
+TlUgcmFkaW8gcGxhdGZvcm1zLiBJIGFtIGV4cGVyaWVuY2luZyBkaWZmaWN1bHR5IGluIGNvbnZl
+cnRpbmcgdGhlIC5kYXQgZmlsZSBvZiBzaW5rIGZpbGUgYXQgcmVjZWl2ZXIgb2YgZmxvdyBncmFw
+aCBpbnRvIHJlYWRhYmxlIGRhdGEgdXNpbmcgR05VIG9jdGF2ZS4gQ2FuIHNvbWVib2R5IGhlbHAg
+bWUgdG8gYWNoaWV2ZSB0aGlzPyBUaGFua3MNCg==
 
-Is the windows Cygwin build of the E310_SG3 target being maintained?
+--_000_BN8PR19MB265976BB8C07918290652993A4D40BN8PR19MB2659namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I have been following the build instructions and have Vivado 2019.1 install=
-ed.  It is failing in multiple points in the generation of the IP.  I had t=
-o correct some paths that should have been windows-ized but did not seem to=
- be in tools/make/viv_hls_ip_builder.mak.
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
+YWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJn
+YigwLCAwLCAwKTsiPg0KS3lsZSBpcyBjb3JyZWN0LiZuYnNwOyBBbmQgdG8gYmUgc3BlY2lmaWMg
+ZXhhbXBsZSAoc2luY2UgSSBsaWtlIHRoZW0sIHN0ZXAgYnkgc3RlcCksIEkgZG8gZXNzZW50aWFs
+bHkgdGhlIHNhbWUgdGhpbmcgbGlrZTo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
+YWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJn
+YigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2Fs
+aWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2Io
+MCwgMCwgMCk7Ij4NCjxzcGFuPiZndDsmZ3Q7IEluRmlsZUlEID0gZm9wZW4oJ215ZmlsZS5kYXQn
+KTs8YnI+DQo8L3NwYW4+PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwg
+SGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwg
+MCk7Ij4NCjxzcGFuPiZndDsmZ3Q7IEEgPSBmcmVhZChJbkZpbGVJRCwnZmxvYXQzMicpOyZuYnNw
+OyAlIFJlYWQgaW4gcGVyIEt5bGUncyBkZXNjcmlwdGlvbjxicj4NCjwvc3Bhbj4NCjxkaXY+Jmd0
+OyZndDsgZmNsb3NlKEluRmlsZUlEKTs8YnI+DQo8L2Rpdj4NCjxkaXY+Jmd0OyZndDsgQiA9IFtB
+KDE6MjplbmQpLCBBKDI6MjplbmQpXTsmbmJzcDsgJSBTcGxpdCBvdXQgUmUgJmFtcDsgSW1hZzxi
+cj4NCjwvZGl2Pg0KPGRpdj4mZ3Q7Jmd0OyBwbG90KEIpPGJyPg0KPC9kaXY+DQo8c3Bhbj48L3Nw
+YW4+PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgSGVsdmV0aWNhLCBz
+YW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4N
+CjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEhlbHZldGljYSwgc2Fu
+cy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpKZWZmPGJy
+Pg0KPC9kaXY+DQo8ZGl2Pjxicj4NCjxociB0YWJpbmRleD0iLTEiIHN0eWxlPSJkaXNwbGF5Omlu
+bGluZS1ibG9jazsgd2lkdGg6OTglIj4NCjxkaXYgaWQ9ImRpdlJwbHlGd2RNc2ciIGRpcj0ibHRy
+Ij48Zm9udCBzdHlsZT0iZm9udC1zaXplOjExcHQiIGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYi
+IGNvbG9yPSIjMDAwMDAwIj48Yj5Gcm9tOjwvYj4gVVNSUC11c2VycyAmbHQ7dXNycC11c2Vycy1i
+b3VuY2VzQGxpc3RzLmV0dHVzLmNvbSZndDsgb24gYmVoYWxmIG9mIEt5bGUgQSBMb2d1ZSB2aWEg
+VVNSUC11c2VycyAmbHQ7dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+U2Vu
+dDo8L2I+IE1vbmRheSwgQXByaWwgMjAsIDIwMjAgMTI6MjcgUE08YnI+DQo8Yj5Ubzo8L2I+IHVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZn
+dDs7IEFLSU5ZRUxFIElUQU1BS0lOREUgJmx0O2FpdGFtYWtpbmRlQGFidWFkLmVkdS5uZyZndDs8
+YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtVU1JQLXVzZXJzXSBDb252ZXJzaW9uIG9mIC5kYXQg
+ZmlsZSB0byBhIHJlYWRhYmxlIGRhdGEgdXNpbmcgR05VIG9jdGF2ZTwvZm9udD4NCjxkaXY+Jm5i
+c3A7PC9kaXY+DQo8L2Rpdj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBzdHlsZT0iZm9udC1mYW1p
+bHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNv
+bG9yOnJnYigwLDAsMCk7IGJhY2tncm91bmQtY29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+DQpBc3N1
+bWluZyB5b3UgaGF2ZSB5b3VyIGZpbGUgc2luayBjb25maWd1cmVkIHRvIGNvbXBsZXgsIHRoZSBk
+YXRhICh3aGljaCB5b3Ugc2hvdWxkbid0IGp1c3Qgc2F2ZSBhcyAuZGF0IC0gY29uc2lkZXIgLmZj
+MzIgb3Igc2lnbWYpIHNob3VsZCBzaW1wbHkgYmUgaW50ZXJsZWF2ZWQgZmxvYXQzMi4gU28gaXQg
+bG9va3MgbGlrZTwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxI
+ZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCk7IGJh
+Y2tncm91bmQtY29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5
+bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQt
+c2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApOyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1
+LDI1NSkiPg0KWyhmbG9hdDMyIHJlYWwpLCAoZmxvYXQzMiBpbWFnKSwmbmJzcDsoZmxvYXQzMiBy
+ZWFsKSwgKGZsb2F0MzIgaW1hZyksIC4uLiBdPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWls
+eTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29s
+b3I6cmdiKDAsMCwwKTsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj4NCjxicj4N
+CjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Es
+c2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCk7IGJhY2tncm91bmQt
+Y29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+DQppbiBweXRob24geW91IGNhbiByZWFkIHRoYXQgdy9g
+bnAuZnJvbWZpbGUoeHl6LCBkdHlwZT1ucC5jb21wbGV4NjQpYC4gVGhlcmUgbXVzdCBiZSBhbiBl
+cXVpdmFsZW50IGluIG9jdGF2ZS48L2Rpdj4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWls
+eTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29s
+b3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgaWQ9InhfU2lnbmF0dXJlIj4NCjxk
+aXY+PC9kaXY+DQo8ZGl2IGlkPSJ4X2RpdnRhZ2RlZmF1bHR3cmFwcGVyIiBkaXI9Imx0ciIgc3R5
+bGU9ImZvbnQtc2l6ZToxMnB0OyBmb250LWZhbWlseTpDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNl
+cmlmOyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxzcGFuIGlkPSJ4X21zLXJ0ZXJhbmdlcGFzdGUtc3Rh
+cnQiPjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6Q29uc29sYXMsbW9ub3NwYWNlOyBm
+b250LXNpemU6OHB0Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6Q29uc29sYXMsbW9ub3NwYWNl
+OyBmb250LXNpemU6OHB0Ij48Yj48L2I+PGI+S3lsZSBMb2d1ZTwvYj48YnI+DQo8c3BhbiBzdHls
+ZT0iZm9udC1mYW1pbHk6Q29uc29sYXMsbW9ub3NwYWNlOyBmb250LXNpemU6OHB0Ij4NCjxkaXY+
+PGk+RW5naW5lZXJpbmcgTWFuYWdlciA8c3Bhbj48c3Bhbj48c3Bhbj7imp08L3NwYW4+PC9zcGFu
+Pjwvc3Bhbj4gQ29tbSBTb2Z0d2FyZSBJbXBsZW1lbnRhdGlvbiBEZXB0PGJyPg0KPC9pPjwvZGl2
+Pg0KPGRpdj48aT5UaGUgQWVyb3NwYWNlIENvcnBvcmF0aW9uPC9pPjwvZGl2Pg0KPC9zcGFuPjxz
+cGFuIHN0eWxlPSJmb250LWZhbWlseTpDb25zb2xhcyxtb25vc3BhY2U7IGZvbnQtc2l6ZTo4cHQi
+Pg0KPGRpdj48L2Rpdj4NCjwvc3Bhbj48L3NwYW4+PC9zcGFuPjxzcGFuIGlkPSJ4X21zLXJ0ZXJh
+bmdlcGFzdGUtZW5kIj48L3NwYW4+PC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBpZD0ieF9h
+cHBlbmRvbnNlbmQiPjwvZGl2Pg0KPGhyIHRhYmluZGV4PSItMSIgc3R5bGU9ImRpc3BsYXk6aW5s
+aW5lLWJsb2NrOyB3aWR0aDo5OCUiPg0KPGRpdiBpZD0ieF9kaXZScGx5RndkTXNnIiBkaXI9Imx0
+ciI+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZToxMXB0IiBmYWNlPSJDYWxpYnJpLCBzYW5zLXNlcmlm
+IiBjb2xvcj0iIzAwMDAwMCI+PGI+RnJvbTo8L2I+IFVTUlAtdXNlcnMgJmx0O3VzcnAtdXNlcnMt
+Ym91bmNlc0BsaXN0cy5ldHR1cy5jb20mZ3Q7IG9uIGJlaGFsZiBvZiBBS0lOWUVMRSBJVEFNQUtJ
+TkRFIHZpYSBVU1JQLXVzZXJzICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8YnI+
+DQo8Yj5TZW50OjwvYj4gV2VkbmVzZGF5LCBBcHJpbCAxNSwgMjAyMCAwNzozMDxicj4NCjxiPlRv
+OjwvYj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gJmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBbVVNSUC11c2Vyc10gQ29udmVyc2lvbiBv
+ZiAuZGF0IGZpbGUgdG8gYSByZWFkYWJsZSBkYXRhIHVzaW5nIEdOVSBvY3RhdmU8L2ZvbnQ+DQo8
+ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBkaXI9Imx0ciI+SSBhbSB3b3Jr
+aW5nIG9uIGNoYW5uZWwgc291bmRpbmcgdXNpbmcgVVNSUCBhbmQgR05VIHJhZGlvIHBsYXRmb3Jt
+cy4gSSBhbSBleHBlcmllbmNpbmcgZGlmZmljdWx0eSBpbiBjb252ZXJ0aW5nIHRoZSAuZGF0IGZp
+bGUgb2Ygc2luayBmaWxlIGF0IHJlY2VpdmVyIG9mIGZsb3cgZ3JhcGggaW50byByZWFkYWJsZSBk
+YXRhIHVzaW5nIEdOVSBvY3RhdmUuIENhbiBzb21lYm9keSBoZWxwIG1lIHRvIGFjaGlldmUgdGhp
+cz8gVGhhbmtzPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+
+DQo=
 
-I can build at least one of the components (IP fifo_short_2clk), so I am so=
-mewhat confident that Vivado is installed correctly, and that my 'source se=
-tupenv.sh' was done properly.
-
-However now I am getting this error which is just impenetrable (this is wit=
-h a clean git pull, not the changes I reference above):
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
-BUILDER: Building IP mig_7series_0 - zynq xc7z020/clg484/-3
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
-BUILDER: Staging IP in build directory...
-BUILDER: Reserving IP location: /cygdrive/c/Users/user/Documents/e310/usrp/=
-uhd/fpga/usrp3/top/e31x/build-ip/xc7z020clg484-3/mig_7series_0
-BUILDER: Retargeting IP to part zynq/xc7z020/clg484/-3...
-BUILDER: Building IP...
-[00:00:00] Executing command: vivado -mode batch -source C:/Users/user/Docu=
-ments/e310/usrp/uhd/fpga/usrp3/tools/scripts/viv_generate_ip.tcl -log mig_7=
-series_0.log -nojournal
-[00:00:47] Current task: Initialization +++ Current Phase: Starting
-[00:00:48] Current task: Initialization +++ Current Phase: Finished
-[00:00:48] Process terminated. Status: Failure
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
-Warnings:           0
-Critical Warnings:  0
-Errors:             0
-
-BUILDER: Releasing IP location: /cygdrive/c/Users/user/Documents/e310/usrp/=
-uhd/fpga/usrp3/top/e31x/build-ip/xc7z020clg484-3/mig_7series_0
-make[1]: *** [/cygdrive/c/Users/user/Documents/e310/usrp/uhd/fpga/usrp3/top=
-/e31x/ip/mig_7series_0/Makefile.inc:32: /cygdrive/c/Users/user/Documents/e3=
-10/usrp/uhd/fpga/usrp3/top/e31x/build-ip/xc7z020clg484-3/mig_7series_0/mig_=
-7series_0.xci] Error 1
-make[1]: Leaving directory '/cygdrive/c/Users/user/Documents/e310/usrp/uhd/=
-fpga/usrp3/top/e31x'
-make: *** [Makefile:71: E310_SG3] Error 2
-
-
-build-ip/xc7z020clg484-3/ mig_7series_0.log is not helpful:
-
-#-----------------------------------------------------------
-# Vivado v2019.1 (64-bit)
-# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
-# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Mon Apr 20 19:14:06 2020
-# Process ID: 181720
-# Current directory: C:/Users/user/Documents/e310/usrp/uhd/fpga/usrp3/top/e=
-31x/build-ip/xc7z020clg484-3
-# Command line: vivado.exe -mode batch -source C:/Users/user/Documents/e310=
-/usrp/uhd/fpga/usrp3/tools/scripts/viv_generate_ip.tcl -log mig_7series_0.l=
-og -nojournal
-# Log file: C:/Users/user/Documents/e310/usrp/uhd/fpga/usrp3/top/e31x/build=
--ip/xc7z020clg484-3/mig_7series_0.log
-# Journal file:
-#-----------------------------------------------------------
-source C:/Users/user/Documents/e310/usrp/uhd/fpga/usrp3/tools/scripts/viv_g=
-enerate_ip.tcl
-# set xci_file         $::env(XCI_FILE)               ;
-# set part_name        $::env(PART_NAME)              ;
-# set gen_example_proj $::env(GEN_EXAMPLE)            ;
-# set synth_ip         $::env(SYNTH_IP)               ;
-# set ip_name [file rootname [file tail $xci_file]]   ;
-# file delete -force "$xci_file.out"
-# create_project -part $part_name -in_memory -ip
-# set_property target_simulator XSim [current_project]
-# add_files -norecurse -force $xci_file
-INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1704] No user IP repositories specified
-INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.=
-1/data/ip'.
-
-
-There appears to be an error file and a core file:
-$ cat hs_err_pid181720.log
-#
-# An unexpected error has occurred (EXCEPTION_ACCESS_VIOLATION)
-#
-Stack:
-no stack trace available, please use hs_err_<pid>.dmp instead.
-
-
-Is this build maintained enough to use? Because of my limited setup at home=
-, I really don't want to spin up a new server or VM for this, but if it is =
-required then I guess I will.
-
-Thanks,
-Dan Harris
-
-  =
-
-
-CONFIDENTIALITY NOTICE: This email and any attachments are for the sole use=
- of the intended recipient and may contain material that is proprietary, co=
-nfidential, privileged or otherwise legally protected or restricted under a=
-pplicable government laws. Any review, disclosure, distributing or other us=
-e without expressed permission of the sender is strictly prohibited. If you=
- are not the intended recipient, please contact the sender and delete all c=
-opies without reading, printing, or saving.
-
-
---_000_eb1fa60c44c4410a814e83a4fdf45df9MLBXCH12csmyharrisnet_
-Content-Type: text/html; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://sc=
-hemas.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-=
-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Lucida Console";
-	panose-1:2 11 6 9 4 5 4 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is the windows Cygwin build of the E310_SG3 target b=
-eing maintained?
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have been following the build instructions and hav=
-e Vivado 2019.1 installed.&nbsp; It is failing in multiple points in the ge=
-neration of the IP. &nbsp;I had to correct some paths that should have been=
- windows-ized but did not seem to be in tools/make/viv_hls_ip_builder.mak.<=
-o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none">I can build at least o=
-ne of the components (<span style=3D"font-size:9.0pt;font-family:&quot;Luci=
-da Console&quot;">IP fifo_short_2clk</span>), so I am somewhat confident th=
-at Vivado is installed correctly, and that my &#8216;source
- setupenv.sh&#8217; was done properly.<span style=3D"font-size:9.0pt;font-f=
-amily:&quot;Lucida Console&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">However now I am getting this error which is just im=
-penetrable (this is with a clean git pull, not the changes I reference abov=
-e):<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">BUILDER: Building IP mig_7=
-series_0 - zynq xc7z020/clg484/-3<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">BUILDER: Staging IP in bui=
-ld directory...<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">BUILDER: Reserving IP loca=
-tion: /cygdrive/c/Users/user/Documents/e310/usrp/uhd/fpga/usrp3/top/e31x/bu=
-ild-ip/xc7z020clg484-3/mig_7series_0<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">BUILDER: Retargeting IP to=
- part zynq/xc7z020/clg484/-3...<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">BUILDER: Building IP...<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;;color:#6060FF">[00:00:00] E=
-xecuting command: vivado -mode batch -source C:/Users/user/Documents/e310/u=
-srp/uhd/fpga/usrp3/tools/scripts/viv_generate_ip.tcl
- -log mig_7series_0.log -nojournal<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">[00:00:47] Current task: I=
-nitialization &#43;&#43;&#43; Current Phase: Starting<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">[00:00:48] Current task: I=
-nitialization &#43;&#43;&#43; Current Phase: Finished<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;;color:#FF4040">[00:00:48] P=
-rocess terminated. Status: Failure<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;;color:#FF4040"><o:p>&nbsp;<=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">Warnings:&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">Critical Warnings:&nbsp; 0=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">Errors:&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"><o:p>&nbsp;</o:p></span></=
-p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">BUILDER: Releasing IP loca=
-tion: /cygdrive/c/Users/user/Documents/e310/usrp/uhd/fpga/usrp3/top/e31x/bu=
-ild-ip/xc7z020clg484-3/mig_7series_0<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">make[1]: *** [/cygdrive/c/=
-Users/user/Documents/e310/usrp/uhd/fpga/usrp3/top/e31x/ip/mig_7series_0/Mak=
-efile.inc:32: /cygdrive/c/Users/user/Documents/e310/usrp/uhd/fpga/usrp3/top=
-/e31x/build-ip/xc7z020clg484-3/mig_7series_0/mig_7series_0.xci]
- Error 1<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">make[1]: Leaving directory=
- '/cygdrive/c/Users/user/Documents/e310/usrp/uhd/fpga/usrp3/top/e31x'<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">make: *** [Makefile:71: E3=
-10_SG3] Error 2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Luc=
-ida Console&quot;">build-ip/xc7z020clg484-3/ mig_7series_0.log is not helpf=
-ul:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Luc=
-ida Console&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">#-------------------------=
-----------------------------------<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># Vivado v2019.1 (64-bit)<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># SW Build 2552052 on Fri =
-May 24 14:49:42 MDT 2019<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># IP Build 2548770 on Fri =
-May 24 18:01:18 MDT 2019<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># Start of session at: Mon=
- Apr 20 19:14:06 2020<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># Process ID: 181720<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># Current directory: C:/Us=
-ers/user/Documents/e310/usrp/uhd/fpga/usrp3/top/e31x/build-ip/xc7z020clg484=
--3<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># Command line: vivado.exe=
- -mode batch -source C:/Users/user/Documents/e310/usrp/uhd/fpga/usrp3/tools=
-/scripts/viv_generate_ip.tcl -log mig_7series_0.log
- -nojournal<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># Log file: C:/Users/user/=
-Documents/e310/usrp/uhd/fpga/usrp3/top/e31x/build-ip/xc7z020clg484-3/mig_7s=
-eries_0.log<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># Journal file:<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">#-------------------------=
-----------------------------------<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">source C:/Users/user/Docum=
-ents/e310/usrp/uhd/fpga/usrp3/tools/scripts/viv_generate_ip.tcl<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># set xci_file&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $::env(XCI_FILE)&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># set part_name&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $::env(PART_NAME)&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># set gen_example_proj $::=
-env(GEN_EXAMPLE)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; ;<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># set synth_ip&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;$::env(SYNTH_IP)&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># set ip_name [file rootna=
-me [file tail $xci_file]]&nbsp;&nbsp; ;<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># file delete -force &quot=
-;$xci_file.out&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># create_project -part $pa=
-rt_name -in_memory -ip<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># set_property target_simu=
-lator XSim [current_project]<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># add_files -norecurse -fo=
-rce $xci_file<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">INFO: [IP_Flow 19-234] Ref=
-reshing IP repositories<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">INFO: [IP_Flow 19-1704] No=
- user IP repositories specified<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">INFO: [IP_Flow 19-2313] Lo=
-aded Vivado IP repository 'C:/Xilinx/Vivado/2019.1/data/ip'.<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Luc=
-ida Console&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Luc=
-ida Console&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal">There appears to be an error file and a core file: <=
-o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">$ cat hs_err_pid181720.log=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">#<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;"># An unexpected error has =
-occurred (EXCEPTION_ACCESS_VIOLATION)<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">#<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">Stack:<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">no stack trace available, =
-please use hs_err_&lt;pid&gt;.dmp instead.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is this build maintained enough to use? Because of m=
-y limited setup at home, I really don&#8217;t want to spin up a new server =
-or VM for this, but if it is required then I guess I will.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Dan Harris<o:p></o:p></p>
-</div>
-<span><span><br>&nbsp;</span>&nbsp;</span><br>
-<DIV><span style=3D"FONT-FAMILY: Times New Roman"><span style=3D"FONT-SIZE:=
- 14px">CONFIDENTIALITY NOTICE: This email and any attachments are for the s=
-ole use of the intended recipient and may contain material that is propriet=
-ary, confidential, privileged or otherwise legally protected or restricted =
-under applicable government laws. Any review, disclosure, distributing or o=
-ther use without expressed permission of the sender is strictly prohibited.=
- If you are not the intended recipient, please contact the sender and delet=
-e all copies without reading, printing, or saving.</span></span>
-<DIV style=3D'FONT-SIZE: 14px; FONT-FAMILY: "Times New Roman"'><br></DIV></=
-DIV></body>
-</html>
-
---_000_eb1fa60c44c4410a814e83a4fdf45df9MLBXCH12csmyharrisnet_--
+--_000_BN8PR19MB265976BB8C07918290652993A4D40BN8PR19MB2659namp_--
 
 
-
---===============6583258015192160448==
+--===============3402170790222277731==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -518,6 +257,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6583258015192160448==--
-
+--===============3402170790222277731==--
 
