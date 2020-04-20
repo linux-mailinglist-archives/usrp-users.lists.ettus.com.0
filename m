@@ -2,86 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AFF31AFE4B
-	for <lists+usrp-users@lfdr.de>; Sun, 19 Apr 2020 23:06:42 +0200 (CEST)
-Received: from [::1] (port=51374 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 120431AFF7E
+	for <lists+usrp-users@lfdr.de>; Mon, 20 Apr 2020 03:27:21 +0200 (CEST)
+Received: from [::1] (port=53288 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jQH8z-0002j8-NN; Sun, 19 Apr 2020 17:06:25 -0400
-Received: from mail-oln040092253027.outbound.protection.outlook.com
- ([40.92.253.27]:6290 helo=APC01-SG2-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <snehasish.cse@live.com>)
- id 1jQH8u-0002eI-Mb
- for usrp-users@lists.ettus.com; Sun, 19 Apr 2020 17:06:21 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KVdsOCW6++a8dTcwFt+mlPUcBtd63eRXrbnDfTy8DiWiebaN1ENP8bqzSUEj4+av8kFG0EE+zUo8kjbfic8+xUhhWAMiH07U/yQWC8CsRCE7M7/po+Wit5OlPb+ODdCzw6MuJTJKBkyKdqov1MwMae6R8B68Hxn35YQYEDDfAGUD46FQKh/Ir8KPSfLuojA8B3TPstYk6Zzrl7KV3l4nthR9lquBlZWqUWnKHDw3+fJfpzsKfn0LcGlrUPcFB3P/arPtrjbM/uFcxwwERrVjHfCGflCU3B+QX4wwYP/PZNJ+/T7+kLygr30tl1M6pWGPOHgILVdW8tD7XMF/hXf/bQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VUKeii24N4o/S43hEW0TUquywLwH7WZ9LuZgu1sTm1I=;
- b=UZ4RYNq/fVpdBf0ShlIrGX5pIL0QPbyryy04ffD4lhpJBGo9Zmi3cEcHFBCE45YFk3APJgldCqwbCBWfiYHyoghuuzcvtIXBNvwsXkj5ycBDMrbKNargULBVyge+oICjz0bFfvpRx6KPyiM0ruagbIRWHXSkMTWof/CkC6k82jco5zpT8ShHaTsI/gLjmAJdeWubRBM8TUoNZNLv7R/yOxT0xsvER8IjGO1dAWX6Qz2HnaqTgyBFsyJOEXqouMR/suTtpd/LVTGv2bWnJv/z+hSO2H62fVVh37M3uo47f3+6U3n2xb3CIIcMqN0vUQuS1ePBjRM7RtaF3xGkF0o3Rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VUKeii24N4o/S43hEW0TUquywLwH7WZ9LuZgu1sTm1I=;
- b=rHysDi27p764vIKdpRn2/iJBrygOeRiBgLYPh2ZPcv7pNH3SKvCaCUClKAieAKqIzl6gPwhGrrEcY2FALMs4c5sp3CVWugWuQJluS0vU0NQNEbHkOFBXc0gb3ean1j+xK9E/QdsCH3A5QQMPz4ANEBWFsWPY7Ni53fE/qZRuKiMv1ajfZra9NGs0sjBGvvvICw8aqsV4LSSRPllNAIulM+7pYNyYIiCRHKJrTNzNcOTDnloo9bPs/DJzuGVG8PfUXmfZ8pmp3NNw5NSUDq2f+2hTgn5w7wWXERNWkz5wm1XdHiYluCf/CzW30UM/Wt3dWW4dxDKImyAbmT1NaMVuhQ==
-Received: from PU1APC01FT061.eop-APC01.prod.protection.outlook.com
- (2a01:111:e400:7ebe::43) by
- PU1APC01HT196.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebe::408)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.25; Sun, 19 Apr
- 2020 21:05:36 +0000
-Received: from BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM (10.152.252.51) by
- PU1APC01FT061.mail.protection.outlook.com (10.152.253.24) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2921.25 via Frontend Transport; Sun, 19 Apr 2020 21:05:36 +0000
-Received: from BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::847d:5ffa:5836:553d]) by BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::847d:5ffa:5836:553d%7]) with mapi id 15.20.2921.027; Sun, 19 Apr 2020
- 21:05:36 +0000
-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Thread-Topic: [USRP-users] Fractional downsampling in rfnoc
-Thread-Index: AQHWFD4S3p9nAtH5HEib5hstP8Q0q6h9d92AgAH+gWyAAFZFgIABJz9Z
-Date: Sun, 19 Apr 2020 21:05:36 +0000
-Message-ID: <BM1PR01MB33480770395F326829E72FCE88D70@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
-References: <BM1PR01MB33485647B95F4EB1A185B53E88D80@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
- <CAL7q81tGgXZQDNxq9FGViThnFkWE+3YSeLaebKrqP6OqCw1XvA@mail.gmail.com>
- <BM1PR01MB33488D7B9DC5AE9AF435234088D60@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>,
- <CAL7q81t1RpfgCAY24baDznFWJLM+i21eePoXObHiTAhqO27-FA@mail.gmail.com>
-In-Reply-To: <CAL7q81t1RpfgCAY24baDznFWJLM+i21eePoXObHiTAhqO27-FA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:60231C636CBC20AD993F2BF9332C315A6D35A4D30B805FC352B6720902AE0716;
- UpperCasedChecksum:F58FFFD15669B2007D056C78D2872A975FC9E2998DCB66E4ABE09F567D2B21FE;
- SizeAsReceived:7225; Count:46
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [FlCJ4Frcsnf3D9NuhgYfiU/AuktZc56F]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 46
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: e8bd4459-abe5-48f7-4a1f-08d7e4a56833
-x-ms-traffictypediagnostic: PU1APC01HT196:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sS6w9+AI6Sx8C3LwwK319G0vGXZgf57XXNfUG2OUIhZ/YxKlA5rS/wc7HkxiD/7NoA3/wIuqX16AAP5URhMjaIImr32Z68je2MO6x3U8cFs5ImU4PYKV8xd01Oarlzu01MgbiN7d9FMx5x0tGZklWgMn+mcO23QVA2xlu4v36C3klBKs5B+rbTmDnpWA5/gR7I9ZhifPSy8Jzy2iFJcPgND6AmxUv1lJMAmOYQ/5Yt60o5Z9UIzZRTBypupLNtVM
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:0; SRV:;
- IPV:NLI; SFV:NSPM; H:BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFTY:; SFS:; DIR:OUT; SFP:1901; 
-x-ms-exchange-antispam-messagedata: 6Gw+LFk6ImorWfEatGqlFlJNnriEd7ltEE88g+6v8Xa+PXhZ2XDuw8Y8hv/kqFdA1lY2TcMvmN4SFJoXxhFKgckeUHrTMR3vdFCg3BDmAuKrDviqP68s/JFcebBnuljcP1Lc5HxVnSbvekrQ34laVg==
-x-ms-exchange-transport-forked: True
+	id 1jQLDQ-0004cB-PS; Sun, 19 Apr 2020 21:27:16 -0400
+Received: from mout.gmx.net ([212.227.17.21]:56779)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jQLDM-0004WT-20
+ for usrp-users@lists.ettus.com; Sun, 19 Apr 2020 21:27:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1587345991;
+ bh=sNaFqQWfKWi1vEqJCVITwPReUjP7N4S2Vh+KDi91c6I=;
+ h=X-UI-Sender-Class:From:To:Subject:Date;
+ b=ljn0rPb0eO1z/66xLc1999E0Q41cGWxYBQEuDqGd+7l7O4eLrk/vMjKhaM9qP7+U2
+ dhBPAtEqtq39llKlEbWGJ3v+oQgrUmhQwYtVStcP99tyrqZWSZRR/1MgI/6jnwkc0f
+ jvD23hWeG7eujr6bx594B0SZeSoMB8re7l9RYDyM=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [87.101.50.39] ([87.101.50.39]) by web-mail.gmx.net
+ (3c-app-gmx-bap03.server.lan [172.19.172.73]) (via HTTP); Mon, 20 Apr 2020
+ 03:26:30 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: live.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8bd4459-abe5-48f7-4a1f-08d7e4a56833
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Apr 2020 21:05:36.4723 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT196
-Subject: Re: [USRP-users] Fractional downsampling in rfnoc
+Message-ID: <trinity-2e8938a8-5251-4fd3-a4b9-450be68ecadd-1587345990905@3c-app-gmx-bap03>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Date: Mon, 20 Apr 2020 03:26:30 +0200
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:lmEFpRx979428dIWiOlVVJVrUlD/9p4A41peGf0K0Q9YqFGYDNSYwfhhCULSBRbPUlI82
+ 9OMCEHeOl9Cw3z0TG1KvrDAoTBbtPZyQDUPwnCLZF/fC3NLfF8Fje616jd53xP5HhmXYuesraKbH
+ ZaF7Q95vwYkgAYtvIgMpkhl/fwVj+oMxqNo38ggloTuOFE4RY0Is6XfjzLlmS/eDGuHeXRwrqRz9
+ v9JGdpyiuCJnLg4fr/XN7vhgDWJLnsM9QoyYd575PnlYqC65Zb3s/G/7V9oLCCdRrAmDvfC8hSdt
+ +c=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:UrrmUahoMGQ=:oTgi2+rYvw9YjQvvgRCA/c
+ OYY5ztdRHmeLvoa9g8bVigd8vHgRtcQzKYOaWq+AwhexE4D50CoTYQYtMa5STnhZcz5OY6JMq
+ NUyxXBpVW53uPvSnytn4SL6LpyS9l1J2q7x0DaPxa6A/dod2xBffKKnMeorAAzUEQqjEZrF06
+ HbzDttb2GnRJACIWSO6QnorOqVGcLjXC73YKfjgayRmye5YOoqrJ2YqtH1U/QJYEnQPETvTDG
+ W1Ddsjj0LBDdTXGoljvi1tuJJ0zSyMGoBPVcC1aFaObyGAHxtQs7ambWD0ZlXUr4JodqeBuxt
+ nJdyfELQ0wZrxqqdWZZdtheyL4ZB5jCEA2KjXwG0lEDKnJfuCuUVnZWfjMfn8Ly/Jo5lYwQYH
+ 7PgjqSeakXlYMUCrYrf/u9TyZ+gEfD5wB24MKxyQhmjsw5p6U91CvWtZDyYmQAh3eiPtGVxoy
+ lEmIcY5HfIOaB8gRRkGEqGMOnX7Dcti1dCrWnw+LfjBEZjEwa1HYBb6Ca76n6aN/FkhLueHiZ
+ V43CBsaQtZBipoC6Jlo/upBLREhEkJ6wmrBshmbbftd6/4hUhCd4y6xPQJ4i/A0AZakkUE7ZY
+ bAyyNMO52CoXT6jEzc4NQZEjgiloqEyki79Lil8qHoIrbTMj+WzQTmqY7OB/dGDuEkR5eoCI/
+ A9cOYjU0m7V9DpidWdl7qhIjV7YQrVH8hYPxNlHMYZF3SUsOleIQiSAhycRHMOFot+Os=
+Subject: [USRP-users] Questions about UBX-160 Noise Figure
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Snehasish Kar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Snehasish Kar <snehasish.cse@live.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7011827836501473290=="
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -110,284 +76,39 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7011827836501473290==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BM1PR01MB33480770395F326829E72FCE88D70BM1PR01MB3348INDP_"
+Hi,
 
---_000_BM1PR01MB33480770395F326829E72FCE88D70BM1PR01MB3348INDP_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+https://kb.ettus.com/UBX#Noise_Figure lists 2-3dB noise figure, UBX_Data_Sheet.pdf 2-4dB for UBX-160 (at 915 MHz).
 
-Anyway thanks for the help Jonathon
+I connect a 50 Ohm load to RX and create a simple gnuradio application with USRP Source that calculates the RMS value of the sampled data (and plots the noise in time domain).
+samp_rate = 5 MHz.
+RX Gain = 0 dB.
 
-Regards
-Snehasish
-________________________________
-From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Sent: Sunday, April 19, 2020 8:58 AM
-To: Snehasish Kar <snehasish.cse@live.com>
-Cc: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Fractional downsampling in rfnoc
+The value is 0.000113 RMS.
+The time domain waveforms look a bit like quantization noise.
 
-Hi Snehasish,
+I repeat the experiment, this time with RX Gain value set to 37.5dB.
+The value is 0.000841 RMS.
 
-I forgot about that error. I actually made an issue about it on their repo:=
- https://github.com/SynchronousLabs/rfnoc-SynchronousLabs/issues/2. Unless =
-they provide an EDIF or their source code, you can only use their code for =
-simulation. Certainly a disappointing oversight on their part.
+According to https://files.ettus.com/performance_data/ubx/UBX-without-UHD-corrections.pdf, NF=2-3dB for 37.5dB gain and ~23dB for 0dB gain. The high gain value coincides with the values from the datasheet above.
 
-Jonathon
+Question 1: Is the reason that for 0dB it looks like quantization noise, that the noise is smaller than LSB so I am effecively seeing the ADC noise?
 
-On Sat, Apr 18, 2020 at 6:21 PM Snehasish Kar <snehasish.cse@live.com<mailt=
-o:snehasish.cse@live.com>> wrote:
-Hello Jonathon
+Question 2: Is the ADC quantixation noise the main reason for the difference in NF? (Note: I am familiar with Friis' equation)
 
-Tried building the fractional downsampler from synchronous labs and have en=
-countered the following error:
-source file was generated for simulation and is not permitted as input to s=
-ynthesis [/home/snehasish/rfnoc-SynchronousLabs/rfnoc/fpga-src/fract_dec_fi=
-lter.vhd:241995]
+Question 3: The noise difference for both cases is 20*log10(0.000841/0.000113)=17.43dB. According to the measurement PDF it should be ca. 23-3=20dB. The difference is ~2-4dB. Is this just measurement uncertainty/part-to-part mismatch or is something wrong with my approach?
 
-Can you please help me with it.
+Question 3: I repeat the last experiment by setting the "Ch0 Bandwidth [Hz]" to 0 (default), 5e6 and 1e6. I would expect that my rms value decreases by a factor of sqrt(2) for each halfing of bandwidth. However, the value always stays around 0.000841 RMS, regardless of the bandwidth value. Why?
 
-Regards
-Snehasish
-________________________________
-From: Jonathon Pendlum <jonathon.pendlum@ettus.com<mailto:jonathon.pendlum@=
-ettus.com>>
-Sent: Friday, April 17, 2020 9:22 PM
-To: Snehasish Kar <snehasish.cse@live.com<mailto:snehasish.cse@live.com>>
-Cc: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com> <usrp-use=
-rs@lists.ettus.com<mailto:usrp-users@lists.ettus.com>>
-Subject: Re: [USRP-users] Fractional downsampling in rfnoc
+Question 4: According to theory, my captured signal is -174 + NF + 10*log10(BW) = -174+3+10*log10(5e6)=-104dBm. Is it correct that my 0.000841 corresponds to -104dBm input power? (If not, why not?). Or differently, -104dBm input power corresponds to 20*log10(0.000841 / 1) = -61.5dBFS ?
 
-Hello Snehasish,
-
-Unfortunately, the standard library of blocks does not have a Fractional De=
-cimator. Your best bet is to try to use the one made by Synchronous Labs a =
-few years ago. Their code is on github here: https://github.com/Synchronous=
-Labs/rfnoc-SynchronousLabs. Since it was built, RFNoC has had some changes =
-that will need to be fixed, but I think this is your only option versus wri=
-ting one from scratch.
-
-Jonathon
-
-On Thu, Apr 16, 2020 at 6:35 PM Snehasish Kar via USRP-users <usrp-users@li=
-sts.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
-Hello
-
-I am trying to use the RFNOC based M/2 channelizer from https://github.com/=
-theseus-cores/theseus-cores/releases/tag/v1.1.0 . I am trying to divide 25 =
-MHz spectrum into 124 subchannels each of bandwidth 200KHz. I am capturing =
-the signal at 200msps and I need to decimate it to 25.6msps(25MHz/128 chann=
-els). Please help me in understanding how this can be achieved using RFNoC,=
- is there=92s any block already defined for fractional downsampling.
-
-Thanks & Regards
-Snehasish
-
-Get Outlook for iOS<https://aka.ms/o0ukef>
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---_000_BM1PR01MB33480770395F326829E72FCE88D70BM1PR01MB3348INDP_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Anyway thanks for the help Jonathon</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Regards</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Snehasish<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Jonathon Pendlum &lt;=
-jonathon.pendlum@ettus.com&gt;<br>
-<b>Sent:</b> Sunday, April 19, 2020 8:58 AM<br>
-<b>To:</b> Snehasish Kar &lt;snehasish.cse@live.com&gt;<br>
-<b>Cc:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
->
-<b>Subject:</b> Re: [USRP-users] Fractional downsampling in rfnoc</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">Hi Snehasish,
-<div><br>
-</div>
-<div>I forgot about that error. I actually made an issue about it on their =
-repo:&nbsp;<a href=3D"https://github.com/SynchronousLabs/rfnoc-SynchronousL=
-abs/issues/2">https://github.com/SynchronousLabs/rfnoc-SynchronousLabs/issu=
-es/2</a>. Unless they provide an EDIF or
- their source code, you can only use their code for simulation. Certainly a=
- disappointing oversight on their part.</div>
-<div><br>
-</div>
-<div>Jonathon</div>
-</div>
-<br>
-<div class=3D"x_gmail_quote">
-<div dir=3D"ltr" class=3D"x_gmail_attr">On Sat, Apr 18, 2020 at 6:21 PM Sne=
-hasish Kar &lt;<a href=3D"mailto:snehasish.cse@live.com">snehasish.cse@live=
-.com</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bord=
-er-left:1px solid rgb(204,204,204); padding-left:1ex">
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-Hello Jonathon <br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-Tried building the fractional downsampler from synchronous labs and have en=
-countered the following error:</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<span>source file was generated for simulation and is not permitted as inpu=
-t to synthesis [/home/snehasish/rfnoc-SynchronousLabs/rfnoc/fpga-src/fract_=
-dec_filter.vhd:241995]</span></div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-Can you please help me with it.<br>
-<span></span><span></span></div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-Regards</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-Snehasish<br>
-</div>
-<div id=3D"x_gmail-m_-353417754879076980appendonsend"></div>
-<hr style=3D"display:inline-block; width:98%">
-<div id=3D"x_gmail-m_-353417754879076980divRplyFwdMsg" dir=3D"ltr"><font fa=
-ce=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b>Fr=
-om:</b> Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.com" =
-target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt;<br>
-<b>Sent:</b> Friday, April 17, 2020 9:22 PM<br>
-<b>To:</b> Snehasish Kar &lt;<a href=3D"mailto:snehasish.cse@live.com" targ=
-et=3D"_blank">snehasish.cse@live.com</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
-.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Fractional downsampling in rfnoc</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">Hello Snehasish,
-<div><br>
-</div>
-<div>Unfortunately, the standard library of blocks does not have a Fraction=
-al Decimator. Your best bet is to try to use the one made by Synchronous La=
-bs a few years ago. Their code is on github here:&nbsp;<a href=3D"https://g=
-ithub.com/SynchronousLabs/rfnoc-SynchronousLabs" target=3D"_blank">https://=
-github.com/SynchronousLabs/rfnoc-SynchronousLabs</a>.
- Since it was built, RFNoC has had some changes that will need to be fixed,=
- but I think this is your only option versus writing one from scratch.</div=
->
-<div><br>
-</div>
-<div>Jonathon</div>
-</div>
-<br>
-<div>
-<div dir=3D"ltr">On Thu, Apr 16, 2020 at 6:35 PM Snehasish Kar via USRP-use=
-rs &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp=
--users@lists.ettus.com</a>&gt; wrote:<br>
-</div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(20=
-4,204,204); padding-left:1ex">
-<div>
-<div dir=3D"ltr">
-<div></div>
-<div>
-<div>Hello&nbsp;</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">I am trying to use the RFNOC based M/2 channelizer from&nb=
-sp;<a href=3D"https://github.com/theseus-cores/theseus-cores/releases/tag/v=
-1.1.0" target=3D"_blank">https://github.com/theseus-cores/theseus-cores/rel=
-eases/tag/v1.1.0</a>&nbsp;. I am trying to divide
- 25 MHz spectrum into 124 subchannels each of bandwidth 200KHz. I am captur=
-ing the signal at 200msps and I need to decimate it to 25.6msps(25MHz/128 c=
-hannels).&nbsp;Please help me in understanding how this can be achieved usi=
-ng RFNoC, is there=92s any block already
- defined for fractional downsampling.</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Thanks &amp; Regards&nbsp;</div>
-<div dir=3D"ltr">Snehasish&nbsp;</div>
-<div dir=3D"ltr"><br>
-</div>
-<div id=3D"x_gmail-m_-353417754879076980x_gmail-m_-7099343062042280710ms-ou=
-tlook-mobile-signature">
-Get <a href=3D"https://aka.ms/o0ukef" target=3D"_blank">Outlook for iOS</a>=
-</div>
-</div>
-</div>
-</div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-</div>
-</body>
-</html>
-
---_000_BM1PR01MB33480770395F326829E72FCE88D70BM1PR01MB3348INDP_--
+Thank you,
+Lukas
 
 
---===============7011827836501473290==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7011827836501473290==--
-
