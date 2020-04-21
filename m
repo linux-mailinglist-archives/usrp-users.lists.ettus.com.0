@@ -2,53 +2,89 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 902421B27DF
-	for <lists+usrp-users@lfdr.de>; Tue, 21 Apr 2020 15:29:52 +0200 (CEST)
-Received: from [::1] (port=50600 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA4C21B2DA3
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Apr 2020 19:01:00 +0200 (CEST)
+Received: from [::1] (port=57600 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jQsyC-0005O8-Cd; Tue, 21 Apr 2020 09:29:48 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:46014)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jQsy8-0005I5-Ty
- for usrp-users@lists.ettus.com; Tue, 21 Apr 2020 09:29:44 -0400
-Received: by mail-oi1-f182.google.com with SMTP id k133so11967892oih.12
- for <usrp-users@lists.ettus.com>; Tue, 21 Apr 2020 06:29:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=7F21qs8mh1pPfzvV3HBPGYBlpLoTMrEiA/fFEUr4/is=;
- b=jpvX07CLbfMi7fhYN/TE7PbgT6HIO0tjAREGIKm72/Udp2q72DEovkLWkW5NCrtW70
- uDtDBW3sxLaUYJCWTs574Sj7DJEiyNptCqAuGiWm5pOJ+H1Rs5MlyfNkgp+BYmceHMWU
- BRcS7+Ogz2KKIUdrAQ7LnsiK7Q3dfySmah2jYh3lr25uom5Arl11UD1oASsCImb7Ae7V
- zlmQU61CT1zS77mN+ltFlMw1xCtAObvWaG4MpKvIxDclS7ocI2dRVTDqXj+PVv/Ez9GT
- XeHk+nCT5VJzNPjisvXWpQ/S3nyfP9hJ1Ut2KClfjg3RFakFcOVstvXjBmtmSdaCgJ+m
- uAyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=7F21qs8mh1pPfzvV3HBPGYBlpLoTMrEiA/fFEUr4/is=;
- b=YKWrqDSYgAnhxrXpCVAhyoK0wNJqxOvTku0He7Old4ivlxoEoahgTUwSF81wOg3dhX
- zzMB/NEiKJW1WPzGlc+oWObl0oeaqQgrZ0Csncxben9l4p8NIrF+yr25NACVcVWoiCDU
- Nc1TFKEZVsD1Mf5Whh4dVhLv/EZtCCt/M5gddw5zMH8O3XVfSeMgm9/DV3XpDUCcW/pa
- 9FOpF8BPJmTIAR+wBM9RsgTW8ah4Q0K/th32VTIC5aPtB/K2F+y6hy704aT0UtiMJo9m
- WTHrE4EuZ45RFxMBFnPfytRfeghwUIeQ8Ha2AIrnp/ilej4POZDJN7/q5ixAOdfYmz0c
- As3g==
-X-Gm-Message-State: AGi0PuYuMKswB1MSj26VqMf4BrHYf56Yu+vJQLVJ/WKb7PWim7gRWEu5
- yKq383WWm4KufK+Y0yOn5BMRHTcCpbJN0/V9/W1KSg==
-X-Google-Smtp-Source: APiQypLUcwZBsDE4c+VwuaDivlzuZ7qaFVkv2TFGPxV4i9pC/pMz9WCWZxnlfux+Xbu8tVJ4DR4Mk4NaCmJ3pBctXbs=
-X-Received: by 2002:aca:f288:: with SMTP id q130mr3155143oih.33.1587475744111; 
- Tue, 21 Apr 2020 06:29:04 -0700 (PDT)
+	id 1jQwG6-0002Kl-An; Tue, 21 Apr 2020 13:00:30 -0400
+Received: from mail-oln040092003037.outbound.protection.outlook.com
+ ([40.92.3.37]:41958 helo=NAM02-BL2-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <e070832@hotmail.com>) id 1jQwG1-0002CA-P6
+ for usrp-users@lists.ettus.com; Tue, 21 Apr 2020 13:00:25 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EDQIZiWvFlX4o1hZxZ18O+mWOBj4sI3O5S/DYFnAAXSm8ctDDb6N0C+pFSRdYXsMNlHrQa0x8gg8mn0aMQCUhScPUEj/yDt4qRvmS8mROPaDzqjWR50vMVatHP1XL1zBDJ8HZyGlLeodMS4AH2McoeuWRYDAXRd6JWd5Dhl+Ac/uuh/Htqj5LGyPkkncK/a4bFCQU9sgUMkymsXBt0E9cUKNz2at2vVDiMrSXMOFhiQHYu9ioIg2cnMn7A/2BnFaR4J1GR6tez5H9bnjDsYfByAulVA+eMi3HdAh5uTzApGuGvmP4lb4jAt1ZMVRIg56mMQ9SNB4WFPYGdKZFmBdeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mugJznERLWKyhDIP25xL/wntIDxYvrLhmpEQ9HPIaww=;
+ b=kgqKoaT0tJ/74Exal+k6nACrVjBaKY1WWC8tifYPNJYYC+FeE8AYxocpwsuoX4Is4ujgkmQYB+WqccKKOIbKEc+imvVDfKr4N5o3xHP3GitKi+X4Oombkn1Pp+hshpCWnxct4ZcI4NaTd6hJ3/lWOJz2fSQG7iU/xKHt9aRzS6kmFBURJwEcqRuspLyYuB5krA5OxUJkUMnVXeDcJ6mmnjn8NqwiVBIFaGkzKmPWPuVXB5OQA6I1i+rqVlWz9j6dQCXxGqSWbW5fOZ4o/lY1mRAw+7tFjLIEnnR+tCX1kNh1pUVy8ut7s6fPeAFZjL+hs7KlSfDBFsdVXdMgbLpQIg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mugJznERLWKyhDIP25xL/wntIDxYvrLhmpEQ9HPIaww=;
+ b=eyTtumIq3GuKSjs5WM+XrPiCpgYhLf2y3/75LKrmZskDnlwSS7o19E81Ug7TWnbH8wIA73RuPVSTqXx2fEKmLhaXMbAKZpp0d8BoL65tsBT5Z0J4wyz0y1F6ZJqsdGrAUo+KzQ4jYiWQr9QdDmvHOU97mYzhba/pAua6k53PcaUw8MttyFLojJXkx+7Hbk55190etGmoHkFWecqWSplOTRG3qCXYxPIaCGdZgHtoELNP6GqjkdEegZ450VSw5zFD3Xmzrex/0BAtfH+95mus2VOA4M0cOw5NtLZz9/uIszi3Ia7rFr38DBfnBjjYyuqq4SDWOO+J9eIeyBMK3AuZPQ==
+Received: from BL2NAM02FT029.eop-nam02.prod.protection.outlook.com
+ (10.152.76.54) by BL2NAM02HT126.eop-nam02.prod.protection.outlook.com
+ (10.152.77.177) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.25; Tue, 21 Apr
+ 2020 16:59:45 +0000
+Received: from DM6PR19MB2668.namprd19.prod.outlook.com
+ (2a01:111:e400:7e46::50) by BL2NAM02FT029.mail.protection.outlook.com
+ (2a01:111:e400:7e46::356) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2921.25 via Frontend
+ Transport; Tue, 21 Apr 2020 16:59:44 +0000
+Received: from DM6PR19MB2668.namprd19.prod.outlook.com
+ ([fe80::35ca:f87d:664d:a8b8]) by DM6PR19MB2668.namprd19.prod.outlook.com
+ ([fe80::35ca:f87d:664d:a8b8%2]) with mapi id 15.20.2937.012; Tue, 21 Apr 2020
+ 16:59:44 +0000
+To: usrp-users <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Conversion of .dat file to a readable data using
+ GNU octave
+Thread-Index: AQHWEzJ85ex9dHh2wUKhWI0dQ/nRAaiCS3mAgAAOzM6AAW0CAIAADGu/gAACTAk=
+Date: Tue, 21 Apr 2020 16:59:44 +0000
+Message-ID: <DM6PR19MB2668AFA53BCE7FF84665F6B8A4D50@DM6PR19MB2668.namprd19.prod.outlook.com>
+References: <CAD-eGGoiu=aswUWerQ7cDVYm-FVmJ6jRSoe+9WcKNdfPTsKW-g@mail.gmail.com>
+ <BY5PR09MB4520E299D24A13BDA43947A5B9D40@BY5PR09MB4520.namprd09.prod.outlook.com>
+ <BN8PR19MB265976BB8C07918290652993A4D40@BN8PR19MB2659.namprd19.prod.outlook.com>,
+ <CAD-eGGp2SzqEtH8pzRc_784AXXTeAF9Gxu5mdpkBC33AC3hGEQ@mail.gmail.com>,
+ <DM6PR19MB26684499AB88C7D68024F4C1A4D50@DM6PR19MB2668.namprd19.prod.outlook.com>
+In-Reply-To: <DM6PR19MB26684499AB88C7D68024F4C1A4D50@DM6PR19MB2668.namprd19.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:3F6B148215185E0B69F6C5951FBB2C18D7BB0F6DDF5AF8CFAE56E8526A39A3A5;
+ UpperCasedChecksum:4AF5F91DD34378E3173E8B153CACE896AC362A5668F693D23023A505826C0B01;
+ SizeAsReceived:7296; Count:45
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [zMY35qu/zkH2IaNDUSjcMFgg5hbSYxdM]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 45
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 5949b6eb-5f19-4457-7ad8-08d7e6156434
+x-ms-traffictypediagnostic: BL2NAM02HT126:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: FRCexXrlG6Q1mXUsHTrnvKZdLKsY7ep8AMCpsVQhavwPnmcB1UqHSpNcfFq7bkQmcmkAJByPjNstK8EhvEHW++g3YuQs57AKNMZNT2BfU/TQzXXm8kNLN2TydZLDwVe2KQh1d+aX/UZszEZbjcIL8y+AKLGsbTnQMSCSjXJH6THSvwvgS61hNgzyK1g+dC7ZJwDak4z2Dk6IhXlZvxBM1A==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:0; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR19MB2668.namprd19.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:; SFS:; DIR:OUT; SFP:1901; 
+x-ms-exchange-antispam-messagedata: aNwDbuKkMnkuvhMxYhspp1OE7RvfsGMjseW3MBmpGHDm/ew0qDUOpu56J3dBfaNpqP+NsN3xzscfNFCD6dVQFUx4BC5WHB27UQq1dm57/fase2Y9S6YI2E+saFUGCqEu26IPmY+AdChdpmnGjNEsYQ==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <mailman.47.1587398404.12990.usrp-users_lists.ettus.com@lists.ettus.com>
- <trinity-f7accbc4-db9b-4912-8e5c-f9c682236c93-1587400437026@3c-app-gmx-bs34>
- <5E9E4751.1090606@gmail.com>
- <trinity-3d608735-14fc-4c76-b755-59be5d062058-1587443012457@3c-app-gmx-bs69>
-In-Reply-To: <trinity-3d608735-14fc-4c76-b755-59be5d062058-1587443012457@3c-app-gmx-bs69>
-Date: Tue, 21 Apr 2020 09:28:53 -0400
-Message-ID: <CAB__hTQGu_aEH+ntDWB9xCDds7mfbEtf6FK0KdXsr==P8V7DEg@mail.gmail.com>
-To: Lukas Haase <lukashaase@gmx.at>
-Subject: Re: [USRP-users] Questions about UBX-160 Noise Figure
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5949b6eb-5f19-4457-7ad8-08d7e6156434
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2020 16:59:44.5377 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL2NAM02HT126
+Subject: Re: [USRP-users] Conversion of .dat file to a readable data using
+ GNU octave
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,10 +96,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2412812490696476239=="
+From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jeff S <e070832@hotmail.com>
+Content-Type: multipart/mixed; boundary="===============5889877625773005505=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,171 +112,225 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2412812490696476239==
-Content-Type: multipart/alternative; boundary="000000000000d1806b05a3ccff2c"
+--===============5889877625773005505==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DM6PR19MB2668AFA53BCE7FF84665F6B8A4D50DM6PR19MB2668namp_"
 
---000000000000d1806b05a3ccff2c
-Content-Type: text/plain; charset="UTF-8"
+--_000_DM6PR19MB2668AFA53BCE7FF84665F6B8A4D50DM6PR19MB2668namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I don't quite understand why it is important if it is "analog" bandwidth.
-While I understand that the UBX cannot change its analog bandwidth, it
-seems to me that digital bandwidth that is inherent in downconversion from
-200 MS/s to 5MS/s is still going reduce the noise power by the ratio of the
-original bandwidth (160 MHz) to the new bandwidth (say, 4.5 MHz).
-Rob
+DQpUaGUgY29tbWFuZHMgSSBoYWQgaW4gbXkgcmVwbHkgcGVydGFpbiBvbmx5IHRvIHVzZSBpbiB0
+aGUgR05VIE9jdGF2ZSBjb21tYW5kIHdpbmRvdy4NCg0KQXMgZm9yIHRoZSBHTlVSYWRpbyBDb21w
+YW5pb24gZmxvdyBncmFwaHMgeW91IGF0dGFjaGVkLCBJJ20gbm90IHN1cmUgd2hlcmUgdGhlIHF1
+ZXN0aW9uIGlzLiAgVGhhdCdsbCBoYXZlIHRvIGJlIHNvbWVvbmUgbW9yZSBhZHZhbmNlZCB0aGFu
+IG15IG5vdmljZSBzZWxmLiAgSSB1c3VhbGx5IGhhdmUgcmVjb3JkZWQgZGF0YSBieSBnb2luZyBm
+cm9tIGEgVVNSUCBTb3VyY2UgZGlyZWN0bHkgdG8gYSBGaWxlIFNpbmsgdG8gb2J0YWluIFJGIGNv
+bXBsZXggZGF0YSBsaWtlIEt5bGUgZGVzY3JpYmVkLiAgSSB0aGVuIG1vdmUgdG8gR05VIE9jdGF2
+ZSB0byBwbG90IHBhcnRzIG9mIHRoYXQgZGF0YSB1c2luZyB0aGUgY29tbWFuZHMgSSBoYWQgZ2l2
+ZW4uDQoNCkplZmYNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IEFL
+SU5ZRUxFIElUQU1BS0lOREUgPGFpdGFtYWtpbmRlQGFidWFkLmVkdS5uZz4NClNlbnQ6IFR1ZXNk
+YXksIEFwcmlsIDIxLCAyMDIwIDExOjA2IEFNDQpUbzogSmVmZiBTIDxlMDcwODMyQGhvdG1haWwu
+Y29tPg0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBDb252ZXJzaW9uIG9mIC5kYXQgZmlsZSB0
+byBhIHJlYWRhYmxlIGRhdGEgdXNpbmcgR05VIG9jdGF2ZQ0KDQpKZWZmLA0KVGhhbmtzIGZvciB0
+aGUgcmVwbHkuIEkgaGF2ZSB0cmllZCB0aGlzLCBpdCBkaWQgbm90IHdvcmsuIE1heWJlIGkgZG9u
+dCBpIGtub3cgaG93IHRvIHVzZSBhbmQgd2hlcmUgdG8gdXNlIHRoZSBsaW5lcy4gSSBhbSBuZXcg
+dG8gdGhlIHNvZnR3YXJlcy4gSSBuZWVkIGEgbGluZSBieSBsaW5lIHByb2NlZHVyZSBvZiB0aGUg
+c29sdXRpb24uIEkgYXR0YWNoZWQgdGhlIHRyYW5zbWl0dGVyIGFuZCByZWNlaXZlciBmbG93IGdy
+YXBoIG9mIHRoZSBjaGFubmVsIHNvdW5kaW5nIHNsaWRpbmcgY29ycmVsYXRvciBmb3IgbW9yZSB1
+bmRlcnN0YW5kaW5nIG9mIHdoYXQgSSB3YW50IHRvIGFjaGlldmUuIFRoYW5rcw0KDQpPbiBNb24s
+IEFwciAyMCwgMjAyMCBhdCA2OjI1IFBNIEplZmYgUyA8ZTA3MDgzMkBob3RtYWlsLmNvbTxtYWls
+dG86ZTA3MDgzMkBob3RtYWlsLmNvbT4+IHdyb3RlOg0KS3lsZSBpcyBjb3JyZWN0LiAgQW5kIHRv
+IGJlIHNwZWNpZmljIGV4YW1wbGUgKHNpbmNlIEkgbGlrZSB0aGVtLCBzdGVwIGJ5IHN0ZXApLCBJ
+IGRvIGVzc2VudGlhbGx5IHRoZSBzYW1lIHRoaW5nIGxpa2U6DQoNCj4+IEluRmlsZUlEID0gZm9w
+ZW4oJ215ZmlsZS5kYXQnKTsNCj4+IEEgPSBmcmVhZChJbkZpbGVJRCwnZmxvYXQzMicpOyAgJSBS
+ZWFkIGluIHBlciBLeWxlJ3MgZGVzY3JpcHRpb24NCj4+IGZjbG9zZShJbkZpbGVJRCk7DQo+PiBC
+ID0gW0EoMToyOmVuZCksIEEoMjoyOmVuZCldOyAgJSBTcGxpdCBvdXQgUmUgJiBJbWFnDQo+PiBw
+bG90KEIpDQoNCkplZmYNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206
+IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVz
+cnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb20+PiBvbiBiZWhhbGYgb2YgS3lsZSBBIExv
+Z3VlIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pg0KU2VudDogTW9uZGF5LCBBcHJpbCAyMCwgMjAyMCAx
+MjoyNyBQTQ0KVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbT4gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+OyBBS0lOWUVMRSBJVEFNQUtJTkRFIDxhaXRhbWFraW5k
+ZUBhYnVhZC5lZHUubmc8bWFpbHRvOmFpdGFtYWtpbmRlQGFidWFkLmVkdS5uZz4+DQpTdWJqZWN0
+OiBSZTogW1VTUlAtdXNlcnNdIENvbnZlcnNpb24gb2YgLmRhdCBmaWxlIHRvIGEgcmVhZGFibGUg
+ZGF0YSB1c2luZyBHTlUgb2N0YXZlDQoNCkFzc3VtaW5nIHlvdSBoYXZlIHlvdXIgZmlsZSBzaW5r
+IGNvbmZpZ3VyZWQgdG8gY29tcGxleCwgdGhlIGRhdGEgKHdoaWNoIHlvdSBzaG91bGRuJ3QganVz
+dCBzYXZlIGFzIC5kYXQgLSBjb25zaWRlciAuZmMzMiBvciBzaWdtZikgc2hvdWxkIHNpbXBseSBi
+ZSBpbnRlcmxlYXZlZCBmbG9hdDMyLiBTbyBpdCBsb29rcyBsaWtlDQoNClsoZmxvYXQzMiByZWFs
+KSwgKGZsb2F0MzIgaW1hZyksIChmbG9hdDMyIHJlYWwpLCAoZmxvYXQzMiBpbWFnKSwgLi4uIF0N
+Cg0KaW4gcHl0aG9uIHlvdSBjYW4gcmVhZCB0aGF0IHcvYG5wLmZyb21maWxlKHh5eiwgZHR5cGU9
+bnAuY29tcGxleDY0KWAuIFRoZXJlIG11c3QgYmUgYW4gZXF1aXZhbGVudCBpbiBvY3RhdmUuDQoN
+Ckt5bGUgTG9ndWUNCkVuZ2luZWVyaW5nIE1hbmFnZXIg4pqdIENvbW0gU29mdHdhcmUgSW1wbGVt
+ZW50YXRpb24gRGVwdA0KVGhlIEFlcm9zcGFjZSBDb3Jwb3JhdGlvbg0KX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18NCkZyb206IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnMtYm91bmNlc0Bs
+aXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb20+
+PiBvbiBiZWhhbGYgb2YgQUtJTllFTEUgSVRBTUFLSU5ERSB2aWEgVVNSUC11c2VycyA8dXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4N
+ClNlbnQ6IFdlZG5lc2RheSwgQXByaWwgMTUsIDIwMjAgMDc6MzANClRvOiB1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IDx1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pg0K
+U3ViamVjdDogW1VTUlAtdXNlcnNdIENvbnZlcnNpb24gb2YgLmRhdCBmaWxlIHRvIGEgcmVhZGFi
+bGUgZGF0YSB1c2luZyBHTlUgb2N0YXZlDQoNCkkgYW0gd29ya2luZyBvbiBjaGFubmVsIHNvdW5k
+aW5nIHVzaW5nIFVTUlAgYW5kIEdOVSByYWRpbyBwbGF0Zm9ybXMuIEkgYW0gZXhwZXJpZW5jaW5n
+IGRpZmZpY3VsdHkgaW4gY29udmVydGluZyB0aGUgLmRhdCBmaWxlIG9mIHNpbmsgZmlsZSBhdCBy
+ZWNlaXZlciBvZiBmbG93IGdyYXBoIGludG8gcmVhZGFibGUgZGF0YSB1c2luZyBHTlUgb2N0YXZl
+LiBDYW4gc29tZWJvZHkgaGVscCBtZSB0byBhY2hpZXZlIHRoaXM/IFRoYW5rcw0K
 
-On Tue, Apr 21, 2020 at 12:24 AM Lukas Haase via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+--_000_DM6PR19MB2668AFA53BCE7FF84665F6B8A4D50DM6PR19MB2668namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> Hi Marcus,
->
-> > Von: "Marcus D. Leech" <patchvonbraun@gmail.com>
-> > [...]
-> > > My question is if my approach/understanding is right.
-> > >
-> > > In particular I do not understand Question 4 (why does noise not
-> reduce if I reduce bandwidth).
-> > If you're varying *analog* bandwidth, rather than sampling rate, be
-> > aware that UBX doesn't have variable analog bandwidth.  It's always
-> fixed.
->
-> I see.
-> Great point.
->
-> I just found:
-> http://ettus.80997.x6.nabble.com/USRP-users-Which-bandwidth-does-uhd-usrp-multi-usrp-set-rx-bandwidth-set-td11897.html
->
-> And it seems set_tx_bandwidth() and set_rx_bandwidth() do nothing then on
-> the UBX.
->
-> I wrote before my noise level should be -174+NF+10*log10(5e6).
->
-> But based on this, it should be more correctly -174+NF+10*log10(160e6) ...
-> is that correct? (I just receive the raw samples from the USRP via USRP
-> Source. There is no other digital filter?)
->
-> > > Furthermore, I'd be interested if Question 5 is conceptually correct.
-> > Conceptually, I don't see any problem with it, but it very-squarely
-> > enters  "consider a spherical cow" territory.  You CANNOT use a purely
-> >    arithmetic analysis, due to uncertainties.   I would, in fact,
-> > encourage you to acquire a decent broad-band, calibrated, noise source
-> for
-> >    you lab so that you can do Y-factor analysis, if for no other reason
-> > than to satisfy yourself that the noise equations work.
->
-> The issue with the bandwidth calculation above would be one of them ;-)
->
-> > I've used these on a budget-sensitive project just last year:
-> > https://g8fek.com/precision-noise-sources.html
->
-> Thanks for the pointer. I think I'll get one of these.
->
-> For a proper use I would need a steep filter though, correct? (in order to
-> have a well defined total input power Pin=-174+ENR+10*log10(FilterCuroff)
-> dBm? )
->
-> Thanks,
-> Lukas
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCiZuYnNwOw0KPGRpdj4NCjxkaXYgaWQ9ImRp
+dlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48L2Rpdj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBzdHls
+ZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEy
+cHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KVGhlIGNvbW1hbmRzIEkgaGFkIGluIG15IHJlcGx5IHBl
+cnRhaW4gb25seSB0byB1c2UgaW4gdGhlIEdOVSBPY3RhdmUgY29tbWFuZCB3aW5kb3cuPC9kaXY+
+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBm
+b250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5
+bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTox
+MnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkFzIGZvciB0aGUgR05VUmFkaW8gQ29tcGFuaW9uIGZs
+b3cgZ3JhcGhzIHlvdSBhdHRhY2hlZCwgSSdtIG5vdCBzdXJlIHdoZXJlIHRoZSBxdWVzdGlvbiBp
+cy4mbmJzcDsgVGhhdCdsbCBoYXZlIHRvIGJlIHNvbWVvbmUgbW9yZSBhZHZhbmNlZCB0aGFuIG15
+IG5vdmljZSBzZWxmLiZuYnNwOyBJIHVzdWFsbHkgaGF2ZSByZWNvcmRlZCBkYXRhIGJ5IGdvaW5n
+IGZyb20gYSBVU1JQIFNvdXJjZSBkaXJlY3RseSB0byBhIEZpbGUgU2luayB0byBvYnRhaW4gUkYg
+Y29tcGxleA0KIGRhdGEgbGlrZSBLeWxlIGRlc2NyaWJlZC4mbmJzcDsgSSB0aGVuIG1vdmUgdG8g
+R05VIE9jdGF2ZSB0byBwbG90IHBhcnRzIG9mIHRoYXQgZGF0YSB1c2luZyB0aGUgY29tbWFuZHMg
+SSBoYWQgZ2l2ZW4uPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEhlbHZl
+dGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+
+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksSGVsdmV0aWNhLHNhbnMt
+c2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkplZmY8YnI+DQo8L2Rp
+dj4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEhlbHZldGljYSxzYW5z
+LXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4N
+CjxociB0YWJpbmRleD0iLTEiIHN0eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jazsgd2lkdGg6OTgl
+Ij4NCjxkaXYgaWQ9InhfZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IHN0eWxlPSJmb250
+LXNpemU6MTFwdCIgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJpZiIgY29sb3I9IiMwMDAwMDAiPjxi
+PkZyb206PC9iPiBBS0lOWUVMRSBJVEFNQUtJTkRFICZsdDthaXRhbWFraW5kZUBhYnVhZC5lZHUu
+bmcmZ3Q7PGJyPg0KPGI+U2VudDo8L2I+IFR1ZXNkYXksIEFwcmlsIDIxLCAyMDIwIDExOjA2IEFN
+PGJyPg0KPGI+VG86PC9iPiBKZWZmIFMgJmx0O2UwNzA4MzJAaG90bWFpbC5jb20mZ3Q7PGJyPg0K
+PGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gQ29udmVyc2lvbiBvZiAuZGF0IGZpbGUg
+dG8gYSByZWFkYWJsZSBkYXRhIHVzaW5nIEdOVSBvY3RhdmU8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwv
+ZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2PkplZmYsPC9kaXY+DQo8
+ZGl2PlRoYW5rcyBmb3IgdGhlIHJlcGx5LiBJIGhhdmUgdHJpZWQgdGhpcywgaXQgZGlkIG5vdCB3
+b3JrLiBNYXliZSBpIGRvbnQgaSBrbm93IGhvdyB0byB1c2UgYW5kIHdoZXJlIHRvIHVzZSB0aGUg
+bGluZXMuIEkgYW0gbmV3IHRvIHRoZSBzb2Z0d2FyZXMuIEkgbmVlZCBhIGxpbmUgYnkgbGluZSBw
+cm9jZWR1cmUgb2YgdGhlIHNvbHV0aW9uLiBJIGF0dGFjaGVkIHRoZSB0cmFuc21pdHRlciBhbmQg
+cmVjZWl2ZXIgZmxvdyBncmFwaCBvZiB0aGUgY2hhbm5lbA0KIHNvdW5kaW5nIHNsaWRpbmcgY29y
+cmVsYXRvciBmb3IgbW9yZSB1bmRlcnN0YW5kaW5nIG9mIHdoYXQgSSB3YW50IHRvIGFjaGlldmUu
+IFRoYW5rczxicj4NCjwvZGl2Pg0KPC9kaXY+DQo8YnI+DQo8ZGl2IGNsYXNzPSJ4X3hfZ21haWxf
+cXVvdGUiPg0KPGRpdiBkaXI9Imx0ciIgY2xhc3M9InhfeF9nbWFpbF9hdHRyIj5PbiBNb24sIEFw
+ciAyMCwgMjAyMCBhdCA2OjI1IFBNIEplZmYgUyAmbHQ7PGEgaHJlZj0ibWFpbHRvOmUwNzA4MzJA
+aG90bWFpbC5jb20iPmUwNzA4MzJAaG90bWFpbC5jb208L2E+Jmd0OyB3cm90ZTo8YnI+DQo8L2Rp
+dj4NCjxibG9ja3F1b3RlIGNsYXNzPSJ4X3hfZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46MHB4
+IDBweCAwcHggMC44ZXg7IGJvcmRlci1sZWZ0OjFweCBzb2xpZCByZ2IoMjA0LDIwNCwyMDQpOyBw
+YWRkaW5nLWxlZnQ6MWV4Ij4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBzdHlsZT0iZm9udC1mYW1p
+bHk6Q2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJn
+YigwLDAsMCkiPg0KS3lsZSBpcyBjb3JyZWN0LiZuYnNwOyBBbmQgdG8gYmUgc3BlY2lmaWMgZXhh
+bXBsZSAoc2luY2UgSSBsaWtlIHRoZW0sIHN0ZXAgYnkgc3RlcCksIEkgZG8gZXNzZW50aWFsbHkg
+dGhlIHNhbWUgdGhpbmcgbGlrZTo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGli
+cmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDAp
+Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxIZWx2ZXRp
+Y2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPHNwYW4+
+Jmd0OyZndDsgSW5GaWxlSUQgPSBmb3BlbignbXlmaWxlLmRhdCcpOzxicj4NCjwvc3Bhbj48L2Rp
+dj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7
+IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxzcGFuPiZndDsmZ3Q7IEEgPSBm
+cmVhZChJbkZpbGVJRCwnZmxvYXQzMicpOyZuYnNwOyAlIFJlYWQgaW4gcGVyIEt5bGUncyBkZXNj
+cmlwdGlvbjxicj4NCjwvc3Bhbj4NCjxkaXY+Jmd0OyZndDsgZmNsb3NlKEluRmlsZUlEKTs8YnI+
+DQo8L2Rpdj4NCjxkaXY+Jmd0OyZndDsgQiA9IFtBKDE6MjplbmQpLCBBKDI6MjplbmQpXTsmbmJz
+cDsgJSBTcGxpdCBvdXQgUmUgJmFtcDsgSW1hZzxicj4NCjwvZGl2Pg0KPGRpdj4mZ3Q7Jmd0OyBw
+bG90KEIpPGJyPg0KPC9kaXY+DQo8c3Bhbj48L3NwYW4+PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250
+LWZhbWlseTpDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29s
+b3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNh
+bGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCww
+LDApIj4NCkplZmY8YnI+DQo8L2Rpdj4NCjxkaXY+PGJyPg0KPGhyIHN0eWxlPSJkaXNwbGF5Omlu
+bGluZS1ibG9jazsgd2lkdGg6OTglIj4NCjxkaXYgaWQ9InhfeF9nbWFpbC1tXzQxOTAyMDY5ODYz
+MDUzMDQ3OTRkaXZScGx5RndkTXNnIiBkaXI9Imx0ciI+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZTox
+MXB0IiBmYWNlPSJDYWxpYnJpLCBzYW5zLXNlcmlmIiBjb2xvcj0iIzAwMDAwMCI+PGI+RnJvbTo8
+L2I+IFVTUlAtdXNlcnMgJmx0OzxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWJvdW5jZXNAbGlz
+dHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0
+dHVzLmNvbTwvYT4mZ3Q7DQogb24gYmVoYWxmIG9mIEt5bGUgQSBMb2d1ZSB2aWEgVVNSUC11c2Vy
+cyAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9
+Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+Jmd0Ozxicj4NCjxiPlNlbnQ6
+PC9iPiBNb25kYXksIEFwcmlsIDIwLCAyMDIwIDEyOjI3IFBNPGJyPg0KPGI+VG86PC9iPiA8YSBo
+cmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj51
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4gJmx0OzxhIGhyZWY9Im1haWx0bzp1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tPC9hPiZndDs7IEFLSU5ZRUxFIElUQU1BS0lOREUgJmx0OzxhIGhyZWY9Im1haWx0bzph
+aXRhbWFraW5kZUBhYnVhZC5lZHUubmciIHRhcmdldD0iX2JsYW5rIj5haXRhbWFraW5kZUBhYnVh
+ZC5lZHUubmc8L2E+Jmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIENv
+bnZlcnNpb24gb2YgLmRhdCBmaWxlIHRvIGEgcmVhZGFibGUgZGF0YSB1c2luZyBHTlUgb2N0YXZl
+PC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2
+IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBm
+b250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKTsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1
+LDI1NSwyNTUpIj4NCkFzc3VtaW5nIHlvdSBoYXZlIHlvdXIgZmlsZSBzaW5rIGNvbmZpZ3VyZWQg
+dG8gY29tcGxleCwgdGhlIGRhdGEgKHdoaWNoIHlvdSBzaG91bGRuJ3QganVzdCBzYXZlIGFzIC5k
+YXQgLSBjb25zaWRlciAuZmMzMiBvciBzaWdtZikgc2hvdWxkIHNpbXBseSBiZSBpbnRlcmxlYXZl
+ZCBmbG9hdDMyLiBTbyBpdCBsb29rcyBsaWtlPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWls
+eTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29s
+b3I6cmdiKDAsMCwwKTsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj4NCjxicj4N
+CjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Es
+c2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCk7IGJhY2tncm91bmQt
+Y29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+DQpbKGZsb2F0MzIgcmVhbCksIChmbG9hdDMyIGltYWcp
+LCZuYnNwOyhmbG9hdDMyIHJlYWwpLCAoZmxvYXQzMiBpbWFnKSwgLi4uIF08L2Rpdj4NCjxkaXYg
+c3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZv
+bnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApOyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUs
+MjU1LDI1NSkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJp
+LEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAs
+MCwwKTsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj4NCmluIHB5dGhvbiB5b3Ug
+Y2FuIHJlYWQgdGhhdCB3L2BucC5mcm9tZmlsZSh4eXosIGR0eXBlPW5wLmNvbXBsZXg2NClgLiBU
+aGVyZSBtdXN0IGJlIGFuIGVxdWl2YWxlbnQgaW4gb2N0YXZlLjwvZGl2Pg0KPGRpdj4NCjxkaXYg
+c3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZv
+bnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBpZD0i
+eF94X2dtYWlsLW1fNDE5MDIwNjk4NjMwNTMwNDc5NHhfU2lnbmF0dXJlIj4NCjxkaXY+PC9kaXY+
+DQo8ZGl2IGlkPSJ4X3hfZ21haWwtbV80MTkwMjA2OTg2MzA1MzA0Nzk0eF9kaXZ0YWdkZWZhdWx0
+d3JhcHBlciIgZGlyPSJsdHIiIHN0eWxlPSJmb250LXNpemU6MTJwdDsgZm9udC1mYW1pbHk6Q2Fs
+aWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgY29sb3I6cmdiKDAsMCwwKSI+DQo8c3BhbiBpZD0i
+eF94X2dtYWlsLW1fNDE5MDIwNjk4NjMwNTMwNDc5NHhfbXMtcnRlcmFuZ2VwYXN0ZS1zdGFydCI+
+PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpDb25zb2xhcyxtb25vc3BhY2U7IGZvbnQt
+c2l6ZTo4cHQiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpDb25zb2xhcyxtb25vc3BhY2U7IGZv
+bnQtc2l6ZTo4cHQiPjxiPjwvYj48Yj5LeWxlIExvZ3VlPC9iPjxicj4NCjxzcGFuIHN0eWxlPSJm
+b250LWZhbWlseTpDb25zb2xhcyxtb25vc3BhY2U7IGZvbnQtc2l6ZTo4cHQiPg0KPGRpdj48aT5F
+bmdpbmVlcmluZyBNYW5hZ2VyIDxzcGFuPjxzcGFuPjxzcGFuPuKanTwvc3Bhbj48L3NwYW4+PC9z
+cGFuPiBDb21tIFNvZnR3YXJlIEltcGxlbWVudGF0aW9uIERlcHQ8YnI+DQo8L2k+PC9kaXY+DQo8
+ZGl2PjxpPlRoZSBBZXJvc3BhY2UgQ29ycG9yYXRpb248L2k+PC9kaXY+DQo8L3NwYW4+PHNwYW4g
+c3R5bGU9ImZvbnQtZmFtaWx5OkNvbnNvbGFzLG1vbm9zcGFjZTsgZm9udC1zaXplOjhwdCI+DQo8
+ZGl2PjwvZGl2Pg0KPC9zcGFuPjwvc3Bhbj48L3NwYW4+PHNwYW4gaWQ9InhfeF9nbWFpbC1tXzQx
+OTAyMDY5ODYzMDUzMDQ3OTR4X21zLXJ0ZXJhbmdlcGFzdGUtZW5kIj48L3NwYW4+PC9kaXY+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPGRpdiBpZD0ieF94X2dtYWlsLW1fNDE5MDIwNjk4NjMwNTMwNDc5NHhf
+YXBwZW5kb25zZW5kIj48L2Rpdj4NCjxociBzdHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7IHdp
+ZHRoOjk4JSI+DQo8ZGl2IGlkPSJ4X3hfZ21haWwtbV80MTkwMjA2OTg2MzA1MzA0Nzk0eF9kaXZS
+cGx5RndkTXNnIiBkaXI9Imx0ciI+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZToxMXB0IiBmYWNlPSJD
+YWxpYnJpLCBzYW5zLXNlcmlmIiBjb2xvcj0iIzAwMDAwMCI+PGI+RnJvbTo8L2I+IFVTUlAtdXNl
+cnMgJmx0OzxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWJvdW5jZXNAbGlzdHMuZXR0dXMuY29t
+IiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVzLmNvbTwvYT4m
+Z3Q7DQogb24gYmVoYWxmIG9mIEFLSU5ZRUxFIElUQU1BS0lOREUgdmlhIFVTUlAtdXNlcnMgJmx0
+OzxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxh
+bmsiPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPiZndDs8YnI+DQo8Yj5TZW50OjwvYj4g
+V2VkbmVzZGF5LCBBcHJpbCAxNSwgMjAyMCAwNzozMDxicj4NCjxiPlRvOjwvYj4gPGEgaHJlZj0i
+bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+ICZsdDs8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bTwvYT4mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFtVU1JQLXVzZXJzXSBDb252ZXJzaW9uIG9m
+IC5kYXQgZmlsZSB0byBhIHJlYWRhYmxlIGRhdGEgdXNpbmcgR05VIG9jdGF2ZTwvZm9udD4NCjxk
+aXY+Jm5ic3A7PC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2IGRpcj0ibHRyIj5JIGFtIHdvcmtp
+bmcgb24gY2hhbm5lbCBzb3VuZGluZyB1c2luZyBVU1JQIGFuZCBHTlUgcmFkaW8gcGxhdGZvcm1z
+LiBJIGFtIGV4cGVyaWVuY2luZyBkaWZmaWN1bHR5IGluIGNvbnZlcnRpbmcgdGhlIC5kYXQgZmls
+ZSBvZiBzaW5rIGZpbGUgYXQgcmVjZWl2ZXIgb2YgZmxvdyBncmFwaCBpbnRvIHJlYWRhYmxlIGRh
+dGEgdXNpbmcgR05VIG9jdGF2ZS4gQ2FuIHNvbWVib2R5IGhlbHAgbWUgdG8gYWNoaWV2ZSB0aGlz
+PyBUaGFua3M8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1
+b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
+aHRtbD4NCg==
 
---000000000000d1806b05a3ccff2c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>I don&#39;t quite understand why it is important if i=
-t is &quot;analog&quot; bandwidth.=C2=A0 While I understand that the UBX ca=
-nnot change its analog bandwidth, it seems to me that digital bandwidth tha=
-t is inherent in downconversion from 200 MS/s to 5MS/s is still going reduc=
-e the noise power=C2=A0by the ratio of the original bandwidth (160 MHz) to =
-the new bandwidth=C2=A0(say, 4.5 MHz).=C2=A0</div><div>Rob</div><br><div cl=
-ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 21, 2=
-020 at 12:24 AM Lukas Haase via USRP-users &lt;<a href=3D"mailto:usrp-users=
-@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex">Hi Marcus,<br>
-<br>
-&gt; Von: &quot;Marcus D. Leech&quot; &lt;<a href=3D"mailto:patchvonbraun@g=
-mail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;<br>
-&gt; [...]<br>
-&gt; &gt; My question is if my approach/understanding is right.<br>
-&gt; &gt;<br>
-&gt; &gt; In particular I do not understand Question 4 (why does noise not =
-reduce if I reduce bandwidth).<br>
-&gt; If you&#39;re varying *analog* bandwidth, rather than sampling rate, b=
-e<br>
-&gt; aware that UBX doesn&#39;t have variable analog bandwidth.=C2=A0 It&#3=
-9;s always fixed.<br>
-<br>
-I see.<br>
-Great point.<br>
-<br>
-I just found: <a href=3D"http://ettus.80997.x6.nabble.com/USRP-users-Which-=
-bandwidth-does-uhd-usrp-multi-usrp-set-rx-bandwidth-set-td11897.html" rel=
-=3D"noreferrer" target=3D"_blank">http://ettus.80997.x6.nabble.com/USRP-use=
-rs-Which-bandwidth-does-uhd-usrp-multi-usrp-set-rx-bandwidth-set-td11897.ht=
-ml</a><br>
-<br>
-And it seems set_tx_bandwidth() and set_rx_bandwidth() do nothing then on t=
-he UBX.<br>
-<br>
-I wrote before my noise level should be -174+NF+10*log10(5e6).<br>
-<br>
-But based on this, it should be more correctly -174+NF+10*log10(160e6) ... =
-is that correct? (I just receive the raw samples from the USRP via USRP Sou=
-rce. There is no other digital filter?)<br>
-<br>
-&gt; &gt; Furthermore, I&#39;d be interested if Question 5 is conceptually =
-correct.<br>
-&gt; Conceptually, I don&#39;t see any problem with it, but it very-squarel=
-y<br>
-&gt; enters=C2=A0 &quot;consider a spherical cow&quot; territory.=C2=A0 You=
- CANNOT use a purely<br>
-&gt;=C2=A0 =C2=A0 arithmetic analysis, due to uncertainties.=C2=A0 =C2=A0I =
-would, in fact,<br>
-&gt; encourage you to acquire a decent broad-band, calibrated, noise source=
- for<br>
-&gt;=C2=A0 =C2=A0 you lab so that you can do Y-factor analysis, if for no o=
-ther reason<br>
-&gt; than to satisfy yourself that the noise equations work.<br>
-<br>
-The issue with the bandwidth calculation above would be one of them ;-)<br>
-<br>
-&gt; I&#39;ve used these on a budget-sensitive project just last year:<br>
-&gt; <a href=3D"https://g8fek.com/precision-noise-sources.html" rel=3D"nore=
-ferrer" target=3D"_blank">https://g8fek.com/precision-noise-sources.html</a=
-><br>
-<br>
-Thanks for the pointer. I think I&#39;ll get one of these.<br>
-<br>
-For a proper use I would need a steep filter though, correct? (in order to =
-have a well defined total input power Pin=3D-174+ENR+10*log10(FilterCuroff)=
- dBm? )<br>
-<br>
-Thanks,<br>
-Lukas<br>
-<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-
---000000000000d1806b05a3ccff2c--
+--_000_DM6PR19MB2668AFA53BCE7FF84665F6B8A4D50DM6PR19MB2668namp_--
 
 
---===============2412812490696476239==
+--===============5889877625773005505==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -252,5 +341,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2412812490696476239==--
+--===============5889877625773005505==--
 
