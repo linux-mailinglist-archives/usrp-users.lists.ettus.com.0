@@ -2,60 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 843ED1B1B2C
-	for <lists+usrp-users@lfdr.de>; Tue, 21 Apr 2020 03:16:53 +0200 (CEST)
-Received: from [::1] (port=38078 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED4491B1D5D
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Apr 2020 06:24:21 +0200 (CEST)
+Received: from [::1] (port=41080 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jQhWu-0006uV-FJ; Mon, 20 Apr 2020 21:16:52 -0400
-Received: from mail-io1-f49.google.com ([209.85.166.49]:37591)
+	id 1jQkSH-00080n-IC; Tue, 21 Apr 2020 00:24:17 -0400
+Received: from mout.gmx.net ([212.227.17.21]:38309)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jQhWq-0006nS-MH
- for usrp-users@lists.ettus.com; Mon, 20 Apr 2020 21:16:48 -0400
-Received: by mail-io1-f49.google.com with SMTP id u11so13346128iow.4
- for <usrp-users@lists.ettus.com>; Mon, 20 Apr 2020 18:16:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=I7B0p2De7MyfUtcJSTuKHigSKcAnCOBKdTH8T7aVopA=;
- b=acLHLlQef/iBznMp7GOvopyDTYB2wweoj5EX31EGtB3ByR/COXGCVshM2dssdu0nkS
- kbuk6JfhL2FsIfQUfqy/I9SYSPdZ3bwWqibsr03PJAJUCAM7+NCml5bVhQkPvmKcSUMk
- O4AkXLsVcvQoz1OSUUeY425ARmcUUOGReHGrHB1Fz2kGH8oJzM/DNeofDFugMTWrFZp9
- Ug0qHJ3oN24dSDcP+1uFNo+aFbxHR7O2dYPL4BFmYHAvINzFMBI6uGIKYKY7uiwquJYx
- RP1xEJEdD0O+K3ASfb7NlVEsRcrYVUBjCGs+KE5yBhmz0J1WQ5SzGFyTCR1CtAcqdsYx
- nD2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=I7B0p2De7MyfUtcJSTuKHigSKcAnCOBKdTH8T7aVopA=;
- b=P+cNbSA6t6CA8+APeMrFsxmc5j1UBVDTw/b3A9N1dqjTQCWsIvO8S2FdLC7yFbR05T
- 2LLNOb5/uRf1AeuTQeP0gVRA19LTLzUY9TOjrQQ+ivvdTouC/3tPp1y42ZNI3fOAIBbn
- M3g0kuGivInj8Iwb2tknn1yd+94YX7+0TkNnpWt8fe7Lp4l+U2f+B+8bxKSHslNbn8nE
- dt6f3LTop5uDfNEgsAm3X4przEn3g+k5JNJ3bML3/5neMmby0DmnV9FZi8ZMKgviPud2
- s0SfuLFNa+Dg+gW9mWEavpNf+Z9Xxkn+tbPUGwZ+S6O7S7Bmjr+R2SIhezw2QthOChN6
- dSOA==
-X-Gm-Message-State: AGi0PuaHsgzt0/bFdV48AkeQVsHmsITwFF3eYEGHyzXvmHGq9Ld1mnkj
- 0b/ttfnqYP4afgjh3S0ggo5NSPzewkE=
-X-Google-Smtp-Source: APiQypIQ/EoimxPLKDK9H+FLsMRtjH8DFLsGo/L7VnfalvM8eJYlabyltNtlndLV1J857lGo/86MwA==
-X-Received: by 2002:a05:6638:508:: with SMTP id
- i8mr7192697jar.137.1587431767751; 
- Mon, 20 Apr 2020 18:16:07 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp130-01-69-158-143-211.dsl.bell.ca. [69.158.143.211])
- by smtp.googlemail.com with ESMTPSA id s69sm442177ild.6.2020.04.20.18.16.07
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 20 Apr 2020 18:16:07 -0700 (PDT)
-Message-ID: <5E9E494F.6010405@gmail.com>
-Date: Mon, 20 Apr 2020 21:15:59 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jQkSD-0007xJ-MN
+ for usrp-users@lists.ettus.com; Tue, 21 Apr 2020 00:24:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1587443012;
+ bh=E8oGD95MOZa3xJnU+i3IPvvvk8wMAW73iAW2kwhS3Vs=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=fNj+HCMIuzfjWjBX8oI0uF92lrcfpbjgc/7HQwMtuPY3CxuRyTtfTsBMlUhuJvjZC
+ eRhjjnEXIhX8cYXVxXUdoGm75Ips3MHg5bqiPaebJcNlrUa0hFQ1O1D3+O0fCFCCwW
+ 5f7vlfgLs9up6KQHf7vWhK9Rik7Po6QhnAi2lKSk=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [87.101.50.39] ([87.101.50.39]) by web-mail.gmx.net
+ (3c-app-gmx-bs69.server.lan [172.19.170.214]) (via HTTP); Tue, 21 Apr 2020
+ 06:23:32 +0200
 MIME-Version: 1.0
-To: Lukas Haase <lukashaase@gmx.at>, usrp-users@lists.ettus.com
+Message-ID: <trinity-3d608735-14fc-4c76-b755-59be5d062058-1587443012457@3c-app-gmx-bs69>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Date: Tue, 21 Apr 2020 06:23:32 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <5E9E4751.1090606@gmail.com>
 References: <mailman.47.1587398404.12990.usrp-users_lists.ettus.com@lists.ettus.com>
  <trinity-f7accbc4-db9b-4912-8e5c-f9c682236c93-1587400437026@3c-app-gmx-bs34>
-In-Reply-To: <trinity-f7accbc4-db9b-4912-8e5c-f9c682236c93-1587400437026@3c-app-gmx-bs34>
+ <5E9E4751.1090606@gmail.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:cOdMFhIIkDWFwejoAFeobueLged2XiKEKKqfDMTPtstB08o3DX0DwQTchOSOALLcEnFc+
+ oYwuVommBPpKwIf9odjWZK+oO4rR2AqtWxXq1S/6s3Dj0hlVxhdFRFX4aBaGAjyf5Rv+kV6tZbgH
+ 3ZKZpfN5qEcI6xj4dAHyMG4urEWFnWMK+EnE5Xx+XliSydeaTcimODZFXE1VtnFTGba6B5TzT+Xu
+ PLQAn8Dbnjm/n84giFnONoYalgTgwmy9iK0Ah+dVwJ0V6WyRCRnS5rjDzb81hN5u30O3RaguQxHo
+ ec=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:5o4JH7yceH4=:pNdLwjzHdYkqD7kiCqdFxJ
+ wLZS5lgZ5ZSKrD1763+lmKLn33FGhLuXVdAYop5MdPIlH/7ooETm7E/HP1/szCmk37lrdza6C
+ ytyRZmAAZ4Q6fNIVtpj8K6CHl6wkxBiSmsg8BKYjKXs+VpnmrUU+IP746y4Ll/97SOD7C/hrj
+ lZEqfKPb9px2HzWNEq7TNcL774Nn+dPSBbzWsB6dkVSuXh6AnoHmf6311vyD7wsnQxjBglv8V
+ iI0xnWhTlk5yDCquOqA3yZ8XZ3I9I493j3psTC8b+gFPvIR4ENXG74owmYJZxN+54u77FWUJL
+ 9QmXu8NJj/+7J9IZr8tOTrxWA5U7ygvA/hlYnZCu2VlufOqwLmo/lWM8/ub+2WHtgXWSkzTbf
+ nhReQ7GLDhWj/T3gJW6AkTdFq5EL8REo38jf9Boyen8CBtVCG7r2qqOqzdFq+GhNxMmuKPads
+ MOqu52Ym6nYQi57rzeAjJX5KE3xx9toHNMur4oITQsmOZFc3728l4ldv9XkLZOwYHcIteIvQ5
+ FSrrkD2pPNtead77NDiFBk0RXwf4bCe8RCgv5YoaZfeIcNMIBMMeKieWugryhgyU7JoS5hoJJ
+ Je9NAUuiJclrUte31IyE2xLzg+Z1tsJ0kfJKtexvKSoVo6XgXk1L+Z2hNrn2l63+k2gpUb4Jz
+ s0ICYdB/hn8x2whu9dQHUUou9oav68QHMZjJ9U2M+DYp+leXvbZFO82oqPogAJufVBnA=
 Subject: Re: [USRP-users] Questions about UBX-160 Noise Figure
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -68,10 +64,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Cc: usrp-users@lists.ettus.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,16 +82,46 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 04/20/2020 12:33 PM, Lukas Haase wrote:
+Hi Marcus,
 
-[Stuff that cries out for a calibrated noise source]
+> Von: "Marcus D. Leech" <patchvonbraun@gmail.com>
+> [...]
+> > My question is if my approach/understanding is right.
+> >
+> > In particular I do not understand Question 4 (why does noise not reduce if I reduce bandwidth).
+> If you're varying *analog* bandwidth, rather than sampling rate, be
+> aware that UBX doesn't have variable analog bandwidth.  It's always fixed.
 
-I've used these on a budget-sensitive project just last year:
+I see.
+Great point.
 
-https://g8fek.com/precision-noise-sources.html
+I just found: http://ettus.80997.x6.nabble.com/USRP-users-Which-bandwidth-does-uhd-usrp-multi-usrp-set-rx-bandwidth-set-td11897.html
 
-Not perhaps as "chic" as Agilent and the like, but they get the job done 
-and include a calibration chart.
+And it seems set_tx_bandwidth() and set_rx_bandwidth() do nothing then on the UBX.
+
+I wrote before my noise level should be -174+NF+10*log10(5e6).
+
+But based on this, it should be more correctly -174+NF+10*log10(160e6) ... is that correct? (I just receive the raw samples from the USRP via USRP Source. There is no other digital filter?)
+
+> > Furthermore, I'd be interested if Question 5 is conceptually correct.
+> Conceptually, I don't see any problem with it, but it very-squarely
+> enters  "consider a spherical cow" territory.  You CANNOT use a purely
+>    arithmetic analysis, due to uncertainties.   I would, in fact,
+> encourage you to acquire a decent broad-band, calibrated, noise source for
+>    you lab so that you can do Y-factor analysis, if for no other reason
+> than to satisfy yourself that the noise equations work.
+
+The issue with the bandwidth calculation above would be one of them ;-)
+
+> I've used these on a budget-sensitive project just last year:
+> https://g8fek.com/precision-noise-sources.html
+
+Thanks for the pointer. I think I'll get one of these.
+
+For a proper use I would need a steep filter though, correct? (in order to have a well defined total input power Pin=-174+ENR+10*log10(FilterCuroff) dBm? )
+
+Thanks,
+Lukas
 
 
 
