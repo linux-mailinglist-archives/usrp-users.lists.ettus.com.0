@@ -2,58 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDC521B2E2B
-	for <lists+usrp-users@lfdr.de>; Tue, 21 Apr 2020 19:19:55 +0200 (CEST)
-Received: from [::1] (port=34728 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91F751B3188
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Apr 2020 23:04:16 +0200 (CEST)
+Received: from [::1] (port=41606 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jQwYs-0003ks-QO; Tue, 21 Apr 2020 13:19:54 -0400
-Received: from mout.gmx.net ([212.227.17.20]:36045)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jQwYp-0003db-2m
- for usrp-users@lists.ettus.com; Tue, 21 Apr 2020 13:19:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1587489550;
- bh=3qbqEPT6mMl2TUwx38eefMPnjaLEcbCE/tF0G7nTd4w=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=Oej+KJL0po/lhHPqs1wfD9d2mF8QUeeiTY6PFENMhd/7ghFE442ILwjFSwZPsbLUk
- mG8SQfMk8uMjxug/rukyUidhVAbYLLAKkvMeTENdLXA8EVT3F5x+mMuLasn28YmtTK
- +grrmYPVceSaww9zHwt3/8XIVQQ7QcTpbfS9x1d0=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [67.216.49.189] ([67.216.49.189]) by web-mail.gmx.net
- (3c-app-gmx-bap44.server.lan [172.19.172.114]) (via HTTP); Tue, 21 Apr 2020
- 19:19:09 +0200
+	id 1jR03v-0004Zh-Th; Tue, 21 Apr 2020 17:04:11 -0400
+Received: from mail-qv1-f52.google.com ([209.85.219.52]:39052)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jR03s-0004TX-6l
+ for usrp-users@lists.ettus.com; Tue, 21 Apr 2020 17:04:08 -0400
+Received: by mail-qv1-f52.google.com with SMTP id v38so7315893qvf.6
+ for <usrp-users@lists.ettus.com>; Tue, 21 Apr 2020 14:03:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=cLmaRq2kzrCCNG2WYfd+dqNo2dE0c+3cesgkLX3LxSk=;
+ b=B/C3nTbbZx3lMOIehM3d9wiUE66Y/Wk9LMkuOb/JsnwT+aKsvgL82x81bYCBlzhVON
+ 4TDh744y+qkkFPVhOqlMNBuF+l6B3D/Hlak9PoZ7hhbZQAe3j6VmDavCPO8fbN6N8FTZ
+ HocGhsnl06FS41G6bqb1h85Eay6F4O+t1ClkaUaJxiTRYl9/Zr27+ATh+mYOZA7ZsCqz
+ kB6d/4btoFosBnLM+rm/3788ujgTzqmdzlq6MmtQpcyQ2BNd1Q2krlS/DLkJvKhcTpjv
+ LvsBhmfXyyZ+/ZAzmms0IDJfytdkDqT1mWjYOHYGwevUn/h31Cb+dg9co3D3HggFYzMa
+ 1Nww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=cLmaRq2kzrCCNG2WYfd+dqNo2dE0c+3cesgkLX3LxSk=;
+ b=lBhk5GPjIOqAm7dvWwZdQU1/NiPq6jaX6uKAksbZwJlL1mk9+8PkY8l/m23nsaESM9
+ nzuKUbe56Qlwveqf6yTGe1vfjttUcJLDhKiXY7KHL9dDcNQQSd1lyVB1rO6H80iKzP2R
+ ZZJPT+OmsX4I1wiwrhr6v4ZIRKJJfLErWV1yuDJmsFLyDB/ydphrgicrgOmUN4/OiQaR
+ fwR5m8VZCu7d918ItpWl1EiIP4dikVAvcTRIWFxGMXVsoOTiGBD98ypAsuhsbMCLKIeh
+ hIQcDOqlJ8jKg0dwcdXY8kfw83uf0wUu8aHKOLIJY0T9oG5Zn6TBn+miUsUCOwM7/9u5
+ lrAw==
+X-Gm-Message-State: AGi0PuYmse54bPb8w/68nKs95VmJGt8SstVRpm2+I2EOFlaC5eBg7bv4
+ gyYqUNGhbpcGgbqsx2po0jWXv3MIJ8Y=
+X-Google-Smtp-Source: APiQypLEoWZi5rX8oIHR8Cp1/lOatApRdw3JBb5agW6L3mP1wJXYqhXZpOAeGTBEAdhFlLDpzFbYQA==
+X-Received: by 2002:a05:6214:42b:: with SMTP id
+ a11mr15517595qvy.186.1587503007537; 
+ Tue, 21 Apr 2020 14:03:27 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp130-01-69-158-143-211.dsl.bell.ca. [69.158.143.211])
+ by smtp.googlemail.com with ESMTPSA id h63sm2478390qkd.49.2020.04.21.14.03.26
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 21 Apr 2020 14:03:27 -0700 (PDT)
+Message-ID: <5E9F5F9E.6050109@gmail.com>
+Date: Tue, 21 Apr 2020 17:03:26 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Message-ID: <trinity-e738f755-a4b3-4eee-9bf0-d76c3ae07302-1587489549838@3c-app-gmx-bap44>
-To: "Rob Kossler" <rkossler@nd.edu>
-Date: Tue, 21 Apr 2020 19:19:09 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <CAB__hTQGu_aEH+ntDWB9xCDds7mfbEtf6FK0KdXsr==P8V7DEg@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>, Lukas Haase <lukashaase@gmx.at>
 References: <mailman.47.1587398404.12990.usrp-users_lists.ettus.com@lists.ettus.com>
  <trinity-f7accbc4-db9b-4912-8e5c-f9c682236c93-1587400437026@3c-app-gmx-bs34>
  <5E9E4751.1090606@gmail.com>
  <trinity-3d608735-14fc-4c76-b755-59be5d062058-1587443012457@3c-app-gmx-bs69>
  <CAB__hTQGu_aEH+ntDWB9xCDds7mfbEtf6FK0KdXsr==P8V7DEg@mail.gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:uiiJxuSjDrpmguKDHD3IuwAUHBTy78lzSyer14RkZwJzd8do8q9GEB5AtgvqneH+Cnv/+
- NSSGJGKdj5aTVRJa8DgUYHLcJCN3iyjx2rWRrcCH+I8p6RZI0A9z0cBtBkcP2uE6ZnwZg9Kb+t/f
- X37YorES/Rj0JRBNXe6mzQXxGSCIkMaWjyyGl+pVmePfckzSvYlLnsHrjuBe2RSVeEhrr5Vg/55j
- ObY28krBA8e6hIoeirn0oedZVKxxlw6lObFDeiEC2Zn+wAEJrXjw0btxQkCSdptIsZ8QSSY/I3EY
- 9k=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Xbm1TZjBZiE=:okqDZvNFQ8gnqhGQcap+CJ
- WB5oWO+MPOlaVa6bDz1WKYR5eS32Z84BDL1ZinQAxfXpeapX+YXTdCejEq491Dy1r0psJqDWe
- /2jdNVXYfNpFb67fJXAOY+dpePIQ9CtYVR+p89mJZSRuWCMqP3RIY3Xny/DrXiliX07uEp4QT
- 68mR2CRwLQK8BwII/GQsDQlTmYxs1qX8TNhk4gXu/Mivvh6xUd4I8ABPyWXpdzIMA9t/bHVd+
- V1Qr32zJtZ6xxBVjRNoLH8xKSZO5hYeZTpPT4AVP45dYSYanWrYP6PFbMQmQ1hHTr5UdsnPOQ
- mxhqXfVErI9vdcY7HMaQ/89TfdlzZdLySzYy6ullagNbxLU7c9sdpPTwoZBarY3bc2gwGAl38
- VWKFI1BONWWHAZetlFA9On5VpxSoeVu06N/2cIObid1SDGda6uu7DkpqMVH7/jj+ZjJ4h3SG3
- i389SATDGZ7yDi/+dQdcxu6vMivXPPnJpGmtHGsw3PtvnmwLsCO1q6JfFILahSec44IxsRCYu
- OiRrCRpotFJwOQg0NL/IbyqdO2WRyeUdlXloxssk9sYI3XDsP92rcn9AN161m93P0D+UUsVvN
- mLWpAIVt+eeRHFqmKkvHUGMFTatUQdHP6WnZcIUirRV+midHVlk6PO2kZC4+mTzATtw4IEJZz
- tFn/7Twp2JgZP6wDNYiWQtGa9c0R+WuOAJ2S8/eGX0qbt+UbYyjofOgKY6VBbee0hiq4=
+In-Reply-To: <CAB__hTQGu_aEH+ntDWB9xCDds7mfbEtf6FK0KdXsr==P8V7DEg@mail.gmail.com>
 Subject: Re: [USRP-users] Questions about UBX-160 Noise Figure
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -66,11 +71,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============8550580438661327258=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,61 +88,246 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgUm9iLAoKWWVzLCB5b3UgYXJlIHJpZ2h0LiBUaGUgZG93bmNvbnZlcnNpb24gbXVzdCBpbmNs
-dWRlIHRoZSBhbnRpIGFsaWFzaW5nIGZpbHRlciB3aGljaCBiYW5kbGltaXRzIHRoZSBzaWduYWwg
-dG8gfjQuNSBNSHouCgpCZXN0LApMdWthcwrCoAoKR2VzZW5kZXQ6wqBEaWVuc3RhZywgMjEuIEFw
-cmlsIDIwMjAgdW0gMDk6MjggVWhyClZvbjrCoCJSb2IgS29zc2xlciIgPHJrb3NzbGVyQG5kLmVk
-dT4KQW46wqAiTHVrYXMgSGFhc2UiIDxsdWthc2hhYXNlQGdteC5hdD4KQ2M6wqAiTWFyY3VzIEQu
-IExlZWNoIiA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+LCAidXNycC11c2VycyIgPHVzcnAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tPgpCZXRyZWZmOsKgUmU6IFtVU1JQLXVzZXJzXSBRdWVzdGlvbnMg
-YWJvdXQgVUJYLTE2MCBOb2lzZSBGaWd1cmUKCkkgZG9uJ3QgcXVpdGUgdW5kZXJzdGFuZCB3aHkg
-aXQgaXMgaW1wb3J0YW50IGlmIGl0IGlzICJhbmFsb2ciIGJhbmR3aWR0aC7CoCBXaGlsZSBJIHVu
-ZGVyc3RhbmQgdGhhdCB0aGUgVUJYIGNhbm5vdCBjaGFuZ2UgaXRzIGFuYWxvZyBiYW5kd2lkdGgs
-IGl0IHNlZW1zIHRvIG1lIHRoYXQgZGlnaXRhbCBiYW5kd2lkdGggdGhhdCBpcyBpbmhlcmVudCBp
-biBkb3duY29udmVyc2lvbiBmcm9tIDIwMCBNUy9zIHRvIDVNUy9zIGlzIHN0aWxsIGdvaW5nIHJl
-ZHVjZSB0aGUgbm9pc2UgcG93ZXLCoGJ5IHRoZSByYXRpbyBvZiB0aGUgb3JpZ2luYWwgYmFuZHdp
-ZHRoICgxNjAgTUh6KSB0byB0aGUgbmV3IGJhbmR3aWR0aMKgKHNheSwgNC41IE1IeikuwqAKUm9i
-wqAKCk9uIFR1ZSwgQXByIDIxLCAyMDIwIGF0IDEyOjI0IEFNIEx1a2FzIEhhYXNlIHZpYSBVU1JQ
-LXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb21dPiB3cm90ZTpIaSBNYXJjdXMsCgo+IFZvbjogIk1hcmN1cyBELiBMZWVjaCIg
-PHBhdGNodm9uYnJhdW5AZ21haWwuY29tW21haWx0bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbV0+
-Cj4gWy4uLl0KPiA+IE15IHF1ZXN0aW9uIGlzIGlmIG15IGFwcHJvYWNoL3VuZGVyc3RhbmRpbmcg
-aXMgcmlnaHQuCj4gPgo+ID4gSW4gcGFydGljdWxhciBJIGRvIG5vdCB1bmRlcnN0YW5kIFF1ZXN0
-aW9uIDQgKHdoeSBkb2VzIG5vaXNlIG5vdCByZWR1Y2UgaWYgSSByZWR1Y2UgYmFuZHdpZHRoKS4K
-PiBJZiB5b3UncmUgdmFyeWluZyAqYW5hbG9nKiBiYW5kd2lkdGgsIHJhdGhlciB0aGFuIHNhbXBs
-aW5nIHJhdGUsIGJlCj4gYXdhcmUgdGhhdCBVQlggZG9lc24ndCBoYXZlIHZhcmlhYmxlIGFuYWxv
-ZyBiYW5kd2lkdGguwqAgSXQncyBhbHdheXMgZml4ZWQuCgpJIHNlZS4KR3JlYXQgcG9pbnQuCgpJ
-IGp1c3QgZm91bmQ6IGh0dHA6Ly9ldHR1cy44MDk5Ny54Ni5uYWJibGUuY29tL1VTUlAtdXNlcnMt
-V2hpY2gtYmFuZHdpZHRoLWRvZXMtdWhkLXVzcnAtbXVsdGktdXNycC1zZXQtcngtYmFuZHdpZHRo
-LXNldC10ZDExODk3Lmh0bWxbaHR0cDovL2V0dHVzLjgwOTk3Lng2Lm5hYmJsZS5jb20vVVNSUC11
-c2Vycy1XaGljaC1iYW5kd2lkdGgtZG9lcy11aGQtdXNycC1tdWx0aS11c3JwLXNldC1yeC1iYW5k
-d2lkdGgtc2V0LXRkMTE4OTcuaHRtbF0KCkFuZCBpdCBzZWVtcyBzZXRfdHhfYmFuZHdpZHRoKCkg
-YW5kIHNldF9yeF9iYW5kd2lkdGgoKSBkbyBub3RoaW5nIHRoZW4gb24gdGhlIFVCWC4KCkkgd3Jv
-dGUgYmVmb3JlIG15IG5vaXNlIGxldmVsIHNob3VsZCBiZSAtMTc0K05GKzEwKmxvZzEwKDVlNiku
-CgpCdXQgYmFzZWQgb24gdGhpcywgaXQgc2hvdWxkIGJlIG1vcmUgY29ycmVjdGx5IC0xNzQrTkYr
-MTAqbG9nMTAoMTYwZTYpIC4uLiBpcyB0aGF0IGNvcnJlY3Q/IChJIGp1c3QgcmVjZWl2ZSB0aGUg
-cmF3IHNhbXBsZXMgZnJvbSB0aGUgVVNSUCB2aWEgVVNSUCBTb3VyY2UuIFRoZXJlIGlzIG5vIG90
-aGVyIGRpZ2l0YWwgZmlsdGVyPykKCj4gPiBGdXJ0aGVybW9yZSwgSSdkIGJlIGludGVyZXN0ZWQg
-aWYgUXVlc3Rpb24gNSBpcyBjb25jZXB0dWFsbHkgY29ycmVjdC4KPiBDb25jZXB0dWFsbHksIEkg
-ZG9uJ3Qgc2VlIGFueSBwcm9ibGVtIHdpdGggaXQsIGJ1dCBpdCB2ZXJ5LXNxdWFyZWx5Cj4gZW50
-ZXJzwqAgImNvbnNpZGVyIGEgc3BoZXJpY2FsIGNvdyIgdGVycml0b3J5LsKgIFlvdSBDQU5OT1Qg
-dXNlIGEgcHVyZWx5Cj7CoCDCoCBhcml0aG1ldGljIGFuYWx5c2lzLCBkdWUgdG8gdW5jZXJ0YWlu
-dGllcy7CoCDCoEkgd291bGQsIGluIGZhY3QsCj4gZW5jb3VyYWdlIHlvdSB0byBhY3F1aXJlIGEg
-ZGVjZW50IGJyb2FkLWJhbmQsIGNhbGlicmF0ZWQsIG5vaXNlIHNvdXJjZSBmb3IKPsKgIMKgIHlv
-dSBsYWIgc28gdGhhdCB5b3UgY2FuIGRvIFktZmFjdG9yIGFuYWx5c2lzLCBpZiBmb3Igbm8gb3Ro
-ZXIgcmVhc29uCj4gdGhhbiB0byBzYXRpc2Z5IHlvdXJzZWxmIHRoYXQgdGhlIG5vaXNlIGVxdWF0
-aW9ucyB3b3JrLgoKVGhlIGlzc3VlIHdpdGggdGhlIGJhbmR3aWR0aCBjYWxjdWxhdGlvbiBhYm92
-ZSB3b3VsZCBiZSBvbmUgb2YgdGhlbSA7LSkKCj4gSSd2ZSB1c2VkIHRoZXNlIG9uIGEgYnVkZ2V0
-LXNlbnNpdGl2ZSBwcm9qZWN0IGp1c3QgbGFzdCB5ZWFyOgo+IGh0dHBzOi8vZzhmZWsuY29tL3By
-ZWNpc2lvbi1ub2lzZS1zb3VyY2VzLmh0bWxbaHR0cHM6Ly9nOGZlay5jb20vcHJlY2lzaW9uLW5v
-aXNlLXNvdXJjZXMuaHRtbF0KClRoYW5rcyBmb3IgdGhlIHBvaW50ZXIuIEkgdGhpbmsgSSdsbCBn
-ZXQgb25lIG9mIHRoZXNlLgoKRm9yIGEgcHJvcGVyIHVzZSBJIHdvdWxkIG5lZWQgYSBzdGVlcCBm
-aWx0ZXIgdGhvdWdoLCBjb3JyZWN0PyAoaW4gb3JkZXIgdG8gaGF2ZSBhIHdlbGwgZGVmaW5lZCB0
-b3RhbCBpbnB1dCBwb3dlciBQaW49LTE3NCtFTlIrMTAqbG9nMTAoRmlsdGVyQ3Vyb2ZmKSBkQm0/
-ICkKClRoYW5rcywKTHVrYXMKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb21bbWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXQpodHRwOi8vbGlzdHMuZXR0
-dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFp
-bGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5j
-b20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+This is a multi-part message in MIME format.
+--===============8550580438661327258==
+Content-Type: multipart/alternative;
+ boundary="------------030504060109060300040702"
+
+This is a multi-part message in MIME format.
+--------------030504060109060300040702
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 04/21/2020 09:28 AM, Rob Kossler wrote:
+> I don't quite understand why it is important if it is "analog" 
+> bandwidth.  While I understand that the UBX cannot change its analog 
+> bandwidth, it seems to me that digital bandwidth that is inherent in 
+> downconversion from 200 MS/s to 5MS/s is still going reduce the noise 
+> power by the ratio of the original bandwidth (160 MHz) to the new 
+> bandwidth (say, 4.5 MHz).
+> Rob
+Lukas was varying the "Bandwidth" setting in the UHD USRP source block, 
+which is used to control the analog bandwidth for RX
+   cards that support it.  The UBX series does not.
+
+So, no amount of changing that parameter (for a fixed sample rate) is 
+going to produce any change in detected power level.  The
+   same can NOT be said when changing the sample rate delivered to the host.
+
+
+>
+> On Tue, Apr 21, 2020 at 12:24 AM Lukas Haase via USRP-users 
+> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+>
+>     Hi Marcus,
+>
+>     > Von: "Marcus D. Leech" <patchvonbraun@gmail.com
+>     <mailto:patchvonbraun@gmail.com>>
+>     > [...]
+>     > > My question is if my approach/understanding is right.
+>     > >
+>     > > In particular I do not understand Question 4 (why does noise
+>     not reduce if I reduce bandwidth).
+>     > If you're varying *analog* bandwidth, rather than sampling rate, be
+>     > aware that UBX doesn't have variable analog bandwidth. It's
+>     always fixed.
+>
+>     I see.
+>     Great point.
+>
+>     I just found:
+>     http://ettus.80997.x6.nabble.com/USRP-users-Which-bandwidth-does-uhd-usrp-multi-usrp-set-rx-bandwidth-set-td11897.html
+>
+>     And it seems set_tx_bandwidth() and set_rx_bandwidth() do nothing
+>     then on the UBX.
+>
+>     I wrote before my noise level should be -174+NF+10*log10(5e6).
+>
+>     But based on this, it should be more correctly
+>     -174+NF+10*log10(160e6) ... is that correct? (I just receive the
+>     raw samples from the USRP via USRP Source. There is no other
+>     digital filter?)
+>
+>     > > Furthermore, I'd be interested if Question 5 is conceptually
+>     correct.
+>     > Conceptually, I don't see any problem with it, but it very-squarely
+>     > enters  "consider a spherical cow" territory.  You CANNOT use a
+>     purely
+>     >    arithmetic analysis, due to uncertainties.   I would, in fact,
+>     > encourage you to acquire a decent broad-band, calibrated, noise
+>     source for
+>     >    you lab so that you can do Y-factor analysis, if for no other
+>     reason
+>     > than to satisfy yourself that the noise equations work.
+>
+>     The issue with the bandwidth calculation above would be one of
+>     them ;-)
+>
+>     > I've used these on a budget-sensitive project just last year:
+>     > https://g8fek.com/precision-noise-sources.html
+>
+>     Thanks for the pointer. I think I'll get one of these.
+>
+>     For a proper use I would need a steep filter though, correct? (in
+>     order to have a well defined total input power
+>     Pin=-174+ENR+10*log10(FilterCuroff) dBm? )
+>
+>     Thanks,
+>     Lukas
+>
+>
+>
+>     _______________________________________________
+>     USRP-users mailing list
+>     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+
+--------------030504060109060300040702
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 04/21/2020 09:28 AM, Rob Kossler
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAB__hTQGu_aEH+ntDWB9xCDds7mfbEtf6FK0KdXsr==P8V7DEg@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>I don't quite understand why it is important if it is
+          "analog" bandwidth.  While I understand that the UBX cannot
+          change its analog bandwidth, it seems to me that digital
+          bandwidth that is inherent in downconversion from 200 MS/s to
+          5MS/s is still going reduce the noise power by the ratio of
+          the original bandwidth (160 MHz) to the new bandwidth (say,
+          4.5 MHz). </div>
+        <div>Rob</div>
+      </div>
+    </blockquote>
+    Lukas was varying the "Bandwidth" setting in the UHD USRP source
+    block, which is used to control the analog bandwidth for RX<br>
+      cards that support it.  The UBX series does not.<br>
+    <br>
+    So, no amount of changing that parameter (for a fixed sample rate)
+    is going to produce any change in detected power level.  The<br>
+      same can NOT be said when changing the sample rate delivered to
+    the host.<br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:CAB__hTQGu_aEH+ntDWB9xCDds7mfbEtf6FK0KdXsr==P8V7DEg@mail.gmail.com"
+      type="cite">
+      <div dir="ltr"><br>
+        <div class="gmail_quote">
+          <div dir="ltr" class="gmail_attr">On Tue, Apr 21, 2020 at
+            12:24 AM Lukas Haase via USRP-users &lt;<a
+              moz-do-not-send="true"
+              href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
+            wrote:<br>
+          </div>
+          <blockquote class="gmail_quote" style="margin:0px 0px 0px
+            0.8ex;border-left:1px solid
+            rgb(204,204,204);padding-left:1ex">Hi Marcus,<br>
+            <br>
+            &gt; Von: "Marcus D. Leech" &lt;<a moz-do-not-send="true"
+              href="mailto:patchvonbraun@gmail.com" target="_blank">patchvonbraun@gmail.com</a>&gt;<br>
+            &gt; [...]<br>
+            &gt; &gt; My question is if my approach/understanding is
+            right.<br>
+            &gt; &gt;<br>
+            &gt; &gt; In particular I do not understand Question 4 (why
+            does noise not reduce if I reduce bandwidth).<br>
+            &gt; If you're varying *analog* bandwidth, rather than
+            sampling rate, be<br>
+            &gt; aware that UBX doesn't have variable analog bandwidth. 
+            It's always fixed.<br>
+            <br>
+            I see.<br>
+            Great point.<br>
+            <br>
+            I just found: <a moz-do-not-send="true"
+href="http://ettus.80997.x6.nabble.com/USRP-users-Which-bandwidth-does-uhd-usrp-multi-usrp-set-rx-bandwidth-set-td11897.html"
+              rel="noreferrer" target="_blank">http://ettus.80997.x6.nabble.com/USRP-users-Which-bandwidth-does-uhd-usrp-multi-usrp-set-rx-bandwidth-set-td11897.html</a><br>
+            <br>
+            And it seems set_tx_bandwidth() and set_rx_bandwidth() do
+            nothing then on the UBX.<br>
+            <br>
+            I wrote before my noise level should be
+            -174+NF+10*log10(5e6).<br>
+            <br>
+            But based on this, it should be more correctly
+            -174+NF+10*log10(160e6) ... is that correct? (I just receive
+            the raw samples from the USRP via USRP Source. There is no
+            other digital filter?)<br>
+            <br>
+            &gt; &gt; Furthermore, I'd be interested if Question 5 is
+            conceptually correct.<br>
+            &gt; Conceptually, I don't see any problem with it, but it
+            very-squarely<br>
+            &gt; enters  "consider a spherical cow" territory.  You
+            CANNOT use a purely<br>
+            &gt;    arithmetic analysis, due to uncertainties.   I
+            would, in fact,<br>
+            &gt; encourage you to acquire a decent broad-band,
+            calibrated, noise source for<br>
+            &gt;    you lab so that you can do Y-factor analysis, if for
+            no other reason<br>
+            &gt; than to satisfy yourself that the noise equations work.<br>
+            <br>
+            The issue with the bandwidth calculation above would be one
+            of them ;-)<br>
+            <br>
+            &gt; I've used these on a budget-sensitive project just last
+            year:<br>
+            &gt; <a moz-do-not-send="true"
+              href="https://g8fek.com/precision-noise-sources.html"
+              rel="noreferrer" target="_blank">https://g8fek.com/precision-noise-sources.html</a><br>
+            <br>
+            Thanks for the pointer. I think I'll get one of these.<br>
+            <br>
+            For a proper use I would need a steep filter though,
+            correct? (in order to have a well defined total input power
+            Pin=-174+ENR+10*log10(FilterCuroff) dBm? )<br>
+            <br>
+            Thanks,<br>
+            Lukas<br>
+            <br>
+            <br>
+            <br>
+            _______________________________________________<br>
+            USRP-users mailing list<br>
+            <a moz-do-not-send="true"
+              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
+            <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+          </blockquote>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------030504060109060300040702--
+
+
+--===============8550580438661327258==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============8550580438661327258==--
+
