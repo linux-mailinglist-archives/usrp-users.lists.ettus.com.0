@@ -2,69 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CD3E1B251F
-	for <lists+usrp-users@lfdr.de>; Tue, 21 Apr 2020 13:32:32 +0200 (CEST)
-Received: from [::1] (port=48696 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 902421B27DF
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Apr 2020 15:29:52 +0200 (CEST)
+Received: from [::1] (port=50600 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jQr8d-0005hn-3o; Tue, 21 Apr 2020 07:32:27 -0400
-Received: from mxsp02out.l3harris.com ([128.170.196.24]:64775)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <prvs=3736f43f5=Dan.Harris@l3harris.com>)
- id 1jQr8Z-0005ef-99
- for usrp-users@lists.ettus.com; Tue, 21 Apr 2020 07:32:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=l3harris.com; i=@l3harris.com; q=dns/txt; s=mail;
- t=1587468743; x=1619004743;
- h=from:to:cc:date:message-id:references:in-reply-to:
- mime-version:subject;
- bh=CdUZ4tM1l1cUyyw34uohOxlb6kyXc+mlAKiM9I2sqCc=;
- b=M/YGDQQsRxf2rmIyC6L4Rlw2XxcervQGPyKJuWo+nOq/CKydW8NneN7O
- 3g0StVRvdvPWiKBdUFmqP5NalHLJX+zySkxYFpl1EC7NmsLHm0tD9gtIt
- Y5FDOJ2nmaF5T/sYIS9JCgbPMxJ+umAK5QjBoIh2XbdCu+qGXJ3KIJB91
- tUU7Tu+sNQok3yPJbl+5igjdl229z183jizRrZN6Cya7rBWkQE7fGoR0P
- L6EkVK9+JFUi5ASPNGIJyNLFn7C6Ppmi8wici1I8ILxTDzyzFX9+cVNyW
- Fyk448lCJGU+YfjSDFdKZ+UDW/8OdteBpDFvLZdNrbN453stoIDnxxPu1 Q==;
-Received: from unknown (HELO mlbxsmtp01.harris.com) ([192.52.234.91])
- by mxsp02out.l3harris.com with ESMTP/TLS/DHE-RSA-AES256-SHA256;
- 21 Apr 2020 11:31:41 +0000
-X-AuditID: c034ea5a-92dff70000002bc6-39-5e9ed99cf0d9
-Received: from MLBXCH13.cs.myharris.net ( [10.64.224.131])
- (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
- (Client did not present a certificate)
- by mlbxsmtp01.harris.com (mail) with SMTP id 12.E5.11206.D99DE9E5;
- Tue, 21 Apr 2020 07:31:41 -0400 (EDT)
-To: Brian Padalino <bpadalino@gmail.com>
-Thread-Topic: [EXTERNAL] Re: [USRP-users] Cygwin build of E310_SG3
-Thread-Index: AdYXPSd+rSWSqZqBRcuOdOf2k6nLjwARRHmAABIosiA=
-Date: Tue, 21 Apr 2020 11:31:39 +0000
-Message-ID: <981b3933889d4926b73fd243d3f9f3a9@MLBXCH12.cs.myharris.net>
-References: <eb1fa60c44c4410a814e83a4fdf45df9@MLBXCH12.cs.myharris.net>
- <CAEXYVK4synzzXW-SOAJYXUTWyAdn5_iL_CL=Nx1YNX6+6dokAw@mail.gmail.com>
-In-Reply-To: <CAEXYVK4synzzXW-SOAJYXUTWyAdn5_iL_CL=Nx1YNX6+6dokAw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL1Byb2Zlc3Npb25hbFNhbXBsZSIsImlkIjoiYWYxM2JjN2MtOGRkYS00ODNmLTgxYmYtZWFiZTE4ZmQxNmQ1IiwicHJvcHMiOlt7Im4iOiJDTEFTU0lGSUNBVElPTiIsInZhbHMiOlt7InZhbHVlIjoiR2VuZXJhbCJ9XX1dfSwiU3ViamVjdExhYmVscyI6W10sIlRNQ1ZlcnNpb24iOiIxOC44LjE5MTAuMTQwIiwiVHJ1c3RlZExhYmVsSGFzaCI6InNycmc4U3VnNnNZbEh5YXA5eU8yQmszVkNpdkkydERIY0xlTEdsN0EwMjJiQlBUclwvbEljTzNtbTNzUDBFK0hvIn0=
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.64.248.69]
+	id 1jQsyC-0005O8-Cd; Tue, 21 Apr 2020 09:29:48 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:46014)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jQsy8-0005I5-Ty
+ for usrp-users@lists.ettus.com; Tue, 21 Apr 2020 09:29:44 -0400
+Received: by mail-oi1-f182.google.com with SMTP id k133so11967892oih.12
+ for <usrp-users@lists.ettus.com>; Tue, 21 Apr 2020 06:29:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=7F21qs8mh1pPfzvV3HBPGYBlpLoTMrEiA/fFEUr4/is=;
+ b=jpvX07CLbfMi7fhYN/TE7PbgT6HIO0tjAREGIKm72/Udp2q72DEovkLWkW5NCrtW70
+ uDtDBW3sxLaUYJCWTs574Sj7DJEiyNptCqAuGiWm5pOJ+H1Rs5MlyfNkgp+BYmceHMWU
+ BRcS7+Ogz2KKIUdrAQ7LnsiK7Q3dfySmah2jYh3lr25uom5Arl11UD1oASsCImb7Ae7V
+ zlmQU61CT1zS77mN+ltFlMw1xCtAObvWaG4MpKvIxDclS7ocI2dRVTDqXj+PVv/Ez9GT
+ XeHk+nCT5VJzNPjisvXWpQ/S3nyfP9hJ1Ut2KClfjg3RFakFcOVstvXjBmtmSdaCgJ+m
+ uAyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=7F21qs8mh1pPfzvV3HBPGYBlpLoTMrEiA/fFEUr4/is=;
+ b=YKWrqDSYgAnhxrXpCVAhyoK0wNJqxOvTku0He7Old4ivlxoEoahgTUwSF81wOg3dhX
+ zzMB/NEiKJW1WPzGlc+oWObl0oeaqQgrZ0Csncxben9l4p8NIrF+yr25NACVcVWoiCDU
+ Nc1TFKEZVsD1Mf5Whh4dVhLv/EZtCCt/M5gddw5zMH8O3XVfSeMgm9/DV3XpDUCcW/pa
+ 9FOpF8BPJmTIAR+wBM9RsgTW8ah4Q0K/th32VTIC5aPtB/K2F+y6hy704aT0UtiMJo9m
+ WTHrE4EuZ45RFxMBFnPfytRfeghwUIeQ8Ha2AIrnp/ilej4POZDJN7/q5ixAOdfYmz0c
+ As3g==
+X-Gm-Message-State: AGi0PuYuMKswB1MSj26VqMf4BrHYf56Yu+vJQLVJ/WKb7PWim7gRWEu5
+ yKq383WWm4KufK+Y0yOn5BMRHTcCpbJN0/V9/W1KSg==
+X-Google-Smtp-Source: APiQypLUcwZBsDE4c+VwuaDivlzuZ7qaFVkv2TFGPxV4i9pC/pMz9WCWZxnlfux+Xbu8tVJ4DR4Mk4NaCmJ3pBctXbs=
+X-Received: by 2002:aca:f288:: with SMTP id q130mr3155143oih.33.1587475744111; 
+ Tue, 21 Apr 2020 06:29:04 -0700 (PDT)
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprAIsWRmVeSWpSXmKPExsXC5fCgWXfuzXlxBtt62Sx2PXnKbHGhcw67
- A5PHzll32T0mrjzEHMAUxWWTkpqTWZZapG+XwJWx7fcPpoJ54RUPX31ia2B8FdLFyMkhIWAi
- MfHVJ8YuRi4OIYF+Jomec4uAHA4ONgFdiUlPPEBqRAQ0JLrfPGYHsZkFbCXeXbjKBmILCzhK
- 7Jo8hRmixkni9PU+FgjbSuLWq5dgY1gEVCW+LHMHCfMKuEtcmHWDEcQWEuhjlLjUawRicwoE
- Stz7dQ9sPKOAmMT3U2uYIFaJS9x6Mp8J4kwBiSV7zjND2KISLx//YwU5WULgLLPE7v/PoIoM
- JLYu3ccCsldCQEHi+w9niDm5EqfaNrFC3CAocXLmE5YJjKKzkKyYhaRsFpKyWUCTmAU0Jdbv
- 0ocoUZSY0v2QHcLWkGidM5cdWXwBI/sqRtHcnKSK4tySAgNDvYzEoqLMYr3k/NxNjMBIO2Dy
- KmoH48ZLr/QOMTJxMB5ilOBgVhLhjbgxL06INyWxsiq1KD++qDQntfgQozQHi5I4b/9FoJRA
- emJJanZqakFqEUyWiYNTqoHJZTN/2u2N1d+udcrc7zp1zX3RA6Y8T5W6ygO5K6OvCh1JTV7v
- wqOzM2ezrYbO0yUnXzmJ5/x59pHju0aPkdnye3ElnT2PZn+f+Pmi/5RNWQLWZhs6c6yuMNvf
- crNNmfY29cpLzpOLizN5tp28fDgvtN1GfsrNb66p19lPa53W2DFH/aef4on3xqtrVAucblza
- EGowc9fBKpELWurfRTwm2rMZN56P2CddLX/qzfpNb77NrZq78IKa+wxx33BF9Xi2LM5Maba3
- mXXTm7hd39mslHu5Vf/O8W1zX8/evZ/77JwJu6zjo9Nfn4y0WCa/yNNH79aB6sU5f5xdeHWK
- tWT77wkpRL99MOvKwZDkze9mKLEUZyQaajEXFScCAOArfXEjAwAA
-Subject: Re: [USRP-users] Cygwin build of E310_SG3
+References: <mailman.47.1587398404.12990.usrp-users_lists.ettus.com@lists.ettus.com>
+ <trinity-f7accbc4-db9b-4912-8e5c-f9c682236c93-1587400437026@3c-app-gmx-bs34>
+ <5E9E4751.1090606@gmail.com>
+ <trinity-3d608735-14fc-4c76-b755-59be5d062058-1587443012457@3c-app-gmx-bs69>
+In-Reply-To: <trinity-3d608735-14fc-4c76-b755-59be5d062058-1587443012457@3c-app-gmx-bs69>
+Date: Tue, 21 Apr 2020 09:28:53 -0400
+Message-ID: <CAB__hTQGu_aEH+ntDWB9xCDds7mfbEtf6FK0KdXsr==P8V7DEg@mail.gmail.com>
+To: Lukas Haase <lukashaase@gmx.at>
+Subject: Re: [USRP-users] Questions about UBX-160 Noise Figure
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Harris, Dan via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Harris, Dan" <Dan.Harris@L3Harris.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2560190339153400642=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2412812490696476239=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -93,189 +77,171 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2560190339153400642==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_981b3933889d4926b73fd243d3f9f3a9MLBXCH12csmyharrisnet_"
+--===============2412812490696476239==
+Content-Type: multipart/alternative; boundary="000000000000d1806b05a3ccff2c"
 
---_000_981b3933889d4926b73fd243d3f9f3a9MLBXCH12csmyharrisnet_
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
+--000000000000d1806b05a3ccff2c
+Content-Type: text/plain; charset="UTF-8"
 
-SSBmb2xsb3dlZCB0aGUgaW5zdHJ1Y3Rpb25zIGhlcmUgd2hpY2ggc3VnZ2VzdCAyMDE5LjE6ICBo
-dHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvbWRfdXNycDNfYnVpbGRfaW5zdHJ1Y3Rpb25z
-Lmh0bWwuICBJIGhhZCBhY3R1YWxseSB0cmllZCAyMDE5LjIgYXQgZmlyc3QgYW5kIHJldmVydGVk
-IHRvIDIwMTkuMSBzaW5jZSBhbGwgdGhlIElQIHdhcyBsb2NrZWQuICBJIGNvdWxkIHRyeSAyMDE4
-LjMgYnV0IEkgZG9u4oCZdCByZWFsbHkgdW5kZXJzdGFuZCB0aGUgcnVsZXMgYXJvdW5kIHRoZSBs
-b2NraW5nIHN0dWZmLCBhbmQgd2hldGhlciB0aGF0IHdvdWxkIHdvcmsuDQoNCkluIHRoZSBtYXN0
-ZXIgcHVsbCBvZiAoaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkLmdpdCkgIGZw
-Z2EvdXNycDMvdG9wL2UzMXgvc2V0dXBlbnYuc2ggc2VlbXMgdG8gYmUgbG9va2luZyBmb3IgMjAx
-OS4xLiAgUGVyaGFwcyBJIG1hZGUgYSBwb29yIGNob2ljZSBpbiB1c2luZyBtYXN0ZXI/ICBJcyB0
-aGVyZSBhIHN0YWJsZSBicmFuY2ggb3Igc29tZXRoaW5nIEkgc2hvdWxkIGhhdmUgY2hvc2VuIGlu
-c3RlYWQ/DQoNCkkgd2lsbCBnaXZlIFdTTCBhIHRyeSDigJMgSSBoYXZlbuKAmXQgdXNlZCBpdCB5
-ZXQgYnV0IGl0IHNvdW5kcyBsaWtlIGl0IG1heSBiZSBsZXNzIHBhaW5mdWwgdGhhbiBDeWd3aW4u
-DQoNCkZyb206IEJyaWFuIFBhZGFsaW5vIDxicGFkYWxpbm9AZ21haWwuY29tPg0KU2VudDogTW9u
-ZGF5LCBBcHJpbCAyMCwgMjAyMCA2OjEyIFBNDQpUbzogSGFycmlzLCBEYW4gKFVTKSA8RGFuLkhh
-cnJpc0BMM0hhcnJpcy5jb20+DQpDYzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1Ympl
-Y3Q6IFtFWFRFUk5BTF0gUmU6IFtVU1JQLXVzZXJzXSBDeWd3aW4gYnVpbGQgb2YgRTMxMF9TRzMN
-Cg0KT24gTW9uLCBBcHIgMjAsIDIwMjAgYXQgMjoyNCBQTSBIYXJyaXMsIERhbiB2aWEgVVNSUC11
-c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPj4gd3JvdGU6DQoNCklzIHRoZSB3aW5kb3dzIEN5Z3dpbiBidWlsZCBvZiB0aGUg
-RTMxMF9TRzMgdGFyZ2V0IGJlaW5nIG1haW50YWluZWQ/DQoNCkkgaGF2ZSBiZWVuIGZvbGxvd2lu
-ZyB0aGUgYnVpbGQgaW5zdHJ1Y3Rpb25zIGFuZCBoYXZlIFZpdmFkbyAyMDE5LjEgaW5zdGFsbGVk
-LiAgSXQgaXMgZmFpbGluZyBpbiBtdWx0aXBsZSBwb2ludHMgaW4gdGhlIGdlbmVyYXRpb24gb2Yg
-dGhlIElQLiAgSSBoYWQgdG8gY29ycmVjdCBzb21lIHBhdGhzIHRoYXQgc2hvdWxkIGhhdmUgYmVl
-biB3aW5kb3dzLWl6ZWQgYnV0IGRpZCBub3Qgc2VlbSB0byBiZSBpbiB0b29scy9tYWtlL3Zpdl9o
-bHNfaXBfYnVpbGRlci5tYWsuDQoNCkkgY2FuIGJ1aWxkIGF0IGxlYXN0IG9uZSBvZiB0aGUgY29t
-cG9uZW50cyAoSVAgZmlmb19zaG9ydF8yY2xrKSwgc28gSSBhbSBzb21ld2hhdCBjb25maWRlbnQg
-dGhhdCBWaXZhZG8gaXMgaW5zdGFsbGVkIGNvcnJlY3RseSwgYW5kIHRoYXQgbXkg4oCYc291cmNl
-IHNldHVwZW52LnNo4oCZIHdhcyBkb25lIHByb3Blcmx5Lg0KDQpUaGlzIHNlZW1zIHN0cmFuZ2Uu
-ICBZb3UgbmVlZCB0byBoYXZlIFZpdmFkbyAyMDE4LjMgaW5zdGFsbGVkIGZvciB0aGUgc2V0dXBl
-bnYuc2ggdG8gcnVuIHByb3Blcmx5LiAgVHJ5IGluc3RhbGxpbmcgMjAxOC4zIGFuZCBkaXRjaGlu
-ZyAyMDE5LjEgZmlyc3QuDQoNCkFsc28sIGp1c3QgYXMgYSBwb2ludCBvZiByZWZlcmVuY2UsIEkn
-dmUgc3VjY2Vzc2Z1bGx5IHVzZWQgV1NMIChsaW51eCBvbiB3aW5kb3dzKSB0byBpbnN0YWxsIFZp
-dmFkbyBhbmQgYnVpbGQgc3VjY2Vzc2Z1bGx5LiAgUnVubmluZyBpbiBjeWd3aW4gc291bmRzIGxp
-a2UgYSByZWFsIHBhaW4sIGFuZCBJIGZ1bGx5IHJlY29tbWVuZCBsaW51eCAobmF0aXZlIG9yIHdz
-bCkgZm9yIGJ1aWxkaW5nLg0KDQpCcmlhbg0KCiAgCgpDT05GSURFTlRJQUxJVFkgTk9USUNFOiBU
-aGlzIGVtYWlsIGFuZCBhbnkgYXR0YWNobWVudHMgYXJlIGZvciB0aGUgc29sZSB1c2Ugb2YgdGhl
-IGludGVuZGVkIHJlY2lwaWVudCBhbmQgbWF5IGNvbnRhaW4gbWF0ZXJpYWwgdGhhdCBpcyBwcm9w
-cmlldGFyeSwgY29uZmlkZW50aWFsLCBwcml2aWxlZ2VkIG9yIG90aGVyd2lzZSBsZWdhbGx5IHBy
-b3RlY3RlZCBvciByZXN0cmljdGVkIHVuZGVyIGFwcGxpY2FibGUgZ292ZXJubWVudCBsYXdzLiBB
-bnkgcmV2aWV3LCBkaXNjbG9zdXJlLCBkaXN0cmlidXRpbmcgb3Igb3RoZXIgdXNlIHdpdGhvdXQg
-ZXhwcmVzc2VkIHBlcm1pc3Npb24gb2YgdGhlIHNlbmRlciBpcyBzdHJpY3RseSBwcm9oaWJpdGVk
-LiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCBwbGVhc2UgY29udGFjdCB0
-aGUgc2VuZGVyIGFuZCBkZWxldGUgYWxsIGNvcGllcyB3aXRob3V0IHJlYWRpbmcsIHByaW50aW5n
-LCBvciBzYXZpbmcuCgo=
+I don't quite understand why it is important if it is "analog" bandwidth.
+While I understand that the UBX cannot change its analog bandwidth, it
+seems to me that digital bandwidth that is inherent in downconversion from
+200 MS/s to 5MS/s is still going reduce the noise power by the ratio of the
+original bandwidth (160 MHz) to the new bandwidth (say, 4.5 MHz).
+Rob
 
---_000_981b3933889d4926b73fd243d3f9f3a9MLBXCH12csmyharrisnet_
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
+On Tue, Apr 21, 2020 at 12:24 AM Lukas Haase via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6ZHQ9InV1aWQ6QzJGNDEwMTAtNjVC
-My0xMWQxLUEyOUYtMDBBQTAwQzE0ODgyIiB4bWxuczptPSJodHRwOi8vc2NoZW1hcy5taWNyb3Nv
-ZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy9UUi9S
-RUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250
-ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1ldGEgbmFtZT0iR2VuZXJhdG9yIiBj
-b250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQgbWVkaXVtKSI+DQo8c3R5bGU+PCEt
-LQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiQ2Ft
-YnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0O30NCkBmb250LWZhY2UN
-Cgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9
-DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJMdWNpZGEgQ29uc29sZSI7DQoJcGFub3NlLTE6
-MiAxMSA2IDkgNCA1IDQgMiAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9y
-bWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4t
-Ym90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJy
-aSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1w
-cmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0K
-YTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0
-eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1z
-b25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1l
-Om1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGlu
-Ow0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsNCglmb250
-LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnNwYW4u
-RW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFt
-aWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERl
-ZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDsN
-Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpAcGFnZSBXb3JkU2VjdGlvbjEN
-Cgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30N
-CmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0t
-W2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRt
-YXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
-CjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRh
-PSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJv
-ZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0i
-V29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgZm9sbG93ZWQgdGhlIGluc3Ry
-dWN0aW9ucyBoZXJlIHdoaWNoIHN1Z2dlc3QgMjAxOS4xOiZuYnNwOyA8YSBocmVmPSJodHRwczov
-L2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvbWRfdXNycDNfYnVpbGRfaW5zdHJ1Y3Rpb25zLmh0bWwi
-Pg0KaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL21kX3VzcnAzX2J1aWxkX2luc3RydWN0
-aW9ucy5odG1sPC9hPi4mbmJzcDsgSSBoYWQgYWN0dWFsbHkgdHJpZWQgMjAxOS4yIGF0IGZpcnN0
-IGFuZCByZXZlcnRlZCB0byAyMDE5LjEgc2luY2UgYWxsIHRoZSBJUCB3YXMgbG9ja2VkLiZuYnNw
-OyBJIGNvdWxkIHRyeSAyMDE4LjMgYnV0IEkgZG9u4oCZdCByZWFsbHkgdW5kZXJzdGFuZCB0aGUg
-cnVsZXMgYXJvdW5kIHRoZSBsb2NraW5nIHN0dWZmLCBhbmQgd2hldGhlcg0KIHRoYXQgd291bGQg
-d29yay48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SW4gdGhlIG1hc3RlciBwdWxsIG9mICg8c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0x1Y2lkYSBDb25zb2xl
-JnF1b3Q7Ij48YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQuZ2l0
-Ij5odHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQuZ2l0PC9hPjwvc3Bhbj4pJm5i
-c3A7IGZwZ2EvdXNycDMvdG9wL2UzMXgvc2V0dXBlbnYuc2ggc2VlbXMgdG8gYmUgbG9va2luZw0K
-IGZvciAyMDE5LjEuJm5ic3A7IFBlcmhhcHMgSSBtYWRlIGEgcG9vciBjaG9pY2UgaW4gdXNpbmcg
-bWFzdGVyPyZuYnNwOyBJcyB0aGVyZSBhIHN0YWJsZSBicmFuY2ggb3Igc29tZXRoaW5nIEkgc2hv
-dWxkIGhhdmUgY2hvc2VuIGluc3RlYWQ/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgd2lsbCBn
-aXZlIFdTTCBhIHRyeSDigJMgSSBoYXZlbuKAmXQgdXNlZCBpdCB5ZXQgYnV0IGl0IHNvdW5kcyBs
-aWtlIGl0IG1heSBiZSBsZXNzIHBhaW5mdWwgdGhhbiBDeWd3aW4uPG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxhIG5hbWU9Il9fX19fcmVwbHlzZXBhcmF0b3IiPjwvYT48Yj5Gcm9tOjwvYj4gQnJp
-YW4gUGFkYWxpbm8gJmx0O2JwYWRhbGlub0BnbWFpbC5jb20mZ3Q7DQo8YnI+DQo8Yj5TZW50Ojwv
-Yj4gTW9uZGF5LCBBcHJpbCAyMCwgMjAyMCA2OjEyIFBNPGJyPg0KPGI+VG86PC9iPiBIYXJyaXMs
-IERhbiAoVVMpICZsdDtEYW4uSGFycmlzQEwzSGFycmlzLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+
-IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFtFWFRFUk5B
-TF0gUmU6IFtVU1JQLXVzZXJzXSBDeWd3aW4gYnVpbGQgb2YgRTMxMF9TRzM8bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBNb24sIEFwciAyMCwgMjAyMCBhdCAyOjI0IFBN
-IEhhcnJpcywgRGFuIHZpYSBVU1JQLXVzZXJzICZsdDs8YSBocmVmPSJtYWlsdG86dXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20iPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPiZndDsgd3Jv
-dGU6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9y
-ZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4g
-MGluIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLXJpZ2h0
-OjBpbjttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFs
-dDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
-PSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+SXMg
-dGhlIHdpbmRvd3MgQ3lnd2luIGJ1aWxkIG9mIHRoZSBFMzEwX1NHMyB0YXJnZXQgYmVpbmcgbWFp
-bnRhaW5lZD8NCjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
-by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
-cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+SSBoYXZlIGJlZW4gZm9sbG93
-aW5nIHRoZSBidWlsZCBpbnN0cnVjdGlvbnMgYW5kIGhhdmUgVml2YWRvIDIwMTkuMSBpbnN0YWxs
-ZWQuJm5ic3A7IEl0IGlzIGZhaWxpbmcgaW4gbXVsdGlwbGUgcG9pbnRzIGluIHRoZSBnZW5lcmF0
-aW9uIG9mIHRoZSBJUC4mbmJzcDsgSSBoYWQgdG8gY29ycmVjdCBzb21lIHBhdGhzIHRoYXQgc2hv
-dWxkDQogaGF2ZSBiZWVuIHdpbmRvd3MtaXplZCBidXQgZGlkIG5vdCBzZWVtIHRvIGJlIGluIHRv
-b2xzL21ha2Uvdml2X2hsc19pcF9idWlsZGVyLm1hay48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
-dHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
-dG8iPkkgY2FuIGJ1aWxkIGF0IGxlYXN0IG9uZSBvZiB0aGUgY29tcG9uZW50cyAoPHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTomcXVvdDtMdWNpZGEgQ29uc29sZSZxdW90
-OyI+SVAgZmlmb19zaG9ydF8yY2xrPC9zcGFuPiksIHNvIEkgYW0gc29tZXdoYXQgY29uZmlkZW50
-IHRoYXQgVml2YWRvIGlzIGluc3RhbGxlZA0KIGNvcnJlY3RseSwgYW5kIHRoYXQgbXkg4oCYc291
-cmNlIHNldHVwZW52LnNo4oCZIHdhcyBkb25lIHByb3Blcmx5LjxvOnA+PC9vOnA+PC9wPg0KPC9k
-aXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PlRoaXMgc2VlbXMgc3RyYW5nZS4mbmJzcDsgWW91IG5lZWQgdG8gaGF2ZSBWaXZhZG8gMjAxOC4z
-IGluc3RhbGxlZCBmb3IgdGhlIHNldHVwZW52LnNoIHRvIHJ1biBwcm9wZXJseS4mbmJzcDsgVHJ5
-IGluc3RhbGxpbmcgMjAxOC4zIGFuZCBkaXRjaGluZyAyMDE5LjEgZmlyc3QuPG86cD48L286cD48
-L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkFsc28sIGp1c3QgYXMg
-YSBwb2ludCBvZiByZWZlcmVuY2UsIEkndmUgc3VjY2Vzc2Z1bGx5Jm5ic3A7dXNlZCBXU0wgKGxp
-bnV4IG9uIHdpbmRvd3MpIHRvIGluc3RhbGwgVml2YWRvIGFuZCBidWlsZCBzdWNjZXNzZnVsbHku
-Jm5ic3A7IFJ1bm5pbmcgaW4gY3lnd2luIHNvdW5kcyBsaWtlIGEgcmVhbCBwYWluLCBhbmQgSSBm
-dWxseSByZWNvbW1lbmQgbGludXggKG5hdGl2ZSBvciB3c2wpIGZvciBidWlsZGluZy48bzpwPjwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QnJpYW48bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPHNwYW4+PHNwYW4+
-PGJyPiZuYnNwOzwvc3Bhbj4mbmJzcDs8L3NwYW4+PGJyPg0KPERJVj48c3BhbiBzdHlsZT0iRk9O
-VC1GQU1JTFk6IFRpbWVzIE5ldyBSb21hbiI+PHNwYW4gc3R5bGU9IkZPTlQtU0laRTogMTRweCI+
-Q09ORklERU5USUFMSVRZIE5PVElDRTogVGhpcyBlbWFpbCBhbmQgYW55IGF0dGFjaG1lbnRzIGFy
-ZSBmb3IgdGhlIHNvbGUgdXNlIG9mIHRoZSBpbnRlbmRlZCByZWNpcGllbnQgYW5kIG1heSBjb250
-YWluIG1hdGVyaWFsIHRoYXQgaXMgcHJvcHJpZXRhcnksIGNvbmZpZGVudGlhbCwgcHJpdmlsZWdl
-ZCBvciBvdGhlcndpc2UgbGVnYWxseSBwcm90ZWN0ZWQgb3IgcmVzdHJpY3RlZCB1bmRlciBhcHBs
-aWNhYmxlIGdvdmVybm1lbnQgbGF3cy4gQW55IHJldmlldywgZGlzY2xvc3VyZSwgZGlzdHJpYnV0
-aW5nIG9yIG90aGVyIHVzZSB3aXRob3V0IGV4cHJlc3NlZCBwZXJtaXNzaW9uIG9mIHRoZSBzZW5k
-ZXIgaXMgc3RyaWN0bHkgcHJvaGliaXRlZC4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJl
-Y2lwaWVudCwgcGxlYXNlIGNvbnRhY3QgdGhlIHNlbmRlciBhbmQgZGVsZXRlIGFsbCBjb3BpZXMg
-d2l0aG91dCByZWFkaW5nLCBwcmludGluZywgb3Igc2F2aW5nLjwvc3Bhbj48L3NwYW4+DQo8RElW
-IHN0eWxlPSdGT05ULVNJWkU6IDE0cHg7IEZPTlQtRkFNSUxZOiAiVGltZXMgTmV3IFJvbWFuIic+
-PGJyPjwvRElWPjwvRElWPjwvYm9keT4NCjwvaHRtbD4NCg==
+> Hi Marcus,
+>
+> > Von: "Marcus D. Leech" <patchvonbraun@gmail.com>
+> > [...]
+> > > My question is if my approach/understanding is right.
+> > >
+> > > In particular I do not understand Question 4 (why does noise not
+> reduce if I reduce bandwidth).
+> > If you're varying *analog* bandwidth, rather than sampling rate, be
+> > aware that UBX doesn't have variable analog bandwidth.  It's always
+> fixed.
+>
+> I see.
+> Great point.
+>
+> I just found:
+> http://ettus.80997.x6.nabble.com/USRP-users-Which-bandwidth-does-uhd-usrp-multi-usrp-set-rx-bandwidth-set-td11897.html
+>
+> And it seems set_tx_bandwidth() and set_rx_bandwidth() do nothing then on
+> the UBX.
+>
+> I wrote before my noise level should be -174+NF+10*log10(5e6).
+>
+> But based on this, it should be more correctly -174+NF+10*log10(160e6) ...
+> is that correct? (I just receive the raw samples from the USRP via USRP
+> Source. There is no other digital filter?)
+>
+> > > Furthermore, I'd be interested if Question 5 is conceptually correct.
+> > Conceptually, I don't see any problem with it, but it very-squarely
+> > enters  "consider a spherical cow" territory.  You CANNOT use a purely
+> >    arithmetic analysis, due to uncertainties.   I would, in fact,
+> > encourage you to acquire a decent broad-band, calibrated, noise source
+> for
+> >    you lab so that you can do Y-factor analysis, if for no other reason
+> > than to satisfy yourself that the noise equations work.
+>
+> The issue with the bandwidth calculation above would be one of them ;-)
+>
+> > I've used these on a budget-sensitive project just last year:
+> > https://g8fek.com/precision-noise-sources.html
+>
+> Thanks for the pointer. I think I'll get one of these.
+>
+> For a proper use I would need a steep filter though, correct? (in order to
+> have a well defined total input power Pin=-174+ENR+10*log10(FilterCuroff)
+> dBm? )
+>
+> Thanks,
+> Lukas
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---_000_981b3933889d4926b73fd243d3f9f3a9MLBXCH12csmyharrisnet_--
+--000000000000d1806b05a3ccff2c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I don&#39;t quite understand why it is important if i=
+t is &quot;analog&quot; bandwidth.=C2=A0 While I understand that the UBX ca=
+nnot change its analog bandwidth, it seems to me that digital bandwidth tha=
+t is inherent in downconversion from 200 MS/s to 5MS/s is still going reduc=
+e the noise power=C2=A0by the ratio of the original bandwidth (160 MHz) to =
+the new bandwidth=C2=A0(say, 4.5 MHz).=C2=A0</div><div>Rob</div><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 21, 2=
+020 at 12:24 AM Lukas Haase via USRP-users &lt;<a href=3D"mailto:usrp-users=
+@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex">Hi Marcus,<br>
+<br>
+&gt; Von: &quot;Marcus D. Leech&quot; &lt;<a href=3D"mailto:patchvonbraun@g=
+mail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;<br>
+&gt; [...]<br>
+&gt; &gt; My question is if my approach/understanding is right.<br>
+&gt; &gt;<br>
+&gt; &gt; In particular I do not understand Question 4 (why does noise not =
+reduce if I reduce bandwidth).<br>
+&gt; If you&#39;re varying *analog* bandwidth, rather than sampling rate, b=
+e<br>
+&gt; aware that UBX doesn&#39;t have variable analog bandwidth.=C2=A0 It&#3=
+9;s always fixed.<br>
+<br>
+I see.<br>
+Great point.<br>
+<br>
+I just found: <a href=3D"http://ettus.80997.x6.nabble.com/USRP-users-Which-=
+bandwidth-does-uhd-usrp-multi-usrp-set-rx-bandwidth-set-td11897.html" rel=
+=3D"noreferrer" target=3D"_blank">http://ettus.80997.x6.nabble.com/USRP-use=
+rs-Which-bandwidth-does-uhd-usrp-multi-usrp-set-rx-bandwidth-set-td11897.ht=
+ml</a><br>
+<br>
+And it seems set_tx_bandwidth() and set_rx_bandwidth() do nothing then on t=
+he UBX.<br>
+<br>
+I wrote before my noise level should be -174+NF+10*log10(5e6).<br>
+<br>
+But based on this, it should be more correctly -174+NF+10*log10(160e6) ... =
+is that correct? (I just receive the raw samples from the USRP via USRP Sou=
+rce. There is no other digital filter?)<br>
+<br>
+&gt; &gt; Furthermore, I&#39;d be interested if Question 5 is conceptually =
+correct.<br>
+&gt; Conceptually, I don&#39;t see any problem with it, but it very-squarel=
+y<br>
+&gt; enters=C2=A0 &quot;consider a spherical cow&quot; territory.=C2=A0 You=
+ CANNOT use a purely<br>
+&gt;=C2=A0 =C2=A0 arithmetic analysis, due to uncertainties.=C2=A0 =C2=A0I =
+would, in fact,<br>
+&gt; encourage you to acquire a decent broad-band, calibrated, noise source=
+ for<br>
+&gt;=C2=A0 =C2=A0 you lab so that you can do Y-factor analysis, if for no o=
+ther reason<br>
+&gt; than to satisfy yourself that the noise equations work.<br>
+<br>
+The issue with the bandwidth calculation above would be one of them ;-)<br>
+<br>
+&gt; I&#39;ve used these on a budget-sensitive project just last year:<br>
+&gt; <a href=3D"https://g8fek.com/precision-noise-sources.html" rel=3D"nore=
+ferrer" target=3D"_blank">https://g8fek.com/precision-noise-sources.html</a=
+><br>
+<br>
+Thanks for the pointer. I think I&#39;ll get one of these.<br>
+<br>
+For a proper use I would need a steep filter though, correct? (in order to =
+have a well defined total input power Pin=3D-174+ENR+10*log10(FilterCuroff)=
+ dBm? )<br>
+<br>
+Thanks,<br>
+Lukas<br>
+<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+
+--000000000000d1806b05a3ccff2c--
 
 
-
---===============2560190339153400642==
+--===============2412812490696476239==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -286,6 +252,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2560190339153400642==--
-
+--===============2412812490696476239==--
 
