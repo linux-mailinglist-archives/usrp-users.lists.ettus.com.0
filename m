@@ -2,55 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B431B6BEC
-	for <lists+usrp-users@lfdr.de>; Fri, 24 Apr 2020 05:26:34 +0200 (CEST)
-Received: from [::1] (port=44924 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE3501B6BF5
+	for <lists+usrp-users@lfdr.de>; Fri, 24 Apr 2020 05:31:57 +0200 (CEST)
+Received: from [::1] (port=46702 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jRoz1-0008Ek-BZ; Thu, 23 Apr 2020 23:26:31 -0400
-Received: from mail-ua1-f45.google.com ([209.85.222.45]:33398)
+	id 1jRp4G-0000Ci-Tg; Thu, 23 Apr 2020 23:31:56 -0400
+Received: from mail-ua1-f46.google.com ([209.85.222.46]:40333)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1jRoyx-00089N-Lz
- for usrp-users@lists.ettus.com; Thu, 23 Apr 2020 23:26:27 -0400
-Received: by mail-ua1-f45.google.com with SMTP id v24so8082008uak.0
- for <usrp-users@lists.ettus.com>; Thu, 23 Apr 2020 20:26:07 -0700 (PDT)
+ id 1jRp4D-0008VH-N2
+ for usrp-users@lists.ettus.com; Thu, 23 Apr 2020 23:31:53 -0400
+Received: by mail-ua1-f46.google.com with SMTP id a10so8088657uad.7
+ for <usrp-users@lists.ettus.com>; Thu, 23 Apr 2020 20:31:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=edeNhj/5NyC0VQPhwrcwnO6ek1NLMdVXYwS2SXX+tBQ=;
- b=jPC6YS8rDjqIwAXAurQtjs5DA5IycAaqHe7Rjs7HS+XIFAeGHfbtJD9sjEYEJhukLZ
- XVrItYgSAJISLqY47Zgg1r4+E+PhsvixvEzqlIwsjQWvyvYW+aY6ypXE7McHcoAzyHgy
- M0h0ZcVsUWfFEmhtAtJYB+ZNCCBWU2HXX8NLTxQ+wj8CMdSCGdCtCednvYdes1l8EhCA
- UlXpeIEcs5pAbnLp89J4PXCcvNJH3MXHrxT6+GmdBNYISdxHdRTU6sjI6frYF7gv869m
- Z87z5hPmfvKqLMdAO0IUBbSE98/0Q/vQb+/T1g5UJ0mMlLqkwj1Cc4P+P2qPcfGBs5Wo
- ilww==
+ :cc; bh=q0IqvY54433VfR+RKqBEZ9uCg9u06jXdZmENcG/JAik=;
+ b=fzJr8Ge4eNY1ApNVI5uCYyPAemCDGqs3wRL0sUORrS2WGuzeCIH5Ur2WPQrXS3B1PJ
+ ZHF3U6+lOYxmXPIdeUo+hR9bg4uF/fmakSaEfh5/pbLZgg5N8n8lp2htldWIWEumr+FI
+ iOBbt0jtiMn03wAyinO5Du+v1EL8yBuGnK/pCwrbzTRzqk3kWxdLtA6mOqfp4evQXfUW
+ RWPC4vD4irOomlFoBuBa6gwDSZwNVDBqCthrmaBp4i8DDT46PHkOyqwS6hAR4Aqs2Jdo
+ bIARZ5ds08VM3jsp1a6vhgVEHAnB8f6aGH1AcwPZLvJPCNVKd3SZiSZWfZpDXZlabePp
+ nS/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=edeNhj/5NyC0VQPhwrcwnO6ek1NLMdVXYwS2SXX+tBQ=;
- b=Vf8VwRxJ7S2IAXQ/ZAIZpRYblvPoYpcnTNXZmXnpmMu0rNIgOntSziKrPgSSbEV/Ma
- S4yZyiaPAhUtAOlL52ohPG90L2oMPoh69iMJl0xZ1BMWywgE0Goe4t1RcrWWUC24hijz
- TBLkuY2o8XpuHnrViLVSqIS5w/tEMBQNZnGFj8QbLjy+LRJhA2Xf8cTUxOjMRhro3ASN
- wTAUQBCoH4c0BIijDOOQ9ArfpJdOHoAuW6ddJ7dFqkbA25Hwe8LMhimFRoKkYcWjUqpY
- 7+JQz5MwU5eQh8BjFeGqXzePB2T7qS4xd+jAtCJxKuOCD3v4K/gGp8X+bDbpM6x59ZMy
- iV3A==
-X-Gm-Message-State: AGi0PuZ3djubLwoA2IipS67RnqVtGQPHjqz7NMVWgc6z1OuOXQkRA32g
- Lc9VHT5dCMhcDT27RwX1k7JsT2f4N7jT8oCtNXhYh5bv
-X-Google-Smtp-Source: APiQypL9tx6LMXajC7b1k4IQUz94++b03Wp3k5DyYqWPu6ZiVd3Fj42+zQk9u3iuqZUh7IGldsjXv1Ar3igo/Zx2n+w=
-X-Received: by 2002:a05:6102:12:: with SMTP id
- j18mr6187846vsp.197.1587698747047; 
- Thu, 23 Apr 2020 20:25:47 -0700 (PDT)
+ bh=q0IqvY54433VfR+RKqBEZ9uCg9u06jXdZmENcG/JAik=;
+ b=U5x0q9Q7AYiZJIgztXmkjKAMecXomiGCEzSU/ymCDYe5fXxiUkkX5ZSd+Q+AqDh/wN
+ vtZNqMr+EakztAu+PUTfY/psTuJK630xP71NO2XNvX9ztfWF6a+XPm0QizeCe0ECUWS0
+ fgumLMCZgSFyklc4UCVt6IMQzt3RCkDk6QmuZzb3Zu+yE2WdaPFaHSi5XRL3GdfuXQAV
+ dzpxQkFGR55SLa6QGf/Pi0HoUE5VAQ+uUAvoz2ZhmN5iz4tbKURyF4tS3LdU24/PA+f6
+ unAVy+cwNg2g7fb7BimNP0CsQHCPlEqqWFo0lON778NJzUKFfEFMCxBvMCGEIMvcVn4/
+ cA8A==
+X-Gm-Message-State: AGi0PuZwMzTzlJGCsxkbKEN41X7fHMsX2x7nazHdiURexZO4NCgLmJqX
+ OfuAKwcRyCJTgQGYa08hqMU2xrP5ab6AA3cSLzImPurl
+X-Google-Smtp-Source: APiQypKNPdM1R+0pdLjO0Ww0/dpF/uVt891dweFwJH0nTIMHoY8X4wVxLTki5bUJ41gxsFDsokpxjRcjswTae9tdfqE=
+X-Received: by 2002:a9f:2846:: with SMTP id c64mr5655599uac.44.1587699073141; 
+ Thu, 23 Apr 2020 20:31:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <eb1fa60c44c4410a814e83a4fdf45df9@MLBXCH12.cs.myharris.net>
- <CAEXYVK4synzzXW-SOAJYXUTWyAdn5_iL_CL=Nx1YNX6+6dokAw@mail.gmail.com>
- <981b3933889d4926b73fd243d3f9f3a9@MLBXCH12.cs.myharris.net>
-In-Reply-To: <981b3933889d4926b73fd243d3f9f3a9@MLBXCH12.cs.myharris.net>
-Date: Thu, 23 Apr 2020 23:25:10 -0400
-Message-ID: <CAL7q81uhuQtwdzJ8nP6mjKqn-GaGFt1i_BO401upQFh+264h1A@mail.gmail.com>
-To: "Harris, Dan" <Dan.Harris@l3harris.com>
-Subject: Re: [USRP-users] Cygwin build of E310_SG3
+References: <BM1PR01MB3348D0FEC4BEAA5F7A79200C88D20@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
+ <CAEXYVK5Ts2mewxrSw40puiLtHv1+w5R8fi=d+7LD2gcxvn-9Cw@mail.gmail.com>
+ <BM1PR01MB334827C32F91A512A6786A1B88D20@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
+ <CAEXYVK7rCxr7QB=qQOL1omLd3AdPcjQvbnWoFmZ=bYGGtWGeHg@mail.gmail.com>
+ <BM1PR01MB33482FF8513BFE835941A7E888D30@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <BM1PR01MB33482FF8513BFE835941A7E888D30@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
+Date: Thu, 23 Apr 2020 23:30:37 -0400
+Message-ID: <CAL7q81sH5ae_M4ub4h8dR4DXAVFGxbBi___5TgyoHvK5Lj6nMQ@mail.gmail.com>
+To: Snehasish Kar <snehasish.cse@live.com>
+Subject: Re: [USRP-users] Modifying RFNoC ddc block for 16 parallel instances
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,7 +66,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8172731262505070621=="
+Content-Type: multipart/mixed; boundary="===============7259014812190109953=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,107 +80,66 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8172731262505070621==
-Content-Type: multipart/alternative; boundary="000000000000d40b1c05a400eb92"
+--===============7259014812190109953==
+Content-Type: multipart/alternative; boundary="00000000000043df6905a400ffc0"
 
---000000000000d40b1c05a400eb92
+--00000000000043df6905a400ffc0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Dan,
+Hi Snehasish,
 
-Checkout UHD-3.15.LTS, which is the long term support tag for 3.15 and uses
-Vivado 2018.3. Also run "make cleanall" in the usrp3/top/e31x directory to
-remove any IP that may have been built with the wrong version (i.e. 2019.1)=
-.
+The DDC supports a wide range of sampling rates. Depending on the rates you
+want, some of the DDC filters could be removed to reduce utilization or
+there may be a better architecture to fit your situation. What rates do you
+need to support?
 
 Jonathon
 
-On Tue, Apr 21, 2020 at 7:32 AM Harris, Dan via USRP-users <
+On Thu, Apr 23, 2020 at 3:19 AM Snehasish Kar via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> I followed the instructions here which suggest 2019.1:
-> https://files.ettus.com/manual/md_usrp3_build_instructions.html.  I had
-> actually tried 2019.2 at first and reverted to 2019.1 since all the IP wa=
-s
-> locked.  I could try 2018.3 but I don=E2=80=99t really understand the rul=
-es around
-> the locking stuff, and whether that would work.
+> Hello Brian
 >
+> While writing the bitstream it gave an error stung the current design
+> didn=E2=80=99t satisfy the timing constraint.
 >
+> I tried creating 12 blocks of DDC 1 to 2, blocks but that failed too
+> saying the placer couldnot place more than 5% of the movable instances in
+> the design.
 >
-> In the master pull of (https://github.com/EttusResearch/uhd.git)
-> fpga/usrp3/top/e31x/setupenv.sh seems to be looking for 2019.1.  Perhaps =
-I
-> made a poor choice in using master?  Is there a stable branch or somethin=
-g
-> I should have chosen instead?
+> Regards
+> Snehasish
 >
->
->
-> I will give WSL a try =E2=80=93 I haven=E2=80=99t used it yet but it soun=
-ds like it may be
-> less painful than Cygwin.
->
->
->
+> Get Outlook for iOS <https://aka.ms/o0ukef>
+> ------------------------------
 > *From:* Brian Padalino <bpadalino@gmail.com>
-> *Sent:* Monday, April 20, 2020 6:12 PM
-> *To:* Harris, Dan (US) <Dan.Harris@L3Harris.com>
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* [EXTERNAL] Re: [USRP-users] Cygwin build of E310_SG3
+> *Sent:* Thursday, April 23, 2020 4:19:14 AM
+> *To:* Snehasish Kar <snehasish.cse@live.com>
+> *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+> *Subject:* Re: [USRP-users] Modifying RFNoC ddc block for 16 parallel
+> instances
+>
+> On Wed, Apr 22, 2020 at 6:17 PM Snehasish Kar <snehasish.cse@live.com>
+> wrote:
+>
+> Hello Brian
+>
+> Thanks for your response, actually I tried using DDC 1 to n block as give=
+n
+> here, but giving 1 to 8 channels have a timing issue, while generating th=
+e
+> build. So I thought it as an alternative plan.
 >
 >
->
-> On Mon, Apr 20, 2020 at 2:24 PM Harris, Dan via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
+> https://gitlab.com/theseus-cores/theseus-cores/-/blob/master/fpga-rfnoc/R=
+EADME.md#dsp-utilsnoc_block_ddc_1_to_n
 >
 >
-> Is the windows Cygwin build of the E310_SG3 target being maintained?
->
->
->
-> I have been following the build instructions and have Vivado 2019.1
-> installed.  It is failing in multiple points in the generation of the IP.
-> I had to correct some paths that should have been windows-ized but did no=
-t
-> seem to be in tools/make/viv_hls_ip_builder.mak.
->
->
->
-> I can build at least one of the components (IP fifo_short_2clk), so I am
-> somewhat confident that Vivado is installed correctly, and that my =E2=80=
-=98source
-> setupenv.sh=E2=80=99 was done properly.
->
->
->
-> This seems strange.  You need to have Vivado 2018.3 installed for the
-> setupenv.sh to run properly.  Try installing 2018.3 and ditching 2019.1
-> first.
->
->
->
-> Also, just as a point of reference, I've successfully used WSL (linux on
-> windows) to install Vivado and build successfully.  Running in cygwin
-> sounds like a real pain, and I fully recommend linux (native or wsl) for
-> building.
->
->
+> What was the timing issue?  Is it possible for you to break up the logic
+> to help relax timing constraints?
 >
 > Brian
->
->
-> CONFIDENTIALITY NOTICE: This email and any attachments are for the sole
-> use of the intended recipient and may contain material that is proprietar=
-y,
-> confidential, privileged or otherwise legally protected or restricted und=
-er
-> applicable government laws. Any review, disclosure, distributing or other
-> use without expressed permission of the sender is strictly prohibited. If
-> you are not the intended recipient, please contact the sender and delete
-> all copies without reading, printing, or saving.
 >
 > _______________________________________________
 > USRP-users mailing list
@@ -187,127 +147,113 @@ er
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000d40b1c05a400eb92
+--00000000000043df6905a400ffc0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Dan,<div><br></div><div>Checkout UHD-3.15.LTS, which is=
- the long=C2=A0term support tag for 3.15 and uses Vivado 2018.3. Also run &=
-quot;make cleanall&quot; in the usrp3/top/e31x directory to remove any IP t=
-hat may have been built with the wrong version (i.e. 2019.1).</div><div><br=
-></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr" class=3D"gmail_attr">On Tue, Apr 21, 2020 at 7:32 AM Harris, Dan via U=
-SRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@list=
-s.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
+<div dir=3D"ltr">Hi Snehasish,<div><br></div><div>The DDC supports a wide r=
+ange of sampling rates. Depending on the rates you want, some of the DDC fi=
+lters could be removed to reduce utilization or there may be a better archi=
+tecture to fit your situation. What rates do you need to support?</div><div=
+><br></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Thu, Apr 23, 2020 at 3:19 AM Snehasish Kar=
+ via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-user=
+s@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex">
 
 
 
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_8340283768849999223WordSection1">
-<p class=3D"MsoNormal">I followed the instructions here which suggest 2019.=
-1:=C2=A0 <a href=3D"https://files.ettus.com/manual/md_usrp3_build_instructi=
-ons.html" target=3D"_blank">
-https://files.ettus.com/manual/md_usrp3_build_instructions.html</a>.=C2=A0 =
-I had actually tried 2019.2 at first and reverted to 2019.1 since all the I=
-P was locked.=C2=A0 I could try 2018.3 but I don=E2=80=99t really understan=
-d the rules around the locking stuff, and whether
- that would work.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">In the master pull of (<span style=3D"font-size:9pt;=
-font-family:&quot;Lucida Console&quot;"><a href=3D"https://github.com/Ettus=
-Research/uhd.git" target=3D"_blank">https://github.com/EttusResearch/uhd.gi=
-t</a></span>)=C2=A0 fpga/usrp3/top/e31x/setupenv.sh seems to be looking
- for 2019.1.=C2=A0 Perhaps I made a poor choice in using master?=C2=A0 Is t=
-here a stable branch or something I should have chosen instead?<u></u><u></=
-u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I will give WSL a try =E2=80=93 I haven=E2=80=99t us=
-ed it yet but it sounds like it may be less painful than Cygwin.<u></u><u><=
-/u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><a name=3D"m_8340283768849999223______replyseparator=
-"></a><b>From:</b> Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com=
-" target=3D"_blank">bpadalino@gmail.com</a>&gt;
-<br>
-<b>Sent:</b> Monday, April 20, 2020 6:12 PM<br>
-<b>To:</b> Harris, Dan (US) &lt;Dan.Harris@L3Harris.com&gt;<br>
+<div>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div>Hello Brian</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">While writing the bitstream it gave an error stung the cur=
+rent design didn=E2=80=99t satisfy the timing constraint.=C2=A0</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">I tried creating 12 blocks of DDC 1 to 2, blocks but that =
+failed too saying the placer couldnot place more than 5% of the movable ins=
+tances in the design.</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Regards</div>
+<div dir=3D"ltr">Snehasish</div>
+<div><br>
+</div>
+<div id=3D"gmail-m_4985790380076774549ms-outlook-mobile-signature">Get <a h=
+ref=3D"https://aka.ms/o0ukef" target=3D"_blank">
+Outlook for iOS</a></div>
+</div>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_4985790380076774549divRplyFwdMsg" dir=3D"ltr"><font face=
+=3D"Calibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From=
+:</b> Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com" target=3D"_=
+blank">bpadalino@gmail.com</a>&gt;<br>
+<b>Sent:</b> Thursday, April 23, 2020 4:19:14 AM<br>
+<b>To:</b> Snehasish Kar &lt;<a href=3D"mailto:snehasish.cse@live.com" targ=
+et=3D"_blank">snehasish.cse@live.com</a>&gt;<br>
 <b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a><br>
-<b>Subject:</b> [EXTERNAL] Re: [USRP-users] Cygwin build of E310_SG3<u></u>=
-<u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Mon, Apr 20, 2020 at 2:24 PM Harris, Dan via USRP=
--users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a>&gt; wrote:<u></u><u></u></p>
+usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Modifying RFNoC ddc block for 16 parallel =
+instances</font>
+<div>=C2=A0</div>
 </div>
 <div>
-<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
-order-left:1pt solid rgb(204,204,204);padding:0in 0in 0in 6pt;margin:5pt 0i=
-n 5pt 4.8pt">
+<div dir=3D"ltr">
+<div dir=3D"ltr">On Wed, Apr 22, 2020 at 6:17 PM Snehasish Kar &lt;<a href=
+=3D"mailto:snehasish.cse@live.com" target=3D"_blank">snehasish.cse@live.com=
+</a>&gt; wrote:<br>
+</div>
 <div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
 <div>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Is the windows Cygwin build of the E310_SG3 target b=
-eing maintained?
-<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">I have been following the build instructions and hav=
-e Vivado 2019.1 installed.=C2=A0 It is failing in multiple points in the ge=
-neration of the IP.=C2=A0 I had to correct some paths that should
- have been windows-ized but did not seem to be in tools/make/viv_hls_ip_bui=
-lder.mak.<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">I can build at least one of the components (<span st=
-yle=3D"font-size:9pt;font-family:&quot;Lucida Console&quot;">IP fifo_short_=
-2clk</span>), so I am somewhat confident that Vivado is installed
- correctly, and that my =E2=80=98source setupenv.sh=E2=80=99 was done prope=
-rly.<u></u><u></u></p>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div>Hello Brian</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Thanks for your response, actually I tried using DDC 1 to =
+n block as given here, but giving 1 to 8 channels have a timing issue, whil=
+e generating the build. So I thought it as an alternative plan.</div>
+<div dir=3D"ltr"><br>
+</div>
+<div><a href=3D"https://gitlab.com/theseus-cores/theseus-cores/-/blob/maste=
+r/fpga-rfnoc/README.md#dsp-utilsnoc_block_ddc_1_to_n" target=3D"_blank">htt=
+ps://gitlab.com/theseus-cores/theseus-cores/-/blob/master/fpga-rfnoc/README=
+.md#dsp-utilsnoc_block_ddc_1_to_n</a></div>
+</div>
 </div>
 </div>
 </blockquote>
+<div><br>
+</div>
+<div>What was the timing issue?=C2=A0 Is it possible for you to break up th=
+e logic to help relax timing constraints?</div>
+<div><br>
+</div>
+<div>Brian</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
 <div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
 <div>
-<p class=3D"MsoNormal">This seems strange.=C2=A0 You need to have Vivado 20=
-18.3 installed for the setupenv.sh to run properly.=C2=A0 Try installing 20=
-18.3 and ditching 2019.1 first.<u></u><u></u></p>
+<div dir=3D"ltr">
+<div></div>
 </div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 </div>
-<div>
-<p class=3D"MsoNormal">Also, just as a point of reference, I&#39;ve success=
-fully=C2=A0used WSL (linux on windows) to install Vivado and build successf=
-ully.=C2=A0 Running in cygwin sounds like a real pain, and I fully recommen=
-d linux (native or wsl) for building.<u></u><u></u></p>
 </div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Brian<u></u><u></u></p>
+</blockquote>
 </div>
 </div>
 </div>
 </div>
-<span><span><br>=C2=A0</span>=C2=A0</span><br>
-<div><span style=3D"font-family:&quot;Times New Roman&quot;"><span style=3D=
-"font-size:14px">CONFIDENTIALITY NOTICE: This email and any attachments are=
- for the sole use of the intended recipient and may contain material that i=
-s proprietary, confidential, privileged or otherwise legally protected or r=
-estricted under applicable government laws. Any review, disclosure, distrib=
-uting or other use without expressed permission of the sender is strictly p=
-rohibited. If you are not the intended recipient, please contact the sender=
- and delete all copies without reading, printing, or saving.</span></span>
-<div style=3D"font-size:14px;font-family:&quot;Times New Roman&quot;"><br><=
-/div></div></div>
 
 _______________________________________________<br>
 USRP-users mailing list<br>
@@ -318,10 +264,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000d40b1c05a400eb92--
+--00000000000043df6905a400ffc0--
 
 
---===============8172731262505070621==
+--===============7259014812190109953==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -332,5 +278,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8172731262505070621==--
+--===============7259014812190109953==--
 
