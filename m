@@ -2,54 +2,90 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0BD81B727F
-	for <lists+usrp-users@lfdr.de>; Fri, 24 Apr 2020 12:53:24 +0200 (CEST)
-Received: from [::1] (port=49826 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4C171B72A6
+	for <lists+usrp-users@lfdr.de>; Fri, 24 Apr 2020 13:07:30 +0200 (CEST)
+Received: from [::1] (port=52996 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jRvxT-0006xF-O9; Fri, 24 Apr 2020 06:53:23 -0400
-Received: from mail-ed1-f45.google.com ([209.85.208.45]:43404)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <ejkreinar@gmail.com>) id 1jRvxP-0006qU-Ln
- for usrp-users@lists.ettus.com; Fri, 24 Apr 2020 06:53:19 -0400
-Received: by mail-ed1-f45.google.com with SMTP id p16so6821712edm.10
- for <usrp-users@lists.ettus.com>; Fri, 24 Apr 2020 03:52:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=tljOYXvFc9jy2eC58ovLLKOTRvZ3tZttAw7swqYd5Yw=;
- b=RunnGc8dEmR0edoXNUulMwL4l4wpL8PZs934EX2nu+ZlnLovsgj/0aF1B6rovrbcUg
- rAko7IioTwKvYKzDn11JMG90ZexXkbwThu+oVwIw+tnSMjyH5jt9pqeCeFYWxTPhbwOl
- rv+Zt/xILv09OCDRp0g0eRBdwWxtox4pNSPCN448SFQ4jvEs/mTAin/ytug0xOIjW0ae
- X9KJr2XU6SDr+4uDquknfbxMBHj94vqDnl2PChCdeFouuG0k7z0e1BtENykz/gMiO+hq
- tB7CTrtv5pNGIn5Q5VLU/rTq7YSBkVaKk/lgCU5SstWBePJeFkhUFyytioYMsqD76VUQ
- E1pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=tljOYXvFc9jy2eC58ovLLKOTRvZ3tZttAw7swqYd5Yw=;
- b=EPz4xQpRDzOELk3MSTb2y1hRgwvbgycy87qx/XgsRWK1JrjmpO9Tu8/v3utWv6F9Qa
- gZTUYNhOMIACv+Upmt4+s/HoA1GedRZBNh1DuyYYokLqBzoejRP2xo3glK/PZbAN0kbM
- sBNb5IDCYD8m+kk+RC2Ac1facgzxHMr0ygKReXqPLnyRBnGMhWqaVbqVJ4N1UENLxVbp
- A2EqzxNd8TRdjp5DHf7TDF9SUMG7sjJj4v1hW+fvRmLl/XFcJmSyLW5EnUTjxMvoQptI
- ZS9PIn7yOADkNNX0EaxSyhIFIBl0LElWZnLSMP0xU9F+gVj+dy15bfTljwbMMDFrMh1U
- EOlg==
-X-Gm-Message-State: AGi0PubocXHkDYjTeQTVoKAfXiMEmMMhTDCURzAZrqe966aOEXYgByXt
- x5pWF05Le/oTyZQCmZahlXY4WMn6ZnwWwUcngmA=
-X-Google-Smtp-Source: APiQypJHEKBvf7gvdZ8WxG9JOpozuoRnk6v4RGjIzIQ5aA5XLDpQYpQJVRMsarM8ehVzwAqNfgRl+oykdyxaRSguo1k=
-X-Received: by 2002:a50:d942:: with SMTP id u2mr6673366edj.116.1587725558510; 
- Fri, 24 Apr 2020 03:52:38 -0700 (PDT)
+	id 1jRwB7-0007lx-94; Fri, 24 Apr 2020 07:07:29 -0400
+Received: from mail-oln040092255031.outbound.protection.outlook.com
+ ([40.92.255.31]:29664 helo=APC01-HK2-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <snehasish.cse@live.com>)
+ id 1jRwB2-0007fJ-Cc
+ for usrp-users@lists.ettus.com; Fri, 24 Apr 2020 07:07:24 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J7cLHbRYxFfjgXNEgeX8kBOSvyJ6pKpbSWrb2jaE1qgLRZtLACUkwj7/YHutlrX0xBn4FkRmVIMrVtMJZU8HC+r/wYgiO75z3AK5hSJdLa8707WoBV43rwMS2mjCXejnXX7oxool39sCS8OciMZ2FtpvU71tBJhB93QW2pC2e1rJXLgZfyA/zM376gAQWmVUJK3vti14zz17oeYk+EGfIaG+pIvRxxSCjqUU35CwlFsodH96lglat+wHRfwX/x+6BXwgLouPalF0RRw+1CoclvsGbeeuDHwQUy3JNQBrkYECeCtrOPmwcW1cV/awYR0iuJEFTukTG3BrtsFlQDeFwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3P/L+YvjW5ECgqQ2aJco+Asm/38QWH4/95VbvpuE9VA=;
+ b=OeWZ6TYecXCsD/Bo/GYwXpAEHN1WwAH8mVpGtTWiDDLAi+2gRvnmtqRqDuW/jpIndFFnyRoRE/2uNyKXkNIChoPticL+dRD6hVOzA1K+WtvdSXyy3U7yXTZ/6pCfSNtSaew+Vz4JeKCa8yh55RGhdeykQ660skGz+i4YMPpV86RkflQVUtr+NPFqWNUbnKYelC0Vhvk9Dm/poh+UlIxIlBnOCwchzlqF7y/g+HEhFtgCF2EKRZbfzLNgiwUzJ8PuQoCTM7n/3CGJ6dd1GtX8mOlAxYDPlhYDsz83eKTocalqNlbklzOZrbgKgXcwWSS6OoRNWUKOOjchNW9ztzywWg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3P/L+YvjW5ECgqQ2aJco+Asm/38QWH4/95VbvpuE9VA=;
+ b=Bx/dC29DImYConl4ZUrBA0n9+9WhTAMPmW/x7immGhtZBIbKuRMzXyXTLK/nc2X/0RHPZp5okCQqtm57le4f0SLyu+3NQjxZrHVbf4loeZu/dUNcm/tqNY5o+FKbBNW+M/pp5iJ2HGKsZI/n2nFjFkAUN3IJi1AROY2yibPhnxEbzhE4qevJCJ9ln7Aofna0Pk1TznBaLAqpZKRmo/urYd+HvdiJPD9s6ty1+/KCPRC6CpM+8fM1QWX5Xz8O4QKRWiNzLQftF7CEUzw3njCZxJzGKSaEJT30YlwieARasisvCnuvhDsoBtrXM8EKZp6DLnfCVWxiaKa++bhAqnHZAA==
+Received: from PU1APC01FT045.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebe::45) by
+ PU1APC01HT217.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebe::409)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2937.15; Fri, 24 Apr
+ 2020 11:06:40 +0000
+Received: from BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM (10.152.252.51) by
+ PU1APC01FT045.mail.protection.outlook.com (10.152.253.32) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2937.15 via Frontend Transport; Fri, 24 Apr 2020 11:06:40 +0000
+Received: from BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::847d:5ffa:5836:553d]) by BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::847d:5ffa:5836:553d%7]) with mapi id 15.20.2937.012; Fri, 24 Apr 2020
+ 11:06:40 +0000
+To: EJ Kreinar <ejkreinar@gmail.com>
+Thread-Topic: [USRP-users] Modifying RFNoC ddc block for 16 parallel instances
+Thread-Index: AQHWGPFZoDfvbKh70EeqElLjPk33eKiFsxgAgAACBxKAAAl8AIAAjjZVgAFSvYCAAAgLvoAAcUWAgAABeCc=
+Date: Fri, 24 Apr 2020 11:06:40 +0000
+Message-ID: <BM1PR01MB3348DDDD5F4822FDBABEA61688D00@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
+References: <BM1PR01MB3348D0FEC4BEAA5F7A79200C88D20@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
+ <CAEXYVK5Ts2mewxrSw40puiLtHv1+w5R8fi=d+7LD2gcxvn-9Cw@mail.gmail.com>
+ <BM1PR01MB334827C32F91A512A6786A1B88D20@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
+ <CAEXYVK7rCxr7QB=qQOL1omLd3AdPcjQvbnWoFmZ=bYGGtWGeHg@mail.gmail.com>
+ <BM1PR01MB33482FF8513BFE835941A7E888D30@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
+ <CAL7q81sH5ae_M4ub4h8dR4DXAVFGxbBi___5TgyoHvK5Lj6nMQ@mail.gmail.com>
+ <BM1PR01MB3348E558D45108505B6A5D5D88D00@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>,
+ <CADRnH23jKePxiwz0b0C6mrpzdCJ_t2PMeuPK-2OBqj6g+RbFcQ@mail.gmail.com>
+In-Reply-To: <CADRnH23jKePxiwz0b0C6mrpzdCJ_t2PMeuPK-2OBqj6g+RbFcQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:A2E5F62E08088DA8E93AF82AA85C666FC6E1A29E64B163341A856E83062B98E6;
+ UpperCasedChecksum:501A90E96184B04BB061992D16CEBE694A7F0125BD3AA99FC8CD5F46ABE4AF11;
+ SizeAsReceived:7653; Count:46
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [a/OOuDmISXw9GmXf5bCslOYyUjOrE71+]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 46
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 250cf09f-39e7-40c9-35f5-08d7e83f9083
+x-ms-traffictypediagnostic: PU1APC01HT217:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: O05UDRcu9f233k+o6ak3cLuhi/7PjUB7gS+2EnEYgqcskpo42M9Y/10T6ZkjXtHeFPNHMtxRiepvSLRZidkwRWnm0/RYeGMErZ42BHEmOlyTHngE5N79HvHysLlR2cj3PFK3kw8LbqsYCAmf+xrwVHgw5f0CS8mQ+PMjNXi3zhh3Ie/sQaBiy/qmfor2r74nl3tx+bk8clolq2X9xq3XZMOtRQz+H5YUEE3gwrDFglt0uOG0+l8hFA7Qr2I31m4o
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:0; SRV:;
+ IPV:NLI; SFV:NSPM; H:BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFTY:; SFS:; DIR:OUT; SFP:1901; 
+x-ms-exchange-antispam-messagedata: +eqI/wXJxK+0Po4pUxEjZPJlZYtNDiAZaiXIg+ztm5JzeOoMWEguOxUxCDDWsY8N+zAHXIRk1bdoNuX1NdJbDSRVfn5qnm1s15LMI+bj6pZjgBMCA/XhwbsgMI89fc0dIA/7FyhLpnwop3CeRxeoIA==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <BM1PR01MB33485647B95F4EB1A185B53E88D80@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
- <CAL7q81tGgXZQDNxq9FGViThnFkWE+3YSeLaebKrqP6OqCw1XvA@mail.gmail.com>
- <BM1PR01MB33488D7B9DC5AE9AF435234088D60@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
- <CAL7q81t1RpfgCAY24baDznFWJLM+i21eePoXObHiTAhqO27-FA@mail.gmail.com>
- <BM1PR01MB334874FD80DAE63A2212DC0288D00@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <BM1PR01MB334874FD80DAE63A2212DC0288D00@BM1PR01MB3348.INDPRD01.PROD.OUTLOOK.COM>
-Date: Fri, 24 Apr 2020 06:52:26 -0400
-Message-ID: <CADRnH22JnbOn46n7Qc4v+RXH4O+BU_WOaBUC=RuLZ1=Kr8z6Cw@mail.gmail.com>
-To: Snehasish Kar <snehasish.cse@live.com>
-Subject: Re: [USRP-users] Fractional downsampling in rfnoc
+X-OriginatorOrg: live.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 250cf09f-39e7-40c9-35f5-08d7e83f9083
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Apr 2020 11:06:40.0366 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT217
+Subject: Re: [USRP-users] Modifying RFNoC ddc block for 16 parallel instances
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,10 +97,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: EJ Kreinar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: EJ Kreinar <ejkreinar@gmail.com>
+From: Snehasish Kar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Snehasish Kar <snehasish.cse@live.com>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7370580089301204722=="
+Content-Type: multipart/mixed; boundary="===============1136751058665862631=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,337 +114,369 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7370580089301204722==
-Content-Type: multipart/alternative; boundary="000000000000ea790c05a4072907"
+--===============1136751058665862631==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BM1PR01MB3348DDDD5F4822FDBABEA61688D00BM1PR01MB3348INDP_"
 
---000000000000ea790c05a4072907
-Content-Type: text/plain; charset="UTF-8"
+--_000_BM1PR01MB3348DDDD5F4822FDBABEA61688D00BM1PR01MB3348INDP_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
+
+Hello EJ
+
+There was no fix but just changing the number of chain in the parameters. B=
+asically a Hit and trial. I tried building for 1:32/1:16/1:8. But, after th=
+en instead of having 1x1:16 block I tried breaking it into 2x1:4 DDC. After=
+ than increasing increasing 3x1:4 gives the same error of timing constraint=
+ while writing the BIT File.
+
+Regards
+Snehasish
+________________________________
+From: EJ Kreinar <ejkreinar@gmail.com>
+Sent: Friday, April 24, 2020 4:14 PM
+To: Snehasish Kar <snehasish.cse@live.com>
+Cc: Jonathon Pendlum <jonathon.pendlum@ettus.com>; USRP-users@lists.ettus.c=
+om <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Modifying RFNoC ddc block for 16 parallel instanc=
+es
 
 Hi Snehasish,
 
-Since you're already working with theseus-cores, I assume you've found the
-rfnoc polyphase channelizer has channel downselection already integrated
-into rfnoc and gnuradio (brief write up about it here:
-https://www.theseus-cores.com/2019/12/17/rfnoc-deinterleaving-polyphase-cha=
-nnelizer/).
-I believe this worked with UHD-3.14 when I tested last December. Wondering
-if this works for you or if there's other updates you might need?
+That's good to hear! Out of curiosity what was failing timing?
+
+If you put together a merge request for your fix I'll take a look and try t=
+o merge that in.
 
 EJ
 
-On Fri, Apr 24, 2020, 12:56 AM Snehasish Kar via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+On Fri, Apr 24, 2020, 12:07 AM Snehasish Kar via USRP-users <usrp-users@lis=
+ts.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
+Hello Jonathon
 
-> Hello Jonathon
->
-> I tried building the fractional downsampler again and was successful to
-> build it in this version of UHD: UHD 4.0.0.rfnoc-devel-409-gec9138eb. Als=
-o
-> there is a channelizer available at
-> https://github.com/e33b1711/rfnoc-ppchan . But the problem with this
-> channelizer is, it sends almost 25.6msps samples to the host. Also the
-> number of packet it sends, creates a overflow in the host even with 10gig
-> sfp cable. So what I am planning is to make a de-interleaver, which will =
-be
-> responsible for channel down-selection. Please let me know your thoughts =
-on
-> this.
->
-> Can you please let me know how to set the packet size on any rfnoc block.
->
-> Regards
-> Snehasish
-> ------------------------------
-> *From:* Jonathon Pendlum <jonathon.pendlum@ettus.com>
-> *Sent:* Sunday, April 19, 2020 8:58 AM
-> *To:* Snehasish Kar <snehasish.cse@live.com>
-> *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> *Subject:* Re: [USRP-users] Fractional downsampling in rfnoc
->
-> Hi Snehasish,
->
-> I forgot about that error. I actually made an issue about it on their
-> repo: https://github.com/SynchronousLabs/rfnoc-SynchronousLabs/issues/2.
-> Unless they provide an EDIF or their source code, you can only use their
-> code for simulation. Certainly a disappointing oversight on their part.
->
-> Jonathon
->
-> On Sat, Apr 18, 2020 at 6:21 PM Snehasish Kar <snehasish.cse@live.com>
-> wrote:
->
-> Hello Jonathon
->
-> Tried building the fractional downsampler from synchronous labs and have
-> encountered the following error:
-> source file was generated for simulation and is not permitted as input to
-> synthesis
-> [/home/snehasish/rfnoc-SynchronousLabs/rfnoc/fpga-src/fract_dec_filter.vh=
-d:241995]
->
-> Can you please help me with it.
->
-> Regards
-> Snehasish
-> ------------------------------
-> *From:* Jonathon Pendlum <jonathon.pendlum@ettus.com>
-> *Sent:* Friday, April 17, 2020 9:22 PM
-> *To:* Snehasish Kar <snehasish.cse@live.com>
-> *Cc:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> *Subject:* Re: [USRP-users] Fractional downsampling in rfnoc
->
-> Hello Snehasish,
->
-> Unfortunately, the standard library of blocks does not have a Fractional
-> Decimator. Your best bet is to try to use the one made by Synchronous Lab=
-s
-> a few years ago. Their code is on github here:
-> https://github.com/SynchronousLabs/rfnoc-SynchronousLabs. Since it was
-> built, RFNoC has had some changes that will need to be fixed, but I think
-> this is your only option versus writing one from scratch.
->
-> Jonathon
->
-> On Thu, Apr 16, 2020 at 6:35 PM Snehasish Kar via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
-> Hello
->
-> I am trying to use the RFNOC based M/2 channelizer from
-> https://github.com/theseus-cores/theseus-cores/releases/tag/v1.1.0 . I am
-> trying to divide 25 MHz spectrum into 124 subchannels each of bandwidth
-> 200KHz. I am capturing the signal at 200msps and I need to decimate it to
-> 25.6msps(25MHz/128 channels). Please help me in understanding how this ca=
-n
-> be achieved using RFNoC, is there=E2=80=99s any block already defined for
-> fractional downsampling.
->
-> Thanks & Regards
-> Snehasish
->
-> Get Outlook for iOS <https://aka.ms/o0ukef>
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+I need to use a sample rate between 20ksps to 1msps.
 
---000000000000ea790c05a4072907
-Content-Type: text/html; charset="UTF-8"
+Btw I tried following Brian's advice about breaking the logic. I was able t=
+o use to build a fpga image with 2x1:4 DDC block. Though I required 1:16 DD=
+C block, but still it is great to start working.
+
+@Brian Padalino<mailto:bpadalino@gmail.com>: Thanks a lot for the help.
+
+Regards
+________________________________
+From: Jonathon Pendlum <jonathon.pendlum@ettus.com<mailto:jonathon.pendlum@=
+ettus.com>>
+Sent: Friday, April 24, 2020 9:00 AM
+To: Snehasish Kar <snehasish.cse@live.com<mailto:snehasish.cse@live.com>>
+Cc: Brian Padalino <bpadalino@gmail.com<mailto:bpadalino@gmail.com>>; usrp-=
+users@lists.ettus.com<mailto:usrp-users@lists.ettus.com> <usrp-users@lists.=
+ettus.com<mailto:usrp-users@lists.ettus.com>>
+Subject: Re: [USRP-users] Modifying RFNoC ddc block for 16 parallel instanc=
+es
+
+Hi Snehasish,
+
+The DDC supports a wide range of sampling rates. Depending on the rates you=
+ want, some of the DDC filters could be removed to reduce utilization or th=
+ere may be a better architecture to fit your situation. What rates do you n=
+eed to support?
+
+Jonathon
+
+On Thu, Apr 23, 2020 at 3:19 AM Snehasish Kar via USRP-users <usrp-users@li=
+sts.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
+Hello Brian
+
+While writing the bitstream it gave an error stung the current design didn=
+=92t satisfy the timing constraint.
+
+I tried creating 12 blocks of DDC 1 to 2, blocks but that failed too saying=
+ the placer couldnot place more than 5% of the movable instances in the des=
+ign.
+
+Regards
+Snehasish
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: Brian Padalino <bpadalino@gmail.com<mailto:bpadalino@gmail.com>>
+Sent: Thursday, April 23, 2020 4:19:14 AM
+To: Snehasish Kar <snehasish.cse@live.com<mailto:snehasish.cse@live.com>>
+Cc: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com> <usrp-use=
+rs@lists.ettus.com<mailto:usrp-users@lists.ettus.com>>
+Subject: Re: [USRP-users] Modifying RFNoC ddc block for 16 parallel instanc=
+es
+
+On Wed, Apr 22, 2020 at 6:17 PM Snehasish Kar <snehasish.cse@live.com<mailt=
+o:snehasish.cse@live.com>> wrote:
+Hello Brian
+
+Thanks for your response, actually I tried using DDC 1 to n block as given =
+here, but giving 1 to 8 channels have a timing issue, while generating the =
+build. So I thought it as an alternative plan.
+
+https://gitlab.com/theseus-cores/theseus-cores/-/blob/master/fpga-rfnoc/REA=
+DME.md#dsp-utilsnoc_block_ddc_1_to_n
+
+What was the timing issue?  Is it possible for you to break up the logic to=
+ help relax timing constraints?
+
+Brian
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--_000_BM1PR01MB3348DDDD5F4822FDBABEA61688D00BM1PR01MB3348INDP_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Hi Snehasish,<div dir=3D"auto"><br></div><div dir=3D"auto=
-">Since you&#39;re already working with theseus-cores, I assume you&#39;ve =
-found the rfnoc polyphase channelizer has channel downselection already int=
-egrated into rfnoc and gnuradio (brief write up about it here:=C2=A0<a href=
-=3D"https://www.theseus-cores.com/2019/12/17/rfnoc-deinterleaving-polyphase=
--channelizer/">https://www.theseus-cores.com/2019/12/17/rfnoc-deinterleavin=
-g-polyphase-channelizer/</a>). I believe this worked with UHD-3.14 when I t=
-ested last December. Wondering if this works for you or if there&#39;s othe=
-r updates you might need?</div><div dir=3D"auto"><br></div><div dir=3D"auto=
-">EJ</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Fri, Apr 24, 2020, 12:56 AM Snehasish Kar via USRP-users &lt;<=
-a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
-&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
-0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Hello Jonathon <br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Hello EJ</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-I tried building the fractional downsampler again and was successful to bui=
-ld it in this version of UHD: UHD 4.0.0.rfnoc-devel-409-gec9138eb. Also the=
-re is a channelizer available at
-<a href=3D"https://github.com/e33b1711/rfnoc-ppchan" id=3D"m_46015149712042=
-69138LPlnk680611" target=3D"_blank" rel=3D"noreferrer">https://github.com/e=
-33b1711/rfnoc-ppchan</a><b>
-</b>. But the problem with this channelizer is, it sends almost 25.6msps sa=
-mples to the host. Also the number of packet it sends, creates a overflow i=
-n the host even with 10gig sfp cable. So what I am planning is to make a de=
--interleaver, which will be responsible
- for channel down-selection. Please let me know your thoughts on this.<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+There was no fix but just changing the number of chain in the parameters. B=
+asically a Hit and trial. I tried building for 1:32/1:16/1:8. But, after th=
+en instead of having 1x1:16 block I tried breaking it into 2x1:4 DDC. After=
+ than increasing increasing 3x1:4
+ gives the same error of timing constraint while writing the BIT File.</div=
+>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Can you please let me know how to set the packet size on any rfnoc block.</=
-div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
 Regards</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
 Snehasish<br>
 </div>
-<div id=3D"m_4601514971204269138appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"m_4601514971204269138divRplyFwdMsg" dir=3D"ltr"><font face=3D"Ca=
-libri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From:</b> =
-Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.com" target=
-=3D"_blank" rel=3D"noreferrer">jonathon.pendlum@ettus.com</a>&gt;<br>
-<b>Sent:</b> Sunday, April 19, 2020 8:58 AM<br>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> EJ Kreinar &lt;ejkrei=
+nar@gmail.com&gt;<br>
+<b>Sent:</b> Friday, April 24, 2020 4:14 PM<br>
+<b>To:</b> Snehasish Kar &lt;snehasish.cse@live.com&gt;<br>
+<b>Cc:</b> Jonathon Pendlum &lt;jonathon.pendlum@ettus.com&gt;; USRP-users@=
+lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Modifying RFNoC ddc block for 16 parallel =
+instances</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"auto">Hi Snehasish,
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">That's good to hear! Out of curiosity what was failing ti=
+ming?</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">If you put together a merge request for your fix I'll tak=
+e a look and try to merge that in.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">EJ</div>
+</div>
+<br>
+<div class=3D"x_gmail_quote">
+<div dir=3D"ltr" class=3D"x_gmail_attr">On Fri, Apr 24, 2020, 12:07 AM Sneh=
+asish Kar via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">=
+usrp-users@lists.ettus.com</a>&gt; wrote:<br>
+</div>
+<blockquote class=3D"x_gmail_quote" style=3D"margin:0 0 0 .8ex; border-left=
+:1px #ccc solid; padding-left:1ex">
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+Hello Jonathon <br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+I need to use a sample rate between 20ksps to 1msps. <br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+Btw I tried following Brian's advice about breaking the logic. I was able t=
+o use to build a fpga image with 2x1:4 DDC block. Though I required 1:16 DD=
+C block, but still it is great to start working.</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<a id=3D"x_m_-1889242729522562714OWAAM472637" href=3D"mailto:bpadalino@gmai=
+l.com" target=3D"_blank" rel=3D"noreferrer">@Brian Padalino</a>: Thanks a l=
+ot for the help.<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+Regards<br>
+</div>
+<div id=3D"x_m_-1889242729522562714appendonsend"></div>
+<hr style=3D"display:inline-block; width:98%">
+<div id=3D"x_m_-1889242729522562714divRplyFwdMsg" dir=3D"ltr"><font face=3D=
+"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b>From:</=
+b> Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.com" targe=
+t=3D"_blank" rel=3D"noreferrer">jonathon.pendlum@ettus.com</a>&gt;<br>
+<b>Sent:</b> Friday, April 24, 2020 9:00 AM<br>
 <b>To:</b> Snehasish Kar &lt;<a href=3D"mailto:snehasish.cse@live.com" targ=
 et=3D"_blank" rel=3D"noreferrer">snehasish.cse@live.com</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" =
-rel=3D"noreferrer">usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usr=
-p-users@lists.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users@li=
-sts.ettus.com</a>&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Fractional downsampling in rfnoc</font>
-<div>=C2=A0</div>
+<b>Cc:</b> Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com" target=
+=3D"_blank" rel=3D"noreferrer">bpadalino@gmail.com</a>&gt;;
+<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
+ferrer">usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lis=
+ts.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.c=
+om</a>&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Modifying RFNoC ddc block for 16 parallel =
+instances</font>
+<div>&nbsp;</div>
 </div>
 <div>
 <div dir=3D"ltr">Hi Snehasish,
 <div><br>
 </div>
-<div>I forgot about that error. I actually made an issue about it on their =
-repo:=C2=A0<a href=3D"https://github.com/SynchronousLabs/rfnoc-SynchronousL=
-abs/issues/2" target=3D"_blank" rel=3D"noreferrer">https://github.com/Synch=
-ronousLabs/rfnoc-SynchronousLabs/issues/2</a>. Unless they provide an EDIF =
-or
- their source code, you can only use their code for simulation. Certainly a=
- disappointing oversight on their part.</div>
+<div>The DDC supports a wide range of sampling rates. Depending on the rate=
+s you want, some of the DDC filters could be removed to reduce utilization =
+or there may be a better architecture to fit your situation. What rates do =
+you need to support?</div>
 <div><br>
 </div>
 <div>Jonathon</div>
 </div>
 <br>
 <div>
-<div dir=3D"ltr">On Sat, Apr 18, 2020 at 6:21 PM Snehasish Kar &lt;<a href=
-=3D"mailto:snehasish.cse@live.com" target=3D"_blank" rel=3D"noreferrer">sne=
-hasish.cse@live.com</a>&gt; wrote:<br>
-</div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Hello Jonathon <br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Tried building the fractional downsampler from synchronous labs and have en=
-countered the following error:</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-<span>source file was generated for simulation and is not permitted as inpu=
-t to synthesis [/home/snehasish/rfnoc-SynchronousLabs/rfnoc/fpga-src/fract_=
-dec_filter.vhd:241995]</span></div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Can you please help me with it.<br>
-<span></span><span></span></div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Regards</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
-:rgb(0,0,0)">
-Snehasish<br>
-</div>
-<div id=3D"m_4601514971204269138x_gmail-m_-353417754879076980appendonsend">=
-</div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"m_4601514971204269138x_gmail-m_-353417754879076980divRplyFwdMsg"=
- dir=3D"ltr"><font face=3D"Calibri, sans-serif" color=3D"#000000" style=3D"=
-font-size:11pt"><b>From:</b> Jonathon Pendlum &lt;<a href=3D"mailto:jonatho=
-n.pendlum@ettus.com" target=3D"_blank" rel=3D"noreferrer">jonathon.pendlum@=
-ettus.com</a>&gt;<br>
-<b>Sent:</b> Friday, April 17, 2020 9:22 PM<br>
-<b>To:</b> Snehasish Kar &lt;<a href=3D"mailto:snehasish.cse@live.com" targ=
-et=3D"_blank" rel=3D"noreferrer">snehasish.cse@live.com</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" =
-rel=3D"noreferrer">usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usr=
-p-users@lists.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users@li=
-sts.ettus.com</a>&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Fractional downsampling in rfnoc</font>
-<div>=C2=A0</div>
-</div>
-<div>
-<div dir=3D"ltr">Hello Snehasish,
-<div><br>
-</div>
-<div>Unfortunately, the standard library of blocks does not have a Fraction=
-al Decimator. Your best bet is to try to use the one made by Synchronous La=
-bs a few years ago. Their code is on github here:=C2=A0<a href=3D"https://g=
-ithub.com/SynchronousLabs/rfnoc-SynchronousLabs" target=3D"_blank" rel=3D"n=
-oreferrer">https://github.com/SynchronousLabs/rfnoc-SynchronousLabs</a>.
- Since it was built, RFNoC has had some changes that will need to be fixed,=
- but I think this is your only option versus writing one from scratch.</div=
->
-<div><br>
-</div>
-<div>Jonathon</div>
-</div>
-<br>
-<div>
-<div dir=3D"ltr">On Thu, Apr 16, 2020 at 6:35 PM Snehasish Kar via USRP-use=
+<div dir=3D"ltr">On Thu, Apr 23, 2020 at 3:19 AM Snehasish Kar via USRP-use=
 rs &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" rel=
 =3D"noreferrer">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
 </div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">
+<blockquote style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(20=
+4,204,204); padding-left:1ex">
 <div>
 <div dir=3D"ltr">
 <div></div>
 <div>
-<div>Hello=C2=A0</div>
+<div>Hello Brian</div>
 <div dir=3D"ltr"><br>
 </div>
-<div dir=3D"ltr">I am trying to use the RFNOC based M/2 channelizer from=C2=
-=A0<a href=3D"https://github.com/theseus-cores/theseus-cores/releases/tag/v=
-1.1.0" target=3D"_blank" rel=3D"noreferrer">https://github.com/theseus-core=
-s/theseus-cores/releases/tag/v1.1.0</a>=C2=A0. I am trying to divide
- 25 MHz spectrum into 124 subchannels each of bandwidth 200KHz. I am captur=
-ing the signal at 200msps and I need to decimate it to 25.6msps(25MHz/128 c=
-hannels).=C2=A0Please help me in understanding how this can be achieved usi=
-ng RFNoC, is there=E2=80=99s any block already
- defined for fractional downsampling.</div>
+<div dir=3D"ltr">While writing the bitstream it gave an error stung the cur=
+rent design didn=92t satisfy the timing constraint.&nbsp;</div>
 <div dir=3D"ltr"><br>
 </div>
-<div dir=3D"ltr">Thanks &amp; Regards=C2=A0</div>
-<div dir=3D"ltr">Snehasish=C2=A0</div>
+<div dir=3D"ltr">I tried creating 12 blocks of DDC 1 to 2, blocks but that =
+failed too saying the placer couldnot place more than 5% of the movable ins=
+tances in the design.</div>
 <div dir=3D"ltr"><br>
 </div>
-<div id=3D"m_4601514971204269138x_gmail-m_-353417754879076980x_gmail-m_-709=
-9343062042280710ms-outlook-mobile-signature">
+<div dir=3D"ltr">Regards</div>
+<div dir=3D"ltr">Snehasish</div>
+<div><br>
+</div>
+<div id=3D"x_m_-1889242729522562714x_gmail-m_4985790380076774549ms-outlook-=
+mobile-signature">
 Get <a href=3D"https://aka.ms/o0ukef" target=3D"_blank" rel=3D"noreferrer">=
 Outlook for iOS</a></div>
 </div>
 </div>
+<hr style=3D"display:inline-block; width:98%">
+<div id=3D"x_m_-1889242729522562714x_gmail-m_4985790380076774549divRplyFwdM=
+sg" dir=3D"ltr">
+<font face=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11p=
+t"><b>From:</b> Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com" t=
+arget=3D"_blank" rel=3D"noreferrer">bpadalino@gmail.com</a>&gt;<br>
+<b>Sent:</b> Thursday, April 23, 2020 4:19:14 AM<br>
+<b>To:</b> Snehasish Kar &lt;<a href=3D"mailto:snehasish.cse@live.com" targ=
+et=3D"_blank" rel=3D"noreferrer">snehasish.cse@live.com</a>&gt;<br>
+<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" =
+rel=3D"noreferrer">
+usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a>&g=
+t;<br>
+<b>Subject:</b> Re: [USRP-users] Modifying RFNoC ddc block for 16 parallel =
+instances</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div dir=3D"ltr">On Wed, Apr 22, 2020 at 6:17 PM Snehasish Kar &lt;<a href=
+=3D"mailto:snehasish.cse@live.com" target=3D"_blank" rel=3D"noreferrer">sne=
+hasish.cse@live.com</a>&gt; wrote:<br>
+</div>
+<div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(20=
+4,204,204); padding-left:1ex">
+<div>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div>Hello Brian</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Thanks for your response, actually I tried using DDC 1 to =
+n block as given here, but giving 1 to 8 channels have a timing issue, whil=
+e generating the build. So I thought it as an alternative plan.</div>
+<div dir=3D"ltr"><br>
+</div>
+<div><a href=3D"https://gitlab.com/theseus-cores/theseus-cores/-/blob/maste=
+r/fpga-rfnoc/README.md#dsp-utilsnoc_block_ddc_1_to_n" target=3D"_blank" rel=
+=3D"noreferrer">https://gitlab.com/theseus-cores/theseus-cores/-/blob/maste=
+r/fpga-rfnoc/README.md#dsp-utilsnoc_block_ddc_1_to_n</a></div>
+</div>
+</div>
+</div>
+</blockquote>
+<div><br>
+</div>
+<div>What was the timing issue?&nbsp; Is it possible for you to break up th=
+e logic to help relax timing constraints?</div>
+<div><br>
+</div>
+<div>Brian</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(20=
+4,204,204); padding-left:1ex">
+<div>
+<div>
+<div dir=3D"ltr">
+<div></div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
 </div>
 _______________________________________________<br>
 USRP-users mailing list<br>
@@ -421,11 +489,6 @@ mailman/listinfo/usrp-users_lists.ettus.com</a><br>
 </div>
 </div>
 </div>
-</blockquote>
-</div>
-</div>
-</div>
-
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
@@ -433,12 +496,16 @@ ferrer">USRP-users@lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
 om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
 mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+</blockquote>
+</div>
+</div>
+</body>
+</html>
 
---000000000000ea790c05a4072907--
+--_000_BM1PR01MB3348DDDD5F4822FDBABEA61688D00BM1PR01MB3348INDP_--
 
 
---===============7370580089301204722==
+--===============1136751058665862631==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -449,5 +516,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7370580089301204722==--
+--===============1136751058665862631==--
 
