@@ -2,48 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 273DE1B6C54
-	for <lists+usrp-users@lfdr.de>; Fri, 24 Apr 2020 05:58:28 +0200 (CEST)
-Received: from [::1] (port=48856 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id F207C1B6C5B
+	for <lists+usrp-users@lfdr.de>; Fri, 24 Apr 2020 05:59:52 +0200 (CEST)
+Received: from [::1] (port=50742 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jRpTu-00018u-Lc; Thu, 23 Apr 2020 23:58:26 -0400
-Received: from mail-qt1-f174.google.com ([209.85.160.174]:35721)
+	id 1jRpVH-0001Oj-Vk; Thu, 23 Apr 2020 23:59:51 -0400
+Received: from mail-qk1-f169.google.com ([209.85.222.169]:41770)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <qiu.guowang007@gmail.com>)
- id 1jRpTq-000118-Qb
- for usrp-users@lists.ettus.com; Thu, 23 Apr 2020 23:58:22 -0400
-Received: by mail-qt1-f174.google.com with SMTP id s30so6923128qth.2
- for <usrp-users@lists.ettus.com>; Thu, 23 Apr 2020 20:58:02 -0700 (PDT)
+ id 1jRpVD-0001HM-Qr
+ for usrp-users@lists.ettus.com; Thu, 23 Apr 2020 23:59:47 -0400
+Received: by mail-qk1-f169.google.com with SMTP id n143so8943621qkn.8
+ for <usrp-users@lists.ettus.com>; Thu, 23 Apr 2020 20:59:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:from:date:message-id:subject:to:cc;
- bh=U8+cK615rQcAzJZdV1J+uJvdmhihYZ7SiXK8nMTu64g=;
- b=AKovKviKjynukJ9McnieUQtqi8bsT+vrJnlCJ1bTqyftdhsVADNjvNI0vkHXaDioje
- CREqJ/7TsfDMZsVyph1CQ/fcc/6HIL64Q05VPyuLudHsCI2yCQhQjFL4S2bs8h0jhnL6
- SqHvLMbhKcmM1+6XkOTw2xtwyfF3MLtNJJsL7ojImWNggQf7/RDPzgiR1SAOEg0SHEzg
- MAFdfocbzNXQTjmXTuQH7z/HrO7400L8+ooIhQBLxgJ1MO5UuNu1NlQUkL4j7qRLsNo/
- X90q5ugoOENSh8O5LvhZtZJHZ13d+mc18zrw5JbShu4zc5sj4k2M8zpYaeuqH/bXBUWO
- n3TA==
+ bh=/ZW/hnzGkVSHtkt0QKCNWRIPHKy/GqP4yX7NnDfXIJU=;
+ b=rqVM5ynb9Il9YHySVQ/a5kZoWJPQc1zBeaelvUVs6FJI3ahleNEqGBg7OYkVLSCNdK
+ HtZGs2YEtinRZuu6fPhto40iFcRwdTpuOgX+Pb9UuqJosGuHjSCFDwop5W0dvhywcmEh
+ eGMnp1QX+YOeTBVbBvZmPHFK1vDqjhtcJGnBezcrNBj1la77DIlhFAmjFhSLAujQ2LaD
+ YveOuwC0PxLgQEoa6/fZCqTnPCTk18dYFnjoF/iQTT0XNueS5LYZz9EfUwVwUNxkTiVY
+ eIruPvYDqOzop6xErPCY3BPPkIuwq+9+Rsw2TNnnqIu6mR42VK4QYTbDyy+K0GR63UfO
+ bpwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
- bh=U8+cK615rQcAzJZdV1J+uJvdmhihYZ7SiXK8nMTu64g=;
- b=Nd1L3dj1MLqElBvXZV7eW6biIIYgxxfOLCibs6QU3jtGxJfbILj4AXHVW/GKJruo4s
- G6lpCcgN/cV3QRUJhVDyUMIUhTg+tO4fVld5I2nj8wKzz85dvfH2gYcFGRKdte9PJToq
- xteNM3Rj0mWShiaPty3CpzpE3amgQhZZsHfR07cJbMsPrYJ1Hx5iAk3PfCT9ODypoObW
- S9ezw7/XiDgLeX2uNX6fQB6uWbgg3F8v4UB7JmcvJHmUFTxUoZw95nycbXrQP+NN4Tks
- x2cI72b4xLwWUkWCaArd/FxL7+Y7fbDWVRL7Ssq+PeA5ZZ5NK8h6ScAg5TYRX+21Pgbv
- 0nDQ==
-X-Gm-Message-State: AGi0PuZ6izP9KJsxU3mcinfDUSEWAUD9a0t1aS7H1igmeixqAhzgoy4f
- q2PyOHl9eNWtTHVFmILNs5xdFws4ubo/2N1zzi4HapX/pGI=
-X-Google-Smtp-Source: APiQypKvOYN1EwmavF9205TNSKy0H82keAiB1I6EutN9LjDrVezB/+zN1hhurLNb1Q0Auj0mSY5tJcsN/qWayqLIXus=
-X-Received: by 2002:ac8:7cba:: with SMTP id z26mr7628177qtv.143.1587700662147; 
- Thu, 23 Apr 2020 20:57:42 -0700 (PDT)
+ bh=/ZW/hnzGkVSHtkt0QKCNWRIPHKy/GqP4yX7NnDfXIJU=;
+ b=av6F6FpjF05SSKaQQxHYPHR2OW0xTQwRGic39Dj7IUR3cuEmu/9OQC7c8jBpFvQRgP
+ 4QrnsgTOm1mpifCDkiyfCG7jCnROhmCG1sCqYIWh8h7H3wUEvsoCZGNH9Mi2z7tV9FOV
+ O9+8C5EAJebCXcBqMqtEh+evP6L0bnPXsB973wgru0tgktyg8OC9EA/qZOk8zfKUp55W
+ xfX9xbTP2IJHFoqRClRn2zbcGrHwmne7NaPqasuqVoU1GS40g3TNSTji5L9JD0tVvMcu
+ 4vrPUnvhQPSxbn+FxYZOYK0teMwB3XlOauq1kIydU4fa7y1Fz+D6ZJW4oumXZ7c0ZDnz
+ BBRQ==
+X-Gm-Message-State: AGi0PuYTykPp7JKTVkKSQXJBWI5luGuMQnUeMWFFWBDPshjzHXZcQuNL
+ bItDGMpBT81EhBCxJgRXss6xgd1tCGgE5RQrjJMEIOmTqpg=
+X-Google-Smtp-Source: APiQypIQTDlb4+69452eiIQYUKr5JilDPbrDVzq3jsVHVo5MaSo088ShzLlZnMUXsSWrjxiQvLyNnhzYHYBqrOwBEm4=
+X-Received: by 2002:a37:2e42:: with SMTP id u63mr6408368qkh.181.1587700747196; 
+ Thu, 23 Apr 2020 20:59:07 -0700 (PDT)
 MIME-Version: 1.0
-Date: Fri, 24 Apr 2020 11:57:31 +0800
-Message-ID: <CACjmV_mhVigYNh2owzPU5htd49Uh7UY+__cLyj7fbVKrWm-QKg@mail.gmail.com>
+Date: Fri, 24 Apr 2020 11:58:56 +0800
+Message-ID: <CACjmV_nS5aDKkv-cXWf+=ULdBAf7owptRXoRPAt=D2Tu+82hOA@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-Subject: [USRP-users] (no subject)
+Subject: [USRP-users] E310 with WIFI Dongle
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,7 +58,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: guowang qiu via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: guowang qiu <qiu.guowang007@gmail.com>
 Cc: Damon Qiu <qiu.guowang007@gmail.com>
-Content-Type: multipart/mixed; boundary="===============8902930357649740537=="
+Content-Type: multipart/mixed; boundary="===============0959677197309628785=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,10 +72,10 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8902930357649740537==
-Content-Type: multipart/alternative; boundary="000000000000fa1f1205a4015dc1"
+--===============0959677197309628785==
+Content-Type: multipart/alternative; boundary="0000000000000bdbb305a4016361"
 
---000000000000fa1f1205a4015dc1
+--0000000000000bdbb305a4016361
 Content-Type: text/plain; charset="UTF-8"
 
 Hi all,
@@ -106,7 +106,7 @@ Best regards,
 
 Damon
 
---000000000000fa1f1205a4015dc1
+--0000000000000bdbb305a4016361
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -136,10 +136,10 @@ IP address is assigned.<br>
 <p>Best regards,</p>
 <p>Damon</p></div>
 
---000000000000fa1f1205a4015dc1--
+--0000000000000bdbb305a4016361--
 
 
---===============8902930357649740537==
+--===============0959677197309628785==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -150,5 +150,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8902930357649740537==--
+--===============0959677197309628785==--
 
