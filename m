@@ -2,63 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEB881BB9B7
-	for <lists+usrp-users@lfdr.de>; Tue, 28 Apr 2020 11:21:03 +0200 (CEST)
-Received: from [::1] (port=58264 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 820C41BBA3C
+	for <lists+usrp-users@lfdr.de>; Tue, 28 Apr 2020 11:47:51 +0200 (CEST)
+Received: from [::1] (port=34636 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jTMQF-00016c-22; Tue, 28 Apr 2020 05:20:59 -0400
-Received: from mail-wr1-f45.google.com ([209.85.221.45]:40154)
+	id 1jTMqC-0002Tq-BU; Tue, 28 Apr 2020 05:47:48 -0400
+Received: from mail-wm1-f42.google.com ([209.85.128.42]:51838)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1jTMQB-0000xN-Ew
- for usrp-users@lists.ettus.com; Tue, 28 Apr 2020 05:20:55 -0400
-Received: by mail-wr1-f45.google.com with SMTP id k13so23790645wrw.7
- for <usrp-users@lists.ettus.com>; Tue, 28 Apr 2020 02:20:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=BZFfWs3Xuk6XKd4PmvpiyVvjkVc+brDKV+vlvyAj/aA=;
- b=lx6qqe9T0TdShCRhME13BMhEjNTvvW0bBH/N3adikuz+aFVShgpfrcows3NO0ESBfS
- IOC2QrRu1bcJpOkNWGqvoA8CkKxbFzmbE9HhbId1lyBwNBE0qZRgR8aui7SSy0V7V3Mu
- M9HIwwvv8wlR0xs2V+y1zK0pEdQ5OOmlRBC8mlI7K4XVC6MSxav2XRDvKxkCjNICtVFs
- KpCjSYP/4do4w9htbQmaxRDWoTVhjpow4vaHUMqczXyrAhJXPyHDGnCkyS1hC3LHW3Fc
- B2sXFnXt0yRs+7V06eoHeh/LaYQ5a6jmnuDxcXMOs7/D1UtICQSejT/x52V1kuUiGCFp
- 85bg==
+ (Exim 4.93) (envelope-from <conan79x@gmail.com>) id 1jTMq7-0002Mx-6C
+ for usrp-users@lists.ettus.com; Tue, 28 Apr 2020 05:47:43 -0400
+Received: by mail-wm1-f42.google.com with SMTP id x4so2000181wmj.1
+ for <usrp-users@lists.ettus.com>; Tue, 28 Apr 2020 02:47:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=to:from:subject:message-id:date:user-agent:mime-version
+ :content-transfer-encoding:content-language;
+ bh=q73Fx5lrOVx0kcrfle7spKBbZDB3KyS6dKI3NhY7C2g=;
+ b=upVrytHmgjf4VzKl1qbWgq+BKktTVZBzE5B2gLG3T9HdLE+XeTlJXzqw19rfq6OthR
+ LF+vu0SHWiozyMtFj+bAnjmKOYbG12SdepFhgxdxyYtYksph7dNgyYzo0t/xvuKq6cag
+ VncELC5eBbRSgqpOqx86zN9rk+vmd9ImMC+82JBE4rnZ5e8oHtDB0+82ZMO3mq6DFyTE
+ acfabDpOA7iZF/riFftLPqVM2LaH7IBmaYsbyaoacBj4BsCbyBrfSgLi+/MH4unmWBfZ
+ oPZ5ffwXaKi5HCwSJKna0KqEX571iv6ZNIV0FBAm3I4y0WnYzPdkfe0Fn0cd8f7x+KjD
+ g6tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=BZFfWs3Xuk6XKd4PmvpiyVvjkVc+brDKV+vlvyAj/aA=;
- b=KTd7KORDa+NRZgiXPeYy+W0yPutNz+1Pw6M0PPCxIK79D0dW+HfHR97xiaYgrOMRfV
- tTP35bLT9eiGVcONyY0jQ7L5oGefJWJUKo16Mm0nvUEXEWQZrDpj5gIb01cbol2A97kb
- tTWw0r9aKz6fFaf01811UGuew0YX9nPFb9fzwr9WNE5KUt/qE3AwV5leEoNPodrlPR7T
- IqU1jp+aNPJX1SuHWiQMaxye/mZqdwL23W8aSggJrq6tqU8uKSYMmolyNW2CvbRZwNC4
- jaef39kYe9sQgAv6Oj6p8zL5cqEJIQN8+VUU5ZZ7Wh0u4hTbGKZn4I4Jk6sQ2Q7afBAg
- 85Kg==
-X-Gm-Message-State: AGi0PubefZ++XB+5CjGNpIWlsre04Hb2zdl2n+ZxOPEMW2Jn4JI3uDzu
- 3sfpVmbvCNhQnUddnhFFOHygvGnSu/XglA==
-X-Google-Smtp-Source: APiQypLXjODWUgzZAsP4BJE7y4dwa1d3c5p5lCKf0GRIdbII3p7Xe6d2t22ExCKEexzjulutHZ8KKA==
-X-Received: by 2002:adf:9d83:: with SMTP id p3mr33215866wre.142.1588065614015; 
- Tue, 28 Apr 2020 02:20:14 -0700 (PDT)
-Received: from [192.168.128.8]
- (HSI-KBW-46-223-163-150.hsi.kabel-badenwuerttemberg.de. [46.223.163.150])
- by smtp.gmail.com with ESMTPSA id o7sm2383590wmh.46.2020.04.28.02.20.13
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 28 Apr 2020 02:20:13 -0700 (PDT)
-To: Joshua Monson <jmonson@isi.edu>,
- "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <BLAPR16MB39050504D7428A8AEADD2250A7AF0@BLAPR16MB3905.namprd16.prod.outlook.com>
-Message-ID: <fa5ec475-71a0-f82c-2bbf-71355cc96d68@ettus.com>
-Date: Tue, 28 Apr 2020 11:20:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+ h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+ :mime-version:content-transfer-encoding:content-language;
+ bh=q73Fx5lrOVx0kcrfle7spKBbZDB3KyS6dKI3NhY7C2g=;
+ b=jm2fWZ92NKIzJ9gJdMesftvvlYujZ7Oaqbk8G7Wc55TAnhKWggWOVp3apCKWVxtuat
+ TEVylAc05xMHyu2ZFr9+Bgzm/7O0oz6h/E9BgEBCIvhs3XTIFM0fYo09qUc1lBJMz+ZQ
+ zxcFn6D5ECElGvIcwd2zc9DrV4q5+5v7sm/5AsDWAsGrBxIJbZSs7cn6RTTdgvKNxUi1
+ cY/2gMyE89KDb4tb1rmceTgDST4kdoPJ1YEznWFZFDy7r/sQcXsixXRhA5jIznXaw8H2
+ M+N9sN9yhR0uFO5O5ir+/xa7op2Wy5xZj7TYq3fWFvvg3PYxsJP/+Q/4grK+npDUlfu8
+ 5BTw==
+X-Gm-Message-State: AGi0PuYtQrl4dlg/nF7D2uJXNdYAkXMzcbDtMXAebnns+FCUmCq4Y7Q+
+ plOKSu9nthFPOQqDdVVMdHBSS6F0
+X-Google-Smtp-Source: APiQypKJfX+LU7PNbqThVJ94+M88ck7Z0re2ZIyuAjk3nYWyNqrwhoI+IMIDUSH2vpJMvPCTRvy2Zw==
+X-Received: by 2002:a1c:a7d7:: with SMTP id q206mr3427490wme.45.1588067222001; 
+ Tue, 28 Apr 2020 02:47:02 -0700 (PDT)
+Received: from [192.168.1.16] (net-2-39-140-22.cust.vodafonedsl.it.
+ [2.39.140.22])
+ by smtp.gmail.com with ESMTPSA id t16sm25318131wrb.8.2020.04.28.02.47.01
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 28 Apr 2020 02:47:01 -0700 (PDT)
+To: usrp-users@lists.ettus.com
+Message-ID: <3136f9b5-76b8-8d8c-1feb-198ef9061cd4@gmail.com>
+Date: Tue, 28 Apr 2020 11:47:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <BLAPR16MB39050504D7428A8AEADD2250A7AF0@BLAPR16MB3905.namprd16.prod.outlook.com>
 Content-Language: en-US
-Subject: Re: [USRP-users] Remote Power Cycle of the E310/E312
+Subject: [USRP-users] E320 tuning time
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,11 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: quoted-printable
+From: conan via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: conan <conan79x@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -88,61 +82,29 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hey Joshua,
+Hi all,
 
-the firmware can be found in the UHD source code repo under
-firmware/e310/battery. If I remember correctly, you'll need avr-gcc,
-avr-libc and avrdude (the latter only for flashing using the `make
-install` target).
+I am using an E320 with UHD 3.15 10GBE interface (XG FPGA image).
 
-Note that the software is a bit tight on space on the Attiny88 =96 so
-maybe try to avoid integrating too many features without removing
-anything ;)
+When I call "uhd::usrp::multi_usrp::set_rx_freq()" it takes about 100ms 
+to return.
 
-Best regards,
-Marcus
+Same code with a B200/B200mini takes about 5ms.
 
-On 27.04.20 16:20, Joshua Monson via USRP-users wrote:
-> Hello,
-> =
 
-> =A0
-> =
+RFIC should be very similar so I expect more or less the same "tuning 
+time".
 
-> Under the current (COVID19) circumstances, I am having to use my
-> E310/E312=92s remotely. I have them connected to a remotely controllable
-> PDU that allows me to power cycle the E310 devices when they
-> occasionally crash (as long as they have been switched on once).
-> However, the battery-backed E312s do not respond to the power-cycling in
-> the same way the E310s do and thus I am cannot power-cycle them. We
-> disconnected the battery and tested the remote power-cycling to no
-> avail. Is there a version of the AVR code that would allow me to disable
-> the battery and use the input power to power-cycle the device? (I could
-> go into the office to reflash the AVR). Alternatively, could I recompile
-> the AVR code with different parameters to force this behavior?
-> =
 
-> =A0
-> =
+Why does exist this difference ?
 
-> Thanks,
-> =
+Does exist any way to have a lower tuning time (similar to B200) for the 
+E320 ?
 
-> =
 
-> Josh
-> =
+Best Regards,
 
-> =A0
-> =
-
-> =
-
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> =
+Conan
 
 
 _______________________________________________
