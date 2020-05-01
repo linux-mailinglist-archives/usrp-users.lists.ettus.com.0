@@ -2,49 +2,83 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C325A1C1BAD
-	for <lists+usrp-users@lfdr.de>; Fri,  1 May 2020 19:29:11 +0200 (CEST)
-Received: from [::1] (port=59004 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 306DA1C1BD9
+	for <lists+usrp-users@lfdr.de>; Fri,  1 May 2020 19:36:06 +0200 (CEST)
+Received: from [::1] (port=34438 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jUZTK-00048c-T5; Fri, 01 May 2020 13:29:10 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:45025)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <bpadalino@gmail.com>) id 1jUZTF-0003fE-PK
- for usrp-users@lists.ettus.com; Fri, 01 May 2020 13:29:05 -0400
-Received: by mail-ot1-f51.google.com with SMTP id j4so3093489otr.11
- for <usrp-users@lists.ettus.com>; Fri, 01 May 2020 10:28:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=AfI8ov2ulqQ/52X9CmOJFgWSaT5JsbUV3KItjj7bu30=;
- b=EPyacP4ivC5nGyAVx0RcLA05wuWdM0HAmpbB/kQpWBKXP9anfprwhLatGq7FTxPfnk
- NqUTcrrL/8HaOgrFB+goXWzEOkz0VGFNg5TmNbVuTtfr5/JQmt0hbIS614tDs6LRoreM
- FCX1okAMmS4y77Qi7y17PZG1Up6Lk8WowzuD8FBQKBFvjrPnAISaNauIecdT+j+AAK7R
- 5+EKsXf3r9bIh7iVOQOXhcVBXPCFkz3Lvrdc8Pz9XpRqb/RwnFWOSQfS8+9Xfj8DtMFW
- x3MMhRFyIC1t6u+VxEA0YredEphHxhv8H9GCeffTrQjlEJfYZZCySks6+Jx3WfDFp7LI
- S8fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=AfI8ov2ulqQ/52X9CmOJFgWSaT5JsbUV3KItjj7bu30=;
- b=jd4WRBNuyBZMnKPSdLdSx0t42F1n6lshtGWlOnDTPcWL80U8ESBhobT813GO7Aovdk
- RuaNeO4NK6N3Mk7ji92z30Q4fHdCw5pOHu+8JcFDgjGKJq4nZDlW1YxjEhXqPJ6nSvrI
- 3eNeXMbIo/F3nXGkypdbkw5XQE+7h6toke4lf7pzNiux0zYyo0nzsu/Hlvbi3W19mD8M
- DNUiW1GJVcR3tVbnKxeq7KLvpLxFs+K69mH+H5mY1sDGIwzuKrxSEdVF5rqj37HMZ033
- dw0+fZwQltJCMc8415KkOOyGYv9QDAglCDGVN2LwqjIboGRJ0q8/CKETKcy2zd167y3a
- Q9TA==
-X-Gm-Message-State: AGi0PuYJh9zd4OxkwTvGLGw2UueGCGA94hVjnDpY1qTrQO2y17xsCqa1
- WNmz0pJdVK8o0Oq6WB5mFGIknyAa7CJtvTfV+PALcyIu
-X-Google-Smtp-Source: APiQypLgCtxSLuWNngZbWkAdYv232BELgb/NnvT+hdnb1rvYSPbGyLOFxwdC/f9zQX0lFX78ZvlNGmYV5MVH7wB1uhI=
-X-Received: by 2002:a9d:12b6:: with SMTP id g51mr4636910otg.187.1588354105007; 
- Fri, 01 May 2020 10:28:25 -0700 (PDT)
-MIME-Version: 1.0
+	id 1jUZZz-0004xC-N9; Fri, 01 May 2020 13:36:03 -0400
+Received: from mail-mw2nam10on2088.outbound.protection.outlook.com
+ ([40.107.94.88]:37217 helo=NAM10-MW2-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <jerrid.plymale@canyon-us.com>)
+ id 1jUZZv-0004pd-Rf
+ for usrp-users@lists.ettus.com; Fri, 01 May 2020 13:36:00 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=npYOPswDQ376DVrS/SLSmmhy8MP6XAVB2Bv7zYK3VMQvYHLu36pAF7Fe82bjR+obdXWIElf8sAb1UHcTOGqprezgPRKMqvshNRPGi6k3R5xslEzEJZw4bDmc7pr48DSvsyX4XyRWTJ7HNVVK9jTANasf4MhsJ63ls9IX+uxhPgU3thaUKtQJJDqqCq7IGW6pdZZxYMgdY9blC2kwG5/G1915yUoapvi17yRHiBPhkviCqVKJGLJ8+gFcT8m825JwQMR/gjtdx9+JSa9Vr5XfzDKSGSqFYlIFGxPrVY8R5aX7J5sDaj+kGA8mQ+cQeF4zcFJIRbkYOpL5Wvse7eMybQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s+eOwxdnuWEqWqEGbomuQHZle111J4aSZ1ZnoU6p1S8=;
+ b=gy2ikz3AkL+o7h/e6s9DjYNdQ/VQghuBxvd6oftQzulcOxnKUohAsaFat1SsrewqqcqeOUqZul/3+8yDhLdTNrYNTs2iqHDRRGdf4vrvl7XV3wBZ1JNKwW2TDs9lrVOm3Qi11T1abiMkubFy275yq8XzJQ0OG0mxhMwX83+El+A5tdp8bMEvQ6W3JR4yAXHx4PbvBydAr1P0mK/Iml6jezoMdYbvcpRPg8G3mWUHV5mFF84f7SzOBNb733xAprhjcR7B+deUh74YGh60dqMFVmqgu4wMKlo5TemKA0T1YtIET+yQycOcC9l4AudhD+4tqSgsLtCdcPxKRYpnofWzoA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=canyon-us.com; dmarc=pass action=none
+ header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=canyonconsulting.onmicrosoft.com;
+ s=selector2-canyonconsulting-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s+eOwxdnuWEqWqEGbomuQHZle111J4aSZ1ZnoU6p1S8=;
+ b=K5zJT82F+Y0TjteuzEGH3c44Hx/wMr2mLXdzHm5mBHRDgVf6mI0dSEZCW4az1oss1kuGXQ6R35hNPhb/O4+mWrkdCcycGJpjp+VH9J6d2T5gm8W4bvaU3R1Elk0nR94tNRPK5YLId4s6pAedtFepkjyh3JbWOeDnaGiTyu5EuQk=
+Received: from BY5PR19MB3398.namprd19.prod.outlook.com (2603:10b6:a03:185::26)
+ by BY5PR19MB3745.namprd19.prod.outlook.com (2603:10b6:a03:22c::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.19; Fri, 1 May
+ 2020 17:35:17 +0000
+Received: from BY5PR19MB3398.namprd19.prod.outlook.com
+ ([fe80::2501:e0e3:f5f2:6faa]) by BY5PR19MB3398.namprd19.prod.outlook.com
+ ([fe80::2501:e0e3:f5f2:6faa%4]) with mapi id 15.20.2958.027; Fri, 1 May 2020
+ 17:35:17 +0000
+To: Brian Padalino <bpadalino@gmail.com>
+Thread-Topic: [USRP-users] Setting up an X310 as a signal generator
+Thread-Index: AdYf28F15LoJ8T8LTQKOHd5VHhTjFQAAiIYAAAAQoeA=
+Date: Fri, 1 May 2020 17:35:16 +0000
+Message-ID: <BY5PR19MB339830DC61596E09FB2FB24DC6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
 References: <BY5PR19MB339879DA30F3129CB923F7F4C6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
-In-Reply-To: <BY5PR19MB339879DA30F3129CB923F7F4C6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
-Date: Fri, 1 May 2020 13:28:12 -0400
-Message-ID: <CAEXYVK6gX7EtOQYwCJw3YUEF-O3E3-Ug8KF+Eg9hHFAmrRMpXw@mail.gmail.com>
-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+ <CAEXYVK6gX7EtOQYwCJw3YUEF-O3E3-Ug8KF+Eg9hHFAmrRMpXw@mail.gmail.com>
+In-Reply-To: <CAEXYVK6gX7EtOQYwCJw3YUEF-O3E3-Ug8KF+Eg9hHFAmrRMpXw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=canyon-us.com;
+x-originating-ip: [104.174.142.102]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 69ae5450-4e86-4ce7-9966-08d7edf60383
+x-ms-traffictypediagnostic: BY5PR19MB3745:
+x-microsoft-antispam-prvs: <BY5PR19MB37459DE4B68DAAF41F35F50EC6AB0@BY5PR19MB3745.namprd19.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 0390DB4BDA
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: V6ee9yB2HnYhg82fLFKUT/cJqb4TafsWGxv/Rj4i4tNB72064oCBUIMfzIz24JL3MKuRdW8exSveEe+MBNj471afgTyflg6mqc/lTR04Qv3ZsEoHJnY/BxvJnThvWKpUonDobXbE17RrAcBRrq2tuteA6LuyXKzxmgO74vco02AG7PUhRS3pV0jicZKdbKWvNw+GrKWNDMsKUT8N+zAhuJRWcfNPLk0ZLrl2m5+92ddlPANQw2jtOxnJddoGmwNxfQ9cmRfZ+W7IPRdZx82AOrfw3O3dxMWTmC7Zvu52pNvitmPguR4iifo+lTNXmJsU2Rg7gHPzs8ByI8cezk/gX2WJJE4XXGpzmCWX8Zp8E0b3p4Oak0DLahT2yKkbQ/hsJu9nbxVr/1rRkK8exY1YSYjR+5UmeXfmCYnJkmNFnk+UhEJMFEwydTbdOQDxDt5Y
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR19MB3398.namprd19.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(346002)(376002)(136003)(396003)(366004)(39830400003)(26005)(76116006)(186003)(66446008)(64756008)(66556008)(66476007)(66946007)(2906002)(86362001)(5660300002)(44832011)(4326008)(55016002)(6916009)(71200400001)(8676002)(52536014)(508600001)(53546011)(316002)(33656002)(9686003)(7696005)(8936002)(6506007);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: 6WyiqaqKGzUGMcdZf5mRYcdyXTpc/y4Ux5PN9iEKL8EsFCb1cuS2IuOLeZoI2cz9bO7bSwaibbEZDa5o1qrrvmVSm+p0gb9dIm78NQcZ/H3iF+FNWGTpca4aqEEZDDnxm9pp+YWhUuJwzvWuma6XSGpxLtZvUcpOOg2t+fzrZUDrU3cuD3OXRHYqqzX7D5nzwmjrYtTlBWN5h/eE4/7V7RK01/5QvxSsi7KbsulZANosXapA5Z4zfvW51In3dWk5P7mDL+ji33R1UGb9U2wYQdvFZogmEs1y4V/O8loyrwVtIjZ90IUnLF9Z3RNTqw4cINZfpDmCksS+bpqKBezpGaOUyGp1uSSabySLyq5L6C9qcrcPWDkI+2Z+6Opnz217ckSfLgXfHQimuiLBFAHuuzPz30XWiwVKEBW/5FsMj3SrWRQ05jiZ3bs1x1CoJPy4HGn2eKqkIDb5P3+El4hk30gmDH/nRW2J5r62HyTDu/hXcK/QwdMQ3ZYdltdwgtIwJGhZ7lxnkBhfYV3Nh036qEOA5tSoeLmtqaHxDLDOjl/O56EMKMxEHs5Ld1qq/4PjKef6l9V+U586mTkuhs/C/QlMn6Yv0UpkmYbMi5s5LB+5lRabMUwLCRPb1nxQov1ZvKZZ9uSrkwcYWEYpeBtg7De6xqmfydjwBLvpRou2Yd3s5uJdKZBtyEo2P06YunaGOUtliPbBBnWnpff2MNtearpsnpka1OTNoc4sPzCX89mnY4d5XpqC6ms2dDRDBEBnzzGbBdLNnUJ7lc3DE6Y1i0Pu94u8qD5DZYwARDFnRa5tT7iH7x3gnhSmxrNG3CYl
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: canyon-us.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 69ae5450-4e86-4ce7-9966-08d7edf60383
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 May 2020 17:35:17.0789 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mgomEMttYX/6jIhg38gwPKzF42vWfks07ghtKaIsDPVwZg3B67/RY0dvMIAIWlt3BJ3/y7/J1BJ18uPzg7BtqE7/BlbbFNZk/hQ7O8v70/8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR19MB3745
 Subject: Re: [USRP-users] Setting up an X310 as a signal generator
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -57,10 +91,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
+From: Jerrid Plymale via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9180675418302273979=="
+Content-Type: multipart/mixed; boundary="===============4832501106235827673=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,97 +108,157 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9180675418302273979==
-Content-Type: multipart/alternative; boundary="00000000000034e10805a4998217"
+--===============4832501106235827673==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BY5PR19MB339830DC61596E09FB2FB24DC6AB0BY5PR19MB3398namp_"
 
---00000000000034e10805a4998217
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_BY5PR19MB339830DC61596E09FB2FB24DC6AB0BY5PR19MB3398namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Fri, May 1, 2020 at 1:23 PM Jerrid Plymale via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+QnJpYW4sDQoNClRoYW5rIHlvdSBmb3IgdGhlIHF1aWNrIHJlc3BvbnNlISBJIHdpbGwgdHJ5IHRo
+ZSBEUkFNIEZJRk8gYW5kIHNlZSBpZiB0aGF0IHdvcmtzLiBBcyBJIGFtIHdvcmtpbmcgZnJvbSBo
+b21lIGF0IHRoZSBtb21lbnQgSSBkbyBub3QgaGF2ZSBhY2Nlc3MgdG8gYSBzcGVjdHJ1bSBhbmFs
+eXplciwgSXMgdGhlcmUgYW55d2F5IEkgY2FuIHVzZSBhbnkgb2YgdGhlIFFUIEdVSSBibG9ja3Mg
+aW4gZ251cmFkaW8gdG8gZGV0ZXJtaW5lIGEgcm91Z2ggZXN0aW1hdGU/IEkga25vdyB0aGF0IHRo
+ZSB2YWx1ZXMgeW91IHNldCBhcmUganVzdCB2YWx1ZXMgYW5kIHRoYXQgeW91IGhhdmUgdG8gZGV0
+ZXJtaW5lIGhvdyB0aGV5IGNvcnJlc3BvbmQgdG8gYWN0dWFsIHZhbHVlcywgYnV0IGlzIHRoZXJl
+IGEgd2F5IHRvIGRvIHRoYXQgbWF0aGVtYXRpY2FsbHk/IERldGVybWluaW5nIG1ldHJpY3MgZm9y
+IHRoaXMgcHJvamVjdCBoYXZlIGRlZmluaXRlbHkgYmVlbiBhIHN0cnVnZ2xlIG1lIHNvIGZhci4N
+Cg0KQmVzdCBSZWdhcmRzLA0KDQpKZXJyaWQNCg0KRnJvbTogQnJpYW4gUGFkYWxpbm8gPGJwYWRh
+bGlub0BnbWFpbC5jb20+DQpTZW50OiBGcmlkYXksIE1heSAxLCAyMDIwIDEwOjI4IEFNDQpUbzog
+SmVycmlkIFBseW1hbGUgPGplcnJpZC5wbHltYWxlQGNhbnlvbi11cy5jb20+DQpDYzogdXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gU2V0dGluZyB1
+cCBhbiBYMzEwIGFzIGEgc2lnbmFsIGdlbmVyYXRvcg0KDQpPbiBGcmksIE1heSAxLCAyMDIwIGF0
+IDE6MjMgUE0gSmVycmlkIFBseW1hbGUgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+IHdyb3RlOg0KSGVs
+bG8gQWxsLA0KDQpTbyBJIGhhdmUgYmVlbiB0cnlpbmcgdG8gc2V0IHVwIGEgVVNSUCBYMzEwIGFz
+IGEgc2lnbmFsIGdlbmVyYXRvciBmb3IgYWJvdXQgYSB3ZWVrIG5vdywgYW5kIEnigJltIGhhdmlu
+ZyBzb21lIGlzc3Vlcy4gQ3VycmVudGx5IEkgYW0gdXNpbmcgZ251cmFkaW8tY29tcGFuaW9uIHRv
+IGRldmVsb3AgdGhlIGZ1bmN0aW9uYWxpdHkuIEkgaGF2ZSB0aHJlZSBzZXRzIG9mIHNpZ25hbCBz
+b3VyY2VzIHRoYXQgYXJlIG9mIGZsb2F0IHR5cGUsIGNyZWF0aW5nIHRoZSBJIGFuZCBRIHZhbHVl
+cyB0aGF0IGdldCBwYXNzZWQgdG8gYSBmbG9hdCB0byBjb21wbGV4IGJsb2NrLiBUaGUgb3V0cHV0
+IG9mIHRoZSB0aHJlZSBmbG9hdCB0byBjb21wbGV4IGJsb2NrcyBnbyB0byBhbiBhZGQgYmxvY2ss
+IHdoaWNoIHRoZW4gb3V0cHV0cyB0byBhIFVTUlAgc2luay4gQ3VycmVudGx5LCB0aGUgZmlyc3Qg
+cHJvYmxlbSBpcyB3aXRoIHVuZGVycnVucywgSeKAmW0gbm90IGdldHRpbmcgYSBsb3Qgb2YgdGhl
+bSBob3dldmVyIEkgYW0gZ2V0dGluZyBicmVha3MgaW4gdGhlIHNpZ25hbCB3aGVuIEkgcGFzcyBp
+dCB0byBhIHNlY29uZCBVU1JQIFgzMTAuIFdoYXQgd291bGQgYmUgdGhlIGJlc3QgYXBwcm9hY2gg
+dG8gbWFrZSBzdXJlIG15IHNpZ25hbCBpcyBjb21pbmcgaW4gc3Ryb25nIHRvIHRoZSBzZWNvbmQg
+VVNSUD8gSSBhbSBhbHNvIGhhdmluZyBpc3N1ZXMgd2l0aCBpbmNyZWFzaW5nIHRoZSBwb3dlciBv
+ZiB0aGUgc2lnbmFsIHdoZW4gaXQgaXMgcmVjZWl2ZWQsIGlzIHRoaXMgbWFpbmx5IGNvbnRyb2xs
+ZWQgYnkgdGhlIGdhaW4gdmFsdWUgb24gdGhlIFVTUlAgc291cmNlIGluIGdudXJhZGlvPyBXaGF0
+IGNhbiBJIGRvIHRvIGdldCBteSBpbmNvbWluZyBzaWduYWwgdG8gaGF2ZSBtb3JlIHBvd2VyPw0K
+DQpZb3UgY2FuIHRyeSBwbGFjaW5nIGEgRFJBTSBGSUZPIGluIHlvdXIgdHJhbnNtaXQgZmxvdyBn
+cmFwaCBhcyB0aGUgZmlyc3QgdGhpbmcuICBUaGF0IHNob3VsZCBlbnN1cmUgc29tZSB0ZW5zIG9m
+IG1pbGxpc2Vjb25kcyB3b3J0aCBvZiBidWZmZXJpbmcgZm9yIHlvdXIgc2lnbmFscyBhbmQgYWxs
+b3cgZm9yIHNvbWUgaG9zdCBqaXR0ZXIgd2l0aG91dCB1bmRlcnJ1bnMuDQoNCkRvIHlvdSBoYXZl
+IGFuIGV4dGVybmFsIHNwZWN0cnVtIGFuYWx5emVyIG9yIHNvbWV0aGluZyB0aGF0IGNhbiB0ZWxs
+IHlvdSB0aGUgcG93ZXIgb3V0cHV0IG9mIHRoZSBmaXJzdCByYWRpbz8NCg0KVGhlIHJlY2VpdmVy
+cyBzaG91bGQgYmUgYWJsZSB0byBiZSBzYXR1cmF0ZWQgYnkgeW91ciB0cmFuc21pdHRlciwgc28g
+dGhlcmUncyBkZWZpbml0ZWx5IGEgZ2FpbiBpc3N1ZSBzb21ld2hlcmUuDQoNCkJyaWFuDQo=
 
-> Hello All,
->
->
->
-> So I have been trying to set up a USRP X310 as a signal generator for
-> about a week now, and I=E2=80=99m having some issues. Currently I am usin=
-g
-> gnuradio-companion to develop the functionality. I have three sets of
-> signal sources that are of float type, creating the I and Q values that g=
-et
-> passed to a float to complex block. The output of the three float to
-> complex blocks go to an add block, which then outputs to a USRP sink.
-> Currently, the first problem is with underruns, I=E2=80=99m not getting a=
- lot of
-> them however I am getting breaks in the signal when I pass it to a second
-> USRP X310. What would be the best approach to make sure my signal is comi=
-ng
-> in strong to the second USRP? I am also having issues with increasing the
-> power of the signal when it is received, is this mainly controlled by the
-> gain value on the USRP source in gnuradio? What can I do to get my incomi=
-ng
-> signal to have more power?
->
+--_000_BY5PR19MB339830DC61596E09FB2FB24DC6AB0BY5PR19MB3398namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-You can try placing a DRAM FIFO in your transmit flow graph as the first
-thing.  That should ensure some tens of milliseconds worth of buffering for
-your signals and allow for some host jitter without underruns.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
+OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KLk1zb0NocERlZmF1bHQNCgl7
+bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMt
+c2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdp
+bjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29y
+ZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFw
+ZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZd
+LS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+
+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3ht
+bD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2
+bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj5Ccmlhbiw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhhbmsgeW91IGZvciB0aGUg
+cXVpY2sgcmVzcG9uc2UhIEkgd2lsbCB0cnkgdGhlIERSQU0gRklGTyBhbmQgc2VlIGlmIHRoYXQg
+d29ya3MuIEFzIEkgYW0gd29ya2luZyBmcm9tIGhvbWUgYXQgdGhlIG1vbWVudCBJIGRvIG5vdCBo
+YXZlIGFjY2VzcyB0byBhIHNwZWN0cnVtIGFuYWx5emVyLCBJcyB0aGVyZSBhbnl3YXkgSSBjYW4g
+dXNlIGFueSBvZiB0aGUgUVQgR1VJIGJsb2NrcyBpbiBnbnVyYWRpbyB0byBkZXRlcm1pbmUNCiBh
+IHJvdWdoIGVzdGltYXRlPyBJIGtub3cgdGhhdCB0aGUgdmFsdWVzIHlvdSBzZXQgYXJlIGp1c3Qg
+dmFsdWVzIGFuZCB0aGF0IHlvdSBoYXZlIHRvIGRldGVybWluZSBob3cgdGhleSBjb3JyZXNwb25k
+IHRvIGFjdHVhbCB2YWx1ZXMsIGJ1dCBpcyB0aGVyZSBhIHdheSB0byBkbyB0aGF0IG1hdGhlbWF0
+aWNhbGx5PyBEZXRlcm1pbmluZyBtZXRyaWNzIGZvciB0aGlzIHByb2plY3QgaGF2ZSBkZWZpbml0
+ZWx5IGJlZW4gYSBzdHJ1Z2dsZSBtZSBzbyBmYXIuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkJl
+c3QgUmVnYXJkcyw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SmVycmlkPG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXYgc3R5bGU9
+ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0
+IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPkZyb206PC9iPiBCcmlhbiBQ
+YWRhbGlubyAmbHQ7YnBhZGFsaW5vQGdtYWlsLmNvbSZndDsgPGJyPg0KPGI+U2VudDo8L2I+IEZy
+aWRheSwgTWF5IDEsIDIwMjAgMTA6MjggQU08YnI+DQo8Yj5Ubzo8L2I+IEplcnJpZCBQbHltYWxl
+ICZsdDtqZXJyaWQucGx5bWFsZUBjYW55b24tdXMuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gdXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtVU1JQLXVz
+ZXJzXSBTZXR0aW5nIHVwIGFuIFgzMTAgYXMgYSBzaWduYWwgZ2VuZXJhdG9yPG86cD48L286cD48
+L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBGcmksIE1heSAxLCAyMDIwIGF0
+IDE6MjMgUE0gSmVycmlkIFBseW1hbGUgdmlhIFVTUlAtdXNlcnMgJmx0OzxhIGhyZWY9Im1haWx0
+bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
+L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxibG9ja3F1b3Rl
+IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRp
+bmc6MGluIDBpbiAwaW4gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBpbiI+
+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+SGVsbG8gQWxsLDxvOnA+PC9v
+OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDph
+dXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFy
+Z2luLWJvdHRvbS1hbHQ6YXV0byI+U28gSSBoYXZlIGJlZW4gdHJ5aW5nIHRvIHNldCB1cCBhIFVT
+UlAgWDMxMCBhcyBhIHNpZ25hbCBnZW5lcmF0b3IgZm9yIGFib3V0IGEgd2VlayBub3csIGFuZCBJ
+4oCZbSBoYXZpbmcgc29tZSBpc3N1ZXMuIEN1cnJlbnRseSBJIGFtIHVzaW5nIGdudXJhZGlvLWNv
+bXBhbmlvbiB0byBkZXZlbG9wIHRoZSBmdW5jdGlvbmFsaXR5Lg0KIEkgaGF2ZSB0aHJlZSBzZXRz
+IG9mIHNpZ25hbCBzb3VyY2VzIHRoYXQgYXJlIG9mIGZsb2F0IHR5cGUsIGNyZWF0aW5nIHRoZSBJ
+IGFuZCBRIHZhbHVlcyB0aGF0IGdldCBwYXNzZWQgdG8gYSBmbG9hdCB0byBjb21wbGV4IGJsb2Nr
+LiBUaGUgb3V0cHV0IG9mIHRoZSB0aHJlZSBmbG9hdCB0byBjb21wbGV4IGJsb2NrcyBnbyB0byBh
+biBhZGQgYmxvY2ssIHdoaWNoIHRoZW4gb3V0cHV0cyB0byBhIFVTUlAgc2luay4gQ3VycmVudGx5
+LCB0aGUgZmlyc3QNCiBwcm9ibGVtIGlzIHdpdGggdW5kZXJydW5zLCBJ4oCZbSBub3QgZ2V0dGlu
+ZyBhIGxvdCBvZiB0aGVtIGhvd2V2ZXIgSSBhbSBnZXR0aW5nIGJyZWFrcyBpbiB0aGUgc2lnbmFs
+IHdoZW4gSSBwYXNzIGl0IHRvIGEgc2Vjb25kIFVTUlAgWDMxMC4gV2hhdCB3b3VsZCBiZSB0aGUg
+YmVzdCBhcHByb2FjaCB0byBtYWtlIHN1cmUgbXkgc2lnbmFsIGlzIGNvbWluZyBpbiBzdHJvbmcg
+dG8gdGhlIHNlY29uZCBVU1JQPyBJIGFtIGFsc28gaGF2aW5nIGlzc3Vlcw0KIHdpdGggaW5jcmVh
+c2luZyB0aGUgcG93ZXIgb2YgdGhlIHNpZ25hbCB3aGVuIGl0IGlzIHJlY2VpdmVkLCBpcyB0aGlz
+IG1haW5seSBjb250cm9sbGVkIGJ5IHRoZSBnYWluIHZhbHVlIG9uIHRoZSBVU1JQIHNvdXJjZSBp
+biBnbnVyYWRpbz8gV2hhdCBjYW4gSSBkbyB0byBnZXQgbXkgaW5jb21pbmcgc2lnbmFsIHRvIGhh
+dmUgbW9yZSBwb3dlcj88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVv
+dGU+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
+L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Zb3UgY2FuIHRyeSBwbGFjaW5nIGEg
+RFJBTSBGSUZPIGluIHlvdXIgdHJhbnNtaXQgZmxvdyBncmFwaCBhcyB0aGUgZmlyc3QgdGhpbmcu
+Jm5ic3A7IFRoYXQgc2hvdWxkIGVuc3VyZSBzb21lIHRlbnMgb2YgbWlsbGlzZWNvbmRzIHdvcnRo
+IG9mIGJ1ZmZlcmluZyBmb3IgeW91ciBzaWduYWxzIGFuZCBhbGxvdyBmb3Igc29tZSBob3N0IGpp
+dHRlciB3aXRob3V0IHVuZGVycnVucy48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+RG8geW91IGhhdmUgYW4gZXh0ZXJuYWwgc3BlY3RydW0gYW5h
+bHl6ZXIgb3Igc29tZXRoaW5nIHRoYXQgY2FuIHRlbGwgeW91IHRoZSBwb3dlciBvdXRwdXQgb2Yg
+dGhlIGZpcnN0IHJhZGlvPzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj5UaGUgcmVjZWl2ZXJzIHNob3VsZCBiZSBhYmxlIHRvIGJlIHNhdHVyYXRl
+ZCBieSB5b3VyIHRyYW5zbWl0dGVyLCBzbyB0aGVyZSdzIGRlZmluaXRlbHkgYSBnYWluIGlzc3Vl
+IHNvbWV3aGVyZS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+QnJpYW48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwv
+ZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-Do you have an external spectrum analyzer or something that can tell you
-the power output of the first radio?
-
-The receivers should be able to be saturated by your transmitter, so
-there's definitely a gain issue somewhere.
-
-Brian
-
---00000000000034e10805a4998217
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Fri, May 1, 2020 at 1:23 PM Jerrid Ply=
-male via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-=
-users@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex">
+--_000_BY5PR19MB339830DC61596E09FB2FB24DC6AB0BY5PR19MB3398namp_--
 
 
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_5468952369285201437WordSection1">
-<p class=3D"MsoNormal">Hello All,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">So I have been trying to set up a USRP X310 as a sig=
-nal generator for about a week now, and I=E2=80=99m having some issues. Cur=
-rently I am using gnuradio-companion to develop the functionality. I have t=
-hree sets of signal sources that are of float
- type, creating the I and Q values that get passed to a float to complex bl=
-ock. The output of the three float to complex blocks go to an add block, wh=
-ich then outputs to a USRP sink. Currently, the first problem is with under=
-runs, I=E2=80=99m not getting a lot of them
- however I am getting breaks in the signal when I pass it to a second USRP =
-X310. What would be the best approach to make sure my signal is coming in s=
-trong to the second USRP? I am also having issues with increasing the power=
- of the signal when it is received,
- is this mainly controlled by the gain value on the USRP source in gnuradio=
-? What can I do to get my incoming signal to have more power?</p></div></di=
-v></blockquote><div><br></div><div>You can try placing a DRAM FIFO in your =
-transmit flow graph as the first thing.=C2=A0 That should ensure some tens =
-of milliseconds worth of buffering for your signals and allow for some host=
- jitter without underruns.</div><div><br></div><div>Do you have an external=
- spectrum analyzer or something that can tell you the power output of the f=
-irst radio?</div><div><br></div><div>The receivers should be able to be sat=
-urated by your transmitter, so there&#39;s definitely a gain issue somewher=
-e.</div><div><br></div><div>Brian</div></div></div>
-
---00000000000034e10805a4998217--
-
-
---===============9180675418302273979==
+--===============4832501106235827673==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -175,5 +269,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9180675418302273979==--
+--===============4832501106235827673==--
 
