@@ -2,61 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2C1B1C1CC1
-	for <lists+usrp-users@lfdr.de>; Fri,  1 May 2020 20:18:23 +0200 (CEST)
-Received: from [::1] (port=59674 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 312301C1CEC
+	for <lists+usrp-users@lfdr.de>; Fri,  1 May 2020 20:23:13 +0200 (CEST)
+Received: from [::1] (port=33718 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jUaEs-0002YF-Ne; Fri, 01 May 2020 14:18:18 -0400
-Received: from mail-qk1-f181.google.com ([209.85.222.181]:43418)
+	id 1jUaJb-00032b-Se; Fri, 01 May 2020 14:23:11 -0400
+Received: from mail-oo1-f43.google.com ([209.85.161.43]:42665)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jUaEp-0002OH-ET
- for usrp-users@lists.ettus.com; Fri, 01 May 2020 14:18:15 -0400
-Received: by mail-qk1-f181.google.com with SMTP id i136so5952027qke.10
- for <usrp-users@lists.ettus.com>; Fri, 01 May 2020 11:17:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=ur5T6U77tAxM12Os+mb6AmGlfR/PbqF+RvdC2hisUbo=;
- b=I0puXEgYbBnCiiC6Nacb4nKx4/NoecEETNU2bMw/EGQZkCxg0z3Bx9GrutZDZXgs6v
- nVKGjMf8zoNtt1x51EmJ+UtUi3o4RR3OyhBuHRMVgvTJq52cPErdaLwQD3b4/fs4zDrJ
- Js5JkUFo73TG/r7AX11YWPX2g3v3zl2CrWnN8QnMPZIcgZO4Mgp/F9idDX92esM6NSip
- XDigszSLNJ3/+7bv3t+3goFbGJKVn7CUvuw3OAFrJqJQsmh3kCsn7tkLPnNLR7gjkzKl
- MijDFqRILz+XgwAb/HHtlnc5QBgoIdf0b5P11Cx5hx60sxy6U7vX1wtd7H1v8xWWyql0
- Q6bw==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jUaJX-0002qd-6E
+ for usrp-users@lists.ettus.com; Fri, 01 May 2020 14:23:07 -0400
+Received: by mail-oo1-f43.google.com with SMTP id e18so901316oot.9
+ for <usrp-users@lists.ettus.com>; Fri, 01 May 2020 11:22:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=OZ7sdTwPDLrB0StIr2QLh5FVybygMxRxkzHMYKpajgE=;
+ b=Ndc4EhEOEo/Aq4GZtTrWgXAHXaktZkKi06is+RiCuNCrrr/Mgidy4WTTVeEYbKTzYu
+ ySKdzrSRctqvH95vYOMFsoe0LoYWVC9pvPIh+4/iEcQsD3XsJiXjgiWcrSamoaVmHiuM
+ bGR55Jg9If3/nD9gq8+fPUvnIJrxj/RQsf696802UUbGz6aVrXI/HrDwPoGrXGOoGVKd
+ rTjN0TIhMegB0oQdiSxPjVmk73cAn8zO3xOpo4Qa/Q8CJAVGn3ZPSyemGJ39CsplRl4U
+ PckCBOSgm9pixgKI0/XPQ79B8iapK2U0s3ybbzhkXfpQQrT9Ys7GLu8oIV0w5B/XDzIS
+ eq0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=ur5T6U77tAxM12Os+mb6AmGlfR/PbqF+RvdC2hisUbo=;
- b=p0EE6MuA7zbeNKGx9k443j11kaZMaHh/iHNPkYXoVz2T+NetKGXOS0Ha8okNrmRdCX
- Z5sMydiLkVuwXQxZH1SXX4v7RBTl5taUbeA1mXM46IBCZhgzFXixer5sQlUiz2S0S9vf
- nxmqU7xgB7ozQL1Ex/CTbDoKl2+TzWjgO73Gm1Su2JBLSUzypP0jDaMSAD/afcvXuLR5
- 0PCbh9Hbmk0TmQ9mszN2r4mpyTLzc1U7g+LCqLhZRPBqXrYp78UZns4CsIiFP/WZh3AP
- jbSrSE6srHoDF9MyKu7FYFSSmhTYcqhsTK8iXj763NjJnyhID3jJUa6C6VCEeVHlD5Fj
- aYFA==
-X-Gm-Message-State: AGi0Pub+wfSTtfSBlrKVm5uJXoJGLYaMEBtYohpFjUvBzRMP175e2n/K
- 71wUDN2fjkOOMgvzTP3lKzCMAyustoA=
-X-Google-Smtp-Source: APiQypLB1011f/v8m59hlyOGF61aPaNyl0xY5NOaq7bMY3YCCYcSkAFxTWPFi7uec8Xasp69V5qJBA==
-X-Received: by 2002:a37:a490:: with SMTP id n138mr4862586qke.106.1588357054714; 
- Fri, 01 May 2020 11:17:34 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp130-01-69-158-143-211.dsl.bell.ca. [69.158.143.211])
- by smtp.googlemail.com with ESMTPSA id r51sm3200632qtk.89.2020.05.01.11.17.34
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 01 May 2020 11:17:34 -0700 (PDT)
-Message-ID: <5EAC67BD.7000105@gmail.com>
-Date: Fri, 01 May 2020 14:17:33 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=OZ7sdTwPDLrB0StIr2QLh5FVybygMxRxkzHMYKpajgE=;
+ b=GC6YzoG3RMJ+8DAQeCxOlVRLn/Et5sZl3OtnP4GAZymsztcY0/9Yv3mrYcIAitLafH
+ 3briFX247cnk/2p2upr0Vfk23dVfqG8MOZuA/bW+ZeuTB+ga4UNZmE1kNxroqIsEHHuw
+ a9e+0v/JgJxPFHRoYW1Mfy46FHMf1LbbNt3P3TycZiMbCxQZllxbsJTkf2EgkBrQsDuC
+ y3CPM0lfE9c1WCslOvmYe5AI7rPMjJ2vxTx+rPYuGAcKUFqVF2omRx602rRNJ5cHSEHS
+ AIMVqkknF1Dp7pG0XbIrqBxOhm3FiX+C6GJrB7R4ZgpbX8nImDh8grO2dvSrwMb48Lrm
+ O+vg==
+X-Gm-Message-State: AGi0Pua+b8/AFdCiBR4nhw/2bQgqZoUol8OXOJUibjIE8MQ72CU7yjMN
+ qmdnprDpH9yj28KXmf6riWX9JR9i2GFHBsNQHf5R3w==
+X-Google-Smtp-Source: APiQypIcVq2VQCi2UjmlpPe7q5duVqeG9NWn+n6LoVhy22INuKvmRlrGM+l8VBYzMRxr4ABkYFYoME+fg5nz14qM6W0=
+X-Received: by 2002:a4a:a209:: with SMTP id m9mr4918016ool.62.1588357346328;
+ Fri, 01 May 2020 11:22:26 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <BY5PR19MB339879DA30F3129CB923F7F4C6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
- <CAEXYVK6gX7EtOQYwCJw3YUEF-O3E3-Ug8KF+Eg9hHFAmrRMpXw@mail.gmail.com>
- <BY5PR19MB339830DC61596E09FB2FB24DC6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
-In-Reply-To: <BY5PR19MB339830DC61596E09FB2FB24DC6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
-Subject: Re: [USRP-users] Setting up an X310 as a signal generator
+References: <CAB__hTRkiAjJ4H7ehSMHfjsO3NDLpghzjJpnZMZw6-MTVYp8hw@mail.gmail.com>
+ <CAFche=gmhz5khOrpufGLN2hW1+SvhW3KA7nfR0mna570BOZs3Q@mail.gmail.com>
+ <CAB__hTQkmbb9CR4RCQ4Mhq_YP-VRFP9Tubd3EWJuQkXxN7Er3Q@mail.gmail.com>
+ <CAFche=iUdUmipErA3UWyTO3Da990uSiCKcRVrc3r2sNACrOpow@mail.gmail.com>
+ <CAB__hTThtrgSDNDdufEEUbeKkxWijHXaiNLDJC=y2QBx1pwBWw@mail.gmail.com>
+ <CAFche=g75+rjH1=XSoLQKceVFxuz+VevJWyBEw36P_4dQ+Xgug@mail.gmail.com>
+ <CAB__hTQThzg4J7yFqbsONsBSaeuQsV9nSmWFf6W-DGUsncAMjA@mail.gmail.com>
+In-Reply-To: <CAB__hTQThzg4J7yFqbsONsBSaeuQsV9nSmWFf6W-DGUsncAMjA@mail.gmail.com>
+Date: Fri, 1 May 2020 14:22:15 -0400
+Message-ID: <CAB__hTSyT=d44TgKYGpo50xrT6h-6Xo4BgLX4LOx6-k669AS0g@mail.gmail.com>
+To: Wade Fife <wade.fife@ettus.com>
+Subject: Re: [USRP-users] using 'replay' block with 'duc'
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,9 +63,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4473377859688378446=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8272996143121328702=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,281 +80,339 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============4473377859688378446==
-Content-Type: multipart/alternative;
- boundary="------------070706030002000100060106"
+--===============8272996143121328702==
+Content-Type: multipart/alternative; boundary="00000000000067b9d805a49a4375"
 
-This is a multi-part message in MIME format.
---------------070706030002000100060106
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--00000000000067b9d805a49a4375
+Content-Type: text/plain; charset="UTF-8"
 
-On 05/01/2020 01:35 PM, Jerrid Plymale via USRP-users wrote:
->
-> Brian,
->
-> Thank you for the quick response! I will try the DRAM FIFO and see if 
-> that works. As I am working from home at the moment I do not have 
-> access to a spectrum analyzer, Is there anyway I can use any of the QT 
-> GUI blocks in gnuradio to determine a rough estimate? I know that the 
-> values you set are just values and that you have to determine how they 
-> correspond to actual values, but is there a way to do that 
-> mathematically? Determining metrics for this project have definitely 
-> been a struggle me so far.
->
-> Best Regards,
->
-> Jerrid
->
-If you're using the multi_usrp interface via Gnu Radio, then the DRAM 
-FIFO won't be directly visible to you.  What sample rate are you trying
-   to sustain?  Can you share your flow-graph with us?
+And, one more thing.... Are you aware that the current 'master' (UHD 4.0)
+provides images that do not have the replay block on them (e.g., N310) and
+that there is no noc_block_replay.v or replay block HPP file anywhere in
+the repo?
+Rob
 
-Underruns mean that your host CPU isn't "keeping up" with the 
-sample-rate demand from the X310, and if that is an ongoing thing, then no
-   amount of buffering will help.
+On Fri, May 1, 2020 at 1:28 PM Rob Kossler <rkossler@nd.edu> wrote:
+
+> Hi Wade,
+> The issue can be demonstrated using the stock "replay_samples_from_file"
+> program (N310 UHD3.15).  Run with "trace" logging if you want even more
+> detail.  So, it's not really an issue related to multiple ports.  It's an
+> issue of connecting Replay port 2 (or likely port 3 as well) to an
+> arbitrary downstream port.
+> Rob
+>
+> ******* Here is the command that fails
+>
+> $ replay_samples_from_file --file
+> Documents/waveforms/mtone_100_0p8_0_le.bin --replay_chan 2 --freq 2450e6
+> --rate 125e6
+> Creating the USRP device with: . . .
+>
+> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+> UHD_3.15.0.0-7-g8d228dbe
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+> mgmt_addr=192.168.20.2,type=n3xx,product=n310,serial=319821D,claimed=False,addr=192.168.20.2
+> [INFO] [MPM.PeriphManager] init() called with device args
+> `mgmt_addr=192.168.20.2,time_source=internal,product=n310,clock_source=internal'.
+> [INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000004)
+> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000011312)
+> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000011312)
+> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
+> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
+> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)
+> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000002)
+> [INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)
+> [INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)
+> [INFO] [0/FIFO_2] Initializing block control (NOC ID: 0xF1F0000000000000)
+> [INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)
+> Using radio 0, channel 0
+> Using replay block 0, channel 2
+> Setting TX Freq: 2450.000000 MHz...
+> Actual TX Freq: 2450.000000 MHz...
+>
+> Setting TX Rate: 125.000000 Msps...
+> Actual TX Rate: 125.000000 Msps...
+>
+> Connecting 0/Replay_0 ==> 0/Radio_0
+> Error: LookupError: KeyError: [0/Radio_0] sr_write(): No such port: 2
+>
+> On Fri, May 1, 2020 at 1:19 PM Wade Fife <wade.fife@ettus.com> wrote:
+>
+>> See my responses below.
+>>
+>> On Fri, May 1, 2020 at 11:08 AM Rob Kossler <rkossler@nd.edu> wrote:
+>>
+>>> Thanks Wade,
+>>> A few follow up questions:
+>>>
+>>>    - Regarding play_halt(), it sounds like this should never used if
+>>>    you are planning to start playout again (and the replay output feeds the
+>>>    DUC input).  Is this correct?  Or perhaps there is some way to clear the
+>>>    DUC?
+>>>
+>>> My recommendation would be to not call play_halt() if you are planning
+>> on restarting. It will take a little longer to stop because it has to wait
+>> to complete the current memory read and generate the final packet with EOB.
+>> I'd have to look into clearing the DUC, but I think the right thing to do
+>> is to let the replay block stop normally.
+>>
+>>>
+>>>    - In the meantime, what is the correct way of using the block in my
+>>>    situation where the replay is connected to the DUC and I want to repeatedly
+>>>    start/stop streaming?  Should I just remove the play_halt() call from the
+>>>    example and just wait for the buffer to flush following the stop streaming
+>>>    command?
+>>>
+>>> Yes, I would just remove the play_halt().
+>>
+>>>
+>>>    - Have you seen my other issue regarding use of the Replay Block on
+>>>    the N310 such that you can't connect the 4 Replay block ports to the 4 DUC
+>>>    ports to produce 4 Tx outputs using 3.15?  There is a graph connection /
+>>>    propagation issue that does not like Replay port 2 (3rd  port) connected to
+>>>    DUC_1 port 0.
+>>>
+>>> I'm not aware of any issues with respect to multiple ports. Can you
+>> provide more details on the issue you're seeing?
+>>
+>> Rob
+>>>
+>>> On Fri, May 1, 2020 at 11:37 AM Wade Fife <wade.fife@ettus.com> wrote:
+>>>
+>>>> Hi Rob,
+>>>>
+>>>> I wanted to give you a quick update. I was able to reproduce the issue
+>>>> you found. There were two problems.
+>>>>
+>>>> First, the example you shared calls play_halt() for the replay block
+>>>> each time replay is stopped. This basically stops it as soon as possible,
+>>>> even if that means it can't send a final packet with EOB. The DUC needs the
+>>>> EOB to start/stop cleanly or else the timestamps the DUC generates aren't
+>>>> correct when the next set of data comes through.
+>>>>
+>>>> The second problem I found is part of some known issues that are
+>>>> already fixed in UHD 4.0. I'm going to add these fixes to 3.15 since I know
+>>>> there was a lot of interest in the Replay block in 3.15. So once these
+>>>> fixes appear, you should be able to remove the call the play_halt() and the
+>>>> example will work as expected.
+>>>>
+>>>> Thanks,
+>>>>
+>>>> Wade
+>>>>
+>>>> On Thu, Apr 23, 2020 at 9:34 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>>
+>>>>>
+>>>>> Great. I forgot to mention that I was using an n310.
+>>>>>
+>>>>> On Thu, Apr 23, 2020 at 10:18 PM Wade Fife <wade.fife@ettus.com>
+>>>>> wrote:
+>>>>>
+>>>>>> Hi Rob,
+>>>>>>
+>>>>>> Thanks for the example! I'd take a look to see if I can reproduce the
+>>>>>> issue and figure out what's going on. I've been working recently on the
+>>>>>> Replay block, so I'm very interested to understand what's going on.
+>>>>>>
+>>>>>> Thanks,
+>>>>>>
+>>>>>> Wade
+>>>>>>
+>>>>>> On Thu, Apr 23, 2020 at 1:36 PM Rob Kossler via USRP-users <
+>>>>>> usrp-users@lists.ettus.com> wrote:
+>>>>>>
+>>>>>>> Hi,
+>>>>>>> I am having an issue with UHD 3.15.LTS using the replay block.  When
+>>>>>>> I play out my previously stored samples the first time, everything works
+>>>>>>> fine.  But after stopping the first time, if I try to start playing out
+>>>>>>> again, I get a whole bunch of 'Lates' and no RF output.
+>>>>>>>
+>>>>>>> In order to duplicate the problem with an Ettus example, I modified
+>>>>>>> 'replay_samples_from_file' to add a loop and command prompt so that the
+>>>>>>> user could hit <enter> to start playing out while still using <ctrl-c> to
+>>>>>>> stop.  Unfortunately for me, this worked fine and did not show the problem.
+>>>>>>>
+>>>>>>> Next, I further modified the example to place a DUC block in between
+>>>>>>> the Replay block and the Radio.  Now it duplicates the issue perfectly
+>>>>>>> (modified example attached).
+>>>>>>>
+>>>>>>> So, perhaps I need to clear the DUC in some way when stopping the
+>>>>>>> streaming??  But if so, I'm not really sure how to do so.
+>>>>>>>
+>>>>>>> Thanks.
+>>>>>>> Rob
+>>>>>>>
+>>>>>> _______________________________________________
+>>>>>>> USRP-users mailing list
+>>>>>>> USRP-users@lists.ettus.com
+>>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>
+>>>>>>
+
+--00000000000067b9d805a49a4375
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">And, one more thing.... Are you aware that the current &#3=
+9;master&#39; (UHD 4.0) provides images that do not have the replay block o=
+n them (e.g., N310) and that there is no noc_block_replay.v or replay block=
+ HPP file anywhere in the repo?<div>Rob</div></div><br><div class=3D"gmail_=
+quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, May 1, 2020 at 1:28 PM=
+ Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt;=
+ wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr"><div><div><font face=3D"monospace">Hi Wade,</font></div><div><font=
+ face=3D"monospace">The issue can be demonstrated=C2=A0using the stock &quo=
+t;replay_samples_from_file&quot; program (N310 UHD3.15).=C2=A0 Run with &qu=
+ot;trace&quot; logging if you want even more detail.=C2=A0 So, it&#39;s not=
+ really an issue related to multiple ports.=C2=A0 It&#39;s an issue of conn=
+ecting Replay port 2 (or likely port 3 as well) to an arbitrary downstream =
+port.=C2=A0</font></div><div><font face=3D"monospace">Rob</font></div><div>=
+<font face=3D"monospace"><br></font></div><div><font face=3D"monospace"><sp=
+an style=3D"background-color:rgb(255,255,0)">******* Here is the command th=
+at fails</span></font></div><div><font face=3D"monospace"><span style=3D"ba=
+ckground-color:rgb(255,255,0)"><br></span></font></div><div></div></div><di=
+v>$ replay_samples_from_file --file Documents/waveforms/mtone_100_0p8_0_le.=
+bin --replay_chan 2 --freq 2450e6 --rate 125e6<br>Creating the USRP device =
+with: . . .<br><br><font face=3D"monospace">[INFO] [UHD] linux; GNU C++ ver=
+sion 7.4.0; Boost_106501; UHD_3.15.0.0-7-g8d228dbe<br>[INFO] [MPMD] Initial=
+izing 1 device(s) in parallel with args: mgmt_addr=3D192.168.20.2,type=3Dn3=
+xx,product=3Dn310,serial=3D319821D,claimed=3DFalse,addr=3D192.168.20.2<br>[=
+INFO] [MPM.PeriphManager] init() called with device args `mgmt_addr=3D192.1=
+68.20.2,time_source=3Dinternal,product=3Dn310,clock_source=3Dinternal&#39;.=
+<br>[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000=
+004)<br>[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000=
+011312)<br>[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100=
+000011312)<br>[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC000=
+0000000000)<br>[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC00=
+00000000000)<br>[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0=
+000000000002)<br>[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C=
+0000000000002)<br>[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF=
+1F0000000000000)<br>[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0=
+xF1F0000000000000)<br>[INFO] [0/FIFO_2] Initializing block control (NOC ID:=
+ 0xF1F0000000000000)<br>[INFO] [0/FIFO_3] Initializing block control (NOC I=
+D: 0xF1F0000000000000)<br>Using radio 0, channel 0<br>Using=C2=A0<span>repl=
+ay</span>=C2=A0block 0, channel 2<br>Setting TX Freq: 2450.000000 MHz...<br=
+>Actual TX Freq: 2450.000000 MHz...<br><br>Setting TX Rate: 125.000000 Msps=
+...<br>Actual TX Rate: 125.000000 Msps...<br><br>Connecting 0/Replay_0 =3D=
+=3D&gt; 0/Radio_0<br><span style=3D"background-color:rgb(255,255,0)">Error:=
+ LookupError: KeyError: [0/Radio_0] sr_write(): No such port: 2</span></fon=
+t></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Fri, May 1, 2020 at 1:19 PM Wade Fife &lt;<a href=3D"mailto:wade=
+.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div=
+>See my responses below.<br></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Fri, May 1, 2020 at 11:08 AM Rob Kossler &=
+lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
+ dir=3D"ltr">Thanks Wade,<div>A few follow=C2=A0up questions:</div><div><ul=
+><li>Regarding play_halt(), it sounds like this should never used if you ar=
+e planning to start playout again (and the replay output feeds the DUC inpu=
+t).=C2=A0 Is this correct?=C2=A0 Or perhaps there is some way to clear the =
+DUC?</li></ul></div></div></blockquote><div>My recommendation would be to n=
+ot call play_halt() if you are planning on restarting. It will take a littl=
+e longer to stop because it has to wait to complete the current memory read=
+ and generate the final packet with EOB. I&#39;d have to look into clearing=
+ the DUC, but I think the right thing to do is to let the replay block stop=
+ normally. =C2=A0 <br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div dir=3D"ltr"><div><ul><li>In the meantime, what is the correct way o=
+f using the block in my situation where the replay is connected to the DUC =
+and I want to repeatedly start/stop streaming?=C2=A0 Should I just remove t=
+he play_halt() call from the example and just wait for the buffer to flush =
+following the stop streaming command?</li></ul></div></div></blockquote><di=
+v></div><div>Yes, I would just remove the play_halt(). <br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div><ul><li>Have =
+you seen my other issue regarding use of the Replay Block on the N310 such =
+that you can&#39;t connect the 4 Replay block ports to the 4 DUC ports to p=
+roduce 4 Tx outputs using 3.15?=C2=A0 There is a graph connection / propaga=
+tion issue that does not like Replay port 2 (3rd=C2=A0 port) connected to D=
+UC_1 port 0.</li></ul></div></div></blockquote><div>I&#39;m not aware of an=
+y issues with respect to multiple ports. Can you provide more details on th=
+e issue you&#39;re seeing?<br></div><div> <br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex"><div dir=3D"ltr"><div><div>Rob</div></div></div>=
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri=
+, May 1, 2020 at 11:37 AM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.c=
+om" target=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Rob,</div=
+><div><br></div><div>I wanted to give you a quick update. I was able to rep=
+roduce the issue you found. There were two problems.</div><div><br></div><d=
+iv>First, the example you shared calls play_halt() for the replay block eac=
+h time replay is stopped. This basically stops it as soon as possible, even=
+ if that means it can&#39;t send a final packet with EOB. The DUC needs the=
+ EOB to start/stop cleanly or else the timestamps the DUC generates aren&#3=
+9;t correct when the next set of data comes through.</div><div><br></div><d=
+iv>The second problem I found is part of some known issues that are already=
+ fixed in UHD 4.0. I&#39;m going to add these fixes to 3.15 since I know th=
+ere was a lot of interest in the Replay block in 3.15. So once these fixes =
+appear, you should be able to remove the call the play_halt() and the examp=
+le will work as expected.<br></div><div><br></div><div>Thanks,</div><div><b=
+r></div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Thu, Apr 23, 2020 at 9:34 PM Rob Kossler &lt;=
+<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><b=
+r></div><div><div dir=3D"auto">Great. I forgot to mention that I was using =
+an n310.=C2=A0</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Thu, Apr 23, 2020 at 10:18 PM Wade Fife &lt;<a href=3D"m=
+ailto:wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
+"ltr"><div>Hi Rob,</div><div><br></div><div>Thanks for the example! I&#39;d=
+ take a look to see if I can reproduce the issue and figure out what&#39;s =
+going on. I&#39;ve been working recently on the Replay block, so I&#39;m ve=
+ry interested to understand what&#39;s going on.<br></div><div><br></div><d=
+iv>Thanks,</div><div><br></div><div>Wade<br></div></div><br><div class=3D"g=
+mail_quote"></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Thu, Apr 23, 2020 at 1:36 PM Rob Kossler via USRP-users &lt;<a h=
+ref=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@list=
+s.ettus.com</a>&gt; wrote:<br></div></div><div class=3D"gmail_quote"><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex"></blockquote></div><div class=
+=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr">Hi,<br><div>I am having an issue with UHD 3.15.LTS using the repla=
+y block.=C2=A0 When I play out my previously stored samples the first time,=
+ everything works fine.=C2=A0 But after stopping the first time, if I try t=
+o start playing out again, I get a whole bunch of &#39;Lates&#39; and no RF=
+ output.</div><div><br></div><div>In order to duplicate the problem with an=
+ Ettus example, I modified &#39;replay_samples_from_file&#39; to add a loop=
+ and command prompt so that the user could hit &lt;enter&gt; to start playi=
+ng out while still using &lt;ctrl-c&gt; to stop.=C2=A0 Unfortunately for me=
+, this worked fine and did not show the problem.</div><div><br></div><div>N=
+ext, I further modified=C2=A0the example to place a DUC block in between th=
+e Replay block and the Radio.=C2=A0 Now it duplicates the issue perfectly (=
+modified example attached).</div><div><br></div><div>So, perhaps I need to =
+clear the DUC in some way when stopping the streaming??=C2=A0 But if so, I&=
+#39;m not really sure how to do so.</div><div><br></div><div>Thanks.</div><=
+div>Rob</div></div></blockquote></div><div class=3D"gmail_quote"><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex">
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div></div>
+</blockquote></div>
+</blockquote></div>
+
+--00000000000067b9d805a49a4375--
 
 
-> *From:* Brian Padalino <bpadalino@gmail.com>
-> *Sent:* Friday, May 1, 2020 10:28 AM
-> *To:* Jerrid Plymale <jerrid.plymale@canyon-us.com>
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Setting up an X310 as a signal generator
->
-> On Fri, May 1, 2020 at 1:23 PM Jerrid Plymale via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     Hello All,
->
->     So I have been trying to set up a USRP X310 as a signal generator
->     for about a week now, and I知 having some issues. Currently I am
->     using gnuradio-companion to develop the functionality. I have
->     three sets of signal sources that are of float type, creating the
->     I and Q values that get passed to a float to complex block. The
->     output of the three float to complex blocks go to an add block,
->     which then outputs to a USRP sink. Currently, the first problem is
->     with underruns, I知 not getting a lot of them however I am getting
->     breaks in the signal when I pass it to a second USRP X310. What
->     would be the best approach to make sure my signal is coming in
->     strong to the second USRP? I am also having issues with increasing
->     the power of the signal when it is received, is this mainly
->     controlled by the gain value on the USRP source in gnuradio? What
->     can I do to get my incoming signal to have more power?
->
-> You can try placing a DRAM FIFO in your transmit flow graph as the 
-> first thing.  That should ensure some tens of milliseconds worth of 
-> buffering for your signals and allow for some host jitter without 
-> underruns.
->
-> Do you have an external spectrum analyzer or something that can tell 
-> you the power output of the first radio?
->
-> The receivers should be able to be saturated by your transmitter, so 
-> there's definitely a gain issue somewhere.
->
-> Brian
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-
---------------070706030002000100060106
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 05/01/2020 01:35 PM, Jerrid Plymale
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:BY5PR19MB339830DC61596E09FB2FB24DC6AB0@BY5PR19MB3398.namprd19.prod.outlook.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">Brian,<o:p></o:p></p>
-        <p class="MsoNormal"><o:p></o:p></p>
-        <p class="MsoNormal">Thank you for the quick response! I will
-          try the DRAM FIFO and see if that works. As I am working from
-          home at the moment I do not have access to a spectrum
-          analyzer, Is there anyway I can use any of the QT GUI blocks
-          in gnuradio to determine a rough estimate? I know that the
-          values you set are just values and that you have to determine
-          how they correspond to actual values, but is there a way to do
-          that mathematically? Determining metrics for this project have
-          definitely been a struggle me so far.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p></o:p></p>
-        <p class="MsoNormal">Best Regards,<o:p></o:p></p>
-        <p class="MsoNormal"><o:p></o:p></p>
-        <p class="MsoNormal">Jerrid</p>
-      </div>
-    </blockquote>
-    If you're using the multi_usrp interface via Gnu Radio, then the
-    DRAM FIFO won't be directly visible to you. What sample rate are
-    you trying<br>
-     to sustain? Can you share your flow-graph with us?<br>
-    <br>
-    Underruns mean that your host CPU isn't "keeping up" with the
-    sample-rate demand from the X310, and if that is an ongoing thing,
-    then no<br>
-     amount of buffering will help.<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:BY5PR19MB339830DC61596E09FB2FB24DC6AB0@BY5PR19MB3398.namprd19.prod.outlook.com"
-      type="cite">
-      <div class="WordSection1">
-        <p class="MsoNormal"><o:p></o:p></p>
-        <p class="MsoNormal"><o:p></o:p></p>
-        <div style="border:none;border-top:solid #E1E1E1
-          1.0pt;padding:3.0pt 0in 0in 0in">
-          <p class="MsoNormal"><b>From:</b> Brian Padalino
-            <a class="moz-txt-link-rfc2396E" href="mailto:bpadalino@gmail.com">&lt;bpadalino@gmail.com&gt;</a> <br>
-            <b>Sent:</b> Friday, May 1, 2020 10:28 AM<br>
-            <b>To:</b> Jerrid Plymale
-            <a class="moz-txt-link-rfc2396E" href="mailto:jerrid.plymale@canyon-us.com">&lt;jerrid.plymale@canyon-us.com&gt;</a><br>
-            <b>Cc:</b> <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
-            <b>Subject:</b> Re: [USRP-users] Setting up an X310 as a
-            signal generator<o:p></o:p></p>
-        </div>
-        <p class="MsoNormal"><o:p></o:p></p>
-        <div>
-          <div>
-            <p class="MsoNormal">On Fri, May 1, 2020 at 1:23 PM Jerrid
-              Plymale via USRP-users &lt;<a moz-do-not-send="true"
-                href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
-              wrote:<o:p></o:p></p>
-          </div>
-          <div>
-            <blockquote style="border:none;border-left:solid #CCCCCC
-              1.0pt;padding:0in 0in 0in
-              6.0pt;margin-left:4.8pt;margin-right:0in">
-              <div>
-                <div>
-                  <p class="MsoNormal"
-                    style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">Hello
-                    All,<o:p></o:p></p>
-                  <p class="MsoNormal"
-                    style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto"><o:p></o:p></p>
-                  <p class="MsoNormal"
-                    style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">So
-                    I have been trying to set up a USRP X310 as a signal
-                    generator for about a week now, and I知 having some
-                    issues. Currently I am using gnuradio-companion to
-                    develop the functionality. I have three sets of
-                    signal sources that are of float type, creating the
-                    I and Q values that get passed to a float to complex
-                    block. The output of the three float to complex
-                    blocks go to an add block, which then outputs to a
-                    USRP sink. Currently, the first problem is with
-                    underruns, I知 not getting a lot of them however I
-                    am getting breaks in the signal when I pass it to a
-                    second USRP X310. What would be the best approach to
-                    make sure my signal is coming in strong to the
-                    second USRP? I am also having issues with increasing
-                    the power of the signal when it is received, is this
-                    mainly controlled by the gain value on the USRP
-                    source in gnuradio? What can I do to get my incoming
-                    signal to have more power?<o:p></o:p></p>
-                </div>
-              </div>
-            </blockquote>
-            <div>
-              <p class="MsoNormal"><o:p></o:p></p>
-            </div>
-            <div>
-              <p class="MsoNormal">You can try placing a DRAM FIFO in
-                your transmit flow graph as the first thing. That
-                should ensure some tens of milliseconds worth of
-                buffering for your signals and allow for some host
-                jitter without underruns.<o:p></o:p></p>
-            </div>
-            <div>
-              <p class="MsoNormal"><o:p></o:p></p>
-            </div>
-            <div>
-              <p class="MsoNormal">Do you have an external spectrum
-                analyzer or something that can tell you the power output
-                of the first radio?<o:p></o:p></p>
-            </div>
-            <div>
-              <p class="MsoNormal"><o:p></o:p></p>
-            </div>
-            <div>
-              <p class="MsoNormal">The receivers should be able to be
-                saturated by your transmitter, so there's definitely a
-                gain issue somewhere.<o:p></o:p></p>
-            </div>
-            <div>
-              <p class="MsoNormal"><o:p></o:p></p>
-            </div>
-            <div>
-              <p class="MsoNormal">Brian<o:p></o:p></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------070706030002000100060106--
-
-
---===============4473377859688378446==
+--===============8272996143121328702==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -369,5 +423,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4473377859688378446==--
+--===============8272996143121328702==--
 
