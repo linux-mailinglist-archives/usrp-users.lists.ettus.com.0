@@ -2,52 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CCA31C1C7A
-	for <lists+usrp-users@lfdr.de>; Fri,  1 May 2020 20:01:57 +0200 (CEST)
-Received: from [::1] (port=47772 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 177891C1CA0
+	for <lists+usrp-users@lfdr.de>; Fri,  1 May 2020 20:10:13 +0200 (CEST)
+Received: from [::1] (port=54778 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jUZz1-0007y0-RX; Fri, 01 May 2020 14:01:55 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:43722)
+	id 1jUa72-00015w-0B; Fri, 01 May 2020 14:10:12 -0400
+Received: from mail-qt1-f177.google.com ([209.85.160.177]:37259)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <bpadalino@gmail.com>) id 1jUZyx-0007qA-JF
- for usrp-users@lists.ettus.com; Fri, 01 May 2020 14:01:51 -0400
-Received: by mail-ot1-f48.google.com with SMTP id g14so3165652otg.10
- for <usrp-users@lists.ettus.com>; Fri, 01 May 2020 11:01:31 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jUa6y-0000xR-06
+ for usrp-users@lists.ettus.com; Fri, 01 May 2020 14:10:08 -0400
+Received: by mail-qt1-f177.google.com with SMTP id k12so8587850qtm.4
+ for <usrp-users@lists.ettus.com>; Fri, 01 May 2020 11:09:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Q5TDOmsCiNa1WP1SgM1Lx8z1+eB//p6E7Seul6TO9Ek=;
- b=H+Y28XpVUmGXALV8hoywRFxj2fDuRzTtNdo+scn8X8bYkh0oHA4UuJSkWE7uEr8ro/
- nntXGqWzQDjAoFJmwQPlVoWXCVKCE4Lt7+XBpD4BudKjlwnQV6twaqZlEYLPqgE9F5GD
- iIqEwkcRGS4bLH07K1Lk/InovIKeaZx8kXN6dr4MgnoINPyBkjLnBqAjorUXOqE/aapc
- +F7Uoue4zhsBf4nokcAa0Fh2/rnZiAk5q2+JZHvk0ydT1GF9W8zyZoH3D9whp4uYtiiJ
- d68Ex/AzFkeLUzBry9ZeGTtPbKnE2WDM+BCSpipCKCeB2hvNylnwTMqv2wo5CJ7kOPQ/
- rdfQ==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=kgfiajJ2exE7BGjdANLZy8ICCicaDgqfmKRygjxwsz0=;
+ b=EGXpWvsnM5EzyLSTObKTchiPQ1fxiFY/JQIQY7oHczKU0eYZn3FwZSeoaYVV+ubM6c
+ EUoNLf/Pm6RA764Ex+7C9IhK0ZOS/mgU7NdzlDoF1O+xB4U4tw5X8Py4ZW9+NK33uvzL
+ jnGbIJ6WJ1kWG1zrvgJWpIm2Cn+Sj/2KTupGnitdfL64Xi9/6eL9tudlDu52RovF9au3
+ 0yV2ibwvVLGhnA8czIxmEhE/+31h3F4ETjcBa7mfNe14npaRQGZ7vSKFO2QZMyls5ml4
+ bGISQEQ+vtewzm0JKFjOuaHn4m8l7ji+4HE0/xRw0lObyyKzGBd0MBuRdJeMcHzyqowu
+ z7hA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Q5TDOmsCiNa1WP1SgM1Lx8z1+eB//p6E7Seul6TO9Ek=;
- b=THxrli6vdzq0heGRkMR818NXCc5xiXdAVksMzUFNqTpXbBFpbLtyyo2yOJsk5MXnc/
- FKoyUJJ6lLGPmG63NqBaVfgHjPH6uGNNWy8YqqDka5iTyGfz5axmltAKMy0qqdH69ufR
- uOGD4Jo/9MUsvWig446oR8EMFiU9XYkX2hS4003M2qnU4COOp2pIAq4nRk9yB+6pmmk2
- Q10TlyzQ44gVvzDRuh1TJggq1IVt6hdk3zVAOq6W8mTolFYkina2gzvLJi34gRLIH9EW
- ZFoFIaa9QXeCaEYJJf4EGpDloVlNj6vAGxlZsxLUDX/ovC1mQlVJKS/gkryY0C139a3S
- PInQ==
-X-Gm-Message-State: AGi0PuYA0pFoI1TlpL0g3lFXOVWIxGboQQzPv5T+WMwe6/CYfvS608Sc
- PxZP3DTqCqbtrAdGxn+yVrkoA+DKASKLa4sXQVVGrjx2
-X-Google-Smtp-Source: APiQypLbe30CDnhZw7KVe0+VUbA9ekbmcyB2KJrNC55NkrZ5/xsuOUiC7Hs5wKRiuF+K2NdogDVpLFpw/YwgAaJ6414=
-X-Received: by 2002:a9d:4113:: with SMTP id o19mr4338213ote.354.1588356069956; 
- Fri, 01 May 2020 11:01:09 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=kgfiajJ2exE7BGjdANLZy8ICCicaDgqfmKRygjxwsz0=;
+ b=i5d+Uz93tORShVHGeavbNmblE5EALg+4cqguhkCLZjgijo0QPIUXdPXv2zKWv7rdUJ
+ ECAZO8k5pIi1pO5QOwr7o0FPSxAcAUKoPhGsM9KvYYgTwWe4LOpBA+c9+nkfOQYRBtgL
+ S51vxHGV3SPLNBPXgufkaFZAYeMVs63B+rZxlX9KcN5JdthLcAl4KcGj4B5+UYCC/gEI
+ ZI2aMEtz1ldutrTteI272DbFi+c+bLNO5eEk7NuXf7VwGCyoEDir/pnrOKegGOxvBTYF
+ DtiVBnL1fIEeYvvVIi9l8gn1zen97Z0+h9APrwVAQYzwLnoYcPWRZEfETrZ8+GzrOsHf
+ q8rQ==
+X-Gm-Message-State: AGi0PubyLhOUb1FpTSTfszOcjYIHQ+37PZLr75IHxE6LixUQAPuckJvI
+ ZgBtifoaz49JNnpSl+hFGVRdY2tkACM=
+X-Google-Smtp-Source: APiQypJV7XJJv4361Xi7ThfCNO/2fIBR12q1yaV2O6VH+tqzIZZAGDNLu6psBPJSxov0woxoevfQTw==
+X-Received: by 2002:aed:3edd:: with SMTP id o29mr5046855qtf.149.1588356567182; 
+ Fri, 01 May 2020 11:09:27 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp130-01-69-158-143-211.dsl.bell.ca. [69.158.143.211])
+ by smtp.googlemail.com with ESMTPSA id s14sm3264136qts.70.2020.05.01.11.09.26
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 01 May 2020 11:09:26 -0700 (PDT)
+Message-ID: <5EAC65D6.50002@gmail.com>
+Date: Fri, 01 May 2020 14:09:26 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <BY5PR19MB339879DA30F3129CB923F7F4C6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
- <CAEXYVK6gX7EtOQYwCJw3YUEF-O3E3-Ug8KF+Eg9hHFAmrRMpXw@mail.gmail.com>
- <BY5PR19MB339833717BEEEBA2D976C3F9C6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
-In-Reply-To: <BY5PR19MB339833717BEEEBA2D976C3F9C6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
-Date: Fri, 1 May 2020 14:00:57 -0400
-Message-ID: <CAEXYVK5MzSdjounEbpRjX3boBLUF2LrF1_FSorsMWABXYFKFxg@mail.gmail.com>
-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
-Subject: Re: [USRP-users] Setting up an X310 as a signal generator
+To: usrp-users@lists.ettus.com
+References: <CAPCkAAe1o60xat4LmhTj8=vfmjnTQYjvz9MM2--umEHV3xHGJA@mail.gmail.com>
+In-Reply-To: <CAPCkAAe1o60xat4LmhTj8=vfmjnTQYjvz9MM2--umEHV3xHGJA@mail.gmail.com>
+Subject: Re: [USRP-users] B2xx DDC Gain Adjustment
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,10 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1098744403756658598=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,86 +84,42 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1098744403756658598==
-Content-Type: multipart/alternative; boundary="00000000000053a12905a499f780"
-
---00000000000053a12905a499f780
-Content-Type: text/plain; charset="UTF-8"
-
-On Fri, May 1, 2020 at 1:49 PM Jerrid Plymale <jerrid.plymale@canyon-us.com>
-wrote:
-
-> Brian,
+On 05/01/2020 11:38 AM, Misc Engineer via USRP-users wrote:
+> We are using the B2xx USB based radios in a system.  In certain cases, 
+> we are in an environment where there is significant power in a 
+> interfering signal that significantly suppressed by the filtering 
+> (CIC) within the DDC.  Near the output of the DDC there is a set of 
+> gain multipliers for both quadrature components.  The gain is 
+> controlled by scale_factor which I believe is controlled via the 
+> setting register at SR_RX_DSP (BASE) + 1 = 145.  In the host UHD code 
+> I believe I have found the section that manipulates this scale factor 
+> in comprised of code in set_host_rate and update_scaler.  I have a few 
+> questions regarding manipulating of this scaler.  We would really like 
+> to use the existing gain compensation blocks so this functionality 
+> doesn't required additional host processing if this is an option.
 >
+> 1. Is _host_extra_scaling applied in the host in UHD or is it left up 
+> to the user to perform such compensation in GNU Radio etc?  If it is 
+> the latter how is this information retrieved via the API?
 >
+> 2. Does UHD expose any method to directly manipulate scale_factor of 
+> the DDC either by FPGA register peeks and pokes or through the API?
+There's the "fullscale" stream argument here:
+
+https://files.ettus.com/manual/page_configuration.html#config_devaddr
 >
-> I realized I forgot to mention, I am using the multi_usrp API and not the
-> RFNoC API, so I am actually unable to use the DRAM FIFO.  Do you have any
-> suggestions, or should I work on transitioning the signal generator to an
-> RFNoC installation of UHD?
->
-
-I am a little biased since I am more of an FPGA guy than most, so I like
-the RFnoC API.
-
-I am not sure if the DRAM FIFO is used in the multi_usrp API - someone from
-Ettus might have more information, or there is the code to look at as well.
-
-Brian
-
->
-
---00000000000053a12905a499f780
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Fri, May 1, 2020 at 1:49 PM Jerrid Ply=
-male &lt;<a href=3D"mailto:jerrid.plymale@canyon-us.com">jerrid.plymale@can=
-yon-us.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex">
+> 3.  How does one access FPGA registers including the USER Registers?  
+> Does this require modification of UHD or is this functionality 
+> available in the distributed version of UHD for the B2xx series of radios?
+https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#a8978dc94513414db087e7cb60a009f5f
 
 
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_-1177728806061239708WordSection1">
-<p class=3D"MsoNormal">Brian,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I realized I forgot to mention, I am using the multi=
-_usrp API and not the RFNoC API, so I am actually unable to use the DRAM FI=
-FO.=C2=A0 Do you have any suggestions, or should I work on transitioning th=
-e signal generator to an RFNoC installation
- of UHD?</p></div></div></blockquote><div><br></div><div>I am a little bias=
-ed since I am more of an FPGA guy than most, so I like the RFnoC API.</div>=
-<div><br></div><div>I am not sure if the DRAM FIFO is used in the multi_usr=
-p API - someone from Ettus might have more information, or there is the cod=
-e to look at as well.</div><div><br></div><div>Brian</div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div lang=3D"EN-US"><div class=3D"gmail-m_=
--1177728806061239708WordSection1"><div><div><div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</blockquote></div></div>
-
---00000000000053a12905a499f780--
-
-
---===============1098744403756658598==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+But, an overall comment.  If inserting a single multiply into your 
+processing is a "make or break" in terms of being able to keep up, then you
+   have other architectural problems that will inevitably rear their 
+ugly head sooner rather than later.
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============1098744403756658598==--
-
