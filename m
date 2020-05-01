@@ -2,83 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5EC81C1C42
-	for <lists+usrp-users@lfdr.de>; Fri,  1 May 2020 19:50:37 +0200 (CEST)
-Received: from [::1] (port=41706 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CCA31C1C7A
+	for <lists+usrp-users@lfdr.de>; Fri,  1 May 2020 20:01:57 +0200 (CEST)
+Received: from [::1] (port=47772 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jUZo4-0006Vo-5j; Fri, 01 May 2020 13:50:36 -0400
-Received: from mail-bn8nam11on2081.outbound.protection.outlook.com
- ([40.107.236.81]:33217 helo=NAM11-BN8-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <jerrid.plymale@canyon-us.com>)
- id 1jUZnz-0006LR-KO
- for usrp-users@lists.ettus.com; Fri, 01 May 2020 13:50:31 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JiT4+OQHyP0SLHXGoRmnOBU3b29j2ok+dvKS4KTw77UWy3BDY8x5msoj9/tc59l+F+3WNal1BJECkiyzqIa89ddZWh3XNgHNeOV/2TLEpR7bhBNSzogpU3RV89Kru9kIYuINF8pGS15k7P9Xc0XOpdhzqgbvkVY6hrM7HLQIBgKVFLWzbntYjUvo1he40oXhYqM9LairjomI29KpHu+VgO71CPr4gcEx18ABBE3+uenOQD3s9c8KREE+qG8Wm4KMP7TSP9ICbm2b8Ugme+nQiOI0n8SRdGsBmdAKbpki79NzB//2Isyc7AAJeRvX8CMw/e0DSrK/qfNieHO2sEI6OA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hNXrKkGhR0JOwwGiar93HrvdtR2ihvkCSH24TlRQWU8=;
- b=R04bMdmAj/zX6Z+nwpRmPddt3KPFtpN/fv8+s7bLAf2LL3X+GESFJscIe0PCj5T/W77v2sQn34Qmbn70/DPqCLHqf/9hjxTONLnCFKjWebVEMYIoqd2k7zbH0WNUnGMWG2Cbvk4GaMpUKG39fAMCgF0B9nItZdY7zCcADVFwVVcsw2WcZmJacqzzPFSoPwxbZbfEBaduuIsXx+KxVgp8o9y9FTKzYlTpRrUo1+8fPbpHbdg2avH6QtLsZUe3nHt9cTamC8EKWsgc5BqNlY/JU3ekFzqZ7BYc2mh5hAfT1p8a51x3HtYfrD4CK4elUrUJdO8mEuEXPNt+TKHh2VfIHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=canyon-us.com; dmarc=pass action=none
- header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=canyonconsulting.onmicrosoft.com;
- s=selector2-canyonconsulting-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hNXrKkGhR0JOwwGiar93HrvdtR2ihvkCSH24TlRQWU8=;
- b=JwREhvMrKfQbgW6MiIggEmPB9GVMOG2QruCdvdlfPzpcpa0bUjE2ibR5Shnhm/AQ+XlpOiuol0tLwY6AKmIFJ2JmSaQYrqRwnaf0Z6akrbXamPx1bdxTMQ8ElIReN2Qr4zbekREzw4D1x4jBwbMYHHxda4ybRuEO1DK8EgZ7nIg=
-Received: from BY5PR19MB3398.namprd19.prod.outlook.com (2603:10b6:a03:185::26)
- by BY5PR19MB3602.namprd19.prod.outlook.com (2603:10b6:a03:1bc::30)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.19; Fri, 1 May
- 2020 17:49:49 +0000
-Received: from BY5PR19MB3398.namprd19.prod.outlook.com
- ([fe80::2501:e0e3:f5f2:6faa]) by BY5PR19MB3398.namprd19.prod.outlook.com
- ([fe80::2501:e0e3:f5f2:6faa%4]) with mapi id 15.20.2958.027; Fri, 1 May 2020
- 17:49:49 +0000
-To: Brian Padalino <bpadalino@gmail.com>
-Thread-Topic: [USRP-users] Setting up an X310 as a signal generator
-Thread-Index: AdYf28F15LoJ8T8LTQKOHd5VHhTjFQAAiIYAAACmYCA=
-Date: Fri, 1 May 2020 17:49:49 +0000
-Message-ID: <BY5PR19MB339833717BEEEBA2D976C3F9C6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
+	id 1jUZz1-0007y0-RX; Fri, 01 May 2020 14:01:55 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:43722)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <bpadalino@gmail.com>) id 1jUZyx-0007qA-JF
+ for usrp-users@lists.ettus.com; Fri, 01 May 2020 14:01:51 -0400
+Received: by mail-ot1-f48.google.com with SMTP id g14so3165652otg.10
+ for <usrp-users@lists.ettus.com>; Fri, 01 May 2020 11:01:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Q5TDOmsCiNa1WP1SgM1Lx8z1+eB//p6E7Seul6TO9Ek=;
+ b=H+Y28XpVUmGXALV8hoywRFxj2fDuRzTtNdo+scn8X8bYkh0oHA4UuJSkWE7uEr8ro/
+ nntXGqWzQDjAoFJmwQPlVoWXCVKCE4Lt7+XBpD4BudKjlwnQV6twaqZlEYLPqgE9F5GD
+ iIqEwkcRGS4bLH07K1Lk/InovIKeaZx8kXN6dr4MgnoINPyBkjLnBqAjorUXOqE/aapc
+ +F7Uoue4zhsBf4nokcAa0Fh2/rnZiAk5q2+JZHvk0ydT1GF9W8zyZoH3D9whp4uYtiiJ
+ d68Ex/AzFkeLUzBry9ZeGTtPbKnE2WDM+BCSpipCKCeB2hvNylnwTMqv2wo5CJ7kOPQ/
+ rdfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Q5TDOmsCiNa1WP1SgM1Lx8z1+eB//p6E7Seul6TO9Ek=;
+ b=THxrli6vdzq0heGRkMR818NXCc5xiXdAVksMzUFNqTpXbBFpbLtyyo2yOJsk5MXnc/
+ FKoyUJJ6lLGPmG63NqBaVfgHjPH6uGNNWy8YqqDka5iTyGfz5axmltAKMy0qqdH69ufR
+ uOGD4Jo/9MUsvWig446oR8EMFiU9XYkX2hS4003M2qnU4COOp2pIAq4nRk9yB+6pmmk2
+ Q10TlyzQ44gVvzDRuh1TJggq1IVt6hdk3zVAOq6W8mTolFYkina2gzvLJi34gRLIH9EW
+ ZFoFIaa9QXeCaEYJJf4EGpDloVlNj6vAGxlZsxLUDX/ovC1mQlVJKS/gkryY0C139a3S
+ PInQ==
+X-Gm-Message-State: AGi0PuYA0pFoI1TlpL0g3lFXOVWIxGboQQzPv5T+WMwe6/CYfvS608Sc
+ PxZP3DTqCqbtrAdGxn+yVrkoA+DKASKLa4sXQVVGrjx2
+X-Google-Smtp-Source: APiQypLbe30CDnhZw7KVe0+VUbA9ekbmcyB2KJrNC55NkrZ5/xsuOUiC7Hs5wKRiuF+K2NdogDVpLFpw/YwgAaJ6414=
+X-Received: by 2002:a9d:4113:: with SMTP id o19mr4338213ote.354.1588356069956; 
+ Fri, 01 May 2020 11:01:09 -0700 (PDT)
+MIME-Version: 1.0
 References: <BY5PR19MB339879DA30F3129CB923F7F4C6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
  <CAEXYVK6gX7EtOQYwCJw3YUEF-O3E3-Ug8KF+Eg9hHFAmrRMpXw@mail.gmail.com>
-In-Reply-To: <CAEXYVK6gX7EtOQYwCJw3YUEF-O3E3-Ug8KF+Eg9hHFAmrRMpXw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=canyon-us.com;
-x-originating-ip: [104.174.142.102]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1563f97f-6675-49d0-7acd-08d7edf80b62
-x-ms-traffictypediagnostic: BY5PR19MB3602:
-x-microsoft-antispam-prvs: <BY5PR19MB3602407D6235A73110AE2265C6AB0@BY5PR19MB3602.namprd19.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0390DB4BDA
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ol7niz1Eb0O7cTWdWohFJJv0hXmdmjvMQFG7ZaNrShCn0Tuj7LFvhfGGh8hA+mHV1RX/gE6xMfx5uhFcGKXTDDpMIokCBPGFcr5UDYa++ZGINmTsj8Yh7wyVkgyjo7g0T9FkwOCoamgxazi1wiJrevLXuHW/uda2V0ytdcrMzzZ9SnPrD/1LfdShDSrVGnlCtYDLkBWbmgNNEx45zbjHQmGJ0ItJGDoNNkiaBNvUT+7bfo6ODSrR8xD6XO4dehH+7SvHF15OVExY/Hp+LLs3/Bh0kOwTTuodDb1Uqn/qxISgYvvVjZEBWX66xLpTaazP4kqH7DxmTenVfA8JCHduovI0RWFcRIxhXIoJULTEc6fbk5FLhatv1ml2KqNABCpJb8AA6KA3VIdjmcL7U8RP771ywX827bci8m/Mt2kPrrGHa4/qavCz1QBEVeSdpGjB
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR19MB3398.namprd19.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(376002)(396003)(366004)(346002)(136003)(39830400003)(71200400001)(2906002)(6916009)(44832011)(8676002)(8936002)(186003)(53546011)(6506007)(316002)(508600001)(33656002)(86362001)(7696005)(26005)(55016002)(9686003)(66446008)(66556008)(66476007)(64756008)(5660300002)(52536014)(66946007)(76116006)(4326008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: Tsv+aDLaZ4hGdgBBYaLMTOSY4xKuxDYiyRnUvCNi6XnQ4QS4dwXNWJTaM3z/KJo9kHgpp12T7ZdxvcIl/V8/Ro7jbZgYkNzgduL1HsL4Tb/JF1TIu74eQkzHcl4HVzhM+213VQHMqCnP8OhXXU8o0LjfjP2cuOKrQOEdJ9r+mvWbnJuxEj/yU5sPUwsoBePXPORXRy9PCxEfExrUX1s2SkOu4J9PMfJ7xluJN/clbhwAsVQA18VI94rTo+jdLXQKwQYOBBO0Ml/dr7XlVZPyjBoXDqPxYaerEuxBxwEv7iXoIz8S1XiSOqplVFZ7aGkLKaiCUCA2uJ5L1NI43sEbgV2MctjeiDRaZX6ImPwvi8JiUszeWzsTZ1tHgzScJVgZVSUf3yDQKJQUn9Cljnl/Lvn2DoSX1ASWa70nFJaa1lk/Mv+LdFhZj9UQ5py1ONkRW/3tg8+ImH4xCqtDZloqoHx1P27d10gbabXAb3n3CpgiKOh7g/drKMXCqwBPG3qvt8Iyj43t87zJHAE/Aon1M1Zucq9c0GohvWKH2q4mQiRDYLGWOooTYM/3UX6e4/yOJt+/GR1woiggnGO7KStdjJXx5EFcYm86+lljlToELg/qElFwUQJoaJDEYNKiyniAtt3IewDKgEA764tEmy1/mGCZ0NpcaOvWPebZa5RRicooR6pHEQuuCGK83jRjOAhb1qlWUflogn8n+CUnKgp3C+Hp7ozPpVm8CVTonC33wstc4SkhDYNjlQxMgw0qSCjHBPJqMK0L09HcbLxPzZCgr1v9APpkV3Ayilq6I0ZQ/LR7hitxgA9vU6PzNYgSdIrL
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: canyon-us.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1563f97f-6675-49d0-7acd-08d7edf80b62
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 May 2020 17:49:49.2941 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qXSj4Wd808xkWfI587hOHQprBc6/5H+kQS7tohlPBRpFtEyK1slShdq29RkuVi2OxDD1avAl1RAlI47ExiECOjcK58g2hUaZAIljJwvxa40=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR19MB3602
+ <BY5PR19MB339833717BEEEBA2D976C3F9C6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
+In-Reply-To: <BY5PR19MB339833717BEEEBA2D976C3F9C6AB0@BY5PR19MB3398.namprd19.prod.outlook.com>
+Date: Fri, 1 May 2020 14:00:57 -0400
+Message-ID: <CAEXYVK5MzSdjounEbpRjX3boBLUF2LrF1_FSorsMWABXYFKFxg@mail.gmail.com>
+To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
 Subject: Re: [USRP-users] Setting up an X310 as a signal generator
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -91,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jerrid Plymale via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Brian Padalino <bpadalino@gmail.com>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5606782808306175638=="
+Content-Type: multipart/mixed; boundary="===============1098744403756658598=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -108,149 +76,77 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5606782808306175638==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BY5PR19MB339833717BEEEBA2D976C3F9C6AB0BY5PR19MB3398namp_"
+--===============1098744403756658598==
+Content-Type: multipart/alternative; boundary="00000000000053a12905a499f780"
 
---_000_BY5PR19MB339833717BEEEBA2D976C3F9C6AB0BY5PR19MB3398namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--00000000000053a12905a499f780
+Content-Type: text/plain; charset="UTF-8"
 
-QnJpYW4sDQoNCkkgcmVhbGl6ZWQgSSBmb3Jnb3QgdG8gbWVudGlvbiwgSSBhbSB1c2luZyB0aGUg
-bXVsdGlfdXNycCBBUEkgYW5kIG5vdCB0aGUgUkZOb0MgQVBJLCBzbyBJIGFtIGFjdHVhbGx5IHVu
-YWJsZSB0byB1c2UgdGhlIERSQU0gRklGTy4gIERvIHlvdSBoYXZlIGFueSBzdWdnZXN0aW9ucywg
-b3Igc2hvdWxkIEkgd29yayBvbiB0cmFuc2l0aW9uaW5nIHRoZSBzaWduYWwgZ2VuZXJhdG9yIHRv
-IGFuIFJGTm9DIGluc3RhbGxhdGlvbiBvZiBVSEQ/DQoNCkJlc3QgUmVnYXJkcywNCg0KSmVycmlk
-DQoNCkZyb206IEJyaWFuIFBhZGFsaW5vIDxicGFkYWxpbm9AZ21haWwuY29tPg0KU2VudDogRnJp
-ZGF5LCBNYXkgMSwgMjAyMCAxMDoyOCBBTQ0KVG86IEplcnJpZCBQbHltYWxlIDxqZXJyaWQucGx5
-bWFsZUBjYW55b24tdXMuY29tPg0KQ2M6IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJq
-ZWN0OiBSZTogW1VTUlAtdXNlcnNdIFNldHRpbmcgdXAgYW4gWDMxMCBhcyBhIHNpZ25hbCBnZW5l
-cmF0b3INCg0KT24gRnJpLCBNYXkgMSwgMjAyMCBhdCAxOjIzIFBNIEplcnJpZCBQbHltYWxlIHZp
-YSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20+PiB3cm90ZToNCkhlbGxvIEFsbCwNCg0KU28gSSBoYXZlIGJlZW4g
-dHJ5aW5nIHRvIHNldCB1cCBhIFVTUlAgWDMxMCBhcyBhIHNpZ25hbCBnZW5lcmF0b3IgZm9yIGFi
-b3V0IGEgd2VlayBub3csIGFuZCBJ4oCZbSBoYXZpbmcgc29tZSBpc3N1ZXMuIEN1cnJlbnRseSBJ
-IGFtIHVzaW5nIGdudXJhZGlvLWNvbXBhbmlvbiB0byBkZXZlbG9wIHRoZSBmdW5jdGlvbmFsaXR5
-LiBJIGhhdmUgdGhyZWUgc2V0cyBvZiBzaWduYWwgc291cmNlcyB0aGF0IGFyZSBvZiBmbG9hdCB0
-eXBlLCBjcmVhdGluZyB0aGUgSSBhbmQgUSB2YWx1ZXMgdGhhdCBnZXQgcGFzc2VkIHRvIGEgZmxv
-YXQgdG8gY29tcGxleCBibG9jay4gVGhlIG91dHB1dCBvZiB0aGUgdGhyZWUgZmxvYXQgdG8gY29t
-cGxleCBibG9ja3MgZ28gdG8gYW4gYWRkIGJsb2NrLCB3aGljaCB0aGVuIG91dHB1dHMgdG8gYSBV
-U1JQIHNpbmsuIEN1cnJlbnRseSwgdGhlIGZpcnN0IHByb2JsZW0gaXMgd2l0aCB1bmRlcnJ1bnMs
-IEnigJltIG5vdCBnZXR0aW5nIGEgbG90IG9mIHRoZW0gaG93ZXZlciBJIGFtIGdldHRpbmcgYnJl
-YWtzIGluIHRoZSBzaWduYWwgd2hlbiBJIHBhc3MgaXQgdG8gYSBzZWNvbmQgVVNSUCBYMzEwLiBX
-aGF0IHdvdWxkIGJlIHRoZSBiZXN0IGFwcHJvYWNoIHRvIG1ha2Ugc3VyZSBteSBzaWduYWwgaXMg
-Y29taW5nIGluIHN0cm9uZyB0byB0aGUgc2Vjb25kIFVTUlA/IEkgYW0gYWxzbyBoYXZpbmcgaXNz
-dWVzIHdpdGggaW5jcmVhc2luZyB0aGUgcG93ZXIgb2YgdGhlIHNpZ25hbCB3aGVuIGl0IGlzIHJl
-Y2VpdmVkLCBpcyB0aGlzIG1haW5seSBjb250cm9sbGVkIGJ5IHRoZSBnYWluIHZhbHVlIG9uIHRo
-ZSBVU1JQIHNvdXJjZSBpbiBnbnVyYWRpbz8gV2hhdCBjYW4gSSBkbyB0byBnZXQgbXkgaW5jb21p
-bmcgc2lnbmFsIHRvIGhhdmUgbW9yZSBwb3dlcj8NCg0KWW91IGNhbiB0cnkgcGxhY2luZyBhIERS
-QU0gRklGTyBpbiB5b3VyIHRyYW5zbWl0IGZsb3cgZ3JhcGggYXMgdGhlIGZpcnN0IHRoaW5nLiAg
-VGhhdCBzaG91bGQgZW5zdXJlIHNvbWUgdGVucyBvZiBtaWxsaXNlY29uZHMgd29ydGggb2YgYnVm
-ZmVyaW5nIGZvciB5b3VyIHNpZ25hbHMgYW5kIGFsbG93IGZvciBzb21lIGhvc3Qgaml0dGVyIHdp
-dGhvdXQgdW5kZXJydW5zLg0KDQpEbyB5b3UgaGF2ZSBhbiBleHRlcm5hbCBzcGVjdHJ1bSBhbmFs
-eXplciBvciBzb21ldGhpbmcgdGhhdCBjYW4gdGVsbCB5b3UgdGhlIHBvd2VyIG91dHB1dCBvZiB0
-aGUgZmlyc3QgcmFkaW8/DQoNClRoZSByZWNlaXZlcnMgc2hvdWxkIGJlIGFibGUgdG8gYmUgc2F0
-dXJhdGVkIGJ5IHlvdXIgdHJhbnNtaXR0ZXIsIHNvIHRoZXJlJ3MgZGVmaW5pdGVseSBhIGdhaW4g
-aXNzdWUgc29tZXdoZXJlLg0KDQpCcmlhbg0K
+On Fri, May 1, 2020 at 1:49 PM Jerrid Plymale <jerrid.plymale@canyon-us.com>
+wrote:
 
---_000_BY5PR19MB339833717BEEEBA2D976C3F9C6AB0BY5PR19MB3398namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> Brian,
+>
+>
+>
+> I realized I forgot to mention, I am using the multi_usrp API and not the
+> RFNoC API, so I am actually unable to use the DRAM FIFO.  Do you have any
+> suggestions, or should I work on transitioning the signal generator to an
+> RFNoC installation of UHD?
+>
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
-OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
-cjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KLk1zb0NocERlZmF1bHQNCgl7
-bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMt
-c2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdp
-bjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29y
-ZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFw
-ZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZd
-LS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+
-DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3ht
-bD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2
-bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5Ccmlhbiw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSByZWFsaXplZCBJIGZvcmdv
-dCB0byBtZW50aW9uLCBJIGFtIHVzaW5nIHRoZSBtdWx0aV91c3JwIEFQSSBhbmQgbm90IHRoZSBS
-Rk5vQyBBUEksIHNvIEkgYW0gYWN0dWFsbHkgdW5hYmxlIHRvIHVzZSB0aGUgRFJBTSBGSUZPLiZu
-YnNwOyBEbyB5b3UgaGF2ZSBhbnkgc3VnZ2VzdGlvbnMsIG9yIHNob3VsZCBJIHdvcmsgb24gdHJh
-bnNpdGlvbmluZyB0aGUgc2lnbmFsIGdlbmVyYXRvciB0byBhbiBSRk5vQyBpbnN0YWxsYXRpb24N
-CiBvZiBVSEQ/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
-OzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkJlc3QgUmVnYXJkcyw8bzpwPjwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+SmVycmlkPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10
-b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxiPkZyb206PC9iPiBCcmlhbiBQYWRhbGlubyAmbHQ7YnBhZGFsaW5v
-QGdtYWlsLmNvbSZndDsgPGJyPg0KPGI+U2VudDo8L2I+IEZyaWRheSwgTWF5IDEsIDIwMjAgMTA6
-MjggQU08YnI+DQo8Yj5Ubzo8L2I+IEplcnJpZCBQbHltYWxlICZsdDtqZXJyaWQucGx5bWFsZUBj
-YW55b24tdXMuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtVU1JQLXVzZXJzXSBTZXR0aW5nIHVwIGFuIFgz
-MTAgYXMgYSBzaWduYWwgZ2VuZXJhdG9yPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj5PbiBGcmksIE1heSAxLCAyMDIwIGF0IDE6MjMgUE0gSmVycmlkIFBseW1h
-bGUgdmlhIFVTUlAtdXNlcnMgJmx0OzxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTti
-b3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNi4wcHQ7
-bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBpbiI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
-LWJvdHRvbS1hbHQ6YXV0byI+SGVsbG8gQWxsLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9t
-LWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
-eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+
-U28gSSBoYXZlIGJlZW4gdHJ5aW5nIHRvIHNldCB1cCBhIFVTUlAgWDMxMCBhcyBhIHNpZ25hbCBn
-ZW5lcmF0b3IgZm9yIGFib3V0IGEgd2VlayBub3csIGFuZCBJ4oCZbSBoYXZpbmcgc29tZSBpc3N1
-ZXMuIEN1cnJlbnRseSBJIGFtIHVzaW5nIGdudXJhZGlvLWNvbXBhbmlvbiB0byBkZXZlbG9wIHRo
-ZSBmdW5jdGlvbmFsaXR5Lg0KIEkgaGF2ZSB0aHJlZSBzZXRzIG9mIHNpZ25hbCBzb3VyY2VzIHRo
-YXQgYXJlIG9mIGZsb2F0IHR5cGUsIGNyZWF0aW5nIHRoZSBJIGFuZCBRIHZhbHVlcyB0aGF0IGdl
-dCBwYXNzZWQgdG8gYSBmbG9hdCB0byBjb21wbGV4IGJsb2NrLiBUaGUgb3V0cHV0IG9mIHRoZSB0
-aHJlZSBmbG9hdCB0byBjb21wbGV4IGJsb2NrcyBnbyB0byBhbiBhZGQgYmxvY2ssIHdoaWNoIHRo
-ZW4gb3V0cHV0cyB0byBhIFVTUlAgc2luay4gQ3VycmVudGx5LCB0aGUgZmlyc3QNCiBwcm9ibGVt
-IGlzIHdpdGggdW5kZXJydW5zLCBJ4oCZbSBub3QgZ2V0dGluZyBhIGxvdCBvZiB0aGVtIGhvd2V2
-ZXIgSSBhbSBnZXR0aW5nIGJyZWFrcyBpbiB0aGUgc2lnbmFsIHdoZW4gSSBwYXNzIGl0IHRvIGEg
-c2Vjb25kIFVTUlAgWDMxMC4gV2hhdCB3b3VsZCBiZSB0aGUgYmVzdCBhcHByb2FjaCB0byBtYWtl
-IHN1cmUgbXkgc2lnbmFsIGlzIGNvbWluZyBpbiBzdHJvbmcgdG8gdGhlIHNlY29uZCBVU1JQPyBJ
-IGFtIGFsc28gaGF2aW5nIGlzc3Vlcw0KIHdpdGggaW5jcmVhc2luZyB0aGUgcG93ZXIgb2YgdGhl
-IHNpZ25hbCB3aGVuIGl0IGlzIHJlY2VpdmVkLCBpcyB0aGlzIG1haW5seSBjb250cm9sbGVkIGJ5
-IHRoZSBnYWluIHZhbHVlIG9uIHRoZSBVU1JQIHNvdXJjZSBpbiBnbnVyYWRpbz8gV2hhdCBjYW4g
-SSBkbyB0byBnZXQgbXkgaW5jb21pbmcgc2lnbmFsIHRvIGhhdmUgbW9yZSBwb3dlcj88bzpwPjwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj5Zb3UgY2FuIHRyeSBwbGFjaW5nIGEgRFJBTSBGSUZPIGluIHlvdXIgdHJh
-bnNtaXQgZmxvdyBncmFwaCBhcyB0aGUgZmlyc3QgdGhpbmcuJm5ic3A7IFRoYXQgc2hvdWxkIGVu
-c3VyZSBzb21lIHRlbnMgb2YgbWlsbGlzZWNvbmRzIHdvcnRoIG9mIGJ1ZmZlcmluZyBmb3IgeW91
-ciBzaWduYWxzIGFuZCBhbGxvdyBmb3Igc29tZSBob3N0IGppdHRlciB3aXRob3V0IHVuZGVycnVu
-cy48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-RG8geW91IGhhdmUgYW4gZXh0ZXJuYWwgc3BlY3RydW0gYW5hbHl6ZXIgb3Igc29tZXRoaW5nIHRo
-YXQgY2FuIHRlbGwgeW91IHRoZSBwb3dlciBvdXRwdXQgb2YgdGhlIGZpcnN0IHJhZGlvPzxvOnA+
-PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
-cDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGUgcmVj
-ZWl2ZXJzIHNob3VsZCBiZSBhYmxlIHRvIGJlIHNhdHVyYXRlZCBieSB5b3VyIHRyYW5zbWl0dGVy
-LCBzbyB0aGVyZSdzIGRlZmluaXRlbHkgYSBnYWluIGlzc3VlIHNvbWV3aGVyZS48bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QnJpYW48bzpwPjwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1s
-Pg0K
+I am a little biased since I am more of an FPGA guy than most, so I like
+the RFnoC API.
 
---_000_BY5PR19MB339833717BEEEBA2D976C3F9C6AB0BY5PR19MB3398namp_--
+I am not sure if the DRAM FIFO is used in the multi_usrp API - someone from
+Ettus might have more information, or there is the code to look at as well.
+
+Brian
+
+>
+
+--00000000000053a12905a499f780
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">On Fri, May 1, 2020 at 1:49 PM Jerrid Ply=
+male &lt;<a href=3D"mailto:jerrid.plymale@canyon-us.com">jerrid.plymale@can=
+yon-us.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex">
 
 
---===============5606782808306175638==
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_-1177728806061239708WordSection1">
+<p class=3D"MsoNormal">Brian,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I realized I forgot to mention, I am using the multi=
+_usrp API and not the RFNoC API, so I am actually unable to use the DRAM FI=
+FO.=C2=A0 Do you have any suggestions, or should I work on transitioning th=
+e signal generator to an RFNoC installation
+ of UHD?</p></div></div></blockquote><div><br></div><div>I am a little bias=
+ed since I am more of an FPGA guy than most, so I like the RFnoC API.</div>=
+<div><br></div><div>I am not sure if the DRAM FIFO is used in the multi_usr=
+p API - someone from Ettus might have more information, or there is the cod=
+e to look at as well.</div><div><br></div><div>Brian</div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div lang=3D"EN-US"><div class=3D"gmail-m_=
+-1177728806061239708WordSection1"><div><div><div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</blockquote></div></div>
+
+--00000000000053a12905a499f780--
+
+
+--===============1098744403756658598==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -261,5 +157,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5606782808306175638==--
+--===============1098744403756658598==--
 
