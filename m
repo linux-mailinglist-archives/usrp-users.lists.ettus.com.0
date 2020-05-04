@@ -2,52 +2,81 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04E531C4982
-	for <lists+usrp-users@lfdr.de>; Tue,  5 May 2020 00:17:18 +0200 (CEST)
-Received: from [::1] (port=41628 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 764781C4997
+	for <lists+usrp-users@lfdr.de>; Tue,  5 May 2020 00:32:05 +0200 (CEST)
+Received: from [::1] (port=43684 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jVjOj-0002pX-8z; Mon, 04 May 2020 18:17:13 -0400
-Received: from mail-il1-f176.google.com ([209.85.166.176]:40990)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <adray0001@gmail.com>) id 1jVjOe-0002hn-WE
- for usrp-users@lists.ettus.com; Mon, 04 May 2020 18:17:09 -0400
-Received: by mail-il1-f176.google.com with SMTP id f82so399276ilh.8
- for <usrp-users@lists.ettus.com>; Mon, 04 May 2020 15:16:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=/Qxdx5vwpwLXOvkg+r6UEwbjTrQKqtIh0tXgsuZtn/c=;
- b=GwGR4F/qBinpDRRtKGO3QgIf0jfjpGxiUL4KxPHceucFw2XXIJ+thObeRViKtTdb4+
- Z3eY6UgiqCpAjzJSYAcOEVCFYjaJqYrN9gKzcu84CLadZClbZ7ofYSsiV+SMmofYFB3+
- AYZwBwuiWhFJTHCuOPtkgsDn4qguUv076NRwMAmAsCpF0zttSckPIkCPzCVfLfeGL8Nz
- tPTHWbiGir8fg7cTUagMoOMfy9BFc7yXafw35IQwXRd1bt/1b03akf04/2XYHJ5E17Ny
- HaCUND4JCIfmo14SZQDk0PlUMq3fB9wSWIaKLypdsx/kfS77xqmCESqdxrd6U5Uu+jlh
- 1jlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=/Qxdx5vwpwLXOvkg+r6UEwbjTrQKqtIh0tXgsuZtn/c=;
- b=Jmr/nqbQ0ikiJjaAJZ4S8s6OYtVCHURQZQZ3R4j0EoZ/LzpoBIj+Sy2cTWGvvllaTP
- 5OSAhtwpahJij7HpeCmbbRz1j8GAePrT1uEDytKcUyKpDdiiCZ8OIm+GjOhdnhx0QqVy
- 6sZK/y5/ZTeh/pHoRL4jOH0MENkd7bQJI54uonubpSgLkdswG2wIJ8WkrYMnlCFVDc0a
- IWSd8vUBaMgN3KvQloL1HilUxR1yC07oKNZFbLAZFkL3Rf0SPXXz+vAwzopJVEoRRjUb
- lTgYNkLckO2w8lrUbSzkLkD3oMxrHuCmjP1OxSLfUsU5lBBTpaKJ/QPKI+MbrSrAHVF2
- nMFw==
-X-Gm-Message-State: AGi0PuYN7YVHUuZ3SHGWaL952JpZrSgbtYzUDgEBhjsXpXYkVpQU8XvF
- wqPja8cSXKitiDqKA8z5x7/azpnvghTS90LgapY=
-X-Google-Smtp-Source: APiQypIxAdgwnZlouEfKGr/lJEDRySYtXEgMkOnDr1zRLVSxf6RgLDeTJbXIZYrwWgKI91nOGx39VAP3SDEZ/5kuv8w=
-X-Received: by 2002:a92:9c0a:: with SMTP id h10mr579798ili.12.1588630588267;
- Mon, 04 May 2020 15:16:28 -0700 (PDT)
+	id 1jVjd5-0003Ms-VO; Mon, 04 May 2020 18:32:03 -0400
+Received: from mail-eopbgr770052.outbound.protection.outlook.com
+ ([40.107.77.52]:10758 helo=NAM02-SN1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <minutolo@caltech.edu>)
+ id 1jVjd0-0003G9-Sl
+ for usrp-users@lists.ettus.com; Mon, 04 May 2020 18:31:58 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TxTEHjKNUMG9XYtiJNOs0H0v3GDJEPoNpzo3Q0vROjFhHW8wSWSLvxxuZ0W3TD7kcq2yi9EhOp8+05yeaV805rS+OstqZefzuwJXOtDD2IWu+3ERnS4SjzNvXlE+jTleAo6AAfmbkDwdN70XpHFlvlN9+A/dvQZCfHz8VQmGf+Fchv5pOtR3cEUPDWVNSxl3YphfJpkuWJbyvwADQ+f72Xs+o2h8/Pu4N5GbrIrqm6T4jkbhK3KIhpd/Jrsjbz3Hje+IhaXCd2IYw0VkMun3F0/EYa6EfEXfGu1vAPI4/+WSTYs64KSo8LDB7VQYwn+YRepFMAyTmFZztp0Cd01oUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ljriTgY6/O4+qpC+GdXDtsm6VBoOVRRBPvc6tKLdAsE=;
+ b=Uv7ZiZkEoHERHBgtsD7J89Ddyi+g55aurwUG6C5uFIBEU8kmorN21BqDMuLQtuwwufjtrIbs0YYUZrWwj6/UXvp91mJ6mjR7xCQ/m/xpFC5PUAJoQDm1GCUm6XiF2zTnKDj1RkL9BF6WlvVT7noKWVP1COeiJ3n23JTUiQlOnNjNvX6HuoYR/4TwEGSW4DPJYvoFvVh+jbEecnVfhbrNNn9g6yLQLnKHRsNwfJEjkLOPaKPBOT6OyyUpDZeb6an4Pos6Ibm7a31wPNeqCrWVjt/85/BW6twCZVk2vgDUEOSvm93SVJ6wAJec+6WHHhJnaCFS+L+oPlGh4I/MfhCfsg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=caltech.edu; dmarc=pass action=none header.from=caltech.edu;
+ dkim=pass header.d=caltech.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=caltech.edu;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ljriTgY6/O4+qpC+GdXDtsm6VBoOVRRBPvc6tKLdAsE=;
+ b=JSx+IbXGu3lpwtDdNPGTmTeF3CHIfCcDQFvFwhyUpsFQghZm9wIGBAIGtLUW0wVxLok/MkZaccJtgDrQ0D4Ug9qrIOJPvUSiagB0/XXV+h/HxM5SSSelYgvLw8VtwSf6f/Wb+Z4+wwpnvMPhL+MPnLnutytIOI9gdbjtgEQijmA=
+Received: from BYAPR03MB4678.namprd03.prod.outlook.com (2603:10b6:a03:137::21)
+ by BYAPR03MB3893.namprd03.prod.outlook.com (2603:10b6:a03:62::30)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2958.27; Mon, 4 May
+ 2020 22:31:15 +0000
+Received: from BYAPR03MB4678.namprd03.prod.outlook.com
+ ([fe80::74ee:3c4f:9e64:b4ae]) by BYAPR03MB4678.namprd03.prod.outlook.com
+ ([fe80::74ee:3c4f:9e64:b4ae%6]) with mapi id 15.20.2958.030; Mon, 4 May 2020
+ 22:31:15 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: N321 Tuning
+Thread-Index: AQHWImO5bqbDKFfOP0CAprCxReWnHg==
+Date: Mon, 4 May 2020 22:31:15 +0000
+Message-ID: <BYAPR03MB4678E4F36A6F1AC0106B945AD3A60@BYAPR03MB4678.namprd03.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=caltech.edu;
+x-originating-ip: [2600:6c50:4080:32:414b:306:fea:8e7]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 48485a48-eb9f-4fd7-b07d-08d7f07adb96
+x-ms-traffictypediagnostic: BYAPR03MB3893:
+x-microsoft-antispam-prvs: <BYAPR03MB38935A66D8410489B871AB1DD3A60@BYAPR03MB3893.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 03932714EB
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: CVwwMF9WWykvj3RcslW7z+AqR+sQqEqHgUArgIOFVR+NR5nS936OByGzVaAeLx3Hz5Ie7fOkeFfZI263KgOas5JEtxCBV9W8MdMETo6lZsJni0X+/R6Rtz8STY6CKnzC7c7rlGnapEVWTEfYuqNZ9Yr1QVrpyLc3Lnmg4KYp5n4mOEBTHCY3/B9f+O541Hkw61yOSkI5auxpGv0T28CO0OH9VWDiaQxvov/LVhIXz8y3Jy6P+a1DmlG/qNxo6Vjtl2g0Wa1pblal0HkqVciLWOL2eBNMMWpaiS5rkR0XqRSzUJm+y1PAdqTBKjVwKlDkZOn3iGYv9EDkaXqGuW9ZQ8G2oDJmkr/syPrRdlP6oCvh3gS0r22PePd9tjnHwaRmxhAiw9dmq2i2+BBq7Nvpe4T7OlrfoYq49bbrEUXkcZCvwvI9NlCDY+Vv6OuttiazKSYDkkS+HcJwwbogCFttsOr1PU6TCDA0aL0UaPYchjrCpySezGgDXZmWuA1eGIhxlcnvipACkD6aytUVZsDlAA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR03MB4678.namprd03.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(366004)(376002)(346002)(396003)(136003)(39860400002)(33430700001)(76116006)(71200400001)(7696005)(2906002)(75432002)(186003)(64756008)(66556008)(66476007)(66446008)(7116003)(33440700001)(6916009)(478600001)(6506007)(66946007)(19627405001)(4744005)(5660300002)(316002)(786003)(8936002)(86362001)(52536014)(8676002)(33656002)(9686003)(55016002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: hVF14tFkoCERXA5wckGYTvTXI5utfvPToeV5AL2bB0fz1zeCkbRw3pb7dFjolR9Re0X/RqBY9GyNcYD8vLn0SFAfGpreUKPNUGOupScSkd92S+Q/VD4Lo9c7lruqsSu5dz2/tGKVfIry++JRcwxJMXjLh4JJqdTOpIO3jgjI+4W4nO956EP3xVUknG1aRFjIsOobh5UQwNHD5AAoWyRO81yt31RnX0Aj7tomSnnLZ8F5mUsg5HJFsOP0E7/gjjUC7+TSincybU9duEyMdJ36/L1FqzqUOQH5jbwc+AkuT5tsGj8qBwliBrI+kHNCywF53UmNEkuzYrFhuQShiyMG7JHmYt8t5dgeWk5JvbQ1KWw6q8PqGB5YVjKnLHMvnecJ6gZUwm1ERvfam05geclSf1pePJlWHeK8pS3KKXJj06JVr4FeXRH2gL5tCTNNU5n+aAqqcZUIxhx2lVccjVq4HCRIyZeKKIbe/Zdh23nZCtGLcEr4+pMb17qJOpi9r1YK12oSGg1zSFqRtyPrU6qxKsqMsz9IiyyDkyNmExK8EJhryTjomMn46DQlJ52c3AHmrcaysPeKtasOfXWa8q7xD2Xnb5i7fIeXnxUHZS8GFqCQZjJW5F3iEkWQHBpcWv3+NFHd1cE7rP9hZJOTh8Agmo6PRRHF/gbeA8PFJk12e4XkGH74y5q81mTOr5/lcQSo75LGXiX+kYP3k3HhB1m2XVPirABc4Sd2WrtR5QTGkjJg3PQtrzj/R3DFm45KpHeYHqQ2rOgrkzlVLmwjFhvEvZ0DRnkYkkk1DfO3Z2VLOdg+GM+z7airKoYIWB9yj7eklAA4KkWxcveP2SBgvVXjYMqHAdppZKY0xICYX5m2ZLs=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CAPRRyxtCj6iQymGZ9zNbGWxBjybOC=6GN7=OzpA2HvkiiYTbzg@mail.gmail.com>
- <CAB__hTQt5Yaw3xYKAiw+eRRH62g_s=tDVMgQtwNcng_jW7EnSw@mail.gmail.com>
-In-Reply-To: <CAB__hTQt5Yaw3xYKAiw+eRRH62g_s=tDVMgQtwNcng_jW7EnSw@mail.gmail.com>
-Date: Tue, 5 May 2020 01:16:16 +0300
-Message-ID: <CAPRRyxs1omXVknwnyqs0wQzHZ=zi+yd98fqPdr2XLoM+MQXD3g@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Subject: Re: [USRP-users] How to set channel B reception with rfnoc USRP
- E310?
+X-OriginatorOrg: caltech.edu
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48485a48-eb9f-4fd7-b07d-08d7f07adb96
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 May 2020 22:31:15.5487 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: fd5be9d9-7b72-4df9-830e-b1f9cc5b44bd
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: c37IW7QVJtYiTWVlI4HIjOvF19T1SSOiGFu6++km4BKjUehmKnooo84LrrD5W9pO/c2ZBzHcEZ9xMZczBFtDhQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR03MB3893
+Subject: [USRP-users] N321 Tuning
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,11 +88,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>,
- discuss-gnuradio <discuss-gnuradio@gnu.org>
-Content-Type: multipart/mixed; boundary="===============6965905215255380204=="
+From: "Minutolo, Lorenzo via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Minutolo, Lorenzo" <minutolo@caltech.edu>
+Content-Type: multipart/mixed; boundary="===============2447982933812234825=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,81 +104,139 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6965905215255380204==
-Content-Type: multipart/alternative; boundary="000000000000e4a18205a4d9e158"
+--===============2447982933812234825==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BYAPR03MB4678E4F36A6F1AC0106B945AD3A60BYAPR03MB4678namp_"
 
---000000000000e4a18205a4d9e158
-Content-Type: text/plain; charset="UTF-8"
+--_000_BYAPR03MB4678E4F36A6F1AC0106B945AD3A60BYAPR03MB4678namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Unfortunately, this method does not work. Maybe there are some other ideas?
+Hello,
+I'm trying to tune the TX channel on the N321 to import the LO from the RX =
+channel. I'm on ununtu server 18.04 and UHD 3.15.
+The command I'm using are:
+
+On the RX side:
+uhd::tune_request_t tune_request(2e9);
+tune_request.args =3D uhd::device_addr_t("mode_n=3Dinteger");
+my_usrp->set_rx_freq(tune_request,0);
+my_usrp->set_rx_lo_export_enabled(true, "lo1", 0);
+my_usrp->get_device()->get_tree()->access<bool>("mboards/0/dboards/A/rx_fro=
+ntends/0/los/lo1/lo_distribution/LO_OUT_3/export").set(true); // I want to =
+export on port 3
+
+On the TX side:
+main_usrp->set_rx_lo_source("external", "lo1", 0);
+
+The output port led of the LO lights up correctly however the input LO port=
+ led does not light up and the channel is not tuned (I don't get any signal=
+.)
+
+What am I doing wrong?
+
+Thanks,
+Lorenzo
 
 
-=D0=BF=D0=BD, 4 =D1=82=D1=80=D0=B0=D0=B2. 2020, 23:38 =D0=BA=D0=BE=D1=80=D0=
-=B8=D1=81=D1=82=D1=83=D0=B2=D0=B0=D1=87 Rob Kossler <rkossler@nd.edu> =D0=
-=BF=D0=B8=D1=88=D0=B5:
-
-> Does the 2nd argument to set_rx_antenna() indicate which radio port?  If
-> so, try setting it to 1.
-> Rob
->
-> On Mon, May 4, 2020 at 2:02 PM Ivan Zahartchuk via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hello, I'm trying to switch between all four USRP E310 inputs. For this,
->> I use the command self.uhd_rfnoc_streamer_radio_0.set_rx_antenna ("TX /
->> RX", 0) but I can only switch in channel A. RFNoC Radio does not have th=
-e
->> set_rx_subdev_spec command. Tell me how can I switch across all 4 channe=
-ls?
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
-
---000000000000e4a18205a4d9e158
-Content-Type: text/html; charset="UTF-8"
+--_000_BYAPR03MB4678E4F36A6F1AC0106B945AD3A60BYAPR03MB4678namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto"><pre dir=3D"ltr" style=3D"max-height:999999px;font-size:2=
-4px;line-height:28px;background-color:rgb(248,249,250);border:none;padding:=
-10px 0.14em 10px 0px;margin-top:0px;margin-bottom:0px;font-family:inherit;w=
-idth:312px;white-space:pre-wrap;color:rgb(60,64,67)"><span style=3D"max-hei=
-ght:999999px">Unfortunately, this method does not work. Maybe there are som=
-e other ideas?</span></pre></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">=D0=BF=D0=BD, 4 =D1=82=D1=80=D0=B0=D0=B2. 2020, =
-23:38 =D0=BA=D0=BE=D1=80=D0=B8=D1=81=D1=82=D1=83=D0=B2=D0=B0=D1=87 Rob Koss=
-ler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; =D0=BF=
-=D0=B8=D1=88=D0=B5:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr=
-">Does the 2nd argument to set_rx_antenna() indicate which radio port?=C2=
-=A0 If so, try setting it to 1.<div>Rob</div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, May 4, 2020 at 2:02 PM=
- Ivan Zahartchuk via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettu=
-s.com" target=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
-dir=3D"ltr">Hello, I&#39;m trying to switch between all four USRP E310 inpu=
-ts. For this, I use the command self.uhd_rfnoc_streamer_radio_0.set_rx_ante=
-nna (&quot;TX / RX&quot;, 0) but I can only switch in channel A. RFNoC Radi=
-o does not have the set_rx_subdev_spec command. Tell me how can I switch ac=
-ross all 4 channels?</div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
-ferrer">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+Hello,</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+I'm trying to tune the TX channel on the N321 to import the LO from the RX =
+channel. I'm on ununtu server 18.04 and UHD 3.15.</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+The command I'm using are:</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+<br>
+</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+On the RX side:</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+<span style=3D"margin: 0px">uhd::tune_request_t tune_request(2e9);<br>
+</span>
+<div style=3D"margin: 0px">tune_request.args =3D uhd::device_addr_t(&quot;m=
+ode_n=3Dinteger&quot;);<br>
+</div>
+<div style=3D"margin: 0px">my_usrp-&gt;set_rx_freq(tune_request,0);<br>
+</div>
+<div style=3D"margin: 0px"><span style=3D"margin: 0px; background-color: rg=
+b(255, 255, 255); display: inline !important">my_usrp</span>-&gt;set_rx_lo_=
+export_enabled(true, &quot;lo1&quot;, 0);<br>
+</div>
+<span style=3D"margin: 0px"><span style=3D"margin: 0px; background-color: r=
+gb(255, 255, 255); display: inline !important">my_usrp</span>-&gt;get_devic=
+e()-&gt;get_tree()-&gt;access&lt;bool&gt;(&quot;mboards/0/dboards/A/rx_fron=
+tends/0/los/lo1/lo_distribution/LO_OUT_3/export&quot;).set(true);
+ // I want to export on port 3</span><br>
+</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+<span style=3D"margin: 0px"><br>
+</span></div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+On the TX side:</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+main_usrp-&gt;set_rx_lo_source(&quot;external&quot;, &quot;lo1&quot;, 0);<b=
+r>
+</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+<br>
+</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+The output port led of the LO lights up correctly however the input LO port=
+ led does not light up and the channel is not tuned (I don't get any signal=
+.)</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+<br>
+</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+What am I doing wrong?</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+<br>
+</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+Thanks,</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif; background-color: rgb(255, 255, 255)">
+Lorenzo</div>
+<br>
+</div>
+</body>
+</html>
 
---000000000000e4a18205a4d9e158--
+--_000_BYAPR03MB4678E4F36A6F1AC0106B945AD3A60BYAPR03MB4678namp_--
 
 
---===============6965905215255380204==
+--===============2447982933812234825==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -162,5 +247,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6965905215255380204==--
+--===============2447982933812234825==--
 
