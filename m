@@ -2,57 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BA681C9561
-	for <lists+usrp-users@lfdr.de>; Thu,  7 May 2020 17:47:30 +0200 (CEST)
-Received: from [::1] (port=51994 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F0F11C9562
+	for <lists+usrp-users@lfdr.de>; Thu,  7 May 2020 17:48:17 +0200 (CEST)
+Received: from [::1] (port=53390 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jWik9-0006gb-3s; Thu, 07 May 2020 11:47:25 -0400
-Received: from mail-qv1-f48.google.com ([209.85.219.48]:39356)
+	id 1jWiky-0006wq-8M; Thu, 07 May 2020 11:48:16 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:35720)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jWik4-0006QP-OX
- for USRP-users@lists.ettus.com; Thu, 07 May 2020 11:47:20 -0400
-Received: by mail-qv1-f48.google.com with SMTP id c4so2866278qvi.6
- for <USRP-users@lists.ettus.com>; Thu, 07 May 2020 08:47:00 -0700 (PDT)
+ (Exim 4.93) (envelope-from <bpadalino@gmail.com>) id 1jWiku-0006pH-2e
+ for usrp-users@lists.ettus.com; Thu, 07 May 2020 11:48:12 -0400
+Received: by mail-ot1-f52.google.com with SMTP id k110so4871632otc.2
+ for <usrp-users@lists.ettus.com>; Thu, 07 May 2020 08:47:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=G6bPQPxsc1nWBvXxHaQ+o8uDiYXLU5hR7+cEhxuktPM=;
- b=RmrVu2VzG5AJchrupFDs83hLxolCYlU7z723tMR5e9TOHYFxGlWfVRr14de4+WVihj
- 5JhjiufImL1ZzwNVDQrrWW7nab/Pg5w/veKNwke5AJjJyCFEyWm2Ip574FsOvCIqnU1c
- Zhxfi3UPO8vybpGOjkfMFSml3Xkm9aSTx//7T3R7jGRA6NWn9UHJKt6572/3GWbVGJTE
- q39M3MzP5JBllqpt8U5fZqg/sGwvKMnMDKGfQpQu1UYwFECdeNUaVCtk2uvlqbIsxcW1
- IyMtdaQJWLfYkIll7XScaanDOrLmupCohTw84U+buJPDeqVcxnbh5LJArRhkzX1mWqrr
- tu4A==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=uOc6TgTgyugMAgoRR3raSVxz6IU7YgHue+iCNX4NoYU=;
+ b=FJF23WR+Gx5/nSsHbZi1CHdzKyF8VUodTdsMam8CqYo36C6HpzfeQlE0nTWyQZr2WS
+ +8KXxRY5NPvBzahYr8kluvSH0bRlR4uvkwO85gHptdO1e2K8ukge6An8VYRobaCkSgy+
+ pAwYwtCURCEYqHiEe8Ai9FiJfeqmofrwhUdGAqjqdsVq9rAu9iRnn4ZZShK+eYe7KUrM
+ hkojpDHw9VbhxwX2c2fur6xH5+FJDq1eghl0vXodL80g6+6ROKpAabtFhEGOjc99SJSd
+ 5dy5gJkjC5wSwyukZ9MxJf/j93B54U5hjOgyZBgo7xj+4zVvzewIC3fLcgyarHpfdcaC
+ 8AIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=G6bPQPxsc1nWBvXxHaQ+o8uDiYXLU5hR7+cEhxuktPM=;
- b=aI9Dxeq0LsTFi3lXBPFUcVCQkRr5DnBqgV8jBLNZiFvTiH3Dz5oDmxH7RTAFF8rdsM
- Zj8sMMtG8eKK97c2iAN2gZHvUPCOl0sqgLyyUVu2J4j+BenUi9nh5jRVemT1PDvw+kEj
- B+ao9WYDrrCV/DwcAAsolbCeJQZVcJ3/6LjsXGp9FNl1CQahiCH88tCzox9scU/k2i7b
- hL4KPkWTBUJ5lyh3/uYcyuFHC5kGq/FzC21TZXL+f2Z/aT1YOjyz6O1YjDGkOMX3uNiQ
- ZuDj4mPZf06ZeMZEBySZh2nFskBV1/VmVh97LDHnZy4fm9tgSoHL7NSJ0liY/XFwsJxT
- 3gwg==
-X-Gm-Message-State: AGi0PubX0SdcS8g3L3qE91yCjj4JPY0U7TL9on2AKkewC4R9i4T3Ccaf
- vbDUg1T4IGmcChhtfoT0AxBqZBvyskY=
-X-Google-Smtp-Source: APiQypI0piX/7GGEM62L3LwuN5liCfCPMLBOE1ggutHuWPprDvBHkGAydo7F6ZQTW52xrDqOBdbHbA==
-X-Received: by 2002:ad4:5592:: with SMTP id e18mr14008093qvx.13.1588866400056; 
- Thu, 07 May 2020 08:46:40 -0700 (PDT)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-12-103.dsl.bell.ca.
- [174.95.12.103])
- by smtp.gmail.com with ESMTPSA id d7sm2744190qkk.26.2020.05.07.08.46.39
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 07 May 2020 08:46:39 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Thu, 7 May 2020 11:46:38 -0400
-Message-Id: <916CE57E-721C-473C-B6D7-ACBC9093147E@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=uOc6TgTgyugMAgoRR3raSVxz6IU7YgHue+iCNX4NoYU=;
+ b=WDWJArl3+Qb0MkHIcv75Vabyy2tPBNXjS/5tcBlLqwzxg/LTL1n7YlGJYQpGXXBGku
+ 9Yd2vCUg3eQ+f32Dyc3DzzWuDPXs5yJ5JArGDNZ3xobl/iemTuYB+d/iTS782mxkb3Gk
+ y04IEKjSsVimvpvKWl33k4ucKHFsRkjy4lSiNCpTD3rDGSL77H+vlMvxV8lhdvQulhVc
+ XCGjh07qSBzXvovglu6LP9PVJgWh3RZF7a8AmjRjlb5SzcsInYwKuWVTK3+h/Nry8b+b
+ U2f02bwnpaiUTwUVNYEGtUcYrfeK99cL7gliqRfcQugykYjDXUeNm1tACA8MCbdpW2ah
+ c96A==
+X-Gm-Message-State: AGi0PuZafbQPGHJHvASUww+bYDpp0nbPC9sZLPBuMiyAn8b18ONmdydZ
+ zqZ3n8hZQJ42XJy41xltrHq7UOwY4UylhcYcua8Ze6Fr
+X-Google-Smtp-Source: APiQypK3jDEkFXfwrTiUitFlXMc1hw8uRWSi+m8RjTtFrvOiVPsFnRsS0fpSsr03oV3HXT3h82npq3zeigjrFyHvrCg=
+X-Received: by 2002:a9d:4113:: with SMTP id o19mr10642548ote.354.1588866451416; 
+ Thu, 07 May 2020 08:47:31 -0700 (PDT)
+MIME-Version: 1.0
 References: <7cbfa8fd-7351-a718-d35a-699bc7df2a28@wanadoo.fr>
 In-Reply-To: <7cbfa8fd-7351-a718-d35a-699bc7df2a28@wanadoo.fr>
+Date: Thu, 7 May 2020 11:47:19 -0400
+Message-ID: <CAEXYVK4APqF4-Qi-MSu0VRmxfxbOsUVVOm2wDBehEngXm-UDsQ@mail.gmail.com>
 To: Jean Marie Brieussel <f6etu@wanadoo.fr>
-X-Mailer: iPhone Mail (17E262)
 Subject: Re: [USRP-users] Clock Rate problem on N300
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -65,10 +57,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5441176273922201086=="
+From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Brian Padalino <bpadalino@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6818611731960866309=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,104 +74,57 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============6818611731960866309==
+Content-Type: multipart/alternative; boundary="0000000000006ead9f05a510cc1e"
 
---===============5441176273922201086==
-Content-Type: multipart/alternative; boundary=Apple-Mail-B346DE8D-1F10-42EC-98D4-C9823334C671
-Content-Transfer-Encoding: 7bit
+--0000000000006ead9f05a510cc1e
+Content-Type: text/plain; charset="UTF-8"
 
+On Thu, May 7, 2020 at 11:33 AM Jean Marie Brieussel via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
---Apple-Mail-B346DE8D-1F10-42EC-98D4-C9823334C671
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-Have you tried explicitly specifying it as a device argument? What version o=
-f UHD are you running?
-
-Sent from my iPhone
-
-> On May 7, 2020, at 11:33 AM, Jean Marie Brieussel via USRP-users <usrp-use=
-rs@lists.ettus.com> wrote:
->=20
-> =EF=BB=BF
 > Hello,
->=20
-> Normally, the N300 has three programmable clock rate frequencies, 122.88 M=
-Hz / 125 MHz / 153.6 MHz on my N300 I can't seem to have another clock rate t=
-han 125 MHz. See the attached screenshot.
-> Regards,
->=20
-> Jean Marie
->=20
->=20
-> 	Garanti sans virus. www.avast.com
-> <test_a.png>
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> Normally, the N300 has three programmable clock rate frequencies, 122.88
+> MHz / 125 MHz / 153.6 MHz on my N300 I can't seem to have another clock
+> rate than 125 MHz. See the attached screenshot.
+>
 
---Apple-Mail-B346DE8D-1F10-42EC-98D4-C9823334C671
-Content-Type: text/html;
-	charset=utf-8
+I believe the clock rate and sample rates are different.
+
+What are you trying to do?
+
+Brian
+
+--0000000000006ead9f05a510cc1e
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">Have you tried explicitly specifying it as a=
- device argument? What version of UHD are you running?<br><br><div dir=3D"lt=
-r">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">O=
-n May 7, 2020, at 11:33 AM, Jean Marie Brieussel via USRP-users &lt;usrp-use=
-rs@lists.ettus.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"=
-cite"><div dir=3D"ltr">=EF=BB=BF
+<div dir=3D"ltr"><div dir=3D"ltr">On Thu, May 7, 2020 at 11:33 AM Jean Mari=
+e Brieussel via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com=
+">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_qu=
+ote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex">
  =20
 
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF-8"=
->
+   =20
  =20
- =20
+  <div>
     <p>Hello,<br>
     </p>
-    <span class=3D"tlid-translation translation" lang=3D"en"><span title=3D"=
-" class=3D"">Normally, the N300 has three programmable clock rate
-        frequencies, 122.88 MHz / 125 MHz / 153.6 MHz on my N300 I can't
-        seem to have another clock rate than 125 MHz.</span> <span title=3D"=
-">See the attached screenshot.</span><br>
-    </span>
-    <p><span class=3D"tlid-translation translation" lang=3D"en"><span title=3D=
-"" class=3D"">Regards,</span></span><span class=3D"tlid-translation-gender-i=
-ndicator
-        translation-gender-indicator"></span></p>
-    <p>Jean Marie<br>
-    </p>
-  <div id=3D"DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2"><br> <table style=3D"bord=
-er-top: 1px solid #D3D4DE;">
-	<tbody><tr>
-      <td style=3D"width: 55px; padding-top: 18px;"><a href=3D"https://www.a=
-vast.com/sig-email?utm_medium=3Demail&amp;utm_source=3Dlink&amp;utm_campaign=
-=3Dsig-email&amp;utm_content=3Demailclient" target=3D"_blank"><img src=3D"ht=
-tps://ipmcdn.avast.com/images/icons/icon-envelope-tick-round-orange-animated=
--no-repeat-v1.gif" alt=3D"" width=3D"46" height=3D"29" style=3D"width: 46px;=
- height: 29px;" data-unique-identifier=3D""></a></td>
-		<td style=3D"width: 470px; padding-top: 17px; color: #41424=
-e; font-size: 13px; font-family: Arial, Helvetica, sans-serif; line-height: 1=
-8px;">Garanti sans virus. <a href=3D"https://www.avast.com/sig-email?utm_med=
-ium=3Demail&amp;utm_source=3Dlink&amp;utm_campaign=3Dsig-email&amp;utm_conte=
-nt=3Demailclient" target=3D"_blank" style=3D"color: #4453ea;">www.avast.com<=
-/a> 		</td>
-	</tr>
-</tbody></table>
-<a href=3D"#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2" width=3D"1" height=3D"1"> <=
-/a></div>
+    <span lang=3D"en"><span title=3D"">Normally, the N300 has three program=
+mable clock rate
+        frequencies, 122.88 MHz / 125 MHz / 153.6 MHz on my N300 I can&#39;=
+t
+        seem to have another clock rate than 125 MHz.</span> <span title=3D=
+"">See the attached screenshot.</span></span></div></blockquote><div><br></=
+div><div>I believe the clock rate and sample rates are different.</div><div=
+><br></div><div>What are you trying to do?</div><div><br></div><div>Brian</=
+div></div></div>
 
-<div>&lt;test_a.png&gt;</div><span>_________________________________________=
-______</span><br><span>USRP-users mailing list</span><br><span>USRP-users@li=
-sts.ettus.com</span><br><span>http://lists.ettus.com/mailman/listinfo/usrp-u=
-sers_lists.ettus.com</span><br></div></blockquote></body></html>=
-
---Apple-Mail-B346DE8D-1F10-42EC-98D4-C9823334C671--
+--0000000000006ead9f05a510cc1e--
 
 
---===============5441176273922201086==
+--===============6818611731960866309==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -190,5 +135,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5441176273922201086==--
+--===============6818611731960866309==--
 
