@@ -2,50 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F0F11C9562
-	for <lists+usrp-users@lfdr.de>; Thu,  7 May 2020 17:48:17 +0200 (CEST)
-Received: from [::1] (port=53390 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E71261C96B7
+	for <lists+usrp-users@lfdr.de>; Thu,  7 May 2020 18:41:30 +0200 (CEST)
+Received: from [::1] (port=55862 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jWiky-0006wq-8M; Thu, 07 May 2020 11:48:16 -0400
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:35720)
+	id 1jWjaS-0006Ma-V5; Thu, 07 May 2020 12:41:28 -0400
+Received: from mout.web.de ([212.227.15.14]:32991)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <bpadalino@gmail.com>) id 1jWiku-0006pH-2e
- for usrp-users@lists.ettus.com; Thu, 07 May 2020 11:48:12 -0400
-Received: by mail-ot1-f52.google.com with SMTP id k110so4871632otc.2
- for <usrp-users@lists.ettus.com>; Thu, 07 May 2020 08:47:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=uOc6TgTgyugMAgoRR3raSVxz6IU7YgHue+iCNX4NoYU=;
- b=FJF23WR+Gx5/nSsHbZi1CHdzKyF8VUodTdsMam8CqYo36C6HpzfeQlE0nTWyQZr2WS
- +8KXxRY5NPvBzahYr8kluvSH0bRlR4uvkwO85gHptdO1e2K8ukge6An8VYRobaCkSgy+
- pAwYwtCURCEYqHiEe8Ai9FiJfeqmofrwhUdGAqjqdsVq9rAu9iRnn4ZZShK+eYe7KUrM
- hkojpDHw9VbhxwX2c2fur6xH5+FJDq1eghl0vXodL80g6+6ROKpAabtFhEGOjc99SJSd
- 5dy5gJkjC5wSwyukZ9MxJf/j93B54U5hjOgyZBgo7xj+4zVvzewIC3fLcgyarHpfdcaC
- 8AIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=uOc6TgTgyugMAgoRR3raSVxz6IU7YgHue+iCNX4NoYU=;
- b=WDWJArl3+Qb0MkHIcv75Vabyy2tPBNXjS/5tcBlLqwzxg/LTL1n7YlGJYQpGXXBGku
- 9Yd2vCUg3eQ+f32Dyc3DzzWuDPXs5yJ5JArGDNZ3xobl/iemTuYB+d/iTS782mxkb3Gk
- y04IEKjSsVimvpvKWl33k4ucKHFsRkjy4lSiNCpTD3rDGSL77H+vlMvxV8lhdvQulhVc
- XCGjh07qSBzXvovglu6LP9PVJgWh3RZF7a8AmjRjlb5SzcsInYwKuWVTK3+h/Nry8b+b
- U2f02bwnpaiUTwUVNYEGtUcYrfeK99cL7gliqRfcQugykYjDXUeNm1tACA8MCbdpW2ah
- c96A==
-X-Gm-Message-State: AGi0PuZafbQPGHJHvASUww+bYDpp0nbPC9sZLPBuMiyAn8b18ONmdydZ
- zqZ3n8hZQJ42XJy41xltrHq7UOwY4UylhcYcua8Ze6Fr
-X-Google-Smtp-Source: APiQypK3jDEkFXfwrTiUitFlXMc1hw8uRWSi+m8RjTtFrvOiVPsFnRsS0fpSsr03oV3HXT3h82npq3zeigjrFyHvrCg=
-X-Received: by 2002:a9d:4113:: with SMTP id o19mr10642548ote.354.1588866451416; 
- Thu, 07 May 2020 08:47:31 -0700 (PDT)
+ (Exim 4.93) (envelope-from <hex98@email.de>) id 1jWjaO-0006F6-MX
+ for usrp-users@lists.ettus.com; Thu, 07 May 2020 12:41:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+ s=dbaedf251592; t=1588869643;
+ bh=j1lqvBFqeSfJm4qfdEOCAOuyIwrrx/4U9KpXwE57WKk=;
+ h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+ b=rz88NhbOLAaNFQYoP88Gd4ScKATEVK+kAkr41Y2cQse4tRAfm5VqUDPVzeMG40FCT
+ 5EAmliBsil5y/3OQKjbC/cLPDZYKWbJHnEe1FSpCIcvpiMgnLFwM1eY4nbf4M8Ickv
+ f8xRRydnvnUzmTrYAdQxnMCHCaoMd241fg7QcCCw=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.1.14] ([87.150.154.203]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1M4bYo-1jWBbx0sPW-001mDD; Thu, 07
+ May 2020 18:40:43 +0200
+To: Rob Kossler <rkossler@nd.edu>
+References: <FE777AB1-6314-4C78-B763-82260D19A8A3@email.de>
+ <CAB__hTR=aj5uxHFxtz0tEFyF8iUfygOVefy8=YYHLW_MhW931Q@mail.gmail.com>
+Message-ID: <3010bf0d-c84f-811f-6a61-f1ebbf9c0279@email.de>
+Date: Thu, 7 May 2020 18:40:42 +0200
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:68.0)
+ Gecko/20100101 Thunderbird/68.8.0
 MIME-Version: 1.0
-References: <7cbfa8fd-7351-a718-d35a-699bc7df2a28@wanadoo.fr>
-In-Reply-To: <7cbfa8fd-7351-a718-d35a-699bc7df2a28@wanadoo.fr>
-Date: Thu, 7 May 2020 11:47:19 -0400
-Message-ID: <CAEXYVK4APqF4-Qi-MSu0VRmxfxbOsUVVOm2wDBehEngXm-UDsQ@mail.gmail.com>
-To: Jean Marie Brieussel <f6etu@wanadoo.fr>
-Subject: Re: [USRP-users] Clock Rate problem on N300
+In-Reply-To: <CAB__hTR=aj5uxHFxtz0tEFyF8iUfygOVefy8=YYHLW_MhW931Q@mail.gmail.com>
+X-Provags-ID: V03:K1:v3PZtu0Ixwn5tL7OMG7SlNnTmibhFn/c3N2ku/JeWzUVeckX67Y
+ eE44pwSMGaIXXMysO6TUwrPM3jqOPzSXR62zIlIUEcYmzEpjMHBXqjlV/+H3jbuBSSLEQJF
+ KHpaUYeMwGXey6ntQf2xmI2lcaZGwJM7llC2ODnXAiJgHJw/8KoN2XwZZdi8Zdp1TyZNGhN
+ a3r1NGLMngD4nfpGu3Kag==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:YZMTnyhTcro=:Twg1xujLcG0lxwSiwQfH+j
+ a4UjWKELjeL/1zhn02IGUIBFo9+ffNqqoGAqgywaDEmj7QlWu9ISUDh9jO7Fq4UaAKk3qVBmA
+ dhjcbP1I4m1rAVKav5XV2BiN+RTTPxCTZZcvyGL5tA/eLvpcpnxfX2WTUnr+uGNRiq/B7W81Q
+ 5keIAEN1P+L3jiQ9WyzGDd2MRcCco9GptxxkJPFJGmaXKnaZ7+f8BGZsz08Jg6mkqAavlYKKC
+ ZZKIWH+IYVFLfMrwXts81twvexKGlmj8kz7NqSGcy8ll9wkDxJJhc5+OIP1cGSda9ruoaD8Lm
+ gPmnoGWjDMO77aqzKHA9dKjUixKjZfuZu+cxTKz7PdPcdm64HLC3L+6eDq/WYihuGqJ/VSjyJ
+ WwT9x4NCDhs2073jlCAA1oI77rxe7pwDqzDMgrrDPVbxyn3YMrq+OekdnoOZY6GeWtp5nFm3H
+ v43TpKtDllnaFYn//NS9zdhMy869WZ77YjFS0/CuqcTe4MVgajqgMDH1uifR4ymV5nn1bJRml
+ Ib+TY9PBAzbjdp99mhqIzHzgLQED+IKe7GbOqsvwWFL0pYuaAT3cieR/jjR82RoRvd+ML1uff
+ RqKJOyc8Rz1WPYr/mS6Mh+KGIeMshDNpKi3N/HJsVA/jTbRBVLnjctWdBiJl1DsplbnmLH6lf
+ A4CVEnpmOo3xhczBiGjXPwVnJ1TxpXnVsGptJFhzAomlgCVDMvw6a4oIKHFPIGk2EH/E9DZIe
+ wsbSsRUmpSmwv7JSZzOehZxAURjCDR5fz/4H2J9o0i0duAca0h/mYgjshhwvZJDpTf/SYPvXE
+ gfcxzXl68ace3S0YwDZoQHuaI61tpSsDOwdzDoGM++GiFYNablzGfBgFto0Y12i3YSFy3GzKD
+ 1w0map3dHgn3pOAqW6gorzE1WYLhJvvrQiXxSvA4TZ9itKse+zwDxlLN4p5+Lftgn6HMqQMMa
+ qVE1oFQgpNb5ezYsH6G5ojT5oMA/94/eE9E6qTKx4IeMHiAUkbKP5w+T7IR6ZRRzJGjXd67/c
+ iOvgo8YyV/tLS/DBr4pTWFz419MSFNET6jRA1qmU+aPpZeB5QpDz7YVbgv5ytQvDQF8cQ38Hb
+ yTuslxtx10HLc0/Pk7duiV2im68B7WzeBkjNaQIlRQMnIRlhNf/h/8IOXMjHcnnh5xGuAkoST
+ weVo242ayxfA2+3wzgfzVVTbvDZUWXDUPh7R9HljwIBSure8nHPbiqUBx5miB3UKQubXJYEcy
+ RGnMoGY9iyxmSlFMc
+Subject: Re: [USRP-users] TX underflows when using multi_usrp vs. two
+ independent tx_streamers
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,10 +69,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6818611731960866309=="
+From: Max via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Max <hex98@email.de>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,66 +87,73 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6818611731960866309==
-Content-Type: multipart/alternative; boundary="0000000000006ead9f05a510cc1e"
+Hi Rob,
 
---0000000000006ead9f05a510cc1e
-Content-Type: text/plain; charset="UTF-8"
+thank you for your comments.
 
-On Thu, May 7, 2020 at 11:33 AM Jean Marie Brieussel via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+I did not think about using multiple streamers with multi_usrp, but will
+give it a try before considering DPDK.
 
-> Hello,
-> Normally, the N300 has three programmable clock rate frequencies, 122.88
-> MHz / 125 MHz / 153.6 MHz on my N300 I can't seem to have another clock
-> rate than 125 MHz. See the attached screenshot.
+More important, about your two questions:
+Using the Replay block is not an option, but I indeed forgot to add
+clock_soure=external and time_source=external to the arguments of
+benchmark_rate. Now if I use external synchronization, the benchmark
+just hangs with <5% CPU usage and never finishes.
+Running rx benchmarks however works, and I also never experienced any
+sync issues when streaming data from two USRPs in parallel with my
+custom application.
+
+I hope you asked this question because you had a suspicion.
+
+Regards,
+Max
+
+
+>> I have two X300 USRPs connected to the same PC by 10Gb. Both USRPs are synchronized with 10MHz.
+>>
+>> I can receive data without any overflows at 200 MHz (one channel per USRP), but transmitting results in massive underflows for 184.32 and 200 MHz.
+>>
+>> benchmark_rate shows the same behavior when transmitting on both USRPs at the same time; sampling rates <= 100 MHz or using just one USRP however works without underflows.
+>>
+>>
+>>
+>> But I also tried running two benchmark_rate processes in parallel, one for each of the USRPs, and this works flawlessly.
+>>
+>> Is there any explanation, why using uhd::usrp::multi_usrp results in massive underflows, while operating two devices in parallel in general seems to work?
+>>
+>>
+>>
+>> I assume using two uhd::device objects with independent tx_streamers could be a workaround for me. But using multi_usrp nevertheless seems more convenient.
 >
-
-I believe the clock rate and sample rates are different.
-
-What are you trying to do?
-
-Brian
-
---0000000000006ead9f05a510cc1e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Thu, May 7, 2020 at 11:33 AM Jean Mari=
-e Brieussel via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com=
-">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_qu=
-ote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex">
- =20
-
-   =20
- =20
-  <div>
-    <p>Hello,<br>
-    </p>
-    <span lang=3D"en"><span title=3D"">Normally, the N300 has three program=
-mable clock rate
-        frequencies, 122.88 MHz / 125 MHz / 153.6 MHz on my N300 I can&#39;=
-t
-        seem to have another clock rate than 125 MHz.</span> <span title=3D=
-"">See the attached screenshot.</span></span></div></blockquote><div><br></=
-div><div>I believe the clock rate and sample rates are different.</div><div=
-><br></div><div>What are you trying to do?</div><div><br></div><div>Brian</=
-div></div></div>
-
---0000000000006ead9f05a510cc1e--
-
-
---===============6818611731960866309==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> Hi Max,
+> I don't know the direct answer to your issue, but I have a few comments:
+> 1) Tx Underruns have always been a much bigger issue than Rx Overruns.
+> It is always harder to get this solved.
+> 2) Even with multi_usrp, you can have 2 threads running. So, you don't
+> need to have 2 device objects.  I do this in my software. You can get
+> a streamer for channel 0 and a separate streamer for channel 1 and
+> then run them in different threads. Not quite as convenient as having
+> a single streamer though.  And, not certain if it will solve the issue
+> for you.
+> 3) With UHD 3.15 and earlier, using DPDK helps alot with streaming.
+> It is a pain to get configured, but it does stream much better once
+> properly configured
+> 4) With UHD 4.0, I've heard that streaming is improved overall such
+> that it might work fine without DPDK.  But, that is a big question
+> mark and there are always reasons to be cautious  when jumping on to
+> the next best thing...
+>
+> Two questions:
+> 1) When it fails with benchmark rate, are you setting PPS to external
+> so that both device clocks are set to the same time?
+> 2) Is your Tx waveform dynamically changing or is it a fixed length
+> sequence that is repeated?  If the latter, perhaps you could transmit
+> directly from the FPGA using the Replay block.
+> Rob
+> Rob
+>
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6818611731960866309==--
-
