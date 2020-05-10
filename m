@@ -2,66 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14AE51C9B40
-	for <lists+usrp-users@lfdr.de>; Thu,  7 May 2020 21:39:41 +0200 (CEST)
-Received: from [::1] (port=47354 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10A571CCA8F
+	for <lists+usrp-users@lfdr.de>; Sun, 10 May 2020 13:10:44 +0200 (CEST)
+Received: from [::1] (port=49592 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jWmMu-0005CB-77; Thu, 07 May 2020 15:39:40 -0400
-Received: from mout.web.de ([217.72.192.78]:60253)
+	id 1jXjqv-00014Z-Mu; Sun, 10 May 2020 07:10:37 -0400
+Received: from mail-io1-f48.google.com ([209.85.166.48]:42719)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <hex98@email.de>) id 1jWmMq-00051z-Co
- for usrp-users@lists.ettus.com; Thu, 07 May 2020 15:39:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1588880335;
- bh=cZ2yXk1srCKQmcsvn1FEglLKFNROFHsZceUL6MKDmM0=;
- h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
- b=LW4uz8Z8kYHxoqN0Wn4sPI9H50PDJKdCdYoZaXZC9We6I0yPaS8R8nZ+ewBTnHRys
- FfG5FaJRI2y9ebCr2Ls0QdtQ4aED5W5mjwAD55eSWAyH4GnHAHKbkkRwjDkkquBeYA
- 0PdfHN2b8UQn/L8G4t02dk+iYQYmpXGb87h4elS8=
-X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.14] ([87.150.154.203]) by smtp.web.de (mrweb101
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0MeBPe-1jlaS10o6Y-00Pxeo; Thu, 07
- May 2020 21:38:55 +0200
-To: Brian Padalino <bpadalino@gmail.com>
-References: <FE777AB1-6314-4C78-B763-82260D19A8A3@email.de>
- <CAB__hTR=aj5uxHFxtz0tEFyF8iUfygOVefy8=YYHLW_MhW931Q@mail.gmail.com>
- <3010bf0d-c84f-811f-6a61-f1ebbf9c0279@email.de>
- <CAGNhwTPdQpcTQZEGe916-EoXaWkTU3iztw-g=+Lccd6dCOhjyA@mail.gmail.com>
- <e17443be-6f0a-9c2a-a1a4-30f722ffb2e7@email.de>
- <CAEXYVK5SVxQH0KRHd1S+vOppUuEy01K0NL4g_s9NzwoXhTX=VQ@mail.gmail.com>
-Message-ID: <3cba6dbe-b099-ef37-b796-e482befb715d@email.de>
-Date: Thu, 7 May 2020 21:38:54 +0200
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:68.0)
- Gecko/20100101 Thunderbird/68.8.0
+ (Exim 4.93) (envelope-from <adray0001@gmail.com>) id 1jXjqs-00010J-EK
+ for usrp-users@lists.ettus.com; Sun, 10 May 2020 07:10:34 -0400
+Received: by mail-io1-f48.google.com with SMTP id e9so6460154iok.9
+ for <usrp-users@lists.ettus.com>; Sun, 10 May 2020 04:10:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=tE51gw1odCZvPZKOsHzR8IvgfQOnKr38mQ6lFrUadbo=;
+ b=Zc5iI3A0nutIO6z5YDLfIUZGyLWZrMZtIstEjUxyWkfVowSjr3RnJB1CkjqkHe9/7x
+ ow0hwWlAq0OLFDMiPHojPkMQu+s/vrEhc2yn3K9FYCJtBylLymVsXLIZIEIawCyo1bS/
+ UPF0u1RWMA88iLses+Tlf4NJ010zpi7m2idSE0MavAAlQxwLJ5lZYYsn/g1Gaeh9qQXG
+ EaJxfaLnD2VG3mOMEd8jaXOXlmBZ+pALCmnp2JJ5KoKZlIF4h6Fwy7v7aRrx0V+g0csL
+ R41YB/Xf94KV9F6LyANCvK3kud/MF+9HsB+J3vyAHGkGi4m2e6zUu49F55vzL4qVMFqC
+ klLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=tE51gw1odCZvPZKOsHzR8IvgfQOnKr38mQ6lFrUadbo=;
+ b=lDqHLMhk8Dq6J4UttB5uc9RtSnKC4AAJMFRmDuqWSQfokI718sMSiZ2WgiJKw7Z/Fy
+ CaqQ+Ie6d44ysgERErPAxKV4zlZlPjnu5HNSZrgoi9q86xu3DH8w6GXQRrIqQizcC7xj
+ Oxw6rqks6L4hYFJMiRb6oRS3Ztoarr6Ks+oiQntcZKgEpY4DhpMizzUnMdqAmQItXQ6k
+ nBJObXICuBJeAdWm/9mcS/ruZ14FF1eZgUJZUi1bKlTVmDQbv4ZcWjXjfG7izUH1Q5iQ
+ mVW0FBN0vHHBJeXkTaULI+vRicw0ikGYL6Aile//OgNYruokAqzUrhci7ewemHb6ZL3P
+ 9ueQ==
+X-Gm-Message-State: AGi0PuZVJcLrX/3ZgpQGfTYrDo70KtWCzSgzetiLGZsY9oPQYu66SIdS
+ BtJx50EsO3USc/s9dLfVRLHo6iNPbmgh/z2zmmNhkh/1s6U=
+X-Google-Smtp-Source: APiQypLgAMVWhSfrMVa3H0kHF+KBAPCw/nmUCYPnz5KGrMplUE3fmZ7SnBXrkWbVOkq0J+SB+he05r+zCNIJqTqd5uw=
+X-Received: by 2002:a5e:8203:: with SMTP id l3mr10636611iom.35.1589108993582; 
+ Sun, 10 May 2020 04:09:53 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAEXYVK5SVxQH0KRHd1S+vOppUuEy01K0NL4g_s9NzwoXhTX=VQ@mail.gmail.com>
-X-Provags-ID: V03:K1:Frk4xqMzlpUTf3Rb9UVEtmapTqw8pUhsFs5n0jCNAcUpoOWBiHy
- H2vUYz16o2UuNzsolXpgZ7ITARXPu3Ac/I78HR5/kU2yKrPfzmSzk5VZBw78VdBAY+O2o2V
- 2V43yfPeE2JZSVo/gdagoIqzAk7zFkxsxmBXKcEq7o0yZW6YBn8lAY1Vam+jN49wDfd/XoZ
- CsK18P1UPbaSzjZR1/9lg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:kTluuzGLj9w=:89weuKfm7n+d6iPqgTihsi
- xwh68HzeT7tJU/s62Ajj4EHw0blPzZ5yZM3XQHvPSHB9LLOmqmjCJ01BL2LNmK7EKjnSzVrpu
- kLSqY+xDo4ow6pykvtVpFtWwOiPhq+yVwjGi7klnXaXj9HpTb6ZiCKJYDNQFh5RM7loFZD0kr
- 9BZ0NtkZU4fG8bvmNOyPs3mQP3SZLs3H7cwZaDznciKwPgKXqhouKu/3FNQ+wm9l+fBtEhpXD
- Yzsg0zqekwcKM2O4K9cq993jslSgX7wUnyCOKGqGV7Gy9HaWVgdf7xPqlNxqWw5UTEp4BCZL4
- P0ErmRgx1PxFJPLkyejZww1gVrekLhIk0b7mCHh1MlcmNAXgE2ECngIU5GL881bC8fgjF0qw7
- f8Wq0f4etKzRjO3sajX3OBWOhJMoJ6Se7Z/TWKi9gdRf91fAK7Ig2/VMV2Ez1lxIJc0p2MYBQ
- uUJendWw7/pvuv+4nfpuew7yU6ZWsGM5zmXCkjiqQyqNFZKpBQ691N5ZjwEtXbu3X+4QOfhIw
- 0DgSa8rAY4k4wV1DO2jCwtqqw69h980+iyFGu6Fs3RLieNIHSp+jbZ5xDK2m2AZktw1ZptC3K
- P0A3VnwRsUKwmWVdq6NancUu+TfQ3XNxsRbvZ+dv2CFdjfAjmLD3uix2ajauekcLEJl+6yVDw
- fjaauYGv0JKrYuDha6seWADiE/R0uhS7HfuJWVAP0XX3iMz+EwQ28vdGQ3HcdFtdw8bvOKNQP
- jH/Iz1SerMPzPt754zOB+NgsCfgQ9XqTetPewov6aIKcmnH1T0wkOxqOdrPMVcBnB494de8d9
- uaw6NXPBadGllLrZKX040ceJKwyDWSycfFvOfoDD2gM+yUHMkIG0kQpUHydbFma41q0nqeWHW
- AFCBzw6e1RAc+QRqhmw/88u+YhUllBoPlrgDO6fgZR0fy90Xmc2lcOLxPfQmsVT5jKWzRdJ7v
- Olj7Dq0+VQyYXwiFBZ0kYjPnYsEy2rk1daJR+mqygAP7E9ggZaY7PFZBdNnWe2LFAjFgjIBoE
- qQ+xLdQ9Mn4e/1b9gYNHL/FSyRu4dJfclTDIPh9TL8G0J18PHeqbUi6xLGTqlrJRtDjvCnEm3
- YbX7xcDej0eLgp2k3OEMgQQntvS/SYXALd30x0KLRN1h2tFguXlYz/za0iqwhX8JkTPKg8H4s
- 7OsiEe1c3KS/2xZ/PxYkHuWvHRP4/dR8v1z2l2wsb8EfTnOUZ634fDSWxYCZsUuo/lDOyvOok
- j+F5d3OfptlMF5ApD
-Subject: Re: [USRP-users] TX underflows when using multi_usrp vs. two
- independent tx_streamers
+Date: Sun, 10 May 2020 14:09:42 +0300
+Message-ID: <CAPRRyxstLciU5Dh1bP7KkTMGBzjOu1pMmj4s=ECFcP6xYcLMTg@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>,
+ discuss-gnuradio <discuss-gnuradio@gnu.org>
+Subject: [USRP-users] disabling ddc duc blocks in rfnoc usrp e310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,11 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Max via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Max <hex98@email.de>
-Cc: usrp-users <usrp-users@lists.ettus.com>, Rob Kossler <rkossler@nd.edu>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
+Content-Type: multipart/mixed; boundary="===============9116334275598905578=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -91,28 +71,48 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-My bad!
-Of course you are right; there is a dual 10Gb option for the X300.
+--===============9116334275598905578==
+Content-Type: multipart/alternative; boundary="000000000000126aa505a5494500"
 
-Max
+--000000000000126aa505a5494500
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> On Thu, May 7, 2020 at 2:58 PM Max via USRP-users
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     Hi Michael,
->
->     thank you for the feedback.
->     Unfortunately the X300 offers just one SFP+, so combining two links
->     should not be possible. I also don't think the network interface itself
->     is the bottleneck, considering two independent processes don't seem to
->     have a problem providing the data.
->
->
-> You can use a dual 10Gbe FPGA image and get dual links on the X300.
->
-> Brian
+Hello. I want to create an image of fosphor, window, fft, 2x AXI FIFOs, FIR
+for USRP E310. I need to change the spectral bandwidth. But with the
+samp_rate parameter this does not work out very well. Therefore, I want to
+use the FIR filter for these purposes, but when building the bit file, I do
+not have enough space on the FPGA. Therefore, I decided to turn off the DDC
+and DUC blocks, but I don=E2=80=99t know how to do it. I would be grateful =
+for any
+information.
+
+--000000000000126aa505a5494500
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello. I want to create an image of fosphor, window, fft, =
+2x AXI FIFOs, FIR for USRP E310.
+I need to change the spectral bandwidth. But with the samp_rate parameter t=
+his does not work out very well. Therefore, I want to use the FIR filter fo=
+r these purposes, but when building the bit file, I do not have enough spac=
+e on the FPGA. Therefore, I decided to turn off the DDC and DUC blocks, but=
+ I don=E2=80=99t know how to do it. I would be grateful for any information=
+.</div>
+
+--000000000000126aa505a5494500--
+
+
+--===============9116334275598905578==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============9116334275598905578==--
+
