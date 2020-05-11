@@ -2,53 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A0261CE552
-	for <lists+usrp-users@lfdr.de>; Mon, 11 May 2020 22:24:07 +0200 (CEST)
-Received: from [::1] (port=42692 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDF681CE566
+	for <lists+usrp-users@lfdr.de>; Mon, 11 May 2020 22:25:37 +0200 (CEST)
+Received: from [::1] (port=44466 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jYEy4-0004ia-AQ; Mon, 11 May 2020 16:24:04 -0400
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:40915)
+	id 1jYEzZ-00052w-0u; Mon, 11 May 2020 16:25:37 -0400
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:33454)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jYEy0-0004ap-RP
- for usrp-users@lists.ettus.com; Mon, 11 May 2020 16:24:00 -0400
-Received: by mail-ot1-f41.google.com with SMTP id i27so8648063ota.7
- for <usrp-users@lists.ettus.com>; Mon, 11 May 2020 13:23:40 -0700 (PDT)
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jYEzU-0004vR-Ix
+ for usrp-users@lists.ettus.com; Mon, 11 May 2020 16:25:32 -0400
+Received: by mail-ot1-f42.google.com with SMTP id v17so724511ote.0
+ for <usrp-users@lists.ettus.com>; Mon, 11 May 2020 13:25:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LkNgbnWMvt4xxz4sR1KeVuZ4xEELmLfuX+V7NS3OI2g=;
- b=fzj5ENzWMtVaFfh33OBYzjPD9orSqbQrrhzG7IvxXRv8yPtIL7OrpbueRDfJ3m8727
- euxLkJPSyQHgt1+dN13rdbWHLKpLzr4095MBOEy/lJQtKn/qlJ0YODfzOwYCXMTHRTTy
- P3lnurlfncyS2GXTBK207fX1A2gxjFWZmGq+nT65r44WNNH7jSUqoBej0GcCW+s6xuRW
- FbwSw1pmTFLBM3TWGilrKc+OTecxVOB6/VlkCd082labuXO45obQoR+sYVVUmRvpMdhy
- aDeHH9nuKP6qjZPkX2eAvaOwtXvGkQSmHVh6GcvWQN1JeMNrIL0fS+VR7udY7e9KDzAF
- 5xhg==
+ :cc; bh=rL4RpEraC0ClvfzKvrnMXOPCfD+Comx9wOPEiDzqLnw=;
+ b=RMqUZSmYY0CcuIlEGhwWvTxzHIK/3WwX63pme/SiNYJAIdDMfAm21gELTpkRRLJcEo
+ 7Zxn4eMdqFW8Y7SxTK6ZksV3H8LyB0oQmkKf5YzWuoRtNCFExTBvxOp+YJyQftWdsFHq
+ Dm8gvosOMeBw5WZOZcNIOYXysUazQ8jHYDVD0yEGx2emiD8/H4VDUssegRrt2plTRBQo
+ hrq/b8C50V5oJIBcfw/N4MjETbmyxzyU8gnaIAxecK2aO1NHk1Pu36FBotWe3Omg4jrJ
+ gzmcspREh+TvJ3VLzXMi9SOhVI2YORv+BG7l0hlLJpwvr8F757xX5zs5+f9fTNkY10bl
+ 2b8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=LkNgbnWMvt4xxz4sR1KeVuZ4xEELmLfuX+V7NS3OI2g=;
- b=DPLwTrq87pnnpmBnfAhqnLzxx6lFMs8EXUCl21Ugxb3eORQUnhb3oh7AVBLKA/GICs
- T61I9ZoEKdLeCTNwPtP5Lo5j9gNsXUop+WPexQ0kxXl5AfhKp+kbiv4Q8e7d55hfdR8w
- /7Y7e3oIY1I9HijmcJOAYEYoUOUxBvlBVxF2HrewEpK79bK3XezvKbQoCb0yPDiZRRom
- FLb81oG1dKJa32IUfE8lpPhbPj64/6pT0jU5Vjkmm5Cd0aM5AtH+rH5x2U1OPQkwdu+t
- kitNuoo3womzGrNraXu6/cRz02duL2DMxfuuxQ/TO99kapxfT02i44GV08d1cMbkFnwx
- E6Qg==
-X-Gm-Message-State: AGi0PuZJfivpvoqaIXenP3L11t0ejoH+inWBmL1bbC60IqrJoTPj1N1K
- DSfNLcKGUYJHKZ1HzDhJ6OboJQ8dCYc+Ul7Ll6/MUQ==
-X-Google-Smtp-Source: APiQypIHRpaOxwwCg2+/9ZmW7ShTQZSiMYYbptzW0cAmonxKXs19nOzhlRpvkYkaDVvoZsLom8qrMghyoUyRn0IEOoc=
-X-Received: by 2002:a05:6830:4db:: with SMTP id
- s27mr13456779otd.301.1589228600046; 
- Mon, 11 May 2020 13:23:20 -0700 (PDT)
+ bh=rL4RpEraC0ClvfzKvrnMXOPCfD+Comx9wOPEiDzqLnw=;
+ b=L/X3/YljQQ2IU2FGoh1CcFWvD+29fdGf9aeCeETGwk9AV8blay4TWn/tHe4LrijrnG
+ c9uQjXaTtCB6m5t7+16bGM0N1AB7z5lHdwnRn4tCrN7/X3B8vFdujMz6MJSLkM5ZNdl3
+ DvvjUolY7mtsPEkbi3vuNiB4e8WL4VV40UdMtIGOkYNhmm2VVBOTy7jVRhTxvbfbEXQk
+ //tDyRirzSuPc6ksQRwYk4N+FHY5GvB6Asisq1Ff+0Aohd2Jmrt4kk8IznYKbLgz7V3R
+ 9smOuvQU6vYRLyVu+a/oq5yw4MmgYIlFnH4F3JDb4NhT7ONe4HeTiJAcZja+laiNjAAv
+ vjPw==
+X-Gm-Message-State: AGi0PuYg62Ijip+ySUlfx574rcCAVpRfwWkhpq1w4wNaqiznsF1EQCRR
+ O0X1a0jk7fog97WgL3D0TShQ+Nnxmbvm/7D7SHGaUg==
+X-Google-Smtp-Source: APiQypITVXBL0TQpp5Ssf+hjWz4WZeMupzbBexZaQguSq8SRC1jx+17QjEVoXVsqxEr4CS9SIpJ67gyTNvQgRbJCUOU=
+X-Received: by 2002:a05:6830:1da1:: with SMTP id
+ z1mr14045790oti.58.1589228691837; 
+ Mon, 11 May 2020 13:24:51 -0700 (PDT)
 MIME-Version: 1.0
 References: <FE777AB1-6314-4C78-B763-82260D19A8A3@email.de>
  <CAB__hTR=aj5uxHFxtz0tEFyF8iUfygOVefy8=YYHLW_MhW931Q@mail.gmail.com>
  <3010bf0d-c84f-811f-6a61-f1ebbf9c0279@email.de>
  <CAB__hTTGOFicX7JY+RA22OUf1zXLWfAzYQoneiRGa-1zZM5gSQ@mail.gmail.com>
  <99c27324-6e6c-790c-a6a6-40cb7df21f74@email.de>
-In-Reply-To: <99c27324-6e6c-790c-a6a6-40cb7df21f74@email.de>
-Date: Mon, 11 May 2020 16:23:09 -0400
-Message-ID: <CAB__hTRZkV8m5y6fRODdEP3rh=Z07LrSHxYLGOAAL9bbX7u_5g@mail.gmail.com>
+ <CAB__hTRZkV8m5y6fRODdEP3rh=Z07LrSHxYLGOAAL9bbX7u_5g@mail.gmail.com>
+In-Reply-To: <CAB__hTRZkV8m5y6fRODdEP3rh=Z07LrSHxYLGOAAL9bbX7u_5g@mail.gmail.com>
+Date: Mon, 11 May 2020 16:24:40 -0400
+Message-ID: <CAB__hTS18U8PmJbohKnaYUAOZebFThFgdRzhcPDW0R_th+AHLw@mail.gmail.com>
 To: Max <hex98@email.de>
 Subject: Re: [USRP-users] TX underflows when using multi_usrp vs. two
  independent tx_streamers
@@ -66,7 +67,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Rob Kossler <rkossler@nd.edu>
 Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3780168944992652992=="
+Content-Type: multipart/mixed; boundary="===============7103367632473404370=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,143 +81,159 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3780168944992652992==
-Content-Type: multipart/alternative; boundary="0000000000002c7c5905a5651ed8"
+--===============7103367632473404370==
+Content-Type: multipart/alternative; boundary="000000000000a4fbf705a565234f"
 
---0000000000002c7c5905a5651ed8
+--000000000000a4fbf705a565234f
 Content-Type: text/plain; charset="UTF-8"
 
-Great.  One caution though.  When you do have errors, I think that if
-multiple channels are in a single streamer, UHD keeps them time aligned
-after the errors (not 100% sure though).  If you have separate streamers,
-then if one of them has an error but the other does not, the outputs may no
-longer be sample synchronous.
+Forgot to mention.... For the reason I mentioned above, I typically put a
+time stamp on every packet I send (rather than just the first packet) so
+that if errors occur, subsequent packets will still be aligned.
 Rob
 
-On Mon, May 11, 2020 at 4:13 PM Max <hex98@email.de> wrote:
+On Mon, May 11, 2020 at 4:23 PM Rob Kossler <rkossler@nd.edu> wrote:
 
-> Hi Rob
+> Great.  One caution though.  When you do have errors, I think that if
+> multiple channels are in a single streamer, UHD keeps them time aligned
+> after the errors (not 100% sure though).  If you have separate streamers,
+> then if one of them has an error but the other does not, the outputs may no
+> longer be sample synchronous.
+> Rob
 >
-> Just want to let you know that using one tx_streamer per USRP works like
-> a charm.
-> So far I've streamed continuously at 184.32 MHz for a few hours without
-> any underflow. I didn't test it as intensively with 200MHz, but so far
-> it works as well.
+> On Mon, May 11, 2020 at 4:13 PM Max <hex98@email.de> wrote:
 >
-> So thank you for pointing me in the right direction.
->
-> Best regards,
-> Max
->
->
-> Am 07.05.20 um 19:43 schrieb Rob Kossler:
-> >> More important, about your two questions:
-> >> Using the Replay block is not an option,
-> > Bummer.  Because if you truly need to stream at 200e6 from CPU to
-> > host, that is pretty tough to make it work over long intervals with no
-> > underruns - even with only 1 device.
-> >
-> >> but I indeed forgot to add
-> >> clock_soure=external and time_source=external to the arguments of
-> >> benchmark_rate. Now if I use external synchronization, the benchmark
-> >> just hangs with <5% CPU usage and never finishes.
-> >> Running rx benchmarks however works, and I also never experienced any
-> >> sync issues when streaming data from two USRPs in parallel with my
-> >> custom application.
-> >>
-> >> I hope you asked this question because you had a suspicion.
-> > I just wanted to make sure that there wasn't any issue with the two
-> > devices having different clocks.  BTW, you can also use the --pps
-> > command line option rather than the args "time_source" option.  Both
-> > should work the same, I think.  But, unfortunately, that was not the
-> > issue.
-> >
-> > Also, wanted to let you know that I just happen to have two X310/UBX
-> > devices by my side, so I tried your experiment and got identical
-> > results:
-> > * Rx 2x200 works fine (channels 0,2 for me) with single instance of
-> > benchmark_rate
-> > * Tx 1x200 works fine for individual channel 0 or 2
-> > * Tx 2x200 FAILS when running single instance of benchmark_rate
-> > * Tx 2x200 works fine when running separate instances of
-> > benchmark_rate for the 2 channels
-> >
-> > Rob
-> >>
-> >> Regards,
-> >> Max
-> >>
-> >>
-> >>>> I have two X300 USRPs connected to the same PC by 10Gb. Both USRPs
-> are synchronized with 10MHz.
-> >>>>
-> >>>> I can receive data without any overflows at 200 MHz (one channel per
-> USRP), but transmitting results in massive underflows for 184.32 and 200
-> MHz.
-> >>>>
-> >>>> benchmark_rate shows the same behavior when transmitting on both
-> USRPs at the same time; sampling rates <= 100 MHz or using just one USRP
-> however works without underflows.
-> >>>>
-> >>>>
-> >>>>
-> >>>> But I also tried running two benchmark_rate processes in parallel,
-> one for each of the USRPs, and this works flawlessly.
-> >>>>
-> >>>> Is there any explanation, why using uhd::usrp::multi_usrp results in
-> massive underflows, while operating two devices in parallel in general
-> seems to work?
-> >>>>
-> >>>>
-> >>>>
-> >>>> I assume using two uhd::device objects with independent tx_streamers
-> could be a workaround for me. But using multi_usrp nevertheless seems more
-> convenient.
-> >>>
-> >>> Hi Max,
-> >>> I don't know the direct answer to your issue, but I have a few
-> comments:
-> >>> 1) Tx Underruns have always been a much bigger issue than Rx Overruns.
-> >>> It is always harder to get this solved.
-> >>> 2) Even with multi_usrp, you can have 2 threads running. So, you don't
-> >>> need to have 2 device objects.  I do this in my software. You can get
-> >>> a streamer for channel 0 and a separate streamer for channel 1 and
-> >>> then run them in different threads. Not quite as convenient as having
-> >>> a single streamer though.  And, not certain if it will solve the issue
-> >>> for you.
-> >>> 3) With UHD 3.15 and earlier, using DPDK helps alot with streaming.
-> >>> It is a pain to get configured, but it does stream much better once
-> >>> properly configured
-> >>> 4) With UHD 4.0, I've heard that streaming is improved overall such
-> >>> that it might work fine without DPDK.  But, that is a big question
-> >>> mark and there are always reasons to be cautious  when jumping on to
-> >>> the next best thing...
-> >>>
-> >>> Two questions:
-> >>> 1) When it fails with benchmark rate, are you setting PPS to external
-> >>> so that both device clocks are set to the same time?
-> >>> 2) Is your Tx waveform dynamically changing or is it a fixed length
-> >>> sequence that is repeated?  If the latter, perhaps you could transmit
-> >>> directly from the FPGA using the Replay block.
-> >>> Rob
-> >>> Rob
-> >>>
+>> Hi Rob
+>>
+>> Just want to let you know that using one tx_streamer per USRP works like
+>> a charm.
+>> So far I've streamed continuously at 184.32 MHz for a few hours without
+>> any underflow. I didn't test it as intensively with 200MHz, but so far
+>> it works as well.
+>>
+>> So thank you for pointing me in the right direction.
+>>
+>> Best regards,
+>> Max
+>>
+>>
+>> Am 07.05.20 um 19:43 schrieb Rob Kossler:
+>> >> More important, about your two questions:
+>> >> Using the Replay block is not an option,
+>> > Bummer.  Because if you truly need to stream at 200e6 from CPU to
+>> > host, that is pretty tough to make it work over long intervals with no
+>> > underruns - even with only 1 device.
+>> >
+>> >> but I indeed forgot to add
+>> >> clock_soure=external and time_source=external to the arguments of
+>> >> benchmark_rate. Now if I use external synchronization, the benchmark
+>> >> just hangs with <5% CPU usage and never finishes.
+>> >> Running rx benchmarks however works, and I also never experienced any
+>> >> sync issues when streaming data from two USRPs in parallel with my
+>> >> custom application.
+>> >>
+>> >> I hope you asked this question because you had a suspicion.
+>> > I just wanted to make sure that there wasn't any issue with the two
+>> > devices having different clocks.  BTW, you can also use the --pps
+>> > command line option rather than the args "time_source" option.  Both
+>> > should work the same, I think.  But, unfortunately, that was not the
+>> > issue.
+>> >
+>> > Also, wanted to let you know that I just happen to have two X310/UBX
+>> > devices by my side, so I tried your experiment and got identical
+>> > results:
+>> > * Rx 2x200 works fine (channels 0,2 for me) with single instance of
+>> > benchmark_rate
+>> > * Tx 1x200 works fine for individual channel 0 or 2
+>> > * Tx 2x200 FAILS when running single instance of benchmark_rate
+>> > * Tx 2x200 works fine when running separate instances of
+>> > benchmark_rate for the 2 channels
+>> >
+>> > Rob
+>> >>
+>> >> Regards,
+>> >> Max
+>> >>
+>> >>
+>> >>>> I have two X300 USRPs connected to the same PC by 10Gb. Both USRPs
+>> are synchronized with 10MHz.
+>> >>>>
+>> >>>> I can receive data without any overflows at 200 MHz (one channel per
+>> USRP), but transmitting results in massive underflows for 184.32 and 200
+>> MHz.
+>> >>>>
+>> >>>> benchmark_rate shows the same behavior when transmitting on both
+>> USRPs at the same time; sampling rates <= 100 MHz or using just one USRP
+>> however works without underflows.
+>> >>>>
+>> >>>>
+>> >>>>
+>> >>>> But I also tried running two benchmark_rate processes in parallel,
+>> one for each of the USRPs, and this works flawlessly.
+>> >>>>
+>> >>>> Is there any explanation, why using uhd::usrp::multi_usrp results in
+>> massive underflows, while operating two devices in parallel in general
+>> seems to work?
+>> >>>>
+>> >>>>
+>> >>>>
+>> >>>> I assume using two uhd::device objects with independent tx_streamers
+>> could be a workaround for me. But using multi_usrp nevertheless seems more
+>> convenient.
+>> >>>
+>> >>> Hi Max,
+>> >>> I don't know the direct answer to your issue, but I have a few
+>> comments:
+>> >>> 1) Tx Underruns have always been a much bigger issue than Rx Overruns.
+>> >>> It is always harder to get this solved.
+>> >>> 2) Even with multi_usrp, you can have 2 threads running. So, you don't
+>> >>> need to have 2 device objects.  I do this in my software. You can get
+>> >>> a streamer for channel 0 and a separate streamer for channel 1 and
+>> >>> then run them in different threads. Not quite as convenient as having
+>> >>> a single streamer though.  And, not certain if it will solve the issue
+>> >>> for you.
+>> >>> 3) With UHD 3.15 and earlier, using DPDK helps alot with streaming.
+>> >>> It is a pain to get configured, but it does stream much better once
+>> >>> properly configured
+>> >>> 4) With UHD 4.0, I've heard that streaming is improved overall such
+>> >>> that it might work fine without DPDK.  But, that is a big question
+>> >>> mark and there are always reasons to be cautious  when jumping on to
+>> >>> the next best thing...
+>> >>>
+>> >>> Two questions:
+>> >>> 1) When it fails with benchmark rate, are you setting PPS to external
+>> >>> so that both device clocks are set to the same time?
+>> >>> 2) Is your Tx waveform dynamically changing or is it a fixed length
+>> >>> sequence that is repeated?  If the latter, perhaps you could transmit
+>> >>> directly from the FPGA using the Replay block.
+>> >>> Rob
+>> >>> Rob
+>> >>>
+>>
 >
 
---0000000000002c7c5905a5651ed8
+--000000000000a4fbf705a565234f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Great.=C2=A0 One caution though.=C2=A0 When you do have er=
-rors, I think that if multiple channels are in a single streamer, UHD keeps=
- them time aligned after the errors (not 100% sure though).=C2=A0 If you ha=
-ve separate streamers, then if one of them has an error but the other does =
-not, the outputs may no longer be sample synchronous.<div>Rob</div></div><b=
-r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, =
-May 11, 2020 at 4:13 PM Max &lt;<a href=3D"mailto:hex98@email.de">hex98@ema=
-il.de</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex">Hi Rob<br>
+<div dir=3D"ltr">Forgot to mention.... For the reason I mentioned above, I =
+typically put a time stamp=C2=A0on every packet I send (rather than just th=
+e first packet) so that if errors occur, subsequent packets will still be a=
+ligned.<div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Mon, May 11, 2020 at 4:23 PM Rob Kossler &lt;<a hre=
+f=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Great.=C2=A0 O=
+ne caution though.=C2=A0 When you do have errors, I think that if multiple =
+channels are in a single streamer, UHD keeps them time aligned after the er=
+rors (not 100% sure though).=C2=A0 If you have separate streamers, then if =
+one of them has an error but the other does not, the outputs may no longer =
+be sample synchronous.<div>Rob</div></div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Mon, May 11, 2020 at 4:13 PM Max &lt=
+;<a href=3D"mailto:hex98@email.de" target=3D"_blank">hex98@email.de</a>&gt;=
+ wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Rob<b=
+r>
 <br>
 Just want to let you know that using one tx_streamer per USRP works like<br=
 >
@@ -352,11 +369,12 @@ uld transmit<br>
 &gt;&gt;&gt; Rob<br>
 &gt;&gt;&gt;<br>
 </blockquote></div>
+</blockquote></div>
 
---0000000000002c7c5905a5651ed8--
+--000000000000a4fbf705a565234f--
 
 
---===============3780168944992652992==
+--===============7103367632473404370==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -367,5 +385,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3780168944992652992==--
+--===============7103367632473404370==--
 
