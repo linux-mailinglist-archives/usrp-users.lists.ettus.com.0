@@ -2,52 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB5CC1DD60A
-	for <lists+usrp-users@lfdr.de>; Thu, 21 May 2020 20:34:34 +0200 (CEST)
-Received: from [::1] (port=35628 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DECA11DD62B
+	for <lists+usrp-users@lfdr.de>; Thu, 21 May 2020 20:41:40 +0200 (CEST)
+Received: from [::1] (port=38944 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jbq1Z-0007Sp-Qe; Thu, 21 May 2020 14:34:33 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:40081)
+	id 1jbq8R-0000vl-Nz; Thu, 21 May 2020 14:41:39 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:42135)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jbq1W-0006yB-8W
- for usrp-users@lists.ettus.com; Thu, 21 May 2020 14:34:30 -0400
-Received: by mail-ot1-f48.google.com with SMTP id d26so6270164otc.7
- for <usrp-users@lists.ettus.com>; Thu, 21 May 2020 11:34:10 -0700 (PDT)
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jbq8O-0000Yv-Bp
+ for usrp-users@lists.ettus.com; Thu, 21 May 2020 14:41:36 -0400
+Received: by mail-ot1-f41.google.com with SMTP id z3so6289153otp.9
+ for <usrp-users@lists.ettus.com>; Thu, 21 May 2020 11:41:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=bsoX8n21fKTx7Jo7bcNdcGCIHI4BgNii8VASBVM4rIk=;
- b=EfnDDZxHs5kFkVgs9UDp0s4FUreDIxegmxuOIhiqpAoawH1envHVG6ffb0BQ2TXC2g
- RIv6iL1xrpKP84w2sbYHVpsHzrrz9fxuydvxYwyHJXfoU3HRsoFNEPbEE1e2ViiQUjwy
- TN3UV3isHrGZEIsU4loKpnDoQq1cwTMUSlbPdMEo0Dbq450xvxOCrg7HsYX/En9JWafH
- 5VCGFunkOCZjLTMXBwXbizY2ifvHFvW6PJYBdwTpPU/2CMZDNQIMX7ViqJkd0xz1uGSq
- EKKUnCASIGrde5H6fGtQgdixB2CzF+VKthsO5ZszmDdEVs5vdaa4PeVuzYE9YMIn/Tlo
- 8fvg==
+ :cc; bh=I4yV3/Kw8Lizg1ihWwZnI4MaemqyxNn5PW803jq4NzI=;
+ b=W+S4FXjL67GlevQoAxWlHFlVQpIo+3F9eoq8bJC62QggHKc7apxAMAM4JbNMXp0m1K
+ uClGAwsKl0TEQrxYzbeZ7576tN66EYzaP0W9K87SBLBQ7Tceof+bVi7/xDXRVNrTAXrT
+ U+nrt+wphf6tGHyAKLiB1IC/2FB/Iqwo1auLWzcls2NFwjxfNO1OTpfpHtAtCGdAiwWj
+ Rp6F++Qa7B/Jh5yvXirWXJe0GHeUIrIFT+4wsHUtV47203ShZZ5wswYRqOf11iaQp2Pt
+ AaBxUBhPGc4PwHCbeyaJGnmK9Dm3UEIOEnIcu06z3dnVNNj0SLIha5n6XxnUHFXD2PWy
+ k6CA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=bsoX8n21fKTx7Jo7bcNdcGCIHI4BgNii8VASBVM4rIk=;
- b=pMcmCNjYvavBWGgOqr4pf33W8TdnQgzuXQmmXKqNrJJlLvXFSmnBEJwiU0Ys53kOVn
- ghqe2kA2gVBRK+GtWdCZgCpZvziZQd4OX9X01cx0oOMEpqGbUNtNwqgEy8Oahu06wuTN
- N86LYQeOvXX0MBHXKalMoAYJCvUHF2Jwo398TNPsVXCG2VwUH/ojN+bnXU1SIBhVAS4E
- GnVox/ffdiB384CVmn5phTGT7M6varvmNgJt0uag21k54F9xyXph6UCGOyFdyoXEKrmO
- V6uWMnIh6H2W1DlaPN6WJHuBk86qZeH7jV3l3b/10f8Y8leqIqlTVv1/KiKU6GCrrXV1
- 2mKg==
-X-Gm-Message-State: AOAM5315vmovUrsUnsjnrs+3YeXG6WOx7DnBR55GSSynh+jOPdqOCoD4
- k7i6+DUTmCJ2qndGJlcYM2I1G19s1kVN+Nx0FMzF2w==
-X-Google-Smtp-Source: ABdhPJx67rXC3V4KpbiJ0GCYIAQridt0SzhzkHKeISm1Eo9fgt3PihOX7YXQkpj2hVEAHCebRKqrmu+cqD1T6tWkm2o=
-X-Received: by 2002:a9d:7acb:: with SMTP id m11mr7879704otn.301.1590086029399; 
- Thu, 21 May 2020 11:33:49 -0700 (PDT)
+ bh=I4yV3/Kw8Lizg1ihWwZnI4MaemqyxNn5PW803jq4NzI=;
+ b=bksD0qBDH1aOMRVXtQ6IhGomqcxvBvjZG70UcQrfATWtnzwhA8j2cZ48zP3HZMbKrZ
+ n1UuYqYXTwL97OExxcIyI9xAWjGj/P/ZPIj4FwZ6TJHdd7/0QDSVmfivuU0/mvEVBytU
+ q+O94tux0maJkXG7hvt3qCTGxlGwH9GT0ZQsAkE2MX4soT87NuRTpPHN1/O12cF6GiU2
+ iJflGTA0bq5vPDcJ55NkrixcpXrWTds5dqJ5V9ZNteuWw0Nl2twO0rQrm4JR45Pmm/mV
+ hKyZypCpMKse7MaqZtPqCdTPbKSuEfWRBlEHj3gwysKQzRiOFZRyRnslkWJ85z5kUsP1
+ aCNg==
+X-Gm-Message-State: AOAM530UBRitF89w6qiBa6ENenn66oodCu1Psfs5C0gVzX0Oho5eat0c
+ ek0HnU0Xhkm3ziHZDRAgLUDqvcopdRWEtUlRBiepQQ==
+X-Google-Smtp-Source: ABdhPJzE+yxJkwbfPsqS5DKo9c300ZMffhaiino3J6t+fhMPzhT/Hk2Vyq5MaXkmRhiFuh/V/74UAmoZQMNRV8cDBpE=
+X-Received: by 2002:a9d:7acb:: with SMTP id m11mr7902589otn.301.1590086455658; 
+ Thu, 21 May 2020 11:40:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <2f10393db6b447e9925d3da9fd110467@gtri.gatech.edu>
- <CAL7q81t6LA-Xu7fs+f9t=ZY4V8o8HMq0BFpyQLdq4TfcwisBvQ@mail.gmail.com>
- <8822e47e0eb74d59983cc2323c83dda8@gtri.gatech.edu>
-In-Reply-To: <8822e47e0eb74d59983cc2323c83dda8@gtri.gatech.edu>
-Date: Thu, 21 May 2020 14:33:38 -0400
-Message-ID: <CAB__hTQMKMZtv38FhfJVmQ7TuVbkkJOCR10SDAwNoZ=i81t82w@mail.gmail.com>
-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
-Subject: Re: [USRP-users] rfnoc build standard image x310 failing
+References: <1659313211.1951845.1590081096295.ref@mail.yahoo.com>
+ <1659313211.1951845.1590081096295@mail.yahoo.com>
+ <CAGp1hYqBDLg2dz+u8R_hVT7H2zYa+jQyvbygCjd9GsYkXJA=gg@mail.gmail.com>
+ <1097641633.1970274.1590083415325@mail.yahoo.com>
+In-Reply-To: <1097641633.1970274.1590083415325@mail.yahoo.com>
+Date: Thu, 21 May 2020 14:40:44 -0400
+Message-ID: <CAB__hTRvsssOB4Gc6SyAYw0qggR4Bd1UL+4gGcL1zmOsybrr4g@mail.gmail.com>
+To: Farhan Naeem <farhan_uet08@yahoo.com>
+Subject: Re: [USRP-users] N310 MIMO Configuration Help Required !
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,9 +62,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, "Prado,
- Ron" <Ron.Prado@gtri.gatech.edu>
-Content-Type: multipart/mixed; boundary="===============1381608140863228239=="
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3109245243904115414=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,205 +77,63 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1381608140863228239==
-Content-Type: multipart/alternative; boundary="000000000000f20bd905a62cc038"
+--===============3109245243904115414==
+Content-Type: multipart/alternative; boundary="0000000000005a385605a62cda18"
 
---000000000000f20bd905a62cc038
+--0000000000005a385605a62cda18
 Content-Type: text/plain; charset="UTF-8"
 
-perhaps checkout the latest on the branch such as "git checkout
-UHD-3.15.LTS" ?
+This should work using a 4-port card.  I use an Intel XL710 card with 4 10G
+ports.  But, back to the external 10Gb switch question, I haven't used one,
+but it depends upon what streaming rates you need.  If your streaming rates
+are slow enough, it may work for you.  But, if you are trying to stream 8
+ports simultaneously, you would be limited to 31.25MS/s since it would all
+be going over the same 10Gb link. And, the switch may add other issues.
 
-On Thu, May 21, 2020 at 11:25 AM Hodges, Jeff via USRP-users <
+On Thu, May 21, 2020 at 1:51 PM Farhan Naeem via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> Maybe there is a mistake in they way I am pulling the repository?
+>
+> Having a 10Gbit switch in between would not significantly impact the
+> streaming would it? Also is there a requirement for the 10Gb LAN card, It
+> would be expensive to purchase 2 of those cards that is available on Ettus
+> webpage. Maybe purchasing a 4 port one would work.
+> Is the following connection good enough to achieve 8x8 MIMO system?
+> Anything I am missing here?
+>
+> -Farhan
+> On Thursday, May 21, 2020, 01:25:53 PM EDT, Derek Steinkamp <
+> derekste@gmail.com> wrote:
 >
 >
+> You cannot run your streaming ports through a switch like that, since the
+> host PC to switch link becomes a bottleneck...
 >
-> V3.14 with 2017.4 vivado failed:
+> Streaming ports should go to NICs directly on the host system. So, to
+> stream from two radios, each having a 10gig SFP link, the host would need
+> two 10gb interfaces plus an additional LAN interface for the
+> control/management network(sometimes this will even be OK if you are going
+> wifi to where the management port is plugged in)
 >
-> cd ~/rfnoc/src
->
->    $ git clone --recursive https://github.com/EttusResearch/uhd
->
->    $ cd uhd
->
->    $ git checkout v3.14.1.1
->
->    $ git submodule update --init --recursive
->
->
->
-> V3.15 with 2018.3 vivado failed:
->
-> cd ~/rfnoc/src
->
->    $ git clone --recursive https://github.com/EttusResearch/uhd
->
->    $ cd uhd
->
->    $ git checkout v3.15.0.0
->
->    $ git submodule update --init --recursive
->
->
->
-> Am I pulling the wrong branches?
->
->
->
-> Looking at uhd_image_builder.py in v3.15.0.0:
->
-> 44 wire ce_clk = radio_clk;
->
-> 45 wire ce_rst = radio_rst;
->
->
->
->
->
-> Jeff
->
->
->
-> *From:* Jonathon Pendlum <jonathon.pendlum@ettus.com>
-> *Sent:* Thursday, May 21, 2020 2:01 AM
-> *To:* Hodges, Jeff <Jeff.Hodges@gtri.gatech.edu>
-> *Cc:* usrp-users@lists.ettus.com; Prado, Ron <Ron.Prado@gtri.gatech.edu>
-> *Subject:* Re: [USRP-users] rfnoc build standard image x310 failing
->
->
->
-> Hi Jeff,
->
->
->
-> For UHD 3.15, I believe that issue has been fixed. Check out the
-> UHD-3.15.LTS branch and let me know if you still have an issue building.
->
->
->
-> For UHD 3.14, check out the UHD-3.14 branch.
->
->
->
-> Using the branches above, I was able to successfully build an image using
-> your uhd_image_builder command (without the -g option) for both UHD 3.15
-> and UHD 3.14.
->
->
->
-> Jonathon
->
->
->
->
->
-> On Wed, May 20, 2020 at 8:35 PM Hodges, Jeff via USRP-users <
+> On Thu, May 21, 2020 at 12:12 PM Farhan Naeem via USRP-users <
 > usrp-users@lists.ettus.com> wrote:
 >
-> Can someone please tell me what version of uhd and rfnoc are compatible
-> for building an image on Ubuntu 18.04?
+> Hello,
 >
+> I am trying to understand how to connect two N310 devices to get a MIMO
+> configuration.
 >
+> 1. I connect two of the SFP+ 10G Ethernet ports on each N310 device to a
+> 10Gbit Ethernet switch. And connect the other end of this Ethernet switch
+> to my host system.
+> 2. I need additional 1Gb Ethernet switch to connect to the management
+> Ethernet port of the N310 devices from my host system.
+> 3. A common clock reference.
 >
-> I cannot get any of the UHD releases to properly build a standard rfnoc
-> image.
+> I have attached a block diagram here. Thanks.
 >
->
->
-> sudo ./uhd_image_builder.py fft ddc duc -g -t X310_RFNOC_HG -c -d X310
-> --fill-with-fifos
->
->
->
-> I installed vivado 2018.3 with uhd 3.15.0.0 and get the error:
->
->
->
-> ERROR: [DRC MDRV-1] Multiple Driver Nets: Net bus_clk_gen/inst/CLK_OUT4
-> has multiple drivers: radio_clk_gen/inst/clkout1_buf/O, and
-> bus_clk_gen/inst/clkout4_buf/O.
->
-> ERROR: [DRC MDRV-1] Multiple Driver Nets: Net
-> radio_reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9 has
-> multiple drivers:
-> radio_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg[9][0]/Q,
-> and
-> ce_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg[9][0]/Q.
->
->
->
->
->
-> I installed vivado 2017.4 with uhd 3.14.1.1 and get this error:
->
->
->
-> BUILDER: Releasing IP location:
-> /home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/aurora_64b66b_pcs_pma
->
-> Using parser configuration from:
-> /home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/dev_config.json
->
-> [00:00:00] Executing command: vivado -mode batch -source
-> /home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build_x300.tcl -log
-> build.log -journal x300.jou
->
-> CRITICAL WARNING: [filemgmt 20-1440] File
-> '/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/ddr3_32bit/ddr3_32bit/user_design/rtl/clocking/mig_7series_v4_0_tempmon.v'
-> already exists in the project as a part of sub-design file
-> '/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/ddr3_32bit/ddr3_32bit.xci'.
-> Explicitly adding the file outside the scope of the sub-design can lead to
-> unintended behaviors and is not recommended.
->
-> [00:00:29] Current task: Initialization +++ Current Phase: Starting
->
-> [00:00:29] Current task: Initialization +++ Current Phase: Finished
->
-> [00:00:29] Executing Tcl: synth_design -top x300 -part xc7k410tffg900-2
-> -verilog_define BUILD_1G=1 -verilog_define BUILD_10G=1 -verilog_define
-> SFP0_1GBE=1 -verilog_define SFP1_10GBE=1 -verilog_define RFNOC=1
-> -verilog_define X310=1 -verilog_define GIT_HASH=32'hfbb85bdf
->
-> [00:00:29] Starting Synthesis Command
->
-> ERROR: [Synth 8-439] module 'ddr3_32bit' not found
-> [/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/x300.v:1191]
->
-> ERROR: [Synth 8-285] failed synthesizing module 'x300'
-> [/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/x300.v:20]
->
-> ERROR: [Common 17-69] Command failed: Synthesis failed - please see the
-> console or run log file for details
->
-> [00:08:36] Current task: Synthesis +++ Current Phase: Starting
->
-> [00:08:36] Current task: Synthesis +++ Current Phase: Finished
->
-> [00:08:36] Process terminated. Status: Failure
->
->
->
->
->
-> Any advice is greatly appreciated.
->
->
->
-> Thanks,
->
->
->
-> Jeff
->
->
->
->
->
->
->
+> Best Regards,
+> Farhan
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
@@ -287,238 +145,79 @@ usrp-users@lists.ettus.com> wrote:
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000f20bd905a62cc038
+--0000000000005a385605a62cda18
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">perhaps checkout the latest on the branch such as &quot;gi=
-t checkout UHD-3.15.LTS&quot; ?</div><br><div class=3D"gmail_quote"><div di=
-r=3D"ltr" class=3D"gmail_attr">On Thu, May 21, 2020 at 11:25 AM Hodges, Jef=
-f via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-use=
-rs@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_7471427852276154499WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Maybe there is a mistake in they way I am pu=
-lling the repository?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">V3.14 with 2017.4 vivado failed:<u></u><u></=
-u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:&quot;Cour=
-ier New&quot;">cd ~/rfnoc/src=C2=A0=C2=A0=C2=A0
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:&quot;Cour=
-ier New&quot;">=C2=A0=C2=A0=C2=A0$ git clone --recursive <a href=3D"https:/=
-/github.com/EttusResearch/uhd" target=3D"_blank">https://github.com/EttusRe=
-search/uhd</a><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:&quot;Cour=
-ier New&quot;">=C2=A0=C2=A0 $ cd uhd<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:&quot;Cour=
-ier New&quot;">=C2=A0=C2=A0 $ git checkout v3.14.1.1<u></u><u></u></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:&quot;Cour=
-ier New&quot;">=C2=A0=C2=A0 $ git submodule update --init --recursive<u></u=
-><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">V3.15 with 2018.3 vivado failed:<u></u><u></=
-u></span></p>
-<pre>cd ~/rfnoc/src=C2=A0=C2=A0=C2=A0 <u></u><u></u></pre>
-<pre>=C2=A0=C2=A0=C2=A0$ git clone --recursive <a href=3D"https://github.co=
-m/EttusResearch/uhd" target=3D"_blank">https://github.com/EttusResearch/uhd=
-</a><u></u><u></u></pre>
-<pre>=C2=A0=C2=A0 $ cd uhd<u></u><u></u></pre>
-<pre>=C2=A0=C2=A0 $ git checkout v3.15.0.0<u></u><u></u></pre>
-<pre>=C2=A0=C2=A0 $ git submodule update --init --recursive<u></u><u></u></=
-pre>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Am I pulling the wrong branches?<u></u><u></=
-u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Looking at uhd_image_builder.py in v3.15.0.0=
-:<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">44 wire ce_clk =3D radio_clk;<u></u><u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">45 wire ce_rst =3D radio_rst;<u></u><u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Jeff<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;font-family:Calibri=
-,sans-serif">From:</span></b><span style=3D"font-size:11pt;font-family:Cali=
-bri,sans-serif"> Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@et=
-tus.com" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt;
-<br>
-<b>Sent:</b> Thursday, May 21, 2020 2:01 AM<br>
-<b>To:</b> Hodges, Jeff &lt;<a href=3D"mailto:Jeff.Hodges@gtri.gatech.edu" =
-target=3D"_blank">Jeff.Hodges@gtri.gatech.edu</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a>; Prado, Ron &lt;<a href=3D"mailto:Ron.Prado@=
-gtri.gatech.edu" target=3D"_blank">Ron.Prado@gtri.gatech.edu</a>&gt;<br>
-<b>Subject:</b> Re: [USRP-users] rfnoc build standard image x310 failing<u>=
-</u><u></u></span></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal">Hi Jeff,<u></u><u></u></p>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">For UHD 3.15, I believe that issue has been fixed. C=
-heck out the UHD-3.15.LTS branch and let me know if you still have an issue=
- building.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">For UHD 3.14, check out the UHD-3.14 branch.<u></u><=
-u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Using the branches above, I was able to successfully=
- build an image using your uhd_image_builder command (without the -g option=
-) for both UHD 3.15 and UHD 3.14.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Jonathon<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Wed, May 20, 2020 at 8:35 PM Hodges, Jeff via USR=
-P-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"=
->usrp-users@lists.ettus.com</a>&gt; wrote:<u></u><u></u></p>
-</div>
-<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
-order-left:1pt solid rgb(204,204,204);padding:0in 0in 0in 6pt;margin-left:4=
-.8pt;margin-right:0in">
-<div>
-<div>
-<p class=3D"MsoNormal">Can someone please tell me what version of uhd and r=
-fnoc are compatible for building an image on Ubuntu 18.04?<u></u><u></u></p=
->
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">I cannot get any of the UHD releases to properly bui=
-ld a standard rfnoc image.<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">sudo ./uhd_image_builder.py fft ddc duc -g -t X310_R=
-FNOC_HG -c -d X310 --fill-with-fifos<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">I installed vivado 2018.3 with uhd 3.15.0.0 and get =
-the error:<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">ERROR: [DRC MDRV-1] Multiple Driver Nets: Net bus_cl=
-k_gen/inst/CLK_OUT4 has multiple drivers: radio_clk_gen/inst/clkout1_buf/O,=
- and bus_clk_gen/inst/clkout4_buf/O.<u></u><u></u></p>
-<p class=3D"MsoNormal">ERROR: [DRC MDRV-1] Multiple Driver Nets: Net radio_=
-reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9 has multipl=
-e drivers: radio_reset_sync/reset_double_sync/synchronizer_false_path/stage=
-s[9].value_reg[9][0]/Q,
- and ce_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].valu=
-e_reg[9][0]/Q.<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">I installed vivado 2017.4 with uhd 3.14.1.1 and get =
-this error:<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">BUILDER: Releasing IP location: /home/nvd/rfnoc/src/=
-uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/aurora_64b66b_pcs_pma=
-<u></u><u></u></p>
-<p class=3D"MsoNormal">Using parser configuration from: /home/nvd/rfnoc/src=
-/uhd/fpga-src/usrp3/top/x300/dev_config.json<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:00:00] Executing command: vivado -mode batch -so=
-urce /home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build_x300.tcl -log bu=
-ild.log -journal x300.jou<u></u><u></u></p>
-<p class=3D"MsoNormal">CRITICAL WARNING: [filemgmt 20-1440] File &#39;/home=
-/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/ddr3_3=
-2bit/ddr3_32bit/user_design/rtl/clocking/mig_7series_v4_0_tempmon.v&#39;
- already exists in the project as a part of sub-design file &#39;/home/nvd/=
-rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/ddr3_32bit/=
-ddr3_32bit.xci&#39;. Explicitly adding the file outside the scope of the su=
-b-design can lead to unintended behaviors
- and is not recommended.<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:00:29] Current task: Initialization +++ Current =
-Phase: Starting<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:00:29] Current task: Initialization +++ Current =
-Phase: Finished<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:00:29] Executing Tcl: synth_design -top x300 -pa=
-rt xc7k410tffg900-2 -verilog_define BUILD_1G=3D1 -verilog_define BUILD_10G=
-=3D1 -verilog_define SFP0_1GBE=3D1 -verilog_define SFP1_10GBE=3D1
- -verilog_define RFNOC=3D1 -verilog_define X310=3D1 -verilog_define GIT_HAS=
-H=3D32&#39;hfbb85bdf<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:00:29] Starting Synthesis Command<u></u><u></u><=
-/p>
-<p class=3D"MsoNormal">ERROR: [Synth 8-439] module &#39;ddr3_32bit&#39; not=
- found [/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/x300.v:1191]<u></u>=
-<u></u></p>
-<p class=3D"MsoNormal">ERROR: [Synth 8-285] failed synthesizing module &#39=
-;x300&#39; [/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/x300.v:20]<u></=
-u><u></u></p>
-<p class=3D"MsoNormal">ERROR: [Common 17-69] Command failed: Synthesis fail=
-ed - please see the console or run log file for details<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:08:36] Current task: Synthesis +++ Current Phase=
-: Starting<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:08:36] Current task: Synthesis +++ Current Phase=
-: Finished<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:08:36] Process terminated. Status: Failure<u></u=
-><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Any advice is greatly appreciated.<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Jeff<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-</div>
-</div>
-<p class=3D"MsoNormal">_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
-sts.ettus.com</a><u></u><u></u></p>
-</blockquote>
-</div>
-</div>
-</div>
-
-_______________________________________________<br>
+<div dir=3D"ltr">This should work using a 4-port card.=C2=A0 I use an Intel=
+ XL710 card with 4 10G ports.=C2=A0 But, back to the external 10Gb switch q=
+uestion, I haven&#39;t used one, but it depends upon what streaming rates y=
+ou need.=C2=A0 If your streaming rates are slow enough, it may work for you=
+.=C2=A0 But, if you are trying to stream 8 ports simultaneously, you would =
+be limited to 31.25MS/s since it would all be going over the same 10Gb link=
+. And, the switch may add other issues.</div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 21, 2020 at 1:51 PM Farh=
+an Naeem via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">u=
+srp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div><div style=3D"font-family:verdana,helvetica,s=
+ans-serif;font-size:13px"><div></div>
+        <div><br></div><div dir=3D"ltr">Having a 10Gbit switch in between w=
+ould not significantly impact the streaming would it? Also is there a requi=
+rement for the 10Gb LAN card, It would be expensive to purchase 2 of those =
+cards that is available on Ettus webpage. Maybe purchasing a 4 port one wou=
+ld work.<br>Is the following connection good enough to achieve 8x8 MIMO sys=
+tem? Anything I am missing here?</div><div dir=3D"ltr"><br></div><div dir=
+=3D"ltr">-Farhan</div>
+       =20
+        </div><div id=3D"gmail-m_-7680348740419949002yahoo_quoted_064651032=
+5">
+            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
+Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">
+               =20
+                <div>
+                    On Thursday, May 21, 2020, 01:25:53 PM EDT, Derek Stein=
+kamp &lt;<a href=3D"mailto:derekste@gmail.com" target=3D"_blank">derekste@g=
+mail.com</a>&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"gmail-m_-7680348740419949002yiv0887370064">=
+<div><div dir=3D"ltr">You cannot run your streaming ports through a switch =
+like that, since the host PC to switch link becomes a bottleneck...<div><br=
+ clear=3D"none"></div><div>Streaming ports should go to NICs directly on th=
+e host system. So, to stream from two radios, each having a 10gig SFP link,=
+ the host would need two 10gb interfaces plus an additional LAN interface f=
+or the control/management network(sometimes this will even be OK if you are=
+ going wifi to where the management port is plugged in)</div></div><br clea=
+r=3D"none"><div><div id=3D"gmail-m_-7680348740419949002yiv0887370064yqt1603=
+1"><div dir=3D"ltr">On Thu, May 21, 2020 at 12:12 PM Farhan Naeem via USRP-=
+users &lt;<a rel=3D"nofollow" shape=3D"rect" href=3D"mailto:usrp-users@list=
+s.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br=
+ clear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div><div style=3D"font-f=
+amily:verdana,helvetica,sans-serif;font-size:13px"><div dir=3D"ltr">Hello,<=
+/div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">I am trying=
+ to understand how to connect two N310 devices to get a MIMO configuration.=
+</div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">1. I conne=
+ct two of the SFP+ 10G Ethernet ports on each N310 device to a 10Gbit Ether=
+net switch. And connect the other end of this Ethernet switch to my host sy=
+stem.<br clear=3D"none">2. I need additional 1Gb Ethernet switch to connect=
+ to the management Ethernet port of the N310 devices from my host system.</=
+div><div dir=3D"ltr">3. A common clock reference.</div><div dir=3D"ltr"><br=
+ clear=3D"none"></div><div dir=3D"ltr">I have attached a block diagram here=
+. Thanks.<br clear=3D"none"><br clear=3D"none">Best Regards,<br clear=3D"no=
+ne">Farhan</div></div></div>_______________________________________________=
+<br clear=3D"none">
+USRP-users mailing list<br clear=3D"none">
+<a rel=3D"nofollow" shape=3D"rect" href=3D"mailto:USRP-users@lists.ettus.co=
+m" target=3D"_blank">USRP-users@lists.ettus.com</a><br clear=3D"none">
+<a rel=3D"nofollow" shape=3D"rect" href=3D"http://lists.ettus.com/mailman/l=
+istinfo/usrp-users_lists.ettus.com" target=3D"_blank">http://lists.ettus.co=
+m/mailman/listinfo/usrp-users_lists.ettus.com</a><br clear=3D"none">
+</blockquote></div></div></div></div></div>
+            </div>
+        </div></div>_______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
 lists.ettus.com</a><br>
@@ -527,10 +226,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000f20bd905a62cc038--
+--0000000000005a385605a62cda18--
 
 
---===============1381608140863228239==
+--===============3109245243904115414==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -541,5 +240,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1381608140863228239==--
+--===============3109245243904115414==--
 
