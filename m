@@ -2,52 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABC761DC6C4
-	for <lists+usrp-users@lfdr.de>; Thu, 21 May 2020 08:02:22 +0200 (CEST)
-Received: from [::1] (port=43442 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD1B81DCAAF
+	for <lists+usrp-users@lfdr.de>; Thu, 21 May 2020 12:09:06 +0200 (CEST)
+Received: from [::1] (port=56434 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jbeHa-0004hI-TF; Thu, 21 May 2020 02:02:18 -0400
-Received: from mail-vk1-f170.google.com ([209.85.221.170]:46987)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1jbeHX-0004da-Ei
- for usrp-users@lists.ettus.com; Thu, 21 May 2020 02:02:15 -0400
-Received: by mail-vk1-f170.google.com with SMTP id v23so1416379vke.13
- for <usrp-users@lists.ettus.com>; Wed, 20 May 2020 23:01:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=de3u4xNOsObq0uo3LF5szHQzXtIzoLPqIwO29gO3C1Q=;
- b=CSwmNqwj2F1QJNDIXCdNd7Q2hinEjiZFszvfkh0t2Tzig7zSftxJ+upsUs31h+BGXz
- augsygBID1yaZSJZ62E1D5K8Cx6lDkgIOILjEa1qq4kPVsRHyfnIoWWDZ9pYU8e9kQgg
- 5G7QNmS14IrfvOo+S0l73ssIByyoJSrYtQ9jUgE69IE1vJpQE1rcWg4koYKDfeB5iK7B
- KsRlalWef/ZabntDRRbQPfZbbhX5OGs3DB911X9DKhyRzWScLIyXGKmXgwKXJesJet9L
- 0UhDBMMeRFg/k+Q3VORBVTwP+asZ96Dejh2YAZKWX1pt2ruTk/T/tl/SbB+F5Sp9dUHa
- uA7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=de3u4xNOsObq0uo3LF5szHQzXtIzoLPqIwO29gO3C1Q=;
- b=LPlBuGb0UgYfTZvm/CyaSyLmz2OlqJqZ71YeBIIj4YqtYBPtqn1m6dcpcd5M266kwM
- rfqunycEVBPBn7aq9z8+f1mWpElIFYcjkTua6D2yEGGnlxRZwuYoVJuRIDhVohNJhhpv
- BV3DitHtS/DIKq7CLAshuxXadAOq05IpqVgLN2sSKzUD2jzqojAiqQZNFuL0WrZuTBbV
- RXQ7PF9SI6tsN+JRJTqnRMXRozL0jFrkBcZ5QrblVhkN71qOE+dVqPaR97JdCF1cgvQ1
- 9EbLINpA9sw7VzzDaF4h4l1HUG9XfmNY1NzkRZeCpPLi2IEW5VqBJj06ZmwfP7AW9202
- 3yfA==
-X-Gm-Message-State: AOAM530Ae32mh960WWW5frMOcWO0cswf9bJx4LBDf/lESAVewensboXO
- bzTf7k0LtWrW8hC/pgc4L+AajXXfnNHlkXh6W91z2IGT
-X-Google-Smtp-Source: ABdhPJyMc8VVi/jStUpD1pr7AHDdEyGzyRwCh0J1H19AgdVRPdAQfIXOtoGCEdZnsua9GI8LahYVW8eat8oe7WQehrU=
-X-Received: by 2002:a1f:a6c8:: with SMTP id p191mr6348804vke.78.1590040894733; 
- Wed, 20 May 2020 23:01:34 -0700 (PDT)
+	id 1jbi8K-0007Xn-CX; Thu, 21 May 2020 06:09:00 -0400
+Received: from mx01.telecomitalia.it ([217.169.121.10]:57170)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <maurizio.crozzoli@telecomitalia.it>)
+ id 1jbi8G-00078t-Cm
+ for usrp-users@lists.ettus.com; Thu, 21 May 2020 06:08:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; d=telecomitalia.it; s=selector1;
+ c=relaxed/relaxed; 
+ q=dns/txt; i=@telecomitalia.it; t=1590055694; x=2453969294;
+ h=MIME-Version:From:Date:Message-ID:Subject:To;
+ bh=ynMGid7Qjy+7U3Ux0CtGlPDzyc2PBVj2+sxXihzXBsk=;
+ b=HMykh8IT8Y4ujiDN4AjBdJ19XpMu3tBTLUfDQ5b06rxnInX7xO3l4sU+/nONMiH5
+ 3FvptGbkbTLuBOEAEmhQAgI1H3g/MIWSYkNfpESv6egzOhyDIuUfiNIVKjmoQXHJ
+ NVSPrgg/y52volEd8mWjMudUlwFg4c96w4VtZi5zwWV9AwQwc9e2GzaspDGGs6BK
+ Ib/l+Xg/t+TFjl/lgf6b/yIe5mVKDISkTS1LENLjq//OYmR3eiSjjYxN8gqI2DKi
+ jEFn0MWAnGhDegz9VpOKwjWAVMYlVtdNC4czcUvH0e3QvdxTwQhEdKwyo+ZmqIVc
+ IcQLFel1egwTjZnMS9E5NQ==;
+X-AuditID: d9a9790a-9b1ff7000000116d-c5-5ec6530d30dc
+Received: from TELMBXB13RM001.telecomitalia.local ( [10.14.252.75])
+ (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+ (Client did not present a certificate)
+ by mx01.telecomitalia.it () with SMTP id B2.16.04461.D0356CE5;
+ Thu, 21 May 2020 12:08:13 +0200 (CEST)
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: RFNoC OFDM receiver for LTE and NR
+Thread-Index: AdYvV46rWDaI2YEwQTqu+4wQ357G7A==
+Date: Thu, 21 May 2020 10:08:13 +0000
+Message-ID: <cb6eada9d3c9436c8dae18cd871f12ed@TELMBXB13RM001.telecomitalia.local>
+Accept-Language: en-US
+Content-Language: it-IT
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.141.145.189]
+x-ti-disclaimer: ADBanner
 MIME-Version: 1.0
-References: <2f10393db6b447e9925d3da9fd110467@gtri.gatech.edu>
-In-Reply-To: <2f10393db6b447e9925d3da9fd110467@gtri.gatech.edu>
-Date: Thu, 21 May 2020 02:00:58 -0400
-Message-ID: <CAL7q81t6LA-Xu7fs+f9t=ZY4V8o8HMq0BFpyQLdq4TfcwisBvQ@mail.gmail.com>
-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
-Subject: Re: [USRP-users] rfnoc build standard image x310 failing
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupmleLIzCtJLcpLzFFi42Lh4vvjrcsbfCzO4NIGG4sLnXPYHRg9Jq48
+ xBzAGNXAaJOYl5dfkliSqpCSWpxsq+SSWZyck5iZm1qk4OjiBJRMLVJSyEyxVTJTUijISUxO
+ zU3NK7FVSiwoSM1LUbLjUsAANkBlmXkKqXnJ+SmZeem2Sp7B/roWFqaWuoZKdoGlqcUl+Qq5
+ qcXFienpmfkKCRdFMhZO/cte8FShonuiegPjMZkuRk4OCQETife3/jKD2EICU5kkNi8NA7HZ
+ BGwkjp74yQJiiwjYSvyZtRCsRlhAW2Jz4zF2iLiBxN2b15kgbD2Jlc37GEFsFgFVids3Olm7
+ GDk4eAUCJXZdCgYJMwqISXw/tQasnFlAXOLF9BPsECcISCzZc54ZwhaVePn4HyuEbSCxdek+
+ FghbSWLm3nVQNZIShw9vYoOYky+xc/YPsLW8AoISJ2c+YZnAKDQLyYpZSMpmISmDiOtILNj9
+ iQ3C1pZYtvA1M4x95sBjJmTxBYzsqxhFcysMDPVKUnNSk/NzM0sSczIT9TJLNjECo//mykqu
+ HYwdt97oHWJk4mA8xCjBwawkwruQ/2icEG9KYmVValF+fFFpTmrxIUYfYBhNZJYSTc4Hpp+8
+ knhDUzNTc2MjM1MDUzNLHMJK4rxTlYFmCaQDE1F2ampBahHMOCYOTqkGpu5QvtPFnvaZ13jV
+ OXt2Pl7Rw5d3z3FrucvmN/LP0qrOTgr4cvTPMSuf3OWrmYQ+ib8r/XT3+e5UK79O3ysR/7b5
+ L8nzfrNRj2c9u7H9f4tLcfJvGW2y7MxKDWwWmGw7p7DXa4/tg0b5bcufXWf0eNzfplEqeYT3
+ W5ttzJ2pn8MfbhXtNRA9pPxfd5Pf4vmBAhc/5da81O6+ySFots28jz/O4rzKTMUZAm/ncD51
+ mbSBsfYZC8vS5wwd7R6d2mkSjy7EixwwWeDucX5L77UcAftblclF3hezbv6e+IF166m/rV/0
+ Tnq+YFmqf+WM6dmchMW2EmEmGYxNy37wcYsuLI0Rf+Fu9nPd3CSBvoeLlViKMxINtZiLihMB
+ sUV92p4DAAA=
+Subject: [USRP-users] RFNoC OFDM receiver for LTE and NR
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,11 +71,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, "Prado,
- Ron" <Ron.Prado@gtri.gatech.edu>
-Content-Type: multipart/mixed; boundary="===============4449950455252871165=="
+From: Crozzoli Maurizio via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Crozzoli Maurizio <maurizio.crozzoli@telecomitalia.it>
+Content-Type: multipart/mixed; boundary="===============4607109848224599944=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,251 +87,180 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4449950455252871165==
-Content-Type: multipart/alternative; boundary="000000000000b5913105a6223ec7"
+--===============4607109848224599944==
+Content-Language: it-IT
+Content-Type: multipart/alternative;
+	boundary="_000_cb6eada9d3c9436c8dae18cd871f12edTELMBXB13RM001telecomit_"
 
---000000000000b5913105a6223ec7
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Jeff,
-
-For UHD 3.15, I believe that issue has been fixed. Check out the
-UHD-3.15.LTS branch and let me know if you still have an issue building.
-
-For UHD 3.14, check out the UHD-3.14 branch.
-
-Using the branches above, I was able to successfully build an image using
-your uhd_image_builder command (without the -g option) for both UHD 3.15
-and UHD 3.14.
-
-Jonathon
-
-
-On Wed, May 20, 2020 at 8:35 PM Hodges, Jeff via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Can someone please tell me what version of uhd and rfnoc are compatible
-> for building an image on Ubuntu 18.04?
->
->
->
-> I cannot get any of the UHD releases to properly build a standard rfnoc
-> image.
->
->
->
-> sudo ./uhd_image_builder.py fft ddc duc -g -t X310_RFNOC_HG -c -d X310
-> --fill-with-fifos
->
->
->
-> I installed vivado 2018.3 with uhd 3.15.0.0 and get the error:
->
->
->
-> ERROR: [DRC MDRV-1] Multiple Driver Nets: Net bus_clk_gen/inst/CLK_OUT4
-> has multiple drivers: radio_clk_gen/inst/clkout1_buf/O, and
-> bus_clk_gen/inst/clkout4_buf/O.
->
-> ERROR: [DRC MDRV-1] Multiple Driver Nets: Net
-> radio_reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9 has
-> multiple drivers:
-> radio_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg[9][0]/Q,
-> and
-> ce_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg[9][0]/Q.
->
->
->
->
->
-> I installed vivado 2017.4 with uhd 3.14.1.1 and get this error:
->
->
->
-> BUILDER: Releasing IP location:
-> /home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/aurora_64b66b_pcs_pma
->
-> Using parser configuration from:
-> /home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/dev_config.json
->
-> [00:00:00] Executing command: vivado -mode batch -source
-> /home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build_x300.tcl -log
-> build.log -journal x300.jou
->
-> CRITICAL WARNING: [filemgmt 20-1440] File
-> '/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/ddr3_32bit/ddr3_32bit/user_design/rtl/clocking/mig_7series_v4_0_tempmon.v'
-> already exists in the project as a part of sub-design file
-> '/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/ddr3_32bit/ddr3_32bit.xci'.
-> Explicitly adding the file outside the scope of the sub-design can lead to
-> unintended behaviors and is not recommended.
->
-> [00:00:29] Current task: Initialization +++ Current Phase: Starting
->
-> [00:00:29] Current task: Initialization +++ Current Phase: Finished
->
-> [00:00:29] Executing Tcl: synth_design -top x300 -part xc7k410tffg900-2
-> -verilog_define BUILD_1G=1 -verilog_define BUILD_10G=1 -verilog_define
-> SFP0_1GBE=1 -verilog_define SFP1_10GBE=1 -verilog_define RFNOC=1
-> -verilog_define X310=1 -verilog_define GIT_HASH=32'hfbb85bdf
->
-> [00:00:29] Starting Synthesis Command
->
-> ERROR: [Synth 8-439] module 'ddr3_32bit' not found
-> [/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/x300.v:1191]
->
-> ERROR: [Synth 8-285] failed synthesizing module 'x300'
-> [/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/x300.v:20]
->
-> ERROR: [Common 17-69] Command failed: Synthesis failed - please see the
-> console or run log file for details
->
-> [00:08:36] Current task: Synthesis +++ Current Phase: Starting
->
-> [00:08:36] Current task: Synthesis +++ Current Phase: Finished
->
-> [00:08:36] Process terminated. Status: Failure
->
->
->
->
->
-> Any advice is greatly appreciated.
->
->
->
-> Thanks,
->
->
->
-> Jeff
->
->
->
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000b5913105a6223ec7
-Content-Type: text/html; charset="UTF-8"
+--_000_cb6eada9d3c9436c8dae18cd871f12edTELMBXB13RM001telecomit_
+Content-Type: text/plain; charset="ISO-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Jeff,<div><br></div><div>For UHD 3.15, I believe that i=
-ssue has been fixed. Check out the UHD-3.15.LTS branch and let me know if y=
-ou still have an issue building.</div><div><br></div><div>For UHD 3.14, che=
-ck out the UHD-3.14 branch.<br></div><div><br></div><div>Using the branches=
- above, I was able to successfully build an image using your uhd_image_buil=
-der command (without the -g option) for both UHD 3.15 and UHD 3.14.</div><d=
-iv><br></div><div>Jonathon</div><div><br></div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 20, 2020 at 8:35=
- PM Hodges, Jeff via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettu=
-s.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">
+Can the OFDM receiver made avaible in the RFNoC library be used "as is" for=
+ receiving LTE and maybe NR signals to get access to Resource Elements?
+
+I read something about the use of such blocks for receivng 802.11 signals an=
+d of course they are all OFDM-based systems, but I wonder whether it is just=
+ a matter of choosing the right cofiguration parameters in each block and it=
+ could work or they cannot be used at all.
+
+If the answer would be YES, it can be done, is there any reference document/=
+presentation to start with?
+
+TIA!
+
+BR,
+
+Maurizio.
 
 
 
+Questo messaggio e i suoi allegati sono indirizzati esclusivamente alle pers=
+one indicate. La diffusione, copia o qualsiasi altra azione derivante dalla=
+ conoscenza di queste informazioni sono rigorosamente vietate. Qualora abbia=
+te ricevuto questo documento per errore siete cortesemente pregati di darne=
+ immediata comunicazione al mittente e di provvedere alla sua distruzione, G=
+razie. 
 
+This e-mail and any attachments is confidential and may contain privileged i=
+nformation intended for the addressee(s) only. Dissemination, copying, print=
+ing or use by anybody else is unauthorised. If you are not the intended reci=
+pient, please delete this message and any attachments and advise the sender=
+ by return e-mail, Thanks. 
 
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_-2882741423518001013WordSection1">
-<p class=3D"MsoNormal">Can someone please tell me what version of uhd and r=
-fnoc are compatible for building an image on Ubuntu 18.04?<u></u><u></u></p=
+Rispetta l'ambiente. Non stampare questa mail se non =E8 necessario.
+
+--_000_cb6eada9d3c9436c8dae18cd871f12edTELMBXB13RM001telecomit_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micro=
+soft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" xm=
+lns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http://w=
+ww.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Testo normale Carattere";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.StileMessaggioDiPostaElettronica17
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.TestonormaleCarattere
+	{mso-style-name:"Testo normale Carattere";
+	mso-style-priority:99;
+	mso-style-link:"Testo normale";
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:IT;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 2.0cm 2.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"IT" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoPlainText"><span lang=3D"EN-US">Can the OFDM receiver made av=
+aible in the RFNoC library be used &#8220;as is&#8221; for receiving LTE and=
+ maybe NR signals to get access to Resource Elements?<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span lang=3D"EN-US">I read something about the us=
+e of such blocks for receivng 802.11 signals and of course they are all OFDM=
+-based systems, but I wonder whether it is just a matter of choosing the rig=
+ht cofiguration parameters in each
+ block and it could work or they cannot be used at all.<o:p></o:p></span></p=
 >
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I cannot get any of the UHD releases to properly bui=
-ld a standard rfnoc image.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">sudo ./uhd_image_builder.py fft ddc duc -g -t X310_R=
-FNOC_HG -c -d X310 --fill-with-fifos<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I installed vivado 2018.3 with uhd 3.15.0.0 and get =
-the error:<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">ERROR: [DRC MDRV-1] Multiple Driver Nets: Net bus_cl=
-k_gen/inst/CLK_OUT4 has multiple drivers: radio_clk_gen/inst/clkout1_buf/O,=
- and bus_clk_gen/inst/clkout4_buf/O.<u></u><u></u></p>
-<p class=3D"MsoNormal">ERROR: [DRC MDRV-1] Multiple Driver Nets: Net radio_=
-reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9 has multipl=
-e drivers: radio_reset_sync/reset_double_sync/synchronizer_false_path/stage=
-s[9].value_reg[9][0]/Q, and ce_reset_sync/reset_double_sync/synchronizer_fa=
-lse_path/stages[9].value_reg[9][0]/Q.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I installed vivado 2017.4 with uhd 3.14.1.1 and get =
-this error:<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">BUILDER: Releasing IP location: /home/nvd/rfnoc/src/=
-uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/aurora_64b66b_pcs_pma=
-<u></u><u></u></p>
-<p class=3D"MsoNormal">Using parser configuration from: /home/nvd/rfnoc/src=
-/uhd/fpga-src/usrp3/top/x300/dev_config.json<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:00:00] Executing command: vivado -mode batch -so=
-urce /home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build_x300.tcl -log bu=
-ild.log -journal x300.jou<u></u><u></u></p>
-<p class=3D"MsoNormal">CRITICAL WARNING: [filemgmt 20-1440] File &#39;/home=
-/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/ddr3_3=
-2bit/ddr3_32bit/user_design/rtl/clocking/mig_7series_v4_0_tempmon.v&#39; al=
-ready exists in the project as a part of sub-design
- file &#39;/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410=
-tffg900-2/ddr3_32bit/ddr3_32bit.xci&#39;. Explicitly adding the file outsid=
-e the scope of the sub-design can lead to unintended behaviors and is not r=
-ecommended.<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:00:29] Current task: Initialization +++ Current =
-Phase: Starting<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:00:29] Current task: Initialization +++ Current =
-Phase: Finished<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:00:29] Executing Tcl: synth_design -top x300 -pa=
-rt xc7k410tffg900-2 -verilog_define BUILD_1G=3D1 -verilog_define BUILD_10G=
-=3D1 -verilog_define SFP0_1GBE=3D1 -verilog_define SFP1_10GBE=3D1 -verilog_=
-define RFNOC=3D1 -verilog_define X310=3D1 -verilog_define
- GIT_HASH=3D32&#39;hfbb85bdf<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:00:29] Starting Synthesis Command<u></u><u></u><=
-/p>
-<p class=3D"MsoNormal">ERROR: [Synth 8-439] module &#39;ddr3_32bit&#39; not=
- found [/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/x300.v:1191]<u></u>=
-<u></u></p>
-<p class=3D"MsoNormal">ERROR: [Synth 8-285] failed synthesizing module &#39=
-;x300&#39; [/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/x300.v:20]<u></=
-u><u></u></p>
-<p class=3D"MsoNormal">ERROR: [Common 17-69] Command failed: Synthesis fail=
-ed - please see the console or run log file for details<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:08:36] Current task: Synthesis +++ Current Phase=
-: Starting<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:08:36] Current task: Synthesis +++ Current Phase=
-: Finished<u></u><u></u></p>
-<p class=3D"MsoNormal">[00:08:36] Process terminated. Status: Failure<u></u=
-><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Any advice is greatly appreciated.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Jeff<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoPlainText"><span lang=3D"EN-US">If the answer would be YES, i=
+t can be done, is there any reference document/presentation to start with?<o=
+:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span lang=3D"EN-US">TIA!<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span lang=3D"EN-US">BR,<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span lang=3D"EN-US">Maurizio.<o:p></o:p></span></=
+p>
+<p class=3D"MsoPlainText"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
 </div>
-</div>
+<!-- --><html>
+	<body>
+		<table style=3D"width:600px;">
+		<tr>
+			<td style=3D"width:600px;">
 
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+<a href=3D"https://on.tim.it/banner-mail-dip"> <img src=3D"https://img.tim.i=
+t/sdr/maild/mail_dip_680x190_Banner_DISNEY_TIMVISION_LANCIO_v2.jpg" title=3D=
+"TIM" style=3D"width: 100%; height: auto; margin-top: 20px;margin-bottom: 20=
+px;"></a>
+			</td>
+		</tr>
+		<tr>
+			<td style=3D"width:585px; font-family: Verdana; font-size:7.5pt; color:#0=
+00; text-align: justify" width=3D"395">
+				Questo messaggio e i suoi allegati sono indirizzati esclusivamente alle=
+ persone indicate. La diffusione, copia o qualsiasi altra azione derivante d=
+alla conoscenza di queste informazioni sono rigorosamente vietate. Qualora a=
+bbiate ricevuto questo documento per errore siete cortesemente pregati di da=
+rne immediata comunicazione al mittente e di provvedere alla sua distruzione=
+, Grazie.
+				<br><br>
+				<i>
+					This e-mail and any attachments is confidential and may  contain privil=
+eged information intended for the addressee(s) only. Dissemination, copying,=
+ printing or use by anybody else is unauthorised. If you are not the intende=
+d recipient, please delete this message and any attachments and advise the s=
+ender by return  e-mail, Thanks.
+				</i>
+				<br><br>
+				<b>Rispetta l'ambiente. Non stampare questa mail se non &egrave; necessa=
+rio.</b>
+			</td>
+		</tr>
+		</table>	
+	</body>
+</html>
+</body>
+</html>
 
---000000000000b5913105a6223ec7--
+--_000_cb6eada9d3c9436c8dae18cd871f12edTELMBXB13RM001telecomit_--
 
 
---===============4449950455252871165==
+--===============4607109848224599944==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -332,5 +271,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4449950455252871165==--
+--===============4607109848224599944==--
 
