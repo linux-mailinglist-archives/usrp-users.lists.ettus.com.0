@@ -2,51 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23EB11DD5ED
-	for <lists+usrp-users@lfdr.de>; Thu, 21 May 2020 20:26:36 +0200 (CEST)
-Received: from [::1] (port=58452 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7DE21DD606
+	for <lists+usrp-users@lfdr.de>; Thu, 21 May 2020 20:34:05 +0200 (CEST)
+Received: from [::1] (port=33680 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jbptq-0005Oj-BW; Thu, 21 May 2020 14:26:34 -0400
-Received: from mail-il1-f169.google.com ([209.85.166.169]:40739)
+	id 1jbq16-0007CP-Hl; Thu, 21 May 2020 14:34:04 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:41936)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <carlosruiznaranjo@gmail.com>)
- id 1jbptl-0005Hh-G9
- for usrp-users@lists.ettus.com; Thu, 21 May 2020 14:26:29 -0400
-Received: by mail-il1-f169.google.com with SMTP id m6so8075084ilq.7
- for <usrp-users@lists.ettus.com>; Thu, 21 May 2020 11:26:09 -0700 (PDT)
+ (Exim 4.93) (envelope-from <bpadalino@gmail.com>) id 1jbq12-0006xb-Tw
+ for usrp-users@lists.ettus.com; Thu, 21 May 2020 14:34:00 -0400
+Received: by mail-oi1-f175.google.com with SMTP id 23so5835250oiq.8
+ for <usrp-users@lists.ettus.com>; Thu, 21 May 2020 11:33:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=XRHBXUa2rzP0P4es2m2mmp3vnijPE5DUpQc4cYVc6Ow=;
- b=IFYcAiwZhcsGDvcqupoou7vZUfXr+awgNwL3SlvfVxMEGBqfCsapq8aVTbqCCUyJX4
- K1RpdMQfIQQUAjLLKaWgbu6ZcAXwKiEHlVVeTla6h0d63uNtv4DcfCT26giUMsDq0eLY
- wcAX7chCaEeoQy6bqPyCYewfMjIAIj7EaFs3RA/w2gtAaEdslBW+K2sYqbTB3IWhT0IV
- V4SdNDwWDTNM6NsQ5wB05CcaDUr8oYVtURl0zxgsvuvbEAD2eaCHKii215ajhXsAW1SU
- qxxiPuyiZkXXtriOc9Z/idCPCdZz8Nvj5S7g1Edlf0kPvNzYSsdXpWNQzPN6jIpcPTsL
- 14eA==
+ :cc; bh=FIfJ6Ka9svV6zqeG+WH4D2IXkcdRpkLAKNLmBcop5Pw=;
+ b=Sqj0FHkBlzH/RZw0KtCuHXYn9lLE73Om5o4PkC9ZarrEULTSHRcOmoVUMzrQM5RzTf
+ MOZmE4me4Lpg2Mg11+TnilNDG4uHgSlY+JTOZvfCY8y8E+dIs/MFKFjUTGI5u4CxGUC7
+ RpwJicGZcqhdVMMq1Eh3/z6xR8T5Jerpvnrrh7LgZAXvw3hyYmoLO75/IvVaWqAbUl5z
+ lUf9vsqcAOCdNEE3c7WnF5LLz2jOmWi96p2ek5QJq+4I7tmCCA5oWgVm8C+J3y2Tkx3K
+ ICUPfj+9h9ZEq1qT7N/FpZtis7MZ3eeXk5PKqMZyJ9HD6JduSgytBNX4aVBMBSFILtEr
+ j0aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=XRHBXUa2rzP0P4es2m2mmp3vnijPE5DUpQc4cYVc6Ow=;
- b=RhOv7zAnMOzI/lWRl8EbilhPL9mgPUQpIix+cycEhpIWpPkFBJDGOhEpyjMMdOwrkH
- nt+ysfspbN5FkSgKrkgi1ZXqcVMr9ZiZW58yx5gc8FZ8qQmHMLbZBalyTRnv4cnRKzq8
- X2NkCbTur96Tdf1UJQG+asFNgnthk8esIyEXjNxoR5Pap6VmVn/+YHaW0DWHTU/uATVG
- zc8Cr07onNWwcJC5pI7Pg2UmI9j9x3P2G8Ltb5VnIDT4YcFEtA0GV0L2MCplWWIslydQ
- FlVevouIx14xVfY3VfPp5tZSbSUIeWdg6I2J8S0uKzjylLTP16ohhYcBczkCs9T8RkH8
- cyJg==
-X-Gm-Message-State: AOAM530tVOwxASuDm1+GtXFL36KcOghvQlRv8Z7hbwSHRPAG8tFUlr5K
- /DtFFCXdFNwA69uX/iba/lXMS8TN3t4fjNi8ZzE=
-X-Google-Smtp-Source: ABdhPJzLmNbXsqZU3ij2bZQidAWcLdrfmUiF/LXpKMw73Tmh1WB+W1epHpfnb0+9PLHPbzDfcAgy58zBA2tIayd0shk=
-X-Received: by 2002:a92:8d03:: with SMTP id s3mr10010960ild.256.1590085548715; 
- Thu, 21 May 2020 11:25:48 -0700 (PDT)
+ bh=FIfJ6Ka9svV6zqeG+WH4D2IXkcdRpkLAKNLmBcop5Pw=;
+ b=qSaEqUai9mim61G1SECAbGoN78DI731/qarJXaFtEMP7Fb+koheeMOhpFvFh5Emm54
+ c3b8/Ra1oDtdyHuKO14ZM3ln7nfMaVx3YwwT+I4ppZHMxkk+gvAb80JiwoyjT92fgRdO
+ iiL8472Au2QRvz9NXoBDpZ+f0usQlN8CNFZ8jZ2koaY3p+P3/fvs2W3O9D4QuVtWn84Y
+ SPA/8WwTylfhdJt79X5fF5fCpD8OiO74qlxrWCN2JOIR7TevQ15ljJcra95RVBFzqNro
+ z6un2nGLrYYSh0zdDgseRb5U3AjYzQjpOC0wt4i+f1RGKPC1BpPsicUT/KFjgLYFyZpL
+ TwpQ==
+X-Gm-Message-State: AOAM532WmsCtMyOZUFJF7YC+HyK4OXoovAwoIkW+4yK0wdyp8i/WE1p5
+ 1OZ2VIAgIXgltsB3RJzCvtlbjsIulp8jVEuAwHw=
+X-Google-Smtp-Source: ABdhPJwdVp7tKwCAUIIhaL2UrX6Aros9KxKPQmpr2nwq49f/Kyd5iyAm0SzSSCQoojEymjp93gPzyMsfk1soFyxijZ0=
+X-Received: by 2002:aca:cd93:: with SMTP id d141mr7335411oig.148.1590085999929; 
+ Thu, 21 May 2020 11:33:19 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAP2eGPhuOxNCAMULg=PFJBoGTP+2zAtd0YSMdGP-zH6Jse_D5w@mail.gmail.com>
  <CAEXYVK6W5UNvNUFuGaMU0iEWBkpPH8njt-FFkUdGLmqcwkER1g@mail.gmail.com>
-In-Reply-To: <CAEXYVK6W5UNvNUFuGaMU0iEWBkpPH8njt-FFkUdGLmqcwkER1g@mail.gmail.com>
-Date: Thu, 21 May 2020 20:25:37 +0200
-Message-ID: <CAP2eGPjoT8ocBao=jW_Z=JRb6OLhx1cC_-J7nRANXCvwNNU7rA@mail.gmail.com>
-To: Brian Padalino <bpadalino@gmail.com>
+ <CAP2eGPjoT8ocBao=jW_Z=JRb6OLhx1cC_-J7nRANXCvwNNU7rA@mail.gmail.com>
+In-Reply-To: <CAP2eGPjoT8ocBao=jW_Z=JRb6OLhx1cC_-J7nRANXCvwNNU7rA@mail.gmail.com>
+Date: Thu, 21 May 2020 14:33:08 -0400
+Message-ID: <CAEXYVK5wDuzhrWdOyN5JtnU26L6-PnhLE6dtr+vDdkQR+R8auw@mail.gmail.com>
+To: Carlos Alberto Ruiz Naranjo <carlosruiznaranjo@gmail.com>
 Subject: Re: [USRP-users] Multiple DMA_FIFO blocks
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -59,10 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Carlos Alberto Ruiz Naranjo via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Carlos Alberto Ruiz Naranjo <carlosruiznaranjo@gmail.com>
+From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Brian Padalino <bpadalino@gmail.com>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2836384539031418082=="
+Content-Type: multipart/mixed; boundary="===============7633777623604588351=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,68 +76,55 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2836384539031418082==
-Content-Type: multipart/alternative; boundary="0000000000004b32a105a62ca46c"
+--===============7633777623604588351==
+Content-Type: multipart/alternative; boundary="0000000000003037ce05a62cbf3f"
 
---0000000000004b32a105a62ca46c
+--0000000000003037ce05a62cbf3f
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Thank you for the response Brian :)
+On Thu, May 21, 2020 at 2:25 PM Carlos Alberto Ruiz Naranjo <
+carlosruiznaranjo@gmail.com> wrote:
 
-The throughput is about 11MSamples.
-What about to use the AXI_FIFO_LOOPBACK?
-
-El jue., 21 may. 2020 a las 20:17, Brian Padalino (<bpadalino@gmail.com>)
-escribi=C3=B3:
-
-> On Thu, May 21, 2020 at 1:55 PM Carlos Alberto Ruiz Naranjo via USRP-user=
-s
-> <usrp-users@lists.ettus.com> wrote:
+> Thank you for the response Brian :)
 >
->> Hello,
->>
->> Is it possible to instance multiple DMA_FIFO blocks? I suppose I have to
->> do it manually in the x300_core.v. Is there any limitation?
->>
->
-> You might need to make more ports on the DDR3 controller.  You'll
-> ultimately be limited by the DDR3 controller for throughput.
->
-> Brian
+> The throughput is about 11MSamples.
+> What about to use the AXI_FIFO_LOOPBACK?
 >
 
---0000000000004b32a105a62ca46c
+No idea about that.  Someone else will have to weigh in.
+
+Good luck!
+
+Brian
+
+>
+
+--0000000000003037ce05a62cbf3f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Thank you for the response Brian :)<br></div><div><br=
-></div><div>The throughput is about 11MSamples.</div><div>What about to use=
- the <span lang=3D"en"><span title=3D""><span lang=3D"en"><span title=3D"">=
-AXI_FIFO_LOOPBACK?</span></span></span></span></div></div><br><div class=3D=
-"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El jue., 21 may. 2020 a=
- las 20:17, Brian Padalino (&lt;<a href=3D"mailto:bpadalino@gmail.com">bpad=
-alino@gmail.com</a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"gmail=
+<div dir=3D"ltr"><div dir=3D"ltr">On Thu, May 21, 2020 at 2:25 PM Carlos Al=
+berto Ruiz Naranjo &lt;<a href=3D"mailto:carlosruiznaranjo@gmail.com">carlo=
+sruiznaranjo@gmail.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Than=
+k you for the response Brian :)<br></div><div><br></div><div>The throughput=
+ is about 11MSamples.</div><div>What about to use the <span lang=3D"en"><sp=
+an title=3D""><span lang=3D"en"><span title=3D"">AXI_FIFO_LOOPBACK?</span><=
+/span></span></span></div></div></blockquote><div><br></div><div>No idea ab=
+out that.=C2=A0 Someone else will have to weigh in.</div><div><br></div><di=
+v>Good luck!</div><div><br></div><div>Brian</div><blockquote class=3D"gmail=
 _quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">On Thu, May 21, 2=
-020 at 1:55 PM Carlos Alberto Ruiz Naranjo via USRP-users &lt;<a href=3D"ma=
-ilto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.c=
-om</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello,</div><div><br></d=
-iv><div><span lang=3D"en"><span title=3D"">Is it possible to instance multi=
-ple DMA_FIFO blocks?</span> <span title=3D"">I suppose I have to do it manu=
-ally in the x300_core.v.</span> <span title=3D"">Is there any limitation?</=
-span></span></div></div></blockquote><div><br></div><div>You might need to =
-make more ports on the DDR3 controller.=C2=A0 You&#39;ll ultimately be limi=
-ted by the DDR3 controller for throughput.</div><div><br></div><div>Brian</=
-div></div></div>
+,204);padding-left:1ex"><div class=3D"gmail_quote"><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex">
 </blockquote></div>
+</blockquote></div></div>
 
---0000000000004b32a105a62ca46c--
+--0000000000003037ce05a62cbf3f--
 
 
---===============2836384539031418082==
+--===============7633777623604588351==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,5 +135,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2836384539031418082==--
+--===============7633777623604588351==--
 
