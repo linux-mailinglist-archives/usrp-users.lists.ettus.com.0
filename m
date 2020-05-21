@@ -2,49 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B78C1DC564
-	for <lists+usrp-users@lfdr.de>; Thu, 21 May 2020 04:55:25 +0200 (CEST)
-Received: from [::1] (port=54500 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC761DC6C4
+	for <lists+usrp-users@lfdr.de>; Thu, 21 May 2020 08:02:22 +0200 (CEST)
+Received: from [::1] (port=43442 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jbbMe-0006gM-5v; Wed, 20 May 2020 22:55:20 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:42094)
+	id 1jbeHa-0004hI-TF; Thu, 21 May 2020 02:02:18 -0400
+Received: from mail-vk1-f170.google.com ([209.85.221.170]:46987)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <bpadalino@gmail.com>) id 1jbbMa-0006bI-3s
- for usrp-users@lists.ettus.com; Wed, 20 May 2020 22:55:16 -0400
-Received: by mail-ot1-f42.google.com with SMTP id z3so4390495otp.9
- for <usrp-users@lists.ettus.com>; Wed, 20 May 2020 19:54:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1jbeHX-0004da-Ei
+ for usrp-users@lists.ettus.com; Thu, 21 May 2020 02:02:15 -0400
+Received: by mail-vk1-f170.google.com with SMTP id v23so1416379vke.13
+ for <usrp-users@lists.ettus.com>; Wed, 20 May 2020 23:01:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=EJo3BjNhjIGeEha/E+CAh14nR568x8tf+UU8pv8qF4o=;
- b=RG0/y4RsB54jdp+LQb/UwLdFpocEX9emyszUPwViD7WEVk9A5xDpq8kkCexbcZjCOs
- 9smk4ZO0M3/2gcrq/GbTEqDAEMVK1XIPf0FxBmRWJJwr4l4Qesuh8Ruy7YzlOlBS2Odi
- zaePprim/ZBP9XkUL9UQ29kJCjnMpt9fAJZ9COm1wq3w2ojgSHBZoFoMIa5eTEz+ctgQ
- zESqD7ExgW750KnLvD8jcvpy6OrfUMDepC14pjFcdiC02UxAfUlp/GfrFXMsz9Ffc/Ej
- cPFU38506afN/H+vEOj3B+AdjqpNpIxnrnrKG8Gpkj7PU93msb+TcV5xmDSkixywXmAT
- D+ug==
+ :cc; bh=de3u4xNOsObq0uo3LF5szHQzXtIzoLPqIwO29gO3C1Q=;
+ b=CSwmNqwj2F1QJNDIXCdNd7Q2hinEjiZFszvfkh0t2Tzig7zSftxJ+upsUs31h+BGXz
+ augsygBID1yaZSJZ62E1D5K8Cx6lDkgIOILjEa1qq4kPVsRHyfnIoWWDZ9pYU8e9kQgg
+ 5G7QNmS14IrfvOo+S0l73ssIByyoJSrYtQ9jUgE69IE1vJpQE1rcWg4koYKDfeB5iK7B
+ KsRlalWef/ZabntDRRbQPfZbbhX5OGs3DB911X9DKhyRzWScLIyXGKmXgwKXJesJet9L
+ 0UhDBMMeRFg/k+Q3VORBVTwP+asZ96Dejh2YAZKWX1pt2ruTk/T/tl/SbB+F5Sp9dUHa
+ uA7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=EJo3BjNhjIGeEha/E+CAh14nR568x8tf+UU8pv8qF4o=;
- b=ljBY/tg4CyEC05qktJRM9d3BvNpUegw0YuYgp+UZBGSaTEflR5x8Gd+2AnPgkDIv2A
- 6x6zJ4RtpRI2M79rCJFEqUhzmPKeJ+H78BLmT7y6Sjoc7BHpOoLZ959Z8pd5OLyQ7dwK
- 9t33kds5Fqvy9yWN89xcK6wmCyUMMJY8PCkAejGwh2CvWr4RI0DtsoeuLN0f0pCpligl
- hRcWmBEwjp9rxTmkuCQSAd1xy+N5dPelB8W+fHdq4Hwf/+o6/fTEY216R/AOQy5VrQVr
- uAeQ2LZBDKL7zACyZq7O3Ad5eqdeZBcYz2LNUKtgjbTTIcyWSlaAG7gRjRUXp2/zi5Vm
- GLHQ==
-X-Gm-Message-State: AOAM532eEEwHaCLr9lSszn4Gk9/zH+8tQCfUDMB2wRWKasmMXs5cTABD
- vb9xjCKty+tu44Vc8LI+8z0IjA23zxIVa+IGk1s=
-X-Google-Smtp-Source: ABdhPJyQ6V3ZGHoCpVgHbnPhGpCHKBpMx4u0sJKHvgtRtDTK1vvjLBlfJFmU/ZvWPEhX9M9ZJQBQ74o6tiwppLEJOTc=
-X-Received: by 2002:a05:6830:2155:: with SMTP id
- r21mr5857689otd.187.1590029675270; 
- Wed, 20 May 2020 19:54:35 -0700 (PDT)
+ bh=de3u4xNOsObq0uo3LF5szHQzXtIzoLPqIwO29gO3C1Q=;
+ b=LPlBuGb0UgYfTZvm/CyaSyLmz2OlqJqZ71YeBIIj4YqtYBPtqn1m6dcpcd5M266kwM
+ rfqunycEVBPBn7aq9z8+f1mWpElIFYcjkTua6D2yEGGnlxRZwuYoVJuRIDhVohNJhhpv
+ BV3DitHtS/DIKq7CLAshuxXadAOq05IpqVgLN2sSKzUD2jzqojAiqQZNFuL0WrZuTBbV
+ RXQ7PF9SI6tsN+JRJTqnRMXRozL0jFrkBcZ5QrblVhkN71qOE+dVqPaR97JdCF1cgvQ1
+ 9EbLINpA9sw7VzzDaF4h4l1HUG9XfmNY1NzkRZeCpPLi2IEW5VqBJj06ZmwfP7AW9202
+ 3yfA==
+X-Gm-Message-State: AOAM530Ae32mh960WWW5frMOcWO0cswf9bJx4LBDf/lESAVewensboXO
+ bzTf7k0LtWrW8hC/pgc4L+AajXXfnNHlkXh6W91z2IGT
+X-Google-Smtp-Source: ABdhPJyMc8VVi/jStUpD1pr7AHDdEyGzyRwCh0J1H19AgdVRPdAQfIXOtoGCEdZnsua9GI8LahYVW8eat8oe7WQehrU=
+X-Received: by 2002:a1f:a6c8:: with SMTP id p191mr6348804vke.78.1590040894733; 
+ Wed, 20 May 2020 23:01:34 -0700 (PDT)
 MIME-Version: 1.0
 References: <2f10393db6b447e9925d3da9fd110467@gtri.gatech.edu>
 In-Reply-To: <2f10393db6b447e9925d3da9fd110467@gtri.gatech.edu>
-Date: Wed, 20 May 2020 22:54:24 -0400
-Message-ID: <CAEXYVK5gRddscqEBZ36CHjNkv-=PFvBaA1jxwTy9UhdEgq-UTA@mail.gmail.com>
+Date: Thu, 21 May 2020 02:00:58 -0400
+Message-ID: <CAL7q81t6LA-Xu7fs+f9t=ZY4V8o8HMq0BFpyQLdq4TfcwisBvQ@mail.gmail.com>
 To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
 Subject: Re: [USRP-users] rfnoc build standard image x310 failing
 X-BeenThere: usrp-users@lists.ettus.com
@@ -58,11 +59,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, "Prado,
  Ron" <Ron.Prado@gtri.gatech.edu>
-Content-Type: multipart/mixed; boundary="===============8645479491331379758=="
+Content-Type: multipart/mixed; boundary="===============4449950455252871165=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,11 +77,25 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8645479491331379758==
-Content-Type: multipart/alternative; boundary="000000000000fa187805a61fa1d1"
+--===============4449950455252871165==
+Content-Type: multipart/alternative; boundary="000000000000b5913105a6223ec7"
 
---000000000000fa187805a61fa1d1
+--000000000000b5913105a6223ec7
 Content-Type: text/plain; charset="UTF-8"
+
+Hi Jeff,
+
+For UHD 3.15, I believe that issue has been fixed. Check out the
+UHD-3.15.LTS branch and let me know if you still have an issue building.
+
+For UHD 3.14, check out the UHD-3.14 branch.
+
+Using the branches above, I was able to successfully build an image using
+your uhd_image_builder command (without the -g option) for both UHD 3.15
+and UHD 3.14.
+
+Jonathon
+
 
 On Wed, May 20, 2020 at 8:35 PM Hodges, Jeff via USRP-users <
 usrp-users@lists.ettus.com> wrote:
@@ -115,35 +130,105 @@ usrp-users@lists.ettus.com> wrote:
 > and
 > ce_reset_sync/reset_double_sync/synchronizer_false_path/stages[9].value_reg[9][0]/Q.
 >
+>
+>
+>
+>
+> I installed vivado 2017.4 with uhd 3.14.1.1 and get this error:
+>
+>
+>
+> BUILDER: Releasing IP location:
+> /home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/aurora_64b66b_pcs_pma
+>
+> Using parser configuration from:
+> /home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/dev_config.json
+>
+> [00:00:00] Executing command: vivado -mode batch -source
+> /home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build_x300.tcl -log
+> build.log -journal x300.jou
+>
+> CRITICAL WARNING: [filemgmt 20-1440] File
+> '/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/ddr3_32bit/ddr3_32bit/user_design/rtl/clocking/mig_7series_v4_0_tempmon.v'
+> already exists in the project as a part of sub-design file
+> '/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/ddr3_32bit/ddr3_32bit.xci'.
+> Explicitly adding the file outside the scope of the sub-design can lead to
+> unintended behaviors and is not recommended.
+>
+> [00:00:29] Current task: Initialization +++ Current Phase: Starting
+>
+> [00:00:29] Current task: Initialization +++ Current Phase: Finished
+>
+> [00:00:29] Executing Tcl: synth_design -top x300 -part xc7k410tffg900-2
+> -verilog_define BUILD_1G=1 -verilog_define BUILD_10G=1 -verilog_define
+> SFP0_1GBE=1 -verilog_define SFP1_10GBE=1 -verilog_define RFNOC=1
+> -verilog_define X310=1 -verilog_define GIT_HASH=32'hfbb85bdf
+>
+> [00:00:29] Starting Synthesis Command
+>
+> ERROR: [Synth 8-439] module 'ddr3_32bit' not found
+> [/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/x300.v:1191]
+>
+> ERROR: [Synth 8-285] failed synthesizing module 'x300'
+> [/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/x300.v:20]
+>
+> ERROR: [Common 17-69] Command failed: Synthesis failed - please see the
+> console or run log file for details
+>
+> [00:08:36] Current task: Synthesis +++ Current Phase: Starting
+>
+> [00:08:36] Current task: Synthesis +++ Current Phase: Finished
+>
+> [00:08:36] Process terminated. Status: Failure
+>
+>
+>
+>
+>
+> Any advice is greatly appreciated.
+>
+>
+>
+> Thanks,
+>
+>
+>
+> Jeff
+>
+>
+>
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-This looks like the problem with uhd_image_builder.py assigning clocks.  It
-should have been fixed most likely here with this commit for the generated
-code:
-
-
-https://github.com/EttusResearch/fpga/commit/9fb84a15ab8f31e3c056845d2d063a9cc745443e#diff-4ec1b7f14325d1af5ce8a749d9274b29
-
-Can you check to see if your rfnoc generated files have ce_clk = radio_clk
-in them?
-
-Brian
-
---000000000000fa187805a61fa1d1
+--000000000000b5913105a6223ec7
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Wed, May 20, 2020 at 8:35 PM Hodges, J=
-eff via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-u=
-sers@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr">Hi Jeff,<div><br></div><div>For UHD 3.15, I believe that i=
+ssue has been fixed. Check out the UHD-3.15.LTS branch and let me know if y=
+ou still have an issue building.</div><div><br></div><div>For UHD 3.14, che=
+ck out the UHD-3.14 branch.<br></div><div><br></div><div>Using the branches=
+ above, I was able to successfully build an image using your uhd_image_buil=
+der command (without the -g option) for both UHD 3.15 and UHD 3.14.</div><d=
+iv><br></div><div>Jonathon</div><div><br></div></div><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 20, 2020 at 8:35=
+ PM Hodges, Jeff via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettu=
+s.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">
 
 
 
 
 
 <div lang=3D"EN-US">
-<div class=3D"gmail-m_7011778936979535436WordSection1">
+<div class=3D"gmail-m_-2882741423518001013WordSection1">
 <p class=3D"MsoNormal">Can someone please tell me what version of uhd and r=
 fnoc are compatible for building an image on Ubuntu 18.04?<u></u><u></u></p=
 >
@@ -164,21 +249,79 @@ k_gen/inst/CLK_OUT4 has multiple drivers: radio_clk_gen/inst/clkout1_buf/O,=
 reset_sync/reset_double_sync/synchronizer_false_path/value[9]_9 has multipl=
 e drivers: radio_reset_sync/reset_double_sync/synchronizer_false_path/stage=
 s[9].value_reg[9][0]/Q, and ce_reset_sync/reset_double_sync/synchronizer_fa=
-lse_path/stages[9].value_reg[9][0]/Q.</p></div></div></blockquote><div><br>=
-</div><div>This looks like the problem with uhd_image_builder.py assigning =
-clocks.=C2=A0 It should have been fixed most likely here with this commit f=
-or the generated code:</div><div><br></div><div>=C2=A0=C2=A0<a href=3D"http=
-s://github.com/EttusResearch/fpga/commit/9fb84a15ab8f31e3c056845d2d063a9cc7=
-45443e#diff-4ec1b7f14325d1af5ce8a749d9274b29">https://github.com/EttusResea=
-rch/fpga/commit/9fb84a15ab8f31e3c056845d2d063a9cc745443e#diff-4ec1b7f14325d=
-1af5ce8a749d9274b29</a></div><div><br></div><div>Can you check to see if yo=
-ur rfnoc generated files have ce_clk =3D radio_clk in them?</div><div><br><=
-/div><div>Brian</div></div></div>
+lse_path/stages[9].value_reg[9][0]/Q.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I installed vivado 2017.4 with uhd 3.14.1.1 and get =
+this error:<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">BUILDER: Releasing IP location: /home/nvd/rfnoc/src/=
+uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/aurora_64b66b_pcs_pma=
+<u></u><u></u></p>
+<p class=3D"MsoNormal">Using parser configuration from: /home/nvd/rfnoc/src=
+/uhd/fpga-src/usrp3/top/x300/dev_config.json<u></u><u></u></p>
+<p class=3D"MsoNormal">[00:00:00] Executing command: vivado -mode batch -so=
+urce /home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build_x300.tcl -log bu=
+ild.log -journal x300.jou<u></u><u></u></p>
+<p class=3D"MsoNormal">CRITICAL WARNING: [filemgmt 20-1440] File &#39;/home=
+/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410tffg900-2/ddr3_3=
+2bit/ddr3_32bit/user_design/rtl/clocking/mig_7series_v4_0_tempmon.v&#39; al=
+ready exists in the project as a part of sub-design
+ file &#39;/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/build-ip/xc7k410=
+tffg900-2/ddr3_32bit/ddr3_32bit.xci&#39;. Explicitly adding the file outsid=
+e the scope of the sub-design can lead to unintended behaviors and is not r=
+ecommended.<u></u><u></u></p>
+<p class=3D"MsoNormal">[00:00:29] Current task: Initialization +++ Current =
+Phase: Starting<u></u><u></u></p>
+<p class=3D"MsoNormal">[00:00:29] Current task: Initialization +++ Current =
+Phase: Finished<u></u><u></u></p>
+<p class=3D"MsoNormal">[00:00:29] Executing Tcl: synth_design -top x300 -pa=
+rt xc7k410tffg900-2 -verilog_define BUILD_1G=3D1 -verilog_define BUILD_10G=
+=3D1 -verilog_define SFP0_1GBE=3D1 -verilog_define SFP1_10GBE=3D1 -verilog_=
+define RFNOC=3D1 -verilog_define X310=3D1 -verilog_define
+ GIT_HASH=3D32&#39;hfbb85bdf<u></u><u></u></p>
+<p class=3D"MsoNormal">[00:00:29] Starting Synthesis Command<u></u><u></u><=
+/p>
+<p class=3D"MsoNormal">ERROR: [Synth 8-439] module &#39;ddr3_32bit&#39; not=
+ found [/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/x300.v:1191]<u></u>=
+<u></u></p>
+<p class=3D"MsoNormal">ERROR: [Synth 8-285] failed synthesizing module &#39=
+;x300&#39; [/home/nvd/rfnoc/src/uhd/fpga-src/usrp3/top/x300/x300.v:20]<u></=
+u><u></u></p>
+<p class=3D"MsoNormal">ERROR: [Common 17-69] Command failed: Synthesis fail=
+ed - please see the console or run log file for details<u></u><u></u></p>
+<p class=3D"MsoNormal">[00:08:36] Current task: Synthesis +++ Current Phase=
+: Starting<u></u><u></u></p>
+<p class=3D"MsoNormal">[00:08:36] Current task: Synthesis +++ Current Phase=
+: Finished<u></u><u></u></p>
+<p class=3D"MsoNormal">[00:08:36] Process terminated. Status: Failure<u></u=
+><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Any advice is greatly appreciated.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Jeff<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
 
---000000000000fa187805a61fa1d1--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000b5913105a6223ec7--
 
 
---===============8645479491331379758==
+--===============4449950455252871165==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -189,5 +332,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8645479491331379758==--
+--===============4449950455252871165==--
 
