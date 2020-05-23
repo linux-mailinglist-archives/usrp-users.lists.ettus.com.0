@@ -2,50 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB471DF70F
-	for <lists+usrp-users@lfdr.de>; Sat, 23 May 2020 14:04:36 +0200 (CEST)
-Received: from [::1] (port=38382 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B2BE1DF961
+	for <lists+usrp-users@lfdr.de>; Sat, 23 May 2020 19:26:35 +0200 (CEST)
+Received: from [::1] (port=35424 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jcStE-0001F6-Bc; Sat, 23 May 2020 08:04:32 -0400
-Received: from mail-pl1-f171.google.com ([209.85.214.171]:38174)
+	id 1jcXuq-00064L-LP; Sat, 23 May 2020 13:26:32 -0400
+Received: from mail-qt1-f178.google.com ([209.85.160.178]:40049)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <mgberry@ellipticity.com>)
- id 1jcStA-00014u-Co
- for usrp-users@lists.ettus.com; Sat, 23 May 2020 08:04:28 -0400
-Received: by mail-pl1-f171.google.com with SMTP id m7so5492064plt.5
- for <usrp-users@lists.ettus.com>; Sat, 23 May 2020 05:04:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ellipticity-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:from:date:message-id:subject:to;
- bh=V0zwlSKDjbDOWOMjL2ggDhfFzybSGp81dZRDbJbDdkQ=;
- b=N3xHVnh0R7w75NE2FqaVMjkXMYMX4IYIX/uNSIt2vwmO8Nd/c/S1vQp9G21bEClJh5
- MBR4AuKEO3qBjmb+2w4WJTug7kicIC9L+3tKr+z7LtNQn+zZsETYO6rS/eSePBtRsa9y
- NSbHPQ53097S72CbBSLYjFzc+tfMX4x9PCbKZyc3SF/cpGmZ+W7sD0TTsg5RbN9BuhGS
- L93aaz14lGppgmV5TXJJ9MsCHQZkwfCeADwlbs0y2c8khN21WoXLKfAb31ChjEC/0gMj
- 8XQl0w11g6Cn7c3rNpGlpBO33T44bha9Da1/5JlFQ1AXLxRtlRYFHot7ei5lyFpQFtjx
- k+yw==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jcXum-000603-ME
+ for USRP-users@lists.ettus.com; Sat, 23 May 2020 13:26:28 -0400
+Received: by mail-qt1-f178.google.com with SMTP id h9so707405qtj.7
+ for <USRP-users@lists.ettus.com>; Sat, 23 May 2020 10:26:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=ENa4F25UlpYzmcNExfZ7eHXKeKSGJMubb58YxNHzrrU=;
+ b=HWZr0Dr8yz+7KRxk7HiRa6LCsMxwpMNV3Wh1BpGSFkzJGYnOgif9U8bMuIG4Uvf844
+ xir22kFkoKPly2XwX3gCAxKBhYAaexhX/YDDkRULyU/DPiFkxRbQSGITKgFITD/a4x7N
+ qmuDuItS3IMXC9jttVvSYWQUmXzRx7LdQCGU80rFebLwmVhj2x5tLsUfHPLFb3eMcmCG
+ aUhdBjVWieGMO2B5soYV+pi1CJ5pfWcZLiCAkN+xskuaOWlKyanSOPayil1bG1A/mk84
+ Hvasqv/lMv7It3c+QERfaCnL1Xlqak83uimv9E3EXfmBz0KsAHRz3SBR6ppbryLlycIq
+ o5Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=V0zwlSKDjbDOWOMjL2ggDhfFzybSGp81dZRDbJbDdkQ=;
- b=LFC8bpgn8SjOUzX/PzDC3vm1esFe1G7QQ1IRfmGKECJHxB3xYikSHNiya3Ej5Sp8sG
- miivy7scVIVscdQVldBcXYqHaqE8q0G1Q6WkSNvWjCIt5WW7YxP6T4c0gRnpXiHj2+re
- 1aiLqtWWsAf31SLFnyO9cLkxLlTt4NLNnb4aw5O/afAr6jDjuEHZ/LiETq588qih7FgA
- YBeQdAin+bMQBwdi3aPmwywW+xMsH/lLGGlnNJwXBusAJDOxOXAIbnsfdqY+RBkZ1/uU
- EY/In9ugmYVMd72sXZaXgpeap7SDxbuhXh/6JtA0YD4bpyHcUujP/expogPZduSox22+
- JyjA==
-X-Gm-Message-State: AOAM533fBvrohRi/aPzg49AxB9m0nj9BqhZO7XxAz54q5RBdKJcsEBLo
- 7DxMlg+DgyIUgLCdHxdxJE3ZAvKrNv4sYPLtwpkSud6zK7/Xmg==
-X-Google-Smtp-Source: ABdhPJwT38GnuQ6qkaF2pT8jE/xLdG5itix7i6WqIpnx8mP6iFVL69wWyZPYxF76VbP+iJy/8UjpCfia0tQeAI+tpUY=
-X-Received: by 2002:a17:902:8c8c:: with SMTP id
- t12mr19615711plo.285.1590235426962; 
- Sat, 23 May 2020 05:03:46 -0700 (PDT)
-MIME-Version: 1.0
-Date: Sat, 23 May 2020 08:03:36 -0400
-Message-ID: <CAKeOk0NPvCvPm8DT-xKK=Fyhnd9-+vy6cVxbbmsgYgiiE5YxSw@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] XCVR2450
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=ENa4F25UlpYzmcNExfZ7eHXKeKSGJMubb58YxNHzrrU=;
+ b=hLj7RPqk+D+WtIVNKSwlDQSSoAUqN4+v5XvDoi5iQBo+ItqO+YY4fVut/gDcucKWgp
+ 5dhoRm6BxsN32ypy+2qInOG9AtiUc0S8NWxSGsFwma82MmScmXy4jJpjYd7ORPiImrke
+ bVlkoWVgFmzL3PjO4SDdiFScB9RvX8loL/xfQvKOEXSI1AMH5kJleVkwkQ1qjlABfk0X
+ dwTxfMx3bhWergiajdNXKW8zUJdMTME0uWJEnVASImkj1fhOWJhcL0GDjd31rtT4JAzo
+ HD+EpttuDaO4WyJmQqXG3b5VwILbzeKSafxKSYGPcB94QYuqzVkT5uvIlKSjNbIfjxCQ
+ GStw==
+X-Gm-Message-State: AOAM533xe69goZcQnkz/L+IZjuepPacREQjKSXCs6TTs4i2FURD8RYrY
+ uYLkob+uFh7C43Kz3GlJ1Dc=
+X-Google-Smtp-Source: ABdhPJxzDBeFbE0rLnZvj0F5hYuo5B+RC+PQzAQJf9ZPP6C/XUQcwowsY3X6E/qQJiXHyeRcE4UULg==
+X-Received: by 2002:ac8:518e:: with SMTP id c14mr21558231qtn.183.1590254748028; 
+ Sat, 23 May 2020 10:25:48 -0700 (PDT)
+Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-12-103.dsl.bell.ca.
+ [174.95.12.103])
+ by smtp.gmail.com with ESMTPSA id m13sm12058173qtm.12.2020.05.23.10.25.47
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 23 May 2020 10:25:47 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+Date: Sat, 23 May 2020 13:25:46 -0400
+Message-Id: <FA346AD2-8C8B-412B-9944-F27A72E81072@gmail.com>
+References: <CAKeOk0NPvCvPm8DT-xKK=Fyhnd9-+vy6cVxbbmsgYgiiE5YxSw@mail.gmail.com>
+In-Reply-To: <CAKeOk0NPvCvPm8DT-xKK=Fyhnd9-+vy6cVxbbmsgYgiiE5YxSw@mail.gmail.com>
+To: Matt <mgberry@ellipticity.com>
+X-Mailer: iPhone Mail (17E262)
+Subject: Re: [USRP-users] XCVR2450
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,9 +65,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Matt via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Matt <mgberry@ellipticity.com>
-Content-Type: multipart/mixed; boundary="===============4503210733387155969=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: USRP-users@lists.ettus.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,200 +83,79 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4503210733387155969==
-Content-Type: multipart/alternative; boundary="000000000000bbd75005a64f89a0"
-
---000000000000bbd75005a64f89a0
-Content-Type: text/plain; charset="UTF-8"
-
-Is there a specific 'bin' image needed to run the XCVR2450 on my N200?
-Running the uhd image downloader grabs the following images that I have
-installed. I am seeing strange (random spurs as if the board is
-misconfigured) behaviour out of the daughterboard, so I think it could be a
-firmware compatibility issue.
-
-Thanks,
-
-Matt
-
-
-
-INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; UHD_3.14.1.1-release
-[INFO] [USRP2] Opening a USRP2/N-Series device...
-[INFO] [USRP2] Current recv frame size: 1472 bytes
-[INFO] [USRP2] Current send frame size: 1472 bytes
-[INFO] [USRP2] Detecting internal GPSDO....
-[INFO] [GPS] No GPSDO found
-  _____________________________________________________
- /
-|       Device: USRP2 / N-Series Device
-|     _____________________________________________________
-|    /
-|   |       Mboard: N200r4
-|   |   hardware: 2576
-|   |   mac-addr: a0:36:fa:26:32:98
-|   |   ip-addr: 192.168.10.2
-|   |   subnet: 255.255.255.255
-|   |   gateway: 255.255.255.255
-|   |   gpsdo: none
-|   |   serial: E9R12W8UN
-|   |   FW Version: 12.4
-|   |   FPGA Version: 11.1
-|   |
-|   |   Time sources:  none, external, _external_, mimo
-|   |   Clock sources: internal, external, mimo
-|   |   Sensors: mimo_locked, ref_locked
-|   |     _____________________________________________________
-|   |    /
-|   |   |       RX DSP: 0
-|   |   |
-|   |   |   Freq range: -50.000 to 50.000 MHz
-|   |     _____________________________________________________
-|   |    /
-|   |   |       RX DSP: 1
-|   |   |
-|   |   |   Freq range: -50.000 to 50.000 MHz
-|   |     _____________________________________________________
-|   |    /
-|   |   |       RX Dboard: A
-|   |   |   ID: XCVR2450, XCVR2450 - r2.1 (0x0061)
-|   |   |   Serial: E9R1400XX
-|   |   |     _____________________________________________________
-|   |   |    /
-|   |   |   |       RX Frontend: 0
-|   |   |   |   Name: XCVR2450 RX
-|   |   |   |   Antennas: J1, J2
-|   |   |   |   Sensors: lo_locked, rssi
-|   |   |   |   Freq range: 2400.000 to 6000.000 MHz
-|   |   |   |   Gain range LNA: 0.0 to 30.5 step 15.0 dB
-|   |   |   |   Gain range VGA: 0.0 to 62.0 step 2.0 dB
-|   |   |   |   Bandwidth range: 13500000.0 to 39600000.0 step 600000.0 Hz
-|   |   |   |   Connection Type: IQ
-|   |   |   |   Uses LO offset: No
-|   |   |     _____________________________________________________
-|   |   |    /
-|   |   |   |       RX Codec: A
-|   |   |   |   Name: ads62p44
-|   |   |   |   Gain range digital: 0.0 to 6.0 step 0.5 dB
-|   |   |   |   Gain range fine: 0.0 to 0.5 step 0.1 dB
-|   |     _____________________________________________________
-|   |    /
-|   |   |       TX DSP: 0
-|   |   |
-|   |   |   Freq range: -200.000 to 200.000 MHz
-|   |     _____________________________________________________
-|   |    /
-|   |   |       TX Dboard: A
-|   |   |   ID: XCVR2450 (0x0060)
-|   |   |   Serial: E9R1400XX
-|   |   |     _____________________________________________________
-|   |   |    /
-|   |   |   |       TX Frontend: 0
-|   |   |   |   Name: XCVR2450 TX
-|   |   |   |   Antennas: J1, J2
-|   |   |   |   Sensors: lo_locked
-|   |   |   |   Freq range: 2400.000 to 6000.000 MHz
-|   |   |   |   Gain range VGA: 0.0 to 30.0 step 0.5 dB
-|   |   |   |   Gain range BB: 0.0 to 5.0 step 1.5 dB
-|   |   |   |   Bandwidth range: 24000000.0 to 48000000.0 step 12000000.0 Hz
-|   |   |   |   Connection Type: QI
-|   |   |   |   Uses LO offset: No
-|   |   |     _____________________________________________________
-|   |   |    /
-|   |   |   |       TX Codec: A
-|   |   |   |   Name: ad9777
-|   |   |   |   Gain Elements: None
-
---000000000000bbd75005a64f89a0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Is there a specific &#39;bin&#39; image needed to run=
- the XCVR2450 on my N200? Running the uhd image downloader grabs the follow=
-ing images that I have installed. I am seeing strange (random spurs as if t=
-he board is misconfigured) behaviour out of the daughterboard, so I think i=
-t could be a firmware compatibility issue.</div><div><br></div><div>Thanks,=
-</div><div><br></div><div>Matt</div><div><br></div><div><br></div><div><br>=
-</div><div>INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; UHD_3.14=
-.1.1-release<br>[INFO] [USRP2] Opening a USRP2/N-Series device...<br>[INFO]=
- [USRP2] Current recv frame size: 1472 bytes<br>[INFO] [USRP2] Current send=
- frame size: 1472 bytes<br>[INFO] [USRP2] Detecting internal GPSDO....<br>[=
-INFO] [GPS] No GPSDO found<br>=C2=A0 ______________________________________=
-_______________<br>=C2=A0/<br>| =C2=A0 =C2=A0 =C2=A0 Device: USRP2 / N-Seri=
-es Device<br>| =C2=A0 =C2=A0 ______________________________________________=
-_______<br>| =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 =C2=A0 =C2=A0 Mboard: N200=
-r4<br>| =C2=A0 | =C2=A0 hardware: 2576<br>| =C2=A0 | =C2=A0 mac-addr: a0:36=
-:fa:26:32:98<br>| =C2=A0 | =C2=A0 ip-addr: 192.168.10.2<br>| =C2=A0 | =C2=
-=A0 subnet: 255.255.255.255<br>| =C2=A0 | =C2=A0 gateway: 255.255.255.255<b=
-r>| =C2=A0 | =C2=A0 gpsdo: none<br>| =C2=A0 | =C2=A0 serial: E9R12W8UN<br>|=
- =C2=A0 | =C2=A0 FW Version: 12.4<br>| =C2=A0 | =C2=A0 FPGA Version: 11.1<b=
-r>| =C2=A0 | =C2=A0<br>| =C2=A0 | =C2=A0 Time sources: =C2=A0none, external=
-, _external_, mimo<br>| =C2=A0 | =C2=A0 Clock sources: internal, external, =
-mimo<br>| =C2=A0 | =C2=A0 Sensors: mimo_locked, ref_locked<br>| =C2=A0 | =
-=C2=A0 =C2=A0 _____________________________________________________<br>| =
-=C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX DSP:=
- 0<br>| =C2=A0 | =C2=A0 | =C2=A0<br>| =C2=A0 | =C2=A0 | =C2=A0 Freq range: =
--50.000 to 50.000 MHz<br>| =C2=A0 | =C2=A0 =C2=A0 _________________________=
-____________________________<br>| =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=
-=A0 | =C2=A0 =C2=A0 =C2=A0 RX DSP: 1<br>| =C2=A0 | =C2=A0 | =C2=A0<br>| =C2=
-=A0 | =C2=A0 | =C2=A0 Freq range: -50.000 to 50.000 MHz<br>| =C2=A0 | =C2=
-=A0 =C2=A0 _____________________________________________________<br>| =C2=
-=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Dboard:=
- A<br>| =C2=A0 | =C2=A0 | =C2=A0 ID: XCVR2450, XCVR2450 - r2.1 (0x0061)<br>=
-| =C2=A0 | =C2=A0 | =C2=A0 Serial: E9R1400XX<br>| =C2=A0 | =C2=A0 | =C2=A0 =
-=C2=A0 _____________________________________________________<br>| =C2=A0 | =
-=C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=
-=A0 RX Frontend: 0<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: XCVR2450 RX=
-<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Antennas: J1, J2<br>| =C2=A0 | =C2=
-=A0 | =C2=A0 | =C2=A0 Sensors: lo_locked, rssi<br>| =C2=A0 | =C2=A0 | =C2=
-=A0 | =C2=A0 Freq range: 2400.000 to 6000.000 MHz<br>| =C2=A0 | =C2=A0 | =
-=C2=A0 | =C2=A0 Gain range LNA: 0.0 to 30.5 step 15.0 dB<br>| =C2=A0 | =C2=
-=A0 | =C2=A0 | =C2=A0 Gain range VGA: 0.0 to 62.0 step 2.0 dB<br>| =C2=A0 |=
- =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 13500000.0 to 39600000.0 step 60=
-0000.0 Hz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>| =
-=C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>| =C2=A0 | =C2=A0 |=
- =C2=A0 =C2=A0 _____________________________________________________<br>| =
-=C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=
-=A0 =C2=A0 RX Codec: A<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: ads62p4=
-4<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range digital: 0.0 to 6.0 ste=
-p 0.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range fine: 0.0 to 0.5=
- step 0.1 dB<br>| =C2=A0 | =C2=A0 =C2=A0 __________________________________=
-___________________<br>| =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=
-=A0 =C2=A0 =C2=A0 TX DSP: 0<br>| =C2=A0 | =C2=A0 | =C2=A0<br>| =C2=A0 | =C2=
-=A0 | =C2=A0 Freq range: -200.000 to 200.000 MHz<br>| =C2=A0 | =C2=A0 =C2=
-=A0 _____________________________________________________<br>| =C2=A0 | =C2=
-=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Dboard: A<br>| =
-=C2=A0 | =C2=A0 | =C2=A0 ID: XCVR2450 (0x0060)<br>| =C2=A0 | =C2=A0 | =C2=
-=A0 Serial: E9R1400XX<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ________________=
-_____________________________________<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/=
-<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Frontend: 0<br>| =
-=C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: XCVR2450 TX<br>| =C2=A0 | =C2=A0 | =
-=C2=A0 | =C2=A0 Antennas: J1, J2<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Sen=
-sors: lo_locked<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 2400.000=
- to 6000.000 MHz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range VGA: 0.0=
- to 30.0 step 0.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range BB: =
-0.0 to 5.0 step 1.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth ran=
-ge: 24000000.0 to 48000000.0 step 12000000.0 Hz<br>| =C2=A0 | =C2=A0 | =C2=
-=A0 | =C2=A0 Connection Type: QI<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Use=
-s LO offset: No<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ______________________=
-_______________________________<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>| =
-=C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Codec: A<br>| =C2=A0 | =
-=C2=A0 | =C2=A0 | =C2=A0 Name: ad9777<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=
-=A0 Gain Elements: None</div></div>
-
---000000000000bbd75005a64f89a0--
-
-
---===============4503210733387155969==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4503210733387155969==--
-
+U2hvdWxkIHdvcmsganVzdCBmaW5lLiAKClBsZWFzZSBwcm92aWRlIG1vcmUgZGVzY3JpcHRpb24g
+b2Yg4oCcd2VpcmQgc3B1cnPigJ0KCgpTZW50IGZyb20gbXkgaVBob25lCgo+IE9uIE1heSAyMywg
+MjAyMCwgYXQgODowNCBBTSwgTWF0dCB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb20+IHdyb3RlOgo+IAo+IO+7vwo+IElzIHRoZXJlIGEgc3BlY2lmaWMgJ2JpbicgaW1h
+Z2UgbmVlZGVkIHRvIHJ1biB0aGUgWENWUjI0NTAgb24gbXkgTjIwMD8gUnVubmluZyB0aGUgdWhk
+IGltYWdlIGRvd25sb2FkZXIgZ3JhYnMgdGhlIGZvbGxvd2luZyBpbWFnZXMgdGhhdCBJIGhhdmUg
+aW5zdGFsbGVkLiBJIGFtIHNlZWluZyBzdHJhbmdlIChyYW5kb20gc3B1cnMgYXMgaWYgdGhlIGJv
+YXJkIGlzIG1pc2NvbmZpZ3VyZWQpIGJlaGF2aW91ciBvdXQgb2YgdGhlIGRhdWdodGVyYm9hcmQs
+IHNvIEkgdGhpbmsgaXQgY291bGQgYmUgYSBmaXJtd2FyZSBjb21wYXRpYmlsaXR5IGlzc3VlLgo+
+IAo+IFRoYW5rcywKPiAKPiBNYXR0Cj4gCj4gCj4gCj4gSU5GT10gW1VIRF0gbGludXg7IEdOVSBD
+KysgdmVyc2lvbiA3LjQuMDsgQm9vc3RfMTA2NTAxOyBVSERfMy4xNC4xLjEtcmVsZWFzZQo+IFtJ
+TkZPXSBbVVNSUDJdIE9wZW5pbmcgYSBVU1JQMi9OLVNlcmllcyBkZXZpY2UuLi4KPiBbSU5GT10g
+W1VTUlAyXSBDdXJyZW50IHJlY3YgZnJhbWUgc2l6ZTogMTQ3MiBieXRlcwo+IFtJTkZPXSBbVVNS
+UDJdIEN1cnJlbnQgc2VuZCBmcmFtZSBzaXplOiAxNDcyIGJ5dGVzCj4gW0lORk9dIFtVU1JQMl0g
+RGV0ZWN0aW5nIGludGVybmFsIEdQU0RPLi4uLgo+IFtJTkZPXSBbR1BTXSBObyBHUFNETyBmb3Vu
+ZAo+ICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KPiAgLwo+IHwgICAgICAgRGV2aWNlOiBVU1JQMiAvIE4tU2VyaWVzIERldmljZQo+IHwgICAg
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4g
+fCAgICAvCj4gfCAgIHwgICAgICAgTWJvYXJkOiBOMjAwcjQKPiB8ICAgfCAgIGhhcmR3YXJlOiAy
+NTc2Cj4gfCAgIHwgICBtYWMtYWRkcjogYTA6MzY6ZmE6MjY6MzI6OTgKPiB8ICAgfCAgIGlwLWFk
+ZHI6IDE5Mi4xNjguMTAuMgo+IHwgICB8ICAgc3VibmV0OiAyNTUuMjU1LjI1NS4yNTUKPiB8ICAg
+fCAgIGdhdGV3YXk6IDI1NS4yNTUuMjU1LjI1NQo+IHwgICB8ICAgZ3BzZG86IG5vbmUKPiB8ICAg
+fCAgIHNlcmlhbDogRTlSMTJXOFVOCj4gfCAgIHwgICBGVyBWZXJzaW9uOiAxMi40Cj4gfCAgIHwg
+ICBGUEdBIFZlcnNpb246IDExLjEKPiB8ICAgfCAgCj4gfCAgIHwgICBUaW1lIHNvdXJjZXM6ICBu
+b25lLCBleHRlcm5hbCwgX2V4dGVybmFsXywgbWltbwo+IHwgICB8ICAgQ2xvY2sgc291cmNlczog
+aW50ZXJuYWwsIGV4dGVybmFsLCBtaW1vCj4gfCAgIHwgICBTZW5zb3JzOiBtaW1vX2xvY2tlZCwg
+cmVmX2xvY2tlZAo+IHwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwo+IHwgICB8ICAgIC8KPiB8ICAgfCAgIHwgICAgICAgUlggRFNQ
+OiAwCj4gfCAgIHwgICB8ICAKPiB8ICAgfCAgIHwgICBGcmVxIHJhbmdlOiAtNTAuMDAwIHRvIDUw
+LjAwMCBNSHoKPiB8ICAgfCAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KPiB8ICAgfCAgICAvCj4gfCAgIHwgICB8ICAgICAgIFJYIERTUDog
+MQo+IHwgICB8ICAgfCAgCj4gfCAgIHwgICB8ICAgRnJlcSByYW5nZTogLTUwLjAwMCB0byA1MC4w
+MDAgTUh6Cj4gfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCj4gfCAgIHwgICAgLwo+IHwgICB8ICAgfCAgICAgICBSWCBEYm9hcmQ6
+IEEKPiB8ICAgfCAgIHwgICBJRDogWENWUjI0NTAsIFhDVlIyNDUwIC0gcjIuMSAoMHgwMDYxKQo+
+IHwgICB8ICAgfCAgIFNlcmlhbDogRTlSMTQwMFhYCj4gfCAgIHwgICB8ICAgICBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IHwgICB8ICAgfCAg
+ICAvCj4gfCAgIHwgICB8ICAgfCAgICAgICBSWCBGcm9udGVuZDogMAo+IHwgICB8ICAgfCAgIHwg
+ICBOYW1lOiBYQ1ZSMjQ1MCBSWAo+IHwgICB8ICAgfCAgIHwgICBBbnRlbm5hczogSjEsIEoyCj4g
+fCAgIHwgICB8ICAgfCAgIFNlbnNvcnM6IGxvX2xvY2tlZCwgcnNzaQo+IHwgICB8ICAgfCAgIHwg
+ICBGcmVxIHJhbmdlOiAyNDAwLjAwMCB0byA2MDAwLjAwMCBNSHoKPiB8ICAgfCAgIHwgICB8ICAg
+R2FpbiByYW5nZSBMTkE6IDAuMCB0byAzMC41IHN0ZXAgMTUuMCBkQgo+IHwgICB8ICAgfCAgIHwg
+ICBHYWluIHJhbmdlIFZHQTogMC4wIHRvIDYyLjAgc3RlcCAyLjAgZEIKPiB8ICAgfCAgIHwgICB8
+ICAgQmFuZHdpZHRoIHJhbmdlOiAxMzUwMDAwMC4wIHRvIDM5NjAwMDAwLjAgc3RlcCA2MDAwMDAu
+MCBIego+IHwgICB8ICAgfCAgIHwgICBDb25uZWN0aW9uIFR5cGU6IElRCj4gfCAgIHwgICB8ICAg
+fCAgIFVzZXMgTE8gb2Zmc2V0OiBObwo+IHwgICB8ICAgfCAgICAgX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiB8ICAgfCAgIHwgICAgLwo+IHwg
+ICB8ICAgfCAgIHwgICAgICAgUlggQ29kZWM6IEEKPiB8ICAgfCAgIHwgICB8ICAgTmFtZTogYWRz
+NjJwNDQKPiB8ICAgfCAgIHwgICB8ICAgR2FpbiByYW5nZSBkaWdpdGFsOiAwLjAgdG8gNi4wIHN0
+ZXAgMC41IGRCCj4gfCAgIHwgICB8ICAgfCAgIEdhaW4gcmFuZ2UgZmluZTogMC4wIHRvIDAuNSBz
+dGVwIDAuMSBkQgo+IHwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwo+IHwgICB8ICAgIC8KPiB8ICAgfCAgIHwgICAgICAgVFggRFNQ
+OiAwCj4gfCAgIHwgICB8ICAKPiB8ICAgfCAgIHwgICBGcmVxIHJhbmdlOiAtMjAwLjAwMCB0byAy
+MDAuMDAwIE1Iego+IHwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwo+IHwgICB8ICAgIC8KPiB8ICAgfCAgIHwgICAgICAgVFggRGJv
+YXJkOiBBCj4gfCAgIHwgICB8ICAgSUQ6IFhDVlIyNDUwICgweDAwNjApCj4gfCAgIHwgICB8ICAg
+U2VyaWFsOiBFOVIxNDAwWFgKPiB8ICAgfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gfCAgIHwgICB8ICAgIC8KPiB8ICAgfCAg
+IHwgICB8ICAgICAgIFRYIEZyb250ZW5kOiAwCj4gfCAgIHwgICB8ICAgfCAgIE5hbWU6IFhDVlIy
+NDUwIFRYCj4gfCAgIHwgICB8ICAgfCAgIEFudGVubmFzOiBKMSwgSjIKPiB8ICAgfCAgIHwgICB8
+ICAgU2Vuc29yczogbG9fbG9ja2VkCj4gfCAgIHwgICB8ICAgfCAgIEZyZXEgcmFuZ2U6IDI0MDAu
+MDAwIHRvIDYwMDAuMDAwIE1Iego+IHwgICB8ICAgfCAgIHwgICBHYWluIHJhbmdlIFZHQTogMC4w
+IHRvIDMwLjAgc3RlcCAwLjUgZEIKPiB8ICAgfCAgIHwgICB8ICAgR2FpbiByYW5nZSBCQjogMC4w
+IHRvIDUuMCBzdGVwIDEuNSBkQgo+IHwgICB8ICAgfCAgIHwgICBCYW5kd2lkdGggcmFuZ2U6IDI0
+MDAwMDAwLjAgdG8gNDgwMDAwMDAuMCBzdGVwIDEyMDAwMDAwLjAgSHoKPiB8ICAgfCAgIHwgICB8
+ICAgQ29ubmVjdGlvbiBUeXBlOiBRSQo+IHwgICB8ICAgfCAgIHwgICBVc2VzIExPIG9mZnNldDog
+Tm8KPiB8ICAgfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCj4gfCAgIHwgICB8ICAgIC8KPiB8ICAgfCAgIHwgICB8ICAgICAgIFRY
+IENvZGVjOiBBCj4gfCAgIHwgICB8ICAgfCAgIE5hbWU6IGFkOTc3Nwo+IHwgICB8ICAgfCAgIHwg
+ICBHYWluIEVsZW1lbnRzOiBOb25lCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
+cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
+c2Vyc19saXN0cy5ldHR1cy5jb20K
