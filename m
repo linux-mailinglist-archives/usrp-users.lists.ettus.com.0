@@ -2,58 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B1BA1DE290
-	for <lists+usrp-users@lfdr.de>; Fri, 22 May 2020 11:06:38 +0200 (CEST)
-Received: from [::1] (port=60206 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CB471DF70F
+	for <lists+usrp-users@lfdr.de>; Sat, 23 May 2020 14:04:36 +0200 (CEST)
+Received: from [::1] (port=38382 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jc3dR-0003k0-Pc; Fri, 22 May 2020 05:06:33 -0400
-Received: from mail-io1-f53.google.com ([209.85.166.53]:44176)
+	id 1jcStE-0001F6-Bc; Sat, 23 May 2020 08:04:32 -0400
+Received: from mail-pl1-f171.google.com ([209.85.214.171]:38174)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <carlosruiznaranjo@gmail.com>)
- id 1jc3dN-0003g2-J9
- for usrp-users@lists.ettus.com; Fri, 22 May 2020 05:06:29 -0400
-Received: by mail-io1-f53.google.com with SMTP id f4so10562242iov.11
- for <usrp-users@lists.ettus.com>; Fri, 22 May 2020 02:06:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=YHVtJG1FIZJK6joJEP9Tnafy8CWj5zZp7cL5IHUD2fA=;
- b=aDB+bAmbd5Wkt9NAhqYcdhyMqFMGW665KDfO+flMXJI+/hh038/m6dhiSZNsdlPF/P
- WmonG22WuDoG1XDDNnDokC+d2jfKgc7tc8OTHrP6SLKvI9pQK2TSWF54My4f/Qb8/Rsz
- duoAnLaaawR+2jOktqqMjJDx8HmEn+nv6IE2nSla8cKSsIPDEwzKHeJz/cp1LpWeQ1YO
- cJ7PMrpHKKtNKiQ3Vm3/0qIqUs6lE8hBn359OZShgDQYk1yx4joqYypXX0igWpvDZait
- w+sLKrXmNM9HsftCICMTlPtOWWqtGjRcNEunvsLsV3FgQaIZnhSvKc+ZJzDgdqoQiVo2
- +0zw==
+ (Exim 4.93) (envelope-from <mgberry@ellipticity.com>)
+ id 1jcStA-00014u-Co
+ for usrp-users@lists.ettus.com; Sat, 23 May 2020 08:04:28 -0400
+Received: by mail-pl1-f171.google.com with SMTP id m7so5492064plt.5
+ for <usrp-users@lists.ettus.com>; Sat, 23 May 2020 05:04:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ellipticity-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=V0zwlSKDjbDOWOMjL2ggDhfFzybSGp81dZRDbJbDdkQ=;
+ b=N3xHVnh0R7w75NE2FqaVMjkXMYMX4IYIX/uNSIt2vwmO8Nd/c/S1vQp9G21bEClJh5
+ MBR4AuKEO3qBjmb+2w4WJTug7kicIC9L+3tKr+z7LtNQn+zZsETYO6rS/eSePBtRsa9y
+ NSbHPQ53097S72CbBSLYjFzc+tfMX4x9PCbKZyc3SF/cpGmZ+W7sD0TTsg5RbN9BuhGS
+ L93aaz14lGppgmV5TXJJ9MsCHQZkwfCeADwlbs0y2c8khN21WoXLKfAb31ChjEC/0gMj
+ 8XQl0w11g6Cn7c3rNpGlpBO33T44bha9Da1/5JlFQ1AXLxRtlRYFHot7ei5lyFpQFtjx
+ k+yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=YHVtJG1FIZJK6joJEP9Tnafy8CWj5zZp7cL5IHUD2fA=;
- b=ne3t5T4N0tMA8CEuwrq0xSLSY/zrPkdEoibAR2ab60DCDCqHgCtRh2U/smbprOJwAP
- lUEekaT1uJmcQ1t1AZVwwoyAJnlwrlsK4iAn6h//ezOn4aNbQuwChEdlTzqA7VBX3Xcd
- 7NvqMqUImAQQVpNnxCZ0muxjncRdbFmOEubu5nvZh62FaYTujBvi+BALzOlnIHOW9FXj
- pbeT86k5aHSLOoQOqMNgx+E/N2YDGn1OOshyGpvcTg9OZGOWR3O5657WCUJCUM0VoslU
- sdPRVNuzKSbaGp58Ym1bEGg/7K4PI+L/CGc72rXX1OFYJVHfcBKO4XEKTBC2jb5d1im8
- 561A==
-X-Gm-Message-State: AOAM533x0n9tnEPHfEkbimBdFoReEcDjUkyvkg3zpfghRxPtlBmkxnIF
- I2/GbJopFO9qozj+wbjS34ywbZmXzBs7NOOGO5k=
-X-Google-Smtp-Source: ABdhPJwwpv7zXCTkpiTvmCNytlhJ7mt+gqCuYePV2Lkl9c6hJKnZQ3IjzblLFh2PSc6sG2RW4bnMoatyuK/gWPFGW6c=
-X-Received: by 2002:a05:6602:248a:: with SMTP id
- g10mr683583ioe.81.1590138348675; 
- Fri, 22 May 2020 02:05:48 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=V0zwlSKDjbDOWOMjL2ggDhfFzybSGp81dZRDbJbDdkQ=;
+ b=LFC8bpgn8SjOUzX/PzDC3vm1esFe1G7QQ1IRfmGKECJHxB3xYikSHNiya3Ej5Sp8sG
+ miivy7scVIVscdQVldBcXYqHaqE8q0G1Q6WkSNvWjCIt5WW7YxP6T4c0gRnpXiHj2+re
+ 1aiLqtWWsAf31SLFnyO9cLkxLlTt4NLNnb4aw5O/afAr6jDjuEHZ/LiETq588qih7FgA
+ YBeQdAin+bMQBwdi3aPmwywW+xMsH/lLGGlnNJwXBusAJDOxOXAIbnsfdqY+RBkZ1/uU
+ EY/In9ugmYVMd72sXZaXgpeap7SDxbuhXh/6JtA0YD4bpyHcUujP/expogPZduSox22+
+ JyjA==
+X-Gm-Message-State: AOAM533fBvrohRi/aPzg49AxB9m0nj9BqhZO7XxAz54q5RBdKJcsEBLo
+ 7DxMlg+DgyIUgLCdHxdxJE3ZAvKrNv4sYPLtwpkSud6zK7/Xmg==
+X-Google-Smtp-Source: ABdhPJwT38GnuQ6qkaF2pT8jE/xLdG5itix7i6WqIpnx8mP6iFVL69wWyZPYxF76VbP+iJy/8UjpCfia0tQeAI+tpUY=
+X-Received: by 2002:a17:902:8c8c:: with SMTP id
+ t12mr19615711plo.285.1590235426962; 
+ Sat, 23 May 2020 05:03:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAP2eGPhuOxNCAMULg=PFJBoGTP+2zAtd0YSMdGP-zH6Jse_D5w@mail.gmail.com>
- <CAEXYVK6W5UNvNUFuGaMU0iEWBkpPH8njt-FFkUdGLmqcwkER1g@mail.gmail.com>
- <CAP2eGPjoT8ocBao=jW_Z=JRb6OLhx1cC_-J7nRANXCvwNNU7rA@mail.gmail.com>
- <CAEXYVK5wDuzhrWdOyN5JtnU26L6-PnhLE6dtr+vDdkQR+R8auw@mail.gmail.com>
- <CAB__hTRVwf4bPYt8ZykUckC3=guxekGCj0jKa7Bpjqg2h3_CNw@mail.gmail.com>
- <CAP2eGPiKQXxqtX2Xw=j+nzmm263np-V-VmhL-9vW-fWYnA1scQ@mail.gmail.com>
- <CAB__hTR_ABbzm6472yEjw6zPrgxG5NLBjoktOP__L4VZZQ0Biw@mail.gmail.com>
-In-Reply-To: <CAB__hTR_ABbzm6472yEjw6zPrgxG5NLBjoktOP__L4VZZQ0Biw@mail.gmail.com>
-Date: Fri, 22 May 2020 11:05:37 +0200
-Message-ID: <CAP2eGPjut=wbxuA87hKW2zoU8o5-9uHTW56PyAKn1OBZBkNo2g@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Subject: Re: [USRP-users] Multiple DMA_FIFO blocks
+Date: Sat, 23 May 2020 08:03:36 -0400
+Message-ID: <CAKeOk0NPvCvPm8DT-xKK=Fyhnd9-+vy6cVxbbmsgYgiiE5YxSw@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] XCVR2450
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,10 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Carlos Alberto Ruiz Naranjo via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Carlos Alberto Ruiz Naranjo <carlosruiznaranjo@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8031811536486559744=="
+From: Matt via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Matt <mgberry@ellipticity.com>
+Content-Type: multipart/mixed; boundary="===============4503210733387155969=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,185 +73,191 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8031811536486559744==
-Content-Type: multipart/alternative; boundary="0000000000006aa55905a638efec"
+--===============4503210733387155969==
+Content-Type: multipart/alternative; boundary="000000000000bbd75005a64f89a0"
 
---0000000000006aa55905a638efec
+--000000000000bbd75005a64f89a0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Then I will try with 4 ports in DmaFIFO.
-Later maybe I will need to add more ports, does anyone have any ideas? 2
-DmaFIFO, big FIFO_LOOPBACK? The throughput is about 11MSamples. I would
-like to know the complex about that, because maybe it doesn't be possible
-for my project.
+Is there a specific 'bin' image needed to run the XCVR2450 on my N200?
+Running the uhd image downloader grabs the following images that I have
+installed. I am seeing strange (random spurs as if the board is
+misconfigured) behaviour out of the daughterboard, so I think it could be a
+firmware compatibility issue.
 
-El jue., 21 may. 2020 a las 22:24, Rob Kossler (<rkossler@nd.edu>) escribi=
-=C3=B3:
+Thanks,
 
-> ok.  I'm not sure if there is an upper limit, but I believe you should be
-> able to have 4 ports because there are 4 ports in the DmaFIFO on the N310=
-.
->
-> On Thu, May 21, 2020 at 4:21 PM Carlos Alberto Ruiz Naranjo <
-> carlosruiznaranjo@gmail.com> wrote:
->
->> Hi Rob,
->>
->> I'm using UHD-3.15.LTS and I have developed a custom DUC with N inputs
->> and 1 output. I have done the same with the DDC (1:N) and it works fine.
->> But with the DUC I have the problem with the DMA_FIFO, I need one DMA_FI=
-FO
->> channel per DUC channel. I have thought about some solutions and I would
->> like to know which would be the best or if they are possible before I
->> started developing:
->>
->> - Increase the DMA_FIFO ports: from 2 to 4.
->> - Add another DMA_FIFO.
->> - Use FIFO_LOOPBACK with large size.
->>
->> My graph is:  DMA_FIFO(N:N) -> (N:1) DUC -> (1) Radio
->>
->> Thank you :)
->>
->>
->>
->>
->> El jue., 21 may. 2020 a las 21:13, Rob Kossler (<rkossler@nd.edu>)
->> escribi=C3=B3:
->>
->>> Hi Carlos,
->>> I don't quite understand.  Which version of UHD are you using?  For the
->>> UHD 3.15 and earlier, I thought that the typical configuration was inde=
-ed
->>> host->DmaFIFO->DUC->Radio as you were hoping for.  For the current mast=
-er,
->>> I noticed that the DmaFIFO is not included in the statically routed FPG=
-A
->>> image.  But, aside from the master branch, the DmaFIFO should have 2 po=
-rts
->>> such that you can connect to two DUC blocks.
->>> Rob
->>>
->>> On Thu, May 21, 2020 at 2:34 PM Brian Padalino via USRP-users <
->>> usrp-users@lists.ettus.com> wrote:
->>>
->>>> On Thu, May 21, 2020 at 2:25 PM Carlos Alberto Ruiz Naranjo <
->>>> carlosruiznaranjo@gmail.com> wrote:
->>>>
->>>>> Thank you for the response Brian :)
->>>>>
->>>>> The throughput is about 11MSamples.
->>>>> What about to use the AXI_FIFO_LOOPBACK?
->>>>>
->>>>
->>>> No idea about that.  Someone else will have to weigh in.
->>>>
->>>> Good luck!
->>>>
->>>> Brian
->>>>
->>>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>>
+Matt
 
---0000000000006aa55905a638efec
+
+
+INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; UHD_3.14.1.1-release
+[INFO] [USRP2] Opening a USRP2/N-Series device...
+[INFO] [USRP2] Current recv frame size: 1472 bytes
+[INFO] [USRP2] Current send frame size: 1472 bytes
+[INFO] [USRP2] Detecting internal GPSDO....
+[INFO] [GPS] No GPSDO found
+  _____________________________________________________
+ /
+|       Device: USRP2 / N-Series Device
+|     _____________________________________________________
+|    /
+|   |       Mboard: N200r4
+|   |   hardware: 2576
+|   |   mac-addr: a0:36:fa:26:32:98
+|   |   ip-addr: 192.168.10.2
+|   |   subnet: 255.255.255.255
+|   |   gateway: 255.255.255.255
+|   |   gpsdo: none
+|   |   serial: E9R12W8UN
+|   |   FW Version: 12.4
+|   |   FPGA Version: 11.1
+|   |
+|   |   Time sources:  none, external, _external_, mimo
+|   |   Clock sources: internal, external, mimo
+|   |   Sensors: mimo_locked, ref_locked
+|   |     _____________________________________________________
+|   |    /
+|   |   |       RX DSP: 0
+|   |   |
+|   |   |   Freq range: -50.000 to 50.000 MHz
+|   |     _____________________________________________________
+|   |    /
+|   |   |       RX DSP: 1
+|   |   |
+|   |   |   Freq range: -50.000 to 50.000 MHz
+|   |     _____________________________________________________
+|   |    /
+|   |   |       RX Dboard: A
+|   |   |   ID: XCVR2450, XCVR2450 - r2.1 (0x0061)
+|   |   |   Serial: E9R1400XX
+|   |   |     _____________________________________________________
+|   |   |    /
+|   |   |   |       RX Frontend: 0
+|   |   |   |   Name: XCVR2450 RX
+|   |   |   |   Antennas: J1, J2
+|   |   |   |   Sensors: lo_locked, rssi
+|   |   |   |   Freq range: 2400.000 to 6000.000 MHz
+|   |   |   |   Gain range LNA: 0.0 to 30.5 step 15.0 dB
+|   |   |   |   Gain range VGA: 0.0 to 62.0 step 2.0 dB
+|   |   |   |   Bandwidth range: 13500000.0 to 39600000.0 step 600000.0 Hz
+|   |   |   |   Connection Type: IQ
+|   |   |   |   Uses LO offset: No
+|   |   |     _____________________________________________________
+|   |   |    /
+|   |   |   |       RX Codec: A
+|   |   |   |   Name: ads62p44
+|   |   |   |   Gain range digital: 0.0 to 6.0 step 0.5 dB
+|   |   |   |   Gain range fine: 0.0 to 0.5 step 0.1 dB
+|   |     _____________________________________________________
+|   |    /
+|   |   |       TX DSP: 0
+|   |   |
+|   |   |   Freq range: -200.000 to 200.000 MHz
+|   |     _____________________________________________________
+|   |    /
+|   |   |       TX Dboard: A
+|   |   |   ID: XCVR2450 (0x0060)
+|   |   |   Serial: E9R1400XX
+|   |   |     _____________________________________________________
+|   |   |    /
+|   |   |   |       TX Frontend: 0
+|   |   |   |   Name: XCVR2450 TX
+|   |   |   |   Antennas: J1, J2
+|   |   |   |   Sensors: lo_locked
+|   |   |   |   Freq range: 2400.000 to 6000.000 MHz
+|   |   |   |   Gain range VGA: 0.0 to 30.0 step 0.5 dB
+|   |   |   |   Gain range BB: 0.0 to 5.0 step 1.5 dB
+|   |   |   |   Bandwidth range: 24000000.0 to 48000000.0 step 12000000.0 Hz
+|   |   |   |   Connection Type: QI
+|   |   |   |   Uses LO offset: No
+|   |   |     _____________________________________________________
+|   |   |    /
+|   |   |   |       TX Codec: A
+|   |   |   |   Name: ad9777
+|   |   |   |   Gain Elements: None
+
+--000000000000bbd75005a64f89a0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Then I will try with 4 ports in DmaFIFO. <br></div><d=
-iv>Later maybe I will need to add more ports, does anyone have any ideas? 2=
- DmaFIFO, big FIFO_LOOPBACK? The throughput is about 11MSamples. I would li=
-ke to know the complex about that, because maybe it doesn&#39;t be possible=
- for my project.<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr" class=3D"gmail_attr">El jue., 21 may. 2020 a las 22:24, Rob Kossler (&=
-lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt;) escribi=C3=
-=B3:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
-"ltr">ok.=C2=A0 I&#39;m not sure if there is an upper limit, but I believe =
-you should be able to have 4 ports because there are 4 ports in the DmaFIFO=
- on the N310.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
-"gmail_attr">On Thu, May 21, 2020 at 4:21 PM Carlos Alberto Ruiz Naranjo &l=
-t;<a href=3D"mailto:carlosruiznaranjo@gmail.com" target=3D"_blank">carlosru=
-iznaranjo@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex"><div dir=3D"ltr"><div>Hi Rob,</div><div><br></div><div>I=
-&#39;m using UHD-3.15.LTS and I have developed a custom DUC with N inputs a=
-nd 1 output. I have done the same with the DDC (1:N) and it works fine. But=
- with the DUC I have the problem with the DMA_FIFO, I need one DMA_FIFO cha=
-nnel per DUC channel. <span lang=3D"en"><span title=3D"">I have thought abo=
-ut some solutions and I would like to know which would be the best or if th=
-ey are possible before I started developing:</span></span></div><div><span =
-lang=3D"en"><span title=3D""><br></span></span></div><div><span lang=3D"en"=
-><span title=3D"">- Increase the DMA_FIFO ports: from 2 to 4.</span></span>=
-</div><div><span lang=3D"en"><span title=3D"">- <span lang=3D"en"><span tit=
-le=3D"">Add another DMA_FIFO.</span></span></span></span></div><div><span l=
-ang=3D"en"><span title=3D""><span lang=3D"en"><span title=3D"">- Use FIFO_L=
-OOPBACK with large size.</span></span></span></span></div><div><span lang=
-=3D"en"><span title=3D""><span lang=3D"en"><span title=3D""><br></span></sp=
-an></span></span></div><div><span lang=3D"en"><span title=3D""><span lang=
-=3D"en"><span title=3D"">My graph is:=C2=A0 DMA_FIFO(N:N) -&gt; (N:1) DUC -=
-&gt; (1) Radio<br></span></span></span></span></div><div><span lang=3D"en">=
-<span title=3D""><span lang=3D"en"><span title=3D""><br></span></span></spa=
-n></span></div><div><span lang=3D"en"><span title=3D""><span lang=3D"en"><s=
-pan title=3D"">Thank you :)<br></span></span></span></span></div><div><span=
- lang=3D"en"><span title=3D""><span lang=3D"en"><span title=3D""><br></span=
-></span></span></span></div><div><span lang=3D"en"><span title=3D""><span l=
-ang=3D"en"><span title=3D""><br></span></span></span></span></div><div><spa=
-n lang=3D"en"><span title=3D""><br></span></span></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El jue., 21 may. 202=
-0 a las 21:13, Rob Kossler (&lt;<a href=3D"mailto:rkossler@nd.edu" target=
-=3D"_blank">rkossler@nd.edu</a>&gt;) escribi=C3=B3:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi Ca=
-rlos,<div>I don&#39;t quite understand.=C2=A0 Which version of UHD are you =
-using?=C2=A0 For the UHD 3.15 and earlier, I thought that the typical confi=
-guration was indeed host-&gt;DmaFIFO-&gt;DUC-&gt;Radio as you were hoping f=
-or.=C2=A0 For the current master, I noticed that the DmaFIFO is not include=
-d in the statically routed FPGA image.=C2=A0 But, aside from the master bra=
-nch, the DmaFIFO should have 2 ports such that you can connect to two DUC b=
-locks.</div><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr" class=3D"gmail_attr">On Thu, May 21, 2020 at 2:34 PM Brian Padalino vi=
-a USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_b=
-lank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">On Thu, =
-May 21, 2020 at 2:25 PM Carlos Alberto Ruiz Naranjo &lt;<a href=3D"mailto:c=
-arlosruiznaranjo@gmail.com" target=3D"_blank">carlosruiznaranjo@gmail.com</=
-a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
-4,204);padding-left:1ex"><div dir=3D"ltr"><div>Thank you for the response B=
-rian :)<br></div><div><br></div><div>The throughput is about 11MSamples.</d=
-iv><div>What about to use the <span lang=3D"en"><span title=3D""><span lang=
-=3D"en"><span title=3D"">AXI_FIFO_LOOPBACK?</span></span></span></span></di=
-v></div></blockquote><div><br></div><div>No idea about that.=C2=A0 Someone =
-else will have to weigh in.</div><div><br></div><div>Good luck!</div><div><=
-br></div><div>Brian</div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-<div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-">
-</blockquote></div>
-</blockquote></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
+<div dir=3D"ltr"><div>Is there a specific &#39;bin&#39; image needed to run=
+ the XCVR2450 on my N200? Running the uhd image downloader grabs the follow=
+ing images that I have installed. I am seeing strange (random spurs as if t=
+he board is misconfigured) behaviour out of the daughterboard, so I think i=
+t could be a firmware compatibility issue.</div><div><br></div><div>Thanks,=
+</div><div><br></div><div>Matt</div><div><br></div><div><br></div><div><br>=
+</div><div>INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501; UHD_3.14=
+.1.1-release<br>[INFO] [USRP2] Opening a USRP2/N-Series device...<br>[INFO]=
+ [USRP2] Current recv frame size: 1472 bytes<br>[INFO] [USRP2] Current send=
+ frame size: 1472 bytes<br>[INFO] [USRP2] Detecting internal GPSDO....<br>[=
+INFO] [GPS] No GPSDO found<br>=C2=A0 ______________________________________=
+_______________<br>=C2=A0/<br>| =C2=A0 =C2=A0 =C2=A0 Device: USRP2 / N-Seri=
+es Device<br>| =C2=A0 =C2=A0 ______________________________________________=
+_______<br>| =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 =C2=A0 =C2=A0 Mboard: N200=
+r4<br>| =C2=A0 | =C2=A0 hardware: 2576<br>| =C2=A0 | =C2=A0 mac-addr: a0:36=
+:fa:26:32:98<br>| =C2=A0 | =C2=A0 ip-addr: 192.168.10.2<br>| =C2=A0 | =C2=
+=A0 subnet: 255.255.255.255<br>| =C2=A0 | =C2=A0 gateway: 255.255.255.255<b=
+r>| =C2=A0 | =C2=A0 gpsdo: none<br>| =C2=A0 | =C2=A0 serial: E9R12W8UN<br>|=
+ =C2=A0 | =C2=A0 FW Version: 12.4<br>| =C2=A0 | =C2=A0 FPGA Version: 11.1<b=
+r>| =C2=A0 | =C2=A0<br>| =C2=A0 | =C2=A0 Time sources: =C2=A0none, external=
+, _external_, mimo<br>| =C2=A0 | =C2=A0 Clock sources: internal, external, =
+mimo<br>| =C2=A0 | =C2=A0 Sensors: mimo_locked, ref_locked<br>| =C2=A0 | =
+=C2=A0 =C2=A0 _____________________________________________________<br>| =
+=C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX DSP:=
+ 0<br>| =C2=A0 | =C2=A0 | =C2=A0<br>| =C2=A0 | =C2=A0 | =C2=A0 Freq range: =
+-50.000 to 50.000 MHz<br>| =C2=A0 | =C2=A0 =C2=A0 _________________________=
+____________________________<br>| =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=
+=A0 | =C2=A0 =C2=A0 =C2=A0 RX DSP: 1<br>| =C2=A0 | =C2=A0 | =C2=A0<br>| =C2=
+=A0 | =C2=A0 | =C2=A0 Freq range: -50.000 to 50.000 MHz<br>| =C2=A0 | =C2=
+=A0 =C2=A0 _____________________________________________________<br>| =C2=
+=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Dboard:=
+ A<br>| =C2=A0 | =C2=A0 | =C2=A0 ID: XCVR2450, XCVR2450 - r2.1 (0x0061)<br>=
+| =C2=A0 | =C2=A0 | =C2=A0 Serial: E9R1400XX<br>| =C2=A0 | =C2=A0 | =C2=A0 =
+=C2=A0 _____________________________________________________<br>| =C2=A0 | =
+=C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=
+=A0 RX Frontend: 0<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: XCVR2450 RX=
+<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Antennas: J1, J2<br>| =C2=A0 | =C2=
+=A0 | =C2=A0 | =C2=A0 Sensors: lo_locked, rssi<br>| =C2=A0 | =C2=A0 | =C2=
+=A0 | =C2=A0 Freq range: 2400.000 to 6000.000 MHz<br>| =C2=A0 | =C2=A0 | =
+=C2=A0 | =C2=A0 Gain range LNA: 0.0 to 30.5 step 15.0 dB<br>| =C2=A0 | =C2=
+=A0 | =C2=A0 | =C2=A0 Gain range VGA: 0.0 to 62.0 step 2.0 dB<br>| =C2=A0 |=
+ =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 13500000.0 to 39600000.0 step 60=
+0000.0 Hz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>| =
+=C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>| =C2=A0 | =C2=A0 |=
+ =C2=A0 =C2=A0 _____________________________________________________<br>| =
+=C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=
+=A0 =C2=A0 RX Codec: A<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: ads62p4=
+4<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range digital: 0.0 to 6.0 ste=
+p 0.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range fine: 0.0 to 0.5=
+ step 0.1 dB<br>| =C2=A0 | =C2=A0 =C2=A0 __________________________________=
+___________________<br>| =C2=A0 | =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=
+=A0 =C2=A0 =C2=A0 TX DSP: 0<br>| =C2=A0 | =C2=A0 | =C2=A0<br>| =C2=A0 | =C2=
+=A0 | =C2=A0 Freq range: -200.000 to 200.000 MHz<br>| =C2=A0 | =C2=A0 =C2=
+=A0 _____________________________________________________<br>| =C2=A0 | =C2=
+=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Dboard: A<br>| =
+=C2=A0 | =C2=A0 | =C2=A0 ID: XCVR2450 (0x0060)<br>| =C2=A0 | =C2=A0 | =C2=
+=A0 Serial: E9R1400XX<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ________________=
+_____________________________________<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/=
+<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Frontend: 0<br>| =
+=C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Name: XCVR2450 TX<br>| =C2=A0 | =C2=A0 | =
+=C2=A0 | =C2=A0 Antennas: J1, J2<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Sen=
+sors: lo_locked<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 2400.000=
+ to 6000.000 MHz<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range VGA: 0.0=
+ to 30.0 step 0.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Gain range BB: =
+0.0 to 5.0 step 1.5 dB<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth ran=
+ge: 24000000.0 to 48000000.0 step 12000000.0 Hz<br>| =C2=A0 | =C2=A0 | =C2=
+=A0 | =C2=A0 Connection Type: QI<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 Use=
+s LO offset: No<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 ______________________=
+_______________________________<br>| =C2=A0 | =C2=A0 | =C2=A0 =C2=A0/<br>| =
+=C2=A0 | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Codec: A<br>| =C2=A0 | =
+=C2=A0 | =C2=A0 | =C2=A0 Name: ad9777<br>| =C2=A0 | =C2=A0 | =C2=A0 | =C2=
+=A0 Gain Elements: None</div></div>
 
---0000000000006aa55905a638efec--
+--000000000000bbd75005a64f89a0--
 
 
---===============8031811536486559744==
+--===============4503210733387155969==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -271,5 +268,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8031811536486559744==--
+--===============4503210733387155969==--
 
