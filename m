@@ -2,58 +2,69 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B2BE1DF961
-	for <lists+usrp-users@lfdr.de>; Sat, 23 May 2020 19:26:35 +0200 (CEST)
-Received: from [::1] (port=35424 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41EBB1DFAE1
+	for <lists+usrp-users@lfdr.de>; Sat, 23 May 2020 22:08:12 +0200 (CEST)
+Received: from [::1] (port=56270 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jcXuq-00064L-LP; Sat, 23 May 2020 13:26:32 -0400
-Received: from mail-qt1-f178.google.com ([209.85.160.178]:40049)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jcXum-000603-ME
- for USRP-users@lists.ettus.com; Sat, 23 May 2020 13:26:28 -0400
-Received: by mail-qt1-f178.google.com with SMTP id h9so707405qtj.7
- for <USRP-users@lists.ettus.com>; Sat, 23 May 2020 10:26:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=ENa4F25UlpYzmcNExfZ7eHXKeKSGJMubb58YxNHzrrU=;
- b=HWZr0Dr8yz+7KRxk7HiRa6LCsMxwpMNV3Wh1BpGSFkzJGYnOgif9U8bMuIG4Uvf844
- xir22kFkoKPly2XwX3gCAxKBhYAaexhX/YDDkRULyU/DPiFkxRbQSGITKgFITD/a4x7N
- qmuDuItS3IMXC9jttVvSYWQUmXzRx7LdQCGU80rFebLwmVhj2x5tLsUfHPLFb3eMcmCG
- aUhdBjVWieGMO2B5soYV+pi1CJ5pfWcZLiCAkN+xskuaOWlKyanSOPayil1bG1A/mk84
- Hvasqv/lMv7It3c+QERfaCnL1Xlqak83uimv9E3EXfmBz0KsAHRz3SBR6ppbryLlycIq
- o5Sw==
+	id 1jcaRF-00082A-4A; Sat, 23 May 2020 16:08:09 -0400
+Received: from mx0a-00364e01.pphosted.com ([148.163.135.74]:65306)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <mpk2138@columbia.edu>)
+ id 1jcaRA-0007Hj-GH
+ for usrp-users@lists.ettus.com; Sat, 23 May 2020 16:08:04 -0400
+Received: from pps.filterd (m0167072.ppops.net [127.0.0.1])
+ by mx0a-00364e01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 04NJhbuM030710
+ for <usrp-users@lists.ettus.com>; Sat, 23 May 2020 16:07:23 -0400
+Received: from sendprodmail11.cc.columbia.edu (sendprodmail11.cc.columbia.edu
+ [128.59.72.19])
+ by mx0a-00364e01.pphosted.com with ESMTP id 31700u1a21-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <usrp-users@lists.ettus.com>; Sat, 23 May 2020 16:07:23 -0400
+Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
+ [209.85.166.197])
+ by sendprodmail11.cc.columbia.edu (8.14.4/8.14.4) with ESMTP id 04NK7LrT060130
+ (version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <usrp-users@lists.ettus.com>; Sat, 23 May 2020 16:07:21 -0400
+Received: by mail-il1-f197.google.com with SMTP id d8so11814360ilo.1
+ for <usrp-users@lists.ettus.com>; Sat, 23 May 2020 13:07:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=ENa4F25UlpYzmcNExfZ7eHXKeKSGJMubb58YxNHzrrU=;
- b=hLj7RPqk+D+WtIVNKSwlDQSSoAUqN4+v5XvDoi5iQBo+ItqO+YY4fVut/gDcucKWgp
- 5dhoRm6BxsN32ypy+2qInOG9AtiUc0S8NWxSGsFwma82MmScmXy4jJpjYd7ORPiImrke
- bVlkoWVgFmzL3PjO4SDdiFScB9RvX8loL/xfQvKOEXSI1AMH5kJleVkwkQ1qjlABfk0X
- dwTxfMx3bhWergiajdNXKW8zUJdMTME0uWJEnVASImkj1fhOWJhcL0GDjd31rtT4JAzo
- HD+EpttuDaO4WyJmQqXG3b5VwILbzeKSafxKSYGPcB94QYuqzVkT5uvIlKSjNbIfjxCQ
- GStw==
-X-Gm-Message-State: AOAM533xe69goZcQnkz/L+IZjuepPacREQjKSXCs6TTs4i2FURD8RYrY
- uYLkob+uFh7C43Kz3GlJ1Dc=
-X-Google-Smtp-Source: ABdhPJxzDBeFbE0rLnZvj0F5hYuo5B+RC+PQzAQJf9ZPP6C/XUQcwowsY3X6E/qQJiXHyeRcE4UULg==
-X-Received: by 2002:ac8:518e:: with SMTP id c14mr21558231qtn.183.1590254748028; 
- Sat, 23 May 2020 10:25:48 -0700 (PDT)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-12-103.dsl.bell.ca.
- [174.95.12.103])
- by smtp.gmail.com with ESMTPSA id m13sm12058173qtm.12.2020.05.23.10.25.47
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 23 May 2020 10:25:47 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Sat, 23 May 2020 13:25:46 -0400
-Message-Id: <FA346AD2-8C8B-412B-9944-F27A72E81072@gmail.com>
-References: <CAKeOk0NPvCvPm8DT-xKK=Fyhnd9-+vy6cVxbbmsgYgiiE5YxSw@mail.gmail.com>
-In-Reply-To: <CAKeOk0NPvCvPm8DT-xKK=Fyhnd9-+vy6cVxbbmsgYgiiE5YxSw@mail.gmail.com>
-To: Matt <mgberry@ellipticity.com>
-X-Mailer: iPhone Mail (17E262)
-Subject: Re: [USRP-users] XCVR2450
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=LLc+N5YwME8I67aqXPIePSO5b2udi1LqxkH90AIb870=;
+ b=nbSRB14EoJRYY9MVbmsjHjR/dfaTYdwPVt/HbkMmUROIBO44YkNogJw7+mfObCxivy
+ yw6a5G1jIGQDRMh14DOsTqwAHUJBYM+fiBxUeqAKUWqaUY7xjgXZ3xeR8RcfgACQA4s3
+ fjIw3cpByV+eU3/6kuPugBfZc6FxBOmsoLnr8epKbbQr2IEx8ZTRpNBff3v/3L1DsI04
+ s/6UItkrB04PqtKZCCBisJXu1IiHg3L7FHkG6dCr46R9iR/vZoAOf0G2etvK/kg0pVt1
+ CMyrkyvQhNyTxMn6MhsYGcyYVp5VT0sVFr5ojsshWBVdnYoehLf9d3yL/tKwXpvP7u1l
+ R2QA==
+X-Gm-Message-State: AOAM533nX/UNnPiy3YMB+2CfjmAwbN61pC17YQVoF5PBia19sNg0/jit
+ JzuNMtoOGM0KpQXdDviTXA1EmDA9WMClvrpc6UWPO/1LQ28o9u4wEheT9G5CSaSWYEtSXAZe86b
+ P806/4Zn/bMgDCNNEGPg1iCaasX5iUPnWAAtUkSymHO2c
+X-Received: by 2002:a05:6e02:e8c:: with SMTP id
+ t12mr18485062ilj.186.1590264441237; 
+ Sat, 23 May 2020 13:07:21 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzqL3tU+BHACAZzUnpC+9NKkpZTz0KympYImcWojVedJQWTia3APwpHnsp8SGE4ev8mnZUo5eS4N++JaHFiCJY=
+X-Received: by 2002:a05:6e02:e8c:: with SMTP id
+ t12mr18485030ilj.186.1590264440702; 
+ Sat, 23 May 2020 13:07:20 -0700 (PDT)
+MIME-Version: 1.0
+Date: Sat, 23 May 2020 21:06:45 +0100
+Message-ID: <CAGsYvigK0JxvLpC38m-tdf6YPS1uPYaBO0wBAUYbbW+ES2c2-A@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+X-CU-OB: Yes
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216, 18.0.676
+ definitions=2020-05-23_11:2020-05-22,
+ 2020-05-23 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=10
+ priorityscore=1501 mlxlogscore=816 clxscore=1011 spamscore=0
+ impostorscore=10 suspectscore=3 cotscore=-2147483648 adultscore=0
+ lowpriorityscore=10 malwarescore=0 mlxscore=0 phishscore=0 classifier=spam
+ adjust=0 reason=mlx scancount=1 engine=8.12.0-2004280000
+ definitions=main-2005230164
+Subject: [USRP-users] Rounded FFT on USRP N210
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,11 +76,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: USRP-users@lists.ettus.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Manav Kohli via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Manav Kohli <mpk2138@columbia.edu>
+Content-Type: multipart/mixed; boundary="===============8613760075347679724=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,79 +92,73 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-U2hvdWxkIHdvcmsganVzdCBmaW5lLiAKClBsZWFzZSBwcm92aWRlIG1vcmUgZGVzY3JpcHRpb24g
-b2Yg4oCcd2VpcmQgc3B1cnPigJ0KCgpTZW50IGZyb20gbXkgaVBob25lCgo+IE9uIE1heSAyMywg
-MjAyMCwgYXQgODowNCBBTSwgTWF0dCB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20+IHdyb3RlOgo+IAo+IO+7vwo+IElzIHRoZXJlIGEgc3BlY2lmaWMgJ2JpbicgaW1h
-Z2UgbmVlZGVkIHRvIHJ1biB0aGUgWENWUjI0NTAgb24gbXkgTjIwMD8gUnVubmluZyB0aGUgdWhk
-IGltYWdlIGRvd25sb2FkZXIgZ3JhYnMgdGhlIGZvbGxvd2luZyBpbWFnZXMgdGhhdCBJIGhhdmUg
-aW5zdGFsbGVkLiBJIGFtIHNlZWluZyBzdHJhbmdlIChyYW5kb20gc3B1cnMgYXMgaWYgdGhlIGJv
-YXJkIGlzIG1pc2NvbmZpZ3VyZWQpIGJlaGF2aW91ciBvdXQgb2YgdGhlIGRhdWdodGVyYm9hcmQs
-IHNvIEkgdGhpbmsgaXQgY291bGQgYmUgYSBmaXJtd2FyZSBjb21wYXRpYmlsaXR5IGlzc3VlLgo+
-IAo+IFRoYW5rcywKPiAKPiBNYXR0Cj4gCj4gCj4gCj4gSU5GT10gW1VIRF0gbGludXg7IEdOVSBD
-KysgdmVyc2lvbiA3LjQuMDsgQm9vc3RfMTA2NTAxOyBVSERfMy4xNC4xLjEtcmVsZWFzZQo+IFtJ
-TkZPXSBbVVNSUDJdIE9wZW5pbmcgYSBVU1JQMi9OLVNlcmllcyBkZXZpY2UuLi4KPiBbSU5GT10g
-W1VTUlAyXSBDdXJyZW50IHJlY3YgZnJhbWUgc2l6ZTogMTQ3MiBieXRlcwo+IFtJTkZPXSBbVVNS
-UDJdIEN1cnJlbnQgc2VuZCBmcmFtZSBzaXplOiAxNDcyIGJ5dGVzCj4gW0lORk9dIFtVU1JQMl0g
-RGV0ZWN0aW5nIGludGVybmFsIEdQU0RPLi4uLgo+IFtJTkZPXSBbR1BTXSBObyBHUFNETyBmb3Vu
-ZAo+ICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KPiAgLwo+IHwgICAgICAgRGV2aWNlOiBVU1JQMiAvIE4tU2VyaWVzIERldmljZQo+IHwgICAg
-IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4g
-fCAgICAvCj4gfCAgIHwgICAgICAgTWJvYXJkOiBOMjAwcjQKPiB8ICAgfCAgIGhhcmR3YXJlOiAy
-NTc2Cj4gfCAgIHwgICBtYWMtYWRkcjogYTA6MzY6ZmE6MjY6MzI6OTgKPiB8ICAgfCAgIGlwLWFk
-ZHI6IDE5Mi4xNjguMTAuMgo+IHwgICB8ICAgc3VibmV0OiAyNTUuMjU1LjI1NS4yNTUKPiB8ICAg
-fCAgIGdhdGV3YXk6IDI1NS4yNTUuMjU1LjI1NQo+IHwgICB8ICAgZ3BzZG86IG5vbmUKPiB8ICAg
-fCAgIHNlcmlhbDogRTlSMTJXOFVOCj4gfCAgIHwgICBGVyBWZXJzaW9uOiAxMi40Cj4gfCAgIHwg
-ICBGUEdBIFZlcnNpb246IDExLjEKPiB8ICAgfCAgCj4gfCAgIHwgICBUaW1lIHNvdXJjZXM6ICBu
-b25lLCBleHRlcm5hbCwgX2V4dGVybmFsXywgbWltbwo+IHwgICB8ICAgQ2xvY2sgc291cmNlczog
-aW50ZXJuYWwsIGV4dGVybmFsLCBtaW1vCj4gfCAgIHwgICBTZW5zb3JzOiBtaW1vX2xvY2tlZCwg
-cmVmX2xvY2tlZAo+IHwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwo+IHwgICB8ICAgIC8KPiB8ICAgfCAgIHwgICAgICAgUlggRFNQ
-OiAwCj4gfCAgIHwgICB8ICAKPiB8ICAgfCAgIHwgICBGcmVxIHJhbmdlOiAtNTAuMDAwIHRvIDUw
-LjAwMCBNSHoKPiB8ICAgfCAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KPiB8ICAgfCAgICAvCj4gfCAgIHwgICB8ICAgICAgIFJYIERTUDog
-MQo+IHwgICB8ICAgfCAgCj4gfCAgIHwgICB8ICAgRnJlcSByYW5nZTogLTUwLjAwMCB0byA1MC4w
-MDAgTUh6Cj4gfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCj4gfCAgIHwgICAgLwo+IHwgICB8ICAgfCAgICAgICBSWCBEYm9hcmQ6
-IEEKPiB8ICAgfCAgIHwgICBJRDogWENWUjI0NTAsIFhDVlIyNDUwIC0gcjIuMSAoMHgwMDYxKQo+
-IHwgICB8ICAgfCAgIFNlcmlhbDogRTlSMTQwMFhYCj4gfCAgIHwgICB8ICAgICBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IHwgICB8ICAgfCAg
-ICAvCj4gfCAgIHwgICB8ICAgfCAgICAgICBSWCBGcm9udGVuZDogMAo+IHwgICB8ICAgfCAgIHwg
-ICBOYW1lOiBYQ1ZSMjQ1MCBSWAo+IHwgICB8ICAgfCAgIHwgICBBbnRlbm5hczogSjEsIEoyCj4g
-fCAgIHwgICB8ICAgfCAgIFNlbnNvcnM6IGxvX2xvY2tlZCwgcnNzaQo+IHwgICB8ICAgfCAgIHwg
-ICBGcmVxIHJhbmdlOiAyNDAwLjAwMCB0byA2MDAwLjAwMCBNSHoKPiB8ICAgfCAgIHwgICB8ICAg
-R2FpbiByYW5nZSBMTkE6IDAuMCB0byAzMC41IHN0ZXAgMTUuMCBkQgo+IHwgICB8ICAgfCAgIHwg
-ICBHYWluIHJhbmdlIFZHQTogMC4wIHRvIDYyLjAgc3RlcCAyLjAgZEIKPiB8ICAgfCAgIHwgICB8
-ICAgQmFuZHdpZHRoIHJhbmdlOiAxMzUwMDAwMC4wIHRvIDM5NjAwMDAwLjAgc3RlcCA2MDAwMDAu
-MCBIego+IHwgICB8ICAgfCAgIHwgICBDb25uZWN0aW9uIFR5cGU6IElRCj4gfCAgIHwgICB8ICAg
-fCAgIFVzZXMgTE8gb2Zmc2V0OiBObwo+IHwgICB8ICAgfCAgICAgX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiB8ICAgfCAgIHwgICAgLwo+IHwg
-ICB8ICAgfCAgIHwgICAgICAgUlggQ29kZWM6IEEKPiB8ICAgfCAgIHwgICB8ICAgTmFtZTogYWRz
-NjJwNDQKPiB8ICAgfCAgIHwgICB8ICAgR2FpbiByYW5nZSBkaWdpdGFsOiAwLjAgdG8gNi4wIHN0
-ZXAgMC41IGRCCj4gfCAgIHwgICB8ICAgfCAgIEdhaW4gcmFuZ2UgZmluZTogMC4wIHRvIDAuNSBz
-dGVwIDAuMSBkQgo+IHwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwo+IHwgICB8ICAgIC8KPiB8ICAgfCAgIHwgICAgICAgVFggRFNQ
-OiAwCj4gfCAgIHwgICB8ICAKPiB8ICAgfCAgIHwgICBGcmVxIHJhbmdlOiAtMjAwLjAwMCB0byAy
-MDAuMDAwIE1Iego+IHwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwo+IHwgICB8ICAgIC8KPiB8ICAgfCAgIHwgICAgICAgVFggRGJv
-YXJkOiBBCj4gfCAgIHwgICB8ICAgSUQ6IFhDVlIyNDUwICgweDAwNjApCj4gfCAgIHwgICB8ICAg
-U2VyaWFsOiBFOVIxNDAwWFgKPiB8ICAgfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gfCAgIHwgICB8ICAgIC8KPiB8ICAgfCAg
-IHwgICB8ICAgICAgIFRYIEZyb250ZW5kOiAwCj4gfCAgIHwgICB8ICAgfCAgIE5hbWU6IFhDVlIy
-NDUwIFRYCj4gfCAgIHwgICB8ICAgfCAgIEFudGVubmFzOiBKMSwgSjIKPiB8ICAgfCAgIHwgICB8
-ICAgU2Vuc29yczogbG9fbG9ja2VkCj4gfCAgIHwgICB8ICAgfCAgIEZyZXEgcmFuZ2U6IDI0MDAu
-MDAwIHRvIDYwMDAuMDAwIE1Iego+IHwgICB8ICAgfCAgIHwgICBHYWluIHJhbmdlIFZHQTogMC4w
-IHRvIDMwLjAgc3RlcCAwLjUgZEIKPiB8ICAgfCAgIHwgICB8ICAgR2FpbiByYW5nZSBCQjogMC4w
-IHRvIDUuMCBzdGVwIDEuNSBkQgo+IHwgICB8ICAgfCAgIHwgICBCYW5kd2lkdGggcmFuZ2U6IDI0
-MDAwMDAwLjAgdG8gNDgwMDAwMDAuMCBzdGVwIDEyMDAwMDAwLjAgSHoKPiB8ICAgfCAgIHwgICB8
-ICAgQ29ubmVjdGlvbiBUeXBlOiBRSQo+IHwgICB8ICAgfCAgIHwgICBVc2VzIExPIG9mZnNldDog
-Tm8KPiB8ICAgfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCj4gfCAgIHwgICB8ICAgIC8KPiB8ICAgfCAgIHwgICB8ICAgICAgIFRY
-IENvZGVjOiBBCj4gfCAgIHwgICB8ICAgfCAgIE5hbWU6IGFkOTc3Nwo+IHwgICB8ICAgfCAgIHwg
-ICBHYWluIEVsZW1lbnRzOiBOb25lCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
-cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
-c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============8613760075347679724==
+Content-Type: multipart/alternative; boundary="000000000000165f7e05a6564bef"
+
+--000000000000165f7e05a6564bef
+Content-Type: text/plain; charset="UTF-8"
+
+Setup details:
+USRP N210 w/SBX daugterboard
+UHD 3.14
+GNU Radio 3.7
+Ubuntu 16.04
+gr-digital GNU Radio OFDM blocks used
+
+While attempting channel estimation for 64-subcarrier OFDM, I find that for
+higher bandwidths, such as 20 MHz, the channel estimate shows the edge
+subcarriers anywhere from 15-20dB below the central zero subcarrier, even
+though the anticipated channel is relatively flat.
+
+Taking a larger FFT of the entire received OFDM packets shows the same
+rounding as seen in the channel estimation. This rounding is roughly
+symmetric, and occurs with any carrier frequency used.
+
+It was suggested to me that this may be caused by the antialiasing filter
+on the SBX board, and any further help/advice would be greatly appreciated.
+Is such rounding normal, and if so, how could it be compensated?
+
+Much thanks,
+Manav
+
+--000000000000165f7e05a6564bef
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"color:rgb(0,0,0)">Setup det=
+ails:</div><div style=3D"color:rgb(0,0,0)">USRP N210 w/SBX daugterboard</di=
+v><div style=3D"color:rgb(0,0,0)">UHD 3.14</div><div style=3D"color:rgb(0,0=
+,0)">GNU Radio 3.7</div><div style=3D"color:rgb(0,0,0)">Ubuntu 16.04</div><=
+div style=3D"color:rgb(0,0,0)">gr-digital GNU Radio OFDM blocks used</div><=
+div style=3D"color:rgb(0,0,0)"><br></div><div style=3D"color:rgb(0,0,0)">Wh=
+ile attempting channel estimation for 64-subcarrier OFDM, I find that for h=
+igher bandwidths, such as 20 MHz, the=C2=A0channel estimate shows the edge =
+subcarriers anywhere from 15-20dB below the central zero subcarrier, even t=
+hough the anticipated channel is relatively flat.=C2=A0</div><div style=3D"=
+color:rgb(0,0,0)"><br></div><div style=3D"color:rgb(0,0,0)">Taking a larger=
+ FFT of the entire received OFDM packets shows the same rounding as seen in=
+ the channel estimation. This rounding is roughly symmetric, and occurs wit=
+h any carrier frequency used.=C2=A0</div><div style=3D"color:rgb(0,0,0)"><b=
+r></div><div style=3D"color:rgb(0,0,0)">It was suggested to me that this=C2=
+=A0may be caused by the antialiasing filter on the SBX board, and any furth=
+er help/advice would be greatly appreciated. Is such rounding normal, and i=
+f so, how could=C2=A0it be compensated?</div><div style=3D"color:rgb(0,0,0)=
+"><br></div><div style=3D"color:rgb(0,0,0)">Much thanks,</div><div style=3D=
+"color:rgb(0,0,0)">Manav</div></div></div>
+
+--000000000000165f7e05a6564bef--
+
+
+--===============8613760075347679724==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============8613760075347679724==--
+
