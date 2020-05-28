@@ -2,48 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C3701E68DD
-	for <lists+usrp-users@lfdr.de>; Thu, 28 May 2020 19:50:49 +0200 (CEST)
-Received: from [::1] (port=41046 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B2251E6905
+	for <lists+usrp-users@lfdr.de>; Thu, 28 May 2020 20:04:36 +0200 (CEST)
+Received: from [::1] (port=47556 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jeMg2-0001kW-9Z; Thu, 28 May 2020 13:50:46 -0400
-Received: from mail-qv1-f54.google.com ([209.85.219.54]:39990)
+	id 1jeMtM-0003CF-CV; Thu, 28 May 2020 14:04:32 -0400
+Received: from mail-qk1-f180.google.com ([209.85.222.180]:45271)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <qiu.guowang007@gmail.com>)
- id 1jeMfx-0001gI-T1
- for usrp-users@lists.ettus.com; Thu, 28 May 2020 13:50:41 -0400
-Received: by mail-qv1-f54.google.com with SMTP id l3so13345264qvo.7
- for <usrp-users@lists.ettus.com>; Thu, 28 May 2020 10:50:21 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jeMtH-00037e-Uk
+ for USRP-users@lists.ettus.com; Thu, 28 May 2020 14:04:27 -0400
+Received: by mail-qk1-f180.google.com with SMTP id q8so3933670qkm.12
+ for <USRP-users@lists.ettus.com>; Thu, 28 May 2020 11:04:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to:cc;
- bh=lVlYG/A9ZwzDy4jiWhPlVtcT/WcVFmp6/LWwaLNG8XM=;
- b=Y2anpAZ+SgjpN6MWaLpki62REmYRSUVNDLqJAiOscsColE7NHS3utMeITBwhQ2ZcGw
- iynm7h4nTl7A71Gl8OpBLImkq4kPlv/NUJ33QxJo8Sw+CgXZvn4Wna/fYGMaXI9mP4WU
- C5bXI4jD3P2eRu9rLtymcjX7KYsul9knmOvLbCNHEvu7qGPuOSjLQmtMAleDU3JdEjWF
- XVrtSke9+slfBIJrOFneiqz987rPfdcuy8DiSfSs+kvPw2DLC4QUXe2CTMd79P9/yDqo
- 9UYvvsqr+NGurqJj5dXy8kiYBcxLnEu0FqTltaCq1J8nqWA1uFXcs1QXuXxxI+6/weWZ
- y5eQ==
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=oFWYTCAACpT6IGYq9G6HqmXJBwKGuY/6oQVyUNfYC3I=;
+ b=Qf7BBzVQOy9FzQCcx90FUv9UmJbvVaFIAaNv03mnPZORqv3On6XuaGYBLqjp1pZ5WK
+ At+FO/diKjXPSHf6WbcFng4yOdEnhp2EEbL1gqFt/w1NwkU7W3jjkBZHZqqLTtCm5Kyu
+ nJ9UOLRXeftzOjVkcTCJxmSXwcBcCScnL7R7AvNEqK/Sp9+RaYLYcCvaV24GDsiLbuUE
+ xlreyE7qVTYFH/hR54GM7MkrNd8dh7TC2gSLyKLlumFPSEPlC209BwPXvBL9Bq9eKv6X
+ r/2W3ESjXsOZZuCWVBrhI+Cj7ybwvqwsBVMJxXm1BZ40igPCYE6rFUVxio/5IFrnCpe/
+ LfcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
- bh=lVlYG/A9ZwzDy4jiWhPlVtcT/WcVFmp6/LWwaLNG8XM=;
- b=mWkf60r9cCYaBhjSAPD5hbTCDHLe1TS/SNkUeO0VhQEE0JSK7a1Eh261YpqD28wR/a
- V508AeCk1RSynAQYHRAM9mkY/C0Ri3JFrBNxd7tkPUPZdnTbd8BBfZXoBMKUtGCHJLKC
- iL3gDkrDM25u9Hf7cL6mkZgWL7DcJs8ljiiUCiPe84PTE+LQsXbKrWqmZ78usq3v1Zz3
- gF1LREwmEm/YQbH/fAJRKWEkISh5rMUAKA85rxm5cImkdawU95vCMmgFRHoHRXecmOe+
- 2wP43kl812bzBvlYMOmuivUd4lX92qc5//AxGNAn43kVZlBJ33dcUQ1s28zh/y9IoWps
- yZNg==
-X-Gm-Message-State: AOAM533XczyuvsFVS4Z1gj+xhwWOmJgQ3pz0tVKgexntrR/v+Ejdj3Wr
- EvO+hN5hVslb0yHkRGxPGrdwc5KwO6F11Kzd8QTPmh7kSOWm1Q==
-X-Google-Smtp-Source: ABdhPJx4ZuSFaZinlPUHtKgRaom3MEYfaUjqJduGpasW8Gx/4xxEbFyOM1MvZpAziWPvSWpKTlbaIYjhpdTH5LooXDI=
-X-Received: by 2002:a0c:b6d7:: with SMTP id h23mr4474995qve.162.1590688201060; 
- Thu, 28 May 2020 10:50:01 -0700 (PDT)
-MIME-Version: 1.0
-Date: Fri, 29 May 2020 01:49:50 +0800
-Message-ID: <CACjmV_n8FX-ktO2tzHObN9eaBq7pdQ67AW=46WWMgpHmwnkTvQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] B210 LO signal leakage above 5GHz
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=oFWYTCAACpT6IGYq9G6HqmXJBwKGuY/6oQVyUNfYC3I=;
+ b=WNPttk3N6+wfrq+5mybXD4mP8hpsXGgUB8mDjsHjaKlsnisCiuAyi/+mh9X1XV2iQ0
+ wNxN7CfTmWDLTQ3sizcahVCepl/El176C6+u4BjNKBwQ0GIumcExmugxklMwvg5CKpoq
+ +OXwm+a+0+yD1Y1vzJwADfTyV598S2sBxwJmzrDmSEM4Eg8c7InaN5RP96oqTIZ3IGvQ
+ uMgeSNOC2sStZ+jnmSwti0BduCRPiFMGzbQmc8K78HitRUFIz72p4+C+GBXttsel2EZR
+ L/YHakm5Ealt6+a/wPb8XbeDz1dH25jwk71TmhJgPOpErgXQFTi2xnyj99p90GyKJsrt
+ vCmQ==
+X-Gm-Message-State: AOAM530YBAJfLoNyw40leGajYLbw3omxfUFAmxiUPBNNqKQPt8hw2Qpg
+ tDZzk5EO5ooGKm2wpvPQloc=
+X-Google-Smtp-Source: ABdhPJwxQUgz2AOstJMLVU30OzvfvmtO7eYSY23Xu0/oBoyRXjFKSFh/fz6dYXeSyCTEkels1oTnyA==
+X-Received: by 2002:a37:bd81:: with SMTP id n123mr3883129qkf.57.1590689027401; 
+ Thu, 28 May 2020 11:03:47 -0700 (PDT)
+Received: from ?IPv6:2605:b100:d3d:ed76:c84b:4134:6108:3f24?
+ ([2605:b100:d3d:ed76:c84b:4134:6108:3f24])
+ by smtp.gmail.com with ESMTPSA id a67sm5575322qkb.109.2020.05.28.11.03.46
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 28 May 2020 11:03:47 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+Date: Thu, 28 May 2020 13:56:12 -0400
+Message-Id: <A6D18848-7D69-461E-AB5A-02F5B5166ABE@gmail.com>
+References: <CACjmV_n8FX-ktO2tzHObN9eaBq7pdQ67AW=46WWMgpHmwnkTvQ@mail.gmail.com>
+In-Reply-To: <CACjmV_n8FX-ktO2tzHObN9eaBq7pdQ67AW=46WWMgpHmwnkTvQ@mail.gmail.com>
+To: guowang qiu <qiu.guowang007@gmail.com>
+X-Mailer: iPhone Mail (17E262)
+Subject: Re: [USRP-users] B210 LO signal leakage above 5GHz
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,10 +65,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: guowang qiu via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: guowang qiu <qiu.guowang007@gmail.com>
-Cc: Damon Qiu <qiu.guowang007@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4401066877011029063=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: USRP-users@lists.ettus.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,63 +83,32 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4401066877011029063==
-Content-Type: multipart/alternative; boundary="0000000000002c369b05a6b8f5b9"
-
---0000000000002c369b05a6b8f5b9
-Content-Type: text/plain; charset="UTF-8"
-
-Hi all,
-
-We use USRP b210 as a signal generator, and adjust the tx gain to make the
-tx power from - 90dbm to 0dbm. USRP b210 works fine in 2.4GHz frequency
-band, but it has a very strong LO signal leakage at frequencies higher than
-5GHz.
-In my test, the frequency of  baseband (cos signal source) is set to 1MHz,
-so LO signal leakage and single tone signal can be easily distinguished.
-When the tx gain is set from 0 to 30 db, the strength of the LO signal
-hardly changes, and it is higher than the strength of the single tone
-signal. With the increase of tx gain, the strength of single tone signal
-will increase obviously. It seems that the local oscillator signal
-generated by the PLL in ad9361 bypasses the internal adjustable gain power
-amplifier and leaks directly to the antenna port.
-Is it possible to reduce the local leakage by modifying the UHD source code?
-
-Best regards,
-Damon
-
---0000000000002c369b05a6b8f5b9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>We use USRP b210 as =
-a signal generator, and adjust the tx gain to make the tx power from - 90db=
-m to 0dbm. USRP b210 works fine in 2.4GHz frequency band, but it has a very=
- strong LO signal leakage at frequencies higher than 5GHz.=C2=A0</div><div>=
-In my test, the frequency of=C2=A0 baseband (cos signal source) is set to 1=
-MHz, so LO signal leakage and single tone signal can be easily distinguishe=
-d. When the tx gain is set from 0 to 30 db, the strength of the LO signal h=
-ardly changes, and it is higher than the strength of the single tone signal=
-. With the increase of tx gain, the strength of single tone signal will inc=
-rease obviously. It seems that the local oscillator signal generated by the=
- PLL in ad9361 bypasses the internal adjustable gain power amplifier and le=
-aks directly to the antenna port.</div><div>Is it possible to reduce the lo=
-cal leakage by modifying the UHD source code?</div><div><br></div><div>Best=
- regards,</div><div>Damon<br></div></div>
-
---0000000000002c369b05a6b8f5b9--
-
-
---===============4401066877011029063==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4401066877011029063==--
-
+SGF2ZSB5b3UgdHJpZWQgYWRqdXN0aW5nIHRoZSBtYWduaXR1ZGUgb2YgdGhlIG1vZHVsYXRpbmcg
+YmFzZWJhbmQgc2lnbmFsPyBEb2VzIHRoYXQgbWFrZSBhIGRpZmZlcmVuY2UuIAoKTXkgZ3Vlc3Mg
+aXMgdGhhdCB0aGUgbGVha2FnZSBwYXRoIGlzbuKAmXQgdGhyb3VnaCB0aGUgVkdBIGJ1dCByYXRo
+ZXIgdGhyb3VnaCBzb21ldGhpbmcgZWxzZSBpbiB0aGUgcGFja2FnZS4gSW4gd2hpY2ggY2FzZSwg
+bm8gYW1vdW50IG9mIHNvZnR3YXJlIG1vZHMgd2lsbCByZWR1Y2UgaXQuIAoKU2VudCBmcm9tIG15
+IGlQaG9uZQoKPiBPbiBNYXkgMjgsIDIwMjAsIGF0IDE6NTAgUE0sIGd1b3dhbmcgcWl1IHZpYSBV
+U1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6Cj4gCj4g77u/Cj4g
+SGkgYWxsLAo+IAo+IFdlIHVzZSBVU1JQIGIyMTAgYXMgYSBzaWduYWwgZ2VuZXJhdG9yLCBhbmQg
+YWRqdXN0IHRoZSB0eCBnYWluIHRvIG1ha2UgdGhlIHR4IHBvd2VyIGZyb20gLSA5MGRibSB0byAw
+ZGJtLiBVU1JQIGIyMTAgd29ya3MgZmluZSBpbiAyLjRHSHogZnJlcXVlbmN5IGJhbmQsIGJ1dCBp
+dCBoYXMgYSB2ZXJ5IHN0cm9uZyBMTyBzaWduYWwgbGVha2FnZSBhdCBmcmVxdWVuY2llcyBoaWdo
+ZXIgdGhhbiA1R0h6LiAKPiBJbiBteSB0ZXN0LCB0aGUgZnJlcXVlbmN5IG9mICBiYXNlYmFuZCAo
+Y29zIHNpZ25hbCBzb3VyY2UpIGlzIHNldCB0byAxTUh6LCBzbyBMTyBzaWduYWwgbGVha2FnZSBh
+bmQgc2luZ2xlIHRvbmUgc2lnbmFsIGNhbiBiZSBlYXNpbHkgZGlzdGluZ3Vpc2hlZC4gV2hlbiB0
+aGUgdHggZ2FpbiBpcyBzZXQgZnJvbSAwIHRvIDMwIGRiLCB0aGUgc3RyZW5ndGggb2YgdGhlIExP
+IHNpZ25hbCBoYXJkbHkgY2hhbmdlcywgYW5kIGl0IGlzIGhpZ2hlciB0aGFuIHRoZSBzdHJlbmd0
+aCBvZiB0aGUgc2luZ2xlIHRvbmUgc2lnbmFsLiBXaXRoIHRoZSBpbmNyZWFzZSBvZiB0eCBnYWlu
+LCB0aGUgc3RyZW5ndGggb2Ygc2luZ2xlIHRvbmUgc2lnbmFsIHdpbGwgaW5jcmVhc2Ugb2J2aW91
+c2x5LiBJdCBzZWVtcyB0aGF0IHRoZSBsb2NhbCBvc2NpbGxhdG9yIHNpZ25hbCBnZW5lcmF0ZWQg
+YnkgdGhlIFBMTCBpbiBhZDkzNjEgYnlwYXNzZXMgdGhlIGludGVybmFsIGFkanVzdGFibGUgZ2Fp
+biBwb3dlciBhbXBsaWZpZXIgYW5kIGxlYWtzIGRpcmVjdGx5IHRvIHRoZSBhbnRlbm5hIHBvcnQu
+Cj4gSXMgaXQgcG9zc2libGUgdG8gcmVkdWNlIHRoZSBsb2NhbCBsZWFrYWdlIGJ5IG1vZGlmeWlu
+ZyB0aGUgVUhEIHNvdXJjZSBjb2RlPwo+IAo+IEJlc3QgcmVnYXJkcywKPiBEYW1vbgo+IF9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gVVNSUC11c2VycyBt
+YWlsaW5nIGxpc3QKPiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5l
+dHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBt
+YWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVz
+LmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
