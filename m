@@ -2,55 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7F0E1E5898
-	for <lists+usrp-users@lfdr.de>; Thu, 28 May 2020 09:28:02 +0200 (CEST)
-Received: from [::1] (port=41960 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC7981E5C71
+	for <lists+usrp-users@lfdr.de>; Thu, 28 May 2020 11:52:25 +0200 (CEST)
+Received: from [::1] (port=48284 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jeCxL-0001mJ-3n; Thu, 28 May 2020 03:27:59 -0400
-Received: from mail-ej1-f48.google.com ([209.85.218.48]:42197)
+	id 1jeFD4-0008Hj-Hz; Thu, 28 May 2020 05:52:22 -0400
+Received: from mail-wm1-f44.google.com ([209.85.128.44]:39765)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <aitamakinde@abuad.edu.ng>)
- id 1jeCxG-0001j4-PS
- for usrp-users@lists.ettus.com; Thu, 28 May 2020 03:27:54 -0400
-Received: by mail-ej1-f48.google.com with SMTP id k11so5719896ejr.9
- for <usrp-users@lists.ettus.com>; Thu, 28 May 2020 00:27:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=abuad-edu-ng.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=TWlJtju3r6cBTYmtFmWSj/QF9/V6Rk5bkar2ZVVTcQk=;
- b=2JYUrims+0e3N4oSoNM/t9KEDR3J+z744PwJSgEVl3QBbSEmnyaajm/DM+6pS9n7/f
- fhJSwbnftQBW8jFlHF7jjg7ktTFHEsigb9jinZhkO+cGaOcQblty9A0H8z4dvRSEn+zp
- jv2Xd46FyUW4U9NSolxoYC7Qgfh1Z5ZK+0WDO8sM7VKmEwCKikOVUSX/eVXW5Qoi7HB4
- 3JEwDvmLlmL+ps75q29yJFLVfcdPKRVzIfLQwS+YY/esrY/jB23ZBi6Y17U2biqq00Js
- pYPz36xbIWVXXOstEx5li0f5RQDExpgcIQXX/Lwq3XpN1yW3sAG490FaFfYCaAmrMI7q
- JpIg==
+ (Exim 4.93) (envelope-from <emil.bjelski@gmail.com>)
+ id 1jeFD0-0008CC-3y
+ for usrp-users@lists.ettus.com; Thu, 28 May 2020 05:52:18 -0400
+Received: by mail-wm1-f44.google.com with SMTP id k26so2465238wmi.4
+ for <usrp-users@lists.ettus.com>; Thu, 28 May 2020 02:51:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=1JWPRgR0eNmkGVdaQG/GWeUouk4EhpXBxUYWsTSQ9cQ=;
+ b=o5vr5S4TwMSk26LFCMH2agORX775ri88lxHFr9nEORxFl3W6CjyU9mhXCyokdkM8DW
+ CL3jI/LGc3njHWpCnuThHdz+tKk1wlmqbCSahe42kqMUnGAjQNUX3yL3/B9HcsJgim8F
+ X2LKcy+xGFBT8ls/O399iAv0ItJ9FQK9gjYw7WHavtlJprE0qLjOH2HntN5CDVFgHmX+
+ Dvh3rhs6wdhKwM1h/ePxrvY5qadHRwKl3kuzo4TNrpmEPzj7mxqbd2xjZClTCwgh4t0Z
+ RWE6TuPziAasy3RztSm2MzUBL/oHbH1IreIG+HJ8x+ioCriZDQDxHmTX2BhSFfFLv9ud
+ 5DJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=TWlJtju3r6cBTYmtFmWSj/QF9/V6Rk5bkar2ZVVTcQk=;
- b=nS+8WttW5qU9m0sX+cU6q6bYS1rddI1cu/OkSUQcscsR99UTrscnYkNOBIXGgGT6Qd
- 18Bx7HjL93q/Lf2ElfPGgXRoxVEd7z7ixbEwJ621+9vzqe8mN9/X++uaccGygFS66wgU
- mqhLurwnHK+64/v60OXMHPGdWmUnVwIqKy66NeiOBSCjo3qMA9S43duE65+PvnF2Kx0Y
- eTY3ZdDu0zkS8nnuhkZxcqJstoa2bOLYAg1OyJ6iyy9CrdYkdim6i9LG+owtfGiRzCbn
- zm+p4jvDMzC5CATcGr5qjLCo+KJU2q4E0TLIkCvbfuYfq4h4Ixq52cwnGV+q/O7zSBdE
- NlKg==
-X-Gm-Message-State: AOAM531B5Nkjl9TrNfb2T3aLJdx6Q6q3qW8lFzkijvDU4iQlvSPn/YwJ
- QyV07Rr5FNKSz0TI+ZN/OUlhpM1kWzE6vm6I6xhyIQ==
-X-Google-Smtp-Source: ABdhPJyPfTpifux9FQH3M3CZunpNtkRSauXlKNNtpx+ZShuyo68g+Yo/QwlGc2LBwG+dcRWF+pzRbzJjN9eK3LlnJNw=
-X-Received: by 2002:a17:906:934e:: with SMTP id
- p14mr1764126ejw.498.1590650833714; 
- Thu, 28 May 2020 00:27:13 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=1JWPRgR0eNmkGVdaQG/GWeUouk4EhpXBxUYWsTSQ9cQ=;
+ b=qPthzARI1qtXGduwuNA94cWFAFM/I6twjpk7DBYT/DZemWRYSJLnGlnTRo3An5Um4U
+ OkBdK2qq4ybtefdpKXHgVwNOH7eKj7ldoAh7mGFsG9/nDDykbyofejAaehveEQurCU8p
+ HoGxbWNuGr5FP53xSBpenTFa/rqRviPog6PM05SHMHcrrd6D7FqKggmIgZxb3WvRTFIy
+ ZEK0I+OfE6o7ffSZrJOtCbTjhxxXIAsf2GioP5NwB3J5bQjw7PBPnrXkYV3IHlCtgzi2
+ ke6/M2yGXuFDRfBkChvbntYhtfH4OkF3sh9kJGHP//CBbGJV9fcQ1U+sfyZKS+OssZDB
+ rwgg==
+X-Gm-Message-State: AOAM5335hOLvYoEy1SrXfNE2KQQtdwYFglBEBfS93M86R4xgCwGoDDg8
+ DcW8/yPl3ecE4YAm2Ms5ywujJQjzq5pRnb8ucb+qE1wz
+X-Google-Smtp-Source: ABdhPJy0LybLyQlzqfIvY+++WfxyA5k7MKdRssTJUTZYym/GEh9bsxdWz6THobSL5YRLZ/jf4o+DAD+L3JBh+Lk3GDo=
+X-Received: by 2002:a7b:cd06:: with SMTP id f6mr2571816wmj.8.1590659496931;
+ Thu, 28 May 2020 02:51:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAD-eGGr6EaYEUKFLHW5zgg8yd5ctdDJ6Lf44LeP1sZ2X6W4Uaw@mail.gmail.com>
- <SL2P216MB033143F8DFB378EE40860B99938E0@SL2P216MB0331.KORP216.PROD.OUTLOOK.COM>
-In-Reply-To: <SL2P216MB033143F8DFB378EE40860B99938E0@SL2P216MB0331.KORP216.PROD.OUTLOOK.COM>
-Date: Thu, 28 May 2020 08:25:38 +0100
-Message-ID: <CAD-eGGp8GHohB34u9+-p6ffoB4jCRgMYGEUEVUUEyX0VJi1bcg@mail.gmail.com>
-To: Kyeong Su Shin <ksshin@postech.ac.kr>
-Subject: Re: [USRP-users] Modulation technique for sliding correlator
- channel sounder
+Date: Thu, 28 May 2020 11:51:26 +0200
+Message-ID: <CADrptxVyyurf9m30FocbfK0N+9rtrD_qQvRee8d3_rz9N5r-Hg@mail.gmail.com>
+To: USRP Users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] RFNoC Replay Bloch timmed commands
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: AKINYELE ITAMAKINDE via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: AKINYELE ITAMAKINDE <aitamakinde@abuad.edu.ng>
-Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============4884396069935866186=="
+From: Emil Bjelski via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Emil Bjelski <emil.bjelski@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5594777709226141147=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,154 +71,71 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4884396069935866186==
-Content-Type: multipart/alternative; boundary="000000000000e7d0f405a6b041d7"
+--===============5594777709226141147==
+Content-Type: multipart/alternative; boundary="00000000000045f5a005a6b246b9"
 
---000000000000e7d0f405a6b041d7
+--00000000000045f5a005a6b246b9
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Kyeong, Thanks a lot. Pls, can you inform me those things I need  to be
-careful with when designing the sequence transmitter? I designed one, but I
-am not sure of it, though I received signals from the receiver.
-Thanks.
-Akinyele
+Hello All,
 
-On Thu, May 28, 2020, 1:56 AM Kyeong Su Shin <ksshin@postech.ac.kr> wrote:
+I would like to use RFNoC Replay Block with timed commands, in order to
+transmit
+waveform at allocated time slots.
 
-> Hello Akinyele:
->
-> You do not need to use any specific modulation techniques to implement a
-> channel sounder. This is because the receiver already knows the
-> transmitted I-Q sequence, and correlation is taken directly on the incomi=
-ng
-> I-Q sequences to measure the channel.
->
-> Of course, you should still carefully design the transmitted sequences, a=
-s
-> some sequences have poor correlation properties. Maybe you can use
-> something like BPSK-modulated PN sequences.
->
-> Regards,
-> Kyeong Su Shin
-> ------------------------------
-> *=EB=B3=B4=EB=82=B8 =EC=82=AC=EB=9E=8C:* AKINYELE ITAMAKINDE via USRP-use=
-rs <usrp-users@lists.ettus.com>
-> =EB=8C=80=EC=8B=A0 USRP-users <usrp-users-bounces@lists.ettus.com>
-> *=EB=B3=B4=EB=82=B8 =EB=82=A0=EC=A7=9C:* 2020=EB=85=84 5=EC=9B=94 28=EC=
-=9D=BC =EB=AA=A9=EC=9A=94=EC=9D=BC =EC=98=A4=EC=A0=84 8:26
-> *=EB=B0=9B=EB=8A=94 =EC=82=AC=EB=9E=8C:* usrp-users@lists.ettus.com <usrp=
--users@lists.ettus.com>
-> *=EC=A0=9C=EB=AA=A9:* [USRP-users] Modulation technique for sliding corre=
-lator channel
-> sounder
->
-> I am working on propagation channel measurement using a sliding correlato=
-r
-> channel sounder flowgraph for Tx and Rx. The sliding correlator channel
-> sounder flowgraphs I've gotten so far from internet search have no
-> modulation technique. Does that show it does not require modulation
-> technique? If yes, why?
-> Thanks.
-> Akinyele
->
+I see relatively new post and Ettus wiki (
+https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD)
+which mentions that Replay Block can be used with timed commands. (see line
+"Using RFNoC blocks like the Replay Block to transmit phase coherent
+bursts").
 
---000000000000e7d0f405a6b041d7
+In same time I have found an earlier post (
+http://ettus.80997.x6.nabble.com/USRP-users-X310-Replay-Block-and-receiver-timming-td11818.html
+)
+where it is mentioned that Replay Block does not support timed commands.
+
+I am wondering what is current status related to support of timed commands
+with Replay Block?
+
+Kind Regards,
+
+Tarik
+
+--00000000000045f5a005a6b246b9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Kyeong, Thanks a lot. Pls, can you inform me those things=
- I need=C2=A0 to be careful with when designing the sequence transmitter? I=
- designed one, but I am not sure of it, though I received signals from the =
-receiver.<div dir=3D"auto">Thanks.</div><div dir=3D"auto">Akinyele</div></d=
-iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Thu, May 28, 2020, 1:56 AM Kyeong Su Shin &lt;<a href=3D"mailto:ksshin@post=
-ech.ac.kr" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">ksshi=
-n@postech.ac.kr</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<div dir=3D"ltr">Hello All,<div><br></div><div>I would like to use RFNoC Re=
+play Block=C2=A0with timed commands, in order to transmit=C2=A0</div><div>w=
+aveform at allocated=C2=A0time slots.=C2=A0</div><div><br></div><div>I see =
+relatively new post and Ettus wiki (<a href=3D"https://kb.ettus.com/Synchro=
+nizing_USRP_Events_Using_Timed_Commands_in_UHD">https://kb.ettus.com/Synchr=
+onizing_USRP_Events_Using_Timed_Commands_in_UHD</a>)</div><div>which mentio=
+ns that Replay Block can be used with timed commands. (see line &quot;<span=
+ style=3D"color:rgb(0,0,0);font-family:&quot;Lucida Sans Unicode&quot;,&quo=
+t;Lucida Grande&quot;,sans-serif;font-size:14px">Using RFNoC blocks like th=
+e Replay Block to transmit phase coherent bursts&quot;).</span></div><div><=
+span style=3D"color:rgb(0,0,0);font-family:&quot;Lucida Sans Unicode&quot;,=
+&quot;Lucida Grande&quot;,sans-serif;font-size:14px"><br></span></div><div>=
+<span style=3D"color:rgb(0,0,0);font-family:&quot;Lucida Sans Unicode&quot;=
+,&quot;Lucida Grande&quot;,sans-serif;font-size:14px">In same time I have f=
+ound an earlier post (</span><a href=3D"http://ettus.80997.x6.nabble.com/US=
+RP-users-X310-Replay-Block-and-receiver-timming-td11818.html">http://ettus.=
+80997.x6.nabble.com/USRP-users-X310-Replay-Block-and-receiver-timming-td118=
+18.html</a>)</div><div>where it is mentioned that Replay Block does not sup=
+port timed commands.</div><div><br></div><div>I am wondering what is curren=
+t status related=C2=A0to support of timed commands with Replay Block?</div>=
+<div><br></div><div>Kind Regards,</div><div><br></div><div>Tarik</div><div>=
+<span style=3D"color:rgb(0,0,0);font-family:&quot;Lucida Sans Unicode&quot;=
+,&quot;Lucida Grande&quot;,sans-serif;font-size:14px"><br></span></div><div=
+><span style=3D"color:rgb(0,0,0);font-family:&quot;Lucida Sans Unicode&quot=
+;,&quot;Lucida Grande&quot;,sans-serif;font-size:14px"><br></span></div></d=
+iv>
+
+--00000000000045f5a005a6b246b9--
 
 
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Hello Akinyele:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-You do not need to use any specific modulation techniques to implement a ch=
-annel sounder. This is b<span style=3D"font-family:Calibri,Arial,Helvetica,=
-sans-serif;background-color:rgb(255,255,255);display:inline!important">ecau=
-se the receiver already
- knows the transmitted I-Q sequence, and correlation is taken directly on t=
-he incoming I-Q sequences to measure the channel.</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Of course, you should still carefully design the transmitted sequences, as =
-some sequences have poor correlation properties. Maybe you can use somethin=
-g like BPSK-modulated PN sequences.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Regards,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Kyeong Su Shin</div>
-<div id=3D"m_5253585219363319147m_-5011945117499681569m_1416911203883159450=
-m_-1886042637514220386appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"m_5253585219363319147m_-5011945117499681569m_1416911203883159450=
-m_-1886042637514220386divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, san=
-s-serif" style=3D"font-size:11pt" color=3D"#000000"><b>=EB=B3=B4=EB=82=B8 =
-=EC=82=AC=EB=9E=8C:</b> AKINYELE ITAMAKINDE via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com" rel=3D"noreferrer noreferrer noreferrer n=
-oreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; =EB=8C=80=
-=EC=8B=A0 USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists.ettus.c=
-om" rel=3D"noreferrer noreferrer noreferrer noreferrer" target=3D"_blank">u=
-srp-users-bounces@lists.ettus.com</a>&gt;<br>
-<b>=EB=B3=B4=EB=82=B8 =EB=82=A0=EC=A7=9C:</b> 2020=EB=85=84 5=EC=9B=94 28=
-=EC=9D=BC =EB=AA=A9=EC=9A=94=EC=9D=BC =EC=98=A4=EC=A0=84 8:26<br>
-<b>=EB=B0=9B=EB=8A=94 =EC=82=AC=EB=9E=8C:</b> <a href=3D"mailto:usrp-users@=
-lists.ettus.com" rel=3D"noreferrer noreferrer noreferrer noreferrer" target=
-=3D"_blank">usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users=
-@lists.ettus.com" rel=3D"noreferrer noreferrer noreferrer noreferrer" targe=
-t=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-<b>=EC=A0=9C=EB=AA=A9:</b> [USRP-users] Modulation technique for sliding co=
-rrelator channel sounder</font>
-<div>=C2=A0</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div>I am working on propagation channel measurement using a sliding correl=
-ator channel sounder flowgraph for Tx and Rx. The sliding correlator channe=
-l sounder flowgraphs I&#39;ve gotten so far from internet search have no mo=
-dulation technique. Does that show it
- does not require modulation technique? If yes, why?<br>
-</div>
-<div>Thanks.</div>
-<font color=3D"#888888">
-<div>Akinyele</div>
-</font></div>
-</div>
-</div>
-
-</blockquote></div>
-
---000000000000e7d0f405a6b041d7--
-
-
---===============4884396069935866186==
+--===============5594777709226141147==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -237,5 +146,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4884396069935866186==--
+--===============5594777709226141147==--
 
