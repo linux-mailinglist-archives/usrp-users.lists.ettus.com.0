@@ -2,49 +2,86 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DFB61E51BC
-	for <lists+usrp-users@lfdr.de>; Thu, 28 May 2020 01:23:36 +0200 (CEST)
-Received: from [::1] (port=54094 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 549881E5263
+	for <lists+usrp-users@lfdr.de>; Thu, 28 May 2020 02:57:32 +0200 (CEST)
+Received: from [::1] (port=42124 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1je5OW-0007bG-O2; Wed, 27 May 2020 19:23:32 -0400
-Received: from exedge04.gtri.gatech.edu ([130.207.193.244]:37450)
+	id 1je6rQ-0002LJ-MM; Wed, 27 May 2020 20:57:28 -0400
+Received: from mail-eopbgr1280095.outbound.protection.outlook.com
+ ([40.107.128.95]:20253 helo=KOR01-PS2-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Jeff.Hodges@gtri.gatech.edu>)
- id 1je5OQ-0007X0-Vc
- for usrp-users@lists.ettus.com; Wed, 27 May 2020 19:23:27 -0400
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=exedge04;
- c=simple/simple; t=1590621766; h=from:subject:to:date:message-id;
- bh=u0e0aQm3ZbsgQ9o1yCZx2/fnVcKLTWA0YDMT5uDc7yM=;
- b=HWfs2BtwvZdQBps9R1Ln/WC9/2w47oLRLa79wYrO5FEwoIx6HOXl2dvi1przFHTv3AmBKBpopJB
- aL6otRlhRmseQ/Rivv8W5LG0QAerHh8NGQcgFy4kehyhBODd+zXejrkTQHntrkZ5B9JzNUak5Xg8p
- aTVpzS12/PCBG1Dc1Ys=
-Received: from parris.core.gtri.org (10.41.31.72) by exedge04.gtri.org
- (130.207.193.244) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Wed, 27 May
- 2020 19:22:46 -0400
-Received: from ocracoke.core.gtri.org (10.41.22.71) by parris.core.gtri.org
- (10.41.31.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1913.5; Wed, 27
- May 2020 19:22:46 -0400
-Received: from ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf]) by
- ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf%13]) with mapi id
- 15.01.1913.007; Wed, 27 May 2020 19:22:46 -0400
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: rfnoc gain tutorial block freezing on testbench TEST CASE 5
-Thread-Index: AdY0SHg1wyqYgGzVTum+6KS3GXBvJAANSViQ
-Date: Wed, 27 May 2020 23:22:46 +0000
-Message-ID: <5027a8f3124747d9a8808e00c84ed24b@gtri.gatech.edu>
-References: <939e6cc2a8484f849dccbf44c341270e@gtri.gatech.edu>
-In-Reply-To: <939e6cc2a8484f849dccbf44c341270e@gtri.gatech.edu>
-Accept-Language: en-US
+ (Exim 4.93) (envelope-from <ksshin@postech.ac.kr>)
+ id 1je6rL-0002Hg-UA
+ for usrp-users@lists.ettus.com; Wed, 27 May 2020 20:57:24 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=b5W9PKlH12nMVV5jZVLHxFg/dXL2q6Y6nrAaRu8Ut1MvNTlfFSARFAM8Y5fiqGYqi1v0cc8VfhiBdrVsP5sQAk8K5PcHi0fFK7/Dp5bl0RCbmj27kHXC07pJH7Aa+bcBy+8hHLj6Hue5GVkV4I0n6hiTJYNX4noCLwSC4o0GxpC/8e3P91lcqBoIRdn3hjfHOK+xLkSwHJvy74aokODLAhLocFTCI+3/lt59ZXFfPaUHZe6LMOCHntXn4ufUeF8oGtA/HnKMrfxJM+72+PXjILVXw0s3iYURAnWSLc8xXbC6jgWF+qffGDrTtDEZuYKK8g1+rRFAbi/Owdr+Ewk1Uw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r+7+nz8Zly5ksrnRB7jzZDKAb/YddsRu3oDPQfVOEhM=;
+ b=RXEMUY7JIwjQA2iX73UAp8rflYthd0gLZlcL16J3OBPydKs+VMtN/fNTEKqq0h1FWOXeyudxTGJf6Jm+U4FVVMTzAxMo+QK3ijMRnNTi8V9M7BDXISiL7BMz6myIySsiTyqz9pjkMZEn3wgdYCQCj0s7WG70ysOyFNYCa6ubJKWPLka/fVyAGjFmpjqPVpoAurXiItDeb2cgNo6SzKfE76V7rO/H80CCenrp5Q0WDnsw6yZxXS7uVAR5/l0wAYtxA/7x05Gl1MW1I+MajJcxlj9acauLHmH4V4cdoKXzlsMQPMWO8ai1uyO8qgLVSZSFqql+W5A6nug0zdBqSgeFCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=postech.ac.kr; dmarc=pass action=none
+ header.from=postech.ac.kr; dkim=pass header.d=postech.ac.kr; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=postechackr.onmicrosoft.com; s=selector2-postechackr-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r+7+nz8Zly5ksrnRB7jzZDKAb/YddsRu3oDPQfVOEhM=;
+ b=OEJpVxXOeyT5S0NIAA564/xXPBdnjYM0wm2Z+MZIaPrClkkjxO5Yx36YwG73N8WKE/bJ0qzEZG2fulw+chmxqmKuKsOhMab6T6QrxaFeo0ABZ9k2w5dOS/kPNPiuPDTBbyXOEFMGB/K92RMdubuLedXjt5PXvCpR8z7T3M/T9Ww=
+Received: from SL2P216MB0331.KORP216.PROD.OUTLOOK.COM (2603:1096:100:1f::21)
+ by SL2P216MB0954.KORP216.PROD.OUTLOOK.COM (2603:1096:100:28::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3045.19; Thu, 28 May
+ 2020 00:56:40 +0000
+Received: from SL2P216MB0331.KORP216.PROD.OUTLOOK.COM
+ ([fe80::ecce:e6d0:76c9:759]) by SL2P216MB0331.KORP216.PROD.OUTLOOK.COM
+ ([fe80::ecce:e6d0:76c9:759%3]) with mapi id 15.20.3021.029; Thu, 28 May 2020
+ 00:56:40 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, AKINYELE
+ ITAMAKINDE <aitamakinde@abuad.edu.ng>
+Thread-Topic: [USRP-users] Modulation technique for sliding correlator channel
+ sounder
+Thread-Index: AQHWNHYOIUDixIyDH0GtxcoQ9ywCWKi8powJ
+Date: Thu, 28 May 2020 00:56:40 +0000
+Message-ID: <SL2P216MB033143F8DFB378EE40860B99938E0@SL2P216MB0331.KORP216.PROD.OUTLOOK.COM>
+References: <CAD-eGGr6EaYEUKFLHW5zgg8yd5ctdDJ6Lf44LeP1sZ2X6W4Uaw@mail.gmail.com>
+In-Reply-To: <CAD-eGGr6EaYEUKFLHW5zgg8yd5ctdDJ6Lf44LeP1sZ2X6W4Uaw@mail.gmail.com>
+Accept-Language: ko-KR, en-US
+Content-Language: ko-KR
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.41.0.30]
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=postech.ac.kr;
+x-originating-ip: [119.202.91.198]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: bd8e40c5-bd50-478c-7327-08d802a1fb99
+x-ms-traffictypediagnostic: SL2P216MB0954:
+x-microsoft-antispam-prvs: <SL2P216MB09546315FB7DD47EEFE3763C938E0@SL2P216MB0954.KORP216.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0417A3FFD2
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: u0n7hDlJVTlQZgj467wNOu+WKzas0wjLcoxOevTTR/KIAPb36CFpghceypTvxMH1hDpHlgCHWg+ZtU/M8IQoEuJvNdZnNf4w7pPgBomP502D33cztzx8FygBqcN1UhdZ4OYMq1sO9b09DSbrYT5AOeO/y01sAlO+b/bS67gf5Cv04NQpFHmLzJQINN8nmQWgAqeD3yzHPg4J2r9vnjEozo54cn1CChn8BgTGRrdS62TESzcgbR/79FVNDaQC7WkxxEsLbDG/q4sf/BvWOw3fl0mIZAXIjyhYS/qkbfeiaanU2GorsNFt3G4khZC46YnqMNhnycP8Gt9NhAJQ54CzKLA6mVxhxDXrHIsNmzrx4PCTXrCs9Kjx+5ZufRj5XLGt
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SL2P216MB0331.KORP216.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(346002)(39850400004)(396003)(376002)(136003)(366004)(9686003)(26005)(66574014)(8936002)(86362001)(186003)(55016002)(6506007)(33656002)(8676002)(316002)(478600001)(786003)(7696005)(71200400001)(19627405001)(110136005)(5660300002)(66556008)(2906002)(66946007)(52536014)(76116006)(64756008)(66446008)(66476007)(8956003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: Mo/Z2pEbBHZPHZROT2GjmsNfVjhgrKsIggQJ6SLZBhUs8q+1e7DuCuS164tBrI85NsX/1AJorOpVTVi4bnaknN8B4Gq/D14djUtWy28TdUtf/xQxlEBwMALyU9KO5oNINlfcf65Yyj5YVKEaqkSIGuY39FCtsmaELk1zkxa7CNlFdqSKHxwqToq74slqtxaAxuJ5l100EiDwNYSqCWu38P6NnwQDkZtL430QDAJzfEL1TZCzjpdG0ESAoygOMikXOtllK88aRbWtav/Cc4yd/eSeq7MCRzuzPh+pCLVq0TK7k3u0e66JsDZxeQcIYdLGQIdOy/scLoNF9egtBLzxmYdnIUNddDqPAN45D4r53VFBBw5TM4KmRFyC0C/RlBd6QQfdNtzS/DlNR//d+ii+yamir/X0LmBsaQpdu4onT7///+jE/dDZJTS14uy8zZcrmRDLrOrPuQXr/mfOxlkRyeVSVRIum1JaCKBMJ0W1ElXppSPuu8rnpyRLfO0BXwC+
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Subject: Re: [USRP-users] rfnoc gain tutorial block freezing on testbench
- TEST CASE 5
+X-OriginatorOrg: postech.ac.kr
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd8e40c5-bd50-478c-7327-08d802a1fb99
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 May 2020 00:56:40.6493 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: bff3e98c-5cca-455c-adc8-5fd24fc9908d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: UUmSYQa+MhZlzw0/JovhC5gTdU48D1AC33uck544ZLZtry5t+ISMGdonBs/tZyU37bNPnWLBSBgKbILZXQArnQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SL2P216MB0954
+Subject: Re: [USRP-users] Modulation technique for sliding correlator
+ channel sounder
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,9 +93,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Hodges, Jeff via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
-Content-Type: multipart/mixed; boundary="===============0640267311574075131=="
+From: Kyeong Su Shin via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Kyeong Su Shin <ksshin@postech.ac.kr>
+Content-Type: multipart/mixed; boundary="===============0654880393860194757=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,196 +109,117 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0640267311574075131==
-Content-Language: en-US
+--===============0654880393860194757==
+Content-Language: ko-KR
 Content-Type: multipart/alternative;
-	boundary="_000_5027a8f3124747d9a8808e00c84ed24bgtrigatechedu_"
+	boundary="_000_SL2P216MB033143F8DFB378EE40860B99938E0SL2P216MB0331KORP_"
 
---_000_5027a8f3124747d9a8808e00c84ed24bgtrigatechedu_
-Content-Type: text/plain; charset="us-ascii"
+--_000_SL2P216MB033143F8DFB378EE40860B99938E0SL2P216MB0331KORP_
+Content-Type: text/plain; charset="ks_c_5601-1987"
+Content-Transfer-Encoding: base64
+
+SGVsbG8gQWtpbnllbGU6DQoNCllvdSBkbyBub3QgbmVlZCB0byB1c2UgYW55IHNwZWNpZmljIG1v
+ZHVsYXRpb24gdGVjaG5pcXVlcyB0byBpbXBsZW1lbnQgYSBjaGFubmVsIHNvdW5kZXIuIFRoaXMg
+aXMgYmVjYXVzZSB0aGUgcmVjZWl2ZXIgYWxyZWFkeSBrbm93cyB0aGUgdHJhbnNtaXR0ZWQgSS1R
+IHNlcXVlbmNlLCBhbmQgY29ycmVsYXRpb24gaXMgdGFrZW4gZGlyZWN0bHkgb24gdGhlIGluY29t
+aW5nIEktUSBzZXF1ZW5jZXMgdG8gbWVhc3VyZSB0aGUgY2hhbm5lbC4NCg0KT2YgY291cnNlLCB5
+b3Ugc2hvdWxkIHN0aWxsIGNhcmVmdWxseSBkZXNpZ24gdGhlIHRyYW5zbWl0dGVkIHNlcXVlbmNl
+cywgYXMgc29tZSBzZXF1ZW5jZXMgaGF2ZSBwb29yIGNvcnJlbGF0aW9uIHByb3BlcnRpZXMuIE1h
+eWJlIHlvdSBjYW4gdXNlIHNvbWV0aGluZyBsaWtlIEJQU0stbW9kdWxhdGVkIFBOIHNlcXVlbmNl
+cy4NCg0KUmVnYXJkcywNCkt5ZW9uZyBTdSBTaGluDQpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXw0KurizvSC757b3OiBBS0lOWUVMRSBJVEFNQUtJTkRFIHZpYSBVU1JQLXVzZXJzIDx1
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gtOu9xSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzLWJv
+dW5jZXNAbGlzdHMuZXR0dXMuY29tPg0KurizvSCzr8KlOiAyMDIws+IgNb/5IDI4wM8guPG/5MDP
+IL/AwPwgODoyNg0Kud60wiC757b3OiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8dXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQrBprjxOiBbVVNSUC11c2Vyc10gTW9kdWxhdGlvbiB0ZWNo
+bmlxdWUgZm9yIHNsaWRpbmcgY29ycmVsYXRvciBjaGFubmVsIHNvdW5kZXINCg0KSSBhbSB3b3Jr
+aW5nIG9uIHByb3BhZ2F0aW9uIGNoYW5uZWwgbWVhc3VyZW1lbnQgdXNpbmcgYSBzbGlkaW5nIGNv
+cnJlbGF0b3IgY2hhbm5lbCBzb3VuZGVyIGZsb3dncmFwaCBmb3IgVHggYW5kIFJ4LiBUaGUgc2xp
+ZGluZyBjb3JyZWxhdG9yIGNoYW5uZWwgc291bmRlciBmbG93Z3JhcGhzIEkndmUgZ290dGVuIHNv
+IGZhciBmcm9tIGludGVybmV0IHNlYXJjaCBoYXZlIG5vIG1vZHVsYXRpb24gdGVjaG5pcXVlLiBE
+b2VzIHRoYXQgc2hvdyBpdCBkb2VzIG5vdCByZXF1aXJlIG1vZHVsYXRpb24gdGVjaG5pcXVlPyBJ
+ZiB5ZXMsIHdoeT8NClRoYW5rcy4NCkFraW55ZWxlDQo=
+
+--_000_SL2P216MB033143F8DFB378EE40860B99938E0SL2P216MB0331KORP_
+Content-Type: text/html; charset="ks_c_5601-1987"
 Content-Transfer-Encoding: quoted-printable
 
-The problem was resolved on a commit to the master branch:
-
-https://github.com/EttusResearch/fpga/commit/89957c3f30d3e17ddd43622277cbec=
-299b207805
-
-Adding the following to the axi wrapper in the noc_block_gain.v code after =
-line 86:
-
-.bus_clk(bus_clk), .bus_rst(bus_rst),
-
-Jeff
-
-
-From: USRP-users <usrp-users-bounces@lists.ettus.com> On Behalf Of Hodges, =
-Jeff via USRP-users
-Sent: Wednesday, May 27, 2020 1:02 PM
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] rfnoc gain tutorial block freezing on testbench TEST =
-CASE 5
-
-I am getting the same error as Pratik:
-
-http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-September/=
-057930.html
-
-
-When I run the testbench, it is gets stuck on TEST CASE 5.
-
-I have used rfnocmodtool to create the tutorial and added a gain block. I h=
-ave downloaded the files directly from the tutorial website into the proper=
- places in the gain block:
-https://kb.ettus.com/images/a/ab/gain_src.tar.gz
-
-
-I'm using branch UHD-3.15.LTS
-I am also not using the PyBOMBS methods so when I build, I use: cmake -DUHD=
-_FPGA_DIR=3D[UHD source directory]/fpga-src/ ../
-
-Jeff
-
-
---_000_5027a8f3124747d9a8808e00c84ed24bgtrigatechedu_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dks_c_5601=
+-1987">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
 </head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">The problem was resolv=
-ed on a commit to the master branch:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><a href=3D"https://git=
-hub.com/EttusResearch/fpga/commit/89957c3f30d3e17ddd43622277cbec299b207805"=
->https://github.com/EttusResearch/fpga/commit/89957c3f30d3e17ddd43622277cbe=
-c299b207805</a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Adding the following t=
-o the axi wrapper in the noc_block_gain.v code after line 86:<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">.bus_clk(bus_clk), .bu=
-s_rst(bus_rst),<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Jeff<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hello Akinyele:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+You do not need to use any specific modulation techniques to implement a ch=
+annel sounder. This is b<span style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; background-color: rgb(255, 255, 255); display: inline !impo=
+rtant">ecause the receiver already
+ knows the transmitted I-Q sequence, and correlation is taken directly on t=
+he incoming I-Q sequences to measure the channel.</span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Of course, you should still carefully design the transmitted sequences, as =
+some sequences have poor correlation properties. Maybe you can use somethin=
+g like BPSK-modulated PN sequences.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Regards,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Kyeong Su Shin</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>=BA=B8=B3=BD =BB=E7=B6=F7:</b> =
+AKINYELE ITAMAKINDE via USRP-users &lt;usrp-users@lists.ettus.com&gt; =B4=
+=EB=BD=C5 USRP-users &lt;usrp-users-bounces@lists.ettus.com&gt;<br>
+<b>=BA=B8=B3=BD =B3=AF=C2=A5:</b> 2020=B3=E2 5=BF=F9 28=C0=CF =B8=F1=BF=E4=
+=C0=CF =BF=C0=C0=FC 8:26<br>
+<b>=B9=DE=B4=C2 =BB=E7=B6=F7:</b> usrp-users@lists.ettus.com &lt;usrp-users=
+@lists.ettus.com&gt;<br>
+<b>=C1=A6=B8=F1:</b> [USRP-users] Modulation technique for sliding correlat=
+or channel sounder</font>
+<div>&nbsp;</div>
+</div>
 <div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> USRP-users &lt;usrp-users-bounces@lists=
-.ettus.com&gt;
-<b>On Behalf Of </b>Hodges, Jeff via USRP-users<br>
-<b>Sent:</b> Wednesday, May 27, 2020 1:02 PM<br>
-<b>To:</b> usrp-users@lists.ettus.com<br>
-<b>Subject:</b> [USRP-users] rfnoc gain tutorial block freezing on testbenc=
-h TEST CASE 5<o:p></o:p></p>
+<div dir=3D"ltr">
+<div>I am working on propagation channel measurement using a sliding correl=
+ator channel sounder flowgraph for Tx and Rx. The sliding correlator channe=
+l sounder flowgraphs I've gotten so far from internet search have no modula=
+tion technique. Does that show it
+ does not require modulation technique? If yes, why?<br>
 </div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am getting the same error as Pratik:<o:p></o:p></p=
->
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><a href=3D"http://lists.ettus.com/pipermail/usrp-use=
-rs_lists.ettus.com/2018-September/057930.html">http://lists.ettus.com/piper=
-mail/usrp-users_lists.ettus.com/2018-September/057930.html</a><o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">When I run the testbench, it is gets stuck on TEST C=
-ASE 5.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have used rfnocmodtool to create the tutorial and =
-added a gain block. I have downloaded the files directly from the tutorial =
-website into the proper places in the gain block:<o:p></o:p></p>
-<p class=3D"MsoNormal"><a href=3D"https://kb.ettus.com/images/a/ab/gain_src=
-.tar.gz">https://kb.ettus.com/images/a/ab/gain_src.tar.gz</a><o:p></o:p></p=
->
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I&#8217;m using branch UHD-3.15.LTS<o:p></o:p></p>
-<p class=3D"MsoNormal">I am also not using the PyBOMBS methods so when I bu=
-ild, I use: cmake &#8211;DUHD_FPGA_DIR=3D[UHD source directory]/fpga-src/ .=
-./<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Jeff<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>Thanks.</div>
+<font color=3D"#888888">
+<div>Akinyele</div>
+</font></div>
 </div>
 </body>
 </html>
 
---_000_5027a8f3124747d9a8808e00c84ed24bgtrigatechedu_--
+--_000_SL2P216MB033143F8DFB378EE40860B99938E0SL2P216MB0331KORP_--
 
 
---===============0640267311574075131==
+--===============0654880393860194757==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -272,5 +230,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0640267311574075131==--
+--===============0654880393860194757==--
 
