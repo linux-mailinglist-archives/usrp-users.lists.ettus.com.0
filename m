@@ -2,52 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA6F1E6927
-	for <lists+usrp-users@lfdr.de>; Thu, 28 May 2020 20:15:25 +0200 (CEST)
-Received: from [::1] (port=58084 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E86F01E73E7
+	for <lists+usrp-users@lfdr.de>; Fri, 29 May 2020 05:54:56 +0200 (CEST)
+Received: from [::1] (port=41214 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jeN3q-0005sd-U9; Thu, 28 May 2020 14:15:22 -0400
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:36688)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <qiu.guowang007@gmail.com>)
- id 1jeN3l-00052w-Ut
- for usrp-users@lists.ettus.com; Thu, 28 May 2020 14:15:17 -0400
-Received: by mail-qk1-f173.google.com with SMTP id 205so4038855qkg.3
- for <usrp-users@lists.ettus.com>; Thu, 28 May 2020 11:14:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=QN+rl+e8oIPifaE0Z07Sk+QAQYA1qtENII9lskVD88s=;
- b=hmwsHumKqXZ74yvMWUfztZQozSJDglZh7YGULPHp8ef3x4BJ9vAlHlF2y0UKEX26a+
- noHRsGEeqlIm9v09Y+IqpnivlfZ3T8TjISoKxAwQlUsC04WRnfuSkNxcjp17uuJFke/0
- 7ZEDXL1TQ2lhALpQ9Dq9xLW/jbhGOdXIA8KCZTaj4H52pzg85vXODV+D1MyARh48ApOe
- p+HuC55s8k1d37/cU2Lp0RAdWFJRa9cetKz5NA2lJ5BNwgBDuUV6YEy5CKeDJINORnyH
- +fWEDZDA//E8KPy2kulyxeadFPKqTv88V456z7qidtxO69POT6f8TlG0uYWF8GLChSgC
- daYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=QN+rl+e8oIPifaE0Z07Sk+QAQYA1qtENII9lskVD88s=;
- b=uoZihHiGR5xzKybutM8e6YKWPpkoeEZ563/OWUZ6T8aU9oCIR2tCLsdLyH1cEZyrsb
- YrJR3HGLSv6Y719DIVBToipwT6SIdxI4muJmYdzdLChjuae2nXYRmdfq2+uXE5y5ueRq
- yz4gP4gHcE8JRW8TBeUyRsCRWhIaInyhj0Ezb3CdbzTLqU0hQ8mV1glsFrZZ9PbNbajr
- dtbVQhABvPZKXB7R4b4hvEb3a2BJVsThfioI2oIpCEECuQG//fnF1li23axRSuFrNi9d
- KMJEpT+kHxRFWdKx8vPbBtqAS4Nmu4sfOjMSeqpAO62KfACFu3G8gIpSRwRg6p927O/O
- psrw==
-X-Gm-Message-State: AOAM531wXs6JZAVf+Z2WkccyQbGQ1BVMJ/AtcghDyAsT717MJvklix3X
- mZqftiR/j39Sy35z3AGWStgQAoz/DCAaLEWITrc=
-X-Google-Smtp-Source: ABdhPJzFUv+aD/7Nms35i0rtOn/IGbmHuJCBEDD9nqVDKELdB2znTJ0h4386irhyJ/8R2YN1354pxv+RDuEs+vvohZM=
-X-Received: by 2002:ae9:c10d:: with SMTP id z13mr3773965qki.3.1590689677486;
- Thu, 28 May 2020 11:14:37 -0700 (PDT)
+	id 1jeW6f-0005pf-O0; Thu, 28 May 2020 23:54:53 -0400
+Received: from exedge04.gtri.gatech.edu ([130.207.193.244]:12481)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <Jeff.Hodges@gtri.gatech.edu>)
+ id 1jeW6b-0004sy-MK
+ for usrp-users@lists.ettus.com; Thu, 28 May 2020 23:54:49 -0400
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=exedge04;
+ c=simple/simple; t=1590724449; h=from:subject:to:date:message-id;
+ bh=uTwEbV5aGrJcn4lgClrR5HGlASvWt4GARBqqvIggk3g=;
+ b=gNOefpinkyrLpAMrlklavqEbA0ptc3HZaaxwhN1NgWlGVlmalZMv58TXFCnSqyGejnH28neR6hR
+ n3VJYopE2kwOLau+xM76Uc+SDCgDqgfni58HS+pjeRIu8s6zsChFzCQTeiqB3pA8NoaEnNg5RduJY
+ QC8hJRUURUK6gSr7QV0=
+Received: from kiawah.core.gtri.org (10.41.31.71) by exedge04.gtri.org
+ (130.207.193.244) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Thu, 28 May
+ 2020 23:54:09 -0400
+Received: from ocracoke.core.gtri.org (10.41.22.71) by kiawah.core.gtri.org
+ (10.41.31.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1913.5; Thu, 28
+ May 2020 23:54:08 -0400
+Received: from ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf]) by
+ ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf%13]) with mapi id
+ 15.01.1913.007; Thu, 28 May 2020 23:54:08 -0400
+To: Rob Kossler <rkossler@nd.edu>
+Thread-Topic: [USRP-users] creating an rfnoc block on master branch
+Thread-Index: AQHWL6TbC5t+Im0qzEmU/Da3syXZxKi+d3sQ
+Date: Fri, 29 May 2020 03:54:08 +0000
+Message-ID: <986c0add83a74d859bfadaeeb555830c@gtri.gatech.edu>
+References: <CAB__hTQ=V0dNfQTPMXxh4HjGpGg754Ahg6EWstRuT2GcGDt6Zw@mail.gmail.com>
+In-Reply-To: <CAB__hTQ=V0dNfQTPMXxh4HjGpGg754Ahg6EWstRuT2GcGDt6Zw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.41.0.30]
 MIME-Version: 1.0
-References: <CACjmV_n8FX-ktO2tzHObN9eaBq7pdQ67AW=46WWMgpHmwnkTvQ@mail.gmail.com>
- <A6D18848-7D69-461E-AB5A-02F5B5166ABE@gmail.com>
-In-Reply-To: <A6D18848-7D69-461E-AB5A-02F5B5166ABE@gmail.com>
-Date: Fri, 29 May 2020 02:14:26 +0800
-Message-ID: <CACjmV_k9v7aBTR+8=e9qNJzh904hSWr061kF2r4YBQ2BNpxj4Q@mail.gmail.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Subject: Re: [USRP-users] B210 LO signal leakage above 5GHz
+Subject: Re: [USRP-users] creating an rfnoc block on master branch
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,10 +55,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: guowang qiu via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: guowang qiu <qiu.guowang007@gmail.com>
-Cc: usrp-users@lists.ettus.com, Damon Qiu <qiu.guowang007@gmail.com>
-Content-Type: multipart/mixed; boundary="===============9186413857602378343=="
+From: "Hodges, Jeff via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============1878321804825150066=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,129 +72,204 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9186413857602378343==
-Content-Type: multipart/alternative; boundary="0000000000002cadcc05a6b94d4a"
+--===============1878321804825150066==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_986c0add83a74d859bfadaeeb555830cgtrigatechedu_"
 
---0000000000002cadcc05a6b94d4a
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_986c0add83a74d859bfadaeeb555830cgtrigatechedu_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Marcus,
+SSBhbHNvIHdvdWxkIGxpa2UgdG8ga25vdyB0aGUgYW5zd2VyIHRvIFJvYuKAmXMgcXVlc3Rpb246
+DQoNClJmbm9jbW9kdG9vbCBpcyBpbiBnci1ldHR1cyBidXQgaWYgSSB0cnkgdG8gaW5zdGFsbCBn
+ci1ldHR1cyB3aXRoIHRoZSB1aGQgbWFzdGVyIGJyYW5jaCwgSSBnZXQgdGhlIGZvbGxvd2luZyBl
+cnJvcjoNCg0KDQpbICA1JV0gQnVpbGRpbmcgQ1hYIG9iamVjdCBsaWIvQ01ha2VGaWxlcy9nbnVy
+YWRpby1ldHR1cy5kaXIvZGV2aWNlMy5jYy5vDQpJbiBmaWxlIGluY2x1ZGVkIGZyb20gL2hvbWUv
+bnZkL3Jmbm9jL3NyYy9nci1ldHR1cy9saWIvZGV2aWNlMy5jYzoyNzowOg0KL2hvbWUvbnZkL3Jm
+bm9jL3NyYy9nci1ldHR1cy9pbmNsdWRlL2V0dHVzL2RldmljZTMuaDozMDoxMDogZmF0YWwgZXJy
+b3I6IHVoZC9kZXZpY2UzLmhwcDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQ0KI2luY2x1ZGUg
+PHVoZC9kZXZpY2UzLmhwcD4NCiAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fg0KY29tcGlsYXRp
+b24gdGVybWluYXRlZC4NCmxpYi9DTWFrZUZpbGVzL2dudXJhZGlvLWV0dHVzLmRpci9idWlsZC5t
+YWtlOjcyOiByZWNpcGUgZm9yIHRhcmdldCAnbGliL0NNYWtlRmlsZXMvZ251cmFkaW8tZXR0dXMu
+ZGlyL2RldmljZTMuY2MubycgZmFpbGVkDQptYWtlWzJdOiAqKiogW2xpYi9DTWFrZUZpbGVzL2du
+dXJhZGlvLWV0dHVzLmRpci9kZXZpY2UzLmNjLm9dIEVycm9yIDENCkNNYWtlRmlsZXMvTWFrZWZp
+bGUyOjEzOTogcmVjaXBlIGZvciB0YXJnZXQgJ2xpYi9DTWFrZUZpbGVzL2dudXJhZGlvLWV0dHVz
+LmRpci9hbGwnIGZhaWxlZA0KbWFrZVsxXTogKioqIFtsaWIvQ01ha2VGaWxlcy9nbnVyYWRpby1l
+dHR1cy5kaXIvYWxsXSBFcnJvciAyDQpNYWtlZmlsZToxNDA6IHJlY2lwZSBmb3IgdGFyZ2V0ICdh
+bGwnIGZhaWxlZA0KbWFrZTogKioqIFthbGxdIEVycm9yIDINCg0KDQpTbyBob3cgZG9lcyByZm5v
+YyB3b3JrIHdpdGggbWFzdGVyIGJyYW5jaD8NCg0KDQpJIGhhdmUgYWxzbyBpbnN0YWxsZWQgVUhE
+LTMuMTUuTFRTIHdpdGhvdXQgUFlCT01CUyBhbmQgdGhlcmUgd2VyZSBlcnJvcnMgdGhhdCBoYXZl
+IGJlZW4gZml4ZWQgaW4gdGhlIG1hc3RlciBicmFuY2ggYnV0IG5vdCBVSEQtMy4xNS5MVFMuDQoN
+ClRoZXJlIGFyZSBubyBjdXJyZW50IHZlcnNpb25zIG9mIFVIRCB0aGF0IHdvcmsgd2l0aCBSRk5v
+QyB0byBidWlsZCBPT1Qgd2l0aG91dCB0aGUgUFlCT01CUyBtZXRob2QuDQoNCg0KDQpKZWZmDQoN
+CkZyb206IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb20+IE9u
+IEJlaGFsZiBPZiBSb2IgS29zc2xlciB2aWEgVVNSUC11c2Vycw0KU2VudDogVGh1cnNkYXksIE1h
+eSAyMSwgMjAyMCAzOjE5IFBNDQpUbzogdXNycC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20+DQpTdWJqZWN0OiBbVVNSUC11c2Vyc10gY3JlYXRpbmcgYW4gcmZub2MgYmxvY2sgb24g
+bWFzdGVyIGJyYW5jaA0KDQpIaSwNCkhvdyBkbyBJIGNyZWF0ZSBhbiByZm5vYyBibG9jayB1c2lu
+ZyBtYXN0ZXIgYnJhbmNoPyAgSSBhbSBmYW1pbGlhciB3aXRoIHVzaW5nIHJmbm9jX21vZF90b29s
+IHdpdGggVUhEIDMuMTUgYW5kIGVhcmxpZXIuICBNeSB1bmRlcnN0YW5kaW5nIHdhcyB0aGF0IHRo
+aW5ncyBhcmUgZGlmZmVyZW50IHdpdGggbWFzdGVyIChhbmQgdWhkIDQuMCkgc3VjaCB0aGF0IGEg
+ZGlmZmVyZW50IHRvb2wgd291bGQgYmUgdXNlZCBhbmQgdGhhdCB0aGlzIG5ldyB0b29sIHdvdWxk
+IGJlIHBhcnQgb2YgVUhEIHJhdGhlciB0aGFuIHBhcnQgb2YgYSBnbnVyYWRpbyBpbnN0YWxsYXRp
+b24uICBCdXQsIEkgZG9uJ3Qgc2VlIGFueSBzdWNoIHRvb2wgaW4gbXkgdWhkIG1hc3RlciBjaGVj
+a291dC4NClJvYg0K
 
-Thank you for your reply.
-We have tried to set the magnitude of the modulating baseband signal from
-0.1 to 0.6, it only affects the single tone signal strength and has no
-effect on the LO leakage.
+--_000_986c0add83a74d859bfadaeeb555830cgtrigatechedu_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Best regards,
-Damon
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBz
+cGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5tc29ub3JtYWwwLCBs
+aS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXttc28tc3R5bGUtbmFtZTptc29ub3JtYWw7
+DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFy
+Z2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1zaXplOjEyLjBw
+dDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9DQpzcGFuLkVtYWlsU3R5
+bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2Fs
+aWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21z
+by1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
+cmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46
+MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRT
+ZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVk
+ZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0t
+PjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0K
+PG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+
+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iIzA1NjNDMSIg
+dmxpbms9IiM5NTRGNzIiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5JIGFsc28gd291bGQgbGlr
+ZSB0byBrbm93IHRoZSBhbnN3ZXIgdG8gUm9i4oCZcyBxdWVzdGlvbjo8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
+RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlJmbm9jbW9kdG9vbCBpcyBpbiBnci1ldHR1cyBi
+dXQgaWYgSSB0cnkgdG8gaW5zdGFsbCBnci1ldHR1cyB3aXRoIHRoZSB1aGQgbWFzdGVyIGJyYW5j
+aCwgSSBnZXQgdGhlIGZvbGxvd2luZyBlcnJvcjo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJz
+cDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
+O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5bJm5ic3A7IDUlXSBCdWls
+ZGluZyBDWFggb2JqZWN0IGxpYi9DTWFrZUZpbGVzL2dudXJhZGlvLWV0dHVzLmRpci9kZXZpY2Uz
+LmNjLm88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SW4gZmlsZSBpbmNsdWRlZCBmcm9tIC9ob21lL252ZC9y
+Zm5vYy9zcmMvZ3ItZXR0dXMvbGliL2RldmljZTMuY2M6Mjc6MDo8bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+
+L2hvbWUvbnZkL3Jmbm9jL3NyYy9nci1ldHR1cy9pbmNsdWRlL2V0dHVzL2RldmljZTMuaDozMDox
+MDogZmF0YWwgZXJyb3I6IHVoZC9kZXZpY2UzLmhwcDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9y
+eTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1z
+ZXJpZjtjb2xvcjojMUY0OTdEIj4jaW5jbHVkZSAmbHQ7dWhkL2RldmljZTMuaHBwJmd0OzxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtj
+b2xvcjojMUY0OTdEIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsgXn5+fn5+fn5+fn5+fn5+fn48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+Y29tcGlsYXRp
+b24gdGVybWluYXRlZC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+bGliL0NNYWtlRmlsZXMvZ251cmFkaW8t
+ZXR0dXMuZGlyL2J1aWxkLm1ha2U6NzI6IHJlY2lwZSBmb3IgdGFyZ2V0ICdsaWIvQ01ha2VGaWxl
+cy9nbnVyYWRpby1ldHR1cy5kaXIvZGV2aWNlMy5jYy5vJyBmYWlsZWQ8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
+RCI+bWFrZVsyXTogKioqIFtsaWIvQ01ha2VGaWxlcy9nbnVyYWRpby1ldHR1cy5kaXIvZGV2aWNl
+My5jYy5vXSBFcnJvciAxPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkNNYWtlRmlsZXMvTWFrZWZpbGUyOjEz
+OTogcmVjaXBlIGZvciB0YXJnZXQgJ2xpYi9DTWFrZUZpbGVzL2dudXJhZGlvLWV0dHVzLmRpci9h
+bGwnIGZhaWxlZDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
+dDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5tYWtlWzFdOiAqKiogW2xpYi9DTWFrZUZpbGVz
+L2dudXJhZGlvLWV0dHVzLmRpci9hbGxdIEVycm9yIDI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+TWFrZWZp
+bGU6MTQwOiByZWNpcGUgZm9yIHRhcmdldCAnYWxsJyBmYWlsZWQ8bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+
+bWFrZTogKioqIFthbGxdIEVycm9yIDI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
+cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5TbyBob3cgZG9lcyByZm5vYyB3b3Jr
+IHdpdGggbWFzdGVyIGJyYW5jaD88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMx
+RjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5JIGhhdmUgYWxzbyBpbnN0YWxsZWQgVUhE
+LTMuMTUuTFRTIHdpdGhvdXQgUFlCT01CUyBhbmQgdGhlcmUgd2VyZSBlcnJvcnMgdGhhdCBoYXZl
+IGJlZW4gZml4ZWQgaW4gdGhlIG1hc3RlciBicmFuY2ggYnV0IG5vdCBVSEQtMy4xNS5MVFMuPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
+O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5UaGVyZSBhcmUgbm8gY3Vy
+cmVudCB2ZXJzaW9ucyBvZiBVSEQgdGhhdCB3b3JrIHdpdGggUkZOb0MgdG8gYnVpbGQgT09UIHdp
+dGhvdXQgdGhlIFBZQk9NQlMgbWV0aG9kLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
+b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
+aWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0
+OTdEIj5KZWZmPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3NwYW4+PC9i
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssc2Fucy1zZXJpZiI+IFVTUlAtdXNlcnMgJmx0O3VzcnAtdXNlcnMtYm91bmNlc0BsaXN0
+cy5ldHR1cy5jb20mZ3Q7DQo8Yj5PbiBCZWhhbGYgT2YgPC9iPlJvYiBLb3NzbGVyIHZpYSBVU1JQ
+LXVzZXJzPGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBNYXkgMjEsIDIwMjAgMzoxOSBQTTxi
+cj4NCjxiPlRvOjwvYj4gdXNycC11c2VycyAmbHQ7dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20m
+Z3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFtVU1JQLXVzZXJzXSBjcmVhdGluZyBhbiByZm5vYyBi
+bG9jayBvbiBtYXN0ZXIgYnJhbmNoPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+SGksPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SG93IGRv
+IEkgY3JlYXRlIGFuIHJmbm9jIGJsb2NrIHVzaW5nIG1hc3RlciBicmFuY2g/Jm5ic3A7IEkgYW0g
+ZmFtaWxpYXIgd2l0aCB1c2luZyByZm5vY19tb2RfdG9vbCB3aXRoIFVIRCAzLjE1IGFuZCBlYXJs
+aWVyLiZuYnNwOyBNeSB1bmRlcnN0YW5kaW5nIHdhcyB0aGF0IHRoaW5ncyBhcmUgZGlmZmVyZW50
+IHdpdGggbWFzdGVyIChhbmQgdWhkIDQuMCkgc3VjaCB0aGF0IGEgZGlmZmVyZW50IHRvb2wgd291
+bGQgYmUgdXNlZCBhbmQNCiB0aGF0IHRoaXMgbmV3IHRvb2wgd291bGQgYmUgcGFydCBvZiBVSEQg
+cmF0aGVyIHRoYW4gcGFydCBvZiBhIGdudXJhZGlvIGluc3RhbGxhdGlvbi4mbmJzcDsgQnV0LCBJ
+IGRvbid0IHNlZSBhbnkgc3VjaCB0b29sIGluIG15IHVoZCBtYXN0ZXIgY2hlY2tvdXQuPG86cD48
+L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Sb2I8bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-On Fri, 29 May 2020 at 02:03, Marcus D Leech <patchvonbraun@gmail.com>
-wrote:
-
-> Have you tried adjusting the magnitude of the modulating baseband signal?
-> Does that make a difference.
->
-> My guess is that the leakage path isn=E2=80=99t through the VGA but rathe=
-r through
-> something else in the package. In which case, no amount of software mods
-> will reduce it.
->
-> Sent from my iPhone
->
-> > On May 28, 2020, at 1:50 PM, guowang qiu via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
-> >
-> > =EF=BB=BF
-> > Hi all,
-> >
-> > We use USRP b210 as a signal generator, and adjust the tx gain to make
-> the tx power from - 90dbm to 0dbm. USRP b210 works fine in 2.4GHz frequen=
-cy
-> band, but it has a very strong LO signal leakage at frequencies higher th=
-an
-> 5GHz.
-> > In my test, the frequency of  baseband (cos signal source) is set to
-> 1MHz, so LO signal leakage and single tone signal can be easily
-> distinguished. When the tx gain is set from 0 to 30 db, the strength of t=
-he
-> LO signal hardly changes, and it is higher than the strength of the singl=
-e
-> tone signal. With the increase of tx gain, the strength of single tone
-> signal will increase obviously. It seems that the local oscillator signal
-> generated by the PLL in ad9361 bypasses the internal adjustable gain powe=
-r
-> amplifier and leaks directly to the antenna port.
-> > Is it possible to reduce the local leakage by modifying the UHD source
-> code?
-> >
-> > Best regards,
-> > Damon
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000002cadcc05a6b94d4a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Marcus,</div><div><br></div><div>=
-Thank you for your reply.<br></div><div>We have tried to set the magnitude =
-of the modulating baseband signal from 0.1 to 0.6, it only affects the sing=
-le tone signal strength and has no effect on the LO leakage.</div><div><br>=
-</div><div>Best regards,</div><div>Damon<br></div></div><br><div class=3D"g=
-mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 29 May 2020 at 02=
-:03, Marcus D Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvon=
-braun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex">Have you tried adjusting the magnitude of the modulating bas=
-eband signal? Does that make a difference. <br>
-<br>
-My guess is that the leakage path isn=E2=80=99t through the VGA but rather =
-through something else in the package. In which case, no amount of software=
- mods will reduce it. <br>
-<br>
-Sent from my iPhone<br>
-<br>
-&gt; On May 28, 2020, at 1:50 PM, guowang qiu via USRP-users &lt;<a href=3D=
-"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettu=
-s.com</a>&gt; wrote:<br>
-&gt; <br>
-&gt; =EF=BB=BF<br>
-&gt; Hi all,<br>
-&gt; <br>
-&gt; We use USRP b210 as a signal generator, and adjust the tx gain to make=
- the tx power from - 90dbm to 0dbm. USRP b210 works fine in 2.4GHz frequenc=
-y band, but it has a very strong LO signal leakage at frequencies higher th=
-an 5GHz. <br>
-&gt; In my test, the frequency of=C2=A0 baseband (cos signal source) is set=
- to 1MHz, so LO signal leakage and single tone signal can be easily disting=
-uished. When the tx gain is set from 0 to 30 db, the strength of the LO sig=
-nal hardly changes, and it is higher than the strength of the single tone s=
-ignal. With the increase of tx gain, the strength of single tone signal wil=
-l increase obviously. It seems that the local oscillator signal generated b=
-y the PLL in ad9361 bypasses the internal adjustable gain power amplifier a=
-nd leaks directly to the antenna port.<br>
-&gt; Is it possible to reduce the local leakage by modifying the UHD source=
- code?<br>
-&gt; <br>
-&gt; Best regards,<br>
-&gt; Damon<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-
---0000000000002cadcc05a6b94d4a--
+--_000_986c0add83a74d859bfadaeeb555830cgtrigatechedu_--
 
 
---===============9186413857602378343==
+--===============1878321804825150066==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -209,5 +280,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9186413857602378343==--
+--===============1878321804825150066==--
 
