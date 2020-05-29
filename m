@@ -2,47 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E86F01E73E7
-	for <lists+usrp-users@lfdr.de>; Fri, 29 May 2020 05:54:56 +0200 (CEST)
-Received: from [::1] (port=41214 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D1881E7D42
+	for <lists+usrp-users@lfdr.de>; Fri, 29 May 2020 14:31:29 +0200 (CEST)
+Received: from [::1] (port=51108 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jeW6f-0005pf-O0; Thu, 28 May 2020 23:54:53 -0400
-Received: from exedge04.gtri.gatech.edu ([130.207.193.244]:12481)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Jeff.Hodges@gtri.gatech.edu>)
- id 1jeW6b-0004sy-MK
- for usrp-users@lists.ettus.com; Thu, 28 May 2020 23:54:49 -0400
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=exedge04;
- c=simple/simple; t=1590724449; h=from:subject:to:date:message-id;
- bh=uTwEbV5aGrJcn4lgClrR5HGlASvWt4GARBqqvIggk3g=;
- b=gNOefpinkyrLpAMrlklavqEbA0ptc3HZaaxwhN1NgWlGVlmalZMv58TXFCnSqyGejnH28neR6hR
- n3VJYopE2kwOLau+xM76Uc+SDCgDqgfni58HS+pjeRIu8s6zsChFzCQTeiqB3pA8NoaEnNg5RduJY
- QC8hJRUURUK6gSr7QV0=
-Received: from kiawah.core.gtri.org (10.41.31.71) by exedge04.gtri.org
- (130.207.193.244) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Thu, 28 May
- 2020 23:54:09 -0400
-Received: from ocracoke.core.gtri.org (10.41.22.71) by kiawah.core.gtri.org
- (10.41.31.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1913.5; Thu, 28
- May 2020 23:54:08 -0400
-Received: from ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf]) by
- ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf%13]) with mapi id
- 15.01.1913.007; Thu, 28 May 2020 23:54:08 -0400
-To: Rob Kossler <rkossler@nd.edu>
-Thread-Topic: [USRP-users] creating an rfnoc block on master branch
-Thread-Index: AQHWL6TbC5t+Im0qzEmU/Da3syXZxKi+d3sQ
-Date: Fri, 29 May 2020 03:54:08 +0000
-Message-ID: <986c0add83a74d859bfadaeeb555830c@gtri.gatech.edu>
-References: <CAB__hTQ=V0dNfQTPMXxh4HjGpGg754Ahg6EWstRuT2GcGDt6Zw@mail.gmail.com>
-In-Reply-To: <CAB__hTQ=V0dNfQTPMXxh4HjGpGg754Ahg6EWstRuT2GcGDt6Zw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.41.0.30]
+	id 1jeeAY-0005MQ-1R; Fri, 29 May 2020 08:31:26 -0400
+Received: from mail-vk1-f180.google.com ([209.85.221.180]:37588)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
+ id 1jeeAT-0005I0-NB
+ for usrp-users@lists.ettus.com; Fri, 29 May 2020 08:31:21 -0400
+Received: by mail-vk1-f180.google.com with SMTP id q10so618292vka.4
+ for <usrp-users@lists.ettus.com>; Fri, 29 May 2020 05:31:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=SIT6aBRB/qQPE6SQT5fyPaVnekSCWvIG7VGtpKz5qD0=;
+ b=vJwQfAe+HjGvMQGqP52HO3Z98wx4rkyFfMUo5qlvHXnVeYhlZOkVbxXFpvcYwXUKIF
+ KpQ5MMOmBl1swZZstFw812wZrlfdMM0YSqdLeAdz8HFIOlOY1Linj0x/P1+yc9xL8mCY
+ xtmQxJ0hFlHHS9T+G95C0i6BRAzky8eL1C8KLa53Zsp7HooZham7nSQNsCG/CwNJCMYh
+ 3FgpdRLQR/yKnDsYlu1akbapBRWacsrrxLnSKgpP+eZqOa4ttdJg08QdV7nziRYWClrH
+ Xld0/k8607JmoNxpwCZs7bQH+jneta5e5l6551bLniMGhdrNxsURNh6N/th1+6nJ2jC3
+ QmSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=SIT6aBRB/qQPE6SQT5fyPaVnekSCWvIG7VGtpKz5qD0=;
+ b=C0GVcJaJ9lS+MMXVtk5VMge8kvfpmXF7GmCRPCUJVXp9d/EHeFEWP2SQPzNFQ3d4D7
+ AW2ppQUVXpd4OVm544242tVYZPOTbij9l31LJ5dDJHNb+NShsrJofvBPDibDjMuZoq8b
+ 3fsqzM8QJeKAOc1dL2Bwo7amehOktuleAX1bDmvmGqHESdUs5yJ7qhrp64fLm+j8PgWJ
+ X21dUryp+CXK97D6aJaSN8tw5jjTgfXEni+U2+lLwH9FN9RSqr83XYG8dsJRMIGg6VOo
+ 0vDHY+BsNdfkWXODKaWAQdyB1SnK92riHffr3GuWvHu1wsV9LUb1RrVYJvNo1gcdMwGE
+ Wcfg==
+X-Gm-Message-State: AOAM531Xyws9bOeD1Bo/wGxlumUNmvFTeiy4eLqBjF8A3UGj4AG00fDi
+ f2VhSvVOAevLNVfhqPMXS8m/8NguPnBb3yukcXOUUChp
+X-Google-Smtp-Source: ABdhPJxwWn4ccrLmsZZ7ZnYfPPOrMhgnGI8u+JdNfJ4nKPy4N1mHsGK6vJ8YsGjoWJEJd16lGO/0aAO88fj55klc/94=
+X-Received: by 2002:a1f:9a10:: with SMTP id c16mr5456081vke.83.1590755440995; 
+ Fri, 29 May 2020 05:30:40 -0700 (PDT)
 MIME-Version: 1.0
+References: <CAB__hTQ=V0dNfQTPMXxh4HjGpGg754Ahg6EWstRuT2GcGDt6Zw@mail.gmail.com>
+ <986c0add83a74d859bfadaeeb555830c@gtri.gatech.edu>
+In-Reply-To: <986c0add83a74d859bfadaeeb555830c@gtri.gatech.edu>
+Date: Fri, 29 May 2020 08:30:30 -0400
+Message-ID: <CAGNhwTNjqtBd-DdsDvGy1QzjO9Yfoix52K2Xr=53VFLSD6hWJA@mail.gmail.com>
+To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
 Subject: Re: [USRP-users] creating an rfnoc block on master branch
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
@@ -55,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Hodges, Jeff via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1878321804825150066=="
+Content-Type: multipart/mixed; boundary="===============6217738574160727412=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,204 +77,270 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1878321804825150066==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_986c0add83a74d859bfadaeeb555830cgtrigatechedu_"
+--===============6217738574160727412==
+Content-Type: multipart/alternative; boundary="000000000000fc552d05a6c89c93"
 
---_000_986c0add83a74d859bfadaeeb555830cgtrigatechedu_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000fc552d05a6c89c93
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SSBhbHNvIHdvdWxkIGxpa2UgdG8ga25vdyB0aGUgYW5zd2VyIHRvIFJvYuKAmXMgcXVlc3Rpb246
-DQoNClJmbm9jbW9kdG9vbCBpcyBpbiBnci1ldHR1cyBidXQgaWYgSSB0cnkgdG8gaW5zdGFsbCBn
-ci1ldHR1cyB3aXRoIHRoZSB1aGQgbWFzdGVyIGJyYW5jaCwgSSBnZXQgdGhlIGZvbGxvd2luZyBl
-cnJvcjoNCg0KDQpbICA1JV0gQnVpbGRpbmcgQ1hYIG9iamVjdCBsaWIvQ01ha2VGaWxlcy9nbnVy
-YWRpby1ldHR1cy5kaXIvZGV2aWNlMy5jYy5vDQpJbiBmaWxlIGluY2x1ZGVkIGZyb20gL2hvbWUv
-bnZkL3Jmbm9jL3NyYy9nci1ldHR1cy9saWIvZGV2aWNlMy5jYzoyNzowOg0KL2hvbWUvbnZkL3Jm
-bm9jL3NyYy9nci1ldHR1cy9pbmNsdWRlL2V0dHVzL2RldmljZTMuaDozMDoxMDogZmF0YWwgZXJy
-b3I6IHVoZC9kZXZpY2UzLmhwcDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQ0KI2luY2x1ZGUg
-PHVoZC9kZXZpY2UzLmhwcD4NCiAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fg0KY29tcGlsYXRp
-b24gdGVybWluYXRlZC4NCmxpYi9DTWFrZUZpbGVzL2dudXJhZGlvLWV0dHVzLmRpci9idWlsZC5t
-YWtlOjcyOiByZWNpcGUgZm9yIHRhcmdldCAnbGliL0NNYWtlRmlsZXMvZ251cmFkaW8tZXR0dXMu
-ZGlyL2RldmljZTMuY2MubycgZmFpbGVkDQptYWtlWzJdOiAqKiogW2xpYi9DTWFrZUZpbGVzL2du
-dXJhZGlvLWV0dHVzLmRpci9kZXZpY2UzLmNjLm9dIEVycm9yIDENCkNNYWtlRmlsZXMvTWFrZWZp
-bGUyOjEzOTogcmVjaXBlIGZvciB0YXJnZXQgJ2xpYi9DTWFrZUZpbGVzL2dudXJhZGlvLWV0dHVz
-LmRpci9hbGwnIGZhaWxlZA0KbWFrZVsxXTogKioqIFtsaWIvQ01ha2VGaWxlcy9nbnVyYWRpby1l
-dHR1cy5kaXIvYWxsXSBFcnJvciAyDQpNYWtlZmlsZToxNDA6IHJlY2lwZSBmb3IgdGFyZ2V0ICdh
-bGwnIGZhaWxlZA0KbWFrZTogKioqIFthbGxdIEVycm9yIDINCg0KDQpTbyBob3cgZG9lcyByZm5v
-YyB3b3JrIHdpdGggbWFzdGVyIGJyYW5jaD8NCg0KDQpJIGhhdmUgYWxzbyBpbnN0YWxsZWQgVUhE
-LTMuMTUuTFRTIHdpdGhvdXQgUFlCT01CUyBhbmQgdGhlcmUgd2VyZSBlcnJvcnMgdGhhdCBoYXZl
-IGJlZW4gZml4ZWQgaW4gdGhlIG1hc3RlciBicmFuY2ggYnV0IG5vdCBVSEQtMy4xNS5MVFMuDQoN
-ClRoZXJlIGFyZSBubyBjdXJyZW50IHZlcnNpb25zIG9mIFVIRCB0aGF0IHdvcmsgd2l0aCBSRk5v
-QyB0byBidWlsZCBPT1Qgd2l0aG91dCB0aGUgUFlCT01CUyBtZXRob2QuDQoNCg0KDQpKZWZmDQoN
-CkZyb206IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb20+IE9u
-IEJlaGFsZiBPZiBSb2IgS29zc2xlciB2aWEgVVNSUC11c2Vycw0KU2VudDogVGh1cnNkYXksIE1h
-eSAyMSwgMjAyMCAzOjE5IFBNDQpUbzogdXNycC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20+DQpTdWJqZWN0OiBbVVNSUC11c2Vyc10gY3JlYXRpbmcgYW4gcmZub2MgYmxvY2sgb24g
-bWFzdGVyIGJyYW5jaA0KDQpIaSwNCkhvdyBkbyBJIGNyZWF0ZSBhbiByZm5vYyBibG9jayB1c2lu
-ZyBtYXN0ZXIgYnJhbmNoPyAgSSBhbSBmYW1pbGlhciB3aXRoIHVzaW5nIHJmbm9jX21vZF90b29s
-IHdpdGggVUhEIDMuMTUgYW5kIGVhcmxpZXIuICBNeSB1bmRlcnN0YW5kaW5nIHdhcyB0aGF0IHRo
-aW5ncyBhcmUgZGlmZmVyZW50IHdpdGggbWFzdGVyIChhbmQgdWhkIDQuMCkgc3VjaCB0aGF0IGEg
-ZGlmZmVyZW50IHRvb2wgd291bGQgYmUgdXNlZCBhbmQgdGhhdCB0aGlzIG5ldyB0b29sIHdvdWxk
-IGJlIHBhcnQgb2YgVUhEIHJhdGhlciB0aGFuIHBhcnQgb2YgYSBnbnVyYWRpbyBpbnN0YWxsYXRp
-b24uICBCdXQsIEkgZG9uJ3Qgc2VlIGFueSBzdWNoIHRvb2wgaW4gbXkgdWhkIG1hc3RlciBjaGVj
-a291dC4NClJvYg0K
-
---_000_986c0add83a74d859bfadaeeb555830cgtrigatechedu_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
-
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBz
-cGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
-cjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5tc29ub3JtYWwwLCBs
-aS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXttc28tc3R5bGUtbmFtZTptc29ub3JtYWw7
-DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFy
-Z2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1zaXplOjEyLjBw
-dDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9DQpzcGFuLkVtYWlsU3R5
-bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2Fs
-aWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21z
-by1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
-cmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46
-MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRT
-ZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVk
-ZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0t
-PjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0K
-PG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+
-PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iIzA1NjNDMSIg
-dmxpbms9IiM5NTRGNzIiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5JIGFsc28gd291bGQgbGlr
-ZSB0byBrbm93IHRoZSBhbnN3ZXIgdG8gUm9i4oCZcyBxdWVzdGlvbjo8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
-RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlJmbm9jbW9kdG9vbCBpcyBpbiBnci1ldHR1cyBi
-dXQgaWYgSSB0cnkgdG8gaW5zdGFsbCBnci1ldHR1cyB3aXRoIHRoZSB1aGQgbWFzdGVyIGJyYW5j
-aCwgSSBnZXQgdGhlIGZvbGxvd2luZyBlcnJvcjo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
-eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJz
-cDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
-O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5bJm5ic3A7IDUlXSBCdWls
-ZGluZyBDWFggb2JqZWN0IGxpYi9DTWFrZUZpbGVzL2dudXJhZGlvLWV0dHVzLmRpci9kZXZpY2Uz
-LmNjLm88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
-bnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SW4gZmlsZSBpbmNsdWRlZCBmcm9tIC9ob21lL252ZC9y
-Zm5vYy9zcmMvZ3ItZXR0dXMvbGliL2RldmljZTMuY2M6Mjc6MDo8bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+
-L2hvbWUvbnZkL3Jmbm9jL3NyYy9nci1ldHR1cy9pbmNsdWRlL2V0dHVzL2RldmljZTMuaDozMDox
-MDogZmF0YWwgZXJyb3I6IHVoZC9kZXZpY2UzLmhwcDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9y
-eTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1z
-ZXJpZjtjb2xvcjojMUY0OTdEIj4jaW5jbHVkZSAmbHQ7dWhkL2RldmljZTMuaHBwJmd0OzxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtj
-b2xvcjojMUY0OTdEIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsgXn5+fn5+fn5+fn5+fn5+fn48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
-eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+Y29tcGlsYXRp
-b24gdGVybWluYXRlZC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
-JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+bGliL0NNYWtlRmlsZXMvZ251cmFkaW8t
-ZXR0dXMuZGlyL2J1aWxkLm1ha2U6NzI6IHJlY2lwZSBmb3IgdGFyZ2V0ICdsaWIvQ01ha2VGaWxl
-cy9nbnVyYWRpby1ldHR1cy5kaXIvZGV2aWNlMy5jYy5vJyBmYWlsZWQ8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
-RCI+bWFrZVsyXTogKioqIFtsaWIvQ01ha2VGaWxlcy9nbnVyYWRpby1ldHR1cy5kaXIvZGV2aWNl
-My5jYy5vXSBFcnJvciAxPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkNNYWtlRmlsZXMvTWFrZWZpbGUyOjEz
-OTogcmVjaXBlIGZvciB0YXJnZXQgJ2xpYi9DTWFrZUZpbGVzL2dudXJhZGlvLWV0dHVzLmRpci9h
-bGwnIGZhaWxlZDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
-dDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5tYWtlWzFdOiAqKiogW2xpYi9DTWFrZUZpbGVz
-L2dudXJhZGlvLWV0dHVzLmRpci9hbGxdIEVycm9yIDI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
-bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+TWFrZWZp
-bGU6MTQwOiByZWNpcGUgZm9yIHRhcmdldCAnYWxsJyBmYWlsZWQ8bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+
-bWFrZTogKioqIFthbGxdIEVycm9yIDI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
-OiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5TbyBob3cgZG9lcyByZm5vYyB3b3Jr
-IHdpdGggbWFzdGVyIGJyYW5jaD88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
-MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMx
-RjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5JIGhhdmUgYWxzbyBpbnN0YWxsZWQgVUhE
-LTMuMTUuTFRTIHdpdGhvdXQgUFlCT01CUyBhbmQgdGhlcmUgd2VyZSBlcnJvcnMgdGhhdCBoYXZl
-IGJlZW4gZml4ZWQgaW4gdGhlIG1hc3RlciBicmFuY2ggYnV0IG5vdCBVSEQtMy4xNS5MVFMuPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
-O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5UaGVyZSBhcmUgbm8gY3Vy
-cmVudCB2ZXJzaW9ucyBvZiBVSEQgdGhhdCB3b3JrIHdpdGggUkZOb0MgdG8gYnVpbGQgT09UIHdp
-dGhvdXQgdGhlIFBZQk9NQlMgbWV0aG9kLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
-b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
-aWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0
-OTdEIj5KZWZmPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3NwYW4+PC9i
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZiI+IFVTUlAtdXNlcnMgJmx0O3VzcnAtdXNlcnMtYm91bmNlc0BsaXN0
-cy5ldHR1cy5jb20mZ3Q7DQo8Yj5PbiBCZWhhbGYgT2YgPC9iPlJvYiBLb3NzbGVyIHZpYSBVU1JQ
-LXVzZXJzPGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBNYXkgMjEsIDIwMjAgMzoxOSBQTTxi
-cj4NCjxiPlRvOjwvYj4gdXNycC11c2VycyAmbHQ7dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20m
-Z3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFtVU1JQLXVzZXJzXSBjcmVhdGluZyBhbiByZm5vYyBi
-bG9jayBvbiBtYXN0ZXIgYnJhbmNoPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+SGksPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SG93IGRv
-IEkgY3JlYXRlIGFuIHJmbm9jIGJsb2NrIHVzaW5nIG1hc3RlciBicmFuY2g/Jm5ic3A7IEkgYW0g
-ZmFtaWxpYXIgd2l0aCB1c2luZyByZm5vY19tb2RfdG9vbCB3aXRoIFVIRCAzLjE1IGFuZCBlYXJs
-aWVyLiZuYnNwOyBNeSB1bmRlcnN0YW5kaW5nIHdhcyB0aGF0IHRoaW5ncyBhcmUgZGlmZmVyZW50
-IHdpdGggbWFzdGVyIChhbmQgdWhkIDQuMCkgc3VjaCB0aGF0IGEgZGlmZmVyZW50IHRvb2wgd291
-bGQgYmUgdXNlZCBhbmQNCiB0aGF0IHRoaXMgbmV3IHRvb2wgd291bGQgYmUgcGFydCBvZiBVSEQg
-cmF0aGVyIHRoYW4gcGFydCBvZiBhIGdudXJhZGlvIGluc3RhbGxhdGlvbi4mbmJzcDsgQnV0LCBJ
-IGRvbid0IHNlZSBhbnkgc3VjaCB0b29sIGluIG15IHVoZCBtYXN0ZXIgY2hlY2tvdXQuPG86cD48
-L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Sb2I8bzpwPjwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
-
---_000_986c0add83a74d859bfadaeeb555830cgtrigatechedu_--
+Hi Jeff - The new tool is called "rfnoc_create_verilog" ... it's located in
+the UHD repo as "host/utils/rfnoc_blocktool/rfnoc_create_verilog.py". - MLD
+---
+Michael Dickens
+Ettus Research Technical Support
+Email: support@ettus.com
+Web: https://ettus.com/
 
 
---===============1878321804825150066==
+On Thu, May 28, 2020 at 11:54 PM Hodges, Jeff via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> I also would like to know the answer to Rob=E2=80=99s question:
+>
+>
+>
+> Rfnocmodtool is in gr-ettus but if I try to install gr-ettus with the uhd
+> master branch, I get the following error:
+>
+>
+>
+>
+>
+> [  5%] Building CXX object lib/CMakeFiles/gnuradio-ettus.dir/device3.cc.o
+>
+> In file included from /home/nvd/rfnoc/src/gr-ettus/lib/device3.cc:27:0:
+>
+> /home/nvd/rfnoc/src/gr-ettus/include/ettus/device3.h:30:10: fatal error:
+> uhd/device3.hpp: No such file or directory
+>
+> #include <uhd/device3.hpp>
+>
+>           ^~~~~~~~~~~~~~~~~
+>
+> compilation terminated.
+>
+> lib/CMakeFiles/gnuradio-ettus.dir/build.make:72: recipe for target
+> 'lib/CMakeFiles/gnuradio-ettus.dir/device3.cc.o' failed
+>
+> make[2]: *** [lib/CMakeFiles/gnuradio-ettus.dir/device3.cc.o] Error 1
+>
+> CMakeFiles/Makefile2:139: recipe for target
+> 'lib/CMakeFiles/gnuradio-ettus.dir/all' failed
+>
+> make[1]: *** [lib/CMakeFiles/gnuradio-ettus.dir/all] Error 2
+>
+> Makefile:140: recipe for target 'all' failed
+>
+> make: *** [all] Error 2
+>
+>
+>
+>
+>
+> So how does rfnoc work with master branch?
+>
+>
+>
+>
+>
+> I have also installed UHD-3.15.LTS without PYBOMBS and there were errors
+> that have been fixed in the master branch but not UHD-3.15.LTS.
+>
+>
+>
+> There are no current versions of UHD that work with RFNoC to build OOT
+> without the PYBOMBS method.
+>
+>
+>
+>
+>
+>
+>
+> Jeff
+>
+>
+>
+> *From:* USRP-users <usrp-users-bounces@lists.ettus.com> *On Behalf Of *Ro=
+b
+> Kossler via USRP-users
+> *Sent:* Thursday, May 21, 2020 3:19 PM
+> *To:* usrp-users <usrp-users@lists.ettus.com>
+> *Subject:* [USRP-users] creating an rfnoc block on master branch
+>
+>
+>
+> Hi,
+>
+> How do I create an rfnoc block using master branch?  I am familiar with
+> using rfnoc_mod_tool with UHD 3.15 and earlier.  My understanding was tha=
+t
+> things are different with master (and uhd 4.0) such that a different tool
+> would be used and that this new tool would be part of UHD rather than par=
+t
+> of a gnuradio installation.  But, I don't see any such tool in my uhd
+> master checkout.
+>
+> Rob
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000fc552d05a6c89c93
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
+sans-serif">Hi Jeff - The new tool is called &quot;rfnoc_create_verilog&quo=
+t; ... it&#39;s located in the UHD repo as &quot;host/utils/rfnoc_blocktool=
+/rfnoc_create_verilog.py&quot;. - MLD</div><div><div dir=3D"ltr" class=3D"g=
+mail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><d=
+iv dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D=
+"ltr">---</div><div dir=3D"ltr">Michael Dickens<br>Ettus Research Technical=
+ Support<br>Email: <a href=3D"mailto:support@ettus.com" target=3D"_blank">s=
+upport@ettus.com</a><br>Web: <a href=3D"https://ettus.com/" target=3D"_blan=
+k">https://ettus.com/</a></div></div></div></div></div></div></div></div></=
+div></div></div><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Thu, May 28, 2020 at 11:54 PM Hodges, Jeff via USRP-=
+users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.et=
+tus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_-2240997410294500661WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">I also would like to know the answer to Rob=
+=E2=80=99s question:<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">Rfnocmodtool is in gr-ettus but if I try to =
+install gr-ettus with the uhd master branch, I get the following error:<u><=
+/u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">[=C2=A0 5%] Building CXX object lib/CMakeFil=
+es/gnuradio-ettus.dir/device3.cc.o<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">In file included from /home/nvd/rfnoc/src/gr=
+-ettus/lib/device3.cc:27:0:<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">/home/nvd/rfnoc/src/gr-ettus/include/ettus/d=
+evice3.h:30:10: fatal error: uhd/device3.hpp: No such file or directory<u><=
+/u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">#include &lt;uhd/device3.hpp&gt;<u></u><u></=
+u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 ^~~~~~~~~~~~~~~~~<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">compilation terminated.<u></u><u></u></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">lib/CMakeFiles/gnuradio-ettus.dir/build.make=
+:72: recipe for target &#39;lib/CMakeFiles/gnuradio-ettus.dir/device3.cc.o&=
+#39; failed<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">make[2]: *** [lib/CMakeFiles/gnuradio-ettus.=
+dir/device3.cc.o] Error 1<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">CMakeFiles/Makefile2:139: recipe for target =
+&#39;lib/CMakeFiles/gnuradio-ettus.dir/all&#39; failed<u></u><u></u></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">make[1]: *** [lib/CMakeFiles/gnuradio-ettus.=
+dir/all] Error 2<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">Makefile:140: recipe for target &#39;all&#39=
+; failed<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">make: *** [all] Error 2<u></u><u></u></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">So how does rfnoc work with master branch?<u=
+></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">I have also installed UHD-3.15.LTS without P=
+YBOMBS and there were errors that have been fixed in the master branch but =
+not UHD-3.15.LTS.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">There are no current versions of UHD that wo=
+rk with RFNoC to build OOT without the PYBOMBS method.<u></u><u></u></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">Jeff<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;font-family:Calibri=
+,sans-serif">From:</span></b><span style=3D"font-size:11pt;font-family:Cali=
+bri,sans-serif"> USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists.=
+ettus.com" target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&gt;
+<b>On Behalf Of </b>Rob Kossler via USRP-users<br>
+<b>Sent:</b> Thursday, May 21, 2020 3:19 PM<br>
+<b>To:</b> usrp-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" tar=
+get=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> [USRP-users] creating an rfnoc block on master branch<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">How do I create an rfnoc block using master branch?=
+=C2=A0 I am familiar with using rfnoc_mod_tool with UHD 3.15 and earlier.=
+=C2=A0 My understanding was that things are different with master (and uhd =
+4.0) such that a different tool would be used and
+ that this new tool would be part of UHD rather than part of a gnuradio ins=
+tallation.=C2=A0 But, I don&#39;t see any such tool in my uhd master checko=
+ut.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Rob<u></u><u></u></p>
+</div>
+</div>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000fc552d05a6c89c93--
+
+
+--===============6217738574160727412==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -280,5 +351,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1878321804825150066==--
+--===============6217738574160727412==--
 
