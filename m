@@ -2,49 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E78E91ED7FE
-	for <lists+usrp-users@lfdr.de>; Wed,  3 Jun 2020 23:19:30 +0200 (CEST)
-Received: from [::1] (port=59122 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62FF41ED855
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Jun 2020 00:04:11 +0200 (CEST)
+Received: from [::1] (port=41740 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jganH-0001DK-7w; Wed, 03 Jun 2020 17:19:27 -0400
-Received: from mail-lf1-f48.google.com ([209.85.167.48]:47058)
+	id 1jgbUV-0004kZ-Kz; Wed, 03 Jun 2020 18:04:07 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:37633)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <mdyaaseen1995@gmail.com>)
- id 1jganD-00017r-TS
- for usrp-users@lists.ettus.com; Wed, 03 Jun 2020 17:19:24 -0400
-Received: by mail-lf1-f48.google.com with SMTP id r125so2220791lff.13
- for <usrp-users@lists.ettus.com>; Wed, 03 Jun 2020 14:19:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=s/si+cJ+j7C9HDu9yZxVi5r4gTvNbdcpKV1uw2Prsig=;
- b=ExFBswyUsjvRnx+u+KilP3DbthnnOzOjXxZPt/I7lVtvzvfDtxkQ9XyrfDX44UCdS9
- RSFNOamzNf1It3LOveG4iHJD/9LkFYhY93IIe7zWQMZwvnDrnJsk7huhc4mcJaCynLkp
- QBQM0TAUiKYVhAzHjdywLrdLoZTx+hStNm7IIcrkS3YYIXNUASyeIGDg2TE8mTHg3U0Q
- e4vPyeHKuyY0rLObe2HZtp96slj7f1w5IcaDb9sqgIdTABe+ih+s2uziA8LjKwVUtYLZ
- DANkgSFzyqK103ZZQ16YHvZ8nQfgAk2Q4xy05oI3dgOGuUrQ5VNUi6qvUxpqQwqCPPJP
- MHfw==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jgbUS-0004gY-7a
+ for usrp-users@lists.ettus.com; Wed, 03 Jun 2020 18:04:04 -0400
+Received: by mail-oi1-f176.google.com with SMTP id m67so3261899oif.4
+ for <usrp-users@lists.ettus.com>; Wed, 03 Jun 2020 15:03:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=HqUxhxkjXi9+AgHNQChvpdC4ega6riAI7RCXfYMBU5k=;
+ b=CXNzKHHlphv6KWDhGvWBkXp2tGU01RoFaspIz5Z8MvHHEZoiaFCBBBb08Pap6TQ6fM
+ v3pw6/Ly1M2mmKaJmVgP8VLmawRRXXgxNhmVoU5wbDYqyfQGtsv2A1ZfnoINi4vUJIMG
+ avo4EQZ0wy1965TUi6qxWTRROvqolysGYclZyoOrnVCaEYAilp8rEWUeBjr5kWrCOAc0
+ SAkzOb6H+PVvBVZbeBnkZWvY73Ww2dIt1vBUlvm7ZjtCBJT3CRPCfkFcSmaxNf2mPPMA
+ HhKmFIEfzCGDhpaAQvJLuxR68OBRnWOsC2ZBmoOI4nzhdwC5GDtzH4nwzzDyTp3NKc9X
+ r79Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=s/si+cJ+j7C9HDu9yZxVi5r4gTvNbdcpKV1uw2Prsig=;
- b=O+NRWczxCbaVfjaoCmegOcesPR7eAAAkYphXxDI/fWUoV+QvTRPNX3QJtivyRrwOXP
- oyoxD/2Z/fXj1Cf2AFN4vZeVEea2xljWa0yHzizJfpD4NpiR+LBSSI48PWplJHDiHcej
- Ov+BcwB6YqtvYvR5WCWCdR1xk17vtm7C56xCX/wTdrgC8voWjnjkF8nDxuBRXMGomB11
- QphJ39NmSO+N5jrKiN0d4+pFdbp9bFgnlseMTEcNVHQrZ/ax3P6D3e6o4ooS3QHIoWjk
- Tb0okXk0JRK1T6x4skZEFA7xUmWSrI3Uvv27/Qk05wh1EiBykS6GOVhCxxbDP+R18Xtp
- Rdrw==
-X-Gm-Message-State: AOAM531v/kYXrxwL2nFTYOON8Vmc7Gn1hm8VVeqGFCi1mDf74rbbHMLL
- AuJVbBzqhw4NaJy5usQQR/Y5pJ3QYl/Iff80kDS4jpwmRk4=
-X-Google-Smtp-Source: ABdhPJzuGFXBISh/d3WPIibckwmjb2/yJ6FVGMXN0qhSl3FFNUSKj668aa1l2X3NArNe8dEXefDgScpfBKK/98VzhbM=
-X-Received: by 2002:a05:6512:203:: with SMTP id a3mr756090lfo.28.1591219122224; 
- Wed, 03 Jun 2020 14:18:42 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=HqUxhxkjXi9+AgHNQChvpdC4ega6riAI7RCXfYMBU5k=;
+ b=CN3bvB2rS5dgMpHNZu+gQaItHbt0PGH+iMPw2Z1VWu0Q0HtaAdR8NYA13sXIhnOzsC
+ 1UT29bIEmYP+EkOh1Ya2Kp1tW790va7RkAe3/+0Ls/41EOT4VxX9uzD8alv1bgzUJY7T
+ 81mtPb8lPiO748DE12PUk5z1jstfTFy9Kg4gofQ4cBu7eoqqF7VRozLVJGO8dVPamrRZ
+ 0H2psKBBCFuLAhibdyAg33V4fywvdvNvJbXhcL7i5FRRgeakDVGeXT3GqPN6DulAgdxO
+ wMAfnyiCnDhDQZ5HsfwFnzk7FDtf279KdG3PVcxmbIQgNH15V/MjaQ+W0EqJxKNYjqqw
+ Afrw==
+X-Gm-Message-State: AOAM531eKhOVlQKIRl3wLRVzHiEL9FueS7OOPUYk7JOrIUGwoWzEldfC
+ usvRdoSX7/TlcFQYklyMwgH2YIEz45ixXzc9/I+MGQ==
+X-Google-Smtp-Source: ABdhPJwZlZDeHl7oF9OPqNxy8e0MPshwZqz1H0OTYh6EphGbEbB3T8zKsCaKcvaWlqx6H98SO98I8mMkZkYIVSJDsZY=
+X-Received: by 2002:aca:6144:: with SMTP id v65mr1206794oib.33.1591221803298; 
+ Wed, 03 Jun 2020 15:03:23 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 3 Jun 2020 23:18:25 +0200
-Message-ID: <CAN-A3_t-UEoDi7uCdiPqxAP6FbMW==kWxHSM5azQvkiatRfoiw@mail.gmail.com>
-To: usrp-users@lists.ettus.com, discuss-gnuradio@gnu.org
-Subject: [USRP-users] ERROR: using usrp source gnu-radio block with XG image
- (RFNoC enabled)
+References: <dd15877785cc4cf6a2ef7d63106e7584@oc11expo22.exchange.mit.edu>
+In-Reply-To: <dd15877785cc4cf6a2ef7d63106e7584@oc11expo22.exchange.mit.edu>
+Date: Wed, 3 Jun 2020 18:03:12 -0400
+Message-ID: <CAB__hTSD1+s2J7Onv5PeEfH9ue7c2DyjAjGwaacJ2T-nZipH+w@mail.gmail.com>
+To: Richard Joseph Muri <ri28856@mit.edu>
+Subject: Re: [USRP-users] Sending multiple contiguous transmit requests
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,9 +57,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mohamed Yaaseen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mohamed Yaaseen <mdyaaseen1995@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7883876170039475603=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============5348323539408445980=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,97 +74,155 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7883876170039475603==
-Content-Type: multipart/alternative; boundary="0000000000008a468f05a734927d"
+--===============5348323539408445980==
+Content-Type: multipart/alternative; boundary="000000000000587b9305a7353210"
 
---0000000000008a468f05a734927d
+--000000000000587b9305a7353210
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Guys,
-    I am using usrp x310 with default XG image. I have also setup the RFNoC
-platform in GNURadio with gr-ettus.
-RFNoC ddc example using RFNoC blocks works perfectly with 100MHz of
-bandwidth. But when I go back to using normal usrp source block which is a
-normal gr-uhd block, it throws the following error.
+Richard,
+Is your first packet marked end-of-burst?  Also, how about if your 2nd
+packet does not include a time stamp at all?
 
+Rob
 
-[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
-> UHD_3.15.0.0-16-ga3ece4f2
-> [INFO] [X300] X300 initialization sequence...
-> [INFO] [X300] Maximum frame size: 8000 bytes.
-> [INFO] [X300] Maximum frame size: 8000 bytes.
-> [INFO] [X300] Radio 1x clock: 200 MHz
-> [INFO] [X300] Radio 1x clock: 200 MHz
-> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
-> 0xF1F0D00000000000)
-> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1296 MB/s)
-> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1319 MB/s)
-> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)
-> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001)
-> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
-> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
-> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
-> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
-> terminate called after throwing an instance of 'uhd::io_error'
->   what():  EnvironmentError: IOError: Block ctrl (CE_00_Port_30) no
-> response packet - AssertionError: bool(buff)
->   in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double)
-> [with uhd::endianness_t _endianness = uhd::ENDIANNESS_BIG; uint64_t = long
-> unsigned int]
->   at /home/ya-seen/workspace/src/uhd/host/lib/rfnoc/ctrl_iface.cpp:151
+Rob
+
+On Tue, Jun 2, 2020 at 1:59 PM Richard Joseph Muri via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hello,
+>
+>
+>
+> I=E2=80=99ve been having an issue with the USRP where I=E2=80=99ve found =
+if I have a
+> continuous waveform segmented over multiple packets, it is difficult to
+> transmit it on the USRP. The scenario is as follows:
+>
+>
+>
+> I am using a USRP x310 with UHD version:
+>
+> [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-36);
+> Boost_105800; UHD_3.13.0.3-24-g00019176
+>
+>
+>
+> Packet 1 has 100 samples. I do a send starting at time 0 with 100 samples=
+.
+> Packet 2 has 50 samples. I do a send starting at time 100 with 50 samples=
+.
+> Packet 2 is marked late and doesn=E2=80=99t send properly.
+>
+>
+>
+> Packet 1 has 100 samples. I do a send starting at time 0 with 100 samples=
+.
+> Packet 2 has 50 samples. I do a send starting at time 101 with 50 samples=
+.
+> Packet 2 sends properly, but now I have a sample delay inserted into the
+> middle of my waveform.
+>
+>
+>
+> Packet 1 has 100 samples. I do a send starting at time 0 with 99 samples.
+> Packet 2 has 50 samples. I do a send starting at time 101 with 50 samples=
+.
+> Packet 2 sends properly, but now I have a blank sample inserted into the
+> middle of my waveform.
+>
+>
+>
+> The obvious solution is to reassemble my fragmented packets before making
+> a tx_streamer->send() call. I=E2=80=99m wondering if there is a way to re=
+plicate
+> the behavior of a single large transmit request using multiple smaller
+> transmit requests?
+>
+>
+>
+> Thank you,
+>
+> Richard
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
-
-what is this issue ? what am I doing wrong here ? Help, suggestions highly
-appreciated
-
-thanks in advance !!
-
-Regards,
-Mohamed Yaaseen
-
---0000000000008a468f05a734927d
+--000000000000587b9305a7353210
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello Guys,</div><div>=C2=A0=C2=A0=C2=A0 I am using u=
-srp x310 with default XG image. I have also setup the RFNoC platform in GNU=
-Radio with gr-ettus.<br></div><div>RFNoC ddc example using RFNoC blocks wor=
-ks perfectly with 100MHz of bandwidth. But when I go back to using normal u=
-srp source block which is a normal gr-uhd block, it throws the following er=
-ror.</div><div><br></div><div><br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex"><div>[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100=
-; UHD_3.15.0.0-16-ga3ece4f2<br>[INFO] [X300] X300 initialization sequence..=
-.<br>[INFO] [X300] Maximum frame size: 8000 bytes.<br>[INFO] [X300] Maximum=
- frame size: 8000 bytes.<br>[INFO] [X300] Radio 1x clock: 200 MHz<br>[INFO]=
- [X300] Radio 1x clock: 200 MHz<br>[INFO] [0/DmaFIFO_0] Initializing block =
-control (NOC ID: 0xF1F0D00000000000)<br>[INFO] [0/DmaFIFO_0] BIST passed (T=
-hroughput: 1296 MB/s)<br>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1319=
- MB/s)<br>[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD1000=
-00000001)<br>[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD1=
-00000000001)<br>[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0=
-000000000000)<br>[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC=
-0000000000000)<br>[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0=
-C0000000000000)<br>[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD=
-0C0000000000000)<br>terminate called after throwing an instance of &#39;uhd=
-::io_error&#39;<br>=C2=A0 what(): =C2=A0EnvironmentError: IOError: Block ct=
-rl (CE_00_Port_30) no response packet - AssertionError: bool(buff)<br>=C2=
-=A0 in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, doub=
-le) [with uhd::endianness_t _endianness =3D uhd::ENDIANNESS_BIG; uint64_t =
-=3D long unsigned int]<br>=C2=A0 at /home/ya-seen/workspace/src/uhd/host/li=
-b/rfnoc/ctrl_iface.cpp:151</div></blockquote><div><br></div><div><br></div>=
-<div>what is this issue ? what am I doing wrong here ? Help, suggestions hi=
-ghly appreciated<br></div><div><br></div><div>thanks in advance !!<br></div=
-><div><br></div><div><div><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=
-=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">Regards,<div>Mohamed Y=
-aaseen</div></div></div></div></div></div></div></div></div></div></div></d=
-iv>
-
---0000000000008a468f05a734927d--
+<div dir=3D"ltr">Richard,<div>Is your first packet marked end-of-burst?=C2=
+=A0 Also, how about if your 2nd packet does not include a time stamp at all=
+?</div><div><br></div><div>Rob</div><div><br></div><div>Rob</div></div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Ju=
+n 2, 2020 at 1:59 PM Richard Joseph Muri via USRP-users &lt;<a href=3D"mail=
+to:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex">
 
 
---===============7883876170039475603==
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_6258549427260122989WordSection1">
+<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I=E2=80=99ve been having an issue with the USRP wher=
+e I=E2=80=99ve found if I have a continuous waveform segmented over multipl=
+e packets, it is difficult to transmit it on the USRP. The scenario is as f=
+ollows:<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I am using a USRP x310 with UHD version:<u></u><u></=
+u></p>
+<p class=3D"MsoNormal">[INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (=
+Red Hat 4.8.5-36); Boost_105800; UHD_3.13.0.3-24-g00019176<u></u><u></u></p=
+>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Packet 1 has 100 samples. I do a send starting at ti=
+me 0 with 100 samples. Packet 2 has 50 samples. I do a send starting at tim=
+e 100 with 50 samples. Packet 2 is marked late and doesn=E2=80=99t send pro=
+perly.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Packet 1 has 100 samples. I do a send starting at ti=
+me 0 with 100 samples. Packet 2 has 50 samples. I do a send starting at tim=
+e 101 with 50 samples. Packet 2 sends properly, but now I have a sample del=
+ay inserted into the middle of my
+ waveform.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Packet 1 has 100 samples. I do a send starting at ti=
+me 0 with 99 samples. Packet 2 has 50 samples. I do a send starting at time=
+ 101 with 50 samples. Packet 2 sends properly, but now I have a blank sampl=
+e inserted into the middle of my waveform.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">The obvious solution is to reassemble my fragmented =
+packets before making a tx_streamer-&gt;send() call. I=E2=80=99m wondering =
+if there is a way to replicate the behavior of a single large transmit requ=
+est using multiple smaller transmit requests?<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thank you,<u></u><u></u></p>
+<p class=3D"MsoNormal">Richard<u></u><u></u></p>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000587b9305a7353210--
+
+
+--===============5348323539408445980==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -173,5 +233,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7883876170039475603==--
+--===============5348323539408445980==--
 
