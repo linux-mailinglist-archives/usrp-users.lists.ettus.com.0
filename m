@@ -2,53 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0F421EFBBB
-	for <lists+usrp-users@lfdr.de>; Fri,  5 Jun 2020 16:45:28 +0200 (CEST)
-Received: from [::1] (port=34764 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37FBA1F0107
+	for <lists+usrp-users@lfdr.de>; Fri,  5 Jun 2020 22:36:18 +0200 (CEST)
+Received: from [::1] (port=50014 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jhDb3-0004bp-Ol; Fri, 05 Jun 2020 10:45:25 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:43802)
+	id 1jhJ4Z-0005kJ-40; Fri, 05 Jun 2020 16:36:15 -0400
+Received: from mail-qt1-f180.google.com ([209.85.160.180]:34923)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <carlosruiznaranjo@gmail.com>)
- id 1jhDb0-0004U2-AN
- for usrp-users@lists.ettus.com; Fri, 05 Jun 2020 10:45:22 -0400
-Received: by mail-io1-f54.google.com with SMTP id u13so4357232iol.10
- for <usrp-users@lists.ettus.com>; Fri, 05 Jun 2020 07:45:02 -0700 (PDT)
+ (Exim 4.93) (envelope-from <siddsubra@gmail.com>) id 1jhJ4V-0005Cq-DC
+ for usrp-users@lists.ettus.com; Fri, 05 Jun 2020 16:36:11 -0400
+Received: by mail-qt1-f180.google.com with SMTP id z1so9688036qtn.2
+ for <usrp-users@lists.ettus.com>; Fri, 05 Jun 2020 13:35:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=tkwGkrNnIvHxgiHWsntZbj6I7BLKGFSSs1K2nvrSqUI=;
- b=eL0iCcyFAxcS7+7A1kYFJaJOTVe667GbmNQZLiwwcQaaEo5Wt3o1l2amrOni835Q6F
- xl3vF81AnUecr6jOa4pJAkzJglWBClFaEHmTzHIbucqfpgYFQTfqQDkAeExbLG4ZLoWO
- Xmt7VM/W2DkCBh5Jqz+C+R9s1vDafkbW2EWa4R8agmr+fXU37FYoRwgYv2RCsS1OD6z5
- HUhJ4P5AuyVR7dppfhBzdMuOwJGSYtdhbUSdR9yfqFT+nqywPBdbMKnDUz0QcK80LeIu
- UGOhpOUjiB6AbpESJ8cZaYHHz8vA/QGxhzNH9fq7mMeNrUwvkwPVllr5F8P3lnkHjaXS
- DFWA==
+ h=content-transfer-encoding:from:mime-version:subject:message-id:date
+ :to:cc; bh=2MbWoVJDZkVbJrIo16QS/NkSttDa7w5zLpyjoRsttvM=;
+ b=bypPtwl1afolqoeKoSlfVWlgw0p3hNr7XxIiSMjC3KdRUHo3K6mbdMQsw9XYMDTuqU
+ 686UK8mPDPUyP9ecglSpV3aKVCHVDcSkKzJ7qd6TYbINlZ23hl6JUg1seqgeXAwC0HqR
+ wym43FIcn6HtwNqrITG4oAc1eF8hcgWjLsFlmJuZedmNBOHHTnHC4SiWpXKk+Ea4lHdy
+ Q3+gMwite3gfIQlgMXrSIULm7ROS/w8FLOcZMudVdeCU+K/uSpTC9jMl8LXlX52QvQRf
+ TIWJPtkHI7jWjNiRaJy50Iz6U4kEqMdTVczWUppi8LnEgKBzfD+5lWP7HDTF+fnLNMWc
+ yf+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=tkwGkrNnIvHxgiHWsntZbj6I7BLKGFSSs1K2nvrSqUI=;
- b=WB6Ahw6r/G7A5Secfnf0Faox8gQrKR5aJFbD7jvmB1H1S6SqleIekIQ1ItH3WcEycw
- FxfJZPLt7/8Z/p+D4kC7FIQeblifFU7fCe/1gzai3Gauu6d35y0GFBUEkf6lyKZJcr2W
- 8kh25pGnJCPISVxnOgVf4C8aFTmaHGyjj9tbs+cSBy1l9TUYFNtFQQklu3XK6O/DhNLR
- t2lyyUif+q0FgJs7f6ApK25CHgdDf7gJWjiWcoZqPxK4okeZdfk146TjJslKtWEjMcAm
- iNyUHAYMHgF9m2H99/myFk5Ei1YN6jTZQH51Lug9uJ0iQqIsiom4UZPAqh3ga8hHLZEZ
- odAw==
-X-Gm-Message-State: AOAM530+cs894/4oL90SCBXVhXkR7o6TAwjdxvv8/rwAy2z4HHaxPvai
- d3oBuN10iN7Edm8awDF74xkSMseFSZubeWOKwf4=
-X-Google-Smtp-Source: ABdhPJzjtDNZRa6bImFD8XQoDdCNv+lI0OkpuDWrKtAQbI+LXMpCxmGgwGkUPmuaZ/kFHWi2KJ9GSoMmf+YxUw+/4iw=
-X-Received: by 2002:a02:2c6:: with SMTP id 189mr9159696jau.115.1591368280742; 
- Fri, 05 Jun 2020 07:44:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAP2eGPhuvqJaWPwE2SwaEfLK3wzRqn9VgT7MEiWO0_ed3t7dRw@mail.gmail.com>
- <CAB__hTT6z9ovRS-fiubqUiE=1kH1+Fe=HULvdCJV61kYj=ncpg@mail.gmail.com>
-In-Reply-To: <CAB__hTT6z9ovRS-fiubqUiE=1kH1+Fe=HULvdCJV61kYj=ncpg@mail.gmail.com>
-Date: Fri, 5 Jun 2020 16:44:29 +0200
-Message-ID: <CAP2eGPi5hF3suBnROzk1r-dV5FJ2DoUZmwbvUbtfNODMRek9Fw@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>, 
- "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] timeouts problems with custom DUC multi channel
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:message-id:date:to:cc;
+ bh=2MbWoVJDZkVbJrIo16QS/NkSttDa7w5zLpyjoRsttvM=;
+ b=LSP/1cUgoCvkOEPDH4Z1FVvrkdmlR4ybhgi9ul60OW8/8kt4k0E4HaZ7oxkCxpmQHI
+ pcylLdLlSXNuTXB/U8/OLPZ1kZvJh4AbMocKdll0ausYPZqdMEZ/bURlt/usH6OYSdP4
+ tVm0D6ZSqZedZTV9GRIHlN4W9yAnIX7kqJpAG8e3bRYS/E2ATP22RrbV3kJz9mBghtWH
+ zXVjSBMA/BUQ46JfJG9cCUoFjkPVTIVBtmAOrBEJtksGc7eUT2jlSgq8+uuRfG93smz6
+ rzBXHgx5RnSqWIqA5OuDTjPPvtsyhbYRS1lxEHdiH+LqsaNRDCGzMVHyjXfqEss3YrYw
+ YW8A==
+X-Gm-Message-State: AOAM533YM6pfvcSbEOPLzRgtBvc9mWMu3le1+4keOBgJlAe1OnZ2wcif
+ pme8krRnbf4tBc4tb7yxmuo=
+X-Google-Smtp-Source: ABdhPJyzwFhFmwb/KQ8m8aTc07A/TJdffG0f3oMJelV+6m9y4ruqZIK8J09qOByeSQgS5F6CLNWgjQ==
+X-Received: by 2002:ac8:4d0e:: with SMTP id w14mr12158254qtv.266.1591389330510; 
+ Fri, 05 Jun 2020 13:35:30 -0700 (PDT)
+Received: from [192.168.86.250] (c-73-236-113-201.hsd1.wv.comcast.net.
+ [73.236.113.201])
+ by smtp.gmail.com with ESMTPSA id h77sm810316qke.37.2020.06.05.13.35.28
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 05 Jun 2020 13:35:29 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+Message-Id: <985418C5-CF43-4F69-A441-6233A1D0ACBB@gmail.com>
+Date: Fri, 5 Jun 2020 16:35:28 -0400
+To: Marcus D Leech <patchvonbraun@gmail.com>
+X-Mailer: iPad Mail (17F75)
+Subject: Re: [USRP-users] Clock Bias from board mounted GPSDO
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,9 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Carlos Alberto Ruiz Naranjo via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Carlos Alberto Ruiz Naranjo <carlosruiznaranjo@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4563552335077793334=="
+From: Sidd Subramanyam via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sidd Subramanyam <siddsubra@gmail.com>
+Cc: usrp-users@lists.ettus.com
+Content-Type: multipart/mixed; boundary="===============7422096022298280483=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,128 +78,158 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4563552335077793334==
-Content-Type: multipart/alternative; boundary="00000000000014aec905a7574dbd"
 
---00000000000014aec905a7574dbd
-Content-Type: text/plain; charset="UTF-8"
+--===============7422096022298280483==
+Content-Type: multipart/alternative; boundary=Apple-Mail-137C45F2-CE3F-40D0-A3BA-6230530720CC
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-137C45F2-CE3F-40D0-A3BA-6230530720CC
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Thank you Rob :)
+=EF=BB=BFBy clock bias I am referring to the difference between true GPS tim=
+e and the USRP time.
 
-I have fixed the problem with the adder between axi_rate_change dds_timed.
+For example, in my application I am running 2 Separate B210 USRPs each side b=
+y side with a split signal coming from a single S band antenna. However, the=
+y are both disciplined using separate GPSDOs with separate antennas to simul=
+ate being 2 independent devices. They are being synchronized as described in=
+ method 2 in this article (https://files.ettus.com/manual/page_sync.html) an=
+d then the data collection is being commanded to start at the same GPS time f=
+or both devices.=20
 
-El jue., 4 jun. 2020 a las 0:13, Rob Kossler (<rkossler@nd.edu>) escribi=C3=
-=B3:
+My goal is to try to create as phase coherent of an operation as possible be=
+tween the 2 USRPs.
+When I cross correlate the 2 split S band signals to calculate difference in=
+ phase between the 2 signals, there is a significant drift over time. This p=
+hase difference converted is about 300 nanoseconds over the course of 1 seco=
+nd (300 PPB).Because of this, I wished to see if I could use the calculated c=
+lock bias that I described above to compensate for this drift in phase.=20
 
-> I think that it is dependent on tvalid because both "a" and "b" need to b=
-e
-> consumed on the same sample.  So, the code does not assert tready for
-> either input until the tvalid is asserted for both inputs.
->
-> On Wed, Jun 3, 2020 at 6:06 AM Carlos Alberto Ruiz Naranjo via USRP-users=
- <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hi,
->>
->> I have modified the DUC block to do it 2inputs-1outputs. The output is
->> duc_0 + duc_1.
->>
->> input_0  ---> duc_0 --->
->>                                         cadd ---> output
->> input_1  ---> duc_1 --->
->>
->> Apparently it works fine, but after 1 second I have timeout problems and
->> the output is weird.
->>
->> cadd is the Ettus complex adder (
->> https://github.com/EttusResearch/fpga/blob/UHD-3.15.LTS/usrp3/lib/rfnoc/=
-cadd.v)
->> 3.15LTS
->>
->> I think that it due the tvalid/tready. If I use (
->> https://github.com/EttusResearch/fpga/blob/UHD-3.15.LTS/usrp3/lib/rfnoc/=
-cadd.v#L23
->> ):
->>
->>    assign int_tvalid =3D a_tvalid & b_tvalid;
->> *   assign a_tready =3D int_tvalid & int_tready;*
->>    assign b_tready =3D a_tready;
->>
->> a_tready and b_tready are always '0' and I haven't any output. But if I
->> use:
->>
->>    assign int_tvalid =3D a_tvalid & b_tvalid;
->> *   assign a_tready =3D int_tready; //Independent tready*
->>    assign b_tready =3D a_tready;
->>
->> I have the timeout problems. Why is tready dependent of tvalid?
->>
->> Thank you.
+However, now that you have mentioned that I should in fact be getting 1 PPB a=
+ccuracy when synchronized to GPS time, I am questioning if I am doing the ti=
+me synchronization process wrong altogether Since I seem to be getting drift=
+ around 300 PB after following the instructions in the link above.
+
+Sidd
+=20
+
+>> On Jun 4, 2020, at 1:24 PM, Marcus D Leech <patchvonbraun@gmail.com> wrot=
+e:
+> =EF=BB=BFWhat exactly do you mean by clock bias? compared to what?
+>=20
+> Once the unit is locked to GPS and you use the GPSDO as your system clock,=
+ the timing will be under 1PPB. What exactly are you measuring?
+>=20
+> If you=E2=80=99re trying fo derive bit timing from a modulated digital sig=
+nal, the usual way is to use a PLL in your DSP algorithms.=20
+>=20
+> Sent from my iPhone
+>=20
+>>> On Jun 4, 2020, at 11:52 AM, Sidd Subramanyam via USRP-users <usrp-users=
+@lists.ettus.com> wrote:
+>> =EF=BB=BF
+>> Hi all,
+>>=20
+>> I was wondering if there was a way to extract or compute a precise Clock B=
+ias of the USRP time vs GPS time from the GPSDO. I am using a B210 USRP with=
+ the board mounted recommended TCXO GPSDO. I have previously used the GNSS-S=
+DR (https://gnss-sdr.org/) software to compute pseudorange and clock bias, h=
+owever this software is run by using the front end RX channels and not the G=
+PSDO input.
+>>=20
+>> In my use case, I have a need to compute this from my built in GPSDO sinc=
+e I am intending to simultaneously use the front end on S-band signals, and t=
+he B series does not allow 2 separate center frequencies across its 2 RX cha=
+nnels.
+>>=20
+>> I am aware of the NMEA messages from which I can extract the position loc=
+k via serial but it does not seem like there is a time output that is more g=
+ranular than one second which I can use to compute a clock bias.
+>>=20
+>> Any help is appreciated.
+>>=20
+>> Thank you,
+>> Sidd
+>>=20
+>>=20
 >> _______________________________________________
 >> USRP-users mailing list
 >> USRP-users@lists.ettus.com
 >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
 
---00000000000014aec905a7574dbd
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail-137C45F2-CE3F-40D0-A3BA-6230530720CC
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Thank you Rob :)<br></div><div><br></div><div>I have =
-fixed the problem with the adder between <span class=3D"gmail-pl-ent">axi_r=
-ate_change <span class=3D"gmail-pl-ent">dds_timed.</span></span></div></div=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El ju=
-e., 4 jun. 2020 a las 0:13, Rob Kossler (&lt;<a href=3D"mailto:rkossler@nd.=
-edu">rkossler@nd.edu</a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div dir=3D"ltr">I think that it is dependent =
-on tvalid because both &quot;a&quot; and &quot;b&quot; need to be consumed =
-on the same sample.=C2=A0 So, the code does not assert tready for either in=
-put until the tvalid is asserted for both inputs.</div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 3, 2020 at 6:0=
-6 AM Carlos Alberto Ruiz Naranjo via USRP-users &lt;<a href=3D"mailto:usrp-=
-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr">Hi,<br><br>I have modified the DUC block to do it 2inputs-1outputs=
-. The output is duc_0 + duc_1.<br><br>input_0 =C2=A0---&gt; duc_0 ---&gt;<b=
-r>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 cadd ---&gt; output<br>input_1 =C2=A0---&gt; du=
-c_1 ---&gt;<br><br>Apparently it works fine, but after 1 second I have time=
-out problems and the output is weird. <br><br>cadd is the Ettus complex add=
-er (<a href=3D"https://github.com/EttusResearch/fpga/blob/UHD-3.15.LTS/usrp=
-3/lib/rfnoc/cadd.v" target=3D"_blank">https://github.com/EttusResearch/fpga=
-/blob/UHD-3.15.LTS/usrp3/lib/rfnoc/cadd.v</a>) 3.15LTS<br><br>I think that =
-it due the tvalid/tready. If I use (<a href=3D"https://github.com/EttusRese=
-arch/fpga/blob/UHD-3.15.LTS/usrp3/lib/rfnoc/cadd.v#L23" target=3D"_blank">h=
-ttps://github.com/EttusResearch/fpga/blob/UHD-3.15.LTS/usrp3/lib/rfnoc/cadd=
-.v#L23</a>):<br><br>=C2=A0 =C2=A0assign int_tvalid =3D a_tvalid &amp; b_tva=
-lid;<br><b>=C2=A0 =C2=A0assign a_tready =3D int_tvalid &amp; int_tready;</b=
-><br>=C2=A0 =C2=A0assign b_tready =3D a_tready;<br>=C2=A0 =C2=A0<br>a_tread=
-y and b_tready are always &#39;0&#39; and I haven&#39;t any output. But if =
-I use:<br><br>=C2=A0 =C2=A0assign int_tvalid =3D a_tvalid &amp; b_tvalid;<b=
-r><b>=C2=A0 =C2=A0assign a_tready =3D int_tready; //Independent tready</b><=
-br>=C2=A0 =C2=A0assign b_tready =3D a_tready;<br>=C2=A0 =C2=A0<br>I have th=
-e timeout problems. Why is tready dependent of tvalid?<br><br>Thank you.</d=
-iv>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div dir=3D"ltr"><div dir=3D"ltr"><meta htt=
+p-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8"><div dir=3D"=
+ltr">=EF=BB=BF<meta http-equiv=3D"content-type" content=3D"text/html; charse=
+t=3Dutf-8">By clock bias I am referring to the difference between true GPS t=
+ime and the USRP time.</div><div dir=3D"ltr"><br><div>For example, in my app=
+lication I am running 2 Separate B210 USRPs each side by side with a split s=
+ignal coming from a single S band antenna. However, they are both discipline=
+d using separate GPSDOs with separate antennas to simulate being 2 independe=
+nt devices. They are being synchronized as described in method 2 in this art=
+icle (<a href=3D"https://files.ettus.com/manual/page_sync.html">https://file=
+s.ettus.com/manual/page_sync.html</a>) and then the data collection is being=
+ commanded to start at the same GPS time for both devices.&nbsp;</div><div><=
+br></div><div>My goal is to try to create as phase coherent of an operation a=
+s possible between the 2 USRPs.</div><div>When I cross correlate the 2 split=
+ S band signals to calculate difference in phase between the 2 signals, ther=
+e is a significant drift over time. This phase difference converted is about=
+ 300 nanoseconds over the course of 1 second (300 PPB).Because of this, I wi=
+shed to see if I could use the calculated clock bias that I described above t=
+o compensate for this drift in phase.&nbsp;</div><div><br></div><div>However=
+, now that you have mentioned that I should in fact be getting 1 PPB accurac=
+y when synchronized to GPS time, I am questioning if I am doing the time syn=
+chronization process wrong altogether Since I seem to be getting drift aroun=
+d 300 PB after following the instructions in the link above.</div><div><br><=
+/div><div>Sidd</div><div>&nbsp;</div><div><div><div><br><div dir=3D"ltr"><bl=
+ockquote type=3D"cite">On Jun 4, 2020, at 1:24 PM, Marcus D Leech &lt;patchv=
+onbraun@gmail.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"c=
+ite"><div dir=3D"ltr">=EF=BB=BF<meta http-equiv=3D"content-type" content=3D"=
+text/html; charset=3Dutf-8">What exactly do you mean by clock bias? compared=
+ to what?<div><br></div><div>Once the unit is locked to GPS and you use the G=
+PSDO as your system clock, the timing will be under 1PPB. What exactly are y=
+ou measuring?</div><div><br></div><div>If you=E2=80=99re trying fo derive bi=
+t timing from a modulated digital signal, the usual way is to use a PLL in y=
+our DSP algorithms.&nbsp;<br><div><br><div dir=3D"ltr">Sent from my iPhone</=
+div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Jun 4, 2020, at 11:52 A=
+M, Sidd Subramanyam via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:=
+<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=
+=BF<meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8">=
+<div dir=3D"ltr"><meta http-equiv=3D"content-type" content=3D"text/html; cha=
+rset=3Dutf-8"><div dir=3D"ltr"><meta http-equiv=3D"content-type" content=3D"=
+text/html; charset=3Dutf-8">Hi all,<div><br></div><div>I was wondering if th=
+ere was a way to extract or compute a precise Clock Bias of the USRP time vs=
+ GPS time from the GPSDO. I am using a B210 USRP with the board mounted reco=
+mmended TCXO GPSDO. I have previously used the GNSS-SDR (<a href=3D"https://=
+gnss-sdr.org/">https://gnss-sdr.org/</a>) software to compute pseudorange an=
+d clock bias, however this software is run by using the front end RX channel=
+s and not the GPSDO input.</div><div><br></div><div>In my use case, I have a=
+ need to compute this from my built in GPSDO since I am intending to simulta=
+neously use the front end on S-band signals, and the B series does not allow=
+ 2 separate center frequencies across its 2 RX channels.</div><div><br></div=
+><div>I am aware of the NMEA messages from which I can extract the position l=
+ock via serial but it does not seem like there is a time output that is more=
+ granular than one second which I can use to compute a clock bias.</div><div=
+><br></div><div>Any help is appreciated.</div><div><br></div><div>Thank you,=
+</div><div>Sidd</div><div><br></div><div><br></div></div></div><span>_______=
+________________________________________</span><br><span>USRP-users mailing l=
+ist</span><br><span>USRP-users@lists.ettus.com</span><br><span>http://lists.=
+ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><br></div></bloc=
+kquote></div></div></div></blockquote></div></div></div></div></div></div></=
+body></html>=
 
---00000000000014aec905a7574dbd--
+--Apple-Mail-137C45F2-CE3F-40D0-A3BA-6230530720CC--
 
 
---===============4563552335077793334==
+--===============7422096022298280483==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -208,5 +240,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4563552335077793334==--
+--===============7422096022298280483==--
 
