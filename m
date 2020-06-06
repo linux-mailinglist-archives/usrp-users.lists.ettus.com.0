@@ -2,53 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D42861F038B
-	for <lists+usrp-users@lfdr.de>; Sat,  6 Jun 2020 01:37:22 +0200 (CEST)
-Received: from [::1] (port=45692 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7D531F043F
+	for <lists+usrp-users@lfdr.de>; Sat,  6 Jun 2020 04:39:18 +0200 (CEST)
+Received: from [::1] (port=53288 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jhLto-0006oI-1s; Fri, 05 Jun 2020 19:37:20 -0400
-Received: from mail-lf1-f49.google.com ([209.85.167.49]:35173)
+	id 1jhOjr-00038e-Sw; Fri, 05 Jun 2020 22:39:15 -0400
+Received: from mail-qv1-f67.google.com ([209.85.219.67]:33390)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rwmcgwier@gmail.com>) id 1jhLtj-0006hP-JH
- for usrp-users@lists.ettus.com; Fri, 05 Jun 2020 19:37:15 -0400
-Received: by mail-lf1-f49.google.com with SMTP id 82so6777347lfh.2
- for <usrp-users@lists.ettus.com>; Fri, 05 Jun 2020 16:36:55 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jhOjn-0002zn-Iy
+ for usrp-users@lists.ettus.com; Fri, 05 Jun 2020 22:39:11 -0400
+Received: by mail-qv1-f67.google.com with SMTP id e20so5746629qvu.0
+ for <usrp-users@lists.ettus.com>; Fri, 05 Jun 2020 19:38:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=jIwwuGxRiGFnIrLCElkFAw6P2a2c2GvXVEPOh1LN8QE=;
- b=Oo9uKRRdbnO7mWvSviVSTnCggRZ3JAuTtUh8gzow+q+wnM9lthm+Q7g2TK96wEAXgv
- faYJo9XdLSggdZmM/+kOl1+Ig2y5eYppr32QYU76feqjqq+hNAmm5PNF6hnpKIPDk1u5
- k775rw2xSvz/7Z18z/jox9be5y2GW+w5v+rOpvWQewm/nVejXFxTVtFMPQCJAHz30eeo
- 5HkKWrdwbxkPuZkuw7cGwxSuzI6KZtKE+bBCm7OKgL+d/zpHyRoegKDV1nBbWGZIMHh1
- V6ssHdFef0SIB8tYBQ2vy1x0IMdajKYbnEX54WJb/3nTsRDzQ3fACIZJZjJv+vYoKAbc
- BdzQ==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=m38EV9J1yXYqu2AwJ8fwqk5tNNN0MqPz1wY4dsOkOls=;
+ b=KbbBSAUmiDLL+f3W9NSVy9CAmU6fSHd25eD2m9kHb/eZnoRFVnR/IzTYAiJGmGt/lv
+ A9M4D5CLs/DC24C+0KL5biYA9+Aus1+vVZRxCrGYiUj+iL5pkc4jWtNVCZal1S43pae0
+ kjDEllS4ieP5AfZGAw8f1NsOTDzFLRbiVzjYo51Hg5O2FOKPSwTaeqX9vjGtTtBBKyOo
+ HHNaj67HTgoz6+urSKklWYrFRKS+Ta2BxN+Amq50U/i11gDBjRhfUJUQ0ROC7zfDNV3x
+ Kxyu79i1+wzs0wBGcSAjEeq6QATy5hXLpt8UBmWXVGDInFJV33D3joOW3VV7tmAzDsgL
+ vozA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=jIwwuGxRiGFnIrLCElkFAw6P2a2c2GvXVEPOh1LN8QE=;
- b=l5yBaL9i6sBWkBfBzd1IQPNVZ7WDLzB2kJMgNXTZn7nd57blO5fGpfBGYXXzRwPiOp
- VcFGWRGa9nniUbnV0ipzkeok6OJHLSHOhrlO6x8pbCnlVLlShg6gouTJXjVLWnH70xT8
- pJGrpAc4W3/A5YJqOWwo60sQdpVKjBZhdGY9vlKVO2jA58Bmpx/N481X/iomsqu8M/yX
- gCMOXXbkuZVODoZY8O72w2Sa1eSbp6s6uOXqQLDLjWkcMI7VGAykWTBdkgbJwExPM4Z2
- jM+GjoFlebonsTNtVVJWooueArHu6SQbrCUesAopjdyWRUzQ0MSIwbJefMJPi2n53iKz
- aeAg==
-X-Gm-Message-State: AOAM532QVbBuSKe3JMIQyFhO83t7eQEqoE8cqijchgpNSJVmc9A4Wuz7
- 7t23syUx8bgqD/ejyK4DQCcIsy9umZIJxzWQ6fY=
-X-Google-Smtp-Source: ABdhPJx06GJf0uNXdHK0hV1kV7E3EB3lP7cZm8AGpW32QOLRs59xboebf3x/nyFEQ2aBF2yMp31BXwqxAfneygyRtqc=
-X-Received: by 2002:ac2:5197:: with SMTP id u23mr6547573lfi.109.1591400194132; 
- Fri, 05 Jun 2020 16:36:34 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=m38EV9J1yXYqu2AwJ8fwqk5tNNN0MqPz1wY4dsOkOls=;
+ b=LwopQLmeV/ja4tTrr3XHwdwWBfrSl51Tt066LfTYbx8+hRfp23Qi6LodQ5LNfGHF3d
+ 2E2jR479McpihFkpEF01lRhs33hAOIUgTTdRQX/dI4pDXq8E6T8MeZ2Xs8vPcGMwB1Jl
+ MeppkBSXzQrhz+abRZTBtzk56/6PLr58SFz02f+IJ7xUM23RBjCm/x7jRDQn2yckbkAN
+ skLo+qmozDzhEnQhWWfNcL4tFPydO9LbgTfbFdezhoF+5erAsS5I15gKtE0QYuxeQjvo
+ 0DgObxCq4jmKMtXBOMhU+Sxa879YN+n+IGmTZwIe5EB5t51NXWmJ26Lwitg/lJ04jCGC
+ fe5A==
+X-Gm-Message-State: AOAM530j+VmnApO4q6v1VasLjxTmig4QhdQRnbapb6U/Z05sFMKiZ9gi
+ iG0NhJ0EFyF7JgFXv46mISWinBhQZ4Y=
+X-Google-Smtp-Source: ABdhPJyZzR7Pwbe5Jlqj2RfdUDStbT1exWRUiS4uDbgDwGJM6p5OoOU8SamOsWum0pML1jiT03ZZiw==
+X-Received: by 2002:ad4:57a1:: with SMTP id g1mr11964865qvx.174.1591411110863; 
+ Fri, 05 Jun 2020 19:38:30 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
+ [174.95.14.109])
+ by smtp.googlemail.com with ESMTPSA id t75sm1466044qke.35.2020.06.05.19.38.30
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 05 Jun 2020 19:38:30 -0700 (PDT)
+Message-ID: <5EDB01A5.9050306@gmail.com>
+Date: Fri, 05 Jun 2020 22:38:29 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <CAGsYvigK0JxvLpC38m-tdf6YPS1uPYaBO0wBAUYbbW+ES2c2-A@mail.gmail.com>
- <CADBWrHiABtNSRkDPXEuZ0fXpxDMgbqMpN-Y9jp58WOmWDZ_5mQ@mail.gmail.com>
- <CAGsYviiETbFZ4toeTO8Eox+kC4svHD9POv8foe7K0UdLS6Yt2A@mail.gmail.com>
- <5EC9D983.6000708@gmail.com>
-In-Reply-To: <5EC9D983.6000708@gmail.com>
-Date: Fri, 5 Jun 2020 18:36:21 -0500
-Message-ID: <CA+K5gzcDTn=8JAEeAq-CjBDf22z4R7vf3Gj=AbD8TK5GaOF=XA@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Subject: Re: [USRP-users] Rounded FFT on USRP N210
+To: Sidd Subramanyam <siddsubra@gmail.com>
+References: <985418C5-CF43-4F69-A441-6233A1D0ACBB@gmail.com>
+In-Reply-To: <985418C5-CF43-4F69-A441-6233A1D0ACBB@gmail.com>
+Subject: Re: [USRP-users] Clock Bias from board mounted GPSDO
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,10 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Robert McGwier via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Robert McGwier <rwmcgwier@gmail.com>
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============0938249103618492256=="
+Content-Type: multipart/mixed; boundary="===============3217073043359491471=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,115 +83,160 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0938249103618492256==
-Content-Type: multipart/alternative; boundary="0000000000004450b805a75ebb3c"
+This is a multi-part message in MIME format.
+--===============3217073043359491471==
+Content-Type: multipart/alternative;
+ boundary="------------040106030804010704090506"
 
---0000000000004450b805a75ebb3c
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------040106030804010704090506
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-And the halfband filter responses can easily be shaped to compensate for
-the droop of the pure CIC.
-
-Bob
-
-
-On Sat, May 23, 2020, 9:19 PM Marcus D. Leech via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> On 05/23/2020 08:36 PM, Manav Kohli via USRP-users wrote:
-> > Dear Sam,
-> >
-> > Your shot in the dark hit the bullseye. At 25 MHz, this problem goes
-> > away entirely. Will have to work around the limitation at 20 MHz BW in
-> > the future.
-> >
-> > Thank you very much!
-> > Manav
-> >
-> Here's a good article on CIC filter design in both interpolators and
-> decimators.
+On 06/05/2020 04:35 PM, Sidd Subramanyam wrote:
+> ﻿ By clock bias I am referring to the difference between true GPS time 
+> and the USRP time.
 >
-> https://www.dsprelated.com/showarticle/1337.php
+> For example, in my application I am running 2 Separate B210 USRPs each 
+> side by side with a split signal coming from a single S band antenna. 
+> However, they are both disciplined using separate GPSDOs with separate 
+> antennas to simulate being 2 independent devices. They are being 
+> synchronized as described in method 2 in this article 
+> (https://files.ettus.com/manual/page_sync.html) and then the data 
+> collection is being commanded to start at the same GPS time for both 
+> devices.
 >
-> The basic issue is that all CIC filters require some compensation after
-> the filter.  But FPGA real-estate being what it is, the post-compensation
->    filters in the N210/N200 are all decimate-by-two FIR filters. Which
-> means they don't get switched "in circuit" for odd decimation factors.
->    A sample-rate of 20Msps with a 100Msps sample clock means decimation
-> by 5, which means you're just getting the CIC decimator response
->    without the compensating decimate-by-two effect of the FIR half-band
-> filter.
+> My goal is to try to create as phase coherent of an operation as 
+> possible between the 2 USRPs.
+> When I cross correlate the 2 split S band signals to calculate 
+> difference in phase between the 2 signals, there is a significant 
+> drift over time. This phase difference converted is about 300 
+> nanoseconds over the course of 1 second (300 PPB).Because of this, I 
+> wished to see if I could use the calculated clock bias that I 
+> described above to compensate for this drift in phase.
 >
+> However, now that you have mentioned that I should in fact be getting 
+> 1 PPB accuracy when synchronized to GPS time, I am questioning if I am 
+> doing the time synchronization process wrong altogether Since I seem 
+> to be getting drift around 300 PB after following the instructions in 
+> the link above.
 >
+> Sidd
 >
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+It would be useful to see the parts of your source-code that set up your 
+devices--including clock synch, etc.
 
---0000000000004450b805a75ebb3c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Further, I'll note that two randomly chosen GPSDO units, even connected 
+to the same antenna, will be producing a 1PPS pulse up to several
+   (possibly 10s) of nanoseconds different from one another--which is 
+the typical spec on the 1PPS pulse.
 
-<div dir=3D"auto">And the halfband filter responses can easily be shaped to=
- compensate for the droop of the pure CIC.<div dir=3D"auto"><br></div><div =
-dir=3D"auto">Bob</div><div dir=3D"auto"><br></div></div><br><div class=3D"g=
-mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, May 23, 2020, 9:1=
-9 PM Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.=
-ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex">On 05/23/2020 08:36 PM, Manav Kohli via USRP-users wrote:=
-<br>
-&gt; Dear Sam,<br>
-&gt;<br>
-&gt; Your shot in the dark hit the bullseye. At 25 MHz, this problem goes <=
-br>
-&gt; away entirely. Will have to work around the limitation at 20 MHz BW in=
- <br>
-&gt; the future.<br>
-&gt;<br>
-&gt; Thank you very much!<br>
-&gt; Manav<br>
-&gt;<br>
-Here&#39;s a good article on CIC filter design in both interpolators and <b=
-r>
-decimators.<br>
-<br>
-<a href=3D"https://www.dsprelated.com/showarticle/1337.php" rel=3D"noreferr=
-er noreferrer" target=3D"_blank">https://www.dsprelated.com/showarticle/133=
-7.php</a><br>
-<br>
-The basic issue is that all CIC filters require some compensation after <br=
->
-the filter.=C2=A0 But FPGA real-estate being what it is, the post-compensat=
-ion<br>
-=C2=A0 =C2=A0filters in the N210/N200 are all decimate-by-two FIR filters. =
-Which <br>
-means they don&#39;t get switched &quot;in circuit&quot; for odd decimation=
- factors.<br>
-=C2=A0 =C2=A0A sample-rate of 20Msps with a 100Msps sample clock means deci=
-mation <br>
-by 5, which means you&#39;re just getting the CIC decimator response<br>
-=C2=A0 =C2=A0without the compensating decimate-by-two effect of the FIR hal=
-f-band <br>
-filter.<br>
-<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
-ferrer">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000004450b805a75ebb3c--
+In *addition* to this, two (or more) GPSDOs will not produce a 10MHz 
+output that precisely track each other, even when connected to the
+   same antenna.  Their long-term behavior is good, but short-term, they 
+can disagree with one another, in my experience, so building a
+   perfectly-coherent system from two separate GPSDO units doesn't work 
+nearly as well as you might hope, particularly not a lower-cost
+   unit such as is used in the B2xx (where "lower cost" is kind of a 
+relative term--the high-end GPSDOs that use a local Rb oscillator are
+   considerably pricey, but not easily packaged into something like the 
+USRP B210).
 
 
---===============0938249103618492256==
+
+--------------040106030804010704090506
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 06/05/2020 04:35 PM, Sidd
+      Subramanyam wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:985418C5-CF43-4F69-A441-6233A1D0ACBB@gmail.com"
+      type="cite">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <div dir="ltr">
+        <div dir="ltr">
+          <meta http-equiv="content-type" content="text/html;
+            charset=utf-8">
+          <div dir="ltr">﻿
+            <meta http-equiv="content-type" content="text/html;
+              charset=utf-8">
+            By clock bias I am referring to the difference between true
+            GPS time and the USRP time.</div>
+          <div dir="ltr"><br>
+            <div>For example, in my application I am running 2 Separate
+              B210 USRPs each side by side with a split signal coming
+              from a single S band antenna. However, they are both
+              disciplined using separate GPSDOs with separate antennas
+              to simulate being 2 independent devices. They are being
+              synchronized as described in method 2 in this article (<a
+                moz-do-not-send="true"
+                href="https://files.ettus.com/manual/page_sync.html">https://files.ettus.com/manual/page_sync.html</a>)
+              and then the data collection is being commanded to start
+              at the same GPS time for both devices. </div>
+            <div><br>
+            </div>
+            <div>My goal is to try to create as phase coherent of an
+              operation as possible between the 2 USRPs.</div>
+            <div>When I cross correlate the 2 split S band signals to
+              calculate difference in phase between the 2 signals, there
+              is a significant drift over time. This phase difference
+              converted is about 300 nanoseconds over the course of 1
+              second (300 PPB).Because of this, I wished to see if I
+              could use the calculated clock bias that I described above
+              to compensate for this drift in phase. </div>
+            <div><br>
+            </div>
+            <div>However, now that you have mentioned that I should in
+              fact be getting 1 PPB accuracy when synchronized to GPS
+              time, I am questioning if I am doing the time
+              synchronization process wrong altogether Since I seem to
+              be getting drift around 300 PB after following the
+              instructions in the link above.</div>
+            <div><br>
+            </div>
+            <div>Sidd</div>
+            <div> </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    It would be useful to see the parts of your source-code that set up
+    your devices--including clock synch, etc.<br>
+    <br>
+    Further, I'll note that two randomly chosen GPSDO units, even
+    connected to the same antenna, will be producing a 1PPS pulse up to
+    several<br>
+      (possibly 10s) of nanoseconds different from one another--which is
+    the typical spec on the 1PPS pulse.<br>
+    <br>
+    In *addition* to this, two (or more) GPSDOs will not produce a 10MHz
+    output that precisely track each other, even when connected to the<br>
+      same antenna.  Their long-term behavior is good, but short-term,
+    they can disagree with one another, in my experience, so building a<br>
+      perfectly-coherent system from two separate GPSDO units doesn't
+    work nearly as well as you might hope, particularly not a lower-cost<br>
+      unit such as is used in the B2xx (where "lower cost" is kind of a
+    relative term--the high-end GPSDOs that use a local Rb oscillator
+    are<br>
+      considerably pricey, but not easily packaged into something like
+    the USRP B210).<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------040106030804010704090506--
+
+
+--===============3217073043359491471==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -196,5 +247,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0938249103618492256==--
+--===============3217073043359491471==--
 
