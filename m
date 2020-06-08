@@ -2,52 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7F291F20BC
-	for <lists+usrp-users@lfdr.de>; Mon,  8 Jun 2020 22:35:04 +0200 (CEST)
-Received: from [::1] (port=43462 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDB9E1F20F3
+	for <lists+usrp-users@lfdr.de>; Mon,  8 Jun 2020 22:45:24 +0200 (CEST)
+Received: from [::1] (port=49798 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jiOU2-0005tF-BM; Mon, 08 Jun 2020 16:35:02 -0400
-Received: from mail-qt1-f170.google.com ([209.85.160.170]:37146)
+	id 1jiOe1-0007io-KP; Mon, 08 Jun 2020 16:45:21 -0400
+Received: from mail-qk1-f174.google.com ([209.85.222.174]:43418)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jiOTx-0005nx-JO
- for usrp-users@lists.ettus.com; Mon, 08 Jun 2020 16:34:57 -0400
-Received: by mail-qt1-f170.google.com with SMTP id d27so15858279qtg.4
- for <usrp-users@lists.ettus.com>; Mon, 08 Jun 2020 13:34:37 -0700 (PDT)
+ id 1jiOdx-0007Sa-Av
+ for usrp-users@lists.ettus.com; Mon, 08 Jun 2020 16:45:17 -0400
+Received: by mail-qk1-f174.google.com with SMTP id v79so18671668qkb.10
+ for <usrp-users@lists.ettus.com>; Mon, 08 Jun 2020 13:44:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:cc:subject
  :references:in-reply-to;
- bh=vS0muD+B3kDaoaEdJYN2mU4e0SN9W8p3dREe2Beb6c4=;
- b=k/c/vLA7Noh/qW9ORf7FONyj6ulSxYzUZTOIkegZY9M+VC9hYdbLCMusQ9HAWPzcXx
- 0g/OztWneLnjP2KE8lsiiBCuldJ7hKOYR7I+ZEyP95Tluj5mjPyzYiVV3mNaxU/NMbdT
- CTH2dpNfBp0QLa3XXAZjPxwuJ37u7x1TM0+JkrDuS8H7tTLrk37ZMEqSs/BP3ap/zu0u
- 85IlBypCqENsaea691ymZCqv8EEl/NMkOAKhpsQBxnapF/pwZfir192sY9j8ge+WjLf0
- aPnxzXGi6rviJTGSA9QAALYEXvl92G455+LTRal4ai6IJ0+4XGnagVYv2zwwadEIu64H
- xriw==
+ bh=6TAaAb/t5S496jyWcyHkYH75DJa+g0qKqli6DcU2wQc=;
+ b=W3gCOmiDpwXbOPnIBYeeQ9Qfw48lcgH3R2rUlkEcu5+Kkk9Rc9cyrMJNs6eri4SmKv
+ puAoUxs1X120aytt3xE7lMjYCsL+m4ddUh8Q7mKSoGtWBsJgIbc92pLRPrY7Qlpkln7U
+ gdx/ByjPP1RC/zfMwHmL/JQWPZeIc1m3EoesbTdCuG7BC+udqT3wYM5d8MIB6k2H4MWo
+ eY5mulSnLMu0GPS5p61y0k+qsJZn9SmgaJDSehAKgJxcFq+SwVEg8O5Hrl0BdpLMwhLF
+ w85e58gEHfIW07mkrRnPgeneQlIHmTDXuBT09HiXvt+fynTg7XjZp63seJ9b6jotambs
+ 0N4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :cc:subject:references:in-reply-to;
- bh=vS0muD+B3kDaoaEdJYN2mU4e0SN9W8p3dREe2Beb6c4=;
- b=RyOYwIBiKPPnS/ykMAO2zEVvQOKjR+8eBTPSsWLKBBqOVJtgEOgdTKhQrS12f70uPD
- mrgxNGuAav1zLBy0KCKIsCsXEzsemkQYMFebIKvsSj3tEqd+qBeB/Y4UMdrWWn862Amz
- wVQgJQyQwh9SWTR9XW4ZSZIegTe5x4CAwCrR7T++AccklK6+Xp3kHg7TtL6cGtAgdtqu
- dGXIcU4VMW0E1u4bRs1k7/Kli6Nhom+jUgDN7iq/7jz2xdJu0awcy5VFOb6yIeNAbJYC
- Nx0VeeKNjSdKCZyvwojZFV7dISXgDqGLSGFmACvPx1pr83wDK4mYlAwZDQjQRKMUjDwK
- 6kZw==
-X-Gm-Message-State: AOAM531EBmAaVYml7GMtyxIV+8hd9F0SG29VGvKtmGomfVIsB6jRNDEb
- sCldZSfZa0sDanc2k/MVaZk7Db/FiQo=
-X-Google-Smtp-Source: ABdhPJwAcfhwI/gHJti3YYVWNvdfO4AP+o1FBpLAckQhWElTUiZUpG2pjt5Wv6Mj63XNNrmaFzKXhg==
-X-Received: by 2002:ac8:4c8d:: with SMTP id j13mr25957411qtv.38.1591648456884; 
- Mon, 08 Jun 2020 13:34:16 -0700 (PDT)
+ bh=6TAaAb/t5S496jyWcyHkYH75DJa+g0qKqli6DcU2wQc=;
+ b=BeRpBEYgnnL80sgLx/SMI5TJEKJAsJHBr+mFdzvB1sm4sShOEmylW9cztOUmGwqps7
+ HzAr5UVSZu9JjaWYaNotVDVzQRYXVwt+sE1rwKmqxBar2GjTLGVOPiFgGxYilL1Tu3IZ
+ XdKn+zvM2UW6C7mzmZrIqpbPAXAvzv9VqWuCkfUuHQXLXbn0SVBDseL8dp4oGHGBKDjV
+ tVAuWiWVRCDWzX4Myn/UiPdqmMapU8UKrSbWWHaPVtAbwbS9hmak7FLodDnFrsMqETXx
+ ORH0tAB8ZIjYkYHdGGqf/LKQhYfab0OZwRvOQuA/87F80buciBzsol9OxHkSTy8S8u0Y
+ NV2Q==
+X-Gm-Message-State: AOAM532m6J/O62KFAtXrlgvLDwsjWOn1igY3hIAlf2/Zvuh4KSSCNfie
+ lD6detI201QFwhHT/gDj1cHvpytBni0=
+X-Google-Smtp-Source: ABdhPJz2f5zpXjBSGRSIvzYlgMfAFD6KzeRHgeBXHrmxXHdWRH5wkYC6EoQGsReoGvWOh13MJwoxAA==
+X-Received: by 2002:a05:620a:142a:: with SMTP id
+ k10mr23823322qkj.182.1591649076601; 
+ Mon, 08 Jun 2020 13:44:36 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
  [174.95.14.109])
- by smtp.googlemail.com with ESMTPSA id v189sm7902798qkb.64.2020.06.08.13.34.15
+ by smtp.googlemail.com with ESMTPSA id k7sm2288284qth.10.2020.06.08.13.44.35
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 08 Jun 2020 13:34:16 -0700 (PDT)
-Message-ID: <5EDEA0C6.2060900@gmail.com>
-Date: Mon, 08 Jun 2020 16:34:14 -0400
+ Mon, 08 Jun 2020 13:44:36 -0700 (PDT)
+Message-ID: <5EDEA333.70303@gmail.com>
+Date: Mon, 08 Jun 2020 16:44:35 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
@@ -70,7 +71,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: usrp-users@lists.ettus.com
-Content-Type: multipart/mixed; boundary="===============6739922341888535342=="
+Content-Type: multipart/mixed; boundary="===============4772935013060938248=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,12 +86,12 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============6739922341888535342==
+--===============4772935013060938248==
 Content-Type: multipart/alternative;
- boundary="------------050200010308080004060207"
+ boundary="------------090909060005010209090505"
 
 This is a multi-part message in MIME format.
---------------050200010308080004060207
+--------------090909060005010209090505
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
@@ -104,6 +105,29 @@ On 06/08/2020 02:24 PM, Sidd Subramanyam wrote:
 > never triggers an overflow of dropped samples.
 >
 > -Sidd
+One thing to note is that with any pair of GPS/GPSDO units, the 1PPS 
+pulse will happen at slightly different times for each unit (The LC_XO
+   unit used in the B210 is specced to +/-50NS).  This will inevitably 
+result in a phase/time offset in the sample streams from each unit, which
+   you will need to resolve.  However, once this offset is calculated, 
+the streams SHOULD NOT drift with respect to one another.
+
+Now, a "robustly coherent" receiver system will ALWAYS use a shared LO 
+(best) or at least a shared 10MHz reference clock (2nd best). In your
+   case, you're not sharing the 10Mhz reference, but using independent 
+GPSDO units to provide a reference clock.  The effective mutual
+   phase noise between the two will be non-zero, and have components at 
+both low frequencies and high frequencies.
+
+You might want to stick a dual-trace scope on the 10MHz outputs on your 
+two units to see what the magnitude of the mutual phase-noise
+   between the two units is.
+
+The schematics are here:
+
+https://files.ettus.com/schematics/b200/b210.pdf
+
+
 >
 >>
 >> On Jun 7, 2020, at 4:36 AM, Marcus D. Leech <patchvonbraun@gmail.com> 
@@ -156,24 +180,9 @@ On 06/08/2020 02:24 PM, Sidd Subramanyam wrote:
 >>             std::cout << boost::format("XX %d Get Time of USRP %f\n") 
 >> % f % num_dropped_samps;
 >>         }
-Here is the documentation of the API related to tune requests:
-
-https://files.ettus.com/manual/structuhd_1_1tune__request__t.html
 
 
-In terms of what it *MEANS*, however, has to do with the way RF 
-synthesizers work.   There are a wide variety of articles "out there" on
-   both integer-N and fractional-N synthesis:
-
-https://www.analog.com/en/analog-dialogue/articles/pll-synthesizers.html#
-
-https://www.electronics-notes.com/articles/radio/frequency-synthesizer/pll-indirect-digital-fractional-n-synthesis.php
-
-http://www.ti.com/lit/an/swra029/swra029.pdf?ts=1591648395602&ref_url=https://www.google.com
-
-
-
---------------050200010308080004060207
+--------------090909060005010209090505
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -203,7 +212,40 @@ Content-Transfer-Encoding: 8bit
       <div dir="ltr"><br>
       </div>
       <div dir="ltr">-Sidd<br>
-        <br>
+      </div>
+    </blockquote>
+    One thing to note is that with any pair of GPS/GPSDO units, the 1PPS
+    pulse will happen at slightly different times for each unit (The
+    LC_XO<br>
+      unit used in the B210 is specced to +/-50NS).  This will
+    inevitably result in a phase/time offset in the sample streams from
+    each unit, which<br>
+      you will need to resolve.  However, once this offset is
+    calculated, the streams SHOULD NOT drift with respect to one
+    another.<br>
+    <br>
+    Now, a "robustly coherent" receiver system will ALWAYS use a shared
+    LO (best) or at least a shared 10MHz reference clock (2nd best). In
+    your<br>
+      case, you're not sharing the 10Mhz reference, but using
+    independent GPSDO units to provide a reference clock.  The effective
+    mutual<br>
+      phase noise between the two will be non-zero, and have components
+    at both low frequencies and high frequencies.<br>
+    <br>
+    You might want to stick a dual-trace scope on the 10MHz outputs on
+    your two units to see what the magnitude of the mutual phase-noise<br>
+      between the two units is.<br>
+    <br>
+    The schematics are here:<br>
+    <br>
+    <a class="moz-txt-link-freetext" href="https://files.ettus.com/schematics/b200/b210.pdf">https://files.ettus.com/schematics/b200/b210.pdf</a><br>
+    <br>
+    <br>
+    <blockquote
+      cite="mid:961567FA-9692-4C81-BC86-AC132BE4794E@gmail.com"
+      type="cite">
+      <div dir="ltr"><br>
         <div dir="ltr">
           <blockquote type="cite"><br>
             On Jun 7, 2020, at 4:36 AM, Marcus D. Leech
@@ -294,30 +336,14 @@ cite="mid:CADVsdEFd1QJO4vC=fPR7cXJC-WERK8QTYS_1OMsjWAubxe7UNw@mail.gmail.com"
         </blockquote>
       </div>
     </blockquote>
-    Here is the documentation of the API related to tune requests:<br>
-    <br>
-    <a class="moz-txt-link-freetext" href="https://files.ettus.com/manual/structuhd_1_1tune__request__t.html">https://files.ettus.com/manual/structuhd_1_1tune__request__t.html</a><br>
-    <br>
-    <br>
-    In terms of what it *MEANS*, however, has to do with the way RF
-    synthesizers work.   There are a wide variety of articles "out
-    there" on<br>
-      both integer-N and fractional-N synthesis:<br>
-    <br>
-<a class="moz-txt-link-freetext" href="https://www.analog.com/en/analog-dialogue/articles/pll-synthesizers.html#">https://www.analog.com/en/analog-dialogue/articles/pll-synthesizers.html#</a><br>
-    <br>
-<a class="moz-txt-link-freetext" href="https://www.electronics-notes.com/articles/radio/frequency-synthesizer/pll-indirect-digital-fractional-n-synthesis.php">https://www.electronics-notes.com/articles/radio/frequency-synthesizer/pll-indirect-digital-fractional-n-synthesis.php</a><br>
-    <br>
-<a class="moz-txt-link-freetext" href="http://www.ti.com/lit/an/swra029/swra029.pdf?ts=1591648395602&amp;ref_url=https://www.google.com">http://www.ti.com/lit/an/swra029/swra029.pdf?ts=1591648395602&amp;ref_url=https://www.google.com</a><br>
-    <br>
     <br>
   </body>
 </html>
 
---------------050200010308080004060207--
+--------------090909060005010209090505--
 
 
---===============6739922341888535342==
+--===============4772935013060938248==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -328,5 +354,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6739922341888535342==--
+--===============4772935013060938248==--
 
