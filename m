@@ -2,51 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE1C71F3D9E
-	for <lists+usrp-users@lfdr.de>; Tue,  9 Jun 2020 16:09:41 +0200 (CEST)
-Received: from [::1] (port=55340 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7EE21F3F88
+	for <lists+usrp-users@lfdr.de>; Tue,  9 Jun 2020 17:37:30 +0200 (CEST)
+Received: from [::1] (port=41048 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jiewc-0001G5-4F; Tue, 09 Jun 2020 10:09:38 -0400
-Received: from sonic305-2.consmr.mail.bf2.yahoo.com ([74.6.133.41]:45849)
+	id 1jigJb-0004x6-JL; Tue, 09 Jun 2020 11:37:27 -0400
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:34119)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <farhan_uet08@yahoo.com>)
- id 1jiewX-00010d-OL
- for usrp-users@lists.ettus.com; Tue, 09 Jun 2020 10:09:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1591711732; bh=rW7/lXWdoQt4VjlcJMyDLkfewSKpeOYaaJEVYVKiVhI=;
- h=Date:From:Reply-To:To:Subject:References:From:Subject;
- b=nWDOyEOruECl7+9541ijQ8LOAOD2YoxQ7uz5gJ3w3xGg7KdIkQsSYVFKNWQgggBs2yl4DT6lZsSHlM8kZRnfz/gkV96UdDONbzvzhc5U61w/T5mDbhE4sqsJe1/49lMmPDCUdHoY2PELr1rqI+j3CytrLTYIldaM+cpnBPI2szbqKGSTIZYltrovPkEm4PBCYQ6+sHw7s2jtt/7Ecio6UPIT6E8+ciRLaRmr8n6OMGtVmPGKZRPr+5LZnDGVFt/tP8ii9wDJrxUQyqcr/lIfoViy+qg33a/5rTBzHBFgZeAjUIe5K8mMTt3lYOq68/u5xCH3/qOagViwg49GvGfv+g==
-X-YMail-OSG: IN6eGa8VM1k3RvGqcKUtPdO_0SHs.4WdDaO.ZRTPmxIqnzLQCrjqyLU3nsIftkd
- r8AIRJQPrR9tb6JBDT0bu2lJugEwEnHuebN8ntJXLhvRn4MRKOR9uBfUC8kCxUBnNovSh7nqOX.t
- dKHHH0uiRnzq2YAThPrenHGg11AoEEgLhpjWDGUIB7tSCDeSx2C.q1_P57NUHHs1gEH3tZ7auYH9
- .zhQBKY3yOCl.dytTGO6cWykBE4JHEVQJHOp8KCUb99IoHmh95CrL3qUd_ylKkmKn62bdPgqkMn4
- 8HPTK1OdVzmlg9qGFDWx_VVewg5D50cW_8j4R4J5oGhj.CCwm87l135342ygSP5e7YTmg3oAbeRC
- k8WvkNhmXU_yldvjwhaXfRLMRaF_DpvP.eTbL0nBqWRgadLZ3DVMGBxxf5YD5olKXkmE3b7cKiEM
- kabokVssG6KkfTJtWjf09km4Q1kvY_M9WQT2jG37B_sfbGqWpU44ibQaddkGjGKBrQabkvnAnFxL
- VtbaixLZvHtc0Uw7X4KBbTu2UtR1yrIqxFmQmacg2iAMPpdr9eMtcYFbk2boMjQL4X0UpAiGxhbZ
- fnPqXJhHHJEN8MB6M_GGz1qqS58dcsNymi3zYlxlqtsW7bX66h12S3bUS.3WQKIB4xArdZeovK8q
- MQCJLO6PfqQHE4PqP6At6XlPVgS.DUXQPhclAgbWiSwemUcGbJNpnoA6O7kS4TRL3YVh_oU8p48R
- 1ylgv7j8OLKOv1BQYJ7q9265VLFonueWF.4r.PuR_erEaV4dkBfyXbYqKCsuvfhM0OUtKT4mnAaR
- jF5RxJDnc_NzUwfJK4tzelxGVulLCmaNmct092DB595L_ezaKUd5Z8qlGInBVzJ8h7Y.D8gEUnkp
- 5Gck2BZ8fwUTRTavBTrQTXHH7FcqSfywzVcDKXkDn.DxdtE4MC0R_x4WlGqMd70943Kd27tijSbj
- ECPE3a9UgwWAq6q7bIVv6q2_BvnZqEZzSS407mTAJs720ZMVhs2XD.VuLUucIGf.LCTHxAASacSI
- KzEMaiXU3MU3cQIg_DDlR2atxj4k4iFS.4CQsK.fpCXYrlAKJTqWwsSdajfR8oj8EDgMe9.QPZFx
- Rw05V0dDDKgoAhM0kqAK.tp7JD2jPmFQE4v18EHwupVdl.LRPizGTrDq.nZTNu6SYrRzJ1pPOFg7
- H0ZxIBxyqcztcImOIBvdXD9NIIKadcjziLkjbJlLid_NDVWMIKH18CIeuRldGDl0o.4iw1V3_Wg2
- v6DdIikU4qB6mjUjaUAot1LqWUzRD4xhbg32wYh3xaXlfD51nHSbmBrtHn4odJP5OrcZCIKfGpnv
- FHOGpVVgzHK6WNSVQTQ3MFsQCMO1y9i_02m36GG5OPKVwcyhaJ1Ksylbao6jeTPkWkykgGl4H
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic305.consmr.mail.bf2.yahoo.com with HTTP; Tue, 9 Jun 2020 14:08:52 +0000
-Date: Tue, 9 Jun 2020 14:08:48 +0000 (UTC)
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID: <1782458469.1080360.1591711728131@mail.yahoo.com>
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jigJX-0004qS-6U
+ for usrp-users@lists.ettus.com; Tue, 09 Jun 2020 11:37:23 -0400
+Received: by mail-qk1-f196.google.com with SMTP id f18so21228445qkh.1
+ for <usrp-users@lists.ettus.com>; Tue, 09 Jun 2020 08:37:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=V8AdEtMdQZRVZDf6d59L8N2E9Ryh6/ofbS3lZ7GNLsA=;
+ b=ZXYeOdiGKaGvtGy6j5Bi/9e5UgcewXBrlD0rNV4OOM23m5fhmnregdaSZMcBqJBpKD
+ kBfYlzqZDpZdJqlwiW3kN+DHBZo7rnVUF4FWJ/1k+708g6Exrl25dCRqxKMZtoJ2nbhI
+ mEUlyqnzsS6GFuppmQ9wFEWibESBWpoqEqI9O660ISByQ/e6oc4QsuNr5wRogZoAkNQ0
+ 697nmozbSFwqBdLUjANrLME3XXLb2l3H1IE3sb3wmGhca3zCzBy0D7IU2EjH20Wuk5ui
+ Ll1YNn1Xez7RtxbQnuMaTLfQ/uO0uF0/OLPRsY2XGZPEvo84KwnGLmXcRTb+Inm3Sstx
+ 58Ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=V8AdEtMdQZRVZDf6d59L8N2E9Ryh6/ofbS3lZ7GNLsA=;
+ b=d9u89XXOi+CCnV7TaskOTZk/DIyepmjvhddXGKhrQZDhUU1QuHrWpba4wDR8kUbVlV
+ ONaHGSNDI0rqUpCDahdoE2kzqd5COewq2LSq6qfpSnjnq/6qAarwvt812vcBeom0E/N2
+ 6Mlgg4gTcsD5MSy2nGIVJlOCwcv8FfoWu5SAA7ExgNDvhVT07p6xyQ/r8YuBOC8WU5dk
+ GoXTusY684a2J38cWtrv+KdKB6Y4iS8z+ZJRJxeYuKFHiwybPA0yC52r1uQGlAY05KQI
+ F8gD4as4ldtiRl+u4JGCmTDZC8WB4u2Y6haUeW5+LzX3s5VJor4HOCQT9ENkBMnSES1h
+ MYPg==
+X-Gm-Message-State: AOAM531YvkNivQx4ApuJ18PVEu/IPO+d69Gf2uJQCrTmQewuqoHUdykH
+ GLf4Rji7FSRrjXH9YwwGDTnO7IyJWMc=
+X-Google-Smtp-Source: ABdhPJypxsmB5OivW4/i8ZZ5l+f3DN4td/IN8+Xt1jRrp4SttGLWa319RQuxi73xusxffpYKFd1gYg==
+X-Received: by 2002:a37:9cd5:: with SMTP id
+ f204mr28987306qke.346.1591717002337; 
+ Tue, 09 Jun 2020 08:36:42 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
+ [174.95.14.109]) by smtp.googlemail.com with ESMTPSA id
+ l188sm9461145qke.127.2020.06.09.08.36.41
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 09 Jun 2020 08:36:41 -0700 (PDT)
+Message-ID: <5EDFAC88.3060508@gmail.com>
+Date: Tue, 09 Jun 2020 11:36:40 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
 References: <1782458469.1080360.1591711728131.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.16072 YahooMailAndroidMobile YMobile/1.0
- (com.yahoo.mobile.client.android.mail/6.8.2; Android/7.0; NRD90M; dream2qltesq;
- samsung; SM-G955U; 5.98; 2094x1080; )
-Subject: [USRP-users] Help Required B210 GNU Radio
+ <1782458469.1080360.1591711728131@mail.yahoo.com>
+In-Reply-To: <1782458469.1080360.1591711728131@mail.yahoo.com>
+Subject: Re: [USRP-users] Help Required B210 GNU Radio
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -58,9 +69,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Farhan Naeem via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: "farhan_uet08@yahoo.com" <farhan_uet08@yahoo.com>
-Content-Type: multipart/mixed; boundary="===============4408774748532854551=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,38 +86,35 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4408774748532854551==
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_1080359_1566253816.1591711728129"
-Content-Length: 1248
+On 06/09/2020 10:08 AM, Farhan Naeem via USRP-users wrote:
+> Hello,
+>
+> I have USRP B210 board. I am trying to find tutorials or getting 
+> started guide to use it with GNU radio but coupd not find one.
+>
+> Can any one share gnu radio examples for this particular board and 
+> relevant documentation regarding Ettus GNU radio plugin. Thanks.
+>
+>
+> -Farhan
+>
+99% of Gnu Radio is completely independent of the hardware that you use.
 
-------=_Part_1080359_1566253816.1591711728129
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+The base of the Gnu Radio documentation tree is here:
 
-Hello,
-I have USRP B210 board. I am trying to find tutorials or getting started guide to use it with GNU radio but coupd not find one.
-Can any one share gnu radio examples for this particular board and relevant documentation regarding Ettus GNU radio plugin. Thanks.
+https://www.gnuradio.org/docs/
 
--Farhan
-------=_Part_1080359_1566253816.1591711728129
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+And the Wiki here:
 
-Hello,<div id="yMail_cursorElementTracker_1591711515104"><br></div><div id="yMail_cursorElementTracker_1591711515409">I have USRP B210 board. I am trying to find tutorials or getting started guide to use it with GNU radio but coupd not find one.</div><div id="yMail_cursorElementTracker_1591711575535"><br></div><div id="yMail_cursorElementTracker_1591711575820">Can any one share gnu radio examples for this particular board and relevant documentation regarding Ettus GNU radio plugin. Thanks.</div><div id="yMail_cursorElementTracker_1591711677279"><br></div><div id="yMail_cursorElementTracker_1591711677477"><br></div><div id="yMail_cursorElementTracker_1591711677594">-Farhan</div>
-------=_Part_1080359_1566253816.1591711728129--
+https://wiki.gnuradio.org/index.php/Main_Page
+
+The Ettus USRP documentation is here:
+
+https://kb.ettus.com/Knowledge_Base
 
 
---===============4408774748532854551==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4408774748532854551==--
-
