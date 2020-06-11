@@ -2,60 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B8C01F5EAE
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2020 01:26:53 +0200 (CEST)
-Received: from [::1] (port=34650 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E7A1F5F5A
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2020 03:00:54 +0200 (CEST)
+Received: from [::1] (port=50612 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjA7O-0004jq-9p; Wed, 10 Jun 2020 19:26:50 -0400
-Received: from mail-qt1-f178.google.com ([209.85.160.178]:40653)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jjA7K-0004eO-8M
- for usrp-users@lists.ettus.com; Wed, 10 Jun 2020 19:26:46 -0400
-Received: by mail-qt1-f178.google.com with SMTP id i16so3257451qtr.7
- for <usrp-users@lists.ettus.com>; Wed, 10 Jun 2020 16:26:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=jPw3LQre7Ew2EeFIlF2Iex17CYHfeJugPW936qmYFEk=;
- b=taR1hpPbfyG8+dZQBxGWdPbsMzHZWslWdc8kIamKoS9Qyb3PPAinQzN2tynXiL/RC/
- zREtaik3An6xEgYo9LYmFymLRh2JlI7vXXnkQIsg0cu+NgtMf1wP9+/Uv3SAurOWcIOQ
- phNw5u5apxTKugwqIRa9qIn58gPBoBVpv6+YjpBk3tRxm8vk31J0fG+BZHWOvFq1s7V7
- O/WasjbCdZzIL2iaHWM7vNxNXpFxegmYnQdigdwOA24oPtLFq4MI7yO0tO/gh1i7TqFu
- XJCj/9huvAf6/X0mTyKReoOaiwhyeflXELowOkXsIoZ71rIZY+Z2okckW8u08Fh0ihRi
- Esrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=jPw3LQre7Ew2EeFIlF2Iex17CYHfeJugPW936qmYFEk=;
- b=LANrVogBCaClZKPD3yomoB0ATyWgG2hYc753e/T4Cl2WP/lH9D6MxmCrMMZFTrKeu7
- pY+PyOaiuDJ0VXMOG84PpWbKJdQRh99gQtPbZDmcZjbghO9Rwl8rRRFa2v8ykx7Tf0IM
- n6dN20nBQxYkXD/Wg/PjLvDYbqbCQ3uNgd0LI5KWbrMvLeSCX7FsmZbQjtP2AKkBNeuo
- /w8f2apC2Y0bfnJlEvgmRD1m1uBva65LChHDak7vlPT5XYQDZQcEU9h7UtoC219AX21T
- 3+0mKfLtQ1fxXlEE1uEfKlzJpn0jjkEelXj6ZDLNPCJVCYyXQ5qKrH0bQax9w0Lp2gzR
- XtKw==
-X-Gm-Message-State: AOAM533S2CMYyjXU8t/2euIYMaBHUkUQi8PbCspE/h3pFu4zHZIyE1Ur
- 5iAGv5s00rpidQrY6DfCd4Nnh1V+KQA=
-X-Google-Smtp-Source: ABdhPJw6fy+D1jS4tPUqwWJs6lY/sbHDb7nB/TCCKAgmOLVIfqpGU5VUN/RWttMJDFJZC6tMUyt5Ew==
-X-Received: by 2002:aed:3ec4:: with SMTP id o4mr6075391qtf.357.1591831565485; 
- Wed, 10 Jun 2020 16:26:05 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
- [174.95.14.109])
- by smtp.googlemail.com with ESMTPSA id m53sm1175838qtb.64.2020.06.10.16.26.04
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 10 Jun 2020 16:26:04 -0700 (PDT)
-Message-ID: <5EE16C0C.3090001@gmail.com>
-Date: Wed, 10 Jun 2020 19:26:04 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1jjBaN-0005q8-Kp; Wed, 10 Jun 2020 21:00:51 -0400
+Received: from mout.gmx.net ([212.227.17.22]:57179)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jjBaI-0005mV-QO
+ for usrp-users@lists.ettus.com; Wed, 10 Jun 2020 21:00:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1591837205;
+ bh=lYKmDGSUeHkALjVEKdF8JCO469oms5tRw9aQzq5gxEM=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=KF4yxWRuK58DGHnnUfV2HOUbITqWAuoHzKchm9awvI2uvK3IOdz1eoDgjXzCo6dyU
+ mftTbkSvET3Rrl9FEIQFqxN6UZiq3oJgaByPxtAxQ/KWN04dxT4QvJFmEk7p3WGJtq
+ +Y4hDFC90ejhBr1sjfsOz7IudFBpEWIAGhCMvdd4=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [87.101.54.176] ([87.101.54.176]) by web-mail.gmx.net
+ (3c-app-gmx-bap13.server.lan [172.19.172.83]) (via HTTP); Thu, 11 Jun 2020
+ 03:00:05 +0200
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
+Message-ID: <trinity-087eaba7-195a-4add-b435-4f9d5b3b1e85-1591837205629@3c-app-gmx-bap13>
+To: Nick Foster <bistromath@gmail.com>
+Cc: "USRP-userslists.ettus.com" <usrp-users@lists.ettus.com>
+Date: Thu, 11 Jun 2020 03:00:05 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <CA+JMMq-WJu=uK8jetzZXQvkzMnxQPSf2SJ0p21iS+cNm8Zifhw@mail.gmail.com>
 References: <trinity-ba8bb5a5-c5df-431b-8626-79fdb3b336d3-1591770642546@3c-app-gmx-bs66>
  <trinity-1b562fcc-3001-478f-a2ee-e4b4809b2fa6-1591821996530@3c-app-gmx-bap09>
-In-Reply-To: <trinity-1b562fcc-3001-478f-a2ee-e4b4809b2fa6-1591821996530@3c-app-gmx-bap09>
+ <CA+JMMq-WJu=uK8jetzZXQvkzMnxQPSf2SJ0p21iS+cNm8Zifhw@mail.gmail.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:ITwF9cMyPGyjIIAz0y1uP6tITefiWLyE9IVTjFkSl2w1oKvHsrp9GkOLFyrkTQCXrtTYz
+ KQYG5C+kJlQNMZcAH9DkdONoD41uSWXABLrEWDuf+KJuYJ1Fc20njIfM1Jktr3DIXVg+TX9KyGJD
+ xoxCh3yf01toyDxPJ68FasG2s6Cdmfn3iCLZ4UMYH19p3LcOfKMcQcMehv3lFg6+wh/7C965T7gI
+ 5rg9G6/x91FWJZVY4TRFMoarBt7MO7L9IMJlVLTiC0c+sUG2U8lj3fn4hfYnqPXAtrQnofK0LM+K
+ CE=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:JrmpFgUHdTA=:cMVW+OK+gRBi9D92iD+gq9
+ GGMIqWqMrteUNcYGTc6b0PsaO/qH2qJUI0wjLfW+ZpYfikJnRJ9e72bwj1oZbZ71fMkVS524d
+ O+byJ+Dj5c4lTd0Vq7eR0JaTrXteDepjVw26nElKsiQ6h5/8fYO/IPIWJHNzhQRCdILdzkViX
+ 96AWti71OwiJXItno1ZIMBKoyH5vm5ybce4GRhFroc32TnfoAYjLNiGYzXy/70cYvoW/elgum
+ T9B9kA7GKmpAxOUacHlWszU5uN4GZdeB1d2FwTnIMHQKkNrhpCTBt+GzEAA0CicCeiXSKzMcx
+ Ck60ftGWLbeknxEbZ5+BbdSmf/osQJIk/Jgjj+oawpFtO1y01Do4r8wan/URX5+PcmIaSTZJt
+ MhN2HZQ4ei2QTqowYLGRpdaKc1oLnXZc9Q4dEXVBInSae2Ah/cAy6aRwbrouubFbKf1ADl0+n
+ Ne6QOhRIW5lhjDmwHL/3wBMBn4PI2F4zF7ZPTvytnJ0rSuqtZ0Lzlk3jIuYmLF+LsKOlfxgz/
+ RqAFCmIWN+ChGTahUkZ7w5y0RgJQs33w7KUX/kSaS2nRrSA/hrptStXyK+TCNv+M5le993m6o
+ Qc3R7IZebTwGMxkvkvu5XtmxycwzR1hkHd/0A8TwQGphQ5VyFMrmOslfoighV/5WgpwSJkVA5
+ hnx/ZeQJ8e83HaFgwnwHlORaemBOZrwZ0KB6UXpQ7ThrJBW+361EY64InLWTVcqHfAKo=
 Subject: Re: [USRP-users] How to debug timed commands on FPGA side?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -68,10 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,22 +82,112 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 06/10/2020 04:46 PM, Lukas Haase via USRP-users wrote:
-> Just some additional info: I enabled the maximum possible debug on the host (UHD_LOG_CONSOLE_LEVEL=trace and debug_level = debug in .gnuradio/config.conf) and sent both versions to a file.
-> Again, the diff is identical!
-> (This debug contains the debug messages from gr-uhd but uhd itself does not seem to generate any debug/trace messages for timed commands).
-You are free to add trace/debug messages in your local code-base, using 
-the existing trace/debug framework within UHD to add more debug/trace
-   info to the code base.   It's nearly impossible for the devs of a 
-code-base like this to anticipate all the debugging needs of the 
-"clients" of
-   the API, so the beauty of an open-source codebase like this is that 
-trace/debug can be added fairly easily for situations that don't currently
-   support the debugging of a specific class of problem.
-
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+SGkgTmljaywKCkdvb2QgcG9pbnQgd2l0aCBXaXJlc2hhcmsgYW5kIGNvaW5jaWRlbnRpYWxseSBJ
+IHRyaWVkIGV4YWN0bHkgdGhhdCB0b2RheS4gQm90aCBjYXB0dXJlcyB3ZXJlIGZhaXJseSBpZGVu
+dGljYWwuIEJ1dCB3aGF0J3Mgd29yc2UsIHRoaW5ncyBzdGFydGVkIHRvIGJlY29tZSBtb3JlIHVu
+cmVwcm9kdWNpYmxlIChmb3IgZXhhbXBsZSwgZGVwZW5kaW5nIG9uIHdoaWNoIGJsb2NrcyBJIGFk
+ZCkuCgpBZ2Fpbiwgd2hhdCBub3Qgd29ya3MgaXMgdGhhdCB0aW1lZCBjb21tYW5kcyBzb21ldGlt
+ZXMgYXJlIG5vdCBleGVjdXRlZCB3aGVuIHRoZXkgYXJlIHN1cHBvc2VkIHRvIGJlLgpJIGV4ZWN1
+dGUgdGhlbSBwZXJpb2RpY2FsbHkgKGUuZy4gZXZlcnkgMTAwbXMsIDEwbXMsIDFtcyksIHRoZW4g
+Y2FwdHVyZSB0aGUgcmVzcG9uc2UgYW5kIHNsaWNlIHRoZW0gaW50byBlcXVhbCBibG9ja3MgaW4g
+TUFUTEFCLgpUaGUgYWN0aW9uIG9mIHRoZSB0aW1lZCBjb21tYW5kcyAoZm9yIGV4YW1wbGUsIHJl
+dHVuZSBvciBnYWluIGNoYW5nZSkgc2hvdWxkIGFsd2F5cyBoYXBwZW4gYXQgdGhlIHNhbWUgdGlt
+ZS4gSW5zdGVhZCBhIGZldyBvZiB0aGVtIChtYXliZSAzJSkgaGFwcGVuIHNvbWV0aW1lIGluIGJl
+dHdlZW4gYW5kIG1lc3MgdXAgdmVyeXRoaW5nLgoKSG93IHdvdWxkIG9uZSBnbyB0byBkZWJ1ZyB0
+aGlzIHdpdGhvdXQgaGF2aW5nIHRvIGFjcXVpcmUgZGVlcCBWZXJpbG9nIGtub3dsZWRnZT8KSSBh
+bSA5OS45OSUgcG9zaXRpdmUgdGhhdCB0aGUgdGltZWQgY29tbWFuZHMgSSBpc3N1ZSB2aWEgdHhf
+Y29tbWFuZCB0YWcgYXJlIGNvcnJlY3QuCgpBcmUgdGhlcmUgZGVmaW5pdGUgYW5zd2VycyB0byB0
+aGUgcXVlc3Rpb25zOgoKMS4pIEhvdyBtYW55IGNvbW1hbmRzIGRvIHRoZSBjb21tYW5kIHF1ZXVl
+cyBoYXZlIGV4YWN0bHkgb24gdGhlIFgzMTA/IChodHRwczovL2tiLmV0dHVzLmNvbS9TeW5jaHJv
+bml6aW5nX1VTUlBfRXZlbnRzX1VzaW5nX1RpbWVkX0NvbW1hbmRzX2luX1VIRCBzYXlzIDUtOCBi
+dXQgb3RoZXIgc291cmNlcyBzYXkgMTYgb3IgMzIpLgoyLikgV2hhdCBoYXBwZW5zIHdoZW4gdGhl
+IGNvbW1hbmQgcXVldWUgaXMgZnVsbD8gSXMgdGhlIGNvbW1hbmQgZHJvcHBlZCwgZG9lcyBVU1JQ
+IGNyYXNoIG9yIGFueXRoaW5nIGVsc2U/IChhYm92ZSBsaW5rIGlzIHVuY2xlYXIgYWJvdXQgdGhh
+dCkKICAgIENhbiB3ZSBjaGFuZ2UgdGhpcyBiZWhhdmlvcj8KMy4pIEhvdyBjYW4gd2UgZmlndXJl
+IG91dCB3aGF0IGlzIHRoZSBtYXhpbXVtIHNwZWVkIHRvIGlzc3VlIHRpbWVkIGNvbW1hbmRzIHJl
+bGlhYmx5PwogICAgV2hhdCBkb2VzIHRoaXMgZGVwZW5kIG9uIGFuZCB3aGljaCBwYXJhbWV0ZXJz
+IG5lZWQgdG8gYmUgdHdlYWtlZD8KCkZvciBleGFtcGxlLCB3aGF0IGlzIHRoZSBmYXN0ZXN0IHJh
+dGUgSSBjYW4gaXNzdWUgdGltZWQgY29tbWFuZHMgKGlnbm9yaW5nIHNldHRsaW5nIHRpbWVzIGV0
+Yykgb24gYSBYMzEwIG92ZXIgMTBHYmU/CgpJIGFtIHRoaW5raW5nIHRoYXQgbWF5YmUgSSBhbSBz
+ZW5kaW5nIHRpbWVkIGNvbW1hbmRzIHRvbyBmYXN0IHN1Y2ggdGhhdCB0aGUgY29tbWFuZCBxdWV1
+ZSBvdmVyZmxvd3MuCkhvd2V2ZXI6CmEuKSBIb3cgY2FuIGFuIG92ZXJmbG93aW5nIGNvbW1hbmQg
+cXVldWUgZXhwbGFpbiB0aGF0IHRpbWVkIGNvbW1hbmRzIG5vdCBiZWluZyBleGVjdXRlZCBvbiB0
+aW1lPwpiLikgSSBwbGF5ZWQgYXJvdW5kIHNldHRpbmcgc2VuZF9idWZmX3NpemUgdG8gZGlmZmVy
+ZW50IHZhbHVlcywgZG93biB0byBzZW5kX2J1ZmZfc2l6ZT0xMDI0MCAoMTBrQikuIElmIEkgdW5k
+ZXJzdGFuZCBjb3JyZWN0bHksIHRoYXQgbWVhbnMgdGhhdCB0aGUgVVNSUCBzaG91bGQgbmV2ZXIg
+cmVjZWl2ZSBtb3JlIHRoYW4gMTBrQiBkYXRhIGF0IG9uY2UgKG9uZSBjaHVuayBob2xkcyAxMDI0
+MC8oMTBlNioyKjIpPTI1NnVzIGF0IDEwTVMvcyB3aGljaCBtZWFucyB0aGUgaWYgZWFjaCBmcmFt
+ZSBoYXMgb25lIHRpbWVkIGNvbW1hbmQgdGhhdCBzaG91bGQgc3VwcG9ydCBzZW5kaW5nIGEgdGlt
+ZWQgY29tbWFuZCBldmVyeSAyNTZ1cykuIFVuZm9ydHVuYXRlbHkgbm90aGluZyBjaGFuZ2VzIGhl
+cmUuCgpVc2luZyB0eF9jb21tYW5kIHRhZyBpbiBVU1JQIFNvdXJjZSBzaG91bGQgZW5zdXJlIHRo
+YXQgdGhlIGNvbW1hbmRzIG5ldmVyIGFycml2ZSBsYXRlIG9uIHRoZSBGUEdBIChvdGhlcndpc2Ug
+dGhlIGRhdGEgd291bGQgYWxzbyBhcnJpdmUgbGF0ZSBhbmQgSSB3b3VsZCBnZXQgTExMTExMTCdz
+IGJ1dCBJIGRvbid0KS4KCkkgdGhvdWdodCB0aGUgbW9zdCBzdHJhaWdodCBmb3J3YXJkIHdvdWxk
+IGJlIHRvIGRlYnVnIHRoZSBGUEdBIGl0c2VsZiBidXQgdGhhdCBzZWVtcyB0byBvcGVuIG1vcmUg
+aXNzdWVzIHRoYXQgaXQgc29sdmVzLgoKVGhhbmtzLApMdWthcwoKwqAKCkdlc2VuZGV0OsKgTWl0
+dHdvY2gsIDEwLiBKdW5pIDIwMjAgdW0gMTk6MTggVWhyClZvbjrCoCJOaWNrIEZvc3RlciIgPGJp
+c3Ryb21hdGhAZ21haWwuY29tPgpBbjrCoCJMdWthcyBIYWFzZSIgPGx1a2FzaGFhc2VAZ214LmF0
+PgpCZXRyZWZmOsKgUmU6IFtVU1JQLXVzZXJzXSBIb3cgdG8gZGVidWcgdGltZWQgY29tbWFuZHMg
+b24gRlBHQSBzaWRlPwoKSSdkIHN0YXJ0IGJ5IHVzaW5nIFdpcmVzaGFyay4gVGhlcmUncyBhIGRp
+c3NlY3RvciBmb3IgQ0hEUiBwYWNrZXRzIGluY2x1ZGVkIGluIFVIRCAodWhkL3Rvb2xzL2Rpc3Nl
+Y3RvcnMpLiBXaXJlc2hhcmsgaGFzIGV4Y2VsbGVudCBmaWx0ZXJpbmcgYW5kIGFuYWx5c2lzIHRv
+b2xzLiBZb3Ugc2hvdWxkIGJlIGFibGUgdG8gc2VlIHlvdXIgQysrLXRpbWVzdGFtcGVkIHBhY2tl
+dCBnbyBvdXQsIGFuZCBjb21wYXJlIGl0IHRvIHRoZSBQeXRob24gZ2VuZXJhdGVkIHZlcnNpb24u
+IFRoaXMgd2lsbCB0YWtlIGEgY291cGxlIG9mIGhvdXJzIHRvIHNldCB1cCwgcnVuLCBhbmQgYW5h
+bHl6ZS4KwqAKRm9sbG93aW5nIHRoYXQsIGlmIHlvdSBzdGlsbCBjYW4ndCBmaW5kIGEgZGlmZmVy
+ZW5jZSwgcmVjb21waWxlIGFuIEZQR0EgaW1hZ2Ugd2hpY2ggaW5jbHVkZXMgYW4gSUxBIGNvcmUs
+IGhvb2tlZCB1cCB0byBzb21lIHJhZGlvIHNpZ25hbHMuIFRyeSB0byBhdm9pZCBoYXZpbmcgdG8g
+ZG8gdGhpcywgYmVjYXVzZSBpdCB3aWxsIHRha2UgYSBsb25nIHRpbWUsIGFuZCB5b3UnbGwgZ2V0
+IHZlcnkgZGVlcCBpbnRvIHRoZSByYWRpbyBjb3JlLiBPbiB0aGUgcGx1cyBzaWRlLCBhZnRlciBh
+IHdlZWsgb3Igc28gb2YgZGlnZ2luZywgeW91J2xsIGhhdmUgYSBtdWNoIGJldHRlciB1bmRlcnN0
+YW5kaW5nIG9mIGhvdyBSRk5vQyB3b3JrcyB1bmRlciB0aGUgaG9vZC4gPSkKwqAKTmlja8KgCgpP
+biBXZWQsIEp1biAxMCwgMjAyMCBhdCAxOjQ3IFBNIEx1a2FzIEhhYXNlIHZpYSBVU1JQLXVzZXJz
+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb21dPiB3cm90ZTpKdXN0IHNvbWUgYWRkaXRpb25hbCBpbmZvOiBJIGVuYWJsZWQgdGhlIG1h
+eGltdW0gcG9zc2libGUgZGVidWcgb24gdGhlIGhvc3QgKFVIRF9MT0dfQ09OU09MRV9MRVZFTD10
+cmFjZSBhbmQgZGVidWdfbGV2ZWwgPSBkZWJ1ZyBpbiAuZ251cmFkaW8vY29uZmlnLmNvbmYpIGFu
+ZCBzZW50IGJvdGggdmVyc2lvbnMgdG8gYSBmaWxlLgpBZ2FpbiwgdGhlIGRpZmYgaXMgaWRlbnRp
+Y2FsIQooVGhpcyBkZWJ1ZyBjb250YWlucyB0aGUgZGVidWcgbWVzc2FnZXMgZnJvbSBnci11aGQg
+YnV0IHVoZCBpdHNlbGYgZG9lcyBub3Qgc2VlbSB0byBnZW5lcmF0ZSBhbnkgZGVidWcvdHJhY2Ug
+bWVzc2FnZXMgZm9yIHRpbWVkIGNvbW1hbmRzKS4KCklzIHRoZXJlIGEgd2F5IHRvIHNvbWVob3cg
+cmVwb3J0IGJhY2sgdG8gdGhlIGhvc3Qgd2hlbiB0aGUgY29tbWFuZCBxdWV1ZSBvdmVyZmxvd3Mg
+b3IgYSB0aW1lZCBjb21tYW5kIGNvdWxkIG5vdCBiZSBwcm9jZXNzZWQgYXQgdGhlIHBsYW5uZWQg
+dGltZSAobGF0ZSBjb21tYW5kKT8KCkFjY29yZGluZyB0byBodHRwczovL2tiLmV0dHVzLmNvbS9T
+eW5jaHJvbml6aW5nX1VTUlBfRXZlbnRzX1VzaW5nX1RpbWVkX0NvbW1hbmRzX2luX1VIRFtodHRw
+czovL2tiLmV0dHVzLmNvbS9TeW5jaHJvbml6aW5nX1VTUlBfRXZlbnRzX1VzaW5nX1RpbWVkX0Nv
+bW1hbmRzX2luX1VIRF0gIkFuIG92ZXJmbG93IG9mIHRoZSBjb21tYW5kIHF1ZXVlIHdpbGwgcmVz
+dWx0IGluIGEgc3lzdGVtIGhhbHQgYW5kIG9mdGVuIHJlcXVpcmVzIGEgcGh5c2ljYWwgcmVzZXQg
+b2YgdGhlIEZQR0EuIi7CoCBUaGlzIGRvZXMgbm90IHNvdW5kIHNvbWV0aGluZyB0aGF0IHNob3Vs
+ZCBqdXN0IGJlIHNpbGVudGx5IGRyb3BwZWQhCgpUaGlzIHdvcmtzIGZvciBkYXRhIHN0cmVhbXMg
+c28gc2hvdWxkbid0IGl0IHdvcmsgZm9yIHRpbWVkIGNvbW1hbmRzIHRvbz8KClRoZSBVU1JQIGZl
+ZWxzIGxpa2UgYSBibGFjayBib3ggLi4uIGNvbW1hbmRzIGFyZSBiZWluZyBzZW50IGJ1dCBJIGhh
+dmUgbm8gaWRlYSB3aGF0IGhhcHBlbnMgaW5zaWRlIG9yIGlmIHRoZXkgYXJlIGV2ZW4gZXhlY3V0
+ZWQgKGV4Y2VwdCwgb2YgY291cnNlLCB0aGluZ3MgYXJlICJub3Qgd29ya2luZyIpCgoKPiBHZXNl
+bmRldDogTWl0dHdvY2gsIDEwLiBKdW5pIDIwMjAgdW0gMDI6MzAgVWhyCj4gVm9uOiAiTHVrYXMg
+SGFhc2UiIDxsdWthc2hhYXNlQGdteC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdPgo+IEFu
+OiAiVVNSUC11c2Vyc2xpc3RzLmV0dHVzLmNvbVtodHRwOi8vVVNSUC11c2Vyc2xpc3RzLmV0dHVz
+LmNvbV0iIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb21dPgo+IEJldHJlZmY6IEhvdyB0byBkZWJ1ZyB0aW1lZCBjb21tYW5kcyBvbiBG
+UEdBIHNpZGU/Cj4KPiBIZWxsbywKPgo+IElzIHRoZXJlIGFueSAoc29tZXdoYXQgc3RyYWlnaHQg
+Zm9yd2FyZCkgd2F5IHRvIGRlYnVnIHRpbWVkIGNvbW1hbmRzIG9uIHRoZSBGUEdBPwo+IEluIHBh
+cnRpY3VsYXIsIEkgd2FudCB0byBrbm93Ogo+IDEuKSBpZiBhbnkgdGltZWQgY29tbWFuZCBpcyBu
+b3QgZXhlY3V0ZWQgYXMgdGltZWQgY29tbWFuZCBidXQgcmlnaHQgYXdheSAoYmVjYXVzZSBpdCBo
+YWQgYSB0aW1lc3RhbXAgYnV0IHRoZSBjb21tYW5kIHdhcyBsYXRlIHNvIGl0IHdhcyBleGVjdXRl
+ZCByaWdodCBhd2F5KQo+IDIuKSBpZiBhbnkgY29tbWFuZCBxdWV1ZSBvdmVycnVucwo+IDMuKSBB
+bnkgb3RoZXIgc29ydCBvZiBpbmZvcm1hdGlvbiB0aGF0IGNhdXNlcyB0aW1lZCBjb21tYW5kcyB0
+byBtaXNiZWhhdmUKPgo+IEkgdXNlICJ0eF9jb21tYW5kIiBmb3IgVVNSUCBTaW5rIHRvIHNlbmQg
+dGltZWQgY29tbWFuZHMuIFRoZSAidHhfY29tbWFuZCIgdGFncyBhcmUgaW5qZWN0ZWQgd2l0aCBh
+biBlbWJlZGRlZCBweXRob24gYmxvY2suIEkgdXNlICJUYWcgRGVidWciIGFuZCBzYXZlIGFsbCB0
+YWdzIHRvIGEgdGV4dCBmaWxlLiBXb3Jrcy4KPiBUaGVuLCBpbiBleGFjdGx5IHRoZSBzYW1lIGJs
+b2NrIGRpYWdyYW0sIEkgcmVwbGFjZSB0aGUgZW1iZWRkZWQgcHl0aG9uIGJsb2NrIHdpdGggbXkg
+QysrIGltcGxlbWVudGF0aW9uIHRoYXQgZ2VuZXJhdGVzIHRhZ3MuCj4gU3VkZGVubHksIHNvbWUg
+dGltZWQgY29tbWFuZHMgZG8gbm90IGV4ZWN1dGUgYXQgdGhlIHJpZ2h0IG1vbWVudCBhbnkgbW9y
+ZSAodGhlc2UgYXJlIGp1c3QgZmV3IGFuZCBjb25zaXN0ZW50IGFjcm9zcyByZS1ydW5zIGFuZCBy
+ZWJvb3RzKS4KPgo+IEhvd2V2ZXIsIHRoZSB0YWdzIGdlbmVyYXRlZCBieSBib3RocyBibG9ja3Mg
+YXJlIGFic29sdXRlbHkgSURFTlRJQ0FMISBBIGRpZmYgYmV0d2VlbiB0aGUgInR4X2NvbW1hbmQi
+IG91dHB1dHMgcmVzdWx0cyBpbiBOTyBkaWZmZXJlbmNlcy4gSGVuY2UgSSBuZWVkIHRvIGtub3cg
+d2hhdCB0aGUgRlBHQSBhY3R1YWxseSBwcm9jZXNzZXMgaW4gYm90aCBjYXNlcy4KPgo+IFRoYW5r
+cwo+IEx1a2FzCj4KPgoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0
+cy5ldHR1cy5jb20K
