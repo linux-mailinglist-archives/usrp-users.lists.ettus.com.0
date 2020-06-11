@@ -2,32 +2,32 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A0ED1F6DCC
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2020 21:13:04 +0200 (CEST)
-Received: from [::1] (port=46248 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9543A1F6E06
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2020 21:34:49 +0200 (CEST)
+Received: from [::1] (port=51792 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjSdI-00048e-6n; Thu, 11 Jun 2020 15:13:00 -0400
-Received: from mout.gmx.net ([212.227.17.21]:39733)
+	id 1jjSyM-0006YR-Bm; Thu, 11 Jun 2020 15:34:46 -0400
+Received: from mout.gmx.net ([212.227.17.20]:50499)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jjSdE-00044G-Kl
- for usrp-users@lists.ettus.com; Thu, 11 Jun 2020 15:12:56 -0400
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jjSyI-0006RC-D8
+ for usrp-users@lists.ettus.com; Thu, 11 Jun 2020 15:34:42 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1591902735;
- bh=v30D5U6h/lhpNTuFsQ8M1vdw6MWi+3qO35RDZBojlP4=;
+ s=badeba3b8450; t=1591904041;
+ bh=B4lK9W7YYbnY9yx9xsbt7Soqrj40ztxGJqMCKzqRfG4=;
  h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=VsMDSKZfqvQ6/t3d6dukkEG5iuDe+t1R8ie/iRznSX4uSnBVxAdbWC0K25QyX0sXF
- sC2wmsSIsoYYyyDSXQ5PFBRuzSjYVFtzzJVH9bd8tq0+CduKdXgqs2EtRoYdH+fp5f
- 6Cf0zDlmwl3WU6L4ZwGKFxmIm2D/ZYVM96AhVroU=
+ b=ANkRjwixTFfXETQhIquTbPMhaH1PlvtDYW1Ttv6Gqaybp8Zlz0C6a+g5jQzbKcnnk
+ vUPvHBZqvO4Iv+6y87FzjlxdWCeZ8WOuo1Fs6Z9rXN+yMY0+n8iFVsnRXmgOLlJX+0
+ f4qYr6/bl6h51KswhLWNJClQ24FW+JeXAJCeQydY=
 X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
 Received: from [87.101.54.176] ([87.101.54.176]) by web-mail.gmx.net
  (3c-app-gmx-bap40.server.lan [172.19.172.110]) (via HTTP); Thu, 11 Jun 2020
- 21:12:15 +0200
+ 21:34:01 +0200
 MIME-Version: 1.0
-Message-ID: <trinity-7cf7cd06-3f84-4908-b884-01aea4bb33fa-1591902735326@3c-app-gmx-bap40>
+Message-ID: <trinity-469b54f5-33c1-4a43-876d-eb07014b9eb2-1591904041140@3c-app-gmx-bap40>
 To: Marcus D Leech <patchvonbraun@gmail.com>
 Cc: "USRP-userslists.ettus.com" <usrp-users@lists.ettus.com>
-Date: Thu, 11 Jun 2020 21:12:15 +0200
+Date: Thu, 11 Jun 2020 21:34:01 +0200
 Importance: normal
 Sensitivity: Normal
 In-Reply-To: <CAL7q81tN0ESxpuFsOdsRT_T2MgQnB3yy-=YvMoMi5c1wEe+OCQ@mail.gmail.com>
@@ -38,23 +38,23 @@ References: <trinity-ba8bb5a5-c5df-431b-8626-79fdb3b336d3-1591770642546@3c-app-g
  <CAL7q81tN0ESxpuFsOdsRT_T2MgQnB3yy-=YvMoMi5c1wEe+OCQ@mail.gmail.com>
 X-UI-Message-Type: mail
 X-Priority: 3
-X-Provags-ID: V03:K1:qVILay7Qz3KdQ3HJ7z3DG72cP6ZcJFAuciAC3JrQL3p/Y9joyYUbgEhqZOYVinUbk/KL9
- UZ4qOVeEVA5NA520GHiZV9xCk7IJT06Fo+vP6Dq6Wfsndd5dBDBUy+dLfb+152f1bjgbegyewP1Q
- 7mF+A67L6vGt1yHe+uazi1zXquwVVyZAblo9Yskejl6gMh6QeEuR+DO4RWwFM3Ucc18vLNRT+G1p
- MbjIIXxC4U3xRuH4GHTLrS8uaM+tNn/W8zPzJtf3XB6ZtCDZRZKzlHm7/FYhFXSX70EYQsFdMdVQ
- 4s=
+X-Provags-ID: V03:K1:ja48tHSngbQ0yP9yR6XTTe3ma5hKLGNcOWShVER6wPZqaEg5Wgs3i8n/x/Y6gbFcNwroG
+ IiyeVCxjOg2OdT7iHYA1s1Z1fpzA81dkV6UvScM9uLqGFoGNEsZ4G/d1uAQlF3NRUVPNGdmk6YeI
+ Yk1CaIxMhEwLjO4pw9QerOY11yKItqY0s7Kg+EgSKzppRF4b7gKcKcm7KoNXnI/Ki45sJpM88pBu
+ 9RzVmped+vbLCXHwzeo+OBIzqsHQUb5jBevNyKDGVmGK9zjUxbfstAj4MU7RQEZPDt3shk3Gj1M2
+ YQ=
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:NvuUBj1Yuns=:CsyTDqNtxFRaNWN/jBdw9h
- HuwI51c/XbCDx8klyf45zNUqHWnXjJ0+BmFd8HYMKFEzjD0tb6GQ6OdkwLmpP414t2cMmQOAM
- hNiWKz3YmaNBFSRtCqliUIUHpw09Guo+3SP6Neo8MKZU4w6YSXGKgnqF3wPfMORdIzRKsOfbe
- aswarEdmEX1+BuyGp7020EKSeGWM0Efp71kRMTVlzgvA2UlL4JcxzCmh21pte1H6jts964aUh
- rRrhlfnEvi557J1gX2CCWHtp+Ly6oapa0ectPQT/M1v1EfKrJsA7iYmwYdtMrn0mPnKTMa4ef
- eyeEGdS2osOVBMJQ29Uy8IIzAgH3sRVmNee1rz3uNgYhL1bpbE7KUa+eaA36T4ftNMuo0zngS
- j4Hc/7BP8ctLnhaSdYwlR/shCMh0At6bSPWnHMt1ZueyiqXpFDzrtCC70d6Nu44dgv1jgcJTJ
- 0I/6StmAEJMJDRfwQ6hPp8ku7Qg7SYWXth8Z6dHMZKCJRGXav4eVncj65vybDKg1OhE2sifKZ
- SQsm/bdpCi1ftSioYFLOZQtQyuURyPempYPXrjwfnb1WaTnz8mEDobH2gCpnv20ICf+y3Eo4V
- epB19010GvDuid+17awgHOdFPXSpsinjLImKSq24p2CwNTvXE/xirOwhY9n4SnKyMS1nBxeiJ
- M885z2YYMKcggBDA55Y9DZeAxKtAYI4H82oHYP9It8f+y1JhMeuJeAkvBTNkY0iJbu/4=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:PHV7PU0AaLM=:hi71SvzKMd7WR2DVFVGoOL
+ Rid7cxN2fv2isbB/3GD8ZRRlL/eW4bLQ94gvFVo/zZlvowY2OIMt01Z5l8b64+2aL0Ptjy4p+
+ 76xLINAYZXbhs4ZegZ2R0UhUWoRwtkvWlZfkclmWOsrQOqA4u99bEtu693gxTkIuUw7QXYQ0s
+ oK5MwjnTWYda2eRKhQqy1B1iJaoqiEdudvPklZidov8qL8RlJ2QpQSceZX2/DN1GO2sSa4C+A
+ SMzrix8/yb1mFwpjTo0aTUoHQdMzgRgtadZw64Wa96ExiNQF600r+4dt2E6Fp4P7AOzUy0sQ9
+ Q6NDYKpRKU3tnkkKT8Hxw2R991MmQo9ornE0XL2Fa1ks61/CNjEb04HtNH/v4AkmhO5Wc+kqR
+ Rmr4SqNuCEtbG4A3L+vQyWDeZy3YdLgap5qcBYaUu23VR41y5cG6cjAVi4QB+Rw5FuCTVlA+m
+ WtSgYCOKIuIJf8WoZY9GYicgpkkOa6IrA+sRy6Ywb8RV5X+PYYuyniCaO2zujjWW6qSUvAQn6
+ q0Dm3IHcZ7zRJjXuYmTEQDNGwYft5psISdpiuaBgHTw5ZN8vaF4c9aV5EPer2tD+wh/HGKev5
+ CJ4sOuPgllQB1Xe3Uhk2J/VjgAwTNKQpj12RqSlucNNGIMDgfC2uwow+hTjgursoLiuJ1u5p9
+ ECyjJUwYYkaIvFAm4XeH7ZJCnDdGtqXBT7gdh++l02ElMXEWYI6HwXA7352N3nCSL+Qg=
 Subject: Re: [USRP-users] How to debug timed commands on FPGA side?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -87,180 +87,37 @@ X-Source-Dir:
 Hi Marcus,
 
 > On 06/10/2020 09:00 PM, Lukas Haase via USRP-users wrote:
->> Hi Nick,
->>
->> Good point with Wireshark and coincidentially I tried exactly that
->> today. Both captures were fairly identical. But what's worse,
->> things started to become more unreproducible (for example,
->> depending on which blocks I add).
->>
->> Again, what not works is that timed commands sometimes are not
->> executed when they are supposed to be. I execute them periodically
->> (e.g. every 100ms, 10ms, 1ms), then capture the response and slice
->> them into equal blocks in MATLAB. The action of the timed commands
->> (for example, retune or gain change) should always happen at the
->> same time. Instead a few of them (maybe 3%) happen sometime in
->> between and mess up verything.
->>
->> How would one go to debug this without having to acquire deep
->> Verilog knowledge? I am 99.99% positive that the timed commands I
->> issue via tx_command tag are correct.
->>
->> Are there definite answers to the questions:
->>
->> 1.) How many commands do the command queues have exactly on the
->> X310?
->> (https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD
->> says 5-8 but other sources say 16 or 32). 2.) What happens when the
->> command queue is full? Is the command dropped, does USRP crash or
->> anything else? (above link is unclear about that) Can we change
->> this behavior?
-> Something to consider is that a tuning command is NOT, in general, a
->  single register-set to the FPGA.  The FPGA has NO 'inherent'
-> knowledge of the various types of peripherals involved in tuning.  So
-> tuning will often involve more than one SPI or I2C interaction with
-> whatever RF hardware is being used.  This invariably means more than
-> one "command" from the FPGAs point-of-view.
-
-Yes, I am aware of this.
-I deduce from Jonathon's response that the mapping of "high level command" to "register writes" (which may eventually result in the SPI/I2C interactions) happens in uhd on the host.
-
-I just can't find where this is happening.
-
-Example: tuning requests eventually call tune_xx_subdev_and_dsp from multi_usrp and set values in dsp_subtree and rf_fe_subtree. But where are these fetched, translated to register addresses/values (chdr.cmd.addr, chdr.cmd.val) etc?
-
->> 3.) How can we figure out what is the maximum speed to issue timed
->> commands reliably? What does this depend on and which parameters
->> need to be tweaked?
->>
+>> [...]
 >> For example, what is the fastest rate I can issue timed commands
 >> (ignoring settling times etc) on a X310 over 10Gbe?
-> That partially depends on things like which SPI/I2C peripherals are
-> involved--those buses run at a fixed and not-steaming-fast rate. So
-> even though the FPGA may be able to swallow commands "real fast", it
-> won't necessarily be able to complete SPI/I2C bus transactions that
-> fast.
->
-> My recollection is that the SPI on the X310 operates at perhaps
-> 1Mbit/sec, but maybe even as sluggish as 400kbit/s.
->
-> So, when UHD on the host side is tuning a hardware device it doesn't
-> say to the FPGA "hey, could you tune the UBX card to <X> MHz,
-> please?" It says "hey, here's an SPI transaction.  Oh, and another
-> one. Oh, and maybe another one, too..."
-As I have written in my original post "ignoring analog settlings etc". For now it's really about making sure that the *FPGA* actually executes stuff when it should and that seems to fail (even for a pure DSP retune).
+> This is actually an ambiguous question.  Do you mean "what is the
+> smallest scheduling interval for the commands that will be executed
+> in the future?" or "how fast can I issue commands that will
+> ultimately be scheduled at a later time?"  In the former, that
+> depends on the exact nature of the commands, since they end up
+> actually being executed by, for example, an SPI or I2C endpoint,
+> which operates very very much slower than a 10GiGe interface.  In the
+> latter, my guess is that the FPGA can swallow commands and place them
+> on the queue pretty-much as fast as you can issue them over 10GiG.
+> How fast you can do that depends very much on your host-side
+> environment, network stack, kernel network drivers, kernel latencies,
+> etc.
 
-Best,
+My questions concerns the latter (for now).
+Since the FPGA has a (small) finite FIFO for these timed commands I assume*d* there would be a limit on how fast I can send these commands.
+
+Based on Jonathon's answer however, it seems that UHD on the host ensures that it only sends a maximum number of timed commands such that the command queues do not overflow.
+
+But it seems to bring another issue: If UHD holds back these messages too long they will eventually arrive late and (silently) execute non-timed (thereby destroying any coherence the application might require).
+
+I am trying to debug WHY this can happen, why it does NOT happen to the data stream (all data arrives on time!) and what I can do that I ensure my timed commands will execute *on time*.
+
+Thanks,
 Lukas
 
->> I am thinking that maybe I am sending timed commands too fast such
->> that the command queue overflows. However: a.) How can an
->> overflowing command queue explain that timed commands not being
->> executed on time? b.) I played around setting send_buff_size to
->> different values, down to send_buff_size=10240 (10kB). If I
->> understand correctly, that means that the USRP should never receive
->> more than 10kB data at once (one chunk holds 10240/(10e6*2*2)=256us
->> at 10MS/s which means the if each frame has one timed command that
->> should support sending a timed command every 256us). Unfortunately
->> nothing changes here.
->>
->> Using tx_command tag in USRP Source should ensure that the commands
->> never arrive late on the FPGA (otherwise the data would also arrive
->> late and I would get LLLLLLL's but I don't).
->>
->> I thought the most straight forward would be to debug the FPGA
->> itself but that seems to open more issues that it solves.
->>
->> Thanks, Lukas
->>
->>
->>
->> Gesendet: Mittwoch, 10. Juni 2020 um 19:18 Uhr Von: "Nick Foster"
->> <bistromath at gmail.com> An: "Lukas Haase" <lukashaase at gmx.at>
->> Betreff: Re: [USRP-users] How to debug timed commands on FPGA
->> side?
->>
->> I'd start by using Wireshark. There's a dissector for CHDR packets
->> included in UHD (uhd/tools/dissectors). Wireshark has excellent
->> filtering and analysis tools. You should be able to see your
->> C++-timestamped packet go out, and compare it to the Python
->> generated version. This will take a couple of hours to set up, run,
->> and analyze.
->>
->> Following that, if you still can't find a difference, recompile an
->> FPGA image which includes an ILA core, hooked up to some radio
->> signals. Try to avoid having to do this, because it will take a
->> long time, and you'll get very deep into the radio core. On the
->> plus side, after a week or so of digging, you'll have a much better
->> understanding of how RFNoC works under the hood. =)
->>
->> Nick
->>
->> On Wed, Jun 10, 2020 at 1:47 PM Lukas Haase via USRP-users
->> <usrp-users at lists.ettus.com[mailto:usrp-users at
->> lists.ettus.com]> wrote:Just some additional info: I enabled the
->> maximum possible debug on the host (UHD_LOG_CONSOLE_LEVEL=trace and
->> debug_level = debug in .gnuradio/config.conf) and sent both
->> versions to a file. Again, the diff is identical! (This debug
->> contains the debug messages from gr-uhd but uhd itself does not
->> seem to generate any debug/trace messages for timed commands).
->>
->> Is there a way to somehow report back to the host when the command
->> queue overflows or a timed command could not be processed at the
->> planned time (late command)?
->>
->> According to
->> https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD[https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD]
->> "An overflow of the command queue will result in a system halt and
->> often requires a physical reset of the FPGA.".  This does not sound
->> something that should just be silently dropped!
->>
->> This works for data streams so shouldn't it work for timed commands
->> too?
->>
->> The USRP feels like a black box ... commands are being sent but I
->> have no idea what happens inside or if they are even executed
->> (except, of course, things are "not working")
->>
->>
->>> Gesendet: Mittwoch, 10. Juni 2020 um 02:30 Uhr Von: "Lukas Haase"
->>> <lukashaase at gmx.at[mailto:lukashaase at gmx.at]> An:
->>> "USRP-userslists.ettus.com[http://USRP-userslists.ettus.com]"
->>> <usrp-users at lists.ettus.com[mailto:usrp-users at
->>> lists.ettus.com]> Betreff: How to debug timed commands on FPGA
->>> side?
->>>
->>> Hello,
->>>
->>> Is there any (somewhat straight forward) way to debug timed
->>> commands on the FPGA? In particular, I want to know: 1.) if any
->>> timed command is not executed as timed command but right away
->>> (because it had a timestamp but the command was late so it was
->>> executed right away) 2.) if any command queue overruns 3.) Any
->>> other sort of information that causes timed commands to
->>> misbehave
->>>
->>> I use "tx_command" for USRP Sink to send timed commands. The
->>> "tx_command" tags are injected with an embedded python block. I
->>> use "Tag Debug" and save all tags to a text file. Works. Then, in
->>> exactly the same block diagram, I replace the embedded python
->>> block with my C++ implementation that generates tags. Suddenly,
->>> some timed commands do not execute at the right moment any more
->>> (these are just few and consistent across re-runs and reboots).
->>>
->>> However, the tags generated by boths blocks are absolutely
->>> IDENTICAL! A diff between the "tx_command" outputs results in NO
->>> differences. Hence I need to know what the FPGA actually
->>> processes in both cases.
->>>
->>> Thanks Lukas
->>>
->>>
->>
->>
->> _______________________________________________ USRP-users mailing
->> list USRP-users at lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+
 
 
 
