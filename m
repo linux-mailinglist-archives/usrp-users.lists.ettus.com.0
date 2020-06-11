@@ -2,58 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04CDE1F60B5
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2020 06:05:58 +0200 (CEST)
-Received: from [::1] (port=57502 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77B6A1F611B
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2020 06:58:21 +0200 (CEST)
+Received: from [::1] (port=34586 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjETT-0008DT-2v; Thu, 11 Jun 2020 00:05:55 -0400
-Received: from mail-qt1-f178.google.com ([209.85.160.178]:43653)
+	id 1jjFI9-0005nY-Ma; Thu, 11 Jun 2020 00:58:17 -0400
+Received: from mail-qt1-f179.google.com ([209.85.160.179]:47048)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jjETP-00081G-Bf
- for usrp-users@lists.ettus.com; Thu, 11 Jun 2020 00:05:51 -0400
-Received: by mail-qt1-f178.google.com with SMTP id j32so3621448qte.10
- for <usrp-users@lists.ettus.com>; Wed, 10 Jun 2020 21:05:31 -0700 (PDT)
+ (Exim 4.93) (envelope-from <hai.n.nguyen204@gmail.com>)
+ id 1jjFI6-0005cD-0b
+ for usrp-users@lists.ettus.com; Thu, 11 Jun 2020 00:58:14 -0400
+Received: by mail-qt1-f179.google.com with SMTP id g18so3669651qtu.13
+ for <usrp-users@lists.ettus.com>; Wed, 10 Jun 2020 21:57:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=qIKWTT27Yu1EM0amoJo413ODDvex3kI+e+GWWYhGvKA=;
- b=hFLpuBSkAepaVxf4q+Een6drKdvVvLYk7jwgue9EHWl01zF5v/2AvBmY4SZh332/+C
- L61cP2OA6ALiOmdy5Q1FrMrZiFmJSRf6MJHz73Z4f0w+kdCOfZ0UVrtOlkIYRO+d8pmf
- 2L0+8H7tix79n3uAoJnxqCU2jMP1kjVu84SXQC/e80fqTyfRU4DlSggyn24x4dPnpeN1
- MqrGikmfgYF+ndv4aEwYOEvQsEfSnjYWmVsJfYBghUyMmhBtaV1wogYla4GF5/lEQr0A
- Qis8sYi7aqHQyq8JtlB/sNbKsqYYpbDlUS9g1f2Dv70JNfUOC761njT7nIpO5yHBHGU9
- sHGg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=SnnVdLQadXuxjDVbW2u54OQzAFJ+UlK9yOiCoZlT4mk=;
+ b=HcsxWHZgUF9XGGgdCa7dVXHxsLWiqYebW/obxSWDKcU0hnRV3AudwLvB5wnmAnj3JI
+ n/G+0WJrWWMan0kfFagDQF4Uh5Zd43+Xb2ittCliNAZJPOCpK4NL2higMv3bKWcROkvh
+ LdCUR1vJ4VkXDTcD41tSpunb/15j8QKDhTAf8AvX0+gzLP0SKp8HzihSB0sp3VJjmLim
+ Jz4AXH1l2cKWk/WM0xBTPX7rd2C0cT7aEX13CvFqTQ7Ty1iooWuk75i/0ZvfVT7SFUrx
+ hmi4S2XdXvfxumLnSYPVHrR+I4pG+NAw5HSwdoL6JVWryYC2qSzlrEavYUxxebd1Tx/U
+ VLhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=qIKWTT27Yu1EM0amoJo413ODDvex3kI+e+GWWYhGvKA=;
- b=NdDvj0BAe6i7W/vHcETCqSZT4ifeHEbR76iCAhO6J3D1uGVFRML0mhnp6iE1xtM9tT
- epUk1llDJRGzm5K/okcEgTlXVqnq2WwsWUncK2fWlmA0o+EoTboKbf2cmglvLqFojZpu
- /bT2terzaH6825TuQS3GTJ2NMVs5tVfBXReGWE9r8bfQYeHZLAbtV1ckqWkCF/Y3euUs
- 5y3zz82B40SATqLw7UIa0WwJVE2w2ClmssRnNRGPTiXdjqDxd6TYXJMeP7aSb5/cr0i4
- Ars0iuFUhYSS7dznK7GIhW17HI1uJX2tgrr18LWbX5TRSIgC0pERYGFANxLNezq4RhK3
- 5tJA==
-X-Gm-Message-State: AOAM533Co64JxfkbAX0sdoJqco/MXU+FgCzCsZPSGRAwHq0MHdACCsFj
- gDlH7rrE6/mDJ4GmDOo/hgE=
-X-Google-Smtp-Source: ABdhPJzrg0oQIe7kNv6uN8ws7EEuJj4R/MpLZhv2VFB5Ewn/bWufmygokqoe5PT30iN6duzIJI8rdw==
-X-Received: by 2002:ac8:3984:: with SMTP id v4mr6828814qte.267.1591848310810; 
- Wed, 10 Jun 2020 21:05:10 -0700 (PDT)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
- [174.95.14.109])
- by smtp.gmail.com with ESMTPSA id 70sm1355074qkk.10.2020.06.10.21.05.10
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 10 Jun 2020 21:05:10 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Thu, 11 Jun 2020 00:05:09 -0400
-Message-Id: <B2FBDAFE-E103-4882-98BA-98E344330B04@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=SnnVdLQadXuxjDVbW2u54OQzAFJ+UlK9yOiCoZlT4mk=;
+ b=aNpOn7000YLE/EOK9R2XZ1TuN23Cqdf5czNVC/uKIeT6eod5H+XZGpd+DMowr+mX/f
+ hYSzi9POu4G8mLFBHe0+zvHMSITi0W15Uix406OqQ+Uysj+C7hq8VUuEhta/7PONHoTJ
+ v7eOUZ8OWkUTyfEAqT7Y1sMpiVeAJcKCxayI+ZW+RCmEEjB032ZfhQ3yx5IMgD4qovYZ
+ 5aYO3d9bpL18tBiaLztgZ55vjFB1qEw8VRHJdea28myg4enMubnFc3uy+t/uXNsuWUJ6
+ nQU1p4dV3s4Ws409/ylGksSkoHkpCDrbNe59LGmfMsYxygMiPNl7USvrKVkBfL+TSYqD
+ bSoA==
+X-Gm-Message-State: AOAM533/vznSPacnn+2wEt5FhBIhgojjCTHmUsGWfd/SltsFncsk0eu5
+ h6LgoToZ/qJR8QPXfFZpAvemKTV7STlSDVhntHg=
+X-Google-Smtp-Source: ABdhPJyCYqfCOVGVJQIM0u3Wr2xN+y7Dh1Cfgxu4BmiqfDNH9U+zxq+Z+8dtZ2DO9VsQodT1Np6uYbS9jHLTET29MHw=
+X-Received: by 2002:aed:3344:: with SMTP id u62mr6794320qtd.174.1591851453400; 
+ Wed, 10 Jun 2020 21:57:33 -0700 (PDT)
+MIME-Version: 1.0
 References: <CAFZDN5LrJOY8z-5+4GcxNximyLwEQDHB4GF9jTKOQ_aD4X=aZQ@mail.gmail.com>
+ <B2FBDAFE-E103-4882-98BA-98E344330B04@gmail.com>
+In-Reply-To: <B2FBDAFE-E103-4882-98BA-98E344330B04@gmail.com>
+Date: Thu, 11 Jun 2020 00:57:22 -0400
+Message-ID: <CAFZDN5+4-D150J1aWdkxM6-YKafqO=X43ViUfU81sRR9_+jNOg@mail.gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-In-Reply-To: <CAFZDN5LrJOY8z-5+4GcxNximyLwEQDHB4GF9jTKOQ_aD4X=aZQ@mail.gmail.com>
-To: Hai Nguyen <hai.n.nguyen204@gmail.com>
-X-Mailer: iPhone Mail (17E262)
 Subject: Re: [USRP-users] Phase calibration of multiple B210s
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -66,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Hai Nguyen via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Hai Nguyen <hai.n.nguyen204@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5947221884274893312=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,25 +76,118 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Tm8uIEl0IGlzIHRoZSBuYXR1cmUgb2YgUExMIHN5bnRoZXNpemVycyB0aGF0IHRoZXkgd29u4oCZ
-dCBsYW5kIGF0IHRoZSBzYW1lIHBoYXNlIG9mZnNldCBldmVyeSB0aW1lIHRoZXnigJlyZSB0dW5l
-ZC4gCgpJbiBhZGRpdGlvbiB0aGUgRERDIGNvbXBvbmVudHMgaW4gdGhlIEZQR0EgYXJlbuKAmXQg
-bmVjZXNzYXJpbHkgZ29pbmcgdG8gYmUgYXQgdGhlIHNhbWUgcGhhc2Ugb2Zmc2V0IGV2ZXJ5IHRp
-bWUuCgpZb3XigJlsbCBuZWVkIHRvIGhhdmUgYSBwaGFzZSBjYWxpYnJhdGlvbiBvbiBldmVyeSBy
-dW4uIAoKU2VudCBmcm9tIG15IGlQaG9uZQoKPiBPbiBKdW4gMTEsIDIwMjAsIGF0IDEyOjAxIEFN
-LCBIYWkgTmd1eWVuIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4g
-d3JvdGU6Cj4gCj4g77u/Cj4gSGVsbG8sCj4gCj4gSSdtIHRyeWluZyB0byBkbyBwaGFzZSBjYWxp
-YnJhdGlvbiBmb3IgdHdvIEIyMTBzIGZvciBhIERvQSBhcHBsaWNhdGlvbi4gSSB1c2UgYSBrbm93
-biB0b25lIHdpdGggc3BsaXR0ZXIgYW5kIGVxdWFsLWxlbmd0aCBjYWJsZXMuIFRoZSBwcm9ibGVt
-IEknbSBoYXZpbmcgaXMsIHRoZSBwaGFzZSBkaWZmZXJlbmNlIGJldHdlZW4gdHdvIGNvcnJlc3Bv
-bmRpbmcgY2hhbm5lbHMgb2YgdGhlIFVTUlAgKGZvciBleGFtcGxlLCBSWDIgb2YgcmFkaW8gQSkg
-c2VlbXMgdG8gY2hhbmdlIG5vdCBqdXN0IGJldHdlZW4gdGhlIHJlc2V0cyBvZiB0aGUgVVNSUHMs
-IGJ1dCBhbHNvIGJldHdlZW4gdGhlIHJ1bnMgb2YgdGhlIFVIRCBwcm9ncmFtLgo+IAo+IElzIHRo
-aXMgcG9zc2libGUgdG8gcGhhc2UtY2FsaWJyYXRlIHRoZSB0d28gQjIxMHM/Cj4gCj4gVGhhbmsg
-eW91IGFuZCBiZXN0IHJlZ2FyZHMsCj4gSGFpCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
-bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8v
-dXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============5947221884274893312==
+Content-Type: multipart/alternative; boundary="0000000000006a4d4305a7c7cc15"
+
+--0000000000006a4d4305a7c7cc15
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thank you Marcus. I feel it will be the same story if I use two X310s?
+I look a bit at the project gr-doa and as I understand it seems to just
+require the calibration once. I'm not sure if there is a critical
+difference between the WBX/CBX vs. TwinRX for this task though.
+
+
+On Thu, Jun 11, 2020 at 12:05 AM Marcus D Leech <patchvonbraun@gmail.com>
+wrote:
+
+> No. It is the nature of PLL synthesizers that they won=E2=80=99t land at =
+the same
+> phase offset every time they=E2=80=99re tuned.
+>
+> In addition the DDC components in the FPGA aren=E2=80=99t necessarily goi=
+ng to be
+> at the same phase offset every time.
+>
+> You=E2=80=99ll need to have a phase calibration on every run.
+>
+> Sent from my iPhone
+>
+> > On Jun 11, 2020, at 12:01 AM, Hai Nguyen via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+> >
+> > =EF=BB=BF
+> > Hello,
+> >
+> > I'm trying to do phase calibration for two B210s for a DoA application.
+> I use a known tone with splitter and equal-length cables. The problem I'm
+> having is, the phase difference between two corresponding channels of the
+> USRP (for example, RX2 of radio A) seems to change not just between the
+> resets of the USRPs, but also between the runs of the UHD program.
+> >
+> > Is this possible to phase-calibrate the two B210s?
+> >
+> > Thank you and best regards,
+> > Hai
+> > _______________________________________________
+> > USRP-users mailing list
+> > USRP-users@lists.ettus.com
+> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000006a4d4305a7c7cc15
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Thank you Marcus. I feel it will be the s=
+ame story if I use two X310s?</div><div>I look a bit at the project gr-doa =
+and as I understand it seems to just require the calibration once. I&#39;m =
+not sure if there is a critical difference between the WBX/CBX vs. TwinRX f=
+or this task though.</div><div><br></div><div><br></div><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jun 11, 2020 at 12:05=
+ AM Marcus D Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonb=
+raun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex">No. It is the nature of PLL synthesizers that they won=E2=80=
+=99t land at the same phase offset every time they=E2=80=99re tuned. <br>
+<br>
+In addition the DDC components in the FPGA aren=E2=80=99t necessarily going=
+ to be at the same phase offset every time.<br>
+<br>
+You=E2=80=99ll need to have a phase calibration on every run. <br>
+<br>
+Sent from my iPhone<br>
+<br>
+&gt; On Jun 11, 2020, at 12:01 AM, Hai Nguyen via USRP-users &lt;<a href=3D=
+"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettu=
+s.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; =EF=BB=BF<br>
+&gt; Hello,<br>
+&gt; <br>
+&gt; I&#39;m trying to do phase calibration for two B210s for a DoA applica=
+tion. I use a known tone with splitter and equal-length cables. The problem=
+ I&#39;m having is, the phase difference between two corresponding channels=
+ of the USRP (for example, RX2 of radio A) seems to change not just between=
+ the resets of the USRPs, but also between the runs of the UHD program.<br>
+&gt; <br>
+&gt; Is this possible to phase-calibrate the two B210s?<br>
+&gt; <br>
+&gt; Thank you and best regards,<br>
+&gt; Hai<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
+n/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+
+--0000000000006a4d4305a7c7cc15--
+
+
+--===============5947221884274893312==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5947221884274893312==--
+
