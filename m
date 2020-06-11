@@ -2,57 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2E7A1F5F5A
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2020 03:00:54 +0200 (CEST)
-Received: from [::1] (port=50612 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54F721F5F6D
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2020 03:11:37 +0200 (CEST)
+Received: from [::1] (port=59000 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjBaN-0005q8-Kp; Wed, 10 Jun 2020 21:00:51 -0400
-Received: from mout.gmx.net ([212.227.17.22]:57179)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jjBaI-0005mV-QO
- for usrp-users@lists.ettus.com; Wed, 10 Jun 2020 21:00:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1591837205;
- bh=lYKmDGSUeHkALjVEKdF8JCO469oms5tRw9aQzq5gxEM=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=KF4yxWRuK58DGHnnUfV2HOUbITqWAuoHzKchm9awvI2uvK3IOdz1eoDgjXzCo6dyU
- mftTbkSvET3Rrl9FEIQFqxN6UZiq3oJgaByPxtAxQ/KWN04dxT4QvJFmEk7p3WGJtq
- +Y4hDFC90ejhBr1sjfsOz7IudFBpEWIAGhCMvdd4=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [87.101.54.176] ([87.101.54.176]) by web-mail.gmx.net
- (3c-app-gmx-bap13.server.lan [172.19.172.83]) (via HTTP); Thu, 11 Jun 2020
- 03:00:05 +0200
+	id 1jjBkk-00083W-8S; Wed, 10 Jun 2020 21:11:34 -0400
+Received: from mail-qv1-f52.google.com ([209.85.219.52]:43402)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jjBkg-0007qc-Cq
+ for usrp-users@lists.ettus.com; Wed, 10 Jun 2020 21:11:30 -0400
+Received: by mail-qv1-f52.google.com with SMTP id dp10so1958413qvb.10
+ for <usrp-users@lists.ettus.com>; Wed, 10 Jun 2020 18:11:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=k0ZEl+/tRiqpfjLCb+lfe+hnkXUekYP5fTwoXOeK7Sc=;
+ b=Q7byAda7xSHFMwo0xzFMug6zyNew49bnxxgOuLYqhR6rTyNMLZyfQ8WsosSYWTgpTQ
+ r9tg+2AeTbl8KlnrRuEzEZNOaa0vqRlx+mvt89aL/tVV4ss9XKkR92mtpPQ5NWkilbY1
+ Oc1oofPsmeh+oP5wAAFGmNkKjTP0SssSTiuoBy33AqxmIFmVTvAccn/qTm7IsMUBPo74
+ 9tdGCql8lgxdNlWkTYSftNE3F9qbHrcubSvwgbgiTQ0kbv2CJ4ItfH2aYWtTp20SJG/p
+ HkWL45Wieq40k9Tg2EP8eop8LZpGeb3AWThornNq4HWvPpsKhmKdfrXTu5qaKUu8QDCe
+ OQmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=k0ZEl+/tRiqpfjLCb+lfe+hnkXUekYP5fTwoXOeK7Sc=;
+ b=X4wjOpeu7xtS4BGGJYXEdlVvMQWJtJRTFJENNM9dcne/Vmv3zEf8FQDHJXHjw534DY
+ hdmx3PcHF2Hr9Sa3Zm0cXkn7YhfrLwn2gkFvMV9ZNpDbD3YQvgIitkC/o9YKoi1A6N8P
+ j7JRbogY0C2p89vePAv3id76K/L4imv8y4X9t9fZQ0J9p60igH/lBoGpgggX2xGoxqkb
+ gkHYOFOABSP92A9PgJuQ28KlMslxHD3mjOuPgwAc0M5zQc+X35jsa6fH4CFlpvVsmECA
+ gYChoNlMeWudvRaENTj0aShHmoLZfPQplPHew/sUFMnICvlhiuc3TqoNRArHrR1NXJnc
+ yi1A==
+X-Gm-Message-State: AOAM532ImeQyjsHQAVljp5WUqtDoj26XoxMBRmWaSopFhPTfoWciTcn6
+ Y1RFBn3ncJ3w3bIRX3azrtcMfYL09xQ=
+X-Google-Smtp-Source: ABdhPJwlPrD4433sqXZ0jkb8dL+evmAAw1ary7FwxnsLiKGVqUAq/CuVOMabFCky9yxiH5YB8/XrnA==
+X-Received: by 2002:a0c:f991:: with SMTP id t17mr5891943qvn.123.1591837849466; 
+ Wed, 10 Jun 2020 18:10:49 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
+ [174.95.14.109])
+ by smtp.googlemail.com with ESMTPSA id y129sm1207964qkc.1.2020.06.10.18.10.48
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 10 Jun 2020 18:10:48 -0700 (PDT)
+Message-ID: <5EE18498.1090507@gmail.com>
+Date: Wed, 10 Jun 2020 21:10:48 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Message-ID: <trinity-087eaba7-195a-4add-b435-4f9d5b3b1e85-1591837205629@3c-app-gmx-bap13>
-To: Nick Foster <bistromath@gmail.com>
-Cc: "USRP-userslists.ettus.com" <usrp-users@lists.ettus.com>
-Date: Thu, 11 Jun 2020 03:00:05 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <CA+JMMq-WJu=uK8jetzZXQvkzMnxQPSf2SJ0p21iS+cNm8Zifhw@mail.gmail.com>
+To: usrp-users@lists.ettus.com
 References: <trinity-ba8bb5a5-c5df-431b-8626-79fdb3b336d3-1591770642546@3c-app-gmx-bs66>
  <trinity-1b562fcc-3001-478f-a2ee-e4b4809b2fa6-1591821996530@3c-app-gmx-bap09>
  <CA+JMMq-WJu=uK8jetzZXQvkzMnxQPSf2SJ0p21iS+cNm8Zifhw@mail.gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:ITwF9cMyPGyjIIAz0y1uP6tITefiWLyE9IVTjFkSl2w1oKvHsrp9GkOLFyrkTQCXrtTYz
- KQYG5C+kJlQNMZcAH9DkdONoD41uSWXABLrEWDuf+KJuYJ1Fc20njIfM1Jktr3DIXVg+TX9KyGJD
- xoxCh3yf01toyDxPJ68FasG2s6Cdmfn3iCLZ4UMYH19p3LcOfKMcQcMehv3lFg6+wh/7C965T7gI
- 5rg9G6/x91FWJZVY4TRFMoarBt7MO7L9IMJlVLTiC0c+sUG2U8lj3fn4hfYnqPXAtrQnofK0LM+K
- CE=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:JrmpFgUHdTA=:cMVW+OK+gRBi9D92iD+gq9
- GGMIqWqMrteUNcYGTc6b0PsaO/qH2qJUI0wjLfW+ZpYfikJnRJ9e72bwj1oZbZ71fMkVS524d
- O+byJ+Dj5c4lTd0Vq7eR0JaTrXteDepjVw26nElKsiQ6h5/8fYO/IPIWJHNzhQRCdILdzkViX
- 96AWti71OwiJXItno1ZIMBKoyH5vm5ybce4GRhFroc32TnfoAYjLNiGYzXy/70cYvoW/elgum
- T9B9kA7GKmpAxOUacHlWszU5uN4GZdeB1d2FwTnIMHQKkNrhpCTBt+GzEAA0CicCeiXSKzMcx
- Ck60ftGWLbeknxEbZ5+BbdSmf/osQJIk/Jgjj+oawpFtO1y01Do4r8wan/URX5+PcmIaSTZJt
- MhN2HZQ4ei2QTqowYLGRpdaKc1oLnXZc9Q4dEXVBInSae2Ah/cAy6aRwbrouubFbKf1ADl0+n
- Ne6QOhRIW5lhjDmwHL/3wBMBn4PI2F4zF7ZPTvytnJ0rSuqtZ0Lzlk3jIuYmLF+LsKOlfxgz/
- RqAFCmIWN+ChGTahUkZ7w5y0RgJQs33w7KUX/kSaS2nRrSA/hrptStXyK+TCNv+M5le993m6o
- Qc3R7IZebTwGMxkvkvu5XtmxycwzR1hkHd/0A8TwQGphQ5VyFMrmOslfoighV/5WgpwSJkVA5
- hnx/ZeQJ8e83HaFgwnwHlORaemBOZrwZ0KB6UXpQ7ThrJBW+361EY64InLWTVcqHfAKo=
+ <trinity-087eaba7-195a-4add-b435-4f9d5b3b1e85-1591837205629@3c-app-gmx-bap13>
+In-Reply-To: <trinity-087eaba7-195a-4add-b435-4f9d5b3b1e85-1591837205629@3c-app-gmx-bap13>
 Subject: Re: [USRP-users] How to debug timed commands on FPGA side?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -65,10 +70,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,112 +87,119 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgTmljaywKCkdvb2QgcG9pbnQgd2l0aCBXaXJlc2hhcmsgYW5kIGNvaW5jaWRlbnRpYWxseSBJ
-IHRyaWVkIGV4YWN0bHkgdGhhdCB0b2RheS4gQm90aCBjYXB0dXJlcyB3ZXJlIGZhaXJseSBpZGVu
-dGljYWwuIEJ1dCB3aGF0J3Mgd29yc2UsIHRoaW5ncyBzdGFydGVkIHRvIGJlY29tZSBtb3JlIHVu
-cmVwcm9kdWNpYmxlIChmb3IgZXhhbXBsZSwgZGVwZW5kaW5nIG9uIHdoaWNoIGJsb2NrcyBJIGFk
-ZCkuCgpBZ2Fpbiwgd2hhdCBub3Qgd29ya3MgaXMgdGhhdCB0aW1lZCBjb21tYW5kcyBzb21ldGlt
-ZXMgYXJlIG5vdCBleGVjdXRlZCB3aGVuIHRoZXkgYXJlIHN1cHBvc2VkIHRvIGJlLgpJIGV4ZWN1
-dGUgdGhlbSBwZXJpb2RpY2FsbHkgKGUuZy4gZXZlcnkgMTAwbXMsIDEwbXMsIDFtcyksIHRoZW4g
-Y2FwdHVyZSB0aGUgcmVzcG9uc2UgYW5kIHNsaWNlIHRoZW0gaW50byBlcXVhbCBibG9ja3MgaW4g
-TUFUTEFCLgpUaGUgYWN0aW9uIG9mIHRoZSB0aW1lZCBjb21tYW5kcyAoZm9yIGV4YW1wbGUsIHJl
-dHVuZSBvciBnYWluIGNoYW5nZSkgc2hvdWxkIGFsd2F5cyBoYXBwZW4gYXQgdGhlIHNhbWUgdGlt
-ZS4gSW5zdGVhZCBhIGZldyBvZiB0aGVtIChtYXliZSAzJSkgaGFwcGVuIHNvbWV0aW1lIGluIGJl
-dHdlZW4gYW5kIG1lc3MgdXAgdmVyeXRoaW5nLgoKSG93IHdvdWxkIG9uZSBnbyB0byBkZWJ1ZyB0
-aGlzIHdpdGhvdXQgaGF2aW5nIHRvIGFjcXVpcmUgZGVlcCBWZXJpbG9nIGtub3dsZWRnZT8KSSBh
-bSA5OS45OSUgcG9zaXRpdmUgdGhhdCB0aGUgdGltZWQgY29tbWFuZHMgSSBpc3N1ZSB2aWEgdHhf
-Y29tbWFuZCB0YWcgYXJlIGNvcnJlY3QuCgpBcmUgdGhlcmUgZGVmaW5pdGUgYW5zd2VycyB0byB0
-aGUgcXVlc3Rpb25zOgoKMS4pIEhvdyBtYW55IGNvbW1hbmRzIGRvIHRoZSBjb21tYW5kIHF1ZXVl
-cyBoYXZlIGV4YWN0bHkgb24gdGhlIFgzMTA/IChodHRwczovL2tiLmV0dHVzLmNvbS9TeW5jaHJv
-bml6aW5nX1VTUlBfRXZlbnRzX1VzaW5nX1RpbWVkX0NvbW1hbmRzX2luX1VIRCBzYXlzIDUtOCBi
-dXQgb3RoZXIgc291cmNlcyBzYXkgMTYgb3IgMzIpLgoyLikgV2hhdCBoYXBwZW5zIHdoZW4gdGhl
-IGNvbW1hbmQgcXVldWUgaXMgZnVsbD8gSXMgdGhlIGNvbW1hbmQgZHJvcHBlZCwgZG9lcyBVU1JQ
-IGNyYXNoIG9yIGFueXRoaW5nIGVsc2U/IChhYm92ZSBsaW5rIGlzIHVuY2xlYXIgYWJvdXQgdGhh
-dCkKICAgIENhbiB3ZSBjaGFuZ2UgdGhpcyBiZWhhdmlvcj8KMy4pIEhvdyBjYW4gd2UgZmlndXJl
-IG91dCB3aGF0IGlzIHRoZSBtYXhpbXVtIHNwZWVkIHRvIGlzc3VlIHRpbWVkIGNvbW1hbmRzIHJl
-bGlhYmx5PwogICAgV2hhdCBkb2VzIHRoaXMgZGVwZW5kIG9uIGFuZCB3aGljaCBwYXJhbWV0ZXJz
-IG5lZWQgdG8gYmUgdHdlYWtlZD8KCkZvciBleGFtcGxlLCB3aGF0IGlzIHRoZSBmYXN0ZXN0IHJh
-dGUgSSBjYW4gaXNzdWUgdGltZWQgY29tbWFuZHMgKGlnbm9yaW5nIHNldHRsaW5nIHRpbWVzIGV0
-Yykgb24gYSBYMzEwIG92ZXIgMTBHYmU/CgpJIGFtIHRoaW5raW5nIHRoYXQgbWF5YmUgSSBhbSBz
-ZW5kaW5nIHRpbWVkIGNvbW1hbmRzIHRvbyBmYXN0IHN1Y2ggdGhhdCB0aGUgY29tbWFuZCBxdWV1
-ZSBvdmVyZmxvd3MuCkhvd2V2ZXI6CmEuKSBIb3cgY2FuIGFuIG92ZXJmbG93aW5nIGNvbW1hbmQg
-cXVldWUgZXhwbGFpbiB0aGF0IHRpbWVkIGNvbW1hbmRzIG5vdCBiZWluZyBleGVjdXRlZCBvbiB0
-aW1lPwpiLikgSSBwbGF5ZWQgYXJvdW5kIHNldHRpbmcgc2VuZF9idWZmX3NpemUgdG8gZGlmZmVy
-ZW50IHZhbHVlcywgZG93biB0byBzZW5kX2J1ZmZfc2l6ZT0xMDI0MCAoMTBrQikuIElmIEkgdW5k
-ZXJzdGFuZCBjb3JyZWN0bHksIHRoYXQgbWVhbnMgdGhhdCB0aGUgVVNSUCBzaG91bGQgbmV2ZXIg
-cmVjZWl2ZSBtb3JlIHRoYW4gMTBrQiBkYXRhIGF0IG9uY2UgKG9uZSBjaHVuayBob2xkcyAxMDI0
-MC8oMTBlNioyKjIpPTI1NnVzIGF0IDEwTVMvcyB3aGljaCBtZWFucyB0aGUgaWYgZWFjaCBmcmFt
-ZSBoYXMgb25lIHRpbWVkIGNvbW1hbmQgdGhhdCBzaG91bGQgc3VwcG9ydCBzZW5kaW5nIGEgdGlt
-ZWQgY29tbWFuZCBldmVyeSAyNTZ1cykuIFVuZm9ydHVuYXRlbHkgbm90aGluZyBjaGFuZ2VzIGhl
-cmUuCgpVc2luZyB0eF9jb21tYW5kIHRhZyBpbiBVU1JQIFNvdXJjZSBzaG91bGQgZW5zdXJlIHRo
-YXQgdGhlIGNvbW1hbmRzIG5ldmVyIGFycml2ZSBsYXRlIG9uIHRoZSBGUEdBIChvdGhlcndpc2Ug
-dGhlIGRhdGEgd291bGQgYWxzbyBhcnJpdmUgbGF0ZSBhbmQgSSB3b3VsZCBnZXQgTExMTExMTCdz
-IGJ1dCBJIGRvbid0KS4KCkkgdGhvdWdodCB0aGUgbW9zdCBzdHJhaWdodCBmb3J3YXJkIHdvdWxk
-IGJlIHRvIGRlYnVnIHRoZSBGUEdBIGl0c2VsZiBidXQgdGhhdCBzZWVtcyB0byBvcGVuIG1vcmUg
-aXNzdWVzIHRoYXQgaXQgc29sdmVzLgoKVGhhbmtzLApMdWthcwoKwqAKCkdlc2VuZGV0OsKgTWl0
-dHdvY2gsIDEwLiBKdW5pIDIwMjAgdW0gMTk6MTggVWhyClZvbjrCoCJOaWNrIEZvc3RlciIgPGJp
-c3Ryb21hdGhAZ21haWwuY29tPgpBbjrCoCJMdWthcyBIYWFzZSIgPGx1a2FzaGFhc2VAZ214LmF0
-PgpCZXRyZWZmOsKgUmU6IFtVU1JQLXVzZXJzXSBIb3cgdG8gZGVidWcgdGltZWQgY29tbWFuZHMg
-b24gRlBHQSBzaWRlPwoKSSdkIHN0YXJ0IGJ5IHVzaW5nIFdpcmVzaGFyay4gVGhlcmUncyBhIGRp
-c3NlY3RvciBmb3IgQ0hEUiBwYWNrZXRzIGluY2x1ZGVkIGluIFVIRCAodWhkL3Rvb2xzL2Rpc3Nl
-Y3RvcnMpLiBXaXJlc2hhcmsgaGFzIGV4Y2VsbGVudCBmaWx0ZXJpbmcgYW5kIGFuYWx5c2lzIHRv
-b2xzLiBZb3Ugc2hvdWxkIGJlIGFibGUgdG8gc2VlIHlvdXIgQysrLXRpbWVzdGFtcGVkIHBhY2tl
-dCBnbyBvdXQsIGFuZCBjb21wYXJlIGl0IHRvIHRoZSBQeXRob24gZ2VuZXJhdGVkIHZlcnNpb24u
-IFRoaXMgd2lsbCB0YWtlIGEgY291cGxlIG9mIGhvdXJzIHRvIHNldCB1cCwgcnVuLCBhbmQgYW5h
-bHl6ZS4KwqAKRm9sbG93aW5nIHRoYXQsIGlmIHlvdSBzdGlsbCBjYW4ndCBmaW5kIGEgZGlmZmVy
-ZW5jZSwgcmVjb21waWxlIGFuIEZQR0EgaW1hZ2Ugd2hpY2ggaW5jbHVkZXMgYW4gSUxBIGNvcmUs
-IGhvb2tlZCB1cCB0byBzb21lIHJhZGlvIHNpZ25hbHMuIFRyeSB0byBhdm9pZCBoYXZpbmcgdG8g
-ZG8gdGhpcywgYmVjYXVzZSBpdCB3aWxsIHRha2UgYSBsb25nIHRpbWUsIGFuZCB5b3UnbGwgZ2V0
-IHZlcnkgZGVlcCBpbnRvIHRoZSByYWRpbyBjb3JlLiBPbiB0aGUgcGx1cyBzaWRlLCBhZnRlciBh
-IHdlZWsgb3Igc28gb2YgZGlnZ2luZywgeW91J2xsIGhhdmUgYSBtdWNoIGJldHRlciB1bmRlcnN0
-YW5kaW5nIG9mIGhvdyBSRk5vQyB3b3JrcyB1bmRlciB0aGUgaG9vZC4gPSkKwqAKTmlja8KgCgpP
-biBXZWQsIEp1biAxMCwgMjAyMCBhdCAxOjQ3IFBNIEx1a2FzIEhhYXNlIHZpYSBVU1JQLXVzZXJz
-IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb21dPiB3cm90ZTpKdXN0IHNvbWUgYWRkaXRpb25hbCBpbmZvOiBJIGVuYWJsZWQgdGhlIG1h
-eGltdW0gcG9zc2libGUgZGVidWcgb24gdGhlIGhvc3QgKFVIRF9MT0dfQ09OU09MRV9MRVZFTD10
-cmFjZSBhbmQgZGVidWdfbGV2ZWwgPSBkZWJ1ZyBpbiAuZ251cmFkaW8vY29uZmlnLmNvbmYpIGFu
-ZCBzZW50IGJvdGggdmVyc2lvbnMgdG8gYSBmaWxlLgpBZ2FpbiwgdGhlIGRpZmYgaXMgaWRlbnRp
-Y2FsIQooVGhpcyBkZWJ1ZyBjb250YWlucyB0aGUgZGVidWcgbWVzc2FnZXMgZnJvbSBnci11aGQg
-YnV0IHVoZCBpdHNlbGYgZG9lcyBub3Qgc2VlbSB0byBnZW5lcmF0ZSBhbnkgZGVidWcvdHJhY2Ug
-bWVzc2FnZXMgZm9yIHRpbWVkIGNvbW1hbmRzKS4KCklzIHRoZXJlIGEgd2F5IHRvIHNvbWVob3cg
-cmVwb3J0IGJhY2sgdG8gdGhlIGhvc3Qgd2hlbiB0aGUgY29tbWFuZCBxdWV1ZSBvdmVyZmxvd3Mg
-b3IgYSB0aW1lZCBjb21tYW5kIGNvdWxkIG5vdCBiZSBwcm9jZXNzZWQgYXQgdGhlIHBsYW5uZWQg
-dGltZSAobGF0ZSBjb21tYW5kKT8KCkFjY29yZGluZyB0byBodHRwczovL2tiLmV0dHVzLmNvbS9T
-eW5jaHJvbml6aW5nX1VTUlBfRXZlbnRzX1VzaW5nX1RpbWVkX0NvbW1hbmRzX2luX1VIRFtodHRw
-czovL2tiLmV0dHVzLmNvbS9TeW5jaHJvbml6aW5nX1VTUlBfRXZlbnRzX1VzaW5nX1RpbWVkX0Nv
-bW1hbmRzX2luX1VIRF0gIkFuIG92ZXJmbG93IG9mIHRoZSBjb21tYW5kIHF1ZXVlIHdpbGwgcmVz
-dWx0IGluIGEgc3lzdGVtIGhhbHQgYW5kIG9mdGVuIHJlcXVpcmVzIGEgcGh5c2ljYWwgcmVzZXQg
-b2YgdGhlIEZQR0EuIi7CoCBUaGlzIGRvZXMgbm90IHNvdW5kIHNvbWV0aGluZyB0aGF0IHNob3Vs
-ZCBqdXN0IGJlIHNpbGVudGx5IGRyb3BwZWQhCgpUaGlzIHdvcmtzIGZvciBkYXRhIHN0cmVhbXMg
-c28gc2hvdWxkbid0IGl0IHdvcmsgZm9yIHRpbWVkIGNvbW1hbmRzIHRvbz8KClRoZSBVU1JQIGZl
-ZWxzIGxpa2UgYSBibGFjayBib3ggLi4uIGNvbW1hbmRzIGFyZSBiZWluZyBzZW50IGJ1dCBJIGhh
-dmUgbm8gaWRlYSB3aGF0IGhhcHBlbnMgaW5zaWRlIG9yIGlmIHRoZXkgYXJlIGV2ZW4gZXhlY3V0
-ZWQgKGV4Y2VwdCwgb2YgY291cnNlLCB0aGluZ3MgYXJlICJub3Qgd29ya2luZyIpCgoKPiBHZXNl
-bmRldDogTWl0dHdvY2gsIDEwLiBKdW5pIDIwMjAgdW0gMDI6MzAgVWhyCj4gVm9uOiAiTHVrYXMg
-SGFhc2UiIDxsdWthc2hhYXNlQGdteC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdPgo+IEFu
-OiAiVVNSUC11c2Vyc2xpc3RzLmV0dHVzLmNvbVtodHRwOi8vVVNSUC11c2Vyc2xpc3RzLmV0dHVz
-LmNvbV0iIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb21dPgo+IEJldHJlZmY6IEhvdyB0byBkZWJ1ZyB0aW1lZCBjb21tYW5kcyBvbiBG
-UEdBIHNpZGU/Cj4KPiBIZWxsbywKPgo+IElzIHRoZXJlIGFueSAoc29tZXdoYXQgc3RyYWlnaHQg
-Zm9yd2FyZCkgd2F5IHRvIGRlYnVnIHRpbWVkIGNvbW1hbmRzIG9uIHRoZSBGUEdBPwo+IEluIHBh
-cnRpY3VsYXIsIEkgd2FudCB0byBrbm93Ogo+IDEuKSBpZiBhbnkgdGltZWQgY29tbWFuZCBpcyBu
-b3QgZXhlY3V0ZWQgYXMgdGltZWQgY29tbWFuZCBidXQgcmlnaHQgYXdheSAoYmVjYXVzZSBpdCBo
-YWQgYSB0aW1lc3RhbXAgYnV0IHRoZSBjb21tYW5kIHdhcyBsYXRlIHNvIGl0IHdhcyBleGVjdXRl
-ZCByaWdodCBhd2F5KQo+IDIuKSBpZiBhbnkgY29tbWFuZCBxdWV1ZSBvdmVycnVucwo+IDMuKSBB
-bnkgb3RoZXIgc29ydCBvZiBpbmZvcm1hdGlvbiB0aGF0IGNhdXNlcyB0aW1lZCBjb21tYW5kcyB0
-byBtaXNiZWhhdmUKPgo+IEkgdXNlICJ0eF9jb21tYW5kIiBmb3IgVVNSUCBTaW5rIHRvIHNlbmQg
-dGltZWQgY29tbWFuZHMuIFRoZSAidHhfY29tbWFuZCIgdGFncyBhcmUgaW5qZWN0ZWQgd2l0aCBh
-biBlbWJlZGRlZCBweXRob24gYmxvY2suIEkgdXNlICJUYWcgRGVidWciIGFuZCBzYXZlIGFsbCB0
-YWdzIHRvIGEgdGV4dCBmaWxlLiBXb3Jrcy4KPiBUaGVuLCBpbiBleGFjdGx5IHRoZSBzYW1lIGJs
-b2NrIGRpYWdyYW0sIEkgcmVwbGFjZSB0aGUgZW1iZWRkZWQgcHl0aG9uIGJsb2NrIHdpdGggbXkg
-QysrIGltcGxlbWVudGF0aW9uIHRoYXQgZ2VuZXJhdGVzIHRhZ3MuCj4gU3VkZGVubHksIHNvbWUg
-dGltZWQgY29tbWFuZHMgZG8gbm90IGV4ZWN1dGUgYXQgdGhlIHJpZ2h0IG1vbWVudCBhbnkgbW9y
-ZSAodGhlc2UgYXJlIGp1c3QgZmV3IGFuZCBjb25zaXN0ZW50IGFjcm9zcyByZS1ydW5zIGFuZCBy
-ZWJvb3RzKS4KPgo+IEhvd2V2ZXIsIHRoZSB0YWdzIGdlbmVyYXRlZCBieSBib3RocyBibG9ja3Mg
-YXJlIGFic29sdXRlbHkgSURFTlRJQ0FMISBBIGRpZmYgYmV0d2VlbiB0aGUgInR4X2NvbW1hbmQi
-IG91dHB1dHMgcmVzdWx0cyBpbiBOTyBkaWZmZXJlbmNlcy4gSGVuY2UgSSBuZWVkIHRvIGtub3cg
-d2hhdCB0aGUgRlBHQSBhY3R1YWxseSBwcm9jZXNzZXMgaW4gYm90aCBjYXNlcy4KPgo+IFRoYW5r
-cwo+IEx1a2FzCj4KPgoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0
-cy5ldHR1cy5jb20K
+On 06/10/2020 09:00 PM, Lukas Haase via USRP-users wrote:
+> Hi Nick,
+>
+> Good point with Wireshark and coincidentially I tried exactly that today. Both captures were fairly identical. But what's worse, things started to become more unreproducible (for example, depending on which blocks I add).
+>
+> Again, what not works is that timed commands sometimes are not executed when they are supposed to be.
+> I execute them periodically (e.g. every 100ms, 10ms, 1ms), then capture the response and slice them into equal blocks in MATLAB.
+> The action of the timed commands (for example, retune or gain change) should always happen at the same time. Instead a few of them (maybe 3%) happen sometime in between and mess up verything.
+>
+> How would one go to debug this without having to acquire deep Verilog knowledge?
+> I am 99.99% positive that the timed commands I issue via tx_command tag are correct.
+>
+> Are there definite answers to the questions:
+>
+> 1.) How many commands do the command queues have exactly on the X310? (https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD says 5-8 but other sources say 16 or 32).
+> 2.) What happens when the command queue is full? Is the command dropped, does USRP crash or anything else? (above link is unclear about that)
+>      Can we change this behavior?
+Something to consider is that a tuning command is NOT, in general, a 
+single register-set to the FPGA.  The FPGA has NO 'inherent' knowledge
+   of the various types of peripherals involved in tuning.  So tuning 
+will often involve more than one SPI or I2C interaction with whatever RF
+   hardware is being used.  This invariably means more than one 
+"command" from the FPGAs point-of-view.
+> 3.) How can we figure out what is the maximum speed to issue timed commands reliably?
+>      What does this depend on and which parameters need to be tweaked?
+>
+> For example, what is the fastest rate I can issue timed commands (ignoring settling times etc) on a X310 over 10Gbe?
+That partially depends on things like which SPI/I2C peripherals are 
+involved--those buses run at a fixed and not-steaming-fast rate.
+   So even though the FPGA may be able to swallow commands "real fast", 
+it won't necessarily be able to complete SPI/I2C bus transactions
+   that fast.
+
+My recollection is that the SPI on the X310 operates at perhaps 
+1Mbit/sec, but maybe even as sluggish as 400kbit/s.
+
+So, when UHD on the host side is tuning a hardware device it doesn't say 
+to the FPGA "hey, could you tune the UBX card to <X> MHz, please?"
+    It says "hey, here's an SPI transaction.  Oh, and another one. Oh, 
+and maybe another one, too..."
+
+
+>
+> I am thinking that maybe I am sending timed commands too fast such that the command queue overflows.
+> However:
+> a.) How can an overflowing command queue explain that timed commands not being executed on time?
+> b.) I played around setting send_buff_size to different values, down to send_buff_size=10240 (10kB). If I understand correctly, that means that the USRP should never receive more than 10kB data at once (one chunk holds 10240/(10e6*2*2)=256us at 10MS/s which means the if each frame has one timed command that should support sending a timed command every 256us). Unfortunately nothing changes here.
+>
+> Using tx_command tag in USRP Source should ensure that the commands never arrive late on the FPGA (otherwise the data would also arrive late and I would get LLLLLLL's but I don't).
+>
+> I thought the most straight forward would be to debug the FPGA itself but that seems to open more issues that it solves.
+>
+> Thanks,
+> Lukas
+>
+>   
+>
+> Gesendet: Mittwoch, 10. Juni 2020 um 19:18 Uhr
+> Von: "Nick Foster" <bistromath@gmail.com>
+> An: "Lukas Haase" <lukashaase@gmx.at>
+> Betreff: Re: [USRP-users] How to debug timed commands on FPGA side?
+>
+> I'd start by using Wireshark. There's a dissector for CHDR packets included in UHD (uhd/tools/dissectors). Wireshark has excellent filtering and analysis tools. You should be able to see your C++-timestamped packet go out, and compare it to the Python generated version. This will take a couple of hours to set up, run, and analyze.
+>   
+> Following that, if you still can't find a difference, recompile an FPGA image which includes an ILA core, hooked up to some radio signals. Try to avoid having to do this, because it will take a long time, and you'll get very deep into the radio core. On the plus side, after a week or so of digging, you'll have a much better understanding of how RFNoC works under the hood. =)
+>   
+> Nick
+>
+> On Wed, Jun 10, 2020 at 1:47 PM Lukas Haase via USRP-users <usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]> wrote:Just some additional info: I enabled the maximum possible debug on the host (UHD_LOG_CONSOLE_LEVEL=trace and debug_level = debug in .gnuradio/config.conf) and sent both versions to a file.
+> Again, the diff is identical!
+> (This debug contains the debug messages from gr-uhd but uhd itself does not seem to generate any debug/trace messages for timed commands).
+>
+> Is there a way to somehow report back to the host when the command queue overflows or a timed command could not be processed at the planned time (late command)?
+>
+> According to https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD[https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD] "An overflow of the command queue will result in a system halt and often requires a physical reset of the FPGA.".  This does not sound something that should just be silently dropped!
+>
+> This works for data streams so shouldn't it work for timed commands too?
+>
+> The USRP feels like a black box ... commands are being sent but I have no idea what happens inside or if they are even executed (except, of course, things are "not working")
+>
+>
+>> Gesendet: Mittwoch, 10. Juni 2020 um 02:30 Uhr
+>> Von: "Lukas Haase" <lukashaase@gmx.at[mailto:lukashaase@gmx.at]>
+>> An: "USRP-userslists.ettus.com[http://USRP-userslists.ettus.com]" <usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]>
+>> Betreff: How to debug timed commands on FPGA side?
+>>
+>> Hello,
+>>
+>> Is there any (somewhat straight forward) way to debug timed commands on the FPGA?
+>> In particular, I want to know:
+>> 1.) if any timed command is not executed as timed command but right away (because it had a timestamp but the command was late so it was executed right away)
+>> 2.) if any command queue overruns
+>> 3.) Any other sort of information that causes timed commands to misbehave
+>>
+>> I use "tx_command" for USRP Sink to send timed commands. The "tx_command" tags are injected with an embedded python block. I use "Tag Debug" and save all tags to a text file. Works.
+>> Then, in exactly the same block diagram, I replace the embedded python block with my C++ implementation that generates tags.
+>> Suddenly, some timed commands do not execute at the right moment any more (these are just few and consistent across re-runs and reboots).
+>>
+>> However, the tags generated by boths blocks are absolutely IDENTICAL! A diff between the "tx_command" outputs results in NO differences. Hence I need to know what the FPGA actually processes in both cases.
+>>
+>> Thanks
+>> Lukas
+>>
+>>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
