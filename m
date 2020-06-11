@@ -2,59 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9543A1F6E06
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2020 21:34:49 +0200 (CEST)
-Received: from [::1] (port=51792 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8B901F6ED1
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2020 22:33:32 +0200 (CEST)
+Received: from [::1] (port=58478 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjSyM-0006YR-Bm; Thu, 11 Jun 2020 15:34:46 -0400
-Received: from mout.gmx.net ([212.227.17.20]:50499)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jjSyI-0006RC-D8
- for usrp-users@lists.ettus.com; Thu, 11 Jun 2020 15:34:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1591904041;
- bh=B4lK9W7YYbnY9yx9xsbt7Soqrj40ztxGJqMCKzqRfG4=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=ANkRjwixTFfXETQhIquTbPMhaH1PlvtDYW1Ttv6Gqaybp8Zlz0C6a+g5jQzbKcnnk
- vUPvHBZqvO4Iv+6y87FzjlxdWCeZ8WOuo1Fs6Z9rXN+yMY0+n8iFVsnRXmgOLlJX+0
- f4qYr6/bl6h51KswhLWNJClQ24FW+JeXAJCeQydY=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [87.101.54.176] ([87.101.54.176]) by web-mail.gmx.net
- (3c-app-gmx-bap40.server.lan [172.19.172.110]) (via HTTP); Thu, 11 Jun 2020
- 21:34:01 +0200
-MIME-Version: 1.0
-Message-ID: <trinity-469b54f5-33c1-4a43-876d-eb07014b9eb2-1591904041140@3c-app-gmx-bap40>
-To: Marcus D Leech <patchvonbraun@gmail.com>
+	id 1jjTtA-0004lC-Pf; Thu, 11 Jun 2020 16:33:28 -0400
+Received: from mail-qk1-f176.google.com ([209.85.222.176]:34841)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jjTt7-0004Wy-El
+ for usrp-users@lists.ettus.com; Thu, 11 Jun 2020 16:33:25 -0400
+Received: by mail-qk1-f176.google.com with SMTP id n141so6973291qke.2
+ for <usrp-users@lists.ettus.com>; Thu, 11 Jun 2020 13:33:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=7ForHQ4gIyQnjns6K9WVgTIQPaiSqPwX2atGW62uPdw=;
+ b=u57IETpCvr08t8zNrkvDKRcVMNdv86jyK8PNcHtgtObubMmpZ+z2VehVgCRr5BOJRW
+ mjB40BRi3agqyMKtnt/taOlwvAAYdfzwUedSpWh39pju3pZjjqPm+XKYiCSamMPvCq94
+ E5N2JwEcHqL0V2FpfZi35qtzdcdRwUrVeeDiggU0kMZogBf6VZRrcY3wYxBe3gjnrOWq
+ kohorVEREHysZe3w0TJtaZ2G1D0q+aPCUh6xZ0Fshyg4YAMdENOdWDtyUPwCziAjKELH
+ n8/4vrt4xdgDkax61h8GR+XAFKlvyle7Q3f9r025XYkM+pnnJaAyLFZPJkYiiZ6beBLn
+ nq6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=7ForHQ4gIyQnjns6K9WVgTIQPaiSqPwX2atGW62uPdw=;
+ b=VRbSzEKIr5QEuO3cGtHYXsT8Qmv2EfeYTbInTRunOdnFSGjiw3SlCyaA4FR9eJaiNK
+ 1LewP4VsNRxkXtJ7WEOI4WQp5wAYhv61lbiF4357ScVjhZ6xKtPuHeI1DrTfals96LkE
+ xHKa96afZ7kIQadY9BrdUzq+vpvZW5jgcHBRR8OJYMGsUKic3SgmbjOOj0hmGz1xXPyv
+ jf699OH9+B9qVmyptylJp2PfnnlqlkU1Cb99vKqqmGUQl/1WHx3iHzWvv0Ew/DaEIi9b
+ +3Mn9pAimGGEg3KRF2BWFC/jK3SflCnZmIGEftCa88wyMbNBmm62V+oBtl1FBozvc4UC
+ vyBQ==
+X-Gm-Message-State: AOAM530RlOXyrIy3/JrDiK1up8kngTT+mwl0r+3I+MaR4RXXu000WFEj
+ PPwJOg+fwhXF+Jx/x4F6I0I/tZxUdC0=
+X-Google-Smtp-Source: ABdhPJxi9elXGR9u0XQ6wa0EKnj9HkUegy5a1d0cf73f+32V6NnMSaAUzk/lQ6CWdQ532SXBZKDhew==
+X-Received: by 2002:ae9:efc2:: with SMTP id
+ d185mr10419282qkg.177.1591907564671; 
+ Thu, 11 Jun 2020 13:32:44 -0700 (PDT)
+Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
+ [174.95.14.109])
+ by smtp.gmail.com with ESMTPSA id d17sm3005226qke.101.2020.06.11.13.32.43
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 11 Jun 2020 13:32:43 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+Date: Thu, 11 Jun 2020 16:32:42 -0400
+Message-Id: <AAE54BC7-1AC7-4745-8598-4FC701DC2627@gmail.com>
+References: <trinity-469b54f5-33c1-4a43-876d-eb07014b9eb2-1591904041140@3c-app-gmx-bap40>
 Cc: "USRP-userslists.ettus.com" <usrp-users@lists.ettus.com>
-Date: Thu, 11 Jun 2020 21:34:01 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <CAL7q81tN0ESxpuFsOdsRT_T2MgQnB3yy-=YvMoMi5c1wEe+OCQ@mail.gmail.com>
-References: <trinity-ba8bb5a5-c5df-431b-8626-79fdb3b336d3-1591770642546@3c-app-gmx-bs66>
- <trinity-1b562fcc-3001-478f-a2ee-e4b4809b2fa6-1591821996530@3c-app-gmx-bap09>
- <CA+JMMq-WJu=uK8jetzZXQvkzMnxQPSf2SJ0p21iS+cNm8Zifhw@mail.gmail.com>
- <trinity-087eaba7-195a-4add-b435-4f9d5b3b1e85-1591837205629@3c-app-gmx-bap13>
- <CAL7q81tN0ESxpuFsOdsRT_T2MgQnB3yy-=YvMoMi5c1wEe+OCQ@mail.gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:ja48tHSngbQ0yP9yR6XTTe3ma5hKLGNcOWShVER6wPZqaEg5Wgs3i8n/x/Y6gbFcNwroG
- IiyeVCxjOg2OdT7iHYA1s1Z1fpzA81dkV6UvScM9uLqGFoGNEsZ4G/d1uAQlF3NRUVPNGdmk6YeI
- Yk1CaIxMhEwLjO4pw9QerOY11yKItqY0s7Kg+EgSKzppRF4b7gKcKcm7KoNXnI/Ki45sJpM88pBu
- 9RzVmped+vbLCXHwzeo+OBIzqsHQUb5jBevNyKDGVmGK9zjUxbfstAj4MU7RQEZPDt3shk3Gj1M2
- YQ=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:PHV7PU0AaLM=:hi71SvzKMd7WR2DVFVGoOL
- Rid7cxN2fv2isbB/3GD8ZRRlL/eW4bLQ94gvFVo/zZlvowY2OIMt01Z5l8b64+2aL0Ptjy4p+
- 76xLINAYZXbhs4ZegZ2R0UhUWoRwtkvWlZfkclmWOsrQOqA4u99bEtu693gxTkIuUw7QXYQ0s
- oK5MwjnTWYda2eRKhQqy1B1iJaoqiEdudvPklZidov8qL8RlJ2QpQSceZX2/DN1GO2sSa4C+A
- SMzrix8/yb1mFwpjTo0aTUoHQdMzgRgtadZw64Wa96ExiNQF600r+4dt2E6Fp4P7AOzUy0sQ9
- Q6NDYKpRKU3tnkkKT8Hxw2R991MmQo9ornE0XL2Fa1ks61/CNjEb04HtNH/v4AkmhO5Wc+kqR
- Rmr4SqNuCEtbG4A3L+vQyWDeZy3YdLgap5qcBYaUu23VR41y5cG6cjAVi4QB+Rw5FuCTVlA+m
- WtSgYCOKIuIJf8WoZY9GYicgpkkOa6IrA+sRy6Ywb8RV5X+PYYuyniCaO2zujjWW6qSUvAQn6
- q0Dm3IHcZ7zRJjXuYmTEQDNGwYft5psISdpiuaBgHTw5ZN8vaF4c9aV5EPer2tD+wh/HGKev5
- CJ4sOuPgllQB1Xe3Uhk2J/VjgAwTNKQpj12RqSlucNNGIMDgfC2uwow+hTjgursoLiuJ1u5p9
- ECyjJUwYYkaIvFAm4XeH7ZJCnDdGtqXBT7gdh++l02ElMXEWYI6HwXA7352N3nCSL+Qg=
+In-Reply-To: <trinity-469b54f5-33c1-4a43-876d-eb07014b9eb2-1591904041140@3c-app-gmx-bap40>
+To: Lukas Haase <lukashaase@gmx.at>
+X-Mailer: iPhone Mail (17E262)
 Subject: Re: [USRP-users] How to debug timed commands on FPGA side?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -67,10 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,44 +84,43 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Marcus,
-
-> On 06/10/2020 09:00 PM, Lukas Haase via USRP-users wrote:
->> [...]
->> For example, what is the fastest rate I can issue timed commands
->> (ignoring settling times etc) on a X310 over 10Gbe?
-> This is actually an ambiguous question.  Do you mean "what is the
-> smallest scheduling interval for the commands that will be executed
-> in the future?" or "how fast can I issue commands that will
-> ultimately be scheduled at a later time?"  In the former, that
-> depends on the exact nature of the commands, since they end up
-> actually being executed by, for example, an SPI or I2C endpoint,
-> which operates very very much slower than a 10GiGe interface.  In the
-> latter, my guess is that the FPGA can swallow commands and place them
-> on the queue pretty-much as fast as you can issue them over 10GiG.
-> How fast you can do that depends very much on your host-side
-> environment, network stack, kernel network drivers, kernel latencies,
-> etc.
-
-My questions concerns the latter (for now).
-Since the FPGA has a (small) finite FIFO for these timed commands I assume*d* there would be a limit on how fast I can send these commands.
-
-Based on Jonathon's answer however, it seems that UHD on the host ensures that it only sends a maximum number of timed commands such that the command queues do not overflow.
-
-But it seems to bring another issue: If UHD holds back these messages too long they will eventually arrive late and (silently) execute non-timed (thereby destroying any coherence the application might require).
-
-I am trying to debug WHY this can happen, why it does NOT happen to the data stream (all data arrives on time!) and what I can do that I ensure my timed commands will execute *on time*.
-
-Thanks,
-Lukas
-
-
-
-
-
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+U28gb25lIG9mIHRoZSB0aGluZ3MgVGhhdCBjYW4gaGFwcGVuIGlzIHRoYXQgeW91ciBjb21tYW5k
+IHBhY2tldHMgd2lsbCBoYXZlIHRvIHdhaXQgRm9yIGEgbXVjaC1sYXJnZXIgZGF0YSBwYWNrZXQu
+IFRoZSBsaW5rIGlzIHNoYXJlZC4gCgpJ4oCZZCB0aW1lZCBjb21tYW5kcyBhcmUgc2NoZWR1bGVk
+IOKAnHRpZ2h04oCdIHRoaXMgY2FuIGhhcHBlbi4gCgpTZW50IGZyb20gbXkgaVBob25lCgo+IE9u
+IEp1biAxMSwgMjAyMCwgYXQgMzozNCBQTSwgTHVrYXMgSGFhc2UgPGx1a2FzaGFhc2VAZ214LmF0
+PiB3cm90ZToKPiAKPiDvu79IaSBNYXJjdXMsCj4gCj4+PiBPbiAwNi8xMC8yMDIwIDA5OjAwIFBN
+LCBMdWthcyBIYWFzZSB2aWEgVVNSUC11c2VycyB3cm90ZToKPj4+IFsuLi5dCj4+PiBGb3IgZXhh
+bXBsZSwgd2hhdCBpcyB0aGUgZmFzdGVzdCByYXRlIEkgY2FuIGlzc3VlIHRpbWVkIGNvbW1hbmRz
+Cj4+PiAoaWdub3Jpbmcgc2V0dGxpbmcgdGltZXMgZXRjKSBvbiBhIFgzMTAgb3ZlciAxMEdiZT8K
+Pj4gVGhpcyBpcyBhY3R1YWxseSBhbiBhbWJpZ3VvdXMgcXVlc3Rpb24uICBEbyB5b3UgbWVhbiAi
+d2hhdCBpcyB0aGUKPj4gc21hbGxlc3Qgc2NoZWR1bGluZyBpbnRlcnZhbCBmb3IgdGhlIGNvbW1h
+bmRzIHRoYXQgd2lsbCBiZSBleGVjdXRlZAo+PiBpbiB0aGUgZnV0dXJlPyIgb3IgImhvdyBmYXN0
+IGNhbiBJIGlzc3VlIGNvbW1hbmRzIHRoYXQgd2lsbAo+PiB1bHRpbWF0ZWx5IGJlIHNjaGVkdWxl
+ZCBhdCBhIGxhdGVyIHRpbWU/IiAgSW4gdGhlIGZvcm1lciwgdGhhdAo+PiBkZXBlbmRzIG9uIHRo
+ZSBleGFjdCBuYXR1cmUgb2YgdGhlIGNvbW1hbmRzLCBzaW5jZSB0aGV5IGVuZCB1cAo+PiBhY3R1
+YWxseSBiZWluZyBleGVjdXRlZCBieSwgZm9yIGV4YW1wbGUsIGFuIFNQSSBvciBJMkMgZW5kcG9p
+bnQsCj4+IHdoaWNoIG9wZXJhdGVzIHZlcnkgdmVyeSBtdWNoIHNsb3dlciB0aGFuIGEgMTBHaUdl
+IGludGVyZmFjZS4gIEluIHRoZQo+PiBsYXR0ZXIsIG15IGd1ZXNzIGlzIHRoYXQgdGhlIEZQR0Eg
+Y2FuIHN3YWxsb3cgY29tbWFuZHMgYW5kIHBsYWNlIHRoZW0KPj4gb24gdGhlIHF1ZXVlIHByZXR0
+eS1tdWNoIGFzIGZhc3QgYXMgeW91IGNhbiBpc3N1ZSB0aGVtIG92ZXIgMTBHaUcuCj4+IEhvdyBm
+YXN0IHlvdSBjYW4gZG8gdGhhdCBkZXBlbmRzIHZlcnkgbXVjaCBvbiB5b3VyIGhvc3Qtc2lkZQo+
+PiBlbnZpcm9ubWVudCwgbmV0d29yayBzdGFjaywga2VybmVsIG5ldHdvcmsgZHJpdmVycywga2Vy
+bmVsIGxhdGVuY2llcywKPj4gZXRjLgo+IAo+IE15IHF1ZXN0aW9ucyBjb25jZXJucyB0aGUgbGF0
+dGVyIChmb3Igbm93KS4KPiBTaW5jZSB0aGUgRlBHQSBoYXMgYSAoc21hbGwpIGZpbml0ZSBGSUZP
+IGZvciB0aGVzZSB0aW1lZCBjb21tYW5kcyBJIGFzc3VtZSpkKiB0aGVyZSB3b3VsZCBiZSBhIGxp
+bWl0IG9uIGhvdyBmYXN0IEkgY2FuIHNlbmQgdGhlc2UgY29tbWFuZHMuCj4gCj4gQmFzZWQgb24g
+Sm9uYXRob24ncyBhbnN3ZXIgaG93ZXZlciwgaXQgc2VlbXMgdGhhdCBVSEQgb24gdGhlIGhvc3Qg
+ZW5zdXJlcyB0aGF0IGl0IG9ubHkgc2VuZHMgYSBtYXhpbXVtIG51bWJlciBvZiB0aW1lZCBjb21t
+YW5kcyBzdWNoIHRoYXQgdGhlIGNvbW1hbmQgcXVldWVzIGRvIG5vdCBvdmVyZmxvdy4KPiAKPiBC
+dXQgaXQgc2VlbXMgdG8gYnJpbmcgYW5vdGhlciBpc3N1ZTogSWYgVUhEIGhvbGRzIGJhY2sgdGhl
+c2UgbWVzc2FnZXMgdG9vIGxvbmcgdGhleSB3aWxsIGV2ZW50dWFsbHkgYXJyaXZlIGxhdGUgYW5k
+IChzaWxlbnRseSkgZXhlY3V0ZSBub24tdGltZWQgKHRoZXJlYnkgZGVzdHJveWluZyBhbnkgY29o
+ZXJlbmNlIHRoZSBhcHBsaWNhdGlvbiBtaWdodCByZXF1aXJlKS4KPiAKPiBJIGFtIHRyeWluZyB0
+byBkZWJ1ZyBXSFkgdGhpcyBjYW4gaGFwcGVuLCB3aHkgaXQgZG9lcyBOT1QgaGFwcGVuIHRvIHRo
+ZSBkYXRhIHN0cmVhbSAoYWxsIGRhdGEgYXJyaXZlcyBvbiB0aW1lISkgYW5kIHdoYXQgSSBjYW4g
+ZG8gdGhhdCBJIGVuc3VyZSBteSB0aW1lZCBjb21tYW5kcyB3aWxsIGV4ZWN1dGUgKm9uIHRpbWUq
+Lgo+IAo+IFRoYW5rcywKPiBMdWthcwo+IAo+IAo+IAo+IAo+IAo+IAoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QK
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
+L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
