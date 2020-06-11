@@ -2,53 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54F721F5F6D
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2020 03:11:37 +0200 (CEST)
-Received: from [::1] (port=59000 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D301F5FA3
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Jun 2020 03:49:18 +0200 (CEST)
+Received: from [::1] (port=36752 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjBkk-00083W-8S; Wed, 10 Jun 2020 21:11:34 -0400
-Received: from mail-qv1-f52.google.com ([209.85.219.52]:43402)
+	id 1jjCLD-0004Et-8R; Wed, 10 Jun 2020 21:49:15 -0400
+Received: from mail-qt1-f180.google.com ([209.85.160.180]:43673)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jjBkg-0007qc-Cq
- for usrp-users@lists.ettus.com; Wed, 10 Jun 2020 21:11:30 -0400
-Received: by mail-qv1-f52.google.com with SMTP id dp10so1958413qvb.10
- for <usrp-users@lists.ettus.com>; Wed, 10 Jun 2020 18:11:10 -0700 (PDT)
+ id 1jjCLA-0004AF-0C
+ for usrp-users@lists.ettus.com; Wed, 10 Jun 2020 21:49:12 -0400
+Received: by mail-qt1-f180.google.com with SMTP id j32so3451853qte.10
+ for <usrp-users@lists.ettus.com>; Wed, 10 Jun 2020 18:48:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
  :in-reply-to:content-transfer-encoding;
- bh=k0ZEl+/tRiqpfjLCb+lfe+hnkXUekYP5fTwoXOeK7Sc=;
- b=Q7byAda7xSHFMwo0xzFMug6zyNew49bnxxgOuLYqhR6rTyNMLZyfQ8WsosSYWTgpTQ
- r9tg+2AeTbl8KlnrRuEzEZNOaa0vqRlx+mvt89aL/tVV4ss9XKkR92mtpPQ5NWkilbY1
- Oc1oofPsmeh+oP5wAAFGmNkKjTP0SssSTiuoBy33AqxmIFmVTvAccn/qTm7IsMUBPo74
- 9tdGCql8lgxdNlWkTYSftNE3F9qbHrcubSvwgbgiTQ0kbv2CJ4ItfH2aYWtTp20SJG/p
- HkWL45Wieq40k9Tg2EP8eop8LZpGeb3AWThornNq4HWvPpsKhmKdfrXTu5qaKUu8QDCe
- OQmQ==
+ bh=fIDV/H8x0mgucpGinKf3xqaNmh5/gfWw1ihmQg7LkNA=;
+ b=WRp60ThSRY5xs3F+v8RP7YDoTALogcYcKmdi6Q7THVNm+ULeNJo8lNYN3ezp+BFxB7
+ 6M6pHQ9QQHHee5T3OZFOht3kaRgDw5eWpwyZAG55WmF+lGOmI3eQrSo8/IvcSsDMUytO
+ rT/Rm91/fsqkSdpacDr4XzPZNxBSfTiX6uIXHuZGS7sBw/2qN06WWqVY+dQahjVsnlmt
+ 04f2J0KApvjBi/nOP9Q8zIS106mThqjDmJDnTME0kt56O6rd6eDynXepCbGPlWEmAkn4
+ E7ZspdikfyGkTbO3ubAnzjBISotrq+USsqjs0BIRDd1J65bf5l1Lmiz0pFjiglzPhZ3C
+ TtWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to:content-transfer-encoding;
- bh=k0ZEl+/tRiqpfjLCb+lfe+hnkXUekYP5fTwoXOeK7Sc=;
- b=X4wjOpeu7xtS4BGGJYXEdlVvMQWJtJRTFJENNM9dcne/Vmv3zEf8FQDHJXHjw534DY
- hdmx3PcHF2Hr9Sa3Zm0cXkn7YhfrLwn2gkFvMV9ZNpDbD3YQvgIitkC/o9YKoi1A6N8P
- j7JRbogY0C2p89vePAv3id76K/L4imv8y4X9t9fZQ0J9p60igH/lBoGpgggX2xGoxqkb
- gkHYOFOABSP92A9PgJuQ28KlMslxHD3mjOuPgwAc0M5zQc+X35jsa6fH4CFlpvVsmECA
- gYChoNlMeWudvRaENTj0aShHmoLZfPQplPHew/sUFMnICvlhiuc3TqoNRArHrR1NXJnc
- yi1A==
-X-Gm-Message-State: AOAM532ImeQyjsHQAVljp5WUqtDoj26XoxMBRmWaSopFhPTfoWciTcn6
- Y1RFBn3ncJ3w3bIRX3azrtcMfYL09xQ=
-X-Google-Smtp-Source: ABdhPJwlPrD4433sqXZ0jkb8dL+evmAAw1ary7FwxnsLiKGVqUAq/CuVOMabFCky9yxiH5YB8/XrnA==
-X-Received: by 2002:a0c:f991:: with SMTP id t17mr5891943qvn.123.1591837849466; 
- Wed, 10 Jun 2020 18:10:49 -0700 (PDT)
+ bh=fIDV/H8x0mgucpGinKf3xqaNmh5/gfWw1ihmQg7LkNA=;
+ b=p0sCb1jxs6YWEfLUVLQqoM/x2CrHMuJx8QKhduppoyqRTlNkIj/A73JyBuTuHjyrec
+ //kIgjFkcVn5lbiMJkEA4qdJ0IyjQmF9ZzlmuelcWz2/bdITIr2RhDdGscwakFSyVp8m
+ HrwuxuxZQ92KDMJayRgPrIKLLVauYsTImexTYtry8u6RSG7MvKUZ4aJXI3/mGpD/1SZN
+ TfQc8VmoYRgKhRTKEphy7UDU79fK+TBO/GFzGDYCQ2jZrQsWawFg1gexzcho/eqTN04M
+ 9FLjzvS7Icyfhu0mIpyfr8lsQSXJKebcowGWjivOyvyPfo9I58ZFuH4UX0FcpYMddwzS
+ jaNA==
+X-Gm-Message-State: AOAM533TndYx9tV/iDuqq0YhVZMLpAfsbBskT0dcR4eYbc3KGsSV7nOB
+ iyKKjet/JreCVj4BCql0pXscBSEXIDk=
+X-Google-Smtp-Source: ABdhPJyil4I9JE9qwGu8C6Xv3cUvtI9hGK6yHcOfHgE+GKvrk8b9UwEQrtNJY190Yj8WGzxiMy29ZA==
+X-Received: by 2002:ac8:4558:: with SMTP id z24mr6214119qtn.329.1591840111102; 
+ Wed, 10 Jun 2020 18:48:31 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
  [174.95.14.109])
- by smtp.googlemail.com with ESMTPSA id y129sm1207964qkc.1.2020.06.10.18.10.48
+ by smtp.googlemail.com with ESMTPSA id d9sm1299188qtq.56.2020.06.10.18.48.30
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 10 Jun 2020 18:10:48 -0700 (PDT)
-Message-ID: <5EE18498.1090507@gmail.com>
-Date: Wed, 10 Jun 2020 21:10:48 -0400
+ Wed, 10 Jun 2020 18:48:30 -0700 (PDT)
+Message-ID: <5EE18D6D.1060809@gmail.com>
+Date: Wed, 10 Jun 2020 21:48:29 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
@@ -104,29 +104,21 @@ On 06/10/2020 09:00 PM, Lukas Haase via USRP-users wrote:
 > 1.) How many commands do the command queues have exactly on the X310? (https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD says 5-8 but other sources say 16 or 32).
 > 2.) What happens when the command queue is full? Is the command dropped, does USRP crash or anything else? (above link is unclear about that)
 >      Can we change this behavior?
-Something to consider is that a tuning command is NOT, in general, a 
-single register-set to the FPGA.  The FPGA has NO 'inherent' knowledge
-   of the various types of peripherals involved in tuning.  So tuning 
-will often involve more than one SPI or I2C interaction with whatever RF
-   hardware is being used.  This invariably means more than one 
-"command" from the FPGAs point-of-view.
 > 3.) How can we figure out what is the maximum speed to issue timed commands reliably?
 >      What does this depend on and which parameters need to be tweaked?
 >
 > For example, what is the fastest rate I can issue timed commands (ignoring settling times etc) on a X310 over 10Gbe?
-That partially depends on things like which SPI/I2C peripherals are 
-involved--those buses run at a fixed and not-steaming-fast rate.
-   So even though the FPGA may be able to swallow commands "real fast", 
-it won't necessarily be able to complete SPI/I2C bus transactions
-   that fast.
-
-My recollection is that the SPI on the X310 operates at perhaps 
-1Mbit/sec, but maybe even as sluggish as 400kbit/s.
-
-So, when UHD on the host side is tuning a hardware device it doesn't say 
-to the FPGA "hey, could you tune the UBX card to <X> MHz, please?"
-    It says "hey, here's an SPI transaction.  Oh, and another one. Oh, 
-and maybe another one, too..."
+This is actually an ambiguous question.  Do you mean "what is the 
+smallest scheduling interval for the commands that will be executed in
+   the future?" or "how fast can I issue commands that will ultimately 
+be scheduled at a later time?"  In the former, that depends on the
+   exact nature of the commands, since they end up actually being 
+executed by, for example, an SPI or I2C endpoint, which operates very
+   very much slower than a 10GiGe interface.  In the latter, my guess is 
+that the FPGA can swallow commands and place them on the queue
+   pretty-much as fast as you can issue them over 10GiG. How fast you 
+can do that depends very much on your host-side environment, network stack,
+   kernel network drivers, kernel latencies, etc.
 
 
 >
