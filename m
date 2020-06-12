@@ -2,59 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC841F7B10
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2020 17:45:14 +0200 (CEST)
-Received: from [::1] (port=59090 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2451B1F7C84
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2020 19:33:57 +0200 (CEST)
+Received: from [::1] (port=58830 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjlrj-0005GT-W2; Fri, 12 Jun 2020 11:45:11 -0400
-Received: from mout.gmx.net ([212.227.17.22]:47061)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1jjlrf-0004z2-GV
- for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 11:45:07 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1591976666;
- bh=I8C4PRm1xn/OHxN1m21EbflgRwXI6BN5xou+SPRkL0k=;
- h=X-UI-Sender-Class:From:To:Subject:Date:In-Reply-To:References;
- b=MB2y+66FN0tN2JO1UtFz7Unb30qnP5PP6Fq1E4o1Z/MLPxSlwUAtTFbrO9chjnAt1
- gGNjQruLnzlpvQ5q3iOeqU+/98DuA4UkZHfUXPEltUNpx5PcawMyslRFgAP99qCefy
- HjEtPDmlo7tu9C/xoCnLd8KW5QyhnBS8FJgEDd7U=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [87.101.54.176] ([87.101.54.176]) by web-mail.gmx.net
- (3c-app-gmx-bs14.server.lan [172.19.170.66]) (via HTTP); Fri, 12 Jun 2020
- 17:44:25 +0200
+	id 1jjnYv-0005op-Sy; Fri, 12 Jun 2020 13:33:53 -0400
+Received: from mail-ed1-f51.google.com ([209.85.208.51]:34569)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <jeremy.vezinet@gmail.com>)
+ id 1jjnYs-0005jw-88
+ for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 13:33:50 -0400
+Received: by mail-ed1-f51.google.com with SMTP id w7so7007454edt.1
+ for <usrp-users@lists.ettus.com>; Fri, 12 Jun 2020 10:33:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=xQj3g/vpOLxqGtvvkUehCTI1fwjhqFzRZRu+w/X1PfU=;
+ b=N8fFxKGUgnNk3U0519yEyAhZ7wkydVX3I9yxAwKJ+7ba90LRkOpFjIAEJyKUNjNFhV
+ 31WMTZi1jlhwNOgFuTS5XCftSDxlIg6kNgt1eMXXc7HWz4A5KABkGzObz3AeHYCtrriV
+ 8ZxQ6x4XgubOSjwfZMmBkdEW+qKxFq4qL2oyFFBkU0obDt1c/XWMzfNdOFQGQQaW3Pt/
+ 2FTAQ/AofAu1q1Mx5FpvJdlP9UhjRjdLpNjwcA2D6plx2beXfjiir1YE4GNWhmwzYEBA
+ IJq68iM0pDG6bpAwjVD0b4kyTNRikvwG+Y4c1JlMLY+rldRy5rqTcg9K4J4HixfRSHyI
+ Islw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=xQj3g/vpOLxqGtvvkUehCTI1fwjhqFzRZRu+w/X1PfU=;
+ b=A+Msoq8B6eeanSNdQTQHlamjjCEKGsXWNruhDItIRa2sxf6T+naGmr6nUW0Ro26D/0
+ xpvwMDQOtijCqZhkwe2keJqqMsEuytGPuJAGKzS2olmWuPB0tCDA9/kKRjpHWL1u07sP
+ FJuB//gGDPK55YaJHDRBhjB2TrbD1Nitc0LJMrpnJzTxws2+2XzXe0Ky1ZR/qdTTNUbp
+ Uk7woiaK3ksaLuOnGzcvrufQZGUHvfUjA0D9tTrHzGYtI4XN6+28Wu5679vGjcKwX2gE
+ V8WbVI/0nEZPxLhyP7BNZ3eWFSvfurYny8tEEa6jR7xAvurszcrNUR9z6JYGvtBBex1q
+ ketQ==
+X-Gm-Message-State: AOAM530rmKxTH+3ZuL+9jyTDmWimV+pA1d6tjooGR3iNFhhliXbbJ+tA
+ qnn51H4yL0Je8vIzFtHavYeGNT9yQYsLewkyCxCTViIh
+X-Google-Smtp-Source: ABdhPJxSpCoKc+J0gfvdSUSpPQIFHsF8DO1hxLHgiVpuU6f7TR1bwgynmSFMNxujORf10zq81eSTDEHzpHBfnBU9pYw=
+X-Received: by 2002:a05:6402:a42:: with SMTP id
+ bt2mr12446371edb.42.1591983188869; 
+ Fri, 12 Jun 2020 10:33:08 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-956ec4ce-edff-42f4-bb3f-f19d7681634c-1591976665950@3c-app-gmx-bs14>
-To: Chintan Patel <cpatel@vt.edu>, "USRP-users@lists.ettus.com"
- <usrp-users@lists.ettus.com>
-Date: Fri, 12 Jun 2020 17:44:25 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <CAOJfBDfX=L330sse-4bUv2uzD2rA9JWVTSQsT19ki2mvdypY4w@mail.gmail.com>
-References: <trinity-469b54f5-33c1-4a43-876d-eb07014b9eb2-1591904041140@3c-app-gmx-bap40>
- <AAE54BC7-1AC7-4745-8598-4FC701DC2627@gmail.com>
- <trinity-698bf8e0-f382-4350-99d9-e2bf4b5ef8d4-1591908381370@3c-app-gmx-bap40>
- <CAOJfBDfX=L330sse-4bUv2uzD2rA9JWVTSQsT19ki2mvdypY4w@mail.gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:N5TTZEbGtLiHdReuqd4AvgLQgkN6JZO0Zzj6SmFdhy72bMBVM8mm3cFz+6PyWLI4Xh7sY
- aHrY1Uh26uAvrm7suIftAR7JbfL8temkfBv797jLu9jv/ItJC0VO7AtEMSN5VjhpwNaB0yQBrJOd
- wOKNceRH+8o3IhNWPwk3VaNO/JDbhFfcdWBeEnHkKVekLadulLeyPnuLaXCHlJJUX2pXbVi/RVhE
- K+qwvbmoZkM+o3lBcjIBDYsbCculkpFITdEKjix7ICiSBD2GwXkE5SdhCHmQcnwLSIrFX719gNiO
- 1o=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:bjiyszQj+54=:D2t5yqv2IcO6HMGiyn90jj
- Gw3WanpELPAeozcPzh0p+Z2oU7VKOqivibuWYK/2yB1C0AEW5Flss4g3OYrhIcAuSestBvDxa
- MGH5LbWvUWzNOgm8T+hPJ+icotNIyHahpopgIpIPmoASSnmOSudjgTr1lZOwsLWUcpy8foioR
- YmfbFMDGFiq/senQ3fv6TuK/dEXnjnBTqDCebt7HKfmCPns/E1RZbR3s6dDMHhenV7/Vqr+4H
- RvvqpwSBPCYNSvHB/sSeKiICJxXWzviUo3K09K7Qn7USdkvyaMRZ1wozttY4f8ztLMn7+09vN
- vomCpM79ZZptEapspfVMoj+8yOORCD7SFcqVoDU0GdpupPuQUEOnZduW6vRCk73BlMMBhiefg
- ihBwZA8MZaxpyq3mdK8aQQfGWmPJRi9AU0ptehcfR/QCna1n8kgYasUy37y8uMz/YdHbbMLwi
- xsta+LWoZTRiUOPSF/Jg9njkdxt8gjLXqZWAoRzLFrAu6sM7T3hguqTVUQkHAqeJq8MiS9/br
- s6lnHSXWzr+eB0AYkIL33mPj3q294U3Pnjr7xMLlDhMenfuqSUXm8zgYB1f5fh3deN8vyVUJN
- TQu9TwHG8EWK4HF34pMm0co1Wod/mkR2Vb1DapKTiESksCkgoRSQlXXw9CGoYfh1dzEpwu98B
- BK4qZUmyqRZ/EOTNqLCX08o76zAND8vTkoI1CFQLMHbnNb59cDhEjZEL+JgNRlzJwGUw=
-Subject: Re: [USRP-users] How to debug timed commands on FPGA side?
+Date: Fri, 12 Jun 2020 19:32:57 +0200
+Message-ID: <CANka2Pwqgc=sk6mutxNwbO2fzUQe4k4W_A5_DFzaWWY5prxYug@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] DPDK support not built in with X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,10 +56,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: =?utf-8?q?J=C3=A9r=C3=A9my_Vezinet_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?SsOpcsOpbXkgVmV6aW5ldA==?= <jeremy.vezinet@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7797382111647212709=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,97 +73,64 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgQ2hpbnRhbiwKClRoYXQncyBhIGdvb2QgdGhvdWdodC4KCldoYXQgY29uY2VybnMgbWUgaXMg
-dGhhdCB3aGV0aGVyIHRpbWVkIGNvbW1hbmRzIGFyZSBleGVjdXRlZCBwcm9wZXJseSBzZWVtcyB0
-byBkZXBlbmQgb24gc2Vjb25kIGFuZCB0aGlyZCBsZXZlbCBwYXJhbWV0ZXJzIHN1Y2ggYXMgdGhl
-IHdheSBpbiB3aGljaCBJIGNvbm5lY3QgYmxvY2tzIGluIGdudXJhZGlvLgpUaGlzIGlzIHByb2Js
-ZW1hdGljIGJlY2F1c2UgZXZlbiBpZiBJIGZpZ3VyZSBvdXQgdGhlIG1heC4gcmF0ZSB3aXRoIHRo
-ZSBzY29wZSwgb25jZSBJIGFkZCBhbm90aGVyIGJsb2NrLCB0aGluZ3MgbWF5IGJlaGF2ZSBkaWZm
-ZXJlbnRseS4KCkkgdGhpbmsgdGhlIHJlYXNvbiB0aGF0IHRoaXMgZGVwZW5kcyBvbiBob3cgYmxv
-Y2tzIGFyZSBjb25uZWN0ZWQgaW4gZ251cmFkaW8gYXJlIGJ1ZmZlcnMuIEluIG90aGVyIHdvcmRz
-LCBob3cgZmFzdCBhbmQgaG93IG11Y2ggZGF0YSBVSEQgcmVjZWl2ZXMgYXQgb25jZS4KQWxsIG15
-IGRhdGEgYXJyaXZlcyBvbiB0aW1lLCBqdXN0IHRpbWVkIGNvbW1hbmRzIGFyZSBzb21ldGltZXMg
-bGF0ZSAodGhlIGNhdXNlIGFuZCBjb25kaXRpb25zIGFyZSB1bmNsZWFyKS4KClRoZXJlIG11c3Qg
-YmUgYSB3YXkgdG8gY29udHJvbCB0aGlzIHByb3Blcmx5IGluIFVIRC4gVGhlIGxpbmsgc3BlZWQg
-aXMgd2F5IGZhc3QgZW5vdWdoICgxMEdiZSBhbmQgSSB1c2UgMjBNc3BzKS4KClRoYW5rcywKTHVr
-YXMKCgoKCkdlc2VuZGV0OsKgRnJlaXRhZywgMTIuIEp1bmkgMjAyMCB1bSAwNzowNCBVaHIKVm9u
-OsKgIkNoaW50YW4gUGF0ZWwiIDxjcGF0ZWxAdnQuZWR1PgpBbjrCoCJMdWthcyBIYWFzZSIgPGx1
-a2FzaGFhc2VAZ214LmF0PgpCZXRyZWZmOsKgUmU6IFtVU1JQLXVzZXJzXSBIb3cgdG8gZGVidWcg
-dGltZWQgY29tbWFuZHMgb24gRlBHQSBzaWRlPwoKTHVrYXMsCsKgCkkgbWF5IGhhdmUgbWlzc2Vk
-IHNvbWUgc2FsaWVudCBwb2ludHMgb2YgdGhpcyB0aHJlYWQsIGJ1dCBoZXJlJ3MgYSB0aG91Z2h0
-LiBDb3VsZCB5b3UganVzdCBhbHRlcm5hdGXCoGJldHdlZW4gc2VuZGluZyB0d28gdGltZWQgY29t
-bWFuZHMgLSB0cmFuc21pdMKgZnJlcSBBIGFuZCB0cmFuc21pdMKgZnJlcSBCLiBIb29rIHVwIHRo
-ZSBvdXRwdXQgdG8gYSBzY29wZSAoc3BlYyBhbiBtYXkgbm90IHJlYWN0IGZhc3QgZW5vdWdoKS4g
-T25jZSB5b3UgaGF2ZSB0aGUgc2V0dXAgdGhhdCB5b3UgY2FuICJzZWUiIHdoZXRoZXIgYSBjb21t
-YW5kIGhhcyBiZWVuIHByb2Nlc3NlZCBvciBub3QgYnkgbG9va2luZyBhdCB0aGUgc2NvcGUsIHlv
-dSBjYW4gY2hhcmFjdGVyaXplIHRoZSByZWxpYWJsZSBpbmdlc3QgcmF0ZSBvZiB0aGUgdGltZWQg
-Y29tbWFuZCwgZW1waXJpY2FsbHk/wqAKwqAKSWYgdXNpbmcgYSBzY29wZSBpcyBub3QgZmVhc2li
-bGUsIGlmIHlvdSBoYXZlIGFub3RoZXIgU0RSLCB5b3UgY2FuIHVzZSB0aGUgU0RSIHRvIGNhcHR1
-cmUgZGF0YSAoaW5zdGVhZCBvZiBzY29wZSkgdG8gc2VlIHdoZXRoZXLCoGFsbCBUWCB0dW5lIGNv
-bW1hbmRzIHdlcmUgcHJvY2Vzc2VkIGNvcnJlY3RseS4KwqAKQSB0aG91Z2h0LgrCoApDaGludGFu
-wqAKCk9uIFRodSwgSnVuIDExLCAyMDIwIGF0IDQ6NDcgUE0gTHVrYXMgSGFhc2UgdmlhIFVTUlAt
-dXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzp1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbV0+IHdyb3RlOkhpIE1hcmN1cywKCkNhbiB3ZSBxdWFudGlmeSB0aGlzIGluIHRo
-ZSBmb2xsb3dpbmcgd2F5PwoKSWYgSSBzZW5kIHRpbWVkIGNvbW1hbmRzIGV2ZXJ5IDJtcyBhbmQg
-c2FtcGxpbmcgcmF0ZSBpcyA1TVMvcywgdGhhdCdzIDEwMDAwIHNhbXBsZXMgcGVyIGNvbW1hbmQg
-b3IgNTAwMDAgZm9yIHRoZSBjb21tYW5kIHF1ZXVlIChhc3N1bWluZyBhIGRlcHRoIG9mIDUpLgoK
-Q2FuIHdlIHNheSB0aGUgdGltZWQgY29tbWFuZHMgd2lsbCBndWFyYW50ZWVkIHRvIGJlIGV4ZWN1
-dGVkIG9uIHRpbWUgaWYgd2UgbmV2ZXIgYnVmZmVyIG1vcmUgdGhhbiA1MDAwMCBzYW1wbGVzICg9
-MjAwMDAwIGJ5dGVzKSBvbiB0aGUgaG9zdD8KCkNhbiB0aGlzIGJlIHR1bmVkIHNvbWVob3c/IEkg
-dHJpZWQgc2V0dGluZyBzZW5kX2J1ZmZfc2l6ZSBbMV0gdG8gYSBzbWFsbCB2YWx1ZSAoc2VuZF9i
-dWZmX3NpemU9MTAwMDAgZXRjLikgYnV0IHRoYXQgZGlkbid0IHNlZW0gdG8gbWFrZSBhbnkgZGlm
-ZmVyZW5jZS4KClRoYW5rcywKTHVrYXMKCgpbMV0gaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFu
-dWFsL3BhZ2VfdHJhbnNwb3J0Lmh0bWxbaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3Bh
-Z2VfdHJhbnNwb3J0Lmh0bWxdCgoKCj4gR2VzZW5kZXQ6IERvbm5lcnN0YWcsIDExLiBKdW5pIDIw
-MjAgdW0gMTY6MzIgVWhyCj4gVm9uOiAiTWFyY3VzIEQgTGVlY2giIDxwYXRjaHZvbmJyYXVuQGdt
-YWlsLmNvbVttYWlsdG86cGF0Y2h2b25icmF1bkBnbWFpbC5jb21dPgo+IEFuOiAiTHVrYXMgSGFh
-c2UiIDxsdWthc2hhYXNlQGdteC5hdFttYWlsdG86bHVrYXNoYWFzZUBnbXguYXRdPgo+IENjOiAi
-VVNSUC11c2Vyc2xpc3RzLmV0dHVzLmNvbVtodHRwOi8vVVNSUC11c2Vyc2xpc3RzLmV0dHVzLmNv
-bV0iIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb21dPgo+IEJldHJlZmY6IFJlOiBbVVNSUC11c2Vyc10gSG93IHRvIGRlYnVnIHRpbWVk
-IGNvbW1hbmRzIG9uIEZQR0Egc2lkZT8KPgo+IFNvIG9uZSBvZiB0aGUgdGhpbmdzIFRoYXQgY2Fu
-IGhhcHBlbiBpcyB0aGF0IHlvdXIgY29tbWFuZCBwYWNrZXRzIHdpbGwgaGF2ZSB0byB3YWl0IEZv
-ciBhIG11Y2gtbGFyZ2VyIGRhdGEgcGFja2V0LiBUaGUgbGluayBpcyBzaGFyZWQuCj4KPiBJ4oCZ
-ZCB0aW1lZCBjb21tYW5kcyBhcmUgc2NoZWR1bGVkIOKAnHRpZ2h04oCdIHRoaXMgY2FuIGhhcHBl
-bi4KPgo+IFNlbnQgZnJvbSBteSBpUGhvbmUKPgo+ID4gT24gSnVuIDExLCAyMDIwLCBhdCAzOjM0
-IFBNLCBMdWthcyBIYWFzZSA8bHVrYXNoYWFzZUBnbXguYXRbbWFpbHRvOmx1a2FzaGFhc2VAZ214
-LmF0XT4gd3JvdGU6Cj4gPgo+ID4g77u/SGkgTWFyY3VzLAo+ID4KPiA+Pj4gT24gMDYvMTAvMjAy
-MCAwOTowMCBQTSwgTHVrYXMgSGFhc2UgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4gPj4+IFsuLi5d
-Cj4gPj4+IEZvciBleGFtcGxlLCB3aGF0IGlzIHRoZSBmYXN0ZXN0IHJhdGUgSSBjYW4gaXNzdWUg
-dGltZWQgY29tbWFuZHMKPiA+Pj4gKGlnbm9yaW5nIHNldHRsaW5nIHRpbWVzIGV0Yykgb24gYSBY
-MzEwIG92ZXIgMTBHYmU/Cj4gPj4gVGhpcyBpcyBhY3R1YWxseSBhbiBhbWJpZ3VvdXMgcXVlc3Rp
-b24uwqAgRG8geW91IG1lYW4gIndoYXQgaXMgdGhlCj4gPj4gc21hbGxlc3Qgc2NoZWR1bGluZyBp
-bnRlcnZhbCBmb3IgdGhlIGNvbW1hbmRzIHRoYXQgd2lsbCBiZSBleGVjdXRlZAo+ID4+IGluIHRo
-ZSBmdXR1cmU/IiBvciAiaG93IGZhc3QgY2FuIEkgaXNzdWUgY29tbWFuZHMgdGhhdCB3aWxsCj4g
-Pj4gdWx0aW1hdGVseSBiZSBzY2hlZHVsZWQgYXQgYSBsYXRlciB0aW1lPyLCoCBJbiB0aGUgZm9y
-bWVyLCB0aGF0Cj4gPj4gZGVwZW5kcyBvbiB0aGUgZXhhY3QgbmF0dXJlIG9mIHRoZSBjb21tYW5k
-cywgc2luY2UgdGhleSBlbmQgdXAKPiA+PiBhY3R1YWxseSBiZWluZyBleGVjdXRlZCBieSwgZm9y
-IGV4YW1wbGUsIGFuIFNQSSBvciBJMkMgZW5kcG9pbnQsCj4gPj4gd2hpY2ggb3BlcmF0ZXMgdmVy
-eSB2ZXJ5IG11Y2ggc2xvd2VyIHRoYW4gYSAxMEdpR2UgaW50ZXJmYWNlLsKgIEluIHRoZQo+ID4+
-IGxhdHRlciwgbXkgZ3Vlc3MgaXMgdGhhdCB0aGUgRlBHQSBjYW4gc3dhbGxvdyBjb21tYW5kcyBh
-bmQgcGxhY2UgdGhlbQo+ID4+IG9uIHRoZSBxdWV1ZSBwcmV0dHktbXVjaCBhcyBmYXN0IGFzIHlv
-dSBjYW4gaXNzdWUgdGhlbSBvdmVyIDEwR2lHLgo+ID4+IEhvdyBmYXN0IHlvdSBjYW4gZG8gdGhh
-dCBkZXBlbmRzIHZlcnkgbXVjaCBvbiB5b3VyIGhvc3Qtc2lkZQo+ID4+IGVudmlyb25tZW50LCBu
-ZXR3b3JrIHN0YWNrLCBrZXJuZWwgbmV0d29yayBkcml2ZXJzLCBrZXJuZWwgbGF0ZW5jaWVzLAo+
-ID4+IGV0Yy4KPiA+Cj4gPiBNeSBxdWVzdGlvbnMgY29uY2VybnMgdGhlIGxhdHRlciAoZm9yIG5v
-dykuCj4gPiBTaW5jZSB0aGUgRlBHQSBoYXMgYSAoc21hbGwpIGZpbml0ZSBGSUZPIGZvciB0aGVz
-ZSB0aW1lZCBjb21tYW5kcyBJIGFzc3VtZSpkKiB0aGVyZSB3b3VsZCBiZSBhIGxpbWl0IG9uIGhv
-dyBmYXN0IEkgY2FuIHNlbmQgdGhlc2UgY29tbWFuZHMuCj4gPgo+ID4gQmFzZWQgb24gSm9uYXRo
-b24ncyBhbnN3ZXIgaG93ZXZlciwgaXQgc2VlbXMgdGhhdCBVSEQgb24gdGhlIGhvc3QgZW5zdXJl
-cyB0aGF0IGl0IG9ubHkgc2VuZHMgYSBtYXhpbXVtIG51bWJlciBvZiB0aW1lZCBjb21tYW5kcyBz
-dWNoIHRoYXQgdGhlIGNvbW1hbmQgcXVldWVzIGRvIG5vdCBvdmVyZmxvdy4KPiA+Cj4gPiBCdXQg
-aXQgc2VlbXMgdG8gYnJpbmcgYW5vdGhlciBpc3N1ZTogSWYgVUhEIGhvbGRzIGJhY2sgdGhlc2Ug
-bWVzc2FnZXMgdG9vIGxvbmcgdGhleSB3aWxsIGV2ZW50dWFsbHkgYXJyaXZlIGxhdGUgYW5kIChz
-aWxlbnRseSkgZXhlY3V0ZSBub24tdGltZWQgKHRoZXJlYnkgZGVzdHJveWluZyBhbnkgY29oZXJl
-bmNlIHRoZSBhcHBsaWNhdGlvbiBtaWdodCByZXF1aXJlKS4KPiA+Cj4gPiBJIGFtIHRyeWluZyB0
-byBkZWJ1ZyBXSFkgdGhpcyBjYW4gaGFwcGVuLCB3aHkgaXQgZG9lcyBOT1QgaGFwcGVuIHRvIHRo
-ZSBkYXRhIHN0cmVhbSAoYWxsIGRhdGEgYXJyaXZlcyBvbiB0aW1lISkgYW5kIHdoYXQgSSBjYW4g
-ZG8gdGhhdCBJIGVuc3VyZSBteSB0aW1lZCBjb21tYW5kcyB3aWxsIGV4ZWN1dGUgKm9uIHRpbWUq
-Lgo+ID4KPiA+IFRoYW5rcywKPiA+IEx1a2FzCj4gPgo+ID4KPiA+Cj4gPgo+ID4KPiA+Cj4KCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMg
-bWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tW21haWx0bzpVU1JQLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbV0KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZv
-L3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNy
-cC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============7797382111647212709==
+Content-Type: multipart/alternative; boundary="00000000000076063b05a7e67896"
+
+--00000000000076063b05a7e67896
+Content-Type: text/plain; charset="UTF-8"
+
+Hi all,
+
+I recently bought a X310 usrp and a 82599ES 10-Gigabit SFI/SFP+ Network
+Interface Card (the one recommended on the Ettus Website).
+
+I first set my connections and a benchmark test shows a lot of dropped
+samples and some overflows.
+So i decided to try using dpdk to improve my setup.
+I have UHD 3.14.1.1 and I installed dpdk with my apt package manager (dpdk
+version 17.11.9).
+I followed this guide https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD
+and when I run the benchmark with use_dpdk argument, I got the following:
+[WARNING] [DPDK] Detected use_dpdk argument, but DPDK support not built in.
+
+I really don't understand what's wrong. I tried so many things. I tried
+with dpdk 18 and went back to 17 because it didn't solve anything.
+
+Could anyone help me with that please ?
+
+Jeremy
+
+--00000000000076063b05a7e67896
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr"><p><font size="-1">Hi all,</font></p>
+<p><font size="-1">I recently bought a X310 usrp and a 82599ES 
+10-Gigabit SFI/SFP+ Network Interface Card (the one recommended on the 
+Ettus Website).<br>
+    <br>
+I first set my connections and a benchmark test shows a lot of dropped samples and some overflows.<br>
+So i decided to try using dpdk to improve my setup.<br>
+I have UHD 3.14.1.1 and I installed dpdk with my apt package manager (dpdk version 17.11.9).<br>
+I followed this guide </font><font size="-1"><a href="https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD">https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD</a> and when I run the benchmark with use_dpdk argument, I got the following:<br>
+  </font><code>[WARNING] [DPDK] Detected use_dpdk argument, but DPDK support not built in.</code><font size="-1"><br>
+  </font></p>
+<p><font size="-1">I really don&#39;t understand what&#39;s wrong. I tried so many things. I tried with dpdk 18 and went back to 17 because it didn&#39;t solve anything.<br>
+    <br>
+Could anyone help me with that please ?<br><br>Jeremy</font></p></div>
+
+--00000000000076063b05a7e67896--
+
+
+--===============7797382111647212709==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7797382111647212709==--
+
