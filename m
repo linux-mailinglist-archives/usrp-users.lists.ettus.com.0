@@ -2,55 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93FF1F7DAA
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2020 21:34:34 +0200 (CEST)
-Received: from [::1] (port=47094 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78DB21F7DAC
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2020 21:35:12 +0200 (CEST)
+Received: from [::1] (port=48604 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjpRf-0001cW-92; Fri, 12 Jun 2020 15:34:31 -0400
-Received: from mail-io1-f41.google.com ([209.85.166.41]:45333)
+	id 1jjpSH-0001tG-79; Fri, 12 Jun 2020 15:35:09 -0400
+Received: from mail-qk1-f179.google.com ([209.85.222.179]:34700)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <bistromath@gmail.com>)
- id 1jjpRb-0001YQ-1Z
- for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 15:34:27 -0400
-Received: by mail-io1-f41.google.com with SMTP id y5so11414529iob.12
- for <usrp-users@lists.ettus.com>; Fri, 12 Jun 2020 12:34:06 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jjpSD-0001Yx-8Y
+ for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 15:35:05 -0400
+Received: by mail-qk1-f179.google.com with SMTP id f18so10168701qkh.1
+ for <usrp-users@lists.ettus.com>; Fri, 12 Jun 2020 12:34:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=OJG3B3DX41CEkvDR+FS5BTC5yR7IDwfaJmLQX1FGd5c=;
- b=UzCFwwCeNU8QGg3NhmVbVNoT0UHY9fQ9YJfBc2VQ5XgFox8kksbK2uWnapfUu+Z2H+
- Wtfl02tRfSOFwDBkwEQdUElVhNlmQOxCzcItoqF63ixjbKbGqpwy3+gsSptanRV7aQKf
- BEX5YpAWVnwqlIR5w9u3Wg27i098906yK531pApYrxt7y8hV2qEME39ejgDZo70RmWB6
- WE2xm4H3WjGEVLtVrLZKM5yDwGeZpv9N5NBgjyEEXMDfDcCWFPKihYdK6mTQN3/CpMmD
- 1CdbyAcIX2XXQhkx4+RG0F4Ihdo8BztCj5EcRfXclFDf25q5Wmpie5g6cmdPvP2l02yq
- 8EJA==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=uEdpRlVp5XJtSfIoIsrDneva/Dl2ElQCY77vnhazmn4=;
+ b=Sz1VUjPuhLO2WEYhHOE4XnjmSXqTeusL2Sxis4sdX+cG6M1NYmPNbZDJ+6DfFugBSd
+ WryJoUGtUFES/PmREObVaiVFkzsmEE9FRvZc2/MThVVHOr5gP6S/ZDXT7ccNQ5XKDTR9
+ 8Gw2Uuxt5yoHmAD6NMwG05pX6NpcU7eHXf8xLOG6lD3dqIA5zu7MvPN+OUJeYtMJZ8de
+ cymaABV4G3qbYrhEV8aG8yWYArVoozEj/+yFMwFtsG6Zb/F4r4CCYGo8Hawh5APecxna
+ oV1DhD/IADy1qYw0QpVzc3V5AmDXj7tTy2yEWS8wnfr2z3i+g2Y9Snx2d5urLB3toqXg
+ gWBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=OJG3B3DX41CEkvDR+FS5BTC5yR7IDwfaJmLQX1FGd5c=;
- b=IIUhLMDyWuhfengo/fDLzdCJyPNeqZxbQ4FN+oNPje4Wh/6nhzdkCmZeivwrWL/6qX
- 9njIM4A6j6dMeKad9HALa9v4kMPsAfcWftQpzk93eRmGdUU5lFf1JTeIMloYTEw0zO9S
- WfrsX0wqXvuyjXaLNxc7g6NdR8I/bS+kHNL0LxPptq8fYdzFpBtXNu1YmwchzQqP6Cg9
- yXBFk9sOnzewQFjOD2LyMVx/zvczj5U4on7XkrORGbAf2VbouCeY1wli8Ugc8VWHDhRt
- W3EHYTXfel1i7pqofXj/WwEnIfqK7XclrSomGVkf1zM2bjyVUgxDrdRQGX52OZX0F27N
- jR2A==
-X-Gm-Message-State: AOAM532WplgJ0A2jClQIzGkpWbvIKXsA2tkYZcRgxnqvn7Ng9/5cm8T7
- Ajd2QZU+AHQfSIxN1BZO94bUTdOZ5Q7s/8KdbUI=
-X-Google-Smtp-Source: ABdhPJx1mF6N0f09iEdnqf/M+/fSQPPEfG3FsCbHowCJ+L6YkeKGnejKg1VHzTrlaquv7MBgIixE70cele4gkVm++kE=
-X-Received: by 2002:a02:2444:: with SMTP id q4mr9563074jae.29.1591990426237;
- Fri, 12 Jun 2020 12:33:46 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=uEdpRlVp5XJtSfIoIsrDneva/Dl2ElQCY77vnhazmn4=;
+ b=ZioEjPBsob7RFKXAL7QtbthXSwet2OOdgJ0CKQVBP/1vG0U2d3+pmYRLXjTkIgGz+U
+ 1B/I/3rTYwZfn1esbqLH+MGNADW75ON/VmgD4FiNlt+e9k90PNivFusg42bcwpdCIuT1
+ J5rl5csFaTPoDwQa3rFvjIWpf3AovrztHC4TP2tU2uGXbmsfsKcNUQ9gXHbPA50ac8to
+ BNG8vtnoGNdylywgLvfh1ZPeNIfhhZA44dxQtwXuSJDhUNA21Il/X4P9Ro66s9WWkrRb
+ CijupNHLJ4UjX2Er2O9NrJmcAJ2ZMfgxcP9iRpD1Zy65EW/5zlEo0w+K1GVVocO0gNDv
+ pBxg==
+X-Gm-Message-State: AOAM533nvovolFtVGvls9KatowE0WUYifphfSEwzLqMYcEdxS12uny4S
+ UPXDtoxAC/KA6qqhgPtoBOfznhYIxpY=
+X-Google-Smtp-Source: ABdhPJyHvad1X0tsWNUucheQWH60W0Qti3srzwt54G/G/jfANxvers3820dUvBBNdYXfWA8hnWQXpA==
+X-Received: by 2002:a05:620a:15f4:: with SMTP id
+ p20mr4427857qkm.283.1591990464578; 
+ Fri, 12 Jun 2020 12:34:24 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
+ [174.95.14.109])
+ by smtp.googlemail.com with ESMTPSA id 5sm5091658qko.14.2020.06.12.12.34.23
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 12 Jun 2020 12:34:23 -0700 (PDT)
+Message-ID: <5EE3D8BF.4060502@gmail.com>
+Date: Fri, 12 Jun 2020 15:34:23 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <trinity-469b54f5-33c1-4a43-876d-eb07014b9eb2-1591904041140@3c-app-gmx-bap40>
- <AAE54BC7-1AC7-4745-8598-4FC701DC2627@gmail.com>
- <trinity-698bf8e0-f382-4350-99d9-e2bf4b5ef8d4-1591908381370@3c-app-gmx-bap40>
- <CAOJfBDfX=L330sse-4bUv2uzD2rA9JWVTSQsT19ki2mvdypY4w@mail.gmail.com>
- <trinity-956ec4ce-edff-42f4-bb3f-f19d7681634c-1591976665950@3c-app-gmx-bs14>
-In-Reply-To: <trinity-956ec4ce-edff-42f4-bb3f-f19d7681634c-1591976665950@3c-app-gmx-bs14>
-Date: Fri, 12 Jun 2020 12:33:34 -0700
-Message-ID: <CA+JMMq8t7ZhnE3j8Uk54j9UFux=e=yaY2PxRJ2sBiiqo3rijFg@mail.gmail.com>
-To: Lukas Haase <lukashaase@gmx.at>
-Subject: Re: [USRP-users] How to debug timed commands on FPGA side?
+To: usrp-users@lists.ettus.com
+References: <CANka2Pwqgc=sk6mutxNwbO2fzUQe4k4W_A5_DFzaWWY5prxYug@mail.gmail.com>
+ <10F7328F6AD1354BA6DD787687B66B9001A97A4064@Maui.in.dynetics.com>
+In-Reply-To: <10F7328F6AD1354BA6DD787687B66B9001A97A4064@Maui.in.dynetics.com>
+Subject: Re: [USRP-users] DPDK support not built in with X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -62,10 +68,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nick Foster via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nick Foster <bistromath@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1454835961966808932=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1557454573492007336=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,409 +84,280 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1454835961966808932==
-Content-Type: multipart/alternative; boundary="000000000000d7814e05a7e827b6"
+This is a multi-part message in MIME format.
+--===============1557454573492007336==
+Content-Type: multipart/alternative;
+ boundary="------------020702080606050805080002"
 
---000000000000d7814e05a7e827b6
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------020702080606050805080002
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-I agree that Gnuradio sometimes introduces unpredictable and
-non-reproducible latencies, which can be especially problematic when
-dealing with timing-sensitive hardware close to the metal. Setting UHD
-buffer size is one thing, but Gnuradio can hang onto data in sometimes
-opaque ways, with sometimes opaque interactions (at least, to me!) with the
-host OS's scheduler. These issues are ordinarily not a problem because you
-can just increase send buffer size until you never see underruns due to
-buffer starvation, but this solution only works for systems which a) have
-backpressure, and b) are not latency-sensitive.
-
-This isn't a particularly helpful suggestion, I realize, but when faced
-with these problems in the past I have reimplemented my systems in C++,
-interfaced directly to UHD, generally with favorable results. It is much
-easier to guarantee timing when you have full control of the system.
-
-Nick
-
-On Fri, Jun 12, 2020 at 8:45 AM Lukas Haase via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi Chintan,
+On 06/12/2020 01:37 PM, Carmichael, Ryan via USRP-users wrote:
 >
-> That's a good thought.
+> Jeremy,
 >
-> What concerns me is that whether timed commands are executed properly
-> seems to depend on second and third level parameters such as the way in
-> which I connect blocks in gnuradio.
-> This is problematic because even if I figure out the max. rate with the
-> scope, once I add another block, things may behave differently.
+> I went through this recently and I believe you need to build UHD 
+> manually, assuming you are using pre-built UHD binaries. If you’ve 
+> installed it, DPDK support should be detected when you build the UHD 
+> driver (the output of cmake should indicate if it finds it or not).
 >
-> I think the reason that this depends on how blocks are connected in
-> gnuradio are buffers. In other words, how fast and how much data UHD
-> receives at once.
-> All my data arrives on time, just timed commands are sometimes late (the
-> cause and conditions are unclear).
+> -Ryan
 >
-> There must be a way to control this properly in UHD. The link speed is wa=
-y
-> fast enough (10Gbe and I use 20Msps).
+> I recently bought a X310 usrp and a 82599ES 10-Gigabit SFI/SFP+ 
+> Network Interface Card (the one recommended on the Ettus Website).
 >
-> Thanks,
-> Lukas
+> I first set my connections and a benchmark test shows a lot of dropped 
+> samples and some overflows.
+> So i decided to try using dpdk to improve my setup.
+> I have UHD 3.14.1.1 and I installed dpdk with my apt package manager 
+> (dpdk version 17.11.9).
+> I followed this guide 
+> https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD 
+> <https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD> and when I 
+> run the benchmark with use_dpdk argument, I got the following:
+> |[WARNING] [DPDK] Detected use_dpdk argument, but DPDK support not 
+> built in.|
+>
+> I really don't understand what's wrong. I tried so many things. I 
+> tried with dpdk 18 and went back to 17 because it didn't solve anything.
+>
+> Could anyone help me with that please ?
+>
+> Jeremy
 >
 >
->
->
-> Gesendet: Freitag, 12. Juni 2020 um 07:04 Uhr
-> Von: "Chintan Patel" <cpatel@vt.edu>
-> An: "Lukas Haase" <lukashaase@gmx.at>
-> Betreff: Re: [USRP-users] How to debug timed commands on FPGA side?
->
-> Lukas,
->
-> I may have missed some salient points of this thread, but here's a
-> thought. Could you just alternate between sending two timed commands -
-> transmit freq A and transmit freq B. Hook up the output to a scope (spec =
-an
-> may not react fast enough). Once you have the setup that you can "see"
-> whether a command has been processed or not by looking at the scope, you
-> can characterize the reliable ingest rate of the timed command,
-> empirically?
->
-> If using a scope is not feasible, if you have another SDR, you can use th=
-e
-> SDR to capture data (instead of scope) to see whether all TX tune command=
-s
-> were processed correctly.
->
-> A thought.
->
-> Chintan
->
-> On Thu, Jun 11, 2020 at 4:47 PM Lukas Haase via USRP-users <
-> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]> wrote:Hi
-> Marcus,
->
-> Can we quantify this in the following way?
->
-> If I send timed commands every 2ms and sampling rate is 5MS/s, that's
-> 10000 samples per command or 50000 for the command queue (assuming a dept=
-h
-> of 5).
->
-> Can we say the timed commands will guaranteed to be executed on time if w=
-e
-> never buffer more than 50000 samples (=3D200000 bytes) on the host?
->
-> Can this be tuned somehow? I tried setting send_buff_size [1] to a small
-> value (send_buff_size=3D10000 etc.) but that didn't seem to make any
-> difference.
->
-> Thanks,
-> Lukas
->
->
-> [1]
-> https://files.ettus.com/manual/page_transport.html[https://files.ettus.co=
-m/manual/page_transport.html]
->
->
->
-> > Gesendet: Donnerstag, 11. Juni 2020 um 16:32 Uhr
-> > Von: "Marcus D Leech" <patchvonbraun@gmail.com[mailto:
-> patchvonbraun@gmail.com]>
-> > An: "Lukas Haase" <lukashaase@gmx.at[mailto:lukashaase@gmx.at]>
-> > Cc: "USRP-userslists.ettus.com[http://USRP-userslists.ettus.com]" <
-> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]>
-> > Betreff: Re: [USRP-users] How to debug timed commands on FPGA side?
-> >
-> > So one of the things That can happen is that your command packets will
-> have to wait For a much-larger data packet. The link is shared.
-> >
-> > I=E2=80=99d timed commands are scheduled =E2=80=9Ctight=E2=80=9D this c=
-an happen.
-> >
-> > Sent from my iPhone
-> >
-> > > On Jun 11, 2020, at 3:34 PM, Lukas Haase <lukashaase@gmx.at[mailto:
-> lukashaase@gmx.at]> wrote:
-> > >
-> > > =EF=BB=BFHi Marcus,
-> > >
-> > >>> On 06/10/2020 09:00 PM, Lukas Haase via USRP-users wrote:
-> > >>> [...]
-> > >>> For example, what is the fastest rate I can issue timed commands
-> > >>> (ignoring settling times etc) on a X310 over 10Gbe?
-> > >> This is actually an ambiguous question.  Do you mean "what is the
-> > >> smallest scheduling interval for the commands that will be executed
-> > >> in the future?" or "how fast can I issue commands that will
-> > >> ultimately be scheduled at a later time?"  In the former, that
-> > >> depends on the exact nature of the commands, since they end up
-> > >> actually being executed by, for example, an SPI or I2C endpoint,
-> > >> which operates very very much slower than a 10GiGe interface.  In th=
-e
-> > >> latter, my guess is that the FPGA can swallow commands and place the=
-m
-> > >> on the queue pretty-much as fast as you can issue them over 10GiG.
-> > >> How fast you can do that depends very much on your host-side
-> > >> environment, network stack, kernel network drivers, kernel latencies=
-,
-> > >> etc.
-> > >
-> > > My questions concerns the latter (for now).
-> > > Since the FPGA has a (small) finite FIFO for these timed commands I
-> assume*d* there would be a limit on how fast I can send these commands.
-> > >
-> > > Based on Jonathon's answer however, it seems that UHD on the host
-> ensures that it only sends a maximum number of timed commands such that t=
-he
-> command queues do not overflow.
-> > >
-> > > But it seems to bring another issue: If UHD holds back these messages
-> too long they will eventually arrive late and (silently) execute non-time=
-d
-> (thereby destroying any coherence the application might require).
-> > >
-> > > I am trying to debug WHY this can happen, why it does NOT happen to
-> the data stream (all data arrives on time!) and what I can do that I ensu=
-re
-> my timed commands will execute *on time*.
-> > >
-> > > Thanks,
-> > > Lukas
-> > >
-> > >
-> > >
-> > >
-> > >
-> > >
-> >
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000d7814e05a7e827b6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>I agree that Gnuradio sometimes introduces unpredicta=
-ble and non-reproducible latencies, which can be especially problematic whe=
-n dealing with timing-sensitive hardware close to the metal. Setting UHD bu=
-ffer size is one thing, but Gnuradio can hang onto data in sometimes opaque=
- ways, with sometimes opaque interactions (at least, to me!) with the host =
-OS&#39;s scheduler. These issues are ordinarily not a problem because you c=
-an just increase send buffer size until you never see underruns due to buff=
-er starvation, but this solution only works for systems which a) have backp=
-ressure, and b) are not latency-sensitive.<br></div><div><br></div><div>Thi=
-s isn&#39;t a particularly helpful suggestion, I realize, but when faced wi=
-th these problems in the past I have reimplemented my systems in C++, inter=
-faced directly to UHD, generally with favorable results. It is much easier =
-to guarantee timing when you have full control of the system.<br></div><div=
-><br></div><div>Nick<br></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Fri, Jun 12, 2020 at 8:45 AM Lukas Haase v=
-ia USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@=
-lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex">Hi Chintan,<br>
-<br>
-That&#39;s a good thought.<br>
-<br>
-What concerns me is that whether timed commands are executed properly seems=
- to depend on second and third level parameters such as the way in which I =
-connect blocks in gnuradio.<br>
-This is problematic because even if I figure out the max. rate with the sco=
-pe, once I add another block, things may behave differently.<br>
-<br>
-I think the reason that this depends on how blocks are connected in gnuradi=
-o are buffers. In other words, how fast and how much data UHD receives at o=
-nce.<br>
-All my data arrives on time, just timed commands are sometimes late (the ca=
-use and conditions are unclear).<br>
-<br>
-There must be a way to control this properly in UHD. The link speed is way =
-fast enough (10Gbe and I use 20Msps).<br>
-<br>
-Thanks,<br>
-Lukas<br>
-<br>
-<br>
-<br>
-<br>
-Gesendet:=C2=A0Freitag, 12. Juni 2020 um 07:04 Uhr<br>
-Von:=C2=A0&quot;Chintan Patel&quot; &lt;<a href=3D"mailto:cpatel@vt.edu" ta=
-rget=3D"_blank">cpatel@vt.edu</a>&gt;<br>
-An:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
-arget=3D"_blank">lukashaase@gmx.at</a>&gt;<br>
-Betreff:=C2=A0Re: [USRP-users] How to debug timed commands on FPGA side?<br=
->
-<br>
-Lukas,<br>
-=C2=A0<br>
-I may have missed some salient points of this thread, but here&#39;s a thou=
-ght. Could you just alternate=C2=A0between sending two timed commands - tra=
-nsmit=C2=A0freq A and transmit=C2=A0freq B. Hook up the output to a scope (=
-spec an may not react fast enough). Once you have the setup that you can &q=
-uot;see&quot; whether a command has been processed or not by looking at the=
- scope, you can characterize the reliable ingest rate of the timed command,=
- empirically?=C2=A0<br>
-=C2=A0<br>
-If using a scope is not feasible, if you have another SDR, you can use the =
-SDR to capture data (instead of scope) to see whether=C2=A0all TX tune comm=
-ands were processed correctly.<br>
-=C2=A0<br>
-A thought.<br>
-=C2=A0<br>
-Chintan=C2=A0<br>
-<br>
-On Thu, Jun 11, 2020 at 4:47 PM Lukas Haase via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.=
-com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
-nk">usrp-users@lists.ettus.com</a>]&gt; wrote:Hi Marcus,<br>
-<br>
-Can we quantify this in the following way?<br>
-<br>
-If I send timed commands every 2ms and sampling rate is 5MS/s, that&#39;s 1=
-0000 samples per command or 50000 for the command queue (assuming a depth o=
-f 5).<br>
-<br>
-Can we say the timed commands will guaranteed to be executed on time if we =
-never buffer more than 50000 samples (=3D200000 bytes) on the host?<br>
-<br>
-Can this be tuned somehow? I tried setting send_buff_size [1] to a small va=
-lue (send_buff_size=3D10000 etc.) but that didn&#39;t seem to make any diff=
-erence.<br>
-<br>
-Thanks,<br>
-Lukas<br>
-<br>
-<br>
-[1] <a href=3D"https://files.ettus.com/manual/page_transport.html%5Bhttps:/=
-/files.ettus.com/manual/page_transport.html%5D" rel=3D"noreferrer" target=
-=3D"_blank">https://files.ettus.com/manual/page_transport.html[https://file=
-s.ettus.com/manual/page_transport.html]</a><br>
-<br>
-<br>
-<br>
-&gt; Gesendet: Donnerstag, 11. Juni 2020 um 16:32 Uhr<br>
-&gt; Von: &quot;Marcus D Leech&quot; &lt;<a href=3D"mailto:patchvonbraun@gm=
-ail.com" target=3D"_blank">patchvonbraun@gmail.com</a>[mailto:<a href=3D"ma=
-ilto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>=
-]&gt;<br>
-&gt; An: &quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
-arget=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:lukashaase@=
-gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]&gt;<br>
-&gt; Cc: &quot;<a href=3D"http://USRP-userslists.ettus.com" rel=3D"noreferr=
-er" target=3D"_blank">USRP-userslists.ettus.com</a>[<a href=3D"http://USRP-=
-userslists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://USRP-user=
-slists.ettus.com</a>]&quot; &lt;<a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=3D"mailt=
-o:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com<=
-/a>]&gt;<br>
-&gt; Betreff: Re: [USRP-users] How to debug timed commands on FPGA side?<br=
->
-&gt;<br>
-&gt; So one of the things That can happen is that your command packets will=
- have to wait For a much-larger data packet. The link is shared.<br>
-&gt;<br>
-&gt; I=E2=80=99d timed commands are scheduled =E2=80=9Ctight=E2=80=9D this =
-can happen.<br>
-&gt;<br>
-&gt; Sent from my iPhone<br>
-&gt;<br>
-&gt; &gt; On Jun 11, 2020, at 3:34 PM, Lukas Haase &lt;<a href=3D"mailto:lu=
-kashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"=
-mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]&gt; wrot=
-e:<br>
-&gt; &gt;<br>
-&gt; &gt; =EF=BB=BFHi Marcus,<br>
-&gt; &gt;<br>
-&gt; &gt;&gt;&gt; On 06/10/2020 09:00 PM, Lukas Haase via USRP-users wrote:=
-<br>
-&gt; &gt;&gt;&gt; [...]<br>
-&gt; &gt;&gt;&gt; For example, what is the fastest rate I can issue timed c=
-ommands<br>
-&gt; &gt;&gt;&gt; (ignoring settling times etc) on a X310 over 10Gbe?<br>
-&gt; &gt;&gt; This is actually an ambiguous question.=C2=A0 Do you mean &qu=
-ot;what is the<br>
-&gt; &gt;&gt; smallest scheduling interval for the commands that will be ex=
-ecuted<br>
-&gt; &gt;&gt; in the future?&quot; or &quot;how fast can I issue commands t=
-hat will<br>
-&gt; &gt;&gt; ultimately be scheduled at a later time?&quot;=C2=A0 In the f=
-ormer, that<br>
-&gt; &gt;&gt; depends on the exact nature of the commands, since they end u=
-p<br>
-&gt; &gt;&gt; actually being executed by, for example, an SPI or I2C endpoi=
-nt,<br>
-&gt; &gt;&gt; which operates very very much slower than a 10GiGe interface.=
-=C2=A0 In the<br>
-&gt; &gt;&gt; latter, my guess is that the FPGA can swallow commands and pl=
-ace them<br>
-&gt; &gt;&gt; on the queue pretty-much as fast as you can issue them over 1=
-0GiG.<br>
-&gt; &gt;&gt; How fast you can do that depends very much on your host-side<=
-br>
-&gt; &gt;&gt; environment, network stack, kernel network drivers, kernel la=
-tencies,<br>
-&gt; &gt;&gt; etc.<br>
-&gt; &gt;<br>
-&gt; &gt; My questions concerns the latter (for now).<br>
-&gt; &gt; Since the FPGA has a (small) finite FIFO for these timed commands=
- I assume*d* there would be a limit on how fast I can send these commands.<=
-br>
-&gt; &gt;<br>
-&gt; &gt; Based on Jonathon&#39;s answer however, it seems that UHD on the =
-host ensures that it only sends a maximum number of timed commands such tha=
-t the command queues do not overflow.<br>
-&gt; &gt;<br>
-&gt; &gt; But it seems to bring another issue: If UHD holds back these mess=
-ages too long they will eventually arrive late and (silently) execute non-t=
-imed (thereby destroying any coherence the application might require).<br>
-&gt; &gt;<br>
-&gt; &gt; I am trying to debug WHY this can happen, why it does NOT happen =
-to the data stream (all data arrives on time!) and what I can do that I ens=
-ure my timed commands will execute *on time*.<br>
-&gt; &gt;<br>
-&gt; &gt; Thanks,<br>
-&gt; &gt; Lukas<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt;<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" ta=
-rget=3D"_blank">USRP-users@lists.ettus.com</a>]<br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000d7814e05a7e827b6--
+I don't think the DPDK support in UHD is "mainstream" yet (perhaps in 
+3.15?) so the packaged binaries don't have support for it.
 
 
---===============1454835961966808932==
+
+--------------020702080606050805080002
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 06/12/2020 01:37 PM, Carmichael,
+      Ryan via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:10F7328F6AD1354BA6DD787687B66B9001A97A4064@Maui.in.dynetics.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+code
+	{mso-style-priority:99;
+	font-family:"Courier New";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle22
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1328097359;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1777842436 -197915536 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:Calibri;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style>
+      <div class="WordSection1">
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">Jeremy,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">I
+            went through this recently and I believe you need to build
+            UHD manually, assuming you are using pre-built UHD binaries.
+            If you’ve installed it, DPDK support should be detected when
+            you build the UHD driver (the output of cmake should
+            indicate if it finds it or not).<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
+        <p class="MsoListParagraph"
+          style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><span
+              style="mso-list:Ignore">-<span style="font:7.0pt
+                &quot;Times New Roman&quot;">         
+              </span></span></span><!--[endif]--><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">Ryan<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <div>
+          <p><span style="font-size:10.0pt">I recently bought a X310
+              usrp and a 82599ES 10-Gigabit SFI/SFP+ Network Interface
+              Card (the one recommended on the Ettus Website).<br>
+              <br>
+              I first set my connections and a benchmark test shows a
+              lot of dropped samples and some overflows.<br>
+              So i decided to try using dpdk to improve my setup.<br>
+              I have UHD 3.14.1.1 and I installed dpdk with my apt
+              package manager (dpdk version 17.11.9).<br>
+              I followed this guide <a moz-do-not-send="true"
+                href="https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD">
+                https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD</a>
+              and when I run the benchmark with use_dpdk argument, I got
+              the following:<br>
+            </span><code><span style="font-size:10.0pt">[WARNING] [DPDK]
+                Detected use_dpdk argument, but DPDK support not built
+                in.</span></code><o:p></o:p></p>
+          <p><span style="font-size:10.0pt">I really don't understand
+              what's wrong. I tried so many things. I tried with dpdk 18
+              and went back to 17 because it didn't solve anything.<br>
+              <br>
+              Could anyone help me with that please ?<br>
+              <br>
+              Jeremy</span><o:p></o:p></p>
+        </div>
+      </div>
+      <br>
+    </blockquote>
+    I don't think the DPDK support in UHD is "mainstream" yet (perhaps
+    in 3.15?) so the packaged binaries don't have support for it.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------020702080606050805080002--
+
+
+--===============1557454573492007336==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -492,5 +368,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1454835961966808932==--
+--===============1557454573492007336==--
 
