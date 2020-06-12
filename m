@@ -2,32 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D31261F763D
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2020 11:53:15 +0200 (CEST)
-Received: from [::1] (port=42250 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D5391F792D
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2020 15:58:52 +0200 (CEST)
+Received: from [::1] (port=47224 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjgN5-0000sP-Di; Fri, 12 Jun 2020 05:53:11 -0400
-Received: from mxsz.tct.tcl.com ([14.18.189.9]:21698 helo=mailsz.tct.tcl.com)
- by mm2.emwd.com with esmtps (TLS1) tls TLS_RSA_WITH_AES_128_CBC_SHA
- (Exim 4.93) (envelope-from <tian.li@tcl.com>) id 1jjgN0-0000gA-GN
- for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 05:53:07 -0400
-Received: from CNSZEXMB01.TCT.TCL.com ([10.129.72.157]) by
- CNSZEXCH01.TCT.TCL.com ([10.129.72.155]) with mapi id 14.03.0487.000; Fri, 12
- Jun 2020 17:52:19 +0800
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Help: How to solve the issue"At least one PLL did not lock!"
-Thread-Index: AdZAnyiS+btpmqdZRKCgHpRcMXLu2Q==
-Date: Fri, 12 Jun 2020 09:52:18 +0000
-Message-ID: <B7FF765BD755A047B8932CE984AFDC4627E20FF4@CNSZEXMB01>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.129.145.75]
+	id 1jjkCn-0003NY-KG; Fri, 12 Jun 2020 09:58:49 -0400
+Received: from mail-yb1-f179.google.com ([209.85.219.179]:45958)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <sam.reiter8@gmail.com>)
+ id 1jjkCj-0002zo-7S
+ for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 09:58:45 -0400
+Received: by mail-yb1-f179.google.com with SMTP id b15so4926046ybg.12
+ for <usrp-users@lists.ettus.com>; Fri, 12 Jun 2020 06:58:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=fILaZt4IauOb061XImgOZYyOUOrCb/MlhvoGlTHRZ4Q=;
+ b=Er/fSJEsoUQJfRVt42gKZyHcuzNAahoxVfhHaNx3DzqbqrcQcyrr+5LMEMHg8icA1h
+ 9Zy3Zg56QVxzPZ5Fk5e7taU2jiUGNTxT9abX1xkwsPR4u3W/yaimUVzi9wUXIzZ51YsK
+ lwmLbHE5H9bpJi+6PWkiZ8CFTevcRoucSYmArzKK8b5uE2GRFupFibbgbPOs1NDkS+Yu
+ U8E+TWKXw5N1VH8UGL/FblPbAAIJUIc3r9YUHlQPPbrDrzlLv1ByueyH5ka6xMXcRdQY
+ IwXysGmsnNnnly7fFltkuYwXZIgPcyAOZOCyZ8yyVkvpEZPcuLJZcymqtbkCZa8mxoI4
+ Xo9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=fILaZt4IauOb061XImgOZYyOUOrCb/MlhvoGlTHRZ4Q=;
+ b=B0WYebCTkyY9p6Jg9pe8f9px/eFBJcRp/JSDUmoiLM4BlZ/t3J0VCFqGERm/wy33P1
+ g7ez9BGYZsNykGxYq/1FgCUWoC8vs+LHnZ+11FRDjJgZ3lDT/+OOOIK6JZGUwNYfG5RY
+ 2ZCxOrh2xVxLGVFDqLdRIKkH223WeB2h+HtcpIzMD19YJtofzzVd0YkhEJqrrEMmUzRU
+ SddLkwjsjUNYfA8RfmUQTlXymyoxuJjlx8JdOZommI2Bd6p/RsXo+TT+oW3NTGGA7TkP
+ qqrTRLjhWgm7Q3Vk46LKyOLqgB9RzpV8K/Pic8ZaomwU3frKfmybrh91rBB0IcaT2gxO
+ w6bg==
+X-Gm-Message-State: AOAM530z0zxMVEFxxWCcawVskls+eO+Wo1hMq7pxsikYEPXLnri7HVIO
+ e+BzLd9eIQ8RVUTChpldRQRl4Rj29A8kFMk48Ps=
+X-Google-Smtp-Source: ABdhPJyAC4NII32eHt73SzQ/BN7pJzyfqXXRprUe1SGDt203TI09OvjuFekoE52PTW9M8O3Q91oDfgubObeB06xm9MM=
+X-Received: by 2002:a25:db03:: with SMTP id g3mr12674307ybf.100.1591970284412; 
+ Fri, 12 Jun 2020 06:58:04 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [USRP-users] Help: How to solve the issue"At least one PLL did not
- lock!"
+References: <B7FF765BD755A047B8932CE984AFDC4627E20FF4@CNSZEXMB01>
+In-Reply-To: <B7FF765BD755A047B8932CE984AFDC4627E20FF4@CNSZEXMB01>
+Date: Fri, 12 Jun 2020 08:57:53 -0500
+Message-ID: <CADBWrHgNtrjmK9AhfR0cXA_643L5h9DLteu=jovAznz5nWrMAA@mail.gmail.com>
+To: "Tian, LI(R&D TECH&INNO 5G LAB (CN)-SZ-TCT)" <tian.li@tcl.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Help: How to solve the issue"At least one PLL did
+ not lock!"
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -39,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Tian, LI\(R&D TECH&INNO 5G LAB \(CN\)-SZ-TCT\) via USRP-users"
- <usrp-users@lists.ettus.com>
-Reply-To: "Tian, LI\(R&D TECH&INNO 5G LAB \(CN\)-SZ-TCT\)" <tian.li@tcl.com>
-Content-Type: multipart/mixed; boundary="===============2108525864317744275=="
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter8@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0194226020574308598=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -56,365 +76,486 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2108525864317744275==
-Content-Language: zh-CN
-Content-Type: multipart/alternative;
-	boundary="_000_B7FF765BD755A047B8932CE984AFDC4627E20FF4CNSZEXMB01_"
+--===============0194226020574308598==
+Content-Type: multipart/alternative; boundary="0000000000004ba16005a7e3774b"
 
---_000_B7FF765BD755A047B8932CE984AFDC4627E20FF4CNSZEXMB01_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000004ba16005a7e3774b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgYWxsLA0KUmVjZW50bHksIEkgdHJ5IHRvIHNldCBPQUkgcGxhdGZvcm0gdXNpbmcgdGhlIGJl
-bG93IGNvbmZpZ3VyYXRpb25zOg0KDQpVU1JQOiBOMzEwIHdpdGggWEcgaW1hZ2UgdXNpbmcgMTBH
-IEV0aGVybmV0DQpVSEQgdmVyc2lvbjogMy4xNS4wLjANCk9BSSB2ZXJzaW9uOiBkZXZlbG9wIGJy
-YW5jaCB3aXRoIGxhdGVzdCB2ZXJzaW9uDQpOZXR3b3JrIGNhcmQ6IEludGVsIFg1MjAtREEyDQoN
-CkZpcnN0LCBJIHNldCB1cCBVSEQgaW4gdGhlIGhvc3QgY29tcHV0ZXIuIEluIHRoZSBVU1JQLCBJ
-IHVwZGF0ZWQgZmlsZSBzeXN0ZW0gYW5kIHRoZW4gdXBkYXRlZCB0aGUgY29ycmVzcG9kaW5nIEZQ
-R0EgaW1hZ2UuIEFmdGVyIHRoZXNlIG9wZXJhdGlvbiwgSSB0aGluayB0aGUgVUhEIHZlcnNpb25z
-IGluIHRoZSBob3N0IGNvbXB1dGVyIGFuZCBVU1JQIGFyZSBtYXRjaGVkLiBUaGVuIEkgZG93bmxv
-YWRlZCB0aGUgT0FJIGNvZGVzIGFuZCBjb21waWxlZCB0aGUgY29kZXMgb2YgZ05CIHVzaW5nIHRo
-ZSBjb21tYW5kKGkuZS4gLi9idWlsZF9vYWkgLUkgLS1nTkIgLXcgVVNSUCkuDQoNCldoZW4gSSBz
-dGFydGVkIHRvIHNldCB1cCBnTkIgdXNpbmcgdGhlIGNvbW1hbihpLmUuIHN1ZG8gLi9uci1zb2Z0
-bW9kZW0gLU8gLi4vLi4vLi4vdGFyZ2V0cy9QUk9KRUNUUy9HRU5FUklDLUxURS1FUEMvQ09ORi9n
-bmIuYmFuZDc4LnRtMS4xMDZQUkIudXNycG4zMDAuY29uZiAtLXBhcmFsbGVsLWNvbmZpZyBQQVJB
-TExFTF9TSU5HTEVfVEhSRUFEKSwgYSBQTEwgcmVsYXRlZCBpc3N1ZSBvY2N1cnMsIGkuZS4gVW5j
-YXVnaHQgZXhjZXB0aW9uIGluIG1ldGhvZCBzZXRfY2xvY2tfc291cmNlIDpBdCBsZWFzdCBvbmUg
-UExMIGRpZCBub3QgbG9jayENCg0KVGhpcyBwcm9ibGVtIGFsd2F5cyBleGlzdHMgd2hlbiBJIHN0
-YXJ0IHRvIHNldCB1cCBnTkIuIEkgdmVyeSBhcHByZWNpYXRlIGlmIHlvdSBjYW4gcHJvdmlkZSBz
-b21lIHN1Z2dlc3Rpb25zLg0KDQoNClRoZSByZWxhdGVkIFBMTCBsb2dzIGFyZSBzaG93biBiZWxv
-dzoNCltFUlJPUl0gW01QTS5SUENTZXJ2ZXJdIFVuY2F1Z2h0IGV4Y2VwdGlvbiBpbiBtZXRob2Qg
-c2V0X2Nsb2NrX3NvdXJjZSA6QXQgbGVhc3Qgb25lIFBMTCBkaWQgbm90IGxvY2shIENoZWNrIHRo
-ZSBsb2dzIGZvciBkZXRhaWxzLg0KVHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOg0K
-ICBGaWxlICIvdXNyL2xpYi9weXRob24zLjUvc2l0ZS1wYWNrYWdlcy91c3JwX21wbS9ycGNfc2Vy
-dmVyLnB5IiwgbGluZSAxODIsIGluIG5ld19jbGFpbWVkX2Z1bmN0aW9uDQogICAgcmV0dXJuIGZ1
-bmN0aW9uKCphcmdzKQ0KICBGaWxlICIvdXNyL2xpYi9weXRob24zLjUvc2l0ZS1wYWNrYWdlcy91
-c3JwX21wbS9wZXJpcGhfbWFuYWdlci9uM3h4LnB5IiwgbGluZSA2MDEsIGluIHNldF9jbG9ja19z
-b3VyY2UNCiAgICBzZWxmLnNldF9zeW5jX3NvdXJjZShzb3VyY2UpDQogIEZpbGUgIi91c3IvbGli
-L3B5dGhvbjMuNS9zaXRlLXBhY2thZ2VzL3VzcnBfbXBtL3BlcmlwaF9tYW5hZ2VyL24zeHgucHki
-LCBsaW5lIDczMCwgaW4gc2V0X3N5bmNfc291cmNlDQogICAgc2tpcF9yZmljPWFyZ3MuZ2V0KCdz
-a2lwX3JmaWMnLCBOb25lKQ0KICBGaWxlICIvdXNyL2xpYi9weXRob24zLjUvc2l0ZS1wYWNrYWdl
-cy91c3JwX21wbS9kYm9hcmRfbWFuYWdlci9tYWduZXNpdW0ucHkiLCBsaW5lIDQwMCwgaW4gdXBk
-YXRlX3JlZl9jbG9ja19mcmVxDQogICAgc2VsZi5fcmVpbml0KHNlbGYubWFzdGVyX2Nsb2NrX3Jh
-dGUpDQogIEZpbGUgIi91c3IvbGliL3B5dGhvbjMuNS9zaXRlLXBhY2thZ2VzL3VzcnBfbXBtL2Ri
-b2FyZF9tYW5hZ2VyL21hZ25lc2l1bS5weSIsIGxpbmUgMzU5LCBpbiBfcmVpbml0DQogICAgc2Vs
-Zi5pbml0KGFyZ3MpDQogIEZpbGUgIi91c3IvbGliL3B5dGhvbjMuNS9zaXRlLXBhY2thZ2VzL3Vz
-cnBfbXBtL2Rib2FyZF9tYW5hZ2VyL21hZ25lc2l1bS5weSIsIGxpbmUgMjk1LCBpbiBpbml0DQog
-ICAgYXJncywgc2VsZi5faW5pdF9hcmdzLCBmYXN0X3JlaW5pdCkNCiAgRmlsZSAiL3Vzci9saWIv
-cHl0aG9uMy41L3NpdGUtcGFja2FnZXMvdXNycF9tcG0vZGJvYXJkX21hbmFnZXIvbWdfaW5pdC5w
-eSIsIGxpbmUgNjE1LCBpbiBpbml0DQogICAgYXJncw0KICBGaWxlICIvdXNyL2xpYi9weXRob24z
-LjUvc2l0ZS1wYWNrYWdlcy91c3JwX21wbS9kYm9hcmRfbWFuYWdlci9tZ19pbml0LnB5IiwgbGlu
-ZSA1NDcsIGluIF9mdWxsX2luaXQNCiAgICBzZWxmLlBIQVNFX0RBQ19TUElfQUREUiwNCiAgRmls
-ZSAiL3Vzci9saWIvcHl0aG9uMy41L3NpdGUtcGFja2FnZXMvdXNycF9tcG0vZGJvYXJkX21hbmFn
-ZXIvbWdfaW5pdC5weSIsIGxpbmUgMTgxLCBpbiBfaW5pdF9sbWsNCiAgICBzZWxmLmxvZw0KICBG
-aWxlICIvdXNyL2xpYi9weXRob24zLjUvc2l0ZS1wYWNrYWdlcy91c3JwX21wbS9kYm9hcmRfbWFu
-YWdlci9sbWtfbWcucHkiLCBsaW5lIDUyLCBpbiBfX2luaXRfXw0KICAgIHNlbGYuY29uZmlnKCkN
-CiAgRmlsZSAiL3Vzci9saWIvcHl0aG9uMy41L3NpdGUtcGFja2FnZXMvdXNycF9tcG0vZGJvYXJk
-X21hbmFnZXIvbG1rX21nLnB5IiwgbGluZSAyMTgsIGluIGNvbmZpZw0KICAgIHJhaXNlIFJ1bnRp
-bWVFcnJvcigiQXQgbGVhc3Qgb25lIFBMTCBkaWQgbm90IGxvY2shIENoZWNrIHRoZSBsb2dzIGZv
-ciBkZXRhaWxzLiIpDQpSdW50aW1lRXJyb3I6IEF0IGxlYXN0IG9uZSBQTEwgZGlkIG5vdCBsb2Nr
-ISBDaGVjayB0aGUgbG9ncyBmb3IgZGV0YWlscy4NCltQSFldICAgcnVfdGhyZWFkX3ByYWNoKCkg
-UkFDSCB3YWl0aW5nIGZvciBSVSB0byBiZSBjb25maWd1cmVkDQoNCg0KLS0NCkJlc3QgUmVnYXJk
-cywNClRpYW4gTGkNCg0KVGhpcyBlLW1haWwgKGluY2x1ZGluZyBhbnkgYXR0YWNobWVudHMpIGlz
-IGNvbmZpZGVudGlhbCB0byB0aGUgaW50ZW5kZWQgYWRkcmVzc2VlLCBtYXkgYmUgc3ViamVjdCB0
-byBjb3B5cmlnaHQsIGFuZCBtYXkgYWxzbyBiZSBwcml2aWxlZ2VkLiBJZiB5b3UgYXJlIG5vdCB0
-aGUgaW50ZW5kZWQgYWRkcmVzc2VlLCBwbGVhc2UgZG8gbm90IHJlYWQsIHByaW50LCByZS10cmFu
-c21pdCwgY29weSwgc3RvcmUsIGFsdGVyIG9yIG90aGVyd2lzZSBkaXNjbG9zZSBpdCBvciBhbnkg
-b2YgaXRzIGF0dGFjaG1lbnRzIHRvIGFueW9uZTsgbm9yIHNob3VsZCB5b3UgYWN0IGluIHJlbGlh
-bmNlIG9uIGl0IG9yIGFueSBvZiBpdHMgYXR0YWNobWVudHMuIEluc3RlYWQsIHBsZWFzZSBub3Rp
-ZnkgdGhlIGVycm9yIHRvIHRoZSBzZW5kZXIgYnkgZS1tYWlsIGFuZCBpbW1lZGlhdGVseSBwZXJt
-YW5lbnRseSBkZWxldGUgdGhpcyBlbWFpbCBhbmQgYW55IG9mIGl0cyBhdHRhY2htZW50cyBmcm9t
-IHlvdXIgc3lzdGVtLiDmnKznlLXlrZDpgq7ku7bvvIjljIXmi6zku7vkvZXpmYTku7bvvInmmK/m
-j5Dkvpvnu5nmjIflrprmlLbku7bkurrnmoTkv53lr4bkv6Hmga/vvIzlj6/og73lm6Dlj5fnn6Xo
-r4bkuqfmnYPkv53miqTkuJTlsZ7kuJPmnInkv6Hmga/ogIzkuI3lvpfmiqvpnLLjgILlpoLmnpzm
-gqjkuI3mmK/mjIflrprmlLbku7bkurrvvIzor7fkuI3opoHpmIXor7vjgIHmiZPljbDjgIHlho3m
-rKHkvKDovpPjgIHlpI3liLbjgIHlrZjlgqjjgIHkv67mlLnmiJbogIXku6Xlj6blpJbmlrnlvI/m
-j63pnLLmnKzpgq7ku7bmiJblhbbku7vkvZXpmYTku7blhoXlrrnnu5nku7vkvZXkurrvvJvmgqjk
-uZ/kuI3lupTor6Xkv6HotZbmnKzpgq7ku7bmiJblhbbku7vkvZXpmYTku7bnmoTlhoXlrrnooYzk
-uovjgILnm7jlj43vvIzor7fpgJrov4fnlLXlrZDpgq7ku7bpgJrnn6Xlj5Hku7bkurrov5nkuIDp
-lJnor6/lubbkuJTnq4vljbPmsLjkuYXlnLDku47mgqjnmoTns7vnu5/kuK3liKDpmaTmnKznlLXl
-rZDpgq7ku7blj4rlhbbku7vkvZXpmYTku7bjgIIgRS1tYWlscyBzZW50IHRvIGFuZCBmcm9tIFRD
-TCBtYXkgYmUgbW9uaXRvcmVkIGFuZCByZWFkIGZvciBsZWdpdGltYXRlIGJ1c2luZXNzIHB1cnBv
-c2VzLCBub3RhYmx5IHRvIGVuc3VyZSBjb21wbGlhbmNlIHdpdGggdGhlIGxhdyBhbmQgdGhlIHJl
-Z3VsYXRvcnkgb2JsaWdhdGlvbnMuIEVtYWlscyBjYW5ub3QgYmUgZ3VhcmFudGVlZCB0byBiZSBz
-ZWN1cmUgb3IgZXJyb3ItZnJlZSwgYW5kIHlvdSBzaG91bGQgcHJvdGVjdCB5b3VyIHN5c3RlbXMu
-IFRDTCBkb2VzIG5vdCBhY2NlcHQgYW55IGxpYWJpbGl0eSBhcmlzaW5nIGZyb20gaW50ZXJjZXB0
-aW9uLCBlcnJvciwgbG9zcyBvciBkZXN0cnVjdGlvbiBvZiB0aGlzIGUtbWFpbCwgb3IgaWYgaXQg
-YXJyaXZlcyBsYXRlIG9yIGluY29tcGxldGUgb3Igd2l0aCB2aXJ1c2VzLiDlh7rkuo7lkIjms5Xn
-moTllYbms5Xnm67nmoTvvIzlsKTlhbbkuLrkuobnoa7kv53pgbXlrojnm7jlhbPms5Xlvovms5Xo
-p4TnmoTop4TlrprvvIzlj5Hoh7PmiJblj5Hoh6pUQ0znmoTnlLXlrZDpgq7ku7blj6/og73ooqvn
-m5HmjqflkozpmIXor7vjgIIg55u45YWz55S15a2Q6YKu5Lu25LiN6IO95L+d6K+B5YW25a6J5YWo
-5oCn5oiW5rKh5pyJ6ZSZ6K+v77yM5omA5Lul5oKo5bqU6K+l5L+d5oqk5oKo55qE57O757uf5a6J
-5YWo44CCVENM5LiN5om/5ouF55Sx5LqO6YKu5Lu26KKr5oum5oiq44CB5Ye66ZSZ44CB6YGX5aSx
-5oiW5q+B5Z2P44CB5oiW6ICF6YKu5Lu25Yiw6L6+5bu26K+v44CB5LiN5a6M5pW05oiW6ICF5pC6
-5bim55eF5q+S6ICM5Lqn55Sf55qE5Lu75L2V6LSj5Lu744CCDQo=
+Is your program expecting you to supply an external 10MHz Reference to your
+N310? I'd assume that's what *set_clock_source*() is configuring. You
+should double-check the logs or source to be sure.
 
---_000_B7FF765BD755A047B8932CE984AFDC4627E20FF4CNSZEXMB01_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I don't think that  *set_clock_source* would be referencing an external LO,
+but if it is, make sure you're following the LO frequency guidelines here:
+https://kb.ettus.com/N300/N310#Interfaces_and_Connectivity
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-XDVCOEJcNEY1MzsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAxO30NCkBmb250LWZhY2UN
-Cgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAz
-IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAx
-NSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpcNUZBRVw4RjZG
-XDk2QzVcOUVEMTsNCglwYW5vc2UtMToyIDExIDUgMyAyIDIgNCAyIDIgNDt9DQpAZm9udC1mYWNl
-DQoJe2ZvbnQtZmFtaWx5OiJcQFw1RkFFXDhGNkZcOTZDNVw5RUQxIjsNCglwYW5vc2UtMToyIDEx
-IDUgMyAyIDIgNCAyIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQFw1QjhCXDRG
-NTMiOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KLyogU3R5bGUgRGVmaW5pdGlv
-bnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2lu
-OjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJdGV4dC1hbGlnbjpqdXN0aWZ5Ow0KCXRl
-eHQtanVzdGlmeTppbnRlci1pZGVvZ3JhcGg7DQoJZm9udC1zaXplOjEwLjVwdDsNCglmb250LWZh
-bWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJ
-e21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlv
-bjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21z
-by1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1
-bmRlcmxpbmU7fQ0KcHJlDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGlu
-azoiSFRNTCBcOTg4NFw4QkJFXDY4M0NcNUYwRiBDaGFyIjsNCgltYXJnaW46MGNtOw0KCW1hcmdp
-bi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5Olw1QjhC
-XDRGNTM7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtY29t
-cG9zZTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0
-ZXh0O30NCnNwYW4uSFRNTENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgXDk4ODRcOEJCRVw2
-ODNDXDVGMEYgQ2hhciI7DQoJbXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5r
-OiJIVE1MIFw5ODg0XDhCQkVcNjgzQ1w1RjBGIjsNCglmb250LWZhbWlseTpcNUI4Qlw0RjUzO30N
-Ci5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFt
-aWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCi8qIFBhZ2UgRGVmaW5pdGlvbnMgKi8NCkBwYWdl
-IFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzIuMHB0IDkw
-LjBwdCA3Mi4wcHQgOTAuMHB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlv
-bjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVs
-dHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0t
-W2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlk
-bWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2Vu
-ZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iWkgtQ04iIGxpbms9IiMwNTYzQzEiIHZsaW5r
-PSIjOTU0RjcyIiBzdHlsZT0idGV4dC1qdXN0aWZ5LXRyaW06cHVuY3R1YXRpb24iPg0KPGRpdiBj
-bGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFsaWduPSJsZWZ0IiBz
-dHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6
-ZToxMi4wcHQ7Zm9udC1mYW1pbHk65a6L5L2TO2NvbG9yOmJsYWNrIj5IaSBhbGwsPG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0
-ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEyLjBw
-dDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2siPlJlY2VudGx5LCBJIHRyeSB0byBzZXQg
-T0FJIHBsYXRmb3JtIHVzaW5nIHRoZSBiZWxvdyBjb25maWd1cmF0aW9uczo8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQt
-YWxpZ246bGVmdCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2Zv
-bnQtZmFtaWx5OuWui+S9kztjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxl
-ZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWls
-eTrlrovkvZM7Y29sb3I6YmxhY2siPlVTUlA6IE4zMTAgd2l0aCBYRyBpbWFnZSB1c2luZyAxMEcg
-RXRoZXJuZXQ8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGln
-bj0ibGVmdCIgc3R5bGU9InRleHQtYWxpZ246bGVmdCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxl
-PSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OuWui+S9kztjb2xvcjpibGFjayI+VUhEIHZl
-cnNpb246IDMuMTUuMC4wPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVT
-IiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2si
-Pk9BSSB2ZXJzaW9uOiBkZXZlbG9wIGJyYW5jaCB3aXRoIGxhdGVzdCB2ZXJzaW9uPG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0
-ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEyLjBw
-dDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2siPk5ldHdvcmsgY2FyZDogSW50ZWwgWDUy
-MC1EQTI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0i
-bGVmdCIgc3R5bGU9InRleHQtYWxpZ246bGVmdCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJm
-b250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OuWui+S9kztjb2xvcjpibGFjayI+PG86cD4mbmJz
-cDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0
-eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
-OjEyLjBwdDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2siPkZpcnN0LCBJIHNldCB1cCBV
-SEQgaW4gdGhlIGhvc3QgY29tcHV0ZXIuIEluIHRoZSBVU1JQLCBJIHVwZGF0ZWQgZmlsZSBzeXN0
-ZW0gYW5kIHRoZW4gdXBkYXRlZCB0aGUgY29ycmVzcG9kaW5nIEZQR0EgaW1hZ2UuIEFmdGVyDQog
-dGhlc2Ugb3BlcmF0aW9uLCBJIHRoaW5rIHRoZSBVSEQgdmVyc2lvbnMgaW4gdGhlIGhvc3QgY29t
-cHV0ZXIgYW5kIFVTUlAgYXJlIG1hdGNoZWQuIFRoZW4gSSBkb3dubG9hZGVkIHRoZSBPQUkgY29k
-ZXMgYW5kIGNvbXBpbGVkIHRoZSBjb2RlcyBvZiBnTkIgdXNpbmcgdGhlIGNvbW1hbmQoaS5lLiAu
-L2J1aWxkX29haSAtSSAtLWdOQiAtdyBVU1JQKS4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiIGFsaWduPSJsZWZ0IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48
-c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk65a6L
-5L2TO2NvbG9yOmJsYWNrIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQtYWxpZ246bGVmdCI+PHNwYW4gbGFu
-Zz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OuWui+S9kztjb2xv
-cjpibGFjayI+V2hlbiBJIHN0YXJ0ZWQgdG8gc2V0IHVwIGdOQiB1c2luZyB0aGUgY29tbWFuKGku
-ZS4gc3VkbyAuL25yLXNvZnRtb2RlbSAtTyAuLi8uLi8uLi90YXJnZXRzL1BST0pFQ1RTL0dFTkVS
-SUMtTFRFLUVQQy9DT05GL2duYi5iYW5kNzgudG0xLjEwNlBSQi51c3JwbjMwMC5jb25mDQogLS1w
-YXJhbGxlbC1jb25maWcgUEFSQUxMRUxfU0lOR0xFX1RIUkVBRCksIGEgUExMIHJlbGF0ZWQgaXNz
-dWUgb2NjdXJzLCBpLmUuIFVuY2F1Z2h0IGV4Y2VwdGlvbiBpbiBtZXRob2Qgc2V0X2Nsb2NrX3Nv
-dXJjZSA6QXQgbGVhc3Qgb25lIFBMTCBkaWQgbm90IGxvY2shPG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxl
-ZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWls
-eTrlrovkvZM7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiIGFsaWduPSJsZWZ0IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48c3Bh
-biBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk65a6L5L2T
-O2NvbG9yOmJsYWNrIj5UaGlzIHByb2JsZW0gYWx3YXlzIGV4aXN0cyB3aGVuIEkgc3RhcnQgdG8g
-c2V0IHVwIGdOQi4gSSB2ZXJ5IGFwcHJlY2lhdGUgaWYgeW91IGNhbiBwcm92aWRlIHNvbWUgc3Vn
-Z2VzdGlvbnMuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxp
-Z249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHls
-ZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2siPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFsaWduPSJsZWZ0
-IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQt
-c2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk65a6L5L2TO2NvbG9yOmJsYWNrIj48bzpwPiZuYnNwOzwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9
-InRleHQtYWxpZ246bGVmdCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTIu
-MHB0O2ZvbnQtZmFtaWx5OuWui+S9kztjb2xvcjpibGFjayI+VGhlIHJlbGF0ZWQgUExMIGxvZ3Mg
-YXJlIHNob3duIGJlbG93OjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiIGFsaWduPSJsZWZ0IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48c3BhbiBsYW5nPSJFTi1V
-UyIgc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk65a6L5L2TO2NvbG9yOmJsYWNr
-Ij5bRVJST1JdIFtNUE0uUlBDU2VydmVyXQ0KPHNwYW4gc3R5bGU9ImJhY2tncm91bmQ6eWVsbG93
-O21zby1oaWdobGlnaHQ6eWVsbG93Ij5VbmNhdWdodCBleGNlcHRpb24gaW4gbWV0aG9kIHNldF9j
-bG9ja19zb3VyY2UgOkF0IGxlYXN0IG9uZSBQTEwgZGlkIG5vdCBsb2NrITwvc3Bhbj4gQ2hlY2sg
-dGhlIGxvZ3MgZm9yIGRldGFpbHMuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9
-IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6
-YmxhY2siPlRyYWNlYmFjayAobW9zdCByZWNlbnQgY2FsbCBsYXN0KTo8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQtYWxp
-Z246bGVmdCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQt
-ZmFtaWx5OuWui+S9kztjb2xvcjpibGFjayI+Jm5ic3A7IEZpbGUgJnF1b3Q7L3Vzci9saWIvcHl0
-aG9uMy41L3NpdGUtcGFja2FnZXMvdXNycF9tcG0vcnBjX3NlcnZlci5weSZxdW90OywgbGluZSAx
-ODIsIGluIG5ld19jbGFpbWVkX2Z1bmN0aW9uPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPjxzcGFu
-IGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTrlrovkvZM7
-Y29sb3I6YmxhY2siPiZuYnNwOyZuYnNwOyZuYnNwOyByZXR1cm4gZnVuY3Rpb24oKmFyZ3MpPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0
-eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
-OjEyLjBwdDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2siPiZuYnNwOyBGaWxlICZxdW90
-Oy91c3IvbGliL3B5dGhvbjMuNS9zaXRlLXBhY2thZ2VzL3VzcnBfbXBtL3BlcmlwaF9tYW5hZ2Vy
-L24zeHgucHkmcXVvdDssIGxpbmUgNjAxLCBpbiBzZXRfY2xvY2tfc291cmNlPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0
-LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtm
-b250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2siPiZuYnNwOyZuYnNwOyZuYnNwOyBzZWxmLnNl
-dF9zeW5jX3NvdXJjZShzb3VyY2UpPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9
-IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6
-YmxhY2siPiZuYnNwOyBGaWxlICZxdW90Oy91c3IvbGliL3B5dGhvbjMuNS9zaXRlLXBhY2thZ2Vz
-L3VzcnBfbXBtL3BlcmlwaF9tYW5hZ2VyL24zeHgucHkmcXVvdDssIGxpbmUgNzMwLCBpbiBzZXRf
-c3luY19zb3VyY2U8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBh
-bGlnbj0ibGVmdCIgc3R5bGU9InRleHQtYWxpZ246bGVmdCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
-eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OuWui+S9kztjb2xvcjpibGFjayI+Jm5i
-c3A7Jm5ic3A7Jm5ic3A7IHNraXBfcmZpYz1hcmdzLmdldCgnc2tpcF9yZmljJywgTm9uZSk8bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5
-bGU9InRleHQtYWxpZ246bGVmdCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6
-MTIuMHB0O2ZvbnQtZmFtaWx5OuWui+S9kztjb2xvcjpibGFjayI+Jm5ic3A7IEZpbGUgJnF1b3Q7
-L3Vzci9saWIvcHl0aG9uMy41L3NpdGUtcGFja2FnZXMvdXNycF9tcG0vZGJvYXJkX21hbmFnZXIv
-bWFnbmVzaXVtLnB5JnF1b3Q7LCBsaW5lIDQwMCwgaW4gdXBkYXRlX3JlZl9jbG9ja19mcmVxPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0
-eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
-OjEyLjBwdDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2siPiZuYnNwOyZuYnNwOyZuYnNw
-OyBzZWxmLl9yZWluaXQoc2VsZi5tYXN0ZXJfY2xvY2tfcmF0ZSk8bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQtYWxpZ246
-bGVmdCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFt
-aWx5OuWui+S9kztjb2xvcjpibGFjayI+Jm5ic3A7IEZpbGUgJnF1b3Q7L3Vzci9saWIvcHl0aG9u
-My41L3NpdGUtcGFja2FnZXMvdXNycF9tcG0vZGJvYXJkX21hbmFnZXIvbWFnbmVzaXVtLnB5JnF1
-b3Q7LCBsaW5lIDM1OSwgaW4gX3JlaW5pdDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiIGFsaWduPSJsZWZ0IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48c3BhbiBs
-YW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk65a6L5L2TO2Nv
-bG9yOmJsYWNrIj4mbmJzcDsmbmJzcDsmbmJzcDsgc2VsZi5pbml0KGFyZ3MpPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0
-LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtm
-b250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2siPiZuYnNwOyBGaWxlICZxdW90Oy91c3IvbGli
-L3B5dGhvbjMuNS9zaXRlLXBhY2thZ2VzL3VzcnBfbXBtL2Rib2FyZF9tYW5hZ2VyL21hZ25lc2l1
-bS5weSZxdW90OywgbGluZSAyOTUsIGluIGluaXQ8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQtYWxpZ246bGVmdCI+PHNw
-YW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OuWui+S9
-kztjb2xvcjpibGFjayI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IGFyZ3MsIHNlbGYuX2luaXRfYXJncywg
-ZmFzdF9yZWluaXQpPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
-YWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
-dHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2siPiZu
-YnNwOyBGaWxlICZxdW90Oy91c3IvbGliL3B5dGhvbjMuNS9zaXRlLXBhY2thZ2VzL3VzcnBfbXBt
-L2Rib2FyZF9tYW5hZ2VyL21nX2luaXQucHkmcXVvdDssIGxpbmUgNjE1LCBpbiBpbml0PG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxl
-PSJ0ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEy
-LjBwdDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2siPiZuYnNwOyZuYnNwOyZuYnNwOyBh
-cmdzPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249Imxl
-ZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9u
-dC1zaXplOjEyLjBwdDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2siPiZuYnNwOyBGaWxl
-ICZxdW90Oy91c3IvbGliL3B5dGhvbjMuNS9zaXRlLXBhY2thZ2VzL3VzcnBfbXBtL2Rib2FyZF9t
-YW5hZ2VyL21nX2luaXQucHkmcXVvdDssIGxpbmUgNTQ3LCBpbiBfZnVsbF9pbml0PG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0
-ZXh0LWFsaWduOmxlZnQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEyLjBw
-dDtmb250LWZhbWlseTrlrovkvZM7Y29sb3I6YmxhY2siPiZuYnNwOyZuYnNwOyZuYnNwOyBzZWxm
-LlBIQVNFX0RBQ19TUElfQUREUiw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQtYWxpZ246bGVmdCI+PHNwYW4gbGFuZz0i
-RU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OuWui+S9kztjb2xvcjpi
-bGFjayI+Jm5ic3A7IEZpbGUgJnF1b3Q7L3Vzci9saWIvcHl0aG9uMy41L3NpdGUtcGFja2FnZXMv
-dXNycF9tcG0vZGJvYXJkX21hbmFnZXIvbWdfaW5pdC5weSZxdW90OywgbGluZSAxODEsIGluIF9p
-bml0X2xtazxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFsaWdu
-PSJsZWZ0IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
-ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk65a6L5L2TO2NvbG9yOmJsYWNrIj4mbmJzcDsm
-bmJzcDsmbmJzcDsgc2VsZi5sb2c8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQtYWxpZ246bGVmdCI+PHNwYW4gbGFuZz0i
-RU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OuWui+S9kztjb2xvcjpi
-bGFjayI+Jm5ic3A7IEZpbGUgJnF1b3Q7L3Vzci9saWIvcHl0aG9uMy41L3NpdGUtcGFja2FnZXMv
-dXNycF9tcG0vZGJvYXJkX21hbmFnZXIvbG1rX21nLnB5JnF1b3Q7LCBsaW5lIDUyLCBpbiBfX2lu
-aXRfXzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFsaWduPSJs
-ZWZ0IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZv
-bnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk65a6L5L2TO2NvbG9yOmJsYWNrIj4mbmJzcDsmbmJz
-cDsmbmJzcDsgc2VsZi5jb25maWcoKTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiIGFsaWduPSJsZWZ0IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48c3BhbiBsYW5n
-PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk65a6L5L2TO2NvbG9y
-OmJsYWNrIj4mbmJzcDsgRmlsZSAmcXVvdDsvdXNyL2xpYi9weXRob24zLjUvc2l0ZS1wYWNrYWdl
-cy91c3JwX21wbS9kYm9hcmRfbWFuYWdlci9sbWtfbWcucHkmcXVvdDssIGxpbmUgMjE4LCBpbiBj
-b25maWc8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0i
-bGVmdCIgc3R5bGU9InRleHQtYWxpZ246bGVmdCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJm
-b250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OuWui+S9kztjb2xvcjpibGFjayI+Jm5ic3A7Jm5i
-c3A7Jm5ic3A7IHJhaXNlIFJ1bnRpbWVFcnJvcigmcXVvdDtBdCBsZWFzdCBvbmUgUExMIGRpZCBu
-b3QgbG9jayEgQ2hlY2sgdGhlIGxvZ3MgZm9yIGRldGFpbHMuJnF1b3Q7KTxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFsaWduPSJsZWZ0IiBzdHlsZT0idGV4dC1h
-bGlnbjpsZWZ0Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9u
-dC1mYW1pbHk65a6L5L2TO2NvbG9yOmJsYWNrIj5SdW50aW1lRXJyb3I6IEF0IGxlYXN0IG9uZSBQ
-TEwgZGlkIG5vdCBsb2NrISBDaGVjayB0aGUgbG9ncyBmb3IgZGV0YWlscy48bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQt
-YWxpZ246bGVmdCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2Zv
-bnQtZmFtaWx5OuWui+S9kztjb2xvcjpibGFjayI+W1BIWV0mbmJzcDsmbmJzcDsgcnVfdGhyZWFk
-X3ByYWNoKCkgUkFDSCB3YWl0aW5nIGZvciBSVSB0byBiZSBjb25maWd1cmVkDQo8bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86
-cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
-Zz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q75b6u6L2v6ZuF
-6buRJnF1b3Q7LHNhbnMtc2VyaWYiPi0tPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDvl
-vq7ova/pm4Xpu5EmcXVvdDssc2Fucy1zZXJpZiI+QmVzdCBSZWdhcmRzLDxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0i
-Zm9udC1mYW1pbHk6JnF1b3Q75b6u6L2v6ZuF6buRJnF1b3Q7LHNhbnMtc2VyaWYiPlRpYW4gTGk8
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJF
-Ti1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQpUaGlzIGUtbWFpbCAo
-aW5jbHVkaW5nIGFueSBhdHRhY2htZW50cykgaXMgY29uZmlkZW50aWFsIHRvIHRoZSBpbnRlbmRl
-ZCBhZGRyZXNzZWUsIG1heSBiZSBzdWJqZWN0IHRvIGNvcHlyaWdodCwgYW5kIG1heSBhbHNvIGJl
-IHByaXZpbGVnZWQuIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZCBhZGRyZXNzZWUsIHBsZWFz
-ZSBkbyBub3QgcmVhZCwgcHJpbnQsIHJlLXRyYW5zbWl0LCBjb3B5LCBzdG9yZSwgYWx0ZXIgb3Ig
-b3RoZXJ3aXNlIGRpc2Nsb3NlDQogaXQgb3IgYW55IG9mIGl0cyBhdHRhY2htZW50cyB0byBhbnlv
-bmU7IG5vciBzaG91bGQgeW91IGFjdCBpbiByZWxpYW5jZSBvbiBpdCBvciBhbnkgb2YgaXRzIGF0
-dGFjaG1lbnRzLiBJbnN0ZWFkLCBwbGVhc2Ugbm90aWZ5IHRoZSBlcnJvciB0byB0aGUgc2VuZGVy
-IGJ5IGUtbWFpbCBhbmQgaW1tZWRpYXRlbHkgcGVybWFuZW50bHkgZGVsZXRlIHRoaXMgZW1haWwg
-YW5kIGFueSBvZiBpdHMgYXR0YWNobWVudHMgZnJvbSB5b3VyIHN5c3RlbS4g5pys55S15a2Q6YKu
-5Lu277yI5YyF5ous5Lu75L2V6ZmE5Lu277yJ5piv5o+Q5L6b57uZ5oyH5a6a5pS25Lu25Lq655qE
-5L+d5a+G5L+h5oGv77yM5Y+v6IO95Zug5Y+X55+l6K+G5Lqn5p2D5L+d5oqk5LiU5bGe5LiT5pyJ
-5L+h5oGv6ICM5LiN5b6X5oqr6Zyy44CC5aaC5p6c5oKo5LiN5piv5oyH5a6a5pS25Lu25Lq677yM
-6K+35LiN6KaB6ZiF6K+744CB5omT5Y2w44CB5YaN5qyh5Lyg6L6T44CB5aSN5Yi244CB5a2Y5YKo
-44CB5L+u5pS55oiW6ICF5Lul5Y+m5aSW5pa55byP5o+t6Zyy5pys6YKu5Lu25oiW5YW25Lu75L2V
-6ZmE5Lu25YaF5a6557uZ5Lu75L2V5Lq677yb5oKo5Lmf5LiN5bqU6K+l5L+h6LWW5pys6YKu5Lu2
-5oiW5YW25Lu75L2V6ZmE5Lu255qE5YaF5a656KGM5LqL44CC55u45Y+N77yM6K+36YCa6L+H55S1
-5a2Q6YKu5Lu26YCa55+l5Y+R5Lu25Lq66L+Z5LiA6ZSZ6K+v5bm25LiU56uL5Y2z5rC45LmF5Zyw
-5LuO5oKo55qE57O757uf5Lit5Yig6Zmk5pys55S15a2Q6YKu5Lu25Y+K5YW25Lu75L2V6ZmE5Lu2
-44CCDQogRS1tYWlscyBzZW50IHRvIGFuZCBmcm9tIFRDTCBtYXkgYmUgbW9uaXRvcmVkIGFuZCBy
-ZWFkIGZvciBsZWdpdGltYXRlIGJ1c2luZXNzIHB1cnBvc2VzLCBub3RhYmx5IHRvIGVuc3VyZSBj
-b21wbGlhbmNlIHdpdGggdGhlIGxhdyBhbmQgdGhlIHJlZ3VsYXRvcnkgb2JsaWdhdGlvbnMuIEVt
-YWlscyBjYW5ub3QgYmUgZ3VhcmFudGVlZCB0byBiZSBzZWN1cmUgb3IgZXJyb3ItZnJlZSwgYW5k
-IHlvdSBzaG91bGQgcHJvdGVjdCB5b3VyIHN5c3RlbXMuDQogVENMIGRvZXMgbm90IGFjY2VwdCBh
-bnkgbGlhYmlsaXR5IGFyaXNpbmcgZnJvbSBpbnRlcmNlcHRpb24sIGVycm9yLCBsb3NzIG9yIGRl
-c3RydWN0aW9uIG9mIHRoaXMgZS1tYWlsLCBvciBpZiBpdCBhcnJpdmVzIGxhdGUgb3IgaW5jb21w
-bGV0ZSBvciB3aXRoIHZpcnVzZXMuIOWHuuS6juWQiOazleeahOWVhuazleebrueahO+8jOWwpOWF
-tuS4uuS6huehruS/nemBteWuiOebuOWFs+azleW+i+azleinhOeahOinhOWumu+8jOWPkeiHs+aI
-luWPkeiHqlRDTOeahOeUteWtkOmCruS7tuWPr+iDveiiq+ebkeaOp+WSjOmYheivu+OAgiDnm7jl
-hbPnlLXlrZDpgq7ku7bkuI3og73kv53or4HlhbblronlhajmgKfmiJbmsqHmnInplJnor6/vvIzm
-iYDku6XmgqjlupTor6Xkv53miqTmgqjnmoTns7vnu5/lronlhajjgIJUQ0zkuI3mib/mi4XnlLHk
-uo7pgq7ku7booqvmi6bmiKrjgIHlh7rplJnjgIHpgZflpLHmiJbmr4HlnY/jgIHmiJbogIXpgq7k
-u7bliLDovr7lu7bor6/jgIHkuI3lrozmlbTmiJbogIXmkLrluKbnl4Xmr5LogIzkuqfnlJ/nmoTk
-u7vkvZXotKPku7vjgIINCjwvYm9keT4NCjwvaHRtbD4NCg==
+-Sam
 
---_000_B7FF765BD755A047B8932CE984AFDC4627E20FF4CNSZEXMB01_--
+On Fri, Jun 12, 2020 at 4:53 AM Tian, LI(R&D TECH&INNO 5G LAB (CN)-SZ-TCT)
+via USRP-users <usrp-users@lists.ettus.com> wrote:
+
+> Hi all,
+>
+> Recently, I try to set OAI platform using the below configurations:
+>
+>
+>
+> USRP: N310 with XG image using 10G Ethernet
+>
+> UHD version: 3.15.0.0
+>
+> OAI version: develop branch with latest version
+>
+> Network card: Intel X520-DA2
+>
+>
+>
+> First, I set up UHD in the host computer. In the USRP, I updated file
+> system and then updated the correspoding FPGA image. After these operatio=
+n,
+> I think the UHD versions in the host computer and USRP are matched. Then =
+I
+> downloaded the OAI codes and compiled the codes of gNB using the
+> command(i.e. ./build_oai -I --gNB -w USRP).
+>
+>
+>
+> When I started to set up gNB using the comman(i.e. sudo ./nr-softmodem -O
+> ../../../targets/PROJECTS/GENERIC-LTE-EPC/CONF/gnb.band78.tm1.106PRB.usrp=
+n300.conf
+> --parallel-config PARALLEL_SINGLE_THREAD), a PLL related issue occurs, i.=
+e.
+> Uncaught exception in method set_clock_source :At least one PLL did not
+> lock!
+>
+>
+>
+> This problem always exists when I start to set up gNB. I very appreciate
+> if you can provide some suggestions.
+>
+>
+>
+>
+>
+> The related PLL logs are shown below:
+>
+> [ERROR] [MPM.RPCServer] Uncaught exception in method set_clock_source :At
+> least one PLL did not lock! Check the logs for details.
+>
+> Traceback (most recent call last):
+>
+>   File "/usr/lib/python3.5/site-packages/usrp_mpm/rpc_server.py", line
+> 182, in new_claimed_function
+>
+>     return function(*args)
+>
+>   File "/usr/lib/python3.5/site-packages/usrp_mpm/periph_manager/n3xx.py"=
+,
+> line 601, in set_clock_source
+>
+>     self.set_sync_source(source)
+>
+>   File "/usr/lib/python3.5/site-packages/usrp_mpm/periph_manager/n3xx.py"=
+,
+> line 730, in set_sync_source
+>
+>     skip_rfic=3Dargs.get('skip_rfic', None)
+>
+>   File
+> "/usr/lib/python3.5/site-packages/usrp_mpm/dboard_manager/magnesium.py",
+> line 400, in update_ref_clock_freq
+>
+>     self._reinit(self.master_clock_rate)
+>
+>   File
+> "/usr/lib/python3.5/site-packages/usrp_mpm/dboard_manager/magnesium.py",
+> line 359, in _reinit
+>
+>     self.init(args)
+>
+>   File
+> "/usr/lib/python3.5/site-packages/usrp_mpm/dboard_manager/magnesium.py",
+> line 295, in init
+>
+>     args, self._init_args, fast_reinit)
+>
+>   File
+> "/usr/lib/python3.5/site-packages/usrp_mpm/dboard_manager/mg_init.py", li=
+ne
+> 615, in init
+>
+>     args
+>
+>   File
+> "/usr/lib/python3.5/site-packages/usrp_mpm/dboard_manager/mg_init.py", li=
+ne
+> 547, in _full_init
+>
+>     self.PHASE_DAC_SPI_ADDR,
+>
+>   File
+> "/usr/lib/python3.5/site-packages/usrp_mpm/dboard_manager/mg_init.py", li=
+ne
+> 181, in _init_lmk
+>
+>     self.log
+>
+>   File
+> "/usr/lib/python3.5/site-packages/usrp_mpm/dboard_manager/lmk_mg.py", lin=
+e
+> 52, in __init__
+>
+>     self.config()
+>
+>   File
+> "/usr/lib/python3.5/site-packages/usrp_mpm/dboard_manager/lmk_mg.py", lin=
+e
+> 218, in config
+>
+>     raise RuntimeError("At least one PLL did not lock! Check the logs for
+> details.")
+>
+> RuntimeError: At least one PLL did not lock! Check the logs for details.
+>
+> [PHY]   ru_thread_prach() RACH waiting for RU to be configured
+>
+>
+>
+>
+>
+> --
+>
+> Best Regards,
+>
+> Tian Li
+>
+>
+> This e-mail (including any attachments) is confidential to the intended
+> addressee, may be subject to copyright, and may also be privileged. If yo=
+u
+> are not the intended addressee, please do not read, print, re-transmit,
+> copy, store, alter or otherwise disclose it or any of its attachments to
+> anyone; nor should you act in reliance on it or any of its attachments.
+> Instead, please notify the error to the sender by e-mail and immediately
+> permanently delete this email and any of its attachments from your system=
+.
+> =E6=9C=AC=E7=94=B5=E5=AD=90=E9=82=AE=E4=BB=B6=EF=BC=88=E5=8C=85=E6=8B=AC=
+=E4=BB=BB=E4=BD=95=E9=99=84=E4=BB=B6=EF=BC=89=E6=98=AF=E6=8F=90=E4=BE=9B=E7=
+=BB=99=E6=8C=87=E5=AE=9A=E6=94=B6=E4=BB=B6=E4=BA=BA=E7=9A=84=E4=BF=9D=E5=AF=
+=86=E4=BF=A1=E6=81=AF=EF=BC=8C=E5=8F=AF=E8=83=BD=E5=9B=A0=E5=8F=97=E7=9F=A5=
+=E8=AF=86=E4=BA=A7=E6=9D=83=E4=BF=9D=E6=8A=A4=E4=B8=94=E5=B1=9E=E4=B8=93=E6=
+=9C=89=E4=BF=A1=E6=81=AF=E8=80=8C=E4=B8=8D=E5=BE=97=E6=8A=AB=E9=9C=B2=E3=80=
+=82=E5=A6=82=E6=9E=9C=E6=82=A8=E4=B8=8D=E6=98=AF=E6=8C=87=E5=AE=9A=E6=94=B6=
+=E4=BB=B6=E4=BA=BA=EF=BC=8C=E8=AF=B7=E4=B8=8D=E8=A6=81=E9=98=85=E8=AF=BB=E3=
+=80=81=E6=89=93=E5=8D=B0=E3=80=81=E5=86=8D=E6=AC=A1=E4=BC=A0=E8=BE=93=E3=80=
+=81=E5=A4=8D=E5=88=B6=E3=80=81=E5=AD=98=E5=82=A8=E3=80=81=E4=BF=AE=E6=94=B9=
+=E6=88=96=E8=80=85=E4=BB=A5=E5=8F=A6=E5=A4=96=E6=96=B9=E5=BC=8F=E6=8F=AD=E9=
+=9C=B2=E6=9C=AC=E9=82=AE=E4=BB=B6=E6=88=96=E5=85=B6=E4=BB=BB=E4=BD=95=E9=99=
+=84=E4=BB=B6=E5=86=85=E5=AE=B9=E7=BB=99=E4=BB=BB=E4=BD=95=E4=BA=BA=EF=BC=9B=
+=E6=82=A8=E4=B9=9F=E4=B8=8D=E5=BA=94=E8=AF=A5=E4=BF=A1=E8=B5=96=E6=9C=AC=E9=
+=82=AE=E4=BB=B6=E6=88=96=E5=85=B6=E4=BB=BB=E4=BD=95=E9=99=84=E4=BB=B6=E7=9A=
+=84=E5=86=85=E5=AE=B9=E8=A1=8C=E4=BA=8B=E3=80=82=E7=9B=B8=E5=8F=8D=EF=BC=8C=
+=E8=AF=B7=E9=80=9A=E8=BF=87=E7=94=B5=E5=AD=90=E9=82=AE=E4=BB=B6=E9=80=9A=E7=
+=9F=A5=E5=8F=91=E4=BB=B6=E4=BA=BA=E8=BF=99=E4=B8=80=E9=94=99=E8=AF=AF=E5=B9=
+=B6=E4=B8=94=E7=AB=8B=E5=8D=B3=E6=B0=B8=E4=B9=85=E5=9C=B0=E4=BB=8E=E6=82=A8=
+=E7=9A=84=E7=B3=BB=E7=BB=9F=E4=B8=AD=E5=88=A0=E9=99=A4=E6=9C=AC=E7=94=B5=E5=
+=AD=90=E9=82=AE=E4=BB=B6=E5=8F=8A=E5=85=B6=E4=BB=BB=E4=BD=95=E9=99=84=E4=BB=
+=B6=E3=80=82
+> E-mails sent to and from TCL may be monitored and read for legitimate
+> business purposes, notably to ensure compliance with the law and the
+> regulatory obligations. Emails cannot be guaranteed to be secure or
+> error-free, and you should protect your systems. TCL does not accept any
+> liability arising from interception, error, loss or destruction of this
+> e-mail, or if it arrives late or incomplete or with viruses.
+> =E5=87=BA=E4=BA=8E=E5=90=88=E6=B3=95=E7=9A=84=E5=95=86=E6=B3=95=E7=9B=AE=
+=E7=9A=84=EF=BC=8C=E5=B0=A4=E5=85=B6=E4=B8=BA=E4=BA=86=E7=A1=AE=E4=BF=9D=E9=
+=81=B5=E5=AE=88=E7=9B=B8=E5=85=B3=E6=B3=95=E5=BE=8B=E6=B3=95=E8=A7=84=E7=9A=
+=84=E8=A7=84=E5=AE=9A=EF=BC=8C=E5=8F=91=E8=87=B3=E6=88=96=E5=8F=91=E8=87=AA=
+TCL=E7=9A=84=E7=94=B5=E5=AD=90=E9=82=AE=E4=BB=B6=E5=8F=AF=E8=83=BD=E8=A2=AB=
+=E7=9B=91=E6=8E=A7=E5=92=8C=E9=98=85=E8=AF=BB=E3=80=82
+> =E7=9B=B8=E5=85=B3=E7=94=B5=E5=AD=90=E9=82=AE=E4=BB=B6=E4=B8=8D=E8=83=BD=
+=E4=BF=9D=E8=AF=81=E5=85=B6=E5=AE=89=E5=85=A8=E6=80=A7=E6=88=96=E6=B2=A1=E6=
+=9C=89=E9=94=99=E8=AF=AF=EF=BC=8C=E6=89=80=E4=BB=A5=E6=82=A8=E5=BA=94=E8=AF=
+=A5=E4=BF=9D=E6=8A=A4=E6=82=A8=E7=9A=84=E7=B3=BB=E7=BB=9F=E5=AE=89=E5=85=A8=
+=E3=80=82TCL=E4=B8=8D=E6=89=BF=E6=8B=85=E7=94=B1=E4=BA=8E=E9=82=AE=E4=BB=B6=
+=E8=A2=AB=E6=8B=A6=E6=88=AA=E3=80=81=E5=87=BA=E9=94=99=E3=80=81=E9=81=97=E5=
+=A4=B1=E6=88=96=E6=AF=81=E5=9D=8F=E3=80=81=E6=88=96=E8=80=85=E9=82=AE=E4=BB=
+=B6=E5=88=B0=E8=BE=BE=E5=BB=B6=E8=AF=AF=E3=80=81=E4=B8=8D=E5=AE=8C=E6=95=B4=
+=E6=88=96=E8=80=85=E6=90=BA=E5=B8=A6=E7=97=85=E6=AF=92=E8=80=8C=E4=BA=A7=E7=
+=94=9F=E7=9A=84=E4=BB=BB=E4=BD=95=E8=B4=A3=E4=BB=BB=E3=80=82
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000004ba16005a7e3774b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Is your program expecting you to supply an external 10MHz =
+Reference to your N310? I&#39;d assume that&#39;s what=C2=A0<b>set_clock_so=
+urce</b>() is configuring. You should double-check the logs or source to be=
+ sure.=C2=A0<br><div><br></div><div>I don&#39;t think that=C2=A0 <b>set_clo=
+ck_source</b> would be referencing an external LO, but if it is, make sure =
+you&#39;re following the LO frequency guidelines here:=C2=A0<a href=3D"http=
+s://kb.ettus.com/N300/N310#Interfaces_and_Connectivity">https://kb.ettus.co=
+m/N300/N310#Interfaces_and_Connectivity</a></div><div><br></div><div>-Sam</=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Fri, Jun 12, 2020 at 4:53 AM Tian, LI(R&amp;D TECH&amp;INNO 5G LAB (=
+CN)-SZ-TCT) via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com=
+">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
 
 
---===============2108525864317744275==
+
+
+
+<div lang=3D"ZH-CN">
+<div>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">Hi all,<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">Recently, I try to set OAI platform using the below configurations:<u><=
+/u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">USRP: N310 with XG image using 10G Ethernet<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">UHD version: 3.15.0.0<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">OAI version: develop branch with latest version<u></u><u></u></span></p=
+>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">Network card: Intel X520-DA2<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">First, I set up UHD in the host computer. In the USRP, I updated file s=
+ystem and then updated the correspoding FPGA image. After
+ these operation, I think the UHD versions in the host computer and USRP ar=
+e matched. Then I downloaded the OAI codes and compiled the codes of gNB us=
+ing the command(i.e. ./build_oai -I --gNB -w USRP).
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">When I started to set up gNB using the comman(i.e. sudo ./nr-softmodem =
+-O ../../../targets/PROJECTS/GENERIC-LTE-EPC/CONF/gnb.band78.tm1.106PRB.usr=
+pn300.conf
+ --parallel-config PARALLEL_SINGLE_THREAD), a PLL related issue occurs, i.e=
+. Uncaught exception in method set_clock_source :At least one PLL did not l=
+ock!<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">This problem always exists when I start to set up gNB. I very appreciat=
+e if you can provide some suggestions.<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">The related PLL logs are shown below:<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">[ERROR] [MPM.RPCServer]
+<span style=3D"background:yellow">Uncaught exception in method set_clock_so=
+urce :At least one PLL did not lock!</span> Check the logs for details.<u><=
+/u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">Traceback (most recent call last):<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0 File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/rpc_server.=
+py&quot;, line 182, in new_claimed_function<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0=C2=A0=C2=A0 return function(*args)<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0 File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/periph_mana=
+ger/n3xx.py&quot;, line 601, in set_clock_source<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0=C2=A0=C2=A0 self.set_sync_source(source)<u></u><u></u></span></p=
+>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0 File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/periph_mana=
+ger/n3xx.py&quot;, line 730, in set_sync_source<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0=C2=A0=C2=A0 skip_rfic=3Dargs.get(&#39;skip_rfic&#39;, None)<u></=
+u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0 File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/dboard_mana=
+ger/magnesium.py&quot;, line 400, in update_ref_clock_freq<u></u><u></u></s=
+pan></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0=C2=A0=C2=A0 self._reinit(self.master_clock_rate)<u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0 File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/dboard_mana=
+ger/magnesium.py&quot;, line 359, in _reinit<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0=C2=A0=C2=A0 self.init(args)<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0 File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/dboard_mana=
+ger/magnesium.py&quot;, line 295, in init<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0=C2=A0=C2=A0 args, self._init_args, fast_reinit)<u></u><u></u></s=
+pan></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0 File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/dboard_mana=
+ger/mg_init.py&quot;, line 615, in init<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0=C2=A0=C2=A0 args<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0 File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/dboard_mana=
+ger/mg_init.py&quot;, line 547, in _full_init<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0=C2=A0=C2=A0 self.PHASE_DAC_SPI_ADDR,<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0 File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/dboard_mana=
+ger/mg_init.py&quot;, line 181, in _init_lmk<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0=C2=A0=C2=A0 self.log<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0 File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/dboard_mana=
+ger/lmk_mg.py&quot;, line 52, in __init__<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0=C2=A0=C2=A0 self.config()<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0 File &quot;/usr/lib/python3.5/site-packages/usrp_mpm/dboard_mana=
+ger/lmk_mg.py&quot;, line 218, in config<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">=C2=A0=C2=A0=C2=A0 raise RuntimeError(&quot;At least one PLL did not lo=
+ck! Check the logs for details.&quot;)<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">RuntimeError: At least one PLL did not lock! Check the logs for details=
+.<u></u><u></u></span></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:12pt;font-family:=E5=AE=8B=E4=BD=93;color:bla=
+ck">[PHY]=C2=A0=C2=A0 ru_thread_prach() RACH waiting for RU to be configure=
+d
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:=E5=BE=AE=
+=E8=BD=AF=E9=9B=85=E9=BB=91,sans-serif">--<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:=E5=BE=AE=
+=E8=BD=AF=E9=9B=85=E9=BB=91,sans-serif">Best Regards,<u></u><u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:=E5=BE=AE=
+=E8=BD=AF=E9=9B=85=E9=BB=91,sans-serif">Tian Li<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+</div>
+This e-mail (including any attachments) is confidential to the intended add=
+ressee, may be subject to copyright, and may also be privileged. If you are=
+ not the intended addressee, please do not read, print, re-transmit, copy, =
+store, alter or otherwise disclose
+ it or any of its attachments to anyone; nor should you act in reliance on =
+it or any of its attachments. Instead, please notify the error to the sende=
+r by e-mail and immediately permanently delete this email and any of its at=
+tachments from your system. =E6=9C=AC=E7=94=B5=E5=AD=90=E9=82=AE=E4=BB=B6=
+=EF=BC=88=E5=8C=85=E6=8B=AC=E4=BB=BB=E4=BD=95=E9=99=84=E4=BB=B6=EF=BC=89=E6=
+=98=AF=E6=8F=90=E4=BE=9B=E7=BB=99=E6=8C=87=E5=AE=9A=E6=94=B6=E4=BB=B6=E4=BA=
+=BA=E7=9A=84=E4=BF=9D=E5=AF=86=E4=BF=A1=E6=81=AF=EF=BC=8C=E5=8F=AF=E8=83=BD=
+=E5=9B=A0=E5=8F=97=E7=9F=A5=E8=AF=86=E4=BA=A7=E6=9D=83=E4=BF=9D=E6=8A=A4=E4=
+=B8=94=E5=B1=9E=E4=B8=93=E6=9C=89=E4=BF=A1=E6=81=AF=E8=80=8C=E4=B8=8D=E5=BE=
+=97=E6=8A=AB=E9=9C=B2=E3=80=82=E5=A6=82=E6=9E=9C=E6=82=A8=E4=B8=8D=E6=98=AF=
+=E6=8C=87=E5=AE=9A=E6=94=B6=E4=BB=B6=E4=BA=BA=EF=BC=8C=E8=AF=B7=E4=B8=8D=E8=
+=A6=81=E9=98=85=E8=AF=BB=E3=80=81=E6=89=93=E5=8D=B0=E3=80=81=E5=86=8D=E6=AC=
+=A1=E4=BC=A0=E8=BE=93=E3=80=81=E5=A4=8D=E5=88=B6=E3=80=81=E5=AD=98=E5=82=A8=
+=E3=80=81=E4=BF=AE=E6=94=B9=E6=88=96=E8=80=85=E4=BB=A5=E5=8F=A6=E5=A4=96=E6=
+=96=B9=E5=BC=8F=E6=8F=AD=E9=9C=B2=E6=9C=AC=E9=82=AE=E4=BB=B6=E6=88=96=E5=85=
+=B6=E4=BB=BB=E4=BD=95=E9=99=84=E4=BB=B6=E5=86=85=E5=AE=B9=E7=BB=99=E4=BB=BB=
+=E4=BD=95=E4=BA=BA=EF=BC=9B=E6=82=A8=E4=B9=9F=E4=B8=8D=E5=BA=94=E8=AF=A5=E4=
+=BF=A1=E8=B5=96=E6=9C=AC=E9=82=AE=E4=BB=B6=E6=88=96=E5=85=B6=E4=BB=BB=E4=BD=
+=95=E9=99=84=E4=BB=B6=E7=9A=84=E5=86=85=E5=AE=B9=E8=A1=8C=E4=BA=8B=E3=80=82=
+=E7=9B=B8=E5=8F=8D=EF=BC=8C=E8=AF=B7=E9=80=9A=E8=BF=87=E7=94=B5=E5=AD=90=E9=
+=82=AE=E4=BB=B6=E9=80=9A=E7=9F=A5=E5=8F=91=E4=BB=B6=E4=BA=BA=E8=BF=99=E4=B8=
+=80=E9=94=99=E8=AF=AF=E5=B9=B6=E4=B8=94=E7=AB=8B=E5=8D=B3=E6=B0=B8=E4=B9=85=
+=E5=9C=B0=E4=BB=8E=E6=82=A8=E7=9A=84=E7=B3=BB=E7=BB=9F=E4=B8=AD=E5=88=A0=E9=
+=99=A4=E6=9C=AC=E7=94=B5=E5=AD=90=E9=82=AE=E4=BB=B6=E5=8F=8A=E5=85=B6=E4=BB=
+=BB=E4=BD=95=E9=99=84=E4=BB=B6=E3=80=82
+ E-mails sent to and from TCL may be monitored and read for legitimate busi=
+ness purposes, notably to ensure compliance with the law and the regulatory=
+ obligations. Emails cannot be guaranteed to be secure or error-free, and y=
+ou should protect your systems.
+ TCL does not accept any liability arising from interception, error, loss o=
+r destruction of this e-mail, or if it arrives late or incomplete or with v=
+iruses. =E5=87=BA=E4=BA=8E=E5=90=88=E6=B3=95=E7=9A=84=E5=95=86=E6=B3=95=E7=
+=9B=AE=E7=9A=84=EF=BC=8C=E5=B0=A4=E5=85=B6=E4=B8=BA=E4=BA=86=E7=A1=AE=E4=BF=
+=9D=E9=81=B5=E5=AE=88=E7=9B=B8=E5=85=B3=E6=B3=95=E5=BE=8B=E6=B3=95=E8=A7=84=
+=E7=9A=84=E8=A7=84=E5=AE=9A=EF=BC=8C=E5=8F=91=E8=87=B3=E6=88=96=E5=8F=91=E8=
+=87=AATCL=E7=9A=84=E7=94=B5=E5=AD=90=E9=82=AE=E4=BB=B6=E5=8F=AF=E8=83=BD=E8=
+=A2=AB=E7=9B=91=E6=8E=A7=E5=92=8C=E9=98=85=E8=AF=BB=E3=80=82 =E7=9B=B8=E5=
+=85=B3=E7=94=B5=E5=AD=90=E9=82=AE=E4=BB=B6=E4=B8=8D=E8=83=BD=E4=BF=9D=E8=AF=
+=81=E5=85=B6=E5=AE=89=E5=85=A8=E6=80=A7=E6=88=96=E6=B2=A1=E6=9C=89=E9=94=99=
+=E8=AF=AF=EF=BC=8C=E6=89=80=E4=BB=A5=E6=82=A8=E5=BA=94=E8=AF=A5=E4=BF=9D=E6=
+=8A=A4=E6=82=A8=E7=9A=84=E7=B3=BB=E7=BB=9F=E5=AE=89=E5=85=A8=E3=80=82TCL=E4=
+=B8=8D=E6=89=BF=E6=8B=85=E7=94=B1=E4=BA=8E=E9=82=AE=E4=BB=B6=E8=A2=AB=E6=8B=
+=A6=E6=88=AA=E3=80=81=E5=87=BA=E9=94=99=E3=80=81=E9=81=97=E5=A4=B1=E6=88=96=
+=E6=AF=81=E5=9D=8F=E3=80=81=E6=88=96=E8=80=85=E9=82=AE=E4=BB=B6=E5=88=B0=E8=
+=BE=BE=E5=BB=B6=E8=AF=AF=E3=80=81=E4=B8=8D=E5=AE=8C=E6=95=B4=E6=88=96=E8=80=
+=85=E6=90=BA=E5=B8=A6=E7=97=85=E6=AF=92=E8=80=8C=E4=BA=A7=E7=94=9F=E7=9A=84=
+=E4=BB=BB=E4=BD=95=E8=B4=A3=E4=BB=BB=E3=80=82
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000004ba16005a7e3774b--
+
+
+--===============0194226020574308598==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -425,5 +566,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2108525864317744275==--
+--===============0194226020574308598==--
 
