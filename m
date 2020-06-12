@@ -2,59 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3E5E1F7C8A
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2020 19:38:43 +0200 (CEST)
-Received: from [::1] (port=60726 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C93FF1F7DAA
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2020 21:34:34 +0200 (CEST)
+Received: from [::1] (port=47094 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjndY-0006Pn-CB; Fri, 12 Jun 2020 13:38:40 -0400
-Received: from barracuda.dynetics.com ([204.154.192.66]:38938)
- by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
- (Exim 4.93)
- (envelope-from <btv1==43236245c49==Ryan.Carmichael@dynetics.com>)
- id 1jjndU-0006KS-Pf
- for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 13:38:36 -0400
-X-ASG-Debug-ID: 1591984215-10303763212dc6c0001-5wTQH4
-Received: from MX2.in.dynetics.com (MX2.in.dynetics.com [10.1.15.131]) by
- barracuda.dynetics.com with ESMTP id pL6Zx8K1302HMpIT (version=TLSv1.2
- cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NO);
- Fri, 12 Jun 2020 12:50:15 -0500 (CDT)
-X-Barracuda-Envelope-From: Ryan.Carmichael@dynetics.com
-X-Barracuda-RBL-Trusted-Forwarder: 10.1.15.131
-Received: from MAUI.in.dynetics.com ([169.254.1.93]) by MX2.in.dynetics.com
- ([10.1.15.131]) with mapi id 14.03.0487.000; Fri, 12 Jun 2020 12:37:55 -0500
-X-Barracuda-RBL-IP: 169.254.1.93
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] DPDK support not built in with X310
-X-ASG-Orig-Subj: RE: [USRP-users] DPDK support not built in with X310
-Thread-Index: AQHWQN+lnCrhOa5jbESeuLdK/suslqjVPgWw
-Date: Fri, 12 Jun 2020 17:37:54 +0000
-Message-ID: <10F7328F6AD1354BA6DD787687B66B9001A97A4064@Maui.in.dynetics.com>
-References: <CANka2Pwqgc=sk6mutxNwbO2fzUQe4k4W_A5_DFzaWWY5prxYug@mail.gmail.com>
-In-Reply-To: <CANka2Pwqgc=sk6mutxNwbO2fzUQe4k4W_A5_DFzaWWY5prxYug@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.249.132.118]
+	id 1jjpRf-0001cW-92; Fri, 12 Jun 2020 15:34:31 -0400
+Received: from mail-io1-f41.google.com ([209.85.166.41]:45333)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <bistromath@gmail.com>)
+ id 1jjpRb-0001YQ-1Z
+ for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 15:34:27 -0400
+Received: by mail-io1-f41.google.com with SMTP id y5so11414529iob.12
+ for <usrp-users@lists.ettus.com>; Fri, 12 Jun 2020 12:34:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=OJG3B3DX41CEkvDR+FS5BTC5yR7IDwfaJmLQX1FGd5c=;
+ b=UzCFwwCeNU8QGg3NhmVbVNoT0UHY9fQ9YJfBc2VQ5XgFox8kksbK2uWnapfUu+Z2H+
+ Wtfl02tRfSOFwDBkwEQdUElVhNlmQOxCzcItoqF63ixjbKbGqpwy3+gsSptanRV7aQKf
+ BEX5YpAWVnwqlIR5w9u3Wg27i098906yK531pApYrxt7y8hV2qEME39ejgDZo70RmWB6
+ WE2xm4H3WjGEVLtVrLZKM5yDwGeZpv9N5NBgjyEEXMDfDcCWFPKihYdK6mTQN3/CpMmD
+ 1CdbyAcIX2XXQhkx4+RG0F4Ihdo8BztCj5EcRfXclFDf25q5Wmpie5g6cmdPvP2l02yq
+ 8EJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=OJG3B3DX41CEkvDR+FS5BTC5yR7IDwfaJmLQX1FGd5c=;
+ b=IIUhLMDyWuhfengo/fDLzdCJyPNeqZxbQ4FN+oNPje4Wh/6nhzdkCmZeivwrWL/6qX
+ 9njIM4A6j6dMeKad9HALa9v4kMPsAfcWftQpzk93eRmGdUU5lFf1JTeIMloYTEw0zO9S
+ WfrsX0wqXvuyjXaLNxc7g6NdR8I/bS+kHNL0LxPptq8fYdzFpBtXNu1YmwchzQqP6Cg9
+ yXBFk9sOnzewQFjOD2LyMVx/zvczj5U4on7XkrORGbAf2VbouCeY1wli8Ugc8VWHDhRt
+ W3EHYTXfel1i7pqofXj/WwEnIfqK7XclrSomGVkf1zM2bjyVUgxDrdRQGX52OZX0F27N
+ jR2A==
+X-Gm-Message-State: AOAM532WplgJ0A2jClQIzGkpWbvIKXsA2tkYZcRgxnqvn7Ng9/5cm8T7
+ Ajd2QZU+AHQfSIxN1BZO94bUTdOZ5Q7s/8KdbUI=
+X-Google-Smtp-Source: ABdhPJx1mF6N0f09iEdnqf/M+/fSQPPEfG3FsCbHowCJ+L6YkeKGnejKg1VHzTrlaquv7MBgIixE70cele4gkVm++kE=
+X-Received: by 2002:a02:2444:: with SMTP id q4mr9563074jae.29.1591990426237;
+ Fri, 12 Jun 2020 12:33:46 -0700 (PDT)
 MIME-Version: 1.0
-X-Barracuda-Connect: MX2.in.dynetics.com[10.1.15.131]
-X-Barracuda-Start-Time: 1591984215
-X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA384
-X-Barracuda-URL: https://barracuda.in.dynetics.com:443/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at dynetics.com
-X-Barracuda-Scan-Msg-Size: 9134
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No,
- SCORE=0.00 using per-user scores of TAG_LEVEL=1000.0
- QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.82505
- Rule breakdown below
- pts rule name              description
- ---- ---------------------- --------------------------------------------------
- 0.00 HTML_MESSAGE           BODY: HTML included in message
-Subject: Re: [USRP-users] DPDK support not built in with X310
+References: <trinity-469b54f5-33c1-4a43-876d-eb07014b9eb2-1591904041140@3c-app-gmx-bap40>
+ <AAE54BC7-1AC7-4745-8598-4FC701DC2627@gmail.com>
+ <trinity-698bf8e0-f382-4350-99d9-e2bf4b5ef8d4-1591908381370@3c-app-gmx-bap40>
+ <CAOJfBDfX=L330sse-4bUv2uzD2rA9JWVTSQsT19ki2mvdypY4w@mail.gmail.com>
+ <trinity-956ec4ce-edff-42f4-bb3f-f19d7681634c-1591976665950@3c-app-gmx-bs14>
+In-Reply-To: <trinity-956ec4ce-edff-42f4-bb3f-f19d7681634c-1591976665950@3c-app-gmx-bs14>
+Date: Fri, 12 Jun 2020 12:33:34 -0700
+Message-ID: <CA+JMMq8t7ZhnE3j8Uk54j9UFux=e=yaY2PxRJ2sBiiqo3rijFg@mail.gmail.com>
+To: Lukas Haase <lukashaase@gmx.at>
+Subject: Re: [USRP-users] How to debug timed commands on FPGA side?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +62,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Carmichael, Ryan via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Carmichael, Ryan" <Ryan.Carmichael@dynetics.com>
-Content-Type: multipart/mixed; boundary="===============0100376756671549821=="
+From: Nick Foster via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nick Foster <bistromath@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============1454835961966808932=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,186 +79,409 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0100376756671549821==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_10F7328F6AD1354BA6DD787687B66B9001A97A4064Mauiindynetic_"
+--===============1454835961966808932==
+Content-Type: multipart/alternative; boundary="000000000000d7814e05a7e827b6"
 
---_000_10F7328F6AD1354BA6DD787687B66B9001A97A4064Mauiindynetic_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000d7814e05a7e827b6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SmVyZW15LA0KDQpJIHdlbnQgdGhyb3VnaCB0aGlzIHJlY2VudGx5IGFuZCBJIGJlbGlldmUgeW91
-IG5lZWQgdG8gYnVpbGQgVUhEIG1hbnVhbGx5LCBhc3N1bWluZyB5b3UgYXJlIHVzaW5nIHByZS1i
-dWlsdCBVSEQgYmluYXJpZXMuIElmIHlvdeKAmXZlIGluc3RhbGxlZCBpdCwgRFBESyBzdXBwb3J0
-IHNob3VsZCBiZSBkZXRlY3RlZCB3aGVuIHlvdSBidWlsZCB0aGUgVUhEIGRyaXZlciAodGhlIG91
-dHB1dCBvZiBjbWFrZSBzaG91bGQgaW5kaWNhdGUgaWYgaXQgZmluZHMgaXQgb3Igbm90KS4NCg0K
-DQotICAgICAgICAgIFJ5YW4NCg0KDQoNCkkgcmVjZW50bHkgYm91Z2h0IGEgWDMxMCB1c3JwIGFu
-ZCBhIDgyNTk5RVMgMTAtR2lnYWJpdCBTRkkvU0ZQKyBOZXR3b3JrIEludGVyZmFjZSBDYXJkICh0
-aGUgb25lIHJlY29tbWVuZGVkIG9uIHRoZSBFdHR1cyBXZWJzaXRlKS4NCg0KSSBmaXJzdCBzZXQg
-bXkgY29ubmVjdGlvbnMgYW5kIGEgYmVuY2htYXJrIHRlc3Qgc2hvd3MgYSBsb3Qgb2YgZHJvcHBl
-ZCBzYW1wbGVzIGFuZCBzb21lIG92ZXJmbG93cy4NClNvIGkgZGVjaWRlZCB0byB0cnkgdXNpbmcg
-ZHBkayB0byBpbXByb3ZlIG15IHNldHVwLg0KSSBoYXZlIFVIRCAzLjE0LjEuMSBhbmQgSSBpbnN0
-YWxsZWQgZHBkayB3aXRoIG15IGFwdCBwYWNrYWdlIG1hbmFnZXIgKGRwZGsgdmVyc2lvbiAxNy4x
-MS45KS4NCkkgZm9sbG93ZWQgdGhpcyBndWlkZSBodHRwczovL2tiLmV0dHVzLmNvbS9HZXR0aW5n
-X1N0YXJ0ZWRfd2l0aF9EUERLX2FuZF9VSEQgYW5kIHdoZW4gSSBydW4gdGhlIGJlbmNobWFyayB3
-aXRoIHVzZV9kcGRrIGFyZ3VtZW50LCBJIGdvdCB0aGUgZm9sbG93aW5nOg0KW1dBUk5JTkddIFtE
-UERLXSBEZXRlY3RlZCB1c2VfZHBkayBhcmd1bWVudCwgYnV0IERQREsgc3VwcG9ydCBub3QgYnVp
-bHQgaW4uDQoNCkkgcmVhbGx5IGRvbid0IHVuZGVyc3RhbmQgd2hhdCdzIHdyb25nLiBJIHRyaWVk
-IHNvIG1hbnkgdGhpbmdzLiBJIHRyaWVkIHdpdGggZHBkayAxOCBhbmQgd2VudCBiYWNrIHRvIDE3
-IGJlY2F1c2UgaXQgZGlkbid0IHNvbHZlIGFueXRoaW5nLg0KDQpDb3VsZCBhbnlvbmUgaGVscCBt
-ZSB3aXRoIHRoYXQgcGxlYXNlID8NCg0KSmVyZW15DQoNCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fDQoNClRoZSBpbmZvcm1hdGlvbiBjb250YWluZWQgaW4gdGhpcyBtZXNzYWdlLCBh
-bmQgYW55IGF0dGFjaG1lbnRzLCBtYXkgY29udGFpbiBwcml2aWxlZ2VkIGFuZC9vciBwcm9wcmll
-dGFyeSBpbmZvcm1hdGlvbiB0aGF0IGlzIGludGVuZGVkIHNvbGVseSBmb3IgdGhlIHBlcnNvbiBv
-ciBlbnRpdHkgdG8gd2hpY2ggaXQgaXMgYWRkcmVzc2VkLiBNb3Jlb3ZlciwgaXQgbWF5IGNvbnRh
-aW4gZXhwb3J0IHJlc3RyaWN0ZWQgdGVjaG5pY2FsIGRhdGEgY29udHJvbGxlZCBieSBFeHBvcnQg
-QWRtaW5pc3RyYXRpb24gUmVndWxhdGlvbnMgKEVBUikgb3IgdGhlIEludGVybmF0aW9uYWwgVHJh
-ZmZpYyBpbiBBcm1zIFJlZ3VsYXRpb25zIChJVEFSKS4gQW55IHJldmlldywgcmV0cmFuc21pc3Np
-b24sIGRpc3NlbWluYXRpb24sIG9yIHJlLWV4cG9ydCB0byBmb3JlaWduIG9yIGRvbWVzdGljIGVu
-dGl0aWVzIGJ5IGFueW9uZSBvdGhlciB0aGFuIHRoZSBpbnRlbmRlZCByZWNpcGllbnQgaW4gYWNj
-b3JkYW5jZSB3aXRoIEVBUiBhbmQvb3IgSVRBUiByZWd1bGF0aW9ucyBpcyBwcm9oaWJpdGVkLg0K
+I agree that Gnuradio sometimes introduces unpredictable and
+non-reproducible latencies, which can be especially problematic when
+dealing with timing-sensitive hardware close to the metal. Setting UHD
+buffer size is one thing, but Gnuradio can hang onto data in sometimes
+opaque ways, with sometimes opaque interactions (at least, to me!) with the
+host OS's scheduler. These issues are ordinarily not a problem because you
+can just increase send buffer size until you never see underruns due to
+buffer starvation, but this solution only works for systems which a) have
+backpressure, and b) are not latency-sensitive.
 
---_000_10F7328F6AD1354BA6DD787687B66B9001A97A4064Mauiindynetic_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+This isn't a particularly helpful suggestion, I realize, but when faced
+with these problems in the past I have reimplemented my systems in C++,
+interfaced directly to UHD, generally with favorable results. It is much
+easier to guarantee timing when you have full control of the system.
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseTpXaW5nZGluZ3M7DQoJcGFub3NlLTE6NSAwIDAgMCAwIDAgMCAwIDAg
-MDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0x
-OjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJp
-Ow0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25z
-ICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjow
-aW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1m
-YW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGlu
-aw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRp
-b246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXtt
-c28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1
-bmRlcmxpbmU7fQ0KcA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLW1hcmdpbi10b3At
-YWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0
-bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToi
-VGltZXMgTmV3IFJvbWFuIixzZXJpZjt9DQpjb2RlDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsN
-Cglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCnAuTXNvTGlzdFBhcmFncmFwaCwgbGkuTXNv
-TGlzdFBhcmFncmFwaCwgZGl2Lk1zb0xpc3RQYXJhZ3JhcGgNCgl7bXNvLXN0eWxlLXByaW9yaXR5
-OjM0Ow0KCW1hcmdpbi10b3A6MGluOw0KCW1hcmdpbi1yaWdodDowaW47DQoJbWFyZ2luLWJvdHRv
-bTowaW47DQoJbWFyZ2luLWxlZnQ6LjVpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9u
-dC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9DQpw
-Lm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1u
-YW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6
-MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsNCglm
-b250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30N
-CnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFt
-aWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0Kc3Bhbi5FbWFpbFN0
-eWxlMjINCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtY29tcG9zZTsNCglmb250LWZhbWlseToi
-Q2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0
-DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixz
-YW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCglt
-YXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdl
-OldvcmRTZWN0aW9uMTt9DQovKiBMaXN0IERlZmluaXRpb25zICovDQpAbGlzdCBsMA0KCXttc28t
-bGlzdC1pZDoxMzI4MDk3MzU5Ow0KCW1zby1saXN0LXR5cGU6aHlicmlkOw0KCW1zby1saXN0LXRl
-bXBsYXRlLWlkczotMTc3Nzg0MjQzNiAtMTk3OTE1NTM2IDY3Njk4NjkxIDY3Njk4NjkzIDY3Njk4
-Njg5IDY3Njk4NjkxIDY3Njk4NjkzIDY3Njk4Njg5IDY3Njk4NjkxIDY3Njk4NjkzO30NCkBsaXN0
-IGwwOmxldmVsMQ0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVs
-LXRleHQ6LTsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBv
-c2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
-IixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWZvbnQtZmFtaWx5OkNhbGlicmk7fQ0KQGxpc3Qg
-bDA6bGV2ZWwyDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwt
-dGV4dDpvOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9z
-aXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIg
-TmV3Ijt9DQpAbGlzdCBsMDpsZXZlbDMNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0
-Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28t
-bGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQt
-ZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDQNCgl7bXNvLWxldmVsLW51bWJlci1m
-b3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6
-bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4y
-NWluOw0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNvLWxldmVs
-LW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Om87DQoJbXNvLWxldmVsLXRh
-Yi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5k
-ZW50Oi0uMjVpbjsNCglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCkBsaXN0IGwwOmxldmVs
-Ng0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674Kn
-Ow0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246
-bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6V2luZ2RpbmdzO30NCkBs
-aXN0IGwwOmxldmVsNw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxl
-dmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1i
-ZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6U3lt
-Ym9sO30NCkBsaXN0IGwwOmxldmVsOA0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7
-DQoJbXNvLWxldmVsLXRleHQ6bzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2
-ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFt
-aWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxpc3QgbDA6bGV2ZWw5DQoJe21zby1sZXZlbC1udW1iZXIt
-Zm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1zdG9w
-Om5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0u
-MjVpbjsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0Kb2wNCgl7bWFyZ2luLWJvdHRvbTowaW47
-fQ0KdWwNCgl7bWFyZ2luLWJvdHRvbTowaW47fQ0KLS0+PC9zdHlsZT4NCjwvaGVhZD4NCjxib2R5
-IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9Ildv
-cmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
-OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
-IzFGNDk3RCI+SmVyZW15LDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
-RCI+SSB3ZW50IHRocm91Z2ggdGhpcyByZWNlbnRseSBhbmQgSSBiZWxpZXZlIHlvdSBuZWVkIHRv
-IGJ1aWxkIFVIRCBtYW51YWxseSwgYXNzdW1pbmcgeW91IGFyZSB1c2luZyBwcmUtYnVpbHQgVUhE
-IGJpbmFyaWVzLiBJZiB5b3XigJl2ZSBpbnN0YWxsZWQgaXQsIERQREsgc3VwcG9ydA0KIHNob3Vs
-ZCBiZSBkZXRlY3RlZCB3aGVuIHlvdSBidWlsZCB0aGUgVUhEIGRyaXZlciAodGhlIG91dHB1dCBv
-ZiBjbWFrZSBzaG91bGQgaW5kaWNhdGUgaWYgaXQgZmluZHMgaXQgb3Igbm90KS48bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
-OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
-IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb0xpc3RQ
-YXJhZ3JhcGgiIHN0eWxlPSJ0ZXh0LWluZGVudDotLjI1aW47bXNvLWxpc3Q6bDAgbGV2ZWwxIGxm
-bzEiPjwhW2lmICFzdXBwb3J0TGlzdHNdPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48
-c3BhbiBzdHlsZT0ibXNvLWxpc3Q6SWdub3JlIj4tPHNwYW4gc3R5bGU9ImZvbnQ6Ny4wcHQgJnF1
-b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7Ij4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsNCjwvc3Bhbj48L3NwYW4+PC9zcGFuPjwhW2VuZGlmXT48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+UnlhbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpw
-PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
-OzwvbzpwPjwvcD4NCjxkaXY+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdCI+SSBy
-ZWNlbnRseSBib3VnaHQgYSBYMzEwIHVzcnAgYW5kIGEgODI1OTlFUyAxMC1HaWdhYml0IFNGSS9T
-RlAmIzQzOyBOZXR3b3JrIEludGVyZmFjZSBDYXJkICh0aGUgb25lIHJlY29tbWVuZGVkIG9uIHRo
-ZSBFdHR1cyBXZWJzaXRlKS48YnI+DQo8YnI+DQpJIGZpcnN0IHNldCBteSBjb25uZWN0aW9ucyBh
-bmQgYSBiZW5jaG1hcmsgdGVzdCBzaG93cyBhIGxvdCBvZiBkcm9wcGVkIHNhbXBsZXMgYW5kIHNv
-bWUgb3ZlcmZsb3dzLjxicj4NClNvIGkgZGVjaWRlZCB0byB0cnkgdXNpbmcgZHBkayB0byBpbXBy
-b3ZlIG15IHNldHVwLjxicj4NCkkgaGF2ZSBVSEQgMy4xNC4xLjEgYW5kIEkgaW5zdGFsbGVkIGRw
-ZGsgd2l0aCBteSBhcHQgcGFja2FnZSBtYW5hZ2VyIChkcGRrIHZlcnNpb24gMTcuMTEuOSkuPGJy
-Pg0KSSBmb2xsb3dlZCB0aGlzIGd1aWRlIDxhIGhyZWY9Imh0dHBzOi8va2IuZXR0dXMuY29tL0dl
-dHRpbmdfU3RhcnRlZF93aXRoX0RQREtfYW5kX1VIRCI+DQpodHRwczovL2tiLmV0dHVzLmNvbS9H
-ZXR0aW5nX1N0YXJ0ZWRfd2l0aF9EUERLX2FuZF9VSEQ8L2E+IGFuZCB3aGVuIEkgcnVuIHRoZSBi
-ZW5jaG1hcmsgd2l0aCB1c2VfZHBkayBhcmd1bWVudCwgSSBnb3QgdGhlIGZvbGxvd2luZzo8YnI+
-DQo8L3NwYW4+PGNvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQiPltXQVJOSU5HXSBb
-RFBES10gRGV0ZWN0ZWQgdXNlX2RwZGsgYXJndW1lbnQsIGJ1dCBEUERLIHN1cHBvcnQgbm90IGJ1
-aWx0IGluLjwvc3Bhbj48L2NvZGU+PG86cD48L286cD48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjEwLjBwdCI+SSByZWFsbHkgZG9uJ3QgdW5kZXJzdGFuZCB3aGF0J3Mgd3JvbmcuIEkg
-dHJpZWQgc28gbWFueSB0aGluZ3MuIEkgdHJpZWQgd2l0aCBkcGRrIDE4IGFuZCB3ZW50IGJhY2sg
-dG8gMTcgYmVjYXVzZSBpdCBkaWRuJ3Qgc29sdmUgYW55dGhpbmcuPGJyPg0KPGJyPg0KQ291bGQg
-YW55b25lIGhlbHAgbWUgd2l0aCB0aGF0IHBsZWFzZSA/PGJyPg0KPGJyPg0KSmVyZW15PC9zcGFu
-PjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxpPjxicj4NCjxocj4NCjxwIHN0eWxl
-PSJmb250LXNpemU6OHB0OyBsaW5lLWhlaWdodDo5cHQ7IGZvbnQtc3R5bGU6bW9ub3NwYWNlIj5U
-aGUgaW5mb3JtYXRpb24gY29udGFpbmVkIGluIHRoaXMgbWVzc2FnZSwgYW5kIGFueSBhdHRhY2ht
-ZW50cywgbWF5IGNvbnRhaW4gcHJpdmlsZWdlZCBhbmQvb3IgcHJvcHJpZXRhcnkgaW5mb3JtYXRp
-b24gdGhhdCBpcyBpbnRlbmRlZCBzb2xlbHkgZm9yIHRoZSBwZXJzb24gb3IgZW50aXR5IHRvIHdo
-aWNoIGl0IGlzIGFkZHJlc3NlZC4NCiBNb3Jlb3ZlciwgaXQgbWF5IGNvbnRhaW4gZXhwb3J0IHJl
-c3RyaWN0ZWQgdGVjaG5pY2FsIGRhdGEgY29udHJvbGxlZCBieSBFeHBvcnQgQWRtaW5pc3RyYXRp
-b24gUmVndWxhdGlvbnMgKEVBUikgb3IgdGhlIEludGVybmF0aW9uYWwgVHJhZmZpYyBpbiBBcm1z
-IFJlZ3VsYXRpb25zIChJVEFSKS4gQW55IHJldmlldywgcmV0cmFuc21pc3Npb24sIGRpc3NlbWlu
-YXRpb24sIG9yIHJlLWV4cG9ydCB0byBmb3JlaWduIG9yIGRvbWVzdGljIGVudGl0aWVzDQogYnkg
-YW55b25lIG90aGVyIHRoYW4gdGhlIGludGVuZGVkIHJlY2lwaWVudCBpbiBhY2NvcmRhbmNlIHdp
-dGggRUFSIGFuZC9vciBJVEFSIHJlZ3VsYXRpb25zIGlzIHByb2hpYml0ZWQuPC9wPg0KPC9pPg0K
-PC9ib2R5Pg0KPC9odG1sPg0K
+Nick
 
---_000_10F7328F6AD1354BA6DD787687B66B9001A97A4064Mauiindynetic_--
+On Fri, Jun 12, 2020 at 8:45 AM Lukas Haase via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi Chintan,
+>
+> That's a good thought.
+>
+> What concerns me is that whether timed commands are executed properly
+> seems to depend on second and third level parameters such as the way in
+> which I connect blocks in gnuradio.
+> This is problematic because even if I figure out the max. rate with the
+> scope, once I add another block, things may behave differently.
+>
+> I think the reason that this depends on how blocks are connected in
+> gnuradio are buffers. In other words, how fast and how much data UHD
+> receives at once.
+> All my data arrives on time, just timed commands are sometimes late (the
+> cause and conditions are unclear).
+>
+> There must be a way to control this properly in UHD. The link speed is wa=
+y
+> fast enough (10Gbe and I use 20Msps).
+>
+> Thanks,
+> Lukas
+>
+>
+>
+>
+> Gesendet: Freitag, 12. Juni 2020 um 07:04 Uhr
+> Von: "Chintan Patel" <cpatel@vt.edu>
+> An: "Lukas Haase" <lukashaase@gmx.at>
+> Betreff: Re: [USRP-users] How to debug timed commands on FPGA side?
+>
+> Lukas,
+>
+> I may have missed some salient points of this thread, but here's a
+> thought. Could you just alternate between sending two timed commands -
+> transmit freq A and transmit freq B. Hook up the output to a scope (spec =
+an
+> may not react fast enough). Once you have the setup that you can "see"
+> whether a command has been processed or not by looking at the scope, you
+> can characterize the reliable ingest rate of the timed command,
+> empirically?
+>
+> If using a scope is not feasible, if you have another SDR, you can use th=
+e
+> SDR to capture data (instead of scope) to see whether all TX tune command=
+s
+> were processed correctly.
+>
+> A thought.
+>
+> Chintan
+>
+> On Thu, Jun 11, 2020 at 4:47 PM Lukas Haase via USRP-users <
+> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]> wrote:Hi
+> Marcus,
+>
+> Can we quantify this in the following way?
+>
+> If I send timed commands every 2ms and sampling rate is 5MS/s, that's
+> 10000 samples per command or 50000 for the command queue (assuming a dept=
+h
+> of 5).
+>
+> Can we say the timed commands will guaranteed to be executed on time if w=
+e
+> never buffer more than 50000 samples (=3D200000 bytes) on the host?
+>
+> Can this be tuned somehow? I tried setting send_buff_size [1] to a small
+> value (send_buff_size=3D10000 etc.) but that didn't seem to make any
+> difference.
+>
+> Thanks,
+> Lukas
+>
+>
+> [1]
+> https://files.ettus.com/manual/page_transport.html[https://files.ettus.co=
+m/manual/page_transport.html]
+>
+>
+>
+> > Gesendet: Donnerstag, 11. Juni 2020 um 16:32 Uhr
+> > Von: "Marcus D Leech" <patchvonbraun@gmail.com[mailto:
+> patchvonbraun@gmail.com]>
+> > An: "Lukas Haase" <lukashaase@gmx.at[mailto:lukashaase@gmx.at]>
+> > Cc: "USRP-userslists.ettus.com[http://USRP-userslists.ettus.com]" <
+> usrp-users@lists.ettus.com[mailto:usrp-users@lists.ettus.com]>
+> > Betreff: Re: [USRP-users] How to debug timed commands on FPGA side?
+> >
+> > So one of the things That can happen is that your command packets will
+> have to wait For a much-larger data packet. The link is shared.
+> >
+> > I=E2=80=99d timed commands are scheduled =E2=80=9Ctight=E2=80=9D this c=
+an happen.
+> >
+> > Sent from my iPhone
+> >
+> > > On Jun 11, 2020, at 3:34 PM, Lukas Haase <lukashaase@gmx.at[mailto:
+> lukashaase@gmx.at]> wrote:
+> > >
+> > > =EF=BB=BFHi Marcus,
+> > >
+> > >>> On 06/10/2020 09:00 PM, Lukas Haase via USRP-users wrote:
+> > >>> [...]
+> > >>> For example, what is the fastest rate I can issue timed commands
+> > >>> (ignoring settling times etc) on a X310 over 10Gbe?
+> > >> This is actually an ambiguous question.  Do you mean "what is the
+> > >> smallest scheduling interval for the commands that will be executed
+> > >> in the future?" or "how fast can I issue commands that will
+> > >> ultimately be scheduled at a later time?"  In the former, that
+> > >> depends on the exact nature of the commands, since they end up
+> > >> actually being executed by, for example, an SPI or I2C endpoint,
+> > >> which operates very very much slower than a 10GiGe interface.  In th=
+e
+> > >> latter, my guess is that the FPGA can swallow commands and place the=
+m
+> > >> on the queue pretty-much as fast as you can issue them over 10GiG.
+> > >> How fast you can do that depends very much on your host-side
+> > >> environment, network stack, kernel network drivers, kernel latencies=
+,
+> > >> etc.
+> > >
+> > > My questions concerns the latter (for now).
+> > > Since the FPGA has a (small) finite FIFO for these timed commands I
+> assume*d* there would be a limit on how fast I can send these commands.
+> > >
+> > > Based on Jonathon's answer however, it seems that UHD on the host
+> ensures that it only sends a maximum number of timed commands such that t=
+he
+> command queues do not overflow.
+> > >
+> > > But it seems to bring another issue: If UHD holds back these messages
+> too long they will eventually arrive late and (silently) execute non-time=
+d
+> (thereby destroying any coherence the application might require).
+> > >
+> > > I am trying to debug WHY this can happen, why it does NOT happen to
+> the data stream (all data arrives on time!) and what I can do that I ensu=
+re
+> my timed commands will execute *on time*.
+> > >
+> > > Thanks,
+> > > Lukas
+> > >
+> > >
+> > >
+> > >
+> > >
+> > >
+> >
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com[mailto:USRP-users@lists.ettus.com]
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000d7814e05a7e827b6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I agree that Gnuradio sometimes introduces unpredicta=
+ble and non-reproducible latencies, which can be especially problematic whe=
+n dealing with timing-sensitive hardware close to the metal. Setting UHD bu=
+ffer size is one thing, but Gnuradio can hang onto data in sometimes opaque=
+ ways, with sometimes opaque interactions (at least, to me!) with the host =
+OS&#39;s scheduler. These issues are ordinarily not a problem because you c=
+an just increase send buffer size until you never see underruns due to buff=
+er starvation, but this solution only works for systems which a) have backp=
+ressure, and b) are not latency-sensitive.<br></div><div><br></div><div>Thi=
+s isn&#39;t a particularly helpful suggestion, I realize, but when faced wi=
+th these problems in the past I have reimplemented my systems in C++, inter=
+faced directly to UHD, generally with favorable results. It is much easier =
+to guarantee timing when you have full control of the system.<br></div><div=
+><br></div><div>Nick<br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Fri, Jun 12, 2020 at 8:45 AM Lukas Haase v=
+ia USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@=
+lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
+ding-left:1ex">Hi Chintan,<br>
+<br>
+That&#39;s a good thought.<br>
+<br>
+What concerns me is that whether timed commands are executed properly seems=
+ to depend on second and third level parameters such as the way in which I =
+connect blocks in gnuradio.<br>
+This is problematic because even if I figure out the max. rate with the sco=
+pe, once I add another block, things may behave differently.<br>
+<br>
+I think the reason that this depends on how blocks are connected in gnuradi=
+o are buffers. In other words, how fast and how much data UHD receives at o=
+nce.<br>
+All my data arrives on time, just timed commands are sometimes late (the ca=
+use and conditions are unclear).<br>
+<br>
+There must be a way to control this properly in UHD. The link speed is way =
+fast enough (10Gbe and I use 20Msps).<br>
+<br>
+Thanks,<br>
+Lukas<br>
+<br>
+<br>
+<br>
+<br>
+Gesendet:=C2=A0Freitag, 12. Juni 2020 um 07:04 Uhr<br>
+Von:=C2=A0&quot;Chintan Patel&quot; &lt;<a href=3D"mailto:cpatel@vt.edu" ta=
+rget=3D"_blank">cpatel@vt.edu</a>&gt;<br>
+An:=C2=A0&quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
+arget=3D"_blank">lukashaase@gmx.at</a>&gt;<br>
+Betreff:=C2=A0Re: [USRP-users] How to debug timed commands on FPGA side?<br=
+>
+<br>
+Lukas,<br>
+=C2=A0<br>
+I may have missed some salient points of this thread, but here&#39;s a thou=
+ght. Could you just alternate=C2=A0between sending two timed commands - tra=
+nsmit=C2=A0freq A and transmit=C2=A0freq B. Hook up the output to a scope (=
+spec an may not react fast enough). Once you have the setup that you can &q=
+uot;see&quot; whether a command has been processed or not by looking at the=
+ scope, you can characterize the reliable ingest rate of the timed command,=
+ empirically?=C2=A0<br>
+=C2=A0<br>
+If using a scope is not feasible, if you have another SDR, you can use the =
+SDR to capture data (instead of scope) to see whether=C2=A0all TX tune comm=
+ands were processed correctly.<br>
+=C2=A0<br>
+A thought.<br>
+=C2=A0<br>
+Chintan=C2=A0<br>
+<br>
+On Thu, Jun 11, 2020 at 4:47 PM Lukas Haase via USRP-users &lt;<a href=3D"m=
+ailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.=
+com</a>[mailto:<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
+nk">usrp-users@lists.ettus.com</a>]&gt; wrote:Hi Marcus,<br>
+<br>
+Can we quantify this in the following way?<br>
+<br>
+If I send timed commands every 2ms and sampling rate is 5MS/s, that&#39;s 1=
+0000 samples per command or 50000 for the command queue (assuming a depth o=
+f 5).<br>
+<br>
+Can we say the timed commands will guaranteed to be executed on time if we =
+never buffer more than 50000 samples (=3D200000 bytes) on the host?<br>
+<br>
+Can this be tuned somehow? I tried setting send_buff_size [1] to a small va=
+lue (send_buff_size=3D10000 etc.) but that didn&#39;t seem to make any diff=
+erence.<br>
+<br>
+Thanks,<br>
+Lukas<br>
+<br>
+<br>
+[1] <a href=3D"https://files.ettus.com/manual/page_transport.html%5Bhttps:/=
+/files.ettus.com/manual/page_transport.html%5D" rel=3D"noreferrer" target=
+=3D"_blank">https://files.ettus.com/manual/page_transport.html[https://file=
+s.ettus.com/manual/page_transport.html]</a><br>
+<br>
+<br>
+<br>
+&gt; Gesendet: Donnerstag, 11. Juni 2020 um 16:32 Uhr<br>
+&gt; Von: &quot;Marcus D Leech&quot; &lt;<a href=3D"mailto:patchvonbraun@gm=
+ail.com" target=3D"_blank">patchvonbraun@gmail.com</a>[mailto:<a href=3D"ma=
+ilto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>=
+]&gt;<br>
+&gt; An: &quot;Lukas Haase&quot; &lt;<a href=3D"mailto:lukashaase@gmx.at" t=
+arget=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"mailto:lukashaase@=
+gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]&gt;<br>
+&gt; Cc: &quot;<a href=3D"http://USRP-userslists.ettus.com" rel=3D"noreferr=
+er" target=3D"_blank">USRP-userslists.ettus.com</a>[<a href=3D"http://USRP-=
+userslists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://USRP-user=
+slists.ettus.com</a>]&quot; &lt;<a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">usrp-users@lists.ettus.com</a>[mailto:<a href=3D"mailt=
+o:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com<=
+/a>]&gt;<br>
+&gt; Betreff: Re: [USRP-users] How to debug timed commands on FPGA side?<br=
+>
+&gt;<br>
+&gt; So one of the things That can happen is that your command packets will=
+ have to wait For a much-larger data packet. The link is shared.<br>
+&gt;<br>
+&gt; I=E2=80=99d timed commands are scheduled =E2=80=9Ctight=E2=80=9D this =
+can happen.<br>
+&gt;<br>
+&gt; Sent from my iPhone<br>
+&gt;<br>
+&gt; &gt; On Jun 11, 2020, at 3:34 PM, Lukas Haase &lt;<a href=3D"mailto:lu=
+kashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>[mailto:<a href=3D"=
+mailto:lukashaase@gmx.at" target=3D"_blank">lukashaase@gmx.at</a>]&gt; wrot=
+e:<br>
+&gt; &gt;<br>
+&gt; &gt; =EF=BB=BFHi Marcus,<br>
+&gt; &gt;<br>
+&gt; &gt;&gt;&gt; On 06/10/2020 09:00 PM, Lukas Haase via USRP-users wrote:=
+<br>
+&gt; &gt;&gt;&gt; [...]<br>
+&gt; &gt;&gt;&gt; For example, what is the fastest rate I can issue timed c=
+ommands<br>
+&gt; &gt;&gt;&gt; (ignoring settling times etc) on a X310 over 10Gbe?<br>
+&gt; &gt;&gt; This is actually an ambiguous question.=C2=A0 Do you mean &qu=
+ot;what is the<br>
+&gt; &gt;&gt; smallest scheduling interval for the commands that will be ex=
+ecuted<br>
+&gt; &gt;&gt; in the future?&quot; or &quot;how fast can I issue commands t=
+hat will<br>
+&gt; &gt;&gt; ultimately be scheduled at a later time?&quot;=C2=A0 In the f=
+ormer, that<br>
+&gt; &gt;&gt; depends on the exact nature of the commands, since they end u=
+p<br>
+&gt; &gt;&gt; actually being executed by, for example, an SPI or I2C endpoi=
+nt,<br>
+&gt; &gt;&gt; which operates very very much slower than a 10GiGe interface.=
+=C2=A0 In the<br>
+&gt; &gt;&gt; latter, my guess is that the FPGA can swallow commands and pl=
+ace them<br>
+&gt; &gt;&gt; on the queue pretty-much as fast as you can issue them over 1=
+0GiG.<br>
+&gt; &gt;&gt; How fast you can do that depends very much on your host-side<=
+br>
+&gt; &gt;&gt; environment, network stack, kernel network drivers, kernel la=
+tencies,<br>
+&gt; &gt;&gt; etc.<br>
+&gt; &gt;<br>
+&gt; &gt; My questions concerns the latter (for now).<br>
+&gt; &gt; Since the FPGA has a (small) finite FIFO for these timed commands=
+ I assume*d* there would be a limit on how fast I can send these commands.<=
+br>
+&gt; &gt;<br>
+&gt; &gt; Based on Jonathon&#39;s answer however, it seems that UHD on the =
+host ensures that it only sends a maximum number of timed commands such tha=
+t the command queues do not overflow.<br>
+&gt; &gt;<br>
+&gt; &gt; But it seems to bring another issue: If UHD holds back these mess=
+ages too long they will eventually arrive late and (silently) execute non-t=
+imed (thereby destroying any coherence the application might require).<br>
+&gt; &gt;<br>
+&gt; &gt; I am trying to debug WHY this can happen, why it does NOT happen =
+to the data stream (all data arrives on time!) and what I can do that I ens=
+ure my timed commands will execute *on time*.<br>
+&gt; &gt;<br>
+&gt; &gt; Thanks,<br>
+&gt; &gt; Lukas<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt;<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>[mailto:<a href=3D"mailto:USRP-users@lists.ettus.com" ta=
+rget=3D"_blank">USRP-users@lists.ettus.com</a>]<br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000d7814e05a7e827b6--
 
 
---===============0100376756671549821==
+--===============1454835961966808932==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -272,5 +492,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0100376756671549821==--
+--===============1454835961966808932==--
 
