@@ -2,64 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2121F7DB6
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2020 21:41:00 +0200 (CEST)
-Received: from [::1] (port=49984 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4CA41F7E42
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2020 22:55:19 +0200 (CEST)
+Received: from [::1] (port=41668 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjpXt-0002Tr-SU; Fri, 12 Jun 2020 15:40:57 -0400
-Received: from mail-qt1-f179.google.com ([209.85.160.179]:32977)
+	id 1jjqho-0003KC-OM; Fri, 12 Jun 2020 16:55:16 -0400
+Received: from mail-ed1-f48.google.com ([209.85.208.48]:44822)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jjpXp-0002Kk-2A
- for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 15:40:53 -0400
-Received: by mail-qt1-f179.google.com with SMTP id e16so8059117qtg.0
- for <usrp-users@lists.ettus.com>; Fri, 12 Jun 2020 12:40:32 -0700 (PDT)
+ (Exim 4.93) (envelope-from <jeremy.vezinet@gmail.com>)
+ id 1jjqhk-0003BX-V5
+ for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 16:55:13 -0400
+Received: by mail-ed1-f48.google.com with SMTP id s28so5291968edw.11
+ for <usrp-users@lists.ettus.com>; Fri, 12 Jun 2020 13:54:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=8Kw8QM4cJENKEi2O3V4xDvXJCD2e14yyjl+j//hbcQk=;
- b=rT9etH+GfJFm5gKCthwzh6Hkk1nLKfES37G9ewVa43Pzw2LBmRnpuVfsie6UL8dtxQ
- 3ptBQZV/kky47MesYkhYGwBrdH9ASLbx50MqoH4s70YHPW94L2gBMCVJsRpEBbq4ty+y
- VztZKssXtKYtitYs2pCBDdO9H8dpRqt/Si9t/fh6mOG0vlTerxOWvapFrZfsF4fwZPxg
- AQ+TgEVCjgLXIaK93Gf8HrGOiFZHkMB9u/J8tRgfzyywYETqqZO/+g71ftJQCzB5zpkA
- A8iBqEi85IQJ+h9lI/M1cr+1je9+Ky8kWH4u0LT808JK1DFoWaYJqU6iLk9bSLiD+3jU
- G1QQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=n7azKUHUuvYCdyWZZZZLcYJdmBgik1CsQJBeVDV0Kjg=;
+ b=m2XzFKKat3akQwOiL6Lwu4sxFLKmAFK1jpWt0v66KTa1H2AtU56JtrS8FvwG3cGD4o
+ qDo3XuVMU+RhEB2uJX04z8xvhl3shRd5x0ZI74jXeN56cTjOxKCYvypljVHv4XFLcTvz
+ 6xX/PGJSOBhlkIojCZcb1G3BVuaj3WEXlAqMqzglmqg/MjzGy8FPogjy7pLaC+PlMyWt
+ G29RR1jwO29siWoOWd1ZEpASwV0f+IKXV25zDDa4ehOARFPpPGd8m1TZ0bWLlUSvuucV
+ BQk2ALLciLWqCeU7lyKvsa9YUBBllQtAhVnXqxIPlMvLqzXQxi0P/mKkwfJRora5oz4k
+ kREA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=8Kw8QM4cJENKEi2O3V4xDvXJCD2e14yyjl+j//hbcQk=;
- b=sBKskeChhGGz1v44DB5r6iWZgoqQqI1fLljHsKa9cYmDjdlySNbofGQpgxsDP8XmPt
- DWIihghS3qH/VcYucfLTm/PG1x3KIDKzKTuXXir9NEmIUlOt9OgejivkSGMDJ8B1rrpp
- L9HNSvDY78ty8L0Ftpjav+lwNU9cWSkDumi5gJ6p3X6wIOo1e4hUtHFiLM1wI4ShdXGl
- zq6ikXjTFML0Bs0HKgBSwaQ/KkozyisLilD9mQm5NzRmPuXG52TOm1qemheuutDb2ELE
- SCsMuantVIuWsddb5CXSl3WbP+B1pxouNQfqiz/YRBZ9kRTM4JjaeHwpYxE49lgtTE7z
- lJMw==
-X-Gm-Message-State: AOAM531KYcn1pZA/dPVPMyTZIxv5KnjzAdP2cpoV0ho9n2IVWwO4+jo7
- wpAyUtBdH7FxziOo9LP/Jjc4UIqYyn0=
-X-Google-Smtp-Source: ABdhPJzrjiRd28pOzQYqNq16EubDRg3nl1lUHpi/EoCu6drL0aQDITifmgtQ5VmTMPTJJ6/L/BJC5A==
-X-Received: by 2002:ac8:768b:: with SMTP id g11mr4925056qtr.249.1591990812242; 
- Fri, 12 Jun 2020 12:40:12 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
- [174.95.14.109])
- by smtp.googlemail.com with ESMTPSA id z60sm5980265qtc.30.2020.06.12.12.40.11
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 12 Jun 2020 12:40:11 -0700 (PDT)
-Message-ID: <5EE3DA1B.2000900@gmail.com>
-Date: Fri, 12 Jun 2020 15:40:11 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=n7azKUHUuvYCdyWZZZZLcYJdmBgik1CsQJBeVDV0Kjg=;
+ b=g7jQuiTL1aC2vAWsScolGyQ7pZnpy7sK+2Cq0HnCwd6xPFxR4t8e/RDD028Y/rn5mp
+ /F1QA8z594i5hrgNZ+50FdUMSrWB3RfEZCrGK+YvKS0JvQEk+FuU6h+v8PogFIikf5Ra
+ DwYblFgMgKu5MKANeR0B4dFizhPlXTTrmWT3VbgId/CG0AsLLXLERy5bkP8XVPbuyV65
+ V1NK7mj48dO2imTIycleH3BJM+MIp/+IKq+YGfpvWArlhbXHrdFm6eF0Y7ujfT3TVtUI
+ jG40r33mOmi95tDsgrlaCo8IRIlf0rooOX+T7qbn1FssJdtQVzB4T+OwY56zBZc/NUbZ
+ JZgw==
+X-Gm-Message-State: AOAM533HkVlH3BJeanMGGcPiJRtK3mqaDKfoaixoohCtbJDqR+VTtZoO
+ sPsp6bUI6BZ8IEhYOUBS3j/ZqhakODQtxhpfluD9dtE6YiU=
+X-Google-Smtp-Source: ABdhPJyy9V0ckR2gNkG68GYD8tvI1uXTMyZQaFNPEQP2Gbp5BUyFOKrEn09C9uJ07RfvvZ861fnT7zOCwtoylkPLkIQ=
+X-Received: by 2002:a05:6402:3044:: with SMTP id
+ bu4mr13493237edb.69.1591995271604; 
+ Fri, 12 Jun 2020 13:54:31 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <trinity-469b54f5-33c1-4a43-876d-eb07014b9eb2-1591904041140@3c-app-gmx-bap40>
- <AAE54BC7-1AC7-4745-8598-4FC701DC2627@gmail.com>
- <trinity-698bf8e0-f382-4350-99d9-e2bf4b5ef8d4-1591908381370@3c-app-gmx-bap40>
- <CAOJfBDfX=L330sse-4bUv2uzD2rA9JWVTSQsT19ki2mvdypY4w@mail.gmail.com>
- <trinity-956ec4ce-edff-42f4-bb3f-f19d7681634c-1591976665950@3c-app-gmx-bs14>
-In-Reply-To: <trinity-956ec4ce-edff-42f4-bb3f-f19d7681634c-1591976665950@3c-app-gmx-bs14>
-Subject: Re: [USRP-users] How to debug timed commands on FPGA side?
+References: <CANka2Pwqgc=sk6mutxNwbO2fzUQe4k4W_A5_DFzaWWY5prxYug@mail.gmail.com>
+ <10F7328F6AD1354BA6DD787687B66B9001A97A4064@Maui.in.dynetics.com>
+In-Reply-To: <10F7328F6AD1354BA6DD787687B66B9001A97A4064@Maui.in.dynetics.com>
+Date: Fri, 12 Jun 2020 22:54:20 +0200
+Message-ID: <CANka2PzU+jktLa6QQMv_j_Sf=pS4+1OgMZaMc4OYG+7+BfDONQ@mail.gmail.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] DPDK support not built in with X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -71,10 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: =?utf-8?q?J=C3=A9r=C3=A9my_Vezinet_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?SsOpcsOpbXkgVmV6aW5ldA==?= <jeremy.vezinet@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4302393469469097201=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -88,118 +77,239 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMDYvMTIvMjAyMCAxMTo0NCBBTSwgTHVrYXMgSGFhc2UgdmlhIFVTUlAtdXNlcnMgd3JvdGU6
-Cj4gSGkgQ2hpbnRhbiwKPgo+IFRoYXQncyBhIGdvb2QgdGhvdWdodC4KPgo+IFdoYXQgY29uY2Vy
-bnMgbWUgaXMgdGhhdCB3aGV0aGVyIHRpbWVkIGNvbW1hbmRzIGFyZSBleGVjdXRlZCBwcm9wZXJs
-eSBzZWVtcyB0byBkZXBlbmQgb24gc2Vjb25kIGFuZCB0aGlyZCBsZXZlbCBwYXJhbWV0ZXJzIHN1
-Y2ggYXMgdGhlIHdheSBpbiB3aGljaCBJIGNvbm5lY3QgYmxvY2tzIGluIGdudXJhZGlvLgo+IFRo
-aXMgaXMgcHJvYmxlbWF0aWMgYmVjYXVzZSBldmVuIGlmIEkgZmlndXJlIG91dCB0aGUgbWF4LiBy
-YXRlIHdpdGggdGhlIHNjb3BlLCBvbmNlIEkgYWRkIGFub3RoZXIgYmxvY2ssIHRoaW5ncyBtYXkg
-YmVoYXZlIGRpZmZlcmVudGx5Lgo+Cj4gSSB0aGluayB0aGUgcmVhc29uIHRoYXQgdGhpcyBkZXBl
-bmRzIG9uIGhvdyBibG9ja3MgYXJlIGNvbm5lY3RlZCBpbiBnbnVyYWRpbyBhcmUgYnVmZmVycy4g
-SW4gb3RoZXIgd29yZHMsIGhvdyBmYXN0IGFuZCBob3cgbXVjaCBkYXRhIFVIRCByZWNlaXZlcyBh
-dCBvbmNlLgo+IEFsbCBteSBkYXRhIGFycml2ZXMgb24gdGltZSwganVzdCB0aW1lZCBjb21tYW5k
-cyBhcmUgc29tZXRpbWVzIGxhdGUgKHRoZSBjYXVzZSBhbmQgY29uZGl0aW9ucyBhcmUgdW5jbGVh
-cikuCj4KPiBUaGVyZSBtdXN0IGJlIGEgd2F5IHRvIGNvbnRyb2wgdGhpcyBwcm9wZXJseSBpbiBV
-SEQuIFRoZSBsaW5rIHNwZWVkIGlzIHdheSBmYXN0IGVub3VnaCAoMTBHYmUgYW5kIEkgdXNlIDIw
-TXNwcykuCj4KPiBUaGFua3MsCj4gTHVrYXMKPgpUaGUgZGF0YSBzdHJlYW0gaXMgYnVmZmVyZWQs
-IGJ1dCBjb21tYW5kcyBhcmUgZXhlY3V0ZWQgZGlyZWN0bHkgd2l0aG91dCAKR251IFJhZGlvLCBw
-ZXIgc2UsICJnZXR0aW5nIGluIHRoZSB3YXkiLiAgTm93LCBpZiB0aG9zZSBjb21tYW5kcwogICBv
-cmlnaW5hdGUgaW4gKm1lc3NhZ2VzKiwgdGhlbiB0aGluZ3MgYXJlIGEgYml0IGRpZmZlcmVudCwg
-YW5kIEknbSBub3QgCnN1cmUgb2YgaG93IG1lc3NhZ2VzIGFyZSBidWZmZXJlZCBhbmQgbWFuYWdl
-ZCwgYWx0aG91Z2ggY2VydGFpbmx5CiAgIHRoZXJlJ2xsIGJlIHNvbWUgYW1vdW50IG9mIGxhdGVu
-Y3kgaW5oZXJlbnQgaW4gdXNpbmcgdGhlIG1lc3NhZ2UgCnN5c3RlbSB0byBwcm9kdWNlIGNvbW1h
-bmRzLgoKVGhlcmUnbGwgYmUgbGF0ZW5jeSBkaWZmZXJlbmNlcyBiZXR3ZWVuIGNvbW1hbmRzIHRo
-YXQgb3JpZ2luYXRlIHB1cmVseSAKaW4gUHl0aG9uIGxhbmQsIGFuZCB0aG9zZSB0aGF0IG9yaWdp
-bmF0ZSBpbiBDKysgY29kZS0tc2luY2UgeW91CiAgIG5lY2Vzc2FyaWx5IGhhdmUgdG8gZGVhbCB3
-aXRoIFB5dGhvbiBpbnRlcnByZXRlciBsYXRlbmN5LiAgSW4gZWl0aGVyIApjYXNlLCBpZiB5b3Un
-cmUgZG9pbmcgInZlcnkgdGlnaHQiIHNjaGVkdWxpbmcsIG9uIGEgZ2VuZXJhbC1wdXJwb3NlIE9T
-CiAgIGxpa2UgTGludXgsIHlvdSBjYW5ub3QgaGF2ZSBhbnkgZ3VhcmFudGVlcyBhYm91dCBsYXRl
-bmN5IApwcmVkaWN0YWJpbGl0eS4gIFRoZSAic2FmZSIgdGhpbmcgdG8gZG8gd291bGQgYmUgdG8g
-c2NoZWR1bGUgdGhpbmdzIApwcm9iYWJseSBhdAogICBsZWFzdCAxMHMgb2YgbWlsbGlzZWNvbmRz
-IGluIGFkdmFuY2UgdG8gbWFrZSBjZXJ0YWluIHRoYXQgeW91ciAKY29tbWFuZHMgbWFrZSBpdCBv
-dXQgb2YgdGhlIGhvc3QgaW4gdGltZS4KCgo+Cj4KPiBHZXNlbmRldDogRnJlaXRhZywgMTIuIEp1
-bmkgMjAyMCB1bSAwNzowNCBVaHIKPiBWb246ICJDaGludGFuIFBhdGVsIiA8Y3BhdGVsQHZ0LmVk
-dT4KPiBBbjogIkx1a2FzIEhhYXNlIiA8bHVrYXNoYWFzZUBnbXguYXQ+Cj4gQmV0cmVmZjogUmU6
-IFtVU1JQLXVzZXJzXSBIb3cgdG8gZGVidWcgdGltZWQgY29tbWFuZHMgb24gRlBHQSBzaWRlPwo+
-Cj4gTHVrYXMsCj4gICAKPiBJIG1heSBoYXZlIG1pc3NlZCBzb21lIHNhbGllbnQgcG9pbnRzIG9m
-IHRoaXMgdGhyZWFkLCBidXQgaGVyZSdzIGEgdGhvdWdodC4gQ291bGQgeW91IGp1c3QgYWx0ZXJu
-YXRlIGJldHdlZW4gc2VuZGluZyB0d28gdGltZWQgY29tbWFuZHMgLSB0cmFuc21pdCBmcmVxIEEg
-YW5kIHRyYW5zbWl0IGZyZXEgQi4gSG9vayB1cCB0aGUgb3V0cHV0IHRvIGEgc2NvcGUgKHNwZWMg
-YW4gbWF5IG5vdCByZWFjdCBmYXN0IGVub3VnaCkuIE9uY2UgeW91IGhhdmUgdGhlIHNldHVwIHRo
-YXQgeW91IGNhbiAic2VlIiB3aGV0aGVyIGEgY29tbWFuZCBoYXMgYmVlbiBwcm9jZXNzZWQgb3Ig
-bm90IGJ5IGxvb2tpbmcgYXQgdGhlIHNjb3BlLCB5b3UgY2FuIGNoYXJhY3Rlcml6ZSB0aGUgcmVs
-aWFibGUgaW5nZXN0IHJhdGUgb2YgdGhlIHRpbWVkIGNvbW1hbmQsIGVtcGlyaWNhbGx5Pwo+ICAg
-Cj4gSWYgdXNpbmcgYSBzY29wZSBpcyBub3QgZmVhc2libGUsIGlmIHlvdSBoYXZlIGFub3RoZXIg
-U0RSLCB5b3UgY2FuIHVzZSB0aGUgU0RSIHRvIGNhcHR1cmUgZGF0YSAoaW5zdGVhZCBvZiBzY29w
-ZSkgdG8gc2VlIHdoZXRoZXIgYWxsIFRYIHR1bmUgY29tbWFuZHMgd2VyZSBwcm9jZXNzZWQgY29y
-cmVjdGx5Lgo+ICAgCj4gQSB0aG91Z2h0Lgo+ICAgCj4gQ2hpbnRhbgo+Cj4gT24gVGh1LCBKdW4g
-MTEsIDIwMjAgYXQgNDo0NyBQTSBMdWthcyBIYWFzZSB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb21bbWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tXT4gd3Jv
-dGU6SGkgTWFyY3VzLAo+Cj4gQ2FuIHdlIHF1YW50aWZ5IHRoaXMgaW4gdGhlIGZvbGxvd2luZyB3
-YXk/Cj4KPiBJZiBJIHNlbmQgdGltZWQgY29tbWFuZHMgZXZlcnkgMm1zIGFuZCBzYW1wbGluZyBy
-YXRlIGlzIDVNUy9zLCB0aGF0J3MgMTAwMDAgc2FtcGxlcyBwZXIgY29tbWFuZCBvciA1MDAwMCBm
-b3IgdGhlIGNvbW1hbmQgcXVldWUgKGFzc3VtaW5nIGEgZGVwdGggb2YgNSkuCj4KPiBDYW4gd2Ug
-c2F5IHRoZSB0aW1lZCBjb21tYW5kcyB3aWxsIGd1YXJhbnRlZWQgdG8gYmUgZXhlY3V0ZWQgb24g
-dGltZSBpZiB3ZSBuZXZlciBidWZmZXIgbW9yZSB0aGFuIDUwMDAwIHNhbXBsZXMgKD0yMDAwMDAg
-Ynl0ZXMpIG9uIHRoZSBob3N0Pwo+Cj4gQ2FuIHRoaXMgYmUgdHVuZWQgc29tZWhvdz8gSSB0cmll
-ZCBzZXR0aW5nIHNlbmRfYnVmZl9zaXplIFsxXSB0byBhIHNtYWxsIHZhbHVlIChzZW5kX2J1ZmZf
-c2l6ZT0xMDAwMCBldGMuKSBidXQgdGhhdCBkaWRuJ3Qgc2VlbSB0byBtYWtlIGFueSBkaWZmZXJl
-bmNlLgo+Cj4gVGhhbmtzLAo+IEx1a2FzCj4KPgo+IFsxXSBodHRwczovL2ZpbGVzLmV0dHVzLmNv
-bS9tYW51YWwvcGFnZV90cmFuc3BvcnQuaHRtbFtodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51
-YWwvcGFnZV90cmFuc3BvcnQuaHRtbF0KPgo+Cj4KPj4gR2VzZW5kZXQ6IERvbm5lcnN0YWcsIDEx
-LiBKdW5pIDIwMjAgdW0gMTY6MzIgVWhyCj4+IFZvbjogIk1hcmN1cyBEIExlZWNoIiA8cGF0Y2h2
-b25icmF1bkBnbWFpbC5jb21bbWFpbHRvOnBhdGNodm9uYnJhdW5AZ21haWwuY29tXT4KPj4gQW46
-ICJMdWthcyBIYWFzZSIgPGx1a2FzaGFhc2VAZ214LmF0W21haWx0bzpsdWthc2hhYXNlQGdteC5h
-dF0+Cj4+IENjOiAiVVNSUC11c2Vyc2xpc3RzLmV0dHVzLmNvbVtodHRwOi8vVVNSUC11c2Vyc2xp
-c3RzLmV0dHVzLmNvbV0iIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVttYWlsdG86dXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb21dPgo+PiBCZXRyZWZmOiBSZTogW1VTUlAtdXNlcnNdIEhvdyB0
-byBkZWJ1ZyB0aW1lZCBjb21tYW5kcyBvbiBGUEdBIHNpZGU/Cj4+Cj4+IFNvIG9uZSBvZiB0aGUg
-dGhpbmdzIFRoYXQgY2FuIGhhcHBlbiBpcyB0aGF0IHlvdXIgY29tbWFuZCBwYWNrZXRzIHdpbGwg
-aGF2ZSB0byB3YWl0IEZvciBhIG11Y2gtbGFyZ2VyIGRhdGEgcGFja2V0LiBUaGUgbGluayBpcyBz
-aGFyZWQuCj4+Cj4+IEnigJlkIHRpbWVkIGNvbW1hbmRzIGFyZSBzY2hlZHVsZWQg4oCcdGlnaHTi
-gJ0gdGhpcyBjYW4gaGFwcGVuLgo+Pgo+PiBTZW50IGZyb20gbXkgaVBob25lCj4+Cj4+PiBPbiBK
-dW4gMTEsIDIwMjAsIGF0IDM6MzQgUE0sIEx1a2FzIEhhYXNlIDxsdWthc2hhYXNlQGdteC5hdFtt
-YWlsdG86bHVrYXNoYWFzZUBnbXguYXRdPiB3cm90ZToKPj4+Cj4+PiDvu79IaSBNYXJjdXMsCj4+
-Pgo+Pj4+PiBPbiAwNi8xMC8yMDIwIDA5OjAwIFBNLCBMdWthcyBIYWFzZSB2aWEgVVNSUC11c2Vy
-cyB3cm90ZToKPj4+Pj4gWy4uLl0KPj4+Pj4gRm9yIGV4YW1wbGUsIHdoYXQgaXMgdGhlIGZhc3Rl
-c3QgcmF0ZSBJIGNhbiBpc3N1ZSB0aW1lZCBjb21tYW5kcwo+Pj4+PiAoaWdub3Jpbmcgc2V0dGxp
-bmcgdGltZXMgZXRjKSBvbiBhIFgzMTAgb3ZlciAxMEdiZT8KPj4+PiBUaGlzIGlzIGFjdHVhbGx5
-IGFuIGFtYmlndW91cyBxdWVzdGlvbi4gIERvIHlvdSBtZWFuICJ3aGF0IGlzIHRoZQo+Pj4+IHNt
-YWxsZXN0IHNjaGVkdWxpbmcgaW50ZXJ2YWwgZm9yIHRoZSBjb21tYW5kcyB0aGF0IHdpbGwgYmUg
-ZXhlY3V0ZWQKPj4+PiBpbiB0aGUgZnV0dXJlPyIgb3IgImhvdyBmYXN0IGNhbiBJIGlzc3VlIGNv
-bW1hbmRzIHRoYXQgd2lsbAo+Pj4+IHVsdGltYXRlbHkgYmUgc2NoZWR1bGVkIGF0IGEgbGF0ZXIg
-dGltZT8iICBJbiB0aGUgZm9ybWVyLCB0aGF0Cj4+Pj4gZGVwZW5kcyBvbiB0aGUgZXhhY3QgbmF0
-dXJlIG9mIHRoZSBjb21tYW5kcywgc2luY2UgdGhleSBlbmQgdXAKPj4+PiBhY3R1YWxseSBiZWlu
-ZyBleGVjdXRlZCBieSwgZm9yIGV4YW1wbGUsIGFuIFNQSSBvciBJMkMgZW5kcG9pbnQsCj4+Pj4g
-d2hpY2ggb3BlcmF0ZXMgdmVyeSB2ZXJ5IG11Y2ggc2xvd2VyIHRoYW4gYSAxMEdpR2UgaW50ZXJm
-YWNlLiAgSW4gdGhlCj4+Pj4gbGF0dGVyLCBteSBndWVzcyBpcyB0aGF0IHRoZSBGUEdBIGNhbiBz
-d2FsbG93IGNvbW1hbmRzIGFuZCBwbGFjZSB0aGVtCj4+Pj4gb24gdGhlIHF1ZXVlIHByZXR0eS1t
-dWNoIGFzIGZhc3QgYXMgeW91IGNhbiBpc3N1ZSB0aGVtIG92ZXIgMTBHaUcuCj4+Pj4gSG93IGZh
-c3QgeW91IGNhbiBkbyB0aGF0IGRlcGVuZHMgdmVyeSBtdWNoIG9uIHlvdXIgaG9zdC1zaWRlCj4+
-Pj4gZW52aXJvbm1lbnQsIG5ldHdvcmsgc3RhY2ssIGtlcm5lbCBuZXR3b3JrIGRyaXZlcnMsIGtl
-cm5lbCBsYXRlbmNpZXMsCj4+Pj4gZXRjLgo+Pj4gTXkgcXVlc3Rpb25zIGNvbmNlcm5zIHRoZSBs
-YXR0ZXIgKGZvciBub3cpLgo+Pj4gU2luY2UgdGhlIEZQR0EgaGFzIGEgKHNtYWxsKSBmaW5pdGUg
-RklGTyBmb3IgdGhlc2UgdGltZWQgY29tbWFuZHMgSSBhc3N1bWUqZCogdGhlcmUgd291bGQgYmUg
-YSBsaW1pdCBvbiBob3cgZmFzdCBJIGNhbiBzZW5kIHRoZXNlIGNvbW1hbmRzLgo+Pj4KPj4+IEJh
-c2VkIG9uIEpvbmF0aG9uJ3MgYW5zd2VyIGhvd2V2ZXIsIGl0IHNlZW1zIHRoYXQgVUhEIG9uIHRo
-ZSBob3N0IGVuc3VyZXMgdGhhdCBpdCBvbmx5IHNlbmRzIGEgbWF4aW11bSBudW1iZXIgb2YgdGlt
-ZWQgY29tbWFuZHMgc3VjaCB0aGF0IHRoZSBjb21tYW5kIHF1ZXVlcyBkbyBub3Qgb3ZlcmZsb3cu
-Cj4+Pgo+Pj4gQnV0IGl0IHNlZW1zIHRvIGJyaW5nIGFub3RoZXIgaXNzdWU6IElmIFVIRCBob2xk
-cyBiYWNrIHRoZXNlIG1lc3NhZ2VzIHRvbyBsb25nIHRoZXkgd2lsbCBldmVudHVhbGx5IGFycml2
-ZSBsYXRlIGFuZCAoc2lsZW50bHkpIGV4ZWN1dGUgbm9uLXRpbWVkICh0aGVyZWJ5IGRlc3Ryb3lp
-bmcgYW55IGNvaGVyZW5jZSB0aGUgYXBwbGljYXRpb24gbWlnaHQgcmVxdWlyZSkuCj4+Pgo+Pj4g
-SSBhbSB0cnlpbmcgdG8gZGVidWcgV0hZIHRoaXMgY2FuIGhhcHBlbiwgd2h5IGl0IGRvZXMgTk9U
-IGhhcHBlbiB0byB0aGUgZGF0YSBzdHJlYW0gKGFsbCBkYXRhIGFycml2ZXMgb24gdGltZSEpIGFu
-ZCB3aGF0IEkgY2FuIGRvIHRoYXQgSSBlbnN1cmUgbXkgdGltZWQgY29tbWFuZHMgd2lsbCBleGVj
-dXRlICpvbiB0aW1lKi4KPj4+Cj4+PiBUaGFua3MsCj4+PiBMdWthcwo+Pj4KPj4+Cj4+Pgo+Pj4K
-Pj4+Cj4+Pgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Cj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbVtt
-YWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb21dCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNv
-bS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4KPiBfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFp
-bGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0
-dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1h
-aWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMu
-Y29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============4302393469469097201==
+Content-Type: multipart/alternative; boundary="000000000000a5f17505a7e948bb"
+
+--000000000000a5f17505a7e948bb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Ryan,
+
+Thanks for that.
+
+So, I tried to build UHD manually and now when I generate the MakeFile,
+DPDK support is detected.
+But when I try to build UHD, I got an error when linking shared library
+libuhd.so:
+
+/usr/bin/ld: //usr/local/lib/librte_eal.a(eal_thread.o): relocation
+R_X86_64_TPOFF32 against `per_lcore__thread_id.8433' can not be used when
+making a shared object; recompile with -fPIC
+/usr/bin/ld: //usr/local/lib/librte_eal.a(eal_vfio.o): relocation
+R_X86_64_TPOFF32 against `per_lcore__thread_id.6718' can not be used when
+making a shared object; recompile with -fPIC
+/usr/bin/ld: //usr/local/lib/librte_eal.a(eal_interrupts.o): relocation
+R_X86_64_TPOFF32 against `per_lcore__epfd' can not be used when making a
+shared object; recompile with -fPIC
+/usr/bin/ld: //usr/local/lib/librte_eal.a(eal_common_log.o): relocation
+R_X86_64_TPOFF32 against `per_lcore_log_cur_msg' can not be used when
+making a shared object; recompile with -fPIC
+/usr/bin/ld: //usr/local/lib/librte_eal.a(eal_common_errno.o): relocation
+R_X86_64_TPOFF32 against `per_lcore_retval.3874' can not be used when
+making a shared object; recompile with -fPIC
+/usr/bin/ld: //usr/local/lib/librte_eal.a(eal_debug.o): relocation
+R_X86_64_PC32 against symbol `rte_dump_stack' can not be used when making a
+shared object; recompile with -fPIC
+/usr/bin/ld: final link failed: Bad value
+collect2: error: ld returned 1 exit status
+lib/CMakeFiles/uhd.dir/build.make:7976: recipe for target
+'lib/libuhd.so.4.0.0' failed
+make[2]: *** [lib/libuhd.so.4.0.0] Error 1
+CMakeFiles/Makefile2:123: recipe for target 'lib/CMakeFiles/uhd.dir/all'
+failed
+make[1]: *** [lib/CMakeFiles/uhd.dir/all] Error 2
+Makefile:162: recipe for target 'all' failed
+make: *** [all] Error 2
+
+I've read somewhere it's because librte_eal is not compiled as a shared
+library. But I changed when CONFIG_RTE_BUILD_SHARED_LIB=3Dn building dpdk.
+
+Did you go through this issue too ?
+
+Le ven. 12 juin 2020 =C3=A0 19:37, Carmichael, Ryan <Ryan.Carmichael@dyneti=
+cs.com>
+a =C3=A9crit :
+
+> Jeremy,
+>
+>
+>
+> I went through this recently and I believe you need to build UHD manually=
+,
+> assuming you are using pre-built UHD binaries. If you=E2=80=99ve installe=
+d it, DPDK
+> support should be detected when you build the UHD driver (the output of
+> cmake should indicate if it finds it or not).
+>
+>
+>
+> -          Ryan
+>
+>
+>
+>
+>
+> I recently bought a X310 usrp and a 82599ES 10-Gigabit SFI/SFP+ Network
+> Interface Card (the one recommended on the Ettus Website).
+>
+> I first set my connections and a benchmark test shows a lot of dropped
+> samples and some overflows.
+> So i decided to try using dpdk to improve my setup.
+> I have UHD 3.14.1.1 and I installed dpdk with my apt package manager (dpd=
+k
+> version 17.11.9).
+> I followed this guide
+> https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD and when I run the
+> benchmark with use_dpdk argument, I got the following:
+> [WARNING] [DPDK] Detected use_dpdk argument, but DPDK support not built i=
+n.
+>
+> I really don't understand what's wrong. I tried so many things. I tried
+> with dpdk 18 and went back to 17 because it didn't solve anything.
+>
+> Could anyone help me with that please ?
+>
+> Jeremy
+>
+> * ------------------------------ The information contained in this
+> message, and any attachments, may contain privileged and/or proprietary
+> information that is intended solely for the person or entity to which it =
+is
+> addressed. Moreover, it may contain export restricted technical data
+> controlled by Export Administration Regulations (EAR) or the Internationa=
+l
+> Traffic in Arms Regulations (ITAR). Any review, retransmission,
+> dissemination, or re-export to foreign or domestic entities by anyone oth=
+er
+> than the intended recipient in accordance with EAR and/or ITAR regulation=
+s
+> is prohibited. *
+>
+
+--000000000000a5f17505a7e948bb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Ryan,<div><br></div><div>Thanks for that.</div><div><br=
+></div><div>So, I tried to build UHD manually and now when I generate the M=
+akeFile, DPDK support is detected.<br>But when I try to build UHD, I got an=
+ error when linking shared library libuhd.so:<br><br>/usr/bin/ld: //usr/loc=
+al/lib/librte_eal.a(eal_thread.o): relocation R_X86_64_TPOFF32 against `per=
+_lcore__thread_id.8433&#39; can not be used when making a shared object; re=
+compile with -fPIC<br>/usr/bin/ld: //usr/local/lib/librte_eal.a(eal_vfio.o)=
+: relocation R_X86_64_TPOFF32 against `per_lcore__thread_id.6718&#39; can n=
+ot be used when making a shared object; recompile with -fPIC<br>/usr/bin/ld=
+: //usr/local/lib/librte_eal.a(eal_interrupts.o): relocation R_X86_64_TPOFF=
+32 against `per_lcore__epfd&#39; can not be used when making a shared objec=
+t; recompile with -fPIC<br>/usr/bin/ld: //usr/local/lib/librte_eal.a(eal_co=
+mmon_log.o): relocation R_X86_64_TPOFF32 against `per_lcore_log_cur_msg&#39=
+; can not be used when making a shared object; recompile with -fPIC<br>/usr=
+/bin/ld: //usr/local/lib/librte_eal.a(eal_common_errno.o): relocation R_X86=
+_64_TPOFF32 against `per_lcore_retval.3874&#39; can not be used when making=
+ a shared object; recompile with -fPIC<br>/usr/bin/ld: //usr/local/lib/libr=
+te_eal.a(eal_debug.o): relocation R_X86_64_PC32 against symbol `rte_dump_st=
+ack&#39; can not be used when making a shared object; recompile with -fPIC<=
+br>/usr/bin/ld: final link failed: Bad value<br>collect2: error: ld returne=
+d 1 exit status<br>lib/CMakeFiles/uhd.dir/build.make:7976: recipe for targe=
+t &#39;lib/libuhd.so.4.0.0&#39; failed<br>make[2]: *** [lib/libuhd.so.4.0.0=
+] Error 1<br>CMakeFiles/Makefile2:123: recipe for target &#39;lib/CMakeFile=
+s/uhd.dir/all&#39; failed<br>make[1]: *** [lib/CMakeFiles/uhd.dir/all] Erro=
+r 2<br>Makefile:162: recipe for target &#39;all&#39; failed<br>make: *** [a=
+ll] Error 2<br><br>I&#39;ve read somewhere it&#39;s because librte_eal is n=
+ot compiled as a shared library. But I changed when=C2=A0<span style=3D"bac=
+kground-color:rgb(251,252,253);color:rgb(0,0,0);font-family:monospace,fixed=
+;font-size:14.7px">CONFIG_RTE_BUILD_SHARED_LIB=3Dn</span>=C2=A0building dpd=
+k.<br><br>Did you go through this issue too ?</div></div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0ven. 12 juin 202=
+0 =C3=A0=C2=A019:37, Carmichael, Ryan &lt;<a href=3D"mailto:Ryan.Carmichael=
+@dynetics.com">Ryan.Carmichael@dynetics.com</a>&gt; a =C3=A9crit=C2=A0:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_-3701924409997081759WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">Jeremy,<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)">I went through this recently and I believe y=
+ou need to build UHD manually, assuming you are using pre-built UHD binarie=
+s. If you=E2=80=99ve installed it, DPDK support
+ should be detected when you build the UHD driver (the output of cmake shou=
+ld indicate if it finds it or not).<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"gmail-m_-3701924409997081759MsoListParagraph"><u></u><span styl=
+e=3D"font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)"><s=
+pan>-<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><u></u><span style=3D"font-size:11pt;font-family:Calib=
+ri,sans-serif;color:rgb(31,73,125)">Ryan<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
+ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p><span style=3D"font-size:10pt">I recently bought a X310 usrp and a 82599=
+ES 10-Gigabit SFI/SFP+ Network Interface Card (the one recommended on the E=
+ttus Website).<br>
+<br>
+I first set my connections and a benchmark test shows a lot of dropped samp=
+les and some overflows.<br>
+So i decided to try using dpdk to improve my setup.<br>
+I have UHD 3.14.1.1 and I installed dpdk with my apt package manager (dpdk =
+version 17.11.9).<br>
+I followed this guide <a href=3D"https://kb.ettus.com/Getting_Started_with_=
+DPDK_and_UHD" target=3D"_blank">
+https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD</a> and when I run t=
+he benchmark with use_dpdk argument, I got the following:<br>
+</span><code><span style=3D"font-size:10pt">[WARNING] [DPDK] Detected use_d=
+pdk argument, but DPDK support not built in.</span></code><u></u><u></u></p=
+>
+<p><span style=3D"font-size:10pt">I really don&#39;t understand what&#39;s =
+wrong. I tried so many things. I tried with dpdk 18 and went back to 17 bec=
+ause it didn&#39;t solve anything.<br>
+<br>
+Could anyone help me with that please ?<br>
+<br>
+Jeremy</span><u></u><u></u></p>
+</div>
+</div>
+<i><br>
+<hr>
+<p style=3D"font-size:8pt;line-height:9pt">The information contained in thi=
+s message, and any attachments, may contain privileged and/or proprietary i=
+nformation that is intended solely for the person or entity to which it is =
+addressed.
+ Moreover, it may contain export restricted technical data controlled by Ex=
+port Administration Regulations (EAR) or the International Traffic in Arms =
+Regulations (ITAR). Any review, retransmission, dissemination, or re-export=
+ to foreign or domestic entities
+ by anyone other than the intended recipient in accordance with EAR and/or =
+ITAR regulations is prohibited.</p>
+</i>
+</div>
+
+</blockquote></div>
+
+--000000000000a5f17505a7e948bb--
+
+
+--===============4302393469469097201==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============4302393469469097201==--
+
