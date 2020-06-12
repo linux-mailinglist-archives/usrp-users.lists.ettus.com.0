@@ -2,52 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DDFE1F7EB6
-	for <lists+usrp-users@lfdr.de>; Sat, 13 Jun 2020 00:06:24 +0200 (CEST)
-Received: from [::1] (port=54554 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B49B1F7F66
+	for <lists+usrp-users@lfdr.de>; Sat, 13 Jun 2020 01:01:35 +0200 (CEST)
+Received: from [::1] (port=36604 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjrob-0002We-08; Fri, 12 Jun 2020 18:06:21 -0400
-Received: from mail-il1-f180.google.com ([209.85.166.180]:34259)
+	id 1jjsfz-0007zA-GR; Fri, 12 Jun 2020 19:01:31 -0400
+Received: from mail-yb1-f171.google.com ([209.85.219.171]:42967)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <bistromath@gmail.com>)
- id 1jjroW-0002O6-Ef
- for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 18:06:16 -0400
-Received: by mail-il1-f180.google.com with SMTP id x18so10202494ilp.1
- for <usrp-users@lists.ettus.com>; Fri, 12 Jun 2020 15:05:56 -0700 (PDT)
+ (Exim 4.93) (envelope-from <sam.reiter8@gmail.com>)
+ id 1jjsfw-0007r7-2Y
+ for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 19:01:28 -0400
+Received: by mail-yb1-f171.google.com with SMTP id t9so5682486ybk.9
+ for <usrp-users@lists.ettus.com>; Fri, 12 Jun 2020 16:01:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=FVSlDo1/JL1ZpsNcEI/qWlaiJw9sogufoWBf1IbNuzI=;
- b=Kb5fqJzOLoqMjCEcewwp2ajMRBBvQ7cHmj33Q31qOYv8jzeoPItR+K87cNE4fVvdoH
- iTPOco+9pOwlZDQH9WnUKjVEO6NWhoMUvQKW3KFX+bnSxNhCHju92RsaKAhwIu2H9WXa
- bylzrbQLtlEJaMVLHexyVIwkP5yXv+nJ5iinHxC9vcUKYwFzjkWmlu36DDnnd9DF2yU4
- HTNnlfz0B63kzAxUmbOx2NsstHL4pE65QBu9FfkDscdXbcNNj3Q8HEM69Qdrah5Pimar
- o8TaXSFjsjVDiOy26v30AKX2ORgLE4Xfwdr9Y4lXzCZk9qghaeIL2gzAN2IuTQuCu8pY
- hw4w==
+ :cc; bh=od1G7uZnRjT5Q/Geg6Jiu/TtpAtlc+lqflzGH3a5v5E=;
+ b=ZQtSeiUBNZX1NaqIHZKP4CcnGrboglSmiJ8NrRV3fW8UUM7ahV3wKgrLtDaEC/zlXC
+ 7cxGIGmcPZsfSABpomIRhPsGayYcsrNZZt/d2OpTDsFtabEe7+Qj8SGLj3DrZBM0JmV/
+ 80gLDFy0yn+MsHAES+zldytxnklO7ehVC5USDm1CPVXhjmVHeESFeSZrTusbuAoHyh39
+ UlLdv6zyvUEA9LNvzWX4tibwcNJqtgXwbKoUxcUxSC4XVrLqgxqz4PO/EGuWmJMixs5j
+ x8qKKPQcrSzP3nYkMpHPOHk2E7SroBD6yVXZcGhRmM3PAof7VCuL7+LPe/JKU+m4jX0a
+ 7tDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=FVSlDo1/JL1ZpsNcEI/qWlaiJw9sogufoWBf1IbNuzI=;
- b=SizY46sh8gkKC4dmbV/H16bq8hPRFo7jhOhRcSeZh8KwBKq6obg/hozHPPHtsMG8ir
- h/Vys1KjltgM4ONB5QlSAYZwqARoH8DVviCjeoaU1E5FT1FrzLeisbxKjl/nEdEGQyDU
- r6cVDB4M4qirbA2cK49hQwq+qSlfgcwLf/nhg8jxlV9dRvkBI46upZ3tmnfHLAXqNOhK
- Rb4U9Vu0M/LEaDlePj5KfVzEu0EewyWYoGG1iTRP8RmunVWv/qgo5j+v3uVuQPniTfHf
- qCnBMJrPAd3svJYKSCo0JLLlkuAhcs0jQW+BWhCGJQFz70HevXJEmUWRderiobZs6UxZ
- tgtg==
-X-Gm-Message-State: AOAM5308fO57d1KyjrE0wf3WvqTysq66u6dGlcIBP9m3rElF9NLujQcP
- IzT3YgRTLeDUDMkXFTTEdIAZdEZ+9KfOtnkOBn8=
-X-Google-Smtp-Source: ABdhPJwZGr9liahi9X0GGVceAIUI7sPKyoMTrtLEFB1gJV7fI1MH97Fpvkl0jzplATnHKqeoT+2033i416Cr5T/XhVA=
-X-Received: by 2002:a92:cd49:: with SMTP id v9mr14712669ilq.272.1591999535650; 
- Fri, 12 Jun 2020 15:05:35 -0700 (PDT)
+ bh=od1G7uZnRjT5Q/Geg6Jiu/TtpAtlc+lqflzGH3a5v5E=;
+ b=d4gXwrFUYNlcp5WVWsp0aFPfOYzMbJVdFedaBAVQFaZbxVHWerxKl7MWmSUcWvVI1F
+ OyM7g4EkaoQaUcM6YPNqOeOiB/NRzBp+efYmLaKEfwMOCBgnVnw6K4moETK2itQuhr21
+ i0rdeDLlgimo4Hnf0rf78iUCraSCiYvyWukFAAP2mKUeFeSPaCW1bkuiI9Mf31OL2dt7
+ irp8S4Ahr6i+l38qK8gs3EQFzMJ/B/coUDq6MgiMg1WO/PwEtJIU/F7O0wSnRx9MPQwo
+ K/kRQ4s7WuQfYqPbwmID1FT+ymsBgdq/LG9StbKpKcWOm6Fr7XM3buFtoT/rE1UmVxhB
+ wsdQ==
+X-Gm-Message-State: AOAM531B3QOYzhqmohb6yBC2YTe9xcgwiv8ixzsPuArLeoWyzXtfJgSB
+ WlFCBaJ0yUNTMlxDBCPhlcB6JoycdnBTdyMjKP8=
+X-Google-Smtp-Source: ABdhPJx7+rHxNbLVfalZGLl9EsvLaXRA7N0fGyVt4J4EbHka3iNqOlyaaMRjAPpyQNj90xcDJmIMRU77ICaIDIcGv1g=
+X-Received: by 2002:a25:b8c:: with SMTP id 134mr28016662ybl.428.1592002846177; 
+ Fri, 12 Jun 2020 16:00:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAH2Hh71qD9o27hGbe3DEtZkgXyWsfcScNX-RB6NbuOCq5DVUGg@mail.gmail.com>
-In-Reply-To: <CAH2Hh71qD9o27hGbe3DEtZkgXyWsfcScNX-RB6NbuOCq5DVUGg@mail.gmail.com>
-Date: Fri, 12 Jun 2020 15:05:24 -0700
-Message-ID: <CA+JMMq9n4LDNc_8ZjDm=Wpu04V1jALL4Z-CfkvTJ0__aH1Yzjg@mail.gmail.com>
-To: Aaron Smith <aarsmith54@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Precise Time Synchronization In B200/N210
+References: <CAKyaCM64SK=LYavuWjdfM_XuPDb+LbuDu7R2=cuCGYqj03p6ew@mail.gmail.com>
+ <584010aa-2013-efbf-835a-4d0366c5f77d@comcast.net>
+In-Reply-To: <584010aa-2013-efbf-835a-4d0366c5f77d@comcast.net>
+Date: Fri, 12 Jun 2020 18:00:35 -0500
+Message-ID: <CADBWrHgrmqiyugp+SKOnwjU4Pb0Woupd5+vGm1gZ5eXwhs76Pg@mail.gmail.com>
+To: Ron Economos <w6rz@comcast.net>
+Cc: "usrp-users (usrp-users@lists.ettus.com)" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] [USRP-B200] Transmitting and Receiving with two
+ boards B200 using MATLAB
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,9 +61,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nick Foster via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nick Foster <bistromath@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6106217984128544506=="
+From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sam Reiter <sam.reiter8@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6775864020729501869=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,61 +77,78 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6106217984128544506==
-Content-Type: multipart/alternative; boundary="000000000000ce1d1d05a7ea46bd"
+--===============6775864020729501869==
+Content-Type: multipart/alternative; boundary="00000000000020be7005a7eb0c9c"
 
---000000000000ce1d1d05a7ea46bd
+--00000000000020be7005a7eb0c9c
 Content-Type: text/plain; charset="UTF-8"
 
-The change in time of arrival with B200s is due to phase ambiguity. Do you
-have a 10MHz reference shared between your devices as well?
+Agreed with Ron. Remove one of the 30dB pads and play around with the gain
+on the RX side to dial things in.
 
-Don't know why N210 has that off-by-one timestamp. I'm guessing that
-there's an extra flop in the logic for the PPS timing chain somewhere -- as
-in, the clock starts ticking on the first tick after PPS comes in. I've
-made that error about half a million times, myself.
+You could also run a simple example of transmitting and receiving a CW
+between the boards. If you're not sharing a 10 MHz reference between
+the two, you might find that there is a slight frequency offset between the
+boards that you need to compensate for.
 
-Nick
+e.g. TX a CW at 1GHz using the UHD example tx_waveforms, and receive that
+in with uhd_fft.grc (or rx_ascii_art_dft -
+https://kb.ettus.com/Verifying_the_Operation_of_the_USRP_Using_UHD_and_GNU_Radio#Terminal_DFT.2FFFT).
+If there's any kind of frequency offset between the two, you'll see it on
+the RX side and you can either add in a frequency offset or introduce a
+shared reference clock to compensate for it.
 
-On Fri, Jun 12, 2020 at 2:23 PM Aaron Smith via USRP-users <
+-Sam
+
+On Fri, Jun 12, 2020 at 4:50 PM Ron Economos via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> Hello all,
+> 60 dB is a lot of attenuation. You can remove *one* of the 30 dB
+> attenuators. For gain settings, 30 is good for RX and 50 to 60 is good for
+> TX.
 >
-> I have two separate, but related, questions.
+> Ron
+> On 6/12/20 14:14, Thuc TheGifted via USRP-users wrote:
 >
-> I am trying to trigger an RF transmission every second, and I am receiving
-> the transmission with a receiver that has very precise time stamps. I am
-> driving the receiver with the same 1 PPS source as the B200 and N210. For
-> my simple test, I want the time of arrival at the receiver to register at 1
-> PPS + propagation delay of the RF coax cable + the USRP front end delay. In
-> all cases I am running UHD 3.15.LTS
+> Hi everyone,
 >
-> With the N210 I can achieve this. However when I call
+> I am new to this USRP B200 board. I currently have two boards and I want
+> to connect the Tx port of one board to the Rx port of another using a SMA
+> cable to visualize the communication.
 >
-> usrp->set_time_next_pps(uhd::time_spec_t(0.0));
+> So I start with something available online here
 >
-> and poll the last pps time, I see that it is consistently 20 ns before a
-> second. That is, the pps shows at:
+> https://www.mathworks.com/help/supportpkg/usrpradio/examples/qpsk-transmitter-with-usrp-r-hardware.html
 >
-> 999999980 ns
-> 1999999980 ns
-> 2999999980 ns
+> and
 >
-> If I call usrp->set_time_next_pps(uhd::time_spec_t(20.0e-9)); then the 1
-> PPS registers on the second. It's almost like the clock is biased by 20 ns.
-> I have observed this across 3 different N210s. What could be causing this?
+> https://www.mathworks.com/help/supportpkg/usrpradio/examples/qpsk-receiver-with-usrp-r-hardware.html
 >
-> With the B200, every time I destroy and recreate the uhd::usrp::multi_usrp
-> there is a random change in the time of arrival at the receiver that
-> appears to be uniformly distributed between 0 and 1/master_clock_rate. Is
-> this expected? The Ettus website says "All functions that directly interact
-> with the AD93xx (tuning, gain change, etc) are subject to the scheduling of
-> the AD93xx. The determinism of these operations are not guaranteed. "
 >
-> Is this what I am experiencing?
+> Basically, my hardware connection is
+> Computer_1 + B200_1(Tx port) + 30 dB attenuator + SMA cable + 30 dB
+> attenuator + B200_2(Rx port) + Computer_2
 >
-> Thank you for the help!
+> And I run the transmitter code on the computer_1 and run the receiver code
+> on the computer_2. The transmitter light and the receiver light both turns
+> on, so I think they are doing something.
+>
+> However the result I get on my receiver end on computer_2 is not good.
+> They just look like noise.
+>
+> I think because I use a different kind of board, so I need to modify the
+> gain parameters in the code. But I have no idea about how to make it
+> correctly.
+>
+> I hope someone with more experience with this board can show me how to do
+> it right.
+> Could you please help me on this.
+> Thank you.
+>
+> -Ves
+>
+> _______________________________________________
+> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 > _______________________________________________
 > USRP-users mailing list
@@ -137,49 +156,109 @@ usrp-users@lists.ettus.com> wrote:
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000ce1d1d05a7ea46bd
+--00000000000020be7005a7eb0c9c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>The change in time of arrival with B200s is due to ph=
-ase ambiguity. Do you have a 10MHz reference shared between your devices as=
- well?</div><div><br></div><div>Don&#39;t know why N210 has that off-by-one=
- timestamp. I&#39;m guessing that there&#39;s an extra flop in the logic fo=
-r the PPS timing chain somewhere -- as in, the clock starts ticking on the =
-first tick after PPS comes in. I&#39;ve made that error about half a millio=
-n times, myself.<br></div><div><br></div><div>Nick<br></div></div><br><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 12,=
- 2020 at 2:23 PM Aaron Smith via USRP-users &lt;<a href=3D"mailto:usrp-user=
-s@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
-1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello al=
-l,</div><div><br></div><div>I have two separate, but related, questions.</d=
-iv><div><br></div><div>I am trying to trigger an RF transmission every seco=
-nd, and I am receiving the transmission with a receiver that has very preci=
-se time stamps. I am driving the receiver with the same 1 PPS source as the=
- B200 and N210. For my simple test, I want the time of arrival at the recei=
-ver to register at 1 PPS + propagation delay of the RF coax cable + the USR=
-P front end delay. In all cases I am running UHD 3.15.LTS<br></div><div><br=
-></div><div>With the N210 I can achieve this. However when I call=20
-<pre>usrp-&gt;set_time_next_pps(uhd::time_spec_t(0.0));</pre>
+<div dir=3D"ltr"><div>Agreed with Ron. Remove one of the 30dB pads and play=
+ around with the gain on the RX side to dial things in.=C2=A0</div><div><br=
+></div>You could also run a simple example of transmitting and receiving=C2=
+=A0a CW between the boards. If you&#39;re not sharing a 10 MHz reference be=
+tween the=C2=A0two, you might find that there is a slight frequency offset =
+between the boards that you need to compensate for.=C2=A0<div><br></div><di=
+v>e.g. TX a CW at 1GHz using the UHD example tx_waveforms, and receive that=
+ in with uhd_fft.grc (or rx_ascii_art_dft -=C2=A0<a href=3D"https://kb.ettu=
+s.com/Verifying_the_Operation_of_the_USRP_Using_UHD_and_GNU_Radio#Terminal_=
+DFT.2FFFT">https://kb.ettus.com/Verifying_the_Operation_of_the_USRP_Using_U=
+HD_and_GNU_Radio#Terminal_DFT.2FFFT</a>). If there&#39;s any kind of freque=
+ncy offset between the two, you&#39;ll see it on the RX side and you can ei=
+ther add in a frequency offset or introduce a shared reference clock to com=
+pensate for it.=C2=A0</div><div><br></div><div>-Sam</div></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 12, 20=
+20 at 4:50 PM Ron Economos via USRP-users &lt;<a href=3D"mailto:usrp-users@=
+lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <p>60 dB is a lot of attenuation. You can remove <b>one</b> of the
+      30 dB attenuators. For gain settings, 30 is good for RX and 50 to
+      60 is good for TX.</p>
+    <p>Ron<br>
+    </p>
+    <div>On 6/12/20 14:14, Thuc TheGifted via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">Hi everyone,
+        <div><br>
+        </div>
+        <div>I am new to this USRP B200 board. I currently have two
+          boards and I want to connect the Tx port of one board to the
+          Rx port of another using a SMA cable to visualize the
+          communication.</div>
+        <div><br>
+        </div>
+        <div>So I start with something available=C2=A0online here</div>
+        <div><a href=3D"https://www.mathworks.com/help/supportpkg/usrpradio=
+/examples/qpsk-transmitter-with-usrp-r-hardware.html" target=3D"_blank">htt=
+ps://www.mathworks.com/help/supportpkg/usrpradio/examples/qpsk-transmitter-=
+with-usrp-r-hardware.html</a>=C2=A0</div>
+        <div>and=C2=A0<br>
+        </div>
+        <div><a href=3D"https://www.mathworks.com/help/supportpkg/usrpradio=
+/examples/qpsk-receiver-with-usrp-r-hardware.html" target=3D"_blank">https:=
+//www.mathworks.com/help/supportpkg/usrpradio/examples/qpsk-receiver-with-u=
+srp-r-hardware.html</a>=C2=A0=C2=A0<br>
+        </div>
+        <div><br>
+        </div>
+        <div>Basically, my hardware connection is</div>
+        <div>Computer_1=C2=A0+ B200_1(Tx port) + 30 dB attenuator=C2=A0+ SM=
+A
+          cable=C2=A0+ 30 dB attenuator=C2=A0+ B200_2(Rx port)=C2=A0+ Compu=
+ter_2</div>
+        <div><br>
+        </div>
+        <div>And I run the transmitter code on the computer_1 and run
+          the receiver code on the computer_2. The transmitter light and
+          the receiver light both turns on, so I think they are doing
+          something.</div>
+        <div><br>
+        </div>
+        <div>However the result I get on my receiver end on computer_2
+          is not good. They just look like noise.</div>
+        <div><br>
+        </div>
+        <div>I think because I use a different kind of board, so I need
+          to modify the gain parameters in the code. But I have no idea
+          about how to make it correctly.</div>
+        <div><br>
+        </div>
+        <div>I hope someone with more experience with this board can
+          show me how to do it right.</div>
+        <div>Could you please help me on this.</div>
+        <div>Thank you.</div>
+        <div><br>
+        </div>
+        <div>-Ves</div>
+      </div>
+      <br>
+      <fieldset></fieldset>
+      <pre>_______________________________________________
+USRP-users mailing list
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a>
+</pre>
+    </blockquote>
+  </div>
 
-</div><div>and poll the last pps time, I see that it is consistently 20 ns =
-before a second. That is, the pps shows at:</div><div><br></div><div>999999=
-980 ns<br></div><div>1999999980 ns<br></div><div>2999999980 ns<br></div><di=
-v><br></div><div>If I call=20
-usrp-&gt;set_time_next_pps(uhd::time_spec_t(20.0e-9)); then the 1 PPS regis=
-ters on the second. It&#39;s almost like the clock is biased by 20 ns. I ha=
-ve observed this across 3 different N210s. What could be causing this?</div=
-><div><br></div><div>With the B200, every time I destroy and recreate the=
-=20
-uhd::usrp::multi_usrp there is a random change in the time of arrival at th=
-e receiver that appears to be uniformly distributed between 0 and 1/master_=
-clock_rate. Is this expected? The Ettus website says
-&quot;All functions that directly interact with the AD93xx (tuning, gain=20
-change, etc) are subject to the scheduling of the AD93xx. The=20
-determinism of these operations are not guaranteed. &quot;<br></div><div><b=
-r></div><div>Is this what I am experiencing? <br></div><div><br></div><div>=
-Thank you for the help!<br></div><div><br></div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -189,10 +268,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000ce1d1d05a7ea46bd--
+--00000000000020be7005a7eb0c9c--
 
 
---===============6106217984128544506==
+--===============6775864020729501869==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -203,5 +282,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6106217984128544506==--
+--===============6775864020729501869==--
 
