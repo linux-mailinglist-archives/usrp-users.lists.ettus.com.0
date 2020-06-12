@@ -2,49 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2451B1F7C84
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2020 19:33:57 +0200 (CEST)
-Received: from [::1] (port=58830 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3E5E1F7C8A
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Jun 2020 19:38:43 +0200 (CEST)
+Received: from [::1] (port=60726 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jjnYv-0005op-Sy; Fri, 12 Jun 2020 13:33:53 -0400
-Received: from mail-ed1-f51.google.com ([209.85.208.51]:34569)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jeremy.vezinet@gmail.com>)
- id 1jjnYs-0005jw-88
- for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 13:33:50 -0400
-Received: by mail-ed1-f51.google.com with SMTP id w7so7007454edt.1
- for <usrp-users@lists.ettus.com>; Fri, 12 Jun 2020 10:33:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=xQj3g/vpOLxqGtvvkUehCTI1fwjhqFzRZRu+w/X1PfU=;
- b=N8fFxKGUgnNk3U0519yEyAhZ7wkydVX3I9yxAwKJ+7ba90LRkOpFjIAEJyKUNjNFhV
- 31WMTZi1jlhwNOgFuTS5XCftSDxlIg6kNgt1eMXXc7HWz4A5KABkGzObz3AeHYCtrriV
- 8ZxQ6x4XgubOSjwfZMmBkdEW+qKxFq4qL2oyFFBkU0obDt1c/XWMzfNdOFQGQQaW3Pt/
- 2FTAQ/AofAu1q1Mx5FpvJdlP9UhjRjdLpNjwcA2D6plx2beXfjiir1YE4GNWhmwzYEBA
- IJq68iM0pDG6bpAwjVD0b4kyTNRikvwG+Y4c1JlMLY+rldRy5rqTcg9K4J4HixfRSHyI
- Islw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=xQj3g/vpOLxqGtvvkUehCTI1fwjhqFzRZRu+w/X1PfU=;
- b=A+Msoq8B6eeanSNdQTQHlamjjCEKGsXWNruhDItIRa2sxf6T+naGmr6nUW0Ro26D/0
- xpvwMDQOtijCqZhkwe2keJqqMsEuytGPuJAGKzS2olmWuPB0tCDA9/kKRjpHWL1u07sP
- FJuB//gGDPK55YaJHDRBhjB2TrbD1Nitc0LJMrpnJzTxws2+2XzXe0Ky1ZR/qdTTNUbp
- Uk7woiaK3ksaLuOnGzcvrufQZGUHvfUjA0D9tTrHzGYtI4XN6+28Wu5679vGjcKwX2gE
- V8WbVI/0nEZPxLhyP7BNZ3eWFSvfurYny8tEEa6jR7xAvurszcrNUR9z6JYGvtBBex1q
- ketQ==
-X-Gm-Message-State: AOAM530rmKxTH+3ZuL+9jyTDmWimV+pA1d6tjooGR3iNFhhliXbbJ+tA
- qnn51H4yL0Je8vIzFtHavYeGNT9yQYsLewkyCxCTViIh
-X-Google-Smtp-Source: ABdhPJxSpCoKc+J0gfvdSUSpPQIFHsF8DO1hxLHgiVpuU6f7TR1bwgynmSFMNxujORf10zq81eSTDEHzpHBfnBU9pYw=
-X-Received: by 2002:a05:6402:a42:: with SMTP id
- bt2mr12446371edb.42.1591983188869; 
- Fri, 12 Jun 2020 10:33:08 -0700 (PDT)
+	id 1jjndY-0006Pn-CB; Fri, 12 Jun 2020 13:38:40 -0400
+Received: from barracuda.dynetics.com ([204.154.192.66]:38938)
+ by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
+ (Exim 4.93)
+ (envelope-from <btv1==43236245c49==Ryan.Carmichael@dynetics.com>)
+ id 1jjndU-0006KS-Pf
+ for usrp-users@lists.ettus.com; Fri, 12 Jun 2020 13:38:36 -0400
+X-ASG-Debug-ID: 1591984215-10303763212dc6c0001-5wTQH4
+Received: from MX2.in.dynetics.com (MX2.in.dynetics.com [10.1.15.131]) by
+ barracuda.dynetics.com with ESMTP id pL6Zx8K1302HMpIT (version=TLSv1.2
+ cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NO);
+ Fri, 12 Jun 2020 12:50:15 -0500 (CDT)
+X-Barracuda-Envelope-From: Ryan.Carmichael@dynetics.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.1.15.131
+Received: from MAUI.in.dynetics.com ([169.254.1.93]) by MX2.in.dynetics.com
+ ([10.1.15.131]) with mapi id 14.03.0487.000; Fri, 12 Jun 2020 12:37:55 -0500
+X-Barracuda-RBL-IP: 169.254.1.93
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] DPDK support not built in with X310
+X-ASG-Orig-Subj: RE: [USRP-users] DPDK support not built in with X310
+Thread-Index: AQHWQN+lnCrhOa5jbESeuLdK/suslqjVPgWw
+Date: Fri, 12 Jun 2020 17:37:54 +0000
+Message-ID: <10F7328F6AD1354BA6DD787687B66B9001A97A4064@Maui.in.dynetics.com>
+References: <CANka2Pwqgc=sk6mutxNwbO2fzUQe4k4W_A5_DFzaWWY5prxYug@mail.gmail.com>
+In-Reply-To: <CANka2Pwqgc=sk6mutxNwbO2fzUQe4k4W_A5_DFzaWWY5prxYug@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.249.132.118]
 MIME-Version: 1.0
-Date: Fri, 12 Jun 2020 19:32:57 +0200
-Message-ID: <CANka2Pwqgc=sk6mutxNwbO2fzUQe4k4W_A5_DFzaWWY5prxYug@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] DPDK support not built in with X310
+X-Barracuda-Connect: MX2.in.dynetics.com[10.1.15.131]
+X-Barracuda-Start-Time: 1591984215
+X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA384
+X-Barracuda-URL: https://barracuda.in.dynetics.com:443/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at dynetics.com
+X-Barracuda-Scan-Msg-Size: 9134
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No,
+ SCORE=0.00 using per-user scores of TAG_LEVEL=1000.0
+ QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.82505
+ Rule breakdown below
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ 0.00 HTML_MESSAGE           BODY: HTML included in message
+Subject: Re: [USRP-users] DPDK support not built in with X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -56,10 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?J=C3=A9r=C3=A9my_Vezinet_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?SsOpcsOpbXkgVmV6aW5ldA==?= <jeremy.vezinet@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7797382111647212709=="
+From: "Carmichael, Ryan via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Carmichael, Ryan" <Ryan.Carmichael@dynetics.com>
+Content-Type: multipart/mixed; boundary="===============0100376756671549821=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,55 +82,186 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7797382111647212709==
-Content-Type: multipart/alternative; boundary="00000000000076063b05a7e67896"
+--===============0100376756671549821==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_10F7328F6AD1354BA6DD787687B66B9001A97A4064Mauiindynetic_"
 
---00000000000076063b05a7e67896
-Content-Type: text/plain; charset="UTF-8"
+--_000_10F7328F6AD1354BA6DD787687B66B9001A97A4064Mauiindynetic_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi all,
+SmVyZW15LA0KDQpJIHdlbnQgdGhyb3VnaCB0aGlzIHJlY2VudGx5IGFuZCBJIGJlbGlldmUgeW91
+IG5lZWQgdG8gYnVpbGQgVUhEIG1hbnVhbGx5LCBhc3N1bWluZyB5b3UgYXJlIHVzaW5nIHByZS1i
+dWlsdCBVSEQgYmluYXJpZXMuIElmIHlvdeKAmXZlIGluc3RhbGxlZCBpdCwgRFBESyBzdXBwb3J0
+IHNob3VsZCBiZSBkZXRlY3RlZCB3aGVuIHlvdSBidWlsZCB0aGUgVUhEIGRyaXZlciAodGhlIG91
+dHB1dCBvZiBjbWFrZSBzaG91bGQgaW5kaWNhdGUgaWYgaXQgZmluZHMgaXQgb3Igbm90KS4NCg0K
+DQotICAgICAgICAgIFJ5YW4NCg0KDQoNCkkgcmVjZW50bHkgYm91Z2h0IGEgWDMxMCB1c3JwIGFu
+ZCBhIDgyNTk5RVMgMTAtR2lnYWJpdCBTRkkvU0ZQKyBOZXR3b3JrIEludGVyZmFjZSBDYXJkICh0
+aGUgb25lIHJlY29tbWVuZGVkIG9uIHRoZSBFdHR1cyBXZWJzaXRlKS4NCg0KSSBmaXJzdCBzZXQg
+bXkgY29ubmVjdGlvbnMgYW5kIGEgYmVuY2htYXJrIHRlc3Qgc2hvd3MgYSBsb3Qgb2YgZHJvcHBl
+ZCBzYW1wbGVzIGFuZCBzb21lIG92ZXJmbG93cy4NClNvIGkgZGVjaWRlZCB0byB0cnkgdXNpbmcg
+ZHBkayB0byBpbXByb3ZlIG15IHNldHVwLg0KSSBoYXZlIFVIRCAzLjE0LjEuMSBhbmQgSSBpbnN0
+YWxsZWQgZHBkayB3aXRoIG15IGFwdCBwYWNrYWdlIG1hbmFnZXIgKGRwZGsgdmVyc2lvbiAxNy4x
+MS45KS4NCkkgZm9sbG93ZWQgdGhpcyBndWlkZSBodHRwczovL2tiLmV0dHVzLmNvbS9HZXR0aW5n
+X1N0YXJ0ZWRfd2l0aF9EUERLX2FuZF9VSEQgYW5kIHdoZW4gSSBydW4gdGhlIGJlbmNobWFyayB3
+aXRoIHVzZV9kcGRrIGFyZ3VtZW50LCBJIGdvdCB0aGUgZm9sbG93aW5nOg0KW1dBUk5JTkddIFtE
+UERLXSBEZXRlY3RlZCB1c2VfZHBkayBhcmd1bWVudCwgYnV0IERQREsgc3VwcG9ydCBub3QgYnVp
+bHQgaW4uDQoNCkkgcmVhbGx5IGRvbid0IHVuZGVyc3RhbmQgd2hhdCdzIHdyb25nLiBJIHRyaWVk
+IHNvIG1hbnkgdGhpbmdzLiBJIHRyaWVkIHdpdGggZHBkayAxOCBhbmQgd2VudCBiYWNrIHRvIDE3
+IGJlY2F1c2UgaXQgZGlkbid0IHNvbHZlIGFueXRoaW5nLg0KDQpDb3VsZCBhbnlvbmUgaGVscCBt
+ZSB3aXRoIHRoYXQgcGxlYXNlID8NCg0KSmVyZW15DQoNCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fDQoNClRoZSBpbmZvcm1hdGlvbiBjb250YWluZWQgaW4gdGhpcyBtZXNzYWdlLCBh
+bmQgYW55IGF0dGFjaG1lbnRzLCBtYXkgY29udGFpbiBwcml2aWxlZ2VkIGFuZC9vciBwcm9wcmll
+dGFyeSBpbmZvcm1hdGlvbiB0aGF0IGlzIGludGVuZGVkIHNvbGVseSBmb3IgdGhlIHBlcnNvbiBv
+ciBlbnRpdHkgdG8gd2hpY2ggaXQgaXMgYWRkcmVzc2VkLiBNb3Jlb3ZlciwgaXQgbWF5IGNvbnRh
+aW4gZXhwb3J0IHJlc3RyaWN0ZWQgdGVjaG5pY2FsIGRhdGEgY29udHJvbGxlZCBieSBFeHBvcnQg
+QWRtaW5pc3RyYXRpb24gUmVndWxhdGlvbnMgKEVBUikgb3IgdGhlIEludGVybmF0aW9uYWwgVHJh
+ZmZpYyBpbiBBcm1zIFJlZ3VsYXRpb25zIChJVEFSKS4gQW55IHJldmlldywgcmV0cmFuc21pc3Np
+b24sIGRpc3NlbWluYXRpb24sIG9yIHJlLWV4cG9ydCB0byBmb3JlaWduIG9yIGRvbWVzdGljIGVu
+dGl0aWVzIGJ5IGFueW9uZSBvdGhlciB0aGFuIHRoZSBpbnRlbmRlZCByZWNpcGllbnQgaW4gYWNj
+b3JkYW5jZSB3aXRoIEVBUiBhbmQvb3IgSVRBUiByZWd1bGF0aW9ucyBpcyBwcm9oaWJpdGVkLg0K
 
-I recently bought a X310 usrp and a 82599ES 10-Gigabit SFI/SFP+ Network
-Interface Card (the one recommended on the Ettus Website).
+--_000_10F7328F6AD1354BA6DD787687B66B9001A97A4064Mauiindynetic_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I first set my connections and a benchmark test shows a lot of dropped
-samples and some overflows.
-So i decided to try using dpdk to improve my setup.
-I have UHD 3.14.1.1 and I installed dpdk with my apt package manager (dpdk
-version 17.11.9).
-I followed this guide https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD
-and when I run the benchmark with use_dpdk argument, I got the following:
-[WARNING] [DPDK] Detected use_dpdk argument, but DPDK support not built in.
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseTpXaW5nZGluZ3M7DQoJcGFub3NlLTE6NSAwIDAgMCAwIDAgMCAwIDAg
+MDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0x
+OjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJp
+Ow0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25z
+ICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjow
+aW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1m
+YW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGlu
+aw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRp
+b246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXtt
+c28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1
+bmRlcmxpbmU7fQ0KcA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLW1hcmdpbi10b3At
+YWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0
+bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToi
+VGltZXMgTmV3IFJvbWFuIixzZXJpZjt9DQpjb2RlDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsN
+Cglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCnAuTXNvTGlzdFBhcmFncmFwaCwgbGkuTXNv
+TGlzdFBhcmFncmFwaCwgZGl2Lk1zb0xpc3RQYXJhZ3JhcGgNCgl7bXNvLXN0eWxlLXByaW9yaXR5
+OjM0Ow0KCW1hcmdpbi10b3A6MGluOw0KCW1hcmdpbi1yaWdodDowaW47DQoJbWFyZ2luLWJvdHRv
+bTowaW47DQoJbWFyZ2luLWxlZnQ6LjVpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9u
+dC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9DQpw
+Lm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1u
+YW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6
+MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsNCglm
+b250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30N
+CnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFt
+aWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0Kc3Bhbi5FbWFpbFN0
+eWxlMjINCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtY29tcG9zZTsNCglmb250LWZhbWlseToi
+Q2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0
+DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixz
+YW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCglt
+YXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdl
+OldvcmRTZWN0aW9uMTt9DQovKiBMaXN0IERlZmluaXRpb25zICovDQpAbGlzdCBsMA0KCXttc28t
+bGlzdC1pZDoxMzI4MDk3MzU5Ow0KCW1zby1saXN0LXR5cGU6aHlicmlkOw0KCW1zby1saXN0LXRl
+bXBsYXRlLWlkczotMTc3Nzg0MjQzNiAtMTk3OTE1NTM2IDY3Njk4NjkxIDY3Njk4NjkzIDY3Njk4
+Njg5IDY3Njk4NjkxIDY3Njk4NjkzIDY3Njk4Njg5IDY3Njk4NjkxIDY3Njk4NjkzO30NCkBsaXN0
+IGwwOmxldmVsMQ0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVs
+LXRleHQ6LTsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBv
+c2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
+IixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWZvbnQtZmFtaWx5OkNhbGlicmk7fQ0KQGxpc3Qg
+bDA6bGV2ZWwyDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwt
+dGV4dDpvOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9z
+aXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIg
+TmV3Ijt9DQpAbGlzdCBsMDpsZXZlbDMNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0
+Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28t
+bGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQt
+ZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDQNCgl7bXNvLWxldmVsLW51bWJlci1m
+b3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6
+bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4y
+NWluOw0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNvLWxldmVs
+LW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Om87DQoJbXNvLWxldmVsLXRh
+Yi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5k
+ZW50Oi0uMjVpbjsNCglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCkBsaXN0IGwwOmxldmVs
+Ng0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674Kn
+Ow0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246
+bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6V2luZ2RpbmdzO30NCkBs
+aXN0IGwwOmxldmVsNw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxl
+dmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1i
+ZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6U3lt
+Ym9sO30NCkBsaXN0IGwwOmxldmVsOA0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7
+DQoJbXNvLWxldmVsLXRleHQ6bzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2
+ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFt
+aWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxpc3QgbDA6bGV2ZWw5DQoJe21zby1sZXZlbC1udW1iZXIt
+Zm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1zdG9w
+Om5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0u
+MjVpbjsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0Kb2wNCgl7bWFyZ2luLWJvdHRvbTowaW47
+fQ0KdWwNCgl7bWFyZ2luLWJvdHRvbTowaW47fQ0KLS0+PC9zdHlsZT4NCjwvaGVhZD4NCjxib2R5
+IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9Ildv
+cmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
+IzFGNDk3RCI+SmVyZW15LDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
+cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
+RCI+SSB3ZW50IHRocm91Z2ggdGhpcyByZWNlbnRseSBhbmQgSSBiZWxpZXZlIHlvdSBuZWVkIHRv
+IGJ1aWxkIFVIRCBtYW51YWxseSwgYXNzdW1pbmcgeW91IGFyZSB1c2luZyBwcmUtYnVpbHQgVUhE
+IGJpbmFyaWVzLiBJZiB5b3XigJl2ZSBpbnN0YWxsZWQgaXQsIERQREsgc3VwcG9ydA0KIHNob3Vs
+ZCBiZSBkZXRlY3RlZCB3aGVuIHlvdSBidWlsZCB0aGUgVUhEIGRyaXZlciAodGhlIG91dHB1dCBv
+ZiBjbWFrZSBzaG91bGQgaW5kaWNhdGUgaWYgaXQgZmluZHMgaXQgb3Igbm90KS48bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
+IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb0xpc3RQ
+YXJhZ3JhcGgiIHN0eWxlPSJ0ZXh0LWluZGVudDotLjI1aW47bXNvLWxpc3Q6bDAgbGV2ZWwxIGxm
+bzEiPjwhW2lmICFzdXBwb3J0TGlzdHNdPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48
+c3BhbiBzdHlsZT0ibXNvLWxpc3Q6SWdub3JlIj4tPHNwYW4gc3R5bGU9ImZvbnQ6Ny4wcHQgJnF1
+b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7Ij4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsNCjwvc3Bhbj48L3NwYW4+PC9zcGFuPjwhW2VuZGlmXT48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+UnlhbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
+OzwvbzpwPjwvcD4NCjxkaXY+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdCI+SSBy
+ZWNlbnRseSBib3VnaHQgYSBYMzEwIHVzcnAgYW5kIGEgODI1OTlFUyAxMC1HaWdhYml0IFNGSS9T
+RlAmIzQzOyBOZXR3b3JrIEludGVyZmFjZSBDYXJkICh0aGUgb25lIHJlY29tbWVuZGVkIG9uIHRo
+ZSBFdHR1cyBXZWJzaXRlKS48YnI+DQo8YnI+DQpJIGZpcnN0IHNldCBteSBjb25uZWN0aW9ucyBh
+bmQgYSBiZW5jaG1hcmsgdGVzdCBzaG93cyBhIGxvdCBvZiBkcm9wcGVkIHNhbXBsZXMgYW5kIHNv
+bWUgb3ZlcmZsb3dzLjxicj4NClNvIGkgZGVjaWRlZCB0byB0cnkgdXNpbmcgZHBkayB0byBpbXBy
+b3ZlIG15IHNldHVwLjxicj4NCkkgaGF2ZSBVSEQgMy4xNC4xLjEgYW5kIEkgaW5zdGFsbGVkIGRw
+ZGsgd2l0aCBteSBhcHQgcGFja2FnZSBtYW5hZ2VyIChkcGRrIHZlcnNpb24gMTcuMTEuOSkuPGJy
+Pg0KSSBmb2xsb3dlZCB0aGlzIGd1aWRlIDxhIGhyZWY9Imh0dHBzOi8va2IuZXR0dXMuY29tL0dl
+dHRpbmdfU3RhcnRlZF93aXRoX0RQREtfYW5kX1VIRCI+DQpodHRwczovL2tiLmV0dHVzLmNvbS9H
+ZXR0aW5nX1N0YXJ0ZWRfd2l0aF9EUERLX2FuZF9VSEQ8L2E+IGFuZCB3aGVuIEkgcnVuIHRoZSBi
+ZW5jaG1hcmsgd2l0aCB1c2VfZHBkayBhcmd1bWVudCwgSSBnb3QgdGhlIGZvbGxvd2luZzo8YnI+
+DQo8L3NwYW4+PGNvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQiPltXQVJOSU5HXSBb
+RFBES10gRGV0ZWN0ZWQgdXNlX2RwZGsgYXJndW1lbnQsIGJ1dCBEUERLIHN1cHBvcnQgbm90IGJ1
+aWx0IGluLjwvc3Bhbj48L2NvZGU+PG86cD48L286cD48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjEwLjBwdCI+SSByZWFsbHkgZG9uJ3QgdW5kZXJzdGFuZCB3aGF0J3Mgd3JvbmcuIEkg
+dHJpZWQgc28gbWFueSB0aGluZ3MuIEkgdHJpZWQgd2l0aCBkcGRrIDE4IGFuZCB3ZW50IGJhY2sg
+dG8gMTcgYmVjYXVzZSBpdCBkaWRuJ3Qgc29sdmUgYW55dGhpbmcuPGJyPg0KPGJyPg0KQ291bGQg
+YW55b25lIGhlbHAgbWUgd2l0aCB0aGF0IHBsZWFzZSA/PGJyPg0KPGJyPg0KSmVyZW15PC9zcGFu
+PjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxpPjxicj4NCjxocj4NCjxwIHN0eWxl
+PSJmb250LXNpemU6OHB0OyBsaW5lLWhlaWdodDo5cHQ7IGZvbnQtc3R5bGU6bW9ub3NwYWNlIj5U
+aGUgaW5mb3JtYXRpb24gY29udGFpbmVkIGluIHRoaXMgbWVzc2FnZSwgYW5kIGFueSBhdHRhY2ht
+ZW50cywgbWF5IGNvbnRhaW4gcHJpdmlsZWdlZCBhbmQvb3IgcHJvcHJpZXRhcnkgaW5mb3JtYXRp
+b24gdGhhdCBpcyBpbnRlbmRlZCBzb2xlbHkgZm9yIHRoZSBwZXJzb24gb3IgZW50aXR5IHRvIHdo
+aWNoIGl0IGlzIGFkZHJlc3NlZC4NCiBNb3Jlb3ZlciwgaXQgbWF5IGNvbnRhaW4gZXhwb3J0IHJl
+c3RyaWN0ZWQgdGVjaG5pY2FsIGRhdGEgY29udHJvbGxlZCBieSBFeHBvcnQgQWRtaW5pc3RyYXRp
+b24gUmVndWxhdGlvbnMgKEVBUikgb3IgdGhlIEludGVybmF0aW9uYWwgVHJhZmZpYyBpbiBBcm1z
+IFJlZ3VsYXRpb25zIChJVEFSKS4gQW55IHJldmlldywgcmV0cmFuc21pc3Npb24sIGRpc3NlbWlu
+YXRpb24sIG9yIHJlLWV4cG9ydCB0byBmb3JlaWduIG9yIGRvbWVzdGljIGVudGl0aWVzDQogYnkg
+YW55b25lIG90aGVyIHRoYW4gdGhlIGludGVuZGVkIHJlY2lwaWVudCBpbiBhY2NvcmRhbmNlIHdp
+dGggRUFSIGFuZC9vciBJVEFSIHJlZ3VsYXRpb25zIGlzIHByb2hpYml0ZWQuPC9wPg0KPC9pPg0K
+PC9ib2R5Pg0KPC9odG1sPg0K
 
-I really don't understand what's wrong. I tried so many things. I tried
-with dpdk 18 and went back to 17 because it didn't solve anything.
-
-Could anyone help me with that please ?
-
-Jeremy
-
---00000000000076063b05a7e67896
-Content-Type: text/html; charset="UTF-8"
-
-<div dir="ltr"><p><font size="-1">Hi all,</font></p>
-<p><font size="-1">I recently bought a X310 usrp and a 82599ES 
-10-Gigabit SFI/SFP+ Network Interface Card (the one recommended on the 
-Ettus Website).<br>
-    <br>
-I first set my connections and a benchmark test shows a lot of dropped samples and some overflows.<br>
-So i decided to try using dpdk to improve my setup.<br>
-I have UHD 3.14.1.1 and I installed dpdk with my apt package manager (dpdk version 17.11.9).<br>
-I followed this guide </font><font size="-1"><a href="https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD">https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD</a> and when I run the benchmark with use_dpdk argument, I got the following:<br>
-  </font><code>[WARNING] [DPDK] Detected use_dpdk argument, but DPDK support not built in.</code><font size="-1"><br>
-  </font></p>
-<p><font size="-1">I really don&#39;t understand what&#39;s wrong. I tried so many things. I tried with dpdk 18 and went back to 17 because it didn&#39;t solve anything.<br>
-    <br>
-Could anyone help me with that please ?<br><br>Jeremy</font></p></div>
-
---00000000000076063b05a7e67896--
+--_000_10F7328F6AD1354BA6DD787687B66B9001A97A4064Mauiindynetic_--
 
 
---===============7797382111647212709==
+--===============0100376756671549821==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,5 +272,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7797382111647212709==--
+--===============0100376756671549821==--
 
