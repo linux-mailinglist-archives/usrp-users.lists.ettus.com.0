@@ -2,61 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B0591F9E36
-	for <lists+usrp-users@lfdr.de>; Mon, 15 Jun 2020 19:13:55 +0200 (CEST)
-Received: from [::1] (port=51274 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5AFC1F9EA4
+	for <lists+usrp-users@lfdr.de>; Mon, 15 Jun 2020 19:36:37 +0200 (CEST)
+Received: from [::1] (port=60342 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jksgC-0007TT-DE; Mon, 15 Jun 2020 13:13:52 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:38897)
+	id 1jkt2A-0001Lh-Cj; Mon, 15 Jun 2020 13:36:34 -0400
+Received: from mail-ed1-f47.google.com ([209.85.208.47]:35143)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jksg8-0007Nu-C4
- for usrp-users@lists.ettus.com; Mon, 15 Jun 2020 13:13:48 -0400
-Received: by mail-qt1-f196.google.com with SMTP id g62so13188515qtd.5
- for <usrp-users@lists.ettus.com>; Mon, 15 Jun 2020 10:13:28 -0700 (PDT)
+ (Exim 4.93) (envelope-from <aarsmith54@gmail.com>)
+ id 1jkt25-0001GU-S4
+ for usrp-users@lists.ettus.com; Mon, 15 Jun 2020 13:36:30 -0400
+Received: by mail-ed1-f47.google.com with SMTP id e12so12144619eds.2
+ for <usrp-users@lists.ettus.com>; Mon, 15 Jun 2020 10:36:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:subject:mime-version:from:in-reply-to:cc
- :date:message-id:references:to;
- bh=pczZFvmSsIudC/1V8lPDKsJbIaYuC1ysz8K4Rkx3tXQ=;
- b=JpT+qYjCPmtRBC38AunGvJuDqNerUfb8fMPA8o87xupCcDes1Ksnq44/HA2NF0+tia
- AdPOPrrd8hhNguGFpfTVllCQlk16oK4f9QShXlIbEZhe2jrsQRMnIs0xPXO1YU35PJqr
- CM8IQfSpXi8ew50nKjJzq7saOlgyIQkhtPY3JsmJvWFRgpMmKg28Lx2EJwIzVE9wo8rh
- S06Rh5q+R5ksEN94hBmSqYhBHIRPmtTRWRwy4S5sxkXYgMOYn+oaRyXHQ4FA2K65mRQQ
- tkogbNDewpmDtRcZmBtgyBLYp29Hk8MsAXPzINSadESnntLeogINNqbMLLULC3jLF24y
- EBkg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Fg/TWjriVKJn6JJRUJ/t8Rxa5GSn9Ws/edgIlUuBX04=;
+ b=stFhL0BRW5WVT/yTTDObFSdfAa35hsO05GOqzholhjonEulJ/2D9tn7Mw/kqwrTCaz
+ 32v+T2tlBptZzHeK4q50wdL95XADPYKRh9/Ron/+VFFvFKVpzAzhUNXKvnkTQa4a+8GR
+ 15SN/CMc+LRwwQivCwNXJUMBmKIcAwonhdkDvdDVygqh0PxPcnlOlUCGUgPM9A776i+r
+ gYxBwqj0KWE8rbrWp4JVbBNa3NqdijS2g7mTOtoYSP0ErGl05sw1rGLFVTppBxX6pGx5
+ 5fBe2YrW3+JdpR/zXZbemWYZMKBwiQD2FG9ONktmxC2WpxENn8kvyaqfyzrqFTJAJ/Ii
+ Q7sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:subject:mime-version
- :from:in-reply-to:cc:date:message-id:references:to;
- bh=pczZFvmSsIudC/1V8lPDKsJbIaYuC1ysz8K4Rkx3tXQ=;
- b=JvBUl+9tC98XGwS2bAh7UXgJKabA7GphlarPTG2FN19LYFOPqPETPnDhWfy/AeqKZP
- BXOmnLK7YtsE0HXFfE7e5HpFB3Mp+IZn3+U9ZhaDn+l6gblj3DpdybaP3XlRha1dGpXq
- 7UwH3u14MWLt0+DadvMydPNS01MR+9bbMX/ToLmkwSIPXQU2M89gWkupttnnFX6bjc8H
- QQs5DYZJ85wwb1VWyH/9LnXF2D6gnlW6jTs4IUjLdSZgVuV8EHMjKkhHa8GB81P42u9r
- 3V5ivUPM9JdE4V/voJm9v1NBm27gPkXtCvmuTHd+CgEjO+jqxOz1W5tAnwmlLbVd94kP
- yxAA==
-X-Gm-Message-State: AOAM530ZncL9Zzynw+p8Bi+FOo1uab5x8iqHc7tSNI3j78tlsRxQ5aiY
- lgoVaflWTnItj2gzJM+nCulbcyvTq00=
-X-Google-Smtp-Source: ABdhPJwxvsHyXc5XUlTdsUPrlnP+gLXNn+ltLvwjgzQQ0znBIrW08BxAIa+0m0vDwrTGGUR2DLkwww==
-X-Received: by 2002:ac8:3210:: with SMTP id x16mr16873595qta.192.1592241187538; 
- Mon, 15 Jun 2020 10:13:07 -0700 (PDT)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
- [174.95.14.109])
- by smtp.gmail.com with ESMTPSA id v59sm12356341qte.96.2020.06.15.10.13.06
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 15 Jun 2020 10:13:07 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-X-Apple-Notify-Thread: NO
-X-Universally-Unique-Identifier: C058AF0A-0D2C-41D1-B094-94BBF0D410FD
-In-Reply-To: <CAH2Hh72HmeMWJW_qoXLZqnSQTtA_E329tJ0CSnsAtAy7Mj7_=w@mail.gmail.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Date: Mon, 15 Jun 2020 13:13:05 -0400
-X-Apple-Message-Smime-Encrypt: NO
-Message-Id: <056029D3-7656-4461-A933-7298467C4D5A@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Fg/TWjriVKJn6JJRUJ/t8Rxa5GSn9Ws/edgIlUuBX04=;
+ b=k3PEWAMeS0cvBuK2S+8TATGQgB8i2Jm/5wwlnxGoE/n/5v4oY9pMhpe2jLpZJi5va8
+ arvCYIQmF2lxPt89tJnLXL4pZER0bmvtaxwlb/K26qmMrUyySBD78QT1b9UC9gWjEZ/4
+ 0SCZvUaWUg7hmRGkGWSL3IJYFMmZybZyHkOhXdfrEIVrhlIU3M8KXRAKuaKRh4GO7B1W
+ q80GuKl0Oyr+qxtfg54FrDK0urVXgXUJtiiAQc3A22tXA23Y77OMBkVRJ0UFIlN+glUD
+ VTYwa/GBlzNYnroM0pzav6S9KYEX+7vLkqW//Xat6hyH/0HzN6TCuaEyYvvf1d1Tb/ps
+ kPQQ==
+X-Gm-Message-State: AOAM530kG7hK6B+oGzHiLLHgVkFqqrC+LUzbyE6fq6Y3gSKxEuQNm53C
+ 2jG9mQ567rh21NNyIQpBW1mC/W+bmz9Gw1KqoU3Kog==
+X-Google-Smtp-Source: ABdhPJxlHC4KVyzqy6nWjRXah2Z0LDsFTn6YXVqjQibgyJBq4Cc/1IxGP80CvEJCSx0pCvOf8d8WhXfFUqKP/EABVO4=
+X-Received: by 2002:aa7:ca02:: with SMTP id y2mr24205480eds.106.1592242548676; 
+ Mon, 15 Jun 2020 10:35:48 -0700 (PDT)
+MIME-Version: 1.0
 References: <CAH2Hh72HmeMWJW_qoXLZqnSQTtA_E329tJ0CSnsAtAy7Mj7_=w@mail.gmail.com>
-To: Aaron Smith <aarsmith54@gmail.com>
-X-Mailer: iPhone Mail (17F80)
+ <056029D3-7656-4461-A933-7298467C4D5A@gmail.com>
+In-Reply-To: <056029D3-7656-4461-A933-7298467C4D5A@gmail.com>
+Date: Mon, 15 Jun 2020 11:35:37 -0600
+Message-ID: <CAH2Hh70z2hCajHOLWk=R24ZhqLTR_KuR=fKaY9q=zebG8Y4CQQ@mail.gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: Ettus Mail List <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] Precise Time Synchronization In B200/N210
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -69,9 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6039376950556143742=="
+From: Aaron Smith via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Aaron Smith <aarsmith54@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0040252484035386926=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,182 +76,268 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============0040252484035386926==
+Content-Type: multipart/alternative; boundary="000000000000829a9205a822db88"
 
---===============6039376950556143742==
-Content-Type: multipart/alternative; boundary=Apple-Mail-1214C3B9-6123-42CE-B4C2-646135D571E9
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-1214C3B9-6123-42CE-B4C2-646135D571E9
-Content-Type: text/plain;
-	charset=utf-8
+--000000000000829a9205a822db88
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I think I need more information on what you=E2=80=99re doing.=20
+Looking back over the thread, I thought there might be some confusion about
+what I am trying to accomplish.
 
-Are you starting a timed transmit sequence on both B200 and seeing a timing d=
-ifference between the two?=20
+My goal is to get a radio (and only 1 radio) to transmit at a specified
+time. I don't care what the front end transmit delay of the radio is, I
+just want it to be consistent so I can calibrate it out of my system. To
+test the stability of the transmit time, I am using 1 radio connected to an
+external 1  PPS and 10 MHz reference. I have the radio directly connected
+to a receiver through a coax cable. The radio and the receiver share the 1
+PPS and 10 MHz reference, and the receiver is well calibrated, so it
+timestamps data very precisely.
 
-More details on your exact setup will help us all help you.=20
+If I align the radio's clock to align to an external 1 PPS, and then use a
+timed transmission to transmit on the 1 PPS, the time of arrival of my
+signal at the receiver, relative to the PPS, should be: TOA =3D front end t=
+x
+delay + RF cable delay between the receiver and USRP. At first I tested a
+B200 and noticed, after many transmissions, the TOA =3D front end tx delay =
++
+RF cable delay between the receiver and USRP +
+Uniform(0,1/master_clock_rate). This morning I observed the same random
+delay with the B210. I have tested an X310 and N210 and they did not have
+the random delay. They gave a very reliable TOA.
 
-Sent from my iPhone
+I would like to know ifthe B2x0 hardware is capable of what I'm trying to
+do, or do I need to buy a more expensive radio?
 
+Thanks for your help.
+
+On Mon, Jun 15, 2020 at 11:13 AM Marcus D Leech <patchvonbraun@gmail.com>
+wrote:
+
+> I think I need more information on what you=E2=80=99re doing.
+>
+> Are you starting a timed transmit sequence on both B200 and seeing a
+> timing difference between the two?
+>
+> More details on your exact setup will help us all help you.
+>
+> Sent from my iPhone
+>
 > On Jun 15, 2020, at 1:09 PM, Aaron Smith <aarsmith54@gmail.com> wrote:
->=20
+>
 > =EF=BB=BF
-> I was able to test the B210 today and I confirmed that it also has a rando=
-m delay that is related to 1/master_clock_rate.
->=20
-> Marcus, I wonder if I misunderstood your email, because I thought it would=
- work.
->=20
-> I am only transmitting with one channel. Do I have to utilize the other ch=
-annel in some way to resolve the random delay?
->=20
+> I was able to test the B210 today and I confirmed that it also has a
+> random delay that is related to 1/master_clock_rate.
+>
+> Marcus, I wonder if I misunderstood your email, because I thought it woul=
+d
+> work.
+>
+> I am only transmitting with one channel. Do I have to utilize the other
+> channel in some way to resolve the random delay?
+>
 > Thanks,
 > Aaron
->=20
->> On Fri, Jun 12, 2020 at 8:19 PM Marcus D. Leech via USRP-users <usrp-user=
-s@lists.ettus.com> wrote:
+>
+> On Fri, Jun 12, 2020 at 8:19 PM Marcus D. Leech via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
 >> On 06/12/2020 10:07 PM, Aaron Smith via USRP-users wrote:
->>> Robin - with your insight I see that other users have addressed this on t=
-his mailing list. In this thread:
->>> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-June/05=
-7080.html the user reports that the B210 does not have this problem, even th=
-ough it uses the same AD9361. Perhaps I will spend the money to test that ra=
-dio because it's clear the B200 will not work for me.
->> Indeed, the B210 uses the AD9361, which has TWO channels that are inheren=
-tly mutually-coherent, since they're fed with the same LO, so
+>>
+>> Robin - with your insight I see that other users have addressed this on
+>> this mailing list. In this thread:
+>>
+>> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-June/05=
+7080.html
+>> the user reports that the B210 does not have this problem, even though i=
+t
+>> uses the same AD9361. Perhaps I will spend the money to test that radio
+>> because it's clear the B200 will not work for me.
+>>
+>> Indeed, the B210 uses the AD9361, which has TWO channels that are
+>> inherently mutually-coherent, since they're fed with the same LO, so
 >>   there's very little opportunity for any phase ambiguity.
->>=20
->> Where you run into trouble is trying to maintain phase coherence, and pre=
-dictable-and-hopefully-zero mutual phase offset among multiple
->>   devices.  It's NOT just a matter of feeding them a common reference clo=
-ck and 1PPS.  Things are much more nuanced than that.
->>=20
+>>
+>> Where you run into trouble is trying to maintain phase coherence, and
+>> predictable-and-hopefully-zero mutual phase offset among multiple
+>>   devices.  It's NOT just a matter of feeding them a common reference
+>> clock and 1PPS.  Things are much more nuanced than that.
+>>
 >> This Knowledge-Base article goes into some of this:
->>=20
->> https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Device=
-s
->>=20
->> I had posted some pointers about RF synthesizers on this list a few days a=
-go, due to a similar query.  If you've never really encountered
+>>
+>> https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devic=
+es
+>>
+>> I had posted some pointers about RF synthesizers on this list a few days
+>> ago, due to a similar query.  If you've never really encountered
 >>   RF synthesis before, it's illuminating to study the matter.
->>=20
->>=20
->>>=20
->>> On Fri, Jun 12, 2020 at 7:35 PM Robin Coxe <coxe@quanttux.com> wrote:
->>>> The phase ambiguity is introduced by the divide-by-2 in the PLLs of the=
- Analog Devices AD9361 RF integrated transceiver on the B200.   These divide=
-rs randomly introduce a 0-degree or 180-degree phase shift when they come up=
-. =20
->>>>=20
->>>>=20
->>>>=20
->>>> On Fri, Jun 12, 2020 at 4:08 PM Aaron Smith via USRP-users <usrp-users@=
-lists.ettus.com> wrote:
->>>>> All of the devices share a 10 MHz reference that is generated from the=
- same source as the 1 PPS.
->>>>>=20
->>>>> When you say it's a phase ambiguity, are you suggesting that it's a pr=
-oblem with the 10Hz reference or something inherent in the radio hardware th=
-at I will have to deal with? Or is there a software fix?
->>>>>=20
->>>>> On Fri, Jun 12, 2020, 4:05 PM Nick Foster <bistromath@gmail.com> wrote=
+>>
+>>
+>>
+>> On Fri, Jun 12, 2020 at 7:35 PM Robin Coxe <coxe@quanttux.com> wrote:
+>>
+>>> The phase ambiguity is introduced by the divide-by-2 in the PLLs of the
+>>> Analog Devices AD9361 RF integrated transceiver on the B200.   These
+>>> dividers randomly introduce a 0-degree or 180-degree phase shift when t=
+hey
+>>> come up.
+>>>
+>>>
+>>>
+>>> On Fri, Jun 12, 2020 at 4:08 PM Aaron Smith via USRP-users <
+>>> usrp-users@lists.ettus.com> wrote:
+>>>
+>>>> All of the devices share a 10 MHz reference that is generated from the
+>>>> same source as the 1 PPS.
+>>>>
+>>>> When you say it's a phase ambiguity, are you suggesting that it's a
+>>>> problem with the 10Hz reference or something inherent in the radio har=
+dware
+>>>> that I will have to deal with? Or is there a software fix?
+>>>>
+>>>> On Fri, Jun 12, 2020, 4:05 PM Nick Foster <bistromath@gmail.com> wrote=
 :
->>>>>> The change in time of arrival with B200s is due to phase ambiguity. D=
-o you have a 10MHz reference shared between your devices as well?
->>>>>>=20
->>>>>> Don't know why N210 has that off-by-one timestamp. I'm guessing that t=
-here's an extra flop in the logic for the PPS timing chain somewhere -- as i=
-n, the clock starts ticking on the first tick after PPS comes in. I've made t=
-hat error about half a million times, myself.
->>>>>>=20
->>>>>> Nick
->>>>>>=20
->>>>>> On Fri, Jun 12, 2020 at 2:23 PM Aaron Smith via USRP-users <usrp-user=
-s@lists.ettus.com> wrote:
->>>>>>> Hello all,
->>>>>>>=20
->>>>>>> I have two separate, but related, questions.
->>>>>>>=20
->>>>>>> I am trying to trigger an RF transmission every second, and I am rec=
-eiving the transmission with a receiver that has very precise time stamps. I=
- am driving the receiver with the same 1 PPS source as the B200 and N210. Fo=
-r my simple test, I want the time of arrival at the receiver to register at 1=
- PPS + propagation delay of the RF coax cable + the USRP front end delay. In=
- all cases I am running UHD 3.15.LTS
->>>>>>>=20
->>>>>>> With the N210 I can achieve this. However when I call
->>>>>>> usrp->set_time_next_pps(uhd::time_spec_t(0.0));
->>>>>>> and poll the last pps time, I see that it is consistently 20 ns befo=
-re a second. That is, the pps shows at:
->>>>>>>=20
->>>>>>> 999999980 ns
->>>>>>> 1999999980 ns
->>>>>>> 2999999980 ns
->>>>>>>=20
->>>>>>> If I call usrp->set_time_next_pps(uhd::time_spec_t(20.0e-9)); then t=
-he 1 PPS registers on the second. It's almost like the clock is biased by 20=
- ns. I have observed this across 3 different N210s. What could be causing th=
-is?
->>>>>>>=20
->>>>>>> With the B200, every time I destroy and recreate the uhd::usrp::mult=
-i_usrp there is a random change in the time of arrival at the receiver that a=
-ppears to be uniformly distributed between 0 and 1/master_clock_rate. Is thi=
-s expected? The Ettus website says "All functions that directly interact wit=
-h the AD93xx (tuning, gain change, etc) are subject to the scheduling of the=
- AD93xx. The determinism of these operations are not guaranteed. "
->>>>>>>=20
->>>>>>> Is this what I am experiencing?=20
->>>>>>>=20
->>>>>>> Thank you for the help!
->>>>>>>=20
->>>>>>> _______________________________________________
->>>>>>> USRP-users mailing list
->>>>>>> USRP-users@lists.ettus.com
->>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>
+>>>>> The change in time of arrival with B200s is due to phase ambiguity. D=
+o
+>>>>> you have a 10MHz reference shared between your devices as well?
+>>>>>
+>>>>> Don't know why N210 has that off-by-one timestamp. I'm guessing that
+>>>>> there's an extra flop in the logic for the PPS timing chain somewhere=
+ -- as
+>>>>> in, the clock starts ticking on the first tick after PPS comes in. I'=
+ve
+>>>>> made that error about half a million times, myself.
+>>>>>
+>>>>> Nick
+>>>>>
+>>>>> On Fri, Jun 12, 2020 at 2:23 PM Aaron Smith via USRP-users <
+>>>>> usrp-users@lists.ettus.com> wrote:
+>>>>>
+>>>>>> Hello all,
+>>>>>>
+>>>>>> I have two separate, but related, questions.
+>>>>>>
+>>>>>> I am trying to trigger an RF transmission every second, and I am
+>>>>>> receiving the transmission with a receiver that has very precise tim=
+e
+>>>>>> stamps. I am driving the receiver with the same 1 PPS source as the =
+B200
+>>>>>> and N210. For my simple test, I want the time of arrival at the rece=
+iver to
+>>>>>> register at 1 PPS + propagation delay of the RF coax cable + the USR=
+P front
+>>>>>> end delay. In all cases I am running UHD 3.15.LTS
+>>>>>>
+>>>>>> With the N210 I can achieve this. However when I call
+>>>>>>
+>>>>>> usrp->set_time_next_pps(uhd::time_spec_t(0.0));
+>>>>>>
+>>>>>> and poll the last pps time, I see that it is consistently 20 ns
+>>>>>> before a second. That is, the pps shows at:
+>>>>>>
+>>>>>> 999999980 ns
+>>>>>> 1999999980 ns
+>>>>>> 2999999980 ns
+>>>>>>
+>>>>>> If I call usrp->set_time_next_pps(uhd::time_spec_t(20.0e-9)); then
+>>>>>> the 1 PPS registers on the second. It's almost like the clock is bia=
+sed by
+>>>>>> 20 ns. I have observed this across 3 different N210s. What could be =
+causing
+>>>>>> this?
+>>>>>>
+>>>>>> With the B200, every time I destroy and recreate the
+>>>>>> uhd::usrp::multi_usrp there is a random change in the time of arriva=
+l at
+>>>>>> the receiver that appears to be uniformly distributed between 0 and
+>>>>>> 1/master_clock_rate. Is this expected? The Ettus website says "All
+>>>>>> functions that directly interact with the AD93xx (tuning, gain chang=
+e, etc)
+>>>>>> are subject to the scheduling of the AD93xx. The determinism of thes=
+e
+>>>>>> operations are not guaranteed. "
+>>>>>>
+>>>>>> Is this what I am experiencing?
+>>>>>>
+>>>>>> Thank you for the help!
+>>>>>>
+>>>>>> _______________________________________________
+>>>>>> USRP-users mailing list
+>>>>>> USRP-users@lists.ettus.com
+>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>
 >>>>> _______________________________________________
->>>>> USRP-users mailing list
->>>>> USRP-users@lists.ettus.com
->>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>=20
->>>=20
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>=20
+>>>> USRP-users mailing list
+>>>> USRP-users@lists.ettus.com
+>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>
+>>>
+>>
+>> _______________________________________________
+>> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/=
+mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>>
 >> _______________________________________________
 >> USRP-users mailing list
 >> USRP-users@lists.ettus.com
 >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
 
---Apple-Mail-1214C3B9-6123-42CE-B4C2-646135D571E9
-Content-Type: text/html;
-	charset=utf-8
+--000000000000829a9205a822db88
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">I think I need more information on what you=
-=E2=80=99re doing.&nbsp;<div><br></div><div>Are you starting a timed transmi=
-t sequence on both B200 and seeing a timing difference between the two?&nbsp=
-;</div><div><br></div><div>More details on your exact setup will help us all=
- help you.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D=
-"ltr"><br><blockquote type=3D"cite">On Jun 15, 2020, at 1:09 PM, Aaron Smith=
- &lt;aarsmith54@gmail.com&gt; wrote:<br><br></blockquote></div><blockquote t=
-ype=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>I was able to t=
-est the B210 today and I confirmed that it also has a random delay that is r=
-elated to 1/master_clock_rate.</div><div><br></div><div>Marcus, I wonder if I=
- misunderstood your email, because I thought it would work.</div><div><br></=
-div><div>I am only transmitting with one channel. Do I have to utilize the o=
-ther channel in some way to resolve the random delay?<br></div><div><br></di=
-v><div>Thanks,</div><div>Aaron<br></div></div><br><div class=3D"gmail_quote"=
-><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 12, 2020 at 8:19 PM Marcu=
-s D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">=
-usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex">
+<div dir=3D"ltr"><div>Looking back over the thread, I thought there might b=
+e some confusion about what I am trying to accomplish.</div><div><br></div>=
+<div>My goal is to get a radio (and only 1 radio) to transmit at a specifie=
+d time. I don&#39;t care what the front end transmit delay of the radio is,=
+ I just want it to be consistent so I can calibrate it out of my system. To=
+ test the stability of the transmit time, I am using 1 radio connected to a=
+n external 1=C2=A0 PPS and 10 MHz reference. I have the radio directly conn=
+ected to a receiver through a coax cable. The radio and the receiver share =
+the 1 PPS and 10 MHz reference, and the receiver is well calibrated, so it =
+timestamps data very precisely.<br></div><div><br></div><div>If I align the=
+ radio&#39;s clock to align to an external 1 PPS, and then use a timed tran=
+smission to transmit on the 1 PPS, the time of arrival of my signal at the =
+receiver, relative to the PPS, should be: TOA =3D front end tx delay + RF c=
+able delay between the receiver and USRP. At first I tested a B200 and noti=
+ced, after many transmissions, the TOA =3D=20
+ front end tx delay + RF cable delay between the receiver and USRP
+
++ Uniform(0,1/master_clock_rate). This morning I observed the same random d=
+elay with the B210. I have tested an X310 and N210 and they did not have th=
+e random delay. They gave a very reliable TOA.</div><div><br></div><div>I w=
+ould like to know ifthe B2x0 hardware is capable of what I&#39;m trying to =
+do, or do I need to buy a more expensive radio?</div><div><br></div><div>Th=
+anks for your help.<br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Mon, Jun 15, 2020 at 11:13 AM Marcus D Lee=
+ch &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvo=
+nbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex"><div dir=3D"auto">I think I need more information on what y=
+ou=E2=80=99re doing.=C2=A0<div><br></div><div>Are you starting a timed tran=
+smit sequence on both B200 and seeing a timing difference between the two?=
+=C2=A0</div><div><br></div><div>More details on your exact setup will help =
+us all help you.=C2=A0<br><br><div dir=3D"ltr">Sent from my iPhone</div><di=
+v dir=3D"ltr"><br><blockquote type=3D"cite">On Jun 15, 2020, at 1:09 PM, Aa=
+ron Smith &lt;<a href=3D"mailto:aarsmith54@gmail.com" target=3D"_blank">aar=
+smith54@gmail.com</a>&gt; wrote:<br><br></blockquote></div><blockquote type=
+=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>I was able to tes=
+t the B210 today and I confirmed that it also has a random delay that is re=
+lated to 1/master_clock_rate.</div><div><br></div><div>Marcus, I wonder if =
+I misunderstood your email, because I thought it would work.</div><div><br>=
+</div><div>I am only transmitting with one channel. Do I have to utilize th=
+e other channel in some way to resolve the random delay?<br></div><div><br>=
+</div><div>Thanks,</div><div>Aaron<br></div></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 12, 2020 at 8:19 PM=
+ Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettu=
+s.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex">
  =20
    =20
  =20
@@ -272,55 +349,57 @@ l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
       <div dir=3D"ltr">
         <div dir=3D"ltr">Robin - with your insight I see that other users
           have addressed this on this mailing list. In this thread:
-          <div><a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.=
-ettus.com/2018-June/057080.html" target=3D"_blank">http://lists.ettus.com/pi=
-permail/usrp-users_lists.ettus.com/2018-June/057080.html</a>
+          <div><a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists=
+.ettus.com/2018-June/057080.html" target=3D"_blank">http://lists.ettus.com/=
+pipermail/usrp-users_lists.ettus.com/2018-June/057080.html</a>
             the user reports that the B210 does not have this problem,
             even though it uses the same AD9361. Perhaps I will spend
-            the money to test that radio because it's clear the B200
+            the money to test that radio because it&#39;s clear the B200
             will not work for me.</div>
         </div>
       </div>
     </blockquote>
     Indeed, the B210 uses the AD9361, which has TWO channels that are
-    inherently mutually-coherent, since they're fed with the same LO, so<br>=
-
-    &nbsp; there's very little opportunity for any phase ambiguity.<br>
+    inherently mutually-coherent, since they&#39;re fed with the same LO, s=
+o<br>
+    =C2=A0 there&#39;s very little opportunity for any phase ambiguity.<br>
     <br>
     Where you run into trouble is trying to maintain phase coherence,
     and predictable-and-hopefully-zero mutual phase offset among
     multiple<br>
-    &nbsp; devices.&nbsp; It's NOT just a matter of feeding them a common
-    reference clock and 1PPS.&nbsp; Things are much more nuanced than that.<=
-br>
+    =C2=A0 devices.=C2=A0 It&#39;s NOT just a matter of feeding them a comm=
+on
+    reference clock and 1PPS.=C2=A0 Things are much more nuanced than that.=
+<br>
     <br>
     This Knowledge-Base article goes into some of this:<br>
     <br>
-<a href=3D"https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USR=
-P_Devices" target=3D"_blank">https://kb.ettus.com/Synchronization_and_MIMO_C=
-apability_with_USRP_Devices</a><br>
+<a href=3D"https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_US=
+RP_Devices" target=3D"_blank">https://kb.ettus.com/Synchronization_and_MIMO=
+_Capability_with_USRP_Devices</a><br>
     <br>
     I had posted some pointers about RF synthesizers on this list a few
-    days ago, due to a similar query.&nbsp; If you've never really
+    days ago, due to a similar query.=C2=A0 If you&#39;ve never really
     encountered<br>
-    &nbsp; RF synthesis before, it's illuminating to study the matter.<br>
+    =C2=A0 RF synthesis before, it&#39;s illuminating to study the matter.<=
+br>
     <br>
     <br>
     <blockquote type=3D"cite"><br>
       <div class=3D"gmail_quote">
         <div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 12, 2020 at 7:35
-          PM Robin Coxe &lt;<a href=3D"mailto:coxe@quanttux.com" target=3D"_=
-blank">coxe@quanttux.com</a>&gt;
+          PM Robin Coxe &lt;<a href=3D"mailto:coxe@quanttux.com" target=3D"=
+_blank">coxe@quanttux.com</a>&gt;
           wrote:<br>
         </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left:1px solid rgb(204,204,204);padding-left:1ex">
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
           <div dir=3D"ltr">The phase ambiguity is introduced by the
             divide-by-2 in the PLLs of the Analog Devices AD9361 RF
-            integrated transceiver&nbsp;on the B200.&nbsp; &nbsp;These divid=
-ers
+            integrated transceiver=C2=A0on the B200.=C2=A0 =C2=A0These divi=
+ders
             randomly introduce a 0-degree or 180-degree phase shift when
-            they come up.&nbsp;&nbsp;
+            they come up.=C2=A0=C2=A0
             <div>
               <div><br>
               </div>
@@ -331,19 +410,21 @@ ers
           <br>
           <div class=3D"gmail_quote">
             <div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 12, 2020 at
-              4:08 PM Aaron Smith via USRP-users &lt;<a href=3D"mailto:usrp-=
-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;
+              4:08 PM Aaron Smith via USRP-users &lt;<a href=3D"mailto:usrp=
+-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt=
+;
               wrote:<br>
             </div>
-            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
               <div dir=3D"auto">All of the devices share a 10 MHz
                 reference that is generated from the same source as the
                 1 PPS.
                 <div dir=3D"auto"><br>
                 </div>
-                <div dir=3D"auto">When you say it's a phase ambiguity, are
-                  you suggesting that it's a problem with the 10Hz
+                <div dir=3D"auto">When you say it&#39;s a phase ambiguity, =
+are
+                  you suggesting that it&#39;s a problem with the 10Hz
                   reference or something inherent in the radio hardware
                   that I will have to deal with? Or is there a software
                   fix?</div>
@@ -351,23 +432,24 @@ users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;
               <br>
               <div class=3D"gmail_quote">
                 <div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 12, 2020,
-                  4:05 PM Nick Foster &lt;<a href=3D"mailto:bistromath@gmail=
-.com" rel=3D"noreferrer" target=3D"_blank">bistromath@gmail.com</a>&gt; wrot=
-e:<br>
+                  4:05 PM Nick Foster &lt;<a href=3D"mailto:bistromath@gmai=
+l.com" rel=3D"noreferrer" target=3D"_blank">bistromath@gmail.com</a>&gt; wr=
+ote:<br>
                 </div>
-                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
                   <div dir=3D"ltr">
                     <div>The change in time of arrival with B200s is due
                       to phase ambiguity. Do you have a 10MHz reference
                       shared between your devices as well?</div>
                     <div><br>
                     </div>
-                    <div>Don't know why N210 has that off-by-one
-                      timestamp. I'm guessing that there's an extra flop
+                    <div>Don&#39;t know why N210 has that off-by-one
+                      timestamp. I&#39;m guessing that there&#39;s an extra=
+ flop
                       in the logic for the PPS timing chain somewhere --
                       as in, the clock starts ticking on the first tick
-                      after PPS comes in. I've made that error about
+                      after PPS comes in. I&#39;ve made that error about
                       half a million times, myself.<br>
                     </div>
                     <div><br>
@@ -378,13 +460,13 @@ x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
                   <br>
                   <div class=3D"gmail_quote">
                     <div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 12,
-                      2020 at 2:23 PM Aaron Smith via USRP-users &lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com" rel=3D"noreferrer noreferrer" target=3D=
-"_blank">usrp-users@lists.ettus.com</a>&gt;
+                      2020 at 2:23 PM Aaron Smith via USRP-users &lt;<a hre=
+f=3D"mailto:usrp-users@lists.ettus.com" rel=3D"noreferrer noreferrer" targe=
+t=3D"_blank">usrp-users@lists.ettus.com</a>&gt;
                       wrote:<br>
                     </div>
-                    <blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                    <blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
                       <div dir=3D"ltr">
                         <div>Hello all,</div>
                         <div><br>
@@ -408,8 +490,8 @@ x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
                         </div>
                         <div>With the N210 I can achieve this. However
                           when I call
-                          <pre>usrp-&gt;set_time_next_pps(uhd::time_spec_t(0=
-.0));</pre>
+                          <pre>usrp-&gt;set_time_next_pps(uhd::time_spec_t(=
+0.0));</pre>
                         </div>
                         <div>and poll the last pps time, I see that it
                           is consistently 20 ns before a second. That
@@ -425,9 +507,9 @@ x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
                         <div><br>
                         </div>
                         <div>If I call
-                          usrp-&gt;set_time_next_pps(uhd::time_spec_t(20.0e-=
-9));
-                          then the 1 PPS registers on the second. It's
+                          usrp-&gt;set_time_next_pps(uhd::time_spec_t(20.0e=
+-9));
+                          then the 1 PPS registers on the second. It&#39;s
                           almost like the clock is biased by 20 ns. I
                           have observed this across 3 different N210s.
                           What could be causing this?</div>
@@ -439,11 +521,12 @@ x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
                           receiver that appears to be uniformly
                           distributed between 0 and 1/master_clock_rate.
                           Is this expected? The Ettus website says
-                          "All functions that directly interact with the
+                          &quot;All functions that directly interact with t=
+he
                           AD93xx (tuning, gain change, etc) are subject
                           to the scheduling of the AD93xx. The
                           determinism of these operations are not
-                          guaranteed. "<br>
+                          guaranteed. &quot;<br>
                         </div>
                         <div><br>
                         </div>
@@ -458,23 +541,23 @@ x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
                       </div>
                       _______________________________________________<br>
                       USRP-users mailing list<br>
-                      <a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"n=
-oreferrer noreferrer" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
-                      <a href=3D"http://lists.ettus.com/mailman/listinfo/usr=
-p-users_lists.ettus.com" rel=3D"noreferrer noreferrer noreferrer" target=3D"=
-_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</=
-a><br>
+                      <a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"=
+noreferrer noreferrer" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+                      <a href=3D"http://lists.ettus.com/mailman/listinfo/us=
+rp-users_lists.ettus.com" rel=3D"noreferrer noreferrer noreferrer" target=
+=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
+com</a><br>
                     </blockquote>
                   </div>
                 </blockquote>
               </div>
               _______________________________________________<br>
               USRP-users mailing list<br>
-              <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank=
-">USRP-users@lists.ettus.com</a><br>
-              <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_=
-lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com=
-/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+              <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blan=
+k">USRP-users@lists.ettus.com</a><br>
+              <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users=
+_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.c=
+om/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
             </blockquote>
           </div>
         </blockquote>
@@ -484,11 +567,11 @@ lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com=
       <br>
       <pre>_______________________________________________
 USRP-users mailing list
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@l=
-ists.ettus.com</a>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_list=
-s.ettus.com</a>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a>
 </pre>
     </blockquote>
     <br>
@@ -496,18 +579,18 @@ s.ettus.com</a>
 
 _______________________________________________<br>
 USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@l=
-ists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/listi=
-nfo/usrp-users_lists.ettus.com</a><br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
-</div></blockquote></div></body></html>=
+</div></blockquote></div></div></blockquote></div>
 
---Apple-Mail-1214C3B9-6123-42CE-B4C2-646135D571E9--
+--000000000000829a9205a822db88--
 
 
---===============6039376950556143742==
+--===============0040252484035386926==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -518,5 +601,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6039376950556143742==--
+--===============0040252484035386926==--
 
