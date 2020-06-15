@@ -2,59 +2,31 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 225961F8473
-	for <lists+usrp-users@lfdr.de>; Sat, 13 Jun 2020 19:35:54 +0200 (CEST)
-Received: from [::1] (port=39642 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D021F8C12
+	for <lists+usrp-users@lfdr.de>; Mon, 15 Jun 2020 03:30:00 +0200 (CEST)
+Received: from [::1] (port=33836 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jkA4N-0005qr-Gp; Sat, 13 Jun 2020 13:35:51 -0400
-Received: from mail-qt1-f169.google.com ([209.85.160.169]:40033)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jkA4J-0005b2-Ql
- for USRP-users@lists.ettus.com; Sat, 13 Jun 2020 13:35:47 -0400
-Received: by mail-qt1-f169.google.com with SMTP id i16so9581323qtr.7
- for <USRP-users@lists.ettus.com>; Sat, 13 Jun 2020 10:35:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=BK92xZQY2eE/Jd9clImEVlBjjgL982PP0qnEjvSvnCA=;
- b=FsW55ZvaO/7eu46AcpFQ9Wp7uYmNbUDPYXfdj7MJPl/vegYpVNX7up7mJwwFFx93KQ
- gHhli0hqXNPJc2uXhilaOx3kFNrByqF65PZPtXd0FSldbCYsPH27Cv5qw2ZUHxwGmurI
- Tsva7f3UpJ0j6jy/oNrqO39tHDVy0TWgjKBUN1ZBgysJYn6QjZ/gtcfcB5dpF634nLTY
- ka+a7eSf/Xkj+A0RH7VBUV/fhxwZv8tApEmHwitoJifaSuLKZJmCDfhfGxpGXBuncbPl
- TUff/7u6U97FZqodi/ogMWEPxQR4BPi2oz+IeyMrFyRXDUuYWRik498CexefZr9A0GzE
- aP7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=BK92xZQY2eE/Jd9clImEVlBjjgL982PP0qnEjvSvnCA=;
- b=hTA0TVP//YdglOQSDhuUJFlSLamurTuBsq8klkBpXNFHj85iJa9GcYi5t3my5XSF8N
- hWsw4uBFI+8rO1qobOfctS26buaLgcbYAW0nt4PrEFhs7Dnrigg8+6sWFZ1UYhwEk2tp
- N0zewGYnp7oMDh7pTfp21SPsjfn+OqqNmzN4b5lh29qHTfzqLE4+N9yZdCsbIzHIgNVv
- drdMPRoyiLpWs0LeuqhDyxh4+0bvP01O8ImLAQ4cEiiUk0XFz0tRwf/0JXskQerbqEgJ
- 1RWEOfsEmoLuqNn+8xdRa9nCWhAK3loMQslLuAziUe/LQPeuOjvz1efl7Tf6oEgx90jD
- jpPw==
-X-Gm-Message-State: AOAM533GQLlcNAQEgWN+M/HggbXMxpulDG3GUzqINiqV3lgFA1QYKbBp
- 0rDrD+X6Osgz1ZOM3D6gstE=
-X-Google-Smtp-Source: ABdhPJxDDTTa/B/AHNYNKfsvRMKSABlXLXqYiGphd16xQgYbhCYpIYk1wcFb3pA49wrNdy6pxDMDyw==
-X-Received: by 2002:ac8:6edb:: with SMTP id f27mr8297757qtv.325.1592069707304; 
- Sat, 13 Jun 2020 10:35:07 -0700 (PDT)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
- [174.95.14.109])
- by smtp.gmail.com with ESMTPSA id z79sm7109510qkb.32.2020.06.13.10.35.06
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 13 Jun 2020 10:35:06 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Sat, 13 Jun 2020 13:35:06 -0400
-Message-Id: <F4B7797D-3893-431A-BAB6-9F7167A20F9B@gmail.com>
-References: <DM5PR22MB165974FB99B3462BE24BE2B2C89E0@DM5PR22MB1659.namprd22.prod.outlook.com>
-Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-In-Reply-To: <DM5PR22MB165974FB99B3462BE24BE2B2C89E0@DM5PR22MB1659.namprd22.prod.outlook.com>
-To: Benjamin R Nold <bnold@purdue.edu>
-X-Mailer: iPhone Mail (17F80)
-Subject: Re: [USRP-users] USB 3.0 to Optical Adapter
+	id 1jkdwi-0004dz-Ho; Sun, 14 Jun 2020 21:29:56 -0400
+Received: from mxsz.tct.tcl.com ([14.18.189.9]:13775 helo=mailsz.tct.tcl.com)
+ by mm2.emwd.com with esmtps (TLS1) tls TLS_RSA_WITH_AES_128_CBC_SHA
+ (Exim 4.93) (envelope-from <tian.li@tcl.com>) id 1jkdwd-0004Zy-JT
+ for usrp-users@lists.ettus.com; Sun, 14 Jun 2020 21:29:52 -0400
+Received: from CNSZEXMB01.TCT.TCL.com ([10.129.72.157]) by
+ CNSZEXCH01.TCT.TCL.com ([10.129.72.155]) with mapi id 14.03.0487.000; Mon, 15
+ Jun 2020 09:28:59 +0800
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Help: Submissions to USRP-user mailing list
+Thread-Index: AdZCs+23a10ztZOTTguO2cC6cAmtRA==
+Date: Mon, 15 Jun 2020 01:29:01 +0000
+Message-ID: <B7FF765BD755A047B8932CE984AFDC4627E2199A@CNSZEXMB01>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.129.145.75]
+MIME-Version: 1.0
+Subject: [USRP-users] Help: Submissions to USRP-user mailing list
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +38,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4402368522340210360=="
+From: "Tian, LI\(R&D TECH&INNO 5G LAB \(CN\)-SZ-TCT\) via USRP-users"
+ <usrp-users@lists.ettus.com>
+Reply-To: "Tian, LI\(R&D TECH&INNO 5G LAB \(CN\)-SZ-TCT\)" <tian.li@tcl.com>
+Content-Type: multipart/mixed; boundary="===============3273233024679093685=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,129 +55,156 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============3273233024679093685==
+Content-Language: zh-CN
+Content-Type: multipart/alternative;
+	boundary="_000_B7FF765BD755A047B8932CE984AFDC4627E2199ACNSZEXMB01_"
 
---===============4402368522340210360==
-Content-Type: multipart/alternative; boundary=Apple-Mail-EDF8CBA2-343C-4971-B5CF-A9E1D6B4F4B6
-Content-Transfer-Encoding: 7bit
+--_000_B7FF765BD755A047B8932CE984AFDC4627E2199ACNSZEXMB01_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+RGVhciwNCg0KQSBmZXcgZGF5cyBhZ28sIEkgc2VudCBhIG1lc3NhZ2UgdG8gYSBVU1JQIHJlbGF0
+ZWQgZm9ydW0oaS5lLiBodHRwOi8vZXR0dXMuODA5OTcueDYubmFiYmxlLmNvbS8pIGJ5IG15IEUt
+bWFpbC4gTm93LCBJIHdhbnQgdG8gcmVwbHkgdGhlIG1lc3NhZ2UgZnJvbSBvdGhlcnMsIGhvd2V2
+ZXIsIHdoZXRoZXIgSSB0cnkgdG8gcmVwbHkgYnkgRS1tYWlsIG9yIHJlcGx5IGluIHRoZSBmb3J1
+bSBkaXJlY3RseSwgSSBmYWlsIHRvIHJlcGx5LiBNYXkgYmUgSSBoYXZlIHRvIHN1YnNjcmliZSB0
+byB0aGUgbWFpbGluZyBsaXN0OiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+PyBJZiB5ZXMsIHBsZWFzZSBhY2NlcHQgbXkgcmVxdWVz
+dC4gSSB3aWxsIHZlcnkgYXBwcmVjaWF0ZSBpdCBpZiB5b3UgY2FuIGhlbHAgbWUuDQoNCi0tDQpC
+ZXN0IFJlZ2FyZHMsDQpUaWFuIExpDQoNClRoaXMgZS1tYWlsIChpbmNsdWRpbmcgYW55IGF0dGFj
+aG1lbnRzKSBpcyBjb25maWRlbnRpYWwgdG8gdGhlIGludGVuZGVkIGFkZHJlc3NlZSwgbWF5IGJl
+IHN1YmplY3QgdG8gY29weXJpZ2h0LCBhbmQgbWF5IGFsc28gYmUgcHJpdmlsZWdlZC4gSWYgeW91
+IGFyZSBub3QgdGhlIGludGVuZGVkIGFkZHJlc3NlZSwgcGxlYXNlIGRvIG5vdCByZWFkLCBwcmlu
+dCwgcmUtdHJhbnNtaXQsIGNvcHksIHN0b3JlLCBhbHRlciBvciBvdGhlcndpc2UgZGlzY2xvc2Ug
+aXQgb3IgYW55IG9mIGl0cyBhdHRhY2htZW50cyB0byBhbnlvbmU7IG5vciBzaG91bGQgeW91IGFj
+dCBpbiByZWxpYW5jZSBvbiBpdCBvciBhbnkgb2YgaXRzIGF0dGFjaG1lbnRzLiBJbnN0ZWFkLCBw
+bGVhc2Ugbm90aWZ5IHRoZSBlcnJvciB0byB0aGUgc2VuZGVyIGJ5IGUtbWFpbCBhbmQgaW1tZWRp
+YXRlbHkgcGVybWFuZW50bHkgZGVsZXRlIHRoaXMgZW1haWwgYW5kIGFueSBvZiBpdHMgYXR0YWNo
+bWVudHMgZnJvbSB5b3VyIHN5c3RlbS4g5pys55S15a2Q6YKu5Lu277yI5YyF5ous5Lu75L2V6ZmE
+5Lu277yJ5piv5o+Q5L6b57uZ5oyH5a6a5pS25Lu25Lq655qE5L+d5a+G5L+h5oGv77yM5Y+v6IO9
+5Zug5Y+X55+l6K+G5Lqn5p2D5L+d5oqk5LiU5bGe5LiT5pyJ5L+h5oGv6ICM5LiN5b6X5oqr6Zyy
+44CC5aaC5p6c5oKo5LiN5piv5oyH5a6a5pS25Lu25Lq677yM6K+35LiN6KaB6ZiF6K+744CB5omT
+5Y2w44CB5YaN5qyh5Lyg6L6T44CB5aSN5Yi244CB5a2Y5YKo44CB5L+u5pS55oiW6ICF5Lul5Y+m
+5aSW5pa55byP5o+t6Zyy5pys6YKu5Lu25oiW5YW25Lu75L2V6ZmE5Lu25YaF5a6557uZ5Lu75L2V
+5Lq677yb5oKo5Lmf5LiN5bqU6K+l5L+h6LWW5pys6YKu5Lu25oiW5YW25Lu75L2V6ZmE5Lu255qE
+5YaF5a656KGM5LqL44CC55u45Y+N77yM6K+36YCa6L+H55S15a2Q6YKu5Lu26YCa55+l5Y+R5Lu2
+5Lq66L+Z5LiA6ZSZ6K+v5bm25LiU56uL5Y2z5rC45LmF5Zyw5LuO5oKo55qE57O757uf5Lit5Yig
+6Zmk5pys55S15a2Q6YKu5Lu25Y+K5YW25Lu75L2V6ZmE5Lu244CCIEUtbWFpbHMgc2VudCB0byBh
+bmQgZnJvbSBUQ0wgbWF5IGJlIG1vbml0b3JlZCBhbmQgcmVhZCBmb3IgbGVnaXRpbWF0ZSBidXNp
+bmVzcyBwdXJwb3Nlcywgbm90YWJseSB0byBlbnN1cmUgY29tcGxpYW5jZSB3aXRoIHRoZSBsYXcg
+YW5kIHRoZSByZWd1bGF0b3J5IG9ibGlnYXRpb25zLiBFbWFpbHMgY2Fubm90IGJlIGd1YXJhbnRl
+ZWQgdG8gYmUgc2VjdXJlIG9yIGVycm9yLWZyZWUsIGFuZCB5b3Ugc2hvdWxkIHByb3RlY3QgeW91
+ciBzeXN0ZW1zLiBUQ0wgZG9lcyBub3QgYWNjZXB0IGFueSBsaWFiaWxpdHkgYXJpc2luZyBmcm9t
+IGludGVyY2VwdGlvbiwgZXJyb3IsIGxvc3Mgb3IgZGVzdHJ1Y3Rpb24gb2YgdGhpcyBlLW1haWws
+IG9yIGlmIGl0IGFycml2ZXMgbGF0ZSBvciBpbmNvbXBsZXRlIG9yIHdpdGggdmlydXNlcy4g5Ye6
+5LqO5ZCI5rOV55qE5ZWG5rOV55uu55qE77yM5bCk5YW25Li65LqG56Gu5L+d6YG15a6I55u45YWz
+5rOV5b6L5rOV6KeE55qE6KeE5a6a77yM5Y+R6Iez5oiW5Y+R6IeqVENM55qE55S15a2Q6YKu5Lu2
+5Y+v6IO96KKr55uR5o6n5ZKM6ZiF6K+744CCIOebuOWFs+eUteWtkOmCruS7tuS4jeiDveS/neiv
+geWFtuWuieWFqOaAp+aIluayoeaciemUmeivr++8jOaJgOS7peaCqOW6lOivpeS/neaKpOaCqOea
+hOezu+e7n+WuieWFqOOAglRDTOS4jeaJv+aLheeUseS6jumCruS7tuiiq+aLpuaIquOAgeWHuumU
+meOAgemBl+WkseaIluavgeWdj+OAgeaIluiAhemCruS7tuWIsOi+vuW7tuivr+OAgeS4jeWujOaV
+tOaIluiAheaQuuW4pueXheavkuiAjOS6p+eUn+eahOS7u+S9lei0o+S7u+OAgg0K
+
+--_000_B7FF765BD755A047B8932CE984AFDC4627E2199ACNSZEXMB01_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+U2ltU3VuOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
+b250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0
+O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUg
+MiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJNaWNyb3NvZnQgWWFI
+ZWkiOw0KCXBhbm9zZS0xOjIgMTEgNSAzIDIgMiA0IDIgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9u
+dC1mYW1pbHk6U2ltU3VuOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQt
+ZmFjZQ0KCXtmb250LWZhbWlseToiTWljcm9zb2Z0IFlhSGVpIjsNCglwYW5vc2UtMToyIDExIDUg
+MyAyIDIgNCAyIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxp
+Lk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206
+LjAwMDFwdDsNCgl0ZXh0LWFsaWduOmp1c3RpZnk7DQoJdGV4dC1qdXN0aWZ5OmludGVyLWlkZW9n
+cmFwaDsNCglmb250LXNpemU6MTAuNXB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
+cmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5
+Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0
+ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0K
+CWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWls
+U3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQtZmFtaWx5
+OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1
+bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7fQ0KLyogUGFnZSBEZWZpbml0aW9ucyAq
+Lw0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3
+Mi4wcHQgOTAuMHB0IDcyLjBwdCA5MC4wcHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldv
+cmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hh
+cGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlm
+XS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQi
+Pg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94
+bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJaSC1DTiIgbGluaz0iIzA1NjND
+MSIgdmxpbms9IiM5NTRGNzIiIHN0eWxlPSJ0ZXh0LWp1c3RpZnktdHJpbTpwdW5jdHVhdGlvbiI+
+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+bGFuZz0iRU4tVVMiPkRlYXIsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5BIGZldyBkYXlzIGFnbywgSSBz
+ZW50IGEgbWVzc2FnZSB0byBhIFVTUlAgcmVsYXRlZCBmb3J1bShpLmUuDQo8YSBocmVmPSJodHRw
+Oi8vZXR0dXMuODA5OTcueDYubmFiYmxlLmNvbS8iPmh0dHA6Ly9ldHR1cy44MDk5Ny54Ni5uYWJi
+bGUuY29tLzwvYT4pIGJ5IG15IEUtbWFpbC4gTm93LCBJIHdhbnQgdG8gcmVwbHkgdGhlIG1lc3Nh
+Z2UgZnJvbSBvdGhlcnMsIGhvd2V2ZXIsIHdoZXRoZXIgSSB0cnkgdG8gcmVwbHkgYnkgRS1tYWls
+IG9yIHJlcGx5IGluIHRoZSBmb3J1bSBkaXJlY3RseSwgSSBmYWlsIHRvIHJlcGx5LiBNYXkgYmUg
+SSBoYXZlIHRvIHN1YnNjcmliZQ0KIHRvIHRoZSBtYWlsaW5nIGxpc3Q6IDxhIGhyZWY9Im1haWx0
+bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
+L2E+PyBJZiB5ZXMsIHBsZWFzZSBhY2NlcHQgbXkgcmVxdWVzdC4gSSB3aWxsIHZlcnkgYXBwcmVj
+aWF0ZSBpdCBpZiB5b3UgY2FuIGhlbHAgbWUuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9u
+dC1mYW1pbHk6JnF1b3Q75b6u6L2v6ZuF6buRJnF1b3Q7LHNhbnMtc2VyaWYiPi0tPG86cD48L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
+eWxlPSJmb250LWZhbWlseTomcXVvdDvlvq7ova/pm4Xpu5EmcXVvdDssc2Fucy1zZXJpZiI+QmVz
+dCBSZWdhcmRzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q75b6u6L2v6ZuF6buRJnF1
+b3Q7LHNhbnMtc2VyaWYiPlRpYW4gTGk8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
+Pg0KPC9kaXY+DQpUaGlzIGUtbWFpbCAoaW5jbHVkaW5nIGFueSBhdHRhY2htZW50cykgaXMgY29u
+ZmlkZW50aWFsIHRvIHRoZSBpbnRlbmRlZCBhZGRyZXNzZWUsIG1heSBiZSBzdWJqZWN0IHRvIGNv
+cHlyaWdodCwgYW5kIG1heSBhbHNvIGJlIHByaXZpbGVnZWQuIElmIHlvdSBhcmUgbm90IHRoZSBp
+bnRlbmRlZCBhZGRyZXNzZWUsIHBsZWFzZSBkbyBub3QgcmVhZCwgcHJpbnQsIHJlLXRyYW5zbWl0
+LCBjb3B5LCBzdG9yZSwgYWx0ZXIgb3Igb3RoZXJ3aXNlIGRpc2Nsb3NlDQogaXQgb3IgYW55IG9m
+IGl0cyBhdHRhY2htZW50cyB0byBhbnlvbmU7IG5vciBzaG91bGQgeW91IGFjdCBpbiByZWxpYW5j
+ZSBvbiBpdCBvciBhbnkgb2YgaXRzIGF0dGFjaG1lbnRzLiBJbnN0ZWFkLCBwbGVhc2Ugbm90aWZ5
+IHRoZSBlcnJvciB0byB0aGUgc2VuZGVyIGJ5IGUtbWFpbCBhbmQgaW1tZWRpYXRlbHkgcGVybWFu
+ZW50bHkgZGVsZXRlIHRoaXMgZW1haWwgYW5kIGFueSBvZiBpdHMgYXR0YWNobWVudHMgZnJvbSB5
+b3VyIHN5c3RlbS4g5pys55S15a2Q6YKu5Lu277yI5YyF5ous5Lu75L2V6ZmE5Lu277yJ5piv5o+Q
+5L6b57uZ5oyH5a6a5pS25Lu25Lq655qE5L+d5a+G5L+h5oGv77yM5Y+v6IO95Zug5Y+X55+l6K+G
+5Lqn5p2D5L+d5oqk5LiU5bGe5LiT5pyJ5L+h5oGv6ICM5LiN5b6X5oqr6Zyy44CC5aaC5p6c5oKo
+5LiN5piv5oyH5a6a5pS25Lu25Lq677yM6K+35LiN6KaB6ZiF6K+744CB5omT5Y2w44CB5YaN5qyh
+5Lyg6L6T44CB5aSN5Yi244CB5a2Y5YKo44CB5L+u5pS55oiW6ICF5Lul5Y+m5aSW5pa55byP5o+t
+6Zyy5pys6YKu5Lu25oiW5YW25Lu75L2V6ZmE5Lu25YaF5a6557uZ5Lu75L2V5Lq677yb5oKo5Lmf
+5LiN5bqU6K+l5L+h6LWW5pys6YKu5Lu25oiW5YW25Lu75L2V6ZmE5Lu255qE5YaF5a656KGM5LqL
+44CC55u45Y+N77yM6K+36YCa6L+H55S15a2Q6YKu5Lu26YCa55+l5Y+R5Lu25Lq66L+Z5LiA6ZSZ
+6K+v5bm25LiU56uL5Y2z5rC45LmF5Zyw5LuO5oKo55qE57O757uf5Lit5Yig6Zmk5pys55S15a2Q
+6YKu5Lu25Y+K5YW25Lu75L2V6ZmE5Lu244CCDQogRS1tYWlscyBzZW50IHRvIGFuZCBmcm9tIFRD
+TCBtYXkgYmUgbW9uaXRvcmVkIGFuZCByZWFkIGZvciBsZWdpdGltYXRlIGJ1c2luZXNzIHB1cnBv
+c2VzLCBub3RhYmx5IHRvIGVuc3VyZSBjb21wbGlhbmNlIHdpdGggdGhlIGxhdyBhbmQgdGhlIHJl
+Z3VsYXRvcnkgb2JsaWdhdGlvbnMuIEVtYWlscyBjYW5ub3QgYmUgZ3VhcmFudGVlZCB0byBiZSBz
+ZWN1cmUgb3IgZXJyb3ItZnJlZSwgYW5kIHlvdSBzaG91bGQgcHJvdGVjdCB5b3VyIHN5c3RlbXMu
+DQogVENMIGRvZXMgbm90IGFjY2VwdCBhbnkgbGlhYmlsaXR5IGFyaXNpbmcgZnJvbSBpbnRlcmNl
+cHRpb24sIGVycm9yLCBsb3NzIG9yIGRlc3RydWN0aW9uIG9mIHRoaXMgZS1tYWlsLCBvciBpZiBp
+dCBhcnJpdmVzIGxhdGUgb3IgaW5jb21wbGV0ZSBvciB3aXRoIHZpcnVzZXMuIOWHuuS6juWQiOaz
+leeahOWVhuazleebrueahO+8jOWwpOWFtuS4uuS6huehruS/nemBteWuiOebuOWFs+azleW+i+az
+leinhOeahOinhOWumu+8jOWPkeiHs+aIluWPkeiHqlRDTOeahOeUteWtkOmCruS7tuWPr+iDveii
+q+ebkeaOp+WSjOmYheivu+OAgiDnm7jlhbPnlLXlrZDpgq7ku7bkuI3og73kv53or4Hlhbblronl
+hajmgKfmiJbmsqHmnInplJnor6/vvIzmiYDku6XmgqjlupTor6Xkv53miqTmgqjnmoTns7vnu5/l
+ronlhajjgIJUQ0zkuI3mib/mi4XnlLHkuo7pgq7ku7booqvmi6bmiKrjgIHlh7rplJnjgIHpgZfl
+pLHmiJbmr4HlnY/jgIHmiJbogIXpgq7ku7bliLDovr7lu7bor6/jgIHkuI3lrozmlbTmiJbogIXm
+kLrluKbnl4Xmr5LogIzkuqfnlJ/nmoTku7vkvZXotKPku7vjgIINCjwvYm9keT4NCjwvaHRtbD4N
+Cg==
+
+--_000_B7FF765BD755A047B8932CE984AFDC4627E2199ACNSZEXMB01_--
 
 
---Apple-Mail-EDF8CBA2-343C-4971-B5CF-A9E1D6B4F4B6
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-The folks at the Dominion Radio Astronomy Observatory use a B210 on the end o=
-f an optical USB3 adapter. Works just fine. They did this a few years back s=
-o there=E2=80=99s probably better/cheaper units out there these days.=20
-
-Sent from my iPhone
-
-> On Jun 13, 2020, at 1:20 PM, Benjamin R Nold via USRP-users <usrp-users@li=
-sts.ettus.com> wrote:
->=20
-> =EF=BB=BF
-> Hi,
-> =20
-> I=E2=80=99m working on an application where I=E2=80=99m forced to have phy=
-sical distance between my B210 USRP and host machine. I=E2=80=99m looking at=
- purchasing a USB 3.0 to optical adapter, has anyone tried one before? Does a=
-nyone have any insights if it will work/potential pitfalls?
-> =20
-> https://www.icronshop.com/icron-brand/usb-30-spectra-3022
-> =20
-> Thanks,
-> Benjamin Nold
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---Apple-Mail-EDF8CBA2-343C-4971-B5CF-A9E1D6B4F4B6
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">The folks at the Dominion Radio Astronomy O=
-bservatory use a B210 on the end of an optical USB3 adapter. Works just fine=
-. They did this a few years back so there=E2=80=99s probably better/cheaper u=
-nits out there these days.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhone=
-</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Jun 13, 2020, at 1:2=
-0 PM, Benjamin R Nold via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrot=
-e:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=
-=BF
-
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
-
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-
-
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I=E2=80=99m working on an application where I=E2=80=99=
-m forced to have physical distance between my B210 USRP and host machine. I=E2=
-=80=99m looking at purchasing a USB 3.0 to optical adapter, has anyone tried=
- one before? Does anyone have any insights if it will
- work/potential pitfalls?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">https://www.icronshop.com/icron-brand/usb-30-spectra-=
-3022<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Benjamin Nold<o:p></o:p></p>
-</div>
-
-
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
->http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
-r></div></blockquote></body></html>=
-
---Apple-Mail-EDF8CBA2-343C-4971-B5CF-A9E1D6B4F4B6--
-
-
---===============4402368522340210360==
+--===============3273233024679093685==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -215,5 +215,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4402368522340210360==--
+--===============3273233024679093685==--
 
