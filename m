@@ -2,64 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E84C1FD6AB
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Jun 2020 23:06:34 +0200 (CEST)
-Received: from [::1] (port=42500 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A1C31FD6BE
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Jun 2020 23:09:49 +0200 (CEST)
+Received: from [::1] (port=44054 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jlfGR-0005JL-NG; Wed, 17 Jun 2020 17:06:31 -0400
-Received: from mail-ej1-f54.google.com ([209.85.218.54]:41943)
+	id 1jlfJa-0005nv-8T; Wed, 17 Jun 2020 17:09:46 -0400
+Received: from mail-wr1-f51.google.com ([209.85.221.51]:37169)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1jlfGM-0005ED-UG
- for usrp-users@lists.ettus.com; Wed, 17 Jun 2020 17:06:27 -0400
-Received: by mail-ej1-f54.google.com with SMTP id dp18so4085475ejc.8
- for <usrp-users@lists.ettus.com>; Wed, 17 Jun 2020 14:06:06 -0700 (PDT)
+ id 1jlfJW-0005hu-Em
+ for usrp-users@lists.ettus.com; Wed, 17 Jun 2020 17:09:42 -0400
+Received: by mail-wr1-f51.google.com with SMTP id a6so1908749wrm.4
+ for <usrp-users@lists.ettus.com>; Wed, 17 Jun 2020 14:09:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:references:from:message-id:date:user-agent:mime-version
  :in-reply-to:content-language:content-transfer-encoding;
- bh=lNMiXbDc5mbVaC9gVaLlyH12WOa3HGQ+r2v7im7kelI=;
- b=nrvTf/BtcU8lwmds0eU83sfT1VkvSao3m3/a987KRmAjemCfQgnOxFK0dKQBin5Yqj
- HthNTRfSwYEoS+gUemQLI3mpEO6d+U0X5HAbzrkTo0uUrXpwmW5echlu9WsPUCKjj6sd
- 6WxsaguSNqBE7EKQ/Ugma9MDiU2zOAtD/Kgm423pLFnfcG045vrG8pBajNpew0ik6mjm
- P/eM5p7gtw6THo26kVu6DXmO2eP9mEqGjB1pWHt8YqkJQiw9NukgAtFnfby69SvRmMX5
- e7XYQIsvyRGOLwlmE/TUm1v8KQo+8dzDbYOjZsqr9QwBaQVZVtdRAUJELoeTW7P/vFV6
- 9aVg==
+ bh=b0qE0Pbfb/JiLlTxjipcWPZX2VHGgqcurmXUoVu0knE=;
+ b=2LaAja1dzXFsr0hCTvR2erVzhtRK4gbY169tu4FNl+ykH+XrA3YKFMNHND1Ryu0F4z
+ KVFW5X+Mr/a78kzoPoOY6mjOxcHFypzh8wGB0awArvBGxUp5chrgJnTcT4E/K84Xf5KM
+ d3uKGtUGSLcPyRy/FmHrl9UMLR/Z1CPOFqMT4Z++NMjs9tvsmp7jykc2OxQg4X3AVJaP
+ F+jaypVKsLPXFaiFYmrhOVfJzP1bnxwIWE3IrZmmL2DATaEtmz6LQrvYr58KOPzxEO3g
+ TpLIA5ziCouYkki0yM145iumba2VohULjSRTNSxP3qUlFXke1dko7Mdsk8Ney+/9r8Rv
+ uE5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=lNMiXbDc5mbVaC9gVaLlyH12WOa3HGQ+r2v7im7kelI=;
- b=A28FaiXm8jIUEy8nOT/tgDH3rBzyxSz1XrDrFdAAS6dECPoqEQ8bVuCddrUYotgqNf
- zSm+4/0O6/KtoQZEJ90r5OBPh/OylCIzkx6fGL5uKiSEByd2pUtlQiiVZJ1XQKgGHmf3
- K5YcRueDhwEBJMeauAgAp+q+W5FOzCRXQWg/ZGWkfcXtmUqgAlkQvbIql812i4498BU8
- IoM/i0qmrW6ZHSeVZAbN/f73ECLjkXX7Pn9UszBqDpDP/zN6jmPbkUCbZpUDePtR+MPO
- +UwsZuTEgSWuBLTY8daRM0Xc80uLHdDxb5NyWA0tD/DpJEq+HAwnMNY5NelU1uqYJZpv
- yNJA==
-X-Gm-Message-State: AOAM533x/zwIMT4jjAqQzHhkMCoGMt50ufd9q3h+iayVFXK3SIeRM6ky
- zE7/0nVE0x1U4qubQ3aGydpOLN05JOydjg==
-X-Google-Smtp-Source: ABdhPJzSI5/Z1Z+HaLH5Bquq6bSvDBvOf+3nB9DWTIj0Hh+IV/uaUzvimB3kwcbW3+5OstqEmyzQxw==
-X-Received: by 2002:a17:906:4ec1:: with SMTP id
- i1mr1005942ejv.152.1592427945667; 
- Wed, 17 Jun 2020 14:05:45 -0700 (PDT)
+ bh=b0qE0Pbfb/JiLlTxjipcWPZX2VHGgqcurmXUoVu0knE=;
+ b=Tuz7CqRH/fXEXdavrRN5BKs9bL4XVP/At7hgJegV/ngopwGvvTIyTmmxvhoV3VH9ft
+ cMvBM6qnwpwcBPwgxVIhezSt6YNYPZ9CPeaDd6NxW7p7gf0/BcRRWUiFQwmG3zA/UK4p
+ ewDizuRcEjh6G2SPRwjlRUVrMjdrtGeSVx78U/+6GBlnWIv3KgO4TpTHI9WHHskTtLuQ
+ Y8LYoj94/aoSrxYfA9N6wfrGOJDHblSyWt067MZ/ufQfquhlN57zNCRtYntPToHbZ15M
+ HawMtDPoRQOyOBfpsJqutFcIbiUO+pl2kZMm5Q5KgUV/z5kUOZExkm2hKymrFAcNlu4p
+ chkw==
+X-Gm-Message-State: AOAM531Kbix04n1SZmWJGQnjXIC8PjPqYxOdbYNJBZiFS16phBFBKi1H
+ jIDQxVTIv2A539d0BKaqJUPLDt54n5SH6Q==
+X-Google-Smtp-Source: ABdhPJwbnDKni5dwni8a3KLi+uaqaLOasxRe4hAKGEdDOTb+unet/4ZucsodTKMehEkbH2iyNxdS3w==
+X-Received: by 2002:adf:f711:: with SMTP id r17mr1100136wrp.409.1592428141180; 
+ Wed, 17 Jun 2020 14:09:01 -0700 (PDT)
 Received: from [192.168.128.8]
  (HSI-KBW-46-223-163-150.hsi.kabel-badenwuerttemberg.de. [46.223.163.150])
- by smtp.gmail.com with ESMTPSA id b14sm693197ejq.105.2020.06.17.14.05.44
+ by smtp.gmail.com with ESMTPSA id a124sm1005287wmh.4.2020.06.17.14.09.00
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 17 Jun 2020 14:05:45 -0700 (PDT)
-To: Benjamin R Nold <bnold@purdue.edu>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <DM5PR22MB16599774727B85768E7F23FEC89C0@DM5PR22MB1659.namprd22.prod.outlook.com>
-Message-ID: <1f007a44-2618-bc6f-6d8c-74784954475b@ettus.com>
-Date: Wed, 17 Jun 2020 23:05:44 +0200
+ Wed, 17 Jun 2020 14:09:00 -0700 (PDT)
+To: srushti <srushti.siri@gmail.com>, usrp-users@lists.ettus.com
+References: <CABpcK0qRMWYJ6AqdfFcdSE5ZGEywq=Rp6d5QE4nEKCc3r0_UXg@mail.gmail.com>
+Message-ID: <94d2f515-73ef-7117-88f7-99265f2b3941@ettus.com>
+Date: Wed, 17 Jun 2020 23:08:59 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <DM5PR22MB16599774727B85768E7F23FEC89C0@DM5PR22MB1659.namprd22.prod.outlook.com>
+In-Reply-To: <CABpcK0qRMWYJ6AqdfFcdSE5ZGEywq=Rp6d5QE4nEKCc3r0_UXg@mail.gmail.com>
 Content-Language: en-US
-Subject: Re: [USRP-users] B210 GPIO mating connector?
+Subject: Re: [USRP-users] Installing two DPDK versions in one PC
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -89,26 +87,33 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Benjamin,
+You should technically be able to do that, but it really doesn't sound
+wise to do that without containerizing your file systems. Then, it
+should be no problem at all.
 
-https://files.ettus.com/b2x0_enclosure/ has the dimensional drawing of
-the B210. You'll find the Molex Part Nr. 87831142 in there; the Molex
-page lists mating connectors for various applications:
-https://www.molex.com/molex/products/part-detail/pcb_headers/0878311420
-
-Note that you're not really stuck with Molex here; any 2.0mm pitch
-female pin header should work.
+Note that *running* more than one version at the same time is something
+different. Generally, again, should work with differen logical devices
+(that's the whole sense of the iommu magic happening beneath), but it
+might take extra steps.
 
 Best regards,
 Marcus
 
-On 15.06.20 16:07, Benjamin R Nold via USRP-users wrote:
-> Hi,
+On 05.06.20 13:44, srushti via USRP-users wrote:
+> Greetings,
 > 
-> What is the mating connector for the GPIO header on the B210? I didn't see it listed in the docs.
+> Hope you all are doing well!!
 > 
-> Thanks,
-> Benjamin N
+> I have a question regarding DPDK. Has anyone tried installing multiple DPDK
+> versions in the same PC? Is it possible? Will it break something in the PC?
+> 
+> For example, can you have DPDK 17 and DPDK 18 installed in the same machine?
+> 
+> Please let me know if anyone has tried this.
+> 
+> Thank you
+> 
+> Srushti
 > 
 > 
 > _______________________________________________
