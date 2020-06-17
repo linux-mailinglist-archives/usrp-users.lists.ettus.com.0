@@ -2,49 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34F4B1FD499
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Jun 2020 20:32:35 +0200 (CEST)
-Received: from [::1] (port=49498 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8250E1FD654
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Jun 2020 22:46:11 +0200 (CEST)
+Received: from [::1] (port=37118 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jlcrP-0004R3-Gv; Wed, 17 Jun 2020 14:32:31 -0400
-Received: from mail-oo1-f50.google.com ([209.85.161.50]:35016)
+	id 1jlewi-0003bb-A9; Wed, 17 Jun 2020 16:46:08 -0400
+Received: from mail-ej1-f53.google.com ([209.85.218.53]:38115)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <colbyboyer@genxcomminc.com>)
- id 1jlcrL-0004NS-Ey
- for usrp-users@lists.ettus.com; Wed, 17 Jun 2020 14:32:27 -0400
-Received: by mail-oo1-f50.google.com with SMTP id e12so621149oou.2
- for <usrp-users@lists.ettus.com>; Wed, 17 Jun 2020 11:32:07 -0700 (PDT)
+ (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
+ id 1jlewe-0003X6-4M
+ for usrp-users@lists.ettus.com; Wed, 17 Jun 2020 16:46:04 -0400
+Received: by mail-ej1-f53.google.com with SMTP id w16so4045372ejj.5
+ for <usrp-users@lists.ettus.com>; Wed, 17 Jun 2020 13:45:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=genxcomminc.com; s=google;
- h=mime-version:from:date:message-id:subject:to;
- bh=BEbU3qaz2Rb55anbHNxRGbVmd/Iv09D779OfHngMXPI=;
- b=VO6p6DimGEb+827BzWCSNY0/Lh8F69OwoylGd6TQ8rVFrwBFOftsYfsUzrl7bagYwK
- yNJ2JgDBjRCDrd8wJL2yZx3KE/hYn1IEb6rjJrC3AMLMxJq1bK0os8UoXqzkBNT3bduZ
- 10UyODFrJYIqEUGWrv1pdALV7ApuCFSnKnXbVnP1HSd01OjOfa/wFpOZR5A1tqMkkDzB
- c1LHoVxrWovJiE3MC8hA7ZJh57M+MrBBbb8FY3T/V3nmTtuW5iSFlG6E+FW8YAqUeG0h
- kqSNQbDxhUCHN8htGtY9J4QRehkeiUuNM6NvjUYapr9eigSUomNN9qgvDTlk3xOssk0g
- vqEA==
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-language:content-transfer-encoding;
+ bh=QibNWRAWezzYk0i9Ata6tr5x2V3udVAS7Ep9fZV9wO8=;
+ b=nf3x/RWe3aIPRqALjAJBK3qCYrKqaXKsvggGn+Qr5f6SWGmdpRbIwGhuV9sRLQPjss
+ v4Jv3vZwf6m6EZ4rHBByvVwrAY3GQZ3tXWVJkGAC8JIoECr4bSvu5/ESIMvHZyYwJ58z
+ sQqZ0fETnaNL/3HznKmY9e8JbmP2FlncWFwDu56ZQpZ7WNOKuW8SJ6YcCed/2fmahl/d
+ w0VTK74ygWodoOFFmzhrrR1G4b+zaOssx/eNIaHk74BcY3mwA3VYk8TzF1JU/+AjEP5s
+ CpwXxUGS3XpFsEEsGSHhUsGYH3431xnPGAGCnhPO0Gc9xiGY90MZOYQmDdK+4ceqM+DF
+ 2r/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=BEbU3qaz2Rb55anbHNxRGbVmd/Iv09D779OfHngMXPI=;
- b=LILKz3l5ShziZM/eDHQEGH+v692n3j32QvBG0ubMucvfM3I32Bit5VDIQkYmEWXH4l
- LbWNLxP97IsODGW3KwfyAdRd+mRzmWQbN0SCOIM+BwgtL0Y3sABHiDj4Ditp0Li40GLK
- ehqCeUpWDyE6ytKRqD2oDcq9ZADZUblINfYKIJWwVCa/7HuOMSfGB19lE3ZUJ/EIRzPh
- 6hYARKlxhhTRE1O5lHfWmJaUktknDRVLRSxAXbqixHdObBoXURiG8J3L9hKBxdcvP30X
- b3KW4aWEJnEP24bu902QOYCOBAwyM30m5Rup8uorkRNzKeuVqO/9aBzjw86ilIx8sI65
- VT5g==
-X-Gm-Message-State: AOAM53203Ei0bLC5uxGRL5kclYuBP/cONhJP7mca2tkG9y9Y2yV1RR9j
- vKr8cB+WZ7D7PJs5BBoKU44mTa2HH4W/0DhxKHjod8wUT9s=
-X-Google-Smtp-Source: ABdhPJyZDY94LO7wWSmxd36AgkoVB8Lg6cW1fDIC+vwryDJzFP6h68Ui/i5Bw1pFNDHD5wB9aGJP1kkEhnl3f0oPaGo=
-X-Received: by 2002:a4a:3947:: with SMTP id x7mr695271oog.55.1592418706486;
- Wed, 17 Jun 2020 11:31:46 -0700 (PDT)
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=QibNWRAWezzYk0i9Ata6tr5x2V3udVAS7Ep9fZV9wO8=;
+ b=TDN8h6jt6be+Z3+/8vUSTmOOZAplKEV2YiA/8z6FrCUUvrLtGZavSTuZmn2RKdBe1v
+ Gn3ja6b+OBb/889pUApRqAIYwWqcpIb55wlzvOanduyrDuF6Zs8e5Nz/qmQ4XWnuSeix
+ wDScDX+kp8plebiyQWWEXFELKVbvBrhgDQZ1E9gd0U0MhrCrAaSNfmXzSrgkFAiRaSZh
+ PARcYIHF2OqoG3MABSJSu3I6Gq3pz2FdLZZqoS1FEeHMaQ4mbvwoX/Ob/aP4ZlqImxQ5
+ 1XPINwMoe7RqzoYnywKjDae4JMxVXjQBUq3vFxwfmr37msIlAg4MQahiDYKOce50CZZd
+ kqGg==
+X-Gm-Message-State: AOAM532CwxnixVrWA1nPrZIZOgWIjr0nf+Il6tDmxqdcpNOvgSHmxrRm
+ J3X2VqAQ4HavUN/VvBDTmTyU89fn
+X-Google-Smtp-Source: ABdhPJwVknTwrBWim6Nk5BEZdgN7oSN6UwjGGYrmEOwV1yOMuybsRiEBxSrgHTbl/feeDGZIM2W45Q==
+X-Received: by 2002:a17:907:4030:: with SMTP id
+ nr24mr888906ejb.247.1592426723077; 
+ Wed, 17 Jun 2020 13:45:23 -0700 (PDT)
+Received: from [192.168.128.8]
+ (HSI-KBW-46-223-163-150.hsi.kabel-badenwuerttemberg.de. [46.223.163.150])
+ by smtp.gmail.com with ESMTPSA id d35sm463832edc.40.2020.06.17.13.45.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 17 Jun 2020 13:45:22 -0700 (PDT)
+To: usrp-users@lists.ettus.com, tian.li@tcl.com
+References: <B7FF765BD755A047B8932CE984AFDC4627E2199A@CNSZEXMB01>
+Message-ID: <242ac0a4-df90-3b42-f0a2-d8278dc35e5a@ettus.com>
+Date: Wed, 17 Jun 2020 22:45:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Date: Wed, 17 Jun 2020 13:31:35 -0500
-Message-ID: <CACxOa3Zr_hPaEtu1_OGHfZn=7B_t1CWmYBYasVYVkrg4ZOaSpg@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] SW control of DB TX/RX DSA on N310
+In-Reply-To: <B7FF765BD755A047B8932CE984AFDC4627E2199A@CNSZEXMB01>
+Content-Language: en-US
+Subject: Re: [USRP-users] Help: Submissions to USRP-user mailing list
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -56,9 +70,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Colby Boyer via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Colby Boyer <colbyboyer@genxcomminc.com>
-Content-Type: multipart/mixed; boundary="===============5119516197700851803=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,74 +88,59 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5119516197700851803==
-Content-Type: multipart/alternative; boundary="000000000000558c5205a84bdf8a"
-
---000000000000558c5205a84bdf8a
-Content-Type: text/plain; charset="UTF-8"
-
-Dear All,
-
-I have a question about the control of the TX/RX DSAs on the N310 platform.
-
-I have a specific line-up for the RX and TX chains and I'd like to set
-specific values to the TX and RX DSAs that are on the N310's daughter board
-card. Are the control lines for the DSA's hooked up to SW for control via
-UHD/MPM? From what I can tell, this is not a SW enabled feature on the
-N310.
-
-Looking through the FPGA code, the DSAs are hooked up to the
-dsa_tx<1,2>_<a,b>_out_iob buffers. I've traced these lines as follows:
-
-IO buffer => db_gpio_out wire in top module n3xx => n3xx_core => db_fe_core
-=> db_control => db_gpio_atr (gpio_atr module).
-
-Inside the gpio_atr verilog module, there are some registers related to the
-ATR logic but not DSAs. There is logic to control the db_gpio via a
-gpio_out_fab signal line, but I trace this signal and it goes back up to
-the top level n3xx module as an unconnected wire.
-
-Is there a connection that I am missing?
-
-Thank you,
-Colby
-
---000000000000558c5205a84bdf8a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div></div><div>Dear All,</div><div><br></div><div>I have =
-a question about the control of the TX/RX DSAs on the N310 platform. <br></=
-div><div><br></div><div>I have a specific line-up for the RX and TX chains =
-and I&#39;d like to set specific values to the TX and RX DSAs that are on t=
-he N310&#39;s daughter board card. Are the control lines for the DSA&#39;s =
-hooked up to SW for control via UHD/MPM? From what I can tell, this is not =
-a SW enabled feature on the N310. <br></div><div><br></div><div>Looking thr=
-ough the FPGA code, the DSAs are hooked up to the dsa_tx&lt;1,2&gt;_&lt;a,b=
-&gt;_out_iob buffers. I&#39;ve traced these lines as follows: <br></div><di=
-v><br></div><div>IO buffer =3D&gt; db_gpio_out wire in top module n3xx =3D&=
-gt; n3xx_core =3D&gt; db_fe_core =3D&gt; db_control =3D&gt; db_gpio_atr (gp=
-io_atr module). <br></div><div><br></div><div>Inside the gpio_atr verilog m=
-odule, there are some registers related to the ATR logic but not DSAs. Ther=
-e is logic to control the db_gpio via a gpio_out_fab signal line, but I tra=
-ce this signal and it goes back up to the top level n3xx module as an uncon=
-nected wire. <br></div><div><br></div><div>Is there a connection that I am =
-missing?</div><div><br></div><div>Thank you,</div><div>Colby<br></div></div=
->
-
---000000000000558c5205a84bdf8a--
-
-
---===============5119516197700851803==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5119516197700851803==--
-
+TmFiYmxlIGlzICoqbm90KiogYWZmaWxpYXRlZCB3aXRoIEV0dHVzLiBUaGV5IGp1c3QgY29weSB0
+aGUgbWFpbGluZyBsaXN0DQppbnRvIHRoZWlyIG93biBhcmNoaXZlcyB3aXRob3V0IGFza2luZyB1
+cywgYW5kIG1ha2UgaXQgbG9vayBsaWtlIGEgZm9ydW0uDQoNCkl0J3Mgbm90Lg0KDQpJdCdzIG91
+ciBtYWlsaW5nIGxpc3QsIHNvIHBsZWFzZSBkaXRjaCBOYWJibGUuDQoNClNpbmNlIHlvdXIgZW1h
+aWwgcmVhY2hlZCB0aGlzIG1haWxpbmcgbGlzdCwgeW91J3JlIHN1Y2Nlc3NmdWxseQ0Kc3Vic2Ny
+aWJlZCEgQ29uZ3JhdHVsYXRpb25zISBBbmQgd2VsY29tZSBoZXJlIDopDQoNCkJlc3QgcmVnYXJk
+cywNCk1hcmN1cw0KDQoNCk9uIDE1LjA2LjIwIDAzOjI5LCBUaWFuLCBMSShSJkQgVEVDSCZJTk5P
+IDVHIExBQiAoQ04pLVNaLVRDVCkgdmlhDQpVU1JQLXVzZXJzIHdyb3RlOg0KPiBEZWFyLA0KPiAN
+Cj4gQSBmZXcgZGF5cyBhZ28sIEkgc2VudCBhIG1lc3NhZ2UgdG8gYSBVU1JQIHJlbGF0ZWQgZm9y
+dW0oaS5lLiBodHRwOi8vZXR0dXMuODA5OTcueDYubmFiYmxlLmNvbS8pIGJ5IG15IEUtbWFpbC4g
+Tm93LCBJIHdhbnQgdG8gcmVwbHkgdGhlIG1lc3NhZ2UgZnJvbSBvdGhlcnMsIGhvd2V2ZXIsIHdo
+ZXRoZXIgSSB0cnkgdG8gcmVwbHkgYnkgRS1tYWlsIG9yIHJlcGx5IGluIHRoZSBmb3J1bSBkaXJl
+Y3RseSwgSSBmYWlsIHRvIHJlcGx5LiBNYXkgYmUgSSBoYXZlIHRvIHN1YnNjcmliZSB0byB0aGUg
+bWFpbGluZyBsaXN0OiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20+PyBJZiB5ZXMsIHBsZWFzZSBhY2NlcHQgbXkgcmVxdWVzdC4gSSB3
+aWxsIHZlcnkgYXBwcmVjaWF0ZSBpdCBpZiB5b3UgY2FuIGhlbHAgbWUuDQo+IA0KPiAtLQ0KPiBC
+ZXN0IFJlZ2FyZHMsDQo+IFRpYW4gTGkNCj4gDQo+IFRoaXMgZS1tYWlsIChpbmNsdWRpbmcgYW55
+IGF0dGFjaG1lbnRzKSBpcyBjb25maWRlbnRpYWwgdG8gdGhlIGludGVuZGVkIGFkZHJlc3NlZSwg
+bWF5IGJlIHN1YmplY3QgdG8gY29weXJpZ2h0LCBhbmQgbWF5IGFsc28gYmUgcHJpdmlsZWdlZC4g
+SWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIGFkZHJlc3NlZSwgcGxlYXNlIGRvIG5vdCByZWFk
+LCBwcmludCwgcmUtdHJhbnNtaXQsIGNvcHksIHN0b3JlLCBhbHRlciBvciBvdGhlcndpc2UgZGlz
+Y2xvc2UgaXQgb3IgYW55IG9mIGl0cyBhdHRhY2htZW50cyB0byBhbnlvbmU7IG5vciBzaG91bGQg
+eW91IGFjdCBpbiByZWxpYW5jZSBvbiBpdCBvciBhbnkgb2YgaXRzIGF0dGFjaG1lbnRzLiBJbnN0
+ZWFkLCBwbGVhc2Ugbm90aWZ5IHRoZSBlcnJvciB0byB0aGUgc2VuZGVyIGJ5IGUtbWFpbCBhbmQg
+aW1tZWRpYXRlbHkgcGVybWFuZW50bHkgZGVsZXRlIHRoaXMgZW1haWwgYW5kIGFueSBvZiBpdHMg
+YXR0YWNobWVudHMgZnJvbSB5b3VyIHN5c3RlbS4g5pys55S15a2Q6YKu5Lu277yI5YyF5ous5Lu7
+5L2V6ZmE5Lu277yJ5piv5o+Q5L6b57uZ5oyH5a6a5pS25Lu25Lq655qE5L+d5a+G5L+h5oGv77yM
+5Y+v6IO95Zug5Y+X55+l6K+G5Lqn5p2D5L+d5oqk5LiU5bGe5LiT5pyJ5L+h5oGv6ICM5LiN5b6X
+5oqr6Zyy44CC5aaC5p6c5oKo5LiN5piv5oyH5a6a5pS25Lu25Lq677yM6K+35LiN6KaB6ZiF6K+7
+44CB5omT5Y2w44CB5YaN5qyh5Lyg6L6T44CB5aSN5Yi244CB5a2Y5YKo44CB5L+u5pS55oiW6ICF
+5Lul5Y+m5aSW5pa55byP5o+t6Zyy5pys6YKu5Lu25oiW5YW25Lu75L2V6ZmE5Lu25YaF5a6557uZ
+5Lu75L2V5Lq677yb5oKo5Lmf5LiN5bqU6K+l5L+h6LWW5pys6YKu5Lu25oiW5YW25Lu75L2V6ZmE
+5Lu255qE5YaF5a656KGM5LqL44CC55u45Y+N77yM6K+36YCa6L+H55S15a2Q6YKu5Lu26YCa55+l
+5Y+R5Lu25Lq66L+Z5LiA6ZSZ6K+v5bm25LiU56uL5Y2z5rC45LmF5Zyw5LuO5oKo55qE57O757uf
+5Lit5Yig6Zmk5pys55S15a2Q6YKu5Lu25Y+K5YW25Lu75L2V6ZmE5Lu244CCIEUtbWFpbHMgc2Vu
+dCB0byBhbmQgZnJvbSBUQ0wgbWF5IGJlIG1vbml0b3JlZCBhbmQgcmVhZCBmb3IgbGVnaXRpbWF0
+ZSBidXNpbmVzcyBwdXJwb3Nlcywgbm90YWJseSB0byBlbnN1cmUgY29tcGxpYW5jZSB3aXRoIHRo
+ZSBsYXcgYW5kIHRoZSByZWd1bGF0b3J5IG9ibGlnYXRpb25zLiBFbWFpbHMgY2Fubm90IGJlIGd1
+YXJhbnRlZWQgdG8gYmUgc2VjdXJlIG9yIGVycm9yLWZyZWUsIGFuZCB5b3Ugc2hvdWxkIHByb3Rl
+Y3QgeW91ciBzeXN0ZW1zLiBUQ0wgZG9lcyBub3QgYWNjZXB0IGFueSBsaWFiaWxpdHkgYXJpc2lu
+ZyBmcm9tIGludGVyY2VwdGlvbiwgZXJyb3IsIGxvc3Mgb3IgZGVzdHJ1Y3Rpb24gb2YgdGhpcyBl
+LW1haWwsIG9yIGlmIGl0IGFycml2ZXMgbGF0ZSBvciBpbmNvbXBsZXRlIG9yIHdpdGggdmlydXNl
+cy4g5Ye65LqO5ZCI5rOV55qE5ZWG5rOV55uu55qE77yM5bCk5YW25Li65LqG56Gu5L+d6YG15a6I
+55u45YWz5rOV5b6L5rOV6KeE55qE6KeE5a6a77yM5Y+R6Iez5oiW5Y+R6IeqVENM55qE55S15a2Q
+6YKu5Lu25Y+v6IO96KKr55uR5o6n5ZKM6ZiF6K+744CCIOebuOWFs+eUteWtkOmCruS7tuS4jeiD
+veS/neivgeWFtuWuieWFqOaAp+aIluayoeaciemUmeivr++8jOaJgOS7peaCqOW6lOivpeS/neaK
+pOaCqOeahOezu+e7n+WuieWFqOOAglRDTOS4jeaJv+aLheeUseS6jumCruS7tuiiq+aLpuaIquOA
+geWHuumUmeOAgemBl+WkseaIluavgeWdj+OAgeaIluiAhemCruS7tuWIsOi+vuW7tuivr+OAgeS4
+jeWujOaVtOaIluiAheaQuuW4pueXheavkuiAjOS6p+eUn+eahOS7u+S9lei0o+S7u+OAgg0KPiAN
+Cj4gDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+
+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0DQo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+
+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3Rz
+LmV0dHVzLmNvbQ0KPiANCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+Cmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3Rz
+LmV0dHVzLmNvbQo=
