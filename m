@@ -2,64 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B24241FD693
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Jun 2020 23:01:35 +0200 (CEST)
-Received: from [::1] (port=40326 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E84C1FD6AB
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Jun 2020 23:06:34 +0200 (CEST)
+Received: from [::1] (port=42500 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jlfBc-0004qA-RL; Wed, 17 Jun 2020 17:01:32 -0400
-Received: from mail-wm1-f49.google.com ([209.85.128.49]:37378)
+	id 1jlfGR-0005JL-NG; Wed, 17 Jun 2020 17:06:31 -0400
+Received: from mail-ej1-f54.google.com ([209.85.218.54]:41943)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1jlfBZ-0004kw-KB
- for usrp-users@lists.ettus.com; Wed, 17 Jun 2020 17:01:29 -0400
-Received: by mail-wm1-f49.google.com with SMTP id y20so3485812wmi.2
- for <usrp-users@lists.ettus.com>; Wed, 17 Jun 2020 14:01:09 -0700 (PDT)
+ id 1jlfGM-0005ED-UG
+ for usrp-users@lists.ettus.com; Wed, 17 Jun 2020 17:06:27 -0400
+Received: by mail-ej1-f54.google.com with SMTP id dp18so4085475ejc.8
+ for <usrp-users@lists.ettus.com>; Wed, 17 Jun 2020 14:06:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:references:from:message-id:date:user-agent:mime-version
  :in-reply-to:content-language:content-transfer-encoding;
- bh=Sdbom2TLWmE785YPzuX44pCjfo0xoNQpyy+CtQqvX/8=;
- b=eq16lyXKQWvwv1QlwZSUbbLXLcC0Vjv13sEXaaYWk3u3D61osDB2cXR4Z0glGBqigA
- RsuY+VtLdtAB28qZjBO0Nsm5hywgf12Y1o9cWqJlukBN9N3eIlTlvMWkJNVk1B7MCALo
- R8a97IsQx2bvOm9Yb+XH6Ny7JQGUFbo4g4cZJOUaB5CSAm4WZambdn02NNRhE6TtgYKm
- Fwp9WU7MJp5H03czvwr6nq3o4+RNxLdx24NaRdonpxVkGzOaaEIJBWr51BZbDuupyltL
- goSqMcQW5akGr1nEhWhgwZZbCamy0eZ4UNyPAt+2aWUOaV4FEgZggoTk6SmWaedQJGL5
- tYlQ==
+ bh=lNMiXbDc5mbVaC9gVaLlyH12WOa3HGQ+r2v7im7kelI=;
+ b=nrvTf/BtcU8lwmds0eU83sfT1VkvSao3m3/a987KRmAjemCfQgnOxFK0dKQBin5Yqj
+ HthNTRfSwYEoS+gUemQLI3mpEO6d+U0X5HAbzrkTo0uUrXpwmW5echlu9WsPUCKjj6sd
+ 6WxsaguSNqBE7EKQ/Ugma9MDiU2zOAtD/Kgm423pLFnfcG045vrG8pBajNpew0ik6mjm
+ P/eM5p7gtw6THo26kVu6DXmO2eP9mEqGjB1pWHt8YqkJQiw9NukgAtFnfby69SvRmMX5
+ e7XYQIsvyRGOLwlmE/TUm1v8KQo+8dzDbYOjZsqr9QwBaQVZVtdRAUJELoeTW7P/vFV6
+ 9aVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=Sdbom2TLWmE785YPzuX44pCjfo0xoNQpyy+CtQqvX/8=;
- b=PorkbUmZVzid+ZwbbXKBjWvxsIUvCsqGvsm1PWwyAN+wwDcUM3HCaFfxxDRtCPkdcM
- cveKdVsIdojL7dy6YG5mx5a1mXjd0k0KnpNaonS290d13zcyhLUV5eKvoJOzDPs44AgF
- EX4DbPC+xhErQMt96hrCQFeFBbuhJjTvhxo5G05t31peKAGk6NXcLepKkqm28zrZoe3G
- vh/m2QZk9KjZusPWANwmIQl5O6U6MLOtJC9EyToFCDn8YM4txUk3juk7GBKAnF4oTuMj
- Zmz/hxAuYF5/LblcUm/d27d6UT831/cV/9F7lhkZMbI7/T0U2sEJQNdEB3dm85yq4hzk
- /+mw==
-X-Gm-Message-State: AOAM532bNC+fiFzoeONuHlGVaM/HiHwWoSdUypFhcf1WKez5dXuk5Qqb
- WoUODLsAS6QQvipKHiB1vdAvLYOT4/022Q==
-X-Google-Smtp-Source: ABdhPJzcMu08XqccGTWmE4gwzuJlFDoFr489c4bBu/NiWoIVJq9zuC5S8obSBPBwojCXJ+TZSwn7Eg==
-X-Received: by 2002:a1c:6807:: with SMTP id d7mr119148wmc.166.1592427648133;
- Wed, 17 Jun 2020 14:00:48 -0700 (PDT)
+ bh=lNMiXbDc5mbVaC9gVaLlyH12WOa3HGQ+r2v7im7kelI=;
+ b=A28FaiXm8jIUEy8nOT/tgDH3rBzyxSz1XrDrFdAAS6dECPoqEQ8bVuCddrUYotgqNf
+ zSm+4/0O6/KtoQZEJ90r5OBPh/OylCIzkx6fGL5uKiSEByd2pUtlQiiVZJ1XQKgGHmf3
+ K5YcRueDhwEBJMeauAgAp+q+W5FOzCRXQWg/ZGWkfcXtmUqgAlkQvbIql812i4498BU8
+ IoM/i0qmrW6ZHSeVZAbN/f73ECLjkXX7Pn9UszBqDpDP/zN6jmPbkUCbZpUDePtR+MPO
+ +UwsZuTEgSWuBLTY8daRM0Xc80uLHdDxb5NyWA0tD/DpJEq+HAwnMNY5NelU1uqYJZpv
+ yNJA==
+X-Gm-Message-State: AOAM533x/zwIMT4jjAqQzHhkMCoGMt50ufd9q3h+iayVFXK3SIeRM6ky
+ zE7/0nVE0x1U4qubQ3aGydpOLN05JOydjg==
+X-Google-Smtp-Source: ABdhPJzSI5/Z1Z+HaLH5Bquq6bSvDBvOf+3nB9DWTIj0Hh+IV/uaUzvimB3kwcbW3+5OstqEmyzQxw==
+X-Received: by 2002:a17:906:4ec1:: with SMTP id
+ i1mr1005942ejv.152.1592427945667; 
+ Wed, 17 Jun 2020 14:05:45 -0700 (PDT)
 Received: from [192.168.128.8]
  (HSI-KBW-46-223-163-150.hsi.kabel-badenwuerttemberg.de. [46.223.163.150])
- by smtp.gmail.com with ESMTPSA id c65sm994661wme.8.2020.06.17.14.00.47
+ by smtp.gmail.com with ESMTPSA id b14sm693197ejq.105.2020.06.17.14.05.44
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 17 Jun 2020 14:00:47 -0700 (PDT)
-To: Seshan Govender <seshan.govender@tawazunti.ae>,
+ Wed, 17 Jun 2020 14:05:45 -0700 (PDT)
+To: Benjamin R Nold <bnold@purdue.edu>,
  "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <a740c86fff0a48e68c52764b8b200251@tawazunti.ae>
-Message-ID: <ca4fed6e-08fb-165e-3b98-b51959cbc340@ettus.com>
-Date: Wed, 17 Jun 2020 23:00:46 +0200
+References: <DM5PR22MB16599774727B85768E7F23FEC89C0@DM5PR22MB1659.namprd22.prod.outlook.com>
+Message-ID: <1f007a44-2618-bc6f-6d8c-74784954475b@ettus.com>
+Date: Wed, 17 Jun 2020 23:05:44 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <a740c86fff0a48e68c52764b8b200251@tawazunti.ae>
+In-Reply-To: <DM5PR22MB16599774727B85768E7F23FEC89C0@DM5PR22MB1659.namprd22.prod.outlook.com>
 Content-Language: en-US
-Subject: Re: [USRP-users] [Internal Use Only]RE: X310 questions[Internal Use
- Only]
+Subject: Re: [USRP-users] B210 GPIO mating connector?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -74,8 +74,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
  <usrp-users@lists.ettus.com>
 Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="cp1256"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,78 +89,35 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgU2VzaGFuLAoKdW0sIHRoaXMgaXMgYSBiaXQgYXdrd2FyZCwgYnV0IHlvdSB3cm90ZSBhbiBl
-bWFpbCB3aXRoICJpbnRlcm5hbCB1c2UKb25seSIgdG8gYSBwdWJsaWMgbWFpbGluZyBsaXN0LgpO
-b3csIGl0J3MgcHVibGljLCBhbmQgZHVlIHRvIGhvdyBlbWFpbCB3b3JrcywgdGhhdCBjYW4ndCBi
-ZSByZXZlcnNlZDsgc28KSSBtaWdodCBhcyB3ZWxsIGFuc3dlciEKCk9uIDE3LjA2LjIwIDA2OjA4
-LCBTZXNoYW4gR292ZW5kZXIgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4gV2UgaGF2ZSByZWNlbnRs
-eSBwdXJjaGFzZWQgYSB4MzEwIGFuZCBhcmUgYnVzeSB0ZXN0aW5nIGl0knMgY2FwYWJpbGl0aWVz
-Lgo+IFdlIHdvdWxkIGxpa2UgdG8gdXNlIHRoZSB4MzEwIHRvIHN0cmVhbSBvdXQgYW5kIHJlY2Vp
-dmUgd2lkZWJhbmQgc2lnbmFscyBhdCBhIHNhbXBsZSByYXRlIG9mIDEwME1zcHMgYW5kIDIwME1z
-cHMuCgpZZXMsIHRoYXQgc2hvdWxkIGJlIHBvc3NpYmxlLCBhc3N1bWluZyB5b3VyIFBDIGlzIGZh
-c3QgZW5vdWdoIGF0CnN0cmVhbWluZyBkYXRhIHRvIHRoZSBkZXZpY2UsIGFuZCByZWNlaXZpbmcg
-ZGF0YSBmcm9tIHRoZSBkZXZpY2UuCgpUaGVzZSByYXRlcyBhcmUgdmVyeSBoaWdoLCBpdCdzIG5v
-bi10cml2aWFsIHRvIHR1bmUgeW91ciBzeXN0ZW0gdG8KcmVsaWFibGUgZG8gdGhhdCwgYW5kIGl0
-J3MgZXZlbiBoYXJkZXIgdG8gZG8gc29tZXRoaW5nIHVzZWZ1bCB3aXRoIHRoZQpkYXRhIHdpdGhv
-dXQgY29tcGxldGVseSBvdmVybG9hZGluZyB5b3VyIGNvbXB1dGVyIQoKPiBJIGhhdmUgY29ubmVj
-dGVkIDIgeCAxMEdiZSwgaG93ZXZlciB3aGVuIHVzaW5nIHRoZSBnbnVyYWRpbyBVSEQtVVNSUCBz
-aW5rIHdpdGggdHdvIGNoYW5uZWxzLCBJIGdldCBVbmRlcnJ1bnMgb3IgTGF0ZSBwYWNrZXRzIGVy
-cm9yIGF0IHNhbXBsZSByYXRlIG9mIDY2LjdNc3BzIGFuZCBhYm92ZS4KCjIgY2hhbm5lbHMg1yA2
-Ni43MiBNUy9zID0gMTMzLjQ0IE1TL3MuIFRoYXQgaXMgYSBoaWdoIHJhdGUuCgpZb3VyIGNvbXB1
-dGVyIGlzIHNpbXBseSBub3Qga2VlcGluZyB1cCB3aXRoIHRoZSBzcGVlZC4KCj4gVGhlIHNhbWUg
-ZXJyb3IgaGFwcGVucyBhbHNvIHdpdGggdGhlIFVIRCBiZW5jaG1hcmsgdG9vbC4gSG93ZXZlciwg
-aXQgd29ya3Mgd2l0aCBvbmUgY2hhbm5lbCwgd2l0aCBvbmUgMTBHYmUgY29ubmVjdGVkIGF0IGEg
-c2FtcGxlIHJhdGUgb2YgMjAwTXNwcywgd2l0aCBmZXcgdW5kZXJydW5zIGluIHRoZSBiZWdpbm5p
-bmcuCgpUaGF0J3MgbW9zdGx5IGJlY2F1c2UgdHdvIGNoYW5uZWxzIGFyZSBoYXJkZXIgdG8gY29v
-cmRpbmF0ZTsgdGhhdCdzIG5vdApyZWFsbHkgcGVyZmVjdCBhYm91dCBVSEQsIEknZCBhZ3JlZS4K
-Cj4gCj4gSSBoYXZlIHRoZSBmb2xsb3dpbmcgcXVlc3Rpb25zOgo+IAo+IDEuIElzIGl0IHBvc3Np
-YmxlIHRvIGFjaGlldmUgMiB4IDIwME1zcCB3aXRoIGR1YWwgMTBHQmUgd2l0aG91dCB1c2luZyBE
-UERLPyAKCkl0IHNob3VsZCBiZSwgYnV0IEkndmUgcmFyZWx5IHNlZW4gaXQgd29yay4KCj4gaWYg
-c28gd2hhdCBhcmUgdGhlIG5lY2Vzc2FyeSBjb25maWd1cmF0aW9ucyB0aGF0IGhhdmUgdG8gYmUg
-bWFkZSB1c2luZyBnbnVyYWRpbz8KCllvdSBoYXZlIHRvIHVzZSB0aGUgRFBESy1zcGVjaWZpYyBk
-ZXZpY2UgYWRkcmVzcy9wYXJhbWV0ZXIgc3RyaW5ncy4KCj4gSXMgYW5vdGhlciBpbWFnZSByZXF1
-aXJlZCBmb3IgdGhlIHgzMTAgKG90aGVyIHRoYW4gdGhlIGJpdCBpbWFnZSBmaWxlcyBkb3dubG9h
-ZGVkIGZyb20gZXR0dXMpIGluIG9yZGVyIHRvIGVuYWJsZSBzdHJlYW0gb24gYm90aCAxMEdCZSBh
-dCB0aGUgc2FtZSB0aW1lPwoKbm8KCj4gCj4gMi4gV2hhdCBpcyB0aGUgbWF4IHNhbXBsZSByYXRl
-IGZlYXNpYmxlIHVzaW5nIG9uZSAxMEdCZS4KClRoZSBvbi10aGUtd2lyZSBmb3JtYXQgZm9yIHNh
-bXBsZXMgdGhhdCBVSEQgdXNlcyBpcyBjb21wbGV4IHZhbHVlcyBidWlsdApmcm9tIDE2IGJpdCBz
-aWduZWQgaW50ZWdlcnMsIHNvIDMyIGJpdCBwZXIgc2FtcGxlLgoKIDEwIEdiL3MKLS0tLS0tLS0t
-IH49IDAuMyBHUy9zID0gMzAwIE1TL3MKICAzMiBiL1MKCkFsbG93IGZvciBhIGJpdCBvZiBvdmVy
-aGVhZCwgYW5kIHlvdSBjYW4gc3RpbGwgYmUgcHJldHR5IGNlcnRhaW4gdGhhdAp0aGUgZnVsbCAy
-MDAgTVMvcyBwZXIgY2hhbm5lbCB3b3JrLCBhbmQgdGhhdCB5b3UgY2FuIG9ubHkgZG8gb25lIG9m
-CnRoZXNlIGNoYW5uZWxzIHdpdGggYSBzaW5nbGUgMTAgR2JlIGxpbmsuCgoKPiAzLiBIb3cgY2Fu
-IHdlIGVuYWJsZSB0byBzdHJlYW0gb3V0IHVzaW5nIGR1YWwgMTBHQmUgaW4gZ251cmFkaW8/Cj4g
-Cj4gNC4gSSB0cmllZCB0byBpbnN0YWxsIERQREsgYWxzbyBidXQgd2FzIG5vdCBzdWNjZXNzZnVs
-IGluIHJ1bm5pbmcgaXQuIFdoaWNoIHZlcnNpb24gb2YgRFBESyBpcyByZWNvbW1lbmRlZCB3aXRo
-IHVoZCAzLjE1LiBXaGF0IGFyZSB0aGUgZXhhY3QgcHJvY2VkdXJlcyBmb3Igc2V0dGluZyB1cCBE
-UERLLgoKaHR0cHM6Ly9rYi5ldHR1cy5jb20vR2V0dGluZ19TdGFydGVkX3dpdGhfRFBES19hbmRf
-VUhECgo+IDUuIEl0IGlzIHJlcXVpcmVkIHRvIHRyYW5zbWl0IGEgYmFuZCBvZiBhIHNpZ25hbCAo
-YmFuZHdpZHRoIGxvd2VyIHRoYW4gdGhlIHNhbXBsaW5nIHJhdGUpIHVzaW5nIEdudS1yYWRpbyBh
-bmQgeDMxMC4gCgp1c3VhbGx5LCB0aGUgZGlnaXRhbCBiYW5kd2lkdGggKmlzKiB0aGUgc2FtcGxp
-bmcgcmF0ZS4gWW91J3JlIG9mIGNvdXJzZQpyaWdodCwgdGhlIGFuYWxvZyBiYW5kd2lkdGhzIG9m
-IGFsbCBvdXIgZGF1Z2h0ZXJib2FyZHMgYXJlIGxlc3MgdGhhbiAyMDAKTUh6IJYgdGhlIFVCWDE2
-MCBoYXMgMTYwIE1IeiBvZiBhbmFsb2cgYmFuZHdpZHRoLgoKPiAqIEhvd2V2ZXIsIHRoZSBvdXRw
-dXQgZnJvbSB0aGUgWDMxMCBpcyBkaXN0b3J0ZWQgYXMgc2hvd24gaW4gdGhlIGF0dGFjaGVkIGZp
-bGUuCgpJJ20gc29ycnksIEknbSBoYXZpbmcgYSBoYXJkIHRpbWUgaW50ZXJwcmV0aW5nIHRoYXQg
-ZGlhZ3JhbS4gV291bGQgeW91CmhhdmUgYSBwaWN0dXJlIGZyb20gYW4gYWN0dWFsIHNwZWN0cnVt
-IGFuYWx5emVyLCBwcmVmZXJyYWJseSBhCnNjcmVlbnNob3QgbWFkZSB3aXRoIHRoZSBidWlsdC1p
-biBzY3JlZW5zaG90dGluZyBmdW5jdGlvbiBvZiB0aGF0CnNwZWN0cnVtIGFuYWx5emVyPwoKPiBB
-bHNvIHRoZSBzaWduYWwgaXMgZXh0ZW5kZWQgdG8gdGhlIGZ1bGwgYmFuZCBlcXVhbCB0byB0aGUg
-c2FtcGxpbmcgcmF0ZS4gCgpUaGF0IHdvdWxkIGJlIGluZGVkZCBkZXNpcmFibGUgZm9yIGFueSBy
-YXRlIDwgMTYwIE1IeiBvbiB0aGUgVUJYLCBmb3IKZXhhbXBsZS4KCj4gVGhpcyBoYXBwZW5zIGJ5
-IHVzaW5nIDE2Yml0IGludGVnZXIgc2FtcGxlcy4+IE1vcmVvdmVyLCB0aGUgc2lnbmFsIG9idGFp
-bmVkIGZyb20gdGhlIFgzMTAgaXMgZGlmZmVyZW50IHdoZW4gdXNpbmcgMTIKYml0IGludCB3aXJl
-LCB0aGUgb3V0cHV0IGV4dGVuZHMgdGhlIGZ1bGwgYmFuZCBidXQgaXMgbm90IHRoZSBzYW1lIGFz
-CnRoZSBpbnB1dCBzaWduYWwuCgpOb3QgcXVpdGUgc3VyZSBJIGZ1bGx5IHVuZGVyc3RhbmQgd2hh
-dCB0aGF0IG1lYW5zLiBCdXQsIGlmIHlvdSBtZWFuIHRoYXQKdGhlIGRpZ2l0YWwgc2lnbmFsIGlz
-bid0IGZhaXRoZnVsbHkgcmVzdG9yZWQ6IHdlbGwsIGlmIHlvdSBoYXZlCnVuZGVycnVucywgeW91
-ciBzaWduYWwgaXMgYnJva2VuLCBzbyBhbnl0aGluZyBtaWdodCBoYXBwZW4uCgo+IDYuIE1vcmVv
-dmVyLCBJIHdhbnQgdG8gdXNlIFJGbm9jIHdpdGggVUhEIDMuMTUsIGhvd2V2ZXIgSSBkbyBub3Qg
-aGF2ZSB2aXZhZG8gdG8gY29tcGlsZSBSRm5vYyBmb3IgdGhpcyB2ZXJzaW9uLiBBcmUgdGhlcmUg
-ZXhpc3RpbmcgaW1hZ2VzIGZvciBSRm5vYyBjb21wYXRpYmxlIHdpdGggdGhlIGxhdGVzdCB2ZXJz
-aW9uIG9mIFVIRCAzLjE1PyBXZSB3b3VsZCB3YW50IHRoZSBSRk5PQyBpbWFnZSBiaXQgZmlsZSBm
-b3IgWDMxMCB0aGF0IGNvbnRhaW5zIFJlcGxheSBibG9jay4KCkFzIGZhciBhcyBJIGtub3csIG5v
-LCBub3QgdGhhdCBJJ20gYXdhcmUgb2YuCgpCZXN0IHJlZ2FyZHMsCk1hcmN1cwoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5n
-IGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9t
-YWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+Hi Benjamin,
+
+https://files.ettus.com/b2x0_enclosure/ has the dimensional drawing of
+the B210. You'll find the Molex Part Nr. 87831142 in there; the Molex
+page lists mating connectors for various applications:
+https://www.molex.com/molex/products/part-detail/pcb_headers/0878311420
+
+Note that you're not really stuck with Molex here; any 2.0mm pitch
+female pin header should work.
+
+Best regards,
+Marcus
+
+On 15.06.20 16:07, Benjamin R Nold via USRP-users wrote:
+> Hi,
+> 
+> What is the mating connector for the GPIO header on the B210? I didn't see it listed in the docs.
+> 
+> Thanks,
+> Benjamin N
+> 
+> 
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> 
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
