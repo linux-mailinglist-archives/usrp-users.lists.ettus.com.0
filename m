@@ -2,62 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A1C31FD6BE
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Jun 2020 23:09:49 +0200 (CEST)
-Received: from [::1] (port=44054 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C1AD1FF51D
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Jun 2020 16:45:31 +0200 (CEST)
+Received: from [::1] (port=54284 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jlfJa-0005nv-8T; Wed, 17 Jun 2020 17:09:46 -0400
-Received: from mail-wr1-f51.google.com ([209.85.221.51]:37169)
+	id 1jlvnE-0000I3-8g; Thu, 18 Jun 2020 10:45:28 -0400
+Received: from mail-qk1-f173.google.com ([209.85.222.173]:43579)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1jlfJW-0005hu-Em
- for usrp-users@lists.ettus.com; Wed, 17 Jun 2020 17:09:42 -0400
-Received: by mail-wr1-f51.google.com with SMTP id a6so1908749wrm.4
- for <usrp-users@lists.ettus.com>; Wed, 17 Jun 2020 14:09:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=b0qE0Pbfb/JiLlTxjipcWPZX2VHGgqcurmXUoVu0knE=;
- b=2LaAja1dzXFsr0hCTvR2erVzhtRK4gbY169tu4FNl+ykH+XrA3YKFMNHND1Ryu0F4z
- KVFW5X+Mr/a78kzoPoOY6mjOxcHFypzh8wGB0awArvBGxUp5chrgJnTcT4E/K84Xf5KM
- d3uKGtUGSLcPyRy/FmHrl9UMLR/Z1CPOFqMT4Z++NMjs9tvsmp7jykc2OxQg4X3AVJaP
- F+jaypVKsLPXFaiFYmrhOVfJzP1bnxwIWE3IrZmmL2DATaEtmz6LQrvYr58KOPzxEO3g
- TpLIA5ziCouYkki0yM145iumba2VohULjSRTNSxP3qUlFXke1dko7Mdsk8Ney+/9r8Rv
- uE5A==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jlvnA-0000Bi-Ck
+ for usrp-users@lists.ettus.com; Thu, 18 Jun 2020 10:45:24 -0400
+Received: by mail-qk1-f173.google.com with SMTP id j68so2382200qkb.10
+ for <usrp-users@lists.ettus.com>; Thu, 18 Jun 2020 07:45:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=k9oFidpoGc1z+D75Mq9cemv6a0cHHcZcG/cNeolUL6g=;
+ b=dBo4dT2LDvaEqQVTrOJQ6gEAkOHyu8KyG3TzDN+WLhHxHkVTlImO5RnwVydvf0/JEG
+ rcd1qcdKdpt4m2A0i8c5WKalUHKKNjfEsk3PRBO5wIYpcI0odRBna8T4O9Md37h0mEtF
+ +ZqT0mD74mT/6QfmDn2EASyerhZgNvkD0chpfb5oNmx/jc2XvZ3uDiIoogOG1TPoGfa7
+ lg8D9k+ZPpPKOuy78iSs4vTUl7b8ttDNpusI7z3SZ63f0NGquwWiO4ogisrEbTrnUUJi
+ k8SOSHloJuMk3CHZYuw0Fy69TfgbikDZrVQG9ZENJ1nvER+16fL0BMswv7ft0DpgIF/G
+ JR2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=b0qE0Pbfb/JiLlTxjipcWPZX2VHGgqcurmXUoVu0knE=;
- b=Tuz7CqRH/fXEXdavrRN5BKs9bL4XVP/At7hgJegV/ngopwGvvTIyTmmxvhoV3VH9ft
- cMvBM6qnwpwcBPwgxVIhezSt6YNYPZ9CPeaDd6NxW7p7gf0/BcRRWUiFQwmG3zA/UK4p
- ewDizuRcEjh6G2SPRwjlRUVrMjdrtGeSVx78U/+6GBlnWIv3KgO4TpTHI9WHHskTtLuQ
- Y8LYoj94/aoSrxYfA9N6wfrGOJDHblSyWt067MZ/ufQfquhlN57zNCRtYntPToHbZ15M
- HawMtDPoRQOyOBfpsJqutFcIbiUO+pl2kZMm5Q5KgUV/z5kUOZExkm2hKymrFAcNlu4p
- chkw==
-X-Gm-Message-State: AOAM531Kbix04n1SZmWJGQnjXIC8PjPqYxOdbYNJBZiFS16phBFBKi1H
- jIDQxVTIv2A539d0BKaqJUPLDt54n5SH6Q==
-X-Google-Smtp-Source: ABdhPJwbnDKni5dwni8a3KLi+uaqaLOasxRe4hAKGEdDOTb+unet/4ZucsodTKMehEkbH2iyNxdS3w==
-X-Received: by 2002:adf:f711:: with SMTP id r17mr1100136wrp.409.1592428141180; 
- Wed, 17 Jun 2020 14:09:01 -0700 (PDT)
-Received: from [192.168.128.8]
- (HSI-KBW-46-223-163-150.hsi.kabel-badenwuerttemberg.de. [46.223.163.150])
- by smtp.gmail.com with ESMTPSA id a124sm1005287wmh.4.2020.06.17.14.09.00
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 17 Jun 2020 14:09:00 -0700 (PDT)
-To: srushti <srushti.siri@gmail.com>, usrp-users@lists.ettus.com
-References: <CABpcK0qRMWYJ6AqdfFcdSE5ZGEywq=Rp6d5QE4nEKCc3r0_UXg@mail.gmail.com>
-Message-ID: <94d2f515-73ef-7117-88f7-99265f2b3941@ettus.com>
-Date: Wed, 17 Jun 2020 23:08:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=k9oFidpoGc1z+D75Mq9cemv6a0cHHcZcG/cNeolUL6g=;
+ b=fHOiyHTY7siNaKyU1BWehLAwsJGr6CFX5p4WKsh5yvhGbvf1Wme8nfIobncqyG/Cu4
+ FIRrPaw4Rc/zKrVElcKOwWZjzCxTuFf8VT1SWqfwnhrCvjh5rDIUKTQHb9Dam9CFpsxR
+ peSCL1o3fN7n5Xm4DLaoJ0wn6yDY2kmA0QhBWYpwBIx+edhzgiOcGv7c3ov/QR44Ar91
+ FpEmWN1xz4v4Mj1+F1zpEJb8oX8kOw5vRpIe1UIoeuA2mSRz+sfsi8UR+EOi6eU2Soa/
+ 2kjloq+P8ZaAGpa48VrqAMRkmBDbfNZzLGX8SQpC29gQrm41zEHoiQ6k5+XlMoay5g8H
+ pqXw==
+X-Gm-Message-State: AOAM531MzTFkuChxj3DAFBSqYTM8NUAepuMRxMQef7f/GIlnhryq6LxZ
+ Dvf2vto5LaJH79t3j4PG0MI7yssPo+0=
+X-Google-Smtp-Source: ABdhPJzIoaAZADs9YUBjiP4dNIyw2lYwNyfcQGOvfHEUclYmUzlpnF/UDtntuQgbAtXKiqJxXPkDKQ==
+X-Received: by 2002:a05:620a:2050:: with SMTP id
+ d16mr4338305qka.215.1592491483593; 
+ Thu, 18 Jun 2020 07:44:43 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
+ [174.95.14.109])
+ by smtp.googlemail.com with ESMTPSA id k17sm3590737qtb.5.2020.06.18.07.44.43
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 18 Jun 2020 07:44:43 -0700 (PDT)
+Message-ID: <5EEB7DDA.2060403@gmail.com>
+Date: Thu, 18 Jun 2020 10:44:42 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-In-Reply-To: <CABpcK0qRMWYJ6AqdfFcdSE5ZGEywq=Rp6d5QE4nEKCc3r0_UXg@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] Installing two DPDK versions in one PC
+To: usrp-users@lists.ettus.com
+References: <CACxOa3Zr_hPaEtu1_OGHfZn=7B_t1CWmYBYasVYVkrg4ZOaSpg@mail.gmail.com>
+In-Reply-To: <CACxOa3Zr_hPaEtu1_OGHfZn=7B_t1CWmYBYasVYVkrg4ZOaSpg@mail.gmail.com>
+Subject: Re: [USRP-users] SW control of DB TX/RX DSA on N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -69,11 +68,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="us-ascii"
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,40 +85,57 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-You should technically be able to do that, but it really doesn't sound
-wise to do that without containerizing your file systems. Then, it
-should be no problem at all.
+On 06/17/2020 02:31 PM, Colby Boyer via USRP-users wrote:
+> Dear All,
+>
+> I have a question about the control of the TX/RX DSAs on the N310 
+> platform.
+>
+> I have a specific line-up for the RX and TX chains and I'd like to set 
+> specific values to the TX and RX DSAs that are on the N310's daughter 
+> board card. Are the control lines for the DSA's hooked up to SW for 
+> control via UHD/MPM? From what I can tell, this is not a SW enabled 
+> feature on the N310.
+>
+> Looking through the FPGA code, the DSAs are hooked up to the 
+> dsa_tx<1,2>_<a,b>_out_iob buffers. I've traced these lines as follows:
+>
+> IO buffer => db_gpio_out wire in top module n3xx => n3xx_core => 
+> db_fe_core => db_control => db_gpio_atr (gpio_atr module).
+>
+> Inside the gpio_atr verilog module, there are some registers related 
+> to the ATR logic but not DSAs. There is logic to control the db_gpio 
+> via a gpio_out_fab signal line, but I trace this signal and it goes 
+> back up to the top level n3xx module as an unconnected wire.
+>
+> Is there a connection that I am missing?
+>
+> Thank you,
+> Colby
+>
+Took me a while to find the schematic for the N3XX daughtercard.
 
-Note that *running* more than one version at the same time is something
-different. Generally, again, should work with differen logical devices
-(that's the whole sense of the iommu magic happening beneath), but it
-might take extra steps.
+The DSAs are made by Peregrine (PE43704 in the RX direction, PE42553 in 
+the TX direction).
 
-Best regards,
-Marcus
+I'd be surprised if these weren't actually supported in UHD.  If you use 
+the "get_gain_names" API call:
 
-On 05.06.20 13:44, srushti via USRP-users wrote:
-> Greetings,
-> 
-> Hope you all are doing well!!
-> 
-> I have a question regarding DPDK. Has anyone tried installing multiple DPDK
-> versions in the same PC? Is it possible? Will it break something in the PC?
-> 
-> For example, can you have DPDK 17 and DPDK 18 installed in the same machine?
-> 
-> Please let me know if anyone has tried this.
-> 
-> Thank you
-> 
-> Srushti
-> 
-> 
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> 
+https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__block.html#a756c14c66c5d9530f69e99afd6a4bb2d
+
+You can see which individual gain-control elements are available to the 
+UHD, and then you can use a specific one of those gain-control elements
+   in a "set_gain" call:
+
+https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__block.html#a81ee1048dbd04c8664f1ea95129203f4
+
+
+Using the 2nd form of the call that takes a gain name.   Without using a 
+gain name, UHD will distribute gain settings over the gain-setting
+   elements that are available to it, typically optimizing for noise 
+figure in those settings.
+
+
 
 _______________________________________________
 USRP-users mailing list
