@@ -2,28 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9D732022E9
-	for <lists+usrp-users@lfdr.de>; Sat, 20 Jun 2020 11:42:43 +0200 (CEST)
-Received: from [::1] (port=42606 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11F4C202EF8
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Jun 2020 06:12:10 +0200 (CEST)
+Received: from [::1] (port=42864 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jma1H-0001Oa-VG; Sat, 20 Jun 2020 05:42:39 -0400
-Received: from common3.relix.de ([176.9.241.120]:57388)
- by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
- (Exim 4.93) (envelope-from <heller@relix.de>) id 1jma1E-0001Hs-6y
- for usrp-users@lists.ettus.com; Sat, 20 Jun 2020 05:42:36 -0400
-Received: from note2 (unknown [62.216.206.151])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: mheller)
- by common3.relix.de (Postfix) with ESMTPSA id 9A77F7625B2
- for <usrp-users@lists.ettus.com>; Sat, 20 Jun 2020 09:41:54 +0000 (UTC)
-Message-ID: <eef797fd890aad85621c836856a6748874362f3c.camel@relix.de>
-To: usrp-users@lists.ettus.com
-Date: Sat, 20 Jun 2020 11:41:54 +0200
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-Mime-Version: 1.0
-Subject: [USRP-users] Software Defined Radio Academy 2020: Next weekend June
- 27./28.
+	id 1jnDo4-0002X1-01; Mon, 22 Jun 2020 00:11:40 -0400
+Received: from mail-oo1-f47.google.com ([209.85.161.47]:42595)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <colbyboyer@genxcomminc.com>)
+ id 1jnDnz-0002TA-Ut
+ for usrp-users@lists.ettus.com; Mon, 22 Jun 2020 00:11:35 -0400
+Received: by mail-oo1-f47.google.com with SMTP id 127so3069992ooc.9
+ for <usrp-users@lists.ettus.com>; Sun, 21 Jun 2020 21:11:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=genxcomminc.com; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=66pF8OrSooQRxeGrD1wdy9dzrUT6cYC5IfsXBwL+KOs=;
+ b=ZBUFkjcBVQo7wMp/nH15qwkHIsEX2og4GRm37/LlYYC23B8PheO6lGZE7CdKd5jzPs
+ EgX4oIiU3eAcFyWdSgTDVI0TMBSMgG9yr8hsXr5Q0KX8aN+wGbeHRnysqkynYaNgVh/5
+ pkGQmz6QJ/lQ6DylPF3GnjXl0pL13ArDmlPiH3CWCcQv90UmpAqkvhi3AALn40jSx4kW
+ nrmbnftqSok1swwrZ6nl7FtY4BMrSLbHpGiXE6K4EhbZYHlRivW7kgN5MDXYZKJaWxoL
+ qc33y3C8PBtDPeO5goXzWDDAOmW6kL41/h++5cXmrYhURmNxt/Wou+t2m52ZkZV+5BNU
+ eACA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=66pF8OrSooQRxeGrD1wdy9dzrUT6cYC5IfsXBwL+KOs=;
+ b=mEMwfvgPpncf+1J9TRjxeUAA/ojthx4cMjtb6rb4I9bG6Is8HUEWSDe/S4l2IGP/eW
+ yQz0rwFRb3LJtLdkF3r6Wxd6nNEhLGBP1SarKrU85oqnjjzvXYR7oTW2ceLY+zq9A0lv
+ 5Z4+5V6EwJ1c85ti3WYcxWwEtTnYEt/KJ8NHnQoNeEAVAR7WlEAwsYirQ8ofkMqrakKa
+ 8bWLNj2R6AXKWqvrGvxlIyVn7RGHBn6Go2/ZBu6V65/nRQMkcyjGHx1vndpyNLQ3YbuJ
+ iTwfJDpL2D/lNEnCpP253GtvanXClr9IfqZBPNC+ORrO0wBBKrP6ipWJ/hCqFr/kWi3g
+ D0iA==
+X-Gm-Message-State: AOAM532HsrQqcLfHEvlwDrjuHPKk0SHMSKCjxYrlJwdYLGJaHSLylr9H
+ aD7ErBN72R12Mt7jJ3eUVbYtVs99scw+VhE0vnu9dg==
+X-Google-Smtp-Source: ABdhPJwkH3FYJ7GfHCYt5Wx8fqe/UjMYP1Qw8a2Oqd4dNs3twSjel6Ir7f1a08dTz5idRiBD9hoqQVbWOfihxLYhxKo=
+X-Received: by 2002:a4a:4f44:: with SMTP id c65mr2820039oob.55.1592799055183; 
+ Sun, 21 Jun 2020 21:10:55 -0700 (PDT)
+MIME-Version: 1.0
+References: <CACxOa3Zr_hPaEtu1_OGHfZn=7B_t1CWmYBYasVYVkrg4ZOaSpg@mail.gmail.com>
+ <5EEB7DDA.2060403@gmail.com>
+ <CACxOa3ZW4x+2+vXnpwvf34bUdx+F_rQ8pADBoyDB7WAHJnv1MA@mail.gmail.com>
+ <5EEBEB8D.9060408@gmail.com>
+ <CACxOa3ZtKxvsXeGCER7BO2-YJRoKYLWScE6TasFKw-X5aFrRFg@mail.gmail.com>
+ <5EEC262E.9000309@gmail.com>
+In-Reply-To: <5EEC262E.9000309@gmail.com>
+Date: Sun, 21 Jun 2020 23:10:45 -0500
+Message-ID: <CACxOa3Yuz5+WSJekXvhn_k9acamV0XDWCiciwbhjH5O48rJ0Kg@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] SW control of DB TX/RX DSA on N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -35,10 +65,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Markus Heller via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Markus Heller <heller@relix.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Colby Boyer via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Colby Boyer <colbyboyer@genxcomminc.com>
+Content-Type: multipart/mixed; boundary="===============1539735789534475397=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -52,50 +81,80 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Dear List,
+--===============1539735789534475397==
+Content-Type: multipart/alternative; boundary="000000000000e2145c05a8a46dcd"
 
-I would like to inform you that the Software Defined Radio Academy 2020
-is taking place the upcoming weekend on June 27 / 28. 
+--000000000000e2145c05a8a46dcd
+Content-Type: text/plain; charset="UTF-8"
 
-We decided very early that we would organize it as a video conference:
-The talks are all pre-recorded, but the speakers will attend in our
-BigBlueButton server, so there will be some kind of feedback and
-interaction. 
+Marcus, thank you for following up with R&D.
 
-The audience can ask their questions in written form in your Youtube
-stream, and the speakers will respond accordingly. 
+Traced the call to 'void magnesium_radio_ctrl_impl::_set_dsa_val' and that
+goes through the VITA/CHDR interface.
 
-Here is the (forwarder) URL of our stream:
+The AD9371 gain control goes through the MPM RPC interface.
 
-https://youtube.sdra.io
+Thanks,
+Colby
 
-Please find the programme here: 
+On Thu, Jun 18, 2020 at 9:42 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
 
-https://2020.sdra.io/pages/programme.html
+> On 06/18/2020 07:57 PM, Colby Boyer wrote:
+> > Thank you Marcus.
+> >
+> OK, so talking to one of the developers, Michael West, only SOME of the
+> notional control traffic goes through MPM (and thus through the RPC
+>    mechanism).
+>
+> The rest is carried via VITA/CHDR in a more "traditional" manner, such
+> as "peek/poke" traffic, etc.
+>
+>
+>
 
-Going virtual gave us the opportunity to host many more speakers who
-would not need to travel to Friedrichshafen as in the past years. So we
-decided to split the conference into two days, allowing us to start a
-little later, which gives the overseas audience a chance to attend. 
+--000000000000e2145c05a8a46dcd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Besides this, our mother organisation, the German Amateur Radio Club,
-will also host this year's HAMRADIO conference as a virtual conference.
-For those of you who speak German, please consider the programme, which
-is nostly ready now. Alltogether we recorded and produced more than 60
-hours of technical talks, discussions and recreational movies, so it's
-worth a look:
+<div dir=3D"ltr"><div>Marcus, thank you for following up with R&amp;D. <br>=
+</div><div><br></div><div>Traced the call to &#39;void magnesium_radio_ctrl=
+_impl::_set_dsa_val&#39; and that goes through the VITA/CHDR interface. <br=
+></div><div><br></div><div>The AD9371 gain control goes through the MPM RPC=
+ interface. <br></div><div><br></div><div>Thanks,</div><div>Colby<br></div>=
+</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Thu, Jun 18, 2020 at 9:42 PM Marcus D. Leech &lt;<a href=3D"mailto:patch=
+vonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex">On 06/18/2020 07:57 PM, Colby Bo=
+yer wrote:<br>
+&gt; Thank you Marcus.<br>
+&gt;<br>
+OK, so talking to one of the developers, Michael West, only SOME of the <br=
+>
+notional control traffic goes through MPM (and thus through the RPC<br>
+=C2=A0 =C2=A0mechanism).<br>
+<br>
+The rest is carried via VITA/CHDR in a more &quot;traditional&quot; manner,=
+ such <br>
+as &quot;peek/poke&quot; traffic, etc.<br>
+<br>
+<br>
+</blockquote></div>
+
+--000000000000e2145c05a8a46dcd--
 
 
-https://www.darc.de/fileadmin/filemounts/gs/oeffentlichskeitsarbeit/Veranstaltungen/HAMRADIOnline/HAMOnline_Sendeplan.pdf
-
-
-All the best,
-BR / vy73
-Markus
-DL7RDS
-
+--===============1539735789534475397==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============1539735789534475397==--
+
