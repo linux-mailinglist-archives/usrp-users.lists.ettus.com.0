@@ -2,48 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D302205B19
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Jun 2020 20:46:58 +0200 (CEST)
-Received: from [::1] (port=53200 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04604205B3B
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Jun 2020 20:56:38 +0200 (CEST)
+Received: from [::1] (port=53298 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jnnwd-0003KS-34; Tue, 23 Jun 2020 14:46:55 -0400
-Received: from mail-ed1-f49.google.com ([209.85.208.49]:38734)
+	id 1jno5y-0004LD-H3; Tue, 23 Jun 2020 14:56:34 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:44155)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <aarsmith54@gmail.com>)
- id 1jnnwY-0003Du-Qy
- for usrp-users@lists.ettus.com; Tue, 23 Jun 2020 14:46:50 -0400
-Received: by mail-ed1-f49.google.com with SMTP id cy7so10639402edb.5
- for <usrp-users@lists.ettus.com>; Tue, 23 Jun 2020 11:46:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.93) (envelope-from <colbyboyer@genxcomminc.com>)
+ id 1jno5u-0004EF-VQ
+ for usrp-users@lists.ettus.com; Tue, 23 Jun 2020 14:56:31 -0400
+Received: by mail-oi1-f176.google.com with SMTP id x202so19768500oix.11
+ for <usrp-users@lists.ettus.com>; Tue, 23 Jun 2020 11:56:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=genxcomminc.com; s=google;
  h=mime-version:from:date:message-id:subject:to;
- bh=5E9LGO+QQ3QUrycgmAQd+rrwIl9dewYwV0HgVzbyEYI=;
- b=UHiuoCLlnd5aUUIy745xcvGDEt4M5GuNezMkRo+0q5uHZWYrpAqgh6w9cSElzDCrTr
- Sj8ETq1jYs/ruy+SDLV91hPbt5TcYYRjGgj5yLvOCGRl9shTfar8y/6weuLO3F3ZpVZN
- m32j/1lzhz7K5BTcj4toVarrFbnyBqHSs44kVAtzSU2IpEuiG49rWDrabaMDq7JSU3vX
- FSYBnYVZIq0OWBCJsShPhP118vYUWYx8NG9BmtFAHcoTIpqWjOG59FSfth1xOvZuQ/0j
- SRU3840laFuJOFPgadtucn/tyYpygG4VmAgIW+ShY26D5YAJYqoloSD6oK+7kwsSATYN
- 4rtQ==
+ bh=ax6KOmijLG28TdIhEpN4MdKoQAfifZAgh59AwcMKCvM=;
+ b=Y33nGABJMP+Ub8HCU1xqkZebWN4y3A/B57lK76NPmOo9N49+kgK4iwZeoefqJrafaX
+ tmRkIbxn9G6WFsagw0q4h+o+IhwfihP1AMgtoWCn6i/f9fQS2tfjpzQONa7ka4tPA1BZ
+ fn1lwp9f+V+JJe2j29MjBv0Qkrf8M1lnM6CvNbnlKnYuN1BXiyShMTpFZu7cUP8T0ZGC
+ Ywkx6acs0rfnEh3LxESYZT2+IxhwcnadviCXfPSCv9oQAS63wmlKwGNiwXehHYgTYON1
+ LxDx+SI1+gJsx8xKpC9LkLALyer1LR8rDroCy6Q8sf/BjVXe/z1QO4R3so0AoOVtyBEE
+ 4o3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=5E9LGO+QQ3QUrycgmAQd+rrwIl9dewYwV0HgVzbyEYI=;
- b=qdHdBrQXYt8KXTN2YlHRQ+d/aT70rfIYYhpmurevcDry8HwfFViyws0ivv+Dix6BV3
- Plpb+vaFL9BS8nmgIVm8X5hH5Wyjhaw12oUies9cSp0ljM8PW3WjehLwBrsAZRV5MuFT
- +QMvvdBDbmBlnmlcrY7PuKzIYx2BW+tr9Lh/7gCItWpHXwf7swPGif+z/Nm3rJgMLkMS
- iemiLz9h673mSL4KDk6tdnTt7swAeBJ9HMnddI/EWYuWLyXtZ1Ifgn78WMKxjZP9BggF
- ZcneEcGXvfL+NGF3HwMWe4zVZNZZ2gTKAte6t2hYpSxZTXSvyzs7o3L8iY1FLGwczIky
- i+Ag==
-X-Gm-Message-State: AOAM530NCYnWcQhfAiltTUGab2WUtKV3CuFu8Vfflw+OqhpNK7Xt2jas
- sJYuY0doJaZ6dkG6GPPDmFSHZDwpfeMoKecqEnblAw==
-X-Google-Smtp-Source: ABdhPJzlZSa+dnqCSgWdhNk08TIcLAkVBgYH+ZZPJd1OHtdpR9Smgpv4s9Owch+H83+XaDGKNKFM5CfmE5lA0H2OR1Y=
-X-Received: by 2002:a50:ba8b:: with SMTP id x11mr23778901ede.201.1592937969499; 
- Tue, 23 Jun 2020 11:46:09 -0700 (PDT)
+ bh=ax6KOmijLG28TdIhEpN4MdKoQAfifZAgh59AwcMKCvM=;
+ b=auvVa5F1ufhRXpF6D5ckAkz7wBfxjvAZhxPk3FuLgZ3d+a9rzWLkpPEFjTl+h//33E
+ 9b91Wo/IDnr/Gh/6gDzd8r3qLE8TIvR+LyMDN73XFjOeicHaGR0EA6W9kHr5t/7gHjx8
+ BGDm+MRN/gEKnt1BGfErxeAkS2ZqQSR6hkOKYUbllJTIC71BhB/w+6CfQnR/bVDIWwJh
+ zhtfv8TlUAJ+2x8lhhVujEyK7RULhkcHJrg85b49hxTScF/MAue1vjD43+O7EN+e65M3
+ Z4jV8LQ0TMctkMN8Vy4+UtAyjcWoJYhelM6IH+xP/ddngxYIh9bUFK1WPORwwI/L9JAB
+ Mp8g==
+X-Gm-Message-State: AOAM530A/jgl0NF3OSZY2DKRRU+OXyOnbVFRrvUsP3IYM0zu5Kkx+F6Y
+ WXwG/BSVh73qCJIYF3mkRT9fl3DNDSSHdN5Lrry7VDlbSQM=
+X-Google-Smtp-Source: ABdhPJxtJuiEIQ1GJmg0FVxZbN35jG2qxKqeKDHJ6l1pIG+7P0mvLx6Rz7rAoyPRM2CG98TIyQ/kvpzQNADJ14x8U/Q=
+X-Received: by 2002:a05:6808:157:: with SMTP id
+ h23mr15076025oie.57.1592938550050; 
+ Tue, 23 Jun 2020 11:55:50 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 23 Jun 2020 12:45:58 -0600
-Message-ID: <CAH2Hh738Yjx+iA=oHOP2tmq+TXoj8-k5ZLNUnXJsdjQ9D1q6cg@mail.gmail.com>
-To: Ettus Mail List <usrp-users@lists.ettus.com>
-Subject: [USRP-users] 10 MHz Reference Initial Phase in the X310
+Date: Tue, 23 Jun 2020 13:55:39 -0500
+Message-ID: <CACxOa3ZHn3FTvAJvX7Uwy2Lg77aXghXt-g301x9J6q-8=+D2Rg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] n3xx cross compile toolchain installation differences
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Aaron Smith via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Aaron Smith <aarsmith54@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6243059346491108295=="
+From: Colby Boyer via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Colby Boyer <colbyboyer@genxcomminc.com>
+Content-Type: multipart/mixed; boundary="===============8255254896981047102=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,73 +73,75 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6243059346491108295==
-Content-Type: multipart/alternative; boundary="000000000000d2440405a8c4c5c9"
+--===============8255254896981047102==
+Content-Type: multipart/alternative; boundary="0000000000006cd62205a8c4e862"
 
---000000000000d2440405a8c4c5c9
+--0000000000006cd62205a8c4e862
 Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+Hi All,
 
-I am attempting to release a transmission from an X310 every second. To
-accomplish this, I must measure, and calibrate the delay in the RF front
-end of the radio for my chosen sample rate. I'd like the transmission to be
-released within 1 clock cycle of the rising edge of the PPS.
+I have a question regarding some small differences in the n3xx tool chain
+installation flow. Mainly, I see musleabi replace gnueabi in a few places.
+I am checking to see if this will cause a subtle issue down the line.
 
-I am feeding the X310 an external 10 MHz reference and 1 PPS, which are
-produced by the same source, and are being supplied to the radio with
-matched cable lengths. The source is a GPS receiver and in my lab I have 2
-different generations of the GPS receiver.
+I followed the flow in the 'Obtaining an SDK' and 'SDK Usage' from
+https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_fsbuild to get the
+cross compile toolchain setup.
 
-While calibrating the front end transmit delay I noticed a discrepancy in
-the radio timing between the separate GPS receiver generations. The 1st
-generation of GPS receiver is 50 ns different than the calibration for the
-2nd generation. When I look at the 1 PPS and 10 MHz output on a scope, I
-noticed that in the 1st generation the PPS occurs at the top of a 10 MHz
-cycle, and in the 2nd generation it occurs at the bottom of a 10 MHz cycle.
-Half a cycle at 10 MHz is 50 ns. I suspect this is not coincidence because
-I have now tested 6 different GPS receivers, 3 of gen 1 and 3 of gen 2, and
-all 3 gen 1 calibrations are the same and they are 50 ns different from the
-gen 2 calibrations.
+I notice the extracted toolchain has some differences than what is listed
+in the guide. For example the environment setup script is
+'environment-setup-cortexa9t2hf-neon-oe-linux-musleabi' instead of
+'environment-setup-armv7ahf-vfp-neon-oe-linux-gnueabi'.
 
-Is this the expected behavior? Or is there a bug in the X310 code that
-handles timing? I have never worked on hardware, but I would not expect the
-initial phase of a 10 MHz reference to impact absolute time.
+'echo $CC' on my machine gives below
 
-Thanks for your help!
+arm-oe-linux-musleabi-gcc -march=armv7-a -mthumb -mfpu=neon
+-mfloat-abi=hard -mcpu=cortex-a9 -mmusl
+--sysroot=/opt/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi
 
---000000000000d2440405a8c4c5c9
+and '$CC -dumpmachine' prints out arm-oe-linux-gnueabi.
+
+On a N310, I run 'gcc -dumpmachine' and 'get arm-oe-linux-musleabi' instead
+of arm-oe-linux-gnueabi.
+
+I was able to do a basic hello world cross-compile and run on the N310
+without an issue.
+
+Thanks
+Colby
+
+--0000000000006cd62205a8c4e862
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I am attempting to re=
-lease a transmission from an X310 every second. To accomplish this, I must =
-measure, and calibrate the delay in the RF front end of the radio for my ch=
-osen sample rate. I&#39;d like the transmission to be released within 1 clo=
-ck cycle of the rising edge of the PPS. <br></div><div><br></div><div>I am =
-feeding the X310 an external 10 MHz reference and 1 PPS, which are produced=
- by the same source, and are being supplied to the radio with matched cable=
- lengths. The source is a GPS receiver and in my lab I have 2 different gen=
-erations of the GPS receiver.</div><div><br></div><div>While calibrating th=
-e front end transmit delay I noticed a discrepancy in the radio timing betw=
-een the separate GPS receiver generations. The 1st generation of GPS receiv=
-er is 50 ns different than the calibration for the 2nd generation. When I l=
-ook at the 1 PPS and 10 MHz output on a scope, I noticed that in the 1st ge=
-neration the PPS occurs at the top of a 10 MHz cycle, and in the 2nd genera=
-tion it occurs at the bottom of a 10 MHz cycle. Half a cycle at 10 MHz is 5=
-0 ns. I suspect this is not coincidence because I have now tested 6 differe=
-nt GPS receivers, 3 of gen 1 and 3 of gen 2, and all 3 gen 1 calibrations a=
-re the same and they are 50 ns different from the gen 2 calibrations.</div>=
-<div><br></div><div>Is this the expected behavior? Or is there a bug in the=
- X310 code that handles timing? I have never worked on hardware, but I woul=
-d not expect the initial phase of a 10 MHz reference to impact absolute tim=
-e. <br></div><div><br></div><div>Thanks for your help!<br></div><div><br></=
-div><div><br></div></div>
+<div dir=3D"ltr"><div>Hi All, <br></div><div><br></div><div>I have a questi=
+on regarding some small differences in the n3xx tool chain installation flo=
+w. Mainly, I see musleabi replace gnueabi in a few places. I am checking to=
+ see if this will cause a subtle issue down the line. <br></div><div><br></=
+div><div>I followed the flow in the &#39;Obtaining an SDK&#39; and &#39;SDK=
+ Usage&#39; from <a href=3D"https://files.ettus.com/manual/page_usrp_n3xx.h=
+tml#n3xx_fsbuild">https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_f=
+sbuild</a> to get the cross compile toolchain setup. <br></div><div><br></d=
+iv><div>I notice the extracted toolchain has some differences than what is =
+listed in the guide. For example the environment setup script is &#39;envir=
+onment-setup-cortexa9t2hf-neon-oe-linux-musleabi&#39; instead of &#39;envir=
+onment-setup-armv7ahf-vfp-neon-oe-linux-gnueabi&#39;. <br></div><div><br></=
+div><div>&#39;echo $CC&#39; on my machine gives below<br></div><div><br></d=
+iv><div>arm-oe-linux-musleabi-gcc -march=3Darmv7-a -mthumb -mfpu=3Dneon -mf=
+loat-abi=3Dhard -mcpu=3Dcortex-a9 -mmusl --sysroot=3D/opt/oe/sysroots/corte=
+xa9t2hf-neon-oe-linux-musleabi</div><div><br></div><div>and &#39;$CC -dumpm=
+achine&#39; prints out arm-oe-linux-gnueabi. <br></div><div><br></div><div>=
+On a N310, I run &#39;gcc -dumpmachine&#39; and &#39;get arm-oe-linux-musle=
+abi&#39; instead of=20
+arm-oe-linux-gnueabi. <br></div><div><br></div><div>I was able to do a basi=
+c hello world cross-compile and run on the N310 without an issue. <br></div=
+><div><br></div><div>Thanks</div><div>Colby<br></div></div>
 
---000000000000d2440405a8c4c5c9--
+--0000000000006cd62205a8c4e862--
 
 
---===============6243059346491108295==
+--===============8255254896981047102==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,5 +152,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6243059346491108295==--
+--===============8255254896981047102==--
 
