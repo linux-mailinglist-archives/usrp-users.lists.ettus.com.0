@@ -2,50 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFA85203F6B
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Jun 2020 20:46:32 +0200 (CEST)
-Received: from [::1] (port=41180 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92FBD204624
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Jun 2020 02:48:39 +0200 (CEST)
+Received: from [::1] (port=44064 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jnRSf-0008KC-Ot; Mon, 22 Jun 2020 14:46:29 -0400
-Received: from ssi-cc-fra1-mro-003.atmailcloud.com ([89.45.227.180]:39518)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <drtaylor@manx.net>) id 1jnRSb-0007zJ-A1
- for usrp-users@lists.ettus.com; Mon, 22 Jun 2020 14:46:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=manx.net;
- s=20160330; h=Content-Type:MIME-Version:Date:Subject:To:From:Message-ID;
- bh=CTfoaWypcOlREwpxp0AXJsahHBB+D2mUjUiJ70EVowM=; b=ShgO+CFmHFLmi9RSiJIE/S99Us
- QjzTzp0lv9gRtQ9WogJLfpt4LfYxGukln91TiCknUFZZIeA/LxGQ8NSAT4x35+WePumKEZ9FkrA3t
- W+8ZzBnIPiVLR6evSqwUgp33TLakvIeWKxE8hJRXLDGX3mCEGjs12rLFKwXQ652ocZ5A=;
-Received: from pc2-cc-fra1-mrr-003.internal.atmailcloud.com ([10.20.30.47])
- by ssi-cc-fra1-mro-003.internal.atmailcloud.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <drtaylor@manx.net>) id 1jnRRw-000417-3i
- for usrp-users@lists.ettus.com; Tue, 23 Jun 2020 04:45:44 +1000
-Received: from pc2-cc-fra1-mrc-004.internal.atmailcloud.com ([10.20.30.54])
- by pc2-cc-fra1-mrr-003.internal.atmailcloud.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <drtaylor@manx.net>) id 1jnRRw-0007wN-0Z
- for usrp-users@lists.ettus.com; Tue, 23 Jun 2020 04:45:44 +1000
-Received: from [178.16.9.227] (helo=PC1)
- by pc2-cc-fra1-mrc-004.internal.atmailcloud.com with esmtpsa
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <drtaylor@manx.net>) id 1jnRRv-0005hw-NA
- for usrp-users@lists.ettus.com; Tue, 23 Jun 2020 04:45:43 +1000
-Message-ID: <3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1>
-To: <usrp-users@lists.ettus.com>
-Date: Mon, 22 Jun 2020 19:45:44 +0100
+	id 1jnX76-00063V-ER; Mon, 22 Jun 2020 20:48:36 -0400
+Received: from mail-qv1-f51.google.com ([209.85.219.51]:36948)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jnX72-0005nb-0B
+ for usrp-users@lists.ettus.com; Mon, 22 Jun 2020 20:48:32 -0400
+Received: by mail-qv1-f51.google.com with SMTP id p7so1593686qvl.4
+ for <usrp-users@lists.ettus.com>; Mon, 22 Jun 2020 17:48:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=8M2/X5TglhG2lglAp+INU7aZGpSzPPn9Y9tUX3gMBt4=;
+ b=Q3M+Gg3uHTTsCZFpSyJFwh55kdOfgxU8utTGB9G2H1DDyvcx4dqgKTKGcYphgJQAt1
+ P65hCFJLRPD9cPjPb5Zb4YMva2ZifWsNz1WJtfxzN9dpgycG/pKMUYipt1UbgTHFlKWV
+ MsZG2SdTbX3Yi8WeUDSRQtpRY52DNtGzyq+nvXMP2PnVuo2h10kG1oYDwE5r6sLApSh8
+ Wiyi/u2ZoiCWOHPx7Rv1umJrDJAyphalDAs4dnIRyx/svZV3F+c0xPLWrvYmBwcPODfy
+ vlcmdEJPnEaruUOIM5XQatb9w9GVLCLvlmhenRatVKmxwXkGUQtwjC7Y5zU0iKeNKd9w
+ S20w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=8M2/X5TglhG2lglAp+INU7aZGpSzPPn9Y9tUX3gMBt4=;
+ b=LaoOakkuPMO6TDJvNCyT1YEzlL2WbT3iAxu6puW9EKSNCUaOe1FV7owFDY7sdcmL51
+ Su/An/9NnsAelNPglYBCaJgXEYNZ6E//6xga/IKsYmdvcpIj4g0zPFG6bbE/eb42dxGd
+ 6WRscQGPlcF0ZK4NYO9ep945cQfWL5hjmSetgqFu6wYkwAItThNUvOf6sjfAG2BN33cb
+ O0ySlKaMlsm0B14+UdXjYrglT3eOl2lLB9bbkZeZhBBTiAo8n4bPeiZf4Mmt37h0CneK
+ aOTBAFzRTdP/5EC6UXbu2u+Id69pyrGfj1A2mUarEBvwNPQ+Ll+zKiCZohsRRJRpegsq
+ Sojw==
+X-Gm-Message-State: AOAM533H/mNqcYhHmu1cRhIpsx/ThZxhXamH5lsV14D3kisEoZBJXMPd
+ 7JbtEbJN5z0mLNzolTR2HiYJ+re3yUM=
+X-Google-Smtp-Source: ABdhPJxBjBLGFfHa+voWl/vinOwBft/fSAQ9Or6scD/H8tF1Y16JQ3gUrnctgorJ0JTjg/SOrlXoFA==
+X-Received: by 2002:ad4:55eb:: with SMTP id
+ bu11mr24183763qvb.182.1592873271239; 
+ Mon, 22 Jun 2020 17:47:51 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
+ [174.95.14.109])
+ by smtp.googlemail.com with ESMTPSA id x19sm1941372qtc.36.2020.06.22.17.47.50
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 22 Jun 2020 17:47:50 -0700 (PDT)
+Message-ID: <5EF15135.6050502@gmail.com>
+Date: Mon, 22 Jun 2020 20:47:49 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-X-Priority: 3
-X-MSMail-Priority: Normal
-Importance: Normal
-X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
-X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
-X-Atmail-Id: drtaylor@manx.net
-X-atmail-spam-score: 0
-X-atmail-spam-action: no action
-X-atmailcloud-spam-bar: /
-Subject: [USRP-users] GRC up-grade - installation issues
+To: usrp-users@lists.ettus.com
+References: <3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1>
+In-Reply-To: <3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1>
+Subject: Re: [USRP-users] GRC up-grade - installation issues
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -57,9 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "David Taylor \(manx.net\) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "David Taylor \(manx.net\)" <drtaylor@manx.net>
-Content-Type: multipart/mixed; boundary="===============3804780504818923792=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============9101999481765399954=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,178 +84,246 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
-
---===============3804780504818923792==
+--===============9101999481765399954==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0017_01D648CD.B7CE8970"
+ boundary="------------020507030804020706010809"
 
 This is a multi-part message in MIME format.
+--------------020507030804020706010809
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-------=_NextPart_000_0017_01D648CD.B7CE8970
-Content-Type: text/plain;
-	charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 06/22/2020 02:45 PM, David Taylor (manx.net) via USRP-users wrote:
+>
+> Dear all,
+>
+> I have been successfully running a B200/ B210 research project for two 
+> years based on Ubuntu 18.04 LTS and version 3.7x GRC.
+>
+> This includes a number of OOT blocks developed for direct sequence 
+> spread spectrum, using the Volk GNSSSDR library extensions. An N210 
+> USRP is also at my disposal.
+>
+> I now have a clean upgrade to Ubuntu 20.04 LTS and wish to refresh the 
+> GRC & UHD drivers to the latest stable release, taking best advice 
+> please to ensure project conclusion.
+>
+> The issues:-
+>
+> 1). GRC version 3.8.1.0~rc12build2 works standalone and appears to 
+> have similar Cmake files structure and content. (3.9.0.0 is listed in 
+> the package manager as available, but with significant and noticeable 
+> changes in the software migration and dependencies)?
+>
+> 2). Libuhd-dev at 3.15.0.0-2build5 correctly identifies the B210 over 
+> USB3. (I note that library-file libuhd003 no longer forms part of this 
+> package).
+>
+> 3). Running “uhd_images_downloader.py” fully populates /usr/share/images/.
+>
+> There is an issue with FPGA compatibility, which I have seen before in 
+> 3.7x GRC.  “Expected FPGA compatibility number 16 expected got 14.”
+>
+> This issue was solved under V3.7x  simply by replacement of the FPGA 
+> image from archive.
+>
+Is this compatibility issue with your N210 or B2xx?  It isn't clear.
 
-Dear all,
+> 4). I have removed all FPGA images from the /usr/share/images 
+> directory and have selectively tried installing a number of earlier 
+> discrete images and boot-loader from the archive, but all without success.
+>
+> 5). A re-run of the uhd-images-downloader now fails to re-populate the 
+> images folder, however the python(3) script itself runs.
+>
+You might want to simply remove *everything* from /usr/share/uhd/images, 
+and re-run:
 
-I have been successfully running a B200/ B210 research project for two =
-years based on Ubuntu 18.04 LTS and version 3.7x GRC.
+sudo uhd_images_downloader.py
 
-This includes a number of OOT blocks developed for direct sequence =
-spread spectrum, using the Volk GNSSSDR library extensions. An N210 USRP =
-is also at my disposal.
+[Making certain it's running the version you think it's running--if you 
+installed from pre-packaged, it'll be in /usr/bin]
 
-I now have a clean upgrade to Ubuntu 20.04 LTS and wish to refresh the =
-GRC & UHD drivers to the latest stable release, taking best advice =
-please to ensure project conclusion.
-
-The issues:-
-
-1). GRC version 3.8.1.0~rc12build2 works standalone and appears to have =
-similar Cmake files structure and content. (3.9.0.0 is listed in the =
-package manager as available, but with significant and noticeable =
-changes in the software migration and dependencies)?=20
-
-2). Libuhd-dev at 3.15.0.0-2build5 correctly identifies the B210 over =
-USB3. (I note that library-file libuhd003 no longer forms part of this =
-package).
-
-3). Running =E2=80=9Cuhd_images_downloader.py=E2=80=9D fully populates =
-/usr/share/images/.
-
-There is an issue with FPGA compatibility, which I have seen before in =
-3.7x GRC.  =E2=80=9CExpected FPGA compatibility number 16 expected got =
-14.=E2=80=9D
-
-This issue was solved under V3.7x  simply by replacement of the FPGA =
-image from archive.=20
-
-4). I have removed all FPGA images from the /usr/share/images directory =
-and have selectively tried installing a number of earlier discrete =
-images and boot-loader from the archive, but all without success.
-
-5). A re-run of the uhd-images-downloader now fails to re-populate the =
-images folder, however the python(3) script itself runs.
-
-
-
-Many thanks in advance and I look forward to being able to contribute to =
-the group.
-
-Best regards,
-
-David Taylor
-
-Ph.D Researcher, Limerick University, Ireland. GD4FMB
-
-------=_NextPart_000_0017_01D648CD.B7CE8970
-Content-Type: text/html;
-	charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<HTML><HEAD></HEAD>
-<BODY dir=3Dltr>
-<DIV dir=3Dltr>
-<DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: #000000">
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">Dear all,</FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">I have been successfully running a B200/ B210 =
-research=20
-project for two years based on Ubuntu 18.04 LTS and version 3.7x =
-GRC.</FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">This includes a number of OOT blocks developed =
-for=20
-direct sequence spread spectrum, using the Volk GNSSSDR library =
-extensions. An=20
-N210 USRP is also at my disposal.</FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">I now have a clean upgrade to Ubuntu 20.04 LTS =
-and wish=20
-to refresh the GRC &amp; UHD drivers to the latest stable release, =
-taking best=20
-advice please to ensure project conclusion.</FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt">The=20
-issues:-</P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">1). GRC version <FONT color=3D#0000ff=20
-size=3D3>3.8.1.0~rc12build2</FONT> works standalone and appears to have =
-similar=20
-Cmake files structure and content. (<FONT color=3D#0000ff =
-size=3D3>3.9.0.0</FONT> is=20
-listed in the package manager as available, but with significant and =
-noticeable=20
-changes in the software migration and dependencies)? </FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">2). Libuhd-dev at <FONT color=3D#0000ff=20
-size=3D3>3.15.0.0-2build5</FONT> correctly identifies the B210 over =
-USB3. (I note=20
-that library-file libuhd003 no longer forms part of this =
-package).</FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">3). Running =
-=E2=80=9Cuhd_images_downloader.py=E2=80=9D fully populates=20
-/usr/share/images/.</FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">There is an issue with FPGA compatibility, =
-which I have=20
-seen before in 3.7x GRC.<SPAN style=3D"mso-spacerun: yes">&nbsp; =
-=E2=80=9C</SPAN>Expected=20
-FPGA compatibility number 16 expected got 14.=E2=80=9D</FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">This issue was solved under V3.7x&nbsp; simply =
-by=20
-replacement of the FPGA image from archive. </FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">4). I have removed all FPGA images from the=20
-/usr/share/images directory and have selectively tried installing a =
-number of=20
-earlier discrete images and boot-loader from the archive, but all =
-without=20
-success.</FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">5). A re-run of the uhd-images-downloader now =
-fails to=20
-re-populate the images folder, however the python(3) script itself=20
-runs.</FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt"></FONT>&nbsp;</P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">Many thanks in advance and I look forward to =
-being able=20
-to contribute to the group.</FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt">Best=20
-regards,</P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">David Taylor</FONT></P>
-<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
-13pt"><FONT=20
-style=3D"FONT-SIZE: 11pt">Ph.D Researcher, Limerick University, Ireland. =
-
-GD4FMB</FONT></P></DIV></DIV></BODY></HTML>
-
-------=_NextPart_000_0017_01D648CD.B7CE8970--
+If this doesn't work, please share the error messages produced with us.
 
 
+Also, because I didn't see anything in your work-log about it, for N210, 
+you have to run:
 
---===============3804780504818923792==
+uhd_image_loader --args addr=<addr-of-n210>,type=n200
+
+This loads the appropriate image into the EEPROM of the N210.  The N2xxx 
+series, unlike the B2xx series don't do this dynamically at
+   runtime.  Once you load an image into them, that image is there until 
+it is reprogrammed, even across power-off.  This is different than
+   B2xx, which manages this automatically after power-up.
+
+
+> Many thanks in advance and I look forward to being able to contribute 
+> to the group.
+>
+> Best regards,
+>
+> David Taylor
+>
+> Ph.D Researcher, Limerick University, Ireland. GD4FMB
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+--------------020507030804020706010809
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 06/22/2020 02:45 PM, David Taylor
+      (manx.net) via USRP-users wrote:<br>
+    </div>
+    <blockquote cite="mid:3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1"
+      type="cite">
+      <div dir="ltr">
+        <div style="FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR:
+          #000000">
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">Dear all,</font></p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">I have been successfully
+              running a B200/ B210 research project for two years based
+              on Ubuntu 18.04 LTS and version 3.7x GRC.</font></p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">This includes a number
+              of OOT blocks developed for direct sequence spread
+              spectrum, using the Volk GNSSSDR library extensions. An
+              N210 USRP is also at my disposal.</font></p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">I now have a clean
+              upgrade to Ubuntu 20.04 LTS and wish to refresh the GRC
+              &amp; UHD drivers to the latest stable release, taking
+              best advice please to ensure project conclusion.</font></p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt">The issues:-</p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">1). GRC version <font
+                color="#0000ff" size="3">3.8.1.0~rc12build2</font> works
+              standalone and appears to have similar Cmake files
+              structure and content. (<font color="#0000ff" size="3">3.9.0.0</font>
+              is listed in the package manager as available, but with
+              significant and noticeable changes in the software
+              migration and dependencies)? </font></p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">2). Libuhd-dev at <font
+                color="#0000ff" size="3">3.15.0.0-2build5</font>
+              correctly identifies the B210 over USB3. (I note that
+              library-file libuhd003 no longer forms part of this
+              package).</font></p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">3). Running
+              “uhd_images_downloader.py” fully populates
+              /usr/share/images/.</font></p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">There is an issue with
+              FPGA compatibility, which I have seen before in 3.7x GRC.<span
+                style="mso-spacerun: yes">  “</span>Expected FPGA
+              compatibility number 16 expected got 14.”</font></p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">This issue was solved
+              under V3.7x  simply by replacement of the FPGA image from
+              archive. </font></p>
+        </div>
+      </div>
+    </blockquote>
+    Is this compatibility issue with your N210 or B2xx?  It isn't clear.<br>
+    <br>
+    <blockquote cite="mid:3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1"
+      type="cite">
+      <div dir="ltr">
+        <div style="FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR:
+          #000000">
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">4). I have removed all
+              FPGA images from the /usr/share/images directory and have
+              selectively tried installing a number of earlier discrete
+              images and boot-loader from the archive, but all without
+              success.</font></p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">5). A re-run of the
+              uhd-images-downloader now fails to re-populate the images
+              folder, however the python(3) script itself runs.</font></p>
+        </div>
+      </div>
+    </blockquote>
+    You might want to simply remove *everything* from
+    /usr/share/uhd/images, and re-run:<br>
+    <br>
+    sudo uhd_images_downloader.py<br>
+    <br>
+    [Making certain it's running the version you think it's running--if
+    you installed from pre-packaged, it'll be in /usr/bin]<br>
+    <br>
+    If this doesn't work, please share the error messages produced with
+    us.<br>
+    <br>
+    <br>
+    Also, because I didn't see anything in your work-log about it, for
+    N210, you have to run:<br>
+    <br>
+    uhd_image_loader --args addr=&lt;addr-of-n210&gt;,type=n200<br>
+    <br>
+    This loads the appropriate image into the EEPROM of the N210.  The
+    N2xxx series, unlike the B2xx series don't do this dynamically at<br>
+      runtime.  Once you load an image into them, that image is there
+    until it is reprogrammed, even across power-off.  This is different
+    than<br>
+      B2xx, which manages this automatically after power-up.<br>
+    <br>
+    <br>
+    <blockquote cite="mid:3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1"
+      type="cite">
+      <div dir="ltr">
+        <div style="FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR:
+          #000000">
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"> </p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">Many thanks in advance
+              and I look forward to being able to contribute to the
+              group.</font></p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt">Best regards,</p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">David Taylor</font></p>
+          <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt; LINE-HEIGHT:
+            13pt"><font style="FONT-SIZE: 11pt">Ph.D Researcher,
+              Limerick University, Ireland. GD4FMB</font></p>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------020507030804020706010809--
+
+
+--===============9101999481765399954==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -256,6 +334,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3804780504818923792==--
-
+--===============9101999481765399954==--
 
