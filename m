@@ -2,59 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33D1F2046E4
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Jun 2020 03:53:20 +0200 (CEST)
-Received: from [::1] (port=44478 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CE982047FD
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Jun 2020 05:40:11 +0200 (CEST)
+Received: from [::1] (port=45136 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jnY7g-0001Ri-TC; Mon, 22 Jun 2020 21:53:16 -0400
-Received: from mail-qk1-f177.google.com ([209.85.222.177]:39862)
+	id 1jnZn6-0006l4-4g; Mon, 22 Jun 2020 23:40:08 -0400
+Received: from mail-qt1-f182.google.com ([209.85.160.182]:35470)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jnY7c-0001Nf-NC
- for usrp-users@lists.ettus.com; Mon, 22 Jun 2020 21:53:12 -0400
-Received: by mail-qk1-f177.google.com with SMTP id l6so13841731qkc.6
- for <usrp-users@lists.ettus.com>; Mon, 22 Jun 2020 18:52:52 -0700 (PDT)
+ (Exim 4.93) (envelope-from <cykhung@gmail.com>) id 1jnZn1-0006fS-73
+ for usrp-users@lists.ettus.com; Mon, 22 Jun 2020 23:40:03 -0400
+Received: by mail-qt1-f182.google.com with SMTP id z1so14401913qtn.2
+ for <usrp-users@lists.ettus.com>; Mon, 22 Jun 2020 20:39:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=JyJlro3NjT/gJMdfcz/TzXwHcQE2jL8IcqDEZDu84s4=;
- b=MVnQyM1ZXvmiMQaTmzw0cWzwV53IwoBrW9/F1xVhzYAFRzOVTBRLHiyWzmYp45VkXx
- BneQ6nEhBe6LROgAFTYTJ2XkvMDYnxMFgII0PUecVbx+GUdbKBDMi6M59cH/S2des6Ge
- snTqUp9Hx+URjd/smE+ZDth3Ize4R1SdTeGpxaLp2hZ/JLMWIes9u3SiH1DOSAFV2hWl
- W5daRhCnWazQ5bLeWPHPn/6w1xoDGmRmn46OKyrg9RxhnK+ff7jq6A4VJH36j/V3hLwC
- H7IClIpA3XbdHpuJwwb9JB1A2KbqkeYt7kLfA01JNr7Y0h3iaaDbjcBV9KVXNpV3QjF0
- e3Xw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=FPWbElNuDPyO04GBuXLd4Oa3yKZOOm/N0Sx/0wQ99YI=;
+ b=ki0cU0hDdUMKJOc/5jGZwonVmLj0VRMd+KT7MaRPp2yIwJbv1m0R5l6HPfpVyYKmRH
+ 11ch9QdLpHM8VoDKl/13n9BT+IL+pXorJEp51gk5fQ50F4IfSajnUyCsPC5vivnIfYcT
+ 8qDlb1GX5tuIi4DmBpNlmuVoMPOLxEAwQ+ybM8JTjoimnmONXGLl5GjOrnqUEy++lTQA
+ MQVNJCRiS0zPNLmOpKf2YyiMWoTZacjunU3+4iK0TRT7yUQW4yjigR4yBuOg+RyaA6XT
+ 5XorMbZuPup5Ypi5Wb9y3I5TjET7W2btYjbAzIEw0Zf1x9Xzsdi0ix5AYtSnBde5QW3y
+ Cm/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=JyJlro3NjT/gJMdfcz/TzXwHcQE2jL8IcqDEZDu84s4=;
- b=Dt856gmh5yXKc8ghyFNXh//u88quM8ms7gISsl9Ruhjt6untsega9DPMdsW1YX4OXg
- 7PzYbwB7yN01UPguMepjgI0rIGnsd8LaBRYEvOWP4HJt9kKtmBjSE7HAz8wg63Sy04yx
- 3CBgvzc1FZ4mJsTb+BPRmvPmeF3ZR6sDhs5BqHRciYRrBpkUpnNFzD+2O4v0H3IpKGVa
- Rs/wpiXAeIN0rYdMVT84/K13usOzzBhsoQD9/mdEcTGFi05kYxdkMP1PHZSkTFvua80V
- 8PSB0m7cL1pYSkzQmjBv2gLbH01AMZVYdud7K8cezcjOMUVoNvIPFXPGPg2sFjX39xba
- Ljkw==
-X-Gm-Message-State: AOAM531yXjq1OqtxfFaq/q9CQHpUBtXN1EoHgK9dIqnlWSMYguTlc7iv
- 8p7WM6Ho4/G7LXytCFhYSDmTkdeY3NM=
-X-Google-Smtp-Source: ABdhPJzu2b+2Apz0WLHpWA1PiAcZKInLx6mrw6FU8+i5UBfnsZuHk5uA6m6/ac3BGVFGzMW3Q1rVRg==
-X-Received: by 2002:a37:9b0d:: with SMTP id d13mr18910330qke.351.1592877151943; 
- Mon, 22 Jun 2020 18:52:31 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
- [174.95.14.109]) by smtp.googlemail.com with ESMTPSA id
- q24sm15952465qkj.103.2020.06.22.18.52.31
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 22 Jun 2020 18:52:31 -0700 (PDT)
-Message-ID: <5EF1605E.3050808@gmail.com>
-Date: Mon, 22 Jun 2020 21:52:30 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=FPWbElNuDPyO04GBuXLd4Oa3yKZOOm/N0Sx/0wQ99YI=;
+ b=qob7BstPKfdrj6fl3B18VlaNDjC4SkbprmOGKhSGgNtOnCOPaA5ZQTdAzDh3IVvWAT
+ y9b0CTOcNXMbSAVKxtG+/+gCusbVelUgsjVxbx58ANiUW9+/aihXYsyUdxAeqjoBVs7j
+ prgSvQ2ivTSVuLLv6NJRPvumoAaCpA9AxyrA3VDMlLxJm6uVj9fws0TdEtMUnuSqVwPM
+ fdCdFAP3wSN2CVnn+jlDgXKNEQQ+w3BvV7NkgOHzPBolFKxkeRsdVXp4rTERRotpajVn
+ sZ9IuBgn/11CNTe6Z6OMZ69T8CAuthJ/trCAWqDgSfeJUMg+jxirmG5JI2Zlfl0Y+KcK
+ 81QA==
+X-Gm-Message-State: AOAM533N02IK2IWfsBRz32Kwn2123TFlQOmzv1KBDaBZCbote/f0466K
+ 6FYXGhPOEvrkMozgTIvYN2kVa01IOZGYD4kUd4A=
+X-Google-Smtp-Source: ABdhPJwQJsElynuqLenKuJ/BO2RxDxgpB5KO3bW/xbHuLL7WMMygyX/hrHBTzY/CnT6ff+WwALcvSzcVqSHDKpcwDe0=
+X-Received: by 2002:aed:26e1:: with SMTP id q88mr3725715qtd.354.1592883562485; 
+ Mon, 22 Jun 2020 20:39:22 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
 References: <dfbc4b72-9d92-4f06-b850-6923cccb276b@Spark>
  <5cdd41e9-5b4f-4876-82de-878db9201c6a@Spark>
-In-Reply-To: <5cdd41e9-5b4f-4876-82de-878db9201c6a@Spark>
+ <5EF1605E.3050808@gmail.com>
+In-Reply-To: <5EF1605E.3050808@gmail.com>
+Date: Mon, 22 Jun 2020 23:39:11 -0400
+Message-ID: <CAKU1+bjUbmooO6wHGd085fNGQng873n5VdtiDCPYnTEoqMT8XA@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: usrp-users@lists.ettus.com
 Subject: Re: [USRP-users] AM transmission
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -67,9 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0289843185142661489=="
+From: Kevin Hung via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Kevin Hung <cykhung@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1754645910612446216=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,20 +76,22 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============0289843185142661489==
-Content-Type: multipart/alternative;
- boundary="------------010803000909040907060603"
+--===============1754645910612446216==
+Content-Type: multipart/alternative; boundary="000000000000e91ade05a8b81a8f"
 
-This is a multi-part message in MIME format.
---------------010803000909040907060603
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000e91ade05a8b81a8f
+Content-Type: text/plain; charset="UTF-8"
 
-On 06/22/2020 09:14 PM, Ernest Poletaev via USRP-users wrote:
+Just my guess. The rx IQ samples are rotated by a constant phase offset.
+
+On Mon, Jun 22, 2020 at 9:53 PM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> On 06/22/2020 09:14 PM, Ernest Poletaev via USRP-users wrote:
+>
 > Hello everyone,
 >
-> I'm new to SDR and trying to implement transmission with AM Modulation 
+> I'm new to SDR and trying to implement transmission with AM Modulation
 > using uhd library with B205mini board.
 >
 > Currently I have following procedure:
@@ -116,14 +111,14 @@ On 06/22/2020 09:14 PM, Ernest Poletaev via USRP-users wrote:
 > Transmitting:
 >
 > On audio sink get next 4096 samples of 44.1KHz 16 bit PCM raw audio
-> Convert each 16 bit sample to complex float with Q=[audio sample 
+> Convert each 16 bit sample to complex float with Q=[audio sample
 > normalized to -1 - 1] and I = 0
 > Resample (simple interpolation) 44100Hz buffer to 1MHz
 > Send buffer for transmission
 >
 > -end loop
 >
-> As RX and TX have same frequency I can see data on RF Analyzer, but it 
+> As RX and TX have same frequency I can see data on RF Analyzer, but it
 > didn't demodulates to an audio signal.
 >
 > Am I missing something or my assumption is wrong on some steps?
@@ -133,36 +128,44 @@ On 06/22/2020 09:14 PM, Ernest Poletaev via USRP-users wrote:
 >
 >
 > _______________________________________________
+> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> I'm going to suggest that if you're new to SDR and DSP, you might invest
+> the time to install Gnu Radio, which provides a very rich environment
+>   for not only constructing DSP flows for most popular SDR radios, but
+> also debugging those flows when they don't work out as you expect.
+>
+>
+> _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-I'm going to suggest that if you're new to SDR and DSP, you might invest 
-the time to install Gnu Radio, which provides a very rich environment
-   for not only constructing DSP flows for most popular SDR radios, but 
-also debugging those flows when they don't work out as you expect.
+>
 
+--000000000000e91ade05a8b81a8f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
---------------010803000909040907060603
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 06/22/2020 09:14 PM, Ernest Poletaev
+<div><div dir=3D"auto">Just my guess. The rx IQ samples are rotated by a co=
+nstant phase offset.</div></div><div><br><div class=3D"gmail_quote"><div di=
+r=3D"ltr">On Mon, Jun 22, 2020 at 9:53 PM Marcus D. Leech via USRP-users &l=
+t;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF" text=3D"#000000"></div><div bgcolor=3D"#FFFFFF" =
+text=3D"#000000">
+    <div>On 06/22/2020 09:14 PM, Ernest Poletaev
       via USRP-users wrote:<br>
     </div>
-    <blockquote cite="mid:5cdd41e9-5b4f-4876-82de-878db9201c6a@Spark"
-      type="cite">
-      <title></title>
-      <div name="messageBodySection">
-        <div dir="auto">Hello everyone,<br>
+    <blockquote type=3D"cite">
+     =20
+      <div name=3D"messageBodySection">
+        <div dir=3D"auto">Hello everyone,<br>
           <br>
-          I'm new to SDR and trying to implement transmission with AM
+          I&#39;m new to SDR and trying to implement transmission with AM
           Modulation using uhd library with B205mini board.<br>
           <br>
           Currently I have following procedure:<br>
@@ -183,51 +186,63 @@ Content-Transfer-Encoding: 8bit
           <br>
           On audio sink get next 4096 samples of 44.1KHz 16 bit PCM raw
           audio<br>
-          Convert each 16 bit sample to complex float with Q=[audio
-          sample normalized to -1 - 1] and I = 0<br>
+          Convert each 16 bit sample to complex float with Q=3D[audio
+          sample normalized to -1 - 1] and I =3D 0<br>
           Resample (simple interpolation) 44100Hz buffer to 1MHz<br>
           Send buffer for transmission<br>
           <br>
           -end loop<br>
           <br>
           As RX and TX have same frequency I can see data on RF
-          Analyzer, but it didn't demodulates to an audio signal.<br>
+          Analyzer, but it didn&#39;t demodulates to an audio signal.<br>
           <br>
           Am I missing something or my assumption is wrong on some
           steps?<br>
         </div>
       </div>
-      <div name="messageSignatureSection"><br>
-        <div class="matchFont">
-          <div dir="auto">Regards,
-            <div dir="auto">Ernest</div>
+      <div name=3D"messageSignatureSection"><br>
+        <div>
+          <div dir=3D"auto">Regards,
+            <div dir=3D"auto">Ernest</div>
           </div>
         </div>
       </div>
       <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <fieldset></fieldset>
       <br>
-      <pre wrap="">_______________________________________________
+      <pre>_______________________________________________
 USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a>
 </pre>
-    </blockquote>
-    I'm going to suggest that if you're new to SDR and DSP, you might
+    </blockquote></div><div bgcolor=3D"#FFFFFF" text=3D"#000000">
+    I&#39;m going to suggest that if you&#39;re new to SDR and DSP, you mig=
+ht
     invest the time to install Gnu Radio, which provides a very rich
     environment<br>
-      for not only constructing DSP flows for most popular SDR radios,
-    but also debugging those flows when they don't work out as you
+    =C2=A0 for not only constructing DSP flows for most popular SDR radios,
+    but also debugging those flows when they don&#39;t work out as you
     expect.<br>
     <br>
     <br>
-  </body>
-</html>
+  </div>
 
---------------010803000909040907060603--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+
+--000000000000e91ade05a8b81a8f--
 
 
---===============0289843185142661489==
+--===============1754645910612446216==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -238,5 +253,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0289843185142661489==--
+--===============1754645910612446216==--
 
