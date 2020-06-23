@@ -2,60 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2714205BCC
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Jun 2020 21:31:22 +0200 (CEST)
-Received: from [::1] (port=53606 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F458205C4D
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Jun 2020 21:58:33 +0200 (CEST)
+Received: from [::1] (port=53810 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jnodc-0000eq-Fy; Tue, 23 Jun 2020 15:31:20 -0400
-Received: from mail-qt1-f181.google.com ([209.85.160.181]:44107)
+	id 1jnp3u-0002iy-24; Tue, 23 Jun 2020 15:58:30 -0400
+Received: from mail-ed1-f43.google.com ([209.85.208.43]:43379)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jnodY-0000Qp-Sm
- for usrp-users@lists.ettus.com; Tue, 23 Jun 2020 15:31:16 -0400
-Received: by mail-qt1-f181.google.com with SMTP id j10so7728236qtq.11
- for <usrp-users@lists.ettus.com>; Tue, 23 Jun 2020 12:30:56 -0700 (PDT)
+ (Exim 4.93) (envelope-from <aarsmith54@gmail.com>)
+ id 1jnp3q-0002dg-QQ
+ for usrp-users@lists.ettus.com; Tue, 23 Jun 2020 15:58:26 -0400
+Received: by mail-ed1-f43.google.com with SMTP id d15so17262282edm.10
+ for <usrp-users@lists.ettus.com>; Tue, 23 Jun 2020 12:58:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=7sRWaroTvAb3sgPJ+AINuyWnQFUQIBaSp78f537ysAY=;
- b=oYBaCxHT05BepP5YFcUTN7byDzJ0Wu5JxZSAmjFJQWTCOyo2Dv2S3AYWvVsPhk4ZrZ
- uk+TaQh9kF/yJsweOU5b1K1BixpL5htRHKrIXLe/tpXlUxefJqu697U5cQrREW4Zxq1A
- /8MpPMpkX9D//PZxLKFZxlEdpjoEn1SspJxoIyfkZJi9K2lMAb185wi4XTicoQheh3Yu
- d9cPdIvXIdH5bRToSBsqmM+rLFm3uEgbCJMrG4pkUzKp/urICWCcWs7QTDM01h1LNVbV
- G2gqRhlkD/Yga2/qZQfExWr4AxaEUK7HTPzXsZdN6M4aB0o75lj9xHFApUsZ67jQU1qI
- CT5w==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=GyAEymMtSvJBkgFF/gDXuEsljcp/GWx+2/FcR9wah38=;
+ b=uTJ55LZTQkOgNDliH/UIruyIY8l/sLi4Pd606FWmmAlDaZNOO8SerOBfLxOyFSXSRj
+ /0lvPenbjrkQxLTh266My3aem0qkeE1zKMBWDTlzwwnkOpfFxbbRxhLoGLvEen/Zma0w
+ H95GKK/bxbDKlmp6bSpcmO6XG/e7rW3eKwHEs2hnqhDqASJS1V+rd+3pVvbqtrZqg7GD
+ XbyTsTvIv4SN8xLZurEzYDpv9/7h63CuX50ztNYRYhICHTfB2WOy/oMX9HZM/szYbp8I
+ eM7uOlq9JSPh3mKrSLFCkaxv23DN1+OdL4/AW13LmafM0FJmGIhFNf2FFs6BptG/+pQ8
+ dmdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=7sRWaroTvAb3sgPJ+AINuyWnQFUQIBaSp78f537ysAY=;
- b=WNHAIS2QJPFQ0kIH9bb4vyds6ZWgriZfZI8E/U+98+gd0DDOZRsXvn7YOeA3IC7IzW
- n3bNPOLilBpQZU2cEaXw55BliVpeDoMpW4Al4uWxpIms3P6JOU+vEiPBT41ulN/oiKKE
- hDjnnW8UT+bBYhrvpOfACUX/L4/OC/l3WMlVbHo76P+t6Aw9Z5BBujYd6HbwJCGFzAkx
- gPozsM8TAOCdewejGNJSf/Ng6RNQlU5HbsAVEpnUpSPPB2sriCJS9KkNRbdC1wakeJ8b
- Pzk8CIF4nmgIegM/S71hZ6M7Cpz+7WgdjlYbQvF96JaHemMiU1iDXM38O7HNgOECanTc
- XLpA==
-X-Gm-Message-State: AOAM531ASKerdEbM6Oq35OdcNfvEZSzOeoI2mmc2H2xk5qby2IJQycGp
- KsRL/CtkTEKaE2gd3yXur4E3ks1absA=
-X-Google-Smtp-Source: ABdhPJz92II9VG9n0UwW+g+/S9IBhY1lAwPjp8SV90TdAnXiXyi/SzwASIHcXX1eBmmp2XOvQyb00w==
-X-Received: by 2002:ac8:3777:: with SMTP id p52mr8327145qtb.31.1592940636178; 
- Tue, 23 Jun 2020 12:30:36 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
- [174.95.14.109])
- by smtp.googlemail.com with ESMTPSA id i10sm1735824qkn.126.2020.06.23.12.30.35
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 23 Jun 2020 12:30:35 -0700 (PDT)
-Message-ID: <5EF2585B.1090909@gmail.com>
-Date: Tue, 23 Jun 2020 15:30:35 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=GyAEymMtSvJBkgFF/gDXuEsljcp/GWx+2/FcR9wah38=;
+ b=JPW+/H1JAjExdawgu/phX3g51SbmKOr9kD/92LqGnyLBcY8rKRHsVB7Jy03ZGN4iS4
+ sQOdN1INv9KPa1ZfElHyYkzbeanjLNZcBAOkyQrN6w7RlWlUK1x4fVaG/qimloJgvDkI
+ OyEGqHbJI1FT4MG/c7T8jJjmDZoslQIIP6RobgVyQ6NjHvpkkEInzzF22ASSEUi3aNEQ
+ dtUX6w6VwG9qvmRwpPvLSUx+xtIXdbhRIWStGnrQNWwZfZhAMUv6qnc3lRxWBBSRFk4W
+ EzqQ47QUW2bI/vQTDLkxQjg7YruBt4lDYzQpmJxVgg4qrTxBkX6/npbcG2evtu4XDwqy
+ oPDw==
+X-Gm-Message-State: AOAM5304H3VTfM6kSymsjLYq+dtOJCIOfzGdjMLVOiuxIswE4eNBtFMS
+ iZOxOtjI5ZyyPPKmS2ZCpVak15tduHZuG/SbB4xWzg==
+X-Google-Smtp-Source: ABdhPJwYLoMF+LoA1fjsoBgUuHi8nuSfrwhky6vQq812rvjDu1CeDnRi7jNZP/uZigRkTqR8uSkGuRfM7Yg67J7+oLI=
+X-Received: by 2002:a50:ba8b:: with SMTP id x11mr24048413ede.201.1592942265654; 
+ Tue, 23 Jun 2020 12:57:45 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1>
- <5EF15135.6050502@gmail.com> <07FCC8E1668F4D4A814BC4DA01DCA8BE@PC1>
-In-Reply-To: <07FCC8E1668F4D4A814BC4DA01DCA8BE@PC1>
-Subject: Re: [USRP-users] GRC up-grade - installation issues
+References: <CAH2Hh738Yjx+iA=oHOP2tmq+TXoj8-k5ZLNUnXJsdjQ9D1q6cg@mail.gmail.com>
+ <5EF2527F.7090600@gmail.com>
+ <CAH2Hh70UsmEuAYPU6H+biWQ-Fd29Rr13+0rX1718fYHnCwna=A@mail.gmail.com>
+ <5EF257B0.1060300@gmail.com>
+In-Reply-To: <5EF257B0.1060300@gmail.com>
+Date: Tue, 23 Jun 2020 13:57:34 -0600
+Message-ID: <CAH2Hh70TxAx03dgs0zfCckJFUGTgdP3N948=PbwO9LfvWPs=8g@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: Ettus Mail List <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] 10 MHz Reference Initial Phase in the X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,9 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5066341009760381917=="
+From: Aaron Smith via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Aaron Smith <aarsmith54@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7805094030308451224=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,124 +78,98 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============5066341009760381917==
-Content-Type: multipart/alternative;
- boundary="------------090706080608040401020700"
+--===============7805094030308451224==
+Content-Type: multipart/alternative; boundary="000000000000e45ff905a8c5c558"
 
-This is a multi-part message in MIME format.
---------------090706080608040401020700
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--000000000000e45ff905a8c5c558
+Content-Type: text/plain; charset="UTF-8"
 
-On 06/23/2020 03:23 PM, David Taylor (manx.net) via USRP-users wrote:
-> Marcus.
-> Many thanks for your prompt reply.
-> Complete removal of everything from /usr/share/uhd/images, then 
-> running the images-downloader from /usr/bin works fine.
-> I have only managed to try this with a B210 as the other transceivers 
-> remain in the laboratory under Covid19 university building closure 
-> measures.
-> The N210 is yet to be used, but thanks for the advising on the 
-> particular EEPROM image load method,
-OK, so with B2xx, if they already have a loaded FPGA image, they won't 
-try to re-load from your host during start-up, unless you
-   power-cycle them first.  So, this can result in you having upgraded 
-the host side of things, complete with host-resident images,
-   and getting a "mis-match" error with B2xx.  The UHD code does NOT 
-attempt to re-load the FPGA image if the host side is
-   newer than the code resident on the B2xx--only after a power-cycle.
-> It was interesting to see the extra console UHD diagnostics, 
-> particularly about clock sources and the 1 PPS input.
-> I have a Rubidium 10 MHz source and 1PPS generator source that will 
-> eventually be incorporated for USRP synchronisation.
-> However, I am now in the process of setting up the toolchain and new 
-> gr_modtool and transitioning the 3.7x OOT blocks
-> The GNU Radio 3.8 OOT Module Porting Guide looks helpful at 16 May 2020.
-> The only real issue I had before was to include FindVOLKGNSSSDRcmake 
-> and the corresponding library.
-> Regards,
-> David.
-> *From:* Marcus D. Leech via USRP-users
-> *Sent:* Tuesday, June 23, 2020 1:47 AM
-> *To:* usrp-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] GRC up-grade - installation issues
-> On 06/22/2020 02:45 PM, David Taylor (manx.net) via USRP-users wrote:
->>
->> Dear all,
->>
->> I have been successfully running a B200/ B210 research project for 
->> two years based on Ubuntu 18.04 LTS and version 3.7x GRC.
->>
->> This includes a number of OOT blocks developed for direct sequence 
->> spread spectrum, using the Volk GNSSSDR library extensions. An N210 
->> USRP is also at my disposal.
->>
->> I now have a clean upgrade to Ubuntu 20.04 LTS and wish to refresh 
->> the GRC & UHD drivers to the latest stable release, taking best 
->> advice please to ensure project conclusion.
->>
->> The issues:-
->>
->> 1). GRC version 3.8.1.0~rc12build2 works standalone and appears to 
->> have similar Cmake files structure and content. (3.9.0.0 is listed in 
->> the package manager as available, but with significant and noticeable 
->> changes in the software migration and dependencies)?
->>
->> 2). Libuhd-dev at 3.15.0.0-2build5 correctly identifies the B210 over 
->> USB3. (I note that library-file libuhd003 no longer forms part of 
->> this package).
->>
->> 3). Running “uhd_images_downloader.py” fully populates 
->> /usr/share/images/.
->>
->> There is an issue with FPGA compatibility, which I have seen before 
->> in 3.7x GRC.  “Expected FPGA compatibility number 16 expected got 14.”
->>
->> This issue was solved under V3.7x  simply by replacement of the FPGA 
->> image from archive.
->>
-> Is this compatibility issue with your N210 or B2xx?  It isn't clear.
+I guess I just need to think more about the problem. With your explanation
+I still don't understand why the 1 PPS would be detected differently in the
+two situations, and I still don't understand why the phase of the 10 MHz
+reference with respect to the 1 PPS should matter. I can understand some
+variation, but not 10 clock cycles worth. I know the PPS signal moves
+around in time, but I know it doesn't move much in the GPS receivers I use,
+especially over short time scales. As I said, perhaps I just need to think
+more about what you said. Thanks for the insight.
+
+On Tue, Jun 23, 2020 at 1:27 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 06/23/2020 03:18 PM, Aaron Smith wrote:
 >
->> 4). I have removed all FPGA images from the /usr/share/images 
->> directory and have selectively tried installing a number of earlier 
->> discrete images and boot-loader from the archive, but all without 
->> success.
->>
->> 5). A re-run of the uhd-images-downloader now fails to re-populate 
->> the images folder, however the python(3) script itself runs.
->>
-> You might want to simply remove *everything* from 
-> /usr/share/uhd/images, and re-run:
+> Marcus,
 >
-> sudo uhd_images_downloader.py
+> They are EndRun Meridian and Meridian II units.
 >
-> [Making certain it's running the version you think it's running--if 
-> you installed from pre-packaged, it'll be in /usr/bin]
+> I am very ignorant on this topic. Is it a standard that the 1 PPS should
+> coincide with the top of a 10 MHz cycle? I just wouldn't expect the front
+> end transmit delay, relative to the 1 PPS input, to depend on the 10 MHz
+> reference phase. I don't understand how the 10 MHz reference and 1 PPS
+> input are used to synthesize time. Is the 1 PPS detection done at the
+> master lock rate (200 MHz) or at 10 MHz?
 >
-> If this doesn't work, please share the error messages produced with us.
+> The 1PPS is used *exactly once*, when you do a "set_time_next_pps", after
+> which the time-of-day clock on the board is driven by the master
+>   clock which is phase-locked to the 10MHz external reference.  So, the
+> time-of-day clock on the board runs at (in the case of the X310) 200MHz
+>   by default, so each "tick" is 5nsec.  The 1PPS signal is probably
+> "sensed" by logic that's running at the master clock rate.  So two X310
+> units may
+>   still have a small amount of residual ambiguity about when 1PPS
+> "happens", by perhaps as much as 5Nsec.  But I'm not an FPGA designer, so
+>   this is just an mildly-educated "guess".
+>
+> There may be some lose convention about the phase of the 1PPS with respect
+> to the 10MHz generated reference, but  would not expect it
+>   to be an "enforced standard".  Different manufacturers will have
+> different "servo" algorithms for steering the 10MHz clock output (usually,
+> it's a
+>   voltage-tunable VCTCXO or VOCXO) with respect to the *derived* 1PPS
+> pulses.  The error on the 1PPS signal is typically surprisingly large--it's
+>   1PPS +/- a few 10s of nanoseconds, and the phasing of that 1PPS with
+> respect to the 10MHz signal isn't, I think, necessarily a "standard".
 >
 >
-> Also, because I didn't see anything in your work-log about it, for 
-> N210, you have to run:
+> On Tue, Jun 23, 2020 at 1:06 PM Marcus D. Leech via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
 >
-> uhd_image_loader --args addr=<addr-of-n210>,type=n200
->
-> This loads the appropriate image into the EEPROM of the N210.  The 
-> N2xxx series, unlike the B2xx series don't do this dynamically at
->   runtime.  Once you load an image into them, that image is there 
-> until it is reprogrammed, even across power-off.  This is different than
->   B2xx, which manages this automatically after power-up.
->
->
->> Many thanks in advance and I look forward to being able to contribute 
->> to the group.
->>
->> Best regards,
->>
->> David Taylor
->>
->> Ph.D Researcher, Limerick University, Ireland. GD4FMB
+>> On 06/23/2020 02:45 PM, Aaron Smith via USRP-users wrote:
+>> > Hello,
+>> >
+>> > I am attempting to release a transmission from an X310 every second.
+>> > To accomplish this, I must measure, and calibrate the delay in the RF
+>> > front end of the radio for my chosen sample rate. I'd like the
+>> > transmission to be released within 1 clock cycle of the rising edge of
+>> > the PPS.
+>> >
+>> > I am feeding the X310 an external 10 MHz reference and 1 PPS, which
+>> > are produced by the same source, and are being supplied to the radio
+>> > with matched cable lengths. The source is a GPS receiver and in my lab
+>> > I have 2 different generations of the GPS receiver.
+>> >
+>> > While calibrating the front end transmit delay I noticed a discrepancy
+>> > in the radio timing between the separate GPS receiver generations. The
+>> > 1st generation of GPS receiver is 50 ns different than the calibration
+>> > for the 2nd generation. When I look at the 1 PPS and 10 MHz output on
+>> > a scope, I noticed that in the 1st generation the PPS occurs at the
+>> > top of a 10 MHz cycle, and in the 2nd generation it occurs at the
+>> > bottom of a 10 MHz cycle. Half a cycle at 10 MHz is 50 ns. I suspect
+>> > this is not coincidence because I have now tested 6 different GPS
+>> > receivers, 3 of gen 1 and 3 of gen 2, and all 3 gen 1 calibrations are
+>> > the same and they are 50 ns different from the gen 2 calibrations.
+>> >
+>> > Is this the expected behavior? Or is there a bug in the X310 code that
+>> > handles timing? I have never worked on hardware, but I would not
+>> > expect the initial phase of a 10 MHz reference to impact absolute time.
+>> >
+>> > Thanks for your help!
+>> >
+>> >
+>> These are external GPS receivers?  What kind?  Given your scope
+>> measurements, how would this be related to a bug in X310?  I'm confused
+>>    as to how you're linking the 10MHz/1PPS phasing on your external GPS
+>> receivers to the X310 having bugs.
 >>
 >>
 >>
@@ -208,283 +177,179 @@ attempt to re-load the FPGA image if the host side is
 >> USRP-users mailing list
 >> USRP-users@lists.ettus.com
 >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-> ------------------------------------------------------------------------
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 >
 >
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
+--000000000000e45ff905a8c5c558
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------090706080608040401020700
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 06/23/2020 03:23 PM, David Taylor
-      (manx.net) via USRP-users wrote:<br>
+<div dir=3D"ltr"><div>I guess I just need to think more about the problem. =
+With your explanation I still don&#39;t understand why the 1 PPS would be d=
+etected differently in the two situations, and I still don&#39;t understand=
+ why the phase of the 10 MHz reference with respect to the 1 PPS should mat=
+ter. I can understand some variation, but not 10 clock cycles worth. I know=
+ the PPS signal moves around in time, but I know it doesn&#39;t move much i=
+n the GPS receivers I use, especially over short time scales. As I said, pe=
+rhaps I just need to think more about what you said. Thanks for the insight=
+. <br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Tue, Jun 23, 2020 at 1:27 PM Marcus D. Leech &lt;<a href=3D"=
+mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 06/23/2020 03:18 PM, Aaron Smith
+      wrote:<br>
     </div>
-    <blockquote cite="mid:07FCC8E1668F4D4A814BC4DA01DCA8BE@PC1"
-      type="cite">
-      <meta content="text/html; charset=windows-1252"
-        http-equiv="Content-Type">
-      <div dir="ltr">
-        <div style="FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR:
-          #000000">
-          <div>Marcus.</div>
-          <div> </div>
-          <div>Many thanks for your prompt reply.</div>
-          <div>Complete removal of everything from
-            /usr/share/uhd/images, then running the images-downloader
-            from /usr/bin works fine.</div>
-          <div> </div>
-          <div>I have only managed to try this with a B210 as the other
-            transceivers remain in the laboratory under Covid19
-            university building closure measures.</div>
-          <div>The N210 is yet to be used, but thanks for the advising
-            on the particular EEPROM image load method, </div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div>Marcus,</div>
+        <div><br>
+        </div>
+        <div>They are EndRun Meridian and Meridian II units.</div>
+        <div><br>
+        </div>
+        <div>I am very ignorant on this topic. Is it a standard that the
+          1 PPS should coincide with the top of a 10 MHz cycle? I just
+          wouldn&#39;t expect the front end transmit delay, relative to the
+          1 PPS input, to depend on the 10 MHz reference phase. I don&#39;t
+          understand how the 10 MHz reference and 1 PPS input are used
+          to synthesize time. Is the 1 PPS detection done at the master
+          lock rate (200 MHz) or at 10 MHz?<br>
         </div>
       </div>
     </blockquote>
-    OK, so with B2xx, if they already have a loaded FPGA image, they
-    won't try to re-load from your host during start-up, unless you<br>
-      power-cycle them first.  So, this can result in you having
-    upgraded the host side of things, complete with host-resident
-    images,<br>
-      and getting a "mis-match" error with B2xx.  The UHD code does NOT
-    attempt to re-load the FPGA image if the host side is<br>
-      newer than the code resident on the B2xx--only after a
-    power-cycle.<br>
-    <blockquote cite="mid:07FCC8E1668F4D4A814BC4DA01DCA8BE@PC1"
-      type="cite">
-      <div dir="ltr">
-        <div style="FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR:
-          #000000">
-          <div> </div>
-          <div>It was interesting to see the extra console UHD
-            diagnostics, particularly about clock sources and the 1 PPS
-            input.</div>
-          <div>I have a Rubidium 10 MHz source and 1PPS generator source
-            that will eventually be incorporated for USRP
-            synchronisation.</div>
-          <div> </div>
-          <div>However, I am now in the process of setting up the
-            toolchain and new gr_modtool and transitioning the 3.7x OOT
-            blocks</div>
-          <div>The GNU Radio 3.8 OOT Module Porting Guide looks helpful
-            at 16 May 2020.</div>
-          <div>The only real issue I had before was to include
-            FindVOLKGNSSSDRcmake and the corresponding library.</div>
-          <div> </div>
-          <div>Regards,</div>
-          <div>David.</div>
-          <div> </div>
-          <div> </div>
-          <div> </div>
-          <div style="FONT-SIZE: small; TEXT-DECORATION: none;
-            FONT-FAMILY: &quot;Calibri&quot;; FONT-WEIGHT: normal;
-            COLOR: #000000; FONT-STYLE: normal; DISPLAY: inline">
-            <div style="FONT: 10pt tahoma">
-              <div> </div>
-              <div style="BACKGROUND: #f5f5f5">
-                <div style="font-color: black"><b>From:</b> <a
-                    moz-do-not-send="true"
-                    title="usrp-users@lists.ettus.com">Marcus D. Leech
-                    via USRP-users</a> </div>
-                <div><b>Sent:</b> Tuesday, June 23, 2020 1:47 AM</div>
-                <div><b>To:</b> <a moz-do-not-send="true"
-                    title="usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-                </div>
-                <div><b>Subject:</b> Re: [USRP-users] GRC up-grade -
-                  installation issues</div>
-              </div>
-            </div>
-            <div> </div>
-          </div>
-          <div style="FONT-SIZE: small; TEXT-DECORATION: none;
-            FONT-FAMILY: &quot;Calibri&quot;; FONT-WEIGHT: normal;
-            COLOR: #000000; FONT-STYLE: normal; DISPLAY: inline">
-            <div class="moz-cite-prefix">On 06/22/2020 02:45 PM, David
-              Taylor (manx.net) via USRP-users wrote:<br>
-            </div>
-            <blockquote cite="mid:3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1"
-              type="cite">
-              <div dir="ltr">
-                <div style="FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri';
-                  COLOR: #000000">
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">Dear
-                      all,</font></p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">I
-                      have been successfully running a B200/ B210
-                      research project for two years based on Ubuntu
-                      18.04 LTS and version 3.7x GRC.</font></p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">This
-                      includes a number of OOT blocks developed for
-                      direct sequence spread spectrum, using the Volk
-                      GNSSSDR library extensions. An N210 USRP is also
-                      at my disposal.</font></p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">I
-                      now have a clean upgrade to Ubuntu 20.04 LTS and
-                      wish to refresh the GRC &amp; UHD drivers to the
-                      latest stable release, taking best advice please
-                      to ensure project conclusion.</font></p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt">The issues:-</p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">1).
-                      GRC version <font color="#0000ff" size="3">3.8.1.0~rc12build2</font>
-                      works standalone and appears to have similar Cmake
-                      files structure and content. (<font
-                        color="#0000ff" size="3">3.9.0.0</font> is
-                      listed in the package manager as available, but
-                      with significant and noticeable changes in the
-                      software migration and dependencies)? </font></p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">2).
-                      Libuhd-dev at <font color="#0000ff" size="3">3.15.0.0-2build5</font>
-                      correctly identifies the B210 over USB3. (I note
-                      that library-file libuhd003 no longer forms part
-                      of this package).</font></p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">3).
-                      Running “uhd_images_downloader.py” fully populates
-                      /usr/share/images/.</font></p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">There
-                      is an issue with FPGA compatibility, which I have
-                      seen before in 3.7x GRC.<span style="mso-spacerun:
-                        yes">  “</span>Expected FPGA compatibility
-                      number 16 expected got 14.”</font></p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">This
-                      issue was solved under V3.7x  simply by
-                      replacement of the FPGA image from archive. </font></p>
-                </div>
-              </div>
-            </blockquote>
-            Is this compatibility issue with your N210 or B2xx?  It
-            isn't clear.<br>
-            <br>
-            <blockquote cite="mid:3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1"
-              type="cite">
-              <div dir="ltr">
-                <div style="FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri';
-                  COLOR: #000000">
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">4).
-                      I have removed all FPGA images from the
-                      /usr/share/images directory and have selectively
-                      tried installing a number of earlier discrete
-                      images and boot-loader from the archive, but all
-                      without success.</font></p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">5).
-                      A re-run of the uhd-images-downloader now fails to
-                      re-populate the images folder, however the
-                      python(3) script itself runs.</font></p>
-                </div>
-              </div>
-            </blockquote>
-            You might want to simply remove *everything* from
-            /usr/share/uhd/images, and re-run:<br>
-            <br>
-            sudo uhd_images_downloader.py<br>
-            <br>
-            [Making certain it's running the version you think it's
-            running--if you installed from pre-packaged, it'll be in
-            /usr/bin]<br>
-            <br>
-            If this doesn't work, please share the error messages
-            produced with us.<br>
-            <br>
-            <br>
-            Also, because I didn't see anything in your work-log about
-            it, for N210, you have to run:<br>
-            <br>
-            uhd_image_loader --args addr=&lt;addr-of-n210&gt;,type=n200<br>
-            <br>
-            This loads the appropriate image into the EEPROM of the
-            N210.  The N2xxx series, unlike the B2xx series don't do
-            this dynamically at<br>
-              runtime.  Once you load an image into them, that image is
-            there until it is reprogrammed, even across power-off.  This
-            is different than<br>
-              B2xx, which manages this automatically after power-up.<br>
-            <br>
-            <br>
-            <blockquote cite="mid:3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1"
-              type="cite">
-              <div dir="ltr">
-                <div style="FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri';
-                  COLOR: #000000">
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"> </p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">Many
-                      thanks in advance and I look forward to being able
-                      to contribute to the group.</font></p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt">Best regards,</p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">David
-                      Taylor</font></p>
-                  <p class="MsoNormal" style="MARGIN: 0cm 0cm 10pt;
-                    LINE-HEIGHT: 13pt"><font style="FONT-SIZE: 11pt">Ph.D
-                      Researcher, Limerick University, Ireland. GD4FMB</font></p>
-                </div>
-              </div>
-              <br>
-              <fieldset class="mimeAttachmentHeader"></fieldset>
-              <br>
-              <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a moz-do-not-send="true" class="moz-txt-link-abbreviated">USRP-users@lists.ettus.com</a>
-<a moz-do-not-send="true" class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-            </blockquote>
-            <br>
-            <p>
-            </p>
-            <hr>
-            _______________________________________________<br>
-            USRP-users mailing list<br>
-            <a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-          </div>
+    The 1PPS is used *exactly once*, when you do a &quot;set_time_next_pps&=
+quot;,
+    after which the time-of-day clock on the board is driven by the
+    master<br>
+    =C2=A0 clock which is phase-locked to the 10MHz external reference.=C2=
+=A0 So,
+    the time-of-day clock on the board runs at (in the case of the X310)
+    200MHz<br>
+    =C2=A0 by default, so each &quot;tick&quot; is 5nsec.=C2=A0 The 1PPS si=
+gnal is probably
+    &quot;sensed&quot; by logic that&#39;s running at the master clock rate=
+.=C2=A0 So two
+    X310 units may<br>
+    =C2=A0 still have a small amount of residual ambiguity about when 1PPS
+    &quot;happens&quot;, by perhaps as much as 5Nsec.=C2=A0 But I&#39;m not=
+ an FPGA
+    designer, so<br>
+    =C2=A0 this is just an mildly-educated &quot;guess&quot;.<br>
+    <br>
+    There may be some lose convention about the phase of the 1PPS with
+    respect to the 10MHz generated reference, but=C2=A0 would not expect it=
+<br>
+    =C2=A0 to be an &quot;enforced standard&quot;.=C2=A0 Different manufact=
+urers will have
+    different &quot;servo&quot; algorithms for steering the 10MHz clock out=
+put
+    (usually, it&#39;s a<br>
+    =C2=A0 voltage-tunable VCTCXO or VOCXO) with respect to the *derived*
+    1PPS pulses.=C2=A0 The error on the 1PPS signal is typically surprising=
+ly
+    large--it&#39;s<br>
+    =C2=A0 1PPS +/- a few 10s of nanoseconds, and the phasing of that 1PPS
+    with respect to the 10MHz signal isn&#39;t, I think, necessarily a
+    &quot;standard&quot;.<br>
+    <blockquote type=3D"cite"><br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 23, 2020 at 1:06
+          PM Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-user=
+s@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;
+          wrote:<br>
         </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">On
+          06/23/2020 02:45 PM, Aaron Smith via USRP-users wrote:<br>
+          &gt; Hello,<br>
+          &gt;<br>
+          &gt; I am attempting to release a transmission from an X310
+          every second. <br>
+          &gt; To accomplish this, I must measure, and calibrate the
+          delay in the RF <br>
+          &gt; front end of the radio for my chosen sample rate. I&#39;d
+          like the <br>
+          &gt; transmission to be released within 1 clock cycle of the
+          rising edge of <br>
+          &gt; the PPS.<br>
+          &gt;<br>
+          &gt; I am feeding the X310 an external 10 MHz reference and 1
+          PPS, which <br>
+          &gt; are produced by the same source, and are being supplied
+          to the radio <br>
+          &gt; with matched cable lengths. The source is a GPS receiver
+          and in my lab <br>
+          &gt; I have 2 different generations of the GPS receiver.<br>
+          &gt;<br>
+          &gt; While calibrating the front end transmit delay I noticed
+          a discrepancy <br>
+          &gt; in the radio timing between the separate GPS receiver
+          generations. The <br>
+          &gt; 1st generation of GPS receiver is 50 ns different than
+          the calibration <br>
+          &gt; for the 2nd generation. When I look at the 1 PPS and 10
+          MHz output on <br>
+          &gt; a scope, I noticed that in the 1st generation the PPS
+          occurs at the <br>
+          &gt; top of a 10 MHz cycle, and in the 2nd generation it
+          occurs at the <br>
+          &gt; bottom of a 10 MHz cycle. Half a cycle at 10 MHz is 50
+          ns. I suspect <br>
+          &gt; this is not coincidence because I have now tested 6
+          different GPS <br>
+          &gt; receivers, 3 of gen 1 and 3 of gen 2, and all 3 gen 1
+          calibrations are <br>
+          &gt; the same and they are 50 ns different from the gen 2
+          calibrations.<br>
+          &gt;<br>
+          &gt; Is this the expected behavior? Or is there a bug in the
+          X310 code that <br>
+          &gt; handles timing? I have never worked on hardware, but I
+          would not <br>
+          &gt; expect the initial phase of a 10 MHz reference to impact
+          absolute time.<br>
+          &gt;<br>
+          &gt; Thanks for your help!<br>
+          &gt;<br>
+          &gt;<br>
+          These are external GPS receivers?=C2=A0 What kind?=C2=A0 Given yo=
+ur
+          scope <br>
+          measurements, how would this be related to a bug in X310?=C2=A0 I=
+&#39;m
+          confused<br>
+          =C2=A0 =C2=A0as to how you&#39;re linking the 10MHz/1PPS phasing =
+on your
+          external GPS <br>
+          receivers to the X310 having bugs.<br>
+          <br>
+          <br>
+          <br>
+          _______________________________________________<br>
+          USRP-users mailing list<br>
+          <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">U=
+SRP-users@lists.ettus.com</a><br>
+          <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lis=
+ts.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/m=
+ailman/listinfo/usrp-users_lists.ettus.com</a><br>
+        </blockquote>
       </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
     </blockquote>
     <br>
-  </body>
-</html>
+  </div>
 
---------------090706080608040401020700--
+</blockquote></div>
+
+--000000000000e45ff905a8c5c558--
 
 
---===============5066341009760381917==
+--===============7805094030308451224==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -495,5 +360,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5066341009760381917==--
+--===============7805094030308451224==--
 
