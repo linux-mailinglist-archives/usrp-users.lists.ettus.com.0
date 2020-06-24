@@ -2,47 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D6FE20764B
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Jun 2020 17:02:03 +0200 (CEST)
-Received: from [::1] (port=60366 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6DC1207A95
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Jun 2020 19:47:10 +0200 (CEST)
+Received: from [::1] (port=38022 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jo6uV-0006of-NG; Wed, 24 Jun 2020 11:01:59 -0400
-Received: from web170.dnchosting.com ([199.7.105.170]:56232)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <barry@dcsmail.net>) id 1jo6uR-0006gb-DI
- for usrp-users@lists.ettus.com; Wed, 24 Jun 2020 11:01:55 -0400
-Received: from [::1] (port=40552 helo=web170.dnchosting.com)
- by web170.dnchosting.com with esmtpa (Exim 4.93)
- (envelope-from <barry@dcsmail.net>)
- id 1jo6ta-00061v-9Q; Wed, 24 Jun 2020 15:01:12 +0000
+	id 1jo9UJ-0006fG-8y; Wed, 24 Jun 2020 13:47:07 -0400
+Received: from mail-qt1-f171.google.com ([209.85.160.171]:41825)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <qiu.guowang007@gmail.com>)
+ id 1jo9UE-0006a6-S6
+ for usrp-users@lists.ettus.com; Wed, 24 Jun 2020 13:47:02 -0400
+Received: by mail-qt1-f171.google.com with SMTP id g13so2369630qtv.8
+ for <usrp-users@lists.ettus.com>; Wed, 24 Jun 2020 10:46:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to:cc;
+ bh=TN52R2LqM0xsVEdECrVCLFBPPhaBADnpb/1ErAKCh+8=;
+ b=GX4X5LYO51tvrYxAytkG+4zCoYuuyvkX3N9SRgSgvRkTdZlaQNFuIV7u+aHko/NNXo
+ oKhfInG8XoFmf63L/f7oDBYdEhY+A7YKH2hCvQFtHNERfHPaK5tpMMWUixHbkRoDRD6A
+ VrvUvOtvGl7Adz5GuS2sjnOJFCHyYql5LQEmvXlM1f11wno/v/ZICGF7Urhh0pxO5uzY
+ 4Ory/bhzCEfJpPcArjkURg4u51p1y7lHyrNFnObM594hN3KYLN9xUb5wvfaSyY4sA0EU
+ ePXyA1O1m7APuRUWxmdlyLWvgqjDOyOIE0+z5NfM6YjELvl0DF63UrRJhk+n+U0dM+XA
+ Y0XQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+ bh=TN52R2LqM0xsVEdECrVCLFBPPhaBADnpb/1ErAKCh+8=;
+ b=aBOECFlTydt1CA0izhTU+BfThfx3qoLWtEBjEOp9cMLVjooaTeqyD2/urY0oqXmalV
+ vVT4pZjyo1K8XX+oD1NvDva48BwdbYmhP5qeckREa7Ieaa9Vfc3U7Gr8sQ/Pi/ETDtgI
+ l7Y2iKLBnFhOdVKhFRqIfsxq/ir1F2HGSZcphdGoDTZZjQUK7c6hTJEOV+OPl94BBuzE
+ LDysmitSEiMcVkkry5guv9bKtR8NIapFvGyKDBi1sTJJlbdIY/2h53q/PlMEwJ6LWDFb
+ X+D7gBVE180wHER1PeU3L/JnxNBGWGNyE36Y1Va67MHaq1tBB1QwcDf8H2BOSGfSIMJd
+ p82A==
+X-Gm-Message-State: AOAM531ZczeQPcEAo2tx6HOCVB0NMSF/+xVr5UdHeX27OR173QASVInF
+ ZAgKYqEz2R3AZVc4ERdi9SkqoZPKtth4zbL/lhOft5Z8
+X-Google-Smtp-Source: ABdhPJxe4LzTF0k8X7ZOrbVn8iQpwlkDCfhPUz3V3aoJcw2/lBdRHt+pera+AHrzt+Xy8/Iv4+VFzaItsBliXxTLICw=
+X-Received: by 2002:ac8:5350:: with SMTP id d16mr8028820qto.279.1593020782109; 
+ Wed, 24 Jun 2020 10:46:22 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 24 Jun 2020 15:01:02 +0000
-To: Ernest Poletaev <epoletaev@i-blades.com>
-Cc: usrp-users@lists.ettus.com
-In-Reply-To: <57974340-2942-46f7-a1ee-0b52fdcbef2e@Spark>
-References: <6b6478b2-e258-6d15-9c3a-2575189ffc5a@dcsmail.net>
- <57974340-2942-46f7-a1ee-0b52fdcbef2e@Spark>
-User-Agent: Roundcube Webmail/1.4.4
-Message-ID: <66ce7a93e5a82cd6d1505f1e19edb24b@dcsmail.net>
-X-Sender: barry@dcsmail.net
-Content-Type: multipart/mixed;
- boundary="=_c95d177c6d92e1c9601afca6ffebe96e"
-X-OutGoing-Spam-Status: No, score=0.0
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - web170.dnchosting.com
-X-AntiAbuse: Original Domain - lists.ettus.com
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - dcsmail.net
-X-Get-Message-Sender-Via: web170.dnchosting.com: authenticated_id:
- barry@dcsmail.net
-X-Authenticated-Sender: web170.dnchosting.com: barry@dcsmail.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-From-Rewrite: unmodified, already matched
-Subject: Re: [USRP-users] AM transmission
+Date: Thu, 25 Jun 2020 01:46:10 +0800
+Message-ID: <CACjmV_nH=YZVbvU-Md4juBB6iazRxVuLFa+f8rC0Z4=_UumjKA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Cc: Damon Qiu <qiu.guowang007@gmail.com>
+Subject: [USRP-users] TX Burst at 200Msps sample rate on two channel
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,8 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Barry Duggan via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Barry Duggan <barry@dcsmail.net>
+From: guowang qiu via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: guowang qiu <qiu.guowang007@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6181796707244090475=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -69,268 +72,58 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---=_c95d177c6d92e1c9601afca6ffebe96e
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+--===============6181796707244090475==
+Content-Type: multipart/alternative; boundary="000000000000d6677705a8d80da9"
 
-Hi Ernest,
+--000000000000d6677705a8d80da9
+Content-Type: text/plain; charset="UTF-8"
 
-Look at https://wiki.gnuradio.org/index.php/File:USRP_AM_xmt_fg.png
-You will need to adjust your RF frequency.
+Hi all,
 
-Attached is the grc file for it, but it is for 3.8. If you need to look 
-at any of the parameters, use your editor for my grc file to find them.
+I am trying to set my USRP X310 to send out signals in burst mode at
+200Msps sample rate on two channels. My target is sending out bursts of
+100ms without underflow.
+The OS is Ubuntu 18.04, UHD version v3.15.0.0, DPDK is used in the test.
+The CPU is set to 4.2GHz.
+The X310 is connected to the host by dual 10 Gigabit Ethernet.
 
-If you do not need the exact 1M sample rate, I would replace the 
-rational resampler with a float to complex block and use a sample rate 
-of 960000 into the USRP Sink.
----
-Barry Duggan KV4FV
+sudo /usr/local/lib/uhd/examples/tx_bursts
+--args="type=x300,use_dpdk=1,addr=192.168.30.2,second_addr=192.168.40.2,send_frame_size=8000,num_send_frames=512"
+--repeat --dilv --nsamps=20000000 --channels=0,1 --rate=200e6
+
+If nsamps is set to 100000, there is no U printed. But if nsamps is large
+than 120000, the terminal prints a lot of U.
+Question 1: the depth of DMA FIFO is 32MB by default, I guess there should
+be 8M samples stored in the DMA FIFO, why it seems that it just store 100K
+samples?
+Question 2: is there anything I could do to achieve my goal?
+
+Best regards,
+Damon
+
+--000000000000d6677705a8d80da9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi all,<br><br>I am trying to set my USRP X310 to send out=
+ signals in burst mode at 200Msps sample rate on two channels. My target is=
+ sending out bursts of 100ms without underflow.<br>The OS is Ubuntu 18.04, =
+UHD version v3.15.0.0, DPDK is used in the test. The CPU is set to 4.2GHz.<=
+br>The X310 is connected to the host by dual 10 Gigabit Ethernet. <br><br>s=
+udo /usr/local/lib/uhd/examples/tx_bursts --args=3D&quot;type=3Dx300,use_dp=
+dk=3D1,addr=3D192.168.30.2,second_addr=3D192.168.40.2,send_frame_size=3D800=
+0,num_send_frames=3D512&quot; --repeat --dilv --nsamps=3D20000000 --channel=
+s=3D0,1 --rate=3D200e6<br><br>If=C2=A0nsamps is set to 100000, there is no =
+U printed. But if=C2=A0nsamps is large than 120000, the terminal prints a l=
+ot of U.<br>Question 1: the depth of DMA FIFO is 32MB by default, I guess t=
+here should be 8M samples stored in the DMA FIFO, why it seems that it just=
+ store 100K samples?<br>Question 2: is there anything I could do to achieve=
+ my goal?<br><br>Best regards,<br>Damon<br><div><br></div></div>
+
+--000000000000d6677705a8d80da9--
 
 
-On 2020-06-24 02:01, Ernest Poletaev wrote:
-> Hi Barry,
-> 
-> Thanks, I was looking at this tutorial, but was unable to figure out
-> how to modify it for UHD.
-> 
-> My requirements are:
-> 
-> RF Freq: 295.1Mhz
-> Sampling rate: 1M
-> Audio sampling rate 44.1 / 48 Khz
-> 
-> I'm using GNURadio 3.7 (old format grc).
-> 
-> Regards,
-> Ernest
-> On 24 Jun 2020 01:41 +0700, Barry Duggan <barry@dcsmail.net>, wrote:
->> Ernest,
->> 
->> I recommend working through the
->> https://wiki.gnuradio.org/index.php/Tutorials, and then when you get 
->> to
->> the
->> https://wiki.gnuradio.org/index.php/Simulation_example:_AM_transmitter_and_receiver
->> you could adapt it to using your USRP in place of the ZMQ sockets.
->> 
->> If you need additional help, let me know. (I wrote the tutorial.)
->> 
->> --
->> Barry Duggan KV4FV
---=_c95d177c6d92e1c9601afca6ffebe96e
-Content-Transfer-Encoding: base64
-Content-Type: text/plain;
- name=USRP_AM_xmt.grc
-Content-Disposition: attachment;
- filename=USRP_AM_xmt.grc;
- size=11536
-
-b3B0aW9uczoKICBwYXJhbWV0ZXJzOgogICAgYXV0aG9yOiBCYXJyeSBEdWdnYW4KICAgIGNhdGVn
-b3J5OiAnW0dSQyBIaWVyIEJsb2Nrc10nCiAgICBjbWFrZV9vcHQ6ICcnCiAgICBjb21tZW50OiAn
-JwogICAgY29weXJpZ2h0OiAnMjAyMCcKICAgIGRlc2NyaXB0aW9uOiAnJwogICAgZ2VuX2NtYWtl
-OiAnT24nCiAgICBnZW5fbGlua2luZzogZHluYW1pYwogICAgZ2VuZXJhdGVfb3B0aW9uczogcXRf
-Z3VpCiAgICBoaWVyX2Jsb2NrX3NyY19wYXRoOiAnLjonCiAgICBpZDogVVNSUF9BTV94bXQKICAg
-IG1heF9ub3V0czogJzAnCiAgICBvdXRwdXRfbGFuZ3VhZ2U6IHB5dGhvbgogICAgcGxhY2VtZW50
-OiAoMCwwKQogICAgcXRfcXNzX3RoZW1lOiAnJwogICAgcmVhbHRpbWVfc2NoZWR1bGluZzogJycK
-ICAgIHJ1bjogJ1RydWUnCiAgICBydW5fY29tbWFuZDogJ3tweXRob259IC11IHtmaWxlbmFtZX0n
-CiAgICBydW5fb3B0aW9uczogcHJvbXB0CiAgICBzaXppbmdfbW9kZTogZml4ZWQKICAgIHRocmVh
-ZF9zYWZlX3NldHRlcnM6ICcnCiAgICB0aXRsZTogVVNSUCBBTSB0cmFuc21pdAogICAgd2luZG93
-X3NpemU6ICcnCiAgc3RhdGVzOgogICAgYnVzX3Npbms6IGZhbHNlCiAgICBidXNfc291cmNlOiBm
-YWxzZQogICAgYnVzX3N0cnVjdHVyZTogbnVsbAogICAgY29vcmRpbmF0ZTogWzE2LCAxMi4wXQog
-ICAgcm90YXRpb246IDAKICAgIHN0YXRlOiBlbmFibGVkCgpibG9ja3M6Ci0gbmFtZTogc2FtcF9y
-YXRlCiAgaWQ6IHZhcmlhYmxlCiAgcGFyYW1ldGVyczoKICAgIGNvbW1lbnQ6ICcnCiAgICB2YWx1
-ZTogJzQ4MDAwJwogIHN0YXRlczoKICAgIGJ1c19zaW5rOiBmYWxzZQogICAgYnVzX3NvdXJjZTog
-ZmFsc2UKICAgIGJ1c19zdHJ1Y3R1cmU6IG51bGwKICAgIGNvb3JkaW5hdGU6IFsxODQsIDEyLjBd
-CiAgICByb3RhdGlvbjogMAogICAgc3RhdGU6IGVuYWJsZWQKLSBuYW1lOiB2b2x1bWUKICBpZDog
-dmFyaWFibGVfcXRndWlfcmFuZ2UKICBwYXJhbWV0ZXJzOgogICAgY29tbWVudDogJycKICAgIGd1
-aV9oaW50OiAnJwogICAgbGFiZWw6IEF1ZGlvIGdhaW4KICAgIG1pbl9sZW46ICcyMDAnCiAgICBv
-cmllbnQ6IFF0Lkhvcml6b250YWwKICAgIHJhbmdlVHlwZTogZmxvYXQKICAgIHN0YXJ0OiAnMCcK
-ICAgIHN0ZXA6ICcwLjEnCiAgICBzdG9wOiAnMTAuMCcKICAgIHZhbHVlOiAnMC44JwogICAgd2lk
-Z2V0OiBjb3VudGVyX3NsaWRlcgogIHN0YXRlczoKICAgIGJ1c19zaW5rOiBmYWxzZQogICAgYnVz
-X3NvdXJjZTogZmFsc2UKICAgIGJ1c19zdHJ1Y3R1cmU6IG51bGwKICAgIGNvb3JkaW5hdGU6IFsy
-NzIsIDEyLjBdCiAgICByb3RhdGlvbjogMAogICAgc3RhdGU6IGVuYWJsZWQKLSBuYW1lOiBhbmFs
-b2dfc2lnX3NvdXJjZV94XzAKICBpZDogYW5hbG9nX3NpZ19zb3VyY2VfeAogIHBhcmFtZXRlcnM6
-CiAgICBhZmZpbml0eTogJycKICAgIGFsaWFzOiAnJwogICAgYW1wOiAnMC41JwogICAgY29tbWVu
-dDogJycKICAgIGZyZXE6ICc2MDAnCiAgICBtYXhvdXRidWY6ICcwJwogICAgbWlub3V0YnVmOiAn
-MCcKICAgIG9mZnNldDogJzAnCiAgICBwaGFzZTogJzAnCiAgICBzYW1wX3JhdGU6IHNhbXBfcmF0
-ZQogICAgdHlwZTogZmxvYXQKICAgIHdhdmVmb3JtOiBhbmFsb2cuR1JfQ09TX1dBVkUKICBzdGF0
-ZXM6CiAgICBidXNfc2luazogZmFsc2UKICAgIGJ1c19zb3VyY2U6IGZhbHNlCiAgICBidXNfc3Ry
-dWN0dXJlOiBudWxsCiAgICBjb29yZGluYXRlOiBbNDAsIDI3Ni4wXQogICAgcm90YXRpb246IDAK
-ICAgIHN0YXRlOiB0cnVlCi0gbmFtZTogYXVkaW9fc291cmNlXzAKICBpZDogYXVkaW9fc291cmNl
-CiAgcGFyYW1ldGVyczoKICAgIGFmZmluaXR5OiAnJwogICAgYWxpYXM6ICcnCiAgICBjb21tZW50
-OiAnJwogICAgZGV2aWNlX25hbWU6IGh3OkNBUkQ9R2VuZXJpYyxERVY9MAogICAgbWF4b3V0YnVm
-OiAnMCcKICAgIG1pbm91dGJ1ZjogJzAnCiAgICBudW1fb3V0cHV0czogJzEnCiAgICBva190b19i
-bG9jazogJ1RydWUnCiAgICBzYW1wX3JhdGU6ICc0ODAwMCcKICBzdGF0ZXM6CiAgICBidXNfc2lu
-azogZmFsc2UKICAgIGJ1c19zb3VyY2U6IGZhbHNlCiAgICBidXNfc3RydWN0dXJlOiBudWxsCiAg
-ICBjb29yZGluYXRlOiBbMTYsIDE4OC4wXQogICAgcm90YXRpb246IDAKICAgIHN0YXRlOiBkaXNh
-YmxlZAotIG5hbWU6IGJsb2Nrc19hZGRfY29uc3Rfdnh4XzAKICBpZDogYmxvY2tzX2FkZF9jb25z
-dF92eHgKICBwYXJhbWV0ZXJzOgogICAgYWZmaW5pdHk6ICcnCiAgICBhbGlhczogJycKICAgIGNv
-bW1lbnQ6IGNyZWF0ZXMgY2FycmllcgogICAgY29uc3Q6ICcwLjUnCiAgICBtYXhvdXRidWY6ICcw
-JwogICAgbWlub3V0YnVmOiAnMCcKICAgIHR5cGU6IGZsb2F0CiAgICB2bGVuOiAnMScKICBzdGF0
-ZXM6CiAgICBidXNfc2luazogZmFsc2UKICAgIGJ1c19zb3VyY2U6IGZhbHNlCiAgICBidXNfc3Ry
-dWN0dXJlOiBudWxsCiAgICBjb29yZGluYXRlOiBbNDA4LCAxOTYuMF0KICAgIHJvdGF0aW9uOiAw
-CiAgICBzdGF0ZTogdHJ1ZQotIG5hbWU6IGJsb2Nrc19tdWx0aXBseV9jb25zdF92eHhfMAogIGlk
-OiBibG9ja3NfbXVsdGlwbHlfY29uc3Rfdnh4CiAgcGFyYW1ldGVyczoKICAgIGFmZmluaXR5OiAn
-JwogICAgYWxpYXM6ICcnCiAgICBjb21tZW50OiBBdWRpbyBnYWluCiAgICBjb25zdDogdm9sdW1l
-CiAgICBtYXhvdXRidWY6ICcwJwogICAgbWlub3V0YnVmOiAnMCcKICAgIHR5cGU6IGZsb2F0CiAg
-ICB2bGVuOiAnMScKICBzdGF0ZXM6CiAgICBidXNfc2luazogZmFsc2UKICAgIGJ1c19zb3VyY2U6
-IGZhbHNlCiAgICBidXNfc3RydWN0dXJlOiBudWxsCiAgICBjb29yZGluYXRlOiBbMjQ4LCAxOTYu
-MF0KICAgIHJvdGF0aW9uOiAwCiAgICBzdGF0ZTogZW5hYmxlZAotIG5hbWU6IGJsb2Nrc19yZXBl
-YXRfMAogIGlkOiBibG9ja3NfcmVwZWF0CiAgcGFyYW1ldGVyczoKICAgIGFmZmluaXR5OiAnJwog
-ICAgYWxpYXM6ICcnCiAgICBjb21tZW50OiBvdXRwdXQgc2FtcCByYXRlID0gMU0KICAgIGludGVy
-cDogJzIwJwogICAgbWF4b3V0YnVmOiAnMCcKICAgIG1pbm91dGJ1ZjogJzAnCiAgICB0eXBlOiBj
-b21wbGV4CiAgICB2bGVuOiAnMScKICBzdGF0ZXM6CiAgICBidXNfc2luazogZmFsc2UKICAgIGJ1
-c19zb3VyY2U6IGZhbHNlCiAgICBidXNfc3RydWN0dXJlOiBudWxsCiAgICBjb29yZGluYXRlOiBb
-NzYwLCAxOTYuMF0KICAgIHJvdGF0aW9uOiAwCiAgICBzdGF0ZTogdHJ1ZQotIG5hbWU6IHF0Z3Vp
-X3RpbWVfc2lua194XzAKICBpZDogcXRndWlfdGltZV9zaW5rX3gKICBwYXJhbWV0ZXJzOgogICAg
-YWZmaW5pdHk6ICcnCiAgICBhbGlhczogJycKICAgIGFscGhhMTogJzEuMCcKICAgIGFscGhhMTA6
-ICcxLjAnCiAgICBhbHBoYTI6ICcxLjAnCiAgICBhbHBoYTM6ICcxLjAnCiAgICBhbHBoYTQ6ICcx
-LjAnCiAgICBhbHBoYTU6ICcxLjAnCiAgICBhbHBoYTY6ICcxLjAnCiAgICBhbHBoYTc6ICcxLjAn
-CiAgICBhbHBoYTg6ICcxLjAnCiAgICBhbHBoYTk6ICcxLjAnCiAgICBhdXRvc2NhbGU6ICdGYWxz
-ZScKICAgIGF4aXNsYWJlbHM6ICdUcnVlJwogICAgY29sb3IxOiBibHVlCiAgICBjb2xvcjEwOiBk
-YXJrIGJsdWUKICAgIGNvbG9yMjogcmVkCiAgICBjb2xvcjM6IGdyZWVuCiAgICBjb2xvcjQ6IGJs
-YWNrCiAgICBjb2xvcjU6IGN5YW4KICAgIGNvbG9yNjogbWFnZW50YQogICAgY29sb3I3OiB5ZWxs
-b3cKICAgIGNvbG9yODogZGFyayByZWQKICAgIGNvbG9yOTogZGFyayBncmVlbgogICAgY29tbWVu
-dDogJycKICAgIGN0cmxwYW5lbDogJ1RydWUnCiAgICBlbnRhZ3M6ICdUcnVlJwogICAgZ3JpZDog
-J0ZhbHNlJwogICAgZ3VpX2hpbnQ6ICcnCiAgICBsYWJlbDE6IFNpZ25hbCAxCiAgICBsYWJlbDEw
-OiBTaWduYWwgMTAKICAgIGxhYmVsMjogU2lnbmFsIDIKICAgIGxhYmVsMzogU2lnbmFsIDMKICAg
-IGxhYmVsNDogU2lnbmFsIDQKICAgIGxhYmVsNTogU2lnbmFsIDUKICAgIGxhYmVsNjogU2lnbmFs
-IDYKICAgIGxhYmVsNzogU2lnbmFsIDcKICAgIGxhYmVsODogU2lnbmFsIDgKICAgIGxhYmVsOTog
-U2lnbmFsIDkKICAgIGxlZ2VuZDogJ1RydWUnCiAgICBtYXJrZXIxOiAnLTEnCiAgICBtYXJrZXIx
-MDogJy0xJwogICAgbWFya2VyMjogJy0xJwogICAgbWFya2VyMzogJy0xJwogICAgbWFya2VyNDog
-Jy0xJwogICAgbWFya2VyNTogJy0xJwogICAgbWFya2VyNjogJy0xJwogICAgbWFya2VyNzogJy0x
-JwogICAgbWFya2VyODogJy0xJwogICAgbWFya2VyOTogJy0xJwogICAgbmFtZTogJyIiJwogICAg
-bmNvbm5lY3Rpb25zOiAnMScKICAgIHNpemU6ICc0MDk2JwogICAgc3JhdGU6IHNhbXBfcmF0ZQog
-ICAgc3RlbXBsb3Q6ICdGYWxzZScKICAgIHN0eWxlMTogJzEnCiAgICBzdHlsZTEwOiAnMScKICAg
-IHN0eWxlMjogJzEnCiAgICBzdHlsZTM6ICcxJwogICAgc3R5bGU0OiAnMScKICAgIHN0eWxlNTog
-JzEnCiAgICBzdHlsZTY6ICcxJwogICAgc3R5bGU3OiAnMScKICAgIHN0eWxlODogJzEnCiAgICBz
-dHlsZTk6ICcxJwogICAgdHJfY2hhbjogJzAnCiAgICB0cl9kZWxheTogJzAnCiAgICB0cl9sZXZl
-bDogJzAuMCcKICAgIHRyX21vZGU6IHF0Z3VpLlRSSUdfTU9ERV9BVVRPCiAgICB0cl9zbG9wZTog
-cXRndWkuVFJJR19TTE9QRV9QT1MKICAgIHRyX3RhZzogJyIiJwogICAgdHlwZTogZmxvYXQKICAg
-IHVwZGF0ZV90aW1lOiAnMC4xMCcKICAgIHdpZHRoMTogJzEnCiAgICB3aWR0aDEwOiAnMScKICAg
-IHdpZHRoMjogJzEnCiAgICB3aWR0aDM6ICcxJwogICAgd2lkdGg0OiAnMScKICAgIHdpZHRoNTog
-JzEnCiAgICB3aWR0aDY6ICcxJwogICAgd2lkdGg3OiAnMScKICAgIHdpZHRoODogJzEnCiAgICB3
-aWR0aDk6ICcxJwogICAgeWxhYmVsOiBBbXBsaXR1ZGUKICAgIHltYXg6ICcxLjUnCiAgICB5bWlu
-OiAnLTEnCiAgICB5dW5pdDogJyIiJwogIHN0YXRlczoKICAgIGJ1c19zaW5rOiBmYWxzZQogICAg
-YnVzX3NvdXJjZTogZmFsc2UKICAgIGJ1c19zdHJ1Y3R1cmU6IG51bGwKICAgIGNvb3JkaW5hdGU6
-IFs1NTIsIDY4LjBdCiAgICByb3RhdGlvbjogMAogICAgc3RhdGU6IHRydWUKLSBuYW1lOiByYXRp
-b25hbF9yZXNhbXBsZXJfeHh4XzAKICBpZDogcmF0aW9uYWxfcmVzYW1wbGVyX3h4eAogIHBhcmFt
-ZXRlcnM6CiAgICBhZmZpbml0eTogJycKICAgIGFsaWFzOiAnJwogICAgY29tbWVudDogb3V0cHV0
-IHNhbXBsZSByYXRlID0gNTAwMDAKICAgIGRlY2ltOiAnMjQnCiAgICBmYnc6ICcwJwogICAgaW50
-ZXJwOiAnMjUnCiAgICBtYXhvdXRidWY6ICcwJwogICAgbWlub3V0YnVmOiAnMCcKICAgIHRhcHM6
-ICcnCiAgICB0eXBlOiBmY2MKICBzdGF0ZXM6CiAgICBidXNfc2luazogZmFsc2UKICAgIGJ1c19z
-b3VyY2U6IGZhbHNlCiAgICBidXNfc3RydWN0dXJlOiBudWxsCiAgICBjb29yZGluYXRlOiBbNTY4
-LCAxNzIuMF0KICAgIHJvdGF0aW9uOiAwCiAgICBzdGF0ZTogdHJ1ZQotIG5hbWU6IHVoZF91c3Jw
-X3NpbmtfMAogIGlkOiB1aGRfdXNycF9zaW5rCiAgcGFyYW1ldGVyczoKICAgIGFmZmluaXR5OiAn
-JwogICAgYWxpYXM6ICcnCiAgICBhbnQwOiBUWC9SWAogICAgYW50MTogVFgvUlgKICAgIGFudDEw
-OiBUWC9SWAogICAgYW50MTE6IFRYL1JYCiAgICBhbnQxMjogVFgvUlgKICAgIGFudDEzOiBUWC9S
-WAogICAgYW50MTQ6IFRYL1JYCiAgICBhbnQxNTogVFgvUlgKICAgIGFudDE2OiBUWC9SWAogICAg
-YW50MTc6IFRYL1JYCiAgICBhbnQxODogVFgvUlgKICAgIGFudDE5OiBUWC9SWAogICAgYW50Mjog
-VFgvUlgKICAgIGFudDIwOiBUWC9SWAogICAgYW50MjE6IFRYL1JYCiAgICBhbnQyMjogVFgvUlgK
-ICAgIGFudDIzOiBUWC9SWAogICAgYW50MjQ6IFRYL1JYCiAgICBhbnQyNTogVFgvUlgKICAgIGFu
-dDI2OiBUWC9SWAogICAgYW50Mjc6IFRYL1JYCiAgICBhbnQyODogVFgvUlgKICAgIGFudDI5OiBU
-WC9SWAogICAgYW50MzogVFgvUlgKICAgIGFudDMwOiBUWC9SWAogICAgYW50MzE6IFRYL1JYCiAg
-ICBhbnQ0OiBUWC9SWAogICAgYW50NTogVFgvUlgKICAgIGFudDY6IFRYL1JYCiAgICBhbnQ3OiBU
-WC9SWAogICAgYW50ODogVFgvUlgKICAgIGFudDk6IFRYL1JYCiAgICBidzA6ICcyMDAwMDAnCiAg
-ICBidzE6ICcwJwogICAgYncxMDogJzAnCiAgICBidzExOiAnMCcKICAgIGJ3MTI6ICcwJwogICAg
-YncxMzogJzAnCiAgICBidzE0OiAnMCcKICAgIGJ3MTU6ICcwJwogICAgYncxNjogJzAnCiAgICBi
-dzE3OiAnMCcKICAgIGJ3MTg6ICcwJwogICAgYncxOTogJzAnCiAgICBidzI6ICcwJwogICAgYncy
-MDogJzAnCiAgICBidzIxOiAnMCcKICAgIGJ3MjI6ICcwJwogICAgYncyMzogJzAnCiAgICBidzI0
-OiAnMCcKICAgIGJ3MjU6ICcwJwogICAgYncyNjogJzAnCiAgICBidzI3OiAnMCcKICAgIGJ3Mjg6
-ICcwJwogICAgYncyOTogJzAnCiAgICBidzM6ICcwJwogICAgYnczMDogJzAnCiAgICBidzMxOiAn
-MCcKICAgIGJ3NDogJzAnCiAgICBidzU6ICcwJwogICAgYnc2OiAnMCcKICAgIGJ3NzogJzAnCiAg
-ICBidzg6ICcwJwogICAgYnc5OiAnMCcKICAgIGNlbnRlcl9mcmVxMDogMjIzLjBlNgogICAgY2Vu
-dGVyX2ZyZXExOiAnMCcKICAgIGNlbnRlcl9mcmVxMTA6ICcwJwogICAgY2VudGVyX2ZyZXExMTog
-JzAnCiAgICBjZW50ZXJfZnJlcTEyOiAnMCcKICAgIGNlbnRlcl9mcmVxMTM6ICcwJwogICAgY2Vu
-dGVyX2ZyZXExNDogJzAnCiAgICBjZW50ZXJfZnJlcTE1OiAnMCcKICAgIGNlbnRlcl9mcmVxMTY6
-ICcwJwogICAgY2VudGVyX2ZyZXExNzogJzAnCiAgICBjZW50ZXJfZnJlcTE4OiAnMCcKICAgIGNl
-bnRlcl9mcmVxMTk6ICcwJwogICAgY2VudGVyX2ZyZXEyOiAnMCcKICAgIGNlbnRlcl9mcmVxMjA6
-ICcwJwogICAgY2VudGVyX2ZyZXEyMTogJzAnCiAgICBjZW50ZXJfZnJlcTIyOiAnMCcKICAgIGNl
-bnRlcl9mcmVxMjM6ICcwJwogICAgY2VudGVyX2ZyZXEyNDogJzAnCiAgICBjZW50ZXJfZnJlcTI1
-OiAnMCcKICAgIGNlbnRlcl9mcmVxMjY6ICcwJwogICAgY2VudGVyX2ZyZXEyNzogJzAnCiAgICBj
-ZW50ZXJfZnJlcTI4OiAnMCcKICAgIGNlbnRlcl9mcmVxMjk6ICcwJwogICAgY2VudGVyX2ZyZXEz
-OiAnMCcKICAgIGNlbnRlcl9mcmVxMzA6ICcwJwogICAgY2VudGVyX2ZyZXEzMTogJzAnCiAgICBj
-ZW50ZXJfZnJlcTQ6ICcwJwogICAgY2VudGVyX2ZyZXE1OiAnMCcKICAgIGNlbnRlcl9mcmVxNjog
-JzAnCiAgICBjZW50ZXJfZnJlcTc6ICcwJwogICAgY2VudGVyX2ZyZXE4OiAnMCcKICAgIGNlbnRl
-cl9mcmVxOTogJzAnCiAgICBjbG9ja19yYXRlOiAwZTAKICAgIGNsb2NrX3NvdXJjZTA6ICcnCiAg
-ICBjbG9ja19zb3VyY2UxOiAnJwogICAgY2xvY2tfc291cmNlMjogJycKICAgIGNsb2NrX3NvdXJj
-ZTM6ICcnCiAgICBjbG9ja19zb3VyY2U0OiAnJwogICAgY2xvY2tfc291cmNlNTogJycKICAgIGNs
-b2NrX3NvdXJjZTY6ICcnCiAgICBjbG9ja19zb3VyY2U3OiAnJwogICAgY29tbWVudDogJycKICAg
-IGRldl9hZGRyOiAnIiInCiAgICBkZXZfYXJnczogJyIiJwogICAgZ2FpbjA6ICcxJwogICAgZ2Fp
-bjE6ICcwJwogICAgZ2FpbjEwOiAnMCcKICAgIGdhaW4xMTogJzAnCiAgICBnYWluMTI6ICcwJwog
-ICAgZ2FpbjEzOiAnMCcKICAgIGdhaW4xNDogJzAnCiAgICBnYWluMTU6ICcwJwogICAgZ2FpbjE2
-OiAnMCcKICAgIGdhaW4xNzogJzAnCiAgICBnYWluMTg6ICcwJwogICAgZ2FpbjE5OiAnMCcKICAg
-IGdhaW4yOiAnMCcKICAgIGdhaW4yMDogJzAnCiAgICBnYWluMjE6ICcwJwogICAgZ2FpbjIyOiAn
-MCcKICAgIGdhaW4yMzogJzAnCiAgICBnYWluMjQ6ICcwJwogICAgZ2FpbjI1OiAnMCcKICAgIGdh
-aW4yNjogJzAnCiAgICBnYWluMjc6ICcwJwogICAgZ2FpbjI4OiAnMCcKICAgIGdhaW4yOTogJzAn
-CiAgICBnYWluMzogJzAnCiAgICBnYWluMzA6ICcwJwogICAgZ2FpbjMxOiAnMCcKICAgIGdhaW40
-OiAnMCcKICAgIGdhaW41OiAnMCcKICAgIGdhaW42OiAnMCcKICAgIGdhaW43OiAnMCcKICAgIGdh
-aW44OiAnMCcKICAgIGdhaW45OiAnMCcKICAgIGxlbl90YWdfbmFtZTogJycKICAgIGxvX2V4cG9y
-dDA6ICdGYWxzZScKICAgIGxvX2V4cG9ydDE6ICdGYWxzZScKICAgIGxvX2V4cG9ydDEwOiAnRmFs
-c2UnCiAgICBsb19leHBvcnQxMTogJ0ZhbHNlJwogICAgbG9fZXhwb3J0MTI6ICdGYWxzZScKICAg
-IGxvX2V4cG9ydDEzOiAnRmFsc2UnCiAgICBsb19leHBvcnQxNDogJ0ZhbHNlJwogICAgbG9fZXhw
-b3J0MTU6ICdGYWxzZScKICAgIGxvX2V4cG9ydDE2OiAnRmFsc2UnCiAgICBsb19leHBvcnQxNzog
-J0ZhbHNlJwogICAgbG9fZXhwb3J0MTg6ICdGYWxzZScKICAgIGxvX2V4cG9ydDE5OiAnRmFsc2Un
-CiAgICBsb19leHBvcnQyOiAnRmFsc2UnCiAgICBsb19leHBvcnQyMDogJ0ZhbHNlJwogICAgbG9f
-ZXhwb3J0MjE6ICdGYWxzZScKICAgIGxvX2V4cG9ydDIyOiAnRmFsc2UnCiAgICBsb19leHBvcnQy
-MzogJ0ZhbHNlJwogICAgbG9fZXhwb3J0MjQ6ICdGYWxzZScKICAgIGxvX2V4cG9ydDI1OiAnRmFs
-c2UnCiAgICBsb19leHBvcnQyNjogJ0ZhbHNlJwogICAgbG9fZXhwb3J0Mjc6ICdGYWxzZScKICAg
-IGxvX2V4cG9ydDI4OiAnRmFsc2UnCiAgICBsb19leHBvcnQyOTogJ0ZhbHNlJwogICAgbG9fZXhw
-b3J0MzogJ0ZhbHNlJwogICAgbG9fZXhwb3J0MzA6ICdGYWxzZScKICAgIGxvX2V4cG9ydDMxOiAn
-RmFsc2UnCiAgICBsb19leHBvcnQ0OiAnRmFsc2UnCiAgICBsb19leHBvcnQ1OiAnRmFsc2UnCiAg
-ICBsb19leHBvcnQ2OiAnRmFsc2UnCiAgICBsb19leHBvcnQ3OiAnRmFsc2UnCiAgICBsb19leHBv
-cnQ4OiAnRmFsc2UnCiAgICBsb19leHBvcnQ5OiAnRmFsc2UnCiAgICBsb19zb3VyY2UwOiBpbnRl
-cm5hbAogICAgbG9fc291cmNlMTogaW50ZXJuYWwKICAgIGxvX3NvdXJjZTEwOiBpbnRlcm5hbAog
-ICAgbG9fc291cmNlMTE6IGludGVybmFsCiAgICBsb19zb3VyY2UxMjogaW50ZXJuYWwKICAgIGxv
-X3NvdXJjZTEzOiBpbnRlcm5hbAogICAgbG9fc291cmNlMTQ6IGludGVybmFsCiAgICBsb19zb3Vy
-Y2UxNTogaW50ZXJuYWwKICAgIGxvX3NvdXJjZTE2OiBpbnRlcm5hbAogICAgbG9fc291cmNlMTc6
-IGludGVybmFsCiAgICBsb19zb3VyY2UxODogaW50ZXJuYWwKICAgIGxvX3NvdXJjZTE5OiBpbnRl
-cm5hbAogICAgbG9fc291cmNlMjogaW50ZXJuYWwKICAgIGxvX3NvdXJjZTIwOiBpbnRlcm5hbAog
-ICAgbG9fc291cmNlMjE6IGludGVybmFsCiAgICBsb19zb3VyY2UyMjogaW50ZXJuYWwKICAgIGxv
-X3NvdXJjZTIzOiBpbnRlcm5hbAogICAgbG9fc291cmNlMjQ6IGludGVybmFsCiAgICBsb19zb3Vy
-Y2UyNTogaW50ZXJuYWwKICAgIGxvX3NvdXJjZTI2OiBpbnRlcm5hbAogICAgbG9fc291cmNlMjc6
-IGludGVybmFsCiAgICBsb19zb3VyY2UyODogaW50ZXJuYWwKICAgIGxvX3NvdXJjZTI5OiBpbnRl
-cm5hbAogICAgbG9fc291cmNlMzogaW50ZXJuYWwKICAgIGxvX3NvdXJjZTMwOiBpbnRlcm5hbAog
-ICAgbG9fc291cmNlMzE6IGludGVybmFsCiAgICBsb19zb3VyY2U0OiBpbnRlcm5hbAogICAgbG9f
-c291cmNlNTogaW50ZXJuYWwKICAgIGxvX3NvdXJjZTY6IGludGVybmFsCiAgICBsb19zb3VyY2U3
-OiBpbnRlcm5hbAogICAgbG9fc291cmNlODogaW50ZXJuYWwKICAgIGxvX3NvdXJjZTk6IGludGVy
-bmFsCiAgICBtYXhvdXRidWY6ICcwJwogICAgbWlub3V0YnVmOiAnMCcKICAgIG5jaGFuOiAnMScK
-ICAgIG5vcm1fZ2FpbjA6ICdGYWxzZScKICAgIG5vcm1fZ2FpbjE6ICdGYWxzZScKICAgIG5vcm1f
-Z2FpbjEwOiAnRmFsc2UnCiAgICBub3JtX2dhaW4xMTogJ0ZhbHNlJwogICAgbm9ybV9nYWluMTI6
-ICdGYWxzZScKICAgIG5vcm1fZ2FpbjEzOiAnRmFsc2UnCiAgICBub3JtX2dhaW4xNDogJ0ZhbHNl
-JwogICAgbm9ybV9nYWluMTU6ICdGYWxzZScKICAgIG5vcm1fZ2FpbjE2OiAnRmFsc2UnCiAgICBu
-b3JtX2dhaW4xNzogJ0ZhbHNlJwogICAgbm9ybV9nYWluMTg6ICdGYWxzZScKICAgIG5vcm1fZ2Fp
-bjE5OiAnRmFsc2UnCiAgICBub3JtX2dhaW4yOiAnRmFsc2UnCiAgICBub3JtX2dhaW4yMDogJ0Zh
-bHNlJwogICAgbm9ybV9nYWluMjE6ICdGYWxzZScKICAgIG5vcm1fZ2FpbjIyOiAnRmFsc2UnCiAg
-ICBub3JtX2dhaW4yMzogJ0ZhbHNlJwogICAgbm9ybV9nYWluMjQ6ICdGYWxzZScKICAgIG5vcm1f
-Z2FpbjI1OiAnRmFsc2UnCiAgICBub3JtX2dhaW4yNjogJ0ZhbHNlJwogICAgbm9ybV9nYWluMjc6
-ICdGYWxzZScKICAgIG5vcm1fZ2FpbjI4OiAnRmFsc2UnCiAgICBub3JtX2dhaW4yOTogJ0ZhbHNl
-JwogICAgbm9ybV9nYWluMzogJ0ZhbHNlJwogICAgbm9ybV9nYWluMzA6ICdGYWxzZScKICAgIG5v
-cm1fZ2FpbjMxOiAnRmFsc2UnCiAgICBub3JtX2dhaW40OiAnRmFsc2UnCiAgICBub3JtX2dhaW41
-OiAnRmFsc2UnCiAgICBub3JtX2dhaW42OiAnRmFsc2UnCiAgICBub3JtX2dhaW43OiAnRmFsc2Un
-CiAgICBub3JtX2dhaW44OiAnRmFsc2UnCiAgICBub3JtX2dhaW45OiAnRmFsc2UnCiAgICBudW1f
-bWJvYXJkczogJzEnCiAgICBvdHc6ICcnCiAgICBzYW1wX3JhdGU6ICcxMDAwMDAwJwogICAgc2Rf
-c3BlYzA6ICcnCiAgICBzZF9zcGVjMTogJycKICAgIHNkX3NwZWMyOiAnJwogICAgc2Rfc3BlYzM6
-ICcnCiAgICBzZF9zcGVjNDogJycKICAgIHNkX3NwZWM1OiAnJwogICAgc2Rfc3BlYzY6ICcnCiAg
-ICBzZF9zcGVjNzogJycKICAgIHNob3dfbG9fY29udHJvbHM6ICdGYWxzZScKICAgIHN0cmVhbV9h
-cmdzOiAnJwogICAgc3RyZWFtX2NoYW5zOiAnW10nCiAgICBzeW5jOiBzeW5jCiAgICB0aW1lX3Nv
-dXJjZTA6ICcnCiAgICB0aW1lX3NvdXJjZTE6ICcnCiAgICB0aW1lX3NvdXJjZTI6ICcnCiAgICB0
-aW1lX3NvdXJjZTM6ICcnCiAgICB0aW1lX3NvdXJjZTQ6ICcnCiAgICB0aW1lX3NvdXJjZTU6ICcn
-CiAgICB0aW1lX3NvdXJjZTY6ICcnCiAgICB0aW1lX3NvdXJjZTc6ICcnCiAgICB0eXBlOiBmYzMy
-CiAgc3RhdGVzOgogICAgYnVzX3Npbms6IGZhbHNlCiAgICBidXNfc291cmNlOiBmYWxzZQogICAg
-YnVzX3N0cnVjdHVyZTogbnVsbAogICAgY29vcmRpbmF0ZTogWzg0MCwgMjAuMF0KICAgIHJvdGF0
-aW9uOiAwCiAgICBzdGF0ZTogdHJ1ZQoKY29ubmVjdGlvbnM6Ci0gW2FuYWxvZ19zaWdfc291cmNl
-X3hfMCwgJzAnLCBibG9ja3NfbXVsdGlwbHlfY29uc3Rfdnh4XzAsICcwJ10KLSBbYXVkaW9fc291
-cmNlXzAsICcwJywgYmxvY2tzX211bHRpcGx5X2NvbnN0X3Z4eF8wLCAnMCddCi0gW2Jsb2Nrc19h
-ZGRfY29uc3Rfdnh4XzAsICcwJywgcXRndWlfdGltZV9zaW5rX3hfMCwgJzAnXQotIFtibG9ja3Nf
-YWRkX2NvbnN0X3Z4eF8wLCAnMCcsIHJhdGlvbmFsX3Jlc2FtcGxlcl94eHhfMCwgJzAnXQotIFti
-bG9ja3NfbXVsdGlwbHlfY29uc3Rfdnh4XzAsICcwJywgYmxvY2tzX2FkZF9jb25zdF92eHhfMCwg
-JzAnXQotIFtibG9ja3NfcmVwZWF0XzAsICcwJywgdWhkX3VzcnBfc2lua18wLCAnMCddCi0gW3Jh
-dGlvbmFsX3Jlc2FtcGxlcl94eHhfMCwgJzAnLCBibG9ja3NfcmVwZWF0XzAsICcwJ10KCm1ldGFk
-YXRhOgogIGZpbGVfZm9ybWF0OiAxCg==
---=_c95d177c6d92e1c9601afca6ffebe96e
+--===============6181796707244090475==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -341,5 +134,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---=_c95d177c6d92e1c9601afca6ffebe96e--
+--===============6181796707244090475==--
 
