@@ -2,47 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5903C20A56B
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Jun 2020 21:05:01 +0200 (CEST)
-Received: from [::1] (port=53840 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6523020A836
+	for <lists+usrp-users@lfdr.de>; Fri, 26 Jun 2020 00:23:52 +0200 (CEST)
+Received: from [::1] (port=55428 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1joXBB-0005Ge-Ff; Thu, 25 Jun 2020 15:04:57 -0400
-Received: from mail-qt1-f171.google.com ([209.85.160.171]:38635)
+	id 1joaHd-0000Q6-G3; Thu, 25 Jun 2020 18:23:49 -0400
+Received: from mail-qv1-f41.google.com ([209.85.219.41]:35997)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <carsenat@gmail.com>) id 1joXB7-0005BJ-RH
- for usrp-users@lists.ettus.com; Thu, 25 Jun 2020 15:04:53 -0400
-Received: by mail-qt1-f171.google.com with SMTP id z2so5579043qts.5
- for <usrp-users@lists.ettus.com>; Thu, 25 Jun 2020 12:04:33 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1joaHZ-0000MY-FV
+ for usrp-users@lists.ettus.com; Thu, 25 Jun 2020 18:23:45 -0400
+Received: by mail-qv1-f41.google.com with SMTP id h18so3636025qvl.3
+ for <usrp-users@lists.ettus.com>; Thu, 25 Jun 2020 15:23:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=9ecg6U25SNpD+an834Hs4gzLknuwa4jPcav6VZL3Qrg=;
- b=nqiLADlPR74ltQC4uFkox/NK+RPUsW0byn4r1wXcQoJNETJiM0kCHXUE1f14InY+S+
- TngElxYNXQCNMdF1frJdluaHxYX97lwgzrKuaPLY8q8JAL3tClgeyvD9+bIWBmkqyDzZ
- kvSK6tiNiL/bg9rYuf6R9WMTorQw56wycAK3s7rVZ15L7xm6btriaYZ9VlAIk/hqe++w
- bvhstwnZqixwCMmT06v3xgX5VqoInPVkZJkWZBFe8lyXR9p0Z+Fe/0Uv7O5JIbdklQo0
- ONf90VEBSfYEEscPoDma+j9K4bO4Yf9uQVgzDpc5k02H7ZM50nbrBBHqvN7M+8RYiAYk
- oTDQ==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=ASlQ9Zpk2ZlywazZtzFy5ePYcFaffN9UFHZp4vREefU=;
+ b=iEBgCo2RIy0jNCC2epWStGL+YmiZoF5hKR2Njbw82sOkwTG/45rk0jl+uQHaPGTxXQ
+ eP1Pm74ocGzDsy8L5vDFuHRxGsWWexkKgxwnMIL2fjM2nK2Ve5OYjY9sCkCSyprSkwvz
+ dly3/zAtfvhaJ1yGAfgY5HGSLbOhyVtFud5++2haJZzifF1rHS8ApHe0Ipq7q00Q7mNP
+ Xjrw0IKx01QsH7U7LmeNEBPop/CT0kdanCRsBYWciJRn/Pxb9NKenDlxo7XIsE/uLVtt
+ LDbcK+Wcojk48inSBvjexpF5qGHFiURbyVE6/48174cpWUfMd0FeoElGXyxEFqBLYRYa
+ yHKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=9ecg6U25SNpD+an834Hs4gzLknuwa4jPcav6VZL3Qrg=;
- b=LM9q0Raj8W+uku0RQ188VFnmOcXF0+/WtVOubkFp2IHDWWn0EcLAxqT0SMoljlt9zq
- ZKVrvHmGBHiaR5GZ3CzP/5zWJPGr9QuzgZCJC1dReiVghAU+fertUmhDC+NWiDatP8PO
- hovK9ks7qS+Fm8+gcyVkO1DH5M0uVy1FFFgUCDIQghjp9AaOesaTP4M4InBLZFoDzHjB
- mFu2So0mBLe8YUZctM+DpFmbNXJ7q4q/0uyRgHK5HFi8ICgI7JlUHYYhTxK3C6tLD9zg
- 4KJUv0iMl/k4IbDZOayZlm3QrltuD2j1gYAXR3ENNYULBW2UpVYAN1FZ/XbW5tCHSs9X
- nIrw==
-X-Gm-Message-State: AOAM533C7mGWwua2M5xWTemNLOgLSmMKe+spp8mcf94MHlT9YuHsOSKv
- 2jmOQSVd2SSsr26oSH64GVC7u5kP5aFhUJ1shVFUaypYpic=
-X-Google-Smtp-Source: ABdhPJwDizl11MJqxiOVaBiI9KEZniqAQb0H6JW/di3NA1m2ceecLMcTQAvexTCXyuDDnyQ3m0Bq/xKfOb/kPWBTRh8=
-X-Received: by 2002:ac8:189c:: with SMTP id s28mr2298620qtj.97.1593111852891; 
- Thu, 25 Jun 2020 12:04:12 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=ASlQ9Zpk2ZlywazZtzFy5ePYcFaffN9UFHZp4vREefU=;
+ b=Lam3JTWxyvW06nFEu4ndqr1zBCZfi71SL/jzWEFRCiL/3t2PO1BvllZZUoisMXky+h
+ U5jXNV2SoDPRlKX5Lv6FkKI4EW56SczGD9bJf2C9COLMKkXBEWzCuSdnfOtaF5ExSA+5
+ Nmc1JhcTn8W3Ipbhgd2xMVC7HmEzWLrigrWPYxCXT97omTf2hlQUemrXYqCOSaz4NYk9
+ 2AhuG23Wk9dEZmOdfe3mG3T5r3OuXlxG9jlbWxM8J2p4k1CW7YIPE9ZL7hOO/Nmdnpg0
+ mfwTOGlgzO+ce6UOM0WwSPnoRoDLhwR48fKrIQMm9wdwuMSDHkJBiL+gbkYU+7Y8JNr8
+ yq9w==
+X-Gm-Message-State: AOAM532qlxW9VTOTErytVvHBLoxlQe2vU6uK2HWGXIYi6iac2a669qCt
+ N41pnM2nnOWHIcAksclYLo/zvrtBUWI=
+X-Google-Smtp-Source: ABdhPJytODIw5HvVx2WdG9kko4lL+KWk5OUWQAaVqELVntIgPy8I6PBazqhMpr4fgoOEw5TqZUHkRw==
+X-Received: by 2002:a0c:9ae2:: with SMTP id k34mr277521qvf.247.1593123784702; 
+ Thu, 25 Jun 2020 15:23:04 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
+ [174.95.14.109])
+ by smtp.googlemail.com with ESMTPSA id m4sm1811205qtf.43.2020.06.25.15.23.03
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 25 Jun 2020 15:23:04 -0700 (PDT)
+Message-ID: <5EF523C7.9040800@gmail.com>
+Date: Thu, 25 Jun 2020 18:23:03 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Date: Thu, 25 Jun 2020 21:04:02 +0200
-Message-ID: <CA+w2Zyujk0sToEj0rSYqqL0tS7PJmTKXOZSmPS-jz5Njkk3n_w@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-Subject: [USRP-users] b205 RX -> TX loopback
+References: <CA+w2Zyujk0sToEj0rSYqqL0tS7PJmTKXOZSmPS-jz5Njkk3n_w@mail.gmail.com>
+In-Reply-To: <CA+w2Zyujk0sToEj0rSYqqL0tS7PJmTKXOZSmPS-jz5Njkk3n_w@mail.gmail.com>
+Subject: Re: [USRP-users] b205 RX -> TX loopback
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: David Carsenat via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: David Carsenat <carsenat@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6469575247575767581=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,61 +84,35 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6469575247575767581==
-Content-Type: multipart/alternative; boundary="00000000000014427605a8ed42d9"
-
---00000000000014427605a8ed42d9
-Content-Type: text/plain; charset="UTF-8"
-
-Hello.
-We are trying to make a simple RX on TX loopback by changing the FPGA image.
-We get it by adding a wire between the DDC output and DUC input, but we are
-still limited by the sample rate we specify via UHD.
- We have specified the analog bandwidth at 56 MHz, and the master
-clock rate at 60 MHz, but no change.
-Same behaviour if we add a wire before the DDC and DUC. We suspect a link
-between UHD sample rate and AD9364 sample rate.
-Is there a way to have the full rate(56 MHz) available on the loopback
-despite, for example, 1MHz sample rate specified via UHD ?
-
-We could also put the sample rate of 56 MHz but the underflow and overflow
-cut the RF signal, perhaps there is a way to avoid this phenomenon also.
-
-Thanks a lot.
-
-David
-
---00000000000014427605a8ed42d9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello.<div>We are trying to make a simple RX on TX loopbac=
-k by changing the FPGA image.</div><div>We get it by adding a wire between =
-the DDC output and DUC input, but we are still limited by the sample rate w=
-e specify via UHD.</div><div>=C2=A0We have specified the analog=C2=A0bandwi=
-dth at 56 MHz, and the master clock=C2=A0rate at 60 MHz, but no change.=C2=
-=A0<br></div><div>Same behaviour if we add a wire before the DDC and DUC. W=
-e suspect a=C2=A0link between UHD sample rate and AD9364 sample rate.</div>=
-<div>Is there=C2=A0a way to have the full rate(56 MHz) available on the loo=
-pback despite, for example, 1MHz sample rate specified via UHD ?</div><div>=
-<br></div><div>We could also put the sample rate of 56 MHz but the underflo=
-w and overflow cut the RF signal, perhaps there is a way to avoid this phen=
-omenon also.</div><div><br></div><div>Thanks a lot.</div><div><br></div><di=
-v>David</div><div></div></div>
-
---00000000000014427605a8ed42d9--
+On 06/25/2020 03:04 PM, David Carsenat via USRP-users wrote:
+> Hello.
+> We are trying to make a simple RX on TX loopback by changing the FPGA 
+> image.
+> We get it by adding a wire between the DDC output and DUC input, but 
+> we are still limited by the sample rate we specify via UHD.
+>  We have specified the analog bandwidth at 56 MHz, and the master 
+> clock rate at 60 MHz, but no change.
+> Same behaviour if we add a wire before the DDC and DUC. We suspect 
+> a link between UHD sample rate and AD9364 sample rate.
+> Is there a way to have the full rate(56 MHz) available on the loopback 
+> despite, for example, 1MHz sample rate specified via UHD ?
+>
+> We could also put the sample rate of 56 MHz but the underflow and 
+> overflow cut the RF signal, perhaps there is a way to avoid this 
+> phenomenon also.
+>
+> Thanks a lot.
+>
+> David
+>
+My suggestion would be to wade even deeper into the FPGA and have it not 
+send samples to the host or always only send them at 1Msps, or
+   something.   But regardless, there's no "simple button I can push" to 
+make this happen.
 
 
---===============6469575247575767581==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6469575247575767581==--
-
