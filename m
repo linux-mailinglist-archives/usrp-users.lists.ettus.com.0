@@ -2,62 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 880A220ABDC
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Jun 2020 07:34:55 +0200 (CEST)
-Received: from [::1] (port=58262 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA79F20B0ED
+	for <lists+usrp-users@lfdr.de>; Fri, 26 Jun 2020 13:52:16 +0200 (CEST)
+Received: from [::1] (port=60870 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1joh0m-000604-0o; Fri, 26 Jun 2020 01:34:52 -0400
-Received: from mail-qv1-f47.google.com ([209.85.219.47]:32879)
+	id 1jomtx-0007Qv-Hw; Fri, 26 Jun 2020 07:52:13 -0400
+Received: from mail-qk1-f180.google.com ([209.85.222.180]:36590)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1joh0h-0005nP-PX
- for usrp-users@lists.ettus.com; Fri, 26 Jun 2020 01:34:47 -0400
-Received: by mail-qv1-f47.google.com with SMTP id d12so4004759qvn.0
- for <usrp-users@lists.ettus.com>; Thu, 25 Jun 2020 22:34:27 -0700 (PDT)
+ (Exim 4.93) (envelope-from <qiu.guowang007@gmail.com>)
+ id 1jomtt-0007M1-EF
+ for usrp-users@lists.ettus.com; Fri, 26 Jun 2020 07:52:09 -0400
+Received: by mail-qk1-f180.google.com with SMTP id e11so8472925qkm.3
+ for <usrp-users@lists.ettus.com>; Fri, 26 Jun 2020 04:51:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=MZjKNHjF4+eJ3pGFgYCBY3nw5JTZW2vJBfZt5Ch7xc0=;
- b=B4Eij7RqaCGEHhNW9xEh6oRMBXu3TolNINqXdmHAQ8FEZAoTefyvqfNFPxBrNtzFAG
- DJerF0+w+PlAVd1ukVc9ZhJ8dcs7NwG9V/15KM59SwZwHa0jkGkjJankaQnNb2B93LA5
- 6TIH/yKwZ5JQcj7YhP0ty21q6N1w6VQGQYigHft56NXO6zEGWvCBMBJQPX7L3jOU5w5r
- a5wdt2PagK8MFkBst4eOPcB8nAz9JDrOMaifFTJbhegOxZgGV93XjJlXst8g4Q+thAKc
- ZKv6sNUKQ1OvoGpd34CVOAPBzQAVWIO+h+XKBdH/7nIRu/YSAhZMhdJBtTRfM1bSRgQj
- sxtQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=dOLb2xgH4O67TRFAxn8Mn7LiM0dvoOUnFEpphI5M8w8=;
+ b=m4ivxrhBxfPRuNLU1de4nAWMrCFhYGpG2ONI/XZ3Av1VHbDJQXCgoVrT7AIzQejpF2
+ Gm5ozAl7XBygZcD3P3d4eInxJhj6sfk+yK5H4vKONXFBxrT3S3vWEKguJSOly91LEL6r
+ lmw/dCEv9ztjfRcwe+9FYZvkr6apjkDFlBXI2Wr5I8rmwfYAj70VWifFNSo8oXzXNTOC
+ tDxEqlR+7q4RIi8J0JBdIYDJOvGGEMphI+ZXHxyWGQg4zXcS5QfIp9pacBapuoNyVjvZ
+ 7T5XbrSTDADYuCqzlwipVwelVLlwJy32X1cMzU7pmUa5QyS22LecnwzjpFydpOC5QRHe
+ L8Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=MZjKNHjF4+eJ3pGFgYCBY3nw5JTZW2vJBfZt5Ch7xc0=;
- b=AP3pggdi0/w7kP1rECAh0RwnjLNdwmFAisQf2d+7kdDKwQJ9ZqCrgSWpNht2bbMrQ5
- o7yyVcnL7EVMMdqG2XdgTHEDYvmhMRZJHOlD3F4OksK1DiQnfmIFnxswpbP6Xy0iPo9u
- WwkQPqh1EfPe4VdyL7uvzK9nC2/Lo7esz00ZIciGAEctXhDZDjLszynMt3w4tX1KIMu9
- S9jdRIDs/EhAQS0XNRLaChiz/wmastwP4oAKjaEZF7anbEqtRR+tIPAkNeQExKgtUANb
- Vzf4fnw0U7w9lA7mPerw9nIqUnp6/mm/GWF2qUxvr34X5xVUKDbDMxGWFwlEtfMBFCr/
- WDQQ==
-X-Gm-Message-State: AOAM53205W/yxnGl3Tr0n2I2qJpOzewcAxYhv4X9puZAt3C1JDQx2Dhy
- aZRgrzdx1erIMijxKterUFQaF9XQ62s=
-X-Google-Smtp-Source: ABdhPJy0XDZu8Cqnh0AtwbZaK6cXvyuRISYD7vXh/gMWb5euK48j3wfRdnQB/F792cXxsZxGr+TKhg==
-X-Received: by 2002:a0c:c607:: with SMTP id v7mr1418628qvi.84.1593149647075;
- Thu, 25 Jun 2020 22:34:07 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
- [174.95.14.109])
- by smtp.googlemail.com with ESMTPSA id a82sm7992845qkb.29.2020.06.25.22.34.06
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 25 Jun 2020 22:34:06 -0700 (PDT)
-Message-ID: <5EF588CD.70001@gmail.com>
-Date: Fri, 26 Jun 2020 01:34:05 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=dOLb2xgH4O67TRFAxn8Mn7LiM0dvoOUnFEpphI5M8w8=;
+ b=Akzi8PXa34xt34CF3SbzoccjpisxsurgnBOfBUWKzNXWdOnFGReBwUI80zR5V8BzeU
+ V70378v1b2ftXQITh4G2s2Q/YoxTRvdS8CyNHkjbsey0fg1WlTJWtECjvNedSOCjZ87w
+ YViKZ5mglrju1qnCGygt0m8XViNgLa3Yv4fDD6reiAcM8iPVKBEORs/EiXxMAgAib8rJ
+ H0FclpcvjFRYckYg52yjv5Z7+mCuEFNYTuLuXMN4H+1/G8rKWYTtUSsHh/uuUG7GLHVG
+ Fh89BzDeVmeVDwmR0+8eRfJzMolKdTZ7iZmPiwnPKTfqmFtXnUF+D+lJobaXdsVvmTSH
+ dXfw==
+X-Gm-Message-State: AOAM5308DOasrFEh3kj33i4f3PNwCNbR/kcl22KEsaK4bJmgKK7PuNp0
+ 7Ah48jBUKSw7UIVH4i7Pnn4TBX06eLGt1q/eWLIxkx9S
+X-Google-Smtp-Source: ABdhPJwod78mZ+3ZA4mpFwDBLBCtEAH9gCZ9GNf7i0hCfrq3iIlJBQMS3ySpVdZ2LDUv/mCEshAxtB7grpX1zVRGZWI=
+X-Received: by 2002:a37:a605:: with SMTP id p5mr2095191qke.428.1593172288598; 
+ Fri, 26 Jun 2020 04:51:28 -0700 (PDT)
 MIME-Version: 1.0
-To: Daniel Tajik <tajikd@mcmaster.ca>
-CC: usrp-users@lists.ettus.com
-References: <CAMuWo5trjDhxSOc0sKbw9-SshYmTKHv2UWM+aPa1v7t+a04Lyw@mail.gmail.com>
- <5EF5536B.5060500@gmail.com>
- <CAMuWo5sGe1Ce8MEeK1T9s2kKgY+h8eY-S205nM89LTnqLWHFtA@mail.gmail.com>
-In-Reply-To: <CAMuWo5sGe1Ce8MEeK1T9s2kKgY+h8eY-S205nM89LTnqLWHFtA@mail.gmail.com>
-Subject: Re: [USRP-users] B210 Loopback Exponential Decay in Burst Messaging
+References: <CACjmV_nH=YZVbvU-Md4juBB6iazRxVuLFa+f8rC0Z4=_UumjKA@mail.gmail.com>
+In-Reply-To: <CACjmV_nH=YZVbvU-Md4juBB6iazRxVuLFa+f8rC0Z4=_UumjKA@mail.gmail.com>
+Date: Fri, 26 Jun 2020 19:51:17 +0800
+Message-ID: <CACjmV_mQ6BFgZjgtNkoPsEu2UH3LqH+co_EQsaZTi1CMfA0rzQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] TX Burst at 200Msps sample rate on two channel
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -69,10 +58,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Damon qiu via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Damon qiu <qiu.guowang007@gmail.com>
+Cc: Damon Qiu <qiu.guowang007@gmail.com>, rkossler@nd.edu
+Content-Type: multipart/mixed; boundary="===============0851412758594865401=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,38 +75,95 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 06/25/2020 11:14 PM, Daniel Tajik wrote:
-> Hey Marcus!
+--===============0851412758594865401==
+Content-Type: multipart/alternative; boundary="00000000000053f71205a8fb54b7"
+
+--00000000000053f71205a8fb54b7
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Marcus,
+Since you forgot to copy the email to me, I have to reply your email here.
+'sudo' is for using dpdk. Do you have any way to use dpdk without super
+authority?
+
+Hi Rob,
+Your information is very helpful. I will try that next week when I am back
+to the office. Thanks.
+
+Best regards,
+Damon
+
+On Thu, 25 Jun 2020 at 01:46, guowang qiu <qiu.guowang007@gmail.com> wrote:
+
+> Hi all,
 >
-> Yep, my configuration has the recommended 30 dB attenuation. I haven't 
-> maxed out either gain stages to avoid risking anything, mostly sit 
-> around 50 dB on both Rx and Tx side, as its recommended to also use at 
-> least half the gain available to achieve a suitable noise figure.
+> I am trying to set my USRP X310 to send out signals in burst mode at
+> 200Msps sample rate on two channels. My target is sending out bursts of
+> 100ms without underflow.
+> The OS is Ubuntu 18.04, UHD version v3.15.0.0, DPDK is used in the test.
+> The CPU is set to 4.2GHz.
+> The X310 is connected to the host by dual 10 Gigabit Ethernet.
 >
-> No frequency hopping here, just ran a couple tests to see if different 
-> carrier frequencies would improve the behaviour, which it did not. I 
-> primarily run the test at 435 MHz, and the overall bandwidth I'm 
-> looking at is 25 KHz. My GFSK modulation is squeezed in between that 
-> at the 6.25 KHz deviation. As for half/full duplex, the test I am 
-> running is a single channel loopback test on a B210, so the transmit 
-> and receive port are both running at the same time (i.e. Full duplex).
+> sudo /usr/local/lib/uhd/examples/tx_bursts
+> --args="type=x300,use_dpdk=1,addr=192.168.30.2,second_addr=192.168.40.2,send_frame_size=8000,num_send_frames=512"
+> --repeat --dilv --nsamps=20000000 --channels=0,1 --rate=200e6
 >
-> Still not sure what the problem is in my implementation. I assume its 
-> something internal? LO leakage or some sort of cross-coupling 
-> somewhere? I've read that operating Rx and Tx at nearby frequencies 
-> can lead to interference issues but I'm not sure if this exponential 
-> decay in a burst transmission is how it manifests itself in my 
-> implementation. Any other tests I can try to explore the cause of this?
+> If nsamps is set to 100000, there is no U printed. But if nsamps is large
+> than 120000, the terminal prints a lot of U.
+> Question 1: the depth of DMA FIFO is 32MB by default, I guess there should
+> be 8M samples stored in the DMA FIFO, why it seems that it just store 100K
+> samples?
+> Question 2: is there anything I could do to achieve my goal?
 >
-> Thanks!
+> Best regards,
+> Damon
 >
-I would try using offset tuning on the RX side.  The B2xx series doesn't 
-actually have a way of disablng DC offset removal as far as I know--it's
-   always on.
+>
+
+--00000000000053f71205a8fb54b7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Marcus,</div><div>Since you forgot to copy the ema=
+il to me, I have to reply your email here.</div><div>&#39;sudo&#39; is for =
+using dpdk. Do you have any way to use dpdk without super authority?</div><=
+div><br></div><div>Hi Rob,</div><div>Your information is very helpful. I wi=
+ll try that next week when I am back to the office. Thanks.</div><div><br><=
+/div><div>Best regards,</div><div>Damon<br></div></div><br><div class=3D"gm=
+ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 25 Jun 2020 at 01:=
+46, guowang qiu &lt;<a href=3D"mailto:qiu.guowang007@gmail.com">qiu.guowang=
+007@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex"><div dir=3D"ltr">Hi all,<br><br>I am trying to set my USRP X31=
+0 to send out signals in burst mode at 200Msps sample rate on two channels.=
+ My target is sending out bursts of 100ms without underflow.<br>The OS is U=
+buntu 18.04, UHD version v3.15.0.0, DPDK is used in the test. The CPU is se=
+t to 4.2GHz.<br>The X310 is connected to the host by dual 10 Gigabit Ethern=
+et. <br><br>sudo /usr/local/lib/uhd/examples/tx_bursts --args=3D&quot;type=
+=3Dx300,use_dpdk=3D1,addr=3D192.168.30.2,second_addr=3D192.168.40.2,send_fr=
+ame_size=3D8000,num_send_frames=3D512&quot; --repeat --dilv --nsamps=3D2000=
+0000 --channels=3D0,1 --rate=3D200e6<br><br>If=C2=A0nsamps is set to 100000=
+, there is no U printed. But if=C2=A0nsamps is large than 120000, the termi=
+nal prints a lot of U.<br>Question 1: the depth of DMA FIFO is 32MB by defa=
+ult, I guess there should be 8M samples stored in the DMA FIFO, why it seem=
+s that it just store 100K samples?<br>Question 2: is there anything I could=
+ do to achieve my goal?<br><br>Best regards,<br>Damon<br><div><br></div></d=
+iv>
+</blockquote></div>
+
+--00000000000053f71205a8fb54b7--
 
 
+--===============0851412758594865401==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0851412758594865401==--
+
