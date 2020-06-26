@@ -2,54 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8223C20B606
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Jun 2020 18:39:50 +0200 (CEST)
-Received: from [::1] (port=35636 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 482AB20B79A
+	for <lists+usrp-users@lfdr.de>; Fri, 26 Jun 2020 19:54:04 +0200 (CEST)
+Received: from [::1] (port=36130 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jorOE-00017c-Vr; Fri, 26 Jun 2020 12:39:46 -0400
-Received: from mail-vk1-f180.google.com ([209.85.221.180]:46530)
+	id 1josY4-00022C-OV; Fri, 26 Jun 2020 13:54:00 -0400
+Received: from mail-vk1-f181.google.com ([209.85.221.181]:43787)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <mdyaaseen1995@gmail.com>)
- id 1jorOB-0000vz-Bz
- for usrp-users@lists.ettus.com; Fri, 26 Jun 2020 12:39:43 -0400
-Received: by mail-vk1-f180.google.com with SMTP id y23so2337307vkd.13
- for <usrp-users@lists.ettus.com>; Fri, 26 Jun 2020 09:39:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.93) (envelope-from <tajikd@mcmaster.ca>) id 1josY1-0001xX-0r
+ for usrp-users@lists.ettus.com; Fri, 26 Jun 2020 13:53:57 -0400
+Received: by mail-vk1-f181.google.com with SMTP id q69so2386526vkq.10
+ for <usrp-users@lists.ettus.com>; Fri, 26 Jun 2020 10:53:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mcmaster-ca.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=vdl2Wd4U2fHV220DhPmep+FSjEiZ6fJj/Exj4oKt8tI=;
- b=jgrWPLPQTvFvPSuV6G8XrMJYMZH6rAG1fRxX0cq6B8/y/VbocvQtzEwd388d/fbl3F
- qp8+fB6JiTU/6vLoLr7kr9jF0cNxdcS1HlXlhnhlBi4QzVJj5knjfuA71ww38WMBez1y
- gScD3KOF5nYjxShPcc2Iz0Ks9tk0C9IYWeHAV+HvA/0rOSc23KxXf1aW7EVWOwNb0u6k
- 2x5249dzGDblUXvYZ0HlGxP/19HkOu+d/A1Z5DEqjHhzuiIUuYqS60aSSOeQN+X6t0E+
- +OIkY/QKBZWWJvwp5xb/mD+7EmI64+kcluShoUoyySWapg99N4G+ts+khHBs0vo30qpO
- WZIA==
+ :cc; bh=ufVGuRHtc9qSfijtSYcwxtjkn1tNmta7UNs291MJX9I=;
+ b=vuwDR2ghEM9kpA8lnqpBkDGdfQNTHTpRlitLYRgTWrNcidrY9JR2HdlcC1bZe68Djj
+ +eF4YafMopnTuWDoGCrApK6Y0QxuF7bBAKkhkCwa2Dac3xLBSRw4xFmzIGwK02Cysxv8
+ 35IBXMKB6+ciH5UdE2dgoQFwmBSKQS8nL64mr52xET0VKeolHvMC95fImxs9cm4UJ1eX
+ i24YahL4MAtTKgBsjI54s1yLKxPTG9ukaY8+/rXlChh9rcChZbAUJcMwMqKSLeLDPOTo
+ VGrnXbBPvoBrMCI7DF/ZkTIcyoVHy18Zr4YFi2Hs+iWiQOBB7YfzfFBGBnMgFdLQrFRj
+ R1hA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=vdl2Wd4U2fHV220DhPmep+FSjEiZ6fJj/Exj4oKt8tI=;
- b=cjAaI5Frqal2w2fVI2/WbJB4jU/k33cms1oDU+VtJttnbC/QNt15b1+aYPvSrXyyxC
- P+12mPtX5qtAOaceKOtZcd6gmldMAA5B0PHohkFqMuAEIA/p8OUuX6FTO00NA+iHgrzB
- qu3UqN9ObMcKtlq7cPoVlZ9uOypUVQ1sxnAT/NABJdpMyAoXD9gEqBMfMECf9sIZ7JDe
- SK4IWV7mcevQf5omi7+TUzvgTrkmHeByBHVuAnyL4x9czXN8ucq35u8NkF0hArFeqZiE
- HohmcOJSs4ePDtRCV/e+yYrBimfmuMA31Jcvko5HjRNK1iUX4an3oWXopA7f/vaeY5KT
- a9Ng==
-X-Gm-Message-State: AOAM530hR5NM7DhC+QgKYqkOLjtNKC0/NgZlQl1PpZrZ6eAq3KBUC0Rr
- MMyQKHpF0iGVNmLEJI/1Hihbo7D+RvohrFt4HbE=
-X-Google-Smtp-Source: ABdhPJxMlf7Qfcjb2iwv1UBtuTIPJtFIOUvJsWLXav+uwYiUpLHjFDodEF1934BrjnAXqQe2EzImXSNIc9WY0Lc5Qpk=
-X-Received: by 2002:a1f:6049:: with SMTP id u70mr2902059vkb.7.1593189542669;
- Fri, 26 Jun 2020 09:39:02 -0700 (PDT)
+ bh=ufVGuRHtc9qSfijtSYcwxtjkn1tNmta7UNs291MJX9I=;
+ b=r715/3p1fU3o24ldOWy5ntsCsayWk5k5sWn3zXWvUfwzmuCzOiHHbc6T/bqyQAnrrH
+ kK9bxmBH9nJ9K7ljR/wsvOuXX9tf9Rp0K/cHGKh0bpfXc+I/Z2H9ZHCn7dSjEim7PL6c
+ ubmK3kOBkb6Osjb+H1YNGsWpHJOj6UOc7hV/8ACO98Ul1Pa3xAbM/X0kvsAGX1tFxMpY
+ 1eki/NIOGphP5Idb35xWgjr8s0URO9eM4WLZJ5qheLNAtznnJ1lAVNQSzC8vECzPLIJn
+ 3+iPAYhQmM+7f7Y+rXe8YlwzSWuHjanTMPRGdGUFPz73Z/K+yDoNawkhLfcm11CkdhKO
+ MTAA==
+X-Gm-Message-State: AOAM530MRb++Swftl9HJFozUjB25Gk3f+nO1kdOP5q1prkG2spxq0Mzv
+ ksT+Yu9Kvh/+Kmego7WeTWYtA/Mx+9RExilhSQYoMg==
+X-Google-Smtp-Source: ABdhPJz4Bce5OJErE5h1a4H1XguRxfGfOA6ni+z0G6ze2wj5xb5s6cLqW3vKmjwhBx65bgYIPmDfAHs5OpFKrcsP2Sc=
+X-Received: by 2002:ac5:cdf5:: with SMTP id v21mr2962948vkn.1.1593193996319;
+ Fri, 26 Jun 2020 10:53:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAN-A3_uAoXfcs4zvHt1PSvVN2fB78a7u=nXgiE7FB2S8tWeMVQ@mail.gmail.com>
- <CAN6+Rz=X+bMsvMuYUiJHc6yE8d-HURJFq-bmCPGnf2wKtZHgOg@mail.gmail.com>
-In-Reply-To: <CAN6+Rz=X+bMsvMuYUiJHc6yE8d-HURJFq-bmCPGnf2wKtZHgOg@mail.gmail.com>
-Date: Fri, 26 Jun 2020 18:37:46 +0200
-Message-ID: <CAN-A3_tHx4Tsv4U6j7QKTNFTX6cPdDPakvFwhM53sXsbRikWrg@mail.gmail.com>
-To: cherif chibane <cherif.chibane@gmail.com>
-Cc: discuss-gnuradio@gnu.org, 
- "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] NEED HELP: RFNoC OOT tutorial
+References: <CAMuWo5trjDhxSOc0sKbw9-SshYmTKHv2UWM+aPa1v7t+a04Lyw@mail.gmail.com>
+ <5EF5536B.5060500@gmail.com>
+ <CAMuWo5sGe1Ce8MEeK1T9s2kKgY+h8eY-S205nM89LTnqLWHFtA@mail.gmail.com>
+ <5EF588CD.70001@gmail.com>
+In-Reply-To: <5EF588CD.70001@gmail.com>
+Date: Fri, 26 Jun 2020 13:53:05 -0400
+Message-ID: <CAMuWo5suz2RF20UYxmmRsp=xq7KHE0wu3377-R6UNc1t+JUQ7Q@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] B210 Loopback Exponential Decay in Burst Messaging
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,9 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mohamed Yaaseen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mohamed Yaaseen <mdyaaseen1995@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2812841681762754585=="
+From: Daniel Tajik via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Daniel Tajik <tajikd@mcmaster.ca>
+Content-Type: multipart/mixed; boundary="===============3807518235981559744=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,167 +78,149 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2812841681762754585==
-Content-Type: multipart/alternative; boundary="000000000000c02eb705a8ff5831"
+--===============3807518235981559744==
+Content-Type: multipart/alternative; boundary="00000000000035a4b605a9006268"
 
---000000000000c02eb705a8ff5831
+--00000000000035a4b605a9006268
 Content-Type: text/plain; charset="UTF-8"
 
-Hello Cherif,
-      I followed the same tutorial, it is the same as in AN here:
-https://kb.ettus.com/Getting_Started_with_RFNoC_Development
-But, uhd 4.0 mentioned in there is the pybombs recipes, I am not sure which
-source used to built these recipes, but I guess it should be uhd
-rfnoc-devel branch
-The UHD-3.15 branch of uhd repository is the current stable version and
-master branch corresponds to UHD-4.0.0.
+I was able to clean up my signals by downconverting on the Rx side with a
+frequency offset, then using one of GNURadio's xlating filters to shift it
+back to the 0 frequency and filter out all irrelevant responses.
 
+It's a little bit confusing that the B210 doesn't seem to have any
+indicator that the DC offset is enabled. Indeed I spent several hours
+adjusting the FE corrections block on GNURadio where it says I can
+enable/disable those options.
 
-Regards,
-Mohamed Yaaseen
+Thanks for your help!
 
+Dan
 
-On Fri, 26 Jun 2020 at 17:51, cherif chibane <cherif.chibane@gmail.com>
+On Fri, Jun 26, 2020 at 1:34 AM Marcus D. Leech <patchvonbraun@gmail.com>
 wrote:
 
-> Hi Moahmmed,
+> On 06/25/2020 11:14 PM, Daniel Tajik wrote:
+> > Hey Marcus!
+> >
+> > Yep, my configuration has the recommended 30 dB attenuation. I haven't
+> > maxed out either gain stages to avoid risking anything, mostly sit
+> > around 50 dB on both Rx and Tx side, as its recommended to also use at
+> > least half the gain available to achieve a suitable noise figure.
+> >
+> > No frequency hopping here, just ran a couple tests to see if different
+> > carrier frequencies would improve the behaviour, which it did not. I
+> > primarily run the test at 435 MHz, and the overall bandwidth I'm
+> > looking at is 25 KHz. My GFSK modulation is squeezed in between that
+> > at the 6.25 KHz deviation. As for half/full duplex, the test I am
+> > running is a single channel loopback test on a B210, so the transmit
+> > and receive port are both running at the same time (i.e. Full duplex).
+> >
+> > Still not sure what the problem is in my implementation. I assume its
+> > something internal? LO leakage or some sort of cross-coupling
+> > somewhere? I've read that operating Rx and Tx at nearby frequencies
+> > can lead to interference issues but I'm not sure if this exponential
+> > decay in a burst transmission is how it manifests itself in my
+> > implementation. Any other tests I can try to explore the cause of this?
+> >
+> > Thanks!
+> >
+> I would try using offset tuning on the RX side.  The B2xx series doesn't
+> actually have a way of disablng DC offset removal as far as I know--it's
+>    always on.
 >
-> I am in the process going that RFOC tutorial in:
 >
-> https://www.youtube.com/watch?v=j-EfyPVpaJ8
->
-> He seems to be using UHD 4.0.0 and yet  he uses XML for binding the RFNoC
-> module he created. Am I missing something?
->
-> Thanks,
-> Cherif
->
->
->
-> On Fri, Jun 26, 2020 at 11:14 AM Mohamed Yaaseen via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hello Guys,
->>
->>     I am following the rfnoc getting started tutorial, to develop a gain
->> block. I am using the following branches of UHD, gr-ettus, gnuradio.
->> UHD - 3.15 LTS
->> gr-ettus - maint-3.8
->> gnuradio - maint-3.8
->> All installed in a custom prefix without using pybombs:
->> ~/workspace/installs/stable
->>
->> I have created the gain oot module using rfnocmodtool with all the
->> testbench and also have created the FPGA image. Now to create a gnuradio
->> grc bindings, the tutorial uses the xml file.
->> Since I am using gnuradio 3.8, it requires a yaml file. But even though I
->> am using gr-ettus maint-3.8 branch it's rfnocmodtools is not updated to
->> have yaml files. So, I am  stuck with xml.
->> Yea, I can just convert xml to yaml file manually, But, I find many extra
->> parameter with the xml file
->> and I am also not sure  how  I should change the CMakeLists.txt so that
->> the yaml files get installed correctly, while installing the OOT module.
->> I need some help on how I can create a yaml file for rfnoc oot in a
->> proper way ?
->>
->> My second question is: Currently, I can see that in the master branch of
->> UHD, the entire RFNoC work flow is  changing. I couldn't find
->> uhd_image_builder.py and gr-ettus is going to be removed etc.
->> I will  be working with RFNoC for the next couple of months, so I would
->> like to know If I should be moving to UHD 4.0.0 before I begin developing
->> my actual rfnoc application. And if so, is there any guide or how-to page
->> for RFNoC getting started UHD - 4.0.0 ? The current AN seems pretty
->> outdated even for UHD-3.15-LTS version
->>
->> Looking forward to your suggestions, tips and answers ..!!
->>
->> Thanks, stay safe and healthy !!
->>
->> Regards,
->> Mohamed Yaaseen
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
 >
 
---000000000000c02eb705a8ff5831
+-- 
+Daniel Tajik
+
+PhD Student, EMVi Research Laboratory
+Department Electrical and Computer Engineering
+McMaster University
+1280 Main Street West, ITB-A201
+Hamilton, ON, Canada L8S 4K1
+tajikd@mcmaster.ca
+
+--00000000000035a4b605a9006268
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello Cherif,</div><div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 I followed the same tutorial, it is the same as in AN here: <a href=3D"=
-https://kb.ettus.com/Getting_Started_with_RFNoC_Development">https://kb.ett=
-us.com/Getting_Started_with_RFNoC_Development</a></div><div>But, uhd 4.0 me=
-ntioned in there is the pybombs recipes, I am not sure which source used to=
- built these recipes, but I guess it should be uhd rfnoc-devel branch <br><=
-/div><div>The UHD-3.15 branch of uhd repository is the current stable versi=
-on and master branch corresponds to UHD-4.0.0.<br></div><div><br></div><div=
-><br></div><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
-=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=
-=3D"ltr"><div><div dir=3D"ltr">Regards,<div>Mohamed Yaaseen</div></div></di=
-v></div></div></div></div></div></div></div><br></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 26 Jun 2020 at 17:5=
-1, cherif chibane &lt;<a href=3D"mailto:cherif.chibane@gmail.com">cherif.ch=
-ibane@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex"><div dir=3D"ltr"><div>Hi Moahmmed,</div><div><br></div><div>=
-I am in the process going that RFOC tutorial in:</div><div><br></div><div><=
-a href=3D"https://www.youtube.com/watch?v=3Dj-EfyPVpaJ8" target=3D"_blank">=
-https://www.youtube.com/watch?v=3Dj-EfyPVpaJ8</a></div><div><br></div><div>=
-He seems to be using UHD 4.0.0 and yet=C2=A0 he uses XML for binding the RF=
-NoC module he created. Am I missing something?</div><div><br></div><div>Tha=
-nks,</div><div>Cherif<br></div><div><div><div dir=3D"ltr"><div dir=3D"ltr">=
-<br></div></div></div><br></div></div><br><div class=3D"gmail_quote"><div d=
-ir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 26, 2020 at 11:14 AM Mohamed Ya=
-aseen via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" targ=
-et=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello Guys,</=
-div><div>=C2=A0=C2=A0</div><div>=C2=A0=C2=A0=C2=A0 I am following the rfnoc=
- getting started tutorial, to develop a gain block. I am using the followin=
-g branches of UHD, gr-ettus, gnuradio.</div><div><div>UHD - 3.15 LTS</div><=
-div>gr-ettus - maint-3.8</div><div>gnuradio - maint-3.8</div><div>All insta=
-lled in a custom prefix without using pybombs: ~/workspace/installs/stable<=
-br></div></div><div><br></div><div>I have created the gain oot module using=
- rfnocmodtool with all the testbench and also have created the FPGA image. =
-Now to create a gnuradio grc bindings, the tutorial uses the xml file.</div=
-><div>Since I am using gnuradio 3.8, it requires a yaml file. But even thou=
-gh I am using gr-ettus maint-3.8 branch it&#39;s rfnocmodtools is not updat=
-ed to have yaml files. So, I am=C2=A0 stuck with xml.</div><div>Yea, I can =
-just convert xml to yaml file manually, But, I find many extra parameter wi=
-th the xml file</div><div>and I am also not sure=C2=A0 how=C2=A0 I should c=
-hange the CMakeLists.txt so that the yaml files get installed correctly, wh=
-ile installing the OOT module.</div><div>I need some help on how I can crea=
-te a yaml file for rfnoc oot in a=C2=A0 proper way ?<br></div><div><br></di=
-v><div>My second question is: Currently, I can see that in the master branc=
-h of UHD, the entire RFNoC work flow is=C2=A0 changing. I couldn&#39;t find=
- uhd_image_builder.py and gr-ettus is going to be removed etc. <br></div><d=
-iv>I will=C2=A0 be working with RFNoC for the next couple of months, so I w=
-ould like to know If I should be moving to UHD 4.0.0 before I begin develop=
-ing=C2=A0 my actual rfnoc application. And if so, is there any guide or how=
--to page for RFNoC getting started UHD - 4.0.0 ? The current AN seems prett=
-y outdated even for UHD-3.15-LTS version</div><div><br></div><div>Looking f=
-orward to your suggestions, tips and answers ..!!<br></div><div><br></div><=
-div>Thanks, stay safe and healthy !!<br></div><div> <br></div><div><div><di=
-v dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">=
-<div><div dir=3D"ltr">Regards,<div>Mohamed Yaaseen</div></div></div></div><=
-/div></div></div></div></div></div></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
+<div dir=3D"ltr"><div>I was able to clean up my signals by downconverting o=
+n the Rx side with a frequency offset, then using one of GNURadio&#39;s xla=
+ting filters to shift it back to the 0 frequency and filter out all irrelev=
+ant responses.=C2=A0<br><br></div><div>It&#39;s a little bit confusing that=
+ the B210 doesn&#39;t=C2=A0seem to have any indicator that the DC offset is=
+ enabled. Indeed I spent several hours adjusting the FE corrections block=
+=C2=A0on GNURadio where it says I can enable/disable those options.</div><d=
+iv><br></div><div></div><div>Thanks for your help!</div><div><br>Dan</div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri,=
+ Jun 26, 2020 at 1:34 AM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbrau=
+n@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex">On 06/25/2020 11:14 P=
+M, Daniel Tajik wrote:<br>
+&gt; Hey Marcus!<br>
+&gt;<br>
+&gt; Yep, my configuration has the recommended 30 dB attenuation. I haven&#=
+39;t <br>
+&gt; maxed out either gain stages to avoid risking anything, mostly sit <br=
+>
+&gt; around 50 dB on both Rx and Tx side, as its recommended to also use at=
+ <br>
+&gt; least half the gain available to achieve a suitable noise figure.<br>
+&gt;<br>
+&gt; No frequency hopping here, just ran a couple tests to see if different=
+ <br>
+&gt; carrier frequencies would improve the behaviour, which it did not. I <=
+br>
+&gt; primarily run the test at 435 MHz, and the overall bandwidth I&#39;m <=
+br>
+&gt; looking at is 25 KHz. My GFSK modulation is squeezed in between that <=
+br>
+&gt; at the 6.25 KHz deviation. As for half/full duplex, the test I am <br>
+&gt; running is a single channel loopback test on a B210, so the transmit <=
+br>
+&gt; and receive port are both running at the same time (i.e. Full duplex).=
+<br>
+&gt;<br>
+&gt; Still not sure what the problem is in my implementation. I assume its =
+<br>
+&gt; something internal? LO leakage or some sort of cross-coupling <br>
+&gt; somewhere? I&#39;ve read that operating Rx and Tx at nearby frequencie=
+s <br>
+&gt; can lead to interference issues but I&#39;m not sure if this exponenti=
+al <br>
+&gt; decay in a burst transmission is how it manifests itself in my <br>
+&gt; implementation. Any other tests I can try to explore the cause of this=
+?<br>
+&gt;<br>
+&gt; Thanks!<br>
+&gt;<br>
+I would try using offset tuning on the RX side.=C2=A0 The B2xx series doesn=
+&#39;t <br>
+actually have a way of disablng DC offset removal as far as I know--it&#39;=
+s<br>
+=C2=A0 =C2=A0always on.<br>
+<br>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr">Daniel Tajik</div><div dir=3D"ltr"><font s=
+ize=3D"2"><br></font><div><div style=3D"font-size:small">PhD Student, EMVi =
+Research Laboratory</div><div style=3D"font-size:small">Department Electric=
+al and Computer Engineering</div><div style=3D"font-size:small">McMaster Un=
+iversity</div><div style=3D"font-size:small"><span style=3D"font-size:12.8p=
+x">1280 Main Street West, ITB-A201</span><br style=3D"font-size:12.8px"><sp=
+an style=3D"font-size:12.8px">Hamilton, ON, Canada L8S 4K1</span><br></div>=
+<div style=3D"font-size:small"><a href=3D"mailto:tajikd@mcmaster.ca" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank">tajikd@mcmaster.ca<br></a></div=
+></div></div></div></div></div></div></div></div></div></div>
 
---000000000000c02eb705a8ff5831--
+--00000000000035a4b605a9006268--
 
 
---===============2812841681762754585==
+--===============3807518235981559744==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -248,5 +231,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2812841681762754585==--
+--===============3807518235981559744==--
 
