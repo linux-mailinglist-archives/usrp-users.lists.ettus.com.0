@@ -2,53 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5AA220AA9F
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Jun 2020 05:15:28 +0200 (CEST)
-Received: from [::1] (port=57240 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EE7A20AB63
+	for <lists+usrp-users@lfdr.de>; Fri, 26 Jun 2020 06:38:15 +0200 (CEST)
+Received: from [::1] (port=57916 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1joepp-00023X-NT; Thu, 25 Jun 2020 23:15:25 -0400
-Received: from mail-ua1-f49.google.com ([209.85.222.49]:34103)
+	id 1jog7w-0000u8-E8; Fri, 26 Jun 2020 00:38:12 -0400
+Received: from mail-qt1-f174.google.com ([209.85.160.174]:42506)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <tajikd@mcmaster.ca>) id 1joepl-0001tR-7v
- for usrp-users@lists.ettus.com; Thu, 25 Jun 2020 23:15:21 -0400
-Received: by mail-ua1-f49.google.com with SMTP id r9so2585793ual.1
- for <usrp-users@lists.ettus.com>; Thu, 25 Jun 2020 20:15:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mcmaster-ca.20150623.gappssmtp.com; s=20150623;
+ (Exim 4.93) (envelope-from <carsenat@gmail.com>) id 1jog7s-0000ov-0G
+ for usrp-users@lists.ettus.com; Fri, 26 Jun 2020 00:38:08 -0400
+Received: by mail-qt1-f174.google.com with SMTP id e12so6569688qtr.9
+ for <usrp-users@lists.ettus.com>; Thu, 25 Jun 2020 21:37:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=VAyyS0ABMLKG24WwARAulI0vViZ5eu9WgMJbCMJ+lHM=;
- b=SMfzrby0x/1UZZZjuDperiiC250Nw/rjFlfbG34bysQbg8/LGmvbkGSJbhIs6OXh0q
- Lb/szmJep0DyCR5pDytHTVAWQo8upCCLZwc8CYN8aYThGGB4XUAVeD81JZe8xs4lflCQ
- kNZnWTPHezYTxBH1RpNszuLLsNuhGJPyL6ag3Fp848mYjqchpFbTRDnKRHsdD5e4WoCo
- ZkZFMf6AA7B23aSW+dOXP9jBtDg1oTYjTsm7ZjHhL7C7MIqusoZQcdvnGorLvPoDs2s+
- F2aQJDRJLRHeeVD/8GhVEw28gNhh2zgif3t5S7yy8mFplYUF4jPHHlNRgt75gkfTjofo
- tQYA==
+ :cc; bh=/h1qAA1wevb1w9qJF6ldbj/LJ/3mFqmUq3v+zhGH2ZA=;
+ b=JmRuXRhNFo0mDSE0ZJyjIswC+EQMoRvFIXUr8Fv5Us+mweXYVRieraPlD+TuhuI7nl
+ /IKHiUr8KqHuF7OY2Q4T7pO9jIwPkHkSo/AhJXGV1WpGPiNgZ51qjXIkjBhhSiSVri4u
+ FNJs0DQGmRRQkSpf+PTIKzXRAdliUAzUbr7MTPPJ9Ieu9j9AQwY7Qn3I4HhsAWYTs/jm
+ kwck+8hIbdh30Kk6gLXIt421sX14+0i7yEZTTGJ+N0ob8VdYgZOljTfRkkx+SRosDF7A
+ 3PYWSXOUKnDFdEvrveLgymbOuaKKayy6yhazjAIGFnEX49xud2qkyDzXMsKzeA32hsB/
+ ZMHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=VAyyS0ABMLKG24WwARAulI0vViZ5eu9WgMJbCMJ+lHM=;
- b=tpv1/jUbgk6FtgstewbM6svqIrrAtq/v3MzHtuETtYvD+dc3NxSkqc6YpnIymu1wwX
- 1U9HwLIEIGEeBfknnszdpSC3Ue/HElaCIelaWPNH+Fug+w7dGNFZCV1mia3O1NeOrTcw
- p8PHe3vV3xhLX2TNKCkuU+gYPwerjNDUAxogGiz5BKkBUM9ghbqyu/WaG+3U42F9wu5O
- U29guCYrgvU/NLUdU3j6UtOnDj9KwzOjN+py4FqZTguMFvLSMSdwbSLcVWO/hy3WrIXl
- R7701YrHFN/HWghDG79RFrma3j/XR67O3ZW7EMKG0dl+5ughmKnHMCRex/KIFCRMIhGh
- 8/eA==
-X-Gm-Message-State: AOAM530onp7e3RAH7x899DwaT13Npjm/xdWUZu39go6fmuEZCFGNzOhC
- MtzzcHrIyribRvw/i/QgviQksTj3nALPardD0KAvFQ==
-X-Google-Smtp-Source: ABdhPJwf2QZbF+i/0lmUBTgo+BKMcaFSplVH8NFOV1pX6XCmkDNYvzjARLCZbvlFA/ucW451aNj0Il7ejEZp8HjXmvc=
-X-Received: by 2002:ab0:6f08:: with SMTP id r8mr792460uah.111.1593141280529;
- Thu, 25 Jun 2020 20:14:40 -0700 (PDT)
+ bh=/h1qAA1wevb1w9qJF6ldbj/LJ/3mFqmUq3v+zhGH2ZA=;
+ b=TmH8VRmirGeNLGBgXj+szOG8JKxdMsD2I98+jkC22ksNglo6xHqgUDUU4yDXhui2hB
+ zQZHnjhNh422utDpcmJcU2RZj1jPH26yZJp9OsnqzRQSkqBLbH4/GOLJWP1cTM1WLNvU
+ Etz6VU1Ol58BcmGWkUgB4Sxc3URpWOVIbX8gWVuYra7EYLbGzvayZdEGaFgyF6gtuT+q
+ lNNdBGqxfDY93mbP3BKJrMfTSzoQ9tE6pLvaaXv3tZMGnYpUmeTaPkUkH0PWiEmbdx23
+ lgVIubAvklqQ3D2fK1q9Eg3BqrqponKnYknkffmVy0yhh0bICz52qWMKwoEg8UIlpaVN
+ dsww==
+X-Gm-Message-State: AOAM531mNIlH2Ti0cOHvzucjy2XA2+hN21hgEis25NViLvIuotIxpP35
+ UDiYZJHcI8mQITG2vbX5jiBQHDaXBPRHFm5+ME4=
+X-Google-Smtp-Source: ABdhPJzb3VQF6QQNy0rtwK2kzJsYf7VyNrhnDc9+sEAjs45hwrJDTk93ycOFqPfUYm+ngdoTbYrWy1Jl7hHTcbTnZO4=
+X-Received: by 2002:ac8:6602:: with SMTP id c2mr917321qtp.243.1593146247371;
+ Thu, 25 Jun 2020 21:37:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAMuWo5trjDhxSOc0sKbw9-SshYmTKHv2UWM+aPa1v7t+a04Lyw@mail.gmail.com>
- <5EF5536B.5060500@gmail.com>
-In-Reply-To: <5EF5536B.5060500@gmail.com>
-Date: Thu, 25 Jun 2020 23:14:29 -0400
-Message-ID: <CAMuWo5sGe1Ce8MEeK1T9s2kKgY+h8eY-S205nM89LTnqLWHFtA@mail.gmail.com>
+References: <CA+w2Zyujk0sToEj0rSYqqL0tS7PJmTKXOZSmPS-jz5Njkk3n_w@mail.gmail.com>
+ <5EF523C7.9040800@gmail.com>
+In-Reply-To: <5EF523C7.9040800@gmail.com>
+Date: Fri, 26 Jun 2020 06:37:16 +0200
+Message-ID: <CA+w2Zys99gQ5sY9qOtQX-xXi5sYrk9rhEAn=AQ9SSXsm+K=O4Q@mail.gmail.com>
 To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Cc: usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] B210 Loopback Exponential Decay in Burst Messaging
+Subject: Re: [USRP-users] b205 RX -> TX loopback
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -60,9 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Daniel Tajik via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Daniel Tajik <tajikd@mcmaster.ca>
-Content-Type: multipart/mixed; boundary="===============0225855617707890796=="
+From: David Carsenat via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: David Carsenat <carsenat@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6041379569689875985=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,98 +75,46 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0225855617707890796==
-Content-Type: multipart/alternative; boundary="0000000000001a915705a8f41c41"
+--===============6041379569689875985==
+Content-Type: multipart/alternative; boundary="000000000000265efa05a8f544ac"
 
---0000000000001a915705a8f41c41
+--000000000000265efa05a8f544ac
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hey Marcus!
+OK thanks. So you confirm the link between UHD sample rate and AD93xx
+sample rate ?
 
-Yep, my configuration has the recommended 30 dB attenuation. I haven't
-maxed out either gain stages to avoid risking anything, mostly sit around
-50 dB on both Rx and Tx side, as its recommended to also use at least half
-the gain available to achieve a suitable noise figure.
+David
 
-No frequency hopping here, just ran a couple tests to see if different
-carrier frequencies would improve the behaviour, which it did not. I
-primarily run the test at 435 MHz, and the overall bandwidth I'm looking at
-is 25 KHz. My GFSK modulation is squeezed in between that at the 6.25 KHz
-deviation. As for half/full duplex, the test I am running is a single
-channel loopback test on a B210, so the transmit and receive port are both
-running at the same time (i.e. Full duplex).
+Le ven. 26 juin 2020 =C3=A0 00:23, Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> a =C3=A9crit :
 
-Still not sure what the problem is in my implementation. I assume its
-something internal? LO leakage or some sort of cross-coupling somewhere?
-I've read that operating Rx and Tx at nearby frequencies can lead to
-interference issues but I'm not sure if this exponential decay in a burst
-transmission is how it manifests itself in my implementation. Any other
-tests I can try to explore the cause of this?
-
-Thanks!
-
-On Thu, Jun 25, 2020 at 9:47 PM Marcus D. Leech via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> On 06/24/2020 02:24 PM, Daniel Tajik via USRP-users wrote:
-> > Hey everyone!
+> On 06/25/2020 03:04 PM, David Carsenat via USRP-users wrote:
+> > Hello.
+> > We are trying to make a simple RX on TX loopback by changing the FPGA
+> > image.
+> > We get it by adding a wire between the DDC output and DUC input, but
+> > we are still limited by the sample rate we specify via UHD.
+> >  We have specified the analog bandwidth at 56 MHz, and the master
+> > clock rate at 60 MHz, but no change.
+> > Same behaviour if we add a wire before the DDC and DUC. We suspect
+> > a link between UHD sample rate and AD9364 sample rate.
+> > Is there a way to have the full rate(56 MHz) available on the loopback
+> > despite, for example, 1MHz sample rate specified via UHD ?
 > >
-> > I have a question in regards to a loopback test I am running on a
-> > single USRP B210.
-> > I set up a simple GFSK modulator/demodulator and am trying to send a
-> > small packet (Ax.25 packet carrying message "AAAAAAAAAAAA") every
-> > 2000ms. I have the RF A channel hooked up, with the Tx/Rx transmitting
-> > and the RX2 receiving. Just before the Tx sink the IQ looks as I
-> > expect, but just after Rx source I see an apparent exponential decay
-> > in the signal aligned with frequency changes, see the attached image
-> > "IQDecay_top_AfterSource_bot_BeforeSink.png". I have pointed out
-> > aligned portions of the packet on both the Tx and Rx sides, you can
-> > see that capacitive decay that seems to appear.
+> > We could also put the sample rate of 56 MHz but the underflow and
+> > overflow cut the RF signal, perhaps there is a way to avoid this
+> > phenomenon also.
 > >
-> > Some relevant parameters:
-> > Sample Rate = 960k
-> > Samps Per Symbol = 100
-> > Carrier F = 435 MHz
-> > FSK Freq Deviation = 6.25 KHz
-> > Master Clock (set by board) = 61.44 MHz
-> > UHD version 3.14.0
-> > GNURadio 3.8.1.0
+> > Thanks a lot.
 > >
-> > I have tried enabled/disabled the DC Offset and IQ correction options,
-> > swung around to different carrier frequencies, played around with the
-> > gain stages of both Rx and Tx sides, changed the master clock
-> > frequency, FSK freq deviation changes, different filters, different
-> > Rx/Tx and Rx combinations, nothing seems to removes this effect. I
-> > first discovered this when I started looking into why my deframer
-> > was spitting out a correct packet only once every 50ish packets. If I
-> > exclude the USRP blocks, all packets are deframed so I don't suspect
-> > anything outside of the USRP blocks.
+> > David
 > >
-> > I guess my question is what exactly is causing this error, and how do
-> > I go about resolving it? Am I making a mistake somewhere in my setup?
-> > Or is this loopback configuration not a great way to test my system?
-> >
-> > Thanks, and apologies for my naivety. Let me know if you need any more
-> > information.
-> >
-> > Dan
-> >
-> Are you using attenuation between the RX and TX sides?  Generally if
-> you're doing a coax-cable loopback, you want to protect the receiver
->    by attenuating the TX considerably.
->
-> So, this a frequency-hopping system?  RF hardware takes a *finite time*
-> to reach steady-state after things like gain changes and frequency changes.
->    Is this a full-duplex system, or half-duplex.  If half-duplex, you
-> have to allow time for a state-change between TX and RX states in the
-> analog
->    hardware.  This does not happen instantaneously, although TX/RX
-> latency on these is fairly short (a few hundred microseconds at worst).
->
-> Back when I was doing packet radio in the mid 1980s, it was not unusual
-> for the clunky analog radios we were using to take 50-200 milliseconds
->    to change from TX to RX mode (or the other way around).  That basic
-> factor hasn't changed, only in timescale.
+> My suggestion would be to wade even deeper into the FPGA and have it not
+> send samples to the host or always only send them at 1Msps, or
+>    something.   But regardless, there's no "simple button I can push" to
+> make this happen.
 >
 >
 >
@@ -177,127 +124,49 @@ usrp-users@lists.ettus.com> wrote:
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
-
--- 
-Daniel Tajik
-
-PhD Student, EMVi Research Laboratory
-Department Electrical and Computer Engineering
-McMaster University
-1280 Main Street West, ITB-A201
-Hamilton, ON, Canada L8S 4K1
-tajikd@mcmaster.ca
-
---0000000000001a915705a8f41c41
+--000000000000265efa05a8f544ac
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hey Marcus!<br><br>Yep, my configuration has the recommend=
-ed 30 dB attenuation. I haven&#39;t maxed out either gain stages to avoid r=
-isking anything, mostly sit around 50 dB on both Rx and Tx side, as its rec=
-ommended to also use at least half the gain available to achieve a suitable=
- noise figure.<div><br></div><div>No frequency hopping here, just ran a cou=
-ple tests to see if different carrier frequencies would improve the behavio=
-ur, which it did not. I primarily run the test at 435 MHz, and the overall =
-bandwidth I&#39;m looking at is 25 KHz. My GFSK modulation is squeezed in b=
-etween that at the 6.25 KHz deviation. As for half/full duplex, the test I =
-am running is a single channel loopback test on a B210, so the transmit and=
- receive port are both running at the same time (i.e. Full duplex).<br><br>=
-Still not sure what the problem is in my implementation. I assume its somet=
-hing internal? LO leakage or some sort of cross-coupling somewhere? I&#39;v=
-e read that operating Rx and Tx at nearby frequencies can lead to interfere=
-nce issues but I&#39;m not sure if this exponential decay in a burst transm=
-ission is how it manifests itself in my implementation. Any other tests I c=
-an try to explore the cause of this?</div><div><br></div><div>Thanks!</div>=
-</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Thu, Jun 25, 2020 at 9:47 PM Marcus D. Leech via USRP-users &lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 06/24/2=
-020 02:24 PM, Daniel Tajik via USRP-users wrote:<br>
-&gt; Hey everyone!<br>
-&gt;<br>
-&gt; I have a question in regards to a loopback test I am running on a <br>
-&gt; single USRP B210.<br>
-&gt; I set up a simple GFSK modulator/demodulator and am trying to send a <=
+<div dir=3D"ltr">OK thanks. So you confirm the link between UHD sample rate=
+ and AD93xx sample rate ?<div><br></div><div>David</div></div><br><div clas=
+s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0ven. 26 jui=
+n 2020 =C3=A0=C2=A000:23, Marcus D. Leech via USRP-users &lt;<a href=3D"mai=
+lto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; a =C3=A9=
+crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 0=
+6/25/2020 03:04 PM, David Carsenat via USRP-users wrote:<br>
+&gt; Hello.<br>
+&gt; We are trying to make a simple RX on TX loopback by changing the FPGA =
+<br>
+&gt; image.<br>
+&gt; We get it by adding a wire between the DDC output and DUC input, but <=
 br>
-&gt; small packet (Ax.25 packet carrying message &quot;AAAAAAAAAAAA&quot;) =
-every <br>
-&gt; 2000ms. I have the RF A channel hooked up, with the Tx/Rx transmitting=
+&gt; we are still limited by the sample rate we specify via UHD.<br>
+&gt;=C2=A0 We have specified the analog bandwidth at 56 MHz, and the master=
  <br>
-&gt; and the RX2 receiving. Just before the Tx sink the IQ looks as I <br>
-&gt; expect, but just after Rx source I see an apparent exponential decay <=
-br>
-&gt; in the signal aligned with frequency changes, see the attached image <=
-br>
-&gt; &quot;IQDecay_top_AfterSource_bot_BeforeSink.png&quot;. I have pointed=
- out <br>
-&gt; aligned portions of the packet on both the Tx and Rx sides, you can <b=
-r>
-&gt; see that capacitive decay that seems to appear.<br>
-&gt;<br>
-&gt; Some relevant parameters:<br>
-&gt; Sample Rate =3D 960k<br>
-&gt; Samps Per Symbol =3D 100<br>
-&gt; Carrier F =3D 435 MHz<br>
-&gt; FSK Freq Deviation =3D 6.25 KHz<br>
-&gt; Master Clock (set by board) =3D 61.44 MHz<br>
-&gt; UHD version 3.14.0<br>
-&gt; GNURadio 3.8.1.0<br>
-&gt;<br>
-&gt; I have tried enabled/disabled the DC Offset and IQ correction options,=
+&gt; clock rate at 60 MHz, but no change.<br>
+&gt; Same behaviour if we add a wire before the DDC and DUC. We suspect <br=
+>
+&gt; a link between UHD sample rate and AD9364 sample rate.<br>
+&gt; Is there a way to have the full rate(56 MHz) available on the loopback=
  <br>
-&gt; swung around to different carrier frequencies, played around with the =
-<br>
-&gt; gain stages of both Rx and Tx sides, changed the master clock <br>
-&gt; frequency, FSK freq deviation changes, different filters, different <b=
+&gt; despite, for example, 1MHz sample rate specified via UHD ?<br>
+&gt;<br>
+&gt; We could also put the sample rate of 56 MHz but the underflow and <br>
+&gt; overflow cut the RF signal, perhaps there is a way to avoid this <br>
+&gt; phenomenon also.<br>
+&gt;<br>
+&gt; Thanks a lot.<br>
+&gt;<br>
+&gt; David<br>
+&gt;<br>
+My suggestion would be to wade even deeper into the FPGA and have it not <b=
 r>
-&gt; Rx/Tx and Rx combinations, nothing seems to removes this effect. I <br=
->
-&gt; first discovered this when I started looking into why my deframer <br>
-&gt; was spitting out a correct packet only once every 50ish packets. If I =
-<br>
-&gt; exclude the USRP blocks, all packets are deframed so I don&#39;t suspe=
-ct <br>
-&gt; anything outside of the USRP blocks.<br>
-&gt;<br>
-&gt; I guess my question is what exactly is causing this error, and how do =
-<br>
-&gt; I go about resolving it? Am I making a mistake somewhere in my setup? =
-<br>
-&gt; Or is this loopback configuration not a great way to test my system?<b=
-r>
-&gt;<br>
-&gt; Thanks, and apologies for my naivety. Let me know if you need any more=
- <br>
-&gt; information.<br>
-&gt;<br>
-&gt; Dan<br>
-&gt;<br>
-Are you using attenuation between the RX and TX sides?=C2=A0 Generally if <=
-br>
-you&#39;re doing a coax-cable loopback, you want to protect the receiver<br=
->
-=C2=A0 =C2=A0by attenuating the TX considerably.<br>
-<br>
-So, this a frequency-hopping system?=C2=A0 RF hardware takes a *finite time=
-* <br>
-to reach steady-state after things like gain changes and frequency changes.=
-<br>
-=C2=A0 =C2=A0Is this a full-duplex system, or half-duplex.=C2=A0 If half-du=
-plex, you <br>
-have to allow time for a state-change between TX and RX states in the analo=
-g<br>
-=C2=A0 =C2=A0hardware.=C2=A0 This does not happen instantaneously, although=
- TX/RX <br>
-latency on these is fairly short (a few hundred microseconds at worst).<br>
-<br>
-Back when I was doing packet radio in the mid 1980s, it was not unusual <br=
->
-for the clunky analog radios we were using to take 50-200 milliseconds<br>
-=C2=A0 =C2=A0to change from TX to RX mode (or the other way around).=C2=A0 =
-That basic <br>
-factor hasn&#39;t changed, only in timescale.<br>
+send samples to the host or always only send them at 1Msps, or<br>
+=C2=A0 =C2=A0something.=C2=A0 =C2=A0But regardless, there&#39;s no &quot;si=
+mple button I can push&quot; to <br>
+make this happen.<br>
 <br>
 <br>
 <br>
@@ -308,24 +177,12 @@ lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=
-=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Daniel Tajik</d=
-iv><div dir=3D"ltr"><font size=3D"2"><br></font><div><div style=3D"font-siz=
-e:small">PhD Student, EMVi Research Laboratory</div><div style=3D"font-size=
-:small">Department Electrical and Computer Engineering</div><div style=3D"f=
-ont-size:small">McMaster University</div><div style=3D"font-size:small"><sp=
-an style=3D"font-size:12.8px">1280 Main Street West, ITB-A201</span><br sty=
-le=3D"font-size:12.8px"><span style=3D"font-size:12.8px">Hamilton, ON, Cana=
-da L8S 4K1</span><br></div><div style=3D"font-size:small"><a href=3D"mailto=
-:tajikd@mcmaster.ca" style=3D"color:rgb(17,85,204)" target=3D"_blank">tajik=
-d@mcmaster.ca<br></a></div></div></div></div></div></div></div></div></div>=
-</div>
+</blockquote></div>
 
---0000000000001a915705a8f41c41--
+--000000000000265efa05a8f544ac--
 
 
---===============0225855617707890796==
+--===============6041379569689875985==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -336,5 +193,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0225855617707890796==--
+--===============6041379569689875985==--
 
