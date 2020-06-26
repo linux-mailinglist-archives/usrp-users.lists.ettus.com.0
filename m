@@ -2,59 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A84A20AB83
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Jun 2020 06:53:12 +0200 (CEST)
-Received: from [::1] (port=57994 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 880A220ABDC
+	for <lists+usrp-users@lfdr.de>; Fri, 26 Jun 2020 07:34:55 +0200 (CEST)
+Received: from [::1] (port=58262 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jogMO-0002Np-NC; Fri, 26 Jun 2020 00:53:08 -0400
-Received: from mail-qv1-f52.google.com ([209.85.219.52]:35403)
+	id 1joh0m-000604-0o; Fri, 26 Jun 2020 01:34:52 -0400
+Received: from mail-qv1-f47.google.com ([209.85.219.47]:32879)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jogMK-0002KL-P9
- for USRP-users@lists.ettus.com; Fri, 26 Jun 2020 00:53:04 -0400
-Received: by mail-qv1-f52.google.com with SMTP id g11so3970168qvs.2
- for <USRP-users@lists.ettus.com>; Thu, 25 Jun 2020 21:52:44 -0700 (PDT)
+ id 1joh0h-0005nP-PX
+ for usrp-users@lists.ettus.com; Fri, 26 Jun 2020 01:34:47 -0400
+Received: by mail-qv1-f47.google.com with SMTP id d12so4004759qvn.0
+ for <usrp-users@lists.ettus.com>; Thu, 25 Jun 2020 22:34:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=JbZC5ab086Gh89jARQFjrHUA6XewoBA8Rv7UP6swEbc=;
- b=hVh2X6fw1EiU7EIqyiZfyfqH+BQdJi4JJqS7b/OBkxsNoOmzzdWcKfmYMT2jbmxNvW
- 5CSaoAiaxdmoYSBsWjZioyJPZd7Dx4whKHdxWrq4JZbXASJx9P0NogmGgx0IbTywq4TX
- Oejr3esSoVDk3djohCDYRcZJ/fjKKt0stGzorRg/BsTBPn9hpoX5sHPPaI3RvCNbuNrG
- IOHUNAz+R8BkQvjYb6ZBiO3B0Ejs4ZQW3AHlrKVU4empqMMBQqpnqTAxWPtEqgWJZ4vW
- kFosLnYivH3xKM8uWflZxMHHX/4QAZPZM/WSY9KNC+D+xkULuphVtjoPYwgNaJ3Rnnt5
- b/MA==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to:content-transfer-encoding;
+ bh=MZjKNHjF4+eJ3pGFgYCBY3nw5JTZW2vJBfZt5Ch7xc0=;
+ b=B4Eij7RqaCGEHhNW9xEh6oRMBXu3TolNINqXdmHAQ8FEZAoTefyvqfNFPxBrNtzFAG
+ DJerF0+w+PlAVd1ukVc9ZhJ8dcs7NwG9V/15KM59SwZwHa0jkGkjJankaQnNb2B93LA5
+ 6TIH/yKwZ5JQcj7YhP0ty21q6N1w6VQGQYigHft56NXO6zEGWvCBMBJQPX7L3jOU5w5r
+ a5wdt2PagK8MFkBst4eOPcB8nAz9JDrOMaifFTJbhegOxZgGV93XjJlXst8g4Q+thAKc
+ ZKv6sNUKQ1OvoGpd34CVOAPBzQAVWIO+h+XKBdH/7nIRu/YSAhZMhdJBtTRfM1bSRgQj
+ sxtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=JbZC5ab086Gh89jARQFjrHUA6XewoBA8Rv7UP6swEbc=;
- b=gq4Yi5Xrwy5E//jIiZ4aLJ7tYG7qM0ANlLpmgdFQs8eub5ImwGzngc5QK+qmrt+O2W
- C1hpb8SemVFq7yUUAoReLQzLj95aSRdUW4Fa1nWxWBTfbDto6IFGkM+joVgWp20YkrEx
- /O1wksKTWHj43TYoDekbX+lXQPVzxO6VzCIeVuJWfiQVgRISN53t0FxyYWVQgBnf54Tc
- hNgWZBsJNr23DqOoeiPnmf7gGZHkzvMMLjGoxfLKpb0chBlc0a2+XMYWO4Wuyz0DU9p0
- XQLooFvAKck0qYTt4l59pCIGd8ML5ajIKQUybBaXAV4tgAaPnfPmP8X8r3iRnLHzntjB
- K58A==
-X-Gm-Message-State: AOAM531EZB+p5r4KkWsqVwfvDdum0T1RWc8NWkZSsxwqTZxNBgG3JaH5
- ZOej0JecJK1hGzGTdjycbiigyBZIxhg=
-X-Google-Smtp-Source: ABdhPJynHUeE6osIp/eLWuOyeSh7dD0TZ/HH8ctsuUmtfjImtRuptq36YKlNFUhK2DsL4s6smnZBcA==
-X-Received: by 2002:ad4:48cf:: with SMTP id v15mr1445356qvx.101.1593147144062; 
- Thu, 25 Jun 2020 21:52:24 -0700 (PDT)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to:content-transfer-encoding;
+ bh=MZjKNHjF4+eJ3pGFgYCBY3nw5JTZW2vJBfZt5Ch7xc0=;
+ b=AP3pggdi0/w7kP1rECAh0RwnjLNdwmFAisQf2d+7kdDKwQJ9ZqCrgSWpNht2bbMrQ5
+ o7yyVcnL7EVMMdqG2XdgTHEDYvmhMRZJHOlD3F4OksK1DiQnfmIFnxswpbP6Xy0iPo9u
+ WwkQPqh1EfPe4VdyL7uvzK9nC2/Lo7esz00ZIciGAEctXhDZDjLszynMt3w4tX1KIMu9
+ S9jdRIDs/EhAQS0XNRLaChiz/wmastwP4oAKjaEZF7anbEqtRR+tIPAkNeQExKgtUANb
+ Vzf4fnw0U7w9lA7mPerw9nIqUnp6/mm/GWF2qUxvr34X5xVUKDbDMxGWFwlEtfMBFCr/
+ WDQQ==
+X-Gm-Message-State: AOAM53205W/yxnGl3Tr0n2I2qJpOzewcAxYhv4X9puZAt3C1JDQx2Dhy
+ aZRgrzdx1erIMijxKterUFQaF9XQ62s=
+X-Google-Smtp-Source: ABdhPJy0XDZu8Cqnh0AtwbZaK6cXvyuRISYD7vXh/gMWb5euK48j3wfRdnQB/F792cXxsZxGr+TKhg==
+X-Received: by 2002:a0c:c607:: with SMTP id v7mr1418628qvi.84.1593149647075;
+ Thu, 25 Jun 2020 22:34:07 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-109.dsl.bell.ca.
  [174.95.14.109])
- by smtp.gmail.com with ESMTPSA id c80sm7342289qke.26.2020.06.25.21.52.23
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 25 Jun 2020 21:52:23 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Fri, 26 Jun 2020 00:52:22 -0400
-Message-Id: <AD5A4B8C-3C03-4048-8A30-EB4AFA2F98D0@gmail.com>
-References: <CA+w2Zys99gQ5sY9qOtQX-xXi5sYrk9rhEAn=AQ9SSXsm+K=O4Q@mail.gmail.com>
-Cc: USRP-users@lists.ettus.com
-In-Reply-To: <CA+w2Zys99gQ5sY9qOtQX-xXi5sYrk9rhEAn=AQ9SSXsm+K=O4Q@mail.gmail.com>
-To: David Carsenat <carsenat@gmail.com>
-X-Mailer: iPhone Mail (17F80)
-Subject: Re: [USRP-users] b205 RX -> TX loopback
+ by smtp.googlemail.com with ESMTPSA id a82sm7992845qkb.29.2020.06.25.22.34.06
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 25 Jun 2020 22:34:06 -0700 (PDT)
+Message-ID: <5EF588CD.70001@gmail.com>
+Date: Fri, 26 Jun 2020 01:34:05 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: Daniel Tajik <tajikd@mcmaster.ca>
+CC: usrp-users@lists.ettus.com
+References: <CAMuWo5trjDhxSOc0sKbw9-SshYmTKHv2UWM+aPa1v7t+a04Lyw@mail.gmail.com>
+ <5EF5536B.5060500@gmail.com>
+ <CAMuWo5sGe1Ce8MEeK1T9s2kKgY+h8eY-S205nM89LTnqLWHFtA@mail.gmail.com>
+In-Reply-To: <CAMuWo5sGe1Ce8MEeK1T9s2kKgY+h8eY-S205nM89LTnqLWHFtA@mail.gmail.com>
+Subject: Re: [USRP-users] B210 Loopback Exponential Decay in Burst Messaging
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +69,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4624542325655610458=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,146 +86,38 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-
---===============4624542325655610458==
-Content-Type: multipart/alternative; boundary=Apple-Mail-CB920713-7556-47E4-B3E5-A6635F2CA246
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-CB920713-7556-47E4-B3E5-A6635F2CA246
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-=46rom what I recall of the architecture that=E2=80=99s the case. The AD9361=
- has built in DSP functions.=20
-
-Sent from my iPhone
-
-> On Jun 26, 2020, at 12:37 AM, David Carsenat <carsenat@gmail.com> wrote:
->=20
-> =EF=BB=BF
-> OK thanks. So you confirm the link between UHD sample rate and AD93xx samp=
-le rate ?
->=20
-> David
->=20
->> Le ven. 26 juin 2020 =C3=A0 00:23, Marcus D. Leech via USRP-users <usrp-u=
-sers@lists.ettus.com> a =C3=A9crit :
->> On 06/25/2020 03:04 PM, David Carsenat via USRP-users wrote:
->> > Hello.
->> > We are trying to make a simple RX on TX loopback by changing the FPGA=20=
-
->> > image.
->> > We get it by adding a wire between the DDC output and DUC input, but=20=
-
->> > we are still limited by the sample rate we specify via UHD.
->> >  We have specified the analog bandwidth at 56 MHz, and the master=20
->> > clock rate at 60 MHz, but no change.
->> > Same behaviour if we add a wire before the DDC and DUC. We suspect=20
->> > a link between UHD sample rate and AD9364 sample rate.
->> > Is there a way to have the full rate(56 MHz) available on the loopback=20=
-
->> > despite, for example, 1MHz sample rate specified via UHD ?
->> >
->> > We could also put the sample rate of 56 MHz but the underflow and=20
->> > overflow cut the RF signal, perhaps there is a way to avoid this=20
->> > phenomenon also.
->> >
->> > Thanks a lot.
->> >
->> > David
->> >
->> My suggestion would be to wade even deeper into the FPGA and have it not=20=
-
->> send samples to the host or always only send them at 1Msps, or
->>    something.   But regardless, there's no "simple button I can push" to=20=
-
->> make this happen.
->>=20
->>=20
->>=20
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---Apple-Mail-CB920713-7556-47E4-B3E5-A6635F2CA246
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">=46rom what I recall of the architecture th=
-at=E2=80=99s the case. The AD9361 has built in DSP functions.&nbsp;<div><br>=
-<div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote t=
-ype=3D"cite">On Jun 26, 2020, at 12:37 AM, David Carsenat &lt;carsenat@gmail=
-.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=
-=3D"ltr">=EF=BB=BF<div dir=3D"ltr">OK thanks. So you confirm the link betwee=
-n UHD sample rate and AD93xx sample rate ?<div><br></div><div>David</div></d=
-iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le&n=
-bsp;ven. 26 juin 2020 =C3=A0&nbsp;00:23, Marcus D. Leech via USRP-users &lt;=
-<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
-&gt; a =C3=A9crit&nbsp;:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex">On 06/25/2020 03:04 PM, David Carsenat via USRP-users wrote:<br>
-&gt; Hello.<br>
-&gt; We are trying to make a simple RX on TX loopback by changing the FPGA <=
-br>
-&gt; image.<br>
-&gt; We get it by adding a wire between the DDC output and DUC input, but <b=
-r>
-&gt; we are still limited by the sample rate we specify via UHD.<br>
-&gt;&nbsp; We have specified the analog bandwidth at 56 MHz, and the master <=
-br>
-&gt; clock rate at 60 MHz, but no change.<br>
-&gt; Same behaviour if we add a wire before the DDC and DUC. We suspect <br>=
-
-&gt; a link between UHD sample rate and AD9364 sample rate.<br>
-&gt; Is there a way to have the full rate(56 MHz) available on the loopback <=
-br>
-&gt; despite, for example, 1MHz sample rate specified via UHD ?<br>
-&gt;<br>
-&gt; We could also put the sample rate of 56 MHz but the underflow and <br>
-&gt; overflow cut the RF signal, perhaps there is a way to avoid this <br>
-&gt; phenomenon also.<br>
-&gt;<br>
-&gt; Thanks a lot.<br>
-&gt;<br>
-&gt; David<br>
-&gt;<br>
-My suggestion would be to wade even deeper into the FPGA and have it not <br=
+On 06/25/2020 11:14 PM, Daniel Tajik wrote:
+> Hey Marcus!
 >
-send samples to the host or always only send them at 1Msps, or<br>
-&nbsp; &nbsp;something.&nbsp; &nbsp;But regardless, there's no "simple butto=
-n I can push" to <br>
-make this happen.<br>
-<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@l=
-ists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/listi=
-nfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</div></blockquote></div></body></html>=
+> Yep, my configuration has the recommended 30 dB attenuation. I haven't 
+> maxed out either gain stages to avoid risking anything, mostly sit 
+> around 50 dB on both Rx and Tx side, as its recommended to also use at 
+> least half the gain available to achieve a suitable noise figure.
+>
+> No frequency hopping here, just ran a couple tests to see if different 
+> carrier frequencies would improve the behaviour, which it did not. I 
+> primarily run the test at 435 MHz, and the overall bandwidth I'm 
+> looking at is 25 KHz. My GFSK modulation is squeezed in between that 
+> at the 6.25 KHz deviation. As for half/full duplex, the test I am 
+> running is a single channel loopback test on a B210, so the transmit 
+> and receive port are both running at the same time (i.e. Full duplex).
+>
+> Still not sure what the problem is in my implementation. I assume its 
+> something internal? LO leakage or some sort of cross-coupling 
+> somewhere? I've read that operating Rx and Tx at nearby frequencies 
+> can lead to interference issues but I'm not sure if this exponential 
+> decay in a burst transmission is how it manifests itself in my 
+> implementation. Any other tests I can try to explore the cause of this?
+>
+> Thanks!
+>
+I would try using offset tuning on the RX side.  The B2xx series doesn't 
+actually have a way of disablng DC offset removal as far as I know--it's
+   always on.
 
---Apple-Mail-CB920713-7556-47E4-B3E5-A6635F2CA246--
 
-
---===============4624542325655610458==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4624542325655610458==--
-
