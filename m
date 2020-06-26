@@ -2,51 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA79F20B0ED
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Jun 2020 13:52:16 +0200 (CEST)
-Received: from [::1] (port=60870 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15DF520B43D
+	for <lists+usrp-users@lfdr.de>; Fri, 26 Jun 2020 17:14:12 +0200 (CEST)
+Received: from [::1] (port=57722 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jomtx-0007Qv-Hw; Fri, 26 Jun 2020 07:52:13 -0400
-Received: from mail-qk1-f180.google.com ([209.85.222.180]:36590)
+	id 1joq3M-0004bg-Rf; Fri, 26 Jun 2020 11:14:08 -0400
+Received: from mail-vs1-f45.google.com ([209.85.217.45]:34542)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <qiu.guowang007@gmail.com>)
- id 1jomtt-0007M1-EF
- for usrp-users@lists.ettus.com; Fri, 26 Jun 2020 07:52:09 -0400
-Received: by mail-qk1-f180.google.com with SMTP id e11so8472925qkm.3
- for <usrp-users@lists.ettus.com>; Fri, 26 Jun 2020 04:51:49 -0700 (PDT)
+ (Exim 4.93) (envelope-from <mdyaaseen1995@gmail.com>)
+ id 1joq3J-0004Ui-KL
+ for usrp-users@lists.ettus.com; Fri, 26 Jun 2020 11:14:05 -0400
+Received: by mail-vs1-f45.google.com with SMTP id f24so5695391vsg.1
+ for <usrp-users@lists.ettus.com>; Fri, 26 Jun 2020 08:13:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=dOLb2xgH4O67TRFAxn8Mn7LiM0dvoOUnFEpphI5M8w8=;
- b=m4ivxrhBxfPRuNLU1de4nAWMrCFhYGpG2ONI/XZ3Av1VHbDJQXCgoVrT7AIzQejpF2
- Gm5ozAl7XBygZcD3P3d4eInxJhj6sfk+yK5H4vKONXFBxrT3S3vWEKguJSOly91LEL6r
- lmw/dCEv9ztjfRcwe+9FYZvkr6apjkDFlBXI2Wr5I8rmwfYAj70VWifFNSo8oXzXNTOC
- tDxEqlR+7q4RIi8J0JBdIYDJOvGGEMphI+ZXHxyWGQg4zXcS5QfIp9pacBapuoNyVjvZ
- 7T5XbrSTDADYuCqzlwipVwelVLlwJy32X1cMzU7pmUa5QyS22LecnwzjpFydpOC5QRHe
- L8Qw==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=rAtGB6cOdDnVDT8JutaGc9DnDtfD/k142oJ1pVqIOVk=;
+ b=LccfTC7iNy6kz3uZOqnZEjpGahCaZFnIuvI7mXj2zm+F2UclS4AT23rnDJ4lUo1Jde
+ q1TKXnD76PGhnSUJW19j8E+QhKTGfMoB9X1XM94php5CNoACWouWLyfMtq8Xd2CJam65
+ TOmxp18hZS9+aea4bOB2FbSSE+L76vTF7K7UCBEE57LrnwsROYzmCZRmlymHPLGlsRkh
+ kQyP3rcIpvpny/U56FfIxz5+wj0jnNNtwY0jWMC0xLQOe21bz0lNAQ1keTAXf6PpJBlP
+ Pq8424OLJcQTiirWZ3LL5rG1WXMP5Xb+qbDqlYJetuVMeCSOmPdwTJh33dt/lKpAKJRa
+ apnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=dOLb2xgH4O67TRFAxn8Mn7LiM0dvoOUnFEpphI5M8w8=;
- b=Akzi8PXa34xt34CF3SbzoccjpisxsurgnBOfBUWKzNXWdOnFGReBwUI80zR5V8BzeU
- V70378v1b2ftXQITh4G2s2Q/YoxTRvdS8CyNHkjbsey0fg1WlTJWtECjvNedSOCjZ87w
- YViKZ5mglrju1qnCGygt0m8XViNgLa3Yv4fDD6reiAcM8iPVKBEORs/EiXxMAgAib8rJ
- H0FclpcvjFRYckYg52yjv5Z7+mCuEFNYTuLuXMN4H+1/G8rKWYTtUSsHh/uuUG7GLHVG
- Fh89BzDeVmeVDwmR0+8eRfJzMolKdTZ7iZmPiwnPKTfqmFtXnUF+D+lJobaXdsVvmTSH
- dXfw==
-X-Gm-Message-State: AOAM5308DOasrFEh3kj33i4f3PNwCNbR/kcl22KEsaK4bJmgKK7PuNp0
- 7Ah48jBUKSw7UIVH4i7Pnn4TBX06eLGt1q/eWLIxkx9S
-X-Google-Smtp-Source: ABdhPJwod78mZ+3ZA4mpFwDBLBCtEAH9gCZ9GNf7i0hCfrq3iIlJBQMS3ySpVdZ2LDUv/mCEshAxtB7grpX1zVRGZWI=
-X-Received: by 2002:a37:a605:: with SMTP id p5mr2095191qke.428.1593172288598; 
- Fri, 26 Jun 2020 04:51:28 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=rAtGB6cOdDnVDT8JutaGc9DnDtfD/k142oJ1pVqIOVk=;
+ b=nkfHibcDughJ23xv8fYktJtGaxfUD8qx1EbxovE/Q1VypJBg0OmmQ6ToHsATuCKmAd
+ iTzHY5o/ajv5KWnuptkoHSMMAjVuNut5S9yUKJrBgzlshVRnYebAzpHeHFmjacmiTXLd
+ rV8w/CR0MdTg6OAzNZxl2wbLnQ+By51JDphfL5PKpty0P9Ukyll4WiWAsCf3PVspEkUb
+ +a41iJyN2XDHWTdSfleSYBnE2848b9xUU6Ewv0A3wtrTZyqDZN/lJ6WgIlOc039Wu/Mk
+ IEQJ9QN38lTkfxtJtUqYlvz828XyDdTw1yIlEObA5Ryr+R1aUH5zT++IM4qVtlOOabHo
+ 4+IA==
+X-Gm-Message-State: AOAM530lOM27YuP5KncnxVsplL1w4hb46vM3QtwcRUwWMa2X6LWMbrE4
+ AaSRRmCHBRjlEWCabTfOdLkWOFL/pa/RZVzAd5Y=
+X-Google-Smtp-Source: ABdhPJwCs4x2QjrM6LmEMRocdhRH3jlOjC2rf2N4YzpYTiCXghBBmIJaWzIZbAR5o5HUWtazZhPRLQ2sKbYVwWGtYOg=
+X-Received: by 2002:a67:2c45:: with SMTP id s66mr2804897vss.49.1593184405000; 
+ Fri, 26 Jun 2020 08:13:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <CACjmV_nH=YZVbvU-Md4juBB6iazRxVuLFa+f8rC0Z4=_UumjKA@mail.gmail.com>
-In-Reply-To: <CACjmV_nH=YZVbvU-Md4juBB6iazRxVuLFa+f8rC0Z4=_UumjKA@mail.gmail.com>
-Date: Fri, 26 Jun 2020 19:51:17 +0800
-Message-ID: <CACjmV_mQ6BFgZjgtNkoPsEu2UH3LqH+co_EQsaZTi1CMfA0rzQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] TX Burst at 200Msps sample rate on two channel
+Date: Fri, 26 Jun 2020 17:12:08 +0200
+Message-ID: <CAN-A3_uAoXfcs4zvHt1PSvVN2fB78a7u=nXgiE7FB2S8tWeMVQ@mail.gmail.com>
+To: discuss-gnuradio@gnu.org, 
+ "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: [USRP-users] NEED HELP: RFNoC OOT tutorial
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -58,10 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Damon qiu via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Damon qiu <qiu.guowang007@gmail.com>
-Cc: Damon Qiu <qiu.guowang007@gmail.com>, rkossler@nd.edu
-Content-Type: multipart/mixed; boundary="===============0851412758594865401=="
+From: Mohamed Yaaseen via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mohamed Yaaseen <mdyaaseen1995@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1755543125771138517=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,86 +72,90 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0851412758594865401==
-Content-Type: multipart/alternative; boundary="00000000000053f71205a8fb54b7"
+--===============1755543125771138517==
+Content-Type: multipart/alternative; boundary="0000000000008595b005a8fe269f"
 
---00000000000053f71205a8fb54b7
+--0000000000008595b005a8fe269f
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Marcus,
-Since you forgot to copy the email to me, I have to reply your email here.
-'sudo' is for using dpdk. Do you have any way to use dpdk without super
-authority?
+Hello Guys,
 
-Hi Rob,
-Your information is very helpful. I will try that next week when I am back
-to the office. Thanks.
+    I am following the rfnoc getting started tutorial, to develop a gain
+block. I am using the following branches of UHD, gr-ettus, gnuradio.
+UHD - 3.15 LTS
+gr-ettus - maint-3.8
+gnuradio - maint-3.8
+All installed in a custom prefix without using pybombs:
+~/workspace/installs/stable
 
-Best regards,
-Damon
+I have created the gain oot module using rfnocmodtool with all the
+testbench and also have created the FPGA image. Now to create a gnuradio
+grc bindings, the tutorial uses the xml file.
+Since I am using gnuradio 3.8, it requires a yaml file. But even though I
+am using gr-ettus maint-3.8 branch it's rfnocmodtools is not updated to
+have yaml files. So, I am  stuck with xml.
+Yea, I can just convert xml to yaml file manually, But, I find many extra
+parameter with the xml file
+and I am also not sure  how  I should change the CMakeLists.txt so that the
+yaml files get installed correctly, while installing the OOT module.
+I need some help on how I can create a yaml file for rfnoc oot in a  proper
+way ?
 
-On Thu, 25 Jun 2020 at 01:46, guowang qiu <qiu.guowang007@gmail.com> wrote:
+My second question is: Currently, I can see that in the master branch of
+UHD, the entire RFNoC work flow is  changing. I couldn't find
+uhd_image_builder.py and gr-ettus is going to be removed etc.
+I will  be working with RFNoC for the next couple of months, so I would
+like to know If I should be moving to UHD 4.0.0 before I begin developing
+my actual rfnoc application. And if so, is there any guide or how-to page
+for RFNoC getting started UHD - 4.0.0 ? The current AN seems pretty
+outdated even for UHD-3.15-LTS version
 
-> Hi all,
->
-> I am trying to set my USRP X310 to send out signals in burst mode at
-> 200Msps sample rate on two channels. My target is sending out bursts of
-> 100ms without underflow.
-> The OS is Ubuntu 18.04, UHD version v3.15.0.0, DPDK is used in the test.
-> The CPU is set to 4.2GHz.
-> The X310 is connected to the host by dual 10 Gigabit Ethernet.
->
-> sudo /usr/local/lib/uhd/examples/tx_bursts
-> --args="type=x300,use_dpdk=1,addr=192.168.30.2,second_addr=192.168.40.2,send_frame_size=8000,num_send_frames=512"
-> --repeat --dilv --nsamps=20000000 --channels=0,1 --rate=200e6
->
-> If nsamps is set to 100000, there is no U printed. But if nsamps is large
-> than 120000, the terminal prints a lot of U.
-> Question 1: the depth of DMA FIFO is 32MB by default, I guess there should
-> be 8M samples stored in the DMA FIFO, why it seems that it just store 100K
-> samples?
-> Question 2: is there anything I could do to achieve my goal?
->
-> Best regards,
-> Damon
->
->
+Looking forward to your suggestions, tips and answers ..!!
 
---00000000000053f71205a8fb54b7
+Thanks, stay safe and healthy !!
+
+Regards,
+Mohamed Yaaseen
+
+--0000000000008595b005a8fe269f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Marcus,</div><div>Since you forgot to copy the ema=
-il to me, I have to reply your email here.</div><div>&#39;sudo&#39; is for =
-using dpdk. Do you have any way to use dpdk without super authority?</div><=
-div><br></div><div>Hi Rob,</div><div>Your information is very helpful. I wi=
-ll try that next week when I am back to the office. Thanks.</div><div><br><=
-/div><div>Best regards,</div><div>Damon<br></div></div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 25 Jun 2020 at 01:=
-46, guowang qiu &lt;<a href=3D"mailto:qiu.guowang007@gmail.com">qiu.guowang=
-007@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex"><div dir=3D"ltr">Hi all,<br><br>I am trying to set my USRP X31=
-0 to send out signals in burst mode at 200Msps sample rate on two channels.=
- My target is sending out bursts of 100ms without underflow.<br>The OS is U=
-buntu 18.04, UHD version v3.15.0.0, DPDK is used in the test. The CPU is se=
-t to 4.2GHz.<br>The X310 is connected to the host by dual 10 Gigabit Ethern=
-et. <br><br>sudo /usr/local/lib/uhd/examples/tx_bursts --args=3D&quot;type=
-=3Dx300,use_dpdk=3D1,addr=3D192.168.30.2,second_addr=3D192.168.40.2,send_fr=
-ame_size=3D8000,num_send_frames=3D512&quot; --repeat --dilv --nsamps=3D2000=
-0000 --channels=3D0,1 --rate=3D200e6<br><br>If=C2=A0nsamps is set to 100000=
-, there is no U printed. But if=C2=A0nsamps is large than 120000, the termi=
-nal prints a lot of U.<br>Question 1: the depth of DMA FIFO is 32MB by defa=
-ult, I guess there should be 8M samples stored in the DMA FIFO, why it seem=
-s that it just store 100K samples?<br>Question 2: is there anything I could=
- do to achieve my goal?<br><br>Best regards,<br>Damon<br><div><br></div></d=
-iv>
-</blockquote></div>
+<div dir=3D"ltr"><div>Hello Guys,</div><div>=C2=A0=C2=A0</div><div>=C2=A0=
+=C2=A0=C2=A0 I am following the rfnoc getting started tutorial, to develop =
+a gain block. I am using the following branches of UHD, gr-ettus, gnuradio.=
+</div><div><div>UHD - 3.15 LTS</div><div>gr-ettus - maint-3.8</div><div>gnu=
+radio - maint-3.8</div><div>All installed in a custom prefix without using =
+pybombs: ~/workspace/installs/stable<br></div></div><div><br></div><div>I h=
+ave created the gain oot module using rfnocmodtool with all the testbench a=
+nd also have created the FPGA image. Now to create a gnuradio grc bindings,=
+ the tutorial uses the xml file.</div><div>Since I am using gnuradio 3.8, i=
+t requires a yaml file. But even though I am using gr-ettus maint-3.8 branc=
+h it&#39;s rfnocmodtools is not updated to have yaml files. So, I am=C2=A0 =
+stuck with xml.</div><div>Yea, I can just convert xml to yaml file manually=
+, But, I find many extra parameter with the xml file</div><div>and I am als=
+o not sure=C2=A0 how=C2=A0 I should change the CMakeLists.txt so that the y=
+aml files get installed correctly, while installing the OOT module.</div><d=
+iv>I need some help on how I can create a yaml file for rfnoc oot in a=C2=
+=A0 proper way ?<br></div><div><br></div><div>My second question is: Curren=
+tly, I can see that in the master branch of UHD, the entire RFNoC work flow=
+ is=C2=A0 changing. I couldn&#39;t find uhd_image_builder.py and gr-ettus i=
+s going to be removed etc. <br></div><div>I will=C2=A0 be working with RFNo=
+C for the next couple of months, so I would like to know If I should be mov=
+ing to UHD 4.0.0 before I begin developing=C2=A0 my actual rfnoc applicatio=
+n. And if so, is there any guide or how-to page for RFNoC getting started U=
+HD - 4.0.0 ? The current AN seems pretty outdated even for UHD-3.15-LTS ver=
+sion</div><div><br></div><div>Looking forward to your suggestions, tips and=
+ answers ..!!<br></div><div><br></div><div>Thanks, stay safe and healthy !!=
+<br></div><div> <br></div><div><div><div dir=3D"ltr" class=3D"gmail_signatu=
+re" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"lt=
+r"><div><div dir=3D"ltr"><div><div dir=3D"ltr">Regards,<div>Mohamed Yaaseen=
+</div></div></div></div></div></div></div></div></div></div></div></div>
 
---00000000000053f71205a8fb54b7--
+--0000000000008595b005a8fe269f--
 
 
---===============0851412758594865401==
+--===============1755543125771138517==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -165,5 +166,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0851412758594865401==--
+--===============1755543125771138517==--
 
