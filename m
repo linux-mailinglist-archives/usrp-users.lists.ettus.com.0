@@ -2,53 +2,38 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00CD9210114
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Jul 2020 02:45:11 +0200 (CEST)
-Received: from [::1] (port=39056 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA47C2101FF
+	for <lists+usrp-users@lfdr.de>; Wed,  1 Jul 2020 04:24:59 +0200 (CEST)
+Received: from [::1] (port=39650 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jqQs8-0003QA-BK; Tue, 30 Jun 2020 20:45:08 -0400
-Received: from mail-ed1-f46.google.com ([209.85.208.46]:46534)
+	id 1jqSQh-0004rc-Sw; Tue, 30 Jun 2020 22:24:55 -0400
+Received: from mail-lf1-f43.google.com ([209.85.167.43]:46324)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <ejkreinar@gmail.com>) id 1jqQs4-0003JA-UG
- for usrp-users@lists.ettus.com; Tue, 30 Jun 2020 20:45:05 -0400
-Received: by mail-ed1-f46.google.com with SMTP id dm19so11758834edb.13
- for <usrp-users@lists.ettus.com>; Tue, 30 Jun 2020 17:44:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=kve5/pi+bAVKZLfqqMALjtcWcZSYjJMMKzLqfy3e7o4=;
- b=I4ebmvvmXp3P7YOC5ivlTwCbW82bOu6QocNNYvUSq4N1VKewQEe5x4gNd2Z6eYDTlp
- 12rjGbLLNjBN74QdydA3VDDiupPY4iSC7C/u6yeEuRL++MH2738bPx4kcqnF+pQ75MVR
- nkvcVDEpJg0FR4Z/4hIemk0IFeNyzRx8ZvVj2Cz987zSqhpsekOTnmjOOaANqa0zuyw5
- 48u8kVeqbOLGFTc7xR8nNAarvl04aotTypzhUTpw1m+/geIWA2rMRd9RK+OqGGB83JGP
- +fbsb6qtDRLR0L8g9WEbkhgjPNSiB2A6xwG/bZM2IUqRQR9t8YFUoMbakRyzmy1jiJ3F
- l8dw==
+ (Exim 4.93) (envelope-from <youngn111@gmail.com>) id 1jqSQd-0004nP-TP
+ for usrp-users@lists.ettus.com; Tue, 30 Jun 2020 22:24:52 -0400
+Received: by mail-lf1-f43.google.com with SMTP id m26so12646181lfo.13
+ for <usrp-users@lists.ettus.com>; Tue, 30 Jun 2020 19:24:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=kve5/pi+bAVKZLfqqMALjtcWcZSYjJMMKzLqfy3e7o4=;
- b=e6N3HHs5L+ELSvqLddoTRNHLtP80E99NP9F6c2rnaNaRRt96C/raawaP8qXIRHZhgj
- +FUCKVS0jk3FUxD7wI//U/kaU8HEnDcyMP0ofaylL/gVHfp/B5XZyZta3HyjJrhpmAiT
- qJ/WWyxIInBUi7kO31nAnKwdqqoxf2oo49QXCVgTjPQbBhHo51nBbg5a9wlFi0vs/gzx
- VLW8779mj64GL87u2WO+1Rm9yGMaI1DTy+uMhr/ifOKQ7gciistIdUdMamd3/XPir9tK
- XZ4h66y6dSX6WS4BoaU5+fX6Rz1+ra+3h5lNtYWEh4UjkALMyza58VIPv9BJ5Mk3Jo+I
- ZSHA==
-X-Gm-Message-State: AOAM531hdAhzU0hmCwnZO797hBCCxQmrrhTGnkluePt4W3xKz6ee9IYl
- YV3+DotnVN6M2w9V4zjdAjZbd0poMs+E/CBlMiI=
-X-Google-Smtp-Source: ABdhPJxqKXOoOjefWTL6Zkv1jcYXqIbXPrmABFRj7FPAbnM4WKzY3JnXF8rfAgOiLuVcapkqKyfnK26Ysq6uyM88QAs=
-X-Received: by 2002:aa7:c6d3:: with SMTP id b19mr25238562eds.207.1593564263970; 
- Tue, 30 Jun 2020 17:44:23 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=tIN1wfBXZRNWfXPoQniWne+NzaqT/XAHdZao7g8jzF8=;
+ b=lFF1zCf/XZQ7zrfKaPCbiZynXwGbY6DymW+ioquEmxUFOpCw5Q+24LjM0cx2pXiLLc
+ 0F4tOlHMcdJ2KdeyRd2QSk/6hMUB4R70KPhW8657D+DHf4mmP/SGo/2dM2dreJfbmEeC
+ oQvPSXfSuVJuBuow9I7YVfwT/MhE07CkjN8tU7aJShHZkn70EpFPZT1YcwQ1V8F+nQyq
+ RtZ0c5QACJrMre7PXnEMoJSTSQMEcDE8WA0kVxhOfPrkF7g2dR1AmeabPEtILiloYYvy
+ EAXQ+ooVDysgiGS8REiPKBViLXUAJWmDUj5QOtdIv0EAWueZGketOTW0l8mSGtCay3F+
+ V5LA==
+X-Gm-Message-State: AOAM531pd8J0E6rGuP2Kf2qbyTBeJ6T556DLKPDH9anA8fg0GOXU/74j
+ yLhI9+errQzwgA4ndVccsEudYqS9IUhBST/1P6kvc3E=
+X-Google-Smtp-Source: ABdhPJwQEl8o1u1me5+tGLEqYd6LPwNUJJUALX+C1xHnuzk0gO07RZsTMPATqHSolBtS6u88iiq2OnW7WIc5jGL2n3k=
+X-Received: by 2002:a19:c194:: with SMTP id r142mr13424024lff.87.1593570250099; 
+ Tue, 30 Jun 2020 19:24:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <CADRnH23bYgB4VKpKEy8r8r=AsPHgSAhfbTV1hFUV_P58RAqzeA@mail.gmail.com>
- <CAN-A3_usASEigFBD4+URCZByVvEW2nfNZg=mMqx3r705EozU=A@mail.gmail.com>
-In-Reply-To: <CAN-A3_usASEigFBD4+URCZByVvEW2nfNZg=mMqx3r705EozU=A@mail.gmail.com>
-Date: Tue, 30 Jun 2020 20:44:11 -0400
-Message-ID: <CADRnH22ozBw2sbW9trphiD9mBj0TqikA8nx-rU1R_aiPRM7HpA@mail.gmail.com>
-To: Mohamed Yaaseen <mdyaaseen1995@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
- discuss-gnuradio@gnu.org
-Subject: Re: [USRP-users] How to find and link OOT module with gnuradio 3.8?
+Date: Tue, 30 Jun 2020 21:23:59 -0500
+Message-ID: <CAJU_EcVqLsgWuRCPfQAjcpmrRFUMepJXMfn7Y3ZPpe0wOVgBnA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Exception in uhd_usrp_make (b205mini)
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -60,9 +45,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: EJ Kreinar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: EJ Kreinar <ejkreinar@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6800144411979076217=="
+From: Nate Young via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nate Young <nate.young@wde-llc.com>
+Content-Type: multipart/mixed; boundary="===============7093833026660092425=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,257 +61,297 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6800144411979076217==
-Content-Type: multipart/alternative; boundary="000000000000e178b505a95697eb"
+--===============7093833026660092425==
+Content-Type: multipart/alternative; boundary="000000000000ae924d05a957fcb3"
 
---000000000000e178b505a95697eb
+--000000000000ae924d05a957fcb3
 Content-Type: text/plain; charset="UTF-8"
 
-Ron,
+Hi All.
 
-Yes, that looks right on target with my results... A little baffling to me
-though... linking against OOTs seems like a fairly standard use case but
-maybe it's less common than I thought. It's definitely needed for rfnoc
-though.
+I have an Ettus b205 that is being used in a customized HDL design that has
+been working reliably for many months through the development and addition
+of many features.
 
 
-Mohamed Yaaseen,
+Recently, the design stopped working and is now providing the following
+error during uhd_usrp_make() call from the host:
 
-The change that worked for me was to update GR_CMAKE_DIR in gr-ettus to
-${CMAKE_MODULES_DIR)/gnuradio-ettus. Then I rebuilt and installed gr-ettus,
-and my OOT could then call find_package(gnuradio-ettus) and link against
-gnuradio-ettus.
+[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+UHD_3.15.0.0-124-geb448043
 
-But I'm really not a cmake expert in any way, so I don't know if this is
-the "right" answer. Personally I'm satisfied with the GR_CMAKE_DIR change,
-but it does change the package name for downstream users...
+[INFO] [B200] Detected Device: B205mini
 
-I guess the broader question is then... What is "desired" behavior provided
-by default from gr_modtool for finding and linking OOTs?
+[INFO] [B200] Operating over USB 3.
 
-EJ
+*[ERROR] [UHD] Exception caught in safe-call.*
 
-On Tue, Jun 30, 2020, 10:53 AM Mohamed Yaaseen <mdyaaseen1995@gmail.com>
-wrote:
+*  in virtual radio_ctrl_core_3000_impl::~radio_ctrl_core_3000_impl()*
 
-> Hello EJ Kreinar,
->
-> I just came across this situation. I was trying to create a rfnoc gain
-> tutorial oot module using rfnomodtools. But, when I was doing cmake I got
-> some errors with respect to find_package(ettus).
-> I was just fiddling around with cmakefiles as I am not familiar with cmake
-> and stuff.
->
-> But, I found a problem with the gr-ettus module itself. In the gr-ettus
-> module ettutsConfig.cmake file, there is a line
-> *include("${CMAKE_CURRENT_LIST_DIR}/ettusTarget.cmake"). *
-> This is the file that rfnoc OOT searches in order to find the
-> package ettus. But, while make && make install gr-ettus module installs *gnuradio-ettusTargets.cmake
-> *file at the location. Hence, rfnoc OOT module throws an error message
-> during cmake.
->
-> When I corrected the line in gr-ettus and reinstalled it, my OOT module
-> was able to compile  successfully.
->
-> But, I am now facing errors during the make process.
->
-> I believe the rfnocmodtools template code present inside gr-ettus has not
-> been migrated for 3.8 even though gr-ettus is migrated.
->
-> In the meantime I will also try to fix the error which is thrown during
-> make process. And update you in this thread if I have any success
->
-> If you are able to get past the make process also and install it in gr
-> 3.8. It would be really great...!!!
->
-> Regards,
-> Mohamed Yaaseen
->
-> On Tue, 30 Jun 2020 at 16:01, EJ Kreinar via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hi gnuradio and usrp-users,
->>
->> I'm trying to update rfnoc OOT modules for gnuradio 3.8 (gasp).
->>
->> But I'm having trouble finding and linking to gr-ettus specifically, and
->> I wonder how we're supposed to call find_package(<OOT>) and then link to
->> OOT modules in general with the updated cmake workflow... Trying to find
->> and link gr-ettus, I've tried a few things...
->>
->> 1) find_package(ettus)
->>
->> I believe this worked against gnuradio-3.7. Now, I get the following
->> error during cmake configure...
->>
->> ```
->> --   No package 'ettus' found
->> CMake Error at /usr/local/lib/cmake/ettus/ettusConfig.cmake:41 (include):
->>   include could not find load file:
->>     /usr/local/lib/cmake/ettus/ettusTarget.cmake
->> ```
->>
->> 2) find_package(gnuradio-ettus)
->>
->> This seems more promising, since GR_LIBRARY_FOO seems to
->> install gnuradio-ettus cmake files into the lib/cmake/ettus install
->> location. This fails in cmake configure with the following error:
->>
->> ```
->> CMake Error at gr-theseus/CMakeLists.txt:84 (find_package):
->>   By not providing "Findgnuradio-ettus.cmake" in CMAKE_MODULE_PATH this
->>   project has asked CMake to find a package configuration file provided by
->>   "gnuradio-ettus", but CMake did not find one.
->>
->>   Could not find a package configuration file provided by "gnuradio-ettus"
->>   with any of the following names:
->>
->>     gnuradio-ettusConfig.cmake
->>     gnuradio-ettus-config.cmake
->>
->>   Add the installation prefix of "gnuradio-ettus" to CMAKE_PREFIX_PATH or
->> set
->>   "gnuradio-ettus_DIR" to a directory containing one of the above files.
->> If
->>   "gnuradio-ettus" provides a separate development package or SDK, be
->> sure it
->>   has been installed.
->> ```
->>
->>
->> Interestingly, if I change the GR_CMAKE_DIR *inside gr-ettus* to point to
->> ${CMAKE_MODULES_DIR)/gnuradio-ettus (
->> https://github.com/EttusResearch/gr-ettus/blob/b69260655e974786ea6e611bd91ab578b13ec72a/CMakeLists.txt#L69),
->> then the gnuradio-ettus cmake modules get installed to
->> lib/cmake/gnuradio-ettus. Then, in my OOT module, calling
->> find_package(gnuradio-ettus) finds gr-ettus, and
->> target_link_libraries(<my-library> gnuradio-ettus) links successfully.
->>
->> So: Is this right? Am I missing something obvious here? Should gnuradio
->> OOT modules set their GR_CMAKE_DIR to gnuradio-<module>?
->>
->> Thanks for the help!
->> EJ
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
+  at /home/xyz/uhd/host/lib/usrp/cores/radio_ctrl_core_3000.cpp:63
 
---000000000000e178b505a95697eb
+*this->peek32(0); _async_task.reset(); -> AssertionError: accum_timeout <
+_timeout*
+
+  in uint64_t radio_ctrl_core_3000_impl::wait_for_ack(bool)
+
+  at /home/xyz/uhd/host/lib/usrp/cores/radio_ctrl_core_3000.cpp:220
+
+To my knowledge, nothing has changed (Linux drivers, application C code or
+FPGA/HDL).     Previous code revisions (that have been working for months)
+no longer work.
+I have debugged and am starting to wonder if my b205 is broken.
+
+My system setup is an ODROID XU4 running the UHD firmware, connected over
+USB3 to the b205.  I have replaced the ODROID XU4, as well as the cable,
+but still get the same error.
+
+Linux lsusb sees the b205 with what I believe are the correct vendor and
+product ID.
+
+>> Bus 004 Device 004: ID 2500:0022
+
+The ODROID appears to be able to talk to the b205, as uhd_find_devices
+finds the b205.
+
+[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+UHD_3.15.0.0-124-geb448043
+
+--------------------------------------------------
+
+-- UHD Device 0
+
+--------------------------------------------------
+
+Device Address:
+
+    serial: 319B8D5
+
+    name: B205i
+
+    product: B205mini
+
+    type: b200
+
+In addition, the FPGA .bin file is being loaded.  I can generate custom
+FPGA builds that toggle various LEDs.. proving that the FPGA and at least
+one of its clocks are working.
+
+
+So, in summary, I get a timeout from radio_ctrl_core_3000's read of
+peek32(0).
+
+The host computer (ODROID XU4) sees the b205 via lsusb.
+
+The host computer can find the b205 using uhd_find_devices.
+
+The FPGA bitstream is being downloaded.
+
+Replacing the ODROID and the cable did not help.
+
+
+That is a strange combination. It seems to indicate the b205 is broken, but
+still working enough to download the fpga? Seems odd to me.
+
+I am working to get a new b205 to use as a comparison, but that will take a
+week or so.
+
+In the meantime, does anyone have suggestions on other ideas to try, or HDL
+changes (using Chipscope) that I might try to monitor to see if something
+is broken?
+
+Thank you very much.
+
+Nate
+
+--000000000000ae924d05a957fcb3
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Ron,<div dir=3D"auto"><br></div><div dir=3D"auto">Yes, th=
-at looks right on target with my results... A little baffling to me though.=
-.. linking against OOTs seems like a fairly standard use case but maybe it&=
-#39;s less common than I thought. It&#39;s definitely needed for rfnoc thou=
-gh.</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=
-=3D"auto">Mohamed Yaaseen,<br></div><div dir=3D"auto"><br></div><div dir=3D=
-"auto">The change that worked for me was to update GR_CMAKE_DIR=C2=A0in gr-=
-ettus to ${CMAKE_MODULES_DIR)/gnuradio-ettus. Then I rebuilt and installed =
-gr-ettus, and my OOT could then call find_package(gnuradio-ettus) and link =
-against gnuradio-ettus.</div><div dir=3D"auto"><br></div><div dir=3D"auto">=
-But I&#39;m really not a cmake expert in any way, so I don&#39;t know if th=
-is is the &quot;right&quot; answer. Personally I&#39;m satisfied with the G=
-R_CMAKE_DIR change, but it does change the package name for downstream user=
-s...</div><div dir=3D"auto"><br></div><div dir=3D"auto">I guess the broader=
- question is then... What is &quot;desired&quot; behavior=C2=A0<span style=
-=3D"font-family:sans-serif">provided by default from gr_modtool</span>=C2=
-=A0for finding and linking OOTs?</div><div dir=3D"auto"><br></div><div dir=
-=3D"auto">EJ</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Tue, Jun 30, 2020, 10:53 AM Mohamed Yaaseen &lt;<a hre=
-f=3D"mailto:mdyaaseen1995@gmail.com" rel=3D"noreferrer noreferrer noreferre=
-r" target=3D"_blank">mdyaaseen1995@gmail.com</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc=
- solid;padding-left:1ex"><div dir=3D"ltr"><div>Hello EJ Kreinar,</div><div>=
-<br></div><div>I just came across=C2=A0this situation. I was trying to crea=
-te a rfnoc gain tutorial oot module using rfnomodtools. But, when I was doi=
-ng cmake I got some errors with respect to find_package(ettus).</div><div>I=
- was just fiddling around with cmakefiles as I am not familiar with cmake a=
-nd stuff.=C2=A0</div><div><br></div><div>But, I found a problem with the gr=
--ettus module itself. In the gr-ettus module ettutsConfig.cmake file, there=
- is a line=C2=A0=C2=A0<i><b>include(&quot;${CMAKE_CURRENT_LIST_DIR}/ettusTa=
-rget.cmake&quot;).=C2=A0</b></i></div><div>This is the file that rfnoc OOT =
-searches in order to find the package=C2=A0ettus. But, while make &amp;&amp=
-; make install gr-ettus module installs=C2=A0<b style=3D"font-style:italic"=
->gnuradio-ettusTargets.cmake=C2=A0 </b>file at the location. Hence, rfnoc O=
-OT module throws an error message during=C2=A0cmake.</div><div><br></div><d=
-iv>When I corrected the line in gr-ettus and reinstalled it, my OOT module =
-was able to compile=C2=A0 successfully.</div><div><br></div><div>But, I am =
-now facing errors during the make process.</div><div><br></div><div>I belie=
-ve the rfnocmodtools template code present inside gr-ettus has not been mig=
-rated for 3.8 even though gr-ettus is migrated.<br></div><div><br></div><di=
-v></div><div>In the meantime I will also try to fix the error which is thro=
-wn during make process. And update you in this thread if I have any success=
-<br></div><div><br></div><div>If you are able to get past the make process =
-also and install it in gr 3.8. It would be really great...!!!=C2=A0<br></di=
-v><br clear=3D"all"><div><div dir=3D"ltr" data-smartmail=3D"gmail_signature=
-"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div di=
-r=3D"ltr">Regards,<div>Mohamed Yaaseen</div></div></div></div></div></div><=
-/div></div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
-" class=3D"gmail_attr">On Tue, 30 Jun 2020 at 16:01, EJ Kreinar via USRP-us=
-ers &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"noreferrer nor=
-eferrer noreferrer noreferrer" target=3D"_blank">usrp-users@lists.ettus.com=
-</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-<div dir=3D"ltr">Hi gnuradio and usrp-users,<br><br>I&#39;m trying to updat=
-e rfnoc OOT modules for gnuradio 3.8 (gasp).<div><br></div><div>But I&#39;m=
- having trouble=C2=A0finding and linking to gr-ettus specifically, and I wo=
-nder how we&#39;re supposed to call find_package(&lt;OOT&gt;) and then link=
- to OOT modules in general with the updated cmake workflow... Trying to fin=
-d and link gr-ettus, I&#39;ve tried a few things...</div><div><br>1) find_p=
-ackage(ettus)</div><div><br></div><div>I believe this worked against gnurad=
-io-3.7. Now, I get the following error during cmake configure...<br><br>```=
-<br>-- =C2=A0 No package &#39;ettus&#39; found<br>CMake Error at /usr/local=
-/lib/cmake/ettus/ettusConfig.cmake:41 (include):<br>=C2=A0 include could no=
-t find load file:<br>=C2=A0 =C2=A0 /usr/local/lib/cmake/ettus/ettusTarget.c=
-make</div><div>```</div><div><br></div><div>2) find_package(gnuradio-ettus)=
-<br><br>This seems more promising, since GR_LIBRARY_FOO seems to install=C2=
-=A0gnuradio-ettus cmake files into the=C2=A0lib/cmake/ettus install locatio=
-n. This fails in cmake configure with the following error:<br><br>```<br>CM=
-ake Error at gr-theseus/CMakeLists.txt:84 (find_package):<br>=C2=A0 By not =
-providing &quot;Findgnuradio-ettus.cmake&quot; in CMAKE_MODULE_PATH this<br=
->=C2=A0 project has asked CMake to find a package configuration file provid=
-ed by<br>=C2=A0 &quot;gnuradio-ettus&quot;, but CMake did not find one.<br>=
-<br>=C2=A0 Could not find a package configuration file provided by &quot;gn=
-uradio-ettus&quot;<br>=C2=A0 with any of the following names:<br><br>=C2=A0=
- =C2=A0 gnuradio-ettusConfig.cmake<br>=C2=A0 =C2=A0 gnuradio-ettus-config.c=
-make<br><br>=C2=A0 Add the installation prefix of &quot;gnuradio-ettus&quot=
-; to CMAKE_PREFIX_PATH or set<br>=C2=A0 &quot;gnuradio-ettus_DIR&quot; to a=
- directory containing one of the above files.=C2=A0 If<br>=C2=A0 &quot;gnur=
-adio-ettus&quot; provides a separate development package or SDK, be sure it=
-<br>=C2=A0 has been installed.<br>```</div><div><br></div><div><br></div><d=
-iv>Interestingly, if I change the GR_CMAKE_DIR *inside gr-ettus* to point=
-=C2=A0to ${CMAKE_MODULES_DIR)/gnuradio-ettus=C2=A0(<a href=3D"https://githu=
-b.com/EttusResearch/gr-ettus/blob/b69260655e974786ea6e611bd91ab578b13ec72a/=
-CMakeLists.txt#L69" rel=3D"noreferrer noreferrer noreferrer noreferrer" tar=
-get=3D"_blank">https://github.com/EttusResearch/gr-ettus/blob/b69260655e974=
-786ea6e611bd91ab578b13ec72a/CMakeLists.txt#L69</a>), then the gnuradio-ettu=
-s cmake modules get installed to lib/cmake/gnuradio-ettus. Then, in my OOT =
-module, calling find_package(gnuradio-ettus) finds gr-ettus, and target_lin=
-k_libraries(&lt;my-library&gt; gnuradio-ettus) links successfully.</div><di=
-v><br></div><div>So: Is this right? Am I missing something obvious here? Sh=
-ould gnuradio OOT modules set their=C2=A0GR_CMAKE_DIR to gnuradio-&lt;modul=
-e&gt;?=C2=A0</div><div><br></div><div>Thanks for the=C2=A0help!<br>EJ</div>=
-<div><br></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer =
-noreferrer noreferrer" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer noreferrer noreferrer noreferrer" target=
-=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com</a><br>
-</blockquote></div>
-</blockquote></div>
+<div dir=3D"ltr"><span id=3D"gmail-docs-internal-guid-72b458cd-7fff-772b-d0=
+71-5f31b0a6b4a4"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
+rgin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(=
+0,0,0);background-color:transparent;font-variant-numeric:normal;font-varian=
+t-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Hi All.</=
+span></p><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,=
+0);background-color:transparent;font-variant-numeric:normal;font-variant-ea=
+st-asian:normal;vertical-align:baseline;white-space:pre-wrap">I have an Ett=
+us b205 that is being used in a customized HDL design that has been working=
+ reliably for many months through the development and addition of many feat=
+ures.</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;mar=
+gin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0=
+,0,0);background-color:transparent;font-variant-numeric:normal;font-variant=
+-east-asian:normal;vertical-align:baseline;white-space:pre-wrap"><br></span=
+><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgroun=
+d-color:transparent;font-variant-numeric:normal;font-variant-east-asian:nor=
+mal;vertical-align:baseline;white-space:pre-wrap">Recently, the design stop=
+ped working and is now providing the following error during uhd_usrp_make()=
+ call from the host:</span></p><br><p dir=3D"ltr" style=3D"line-height:1.38=
+;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-famil=
+y:Arial;color:rgb(0,0,0);background-color:transparent;font-style:italic;fon=
+t-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:base=
+line;white-space:pre-wrap">[INFO] [UHD] linux; GNU C++ version 7.4.0; Boost=
+_106501; UHD_3.15.0.0-124-geb448043</span></p><p dir=3D"ltr" style=3D"line-=
+height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt=
+;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-style=
+:italic;font-variant-numeric:normal;font-variant-east-asian:normal;vertical=
+-align:baseline;white-space:pre-wrap">[INFO] [B200] Detected Device: B205mi=
+ni</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,=
+0);background-color:transparent;font-style:italic;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-w=
+rap">[INFO] [B200] Operating over USB 3.</span></p><p dir=3D"ltr" style=3D"=
+line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size=
+:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-=
+style:italic;font-variant-numeric:normal;font-variant-east-asian:normal;ver=
+tical-align:baseline;white-space:pre-wrap"><b>[ERROR] [UHD] Exception caugh=
+t in safe-call.</b></span></p><p dir=3D"ltr" style=3D"line-height:1.38;marg=
+in-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Ari=
+al;color:rgb(0,0,0);background-color:transparent;font-style:italic;font-var=
+iant-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;=
+white-space:pre-wrap"><b>=C2=A0=C2=A0in virtual radio_ctrl_core_3000_impl::=
+~radio_ctrl_core_3000_impl()</b></span></p><p dir=3D"ltr" style=3D"line-hei=
+ght:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;fo=
+nt-family:Arial;color:rgb(0,0,0);background-color:transparent;font-style:it=
+alic;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-al=
+ign:baseline;white-space:pre-wrap">=C2=A0=C2=A0at /home/xyz/uhd/host/lib/us=
+rp/cores/radio_ctrl_core_3000.cpp:63</span></p><p dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11p=
+t;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-styl=
+e:italic;font-variant-numeric:normal;font-variant-east-asian:normal;vertica=
+l-align:baseline;white-space:pre-wrap"><b>this-&gt;peek32(0); _async_task.r=
+eset(); -&gt; AssertionError: accum_timeout &lt; _timeout</b></span></p><p =
+dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><sp=
+an style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-co=
+lor:transparent;font-style:italic;font-variant-numeric:normal;font-variant-=
+east-asian:normal;vertical-align:baseline;white-space:pre-wrap">=C2=A0=C2=
+=A0in uint64_t radio_ctrl_core_3000_impl::wait_for_ack(bool)</span></p><p d=
+ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><spa=
+n style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-col=
+or:transparent;font-style:italic;font-variant-numeric:normal;font-variant-e=
+ast-asian:normal;vertical-align:baseline;white-space:pre-wrap">=C2=A0=C2=A0=
+at /home/xyz/uhd/host/lib/usrp/cores/radio_ctrl_core_3000.cpp:220</span></p=
+><div><br></div><div>To my knowledge, nothing has changed (Linux drivers, a=
+pplication C code or FPGA/HDL).=C2=A0=C2=A0
 
---000000000000e178b505a95697eb--
+=C2=A0 Previous code revisions (that have been working for months) no longe=
+r work.</div><div>I have debugged and am starting to wonder if my b205 is b=
+roken.</div><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;mar=
+gin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0=
+,0,0);background-color:transparent;font-variant-numeric:normal;font-variant=
+-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">My system =
+setup is an ODROID XU4 running the UHD firmware, connected over USB3 to the=
+ b205.=C2=A0 I have replaced the ODROID XU4, as well as the cable, but stil=
+l get the same error.</span></p><br><p dir=3D"ltr" style=3D"line-height:1.3=
+8;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-fami=
+ly:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric=
+:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space:=
+pre-wrap">Linux lsusb sees the b205 with what I believe are the correct ven=
+dor and product ID.</span></p><p dir=3D"ltr" style=3D"line-height:1.38;marg=
+in-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Ari=
+al;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:norma=
+l;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wr=
+ap">&gt;&gt; Bus 004 Device 004: ID 2500:0022</span></p><br><p dir=3D"ltr" =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"=
+font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpar=
+ent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-ali=
+gn:baseline;white-space:pre-wrap">The ODROID appears to be able to talk to =
+the b205, as uhd_find_devices finds the b205.</span></p><br><p dir=3D"ltr" =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"=
+font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpar=
+ent;font-style:italic;font-variant-numeric:normal;font-variant-east-asian:n=
+ormal;vertical-align:baseline;white-space:pre-wrap">[INFO] [UHD] linux; GNU=
+ C++ version 7.4.0; Boost_106501; UHD_3.15.0.0-124-geb448043</span></p><p d=
+ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><spa=
+n style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-col=
+or:transparent;font-style:italic;font-variant-numeric:normal;font-variant-e=
+ast-asian:normal;vertical-align:baseline;white-space:pre-wrap">------------=
+--------------------------------------</span></p><p dir=3D"ltr" style=3D"li=
+ne-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:1=
+1pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-st=
+yle:italic;font-variant-numeric:normal;font-variant-east-asian:normal;verti=
+cal-align:baseline;white-space:pre-wrap">-- UHD Device 0</span></p><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span =
+style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color=
+:transparent;font-style:italic;font-variant-numeric:normal;font-variant-eas=
+t-asian:normal;vertical-align:baseline;white-space:pre-wrap">--------------=
+------------------------------------</span></p><p dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11p=
+t;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-styl=
+e:italic;font-variant-numeric:normal;font-variant-east-asian:normal;vertica=
+l-align:baseline;white-space:pre-wrap">Device Address:</span></p><p dir=3D"=
+ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span styl=
+e=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tra=
+nsparent;font-style:italic;font-variant-numeric:normal;font-variant-east-as=
+ian:normal;vertical-align:baseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=
+=C2=A0serial: 319B8D5</span></p><p dir=3D"ltr" style=3D"line-height:1.38;ma=
+rgin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:A=
+rial;color:rgb(0,0,0);background-color:transparent;font-style:italic;font-v=
+ariant-numeric:normal;font-variant-east-asian:normal;vertical-align:baselin=
+e;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0name: B205i</span></p><p di=
+r=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span=
+ style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-colo=
+r:transparent;font-style:italic;font-variant-numeric:normal;font-variant-ea=
+st-asian:normal;vertical-align:baseline;white-space:pre-wrap">=C2=A0=C2=A0=
+=C2=A0=C2=A0product: B205mini</span></p><p dir=3D"ltr" style=3D"line-height=
+:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-=
+family:Arial;color:rgb(0,0,0);background-color:transparent;font-style:itali=
+c;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0type: b200</span></=
+p><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);back=
+ground-color:transparent;font-variant-numeric:normal;font-variant-east-asia=
+n:normal;vertical-align:baseline;white-space:pre-wrap">In addition, the FPG=
+A .bin file is being loaded.=C2=A0 I can generate custom FPGA builds that t=
+oggle various LEDs.. proving that the FPGA and at least one of its clocks a=
+re working.</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0=
+pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color=
+:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-v=
+ariant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap"><br>=
+</span></p><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><=
+span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-=
+color:transparent;font-variant-numeric:normal;font-variant-east-asian:norma=
+l;vertical-align:baseline;white-space:pre-wrap">So, in summary, I get a tim=
+eout from radio_ctrl_core_3000&#39;s read of peek32(0).</span></p><p style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-=
+size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;f=
+ont-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:ba=
+seline;white-space:pre-wrap">The host computer (ODROID XU4) sees the b205 v=
+ia lsusb.</span></p><p style=3D"line-height:1.38;margin-top:0pt;margin-bott=
+om:0pt"><font color=3D"#000000" face=3D"Arial"><span style=3D"font-size:14.=
+6667px;white-space:pre-wrap">The host computer can find the b205 using uhd_=
+find_devices.</span></font></p><p style=3D"line-height:1.38;margin-top:0pt;=
+margin-bottom:0pt">The FPGA bitstream is being downloaded.=C2=A0=C2=A0<font=
+ color=3D"#000000" face=3D"Arial"><span style=3D"font-size:14.6667px;white-=
+space:pre-wrap"><br></span></font></p><p style=3D"line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt"><font color=3D"#000000" face=3D"Arial"><span styl=
+e=3D"font-size:14.6667px;white-space:pre-wrap">Replacing the ODROID and the=
+ cable did not help.</span></font></p><p style=3D"line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt"><font color=3D"#000000" face=3D"Arial"><span styl=
+e=3D"font-size:14.6667px;white-space:pre-wrap"></span></font></p><p style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><font color=3D"#0000=
+00" face=3D"Arial"><span style=3D"font-size:14.6667px;white-space:pre-wrap"=
+><br></span></font></p><p style=3D"line-height:1.38;margin-top:0pt;margin-b=
+ottom:0pt"><font color=3D"#000000" face=3D"Arial"><span style=3D"font-size:=
+14.6667px;white-space:pre-wrap">That is a strange combination.  It seems to=
+ indicate the b205 is broken, but still working enough to download the fpga=
+?  Seems odd to me.</span></font></p><div><span><br></span></div>I am worki=
+ng to get a new b205 to use as a comparison, but that will take a week or s=
+o.</span><div><span><br></span></div><div><span>In the meantime, does anyon=
+e have suggestions on other ideas to try, or HDL changes (using Chipscope) =
+that I might try to monitor to see if something is broken?</span></div><div=
+><span><br></span></div><div>Thank you very much.</div><div><span><p dir=3D=
+"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span sty=
+le=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tr=
+ansparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertic=
+al-align:baseline;white-space:pre-wrap">Nate</span></p><br></span></div></d=
+iv>
+
+--000000000000ae924d05a957fcb3--
 
 
---===============6800144411979076217==
+--===============7093833026660092425==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -337,5 +362,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6800144411979076217==--
+--===============7093833026660092425==--
 
