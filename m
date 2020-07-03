@@ -2,52 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E5572132B3
-	for <lists+usrp-users@lfdr.de>; Fri,  3 Jul 2020 06:22:38 +0200 (CEST)
-Received: from [::1] (port=41014 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C7D9213598
+	for <lists+usrp-users@lfdr.de>; Fri,  3 Jul 2020 09:59:56 +0200 (CEST)
+Received: from [::1] (port=42822 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jrDDe-0007Y8-Tr; Fri, 03 Jul 2020 00:22:34 -0400
-Received: from mail-wr1-f47.google.com ([209.85.221.47]:40587)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <h.talaiee@gmail.com>) id 1jrDDb-0007Tn-Cc
- for usrp-users@lists.ettus.com; Fri, 03 Jul 2020 00:22:31 -0400
-Received: by mail-wr1-f47.google.com with SMTP id f2so3117571wrp.7
- for <usrp-users@lists.ettus.com>; Thu, 02 Jul 2020 21:22:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=O1UNxDaeC1tdZGNeyxjQelcoJ1D281fwW0WQ0NAJpPE=;
- b=Rxs+yXSG9spDeyhhHpAGS21KzlYfKygeHY9fN1JkDcjRq37na5svWnXmss5dHJuYW4
- g9nW0aez9e+pQnFgrjJEQTGRdb3vbHOqm8r2+DvK5Sga9Ril/NkCilQrQxhXhnF9w2eC
- x0Ui0702kTox3CmAsKleC9Ppg5bq1hvMmTO8UuDJd8qJbrC9za61Kl3tNxc7v9+MEPlp
- /nsNRVJQCpUWRekpAiyPAHuTouBAgLPf6BMVLpo+RdRToGTEzSaKMTZhQYDrVI+0BO1n
- WxlrfYjQnUFdDONcSek+YzjYKB7ro/wSbqUFUQ1ZL/4YO2bhGV3TKQ+OjT0ki9DTy2gp
- FWGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=O1UNxDaeC1tdZGNeyxjQelcoJ1D281fwW0WQ0NAJpPE=;
- b=q5PZ653N9fRNKYiUP1+8f6pHHW+E3C+1usMeB2hlsh6PgG6chRxArw2FKkQlQekZmw
- SdSESAfPEv91yfnEwVwIjH/xGhwNJBVaMwky/SszkcqL/3QKeGBFP4cyQYvcD5UaMzEI
- fP0sJM2RdI8A3YUZGZ2wQTn2BpJT/COBgfygpZzDJO4sni/ephhUyWgTGgiize0ULbGP
- /+G09gx/EFuzxJkI/IFv97B/LwqkNtSZYCDkpzZzyJoBsDzHPgg/JYqgrU8rVUraVAPL
- gVlAM6kmjSkZxzVZec2fmERcbTAKn33/91luYgxHJJzA6Ormi0sB2AKc+IHZN7b2JKbZ
- TOMQ==
-X-Gm-Message-State: AOAM530IJ+6y7SvR+6Jbw0wAnjIommg+Ik4/uQNvUCB7a5aYd3mxFyb4
- DqkFGAwbAutdqjakAzqQXc7MJV05oPZUgvbZKZI=
-X-Google-Smtp-Source: ABdhPJx3+7X+mcN0/dOpjBRN96f9Utw/nb7N7B4ahWF8ExrkvL6mexuca+Q4bvzebPSWCJ6ZhDi1rSuScBg75ibNYLY=
-X-Received: by 2002:adf:e944:: with SMTP id m4mr35337953wrn.252.1593750110370; 
- Thu, 02 Jul 2020 21:21:50 -0700 (PDT)
+	id 1jrGbv-000276-CO; Fri, 03 Jul 2020 03:59:51 -0400
+Received: from smtpsalv.cc.upv.es ([158.42.249.11]:43812 helo=smtpsalv.upv.es)
+ by mm2.emwd.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.93)
+ (envelope-from <serpastu@iteam.upv.es>) id 1jrGbq-00021n-LU
+ for usrp-users@lists.ettus.com; Fri, 03 Jul 2020 03:59:46 -0400
+Received: from smtpx.upv.es (smtpxr.cc.upv.es [158.42.249.47])
+ by smtpsalv.upv.es (8.14.7/8.14.7) with ESMTP id 0637x55h015956
+ (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+ for <usrp-users@lists.ettus.com>; Fri, 3 Jul 2020 09:59:05 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=upv.es; s=default;
+ t=1593763145; bh=hZFUPCwNxSdVIN7ndpFYs5J+i5b6lKbwD4SwhH7lyIc=;
+ h=Date:From:To:Subject:From;
+ b=X4+wsH7lJcbZ2grmj/eP4Qqa5dKU5+eCA7l8QRB7oS2XZn7rMJBnSiPPf0gpHyttX
+ HxkSHzjzTkgnhqGx6zcIFcy64RIWxbvek4mmKM74RM3kUO27/Z5yPVzf06gi5pQYmD
+ MmqFgF21v6/2c0ohSgIOjvUi2Y+6IiwDNItrIde6GqkNQps87ORgjJdikGQCi0jeXP
+ J2apjnBQa1imrcZpL0tgBCjsCRNz/gK8SMMG+ixZ78zLjFNfTDjIuW2n9BgMVu7jPl
+ +pJpDyFFOXNGJNsfIMA6mizwFoMzA4rI8iWUO833WpxdeqjRdE298QX0BfsD72tk2V
+ rC6JWunu/tpOw==
+Received: from smtp.upv.es (smtpv.cc.upv.es [158.42.249.16])
+ by smtpx.upv.es (8.14.7/8.14.7) with ESMTP id 0637x4gi012478
+ for <usrp-users@lists.ettus.com>; Fri, 3 Jul 2020 09:59:04 +0200
+Received: from wm1.cc.upv.es (wm1.cc.upv.es [158.42.249.56])
+ by smtp.upv.es (8.14.7/8.14.7) with ESMTP id 0637x4jd022422
+ (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <usrp-users@lists.ettus.com>; Fri, 3 Jul 2020 09:59:04 +0200
+Received: from wm1.cc.upv.es (localhost [127.0.0.1])
+ by wm1.cc.upv.es (8.14.7/8.14.7) with ESMTP id 0637x48x025713
+ for <usrp-users@lists.ettus.com>; Fri, 3 Jul 2020 09:59:04 +0200
+Received: (from apache@localhost)
+ by wm1.cc.upv.es (8.14.7/8.14.7/Submit) id 0637x41Q025712
+ for usrp-users@lists.ettus.com.; Fri, 3 Jul 2020 09:59:04 +0200
+Received: from mcgserv5g-101.iteam.upv.es (mcgserv5g-101.iteam.upv.es
+ [158.42.160.229]) by webmail.upv.es (Horde Framework) with HTTPS; Fri, 03
+ Jul 2020 09:59:04 +0200
+Date: Fri, 03 Jul 2020 09:59:04 +0200
+Message-ID: <20200703095904.Horde.iAuX8M_LHMbOYWQ8OEr4SQt@webmail.upv.es>
+To: usrp-users@lists.ettus.com
+User-Agent: Horde Application Framework 5
 MIME-Version: 1.0
-References: <CAAiBEBTMR=Y1H3o3aMEy9cq6Y0OA21ua7xJvXaDRk-uQgdZGsQ@mail.gmail.com>
- <CAE0dfYZ5QSKAXX=x52K+uqcV7WeB9PxNS=kqja_e+ZRFUXxuyg@mail.gmail.com>
-In-Reply-To: <CAE0dfYZ5QSKAXX=x52K+uqcV7WeB9PxNS=kqja_e+ZRFUXxuyg@mail.gmail.com>
-Date: Fri, 3 Jul 2020 08:51:40 +0430
-Message-ID: <CAAiBEBQNbTry5ax=psXdqNyEsXHDdOS--tUkXRiKiYDiwuthJw@mail.gmail.com>
-To: Alex Humberstone <alex.m.humberstone@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Melbourne Users
+Content-Disposition: inline
+Subject: [USRP-users] USRP N321 GPIO
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,9 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: hossein talaiee via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: hossein talaiee <h.talaiee@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7651130968438295434=="
+From: Sergio Pastor Tur via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sergio Pastor Tur <serpastu@iteam.upv.es>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="Yes"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,121 +77,87 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7651130968438295434==
-Content-Type: multipart/alternative; boundary="000000000000307f2805a981dd14"
 
---000000000000307f2805a981dd14
-Content-Type: text/plain; charset="UTF-8"
-
-Yes, Melbourne Australia
-
-On Thu, Jul 2, 2020 at 9:29 AM Alex Humberstone <
-alex.m.humberstone@gmail.com> wrote:
-
-> You mean Melbourne, Australia?
-> What exactly are you looking for?
-> If you're asking about the community, there's an SDR group meetup there:
-> https://www.meetup.com/en-AU/Cyberspectrum-Melbourne
-> They been running for like 4 years, and the videos are recorded.
-> The content and good speakers are pretty good.
->
->
-> On Mon, 29 Jun 2020 at 05:20, hossein talaiee via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hi,
->>
->> I there anyone from Melbourne ?
->>
->> Best Regards
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
->
-> --
-> Sincerely,
-> Alex-M-Humberstone
-> PhD Student
-> Klipsch School of Electrical Engineering
-> New Mexico State University
-> Las Cruces, New Mexico
->
->
-
---000000000000307f2805a981dd14
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
-ans-serif">Yes, Melbourne=20
-Australia
-
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Thu, Jul 2, 2020 at 9:29 AM Alex Humberstone &lt;<a href=3D"mailto=
-:alex.m.humberstone@gmail.com">alex.m.humberstone@gmail.com</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
-><div class=3D"gmail_default" style=3D"font-family:monospace;font-size:larg=
-e">You mean Melbourne, Australia?</div><div class=3D"gmail_default" style=
-=3D"font-family:monospace;font-size:large">What exactly are you looking for=
-?</div><div class=3D"gmail_default" style=3D"font-family:monospace;font-siz=
-e:large">If you&#39;re asking about the community, there&#39;s an SDR group=
- meetup there:</div><div class=3D"gmail_default" style=3D"font-family:monos=
-pace;font-size:large"><a href=3D"https://www.meetup.com/en-AU/Cyberspectrum=
--Melbourne" target=3D"_blank">https://www.meetup.com/en-AU/Cyberspectrum-Me=
-lbourne</a></div><div class=3D"gmail_default" style=3D"font-family:monospac=
-e;font-size:large">They been running for like 4 years, and the videos are r=
-ecorded.</div><div class=3D"gmail_default" style=3D"font-family:monospace;f=
-ont-size:large">The content and good speakers are pretty good.<br></div><di=
-v class=3D"gmail_default" style=3D"font-family:monospace;font-size:large"><=
-br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
-il_attr">On Mon, 29 Jun 2020 at 05:20, hossein talaiee via USRP-users &lt;<=
-a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@l=
-ists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex">Hi,<br>
-<br>
-I there anyone from Melbourne ?<br>
-<br>
-Best Regards<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr"><div dir=
-=3D"ltr"><font size=3D"4"><span style=3D"font-family:monospace">Sincerely,<=
-br></span></font><div><font size=3D"4"><span style=3D"font-family:monospace=
-">Alex-M-Humberstone</span></font></div><div><font size=3D"4"><span style=
-=3D"font-family:monospace">PhD Student</span></font></div><div><font size=
-=3D"4"><span style=3D"font-family:monospace">Klipsch School of Electrical E=
-ngineering<br></span></font></div><div><font size=3D"4"><span style=3D"font=
--family:monospace">New Mexico State University<br><span><span>Las Cruces, <=
-/span></span>New Mexico</span></font></div><div><font size=3D"4"><span styl=
-e=3D"font-family:monospace"><br></span></font></div><div><font size=3D"4"><=
-span style=3D"font-family:monospace"></span></font></div></div></div>
-</blockquote></div>
-
---000000000000307f2805a981dd14--
+Hi!
 
 
---===============7651130968438295434==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+
+We are deploying a 5G network using open source platform called  
+"Openairinterface" (oai) and we have found a issue with oai code and  
+usrp model. Specifically , we think the problem is caused because OAI  
+uhd code tries to configure some GPIO pins in other to implement  
+full-duplex transmission but, as you know, USRP N321 don't have GPIO  
+interface. We need to use those pins to run gNB properly.
+
+
+
+Are there any other ways to configure full-duplex mode without GPIO interface?
+
+
+
+Please find additional information below.
+
+
+
+Thank you in advance!
+
+-- 
+
+Sergio Pastor Tur
+
+iTeam Research Institute
+
+
+
+---------------------------------- Additional  
+info---------------------------------------
+
+
+
+Setup description:
+
+Linux 18.04 64 bits running on Supermicro server 32 CPU Cores and 64 GB RAM)
+
+USRP N321
+
+UHD version: UHD_3.14.1.HEAD-0-g0347a6d8 (additional UHD and USRP info  
+attached below)
+
+
+
+
+
+
+
+---------------------------------- OAI UHD Code (full code attached  
+below)---------------------------------------
+
+/*! \brief Called to start the USRP transceiver. Return 0 if OK, < 0 if error
+     @param device pointer to the device structure specific to the RF  
+hardware target
+*/
+static int trx_usrp_start(openair0_device *device) {
+   usrp_state_t *s = (usrp_state_t *)device->priv;
+
+   // setup GPIO for TDD, GPIO(4) = ATR_RX
+   //set data direction register (DDR) to output
+   s->usrp->set_gpio_attr("FP0", "DDR", 0xfff, 0xfff);
+   //set lower 7 bits to be controlled automatically by ATR (the rest  
+5 bits are controlled manually)
+   s->usrp->set_gpio_attr("FP0", "CTRL", 0x7f,0xfff);
+   //set pins 4 (RX_TX_Switch) and 6 (Shutdown PA) to 1 when the radio  
+is only receiving (ATR_RX)
+   s->usrp->set_gpio_attr("FP0", "ATR_RX", (1<<4)|(1<<6), 0x7f);
+   // set pin 5 (Shutdown LNA) to 1 when the radio is transmitting and  
+receiveing (ATR_XX)
+   // (we use full duplex here, because our RX is on all the time -  
+this might need to change later)
+   s->usrp->set_gpio_attr("FP0", "ATR_XX", (1<<5), 0x7f);
+   // set the output pins to 0
+   s->usrp->set_gpio_attr("FP0", "OUT", 7<<7, 0xf80);
+----------------------------------------------------------------------------------------------------------------------------------------
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7651130968438295434==--
-
