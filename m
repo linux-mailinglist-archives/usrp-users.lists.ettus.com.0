@@ -2,59 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFA76213D71
-	for <lists+usrp-users@lfdr.de>; Fri,  3 Jul 2020 18:18:21 +0200 (CEST)
-Received: from [::1] (port=46802 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C13CF2146CD
+	for <lists+usrp-users@lfdr.de>; Sat,  4 Jul 2020 17:11:22 +0200 (CEST)
+Received: from [::1] (port=55778 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jrOOG-0000cv-9F; Fri, 03 Jul 2020 12:18:16 -0400
-Received: from mail-qt1-f176.google.com ([209.85.160.176]:39042)
+	id 1jrjoy-0004c6-5D; Sat, 04 Jul 2020 11:11:16 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:40090)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jrOOB-0000Vt-Tz
- for usrp-users@lists.ettus.com; Fri, 03 Jul 2020 12:18:11 -0400
-Received: by mail-qt1-f176.google.com with SMTP id o38so24239034qtf.6
- for <usrp-users@lists.ettus.com>; Fri, 03 Jul 2020 09:17:51 -0700 (PDT)
+ (Exim 4.93) (envelope-from <david.bengtson@gmail.com>)
+ id 1jrjou-0004YK-8q
+ for usrp-users@lists.ettus.com; Sat, 04 Jul 2020 11:11:12 -0400
+Received: by mail-oi1-f178.google.com with SMTP id t198so16230846oie.7
+ for <usrp-users@lists.ettus.com>; Sat, 04 Jul 2020 08:10:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=24gH1sWfB9dd1sCCpc3NVMRiSB9p7DkexK3GLsspcws=;
- b=Te8Nl/BRWxLghTQ4gyp/f0fQSV/4QQYE0mupEXvYP3MqWkD+oriqUA5UE6EKUgyBY4
- PvixBd1pflVG0h6zoItda0sM1Fv4crNmzF33OQSDr7zPyFr/F8yim8lJHMVAREgnAZju
- Q602Pwtk70tHtHUX8xpKJuR936bN7R/55we+elPVFECDm5wXcU1CX7UXUPjZE+RxLq5o
- 8K8DmjBBD+Heo71DJuAT6fPHODhogFGDOBd2rsvAo51Ta0XTvz8NJ+kvfCf4ewc6xr2U
- qehHeoN1zYDjimxI1GGxEimNaEgCH+kSGkSntzHqeShE7Z+WgnrjCGsifJ2ta7NbUVXv
- 5IoA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=A7sZ5hdon0s3bz4yXmfYFEgUWicnNTL9XKwI/uLFqKo=;
+ b=lHVf0QC26y0xMaz8xpF+OFrrStcjbWAUpgxD/HzalV7mu88WGc4YbjNojKs7Qua1X2
+ bs0BcAGiIFmEXsyFEUPFHfkCTaqed4qC8GYhip7MNFDeWjPTLLd6nBaOvvY+4T+nw8mk
+ FmAqs5l1lE7nK9yys4Tn5Z0jn+iJgfU5nZIS8Bav2yiYO0u9ZiKrglG1UPWOMYvnDQoa
+ 2f3ORFI5z6RRfWysWbtbLTD1mnKRYgOvsnlWdqe98UVG7NNa+f4JYHmxmiZHq+r1LGFm
+ fJ+35kDTS0J5BTmj9ZyUAJ3HSiNHXFnqg8/ZkZu8kFRj+TwWl0JV2G/10VZTZ/CZIFHr
+ 78hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=24gH1sWfB9dd1sCCpc3NVMRiSB9p7DkexK3GLsspcws=;
- b=HSp+OBayWIcK7rMfoU+dkF4y62jXPOugXibJo27505SJL3CgbHLgRfNv35ufRZpnAP
- noNsK/2Q1XaFqzfwU/H/LXqS+VXX8jkzg6xpLmL6fk96ugNyHjwrB96R+M33rQLeMB1Y
- qtO6cDHt9RCon5V+rSl8hR8R78JkVDPP0xkdYZe+iPkDCT6t3O8KrKlII+wcdlIAk2Hz
- PYO9asqZwSkDG4f1aAT2qhJ+Efq/wRuTXjWYw+PaBWU1SnnPwH/1d1O6FsM1uNjUfQqK
- qDLDJ3PONJ0QN6j350vDmSU0aYmds9e9kZi3Hqzttu11FxJ0KD0Z7tgAOcdaYwpayoiK
- SNzw==
-X-Gm-Message-State: AOAM530Y1NnNkTZTZWGg70L2b7ovjVHeieoy6uLVbCY5g6kRHJloajHi
- Pv8pw3EsOuZrXZt/kkPVbTTFLWfk
-X-Google-Smtp-Source: ABdhPJy5nfbb1KcUL+6XJu+CouGhY+DZfa9ouN5h2bT7RiJS2gKxmCYQmolEk9/0WH9Sbv74/ieXNQ==
-X-Received: by 2002:ac8:1a0f:: with SMTP id v15mr37779754qtj.136.1593793051213; 
- Fri, 03 Jul 2020 09:17:31 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id r2sm10985522qtn.27.2020.07.03.09.17.30
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 03 Jul 2020 09:17:30 -0700 (PDT)
-Message-ID: <5EFF5A19.3090906@gmail.com>
-Date: Fri, 03 Jul 2020 12:17:29 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=A7sZ5hdon0s3bz4yXmfYFEgUWicnNTL9XKwI/uLFqKo=;
+ b=isdE176pJkME6y2BUrnlSkvcH+bcOMlyWmMIa9kDZOjDZTNUhXb5cHGZbn2Hb9NZuR
+ cZjQL0nvQM7/bx+8cVQMZ4cPDmxz14tEi+cR24pxomNQYQT03HqMXGDpjbOQVSqMJ0wm
+ neSPt+G0FPEWZ9Hb3KquX32eV1lI+IdY3+N2uC8D5F7uaOloKAhMNoWgS7yxy9MeBEd4
+ hUmnKslf7WqFuotqJ+cKW1wuoq5xDcEImYQ6RI0Bj1ZHpS00MgajbP2EvTPI1Yr0mtfz
+ i6zmcuSxh3gPmODAmIiiQ0RxEYvy+ldlbsFZPnsox7xtzghaj4ShgOsUfSeQ3lZ9O4HP
+ EQAw==
+X-Gm-Message-State: AOAM532QbttbK1HB/eI4MRT4DlTgBIxD54gKWVUnPhHShEPpky2VsP0o
+ PLNjF3ckwiHUCUDAh0mzpu5Ojwd20PkM/zf3Gug=
+X-Google-Smtp-Source: ABdhPJxcmeryk0tClMR4dqUM3PV+qSidH+dPHf/fmVlppNo6vBWZ37ivFPRQ0nqHcNY0AO2YRbhMd5nrMQKGQp5FRg0=
+X-Received: by 2002:aca:5703:: with SMTP id l3mr12871311oib.43.1593875431454; 
+ Sat, 04 Jul 2020 08:10:31 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <CAE0dfYYGNGZqh0YQPvmk1XfXY323Z93MmESUX9vJyTt79GrNYA@mail.gmail.com>
-In-Reply-To: <CAE0dfYYGNGZqh0YQPvmk1XfXY323Z93MmESUX9vJyTt79GrNYA@mail.gmail.com>
-Subject: Re: [USRP-users] How to use a Ham It Up with the USRP B210
+References: <SN6PR09MB3726D7D87F81583127681C3FEC980@SN6PR09MB3726.namprd09.prod.outlook.com>
+ <CAE0dfYZz1vrKBZ26jyaaV3LkC+gk1mTZ2uJHdmP3-HZQ6TuV+Q@mail.gmail.com>
+ <CAE0dfYadQpuFXYhkOaWbsq8+UdS8U+btPTqnP04m1e6kCrSdOw@mail.gmail.com>
+In-Reply-To: <CAE0dfYadQpuFXYhkOaWbsq8+UdS8U+btPTqnP04m1e6kCrSdOw@mail.gmail.com>
+Date: Sat, 4 Jul 2020 11:10:14 -0400
+Message-ID: <CAN=AL9O3dsbPS=pkyH_Y63OjPaTWeyc-KROCLTo=KBYNDewQxA@mail.gmail.com>
+To: Alex Humberstone <alex.m.humberstone@gmail.com>
+Subject: Re: [USRP-users] 2021 IEEE Aerospace Conference
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +61,12 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3664155163112784073=="
+From: David Bengtson via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: David Bengtson <david.bengtson@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
+ "discuss-gnuradio@gnu.org" <discuss-gnuradio@gnu.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,134 +80,51 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============3664155163112784073==
-Content-Type: multipart/alternative;
- boundary="------------050601010105050400090401"
-
-This is a multi-part message in MIME format.
---------------050601010105050400090401
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 07/03/2020 12:03 PM, Alex Humberstone via USRP-users wrote:
-> Just a quick and basic question. I want to receive down at like 
-> between 1MHz and 10MHz. I have a USRP B210. I knwo that the USRP B210 
-> only goes down to 70MHz. So I bought a Ham It Up 
-> (https://www.nooelec.com/store/ham-it-up.html) upconverter to get down 
-> to like 1MHz and 3 MHz. So how does this all work? Does the Ham It Up 
-> upconvert the frequency range from 100KHz to 65MHz up to a center 
-> frequency of 125MHz? So then isn't it true that if I tune the USRP 
-> B210 to 125MHz, I would see my two 1MHz and 3MHz input tones appearing 
-> up at 33.5MHz and 35.5MHz? Just want to clarify this in my mind. 
-> Thanks a LOT for your help everyone!
->
->
->
-> -- 
-> Sincerely,
-> Alex-M-Humberstone
-> PhD Student
-> Klipsch School of Electrical Engineering
-> New Mexico State University
-> Las Cruces, New Mexico
->
->
-Not quite.
-
-An upconverter conceptually *ADDS* the incoming frequency to the LO 
-frequency.  In the case of the HamItUp, the LO frequency is 125Mhz.
-   So, to "see" 1MHz signals, you'd tune the B210 to 125MHz + 1Mhz == 
-126MHz.  For a 20Mhz input signal, 125MHz + 20MHz = 145MHz, etc.
-
-
-
---------------050601010105050400090401
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/03/2020 12:03 PM, Alex
-      Humberstone via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAE0dfYYGNGZqh0YQPvmk1XfXY323Z93MmESUX9vJyTt79GrNYA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_default"
-          style="font-family:monospace;font-size:large">Just a quick and
-          basic question. I want to receive down at like between 1MHz
-          and 10MHz. I have a USRP B210. I knwo that the USRP B210 only
-          goes down to 70MHz. So I bought a Ham It Up (<a
-            moz-do-not-send="true"
-            href="https://www.nooelec.com/store/ham-it-up.html">https://www.nooelec.com/store/ham-it-up.html</a>)
-          upconverter to get down to like 1MHz and 3 MHz. So how does
-          this all work? Does the Ham It Up upconvert the frequency
-          range from 100KHz to 65MHz up to a center frequency of 125MHz?
-          So then isn't it true that if I tune the USRP B210 to 125MHz,
-          I would see my two 1MHz and 3MHz input tones appearing up at
-          33.5MHz and 35.5MHz? Just want to clarify this in my mind.
-          Thanks a LOT for your help everyone!<br>
-        </div>
-        <div class="gmail_default"
-          style="font-family:monospace;font-size:large"><br>
-        </div>
-        <div class="gmail_default"
-          style="font-family:monospace;font-size:large"><br clear="all">
-        </div>
-        <br>
-        -- <br>
-        <div dir="ltr" class="gmail_signature"
-          data-smartmail="gmail_signature">
-          <div dir="ltr"><font size="4"><span
-                style="font-family:monospace">Sincerely,<br>
-              </span></font>
-            <div><font size="4"><span style="font-family:monospace">Alex-M-Humberstone</span></font></div>
-            <div><font size="4"><span style="font-family:monospace">PhD
-                  Student</span></font></div>
-            <div><font size="4"><span style="font-family:monospace">Klipsch
-                  School of Electrical Engineering<br>
-                </span></font></div>
-            <div><font size="4"><span style="font-family:monospace">New
-                  Mexico State University<br>
-                  <span><span>Las Cruces, </span></span>New Mexico</span></font></div>
-            <div><font size="4"><span style="font-family:monospace"><br>
-                </span></font></div>
-            <div><font size="4"><span style="font-family:monospace"></span></font></div>
-          </div>
-        </div>
-      </div>
-      <br>
-    </blockquote>
-    Not quite.<br>
-    <br>
-    An upconverter conceptually *ADDS* the incoming frequency to the LO
-    frequency.  In the case of the HamItUp, the LO frequency is 125Mhz.<br>
-      So, to "see" 1MHz signals, you'd tune the B210 to 125MHz + 1Mhz ==
-    126MHz.  For a 20Mhz input signal, 125MHz + 20MHz = 145MHz, etc.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------050601010105050400090401--
-
-
---===============3664155163112784073==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3664155163112784073==--
-
+MjAyMCBQcm9ncmFtIGh0dHBzOi8vaWVlZS1hZXNzLm9yZy9jb25mZXJlbmNlLzIwMjAtaWVlZS1h
+ZXJvc3BhY2UtY29uZmVyZW5jZS1hZXJvY29uZgoyMDE5IHByb2dyYW0gaHR0cHM6Ly9pZWVlLWFl
+c3Mub3JnL2NvbmZlcmVuY2UvMjAxOS1pZWVlLWFlcm9zcGFjZS1jb25mZXJlbmNlCjIwMTggcHJv
+Z3JhbSBodHRwczovL2llZWUtYWVzcy5vcmcvY29uZmVyZW5jZS8yMDE4LWllZWUtYWVyb3NwYWNl
+LWNvbmZlcmVuY2UKClBlcmhhcHMgdGhpcyBpcyBzdWZmaWNpZW50PwoKT24gVGh1LCBKdW4gMjUs
+IDIwMjAgYXQgNjozNSBQTSBBbGV4IEh1bWJlcnN0b25lCjxhbGV4Lm0uaHVtYmVyc3RvbmVAZ21h
+aWwuY29tPiB3cm90ZToKPgo+IEFueSB1cGRhdGU/Cj4KPiBXb3VsZCBsaWtlIHRvIHNlZSB0aGUg
+cHJvZ3JhbSBmb3IgcGFzdCBjb25mZXJlbmNlcy4uLgo+Cj4KPgo+IE9uIEZyaSwgMTkgSnVuIDIw
+MjAgYXQgMjI6NDQsIEFsZXggSHVtYmVyc3RvbmUgPGFsZXgubS5odW1iZXJzdG9uZUBnbWFpbC5j
+b20+IHdyb3RlOgo+Pgo+PiBFdWdlbmUsIHRoZSBjb25mZXJlbmNlIGxvb2tzIGludGVyZXN0aW5n
+LiBXaGVyZSBjYW4gd2UgZmluZCB0aGUgcHJvZ3JhbSBmb3IgcGFzdCB5ZWFycyB0byBnZXQgYSBm
+ZWVsIGZvciB0aGUgY29uZmVyZW5jZT8gSSBkaWRuJ3Qgc2VlIHRoaXMgb24gdGhlIHdlYnNpdGUu
+IFRoYW5rcy4KPj4KPj4KPj4gT24gRnJpLCAxOSBKdW4gMjAyMCBhdCAxNzowMiwgRXVnZW5lIEdy
+YXl2ZXIgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiB3cm90ZToK
+Pj4+Cj4+PiBIZWxsbywKPj4+Cj4+Pgo+Pj4KPj4+IEkgYW0gY2hhaXJpbmcgdGhlIFNvZnR3YXJl
+IERlZmluZWQgYW5kIENvZ25pdGl2ZSBSYWRpbyBzZXNzaW9uIGF0IHRoZSB1cGNvbWluZyBJRUVF
+IEFlcm9zcGFjZSBDb25mZXJlbmNlIChodHRwOi8vd3d3LmFlcm9jb25mLm9yZykuICBUaGlzIGxh
+cmdlIGNvbmZlcmVuY2Ugd2lsbCB0YWtlIHBsYWNlIE1hcmNoIDYtMTMsIDIwMjEgaW4gQmlnIFNr
+eSwgTW9udGFuYS4gIFRoZSBjb25mZXJlbmNlIHByb3ZpZGVzIGEgd29ybGQtY2xhc3MgdGVjaG5p
+Y2FsIHByb2dyYW0gYW5kIHByb3ZpZGVzIGV4Y2VsbGVudCBvcHBvcnR1bml0aWVzIGZvciBib3Ro
+IG5ldHdvcmtpbmcgYW5kIHJlY3JlYXRpb24uIFRoaXMgaXMgb25lIG9mIHRoZSBmZXcgY29uZmVy
+ZW5jZXMgd2hlcmUgU0RSIGNhbiBiZSBwdXQgaW4gdGhlIGNvbnRleHQgb2YgYSBjb21wbGV0ZSBz
+eXN0ZW0gYW5kIGNhbiBiZSBhcHBsaWVkIHRvIG5ldyBtaXNzaW9ucyBhbmQgY29uY2VwdHMgb2Yg
+b3BlcmF0aW9ucy4KPj4+Cj4+Pgo+Pj4KPj4+IExhc3QgeWVhciB0aGVyZSB3ZXJlIGEgZmV3IHBh
+cGVycyBkZWFsaW5nIHdpdGggYXBwbGljYXRpb24gb2YgbWFjaGluZS9kZWVwIGxlYXJuaW5nIHRv
+IHJhZGlvIGRlc2lnbi4gIEkgaG9wZSB0byBzZWUgZXZlbiBtb3JlIG5leHQgeWVhciEKPj4+Cj4+
+PiBBYnN0cmFjdHMgYXJlIGR1ZSBzb29uLCBidXQgSSBjYW4gdGFrZSB0aGVtIGEgYml0IGxhdGVy
+IGFzIHdlbGwsIHdoaWxlIHRoZSBmdWxsIHBhcGVyIGlzIGR1ZSBlbmQgb2YgT2N0b2Jlci4gIFRo
+aXMgc2Vzc2lvbiB3aWxsIGZvY3VzIG9uIGZsZXhpYmxlIHJhZGlvIGFyY2hpdGVjdHVyZXMsIGlu
+Y2x1ZGluZyB0aGUgdXNlIG9mIEdQUHMsIEdQVXMsICBhbmQgRlBHQXMuICBSZXBvcnRzIG9mIGV4
+aXN0aW5nIHN5c3RlbXMgYW5kIHRlc3RiZWRzIGFyZSBvZiBzaWduaWZpY2FudCBpbnRlcmVzdC4g
+IFRoaXMgeWVhciBJ4oCZZCBsaWtlIHRvIGludHJvZHVjZSB3b3JrIHJlbGF0ZWQgdG8gbWFjaGlu
+ZSBsZWFybmluZyBhcyBhcHBsaWVkIHRvIHdpcmVsZXNzIGNvbW11bmljYXRpb25zLgo+Pj4KPj4+
+Cj4+Pgo+Pj4gUGxlYXNlIGZvcndhcmQgdGhpcyB0byB5b3VyIGNvbGxlYWd1ZXMgd29ya2luZyBp
+biB0aGUgYXJlYXMgb2YgU0RSIGFuZCBjb2duaXRpdmUgcmFkaW8uCj4+Pgo+Pj4KPj4+IFJlZ2Fy
+ZHMsCj4+Pgo+Pj4gRXVnZW5lLgo+Pj4KPj4+Cj4+Pgo+Pj4gX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4+
+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+Pj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9t
+YWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4+Cj4+Cj4+Cj4+IC0t
+Cj4+IFNpbmNlcmVseSwKPj4gQWxleC1NLUh1bWJlcnN0b25lCj4+IFBoRCBTdHVkZW50Cj4+IEts
+aXBzY2ggU2Nob29sIG9mIEVsZWN0cmljYWwgRW5naW5lZXJpbmcKPj4gTmV3IE1leGljbyBTdGF0
+ZSBVbml2ZXJzaXR5Cj4+IExhcyBDcnVjZXMsIE5ldyBNZXhpY28KPj4KPgo+Cj4gLS0KPiBTaW5j
+ZXJlbHksCj4gQWxleC1NLUh1bWJlcnN0b25lCj4gUGhEIFN0dWRlbnQKPiBLbGlwc2NoIFNjaG9v
+bCBvZiBFbGVjdHJpY2FsIEVuZ2luZWVyaW5nCj4gTmV3IE1leGljbyBTdGF0ZSBVbml2ZXJzaXR5
+Cj4gTGFzIENydWNlcywgTmV3IE1leGljbwo+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNy
+cC11c2Vyc19saXN0cy5ldHR1cy5jb20K
