@@ -2,55 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EF4E214C6A
-	for <lists+usrp-users@lfdr.de>; Sun,  5 Jul 2020 14:31:13 +0200 (CEST)
-Received: from [::1] (port=36022 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBA70214C6B
+	for <lists+usrp-users@lfdr.de>; Sun,  5 Jul 2020 14:32:19 +0200 (CEST)
+Received: from [::1] (port=36044 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1js3nW-0007Ba-Tr; Sun, 05 Jul 2020 08:31:06 -0400
-Received: from mail-ej1-f50.google.com ([209.85.218.50]:36806)
+	id 1js3og-0007WG-8N; Sun, 05 Jul 2020 08:32:18 -0400
+Received: from mail-ed1-f53.google.com ([209.85.208.53]:35951)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <alex.m.humberstone@gmail.com>)
- id 1js3nT-00076Z-C7
- for usrp-users@lists.ettus.com; Sun, 05 Jul 2020 08:31:03 -0400
-Received: by mail-ej1-f50.google.com with SMTP id dr13so39572246ejc.3
- for <usrp-users@lists.ettus.com>; Sun, 05 Jul 2020 05:30:43 -0700 (PDT)
+ id 1js3ob-0007Ms-Lr
+ for usrp-users@lists.ettus.com; Sun, 05 Jul 2020 08:32:13 -0400
+Received: by mail-ed1-f53.google.com with SMTP id dg28so32162310edb.3
+ for <usrp-users@lists.ettus.com>; Sun, 05 Jul 2020 05:31:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=s/6g3/huq4RkQoHYzmSJ4SgUkjCwN4Lsr0EpSAk9bCQ=;
- b=kOnVVjflx+rOthU2KASgBcufplPowvYjaX4KMjunCYbnrhNM9OyMT12AEgFTJ/MVr3
- YyUWYoCNm5cUChllV1zMKweN5a1Xe7RWNVsa/YCYmljdev9tqFHlxrmv1fMckXd+OnWz
- eq/3gjFdYm78QHTVRMu0lQ93XCGwhMAF+yD2xfBmrUQnFX5aAKTvS1DGKdLM8WD+fTfd
- GdzZCPv4+WSB4QiEiIS8fdsA0+5z8EW4RJHoOdgTyByHuw89MhxEv/evF0M9WcLE6VwH
- jFgRdyepweWPcJEi1IkUKw8tSEPbNwgzYH17bNMBRqFHrt6lYCBrzK/q9EDqNbzahgWk
- VEig==
+ :cc; bh=OsksFrWe9fQPq+fbWGdr+W73kUeS6u2Ed+3UeIIFK4I=;
+ b=eItu2pvm1LjhBhvhgkNrtsswBFq6gqoSkPgLEsYRi0lbgNdnUll335E/B1hQ6X50gY
+ UQjuAZQWiyRFKVp8YBoySsecZRzrpUvnmefJNimnMq+v83Rxyqo0WHiT/0VHfaqndMZD
+ gC4nGZK2NhXU+sAnDUp4NGiKgx6NlMQ8I5WnHKNzt9XQxJLvB3rwyRiaEFKfRw0I4veK
+ DPk5VQK8sUySMo8KhB/WhOLFPmHyM+J5QqQZJxjUOzLMRD28h1lWYE2Ufm6HF9fziUCP
+ 2uhgSQLp1aj3tlxaHqM2T6Kli472bfUi5V767m/iYU7/4FlpHxS4bVEWzCh0oVVEB9Bt
+ j5rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=s/6g3/huq4RkQoHYzmSJ4SgUkjCwN4Lsr0EpSAk9bCQ=;
- b=Jo8PpyxpYZ017EnfkBa74tLVpZdP/Nl4MCe4+XeFxj51g9rVeBsYjtlnyp0lzk8/Tx
- e3E6gCuk0vzlQ/upyw8rRnT9EJ9UnDhpny0LrrA4RicFEvjQ5c2Mp++oWjolFTQPN8il
- oXtsvVw01kz88oAGWzlMfgkmIQjv/Sj+mk7blWXlk6PNtellsaN/2pnh1kO8x4g0vdhs
- ziFDMHEpMqNO+rixPoV4LL/oFZVgbQn/RofWXdcDApwov+bGbb6GJK6XNGDtEtr3Hhnc
- EaNTQBOBhPt9Bl4/Jo/U0m5Z+oyZSG/dpcWQDrxrfavllTbpin2qjw8RamN3UimYLgrZ
- 9/Jg==
-X-Gm-Message-State: AOAM530QuFiWctax5HpztNBNsTrSQO2In/7kBd6u0WR7HOjK8anDFtzN
- DdHtPIF5esRRXvgIsAjHVCpHsoGPlcU5H+L9of0=
-X-Google-Smtp-Source: ABdhPJzF0R8BQSsqmWVbncCH81ePIch6pS2N/GlyH2hRq5qQauPHr3bZj7loXvur5MxY+CQiVqHC01tSYu4A29Bt6gk=
-X-Received: by 2002:a17:906:1455:: with SMTP id
- q21mr22943598ejc.139.1593952222229; 
- Sun, 05 Jul 2020 05:30:22 -0700 (PDT)
+ bh=OsksFrWe9fQPq+fbWGdr+W73kUeS6u2Ed+3UeIIFK4I=;
+ b=YqGRX5Ozf7DNj3eAvJJDb2Qe9E+IwTMQGZwD7liL/kT2CYF3Xe85rsXHug5PySAPms
+ kdLlM0+6aXHbxRqI0/UxyTRmvG8A8aFKlwliZZFwfhURlT+JrWJep541RpM12kTaCiBh
+ qJHPDhUXdN7V9f0qPfTU/gzN/lzumpcgF8tqUhlZjKu5x0uYKpTS47r7OS5JeACV1hhB
+ wu14mkajJ17PqEizzd5RtwLsV7o5UX1HtQ0YNYIBR2xePC0arFLeH2e8KOLOYWY4Kr6w
+ nEmIMv1vjYV83+InPPDJXWA5M/gqbofhc2PQOUa1aN8QsHBssisWGCV+e6wJ92b37Ywa
+ TvAA==
+X-Gm-Message-State: AOAM531s9MwI5JcQ/OJcQLZJUga0uyIHPl/QmMO3NtI6FO7/6H94Z+bm
+ mHUoGoI9G9Nsj7qTLuQ8MSbdXvPE6l+004bMcEM=
+X-Google-Smtp-Source: ABdhPJy2rVYSi3LeAByb8ets0ll+Nt/YFQldHb1ZVmw2JVe0e9gH1mtVJXQ7oYeIi8g6pe1Ei7VZLaQlNiY6WnMPUtE=
+X-Received: by 2002:a05:6402:2065:: with SMTP id
+ bd5mr45753565edb.67.1593952292791; 
+ Sun, 05 Jul 2020 05:31:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <SN6PR09MB3726D7D87F81583127681C3FEC980@SN6PR09MB3726.namprd09.prod.outlook.com>
- <CAE0dfYZz1vrKBZ26jyaaV3LkC+gk1mTZ2uJHdmP3-HZQ6TuV+Q@mail.gmail.com>
- <CAE0dfYadQpuFXYhkOaWbsq8+UdS8U+btPTqnP04m1e6kCrSdOw@mail.gmail.com>
- <CAN=AL9O3dsbPS=pkyH_Y63OjPaTWeyc-KROCLTo=KBYNDewQxA@mail.gmail.com>
-In-Reply-To: <CAN=AL9O3dsbPS=pkyH_Y63OjPaTWeyc-KROCLTo=KBYNDewQxA@mail.gmail.com>
-Date: Sun, 5 Jul 2020 07:29:46 -0500
-Message-ID: <CAE0dfYZZfDG2mYMouM=DXQwbUMkjJWTgvVHEBhHotasMsA67PA@mail.gmail.com>
-To: David Bengtson <david.bengtson@gmail.com>
-Subject: Re: [USRP-users] 2021 IEEE Aerospace Conference
+References: <CAE0dfYYGNGZqh0YQPvmk1XfXY323Z93MmESUX9vJyTt79GrNYA@mail.gmail.com>
+ <5EFF5A19.3090906@gmail.com>
+In-Reply-To: <5EFF5A19.3090906@gmail.com>
+Date: Sun, 5 Jul 2020 07:30:56 -0500
+Message-ID: <CAE0dfYaZHrJhYHdjDPw_HOpunNNUkhZD9gkg3OmA_JNz1REifA@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] How to use a Ham It Up with the USRP B210
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -64,9 +63,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Alex Humberstone via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Alex Humberstone <alex.m.humberstone@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
- "discuss-gnuradio@gnu.org" <discuss-gnuradio@gnu.org>
-Content-Type: multipart/mixed; boundary="===============1625027714930638542=="
+Content-Type: multipart/mixed; boundary="===============6104309046756624241=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,121 +77,59 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1625027714930638542==
-Content-Type: multipart/alternative; boundary="000000000000feb8e505a9b0eb4f"
+--===============6104309046756624241==
+Content-Type: multipart/alternative; boundary="00000000000033672705a9b0f08c"
 
---000000000000feb8e505a9b0eb4f
+--00000000000033672705a9b0f08c
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Thank you David!
+Thank you very much Marcus!
+Really appreciate the help!
 
 
-On Sat, 4 Jul 2020 at 10:10, David Bengtson <david.bengtson@gmail.com>
-wrote:
+On Fri, 3 Jul 2020 at 11:18, Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-> 2020 Program
-> https://ieee-aess.org/conference/2020-ieee-aerospace-conference-aeroconf
-> 2019 program
-> https://ieee-aess.org/conference/2019-ieee-aerospace-conference
-> 2018 program
-> https://ieee-aess.org/conference/2018-ieee-aerospace-conference
+> On 07/03/2020 12:03 PM, Alex Humberstone via USRP-users wrote:
 >
-> Perhaps this is sufficient?
+> Just a quick and basic question. I want to receive down at like between
+> 1MHz and 10MHz. I have a USRP B210. I knwo that the USRP B210 only goes
+> down to 70MHz. So I bought a Ham It Up (
+> https://www.nooelec.com/store/ham-it-up.html) upconverter to get down to
+> like 1MHz and 3 MHz. So how does this all work? Does the Ham It Up
+> upconvert the frequency range from 100KHz to 65MHz up to a center frequency
+> of 125MHz? So then isn't it true that if I tune the USRP B210 to 125MHz, I
+> would see my two 1MHz and 3MHz input tones appearing up at 33.5MHz and
+> 35.5MHz? Just want to clarify this in my mind. Thanks a LOT for your help
+> everyone!
 >
-> On Thu, Jun 25, 2020 at 6:35 PM Alex Humberstone
-> <alex.m.humberstone@gmail.com> wrote:
-> >
-> > Any update?
-> >
-> > Would like to see the program for past conferences...
-> >
-> >
-> >
-> > On Fri, 19 Jun 2020 at 22:44, Alex Humberstone <
-> alex.m.humberstone@gmail.com> wrote:
-> >>
-> >> Eugene, the conference looks interesting. Where can we find the progra=
-m
-> for past years to get a feel for the conference? I didn't see this on the
-> website. Thanks.
-> >>
-> >>
-> >> On Fri, 19 Jun 2020 at 17:02, Eugene Grayver via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
-> >>>
-> >>> Hello,
-> >>>
-> >>>
-> >>>
-> >>> I am chairing the Software Defined and Cognitive Radio session at the
-> upcoming IEEE Aerospace Conference (http://www.aeroconf.org).  This large
-> conference will take place March 6-13, 2021 in Big Sky, Montana.  The
-> conference provides a world-class technical program and provides excellen=
-t
-> opportunities for both networking and recreation. This is one of the few
-> conferences where SDR can be put in the context of a complete system and
-> can be applied to new missions and concepts of operations.
-> >>>
-> >>>
-> >>>
-> >>> Last year there were a few papers dealing with application of
-> machine/deep learning to radio design.  I hope to see even more next year=
-!
-> >>>
-> >>> Abstracts are due soon, but I can take them a bit later as well, whil=
-e
-> the full paper is due end of October.  This session will focus on flexibl=
-e
-> radio architectures, including the use of GPPs, GPUs,  and FPGAs.  Report=
-s
-> of existing systems and testbeds are of significant interest.  This year
-> I=E2=80=99d like to introduce work related to machine learning as applied=
- to
-> wireless communications.
-> >>>
-> >>>
-> >>>
-> >>> Please forward this to your colleagues working in the areas of SDR an=
-d
-> cognitive radio.
-> >>>
-> >>>
-> >>> Regards,
-> >>>
-> >>> Eugene.
-> >>>
-> >>>
-> >>>
-> >>> _______________________________________________
-> >>> USRP-users mailing list
-> >>> USRP-users@lists.ettus.com
-> >>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >>
-> >>
-> >>
-> >> --
-> >> Sincerely,
-> >> Alex-M-Humberstone
-> >> PhD Student
-> >> Klipsch School of Electrical Engineering
-> >> New Mexico State University
-> >> Las Cruces, New Mexico
-> >>
-> >
-> >
-> > --
-> > Sincerely,
-> > Alex-M-Humberstone
-> > PhD Student
-> > Klipsch School of Electrical Engineering
-> > New Mexico State University
-> > Las Cruces, New Mexico
-> >
+>
+>
+> --
+> Sincerely,
+> Alex-M-Humberstone
+> PhD Student
+> Klipsch School of Electrical Engineering
+> New Mexico State University
+> Las Cruces, New Mexico
+>
+>
+> Not quite.
+>
+> An upconverter conceptually *ADDS* the incoming frequency to the LO
+> frequency.  In the case of the HamItUp, the LO frequency is 125Mhz.
+>   So, to "see" 1MHz signals, you'd tune the B210 to 125MHz + 1Mhz ==
+> 126MHz.  For a 20Mhz input signal, 125MHz + 20MHz = 145MHz, etc.
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
 
---=20
+-- 
 Sincerely,
 Alex-M-Humberstone
 PhD Student
@@ -202,119 +137,98 @@ Klipsch School of Electrical Engineering
 New Mexico State University
 Las Cruces, New Mexico
 
---000000000000feb8e505a9b0eb4f
+--00000000000033672705a9b0f08c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:monospac=
-e;font-size:large">Thank you David!</div><div class=3D"gmail_default" style=
-=3D"font-family:monospace;font-size:large"><br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, 4 Jul 2020 a=
-t 10:10, David Bengtson &lt;<a href=3D"mailto:david.bengtson@gmail.com">dav=
-id.bengtson@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex">2020 Program <a href=3D"https://ieee-aess.org/conferen=
-ce/2020-ieee-aerospace-conference-aeroconf" rel=3D"noreferrer" target=3D"_b=
-lank">https://ieee-aess.org/conference/2020-ieee-aerospace-conference-aeroc=
-onf</a><br>
-2019 program <a href=3D"https://ieee-aess.org/conference/2019-ieee-aerospac=
-e-conference" rel=3D"noreferrer" target=3D"_blank">https://ieee-aess.org/co=
-nference/2019-ieee-aerospace-conference</a><br>
-2018 program <a href=3D"https://ieee-aess.org/conference/2018-ieee-aerospac=
-e-conference" rel=3D"noreferrer" target=3D"_blank">https://ieee-aess.org/co=
-nference/2018-ieee-aerospace-conference</a><br>
+e;font-size:large">Thank you very much Marcus!</div><div class=3D"gmail_def=
+ault" style=3D"font-family:monospace;font-size:large">Really appreciate the=
+ help!</div><div class=3D"gmail_default" style=3D"font-family:monospace;fon=
+t-size:large"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Fri, 3 Jul 2020 at 11:18, Marcus D. Leech via US=
+RP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists=
+.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 07/03/2020 12:03 PM, Alex
+      Humberstone via USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_default" style=3D"font-family:monospace;font-si=
+ze:large">Just a quick and
+          basic question. I want to receive down at like between 1MHz
+          and 10MHz. I have a USRP B210. I knwo that the USRP B210 only
+          goes down to 70MHz. So I bought a Ham It Up (<a href=3D"https://w=
+ww.nooelec.com/store/ham-it-up.html" target=3D"_blank">https://www.nooelec.=
+com/store/ham-it-up.html</a>)
+          upconverter to get down to like 1MHz and 3 MHz. So how does
+          this all work? Does the Ham It Up upconvert the frequency
+          range from 100KHz to 65MHz up to a center frequency of 125MHz?
+          So then isn&#39;t it true that if I tune the USRP B210 to 125MHz,
+          I would see my two 1MHz and 3MHz input tones appearing up at
+          33.5MHz and 35.5MHz? Just want to clarify this in my mind.
+          Thanks a LOT for your help everyone!<br>
+        </div>
+        <div class=3D"gmail_default" style=3D"font-family:monospace;font-si=
+ze:large"><br>
+        </div>
+        <div class=3D"gmail_default" style=3D"font-family:monospace;font-si=
+ze:large"><br clear=3D"all">
+        </div>
+        <br>
+        -- <br>
+        <div dir=3D"ltr">
+          <div dir=3D"ltr"><font size=3D"4"><span style=3D"font-family:mono=
+space">Sincerely,<br>
+              </span></font>
+            <div><font size=3D"4"><span style=3D"font-family:monospace">Ale=
+x-M-Humberstone</span></font></div>
+            <div><font size=3D"4"><span style=3D"font-family:monospace">PhD
+                  Student</span></font></div>
+            <div><font size=3D"4"><span style=3D"font-family:monospace">Kli=
+psch
+                  School of Electrical Engineering<br>
+                </span></font></div>
+            <div><font size=3D"4"><span style=3D"font-family:monospace">New
+                  Mexico State University<br>
+                  <span><span>Las Cruces, </span></span>New Mexico</span></=
+font></div>
+            <div><font size=3D"4"><span style=3D"font-family:monospace"><br=
+>
+                </span></font></div>
+            <div><font size=3D"4"><span style=3D"font-family:monospace"></s=
+pan></font></div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </blockquote>
+    Not quite.<br>
+    <br>
+    An upconverter conceptually *ADDS* the incoming frequency to the LO
+    frequency.=C2=A0 In the case of the HamItUp, the LO frequency is 125Mhz=
+.<br>
+    =C2=A0 So, to &quot;see&quot; 1MHz signals, you&#39;d tune the B210 to =
+125MHz + 1Mhz =3D=3D
+    126MHz.=C2=A0 For a 20Mhz input signal, 125MHz + 20MHz =3D 145MHz, etc.=
 <br>
-Perhaps this is sufficient?<br>
-<br>
-On Thu, Jun 25, 2020 at 6:35 PM Alex Humberstone<br>
-&lt;<a href=3D"mailto:alex.m.humberstone@gmail.com" target=3D"_blank">alex.=
-m.humberstone@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Any update?<br>
-&gt;<br>
-&gt; Would like to see the program for past conferences...<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; On Fri, 19 Jun 2020 at 22:44, Alex Humberstone &lt;<a href=3D"mailto:a=
-lex.m.humberstone@gmail.com" target=3D"_blank">alex.m.humberstone@gmail.com=
-</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; Eugene, the conference looks interesting. Where can we find the pr=
-ogram for past years to get a feel for the conference? I didn&#39;t see thi=
-s on the website. Thanks.<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; On Fri, 19 Jun 2020 at 17:02, Eugene Grayver via USRP-users &lt;<a=
- href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@li=
-sts.ettus.com</a>&gt; wrote:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Hello,<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; I am chairing the Software Defined and Cognitive Radio session=
- at the upcoming IEEE Aerospace Conference (<a href=3D"http://www.aeroconf.=
-org" rel=3D"noreferrer" target=3D"_blank">http://www.aeroconf.org</a>).=C2=
-=A0 This large conference will take place March 6-13, 2021 in Big Sky, Mont=
-ana.=C2=A0 The conference provides a world-class technical program and prov=
-ides excellent opportunities for both networking and recreation. This is on=
-e of the few conferences where SDR can be put in the context of a complete =
-system and can be applied to new missions and concepts of operations.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Last year there were a few papers dealing with application of =
-machine/deep learning to radio design.=C2=A0 I hope to see even more next y=
-ear!<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Abstracts are due soon, but I can take them a bit later as wel=
-l, while the full paper is due end of October.=C2=A0 This session will focu=
-s on flexible radio architectures, including the use of GPPs, GPUs,=C2=A0 a=
-nd FPGAs.=C2=A0 Reports of existing systems and testbeds are of significant=
- interest.=C2=A0 This year I=E2=80=99d like to introduce work related to ma=
-chine learning as applied to wireless communications.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Please forward this to your colleagues working in the areas of=
- SDR and cognitive radio.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Regards,<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Eugene.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; _______________________________________________<br>
-&gt;&gt;&gt; USRP-users mailing list<br>
-&gt;&gt;&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank=
-">USRP-users@lists.ettus.com</a><br>
-&gt;&gt;&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_=
-lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.co=
-m/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; --<br>
-&gt;&gt; Sincerely,<br>
-&gt;&gt; Alex-M-Humberstone<br>
-&gt;&gt; PhD Student<br>
-&gt;&gt; Klipsch School of Electrical Engineering<br>
-&gt;&gt; New Mexico State University<br>
-&gt;&gt; Las Cruces, New Mexico<br>
-&gt;&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; Sincerely,<br>
-&gt; Alex-M-Humberstone<br>
-&gt; PhD Student<br>
-&gt; Klipsch School of Electrical Engineering<br>
-&gt; New Mexico State University<br>
-&gt; Las Cruces, New Mexico<br>
-&gt;<br>
+    <br>
+    <br>
+  </div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"g=
 mail_signature"><div dir=3D"ltr"><font size=3D"4"><span style=3D"font-famil=
 y:monospace">Sincerely,<br></span></font><div><font size=3D"4"><span style=
@@ -328,10 +242,10 @@ size=3D"4"><span style=3D"font-family:monospace"><br></span></font></div><d=
 iv><font size=3D"4"><span style=3D"font-family:monospace"></span></font></d=
 iv></div></div>
 
---000000000000feb8e505a9b0eb4f--
+--00000000000033672705a9b0f08c--
 
 
---===============1625027714930638542==
+--===============6104309046756624241==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -342,5 +256,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1625027714930638542==--
+--===============6104309046756624241==--
 
