@@ -2,47 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28A4C2191A9
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Jul 2020 22:38:25 +0200 (CEST)
-Received: from [::1] (port=45924 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32052219443
+	for <lists+usrp-users@lfdr.de>; Thu,  9 Jul 2020 01:26:25 +0200 (CEST)
+Received: from [::1] (port=47324 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jtGpe-0006ww-L2; Wed, 08 Jul 2020 16:38:18 -0400
-Received: from mail-lj1-f170.google.com ([209.85.208.170]:39392)
+	id 1jtJSG-0002Ak-HZ; Wed, 08 Jul 2020 19:26:20 -0400
+Received: from mail-lj1-f175.google.com ([209.85.208.175]:38522)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <wandrewp@gmail.com>) id 1jtGpa-0006jb-Ig
- for usrp-users@lists.ettus.com; Wed, 08 Jul 2020 16:38:14 -0400
-Received: by mail-lj1-f170.google.com with SMTP id b25so52180656ljp.6
- for <usrp-users@lists.ettus.com>; Wed, 08 Jul 2020 13:37:54 -0700 (PDT)
+ (Exim 4.93) (envelope-from <wandrewp@gmail.com>) id 1jtJSC-00026r-Fi
+ for usrp-users@lists.ettus.com; Wed, 08 Jul 2020 19:26:16 -0400
+Received: by mail-lj1-f175.google.com with SMTP id 9so230063ljv.5
+ for <usrp-users@lists.ettus.com>; Wed, 08 Jul 2020 16:25:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=jv9cBBD1XVUNvUCqCJDNHBcuW2hpBTv4a8hZW8yG+00=;
- b=nhEXyP5Se1sc/Q1hefvp10Sawmca5mDllu7UU+Ds9C0hES8osegEeZ7ri1b/A+ve6u
- OeiC8CkDgYf+eeoDh/zwDlVLZ0G0kRxSxxaeOgac3WF3iYhlAsmksz6oTbicKOMX/uG5
- KYGryu2XuDj45jtX2uXLxV0NE9KlIZLKGocvm3uzfCy2ezCC2+ixIwyOuPaTYuhXt6EW
- XWv442yjJMH5AGKD2QTmhPnl2eXCJupPcwPF2Da15yozLcwDgAXkET46qqOAUDu0fgwb
- ak6jiQtk8TszhXnHAVhwVTomVY6a3eNM0pml92v3kYmyZuJrLTPglM9RX/pKqxV9trkk
- tdzA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=4Ep7urODnowwdYiQ+U8U2PSAi8Gf/0RzptYuxV+tYPE=;
+ b=NcaRYJaq6zrK9g1dk+3oAm63JBG2ozdIeGiJE/yGfPgBIfTOi+ZmtUZPjCZJJzaU0M
+ hlhjW0U9LjSSFUMcWEYM7wpCN/ebdprosFA2gEyBrli9YT6TZoMM86e8JM2sBqiG+i9H
+ 6FTIruLsrfDfYzLrVIRY/A/eAdFBr361nLDUcuF2HZ4r5OZhf3RHoiADu6pKGGtwF8e5
+ BWthBlanyK6XUsqEtJX4z0NAthKOY3lfwOqGP4cvLrd6aX3ebekpyaeLIMsJuPP8ElWt
+ MD6kIz8O5iPP/ghoUIKm74YwpkZXkcxDhKHo7MywHQ0HJoSDK8tSpxJifXYoy549bFWS
+ pxAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=jv9cBBD1XVUNvUCqCJDNHBcuW2hpBTv4a8hZW8yG+00=;
- b=qe5A12xfatAWsp5dMTGX+3JRAi8WZbsyX9SNwPaJSIW+QKbhodxyH0U7lGfPD5k76P
- O7Cvejhp2I+y9+6gRCsHZ9GWrdFTGTXhohH+QYWotT8UDWrf8AnbM9bWIpOfJYtHydH0
- R93T5chVKg8I61IhzxWrKlo6z9tNSWBmr04JOoyzgLnsQyf/aFvpeA3ZWXUxth2OuyTj
- cHygX8vQWFedTeWjBPCOco7eUw1fmKYgj+Kbu2MrXtXoiUJvs5ZRHuVWsfQA2dSIEIH7
- fiwUTelGLnMgtXpAHXeHHbzpJjMVhubODKIZHChgyvYtNyuvWDGEhu1EKg9Z3LHpoo8Q
- hiEg==
-X-Gm-Message-State: AOAM530Jp8ErEo+RdlirsgEmfA9ilp7yXG84SjkTtdmfZKqNCWag5H0X
- dhZ3Z76Xmt2jlPmSCnFBkfIMHnDe16WUhZjRDhrq2pfB
-X-Google-Smtp-Source: ABdhPJxfZUY2tRwWt6nD4F44Cc/8WsMmEEkTxDJC5TWuVb7AKBau+cO8KJFvEnZbPwZ3MgpwA2/Bh3QQR38pu/lcRBs=
-X-Received: by 2002:a2e:99c6:: with SMTP id l6mr29572393ljj.220.1594240652953; 
- Wed, 08 Jul 2020 13:37:32 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=4Ep7urODnowwdYiQ+U8U2PSAi8Gf/0RzptYuxV+tYPE=;
+ b=bgEP71Izsuey6NhttgiUAJUYZ5pQEFG/1r4tXv0w7f34Z51xyPdVxY1kS/HYbMBC4U
+ Nr7Lkn1WuhcrlEX8ztfv4UOCmm3c/8qmshRHctLzL27gCnVb+DOyRBA08Dd8MWL7B9IP
+ nViK6MGvpd/mbnOfyREsQ53ZrBrIite06NanLaiP7/xU+OePp2cHXDPQBfP4Ie74Xmkp
+ rz/vgxYBLryi+xHeCAxtIblRRJHVzBarUBn2QUVAkipkZ+y048McO2qPYvxMktQczWTg
+ G9j/MiY3IbdPQGyGhmh+Rr5KDBqL330iXH1fXgH9d3tRKKRlz/9M+OxHq6OxCyFrDDJE
+ 0bdg==
+X-Gm-Message-State: AOAM531LDWdPYrjdLTJiWF9BDaIVoZb69fAqY0kKj0zBvVlGM4+q9pbw
+ +LAoUBvdYKo6vODKBnTybhg9XmzukYi2r4RPx6GXXFINoYY=
+X-Google-Smtp-Source: ABdhPJwCVvOR91FDLcM7zkvtnn+D4o5uWidVRK17r9HNgUgXJ2v/DVhph1GnT8MvJoEngLt+k6lvQGfHf7aYOQSrc9g=
+X-Received: by 2002:a2e:99c6:: with SMTP id l6mr29954757ljj.220.1594250734713; 
+ Wed, 08 Jul 2020 16:25:34 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 8 Jul 2020 16:37:23 -0400
-Message-ID: <CAB50+dT4S9Q-uWfgP5-dar1A4=+DmzdjpwHuWpXH29Hq5cQSKQ@mail.gmail.com>
+References: <CAB50+dT4S9Q-uWfgP5-dar1A4=+DmzdjpwHuWpXH29Hq5cQSKQ@mail.gmail.com>
+In-Reply-To: <CAB50+dT4S9Q-uWfgP5-dar1A4=+DmzdjpwHuWpXH29Hq5cQSKQ@mail.gmail.com>
+Date: Wed, 8 Jul 2020 19:25:23 -0400
+Message-ID: <CAB50+dTUoA=ZzJGhh-bH9=MC=cNUazxvc9Spy-AM8gzun3++7g@mail.gmail.com>
 To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] e310, RFNOC, GNURadio Full Duplex, Custom RFNOC Block
+Subject: Re: [USRP-users] e310, RFNOC, GNURadio Full Duplex,
+ Custom RFNOC Block
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -71,35 +75,52 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-I have an issue with my setup I'm hoping to solve.
+Actually I have found a clue! In
+usrp3/lib/rfnoc/noc_block_keep_one_in_n.v, axi_wrapper simple_mode is
+set to off, instead opting to use cvita_hdr_modify.  I opted to use
+keep_one_in_n.v in my custom noc_block, BUT, I have set simple mode to
+1.  And if I go into usrp3/lib/rfnoc/axi_wrapper.v, at the top the
+comments for SIMPLE_MODE say "Automatically handle header
+(s_axis_data_tuser), packets must be consumed / produced 1-to-1".
+What does this mean?  That the CEs installed at the crossbar are all
+beholden to the rate of this CE?  Because remember with my issue, my
+custom RFNOC block (which incorporates keep_one_in_n.v with simple
+mode enabled) works well, the TX with DUC alone works well, but TX
+with DUC and FIFO plus my custom RFNOC block seems to greatly
+attenuate TX.  Could the TX stream be slowed down by my custom RFNOC
+CE?
 
-I have an e310 running the UHD 3.15 LTS image.
-
-I have created one custom RFNOC block, which has 2 RX streams, and it
-is composed of the following chain: complex to magnitude ---> moving
-sum ---> keep one in n (n=2048) ---> FIFO with input parameter SIZE=5,
-so then I don't need the RFNOC FIFO block to save space when
-generating the FPGA image file.  The moving sum block generates a sum
-from a power of 2 samples, then I feed the keep one in n block with a
-resulting sum whose LSBs are truncated, effectively dividing by a
-power of 2 to effectively generate a moving average. I am using the
-AXI Wrapper with Simple Mode, noc shell, etc, all generated from the
-rfnoc mod tool.
-
-It works great, but I also have a TX output signal, just a sine wave,
-in my gnuradio flowgraph.  Its output, depending on the RF center
-frequency, is greatly attenuated (the greatest I can get it is like
--39dBm, but it falls off to -55).  But if I just have the TX output
-alone without my RX RFNOC block, I can get the output over 0dBm or
-more, haven't tried going higher than that.
-
-My question is, how can I get the TX signal higher with my full duplex
-RFNOC setup?  Could anything about the RX chain be affecting my TX
-samples, like could it be somehow deleting samples?  Do I need to tag
-the streams in GNURadio so they don't interfere or something?
-
-Thanks,
-Andrew
+On Wed, Jul 8, 2020 at 4:37 PM Andrew Payne <wandrewp@gmail.com> wrote:
+>
+> I have an issue with my setup I'm hoping to solve.
+>
+> I have an e310 running the UHD 3.15 LTS image.
+>
+> I have created one custom RFNOC block, which has 2 RX streams, and it
+> is composed of the following chain: complex to magnitude ---> moving
+> sum ---> keep one in n (n=2048) ---> FIFO with input parameter SIZE=5,
+> so then I don't need the RFNOC FIFO block to save space when
+> generating the FPGA image file.  The moving sum block generates a sum
+> from a power of 2 samples, then I feed the keep one in n block with a
+> resulting sum whose LSBs are truncated, effectively dividing by a
+> power of 2 to effectively generate a moving average. I am using the
+> AXI Wrapper with Simple Mode, noc shell, etc, all generated from the
+> rfnoc mod tool.
+>
+> It works great, but I also have a TX output signal, just a sine wave,
+> in my gnuradio flowgraph.  Its output, depending on the RF center
+> frequency, is greatly attenuated (the greatest I can get it is like
+> -39dBm, but it falls off to -55).  But if I just have the TX output
+> alone without my RX RFNOC block, I can get the output over 0dBm or
+> more, haven't tried going higher than that.
+>
+> My question is, how can I get the TX signal higher with my full duplex
+> RFNOC setup?  Could anything about the RX chain be affecting my TX
+> samples, like could it be somehow deleting samples?  Do I need to tag
+> the streams in GNURadio so they don't interfere or something?
+>
+> Thanks,
+> Andrew
 
 _______________________________________________
 USRP-users mailing list
