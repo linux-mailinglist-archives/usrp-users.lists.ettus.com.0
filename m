@@ -2,57 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 387FC21CC41
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Jul 2020 02:07:13 +0200 (CEST)
-Received: from [::1] (port=59814 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A85321CCCD
+	for <lists+usrp-users@lfdr.de>; Mon, 13 Jul 2020 03:29:30 +0200 (CEST)
+Received: from [::1] (port=60240 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1julzw-0005xw-3V; Sun, 12 Jul 2020 20:07:08 -0400
-Received: from mail-qk1-f178.google.com ([209.85.222.178]:33373)
+	id 1junHa-0000qo-6P; Sun, 12 Jul 2020 21:29:26 -0400
+Received: from mail-qv1-f42.google.com ([209.85.219.42]:34899)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1julzt-0005m3-0E
- for USRP-users@lists.ettus.com; Sun, 12 Jul 2020 20:07:05 -0400
-Received: by mail-qk1-f178.google.com with SMTP id j80so10704329qke.0
- for <USRP-users@lists.ettus.com>; Sun, 12 Jul 2020 17:06:39 -0700 (PDT)
+ (Exim 4.93) (envelope-from <101science@gmail.com>)
+ id 1junHW-0000lv-HJ
+ for usrp-users@lists.ettus.com; Sun, 12 Jul 2020 21:29:22 -0400
+Received: by mail-qv1-f42.google.com with SMTP id ed14so5140870qvb.2
+ for <usrp-users@lists.ettus.com>; Sun, 12 Jul 2020 18:29:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=content-transfer-encoding:from:mime-version:subject:date:message-id
  :references:cc:in-reply-to:to;
- bh=/ZFUbAPpM5dQz7EOCxwpfFYqlN6b8QTgMvXbLRTclXs=;
- b=RgUaA5j29mNWDUTrJPo7mn0PU8NlvP6g4BlZD1kvCdRtb4zPnlRtFmgiaZYZgLb2rH
- iD0UxHjxTJ/QbNH/i09js5OrrK8I/Pbf+03icrtJpFtBX1HgVGG4pNwDl2dLOTTQm9+k
- VfxtQQZB+1znjqXZaM4IccwjE2QGOIJEN2v7vmyjil7ZDM8NI3iR9jdSnsA4DiRN7d0f
- qnIyhPIICiOKTyGvhzb1k/zJ0WuOUJRe78T2sXkNeKlnAvIntB0PMuW0LDCwkAWP//VN
- Cdk7K8sFAbvZAIFPXqCllXTD4mvWs2p2fHe1AJaq7PLL/s917z5IQqsrC8pPOYuoMI5k
- upsw==
+ bh=ui8apH54a4hACKRfrMQCqRqmqkz3E4TK6WVeAn93v5k=;
+ b=R6ifOVhARaCrpi7Ift1Da1l51hNM8yV/bGz7svV3xCJ7KGhef0SC7hzle41rF33zz4
+ QntHsWkhmOJLSTT+ROdpvqdIGwi+pN7zpe+OQuWpHgcBE/ILaDG5DGU7mm0+RctndWoF
+ tYIeVJ4VHzRiSBTit75r8/G0qnnos/bFbTrOTsNMKVOD8IvVu49dXfzT1aEUrwlsRlcS
+ GWD4McWaVkplTKMxtGPqK+tjBbZUCXyYXG+7Y8pRLd2o3SIIKLM/6oYw+3aErODrn1fP
+ /Hhzt/saA4OvFshahpuS4FrDFUGl/h9EXWtr2hOIFq+MM9EJCeIslBabt05R0K9cqPyo
+ zukg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:content-transfer-encoding:from:mime-version
  :subject:date:message-id:references:cc:in-reply-to:to;
- bh=/ZFUbAPpM5dQz7EOCxwpfFYqlN6b8QTgMvXbLRTclXs=;
- b=WF7vVgzaflnd1OfsCwv+1bsn5DcxYX+DB6WAqVT2Lk5zkbbWZwQMpSoUHKp5FY3MI6
- QyXkUD3cyBid4W8IihnpJlmbHs8E77nbZ4tFafZtiZob+xtHZ9sRpEps/Q5xXVl+rYoz
- 0XHOtGbW5tRkY23dNfXGmXQ6U0xzpQRE7x9uY9qT+GqpQTp+jrQIdDcEDUD/fs9/+B2f
- OQgMWgZgdwsFQUSn3bA2Uzj10KqNJGN7MKhl/DOhN9hJr4pAFBfp/OjM7bmFVodyYpG/
- 1v+GxRLEUx6v7S/olHVEd7YNB0775ZWLgaHZErmTEfvBSOQJDirDtX3Sv7SMQxqTq3w0
- qZRg==
-X-Gm-Message-State: AOAM531kPTvpIUfibAfF1Fye+x9SJu+v6PjA0C11wOoEkBzz0tk15jAm
- WMrl7CM5IbkKrmBXUr1E3Lc=
-X-Google-Smtp-Source: ABdhPJw+LR2gNwR3p38hoOTnPJ4jmEW0HoV+444NCAcltKt129m5zEZ4/dM9T2naw1UM/2x1fZlX0A==
-X-Received: by 2002:a37:7747:: with SMTP id s68mr79737620qkc.42.1594598779495; 
- Sun, 12 Jul 2020 17:06:19 -0700 (PDT)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.gmail.com with ESMTPSA id t65sm16988337qkf.119.2020.07.12.17.06.19
+ bh=ui8apH54a4hACKRfrMQCqRqmqkz3E4TK6WVeAn93v5k=;
+ b=i2OGg6Y6Aehz2BqBBi1zvB3QimjRg0SFepncuLw3pThUvy293nmFUaDYG8NJeSwks8
+ i+kAmAkFsuuNtQyjgDkbX1O4QdA9JIWDTuc2Ivd7crThxHfDpqyL0AUk7ncgkxx5FI3O
+ AjRPWpdT6HcuT9iD1Vtw1XQ7h6Vp7wELQkj/pPi+7tu98bQBZzvDyBgPNI4vuq0Vs2Yi
+ v0dUFwI0+aWwf4pLX6hZv6gCu4PpFea6jwmxv8H8YNNS+AX7vocAYjuDSuiK4hLrkbR9
+ od42U7tCoqbv7qPm3Gjudb/YDhUv48I7RmfsvInHbzWgaldWK7mxI13vxhbjierFb+fv
+ cOtA==
+X-Gm-Message-State: AOAM532LyR04cCrfejZZ3Y4LVQdpmgV+mymM+mBrlpa5c+zz0rA+G34p
+ dJrpC9dVY3HtsrWD62jGIIdyci1Fj4Y=
+X-Google-Smtp-Source: ABdhPJxBJjOYef68KbF11QYMLWPAuIqGwDd31X2pBXjMrjMm3q6Y8J0rvBNiLa0vwJ2wNbMXjcutZw==
+X-Received: by 2002:a0c:fcc9:: with SMTP id i9mr57051239qvq.152.1594603721255; 
+ Sun, 12 Jul 2020 18:28:41 -0700 (PDT)
+Received: from [192.168.1.18] ([207.89.11.117])
+ by smtp.gmail.com with ESMTPSA id k2sm17565784qkf.127.2020.07.12.18.28.40
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 12 Jul 2020 17:06:19 -0700 (PDT)
+ Sun, 12 Jul 2020 18:28:40 -0700 (PDT)
 Mime-Version: 1.0 (1.0)
-Date: Sun, 12 Jul 2020 20:06:18 -0400
-Message-Id: <459FB5B3-6256-4878-8AD1-9F836DE1E48C@gmail.com>
-References: <385E8FD5-A5AB-486F-A701-919B97328B40@gmail.com>
-Cc: USRP-users@lists.ettus.com
-In-Reply-To: <385E8FD5-A5AB-486F-A701-919B97328B40@gmail.com>
-To: Larry Dodd <101science@gmail.com>
+Date: Sun, 12 Jul 2020 21:28:40 -0400
+Message-Id: <4AEB401F-B450-4FD1-BD70-7F3A2AEEBE72@gmail.com>
+References: <459FB5B3-6256-4878-8AD1-9F836DE1E48C@gmail.com>
+Cc: usrp-users@lists.ettus.com
+In-Reply-To: <459FB5B3-6256-4878-8AD1-9F836DE1E48C@gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
 X-Mailer: iPhone Mail (17F80)
 Subject: Re: [USRP-users] B210 GNU HF Spectrum Analyzer
 X-BeenThere: usrp-users@lists.ettus.com
@@ -66,8 +65,8 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+From: Larry Dodd via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Larry Dodd <101science@gmail.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
@@ -83,21 +82,24 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-VGhlIEIyMTAgaXMgc2VsZiBjb250YWluZWQgYW5kIHR1bmVzIGRvd24gdG8gNTBNaHogYXQgdGhl
-IGxvd2VzdC4gVGhlIExGUlggaXMgZm9yIG90aGVyIHR5cGVzIG9mIFVTUlBzLiBTbyBmaXJzdCB0
-aGluZ3MgZmlyc3QsIHdoYXQgdHlwZSBvZiBVU1JQIGRvIHlvdSBoYXZlPwoKU2VudCBmcm9tIG15
-IGlQaG9uZQoKPiBPbiBKdWwgMTIsIDIwMjAsIGF0IDc6NDMgUE0sIExhcnJ5IERvZGQgdmlhIFVT
-UlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiB3cm90ZToKPiAKPiDvu79JIG5l
-ZWQgdG8gc2V0IHVwIGEgR05VIEhGIHNwZWN0cnVtIGFuYWx5emVyIHdpdGggYSB3YXRlcmZhbGwg
-dXNpbmcgbXkgQjIxMCwgTE5BLCBhbmQgTEZSWCBkYXVnaHRlciBib2FyZC4gVGhlIHRhcmdldCB3
-b3VsZCBiZSBhIDE1IHRvIDMwIE1IeiAob3Igd2lkZXIpIGluc3RhbnRhbmVvdXMgc3BlY3RydW0g
-Zm9yIFJhZGlvIEFzdHJvbm9teSB3b3JrLiBSYXRoZXIgdGhhbiByZS1jcmVhdGluZyBzb21ldGhp
-bmcgdGhhdCBhbHJlYWR5IGV4aXN0cyB3aGVyZSBjb3VsZCBJIGdldCBhIHNpbWlsYXIgR05VIGZs
-b3dncmFwaD8gU2luY2UgSSBhbSBicmFuZCBuZXcgdG8gVVNSUCBhbnkgYWR2aWNlIGlzIHZlcnkg
-d2VsY29tZS4gCj4gVGhhbmtzLAo+IExhcnJ5LCBLNExFRCAKPiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4g
-VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
-YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVT
-UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
-aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+TWFyY3VzCkFsbCBJIGhhdmUgaXMgdGhlIEIyMTAuIFRoYXTigJlzIGl0LiAKTGFycnksIEs0TEVE
+IAoKPiBPbiBKdWwgMTIsIDIwMjAsIGF0IDg6MDYgUE0sIE1hcmN1cyBEIExlZWNoIDxwYXRjaHZv
+bmJyYXVuQGdtYWlsLmNvbT4gd3JvdGU6Cj4gCj4g77u/VGhlIEIyMTAgaXMgc2VsZiBjb250YWlu
+ZWQgYW5kIHR1bmVzIGRvd24gdG8gNTBNaHogYXQgdGhlIGxvd2VzdC4gVGhlIExGUlggaXMgZm9y
+IG90aGVyIHR5cGVzIG9mIFVTUlBzLiBTbyBmaXJzdCB0aGluZ3MgZmlyc3QsIHdoYXQgdHlwZSBv
+ZiBVU1JQIGRvIHlvdSBoYXZlPwo+IAo+IFNlbnQgZnJvbSBteSBpUGhvbmUKPiAKPj4gT24gSnVs
+IDEyLCAyMDIwLCBhdCA3OjQzIFBNLCBMYXJyeSBEb2RkIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6Cj4+IAo+PiDvu79JIG5lZWQgdG8gc2V0IHVwIGEg
+R05VIEhGIHNwZWN0cnVtIGFuYWx5emVyIHdpdGggYSB3YXRlcmZhbGwgdXNpbmcgbXkgQjIxMCwg
+TE5BLCBhbmQgTEZSWCBkYXVnaHRlciBib2FyZC4gVGhlIHRhcmdldCB3b3VsZCBiZSBhIDE1IHRv
+IDMwIE1IeiAob3Igd2lkZXIpIGluc3RhbnRhbmVvdXMgc3BlY3RydW0gZm9yIFJhZGlvIEFzdHJv
+bm9teSB3b3JrLiBSYXRoZXIgdGhhbiByZS1jcmVhdGluZyBzb21ldGhpbmcgdGhhdCBhbHJlYWR5
+IGV4aXN0cyB3aGVyZSBjb3VsZCBJIGdldCBhIHNpbWlsYXIgR05VIGZsb3dncmFwaD8gU2luY2Ug
+SSBhbSBicmFuZCBuZXcgdG8gVVNSUCBhbnkgYWR2aWNlIGlzIHZlcnkgd2VsY29tZS4gCj4+IFRo
+YW5rcywKPj4gTGFycnksIEs0TEVEIAo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+PiBVU1JQLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbQo+PiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGlu
+Zm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91
+c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
