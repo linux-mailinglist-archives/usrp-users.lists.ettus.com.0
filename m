@@ -2,55 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 446B821CC30
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Jul 2020 01:43:39 +0200 (CEST)
-Received: from [::1] (port=59670 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 387FC21CC41
+	for <lists+usrp-users@lfdr.de>; Mon, 13 Jul 2020 02:07:13 +0200 (CEST)
+Received: from [::1] (port=59814 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1juld6-0004nR-1y; Sun, 12 Jul 2020 19:43:32 -0400
-Received: from mail-qv1-f43.google.com ([209.85.219.43]:45797)
+	id 1julzw-0005xw-3V; Sun, 12 Jul 2020 20:07:08 -0400
+Received: from mail-qk1-f178.google.com ([209.85.222.178]:33373)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <101science@gmail.com>)
- id 1juld1-0004ij-UF
- for usrp-users@lists.ettus.com; Sun, 12 Jul 2020 19:43:27 -0400
-Received: by mail-qv1-f43.google.com with SMTP id u8so5046647qvj.12
- for <usrp-users@lists.ettus.com>; Sun, 12 Jul 2020 16:43:07 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1julzt-0005m3-0E
+ for USRP-users@lists.ettus.com; Sun, 12 Jul 2020 20:07:05 -0400
+Received: by mail-qk1-f178.google.com with SMTP id j80so10704329qke.0
+ for <USRP-users@lists.ettus.com>; Sun, 12 Jul 2020 17:06:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:date:subject:message-id
- :to; bh=efDKyGKl1zdXTd2ejMhEbOjPAkQBz07Db7Dno8BcHt4=;
- b=Os1dO1Cm6/qb6w95MClGtf9Wqy1ekdoKzv3HJSFSz5ah7suYaFvGigBclkoUVZaSBK
- wX1dBVMqsk7C4PInRN8C7lFLQC15jgMbBqg6okKMLfZ2DOWFAT1hwzr+G1PCk/fq5Kpm
- DUburPOFsE4PaqwgKD7mFGqIUM2uvQLasE9wCREUZJBp25PNa0zoPVYs+JIWWO/wrtDT
- 5vfVQWubO9erEhCYCDhNVFU1KWUFEkW3NAbR+gaZZrw19ubC/jm3y2QKRqzRwcyKto7a
- edgWqlHvWjfSrdKknXlakCoe06vaTNU5HJIojIfaa3bNhrR10eFN5swPpAnj35yUcGXv
- yzAQ==
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=/ZFUbAPpM5dQz7EOCxwpfFYqlN6b8QTgMvXbLRTclXs=;
+ b=RgUaA5j29mNWDUTrJPo7mn0PU8NlvP6g4BlZD1kvCdRtb4zPnlRtFmgiaZYZgLb2rH
+ iD0UxHjxTJ/QbNH/i09js5OrrK8I/Pbf+03icrtJpFtBX1HgVGG4pNwDl2dLOTTQm9+k
+ VfxtQQZB+1znjqXZaM4IccwjE2QGOIJEN2v7vmyjil7ZDM8NI3iR9jdSnsA4DiRN7d0f
+ qnIyhPIICiOKTyGvhzb1k/zJ0WuOUJRe78T2sXkNeKlnAvIntB0PMuW0LDCwkAWP//VN
+ Cdk7K8sFAbvZAIFPXqCllXTD4mvWs2p2fHe1AJaq7PLL/s917z5IQqsrC8pPOYuoMI5k
+ upsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version:date
- :subject:message-id:to;
- bh=efDKyGKl1zdXTd2ejMhEbOjPAkQBz07Db7Dno8BcHt4=;
- b=Mncrau+d4ZBuXTpd97NaQFiCrf7rklKIuudtIMIv3gRCFK62nUX/8CFixmBmnluA7i
- rORlYry7i1yqH9DaiVMIU48iZcorm5tC8VrsXKcIHuTVzrvK3b7JdgT11RK1BPQHoiFc
- /1j7zeLhKQWGJssZNzTg3WBRJzhribdRFSAFBnYyDxhTe/hvwgUGw2SyBjbGHKapcYft
- 4R/vlGAoa6qyfHnSq4Lbd0Svn/Jzu4h3LkJrLcs44SvLXr+mVwYB5Z6g39kYVce1rqEq
- WjB9slYh2LLkCS6mZbuDamKZt0BVaDczadm7GwAeG/xHdLimP1w2kwBebzhaobXrBMnT
- 0N+g==
-X-Gm-Message-State: AOAM531bKDe/gVX7CuD4uFlVmFzhLpGnepazApEbNsUSaZrIt5s1AG3U
- R6laRlPTnX35uFqhAgABwQ4E7L7GNQo=
-X-Google-Smtp-Source: ABdhPJzs4FxCTa0ZmOFCrCZIm1EnR+7pXuvehenwUxLGbVAYvlGi4ZSWdrW2lFCIqu9pS1WQiHq85g==
-X-Received: by 2002:a0c:e048:: with SMTP id y8mr78342215qvk.11.1594597366978; 
- Sun, 12 Jul 2020 16:42:46 -0700 (PDT)
-Received: from [192.168.1.18] ([207.89.11.117])
- by smtp.gmail.com with ESMTPSA id l1sm17203501qtk.18.2020.07.12.16.42.46
- for <usrp-users@lists.ettus.com>
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=/ZFUbAPpM5dQz7EOCxwpfFYqlN6b8QTgMvXbLRTclXs=;
+ b=WF7vVgzaflnd1OfsCwv+1bsn5DcxYX+DB6WAqVT2Lk5zkbbWZwQMpSoUHKp5FY3MI6
+ QyXkUD3cyBid4W8IihnpJlmbHs8E77nbZ4tFafZtiZob+xtHZ9sRpEps/Q5xXVl+rYoz
+ 0XHOtGbW5tRkY23dNfXGmXQ6U0xzpQRE7x9uY9qT+GqpQTp+jrQIdDcEDUD/fs9/+B2f
+ OQgMWgZgdwsFQUSn3bA2Uzj10KqNJGN7MKhl/DOhN9hJr4pAFBfp/OjM7bmFVodyYpG/
+ 1v+GxRLEUx6v7S/olHVEd7YNB0775ZWLgaHZErmTEfvBSOQJDirDtX3Sv7SMQxqTq3w0
+ qZRg==
+X-Gm-Message-State: AOAM531kPTvpIUfibAfF1Fye+x9SJu+v6PjA0C11wOoEkBzz0tk15jAm
+ WMrl7CM5IbkKrmBXUr1E3Lc=
+X-Google-Smtp-Source: ABdhPJw+LR2gNwR3p38hoOTnPJ4jmEW0HoV+444NCAcltKt129m5zEZ4/dM9T2naw1UM/2x1fZlX0A==
+X-Received: by 2002:a37:7747:: with SMTP id s68mr79737620qkc.42.1594598779495; 
+ Sun, 12 Jul 2020 17:06:19 -0700 (PDT)
+Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
+ [174.95.14.148])
+ by smtp.gmail.com with ESMTPSA id t65sm16988337qkf.119.2020.07.12.17.06.19
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 12 Jul 2020 16:42:46 -0700 (PDT)
+ Sun, 12 Jul 2020 17:06:19 -0700 (PDT)
 Mime-Version: 1.0 (1.0)
-Date: Sun, 12 Jul 2020 19:42:45 -0400
-Message-Id: <385E8FD5-A5AB-486F-A701-919B97328B40@gmail.com>
-To: usrp-users@lists.ettus.com
+Date: Sun, 12 Jul 2020 20:06:18 -0400
+Message-Id: <459FB5B3-6256-4878-8AD1-9F836DE1E48C@gmail.com>
+References: <385E8FD5-A5AB-486F-A701-919B97328B40@gmail.com>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <385E8FD5-A5AB-486F-A701-919B97328B40@gmail.com>
+To: Larry Dodd <101science@gmail.com>
 X-Mailer: iPhone Mail (17F80)
-Subject: [USRP-users] B210 GNU HF Spectrum Analyzer
+Subject: Re: [USRP-users] B210 GNU HF Spectrum Analyzer
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -62,10 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Larry Dodd via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Larry Dodd <101science@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,10 +83,21 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-I need to set up a GNU HF spectrum analyzer with a waterfall using my B210, LNA, and LFRX daughter board. The target would be a 15 to 30 MHz (or wider) instantaneous spectrum for Radio Astronomy work. Rather than re-creating something that already exists where could I get a similar GNU flowgraph? Since I am brand new to USRP any advice is very welcome. 
-Thanks,
-Larry, K4LED 
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+VGhlIEIyMTAgaXMgc2VsZiBjb250YWluZWQgYW5kIHR1bmVzIGRvd24gdG8gNTBNaHogYXQgdGhl
+IGxvd2VzdC4gVGhlIExGUlggaXMgZm9yIG90aGVyIHR5cGVzIG9mIFVTUlBzLiBTbyBmaXJzdCB0
+aGluZ3MgZmlyc3QsIHdoYXQgdHlwZSBvZiBVU1JQIGRvIHlvdSBoYXZlPwoKU2VudCBmcm9tIG15
+IGlQaG9uZQoKPiBPbiBKdWwgMTIsIDIwMjAsIGF0IDc6NDMgUE0sIExhcnJ5IERvZGQgdmlhIFVT
+UlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiB3cm90ZToKPiAKPiDvu79JIG5l
+ZWQgdG8gc2V0IHVwIGEgR05VIEhGIHNwZWN0cnVtIGFuYWx5emVyIHdpdGggYSB3YXRlcmZhbGwg
+dXNpbmcgbXkgQjIxMCwgTE5BLCBhbmQgTEZSWCBkYXVnaHRlciBib2FyZC4gVGhlIHRhcmdldCB3
+b3VsZCBiZSBhIDE1IHRvIDMwIE1IeiAob3Igd2lkZXIpIGluc3RhbnRhbmVvdXMgc3BlY3RydW0g
+Zm9yIFJhZGlvIEFzdHJvbm9teSB3b3JrLiBSYXRoZXIgdGhhbiByZS1jcmVhdGluZyBzb21ldGhp
+bmcgdGhhdCBhbHJlYWR5IGV4aXN0cyB3aGVyZSBjb3VsZCBJIGdldCBhIHNpbWlsYXIgR05VIGZs
+b3dncmFwaD8gU2luY2UgSSBhbSBicmFuZCBuZXcgdG8gVVNSUCBhbnkgYWR2aWNlIGlzIHZlcnkg
+d2VsY29tZS4gCj4gVGhhbmtzLAo+IExhcnJ5LCBLNExFRCAKPiBfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4g
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
+YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVT
+UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
