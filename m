@@ -2,60 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B1621D942
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Jul 2020 16:58:29 +0200 (CEST)
-Received: from [::1] (port=37752 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E476021D9D3
+	for <lists+usrp-users@lfdr.de>; Mon, 13 Jul 2020 17:10:33 +0200 (CEST)
+Received: from [::1] (port=37888 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1juzuU-0003zo-MX; Mon, 13 Jul 2020 10:58:26 -0400
-Received: from mail-qt1-f179.google.com ([209.85.160.179]:46556)
+	id 1jv069-0005pX-CE; Mon, 13 Jul 2020 11:10:29 -0400
+Received: from mail-qt1-f171.google.com ([209.85.160.171]:46082)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1juzuQ-0003t8-5D
- for usrp-users@lists.ettus.com; Mon, 13 Jul 2020 10:58:22 -0400
-Received: by mail-qt1-f179.google.com with SMTP id i3so10098066qtq.13
- for <usrp-users@lists.ettus.com>; Mon, 13 Jul 2020 07:58:01 -0700 (PDT)
+ (Exim 4.93) (envelope-from <101science@gmail.com>)
+ id 1jv064-0005dk-TW
+ for usrp-users@lists.ettus.com; Mon, 13 Jul 2020 11:10:24 -0400
+Received: by mail-qt1-f171.google.com with SMTP id i3so10137747qtq.13
+ for <usrp-users@lists.ettus.com>; Mon, 13 Jul 2020 08:10:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=nTG7XI78zD+AUuYmGcbZEuLbMarWpLnnyl1UDi2hLM8=;
- b=C2MsYxmLx9ICEUOVrSsRwJouB9NW26s4gNlOrZ7Pjx/LnSQo199Lv7uDue25Eu53OG
- ttbX3pZxP6Amb8SsIFjKX6Uy56iPzVNDcOcL5f5OZ3D0RPBad5vJ82pk3YmofWWZnmdd
- Wf3/G3EC8wkHyIOdDkIQJM9cuIMKLbEoGHGXav0TgqoVabbAi+xHC91SRkuBN/pznX8r
- sUEDCr2e3LxrhYlE+Uaax7/tWKGlkXltm83yiXVKYVSC37LGp0k4iTRDPyrfsUX0MHRi
- 94d9pyWo07qFSXQspVZxyZaLlZpVzZdJvk/KSVIzxDHqUZTyKHqiYluiZgEvgXfkGgd9
- uH9g==
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=M4X6MI7kYe3d/UVbTKYLoCnjsr1Su9sAjKVtb6aUgB8=;
+ b=sjJkMfCkq1nDGAKJtF9n4Rl9ehmWZBrZwkY5lfBT2F44y53JVw+rlw4dTu+mDWqOAg
+ Y2Va5WLZJVcF4jBQWx2mWr/rprV59yMbAmEY9lkMYOSD4lj65rWHAh1ta8ptixABoXNw
+ C3sIMJnVo2q0OtAtMXwEQJJtQQLYjNsiAiOQpPM7B7kIMrEPxsdvumuvSuyMeO+1Zi2i
+ OQDJUbmDtvv4ajm1WQ3eRTM2c0HlP+7fANQcSMTXRyXBYSHAqnOrjCAz0+y3iv6MNCtG
+ hhdd5KtS1HLNq7PGQExobEDhpJvz2yHD4eR1Jm2p7ugG7fSaiHrX9AmgZM22q67zNP68
+ cbSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=nTG7XI78zD+AUuYmGcbZEuLbMarWpLnnyl1UDi2hLM8=;
- b=qy/3kUCj9iz7IP+Wv0+YHp5n5bJrBWw96y0K7PW7UNeQ9GjiYWXhopg7smyEMSE9yd
- t6tMrDZsFAO7oRKSt4W17V2LXfedr1P0oxENNHM4icizQcsQ1x49R2y6kleboC3ly6oh
- V3WA41wrPk1akcfUS3iafseoJSVmTwPUtTsrZRHyBn/vNVRbFaPiMOpMhoVrXLRqU+b3
- fdKRDA7hCT5m7ytGra8ssUcaTyKAuTT77yWi18PPhGC2UIDmolxlRig6ZId3BJQLXOOo
- e0n9r1SNaoLpraMHO/M/TLn48bqGYdCjTvMHXVXR81d8aqHiB4oNrPQp8CumHE4jtSiR
- oyBQ==
-X-Gm-Message-State: AOAM533vZ/n7cRVIomum0uEFOmTc5GI6l63nGzfCfk0w41qe9cxfTyfm
- r/woJxstjpq35GrmrC6sG1JdoG+6
-X-Google-Smtp-Source: ABdhPJzdehUqToNEhZ4CMsgKukIvnjX0CTaX0uHs4dL/BVLqYZLa5yGgWrjsTuUkwAgbzWj/SABkLg==
-X-Received: by 2002:aed:20c2:: with SMTP id 60mr58000186qtb.14.1594652261353; 
- Mon, 13 Jul 2020 07:57:41 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id 15sm19558341qkm.93.2020.07.13.07.57.40
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 13 Jul 2020 07:57:40 -0700 (PDT)
-Message-ID: <5F0C7664.30705@gmail.com>
-Date: Mon, 13 Jul 2020 10:57:40 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: Larry Dodd <101science@gmail.com>
-CC: usrp-users@lists.ettus.com
-References: <5F0C7448.8000505@gmail.com>
- <0A856ED6-E913-4330-8DF4-29304F2456BE@gmail.com>
-In-Reply-To: <0A856ED6-E913-4330-8DF4-29304F2456BE@gmail.com>
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=M4X6MI7kYe3d/UVbTKYLoCnjsr1Su9sAjKVtb6aUgB8=;
+ b=imEnoGoV80YYyNtZX/zoxKjdZ+Qpa6cr2dYUEAHmsrFDFlikHPYx0Pm7b7lM+yw1OW
+ c/jgdxIaaXHcXmzsV1oABL0FL6jwcZVhSWdgfxoAuJP2SjiaMp6KmFxageiT3UaiXFGK
+ x696sSk56Uzdksk8tfr9H3MuYC91vRYeyKSWjv2Yxxvj5wRqKQqKqQo8O2mQGJJvlCpp
+ m0LWWJJ1RPH8ma/N+EnJczeDdUS/BSYxMdTeMTZAc88j4nX6Kq2ywAtOO3rGyKZ+Q7nx
+ WmfCp/+IC7P2JEk6dUCPeVCDHomuZ+Cr2Pa6UiT6qnd9xDHTP5791UpHrkNsJI9gyVWw
+ WFsQ==
+X-Gm-Message-State: AOAM5332E3dS90CF6/MfyAkLjGDJoJLi6BbhLp+02/iuPhYlgcoNmw1n
+ gXqBq7WdDOGH9d4IW/wSqD5qpkPWMP0=
+X-Google-Smtp-Source: ABdhPJxXc3nn4x1s1Slxlb4b7/9QCk454uhfBRLfyhBA6xzPCZ/CviEuA5TUrHxUcPZVED5WPV2k6w==
+X-Received: by 2002:ac8:bc2:: with SMTP id p2mr67802398qti.374.1594652983704; 
+ Mon, 13 Jul 2020 08:09:43 -0700 (PDT)
+Received: from [192.168.1.18] ([207.89.11.117])
+ by smtp.gmail.com with ESMTPSA id e203sm18848539qkb.87.2020.07.13.08.09.42
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 13 Jul 2020 08:09:43 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+Date: Mon, 13 Jul 2020 11:09:42 -0400
+Message-Id: <E6D92856-E24E-4220-AC05-48987EBC8FFB@gmail.com>
+References: <5F0C7664.30705@gmail.com>
+Cc: usrp-users@lists.ettus.com
+In-Reply-To: <5F0C7664.30705@gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+X-Mailer: iPhone Mail (17F80)
 Subject: Re: [USRP-users] B210 GNU HF Spectrum Analyzer
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -68,10 +65,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: Larry Dodd via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Larry Dodd <101science@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5931559382116402605=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,93 +81,430 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMDcvMTMvMjAyMCAxMDo1MiBBTSwgTGFycnkgRG9kZCB3cm90ZToKPiBNYXJjdXMKPiBGYW50
-YXN0aWMuIFdoaWNoIFNEUiBkbyB5b3UgdXNlIHdpdGggR05VIFJhZGlvPwo+IExhcnJ5Ck1hbnkg
-b2YgdGhlbSA6KQoKRGVwZW5kcyBvbiB0aGUgYXBwbGljYXRpb24uIEZvciBwdWxzYXIgd29yayBh
-bmQgaW50ZXJmZXJvbWV0cnksIEkgdXNlIAp0aGUgQjIxMC4gICBJIHJ1biBhIHNtYWxsIG5vdC1m
-b3ItcHJvZml0IHRoYXQgZG9lcyByYWRpbyBhc3Rvbm9teQogICByZXNlYXJjaDoKCmh0dHA6Ly93
-d3cuY2NlcmEuY2EKCkFuZCBJIGFsc28gYW0gb24gY29udHJhY3Qgd2l0aCBFdHR1cyBmb3IgdGVj
-aG5pY2FsIHN1cHBvcnQgd29yay4KCgo+Cj4+IE9uIEp1bCAxMywgMjAyMCwgYXQgMTA6NDggQU0s
-IE1hcmN1cyBELiBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+IHdyb3RlOgo+Pgo+PiDv
-u79PbiAwNy8xMi8yMDIwIDExOjM4IFBNLCBMYXJyeSBEb2RkIHdyb3RlOgo+Pj4gTWFyY3VzCj4+
-PiBTdHJpY3RseSByZWNlaXZpbmcgSnVwaXRlciBzdG9ybXMgYW5kIHNvbGFyIGZsYXJlcy4gQXMg
-YSBSYWRpbyBKb3ZlIG1lbWJlciBmb3IgYSBjb3VwbGUgeWVhcnMgbm93IHdlIGhhdmUgcmVjb3Jk
-ZWQgbWFueSBKdXBpdGVyIHN0b3JtcyBpbiB0aGUgMTUgdG8gMzAgTUh6IHJhbmdlLiBUaGV5IGFy
-ZSBnZW5lcmFsbHkgb2YgdGhyZWUgdHlwZXMuIFMgYnVyc3RzLCBMIGJ1cnN0cyBhbmQgTiBldmVu
-dHMuIFdlIHNlbmQgdGhlIFNEUiBkYXRhIHN0cmVhbSB0byBSYWRpbyBTa3kgU3BlY3Ryb2dyYXBo
-IHNvZnR3YXJlLiBUaGUgZmlsZXMgYXJlIGFyY2hpdmVkIGZvciBzdHVkeSBieSBOQVNBIHNjaWVu
-dGlzdHMgYW5kIG90aGVyIHJlc2VhcmNoZXJzLiBKdXBpdGVycyBtb29uIElvIHBsYXlzIGFuIGlt
-cG9ydGFudCByb2xsIGluIGRpcmVjdGluZyB0aGVzZSBzdG9ybSBpbXB1bHNlcyB0byBlYXJ0aC4g
-V2UgaGF2ZSBzcGVjaWFsIHNvZnR3YXJlIHRoYXQgcHJlZGljdHMgdGhlIHByb2JhYmlsaXR5IG9m
-IHJlY2VpdmluZyB0aGUgc3Rvcm1zIGJhc2VkIG9uIEVhcnRoLCBKdXBpdGVyLCBhbmQgSW8gb3Ji
-aXRhbCBwb3NpdGlvbnMuIEkgY2FuIHNlbmQgeW91IHNhbXBsZSBzcGVjdHJvZ3JhbXMgaWYgZGVz
-aXJlZC4gV2UgYWxzbyBzdHVkeSBpb25vc3BoZXJpYyBldmVudHMsIGdhbGFjdGljIGJhY2tncm91
-bmQgbm9pc2UsIGFuZCBzb21lIGNlbGVzdGlhbCBzY2ludGlsbGF0aW9ucy4gWWVzIFJGSSBpcyBh
-IHByb2JsZW0gYnV0IHRoZXJlIGFyZSBzb2Z0d2FyZSBtaXRpZ2F0aW9uIHRlY2huaXF1ZXMuCj4+
-PiBMYXJyeSwgSzRMRUQKPj4gVGhhbmtzLCBMYXJyeS4KPj4KPj4gWWVzLCBJJ20gZmFtaWxpYXIg
-d2l0aCBhbGwgb2YgdGhhdC4gIEkndmUgYmVlbiBkb2luZyByYWRpbyBhc3Ryb25vbXkgb24gYW5k
-IG9mZiBzaW5jZSAxOTg2LCBhbmQgc3RhcnRlZCB1c2luZyBTRFIvR251IFJhZGlvIGZvciBpdCBp
-biAyMDA0Lgo+Pgo+PiBJIGRpZCBzb21lIHdvcmsgZm9yIE5hdHVyYWwgUmVzb3VyY2VzIENhbmFk
-YSBvbiByaW9tZXRlcnMgYSBjb3VwbGUgb2YgeWVhcnMgYWdvLCBhbmQgaGF2ZSBiZWVuIGludm9s
-dmVkIGluIHJpb21ldGVyIGRldmVsb3BtZW50IHdpdGgKPj4gICBHbnUgUmFkaW8gc2luY2UgMjAx
-MCBvciBzby4KPj4KPj4KPj4+Pj4gT24gSnVsIDEyLCAyMDIwLCBhdCAxMToxNiBQTSwgTWFyY3Vz
-IEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pj4g77u/T24gMDcv
-MTIvMjAyMCAxMDo1OSBQTSwgTGFycnkgRG9kZCB3cm90ZToKPj4+Pj4gTWFyY3VzCj4+Pj4+IE9r
-IFRoYW5rcyBmb3IgdGhlIGluZm9ybWF0aW9uIE1hcmN1cy4gIEkgaGF2ZSBib3RoIGEgU3B5dmVy
-dGVyIGFuZCBIYW0taXQtdXAgYWxyZWFkeS4gSSBtYXkgZ2V0IGFuIE4yMTAgZXZlbnR1YWxseS4g
-VGhlIFggc2VyaWVzIHVuZm9ydHVuYXRlbHkgYXJlIG91dCBvZiBteSBmdW5kaW5nIHJhbmdlLiBJ
-IGFwcHJlY2lhdGUgeW91ciBleHBlcnRpc2UgYW5kIGFkdmljZS4gVGhhbmtzIQo+Pj4+PiBMYXJy
-eSwgSzRMRUQKPj4+Pj4KPj4+PiBJbmNpZGVudGFsbHksIHdoYXQga2luZCBvZiByYWRpbyBhc3Ry
-b25vbXkgYXJlIHlvdSBwbGFubmluZyB0byBkbyBhdCB0aGF0IGZyZXF1ZW5jeSByYW5nZT8gIEl0
-J3MgbW9zdGx5LCBhcyB5b3UgbWlnaHQgZXhwZWN0LCAiYSBtZXNzIiwgYnV0Cj4+Pj4gICBzb21l
-IGRpc2NyZXRlIGZyZXF1ZW5jaWVzIGFyZSBhdmFpbGFibGUgZm9yIHRoaW5ncyBsaWtlIHJpb21l
-dHJ5LCBhbmQgbG9va2luZyBhdCBzb2xhciBhbmQganVwaXRlciByYWRpbyBidXJzdHMuLi4KPj4+
-Pgo+Pj4+Cj4+Pj4+Pj4gT24gSnVsIDEyLCAyMDIwLCBhdCAxMDowOCBQTSwgTWFyY3VzIEQuIExl
-ZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pj4+PiDvu79PbiAwNy8xMi8y
-MDIwIDA5OjQyIFBNLCBMYXJyeSBEb2RkIHdyb3RlOgo+Pj4+Pj4+IE1hcmN1cwo+Pj4+Pj4+IEFj
-dHVhbGx5IEkgZG9u4oCZdCBoYXZlIHRoZSBCMjEwIG9yIHRoZSBMRlJYIHlldCBhcyBJIGp1c3Qg
-b3JkZXJlZCB0aGVtIGJ1dCB0aGF04oCZcyBhbGwgSSBvcmRlcmVkLiBEbyBJIG5lZWQgdG8gY2Fu
-Y2VsIHRoZSBvcmRlcj8KPj4+Pj4+PiBMYXJyeSwgSzRMRUQKPj4+Pj4+IFRoZSBMRlJYIHdpbGwg
-YmUgb2Ygbm8gdXNlIHRvIHlvdSB1bmxlc3MgeW91IGhhdmUgYSBwbGF0Zm9ybSB0aGF0IGl0IGNh
-biBwbHVnIGluIHRvLgo+Pj4+Pj4KPj4+Pj4+IEknZCBrZWVwIHRoZSBCMjEwIHBhcnQgb2YgdGhl
-IG9yZGVyLCBhbmQgb3JkZXIgYSBIYW1JdFVwIG9yIFNweVZlcnRlciB1cGNvbnZlcnRlciBtb2R1
-bGUsIHdoaWNoIHVwLWNvbnZlcnRzIEhGIGZyZXF1ZW5jaWVzIHRvCj4+Pj4+PiAgIGEgaGlnaGVy
-IHJhbmdlIHRoYXQgdGhlIEIyMTAgY2FuIHR1bmUgdG8uCj4+Pj4+Pgo+Pj4+Pj4gSGFtaVR1cCBp
-cyBzb2xkIGJ5IE5vb0VsZWMsIGFuZCB0aGUgU3B5VmVydGVyIGlzIHNvbGQgYnkgaHR0cHM6Ly9h
-aXJzcHkuY29tL3NweXZlcnRlci1yMi8KPj4+Pj4+Cj4+Pj4+PiBBZ2FpbiwgdGhlIExGUlggaXMg
-YSAiZGF1Z2h0ZXJjYXJkIiwgd2hpY2ggaXMgdXNlZCBpbiB2YXJpb3VzIFVTUlBTIHRoYXQgdXNl
-IHRoZSBkYXVnaHRlci1jYXJkIGFyY2hpdGVjdHVyZSwgbGlrZSB0aGUgVVNSUDEsIFVTUlAyLAo+
-Pj4+Pj4gICBOMnh4LCBYM3h4LCBCMTAwLCBhbmQgRTEwMC4KPj4+Pj4+Cj4+Pj4+PiBCdXQgdGhl
-IEIyMTAgaXMgYW4gZXhjZWxsZW50IG1hY2hpbmUsIGl0J3MganVzdCB0aGF0IGl0IGRvZXNuJ3Qg
-dHVuZSBkb3duIHRvIEhGIGZyZXF1ZW5jaWVzLiAgQnV0IHdpdGggdGhlIGFkZGl0aW9uIG9mIGEg
-KGZhaXJseSBjaGVhcCwgSU1ITykKPj4+Pj4+ICAgdXAtY29udmVydGVyLCB5b3UgY2FuIGV4cGxv
-cmUgdGhlIHRlcnJpdG9yeSB5b3UncmUgaW50ZXJlc3RlZCBpbiBxdWl0ZSBuaWNlbHkuCj4+Pj4+
-Pgo+Pj4+Pj4gSW4gdGVybXMgb2Ygc29mdHdhcmUsIGl0IHJlYWxseSBkZXBlbmRzIG9uIHdoYXQg
-eW91IHdhbnQgdG8gKmRvKi4gSWYgeW91IGp1c3Qgd2FudCBhbiBpbnRlZ3JhdGVkIEZGVCBkaXNw
-bGF5IHRoYXQgY2FuIGNvdmVyIHlvdXIgMTVNSHoKPj4+Pj4+ICAgb2YgYmFuZHdpZHRoLCB5b3Ug
-Y2FuIHVzZSB0aGUgdWhkX2ZmdCBhcHBsaWNhdGlvbiwgYW5kIGhhdmUgaXQgc2FtcGxlIGF0IDE1
-TXNwcy0tdGhpcyBhc3N1bWVzIHlvdXIgY29tcHV0ZXIgaXMgYWJsZSB0byAia2VlcCB1cCIKPj4+
-Pj4+ICAgYXQgdGhhdCByYXRlLS1hIGdvb2QgVVNCMyBjb250cm9sbGVyIHdpbGwgYmUgcmVxdWly
-ZWQsIGFuZCBhIGdvb2QgbXVsdGktY29yZSBtYWNoaW5lIHRvIGdvIHdpdGggaXQuCj4+Pj4+Pgo+
-Pj4+Pj4KPj4+Pj4+Pj4+IE9uIEp1bCAxMiwgMjAyMCwgYXQgODowNiBQTSwgTWFyY3VzIEQgTGVl
-Y2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPiB3cm90ZToKPj4+Pj4+Pj4g77u/VGhlIEIyMTAg
-aXMgc2VsZiBjb250YWluZWQgYW5kIHR1bmVzIGRvd24gdG8gNTBNaHogYXQgdGhlIGxvd2VzdC4g
-VGhlIExGUlggaXMgZm9yIG90aGVyIHR5cGVzIG9mIFVTUlBzLiBTbyBmaXJzdCB0aGluZ3MgZmly
-c3QsIHdoYXQgdHlwZSBvZiBVU1JQIGRvIHlvdSBoYXZlPwo+Pj4+Pj4+Pgo+Pj4+Pj4+PiBTZW50
-IGZyb20gbXkgaVBob25lCj4+Pj4+Pj4+Cj4+Pj4+Pj4+PiBPbiBKdWwgMTIsIDIwMjAsIGF0IDc6
-NDMgUE0sIExhcnJ5IERvZGQgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tPiB3cm90ZToKPj4+Pj4+Pj4+Cj4+Pj4+Pj4+PiDvu79JIG5lZWQgdG8gc2V0IHVwIGEgR05V
-IEhGIHNwZWN0cnVtIGFuYWx5emVyIHdpdGggYSB3YXRlcmZhbGwgdXNpbmcgbXkgQjIxMCwgTE5B
-LCBhbmQgTEZSWCBkYXVnaHRlciBib2FyZC4gVGhlIHRhcmdldCB3b3VsZCBiZSBhIDE1IHRvIDMw
-IE1IeiAob3Igd2lkZXIpIGluc3RhbnRhbmVvdXMgc3BlY3RydW0gZm9yIFJhZGlvIEFzdHJvbm9t
-eSB3b3JrLiBSYXRoZXIgdGhhbiByZS1jcmVhdGluZyBzb21ldGhpbmcgdGhhdCBhbHJlYWR5IGV4
-aXN0cyB3aGVyZSBjb3VsZCBJIGdldCBhIHNpbWlsYXIgR05VIGZsb3dncmFwaD8gU2luY2UgSSBh
-bSBicmFuZCBuZXcgdG8gVVNSUCBhbnkgYWR2aWNlIGlzIHZlcnkgd2VsY29tZS4KPj4+Pj4+Pj4+
-IFRoYW5rcywKPj4+Pj4+Pj4+IExhcnJ5LCBLNExFRAo+Pj4+Pj4+Pj4gX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+Pj4+Pj4+IFVTUlAtdXNlcnMgbWFp
-bGluZyBsaXN0Cj4+Pj4+Pj4+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+Pj4+Pj4+Pj4g
-aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMu
-ZXR0dXMuY29tCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0
-cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0
-dXMuY29tCg==
+
+--===============5931559382116402605==
+Content-Type: multipart/alternative; boundary=Apple-Mail-8CEB301D-1869-42B6-81C8-AACB96E84B33
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-8CEB301D-1869-42B6-81C8-AACB96E84B33
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Marcus
+Thanks for the link. Very interesting work. I have an AirspyR2 and SpyVerter=
+ running on HF on a square 24 foot TFD RHC and LHC.=20
+
+This is my station. http://101science.com/K4LED.html
+
+Looking forward to the B210 and learning to use GNU Radio.=20
+Larry, K4LED=20
+
+> On Jul 13, 2020, at 10:57 AM, Marcus D. Leech <patchvonbraun@gmail.com> wr=
+ote:
+>=20
+> =EF=BB=BFOn 07/13/2020 10:52 AM, Larry Dodd wrote:
+>> Marcus
+>> Fantastic. Which SDR do you use with GNU Radio?
+>> Larry
+> Many of them :)
+>=20
+> Depends on the application. For pulsar work and interferometry, I use the B=
+210.   I run a small not-for-profit that does radio astonomy
+>  research:
+>=20
+> http://www.ccera.ca
+>=20
+> And I also am on contract with Ettus for technical support work.
+>=20
+>=20
+>>=20
+>>>> On Jul 13, 2020, at 10:48 AM, Marcus D. Leech <patchvonbraun@gmail.com>=
+ wrote:
+>>>=20
+>>> =EF=BB=BFOn 07/12/2020 11:38 PM, Larry Dodd wrote:
+>>>> Marcus
+>>>> Strictly receiving Jupiter storms and solar flares. As a Radio Jove mem=
+ber for a couple years now we have recorded many Jupiter storms in the 15 to=
+ 30 MHz range. They are generally of three types. S bursts, L bursts and N e=
+vents. We send the SDR data stream to Radio Sky Spectrograph software. The f=
+iles are archived for study by NASA scientists and other researchers. Jupite=
+rs moon Io plays an important roll in directing these storm impulses to eart=
+h. We have special software that predicts the probability of receiving the s=
+torms based on Earth, Jupiter, and Io orbital positions. I can send you samp=
+le spectrograms if desired. We also study ionospheric events, galactic backg=
+round noise, and some celestial scintillations. Yes RFI is a problem but the=
+re are software mitigation techniques.
+>>>> Larry, K4LED
+>>> Thanks, Larry.
+>>>=20
+>>> Yes, I'm familiar with all of that.  I've been doing radio astronomy on a=
+nd off since 1986, and started using SDR/Gnu Radio for it in 2004.
+>>>=20
+>>> I did some work for Natural Resources Canada on riometers a couple of ye=
+ars ago, and have been involved in riometer development with
+>>>  Gnu Radio since 2010 or so.
+>>>=20
+>>>=20
+>>>>>> On Jul 12, 2020, at 11:16 PM, Marcus D. Leech <patchvonbraun@gmail.co=
+m> wrote:
+>>>>> =EF=BB=BFOn 07/12/2020 10:59 PM, Larry Dodd wrote:
+>>>>>> Marcus
+>>>>>> Ok Thanks for the information Marcus.  I have both a Spyverter and Ha=
+m-it-up already. I may get an N210 eventually. The X series unfortunately ar=
+e out of my funding range. I appreciate your expertise and advice. Thanks!
+>>>>>> Larry, K4LED
+>>>>>>=20
+>>>>> Incidentally, what kind of radio astronomy are you planning to do at t=
+hat frequency range?  It's mostly, as you might expect, "a mess", but
+>>>>>  some discrete frequencies are available for things like riometry, and=
+ looking at solar and jupiter radio bursts...
+>>>>>=20
+>>>>>=20
+>>>>>>>> On Jul 12, 2020, at 10:08 PM, Marcus D. Leech <patchvonbraun@gmail.=
+com> wrote:
+>>>>>>> =EF=BB=BFOn 07/12/2020 09:42 PM, Larry Dodd wrote:
+>>>>>>>> Marcus
+>>>>>>>> Actually I don=E2=80=99t have the B210 or the LFRX yet as I just or=
+dered them but that=E2=80=99s all I ordered. Do I need to cancel the order?
+>>>>>>>> Larry, K4LED
+>>>>>>> The LFRX will be of no use to you unless you have a platform that it=
+ can plug in to.
+>>>>>>>=20
+>>>>>>> I'd keep the B210 part of the order, and order a HamItUp or SpyVerte=
+r upconverter module, which up-converts HF frequencies to
+>>>>>>>  a higher range that the B210 can tune to.
+>>>>>>>=20
+>>>>>>> HamiTup is sold by NooElec, and the SpyVerter is sold by https://air=
+spy.com/spyverter-r2/
+>>>>>>>=20
+>>>>>>> Again, the LFRX is a "daughtercard", which is used in various USRPS t=
+hat use the daughter-card architecture, like the USRP1, USRP2,
+>>>>>>>  N2xx, X3xx, B100, and E100.
+>>>>>>>=20
+>>>>>>> But the B210 is an excellent machine, it's just that it doesn't tune=
+ down to HF frequencies.  But with the addition of a (fairly cheap, IMHO)
+>>>>>>>  up-converter, you can explore the territory you're interested in qu=
+ite nicely.
+>>>>>>>=20
+>>>>>>> In terms of software, it really depends on what you want to *do*. If=
+ you just want an integrated FFT display that can cover your 15MHz
+>>>>>>>  of bandwidth, you can use the uhd_fft application, and have it samp=
+le at 15Msps--this assumes your computer is able to "keep up"
+>>>>>>>  at that rate--a good USB3 controller will be required, and a good m=
+ulti-core machine to go with it.
+>>>>>>>=20
+>>>>>>>=20
+>>>>>>>>>> On Jul 12, 2020, at 8:06 PM, Marcus D Leech <patchvonbraun@gmail.=
+com> wrote:
+>>>>>>>>> =EF=BB=BFThe B210 is self contained and tunes down to 50Mhz at the=
+ lowest. The LFRX is for other types of USRPs. So first things first, what t=
+ype of USRP do you have?
+>>>>>>>>>=20
+>>>>>>>>> Sent from my iPhone
+>>>>>>>>>=20
+>>>>>>>>>> On Jul 12, 2020, at 7:43 PM, Larry Dodd via USRP-users <usrp-user=
+s@lists.ettus.com> wrote:
+>>>>>>>>>>=20
+>>>>>>>>>> =EF=BB=BFI need to set up a GNU HF spectrum analyzer with a water=
+fall using my B210, LNA, and LFRX daughter board. The target would be a 15 t=
+o 30 MHz (or wider) instantaneous spectrum for Radio Astronomy work. Rather t=
+han re-creating something that already exists where could I get a similar GN=
+U flowgraph? Since I am brand new to USRP any advice is very welcome.
+>>>>>>>>>> Thanks,
+>>>>>>>>>> Larry, K4LED
+>>>>>>>>>> _______________________________________________
+>>>>>>>>>> USRP-users mailing list
+>>>>>>>>>> USRP-users@lists.ettus.com
+>>>>>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
+m
+>=20
+
+--Apple-Mail-8CEB301D-1869-42B6-81C8-AACB96E84B33
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div dir=3D"ltr">Marcus</div><div dir=3D"lt=
+r">Thanks for the link. Very interesting work. I have an AirspyR2 and SpyVer=
+ter running on HF on a square 24 foot TFD RHC and LHC.&nbsp;</div><div dir=3D=
+"ltr"><br></div><div dir=3D"ltr">This is my station.&nbsp;<a href=3D"http://=
+101science.com/K4LED.html">http://101science.com/K4LED.html</a></div><div di=
+r=3D"ltr"><br></div><div dir=3D"ltr">Looking forward to the B210 and learnin=
+g to use GNU Radio.&nbsp;</div><div dir=3D"ltr">Larry, K4LED&nbsp;</div><div=
+ dir=3D"ltr"><br><blockquote type=3D"cite">On Jul 13, 2020, at 10:57 AM, Mar=
+cus D. Leech &lt;patchvonbraun@gmail.com&gt; wrote:<br><br></blockquote></di=
+v><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<span>On 07/13/2020 10=
+:52 AM, Larry Dodd wrote:</span><br><blockquote type=3D"cite"><span>Marcus</=
+span><br></blockquote><blockquote type=3D"cite"><span>Fantastic. Which SDR d=
+o you use with GNU Radio?</span><br></blockquote><blockquote type=3D"cite"><=
+span>Larry</span><br></blockquote><span>Many of them :)</span><br><span></sp=
+an><br><span>Depends on the application. For pulsar work and interferometry,=
+ I use the B210. &nbsp;&nbsp;I run a small not-for-profit that does radio as=
+tonomy</span><br><span> &nbsp;research:</span><br><span></span><br><span>htt=
+p://www.ccera.ca</span><br><span></span><br><span>And I also am on contract w=
+ith Ettus for technical support work.</span><br><span></span><br><span></spa=
+n><br><blockquote type=3D"cite"><span></span><br></blockquote><blockquote ty=
+pe=3D"cite"><blockquote type=3D"cite"><span>On Jul 13, 2020, at 10:48 AM, Ma=
+rcus D. Leech &lt;patchvonbraun@gmail.com&gt; wrote:</span><br></blockquote>=
+</blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><span></spa=
+n><br></blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><span>=EF=BB=BFOn 07/12/2020 11:38 PM, Larry Dodd wrote:</span><br></=
+blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite">=
+<blockquote type=3D"cite"><span>Marcus</span><br></blockquote></blockquote><=
+/blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote t=
+ype=3D"cite"><span>Strictly receiving Jupiter storms and solar flares. As a R=
+adio Jove member for a couple years now we have recorded many Jupiter storms=
+ in the 15 to 30 MHz range. They are generally of three types. S bursts, L b=
+ursts and N events. We send the SDR data stream to Radio Sky Spectrograph so=
+ftware. The files are archived for study by NASA scientists and other resear=
+chers. Jupiters moon Io plays an important roll in directing these storm imp=
+ulses to earth. We have special software that predicts the probability of re=
+ceiving the storms based on Earth, Jupiter, and Io orbital positions. I can s=
+end you sample spectrograms if desired. We also study ionospheric events, ga=
+lactic background noise, and some celestial scintillations. Yes RFI is a pro=
+blem but there are software mitigation techniques.</span><br></blockquote></=
+blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite">=
+<blockquote type=3D"cite"><span>Larry, K4LED</span><br></blockquote></blockq=
+uote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><span>=
+Thanks, Larry.</span><br></blockquote></blockquote><blockquote type=3D"cite"=
+><blockquote type=3D"cite"><span></span><br></blockquote></blockquote><block=
+quote type=3D"cite"><blockquote type=3D"cite"><span>Yes, I'm familiar with a=
+ll of that. &nbsp;I've been doing radio astronomy on and off since 1986, and=
+ started using SDR/Gnu Radio for it in 2004.</span><br></blockquote></blockq=
+uote><blockquote type=3D"cite"><blockquote type=3D"cite"><span></span><br></=
+blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite">=
+<span>I did some work for Natural Resources Canada on riometers a couple of y=
+ears ago, and have been involved in riometer development with</span><br></bl=
+ockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><s=
+pan> &nbsp;Gnu Radio since 2010 or so.</span><br></blockquote></blockquote><=
+blockquote type=3D"cite"><blockquote type=3D"cite"><span></span><br></blockq=
+uote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><span>=
+</span><br></blockquote></blockquote><blockquote type=3D"cite"><blockquote t=
+ype=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote=
+ type=3D"cite"><span>On Jul 12, 2020, at 11:16 PM, Marcus D. Leech &lt;patch=
+vonbraun@gmail.com&gt; wrote:</span><br></blockquote></blockquote></blockquo=
+te></blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"c=
+ite"><blockquote type=3D"cite"><blockquote type=3D"cite"><span>=EF=BB=BFOn 0=
+7/12/2020 10:59 PM, Larry Dodd wrote:</span><br></blockquote></blockquote></=
+blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite">=
+<blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite=
+"><span>Marcus</span><br></blockquote></blockquote></blockquote></blockquote=
+></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquot=
+e type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><span>Ok=
+ Thanks for the information Marcus. &nbsp;I have both a Spyverter and Ham-it=
+-up already. I may get an N210 eventually. The X series unfortunately are ou=
+t of my funding range. I appreciate your expertise and advice. Thanks!</span=
+><br></blockquote></blockquote></blockquote></blockquote></blockquote><block=
+quote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blo=
+ckquote type=3D"cite"><blockquote type=3D"cite"><span>Larry, K4LED</span><br=
+></blockquote></blockquote></blockquote></blockquote></blockquote><blockquot=
+e type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockqu=
+ote type=3D"cite"><blockquote type=3D"cite"><span></span><br></blockquote></=
+blockquote></blockquote></blockquote></blockquote><blockquote type=3D"cite">=
+<blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite=
+"><span>Incidentally, what kind of radio astronomy are you planning to do at=
+ that frequency range? &nbsp;It's mostly, as you might expect, "a mess", but=
+</span><br></blockquote></blockquote></blockquote></blockquote><blockquote t=
+ype=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote=
+ type=3D"cite"><span> &nbsp;some discrete frequencies are available for thin=
+gs like riometry, and looking at solar and jupiter radio bursts...</span><br=
+></blockquote></blockquote></blockquote></blockquote><blockquote type=3D"cit=
+e"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"c=
+ite"><span></span><br></blockquote></blockquote></blockquote></blockquote><b=
+lockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite">=
+<blockquote type=3D"cite"><span></span><br></blockquote></blockquote></block=
+quote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><bloc=
+kquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><bl=
+ockquote type=3D"cite"><blockquote type=3D"cite"><span>On Jul 12, 2020, at 1=
+0:08 PM, Marcus D. Leech &lt;patchvonbraun@gmail.com&gt; wrote:</span><br></=
+blockquote></blockquote></blockquote></blockquote></blockquote></blockquote>=
+</blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote=
+ type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquo=
+te type=3D"cite"><span>=EF=BB=BFOn 07/12/2020 09:42 PM, Larry Dodd wrote:</s=
+pan><br></blockquote></blockquote></blockquote></blockquote></blockquote></b=
+lockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote ty=
+pe=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote t=
+ype=3D"cite"><blockquote type=3D"cite"><span>Marcus</span><br></blockquote><=
+/blockquote></blockquote></blockquote></blockquote></blockquote></blockquote=
+><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cit=
+e"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"c=
+ite"><blockquote type=3D"cite"><span>Actually I don=E2=80=99t have the B210 o=
+r the LFRX yet as I just ordered them but that=E2=80=99s all I ordered. Do I=
+ need to cancel the order?</span><br></blockquote></blockquote></blockquote>=
+</blockquote></blockquote></blockquote></blockquote><blockquote type=3D"cite=
+"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"ci=
+te"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"=
+cite"><span>Larry, K4LED</span><br></blockquote></blockquote></blockquote></=
+blockquote></blockquote></blockquote></blockquote><blockquote type=3D"cite">=
+<blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite=
+"><blockquote type=3D"cite"><blockquote type=3D"cite"><span>The LFRX will be=
+ of no use to you unless you have a platform that it can plug in to.</span><=
+br></blockquote></blockquote></blockquote></blockquote></blockquote></blockq=
+uote><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><span></span><br></blockquote></blockquote></blockquote></blockquote>=
+</blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite=
+"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"ci=
+te"><blockquote type=3D"cite"><span>I'd keep the B210 part of the order, and=
+ order a HamItUp or SpyVerter upconverter module, which up-converts HF frequ=
+encies to</span><br></blockquote></blockquote></blockquote></blockquote></bl=
+ockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><b=
+lockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite">=
+<blockquote type=3D"cite"><span> &nbsp;a higher range that the B210 can tune=
+ to.</span><br></blockquote></blockquote></blockquote></blockquote></blockqu=
+ote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><blockq=
+uote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><bloc=
+kquote type=3D"cite"><span></span><br></blockquote></blockquote></blockquote=
+></blockquote></blockquote></blockquote><blockquote type=3D"cite"><blockquot=
+e type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockqu=
+ote type=3D"cite"><blockquote type=3D"cite"><span>HamiTup is sold by NooElec=
+, and the SpyVerter is sold by https://airspy.com/spyverter-r2/</span><br></=
+blockquote></blockquote></blockquote></blockquote></blockquote></blockquote>=
+<blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite=
+"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"ci=
+te"><span></span><br></blockquote></blockquote></blockquote></blockquote></b=
+lockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><=
+blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"=
+><blockquote type=3D"cite"><span>Again, the LFRX is a "daughtercard", which i=
+s used in various USRPS that use the daughter-card architecture, like the US=
+RP1, USRP2,</span><br></blockquote></blockquote></blockquote></blockquote></=
+blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite">=
+<blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite=
+"><blockquote type=3D"cite"><span> &nbsp;N2xx, X3xx, B100, and E100.</span><=
+br></blockquote></blockquote></blockquote></blockquote></blockquote></blockq=
+uote><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><span></span><br></blockquote></blockquote></blockquote></blockquote>=
+</blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite=
+"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"ci=
+te"><blockquote type=3D"cite"><span>But the B210 is an excellent machine, it=
+'s just that it doesn't tune down to HF frequencies. &nbsp;But with the addi=
+tion of a (fairly cheap, IMHO)</span><br></blockquote></blockquote></blockqu=
+ote></blockquote></blockquote></blockquote><blockquote type=3D"cite"><blockq=
+uote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><bloc=
+kquote type=3D"cite"><blockquote type=3D"cite"><span> &nbsp;up-converter, yo=
+u can explore the territory you're interested in quite nicely.</span><br></b=
+lockquote></blockquote></blockquote></blockquote></blockquote></blockquote><=
+blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"=
+><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cit=
+e"><span></span><br></blockquote></blockquote></blockquote></blockquote></bl=
+ockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><b=
+lockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite">=
+<blockquote type=3D"cite"><span>In terms of software, it really depends on w=
+hat you want to *do*. If you just want an integrated FFT display that can co=
+ver your 15MHz</span><br></blockquote></blockquote></blockquote></blockquote=
+></blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cit=
+e"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"c=
+ite"><blockquote type=3D"cite"><span> &nbsp;of bandwidth, you can use the uh=
+d_fft application, and have it sample at 15Msps--this assumes your computer i=
+s able to "keep up"</span><br></blockquote></blockquote></blockquote></block=
+quote></blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><blockquote type=3D"cite"><span> &nbsp;at that rate--a good USB3 cont=
+roller will be required, and a good multi-core machine to go with it.</span>=
+<br></blockquote></blockquote></blockquote></blockquote></blockquote></block=
+quote><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><span></span><br></blockquote></blockquote></blockquote></blockquote>=
+</blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite=
+"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"ci=
+te"><blockquote type=3D"cite"><span></span><br></blockquote></blockquote></b=
+lockquote></blockquote></blockquote></blockquote><blockquote type=3D"cite"><=
+blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"=
+><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cit=
+e"><blockquote type=3D"cite"><blockquote type=3D"cite"><span>On Jul 12, 2020=
+, at 8:06 PM, Marcus D Leech &lt;patchvonbraun@gmail.com&gt; wrote:</span><b=
+r></blockquote></blockquote></blockquote></blockquote></blockquote></blockqu=
+ote></blockquote></blockquote></blockquote><blockquote type=3D"cite"><blockq=
+uote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><bloc=
+kquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><bl=
+ockquote type=3D"cite"><span>=EF=BB=BFThe B210 is self contained and tunes d=
+own to 50Mhz at the lowest. The LFRX is for other types of USRPs. So first t=
+hings first, what type of USRP do you have?</span><br></blockquote></blockqu=
+ote></blockquote></blockquote></blockquote></blockquote></blockquote></block=
+quote><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><span></span><br>=
+</blockquote></blockquote></blockquote></blockquote></blockquote></blockquot=
+e></blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"ci=
+te"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"=
+cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><span>Sent from my iPhone</span><br></blockquote></blockquote></block=
+quote></blockquote></blockquote></blockquote></blockquote></blockquote><bloc=
+kquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><bl=
+ockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><=
+blockquote type=3D"cite"><blockquote type=3D"cite"><span></span><br></blockq=
+uote></blockquote></blockquote></blockquote></blockquote></blockquote></bloc=
+kquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><blo=
+ckquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><b=
+lockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite">=
+<blockquote type=3D"cite"><span>On Jul 12, 2020, at 7:43 PM, Larry Dodd via U=
+SRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:</span><br></blockquote><=
+/blockquote></blockquote></blockquote></blockquote></blockquote></blockquote=
+></blockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cit=
+e"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"c=
+ite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><blockquote type=3D"cite"><span></span><br></blockquote></blockquote>=
+</blockquote></blockquote></blockquote></blockquote></blockquote></blockquot=
+e></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquo=
+te type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockq=
+uote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><bloc=
+kquote type=3D"cite"><span>=EF=BB=BFI need to set up a GNU HF spectrum analy=
+zer with a waterfall using my B210, LNA, and LFRX daughter board. The target=
+ would be a 15 to 30 MHz (or wider) instantaneous spectrum for Radio Astrono=
+my work. Rather than re-creating something that already exists where could I=
+ get a similar GNU flowgraph? Since I am brand new to USRP any advice is ver=
+y welcome.</span><br></blockquote></blockquote></blockquote></blockquote></b=
+lockquote></blockquote></blockquote></blockquote></blockquote><blockquote ty=
+pe=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote t=
+ype=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote=
+ type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><span>Tha=
+nks,</span><br></blockquote></blockquote></blockquote></blockquote></blockqu=
+ote></blockquote></blockquote></blockquote></blockquote><blockquote type=3D"=
+cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><span>Larry, K4LE=
+D</span><br></blockquote></blockquote></blockquote></blockquote></blockquote=
+></blockquote></blockquote></blockquote></blockquote><blockquote type=3D"cit=
+e"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"c=
+ite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D=
+"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><span>___________=
+____________________________________</span><br></blockquote></blockquote></b=
+lockquote></blockquote></blockquote></blockquote></blockquote></blockquote><=
+/blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote t=
+ype=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote=
+ type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquo=
+te type=3D"cite"><span>USRP-users mailing list</span><br></blockquote></bloc=
+kquote></blockquote></blockquote></blockquote></blockquote></blockquote></bl=
+ockquote></blockquote><blockquote type=3D"cite"><blockquote type=3D"cite"><b=
+lockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite">=
+<blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite=
+"><blockquote type=3D"cite"><span>USRP-users@lists.ettus.com</span><br></blo=
+ckquote></blockquote></blockquote></blockquote></blockquote></blockquote></b=
+lockquote></blockquote></blockquote><blockquote type=3D"cite"><blockquote ty=
+pe=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote t=
+ype=3D"cite"><blockquote type=3D"cite"><blockquote type=3D"cite"><blockquote=
+ type=3D"cite"><blockquote type=3D"cite"><span>http://lists.ettus.com/mailma=
+n/listinfo/usrp-users_lists.ettus.com</span><br></blockquote></blockquote></=
+blockquote></blockquote></blockquote></blockquote></blockquote></blockquote>=
+</blockquote><span></span><br></div></blockquote></body></html>=
+
+--Apple-Mail-8CEB301D-1869-42B6-81C8-AACB96E84B33--
+
+
+--===============5931559382116402605==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5931559382116402605==--
+
