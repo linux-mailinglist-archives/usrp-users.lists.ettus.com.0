@@ -2,60 +2,35 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2583421F328
-	for <lists+usrp-users@lfdr.de>; Tue, 14 Jul 2020 15:55:56 +0200 (CEST)
-Received: from [::1] (port=50192 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C39B421F38A
+	for <lists+usrp-users@lfdr.de>; Tue, 14 Jul 2020 16:11:30 +0200 (CEST)
+Received: from [::1] (port=50340 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jvLPU-0004XJ-QY; Tue, 14 Jul 2020 09:55:52 -0400
-Received: from mail-qk1-f171.google.com ([209.85.222.171]:45635)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jvLPR-0004GT-9O
- for usrp-users@lists.ettus.com; Tue, 14 Jul 2020 09:55:49 -0400
-Received: by mail-qk1-f171.google.com with SMTP id c139so15575836qkg.12
- for <usrp-users@lists.ettus.com>; Tue, 14 Jul 2020 06:55:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=Ner1nVE2XXPm/AAyUUewuW6qpvLVJqEjdnGawh6wC50=;
- b=EooKMk/UzVQkIGW6IvQLs1vfbip9SLE40QvkskMnd9c1XXYUGuLU/ZCJDTjDE6A1eC
- 5+PJgYQYD8QDoLChR+N5BaXWqIs+rwEit6ty5w1EL/MxOMNPNaxeHBnf3ffXDDLtL2Fa
- SDhxhmOZ4wxMtB4rPAU7nMKUkp9zjfScvxpf06v3wxkFgCaUWNXmYtb3kh+HXiqDfCHt
- KqpdygsLe/LE65mPkCWNYpunzpol6OAgmpbbPp5ku1JIS19ogGrme7vhJvgC3pICAWFv
- rhktuHWjjoXanCoR7JHgXmFA21byuCwVElt49SaN2r78Zk6mAM9JuN0pF+g/4n98q1nO
- 8q8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=Ner1nVE2XXPm/AAyUUewuW6qpvLVJqEjdnGawh6wC50=;
- b=s0sfv5JFfJvfWRn2uk2SvHypsW6MX9Nv73f97U1B9D6Tr8dRbKCQKv7AtoQQymu+Hg
- yQCCTxxKR0/5WwB7MissQLDtNvUx7BvzIp5+ElvYkeRwjHyh0+McUGAypdYrxXB4XCo7
- YcK2x9pDDtbxOWMm/E6qM3MtqsnUJeEBiTU6aTXDzP52ti5kaEhmQqXAGk/0Pm3POn9E
- sq/fGhCeGJBTZjDAo8VOFAJrjNqj+yiOLITLfhpFEHzSk6uQB3/kygsOUvMIgq3PfbTk
- 4AZ3HhJ5ZPCq4CfOcEdvpja9990dM7tU7qcTpBLvPTkUGd78Q1bmF/1O6+xiRwI37LAO
- vDRQ==
-X-Gm-Message-State: AOAM531V2n+W2tIEUSn/Z/qQuAtzND+yZSk2HGO0YWyiW2fTxm5t4WID
- cDHrjeOA/DEqlcY1vGz0xJbpaJO5
-X-Google-Smtp-Source: ABdhPJwNeofo808IhuATqBJ7ldPS/iycD775DoxbbnOOiC3A6OtokAWI1Haytudks17K9wGVz08JXQ==
-X-Received: by 2002:a37:bcb:: with SMTP id 194mr4814790qkl.103.1594734908318; 
- Tue, 14 Jul 2020 06:55:08 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148]) by smtp.googlemail.com with ESMTPSA id
- z68sm22213444qke.113.2020.07.14.06.55.07
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 14 Jul 2020 06:55:07 -0700 (PDT)
-Message-ID: <5F0DB93B.8090100@gmail.com>
-Date: Tue, 14 Jul 2020 09:55:07 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
+	id 1jvLea-0005YE-5s; Tue, 14 Jul 2020 10:11:28 -0400
+Received: from atl4mhob10.registeredsite.com ([209.17.115.48]:44298)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <k5so@k5so.com>) id 1jvLeW-0005QI-BI
+ for usrp-users@lists.ettus.com; Tue, 14 Jul 2020 10:11:24 -0400
+Received: from mailpod.hostingplatform.com
+ (atl4qobmail01pod3.registeredsite.com [10.30.77.67])
+ by atl4mhob10.registeredsite.com (8.14.4/8.14.4) with ESMTP id 06EEAho1016204
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
+ for <usrp-users@lists.ettus.com>; Tue, 14 Jul 2020 10:10:43 -0400
+Received: (qmail 5851 invoked by uid 0); 14 Jul 2020 14:10:43 -0000
+X-TCPREMOTEIP: 158.51.162.42
+X-Authenticated-UID: k5so@k5so.com
+Received: from unknown (HELO ?192.168.1.75?) (k5so@k5so.com@158.51.162.42)
+ by 0 with ESMTPA; 14 Jul 2020 14:10:42 -0000
+Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
+In-Reply-To: <071c37d5-a9d9-1332-de7e-14c64660f329@ettus.com>
+Date: Tue, 14 Jul 2020 08:10:36 -0600
+Cc: usrp-users@lists.ettus.com
+Message-Id: <F7840C27-2AEF-4602-911F-49123A6019F3@k5so.com>
 References: <CANzM3hxAfQDHM4xfJiWO9mdaRUbOP3c-+sksV85wgD=ZwzX6bw@mail.gmail.com>
  <071c37d5-a9d9-1332-de7e-14c64660f329@ettus.com>
-In-Reply-To: <071c37d5-a9d9-1332-de7e-14c64660f329@ettus.com>
+To: =?utf-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
+X-Mailer: Apple Mail (2.3445.9.1)
 Subject: Re: [USRP-users] USRP X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -68,10 +43,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+From: Joe Martin via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Joe Martin <k5so@k5so.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,15 +60,31 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMDcvMTQvMjAyMCAwNTo1MyBBTSwgTWFyY3VzIE3DvGxsZXIgdmlhIFVTUlAtdXNlcnMgd3Jv
-dGU6Cj4gSGkgQXJhc2gsCj4KPiBUaGUgaW5wdXQgcG93ZXIgaXMgbm90IGRlZmluZWQgYnkgdGhl
-IG1vdGhlcmJvYXJkIChYMzEwKSB5b3UncmUgdXNpbmcsCj4gYnV0IGJ5IHRoZSBhbmFsb2cgZnJv
-bnRlbmQgZGF1Z2h0ZXJib2FyZCAobGlrZSBUd2luUlgsIFVCWC0xNjAsIFNCWCzigKYpCj4geW91
-J3ZlIHBsdWdnZWQgaW4gdG8gdGhlc2UuCj4KRm9yIGV4YW1wbGUsIHNlZSB0aGUgIkNhcmUgYW5k
-IEhhbmRsaW5nIiBmb3IgdGhlIFNCWCBoZXJlOgoKaHR0cHM6Ly9rYi5ldHR1cy5jb20vU0JYX0dl
-dHRpbmdfU3RhcnRlZF9HdWlkZXMjUHJvcGVyX0NhcmVfYW5kX0hhbmRsaW5nCgpBbmQgZm9yIHRo
-ZSBUd2luUngKCmh0dHBzOi8va2IuZXR0dXMuY29tL1R3aW5SWF9HZXR0aW5nX1N0YXJ0ZWRfR3Vp
-ZGVzI1Byb3Blcl9DYXJlX2FuZF9IYW5kbGluZwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91
-c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+QXJhc2gsIAoKV2hpbGUgTWFyY3Vz4oCZIHJlc3BvbnNlIGlzIGNlcnRhaW5seSBjb3JyZWN0IGl0
+IGRvZXMgbGl0dGxlIGluIHByb3ZpZGluZyBhIHByYWN0aWNhbCBhbnN3ZXIgdG8geW91ciBxdWVz
+dGlvbi4gIAoKSSB1c2UgYW4gWDMxMCB3aXRoIFR3aW5SWCBkYXVnaHRlcmJvYXJkcyBhbmQgaGF2
+ZSBmb3VuZCB0aGF0IGl0IGlzIGluYWR2aXNhYmxlIHRvIHVzZSBpbnB1dCBsZXZlbHMgdG8gdGhl
+IFR3aW5SWCBkYXVnaHRlcmJvYXJkIGdyZWF0ZXIgdGhhbiAtMzBkQm0gYmVjYXVzZSBoaWdoZXIg
+bGV2ZWxzIHRoYW4gdGhhdCB0ZW5kIHRvIHJlc3VsdCBpbiBkaXN0b3J0aW9uL2NvbXByZXNzaW9u
+IGlzc3Vlcy4gIEkgZG9u4oCZdCBrbm93IHdoYXQgdGhlIGRhbWFnZSB0aHJlc2hvbGQgaXMgZm9y
+IHRoZSBpbnB1dCBwb3J0cyBvbiB0aGUgVHdpblJYIGRhdWdodGVyYm9hcmQuICBGb3IgbXkgcmFk
+aW8gYXN0cm9ub215IGFwcGxpY2F0aW9ucyBJIHVzZSBhbiBpbnB1dCBsZXZlbCBvZiAtNjBkQm0g
+YW5kIHRoYXQgc2VlbXMgdG8gd29yayBxdWl0ZSB3ZWxsIGZvciBtZS4gIEkgZG9u4oCZdCBrbm93
+IGlmIG90aGVyIGRhdWdodGVyYm9hcmRzIGZvciB0aGUgWDMxMCBoYXZlIGRpZmZlcmVudCBpbnB1
+dC1sZXZlbCBiZWhhdmlvci4gIFBlcmhhcHMgdGhpcyByZXNwb25zZSB3aWxsIGdpdmUgeW91IGJh
+bGwgcGFyayBhbnN3ZXJzIHRoYXQgeW91IGNhbiB1c2UuCgpSZWdhcmRzLCAKCkpvZQoKCj4gT24g
+SnVsIDE0LCAyMDIwLCBhdCAzOjUzIEFNLCBNYXJjdXMgTcO8bGxlciB2aWEgVVNSUC11c2VycyA8
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+IAo+IEhpIEFyYXNoLAo+IAo+IFRo
+ZSBpbnB1dCBwb3dlciBpcyBub3QgZGVmaW5lZCBieSB0aGUgbW90aGVyYm9hcmQgKFgzMTApIHlv
+dSdyZSB1c2luZywKPiBidXQgYnkgdGhlIGFuYWxvZyBmcm9udGVuZCBkYXVnaHRlcmJvYXJkIChs
+aWtlIFR3aW5SWCwgVUJYLTE2MCwgU0JYLOKApikKPiB5b3UndmUgcGx1Z2dlZCBpbiB0byB0aGVz
+ZS4KPiAKPiBPbiAxNC4wNy4yMCAxMTozOCwgQXJhc2ggSmFmYXJpIHZpYSBVU1JQLXVzZXJzIHdy
+b3RlOgo+PiBOYXRpb25hbCBJbnN0cnVtZW50IGNvbmdyYXR1bGF0aW9uISEgdmVyeSBiYWQgZG9j
+dW1lbnRhdGlvbi4KPiAKPiDigKYKPiAKPiBCZXN0IHJlZ2FyZHMsCj4gTWFyY3VzIE3DvGxsZXIK
+PiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVT
+UlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRw
+Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
+cy5jb20KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpV
+U1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8v
+bGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5j
+b20K
