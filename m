@@ -2,34 +2,34 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C39B421F38A
-	for <lists+usrp-users@lfdr.de>; Tue, 14 Jul 2020 16:11:30 +0200 (CEST)
-Received: from [::1] (port=50340 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6674221F3BB
+	for <lists+usrp-users@lfdr.de>; Tue, 14 Jul 2020 16:18:06 +0200 (CEST)
+Received: from [::1] (port=50390 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jvLea-0005YE-5s; Tue, 14 Jul 2020 10:11:28 -0400
-Received: from atl4mhob10.registeredsite.com ([209.17.115.48]:44298)
+	id 1jvLkx-0006Th-Q7; Tue, 14 Jul 2020 10:18:03 -0400
+Received: from atl4mhob13.registeredsite.com ([209.17.115.51]:37826)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <k5so@k5so.com>) id 1jvLeW-0005QI-BI
- for usrp-users@lists.ettus.com; Tue, 14 Jul 2020 10:11:24 -0400
+ (Exim 4.93) (envelope-from <k5so@k5so.com>) id 1jvLkt-0006PM-VF
+ for usrp-users@lists.ettus.com; Tue, 14 Jul 2020 10:18:00 -0400
 Received: from mailpod.hostingplatform.com
- (atl4qobmail01pod3.registeredsite.com [10.30.77.67])
- by atl4mhob10.registeredsite.com (8.14.4/8.14.4) with ESMTP id 06EEAho1016204
+ (atl4qobmail02pod3.registeredsite.com [10.30.77.68])
+ by atl4mhob13.registeredsite.com (8.14.4/8.14.4) with ESMTP id 06EEHIHD018681
  (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
- for <usrp-users@lists.ettus.com>; Tue, 14 Jul 2020 10:10:43 -0400
-Received: (qmail 5851 invoked by uid 0); 14 Jul 2020 14:10:43 -0000
+ for <usrp-users@lists.ettus.com>; Tue, 14 Jul 2020 10:17:19 -0400
+Received: (qmail 26225 invoked by uid 0); 14 Jul 2020 14:17:18 -0000
 X-TCPREMOTEIP: 158.51.162.42
 X-Authenticated-UID: k5so@k5so.com
 Received: from unknown (HELO ?192.168.1.75?) (k5so@k5so.com@158.51.162.42)
- by 0 with ESMTPA; 14 Jul 2020 14:10:42 -0000
+ by 0 with ESMTPA; 14 Jul 2020 14:17:18 -0000
+Message-Id: <04C32D5F-2C01-4683-9F96-86DCB43F5174@k5so.com>
 Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-In-Reply-To: <071c37d5-a9d9-1332-de7e-14c64660f329@ettus.com>
-Date: Tue, 14 Jul 2020 08:10:36 -0600
+Date: Tue, 14 Jul 2020 08:17:17 -0600
+In-Reply-To: <5F0DB93B.8090100@gmail.com>
 Cc: usrp-users@lists.ettus.com
-Message-Id: <F7840C27-2AEF-4602-911F-49123A6019F3@k5so.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 References: <CANzM3hxAfQDHM4xfJiWO9mdaRUbOP3c-+sksV85wgD=ZwzX6bw@mail.gmail.com>
- <071c37d5-a9d9-1332-de7e-14c64660f329@ettus.com>
-To: =?utf-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
+ <071c37d5-a9d9-1332-de7e-14c64660f329@ettus.com> <5F0DB93B.8090100@gmail.com>
 X-Mailer: Apple Mail (2.3445.9.1)
 Subject: Re: [USRP-users] USRP X310
 X-BeenThere: usrp-users@lists.ettus.com
@@ -45,8 +45,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Joe Martin via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Joe Martin <k5so@k5so.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============8111815540112643375=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -60,31 +59,120 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-QXJhc2gsIAoKV2hpbGUgTWFyY3Vz4oCZIHJlc3BvbnNlIGlzIGNlcnRhaW5seSBjb3JyZWN0IGl0
-IGRvZXMgbGl0dGxlIGluIHByb3ZpZGluZyBhIHByYWN0aWNhbCBhbnN3ZXIgdG8geW91ciBxdWVz
-dGlvbi4gIAoKSSB1c2UgYW4gWDMxMCB3aXRoIFR3aW5SWCBkYXVnaHRlcmJvYXJkcyBhbmQgaGF2
-ZSBmb3VuZCB0aGF0IGl0IGlzIGluYWR2aXNhYmxlIHRvIHVzZSBpbnB1dCBsZXZlbHMgdG8gdGhl
-IFR3aW5SWCBkYXVnaHRlcmJvYXJkIGdyZWF0ZXIgdGhhbiAtMzBkQm0gYmVjYXVzZSBoaWdoZXIg
-bGV2ZWxzIHRoYW4gdGhhdCB0ZW5kIHRvIHJlc3VsdCBpbiBkaXN0b3J0aW9uL2NvbXByZXNzaW9u
-IGlzc3Vlcy4gIEkgZG9u4oCZdCBrbm93IHdoYXQgdGhlIGRhbWFnZSB0aHJlc2hvbGQgaXMgZm9y
-IHRoZSBpbnB1dCBwb3J0cyBvbiB0aGUgVHdpblJYIGRhdWdodGVyYm9hcmQuICBGb3IgbXkgcmFk
-aW8gYXN0cm9ub215IGFwcGxpY2F0aW9ucyBJIHVzZSBhbiBpbnB1dCBsZXZlbCBvZiAtNjBkQm0g
-YW5kIHRoYXQgc2VlbXMgdG8gd29yayBxdWl0ZSB3ZWxsIGZvciBtZS4gIEkgZG9u4oCZdCBrbm93
-IGlmIG90aGVyIGRhdWdodGVyYm9hcmRzIGZvciB0aGUgWDMxMCBoYXZlIGRpZmZlcmVudCBpbnB1
-dC1sZXZlbCBiZWhhdmlvci4gIFBlcmhhcHMgdGhpcyByZXNwb25zZSB3aWxsIGdpdmUgeW91IGJh
-bGwgcGFyayBhbnN3ZXJzIHRoYXQgeW91IGNhbiB1c2UuCgpSZWdhcmRzLCAKCkpvZQoKCj4gT24g
-SnVsIDE0LCAyMDIwLCBhdCAzOjUzIEFNLCBNYXJjdXMgTcO8bGxlciB2aWEgVVNSUC11c2VycyA8
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+IAo+IEhpIEFyYXNoLAo+IAo+IFRo
-ZSBpbnB1dCBwb3dlciBpcyBub3QgZGVmaW5lZCBieSB0aGUgbW90aGVyYm9hcmQgKFgzMTApIHlv
-dSdyZSB1c2luZywKPiBidXQgYnkgdGhlIGFuYWxvZyBmcm9udGVuZCBkYXVnaHRlcmJvYXJkIChs
-aWtlIFR3aW5SWCwgVUJYLTE2MCwgU0JYLOKApikKPiB5b3UndmUgcGx1Z2dlZCBpbiB0byB0aGVz
-ZS4KPiAKPiBPbiAxNC4wNy4yMCAxMTozOCwgQXJhc2ggSmFmYXJpIHZpYSBVU1JQLXVzZXJzIHdy
-b3RlOgo+PiBOYXRpb25hbCBJbnN0cnVtZW50IGNvbmdyYXR1bGF0aW9uISEgdmVyeSBiYWQgZG9j
-dW1lbnRhdGlvbi4KPiAKPiDigKYKPiAKPiBCZXN0IHJlZ2FyZHMsCj4gTWFyY3VzIE3DvGxsZXIK
-PiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVT
-UlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRw
-Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
-cy5jb20KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpV
-U1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8v
-bGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5j
-b20K
+
+--===============8111815540112643375==
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_6559B9F9-202F-41C5-8FCE-7B783B8C52D4"
+
+
+--Apple-Mail=_6559B9F9-202F-41C5-8FCE-7B783B8C52D4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Arash,=20
+
+Marcus L.=E2=80=99s response has some definitive info in the links.  For =
+example, in the TwinRX link it is stated:=20
+
+> Never apply more than +10 dBm of power into any RF input.
+
+So there you have it.  Thanks for the details Marcus.=20
+
+Regards,=20
+
+Joe
+
+> On Jul 14, 2020, at 7:55 AM, Marcus D. Leech via USRP-users =
+<usrp-users@lists.ettus.com> wrote:
+>=20
+> On 07/14/2020 05:53 AM, Marcus M=C3=BCller via USRP-users wrote:
+>> Hi Arash,
+>>=20
+>> The input power is not defined by the motherboard (X310) you're =
+using,
+>> but by the analog frontend daughterboard (like TwinRX, UBX-160, =
+SBX,=E2=80=A6)
+>> you've plugged in to these.
+>>=20
+> For example, see the "Care and Handling" for the SBX here:
+>=20
+> =
+https://kb.ettus.com/SBX_Getting_Started_Guides#Proper_Care_and_Handling
+>=20
+> And for the TwinRx
+>=20
+> =
+https://kb.ettus.com/TwinRX_Getting_Started_Guides#Proper_Care_and_Handlin=
+g
+>=20
+>=20
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+--Apple-Mail=_6559B9F9-202F-41C5-8FCE-7B783B8C52D4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" =
+class=3D"">Arash,&nbsp;<div class=3D""><br class=3D""></div><div =
+class=3D"">Marcus L.=E2=80=99s response has some definitive info in the =
+links. &nbsp;For example, in the TwinRX link it is =
+stated:&nbsp;</div><div class=3D""><br class=3D""></div><div =
+class=3D""><blockquote type=3D"cite" class=3D""><span =
+style=3D"font-family: &quot;Lucida Sans Unicode&quot;, &quot;Lucida =
+Grande&quot;, sans-serif; font-size: 14px; background-color: rgb(255, =
+255, 255);" class=3D"">Never apply more than +10 dBm of power into any =
+RF input.</span></blockquote><div class=3D""><br class=3D""></div>So =
+there you have it. &nbsp;Thanks for the details Marcus.&nbsp;</div><div =
+class=3D""><br class=3D""></div><div class=3D"">Regards,&nbsp;</div><div =
+class=3D""><br class=3D""></div><div class=3D"">Joe</div><div =
+class=3D""></div><div style=3D""><br class=3D""><blockquote type=3D"cite" =
+class=3D""><div class=3D"">On Jul 14, 2020, at 7:55 AM, Marcus D. Leech =
+via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" =
+class=3D"">usrp-users@lists.ettus.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div class=3D"">On =
+07/14/2020 05:53 AM, Marcus M=C3=BCller via USRP-users wrote:<br =
+class=3D""><blockquote type=3D"cite" class=3D"">Hi Arash,<br =
+class=3D""><br class=3D"">The input power is not defined by the =
+motherboard (X310) you're using,<br class=3D"">but by the analog =
+frontend daughterboard (like TwinRX, UBX-160, SBX,=E2=80=A6)<br =
+class=3D"">you've plugged in to these.<br class=3D""><br =
+class=3D""></blockquote>For example, see the "Care and Handling" for the =
+SBX here:<br class=3D""><br class=3D""><a =
+href=3D"https://kb.ettus.com/SBX_Getting_Started_Guides#Proper_Care_and_Ha=
+ndling" =
+class=3D"">https://kb.ettus.com/SBX_Getting_Started_Guides#Proper_Care_and=
+_Handling</a><br class=3D""><br class=3D"">And for the TwinRx<br =
+class=3D""><br =
+class=3D"">https://kb.ettus.com/TwinRX_Getting_Started_Guides#Proper_Care_=
+and_Handling<br class=3D""><br class=3D""><br =
+class=3D"">_______________________________________________<br =
+class=3D"">USRP-users mailing list<br =
+class=3D"">USRP-users@lists.ettus.com<br =
+class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
+com<br class=3D""></div></div></blockquote></div><br =
+class=3D""></body></html>=
+
+--Apple-Mail=_6559B9F9-202F-41C5-8FCE-7B783B8C52D4--
+
+
+--===============8111815540112643375==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============8111815540112643375==--
+
