@@ -2,48 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BE5A21ED0E
-	for <lists+usrp-users@lfdr.de>; Tue, 14 Jul 2020 11:39:36 +0200 (CEST)
-Received: from [::1] (port=47786 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A18D21ED47
+	for <lists+usrp-users@lfdr.de>; Tue, 14 Jul 2020 11:54:17 +0200 (CEST)
+Received: from [::1] (port=47928 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jvHPP-0006BU-Qc; Tue, 14 Jul 2020 05:39:31 -0400
-Received: from mail-lj1-f175.google.com ([209.85.208.175]:44408)
+	id 1jvHdd-00078H-Vy; Tue, 14 Jul 2020 05:54:13 -0400
+Received: from mail-ed1-f54.google.com ([209.85.208.54]:34302)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <arash.jafari.telecom@gmail.com>)
- id 1jvHPK-00060c-EK
- for usrp-users@lists.ettus.com; Tue, 14 Jul 2020 05:39:26 -0400
-Received: by mail-lj1-f175.google.com with SMTP id s9so21633041ljm.11
- for <usrp-users@lists.ettus.com>; Tue, 14 Jul 2020 02:39:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=NrOfIQtjXCMMTDstrrkAumCw0HbiEnwSnk9PQYFiMNg=;
- b=pTivjuzUXa3k+KT3Ie98OX6ygMXBViji1XxhchOxmVC10yB3ARGbyJ2zAPD/+p+n9m
- W6ZmbKb+pTTiK1ySXeLdThN2SOxYYGryxy/l6Fry63rG/HU26CS6WjTQmdiMs60CL68d
- azJc8Q5wHfJ0ttcVeWwHaOhz7BlcY9aFMGIzuUim11/i0MDiRneThYIZ17tF99TjWNzo
- LD6KOTmNgPKKj8x4wCzVM/OHTLWRY9yAwuIsQoiMhlmPoTtHw5Fq390hkqNgdbJL8K1z
- rtsLbt/iGMjkySjaynn9SjFRBiculHk5dAJopDIbJSQ+ilcTTCnr3xKLvqZUAPDgPGUC
- 7Q9w==
+ (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
+ id 1jvHdZ-0006zj-CW
+ for usrp-users@lists.ettus.com; Tue, 14 Jul 2020 05:54:09 -0400
+Received: by mail-ed1-f54.google.com with SMTP id a8so16409776edy.1
+ for <usrp-users@lists.ettus.com>; Tue, 14 Jul 2020 02:53:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-language:content-transfer-encoding;
+ bh=ZTIkYn3nbk30+/qXyJ2GDnJXEtTBPLmrao4guUW3eTI=;
+ b=OZyIMINifHRwZvSX7dURFeFHyX9Dv/sfowb1FIarHaqeDO5ll+P57+wUYp4sY0K4YB
+ koki42+cPDPdHOt4DQH+tPiupP0WZcd9njfLz9ShL8XlKkwbbeVoXTfuD6UqaiANtTY4
+ m7mErJ7I73ZLLFr9S7V9iYtadDauPi8NT8AS8uTNWN7nzm8mM72m9ZKmeIY1GALZzwZp
+ U3KplSER0yoTW9rNq9vDC08PbycLHQMcAuGROQnnx4o8XPoOQHnN3HRIIA7jz2yUXkEf
+ s0fco0Ft9ev+6LQ/XSYwRiP43H2BOEj43N+EgDHlEuqZqYboNGiUJKcIJ+CnrazATjp0
+ 4hDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=NrOfIQtjXCMMTDstrrkAumCw0HbiEnwSnk9PQYFiMNg=;
- b=Bt1uM8ewGPweJC+QDYzQvTqwbtTdoeSlmKH3/hQtLOKK5AG4EJ0B0VER+H+tm3nLpr
- XEpeWL7i2ljcd4TmunvQsq4tIGl9Nq3w6jZ3MJtNXDaLOTyf+47Y75PhRaLqzi5PXcIK
- 6iKpdmMNExunILQr0H1EcfpRP7lcTot4ca7glZdSG9cJVre0+05C16fMiXizs5m7eByg
- 3Qoc/Nw89Wr6IvkfkPg1DceN9yppRqPxY2DC9U4m+RLOUmHvk4jcrw0Ar5w751DhnoI4
- 1bP2tWUg/vclv/sqbKdPrMoOQKbJsZpnMPRQ3nfLGKq2Durh7LFkQCBn9ZbQn41aLui3
- d43g==
-X-Gm-Message-State: AOAM533A0DpWsDJCEJ4HSC7Wlw/WTlxBkgFT9QJJPOIXYXynY1ZSFyC/
- nHLvBGVfwLF7AM4n7pQ/GFDPftElb0Wq6nz3TkgytWSb
-X-Google-Smtp-Source: ABdhPJyd+Tox81bARnd5ON8U5ehELGL43hWQJw3AKqT96I+wk2BsINrkbEtIWk1xRBZKfWfeFMfI1BzEuUmzZNM+VWg=
-X-Received: by 2002:a2e:7816:: with SMTP id t22mr1739261ljc.373.1594719524805; 
- Tue, 14 Jul 2020 02:38:44 -0700 (PDT)
-MIME-Version: 1.0
-Date: Tue, 14 Jul 2020 11:38:34 +0200
-Message-ID: <CANzM3hxAfQDHM4xfJiWO9mdaRUbOP3c-+sksV85wgD=ZwzX6bw@mail.gmail.com>
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=ZTIkYn3nbk30+/qXyJ2GDnJXEtTBPLmrao4guUW3eTI=;
+ b=liz5Iws50O5QMHW02YUsIV299CjwtFuByxuAquBL4sZH8FC2InqE/PtjGL4Yo14upW
+ KwsQsEVLYdxWDa4Xi0perricXWM3oto0XB+WFZjivCqF+S3A70dhdmSEj7B7u3AHK7da
+ 25CvzdVf5k+FJvoqR+N2Q6UButffcSgxneuBLCxEH6iEYonaBn220yxhJRlL9yeI6H76
+ XtQoKsSFk0PqcuQz43o3M92wDBKzembPNlYhJdinmVNOxkl7DRu5LM7FVDVbhQRmbDtq
+ yT52G9i0AMO+mJDAiAOFGhcBVjEpnfJlPp78yjpFpbT684WCVoPdanGkjAgDYfHQtYM9
+ 1TpQ==
+X-Gm-Message-State: AOAM531S2ujJMRLMOv5Tfj1lSkyk1e1BTbYfZ6xMtcNm5ECiNC9Df2Bw
+ JbXg8XEa90XDR4FThFAZT1BDeB3V/7f4GA==
+X-Google-Smtp-Source: ABdhPJxO2t+vspq1xo4W8+A6qscXzGxDByWnyk+Sv2XuCpd2yxLz6AQGR+JXbJ85/MdO7cXHKXJHxA==
+X-Received: by 2002:aa7:c656:: with SMTP id z22mr3729709edr.101.1594720408082; 
+ Tue, 14 Jul 2020 02:53:28 -0700 (PDT)
+Received: from [192.168.128.8]
+ (HSI-KBW-46-223-163-150.hsi.kabel-badenwuerttemberg.de. [46.223.163.150])
+ by smtp.gmail.com with ESMTPSA id se16sm12129638ejb.93.2020.07.14.02.53.27
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 14 Jul 2020 02:53:27 -0700 (PDT)
 To: usrp-users@lists.ettus.com
-Subject: [USRP-users] USRP X310
+References: <CANzM3hxAfQDHM4xfJiWO9mdaRUbOP3c-+sksV85wgD=ZwzX6bw@mail.gmail.com>
+Message-ID: <071c37d5-a9d9-1332-de7e-14c64660f329@ettus.com>
+Date: Tue, 14 Jul 2020 11:53:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
+MIME-Version: 1.0
+In-Reply-To: <CANzM3hxAfQDHM4xfJiWO9mdaRUbOP3c-+sksV85wgD=ZwzX6bw@mail.gmail.com>
+Content-Language: en-US
+Subject: Re: [USRP-users] USRP X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +70,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Arash Jafari via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Arash Jafari <arash.jafari.telecom@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3426200111436597379=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,62 +88,12 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3426200111436597379==
-Content-Type: multipart/alternative; boundary="000000000000cadfb805aa63925a"
-
---000000000000cadfb805aa63925a
-Content-Type: text/plain; charset="UTF-8"
-
-Hello everybody,
-
-Does anybody know what is the maximum input power level of USRP-X310 in RX
-modus?
-National Instrument congratulation!! very bad documentation.
-
-Kind regards,
-Arash.
-
-
-
--- 
-Dipl.-Ing. Arash Jafari
-
-Phone: +43 650 844 3617
-E-mail: arash.jafari.telecom@gmail.com
-
---000000000000cadfb805aa63925a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello everybody,<div><br></div><div>Does anybody know what=
-=C2=A0is the maximum input power level of USRP-X310 in RX modus?</div><div>=
-National Instrument congratulation!! very bad documentation.</div><div><br>=
-</div><div>Kind regards,</div><div>Arash.</div><div><br></div><div><br></di=
-v><div><div><div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature=
-" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"=
-><div dir=3D"ltr"><div dir=3D"ltr"><span style=3D"color:rgb(0,0,0);font-fam=
-ily:monospace,monospace">Dipl.-Ing. Arash Jafari</span><font face=3D"monosp=
-ace, monospace" color=3D"#000000" size=3D"2">=C2=A0</font><div><br></div><f=
-ont color=3D"#000000" size=3D"2"><span style=3D"font-family:monospace">Phon=
-e: +43 650 844 3617</span><br clear=3D"none" style=3D"font-family:monospace=
-"></font><div><span style=3D"font-family:monospace"><font color=3D"#000000"=
- size=3D"2">E-mail: <a href=3D"mailto:arash.jafari.telecom@gmail.com" targe=
-t=3D"_blank">arash.jafari.telecom@gmail.com</a></font></span></div></div></=
-div></div></div></div></div></div></div></div>
-
---000000000000cadfb805aa63925a--
-
-
---===============3426200111436597379==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3426200111436597379==--
-
+SGkgQXJhc2gsCgpUaGUgaW5wdXQgcG93ZXIgaXMgbm90IGRlZmluZWQgYnkgdGhlIG1vdGhlcmJv
+YXJkIChYMzEwKSB5b3UncmUgdXNpbmcsCmJ1dCBieSB0aGUgYW5hbG9nIGZyb250ZW5kIGRhdWdo
+dGVyYm9hcmQgKGxpa2UgVHdpblJYLCBVQlgtMTYwLCBTQlgs4oCmKQp5b3UndmUgcGx1Z2dlZCBp
+biB0byB0aGVzZS4KCk9uIDE0LjA3LjIwIDExOjM4LCBBcmFzaCBKYWZhcmkgdmlhIFVTUlAtdXNl
+cnMgd3JvdGU6Cj4gTmF0aW9uYWwgSW5zdHJ1bWVudCBjb25ncmF0dWxhdGlvbiEhIHZlcnkgYmFk
+IGRvY3VtZW50YXRpb24uCgrigKYKCkJlc3QgcmVnYXJkcywKTWFyY3VzIE3DvGxsZXIKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFp
+bGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5j
+b20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
