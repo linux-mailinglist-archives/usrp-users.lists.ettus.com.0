@@ -2,35 +2,42 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78AEB21F426
-	for <lists+usrp-users@lfdr.de>; Tue, 14 Jul 2020 16:32:33 +0200 (CEST)
-Received: from [::1] (port=50500 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9F1121FD5E
+	for <lists+usrp-users@lfdr.de>; Tue, 14 Jul 2020 21:30:08 +0200 (CEST)
+Received: from [::1] (port=53046 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jvLyy-0007oR-AZ; Tue, 14 Jul 2020 10:32:32 -0400
-Received: from atl4mhob24.registeredsite.com ([209.17.115.121]:58420)
+	id 1jvQct-0000Qh-Ur; Tue, 14 Jul 2020 15:30:03 -0400
+Received: from outgoing-exchange-1.mit.edu ([18.9.28.15]:49154)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <k5so@k5so.com>) id 1jvLyt-0007fQ-S2
- for USRP-users@lists.ettus.com; Tue, 14 Jul 2020 10:32:27 -0400
-Received: from mailpod.hostingplatform.com ([10.30.77.68])
- by atl4mhob24.registeredsite.com (8.14.4/8.14.4) with ESMTP id 06EEVkI6004163
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
- for <USRP-users@lists.ettus.com>; Tue, 14 Jul 2020 10:31:46 -0400
-Received: (qmail 18950 invoked by uid 0); 14 Jul 2020 14:31:46 -0000
-X-TCPREMOTEIP: 158.51.162.42
-X-Authenticated-UID: k5so@k5so.com
-Received: from unknown (HELO ?192.168.1.75?) (k5so@k5so.com@158.51.162.42)
- by 0 with ESMTPA; 14 Jul 2020 14:31:45 -0000
-Message-Id: <EFBC5CE5-1301-4151-B9FA-E0F9996BAAD3@k5so.com>
-Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-Date: Tue, 14 Jul 2020 08:31:43 -0600
-In-Reply-To: <6EDFF632-534F-4AA9-A733-050BCB2A9B33@gmail.com>
-Cc: USRP-users@lists.ettus.com
-To: Marcus D Leech <patchvonbraun@gmail.com>
-References: <04C32D5F-2C01-4683-9F96-86DCB43F5174@k5so.com>
- <6EDFF632-534F-4AA9-A733-050BCB2A9B33@gmail.com>
-X-Mailer: Apple Mail (2.3445.9.1)
-Subject: Re: [USRP-users] USRP X310
+ (Exim 4.93) (envelope-from <ri28856@mit.edu>) id 1jvQcq-0000M9-Lu
+ for usrp-users@lists.ettus.com; Tue, 14 Jul 2020 15:30:00 -0400
+Received: from oc11exedge1.exchange.mit.edu (OC11EXEDGE1.EXCHANGE.MIT.EDU
+ [18.9.3.17])
+ by outgoing-exchange-1.mit.edu (8.14.7/8.12.4) with ESMTP id 06EJRsei006095
+ for <usrp-users@lists.ettus.com>; Tue, 14 Jul 2020 15:28:10 -0400
+Received: from w92expo22.exchange.mit.edu (18.7.74.76) by
+ oc11exedge1.exchange.mit.edu (18.9.3.17) with Microsoft SMTP Server (TLS) id
+ 15.0.1293.2; Tue, 14 Jul 2020 15:29:02 -0400
+Received: from oc11expo22.exchange.mit.edu (18.9.4.84) by
+ w92expo22.exchange.mit.edu (18.7.74.76) with Microsoft SMTP Server (TLS) id
+ 15.0.1365.1; Tue, 14 Jul 2020 15:29:05 -0400
+Received: from oc11expo22.exchange.mit.edu ([18.9.4.84]) by
+ oc11expo22.exchange.mit.edu ([18.9.4.84]) with mapi id 15.00.1365.000; Tue,
+ 14 Jul 2020 15:29:05 -0400
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Considerations on resampling inside USRP firmware
+Thread-Index: AdZaBQ1BAKDWJBSmRK+zzp93R7rVLg==
+Date: Tue, 14 Jul 2020 19:29:05 +0000
+Message-ID: <d70f86d3b07e44cdbe0b0b32c9e4fae2@oc11expo22.exchange.mit.edu>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [129.55.200.20]
+MIME-Version: 1.0
+Subject: [USRP-users] Considerations on resampling inside USRP firmware
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -42,9 +49,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Joe Martin via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Joe Martin <k5so@k5so.com>
-Content-Type: multipart/mixed; boundary="===============5474602129428044603=="
+From: "Richard J. Muri via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Richard J. Muri" <ri28856@mit.edu>
+Content-Type: multipart/mixed; boundary="===============8523778867295569732=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -58,176 +65,275 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-
---===============5474602129428044603==
+--===============8523778867295569732==
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_FD304414-B7F1-44E1-9DBE-F51B6446E3EE"
+	boundary="_000_d70f86d3b07e44cdbe0b0b32c9e4fae2oc11expo22exchangemited_"
 
-
---Apple-Mail=_FD304414-B7F1-44E1-9DBE-F51B6446E3EE
+--_000_d70f86d3b07e44cdbe0b0b32c9e4fae2oc11expo22exchangemited_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
 
-Marcus:=20
-
-Yes. Thanks.  As I said.=20
-
-Regards,=20
-
-Joe
-
-> On Jul 14, 2020, at 8:29 AM, Marcus D Leech <patchvonbraun@gmail.com> =
-wrote:
->=20
-> Joe:
->=20
-> The input levels that cause distortion vary quite a bit from =
-daughtercard to daughtercard, and even within a daughtercard there will =
-be variability depending on frequency.=20
->=20
-> The performance data can be consulted for this:
->=20
-> https://files.ettus.com/performance_data/ =
-<https://files.ettus.com/performance_data/>
->=20
-> What you=E2=80=99re looking for is IP3 and P1dB data.=20
->=20
-> But =E2=80=9Cdamage limits=E2=80=9D are given=20
-> Sent from my iPhone
->=20
->> On Jul 14, 2020, at 10:17 AM, Joe Martin <k5so@k5so.com> wrote:
->>=20
->> =EF=BB=BFArash,=20
->>=20
->> Marcus L.=E2=80=99s response has some definitive info in the links.  =
-For example, in the TwinRX link it is stated:=20
->>=20
->>> Never apply more than +10 dBm of power into any RF input.
->>=20
->> So there you have it.  Thanks for the details Marcus.=20
->>=20
->> Regards,=20
->>=20
->> Joe
->>=20
->>> On Jul 14, 2020, at 7:55 AM, Marcus D. Leech via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>>=20
->>> On 07/14/2020 05:53 AM, Marcus M=C3=BCller via USRP-users wrote:
->>>> Hi Arash,
->>>>=20
->>>> The input power is not defined by the motherboard (X310) you're =
-using,
->>>> but by the analog frontend daughterboard (like TwinRX, UBX-160, =
-SBX,=E2=80=A6)
->>>> you've plugged in to these.
->>>>=20
->>> For example, see the "Care and Handling" for the SBX here:
->>>=20
->>> =
-https://kb.ettus.com/SBX_Getting_Started_Guides#Proper_Care_and_Handling =
-<https://kb.ettus.com/SBX_Getting_Started_Guides#Proper_Care_and_Handling>=
-
->>>=20
->>> And for the TwinRx
->>>=20
->>> =
-https://kb.ettus.com/TwinRX_Getting_Started_Guides#Proper_Care_and_Handlin=
-g
->>>=20
->>>=20
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>=20
+Hello,
 
 
---Apple-Mail=_FD304414-B7F1-44E1-9DBE-F51B6446E3EE
+
+I'm working on a project using x310s where different stakeholders desire di=
+fferent sampling rates, some of which are not natively support by the x310.=
+ One stakeholder wants to put a fractional resampling filter at the ingress=
+ and egress of the FPGA inside the USRP.
+
+
+
+For instance, I may be running the USRP at 50 MHz sampling rate. I have an =
+application that requires a 40 MHz sampling rate. I want to send 1000 sampl=
+es (from my application perspective) loopbacked from TX/RX to RX2. Does it =
+make sense to put a 5/4  upsampler on the transmit chain inside the FPGA, a=
+nd then a 4/5 downsampler on the receive? I'm hoping that if I use the soft=
+ware I have already written as before, the scenario plays out as follows:
+
+
+
+1.       Initialize the USRP to a 50 MHz sampling rate.
+
+2.       Set md.time_spec using a clock domain agnostic method (e.g. set it=
+ using integer seconds, double fractional seconds).
+
+3.       Call tx_streamer->send(txbuffer, 1000 samples, md, 0 timeout) in m=
+y TX thread.
+
+4.       Call rx_streamer->recv(rxbuffer, 1000 samples, md, 0 timeout) in m=
+y RX thread.
+
+5.       The 1000 sample TX packet hits the upsampler, gets converted to 12=
+50 samples.
+
+6.       The USRP works as normal and puts the 1250 samples through the ful=
+l TX/RX chain, at the time specified in the metadata timespec (rounded to w=
+hatever nearest tick count can actually be represented by the 20 ns clock p=
+eriod)
+
+7.       The 1250 sample receive hits the downsampler, gets converted to 10=
+00 samples.
+
+8.       My software gets 1000 samples into rxbuffer
+
+
+
+I'm not terribly familiar with the internal workings of the Verilog firmwar=
+e. Are there issues I may be missing? Does the custom firmware need to inte=
+rcept the CHDR and change the 1000 samples to 1250, or is the 1000 only use=
+d by software for the network communication?
+
+
+
+Thank you,
+
+Richard
+
+
+--_000_d70f86d3b07e44cdbe0b0b32c9e4fae2oc11expo22exchangemited_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D"">Marcus:&nbsp;<div class=3D""><br class=3D""></div><div =
-class=3D"">Yes. Thanks. &nbsp;As I said.&nbsp;</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Regards,&nbsp;</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Joe</div><div class=3D""><div><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On Jul =
-14, 2020, at 8:29 AM, Marcus D Leech &lt;<a =
-href=3D"mailto:patchvonbraun@gmail.com" =
-class=3D"">patchvonbraun@gmail.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><meta =
-http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8" =
-class=3D""><div dir=3D"auto" class=3D"">Joe:<div class=3D""><br =
-class=3D""></div><div class=3D"">The input levels that cause distortion =
-vary quite a bit from daughtercard to daughtercard, and even within a =
-daughtercard there will be variability depending on =
-frequency.&nbsp;</div><div class=3D""><br class=3D""></div><div =
-class=3D"">The performance data can be consulted for this:</div><div =
-class=3D""><br class=3D""></div><div class=3D""><a =
-href=3D"https://files.ettus.com/performance_data/" =
-class=3D"">https://files.ettus.com/performance_data/</a></div><div =
-class=3D""><div class=3D""><br class=3D""></div><div class=3D"">What =
-you=E2=80=99re looking for is IP3 and P1dB data.&nbsp;</div><div =
-class=3D""><br class=3D""></div><div class=3D"">But =E2=80=9Cdamage =
-limits=E2=80=9D are given&nbsp;<br class=3D""><div dir=3D"ltr" =
-class=3D"">Sent from my iPhone</div><div dir=3D"ltr" class=3D""><br =
-class=3D""><blockquote type=3D"cite" class=3D"">On Jul 14, 2020, at =
-10:17 AM, Joe Martin &lt;<a href=3D"mailto:k5so@k5so.com" =
-class=3D"">k5so@k5so.com</a>&gt; wrote:<br class=3D""><br =
-class=3D""></blockquote></div><blockquote type=3D"cite" class=3D""><div =
-dir=3D"ltr" class=3D"">=EF=BB=BF<meta http-equiv=3D"Content-Type" =
-content=3D"text/html; charset=3Dutf-8" class=3D"">Arash,&nbsp;<div =
-class=3D""><br class=3D""></div><div class=3D"">Marcus L.=E2=80=99s =
-response has some definitive info in the links. &nbsp;For example, in =
-the TwinRX link it is stated:&nbsp;</div><div class=3D""><br =
-class=3D""></div><div class=3D""><blockquote type=3D"cite" =
-class=3D""><span style=3D"font-family: &quot;Lucida Sans Unicode&quot;, =
-&quot;Lucida Grande&quot;, sans-serif; font-size: 14px; =
-background-color: rgb(255, 255, 255);" class=3D"">Never apply more than =
-+10 dBm of power into any RF input.</span></blockquote><div class=3D""><br=
- class=3D""></div>So there you have it. &nbsp;Thanks for the details =
-Marcus.&nbsp;</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Regards,&nbsp;</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Joe</div><div class=3D""></div><div style=3D"" class=3D""><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On Jul =
-14, 2020, at 7:55 AM, Marcus D. Leech via USRP-users &lt;<a =
-href=3D"mailto:usrp-users@lists.ettus.com" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div class=3D"">On =
-07/14/2020 05:53 AM, Marcus M=C3=BCller via USRP-users wrote:<br =
-class=3D""><blockquote type=3D"cite" class=3D"">Hi Arash,<br =
-class=3D""><br class=3D"">The input power is not defined by the =
-motherboard (X310) you're using,<br class=3D"">but by the analog =
-frontend daughterboard (like TwinRX, UBX-160, SBX,=E2=80=A6)<br =
-class=3D"">you've plugged in to these.<br class=3D""><br =
-class=3D""></blockquote>For example, see the "Care and Handling" for the =
-SBX here:<br class=3D""><br class=3D""><a =
-href=3D"https://kb.ettus.com/SBX_Getting_Started_Guides#Proper_Care_and_Ha=
-ndling" =
-class=3D"">https://kb.ettus.com/SBX_Getting_Started_Guides#Proper_Care_and=
-_Handling</a><br class=3D""><br class=3D"">And for the TwinRx<br =
-class=3D""><br class=3D""><a =
-href=3D"https://kb.ettus.com/TwinRX_Getting_Started_Guides#Proper_Care_and=
-_Handling" =
-class=3D"">https://kb.ettus.com/TwinRX_Getting_Started_Guides#Proper_Care_=
-and_Handling</a><br class=3D""><br class=3D""><br =
-class=3D"">_______________________________________________<br =
-class=3D"">USRP-users mailing list<br =
-class=3D"">USRP-users@lists.ettus.com<br =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com<br class=3D""></div></div></blockquote></div><br =
-class=3D""></div></blockquote></div></div></div></div></blockquote></div><=
-br class=3D""></div></body></html>=
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1382436791;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1084364802 67698703 67698713 67698715 67698703 67698=
+713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m working on a project using x310s where dif=
+ferent stakeholders desire different sampling rates, some of which are not =
+natively support by the x310. One stakeholder wants to put a fractional res=
+ampling filter at the ingress and egress
+ of the FPGA inside the USRP. <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">For instance, I may be running the USRP at 50 MHz sa=
+mpling rate. I have an application that requires a 40 MHz sampling rate. I =
+want to send 1000 samples (from my application perspective) loopbacked from=
+ TX/RX to RX2. Does it make sense
+ to put a 5/4&nbsp; upsampler on the transmit chain inside the FPGA, and th=
+en a 4/5 downsampler on the receive? I&#8217;m hoping that if I use the sof=
+tware I have already written as before, the scenario plays out as follows:<=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">1.<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;
+</span></span><![endif]>Initialize the USRP to a 50 MHz sampling rate.<o:p>=
+</o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">2.<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;
+</span></span><![endif]>Set md.time_spec using a clock domain agnostic meth=
+od (e.g. set it using integer seconds, double fractional seconds).
+<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">3.<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;
+</span></span><![endif]>Call tx_streamer-&gt;send(txbuffer, 1000 samples, m=
+d, 0 timeout) in my TX thread.<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">4.<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;
+</span></span><![endif]>Call rx_streamer-&gt;recv(rxbuffer, 1000 samples, m=
+d, 0 timeout) in my RX thread.
+<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">5.<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;
+</span></span><![endif]>The 1000 sample TX packet hits the upsampler, gets =
+converted to 1250 samples.<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">6.<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;
+</span></span><![endif]>The USRP works as normal and puts the 1250 samples =
+through the full TX/RX chain, at the time specified in the metadata timespe=
+c (rounded to whatever nearest tick count can actually be represented by th=
+e 20 ns clock period)<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">7.<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;
+</span></span><![endif]>The 1250 sample receive hits the downsampler, gets =
+converted to 1000 samples.<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">8.<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;
+</span></span><![endif]>My software gets 1000 samples into rxbuffer<o:p></o=
+:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m not terribly familiar with the internal wo=
+rkings of the Verilog firmware. Are there issues I may be missing? Does the=
+ custom firmware need to intercept the CHDR and change the 1000 samples to =
+1250, or is the 1000 only used by software
+ for the network communication?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thank you,<o:p></o:p></p>
+<p class=3D"MsoNormal">Richard<o:p></o:p></p>
+</div>
+</body>
+</html>
 
---Apple-Mail=_FD304414-B7F1-44E1-9DBE-F51B6446E3EE--
+--_000_d70f86d3b07e44cdbe0b0b32c9e4fae2oc11expo22exchangemited_--
 
 
---===============5474602129428044603==
+--===============8523778867295569732==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -238,5 +344,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5474602129428044603==--
+--===============8523778867295569732==--
 
