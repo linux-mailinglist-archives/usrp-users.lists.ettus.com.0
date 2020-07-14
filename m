@@ -2,51 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DDB321E543
-	for <lists+usrp-users@lfdr.de>; Tue, 14 Jul 2020 03:40:49 +0200 (CEST)
-Received: from [::1] (port=43326 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6494B21E54C
+	for <lists+usrp-users@lfdr.de>; Tue, 14 Jul 2020 03:45:17 +0200 (CEST)
+Received: from [::1] (port=43358 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jv9w4-0000cQ-Jh; Mon, 13 Jul 2020 21:40:44 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:42524)
+	id 1jvA0S-0000wb-6C; Mon, 13 Jul 2020 21:45:16 -0400
+Received: from mail-lj1-f177.google.com ([209.85.208.177]:38718)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <zh.heng96@gmail.com>) id 1jv9vz-0000UO-FM
- for usrp-users@lists.ettus.com; Mon, 13 Jul 2020 21:40:39 -0400
-Received: by mail-ot1-f43.google.com with SMTP id g37so11451046otb.9
- for <usrp-users@lists.ettus.com>; Mon, 13 Jul 2020 18:40:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.93) (envelope-from <coxe@close-haul.com>) id 1jvA0M-0000oj-TP
+ for usrp-users@lists.ettus.com; Mon, 13 Jul 2020 21:45:11 -0400
+Received: by mail-lj1-f177.google.com with SMTP id x9so10494606ljc.5
+ for <usrp-users@lists.ettus.com>; Mon, 13 Jul 2020 18:44:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quanttux-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=uiIelyTxrzE7kUEjkfrV4/8TWFWFvHnZKyQlua+eIqE=;
- b=agC1s5OzJf6NTtFa9m+Sn4YAEBBbgbZmV7vM/U162MeVGlCplxD3y9O75ZQmx/ge5K
- MO539Ote19khDYtT/VyRliUxq2F602WUxLR0ERjmHhkjluJnTIDnj9skfTXtqoEI1rHt
- nCAMOwPa22aMME+RSBbZzSET8N9/bAmXvsk2RtFEgvWzki8HG0Ggf38TOoYlNAIQVAHc
- Xw1JSvVwI8UJ2a1AAyBiChyRKp5z2UnCZLtMFE5jhtJqC/cO54M7etAr/7CjzKVf92UQ
- PPsns0YAPhfQ2Z+kpEakULnYx6pvUa4DvXX5Vc5VOdSFumaM6puNhGcWMrV+3RLHgK6F
- XTHQ==
+ :cc; bh=doxypZjwk62h7tUojIccneoNWD8W8+UttECS8gLF7s8=;
+ b=Rn9j1HcV9DkUwiWGXKCZlQDv3B3896fGq26MWf2pBOFuxTsgmhCJEVajxPxGV72pYK
+ 5ss/8K2pV9zM0pYkslVH7mshxNEmrLQmLhyh206A87UjHsrZ2xDI6KOlPYPF/2EQmKr3
+ Si6enxaDFkh4ygQ342vDx8l0L4Q2HY3uzXJYBR7OzJFk+/f5Ms4gn24rwBnpQcXCnUaJ
+ sm5NkUN2/45S0unYUsW86K8LYlVukRqxHg8eMzY3zmD35h1JP1xL/Z2/8auFovh4Xwn+
+ C1XWwhFPU4+qp0Vlyi1Qq3xWSM6bcCYaE61pVvQQFes3racNYTa8Mc7WNzS3td5dhXoQ
+ 1/sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=uiIelyTxrzE7kUEjkfrV4/8TWFWFvHnZKyQlua+eIqE=;
- b=d2mkl9aEjhgUp4KR0AM4M0V2dkx1co78++U8h8dD6FSmaZ7Lw3rR3DDLAsgW3/NwW6
- KTDMWIfFg0J+PD7dl+S2d6SJEHZ2dr62Yavc0scZDVUqn+/1bKawkKCA9yknwYn7vAos
- G2UhTS2YuSoqG9Gp8g7x2/idmEV9VoP8jV7S+HUj4Rg3BXB4yfG/jhiaqvzn4NQCvmEb
- nxzrK2SuLmqbkeocoQoLM3Cn05Cqsh4OUutt8dQ9UEQ7D+8qRZgIpSpGHEbewHLQy60W
- EVONvAc1iT0YL+y2Wn8DCE6WiK3+S+XHV3shgOEC0mO8B7zqHz6L/YL1uZT2u7ESqUxy
- NiAA==
-X-Gm-Message-State: AOAM530sm12n8VPDiTtrNkDAcb4V9KUXeLjScbMtD9lcsffga7nJpt5e
- wSH8xHzo1OTBQlcxvnMHOMJWG8uxApT7igd/T2E=
-X-Google-Smtp-Source: ABdhPJwMlzMPxPfqbMS+GhQN1oDINTYy+Bv3ToNKvZLs9t5VjUWDzZlLDVP8hSfkBkzqkvwWrJy3qGv2sqTjC9Eh4Zs=
-X-Received: by 2002:a9d:69c8:: with SMTP id v8mr1977723oto.249.1594690798602; 
- Mon, 13 Jul 2020 18:39:58 -0700 (PDT)
+ bh=doxypZjwk62h7tUojIccneoNWD8W8+UttECS8gLF7s8=;
+ b=D8MvN/GxQfBYv1xNLiT4IsOPnEORPx8dQ2sDpArjpkZ4aI4+i+YOZRe5fepYly+PBn
+ U5e3PH1ZK/o2nHBfsH5mUOkTtADWnG80J9PZHqtqG+BPXmGZ86C1UJv6g2+OJdtyECe1
+ 9fpL9xbgohNnTDn+dN/DKBO62eMaxV/DuLxaYlyeU0SDdKBt6xIVVgVHijDcYf2yZkgO
+ 1PqcIuYKdXRqgyFLL3WrjMw7qwZZALE+1D/blHxIoEyb9fgCADtQj1yQqIjhAr86DKCl
+ uXxl/SYI/2OzgWxHrgLwG9dm15kWXjVsSf2hQcGXlx03eXose5RbWcdtLyfu+pYfnuoh
+ lXWQ==
+X-Gm-Message-State: AOAM531lQU1dBZMh0vitZsU1YKVxPtmzGFPQnyosTnEqS94X7SDxSb8u
+ oj4sGgrMl1YmKghUAJnT/fNZigKnEQmY38ciMFpabQ==
+X-Google-Smtp-Source: ABdhPJxbo4eauvSdo/V1SZSyXqypIZohEtQmOXYo8xFrhh1pP3RDmyd94YLUGbSzsrGdpL6AN0i6WNDCvgaS+gbQYOA=
+X-Received: by 2002:a2e:7615:: with SMTP id r21mr1035477ljc.124.1594691069149; 
+ Mon, 13 Jul 2020 18:44:29 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAAM_mTSiEkCK2iNih4UJ9n9JXxqw10VG65yzBn4d_6tV0r30Pw@mail.gmail.com>
  <5F0D0A70.6060803@gmail.com>
-In-Reply-To: <5F0D0A70.6060803@gmail.com>
-Date: Tue, 14 Jul 2020 09:39:47 +0800
-Message-ID: <CAAM_mTReMz6-Ra9s64sb7TGH-F=rovt36CARzeW4hNfdfp+ydw@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
+ <CAAM_mTReMz6-Ra9s64sb7TGH-F=rovt36CARzeW4hNfdfp+ydw@mail.gmail.com>
+In-Reply-To: <CAAM_mTReMz6-Ra9s64sb7TGH-F=rovt36CARzeW4hNfdfp+ydw@mail.gmail.com>
+Date: Mon, 13 Jul 2020 18:44:18 -0700
+Message-ID: <CAKJyDkJErquDRxRtkNC1Ybyuf4+d-uOyP6OQVrwVqUWqm5P7DQ@mail.gmail.com>
+To: Heng Zhang <zh.heng96@gmail.com>
 Subject: Re: [USRP-users] No aapplicable UHD device found when update N310
  FPGA
 X-BeenThere: usrp-users@lists.ettus.com
@@ -60,9 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Heng Zhang via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Heng Zhang <zh.heng96@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3221328624461129782=="
+From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Robin Coxe <coxe@quanttux.com>
+Cc: Ettus Mail List <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8005423059380716577=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,67 +78,124 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3221328624461129782==
-Content-Type: multipart/related; boundary="000000000000940f8e05aa5ce228"
+--===============8005423059380716577==
+Content-Type: multipart/related; boundary="000000000000b4ae9d05aa5cf2ca"
 
---000000000000940f8e05aa5ce228
-Content-Type: multipart/alternative; boundary="000000000000940f8d05aa5ce227"
+--000000000000b4ae9d05aa5cf2ca
+Content-Type: multipart/alternative; boundary="000000000000b4ae9b05aa5cf2c9"
 
---000000000000940f8d05aa5ce227
+--000000000000b4ae9b05aa5cf2c9
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Yes, I can "ping" the USRP address derived from command "uhd_find_devices",
-for example, "192.168.1.191". I also try to update FPGA in ARM CPU mode but
-it still says "NO applicable UHD devices found".
+I am simply parrotting the Getting Started Guide, which says in bold
+letters at the very top:
+
+*When you receive a brand-new device, it is strongly recommended that you
+download the most recent filesystem image from the Ettus Research website
+and write it to the SD card that comes with the unit. It is not recommended
+that you use the SD card from the factory as-is. Instructions on
+downloading the latest filesystem image and writing it to the SD card are
+listed below.*
+
+*Note that if you are operating the device in Network Mode, the version of
+UHD running on the host computer and the USRP N3xx must match.*
 
 
-Regards,
-Heng
+Recent N310s are most likely shipping with SD cards that have a UHD version
+>3.13.
 
-Marcus D. Leech via USRP-users <usrp-users@lists.ettus.com> =E4=BA=8E2020=
-=E5=B9=B47=E6=9C=8814=E6=97=A5=E5=91=A8=E4=BA=8C
-=E4=B8=8A=E5=8D=889:30=E5=86=99=E9=81=93=EF=BC=9A
 
-> On 07/13/2020 09:19 PM, Heng Zhang via USRP-users wrote:
+
+
+On Mon, Jul 13, 2020 at 6:40 PM Heng Zhang via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Yes, I can "ping" the USRP address derived from command
+> "uhd_find_devices", for example, "192.168.1.191". I also try to update FP=
+GA
+> in ARM CPU mode but it still says "NO applicable UHD devices found".
 >
-> Dear community=EF=BC=8C
-> I'm a new user of USRP N310.  I follow this guide
-> https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide  and
-> now I can connect to N310 by RJ45 port.  I have completed the Linux File
-> System update. When I try to update FPGA images, it said "No applicable U=
-HD
-> devices found".  Why does this happen? Any advice would be appreciated.
-> [image: image.png]
 >
 > Regards,
 > Heng
 >
-> Can you "ping" the USRP device from your host?  That's the first
-> diagnostic step.  Has it (the USRP) changed addresses?
+> Marcus D. Leech via USRP-users <usrp-users@lists.ettus.com> =E4=BA=8E2020=
+=E5=B9=B47=E6=9C=8814=E6=97=A5=E5=91=A8=E4=BA=8C
+> =E4=B8=8A=E5=8D=889:30=E5=86=99=E9=81=93=EF=BC=9A
 >
->
+>> On 07/13/2020 09:19 PM, Heng Zhang via USRP-users wrote:
+>>
+>> Dear community=EF=BC=8C
+>> I'm a new user of USRP N310.  I follow this guide
+>> https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide  and
+>> now I can connect to N310 by RJ45 port.  I have completed the Linux File
+>> System update. When I try to update FPGA images, it said "No applicable =
+UHD
+>> devices found".  Why does this happen? Any advice would be appreciated.
+>> [image: image.png]
+>>
+>> Regards,
+>> Heng
+>>
+>> Can you "ping" the USRP device from your host?  That's the first
+>> diagnostic step.  Has it (the USRP) changed addresses?
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000940f8d05aa5ce227
+--000000000000b4ae9b05aa5cf2c9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Yes, I can &quot;ping&quot; the USRP address derived from =
-command &quot;uhd_find_devices&quot;, for example, &quot;192.168.1.191&quot=
-;. I also try to update FPGA in ARM CPU mode but it still=C2=A0says &quot;N=
-O applicable UHD devices=C2=A0found&quot;.<div><br></div><div><br></div><di=
-v>Regards,</div><div>Heng</div></div><br><div class=3D"gmail_quote"><div di=
-r=3D"ltr" class=3D"gmail_attr">Marcus D. Leech via USRP-users &lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; =
-=E4=BA=8E2020=E5=B9=B47=E6=9C=8814=E6=97=A5=E5=91=A8=E4=BA=8C =E4=B8=8A=E5=
-=8D=889:30=E5=86=99=E9=81=93=EF=BC=9A<br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
-04);padding-left:1ex">
+<div dir=3D"ltr">I am simply parrotting the Getting Started Guide, which sa=
+ys in bold letters at the very top:<div><p style=3D"margin:0.5em 0px;line-h=
+eight:inherit;color:rgb(0,0,0);font-family:&quot;Lucida Sans Unicode&quot;,=
+&quot;Lucida Grande&quot;,sans-serif;font-size:14px"><b>When you receive a =
+brand-new device, it is strongly recommended that you download the most rec=
+ent filesystem image from the Ettus Research website and write it to the SD=
+ card that comes with the unit. It is not recommended that you use the SD c=
+ard from the factory as-is. Instructions on downloading the latest filesyst=
+em image and writing it to the SD card are listed below.</b></p><p style=3D=
+"margin:0.5em 0px;line-height:inherit;color:rgb(0,0,0);font-family:&quot;Lu=
+cida Sans Unicode&quot;,&quot;Lucida Grande&quot;,sans-serif;font-size:14px=
+"><b>Note that if you are operating the device in Network Mode, the version=
+ of UHD running on the host computer and the USRP N3xx must match.</b></p><=
+p style=3D"margin:0.5em 0px;line-height:inherit;color:rgb(0,0,0);font-famil=
+y:&quot;Lucida Sans Unicode&quot;,&quot;Lucida Grande&quot;,sans-serif;font=
+-size:14px"><br></p><p style=3D"margin:0.5em 0px;line-height:inherit;color:=
+rgb(0,0,0);font-family:&quot;Lucida Sans Unicode&quot;,&quot;Lucida Grande&=
+quot;,sans-serif;font-size:14px">Recent N310s are most likely shipping with=
+ SD cards that have a UHD version &gt;3.13.</p><p style=3D"margin:0.5em 0px=
+;line-height:inherit;color:rgb(0,0,0);font-family:&quot;Lucida Sans Unicode=
+&quot;,&quot;Lucida Grande&quot;,sans-serif;font-size:14px"><br></p><p styl=
+e=3D"margin:0.5em 0px;line-height:inherit;color:rgb(0,0,0);font-family:&quo=
+t;Lucida Sans Unicode&quot;,&quot;Lucida Grande&quot;,sans-serif;font-size:=
+14px"><br></p></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Mon, Jul 13, 2020 at 6:40 PM Heng Zhang via USRP-use=
+rs &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus=
+.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex"><div dir=3D"ltr">Yes, I can &quot;ping&quot; the USRP address derived f=
+rom command &quot;uhd_find_devices&quot;, for example, &quot;192.168.1.191&=
+quot;. I also try to update FPGA in ARM CPU mode but it still=C2=A0says &qu=
+ot;NO applicable UHD devices=C2=A0found&quot;.<div><br></div><div><br></div=
+><div>Regards,</div><div>Heng</div></div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">Marcus D. Leech via USRP-users &lt;<a hr=
+ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists=
+.ettus.com</a>&gt; =E4=BA=8E2020=E5=B9=B47=E6=9C=8814=E6=97=A5=E5=91=A8=E4=
+=BA=8C =E4=B8=8A=E5=8D=889:30=E5=86=99=E9=81=93=EF=BC=9A<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex">
  =20
    =20
  =20
@@ -190,9 +249,17 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---000000000000940f8d05aa5ce227--
---000000000000940f8e05aa5ce228
+--000000000000b4ae9b05aa5cf2c9--
+--000000000000b4ae9d05aa5cf2ca
 Content-Type: image/png; name=noname
 Content-Disposition: inline; filename=noname
 Content-Transfer-Encoding: base64
@@ -4206,10 +4273,10 @@ i093Lmk+PZMU/Y24wyeYUG9OYlLdMGDlDlx2xFnsutJzQ2GpY8oI+iQa8NhtC4s5TLYBby54FcNj
 A5ihtkbiY8bb40ccjLUvflLM47IB+PjJNzE03crqAeW8oG89N7Jwzim9Z3mPhdTLoJmgeFLtcFbf
 rzz6gqKVXO5nUE+ATfePrvnE5hF47KaFwJrvsPGlj9HTmUODNcUifDX7a7DopvuLxwPgg8UrcMLo
 GajVuphPPDEkH0vH3fKoTlPejCqFBs1WJ/4fypnwu0mNGwcAAAAASUVORK5CYII=
---000000000000940f8e05aa5ce228--
+--000000000000b4ae9d05aa5cf2ca--
 
 
---===============3221328624461129782==
+--===============8005423059380716577==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -4220,5 +4287,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3221328624461129782==--
+--===============8005423059380716577==--
 
