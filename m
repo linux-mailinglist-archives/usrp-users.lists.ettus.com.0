@@ -2,56 +2,45 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5029022014D
-	for <lists+usrp-users@lfdr.de>; Wed, 15 Jul 2020 02:24:00 +0200 (CEST)
-Received: from [::1] (port=55162 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 729C42201A6
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Jul 2020 03:09:38 +0200 (CEST)
+Received: from [::1] (port=55438 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jvVDH-0008Pi-S4; Tue, 14 Jul 2020 20:23:55 -0400
-Received: from mail-qt1-f177.google.com ([209.85.160.177]:35600)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <101science@gmail.com>)
- id 1jvVDD-0008Kh-3R
- for usrp-users@lists.ettus.com; Tue, 14 Jul 2020 20:23:51 -0400
-Received: by mail-qt1-f177.google.com with SMTP id b25so395766qto.2
- for <usrp-users@lists.ettus.com>; Tue, 14 Jul 2020 17:23:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:date:message-id:subject:from:to:user-agent;
- bh=urjKgXw5rRUrCxGjH7QtYDwUgY115g5WP/6tpxcxN1M=;
- b=O5UEfEW8Lb/xowvoYuMDLvgfdw+5jRW4bYv3F5Q19Wc3tL+0eWZj1IMEz5EENVG7KR
- 2ZWelaiH9bda0hd8XMY+hTBcxNrgphXhswbaGpTuNIovV+nXKdHyin69Lc+eHm8xv9Tf
- TsDWh/qYstjYqE+NZdiHpKkEXReOZT6R2sc8WQceTIEvwkbWEEgk8l++mzmD+zn0kBC/
- iiJKq4vaPmrGEWHaOlIahAHk8MuRUQLEsB+rqG3J+9ELnP/p/gfsBst6SskOj0P7Xp+j
- oXqLCwj4ol1lYIt66/WWMFQmEBpHPRtJM5F1cUyf/aS5nGN1r/RVSHCfS7hP5xsqBmAK
- 3dCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:message-id:subject:from:to
- :user-agent;
- bh=urjKgXw5rRUrCxGjH7QtYDwUgY115g5WP/6tpxcxN1M=;
- b=DK6xjmcv+74PLV70M/dLZt5iCcSkuJW3OJU9IboupWezHdcm0VruVw04SiGy4vBtTE
- uF7gefJW8MBDxLnd+hqzpuHqXNoO+9/bRoiB9jBV/8I1s9NhkPS5wnmmyDBNbifxnU6y
- ZaVhqTJxdrB54I2q4iYpvkwI/Z/54XqUKjgHtzMdXTDMGTJp9oDf+ZhZRjMk3LbYTpA8
- QaIjG+kGr/ldUQb+v406pFD6oZ0ZUx7bFHUUiCZ9CEGhxA1xFMjK7Zd/GNNcWNVKFI6R
- dsFifiKWaQCKM7Uul8mncCaIpFZaXg+y+jP2Lb3BKTLnaiA2uhmtFoiewFbgz4Q/Tn7F
- N+hQ==
-X-Gm-Message-State: AOAM530kJh1U7MAQgpcs46LYbb+P/D0z8uNr7B31nIRydFpREICJo8Hr
- 8minGVZrBLroLnjKxC20J+KC7+zwe3A=
-X-Google-Smtp-Source: ABdhPJz3IsIF9Nfs1KcsKT03Q8lFW5Dtw5vblkw6Flx+ORKZIkx9gEbyriHY4yPy+cB5iRfrciMuDg==
-X-Received: by 2002:ac8:1972:: with SMTP id g47mr7451951qtk.180.1594772589843; 
- Tue, 14 Jul 2020 17:23:09 -0700 (PDT)
-Received: from [192.168.1.24] ([207.89.11.117])
- by smtp.gmail.com with ESMTPSA id z18sm800997qta.51.2020.07.14.17.23.08
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 14 Jul 2020 17:23:09 -0700 (PDT)
+	id 1jvVt7-00038C-6T; Tue, 14 Jul 2020 21:07:09 -0400
+Received: from resqmta-po-12v.sys.comcast.net ([96.114.154.171]:56986)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <w6rz@comcast.net>) id 1jvVss-00035P-0j
+ for usrp-users@lists.ettus.com; Tue, 14 Jul 2020 21:06:54 -0400
+Received: from resomta-po-18v.sys.comcast.net ([96.114.154.242])
+ by resqmta-po-12v.sys.comcast.net with ESMTP
+ id vUavj9DGyVKrYvVrdjlnjd; Wed, 15 Jul 2020 01:05:37 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+ s=20190202a; t=1594775137;
+ bh=ilJZCYXyzHgW24i0XIiTb7NRS20V+rTZMdQAqRPNR+0=;
+ h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
+ Content-Type;
+ b=NQAAf8LNE+Y84gjy4whu9P7Bcpbzcqf54CVZBq1CEgwa68Tm6gfukzNqdwUgnzM1U
+ iLbYW1x7v8Ws5/wldnx0d+6Z5zGWJuHfZPPwSKwszbQooMeFKv/R2fW4hte9h6B0zP
+ RuqtFIKJxoX+lXUOIW8/D4dWaFJcR5yvGuRu07GcrXj/pmym0oxkPd8k68B2YHyCDO
+ XDhn+WmaqBPimcYt1p5bf/r/ALXNFXbTZr9I4Cky5m25JG2C+UT82o1xHc6q/I6okK
+ aMHCwj20VwVgsKut/qKzjdJ6LiHOSKqVtMrtJgJFzt53gvZ59wWXkTJMKBEWPfo+3r
+ XasJzmlOEVndw==
+Received: from [IPv6:2601:647:4200:ea30:a0e0:ac9c:a460:dda]
+ ([IPv6:2601:647:4200:ea30:a0e0:ac9c:a460:dda])
+ by resomta-po-18v.sys.comcast.net with ESMTPSA
+ id vVrbjviVYEb82vVrdjmMxS; Wed, 15 Jul 2020 01:05:37 +0000
+X-Xfinity-VMeta: sc=0.00;st=legit
+To: usrp-users@lists.ettus.com
+References: <Mailbird-2d4fe5f5-044e-4c4d-b2f9-16306054419b@gmail.com>
+Message-ID: <8fc84b70-fc29-6b85-1aac-d9586e088b26@comcast.net>
+Date: Tue, 14 Jul 2020 18:05:35 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Date: Tue, 14 Jul 2020 19:23:08 -0500
-Message-ID: <Mailbird-2d4fe5f5-044e-4c4d-b2f9-16306054419b@gmail.com>
-To: "" <usrp-users@lists.ettus.com>
-User-Agent: Mailbird/2.8.23.0
-X-Mailbird-ID: Mailbird-2d4fe5f5-044e-4c4d-b2f9-16306054419b@gmail.com
-Subject: [USRP-users] Compiling UHD Error
+In-Reply-To: <Mailbird-2d4fe5f5-044e-4c4d-b2f9-16306054419b@gmail.com>
+Content-Language: en-US
+Subject: Re: [USRP-users] Compiling UHD Error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -63,9 +52,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Larry Dodd via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Larry Dodd <101science@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7537014756924501700=="
+From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ron Economos <w6rz@comcast.net>
+Content-Type: multipart/mixed; boundary="===============3828373368507507292=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,39 +68,122 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7537014756924501700==
+This is a multi-part message in MIME format.
+--===============3828373368507507292==
 Content-Type: multipart/alternative;
- boundary="----=_NextPart_30769194.293086512258"
+ boundary="------------0DAB009AFB1700CF3E679C55"
+Content-Language: en-US
 
-------=_NextPart_30769194.293086512258
-Content-Type: text/plain;
- charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------0DAB009AFB1700CF3E679C55
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Using Cmake I get the following error.
-CMake Error: The source directory "C:/uhd-master/uhd-master/build/CMakeFile=
-s" does not appear to contain CMakeLists.txt.
-Specify --help for usage, or press the help button on the CMake GUI.
+Take a look at:
 
-I searched the computer and can not find CMakeFiles.txt anywhere.
-Larry, K4LED
-------=_NextPart_30769194.293086512258
-Content-Type: text/html;
- charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+https://files.ettus.com/manual/page_build_guide.html
 
-<div id=3D"__MailbirdStyleContent" style=3D"font-size: 10pt;font-family: Ar=
-ial;color: #000000">Using Cmake I get the following error.<div class=3D"mb_=
-sig"></div><div><span style=3D" color:#ff0000;">CMake Error: The source dir=
-ectory "C:/uhd-master/uhd-master/build/CMakeFiles" does not appear to conta=
-in CMakeLists.txt.<br>Specify --help for usage, or press the help button on=
- the CMake GUI.</span><br></div><div><span style=3D" color:#ff0000;">I sear=
-ched the computer and can not find CMakeFiles.txt anywhere.</span></div><di=
-v><span style=3D" color:#ff0000;">Larry, K4LED</span></div></div>
-------=_NextPart_30769194.293086512258--
+Typically, for Linux it's:
+
+git clone https://github.com/EttusResearch/uhd.git
+
+cd uhd
+
+git checkout v3.15.0.0 -b tmp
+
+cd host
+
+mkdir build
+
+cd build
+
+cmake ../
+
+make
+
+sudo make install
+
+sudo ldconfig
+
+It's highly recommended to checkout a release. The master branch is a 
+development branch and can be broken.
+
+Ron W6RZ
+
+On 7/14/20 17:23, Larry Dodd via USRP-users wrote:
+> Using Cmake I get the following error.
+> CMake Error: The source directory 
+> "C:/uhd-master/uhd-master/build/CMakeFiles" does not appear to contain 
+> CMakeLists.txt.
+> Specify --help for usage, or press the help button on the CMake GUI.
+> I searched the computer and can not find CMakeFiles.txt anywhere.
+> Larry, K4LED
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--------------0DAB009AFB1700CF3E679C55
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Take a look at:</p>
+    <p><a class="moz-txt-link-freetext" href="https://files.ettus.com/manual/page_build_guide.html">https://files.ettus.com/manual/page_build_guide.html</a></p>
+    <p>Typically, for Linux it's:</p>
+    <p>git clone <a class="moz-txt-link-freetext" href="https://github.com/EttusResearch/uhd.git">https://github.com/EttusResearch/uhd.git</a></p>
+    <p>cd uhd</p>
+    <p>git checkout v3.15.0.0 -b tmp</p>
+    <p>cd host</p>
+    <p>mkdir build</p>
+    <p>cd build</p>
+    <p>cmake ../</p>
+    <p>make</p>
+    <p>sudo make install</p>
+    <p>sudo ldconfig</p>
+    <p>It's highly recommended to checkout a release. The master branch
+      is a development branch and can be broken.</p>
+    <p>Ron W6RZ<br>
+    </p>
+    <div class="moz-cite-prefix">On 7/14/20 17:23, Larry Dodd via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:Mailbird-2d4fe5f5-044e-4c4d-b2f9-16306054419b@gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div id="__MailbirdStyleContent" style="font-size:
+        10pt;font-family: Arial;color: #000000">Using Cmake I get the
+        following error.
+        <div><span style=" color:#ff0000;">CMake Error: The source
+            directory "C:/uhd-master/uhd-master/build/CMakeFiles" does
+            not appear to contain CMakeLists.txt.<br>
+            Specify --help for usage, or press the help button on the
+            CMake GUI.</span><br>
+        </div>
+        <div><span style=" color:#ff0000;">I searched the computer and
+            can not find CMakeFiles.txt anywhere.</span></div>
+        <div><span style=" color:#ff0000;">Larry, K4LED</span></div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------0DAB009AFB1700CF3E679C55--
 
 
---===============7537014756924501700==
+--===============3828373368507507292==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -122,5 +194,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7537014756924501700==--
+--===============3828373368507507292==--
 
