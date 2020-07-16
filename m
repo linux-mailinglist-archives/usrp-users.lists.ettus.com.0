@@ -2,59 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 625B6222713
-	for <lists+usrp-users@lfdr.de>; Thu, 16 Jul 2020 17:33:19 +0200 (CEST)
-Received: from [::1] (port=44070 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3449A222E1B
+	for <lists+usrp-users@lfdr.de>; Thu, 16 Jul 2020 23:42:29 +0200 (CEST)
+Received: from [::1] (port=46960 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jw5sr-0002xp-4w; Thu, 16 Jul 2020 11:33:17 -0400
-Received: from mail-qt1-f181.google.com ([209.85.160.181]:46471)
+	id 1jwBe4-0002QV-LK; Thu, 16 Jul 2020 17:42:24 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:40379)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jw5sn-0002oK-Hc
- for USRP-users@lists.ettus.com; Thu, 16 Jul 2020 11:33:13 -0400
-Received: by mail-qt1-f181.google.com with SMTP id i3so5144082qtq.13
- for <USRP-users@lists.ettus.com>; Thu, 16 Jul 2020 08:32:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=pa/GRVLSki/Dk2/ke2qMLLrPt24FhkRbcLZc5LqSX5U=;
- b=l4wx7aHwwTErD5Rb+F6fef7eOBboikszS7CVaH6Mi6bC83SDJp9XEVRXL+xzS8DOUK
- KBEa+Lf1FEa5bXVm4pybXfpKyLmIYvoavkMQlM2Kw98AtBqRDzvXGkhrdqSlxkq4KSRO
- kVMKGQX7KnpLz6rUu+57np/l4Q1f/kTQV7ITKYWVQjAlbCNteyfZyQ01W1fXes2PNtS/
- KJmdvvCIziNkrIT42FE2RGxDrijdTNrww0C1cQ8dGqNjdrdUsUTPrByeN8hmYkpGh7p6
- Lbz2h/w+CXRZM/q56iLrNMZFw6nOy0JAc00m4+oYuGFRTTolxbtwW1f52kQF6w5/JJPZ
- n3Xg==
+ (Exim 4.93) (envelope-from <colbyboyer@genxcomminc.com>)
+ id 1jwBe0-00028z-Ki
+ for usrp-users@lists.ettus.com; Thu, 16 Jul 2020 17:42:20 -0400
+Received: by mail-ot1-f41.google.com with SMTP id c25so5398290otf.7
+ for <usrp-users@lists.ettus.com>; Thu, 16 Jul 2020 14:42:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=genxcomminc.com; s=google;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=eVtUaLRr0EZ7E+eoD/YlPskWzki4z6LSq5qWFNRJEL8=;
+ b=fv6lA4qy++e/ABK0cvRI9UCSZ6AaEW2ReOYOQpXddWXdOA1PdCBEMO8PNujb6Jq5eI
+ NkD26NZUyST7QkT8PAuVqgIUV0MoPwcDFigQkYT8cdLievK0+xQ061c2GyRwEE2pmyOT
+ UfffniNTTsMAigSVo5FG/Oq+8pXsqzEKI1hI1rVaEk7wxtmEjDKgeRhEMkI7CKCmEwjW
+ cB4SiV8yXqU00MiYS4JjGzsL0v/8dWk1PfWWzy32O0x+OyH9ZKCeTjcMwZsXPcyqEwKK
+ uVm3ySHqPRvIgXMfE8y+/lrJuEGaru8wUIDJlk6WOJgc5rvPBP0i3wA8YClPwVkVNvDX
+ M08A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=pa/GRVLSki/Dk2/ke2qMLLrPt24FhkRbcLZc5LqSX5U=;
- b=rEGA0kmEo3FLvMHMAP/QzMwMGY5sVEihfp8WDjyO2ic9X/rahETC3poJNstgvYAsbF
- yjZgVJa2q/xTph3pmueKibd1Z/tmEfREWKwiKFFaFqrT0Z55/avMMtQL8DvccqowkCs1
- TBd9b6GFAxSSvayxVBaGHf//MNRiTUNybsZmt/mwl9Xj2x+/lxURykCwdH9W5rpD9qQN
- ZboFfhLj62ofxVQOJJUvBu77/gvwUyaB6Ez7M1NDz9bWybxeRHwj0wWZmb2aUoET3qm4
- koXUpBVaH0r0gfbh2FeMQwkP2UEKgevMFSS2upCygMJsunLBVkTBRH76NjH3rSB88k6q
- W04g==
-X-Gm-Message-State: AOAM530ZyJCCU40KfuEoGtgjSW5FwajAemR60fkbu0Mwl1c5HVtW3luq
- eGVB8rK3A6U20nqrEMIgD0Q=
-X-Google-Smtp-Source: ABdhPJzmAntsE1T1tO5OlTmQbAuj1aXy03vwyh5GgJmNsiprdHovPCTzIlXoPRV9lB9sT2uvO9BP5w==
-X-Received: by 2002:aed:21da:: with SMTP id m26mr5743740qtc.197.1594913552801; 
- Thu, 16 Jul 2020 08:32:32 -0700 (PDT)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.gmail.com with ESMTPSA id t35sm8947144qth.79.2020.07.16.08.32.32
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 16 Jul 2020 08:32:32 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Thu, 16 Jul 2020 11:32:31 -0400
-Message-Id: <E4FE1198-9DFC-4243-AA0E-1CD0CA28F29E@gmail.com>
-References: <CAMVZM+9iK7QnPQjT11Dpf-YdGqVJpgadgqNZMdnXZXDQPXfN4g@mail.gmail.com>
-Cc: USRP-users@lists.ettus.com
-In-Reply-To: <CAMVZM+9iK7QnPQjT11Dpf-YdGqVJpgadgqNZMdnXZXDQPXfN4g@mail.gmail.com>
-To: Pavlos Basaras <pbasaras@gmail.com>
-X-Mailer: iPhone Mail (17F80)
-Subject: Re: [USRP-users] error at updating the filesystem for usrp n310
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=eVtUaLRr0EZ7E+eoD/YlPskWzki4z6LSq5qWFNRJEL8=;
+ b=F29D/PIZViaSi2J/xHkm5jFYbemMed3szhOXBuAUnJJsgLtWgW6Q+VSjnfNOiEK1lv
+ imhEjockO9ZScKOVE8MNm7APsh5vU8Tn9l9DLVc9IJ4/DmTXoTBJYN2tQ5ZSnfkwYag7
+ SF3x03vGJINzY8TyDK5MCeh+nsThsxm/k2bJ7vMHnjzCX6a5XY5ADJJt7eVtkXzx01H/
+ jAAEL3pkCM2NF/a1q2iC2ft8xvYCT4cancPn+smG1IwNEDMUnvgFiJdk+Ds38ZzxB/dr
+ ply0+26OIypuUJw2LdSOuCLE03vM93MhMwq8Q9wQp1KxnGKRdjme7fEtHzZEjamOfZpl
+ NDPA==
+X-Gm-Message-State: AOAM532oxeVVNs7Wj9uzig+f21YvaUU1epgr2S/mB2hyYDTWKVyoC9mM
+ W/iwsP6x17iLcM3KAC5jauvZUzkOW3zd27akdcFCMSFM4LI=
+X-Google-Smtp-Source: ABdhPJwuV5XpUBJSRG2KSDTgYsMcSzjZPnLtBA7O5IYuDugbFvEfTy8h6Qy25qXA1cIGkMhIs+GAnYFQJ4AiSB64Xaw=
+X-Received: by 2002:a05:6830:3149:: with SMTP id
+ c9mr6161766ots.302.1594935699538; 
+ Thu, 16 Jul 2020 14:41:39 -0700 (PDT)
+MIME-Version: 1.0
+Date: Thu, 16 Jul 2020 16:41:28 -0500
+Message-ID: <CACxOa3bQJTiSnDK-W_U+Fj3=o8m45MZDMfpcVyNX6PJcqtBACQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] uhd_usrp_probe to N310 fails with DPDK
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7066517170380478542=="
+From: Colby Boyer via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Colby Boyer <colbyboyer@genxcomminc.com>
+Content-Type: multipart/mixed; boundary="===============6582481430369077098=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,164 +73,121 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============6582481430369077098==
+Content-Type: multipart/alternative; boundary="000000000000cf951005aa95e773"
 
---===============7066517170380478542==
-Content-Type: multipart/alternative; boundary=Apple-Mail-7087F49D-7741-4176-A3F2-E6CAEC4FDED5
-Content-Transfer-Encoding: 7bit
+--000000000000cf951005aa95e773
+Content-Type: text/plain; charset="UTF-8"
 
+Hi All,
 
---Apple-Mail-7087F49D-7741-4176-A3F2-E6CAEC4FDED5
-Content-Type: text/plain;
-	charset=utf-8
+I followed the flow listed here
+https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD with UHD 3.15 and
+DPDK 17.11, but I am unable to run uhd_usrp_probe, it fails. At the end of
+the email the result of uhd_usrp_probe is attached.
+
+Running Ubuntu 18.04. Installed UHD from source and installed dpdk from
+apt-get.
+
+The app note worked mostly as expected except for the sudo dpdk-devbind
+--bind=vfio=pci 02:00.0 commands. However, this failed as it failed to bind
+to the device. I had to run sudo dpdk-devbind --bind=vfio-pci enp2s0f0
+instead, and that worked.
+
+Any suggestions on what to try next?
+
+Thanks
+Colby
+
+root@genxcomm-tower:~# uhd_usrp_probe
+ --args="use_dpdk=1,mgmt_addr=172.26.60.1,addr=192.168.20.2,type=n3xx"
+[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
+UHD_3.15.0.v315-0-gaea0e2de
+EAL: Detected 8 lcore(s)
+EAL: No free hugepages reported in hugepages-1048576kB
+EAL: Probing VFIO support...
+EAL: VFIO support initialized
+EAL: PCI device 0000:00:19.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:15a1 net_e1000_em
+EAL: PCI device 0000:02:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:10fb net_ixgbe
+EAL:   using IOMMU type 1 (Type 1)
+EAL: Ignore mapping IO port bar(2)
+EAL: PCI device 0000:02:00.1 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:10fb net_ixgbe
+EAL: Ignore mapping IO port bar(2)
+EAL: PCI device 0000:06:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:10d3 net_e1000_em
+EAL: Waiting for links to come up...
+EAL: Init DONE!
+EAL: Starting I/O threads!
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=172.26.60.1,type=n3xx,product=n310,serial=31D90DA,claimed=False,use_dpdk=1,addr=192.168.20.2
+[INFO] [MPM.PeriphManager] init() called with device args
+`product=n310,use_dpdk=1,clock_source=internal,mgmt_addr=172.26.60.1,time_source=internal'.
+EAL: Please set IPv4 address for port 0 before opening socket
+[ERROR] [MPMD] Failure during block enumeration: AssertionError: _rx_sock
+!= nullptr
+  in uhd::transport::dpdk_zero_copy_impl::dpdk_zero_copy_impl(const
+uhd::transport::uhd_dpdk_ctx&, unsigned int, const string&, const string&,
+const string&, const uhd::transport::zero_copy_xport_params&)
+  at /home/genxcomm/repo/uhd/host/lib/transport/dpdk_zero_copy.cpp:355
+
+Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
+
+--000000000000cf951005aa95e773
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-They in fact *must* be the same version for interoperability.=20
+<div dir=3D"ltr"><div>Hi All, <br></div><div><br></div><div>I followed the =
+flow listed here <a href=3D"https://kb.ettus.com/Getting_Started_with_DPDK_=
+and_UHD">https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD</a> with UH=
+D 3.15 and DPDK 17.11, but I am unable to run uhd_usrp_probe, it fails. At =
+the end of the email the result of uhd_usrp_probe is attached. <br></div><d=
+iv><br></div><div>Running Ubuntu 18.04. Installed UHD from source and insta=
+lled dpdk from apt-get. <br></div><div><br></div><div>The app note worked m=
+ostly as expected except for the sudo dpdk-devbind --bind=3Dvfio=3Dpci 02:0=
+0.0 commands. However, this failed as it failed to bind to the device. I ha=
+d to run sudo dpdk-devbind --bind=3Dvfio-pci enp2s0f0 instead, and that wor=
+ked. <br></div><div><br></div><div>Any suggestions on what to try next?</di=
+v><div><br></div><div>Thanks</div><div>Colby<br></div><div><br></div><div>r=
+oot@genxcomm-tower:~# uhd_usrp_probe =C2=A0--args=3D&quot;use_dpdk=3D1,mgmt=
+_addr=3D172.26.60.1,addr=3D192.168.20.2,type=3Dn3xx&quot;<br>[INFO] [UHD] l=
+inux; GNU C++ version 7.5.0; Boost_106501; UHD_3.15.0.v315-0-gaea0e2de<br>E=
+AL: Detected 8 lcore(s)<br>EAL: No free hugepages reported in hugepages-104=
+8576kB<br>EAL: Probing VFIO support...<br>EAL: VFIO support initialized<br>=
+EAL: PCI device 0000:00:19.0 on NUMA socket -1<br>EAL: =C2=A0 Invalid NUMA =
+socket, default to 0<br>EAL: =C2=A0 probe driver: 8086:15a1 net_e1000_em<br=
+>EAL: PCI device 0000:02:00.0 on NUMA socket -1<br>EAL: =C2=A0 Invalid NUMA=
+ socket, default to 0<br>EAL: =C2=A0 probe driver: 8086:10fb net_ixgbe<br>E=
+AL: =C2=A0 using IOMMU type 1 (Type 1)<br>EAL: Ignore mapping IO port bar(2=
+)<br>EAL: PCI device 0000:02:00.1 on NUMA socket -1<br>EAL: =C2=A0 Invalid =
+NUMA socket, default to 0<br>EAL: =C2=A0 probe driver: 8086:10fb net_ixgbe<=
+br>EAL: Ignore mapping IO port bar(2)<br>EAL: PCI device 0000:06:00.0 on NU=
+MA socket -1<br>EAL: =C2=A0 Invalid NUMA socket, default to 0<br>EAL: =C2=
+=A0 probe driver: 8086:10d3 net_e1000_em<br>EAL: Waiting for links to come =
+up...<br>EAL: Init DONE!<br>EAL: Starting I/O threads!<br>[INFO] [MPMD] Ini=
+tializing 1 device(s) in parallel with args: mgmt_addr=3D172.26.60.1,type=
+=3Dn3xx,product=3Dn310,serial=3D31D90DA,claimed=3DFalse,use_dpdk=3D1,addr=
+=3D192.168.20.2<br>[INFO] [MPM.PeriphManager] init() called with device arg=
+s `product=3Dn310,use_dpdk=3D1,clock_source=3Dinternal,mgmt_addr=3D172.26.6=
+0.1,time_source=3Dinternal&#39;.<br>EAL: Please set IPv4 address for port 0=
+ before opening socket<br>[ERROR] [MPMD] Failure during block enumeration: =
+AssertionError: _rx_sock !=3D nullptr<br>=C2=A0 in uhd::transport::dpdk_zer=
+o_copy_impl::dpdk_zero_copy_impl(const uhd::transport::uhd_dpdk_ctx&amp;, u=
+nsigned int, const string&amp;, const string&amp;, const string&amp;, const=
+ uhd::transport::zero_copy_xport_params&amp;)<br>=C2=A0 at /home/genxcomm/r=
+epo/uhd/host/lib/transport/dpdk_zero_copy.cpp:355<br><br>Error: RuntimeErro=
+r: Failed to run enumerate_rfnoc_blocks()<br></div></div>
 
-Sent from my iPhone
-
-> On Jul 16, 2020, at 10:59 AM, Pavlos Basaras <pbasaras@gmail.com> wrote:
->=20
-> =EF=BB=BF
-> Hello again,
->=20
-> i updated the version of the host's uhd to  UHD_3.15.0.HEAD-0-gaea0e2de an=
-d re-executed "sudo uhd_images_downloader -t mender -t n3xx --yes" .
-> It solved the problem.=20
->=20
-> One more thing is that after the update on the SD card file system, the uh=
-d version of the usrp also got automatically updated to the uhd version in t=
-he host.
-> Its safe to assume that both the host and the USRP are fine with the same u=
-hd version, correct?
->=20
-> all the best,
-> Pavlos.
->=20
->=20
->=20
->> On Thu, Jul 16, 2020 at 8:57 AM Pavlos Basaras <pbasaras@gmail.com> wrote=
-:
->> Hello,
->>=20
->> in case it would help i am also attaching the dmesg output from the usrp.=
-
->>=20
->> best,
->> Pavlos.
->>=20
->>=20
->>> On Wed, Jul 15, 2020 at 5:14 PM Pavlos Basaras <pbasaras@gmail.com> wrot=
-e:
->>> Hello,
->>>=20
->>> that would be great!
->>>=20
->>> cheers,
->>> Pavlos.
->>>=20
->>>> On Wed, Jul 15, 2020 at 5:07 PM Marcus D. Leech <patchvonbraun@gmail.co=
-m> wrote:
->>>> On 07/15/2020 10:02 AM, Pavlos Basaras wrote:
->>>> > Hello,
->>>> >
->>>> > thank you very much for your prompt reply.
->>>> >
->>>> > i copied the .mender file by using the "scp" command.
->>>> > Yes, i am running the command on the USRP.
->>>> >
->>>> > I am not sure if this is a problem but --initially when i created the=
-=20
->>>> > .mender file, the host was running the UHD 3.14.0.0 and the USRP had=20=
-
->>>> > 3.14.1.0. This is when the problem appeared first.
->>>> > Then i changed the uhd to 3.14.1.0 on the host to match exactly the=20=
-
->>>> > UHD on the usrp, but the error still persists (or course i deleted th=
-e=20
->>>> > old file from the usrp).
->>>> >
->>>> > any ideas?
->>>> >
->>>> > best,
->>>> > P.
->>>> >
->>>> I'll have to bug some R&D people and get back to you.
->>>>=20
->>>>=20
-
---Apple-Mail-7087F49D-7741-4176-A3F2-E6CAEC4FDED5
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">They in fact *must* be the same version for=
- interoperability.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhone</div><d=
-iv dir=3D"ltr"><br><blockquote type=3D"cite">On Jul 16, 2020, at 10:59 AM, P=
-avlos Basaras &lt;pbasaras@gmail.com&gt; wrote:<br><br></blockquote></div><b=
-lockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>Hell=
-o again,</div><div><br></div><div>i updated the version of the host's uhd to=
-&nbsp; UHD_3.15.0.HEAD-0-gaea0e2de and re-executed "sudo uhd_images_download=
-er -t mender -t n3xx --yes" .</div><div>It solved the problem. <br></div><di=
-v><br></div><div>One more thing is that after the update on the SD card file=
- system, the uhd version of the usrp also got automatically updated to the u=
-hd version in the host.</div><div>Its safe to assume that both the host and t=
-he USRP are fine with the same uhd version, correct?<br></div><div><br></div=
-><div>all the best,</div><div>Pavlos.<br></div><div><br></div><div><br></div=
-></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Thu, Jul 16, 2020 at 8:57 AM Pavlos Basaras &lt;<a href=3D"mailto:pbasara=
-s@gmail.com">pbasaras@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D=
-"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello,</div><div><br></di=
-v><div>in case it would help i am also attaching the dmesg output from the u=
-srp.</div><div><br></div><div>best,</div><div>Pavlos.<br></div><div><br></di=
-v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
->On Wed, Jul 15, 2020 at 5:14 PM Pavlos Basaras &lt;<a href=3D"mailto:pbasar=
-as@gmail.com" target=3D"_blank">pbasaras@gmail.com</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello,=
-</div><div><br></div><div>that would be great!</div><div><br></div><div>chee=
-rs,</div><div>Pavlos.<br></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Wed, Jul 15, 2020 at 5:07 PM Marcus D. Leec=
-h &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonb=
-raun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex">On 07/15/2020 10:02 AM, Pavlos Basaras wrote:<br>
-&gt; Hello,<br>
-&gt;<br>
-&gt; thank you very much for your prompt reply.<br>
-&gt;<br>
-&gt; i copied the .mender file by using the "scp" command.<br>
-&gt; Yes, i am running the command on the USRP.<br>
-&gt;<br>
-&gt; I am not sure if this is a problem but --initially when i created the <=
-br>
-&gt; .mender file, the host was running the UHD 3.14.0.0 and the USRP had <b=
-r>
-&gt; 3.14.1.0. This is when the problem appeared first.<br>
-&gt; Then i changed the uhd to 3.14.1.0 on the host to match exactly the <br=
->
-&gt; UHD on the usrp, but the error still persists (or course i deleted the <=
-br>
-&gt; old file from the usrp).<br>
-&gt;<br>
-&gt; any ideas?<br>
-&gt;<br>
-&gt; best,<br>
-&gt; P.<br>
-&gt;<br>
-I'll have to bug some R&amp;D people and get back to you.<br>
-<br>
-<br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</div></blockquote></body></html>=
-
---Apple-Mail-7087F49D-7741-4176-A3F2-E6CAEC4FDED5--
+--000000000000cf951005aa95e773--
 
 
---===============7066517170380478542==
+--===============6582481430369077098==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -250,5 +198,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7066517170380478542==--
+--===============6582481430369077098==--
 
