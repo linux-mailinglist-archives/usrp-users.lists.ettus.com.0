@@ -2,55 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD84222658
-	for <lists+usrp-users@lfdr.de>; Thu, 16 Jul 2020 17:00:12 +0200 (CEST)
-Received: from [::1] (port=43732 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 625B6222713
+	for <lists+usrp-users@lfdr.de>; Thu, 16 Jul 2020 17:33:19 +0200 (CEST)
+Received: from [::1] (port=44070 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jw5Ml-0005Od-9a; Thu, 16 Jul 2020 11:00:07 -0400
-Received: from mail-ed1-f50.google.com ([209.85.208.50]:44357)
+	id 1jw5sr-0002xp-4w; Thu, 16 Jul 2020 11:33:17 -0400
+Received: from mail-qt1-f181.google.com ([209.85.160.181]:46471)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <pbasaras@gmail.com>) id 1jw5Mh-0005I0-2d
- for usrp-users@lists.ettus.com; Thu, 16 Jul 2020 11:00:03 -0400
-Received: by mail-ed1-f50.google.com with SMTP id by13so4957192edb.11
- for <usrp-users@lists.ettus.com>; Thu, 16 Jul 2020 07:59:42 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jw5sn-0002oK-Hc
+ for USRP-users@lists.ettus.com; Thu, 16 Jul 2020 11:33:13 -0400
+Received: by mail-qt1-f181.google.com with SMTP id i3so5144082qtq.13
+ for <USRP-users@lists.ettus.com>; Thu, 16 Jul 2020 08:32:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=/hBNsNo63XAb7E0DguqurkUCudFbzCfXHYqEmuO/dfo=;
- b=ciiaLyGnti4lIQKs92xnoYnpFQCCoiWdk4UMZ9ydgaJv9g6QVAM4X299k+k4Cm5bE0
- 0M4NcqNCpZrH/aU2rk/x7ncJ7aUKrVonk2o/eaWouDriSJVmWstf4mpd7989tRtOEX2e
- X3yoqilzwQkBlmyEAU5vhO2U1YZA8OG4ri3fL05MP/cPOLDIcbQz0qGbl7xjEvvmOuym
- XsJvwVUGNoB4KuDrYNMWMEmbZN5E5ZMlUThKTe2T65fAFVjRAoSwVZEivct9YTxBUeJI
- md/C4ZG0aYSXOvbcifut9BePsbDS/ELmwi2aLTV76fPETbmoyB0w9V/er8RNcj2Tn9bK
- 2x7A==
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=pa/GRVLSki/Dk2/ke2qMLLrPt24FhkRbcLZc5LqSX5U=;
+ b=l4wx7aHwwTErD5Rb+F6fef7eOBboikszS7CVaH6Mi6bC83SDJp9XEVRXL+xzS8DOUK
+ KBEa+Lf1FEa5bXVm4pybXfpKyLmIYvoavkMQlM2Kw98AtBqRDzvXGkhrdqSlxkq4KSRO
+ kVMKGQX7KnpLz6rUu+57np/l4Q1f/kTQV7ITKYWVQjAlbCNteyfZyQ01W1fXes2PNtS/
+ KJmdvvCIziNkrIT42FE2RGxDrijdTNrww0C1cQ8dGqNjdrdUsUTPrByeN8hmYkpGh7p6
+ Lbz2h/w+CXRZM/q56iLrNMZFw6nOy0JAc00m4+oYuGFRTTolxbtwW1f52kQF6w5/JJPZ
+ n3Xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=/hBNsNo63XAb7E0DguqurkUCudFbzCfXHYqEmuO/dfo=;
- b=KNrJpN6i6hHpeRvpYKe5/8fLLp8kzuOXhxOSJYSkqXhglhuCBI64aVXMccZP56LGqK
- h3Tv6wWdVSSGHo9+vhGjipkLfE1ff5E8wxl7Sx6T8DyMD4UOCKesriK/fKE77MRQGge4
- gmX5Q3rTBzwVbZwIijrzNGLn845OivbG/ZHkRg17KvF2RhS7gsEBQ2qg+BG4s3SOBqaq
- IK+vn8jH8CWHrup1QtUEUjmrNEUvhShQ3rZHcWIwOruiD6Rqw9HuoOYQ0BPvwmbAEfO2
- l8WVG3ulrfMQmC5McvVPvBTh0Spt7N+V+Y3GmzHpjNfe7EnkFODXphFdtZBARLBF/Ymc
- 89rg==
-X-Gm-Message-State: AOAM530sfZuYXL5unTc/mLBTxqPvvc6++N2OqvlgVHeUtaq0DDCLcWBP
- yq6EdJCDtgXAvViIpEgHBR8ZPdkxjDd5FIxsstE=
-X-Google-Smtp-Source: ABdhPJzQ4nZcDMj4aa2jOA49mBXLM4jTqcDMLXkzjanFneQHVgEk3W0lMRP8RIuNJKpQzpSZpYufXh7JBkylRSRvm5I=
-X-Received: by 2002:aa7:d90f:: with SMTP id a15mr4673751edr.86.1594911561938; 
- Thu, 16 Jul 2020 07:59:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAMVZM+-xgHc1dGUM9T2BncCPVcLuC7j1uPqVLQeFvPmhf3FE2A@mail.gmail.com>
- <5F0F0A47.3020100@gmail.com>
- <CAMVZM+-rUvuBzq_zEwq-72imHMuQ+XaMePDYUvmJq2B69GJPUQ@mail.gmail.com>
- <5F0F0DB4.2080708@gmail.com>
- <CAMVZM+8oBqh3gGQmkt_aEQK53BErAEXzXfdMgG_=3fxAs358ag@mail.gmail.com>
- <CAMVZM+-iQUfuC=pq+RvFEYgUqgWi1oMb7ZXrE8oKF+VO6RiOyQ@mail.gmail.com>
-In-Reply-To: <CAMVZM+-iQUfuC=pq+RvFEYgUqgWi1oMb7ZXrE8oKF+VO6RiOyQ@mail.gmail.com>
-Date: Thu, 16 Jul 2020 17:59:10 +0300
-Message-ID: <CAMVZM+9iK7QnPQjT11Dpf-YdGqVJpgadgqNZMdnXZXDQPXfN4g@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=pa/GRVLSki/Dk2/ke2qMLLrPt24FhkRbcLZc5LqSX5U=;
+ b=rEGA0kmEo3FLvMHMAP/QzMwMGY5sVEihfp8WDjyO2ic9X/rahETC3poJNstgvYAsbF
+ yjZgVJa2q/xTph3pmueKibd1Z/tmEfREWKwiKFFaFqrT0Z55/avMMtQL8DvccqowkCs1
+ TBd9b6GFAxSSvayxVBaGHf//MNRiTUNybsZmt/mwl9Xj2x+/lxURykCwdH9W5rpD9qQN
+ ZboFfhLj62ofxVQOJJUvBu77/gvwUyaB6Ez7M1NDz9bWybxeRHwj0wWZmb2aUoET3qm4
+ koXUpBVaH0r0gfbh2FeMQwkP2UEKgevMFSS2upCygMJsunLBVkTBRH76NjH3rSB88k6q
+ W04g==
+X-Gm-Message-State: AOAM530ZyJCCU40KfuEoGtgjSW5FwajAemR60fkbu0Mwl1c5HVtW3luq
+ eGVB8rK3A6U20nqrEMIgD0Q=
+X-Google-Smtp-Source: ABdhPJzmAntsE1T1tO5OlTmQbAuj1aXy03vwyh5GgJmNsiprdHovPCTzIlXoPRV9lB9sT2uvO9BP5w==
+X-Received: by 2002:aed:21da:: with SMTP id m26mr5743740qtc.197.1594913552801; 
+ Thu, 16 Jul 2020 08:32:32 -0700 (PDT)
+Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
+ [174.95.14.148])
+ by smtp.gmail.com with ESMTPSA id t35sm8947144qth.79.2020.07.16.08.32.32
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 16 Jul 2020 08:32:32 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+Date: Thu, 16 Jul 2020 11:32:31 -0400
+Message-Id: <E4FE1198-9DFC-4243-AA0E-1CD0CA28F29E@gmail.com>
+References: <CAMVZM+9iK7QnPQjT11Dpf-YdGqVJpgadgqNZMdnXZXDQPXfN4g@mail.gmail.com>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <CAMVZM+9iK7QnPQjT11Dpf-YdGqVJpgadgqNZMdnXZXDQPXfN4g@mail.gmail.com>
+To: Pavlos Basaras <pbasaras@gmail.com>
+X-Mailer: iPhone Mail (17F80)
 Subject: Re: [USRP-users] error at updating the filesystem for usrp n310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -63,9 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Pavlos Basaras via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Pavlos Basaras <pbasaras@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5472286959404835561=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7066517170380478542=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,124 +82,145 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5472286959404835561==
-Content-Type: multipart/alternative; boundary="00000000000018fa1005aa90498c"
 
---00000000000018fa1005aa90498c
-Content-Type: text/plain; charset="UTF-8"
-
-Hello again,
-
-i updated the version of the host's uhd to  UHD_3.15.0.HEAD-0-gaea0e2de and
-re-executed "sudo uhd_images_downloader -t mender -t n3xx --yes" .
-It solved the problem.
-
-One more thing is that after the update on the SD card file system, the uhd
-version of the usrp also got automatically updated to the uhd version in
-the host.
-Its safe to assume that both the host and the USRP are fine with the same
-uhd version, correct?
-
-all the best,
-Pavlos.
+--===============7066517170380478542==
+Content-Type: multipart/alternative; boundary=Apple-Mail-7087F49D-7741-4176-A3F2-E6CAEC4FDED5
+Content-Transfer-Encoding: 7bit
 
 
-
-On Thu, Jul 16, 2020 at 8:57 AM Pavlos Basaras <pbasaras@gmail.com> wrote:
-
-> Hello,
->
-> in case it would help i am also attaching the dmesg output from the usrp.
->
-> best,
-> Pavlos.
->
->
-> On Wed, Jul 15, 2020 at 5:14 PM Pavlos Basaras <pbasaras@gmail.com> wrote:
->
->> Hello,
->>
->> that would be great!
->>
->> cheers,
->> Pavlos.
->>
->> On Wed, Jul 15, 2020 at 5:07 PM Marcus D. Leech <patchvonbraun@gmail.com>
->> wrote:
->>
->>> On 07/15/2020 10:02 AM, Pavlos Basaras wrote:
->>> > Hello,
->>> >
->>> > thank you very much for your prompt reply.
->>> >
->>> > i copied the .mender file by using the "scp" command.
->>> > Yes, i am running the command on the USRP.
->>> >
->>> > I am not sure if this is a problem but --initially when i created the
->>> > .mender file, the host was running the UHD 3.14.0.0 and the USRP had
->>> > 3.14.1.0. This is when the problem appeared first.
->>> > Then i changed the uhd to 3.14.1.0 on the host to match exactly the
->>> > UHD on the usrp, but the error still persists (or course i deleted the
->>> > old file from the usrp).
->>> >
->>> > any ideas?
->>> >
->>> > best,
->>> > P.
->>> >
->>> I'll have to bug some R&D people and get back to you.
->>>
->>>
->>>
-
---00000000000018fa1005aa90498c
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail-7087F49D-7741-4176-A3F2-E6CAEC4FDED5
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello again,</div><div><br></div><div>i updated the v=
-ersion of the host&#39;s uhd to=C2=A0 UHD_3.15.0.HEAD-0-gaea0e2de and re-ex=
-ecuted &quot;sudo uhd_images_downloader -t mender -t n3xx --yes&quot; .</di=
-v><div>It solved the problem. <br></div><div><br></div><div>One more thing =
-is that after the update on the SD card file system, the uhd version of the=
- usrp also got automatically updated to the uhd version in the host.</div><=
-div>Its safe to assume that both the host and the USRP are fine with the sa=
-me uhd version, correct?<br></div><div><br></div><div>all the best,</div><d=
-iv>Pavlos.<br></div><div><br></div><div><br></div></div><br><div class=3D"g=
-mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 16, 2020 at 8=
-:57 AM Pavlos Basaras &lt;<a href=3D"mailto:pbasaras@gmail.com">pbasaras@gm=
-ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><div dir=3D"ltr"><div>Hello,</div><div><br></div><div>in case it wou=
-ld help i am also attaching the dmesg output from the usrp.</div><div><br><=
-/div><div>best,</div><div>Pavlos.<br></div><div><br></div></div><br><div cl=
-ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 15, 2=
-020 at 5:14 PM Pavlos Basaras &lt;<a href=3D"mailto:pbasaras@gmail.com" tar=
-get=3D"_blank">pbasaras@gmail.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello,</div><div><br=
-></div><div>that would be great!</div><div><br></div><div>cheers,</div><div=
->Pavlos.<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Wed, Jul 15, 2020 at 5:07 PM Marcus D. Leech &lt;<a hr=
-ef=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail=
-.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex">On 07/15/2020 10:02 AM, Pavlos Basaras wrote:<br>
+They in fact *must* be the same version for interoperability.=20
+
+Sent from my iPhone
+
+> On Jul 16, 2020, at 10:59 AM, Pavlos Basaras <pbasaras@gmail.com> wrote:
+>=20
+> =EF=BB=BF
+> Hello again,
+>=20
+> i updated the version of the host's uhd to  UHD_3.15.0.HEAD-0-gaea0e2de an=
+d re-executed "sudo uhd_images_downloader -t mender -t n3xx --yes" .
+> It solved the problem.=20
+>=20
+> One more thing is that after the update on the SD card file system, the uh=
+d version of the usrp also got automatically updated to the uhd version in t=
+he host.
+> Its safe to assume that both the host and the USRP are fine with the same u=
+hd version, correct?
+>=20
+> all the best,
+> Pavlos.
+>=20
+>=20
+>=20
+>> On Thu, Jul 16, 2020 at 8:57 AM Pavlos Basaras <pbasaras@gmail.com> wrote=
+:
+>> Hello,
+>>=20
+>> in case it would help i am also attaching the dmesg output from the usrp.=
+
+>>=20
+>> best,
+>> Pavlos.
+>>=20
+>>=20
+>>> On Wed, Jul 15, 2020 at 5:14 PM Pavlos Basaras <pbasaras@gmail.com> wrot=
+e:
+>>> Hello,
+>>>=20
+>>> that would be great!
+>>>=20
+>>> cheers,
+>>> Pavlos.
+>>>=20
+>>>> On Wed, Jul 15, 2020 at 5:07 PM Marcus D. Leech <patchvonbraun@gmail.co=
+m> wrote:
+>>>> On 07/15/2020 10:02 AM, Pavlos Basaras wrote:
+>>>> > Hello,
+>>>> >
+>>>> > thank you very much for your prompt reply.
+>>>> >
+>>>> > i copied the .mender file by using the "scp" command.
+>>>> > Yes, i am running the command on the USRP.
+>>>> >
+>>>> > I am not sure if this is a problem but --initially when i created the=
+=20
+>>>> > .mender file, the host was running the UHD 3.14.0.0 and the USRP had=20=
+
+>>>> > 3.14.1.0. This is when the problem appeared first.
+>>>> > Then i changed the uhd to 3.14.1.0 on the host to match exactly the=20=
+
+>>>> > UHD on the usrp, but the error still persists (or course i deleted th=
+e=20
+>>>> > old file from the usrp).
+>>>> >
+>>>> > any ideas?
+>>>> >
+>>>> > best,
+>>>> > P.
+>>>> >
+>>>> I'll have to bug some R&D people and get back to you.
+>>>>=20
+>>>>=20
+
+--Apple-Mail-7087F49D-7741-4176-A3F2-E6CAEC4FDED5
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">They in fact *must* be the same version for=
+ interoperability.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhone</div><d=
+iv dir=3D"ltr"><br><blockquote type=3D"cite">On Jul 16, 2020, at 10:59 AM, P=
+avlos Basaras &lt;pbasaras@gmail.com&gt; wrote:<br><br></blockquote></div><b=
+lockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>Hell=
+o again,</div><div><br></div><div>i updated the version of the host's uhd to=
+&nbsp; UHD_3.15.0.HEAD-0-gaea0e2de and re-executed "sudo uhd_images_download=
+er -t mender -t n3xx --yes" .</div><div>It solved the problem. <br></div><di=
+v><br></div><div>One more thing is that after the update on the SD card file=
+ system, the uhd version of the usrp also got automatically updated to the u=
+hd version in the host.</div><div>Its safe to assume that both the host and t=
+he USRP are fine with the same uhd version, correct?<br></div><div><br></div=
+><div>all the best,</div><div>Pavlos.<br></div><div><br></div><div><br></div=
+></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Thu, Jul 16, 2020 at 8:57 AM Pavlos Basaras &lt;<a href=3D"mailto:pbasara=
+s@gmail.com">pbasaras@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello,</div><div><br></di=
+v><div>in case it would help i am also attaching the dmesg output from the u=
+srp.</div><div><br></div><div>best,</div><div>Pavlos.<br></div><div><br></di=
+v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>On Wed, Jul 15, 2020 at 5:14 PM Pavlos Basaras &lt;<a href=3D"mailto:pbasar=
+as@gmail.com" target=3D"_blank">pbasaras@gmail.com</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello,=
+</div><div><br></div><div>that would be great!</div><div><br></div><div>chee=
+rs,</div><div>Pavlos.<br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Wed, Jul 15, 2020 at 5:07 PM Marcus D. Leec=
+h &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonb=
+raun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex">On 07/15/2020 10:02 AM, Pavlos Basaras wrote:<br>
 &gt; Hello,<br>
 &gt;<br>
 &gt; thank you very much for your prompt reply.<br>
 &gt;<br>
-&gt; i copied the .mender file by using the &quot;scp&quot; command.<br>
+&gt; i copied the .mender file by using the "scp" command.<br>
 &gt; Yes, i am running the command on the USRP.<br>
 &gt;<br>
-&gt; I am not sure if this is a problem but --initially when i created the =
-<br>
-&gt; .mender file, the host was running the UHD 3.14.0.0 and the USRP had <=
+&gt; I am not sure if this is a problem but --initially when i created the <=
 br>
-&gt; 3.14.1.0. This is when the problem appeared first.<br>
-&gt; Then i changed the uhd to 3.14.1.0 on the host to match exactly the <b=
+&gt; .mender file, the host was running the UHD 3.14.0.0 and the USRP had <b=
 r>
-&gt; UHD on the usrp, but the error still persists (or course i deleted the=
- <br>
+&gt; 3.14.1.0. This is when the problem appeared first.<br>
+&gt; Then i changed the uhd to 3.14.1.0 on the host to match exactly the <br=
+>
+&gt; UHD on the usrp, but the error still persists (or course i deleted the <=
+br>
 &gt; old file from the usrp).<br>
 &gt;<br>
 &gt; any ideas?<br>
@@ -204,17 +228,18 @@ r>
 &gt; best,<br>
 &gt; P.<br>
 &gt;<br>
-I&#39;ll have to bug some R&amp;D people and get back to you.<br>
+I'll have to bug some R&amp;D people and get back to you.<br>
 <br>
 <br>
 </blockquote></div>
 </blockquote></div>
 </blockquote></div>
+</div></blockquote></body></html>=
 
---00000000000018fa1005aa90498c--
+--Apple-Mail-7087F49D-7741-4176-A3F2-E6CAEC4FDED5--
 
 
---===============5472286959404835561==
+--===============7066517170380478542==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -225,5 +250,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5472286959404835561==--
+--===============7066517170380478542==--
 
