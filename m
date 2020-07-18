@@ -2,52 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9C2B22385C
-	for <lists+usrp-users@lfdr.de>; Fri, 17 Jul 2020 11:29:19 +0200 (CEST)
-Received: from [::1] (port=51994 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 684082248FC
+	for <lists+usrp-users@lfdr.de>; Sat, 18 Jul 2020 07:28:01 +0200 (CEST)
+Received: from [::1] (port=32946 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jwMg7-0003O0-9c; Fri, 17 Jul 2020 05:29:15 -0400
-Received: from mail-io1-f53.google.com ([209.85.166.53]:35739)
+	id 1jwfO4-0007KR-DY; Sat, 18 Jul 2020 01:27:52 -0400
+Received: from mail-vs1-f44.google.com ([209.85.217.44]:37275)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <carlosruiznaranjo@gmail.com>)
- id 1jwMg2-0003Ax-HC
- for usrp-users@lists.ettus.com; Fri, 17 Jul 2020 05:29:10 -0400
-Received: by mail-io1-f53.google.com with SMTP id v8so9783323iox.2
- for <usrp-users@lists.ettus.com>; Fri, 17 Jul 2020 02:28:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1jwfO0-0007En-6B
+ for usrp-users@lists.ettus.com; Sat, 18 Jul 2020 01:27:48 -0400
+Received: by mail-vs1-f44.google.com with SMTP id p25so5925421vsg.4
+ for <usrp-users@lists.ettus.com>; Fri, 17 Jul 2020 22:27:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=/0aZZr6TqHbPamxctV1I63hAM+y3GaUo8QY9gBPeQdk=;
- b=EvdsWrI1AlT5UL62F0Dy7O0vKgC49+rHfj20PcMe5cmCu0ncfAV7SEGW+h7rXnf2o5
- de8+YztfaLTRjWa/SgWU3In8tYd52SPpYRNxfrBKHnMYd3wpgriO2kyFDWT0ltOTGiM/
- +HU1Clnrby3vcnhEjY/BUtX5DTNhqOtUnA7Wc7gZ24wrCkbrSx6NjdgNPUvIeuIfkDfk
- abiU2VVfhHIwf0qDjyULKmteNcPHKr8u50n7sPmS5KQSQOEi2FsN9CwCBAzfgiB/TGBF
- rXaESA0YjAsIcxxcpv3UOhgjkLvYu8TSTBCQ0Pa25ayFH6WzI1eA3eoO9cfs0VUvRLa2
- M3eA==
+ :cc; bh=OxnSNtZDd6kaufBs+zgYaoYCkQbnRkpWm+Djqc6K5qE=;
+ b=cVnXySxVwKvqtFa2aDkLFF/E8z2/ELxUEcjRynsmJOzWQMDKdl5LQVJDoQbz71oxhO
+ 5fQn9T+cdW+LO33fl9Jt5gLa5Pk4V3RFeh7fWTnurW24EOJ9meCaNEBZD6/eG/u6l/50
+ U/Ze3XDqESjg0c59iYJ6RXjVYn7XVgAuNKpdTZu+9PRfW77kT5lTa4ACnYmj0Af9HDrS
+ P7oVOLoQzTB3qhp/qTPnoGz0W+t1ilVkdPdhoQHJozPKKVBB3gYGBaIvQ9MpBkNdP91i
+ 01g7c8jaIGiZP5IrFaH9T9ps/uuCe0ZbgeNqQnPMy5+opNdR6wNIFbznNxetFJbw1UBe
+ 5COA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=/0aZZr6TqHbPamxctV1I63hAM+y3GaUo8QY9gBPeQdk=;
- b=r8zKDhgqhf/Y+jR56eZCnKLL2/+X+0xAJSdq1Aie4feAM98+qWCYZ302U4hPU+7p5A
- i7xd407XSIjusxx2SCPDWnugtCGeN9tAIV6tY/BpzpxiT4AnGuMIVB45+4p50f/OgTD5
- U0R7l7Ud8b2AxJ5lgk8aZr3JCyGWo1yC/x2oGQXdVVGi642c/DK5uGqAlO/MysxsWnXE
- qAow5AmVi1B4eg844zdEUeISmrcVn4pqw4UMjMoQ8x4z9RM/Y4/RcJC14iMAbEVGaRXt
- lNFMce5BK+Kdg4PLYT9gGPADbMx6nB03y5TtyOo22niZe1r/j5g2iWPVD1fJGIZ5yvYM
- oRWQ==
-X-Gm-Message-State: AOAM530b9Pu0QG8cMEdltvc0ohzLfb3xHffTOh0Q/fkKA0kohKMx4P+D
- C5HVbjC41yZVZAFeL6YDBdwUWuPgn16y/68FjFE=
-X-Google-Smtp-Source: ABdhPJyFybnRjP/xKc57DTSoB3zNSh7xKmLNzmhFGhVVHq/luhtbhRbIPktR2BbRLlR5a518I7WO5vJ2jDK19eSoOrk=
-X-Received: by 2002:a5d:8510:: with SMTP id q16mr8634823ion.81.1594978108729; 
- Fri, 17 Jul 2020 02:28:28 -0700 (PDT)
+ bh=OxnSNtZDd6kaufBs+zgYaoYCkQbnRkpWm+Djqc6K5qE=;
+ b=cSmKKT1IKthy1ec4u8WTnk9Z1qAGd7OhUTDE1HQhoMbV5aEDbxMRTFdfQ1WWulqRd0
+ ZPGCK4/t3ULRkdt7cdFCwqR4NeLn3Up7F+vyBZYSasMID/upIfD5zbJV2Nx1uOHxoFzI
+ OMa3+2J3JYyoUipoy9pGNYkZU2i3h1zRQsbqUsXOFJIzmxCGq4ksVBuM7MVpTmh38Om0
+ HUo8g/bwrP3M9+4zyx1wiHljxt6/B1MK1tWytvVqpk6ayL/1+hjZggwL8irQ49uvhi+P
+ PrPAeM6FN9ob07ROA3eaazasY5tU+FeVaG0TTVeL15LZ+ro3MjhhILYNJTTto4n4QEce
+ bipQ==
+X-Gm-Message-State: AOAM531TVdumtR7XSOgut6siNuuysLbI1Ljvli9GwBCLyMFFTybkSE8k
+ B9WuZEwgNGDdhot/WHTweciKjzyXXdfjimvoP2hE+w1I
+X-Google-Smtp-Source: ABdhPJyIDW9C8qpj4tKnEd4p8VnxSyvsvveso9msJXZz/QIt815s/ot1wwPlrrPxn89HZYWXC+8M8DLSuI6VmYd1cn0=
+X-Received: by 2002:a67:ed45:: with SMTP id m5mr9381457vsp.197.1595050027210; 
+ Fri, 17 Jul 2020 22:27:07 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAP2eGPhL=8q8gKaVrMtD0e856Jrdr=XrK74DkAvF+9_So9uOcQ@mail.gmail.com>
  <CAP2eGPjErjToX9q7-AtvHBBm5mg5kebzv-t3VrVxOtk7Vn=5zg@mail.gmail.com>
  <CAL7q81uTau5eRb-pEbVqU_+68gtmB_+NFiPHhPg8Pzb6CKXs4Q@mail.gmail.com>
-In-Reply-To: <CAL7q81uTau5eRb-pEbVqU_+68gtmB_+NFiPHhPg8Pzb6CKXs4Q@mail.gmail.com>
-Date: Fri, 17 Jul 2020 11:28:17 +0200
-Message-ID: <CAP2eGPjGB2MZb1E7wNE93YByZN=bMaaqbCMc0N5DE02+Wd9_Kg@mail.gmail.com>
-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+ <CAP2eGPjGB2MZb1E7wNE93YByZN=bMaaqbCMc0N5DE02+Wd9_Kg@mail.gmail.com>
+In-Reply-To: <CAP2eGPjGB2MZb1E7wNE93YByZN=bMaaqbCMc0N5DE02+Wd9_Kg@mail.gmail.com>
+Date: Sat, 18 Jul 2020 01:26:31 -0400
+Message-ID: <CAL7q81tMTO+S0ep6HEaSWo81rgVm=gq=O_4cK=+gHQ-S=7+5AA@mail.gmail.com>
+To: Carlos Alberto Ruiz Naranjo <carlosruiznaranjo@gmail.com>
 Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] Sync problem in custom DUC
 X-BeenThere: usrp-users@lists.ettus.com
@@ -61,9 +63,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Carlos Alberto Ruiz Naranjo via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Carlos Alberto Ruiz Naranjo <carlosruiznaranjo@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3056696872080226675=="
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Content-Type: multipart/mixed; boundary="===============5624450864250092789=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,234 +79,250 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3056696872080226675==
-Content-Type: multipart/related; boundary="00000000000099272205aa9fc793"
+--===============5624450864250092789==
+Content-Type: multipart/related; boundary="00000000000046896605aab0865e"
 
---00000000000099272205aa9fc793
-Content-Type: multipart/alternative; boundary="00000000000099272105aa9fc792"
+--00000000000046896605aab0865e
+Content-Type: multipart/alternative; boundary="00000000000046896405aab0865d"
 
---00000000000099272105aa9fc792
+--00000000000046896405aab0865d
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Jonathon,
+Hi Carlos,
 
-Thanks for the reply. This is my simplest test:
+Can you try replacing the DmaFIFO block with two FIFO blocks?
 
-[image: sample_0.png]
-At the beginning it works fine, the output is the sum of the two signals:
+Jonathon
 
+On Fri, Jul 17, 2020 at 5:28 AM Carlos Alberto Ruiz Naranjo <
+carlosruiznaranjo@gmail.com> wrote:
 
-[image: rec_0.png]
-
-But after a while I think the channels are out of sync and the signal is
-weird:
-
-[image: rec_1.png]
-
-
-
-
-El lun., 13 jul. 2020 a las 22:01, Jonathon Pendlum (<
-jonathon.pendlum@ettus.com>) escribi=C3=B3:
-
-> Hi Carlos,
+> Hi Jonathon,
 >
-> Where are the sine waves coming from / how are they generated? What is
-> your entire flowgraph? What sampling rate are you running at?
+> Thanks for the reply. This is my simplest test:
 >
-> Jonathon
+> [image: sample_0.png]
+> At the beginning it works fine, the output is the sum of the two signals:
 >
-> On Fri, Jul 10, 2020 at 2:45 PM Carlos Alberto Ruiz Naranjo via USRP-user=
-s
-> <usrp-users@lists.ettus.com> wrote:
 >
->> This is the code for the adder (between dds_timed and axi_wrapper):
->>
->> assign s_axis_data_tvalid2[0] =3D s_axis_data_tvalid[1] &
->> s_axis_data_tvalid[0];
->> assign s_axis_data_tvalid2[1] =3D s_axis_data_tvalid[1] &
->> s_axis_data_tvalid[0];
->>
->> assign s_axis_data_tuser2 =3D s_axis_data_tuser;
->>
->> assign s_axis_data_tlast2[0] =3D s_axis_data_tlast[0];
->> assign s_axis_data_tlast2[1] =3D s_axis_data_tlast[1];
->>
->> assign s_axis_data_tdata2[15: 0] =3D s_axis_data_tdata[47:32] +
->> s_axis_data_tdata[15: 0];
->> assign s_axis_data_tdata2[31:16] =3D s_axis_data_tdata[63:48] +
->> s_axis_data_tdata[31:16];
->>
->> assign s_axis_data_tready_aux =3D ~|(~{s_axis_data_tready_out[0
->> ],s_axis_data_tready_out[1]} & 2'b11);
->> assign s_axis_data_tready[0] =3D s_axis_data_tvalid[0] &
->> s_axis_data_tvalid[1] & s_axis_data_tready_aux;
->> assign s_axis_data_tready[1] =3D s_axis_data_tvalid[0] &
->> s_axis_data_tvalid[1] & s_axis_data_tready_aux;
->>
->> El vie., 10 jul. 2020 a las 11:59, Carlos Alberto Ruiz Naranjo (<
->> carlosruiznaranjo@gmail.com>) escribi=C3=B3:
->>
->>> Hi,
->>>
->>> I'm customizing the DUC block to do it 2input:1output
->>>
->>> input 0  ---> DUC --->
->>>                                       add ---> output
->>> input 1  ---> DUC --->
->>>
->>> I have added an addsub module between dds_timed and axi_wrapper.
->>> Apparently it works fine. I can see two tones in the output if the inpu=
-ts
->>> are 2 tones.
->>>
->>> But I have a synchronization problem. If input_0 is a sine and input_1
->>> is a sine with pi phase the output should be 0. And the output is 0, bu=
-t
->>> after a while (3 minutes) no. I think that the channels are out of sync
->>> before the adder.
->>>
->>> Any idea about what is happening?
->>>
->>> Thank you :)
->>>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
+> [image: rec_0.png]
 >
+> But after a while I think the channels are out of sync and the signal is
+> weird:
+>
+> [image: rec_1.png]
+>
+>
+>
+>
+> El lun., 13 jul. 2020 a las 22:01, Jonathon Pendlum (<
+> jonathon.pendlum@ettus.com>) escribi=C3=B3:
+>
+>> Hi Carlos,
+>>
+>> Where are the sine waves coming from / how are they generated? What is
+>> your entire flowgraph? What sampling rate are you running at?
+>>
+>> Jonathon
+>>
+>> On Fri, Jul 10, 2020 at 2:45 PM Carlos Alberto Ruiz Naranjo via
+>> USRP-users <usrp-users@lists.ettus.com> wrote:
+>>
+>>> This is the code for the adder (between dds_timed and axi_wrapper):
+>>>
+>>> assign s_axis_data_tvalid2[0] =3D s_axis_data_tvalid[1] &
+>>> s_axis_data_tvalid[0];
+>>> assign s_axis_data_tvalid2[1] =3D s_axis_data_tvalid[1] &
+>>> s_axis_data_tvalid[0];
+>>>
+>>> assign s_axis_data_tuser2 =3D s_axis_data_tuser;
+>>>
+>>> assign s_axis_data_tlast2[0] =3D s_axis_data_tlast[0];
+>>> assign s_axis_data_tlast2[1] =3D s_axis_data_tlast[1];
+>>>
+>>> assign s_axis_data_tdata2[15: 0] =3D s_axis_data_tdata[47:32] +
+>>> s_axis_data_tdata[15: 0];
+>>> assign s_axis_data_tdata2[31:16] =3D s_axis_data_tdata[63:48] +
+>>> s_axis_data_tdata[31:16];
+>>>
+>>> assign s_axis_data_tready_aux =3D ~|(~{s_axis_data_tready_out[0
+>>> ],s_axis_data_tready_out[1]} & 2'b11);
+>>> assign s_axis_data_tready[0] =3D s_axis_data_tvalid[0] &
+>>> s_axis_data_tvalid[1] & s_axis_data_tready_aux;
+>>> assign s_axis_data_tready[1] =3D s_axis_data_tvalid[0] &
+>>> s_axis_data_tvalid[1] & s_axis_data_tready_aux;
+>>>
+>>> El vie., 10 jul. 2020 a las 11:59, Carlos Alberto Ruiz Naranjo (<
+>>> carlosruiznaranjo@gmail.com>) escribi=C3=B3:
+>>>
+>>>> Hi,
+>>>>
+>>>> I'm customizing the DUC block to do it 2input:1output
+>>>>
+>>>> input 0  ---> DUC --->
+>>>>                                       add ---> output
+>>>> input 1  ---> DUC --->
+>>>>
+>>>> I have added an addsub module between dds_timed and axi_wrapper.
+>>>> Apparently it works fine. I can see two tones in the output if the inp=
+uts
+>>>> are 2 tones.
+>>>>
+>>>> But I have a synchronization problem. If input_0 is a sine and input_1
+>>>> is a sine with pi phase the output should be 0. And the output is 0, b=
+ut
+>>>> after a while (3 minutes) no. I think that the channels are out of syn=
+c
+>>>> before the adder.
+>>>>
+>>>> Any idea about what is happening?
+>>>>
+>>>> Thank you :)
+>>>>
+>>> _______________________________________________
+>>> USRP-users mailing list
+>>> USRP-users@lists.ettus.com
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>
+>>
 
---00000000000099272105aa9fc792
+--00000000000046896405aab0865d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Jonathon,<br><br>Thanks for the reply. This is my simpl=
-est test:<br><br><div><img src=3D"cid:ii_kcq0qdbf0" alt=3D"sample_0.png" wi=
-dth=3D"567" height=3D"144"></div><div>At the beginning it works fine, the o=
-utput is the sum of the two signals:<br></div><div><br><br><div><img src=3D=
-"cid:ii_kcq0qdc52" alt=3D"rec_0.png" width=3D"567" height=3D"311"></div><di=
-v><br></div><div>But after a while I think the channels are out of sync and=
- the signal is weird:</div><div><br><div><img src=3D"cid:ii_kcq0qdby1" alt=
-=3D"rec_1.png" width=3D"567" height=3D"313"></div></div><div><br><div><br><=
-br></div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
-class=3D"gmail_attr">El lun., 13 jul. 2020 a las 22:01, Jonathon Pendlum (&=
-lt;<a href=3D"mailto:jonathon.pendlum@ettus.com">jonathon.pendlum@ettus.com=
-</a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr">Hi Carlos,<div><br></div><div>Where are the sin=
-e waves coming from / how are they generated? What is your=C2=A0entire flow=
-graph? What sampling rate are you running at?</div><div><br></div><div>Jona=
-thon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Fri, Jul 10, 2020 at 2:45 PM Carlos Alberto Ruiz Naranjo via U=
-SRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blan=
-k">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div dir=3D"ltr"><div>This is the code for the=
- adder (between dds_timed and axi_wrapper):</div><div><br></div><div><div s=
-tyle=3D"color:rgb(225,228,232);background-color:rgb(36,41,46);font-family:&=
-quot;Droid Sans Mono&quot;,monospace,monospace,&quot;Droid Sans Fallback&qu=
-ot;;font-weight:normal;font-size:14px;line-height:19px;white-space:pre-wrap=
-"><div><span style=3D"color:rgb(225,228,232)">  </span><span style=3D"color=
-:rgb(249,117,131)">assign</span><span style=3D"color:rgb(225,228,232)"> s_a=
-xis_data_tvalid2[</span><span style=3D"color:rgb(121,184,255)">0</span><spa=
-n style=3D"color:rgb(225,228,232)">] </span><span style=3D"color:rgb(249,11=
-7,131)">=3D</span><span style=3D"color:rgb(225,228,232)"> s_axis_data_tvali=
-d[</span><span style=3D"color:rgb(121,184,255)">1</span><span style=3D"colo=
-r:rgb(225,228,232)">] </span><span style=3D"color:rgb(249,117,131)">&amp;</=
-span><span style=3D"color:rgb(225,228,232)"> s_axis_data_tvalid[</span><spa=
+<div dir=3D"ltr">Hi Carlos,<div><br></div><div>Can you try replacing the Dm=
+aFIFO block with=C2=A0two FIFO blocks?</div><div><br></div><div>Jonathon</d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Fri, Jul 17, 2020 at 5:28 AM Carlos Alberto Ruiz Naranjo &lt;<a href=
+=3D"mailto:carlosruiznaranjo@gmail.com">carlosruiznaranjo@gmail.com</a>&gt;=
+ wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr">Hi Jonathon,<br><br>Thanks for the reply. This is my simplest test=
+:<br><br><div><img src=3D"cid:ii_kcq0qdbf0" alt=3D"sample_0.png" width=3D"5=
+67" height=3D"144"></div><div>At the beginning it works fine, the output is=
+ the sum of the two signals:<br></div><div><br><br><div><img src=3D"cid:ii_=
+kcq0qdc52" alt=3D"rec_0.png" width=3D"567" height=3D"311"></div><div><br></=
+div><div>But after a while I think the channels are out of sync and the sig=
+nal is weird:</div><div><br><div><img src=3D"cid:ii_kcq0qdby1" alt=3D"rec_1=
+.png" width=3D"567" height=3D"313"></div></div><div><br><div><br><br></div>=
+</div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">El lun., 13 jul. 2020 a las 22:01, Jonathon Pendlum (&lt;<a hre=
+f=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_blank">jonathon.pendlum@=
+ettus.com</a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><div dir=3D"ltr">Hi Carlos,<div><br></div><div>Where are =
+the sine waves coming from / how are they generated? What is your=C2=A0enti=
+re flowgraph? What sampling rate are you running at?</div><div><br></div><d=
+iv>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Fri, Jul 10, 2020 at 2:45 PM Carlos Alberto Ruiz Naranj=
+o via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=
+=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>This is the cod=
+e for the adder (between dds_timed and axi_wrapper):</div><div><br></div><d=
+iv><div style=3D"color:rgb(225,228,232);background-color:rgb(36,41,46);font=
+-family:&quot;Droid Sans Mono&quot;,monospace,monospace,&quot;Droid Sans Fa=
+llback&quot;;font-weight:normal;font-size:14px;line-height:19px;white-space=
+:pre-wrap"><div><span style=3D"color:rgb(225,228,232)">  </span><span style=
+=3D"color:rgb(249,117,131)">assign</span><span style=3D"color:rgb(225,228,2=
+32)"> s_axis_data_tvalid2[</span><span style=3D"color:rgb(121,184,255)">0</=
+span><span style=3D"color:rgb(225,228,232)">] </span><span style=3D"color:r=
+gb(249,117,131)">=3D</span><span style=3D"color:rgb(225,228,232)"> s_axis_d=
+ata_tvalid[</span><span style=3D"color:rgb(121,184,255)">1</span><span styl=
+e=3D"color:rgb(225,228,232)">] </span><span style=3D"color:rgb(249,117,131)=
+">&amp;</span><span style=3D"color:rgb(225,228,232)"> s_axis_data_tvalid[</=
+span><span style=3D"color:rgb(121,184,255)">0</span><span style=3D"color:rg=
+b(225,228,232)">];</span></div><div><span style=3D"color:rgb(225,228,232)">=
+  </span><span style=3D"color:rgb(249,117,131)">assign</span><span style=3D=
+"color:rgb(225,228,232)"> s_axis_data_tvalid2[</span><span style=3D"color:r=
+gb(121,184,255)">1</span><span style=3D"color:rgb(225,228,232)">] </span><s=
+pan style=3D"color:rgb(249,117,131)">=3D</span><span style=3D"color:rgb(225=
+,228,232)"> s_axis_data_tvalid[</span><span style=3D"color:rgb(121,184,255)=
+">1</span><span style=3D"color:rgb(225,228,232)">] </span><span style=3D"co=
+lor:rgb(249,117,131)">&amp;</span><span style=3D"color:rgb(225,228,232)"> s=
+_axis_data_tvalid[</span><span style=3D"color:rgb(121,184,255)">0</span><sp=
+an style=3D"color:rgb(225,228,232)">];</span></div><br><div><span style=3D"=
+color:rgb(225,228,232)">  </span><span style=3D"color:rgb(249,117,131)">ass=
+ign</span><span style=3D"color:rgb(225,228,232)"> s_axis_data_tuser2 </span=
+><span style=3D"color:rgb(249,117,131)">=3D</span><span style=3D"color:rgb(=
+225,228,232)"> s_axis_data_tuser;</span></div><br><div><span style=3D"color=
+:rgb(225,228,232)">  </span><span style=3D"color:rgb(249,117,131)">assign</=
+span><span style=3D"color:rgb(225,228,232)"> s_axis_data_tlast2[</span><spa=
 n style=3D"color:rgb(121,184,255)">0</span><span style=3D"color:rgb(225,228=
-,232)">];</span></div><div><span style=3D"color:rgb(225,228,232)">  </span>=
-<span style=3D"color:rgb(249,117,131)">assign</span><span style=3D"color:rg=
-b(225,228,232)"> s_axis_data_tvalid2[</span><span style=3D"color:rgb(121,18=
-4,255)">1</span><span style=3D"color:rgb(225,228,232)">] </span><span style=
-=3D"color:rgb(249,117,131)">=3D</span><span style=3D"color:rgb(225,228,232)=
-"> s_axis_data_tvalid[</span><span style=3D"color:rgb(121,184,255)">1</span=
-><span style=3D"color:rgb(225,228,232)">] </span><span style=3D"color:rgb(2=
-49,117,131)">&amp;</span><span style=3D"color:rgb(225,228,232)"> s_axis_dat=
-a_tvalid[</span><span style=3D"color:rgb(121,184,255)">0</span><span style=
-=3D"color:rgb(225,228,232)">];</span></div><br><div><span style=3D"color:rg=
-b(225,228,232)">  </span><span style=3D"color:rgb(249,117,131)">assign</spa=
-n><span style=3D"color:rgb(225,228,232)"> s_axis_data_tuser2 </span><span s=
-tyle=3D"color:rgb(249,117,131)">=3D</span><span style=3D"color:rgb(225,228,=
-232)"> s_axis_data_tuser;</span></div><br><div><span style=3D"color:rgb(225=
-,228,232)">  </span><span style=3D"color:rgb(249,117,131)">assign</span><sp=
-an style=3D"color:rgb(225,228,232)"> s_axis_data_tlast2[</span><span style=
-=3D"color:rgb(121,184,255)">0</span><span style=3D"color:rgb(225,228,232)">=
-] </span><span style=3D"color:rgb(249,117,131)">=3D</span><span style=3D"co=
-lor:rgb(225,228,232)"> s_axis_data_tlast[</span><span style=3D"color:rgb(12=
-1,184,255)">0</span><span style=3D"color:rgb(225,228,232)">];</span></div><=
-div><span style=3D"color:rgb(225,228,232)">  </span><span style=3D"color:rg=
-b(249,117,131)">assign</span><span style=3D"color:rgb(225,228,232)"> s_axis=
-_data_tlast2[</span><span style=3D"color:rgb(121,184,255)">1</span><span st=
-yle=3D"color:rgb(225,228,232)">] </span><span style=3D"color:rgb(249,117,13=
-1)">=3D</span><span style=3D"color:rgb(225,228,232)"> s_axis_data_tlast[</s=
-pan><span style=3D"color:rgb(121,184,255)">1</span><span style=3D"color:rgb=
-(225,228,232)">];</span></div><br><div><span style=3D"color:rgb(225,228,232=
-)">  </span><span style=3D"color:rgb(249,117,131)">assign</span><span style=
-=3D"color:rgb(225,228,232)"> s_axis_data_tdata2[</span><span style=3D"color=
-:rgb(121,184,255)">15</span><span style=3D"color:rgb(225,228,232)">: </span=
-><span style=3D"color:rgb(121,184,255)">0</span><span style=3D"color:rgb(22=
-5,228,232)">] </span><span style=3D"color:rgb(249,117,131)">=3D</span><span=
- style=3D"color:rgb(225,228,232)"> s_axis_data_tdata[</span><span style=3D"=
-color:rgb(121,184,255)">47</span><span style=3D"color:rgb(225,228,232)">:</=
-span><span style=3D"color:rgb(121,184,255)">32</span><span style=3D"color:r=
-gb(225,228,232)">] </span><span style=3D"color:rgb(249,117,131)">+</span><s=
-pan style=3D"color:rgb(225,228,232)"> s_axis_data_tdata[</span><span style=
+,232)">] </span><span style=3D"color:rgb(249,117,131)">=3D</span><span styl=
+e=3D"color:rgb(225,228,232)"> s_axis_data_tlast[</span><span style=3D"color=
+:rgb(121,184,255)">0</span><span style=3D"color:rgb(225,228,232)">];</span>=
+</div><div><span style=3D"color:rgb(225,228,232)">  </span><span style=3D"c=
+olor:rgb(249,117,131)">assign</span><span style=3D"color:rgb(225,228,232)">=
+ s_axis_data_tlast2[</span><span style=3D"color:rgb(121,184,255)">1</span><=
+span style=3D"color:rgb(225,228,232)">] </span><span style=3D"color:rgb(249=
+,117,131)">=3D</span><span style=3D"color:rgb(225,228,232)"> s_axis_data_tl=
+ast[</span><span style=3D"color:rgb(121,184,255)">1</span><span style=3D"co=
+lor:rgb(225,228,232)">];</span></div><br><div><span style=3D"color:rgb(225,=
+228,232)">  </span><span style=3D"color:rgb(249,117,131)">assign</span><spa=
+n style=3D"color:rgb(225,228,232)"> s_axis_data_tdata2[</span><span style=
 =3D"color:rgb(121,184,255)">15</span><span style=3D"color:rgb(225,228,232)"=
 >: </span><span style=3D"color:rgb(121,184,255)">0</span><span style=3D"col=
-or:rgb(225,228,232)">];</span></div><div><span style=3D"color:rgb(225,228,2=
-32)">  </span><span style=3D"color:rgb(249,117,131)">assign</span><span sty=
-le=3D"color:rgb(225,228,232)"> s_axis_data_tdata2[</span><span style=3D"col=
-or:rgb(121,184,255)">31</span><span style=3D"color:rgb(225,228,232)">:</spa=
-n><span style=3D"color:rgb(121,184,255)">16</span><span style=3D"color:rgb(=
-225,228,232)">] </span><span style=3D"color:rgb(249,117,131)">=3D</span><sp=
-an style=3D"color:rgb(225,228,232)"> s_axis_data_tdata[</span><span style=
-=3D"color:rgb(121,184,255)">63</span><span style=3D"color:rgb(225,228,232)"=
->:</span><span style=3D"color:rgb(121,184,255)">48</span><span style=3D"col=
-or:rgb(225,228,232)">] </span><span style=3D"color:rgb(249,117,131)">+</spa=
-n><span style=3D"color:rgb(225,228,232)"> s_axis_data_tdata[</span><span st=
+or:rgb(225,228,232)">] </span><span style=3D"color:rgb(249,117,131)">=3D</s=
+pan><span style=3D"color:rgb(225,228,232)"> s_axis_data_tdata[</span><span =
+style=3D"color:rgb(121,184,255)">47</span><span style=3D"color:rgb(225,228,=
+232)">:</span><span style=3D"color:rgb(121,184,255)">32</span><span style=
+=3D"color:rgb(225,228,232)">] </span><span style=3D"color:rgb(249,117,131)"=
+>+</span><span style=3D"color:rgb(225,228,232)"> s_axis_data_tdata[</span><=
+span style=3D"color:rgb(121,184,255)">15</span><span style=3D"color:rgb(225=
+,228,232)">: </span><span style=3D"color:rgb(121,184,255)">0</span><span st=
+yle=3D"color:rgb(225,228,232)">];</span></div><div><span style=3D"color:rgb=
+(225,228,232)">  </span><span style=3D"color:rgb(249,117,131)">assign</span=
+><span style=3D"color:rgb(225,228,232)"> s_axis_data_tdata2[</span><span st=
 yle=3D"color:rgb(121,184,255)">31</span><span style=3D"color:rgb(225,228,23=
 2)">:</span><span style=3D"color:rgb(121,184,255)">16</span><span style=3D"=
-color:rgb(225,228,232)">];</span></div><br><div><span style=3D"color:rgb(22=
-5,228,232)">  </span><span style=3D"color:rgb(249,117,131)">assign</span><s=
-pan style=3D"color:rgb(225,228,232)"> s_axis_data_tready_aux </span><span s=
-tyle=3D"color:rgb(249,117,131)">=3D</span><span style=3D"color:rgb(225,228,=
-232)"> </span><span style=3D"color:rgb(249,117,131)">~|</span><span style=
-=3D"color:rgb(225,228,232)">(</span><span style=3D"color:rgb(249,117,131)">=
-~</span><span style=3D"color:rgb(225,228,232)">{s_axis_data_tready_out[</sp=
-an><span style=3D"color:rgb(121,184,255)">0</span><span style=3D"color:rgb(=
-225,228,232)">],s_axis_data_tready_out[</span><span style=3D"color:rgb(121,=
-184,255)">1</span><span style=3D"color:rgb(225,228,232)">]} </span><span st=
-yle=3D"color:rgb(249,117,131)">&amp;</span><span style=3D"color:rgb(225,228=
-,232)"> </span><span style=3D"color:rgb(121,184,255)">2&#39;b11</span><span=
- style=3D"color:rgb(225,228,232)">);</span></div><div><span style=3D"color:=
-rgb(225,228,232)">  </span><span style=3D"color:rgb(249,117,131)">assign</s=
-pan><span style=3D"color:rgb(225,228,232)"> s_axis_data_tready[</span><span=
- style=3D"color:rgb(121,184,255)">0</span><span style=3D"color:rgb(225,228,=
-232)">] </span><span style=3D"color:rgb(249,117,131)">=3D</span><span style=
-=3D"color:rgb(225,228,232)"> s_axis_data_tvalid[</span><span style=3D"color=
-:rgb(121,184,255)">0</span><span style=3D"color:rgb(225,228,232)">] </span>=
-<span style=3D"color:rgb(249,117,131)">&amp;</span><span style=3D"color:rgb=
-(225,228,232)"> s_axis_data_tvalid[</span><span style=3D"color:rgb(121,184,=
-255)">1</span><span style=3D"color:rgb(225,228,232)">] </span><span style=
-=3D"color:rgb(249,117,131)">&amp;</span><span style=3D"color:rgb(225,228,23=
-2)"> s_axis_data_tready_aux;</span></div><div><span style=3D"color:rgb(225,=
-228,232)">  </span><span style=3D"color:rgb(249,117,131)">assign</span><spa=
-n style=3D"color:rgb(225,228,232)"> s_axis_data_tready[</span><span style=
-=3D"color:rgb(121,184,255)">1</span><span style=3D"color:rgb(225,228,232)">=
-] </span><span style=3D"color:rgb(249,117,131)">=3D</span><span style=3D"co=
-lor:rgb(225,228,232)"> s_axis_data_tvalid[</span><span style=3D"color:rgb(1=
-21,184,255)">0</span><span style=3D"color:rgb(225,228,232)">] </span><span =
-style=3D"color:rgb(249,117,131)">&amp;</span><span style=3D"color:rgb(225,2=
-28,232)"> s_axis_data_tvalid[</span><span style=3D"color:rgb(121,184,255)">=
-1</span><span style=3D"color:rgb(225,228,232)">] </span><span style=3D"colo=
-r:rgb(249,117,131)">&amp;</span><span style=3D"color:rgb(225,228,232)"> s_a=
-xis_data_tready_aux;</span></div></div> </div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">El vie., 10 jul. 2020 a las 1=
-1:59, Carlos Alberto Ruiz Naranjo (&lt;<a href=3D"mailto:carlosruiznaranjo@=
-gmail.com" target=3D"_blank">carlosruiznaranjo@gmail.com</a>&gt;) escribi=
+color:rgb(225,228,232)">] </span><span style=3D"color:rgb(249,117,131)">=3D=
+</span><span style=3D"color:rgb(225,228,232)"> s_axis_data_tdata[</span><sp=
+an style=3D"color:rgb(121,184,255)">63</span><span style=3D"color:rgb(225,2=
+28,232)">:</span><span style=3D"color:rgb(121,184,255)">48</span><span styl=
+e=3D"color:rgb(225,228,232)">] </span><span style=3D"color:rgb(249,117,131)=
+">+</span><span style=3D"color:rgb(225,228,232)"> s_axis_data_tdata[</span>=
+<span style=3D"color:rgb(121,184,255)">31</span><span style=3D"color:rgb(22=
+5,228,232)">:</span><span style=3D"color:rgb(121,184,255)">16</span><span s=
+tyle=3D"color:rgb(225,228,232)">];</span></div><br><div><span style=3D"colo=
+r:rgb(225,228,232)">  </span><span style=3D"color:rgb(249,117,131)">assign<=
+/span><span style=3D"color:rgb(225,228,232)"> s_axis_data_tready_aux </span=
+><span style=3D"color:rgb(249,117,131)">=3D</span><span style=3D"color:rgb(=
+225,228,232)"> </span><span style=3D"color:rgb(249,117,131)">~|</span><span=
+ style=3D"color:rgb(225,228,232)">(</span><span style=3D"color:rgb(249,117,=
+131)">~</span><span style=3D"color:rgb(225,228,232)">{s_axis_data_tready_ou=
+t[</span><span style=3D"color:rgb(121,184,255)">0</span><span style=3D"colo=
+r:rgb(225,228,232)">],s_axis_data_tready_out[</span><span style=3D"color:rg=
+b(121,184,255)">1</span><span style=3D"color:rgb(225,228,232)">]} </span><s=
+pan style=3D"color:rgb(249,117,131)">&amp;</span><span style=3D"color:rgb(2=
+25,228,232)"> </span><span style=3D"color:rgb(121,184,255)">2&#39;b11</span=
+><span style=3D"color:rgb(225,228,232)">);</span></div><div><span style=3D"=
+color:rgb(225,228,232)">  </span><span style=3D"color:rgb(249,117,131)">ass=
+ign</span><span style=3D"color:rgb(225,228,232)"> s_axis_data_tready[</span=
+><span style=3D"color:rgb(121,184,255)">0</span><span style=3D"color:rgb(22=
+5,228,232)">] </span><span style=3D"color:rgb(249,117,131)">=3D</span><span=
+ style=3D"color:rgb(225,228,232)"> s_axis_data_tvalid[</span><span style=3D=
+"color:rgb(121,184,255)">0</span><span style=3D"color:rgb(225,228,232)">] <=
+/span><span style=3D"color:rgb(249,117,131)">&amp;</span><span style=3D"col=
+or:rgb(225,228,232)"> s_axis_data_tvalid[</span><span style=3D"color:rgb(12=
+1,184,255)">1</span><span style=3D"color:rgb(225,228,232)">] </span><span s=
+tyle=3D"color:rgb(249,117,131)">&amp;</span><span style=3D"color:rgb(225,22=
+8,232)"> s_axis_data_tready_aux;</span></div><div><span style=3D"color:rgb(=
+225,228,232)">  </span><span style=3D"color:rgb(249,117,131)">assign</span>=
+<span style=3D"color:rgb(225,228,232)"> s_axis_data_tready[</span><span sty=
+le=3D"color:rgb(121,184,255)">1</span><span style=3D"color:rgb(225,228,232)=
+">] </span><span style=3D"color:rgb(249,117,131)">=3D</span><span style=3D"=
+color:rgb(225,228,232)"> s_axis_data_tvalid[</span><span style=3D"color:rgb=
+(121,184,255)">0</span><span style=3D"color:rgb(225,228,232)">] </span><spa=
+n style=3D"color:rgb(249,117,131)">&amp;</span><span style=3D"color:rgb(225=
+,228,232)"> s_axis_data_tvalid[</span><span style=3D"color:rgb(121,184,255)=
+">1</span><span style=3D"color:rgb(225,228,232)">] </span><span style=3D"co=
+lor:rgb(249,117,131)">&amp;</span><span style=3D"color:rgb(225,228,232)"> s=
+_axis_data_tready_aux;</span></div></div> </div></div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">El vie., 10 jul. 2020 a las=
+ 11:59, Carlos Alberto Ruiz Naranjo (&lt;<a href=3D"mailto:carlosruiznaranj=
+o@gmail.com" target=3D"_blank">carlosruiznaranjo@gmail.com</a>&gt;) escribi=
 =C3=B3:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
 =3D"ltr">Hi,<br><br>I&#39;m customizing the DUC block to do it 2input:1outp=
@@ -328,9 +346,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
+</blockquote></div>
 
---00000000000099272105aa9fc792--
---00000000000099272205aa9fc793
+--00000000000046896405aab0865d--
+--00000000000046896605aab0865e
 Content-Type: image/png; name="sample_0.png"
 Content-Disposition: inline; filename="sample_0.png"
 Content-Transfer-Encoding: base64
@@ -1451,7 +1470,7 @@ AKgDZPgAAAAAAAAA6gAZPgAAAAAAAIA6QIYPAAAAAAAAoA6Q4QMAAAAAAACoA2T4AAAAAAAAAOoA
 GT4AAAAAAACAOkCGDwAAAAAAAKAOkOEDAAAAAAAAqANk+AAAAAAAAADqABk+AAAAAAAAgDpAhg8A
 AAAAAACgDpDhAwAAAAAAAKgDZPgAAAAAAAAA6gAZPgAAAAAAAIA6QIYPAAAAAAAAoA7+B5q9h+TA
 ROYlAAAAAElFTkSuQmCC
---00000000000099272205aa9fc793
+--00000000000046896605aab0865e
 Content-Type: image/png; name="rec_1.png"
 Content-Disposition: inline; filename="rec_1.png"
 Content-Transfer-Encoding: base64
@@ -1997,7 +2016,7 @@ KSk59oHNzc0XDhlRW1d3y003PPP03GMfCAAAx1uRBBkAAAq5+86ZXbPZ3Xv2vPzKa+0ycOmyd2vr
 AAD/AiEyAAAAAAAFFYUEGQAAAACAAookyAAAAAAAFFJ0og8AAAAAAMDJS4gMAAAAAEBBQmQAAAAA
 AAoSIgMAAAAAUJAQGQAAAACAgoTIAAAAAAAUJEQGAAAAAKAgITIAAAAAAAUJkQEAAAAAKOhX4BbB
 ghtbQoYAAAAASUVORK5CYII=
---00000000000099272205aa9fc793
+--00000000000046896605aab0865e
 Content-Type: image/png; name="rec_0.png"
 Content-Disposition: inline; filename="rec_0.png"
 Content-Transfer-Encoding: base64
@@ -2562,10 +2581,10 @@ kwVLyt5qbmmxWCwv/vhHPlkQAAAAGB6995cVRTF5vfY30rsCAAAA7mijR48u2lv48cfnbDabTxaM
 iows2LnDbreHhob6ZEEAAABgeJjOtzb3y5e9U2biZgAAAAAAAADAjWiqqhov/JEvAwAAAAAAAAAG
 RfNcXxavEsxCvgwAAAAAAAAA+G8075vL5MsAAAAAAAAAgFunKYpitMiXAQAAAAAAAACDonkHyoTL
 AAAAAAAAAIBb9x99AlH9SQYHgwAAAABJRU5ErkJggg==
---00000000000099272205aa9fc793--
+--00000000000046896605aab0865e--
 
 
---===============3056696872080226675==
+--===============5624450864250092789==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2576,5 +2595,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3056696872080226675==--
+--===============5624450864250092789==--
 
