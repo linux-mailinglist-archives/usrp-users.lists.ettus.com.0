@@ -2,49 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 494D6225741
-	for <lists+usrp-users@lfdr.de>; Mon, 20 Jul 2020 07:53:13 +0200 (CEST)
-Received: from [::1] (port=52106 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B08226323
+	for <lists+usrp-users@lfdr.de>; Mon, 20 Jul 2020 17:21:24 +0200 (CEST)
+Received: from [::1] (port=55872 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jxOjc-0001Yt-FT; Mon, 20 Jul 2020 01:53:08 -0400
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:35058)
+	id 1jxXbR-0003fH-KE; Mon, 20 Jul 2020 11:21:17 -0400
+Received: from mail-qt1-f182.google.com ([209.85.160.182]:37251)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <hai.n.nguyen204@gmail.com>)
- id 1jxOjY-0001SX-D7
- for usrp-users@lists.ettus.com; Mon, 20 Jul 2020 01:53:04 -0400
-Received: by mail-qk1-f173.google.com with SMTP id 11so4757060qkn.2
- for <usrp-users@lists.ettus.com>; Sun, 19 Jul 2020 22:52:44 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jxXbO-0003X7-2M
+ for usrp-users@lists.ettus.com; Mon, 20 Jul 2020 11:21:14 -0400
+Received: by mail-qt1-f182.google.com with SMTP id d27so13306771qtg.4
+ for <usrp-users@lists.ettus.com>; Mon, 20 Jul 2020 08:20:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=a55KF3XQZihO6a7/NR155clvLlZra5jUoGjvVfiOLao=;
- b=rh2mgo2HtBGYveKcAe8lC7VrT1Kl5J7TVu9rGrg1TeVZRaoVD7d7HKNQGJJpTtF6CL
- gnEfvgYezSsbwGRlAt3NLreAR525Ycu5jutiIMJ+MNp+lGTjTgYMAwS+XpEppFfKia1u
- HqJLa1Yr3PjFtGk9Tqi1M9DDhAugsZ7S8/ZtDxQtP7wxXsqTsIO1J+gdJ2wNuRY7IfwA
- gYpgDRwgCCaVbz0uDs3INaEz6p05Xor/u8sdwva/24x8k2RKZWpCAWR5//awLKAeqXEY
- TCXqyTS10VLqRafEODyJTV+uGa5sXVUKzZ3InqncORFCV0crcqDWmXOsIJOaAxPtM6VQ
- 47EQ==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=CfV8C9Mwq9qrPB0viwL1DBzFXWMElyK+gYccf8Wfgg4=;
+ b=sJLqSA1bUO9eqYLa7U1wSlr/0jk4XqCjg2S4MbfGpPhjpWymJqL63NbcSPEwRJGzTR
+ JmrOZz6DjdX+gns7Ul1LpfF51KQ+QhydlOKilWLjUEcbdANFnLXj+Rm+dX0VZ0svIw/S
+ TsfwhlBrQAWxJQTfoneNrVCgw435U6mDPyR7ASrvybPy8KuBQnd8mP00j2ecTzHLXUO6
+ cLBM8uVeHaWtUQej89YOFg4lwOAv6PqMDQtDQBd4XyKMTr+Um61uvNPNTtgwlgsYQiMa
+ 9ED4DbmSTf/8Geg5wW7a+ebVlLtk9oIf9kPh0ISQW8lSIKkDWLWDBLDx++MaHjUsa4uQ
+ OWuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=a55KF3XQZihO6a7/NR155clvLlZra5jUoGjvVfiOLao=;
- b=FaDdDy0ZmIkRgc1jh7kpmNsY33wYH2hbC6qmkaUEK/Xaq1aMpZ90tfQEcDogbQnxjJ
- kdogAKq1tAAEsi9KidTnzgyMEk2wlxlt8y6CbbKNGH2V4Vskr3EZbh6qxieOTj5q7Ecq
- S4bJSwtWqsrSkGUI9mAPPf/hKL3EPz+S2fugOMjQNL+XlpY6EeOybehod+9H8JNxRg5p
- jYn0t6w1KVjt8L1x/P709owGPBc9CgPe1VuIv2/tBNWFF0SMeM7ABbOlAJDVVbCNH389
- jczfFzr1JJC2Vh9ZN51Zmev7tQHn76pJOtOzY4Y3Fv4Py7vES0y55DowOzvMxmFLUxAr
- 8Zwg==
-X-Gm-Message-State: AOAM530xv8sCqwXUF17DAZdhVczMysTUE55Yh0azciE6+oEiG02NnWmG
- XkjUYZjQ4rqlDct1xzJk5/QBLD5oAiyQdE/ZkIoXXf10
-X-Google-Smtp-Source: ABdhPJz0un4YpPGTGnP8c8xjlBx4hcvcESu+Epz7Y/3pqivgO9l+B3oVoS5rErB+xp7bj0/uzBFTky7Di0pr6Vi4yW4=
-X-Received: by 2002:a37:8fc5:: with SMTP id
- r188mr18754253qkd.447.1595224343569; 
- Sun, 19 Jul 2020 22:52:23 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=CfV8C9Mwq9qrPB0viwL1DBzFXWMElyK+gYccf8Wfgg4=;
+ b=V7mWYOgC0mOe9Coqvqk7SrGkyWHBVDnSl2k6DrzTmcV3QEF89+gsGa6sb2p6cAApvW
+ PEp+QbKq3HM8fvHHGGwS5Sr3rIUwKcNGVZZ3odPZBiVYINJ6GDn5ks8e/GFuwZdJ8rIA
+ 0+ekaQdlzZgEEjAHVozQnkZyI5gnOg3W55134LGS5oEN/MDGXpcmcwUW9RqhIkug1zeH
+ +QeQOCc6Czwtf4IovW9LN7s7KTEeoMb1hicYQQ+nOmdjX7pNMJguY20jZhjq3p9w0E2V
+ Kht0WzPRr+myRlI1gck3uZGSElQLele0xfKHKlHBTbV320d+dlRdXOGaXc/RzIBG2WpW
+ qljA==
+X-Gm-Message-State: AOAM532PO9lhZE/69bX54aK19JiEp/D22Daf1faB8mFOy3/phdDr9JXM
+ atMPzp6QPyhmu5bRy62FKTCX9ADbv4M=
+X-Google-Smtp-Source: ABdhPJxcUgk958q3uMvTucQ9gEG//YXrGHZ1sjnU1sUJJ1Y/tLJVVb40cpIP2U9es+mIw/Uw2+cCfA==
+X-Received: by 2002:ac8:24e8:: with SMTP id t37mr24865587qtt.319.1595258433112; 
+ Mon, 20 Jul 2020 08:20:33 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
+ [174.95.14.148]) by smtp.googlemail.com with ESMTPSA id
+ c133sm21048056qkb.111.2020.07.20.08.20.32
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 20 Jul 2020 08:20:32 -0700 (PDT)
+Message-ID: <5F15B640.3060806@gmail.com>
+Date: Mon, 20 Jul 2020 11:20:32 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Date: Mon, 20 Jul 2020 01:52:12 -0400
-Message-ID: <CAFZDN5J8ncEHAP1H=93cBUZ_sxOzydoXKc54sKgkCcFOHV9gYA@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Persistent red LINK LED, streaming samples valued zero
+To: usrp-users@lists.ettus.com
+References: <CAFZDN5J8ncEHAP1H=93cBUZ_sxOzydoXKc54sKgkCcFOHV9gYA@mail.gmail.com>
+In-Reply-To: <CAFZDN5J8ncEHAP1H=93cBUZ_sxOzydoXKc54sKgkCcFOHV9gYA@mail.gmail.com>
+Subject: Re: [USRP-users] Persistent red LINK LED,
+ streaming samples valued zero
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -56,9 +68,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Hai Nguyen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Hai Nguyen <hai.n.nguyen204@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6974406105958737994=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,52 +85,34 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6974406105958737994==
-Content-Type: multipart/alternative; boundary="00000000000055e8c305aad91c40"
-
---00000000000055e8c305aad91c40
-Content-Type: text/plain; charset="UTF-8"
-
-Hello,
-
-I'm having an error where received samples from RX chains of a X310 (after
-calling recv from the streamer) have values of 0 (both I and Q), and those
-values don't change over time. One abnormal thing is that the LINK LED in
-the front panel is persistently red during streaming. I noticed that when
-streaming samples is ok this LED is normally persistently orange instead.
-
-Do you have any ideas what would be the cause of this?
-
-Thank you and best regards,
-Hai
-
---00000000000055e8c305aad91c40
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I&#39;m having an err=
-or where received samples from RX chains of a X310 (after calling recv from=
- the streamer) have values of 0 (both I and Q), and those values don&#39;t =
-change over time. One abnormal thing is that the LINK LED in the front pane=
-l is persistently red during streaming. I noticed that when streaming sampl=
-es is ok this LED is normally persistently orange instead. <br></div><div><=
-br></div><div>Do you have any ideas what would be the cause of this?</div><=
-div><br></div><div>Thank you and best regards,</div><div>Hai<br></div></div=
+On 07/20/2020 01:52 AM, Hai Nguyen via USRP-users wrote:
+> Hello,
 >
+> I'm having an error where received samples from RX chains of a X310 
+> (after calling recv from the streamer) have values of 0 (both I and 
+> Q), and those values don't change over time. One abnormal thing is 
+> that the LINK LED in the front panel is persistently red during 
+> streaming. I noticed that when streaming samples is ok this LED is 
+> normally persistently orange instead.
+>
+> Do you have any ideas what would be the cause of this?
+>
+> Thank you and best regards,
+> Hai
+>
+Are you getting any under-run indications?
 
---00000000000055e8c305aad91c40--
+What sample rate are you using?
+
+Do you see this at the same sample rate with an example application like 
+"rx_samples_to_file".   Are you using standard FPGA firmware or do
+   you have your own modules in the FPGA?
+
+What version of UHD are you using?
 
 
---===============6974406105958737994==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6974406105958737994==--
-
