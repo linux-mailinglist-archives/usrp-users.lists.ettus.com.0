@@ -2,59 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 942D92288FD
-	for <lists+usrp-users@lfdr.de>; Tue, 21 Jul 2020 21:18:01 +0200 (CEST)
-Received: from [::1] (port=43244 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA77228905
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Jul 2020 21:21:28 +0200 (CEST)
+Received: from [::1] (port=43272 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jxxm4-0002Sa-Jl; Tue, 21 Jul 2020 15:18:00 -0400
-Received: from mail-qt1-f179.google.com ([209.85.160.179]:38382)
+	id 1jxxpN-0002qf-Vt; Tue, 21 Jul 2020 15:21:26 -0400
+Received: from mail-pj1-f54.google.com ([209.85.216.54]:55574)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jxxm0-0001q7-6A
- for usrp-users@lists.ettus.com; Tue, 21 Jul 2020 15:17:56 -0400
-Received: by mail-qt1-f179.google.com with SMTP id a32so17036247qtb.5
- for <usrp-users@lists.ettus.com>; Tue, 21 Jul 2020 12:17:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=CcEiMsh6W8LtHmM4ul5AY2yuPsOFEbuII7cx8e8XmuE=;
- b=fUEkogmilL/ecHVLE3HzJ1qg5jzgqAu2qKtagLevX4BGg5TqmW7qRivXcqQjPKUOSg
- y+E9DqP4TCNK4KAE1rZihVFhnA3RdPexx/BD/dqjQNqWEkjmF7bOsjxJCEMDPw8iwK7Y
- zx1FkS7Y8NnpE6F6ZlQDr/qocdYsG4LqXgsyMpvP6oilcIN/4KV+pdQhL5e15pw0REwB
- QR1Pt5G4qKvdwsX6w+logcfmdsr9/Ipb3msk3QTmxJTu//MS/Di8Xko7KJpv5wCF/Ine
- s0hHcG6NYmd+kUv24rrvngmxDFvh+gW4rHx4i5//lIiSx28YPRiipnYWT3prBLCwnyeJ
- 5Scw==
+ (Exim 4.93) (envelope-from <sspears@astranis.com>)
+ id 1jxxpJ-0002jT-DD
+ for usrp-users@lists.ettus.com; Tue, 21 Jul 2020 15:21:21 -0400
+Received: by mail-pj1-f54.google.com with SMTP id k1so2023260pjt.5
+ for <usrp-users@lists.ettus.com>; Tue, 21 Jul 2020 12:21:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=astranis-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=A02R/zlygOUGNZGUua00c7nyGlujkZEbogroaBEckTY=;
+ b=aR+hhf9Nc+6P0VlrJwW6T1iHKtyl0997Wzep1YTrulRm0+9cTG/tsTQ6oPMUAx5xRS
+ 0I7hKhfrlorQtVgWrwGAbEBdF0XpsB9wTrAMkC2YlKIn2dDJF2vggHvPY8XYFOTFc6iT
+ rwYElV4oAxLypIT/1dIvyhOBaGk8CfQ6bxcWhs2OVRc2rIsfzWec3qOoOObjYXDH9EWj
+ 3D2BpOWE8XIlFjhQ//sJn3oGjW4MRv6yG+GbeyvwKloG5g1SEsaBfkG0rcW3PqgPyY2w
+ 5y4OrzpEOHQEwFbDzmJmcrS0k5IiuGeLzuCualrHduQ+4Jrm8ZTNUJjvYpN2hTROFxP5
+ NrOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=CcEiMsh6W8LtHmM4ul5AY2yuPsOFEbuII7cx8e8XmuE=;
- b=i6wBJCKiU5lo/e68Dq1HwX51xYc/ji+NSJf4f0YgHXEIXFOt89EGsd/m+wx2C/yrqm
- 5cG6dK7y8/XYel+tLKCpsmdDTvy6ZEctFs+GvjzG22ciEscqNuH4FSdYf2Nel2Z+2xIf
- 4BRUH0h9pxcR+7Z7oT3RERn5HsTAoffIY4z6WUE4LtSfVkfQGcmBlu0GEuyQeV4/Wl6a
- 90RWrx+alTn7lRx95PHPd/U/LTHXpTUg4nOkR9OCqB4xAs4trpfetsoxOlIOzlZrVnNf
- UjYnKvOY8fljUpWsAsERVEnSxzyKo1qgctoXStF74a2I0QgzbQRSs5Os3ChMQpbvRIP1
- k5sA==
-X-Gm-Message-State: AOAM533WhID+koFPiGaAIO4Zqi1Q4u6iDdDWYu8XGdlFvmOAZsj3i/Qq
- jbXomyYUy+duJ+TL5VYnLB+dCcpoHhLmYQ==
-X-Google-Smtp-Source: ABdhPJys4sh5+xnJuIlbvb8cSI36cnAHSK+dL3B44RBjZbgPx5jUfvyz+y9p4YHjR/Rivt5U7Vs7ag==
-X-Received: by 2002:a37:8fc6:: with SMTP id
- r189mr19916984qkd.159.1595359032850; 
- Tue, 21 Jul 2020 12:17:12 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id u68sm3130961qkd.59.2020.07.21.12.17.12
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 21 Jul 2020 12:17:12 -0700 (PDT)
-Message-ID: <5F173F37.2060809@gmail.com>
-Date: Tue, 21 Jul 2020 15:17:11 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=A02R/zlygOUGNZGUua00c7nyGlujkZEbogroaBEckTY=;
+ b=Rh631g/LyYecs9y0mkU7ZNV7VJBrPABCdbF6wwslNMdr2IsJiaZS9QpFi6PRIjr5Nr
+ 95Y1Jf7UAWuZDu2ZAbbJqxzW5SuADGlimsNhmpuGsoPAdAV1Insk5zwVNEWVLjKKS5DL
+ LRoLS39FA6PlfA4XJI5PtJ1GCJySApBw/hFDr54EijyrSfDJz/6t97rdABWLZBniMiWg
+ 0rWm3cuYc7zRZjhSZlWKOiQkO8s1vXlfFnd8LnjQY7Pok6AXR6IvWOXWTEdQX55taH3T
+ Ilc6MZ0Yhpe6jb2mpiQdtJtGghUjIpVa4nHKtJMuQP8zPZANKqbLhuVtJs1YTrEde7ky
+ e7RA==
+X-Gm-Message-State: AOAM530TsdNpcTLq/ZqKzFjhKhD6HOQmUMdrYQeFHLEwhbMHTJPosY19
+ 1bmRTnAUI9D3fr+Daa6v0LeJrfIi3LCH+vpdwsg/cQ==
+X-Google-Smtp-Source: ABdhPJy1/wxcqKOk/B5Hq5tFt2QRmcqHsgOlQxPBxQos8WHFvN6+Cpbr6p7u5dC4F0BrLXw8yeU3S32yZSHnZDIRfb4=
+X-Received: by 2002:a17:90a:1f81:: with SMTP id
+ x1mr5788302pja.115.1595359240507; 
+ Tue, 21 Jul 2020 12:20:40 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
 References: <CAOqZ52a5gp6KREUZqht2oA7RVPNwxg3T7=y+Jb7Sr0f=pfXn_g@mail.gmail.com>
-In-Reply-To: <CAOqZ52a5gp6KREUZqht2oA7RVPNwxg3T7=y+Jb7Sr0f=pfXn_g@mail.gmail.com>
+ <5F173F37.2060809@gmail.com>
+In-Reply-To: <5F173F37.2060809@gmail.com>
+Date: Tue, 21 Jul 2020 12:20:29 -0700
+Message-ID: <CAOqZ52Z3V8VpkHNuch-dXT9Py-W6e0x2pVwojzVcbGsU+yxGBg@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: usrp-users@lists.ettus.com
 Subject: Re: [USRP-users] LFRX/LFTX daughterboard combination.
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -67,9 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0137094412681141582=="
+From: Stephen Spears via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Stephen Spears <sspears@astranis.com>
+Content-Type: multipart/mixed; boundary="===============8604498158403575076=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,61 +78,69 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============0137094412681141582==
-Content-Type: multipart/alternative;
- boundary="------------030707020104080807080100"
+--===============8604498158403575076==
+Content-Type: multipart/alternative; boundary="000000000000d1e7e405aaf8840f"
 
-This is a multi-part message in MIME format.
---------------030707020104080807080100
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000d1e7e405aaf8840f
+Content-Type: text/plain; charset="UTF-8"
 
-On 07/21/2020 03:15 PM, Stephen Spears via USRP-users wrote:
+Awesome, thanks Marcus
+
+On Tue, Jul 21, 2020 at 12:18 PM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> On 07/21/2020 03:15 PM, Stephen Spears via USRP-users wrote:
+>
 > Hi there,
 >
-> I have a question about using the LFRX and LFTX daughterboards 
-> together. I tried contacting Ettus through their website, but received 
-> no response, so I thought I might find answers here instead. I need to 
-> do both RX and TX at low frequencies (<30 MHz), but according to the 
-> Ettus website, there is no combined TX/RX daughterboard for this range.
-> I am wondering if I need separate N200s for each board, or if there is 
-> a way to fit both in a single N200. I ask this because the boards LFRX 
-> and LFTX boards look significantly smaller on the website 
-> (https://www.ettus.com/product-categories/rf-daughterboards/page/2/) 
-> than the combined RX/TX boards. If any of you have experience using 
-> these boards, please let me know whether using a single N200 is possible.
+> I have a question about using the LFRX and LFTX daughterboards together. I
+> tried contacting Ettus through their website, but received no response, so
+> I thought I might find answers here instead. I need to do both RX and TX at
+> low frequencies (<30 MHz), but according to the Ettus website, there is no
+> combined TX/RX daughterboard for this range.
+> I am wondering if I need separate N200s for each board, or if there is a
+> way to fit both in a single N200. I ask this because the boards LFRX and
+> LFTX boards look significantly smaller on the website (
+> https://www.ettus.com/product-categories/rf-daughterboards/page/2/) than
+> the combined RX/TX boards. If any of you have experience using these
+> boards, please let me know whether using a single N200 is possible.
 >
 > Thanks,
 > Stephen Spears
 >
 >
 > _______________________________________________
+> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> The N200 will support a single card *IN EACH DIRECTION*.  So, there's no
+> problem having both a LFRX and LFTX in a single N200 or N210.
+>
+>
+> _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-The N200 will support a single card *IN EACH DIRECTION*.  So, there's no 
-problem having both a LFRX and LFTX in a single N200 or N210.
+>
 
+--000000000000d1e7e405aaf8840f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
---------------030707020104080807080100
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/21/2020 03:15 PM, Stephen Spears
+<div dir=3D"ltr">Awesome, thanks Marcus</div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jul 21, 2020 at 12:18 PM Mar=
+cus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.co=
+m">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 07/21/2020 03:15 PM, Stephen Spears
       via USRP-users wrote:<br>
     </div>
-    <blockquote
-cite="mid:CAOqZ52a5gp6KREUZqht2oA7RVPNwxg3T7=y+Jb7Sr0f=pfXn_g@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Hi there,
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">Hi there,
         <div><br>
         </div>
         <div>I have a question about using the LFRX and LFTX
@@ -149,10 +152,12 @@ cite="mid:CAOqZ52a5gp6KREUZqht2oA7RVPNwxg3T7=y+Jb7Sr0f=pfXn_g@mail.gmail.com"
         <div>I am wondering if I need separate N200s for each board, or
           if there is a way to fit both in a single N200. I ask this
           because the boards LFRX and LFTX boards look significantly
-          smaller on the website (<a moz-do-not-send="true"
-href="https://www.ettus.com/product-categories/rf-daughterboards/page/2/">https://www.ettus.com/product-categories/rf-daughterboards/page/2/</a>)
+          smaller on the website (<a href=3D"https://www.ettus.com/product-=
+categories/rf-daughterboards/page/2/" target=3D"_blank">https://www.ettus.c=
+om/product-categories/rf-daughterboards/page/2/</a>)
           than the combined RX/TX boards. If any of you have experience
-          using these boards, please let me know whether using a single
+          using these boards,=C2=A0please let me know whether using a singl=
+e
           N200 is possible.</div>
         <div><br>
         </div>
@@ -160,26 +165,37 @@ href="https://www.ettus.com/product-categories/rf-daughterboards/page/2/">https:
         <div>Stephen Spears</div>
       </div>
       <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <fieldset></fieldset>
       <br>
-      <pre wrap="">_______________________________________________
+      <pre>_______________________________________________
 USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a>
 </pre>
     </blockquote>
-    The N200 will support a single card *IN EACH DIRECTION*.  So,
-    there's no problem having both a LFRX and LFTX in a single N200 or
+    The N200 will support a single card *IN EACH DIRECTION*.=C2=A0 So,
+    there&#39;s no problem having both a LFRX and LFTX in a single N200 or
     N210.<br>
     <br>
     <br>
-  </body>
-</html>
+  </div>
 
---------------030707020104080807080100--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000d1e7e405aaf8840f--
 
 
---===============0137094412681141582==
+--===============8604498158403575076==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -190,5 +206,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0137094412681141582==--
+--===============8604498158403575076==--
 
