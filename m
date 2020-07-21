@@ -2,60 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69AFF22850A
-	for <lists+usrp-users@lfdr.de>; Tue, 21 Jul 2020 18:12:53 +0200 (CEST)
-Received: from [::1] (port=41494 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B80B22851F
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Jul 2020 18:14:43 +0200 (CEST)
+Received: from [::1] (port=41514 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jxuss-0003Yr-O7; Tue, 21 Jul 2020 12:12:50 -0400
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:40753)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jxusp-0003Lk-8e
- for usrp-users@lists.ettus.com; Tue, 21 Jul 2020 12:12:47 -0400
-Received: by mail-qk1-f173.google.com with SMTP id h7so3997434qkk.7
- for <usrp-users@lists.ettus.com>; Tue, 21 Jul 2020 09:12:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=4b2vK/kJXvTBxh3lvwOm5U8nFxCTnm/y5+VVH/9Ndbs=;
- b=fbkrmxhmL1XZLHcK0Ar3LlZtDmXvs9u4f9ugUkiruIrwUO59nesOCRcDEa7QuLZgiC
- JMPUrAvHiTIL6b0fVHUMFJkg7AVWiABCoxoP+xJxRsi7LDYzbSV0iXqzsjkQsst0j0yX
- VaM5/tPFoTKCW1s8IR6JqRx7LzLWKpHhA/qFrO94wXo52XCh6FLO7CRBLWVE4YFnbLTa
- KZwiE4Uqj5sykwB54LlrHp/pp5AXRlsEiDJgbW4ULcoF8RFNeFexWLToX4P1b4LulWKm
- Vi7Khwjz5dd2D7/ePqWPlYwKs4iahUNMVsf3WK8ERIxrCfnuLhkEtIflgbfzdRJRlCq1
- 7Bsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=4b2vK/kJXvTBxh3lvwOm5U8nFxCTnm/y5+VVH/9Ndbs=;
- b=qA844d57jxG489RcRyxFsQ5VBGOOU5iZOt6AphOOWo+j33DecAr85yoxnMhHJxQD27
- eEMzyRUKVfQ2DoVKV7ri7iBr4rwYcoQPCwBIu7GMHGJRg52dUbSIsFk39BeltrWd7oMV
- LnyizPkJvXsXWsv/Ay38ik9WW0Ko1NYpT+5V/hptFu3fNgVvGu+Q4z1ZRn1nYaGpCL9I
- u2fdCudZCIg3tJXgaVBwdKYwjx+iI0PLiGOkx2JqCHNTiSdAUjIbPOMRrpGEuEN3AXVR
- wpam7V6uDdSqxQzzWmQDJgNCZXc8lKDLQkqHp3F/gegUeBYMmU5WneMHRfQ5QrawCCh0
- dEMA==
-X-Gm-Message-State: AOAM532WYhL1Q4ZvhKn8Vup0czePtgwxz/K5z9wABXbEiVWpuOg/U8FV
- rW9Pl18AqNa4lYzP4lMkNOX1DaQPJeXVJg==
-X-Google-Smtp-Source: ABdhPJytJAlIyuGhycCTdtupgYSTVCl0/oHSiW6DUyA/ZFsqvHyu/tbfk6wPl2Jrwxkedv+tKeqF/Q==
-X-Received: by 2002:a37:6894:: with SMTP id
- d142mr12710067qkc.287.1595347926494; 
- Tue, 21 Jul 2020 09:12:06 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id k48sm12626932qtc.14.2020.07.21.09.12.05
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 21 Jul 2020 09:12:06 -0700 (PDT)
-Message-ID: <5F1713D5.5020101@gmail.com>
-Date: Tue, 21 Jul 2020 12:12:05 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1jxuug-0003xk-6r; Tue, 21 Jul 2020 12:14:42 -0400
+Received: from ns13-777.999servers.com ([103.14.122.123]:36307)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <kpras@trilcomm.com>) id 1jxuuZ-0003mn-LL
+ for usrp-users@lists.ettus.com; Tue, 21 Jul 2020 12:14:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=trilcomm.com; s=default; h=Content-Type:MIME-Version:Message-ID:Date:
+ Subject:In-Reply-To:References:Cc:To:From:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=EnLfTxF3FIntpev/f2UP0RwObqEvpzhnf7F+7W36gB0=; b=upv3xUL7uiFD0sqrV+PKyXV+q
+ CwuGOwGSKna2tpH/cJ1Wr/ZYWT9mOjDxe9XKDQ+jeHK6Qgck5AMxNjaX5Du9YmE9aM2MuLiKROzoS
+ kBiGX8boYqGjfmCQqKfcfp66LBfiOw0UZtkkwaoVtYl2DTAyMNe7PYfIxSE0S6Pked/M8KSG2GSIN
+ ItAJ9h42p6JC1bsXv6LXw1qWtAuZz1vcmlnmwmelyJqTKM1gcjtlfEb5u5rWiGdR6X028Pa9lOO2J
+ eAAZVueglecQ0qmHISqV4ev8ElCPVe1OFi+1R+4jJJheoolqYHriC6xOZSi7xo6+lmBPdGCJWA3US
+ q3rzOWZ+A==;
+Received: from [183.83.140.209] (port=24806 helo=AetherGT)
+ by ns13-777.999servers.com with esmtpsa (TLS1) tls
+ TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (Exim 4.93)
+ (envelope-from <kpras@trilcomm.com>)
+ id 1jxutl-005Tqk-TM; Tue, 21 Jul 2020 21:43:46 +0530
+To: "'Prasad'" <kpras@trilcomm.com>,
+	<usrp-users@lists.ettus.com>
+Cc: "'Rao Yenamandra'" <yrao@trilcomm.com>
+References: 
+In-Reply-To: 
+Date: Tue, 21 Jul 2020 21:43:48 +0530
+Message-ID: <001b01d65f79$eae66ea0$c0b34be0$@com>
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <10F7328F6AD1354BA6DD787687B66B9001A97A9F6D@Maui.in.dynetics.com>
-In-Reply-To: <10F7328F6AD1354BA6DD787687B66B9001A97A9F6D@Maui.in.dynetics.com>
-Subject: Re: [USRP-users] X310 with DPDK
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdZbe1z4FSkZK7XOSDCVw4ZJs8BH+QDJjBtAADYUyAA=
+Content-Language: en-us
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - ns13-777.999servers.com
+X-AntiAbuse: Original Domain - lists.ettus.com
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - trilcomm.com
+X-Get-Message-Sender-Via: ns13-777.999servers.com: authenticated_id:
+ kpras@trilcomm.com
+X-Authenticated-Sender: ns13-777.999servers.com: kpras@trilcomm.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Re: [USRP-users] 1 Ts delay in USRP B210
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,9 +64,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2557681476900768951=="
+From: Prasad via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Prasad <kpras@trilcomm.com>
+Content-Type: multipart/mixed; boundary="===============9070437490657991123=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,81 +80,172 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============2557681476900768951==
+This is a multipart message in MIME format.
+
+--===============9070437490657991123==
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_001C_01D65FA8.049EAAA0"
+Content-Language: en-us
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_001C_01D65FA8.049EAAA0
 Content-Type: multipart/alternative;
- boundary="------------030206030003060903050509"
-
-This is a multi-part message in MIME format.
---------------030206030003060903050509
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
-
-On 07/21/2020 10:53 AM, Carmichael, Ryan via USRP-users wrote:
->
-> On the DPDK page (https://files.ettus.com/manual/page_dpdk.html) the 
-> following statement is made:
->
-> “Device discovery via DPDK is not currently implemented, so the device 
-> args |mgmt_addr|, |addr|, and |second_addr| (if applicable) must all 
-> be specified at runtime. There is no mechanism for MPM's TCP/IP 
-> control traffic to flow over a link that is occupied by DPDK, so 
-> mgmt_addr must point to a link that is not used for CHDR, such as 
-> N310's RJ45 port.”
->
-> I’ve been using the X310 without DPDK with dual 10Gb SPI/SFP+ 
-> connections (192.168.30.2, 192.168.40.2). Once I start DPDK, ifconfig 
-> no longer shows the NICs at all, which I assume is what it is supposed 
-> to be doing. My question is, what is the ‘mgmt_addr’ ? I’ve never used 
-> it before when using the X310. And how do I make sure the mgmt_addr 
-> isn’t using a CHDR link? The X310 only has two RJ45s, right – and 
-> they’re both being used by DPDK.
->
-> Thanks,
->
-> -Ryan
->
-> //
-/Ignore my last.
-
-Yes, the X310 has only the two ports.   I was suffering from cognitive 
-pollution between the N310 and X310.
-
-So, this is an excellent point.   I don't use DPDK myself, since my 
-hosts don't have the right NICs, and it's really only justified for very 
-high
-   sample rates.
-
-Also, X310 is not an MPM device, so the comments about MPM traffic 
-aren't relevant to X310 as far as I know.
+	boundary="----=_NextPart_001_001D_01D65FA8.049EAAA0"
 
 
+------=_NextPart_001_001D_01D65FA8.049EAAA0
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-/
+Soft reminder!
 
---------------030206030003060903050509
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+=20
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/21/2020 10:53 AM, Carmichael,
-      Ryan via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:10F7328F6AD1354BA6DD787687B66B9001A97A9F6D@Maui.in.dynetics.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
+Thanks,
+
+=20
+
+From: Prasad [mailto:kpras@trilcomm.com]=20
+Sent: Monday, July 20, 2020 7:58 PM
+To: 'usrp-users@lists.ettus.com'
+Cc: 'Rao Yenamandra'
+Subject: 1 Ts delay in USRP B210
+
+=20
+
+Dear Team.
+
+=20
+
+Hope you are doing well and safe.
+
+=20
+
+We are bringing up our NR-5G UE stack with USRP B210.
+
+If time permits, would you pls. reply to below concern with your =
+valuable
+information.=20
+
+=20
+
+During the synchronization procedure, we observe atleast 1  (Sampling =
+Time)
+drift in rx streamer in every  ~40ms time period.
+
+Are we missing any time_spec during  uhd_rx_streamer_recv api or in
+uhd_tx_streamer_send ?
+
+=20
+
+Master clock rate: 30.72e6
+
+Sampling rate:    30.72e6
+
+Carrier frequency: 3.8e9
+
+=20
+
+We use one B210 to transmit time domain samples back to back and others =
+to
+receive.
+
+=20
+
+Log snippet:
+
+Init PSS detected with lag: 4469 (PSS detection offset from the slot
+boundary )
+
+sss has been detected
+
+Init PSS detected with lag: 4469
+
+sss has been detected
+
+Init PSS detected with lag: 4469
+
+sss has been detected
+
+Init PSS detected with lag: 4469
+
+sss has been detected
+
+Init PSS detected with lag: 4470 =E0 1 Ts drift
+
+sss has been detected
+
+Init PSS detected with lag: 4470
+
+sss has been detected
+
+Init PSS detected with lag: 4470
+
+sss has been detected
+
+Init PSS detected with lag: 4471 =E0 1 Ts drift.
+
+sss has been detected
+
+Init PSS detected with lag: 4472=E0 1 Ts drift
+
+sss has been detected
+
+Init PSS detected with lag: 4472
+
+sss has been detected
+
+Init PSS detected with lag: 4472
+
+sss has been detected
+
+Init PSS detected with lag: 4484 =E0 12 Ts drift
+
+sss has been detected
+
+=20
+
+Thanks! in advance.
+
+=20
+
+Regards,
+
+Prasad.
+
+=20
+
+
+------=_NextPart_001_001D_01D65FA8.049EAAA0
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Diso-8859-1">
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
 	{font-family:Wingdings;
 	panose-1:5 0 0 0 0 0 0 0 0 0;}
 @font-face
@@ -166,267 +254,342 @@ cite="mid:10F7328F6AD1354BA6DD787687B66B9001A97A9F6D@Maui.in.dynetics.com"
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
+	font-family:"Calibri","sans-serif";}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
-	color:#0563C1;
+	color:blue;
 	text-decoration:underline;}
 a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
-	color:#954F72;
+	color:purple;
 	text-decoration:underline;}
-code
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
 	{mso-style-priority:99;
-	font-family:"Courier New";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
 	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
 	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
+	font-size:10.0pt;}
+@page Section1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1575505519;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1127837764 955294056 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:1881282199;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-344935938 1671701834 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
-@list l1:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:.25in;
-	text-indent:-.25in;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:.75in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.25in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.75in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.25in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.75in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.25in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.75in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.25in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">On the DPDK page (<a moz-do-not-send="true"
-            href="https://files.ettus.com/manual/page_dpdk.html">https://files.ettus.com/manual/page_dpdk.html</a>)
-          the following statement is made:<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal"><span
-style="font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;color:black;background:white">“Device
-            discovery via DPDK is not currently implemented, so the
-            device args </span><code><span
-              style="font-size:10.5pt;color:black;background:white">mgmt_addr</span></code><span
-style="font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;color:black;background:white">, </span><code><span
-              style="font-size:10.5pt;color:black;background:white">addr</span></code><span
-style="font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;color:black;background:white">,
-            and </span><code><span
-              style="font-size:10.5pt;color:black;background:white">second_addr</span></code><span
-style="font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;color:black;background:white"> (if
-            applicable) must all be specified at runtime. There is no
-            mechanism for MPM's TCP/IP control traffic to flow over a
-            link that is occupied by DPDK, so mgmt_addr must point to a
-            link that is not used for CHDR, such as N310's RJ45 port.”<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;color:black;background:white"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-style="font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;color:black;background:white">I’ve
-            been using the X310 without DPDK with dual 10Gb SPI/SFP+
-            connections (192.168.30.2, 192.168.40.2). Once I start DPDK,
-            ifconfig no longer shows the NICs at all, which I assume is
-            what it is supposed to be doing. My question is, what is the
-            ‘mgmt_addr’ ? I’ve never used it before when using the X310.
-            And how do I make sure the mgmt_addr isn’t using a CHDR
-            link? The X310 only has two RJ45s, right – and they’re both
-            being used by DPDK.</span><o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Thanks,<o:p></o:p></p>
-        <p class="MsoListParagraph"
-          style="text-indent:-.25in;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span
-            style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times
-              New Roman&quot;">         
-            </span></span><!--[endif]-->Ryan<o:p></o:p></p>
-      </div>
-      <i></i><br>
-    </blockquote>
-    <i>Ignore my last.<br>
-      <br>
-      Yes, the X310 has only the two ports.   I was suffering from
-      cognitive pollution between the N310 and X310.<br>
-      <br>
-      So, this is an excellent point.   I don't use DPDK myself, since
-      my hosts don't have the right NICs, and it's really only justified
-      for very high<br>
-        sample rates.<br>
-      <br>
-      Also, X310 is not an MPM device, so the comments about MPM traffic
-      aren't relevant to X310 as far as I know.<br>
-      <br>
-      <br>
-      <br>
-    </i>
-  </body>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
+
+<div class=3DSection1>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Soft =
+reminder!<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Thanks,<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<div>
+
+<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt =
+0in 0in 0in'>
+
+<p class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> Prasad
+[mailto:kpras@trilcomm.com] <br>
+<b>Sent:</b> Monday, July 20, 2020 7:58 PM<br>
+<b>To:</b> 'usrp-users@lists.ettus.com'<br>
+<b>Cc:</b> 'Rao Yenamandra'<br>
+<b>Subject:</b> 1 Ts delay in USRP B210<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Dear =
+Team.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Hope you are doing =
+well and
+safe.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>We are bringing up =
+our NR-5G UE
+stack with USRP B210.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>If time permits, =
+would you pls.
+reply to below concern with your valuable information. =
+<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>During the =
+synchronization
+procedure, we observe atleast </span><!--[if gte msEquation =
+12]><m:oMath><i><span=20
+ style=3D'font-family:"Cambria =
+Math","serif";color:#1F497D'><m:r>=B1</m:r></span></i></m:oMath><![endif]=
+--><![if !msEquation]><span
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";position:rel=
+ative;
+top:2.5pt;mso-text-raise:-2.5pt'><img width=3D11 height=3D17 =
+id=3D"_x0000_i1025"
+src=3D"cid:image001.png@01D65FA8.03B6BBA0"></span><![endif]><span
+style=3D'color:#1F497D'>1 </span><!--[if gte msEquation =
+12]><m:oMath><m:sSub><m:sSubPr><span=20
+   style=3D'font-family:"Cambria =
+Math","serif";color:#1F497D;font-style:italic'><m:ctrlPr></m:ctrlPr></spa=
+n></m:sSubPr><m:e><i><span=20
+   style=3D'font-family:"Cambria =
+Math","serif";color:#1F497D'><m:r>T</m:r></span></i></m:e><m:sub><i><span=
+=20
+   style=3D'font-family:"Cambria =
+Math","serif";color:#1F497D'><m:r>s</m:r></span></i></m:sub></m:sSub></m:=
+oMath><![endif]--><![if !msEquation]><span
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";position:rel=
+ative;
+top:2.5pt;mso-text-raise:-2.5pt'><img width=3D13 height=3D17 =
+id=3D"_x0000_i1025"
+src=3D"cid:image002.png@01D65FA8.03B6BBA0"></span><![endif]><span
+style=3D'color:#1F497D'>&nbsp;(Sampling Time) drift in rx streamer in =
+every
+&nbsp;~40ms time period.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Are we missing any =
+time_spec
+during &nbsp;<i>uhd_rx_streamer_recv</i> api or in =
+<i>uhd_tx_streamer_send</i>
+?<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Master clock rate: =
+30.72e6<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Sampling rate: =
+&nbsp;&nbsp;
+30.72e6<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Carrier frequency: =
+3.8e9<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>We use one B210 to =
+transmit time
+domain samples back to back and others to receive.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Log =
+snippet:<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Init PSS detected =
+with lag: <i>4469</i>
+(<i>PSS detection offset from the slot boundary</i> =
+)<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>sss has been =
+detected<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Init PSS detected =
+with lag: 4469<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>sss has been =
+detected<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Init PSS detected =
+with lag: 4469<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>sss has been =
+detected<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Init PSS detected =
+with lag: 4469<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>sss has been =
+detected<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Init PSS detected =
+with lag: 4470
+</span><span =
+style=3D'font-family:Wingdings;color:#1F497D'>=E0</span><span
+style=3D'color:#1F497D'> 1 Ts drift<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>sss has been =
+detected<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Init PSS detected =
+with lag: 4470<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>sss has been =
+detected<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Init PSS detected =
+with lag: 4470<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>sss has been =
+detected<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Init PSS detected =
+with lag: 4471
+</span><span =
+style=3D'font-family:Wingdings;color:#1F497D'>=E0</span><span
+style=3D'color:#1F497D'> 1 Ts drift.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>sss has been =
+detected<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Init PSS detected =
+with lag: 4472</span><span
+style=3D'font-family:Wingdings;color:#1F497D'>=E0</span><span =
+style=3D'color:#1F497D'>
+1 Ts drift<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>sss has been =
+detected<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Init PSS detected =
+with lag: 4472<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>sss has been =
+detected<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Init PSS detected =
+with lag: 4472<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>sss has been =
+detected<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Init PSS detected =
+with lag: 4484
+</span><span =
+style=3D'font-family:Wingdings;color:#1F497D'>=E0</span><span
+style=3D'color:#1F497D'> 12 Ts drift<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>sss has been =
+detected<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Thanks! in =
+advance.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Regards,<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Prasad.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body>
+
 </html>
 
---------------030206030003060903050509--
+------=_NextPart_001_001D_01D65FA8.049EAAA0--
+
+------=_NextPart_000_001C_01D65FA8.049EAAA0
+Content-Type: image/png;
+	name="image001.png"
+Content-Transfer-Encoding: base64
+Content-ID: <image001.png@01D65FA8.03B6BBA0>
+
+iVBORw0KGgoAAAANSUhEUgAAAAsAAAARCAYAAAAL4VbbAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
+xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAAGmSURBVChT
+nZI9SBxRFIXPe3PfOLo7LIuEgPiXJQRckmrBSrFJQBQr2cImgoWpImIlJAzugKAYxMbGxkaMhSnS
+pFAsRFQsRlHBsZIg/hBFFt3dyf7MznPsZJeo8Ta3+TiXe86hRCKBpw49Fbzjng8bhsGSlqXNWGBW
+OJZ7a5vF+5dLlWscebOuVOgiHMNH2Fh5CCbGeIMQKriCytJ/SpVdxpAvunmVNBTKYMNo4uPDR4Fx
+C2hePQhFqIBsvoDr31fBX2uOnkyG0T8Wx9j7SIbw/aA+5/EZYi6Gpn5o0dog/UkTLlbWvniCPomA
+g3QS8LX6CT3R44rdo25Xqpgc7KqL0NnOoh1QD9+9GV3/OrFUyOgIhoEYkCHTtD1UITXYCrS3Ra/P
+ty+hqQKhxup0b2tVCsgBG3MwN8pDISmhKqTCzUI85saVril7CvPEywacl7vR5IQSW4EP0/seZjtH
+2IuQ+JbKgmUXfr6W+eIrJ6Mg/rkXffHGZd/nyqBkssOTHqQ/J5d/Xc4liPuxMMk5mL/cu4Q2ybTZ
+KdfRN9Ci/LuAh/NYNP+zdbendpNSqLWa5QAAAABJRU5ErkJggg==
+
+------=_NextPart_000_001C_01D65FA8.049EAAA0
+Content-Type: image/png;
+	name="image002.png"
+Content-Transfer-Encoding: base64
+Content-ID: <image002.png@01D65FA8.03B6BBA0>
+
+iVBORw0KGgoAAAANSUhEUgAAAA0AAAARCAYAAAAG/yacAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
+xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAAIkSURBVDhP
+Y2lsbGQgFbCQqgGknjxNdbm5XOmurgyLnmmx/3j+4y8Dw70/DIIgw4yZGN7f++Wye/c/22NNP5Bd
+xPLj97PbrDpB7AIKrM/Uef8wf/lmLPDhP+t7AeYvP9mZ1SUUvr18VldXZ93U1PQLppGFg4VZ6omU
+xVdpC4uy1ULr87uOSWg9M7fbOdtw/6Ode5Xrn4qziQMVM6HYdOf6y6qNosqnGy/07LnI+a/4M58+
+Q5wZKx8XJ9vmL8zMP3Wk2D8BNfxG0bRs78H2RoaDDHV1UWmrJpwwvPj+z5NmToaOpqZDZxkYDp29
+fwFIogUxIvTevzF5xyokLCMqcnV6U9MZfFEB1/T26Mm399+rM5jaCQj/uIs/9sCagKGjd3PtEtvr
+H//9ceFlm44Svlj0Q216bPaFQ9z6FQ/n9/xNbEA/ooL6+uMsjY2Wf4CGMwNl/rHU1UWwvdizV2bd
+yZ8M/GJWnNVOP8wY1jAcBWnLy3abPGfCHRsNl09v1j9V0RA68/lZjglvMNCmR+KnH/y1mn74wQEJ
+6V8MKqoy8cCIAWt6tP20xUk+XZ2YaqNKQ1aGP3W7X88GanrO0tR07DFQ3q3AkRNIvWdgODkZ7jY9
+edY2b66/K7bufpx+z8io/Uyl6AVgyviLM8Gmq7MHzWQLs0sP4qqSebO67Twj69w9DAxZQBOn49T0
+/t0Py3v3duXzlF287upqxSQs8HvhPwaGZSBnAACn9tFi1/T6uQAAAABJRU5ErkJggg==
+
+------=_NextPart_000_001C_01D65FA8.049EAAA0--
 
 
---===============2557681476900768951==
+
+--===============9070437490657991123==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -437,5 +600,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2557681476900768951==--
+--===============9070437490657991123==--
+
 
