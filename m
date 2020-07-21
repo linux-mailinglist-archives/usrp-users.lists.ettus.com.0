@@ -2,52 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2303B22846D
-	for <lists+usrp-users@lfdr.de>; Tue, 21 Jul 2020 18:01:10 +0200 (CEST)
-Received: from [::1] (port=41364 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69AFF22850A
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Jul 2020 18:12:53 +0200 (CEST)
+Received: from [::1] (port=41494 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jxuhX-0002LV-SK; Tue, 21 Jul 2020 12:01:07 -0400
-Received: from mail-qt1-f169.google.com ([209.85.160.169]:36105)
+	id 1jxuss-0003Yr-O7; Tue, 21 Jul 2020 12:12:50 -0400
+Received: from mail-qk1-f173.google.com ([209.85.222.173]:40753)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jxuhE-0007zc-Ct
- for usrp-users@lists.ettus.com; Tue, 21 Jul 2020 12:00:48 -0400
-Received: by mail-qt1-f169.google.com with SMTP id x62so16521296qtd.3
- for <usrp-users@lists.ettus.com>; Tue, 21 Jul 2020 09:00:28 -0700 (PDT)
+ id 1jxusp-0003Lk-8e
+ for usrp-users@lists.ettus.com; Tue, 21 Jul 2020 12:12:47 -0400
+Received: by mail-qk1-f173.google.com with SMTP id h7so3997434qkk.7
+ for <usrp-users@lists.ettus.com>; Tue, 21 Jul 2020 09:12:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=jKiY+Ok6A+MAijM4Prqvn8ST9JH04pGBxo2yvSEnfVQ=;
- b=IB2rDuvsBjIL/BWv7Ju2tJxK6/WYW3a+GHoq4JrGSjj4+yCEBXyHAKA99Y5MrElrmN
- gK3ZfkMc6F81yGYEulalquHLVD8lnxhK0AfZcnZyQT7AtxW+aTfvNXmMLaCw4MYejctx
- mPmmcYQSoy4yeyAZm3EJ7qVIWYdGT9BdofEvGxXqLomuejuHPUxtvH58Y1/Bk34XX0kM
- kTDxS3mQkRQdWIGbw9cFTeU8zYDlZJk5mDGYG7mdPOKZVfZu3oeW/gzjTQ1xwodeeT3b
- VXUxx5LKBcjgQQq6JheEuR5MyKy12ylrTOnjXrR4W0guRFsr+GrejcQqGXn1RXSGbFPM
- lRsw==
+ :in-reply-to; bh=4b2vK/kJXvTBxh3lvwOm5U8nFxCTnm/y5+VVH/9Ndbs=;
+ b=fbkrmxhmL1XZLHcK0Ar3LlZtDmXvs9u4f9ugUkiruIrwUO59nesOCRcDEa7QuLZgiC
+ JMPUrAvHiTIL6b0fVHUMFJkg7AVWiABCoxoP+xJxRsi7LDYzbSV0iXqzsjkQsst0j0yX
+ VaM5/tPFoTKCW1s8IR6JqRx7LzLWKpHhA/qFrO94wXo52XCh6FLO7CRBLWVE4YFnbLTa
+ KZwiE4Uqj5sykwB54LlrHp/pp5AXRlsEiDJgbW4ULcoF8RFNeFexWLToX4P1b4LulWKm
+ Vi7Khwjz5dd2D7/ePqWPlYwKs4iahUNMVsf3WK8ERIxrCfnuLhkEtIflgbfzdRJRlCq1
+ 7Bsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to;
- bh=jKiY+Ok6A+MAijM4Prqvn8ST9JH04pGBxo2yvSEnfVQ=;
- b=rmLyikrnV9Sv6oS1V8+1pVdYOWjn/sNNzjOkFAoCE5danXSh0LaM96xIgHoXvrcd6o
- pLXYbXZJijcuv7GoDD1fXccSwFD6pzjYuU6tuw9qk/GibQ3sZX6/eF2ga/QJaPJhBNmZ
- Qov6VmUjuoh8U+o/oLLJuz61jZEJansiEIG/JYcnWcXxKQG80EMg8lA5WwaiKwsDyIr3
- rl3+RXwFLdlp7qtwV+/YGMvw2Uvoec3JBaLRlNauAQN0J8okbOlMieqtjXz+tGgryHdN
- 7988/rpwOyDWn8yga/w8yN3osHez5HPX/xsqR5zFH93cO1QYu70DMR6Dpq2PmCgAE+Bk
- +uBw==
-X-Gm-Message-State: AOAM530PRvLYrUH5QryfGztxpkxqgRUInKrK++tsrq0w4KEPJMi+Pf+N
- o3Kry5BMxGGJ2Wvf7nbVKgMh0qAhcNh/1Q==
-X-Google-Smtp-Source: ABdhPJwC6oXv9uXwBAI7HrIspoS0ATZLRgbdlRsGu/Zl/jbTmYltsRdYSRgTvTtBAKfH/gCtpStRmQ==
-X-Received: by 2002:ac8:346c:: with SMTP id v41mr30115678qtb.262.1595347207368; 
- Tue, 21 Jul 2020 09:00:07 -0700 (PDT)
+ bh=4b2vK/kJXvTBxh3lvwOm5U8nFxCTnm/y5+VVH/9Ndbs=;
+ b=qA844d57jxG489RcRyxFsQ5VBGOOU5iZOt6AphOOWo+j33DecAr85yoxnMhHJxQD27
+ eEMzyRUKVfQ2DoVKV7ri7iBr4rwYcoQPCwBIu7GMHGJRg52dUbSIsFk39BeltrWd7oMV
+ LnyizPkJvXsXWsv/Ay38ik9WW0Ko1NYpT+5V/hptFu3fNgVvGu+Q4z1ZRn1nYaGpCL9I
+ u2fdCudZCIg3tJXgaVBwdKYwjx+iI0PLiGOkx2JqCHNTiSdAUjIbPOMRrpGEuEN3AXVR
+ wpam7V6uDdSqxQzzWmQDJgNCZXc8lKDLQkqHp3F/gegUeBYMmU5WneMHRfQ5QrawCCh0
+ dEMA==
+X-Gm-Message-State: AOAM532WYhL1Q4ZvhKn8Vup0czePtgwxz/K5z9wABXbEiVWpuOg/U8FV
+ rW9Pl18AqNa4lYzP4lMkNOX1DaQPJeXVJg==
+X-Google-Smtp-Source: ABdhPJytJAlIyuGhycCTdtupgYSTVCl0/oHSiW6DUyA/ZFsqvHyu/tbfk6wPl2Jrwxkedv+tKeqF/Q==
+X-Received: by 2002:a37:6894:: with SMTP id
+ d142mr12710067qkc.287.1595347926494; 
+ Tue, 21 Jul 2020 09:12:06 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
  [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id w1sm2795613qkj.90.2020.07.21.09.00.06
+ by smtp.googlemail.com with ESMTPSA id k48sm12626932qtc.14.2020.07.21.09.12.05
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 21 Jul 2020 09:00:06 -0700 (PDT)
-Message-ID: <5F171106.9080709@gmail.com>
-Date: Tue, 21 Jul 2020 12:00:06 -0400
+ Tue, 21 Jul 2020 09:12:06 -0700 (PDT)
+Message-ID: <5F1713D5.5020101@gmail.com>
+Date: Tue, 21 Jul 2020 12:12:05 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
@@ -68,7 +69,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7106353351259757346=="
+Content-Type: multipart/mixed; boundary="===============2557681476900768951=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,12 +84,12 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============7106353351259757346==
+--===============2557681476900768951==
 Content-Type: multipart/alternative;
- boundary="------------040202000007050703090909"
+ boundary="------------030206030003060903050509"
 
 This is a multi-part message in MIME format.
---------------040202000007050703090909
+--------------030206030003060903050509
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 8bit
 
@@ -116,16 +117,25 @@ On 07/21/2020 10:53 AM, Carmichael, Ryan via USRP-users wrote:
 >
 > -Ryan
 >
->
-/Actualy the X310 has two *SFP+* connections, and an RJ-45 connection.  
-Now, on yours, you may have put SFP+ to RJ-45 adaptors on, but
-   natively they're SFP+.   The single RJ-45 connector is the 
-"management port"--which can also support data transfer at lower speeds.
+> //
+/Ignore my last.
+
+Yes, the X310 has only the two ports.   I was suffering from cognitive 
+pollution between the N310 and X310.
+
+So, this is an excellent point.   I don't use DPDK myself, since my 
+hosts don't have the right NICs, and it's really only justified for very 
+high
+   sample rates.
+
+Also, X310 is not an MPM device, so the comments about MPM traffic 
+aren't relevant to X310 as far as I know.
+
 
 
 /
 
---------------040202000007050703090909
+--------------030206030003060903050509
 Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
@@ -392,23 +402,31 @@ style="font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;color:black;bac
               New Roman&quot;">         
             </span></span><!--[endif]-->Ryan<o:p></o:p></p>
       </div>
-      <br>
+      <i></i><br>
     </blockquote>
-    <i>Actualy the X310 has two *SFP+* connections, and an RJ-45
-      connection.  Now, on yours, you may have put SFP+ to RJ-45
-      adaptors on, but<br>
-        natively they're SFP+.   The single RJ-45 connector is the "management
-      port"--which can also support data transfer at lower speeds.<br>
+    <i>Ignore my last.<br>
+      <br>
+      Yes, the X310 has only the two ports.   I was suffering from
+      cognitive pollution between the N310 and X310.<br>
+      <br>
+      So, this is an excellent point.   I don't use DPDK myself, since
+      my hosts don't have the right NICs, and it's really only justified
+      for very high<br>
+        sample rates.<br>
+      <br>
+      Also, X310 is not an MPM device, so the comments about MPM traffic
+      aren't relevant to X310 as far as I know.<br>
+      <br>
       <br>
       <br>
     </i>
   </body>
 </html>
 
---------------040202000007050703090909--
+--------------030206030003060903050509--
 
 
---===============7106353351259757346==
+--===============2557681476900768951==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -419,5 +437,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7106353351259757346==--
+--===============2557681476900768951==--
 
