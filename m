@@ -2,53 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96B96229EAC
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 19:41:51 +0200 (CEST)
-Received: from [::1] (port=53072 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C46C229EB7
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 19:47:26 +0200 (CEST)
+Received: from [::1] (port=53120 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jyIkX-0000x6-N5; Wed, 22 Jul 2020 13:41:49 -0400
-Received: from mail-qt1-f169.google.com ([209.85.160.169]:44255)
+	id 1jyIpv-0001UR-8i; Wed, 22 Jul 2020 13:47:23 -0400
+Received: from mail-qk1-f170.google.com ([209.85.222.170]:46901)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <carsenat@gmail.com>) id 1jyIkT-0000pJ-E0
- for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 13:41:45 -0400
-Received: by mail-qt1-f169.google.com with SMTP id j10so2411013qtq.11
- for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 10:41:25 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jyIpr-0001NW-Ap
+ for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 13:47:19 -0400
+Received: by mail-qk1-f170.google.com with SMTP id d14so2771627qke.13
+ for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 10:46:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=bRWLD0a6/mSNGbV5GpU2yn4uAYXKc3o3y0X9fTHqsAg=;
- b=pDXlLXuwi2Z0on9VvUnnXHrIM652kZY8L/DzEuGRUhgFftQf7c9Hz4YkB+nkst2en6
- DPwf+6kgHTn03pzi/8gAVm0FuGEVuTVQOE58MA2UM/wrCRH0hGk8b/37EuX99echawQi
- mjBAF3BtSkcPIggKu8H3tVfnB9D8ZTBMfF0St/PTnuEiKPdw+alSkHH4T5X9TK29JlRU
- xy1SiznDA2NOupoukU/YCYTyY5av/8vxKCG/M2oQvEjtAjKq0OBOboTHsK0UCH9fBy4n
- P6DmR7FJ60i5q0m3k1/7etQGBr0p6IrcZuwHskgZ9MtLJfzDEH3ePsbYECRi/RdzAigO
- vouw==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=NgOP9X7nXEs/SCwsbvGNorE1VM3GsJdr2gZjlhUwclk=;
+ b=KZ2BLjWbjWTdQJAJbMUGJq20ShsktofjTNB1rPbCDjPRp8V7W5dbp+RGwK8+iAEhwZ
+ dm0/xq0R5gqnRUi15Y5h/QqsszHsJzao6r7PcMBhciCcjAbHIJzq3GHDVZpQLoL0AiIr
+ Jb/OQoR4M50DmAu5JHn126SHZKaiTK9v9fI3yGV3dqjUkOaDE5fKWupuFN61xxwIX2f+
+ vv8oe/PF8pc6ZmiV2ISaxMmA44trldIhR/PUH5oJ+MOYxRgWNQH11ZM+79FvwodFCoyb
+ T4SF3O8MigkuCflceUijekGhCsqfduFZa38vTnxmi4SqqFtp7Tfkml5UFD3EVKezLip3
+ MGmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=bRWLD0a6/mSNGbV5GpU2yn4uAYXKc3o3y0X9fTHqsAg=;
- b=q+3PamC1EzQsPWm8PfcsNtP712g99ikza6ZklC72hcCTGhJtMUJpDQj3MBAglDdHId
- eEBofSRX1MCQdjpCjgvKCQrAWpRw/KHNZ1LNWjqIGXi+ocYtLa+xeGZoUBy4AKWmU0gU
- oyeHeUgnBRMMFP8W8WpBudkKP8FgQjVnjMET+MiYtb/Ekgj1X7hR5OXYrsxyKvlU28n9
- OKUXH7wS+SQtBT7MNY608bM7S/jS7mbOObljrP69gyqTkmLz8o0oLgqvFrsr8LkDzDYe
- qrt6dtsYYqVMpQQwVWt2nOjzA3pJnA9gYUrYBSMAZefqc0claDuIjTDzSRj8jan/9fQd
- m07g==
-X-Gm-Message-State: AOAM533Png1xhuiI8LyFS5S4UToSWFfBGU7dHvXYukURMbOKrdb9dobJ
- ELJDeep92gxicspPqiq4TYmC++M2qyzJsDIZayQ=
-X-Google-Smtp-Source: ABdhPJxzTY2zxjPKpQBnycLeyiaQyU68qbCJer916pEqun8wUCTDLjk9aP8t/jb04+mdpQIbWNTwDWoZzhIXrPhuK3k=
-X-Received: by 2002:ac8:3fcb:: with SMTP id v11mr494518qtk.348.1595439664746; 
- Wed, 22 Jul 2020 10:41:04 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=NgOP9X7nXEs/SCwsbvGNorE1VM3GsJdr2gZjlhUwclk=;
+ b=V56jGoznlRK3lh6JMBXJUPSuJHLV72+c9aqhqt10UA2TIT9F/C+3AwizJg4yrFwMMn
+ A0eP5MeVqbP6syW0TO3F8/FKXjEtUbOOC5X+yXbrEs0JxUZLBpK/VKE8Yn8Qmr395sC1
+ 9592bkch/314uLXtpvfzxwkO+N75GNXkVdEUtt8GrE+Vtvdy166fvgD2mN8TGfZj+koE
+ ciKFIbObBkZH3gUFZ8SFnVcysbnBhoNHznlL2PiRxUGZda0JPQJ+/ahe/3y/vtjwX0gg
+ Gmtw2W0k3+q7Lhr3UUOW4vjlWmGxSe0TSpJRnlVLNCFgWOKEzUnPxFFZ2lyO80jz0k2i
+ I6gg==
+X-Gm-Message-State: AOAM5306DFv+V5Jybl/35nds/JIFWiv+iUh3eGK2PzgNrNbP/m0AIK/7
+ p6vl8K0j4iB9Mt1rnszCR2+FEiEZXG0=
+X-Google-Smtp-Source: ABdhPJxeL7SqDITyk3M/y+9q1h2tYKVAKDbx8Deci0rqUc/2q7Y7phNcUZHH6EFpaH4gzTmv4UJEvA==
+X-Received: by 2002:a37:a64a:: with SMTP id p71mr1226914qke.296.1595439998537; 
+ Wed, 22 Jul 2020 10:46:38 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
+ [174.95.14.148])
+ by smtp.googlemail.com with ESMTPSA id x137sm440536qkb.47.2020.07.22.10.46.37
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 22 Jul 2020 10:46:37 -0700 (PDT)
+Message-ID: <5F187B7C.2090909@gmail.com>
+Date: Wed, 22 Jul 2020 13:46:36 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: David Carsenat <carsenat@gmail.com>
+CC: usrp-users@lists.ettus.com
 References: <CA+w2ZysadneVug92CO58wFPBKZBBtoK31xdAfV89rt73qVD3Cg@mail.gmail.com>
  <5F187365.7030104@gmail.com>
  <CA+w2ZytN3PA3TGCbrTZ2mED0rCsgyaOU57w8=pkKkAW=1oAR5Q@mail.gmail.com>
  <5F187873.2040206@gmail.com>
-In-Reply-To: <5F187873.2040206@gmail.com>
-Date: Wed, 22 Jul 2020 19:40:52 +0200
-Message-ID: <CA+w2ZytC0pPxp7GOCzE8m6m9FgUZLqDHwAgM1GzH8HLgV26O=A@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
+ <CA+w2ZytC0pPxp7GOCzE8m6m9FgUZLqDHwAgM1GzH8HLgV26O=A@mail.gmail.com>
+In-Reply-To: <CA+w2ZytC0pPxp7GOCzE8m6m9FgUZLqDHwAgM1GzH8HLgV26O=A@mail.gmail.com>
 Subject: Re: [USRP-users] C++ thread Priority.
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -61,9 +71,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: David Carsenat via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: David Carsenat <carsenat@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1132942130212360338=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4574180479539947443=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,208 +87,255 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1132942130212360338==
-Content-Type: multipart/alternative; boundary="0000000000007a552d05ab0b3e75"
+This is a multi-part message in MIME format.
+--===============4574180479539947443==
+Content-Type: multipart/alternative;
+ boundary="------------050106090203090204020109"
 
---0000000000007a552d05ab0b3e75
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------050106090203090204020109
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-It just put received samples in a circular buffer and  transmit this
-buffer. A delay line.
-But the SR is 50 Msps... 8 bits.
- Do you have ideas about OS ?
-Thanks.
+On 07/22/2020 01:40 PM, David Carsenat wrote:
+> It just put received samples in a circular buffer and  transmit this 
+> buffer. A delay line.
+> But the SR is 50 Msps... 8 bits.
+>  Do you have ideas about OS ?
+> Thanks.
+>
+There are commercial real-time low-latency OS "out there" that aren't 
+free, and UHD has not been ported to them as far as I know.
 
-Le mer. 22 juil. 2020 =C3=A0 19:33, Marcus D. Leech <patchvonbraun@gmail.co=
-m> a
-=C3=A9crit :
 
-> On 07/22/2020 01:22 PM, David Carsenat wrote:
+> Le mer. 22 juil. 2020 à 19:33, Marcus D. Leech 
+> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> a écrit :
 >
-> Ok thanks. The code is really simple and i don't think it can be
-> optimized.
-> Is there other linux OS i can try ?
-> Thanks again.
+>     On 07/22/2020 01:22 PM, David Carsenat wrote:
+>>     Ok thanks. The code is really simple and i don't think it can be
+>>     optimized.
+>>     Is there other linux OS i can try ?
+>>     Thanks again.
+>>
+>     If it's really simple, what is the sample-rate?  Is it trying to
+>     write data to the filesystem at high rates?  No amount of code
+>     optimization can get
+>       around the fact that the disk subsystem is very slow compared to
+>     other parts of the computer, like memory, CPU, etc.
 >
-> If it's really simple, what is the sample-rate?  Is it trying to write
-> data to the filesystem at high rates?  No amount of code optimization can
-> get
->   around the fact that the disk subsystem is very slow compared to other
-> parts of the computer, like memory, CPU, etc.
 >
->
-> Le mer. 22 juil. 2020 =C3=A0 19:12, Marcus D. Leech via USRP-users <
-> usrp-users@lists.ettus.com> a =C3=A9crit :
->
->> On 07/22/2020 12:56 PM, David Carsenat via USRP-users wrote:
->> > Hello, I have made a c++ code which sends samples in the main function
->> > and receives samples in a thread launched in this main function.
->> > I have read that we can set the real time priority with the
->> > set_thread_priority function.
->> > I have tried to call this function (with parameters (1,true) inside
->> > the main function but it doesn't seem to change the priority of the
->> > executable. When I launch another application, I have lots of U and O.
->> >
->> > Do you have an idea how to achieve what I want ? i.e. allocate almost
->> > all computer resources to my uhd program ? What is the best way ?
->> > I have already tuned my ubuntu with advice given on Ettus site.(
->> > cpu-freq set etc...)
->> >
->> > Many thanks
->> >
->> > David
->> >
->> In general, applications have only very-rough control over the behavior
->> of the scheduler.  This is true in most general-purpose operating system
->>    environments, whether it's Windows, Linux, *BSD, MacOS, etc.
+>>     Le mer. 22 juil. 2020 à 19:12, Marcus D. Leech via USRP-users
+>>     <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>
+>>     a écrit :
 >>
->> If you've played with priorities, and starting up other programs causes
->> OU to happen, you should probably consider:
+>>         On 07/22/2020 12:56 PM, David Carsenat via USRP-users wrote:
+>>         > Hello, I have made a c++ code which sends samples in the
+>>         main function
+>>         > and receives samples in a thread launched in this main
+>>         function.
+>>         > I have read that we can set the real time priority with the
+>>         > set_thread_priority function.
+>>         > I have tried to call this function (with parameters
+>>         (1,true) inside
+>>         > the main function but it doesn't seem to change the
+>>         priority of the
+>>         > executable. When I launch another application, I have lots
+>>         of U and O.
+>>         >
+>>         > Do you have an idea how to achieve what I want ? i.e.
+>>         allocate almost
+>>         > all computer resources to my uhd program ? What is the best
+>>         way ?
+>>         > I have already tuned my ubuntu with advice given on Ettus
+>>         site.(
+>>         > cpu-freq set etc...)
+>>         >
+>>         > Many thanks
+>>         >
+>>         > David
+>>         >
+>>         In general, applications have only very-rough control over
+>>         the behavior
+>>         of the scheduler.  This is true in most general-purpose
+>>         operating system
+>>            environments, whether it's Windows, Linux, *BSD, MacOS, etc.
 >>
->> (A) Optimizing your code -- find out where the hot-spots are, and see if
->> they can be improved
->> (B) Choosing a faster CPU
+>>         If you've played with priorities, and starting up other
+>>         programs causes
+>>         OU to happen, you should probably consider:
 >>
->> The CPU usage of a DSP flow is roughly proportional to:
+>>         (A) Optimizing your code -- find out where the hot-spots are,
+>>         and see if
+>>         they can be improved
+>>         (B) Choosing a faster CPU
 >>
->> inherent-per-sample-complexity X sample-rate
+>>         The CPU usage of a DSP flow is roughly proportional to:
 >>
->> Can you lower the sample rate and still achieve what you need to
->> achieve?  Can you improve the main-path per-sample complexity?
+>>         inherent-per-sample-complexity X sample-rate
+>>
+>>         Can you lower the sample rate and still achieve what you need to
+>>         achieve?  Can you improve the main-path per-sample complexity?
 >>
 >>
 >>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>         _______________________________________________
+>>         USRP-users mailing list
+>>         USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >>
->
 >
 
---0000000000007a552d05ab0b3e75
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">It just put received samples in a circular buffer and=C2=
-=A0 transmit this buffer. A delay line.=C2=A0<div dir=3D"auto">But the SR i=
-s 50 Msps... 8 bits.</div><div dir=3D"auto">=C2=A0Do you have ideas about O=
-S ?</div><div dir=3D"auto">Thanks.</div></div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">Le mer. 22 juil. 2020 =C3=A0 19:33,=
- Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbra=
-un@gmail.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
-:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
-    <div>On 07/22/2020 01:22 PM, David Carsenat
+--------------050106090203090204020109
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 07/22/2020 01:40 PM, David Carsenat
       wrote:<br>
     </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"auto">Ok thanks. The code is really simple and i don&#39;=
-t
-        think it can be optimized.=C2=A0
-        <div dir=3D"auto">Is there other linux OS i can try ?</div>
-        <div dir=3D"auto">Thanks again.</div>
+    <blockquote
+cite="mid:CA+w2ZytC0pPxp7GOCzE8m6m9FgUZLqDHwAgM1GzH8HLgV26O=A@mail.gmail.com"
+      type="cite">
+      <div dir="auto">It just put received samples in a circular buffer
+        and  transmit this buffer. A delay line. 
+        <div dir="auto">But the SR is 50 Msps... 8 bits.</div>
+        <div dir="auto"> Do you have ideas about OS ?</div>
+        <div dir="auto">Thanks.</div>
       </div>
       <br>
     </blockquote>
-    If it&#39;s really simple, what is the sample-rate?=C2=A0 Is it trying =
-to
-    write data to the filesystem at high rates?=C2=A0 No amount of code
-    optimization can get<br>
-    =C2=A0 around the fact that the disk subsystem is very slow compared to
-    other parts of the computer, like memory, CPU, etc.<br>
+    There are commercial real-time low-latency OS "out there" that
+    aren't free, and UHD has not been ported to them as far as I know.<br>
     <br>
     <br>
-    <blockquote type=3D"cite">
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">Le mer. 22 juil. 2020 =C3=A0 =
-19:12,
-          Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@l=
-ists.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus=
-.com</a>&gt;
-          a =C3=A9crit=C2=A0:<br>
+    <blockquote
+cite="mid:CA+w2ZytC0pPxp7GOCzE8m6m9FgUZLqDHwAgM1GzH8HLgV26O=A@mail.gmail.com"
+      type="cite">
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">Le mer. 22 juil. 2020 à 19:33,
+          Marcus D. Leech &lt;<a moz-do-not-send="true"
+            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
+          a écrit :<br>
         </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
--left:1px #ccc solid;padding-left:1ex">On
-          07/22/2020 12:56 PM, David Carsenat via USRP-users wrote:<br>
-          &gt; Hello, I have made a c++ code which sends samples in the
-          main function <br>
-          &gt; and receives samples in a thread launched in this main
-          function.<br>
-          &gt; I have read that we can set the real time priority with
-          the <br>
-          &gt; set_thread_priority function.<br>
-          &gt; I have tried to call this function (with parameters
-          (1,true) inside <br>
-          &gt; the main function but it doesn&#39;t seem to change the
-          priority of the <br>
-          &gt; executable. When I launch another application, I have
-          lots of U and O.<br>
-          &gt;<br>
-          &gt; Do you have an idea how to achieve what I want ? i.e.
-          allocate almost <br>
-          &gt; all computer resources to my uhd program ? What is the
-          best way ?<br>
-          &gt; I have already tuned my ubuntu with advice given on Ettus
-          site.( <br>
-          &gt; cpu-freq set etc...)<br>
-          &gt;<br>
-          &gt; Many thanks<br>
-          &gt;<br>
-          &gt; David<br>
-          &gt;<br>
-          In general, applications have only very-rough control over the
-          behavior <br>
-          of the scheduler.=C2=A0 This is true in most general-purpose
-          operating system<br>
-          =C2=A0 =C2=A0environments, whether it&#39;s Windows, Linux, *BSD,=
- MacOS,
-          etc.<br>
-          <br>
-          If you&#39;ve played with priorities, and starting up other
-          programs causes <br>
-          OU to happen, you should probably consider:<br>
-          <br>
-          (A) Optimizing your code -- find out where the hot-spots are,
-          and see if <br>
-          they can be improved<br>
-          (B) Choosing a faster CPU<br>
-          <br>
-          The CPU usage of a DSP flow is roughly proportional to:<br>
-          <br>
-          inherent-per-sample-complexity X sample-rate<br>
-          <br>
-          Can you lower the sample rate and still achieve what you need
-          to <br>
-          achieve?=C2=A0 Can you improve the main-path per-sample complexit=
-y?<br>
-          <br>
-          <br>
-          <br>
-          _______________________________________________<br>
-          USRP-users mailing list<br>
-          <a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer n=
-oreferrer" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
-          <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lis=
-ts.ettus.com" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">ht=
-tp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+        <blockquote class="gmail_quote" style="margin:0 0 0
+          .8ex;border-left:1px #ccc solid;padding-left:1ex">
+          <div bgcolor="#FFFFFF" text="#000000">
+            <div>On 07/22/2020 01:22 PM, David Carsenat wrote:<br>
+            </div>
+            <blockquote type="cite">
+              <div dir="auto">Ok thanks. The code is really simple and i
+                don't think it can be optimized. 
+                <div dir="auto">Is there other linux OS i can try ?</div>
+                <div dir="auto">Thanks again.</div>
+              </div>
+              <br>
+            </blockquote>
+            If it's really simple, what is the sample-rate?  Is it
+            trying to write data to the filesystem at high rates?  No
+            amount of code optimization can get<br>
+              around the fact that the disk subsystem is very slow
+            compared to other parts of the computer, like memory, CPU,
+            etc.<br>
+            <br>
+            <br>
+            <blockquote type="cite">
+              <div class="gmail_quote">
+                <div dir="ltr" class="gmail_attr">Le mer. 22 juil. 2020
+                  à 19:12, Marcus D. Leech via USRP-users &lt;<a
+                    moz-do-not-send="true"
+                    href="mailto:usrp-users@lists.ettus.com"
+                    target="_blank" rel="noreferrer">usrp-users@lists.ettus.com</a>&gt;
+
+                  a écrit :<br>
+                </div>
+                <blockquote class="gmail_quote" style="margin:0 0 0
+                  .8ex;border-left:1px #ccc solid;padding-left:1ex">On
+                  07/22/2020 12:56 PM, David Carsenat via USRP-users
+                  wrote:<br>
+                  &gt; Hello, I have made a c++ code which sends samples
+                  in the main function <br>
+                  &gt; and receives samples in a thread launched in this
+                  main function.<br>
+                  &gt; I have read that we can set the real time
+                  priority with the <br>
+                  &gt; set_thread_priority function.<br>
+                  &gt; I have tried to call this function (with
+                  parameters (1,true) inside <br>
+                  &gt; the main function but it doesn't seem to change
+                  the priority of the <br>
+                  &gt; executable. When I launch another application, I
+                  have lots of U and O.<br>
+                  &gt;<br>
+                  &gt; Do you have an idea how to achieve what I want ?
+                  i.e. allocate almost <br>
+                  &gt; all computer resources to my uhd program ? What
+                  is the best way ?<br>
+                  &gt; I have already tuned my ubuntu with advice given
+                  on Ettus site.( <br>
+                  &gt; cpu-freq set etc...)<br>
+                  &gt;<br>
+                  &gt; Many thanks<br>
+                  &gt;<br>
+                  &gt; David<br>
+                  &gt;<br>
+                  In general, applications have only very-rough control
+                  over the behavior <br>
+                  of the scheduler.  This is true in most
+                  general-purpose operating system<br>
+                     environments, whether it's Windows, Linux, *BSD,
+                  MacOS, etc.<br>
+                  <br>
+                  If you've played with priorities, and starting up
+                  other programs causes <br>
+                  OU to happen, you should probably consider:<br>
+                  <br>
+                  (A) Optimizing your code -- find out where the
+                  hot-spots are, and see if <br>
+                  they can be improved<br>
+                  (B) Choosing a faster CPU<br>
+                  <br>
+                  The CPU usage of a DSP flow is roughly proportional
+                  to:<br>
+                  <br>
+                  inherent-per-sample-complexity X sample-rate<br>
+                  <br>
+                  Can you lower the sample rate and still achieve what
+                  you need to <br>
+                  achieve?  Can you improve the main-path per-sample
+                  complexity?<br>
+                  <br>
+                  <br>
+                  <br>
+                  _______________________________________________<br>
+                  USRP-users mailing list<br>
+                  <a moz-do-not-send="true"
+                    href="mailto:USRP-users@lists.ettus.com"
+                    rel="noreferrer noreferrer" target="_blank">USRP-users@lists.ettus.com</a><br>
+                  <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                    rel="noreferrer noreferrer noreferrer"
+                    target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+                </blockquote>
+              </div>
+            </blockquote>
+            <br>
+          </div>
         </blockquote>
       </div>
     </blockquote>
     <br>
-  </div>
+  </body>
+</html>
 
-</blockquote></div>
-
---0000000000007a552d05ab0b3e75--
+--------------050106090203090204020109--
 
 
---===============1132942130212360338==
+--===============4574180479539947443==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -289,5 +346,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1132942130212360338==--
+--===============4574180479539947443==--
 
