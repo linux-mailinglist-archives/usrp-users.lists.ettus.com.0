@@ -2,59 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8379229F32
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 20:24:53 +0200 (CEST)
-Received: from [::1] (port=53382 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23784229FBF
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 21:01:50 +0200 (CEST)
+Received: from [::1] (port=53720 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jyJQC-0004WE-5B; Wed, 22 Jul 2020 14:24:52 -0400
-Received: from mail-qk1-f181.google.com ([209.85.222.181]:33573)
+	id 1jyJzu-0000M1-CS; Wed, 22 Jul 2020 15:01:46 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:37261)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jyJQ7-0004Ov-P7
- for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 14:24:47 -0400
-Received: by mail-qk1-f181.google.com with SMTP id l23so2973033qkk.0
- for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 11:24:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=W7Nh+EE0AVB0AvoT79V9pbwYViKorCWtKhwRoOEAYF0=;
- b=GpoEN61cpXG1b0IaqA+ECyNsQMV6LYVg/ot3FyRZQunvpMW8lPO/MMFhyyH9Ite2Jq
- asf7dewIg6pvR1bLttMd53zlKrO+6ODZDxCNjhjufQ4JxEat0YUCcERqIBjmFQRMiY5F
- mzO8YGHM7AcJ4wHaC7HxZm6N1hAtb6bXUNnTZQM4TlpmQ7mGAX17gBnGkQ0kolBHHyQz
- s3nAoYkdkbSHd310w24torBi3VBl63LOG28H3Gr41PoXmHdMRqbmT72OGvdN7jaeOBsR
- ByTO0jWeja6vy4ogPLIrAVydf407EfvhzE9SzEfGgQKSNak7/3KBiihh3BO+hoHk4Oo7
- 7wsA==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jyJzq-0000DO-BS
+ for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 15:01:42 -0400
+Received: by mail-oi1-f171.google.com with SMTP id 12so2814216oir.4
+ for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 12:01:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=lXZ4VyqohsNnfnpPo+ltMgG5/Fis2aqgjIGY+bWKvcE=;
+ b=PQcQV8FeiC92nwPJE5nyUmBVeQ48sXXfrr+O9fzTQMwZEFNntd3tsSw7h2Ad0IHRdo
+ F3qPeT7hUrIiIecGADkWUlgCtwlE3vW5E1UYWhQVMDB8mGhARJlM3ItUdETv/SLe22ZM
+ vU+eYsRBpGYGomMMquitfpEOt4KJFEasaeaT157vBW3lb3yOM0iDvfwSudc2vDpeg/oA
+ xEUjV9PAq1MMVpgEChdm1/4cLmXce6d0MSke6P27EDxiAUna0DbrmPpRuUHr1roktpty
+ KoqLXQfGDpEkHBLs5DrTcHdICUhraxHa74s5CtGm1UoI2CjTIZJXVVNLmFCVT8FDfgkX
+ x8Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=W7Nh+EE0AVB0AvoT79V9pbwYViKorCWtKhwRoOEAYF0=;
- b=CF2tzxkN0WQXK/MaPyRCY8Bv3M0a9PkKKApR3nAPb782V6XqhRd7STidD1b+9irlGm
- +iZcX9Y5kWZhOuFm/JlOiSdl86JU8/6ZhmOzmPtAoPCsbrGerEqvzM8r+V1JDCIRl229
- lHe3PYMuaUL8csNtNMoev38d57QONvvDUIedLkcBa1iqn2cy9ZB5HBGsh/IYSIi98QfD
- eMKZxUVAserYDpu14YTJ9ScvwxjlGylCdj5OAZVpHUdG5eWDlzzY+TEf2YZj15LHA2Cm
- /Tt4oM2tVKVYndPYemZlxsCet7aASeLMFF53skBHwvKPZvqIYpM5y9zuul7lkqIViKdc
- WkyA==
-X-Gm-Message-State: AOAM533WgEraE5y4MKDrGqxYBGHq0GxUIBLcVfOSEGdVqS9wbwbyHXSm
- pirIiKwibR6gOSuPV8dIBQe15mWN
-X-Google-Smtp-Source: ABdhPJwwsQJroINEoZjjoWAdCiNBo8S9hwp9D5xp9U76maOAc5IxSTb65v4BqawFyb7WxLP5jfw3tA==
-X-Received: by 2002:a37:a78c:: with SMTP id q134mr1405341qke.368.1595442247060; 
- Wed, 22 Jul 2020 11:24:07 -0700 (PDT)
-Received: from lab.localdomain (d72-38-46-81.commercial1.cgocable.net.
- [72.38.46.81])
- by smtp.googlemail.com with ESMTPSA id a5sm399276qtc.44.2020.07.22.11.24.06
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 22 Jul 2020 11:24:06 -0700 (PDT)
-Message-ID: <5F188445.5030107@gmail.com>
-Date: Wed, 22 Jul 2020 14:24:05 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=lXZ4VyqohsNnfnpPo+ltMgG5/Fis2aqgjIGY+bWKvcE=;
+ b=dUGWQXLefaYdI/DMn1afNSN3U8gPJhxPUzMbiIbbJmDxwzajVPZOA7x5CX9L0bGyUs
+ Y90q3z9tUjpnPPNDUDky1HgO4+SBUTsqzq7CXefDN0bZqVGw09JqPkC/5oQPqtL01+ti
+ BG0Sy5eEVUkwCmqVsPt6SvhEPQG5Aey9G02qka8AhaDDg01gETvMJM+AYVddncWlSiY1
+ 4WcumnWZZbfZjHubeiSz1vJGQNu5SU9yVELdq4ZoqzQ78zLjoqXKT4h59lWsP8lZ0PeX
+ klPlSNWu++c1lcVlIZJdEGgrhP9w2KVX6BiTM25s2tFzmJV9dDiNWf9iRfseSk5aprt4
+ l9Yg==
+X-Gm-Message-State: AOAM530IjrD1Rdxgnv5cgYiZNihhVpJnm8cg9IQs6bDpgS0ZzioBu6B3
+ gviWABUFY8y/t4d2vmHzbHwPIxcr/IfQAy+MT8KTpw==
+X-Google-Smtp-Source: ABdhPJzd1Sq69LD7+8x5epJnQdi+bXLttltJWcy7N9aI8f0rMM7+j81sRG6uVH4apWT+5nnHrCfxrDTQmCn2EHqIv5A=
+X-Received: by 2002:aca:2405:: with SMTP id n5mr906737oic.124.1595444461006;
+ Wed, 22 Jul 2020 12:01:01 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <BY5PR19MB3398D74D23AAA722CD1040FAC6790@BY5PR19MB3398.namprd19.prod.outlook.com>
-In-Reply-To: <BY5PR19MB3398D74D23AAA722CD1040FAC6790@BY5PR19MB3398.namprd19.prod.outlook.com>
-Subject: Re: [USRP-users] Signal transmission on a USRP X310
+References: <10F7328F6AD1354BA6DD787687B66B9001A97A9F6D@Maui.in.dynetics.com>
+ <5F1713D5.5020101@gmail.com>
+In-Reply-To: <5F1713D5.5020101@gmail.com>
+Date: Wed, 22 Jul 2020 15:00:50 -0400
+Message-ID: <CAB__hTRLLu59u2gZfQmw8yi09+uXYWy+nq5rxVJ4LArBope4kA@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] X310 with DPDK
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7100812248989033616=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============3293449555519440914=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,142 +75,182 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============7100812248989033616==
-Content-Type: multipart/alternative;
- boundary="------------090406090909080909050206"
+--===============3293449555519440914==
+Content-Type: multipart/alternative; boundary="0000000000005bbc4f05ab0c5c2d"
 
-This is a multi-part message in MIME format.
---------------090406090909080909050206
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--0000000000005bbc4f05ab0c5c2d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 07/22/2020 02:15 PM, Jerrid Plymale via USRP-users wrote:
+I have used DPDK with the X310.  I don't recall specifically, but I'm
+pretty sure you either...
+a) don't specify mgmt_addr, or
+b) specify it the same as addr
+
+
+On Tue, Jul 21, 2020 at 12:12 PM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> On 07/21/2020 10:53 AM, Carmichael, Ryan via USRP-users wrote:
 >
-> Hello Marcus,
->
-> The tool I have been using for initial signal quality checking has 
-> been the QT Waterfall sink in GNU Radio Companion to see if the 
-> signals are looking correct. Upon seeing that it looked like I was 
-> loosing data when I set the USRP sink’s center frequency above 1.3 
-> GHz, I connected the output of the USRP to a spectrum analyzer to get 
-> some more accurate measurements of the signal. After running some 
-> tests, I found that at a center frequency less than 1.3 GHz, the 
-> strength of the signal was somewhere around -70 dBm. When I would 
-> increase the frequency to a value above 1.3 GHz, and no changes to 
-> anything else (e.g., channel gain, sample rate), the strength dropped 
-> to somewhere around -90 dBm. This was measured by tracking the peak 
-> power from an FFT of the signal input to the spectrum analyzer. Would 
-> it help to see the flowgraph?
->
-> Best Regards,
->
-> Jerrid Plymale
+> On the DPDK page (https://files.ettus.com/manual/page_dpdk.html) the
+> following statement is made:
 >
 >
 >
-Yes, it would help to see the flow-graph, and to see what settings 
-you're using in the TX path.  The output power from the UBX is not 
-likely to be
-   completely consistent across the entire tuneable range, but 20dB is 
-way more than I would expect.
+> =E2=80=9CDevice discovery via DPDK is not currently implemented, so the d=
+evice
+> args mgmt_addr, addr, and second_addr (if applicable) must all be
+> specified at runtime. There is no mechanism for MPM's TCP/IP control
+> traffic to flow over a link that is occupied by DPDK, so mgmt_addr must
+> point to a link that is not used for CHDR, such as N310's RJ45 port.=E2=
+=80=9D
+>
+>
+>
+> I=E2=80=99ve been using the X310 without DPDK with dual 10Gb SPI/SFP+ con=
+nections
+> (192.168.30.2, 192.168.40.2). Once I start DPDK, ifconfig no longer shows
+> the NICs at all, which I assume is what it is supposed to be doing. My
+> question is, what is the =E2=80=98mgmt_addr=E2=80=99 ? I=E2=80=99ve never=
+ used it before when using
+> the X310. And how do I make sure the mgmt_addr isn=E2=80=99t using a CHDR=
+ link? The
+> X310 only has two RJ45s, right =E2=80=93 and they=E2=80=99re both being u=
+sed by DPDK.
+>
+>
+>
+> Thanks,
+>
+> -          Ryan
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *Ignore my last. Yes, the X310 has only the two ports.   I was suffering
+> from cognitive pollution between the N310 and X310. So, this is an
+> excellent point.   I don't use DPDK myself, since my hosts don't have the
+> right NICs, and it's really only justified for very high   sample rates.
+> Also, X310 is not an MPM device, so the comments about MPM traffic aren't
+> relevant to X310 as far as I know. *
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
+--0000000000005bbc4f05ab0c5c2d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
---------------090406090909080909050206
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/22/2020 02:15 PM, Jerrid Plymale
-      via USRP-users wrote:<br>
+<div dir=3D"ltr">I have used DPDK with the X310.=C2=A0 I don&#39;t recall s=
+pecifically, but I&#39;m pretty sure you either...<div>a) don&#39;t specify=
+ mgmt_addr, or</div><div>b) specify it the same as addr</div><div><br></div=
+></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>On Tue, Jul 21, 2020 at 12:12 PM Marcus D. Leech via USRP-users &lt;<a hre=
+f=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 07/21/2020 10:53 AM, Carmichael,
+      Ryan via USRP-users wrote:<br>
     </div>
-    <blockquote
-cite="mid:BY5PR19MB3398D74D23AAA722CD1040FAC6790@BY5PR19MB3398.namprd19.prod.outlook.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">Hello Marcus,<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">The tool I have been using for initial
-          signal quality checking has been the QT Waterfall sink in GNU
-          Radio Companion to see if the signals are looking correct.
-          Upon seeing that it looked like I was loosing data when I set
-          the USRP sink’s center frequency above 1.3 GHz, I connected
-          the output of the USRP to a spectrum analyzer to get some more
-          accurate measurements of the signal. After running some tests,
-          I found that at a center frequency less than 1.3 GHz, the
-          strength of the signal was somewhere around -70 dBm. When I
-          would increase the frequency to a value above 1.3 GHz, and no
-          changes to anything else (e.g., channel gain, sample rate),
-          the strength dropped to somewhere around -90 dBm. This was
-          measured by tracking the peak power from an FFT of the signal
-          input to the spectrum analyzer. Would it help to see the
-          flowgraph?  <o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Best Regards,<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Jerrid Plymale<o:p></o:p></p>
+    <blockquote type=3D"cite">
+     =20
+     =20
+     =20
+      <div>
+        <p class=3D"MsoNormal">On the DPDK page (<a href=3D"https://files.e=
+ttus.com/manual/page_dpdk.html" target=3D"_blank">https://files.ettus.com/m=
+anual/page_dpdk.html</a>)
+          the following statement is made:<u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:=
+Arial,sans-serif;color:black;background:white">=E2=80=9CDevice
+            discovery via DPDK is not currently implemented, so the
+            device args=C2=A0</span><code><span style=3D"font-size:10.5pt;c=
+olor:black;background:white">mgmt_addr</span></code><span style=3D"font-siz=
+e:10.5pt;font-family:Arial,sans-serif;color:black;background:white">,=C2=A0=
+</span><code><span style=3D"font-size:10.5pt;color:black;background:white">=
+addr</span></code><span style=3D"font-size:10.5pt;font-family:Arial,sans-se=
+rif;color:black;background:white">,
+            and=C2=A0</span><code><span style=3D"font-size:10.5pt;color:bla=
+ck;background:white">second_addr</span></code><span style=3D"font-size:10.5=
+pt;font-family:Arial,sans-serif;color:black;background:white">=C2=A0(if
+            applicable) must all be specified at runtime. There is no
+            mechanism for MPM&#39;s TCP/IP control traffic to flow over a
+            link that is occupied by DPDK, so mgmt_addr must point to a
+            link that is not used for CHDR, such as N310&#39;s RJ45 port.=
+=E2=80=9D<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:=
+Arial,sans-serif;color:black;background:white"><u></u>=C2=A0<u></u></span><=
+/p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:=
+Arial,sans-serif;color:black;background:white">I=E2=80=99ve
+            been using the X310 without DPDK with dual 10Gb SPI/SFP+
+            connections (192.168.30.2, 192.168.40.2). Once I start DPDK,
+            ifconfig no longer shows the NICs at all, which I assume is
+            what it is supposed to be doing. My question is, what is the
+            =E2=80=98mgmt_addr=E2=80=99 ? I=E2=80=99ve never used it before=
+ when using the X310.
+            And how do I make sure the mgmt_addr isn=E2=80=99t using a CHDR
+            link? The X310 only has two RJ45s, right =E2=80=93 and they=E2=
+=80=99re both
+            being used by DPDK.</span><u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
+        <p><span>-<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0
+            </span></span>Ryan<u></u><u></u></p>
       </div>
-      <br>
-      <br>
+      <i></i><br>
     </blockquote>
-    Yes, it would help to see the flow-graph, and to see what settings
-    you're using in the TX path.  The output power from the UBX is not
-    likely to be<br>
-      completely consistent across the entire tuneable range, but 20dB
-    is way more than I would expect.<br>
-    <br>
-    <br>
-    <br>
-  </body>
-</html>
+    <i>Ignore my last.<br>
+      <br>
+      Yes, the X310 has only the two ports.=C2=A0=C2=A0 I was suffering fro=
+m
+      cognitive pollution between the N310 and X310.<br>
+      <br>
+      So, this is an excellent point.=C2=A0=C2=A0 I don&#39;t use DPDK myse=
+lf, since
+      my hosts don&#39;t have the right NICs, and it&#39;s really only just=
+ified
+      for very high<br>
+      =C2=A0 sample rates.<br>
+      <br>
+      Also, X310 is not an MPM device, so the comments about MPM traffic
+      aren&#39;t relevant to X310 as far as I know.<br>
+      <br>
+      <br>
+      <br>
+    </i>
+  </div>
 
---------------090406090909080909050206--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000005bbc4f05ab0c5c2d--
 
 
---===============7100812248989033616==
+--===============3293449555519440914==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -228,5 +261,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7100812248989033616==--
+--===============3293449555519440914==--
 
