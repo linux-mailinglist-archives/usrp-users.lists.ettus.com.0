@@ -2,52 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23784229FBF
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 21:01:50 +0200 (CEST)
-Received: from [::1] (port=53720 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64CC1229FFE
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 21:19:07 +0200 (CEST)
+Received: from [::1] (port=53860 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jyJzu-0000M1-CS; Wed, 22 Jul 2020 15:01:46 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:37261)
+	id 1jyKGd-0002SU-Pa; Wed, 22 Jul 2020 15:19:03 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:44326)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jyJzq-0000DO-BS
- for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 15:01:42 -0400
-Received: by mail-oi1-f171.google.com with SMTP id 12so2814216oir.4
- for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 12:01:22 -0700 (PDT)
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jyKGZ-0002Jn-Km
+ for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 15:18:59 -0400
+Received: by mail-ot1-f43.google.com with SMTP id 5so2587535oty.11
+ for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 12:18:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=lXZ4VyqohsNnfnpPo+ltMgG5/Fis2aqgjIGY+bWKvcE=;
- b=PQcQV8FeiC92nwPJE5nyUmBVeQ48sXXfrr+O9fzTQMwZEFNntd3tsSw7h2Ad0IHRdo
- F3qPeT7hUrIiIecGADkWUlgCtwlE3vW5E1UYWhQVMDB8mGhARJlM3ItUdETv/SLe22ZM
- vU+eYsRBpGYGomMMquitfpEOt4KJFEasaeaT157vBW3lb3yOM0iDvfwSudc2vDpeg/oA
- xEUjV9PAq1MMVpgEChdm1/4cLmXce6d0MSke6P27EDxiAUna0DbrmPpRuUHr1roktpty
- KoqLXQfGDpEkHBLs5DrTcHdICUhraxHa74s5CtGm1UoI2CjTIZJXVVNLmFCVT8FDfgkX
- x8Pg==
+ :cc; bh=6Pq84db4N87FW/St9zwvJMxLCYReQWoq0BEVpy8v4HM=;
+ b=VegMOOWsJb1+C7oQaD+NXRE9vBPHWCTsTWtJnFhwUCli7uCq/+xqgDORSq2jK71EuL
+ lpcyyP1TW07b4N89oKH8AN2ZS/DJv7uKMTemgwkE+w9IyHxxizulty7VnhWeIVCtKy2j
+ hHIVkb0EMI3HTOs2Qdz0ujpuLptzmdcCBhsRB21QG3h/pqaj3Cns3s01Z2MiFO0YYEbQ
+ QSD3LtJE8aqHj6btlJRvoimcFA18qTRW/40rxuJpfrWUhO5wVErU26z3r6uOX1Dg+Pxd
+ 6UnW3Wh85ekB0gfxrDAJ4b3gVWCbdA38QfKKit0lazyOWQfk9GNP62Mx5yonSpI+Glnv
+ /QyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=lXZ4VyqohsNnfnpPo+ltMgG5/Fis2aqgjIGY+bWKvcE=;
- b=dUGWQXLefaYdI/DMn1afNSN3U8gPJhxPUzMbiIbbJmDxwzajVPZOA7x5CX9L0bGyUs
- Y90q3z9tUjpnPPNDUDky1HgO4+SBUTsqzq7CXefDN0bZqVGw09JqPkC/5oQPqtL01+ti
- BG0Sy5eEVUkwCmqVsPt6SvhEPQG5Aey9G02qka8AhaDDg01gETvMJM+AYVddncWlSiY1
- 4WcumnWZZbfZjHubeiSz1vJGQNu5SU9yVELdq4ZoqzQ78zLjoqXKT4h59lWsP8lZ0PeX
- klPlSNWu++c1lcVlIZJdEGgrhP9w2KVX6BiTM25s2tFzmJV9dDiNWf9iRfseSk5aprt4
- l9Yg==
-X-Gm-Message-State: AOAM530IjrD1Rdxgnv5cgYiZNihhVpJnm8cg9IQs6bDpgS0ZzioBu6B3
- gviWABUFY8y/t4d2vmHzbHwPIxcr/IfQAy+MT8KTpw==
-X-Google-Smtp-Source: ABdhPJzd1Sq69LD7+8x5epJnQdi+bXLttltJWcy7N9aI8f0rMM7+j81sRG6uVH4apWT+5nnHrCfxrDTQmCn2EHqIv5A=
-X-Received: by 2002:aca:2405:: with SMTP id n5mr906737oic.124.1595444461006;
- Wed, 22 Jul 2020 12:01:01 -0700 (PDT)
+ bh=6Pq84db4N87FW/St9zwvJMxLCYReQWoq0BEVpy8v4HM=;
+ b=FwnzzIiEqjSusKclXsGLTgh2Jv9TiHuqb9PJJ12BGnAQ3BqUz58Sw7JM3IeNH86Spt
+ Yj3c/6Os86MCGRbO8sixiyPdbPd+WF36S06TErM6MAFwypr3CGD/N2k0xZiDjHP/T7xL
+ dXzggLx/zHSBX2FBfPbcrPPUh9nynpbDFpNIvxitQxGMnp/ezR1qZuqEPmjvYWKMv5r9
+ vaPl00fj2iRfFwayUCm4SYQWG6iHjgtYHt8Pe2i5Sx4XIevLi/cp6EfZUm0VEQFKRSFY
+ aCSQ3GMCiX4bX7w0thOc4wST/KlxKo1+lUeMAVKz/3GMGuMPREnbBiDe5AvJWgpBpW3i
+ YHUA==
+X-Gm-Message-State: AOAM5327e7e+MBs94mlrnbLx2vM4NTf2u2s7WBbDzl9GtDFou6O6sG5s
+ Nw+2wo/gX6VBTQol2HYoJ1RBkko63kYMuPTCjTFm4A==
+X-Google-Smtp-Source: ABdhPJwTMLztTsDBt2gjyK+zDogyA0Hxpe2ghkRy3jUGlONMx5aXTuU/+5/unHkS5V0s7C0MV24zlTLKaIiGI7GF6Y0=
+X-Received: by 2002:a05:6830:1c6e:: with SMTP id
+ s14mr1322548otg.58.1595445498810; 
+ Wed, 22 Jul 2020 12:18:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <10F7328F6AD1354BA6DD787687B66B9001A97A9F6D@Maui.in.dynetics.com>
- <5F1713D5.5020101@gmail.com>
-In-Reply-To: <5F1713D5.5020101@gmail.com>
-Date: Wed, 22 Jul 2020 15:00:50 -0400
-Message-ID: <CAB__hTRLLu59u2gZfQmw8yi09+uXYWy+nq5rxVJ4LArBope4kA@mail.gmail.com>
+References: <CA+w2ZysadneVug92CO58wFPBKZBBtoK31xdAfV89rt73qVD3Cg@mail.gmail.com>
+ <5F187365.7030104@gmail.com>
+ <CA+w2ZytN3PA3TGCbrTZ2mED0rCsgyaOU57w8=pkKkAW=1oAR5Q@mail.gmail.com>
+ <5F187873.2040206@gmail.com>
+ <CA+w2ZytC0pPxp7GOCzE8m6m9FgUZLqDHwAgM1GzH8HLgV26O=A@mail.gmail.com>
+ <5F187B7C.2090909@gmail.com>
+In-Reply-To: <5F187B7C.2090909@gmail.com>
+Date: Wed, 22 Jul 2020 15:18:08 -0400
+Message-ID: <CAB__hTS2cwTwXdQSMoaE=d_je4sXaEUvwzz=JH36oD0TDksS=w@mail.gmail.com>
 To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] X310 with DPDK
+Subject: Re: [USRP-users] C++ thread Priority.
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,7 +65,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============3293449555519440914=="
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8943504333418176120=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,167 +80,259 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3293449555519440914==
-Content-Type: multipart/alternative; boundary="0000000000005bbc4f05ab0c5c2d"
+--===============8943504333418176120==
+Content-Type: multipart/alternative; boundary="00000000000037584805ab0c9a30"
 
---0000000000005bbc4f05ab0c5c2d
+--00000000000037584805ab0c9a30
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I have used DPDK with the X310.  I don't recall specifically, but I'm
-pretty sure you either...
-a) don't specify mgmt_addr, or
-b) specify it the same as addr
+If you are using X310 or N310, you might try DPDK. Even though it is a
+pain, it would be a whole lot easier than trying a new OS, I believe.
+Using DPDK enabled my application (which was storing Rx samples to SSD) to
+run a bunch faster than without DPDK.
 
-
-On Tue, Jul 21, 2020 at 12:12 PM Marcus D. Leech via USRP-users <
+On Wed, Jul 22, 2020 at 1:47 PM Marcus D. Leech via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
-> On 07/21/2020 10:53 AM, Carmichael, Ryan via USRP-users wrote:
+> On 07/22/2020 01:40 PM, David Carsenat wrote:
 >
-> On the DPDK page (https://files.ettus.com/manual/page_dpdk.html) the
-> following statement is made:
+> It just put received samples in a circular buffer and  transmit this
+> buffer. A delay line.
+> But the SR is 50 Msps... 8 bits.
+>  Do you have ideas about OS ?
+> Thanks.
 >
->
->
-> =E2=80=9CDevice discovery via DPDK is not currently implemented, so the d=
-evice
-> args mgmt_addr, addr, and second_addr (if applicable) must all be
-> specified at runtime. There is no mechanism for MPM's TCP/IP control
-> traffic to flow over a link that is occupied by DPDK, so mgmt_addr must
-> point to a link that is not used for CHDR, such as N310's RJ45 port.=E2=
-=80=9D
+> There are commercial real-time low-latency OS "out there" that aren't
+> free, and UHD has not been ported to them as far as I know.
 >
 >
+> Le mer. 22 juil. 2020 =C3=A0 19:33, Marcus D. Leech <patchvonbraun@gmail.=
+com>
+> a =C3=A9crit :
 >
-> I=E2=80=99ve been using the X310 without DPDK with dual 10Gb SPI/SFP+ con=
-nections
-> (192.168.30.2, 192.168.40.2). Once I start DPDK, ifconfig no longer shows
-> the NICs at all, which I assume is what it is supposed to be doing. My
-> question is, what is the =E2=80=98mgmt_addr=E2=80=99 ? I=E2=80=99ve never=
- used it before when using
-> the X310. And how do I make sure the mgmt_addr isn=E2=80=99t using a CHDR=
- link? The
-> X310 only has two RJ45s, right =E2=80=93 and they=E2=80=99re both being u=
-sed by DPDK.
->
->
->
-> Thanks,
->
-> -          Ryan
->
->
->
->
->
->
->
->
->
->
->
->
-> *Ignore my last. Yes, the X310 has only the two ports.   I was suffering
-> from cognitive pollution between the N310 and X310. So, this is an
-> excellent point.   I don't use DPDK myself, since my hosts don't have the
-> right NICs, and it's really only justified for very high   sample rates.
-> Also, X310 is not an MPM device, so the comments about MPM traffic aren't
-> relevant to X310 as far as I know. *
+>> On 07/22/2020 01:22 PM, David Carsenat wrote:
+>>
+>> Ok thanks. The code is really simple and i don't think it can be
+>> optimized.
+>> Is there other linux OS i can try ?
+>> Thanks again.
+>>
+>> If it's really simple, what is the sample-rate?  Is it trying to write
+>> data to the filesystem at high rates?  No amount of code optimization ca=
+n
+>> get
+>>   around the fact that the disk subsystem is very slow compared to other
+>> parts of the computer, like memory, CPU, etc.
+>>
+>>
+>> Le mer. 22 juil. 2020 =C3=A0 19:12, Marcus D. Leech via USRP-users <
+>> usrp-users@lists.ettus.com> a =C3=A9crit :
+>>
+>>> On 07/22/2020 12:56 PM, David Carsenat via USRP-users wrote:
+>>> > Hello, I have made a c++ code which sends samples in the main functio=
+n
+>>> > and receives samples in a thread launched in this main function.
+>>> > I have read that we can set the real time priority with the
+>>> > set_thread_priority function.
+>>> > I have tried to call this function (with parameters (1,true) inside
+>>> > the main function but it doesn't seem to change the priority of the
+>>> > executable. When I launch another application, I have lots of U and O=
+.
+>>> >
+>>> > Do you have an idea how to achieve what I want ? i.e. allocate almost
+>>> > all computer resources to my uhd program ? What is the best way ?
+>>> > I have already tuned my ubuntu with advice given on Ettus site.(
+>>> > cpu-freq set etc...)
+>>> >
+>>> > Many thanks
+>>> >
+>>> > David
+>>> >
+>>> In general, applications have only very-rough control over the behavior
+>>> of the scheduler.  This is true in most general-purpose operating syste=
+m
+>>>    environments, whether it's Windows, Linux, *BSD, MacOS, etc.
+>>>
+>>> If you've played with priorities, and starting up other programs causes
+>>> OU to happen, you should probably consider:
+>>>
+>>> (A) Optimizing your code -- find out where the hot-spots are, and see i=
+f
+>>> they can be improved
+>>> (B) Choosing a faster CPU
+>>>
+>>> The CPU usage of a DSP flow is roughly proportional to:
+>>>
+>>> inherent-per-sample-complexity X sample-rate
+>>>
+>>> Can you lower the sample rate and still achieve what you need to
+>>> achieve?  Can you improve the main-path per-sample complexity?
+>>>
+>>>
+>>>
+>>> _______________________________________________
+>>> USRP-users mailing list
+>>> USRP-users@lists.ettus.com
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>
+>>
+>>
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---0000000000005bbc4f05ab0c5c2d
+--00000000000037584805ab0c9a30
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I have used DPDK with the X310.=C2=A0 I don&#39;t recall s=
-pecifically, but I&#39;m pretty sure you either...<div>a) don&#39;t specify=
- mgmt_addr, or</div><div>b) specify it the same as addr</div><div><br></div=
-></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
->On Tue, Jul 21, 2020 at 12:12 PM Marcus D. Leech via USRP-users &lt;<a hre=
-f=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr">If you are using X310 or N310, you might try DPDK. Even th=
+ough it is a pain, it would be a whole lot easier than trying a new OS, I b=
+elieve.=C2=A0 Using DPDK enabled my application (which was storing Rx sampl=
+es to SSD) to run a bunch faster than without DPDK.</div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 22, 2020 at =
+1:47 PM Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lis=
+ts.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex">
  =20
    =20
  =20
   <div bgcolor=3D"#FFFFFF">
-    <div>On 07/21/2020 10:53 AM, Carmichael,
-      Ryan via USRP-users wrote:<br>
+    <div>On 07/22/2020 01:40 PM, David Carsenat
+      wrote:<br>
     </div>
     <blockquote type=3D"cite">
-     =20
-     =20
-     =20
-      <div>
-        <p class=3D"MsoNormal">On the DPDK page (<a href=3D"https://files.e=
-ttus.com/manual/page_dpdk.html" target=3D"_blank">https://files.ettus.com/m=
-anual/page_dpdk.html</a>)
-          the following statement is made:<u></u><u></u></p>
-        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:=
-Arial,sans-serif;color:black;background:white">=E2=80=9CDevice
-            discovery via DPDK is not currently implemented, so the
-            device args=C2=A0</span><code><span style=3D"font-size:10.5pt;c=
-olor:black;background:white">mgmt_addr</span></code><span style=3D"font-siz=
-e:10.5pt;font-family:Arial,sans-serif;color:black;background:white">,=C2=A0=
-</span><code><span style=3D"font-size:10.5pt;color:black;background:white">=
-addr</span></code><span style=3D"font-size:10.5pt;font-family:Arial,sans-se=
-rif;color:black;background:white">,
-            and=C2=A0</span><code><span style=3D"font-size:10.5pt;color:bla=
-ck;background:white">second_addr</span></code><span style=3D"font-size:10.5=
-pt;font-family:Arial,sans-serif;color:black;background:white">=C2=A0(if
-            applicable) must all be specified at runtime. There is no
-            mechanism for MPM&#39;s TCP/IP control traffic to flow over a
-            link that is occupied by DPDK, so mgmt_addr must point to a
-            link that is not used for CHDR, such as N310&#39;s RJ45 port.=
-=E2=80=9D<u></u><u></u></span></p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:=
-Arial,sans-serif;color:black;background:white"><u></u>=C2=A0<u></u></span><=
-/p>
-        <p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:=
-Arial,sans-serif;color:black;background:white">I=E2=80=99ve
-            been using the X310 without DPDK with dual 10Gb SPI/SFP+
-            connections (192.168.30.2, 192.168.40.2). Once I start DPDK,
-            ifconfig no longer shows the NICs at all, which I assume is
-            what it is supposed to be doing. My question is, what is the
-            =E2=80=98mgmt_addr=E2=80=99 ? I=E2=80=99ve never used it before=
- when using the X310.
-            And how do I make sure the mgmt_addr isn=E2=80=99t using a CHDR
-            link? The X310 only has two RJ45s, right =E2=80=93 and they=E2=
-=80=99re both
-            being used by DPDK.</span><u></u><u></u></p>
-        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-        <p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
-        <p><span>-<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0
-            </span></span>Ryan<u></u><u></u></p>
+      <div dir=3D"auto">It just put received samples in a circular buffer
+        and=C2=A0 transmit this buffer. A delay line.=C2=A0
+        <div dir=3D"auto">But the SR is 50 Msps... 8 bits.</div>
+        <div dir=3D"auto">=C2=A0Do you have ideas about OS ?</div>
+        <div dir=3D"auto">Thanks.</div>
       </div>
-      <i></i><br>
+      <br>
     </blockquote>
-    <i>Ignore my last.<br>
-      <br>
-      Yes, the X310 has only the two ports.=C2=A0=C2=A0 I was suffering fro=
-m
-      cognitive pollution between the N310 and X310.<br>
-      <br>
-      So, this is an excellent point.=C2=A0=C2=A0 I don&#39;t use DPDK myse=
-lf, since
-      my hosts don&#39;t have the right NICs, and it&#39;s really only just=
-ified
-      for very high<br>
-      =C2=A0 sample rates.<br>
-      <br>
-      Also, X310 is not an MPM device, so the comments about MPM traffic
-      aren&#39;t relevant to X310 as far as I know.<br>
-      <br>
-      <br>
-      <br>
-    </i>
+    There are commercial real-time low-latency OS &quot;out there&quot; tha=
+t
+    aren&#39;t free, and UHD has not been ported to them as far as I know.<=
+br>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">Le mer. 22 juil. 2020 =C3=A0 =
+19:33,
+          Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" ta=
+rget=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+          a =C3=A9crit=C2=A0:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div bgcolor=3D"#FFFFFF">
+            <div>On 07/22/2020 01:22 PM, David Carsenat wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <div dir=3D"auto">Ok thanks. The code is really simple and i
+                don&#39;t think it can be optimized.=C2=A0
+                <div dir=3D"auto">Is there other linux OS i can try ?</div>
+                <div dir=3D"auto">Thanks again.</div>
+              </div>
+              <br>
+            </blockquote>
+            If it&#39;s really simple, what is the sample-rate?=C2=A0 Is it
+            trying to write data to the filesystem at high rates?=C2=A0 No
+            amount of code optimization can get<br>
+            =C2=A0 around the fact that the disk subsystem is very slow
+            compared to other parts of the computer, like memory, CPU,
+            etc.<br>
+            <br>
+            <br>
+            <blockquote type=3D"cite">
+              <div class=3D"gmail_quote">
+                <div dir=3D"ltr" class=3D"gmail_attr">Le mer. 22 juil. 2020
+                  =C3=A0 19:12, Marcus D. Leech via USRP-users &lt;<a href=
+=3D"mailto:usrp-users@lists.ettus.com" rel=3D"noreferrer" target=3D"_blank"=
+>usrp-users@lists.ettus.com</a>&gt;
+
+                  a =C3=A9crit=C2=A0:<br>
+                </div>
+                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On
+                  07/22/2020 12:56 PM, David Carsenat via USRP-users
+                  wrote:<br>
+                  &gt; Hello, I have made a c++ code which sends samples
+                  in the main function <br>
+                  &gt; and receives samples in a thread launched in this
+                  main function.<br>
+                  &gt; I have read that we can set the real time
+                  priority with the <br>
+                  &gt; set_thread_priority function.<br>
+                  &gt; I have tried to call this function (with
+                  parameters (1,true) inside <br>
+                  &gt; the main function but it doesn&#39;t seem to change
+                  the priority of the <br>
+                  &gt; executable. When I launch another application, I
+                  have lots of U and O.<br>
+                  &gt;<br>
+                  &gt; Do you have an idea how to achieve what I want ?
+                  i.e. allocate almost <br>
+                  &gt; all computer resources to my uhd program ? What
+                  is the best way ?<br>
+                  &gt; I have already tuned my ubuntu with advice given
+                  on Ettus site.( <br>
+                  &gt; cpu-freq set etc...)<br>
+                  &gt;<br>
+                  &gt; Many thanks<br>
+                  &gt;<br>
+                  &gt; David<br>
+                  &gt;<br>
+                  In general, applications have only very-rough control
+                  over the behavior <br>
+                  of the scheduler.=C2=A0 This is true in most
+                  general-purpose operating system<br>
+                  =C2=A0 =C2=A0environments, whether it&#39;s Windows, Linu=
+x, *BSD,
+                  MacOS, etc.<br>
+                  <br>
+                  If you&#39;ve played with priorities, and starting up
+                  other programs causes <br>
+                  OU to happen, you should probably consider:<br>
+                  <br>
+                  (A) Optimizing your code -- find out where the
+                  hot-spots are, and see if <br>
+                  they can be improved<br>
+                  (B) Choosing a faster CPU<br>
+                  <br>
+                  The CPU usage of a DSP flow is roughly proportional
+                  to:<br>
+                  <br>
+                  inherent-per-sample-complexity X sample-rate<br>
+                  <br>
+                  Can you lower the sample rate and still achieve what
+                  you need to <br>
+                  achieve?=C2=A0 Can you improve the main-path per-sample
+                  complexity?<br>
+                  <br>
+                  <br>
+                  <br>
+                  _______________________________________________<br>
+                  USRP-users mailing list<br>
+                  <a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"nore=
+ferrer noreferrer" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+                  <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-u=
+sers_lists.ettus.com" rel=3D"noreferrer noreferrer noreferrer" target=3D"_b=
+lank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a=
+><br>
+                </blockquote>
+              </div>
+            </blockquote>
+            <br>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
   </div>
 
 _______________________________________________<br>
@@ -247,10 +344,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---0000000000005bbc4f05ab0c5c2d--
+--00000000000037584805ab0c9a30--
 
 
---===============3293449555519440914==
+--===============8943504333418176120==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -261,5 +358,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3293449555519440914==--
+--===============8943504333418176120==--
 
