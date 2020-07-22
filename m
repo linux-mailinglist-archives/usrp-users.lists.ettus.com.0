@@ -2,82 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29B11229F1B
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 20:16:19 +0200 (CEST)
-Received: from [::1] (port=53314 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8379229F32
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 20:24:53 +0200 (CEST)
+Received: from [::1] (port=53382 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jyJHq-0003jf-Nr; Wed, 22 Jul 2020 14:16:14 -0400
-Received: from mail-bn7nam10on2055.outbound.protection.outlook.com
- ([40.107.92.55]:27873 helo=NAM10-BN7-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <jerrid.plymale@canyon-us.com>)
- id 1jyJHn-0003cE-A9
- for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 14:16:11 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OZ6fuxna/pdhCDR0axy+JkQk7R6XsSISRlDDXcpl5q9KvtnMi/cqGeNsXOBMXKRObn33avVo5yoXXDwlHBgw0JXWrOpJMQmMcP32B4pgJzE9IVsba/v/vcu5yjqnO0Lgf9GrqH1UU3QRFVrp830MrZwNOF5u2omH+pX9IL+5pVf0RGjmMOvlIYveLP53lfIwFUfvvPgirWokAFygIj/lnq8aaHANo/8X7XIo/J94XTES6EDSRQY0/2WFxw5Q3AgG7CNCtXYGjNn6nRuoV9zRQ5OPBh3vVwd9RZyNJjK3zVCnmGDHQwHf6tza9Ktu05A4t+eWxXrTSUJnYQh0w4UycA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p0Hi/vI4U6QLMo/uw88ikzMTFk2XNunqyIcFTwpb5TI=;
- b=WiMgSfTOQIteYHyFk7Y199aSrRjYq9tGQ7mxaDZ3wHJjKNQ4mKpj6qYmwZD45so7YBEXiUg4lioULS05lsSdfG6NgjT5wFhyX6744jZetj/YNG7JJ5AMwWlF4Af5Nnzlmn4YD3j1SYKHdKuBE6r1+nqNEcJzDcIVPN1fA11XuEzbpwq8+M1/E5efc5aC9pPBc4GZdhz7NXIlO0MFRqnakx5BKyrSwU5za1GfXDBdM9KBo62DzF1guPjm9AlIwfP686VUV6mXfmuphQTKTXPB4BWTVDSgplJnYInsAl2stGNoOnRh673e3BtY0WjWJ9O1dIbee/pTOXWr03jpl4vJ7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=canyon-us.com; dmarc=pass action=none
- header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=canyonconsulting.onmicrosoft.com;
- s=selector2-canyonconsulting-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p0Hi/vI4U6QLMo/uw88ikzMTFk2XNunqyIcFTwpb5TI=;
- b=AHwXiraNaA2AHhf8YlITHgUg1q8NBK89OOFzFiYwN7MVkLoXwk2QVIXKJ4yeT+vqjelN/vPcCdOpARfW8Z6QmWCXCtlGy3u/E76PR0Oy7ijI8ylxR98Y4VxztT4yRdjH/nE5+g3SzywPKNEfQpQ0P8lJZmfaSHP8m5LfYacOqcc=
-Received: from BY5PR19MB3398.namprd19.prod.outlook.com (2603:10b6:a03:185::26)
- by BY5PR19MB3762.namprd19.prod.outlook.com (2603:10b6:a03:224::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.23; Wed, 22 Jul
- 2020 18:15:29 +0000
-Received: from BY5PR19MB3398.namprd19.prod.outlook.com
- ([fe80::e5ec:f22b:6b02:d161]) by BY5PR19MB3398.namprd19.prod.outlook.com
- ([fe80::e5ec:f22b:6b02:d161%7]) with mapi id 15.20.3195.028; Wed, 22 Jul 2020
- 18:15:28 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Re: Signal transmission on a USRP X310 
-Thread-Index: AdZgU/vaF/M4P6Q3QPikH6Xg/0Erzw==
-Date: Wed, 22 Jul 2020 18:15:28 +0000
-Message-ID: <BY5PR19MB3398D74D23AAA722CD1040FAC6790@BY5PR19MB3398.namprd19.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=canyon-us.com;
-x-originating-ip: [98.153.200.210]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 28cc618a-ecb2-4ec1-29d1-08d82e6b36c7
-x-ms-traffictypediagnostic: BY5PR19MB3762:
-x-microsoft-antispam-prvs: <BY5PR19MB3762DE9F17FF7B2A72049180C6790@BY5PR19MB3762.namprd19.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: HasYpo7JRsnjaNQ6JqUxuzlNMMUsg58wemKPhZC15jkz6anm1rOk8R8NyYrBJ3QzGZH5BG+d9qS5ios/D3HTzzGbExkbHss6B48Di7qry3VV1GFh8AJjzKh9hxa0TMO7dzZIpy6UxSo3r62M1BA2UNUfqy2cEx0sBA+Ub37FZboiWxrCjYlVT/RwmvfeDjhSNij/lr4rBDkNg4sWS4QTee2PWloGrRHfsR501bM+01NFTdnvK14moGS7i7V6JAcMNZjl9s5phSmvKX24RILNfeJX4ZPcr98CJ5haFgNkcPL62WqtLKhrRdNepftADPIH
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR19MB3398.namprd19.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(136003)(366004)(39830400003)(396003)(346002)(376002)(316002)(44832011)(33656002)(2906002)(66446008)(508600001)(4744005)(4743002)(5660300002)(66476007)(66556008)(64756008)(9686003)(55016002)(186003)(52536014)(7696005)(66946007)(71200400001)(86362001)(6916009)(6506007)(8676002)(9326002)(8936002)(26005)(76116006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: riCxXgAd7+7d7jxWomwQZU9j2CDCnHWXj/LcUJ+qD62Ls/kmptTK4dVCN3YdppBqOgqPVE3JXqFl6KZp6H6J+3f7rHdluY+9iYH53goWm4fWBl1eMBW6VitOrl0VS7ivfQzjuTqJeJQigl9Iw8nJBaZu4n5RJ/kIm09gxNTdTQUuvSiuKkZAkNHBdFLJwcc+L5U7O3y+FkcPqLE/NsP00tgb9wVZ/TVVUkKGwTFFErnUZyaLyZyMhi+0Ojg2iRFZ4d6g22YfdsyFpwTs106IXu//V1gl09JfWDrBAHLeEPZ+qhX7rYkHBObU12aWh8+BKM+X3jUIi+KpZ7Vaa8LV53dUNdwBW7qM3ZhpLe3grA/M/v7i+ZxmV6GshsbBNfD2bOgMqcDkJjA2dvm3FVN/6TaqZISKPLFgqCKlf2njhtN6SPycsDNmS6IG+nyA54hb9h6KsWS2WsnLgmwwjVZN3dnzzdRoJdKdg5BHI1uIt+Wku13epr/lYZeSSadZjiXV
-x-ms-exchange-transport-forked: True
+	id 1jyJQC-0004WE-5B; Wed, 22 Jul 2020 14:24:52 -0400
+Received: from mail-qk1-f181.google.com ([209.85.222.181]:33573)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jyJQ7-0004Ov-P7
+ for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 14:24:47 -0400
+Received: by mail-qk1-f181.google.com with SMTP id l23so2973033qkk.0
+ for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 11:24:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=W7Nh+EE0AVB0AvoT79V9pbwYViKorCWtKhwRoOEAYF0=;
+ b=GpoEN61cpXG1b0IaqA+ECyNsQMV6LYVg/ot3FyRZQunvpMW8lPO/MMFhyyH9Ite2Jq
+ asf7dewIg6pvR1bLttMd53zlKrO+6ODZDxCNjhjufQ4JxEat0YUCcERqIBjmFQRMiY5F
+ mzO8YGHM7AcJ4wHaC7HxZm6N1hAtb6bXUNnTZQM4TlpmQ7mGAX17gBnGkQ0kolBHHyQz
+ s3nAoYkdkbSHd310w24torBi3VBl63LOG28H3Gr41PoXmHdMRqbmT72OGvdN7jaeOBsR
+ ByTO0jWeja6vy4ogPLIrAVydf407EfvhzE9SzEfGgQKSNak7/3KBiihh3BO+hoHk4Oo7
+ 7wsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=W7Nh+EE0AVB0AvoT79V9pbwYViKorCWtKhwRoOEAYF0=;
+ b=CF2tzxkN0WQXK/MaPyRCY8Bv3M0a9PkKKApR3nAPb782V6XqhRd7STidD1b+9irlGm
+ +iZcX9Y5kWZhOuFm/JlOiSdl86JU8/6ZhmOzmPtAoPCsbrGerEqvzM8r+V1JDCIRl229
+ lHe3PYMuaUL8csNtNMoev38d57QONvvDUIedLkcBa1iqn2cy9ZB5HBGsh/IYSIi98QfD
+ eMKZxUVAserYDpu14YTJ9ScvwxjlGylCdj5OAZVpHUdG5eWDlzzY+TEf2YZj15LHA2Cm
+ /Tt4oM2tVKVYndPYemZlxsCet7aASeLMFF53skBHwvKPZvqIYpM5y9zuul7lkqIViKdc
+ WkyA==
+X-Gm-Message-State: AOAM533WgEraE5y4MKDrGqxYBGHq0GxUIBLcVfOSEGdVqS9wbwbyHXSm
+ pirIiKwibR6gOSuPV8dIBQe15mWN
+X-Google-Smtp-Source: ABdhPJwwsQJroINEoZjjoWAdCiNBo8S9hwp9D5xp9U76maOAc5IxSTb65v4BqawFyb7WxLP5jfw3tA==
+X-Received: by 2002:a37:a78c:: with SMTP id q134mr1405341qke.368.1595442247060; 
+ Wed, 22 Jul 2020 11:24:07 -0700 (PDT)
+Received: from lab.localdomain (d72-38-46-81.commercial1.cgocable.net.
+ [72.38.46.81])
+ by smtp.googlemail.com with ESMTPSA id a5sm399276qtc.44.2020.07.22.11.24.06
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 22 Jul 2020 11:24:06 -0700 (PDT)
+Message-ID: <5F188445.5030107@gmail.com>
+Date: Wed, 22 Jul 2020 14:24:05 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-X-OriginatorOrg: canyon-us.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR19MB3398.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 28cc618a-ecb2-4ec1-29d1-08d82e6b36c7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jul 2020 18:15:28.4437 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MyUQpj+Q7mUFpVZQsAWHy3eMLQvi9AMVzmSX1DIwlekVrBg4m21lux1dUWuGgWZ63+YyEXHZYAMR0eEM4+Rq3reXERixKg1RRv+Kd0kwlTg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR19MB3762
+To: usrp-users@lists.ettus.com
+References: <BY5PR19MB3398D74D23AAA722CD1040FAC6790@BY5PR19MB3398.namprd19.prod.outlook.com>
+In-Reply-To: <BY5PR19MB3398D74D23AAA722CD1040FAC6790@BY5PR19MB3398.namprd19.prod.outlook.com>
 Subject: Re: [USRP-users] Signal transmission on a USRP X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -90,9 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jerrid Plymale via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
-Content-Type: multipart/mixed; boundary="===============5412037006942765906=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7100812248989033616=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -106,47 +82,70 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5412037006942765906==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============7100812248989033616==
 Content-Type: multipart/alternative;
-	boundary="_000_BY5PR19MB3398D74D23AAA722CD1040FAC6790BY5PR19MB3398namp_"
+ boundary="------------090406090909080909050206"
 
---_000_BY5PR19MB3398D74D23AAA722CD1040FAC6790BY5PR19MB3398namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------090406090909080909050206
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hello Marcus,
-
-The tool I have been using for initial signal quality checking has been the=
- QT Waterfall sink in GNU Radio Companion to see if the signals are looking=
- correct. Upon seeing that it looked like I was loosing data when I set the=
- USRP sink's center frequency above 1.3 GHz, I connected the output of the =
-USRP to a spectrum analyzer to get some more accurate measurements of the s=
-ignal. After running some tests, I found that at a center frequency less th=
-an 1.3 GHz, the strength of the signal was somewhere around -70 dBm. When I=
- would increase the frequency to a value above 1.3 GHz, and no changes to a=
-nything else (e.g., channel gain, sample rate), the strength dropped to som=
-ewhere around -90 dBm. This was measured by tracking the peak power from an=
- FFT of the signal input to the spectrum analyzer. Would it help to see the=
- flowgraph?
-
-Best Regards,
-
-Jerrid Plymale
-
---_000_BY5PR19MB3398D74D23AAA722CD1040FAC6790BY5PR19MB3398namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 07/22/2020 02:15 PM, Jerrid Plymale via USRP-users wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
+> Hello Marcus,
+>
+> The tool I have been using for initial signal quality checking has 
+> been the QT Waterfall sink in GNU Radio Companion to see if the 
+> signals are looking correct. Upon seeing that it looked like I was 
+> loosing data when I set the USRP sink’s center frequency above 1.3 
+> GHz, I connected the output of the USRP to a spectrum analyzer to get 
+> some more accurate measurements of the signal. After running some 
+> tests, I found that at a center frequency less than 1.3 GHz, the 
+> strength of the signal was somewhere around -70 dBm. When I would 
+> increase the frequency to a value above 1.3 GHz, and no changes to 
+> anything else (e.g., channel gain, sample rate), the strength dropped 
+> to somewhere around -90 dBm. This was measured by tracking the peak 
+> power from an FFT of the signal input to the spectrum analyzer. Would 
+> it help to see the flowgraph?
+>
+> Best Regards,
+>
+> Jerrid Plymale
+>
+>
+>
+Yes, it would help to see the flow-graph, and to see what settings 
+you're using in the TX path.  The output power from the UBX is not 
+likely to be
+   completely consistent across the entire tuneable range, but 20dB is 
+way more than I would expect.
+
+
+
+
+--------------090406090909080909050206
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 07/22/2020 02:15 PM, Jerrid Plymale
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:BY5PR19MB3398D74D23AAA722CD1040FAC6790@BY5PR19MB3398.namprd19.prod.outlook.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
 /* Font Definitions */
 @font-face
 	{font-family:"Cambria Math";
@@ -173,42 +172,52 @@ span.EmailStyle17
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+<o:shapedefaults v:ext="edit" spidmax="1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello Marcus,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The tool I have been using for initial signal qualit=
-y checking has been the QT Waterfall sink in GNU Radio Companion to see if =
-the signals are looking correct. Upon seeing that it looked like I was loos=
-ing data when I set the USRP sink&#8217;s
- center frequency above 1.3 GHz, I connected the output of the USRP to a sp=
-ectrum analyzer to get some more accurate measurements of the signal. After=
- running some tests, I found that at a center frequency less than 1.3 GHz, =
-the strength of the signal was somewhere
- around -70 dBm. When I would increase the frequency to a value above 1.3 G=
-Hz, and no changes to anything else (e.g., channel gain, sample rate), the =
-strength dropped to somewhere around -90 dBm. This was measured by tracking=
- the peak power from an FFT of the
- signal input to the spectrum analyzer. Would it help to see the flowgraph?=
- &nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Jerrid Plymale<o:p></o:p></p>
-</div>
-</body>
+      <div class="WordSection1">
+        <p class="MsoNormal">Hello Marcus,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">The tool I have been using for initial
+          signal quality checking has been the QT Waterfall sink in GNU
+          Radio Companion to see if the signals are looking correct.
+          Upon seeing that it looked like I was loosing data when I set
+          the USRP sink’s center frequency above 1.3 GHz, I connected
+          the output of the USRP to a spectrum analyzer to get some more
+          accurate measurements of the signal. After running some tests,
+          I found that at a center frequency less than 1.3 GHz, the
+          strength of the signal was somewhere around -70 dBm. When I
+          would increase the frequency to a value above 1.3 GHz, and no
+          changes to anything else (e.g., channel gain, sample rate),
+          the strength dropped to somewhere around -90 dBm. This was
+          measured by tracking the peak power from an FFT of the signal
+          input to the spectrum analyzer. Would it help to see the
+          flowgraph?  <o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Best Regards,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Jerrid Plymale<o:p></o:p></p>
+      </div>
+      <br>
+      <br>
+    </blockquote>
+    Yes, it would help to see the flow-graph, and to see what settings
+    you're using in the TX path.  The output power from the UBX is not
+    likely to be<br>
+      completely consistent across the entire tuneable range, but 20dB
+    is way more than I would expect.<br>
+    <br>
+    <br>
+    <br>
+  </body>
 </html>
 
---_000_BY5PR19MB3398D74D23AAA722CD1040FAC6790BY5PR19MB3398namp_--
+--------------090406090909080909050206--
 
 
---===============5412037006942765906==
+--===============7100812248989033616==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -219,5 +228,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5412037006942765906==--
+--===============7100812248989033616==--
 
