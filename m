@@ -2,82 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D5DA2293DC
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 10:46:35 +0200 (CEST)
-Received: from [::1] (port=48832 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0F022949D
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 11:13:16 +0200 (CEST)
+Received: from [::1] (port=48968 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jyAOY-0005vX-0E; Wed, 22 Jul 2020 04:46:34 -0400
-Received: from mail-eopbgr1290040.outbound.protection.outlook.com
- ([40.107.129.40]:43500 helo=KOR01-SL2-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <surabhi.kumari@siemens.com>)
- id 1jyAOU-0005o6-72
- for USRP-users@lists.ettus.com; Wed, 22 Jul 2020 04:46:30 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cd7nYEkhv1FztLgjvu5bMjPjvuH/uov5MHrWPLTpZcDW/Tnaz2GWTW0YiexjiyHKp2k7iZJvnIFeId81Y6K8qf9oD6kXu5hfwnaGD/mZ4wEGGjXDpPeXfLouxUUM4KzLVyfqXkgkeEHiVhVjvDvIasVubDHTDQQTeVQ7QDdmBCe1xXzrtruPZ3zb5/67r/zSqkSv5srNe5cAFVUKPKXvfz4PYY+uQdX2mUfP3e5alrc3CTii1Wpsd6j+i7s5kRmjBhRpaalbGiGUvdpzLc+hRTxXAxiV65JmWrnMpIal1vWROEDYsIqm1zxOcQGIPQJ6zhghj3lcwx742FaQMsiGKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rO8QceH7P5PKAFt6qmsxUBV5i2S9fEe4HwdkEy55gz0=;
- b=B8wNvB7eR2NMX/j/HlkLRpI88E3DwXsXWtASfY4hJJuXkNt9ttiAJ45+nzwI4eWAd6IgYyTXmGTcAev4HwJeRzqVgLGQ4qAeT9UihaT46uygrqX2KETESI6YpP/zmadu1gv1olYkcoZhEyVEg98fUnbJ1c2aC9R8BgaGl6de9y5WgJ5nCKW84wvArQMj8g/459lJs4+7EDasFV67mua7tIW3KzFEvFvBd/ii5WrrJdY0L+jvUnGTFXdWKPU+u1FWbs5I9dYQAIb0Oou+iGY+nUkdmnWYbvsnR1s0WRR/t8szVhfD+OyGCd80qFnLXz3jP+tL0n2yG4ssFLloIJ6Ahw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=siemens.onmicrosoft.com; s=selector1-siemens-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rO8QceH7P5PKAFt6qmsxUBV5i2S9fEe4HwdkEy55gz0=;
- b=Wbtc6T4YqdPDP2VVaLMHkSvMXxqkONJ5YxTWYT0tBmHgS+sQYxOzOuLjbYG1Z4XA/4oxRdSgCcPk3c3UTKZ2Lvafm0mWK+jiur6brPIW/u5OHcG51vvxrkkQ0UKzB38VKqZyrzpmcjmBSC18z8uejwjkUGYSFBXI81JCrCBEcuQ=
-Received: from PU1PR06MB2133.apcprd06.prod.outlook.com (52.133.227.12) by
- PS2PR06MB3256.apcprd06.prod.outlook.com (20.179.114.80) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3195.25; Wed, 22 Jul 2020 08:45:46 +0000
-Received: from PU1PR06MB2133.apcprd06.prod.outlook.com
- ([fe80::6197:6660:23c2:5115]) by PU1PR06MB2133.apcprd06.prod.outlook.com
- ([fe80::6197:6660:23c2:5115%7]) with mapi id 15.20.3216.021; Wed, 22 Jul 2020
- 08:45:46 +0000
-To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Thread-Topic: Planning to buy USRP
-Thread-Index: AdZgBCR5CJ2cR6b5RreA/5/Rrw7yFQ==
-Date: Wed, 22 Jul 2020 08:45:46 +0000
-Message-ID: <PU1PR06MB2133D7FA64F75E34E3CCB8A28E790@PU1PR06MB2133.apcprd06.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=siemens.com;
-x-originating-ip: [165.225.104.150]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 5719f64a-2ba4-4ebc-8859-08d82e1ba0ba
-x-ms-traffictypediagnostic: PS2PR06MB3256:
-x-microsoft-antispam-prvs: <PS2PR06MB32564D269E9D03A7F66023748E790@PS2PR06MB3256.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: EMyaaLicHuHV/VxI+BABrzSpyVv6RyLWNhzQYNUJPUZqtKcD5YKYsOn7CgIeGKK8pQUAIgxqtMKPD/1XAhcL1dOHRiFOjRaK2KrtwH4wrCHjhiEeFMo8krFlzGQwCqnwM7FLT9YnOZ+gQqmHSvqN6h8iFGZdr/wdahSa/mYcR6FOxOlj1wGqbeZBCmnRqUh6bPxmyM/cE1hwm1VVsyNG3qGi8dFDEhZaZbkwKUDhcsEcAAAHIrNXYUvrMvOK5Pz22edSgSoaU5al2NefdMRMkUDpmMriSR+qlysou1WKLjKFgFywELrdfeO57eWqFEjW
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PU1PR06MB2133.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(4636009)(136003)(346002)(396003)(366004)(376002)(39860400002)(55016002)(8936002)(8676002)(9686003)(478600001)(5660300002)(6916009)(7696005)(4744005)(6506007)(26005)(316002)(186003)(55236004)(86362001)(76116006)(66946007)(52536014)(2906002)(71200400001)(9326002)(66446008)(66556008)(66476007)(33656002)(64756008)(3480700007);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: IpVgGk4iZtUiLzxXhGNiqqjeeyesafPJDBwckVGqq5HT4bcNTmUlUI2eEkJR15g6EE4erfIB08ulnqZCQJ2yIBJK0nm8bSvPAeBcTHpNhdhXjANvh2eW7gbXCfYKWAdZ/lqX00yDYdMOO6Y0KTbvy/hrIq72z7BzQK7oYIfc1YPwlNw1dUb3/Jd/U50V1jJry4wyj5jl6zOigMtcdRv7uC80tCpfCEWdSr1JfRuwP4qB6kywJxSKhjaODlwcJ4o9eaNyBaENUMG+IMpU+TbdHO6WON2YBHInVQxB2lcIlsPy6KZlRCliKY01SR2FFR/GgdbXtyXcFrYnBjB2gXTqY3HkbQIeaH5o7sAQaVr3/TDGU2USurZrPwX7/P6oXoLxIpt2h3gwTYjDhpgA1DwQ4QpmnmXSdqGfQ17177jM33iEm96TRXpix9T75FMe7CpKz0P3vXYjc+o3y6/6Gfl8V6VjAAbRFvFsEjKdouccomttwEPzMougBWnP0fpQSg3e
-x-ms-exchange-transport-forked: True
+	id 1jyAoL-0006w9-MG; Wed, 22 Jul 2020 05:13:13 -0400
+Received: from mail-ej1-f52.google.com ([209.85.218.52]:41311)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <pbasaras@gmail.com>) id 1jyAoI-0006ql-0N
+ for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 05:13:10 -0400
+Received: by mail-ej1-f52.google.com with SMTP id w9so1410533ejc.8
+ for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 02:12:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=wWhi2EhIrbv05NoK3BhhEy4h/RpjPAZJDgPb5IsRY/k=;
+ b=lIZh5EObkpJSza4BW8Vs8u5N2v+xf9xsOAlwr1afr/KNFq7TFFQtn705pxFhO9I2jr
+ 17VRA5FYYc7RFPx/Drw2iZGqiwphXknh0y4ZiRf42mNwaW7DPpwaYGzqZguk/zixzDEo
+ CX6LAX3+gn4+Ll+aVw3YptNOcEB6j/muDzXQBB/GeQeUdckD+1yWZ2IBOd2ZWfVfuKhE
+ 4TDFsy5DkspYO/z4Ll9urcseRbbweDTlsbKKfx0A+hdOEk/jKUwDY4OYd2fTBu270sAI
+ 1CuaJUgf2acP1OoNt2dsAaiyDtWCQwoVmfJFgJcME/z3I1sIFwn+4fko3gO3z6+OndgQ
+ XdDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=wWhi2EhIrbv05NoK3BhhEy4h/RpjPAZJDgPb5IsRY/k=;
+ b=LEqhy8f8fCY1JrZTM5AqdGqDUbf0OQhPzxXX5tkWUNAaH2KtAv8cvySd01S2u1yyez
+ QefJrmiV8P2uXVsjdv2YE8nfw6QhY5KcWOd2oViacBUEoQveILhBB5Gh0a04jhA6g8Hf
+ gVyU8q3Rz4u99fTL60QSzb21xebm+prH0QFuIaXJ1Hl8Df84kVLHhcitLqROVueolAlj
+ UUPrHQB9hzTbYJYedoFzNu8YA4I7Iok1ZGMJPV1t1ke8m6KnhSqUpwDGiLMamcRFdhqN
+ 0uLbdZC3Lzrhpecil8yXPmkG12wqvU44pw9/4/fnP8f9W4qmYFIVF4Tej3CBaZnzH5Xz
+ Omxg==
+X-Gm-Message-State: AOAM532s6G0qr+gbvrBpmeoxS6bWxhk94izcBYWrrshAXO7ewSx1uSiA
+ 543sG0ObVb9bQH426aUgjmQjUPM4CXMl7lx953fYeYquM5o=
+X-Google-Smtp-Source: ABdhPJyhWxbEMGjdgehP8j53B4AcCfXc/0GHZiLpPp+S5/Xh08BSNcDn8G83lq2vN5ZiCJlAW0yH5kuN3mhSPZVWv8g=
+X-Received: by 2002:a17:906:48d3:: with SMTP id
+ d19mr28499013ejt.180.1595409148450; 
+ Wed, 22 Jul 2020 02:12:28 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PU1PR06MB2133.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5719f64a-2ba4-4ebc-8859-08d82e1ba0ba
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jul 2020 08:45:46.7549 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: AwixF+6Yr6xlAesZ5KYhz8zhv8sqNBaTWcESX5a4Qdv3SutswkGzmzDebldxh4aZXAipPJjOXY0AIQTAC27WQd1LIPkFJd0swneJopMgzCg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PS2PR06MB3256
-Subject: [USRP-users] Planning to buy USRP
+Date: Wed, 22 Jul 2020 12:12:17 +0300
+Message-ID: <CAMVZM+_-CjX8EEzSNuAXrLuDTA2BN1d01eMyfnNHLf79Q88fQw@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Which ports to secure with RF terminators and how to
+ setup loopback testing.
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -89,9 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Kumari, Surabhi via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Kumari, Surabhi" <surabhi.kumari@siemens.com>
-Content-Type: multipart/mixed; boundary="===============3077961035826788380=="
+From: Pavlos Basaras via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Pavlos Basaras <pbasaras@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2984229607090158799=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -105,92 +72,72 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3077961035826788380==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_PU1PR06MB2133D7FA64F75E34E3CCB8A28E790PU1PR06MB2133apcp_"
+--===============2984229607090158799==
+Content-Type: multipart/alternative; boundary="0000000000009099da05ab0423fe"
 
---_000_PU1PR06MB2133D7FA64F75E34E3CCB8A28E790PU1PR06MB2133apcp_
-Content-Type: text/plain; charset="us-ascii"
+--0000000000009099da05ab0423fe
+Content-Type: text/plain; charset="UTF-8"
+
+Hello,
+
+i am a newbie to this so i would appreciate all help and pointers for
+reading/understanding what i should (please excuse possibly newbie
+questions, thanks!).
+
+I have configured 2 usrp n310 devices, following the instructions from:
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide
+I am connected to both over all available ports eth0/sfp0/sfp1, and both
+"usrp_find_devices" and "uhd_usrp_probe" seem to be working properly.
+
+I would like to proceed with some real testing (
+https://kb.ettus.com/Verifying_the_Operation_of_the_USRP_Using_UHD_and_GNU_Radio
+).
+
+Q1: which TX ports should be secured with RF terminators? Assuming that we
+use e.g., only RF 0, all TX ports in the remaining RF1-3 should be
+terminated, correct? As we are not currently using any other port from the
+front panel (e.g., gps, ref in, trig out, pps ), should these also be
+terminated?  What about the daughterboard ports?
+
+Q2:  the loopback configuration refers to using one usrp to test TX/RX,
+correct?. So the setup for this testing is a single usrp, and focusing on
+e.g., only on RF 0, by using sma-m to sma-m cable with 30dB attenuator to
+start testing?
+
+all the best,
+Pavlos.
+
+--0000000000009099da05ab0423fe
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>i am a newbie to this=
+ so i would appreciate all help and pointers for reading/understanding what=
+ i should (please excuse possibly newbie questions, thanks!).</div><div><br=
+></div><div>I have configured 2 usrp n310 devices, following the instructio=
+ns from: <a href=3D"https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_S=
+tarted_Guide">https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started=
+_Guide</a></div><div>I am connected to both over all available ports eth0/s=
+fp0/sfp1, and both &quot;usrp_find_devices&quot; and &quot;uhd_usrp_probe&q=
+uot; seem to be working properly.</div><div><br></div><div>I would like to =
+proceed with some real testing (<a href=3D"https://kb.ettus.com/Verifying_t=
+he_Operation_of_the_USRP_Using_UHD_and_GNU_Radio">https://kb.ettus.com/Veri=
+fying_the_Operation_of_the_USRP_Using_UHD_and_GNU_Radio</a>).</div><div><br=
+></div><div>Q1: which TX ports should be secured with RF terminators? Assum=
+ing that we use e.g., only RF 0, all TX ports in the remaining RF1-3 should=
+ be terminated, correct? As we are not currently using any other port from =
+the</div><div>front panel (e.g., gps, ref in, trig out, pps ), should these=
+ also be terminated?=C2=A0 What about the daughterboard ports?<br></div><di=
+v><br></div><div>Q2:=C2=A0 the loopback configuration refers to using one u=
+srp to test TX/RX, correct?. So the setup for this testing is a single usrp=
+, and focusing on e.g., only on RF 0, by using sma-m to sma-m cable with 30=
+dB attenuator to start testing? <br></div><div></div><div><br></div><div>al=
+l the best,</div><div>Pavlos.<br></div></div>
 
-I was working with LimeSDR with OpenAirInterface, We are not getting the de=
-sired result. We are planning to buy USRP. Please suggest which USRP shall =
-we buy which should be compatible with openairinterface as well as free5GC.
-Please let me know what are the other hardware requirements to work with US=
-RP.
-
-Regards,
-Surabhi
-
---_000_PU1PR06MB2133D7FA64F75E34E3CCB8A28E790PU1PR06MB2133apcp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I was working with LimeSDR with OpenAirInterface, We=
- are not getting the desired result. We are planning to buy USRP. Please su=
-ggest which USRP shall we buy which should be compatible with openairinterf=
-ace as well as free5GC.<o:p></o:p></p>
-<p class=3D"MsoNormal">Please let me know what are the other hardware requi=
-rements to work with USRP.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Surabhi<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_PU1PR06MB2133D7FA64F75E34E3CCB8A28E790PU1PR06MB2133apcp_--
+--0000000000009099da05ab0423fe--
 
 
---===============3077961035826788380==
+--===============2984229607090158799==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -201,5 +148,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3077961035826788380==--
+--===============2984229607090158799==--
 
