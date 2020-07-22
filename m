@@ -2,60 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04BA1229DA6
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 19:01:25 +0200 (CEST)
-Received: from [::1] (port=52686 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54805229DB3
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 19:03:18 +0200 (CEST)
+Received: from [::1] (port=52698 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jyI7P-0004tk-2u; Wed, 22 Jul 2020 13:01:23 -0400
-Received: from mail-qv1-f66.google.com ([209.85.219.66]:46991)
+	id 1jyI9F-0005D0-0e; Wed, 22 Jul 2020 13:03:17 -0400
+Received: from mail-qt1-f175.google.com ([209.85.160.175]:36911)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jyI7L-0004lf-KY
- for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 13:01:19 -0400
-Received: by mail-qv1-f66.google.com with SMTP id el4so1306310qvb.13
- for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 10:00:59 -0700 (PDT)
+ id 1jyI9A-00054K-Gy
+ for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 13:03:12 -0400
+Received: by mail-qt1-f175.google.com with SMTP id d27so2343491qtg.4
+ for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 10:02:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
  :in-reply-to:content-transfer-encoding;
- bh=URtrUQDzmfhSCGz37MmMe+/7Wvia0iHv0r7WevPTB8U=;
- b=YMD+QI6M0ogAifZSs/n/8Ca9VNEjcTUkhMS7rzHYSFKBr3H2xu29/C0kjQ3CHxPfqo
- CDUs7PTG6DztfhgKzOzs38VR1lhWNnEZuvQk813QPhza/7JHkU1b4792aPrP30Z1zjbf
- Fn6Gc8lLceouelAE9o2bLlbrBpnEXDA4b/DW0OrrpIPo5TiaCxGZGtyddsmLYl7orglx
- V6pxqg8lDxyclF75CFnT7b8vDszPU/QZxEzYeCgJn5hetj51oTNwJj1EaYhJo/Jirx4G
- I4L8lbN818Z+jVQYWCy5bvsypiT4iyQ1SEIAmmPB+iIFGgMqhFd8Cr26AkeYaZygUcsp
- TnKw==
+ bh=oHakeh945Y5uRlEeHuSTpGAaVVYfEAgE+7lOheQO8Cs=;
+ b=QXF32Sf9EE9A7MSDGfH6scxVgQsGyslGWixMmq9QHI8SoiQUQbSButYbQED7rvo55b
+ aQr56LMbtLpRqz2pHY9Qp+Jf6qDzqhRABQvqzPt4a8FZGpDO/XJY5REyv6b55YdiKgRK
+ PMtcQLhx7Hyw/GrEnaIZ+GQSGwDXMGXiyIQlftcFqypPJuFq5wbHeyXy9OjF+mnbTl7S
+ JscCPGtIAEcXwQUwUYkoce7MpOuZIzTUbdvTQfUd26iQW6OQBc2L/ge7oDjX9vYDSST6
+ U5D6D58LT/h0BnO6CxMsO6A5L4vnpc5sB3Ac2vgBGORRiP8ZDgW2CkRWcTXhGeCcFVJe
+ tOpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to:content-transfer-encoding;
- bh=URtrUQDzmfhSCGz37MmMe+/7Wvia0iHv0r7WevPTB8U=;
- b=OP1W/2+VXdMHX0rdC0yr4W7vSh9RM0cmlN5sPVqVb35ppGT3YO6ZB2ggzjVJN0OXNG
- uLHAJani0F9yETN/3nSoG2VJwChMYN1YRq27GUUjb5kEK3sqpPwinw+wzM5i5B9AQ/Hg
- +aV8vhucviU77j4JmR6n33Cf0btRwWoicdw8ukM0FKCLZEsAI9R6WxTNUFCwPAQ2NAhC
- BnENHseKLSoxRyf8DOr90fePcv1NQ4qI/uIRpgWH0YNA7b6RiZF9emdjMPohuWSJgjwZ
- RDPzbYSZ/zAk8qbmyxs3cpZCflH2nt7C2Api4W6ioLV0jt9YajopZH8018L+PhmadD6u
- pVXg==
-X-Gm-Message-State: AOAM5321kvvDc4vu7z9Z1Zoi7qjFaRmzVdDUJpom4CLo2BLYfvynLy1R
- mNMadm7wM8OahDzcdchm9HTxBMlYxO4=
-X-Google-Smtp-Source: ABdhPJz0ffikS4TGF5IaFKqbwQIxd5Nvv+ViafMOx13+l/ZF61AXxkGBN5WerUiuVCH9298TIfRtvg==
-X-Received: by 2002:a0c:a221:: with SMTP id f30mr899858qva.115.1595437238683; 
- Wed, 22 Jul 2020 10:00:38 -0700 (PDT)
+ bh=oHakeh945Y5uRlEeHuSTpGAaVVYfEAgE+7lOheQO8Cs=;
+ b=gVa+1iQSzNTOgAH2uk1/XR7oTXKXRXcjb7nbnmmYRjVpeiOZbXvE9qRo8OynADWb/t
+ duU6KN/3vcPiWhlOp0TD65QRrSqJw+3RfyNCqqBLUuwhVpYN9m5xFi3bpWiADR5VxmTI
+ MPq/AR9hYCfCUuMjh8wFsN4aKOc9+328dCJZX2gE1IUkLXNuo6+lgtby0/LGc5TWm5cl
+ NajeoQRc1UzXttcva7TyOGBbkw6rua2GnYVmL2IY3mrqGXrWuDaSYbxTOzwxtAwMB/Et
+ 3yFiB3TP8AyB8iCnwGrwYRPksbh9xoN9vTlIDq+dAFVEQGuRYzGygtdw89StQgwLkgds
+ SZyA==
+X-Gm-Message-State: AOAM531E+fsx0Lr8L+m378BORDc485RxlDic4D+9Xb14cHB3t3RhAy+Z
+ FFFpqgQCixAPMvr+fsFPAjl/6B60neo=
+X-Google-Smtp-Source: ABdhPJz3FGh9KOq9DoTCY59gj7gQQ8JvOlgrYgFzd7cIFwrkJaKzGZONiJkC0P0HPb2FOPkGk2yJCg==
+X-Received: by 2002:aed:2c23:: with SMTP id f32mr319067qtd.164.1595437350871; 
+ Wed, 22 Jul 2020 10:02:30 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
  [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id q68sm366337qke.123.2020.07.22.10.00.38
+ by smtp.googlemail.com with ESMTPSA id j18sm445000qko.95.2020.07.22.10.02.30
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 22 Jul 2020 10:00:38 -0700 (PDT)
-Message-ID: <5F1870B5.7030805@gmail.com>
-Date: Wed, 22 Jul 2020 13:00:37 -0400
+ Wed, 22 Jul 2020 10:02:30 -0700 (PDT)
+Message-ID: <5F187125.5020508@gmail.com>
+Date: Wed, 22 Jul 2020 13:02:29 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
 To: usrp-users@lists.ettus.com
-References: <f6a7bc0f-a627-bd61-827c-04e2e9cea7b8@ant.uni-bremen.de>
-In-Reply-To: <f6a7bc0f-a627-bd61-827c-04e2e9cea7b8@ant.uni-bremen.de>
-Subject: Re: [USRP-users] 10us+ sample delay between daughterboards
+References: <CAMVZM+_-CjX8EEzSNuAXrLuDTA2BN1d01eMyfnNHLf79Q88fQw@mail.gmail.com>
+In-Reply-To: <CAMVZM+_-CjX8EEzSNuAXrLuDTA2BN1d01eMyfnNHLf79Q88fQw@mail.gmail.com>
+Subject: Re: [USRP-users] Which ports to secure with RF terminators and how
+ to setup loopback testing.
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -84,52 +85,41 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 07/22/2020 12:39 PM, Johannes Demel via USRP-users wrote:
-> Hi all,
+On 07/22/2020 05:12 AM, Pavlos Basaras via USRP-users wrote:
+> Hello,
 >
-> I have an issue with multiple USRP streams. If they are on separate 
-> daughterboards, but on the same motherboard aka USRP, those streams 
-> are not time aligned. They show a time offset of more than 10us. I use 
-> one USRP source block in GNU Radio and configure it with multiple 
-> streams.
+> i am a newbie to this so i would appreciate all help and pointers for 
+> reading/understanding what i should (please excuse possibly newbie 
+> questions, thanks!).
 >
-> At first, I observed this behavior with N310s but now I see it on an 
-> X310 as well. I use a GNU Radio flowgraph where I set the clock to "PC 
-> clock". I'd expect all streams to be in sync because they are handled 
-> by the same object. At least that's what I hope.
-> On an X310 I have 2 RX streams that observe a signal from across the 
-> room. On an N310, I tried different configurations and I could observe 
-> this delay between daughterboards. They are in sync for one 
-> daughterboard.
+> I have configured 2 usrp n310 devices, following the instructions 
+> from: https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide
+> I am connected to both over all available ports eth0/sfp0/sfp1, and 
+> both "usrp_find_devices" and "uhd_usrp_probe" seem to be working properly.
 >
-> My flowgraph handles frequency offsets etc. But constant time offsets 
-> between RX streams are problematic. And I suppose they should not be 
-> there.
+> I would like to proceed with some real testing 
+> (https://kb.ettus.com/Verifying_the_Operation_of_the_USRP_Using_UHD_and_GNU_Radio).
 >
-> I'd like to use GPSDOs at some point but I don't have a GPS signal in 
-> the lab. And I don't have an octoclock or smth similar. But all of 
-> this shouldn't matter since I only use on USRP for RX. Or am I missing 
-> smth?
+> Q1: which TX ports should be secured with RF terminators? Assuming 
+> that we use e.g., only RF 0, all TX ports in the remaining RF1-3 
+> should be terminated, correct? As we are not currently using any other 
+> port from the
+> front panel (e.g., gps, ref in, trig out, pps ), should these also be 
+> terminated?  What about the daughterboard ports?
 >
-> USRP: N310/X310(with 2x UBX160)
-> UHD: 3.15LTS
-> OS: Ubuntu 20.04
-> GNU Radio 3.9 (aka master)
+> Q2:  the loopback configuration refers to using one usrp to test 
+> TX/RX, correct?. So the setup for this testing is a single usrp, and 
+> focusing on e.g., only on RF 0, by using sma-m to sma-m cable with 
+> 30dB attenuator to start testing?
 >
-> Cheers
-> Johannes
+> all the best,
+> Pavlos.
 >
-Here's something you need to know about the time-keeping architecture in 
-both X310 and N310.  There are, effectively TWO time-keeping
-   registers.
+Putting terminators on unused ports is good laboratory "hygiene" but not 
+strictly necessary.
 
-When you use "Sync to PC", those registers each get updated as a 
-*separate* operation across the wire, so there can be (as you observe) a
-   several-microsecond inconsistency between them.
-
-The whole thing about the 1PPS pulse when doing time-setting is that no 
-matter how many timekeeper registers there are, they all get
-   set at the same instant, due to the 1PPS pulse processing.
+Placing 30-40dB "inline" in a loopback connection (direct connect 
+between RX and TX) is mandatory, to prevent possible damage to the receiver.
 
 
 
