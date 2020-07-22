@@ -2,64 +2,83 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C46C229EB7
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 19:47:26 +0200 (CEST)
-Received: from [::1] (port=53120 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29B11229F1B
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 20:16:19 +0200 (CEST)
+Received: from [::1] (port=53314 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jyIpv-0001UR-8i; Wed, 22 Jul 2020 13:47:23 -0400
-Received: from mail-qk1-f170.google.com ([209.85.222.170]:46901)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jyIpr-0001NW-Ap
- for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 13:47:19 -0400
-Received: by mail-qk1-f170.google.com with SMTP id d14so2771627qke.13
- for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 10:46:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=NgOP9X7nXEs/SCwsbvGNorE1VM3GsJdr2gZjlhUwclk=;
- b=KZ2BLjWbjWTdQJAJbMUGJq20ShsktofjTNB1rPbCDjPRp8V7W5dbp+RGwK8+iAEhwZ
- dm0/xq0R5gqnRUi15Y5h/QqsszHsJzao6r7PcMBhciCcjAbHIJzq3GHDVZpQLoL0AiIr
- Jb/OQoR4M50DmAu5JHn126SHZKaiTK9v9fI3yGV3dqjUkOaDE5fKWupuFN61xxwIX2f+
- vv8oe/PF8pc6ZmiV2ISaxMmA44trldIhR/PUH5oJ+MOYxRgWNQH11ZM+79FvwodFCoyb
- T4SF3O8MigkuCflceUijekGhCsqfduFZa38vTnxmi4SqqFtp7Tfkml5UFD3EVKezLip3
- MGmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=NgOP9X7nXEs/SCwsbvGNorE1VM3GsJdr2gZjlhUwclk=;
- b=V56jGoznlRK3lh6JMBXJUPSuJHLV72+c9aqhqt10UA2TIT9F/C+3AwizJg4yrFwMMn
- A0eP5MeVqbP6syW0TO3F8/FKXjEtUbOOC5X+yXbrEs0JxUZLBpK/VKE8Yn8Qmr395sC1
- 9592bkch/314uLXtpvfzxwkO+N75GNXkVdEUtt8GrE+Vtvdy166fvgD2mN8TGfZj+koE
- ciKFIbObBkZH3gUFZ8SFnVcysbnBhoNHznlL2PiRxUGZda0JPQJ+/ahe/3y/vtjwX0gg
- Gmtw2W0k3+q7Lhr3UUOW4vjlWmGxSe0TSpJRnlVLNCFgWOKEzUnPxFFZ2lyO80jz0k2i
- I6gg==
-X-Gm-Message-State: AOAM5306DFv+V5Jybl/35nds/JIFWiv+iUh3eGK2PzgNrNbP/m0AIK/7
- p6vl8K0j4iB9Mt1rnszCR2+FEiEZXG0=
-X-Google-Smtp-Source: ABdhPJxeL7SqDITyk3M/y+9q1h2tYKVAKDbx8Deci0rqUc/2q7Y7phNcUZHH6EFpaH4gzTmv4UJEvA==
-X-Received: by 2002:a37:a64a:: with SMTP id p71mr1226914qke.296.1595439998537; 
- Wed, 22 Jul 2020 10:46:38 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id x137sm440536qkb.47.2020.07.22.10.46.37
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 22 Jul 2020 10:46:37 -0700 (PDT)
-Message-ID: <5F187B7C.2090909@gmail.com>
-Date: Wed, 22 Jul 2020 13:46:36 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1jyJHq-0003jf-Nr; Wed, 22 Jul 2020 14:16:14 -0400
+Received: from mail-bn7nam10on2055.outbound.protection.outlook.com
+ ([40.107.92.55]:27873 helo=NAM10-BN7-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <jerrid.plymale@canyon-us.com>)
+ id 1jyJHn-0003cE-A9
+ for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 14:16:11 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OZ6fuxna/pdhCDR0axy+JkQk7R6XsSISRlDDXcpl5q9KvtnMi/cqGeNsXOBMXKRObn33avVo5yoXXDwlHBgw0JXWrOpJMQmMcP32B4pgJzE9IVsba/v/vcu5yjqnO0Lgf9GrqH1UU3QRFVrp830MrZwNOF5u2omH+pX9IL+5pVf0RGjmMOvlIYveLP53lfIwFUfvvPgirWokAFygIj/lnq8aaHANo/8X7XIo/J94XTES6EDSRQY0/2WFxw5Q3AgG7CNCtXYGjNn6nRuoV9zRQ5OPBh3vVwd9RZyNJjK3zVCnmGDHQwHf6tza9Ktu05A4t+eWxXrTSUJnYQh0w4UycA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p0Hi/vI4U6QLMo/uw88ikzMTFk2XNunqyIcFTwpb5TI=;
+ b=WiMgSfTOQIteYHyFk7Y199aSrRjYq9tGQ7mxaDZ3wHJjKNQ4mKpj6qYmwZD45so7YBEXiUg4lioULS05lsSdfG6NgjT5wFhyX6744jZetj/YNG7JJ5AMwWlF4Af5Nnzlmn4YD3j1SYKHdKuBE6r1+nqNEcJzDcIVPN1fA11XuEzbpwq8+M1/E5efc5aC9pPBc4GZdhz7NXIlO0MFRqnakx5BKyrSwU5za1GfXDBdM9KBo62DzF1guPjm9AlIwfP686VUV6mXfmuphQTKTXPB4BWTVDSgplJnYInsAl2stGNoOnRh673e3BtY0WjWJ9O1dIbee/pTOXWr03jpl4vJ7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=canyon-us.com; dmarc=pass action=none
+ header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=canyonconsulting.onmicrosoft.com;
+ s=selector2-canyonconsulting-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p0Hi/vI4U6QLMo/uw88ikzMTFk2XNunqyIcFTwpb5TI=;
+ b=AHwXiraNaA2AHhf8YlITHgUg1q8NBK89OOFzFiYwN7MVkLoXwk2QVIXKJ4yeT+vqjelN/vPcCdOpARfW8Z6QmWCXCtlGy3u/E76PR0Oy7ijI8ylxR98Y4VxztT4yRdjH/nE5+g3SzywPKNEfQpQ0P8lJZmfaSHP8m5LfYacOqcc=
+Received: from BY5PR19MB3398.namprd19.prod.outlook.com (2603:10b6:a03:185::26)
+ by BY5PR19MB3762.namprd19.prod.outlook.com (2603:10b6:a03:224::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.23; Wed, 22 Jul
+ 2020 18:15:29 +0000
+Received: from BY5PR19MB3398.namprd19.prod.outlook.com
+ ([fe80::e5ec:f22b:6b02:d161]) by BY5PR19MB3398.namprd19.prod.outlook.com
+ ([fe80::e5ec:f22b:6b02:d161%7]) with mapi id 15.20.3195.028; Wed, 22 Jul 2020
+ 18:15:28 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Re: Signal transmission on a USRP X310 
+Thread-Index: AdZgU/vaF/M4P6Q3QPikH6Xg/0Erzw==
+Date: Wed, 22 Jul 2020 18:15:28 +0000
+Message-ID: <BY5PR19MB3398D74D23AAA722CD1040FAC6790@BY5PR19MB3398.namprd19.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=canyon-us.com;
+x-originating-ip: [98.153.200.210]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 28cc618a-ecb2-4ec1-29d1-08d82e6b36c7
+x-ms-traffictypediagnostic: BY5PR19MB3762:
+x-microsoft-antispam-prvs: <BY5PR19MB3762DE9F17FF7B2A72049180C6790@BY5PR19MB3762.namprd19.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: HasYpo7JRsnjaNQ6JqUxuzlNMMUsg58wemKPhZC15jkz6anm1rOk8R8NyYrBJ3QzGZH5BG+d9qS5ios/D3HTzzGbExkbHss6B48Di7qry3VV1GFh8AJjzKh9hxa0TMO7dzZIpy6UxSo3r62M1BA2UNUfqy2cEx0sBA+Ub37FZboiWxrCjYlVT/RwmvfeDjhSNij/lr4rBDkNg4sWS4QTee2PWloGrRHfsR501bM+01NFTdnvK14moGS7i7V6JAcMNZjl9s5phSmvKX24RILNfeJX4ZPcr98CJ5haFgNkcPL62WqtLKhrRdNepftADPIH
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR19MB3398.namprd19.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(136003)(366004)(39830400003)(396003)(346002)(376002)(316002)(44832011)(33656002)(2906002)(66446008)(508600001)(4744005)(4743002)(5660300002)(66476007)(66556008)(64756008)(9686003)(55016002)(186003)(52536014)(7696005)(66946007)(71200400001)(86362001)(6916009)(6506007)(8676002)(9326002)(8936002)(26005)(76116006);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: riCxXgAd7+7d7jxWomwQZU9j2CDCnHWXj/LcUJ+qD62Ls/kmptTK4dVCN3YdppBqOgqPVE3JXqFl6KZp6H6J+3f7rHdluY+9iYH53goWm4fWBl1eMBW6VitOrl0VS7ivfQzjuTqJeJQigl9Iw8nJBaZu4n5RJ/kIm09gxNTdTQUuvSiuKkZAkNHBdFLJwcc+L5U7O3y+FkcPqLE/NsP00tgb9wVZ/TVVUkKGwTFFErnUZyaLyZyMhi+0Ojg2iRFZ4d6g22YfdsyFpwTs106IXu//V1gl09JfWDrBAHLeEPZ+qhX7rYkHBObU12aWh8+BKM+X3jUIi+KpZ7Vaa8LV53dUNdwBW7qM3ZhpLe3grA/M/v7i+ZxmV6GshsbBNfD2bOgMqcDkJjA2dvm3FVN/6TaqZISKPLFgqCKlf2njhtN6SPycsDNmS6IG+nyA54hb9h6KsWS2WsnLgmwwjVZN3dnzzdRoJdKdg5BHI1uIt+Wku13epr/lYZeSSadZjiXV
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-To: David Carsenat <carsenat@gmail.com>
-CC: usrp-users@lists.ettus.com
-References: <CA+w2ZysadneVug92CO58wFPBKZBBtoK31xdAfV89rt73qVD3Cg@mail.gmail.com>
- <5F187365.7030104@gmail.com>
- <CA+w2ZytN3PA3TGCbrTZ2mED0rCsgyaOU57w8=pkKkAW=1oAR5Q@mail.gmail.com>
- <5F187873.2040206@gmail.com>
- <CA+w2ZytC0pPxp7GOCzE8m6m9FgUZLqDHwAgM1GzH8HLgV26O=A@mail.gmail.com>
-In-Reply-To: <CA+w2ZytC0pPxp7GOCzE8m6m9FgUZLqDHwAgM1GzH8HLgV26O=A@mail.gmail.com>
-Subject: Re: [USRP-users] C++ thread Priority.
+X-OriginatorOrg: canyon-us.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR19MB3398.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28cc618a-ecb2-4ec1-29d1-08d82e6b36c7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jul 2020 18:15:28.4437 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: MyUQpj+Q7mUFpVZQsAWHy3eMLQvi9AMVzmSX1DIwlekVrBg4m21lux1dUWuGgWZ63+YyEXHZYAMR0eEM4+Rq3reXERixKg1RRv+Kd0kwlTg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR19MB3762
+Subject: Re: [USRP-users] Signal transmission on a USRP X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -71,9 +90,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4574180479539947443=="
+From: Jerrid Plymale via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+Content-Type: multipart/mixed; boundary="===============5412037006942765906=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,255 +106,109 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============4574180479539947443==
+--===============5412037006942765906==
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="------------050106090203090204020109"
+	boundary="_000_BY5PR19MB3398D74D23AAA722CD1040FAC6790BY5PR19MB3398namp_"
 
-This is a multi-part message in MIME format.
---------------050106090203090204020109
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_BY5PR19MB3398D74D23AAA722CD1040FAC6790BY5PR19MB3398namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 07/22/2020 01:40 PM, David Carsenat wrote:
-> It just put received samples in a circular buffer and  transmit this 
-> buffer. A delay line.
-> But the SR is 50 Msps... 8 bits.
->  Do you have ideas about OS ?
-> Thanks.
+Hello Marcus,
+
+The tool I have been using for initial signal quality checking has been the=
+ QT Waterfall sink in GNU Radio Companion to see if the signals are looking=
+ correct. Upon seeing that it looked like I was loosing data when I set the=
+ USRP sink's center frequency above 1.3 GHz, I connected the output of the =
+USRP to a spectrum analyzer to get some more accurate measurements of the s=
+ignal. After running some tests, I found that at a center frequency less th=
+an 1.3 GHz, the strength of the signal was somewhere around -70 dBm. When I=
+ would increase the frequency to a value above 1.3 GHz, and no changes to a=
+nything else (e.g., channel gain, sample rate), the strength dropped to som=
+ewhere around -90 dBm. This was measured by tracking the peak power from an=
+ FFT of the signal input to the spectrum analyzer. Would it help to see the=
+ flowgraph?
+
+Best Regards,
+
+Jerrid Plymale
+
+--_000_BY5PR19MB3398D74D23AAA722CD1040FAC6790BY5PR19MB3398namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-There are commercial real-time low-latency OS "out there" that aren't 
-free, and UHD has not been ported to them as far as I know.
-
-
-> Le mer. 22 juil. 2020 à 19:33, Marcus D. Leech 
-> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> a écrit :
->
->     On 07/22/2020 01:22 PM, David Carsenat wrote:
->>     Ok thanks. The code is really simple and i don't think it can be
->>     optimized.
->>     Is there other linux OS i can try ?
->>     Thanks again.
->>
->     If it's really simple, what is the sample-rate?  Is it trying to
->     write data to the filesystem at high rates?  No amount of code
->     optimization can get
->       around the fact that the disk subsystem is very slow compared to
->     other parts of the computer, like memory, CPU, etc.
->
->
->>     Le mer. 22 juil. 2020 à 19:12, Marcus D. Leech via USRP-users
->>     <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>
->>     a écrit :
->>
->>         On 07/22/2020 12:56 PM, David Carsenat via USRP-users wrote:
->>         > Hello, I have made a c++ code which sends samples in the
->>         main function
->>         > and receives samples in a thread launched in this main
->>         function.
->>         > I have read that we can set the real time priority with the
->>         > set_thread_priority function.
->>         > I have tried to call this function (with parameters
->>         (1,true) inside
->>         > the main function but it doesn't seem to change the
->>         priority of the
->>         > executable. When I launch another application, I have lots
->>         of U and O.
->>         >
->>         > Do you have an idea how to achieve what I want ? i.e.
->>         allocate almost
->>         > all computer resources to my uhd program ? What is the best
->>         way ?
->>         > I have already tuned my ubuntu with advice given on Ettus
->>         site.(
->>         > cpu-freq set etc...)
->>         >
->>         > Many thanks
->>         >
->>         > David
->>         >
->>         In general, applications have only very-rough control over
->>         the behavior
->>         of the scheduler.  This is true in most general-purpose
->>         operating system
->>            environments, whether it's Windows, Linux, *BSD, MacOS, etc.
->>
->>         If you've played with priorities, and starting up other
->>         programs causes
->>         OU to happen, you should probably consider:
->>
->>         (A) Optimizing your code -- find out where the hot-spots are,
->>         and see if
->>         they can be improved
->>         (B) Choosing a faster CPU
->>
->>         The CPU usage of a DSP flow is roughly proportional to:
->>
->>         inherent-per-sample-complexity X sample-rate
->>
->>         Can you lower the sample rate and still achieve what you need to
->>         achieve?  Can you improve the main-path per-sample complexity?
->>
->>
->>
->>         _______________________________________________
->>         USRP-users mailing list
->>         USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
-
-
---------------050106090203090204020109
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/22/2020 01:40 PM, David Carsenat
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CA+w2ZytC0pPxp7GOCzE8m6m9FgUZLqDHwAgM1GzH8HLgV26O=A@mail.gmail.com"
-      type="cite">
-      <div dir="auto">It just put received samples in a circular buffer
-        and  transmit this buffer. A delay line. 
-        <div dir="auto">But the SR is 50 Msps... 8 bits.</div>
-        <div dir="auto"> Do you have ideas about OS ?</div>
-        <div dir="auto">Thanks.</div>
-      </div>
-      <br>
-    </blockquote>
-    There are commercial real-time low-latency OS "out there" that
-    aren't free, and UHD has not been ported to them as far as I know.<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CA+w2ZytC0pPxp7GOCzE8m6m9FgUZLqDHwAgM1GzH8HLgV26O=A@mail.gmail.com"
-      type="cite">
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">Le mer. 22 juil. 2020 à 19:33,
-          Marcus D. Leech &lt;<a moz-do-not-send="true"
-            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
-          a écrit :<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0 0 0
-          .8ex;border-left:1px #ccc solid;padding-left:1ex">
-          <div bgcolor="#FFFFFF" text="#000000">
-            <div>On 07/22/2020 01:22 PM, David Carsenat wrote:<br>
-            </div>
-            <blockquote type="cite">
-              <div dir="auto">Ok thanks. The code is really simple and i
-                don't think it can be optimized. 
-                <div dir="auto">Is there other linux OS i can try ?</div>
-                <div dir="auto">Thanks again.</div>
-              </div>
-              <br>
-            </blockquote>
-            If it's really simple, what is the sample-rate?  Is it
-            trying to write data to the filesystem at high rates?  No
-            amount of code optimization can get<br>
-              around the fact that the disk subsystem is very slow
-            compared to other parts of the computer, like memory, CPU,
-            etc.<br>
-            <br>
-            <br>
-            <blockquote type="cite">
-              <div class="gmail_quote">
-                <div dir="ltr" class="gmail_attr">Le mer. 22 juil. 2020
-                  à 19:12, Marcus D. Leech via USRP-users &lt;<a
-                    moz-do-not-send="true"
-                    href="mailto:usrp-users@lists.ettus.com"
-                    target="_blank" rel="noreferrer">usrp-users@lists.ettus.com</a>&gt;
-
-                  a écrit :<br>
-                </div>
-                <blockquote class="gmail_quote" style="margin:0 0 0
-                  .8ex;border-left:1px #ccc solid;padding-left:1ex">On
-                  07/22/2020 12:56 PM, David Carsenat via USRP-users
-                  wrote:<br>
-                  &gt; Hello, I have made a c++ code which sends samples
-                  in the main function <br>
-                  &gt; and receives samples in a thread launched in this
-                  main function.<br>
-                  &gt; I have read that we can set the real time
-                  priority with the <br>
-                  &gt; set_thread_priority function.<br>
-                  &gt; I have tried to call this function (with
-                  parameters (1,true) inside <br>
-                  &gt; the main function but it doesn't seem to change
-                  the priority of the <br>
-                  &gt; executable. When I launch another application, I
-                  have lots of U and O.<br>
-                  &gt;<br>
-                  &gt; Do you have an idea how to achieve what I want ?
-                  i.e. allocate almost <br>
-                  &gt; all computer resources to my uhd program ? What
-                  is the best way ?<br>
-                  &gt; I have already tuned my ubuntu with advice given
-                  on Ettus site.( <br>
-                  &gt; cpu-freq set etc...)<br>
-                  &gt;<br>
-                  &gt; Many thanks<br>
-                  &gt;<br>
-                  &gt; David<br>
-                  &gt;<br>
-                  In general, applications have only very-rough control
-                  over the behavior <br>
-                  of the scheduler.  This is true in most
-                  general-purpose operating system<br>
-                     environments, whether it's Windows, Linux, *BSD,
-                  MacOS, etc.<br>
-                  <br>
-                  If you've played with priorities, and starting up
-                  other programs causes <br>
-                  OU to happen, you should probably consider:<br>
-                  <br>
-                  (A) Optimizing your code -- find out where the
-                  hot-spots are, and see if <br>
-                  they can be improved<br>
-                  (B) Choosing a faster CPU<br>
-                  <br>
-                  The CPU usage of a DSP flow is roughly proportional
-                  to:<br>
-                  <br>
-                  inherent-per-sample-complexity X sample-rate<br>
-                  <br>
-                  Can you lower the sample rate and still achieve what
-                  you need to <br>
-                  achieve?  Can you improve the main-path per-sample
-                  complexity?<br>
-                  <br>
-                  <br>
-                  <br>
-                  _______________________________________________<br>
-                  USRP-users mailing list<br>
-                  <a moz-do-not-send="true"
-                    href="mailto:USRP-users@lists.ettus.com"
-                    rel="noreferrer noreferrer" target="_blank">USRP-users@lists.ettus.com</a><br>
-                  <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                    rel="noreferrer noreferrer noreferrer"
-                    target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-                </blockquote>
-              </div>
-            </blockquote>
-            <br>
-          </div>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello Marcus,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The tool I have been using for initial signal qualit=
+y checking has been the QT Waterfall sink in GNU Radio Companion to see if =
+the signals are looking correct. Upon seeing that it looked like I was loos=
+ing data when I set the USRP sink&#8217;s
+ center frequency above 1.3 GHz, I connected the output of the USRP to a sp=
+ectrum analyzer to get some more accurate measurements of the signal. After=
+ running some tests, I found that at a center frequency less than 1.3 GHz, =
+the strength of the signal was somewhere
+ around -70 dBm. When I would increase the frequency to a value above 1.3 G=
+Hz, and no changes to anything else (e.g., channel gain, sample rate), the =
+strength dropped to somewhere around -90 dBm. This was measured by tracking=
+ the peak power from an FFT of the
+ signal input to the spectrum analyzer. Would it help to see the flowgraph?=
+ &nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Jerrid Plymale<o:p></o:p></p>
+</div>
+</body>
 </html>
 
---------------050106090203090204020109--
+--_000_BY5PR19MB3398D74D23AAA722CD1040FAC6790BY5PR19MB3398namp_--
 
 
---===============4574180479539947443==
+--===============5412037006942765906==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -346,5 +219,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4574180479539947443==--
+--===============5412037006942765906==--
 
