@@ -2,59 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE106229D88
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 18:52:07 +0200 (CEST)
-Received: from [::1] (port=52596 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1567229D9B
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 18:57:41 +0200 (CEST)
+Received: from [::1] (port=52652 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jyHyO-0003Zf-4q; Wed, 22 Jul 2020 12:52:04 -0400
-Received: from ns13-777.999servers.com ([103.14.122.123]:55684)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <kpras@trilcomm.com>) id 1jyHyJ-0003Se-UN
- for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 12:52:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=trilcomm.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- MIME-Version:Message-ID:Date:Subject:In-Reply-To:References:To:From:Sender:
- Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=WN931mlEy20wQ6pybvhBrNI2JLpc+wwbwy1YKzcGFMI=; b=MqQYQAalbepAzbROphaZYZDxZi
- 87Lxnkb4VLPeOsvx8vGLHjGsbLBpn3aJLp/29+1dTwZ+nnnhE53rDl1f/vQNBEzwXidYEiulkndQS
- UVoBWJcYJbQ8nq6QT7GLd4uZE4VkS58akyBe04mCuJQLQO+tffVck5yN84YqL0+wn/n9Ni6ZFQ984
- 7GQH6JKalzfLgqm3vC5/NNOchd5pcZbbtLRRA71kW+GRzGhztr9t/Q7VXO/mKD12rx//sv61+aiXq
- Zmof9xC52/gsUpX/F5fKpyOoxH1o772aa2902qRe9a7AeCOjJnJ1vjCKXesxve+MP5pxCb/YgWvyO
- 5G9fzGPA==;
-Received: from [183.83.140.209] (port=23827 helo=AetherGT)
- by ns13-777.999servers.com with esmtpsa (TLS1) tls
- TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (Exim 4.93)
- (envelope-from <kpras@trilcomm.com>)
- id 1jyHxW-007hYx-53; Wed, 22 Jul 2020 22:21:10 +0530
-To: =?iso-8859-1?Q?'Marcus_M=FCller'?= <marcus.mueller@ettus.com>,
- <usrp-users@lists.ettus.com>
-References: <001b01d65f79$eae66ea0$c0b34be0$@com> <5F171581.7080201@gmail.com>
- <003b01d65f7b$852d6850$8f8838f0$@com> <5F17172A.9040600@gmail.com>
- <004301d65f7c$7138a750$53a9f5f0$@com> <5F1719EB.6000400@gmail.com>
- <cf7f523f-4017-1467-4782-f06b9f0bc786@ettus.com>
-In-Reply-To: <cf7f523f-4017-1467-4782-f06b9f0bc786@ettus.com>
-Date: Wed, 22 Jul 2020 22:21:10 +0530
-Message-ID: <006001d66048$4ea13d70$ebe3b850$@com>
+	id 1jyI3n-0004Qe-PZ; Wed, 22 Jul 2020 12:57:39 -0400
+Received: from mail-qt1-f173.google.com ([209.85.160.173]:45717)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <carsenat@gmail.com>) id 1jyI3k-000458-Bd
+ for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 12:57:36 -0400
+Received: by mail-qt1-f173.google.com with SMTP id s23so2298800qtq.12
+ for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 09:57:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=BL+Lq6rvSE4M1xwzr611FxbWL2pqdLlWhMpC9MwBKNU=;
+ b=og/HdCzRBNntH64x6Ffw1ckU7HEKaG1F1MN0NUpMzHSfMuS8+RceuV48nnaVnWCR3x
+ 0/YUcY9uJCUPnpXYt1y5BVR2XWGwQY+24Y9c6eRvh+/Ps4eB/S9iy1M1JwgWkEXkdK8e
+ bn1jtqybw0iuowQD6WtsFOhQAOvqdMp4tMxDy5BdIPngkVeihdaV5yxKrsKlXOQiqMiZ
+ OEGFwk52+Q79fK3/FSAZe3SjxpXrWs5PB5kiO8BX2PbrZBC6UXX9oUOxMngUpTu4rtVt
+ tJweeta4zN0DbXBZ1Mz1r4q74VpNA2vqTFQ5Zd/EZPlP8mcuGc8sjzpKX/+tF3cVz1U0
+ GG0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=BL+Lq6rvSE4M1xwzr611FxbWL2pqdLlWhMpC9MwBKNU=;
+ b=lj+0lLM6HzEzFcMl03IyxLsCaA5CnMGTEv9a+eq3lFCni6t39qdHsDDBo/lPjFF4Oc
+ TH6mKJ1E9wXh8lUvljhKv3F/ui2GIYDqSTbv2e0CahqYlk+CMR/J08wH/3D4WNB6DyPx
+ zkn0/v5skihpWSv+BYQiroJOReg0637i7ShLzGbagJrQRgU5y4hO8fgWtR7A9a7nSXzh
+ i+v1jXj903ONtJGHu5A9KTkr+7Ns2Y/yPoezeiXKtu1fgmkc4Rm7Xr06sl+4WHaLcHm4
+ ujMQO749D6ji6V+RfGEF4jy3Map1QjnE0Z4OCvwiUkz5HRB//LaAh0LW25exsXmV73h9
+ wQ4w==
+X-Gm-Message-State: AOAM532+D/IQiToXkoDrc16zYV/atydbanXuLiVpPILArqU3EEoYuvsM
+ gj+ET/+AB6EqINQ6HxSlEqlcD2JR1vvo3hHa/DGmJuqA
+X-Google-Smtp-Source: ABdhPJxfmWw03D7q4GNSzLUcDX9sKHUrtlhuz48dw9dHEh/8IeNWM4qaEhPOXJPKDRdhcAQvfistJo7R0wufRSqPvb8=
+X-Received: by 2002:ac8:3fcb:: with SMTP id v11mr278644qtk.348.1595437015317; 
+ Wed, 22 Jul 2020 09:56:55 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 12.0
-Content-Language: en-us
-Thread-Index: AdZfhaP0JHWKw2IvQ4aszYr2JszFUQAwoWTA
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - ns13-777.999servers.com
-X-AntiAbuse: Original Domain - lists.ettus.com
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - trilcomm.com
-X-Get-Message-Sender-Via: ns13-777.999servers.com: authenticated_id:
- kpras@trilcomm.com
-X-Authenticated-Sender: ns13-777.999servers.com: kpras@trilcomm.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Re: [USRP-users] 1 Ts delay in USRP B210
+Date: Wed, 22 Jul 2020 18:56:44 +0200
+Message-ID: <CA+w2ZysadneVug92CO58wFPBKZBBtoK31xdAfV89rt73qVD3Cg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] C++ thread Priority.
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,10 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Prasad via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Prasad <kpras@trilcomm.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: David Carsenat via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: David Carsenat <carsenat@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0651621814429797912=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,220 +70,58 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Thanks! a lot Marcus M and Marcus D for your valuable information.
+--===============0651621814429797912==
+Content-Type: multipart/alternative; boundary="0000000000008f421005ab0aa065"
 
-Thanks,
+--0000000000008f421005ab0aa065
+Content-Type: text/plain; charset="UTF-8"
 
------Original Message-----
-From: Marcus M=FCller [mailto:marcus.mueller@ettus.com] =
+Hello, I have made a c++ code which sends samples in the main function and
+receives samples in a thread launched in this main function.
+I have read that we can set the real time priority with the
+set_thread_priority function.
+I have tried to call this function (with parameters (1,true) inside the
+main function but it doesn't seem to change the priority of the executable.
+When I launch another application, I have lots of U and O.
 
-Sent: Tuesday, July 21, 2020 11:07 PM
-To: usrp-users@lists.ettus.com; Prasad
-Subject: Re: [USRP-users] 1 Ts delay in USRP B210
+Do you have an idea how to achieve what I want ? i.e. allocate almost all
+computer resources to my uhd program ? What is the best way ?
+I have already tuned my ubuntu with advice given on Ettus site.( cpu-freq
+set etc...)
 
-Hello Prasad,
+Many thanks
 
-I second everything Marcus L said, and will add:
+David
 
-In your first email you said this is about the UE.
+--0000000000008f421005ab0aa065
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-UE (user equipment) are normally things like phones. These don't have
-any great clocks of their own. They derive their clocks from that of the
-network.
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hello, I have made a c++ code which =
+sends samples in the main function and receives samples in a thread launche=
+d in this main function.<br></div>I have read that we can set the real time=
+ priority with the set_thread_priority function.<br></div><div>I have tried=
+ to call this function (with parameters (1,true) inside the main function b=
+ut it doesn&#39;t seem to change the priority of the executable. When I lau=
+nch another application, I have lots of U and O.<br><br></div><div>Do you h=
+ave an idea how to achieve what I want ? i.e. allocate almost all computer =
+resources to my uhd program ? What is the best way ?<br></div><div>I have a=
+lready tuned my ubuntu with advice given on Ettus site.( cpu-freq set etc..=
+.)<br><br></div><div>Many thanks<br><br></div><div>David<br></div></div>
 
-Sure, for prototyping, reducing the frequency error makes sense, but
-even if both your basestation (gNodeB in 5G jargon) and your UE have
-atomic clocks, they will be unsynchronized if either moves. Doppler!
-
-So, in the end, if you're not in the business of evaluating
-synchronization algorithms, you're probably requesting the wrong thing:
-Make your UE implementation extract frequency information from the
-received downlink signal (there's plenty of implicit and explicit info
-in LTE/5G for exactly that), and live with the oscillator you have - it
-only needs to be stable for short times. I'm almost certain that any
-smartphone will have a worse oscillator than your B210 has.
-
-Best regards,
-Marcus M
-
-On 21.07.20 18:38, Marcus D. Leech via USRP-users wrote:
-> On 07/21/2020 12:31 PM, Prasad wrote:
->>
->> Then how we can handle this drift in our 5G-NR stack by using
->> /uhd_rx_streamer_issue_stream_cmd/?
->>
->> Or we should go with GPSDO/external clock?
->>
->> Thanks,
->>
-> Well, since most users on here aren't experts on 5G stacks, me included,
-> I can't tell you what to do to your stack to handle
-> =A0 clock drift.=A0 But I WILL say that clock drift is an inevitable issu=
-e,
-> and as you get better clocks, the scale of that issue becomes
-> =A0 smaller as you spend more money on better clocks.
-> =
-
-> A built-in GPSDO would not be a bad investment if clock drift at a scale
-> of 0.8PPM is an issue for your implementation.
-> =
-
-> Many digital demodulators implement algorithms for dealing with
-> clock-drift and imprecision on the rx side using PLLs and the like.
-> =A0 But for 5G I have no idea how that would play out.
-> =
-
-> =
-
->> *From:*Marcus D. Leech [mailto:patchvonbraun@gmail.com]
->> *Sent:* Tuesday, July 21, 2020 9:56 PM
->> *To:* Prasad; usrp-users@lists.ettus.com
->> *Subject:* Re: [USRP-users] 1 Ts delay in USRP B210
->>
->> On 07/21/2020 12:25 PM, Prasad wrote:
->>
->> =A0=A0=A0 We are using internal clock, don=92t use any GPSDO or external=
- clock.
->>
->> =A0=A0=A0 So for internal clock is this expected?
->>
->> =A0=A0=A0 Thanks,
->>
->> The internal clock is specced to +/- 2PPM.=A0=A0 You're seeing much less
->> than that, so it's within spec.
->>
->>
->>
->> *From:*USRP-users [mailto:usrp-users-bounces@lists.ettus.com] *On
->> Behalf Of *Marcus D. Leech via USRP-users
->> *Sent:* Tuesday, July 21, 2020 9:49 PM
->> *To:* usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
->> *Subject:* Re: [USRP-users] 1 Ts delay in USRP B210
->>
->> On 07/21/2020 12:13 PM, Prasad via USRP-users wrote:
->>
->> =A0=A0=A0 Soft reminder!
->>
->> =A0=A0=A0 Thanks,
->>
->> =A0=A0=A0 *From:*Prasad [mailto:kpras@trilcomm.com]
->> =A0=A0=A0 *Sent:* Monday, July 20, 2020 7:58 PM
->> =A0=A0=A0 *To:* 'usrp-users@lists.ettus.com
->> <mailto:usrp-users@lists.ettus.com>'
->> =A0=A0=A0 *Cc:* 'Rao Yenamandra'
->> =A0=A0=A0 *Subject:* 1 Ts delay in USRP B210
->>
->> =A0=A0=A0 Dear Team.
->>
->> =A0=A0=A0 Hope you are doing well and safe.
->>
->> =A0=A0=A0 We are bringing up our NR-5G UE stack with USRP B210.
->>
->> =A0=A0=A0 If time permits, would you pls. reply to below concern with yo=
-ur
->> =A0=A0=A0 valuable information.
->>
->> =A0=A0=A0 During the synchronization procedure, we observe atleast /=B1/1
->> =A0=A0=A0 /Ts/ (Sampling Time) drift in rx streamer in every=A0 ~40ms ti=
-me
->> period.
->>
->> =A0=A0=A0 Are we missing any time_spec during /uhd_rx_streamer_recv/ api=
- or
->> =A0=A0=A0 in /uhd_tx_streamer_send/ ?
->>
->> =A0=A0=A0 Master clock rate: 30.72e6
->>
->> =A0=A0=A0 Sampling rate: 30.72e6
->>
->> =A0=A0=A0 Carrier frequency: 3.8e9
->>
->> =A0=A0=A0 We use one B210 to transmit time domain samples back to back a=
-nd
->> =A0=A0=A0 others to receive.
->>
->> =A0=A0=A0 Log snippet:
->>
->> =A0=A0=A0 Init PSS detected with lag: /4469/ (/PSS detection offset from=
- the
->> =A0=A0=A0 slot boundary/ )
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4469
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4469
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4469
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4470 =E01 Ts drift
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4470
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4470
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4471 =E01 Ts drift.
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4472=E01 Ts drift
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4472
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4472
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4484 =E012 Ts drift
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Thanks! in advance.
->>
->> =A0=A0=A0 Regards,
->>
->> =A0=A0=A0 Prasad.
->>
->> Are you just using the on-board reference clock, or using something
->> like a GPS module?
->>
->> The drift you show is roughly 0.8PPM (if I've done my math correctly),
->> which is well within spec for this board without a better reference
->> clock.
->>
->>
->>
-> =
-
-> =
-
-> =
-
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> =
+--0000000000008f421005ab0aa065--
 
 
+--===============0651621814429797912==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0651621814429797912==--
+
