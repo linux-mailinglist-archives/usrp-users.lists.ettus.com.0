@@ -2,59 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C569229DD5
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 19:06:33 +0200 (CEST)
-Received: from [::1] (port=52736 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4739D229DE7
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 19:08:13 +0200 (CEST)
+Received: from [::1] (port=52746 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jyICO-0005fh-8E; Wed, 22 Jul 2020 13:06:32 -0400
-Received: from mail-qt1-f170.google.com ([209.85.160.170]:43531)
+	id 1jyIE0-0005vT-Cd; Wed, 22 Jul 2020 13:08:12 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:37647)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jyICK-0005Y6-Ag
- for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 13:06:28 -0400
-Received: by mail-qt1-f170.google.com with SMTP id k18so2323985qtm.10
- for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 10:06:08 -0700 (PDT)
+ id 1jyIDw-0005o5-MU
+ for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 13:08:08 -0400
+Received: by mail-qt1-f193.google.com with SMTP id d27so2356987qtg.4
+ for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 10:07:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=uV/7jq51XZUzt2rMhSHePQYHvMC+h/88Z5ksLkUiEsI=;
- b=PLKeaBD784YrV+BTO06xJNwkVt8ekTJMBm60Q1FzyR/xJga1gA8vteOHUnDfIqggZ+
- c0Ud2EjnDgSkd0i6txWixCbDj+Ifs7bA3FLuWLQDFd+Fi5EYFbQyo60tzMOOm9+dIs+b
- P1OCVZ4EZXQcjI89d+zmn+SAEUazr9+L/MR/0h0TAWeE2Edql5+aQCWG0yxyeaw9WfIy
- wvWl3Y2Y1AfN9ahvU9wnt0gVgfHs8NeHLKNEiSgNzJXE2L7giJvhH2U0gK4JcDwlG9wW
- /WgxSf5YlLU/nDpnwP/JgM3L9xUVObGNuTmGO9a5ee20QbUqX7yifcPtSWCwwKoNVW/K
- Whaw==
+ :in-reply-to; bh=koj8vQ6Vwow9WHURvVfbih/j+pCJk0OPr/7+C3C/8lI=;
+ b=YxAFUTtf1MJ2uuoMkUFhLATyLkMk7fVfap8DQ3KaZM6b5h99gt5c1hy93t6WysRg8e
+ F+EYOICx+C4WdyHmpEdE68e9Cmw8T8lhSx+2mQhCFhjC+XGpS+k9IXaDDUSNJTPn2UDc
+ jcqWt/S8a8+DtwvzkbDn7fvQrCccvofM2sz7oyZgUBJmNMokp53Re1Ju4z/0IhzlbObV
+ DzajflUfIdlrGSulm4Z6naL2DGlAfCSw7zH4MfmGZUGXIq33KGsvDc/MOoOm6EzesmOB
+ IzOikhqMtUiM7AeN0xRxkBaEv+H4CsYd2LqmSb2SE6EKY9HMwniL4ex/P3sh+EXijUsB
+ QDDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to;
- bh=uV/7jq51XZUzt2rMhSHePQYHvMC+h/88Z5ksLkUiEsI=;
- b=ebpOzBLxE0m/ukUWM4chAB+7/XTKneIsSokvP0T9MNGEZHc2pL1tIXQRKOvHIC6liE
- Q/QG0peRJyjgzkCW4DRAJHM8Fzw+IwXYfA2CTzdqEbe4ueFu0GP9WAacVkdo6ZKjf/L0
- X4QchQaUJqKNuJYOKAasqNXELjKRhiyWcsf16oh6mLKQbaamYGOdoWTqO08Rv4LhdgYo
- 7KtoH8X36OmDtOcpjGTcuQU3YESH0emEm37ZUhXUbrtZtKnVjgH7IQH0JBlgHeGIuo/p
- js64Ho52HsS1U9JUARQ89nMyolM3DEUa+AfkVKBWPukqN+vu++TyB195X69X44kmn/3v
- wNZw==
-X-Gm-Message-State: AOAM532CIqbIw1lyE49CLrJOntpos1BgTPpjNXodB2b6OCP34skhGXIx
- 8JHeVP7buMn7aCp/T5wiD1isg7N/OeA=
-X-Google-Smtp-Source: ABdhPJyXnODJvJX4N7uFNHBb6nEtG9D1S/TrMmZD+yuzup0B3Xa7acU08Fs/ovAtYCVslPnaSILMwQ==
-X-Received: by 2002:aed:3621:: with SMTP id e30mr333552qtb.190.1595437547023; 
- Wed, 22 Jul 2020 10:05:47 -0700 (PDT)
+ bh=koj8vQ6Vwow9WHURvVfbih/j+pCJk0OPr/7+C3C/8lI=;
+ b=JI7mwVFdAjpmgBtXM1P//F2cRxNvOOeDuNX+Jqfb4tmxZioKA8nk37TcJIxUiKZFxz
+ CijF4TbH5YrwkTCxaoYSQLY0Ed9eDf5G0A2nos8vLOiLOvnzT+mO33vMX4VCP5PGNQsz
+ 5cetERas80qNv/m+3q8C8nhCLAKeTHAClXsWt401RVanLf7nsasINxgkY2Pw4e/zsWje
+ 1/eOWC9S0rfAQF3FBYEVhvVmgJUaYB/UqEuedNfc8q6wK0sXJPxxNhUzYvG1aQGqNwrk
+ ygqhb5NAST/AnL+z8gzWukSmaIKOvNoMc9Iuf5wcnUhZVSl+Fq8My42sKu6WPJt6f6EB
+ Uu4Q==
+X-Gm-Message-State: AOAM532S5sAwxYR6aUOTP2sQ/1hhLZUCxrEAoOEyFF2+joGoDes++OE4
+ alcEZ24naf+0u2IpmV6hgm5TFEbb0qo=
+X-Google-Smtp-Source: ABdhPJwjgSr1mkEJ5H6lqeFBUOWNLIq2X8mVH6Q9nmivd+MbwVnnGZut1zCzhG2s3DJRY5XqwylzQQ==
+X-Received: by 2002:ac8:6743:: with SMTP id n3mr315320qtp.7.1595437646385;
+ Wed, 22 Jul 2020 10:07:26 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
  [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id l31sm211759qtc.33.2020.07.22.10.05.46
+ by smtp.googlemail.com with ESMTPSA id 205sm352849qkn.104.2020.07.22.10.07.25
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 22 Jul 2020 10:05:46 -0700 (PDT)
-Message-ID: <5F1871E9.30802@gmail.com>
-Date: Wed, 22 Jul 2020 13:05:45 -0400
+ Wed, 22 Jul 2020 10:07:25 -0700 (PDT)
+Message-ID: <5F18724D.30309@gmail.com>
+Date: Wed, 22 Jul 2020 13:07:25 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
 To: usrp-users@lists.ettus.com
-References: <PU1PR06MB2133D7FA64F75E34E3CCB8A28E790@PU1PR06MB2133.apcprd06.prod.outlook.com>
-In-Reply-To: <PU1PR06MB2133D7FA64F75E34E3CCB8A28E790@PU1PR06MB2133.apcprd06.prod.outlook.com>
-Subject: Re: [USRP-users] Planning to buy USRP
+References: <CANzM3hwYu3EB-r1ykowjinZEJ7C=91eGZWcJBKB8ZdoQ-0yFEw@mail.gmail.com>
+In-Reply-To: <CANzM3hwYu3EB-r1ykowjinZEJ7C=91eGZWcJBKB8ZdoQ-0yFEw@mail.gmail.com>
+Subject: Re: [USRP-users] Different gain traces at RX interfaces
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,7 +68,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7986226232636097139=="
+Content-Type: multipart/mixed; boundary="===============7364293407073215850=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,42 +83,57 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============7986226232636097139==
+--===============7364293407073215850==
 Content-Type: multipart/alternative;
- boundary="------------010805090207040808090205"
+ boundary="------------040801080805060607080109"
 
 This is a multi-part message in MIME format.
---------------010805090207040808090205
+--------------040801080805060607080109
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 07/22/2020 04:45 AM, Kumari, Surabhi via USRP-users wrote:
+On 07/22/2020 04:37 AM, Arash Jafari via USRP-users wrote:
+> Hello All,
 >
-> Hi,
->
-> I was working with LimeSDR with OpenAirInterface, We are not getting 
-> the desired result. We are planning to buy USRP. Please suggest which 
-> USRP shall we buy which should be compatible with openairinterface as 
-> well as free5GC.
->
-> Please let me know what are the other hardware requirements to work 
-> with USRP.
->
-> Regards,
->
-> Surabhi
+> My instrument (USRP X310) has 2 equivalent UBX-160 daughter boards.
 >
 >
-You may want to augment whatever USRP you buy with a GPSDO module, since 
-I think most of these "stacks" are sensitive to timing quality.
+> *|   |   |       RX Dboard: A
+> |   |   |   ID: UBX-160 v2 (0x007e)
+> |   |   |   Serial: 31D5AC*
+> *
+> *
+> * RX Dboard: B
+> |   |   |   ID: UBX-160 v2 (0x007e)
+> |   |   |   Serial: 31D5B02*
+> *
+> *
+> I applied an equivalent external stimulus at both RX interfaces.
+> but the same stimulus signal at RX1 and RX2 interfaces  results in an 
+> 18 dB difference in relative gain trace!!!!!!
+> In attachment please find the relative gain trace.
+> Does anybody know what is wrong with the board?
+> Thank you in advance!
+> *
+> *
+> *
+> *
+> -- 
+> Dipl.-Ing. Arash Jafari
+>
+> Phone: +43 650 844 3617
+> E-mail: arash.jafari.telecom@gmail.com 
+> <mailto:arash.jafari.telecom@gmail.com>
+>
+How are these interfaces being driven?  Hard-wired?  Antenna?   What is 
+the magnitude of the stimulus signal?
 
-Without knowing exactly what problems you encountered with the LimeSDR, 
-it's hard to make recommendations.  I hate to do this on a technical
-   list, but sales@ni.com might be your best bet.
+Are you sure you are plugged in to the right connectors on the front 
+panel?   Is the gain being set to the same thing on both interfaces?
 
 
 
---------------010805090207040808090205
+--------------040801080805060607080109
 Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
@@ -128,81 +143,94 @@ Content-Transfer-Encoding: 8bit
       http-equiv="Content-Type">
   </head>
   <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/22/2020 04:45 AM, Kumari, Surabhi
+    <div class="moz-cite-prefix">On 07/22/2020 04:37 AM, Arash Jafari
       via USRP-users wrote:<br>
     </div>
     <blockquote
-cite="mid:PU1PR06MB2133D7FA64F75E34E3CCB8A28E790@PU1PR06MB2133.apcprd06.prod.outlook.com"
+cite="mid:CANzM3hwYu3EB-r1ykowjinZEJ7C=91eGZWcJBKB8ZdoQ-0yFEw@mail.gmail.com"
       type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">Hi,<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">I was working with LimeSDR with
-          OpenAirInterface, We are not getting the desired result. We
-          are planning to buy USRP. Please suggest which USRP shall we
-          buy which should be compatible with openairinterface as well
-          as free5GC.<o:p></o:p></p>
-        <p class="MsoNormal">Please let me know what are the other
-          hardware requirements to work with USRP.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Regards,<o:p></o:p></p>
-        <p class="MsoNormal">Surabhi<o:p></o:p></p>
+      <div dir="ltr">
+        <div>Hello All,</div>
+        <div><br>
+        </div>
+        My instrument (USRP X310) has 2 equivalent UBX-160 daughter
+        boards.
+        <div><br>
+          <div><br>
+            <div><b>|   |   |       RX Dboard: A<br>
+                |   |   |   ID: UBX-160 v2 (0x007e)<br>
+                |   |   |   Serial: 31D5AC</b></div>
+            <div><b><br clear="all">
+              </b>
+              <div><b> RX Dboard: B<br>
+                  |   |   |   ID: UBX-160 v2 (0x007e)<br>
+                  |   |   |   Serial: 31D5B02</b><br>
+              </div>
+              <div><b><br>
+                </b></div>
+              <div>
+                <div>I applied an equivalent external stimulus at both
+                  RX interfaces.</div>
+                <div>but the same stimulus signal at RX1 and RX2
+                  interfaces  results in an 18 dB difference in relative
+                  gain trace!!!!!!</div>
+              </div>
+              <div>In attachment please find the relative gain trace.</div>
+              <div>Does anybody know what is wrong with the board?</div>
+              <div>Thank you in advance!</div>
+              <div><b><br>
+                </b></div>
+              <div><b><br>
+                </b></div>
+              -- <br>
+              <div dir="ltr" class="gmail_signature"
+                data-smartmail="gmail_signature">
+                <div dir="ltr">
+                  <div>
+                    <div dir="ltr">
+                      <div dir="ltr">
+                        <div dir="ltr"><span
+                            style="color:rgb(0,0,0);font-family:monospace,monospace">Dipl.-Ing.
+                            Arash Jafari</span><font color="#000000"
+                            face="monospace, monospace" size="2"> </font>
+                          <div><br>
+                          </div>
+                          <font color="#000000" size="2"><span
+                              style="font-family:monospace">Phone: +43
+                              650 844 3617</span><br
+                              style="font-family:monospace" clear="none">
+                          </font>
+                          <div><span style="font-family:monospace"><font
+                                color="#000000" size="2">E-mail: <a
+                                  moz-do-not-send="true"
+                                  href="mailto:arash.jafari.telecom@gmail.com"
+                                  target="_blank">arash.jafari.telecom@gmail.com</a></font></span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <br>
     </blockquote>
-    You may want to augment whatever USRP you buy with a GPSDO module,
-    since I think most of these "stacks" are sensitive to timing
-    quality.<br>
+    How are these interfaces being driven?  Hard-wired?  Antenna?   What
+    is the magnitude of the stimulus signal?<br>
     <br>
-    Without knowing exactly what problems you encountered with the
-    LimeSDR, it's hard to make recommendations.  I hate to do this on a
-    technical<br>
-      list, but <a class="moz-txt-link-abbreviated" href="mailto:sales@ni.com">sales@ni.com</a> might be your best bet.<br>
+    Are you sure you are plugged in to the right connectors on the front
+    panel?   Is the gain being set to the same thing on both interfaces?<br>
     <br>
     <br>
   </body>
 </html>
 
---------------010805090207040808090205--
+--------------040801080805060607080109--
 
 
---===============7986226232636097139==
+--===============7364293407073215850==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -213,5 +241,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7986226232636097139==--
+--===============7364293407073215850==--
 
