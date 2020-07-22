@@ -2,47 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1567229D9B
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 18:57:41 +0200 (CEST)
-Received: from [::1] (port=52652 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04BA1229DA6
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 19:01:25 +0200 (CEST)
+Received: from [::1] (port=52686 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jyI3n-0004Qe-PZ; Wed, 22 Jul 2020 12:57:39 -0400
-Received: from mail-qt1-f173.google.com ([209.85.160.173]:45717)
+	id 1jyI7P-0004tk-2u; Wed, 22 Jul 2020 13:01:23 -0400
+Received: from mail-qv1-f66.google.com ([209.85.219.66]:46991)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <carsenat@gmail.com>) id 1jyI3k-000458-Bd
- for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 12:57:36 -0400
-Received: by mail-qt1-f173.google.com with SMTP id s23so2298800qtq.12
- for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 09:57:15 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jyI7L-0004lf-KY
+ for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 13:01:19 -0400
+Received: by mail-qv1-f66.google.com with SMTP id el4so1306310qvb.13
+ for <usrp-users@lists.ettus.com>; Wed, 22 Jul 2020 10:00:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=BL+Lq6rvSE4M1xwzr611FxbWL2pqdLlWhMpC9MwBKNU=;
- b=og/HdCzRBNntH64x6Ffw1ckU7HEKaG1F1MN0NUpMzHSfMuS8+RceuV48nnaVnWCR3x
- 0/YUcY9uJCUPnpXYt1y5BVR2XWGwQY+24Y9c6eRvh+/Ps4eB/S9iy1M1JwgWkEXkdK8e
- bn1jtqybw0iuowQD6WtsFOhQAOvqdMp4tMxDy5BdIPngkVeihdaV5yxKrsKlXOQiqMiZ
- OEGFwk52+Q79fK3/FSAZe3SjxpXrWs5PB5kiO8BX2PbrZBC6UXX9oUOxMngUpTu4rtVt
- tJweeta4zN0DbXBZ1Mz1r4q74VpNA2vqTFQ5Zd/EZPlP8mcuGc8sjzpKX/+tF3cVz1U0
- GG0w==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=URtrUQDzmfhSCGz37MmMe+/7Wvia0iHv0r7WevPTB8U=;
+ b=YMD+QI6M0ogAifZSs/n/8Ca9VNEjcTUkhMS7rzHYSFKBr3H2xu29/C0kjQ3CHxPfqo
+ CDUs7PTG6DztfhgKzOzs38VR1lhWNnEZuvQk813QPhza/7JHkU1b4792aPrP30Z1zjbf
+ Fn6Gc8lLceouelAE9o2bLlbrBpnEXDA4b/DW0OrrpIPo5TiaCxGZGtyddsmLYl7orglx
+ V6pxqg8lDxyclF75CFnT7b8vDszPU/QZxEzYeCgJn5hetj51oTNwJj1EaYhJo/Jirx4G
+ I4L8lbN818Z+jVQYWCy5bvsypiT4iyQ1SEIAmmPB+iIFGgMqhFd8Cr26AkeYaZygUcsp
+ TnKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=BL+Lq6rvSE4M1xwzr611FxbWL2pqdLlWhMpC9MwBKNU=;
- b=lj+0lLM6HzEzFcMl03IyxLsCaA5CnMGTEv9a+eq3lFCni6t39qdHsDDBo/lPjFF4Oc
- TH6mKJ1E9wXh8lUvljhKv3F/ui2GIYDqSTbv2e0CahqYlk+CMR/J08wH/3D4WNB6DyPx
- zkn0/v5skihpWSv+BYQiroJOReg0637i7ShLzGbagJrQRgU5y4hO8fgWtR7A9a7nSXzh
- i+v1jXj903ONtJGHu5A9KTkr+7Ns2Y/yPoezeiXKtu1fgmkc4Rm7Xr06sl+4WHaLcHm4
- ujMQO749D6ji6V+RfGEF4jy3Map1QjnE0Z4OCvwiUkz5HRB//LaAh0LW25exsXmV73h9
- wQ4w==
-X-Gm-Message-State: AOAM532+D/IQiToXkoDrc16zYV/atydbanXuLiVpPILArqU3EEoYuvsM
- gj+ET/+AB6EqINQ6HxSlEqlcD2JR1vvo3hHa/DGmJuqA
-X-Google-Smtp-Source: ABdhPJxfmWw03D7q4GNSzLUcDX9sKHUrtlhuz48dw9dHEh/8IeNWM4qaEhPOXJPKDRdhcAQvfistJo7R0wufRSqPvb8=
-X-Received: by 2002:ac8:3fcb:: with SMTP id v11mr278644qtk.348.1595437015317; 
- Wed, 22 Jul 2020 09:56:55 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=URtrUQDzmfhSCGz37MmMe+/7Wvia0iHv0r7WevPTB8U=;
+ b=OP1W/2+VXdMHX0rdC0yr4W7vSh9RM0cmlN5sPVqVb35ppGT3YO6ZB2ggzjVJN0OXNG
+ uLHAJani0F9yETN/3nSoG2VJwChMYN1YRq27GUUjb5kEK3sqpPwinw+wzM5i5B9AQ/Hg
+ +aV8vhucviU77j4JmR6n33Cf0btRwWoicdw8ukM0FKCLZEsAI9R6WxTNUFCwPAQ2NAhC
+ BnENHseKLSoxRyf8DOr90fePcv1NQ4qI/uIRpgWH0YNA7b6RiZF9emdjMPohuWSJgjwZ
+ RDPzbYSZ/zAk8qbmyxs3cpZCflH2nt7C2Api4W6ioLV0jt9YajopZH8018L+PhmadD6u
+ pVXg==
+X-Gm-Message-State: AOAM5321kvvDc4vu7z9Z1Zoi7qjFaRmzVdDUJpom4CLo2BLYfvynLy1R
+ mNMadm7wM8OahDzcdchm9HTxBMlYxO4=
+X-Google-Smtp-Source: ABdhPJz0ffikS4TGF5IaFKqbwQIxd5Nvv+ViafMOx13+l/ZF61AXxkGBN5WerUiuVCH9298TIfRtvg==
+X-Received: by 2002:a0c:a221:: with SMTP id f30mr899858qva.115.1595437238683; 
+ Wed, 22 Jul 2020 10:00:38 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
+ [174.95.14.148])
+ by smtp.googlemail.com with ESMTPSA id q68sm366337qke.123.2020.07.22.10.00.38
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 22 Jul 2020 10:00:38 -0700 (PDT)
+Message-ID: <5F1870B5.7030805@gmail.com>
+Date: Wed, 22 Jul 2020 13:00:37 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Date: Wed, 22 Jul 2020 18:56:44 +0200
-Message-ID: <CA+w2ZysadneVug92CO58wFPBKZBBtoK31xdAfV89rt73qVD3Cg@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-Subject: [USRP-users] C++ thread Priority.
+References: <f6a7bc0f-a627-bd61-827c-04e2e9cea7b8@ant.uni-bremen.de>
+In-Reply-To: <f6a7bc0f-a627-bd61-827c-04e2e9cea7b8@ant.uni-bremen.de>
+Subject: Re: [USRP-users] 10us+ sample delay between daughterboards
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: David Carsenat via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: David Carsenat <carsenat@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0651621814429797912=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,58 +84,56 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0651621814429797912==
-Content-Type: multipart/alternative; boundary="0000000000008f421005ab0aa065"
+On 07/22/2020 12:39 PM, Johannes Demel via USRP-users wrote:
+> Hi all,
+>
+> I have an issue with multiple USRP streams. If they are on separate 
+> daughterboards, but on the same motherboard aka USRP, those streams 
+> are not time aligned. They show a time offset of more than 10us. I use 
+> one USRP source block in GNU Radio and configure it with multiple 
+> streams.
+>
+> At first, I observed this behavior with N310s but now I see it on an 
+> X310 as well. I use a GNU Radio flowgraph where I set the clock to "PC 
+> clock". I'd expect all streams to be in sync because they are handled 
+> by the same object. At least that's what I hope.
+> On an X310 I have 2 RX streams that observe a signal from across the 
+> room. On an N310, I tried different configurations and I could observe 
+> this delay between daughterboards. They are in sync for one 
+> daughterboard.
+>
+> My flowgraph handles frequency offsets etc. But constant time offsets 
+> between RX streams are problematic. And I suppose they should not be 
+> there.
+>
+> I'd like to use GPSDOs at some point but I don't have a GPS signal in 
+> the lab. And I don't have an octoclock or smth similar. But all of 
+> this shouldn't matter since I only use on USRP for RX. Or am I missing 
+> smth?
+>
+> USRP: N310/X310(with 2x UBX160)
+> UHD: 3.15LTS
+> OS: Ubuntu 20.04
+> GNU Radio 3.9 (aka master)
+>
+> Cheers
+> Johannes
+>
+Here's something you need to know about the time-keeping architecture in 
+both X310 and N310.  There are, effectively TWO time-keeping
+   registers.
 
---0000000000008f421005ab0aa065
-Content-Type: text/plain; charset="UTF-8"
+When you use "Sync to PC", those registers each get updated as a 
+*separate* operation across the wire, so there can be (as you observe) a
+   several-microsecond inconsistency between them.
 
-Hello, I have made a c++ code which sends samples in the main function and
-receives samples in a thread launched in this main function.
-I have read that we can set the real time priority with the
-set_thread_priority function.
-I have tried to call this function (with parameters (1,true) inside the
-main function but it doesn't seem to change the priority of the executable.
-When I launch another application, I have lots of U and O.
-
-Do you have an idea how to achieve what I want ? i.e. allocate almost all
-computer resources to my uhd program ? What is the best way ?
-I have already tuned my ubuntu with advice given on Ettus site.( cpu-freq
-set etc...)
-
-Many thanks
-
-David
-
---0000000000008f421005ab0aa065
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hello, I have made a c++ code which =
-sends samples in the main function and receives samples in a thread launche=
-d in this main function.<br></div>I have read that we can set the real time=
- priority with the set_thread_priority function.<br></div><div>I have tried=
- to call this function (with parameters (1,true) inside the main function b=
-ut it doesn&#39;t seem to change the priority of the executable. When I lau=
-nch another application, I have lots of U and O.<br><br></div><div>Do you h=
-ave an idea how to achieve what I want ? i.e. allocate almost all computer =
-resources to my uhd program ? What is the best way ?<br></div><div>I have a=
-lready tuned my ubuntu with advice given on Ettus site.( cpu-freq set etc..=
-.)<br><br></div><div>Many thanks<br><br></div><div>David<br></div></div>
-
---0000000000008f421005ab0aa065--
+The whole thing about the 1PPS pulse when doing time-setting is that no 
+matter how many timekeeper registers there are, they all get
+   set at the same instant, due to the 1PPS pulse processing.
 
 
---===============0651621814429797912==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============0651621814429797912==--
-
