@@ -2,50 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34425228EAD
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 05:38:30 +0200 (CEST)
-Received: from [::1] (port=46498 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2CB9229150
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Jul 2020 08:52:23 +0200 (CEST)
+Received: from [::1] (port=48132 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jy5aJ-0004hL-4v; Tue, 21 Jul 2020 23:38:23 -0400
-Received: from mail-yb1-f198.google.com ([209.85.219.198]:35302)
+	id 1jy8bz-0002SZ-Mz; Wed, 22 Jul 2020 02:52:19 -0400
+Received: from mail-wm1-f52.google.com ([209.85.128.52]:38997)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <mikio@dolphinsystem.jp>)
- id 1jy5aE-0004aH-9y
- for usrp-users@lists.ettus.com; Tue, 21 Jul 2020 23:38:18 -0400
-Received: by mail-yb1-f198.google.com with SMTP id t7so957002ybk.2
- for <usrp-users@lists.ettus.com>; Tue, 21 Jul 2020 20:37:57 -0700 (PDT)
+ (Exim 4.93) (envelope-from <xavier.arteaga@softwareradiosystems.com>)
+ id 1jy8bv-0002F2-Dy
+ for usrp-users@lists.ettus.com; Wed, 22 Jul 2020 02:52:15 -0400
+Received: by mail-wm1-f52.google.com with SMTP id w3so878110wmi.4
+ for <usrp-users@lists.ettus.com>; Tue, 21 Jul 2020 23:51:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=dolphinsystem-jp.20150623.gappssmtp.com; s=20150623;
- h=mime-version:from:date:message-id:subject:to;
- bh=gsA4Mh0M1zxGJLEPBfWOvs//cBpT8+NTGmSeBcYO95I=;
- b=jQ87puR59YGab99wetJjnMSo90bhgWfsFvJvWKajGjH/wgYhK5LKKYPlNErE8PVGtk
- Yi1AI2fwBMy/HP1uAuBOCcC/Y3H2dIIBuzXZGMKobEGFN+rgcHTTZA/8nF6GQm5OeAOB
- 4ZGetQLs6Z91BtIzWHmwBgszi2WXrVK9bUhAxbvXwI1I08S6cz6seiwURG/Fb3fCrVCF
- MpNVKPRl54ckk1VZgsGf0Sv3vUyAR2gvt3I8OvK6ZFc6VkGzgclbzGogwJDGfpQYt71T
- ASPuSVpWQ/APU/MfCCcAPQVpwka8KasyaAOrBp4sXqKJmeQ3jeWPVhsunY2o01qCSOdA
- 0x8Q==
+ d=softwareradiosystems-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Rof7AqRBl09k6W8wBs1t6BWuL+TOXNF/7XzJDPu2kS4=;
+ b=FeMmjpcyYJlJ828a22PZsBLdOmjx/13t1VF5Uf/v5ixeM9C+8HVIKNQ5YA7AY0jjvr
+ w99eOglXXUmpjz9LnwiXNvzK+JdbU/7dWCv47GuFh+vIfFr3Inf0WKDiwM07XG/euxBf
+ Ey0iE2NTw7f4YhQMichaoZDehUTQBgneZHsM1o6UbDkmHa9l0N+P8Oe0OjkeZhgQl6uR
+ qyZ1YrCczcqfp8skIdLsvVVAKQTiN7JfIh5kQQNx+xlIDoBa9qaRqE5ZK17LWh7qB/JD
+ OZkzvcDsSkaBuhBh6K3nch270q+D4V5GvYAvYtpwRKUhia32i5nBoIANLpjxrnlHTXbf
+ AvGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=gsA4Mh0M1zxGJLEPBfWOvs//cBpT8+NTGmSeBcYO95I=;
- b=YS1drI70/I/6bDV/NuCo8lVVFXKGFRmSdizIwjOAkMT41Z87P78mrvu8JTfeht6x6c
- +6Qfoxqdx3XteRu6lAJqKtPdtaO8qrqEN08d1JiRLJtzZUrmAAm8dqSFjui6Pc249SWT
- 0BF8LeZBiqtgpqP0uG2+DOwljXOqHXcmL7mAOsg8Q/Q6+UKpW/yrUel+L6ns9pg2YY2f
- pUjbUgbA1M8zlEV42tIC0pWuWkFhOK5DU1WBQtcG9S0i3NZo9NzyYhqCUi79pcTQrMMi
- BtFw7GO5ViYoApbKBldMxlNLNku8w0Wcl9s2ORt9q1HgKueK51U455hsZQfeXviX5Muv
- w06g==
-X-Gm-Message-State: AOAM531pfqa5buHo6kHhIr09y2ULuh7XMiTtqcCpJQwhNI8VvoOsW+UG
- 6PHJmPZSPyzlIBrnRgLibGlJ4bmMLoHZ2tTk3639aZBkpc2otA==
-X-Google-Smtp-Source: ABdhPJzGxx8ZM2bL43sXp3P1gVbQSPiFoSSPKh6mQ5+hKh533u1L7kX3H1Ej3fFwS1kos9fOImibFJ6jZQlLPndz+dc=
-X-Received: by 2002:a05:6902:6c8:: with SMTP id
- m8mr44001981ybt.85.1595389057219; 
- Tue, 21 Jul 2020 20:37:37 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Rof7AqRBl09k6W8wBs1t6BWuL+TOXNF/7XzJDPu2kS4=;
+ b=sqvNHVpFIkxYW3GRg0YvGIaTCaihgYcX+h+41SC+kdFjPljSMoc26fH1iKkHWxO0EU
+ Pmw7NzmK3U63wZsBfhZXFSn7Rx9MVdkOhhyVWPvY25C9GSDzpCisD8OmgHHKZphnVVGL
+ DlZ2uPjWSlljMQmI0wfd3q+lC1JMkGiZZJLooSoEa8zX+aYXWsBgXHJP4jFLSeKepU1W
+ 99vQWq2LgpJWWOyzh3zHUVJwik+goo0VMEeqjOU82dKixvkzG5TjNEdKxUQD8TR5qfp8
+ 1F5kGqOH/cHVEPkU0uvKjEif72DyRDwz4e/vzQsahhSksINBJwejGHNINaQl/J17MpGD
+ iLkQ==
+X-Gm-Message-State: AOAM531EtWx4vPRCV7nXCc9e71rI6dGDemGF5H3xKgdoASFI/JjC3RoE
+ McpBBK3P9aKDLdxAvyznAiTtv7K1mblNBtRrtJsZR4CalPA=
+X-Google-Smtp-Source: ABdhPJwoS6hxYni8bKY7t0khY+a+2sE4zNlARVhO52MA3f7jd7dvBQomdbQjBvARDRGOMCcOW6++jM8Nfqwk2qziNmA=
+X-Received: by 2002:a1c:6887:: with SMTP id d129mr7045607wmc.179.1595400694257; 
+ Tue, 21 Jul 2020 23:51:34 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 22 Jul 2020 12:37:01 +0900
-Message-ID: <CABfZwcfbOcm6LckJRg71KOO_LkD2U7HJoCsQvokJcTUuWFsyaA@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: [USRP-users] How to suppress the overflow indicator "O"
+References: <CABfZwcfbOcm6LckJRg71KOO_LkD2U7HJoCsQvokJcTUuWFsyaA@mail.gmail.com>
+In-Reply-To: <CABfZwcfbOcm6LckJRg71KOO_LkD2U7HJoCsQvokJcTUuWFsyaA@mail.gmail.com>
+Date: Wed, 22 Jul 2020 08:51:23 +0200
+Message-ID: <CAO5ZCFaexZROVgx7gd+a=HV6Zk8Ui7K4GBDjf5iv91hsmW5_fA@mail.gmail.com>
+To: Mikio Fukushima <mikio@dolphinsystem.jp>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] How to suppress the overflow indicator "O"
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -57,9 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mikio Fukushima via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mikio Fukushima <mikio@dolphinsystem.jp>
-Content-Type: multipart/mixed; boundary="===============6200301450458753856=="
+From: Xavier Arteaga via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Xavier Arteaga <xavier.arteaga@softwareradiosystems.com>
+Content-Type: multipart/mixed; boundary="===============4958739248328172147=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,33 +76,69 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6200301450458753856==
-Content-Type: multipart/alternative; boundary="00000000000008d31d05aaff76f6"
+--===============4958739248328172147==
+Content-Type: multipart/alternative; boundary="000000000000a7ea4205ab022b9a"
 
---00000000000008d31d05aaff76f6
+--000000000000a7ea4205ab022b9a
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
-UHD device driver prints the indicator "O" while overflow to stdout.
-How to supress this printing of the indicator?
+Hi Mikio,
+You can disable the fastpath logging in runtime by setting the environment
+variable UHD_LOG_FASTPATH_DISABLE to 1:
 
-Mikio Fukushima
+Example in C:
+  setenv("UHD_LOG_FASTPATH_DISABLE", "1", 0);
 
---00000000000008d31d05aaff76f6
+Regards,
+Xavier
+
+On Wed, 22 Jul 2020 at 05:38, Mikio Fukushima via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi,
+> UHD device driver prints the indicator "O" while overflow to stdout.
+> How to supress this printing of the indicator?
+>
+> Mikio Fukushima
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000a7ea4205ab022b9a
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi,</div><div>UHD device driver prints the indicator =
-&quot;O&quot; while overflow to stdout.<br>How to supress this printing of =
-the indicator?<br></div><div dir=3D"ltr" class=3D"gmail_signature" data-sma=
-rtmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=
-=3D"ltr"><div><br></div><div>Mikio Fukushima</div><div><br></div></div></di=
-v></div></div></div></div>
+<div dir=3D"ltr">Hi Mikio,<div>You can disable the fastpath logging in runt=
+ime by setting the environment variable=C2=A0<font face=3D"monospace">UHD_L=
+OG_FASTPATH_DISABLE</font> to 1:</div><div><br></div><div>Example in C:</di=
+v><div><font face=3D"monospace">=C2=A0 setenv(&quot;UHD_LOG_FASTPATH_DISABL=
+E&quot;, &quot;1&quot;, 0);<br></font></div><div><br></div><div>Regards,</d=
+iv><div>Xavier</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Wed, 22 Jul 2020 at 05:38, Mikio Fukushima via USRP-=
+users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.et=
+tus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><div dir=3D"ltr"><div>Hi,</div><div>UHD device driver prints the ind=
+icator &quot;O&quot; while overflow to stdout.<br>How to supress this print=
+ing of the indicator?<br></div><div dir=3D"ltr"><div dir=3D"ltr"><div><div =
+dir=3D"ltr"><div dir=3D"ltr"><div><br></div><div>Mikio Fukushima</div><div>=
+<br></div></div></div></div></div></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---00000000000008d31d05aaff76f6--
+--000000000000a7ea4205ab022b9a--
 
 
---===============6200301450458753856==
+--===============4958739248328172147==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,5 +149,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6200301450458753856==--
+--===============4958739248328172147==--
 
