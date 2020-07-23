@@ -2,43 +2,45 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C37622B453
-	for <lists+usrp-users@lfdr.de>; Thu, 23 Jul 2020 19:14:06 +0200 (CEST)
-Received: from [::1] (port=35454 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEBEC22B5B2
+	for <lists+usrp-users@lfdr.de>; Thu, 23 Jul 2020 20:31:04 +0200 (CEST)
+Received: from [::1] (port=36006 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jyenB-0003Oj-Qd; Thu, 23 Jul 2020 13:14:01 -0400
-Received: from mail-qk1-f182.google.com ([209.85.222.182]:37166)
+	id 1jyfzh-0002OL-8o; Thu, 23 Jul 2020 14:31:01 -0400
+Received: from mail-lf1-f42.google.com ([209.85.167.42]:42097)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <carsenat@gmail.com>) id 1jyen7-0003I1-RQ
- for usrp-users@lists.ettus.com; Thu, 23 Jul 2020 13:13:57 -0400
-Received: by mail-qk1-f182.google.com with SMTP id b14so4353911qkn.4
- for <usrp-users@lists.ettus.com>; Thu, 23 Jul 2020 10:13:37 -0700 (PDT)
+ (Exim 4.93) (envelope-from <luke.whittlesey@gmail.com>)
+ id 1jyfzd-0002Gh-6H
+ for usrp-users@lists.ettus.com; Thu, 23 Jul 2020 14:30:57 -0400
+Received: by mail-lf1-f42.google.com with SMTP id h8so3807673lfp.9
+ for <usrp-users@lists.ettus.com>; Thu, 23 Jul 2020 11:30:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=OPJYVwKtlTpvCzNxQr57FNrJXD7Yh8mawUECtak/enU=;
- b=YvQpxFTuv7WP1tX64blomYMTkQw8E34PNsFg7HHoZRjW/u32aBQZ9q3azOmL88E5TO
- 3iL27T5Fu4yMNQZcQnwm1jHSC6DgCsCgTB39hPq+A5QettrdrWpgheP+TiKw1kYCnYSe
- bSjX6L6yqpJLzVTB11iPmohGA5FUf+Dhfm9gvpbKQZhwLS+LsMgW4L2V+YPXuIe4+Gvc
- /0AOzoqpyOXJnTUfXIROSQII7bgJZOpatfXeo6zUzMqVhCj1jju5UQQkwblmitDP/gUo
- zqHecO8eMURrOiYXRoyCGeG3ynoNbxFJ0Q8ERe9rnZBXkwoP37EhR9kw9quIjLA6K2J0
- rKZg==
+ :cc:content-transfer-encoding;
+ bh=46LAGnQoFJ+LXNfG3Mu0vXbVVdPMMzy/yhn+K3swUis=;
+ b=XUSHZur9aMkcu1YrnhBiXyVfTf+f7QuvLZstT7X6J/fTlHR7ekVcqSAe2HdaixEj+T
+ 3WyHZSUzgmvExL4gt+HyEY4X7V/ZEeoVe9Quwh/clpaec+ylPt0uJdezc29F+epF95Fa
+ 2Z0kvEbsK7Jg4eMkpM4QzFd1NBfhuCIvsUjYQo2nsLOP7i/g1qsyLX9hLuY/rG2LKit9
+ QawuJUZ6Wi3TTmnrECBrdn+s2+3wdUUuewiDOEOdOmpWz/y9aGC6vJSJ1clYTuw/Dk68
+ mak/osYZH6gec4ZwgPnPzd663QNRuJpJLGstIYKazstHlRA1Qb87ltap4nZfvLVilKx/
+ HiYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=OPJYVwKtlTpvCzNxQr57FNrJXD7Yh8mawUECtak/enU=;
- b=hVIhpGHCZzqd9ug3kgJfQWB7nFUr2/6p6JUf3xI2iyXq6VkWDL78VBT7BC5aelE0KI
- XFV+2Hz74Or3x0oj/0fP0lREB4hhrQSEdqrOFeL5GqLI7vMUyplBwdSUIWoxYdTReZFR
- 6Nwf+tbIPJcpbaGcQmWKc3oum7Q/CTBUffbcHMz5XXM2v9lP67f0Lx/OBhw+CBw6G4GB
- ENmYV8qxNVTmJViwljroQGdbmNRFwTOyLA5Oed0jmNHu2gXMau/7WjUrVZrDjyFmOJCg
- /Zg2vv6FY9AV+ZDqyOIfULzXJp/tf2sT7lBugIm2sHPKrGHL690sbX7DLsHvlV+dF2hR
- XSwg==
-X-Gm-Message-State: AOAM531qd+hHVyNN+S1bpwUZPOeVbRNYjHrhyklCA5IUCgVB4pJeAqpJ
- 4t/zkusEfQ5d4G1zKnNmy+fBRt9OMY3YKS/UrbY=
-X-Google-Smtp-Source: ABdhPJzDVgkUcPJprnGzP36LODJ70C6PCVpPiQRSK+WfHSqM8WfLxirmECvXJSnRB8cswR9ZY9SQOvDIDSdEMpxRywQ=
-X-Received: by 2002:a37:8e42:: with SMTP id q63mr6152357qkd.16.1595524397094; 
- Thu, 23 Jul 2020 10:13:17 -0700 (PDT)
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=46LAGnQoFJ+LXNfG3Mu0vXbVVdPMMzy/yhn+K3swUis=;
+ b=rGafGZeOX2Zq28g1z23A8dFPln+rNXcm40c/XnoaaA0IFAunlwQNAgjmrZ4O3Z5Yq4
+ AIAz2wJbby+coODTUpFW76i91G+iVFB2HvX2Z8Wx2bAYql0Jgfgt5L3J/McI1vlzkqXy
+ x58QLZ7OqFC35qN5K1aShAZnQC8gBouRXMt5g8ZAblGYoAl8W3U3QI8e8M4g0zR05g3T
+ cIIrvu7p0DIW0OQCJ8T9DJ4tIATaYdtiups7AoZG2KVkzqmUqFhsjgDznJuynJELs12x
+ NqT2yg1dDrFQzJmXEcgCIpOst/u22KD9I1IogSkRmdOAT/mCheFwu8TaYKCaTGzh7E82
+ oqyg==
+X-Gm-Message-State: AOAM530hYkwHILGPDo6vLGIU0KImK/GVIECO3euv5XosjMfmasduKrag
+ brLynCO93zxNghaLAs4F0wpemkQuYEaHz8RHbOo=
+X-Google-Smtp-Source: ABdhPJys34P5FPSLbTAxwS9CYlSw6jDEzrAJAfJudnUdUnZXw5ku6pxsQqV17v4l7t9dW/upYm5xAZ/9Z2v+UEFhtKU=
+X-Received: by 2002:a19:e204:: with SMTP id z4mr2895595lfg.121.1595529015626; 
+ Thu, 23 Jul 2020 11:30:15 -0700 (PDT)
 MIME-Version: 1.0
 References: <CA+w2ZysadneVug92CO58wFPBKZBBtoK31xdAfV89rt73qVD3Cg@mail.gmail.com>
  <5F187365.7030104@gmail.com>
@@ -49,10 +51,11 @@ References: <CA+w2ZysadneVug92CO58wFPBKZBBtoK31xdAfV89rt73qVD3Cg@mail.gmail.com>
  <CAB__hTS2cwTwXdQSMoaE=d_je4sXaEUvwzz=JH36oD0TDksS=w@mail.gmail.com>
  <5F189F72.7060404@gmail.com>
  <CA+ce6i1t0VGE3ZpD10SAPrkJ3F0pMKRGiqJqYjeYtKWhyxS0Eg@mail.gmail.com>
-In-Reply-To: <CA+ce6i1t0VGE3ZpD10SAPrkJ3F0pMKRGiqJqYjeYtKWhyxS0Eg@mail.gmail.com>
-Date: Thu, 23 Jul 2020 19:13:04 +0200
-Message-ID: <CA+w2ZyuKtuKzSLXjvG4q6QjXyG8uWkfwcJthw1=7W98JkmqFzg@mail.gmail.com>
-To: Luke Whittlesey <luke.whittlesey@gmail.com>
+ <CA+w2ZyuKtuKzSLXjvG4q6QjXyG8uWkfwcJthw1=7W98JkmqFzg@mail.gmail.com>
+In-Reply-To: <CA+w2ZyuKtuKzSLXjvG4q6QjXyG8uWkfwcJthw1=7W98JkmqFzg@mail.gmail.com>
+Date: Thu, 23 Jul 2020 14:24:41 -0400
+Message-ID: <CA+ce6i2d2RXq7pWYepG4tCwpFE9e6sRrF7M0jeao9om=OFrzRQ@mail.gmail.com>
+To: David Carsenat <carsenat@gmail.com>
 Subject: Re: [USRP-users] C++ thread Priority.
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -65,10 +68,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: David Carsenat via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: David Carsenat <carsenat@gmail.com>
+From: Luke Whittlesey via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Luke Whittlesey <luke.whittlesey@gmail.com>
 Cc: usrp-users <usrp-users@lists.ettus.com>, Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============5260626670262112687=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,322 +86,91 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5260626670262112687==
-Content-Type: multipart/alternative; boundary="000000000000eb5d1405ab1ef890"
-
---000000000000eb5d1405ab1ef890
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Many thanks but I am already in O3.
-
-Le jeu. 23 juil. 2020 =C3=A0 15:46, Luke Whittlesey via USRP-users <
-usrp-users@lists.ettus.com> a =C3=A9crit :
-
-> This is probably not the issue, but sometimes I forget to turn the
-> compiler optimizations on and that can give you a little boost
-> depending on the code. gcc -O2 ...
->
-> On Wed, Jul 22, 2020 at 4:20 PM Marcus D. Leech via USRP-users
-> <usrp-users@lists.ettus.com> wrote:
-> >
-> > On 07/22/2020 03:18 PM, Rob Kossler wrote:
-> >
-> > If you are using X310 or N310, you might try DPDK. Even though it is a
-> pain, it would be a whole lot easier than trying a new OS, I believe.
-> Using DPDK enabled my application (which was storing Rx samples to SSD) t=
-o
-> run a bunch faster than without DPDK.
-> >
-> > Thanks, Rob.  DPDK does facilitate lower-cost higher data transfer into
-> the application.  That may, or may not, be the issue here.
-> >
-> >
-> >
-> > On Wed, Jul 22, 2020 at 1:47 PM Marcus D. Leech via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
-> >>
-> >> On 07/22/2020 01:40 PM, David Carsenat wrote:
-> >>
-> >> It just put received samples in a circular buffer and  transmit this
-> buffer. A delay line.
-> >> But the SR is 50 Msps... 8 bits.
-> >>  Do you have ideas about OS ?
-> >> Thanks.
-> >>
-> >> There are commercial real-time low-latency OS "out there" that aren't
-> free, and UHD has not been ported to them as far as I know.
-> >>
-> >>
-> >> Le mer. 22 juil. 2020 =C3=A0 19:33, Marcus D. Leech <patchvonbraun@gma=
-il.com>
-> a =C3=A9crit :
-> >>>
-> >>> On 07/22/2020 01:22 PM, David Carsenat wrote:
-> >>>
-> >>> Ok thanks. The code is really simple and i don't think it can be
-> optimized.
-> >>> Is there other linux OS i can try ?
-> >>> Thanks again.
-> >>>
-> >>> If it's really simple, what is the sample-rate?  Is it trying to writ=
-e
-> data to the filesystem at high rates?  No amount of code optimization can
-> get
-> >>>   around the fact that the disk subsystem is very slow compared to
-> other parts of the computer, like memory, CPU, etc.
-> >>>
-> >>>
-> >>> Le mer. 22 juil. 2020 =C3=A0 19:12, Marcus D. Leech via USRP-users <
-> usrp-users@lists.ettus.com> a =C3=A9crit :
-> >>>>
-> >>>> On 07/22/2020 12:56 PM, David Carsenat via USRP-users wrote:
-> >>>> > Hello, I have made a c++ code which sends samples in the main
-> function
-> >>>> > and receives samples in a thread launched in this main function.
-> >>>> > I have read that we can set the real time priority with the
-> >>>> > set_thread_priority function.
-> >>>> > I have tried to call this function (with parameters (1,true) insid=
-e
-> >>>> > the main function but it doesn't seem to change the priority of th=
-e
-> >>>> > executable. When I launch another application, I have lots of U an=
-d
-> O.
-> >>>> >
-> >>>> > Do you have an idea how to achieve what I want ? i.e. allocate
-> almost
-> >>>> > all computer resources to my uhd program ? What is the best way ?
-> >>>> > I have already tuned my ubuntu with advice given on Ettus site.(
-> >>>> > cpu-freq set etc...)
-> >>>> >
-> >>>> > Many thanks
-> >>>> >
-> >>>> > David
-> >>>> >
-> >>>> In general, applications have only very-rough control over the
-> behavior
-> >>>> of the scheduler.  This is true in most general-purpose operating
-> system
-> >>>>    environments, whether it's Windows, Linux, *BSD, MacOS, etc.
-> >>>>
-> >>>> If you've played with priorities, and starting up other programs
-> causes
-> >>>> OU to happen, you should probably consider:
-> >>>>
-> >>>> (A) Optimizing your code -- find out where the hot-spots are, and se=
-e
-> if
-> >>>> they can be improved
-> >>>> (B) Choosing a faster CPU
-> >>>>
-> >>>> The CPU usage of a DSP flow is roughly proportional to:
-> >>>>
-> >>>> inherent-per-sample-complexity X sample-rate
-> >>>>
-> >>>> Can you lower the sample rate and still achieve what you need to
-> >>>> achieve?  Can you improve the main-path per-sample complexity?
-> >>>>
-> >>>>
-> >>>>
-> >>>> _______________________________________________
-> >>>> USRP-users mailing list
-> >>>> USRP-users@lists.ettus.com
-> >>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >>>
-> >>>
-> >>
-> >> _______________________________________________
-> >> USRP-users mailing list
-> >> USRP-users@lists.ettus.com
-> >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >
-> >
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000eb5d1405ab1ef890
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">Many thanks but I am already in O3.</div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le jeu. 23 juil. 202=
-0 =C3=A0 15:46, Luke Whittlesey via USRP-users &lt;<a href=3D"mailto:usrp-u=
-sers@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; a =C3=A9crit=C2=A0=
-:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bor=
-der-left:1px #ccc solid;padding-left:1ex">This is probably not the issue, b=
-ut sometimes I forget to turn the<br>
-compiler optimizations on and that can give you a little boost<br>
-depending on the code. gcc -O2 ...<br>
-<br>
-On Wed, Jul 22, 2020 at 4:20 PM Marcus D. Leech via USRP-users<br>
-&lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" rel=3D"=
-noreferrer">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; On 07/22/2020 03:18 PM, Rob Kossler wrote:<br>
-&gt;<br>
-&gt; If you are using X310 or N310, you might try DPDK. Even though it is a=
- pain, it would be a whole lot easier than trying a new OS, I believe.=C2=
-=A0 Using DPDK enabled my application (which was storing Rx samples to SSD)=
- to run a bunch faster than without DPDK.<br>
-&gt;<br>
-&gt; Thanks, Rob.=C2=A0 DPDK does facilitate lower-cost higher data transfe=
-r into the application.=C2=A0 That may, or may not, be the issue here.<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; On Wed, Jul 22, 2020 at 1:47 PM Marcus D. Leech via USRP-users &lt;<a =
-href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" rel=3D"norefer=
-rer">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; On 07/22/2020 01:40 PM, David Carsenat wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; It just put received samples in a circular buffer and=C2=A0 transm=
-it this buffer. A delay line.<br>
-&gt;&gt; But the SR is 50 Msps... 8 bits.<br>
-&gt;&gt;=C2=A0 Do you have ideas about OS ?<br>
-&gt;&gt; Thanks.<br>
-&gt;&gt;<br>
-&gt;&gt; There are commercial real-time low-latency OS &quot;out there&quot=
-; that aren&#39;t free, and UHD has not been ported to them as far as I kno=
-w.<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; Le mer. 22 juil. 2020 =C3=A0 19:33, Marcus D. Leech &lt;<a href=3D=
-"mailto:patchvonbraun@gmail.com" target=3D"_blank" rel=3D"noreferrer">patch=
-vonbraun@gmail.com</a>&gt; a =C3=A9crit :<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; On 07/22/2020 01:22 PM, David Carsenat wrote:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Ok thanks. The code is really simple and i don&#39;t think it =
-can be optimized.<br>
-&gt;&gt;&gt; Is there other linux OS i can try ?<br>
-&gt;&gt;&gt; Thanks again.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; If it&#39;s really simple, what is the sample-rate?=C2=A0 Is i=
-t trying to write data to the filesystem at high rates?=C2=A0 No amount of =
-code optimization can get<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0around the fact that the disk subsystem is very sl=
-ow compared to other parts of the computer, like memory, CPU, etc.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Le mer. 22 juil. 2020 =C3=A0 19:12, Marcus D. Leech via USRP-u=
-sers &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" re=
-l=3D"noreferrer">usrp-users@lists.ettus.com</a>&gt; a =C3=A9crit :<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; On 07/22/2020 12:56 PM, David Carsenat via USRP-users wrot=
-e:<br>
-&gt;&gt;&gt;&gt; &gt; Hello, I have made a c++ code which sends samples in =
-the main function<br>
-&gt;&gt;&gt;&gt; &gt; and receives samples in a thread launched in this mai=
-n function.<br>
-&gt;&gt;&gt;&gt; &gt; I have read that we can set the real time priority wi=
-th the<br>
-&gt;&gt;&gt;&gt; &gt; set_thread_priority function.<br>
-&gt;&gt;&gt;&gt; &gt; I have tried to call this function (with parameters (=
-1,true) inside<br>
-&gt;&gt;&gt;&gt; &gt; the main function but it doesn&#39;t seem to change t=
-he priority of the<br>
-&gt;&gt;&gt;&gt; &gt; executable. When I launch another application, I have=
- lots of U and O.<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt; Do you have an idea how to achieve what I want ? i.e.=
- allocate almost<br>
-&gt;&gt;&gt;&gt; &gt; all computer resources to my uhd program ? What is th=
-e best way ?<br>
-&gt;&gt;&gt;&gt; &gt; I have already tuned my ubuntu with advice given on E=
-ttus site.(<br>
-&gt;&gt;&gt;&gt; &gt; cpu-freq set etc...)<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt; Many thanks<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; &gt; David<br>
-&gt;&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt;&gt; In general, applications have only very-rough control over=
- the behavior<br>
-&gt;&gt;&gt;&gt; of the scheduler.=C2=A0 This is true in most general-purpo=
-se operating system<br>
-&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 environments, whether it&#39;s Windows, Linux=
-, *BSD, MacOS, etc.<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; If you&#39;ve played with priorities, and starting up othe=
-r programs causes<br>
-&gt;&gt;&gt;&gt; OU to happen, you should probably consider:<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; (A) Optimizing your code -- find out where the hot-spots a=
-re, and see if<br>
-&gt;&gt;&gt;&gt; they can be improved<br>
-&gt;&gt;&gt;&gt; (B) Choosing a faster CPU<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; The CPU usage of a DSP flow is roughly proportional to:<br=
->
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; inherent-per-sample-complexity X sample-rate<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Can you lower the sample rate and still achieve what you n=
-eed to<br>
-&gt;&gt;&gt;&gt; achieve?=C2=A0 Can you improve the main-path per-sample co=
-mplexity?<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; _______________________________________________<br>
-&gt;&gt;&gt;&gt; USRP-users mailing list<br>
-&gt;&gt;&gt;&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_b=
-lank" rel=3D"noreferrer">USRP-users@lists.ettus.com</a><br>
-&gt;&gt;&gt;&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-us=
-ers_lists.ettus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">http:/=
-/lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; USRP-users mailing list<br>
-&gt;&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" re=
-l=3D"noreferrer">USRP-users@lists.ettus.com</a><br>
-&gt;&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_list=
-s.ettus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.e=
-ttus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D=
-"noreferrer">USRP-users@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus=
-.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
-ferrer">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000eb5d1405ab1ef890--
-
-
---===============5260626670262112687==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5260626670262112687==--
-
+WW91IG1pZ2h0IHRyeSBuaWNlIDogaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvTmljZV8l
+MjhVbml4JTI5CgpPbiBUaHUsIEp1bCAyMywgMjAyMCBhdCAxOjEzIFBNIERhdmlkIENhcnNlbmF0
+IDxjYXJzZW5hdEBnbWFpbC5jb20+IHdyb3RlOgo+Cj4gTWFueSB0aGFua3MgYnV0IEkgYW0gYWxy
+ZWFkeSBpbiBPMy4KPgo+IExlIGpldS4gMjMganVpbC4gMjAyMCDDoCAxNTo0NiwgTHVrZSBXaGl0
+dGxlc2V5IHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gYSDDqWNy
+aXQgOgo+Pgo+PiBUaGlzIGlzIHByb2JhYmx5IG5vdCB0aGUgaXNzdWUsIGJ1dCBzb21ldGltZXMg
+SSBmb3JnZXQgdG8gdHVybiB0aGUKPj4gY29tcGlsZXIgb3B0aW1pemF0aW9ucyBvbiBhbmQgdGhh
+dCBjYW4gZ2l2ZSB5b3UgYSBsaXR0bGUgYm9vc3QKPj4gZGVwZW5kaW5nIG9uIHRoZSBjb2RlLiBn
+Y2MgLU8yIC4uLgo+Pgo+PiBPbiBXZWQsIEp1bCAyMiwgMjAyMCBhdCA0OjIwIFBNIE1hcmN1cyBE
+LiBMZWVjaCB2aWEgVVNSUC11c2Vycwo+PiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdy
+b3RlOgo+PiA+Cj4+ID4gT24gMDcvMjIvMjAyMCAwMzoxOCBQTSwgUm9iIEtvc3NsZXIgd3JvdGU6
+Cj4+ID4KPj4gPiBJZiB5b3UgYXJlIHVzaW5nIFgzMTAgb3IgTjMxMCwgeW91IG1pZ2h0IHRyeSBE
+UERLLiBFdmVuIHRob3VnaCBpdCBpcyBhIHBhaW4sIGl0IHdvdWxkIGJlIGEgd2hvbGUgbG90IGVh
+c2llciB0aGFuIHRyeWluZyBhIG5ldyBPUywgSSBiZWxpZXZlLiAgVXNpbmcgRFBESyBlbmFibGVk
+IG15IGFwcGxpY2F0aW9uICh3aGljaCB3YXMgc3RvcmluZyBSeCBzYW1wbGVzIHRvIFNTRCkgdG8g
+cnVuIGEgYnVuY2ggZmFzdGVyIHRoYW4gd2l0aG91dCBEUERLLgo+PiA+Cj4+ID4gVGhhbmtzLCBS
+b2IuICBEUERLIGRvZXMgZmFjaWxpdGF0ZSBsb3dlci1jb3N0IGhpZ2hlciBkYXRhIHRyYW5zZmVy
+IGludG8gdGhlIGFwcGxpY2F0aW9uLiAgVGhhdCBtYXksIG9yIG1heSBub3QsIGJlIHRoZSBpc3N1
+ZSBoZXJlLgo+PiA+Cj4+ID4KPj4gPgo+PiA+IE9uIFdlZCwgSnVsIDIyLCAyMDIwIGF0IDE6NDcg
+UE0gTWFyY3VzIEQuIExlZWNoIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbT4gd3JvdGU6Cj4+ID4+Cj4+ID4+IE9uIDA3LzIyLzIwMjAgMDE6NDAgUE0sIERhdmlkIENh
+cnNlbmF0IHdyb3RlOgo+PiA+Pgo+PiA+PiBJdCBqdXN0IHB1dCByZWNlaXZlZCBzYW1wbGVzIGlu
+IGEgY2lyY3VsYXIgYnVmZmVyIGFuZCAgdHJhbnNtaXQgdGhpcyBidWZmZXIuIEEgZGVsYXkgbGlu
+ZS4KPj4gPj4gQnV0IHRoZSBTUiBpcyA1MCBNc3BzLi4uIDggYml0cy4KPj4gPj4gIERvIHlvdSBo
+YXZlIGlkZWFzIGFib3V0IE9TID8KPj4gPj4gVGhhbmtzLgo+PiA+Pgo+PiA+PiBUaGVyZSBhcmUg
+Y29tbWVyY2lhbCByZWFsLXRpbWUgbG93LWxhdGVuY3kgT1MgIm91dCB0aGVyZSIgdGhhdCBhcmVu
+J3QgZnJlZSwgYW5kIFVIRCBoYXMgbm90IGJlZW4gcG9ydGVkIHRvIHRoZW0gYXMgZmFyIGFzIEkg
+a25vdy4KPj4gPj4KPj4gPj4KPj4gPj4gTGUgbWVyLiAyMiBqdWlsLiAyMDIwIMOgIDE5OjMzLCBN
+YXJjdXMgRC4gTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPiBhIMOpY3JpdCA6Cj4+ID4+
+Pgo+PiA+Pj4gT24gMDcvMjIvMjAyMCAwMToyMiBQTSwgRGF2aWQgQ2Fyc2VuYXQgd3JvdGU6Cj4+
+ID4+Pgo+PiA+Pj4gT2sgdGhhbmtzLiBUaGUgY29kZSBpcyByZWFsbHkgc2ltcGxlIGFuZCBpIGRv
+bid0IHRoaW5rIGl0IGNhbiBiZSBvcHRpbWl6ZWQuCj4+ID4+PiBJcyB0aGVyZSBvdGhlciBsaW51
+eCBPUyBpIGNhbiB0cnkgPwo+PiA+Pj4gVGhhbmtzIGFnYWluLgo+PiA+Pj4KPj4gPj4+IElmIGl0
+J3MgcmVhbGx5IHNpbXBsZSwgd2hhdCBpcyB0aGUgc2FtcGxlLXJhdGU/ICBJcyBpdCB0cnlpbmcg
+dG8gd3JpdGUgZGF0YSB0byB0aGUgZmlsZXN5c3RlbSBhdCBoaWdoIHJhdGVzPyAgTm8gYW1vdW50
+IG9mIGNvZGUgb3B0aW1pemF0aW9uIGNhbiBnZXQKPj4gPj4+ICAgYXJvdW5kIHRoZSBmYWN0IHRo
+YXQgdGhlIGRpc2sgc3Vic3lzdGVtIGlzIHZlcnkgc2xvdyBjb21wYXJlZCB0byBvdGhlciBwYXJ0
+cyBvZiB0aGUgY29tcHV0ZXIsIGxpa2UgbWVtb3J5LCBDUFUsIGV0Yy4KPj4gPj4+Cj4+ID4+Pgo+
+PiA+Pj4gTGUgbWVyLiAyMiBqdWlsLiAyMDIwIMOgIDE5OjEyLCBNYXJjdXMgRC4gTGVlY2ggdmlh
+IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiBhIMOpY3JpdCA6Cj4+ID4+
+Pj4KPj4gPj4+PiBPbiAwNy8yMi8yMDIwIDEyOjU2IFBNLCBEYXZpZCBDYXJzZW5hdCB2aWEgVVNS
+UC11c2VycyB3cm90ZToKPj4gPj4+PiA+IEhlbGxvLCBJIGhhdmUgbWFkZSBhIGMrKyBjb2RlIHdo
+aWNoIHNlbmRzIHNhbXBsZXMgaW4gdGhlIG1haW4gZnVuY3Rpb24KPj4gPj4+PiA+IGFuZCByZWNl
+aXZlcyBzYW1wbGVzIGluIGEgdGhyZWFkIGxhdW5jaGVkIGluIHRoaXMgbWFpbiBmdW5jdGlvbi4K
+Pj4gPj4+PiA+IEkgaGF2ZSByZWFkIHRoYXQgd2UgY2FuIHNldCB0aGUgcmVhbCB0aW1lIHByaW9y
+aXR5IHdpdGggdGhlCj4+ID4+Pj4gPiBzZXRfdGhyZWFkX3ByaW9yaXR5IGZ1bmN0aW9uLgo+PiA+
+Pj4+ID4gSSBoYXZlIHRyaWVkIHRvIGNhbGwgdGhpcyBmdW5jdGlvbiAod2l0aCBwYXJhbWV0ZXJz
+ICgxLHRydWUpIGluc2lkZQo+PiA+Pj4+ID4gdGhlIG1haW4gZnVuY3Rpb24gYnV0IGl0IGRvZXNu
+J3Qgc2VlbSB0byBjaGFuZ2UgdGhlIHByaW9yaXR5IG9mIHRoZQo+PiA+Pj4+ID4gZXhlY3V0YWJs
+ZS4gV2hlbiBJIGxhdW5jaCBhbm90aGVyIGFwcGxpY2F0aW9uLCBJIGhhdmUgbG90cyBvZiBVIGFu
+ZCBPLgo+PiA+Pj4+ID4KPj4gPj4+PiA+IERvIHlvdSBoYXZlIGFuIGlkZWEgaG93IHRvIGFjaGll
+dmUgd2hhdCBJIHdhbnQgPyBpLmUuIGFsbG9jYXRlIGFsbW9zdAo+PiA+Pj4+ID4gYWxsIGNvbXB1
+dGVyIHJlc291cmNlcyB0byBteSB1aGQgcHJvZ3JhbSA/IFdoYXQgaXMgdGhlIGJlc3Qgd2F5ID8K
+Pj4gPj4+PiA+IEkgaGF2ZSBhbHJlYWR5IHR1bmVkIG15IHVidW50dSB3aXRoIGFkdmljZSBnaXZl
+biBvbiBFdHR1cyBzaXRlLigKPj4gPj4+PiA+IGNwdS1mcmVxIHNldCBldGMuLi4pCj4+ID4+Pj4g
+Pgo+PiA+Pj4+ID4gTWFueSB0aGFua3MKPj4gPj4+PiA+Cj4+ID4+Pj4gPiBEYXZpZAo+PiA+Pj4+
+ID4KPj4gPj4+PiBJbiBnZW5lcmFsLCBhcHBsaWNhdGlvbnMgaGF2ZSBvbmx5IHZlcnktcm91Z2gg
+Y29udHJvbCBvdmVyIHRoZSBiZWhhdmlvcgo+PiA+Pj4+IG9mIHRoZSBzY2hlZHVsZXIuICBUaGlz
+IGlzIHRydWUgaW4gbW9zdCBnZW5lcmFsLXB1cnBvc2Ugb3BlcmF0aW5nIHN5c3RlbQo+PiA+Pj4+
+ICAgIGVudmlyb25tZW50cywgd2hldGhlciBpdCdzIFdpbmRvd3MsIExpbnV4LCAqQlNELCBNYWNP
+UywgZXRjLgo+PiA+Pj4+Cj4+ID4+Pj4gSWYgeW91J3ZlIHBsYXllZCB3aXRoIHByaW9yaXRpZXMs
+IGFuZCBzdGFydGluZyB1cCBvdGhlciBwcm9ncmFtcyBjYXVzZXMKPj4gPj4+PiBPVSB0byBoYXBw
+ZW4sIHlvdSBzaG91bGQgcHJvYmFibHkgY29uc2lkZXI6Cj4+ID4+Pj4KPj4gPj4+PiAoQSkgT3B0
+aW1pemluZyB5b3VyIGNvZGUgLS0gZmluZCBvdXQgd2hlcmUgdGhlIGhvdC1zcG90cyBhcmUsIGFu
+ZCBzZWUgaWYKPj4gPj4+PiB0aGV5IGNhbiBiZSBpbXByb3ZlZAo+PiA+Pj4+IChCKSBDaG9vc2lu
+ZyBhIGZhc3RlciBDUFUKPj4gPj4+Pgo+PiA+Pj4+IFRoZSBDUFUgdXNhZ2Ugb2YgYSBEU1AgZmxv
+dyBpcyByb3VnaGx5IHByb3BvcnRpb25hbCB0bzoKPj4gPj4+Pgo+PiA+Pj4+IGluaGVyZW50LXBl
+ci1zYW1wbGUtY29tcGxleGl0eSBYIHNhbXBsZS1yYXRlCj4+ID4+Pj4KPj4gPj4+PiBDYW4geW91
+IGxvd2VyIHRoZSBzYW1wbGUgcmF0ZSBhbmQgc3RpbGwgYWNoaWV2ZSB3aGF0IHlvdSBuZWVkIHRv
+Cj4+ID4+Pj4gYWNoaWV2ZT8gIENhbiB5b3UgaW1wcm92ZSB0aGUgbWFpbi1wYXRoIHBlci1zYW1w
+bGUgY29tcGxleGl0eT8KPj4gPj4+Pgo+PiA+Pj4+Cj4+ID4+Pj4KPj4gPj4+PiBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiA+Pj4+IFVTUlAtdXNlcnMg
+bWFpbGluZyBsaXN0Cj4+ID4+Pj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4gPj4+PiBo
+dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
+dHR1cy5jb20KPj4gPj4+Cj4+ID4+Pgo+PiA+Pgo+PiA+PiBfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwo+PiA+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+
+PiA+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+PiA+PiBodHRwOi8vbGlzdHMuZXR0dXMu
+Y29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPj4gPgo+PiA+
+Cj4+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4g
+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+PiA+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+Cj4+ID4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNf
+bGlzdHMuZXR0dXMuY29tCj4+Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4+IFVTUlAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tCj4+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91
+c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAt
+dXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
