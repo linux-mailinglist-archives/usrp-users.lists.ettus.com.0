@@ -2,25 +2,25 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 463A422C091
-	for <lists+usrp-users@lfdr.de>; Fri, 24 Jul 2020 10:22:19 +0200 (CEST)
-Received: from [::1] (port=41854 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C89622C10B
+	for <lists+usrp-users@lfdr.de>; Fri, 24 Jul 2020 10:43:40 +0200 (CEST)
+Received: from [::1] (port=42132 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jysy6-00073k-AA; Fri, 24 Jul 2020 04:22:14 -0400
-Received: from mail-eopbgr1380097.outbound.protection.outlook.com
- ([40.107.138.97]:20293 helo=IND01-MA1-obe.outbound.protection.outlook.com)
+	id 1jytIn-00083V-DU; Fri, 24 Jul 2020 04:43:37 -0400
+Received: from mail-eopbgr1390135.outbound.protection.outlook.com
+ ([40.107.139.135]:65192 helo=IND01-BO1-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.93) (envelope-from <koyel.das@vehere.com>)
- id 1jysy1-0006yi-TD
- for usrp-users@lists.ettus.com; Fri, 24 Jul 2020 04:22:10 -0400
+ id 1jytIj-0007xU-4f
+ for usrp-users@lists.ettus.com; Fri, 24 Jul 2020 04:43:33 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GogVwxgMfVlBzbmB2k5Cw8hqK+NjQAb3dM0mC5Fn1oslWNs5SwRGRoRDx9E2H1aQwe25AnKQSf++gCsV+jKAbRJP+CsNgc3pkw9qDGSwQ/GNFhpLHjlWrNrcSXLFLvHbXZSSKyBtnVEQ4lt9+HSuOYl6i1QBkA3DaQH+LFVcxdbnvXBUbXQW5fRxNDqR2vogsu88i6trtEbgMSoAruaJQ5zWu3Db6mV7/j3t6k/+QYicJ/kC61b/cr7al4tS+7vpN7pGcO7C4oAk9S6i3TndoZpmAF5kFiNMKFmDHBJ35oxZ38mUpVytDJhIzXKvO6RWQCdBPxIPXxbxhoDWSRrISw==
+ b=gPfDDz5prak9HzKuiux/FvD090NkGnrUGe/v9Yhz39rFtemoTJk5aJg+xi9Sp1UMrZ18dEvEbLfPSSsC1/u5yAdZRlhCU/GOTbm+gUIrIkOlcVUOOAKXz3E2PPHB0nBEEnwrZOMx6L9OoTQ31ncAqgpgwFx/+Ep7sQd2Na237U6867ic0ZYfCSRDw1JMqNzk2Ovy6fGoohS1ZxWCWh9cN1irvWIhbgRPJSfz301WGxbvITnz6T6U+ySLdNa3PweXoIDTN8UNu6qmNWPp0SLLkUc8ynN6in1Mgxu4QFJDGSRQQbUDnXJg+IF6m2hNrl9cm/OjT57jpnT0azfPC3J71A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dBuLVuUUu7r4ZY9uNiIQUTDaPrG61pEyfOYK9rJDCDg=;
- b=CbWt0S4sRJr7/MP90pYwKekOUxF0aind4abo9yZ1LuXH0sa0NjS9tZxHHVoEf/6QavjCylPcJbk0tyE4kJja9xBKcylZd8yuACVZxaY5SIG/yseTKLXOs9oOjcaHpkxrmBgTjpIsMcutaz9DLykMeqVOLmVmpOBS5VCkLx6ycs/HzVggsBy2tZVeHt6mD4iMYCRYJynyPrf3B3GbTGgB/jptisZt3YQXXhEN1tNFt7b/ZH3dXYpfg2qvtiAlZHGX3zGgCIFapNS0Gxk59T+3WwqWncJo3H9bv8jsKNarQ7xlVPEXt2bKTt7iHA1FXNKWpHWPdqTarC1Mi8qP8NF9Mw==
+ bh=YjxjyoK+/+9BzCiCCIcUAhz7yDKl7oI/qPblhUSjKiQ=;
+ b=OOBzyj/tS+1UM+q7GiHDqVzYN2q9z6fjWozWfPALzOhJenu8QTu03IYI+1VvdaAWJlYLncIzkDrMrHvTsJmbC/18RHDt2gSJ7HOe4B/y7fTr5URIR99mij0HYwkQwrAtpRGda/dzZeK1KisE+Aa7I7ImrAWciJST6GGrITnXMKLLsieapvZzqd+Iz1ibk5a4I1ayvsCJQyctAfmX3koIMyyHXc+T/3PN8YuhoI2OBbjGaQtoudKPz8tI99roDS/BFTPpBSU05hADwG8ANy392YTNDBE8KsmE0Xborlu4pQIYE4z7O5HR0R8gswQ33Z0YaRRiHMLtGvjgKKtSkZsJSA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
  dkim=pass header.d=vehere.com; arc=none
@@ -28,22 +28,22 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=vehereinteractive.onmicrosoft.com;
  s=selector2-vehereinteractive-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dBuLVuUUu7r4ZY9uNiIQUTDaPrG61pEyfOYK9rJDCDg=;
- b=Nz9YVJafPeSSUqFhAchYuBJ/C+xWC9tcp7fJUeqid7/yOEPrWzHjYygnq1ebURXC32AQ//iBVm/fq7Kvpc0lqlsUX0qC/JhyX+3mh5za4C69UvFYRRArgnGYR34WYJs3oL3gcH5fnyVKQc1Jjiyhkoql+045XtBXPtmLNkt76SE=
+ bh=YjxjyoK+/+9BzCiCCIcUAhz7yDKl7oI/qPblhUSjKiQ=;
+ b=C2xZyeaIKkMHjSeCqTVOwwE1HEYSj6WQHS5AIfHM107r4sfQvoFY0Y0ZUAjspBvAoQBA1f9iNMjSIqxVwF21OJWSzMl0mVJlpcsts6QjTNytFm+ioS0RJWvivw8ZFtjzxFP8Y0zhHZgsbbm+oIgxaAx3ALJUc8Qr4wD1Vq2POvw=
 Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3e::22)
- by MAXPR0101MB1788.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:19::10)
+ by MAXPR01MB2336.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:56::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.24; Fri, 24 Jul
- 2020 08:21:25 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.22; Fri, 24 Jul
+ 2020 08:42:49 +0000
 Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
  ([fe80::b527:579d:9786:f41f]) by MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
  ([fe80::b527:579d:9786:f41f%3]) with mapi id 15.20.3216.021; Fri, 24 Jul 2020
- 08:21:25 +0000
+ 08:42:49 +0000
 To: "'USRP-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
-Thread-Topic: 4 channel capture using grc and pcie
-Thread-Index: AQHWYZMiVuDmc7CcMku3Q1nlFH28Vg==
-Date: Fri, 24 Jul 2020 08:21:25 +0000
-Message-ID: <MA1PR01MB2588ED02A93680AA89569A3490770@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+Thread-Topic: Using GNU radio 
+Thread-Index: AQHWYZYcncgI62yoMEKmHAeV10Sh+Q==
+Date: Fri, 24 Jul 2020 08:42:49 +0000
+Message-ID: <MA1PR01MB2588CC00F48E87E8D085A83190770@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -52,32 +52,32 @@ authentication-results: lists.ettus.com; dkim=none (message not signed)
  header.d=none; lists.ettus.com; dmarc=none action=none header.from=vehere.com; 
 x-originating-ip: [42.110.154.20]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c4cd6e97-9f4d-462a-270b-08d82faa8eb3
-x-ms-traffictypediagnostic: MAXPR0101MB1788:
-x-microsoft-antispam-prvs: <MAXPR0101MB1788B84BB51351E595F50B5A90770@MAXPR0101MB1788.INDPRD01.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:1728;
+x-ms-office365-filtering-correlation-id: 1fc1b48f-8404-418d-0e80-08d82fad8bfe
+x-ms-traffictypediagnostic: MAXPR01MB2336:
+x-microsoft-antispam-prvs: <MAXPR01MB2336C4818B97C8A85D839FC890770@MAXPR01MB2336.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:800;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: xPksAjpG7c4IRgPFnghC8wJdHjGOg6+qRgfbHiAZ2bYIng+syq4uEKTz1Sme8hCWW6n2k0qzNxBSmrKDzIAu3pFU57tlgOhXx7D82rLtPc+eX72EJpLzSPhqo5JqrMt50J6Y8/yEJm87zWndIrOUAkUZDCjDm0CemYzsLITFYUZ5y5bMB+1unP6b4eCuB9tE+p1mko1Qq3LGTOLR2potjqzdEzuLsQMpoFuYNLHevKfHjLalrCL3cJF8XAFmqzYeRxIPjiRd8yKK1gYY5PaJTDlE2WGr5HcRE5b1jzbifHOjLxyRDCMQimTqFM94MHp3JxijaZxBVe9RkY7Ot3H8eCfMyFJWU7zkxXFl87PFR1T2TryFLvIirIDZ55LpbiAXDRZrhtYMx2lCcCpXEFahL12MiTQ2c7Iqxyth3NLFUL1OSZop88RXfbOPiuzk1d1QgbfItOXl4VJd/Tp/OAHZXw==
+x-microsoft-antispam-message-info: d8fe96vrFRv0+wkqZSrSBIz8zWO84zknbY4AyDFN2vn/Y9cV9rrUa0+5L4tFkd3AScyaOGwTvzF5QdL5Q3TT6QvFnKRq4dBlQpKyII17qkBmcy7GEsR7bM2HIC67Ufe2uyxbbY7/nyKuCAPLGV46DIQGOqAGYel/nAMRv2PqMNpECYzcJGRG9I9/vRQuWgeLJb7BdgCIIY576h7x+whYWlhjvJ0qSSP9UTI53vpXlQSX10rJdHbf3apz01VpQg0PlC02CcwpGq8SuKlJP8b0x8i8beFqDN+95vUu4hXoo9B0EkCyytsQMPFyzKwNY/Qwa44J5q8tBYY3poyKDFnv78+RLs7ooWA+3FAKnXDoInSRdnhZW+T2cSE5BwRlfRnoDLpstWwc2gHRHWu7Jd7cRl8ppezCbj7QrAIyX8uN2TQ7fxx/Cajiot1YJFQw+rtR
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
  SFTY:;
- SFS:(39830400003)(396003)(346002)(376002)(136003)(366004)(316002)(6916009)(508600001)(7696005)(45080400002)(26005)(66946007)(186003)(86362001)(76116006)(66446008)(64756008)(66476007)(66556008)(52536014)(55016002)(33656002)(558084003)(166002)(5660300002)(71200400001)(6506007)(9686003)(8936002)(2906002)(8676002)(491001);
+ SFS:(396003)(39830400003)(346002)(366004)(376002)(136003)(2906002)(71200400001)(66946007)(76116006)(186003)(166002)(558084003)(4743002)(3480700007)(66556008)(64756008)(33656002)(66476007)(9686003)(55016002)(508600001)(26005)(86362001)(7696005)(6506007)(8676002)(7116003)(316002)(45080400002)(66446008)(8936002)(52536014)(6916009)(5660300002)(491001);
  DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: 0a2O2BIwUWM+exkDgiCR4PbyYRMS5byuikJ8qgeS+KywpgkMvKLRG1l1mEuaU/HyHV/c7i7wD34DciW8tBbZmhIbMhXFXIv6SchrqOgpnso8B5p4cAVV4zqfJ8nnv1GEyvC9Ddd0UsHooUWMP7NfAKKBkS/SHMXSI36xOj7ZgGsit5Ae+4lCwxe+Tgk+FSSWTwLp6XmJIIFE0tcpg/kOe5t1DLK0OWfyqEeWy0Fr6Re1kFzjorYZmz9cRtbd7K4NGaZu8oox/l+DxitLaxvkO79ZJJRnSHrN4E7tZOKoe0aAc16Hm3eumsV+i/h93bgcMJ0vwmIxw/8UuP9nV/CwC8krVlVqRHDsHEraO5s5dw1EAZozYICAkS752ILBNfnBkeDQQ39ulRoeE8CtFTeynp+G6O8TnzcDOZqmJt/umNFvLlNHcd+X6RW7JUT4D4FWT0hWSu70swQQx6jud2gkMQSMETakrwmG273skFV2yrfDh9096EDK1D4Up7kdvOY2
+x-ms-exchange-antispam-messagedata: dgGqlixPzLilzKoN4mMhph4MS/D672K2xUlbezZN4P57xtgnIFMdvr/ZSHuQ7VvyP2EpUWwY+kytPs3X0mg4sQOrcyCz1G0Xfq35l6PoogqEEGrKmyeF+P3wB9LHRSEYkEM6V9P/vyAgOxBZ9lqlTuHh0qSCXl80yio2sEaHmrKDAYc5MHOUL+nX4KW2UZDl2S2SA7MisvSK3SBbecrx3vmSlfmtLYfYjVy1LiDiCxVkZgvxqskrhKOfp+SPrMSJ2zO8fKV3c58v+tgm0XuSpr/eutR1kgkt8MN1gjP1OvYFoBsbQ07tWe1UcMw3jCxsMp8IpUj8perQkw0My0DNts9sfVOGbr3fVS4hQjn54e5ak16g6+kZavrw1FgmubD/m4icd8mVcEteWvQKxtPAxYKpbtaQ+CYjzWSQAwWfbnC278WKlMAsYNiHQPIbRlfFgf1NnR3P1ECi/33+rF2tePmuM4sa0zjQRkvXxlsSIqRGPOeIxbuipUkg+Q8lIBxl
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
 X-OriginatorOrg: vehere.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: c4cd6e97-9f4d-462a-270b-08d82faa8eb3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jul 2020 08:21:25.7606 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1fc1b48f-8404-418d-0e80-08d82fad8bfe
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jul 2020 08:42:49.7195 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CvqveWopDjn1rtglojEB07rS8SzIvHSMhIz5v4Eu9lfd0XhgepO4uBbv1lJyF9nro25G5hC/m/G9VY9rKv2tEg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAXPR0101MB1788
-Subject: [USRP-users] 4 channel capture using grc and pcie
+X-MS-Exchange-CrossTenant-userprincipalname: ku5K8K9UuXQOrJQMv9wM9oNztn6SPS9ZMcMkkKmy18Fz+7IRw4ENeYc+lnpgNWglzsYU6/Gda3btQIWWu5IYpg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAXPR01MB2336
+Subject: [USRP-users] Using GNU radio
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -91,7 +91,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
-Content-Type: multipart/mixed; boundary="===============9140331233365111678=="
+Content-Type: multipart/mixed; boundary="===============8803298082130157575=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -105,26 +105,21 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9140331233365111678==
+--===============8803298082130157575==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_MA1PR01MB2588ED02A93680AA89569A3490770MA1PR01MB2588INDP_"
+	boundary="_000_MA1PR01MB2588CC00F48E87E8D085A83190770MA1PR01MB2588INDP_"
 
---_000_MA1PR01MB2588ED02A93680AA89569A3490770MA1PR01MB2588INDP_
+--_000_MA1PR01MB2588CC00F48E87E8D085A83190770MA1PR01MB2588INDP_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-Is it possible to receive data from 4 channels simultaneously of usrp 2955 =
-using PCIe ? Which version of Linux and grc should be installed for that?
-
-Regards,
-Koyel
+Can 6 gbps from usrp be written to a file using GNU Radio Companion with us=
+rp source to file sink in a RAM disk?
 
 Get Outlook for iOS<https://aka.ms/o0ukef>
 
---_000_MA1PR01MB2588ED02A93680AA89569A3490770MA1PR01MB2588INDP_
+--_000_MA1PR01MB2588CC00F48E87E8D085A83190770MA1PR01MB2588INDP_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -137,16 +132,8 @@ Content-Transfer-Encoding: quoted-printable
 <div dir=3D"ltr">
 <div></div>
 <div>
-<div>Hi,</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Is it possible to receive data from 4 channels simultaneou=
-sly of usrp 2955 using PCIe ? Which version of Linux and grc should be inst=
-alled for that?</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Regards,</div>
-<div dir=3D"ltr">Koyel&nbsp;</div>
+<div>Can 6 gbps from usrp be written to a file using GNU Radio Companion wi=
+th usrp source to file sink in a RAM disk?</div>
 <div><br>
 </div>
 <div class=3D"ms-outlook-ios-signature" id=3D"ms-outlook-mobile-signature">=
@@ -157,10 +144,10 @@ Outlook for iOS</a></div>
 </body>
 </html>
 
---_000_MA1PR01MB2588ED02A93680AA89569A3490770MA1PR01MB2588INDP_--
+--_000_MA1PR01MB2588CC00F48E87E8D085A83190770MA1PR01MB2588INDP_--
 
 
---===============9140331233365111678==
+--===============8803298082130157575==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -171,5 +158,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9140331233365111678==--
+--===============8803298082130157575==--
 
