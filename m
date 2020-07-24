@@ -2,59 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A167B22C7B9
-	for <lists+usrp-users@lfdr.de>; Fri, 24 Jul 2020 16:18:22 +0200 (CEST)
-Received: from [::1] (port=44532 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E821F22C7C9
+	for <lists+usrp-users@lfdr.de>; Fri, 24 Jul 2020 16:20:02 +0200 (CEST)
+Received: from [::1] (port=44558 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jyyWh-0002Zw-ES; Fri, 24 Jul 2020 10:18:19 -0400
-Received: from mail-qk1-f174.google.com ([209.85.222.174]:34654)
+	id 1jyyYL-00038i-Aq; Fri, 24 Jul 2020 10:20:01 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:46930)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jyyWd-0002JE-PH
- for usrp-users@lists.ettus.com; Fri, 24 Jul 2020 10:18:15 -0400
-Received: by mail-qk1-f174.google.com with SMTP id x69so8741243qkb.1
- for <usrp-users@lists.ettus.com>; Fri, 24 Jul 2020 07:17:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=outKWZGDKsuZurNplQLaj0dwcPhpPJffWptQbqOkyPw=;
- b=Xr+UlOssgbdeGpYznZoLhhn/Stxh8uhn+gpwZD1zGJFEOYE/C2UOnezWqfz2UPDb56
- 1JW9BrysXGkQppBqNrmt8E+gJPX1cVU/jtI5nczjOHgv6ewDkbPJXmt/PstX3Db6k+un
- wZpZTnZ8tSNVubN45CE/QsM80JyrFB/jzr8AFhsTC3Hm7aPFZn4e1gG7dRA5KjWK6EbD
- buYQi6yvJdq/PbqlyzlcKTefcLMx7iuNMJ7kr/LMeYtuvYAwGarSv9dG2c/VZ7XlJv+l
- XpEUZCl7l/ZimTYlQUpruqynYjIQMWVVwE9YtBgH6ryBuo+Krij1vUj+htc/ds3aALrG
- 5iIg==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1jyyYH-00030x-9M
+ for usrp-users@lists.ettus.com; Fri, 24 Jul 2020 10:19:57 -0400
+Received: by mail-ot1-f51.google.com with SMTP id n24so7064961otr.13
+ for <usrp-users@lists.ettus.com>; Fri, 24 Jul 2020 07:19:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=7itgSGcZQx3MHE0S9a+ZbGi1qkIZVrdJCmmjMuHo2Bs=;
+ b=G9xBb7w5FSF+edZDZJMEnZ1xnTM4aIRyJfrlnNydDdNQgukpm5jBOl5d79tJuYeIkN
+ rICybFWv9CkXLT1r3KCVqYlGHOBeZKAVRw1wzwVzT4V4UNZW23Pk9OcJZHshDDlt7HB3
+ URrTUEpuBgTea/AqdYQmCuX8L92ua2zQpWJXvg76QpzDYBHWr6UEoHlQ7BAvl8O/7+wK
+ mW6Xrs0QkpR9eJMn0jm7Jm80pN3jzIQt6lnBpGDmPaXCH28e57UaOUR8pVrUrQrC1zYO
+ HXzYsSNEDDkLigxX7IV5QM+uZ6BEdl0gcR5EmPAmM+wKbSxVN5Q20oPUYidSqp9npCrm
+ qJ5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=outKWZGDKsuZurNplQLaj0dwcPhpPJffWptQbqOkyPw=;
- b=bV2g46+iwRQCQM9624EhCKfH59PjrDvKzKCuLipHw5r3Azd3/YsWcUgFDf/Msgspdx
- 6GtpOnfQ3yqCBJA4R9Ux4L3fDOH+Tvi7vH2y4rdfY+T/Exg/3O/lvFrPUzSIxUcosBtM
- Rwkq/4WcsOlaF/E8LRp0YbzgWddNEZ+dU1jSiFOqSJEPvCgrSnMK5s5t3cF5/Ijd/+KM
- LuALlqmkFojtch+hKUjZO0CcBAW/wzAEPlXzKU21MQCzhqR04sqUte2BjLLYUSzgFW3W
- uWfBezmLZ/r5rITLex8pJVKS9Z6NoUXk1EsJs+eIRx9JuJGIbdYvRBJhenvG9Dn3idQN
- nasw==
-X-Gm-Message-State: AOAM533n6EiOuf0tJ8x73LBBolShjeojA1tOqQ7pbucTvY6PMrV8+Y0z
- Da7nBDpUITzmIygib0K7/0NUG3TN31I=
-X-Google-Smtp-Source: ABdhPJzCvef/FUMHZRoy9WPDvqpBdxZhD1c86/xU20RnGC8J7ILPbOePFDyEsH0BaKCCfN0SMjRREw==
-X-Received: by 2002:a37:910:: with SMTP id 16mr8545337qkj.466.1595600255079;
- Fri, 24 Jul 2020 07:17:35 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id n6sm4056197qkh.74.2020.07.24.07.17.34
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 24 Jul 2020 07:17:34 -0700 (PDT)
-Message-ID: <5F1AED7D.1000606@gmail.com>
-Date: Fri, 24 Jul 2020 10:17:33 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=7itgSGcZQx3MHE0S9a+ZbGi1qkIZVrdJCmmjMuHo2Bs=;
+ b=APx0ofKZHLKxKk/FcTdoYz5UCz2kcWbx/d9PeKWLYAQCSV1FLn0iCm4kQALCMuoS+0
+ ih81kENpxOVZn0yb3z8fQFf7T+oXks7Sp3Ct7i0HDeGzqA7x4JSqA9JyVCggpXqw8gzo
+ yfcRwrDW791KS+TEanDHtkFgzCb/11PxmPBZlApvunIqs8pgeAiD01pzadfPYJ97AMNj
+ Iy001lXzf5S3t0D3d61JTyp64WcqNUMne7OHL5MCxTGKUnRtHYZ+fJykaZ2Jv5eVn5XV
+ 3sssrNJBXHAh74F8WXePwwj+Gy0QZrYxkgjBSInGzwVwCPUOEyYGGG+UWSYPPn7YjoMg
+ SNDg==
+X-Gm-Message-State: AOAM5314yLiqx7rTXMUAB9GcYqIsC8XAbBKhiP94Hzbh/QIkzlFoIIfK
+ l+vsk76U76WACpMG6MKQhh2hVV/3bByKbG3/gO9gSw==
+X-Google-Smtp-Source: ABdhPJxY9zWKc8LIXQwtJiMeFnIXQKfncoS+PCZCXcRaed1a31autWXga7mqWK3ulpzOuuJCmWf8ynYtkBuy9u4NZU4=
+X-Received: by 2002:a05:6830:1112:: with SMTP id
+ w18mr8777222otq.301.1595600356474; 
+ Fri, 24 Jul 2020 07:19:16 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <10F7328F6AD1354BA6DD787687B66B9001A97AA9C3@Maui.in.dynetics.com>
-In-Reply-To: <10F7328F6AD1354BA6DD787687B66B9001A97AA9C3@Maui.in.dynetics.com>
-Subject: Re: [USRP-users] Getting DPDK to work
+References: <CAANLyua6xgH+TsH2bqmKLMu4buMm93QqYQ-JPy+vd4F9aB26SA@mail.gmail.com>
+ <81D12D30-8BD2-4ED2-906C-E9F7F08B2B82@gmail.com>
+In-Reply-To: <81D12D30-8BD2-4ED2-906C-E9F7F08B2B82@gmail.com>
+Date: Fri, 24 Jul 2020 10:19:05 -0400
+Message-ID: <CAB__hTTc80gTmTWXK2GnsBQpdAj6vZ_=oV_Nc_8oLs0vRzcMGA@mail.gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Subject: Re: [USRP-users] tx_stream->get_max_num_samps() too low
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============9042564245647512084=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============3918419109790136436=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,307 +76,297 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============9042564245647512084==
-Content-Type: multipart/alternative;
- boundary="------------010505020101030105040108"
+--===============3918419109790136436==
+Content-Type: multipart/alternative; boundary="00000000000073b22a05ab30a8d0"
 
-This is a multi-part message in MIME format.
---------------010505020101030105040108
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--00000000000073b22a05ab30a8d0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 07/24/2020 09:44 AM, Carmichael, Ryan via USRP-users wrote:
->
-> I’ve got an X310, UHD 3.15.LTS (compiled with DPDK support), DPDK 
-> 17.11 on Red Hat. I feel like things are 95% of the way there, but I 
-> can’t get UHD to work with DPDK.
->
-> Long story short, I’m getting the error “EAL: Please set IPv4 address 
-> for port 0 before opening socket”. I wonder if it’s not reading my uhd 
-> conf file.
->
-> Before dpdk-devbind, the X310 has two IP addresses that are pingable 
-> (192.168.30.2 and 40.2) from my NICs:
->
-> enp13s0f0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
->
->         inet 192.168.30.99  netmask 255.255.255.0  broadcast 
-> 192.168.30.255
->
->         ether aa:bb:cc:dd:ee:01  txqueuelen 1000  (Ethernet)
->
-> enp13s0f1: flags=4099<UP,BROADCAST,MULTICAST>  mtu 9001
->
->         inet 192.168.40.99  netmask 255.255.255.0  broadcast 
-> 192.168.40.255
->
->         ether aa:bb:cc:dd:ee:02  txqueuelen 1000  (Ethernet)
->
-> After running dpdk-devbind:
->
-> Network devices using DPDK-compatible driver
->
-> ============================================
->
-> 0000:0d:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb' 
-> drv=igb_uio unused=vfio-pci,uio_pci_generic
->
-> 0000:0d:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb' 
-> drv=igb_uio unused=vfio-pci,uio_pci_generic
->
-> I have a configuration file:
->
-> [use-dpdk=1]
->
-> dpdk-mtu=9000
->
-> dpdk-corelist=0,1
->
-> dpdk-num-mbufs=4096
->
-> dpdk-mbuf-cache-size=64
->
-> [dpdk-mac=aa:bb:cc:dd:ee:01]
->
-> dpdk-lcore = 1
->
-> dpdk-ipv4 = 192.168.30.1/24
->
-> dpdk-num-desc=4096
->
-> [dpdk-mac=aa:bb:cd:dd:ee:02]
->
-> dpdk-lcore = 0
->
-> dpdk-ipv4 = 192.168.40.1/24
->
->
-Check for syntax errors in the conf file?
+spp can be changed in the radio block xml file
 
-I can't remember whether spaces are allowed around "=" in those config 
-files or not.
+On Thu, Jul 23, 2020 at 9:20 PM Marcus D Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
+> Try using the Spp parameter in the device ages.
+>
+> Sent from my iPhone
+>
+> On Jul 23, 2020, at 5:50 PM, Devin Kelly via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+> =EF=BB=BF
+> Hello,
+>
+> I'm having an issue where tx_stream->get_max_num_samps() is returning 364
+> (for sc16) despite my MTU being set to 9000.
+>
+> I modified tx_timed_samples to print out how many samples I can place in
+> each packet, the number is always 364.
+>
+> 364 samples makes sense for an MTU of 1500 bytes, 364 * 2 * 2 =3D 1456
+> bytes.  Two bytes per sample, one sample for I and another sample for Q.
+>
+> $ ./examples/tx_timed_samples --args=3D"name=3Dnode4" --nsamps 100000 --r=
+ate
+> 10e6
+>
+> Creating the usrp device with: name=3Dnode4...
+> [INFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-39);
+> Boost_106900; UHD_3.15.0.heads-v3.15.0.0-0-gaea0e2de
+> [INFO] [X300] X300 initialization sequence...
+> [INFO] [X300] Maximum frame size: 8000 bytes.
+> [INFO] [X300] Radio 1x clock: 200 MHz
+> [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929b
+> [WARNING] [GPS] update_cache: Malformed GPSDO string: EEPROM Write Failed=
+!
+> [WARNING] [GPS] update_cache: Malformed GPSDO string: EEPROM Write Failed=
+!
+> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
+> 0xF1F0D00000000000)
+> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1313 MB/s)
+> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1306 MB/s)
+> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001=
+)
+> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001=
+)
+> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
+> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
+> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
+> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
+> Using Device: Single USRP:
+>   Device: X-Series Device
+>   Mboard 0: X310
+>   RX Channel: 0
+>     RX DSP: 0
+>     RX Dboard: A
+>     RX Subdev: UBX RX
+>   RX Channel: 1
+>     RX DSP: 0
+>     RX Dboard: B
+>     RX Subdev: UBX RX
+>   TX Channel: 0
+>     TX DSP: 0
+>     TX Dboard: A
+>     TX Subdev: UBX TX
+>   TX Channel: 1
+>     TX DSP: 0
+>     TX Dboard: B
+>     TX Subdev: UBX TX
+>
+> Setting TX Rate: 10.000000 Msps...
+> Actual TX Rate: 10.000000 Msps...
+>
+> Setting device timestamp to 0...
+> tx_stream->get_max_num_samps() =3D 364
+>
+> Waiting for async burst ACK... success
+>
+> Done!
+>
+> I've verified that my interface is using a 9000 byte MTU:
+>
+> $ ip l show dev p4p2
+> 4: p4p2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc mq state UP mod=
+e
+> DEFAULT group default qlen 4000
+>     link/ether 00:0a:f7:da:6a:e9 brd ff:ff:ff:ff:ff:ff
+>
+> And that it actually works:
+>
+> $ ping -I p4p2 -c1 -s 8100 192.168.30.2
+> PING 192.168.30.2 (192.168.30.2) from 192.168.30.1 p4p2: 8100(8128) bytes
+> of data.
+> 8108 bytes from 192.168.30.2: icmp_seq=3D1 ttl=3D32 time=3D23.7 ms
+>
+> --- 192.168.30.2 ping statistics ---
+> 1 packets transmitted, 1 received, 0% packet loss, time 0ms
+> rtt min/avg/max/mdev =3D 23.705/23.705/23.705/0.000 ms
+>
+> Note that the "don't fragment" flag is set:
+>
+> $ sudo tcpdump -nn -vv -i p4p2 icmp
+> tcpdump: listening on p4p2, link-type EN10MB (Ethernet), capture size
+> 262144 bytes
+> 17:25:12.973794 IP (tos 0x0, ttl 64, id 5942, offset 0, flags [DF], proto
+> ICMP (1), length 8128)
+>     192.168.30.1 > 192.168.30.2: ICMP echo request, id 47608, seq 1,
+> length 8108
+> 17:25:12.997481 IP (tos 0x0, ttl 32, id 0, offset 0, flags [DF], proto
+> ICMP (1), length 8128)
+>     192.168.30.2 > 192.168.30.1: ICMP echo reply, id 47608, seq 1, length
+> 8108
+>
+>
+> Strangely though using a slightly larger packet (8300 bytes) my USRP seem=
+s
+> to not respond:
+>
+> $ ping -I p4p2 -c1 -s 8300 192.168.30.2
+> PING 192.168.30.2 (192.168.30.2) from 192.168.30.1 p4p2: 8300(8328) bytes
+> of data.
+> ^C
+> --- 192.168.30.2 ping statistics ---
+> 1 packets transmitted, 0 received, 100% packet loss, time 0ms
+>
+> $ sudo tcpdump -nn -vv -i p4p2 icmp
+> tcpdump: listening on p4p2, link-type EN10MB (Ethernet), capture size
+> 262144 bytes
+> 17:23:03.060789 IP (tos 0x0, ttl 64, id 23157, offset 0, flags [DF], prot=
+o
+> ICMP (1), length 8328)
+>     192.168.30.1 > 192.168.30.2: ICMP echo request, id 47339, seq 1,
+> length 8308
+>
+>
+> Do I have to do anything besides simply changing my MTU to get the UHD to
+> take advantage of jumbo frames?
+>
+> Thanks for any help,
+> Devin
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
+--00000000000073b22a05ab30a8d0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------010505020101030105040108
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+<div dir=3D"ltr">spp can be changed in the radio block xml file</div><br><d=
+iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul =
+23, 2020 at 9:20 PM Marcus D Leech via USRP-users &lt;<a href=3D"mailto:usr=
+p-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Try us=
+ing the Spp parameter in the device ages.=C2=A0<br><br><div dir=3D"ltr">Sen=
+t from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Jul=
+ 23, 2020, at 5:50 PM, Devin Kelly via USRP-users &lt;<a href=3D"mailto:usr=
+p-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&g=
+t; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"l=
+tr">=EF=BB=BF<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I&#39;m =
+having an issue where tx_stream-&gt;get_max_num_samps() is returning 364 (f=
+or sc16) despite my MTU being set to 9000.</div><div><br></div><div>I modif=
+ied tx_timed_samples to print out how many samples I can place in each pack=
+et, the number is always 364. </div><div><br></div><div>364 samples makes s=
+ense for an MTU of 1500 bytes, 364 * 2 * 2 =3D 1456 bytes.=C2=A0 Two bytes =
+per sample, one sample for I and another sample for Q.<br></div><div><br></=
+div><div style=3D"margin-left:40px"><span style=3D"font-family:monospace">$=
+ ./examples/tx_timed_samples --args=3D&quot;name=3Dnode4&quot; --nsamps 100=
+000 --rate 10e6<br><br>Creating the usrp device with: name=3Dnode4...<br>[I=
+NFO] [UHD] linux; GNU C++ version 4.8.5 20150623 (Red Hat 4.8.5-39); Boost_=
+106900; UHD_3.15.0.heads-v3.15.0.0-0-gaea0e2de<br>[INFO] [X300] X300 initia=
+lization sequence...<br>[INFO] [X300] Maximum frame size: 8000 bytes.<br>[I=
+NFO] [X300] Radio 1x clock: 200 MHz<br>[INFO] [GPS] Found an internal GPSDO=
+: LC_XO, Firmware Rev 0.929b<br>[WARNING] [GPS] update_cache: Malformed GPS=
+DO string: EEPROM Write Failed!<br>[WARNING] [GPS] update_cache: Malformed =
+GPSDO string: EEPROM Write Failed!<br>[INFO] [0/DmaFIFO_0] Initializing blo=
+ck control (NOC ID: 0xF1F0D00000000000)<br>[INFO] [0/DmaFIFO_0] BIST passed=
+ (Throughput: 1313 MB/s)<br>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1=
+306 MB/s)<br>[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD1=
+00000000001)<br>[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12=
+AD100000000001)<br>[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xD=
+DC0000000000000)<br>[INFO] [0/DDC_1] Initializing block control (NOC ID: 0x=
+DDC0000000000000)<br>[INFO] [0/DUC_0] Initializing block control (NOC ID: 0=
+xD0C0000000000000)<br>[INFO] [0/DUC_1] Initializing block control (NOC ID: =
+0xD0C0000000000000)<br>Using Device: Single USRP:<br>=C2=A0 Device: X-Serie=
+s Device<br>=C2=A0 Mboard 0: X310<br>=C2=A0 RX Channel: 0<br>=C2=A0 =C2=A0 =
+RX DSP: 0<br>=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=A0 RX Subdev: UBX RX<=
+br>=C2=A0 RX Channel: 1<br>=C2=A0 =C2=A0 RX DSP: 0<br>=C2=A0 =C2=A0 RX Dboa=
+rd: B<br>=C2=A0 =C2=A0 RX Subdev: UBX RX<br>=C2=A0 TX Channel: 0<br>=C2=A0 =
+=C2=A0 TX DSP: 0<br>=C2=A0 =C2=A0 TX Dboard: A<br>=C2=A0 =C2=A0 TX Subdev: =
+UBX TX<br>=C2=A0 TX Channel: 1<br>=C2=A0 =C2=A0 TX DSP: 0<br>=C2=A0 =C2=A0 =
+TX Dboard: B<br>=C2=A0 =C2=A0 TX Subdev: UBX TX<br><br>Setting TX Rate: 10.=
+000000 Msps...<br>Actual TX Rate: 10.000000 Msps...<br><br>Setting device t=
+imestamp to 0...<br>tx_stream-&gt;get_max_num_samps() =3D 364</span></div><=
+div style=3D"margin-left:40px"><span style=3D"font-family:monospace"><br>Wa=
+iting for async burst ACK... success<br><br>Done!</span></div><div><span st=
+yle=3D"font-family:monospace"><br></span></div><div><span style=3D"font-fam=
+ily:arial,sans-serif">I&#39;ve verified that my interface is using a 9000 b=
+yte MTU:</span></div><div><span style=3D"font-family:monospace"><br></span>=
+</div><div style=3D"margin-left:40px"><span style=3D"font-family:monospace"=
+>$ ip l show dev p4p2</span><br><span style=3D"font-family:monospace">4: p4=
+p2: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9000 qdisc mq state UP mode=
+ DEFAULT group default qlen 4000</span><br><span style=3D"font-family:monos=
+pace">=C2=A0 =C2=A0 link/ether 00:0a:f7:da:6a:e9 brd ff:ff:ff:ff:ff:ff</spa=
+n></div><div><span style=3D"font-family:arial,sans-serif"><br></span></div>=
+<div><span style=3D"font-family:arial,sans-serif">And that it actually work=
+s:</span><span style=3D"font-family:monospace"><br></span></div><div><span =
+style=3D"font-family:monospace"><br></span><div style=3D"margin-left:40px">=
+<span style=3D"font-family:monospace">$ ping -I p4p2 -c1 -s 8100 192.168.30=
+.2 </span><br><span style=3D"font-family:monospace">PING 192.168.30.2 (192.=
+168.30.2) from 192.168.30.1 p4p2: 8100(8128) bytes of data.</span><br><span=
+ style=3D"font-family:monospace">8108 bytes from <a href=3D"http://192.168.=
+30.2" target=3D"_blank">192.168.30.2</a>: icmp_seq=3D1 ttl=3D32 time=3D23.7=
+ ms</span><br><span style=3D"font-family:monospace"></span><br><span style=
+=3D"font-family:monospace">--- 192.168.30.2 ping statistics ---</span><br><=
+span style=3D"font-family:monospace">1 packets transmitted, 1 received, 0% =
+packet loss, time 0ms</span><br><span style=3D"font-family:monospace">rtt m=
+in/avg/max/mdev =3D 23.705/23.705/23.705/0.000 ms</span></div></div><div><s=
+pan style=3D"font-family:arial,sans-serif"><br></span></div><div><span styl=
+e=3D"font-family:arial,sans-serif">Note that the &quot;don&#39;t fragment&q=
+uot; flag is set:</span><span style=3D"font-family:monospace"><br></span></=
+div><div style=3D"margin-left:40px"><span style=3D"font-family:monospace"><=
+br></span></div><div style=3D"margin-left:40px"><span style=3D"font-family:=
+monospace">$ sudo tcpdump -nn -vv -i p4p2 icmp<br>tcpdump: listening on p4p=
+2, link-type EN10MB (Ethernet), capture size 262144 bytes<br>17:25:12.97379=
+4 IP (tos 0x0, ttl 64, id 5942, offset 0, flags [DF], proto ICMP (1), lengt=
+h 8128)<br>=C2=A0 =C2=A0 192.168.30.1 &gt; <a href=3D"http://192.168.30.2" =
+target=3D"_blank">192.168.30.2</a>: ICMP echo request, id 47608, seq 1, len=
+gth 8108<br>17:25:12.997481 IP (tos 0x0, ttl 32, id 0, offset 0, flags [DF]=
+, proto ICMP (1), length 8128)<br>=C2=A0 =C2=A0 192.168.30.2 &gt; <a href=
+=3D"http://192.168.30.1" target=3D"_blank">192.168.30.1</a>: ICMP echo repl=
+y, id 47608, seq 1, length 8108<br></span></div><div><span style=3D"font-fa=
+mily:monospace"><br></span></div><div><span style=3D"font-family:arial,sans=
+-serif"><br></span></div><div><span style=3D"font-family:arial,sans-serif">=
+Strangely though using a slightly larger packet (8300 bytes) my USRP seems =
+to not respond:</span><span style=3D"font-family:monospace"><br></span></di=
+v><div><span style=3D"font-family:monospace"><br></span></div><div style=3D=
+"margin-left:40px"><span style=3D"font-family:monospace">$ ping -I p4p2 -c1=
+ -s 8300 192.168.30.2 </span><br><span style=3D"font-family:monospace">PING=
+ 192.168.30.2 (192.168.30.2) from 192.168.30.1 p4p2: 8300(8328) bytes of da=
+ta.</span><br><span style=3D"font-family:monospace">^C</span><br><span styl=
+e=3D"font-family:monospace">--- 192.168.30.2 ping statistics ---</span><br>=
+<span style=3D"font-family:monospace">1 packets transmitted, 0 received, 10=
+0% packet loss, time 0ms</span></div><div><span style=3D"font-family:monosp=
+ace"><br></span></div><div style=3D"margin-left:40px"><span style=3D"font-f=
+amily:monospace">$ sudo tcpdump -nn -vv -i p4p2 icmp<br>tcpdump: listening =
+on p4p2, link-type EN10MB (Ethernet), capture size 262144 bytes<br>17:23:03=
+.060789 IP (tos 0x0, ttl 64, id 23157, offset 0, flags [DF], proto ICMP (1)=
+, length 8328)<br>=C2=A0 =C2=A0 192.168.30.1 &gt; <a href=3D"http://192.168=
+.30.2" target=3D"_blank">192.168.30.2</a>: ICMP echo request, id 47339, seq=
+ 1, length 8308<br></span></div><div style=3D"margin-left:40px"><br><span s=
+tyle=3D"font-family:monospace"></span></div><div style=3D"margin-left:40px"=
+><br></div><div><font face=3D"arial,sans-serif">Do I have to do anything be=
+sides simply changing my MTU to get the UHD to take advantage of jumbo fram=
+es?</font></div><div><font face=3D"arial,sans-serif"><br></font></div><div>=
+<font face=3D"arial,sans-serif">Thanks for any help,</font></div><div><font=
+ face=3D"arial,sans-serif">Devin<br></font></div></div>
+<span>_______________________________________________</span><br><span>USRP-=
+users mailing list</span><br><span><a href=3D"mailto:USRP-users@lists.ettus=
+.com" target=3D"_blank">USRP-users@lists.ettus.com</a></span><br><span><a h=
+ref=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" =
+target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.=
+ettus.com</a></span><br></div></blockquote></div>__________________________=
+_____________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/24/2020 09:44 AM, Carmichael,
-      Ryan via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:10F7328F6AD1354BA6DD787687B66B9001A97AA9C3@Maui.in.dynetics.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:74476602;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-207170132 1396628910 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">I’ve got an X310, UHD 3.15.LTS (compiled
-          with DPDK support), DPDK 17.11 on Red Hat. I feel like things
-          are 95% of the way there, but I can’t get UHD to work with
-          DPDK.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Long story short, I’m getting the error
-          “EAL: Please set IPv4 address for port 0 before opening
-          socket”. I wonder if it’s not reading my uhd conf file.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Before dpdk-devbind, the X310 has two IP
-          addresses that are pingable (192.168.30.2 and 40.2) from my
-          NICs:<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">enp13s0f0:
-          flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 9001<o:p></o:p></p>
-        <p class="MsoNormal">        inet 192.168.30.99  netmask
-          255.255.255.0  broadcast 192.168.30.255<o:p></o:p></p>
-        <p class="MsoNormal">        ether aa:bb:cc:dd:ee:01  txqueuelen
-          1000  (Ethernet)<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">enp13s0f1:
-          flags=4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 9001<o:p></o:p></p>
-        <p class="MsoNormal">        inet 192.168.40.99  netmask
-          255.255.255.0  broadcast 192.168.40.255<o:p></o:p></p>
-        <p class="MsoNormal">        ether aa:bb:cc:dd:ee:02  txqueuelen
-          1000  (Ethernet)<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">After running dpdk-devbind:<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Network devices using DPDK-compatible
-          driver<o:p></o:p></p>
-        <p class="MsoNormal">============================================<o:p></o:p></p>
-        <p class="MsoNormal">0000:0d:00.0 '82599ES 10-Gigabit SFI/SFP+
-          Network Connection 10fb' drv=igb_uio
-          unused=vfio-pci,uio_pci_generic<o:p></o:p></p>
-        <p class="MsoNormal">0000:0d:00.1 '82599ES 10-Gigabit SFI/SFP+
-          Network Connection 10fb' drv=igb_uio
-          unused=vfio-pci,uio_pci_generic<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">I have a configuration file:<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">[use-dpdk=1]<o:p></o:p></p>
-        <p class="MsoNormal">dpdk-mtu=9000<o:p></o:p></p>
-        <p class="MsoNormal">dpdk-corelist=0,1<o:p></o:p></p>
-        <p class="MsoNormal">dpdk-num-mbufs=4096<o:p></o:p></p>
-        <p class="MsoNormal">dpdk-mbuf-cache-size=64<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">[dpdk-mac=aa:bb:cc:dd:ee:01]<o:p></o:p></p>
-        <p class="MsoNormal">dpdk-lcore = 1<o:p></o:p></p>
-        <p class="MsoNormal">dpdk-ipv4 = 192.168.30.1/24<o:p></o:p></p>
-        <p class="MsoNormal">dpdk-num-desc=4096<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">[dpdk-mac=aa:bb:cd:dd:ee:02]<o:p></o:p></p>
-        <p class="MsoNormal">dpdk-lcore = 0<o:p></o:p></p>
-        <p class="MsoNormal">dpdk-ipv4 = 192.168.40.1/24<o:p></o:p></p>
-        <br>
-      </div>
-    </blockquote>
-    Check for syntax errors in the conf file?<br>
-    <br>
-    I can't remember whether spaces are allowed around "=" in those
-    config files or not.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------010505020101030105040108--
+--00000000000073b22a05ab30a8d0--
 
 
---===============9042564245647512084==
+--===============3918419109790136436==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -393,5 +377,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9042564245647512084==--
+--===============3918419109790136436==--
 
