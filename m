@@ -2,59 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 935C022CCD8
-	for <lists+usrp-users@lfdr.de>; Fri, 24 Jul 2020 20:15:18 +0200 (CEST)
-Received: from [::1] (port=46598 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7AAF22CF18
+	for <lists+usrp-users@lfdr.de>; Fri, 24 Jul 2020 22:11:15 +0200 (CEST)
+Received: from [::1] (port=47378 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jz2E0-00081l-83; Fri, 24 Jul 2020 14:15:16 -0400
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:36084)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <dwwkelly@gmail.com>) id 1jz2Dv-0007t5-NS
- for usrp-users@lists.ettus.com; Fri, 24 Jul 2020 14:15:11 -0400
-Received: by mail-ot1-f52.google.com with SMTP id l27so501203oti.3
- for <usrp-users@lists.ettus.com>; Fri, 24 Jul 2020 11:14:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=ZG16PxewB7L7Oe46KmgTNwZWeqZWYmJwU4Q2H/ZiTcg=;
- b=coHAx3rzylYezzvTA+LlzjBo7lbr/udv2q7Cz9f1/WsBNCQ2VEv1DyZwCMze0jmHct
- sJsXf6q+BWtXtZ30xOeQUSj9U2rTDLesQn+TvfFJ5oJa+buP7kuGFR/sZCVMe5oTeaRr
- +F2cxzn/XSUNNHYRbX+1r/3W+PtjutWYZ/nMcZG4LcWLBvLKsiCxzs6hgD8pZ+a1Iqr7
- pnnwuQBGo8PrgouiXcoX44y9jkWs1dIRo8MIjhtRotsSju99qOXQUMtVZnBIG+XSOmbI
- 2Q3K7I+WZRhFB9rwezuB2JK1bLcF6aD5AfkZMfb05kNwuA+qZD0SxiRsy4g2HiIaBMhC
- Z4Bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=ZG16PxewB7L7Oe46KmgTNwZWeqZWYmJwU4Q2H/ZiTcg=;
- b=G26Ul7jJtnt4iSC4xC20MJ1cHqqKN9xbF7B4ARTTFNyU3ptXMzwWt9tO4uGXPFhTjH
- CArZdhYn+GlSLos79urMno35y+iDQNwxR3D2UtIwpZx/6J0c0ViMKRi9LGiCTpXJoLzZ
- D/DwCrwAdfogJVmvdFdQNaq4lz/G5WBezgPpX4MMK/jlpinvpPTn2LPvEZQZZh8DDXR+
- ylonP7pXby2cYjThQNw++6G0G76bFZ+cjeIqEOdHM1dm2L3TcDgx4N7WOYeUc+/OHIyL
- ZX82uHzyO+a8+yzQa1jzO9Z2sAK27l+KhdH3aOZq565fRpBQvTY5XIQWXm2xxVAhVQme
- 13qg==
-X-Gm-Message-State: AOAM533cHqw7J5R1YNKaoIk1NvWrMwHtJiBCvp+0yFrno3YosQhjMKoA
- 4GvbTqXBsxu6SCH8DTuSigFYERfVUrG/o5GHVSAkueuK
-X-Google-Smtp-Source: ABdhPJwtaenB0x23NrSI6ooecEN1xTWHl/L8XaF0nUqjsSmXyphTPSaFW0agsYJa8JnffwkYHDF4CkyaaaVQYy1HxoY=
-X-Received: by 2002:a05:6830:1c2f:: with SMTP id
- f15mr9772681ote.359.1595614470546; 
- Fri, 24 Jul 2020 11:14:30 -0700 (PDT)
+	id 1jz427-0006np-Jt; Fri, 24 Jul 2020 16:11:07 -0400
+Received: from barracuda.dynetics.com ([204.154.192.66]:49914)
+ by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
+ (Exim 4.93)
+ (envelope-from <btv1==474900d718c==Ryan.Carmichael@dynetics.com>)
+ id 1jz423-0006jQ-I4
+ for usrp-users@lists.ettus.com; Fri, 24 Jul 2020 16:11:03 -0400
+X-ASG-Debug-ID: 1595622171-10303724ef10a4210001-5wTQH4
+Received: from MX5.in.dynetics.com (MX5.in.dynetics.com [10.1.15.132]) by
+ barracuda.dynetics.com with ESMTP id ppg4jK2CRrE0RVRI (version=TLSv1.2
+ cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NO);
+ Fri, 24 Jul 2020 15:22:51 -0500 (CDT)
+X-Barracuda-Envelope-From: Ryan.Carmichael@dynetics.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.1.15.132
+Received: from MAUI.in.dynetics.com ([169.254.1.93]) by MX5.in.dynetics.com
+ ([10.1.15.132]) with mapi id 14.03.0487.000; Fri, 24 Jul 2020 15:09:50 -0500
+X-Barracuda-RBL-IP: 169.254.1.93
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Getting DPDK to work
+X-ASG-Orig-Subj: Re: [USRP-users] Getting DPDK to work
+Thread-Index: AdZh85W8jrZxAmOOQFuA0+kbk/eMvw==
+Date: Fri, 24 Jul 2020 20:09:49 +0000
+Message-ID: <10F7328F6AD1354BA6DD787687B66B9001A97AAB18@Maui.in.dynetics.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.249.132.118]
 MIME-Version: 1.0
-References: <CAANLyua6xgH+TsH2bqmKLMu4buMm93QqYQ-JPy+vd4F9aB26SA@mail.gmail.com>
- <81D12D30-8BD2-4ED2-906C-E9F7F08B2B82@gmail.com>
- <CAB__hTTc80gTmTWXK2GnsBQpdAj6vZ_=oV_Nc_8oLs0vRzcMGA@mail.gmail.com>
- <CAANLyua3t1JCyUPPopWCjekFm9okhoycbvvFxNwkBNHXN5kgwg@mail.gmail.com>
- <5F1AF0FC.80106@gmail.com>
- <CAANLyuY0Db2CXjRrW9Ht_8AL3RMuRhFde6Zyapq_hvNHm9iHrA@mail.gmail.com>
- <5F1B12B6.1010705@gmail.com>
- <CAANLyuacSbfH-t=vwPODS8O3f7WSD+sLWBV1KjRhWB9VaaSeMA@mail.gmail.com>
- <5F1B1972.50104@gmail.com>
-In-Reply-To: <5F1B1972.50104@gmail.com>
-Date: Fri, 24 Jul 2020 14:14:19 -0400
-Message-ID: <CAANLyuaXOu0UkFJqKHrfddn=Y_8atydU-WxYOO90ehmukwEnoA@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] tx_stream->get_max_num_samps() too low
+X-Barracuda-Connect: MX5.in.dynetics.com[10.1.15.132]
+X-Barracuda-Start-Time: 1595622171
+X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA384
+X-Barracuda-URL: https://barracuda.in.dynetics.com:443/cgi-mod/mark.cgi
+X-Barracuda-BRTS-Status: 1
+X-Virus-Scanned: by bsmtpd at dynetics.com
+X-Barracuda-Scan-Msg-Size: 19626
+X-Barracuda-Spam-Score: 0.50
+X-Barracuda-Spam-Status: No,
+ SCORE=0.50 using per-user scores of TAG_LEVEL=1000.0
+ QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=BSF_RULE7568M, HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.83434
+ Rule breakdown below
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ 0.00 HTML_MESSAGE           BODY: HTML included in message
+ 0.50 BSF_RULE7568M          Custom Rule 7568M
+Subject: Re: [USRP-users] Getting DPDK to work
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +65,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Devin Kelly via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Devin Kelly <dwwkelly@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2410177366378086906=="
+From: "Carmichael, Ryan via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Carmichael, Ryan" <Ryan.Carmichael@dynetics.com>
+Content-Type: multipart/mixed; boundary="===============3093936503607917210=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,103 +81,525 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2410177366378086906==
-Content-Type: multipart/alternative; boundary="000000000000b72ea805ab33f118"
+--===============3093936503607917210==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_10F7328F6AD1354BA6DD787687B66B9001A97AAB18Mauiindynetic_"
 
---000000000000b72ea805ab33f118
-Content-Type: text/plain; charset="UTF-8"
-
-Ahhhhhhhh I see.
-
-Thank you very much, I'll bookmark this page.
-
-Devin
-
-On Fri, Jul 24, 2020 at 1:25 PM Marcus D. Leech via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> On 07/24/2020 01:04 PM, Devin Kelly via USRP-users wrote:
-> > Well the documentation says RX stream only but it turned out to work
-> > for TX streams too... so the documentation writer should be embarrassed!
-> >
-> > In my first message I verified that the HW actually sends 8100 byte
-> > packets using ping, that is unless tcpdump is lying to me or
-> > re-constructing IP packets in a way that's transparent to me.
-> >
-> > It seems that there's a frame size that's hard coded in
-> > x300_eth_mgr.cpp and that's what was causing me trouble.  I got
-> > get_max_num_samps up to 1996 and so far that's helped the actual
-> > application I'm writing substantially.
-> >
-> > Devin
-> >
-> Ah, that's just establishing the *defaults* if you don't otherwise
-> specify the send_frame_size, documented here:
->
-> https://files.ettus.com/manual/page_transport.html
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000b72ea805ab33f118
-Content-Type: text/html; charset="UTF-8"
+--_000_10F7328F6AD1354BA6DD787687B66B9001A97AAB18Mauiindynetic_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Ahhhhhhhh I see.=C2=A0 <br></div><div><br></div><div>=
-Thank you very much, I&#39;ll bookmark this page.</div><div><br></div><div>=
-Devin</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Fri, Jul 24, 2020 at 1:25 PM Marcus D. Leech via USRP-users &=
-lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com=
-</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-On 07/24/2020 01:04 PM, Devin Kelly via USRP-users wrote:<br>
-&gt; Well the documentation says RX stream only but it turned out to work <=
-br>
-&gt; for TX streams too... so the documentation writer should be embarrasse=
-d!<br>
-&gt;<br>
-&gt; In my first message I verified that the HW actually sends 8100 byte <b=
-r>
-&gt; packets using ping, that is unless tcpdump is lying to me or <br>
-&gt; re-constructing IP packets in a way that&#39;s transparent to me.<br>
-&gt;<br>
-&gt; It seems that there&#39;s a frame size that&#39;s hard coded in <br>
-&gt; x300_eth_mgr.cpp and that&#39;s what was causing me trouble.=C2=A0 I g=
-ot <br>
-&gt; get_max_num_samps up to 1996 and so far that&#39;s helped the actual <=
-br>
-&gt; application I&#39;m writing substantially.<br>
-&gt;<br>
-&gt; Devin<br>
-&gt;<br>
-Ah, that&#39;s just establishing the *defaults* if you don&#39;t otherwise =
-<br>
-specify the send_frame_size, documented here:<br>
-<br>
-<a href=3D"https://files.ettus.com/manual/page_transport.html" rel=3D"noref=
-errer" target=3D"_blank">https://files.ettus.com/manual/page_transport.html=
-</a><br>
-<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+So now I'm so close to working with DPDK, seemingly. Every time I fix one t=
+hing there's another.
 
---000000000000b72ea805ab33f118--
+./rx_samples_to_file --args=3D"use_dpdk=3D1,addr=3D192.168.30.2,addr2=3D192=
+.168.40.2" --duration 0.01
+
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [X300] Radio 1x clock: 200 MHz
+[INFO] [X300] Radio 1x clock: 200 MHz
+[INFO] [X300] Radio 1x clock: 200 MHz
+[INFO] [2/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D00000000000=
+)
+[INFO] [2/DmaFIFO_0] BIST passed (Throughput: 1311 MB/s)
+[INFO] [2/DmaFIFO_0] BIST passed (Throughput: 1302 MB/s)
+.
+.
+.
+[INFO] [2/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
+INFO] [2/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
+terminate called after throwing an instance of 'uhd::io_error'
+  what():  EnvironmentError: IOError: Block ctrl (CE_00_Port_30) no respons=
+e packet - AssertionError: bool(buff)
+  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) [wit=
+h uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64_t =3D long=
+ unsigned int]
+  at /home/ryan/gitlab/uhd/host/lib/rfnoc/ctrl_iface.cpp:151
 
 
---===============2410177366378086906==
+Just searching online it seemed like most people recommended reflashing the=
+ fpga, which I did. No change.
+
+
+From: USRP-users <usrp-users-bounces@lists.ettus.com> On Behalf Of Carmicha=
+el, Ryan via USRP-users
+Sent: Friday, July 24, 2020 12:39 PM
+To: usrp-users@lists.ettus.com
+Subject: [EXTERNAL] Re: [USRP-users] Getting DPDK to work
+
+FYI the problem ended up being that the UHD configuration file requires an =
+underscore with [use_dpdk=3D1] (instead of a dash, like everything else in =
+the file uses), and also that dpdk-io-cpu=3Dx is required instead of dpdk-l=
+core to initialize the adapters. Thanks for the help.
+
+Of course now rx_samples_to_file segfaults in rte_eth_rx_queue_setup, but a=
+t least it's forward movement.
+
+
+-          Ryan
+
+From: USRP-users <usrp-users-bounces@lists.ettus.com<mailto:usrp-users-boun=
+ces@lists.ettus.com>> On Behalf Of Marcus D. Leech via USRP-users
+Sent: Friday, July 24, 2020 9:18 AM
+To: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com>
+Subject: [EXTERNAL] Re: [USRP-users] Getting DPDK to work
+
+On 07/24/2020 09:44 AM, Carmichael, Ryan via USRP-users wrote:
+I've got an X310, UHD 3.15.LTS (compiled with DPDK support), DPDK 17.11 on =
+Red Hat. I feel like things are 95% of the way there, but I can't get UHD t=
+o work with DPDK.
+
+Long story short, I'm getting the error "EAL: Please set IPv4 address for p=
+ort 0 before opening socket". I wonder if it's not reading my uhd conf file=
+.
+
+Before dpdk-devbind, the X310 has two IP addresses that are pingable (192.1=
+68.30.2 and 40.2) from my NICs:
+
+enp13s0f0: flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 192.168.30.99  netmask 255.255.255.0  broadcast 192.168.30.255
+        ether aa:bb:cc:dd:ee:01  txqueuelen 1000  (Ethernet)
+
+enp13s0f1: flags=3D4099<UP,BROADCAST,MULTICAST>  mtu 9001
+        inet 192.168.40.99  netmask 255.255.255.0  broadcast 192.168.40.255
+        ether aa:bb:cc:dd:ee:02  txqueuelen 1000  (Ethernet)
+
+After running dpdk-devbind:
+
+Network devices using DPDK-compatible driver
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+0000:0d:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb' drv=3Dig=
+b_uio unused=3Dvfio-pci,uio_pci_generic
+0000:0d:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb' drv=3Dig=
+b_uio unused=3Dvfio-pci,uio_pci_generic
+
+I have a configuration file:
+
+[use-dpdk=3D1]
+dpdk-mtu=3D9000
+dpdk-corelist=3D0,1
+dpdk-num-mbufs=3D4096
+dpdk-mbuf-cache-size=3D64
+
+[dpdk-mac=3Daa:bb:cc:dd:ee:01]
+dpdk-lcore =3D 1
+dpdk-ipv4 =3D 192.168.30.1/24
+dpdk-num-desc=3D4096
+
+[dpdk-mac=3Daa:bb:cd:dd:ee:02]
+dpdk-lcore =3D 0
+dpdk-ipv4 =3D 192.168.40.1/24
+
+Check for syntax errors in the conf file?
+
+I can't remember whether spaces are allowed around "=3D" in those config fi=
+les or not.
+
+________________________________
+
+The information contained in this message, and any attachments, may contain=
+ privileged and/or proprietary information that is intended solely for the =
+person or entity to which it is addressed. Moreover, it may contain export =
+restricted technical data controlled by Export Administration Regulations (=
+EAR) or the International Traffic in Arms Regulations (ITAR). Any review, r=
+etransmission, dissemination, or re-export to foreign or domestic entities =
+by anyone other than the intended recipient in accordance with EAR and/or I=
+TAR regulations is prohibited.
+
+--_000_10F7328F6AD1354BA6DD787687B66B9001A97AAB18Mauiindynetic_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle23
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle24
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1741295528;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1891637468 -471570878 67698691 67698693 67698689 676=
+98691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:Calibri;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:1.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:2.25in;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:2.75in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:3.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:3.75in;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:4.25in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body bgcolor=3D"white" lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">So now I&#8217;m so cl=
+ose to working with DPDK, seemingly. Every time I fix one thing there&#8217=
+;s another.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">./rx_samples_to_file -=
+-args=3D&quot;use_dpdk=3D1,addr=3D192.168.30.2,addr2=3D192.168.40.2&quot; -=
+-duration 0.01<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">[INFO] [X300] Maximum =
+frame size: 8000 bytes.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">[INFO] [X300] Maximum =
+frame size: 8000 bytes.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">[INFO] [X300] Maximum =
+frame size: 8000 bytes.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">[INFO] [X300] Radio 1x=
+ clock: 200 MHz<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">[INFO] [X300] Radio 1x=
+ clock: 200 MHz<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">[INFO] [X300] Radio 1x=
+ clock: 200 MHz<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">[INFO] [2/DmaFIFO_0] I=
+nitializing block control (NOC ID: 0xF1F0D00000000000)<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">[INFO] [2/DmaFIFO_0] B=
+IST passed (Throughput: 1311 MB/s)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">[INFO] [2/DmaFIFO_0] B=
+IST passed (Throughput: 1302 MB/s)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">.<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">.<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">.<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">[INFO] [2/DUC_0] Initi=
+alizing block control (NOC ID: 0xD0C0000000000000)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">INFO] [2/DUC_1] Initia=
+lizing block control (NOC ID: 0xD0C0000000000000)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">terminate called after=
+ throwing an instance of 'uhd::io_error'<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp; what():&nbsp; E=
+nvironmentError: IOError: Block ctrl (CE_00_Port_30) no response packet - A=
+ssertionError: bool(buff)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp; in uint64_t ctr=
+l_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, double) [with uhd::endi=
+anness_t _endianness =3D (uhd::endianness_t)0; uint64_t =3D long unsigned i=
+nt]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp; at /home/ryan/g=
+itlab/uhd/host/lib/rfnoc/ctrl_iface.cpp:151<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Just searching online =
+it seemed like most people recommended reflashing the fpga, which I did. No=
+ change.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"color:windowtext">From:</span></b>=
+<span style=3D"color:windowtext"> USRP-users &lt;usrp-users-bounces@lists.e=
+ttus.com&gt;
+<b>On Behalf Of </b>Carmichael, Ryan via USRP-users<br>
+<b>Sent:</b> Friday, July 24, 2020 12:39 PM<br>
+<b>To:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> [EXTERNAL] Re: [USRP-users] Getting DPDK to work<o:p></o:p>=
+</span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">FYI the problem ended =
+up being that the UHD configuration file requires an underscore with [use_d=
+pdk=3D1] (instead of a dash, like everything else in the file uses), and al=
+so that dpdk-io-cpu=3Dx is required instead
+ of dpdk-lcore to initialize the adapters. Thanks for the help.<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Of course now rx_sampl=
+es_to_file segfaults in rte_eth_rx_queue_setup, but at least it&#8217;s for=
+ward movement.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoListParagraph" style=3D"margin-left:.25in;text-indent:-.25in=
+;mso-list:l0 level1 lfo2">
+<![if !supportLists]><span style=3D"color:#1F497D"><span style=3D"mso-list:=
+Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"color:#1F497D">Ryan<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"color:windowtext">From:</span></b>=
+<span style=3D"color:windowtext"> USRP-users &lt;<a href=3D"mailto:usrp-use=
+rs-bounces@lists.ettus.com">usrp-users-bounces@lists.ettus.com</a>&gt;
+<b>On Behalf Of </b>Marcus D. Leech via USRP-users<br>
+<b>Sent:</b> Friday, July 24, 2020 9:18 AM<br>
+<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.e=
+ttus.com</a><br>
+<b>Subject:</b> [EXTERNAL] Re: [USRP-users] Getting DPDK to work<o:p></o:p>=
+</span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On 07/24/2020 09:44 AM, Carmichael, Ryan via USRP-us=
+ers wrote:<span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<p class=3D"MsoNormal">I&#8217;ve got an X310, UHD 3.15.LTS (compiled with =
+DPDK support), DPDK 17.11 on Red Hat. I feel like things are 95% of the way=
+ there, but I can&#8217;t get UHD to work with DPDK.<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Long story short, I&#8217;m getting the error &#8220=
+;EAL: Please set IPv4 address for port 0 before opening socket&#8221;. I wo=
+nder if it&#8217;s not reading my uhd conf file.<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Before dpdk-devbind, the X310 has two IP addresses t=
+hat are pingable (192.168.30.2 and 40.2) from my NICs:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">enp13s0f0: flags=3D4163&lt;UP,BROADCAST,RUNNING,MULT=
+ICAST&gt;&nbsp; mtu 9001<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet 192.=
+168.30.99&nbsp; netmask 255.255.255.0&nbsp; broadcast 192.168.30.255<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ether aa:=
+bb:cc:dd:ee:01&nbsp; txqueuelen 1000&nbsp; (Ethernet)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">enp13s0f1: flags=3D4099&lt;UP,BROADCAST,MULTICAST&gt=
+;&nbsp; mtu 9001<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet 192.=
+168.40.99&nbsp; netmask 255.255.255.0&nbsp; broadcast 192.168.40.255<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ether aa:=
+bb:cc:dd:ee:02&nbsp; txqueuelen 1000&nbsp; (Ethernet)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">After running dpdk-devbind:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Network devices using DPDK-compatible driver<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D<o:p></o:p></p>
+<p class=3D"MsoNormal">0000:0d:00.0 '82599ES 10-Gigabit SFI/SFP&#43; Networ=
+k Connection 10fb' drv=3Digb_uio unused=3Dvfio-pci,uio_pci_generic<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">0000:0d:00.1 '82599ES 10-Gigabit SFI/SFP&#43; Networ=
+k Connection 10fb' drv=3Digb_uio unused=3Dvfio-pci,uio_pci_generic<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">I have a configuration file:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">[use-dpdk=3D1]<o:p></o:p></p>
+<p class=3D"MsoNormal">dpdk-mtu=3D9000<o:p></o:p></p>
+<p class=3D"MsoNormal">dpdk-corelist=3D0,1<o:p></o:p></p>
+<p class=3D"MsoNormal">dpdk-num-mbufs=3D4096<o:p></o:p></p>
+<p class=3D"MsoNormal">dpdk-mbuf-cache-size=3D64<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">[dpdk-mac=3Daa:bb:cc:dd:ee:01]<o:p></o:p></p>
+<p class=3D"MsoNormal">dpdk-lcore =3D 1<o:p></o:p></p>
+<p class=3D"MsoNormal">dpdk-ipv4 =3D 192.168.30.1/24<o:p></o:p></p>
+<p class=3D"MsoNormal">dpdk-num-desc=3D4096<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">[dpdk-mac=3Daa:bb:cd:dd:ee:02]<o:p></o:p></p>
+<p class=3D"MsoNormal">dpdk-lcore =3D 0<o:p></o:p></p>
+<p class=3D"MsoNormal">dpdk-ipv4 =3D 192.168.40.1/24<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
+</blockquote>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
+ize:12.0pt;font-family:&quot;Times New Roman&quot;,serif">Check for syntax =
+errors in the conf file?<br>
+<br>
+I can't remember whether spaces are allowed around &quot;=3D&quot; in those=
+ config files or not.<o:p></o:p></span></p>
+</div>
+<i><br>
+<hr>
+<p style=3D"font-size:8pt; line-height:9pt; font-style:monospace">The infor=
+mation contained in this message, and any attachments, may contain privileg=
+ed and/or proprietary information that is intended solely for the person or=
+ entity to which it is addressed.
+ Moreover, it may contain export restricted technical data controlled by Ex=
+port Administration Regulations (EAR) or the International Traffic in Arms =
+Regulations (ITAR). Any review, retransmission, dissemination, or re-export=
+ to foreign or domestic entities
+ by anyone other than the intended recipient in accordance with EAR and/or =
+ITAR regulations is prohibited.</p>
+</i>
+</body>
+</html>
+
+--_000_10F7328F6AD1354BA6DD787687B66B9001A97AAB18Mauiindynetic_--
+
+
+--===============3093936503607917210==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -189,5 +610,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2410177366378086906==--
+--===============3093936503607917210==--
 
