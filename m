@@ -2,82 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4AAA22D5DF
-	for <lists+usrp-users@lfdr.de>; Sat, 25 Jul 2020 09:44:37 +0200 (CEST)
-Received: from [::1] (port=51880 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9149322D612
+	for <lists+usrp-users@lfdr.de>; Sat, 25 Jul 2020 10:28:38 +0200 (CEST)
+Received: from [::1] (port=52098 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jzEr9-0000kj-PH; Sat, 25 Jul 2020 03:44:31 -0400
-Received: from mail-eopbgr1390101.outbound.protection.outlook.com
- ([40.107.139.101]:49184 helo=IND01-BO1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <koyel.das@vehere.com>)
- id 1jzEr5-0000fE-HT
- for usrp-users@lists.ettus.com; Sat, 25 Jul 2020 03:44:27 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=be/cOTgOuCUcQmDjmN2s9x5vG4xOnRdhKq4+il+4tQ8lQFHztgqebdw8EGqsZtVhF/ydnwXV0bkqkrrJcNkx+T0ALRnQOcfGQS295ydEQpH3TZBIlo/yH66vRdbX2EX5WD4ptzDkFdJS8HK1YDgfVOp2uK1czNBcpOUsrMgcsaxmMLwuiVRNLEsKr3RnKn4WNpEMEUyQXTC96XMmRW0BIL3vOTJxOLin/ix9sbWdmoWslwJ4+pePV/AA9JRQKpVuAeuwlbPbccFdhtT1TyeWC0Ggm2G8POunoC5TQjCCF+HfhXNTQlVj+pvYhF/DeTn/W/jOlno5G9xh+PKfnXrIVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zd2/dXo1vAdOqaOfWPDEECgbmxcpjn7Hu0RtLw4oUAI=;
- b=lXK6kTuWUSoXr9jhazYzxJKZjReRdlgc51YFnItxVs/6W5ECljDHWSTZlfPsxKeUdfmfoQUgT2RgKeNJMr9P3QHA4o2WQBO9S0nRyqIYxMkcDVCgqCoJwsqXUX/Z9SjvlB5BI+pVDTNWlcBLJzdM5QyXElJpxgxziowcYLHyh+hCQaBbWMxbMb0ktOGOR/cFVhtYflKjlPVW3lcRBB/bwb9yd4fW0cLovms+ydhKoErunrlNGT8NTyEEw7S1ikk4/O66+to5dPKiULKSwnZIgE3mJ6455lFusBhI9Q0TnXW0pz5160kQR9hXYB3Gm5cPVlmMPjxq4NEFZH/VW+OpKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
- dkim=pass header.d=vehere.com; arc=none
+	id 1jzFXo-0002Na-G4; Sat, 25 Jul 2020 04:28:36 -0400
+Received: from mail-ed1-f42.google.com ([209.85.208.42]:40041)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
+ id 1jzFXk-0002Ey-KT
+ for usrp-users@lists.ettus.com; Sat, 25 Jul 2020 04:28:32 -0400
+Received: by mail-ed1-f42.google.com with SMTP id b13so6214606edz.7
+ for <usrp-users@lists.ettus.com>; Sat, 25 Jul 2020 01:28:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=vehereinteractive.onmicrosoft.com;
- s=selector2-vehereinteractive-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zd2/dXo1vAdOqaOfWPDEECgbmxcpjn7Hu0RtLw4oUAI=;
- b=VKghihn97TO1ifBGhMX5Qyi221cBPijRI2KL338KakYfaa8sRrqgwer7jnEFX5GFHhErRlz9GO+qtGKJ5GLh8oUC/+iG1WBAUeWTGv7hU1y8MuMEwYpwXPyW7X3MW5G/9EkW+ZlG1KTxxBH2JNdYOYNmbHsy4gopUl0F+y4NrHQ=
-Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3e::22)
- by MA1PR01MB2860.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3a::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.24; Sat, 25 Jul
- 2020 07:43:42 +0000
-Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::b527:579d:9786:f41f]) by MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::b527:579d:9786:f41f%3]) with mapi id 15.20.3216.027; Sat, 25 Jul 2020
- 07:43:42 +0000
-To: "'USRP-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
-Thread-Topic: Data rate using usrp and grc
-Thread-Index: AQHWYlbbHjnwDUz39U+Gftus+wZMPQ==
-Date: Sat, 25 Jul 2020 07:43:42 +0000
-Message-ID: <MA1PR01MB25884DB85773F1978595CD6890740@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none; lists.ettus.com; dmarc=none action=none header.from=vehere.com; 
-x-originating-ip: [42.110.138.36]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c090ae14-fd30-46a9-f8f2-08d8306e73d4
-x-ms-traffictypediagnostic: MA1PR01MB2860:
-x-microsoft-antispam-prvs: <MA1PR01MB2860FB1341F570E71C939EF390740@MA1PR01MB2860.INDPRD01.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Un6cNoraAw6sZT0d1Y4+yv9CxRIwxqCBTlg7s4hXmT8E8OLJN28w7BukjfRdtVOtiP07Td05vNzDxnTorNPubnyqLATjWCCHADaxVncatCpQM/zgYoWYaDOFcrq7UGJb0/2RWB3rBM2z7gG1XqBQgpPHHt4E/SHo8gRhGI3o4jvoL26v7yitR1xS0JCniu8PbHw+s4XMsEWwxQRcfaKohvRbj5m0/PmOTxiv1pJUVC3yEHTjQqqzFhlvCT2YEd2edcFMO8QOYlUVq9/75TAaUEEoUO0fkdff9WkugBeE8vW1VolOjvQBKcuEra7DL40yDcFrFFTEE+nQdk3LeIttciDajZFsjo1eZ4xIdV+lOKEn+ANxzJHsucHbMDwwV+fjiCAnmJ5G5gl7F4rz5jZHfGT0AcLmzBDjdolOORDclexXia6xVST8BDWjnuSTH1Y49T6pqNrfmrZj6bll+RB7CA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFTY:;
- SFS:(366004)(346002)(2906002)(71200400001)(86362001)(76116006)(4744005)(55016002)(6506007)(64756008)(66446008)(9686003)(66556008)(66476007)(66946007)(8936002)(83380400001)(7696005)(186003)(8676002)(5660300002)(26005)(52536014)(6916009)(45080400002)(508600001)(33656002)(166002)(491001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: /P50YP/R9KjcG83OPVpYhwyVnZurIly8TSOGuKWVRkqDNicBvxijG/VcGKks4Tq9+pF5E+jQV9oaYCE+paaHuy8S+YgV6OjXra2tPerEufkXYH7kg2nJyPx9rfgKKmdY1zU3yrSp0HqHEWXeLdTcQiXiMveStB8Q1FwQLt5I0BJS8V4TyqruPyJER8vBe/gzXy9qvKjjPF8NAzZSbSLZh6M9w4/Cyyg5GBZY4SB+r3JeSwG+mJhSuwSLexwoB0w/kM9Y6g3CFLCLJxOdzWry7mOsnuShFus+n90ryJ9UWpJ9kFPlR1Hnd99dbMIMrhOaQQBvwkTDvg/HcLPHvsq4YcJ0St6uyPI02JZfgr1e0+ngAC9OM7xufwGMSpoFWBvGjr51u3MkLYkOplodrG5dKdAqXLr3pOREvNvYfBgO0HbcteRxkN6AYUzLhpK5FkPEjAxgOhRUBFvjQWehYtraHH2r1hQIWOnqA9BYXTjo0eh5Qcmygb2WIoM7N++BJf86
-x-ms-exchange-transport-forked: True
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=8W4r1robMiwykq5XZoeHyzKoozTEghkxbWr48y3ZXMU=;
+ b=FSWC4d3cRvFtDKlAmG8CwN8HDPxOTcAa5gaL96soHvDisfic0NY8O8KoWMGcodwmYV
+ f2cU3YrDWGRWAaRZdqBA0QIdKbQ2lMmL5H0Q76c0VApKCDu1YYAE1I2FJ6FrI0ooOoGI
+ l8DX5irUNxeMxCnA7e5N8Ax7hR65yYh/wY8kPYHdrr3lqlKZ99OKvcgfsvvniDmxSuEZ
+ lui4EpxCFSTLRJaspwDUpknCvokQRISi2XewIrvZT7u7zeY11v59qhpC3mfTBFnBMS7B
+ mlpycRgaYVvtCGjQxBrUn7PCESgOINWsZunBhzX4g43Led42LSE8lgsK9wflbbybpRs+
+ orMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=8W4r1robMiwykq5XZoeHyzKoozTEghkxbWr48y3ZXMU=;
+ b=piuPvdUPTsmnSWoRGM7wDho12kWyWDA3R16FPRmUToUqYhQkPxSmB3IZFB6+hDiOVb
+ 0KBczJXhWS+Tk2DRhN0J90XOJsTodhM4ZR3LzWXKzCw1PsC7yv+bS3/JL14NYYL9NTGG
+ DomzNY4kKGvX1UIQYK1klGkfy2pPeAUKsVkFPXRdSOqg+sMwbBM1Q77YBSyb7Eh9pTM+
+ ymcMzN7KKbJw2ddmfPZ8otgmiviMoVlg1gpjJD4EkftVwqib042P2kTSqsJ09j2FurVC
+ fkxkRb0XLObRS35aTooeZV+vzeyPKpn6XnsLuyP/eDySFeHrObtaA7bbuApQeA5nZy3P
+ mE3A==
+X-Gm-Message-State: AOAM5322S+hXEu741xGwqlLtSCoUD0FHdgqyglX4dBaf88/y0NTuv6LS
+ Y2a6qxCDmeqtxr2WPIV2TAQCvCZOQV+ozw==
+X-Google-Smtp-Source: ABdhPJxDVcr0X1v3LK0DYj2qUZOKkEZujNVzvZ/bG3v6sVov+5qtsvLs63l2jFRViUy3GZmB+POOeg==
+X-Received: by 2002:aa7:ca10:: with SMTP id y16mr5617630eds.345.1595665671092; 
+ Sat, 25 Jul 2020 01:27:51 -0700 (PDT)
+Received: from [192.168.128.8]
+ (HSI-KBW-46-223-163-150.hsi.kabel-badenwuerttemberg.de. [46.223.163.150])
+ by smtp.gmail.com with ESMTPSA id gu15sm2325411ejb.111.2020.07.25.01.27.50
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 25 Jul 2020 01:27:50 -0700 (PDT)
+To: "Koyel Das (Vehere)" <koyel.das@vehere.com>,
+ "'USRP-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+References: <MA1PR01MB25884DB85773F1978595CD6890740@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+Message-ID: <a7903b46-932a-4848-cffe-4dba3c53f43b@ettus.com>
+Date: Sat, 25 Jul 2020 10:27:49 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-X-OriginatorOrg: vehere.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: c090ae14-fd30-46a9-f8f2-08d8306e73d4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2020 07:43:42.0288 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VXfzhkgbJKSnAIqcUuOFWJBvEKmK9J/thjJkei+dmidzPTfrvTbfwkUhdfHwvAnPVcLzO0pftaIlIQF1fVKCUA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR01MB2860
-Subject: [USRP-users] Data rate using usrp and grc
+In-Reply-To: <MA1PR01MB25884DB85773F1978595CD6890740@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+Content-Language: en-US
+Subject: Re: [USRP-users] Data rate using usrp and grc
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -89,9 +70,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
-Content-Type: multipart/mixed; boundary="===============3396729628798482406=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -105,89 +88,52 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3396729628798482406==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MA1PR01MB25884DB85773F1978595CD6890740MA1PR01MB2588INDP_"
+Hi Koyel,
 
---_000_MA1PR01MB25884DB85773F1978595CD6890740MA1PR01MB2588INDP_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+> Will there be packet drops if USRP source is set at 32 bit complex
+float in grc when receiving at 100 MSPS each from two channels?
 
-Hi,
+as to your previous questions regarding "will my computer be able to
+keep up": We can't tell you how fast your computer and storage is.
 
-I want to capture data from usrp 2955 using USRP Source block of grc and wr=
-ite to file using file sink block of grc. Will there be packet drops if USR=
-P source is set at 32 bit complex float in grc when receiving at 100 MSPS e=
-ach from two channels? That makes 2*100e6*64 (32 bit I and 32 bit Q) =3D 12=
-800e6 or 12.8 gbps. I am unable to set usrp source block in grc to 16 bit c=
-omplex as then the usrp source block is not compatible with file sink which=
- doesn=92t have option for 16 bit complex. Please help
+Anyway,
 
-Regards,
-Koyel
+> I am unable to set usrp source block in grc to 16 bit complex as then
+the usrp source block is not compatible with file sink which doesn=92t
+have option for 16 bit complex
 
-Get Outlook for iOS<https://aka.ms/o0ukef>
+Nothing in GNU Radio cares about the content of the data bytes you're
+pushing around: simply set your file sink to e.g. int, or float, or to
+short with vector length 2, or to byte with vector length 4: Doesn't
+matter, as long as the item size ends up being 32 bits.
 
---_000_MA1PR01MB25884DB85773F1978595CD6890740MA1PR01MB2588INDP_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+Best regards,
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-</head>
-<body>
-<div dir=3D"ltr">
-<div></div>
-<div>
-<div>Hi,</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
-ple-system, HelveticaNeue; display: inline !important">I want to capture da=
-ta from usrp 2955 using USRP Source block of grc&nbsp;and write to file usi=
-ng file sink block of grc.&nbsp;Will there be
- packet drops if USRP source is set at 32 bit complex float in grc when rec=
-eiving at 100 MSPS each from two channels? That makes 2*100e6*64 (32 bit I =
-and 32 bit Q) =3D 12800e6 or 12.8 gbps. I am unable to set usrp source bloc=
-k in grc to 16 bit complex as then
- the usrp source block is not&nbsp;compatible with file sink which doesn=92=
-t have option for 16 bit complex. Please help</span><br>
-</div>
-<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
-ple-system, HelveticaNeue; display: inline !important"><br>
-</span></div>
-<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
-ple-system, HelveticaNeue; display: inline !important">Regards,</span></div=
+Marcus
+
+On 25.07.20 09:43, Koyel Das (Vehere) via USRP-users wrote:
+> Hi,
 >
-<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
-ple-system, HelveticaNeue; display: inline !important">Koyel&nbsp;</span></=
-div>
-<div><br>
-</div>
-<div class=3D"ms-outlook-ios-signature" id=3D"ms-outlook-mobile-signature">=
-Get <a href=3D"https://aka.ms/o0ukef">
-Outlook for iOS</a></div>
-</div>
-</div>
-</body>
-</html>
-
---_000_MA1PR01MB25884DB85773F1978595CD6890740MA1PR01MB2588INDP_--
-
-
---===============3396729628798482406==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> I want to capture data from usrp 2955 using USRP Source block of grc and =
+write to file using file sink block of grc. Will there be packet drops if U=
+SRP source is set at 32 bit complex float in grc when receiving at 100 MSPS=
+ each from two channels? That makes 2*100e6*64 (32 bit I and 32 bit Q) =3D =
+12800e6 or 12.8 gbps. I am unable to set usrp source block in grc to 16 bit=
+ complex as then the usrp source block is not compatible with file sink whi=
+ch doesn=92t have option for 16 bit complex. Please help
+>
+> Regards,
+> Koyel
+>
+> Get Outlook for iOS<https://aka.ms/o0ukef>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3396729628798482406==--
-
