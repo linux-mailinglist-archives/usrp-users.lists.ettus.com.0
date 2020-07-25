@@ -2,59 +2,82 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F40E922D391
-	for <lists+usrp-users@lfdr.de>; Sat, 25 Jul 2020 03:42:42 +0200 (CEST)
-Received: from [::1] (port=49366 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4AAA22D5DF
+	for <lists+usrp-users@lfdr.de>; Sat, 25 Jul 2020 09:44:37 +0200 (CEST)
+Received: from [::1] (port=51880 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jz9Cv-0004zg-EB; Fri, 24 Jul 2020 21:42:37 -0400
-Received: from mail-io1-f47.google.com ([209.85.166.47]:35135)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <cherif.chibane@gmail.com>)
- id 1jz9Cs-0004vD-3P
- for usrp-users@lists.ettus.com; Fri, 24 Jul 2020 21:42:34 -0400
-Received: by mail-io1-f47.google.com with SMTP id s189so4414107iod.2
- for <usrp-users@lists.ettus.com>; Fri, 24 Jul 2020 18:42:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=3tyyLeUYsS63vZbgqvfz8X44hEizDzIF6OAW7NXZPfQ=;
- b=YjtXhTapOjguZnxnnFEmn04V/I4q7Us1KGiRvmOFFdinJXEXdPZzDQEpXkUJjeKznT
- i2U+NjSD9A9qZGoWgPxr/lNxYgUKh3UkVMRDXsCUL1us3XIZXANcjEMUX9hRO69porM8
- SVrd04lY/hc4dohDG6otXeIPwCUYoBDFRSmmToZiGndhRMbJbGdRcVKEXSXdxpaJIrZw
- UTyjgKfw2lDBNhCoFcR26ow6JEH7sK6o14KG0lSc2EnCLdRGParvFFm4XKLrGXeHeebU
- nvZTSnAMjwgxY44WaQsoX0mW9Z5x7b5E6zxv54mTzRZjDOtJYu2qeH47VlE7UY/hEq1O
- dNYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=3tyyLeUYsS63vZbgqvfz8X44hEizDzIF6OAW7NXZPfQ=;
- b=kQ4lTCYjC3mfE6Ak/Pg9LHonegQQKGvMWwyUoR9YEX4MLD6ZRx76ABuBhuRLYp8o70
- 3aggbOr8/XW/Grmxk/IICICG+gTk0cJJQAgEPWeJ5Tvd2VmxHtC+BbglbCl7PHASliCq
- YMhYlGQSNcY9uDSCMgp3FBam83xa/XQ/ySeFMVv4QXLpp7XGeDjBfPQtGNUZkgHrSqLr
- 8064wZ6xqnDaKX2pTbz9AcXqT58oAhIVZZvI836UkhqVAwgMqQEynBqbr+c1hurChZAd
- ybPwa9hd9IxNEo0trbkIypHVJD1snKPIEY0yGIw62CIhJK4O1tXT31NvS62HzyfICuyS
- hPKw==
-X-Gm-Message-State: AOAM5327EcgktEZ+4LPshala5CSoAEy37X+sU/F7f4n43PmG9G0nxwpN
- bcLXANu72y2KJFZ4tQ5ns6Me3GxqZSNMNTb8S1g=
-X-Google-Smtp-Source: ABdhPJwi8bWjU+UYqOJ441fjsK2Lu2OjGRIyt2+K+Y3Du5Qbk3+GdP95w08E+hA+7u2ZrzPSwnoT4nTl0yDLnoofj4Q=
-X-Received: by 2002:a05:6638:519:: with SMTP id
- i25mr13098348jar.99.1595641313379; 
- Fri, 24 Jul 2020 18:41:53 -0700 (PDT)
+	id 1jzEr9-0000kj-PH; Sat, 25 Jul 2020 03:44:31 -0400
+Received: from mail-eopbgr1390101.outbound.protection.outlook.com
+ ([40.107.139.101]:49184 helo=IND01-BO1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <koyel.das@vehere.com>)
+ id 1jzEr5-0000fE-HT
+ for usrp-users@lists.ettus.com; Sat, 25 Jul 2020 03:44:27 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=be/cOTgOuCUcQmDjmN2s9x5vG4xOnRdhKq4+il+4tQ8lQFHztgqebdw8EGqsZtVhF/ydnwXV0bkqkrrJcNkx+T0ALRnQOcfGQS295ydEQpH3TZBIlo/yH66vRdbX2EX5WD4ptzDkFdJS8HK1YDgfVOp2uK1czNBcpOUsrMgcsaxmMLwuiVRNLEsKr3RnKn4WNpEMEUyQXTC96XMmRW0BIL3vOTJxOLin/ix9sbWdmoWslwJ4+pePV/AA9JRQKpVuAeuwlbPbccFdhtT1TyeWC0Ggm2G8POunoC5TQjCCF+HfhXNTQlVj+pvYhF/DeTn/W/jOlno5G9xh+PKfnXrIVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zd2/dXo1vAdOqaOfWPDEECgbmxcpjn7Hu0RtLw4oUAI=;
+ b=lXK6kTuWUSoXr9jhazYzxJKZjReRdlgc51YFnItxVs/6W5ECljDHWSTZlfPsxKeUdfmfoQUgT2RgKeNJMr9P3QHA4o2WQBO9S0nRyqIYxMkcDVCgqCoJwsqXUX/Z9SjvlB5BI+pVDTNWlcBLJzdM5QyXElJpxgxziowcYLHyh+hCQaBbWMxbMb0ktOGOR/cFVhtYflKjlPVW3lcRBB/bwb9yd4fW0cLovms+ydhKoErunrlNGT8NTyEEw7S1ikk4/O66+to5dPKiULKSwnZIgE3mJ6455lFusBhI9Q0TnXW0pz5160kQR9hXYB3Gm5cPVlmMPjxq4NEFZH/VW+OpKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
+ dkim=pass header.d=vehere.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=vehereinteractive.onmicrosoft.com;
+ s=selector2-vehereinteractive-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zd2/dXo1vAdOqaOfWPDEECgbmxcpjn7Hu0RtLw4oUAI=;
+ b=VKghihn97TO1ifBGhMX5Qyi221cBPijRI2KL338KakYfaa8sRrqgwer7jnEFX5GFHhErRlz9GO+qtGKJ5GLh8oUC/+iG1WBAUeWTGv7hU1y8MuMEwYpwXPyW7X3MW5G/9EkW+ZlG1KTxxBH2JNdYOYNmbHsy4gopUl0F+y4NrHQ=
+Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3e::22)
+ by MA1PR01MB2860.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3a::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.24; Sat, 25 Jul
+ 2020 07:43:42 +0000
+Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::b527:579d:9786:f41f]) by MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::b527:579d:9786:f41f%3]) with mapi id 15.20.3216.027; Sat, 25 Jul 2020
+ 07:43:42 +0000
+To: "'USRP-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+Thread-Topic: Data rate using usrp and grc
+Thread-Index: AQHWYlbbHjnwDUz39U+Gftus+wZMPQ==
+Date: Sat, 25 Jul 2020 07:43:42 +0000
+Message-ID: <MA1PR01MB25884DB85773F1978595CD6890740@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none; lists.ettus.com; dmarc=none action=none header.from=vehere.com; 
+x-originating-ip: [42.110.138.36]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c090ae14-fd30-46a9-f8f2-08d8306e73d4
+x-ms-traffictypediagnostic: MA1PR01MB2860:
+x-microsoft-antispam-prvs: <MA1PR01MB2860FB1341F570E71C939EF390740@MA1PR01MB2860.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Un6cNoraAw6sZT0d1Y4+yv9CxRIwxqCBTlg7s4hXmT8E8OLJN28w7BukjfRdtVOtiP07Td05vNzDxnTorNPubnyqLATjWCCHADaxVncatCpQM/zgYoWYaDOFcrq7UGJb0/2RWB3rBM2z7gG1XqBQgpPHHt4E/SHo8gRhGI3o4jvoL26v7yitR1xS0JCniu8PbHw+s4XMsEWwxQRcfaKohvRbj5m0/PmOTxiv1pJUVC3yEHTjQqqzFhlvCT2YEd2edcFMO8QOYlUVq9/75TAaUEEoUO0fkdff9WkugBeE8vW1VolOjvQBKcuEra7DL40yDcFrFFTEE+nQdk3LeIttciDajZFsjo1eZ4xIdV+lOKEn+ANxzJHsucHbMDwwV+fjiCAnmJ5G5gl7F4rz5jZHfGT0AcLmzBDjdolOORDclexXia6xVST8BDWjnuSTH1Y49T6pqNrfmrZj6bll+RB7CA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(366004)(346002)(2906002)(71200400001)(86362001)(76116006)(4744005)(55016002)(6506007)(64756008)(66446008)(9686003)(66556008)(66476007)(66946007)(8936002)(83380400001)(7696005)(186003)(8676002)(5660300002)(26005)(52536014)(6916009)(45080400002)(508600001)(33656002)(166002)(491001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: /P50YP/R9KjcG83OPVpYhwyVnZurIly8TSOGuKWVRkqDNicBvxijG/VcGKks4Tq9+pF5E+jQV9oaYCE+paaHuy8S+YgV6OjXra2tPerEufkXYH7kg2nJyPx9rfgKKmdY1zU3yrSp0HqHEWXeLdTcQiXiMveStB8Q1FwQLt5I0BJS8V4TyqruPyJER8vBe/gzXy9qvKjjPF8NAzZSbSLZh6M9w4/Cyyg5GBZY4SB+r3JeSwG+mJhSuwSLexwoB0w/kM9Y6g3CFLCLJxOdzWry7mOsnuShFus+n90ryJ9UWpJ9kFPlR1Hnd99dbMIMrhOaQQBvwkTDvg/HcLPHvsq4YcJ0St6uyPI02JZfgr1e0+ngAC9OM7xufwGMSpoFWBvGjr51u3MkLYkOplodrG5dKdAqXLr3pOREvNvYfBgO0HbcteRxkN6AYUzLhpK5FkPEjAxgOhRUBFvjQWehYtraHH2r1hQIWOnqA9BYXTjo0eh5Qcmygb2WIoM7N++BJf86
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <MA1PR01MB2588ED02A93680AA89569A3490770@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
- <b4de024f-54fd-fe62-0ae0-c0bbe2d0d4f3@ettus.com>
- <MA1PR01MB2588551C27619A8DF3078F6190770@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
- <a24f048a-ee4a-b313-dd10-455af9baf010@ettus.com>
- <MA1PR01MB2588FFEF19FCCDEFB3AA43A190770@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
- <CAN6+Rz=rZTU+zcu473TEE9j5WC6eM=XBkV1ZkQgGH7MMozV3_g@mail.gmail.com>
- <604e2b9e-b869-2a42-fda9-074d9edf2cdf@ettus.com>
-In-Reply-To: <604e2b9e-b869-2a42-fda9-074d9edf2cdf@ettus.com>
-Date: Fri, 24 Jul 2020 21:41:42 -0400
-Message-ID: <CAN6+RzkKGG6hawiSzjsmZjo7YcxSbXu7tpTP5y+aU0Wf3+4QbA@mail.gmail.com>
-To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] 4 channel capture using grc and pcie
+X-OriginatorOrg: vehere.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: c090ae14-fd30-46a9-f8f2-08d8306e73d4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2020 07:43:42.0288 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VXfzhkgbJKSnAIqcUuOFWJBvEKmK9J/thjJkei+dmidzPTfrvTbfwkUhdfHwvAnPVcLzO0pftaIlIQF1fVKCUA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR01MB2860
+Subject: [USRP-users] Data rate using usrp and grc
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +89,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: cherif chibane via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: cherif chibane <cherif.chibane@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2723118306172647511=="
+From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
+Content-Type: multipart/mixed; boundary="===============3396729628798482406=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,165 +105,80 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2723118306172647511==
-Content-Type: multipart/alternative; boundary="000000000000ac496705ab3a3194"
+--===============3396729628798482406==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MA1PR01MB25884DB85773F1978595CD6890740MA1PR01MB2588INDP_"
 
---000000000000ac496705ab3a3194
-Content-Type: text/plain; charset="UTF-8"
+--_000_MA1PR01MB25884DB85773F1978595CD6890740MA1PR01MB2588INDP_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks Marcus for the info.
+Hi,
 
-Cherif
+I want to capture data from usrp 2955 using USRP Source block of grc and wr=
+ite to file using file sink block of grc. Will there be packet drops if USR=
+P source is set at 32 bit complex float in grc when receiving at 100 MSPS e=
+ach from two channels? That makes 2*100e6*64 (32 bit I and 32 bit Q) =3D 12=
+800e6 or 12.8 gbps. I am unable to set usrp source block in grc to 16 bit c=
+omplex as then the usrp source block is not compatible with file sink which=
+ doesn=92t have option for 16 bit complex. Please help
 
-On Fri, Jul 24, 2020 at 4:41 PM Marcus M=C3=BCller <marcus.mueller@ettus.co=
-m>
-wrote:
+Regards,
+Koyel
 
-> Hi Cherif,
-> On 24.07.20 11:33, cherif chibane wrote:
->
-> BTW, what is the real function og GR-Ettus?
->
-> If you're asking this, you don't need it!
->
-> gr-ettus (the capitalization matters) is a GNU Radio out-of-tree module
-> which you need if you want to develop GNU Radio applications that involve
-> custom RFNoC data flows. Few USRP users want to do this.
->
-> I am aloso thinking of moving to Ubuntu 20.4 eventually.
-> Does it mean that:
-> sudo apt install gnuradio
->
-> Will install gnuradio, GRC as well as UHD?
->
-> Yes.
->
->  How about gr-ettus?
->
-> No. But unless you know what you need it for, you don't have to install i=
-t.
->
-> In case you **really** want it: to install it under Ubuntu 20.04, you hav=
-e
-> to build it from source. It's easy =E2=80=93 you only need to build gr-et=
-tus from
-> source, not GNU Radio, and not UHD (don't do either, in fact).
->
-> Building it is relatively easy under Ubuntu 20.04 (please check that none
-> of the commands below fail before proceeding to the next one)
->
-> sudo apt install --install-recommends -y libuhd-dev gnuradio-dev git cmak=
-e swig liborc-0.4-dev
-> git clone -b maint-3.8 https://github.com/EttusResearch/gr-ettus
-> cd gr-ettus
-> mkdir build
-> cd build
-> cmake -DCMAKE_INSTALL_PREFIX=3D$(gnuradio-config-info --prefix) ..
-> make -j
-> sudo make install
-> cp install_manifest.txt ~/gr-ettus-install_manifest.txt
->
->
-> Done!
->
-> If you should ever need to uninstall your gr-ettus,
->
-> sudo xargs rm -rf < ~/gr-ettus-install_manifest.txt
->
->
-> Best regards,
->
-> Marcus
->
-> --
-____________
-Cherif Chibane
+Get Outlook for iOS<https://aka.ms/o0ukef>
 
---000000000000ac496705ab3a3194
-Content-Type: text/html; charset="UTF-8"
+--_000_MA1PR01MB25884DB85773F1978595CD6890740MA1PR01MB2588INDP_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<div><div dir=3D"auto">Thanks Marcus for the info.</div></div><div dir=3D"a=
-uto"><br></div><div dir=3D"auto">Cherif</div><div><br><div class=3D"gmail_q=
-uote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jul 24, 2020 at 4:41 PM=
- Marcus M=C3=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.com">marcus.=
-mueller@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
- =20
-   =20
- =20
-  <div>
-    <p>Hi Cherif,<br>
-    </p>
-    <div>On 24.07.20 11:33, cherif chibane
-      wrote:<br>
-    </div>
-    <br>
-    <blockquote type=3D"cite">
-      <pre>BTW, what is the real function og GR-Ettus?</pre>
-    </blockquote>
-    If you&#39;re asking this, you don&#39;t need it!<br>
-    <p>gr-ettus (the capitalization matters) is a GNU Radio out-of-tree
-      module which you need if you want to develop GNU Radio
-      applications that involve custom RFNoC data flows. Few USRP users
-      want to do this.<br>
-    </p>
-    <blockquote type=3D"cite">
-      <pre>I am aloso thinking of moving to Ubuntu 20.4 eventually.
-Does it mean that:
-sudo apt install gnuradio
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+</head>
+<body>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div>Hi,</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
+ple-system, HelveticaNeue; display: inline !important">I want to capture da=
+ta from usrp 2955 using USRP Source block of grc&nbsp;and write to file usi=
+ng file sink block of grc.&nbsp;Will there be
+ packet drops if USRP source is set at 32 bit complex float in grc when rec=
+eiving at 100 MSPS each from two channels? That makes 2*100e6*64 (32 bit I =
+and 32 bit Q) =3D 12800e6 or 12.8 gbps. I am unable to set usrp source bloc=
+k in grc to 16 bit complex as then
+ the usrp source block is not&nbsp;compatible with file sink which doesn=92=
+t have option for 16 bit complex. Please help</span><br>
+</div>
+<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
+ple-system, HelveticaNeue; display: inline !important"><br>
+</span></div>
+<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
+ple-system, HelveticaNeue; display: inline !important">Regards,</span></div=
+>
+<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
+ple-system, HelveticaNeue; display: inline !important">Koyel&nbsp;</span></=
+div>
+<div><br>
+</div>
+<div class=3D"ms-outlook-ios-signature" id=3D"ms-outlook-mobile-signature">=
+Get <a href=3D"https://aka.ms/o0ukef">
+Outlook for iOS</a></div>
+</div>
+</div>
+</body>
+</html>
 
-Will install gnuradio, GRC as well as UHD?</pre>
-    </blockquote>
-    <p>Yes.<br>
-    </p>
-    <blockquote type=3D"cite">
-      <pre> How about gr-ettus?</pre>
-    </blockquote>
-    <p>No. But unless you know what you need it for, you don&#39;t have to
-      install it.</p>
-    <p>In case you **really** want it: to install it under Ubuntu 20.04,
-      you have to build it from source. It&#39;s easy =E2=80=93 you only ne=
-ed to
-      build gr-ettus from source, not GNU Radio, and not UHD (don&#39;t do
-      either, in fact).</p>
-    <p>Building it is relatively easy under Ubuntu 20.04 (please check
-      that none of the commands below fail before proceeding to the next
-      one)<br>
-    </p>
-    <pre>sudo apt install --install-recommends -y libuhd-dev gnuradio-dev g=
-it cmake swig liborc-0.4-dev
-git clone -b maint-3.8 <a href=3D"https://github.com/EttusResearch/gr-ettus=
-" target=3D"_blank">https://github.com/EttusResearch/gr-ettus</a>
-cd gr-ettus
-mkdir build
-cd build
-cmake -DCMAKE_INSTALL_PREFIX=3D$(gnuradio-config-info --prefix) ..
-make -j
-sudo make install
-cp install_manifest.txt ~/gr-ettus-install_manifest.txt
-
-</pre>
-    <p>Done!</p>
-    <p>If you should ever need to uninstall your gr-ettus,</p>
-    <pre>sudo xargs rm -rf &lt; ~/gr-ettus-install_manifest.txt
-
-</pre>
-    <p>Best regards,</p>
-    <p>Marcus<br>
-    </p>
-    <p></p>
-  </div>
-
-</blockquote></div></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" =
-data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div>____________</div>=
-Cherif Chibane</div></div>
-
---000000000000ac496705ab3a3194--
+--_000_MA1PR01MB25884DB85773F1978595CD6890740MA1PR01MB2588INDP_--
 
 
---===============2723118306172647511==
+--===============3396729628798482406==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -251,5 +189,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2723118306172647511==--
+--===============3396729628798482406==--
 
