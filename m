@@ -2,64 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 858F022E220
-	for <lists+usrp-users@lfdr.de>; Sun, 26 Jul 2020 21:05:45 +0200 (CEST)
-Received: from [::1] (port=36776 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A169D22E22E
+	for <lists+usrp-users@lfdr.de>; Sun, 26 Jul 2020 21:15:03 +0200 (CEST)
+Received: from [::1] (port=36844 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jzlxv-00070F-Up; Sun, 26 Jul 2020 15:05:43 -0400
-Received: from mail-qk1-f176.google.com ([209.85.222.176]:33550)
+	id 1jzm6v-0007js-Pa; Sun, 26 Jul 2020 15:15:01 -0400
+Received: from mail-qk1-f177.google.com ([209.85.222.177]:44518)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1jzlxr-0006sI-U6
- for usrp-users@lists.ettus.com; Sun, 26 Jul 2020 15:05:39 -0400
-Received: by mail-qk1-f176.google.com with SMTP id l23so13440311qkk.0
- for <usrp-users@lists.ettus.com>; Sun, 26 Jul 2020 12:05:19 -0700 (PDT)
+ (Exim 4.93) (envelope-from <carsenat@gmail.com>) id 1jzm6s-0007bJ-5m
+ for usrp-users@lists.ettus.com; Sun, 26 Jul 2020 15:14:58 -0400
+Received: by mail-qk1-f177.google.com with SMTP id j187so13380510qke.11
+ for <usrp-users@lists.ettus.com>; Sun, 26 Jul 2020 12:14:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=taLQ18daVVDtgtUgm4oeFWmklQQSr/OdJyQVpLZF7r8=;
- b=DkdlhKTq4dpqHxn+MOMjGXjUa2YrVawAAAgrK1sSr3SAuyFlYD0jL5N7ZckFPJ+dHy
- 5icDHfGUmmTRy78qdwSIOW8nMiXehS9QryBg2KSe272JlzxpQg0hZ1/ePgecWz2b3TzU
- rrmP4BHJrPpE3fieS9FCnnGZH15ZrlY6GpspKo9SF8YsBRgJjCxy/0GnngJP+23ciyXj
- m9HWnDRqcZXWTZyFD8AC2dnIfEuYAFd3rluNd0H1qaONe2SVWBasFKyzXhRRcbktCV3Y
- 39ek/04TOYIip0i3mzYOyUgI40s1d2N8zy60cmutiWm0LhHVuVB0lzFRcxeUvFoqGDdj
- iyaw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=nFsmOH95oEe1LQIUOXauT7Q0n+W9RuRNV1APGoNkkZA=;
+ b=YltftnCC8sD2AI1qNZyDWyFwtHD5F/3MqxPFSqBFAP6oW/jXFeVir8QIgfPO5Kbruw
+ gUMg54Vfd2Tb0VreAw+terCfiKuvs+EsE8ofrBjwR5GbAKbCebZREINSRa7Mdb6FhzsD
+ LrdO8DdrNzhh8XNQTAp5qAhDBeehXeuVd2412zK/0ls3QX9QwV5U1c7asL06R9aMAWPV
+ AM5gYCMuCxMFAB1UzrAAebOoeV2u4Tze7G6OAOFuiEV1Q21KBaiia3/3JC8NYt3dCvYN
+ IlWZihTTLoJ6omRyMUsmDhyBR+tw+FRjoFgzRPZI5v94ayOXL6x8Vrw94udp/7eUpMmk
+ 1qGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=taLQ18daVVDtgtUgm4oeFWmklQQSr/OdJyQVpLZF7r8=;
- b=ACbWio6Vi4IWLUsfzMBJF6lIHRLw+051cLLCxinfcHi6HOd6YYM7SrnHaCFtyK0GDI
- fiiq6PVbMnJxn1SZBnqM9eahjuEd2w8yKIc3BOqjwdAKiPrqEymUPWJrJ1MGSafX/Efu
- 1R22IIC+y3HM+CaOBUmbcV1AtFHeaNX+1/scZmmEcGvCRrhi3hAGsAr3M2JuI/7+81Ve
- 22wBmRz8W9kZ0WxOvwr7t0CdA5Q2HHv5ZL5HyXISyox5Anb2+Fgk4W8gGc0sth4O8IrA
- /ukW7vq6VXpT7y/OTN7cSZ89tNw7TOkWZengomlcdaC2TLe59t1RI3r1MxBOxSznD86U
- /34A==
-X-Gm-Message-State: AOAM5339InfAZcCMPctNviKji2g8b9p7FuDFU3AM/V80MkBY8pQusiu1
- mVcBk0x8iL4KEPQwbhdXfkPjV+pLY6w=
-X-Google-Smtp-Source: ABdhPJxCBUrf2w/r+0BM6a7KE3aItASBDu2X9s2N0F1AMn0iOCxMg7Zyd3aFEfHPTK/ykqavf5C+Nw==
-X-Received: by 2002:a37:44c1:: with SMTP id
- r184mr20256555qka.232.1595790299221; 
- Sun, 26 Jul 2020 12:04:59 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id w2sm12986755qkf.6.2020.07.26.12.04.58
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 26 Jul 2020 12:04:58 -0700 (PDT)
-Message-ID: <5F1DD3DA.9070300@gmail.com>
-Date: Sun, 26 Jul 2020 15:04:58 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=nFsmOH95oEe1LQIUOXauT7Q0n+W9RuRNV1APGoNkkZA=;
+ b=XCeHrHp1+7xlAWkfAIcy6uk4lmor8ISofdwA9zlc2Nqih8JF+nlk3G6gmLxPR7F0Ii
+ JwLDpRaKO0m5ZlmWrR1OHUqwyRzok/h6O1GmkvcWjuez2BZLYGNPG1aRS30liviEZomf
+ W+570Sm/oqb+c9+Pc5YmGz8fJ6GiYDtCRUwcvac74tHELziPh+o+ICshYtXvQaPM1uVM
+ YlGSsj2BTTjrRMVv6demx4cTHCEcri5dyiWLfjNJmMB2CZ7feHtK7u9/69sc3NwL03G0
+ OUn46mzaohjDFw4nNYesLEpqjOmPhna3vmQ54GxwLn9sR6shA9QqS5w6vKA8IP/mSvEe
+ Qz/A==
+X-Gm-Message-State: AOAM533aFe8dawRVMcq9VOuqhnKn3IYQh5q504O70Q8CdqCx0vDW2E7W
+ dQNTwL+7qXc18vT1fyqXtsqOQec4Ycb2zwtPKNRM/owC
+X-Google-Smtp-Source: ABdhPJyK/1X0mv1ujJhwVBWquMTOmz7SOiC2NF6uiLVuILrPLQHp1n6U/UaHLA6xv73hs8R8a2kQGaRydSbC+NPWAV8=
+X-Received: by 2002:a37:8305:: with SMTP id f5mr20561611qkd.497.1595790857444; 
+ Sun, 26 Jul 2020 12:14:17 -0700 (PDT)
 MIME-Version: 1.0
-To: David Carsenat <carsenat@gmail.com>
-CC: usrp-users <usrp-users@lists.ettus.com>
 References: <CA+w2Zyvz7XGRkKWy2tqeTqYdFuhU2DQV5QdjekCZi=4Av0ctuQ@mail.gmail.com>
  <5F1DCB58.7090804@gmail.com>
  <CA+w2Zytm2=5ZRrB-BaY91fax-9xpK8fpkVpB+ep4mzvZ3tH-oA@mail.gmail.com>
  <5F1DD036.5030509@gmail.com>
  <CA+w2ZythQQvQG3Zm6+bv8c+pWV42XFbtdUGw=vOZKnP0_qZmZg@mail.gmail.com>
-In-Reply-To: <CA+w2ZythQQvQG3Zm6+bv8c+pWV42XFbtdUGw=vOZKnP0_qZmZg@mail.gmail.com>
+ <5F1DD3DA.9070300@gmail.com>
+In-Reply-To: <5F1DD3DA.9070300@gmail.com>
+Date: Sun, 26 Jul 2020 21:14:06 +0200
+Message-ID: <CA+w2Zyu_Ee+5+Hegnjcf9399ajyjJt+W5i8sXpkVEufwis-kiA@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] AD936x disable DC offset removal
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -72,10 +63,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: David Carsenat via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: David Carsenat <carsenat@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1065904547831714995=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,22 +79,82 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 07/26/2020 02:59 PM, David Carsenat wrote:
-> I have tried that, but I see 2 issues (but perhaps I'm wrong) :
-> - I need 25 Mhz of BW so if I want to push the LO outside, I need to 
-> have a sample rate of 50 MHz --> difficult to have Tx / Rx loopback.
-> - I have tried to set the master clock rate at 60 MHz, the DDC offset 
-> at 25 MHz, and a sample rate at 25 MHz. I thought that it could work 
-> but I have a cutoff frequency at 12.5 MHz ...
+--===============1065904547831714995==
+Content-Type: multipart/alternative; boundary="000000000000319ffa05ab5d03cd"
+
+--000000000000319ffa05ab5d03cd
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I'll try that.
+
+Thanks
+
+Le dim. 26 juil. 2020 =C3=A0 21:04, Marcus D. Leech <patchvonbraun@gmail.co=
+m> a
+=C3=A9crit :
+
+> On 07/26/2020 02:59 PM, David Carsenat wrote:
+> > I have tried that, but I see 2 issues (but perhaps I'm wrong) :
+> > - I need 25 Mhz of BW so if I want to push the LO outside, I need to
+> > have a sample rate of 50 MHz --> difficult to have Tx / Rx loopback.
+> > - I have tried to set the master clock rate at 60 MHz, the DDC offset
+> > at 25 MHz, and a sample rate at 25 MHz. I thought that it could work
+> > but I have a cutoff frequency at 12.5 MHz ...
+> >
+> > David
+> >
+> Try setting master-clock at 50MHz, and then set the analog bandwidth to
+> 50MHz.  Then use the offset tuning.
 >
-> David
 >
-Try setting master-clock at 50MHz, and then set the analog bandwidth to 
-50MHz.  Then use the offset tuning.
+>
+
+--000000000000319ffa05ab5d03cd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I&#39;ll try that.=C2=A0<br><div><br></div><div>Thanks</di=
+v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
+">Le=C2=A0dim. 26 juil. 2020 =C3=A0=C2=A021:04, Marcus D. Leech &lt;<a href=
+=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; a =C3=
+=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">O=
+n 07/26/2020 02:59 PM, David Carsenat wrote:<br>
+&gt; I have tried that, but I see 2 issues (but perhaps I&#39;m wrong) :<br=
+>
+&gt; - I need 25 Mhz of BW so if I want to push the LO outside, I need to <=
+br>
+&gt; have a sample rate of 50 MHz --&gt; difficult to have Tx / Rx loopback=
+.<br>
+&gt; - I have tried to set the master clock rate at 60 MHz, the DDC offset =
+<br>
+&gt; at 25 MHz, and a sample rate at 25 MHz. I thought that it could work <=
+br>
+&gt; but I have a cutoff frequency at 12.5 MHz ...<br>
+&gt;<br>
+&gt; David<br>
+&gt;<br>
+Try setting master-clock at 50MHz, and then set the analog bandwidth to <br=
+>
+50MHz.=C2=A0 Then use the offset tuning.<br>
+<br>
+<br>
+</blockquote></div>
+
+--000000000000319ffa05ab5d03cd--
 
 
+--===============1065904547831714995==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============1065904547831714995==--
+
