@@ -2,51 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4D6322E20A
-	for <lists+usrp-users@lfdr.de>; Sun, 26 Jul 2020 20:37:11 +0200 (CEST)
-Received: from [::1] (port=36586 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CCFB22E214
+	for <lists+usrp-users@lfdr.de>; Sun, 26 Jul 2020 20:50:16 +0200 (CEST)
+Received: from [::1] (port=36672 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jzlWG-00053O-Om; Sun, 26 Jul 2020 14:37:08 -0400
-Received: from mail-qt1-f172.google.com ([209.85.160.172]:43121)
+	id 1jzliu-0005zc-Qa; Sun, 26 Jul 2020 14:50:12 -0400
+Received: from mail-qv1-f51.google.com ([209.85.219.51]:42466)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <carsenat@gmail.com>) id 1jzlWD-0004ua-45
- for usrp-users@lists.ettus.com; Sun, 26 Jul 2020 14:37:05 -0400
-Received: by mail-qt1-f172.google.com with SMTP id k18so10621948qtm.10
- for <usrp-users@lists.ettus.com>; Sun, 26 Jul 2020 11:36:44 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1jzliq-0005rC-NB
+ for usrp-users@lists.ettus.com; Sun, 26 Jul 2020 14:50:08 -0400
+Received: by mail-qv1-f51.google.com with SMTP id dm12so6454467qvb.9
+ for <usrp-users@lists.ettus.com>; Sun, 26 Jul 2020 11:49:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=QN9lEkC2IsLi5lL8cizhu2J3Ny7VEJCQxI61WPBTmdo=;
- b=F2+nmw86TI9eKGrpi1Jn0PG/6BpB8InV/v/1qWKn2kEgcayC1Oe2zHhFgTlIaLovzb
- QhFONzWqo5JpDMpWNEvZSqKlVt+p68c/JTWf3RQrfvXQDuU/mbPKe6BqbbpPlHmc/8kM
- h60BcR+VffaUxcRL3fZpWpLUdFI+KawmcaZ2AMWh5RW4tP+HNKQUdiHvqTCt13aePjoa
- Ch/wTkeecyzhzZCyNpDnDsQll7sU/5L+oHR98itHAA0b8nwT+/t18XBdncftOfGdpAj/
- vtu4gAamaC+D+ZigLUMXfXsb06XI2HAMyhzUCSVc/gScdfHeuTE5I7LOGb6sXyvZZB9l
- QKAw==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to:content-transfer-encoding;
+ bh=1wd19E8QcbbqybnL1S9R3mrR8Iq6yxPSIImTuunZVRg=;
+ b=A6H0tZ89BxduTZARdJi5duKaDXQr6ZYDjS9Wjz+Q6UeqjJmdeu9Ne2fdIj4eK+CcKT
+ QnStOMhCQRUH1RS1IioN3pGUpLFmTeYPZ2bL7XIgod4EpcQel6KJMNUOFTSC9fF8+XFj
+ a0uA/Q15yRVlSgxZoupwtWpxHEcNfO6D9aRWGv7KfGESckAz4/FNbTfdY531iSQ94Lu3
+ hEkyZsuw5t9MgUo+dC7Ibv/PMeail03Nrnjva8wiXEUyIgseQNnG3RrxSXnYGa3qaYbg
+ LLR7Lfq0fg/bl7GZTarhFse9wJxiAPmmG8OcSU7q1ntZfwPSxPySMUaSKnqvCM+WgeRl
+ Cntg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=QN9lEkC2IsLi5lL8cizhu2J3Ny7VEJCQxI61WPBTmdo=;
- b=AkrpEym7xDMkYAcYX0C/NfvegYJLbeguVgDFPmZfo2LfPemSj2vsLyFPpEXyqAzSom
- mqHsTWgExfAsYtf333SovFT+H4sJGv2O92fKIJGaiuvznLrQPm1ZQoUYFSV/ng4nLBlk
- zuCrx3GOK+zd/x6CL/TZy8TUYDhP+hga1ItdFqH79VBIXEK55iINh/IIa4pt694UawDd
- MtG5XL7FD0mdwP6Ymo+CBvnz84+punsh6zbvagS9WTZRCfgtDyZanJM59cH1UHECbPf2
- OtOw4dR4iQRxUMZDpbpjlEJ4OH1WIhAMktllpGSnLDG37evcJyjlZj1e7gxoNqgqBydT
- uhIA==
-X-Gm-Message-State: AOAM530bsxT3DoMtyrT7keSbqehgRhunrDoCW3bjEXRTD4/wp8tCDI5y
- TYtwe4SK+DjcYLTNBP9GjXEZwu0m7uatHFZtVBs=
-X-Google-Smtp-Source: ABdhPJw9sM+7wkyA7/vIHabrXAFDVhK0hpOYwWWPG3X1xqGxETQU88UQ03f8GZO04ZQMmpWfMCT8qO4JeSJtESR7j2Y=
-X-Received: by 2002:ac8:6602:: with SMTP id c2mr18829174qtp.243.1595788584490; 
- Sun, 26 Jul 2020 11:36:24 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to:content-transfer-encoding;
+ bh=1wd19E8QcbbqybnL1S9R3mrR8Iq6yxPSIImTuunZVRg=;
+ b=L1LEekm2yiyPVVQ/o/yRjetAlTcV5S+JPay2kENRkfE+/QuuaBObwhlwt9qtKUarpK
+ 4DwChXudSXPI/7epjnRcTchWwJYZOmRq74a2kWr3ey8HdeVOVxEb/0oHBoDZaKtgHbQn
+ 0+3CptR+yuhb5gW+O9WnqE+UbwdB2rWVX/AllaAUlxIBeF1FHUc80DBnzpBv+EyODrIm
+ klUQUkTohX5gnV0WGaKw9LWdS+QaRrRg5thrqOPPxkmKH1ZjTJqVSdcJpcZqxBmow8D6
+ 8i/2lpWVSsNBtCiQmyMr+km8OViHZC39AlF72IzqEhW4MvRaqjW/lMG+mPG0AZlpdQKa
+ FOUg==
+X-Gm-Message-State: AOAM5304rIPpOUyBHWV8MbotkuS5els3yWXeEGCysdo2RRNwEZWEb1Q3
+ 718xXESqTcfz+SrES4MaGCog6s3r1/k=
+X-Google-Smtp-Source: ABdhPJzN5oeg2f4leUH4Vm3D8oJzvPN8PaGVVEgz14UUulHa44qFKEzpspxeROXswPcXSd6SuSW3AQ==
+X-Received: by 2002:a0c:e30c:: with SMTP id s12mr2173402qvl.138.1595789367989; 
+ Sun, 26 Jul 2020 11:49:27 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
+ [174.95.14.148])
+ by smtp.googlemail.com with ESMTPSA id x29sm10676434qtv.80.2020.07.26.11.49.27
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Sun, 26 Jul 2020 11:49:27 -0700 (PDT)
+Message-ID: <5F1DD036.5030509@gmail.com>
+Date: Sun, 26 Jul 2020 14:49:26 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: David Carsenat <carsenat@gmail.com>
+CC: usrp-users <usrp-users@lists.ettus.com>
 References: <CA+w2Zyvz7XGRkKWy2tqeTqYdFuhU2DQV5QdjekCZi=4Av0ctuQ@mail.gmail.com>
  <5F1DCB58.7090804@gmail.com>
-In-Reply-To: <5F1DCB58.7090804@gmail.com>
-Date: Sun, 26 Jul 2020 20:36:12 +0200
-Message-ID: <CA+w2Zytm2=5ZRrB-BaY91fax-9xpK8fpkVpB+ep4mzvZ3tH-oA@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
+ <CA+w2Zytm2=5ZRrB-BaY91fax-9xpK8fpkVpB+ep4mzvZ3tH-oA@mail.gmail.com>
+In-Reply-To: <CA+w2Zytm2=5ZRrB-BaY91fax-9xpK8fpkVpB+ep4mzvZ3tH-oA@mail.gmail.com>
 Subject: Re: [USRP-users] AD936x disable DC offset removal
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -59,9 +69,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: David Carsenat via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: David Carsenat <carsenat@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7150314979245151919=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,102 +86,24 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7150314979245151919==
-Content-Type: multipart/alternative; boundary="000000000000b71a9605ab5c7b5a"
-
---000000000000b71a9605ab5c7b5a
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-What a fast response ! Many thanks. But what do you mean by offset tuning
-?
-
-For example at a time, I can have a signal at F0rx and at another time at
-F0rx + df. Always with some Signal at F0rx. The RX DC offset correction
-will disturb the Signal for the second example.
-The signal can hop.
-
-Le dim. 26 juil. 2020 =C3=A0 20:29, Marcus D. Leech via USRP-users <
-usrp-users@lists.ettus.com> a =C3=A9crit :
-
-> On 07/26/2020 02:25 PM, David Carsenat via USRP-users wrote:
-> > Hello, could someone help me where one can find the UHD Cpp file where
-> > the DC offset correction of AD936x is enabled ?
-> >
-> > I need to make a Rx --> Tx loop which is independent of the center
-> > frequency of the Rx signal.
-> >
-> > Thanks a lot
-> >
-> > David
-> >
-> If your bandwidth is fixed, you can just use offset-tuning, rather than
-> disabling DC offset correction.
+On 07/26/2020 02:36 PM, David Carsenat wrote:
+> What a fast response ! Many thanks. But what do you mean by offset 
+> tuning ?
 >
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+> For example at a time, I can have a signal at F0rx and at another time 
+> at F0rx + df. Always with some Signal at F0rx. The RX DC offset 
+> correction will disturb the Signal for the second example.
+> The signal can hop.
+You can have the hardware offset the LO by some suitable amount, so that 
+the LO actually sits at the edge of your bandwidth, for example.
 
---000000000000b71a9605ab5c7b5a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+See the two-step tuning process here:
 
-<div dir=3D"auto"><div>What a fast response ! Many thanks. But what do you =
-mean by offset tuning ?=C2=A0=C2=A0</div><div dir=3D"auto"><br></div><div d=
-ir=3D"auto">For example at a time, I can have a signal at F0rx and at anoth=
-er time at F0rx + df. Always with some Signal at F0rx. The RX DC offset cor=
-rection will disturb the Signal for the second example.=C2=A0</div><div dir=
-=3D"auto">The signal can hop.<br><br><div class=3D"gmail_quote" dir=3D"auto=
-"><div dir=3D"ltr" class=3D"gmail_attr">Le dim. 26 juil. 2020 =C3=A0 20:29,=
- Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettu=
-s.com">usrp-users@lists.ettus.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #c=
-cc solid;padding-left:1ex">On 07/26/2020 02:25 PM, David Carsenat via USRP-=
-users wrote:<br>
-&gt; Hello, could someone help me where one can find the UHD Cpp file where=
- <br>
-&gt; the DC offset correction of AD936x is enabled ?<br>
-&gt;<br>
-&gt; I need to make a Rx --&gt; Tx loop which is independent of the center =
-<br>
-&gt; frequency of the Rx signal.<br>
-&gt;<br>
-&gt; Thanks a lot<br>
-&gt;<br>
-&gt; David<br>
-&gt;<br>
-If your bandwidth is fixed, you can just use offset-tuning, rather than <br=
->
-disabling DC offset correction.<br>
-<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
-ferrer">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div></div>
-
---000000000000b71a9605ab5c7b5a--
+https://files.ettus.com/manual/page_general.html
 
 
---===============7150314979245151919==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7150314979245151919==--
-
