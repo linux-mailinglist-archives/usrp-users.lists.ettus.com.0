@@ -2,91 +2,90 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDC7422DBA2
-	for <lists+usrp-users@lfdr.de>; Sun, 26 Jul 2020 06:13:03 +0200 (CEST)
-Received: from [::1] (port=59168 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE46422DC42
+	for <lists+usrp-users@lfdr.de>; Sun, 26 Jul 2020 08:00:43 +0200 (CEST)
+Received: from [::1] (port=60196 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jzY1y-0000Yq-46; Sun, 26 Jul 2020 00:12:58 -0400
-Received: from mail-oln040092253095.outbound.protection.outlook.com
- ([40.92.253.95]:23998 helo=APC01-SG2-obe.outbound.protection.outlook.com)
+	id 1jzZiB-0003NQ-Dv; Sun, 26 Jul 2020 02:00:39 -0400
+Received: from mail-eopbgr1390119.outbound.protection.outlook.com
+ ([40.107.139.119]:24253 helo=IND01-BO1-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <snehasish.cse@live.com>)
- id 1jzY1u-0000Tp-3C
- for usrp-users@lists.ettus.com; Sun, 26 Jul 2020 00:12:54 -0400
+ (Exim 4.93) (envelope-from <koyel.das@vehere.com>)
+ id 1jzZi6-0003Gl-In
+ for usrp-users@lists.ettus.com; Sun, 26 Jul 2020 02:00:34 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Gesmwo0yGBFo6gsmXsPyJP9+ovN+KagkDnIu+vNjl1U1EtSyixeLQjUqY6yt+dYN2eVqm168N14WG+6yDs4AdT/S8uyqj9CEL7HI2hKJECjYsj7+ljBazQPTuIcBs0jm+MhKpCImQBhzOtriQVIaSHfx20YjLdrsmhMPhVQF5vMoIKW8XiaqVX9TSioQ9H93kOiP2j/Qk6Vss8Fqq5dXvUjNImTCXsgVSSX1vGsOD+OzptOW0XkQ8UhodJGU5M94zvijVy7lMtxwV7fJJIT28u+dfKKdLLV7YoVPaImiqVexnJsP5822fsPUEjCLaGAxZIKv/uVonMtQ561k5L+xAw==
+ b=iSz7SG1oAtiIFNVwdriSs0qyUVesGL0wPLg5VBgehG7DaDQbZP5M/RTxdkkdqqsD7MNIDWMDKYEI+zLzNFkCy+Ts9j+k49hb8aM4df0e1CkN7ckgrBsYwV9yhno+jgRG25pRQ/HOjZe7SBS+QkrWHFuPHrODNl17uUlsdrqfxBWXt9WggOMoknCQxmu15CAXCaMK91JXhisyQVKkVjkwjXWN+PZSph1vZlefjuFMTyh0B5NskRcoc24uQNVLTX3qI79SGYoTaHnhjeuNnZiBnhVpf38AEo2eI/xt45sqFDazOh1iOH6nfJ6BZtuDqV/131cYfjY6r9gQUUeTC42Uxw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UcTmthnIBm27CTJ2VyRgZ41BFkkqQ5F2rVhGrCNKmG0=;
- b=K0T18XkMJvylrS+RG3goDKRQLLlAyVzEo5tZhhMBAiHFSmTP7fkVXAiGMLzvMh224RvNhB7Kh9aCiaD0yf2kdYytWLKL37TEM9dtzt19SYB/tGHa4Heh8Ukf7h7PVUZhz2bg7gz5QuBGkPndaAQXfJDLnbJ/RixTL3p0oGWW8RDZMovTQ6bSfkIIt0ZVDTWoZIjMlimTtP0YYz99AWv5rCc84Xf+G8jF1YFgKFdsoVgyAgb/Z2XBj5a6NevbLQy1Gvq5SO4bFUj8IyotTKLum9wKzlzDUlUkpDBO2Jd7f+Pe58yd5AItrWky2xjz4yZUCKNm5OeV4a2ecvaNs4psuQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
+ bh=nw+9E8C08kBOCFy2GWW+D8882rbrnKUip9Rl7TIvfQE=;
+ b=CRrr6wWpSCdlg409dNJem2auSrprLx4dehWE9pF7wYZyG0pu9kFDkQGkZeojrA9cn4l5FNqtQ1wmhRDttLAuxLJ7wgAgceiYa/Hi89fTLvHfTuYj/xF3c47fZPmFmeOU9cw98KcgVa/kaNJiV8ieLLOmYgBdBHago4qUYyJew+OVtMij6MOUPintya4IsvB1A128ygP7ANiv3XtQuzR/djn+nL4VND3FLzoyb+jaPw6F0mHy5XFiaiiiDouoQ/RKyVJOQ+EvW1yWfE8Xc0iOBLPRnnDtCjTMHWmLWgQ7xicjFa2zncJ08v1W7uIx49eCJkPutykUXTybCtrPLAA9bw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
+ dkim=pass header.d=vehere.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=vehereinteractive.onmicrosoft.com;
+ s=selector2-vehereinteractive-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UcTmthnIBm27CTJ2VyRgZ41BFkkqQ5F2rVhGrCNKmG0=;
- b=tqNhi64S+I03YcCwPwFBCF2+brxCETLG2FBdKUZHpb5sajWtNWGbcnC0VQu22aozAzPy30GzK1XWETTWqQG+og48yHua7++jX8SPnSuEyFtKiGtLAfegbMYuP6HZA3C48DBS0eHQlNRkcIXOvypkUE+aBaI2AgVK6qCJHtJin2iPjzLuK+IcYliFkXQxVxuptYWJPVN1zceYsyFTCD/mypxMZuf7dCfiNlBsPh1b4JYmkAGMW5zZGhw+eOhs2ili3+xJbhgq3D77iTSIRaDjtUog+NIIdEn3701xhwC6riGb9Kh9V9ocbFqd5KHg7f/CexzrsLvz8sXJM5QVNg0xIw==
-Received: from PU1APC01FT010.eop-APC01.prod.protection.outlook.com
- (2a01:111:e400:7ebe::40) by
- PU1APC01HT008.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebe::211)
+ bh=nw+9E8C08kBOCFy2GWW+D8882rbrnKUip9Rl7TIvfQE=;
+ b=nGZNmOuzj1rS90FLEcLuBPtrbGVhw/u9s6jaKCAaU0bFngCdbKaZGqOSDdNSaJzsON8gL7jjydWYuJ1bP++eVlSjJAtQPwTgi7gv88re1DEFgzJg3w/6Wmn5g0dB3BMCyRQiYWoQHnhZ0zgp40P+ql0Q+vZgO1opz6fUXMaAE5Y=
+Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3e::22)
+ by MA1PR01MB2668.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:37::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.10; Sun, 26 Jul
- 2020 04:12:09 +0000
-Received: from BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM
- (2a01:111:e400:7ebe::49) by PU1APC01FT010.mail.protection.outlook.com
- (2a01:111:e400:7ebe::83) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.10 via Frontend
- Transport; Sun, 26 Jul 2020 04:12:09 +0000
-Received: from BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::a18f:5c06:f098:3689]) by BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::a18f:5c06:f098:3689%4]) with mapi id 15.20.3216.028; Sun, 26 Jul 2020
- 04:12:09 +0000
-To: "Koyel Das (Vehere)" <koyel.das@vehere.com>,
- =?Windows-1252?Q?Marcus_M=FCller?= <marcus.mueller@ettus.com>,
- "'USRP-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.20; Sun, 26 Jul
+ 2020 05:59:47 +0000
+Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::b527:579d:9786:f41f]) by MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::b527:579d:9786:f41f%3]) with mapi id 15.20.3216.030; Sun, 26 Jul 2020
+ 05:59:47 +0000
+To: Snehasish Kar <snehasish.cse@live.com>, =?Windows-1252?Q?Marcus_M=FCller?=
+ <marcus.mueller@ettus.com>, "'USRP-users@lists.ettus.com'"
+ <usrp-users@lists.ettus.com>
 Thread-Topic: [USRP-users] Data rate using usrp and grc
-Thread-Index: AQHWYlbbHjnwDUz39U+Gftus+wZMPakX9kiAgAAzE+2AACHHgIAAFLoDgADguQc=
-Date: Sun, 26 Jul 2020 04:12:09 +0000
-Message-ID: <BM1PR0101MB149167EA077CA8B89D09CD5688750@BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM>
+Thread-Index: AQHWYlbbHjnwDUz39U+Gftus+wZMPakX9kiAgAAzE+2AACHHgIAAFLoDgADguQeAAB6RsQ==
+Date: Sun, 26 Jul 2020 05:59:47 +0000
+Message-ID: <MA1PR01MB258852E24DA14D9374DE7AA190750@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
 References: <MA1PR01MB25884DB85773F1978595CD6890740@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
  <a7903b46-932a-4848-cffe-4dba3c53f43b@ettus.com>
  <MA1PR01MB2588B4D9AE8EE8E9E48363DC90740@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
  <2ae3dbb9-667a-f30a-0a24-509de972bb43@ettus.com>,
- <MA1PR01MB258881AEE532398017AD032F90740@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <MA1PR01MB258881AEE532398017AD032F90740@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+ <MA1PR01MB258881AEE532398017AD032F90740@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
+ <BM1PR0101MB149167EA077CA8B89D09CD5688750@BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <BM1PR0101MB149167EA077CA8B89D09CD5688750@BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:8221CDB0A486E943D5D354A7DFC3C48638CBC2FE44AFC51AD5FD36C48019C701;
- UpperCasedChecksum:F066F37D27D31BDA3788BC34BB76F0D95119CCE68B417683267FC7CAFFA0C721;
- SizeAsReceived:7359; Count:44
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [fakQbPwP2mDMG9qJY/XBZLxqaQbp6GgV]
+authentication-results: live.com; dkim=none (message not signed)
+ header.d=none;live.com; dmarc=none action=none header.from=vehere.com;
+x-originating-ip: [42.110.138.224]
 x-ms-publictraffictype: Email
-x-incomingheadercount: 44
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: aa8a2547-fef1-478d-8df0-08d8311a1100
-x-ms-traffictypediagnostic: PU1APC01HT008:
+x-ms-office365-filtering-correlation-id: c6af69da-6873-4eaf-9f7a-08d8312919e7
+x-ms-traffictypediagnostic: MA1PR01MB2668:
+x-microsoft-antispam-prvs: <MA1PR01MB2668965FD2D2A9E50FA4C52B90750@MA1PR01MB2668.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: zhPJkwgC1D0R46AqPuz2vGnzCRwSU/Fqv4Y1iBRRtSmCkIHvLXHnEiGlpSTY0rruEWY3pn9zK0hBs9Regss5s8n4RNiFZ4z+w51GkPJZntN7QULC0iByZrm+EoMKSMhHcYiZ5ThzK8/PJHLLKpYguXVDjy0uKjBSPOC3R7f1wHAmjGKCu43mDemvryX8f5lZn8CTl22oLCU6bpWuO6+8rtii3sihPCdFcxbE+iZPuM0Zir/VogMdTlVzJHjlpCxL
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:0; SRV:;
- IPV:NLI; SFV:NSPM; H:BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFTY:; SFS:; DIR:OUT; SFP:1901; 
-x-ms-exchange-antispam-messagedata: LpeHCgvNptcQspLYH6m5g2QNXEQs85s8OaQD4VMvIcogxDc33FYZAKmcvVnWsjNDZtFcVXQo1Txb+jJnv0fWs+t1mjDPzhsipZOBM5hCHgMZPtOje6D41STP1bNbaLliDGlAi9NhuT3ZZmNUBDgH/A==
+x-microsoft-antispam-message-info: XcNvI+gX02JW3Qg/o8AwBwHLlTbYH9i9OP+CFhxt52roq9JD2MFGil9BE6g7volT/Nd2cazaZDXHJ9MtYlMYwa0Np1sVVEjYeQlHc67H/zgmKpxJ+x51zOeDZfkMlBX7IrBSSqhtTO3mnh42fF8TLDIeAc+DIwBijZ3090i7xsfV4KtjAgx0K5NI0rxsfb8EDVfQKTNmRxuDv5KzQM7rG5jxsgFgYu5lYO9Fze7LIfiihFnS7MpNy9nuwdjs6lSZkcjwi8/rvl9WXBG6FYekQmRYnyry69AFUgOil809z112ivkhhfItnqRrzbAsMzbpBQtHhugpaLsZd96anUE7qSCytkqb/I2459dK8aPNS5v54x3LO1NBxV+SaxLML+wAM48f3LfBFKP/5UcmVGg6qoDrBVzpIpg5vrOFWcMgLVlt9ItW79Uu80FCxmZHGZko
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(396003)(39830400003)(366004)(346002)(376002)(136003)(508600001)(71200400001)(55016002)(9686003)(45080400002)(2906002)(966005)(186003)(316002)(110136005)(26005)(8676002)(8936002)(86362001)(166002)(66476007)(66556008)(64756008)(53546011)(6506007)(83380400001)(7696005)(66446008)(66574015)(33656002)(52536014)(5660300002)(66946007)(76116006)(491001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: 0AeiyghC0mTsOA37eQv7f8U7o4LZ9F1vfvV2Raw6CtCWP4wT8UyrrsoitwKeT2WklvfzHDXjmZLBYtM9cgmDn7L3W3boHKYa7S7YX5+K8BMx95V6EK9MHt4vGzXcDzmnSrZRgmxH5scc/guzHe/f42cRp0sQTYd12dc764RnOAMC77qu6HRoGuJS2bMjXrt0uEJKfKi6F+LQ9uipLU+C1Hhr1eKLgvRm5OZjvGqJbkN4JO7TlhyEzF3pm2oLd0nPiCewtDrfzLwxlg7nVXGPwzA1LJqAwWS5FmO2ff7K2mE52VR/CemEw6rDWBNmEpIZx4QOUXtD90VT7iBc5vhXCx6L5IRL9HZOq22XHDBtkShC+ZGaFWs1eux7EQOhjSef/lfAZ+rA8/AguCMN0AswoRXRoaWS0SbMpvhN5ZLHrG+ZFHjbtU5n8Lfj/VjlZkDKbanH8i2BV0olcQE+Yljk2f85wEK8qfjo2cPElRDcwWPfeYlPVwMw7WF38AgsQZle
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-OriginatorOrg: live.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: PU1APC01FT010.eop-APC01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa8a2547-fef1-478d-8df0-08d8311a1100
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2020 04:12:09.6395 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT008
+X-OriginatorOrg: vehere.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6af69da-6873-4eaf-9f7a-08d8312919e7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2020 05:59:47.0215 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: qiAclyUpXNx3clSlW3LR3FRZJzJIhbBPEVspU4auDpTN03pUZMMXjn67tGUeW6Cg9GSzNufYzqJOPVTX5dXUcA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR01MB2668
 Subject: Re: [USRP-users] Data rate using usrp and grc
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -99,9 +98,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Snehasish Kar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Snehasish Kar <snehasish.cse@live.com>
-Content-Type: multipart/mixed; boundary="===============1414453955414252296=="
+From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
+Content-Type: multipart/mixed; boundary="===============7927805623982105356=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -115,14 +114,27 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1414453955414252296==
+--===============7927805623982105356==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BM1PR0101MB149167EA077CA8B89D09CD5688750BM1PR0101MB1491_"
+	boundary="_000_MA1PR01MB258852E24DA14D9374DE7AA190750MA1PR01MB2588INDP_"
 
---_000_BM1PR0101MB149167EA077CA8B89D09CD5688750BM1PR0101MB1491_
+--_000_MA1PR01MB258852E24DA14D9374DE7AA190750MA1PR01MB2588INDP_
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
+
+Thanks Snehasish for the information.
+
+Regards,
+Koyel
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: Snehasish Kar <snehasish.cse@live.com>
+Sent: Sunday, July 26, 2020 9:42:09 AM
+To: Koyel Das (Vehere) <koyel.das@vehere.com>; Marcus M=FCller <marcus.muel=
+ler@ettus.com>; 'USRP-users@lists.ettus.com' <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Data rate using usrp and grc
 
 Hello Koyel
 
@@ -245,7 +257,7 @@ ich doesn=92t have option for 16 bit complex. Please help
 >> USRP-users@lists.ettus.com
 >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---_000_BM1PR0101MB149167EA077CA8B89D09CD5688750BM1PR0101MB1491_
+--_000_MA1PR01MB258852E24DA14D9374DE7AA190750MA1PR01MB2588INDP_
 Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
@@ -255,30 +267,57 @@ Content-Transfer-Encoding: quoted-printable
 252">
 </head>
 <body>
+<div dir=3D"ltr">
+<div></div>
 <div>
-<div>
-<div style=3D"direction: ltr;">Hello Koyel </div>
+<div>Thanks Snehasish for the information.</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Regards,</div>
+<div dir=3D"ltr">Koyel&nbsp;</div>
 <div><br>
 </div>
-<div style=3D"direction: ltr;">I think using a 10gbps nic card, a processor=
- with 3.6GHz clockspeed, DDR4 RAM with an nvme ssd or ssd should be fine.</=
-div>
+<div class=3D"ms-outlook-ios-signature" id=3D"ms-outlook-mobile-signature">=
+Get <a href=3D"https://aka.ms/o0ukef">
+Outlook for iOS</a></div>
+</div>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Snehasish Kar &lt;sne=
+hasish.cse@live.com&gt;<br>
+<b>Sent:</b> Sunday, July 26, 2020 9:42:09 AM<br>
+<b>To:</b> Koyel Das (Vehere) &lt;koyel.das@vehere.com&gt;; Marcus M=FCller=
+ &lt;marcus.mueller@ettus.com&gt;; 'USRP-users@lists.ettus.com' &lt;usrp-us=
+ers@lists.ettus.com&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Data rate using usrp and grc</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div>
+<div>
+<div style=3D"direction:ltr">Hello Koyel </div>
 <div><br>
 </div>
-<div style=3D"direction: ltr;">Regards</div>
-<div style=3D"direction: ltr;">Snehasish <span id=3D"ms-outlook-ios-cursor"=
+<div style=3D"direction:ltr">I think using a 10gbps nic card, a processor w=
+ith 3.6GHz clockspeed, DDR4 RAM with an nvme ssd or ssd should be fine.</di=
+v>
+<div><br>
+</div>
+<div style=3D"direction:ltr">Regards</div>
+<div style=3D"direction:ltr">Snehasish <span id=3D"x_ms-outlook-ios-cursor"=
 ></span></div>
 </div>
 <div><br>
 </div>
-<div class=3D"ms-outlook-ios-signature">Get <a href=3D"https://aka.ms/o0uke=
-f">Outlook for iOS</a></div>
+<div class=3D"x_ms-outlook-ios-signature">Get <a href=3D"https://aka.ms/o0u=
+kef">Outlook for iOS</a></div>
 </div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
-sers-bounces@lists.ettus.com&gt; on behalf of Koyel Das (Vehere) via USRP-u=
-sers &lt;usrp-users@lists.ettus.com&gt;<br>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> USRP-users &lt;usrp=
+-users-bounces@lists.ettus.com&gt; on behalf of Koyel Das (Vehere) via USRP=
+-users &lt;usrp-users@lists.ettus.com&gt;<br>
 <b>Sent:</b> Saturday, July 25, 2020 8:21:01 PM<br>
 <b>To:</b> Marcus M=FCller &lt;marcus.mueller@ettus.com&gt;; 'USRP-users@li=
 sts.ettus.com' &lt;usrp-users@lists.ettus.com&gt;<br>
@@ -303,24 +342,24 @@ s servers so I was asking if that is not enough to ensure that data rate or=
 <div dir=3D"ltr">Koyel&nbsp;</div>
 <div><br>
 </div>
-<div class=3D"x_ms-outlook-ios-signature" id=3D"x_ms-outlook-mobile-signatu=
-re">Get <a href=3D"https://aka.ms/o0ukef">
-Outlook for iOS</a></div>
+<div class=3D"x_x_ms-outlook-ios-signature" id=3D"x_x_ms-outlook-mobile-sig=
+nature">Get
+<a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
 </div>
 </div>
 <hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Marcus M=FCller &lt=
-;marcus.mueller@ettus.com&gt;<br>
+<div id=3D"x_x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif=
+" color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Marcus M=FCller &=
+lt;marcus.mueller@ettus.com&gt;<br>
 <b>Sent:</b> Saturday, July 25, 2020 7:01:31 PM<br>
 <b>To:</b> Koyel Das (Vehere) &lt;koyel.das@vehere.com&gt;; 'USRP-users@lis=
 ts.ettus.com' &lt;usrp-users@lists.ettus.com&gt;<br>
 <b>Subject:</b> Re: [USRP-users] Data rate using usrp and grc</font>
 <div>&nbsp;</div>
 </div>
-<div class=3D"x_BodyFragment"><font size=3D"2"><span style=3D"font-size:11p=
-t">
-<div class=3D"x_PlainText">Hi Koyel,<br>
+<div class=3D"x_x_BodyFragment"><font size=3D"2"><span style=3D"font-size:1=
+1pt">
+<div class=3D"x_x_PlainText">Hi Koyel,<br>
 <br>
 I'm sorry if I'm repeating myself. I see this seems hard to believe, but:<b=
 r>
@@ -426,13 +465,14 @@ s.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus=
 </div>
 </span></font></div>
 </div>
+</div>
 </body>
 </html>
 
---_000_BM1PR0101MB149167EA077CA8B89D09CD5688750BM1PR0101MB1491_--
+--_000_MA1PR01MB258852E24DA14D9374DE7AA190750MA1PR01MB2588INDP_--
 
 
---===============1414453955414252296==
+--===============7927805623982105356==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -443,5 +483,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1414453955414252296==--
+--===============7927805623982105356==--
 
