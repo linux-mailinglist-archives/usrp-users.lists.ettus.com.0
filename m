@@ -2,91 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE46422DC42
-	for <lists+usrp-users@lfdr.de>; Sun, 26 Jul 2020 08:00:43 +0200 (CEST)
-Received: from [::1] (port=60196 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CCA522DF99
+	for <lists+usrp-users@lfdr.de>; Sun, 26 Jul 2020 16:07:45 +0200 (CEST)
+Received: from [::1] (port=34742 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1jzZiB-0003NQ-Dv; Sun, 26 Jul 2020 02:00:39 -0400
-Received: from mail-eopbgr1390119.outbound.protection.outlook.com
- ([40.107.139.119]:24253 helo=IND01-BO1-obe.outbound.protection.outlook.com)
+	id 1jzhJT-00004q-6I; Sun, 26 Jul 2020 10:07:39 -0400
+Received: from ssi-cc-fra1-mro-001.atmailcloud.com ([89.46.80.72]:42752)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <koyel.das@vehere.com>)
- id 1jzZi6-0003Gl-In
- for usrp-users@lists.ettus.com; Sun, 26 Jul 2020 02:00:34 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iSz7SG1oAtiIFNVwdriSs0qyUVesGL0wPLg5VBgehG7DaDQbZP5M/RTxdkkdqqsD7MNIDWMDKYEI+zLzNFkCy+Ts9j+k49hb8aM4df0e1CkN7ckgrBsYwV9yhno+jgRG25pRQ/HOjZe7SBS+QkrWHFuPHrODNl17uUlsdrqfxBWXt9WggOMoknCQxmu15CAXCaMK91JXhisyQVKkVjkwjXWN+PZSph1vZlefjuFMTyh0B5NskRcoc24uQNVLTX3qI79SGYoTaHnhjeuNnZiBnhVpf38AEo2eI/xt45sqFDazOh1iOH6nfJ6BZtuDqV/131cYfjY6r9gQUUeTC42Uxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nw+9E8C08kBOCFy2GWW+D8882rbrnKUip9Rl7TIvfQE=;
- b=CRrr6wWpSCdlg409dNJem2auSrprLx4dehWE9pF7wYZyG0pu9kFDkQGkZeojrA9cn4l5FNqtQ1wmhRDttLAuxLJ7wgAgceiYa/Hi89fTLvHfTuYj/xF3c47fZPmFmeOU9cw98KcgVa/kaNJiV8ieLLOmYgBdBHago4qUYyJew+OVtMij6MOUPintya4IsvB1A128ygP7ANiv3XtQuzR/djn+nL4VND3FLzoyb+jaPw6F0mHy5XFiaiiiDouoQ/RKyVJOQ+EvW1yWfE8Xc0iOBLPRnnDtCjTMHWmLWgQ7xicjFa2zncJ08v1W7uIx49eCJkPutykUXTybCtrPLAA9bw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
- dkim=pass header.d=vehere.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=vehereinteractive.onmicrosoft.com;
- s=selector2-vehereinteractive-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nw+9E8C08kBOCFy2GWW+D8882rbrnKUip9Rl7TIvfQE=;
- b=nGZNmOuzj1rS90FLEcLuBPtrbGVhw/u9s6jaKCAaU0bFngCdbKaZGqOSDdNSaJzsON8gL7jjydWYuJ1bP++eVlSjJAtQPwTgi7gv88re1DEFgzJg3w/6Wmn5g0dB3BMCyRQiYWoQHnhZ0zgp40P+ql0Q+vZgO1opz6fUXMaAE5Y=
-Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3e::22)
- by MA1PR01MB2668.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:37::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.20; Sun, 26 Jul
- 2020 05:59:47 +0000
-Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::b527:579d:9786:f41f]) by MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::b527:579d:9786:f41f%3]) with mapi id 15.20.3216.030; Sun, 26 Jul 2020
- 05:59:47 +0000
-To: Snehasish Kar <snehasish.cse@live.com>, =?Windows-1252?Q?Marcus_M=FCller?=
- <marcus.mueller@ettus.com>, "'USRP-users@lists.ettus.com'"
- <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Data rate using usrp and grc
-Thread-Index: AQHWYlbbHjnwDUz39U+Gftus+wZMPakX9kiAgAAzE+2AACHHgIAAFLoDgADguQeAAB6RsQ==
-Date: Sun, 26 Jul 2020 05:59:47 +0000
-Message-ID: <MA1PR01MB258852E24DA14D9374DE7AA190750@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
-References: <MA1PR01MB25884DB85773F1978595CD6890740@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
- <a7903b46-932a-4848-cffe-4dba3c53f43b@ettus.com>
- <MA1PR01MB2588B4D9AE8EE8E9E48363DC90740@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
- <2ae3dbb9-667a-f30a-0a24-509de972bb43@ettus.com>,
- <MA1PR01MB258881AEE532398017AD032F90740@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
- <BM1PR0101MB149167EA077CA8B89D09CD5688750@BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <BM1PR0101MB149167EA077CA8B89D09CD5688750@BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: live.com; dkim=none (message not signed)
- header.d=none;live.com; dmarc=none action=none header.from=vehere.com;
-x-originating-ip: [42.110.138.224]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c6af69da-6873-4eaf-9f7a-08d8312919e7
-x-ms-traffictypediagnostic: MA1PR01MB2668:
-x-microsoft-antispam-prvs: <MA1PR01MB2668965FD2D2A9E50FA4C52B90750@MA1PR01MB2668.INDPRD01.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: XcNvI+gX02JW3Qg/o8AwBwHLlTbYH9i9OP+CFhxt52roq9JD2MFGil9BE6g7volT/Nd2cazaZDXHJ9MtYlMYwa0Np1sVVEjYeQlHc67H/zgmKpxJ+x51zOeDZfkMlBX7IrBSSqhtTO3mnh42fF8TLDIeAc+DIwBijZ3090i7xsfV4KtjAgx0K5NI0rxsfb8EDVfQKTNmRxuDv5KzQM7rG5jxsgFgYu5lYO9Fze7LIfiihFnS7MpNy9nuwdjs6lSZkcjwi8/rvl9WXBG6FYekQmRYnyry69AFUgOil809z112ivkhhfItnqRrzbAsMzbpBQtHhugpaLsZd96anUE7qSCytkqb/I2459dK8aPNS5v54x3LO1NBxV+SaxLML+wAM48f3LfBFKP/5UcmVGg6qoDrBVzpIpg5vrOFWcMgLVlt9ItW79Uu80FCxmZHGZko
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFTY:;
- SFS:(396003)(39830400003)(366004)(346002)(376002)(136003)(508600001)(71200400001)(55016002)(9686003)(45080400002)(2906002)(966005)(186003)(316002)(110136005)(26005)(8676002)(8936002)(86362001)(166002)(66476007)(66556008)(64756008)(53546011)(6506007)(83380400001)(7696005)(66446008)(66574015)(33656002)(52536014)(5660300002)(66946007)(76116006)(491001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: 0AeiyghC0mTsOA37eQv7f8U7o4LZ9F1vfvV2Raw6CtCWP4wT8UyrrsoitwKeT2WklvfzHDXjmZLBYtM9cgmDn7L3W3boHKYa7S7YX5+K8BMx95V6EK9MHt4vGzXcDzmnSrZRgmxH5scc/guzHe/f42cRp0sQTYd12dc764RnOAMC77qu6HRoGuJS2bMjXrt0uEJKfKi6F+LQ9uipLU+C1Hhr1eKLgvRm5OZjvGqJbkN4JO7TlhyEzF3pm2oLd0nPiCewtDrfzLwxlg7nVXGPwzA1LJqAwWS5FmO2ff7K2mE52VR/CemEw6rDWBNmEpIZx4QOUXtD90VT7iBc5vhXCx6L5IRL9HZOq22XHDBtkShC+ZGaFWs1eux7EQOhjSef/lfAZ+rA8/AguCMN0AswoRXRoaWS0SbMpvhN5ZLHrG+ZFHjbtU5n8Lfj/VjlZkDKbanH8i2BV0olcQE+Yljk2f85wEK8qfjo2cPElRDcwWPfeYlPVwMw7WF38AgsQZle
-x-ms-exchange-transport-forked: True
+ (Exim 4.93) (envelope-from <drtaylor@manx.net>) id 1jzhJN-0008Qo-Mx
+ for usrp-users@lists.ettus.com; Sun, 26 Jul 2020 10:07:33 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=manx.net;
+ s=20160330; h=Content-Type:MIME-Version:Date:Subject:To:From:Message-ID;
+ bh=ebESP4ebmhbRnLjDx2Zdzs1iMf042yDu0VhBHjpXbIQ=; b=FoPHCaIkJbnZxa4cp+WH1qR+6V
+ /wbhD/hJ3T99gsMSiQHgWYo08hLcEHlP848Z3qcwI5jHSPPVaWP7NMcwCsjfSI7GgSJe2mfHjaeO2
+ iXEyNxJfqowGoAU3gNNN2svfAMmnSKFM/X4JQzSoqgarAn53qXDrd/YuFQog2nDSkxR8=;
+Received: from pc2-cc-fra1-mrr-004.internal.atmailcloud.com ([10.20.30.48])
+ by ssi-cc-fra1-mro-001.internal.atmailcloud.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <drtaylor@manx.net>) id 1jzhIi-0006AS-6n
+ for usrp-users@lists.ettus.com; Mon, 27 Jul 2020 00:06:52 +1000
+Received: from pc2-cc-fra1-mrc-004.internal.atmailcloud.com ([10.20.30.54])
+ by pc2-cc-fra1-mrr-004.internal.atmailcloud.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <drtaylor@manx.net>) id 1jzhIi-0000CR-3m
+ for usrp-users@lists.ettus.com; Mon, 27 Jul 2020 00:06:52 +1000
+Received: from [178.16.9.227] (helo=PC1)
+ by pc2-cc-fra1-mrc-004.internal.atmailcloud.com with esmtpsa
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <drtaylor@manx.net>) id 1jzhIh-0003yG-IL
+ for usrp-users@lists.ettus.com; Mon, 27 Jul 2020 00:06:52 +1000
+Message-ID: <274815FD178544A4B80B844E5119AFCD@PC1>
+To: <usrp-users@lists.ettus.com>
+References: <3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1>
+ <5EF15135.6050502@gmail.com> <07FCC8E1668F4D4A814BC4DA01DCA8BE@PC1>
+ <5EF2585B.1090909@gmail.com>
+In-Reply-To: <5EF2585B.1090909@gmail.com>
+Date: Sun, 26 Jul 2020 15:06:51 +0100
 MIME-Version: 1.0
-X-OriginatorOrg: vehere.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6af69da-6873-4eaf-9f7a-08d8312919e7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2020 05:59:47.0215 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qiAclyUpXNx3clSlW3LR3FRZJzJIhbBPEVspU4auDpTN03pUZMMXjn67tGUeW6Cg9GSzNufYzqJOPVTX5dXUcA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR01MB2668
-Subject: Re: [USRP-users] Data rate using usrp and grc
+X-Priority: 3
+X-MSMail-Priority: Normal
+Importance: Normal
+X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
+X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
+X-Atmail-Id: drtaylor@manx.net
+X-atmail-spam-score: 0
+X-atmail-spam-action: no action
+X-atmailcloud-spam-bar: /
+Subject: Re: [USRP-users] GRC up-grade - installation issues
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -98,9 +61,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
-Content-Type: multipart/mixed; boundary="===============7927805623982105356=="
+From: "David Taylor \(manx.net\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "David Taylor \(manx.net\)" <drtaylor@manx.net>
+Content-Type: multipart/mixed; boundary="===============3651956033170445355=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -114,365 +77,671 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7927805623982105356==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+
+--===============3651956033170445355==
 Content-Type: multipart/alternative;
-	boundary="_000_MA1PR01MB258852E24DA14D9374DE7AA190750MA1PR01MB2588INDP_"
+	boundary="----=_NextPart_000_0022_01D6635E.64960FC0"
 
---_000_MA1PR01MB258852E24DA14D9374DE7AA190750MA1PR01MB2588INDP_
-Content-Type: text/plain; charset="Windows-1252"
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0022_01D6635E.64960FC0
+Content-Type: text/plain;
+	charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks Snehasish for the information.
+Apologies if this question is out of scope, or if the answer is to be =
+found elsewhere in the history.
 
-Regards,
-Koyel
+I have been upgrading the GRC from 3.7.11 (with Ubuntu 18.04) to GRC 9.0 =
+(with Ubuntu 20.04 LTS). See previous dialogue below, using =
+3.8.1.0~rc12build2
 
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: Snehasish Kar <snehasish.cse@live.com>
-Sent: Sunday, July 26, 2020 9:42:09 AM
-To: Koyel Das (Vehere) <koyel.das@vehere.com>; Marcus M=FCller <marcus.muel=
-ler@ettus.com>; 'USRP-users@lists.ettus.com' <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Data rate using usrp and grc
 
-Hello Koyel
 
-I think using a 10gbps nic card, a processor with 3.6GHz clockspeed, DDR4 R=
-AM with an nvme ssd or ssd should be fine.
+Currently, the synaptic package manager and $sudo apt install gnuradio =
+methods both align on GRC version 9.0. So I have persevered at this =
+version.
 
-Regards
-Snehasish
+UHD is at v 3.15 and with Python3 the package is basically functional =
+using an available B210 over USB3.
 
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Koyel Da=
-s (Vehere) via USRP-users <usrp-users@lists.ettus.com>
-Sent: Saturday, July 25, 2020 8:21:01 PM
-To: Marcus M=FCller <marcus.mueller@ettus.com>; 'USRP-users@lists.ettus.com=
-' <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Data rate using usrp and grc
 
-Hi Marcus,
 
-I don=92t know what system features would ensure a 6 gbps continuous data r=
-eception and storage from usrp. I only know we have 10 gbps servers so I wa=
-s asking if that is not enough to ensure that data rate or something more i=
-s needed. I was expecting the system requirements to be outlined for the me=
-ntioned data rate.
+--------------
 
-Regards,
-Koyel
 
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: Marcus M=FCller <marcus.mueller@ettus.com>
-Sent: Saturday, July 25, 2020 7:01:31 PM
-To: Koyel Das (Vehere) <koyel.das@vehere.com>; 'USRP-users@lists.ettus.com'=
- <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Data rate using usrp and grc
 
-Hi Koyel,
+The problem arises with OOT blocks transfer, CMake in its =93modern =
+form=94 and with the new dependency of MPIR.
 
-I'm sorry if I'm repeating myself. I see this seems hard to believe, but:
+1). MPIR library has been installed independently and built at V3.0 , =
+with libraries and header located in /usr/local/lib and =
+/usr/local/include respectively.
 
-we really can't tell you. We don't know how well your system performs.
+2). My 3.7.11 code also uses VOLKGNSSSDR in the build. As with the =
+3.7.11 version, VOLKGNSSSDR was installed and tested independently with =
+libraries and headers located using FindVOLKGNSSSDR  in /cmake/modules =
+and a find package reference added to CMakeLists.txt.
 
-Best regards,
-Marcus
+I have yet to check whether {VOLK_GNSSSDR_LIBRARIES} has to be added to =
+the target_link_libraries, noting the significantly different approach =
+now used in .. //my_development/lib/CMakeLists.txt
 
-On 25.07.20 13:32, Koyel Das (Vehere) wrote:
-> Hi Marcus,
->
-> =93as to your previous questions regarding "will my computer be able to
-> keep up": We can't tell you how fast your computer and storage is.=94
->
-> If I use a 10 gbps server and
->
-> RAM disk storage or as you said the following:
->
-> =93Also, setting larger output buffers in the GNU Radio blocks can help,
-> too, if you don't need low latency (which you don't need at all, if
-> you're just recording). Try setting "2**24" in the min output buffer
-> setting in your USRP source's "advanced" tab.=94
->
->
->  Then will I be able to write data at 6 gbps ?
->
-> Regards,
-> Koyel
->
->
->
-> Get Outlook for iOS<https://aka.ms/o0ukef>
-> ________________________________
-> From: Marcus M=FCller <marcus.mueller@ettus.com>
-> Sent: Saturday, July 25, 2020 1:57:49 PM
-> To: Koyel Das (Vehere) <koyel.das@vehere.com>; 'USRP-users@lists.ettus.co=
-m' <usrp-users@lists.ettus.com>
-> Subject: Re: [USRP-users] Data rate using usrp and grc
->
-> Hi Koyel,
->
->> Will there be packet drops if USRP source is set at 32 bit complex
-> float in grc when receiving at 100 MSPS each from two channels?
->
-> as to your previous questions regarding "will my computer be able to
-> keep up": We can't tell you how fast your computer and storage is.
->
-> Anyway,
->
->> I am unable to set usrp source block in grc to 16 bit complex as then
-> the usrp source block is not compatible with file sink which doesn=92t
-> have option for 16 bit complex
->
-> Nothing in GNU Radio cares about the content of the data bytes you're
-> pushing around: simply set your file sink to e.g. int, or float, or to
-> short with vector length 2, or to byte with vector length 4: Doesn't
-> matter, as long as the item size ends up being 32 bits.
->
-> Best regards,
->
-> Marcus
->
-> On 25.07.20 09:43, Koyel Das (Vehere) via USRP-users wrote:
->> Hi,
->>
->> I want to capture data from usrp 2955 using USRP Source block of grc and=
- write to file using file sink block of grc. Will there be packet drops if =
-USRP source is set at 32 bit complex float in grc when receiving at 100 MSP=
-S each from two channels? That makes 2*100e6*64 (32 bit I and 32 bit Q) =3D=
- 12800e6 or 12.8 gbps. I am unable to set usrp source block in grc to 16 bi=
-t complex as then the usrp source block is not compatible with file sink wh=
-ich doesn=92t have option for 16 bit complex. Please help
->>
->> Regards,
->> Koyel
->>
->> Get Outlook for iOS<https://aka.ms/o0ukef>
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+3). The standard VOLK library is found in CMake configure as it is now =
+part of the v 9.0 build package.=20
 
---_000_MA1PR01MB258852E24DA14D9374DE7AA190750MA1PR01MB2588INDP_
-Content-Type: text/html; charset="Windows-1252"
+4). I have tried adapting the older find package method used in 2) for =
+MPIR without success, but note the following CMake configure output.
+
+MPIRXX_LIBRARY-NOTFOUND
+
+MPIR_INCLUDE_DIR-NOTFOUND
+
+MPIR_LIBRARY                  /usr/local/lib/libmpir.so
+
+
+
+Can anyone help with the MPIR problem please?
+
+
+
+As an OOT build requirement at V 9.0., I would have expected expected =
+the gr-modtool to generate some boiler-plate code to cover this =
+dependency addition!
+
+
+
+Is there a more elegant and better way of incorporating VOLKGNSSSDR and =
+the MPIR libraries using modern CMake?
+
+
+
+Would reversion to 3.8.1 help in the short term, noting  that the output =
+from my work might benefit and the later GRC scheduler improvements?
+
+
+
+Many thanks.
+
+
+
+David
+
+GD4FMB
+
+
+
+
+
+From: Marcus D. Leech via USRP-users=20
+Sent: Tuesday, June 23, 2020 8:30 PM
+To: usrp-users@lists.ettus.com=20
+Subject: Re: [USRP-users] GRC up-grade - installation issues
+
+On 06/23/2020 03:23 PM, David Taylor (manx.net) via USRP-users wrote:
+
+  Marcus.
+
+  Many thanks for your prompt reply.
+  Complete removal of everything from /usr/share/uhd/images, then =
+running the images-downloader from /usr/bin works fine.
+
+  I have only managed to try this with a B210 as the other transceivers =
+remain in the laboratory under Covid19 university building closure =
+measures.
+  The N210 is yet to be used, but thanks for the advising on the =
+particular EEPROM image load method,=20
+OK, so with B2xx, if they already have a loaded FPGA image, they won't =
+try to re-load from your host during start-up, unless you
+  power-cycle them first.  So, this can result in you having upgraded =
+the host side of things, complete with host-resident images,
+  and getting a "mis-match" error with B2xx.  The UHD code does NOT =
+attempt to re-load the FPGA image if the host side is
+  newer than the code resident on the B2xx--only after a power-cycle.
+
+
+  It was interesting to see the extra console UHD diagnostics, =
+particularly about clock sources and the 1 PPS input.
+  I have a Rubidium 10 MHz source and 1PPS generator source that will =
+eventually be incorporated for USRP synchronisation.
+
+  However, I am now in the process of setting up the toolchain and new =
+gr_modtool and transitioning the 3.7x OOT blocks
+  The GNU Radio 3.8 OOT Module Porting Guide looks helpful at 16 May =
+2020.
+  The only real issue I had before was to include FindVOLKGNSSSDRcmake =
+and the corresponding library.
+
+  Regards,
+  David.
+
+
+
+
+  From: Marcus D. Leech via USRP-users=20
+  Sent: Tuesday, June 23, 2020 1:47 AM
+  To: usrp-users@lists.ettus.com=20
+  Subject: Re: [USRP-users] GRC up-grade - installation issues
+
+  On 06/22/2020 02:45 PM, David Taylor (manx.net) via USRP-users wrote:
+
+    Dear all,
+
+    I have been successfully running a B200/ B210 research project for =
+two years based on Ubuntu 18.04 LTS and version 3.7x GRC.
+
+    This includes a number of OOT blocks developed for direct sequence =
+spread spectrum, using the Volk GNSSSDR library extensions. An N210 USRP =
+is also at my disposal.
+
+    I now have a clean upgrade to Ubuntu 20.04 LTS and wish to refresh =
+the GRC & UHD drivers to the latest stable release, taking best advice =
+please to ensure project conclusion.
+
+    The issues:-
+
+    1). GRC version 3.8.1.0~rc12build2 works standalone and appears to =
+have similar Cmake files structure and content. (3.9.0.0 is listed in =
+the package manager as available, but with significant and noticeable =
+changes in the software migration and dependencies)?=20
+
+    2). Libuhd-dev at 3.15.0.0-2build5 correctly identifies the B210 =
+over USB3. (I note that library-file libuhd003 no longer forms part of =
+this package).
+
+    3). Running =93uhd_images_downloader.py=94 fully populates =
+/usr/share/images/.
+
+    There is an issue with FPGA compatibility, which I have seen before =
+in 3.7x GRC.  =93Expected FPGA compatibility number 16 expected got =
+14.=94
+
+    This issue was solved under V3.7x  simply by replacement of the FPGA =
+image from archive.=20
+
+  Is this compatibility issue with your N210 or B2xx?  It isn't clear.
+
+
+    4). I have removed all FPGA images from the /usr/share/images =
+directory and have selectively tried installing a number of earlier =
+discrete images and boot-loader from the archive, but all without =
+success.
+
+    5). A re-run of the uhd-images-downloader now fails to re-populate =
+the images folder, however the python(3) script itself runs.
+
+  You might want to simply remove *everything* from =
+/usr/share/uhd/images, and re-run:
+
+  sudo uhd_images_downloader.py
+
+  [Making certain it's running the version you think it's running--if =
+you installed from pre-packaged, it'll be in /usr/bin]
+
+  If this doesn't work, please share the error messages produced with =
+us.
+
+
+  Also, because I didn't see anything in your work-log about it, for =
+N210, you have to run:
+
+  uhd_image_loader --args addr=3D<addr-of-n210>,type=3Dn200
+
+  This loads the appropriate image into the EEPROM of the N210.  The =
+N2xxx series, unlike the B2xx series don't do this dynamically at
+    runtime.  Once you load an image into them, that image is there =
+until it is reprogrammed, even across power-off.  This is different than
+    B2xx, which manages this automatically after power-up.
+
+
+
+
+
+    Many thanks in advance and I look forward to being able to =
+contribute to the group.
+
+    Best regards,
+
+    David Taylor
+
+    Ph.D Researcher, Limerick University, Ireland. GD4FMB
+
+
+    =20
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+-------------------------------------------------------------------------=
+-----
+  _______________________________________________
+  USRP-users mailing list
+  USRP-users@lists.ettus.com
+  http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+  =20
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+
+
+-------------------------------------------------------------------------=
+-------
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+------=_NextPart_000_0022_01D6635E.64960FC0
+Content-Type: text/html;
+	charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-</head>
-<body>
-<div dir=3D"ltr">
-<div></div>
-<div>
-<div>Thanks Snehasish for the information.</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Regards,</div>
-<div dir=3D"ltr">Koyel&nbsp;</div>
-<div><br>
-</div>
-<div class=3D"ms-outlook-ios-signature" id=3D"ms-outlook-mobile-signature">=
-Get <a href=3D"https://aka.ms/o0ukef">
-Outlook for iOS</a></div>
-</div>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Snehasish Kar &lt;sne=
-hasish.cse@live.com&gt;<br>
-<b>Sent:</b> Sunday, July 26, 2020 9:42:09 AM<br>
-<b>To:</b> Koyel Das (Vehere) &lt;koyel.das@vehere.com&gt;; Marcus M=FCller=
- &lt;marcus.mueller@ettus.com&gt;; 'USRP-users@lists.ettus.com' &lt;usrp-us=
-ers@lists.ettus.com&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Data rate using usrp and grc</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div>
-<div>
-<div style=3D"direction:ltr">Hello Koyel </div>
-<div><br>
-</div>
-<div style=3D"direction:ltr">I think using a 10gbps nic card, a processor w=
-ith 3.6GHz clockspeed, DDR4 RAM with an nvme ssd or ssd should be fine.</di=
-v>
-<div><br>
-</div>
-<div style=3D"direction:ltr">Regards</div>
-<div style=3D"direction:ltr">Snehasish <span id=3D"x_ms-outlook-ios-cursor"=
-></span></div>
-</div>
-<div><br>
-</div>
-<div class=3D"x_ms-outlook-ios-signature">Get <a href=3D"https://aka.ms/o0u=
-kef">Outlook for iOS</a></div>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> USRP-users &lt;usrp=
--users-bounces@lists.ettus.com&gt; on behalf of Koyel Das (Vehere) via USRP=
--users &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Sent:</b> Saturday, July 25, 2020 8:21:01 PM<br>
-<b>To:</b> Marcus M=FCller &lt;marcus.mueller@ettus.com&gt;; 'USRP-users@li=
-sts.ettus.com' &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Data rate using usrp and grc</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div></div>
-<div>
-<div>Hi Marcus,&nbsp;</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">I don=92t know what system features would ensure a 6 gbps =
-continuous data reception and storage from usrp. I only know we have 10 gbp=
-s servers so I was asking if that is not enough to ensure that data rate or=
- something more is needed. I was expecting
- the system requirements to be outlined for the mentioned data rate.</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Regards,</div>
-<div dir=3D"ltr">Koyel&nbsp;</div>
-<div><br>
-</div>
-<div class=3D"x_x_ms-outlook-ios-signature" id=3D"x_x_ms-outlook-mobile-sig=
-nature">Get
-<a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
-</div>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif=
-" color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Marcus M=FCller &=
-lt;marcus.mueller@ettus.com&gt;<br>
-<b>Sent:</b> Saturday, July 25, 2020 7:01:31 PM<br>
-<b>To:</b> Koyel Das (Vehere) &lt;koyel.das@vehere.com&gt;; 'USRP-users@lis=
-ts.ettus.com' &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Data rate using usrp and grc</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"x_x_BodyFragment"><font size=3D"2"><span style=3D"font-size:1=
-1pt">
-<div class=3D"x_x_PlainText">Hi Koyel,<br>
-<br>
-I'm sorry if I'm repeating myself. I see this seems hard to believe, but:<b=
-r>
-<br>
-we really can't tell you. We don't know how well your system performs.<br>
-<br>
-Best regards,<br>
-Marcus<br>
-<br>
-On 25.07.20 13:32, Koyel Das (Vehere) wrote:<br>
-&gt; Hi Marcus,<br>
-&gt;<br>
-&gt; =93as to your previous questions regarding &quot;will my computer be a=
-ble to<br>
-&gt; keep up&quot;: We can't tell you how fast your computer and storage is=
-.=94<br>
-&gt;<br>
-&gt; If I use a 10 gbps server and<br>
-&gt;<br>
-&gt; RAM disk storage or as you said the following:<br>
-&gt;<br>
-&gt; =93Also, setting larger output buffers in the GNU Radio blocks can hel=
-p,<br>
-&gt; too, if you don't need low latency (which you don't need at all, if<br=
->
-&gt; you're just recording). Try setting &quot;2**24&quot; in the min outpu=
-t buffer<br>
-&gt; setting in your USRP source's &quot;advanced&quot; tab.=94<br>
-&gt;<br>
-&gt;<br>
-&gt;&nbsp; Then will I be able to write data at 6 gbps ?<br>
-&gt;<br>
-&gt; Regards,<br>
-&gt; Koyel<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; Get Outlook for iOS&lt;<a href=3D"https://aka.ms/o0ukef">https://aka.m=
-s/o0ukef</a>&gt;<br>
-&gt; ________________________________<br>
-&gt; From: Marcus M=FCller &lt;marcus.mueller@ettus.com&gt;<br>
-&gt; Sent: Saturday, July 25, 2020 1:57:49 PM<br>
-&gt; To: Koyel Das (Vehere) &lt;koyel.das@vehere.com&gt;; 'USRP-users@lists=
-.ettus.com' &lt;usrp-users@lists.ettus.com&gt;<br>
-&gt; Subject: Re: [USRP-users] Data rate using usrp and grc<br>
-&gt;<br>
-&gt; Hi Koyel,<br>
-&gt;<br>
-&gt;&gt; Will there be packet drops if USRP source is set at 32 bit complex=
-<br>
-&gt; float in grc when receiving at 100 MSPS each from two channels?<br>
-&gt;<br>
-&gt; as to your previous questions regarding &quot;will my computer be able=
- to<br>
-&gt; keep up&quot;: We can't tell you how fast your computer and storage is=
-.<br>
-&gt;<br>
-&gt; Anyway,<br>
-&gt;<br>
-&gt;&gt; I am unable to set usrp source block in grc to 16 bit complex as t=
-hen<br>
-&gt; the usrp source block is not compatible with file sink which doesn=92t=
-<br>
-&gt; have option for 16 bit complex<br>
-&gt;<br>
-&gt; Nothing in GNU Radio cares about the content of the data bytes you're<=
-br>
-&gt; pushing around: simply set your file sink to e.g. int, or float, or to=
-<br>
-&gt; short with vector length 2, or to byte with vector length 4: Doesn't<b=
-r>
-&gt; matter, as long as the item size ends up being 32 bits.<br>
-&gt;<br>
-&gt; Best regards,<br>
-&gt;<br>
-&gt; Marcus<br>
-&gt;<br>
-&gt; On 25.07.20 09:43, Koyel Das (Vehere) via USRP-users wrote:<br>
-&gt;&gt; Hi,<br>
-&gt;&gt;<br>
-&gt;&gt; I want to capture data from usrp 2955 using USRP Source block of g=
-rc and write to file using file sink block of grc. Will there be packet dro=
-ps if USRP source is set at 32 bit complex float in grc when receiving at 1=
-00 MSPS each from two channels? That makes
- 2*100e6*64 (32 bit I and 32 bit Q) =3D 12800e6 or 12.8 gbps. I am unable t=
-o set usrp source block in grc to 16 bit complex as then the usrp source bl=
-ock is not compatible with file sink which doesn=92t have option for 16 bit=
- complex. Please help<br>
-&gt;&gt;<br>
-&gt;&gt; Regards,<br>
-&gt;&gt; Koyel<br>
-&gt;&gt;<br>
-&gt;&gt; Get Outlook for iOS&lt;<a href=3D"https://aka.ms/o0ukef">https://a=
-ka.ms/o0ukef</a>&gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; USRP-users mailing list<br>
-&gt;&gt; USRP-users@lists.ettus.com<br>
-&gt;&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_list=
-s.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus=
-.com</a><br>
-</div>
-</span></font></div>
-</div>
-</div>
-</body>
-</html>
+<HTML><HEAD>
+<META content=3D"text/html; charset=3Dwindows-1252" =
+http-equiv=3DContent-Type></HEAD>
+<BODY dir=3Dltr text=3D#000000 bgColor=3D#ffffff>
+<DIV dir=3Dltr>
+<DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: #000000">
+<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">Apologies if this question is out of scope, or =
+if the=20
+answer is to be found elsewhere in the history.</FONT></P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">I have been upgrading the GRC from 3.7.11 =
+(with Ubuntu=20
+18.04) to GRC 9.0 (with Ubuntu 20.04 LTS). See previous dialogue below, =
+using=20
+</FONT><FONT style=3D"LINE-HEIGHT: 13pt" color=3D#0000ff=20
+size=3D3>3.8.1.0~rc12build2</FONT></P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt"><FONT=20
+style=3D"FONT-SIZE: 11pt"></FONT>&nbsp;</P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">Currently, the synaptic package manager and =
+$sudo apt=20
+install gnuradio methods both align on GRC version 9.0. So I have =
+persevered at=20
+this version.</FONT></P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">UHD is at v 3.15 and with Python3 the package =
+is=20
+basically functional using an available B210 over USB3.</FONT></P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">&nbsp;</P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">--------------</P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">&nbsp;</P>
+<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt">The problem=20
+arises with OOT blocks transfer, CMake in its =93modern form=94 and with =
+the new=20
+dependency of MPIR.</P>
+<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">1). MPIR library has been installed =
+independently and=20
+built at V3.0 , with libraries and header located in /usr/local/lib and=20
+/usr/local/include respectively.</FONT></P>
+<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">2). My 3.7.11 code also uses VOLKGNSSSDR in =
+the build.=20
+As with the 3.7.11 version, VOLKGNSSSDR was installed and tested =
+independently=20
+with libraries and headers located</FONT><FONT style=3D"FONT-SIZE: =
+11pt"> using=20
+FindVOLKGNSSSDR</FONT><FONT style=3D"FONT-SIZE: 11pt"><SPAN=20
+style=3D"mso-spacerun: yes">&nbsp; </SPAN>in /cmake/modules and a find =
+package=20
+reference added to CMakeLists.txt.</FONT></P>
+<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">I have yet to check whether =
+{VOLK_GNSSSDR_LIBRARIES} has=20
+to be added to the target_link_libraries, noting the significantly =
+different=20
+approach now used in .. //my_development/lib/CMakeLists.txt</FONT></P>
+<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">3). The standard VOLK library is found in =
+CMake=20
+configure as it is now part of the v 9.0 build package. </FONT></P>
+<P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">4). I have tried adapting the older find =
+package method=20
+used in 2) for MPIR without success, but note the following CMake =
+configure=20
+output.</FONT></P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">MPIRXX_LIBRARY-NOTFOUND</FONT></P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">MPIR_INCLUDE_DIR-NOTFOUND</FONT></P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">MPIR_LIBRARY<SPAN=20
+style=3D"mso-tab-count: =
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+</SPAN>/usr/local/lib/libmpir.so</FONT></P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">&nbsp;</P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt"><FONT =
+style=3D"FONT-SIZE: 11pt"=20
+color=3D#ff0000>Can anyone help with the MPIR problem please?</FONT></P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">&nbsp;</P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt"><FONT=20
+style=3D"FONT-SIZE: 11pt">As an OOT build requirement at V 9.0., I would =
+have=20
+expected expected the gr-modtool to generate some boiler-plate code to =
+cover=20
+this dependency addition!</FONT></P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">&nbsp;</P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt"><FONT =
+style=3D"FONT-SIZE: 11pt"=20
+color=3D#ff0000>Is there a more elegant and better way of incorporating=20
+VOLKGNSSSDR and the MPIR libraries using modern CMake?</FONT></P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">&nbsp;</P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt"><FONT =
+color=3D#ff0000>Would=20
+reversion to 3.8.1 help in the short term, noting&nbsp; that the output =
+from my=20
+work might benefit and the later GRC scheduler improvements?</FONT></P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">&nbsp;</P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">Many thanks.</P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">&nbsp;</P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">David</P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">GD4FMB</P>
+<P class=3DMsoNoSpacing style=3D"MARGIN: 0cm 0cm 0pt">&nbsp;</P>
+<DIV>&nbsp;</DIV>
+<DIV=20
+style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: =
+"Calibri"; FONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; =
+DISPLAY: inline'>
+<DIV style=3D"FONT: 10pt tahoma">
+<DIV>&nbsp;</DIV>
+<DIV style=3D"BACKGROUND: #f5f5f5">
+<DIV style=3D"font-color: black"><B>From:</B> <A=20
+title=3Dusrp-users@lists.ettus.com>Marcus D. Leech via USRP-users</A> =
+</DIV>
+<DIV><B>Sent:</B> Tuesday, June 23, 2020 8:30 PM</DIV>
+<DIV><B>To:</B> <A=20
+title=3Dusrp-users@lists.ettus.com>usrp-users@lists.ettus.com</A> </DIV>
+<DIV><B>Subject:</B> Re: [USRP-users] GRC up-grade - installation=20
+issues</DIV></DIV></DIV>
+<DIV>&nbsp;</DIV></DIV>
+<DIV=20
+style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: =
+"Calibri"; FONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; =
+DISPLAY: inline'>
+<DIV class=3Dmoz-cite-prefix>On 06/23/2020 03:23 PM, David Taylor =
+(manx.net) via=20
+USRP-users wrote:<BR></DIV>
+<BLOCKQUOTE cite=3Dmid:07FCC8E1668F4D4A814BC4DA01DCA8BE@PC1 =
+type=3D"cite">
+  <DIV dir=3Dltr>
+  <DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: =
+#000000">
+  <DIV>Marcus.</DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV>Many thanks for your prompt reply.</DIV>
+  <DIV>Complete removal of everything from /usr/share/uhd/images, then =
+running=20
+  the images-downloader from /usr/bin works fine.</DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV>I have only managed to try this with a B210 as the other =
+transceivers=20
+  remain in the laboratory under Covid19 university building closure=20
+  measures.</DIV>
+  <DIV>The N210 is yet to be used, but thanks for the advising on the =
+particular=20
+  EEPROM image load method, </DIV></DIV></DIV></BLOCKQUOTE>OK, so with =
+B2xx, if=20
+they already have a loaded FPGA image, they won't try to re-load from =
+your host=20
+during start-up, unless you<BR>&nbsp; power-cycle them first.&nbsp; So, =
+this can=20
+result in you having upgraded the host side of things, complete with=20
+host-resident images,<BR>&nbsp; and getting a "mis-match" error with =
+B2xx.&nbsp;=20
+The UHD code does NOT attempt to re-load the FPGA image if the host side =
 
---_000_MA1PR01MB258852E24DA14D9374DE7AA190750MA1PR01MB2588INDP_--
+is<BR>&nbsp; newer than the code resident on the B2xx--only after a=20
+power-cycle.<BR>
+<BLOCKQUOTE cite=3Dmid:07FCC8E1668F4D4A814BC4DA01DCA8BE@PC1 =
+type=3D"cite">
+  <DIV dir=3Dltr>
+  <DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: =
+#000000">
+  <DIV>&nbsp;</DIV>
+  <DIV>It was interesting to see the extra console UHD diagnostics, =
+particularly=20
+  about clock sources and the 1 PPS input.</DIV>
+  <DIV>I have a Rubidium 10 MHz source and 1PPS generator source that =
+will=20
+  eventually be incorporated for USRP synchronisation.</DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV>However, I am now in the process of setting up the toolchain and =
+new=20
+  gr_modtool and transitioning the 3.7x OOT blocks</DIV>
+  <DIV>The GNU Radio 3.8 OOT Module Porting Guide looks helpful at 16 =
+May=20
+  2020.</DIV>
+  <DIV>The only real issue I had before was to include =
+FindVOLKGNSSSDRcmake and=20
+  the corresponding library.</DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV>Regards,</DIV>
+  <DIV>David.</DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV=20
+  style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: =
+"Calibri"; FONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; =
+DISPLAY: inline'>
+  <DIV style=3D"FONT: 10pt tahoma">
+  <DIV>&nbsp;</DIV>
+  <DIV style=3D"BACKGROUND: #f5f5f5">
+  <DIV style=3D"font-color: black"><B>From:</B> <A=20
+  title=3Dusrp-users@lists.ettus.com moz-do-not-send=3D"true">Marcus D. =
+Leech via=20
+  USRP-users</A> </DIV>
+  <DIV><B>Sent:</B> Tuesday, June 23, 2020 1:47 AM</DIV>
+  <DIV><B>To:</B> <A title=3Dusrp-users@lists.ettus.com=20
+  moz-do-not-send=3D"true">usrp-users@lists.ettus.com</A> </DIV>
+  <DIV><B>Subject:</B> Re: [USRP-users] GRC up-grade - installation=20
+  issues</DIV></DIV></DIV>
+  <DIV>&nbsp;</DIV></DIV>
+  <DIV=20
+  style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: =
+"Calibri"; FONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; =
+DISPLAY: inline'>
+  <DIV class=3Dmoz-cite-prefix>On 06/22/2020 02:45 PM, David Taylor =
+(manx.net) via=20
+  USRP-users wrote:<BR></DIV>
+  <BLOCKQUOTE cite=3Dmid:3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1 =
+type=3D"cite">
+    <DIV dir=3Dltr>
+    <DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: =
+#000000">
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">Dear all,</FONT></P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">I have been successfully running a B200/ =
+B210=20
+    research project for two years based on Ubuntu 18.04 LTS and version =
+3.7x=20
+    GRC.</FONT></P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">This includes a number of OOT blocks =
+developed for=20
+    direct sequence spread spectrum, using the Volk GNSSSDR library =
+extensions.=20
+    An N210 USRP is also at my disposal.</FONT></P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">I now have a clean upgrade to Ubuntu 20.04 =
+LTS and=20
+    wish to refresh the GRC &amp; UHD drivers to the latest stable =
+release,=20
+    taking best advice please to ensure project conclusion.</FONT></P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt">The=20
+    issues:-</P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">1). GRC version <FONT color=3D#0000ff=20
+    size=3D3>3.8.1.0~rc12build2</FONT> works standalone and appears to =
+have=20
+    similar Cmake files structure and content. (<FONT color=3D#0000ff=20
+    size=3D3>3.9.0.0</FONT> is listed in the package manager as =
+available, but=20
+    with significant and noticeable changes in the software migration =
+and=20
+    dependencies)? </FONT></P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">2). Libuhd-dev at <FONT color=3D#0000ff=20
+    size=3D3>3.15.0.0-2build5</FONT> correctly identifies the B210 over =
+USB3. (I=20
+    note that library-file libuhd003 no longer forms part of this=20
+    package).</FONT></P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">3). Running =93uhd_images_downloader.py=94 =
+fully=20
+    populates /usr/share/images/.</FONT></P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">There is an issue with FPGA compatibility, =
+which I=20
+    have seen before in 3.7x GRC.<SPAN style=3D"mso-spacerun: =
+yes">&nbsp;=20
+    =93</SPAN>Expected FPGA compatibility number 16 expected got =
+14.=94</FONT></P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">This issue was solved under V3.7x&nbsp; =
+simply by=20
+    replacement of the FPGA image from archive.=20
+  </FONT></P></DIV></DIV></BLOCKQUOTE>Is this compatibility issue with =
+your N210=20
+  or B2xx?&nbsp; It isn't clear.<BR><BR>
+  <BLOCKQUOTE cite=3Dmid:3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1 =
+type=3D"cite">
+    <DIV dir=3Dltr>
+    <DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: =
+#000000">
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">4). I have removed all FPGA images from =
+the=20
+    /usr/share/images directory and have selectively tried installing a =
+number=20
+    of earlier discrete images and boot-loader from the archive, but all =
+without=20
+    success.</FONT></P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">5). A re-run of the uhd-images-downloader =
+now fails=20
+    to re-populate the images folder, however the python(3) script =
+itself=20
+    runs.</FONT></P></DIV></DIV></BLOCKQUOTE>You might want to simply =
+remove=20
+  *everything* from /usr/share/uhd/images, and re-run:<BR><BR>sudo=20
+  uhd_images_downloader.py<BR><BR>[Making certain it's running the =
+version you=20
+  think it's running--if you installed from pre-packaged, it'll be in=20
+  /usr/bin]<BR><BR>If this doesn't work, please share the error messages =
+
+  produced with us.<BR><BR><BR>Also, because I didn't see anything in =
+your=20
+  work-log about it, for N210, you have to run:<BR><BR>uhd_image_loader =
+--args=20
+  addr=3D&lt;addr-of-n210&gt;,type=3Dn200<BR><BR>This loads the =
+appropriate image=20
+  into the EEPROM of the N210.&nbsp; The N2xxx series, unlike the B2xx =
+series=20
+  don't do this dynamically at<BR>&nbsp; runtime.&nbsp; Once you load an =
+image=20
+  into them, that image is there until it is reprogrammed, even across=20
+  power-off.&nbsp; This is different than<BR>&nbsp; B2xx, which manages =
+this=20
+  automatically after power-up.<BR><BR><BR>
+  <BLOCKQUOTE cite=3Dmid:3106CD4CFDE84EF2B512E9D68DC0AFF8@PC1 =
+type=3D"cite">
+    <DIV dir=3Dltr>
+    <DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: =
+#000000">
+    <P class=3DMsoNormal=20
+style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: 13pt">&nbsp;</P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">Many thanks in advance and I look forward =
+to being=20
+    able to contribute to the group.</FONT></P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt">Best=20
+    regards,</P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">David Taylor</FONT></P>
+    <P class=3DMsoNormal style=3D"MARGIN: 0cm 0cm 10pt; LINE-HEIGHT: =
+13pt"><FONT=20
+    style=3D"FONT-SIZE: 11pt">Ph.D Researcher, Limerick University, =
+Ireland.=20
+    GD4FMB</FONT></P></DIV></DIV><BR>
+    <FIELDSET class=3DmimeAttachmentHeader></FIELDSET> <BR><PRE =
+wrap=3D"">_______________________________________________
+USRP-users mailing list
+<A class=3Dmoz-txt-link-abbreviated =
+moz-do-not-send=3D"true">USRP-users@lists.ettus.com</A>
+<A class=3Dmoz-txt-link-freetext =
+href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
+m" =
+moz-do-not-send=3D"true">http://lists.ettus.com/mailman/listinfo/usrp-use=
+rs_lists.ettus.com</A>
+</PRE></BLOCKQUOTE><BR>
+  <HR>
+  _______________________________________________<BR>USRP-users mailing=20
+  list<BR><A =
+class=3Dmoz-txt-link-abbreviated>USRP-users@lists.ettus.com</A><BR><A=20
+  class=3Dmoz-txt-link-freetext=20
+  =
+href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
+m">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</A>=
+<BR></DIV></DIV></DIV><BR>
+  <FIELDSET class=3DmimeAttachmentHeader></FIELDSET> <BR><PRE =
+wrap=3D"">_______________________________________________
+USRP-users mailing list
+<A class=3Dmoz-txt-link-abbreviated>USRP-users@lists.ettus.com</A>
+<A class=3Dmoz-txt-link-freetext =
+href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
+m">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</A>=
+
+</PRE></BLOCKQUOTE><BR>
+<P>
+<HR>
+_______________________________________________<BR>USRP-users mailing=20
+list<BR>USRP-users@lists.ettus.com<BR>http://lists.ettus.com/mailman/list=
+info/usrp-users_lists.ettus.com<BR></DIV></DIV></DIV></BODY></HTML>
+
+------=_NextPart_000_0022_01D6635E.64960FC0--
 
 
---===============7927805623982105356==
+
+--===============3651956033170445355==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -483,5 +752,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7927805623982105356==--
+--===============3651956033170445355==--
+
 
