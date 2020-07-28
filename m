@@ -2,58 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6198822FF0C
-	for <lists+usrp-users@lfdr.de>; Tue, 28 Jul 2020 03:45:48 +0200 (CEST)
-Received: from [::1] (port=50112 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EB3322FFA4
+	for <lists+usrp-users@lfdr.de>; Tue, 28 Jul 2020 04:32:38 +0200 (CEST)
+Received: from [::1] (port=50378 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k0Egc-0005Vg-2r; Mon, 27 Jul 2020 21:45:46 -0400
-Received: from mail-qt1-f172.google.com ([209.85.160.172]:38078)
+	id 1k0FPv-0007Ki-LX; Mon, 27 Jul 2020 22:32:35 -0400
+Received: from mail-ej1-f51.google.com ([209.85.218.51]:44531)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k0EgY-0005Ol-8i
- for usrp-users@lists.ettus.com; Mon, 27 Jul 2020 21:45:42 -0400
-Received: by mail-qt1-f172.google.com with SMTP id a32so13823914qtb.5
- for <usrp-users@lists.ettus.com>; Mon, 27 Jul 2020 18:45:22 -0700 (PDT)
+ (Exim 4.93) (envelope-from <aarsmith54@gmail.com>)
+ id 1k0FPq-0006kd-ST
+ for usrp-users@lists.ettus.com; Mon, 27 Jul 2020 22:32:30 -0400
+Received: by mail-ej1-f51.google.com with SMTP id dk23so7203754ejb.11
+ for <usrp-users@lists.ettus.com>; Mon, 27 Jul 2020 19:32:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=xqdIOeQA3hzyLGCG4k35Zo5RJID9iHaRoPT/BatgQU4=;
- b=bDu4ijCqF0IaldGR70qv1Rbb7lHliD6oC7IWuNO5/9pu3BvN9NzycYfzWyUxS9WJUE
- f4PV8ZDhaY3Yx/jUjlUBvA1mMo8ZnQcYjLcWwS8tGGo7aOuxlxcIzBvbMWCt+Vb/l6Ir
- zy/nfzNOEuPdNVyKT0B4YKf7zyaRi5GWyxhDefS9b1hdYHwUVOHedME/44rHZRmhZ2ND
- g30nfiAVfVEwgWZJT1RiYiFCgGWX7vVFcLF1FRkaTBU4uczhwrWMA9CtCfTb3pulUMut
- Wr+HkcChCbNDNUj21ATwXesuAPoIy0+z5Z0xdNki6KVW0XjLHmEwLvrnT1dlKiB3aaFh
- 8hGg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=wY82kQ6TS1PlOn4BtdL4gMqYNh/LeIUqr78Hj8LFbVA=;
+ b=OzxGXeAxHMNCPsTwn7DEtyXkewTIdICoAeIocJBfEe0WR97I19y/ZCmIOadK1/7Z27
+ k4LkzlLwLA7xRfCV2uUTImL+Z3KBo1ZKAs+/Dtr5EDCwHW1OBvlcFMAVrw68D4ccPu2s
+ dMZsvrp63VBzqyHGb5nbsloWSjPDh7g9mysuJUSKW6q+tvVCd6Gpbw8PQI8FAq0Y/UWa
+ /9z27JGfC6YjDS4VuyR7ID0IdEoBJO4NEY0kv/dfzGABMlERxhljB6WdfBSsIfhBMi72
+ Wc10jzRyBBuobHf0lbFm3EcW5L9473mvb4ilr2EWtW8eIVHN2aOKeVVrk4FRKCmaECtT
+ o8JA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=xqdIOeQA3hzyLGCG4k35Zo5RJID9iHaRoPT/BatgQU4=;
- b=BW66lTlh/H4RS8NJLC8S0Ud71Ml1PJelX+IPsXXWffCzCJO9SdgzKyWZkDK4AEvShE
- GM4fUSOKanRlENO2TLzDaqzBSr5TY7pKs8fcNt4B1HUBkykacjUIFZFpzukkLusymhEx
- dllA31Jy1f+fvwiDkKez+OwXQyz5dmNPXpuvEEn/440iFROyXp0em/YQPjBAAJ4F4KMr
- 3vEKZx93DbRlbCnGTs1blzD+x/Fg8n+T1+TugqU6U0h7k7qFWZhvbEUjccZxxwPQCzSL
- Kf7bCh9GS3FCjbTJ5AvnD/gPOQsswHWtkrao/TEmOowzUs9y191SLgVIT740UJLwJ7PQ
- goEQ==
-X-Gm-Message-State: AOAM530vGYI89vtsmc3bkKy1CqGLV7MC+OtNiq8nVclK4KRXtsuetIow
- s+m5vnEx2rDy2wFchADAPCefKMSPdHM=
-X-Google-Smtp-Source: ABdhPJxIYD68C1/KJQFp3R46DCIC9tt3f8cm5RGu+kIAHOCZFAEwpwSAWDbz61w73r70tnYvCeg/wQ==
-X-Received: by 2002:ac8:1729:: with SMTP id w38mr23811167qtj.103.1595900701413; 
- Mon, 27 Jul 2020 18:45:01 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148]) by smtp.googlemail.com with ESMTPSA id
- p12sm19119481qkk.118.2020.07.27.18.45.00
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 27 Jul 2020 18:45:01 -0700 (PDT)
-Message-ID: <5F1F831C.3070001@gmail.com>
-Date: Mon, 27 Jul 2020 21:45:00 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=wY82kQ6TS1PlOn4BtdL4gMqYNh/LeIUqr78Hj8LFbVA=;
+ b=K2eR03nxlvJKr/zn+07lEv8I7qE/lr7KFr3wYrpbmpr4gGQJs0nnbEYfgdfWQfYEFF
+ sjMNYM8RWSF0MwIuP0q+wS9c+H24r3LzBpAeC9I5tq3LBVnJ9oHwIK0BQlt3lIoGqBCO
+ pqxXA3cu04MdAp312k+GR3oqOGIzQu/l4VG08BbbjR6+N1O7/LDp6PHAdN8X4Aml0zuq
+ IQJGqLWeAYZoN/yg5QP/Tpeio0pYGg8kgTSUjEglBKaohxl1jWKXnWgjiaf5+SVlDZAI
+ Yg4VkDwdzH32eI0HCimC3gYdguAidnwkfX84thJr+wBOu9+ceso9vyxCLUScDLVXvXTB
+ rAiw==
+X-Gm-Message-State: AOAM533u613cJnGKvomRWM8jU51z/4CNW5QgQKFOw3G9KLi+7ns3KVdV
+ RGwXUcZgAU2YxeBSRwEy1K9Ey5x8/kYjwrsU1hA=
+X-Google-Smtp-Source: ABdhPJwO2MZ+Jt6UDjn5ZMfYlYEKpjTI7QYsTZb/ZdGBDdTVCaPAldzSA/Rw8azJzMJxZv/167Csd6N6dsmllSFun1o=
+X-Received: by 2002:a17:906:3842:: with SMTP id
+ w2mr24310171ejc.273.1595903509873; 
+ Mon, 27 Jul 2020 19:31:49 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
 References: <CAH2Hh71y=SwYu3-0OHcrmxn_PEpWJgzDA7pZu0bUbNBjEv05bg@mail.gmail.com>
-In-Reply-To: <CAH2Hh71y=SwYu3-0OHcrmxn_PEpWJgzDA7pZu0bUbNBjEv05bg@mail.gmail.com>
+ <5F1F831C.3070001@gmail.com>
+In-Reply-To: <5F1F831C.3070001@gmail.com>
+Date: Mon, 27 Jul 2020 20:31:37 -0600
+Message-ID: <CAH2Hh72YDLBvqj=yz2ugZ9JTK0HqBsFRPzhTs9vNHq+EcG_M3Q@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: Ettus Mail List <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] B200 cannot output a sine wave
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -66,9 +61,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6483649988093130952=="
+From: Aaron Smith via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Aaron Smith <aarsmith54@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8196538828349901290=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,95 +77,150 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============6483649988093130952==
-Content-Type: multipart/alternative;
- boundary="------------090400050405000902060806"
+--===============8196538828349901290==
+Content-Type: multipart/alternative; boundary="000000000000cd49fa05ab773d5c"
 
-This is a multi-part message in MIME format.
---------------090400050405000902060806
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000cd49fa05ab773d5c
+Content-Type: text/plain; charset="UTF-8"
 
-On 07/27/2020 09:05 PM, Aaron Smith via USRP-users wrote:
+Marcus,
+
+I have tried frequencies ranging from 75-450 MHz. My scope is good to 500
+MHz. I have tried gain settings betweeb 30 and 60. I am using RG-174, which
+is good to 1000 MHz.
+
+In my custom code I generate tones by sending repeating samples with a
+value of 0.8. In the past this caused tones to appear at B200's center
+frequency. This should work regardless of the clock rate or sample rate,
+but in this case I'm using a 48 MHz master clock rate and a sample rate of
+8 MHz.
+
+I also followed a gnuradio companion tutorial to generate a tone and it
+produced something ugly too.
+
+The only thing in my setup that changed is the host laptop. I switched to a
+new laptop and had to build UHD from scratch. However, gnuradio companion
+appears to use a different UHD version, so I'm skeptical that is the
+problem.
+
+Thanks for your help.
+
+On Mon, Jul 27, 2020, 7:45 PM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> On 07/27/2020 09:05 PM, Aaron Smith via USRP-users wrote:
+>
 > Hello all,
 >
-> I am trying to output a sine wave from a B200 using custom code, or 
-> the UHD tx_waveform example. In either case, when I view the output on 
-> an o-scope, there is not a pure sine wave. The output looks more 
-> triangular wave. I have used this scope with other B200s and the same 
-> code to get a pure sine. Is the radio damaged? Is there some sort of 
-> calibration required? I am using UHD 3.15.0.
+> I am trying to output a sine wave from a B200 using custom code, or the
+> UHD tx_waveform example. In either case, when I view the output on an
+> o-scope, there is not a pure sine wave. The output looks more triangular
+> wave. I have used this scope with other B200s and the same code to get a
+> pure sine. Is the radio damaged? Is there some sort of calibration
+> required? I am using UHD 3.15.0.
 >
 > Thanks
 >
 >
 >
 > _______________________________________________
+> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> What frequency?  What gain settings? What is your baseband bandwidth?  Is
+> your coax cable known to be "good" at the frequency of interest?
+>   What sample rate?  Is the baseband signal well within the Nyquist limits?
+>
+>
+> _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-What frequency?  What gain settings? What is your baseband bandwidth?  
-Is your coax cable known to be "good" at the frequency of interest?
-   What sample rate?  Is the baseband signal well within the Nyquist limits?
+>
 
+--000000000000cd49fa05ab773d5c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
---------------090400050405000902060806
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/27/2020 09:05 PM, Aaron Smith via
+<div dir=3D"auto">Marcus,<div dir=3D"auto"><br></div><div dir=3D"auto">I ha=
+ve tried frequencies ranging from 75-450 MHz. My scope is good to 500 MHz. =
+I have tried gain settings betweeb 30 and 60. I am using RG-174, which is g=
+ood to 1000 MHz.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I=
+n my custom code I generate tones by sending repeating samples with a value=
+ of 0.8. In the past this caused tones to appear at B200&#39;s center frequ=
+ency. This should work regardless of the clock rate or sample rate, but in =
+this case I&#39;m using a 48 MHz master clock rate and a sample rate of 8 M=
+Hz.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I also followe=
+d a gnuradio companion tutorial to generate a tone and it produced somethin=
+g ugly too.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">The on=
+ly thing in my setup that changed is the host laptop. I switched to a new l=
+aptop and had to build UHD from scratch. However, gnuradio companion appear=
+s to use a different UHD version, so I&#39;m skeptical that is the problem.=
+</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks for your help.=
+=C2=A0</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Mon, Jul 27, 2020, 7:45 PM Marcus D. Leech via USRP-users &l=
+t;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div>On 07/27/2020 09:05 PM, Aaron Smith via
       USRP-users wrote:<br>
     </div>
-    <blockquote
-cite="mid:CAH2Hh71y=SwYu3-0OHcrmxn_PEpWJgzDA7pZu0bUbNBjEv05bg@mail.gmail.com"
-      type="cite">
-      <div dir="auto">Hello all,
-        <div dir="auto"><br>
+    <blockquote type=3D"cite">
+      <div dir=3D"auto">Hello all,
+        <div dir=3D"auto"><br>
         </div>
-        <div dir="auto">I am trying to output a sine wave from a B200
+        <div dir=3D"auto">I am trying to output a sine wave from a B200
           using custom code, or the UHD tx_waveform example. In either
           case, when I view the output on an o-scope, there is not a
           pure sine wave. The output looks more triangular wave. I have
           used this scope with other B200s and the same code to get a
           pure sine. Is the radio damaged? Is there some sort of
-          calibration required? I am using UHD 3.15.0. </div>
-        <div dir="auto"><br>
+          calibration required? I am using UHD 3.15.0.=C2=A0</div>
+        <div dir=3D"auto"><br>
         </div>
-        <div dir="auto">Thanks</div>
-        <div dir="auto"><br>
+        <div dir=3D"auto">Thanks</div>
+        <div dir=3D"auto"><br>
         </div>
       </div>
       <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <fieldset></fieldset>
       <br>
-      <pre wrap="">_______________________________________________
+      <pre>_______________________________________________
 USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
+ferrer">USRP-users@lists.ettus.com</a>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank" rel=3D"noreferrer">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a>
 </pre>
     </blockquote>
-    What frequency?  What gain settings? What is your baseband
-    bandwidth?  Is your coax cable known to be "good" at the frequency
+    What frequency?=C2=A0 What gain settings? What is your baseband
+    bandwidth?=C2=A0 Is your coax cable known to be &quot;good&quot; at the=
+ frequency
     of interest?<br>
-      What sample rate?  Is the baseband signal well within the Nyquist
+    =C2=A0 What sample rate?=C2=A0 Is the baseband signal well within the N=
+yquist
     limits?<br>
     <br>
     <br>
-  </body>
-</html>
+  </div>
 
---------------090400050405000902060806--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
+ferrer">USRP-users@lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
+mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000cd49fa05ab773d5c--
 
 
---===============6483649988093130952==
+--===============8196538828349901290==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -181,5 +231,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6483649988093130952==--
+--===============8196538828349901290==--
 
