@@ -2,54 +2,45 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EB3322FFA4
-	for <lists+usrp-users@lfdr.de>; Tue, 28 Jul 2020 04:32:38 +0200 (CEST)
-Received: from [::1] (port=50378 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 100B223027C
+	for <lists+usrp-users@lfdr.de>; Tue, 28 Jul 2020 08:18:18 +0200 (CEST)
+Received: from [::1] (port=52152 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k0FPv-0007Ki-LX; Mon, 27 Jul 2020 22:32:35 -0400
-Received: from mail-ej1-f51.google.com ([209.85.218.51]:44531)
+	id 1k0IwE-0006EF-T0; Tue, 28 Jul 2020 02:18:10 -0400
+Received: from mail-wr1-f49.google.com ([209.85.221.49]:41670)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <aarsmith54@gmail.com>)
- id 1k0FPq-0006kd-ST
- for usrp-users@lists.ettus.com; Mon, 27 Jul 2020 22:32:30 -0400
-Received: by mail-ej1-f51.google.com with SMTP id dk23so7203754ejb.11
- for <usrp-users@lists.ettus.com>; Mon, 27 Jul 2020 19:32:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=wY82kQ6TS1PlOn4BtdL4gMqYNh/LeIUqr78Hj8LFbVA=;
- b=OzxGXeAxHMNCPsTwn7DEtyXkewTIdICoAeIocJBfEe0WR97I19y/ZCmIOadK1/7Z27
- k4LkzlLwLA7xRfCV2uUTImL+Z3KBo1ZKAs+/Dtr5EDCwHW1OBvlcFMAVrw68D4ccPu2s
- dMZsvrp63VBzqyHGb5nbsloWSjPDh7g9mysuJUSKW6q+tvVCd6Gpbw8PQI8FAq0Y/UWa
- /9z27JGfC6YjDS4VuyR7ID0IdEoBJO4NEY0kv/dfzGABMlERxhljB6WdfBSsIfhBMi72
- Wc10jzRyBBuobHf0lbFm3EcW5L9473mvb4ilr2EWtW8eIVHN2aOKeVVrk4FRKCmaECtT
- o8JA==
+ (Exim 4.93) (envelope-from <jayant17154@iiitd.ac.in>)
+ id 1k0IwA-00067e-6U
+ for usrp-users@lists.ettus.com; Tue, 28 Jul 2020 02:18:06 -0400
+Received: by mail-wr1-f49.google.com with SMTP id r2so11964316wrs.8
+ for <usrp-users@lists.ettus.com>; Mon, 27 Jul 2020 23:17:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iiitd.ac.in; s=google;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=VGGp7aiaaER4gQFX0h//4jVJYD4O89hhNE63+Rx0ACI=;
+ b=NaGo7HlUCh6W5w9LKG1qTA6mxifA8yJYwVU7PfjA8TfBhMTZqvUTm1750A+f+JfEkn
+ 1inznH/WLqLXIm3ojyX3cp1xpfA/1DDEZU4nOi9jcJpb4h+IOTiPWpGxX38xfZHFl+iw
+ X/nPE0a37ZJtpJwT8CxIEee1BbbYUWznCeTVs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=wY82kQ6TS1PlOn4BtdL4gMqYNh/LeIUqr78Hj8LFbVA=;
- b=K2eR03nxlvJKr/zn+07lEv8I7qE/lr7KFr3wYrpbmpr4gGQJs0nnbEYfgdfWQfYEFF
- sjMNYM8RWSF0MwIuP0q+wS9c+H24r3LzBpAeC9I5tq3LBVnJ9oHwIK0BQlt3lIoGqBCO
- pqxXA3cu04MdAp312k+GR3oqOGIzQu/l4VG08BbbjR6+N1O7/LDp6PHAdN8X4Aml0zuq
- IQJGqLWeAYZoN/yg5QP/Tpeio0pYGg8kgTSUjEglBKaohxl1jWKXnWgjiaf5+SVlDZAI
- Yg4VkDwdzH32eI0HCimC3gYdguAidnwkfX84thJr+wBOu9+ceso9vyxCLUScDLVXvXTB
- rAiw==
-X-Gm-Message-State: AOAM533u613cJnGKvomRWM8jU51z/4CNW5QgQKFOw3G9KLi+7ns3KVdV
- RGwXUcZgAU2YxeBSRwEy1K9Ey5x8/kYjwrsU1hA=
-X-Google-Smtp-Source: ABdhPJwO2MZ+Jt6UDjn5ZMfYlYEKpjTI7QYsTZb/ZdGBDdTVCaPAldzSA/Rw8azJzMJxZv/167Csd6N6dsmllSFun1o=
-X-Received: by 2002:a17:906:3842:: with SMTP id
- w2mr24310171ejc.273.1595903509873; 
- Mon, 27 Jul 2020 19:31:49 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=VGGp7aiaaER4gQFX0h//4jVJYD4O89hhNE63+Rx0ACI=;
+ b=DyYUOXuXl2S3stFNhDVqK20SvCgSaUQekan9bTACIxTgvLHyzJUw9jILiVzvA8GYtF
+ h2lj8MidRAoEEbESvKfYSbL/eFWksqBolltApXfYAJp8et5kuGuy0zRbFNo02Ssq0m+S
+ xGEZ5fpuLkvHKlKmliEZDyCnY2ZivX3jfGh+ZBAaez8oMnNv1pArkwFJ7IG/Q+YfwA3H
+ WZxMH5d8xapryA5iij4Lggmb7+GC30oFkKMhZszLFqBQOnVKakLiOkO9/yf3bvEFUwZv
+ sZBmRpIQ+Itxj2VUbodLGz7wnZD9l4Mv1GAX8CjjZm4Qjx8j81oSBtOhc2p1nBTmtFVf
+ 5vcw==
+X-Gm-Message-State: AOAM532pAzF6w+rHCImO5F7vv9mXa72Xtqn1orA5a6sT50jAYTrLz3Mk
+ SqcBQAPomDEgYcewZ7BAf1xHit9jog+SJqv9iLMoyp8v
+X-Google-Smtp-Source: ABdhPJzbsYDDDONTF5Vv7vKQ5oPM/qYOyMhjjUNdoB58qiXIWSCwsdf8jgwuq50//niuZdKAQu1SCp2cvh67u3ghf0U=
+X-Received: by 2002:adf:8b1a:: with SMTP id n26mr24961849wra.182.1595917044582; 
+ Mon, 27 Jul 2020 23:17:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAH2Hh71y=SwYu3-0OHcrmxn_PEpWJgzDA7pZu0bUbNBjEv05bg@mail.gmail.com>
- <5F1F831C.3070001@gmail.com>
-In-Reply-To: <5F1F831C.3070001@gmail.com>
-Date: Mon, 27 Jul 2020 20:31:37 -0600
-Message-ID: <CAH2Hh72YDLBvqj=yz2ugZ9JTK0HqBsFRPzhTs9vNHq+EcG_M3Q@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] B200 cannot output a sine wave
+Date: Tue, 28 Jul 2020 11:47:12 +0530
+Message-ID: <CAKwrT9SNz7tFqmYrJthCfRUgrHCzqbkKrA+NDPX324NmeSxc-g@mail.gmail.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: [USRP-users] CHIPSCOPE ERROR (RFNOC)
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,9 +52,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Aaron Smith via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Aaron Smith <aarsmith54@gmail.com>
-Content-Type: multipart/mixed; boundary="===============8196538828349901290=="
+From: Jayant Chhillar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jayant Chhillar <jayant17154@iiitd.ac.in>
+Content-Type: multipart/mixed; boundary="===============6252523776115896625=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,150 +68,56 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8196538828349901290==
-Content-Type: multipart/alternative; boundary="000000000000cd49fa05ab773d5c"
+--===============6252523776115896625==
+Content-Type: multipart/alternative; boundary="00000000000088a0e605ab7a64c5"
 
---000000000000cd49fa05ab773d5c
+--00000000000088a0e605ab7a64c5
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Marcus,
+Hi everyone,
+I am trying to generate a bitstream for X310 board with the FFT block along
+with few other ettus provided blocks. However, at the time of logic
+optimization step I get this error
 
-I have tried frequencies ranging from 75-450 MHz. My scope is good to 500
-MHz. I have tried gain settings betweeb 30 and 60. I am using RG-174, which
-is good to 1000 MHz.
+ERROR: [Chipscope 16-213] The debug port 'u_ila_0/probe1' has 9 unconnected
+channels (bits). This will cause errors during implementation.
 
-In my custom code I generate tones by sending repeating samples with a
-value of 0.8. In the past this caused tones to appear at B200's center
-frequency. This should work regardless of the clock rate or sample rate,
-but in this case I'm using a 48 MHz master clock rate and a sample rate of
-8 MHz.
+I=E2=80=99m not able to identify the source of this error. Also, before thi=
+s
+bitstream generation I did create a bitstream where I used chipscope using
+the methode defined here:
 
-I also followed a gnuradio companion tutorial to generate a tone and it
-produced something ugly too.
+https://kb.ettus.com/Debugging_FPGA_images
 
-The only thing in my setup that changed is the host laptop. I switched to a
-new laptop and had to build UHD from scratch. However, gnuradio companion
-appears to use a different UHD version, so I'm skeptical that is the
-problem.
+And was able to do that without any errors. However, since then I have been
+getting the above mentioned error.
 
-Thanks for your help.
+Thanks
 
-On Mon, Jul 27, 2020, 7:45 PM Marcus D. Leech via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> On 07/27/2020 09:05 PM, Aaron Smith via USRP-users wrote:
->
-> Hello all,
->
-> I am trying to output a sine wave from a B200 using custom code, or the
-> UHD tx_waveform example. In either case, when I view the output on an
-> o-scope, there is not a pure sine wave. The output looks more triangular
-> wave. I have used this scope with other B200s and the same code to get a
-> pure sine. Is the radio damaged? Is there some sort of calibration
-> required? I am using UHD 3.15.0.
->
-> Thanks
->
->
->
-> _______________________________________________
-> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-> What frequency?  What gain settings? What is your baseband bandwidth?  Is
-> your coax cable known to be "good" at the frequency of interest?
->   What sample rate?  Is the baseband signal well within the Nyquist limits?
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000cd49fa05ab773d5c
+--00000000000088a0e605ab7a64c5
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Marcus,<div dir=3D"auto"><br></div><div dir=3D"auto">I ha=
-ve tried frequencies ranging from 75-450 MHz. My scope is good to 500 MHz. =
-I have tried gain settings betweeb 30 and 60. I am using RG-174, which is g=
-ood to 1000 MHz.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I=
-n my custom code I generate tones by sending repeating samples with a value=
- of 0.8. In the past this caused tones to appear at B200&#39;s center frequ=
-ency. This should work regardless of the clock rate or sample rate, but in =
-this case I&#39;m using a 48 MHz master clock rate and a sample rate of 8 M=
-Hz.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I also followe=
-d a gnuradio companion tutorial to generate a tone and it produced somethin=
-g ugly too.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">The on=
-ly thing in my setup that changed is the host laptop. I switched to a new l=
-aptop and had to build UHD from scratch. However, gnuradio companion appear=
-s to use a different UHD version, so I&#39;m skeptical that is the problem.=
-</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks for your help.=
-=C2=A0</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
-gmail_attr">On Mon, Jul 27, 2020, 7:45 PM Marcus D. Leech via USRP-users &l=
-t;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
-    <div>On 07/27/2020 09:05 PM, Aaron Smith via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"auto">Hello all,
-        <div dir=3D"auto"><br>
-        </div>
-        <div dir=3D"auto">I am trying to output a sine wave from a B200
-          using custom code, or the UHD tx_waveform example. In either
-          case, when I view the output on an o-scope, there is not a
-          pure sine wave. The output looks more triangular wave. I have
-          used this scope with other B200s and the same code to get a
-          pure sine. Is the radio damaged? Is there some sort of
-          calibration required? I am using UHD 3.15.0.=C2=A0</div>
-        <div dir=3D"auto"><br>
-        </div>
-        <div dir=3D"auto">Thanks</div>
-        <div dir=3D"auto"><br>
-        </div>
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <br>
-      <pre>_______________________________________________
-USRP-users mailing list
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
-ferrer">USRP-users@lists.ettus.com</a>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" target=3D"_blank" rel=3D"noreferrer">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    What frequency?=C2=A0 What gain settings? What is your baseband
-    bandwidth?=C2=A0 Is your coax cable known to be &quot;good&quot; at the=
- frequency
-    of interest?<br>
-    =C2=A0 What sample rate?=C2=A0 Is the baseband signal well within the N=
-yquist
-    limits?<br>
-    <br>
-    <br>
-  </div>
+<div dir=3D"auto">Hi everyone,</div><div dir=3D"auto">I am trying to genera=
+te a bitstream for X310 board with the FFT block along with few other ettus=
+ provided blocks. However, at the time of logic optimization step I get thi=
+s error</div><div dir=3D"auto"><br></div><div dir=3D"auto">ERROR: [Chipscop=
+e 16-213] The debug port &#39;u_ila_0/probe1&#39; has 9 unconnected channel=
+s (bits). This will cause errors during implementation.<br></div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">I=E2=80=99m not able to identify the =
+source of this error. Also, before this bitstream generation I did create a=
+ bitstream where I used chipscope using the methode defined here:</div><div=
+ dir=3D"auto"><br></div><div dir=3D"auto"><div><a href=3D"https://kb.ettus.=
+com/Debugging_FPGA_images">https://kb.ettus.com/Debugging_FPGA_images</a></=
+div><br></div><div dir=3D"auto">And was able to do that without any errors.=
+ However, since then I have been getting the above mentioned error.=C2=A0</=
+div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks</div>
 
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
-ferrer">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000cd49fa05ab773d5c--
+--00000000000088a0e605ab7a64c5--
 
 
---===============8196538828349901290==
+--===============6252523776115896625==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -231,5 +128,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8196538828349901290==--
+--===============6252523776115896625==--
 
