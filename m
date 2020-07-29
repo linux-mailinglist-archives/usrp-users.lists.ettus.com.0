@@ -2,58 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E1B0231EBA
-	for <lists+usrp-users@lfdr.de>; Wed, 29 Jul 2020 14:43:01 +0200 (CEST)
-Received: from [::1] (port=38774 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEE91231EEF
+	for <lists+usrp-users@lfdr.de>; Wed, 29 Jul 2020 15:03:59 +0200 (CEST)
+Received: from [::1] (port=38956 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k0lQ8-000598-Nx; Wed, 29 Jul 2020 08:42:56 -0400
-Received: from mail-qt1-f181.google.com ([209.85.160.181]:36348)
+	id 1k0lkR-0006Z6-Cr; Wed, 29 Jul 2020 09:03:55 -0400
+Received: from mail-pg1-f173.google.com ([209.85.215.173]:40767)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k0lQ4-00052Y-P3
- for usrp-users@lists.ettus.com; Wed, 29 Jul 2020 08:42:52 -0400
-Received: by mail-qt1-f181.google.com with SMTP id t23so14328320qto.3
- for <usrp-users@lists.ettus.com>; Wed, 29 Jul 2020 05:42:32 -0700 (PDT)
+ (Exim 4.93) (envelope-from <zh.heng96@gmail.com>) id 1k0lkM-0006JU-Qn
+ for usrp-users@lists.ettus.com; Wed, 29 Jul 2020 09:03:50 -0400
+Received: by mail-pg1-f173.google.com with SMTP id h12so2851914pgf.7
+ for <usrp-users@lists.ettus.com>; Wed, 29 Jul 2020 06:03:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=GxpMiqoPNy3eVvp31ykxt9x0o5/cz8/9NQW3NDYmG1s=;
- b=AFtZNj1VmOqTnl9QF12VZc/bVSWhO0zz1SGqOfVbuXuVuwFRKLMx0INgmJH0f1H/dv
- 4fP2guFjwlLlHUZNsolzux19jQ2Eu4kNWWCUzmo0jUA+Am9V7VG+rzxFeeqHeyzIKqM3
- M+Eddh9UYSPmMP4BxDjjNUoJF2dHgdwfNGLa7rpbKjHnm3970+0kOfDfl043Tk7uatl1
- EnfefW+aoPAPEETiJlAFLnc4MUOwNax+hw0pqyBdrYDI3hoHInj6m7f0sKZ7wV3w7WJ3
- VyWJ6OAOvCvSWuaD0THKGm2KcpsKgo6deNqKlSHxFJ0cXu5Vy+rRIxs9EEbifbPX3W2r
- W4QQ==
+ h=subject:from:cc:to:date:mime-version:message-id:references
+ :in-reply-to; bh=YM0NWNyJV+BrlHGZ6hGWFX47adnm0wVaqZZCAAh/kgs=;
+ b=aUjUGFz5dGmYwwvO3rHg5uwYfpDFFTCr+mMoVSqgDMfFJhOrqndpYV/+hUX7afsqzJ
+ f9YGNoQPiqKAzSAlvU2OfMNQPKjkfoXGKvi9nb6kvkLbFHgVzdNQRFzV7s8o9CU4L89L
+ HP33ejiJaRLlL1FR3wmWnGCP5HjKUVHQdyRO3pWXJZ3s4CQ/D/698oWrbtsuak4q25VG
+ UxGilmJLJBhWkTcmE0NI84LpgW4URpNiVOzmtNLhAhQou7NXWsogj37KI/65DWEA//up
+ Rl31iv6p0QjVrv+z2dXUgb9JaP+BHXj16BaW6/bb/ewXEAFEsO7kmKM62Rtucd6RsO6d
+ fakQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=GxpMiqoPNy3eVvp31ykxt9x0o5/cz8/9NQW3NDYmG1s=;
- b=Id51BMAwqbRadloBaBZAYKnk7XKVRx322KUu7rbqrXBRdTW8yvotDhZjorRcQ3c1Nn
- BCMxZhqSh3Mcx6csqKvSaUv6HuEDMmBBCkjJUZWppPmjqHCr8K0+vL3ZmIfIRbr47KLb
- XfSDmlVSnGxnxpi0j0voz2JVNVsE9Wf6tKNP5Xy/LAmiufPZsTXVt92GlJTmtNLuPj60
- OBQkclmkZ6zaj9AGnu8zIq7sNpbEuKwQwfglMF1JzbZlL7+yqsjNjmU4Ulb0DI5wq28H
- pzK+6ZynLsspW4sJo/5W9Ci21qkUTWtxBJXYKuIWbcKpiYperEiqW57m66m4A64luYbp
- /0Tw==
-X-Gm-Message-State: AOAM531MAJB+Q0AznTqKA7lfc0PMtEQ/ercnep9WfpGRE4CEkDiHI9PB
- kZqTjXjAC/tbWpzmb8Rbg3B5C+67Za4=
-X-Google-Smtp-Source: ABdhPJyh+zJqaE44I061BsnHV0WrZjIGVO9QzIZ+2gzI+/ntKyc5dWaO8Lte+VRBuRQlmiuDZE8c3A==
-X-Received: by 2002:aed:3789:: with SMTP id j9mr13734644qtb.251.1596026531764; 
- Wed, 29 Jul 2020 05:42:11 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id g11sm1356229qke.128.2020.07.29.05.42.10
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 29 Jul 2020 05:42:11 -0700 (PDT)
-Message-ID: <5F216EA2.2000300@gmail.com>
-Date: Wed, 29 Jul 2020 08:42:10 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:subject:from:cc:to:date:mime-version:message-id
+ :references:in-reply-to;
+ bh=YM0NWNyJV+BrlHGZ6hGWFX47adnm0wVaqZZCAAh/kgs=;
+ b=owmzsHhCe/WkszKTjiGnc1auVjxUYuORtYiGIPYeqpb+yx1BXC3slYd75sc63u5e9a
+ PGo7K5VpdTKtsHHBYish26pLJ6FE2Uumj0wg9v/N/B77qsKfA0PhCBEgJiN3FV4Rfgn0
+ h1Zsw1k0g3d+lm6815CjH5lJbSnmGArluh3uykhwKCu5I9MuG6fH4GtYxFuAD8rCALmB
+ kTvHtWW5JTRkMdOPtclqMwaCuzKPRUavoaq8ITLcWKUn/q4Rtqnc4yIJCxvAJ7PbehHO
+ Ife3UEf2IlpYC1ECWHLRaWebeQYEhHerFJvFJxhMdblJ23s36SJ8g4TpTiKk5U4m03XM
+ xWsw==
+X-Gm-Message-State: AOAM530qiEfxiMt/ZkAuBpSwZbXu/n5AyWREdRU9s52xWr0mocELVGdZ
+ 4lxG46UbYcsiO08SvWe4jJx5pb1L
+X-Google-Smtp-Source: ABdhPJyfylDYk6T/j7qQe/h7OotLfAnncw8fJry5sJcOgh9LpP6iDRP/+Cz7s4yj0Psz56asQADEhQ==
+X-Received: by 2002:aa7:9535:: with SMTP id c21mr11224784pfp.322.1596027789786; 
+ Wed, 29 Jul 2020 06:03:09 -0700 (PDT)
+Received: from localhost ([103.129.252.48])
+ by smtp.gmail.com with ESMTPSA id y200sm2373219pfb.33.2020.07.29.06.03.07
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 29 Jul 2020 06:03:08 -0700 (PDT)
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Date: Wed, 29 Jul 2020 21:03:05 +0800
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <CAAM_mTRyRd2B7x0ab+K4hT+O+FSWhz-kOsdUGd-ZkZtDZkgKrg@mail.gmail.com>
-In-Reply-To: <CAAM_mTRyRd2B7x0ab+K4hT+O+FSWhz-kOsdUGd-ZkZtDZkgKrg@mail.gmail.com>
+X-Priority: 3
+Message-ID: <1596027782808.5sfxlqzhnayn1yyxszocts5i@android.mail.163.com>
+References: <CAAM_mTRyRd2B7x0ab+K4hT+O+FSWhz-kOsdUGd-ZkZtDZkgKrg@mail.gmail.com><5F216EA2.2000300@gmail.com>
+In-Reply-To: <5F216EA2.2000300@gmail.com>
+X-CUSTOM-MAIL-MASTER-SENT-ID: MailMasterAndroid-17727-1596027782882-bfe69761-fbe3-447e-92a0-f395bdf94901
 Subject: Re: [USRP-users] SFP port1 of USRP N310 does not work
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -66,9 +64,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2952503378627583502=="
+From: Heng Zhang via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Heng Zhang <zh.heng96@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0712644034785397633=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,121 +80,171 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============2952503378627583502==
-Content-Type: multipart/alternative;
- boundary="------------030907010500090204070102"
+--===============0712644034785397633==
+Content-Type: multipart/alternative; boundary="__MESSAGE_BODY_PART__1_6624001995110174794"
 
-This is a multi-part message in MIME format.
---------------030907010500090204070102
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--__MESSAGE_BODY_PART__1_6624001995110174794
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-On 07/29/2020 08:14 AM, Heng Zhang via USRP-users wrote:
-> Dear community,
->
-> I follow this guide 
-> https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide  
-> and now I can connect to N310 by RJ45 port. And I also can connect to 
-> SFP port0. However, when I  try to use SFP port1, it does not work. I 
-> found that the green LED above SFP port 1 does not even illuminate 
-> after connecting the PC to it. The network interface configuration of 
-> PC is shown as follows
->
-> enp1s0    Link encap:Ethernet  HWaddr d4:5d:64:9c:d1:86
->           inet addr:192.168.20.1  Bcast:192.168.20.255  Mask:255.255.255.0
->           inet6 addr: fe80::3ac5:ee40:457b:3554/64 Scope:Link
->           UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1
->           RX packets:1311 errors:0 dropped:0 overruns:0 frame:0
->           TX packets:1937 errors:0 dropped:0 overruns:0 carrier:0
->           collisions:0 txqueuelen:1000
->           RX bytes:191173 (191.1 KB)  TX bytes:249297 (249.2 KB)
->
-> How can I use 10 Gb SFP port1? Any advice would be appreciated.
->
-> Regards,
-> Heng
->
-My guess is that you have a problem with your cabling, or the SFP+ 
-module that you plugged in to the USRP.
+VGhlIFNGUCsgbW9kdWxlIGFuZCBvcHRpY2FsIEkgdXNlZCBhcmUgYXR0Y2htZW50IHdoZW4gYnV5
+aW5nIFVTUlAgTjMxMC4gSSB3aWxsIGNoZWNrIHRoZW0uIEhlbmcgWmhhbmcg6YKu566x77yaemgu
+aGVuZzk2QGdtYWlsLmNvbSDnrb7lkI3nlLEg572R5piT6YKu566x5aSn5biIIOWumuWItiBPbiAw
+Ny8yOS8yMDIwIDIwOjQyLCBNYXJjdXMgRC4gTGVlY2ggdmlhIFVTUlAtdXNlcnMgd3JvdGU6IE9u
+IDA3LzI5LzIwMjAgMDg6MTQgQU0sIEhlbmcgWmhhbmcgdmlhIFVTUlAtdXNlcnMgd3JvdGU6IERl
+YXIgY29tbXVuaXR5LCBJIGZvbGxvdyB0aGlzIGd1aWRlwqBodHRwczovL2tiLmV0dHVzLmNvbS9V
+U1JQX04zMDAvTjMxMC9OMzIwL04zMjFfR2V0dGluZ19TdGFydGVkX0d1aWRlwqAgYW5kIG5vdyBJ
+IGNhbiBjb25uZWN0IHRvIE4zMTAgYnkgUko0NSBwb3J0LiBBbmQgSSBhbHNvIGNhbiBjb25uZWN0
+IHRvIFNGUCBwb3J0MC4gSG93ZXZlciwgd2hlbiBJwqAgdHJ5IHRvIHVzZSBTRlAgcG9ydDEsIGl0
+IGRvZXMgbm90IHdvcmsuIEkgZm91bmQgdGhhdCB0aGUgZ3JlZW4gTEVEIGFib3ZlIFNGUCBwb3J0
+IDEgZG9lcyBub3QgZXZlbiBpbGx1bWluYXRlIGFmdGVyIGNvbm5lY3RpbmcgdGhlIFBDIHRvIGl0
+LiBUaGUgbmV0d29yayBpbnRlcmZhY2UgY29uZmlndXJhdGlvbiBvZiBQQyBpcyBzaG93biBhcyBm
+b2xsb3dzIGVucDFzMCDCoCDCoExpbmsgZW5jYXA6RXRoZXJuZXQgwqBIV2FkZHIgZDQ6NWQ6NjQ6
+OWM6ZDE6ODYgwqAgwqAgwqAgwqAgwqAgwqAgaW5ldCBhZGRyOjE5Mi4xNjguMjAuMSDCoEJjYXN0
+OjE5Mi4xNjguMjAuMjU1IMKgTWFzazoyNTUuMjU1LjI1NS4wIMKgIMKgIMKgIMKgIMKgIGluZXQ2
+IGFkZHI6IGZlODA6OjNhYzU6ZWU0MDo0NTdiOjM1NTQvNjQgU2NvcGU6TGluayDCoCDCoCDCoCDC
+oCDCoCBVUCBCUk9BRENBU1QgUlVOTklORyBNVUxUSUNBU1QgwqBNVFU6OTAwMCDCoE1ldHJpYzox
+IMKgIMKgIMKgIMKgIMKgIFJYIHBhY2tldHM6MTMxMSBlcnJvcnM6MCBkcm9wcGVkOjAgb3ZlcnJ1
+bnM6MCBmcmFtZTowIMKgIMKgIMKgIMKgIMKgIFRYIHBhY2tldHM6MTkzNyBlcnJvcnM6MCBkcm9w
+cGVkOjAgb3ZlcnJ1bnM6MCBjYXJyaWVyOjAgwqAgwqAgwqAgwqAgwqAgY29sbGlzaW9uczowIHR4
+cXVldWVsZW46MTAwMCDCoCDCoCDCoCDCoCDCoCBSWCBieXRlczoxOTExNzMgKDE5MS4xIEtCKSDC
+oFRYIGJ5dGVzOjI0OTI5NyAoMjQ5LjIgS0IpIEhvdyBjYW4gSSB1c2UgMTAgR2IgU0ZQIHBvcnQx
+PyBBbnkgYWR2aWNlIHdvdWxkIGJlIGFwcHJlY2lhdGVkLiBSZWdhcmRzLCBIZW5nIE15IGd1ZXNz
+IGlzIHRoYXQgeW91IGhhdmUgYSBwcm9ibGVtIHdpdGggeW91ciBjYWJsaW5nLCBvciB0aGUgU0ZQ
+KyBtb2R1bGUgdGhhdCB5b3UgcGx1Z2dlZCBpbiB0byB0aGUgVVNSUC4gV2hhdCBTRlArIG1vZHVs
+ZSBhcmUgeW91IHVzaW5nP8KgIFdoYXQgdHlwZSBvZiB3aXJpbmcvb3B0aWNhbD8=
 
-What SFP+ module are you using?  What type of wiring/optical?
+--__MESSAGE_BODY_PART__1_6624001995110174794
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
+
+PGh0bWw+CjxoZWFkPgogICAgPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50
+PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTgiPgo8L2hlYWQ+Cjxib2R5Pgo8ZGl2IHN0eWxlPSJs
+aW5lLWhlaWdodDoxLjY7Zm9udC1mYW1pbHk6J+iLueaWuScsJ+W+rui9r+mbhem7kScsJ3NhbnMt
+c2VyaWYnOyI+VGhlIFNGUCsgbW9kdWxlIGFuZCBvcHRpY2FsIEkgdXNlZCBhcmUgYXR0Y2htZW50
+IHdoZW4gYnV5aW5nIFVTUlAgTjMxMC4gSSB3aWxsIGNoZWNrIHRoZW0uPGJyLz48YnIvPjwvZGl2
+PjxkaXYgY2xhc3M9J25lLXF1b3RlZCc+ICAgICAgICA8YSBocmVmPSJodHRwczovL21hYXMubWFp
+bC4xNjMuY29tL2Rhc2hpLXdlYi1leHRlbmQvaHRtbC9wcm9TaWduYXR1cmUuaHRtbD8mbmFtZT1I
+ZW5nK1poYW5nJnVpZD16aC5oZW5nOTYlNDBnbWFpbC5jb20mZnRsSWQ9MSZpY29uVXJsPWh0dHBz
+JTNBJTJGJTJGbWFpbC1vbmxpbmUubm9zZG4uMTI3Lm5ldCUyRnFpeWVsb2dvJTJGZGVmYXVsdEF2
+YXRhci5wbmcmaXRlbXM9JTVCJTIyJUU5JTgyJUFFJUU3JUFFJUIxJUVGJUJDJTlBemguaGVuZzk2
+JTQwZ21haWwuY29tJTIyJTVEIiBzdHlsZT0iZGlzcGxheTpibG9jaztiYWNrZ3JvdW5kOiNmZmY7
+IG1heC13aWR0aDogNDAwcHg7IF93aWR0aDogNDAwcHg7cGFkZGluZzoxNXB4IDAgMTBweCAwO3Rl
+eHQtZGVjb3JhdGlvbjogbm9uZTsgb3V0bGluZTpub25lOy13ZWJraXQtdGFwLWhpZ2hsaWdodC1j
+b2xvcjp0cmFuc3BhcmVudDstd2Via2l0LXRleHQtc2l6ZS1hZGp1c3Q6bm9uZSAhaW1wb3J0YW50
+O3RleHQtc2l6ZS1hZGp1c3Q6bm9uZSAhaW1wb3J0YW50OyI+CiAgICAgICAgICAgIDx0YWJsZSBj
+ZWxscGFkZGluZz0iMCIgc3R5bGU9J3dpZHRoOiAxMDAlOyBtYXgtd2lkdGg6IDEwMCU7IHRhYmxl
+LWxheW91dDogZml4ZWQ7IGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7Y29sb3I6ICM5YjllYTE7
+Zm9udC1zaXplOiAxNHB4O2xpbmUtaGVpZ2h0OjEuMzstd2Via2l0LXRleHQtc2l6ZS1hZGp1c3Q6
+bm9uZSAhaW1wb3J0YW50O3RleHQtc2l6ZS1hZGp1c3Q6bm9uZSAhaW1wb3J0YW50Oyc+CiAgICAg
+ICAgICAgICAgICA8dGJvZHkgc3R5bGU9ImZvbnQtZmFtaWx5OiAnUGluZ0ZhbmcgU0MnLCAnSGly
+YWdpbm8gU2FucyBHQicsJ1dlblF1YW5ZaSBNaWNybyBIZWknLCAnTWljcm9zb2Z0IFlhaGVpJywg
+J+W+rui9r+mbhem7kScsIHZlcmRhbmEgIWltcG9ydGFudDsgd29yZC13cmFwOmJyZWFrLXdvcmQ7
+IHdvcmQtYnJlYWs6YnJlYWstYWxsOy13ZWJraXQtdGV4dC1zaXplLWFkanVzdDpub25lICFpbXBv
+cnRhbnQ7dGV4dC1zaXplLWFkanVzdDpub25lICFpbXBvcnRhbnQ7Ij4KICAgICAgICAgICAgICAg
+ICAgICA8dHI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgd2lkdGg9IjM4IiBzdHls
+ZT0icGFkZGluZzowOyBib3gtc2l6aW5nOiBib3JkZXItYm94OyB3aWR0aDogMzhweDsiPgogICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxpbWcgd2lkdGg9IjM4IiBoZWlnaHQ9IjM4IiBz
+dHlsZT0idmVydGljYWwtYWxpZ246bWlkZGxlOyB3aWR0aDogMzhweDsgaGVpZ2h0OiAzOHB4OyBi
+b3JkZXItcmFkaXVzOjUwJTsiIHNyYz0iaHR0cHM6Ly9tYWlsLW9ubGluZS5ub3Nkbi4xMjcubmV0
+L3FpeWVsb2dvL2RlZmF1bHRBdmF0YXIucG5nIiAvPgogICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBzdHlsZT0ncGFkZGluZzog
+MCAwIDAgMTBweDsgY29sb3I6ICMzMTM1M2I7Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICA8ZGl2IHN0eWxlPSJmb250LXNpemU6IDE2cHg7Zm9udC13ZWlnaHQ6Ym9sZDsgd2lkdGg6
+MTAwJTsgd2hpdGUtc3BhY2U6IG5vd3JhcDsgb3ZlcmZsb3c6aGlkZGVuO3RleHQtb3ZlcmZsb3c6
+IGVsbGlwc2lzOyI+SGVuZyBaaGFuZzwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAg
+PC90ZD4KICAgICAgICAgICAgICAgICAgICA8L3RyPgogICAgICAgICAgICAgICAgICAgICAgICA8
+dHIgd2lkdGg9IjEwMCUiIHN0eWxlPSJmb250LXNpemU6IDE0cHggIWltcG9ydGFudDsgd2lkdGg6
+IDEwMCU7Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBjb2xzcGFuPScyJyBzdHls
+ZT0icGFkZGluZzoxMHB4IDAgMCAwOyBmb250LXNpemU6MTRweCAhaW1wb3J0YW50OyB3aWR0aDog
+MTAwJTsiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IHN0eWxlPSJ3
+aWR0aDogMTAwJTtmb250LXNpemU6IDE0cHggIWltcG9ydGFudDt3b3JkLXdyYXA6YnJlYWstd29y
+ZDt3b3JkLWJyZWFrOmJyZWFrLWFsbDsiPumCrueuse+8mnpoLmhlbmc5NkBnbWFpbC5jb208L2Rp
+dj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdGQ+CiAgICAgICAgICAgICAgICAgICAg
+ICAgIDwvdHI+CiAgICAgICAgICAgICAgICA8L3Rib2R5PgogICAgICAgICAgICA8L3RhYmxlPgog
+ICAgICAgIDwvYT48aHRtbD48Ym9keT48cCBzdHlsZT0iYm9yZGVyLXRvcDoxcHggc29saWQgI2U1
+ZTVlNTtwYWRkaW5nLXRvcDogOHB4OyBmb250LXNpemU6IDEycHg7IGNvbG9yOiNiNmI4YmI7bGlu
+ZS1oZWlnaHQ6IDEuODMzOyI+562+5ZCN55SxIDxhIGhyZWY9Imh0dHBzOi8vbWFpbC4xNjMuY29t
+L2Rhc2hpL2RscHJvLmh0bWw/ZnJvbT1tYWlsODgiIHN0eWxlPSJjb2xvcjojNmFhOGY2O3RleHQt
+ZGVjb3JhdGlvbjogbm9uZSI+572R5piT6YKu566x5aSn5biIPC9hPiDlrprliLY8L3A+PC9ib2R5
+PjwvaHRtbD48YmxvY2txdW90ZSBpZD0nbnRlcy1hbmRyaW9kbWFpbC1xdW90ZScgc3R5bGU9Im1h
+cmdpbjowcHggIWltcG9ydGFudDtwYWRkaW5nOjBweCAhaW1wb3J0YW50O2JvcmRlcjogbm9uZSAh
+aW1wb3J0YW50OyI+PGJsb2NrcXVvdGUgaWQ9J250ZXMtYW5kcmlvZG1haWwtcXVvdGUnIHN0eWxl
+PSJtYXJnaW46MHB4ICFpbXBvcnRhbnQ7cGFkZGluZzowcHggIWltcG9ydGFudDtib3JkZXI6IG5v
+bmUgIWltcG9ydGFudDsiPjxkaXYgY2xhc3M9IkotcmVwbHkiIHN0eWxlPSJiYWNrZ3JvdW5kLWNv
+bG9yOiNmMmYyZjI7Y29sb3I6YmxhY2s7cGFkZGluZy10b3A6NnB4O3BhZGRpbmctYm90dG9tOjZw
+eDtib3JkZXItcmFkaXVzOjNweDstbW96LWJvcmRlci1yYWRpdXM6M3B4Oy13ZWJraXQtYm9yZGVy
+LXJhZGl1czozcHg7bWFyZ2luLXRvcDo0NXB4O21hcmdpbi1ib3R0b206MjBweDsiPgogICAgPGRp
+diBzdHlsZT0iZm9udC1zaXplOjE0cHg7bGluZS1oZWlnaHQ6MS41O3dvcmQtYnJlYWs6YnJlYWst
+YWxsO21hcmdpbi1sZWZ0OjEwcHg7bWFyZ2luLXJpZ2h0OjEwcHgiPk9uIDxzcGFuIGNsYXNzPSJt
+YWlsLWRhdGUiPjA3LzI5LzIwMjAgMjA6NDI8L3NwYW4+LCA8YSBjbGFzcz0ibWFpbC10byIgc3R5
+bGU9InRleHQtZGVjb3JhdGlvbjpub25lO2NvbG9yOiMyYTk3ZmY7IiBocmVmPSJtYWlsdG86dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iPk1hcmN1cyBELiBMZWVjaCB2aWEgVVNSUC11c2Vyczwv
+YT4gd3JvdGU6PC9kaXY+CjwvZGl2PjxodG1sPg0KICA8aGVhZD4NCiAgICA8bWV0YSBjb250ZW50
+PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9d2luZG93cy0xMjUyIg0KICAgICAgaHR0cC1lcXVpdj0iQ29u
+dGVudC1UeXBlIj4NCiAgPC9oZWFkPg0KICA8Ym9keSBiZ2NvbG9yPSIjRkZGRkZGIiB0ZXh0PSIj
+MDAwMDAwIj4NCiAgICA8ZGl2IGNsYXNzPSJtb3otY2l0ZS1wcmVmaXgiPk9uIDA3LzI5LzIwMjAg
+MDg6MTQgQU0sIEhlbmcgWmhhbmcgdmlhDQogICAgICBVU1JQLXVzZXJzIHdyb3RlOjxicj4NCiAg
+ICA8L2Rpdj4NCiAgICA8YmxvY2txdW90ZQ0KY2l0ZT0ibWlkOkNBQU1fbVRSeVJkMkI3eDBhYitL
+NGhUK08rRlNXaHota09zZFVHZC1aa1p0RFprZ0tyZ0BtYWlsLmdtYWlsLmNvbSINCiAgICAgIHR5
+cGU9ImNpdGUiPg0KICAgICAgPGRpdiBkaXI9Imx0ciI+RGVhciBjb21tdW5pdHksDQogICAgICAg
+IDxkaXY+PGJyPg0KICAgICAgICA8L2Rpdj4NCiAgICAgICAgPGRpdj48c3BhbiBzdHlsZT0iZm9u
+dC1mYW1pbHk6QXJpYWw7Zm9udC1zaXplOjE0cHgiPkkgZm9sbG93DQogICAgICAgICAgICB0aGlz
+IGd1aWRlwqA8L3NwYW4+PGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIg0KaHJlZj0iaHR0cHM6Ly9r
+Yi5ldHR1cy5jb20vVVNSUF9OMzAwL04zMTAvTjMyMC9OMzIxX0dldHRpbmdfU3RhcnRlZF9HdWlk
+ZSINCiAgICAgICAgICAgIHRhcmdldD0iX2JsYW5rIg0KICAgICAgICAgICAgc3R5bGU9ImNvbG9y
+OnJnYig2LDczLDExOSk7Zm9udC1mYW1pbHk6QXJpYWw7Zm9udC1zaXplOjE0cHgiPmh0dHBzOi8v
+a2IuZXR0dXMuY29tL1VTUlBfTjMwMC9OMzEwL04zMjAvTjMyMV9HZXR0aW5nX1N0YXJ0ZWRfR3Vp
+ZGU8L2E+PHNwYW4NCiAgICAgICAgICAgIHN0eWxlPSJmb250LWZhbWlseTpBcmlhbDtmb250LXNp
+emU6MTRweCI+wqAgYW5kIG5vdyBJIGNhbg0KICAgICAgICAgICAgY29ubmVjdCB0byBOMzEwIGJ5
+IFJKNDUgcG9ydC4gQW5kIEkgYWxzbyBjYW4gY29ubmVjdCB0byBTRlANCiAgICAgICAgICAgIHBv
+cnQwLiBIb3dldmVyLCB3aGVuIEnCoCB0cnkgdG8gdXNlIFNGUCBwb3J0MSwgaXQgZG9lcyBub3QN
+CiAgICAgICAgICAgIHdvcmsuIEkgZm91bmQgdGhhdCB0aGUgZ3JlZW4gTEVEIGFib3ZlIFNGUCBw
+b3J0IDEgZG9lcyBub3QNCiAgICAgICAgICAgIGV2ZW4gaWxsdW1pbmF0ZSBhZnRlciBjb25uZWN0
+aW5nIHRoZSBQQyB0byBpdC4gVGhlIG5ldHdvcmsNCiAgICAgICAgICAgIGludGVyZmFjZSBjb25m
+aWd1cmF0aW9uIG9mIFBDIGlzIHNob3duIGFzIGZvbGxvd3M8L3NwYW4+PC9kaXY+DQogICAgICAg
+IDxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsO2ZvbnQtc2l6ZToxNHB4Ij48YnI+
+DQogICAgICAgICAgPC9zcGFuPjwvZGl2Pg0KICAgICAgICA8ZGl2PmVucDFzMCDCoCDCoExpbmsg
+ZW5jYXA6RXRoZXJuZXQgwqBIV2FkZHIgZDQ6NWQ6NjQ6OWM6ZDE6ODYgwqA8YnI+DQogICAgICAg
+ICAgwqAgwqAgwqAgwqAgwqAgaW5ldCBhZGRyOjE5Mi4xNjguMjAuMSDCoEJjYXN0OjE5Mi4xNjgu
+MjAuMjU1DQogICAgICAgICAgwqBNYXNrOjI1NS4yNTUuMjU1LjA8YnI+DQogICAgICAgICAgwqAg
+wqAgwqAgwqAgwqAgaW5ldDYgYWRkcjogZmU4MDo6M2FjNTplZTQwOjQ1N2I6MzU1NC82NCBTY29w
+ZTpMaW5rPGJyPg0KICAgICAgICAgIMKgIMKgIMKgIMKgIMKgIFVQIEJST0FEQ0FTVCBSVU5OSU5H
+IE1VTFRJQ0FTVCDCoE1UVTo5MDAwIMKgTWV0cmljOjE8YnI+DQogICAgICAgICAgwqAgwqAgwqAg
+wqAgwqAgUlggcGFja2V0czoxMzExIGVycm9yczowIGRyb3BwZWQ6MCBvdmVycnVuczowDQogICAg
+ICAgICAgZnJhbWU6MDxicj4NCiAgICAgICAgICDCoCDCoCDCoCDCoCDCoCBUWCBwYWNrZXRzOjE5
+MzcgZXJyb3JzOjAgZHJvcHBlZDowIG92ZXJydW5zOjANCiAgICAgICAgICBjYXJyaWVyOjA8YnI+
+DQogICAgICAgICAgwqAgwqAgwqAgwqAgwqAgY29sbGlzaW9uczowIHR4cXVldWVsZW46MTAwMCA8
+YnI+DQogICAgICAgICAgwqAgwqAgwqAgwqAgwqAgUlggYnl0ZXM6MTkxMTczICgxOTEuMSBLQikg
+wqBUWCBieXRlczoyNDkyOTcgKDI0OS4yDQogICAgICAgICAgS0IpPHNwYW4gc3R5bGU9ImZvbnQt
+ZmFtaWx5OkFyaWFsO2ZvbnQtc2l6ZToxNHB4Ij48YnI+DQogICAgICAgICAgPC9zcGFuPjwvZGl2
+Pg0KICAgICAgICA8ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpBcmlhbDtmb250LXNpemU6
+MTRweCI+PGJyPg0KICAgICAgICAgIDwvc3Bhbj48L2Rpdj4NCiAgICAgICAgPGRpdj48Zm9udCBj
+b2xvcj0iIzAwMDAwMCIgZmFjZT0iTHVjaWRhIFNhbnMgVW5pY29kZSwgTHVjaWRhDQogICAgICAg
+ICAgICBHcmFuZGUsIHNhbnMtc2VyaWYiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTRweCI+SG93
+IGNhbiBJDQogICAgICAgICAgICAgIHVzZSAxMCBHYiBTRlAgcG9ydDE/IEFueSBhZHZpY2Ugd291
+bGQgYmUgYXBwcmVjaWF0ZWQuPC9zcGFuPjwvZm9udD48L2Rpdj4NCiAgICAgICAgPGRpdj48Zm9u
+dCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iTHVjaWRhIFNhbnMgVW5pY29kZSwgTHVjaWRhDQogICAg
+ICAgICAgICBHcmFuZGUsIHNhbnMtc2VyaWYiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTRweCI+
+PGJyPg0KICAgICAgICAgICAgPC9zcGFuPjwvZm9udD48L2Rpdj4NCiAgICAgICAgPGRpdj48Zm9u
+dCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iTHVjaWRhIFNhbnMgVW5pY29kZSwgTHVjaWRhDQogICAg
+ICAgICAgICBHcmFuZGUsIHNhbnMtc2VyaWYiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTRweCI+
+UmVnYXJkcyw8L3NwYW4+PC9mb250PjwvZGl2Pg0KICAgICAgICA8ZGl2Pjxmb250IGNvbG9yPSIj
+MDAwMDAwIiBmYWNlPSJMdWNpZGEgU2FucyBVbmljb2RlLCBMdWNpZGENCiAgICAgICAgICAgIEdy
+YW5kZSwgc2Fucy1zZXJpZiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxNHB4Ij5IZW5nPC9zcGFu
+PjwvZm9udD48L2Rpdj4NCiAgICAgIDwvZGl2Pg0KICAgICAgPGJyPg0KICAgIDwvYmxvY2txdW90
+ZT4NCiAgICBNeSBndWVzcyBpcyB0aGF0IHlvdSBoYXZlIGEgcHJvYmxlbSB3aXRoIHlvdXIgY2Fi
+bGluZywgb3IgdGhlIFNGUCsNCiAgICBtb2R1bGUgdGhhdCB5b3UgcGx1Z2dlZCBpbiB0byB0aGUg
+VVNSUC48YnI+DQogICAgPGJyPg0KICAgIFdoYXQgU0ZQKyBtb2R1bGUgYXJlIHlvdSB1c2luZz/C
+oCBXaGF0IHR5cGUgb2Ygd2lyaW5nL29wdGljYWw/PGJyPg0KICAgIDxicj4NCiAgICA8YnI+DQog
+IDwvYm9keT4NCjwvaHRtbD4NCjwvYmxvY2txdW90ZT48L2Jsb2NrcXVvdGU+PC9kaXY+CjwvYm9k
+eT4KPC9odG1sPg==
+
+--__MESSAGE_BODY_PART__1_6624001995110174794--
 
 
 
---------------030907010500090204070102
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/29/2020 08:14 AM, Heng Zhang via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAAM_mTRyRd2B7x0ab+K4hT+O+FSWhz-kOsdUGd-ZkZtDZkgKrg@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Dear community,
-        <div><br>
-        </div>
-        <div><span style="font-family:Arial;font-size:14px">I follow
-            this guide </span><a moz-do-not-send="true"
-href="https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide"
-            target="_blank"
-            style="color:rgb(6,73,119);font-family:Arial;font-size:14px">https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide</a><span
-            style="font-family:Arial;font-size:14px">  and now I can
-            connect to N310 by RJ45 port. And I also can connect to SFP
-            port0. However, when I  try to use SFP port1, it does not
-            work. I found that the green LED above SFP port 1 does not
-            even illuminate after connecting the PC to it. The network
-            interface configuration of PC is shown as follows</span></div>
-        <div><span style="font-family:Arial;font-size:14px"><br>
-          </span></div>
-        <div>enp1s0    Link encap:Ethernet  HWaddr d4:5d:64:9c:d1:86  <br>
-                    inet addr:192.168.20.1  Bcast:192.168.20.255
-           Mask:255.255.255.0<br>
-                    inet6 addr: fe80::3ac5:ee40:457b:3554/64 Scope:Link<br>
-                    UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1<br>
-                    RX packets:1311 errors:0 dropped:0 overruns:0
-          frame:0<br>
-                    TX packets:1937 errors:0 dropped:0 overruns:0
-          carrier:0<br>
-                    collisions:0 txqueuelen:1000 <br>
-                    RX bytes:191173 (191.1 KB)  TX bytes:249297 (249.2
-          KB)<span style="font-family:Arial;font-size:14px"><br>
-          </span></div>
-        <div><span style="font-family:Arial;font-size:14px"><br>
-          </span></div>
-        <div><font color="#000000" face="Lucida Sans Unicode, Lucida
-            Grande, sans-serif"><span style="font-size:14px">How can I
-              use 10 Gb SFP port1? Any advice would be appreciated.</span></font></div>
-        <div><font color="#000000" face="Lucida Sans Unicode, Lucida
-            Grande, sans-serif"><span style="font-size:14px"><br>
-            </span></font></div>
-        <div><font color="#000000" face="Lucida Sans Unicode, Lucida
-            Grande, sans-serif"><span style="font-size:14px">Regards,</span></font></div>
-        <div><font color="#000000" face="Lucida Sans Unicode, Lucida
-            Grande, sans-serif"><span style="font-size:14px">Heng</span></font></div>
-      </div>
-      <br>
-    </blockquote>
-    My guess is that you have a problem with your cabling, or the SFP+
-    module that you plugged in to the USRP.<br>
-    <br>
-    What SFP+ module are you using?  What type of wiring/optical?<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------030907010500090204070102--
-
-
---===============2952503378627583502==
+--===============0712644034785397633==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -207,5 +255,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2952503378627583502==--
+--===============0712644034785397633==--
+
 
