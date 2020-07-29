@@ -2,60 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9737232168
-	for <lists+usrp-users@lfdr.de>; Wed, 29 Jul 2020 17:18:41 +0200 (CEST)
-Received: from [::1] (port=40042 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD82E232659
+	for <lists+usrp-users@lfdr.de>; Wed, 29 Jul 2020 22:42:22 +0200 (CEST)
+Received: from [::1] (port=42734 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k0nqp-0000zS-FN; Wed, 29 Jul 2020 11:18:39 -0400
-Received: from ns13-777.999servers.com ([103.14.122.123]:60896)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <kpras@trilcomm.com>) id 1k0nqj-0000rJ-SZ
- for usrp-users@lists.ettus.com; Wed, 29 Jul 2020 11:18:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=trilcomm.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- MIME-Version:Message-ID:Date:Subject:In-Reply-To:References:To:From:Sender:
- Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=oHinXeCC68g6NnoZgmIHx6VkKCZIY1Rmk/5Tiv914bA=; b=DeM6RiHPl+O0GfDnw2hit5adJY
- 92OJM+EHT1TR4KQTyJqInbW7OcUpYtB9cBmmLjBTLj48xokC8SZfem80FA0tMHnLK4ANMVOyP5QK3
- bgng/TSxIwYU8itroDp8s0BebdZQACI5dhg2wFW253j5meKp29E4R+RtPLBjgE2YRhy42iln4x70u
- oq5hqv6poOxoVvY/VhyK8++B4er/+6zgBkqk7+tByez8hAmiGyKZ4M3eGTs32NPGEjz9vOCpWcQ19
- Ksd2d/ah5VNPoewmm5XeYzVbV11YXA0JSH0y/ZZhV7Af+xZqp575PrNow8uw4b4i7Atohyyy6Tctt
- WcUa5NIQ==;
-Received: from [183.83.141.206] (port=46378 helo=AetherGT)
- by ns13-777.999servers.com with esmtpsa (TLS1) tls
- TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (Exim 4.93)
- (envelope-from <kpras@trilcomm.com>)
- id 1k0npz-00DWvA-OA; Wed, 29 Jul 2020 20:47:48 +0530
-To: "'Prasad'" <kpras@trilcomm.com>,
- =?iso-8859-1?Q?'Marcus_M=FCller'?= <marcus.mueller@ettus.com>,
- <usrp-users@lists.ettus.com>
-References: <001b01d65f79$eae66ea0$c0b34be0$@com> <5F171581.7080201@gmail.com>
- <003b01d65f7b$852d6850$8f8838f0$@com> <5F17172A.9040600@gmail.com>
- <004301d65f7c$7138a750$53a9f5f0$@com> <5F1719EB.6000400@gmail.com>
- <cf7f523f-4017-1467-4782-f06b9f0bc786@ettus.com> 
-In-Reply-To: 
-Date: Wed, 29 Jul 2020 20:47:49 +0530
-Message-ID: <000001d665bb$6cb8fa00$462aee00$@com>
+	id 1k0su3-0006Jp-9F; Wed, 29 Jul 2020 16:42:19 -0400
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:40242)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <jarroyo@gradiant.org>)
+ id 1k0stz-0006Cz-Ry
+ for usrp-users@lists.ettus.com; Wed, 29 Jul 2020 16:42:15 -0400
+Received: by mail-ot1-f45.google.com with SMTP id c25so18490012otf.7
+ for <usrp-users@lists.ettus.com>; Wed, 29 Jul 2020 13:41:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gradiant-org.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=X4YKwSLbTIwM901N8tycQphuOKAO2/dxmqeF/YJL9xo=;
+ b=j5bIKSL7NUoSJotaV5/uKzu1ebn3lfE5kYryRybnw2r+kXz+qgEEzdzjd307zhocKe
+ RGb/r8ACfRaQbWFvie8ldzOUNUHPx1iWzqS4P7mcvTDl/Rf9JyZOOChnRsR4tr0KIbER
+ TXd4W2hwIEJzbj9AegFupTsu1BucOkggpNMggw44lmWHkrB2SUEifQ5sFB00da4YRYYo
+ DrT3tuaa5amdWBATpxegKqNS1UGjd22rnuai5O/p68y4UbWhX+4oSbew8pMpORXDwHX1
+ Xah6EHqU62EmYVg6xRabF6TH0hODVrNDUMa5uuVnKy7cUla4BSMkeJM0mamg5Go5lZou
+ R4GQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=X4YKwSLbTIwM901N8tycQphuOKAO2/dxmqeF/YJL9xo=;
+ b=Q9pyiRuVCZdMz8+/i117n5IYAB/FMlD5m0PYZcMkK5hLg7tX08kQMT4vFQAgkHET/F
+ MKQWHRJuIXKg5JfotYdNWRFQb5eacZKVQf5vBkvw66T/qbzuRRjCl4QC40shQqEAvyfH
+ /Kaen2OFVBNqKLeP3ny+rxjnsdyFZDRpS5Wk4MDoGUZZL8gcJGU8OQiV3Bjfu3lCEMC9
+ kc4A9umSt3pNOIjiSW06XudZGLkpbZ5zx1Gp/t0BN7j7f7+Hxv/+UG6bldQgjRU2yZwX
+ 9IcoZzkNLfuE9lLk6sOkuO/s1u8dxNokCL5L53typLH8vpF9DB76lC7waBBUcg5qRKo1
+ 3z0w==
+X-Gm-Message-State: AOAM532KaalSFseTOkD66SzD/g7lXa5AdAp8+7wbSEmZMGExRcEHAQK8
+ Xlpbt6TbFUF4ehKAa4OUBnwpFPRvvmsiTzRt8cQ7bQ==
+X-Google-Smtp-Source: ABdhPJyOAbSYVRJiKEQkiP0X3oOgP4HU+EFujeW+sfT3EnC5pGcoY3rsyz0Gxdc4F+CN2nkUCy+a5cKo+j0/5jWDk/E=
+X-Received: by 2002:a05:6830:1d62:: with SMTP id
+ l2mr28156246oti.24.1596055294899; 
+ Wed, 29 Jul 2020 13:41:34 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 12.0
-Thread-Index: AdZfhaP0JHWKw2IvQ4aszYr2JszFUQAwoWTAAVy2WbA=
-Content-Language: en-us
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - ns13-777.999servers.com
-X-AntiAbuse: Original Domain - lists.ettus.com
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - trilcomm.com
-X-Get-Message-Sender-Via: ns13-777.999servers.com: authenticated_id:
- kpras@trilcomm.com
-X-Authenticated-Sender: ns13-777.999servers.com: kpras@trilcomm.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Re: [USRP-users] 1 Ts delay in USRP B210
+References: <CAOx6OK3UT0i3cARatAb5h3TyM53dXa0011GfXw3h-B-J=DzoLQ@mail.gmail.com>
+ <CAB__hTTTp5t8=VTZLnyZQGXwvy_WoUS1t=BjE00Npd7Dmua6OQ@mail.gmail.com>
+ <CAOx6OK179enDrLv+0qtQ+k_jxeWtV6pBOpgzxWTSkc3_BKor1A@mail.gmail.com>
+ <CAB__hTSfSyVoy+KyKs1Q0JcksqL68+--5mU6RurPtQ50jWXuPg@mail.gmail.com>
+In-Reply-To: <CAB__hTSfSyVoy+KyKs1Q0JcksqL68+--5mU6RurPtQ50jWXuPg@mail.gmail.com>
+Date: Wed, 29 Jul 2020 22:41:23 +0200
+Message-ID: <CAOx6OK3oP7Brh=ZoaZDa2AVz-n7nFPNFUkVrvFKVZBxoRp_T0A@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] Issues generating and loading bitstreams with
+ RFNoC blocks (UHD-3.15.LTS)
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,10 +65,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Prasad via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Prasad <kpras@trilcomm.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Jorge Arroyo Giganto via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jorge Arroyo Giganto <jarroyo@gradiant.org>
+Content-Type: multipart/mixed; boundary="===============0555750849229986249=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,245 +81,393 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Muller, =
+--===============0555750849229986249==
+Content-Type: multipart/alternative; boundary="000000000000e50d2205ab9a9444"
+
+--000000000000e50d2205ab9a9444
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Rob,
+
+After a while understanding how uhd_image_builder.py works, I couldn't
+figure out a way to fix the "create_oot_include" function, but I managed to
+make uhd_image_builder.py find my OOT block (noc_block_gain.v). Maybe it's
+not the most elegant way to do it, but it worked for me.
+
+I copied my noc_block_gain.v file (after making sure it passed the
+testbench) to the /uhd-fpga/usrp3/lib/rfnoc folder, and added the following
+line to the Makefile.srcs from that same folder, in the same way the other
+blocks are added:
+        noc_block_gain.v \
+
+After doing that, I was able to successfully generate my bitstream with
+'./uhd_image_builder.py gain fft -I ~/rfnoc_UHD315/src/rfnoc-tutorial -d
+e31x -t E310_RFNOC -m 3 --fill-with-fifos'.
+
+Also, in case it's useful, I was also able to fix the uhd_image_loader
+issue I mentioned I had with the E310, changing the IP address to localhost
+worked just fine (--args=3D"type=3De3xx,addr=3D127.0.0.1").
+
+Thank you for your help,
+
+Jorge
 
 
-Just a quick question.
-During our 5G-NR integration with USRP B210, we observe very high noise
-power at receiver.
-Is it expected behavior ?
-PBCH rsrp: -13.775554 dBm, SNR: -12.942591 dB, NOISE_POWER: -0.832963 dBm,
-rssi: 1.643662dBm.
+El mar., 28 jul. 2020 a las 17:33, Rob Kossler (<rkossler@nd.edu>) escribi=
+=C3=B3:
 
-Applied gain in USRP:
-Tx Gain: 45
-Rx Gain: 45
-Transmit power:- 0dBm.
+> so, the problem is that uhd_image_builder.py still can't find your OOT no=
+c
+> block (error: module not found)?
+>
+> This file looks for several methods for including your OOT block.  I thin=
+k
+> it first looks for a Makefile.inc if it exists in your OOT 'rfnoc' folder=
+.
+> If it doesn't find that, it looks for perhaps the same file in your
+> 'rfnoc/fpga-src' folder.  And, if not that looks for the file Makefile.sr=
+cs
+> in that folder.  I'm sure I don't have it exactly right, but perhaps just
+> look at uhd_image_builder.py to see the logic in the "create_oot_include"
+> function.  Somehow, it seems it is not finding your block.  If you have n=
+o
+> luck with Makefile.srcs, you could try adding Makefile.inc to various
+> folders.
+>
+> Rob
+>
+> On Tue, Jul 28, 2020 at 11:25 AM Jorge Arroyo Giganto <
+> jarroyo@gradiant.org> wrote:
+>
+>> Hi Rob,
+>>
+>> Thanks a lot for your patch file, but unfortunately I'm still getting th=
+e
+>> same errors when trying to use custom RFNoC blocks with
+>> uhd_image_builder.py.
+>>
+>> Any other help would be greatly appreciated,
+>>
+>> Jorge
+>>
+>> El mar., 28 jul. 2020 a las 15:56, Rob Kossler (<rkossler@nd.edu>)
+>> escribi=C3=B3:
+>>
+>>> Try this patch file.  I received from Ettus a long time ago (Oct 2019?)
+>>> but it appears that it is still not fixed.
+>>> Rob
+>>>
+>>> On Tue, Jul 28, 2020 at 6:27 AM Jorge Arroyo Giganto via USRP-users <
+>>> usrp-users@lists.ettus.com> wrote:
+>>>
+>>>> Hi,
+>>>>
+>>>>
+>>>> I=E2=80=99m working on getting a solid workflow to build and use RFNoC=
+ blocks.
+>>>> I=E2=80=99m using branches UHD-3.15.LTS and GNU Radio=E2=80=99s maint-=
+3.7 (also, packet
+>>>> gr-ettus from the master branch and uhd-fpga from the UHD-3.15.LTS bra=
+nch).
+>>>> I=E2=80=99m using an E310 (SG1), with the SD image I get with
+>>>> =E2=80=98uhd_images_downloader -t e310 -t sdimg=E2=80=99 (usrp_e310_fs=
+.sdimg). Also, I=E2=80=99m
+>>>> running Ubuntu 18.04 and I=E2=80=99ve got Vivado 2018.3 installed.
+>>>>
+>>>> A couple of weeks ago I started trying to follow the =E2=80=98Getting =
+Started
+>>>> with RFNoC Development=E2=80=99 guide, and tried using rfnoc-devel and=
+ master
+>>>> branches, but it seems like this UHD-3.15.LTS is the one working the b=
+est
+>>>> for me, but I still have some issues.
+>>>>
+>>>> Following the guide, I built a custom block (gain), which I was able t=
+o
+>>>> get through the testbench (after quite a bit of attempts), but when tr=
+ying
+>>>> to generate a bitstream (.bit file) with my gain block I got the follo=
+wing
+>>>> errors:
+>>>>
+>>>>
+>>>>     ~/rfnoc_UHD315/src/uhd-fpga/usrp3/tools/scripts$
+>>>> ./uhd_image_builder.py gain fft -I ~/rfnoc_UHD315/src/rfnoc-tutorial/ =
+-d
+>>>> e31x -t E310_RFNOC -m 4 =E2=80=93fill-with-fifos
+>>>>
+>>>>      .
+>>>>
+>>>>      .
+>>>>
+>>>>      .
+>>>>
+>>>>      ERROR: [Synth 8-439] module 'noc_block_gain' not found
+>>>> [/home/jarroyo/rfnoc_UHD315/
+>>>> src/uhd-fpga/usrp3/top/e31x/rfnoc_ce_auto_inst_e31x.v:20]
+>>>>
+>>>>      ERROR: [Synth 8-6156] failed synthesizing module 'e31x_core'
+>>>> [/home/jarroyo/rfnoc_UHD315/src/uhd-fpga/usrp3/top/e31x/e31x_core.v:17=
+]
+>>>>
+>>>>      ERROR: [Synth 8-6156] failed synthesizing module 'e31x'
+>>>> [/home/jarroyo/rfnoc_UHD315/src/uhd-fpga/usrp3/top/e31x/e31x.v:13]
+>>>>
+>>>>      [00:01:46] Current task: Synthesis +++ Current Phase: Starting
+>>>>
+>>>>      ERROR: [Common 17-69] Command failed: Synthesis failed - please
+>>>> see the console or run log file for details
+>>>>
+>>>>      [00:01:46] Current task: Synthesis +++ Current Phase: Finished
+>>>>
+>>>>      [00:01:46] Process terminated. Status: Failure
+>>>>
+>>>>
+>>>> If it is useful information, I was able to successfully generate a
+>>>> bitstream with existing RFNoC blocks (=E2=80=98./uhd_image_builder.py =
+window fft -d
+>>>> e31x -t E310_RFNOC -m 3 =E2=80=93fill-with-fifos=E2=80=99 for example,=
+ is working), so
+>>>> that=E2=80=99s why I guess my main issue is with the gain custom block=
+.
+>>>>
+>>>>
+>>>> Also, another issue I=E2=80=99m having is using uhd_image_loader on th=
+e E310
+>>>> terminal when loading my own bitstreams:
+>>>>
+>>>>
+>>>>      root@ni-e31x:~# uhd_image_loader
+>>>> --args=3D"type=3De3xx,addr=3D192.168.10.2" --fpga-path
+>>>> /usr/share/uhd/images/e31x.bit
+>>>>
+>>>>      [INFO] [UHD] linux; GNU C++ version 8.2.0; Boost_106800;
+>>>> UHD_3.15.0.0-0-gaea0e2de
+>>>>
+>>>>      No applicable UHD devices found
+>>>>
+>>>>
+>>>> Is there anything I might be doing wrong? Or is this workflow with
+>>>> these branches and tool versions not the most appropiate currently?
+>>>>
+>>>>
+>>>> Thanks in advance,
+>>>>
+>>>>
+>>>> Jorge
+>>>> _______________________________________________
+>>>> USRP-users mailing list
+>>>> USRP-users@lists.ettus.com
+>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>
+>>>
+>>
 
-Regards,
-Prasad.
+--000000000000e50d2205ab9a9444
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
------Original Message-----
-From: Prasad [mailto:kpras@trilcomm.com] =
-
-Sent: Wednesday, July 22, 2020 10:21 PM
-To: 'Marcus M=FCller'; 'usrp-users@lists.ettus.com'
-Subject: RE: [USRP-users] 1 Ts delay in USRP B210
-
-Thanks! a lot Marcus M and Marcus D for your valuable information.
-
-Thanks,
-
------Original Message-----
-From: Marcus M=FCller [mailto:marcus.mueller@ettus.com] =
-
-Sent: Tuesday, July 21, 2020 11:07 PM
-To: usrp-users@lists.ettus.com; Prasad
-Subject: Re: [USRP-users] 1 Ts delay in USRP B210
-
-Hello Prasad,
-
-I second everything Marcus L said, and will add:
-
-In your first email you said this is about the UE.
-
-UE (user equipment) are normally things like phones. These don't have
-any great clocks of their own. They derive their clocks from that of the
-network.
-
-Sure, for prototyping, reducing the frequency error makes sense, but
-even if both your basestation (gNodeB in 5G jargon) and your UE have
-atomic clocks, they will be unsynchronized if either moves. Doppler!
-
-So, in the end, if you're not in the business of evaluating
-synchronization algorithms, you're probably requesting the wrong thing:
-Make your UE implementation extract frequency information from the
-received downlink signal (there's plenty of implicit and explicit info
-in LTE/5G for exactly that), and live with the oscillator you have - it
-only needs to be stable for short times. I'm almost certain that any
-smartphone will have a worse oscillator than your B210 has.
-
-Best regards,
-Marcus M
-
-On 21.07.20 18:38, Marcus D. Leech via USRP-users wrote:
-> On 07/21/2020 12:31 PM, Prasad wrote:
->>
->> Then how we can handle this drift in our 5G-NR stack by using
->> /uhd_rx_streamer_issue_stream_cmd/?
->>
->> Or we should go with GPSDO/external clock?
->>
->> Thanks,
->>
-> Well, since most users on here aren't experts on 5G stacks, me included,
-> I can't tell you what to do to your stack to handle
-> =A0 clock drift.=A0 But I WILL say that clock drift is an inevitable issu=
-e,
-> and as you get better clocks, the scale of that issue becomes
-> =A0 smaller as you spend more money on better clocks.
-> =
-
-> A built-in GPSDO would not be a bad investment if clock drift at a scale
-> of 0.8PPM is an issue for your implementation.
-> =
-
-> Many digital demodulators implement algorithms for dealing with
-> clock-drift and imprecision on the rx side using PLLs and the like.
-> =A0 But for 5G I have no idea how that would play out.
-> =
-
-> =
-
->> *From:*Marcus D. Leech [mailto:patchvonbraun@gmail.com]
->> *Sent:* Tuesday, July 21, 2020 9:56 PM
->> *To:* Prasad; usrp-users@lists.ettus.com
->> *Subject:* Re: [USRP-users] 1 Ts delay in USRP B210
->>
->> On 07/21/2020 12:25 PM, Prasad wrote:
->>
->> =A0=A0=A0 We are using internal clock, don=92t use any GPSDO or external=
- clock.
->>
->> =A0=A0=A0 So for internal clock is this expected?
->>
->> =A0=A0=A0 Thanks,
->>
->> The internal clock is specced to +/- 2PPM.=A0=A0 You're seeing much less
->> than that, so it's within spec.
->>
->>
->>
->> *From:*USRP-users [mailto:usrp-users-bounces@lists.ettus.com] *On
->> Behalf Of *Marcus D. Leech via USRP-users
->> *Sent:* Tuesday, July 21, 2020 9:49 PM
->> *To:* usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
->> *Subject:* Re: [USRP-users] 1 Ts delay in USRP B210
->>
->> On 07/21/2020 12:13 PM, Prasad via USRP-users wrote:
->>
->> =A0=A0=A0 Soft reminder!
->>
->> =A0=A0=A0 Thanks,
->>
->> =A0=A0=A0 *From:*Prasad [mailto:kpras@trilcomm.com]
->> =A0=A0=A0 *Sent:* Monday, July 20, 2020 7:58 PM
->> =A0=A0=A0 *To:* 'usrp-users@lists.ettus.com
->> <mailto:usrp-users@lists.ettus.com>'
->> =A0=A0=A0 *Cc:* 'Rao Yenamandra'
->> =A0=A0=A0 *Subject:* 1 Ts delay in USRP B210
->>
->> =A0=A0=A0 Dear Team.
->>
->> =A0=A0=A0 Hope you are doing well and safe.
->>
->> =A0=A0=A0 We are bringing up our NR-5G UE stack with USRP B210.
->>
->> =A0=A0=A0 If time permits, would you pls. reply to below concern with yo=
-ur
->> =A0=A0=A0 valuable information.
->>
->> =A0=A0=A0 During the synchronization procedure, we observe atleast /=B1/1
->> =A0=A0=A0 /Ts/ (Sampling Time) drift in rx streamer in every=A0 ~40ms ti=
-me
->> period.
->>
->> =A0=A0=A0 Are we missing any time_spec during /uhd_rx_streamer_recv/ api=
- or
->> =A0=A0=A0 in /uhd_tx_streamer_send/ ?
->>
->> =A0=A0=A0 Master clock rate: 30.72e6
->>
->> =A0=A0=A0 Sampling rate: 30.72e6
->>
->> =A0=A0=A0 Carrier frequency: 3.8e9
->>
->> =A0=A0=A0 We use one B210 to transmit time domain samples back to back a=
-nd
->> =A0=A0=A0 others to receive.
->>
->> =A0=A0=A0 Log snippet:
->>
->> =A0=A0=A0 Init PSS detected with lag: /4469/ (/PSS detection offset from=
- the
->> =A0=A0=A0 slot boundary/ )
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4469
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4469
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4469
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4470 =E01 Ts drift
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4470
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4470
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4471 =E01 Ts drift.
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4472=E01 Ts drift
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4472
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4472
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Init PSS detected with lag: 4484 =E012 Ts drift
->>
->> =A0=A0=A0 sss has been detected
->>
->> =A0=A0=A0 Thanks! in advance.
->>
->> =A0=A0=A0 Regards,
->>
->> =A0=A0=A0 Prasad.
->>
->> Are you just using the on-board reference clock, or using something
->> like a GPS module?
->>
->> The drift you show is roughly 0.8PPM (if I've done my math correctly),
->> which is well within spec for this board without a better reference
->> clock.
->>
->>
->>
-> =
-
-> =
-
-> =
-
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> =
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Rob,</div><div><br></div><div>Aft=
+er a while understanding how uhd_image_builder.py works, I couldn&#39;t fig=
+ure out a way to fix the &quot;create_oot_include&quot; function, but I man=
+aged to make uhd_image_builder.py find my OOT block (noc_block_gain.v). May=
+be it&#39;s not the most elegant way to do it, but it worked for me. <br></=
+div><div><br></div><div>I copied my noc_block_gain.v file (after making sur=
+e it passed the testbench) to the=20
 
 
+=09
+	<span></span>/uhd-fpga/usrp3/lib/rfnoc folder, and added the following lin=
+e to the Makefile.srcs from that same folder, in the same way the other blo=
+cks are added:</div><div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 noc_blo=
+ck_gain.v \=C2=A0</div><div><br></div><div>After doing that, I was able to =
+successfully generate my bitstream with &#39;./uhd_image_builder.py gain ff=
+t -I ~/rfnoc_UHD315/src/rfnoc-tutorial -d e31x -t E310_RFNOC -m 3 --fill-wi=
+th-fifos&#39;.</div><div><br></div><div>Also, in case it&#39;s useful, I wa=
+s also able to fix the uhd_image_loader issue I mentioned I had with the E3=
+10, changing the IP address to localhost worked just fine (--args=3D&quot;t=
+ype=3De3xx,addr=3D127.0.0.1&quot;).</div><div><br></div><div>Thank you for =
+your help,</div><div><br></div><div>Jorge<br></div><div><br></div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El mar., =
+28 jul. 2020 a las 17:33, Rob Kossler (&lt;<a href=3D"mailto:rkossler@nd.ed=
+u">rkossler@nd.edu</a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex"><div dir=3D"ltr">so, the problem is that uhd_ima=
+ge_builder.py still can&#39;t find your OOT noc block (error: module not fo=
+und)?=C2=A0<div><br></div><div>This file looks for several methods for incl=
+uding your OOT block.=C2=A0 I think it first looks for a Makefile.inc if it=
+ exists in your OOT &#39;rfnoc&#39; folder.=C2=A0 If it doesn&#39;t find th=
+at, it looks for perhaps the same file in your &#39;rfnoc/fpga-src&#39; fol=
+der.=C2=A0 And, if not that looks for the file Makefile.srcs in that folder=
+.=C2=A0 I&#39;m sure I don&#39;t have it exactly right, but perhaps just lo=
+ok at uhd_image_builder.py to see the logic in the &quot;create_oot_include=
+&quot; function.=C2=A0 Somehow, it seems it is not finding your block.=C2=
+=A0 If you have no luck with Makefile.srcs, you could try adding Makefile.i=
+nc to various folders.<div><br></div><div>Rob</div></div></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jul 28, 20=
+20 at 11:25 AM Jorge Arroyo Giganto &lt;<a href=3D"mailto:jarroyo@gradiant.=
+org" target=3D"_blank">jarroyo@gradiant.org</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div>Hi Rob,</div><div><br></div><div>Thanks a lot for your patch file, b=
+ut unfortunately I&#39;m still getting the same errors when trying to use c=
+ustom RFNoC blocks with uhd_image_builder.py.</div><div><br></div><div>Any =
+other help would be greatly appreciated,</div><div><br></div><div>Jorge<br>=
+</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
+attr">El mar., 28 jul. 2020 a las 15:56, Rob Kossler (&lt;<a href=3D"mailto=
+:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt;) escribi=C3=B3:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
+">Try this patch file.=C2=A0 I received from Ettus a long time ago (Oct 201=
+9?) but it appears that it is still not fixed.<div>Rob</div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jul 28,=
+ 2020 at 6:27 AM Jorge Arroyo Giganto via USRP-users &lt;<a href=3D"mailto:=
+usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a=
+>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
+v dir=3D"ltr">
+
+
+=09
+	<span></span>
+=09
+=09
+
+
+<p style=3D"margin-bottom:0cm;line-height:100%">Hi,</p>
+<p style=3D"margin-bottom:0cm;line-height:100%"><br>
+
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%">I=E2=80=99m working on
+getting a solid workflow to build and use RFNoC blocks. I=E2=80=99m using
+branches UHD-3.15.LTS and GNU Radio=E2=80=99s maint-3.7 (also, packet
+gr-ettus from the master branch and uhd-fpga from the UHD-3.15.LTS
+branch). I=E2=80=99m using an E310 (SG1), with the SD image I get with
+=E2=80=98uhd_images_downloader -t e310 -t sdimg=E2=80=99 (usrp_e310_fs.sdim=
+g).
+Also, I=E2=80=99m running Ubuntu 18.04 and I=E2=80=99ve got Vivado 2018.3
+installed.</p>
+
+<p style=3D"margin-bottom:0cm;line-height:100%">A couple of weeks
+ago I started trying to follow the =E2=80=98Getting Started with RFNoC
+Development=E2=80=99 guide, and tried using rfnoc-devel and master
+branches, but it seems like this UHD-3.15.LTS is the one working the
+best for me, but I still have some issues.</p>
+
+<p style=3D"margin-bottom:0cm;line-height:100%">Following the guide,
+I built a custom block (gain), which I was able to get through the
+testbench (after quite a bit of attempts), but when trying to
+generate a bitstream (.bit file) with my gain block I got the
+following errors:</p>
+<p style=3D"margin-bottom:0cm;line-height:100%"><br></p><p style=3D"margin-=
+bottom:0cm;line-height:100%">=C2=A0=C2=A0=C2=A0 ~/rfnoc_UHD315/src/uhd-fpga=
+/usrp3/tools/scripts$
+./uhd_image_builder.py gain fft -I
+	~/rfnoc_UHD315/src/rfnoc-tutorial/ -d e31x -t E310_RFNOC -m 4
+=E2=80=93fill-with-fifos
+</p><p style=3D"margin-bottom:0cm;line-height:100%">=C2=A0=C2=A0=C2=A0=C2=
+=A0 .</p>
+<p style=3D"margin-bottom:0cm;line-height:100%">=C2=A0=C2=A0=C2=A0=C2=A0 .<=
+/p>
+<p style=3D"margin-bottom:0cm;line-height:100%">=C2=A0=C2=A0=C2=A0=C2=A0 .<=
+br></p><p style=3D"margin-bottom:0cm;line-height:100%">=C2=A0=C2=A0=C2=A0=
+=C2=A0 ERROR: [Synth
+8-439] module &#39;noc_block_gain&#39; not found
+[/home/jarroyo/rfnoc_UHD315/	src/uhd-fpga/usrp3/top/e31x/rfnoc_ce_auto_inst=
+_e31x.v:20]
+</p><p style=3D"margin-bottom:0cm;line-height:100%">=C2=A0=C2=A0=C2=A0=C2=
+=A0 ERROR: [Synth
+8-6156] failed synthesizing module &#39;e31x_core&#39;
+	[/home/jarroyo/rfnoc_UHD315/src/uhd-fpga/usrp3/top/e31x/e31x_core.v:17]</p=
+>
+<p style=3D"margin-bottom:0cm;line-height:100%">=C2=A0=C2=A0=C2=A0=C2=A0 ER=
+ROR: [Synth
+8-6156] failed synthesizing module &#39;e31x&#39;
+	[/home/jarroyo/rfnoc_UHD315/src/uhd-fpga/usrp3/top/e31x/e31x.v:13]</p>
+<p style=3D"margin-bottom:0cm;line-height:100%">=C2=A0=C2=A0=C2=A0=C2=A0 [0=
+0:01:46] Current
+task: Synthesis +++ Current Phase: Starting</p>
+<p style=3D"margin-bottom:0cm;line-height:100%">=C2=A0=C2=A0=C2=A0=C2=A0 ER=
+ROR: [Common
+17-69] Command failed: Synthesis failed - please see the console or
+run 	log file for details</p>
+<p style=3D"margin-bottom:0cm;line-height:100%">=C2=A0=C2=A0=C2=A0=C2=A0 [0=
+0:01:46] Current
+task: Synthesis +++ Current Phase: Finished</p>
+<p style=3D"margin-bottom:0cm;line-height:100%">=C2=A0=C2=A0=C2=A0=C2=A0 [0=
+0:01:46] Process
+terminated. Status: Failure</p>
+<p style=3D"margin-bottom:0cm;line-height:100%"><br>
+
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%">If it is useful
+information, I was able to successfully generate a bitstream with
+existing RFNoC blocks (=E2=80=98./uhd_image_builder.py window fft -d e31x
+-t E310_RFNOC -m 3 =E2=80=93fill-with-fifos=E2=80=99 for example, is workin=
+g), so
+that=E2=80=99s why I guess my main issue is with the gain custom block.</p>
+
+<p style=3D"margin-bottom:0cm;line-height:100%"><br>
+
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%">Also, another issue
+I=E2=80=99m having is using uhd_image_loader on the E310 terminal when
+loading my own bitstreams:</p>
+<p style=3D"margin-bottom:0cm;line-height:100%"><br>
+
+</p>
+<p style=3D"margin-bottom:0.25cm;line-height:115%">=C2=A0=C2=A0=C2=A0=C2=A0=
+ root@ni-e31x:~# uhd_image_loader
+--args=3D&quot;type=3De3xx,addr=3D192.168.10.2&quot; --fpga-path
+	/usr/share/uhd/images/e31x.bit</p>
+<p style=3D"margin-bottom:0.25cm;line-height:115%">=C2=A0=C2=A0=C2=A0=C2=A0=
+ [INFO] [UHD] linux; GNU C++ version 8.2.0; Boost_106800;
+UHD_3.15.0.0-0-gaea0e2de</p>
+<p style=3D"margin-bottom:0.25cm;line-height:115%">=C2=A0=C2=A0=C2=A0=C2=A0=
+ No applicable UHD devices found</p>
+<p style=3D"margin-bottom:0cm;line-height:100%"><br>
+
+</p>
+
+<p style=3D"margin-bottom:0cm;line-height:100%">Is there anything I
+might be doing wrong? Or is this workflow with these branches and
+tool versions not the most appropiate currently?</p>
+<p style=3D"margin-bottom:0cm;line-height:100%"><br>
+
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%">Thanks in advance,</p>
+<p style=3D"margin-bottom:0cm;line-height:100%"><br>
+
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%">Jorge</p>
+
+</div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div><br></div>
+</blockquote></div>
+</blockquote></div><br></div>
+
+--000000000000e50d2205ab9a9444--
+
+
+--===============0555750849229986249==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0555750849229986249==--
+
