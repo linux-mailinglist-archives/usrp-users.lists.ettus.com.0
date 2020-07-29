@@ -2,56 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEE91231EEF
-	for <lists+usrp-users@lfdr.de>; Wed, 29 Jul 2020 15:03:59 +0200 (CEST)
-Received: from [::1] (port=38956 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id F15F9231F82
+	for <lists+usrp-users@lfdr.de>; Wed, 29 Jul 2020 15:46:30 +0200 (CEST)
+Received: from [::1] (port=39260 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k0lkR-0006Z6-Cr; Wed, 29 Jul 2020 09:03:55 -0400
-Received: from mail-pg1-f173.google.com ([209.85.215.173]:40767)
+	id 1k0mPc-0000c5-9y; Wed, 29 Jul 2020 09:46:28 -0400
+Received: from mail-oo1-f54.google.com ([209.85.161.54]:36523)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <zh.heng96@gmail.com>) id 1k0lkM-0006JU-Qn
- for usrp-users@lists.ettus.com; Wed, 29 Jul 2020 09:03:50 -0400
-Received: by mail-pg1-f173.google.com with SMTP id h12so2851914pgf.7
- for <usrp-users@lists.ettus.com>; Wed, 29 Jul 2020 06:03:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:from:cc:to:date:mime-version:message-id:references
- :in-reply-to; bh=YM0NWNyJV+BrlHGZ6hGWFX47adnm0wVaqZZCAAh/kgs=;
- b=aUjUGFz5dGmYwwvO3rHg5uwYfpDFFTCr+mMoVSqgDMfFJhOrqndpYV/+hUX7afsqzJ
- f9YGNoQPiqKAzSAlvU2OfMNQPKjkfoXGKvi9nb6kvkLbFHgVzdNQRFzV7s8o9CU4L89L
- HP33ejiJaRLlL1FR3wmWnGCP5HjKUVHQdyRO3pWXJZ3s4CQ/D/698oWrbtsuak4q25VG
- UxGilmJLJBhWkTcmE0NI84LpgW4URpNiVOzmtNLhAhQou7NXWsogj37KI/65DWEA//up
- Rl31iv6p0QjVrv+z2dXUgb9JaP+BHXj16BaW6/bb/ewXEAFEsO7kmKM62Rtucd6RsO6d
- fakQ==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1k0mPY-0000Ra-5C
+ for usrp-users@lists.ettus.com; Wed, 29 Jul 2020 09:46:24 -0400
+Received: by mail-oo1-f54.google.com with SMTP id n24so1972628ooc.3
+ for <usrp-users@lists.ettus.com>; Wed, 29 Jul 2020 06:46:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ofzmCNRs+Z2tJdzIare56DU0RNh/mhz3wWdRp2xmQmQ=;
+ b=UIsnckj1Q0v/ejZTc+tFQcQQOfcGYxtZZZPUm28mqU5UUNuTwJWUWQkgp/5ChJ8XbC
+ NfWC9ZCzsKsdVT+Hmd6b5k2u9JRe+XqqPMUWV5FuG2iR2aFP/BncYzYZlbBjmF4IovrG
+ xOLCZ7l9ZVfgVgcXC9aGgDfZ/A2l9OZz8eLz/czrS1CBUaAG2UHBzvKq7nsR72ZTzZLi
+ ZK60I4dLh7UzZfDBnpNXpf1ZBe88P/QjmMAMo41qg4diXqiQKPS3qPxhzt4JHEC0MJxb
+ 2c4xz6p3g1JP3mI5bPWcHARmJiDsXeA78sRk02Y9yRE9yX5qZ9th1L6DwvGyWzLvT7mO
+ ecfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:from:cc:to:date:mime-version:message-id
- :references:in-reply-to;
- bh=YM0NWNyJV+BrlHGZ6hGWFX47adnm0wVaqZZCAAh/kgs=;
- b=owmzsHhCe/WkszKTjiGnc1auVjxUYuORtYiGIPYeqpb+yx1BXC3slYd75sc63u5e9a
- PGo7K5VpdTKtsHHBYish26pLJ6FE2Uumj0wg9v/N/B77qsKfA0PhCBEgJiN3FV4Rfgn0
- h1Zsw1k0g3d+lm6815CjH5lJbSnmGArluh3uykhwKCu5I9MuG6fH4GtYxFuAD8rCALmB
- kTvHtWW5JTRkMdOPtclqMwaCuzKPRUavoaq8ITLcWKUn/q4Rtqnc4yIJCxvAJ7PbehHO
- Ife3UEf2IlpYC1ECWHLRaWebeQYEhHerFJvFJxhMdblJ23s36SJ8g4TpTiKk5U4m03XM
- xWsw==
-X-Gm-Message-State: AOAM530qiEfxiMt/ZkAuBpSwZbXu/n5AyWREdRU9s52xWr0mocELVGdZ
- 4lxG46UbYcsiO08SvWe4jJx5pb1L
-X-Google-Smtp-Source: ABdhPJyfylDYk6T/j7qQe/h7OotLfAnncw8fJry5sJcOgh9LpP6iDRP/+Cz7s4yj0Psz56asQADEhQ==
-X-Received: by 2002:aa7:9535:: with SMTP id c21mr11224784pfp.322.1596027789786; 
- Wed, 29 Jul 2020 06:03:09 -0700 (PDT)
-Received: from localhost ([103.129.252.48])
- by smtp.gmail.com with ESMTPSA id y200sm2373219pfb.33.2020.07.29.06.03.07
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 29 Jul 2020 06:03:08 -0700 (PDT)
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Date: Wed, 29 Jul 2020 21:03:05 +0800
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ofzmCNRs+Z2tJdzIare56DU0RNh/mhz3wWdRp2xmQmQ=;
+ b=Z/HSch6qiNdaMa0K6jw3d3rsNW1sK7ZBzKcEdY35MCWlKDMsGJdb5Aip8Tr3t7WeBZ
+ ZYhhxKdYw8xbt/WdKSrdtoAceW4CD5By285qoayD/HHTECoEtehTDP7Cmua4lMKCrXZi
+ +nvm+5PtGdGbU8rdIT2DBeV/sKFcrjbdhyfBA986g3wibubtYOK3dkyeEtkkW9zeXMJf
+ 7AZS9z0rQHUe9t9QISTDP/t5K3fQzOP4Jb1JkWHnXn7NpS/GbsZryaSeseTzl5a7Ts46
+ 7GjivEI7xv1iHENYzo6ooq8RPtRx1o8CT/XNwvkE71i3wr16mnIwphP4wr3JX+Ys7nGS
+ CvNg==
+X-Gm-Message-State: AOAM530zYxKHb7JV3fhxmaNs5Cds9sMm440ZG2BmY7XtYJZ+RfFxaB+Z
+ QmJR7HdUYx5WJav67e1E6KvgdxkdJ5I4yzp0nZPTNA==
+X-Google-Smtp-Source: ABdhPJxuURatrN20y7/aFVfFkypHfbrCLzdsBgVe7+wTgTESPMBZ1qmcnOtDHEH9MErt+Y1b7dzkKN79NqpyKRsMwmE=
+X-Received: by 2002:a4a:94cc:: with SMTP id l12mr29195513ooi.68.1596030343185; 
+ Wed, 29 Jul 2020 06:45:43 -0700 (PDT)
 MIME-Version: 1.0
-X-Priority: 3
-Message-ID: <1596027782808.5sfxlqzhnayn1yyxszocts5i@android.mail.163.com>
-References: <CAAM_mTRyRd2B7x0ab+K4hT+O+FSWhz-kOsdUGd-ZkZtDZkgKrg@mail.gmail.com><5F216EA2.2000300@gmail.com>
-In-Reply-To: <5F216EA2.2000300@gmail.com>
-X-CUSTOM-MAIL-MASTER-SENT-ID: MailMasterAndroid-17727-1596027782882-bfe69761-fbe3-447e-92a0-f395bdf94901
+References: <CAAM_mTRyRd2B7x0ab+K4hT+O+FSWhz-kOsdUGd-ZkZtDZkgKrg@mail.gmail.com>
+ <5F216EA2.2000300@gmail.com>
+ <1596027782808.5sfxlqzhnayn1yyxszocts5i@android.mail.163.com>
+In-Reply-To: <1596027782808.5sfxlqzhnayn1yyxszocts5i@android.mail.163.com>
+Date: Wed, 29 Jul 2020 09:45:32 -0400
+Message-ID: <CAB__hTSwjcVT6u_h-spQ5+pk-=VV0QJDa0QBnYw3bMCt2Db=Cg@mail.gmail.com>
+To: Heng Zhang <zh.heng96@gmail.com>
 Subject: Re: [USRP-users] SFP port1 of USRP N310 does not work
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -64,9 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Heng Zhang via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Heng Zhang <zh.heng96@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0712644034785397633=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6834708545894781896=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,171 +76,232 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0712644034785397633==
-Content-Type: multipart/alternative; boundary="__MESSAGE_BODY_PART__1_6624001995110174794"
+--===============6834708545894781896==
+Content-Type: multipart/alternative; boundary="000000000000a858df05ab94c5d5"
 
---__MESSAGE_BODY_PART__1_6624001995110174794
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+--000000000000a858df05ab94c5d5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-VGhlIFNGUCsgbW9kdWxlIGFuZCBvcHRpY2FsIEkgdXNlZCBhcmUgYXR0Y2htZW50IHdoZW4gYnV5
-aW5nIFVTUlAgTjMxMC4gSSB3aWxsIGNoZWNrIHRoZW0uIEhlbmcgWmhhbmcg6YKu566x77yaemgu
-aGVuZzk2QGdtYWlsLmNvbSDnrb7lkI3nlLEg572R5piT6YKu566x5aSn5biIIOWumuWItiBPbiAw
-Ny8yOS8yMDIwIDIwOjQyLCBNYXJjdXMgRC4gTGVlY2ggdmlhIFVTUlAtdXNlcnMgd3JvdGU6IE9u
-IDA3LzI5LzIwMjAgMDg6MTQgQU0sIEhlbmcgWmhhbmcgdmlhIFVTUlAtdXNlcnMgd3JvdGU6IERl
-YXIgY29tbXVuaXR5LCBJIGZvbGxvdyB0aGlzIGd1aWRlwqBodHRwczovL2tiLmV0dHVzLmNvbS9V
-U1JQX04zMDAvTjMxMC9OMzIwL04zMjFfR2V0dGluZ19TdGFydGVkX0d1aWRlwqAgYW5kIG5vdyBJ
-IGNhbiBjb25uZWN0IHRvIE4zMTAgYnkgUko0NSBwb3J0LiBBbmQgSSBhbHNvIGNhbiBjb25uZWN0
-IHRvIFNGUCBwb3J0MC4gSG93ZXZlciwgd2hlbiBJwqAgdHJ5IHRvIHVzZSBTRlAgcG9ydDEsIGl0
-IGRvZXMgbm90IHdvcmsuIEkgZm91bmQgdGhhdCB0aGUgZ3JlZW4gTEVEIGFib3ZlIFNGUCBwb3J0
-IDEgZG9lcyBub3QgZXZlbiBpbGx1bWluYXRlIGFmdGVyIGNvbm5lY3RpbmcgdGhlIFBDIHRvIGl0
-LiBUaGUgbmV0d29yayBpbnRlcmZhY2UgY29uZmlndXJhdGlvbiBvZiBQQyBpcyBzaG93biBhcyBm
-b2xsb3dzIGVucDFzMCDCoCDCoExpbmsgZW5jYXA6RXRoZXJuZXQgwqBIV2FkZHIgZDQ6NWQ6NjQ6
-OWM6ZDE6ODYgwqAgwqAgwqAgwqAgwqAgwqAgaW5ldCBhZGRyOjE5Mi4xNjguMjAuMSDCoEJjYXN0
-OjE5Mi4xNjguMjAuMjU1IMKgTWFzazoyNTUuMjU1LjI1NS4wIMKgIMKgIMKgIMKgIMKgIGluZXQ2
-IGFkZHI6IGZlODA6OjNhYzU6ZWU0MDo0NTdiOjM1NTQvNjQgU2NvcGU6TGluayDCoCDCoCDCoCDC
-oCDCoCBVUCBCUk9BRENBU1QgUlVOTklORyBNVUxUSUNBU1QgwqBNVFU6OTAwMCDCoE1ldHJpYzox
-IMKgIMKgIMKgIMKgIMKgIFJYIHBhY2tldHM6MTMxMSBlcnJvcnM6MCBkcm9wcGVkOjAgb3ZlcnJ1
-bnM6MCBmcmFtZTowIMKgIMKgIMKgIMKgIMKgIFRYIHBhY2tldHM6MTkzNyBlcnJvcnM6MCBkcm9w
-cGVkOjAgb3ZlcnJ1bnM6MCBjYXJyaWVyOjAgwqAgwqAgwqAgwqAgwqAgY29sbGlzaW9uczowIHR4
-cXVldWVsZW46MTAwMCDCoCDCoCDCoCDCoCDCoCBSWCBieXRlczoxOTExNzMgKDE5MS4xIEtCKSDC
-oFRYIGJ5dGVzOjI0OTI5NyAoMjQ5LjIgS0IpIEhvdyBjYW4gSSB1c2UgMTAgR2IgU0ZQIHBvcnQx
-PyBBbnkgYWR2aWNlIHdvdWxkIGJlIGFwcHJlY2lhdGVkLiBSZWdhcmRzLCBIZW5nIE15IGd1ZXNz
-IGlzIHRoYXQgeW91IGhhdmUgYSBwcm9ibGVtIHdpdGggeW91ciBjYWJsaW5nLCBvciB0aGUgU0ZQ
-KyBtb2R1bGUgdGhhdCB5b3UgcGx1Z2dlZCBpbiB0byB0aGUgVVNSUC4gV2hhdCBTRlArIG1vZHVs
-ZSBhcmUgeW91IHVzaW5nP8KgIFdoYXQgdHlwZSBvZiB3aXJpbmcvb3B0aWNhbD8=
+Are you using the XG version of the FPGA image?
 
---__MESSAGE_BODY_PART__1_6624001995110174794
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
+On Wed, Jul 29, 2020 at 9:03 AM Heng Zhang via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-PGh0bWw+CjxoZWFkPgogICAgPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50
-PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTgiPgo8L2hlYWQ+Cjxib2R5Pgo8ZGl2IHN0eWxlPSJs
-aW5lLWhlaWdodDoxLjY7Zm9udC1mYW1pbHk6J+iLueaWuScsJ+W+rui9r+mbhem7kScsJ3NhbnMt
-c2VyaWYnOyI+VGhlIFNGUCsgbW9kdWxlIGFuZCBvcHRpY2FsIEkgdXNlZCBhcmUgYXR0Y2htZW50
-IHdoZW4gYnV5aW5nIFVTUlAgTjMxMC4gSSB3aWxsIGNoZWNrIHRoZW0uPGJyLz48YnIvPjwvZGl2
-PjxkaXYgY2xhc3M9J25lLXF1b3RlZCc+ICAgICAgICA8YSBocmVmPSJodHRwczovL21hYXMubWFp
-bC4xNjMuY29tL2Rhc2hpLXdlYi1leHRlbmQvaHRtbC9wcm9TaWduYXR1cmUuaHRtbD8mbmFtZT1I
-ZW5nK1poYW5nJnVpZD16aC5oZW5nOTYlNDBnbWFpbC5jb20mZnRsSWQ9MSZpY29uVXJsPWh0dHBz
-JTNBJTJGJTJGbWFpbC1vbmxpbmUubm9zZG4uMTI3Lm5ldCUyRnFpeWVsb2dvJTJGZGVmYXVsdEF2
-YXRhci5wbmcmaXRlbXM9JTVCJTIyJUU5JTgyJUFFJUU3JUFFJUIxJUVGJUJDJTlBemguaGVuZzk2
-JTQwZ21haWwuY29tJTIyJTVEIiBzdHlsZT0iZGlzcGxheTpibG9jaztiYWNrZ3JvdW5kOiNmZmY7
-IG1heC13aWR0aDogNDAwcHg7IF93aWR0aDogNDAwcHg7cGFkZGluZzoxNXB4IDAgMTBweCAwO3Rl
-eHQtZGVjb3JhdGlvbjogbm9uZTsgb3V0bGluZTpub25lOy13ZWJraXQtdGFwLWhpZ2hsaWdodC1j
-b2xvcjp0cmFuc3BhcmVudDstd2Via2l0LXRleHQtc2l6ZS1hZGp1c3Q6bm9uZSAhaW1wb3J0YW50
-O3RleHQtc2l6ZS1hZGp1c3Q6bm9uZSAhaW1wb3J0YW50OyI+CiAgICAgICAgICAgIDx0YWJsZSBj
-ZWxscGFkZGluZz0iMCIgc3R5bGU9J3dpZHRoOiAxMDAlOyBtYXgtd2lkdGg6IDEwMCU7IHRhYmxl
-LWxheW91dDogZml4ZWQ7IGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7Y29sb3I6ICM5YjllYTE7
-Zm9udC1zaXplOiAxNHB4O2xpbmUtaGVpZ2h0OjEuMzstd2Via2l0LXRleHQtc2l6ZS1hZGp1c3Q6
-bm9uZSAhaW1wb3J0YW50O3RleHQtc2l6ZS1hZGp1c3Q6bm9uZSAhaW1wb3J0YW50Oyc+CiAgICAg
-ICAgICAgICAgICA8dGJvZHkgc3R5bGU9ImZvbnQtZmFtaWx5OiAnUGluZ0ZhbmcgU0MnLCAnSGly
-YWdpbm8gU2FucyBHQicsJ1dlblF1YW5ZaSBNaWNybyBIZWknLCAnTWljcm9zb2Z0IFlhaGVpJywg
-J+W+rui9r+mbhem7kScsIHZlcmRhbmEgIWltcG9ydGFudDsgd29yZC13cmFwOmJyZWFrLXdvcmQ7
-IHdvcmQtYnJlYWs6YnJlYWstYWxsOy13ZWJraXQtdGV4dC1zaXplLWFkanVzdDpub25lICFpbXBv
-cnRhbnQ7dGV4dC1zaXplLWFkanVzdDpub25lICFpbXBvcnRhbnQ7Ij4KICAgICAgICAgICAgICAg
-ICAgICA8dHI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgd2lkdGg9IjM4IiBzdHls
-ZT0icGFkZGluZzowOyBib3gtc2l6aW5nOiBib3JkZXItYm94OyB3aWR0aDogMzhweDsiPgogICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxpbWcgd2lkdGg9IjM4IiBoZWlnaHQ9IjM4IiBz
-dHlsZT0idmVydGljYWwtYWxpZ246bWlkZGxlOyB3aWR0aDogMzhweDsgaGVpZ2h0OiAzOHB4OyBi
-b3JkZXItcmFkaXVzOjUwJTsiIHNyYz0iaHR0cHM6Ly9tYWlsLW9ubGluZS5ub3Nkbi4xMjcubmV0
-L3FpeWVsb2dvL2RlZmF1bHRBdmF0YXIucG5nIiAvPgogICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgPC90ZD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBzdHlsZT0ncGFkZGluZzog
-MCAwIDAgMTBweDsgY29sb3I6ICMzMTM1M2I7Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICA8ZGl2IHN0eWxlPSJmb250LXNpemU6IDE2cHg7Zm9udC13ZWlnaHQ6Ym9sZDsgd2lkdGg6
-MTAwJTsgd2hpdGUtc3BhY2U6IG5vd3JhcDsgb3ZlcmZsb3c6aGlkZGVuO3RleHQtb3ZlcmZsb3c6
-IGVsbGlwc2lzOyI+SGVuZyBaaGFuZzwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAg
-PC90ZD4KICAgICAgICAgICAgICAgICAgICA8L3RyPgogICAgICAgICAgICAgICAgICAgICAgICA8
-dHIgd2lkdGg9IjEwMCUiIHN0eWxlPSJmb250LXNpemU6IDE0cHggIWltcG9ydGFudDsgd2lkdGg6
-IDEwMCU7Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCBjb2xzcGFuPScyJyBzdHls
-ZT0icGFkZGluZzoxMHB4IDAgMCAwOyBmb250LXNpemU6MTRweCAhaW1wb3J0YW50OyB3aWR0aDog
-MTAwJTsiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IHN0eWxlPSJ3
-aWR0aDogMTAwJTtmb250LXNpemU6IDE0cHggIWltcG9ydGFudDt3b3JkLXdyYXA6YnJlYWstd29y
-ZDt3b3JkLWJyZWFrOmJyZWFrLWFsbDsiPumCrueuse+8mnpoLmhlbmc5NkBnbWFpbC5jb208L2Rp
-dj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdGQ+CiAgICAgICAgICAgICAgICAgICAg
-ICAgIDwvdHI+CiAgICAgICAgICAgICAgICA8L3Rib2R5PgogICAgICAgICAgICA8L3RhYmxlPgog
-ICAgICAgIDwvYT48aHRtbD48Ym9keT48cCBzdHlsZT0iYm9yZGVyLXRvcDoxcHggc29saWQgI2U1
-ZTVlNTtwYWRkaW5nLXRvcDogOHB4OyBmb250LXNpemU6IDEycHg7IGNvbG9yOiNiNmI4YmI7bGlu
-ZS1oZWlnaHQ6IDEuODMzOyI+562+5ZCN55SxIDxhIGhyZWY9Imh0dHBzOi8vbWFpbC4xNjMuY29t
-L2Rhc2hpL2RscHJvLmh0bWw/ZnJvbT1tYWlsODgiIHN0eWxlPSJjb2xvcjojNmFhOGY2O3RleHQt
-ZGVjb3JhdGlvbjogbm9uZSI+572R5piT6YKu566x5aSn5biIPC9hPiDlrprliLY8L3A+PC9ib2R5
-PjwvaHRtbD48YmxvY2txdW90ZSBpZD0nbnRlcy1hbmRyaW9kbWFpbC1xdW90ZScgc3R5bGU9Im1h
-cmdpbjowcHggIWltcG9ydGFudDtwYWRkaW5nOjBweCAhaW1wb3J0YW50O2JvcmRlcjogbm9uZSAh
-aW1wb3J0YW50OyI+PGJsb2NrcXVvdGUgaWQ9J250ZXMtYW5kcmlvZG1haWwtcXVvdGUnIHN0eWxl
-PSJtYXJnaW46MHB4ICFpbXBvcnRhbnQ7cGFkZGluZzowcHggIWltcG9ydGFudDtib3JkZXI6IG5v
-bmUgIWltcG9ydGFudDsiPjxkaXYgY2xhc3M9IkotcmVwbHkiIHN0eWxlPSJiYWNrZ3JvdW5kLWNv
-bG9yOiNmMmYyZjI7Y29sb3I6YmxhY2s7cGFkZGluZy10b3A6NnB4O3BhZGRpbmctYm90dG9tOjZw
-eDtib3JkZXItcmFkaXVzOjNweDstbW96LWJvcmRlci1yYWRpdXM6M3B4Oy13ZWJraXQtYm9yZGVy
-LXJhZGl1czozcHg7bWFyZ2luLXRvcDo0NXB4O21hcmdpbi1ib3R0b206MjBweDsiPgogICAgPGRp
-diBzdHlsZT0iZm9udC1zaXplOjE0cHg7bGluZS1oZWlnaHQ6MS41O3dvcmQtYnJlYWs6YnJlYWst
-YWxsO21hcmdpbi1sZWZ0OjEwcHg7bWFyZ2luLXJpZ2h0OjEwcHgiPk9uIDxzcGFuIGNsYXNzPSJt
-YWlsLWRhdGUiPjA3LzI5LzIwMjAgMjA6NDI8L3NwYW4+LCA8YSBjbGFzcz0ibWFpbC10byIgc3R5
-bGU9InRleHQtZGVjb3JhdGlvbjpub25lO2NvbG9yOiMyYTk3ZmY7IiBocmVmPSJtYWlsdG86dXNy
-cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iPk1hcmN1cyBELiBMZWVjaCB2aWEgVVNSUC11c2Vyczwv
-YT4gd3JvdGU6PC9kaXY+CjwvZGl2PjxodG1sPg0KICA8aGVhZD4NCiAgICA8bWV0YSBjb250ZW50
-PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9d2luZG93cy0xMjUyIg0KICAgICAgaHR0cC1lcXVpdj0iQ29u
-dGVudC1UeXBlIj4NCiAgPC9oZWFkPg0KICA8Ym9keSBiZ2NvbG9yPSIjRkZGRkZGIiB0ZXh0PSIj
-MDAwMDAwIj4NCiAgICA8ZGl2IGNsYXNzPSJtb3otY2l0ZS1wcmVmaXgiPk9uIDA3LzI5LzIwMjAg
-MDg6MTQgQU0sIEhlbmcgWmhhbmcgdmlhDQogICAgICBVU1JQLXVzZXJzIHdyb3RlOjxicj4NCiAg
-ICA8L2Rpdj4NCiAgICA8YmxvY2txdW90ZQ0KY2l0ZT0ibWlkOkNBQU1fbVRSeVJkMkI3eDBhYitL
-NGhUK08rRlNXaHota09zZFVHZC1aa1p0RFprZ0tyZ0BtYWlsLmdtYWlsLmNvbSINCiAgICAgIHR5
-cGU9ImNpdGUiPg0KICAgICAgPGRpdiBkaXI9Imx0ciI+RGVhciBjb21tdW5pdHksDQogICAgICAg
-IDxkaXY+PGJyPg0KICAgICAgICA8L2Rpdj4NCiAgICAgICAgPGRpdj48c3BhbiBzdHlsZT0iZm9u
-dC1mYW1pbHk6QXJpYWw7Zm9udC1zaXplOjE0cHgiPkkgZm9sbG93DQogICAgICAgICAgICB0aGlz
-IGd1aWRlwqA8L3NwYW4+PGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIg0KaHJlZj0iaHR0cHM6Ly9r
-Yi5ldHR1cy5jb20vVVNSUF9OMzAwL04zMTAvTjMyMC9OMzIxX0dldHRpbmdfU3RhcnRlZF9HdWlk
-ZSINCiAgICAgICAgICAgIHRhcmdldD0iX2JsYW5rIg0KICAgICAgICAgICAgc3R5bGU9ImNvbG9y
-OnJnYig2LDczLDExOSk7Zm9udC1mYW1pbHk6QXJpYWw7Zm9udC1zaXplOjE0cHgiPmh0dHBzOi8v
-a2IuZXR0dXMuY29tL1VTUlBfTjMwMC9OMzEwL04zMjAvTjMyMV9HZXR0aW5nX1N0YXJ0ZWRfR3Vp
-ZGU8L2E+PHNwYW4NCiAgICAgICAgICAgIHN0eWxlPSJmb250LWZhbWlseTpBcmlhbDtmb250LXNp
-emU6MTRweCI+wqAgYW5kIG5vdyBJIGNhbg0KICAgICAgICAgICAgY29ubmVjdCB0byBOMzEwIGJ5
-IFJKNDUgcG9ydC4gQW5kIEkgYWxzbyBjYW4gY29ubmVjdCB0byBTRlANCiAgICAgICAgICAgIHBv
-cnQwLiBIb3dldmVyLCB3aGVuIEnCoCB0cnkgdG8gdXNlIFNGUCBwb3J0MSwgaXQgZG9lcyBub3QN
-CiAgICAgICAgICAgIHdvcmsuIEkgZm91bmQgdGhhdCB0aGUgZ3JlZW4gTEVEIGFib3ZlIFNGUCBw
-b3J0IDEgZG9lcyBub3QNCiAgICAgICAgICAgIGV2ZW4gaWxsdW1pbmF0ZSBhZnRlciBjb25uZWN0
-aW5nIHRoZSBQQyB0byBpdC4gVGhlIG5ldHdvcmsNCiAgICAgICAgICAgIGludGVyZmFjZSBjb25m
-aWd1cmF0aW9uIG9mIFBDIGlzIHNob3duIGFzIGZvbGxvd3M8L3NwYW4+PC9kaXY+DQogICAgICAg
-IDxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsO2ZvbnQtc2l6ZToxNHB4Ij48YnI+
-DQogICAgICAgICAgPC9zcGFuPjwvZGl2Pg0KICAgICAgICA8ZGl2PmVucDFzMCDCoCDCoExpbmsg
-ZW5jYXA6RXRoZXJuZXQgwqBIV2FkZHIgZDQ6NWQ6NjQ6OWM6ZDE6ODYgwqA8YnI+DQogICAgICAg
-ICAgwqAgwqAgwqAgwqAgwqAgaW5ldCBhZGRyOjE5Mi4xNjguMjAuMSDCoEJjYXN0OjE5Mi4xNjgu
-MjAuMjU1DQogICAgICAgICAgwqBNYXNrOjI1NS4yNTUuMjU1LjA8YnI+DQogICAgICAgICAgwqAg
-wqAgwqAgwqAgwqAgaW5ldDYgYWRkcjogZmU4MDo6M2FjNTplZTQwOjQ1N2I6MzU1NC82NCBTY29w
-ZTpMaW5rPGJyPg0KICAgICAgICAgIMKgIMKgIMKgIMKgIMKgIFVQIEJST0FEQ0FTVCBSVU5OSU5H
-IE1VTFRJQ0FTVCDCoE1UVTo5MDAwIMKgTWV0cmljOjE8YnI+DQogICAgICAgICAgwqAgwqAgwqAg
-wqAgwqAgUlggcGFja2V0czoxMzExIGVycm9yczowIGRyb3BwZWQ6MCBvdmVycnVuczowDQogICAg
-ICAgICAgZnJhbWU6MDxicj4NCiAgICAgICAgICDCoCDCoCDCoCDCoCDCoCBUWCBwYWNrZXRzOjE5
-MzcgZXJyb3JzOjAgZHJvcHBlZDowIG92ZXJydW5zOjANCiAgICAgICAgICBjYXJyaWVyOjA8YnI+
-DQogICAgICAgICAgwqAgwqAgwqAgwqAgwqAgY29sbGlzaW9uczowIHR4cXVldWVsZW46MTAwMCA8
-YnI+DQogICAgICAgICAgwqAgwqAgwqAgwqAgwqAgUlggYnl0ZXM6MTkxMTczICgxOTEuMSBLQikg
-wqBUWCBieXRlczoyNDkyOTcgKDI0OS4yDQogICAgICAgICAgS0IpPHNwYW4gc3R5bGU9ImZvbnQt
-ZmFtaWx5OkFyaWFsO2ZvbnQtc2l6ZToxNHB4Ij48YnI+DQogICAgICAgICAgPC9zcGFuPjwvZGl2
-Pg0KICAgICAgICA8ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpBcmlhbDtmb250LXNpemU6
-MTRweCI+PGJyPg0KICAgICAgICAgIDwvc3Bhbj48L2Rpdj4NCiAgICAgICAgPGRpdj48Zm9udCBj
-b2xvcj0iIzAwMDAwMCIgZmFjZT0iTHVjaWRhIFNhbnMgVW5pY29kZSwgTHVjaWRhDQogICAgICAg
-ICAgICBHcmFuZGUsIHNhbnMtc2VyaWYiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTRweCI+SG93
-IGNhbiBJDQogICAgICAgICAgICAgIHVzZSAxMCBHYiBTRlAgcG9ydDE/IEFueSBhZHZpY2Ugd291
-bGQgYmUgYXBwcmVjaWF0ZWQuPC9zcGFuPjwvZm9udD48L2Rpdj4NCiAgICAgICAgPGRpdj48Zm9u
-dCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iTHVjaWRhIFNhbnMgVW5pY29kZSwgTHVjaWRhDQogICAg
-ICAgICAgICBHcmFuZGUsIHNhbnMtc2VyaWYiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTRweCI+
-PGJyPg0KICAgICAgICAgICAgPC9zcGFuPjwvZm9udD48L2Rpdj4NCiAgICAgICAgPGRpdj48Zm9u
-dCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iTHVjaWRhIFNhbnMgVW5pY29kZSwgTHVjaWRhDQogICAg
-ICAgICAgICBHcmFuZGUsIHNhbnMtc2VyaWYiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTRweCI+
-UmVnYXJkcyw8L3NwYW4+PC9mb250PjwvZGl2Pg0KICAgICAgICA8ZGl2Pjxmb250IGNvbG9yPSIj
-MDAwMDAwIiBmYWNlPSJMdWNpZGEgU2FucyBVbmljb2RlLCBMdWNpZGENCiAgICAgICAgICAgIEdy
-YW5kZSwgc2Fucy1zZXJpZiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxNHB4Ij5IZW5nPC9zcGFu
-PjwvZm9udD48L2Rpdj4NCiAgICAgIDwvZGl2Pg0KICAgICAgPGJyPg0KICAgIDwvYmxvY2txdW90
-ZT4NCiAgICBNeSBndWVzcyBpcyB0aGF0IHlvdSBoYXZlIGEgcHJvYmxlbSB3aXRoIHlvdXIgY2Fi
-bGluZywgb3IgdGhlIFNGUCsNCiAgICBtb2R1bGUgdGhhdCB5b3UgcGx1Z2dlZCBpbiB0byB0aGUg
-VVNSUC48YnI+DQogICAgPGJyPg0KICAgIFdoYXQgU0ZQKyBtb2R1bGUgYXJlIHlvdSB1c2luZz/C
-oCBXaGF0IHR5cGUgb2Ygd2lyaW5nL29wdGljYWw/PGJyPg0KICAgIDxicj4NCiAgICA8YnI+DQog
-IDwvYm9keT4NCjwvaHRtbD4NCjwvYmxvY2txdW90ZT48L2Jsb2NrcXVvdGU+PC9kaXY+CjwvYm9k
-eT4KPC9odG1sPg==
+> The SFP+ module and optical I used are attchment when buying USRP N310. I
+> will check them.
+>
+> Heng Zhang
+> =E9=82=AE=E7=AE=B1=EF=BC=9Azh.heng96@gmail.com
+>
+> <https://maas.mail.163.com/dashi-web-extend/html/proSignature.html?&name=
+=3DHeng+Zhang&uid=3Dzh.heng96%40gmail.com&ftlId=3D1&iconUrl=3Dhttps%3A%2F%2=
+Fmail-online.nosdn.127.net%2Fqiyelogo%2FdefaultAvatar.png&items=3D%5B%22%E9=
+%82%AE%E7%AE%B1%EF%BC%9Azh.heng96%40gmail.com%22%5D>
+>
+> =E7=AD=BE=E5=90=8D=E7=94=B1 =E7=BD=91=E6=98=93=E9=82=AE=E7=AE=B1=E5=A4=A7=
+=E5=B8=88 <https://mail.163.com/dashi/dlpro.html?from=3Dmail88> =E5=AE=9A=
+=E5=88=B6
+>
+> On 07/29/2020 20:42, Marcus D. Leech via USRP-users
+> <usrp-users@lists.ettus.com> wrote:
+> On 07/29/2020 08:14 AM, Heng Zhang via USRP-users wrote:
+>
+> Dear community,
+>
+> I follow this guide
+> https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide  and
+> now I can connect to N310 by RJ45 port. And I also can connect to SFP
+> port0. However, when I  try to use SFP port1, it does not work. I found
+> that the green LED above SFP port 1 does not even illuminate after
+> connecting the PC to it. The network interface configuration of PC is sho=
+wn
+> as follows
+>
+> enp1s0    Link encap:Ethernet  HWaddr d4:5d:64:9c:d1:86
+>           inet addr:192.168.20.1  Bcast:192.168.20.255  Mask:255.255.255.=
+0
+>           inet6 addr: fe80::3ac5:ee40:457b:3554/64 Scope:Link
+>           UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1
+>           RX packets:1311 errors:0 dropped:0 overruns:0 frame:0
+>           TX packets:1937 errors:0 dropped:0 overruns:0 carrier:0
+>           collisions:0 txqueuelen:1000
+>           RX bytes:191173 (191.1 KB)  TX bytes:249297 (249.2 KB)
+>
+> How can I use 10 Gb SFP port1? Any advice would be appreciated.
+>
+> Regards,
+> Heng
+>
+> My guess is that you have a problem with your cabling, or the SFP+ module
+> that you plugged in to the USRP.
+>
+> What SFP+ module are you using?  What type of wiring/optical?
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---__MESSAGE_BODY_PART__1_6624001995110174794--
+--000000000000a858df05ab94c5d5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Are you using the XG version of the FPGA image?</div><br><=
+div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul=
+ 29, 2020 at 9:03 AM Heng Zhang via USRP-users &lt;<a href=3D"mailto:usrp-u=
+sers@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex">
+
+   =20
+
+<div>
+<div style=3D"line-height:1.6;font-family:=E8=8B=B9=E6=96=B9,=E5=BE=AE=E8=
+=BD=AF=E9=9B=85=E9=BB=91,sans-serif">The SFP+ module and optical I used are=
+ attchment when buying USRP N310. I will check them.<br><br></div><div>    =
+    <a href=3D"https://maas.mail.163.com/dashi-web-extend/html/proSignature=
+.html?&amp;name=3DHeng+Zhang&amp;uid=3Dzh.heng96%40gmail.com&amp;ftlId=3D1&=
+amp;iconUrl=3Dhttps%3A%2F%2Fmail-online.nosdn.127.net%2Fqiyelogo%2FdefaultA=
+vatar.png&amp;items=3D%5B%22%E9%82%AE%E7%AE%B1%EF%BC%9Azh.heng96%40gmail.co=
+m%22%5D" style=3D"display:block;background:rgb(255,255,255);max-width:400px=
+;padding:15px 0px 10px;text-decoration:none;outline:none" target=3D"_blank"=
+>
+            <table cellpadding=3D"0" style=3D"width:100%;max-width:100%;tab=
+le-layout:fixed;border-collapse:collapse;color:rgb(155,158,161);font-size:1=
+4px;line-height:1.3">
+                <tbody style=3D"word-break:break-all;font-family:&quot;Ping=
+Fang SC&quot;,&quot;Hiragino Sans GB&quot;,&quot;WenQuanYi Micro Hei&quot;,=
+&quot;Microsoft Yahei&quot;,=E5=BE=AE=E8=BD=AF=E9=9B=85=E9=BB=91,verdana">
+                    <tr>
+                            <td width=3D"38" style=3D"padding:0px;box-sizin=
+g:border-box;width:38px">
+                                <img width=3D"38" height=3D"38" style=3D"ve=
+rtical-align: middle; width: 38px; height: 38px; border-radius: 50%;" src=
+=3D"https://mail-online.nosdn.127.net/qiyelogo/defaultAvatar.png">
+                            </td>
+                            <td style=3D"padding:0px 0px 0px 10px;color:rgb=
+(49,53,59)">
+                                <div style=3D"font-size:16px;font-weight:bo=
+ld;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">He=
+ng Zhang</div>
+                            </td>
+                    </tr>
+                        <tr width=3D"100%" style=3D"width:100%;font-size:14=
+px">
+                            <td colspan=3D"2" style=3D"padding:10px 0px 0px=
+;width:100%;font-size:14px">
+                                    <div style=3D"width:100%;word-break:bre=
+ak-all;font-size:14px">=E9=82=AE=E7=AE=B1=EF=BC=9Azh.heng96@gmail.com</div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+        </a><div><p style=3D"border-top:1px solid rgb(229,229,229);padding-=
+top:8px;font-size:12px;color:rgb(182,184,187);line-height:1.833">=E7=AD=BE=
+=E5=90=8D=E7=94=B1 <a href=3D"https://mail.163.com/dashi/dlpro.html?from=3D=
+mail88" style=3D"color:rgb(106,168,246);text-decoration:none" target=3D"_bl=
+ank">=E7=BD=91=E6=98=93=E9=82=AE=E7=AE=B1=E5=A4=A7=E5=B8=88</a> =E5=AE=9A=
+=E5=88=B6</p></div><blockquote id=3D"gmail-m_5266112649428560500ntes-andrio=
+dmail-quote" style=3D"margin:0px;padding:0px;border:none"><blockquote id=3D=
+"gmail-m_5266112649428560500ntes-andriodmail-quote" style=3D"margin:0px;pad=
+ding:0px;border:none"><div style=3D"background-color:rgb(242,242,242);color=
+:black;padding-top:6px;padding-bottom:6px;border-radius:3px;margin-top:45px=
+;margin-bottom:20px">
+    <div style=3D"font-size:14px;line-height:1.5;word-break:break-all;margi=
+n-left:10px;margin-right:10px">On <span>07/29/2020 20:42</span>, <a style=
+=3D"text-decoration:none;color:rgb(42,151,255)" href=3D"mailto:usrp-users@l=
+ists.ettus.com" target=3D"_blank">Marcus D. Leech via USRP-users</a> wrote:=
+</div>
+</div>
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 07/29/2020 08:14 AM, Heng Zhang via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">Dear community,
+        <div><br>
+        </div>
+        <div><span style=3D"font-family:Arial;font-size:14px">I follow
+            this guide=C2=A0</span><a href=3D"https://kb.ettus.com/USRP_N30=
+0/N310/N320/N321_Getting_Started_Guide" style=3D"color:rgb(6,73,119);font-f=
+amily:Arial;font-size:14px" target=3D"_blank">https://kb.ettus.com/USRP_N30=
+0/N310/N320/N321_Getting_Started_Guide</a><span style=3D"font-family:Arial;=
+font-size:14px">=C2=A0 and now I can
+            connect to N310 by RJ45 port. And I also can connect to SFP
+            port0. However, when I=C2=A0 try to use SFP port1, it does not
+            work. I found that the green LED above SFP port 1 does not
+            even illuminate after connecting the PC to it. The network
+            interface configuration of PC is shown as follows</span></div>
+        <div><span style=3D"font-family:Arial;font-size:14px"><br>
+          </span></div>
+        <div>enp1s0 =C2=A0 =C2=A0Link encap:Ethernet =C2=A0HWaddr d4:5d:64:=
+9c:d1:86 =C2=A0<br>
+          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 inet addr:192.168.20.1 =C2=A0B=
+cast:192.168.20.255
+          =C2=A0Mask:255.255.255.0<br>
+          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 inet6 addr: fe80::3ac5:ee40:45=
+7b:3554/64 Scope:Link<br>
+          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 UP BROADCAST RUNNING MULTICAST=
+ =C2=A0MTU:9000 =C2=A0Metric:1<br>
+          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 RX packets:1311 errors:0 dropp=
+ed:0 overruns:0
+          frame:0<br>
+          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 TX packets:1937 errors:0 dropp=
+ed:0 overruns:0
+          carrier:0<br>
+          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 collisions:0 txqueuelen:1000 <=
+br>
+          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 RX bytes:191173 (191.1 KB) =C2=
+=A0TX bytes:249297 (249.2
+          KB)<span style=3D"font-family:Arial;font-size:14px"><br>
+          </span></div>
+        <div><span style=3D"font-family:Arial;font-size:14px"><br>
+          </span></div>
+        <div><font color=3D"#000000" face=3D"Lucida Sans Unicode, Lucida
+            Grande, sans-serif"><span style=3D"font-size:14px">How can I
+              use 10 Gb SFP port1? Any advice would be appreciated.</span><=
+/font></div>
+        <div><font color=3D"#000000" face=3D"Lucida Sans Unicode, Lucida
+            Grande, sans-serif"><span style=3D"font-size:14px"><br>
+            </span></font></div>
+        <div><font color=3D"#000000" face=3D"Lucida Sans Unicode, Lucida
+            Grande, sans-serif"><span style=3D"font-size:14px">Regards,</sp=
+an></font></div>
+        <div><font color=3D"#000000" face=3D"Lucida Sans Unicode, Lucida
+            Grande, sans-serif"><span style=3D"font-size:14px">Heng</span><=
+/font></div>
+      </div>
+      <br>
+    </blockquote>
+    My guess is that you have a problem with your cabling, or the SFP+
+    module that you plugged in to the USRP.<br>
+    <br>
+    What SFP+ module are you using?=C2=A0 What type of wiring/optical?<br>
+    <br>
+    <br>
+  </div>
+
+</blockquote></blockquote></div>
+</div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000a858df05ab94c5d5--
 
 
-
---===============0712644034785397633==
+--===============6834708545894781896==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -255,6 +312,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0712644034785397633==--
-
+--===============6834708545894781896==--
 
