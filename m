@@ -2,48 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C1602313CC
-	for <lists+usrp-users@lfdr.de>; Tue, 28 Jul 2020 22:23:21 +0200 (CEST)
-Received: from [::1] (port=60400 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AAAA231E52
+	for <lists+usrp-users@lfdr.de>; Wed, 29 Jul 2020 14:15:38 +0200 (CEST)
+Received: from [::1] (port=38560 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k0W84-0002OR-Jc; Tue, 28 Jul 2020 16:23:16 -0400
-Received: from mail-lj1-f177.google.com ([209.85.208.177]:39463)
+	id 1k0kzd-0003lf-Fu; Wed, 29 Jul 2020 08:15:33 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:46115)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <wandrewp@gmail.com>) id 1k0W80-0002HQ-GM
- for usrp-users@lists.ettus.com; Tue, 28 Jul 2020 16:23:12 -0400
-Received: by mail-lj1-f177.google.com with SMTP id b25so22595997ljp.6
- for <usrp-users@lists.ettus.com>; Tue, 28 Jul 2020 13:22:52 -0700 (PDT)
+ (Exim 4.93) (envelope-from <zh.heng96@gmail.com>) id 1k0kza-0003cO-3G
+ for usrp-users@lists.ettus.com; Wed, 29 Jul 2020 08:15:30 -0400
+Received: by mail-ot1-f51.google.com with SMTP id v6so6537570ota.13
+ for <usrp-users@lists.ettus.com>; Wed, 29 Jul 2020 05:15:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:from:date:message-id:subject:to;
- bh=QLEfmxOocsQX9r8Uk8NjNk11VMObudPJFY5AxG46DGo=;
- b=RE3Bj8CrTiM429lVNQ5XE3WlncppT+yVir0QJHiWg+rNVHRjtsFkowqAz05UAYtNKw
- +y010WBSYXVRUsn5y1uVmzqYE5gcaX7YTFX2nLTzC/WvlbZwaf0UIB+vp2hbBrqgIzht
- 9lS2ZegIiB55iHx9iWUV+ZHNUM93rE38Qsym2W18pjud2QfClb1fieOJeqaiY2uf4zHs
- bd3nEZ+Qye59ZVflrbpQsE11G8fiQGFaxQ0bFx96Tz/24rilVta8eFYMpw0NPDadBZRn
- 2cfVECjvMVZgSl8WqE8POW5F1YtzwOEdELCg+oxxAXNqgqWTozuwtyJ6znnLSRM4A9SF
- ngAg==
+ bh=3itkOg96GPxC97ixygM+YgYcAmXGC46dWtIdQr93bH4=;
+ b=m18+wr2xXxG0o6zx4x1k/u/lacJzbp3oi8zbMYr7pImTH5sADbgoyUgJ60aZrZREwb
+ RBzUfX2BFaE/3NyrRUrPpbXuEo9ES3a9vfBPwtuFPk8J3BLikQR0oZaZRlhE+lSAEWD8
+ PIQK/ZkBcv2fppBQBytIA1VF1Wlj3baPJh7qN1maT3WoeiuOVDNkG5Z10tHCCblCTmyE
+ gT/BCOK/gcSelETYAGlx0gGhabRYs23/svKIMJZVcJ/2EOWMWOkgEYI3PucSpQrA4+/j
+ OYF9dL2cvoAkpRq3LS3Z+Vx72qCBA9HNcL7hs1sNsx5WQycK9CTU7+XfiVGCKVHn2C6b
+ 46yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=QLEfmxOocsQX9r8Uk8NjNk11VMObudPJFY5AxG46DGo=;
- b=YmgAnM4qNYGNY428lXsUwthGGwzI7nURJNcv66t+Fuc10sTsLgXzjnWOnHL5cPmv0i
- mzNZys1Vw4ss+Yfybb/K2FrmvkoKnY0kgVtie4HkeGJZ81xFzKI5sko6Y2bl/mPpQbPb
- z6DDnVFlCaTWYasp3mrjH0qU0SloVnN4cVp22RegFrgJv8uIxzBXW8apyB7qCrYoCWj0
- kRkMvBUvijPsimjoAMG0u47oLygfRoHjLHik74aUf0BQSikK517uutufJYl0pHOTA1fJ
- 8Z3JG9Q84akdl/H/CTdjPdm71NI2KcJGDklywjc6wR+osLGH6X1p6yF/mMBN75ka7Nz6
- 1fbg==
-X-Gm-Message-State: AOAM5306RAr3bILiu5xUODc4zUGVxGeT256ss/TNlOSujTecT7fdkfJJ
- 6npAFgRKV8P27i3du5RuLjlw4RVRH+PA7jtYtCjdlh2a
-X-Google-Smtp-Source: ABdhPJw+ZrumvIO41ud60JCQi3etO1g+vhzMGG9dakvDiGhSVuvnO2zelmuhAEuaYl5HlLJne8AP36MJvratrwJk73w=
-X-Received: by 2002:a2e:3602:: with SMTP id d2mr13788265lja.152.1595967750800; 
- Tue, 28 Jul 2020 13:22:30 -0700 (PDT)
+ bh=3itkOg96GPxC97ixygM+YgYcAmXGC46dWtIdQr93bH4=;
+ b=QdhjAoCyFgBrbrg/QYfAdyTHjIciYWFjr7RvtQP2+SD4hmzJmSdfqbDVnsYctKXasY
+ kundFjc04A4pyV3IDISSUOrigtOmYN/+az9vXmEAbAcT+XzjWLM0Z4nkChsKvBeRCZLF
+ 6JK+9Ivxp+y0aeUo4e8E0L0XH9LUK6kxHyQDGPooRNkydk7+zvV9449s6oa+PNP0syto
+ f7UHvOyfSX3iZjpfVPAtO/GUhNJR7KbSDtbi6WLaMPQrgREOfa04h13qTsWXnl8G+gti
+ HwrJhL1zd4MzsHHayZZWd1Rq3WZt5J3zBeMoA8tC/TxnGA3d59HREAWQ8yFOqgnTppcT
+ Cd6A==
+X-Gm-Message-State: AOAM533LlnX7qqvO4B+bPnYlbglX3yhoiojqPOzri9mJTPmHJe52T1C1
+ WcsO0U/QuzLRsKgmviIKcjBtDRkJwCYoha5KPHFuzT4q
+X-Google-Smtp-Source: ABdhPJwjyUWg9l9qxzANTzdjtymM4DoVQ7emp0pQJa7gY30I/HqGSxpIv7k0dO7Rm76+mFrGy2vQ4YECSe1O/sZf3v4=
+X-Received: by 2002:a9d:6c54:: with SMTP id g20mr28586526otq.120.1596024889156; 
+ Wed, 29 Jul 2020 05:14:49 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 28 Jul 2020 20:22:19 +0000
-Message-ID: <CAB50+dSiqg3+SNzBmtWU3PRpgHQ-5Nfhc4nrcVUU=XjhxWLFFw@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] E310: 2x2 Rx RFNoC Attenuating Tx output,
- 1x1 RX RFNoC: Full Tx output
+Date: Wed, 29 Jul 2020 20:14:37 +0800
+Message-ID: <CAAM_mTRyRd2B7x0ab+K4hT+O+FSWhz-kOsdUGd-ZkZtDZkgKrg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] SFP port1 of USRP N310 does not work
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Andrew Payne via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Andrew Payne <wandrewp@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4884815048920815474=="
+From: Heng Zhang via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Heng Zhang <zh.heng96@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5191142216738183040=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,44 +70,76 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4884815048920815474==
-Content-Type: multipart/alternative; boundary="000000000000dc097e05ab8632b0"
+--===============5191142216738183040==
+Content-Type: multipart/alternative; boundary="0000000000009229a105ab93806c"
 
---000000000000dc097e05ab8632b0
+--0000000000009229a105ab93806c
 Content-Type: text/plain; charset="UTF-8"
 
-I have a generic RFNoC block that I created and it receives only, and it
-can be configured as a 2x2 or 1x1 I/O mode.  In GnuRadio I have also paired
-this 2x2 or 1x1 RX block with a TX block, the gr-ettus RFNOC Siggen, which
-just outputs a sine tone.  When I have my RX block configured as 1x1, the
-TX signal power is well above -20 dBm, but if I configure my RX block as
-2x2, the TX signal is greatly attenuated, about -60dBm max.
+Dear community,
 
-Why is this happening and is the E310 the limiting factor?  Is 2 Rx streams
-plus the Tx out too much for the Zynq 7020 Artix FPGA?
+I follow this guide
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide  and
+now I can connect to N310 by RJ45 port. And I also can connect to SFP
+port0. However, when I  try to use SFP port1, it does not work. I found
+that the green LED above SFP port 1 does not even illuminate after
+connecting the PC to it. The network interface configuration of PC is shown
+as follows
 
-Thanks,
-Andrew
+enp1s0    Link encap:Ethernet  HWaddr d4:5d:64:9c:d1:86
+          inet addr:192.168.20.1  Bcast:192.168.20.255  Mask:255.255.255.0
+          inet6 addr: fe80::3ac5:ee40:457b:3554/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1
+          RX packets:1311 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1937 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:191173 (191.1 KB)  TX bytes:249297 (249.2 KB)
 
---000000000000dc097e05ab8632b0
+How can I use 10 Gb SFP port1? Any advice would be appreciated.
+
+Regards,
+Heng
+
+--0000000000009229a105ab93806c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I have a generic RFNoC block that I created and it re=
-ceives only, and it can be configured as a 2x2 or 1x1 I/O mode.=C2=A0 In Gn=
-uRadio I have also paired this 2x2 or 1x1 RX block with a TX block, the gr-=
-ettus RFNOC Siggen, which just outputs a sine tone.=C2=A0 When I have my RX=
- block configured as 1x1, the TX signal power is well above -20 dBm, but if=
- I configure my RX block as 2x2, the TX signal is greatly attenuated, about=
- -60dBm max.</div><div><br></div><div>Why is this happening and is the E310=
- the limiting factor?=C2=A0 Is 2 Rx streams plus the Tx out too much for th=
-e Zynq 7020 Artix FPGA?</div><div><br></div><div>Thanks,</div><div>Andrew<b=
-r></div><div><br></div><div><br></div></div>
+<div dir=3D"ltr">Dear community,<div><br></div><div><span style=3D"font-fam=
+ily:Arial;font-size:14px">I follow this guide=C2=A0</span><a href=3D"https:=
+//kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide" target=3D"_b=
+lank" style=3D"color:rgb(6,73,119);font-family:Arial;font-size:14px">https:=
+//kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide</a><span styl=
+e=3D"font-family:Arial;font-size:14px">=C2=A0 and now I can connect to N310=
+ by RJ45 port. And I also can connect to SFP port0. However, when I=C2=A0 t=
+ry to use SFP port1, it does not work. I found that the green LED above SFP=
+ port 1 does not even illuminate after connecting the PC to it. The network=
+ interface configuration of PC is shown as follows</span></div><div><span s=
+tyle=3D"font-family:Arial;font-size:14px"><br></span></div><div>enp1s0 =C2=
+=A0 =C2=A0Link encap:Ethernet =C2=A0HWaddr d4:5d:64:9c:d1:86 =C2=A0<br>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 inet addr:192.168.20.1 =C2=A0Bcast:192.168.=
+20.255 =C2=A0Mask:255.255.255.0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 inet6=
+ addr: fe80::3ac5:ee40:457b:3554/64 Scope:Link<br>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 UP BROADCAST RUNNING MULTICAST =C2=A0MTU:9000 =C2=A0Metric:1<br>=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 RX packets:1311 errors:0 dropped:0 overr=
+uns:0 frame:0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 TX packets:1937 errors:=
+0 dropped:0 overruns:0 carrier:0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 coll=
+isions:0 txqueuelen:1000 <br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 RX bytes:19=
+1173 (191.1 KB) =C2=A0TX bytes:249297 (249.2 KB)<span style=3D"font-family:=
+Arial;font-size:14px"><br></span></div><div><span style=3D"font-family:Aria=
+l;font-size:14px"><br></span></div><div><font color=3D"#000000" face=3D"Luc=
+ida Sans Unicode, Lucida Grande, sans-serif"><span style=3D"font-size:14px"=
+>How can I use 10 Gb SFP port1? Any advice would be appreciated.</span></fo=
+nt></div><div><font color=3D"#000000" face=3D"Lucida Sans Unicode, Lucida G=
+rande, sans-serif"><span style=3D"font-size:14px"><br></span></font></div><=
+div><font color=3D"#000000" face=3D"Lucida Sans Unicode, Lucida Grande, san=
+s-serif"><span style=3D"font-size:14px">Regards,</span></font></div><div><f=
+ont color=3D"#000000" face=3D"Lucida Sans Unicode, Lucida Grande, sans-seri=
+f"><span style=3D"font-size:14px">Heng</span></font></div></div>
 
---000000000000dc097e05ab8632b0--
+--0000000000009229a105ab93806c--
 
 
---===============4884815048920815474==
+--===============5191142216738183040==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,5 +150,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4884815048920815474==--
+--===============5191142216738183040==--
 
