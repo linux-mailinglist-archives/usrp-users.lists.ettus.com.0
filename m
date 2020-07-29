@@ -2,47 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AAAA231E52
-	for <lists+usrp-users@lfdr.de>; Wed, 29 Jul 2020 14:15:38 +0200 (CEST)
-Received: from [::1] (port=38560 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E1B0231EBA
+	for <lists+usrp-users@lfdr.de>; Wed, 29 Jul 2020 14:43:01 +0200 (CEST)
+Received: from [::1] (port=38774 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k0kzd-0003lf-Fu; Wed, 29 Jul 2020 08:15:33 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:46115)
+	id 1k0lQ8-000598-Nx; Wed, 29 Jul 2020 08:42:56 -0400
+Received: from mail-qt1-f181.google.com ([209.85.160.181]:36348)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <zh.heng96@gmail.com>) id 1k0kza-0003cO-3G
- for usrp-users@lists.ettus.com; Wed, 29 Jul 2020 08:15:30 -0400
-Received: by mail-ot1-f51.google.com with SMTP id v6so6537570ota.13
- for <usrp-users@lists.ettus.com>; Wed, 29 Jul 2020 05:15:09 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1k0lQ4-00052Y-P3
+ for usrp-users@lists.ettus.com; Wed, 29 Jul 2020 08:42:52 -0400
+Received: by mail-qt1-f181.google.com with SMTP id t23so14328320qto.3
+ for <usrp-users@lists.ettus.com>; Wed, 29 Jul 2020 05:42:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=3itkOg96GPxC97ixygM+YgYcAmXGC46dWtIdQr93bH4=;
- b=m18+wr2xXxG0o6zx4x1k/u/lacJzbp3oi8zbMYr7pImTH5sADbgoyUgJ60aZrZREwb
- RBzUfX2BFaE/3NyrRUrPpbXuEo9ES3a9vfBPwtuFPk8J3BLikQR0oZaZRlhE+lSAEWD8
- PIQK/ZkBcv2fppBQBytIA1VF1Wlj3baPJh7qN1maT3WoeiuOVDNkG5Z10tHCCblCTmyE
- gT/BCOK/gcSelETYAGlx0gGhabRYs23/svKIMJZVcJ/2EOWMWOkgEYI3PucSpQrA4+/j
- OYF9dL2cvoAkpRq3LS3Z+Vx72qCBA9HNcL7hs1sNsx5WQycK9CTU7+XfiVGCKVHn2C6b
- 46yQ==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=GxpMiqoPNy3eVvp31ykxt9x0o5/cz8/9NQW3NDYmG1s=;
+ b=AFtZNj1VmOqTnl9QF12VZc/bVSWhO0zz1SGqOfVbuXuVuwFRKLMx0INgmJH0f1H/dv
+ 4fP2guFjwlLlHUZNsolzux19jQ2Eu4kNWWCUzmo0jUA+Am9V7VG+rzxFeeqHeyzIKqM3
+ M+Eddh9UYSPmMP4BxDjjNUoJF2dHgdwfNGLa7rpbKjHnm3970+0kOfDfl043Tk7uatl1
+ EnfefW+aoPAPEETiJlAFLnc4MUOwNax+hw0pqyBdrYDI3hoHInj6m7f0sKZ7wV3w7WJ3
+ VyWJ6OAOvCvSWuaD0THKGm2KcpsKgo6deNqKlSHxFJ0cXu5Vy+rRIxs9EEbifbPX3W2r
+ W4QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=3itkOg96GPxC97ixygM+YgYcAmXGC46dWtIdQr93bH4=;
- b=QdhjAoCyFgBrbrg/QYfAdyTHjIciYWFjr7RvtQP2+SD4hmzJmSdfqbDVnsYctKXasY
- kundFjc04A4pyV3IDISSUOrigtOmYN/+az9vXmEAbAcT+XzjWLM0Z4nkChsKvBeRCZLF
- 6JK+9Ivxp+y0aeUo4e8E0L0XH9LUK6kxHyQDGPooRNkydk7+zvV9449s6oa+PNP0syto
- f7UHvOyfSX3iZjpfVPAtO/GUhNJR7KbSDtbi6WLaMPQrgREOfa04h13qTsWXnl8G+gti
- HwrJhL1zd4MzsHHayZZWd1Rq3WZt5J3zBeMoA8tC/TxnGA3d59HREAWQ8yFOqgnTppcT
- Cd6A==
-X-Gm-Message-State: AOAM533LlnX7qqvO4B+bPnYlbglX3yhoiojqPOzri9mJTPmHJe52T1C1
- WcsO0U/QuzLRsKgmviIKcjBtDRkJwCYoha5KPHFuzT4q
-X-Google-Smtp-Source: ABdhPJwjyUWg9l9qxzANTzdjtymM4DoVQ7emp0pQJa7gY30I/HqGSxpIv7k0dO7Rm76+mFrGy2vQ4YECSe1O/sZf3v4=
-X-Received: by 2002:a9d:6c54:: with SMTP id g20mr28586526otq.120.1596024889156; 
- Wed, 29 Jul 2020 05:14:49 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=GxpMiqoPNy3eVvp31ykxt9x0o5/cz8/9NQW3NDYmG1s=;
+ b=Id51BMAwqbRadloBaBZAYKnk7XKVRx322KUu7rbqrXBRdTW8yvotDhZjorRcQ3c1Nn
+ BCMxZhqSh3Mcx6csqKvSaUv6HuEDMmBBCkjJUZWppPmjqHCr8K0+vL3ZmIfIRbr47KLb
+ XfSDmlVSnGxnxpi0j0voz2JVNVsE9Wf6tKNP5Xy/LAmiufPZsTXVt92GlJTmtNLuPj60
+ OBQkclmkZ6zaj9AGnu8zIq7sNpbEuKwQwfglMF1JzbZlL7+yqsjNjmU4Ulb0DI5wq28H
+ pzK+6ZynLsspW4sJo/5W9Ci21qkUTWtxBJXYKuIWbcKpiYperEiqW57m66m4A64luYbp
+ /0Tw==
+X-Gm-Message-State: AOAM531MAJB+Q0AznTqKA7lfc0PMtEQ/ercnep9WfpGRE4CEkDiHI9PB
+ kZqTjXjAC/tbWpzmb8Rbg3B5C+67Za4=
+X-Google-Smtp-Source: ABdhPJyh+zJqaE44I061BsnHV0WrZjIGVO9QzIZ+2gzI+/ntKyc5dWaO8Lte+VRBuRQlmiuDZE8c3A==
+X-Received: by 2002:aed:3789:: with SMTP id j9mr13734644qtb.251.1596026531764; 
+ Wed, 29 Jul 2020 05:42:11 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
+ [174.95.14.148])
+ by smtp.googlemail.com with ESMTPSA id g11sm1356229qke.128.2020.07.29.05.42.10
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 29 Jul 2020 05:42:11 -0700 (PDT)
+Message-ID: <5F216EA2.2000300@gmail.com>
+Date: Wed, 29 Jul 2020 08:42:10 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Date: Wed, 29 Jul 2020 20:14:37 +0800
-Message-ID: <CAAM_mTRyRd2B7x0ab+K4hT+O+FSWhz-kOsdUGd-ZkZtDZkgKrg@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-Subject: [USRP-users] SFP port1 of USRP N310 does not work
+References: <CAAM_mTRyRd2B7x0ab+K4hT+O+FSWhz-kOsdUGd-ZkZtDZkgKrg@mail.gmail.com>
+In-Reply-To: <CAAM_mTRyRd2B7x0ab+K4hT+O+FSWhz-kOsdUGd-ZkZtDZkgKrg@mail.gmail.com>
+Subject: Re: [USRP-users] SFP port1 of USRP N310 does not work
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Heng Zhang via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Heng Zhang <zh.heng96@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5191142216738183040=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2952503378627583502=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,76 +82,121 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5191142216738183040==
-Content-Type: multipart/alternative; boundary="0000000000009229a105ab93806c"
+This is a multi-part message in MIME format.
+--===============2952503378627583502==
+Content-Type: multipart/alternative;
+ boundary="------------030907010500090204070102"
 
---0000000000009229a105ab93806c
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------030907010500090204070102
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Dear community,
+On 07/29/2020 08:14 AM, Heng Zhang via USRP-users wrote:
+> Dear community,
+>
+> I follow this guide 
+> https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide  
+> and now I can connect to N310 by RJ45 port. And I also can connect to 
+> SFP port0. However, when I  try to use SFP port1, it does not work. I 
+> found that the green LED above SFP port 1 does not even illuminate 
+> after connecting the PC to it. The network interface configuration of 
+> PC is shown as follows
+>
+> enp1s0    Link encap:Ethernet  HWaddr d4:5d:64:9c:d1:86
+>           inet addr:192.168.20.1  Bcast:192.168.20.255  Mask:255.255.255.0
+>           inet6 addr: fe80::3ac5:ee40:457b:3554/64 Scope:Link
+>           UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1
+>           RX packets:1311 errors:0 dropped:0 overruns:0 frame:0
+>           TX packets:1937 errors:0 dropped:0 overruns:0 carrier:0
+>           collisions:0 txqueuelen:1000
+>           RX bytes:191173 (191.1 KB)  TX bytes:249297 (249.2 KB)
+>
+> How can I use 10 Gb SFP port1? Any advice would be appreciated.
+>
+> Regards,
+> Heng
+>
+My guess is that you have a problem with your cabling, or the SFP+ 
+module that you plugged in to the USRP.
 
-I follow this guide
-https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide  and
-now I can connect to N310 by RJ45 port. And I also can connect to SFP
-port0. However, when I  try to use SFP port1, it does not work. I found
-that the green LED above SFP port 1 does not even illuminate after
-connecting the PC to it. The network interface configuration of PC is shown
-as follows
-
-enp1s0    Link encap:Ethernet  HWaddr d4:5d:64:9c:d1:86
-          inet addr:192.168.20.1  Bcast:192.168.20.255  Mask:255.255.255.0
-          inet6 addr: fe80::3ac5:ee40:457b:3554/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1
-          RX packets:1311 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:1937 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000
-          RX bytes:191173 (191.1 KB)  TX bytes:249297 (249.2 KB)
-
-How can I use 10 Gb SFP port1? Any advice would be appreciated.
-
-Regards,
-Heng
-
---0000000000009229a105ab93806c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Dear community,<div><br></div><div><span style=3D"font-fam=
-ily:Arial;font-size:14px">I follow this guide=C2=A0</span><a href=3D"https:=
-//kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide" target=3D"_b=
-lank" style=3D"color:rgb(6,73,119);font-family:Arial;font-size:14px">https:=
-//kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide</a><span styl=
-e=3D"font-family:Arial;font-size:14px">=C2=A0 and now I can connect to N310=
- by RJ45 port. And I also can connect to SFP port0. However, when I=C2=A0 t=
-ry to use SFP port1, it does not work. I found that the green LED above SFP=
- port 1 does not even illuminate after connecting the PC to it. The network=
- interface configuration of PC is shown as follows</span></div><div><span s=
-tyle=3D"font-family:Arial;font-size:14px"><br></span></div><div>enp1s0 =C2=
-=A0 =C2=A0Link encap:Ethernet =C2=A0HWaddr d4:5d:64:9c:d1:86 =C2=A0<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 inet addr:192.168.20.1 =C2=A0Bcast:192.168.=
-20.255 =C2=A0Mask:255.255.255.0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 inet6=
- addr: fe80::3ac5:ee40:457b:3554/64 Scope:Link<br>=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 UP BROADCAST RUNNING MULTICAST =C2=A0MTU:9000 =C2=A0Metric:1<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 RX packets:1311 errors:0 dropped:0 overr=
-uns:0 frame:0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 TX packets:1937 errors:=
-0 dropped:0 overruns:0 carrier:0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 coll=
-isions:0 txqueuelen:1000 <br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 RX bytes:19=
-1173 (191.1 KB) =C2=A0TX bytes:249297 (249.2 KB)<span style=3D"font-family:=
-Arial;font-size:14px"><br></span></div><div><span style=3D"font-family:Aria=
-l;font-size:14px"><br></span></div><div><font color=3D"#000000" face=3D"Luc=
-ida Sans Unicode, Lucida Grande, sans-serif"><span style=3D"font-size:14px"=
->How can I use 10 Gb SFP port1? Any advice would be appreciated.</span></fo=
-nt></div><div><font color=3D"#000000" face=3D"Lucida Sans Unicode, Lucida G=
-rande, sans-serif"><span style=3D"font-size:14px"><br></span></font></div><=
-div><font color=3D"#000000" face=3D"Lucida Sans Unicode, Lucida Grande, san=
-s-serif"><span style=3D"font-size:14px">Regards,</span></font></div><div><f=
-ont color=3D"#000000" face=3D"Lucida Sans Unicode, Lucida Grande, sans-seri=
-f"><span style=3D"font-size:14px">Heng</span></font></div></div>
-
---0000000000009229a105ab93806c--
+What SFP+ module are you using?  What type of wiring/optical?
 
 
---===============5191142216738183040==
+
+--------------030907010500090204070102
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 07/29/2020 08:14 AM, Heng Zhang via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAAM_mTRyRd2B7x0ab+K4hT+O+FSWhz-kOsdUGd-ZkZtDZkgKrg@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">Dear community,
+        <div><br>
+        </div>
+        <div><span style="font-family:Arial;font-size:14px">I follow
+            this guide </span><a moz-do-not-send="true"
+href="https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide"
+            target="_blank"
+            style="color:rgb(6,73,119);font-family:Arial;font-size:14px">https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide</a><span
+            style="font-family:Arial;font-size:14px">  and now I can
+            connect to N310 by RJ45 port. And I also can connect to SFP
+            port0. However, when I  try to use SFP port1, it does not
+            work. I found that the green LED above SFP port 1 does not
+            even illuminate after connecting the PC to it. The network
+            interface configuration of PC is shown as follows</span></div>
+        <div><span style="font-family:Arial;font-size:14px"><br>
+          </span></div>
+        <div>enp1s0    Link encap:Ethernet  HWaddr d4:5d:64:9c:d1:86  <br>
+                    inet addr:192.168.20.1  Bcast:192.168.20.255
+           Mask:255.255.255.0<br>
+                    inet6 addr: fe80::3ac5:ee40:457b:3554/64 Scope:Link<br>
+                    UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1<br>
+                    RX packets:1311 errors:0 dropped:0 overruns:0
+          frame:0<br>
+                    TX packets:1937 errors:0 dropped:0 overruns:0
+          carrier:0<br>
+                    collisions:0 txqueuelen:1000 <br>
+                    RX bytes:191173 (191.1 KB)  TX bytes:249297 (249.2
+          KB)<span style="font-family:Arial;font-size:14px"><br>
+          </span></div>
+        <div><span style="font-family:Arial;font-size:14px"><br>
+          </span></div>
+        <div><font color="#000000" face="Lucida Sans Unicode, Lucida
+            Grande, sans-serif"><span style="font-size:14px">How can I
+              use 10 Gb SFP port1? Any advice would be appreciated.</span></font></div>
+        <div><font color="#000000" face="Lucida Sans Unicode, Lucida
+            Grande, sans-serif"><span style="font-size:14px"><br>
+            </span></font></div>
+        <div><font color="#000000" face="Lucida Sans Unicode, Lucida
+            Grande, sans-serif"><span style="font-size:14px">Regards,</span></font></div>
+        <div><font color="#000000" face="Lucida Sans Unicode, Lucida
+            Grande, sans-serif"><span style="font-size:14px">Heng</span></font></div>
+      </div>
+      <br>
+    </blockquote>
+    My guess is that you have a problem with your cabling, or the SFP+
+    module that you plugged in to the USRP.<br>
+    <br>
+    What SFP+ module are you using?  What type of wiring/optical?<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------030907010500090204070102--
+
+
+--===============2952503378627583502==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -150,5 +207,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5191142216738183040==--
+--===============2952503378627583502==--
 
