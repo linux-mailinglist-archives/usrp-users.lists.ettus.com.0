@@ -2,62 +2,68 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5D26232A45
-	for <lists+usrp-users@lfdr.de>; Thu, 30 Jul 2020 05:11:37 +0200 (CEST)
-Received: from [::1] (port=45254 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65CB623361C
+	for <lists+usrp-users@lfdr.de>; Thu, 30 Jul 2020 17:56:51 +0200 (CEST)
+Received: from [::1] (port=50794 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k0yyl-0007Ys-Eg; Wed, 29 Jul 2020 23:11:35 -0400
-Received: from mail-il1-f170.google.com ([209.85.166.170]:39084)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k0yyh-0007Sk-IK
- for usrp-users@lists.ettus.com; Wed, 29 Jul 2020 23:11:31 -0400
-Received: by mail-il1-f170.google.com with SMTP id z17so6178664ill.6
- for <usrp-users@lists.ettus.com>; Wed, 29 Jul 2020 20:11:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=FgC9Cl0OUz0P0bBQm6gPzFvBBY4FNZePNczc78yYINc=;
- b=KraOz9+yOCsP6gfPvQCiL2hGzEcOwcZPUiDzUhG7rzJMM9ithdrNXD0HsKdK1Neyzo
- IlOdGrH7y7X+SyPDEXW72M13AKZ/GpJ4NRWRn2F1IADeJBftD+f+r/r+GE5kkXAOCflR
- L+bcvkr0m+saf7Y7GFHkAQy2mLq4aBKl45ZtyqxMQEDS6XAMEq/M6ImpH1X56vtsWVOy
- OazZOnHtqJ5yrmIR7Wxz/O8tjNp2Zjq7q7rCeF5stz1IoZ6AglNDBKKgA5gFUnYGOriS
- zgFceVaWuM5VqgTLywo0orsGCHVdLuGhyXD/DTu7tcqqm2EKPPKvimPJdfVphzIAB0Jt
- cNBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=FgC9Cl0OUz0P0bBQm6gPzFvBBY4FNZePNczc78yYINc=;
- b=G0fPjp7bSgk9XhFZ3gcfYXJgWUQshLe6pUCOStPiyA6LzMWFmFC5Gu+cDzWvFXMsT0
- /M2LJOjDTO1n8eqt/PLcMirWY5oI7I6GiCAjpVItVMVBGi5X+cItGiJ+VZ+prBgePYv0
- c/0x68pCEDxiPoOiAvZ72UmTJbeM31WW8HVlysr8AQ9CLoMJ1Lxx7L2XruPsm2jawwwA
- dMPUM4QPQp6aR1jFaIK+2ZdET9F1ArLv52IAQcruWIpdDlYp13wMQie3HJdYVF3QIhzb
- V7rqdOHZoForMW0jM54L9liDWnrPsqIm5plB4dKyGN8MJa1JENwPY6Jfp+yVxehuXCZX
- WywQ==
-X-Gm-Message-State: AOAM533V5/V+ZAgri/YHZhVWnBeWvV6kXA868LsbTHSaGEtdYSOtpMRM
- a+QrXdL91lm3zaivdSB2ySNhdNvJYho=
-X-Google-Smtp-Source: ABdhPJz2vtmu/vuwztp2zO5m9yucUREquQy4MpG9vYcZkn5mlf0R6BnZ/7HoapioVn7sSx8EGA4UBw==
-X-Received: by 2002:a92:c5c1:: with SMTP id s1mr30999739ilt.144.1596078650517; 
- Wed, 29 Jul 2020 20:10:50 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id n10sm1987161iom.21.2020.07.29.20.10.49
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 29 Jul 2020 20:10:50 -0700 (PDT)
-Message-ID: <5F223A39.2020708@gmail.com>
-Date: Wed, 29 Jul 2020 23:10:49 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1k1AvH-0007fZ-66; Thu, 30 Jul 2020 11:56:47 -0400
+Received: from ns13-777.999servers.com ([103.14.122.123]:45607)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <kpras@trilcomm.com>) id 1k1AvC-0007WN-NM
+ for usrp-users@lists.ettus.com; Thu, 30 Jul 2020 11:56:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=trilcomm.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+ MIME-Version:Message-ID:Date:Subject:In-Reply-To:References:Cc:To:From:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=oNkD7XHAsIh9uYLImiDniRZsTE/EsdXHmuTKGN8kzto=; b=qUiOsIgwhfjRzmvv/+mHABG7HP
+ 0c3HJk97P+uAaZ8bgiSWM495a7I84L5YS8uVPqSl7haDaYnCk/Csd/yTeiNEs8M5eJk9FBhuZwnwd
+ Q6h4jFWKjrvbShT6YG5q0DmAU0j2dwYWRSLejwIWGfckJ6cXf557Qzodufkm1U2KtAfA/XiTn7PQY
+ w8EBqgEML7LOvxPyaO7q8IpG2qGZReLYKDJ0EmP/flo7pQXiF8zoBP5/0KnkBXE5tL9jgyuwuVDzg
+ N3VvjYoMiXM8izP63IOYUIT69hI98stOVcLRJ9/hf3l4+dGpIzXyET3XBKMWk+AVsgIBQGYzVXc0e
+ iZ+bia3A==;
+Received: from [183.83.141.206] (port=46809 helo=AetherGT)
+ by ns13-777.999servers.com with esmtpsa (TLS1) tls
+ TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (Exim 4.93)
+ (envelope-from <kpras@trilcomm.com>)
+ id 1k1AuT-007YcY-HX; Thu, 30 Jul 2020 21:25:57 +0530
+To: =?iso-8859-1?Q?'Marcus_M=FCller'?= <marcus.mueller@ettus.com>,
+ <usrp-users@lists.ettus.com>
+Cc: "'Rao Yenamandra'" <yrao@trilcomm.com>
+References: <001b01d65f79$eae66ea0$c0b34be0$@com> <5F171581.7080201@gmail.com>
+ <003b01d65f7b$852d6850$8f8838f0$@com> <5F17172A.9040600@gmail.com>
+ <004301d65f7c$7138a750$53a9f5f0$@com> <5F1719EB.6000400@gmail.com>
+ <cf7f523f-4017-1467-4782-f06b9f0bc786@ettus.com> 
+In-Reply-To: 
+Date: Thu, 30 Jul 2020 21:26:00 +0530
+Message-ID: <000001d66689$ec1d8a80$c4589f80$@com>
 MIME-Version: 1.0
-To: Heng Zhang <zh.heng96@gmail.com>, usrp-users@lists.ettus.com
-References: <CAAM_mTRyRd2B7x0ab+K4hT+O+FSWhz-kOsdUGd-ZkZtDZkgKrg@mail.gmail.com>
- <5F216EA2.2000300@gmail.com>
- <1596027782808.5sfxlqzhnayn1yyxszocts5i@android.mail.163.com>
- <CAB__hTSwjcVT6u_h-spQ5+pk-=VV0QJDa0QBnYw3bMCt2Db=Cg@mail.gmail.com>
- <CAAM_mTTLSt=HO80J1f1=zNncevrdeyZ3jWK3NxzOse8nXv+ofQ@mail.gmail.com>
-In-Reply-To: <CAAM_mTTLSt=HO80J1f1=zNncevrdeyZ3jWK3NxzOse8nXv+ofQ@mail.gmail.com>
-Subject: Re: [USRP-users] SFP port1 of USRP N310 does not work
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdZfhaP0JHWKw2IvQ4aszYr2JszFUQAwoWTAAVy2WbAAM7DA0A==
+Content-Language: en-us
+x-cr-hashedpuzzle: jYs= ASfw CQ11 GAHF JFUo LiGN RBRV R4ER VFvd VG9r WmFG Wp6K
+ ctcr eYjM fbyY gkgB; 3;
+ bQBhAHIAYwB1AHMALgBtAHUAZQBsAGwAZQByAEAAZQB0AHQAdQBzAC4AYwBvAG0AOwB1AHMAcgBwAC0AdQBzAGUAcgBzAEAAbABpAHMAdABzAC4AZQB0AHQAdQBzAC4AYwBvAG0AOwB5AHIAYQBvAEAAdAByAGkAbABjAG8AbQBtAC4AYwBvAG0A;
+ Sosha1_v1; 7; {D8C4EC8D-A37C-4FDE-8C78-DBDD1F9EFD8F};
+ awBwAHIAYQBzAEAAdAByAGkAbABjAG8AbQBtAC4AYwBvAG0A;
+ Thu, 30 Jul 2020 15:55:55 GMT;
+ WwBVAFMAUgBQACAAQgAyADEAMABdACAAVgBlAHIAeQAgAEgAaQBnAGgAIABOAG8AaQBzAGUAIABwAG8AdwBlAHIAIABhAHQAIAByAGUAYwBlAGkAdgBlAHIA
+x-cr-puzzleid: {D8C4EC8D-A37C-4FDE-8C78-DBDD1F9EFD8F}
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - ns13-777.999servers.com
+X-AntiAbuse: Original Domain - lists.ettus.com
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - trilcomm.com
+X-Get-Message-Sender-Via: ns13-777.999servers.com: authenticated_id:
+ kpras@trilcomm.com
+X-Authenticated-Sender: ns13-777.999servers.com: kpras@trilcomm.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [USRP-users] [USRP B210] Very High Noise power at receiver
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -69,9 +75,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7340191791262139788=="
+From: Prasad via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Prasad <kpras@trilcomm.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,318 +92,256 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============7340191791262139788==
-Content-Type: multipart/alternative;
- boundary="------------060404060001060604070607"
+Soft reminder!.
 
-This is a multi-part message in MIME format.
---------------060404060001060604070607
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Thanks!
 
-On 07/29/2020 10:16 PM, Heng Zhang wrote:
->   I found the SPF+ to RJ45 adapter I used only supports max 1.25Gb 
-> data rate. I will get a 10 Gb adapter. Btw, what type of wiring should 
-> I use, cat.6. or cat.7?
-https://www.lewan.com/blog/comparison-of-10gb-cabling-options-for-your-data-center
+-----Original Message-----
+From: Prasad [mailto:kpras@trilcomm.com] =
 
->
-> Rob Kossler <rkossler@nd.edu <mailto:rkossler@nd.edu>> 于2020年7月29日 
-> 周三 下午9:45写道：
->
->     Are you using the XG version of the FPGA image?
->
->     On Wed, Jul 29, 2020 at 9:03 AM Heng Zhang via USRP-users
->     <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>
->     wrote:
->
->         The SFP+ module and optical I used are attchment when buying
->         USRP N310. I will check them.
->
->         	
->         Heng Zhang
->         邮 箱：zh.heng96@gmail.com
->
->         <https://maas.mail.163.com/dashi-web-extend/html/proSignature.html?&name=Heng+Zhang&uid=zh.heng96%40gmail.com&ftlId=1&iconUrl=https%3A%2F%2Fmail-online.nosdn.127.net%2Fqiyelogo%2FdefaultAvatar.png&items=%5B%22%E9%82%AE%E7%AE%B1%EF%BC%9Azh.heng96%40gmail.com%22%5D>
->
->
->         签 名由 网易邮箱 大师
->         <https://mail.163.com/dashi/dlpro.html?from=mail88> 定制
->
->                 On 07/29/2020 20:42, Marcus D. Leech via USRP-users
->                 <mailto:usrp-users@lists.ettus.com> wrote:
->                 On 07/29/2020 08:14 AM, Heng Zhang via USRP-users wrote:
->>                 Dear community,
+Sent: Wednesday, July 29, 2020 8:48 PM
+To: 'Prasad'; 'Marcus M=FCller'; 'usrp-users@lists.ettus.com'
+Subject: RE: [USRP-users] 1 Ts delay in USRP B210
+
+Hi Muller, =
+
+
+Just a quick question.
+During our 5G-NR integration with USRP B210, we observe very high noise
+power at receiver.
+Is it expected behavior ?
+PBCH rsrp: -13.775554 dBm, SNR: -12.942591 dB, NOISE_POWER: -0.832963 dBm,
+rssi: 1.643662dBm.
+
+Applied gain in USRP:
+Tx Gain: 45
+Rx Gain: 45
+Transmit power:- 0dBm.
+
+Regards,
+Prasad.
+
+-----Original Message-----
+From: Prasad [mailto:kpras@trilcomm.com] =
+
+Sent: Wednesday, July 22, 2020 10:21 PM
+To: 'Marcus M=FCller'; 'usrp-users@lists.ettus.com'
+Subject: RE: [USRP-users] 1 Ts delay in USRP B210
+
+Thanks! a lot Marcus M and Marcus D for your valuable information.
+
+Thanks,
+
+-----Original Message-----
+From: Marcus M=FCller [mailto:marcus.mueller@ettus.com] =
+
+Sent: Tuesday, July 21, 2020 11:07 PM
+To: usrp-users@lists.ettus.com; Prasad
+Subject: Re: [USRP-users] 1 Ts delay in USRP B210
+
+Hello Prasad,
+
+I second everything Marcus L said, and will add:
+
+In your first email you said this is about the UE.
+
+UE (user equipment) are normally things like phones. These don't have
+any great clocks of their own. They derive their clocks from that of the
+network.
+
+Sure, for prototyping, reducing the frequency error makes sense, but
+even if both your basestation (gNodeB in 5G jargon) and your UE have
+atomic clocks, they will be unsynchronized if either moves. Doppler!
+
+So, in the end, if you're not in the business of evaluating
+synchronization algorithms, you're probably requesting the wrong thing:
+Make your UE implementation extract frequency information from the
+received downlink signal (there's plenty of implicit and explicit info
+in LTE/5G for exactly that), and live with the oscillator you have - it
+only needs to be stable for short times. I'm almost certain that any
+smartphone will have a worse oscillator than your B210 has.
+
+Best regards,
+Marcus M
+
+On 21.07.20 18:38, Marcus D. Leech via USRP-users wrote:
+> On 07/21/2020 12:31 PM, Prasad wrote:
 >>
->>                 I follow this guide
->>                 https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guideand
->>                 now I can connect to N310 by RJ45 port. And I also
->>                 can connect to SFP port0. However, when I  try to use
->>                 SFP port1, it does not work. I found that the green
->>                 LED above SFP port 1 does not even illuminate after
->>                 connecting the PC to it. The network interface
->>                 configuration of PC is shown as follows
+>> Then how we can handle this drift in our 5G-NR stack by using
+>> /uhd_rx_streamer_issue_stream_cmd/?
 >>
->>                 enp1s0    Link encap:Ethernet  HWaddr d4:5d:64:9c:d1:86
->>                           inet addr:192.168.20.1
->>                  Bcast:192.168.20.255  Mask:255.255.255.0
->>                           inet6 addr: fe80::3ac5:ee40:457b:3554/64
->>                 Scope:Link
->>                           UP BROADCAST RUNNING MULTICAST  MTU:9000
->>                  Metric:1
->>                           RX packets:1311 errors:0 dropped:0
->>                 overruns:0 frame:0
->>                           TX packets:1937 errors:0 dropped:0
->>                 overruns:0 carrier:0
->>                           collisions:0 txqueuelen:1000
->>                           RX bytes:191173 (191.1 KB)  TX bytes:249297
->>                 (249.2 KB)
+>> Or we should go with GPSDO/external clock?
 >>
->>                 How can I use 10 Gb SFP port1? Any advice would be
->>                 appreciated.
+>> Thanks,
 >>
->>                 Regards,
->>                 Heng
+> Well, since most users on here aren't experts on 5G stacks, me included,
+> I can't tell you what to do to your stack to handle
+> =A0 clock drift.=A0 But I WILL say that clock drift is an inevitable issu=
+e,
+> and as you get better clocks, the scale of that issue becomes
+> =A0 smaller as you spend more money on better clocks.
+> =
+
+> A built-in GPSDO would not be a bad investment if clock drift at a scale
+> of 0.8PPM is an issue for your implementation.
+> =
+
+> Many digital demodulators implement algorithms for dealing with
+> clock-drift and imprecision on the rx side using PLLs and the like.
+> =A0 But for 5G I have no idea how that would play out.
+> =
+
+> =
+
+>> *From:*Marcus D. Leech [mailto:patchvonbraun@gmail.com]
+>> *Sent:* Tuesday, July 21, 2020 9:56 PM
+>> *To:* Prasad; usrp-users@lists.ettus.com
+>> *Subject:* Re: [USRP-users] 1 Ts delay in USRP B210
 >>
->                 My guess is that you have a problem with your cabling,
->                 or the SFP+ module that you plugged in to the USRP.
->
->                 What SFP+ module are you using?  What type of
->                 wiring/optical?
->
->
->         _______________________________________________
->         USRP-users mailing list
->         USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+>> On 07/21/2020 12:25 PM, Prasad wrote:
+>>
+>> =A0=A0=A0 We are using internal clock, don=92t use any GPSDO or external=
+ clock.
+>>
+>> =A0=A0=A0 So for internal clock is this expected?
+>>
+>> =A0=A0=A0 Thanks,
+>>
+>> The internal clock is specced to +/- 2PPM.=A0=A0 You're seeing much less
+>> than that, so it's within spec.
+>>
+>>
+>>
+>> *From:*USRP-users [mailto:usrp-users-bounces@lists.ettus.com] *On
+>> Behalf Of *Marcus D. Leech via USRP-users
+>> *Sent:* Tuesday, July 21, 2020 9:49 PM
+>> *To:* usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
+>> *Subject:* Re: [USRP-users] 1 Ts delay in USRP B210
+>>
+>> On 07/21/2020 12:13 PM, Prasad via USRP-users wrote:
+>>
+>> =A0=A0=A0 Soft reminder!
+>>
+>> =A0=A0=A0 Thanks,
+>>
+>> =A0=A0=A0 *From:*Prasad [mailto:kpras@trilcomm.com]
+>> =A0=A0=A0 *Sent:* Monday, July 20, 2020 7:58 PM
+>> =A0=A0=A0 *To:* 'usrp-users@lists.ettus.com
+>> <mailto:usrp-users@lists.ettus.com>'
+>> =A0=A0=A0 *Cc:* 'Rao Yenamandra'
+>> =A0=A0=A0 *Subject:* 1 Ts delay in USRP B210
+>>
+>> =A0=A0=A0 Dear Team.
+>>
+>> =A0=A0=A0 Hope you are doing well and safe.
+>>
+>> =A0=A0=A0 We are bringing up our NR-5G UE stack with USRP B210.
+>>
+>> =A0=A0=A0 If time permits, would you pls. reply to below concern with yo=
+ur
+>> =A0=A0=A0 valuable information.
+>>
+>> =A0=A0=A0 During the synchronization procedure, we observe atleast /=B1/1
+>> =A0=A0=A0 /Ts/ (Sampling Time) drift in rx streamer in every=A0 ~40ms ti=
+me
+>> period.
+>>
+>> =A0=A0=A0 Are we missing any time_spec during /uhd_rx_streamer_recv/ api=
+ or
+>> =A0=A0=A0 in /uhd_tx_streamer_send/ ?
+>>
+>> =A0=A0=A0 Master clock rate: 30.72e6
+>>
+>> =A0=A0=A0 Sampling rate: 30.72e6
+>>
+>> =A0=A0=A0 Carrier frequency: 3.8e9
+>>
+>> =A0=A0=A0 We use one B210 to transmit time domain samples back to back a=
+nd
+>> =A0=A0=A0 others to receive.
+>>
+>> =A0=A0=A0 Log snippet:
+>>
+>> =A0=A0=A0 Init PSS detected with lag: /4469/ (/PSS detection offset from=
+ the
+>> =A0=A0=A0 slot boundary/ )
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4469
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4469
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4469
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4470 =E01 Ts drift
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4470
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4470
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4471 =E01 Ts drift.
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4472=E01 Ts drift
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4472
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4472
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4484 =E012 Ts drift
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Thanks! in advance.
+>>
+>> =A0=A0=A0 Regards,
+>>
+>> =A0=A0=A0 Prasad.
+>>
+>> Are you just using the on-board reference clock, or using something
+>> like a GPS module?
+>>
+>> The drift you show is roughly 0.8PPM (if I've done my math correctly),
+>> which is well within spec for this board without a better reference
+>> clock.
+>>
+>>
+>>
+> =
+
+> =
+
+> =
+
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> =
 
 
---------------060404060001060604070607
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 07/29/2020 10:16 PM, Heng Zhang
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAAM_mTTLSt=HO80J1f1=zNncevrdeyZ3jWK3NxzOse8nXv+ofQ@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">  I found the SPF+ to RJ45 adapter I used only
-        supports max 1.25Gb data rate. I will get a 10 Gb adapter. Btw,
-        what type of wiring should I use, cat.6. or cat.7?  <br>
-      </div>
-    </blockquote>
-<a class="moz-txt-link-freetext" href="https://www.lewan.com/blog/comparison-of-10gb-cabling-options-for-your-data-center">https://www.lewan.com/blog/comparison-of-10gb-cabling-options-for-your-data-center</a><br>
-    <br>
-    <blockquote
-cite="mid:CAAM_mTTLSt=HO80J1f1=zNncevrdeyZ3jWK3NxzOse8nXv+ofQ@mail.gmail.com"
-      type="cite"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">Rob Kossler &lt;<a
-            moz-do-not-send="true" href="mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt;
-          于2020年7月29日周三 下午9:45写道：<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir="ltr">Are you using the XG version of the FPGA image?</div>
-          <br>
-          <div class="gmail_quote">
-            <div dir="ltr" class="gmail_attr">On Wed, Jul 29, 2020 at
-              9:03 AM Heng Zhang via USRP-users &lt;<a
-                moz-do-not-send="true"
-                href="mailto:usrp-users@lists.ettus.com" target="_blank">usrp-users@lists.ettus.com</a>&gt;
-              wrote:<br>
-            </div>
-            <blockquote class="gmail_quote" style="margin:0px 0px 0px
-              0.8ex;border-left:1px solid
-              rgb(204,204,204);padding-left:1ex">
-              <div>
-                <div
-                  style="line-height:1.6;font-family:苹方,微软雅黑,sans-serif">The
-                  SFP+ module and optical I used are attchment when
-                  buying USRP N310. I will check them.<br>
-                  <br>
-                </div>
-                <div> <a moz-do-not-send="true"
-href="https://maas.mail.163.com/dashi-web-extend/html/proSignature.html?&amp;name=Heng+Zhang&amp;uid=zh.heng96%40gmail.com&amp;ftlId=1&amp;iconUrl=https%3A%2F%2Fmail-online.nosdn.127.net%2Fqiyelogo%2FdefaultAvatar.png&amp;items=%5B%22%E9%82%AE%E7%AE%B1%EF%BC%9Azh.heng96%40gmail.com%22%5D"
-                    style="display:block;background:rgb(255,255,255);max-width:400px;padding:15px
-                    0px 10px;text-decoration:none;outline:none"
-                    target="_blank">
-                    <table
-style="width:100%;max-width:100%;table-layout:fixed;border-collapse:collapse;color:rgb(155,158,161);font-size:14px;line-height:1.3"
-                      cellpadding="0">
-                      <tbody
-                        style="word-break:break-all;font-family:&quot;PingFang
-                        SC&quot;,&quot;Hiragino Sans
-                        GB&quot;,&quot;WenQuanYi Micro
-                        Hei&quot;,&quot;Microsoft
-                        Yahei&quot;,微软雅黑,verdana">
-                        <tr>
-                          <td
-                            style="padding:0px;box-sizing:border-box;width:38px"
-                            width="38"> <img moz-do-not-send="true"
-                              style="vertical-align: middle; width:
-                              38px; height: 38px; border-radius: 50%;"
-                              src="https://mail-online.nosdn.127.net/qiyelogo/defaultAvatar.png"
-                              height="38" width="38"> </td>
-                          <td style="padding:0px 0px 0px
-                            10px;color:rgb(49,53,59)">
-                            <div
-style="font-size:16px;font-weight:bold;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Heng
-                              Zhang</div>
-                          </td>
-                        </tr>
-                        <tr width="100%"
-                          style="width:100%;font-size:14px">
-                          <td colspan="2" style="padding:10px 0px
-                            0px;width:100%;font-size:14px">
-                            <div
-                              style="width:100%;word-break:break-all;font-size:14px">邮
-                              箱：zh.heng96@gmail.com</div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </a>
-                  <div>
-                    <p style="border-top:1px solid
-rgb(229,229,229);padding-top:8px;font-size:12px;color:rgb(182,184,187);line-height:1.833">签
-                      名由 <a moz-do-not-send="true"
-                        href="https://mail.163.com/dashi/dlpro.html?from=mail88"
-style="color:rgb(106,168,246);text-decoration:none" target="_blank">网易邮箱
-                        大师</a> 定制</p>
-                  </div>
-                  <blockquote
-id="gmail-m_7050889868639765546gmail-m_5266112649428560500ntes-andriodmail-quote"
-                    style="margin:0px;padding:0px;border:none">
-                    <blockquote
-id="gmail-m_7050889868639765546gmail-m_5266112649428560500ntes-andriodmail-quote"
-                      style="margin:0px;padding:0px;border:none">
-                      <div
-style="background-color:rgb(242,242,242);color:black;padding-top:6px;padding-bottom:6px;border-radius:3px;margin-top:45px;margin-bottom:20px">
-                        <div
-style="font-size:14px;line-height:1.5;word-break:break-all;margin-left:10px;margin-right:10px">On
-                          <span>07/29/2020 20:42</span>, <a
-                            moz-do-not-send="true"
-                            style="text-decoration:none;color:rgb(42,151,255)"
-                            href="mailto:usrp-users@lists.ettus.com"
-                            target="_blank">Marcus D. Leech via
-                            USRP-users</a> wrote:</div>
-                      </div>
-                      <div bgcolor="#FFFFFF">
-                        <div>On 07/29/2020 08:14 AM, Heng Zhang via
-                          USRP-users wrote:<br>
-                        </div>
-                        <blockquote type="cite">
-                          <div dir="ltr">Dear community,
-                            <div><br>
-                            </div>
-                            <div><span
-                                style="font-family:Arial;font-size:14px">I
-                                follow this guide </span><a
-                                moz-do-not-send="true"
-href="https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide"
-style="color:rgb(6,73,119);font-family:Arial;font-size:14px"
-                                target="_blank">https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide</a><span
-                                style="font-family:Arial;font-size:14px"> 
-                                and now I can connect to N310 by RJ45
-                                port. And I also can connect to SFP
-                                port0. However, when I  try to use SFP
-                                port1, it does not work. I found that
-                                the green LED above SFP port 1 does not
-                                even illuminate after connecting the PC
-                                to it. The network interface
-                                configuration of PC is shown as follows</span></div>
-                            <div><span
-                                style="font-family:Arial;font-size:14px"><br>
-                              </span></div>
-                            <div>enp1s0    Link encap:Ethernet  HWaddr
-                              d4:5d:64:9c:d1:86  <br>
-                                        inet addr:192.168.20.1
-                               Bcast:192.168.20.255  Mask:255.255.255.0<br>
-                                        inet6 addr:
-                              fe80::3ac5:ee40:457b:3554/64 Scope:Link<br>
-                                        UP BROADCAST RUNNING MULTICAST
-                               MTU:9000  Metric:1<br>
-                                        RX packets:1311 errors:0
-                              dropped:0 overruns:0 frame:0<br>
-                                        TX packets:1937 errors:0
-                              dropped:0 overruns:0 carrier:0<br>
-                                        collisions:0 txqueuelen:1000 <br>
-                                        RX bytes:191173 (191.1 KB)  TX
-                              bytes:249297 (249.2 KB)<span
-                                style="font-family:Arial;font-size:14px"><br>
-                              </span></div>
-                            <div><span
-                                style="font-family:Arial;font-size:14px"><br>
-                              </span></div>
-                            <div><font color="#000000" face="Lucida Sans
-                                Unicode, Lucida Grande, sans-serif"><span
-                                  style="font-size:14px">How can I use
-                                  10 Gb SFP port1? Any advice would be
-                                  appreciated.</span></font></div>
-                            <div><font color="#000000" face="Lucida Sans
-                                Unicode, Lucida Grande, sans-serif"><span
-                                  style="font-size:14px"><br>
-                                </span></font></div>
-                            <div><font color="#000000" face="Lucida Sans
-                                Unicode, Lucida Grande, sans-serif"><span
-                                  style="font-size:14px">Regards,</span></font></div>
-                            <div><font color="#000000" face="Lucida Sans
-                                Unicode, Lucida Grande, sans-serif"><span
-                                  style="font-size:14px">Heng</span></font></div>
-                          </div>
-                          <br>
-                        </blockquote>
-                        My guess is that you have a problem with your
-                        cabling, or the SFP+ module that you plugged in
-                        to the USRP.<br>
-                        <br>
-                        What SFP+ module are you using?  What type of
-                        wiring/optical?<br>
-                        <br>
-                        <br>
-                      </div>
-                    </blockquote>
-                  </blockquote>
-                </div>
-              </div>
-              _______________________________________________<br>
-              USRP-users mailing list<br>
-              <a moz-do-not-send="true"
-                href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-              <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-            </blockquote>
-          </div>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------060404060001060604070607--
-
-
---===============7340191791262139788==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7340191791262139788==--
-
