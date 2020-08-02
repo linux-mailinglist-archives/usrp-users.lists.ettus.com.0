@@ -2,59 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87FB82355A1
-	for <lists+usrp-users@lfdr.de>; Sun,  2 Aug 2020 08:04:03 +0200 (CEST)
-Received: from [::1] (port=32848 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6465C2355B6
+	for <lists+usrp-users@lfdr.de>; Sun,  2 Aug 2020 08:37:08 +0200 (CEST)
+Received: from [::1] (port=33034 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k276C-0004fW-GK; Sun, 02 Aug 2020 02:03:56 -0400
-Received: from ns13-777.999servers.com ([103.14.122.123]:58140)
+	id 1k27cH-0006Ok-3L; Sun, 02 Aug 2020 02:37:05 -0400
+Received: from resqmta-po-05v.sys.comcast.net ([96.114.154.164]:33297)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <kpras@trilcomm.com>) id 1k2767-0004bG-IT
- for usrp-users@lists.ettus.com; Sun, 02 Aug 2020 02:03:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=trilcomm.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- MIME-Version:Message-ID:Date:Subject:In-Reply-To:References:Cc:To:From:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=2KzQd3GFBa37ei61IqRDuHSA+v7/9yk9sDJy3+KcyTY=; b=P12VdQYezsBnz4wmyCwB0pOUCr
- ZAAXBwroFtjtq6NYn0VYAWPqLaKxbEP+f4dUh600Rzx4vYE6GJCLeI8JvU1GirMnmMKEwQ73NLmaA
- WjZYQEyIKOKWF5O02pUBi7ZijUAk6zdXQD2z2hGLNOWbE89H3Vc8TgTjSepkn1Rsw9bTlrCSq4XgK
- l3p1CHRVEuKpfSpXsE7UiNix1U+3JU/nJXxRQdRil4H9h6ODHhszs3wH0OMT9qU2W+AEiRD57r5Kr
- x9g20jzZ26ZAjTto6k0jj3n0x6eWqwYZCp+bts0tgH13ckH0AWFvzZmETaVSgiTFYMsDkl8JGMNuD
- OiTJHnWw==;
-Received: from [183.83.141.206] (port=46116 helo=AetherGT)
- by ns13-777.999servers.com with esmtpsa (TLS1) tls
- TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (Exim 4.93)
- (envelope-from <kpras@trilcomm.com>)
- id 1k275O-0017eL-Cq; Sun, 02 Aug 2020 11:33:06 +0530
-To: =?iso-8859-1?Q?'Marcus_M=FCller'?= <marcus.mueller@ettus.com>,
- <usrp-users@lists.ettus.com>
-Cc: "'Rao Yenamandra'" <yrao@trilcomm.com>
+ (Exim 4.93) (envelope-from <w6rz@comcast.net>) id 1k27cD-0006Hk-SK
+ for usrp-users@lists.ettus.com; Sun, 02 Aug 2020 02:37:01 -0400
+Received: from resomta-po-19v.sys.comcast.net ([96.114.154.243])
+ by resqmta-po-05v.sys.comcast.net with ESMTP
+ id 27atkTyrFPoq227bYkSYZj; Sun, 02 Aug 2020 06:36:20 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+ s=20190202a; t=1596350180;
+ bh=IOTB9yDo8YLe/j4D+8b9yn9l77Gnq9wxlNagw5Pzdl8=;
+ h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
+ Content-Type;
+ b=iTLno4114M4ankdCuVV//epwvz7IhtoL/H+BDWaUqro8d/2vcYj/b5NpB9RG0LeU2
+ Y7wLv0IkxhrsCQG7uLBTO0Clkw5f7tl7yzPu2aUs6mITz480IHaoWnrYojI48lsuTX
+ gbsS/EupUFYwIbmw8HwasxucrYM2d1IRgrYLnuEDcmnua2yJ9F+pBIrgS21ee1BK8I
+ BINZnzK1e0zq/KfvqGKOp1AmRVV3p8Sko0Lv6M86YGVN/pLjXFy1zAILxNiodD4nvD
+ BsdJ1vrBzi43lOlZz+NrieqOVcLzCih03f0mRFFthZg9GjTyxMVYXl+eykiloWv+2X
+ MdsdklPn9abew==
+Received: from [IPv6:2601:647:4200:ea30:4d2d:6082:bf4a:94e5]
+ ([IPv6:2601:647:4200:ea30:4d2d:6082:bf4a:94e5])
+ by resomta-po-19v.sys.comcast.net with ESMTPSA
+ id 27bXkiybKtoQ727bYk39eN; Sun, 02 Aug 2020 06:36:20 +0000
+X-Xfinity-VMeta: sc=0.00;st=legit
+To: usrp-users@lists.ettus.com
 References: <001b01d65f79$eae66ea0$c0b34be0$@com> <5F171581.7080201@gmail.com>
  <003b01d65f7b$852d6850$8f8838f0$@com> <5F17172A.9040600@gmail.com>
  <004301d65f7c$7138a750$53a9f5f0$@com> <5F1719EB.6000400@gmail.com>
- <cf7f523f-4017-1467-4782-f06b9f0bc786@ettus.com> 
-In-Reply-To: 
-Date: Sun, 2 Aug 2020 11:33:05 +0530
-Message-ID: <000001d66892$9775c500$c6614f00$@com>
+ <cf7f523f-4017-1467-4782-f06b9f0bc786@ettus.com>
+ <000001d66892$9775c500$c6614f00$@com>
+Message-ID: <1cbe261c-2edb-885d-37a1-8589f71e9e3e@comcast.net>
+Date: Sat, 1 Aug 2020 23:36:19 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 12.0
-Thread-Index: AdZfhaP0JHWKw2IvQ4aszYr2JszFUQAwoWTAAVy2WbAAM7DA0ACCK1mw
-Content-Language: en-us
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - ns13-777.999servers.com
-X-AntiAbuse: Original Domain - lists.ettus.com
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - trilcomm.com
-X-Get-Message-Sender-Via: ns13-777.999servers.com: authenticated_id:
- kpras@trilcomm.com
-X-Authenticated-Sender: ns13-777.999servers.com: kpras@trilcomm.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+In-Reply-To: <000001d66892$9775c500$c6614f00$@com>
+Content-Language: en-US
 Subject: Re: [USRP-users] [USRP B210] Very High Noise power at receiver
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -67,10 +56,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Prasad via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Prasad <kpras@trilcomm.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ron Economos <w6rz@comcast.net>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,38 +73,29 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-
-Soft reminder!.
-
-Thanks!
-
------Original Message-----
-From: Prasad [mailto:kpras@trilcomm.com] =
-
-Sent: Wednesday, July 29, 2020 8:48 PM
-To: 'Prasad'; 'Marcus M=FCller'; 'usrp-users@lists.ettus.com'
-Subject: RE: [USRP-users] 1 Ts delay in USRP B210
-
-Hi Muller/All, =
-
-
-Just a quick question.
-During our 5G-NR integration with USRP B210, we observe very high noise
-power at receiver.
-Is it expected behavior ?
-PBCH rsrp: -13.775554 dBm, SNR: -12.942591 dB, NOISE_POWER: -0.832963 dBm,
-rssi: 1.643662dBm.
-
-Applied gain in USRP:
-Tx Gain: 45
-Rx Gain: 45
-Transmit power:- 0dBm.
-
-Regards,
-Prasad.
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+SW4gZnVsbCBkdXBsZXggYXBwbGljYXRpb25zLCBpdCdzIHZlcnkgbGlrZWx5IHRoYXQgeW91J3Jl
+IGludGVyZmVyaW5nIAp3aXRoIHlvdXJzZWxmLiBTb21lIHNvcnQgb2YgZmlsdGVyIG1heSBiZSBy
+ZXF1aXJlZCBvbiB0aGUgcmVjZWl2ZXIgdG8gCmF0dGVudWF0ZSB0aGUgdHJhbnNtaXR0ZXIgc2ln
+bmFsLgoKV2hhdCBraW5kIG9mIGZpbHRlciBkZXBlbmRzIG9uIHRoZSBzaXplIG9mIHRoZSBkdXBs
+ZXggZ2FwICh0aGUgZnJlcXVlbmN5IApzcGFuIGJldHdlZW4gdHJhbnNtaXQgYW5kIHJlY2VpdmUp
+LiBJZiB0aGUgZ2FwIGlzIGxhcmdlLCB0aGVuIHlvdSBjYW4gCmp1c3QgdXNlIGEgaGlnaCBvciBs
+b3cgcGFzcyBmaWx0ZXIuIEZvciBleGFtcGxlOgoKaHR0cHM6Ly93d3cubWluaWNpcmN1aXRzLmNv
+bS9XZWJTdG9yZS9kYXNoYm9hcmQuaHRtbD9tb2RlbD1WSEYtMTUwMCUyQgoKUm9uCgpPbiA4LzEv
+MjAgMjM6MDMsIFByYXNhZCB2aWEgVVNSUC11c2VycyB3cm90ZToKPiBTb2Z0IHJlbWluZGVyIS4K
+Pgo+IFRoYW5rcyEKPgo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tCj4gRnJvbTogUHJhc2Fk
+IFttYWlsdG86a3ByYXNAdHJpbGNvbW0uY29tXQo+IFNlbnQ6IFdlZG5lc2RheSwgSnVseSAyOSwg
+MjAyMCA4OjQ4IFBNCj4gVG86ICdQcmFzYWQnOyAnTWFyY3VzIE3DvGxsZXInOyAndXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20nCj4gU3ViamVjdDogUkU6IFtVU1JQLXVzZXJzXSAxIFRzIGRlbGF5
+IGluIFVTUlAgQjIxMAo+Cj4gSGkgTXVsbGVyL0FsbCwKPgo+IEp1c3QgYSBxdWljayBxdWVzdGlv
+bi4KPiBEdXJpbmcgb3VyIDVHLU5SIGludGVncmF0aW9uIHdpdGggVVNSUCBCMjEwLCB3ZSBvYnNl
+cnZlIHZlcnkgaGlnaCBub2lzZQo+IHBvd2VyIGF0IHJlY2VpdmVyLgo+IElzIGl0IGV4cGVjdGVk
+IGJlaGF2aW9yID8KPiBQQkNIIHJzcnA6IC0xMy43NzU1NTQgZEJtLCBTTlI6IC0xMi45NDI1OTEg
+ZEIsIE5PSVNFX1BPV0VSOiAtMC44MzI5NjMgZEJtLAo+IHJzc2k6IDEuNjQzNjYyZEJtLgo+Cj4g
+QXBwbGllZCBnYWluIGluIFVTUlA6Cj4gVHggR2FpbjogNDUKPiBSeCBHYWluOiA0NQo+IFRyYW5z
+bWl0IHBvd2VyOi0gMGRCbS4KPgo+IFJlZ2FyZHMsCj4gUHJhc2FkLgo+Cj4KPiBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGlu
+ZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMu
+Y29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGlu
+ZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20v
+bWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
