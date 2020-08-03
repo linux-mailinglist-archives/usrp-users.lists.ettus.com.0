@@ -2,63 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D44E23AA95
-	for <lists+usrp-users@lfdr.de>; Mon,  3 Aug 2020 18:35:36 +0200 (CEST)
-Received: from [::1] (port=47010 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7156A23AB52
+	for <lists+usrp-users@lfdr.de>; Mon,  3 Aug 2020 19:03:36 +0200 (CEST)
+Received: from [::1] (port=47278 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k2dQz-0007uc-3s; Mon, 03 Aug 2020 12:35:33 -0400
-Received: from mail-ej1-f47.google.com ([209.85.218.47]:38479)
+	id 1k2ds6-0002vH-5c; Mon, 03 Aug 2020 13:03:34 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:41548)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1k2dQu-0007mi-Or
- for usrp-users@lists.ettus.com; Mon, 03 Aug 2020 12:35:28 -0400
-Received: by mail-ej1-f47.google.com with SMTP id d6so25459867ejr.5
- for <usrp-users@lists.ettus.com>; Mon, 03 Aug 2020 09:35:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-transfer-encoding:content-language;
- bh=B1RCFL5547fdCO4XVLjS0fdaaPquib/705mTujQ1tYw=;
- b=knRzDTDPVc1oGqtW7vvNsQ6cJeN/D+ahBYuWPvqeGbwXQ5TJ7aSk5C1zgoN43clNlp
- oSpYlEXsg/uFV6vr5b3tCH4gbmYvmMuS52D7vXS9r+FdTCi06bqgevoN2W9WovJATT2m
- 1F9UHTPIWCmarDcxV5esGUlp2z9PNXv7DnnZtPqqKgs5S0MPoa+YPyaJe5h+/IeQiw8N
- cmz2kiA86YQMb7A5QAjHhYNmSDoX+9s7VarhsSk4kogWN5w3ZvILRjJsbjXlsBBVilQP
- 9f5nDKdYokjt6j1mME5rJw1IQjGSYA/u08uZtXE/0El909vOe7jChHiSrSun8LwCgsgg
- SYWA==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1k2ds2-0002mu-PL
+ for usrp-users@lists.ettus.com; Mon, 03 Aug 2020 13:03:30 -0400
+Received: by mail-oi1-f177.google.com with SMTP id b22so7904985oic.8
+ for <usrp-users@lists.ettus.com>; Mon, 03 Aug 2020 10:03:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Ija+Oo8J3RGBthCeGBgXtd2VSmsO4MXVFud1at0ptq4=;
+ b=kscqPOlBrUkQXdClvn9pyfMBTuZk/nhZZvW8/rrOnHRyJGw5NR2u/kYrQmb6aO/EwQ
+ G+smYa+OYotQvKp5LN8pstALChAQJ8nfT6zbfcCs119BdJbaqVraKlMVKeHUw39BsDur
+ XsS9MS+ujjAe4EzNEuJu3aLQfs465Gd/nac8u1CY6ZHWeSdQXqdGng9PtUpJZwUxW5uD
+ x0pJjlCLBl12OokGN00pTJL39e/7k76PrTmxWW0PWhbkzbEWG/sQV2CQu0x4QvMbnl80
+ K/661LkzUF3L1GGZfXzlRws3G1zPlt6kZzRadIbmN+26zb5lq5In5yGY9w/2qo7BuJec
+ w4OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=B1RCFL5547fdCO4XVLjS0fdaaPquib/705mTujQ1tYw=;
- b=cZKbfH2BZmNPaiu0sGPznAh0i8WyxVcLoffDRB5ppfzX5ocOooE/2dCoTYAqFThjJ4
- 2EjtSdtu9Zw73rozygeavk0rvQTWK/dnaDtH4MMpEsKYSt1xQ2wvHprbd1CQYeduyr9a
- X2drSuncCzR99EU1PmhMt03Aw4KoWPnOYQdwjb3dpZC9OyTUPIVsceTIE2KKPLfHcImP
- ezrOroMBuhpYj98b6aS2mjnrxLNSzcwkEhePMnl8TmtspIZPqbggu1zrkLACUzeVZlWG
- zlVJD0kQNUtW9MPqLq/Xg9UPHpcGnI2RBwmgglsa9ELZsgEnavHupsJnTL8dUoTCXtTE
- T7xg==
-X-Gm-Message-State: AOAM530ADNh3FjywaCTP5m+f7BeREtS0Vy/IOc+Lg3ZxNCQB1+4fZAZF
- lu9Es1ghP/UpNGw00d+4LN0xAnxKfX2gwA==
-X-Google-Smtp-Source: ABdhPJyQqx+nit4HLtiDXOXP+AIWWX44sq2dCCE3+nvxOccBB40RqjzcW4u7LA9Q3o4XzHCi8hVvYw==
-X-Received: by 2002:a17:907:11c3:: with SMTP id
- va3mr18091253ejb.497.1596472487521; 
- Mon, 03 Aug 2020 09:34:47 -0700 (PDT)
-Received: from [192.168.128.8]
- (HSI-KBW-46-223-163-149.hsi.kabel-badenwuerttemberg.de. [46.223.163.149])
- by smtp.gmail.com with ESMTPSA id c7sm4248168edf.1.2020.08.03.09.34.46
- for <usrp-users@lists.ettus.com>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 03 Aug 2020 09:34:46 -0700 (PDT)
-To: usrp-users@lists.ettus.com
-References: <CAKwrT9SNz7tFqmYrJthCfRUgrHCzqbkKrA+NDPX324NmeSxc-g@mail.gmail.com>
-Message-ID: <4aec2693-1fff-dec3-6444-021f62691f53@ettus.com>
-Date: Mon, 3 Aug 2020 18:34:46 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Ija+Oo8J3RGBthCeGBgXtd2VSmsO4MXVFud1at0ptq4=;
+ b=arDS7+NNcwyLyuZdfdU6f88tD8KMHdb+qRWIpInlQdH9hqwA9SCV6H0EdE/m3sTaRp
+ IMYe9sgI01WOZNGdV3uIQToUzdILeBq6Iv09s7l+eZYrekYjPJhJHTsp7NlLWxJB0thu
+ +YE+a4D+ETBxzPBTzzfp1/xz2ELPoavdj9JljByLeeWlSaE62HPLXumePj3nuey9DLgt
+ PMsQwwFh+c7GQ6i6cAZc4iK9KrcHisr67/+o5ccxdnxZRWM7hWhJt75ZD+McHNUr362C
+ mTDKFlqGkwURpQcK9U2Tv6A43vwL4dAtCsn0kxmmaobRFpJ9+HYJwF3HzGIKK8MvQONZ
+ bK8g==
+X-Gm-Message-State: AOAM531sT/s8EO9CfwyB9Oi8O9Z2J9kWI2d9H3Z3eoYXJVckbZ1E9klR
+ nzrk+AVGw1H13IluJa2PG+lSWeIfhDYbmQWEC4vUcQ==
+X-Google-Smtp-Source: ABdhPJw+mjbvM/vZ7mVpIb9uksXG1Z0rYDTM0aXOsEQFiUR30jORbcnPcTaj7weh2bxNOxWsYNA5UjWRSRU5rmMXTx0=
+X-Received: by 2002:aca:fd46:: with SMTP id b67mr247997oii.150.1596474169817; 
+ Mon, 03 Aug 2020 10:02:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAKwrT9SNz7tFqmYrJthCfRUgrHCzqbkKrA+NDPX324NmeSxc-g@mail.gmail.com>
-Content-Language: en-US
+References: <CAKwrT9SNz7tFqmYrJthCfRUgrHCzqbkKrA+NDPX324NmeSxc-g@mail.gmail.com>
+ <4aec2693-1fff-dec3-6444-021f62691f53@ettus.com>
+In-Reply-To: <4aec2693-1fff-dec3-6444-021f62691f53@ettus.com>
+Date: Mon, 3 Aug 2020 13:02:38 -0400
+Message-ID: <CAB__hTTAkcK_QbVHMJvct2XEMHiJ7HOktD0HQRgdT4Mc1ZvGVQ@mail.gmail.com>
+To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] CHIPSCOPE ERROR (RFNOC)
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -71,11 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============0234976734074611186=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,26 +75,139 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-RG9lcyByZW1vdmluZyBhbmQgYWRkaW5nIHRoZSBjaGlwc2NvcGUgYWdhaW4gaGVscCwgYW5kIG1h
-a2luZyBzdXJlCnlvdSdyZSByZWFsbHkgdXNpbmcgYWxsIHRoZSBjaGFubmVscyB0aGF0IHlvdXIg
-Y2hpcHNjb3BlIGltcGxlbWVudGF0aW9uIGhhcz8KCkJlc3QgcmVnYXJkcywKCk1hcmN1cwoKT24g
-MjguMDcuMjAgMDg6MTcsIEpheWFudCBDaGhpbGxhciB2aWEgVVNSUC11c2VycyB3cm90ZToKPiBI
-aSBldmVyeW9uZSwKPiBJIGFtIHRyeWluZyB0byBnZW5lcmF0ZSBhIGJpdHN0cmVhbSBmb3IgWDMx
-MCBib2FyZCB3aXRoIHRoZSBGRlQgYmxvY2sgYWxvbmcKPiB3aXRoIGZldyBvdGhlciBldHR1cyBw
-cm92aWRlZCBibG9ja3MuIEhvd2V2ZXIsIGF0IHRoZSB0aW1lIG9mIGxvZ2ljCj4gb3B0aW1pemF0
-aW9uIHN0ZXAgSSBnZXQgdGhpcyBlcnJvcgo+Cj4gRVJST1I6IFtDaGlwc2NvcGUgMTYtMjEzXSBU
-aGUgZGVidWcgcG9ydCAndV9pbGFfMC9wcm9iZTEnIGhhcyA5IHVuY29ubmVjdGVkCj4gY2hhbm5l
-bHMgKGJpdHMpLiBUaGlzIHdpbGwgY2F1c2UgZXJyb3JzIGR1cmluZyBpbXBsZW1lbnRhdGlvbi4K
-Pgo+IEnigJltIG5vdCBhYmxlIHRvIGlkZW50aWZ5IHRoZSBzb3VyY2Ugb2YgdGhpcyBlcnJvci4g
-QWxzbywgYmVmb3JlIHRoaXMKPiBiaXRzdHJlYW0gZ2VuZXJhdGlvbiBJIGRpZCBjcmVhdGUgYSBi
-aXRzdHJlYW0gd2hlcmUgSSB1c2VkIGNoaXBzY29wZSB1c2luZwo+IHRoZSBtZXRob2RlIGRlZmlu
-ZWQgaGVyZToKPgo+IGh0dHBzOi8va2IuZXR0dXMuY29tL0RlYnVnZ2luZ19GUEdBX2ltYWdlcwo+
-Cj4gQW5kIHdhcyBhYmxlIHRvIGRvIHRoYXQgd2l0aG91dCBhbnkgZXJyb3JzLiBIb3dldmVyLCBz
-aW5jZSB0aGVuIEkgaGF2ZSBiZWVuCj4gZ2V0dGluZyB0aGUgYWJvdmUgbWVudGlvbmVkIGVycm9y
-Lgo+Cj4gVGhhbmtzCj4KPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVz
-ZXJzX2xpc3RzLmV0dHVzLmNvbQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNf
-bGlzdHMuZXR0dXMuY29tCg==
+--===============0234976734074611186==
+Content-Type: multipart/alternative; boundary="000000000000c943c205abfc1b8a"
+
+--000000000000c943c205abfc1b8a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+perhaps re-checkout any files that are modified from the repo.
+
+On Mon, Aug 3, 2020 at 12:35 PM Marcus M=C3=BCller via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Does removing and adding the chipscope again help, and making sure
+> you're really using all the channels that your chipscope implementation
+> has?
+>
+> Best regards,
+>
+> Marcus
+>
+> On 28.07.20 08:17, Jayant Chhillar via USRP-users wrote:
+> > Hi everyone,
+> > I am trying to generate a bitstream for X310 board with the FFT block
+> along
+> > with few other ettus provided blocks. However, at the time of logic
+> > optimization step I get this error
+> >
+> > ERROR: [Chipscope 16-213] The debug port 'u_ila_0/probe1' has 9
+> unconnected
+> > channels (bits). This will cause errors during implementation.
+> >
+> > I=E2=80=99m not able to identify the source of this error. Also, before=
+ this
+> > bitstream generation I did create a bitstream where I used chipscope
+> using
+> > the methode defined here:
+> >
+> > https://kb.ettus.com/Debugging_FPGA_images
+> >
+> > And was able to do that without any errors. However, since then I have
+> been
+> > getting the above mentioned error.
+> >
+> > Thanks
+> >
+> >
+> > _______________________________________________
+> > USRP-users mailing list
+> > USRP-users@lists.ettus.com
+> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000c943c205abfc1b8a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">perhaps re-checkout any files that are modified from the r=
+epo.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Mon, Aug 3, 2020 at 12:35 PM Marcus M=C3=BCller via USRP-users &lt;<=
+a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Does=
+ removing and adding the chipscope again help, and making sure<br>
+you&#39;re really using all the channels that your chipscope implementation=
+ has?<br>
+<br>
+Best regards,<br>
+<br>
+Marcus<br>
+<br>
+On 28.07.20 08:17, Jayant Chhillar via USRP-users wrote:<br>
+&gt; Hi everyone,<br>
+&gt; I am trying to generate a bitstream for X310 board with the FFT block =
+along<br>
+&gt; with few other ettus provided blocks. However, at the time of logic<br=
+>
+&gt; optimization step I get this error<br>
+&gt;<br>
+&gt; ERROR: [Chipscope 16-213] The debug port &#39;u_ila_0/probe1&#39; has =
+9 unconnected<br>
+&gt; channels (bits). This will cause errors during implementation.<br>
+&gt;<br>
+&gt; I=E2=80=99m not able to identify the source of this error. Also, befor=
+e this<br>
+&gt; bitstream generation I did create a bitstream where I used chipscope u=
+sing<br>
+&gt; the methode defined here:<br>
+&gt;<br>
+&gt; <a href=3D"https://kb.ettus.com/Debugging_FPGA_images" rel=3D"noreferr=
+er" target=3D"_blank">https://kb.ettus.com/Debugging_FPGA_images</a><br>
+&gt;<br>
+&gt; And was able to do that without any errors. However, since then I have=
+ been<br>
+&gt; getting the above mentioned error.<br>
+&gt;<br>
+&gt; Thanks<br>
+&gt;<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
+n/listinfo/usrp-users_lists.ettus.com</a><br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000c943c205abfc1b8a--
+
+
+--===============0234976734074611186==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0234976734074611186==--
+
