@@ -2,64 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0543B23AA1F
-	for <lists+usrp-users@lfdr.de>; Mon,  3 Aug 2020 18:04:24 +0200 (CEST)
-Received: from [::1] (port=46654 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D44E23AA95
+	for <lists+usrp-users@lfdr.de>; Mon,  3 Aug 2020 18:35:36 +0200 (CEST)
+Received: from [::1] (port=47010 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k2cwl-0003kq-Nm; Mon, 03 Aug 2020 12:04:19 -0400
-Received: from mail-ed1-f42.google.com ([209.85.208.42]:35702)
+	id 1k2dQz-0007uc-3s; Mon, 03 Aug 2020 12:35:33 -0400
+Received: from mail-ej1-f47.google.com ([209.85.218.47]:38479)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1k2cwi-0003e0-8b
- for usrp-users@lists.ettus.com; Mon, 03 Aug 2020 12:04:16 -0400
-Received: by mail-ed1-f42.google.com with SMTP id m20so18130239eds.2
- for <usrp-users@lists.ettus.com>; Mon, 03 Aug 2020 09:03:55 -0700 (PDT)
+ id 1k2dQu-0007mi-Or
+ for usrp-users@lists.ettus.com; Mon, 03 Aug 2020 12:35:28 -0400
+Received: by mail-ej1-f47.google.com with SMTP id d6so25459867ejr.5
+ for <usrp-users@lists.ettus.com>; Mon, 03 Aug 2020 09:35:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:references:from:message-id:date:user-agent:mime-version
  :in-reply-to:content-transfer-encoding:content-language;
- bh=PWcWHEOBhVz0+63Dg5lsnTBGy5EgbtULBHm6RE+7KJk=;
- b=Q3mMITe0cc7YoXYViKiUa+1rpmd9M9vdKnt6XYwEL7gtgh504KxgoxCSUOrCkd8HPJ
- PDBMockIWMAcd+xXk3h47lYE4xLRG1RSg5qZqQQt8N3V41B6wYnO1re35KT6FiQPHvk+
- 4qVBhhocEX43gX3NvxjUoK4UBSHbhdYazl0LVx52CM2cV2FmJnzvusRU/TFCatwFOWtD
- sTwga/+IxYI6fIWa08pvIa4H0VQVekl1sd7X+b/QYqqdu62NG48t1YVZls+9rRW8Bjyg
- h0htFEfFhjQ4vCb5xsalu8a/yqyZQ+4Cr4Rn5V5rHKoi/Iv3c4M7ypoUYEm57RXzkqcb
- aQAw==
+ bh=B1RCFL5547fdCO4XVLjS0fdaaPquib/705mTujQ1tYw=;
+ b=knRzDTDPVc1oGqtW7vvNsQ6cJeN/D+ahBYuWPvqeGbwXQ5TJ7aSk5C1zgoN43clNlp
+ oSpYlEXsg/uFV6vr5b3tCH4gbmYvmMuS52D7vXS9r+FdTCi06bqgevoN2W9WovJATT2m
+ 1F9UHTPIWCmarDcxV5esGUlp2z9PNXv7DnnZtPqqKgs5S0MPoa+YPyaJe5h+/IeQiw8N
+ cmz2kiA86YQMb7A5QAjHhYNmSDoX+9s7VarhsSk4kogWN5w3ZvILRjJsbjXlsBBVilQP
+ 9f5nDKdYokjt6j1mME5rJw1IQjGSYA/u08uZtXE/0El909vOe7jChHiSrSun8LwCgsgg
+ SYWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-transfer-encoding
  :content-language;
- bh=PWcWHEOBhVz0+63Dg5lsnTBGy5EgbtULBHm6RE+7KJk=;
- b=FjrTnngu/AL2y9KkAsrSaOFuwVyyC9ttsBALTckIdOUjyMaVsAcBO8ebVZ7JFR3KqA
- 0mkA5ZK3e3x6/wytpPdGikpe/wwJrNnCM+KIMYBXjXX87bra6OyBDRMRTXL7U2u6z4Lk
- t0b2Y7C4u7wO5cacwESt2gP0IOUnBz8UUoBs6lSwljnopLnrVTxJDfqQ5LyRjLWSP+bP
- oUrmAGmBMyX6o74bOXkudj5uhCe6M1ccDkOI/DFCK+DWIOQBu1DOJSUGQHdR7YmF/JxI
- 578BKtRmZisdhaOJwAkfJZMqzB2dv0YnfOYtDfpip+VrQfLplgmQw9Zv9BhqgcjkCFil
- Ouhg==
-X-Gm-Message-State: AOAM532R/FOsTRXv+Ztlz9Av629LYsoIcHm7qVfh0xXuKgHxPnyncFZu
- sFEwlwDbMZNamT0TjcYTsypyoqY5b4mlVA==
-X-Google-Smtp-Source: ABdhPJwYIuyOg73RaXwFDh5a1JNHeGbux/YWxQ7Kgjs8H1IPXyZJzrHg0LTzXpHvLKKmfRMaKBqluQ==
-X-Received: by 2002:a50:fc8d:: with SMTP id f13mr16807707edq.380.1596470614887; 
- Mon, 03 Aug 2020 09:03:34 -0700 (PDT)
+ bh=B1RCFL5547fdCO4XVLjS0fdaaPquib/705mTujQ1tYw=;
+ b=cZKbfH2BZmNPaiu0sGPznAh0i8WyxVcLoffDRB5ppfzX5ocOooE/2dCoTYAqFThjJ4
+ 2EjtSdtu9Zw73rozygeavk0rvQTWK/dnaDtH4MMpEsKYSt1xQ2wvHprbd1CQYeduyr9a
+ X2drSuncCzR99EU1PmhMt03Aw4KoWPnOYQdwjb3dpZC9OyTUPIVsceTIE2KKPLfHcImP
+ ezrOroMBuhpYj98b6aS2mjnrxLNSzcwkEhePMnl8TmtspIZPqbggu1zrkLACUzeVZlWG
+ zlVJD0kQNUtW9MPqLq/Xg9UPHpcGnI2RBwmgglsa9ELZsgEnavHupsJnTL8dUoTCXtTE
+ T7xg==
+X-Gm-Message-State: AOAM530ADNh3FjywaCTP5m+f7BeREtS0Vy/IOc+Lg3ZxNCQB1+4fZAZF
+ lu9Es1ghP/UpNGw00d+4LN0xAnxKfX2gwA==
+X-Google-Smtp-Source: ABdhPJyQqx+nit4HLtiDXOXP+AIWWX44sq2dCCE3+nvxOccBB40RqjzcW4u7LA9Q3o4XzHCi8hVvYw==
+X-Received: by 2002:a17:907:11c3:: with SMTP id
+ va3mr18091253ejb.497.1596472487521; 
+ Mon, 03 Aug 2020 09:34:47 -0700 (PDT)
 Received: from [192.168.128.8]
  (HSI-KBW-46-223-163-149.hsi.kabel-badenwuerttemberg.de. [46.223.163.149])
- by smtp.gmail.com with ESMTPSA id du2sm16611030ejc.2.2020.08.03.09.03.33
+ by smtp.gmail.com with ESMTPSA id c7sm4248168edf.1.2020.08.03.09.34.46
  for <usrp-users@lists.ettus.com>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 03 Aug 2020 09:03:34 -0700 (PDT)
+ Mon, 03 Aug 2020 09:34:46 -0700 (PDT)
 To: usrp-users@lists.ettus.com
-References: <CALn8ZzkBoAruW4fFNGDKD0fhmi7-nmh_9OsA942wo9cmBECPxg@mail.gmail.com>
-Message-ID: <04dca4c1-59c7-fbc1-fa03-b512bada3d35@ettus.com>
-Date: Mon, 3 Aug 2020 18:03:33 +0200
+References: <CAKwrT9SNz7tFqmYrJthCfRUgrHCzqbkKrA+NDPX324NmeSxc-g@mail.gmail.com>
+Message-ID: <4aec2693-1fff-dec3-6444-021f62691f53@ettus.com>
+Date: Mon, 3 Aug 2020 18:34:46 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <CALn8ZzkBoAruW4fFNGDKD0fhmi7-nmh_9OsA942wo9cmBECPxg@mail.gmail.com>
+In-Reply-To: <CAKwrT9SNz7tFqmYrJthCfRUgrHCzqbkKrA+NDPX324NmeSxc-g@mail.gmail.com>
 Content-Language: en-US
-Subject: Re: [USRP-users] Unable to see dissected USB CHDR packets in
- Wireshark
+Subject: Re: [USRP-users] CHIPSCOPE ERROR (RFNOC)
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -74,8 +74,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
  <usrp-users@lists.ettus.com>
 Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,76 +89,26 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Vikas,
-
-the ZPU dissector shouldn't help you (IIRC, there's no DUDEBRO protocol
-between host and B2xx). However, yes, the RFNoC dissector is what has
-become of the CHDR dissector.
-
-When I look at your screenshot, it looks to me as if Wireshark wasn't
-told to actually decode the packets as RFNoC. Could you try right click
--> Decode as... and try that?
-
-Best regards,
-
-Marcus
-
-On 02.08.20 17:49, Vikas Jain via USRP-users wrote:
-> Hi All,
->
-> I am using a B210 running UHD implementation corresponding to the SHA
-> commit (457192600b3c51d4ddfccac222f2a19d1a5b4995) on the master. Relevant
-> git log snippet below:
->
-> ===
-> commit 457192600b3c51d4ddfccac222f2a19d1a5b4995
-> Author: Brent Stapleton <brent.stapleton@ettus.com>
-> Date:   Mon Jan 6 12:19:56 2020 -0800
->
->     images: update FPGA image packages for RFNoC
->
->     Updating FPGA image packages, filesystems, and submodule pointer to
->     include recent RFNoC changes.
-> ===
->
-> I am running the pdsch_enodeb example program (in srsLTE) which runs on my
-> Linux box and transmits a certain waveform over USB connected to B210. I
-> captured the I/Q stream USB packets on the usbmon interface using wireshark
-> and noticed that the I/Q data packets are not getting parsed by the
-> dissector. I have installed both the rfnoc.so and zpu.so dissector plugins
-> in the appropriate folders that wireshark is able to see (see attached jpeg
-> showing the plugins visible to wireshark). I am using wireshark version 3.2.
->
-> I have also attached a png file showing the wireshark output with the I/Q
-> data USB packets captured but not being interpreted. Not sure if I am
-> missing something. Appreciate any help or pointers to address this issue.
->
->
-> Thanks.
->
-> PS: I was looking at the UHD git log history and noticed the following
-> commit wherein the tools/dissectors/packet-chdr.c file (which used to
-> earlier contain the CHDR dissector implementation) was removed. I had used
-> earlier UHD implementations which did not had this change and was able to
-> see the USB packets being dissected in wireshark.
->
-> --
-> commit 9f29b9a556634e41d13fa298f9634b67fdd0a749
-> Author: Alex Williams <alex.williams@ni.com>
-> Date:   Tue Jul 30 19:45:58 2019 -0700
->
->     tools: Update dissectors for Wireshark major version 3, new CHDR
->
->     Dissectors may now be incompatible with earlier versions.
->     Fixes ZPU dissector.
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+RG9lcyByZW1vdmluZyBhbmQgYWRkaW5nIHRoZSBjaGlwc2NvcGUgYWdhaW4gaGVscCwgYW5kIG1h
+a2luZyBzdXJlCnlvdSdyZSByZWFsbHkgdXNpbmcgYWxsIHRoZSBjaGFubmVscyB0aGF0IHlvdXIg
+Y2hpcHNjb3BlIGltcGxlbWVudGF0aW9uIGhhcz8KCkJlc3QgcmVnYXJkcywKCk1hcmN1cwoKT24g
+MjguMDcuMjAgMDg6MTcsIEpheWFudCBDaGhpbGxhciB2aWEgVVNSUC11c2VycyB3cm90ZToKPiBI
+aSBldmVyeW9uZSwKPiBJIGFtIHRyeWluZyB0byBnZW5lcmF0ZSBhIGJpdHN0cmVhbSBmb3IgWDMx
+MCBib2FyZCB3aXRoIHRoZSBGRlQgYmxvY2sgYWxvbmcKPiB3aXRoIGZldyBvdGhlciBldHR1cyBw
+cm92aWRlZCBibG9ja3MuIEhvd2V2ZXIsIGF0IHRoZSB0aW1lIG9mIGxvZ2ljCj4gb3B0aW1pemF0
+aW9uIHN0ZXAgSSBnZXQgdGhpcyBlcnJvcgo+Cj4gRVJST1I6IFtDaGlwc2NvcGUgMTYtMjEzXSBU
+aGUgZGVidWcgcG9ydCAndV9pbGFfMC9wcm9iZTEnIGhhcyA5IHVuY29ubmVjdGVkCj4gY2hhbm5l
+bHMgKGJpdHMpLiBUaGlzIHdpbGwgY2F1c2UgZXJyb3JzIGR1cmluZyBpbXBsZW1lbnRhdGlvbi4K
+Pgo+IEnigJltIG5vdCBhYmxlIHRvIGlkZW50aWZ5IHRoZSBzb3VyY2Ugb2YgdGhpcyBlcnJvci4g
+QWxzbywgYmVmb3JlIHRoaXMKPiBiaXRzdHJlYW0gZ2VuZXJhdGlvbiBJIGRpZCBjcmVhdGUgYSBi
+aXRzdHJlYW0gd2hlcmUgSSB1c2VkIGNoaXBzY29wZSB1c2luZwo+IHRoZSBtZXRob2RlIGRlZmlu
+ZWQgaGVyZToKPgo+IGh0dHBzOi8va2IuZXR0dXMuY29tL0RlYnVnZ2luZ19GUEdBX2ltYWdlcwo+
+Cj4gQW5kIHdhcyBhYmxlIHRvIGRvIHRoYXQgd2l0aG91dCBhbnkgZXJyb3JzLiBIb3dldmVyLCBz
+aW5jZSB0aGVuIEkgaGF2ZSBiZWVuCj4gZ2V0dGluZyB0aGUgYWJvdmUgbWVudGlvbmVkIGVycm9y
+Lgo+Cj4gVGhhbmtzCj4KPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVz
+ZXJzX2xpc3RzLmV0dHVzLmNvbQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNf
+bGlzdHMuZXR0dXMuY29tCg==
