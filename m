@@ -2,80 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BA3223CEB7
-	for <lists+usrp-users@lfdr.de>; Wed,  5 Aug 2020 20:59:35 +0200 (CEST)
-Received: from [::1] (port=43222 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8454D23CFE9
+	for <lists+usrp-users@lfdr.de>; Wed,  5 Aug 2020 21:26:48 +0200 (CEST)
+Received: from [::1] (port=43402 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k3OdP-00055V-Bj; Wed, 05 Aug 2020 14:59:31 -0400
-Received: from mail-dm6nam10on2096.outbound.protection.outlook.com
- ([40.107.93.96]:36960 helo=NAM10-DM6-obe.outbound.protection.outlook.com)
+	id 1k3P3l-0007T5-F8; Wed, 05 Aug 2020 15:26:45 -0400
+Received: from mout.gmx.net ([212.227.17.22]:53619)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <bnold@purdue.edu>) id 1k3OdL-0004o7-1r
- for usrp-users@lists.ettus.com; Wed, 05 Aug 2020 14:59:27 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MdYk8LxIc8imKRa04JHvf1+h+nYPWQfP+k+9KnAtlK+MDd3OEOuJIOf9kb1/+CA0L853zXObKvtOd3gDuZqyesviSAYXaH6lAaohf9hTKSWOzVnVj1/2Y4MMMZzcp7cShFnPxdyg0rc/TsOVUd/NCfl883rx2qVk4DLDgTo3OIL8qIcq/XVGQbd+LVzh+HIxh84I3nlxpfTJa9Ob2885s2BiV5235XF4d+vYtw2v/r+e89kKG0YEQGvjXa8h53SvplNMxyD3XLb89XpIDGAnO7sIxpWvG1mJqmVMZz446/B2WwzGuVaJjBNEyc8mPD+JVptbDIcCvAjO4wB1w3eHjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mUvgYyPoOMuoHdfAXjB2fEhvPo1RxiaG785D7ZW48/I=;
- b=VpDJcpXe3sHUtYsS59k49wDGwSc59MrTBccb31nx33aAEBSZQ9O9ZNFFn1QAB0SHvHjCRDDEuYMqtWxwPTnhTvqy4/Hw46TePrWQ31ENOa/PXvqdc4vq1iw5pXwNE59LLbwU29OuLZ0UyWbpi2FJdfFbTM9Ui8l2CVaH08Fin6aRuy2veGxW7hzWmJuZmsXlxfJb+gagxAakKRnzPKn+ReFRDOQKLiZbe8WM7a+mtKGSfbDJ59SqSPRzvadw1crU3nmXwf9pNogJ4X0dzEa6QsSkPEupmdpGUnOvhhS/eh3GFuhkh/riIzqtU8jkyqvvNSz2GSJW1kGBVv+V0OmiXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=purdue.edu; dmarc=pass action=none header.from=purdue.edu;
- dkim=pass header.d=purdue.edu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=purdue0.onmicrosoft.com; s=selector2-purdue0-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mUvgYyPoOMuoHdfAXjB2fEhvPo1RxiaG785D7ZW48/I=;
- b=MuJk8YaxgUPoo8P9RBj7Hq1S5M2+fjDVvQUDywbw3hdUZn0B3Np6U9YECl3IHRvCvfCNyZlaWM+ZBPG1S+qVAL+j30eo98xl/lU4/eIOV+Y6w4RiozwLYGd7lptX+IkexPIKYvzcDTUzUbAQnKt4iv4cKLOyD/bU72pn80ZMe/U=
-Received: from BN6PR2201MB1555.namprd22.prod.outlook.com
- (2603:10b6:405:23::19) by BN6PR2201MB1747.namprd22.prod.outlook.com
- (2603:10b6:405:61::38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.17; Wed, 5 Aug
- 2020 18:58:40 +0000
-Received: from BN6PR2201MB1555.namprd22.prod.outlook.com
- ([fe80::795a:4d18:5ee8:8f78]) by BN6PR2201MB1555.namprd22.prod.outlook.com
- ([fe80::795a:4d18:5ee8:8f78%9]) with mapi id 15.20.3261.018; Wed, 5 Aug 2020
- 18:58:40 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: N310 10G ethernet media converters
-Thread-Index: AQHWa1nj0swlb0JGpU+/bZgalYCSpg==
-Date: Wed, 5 Aug 2020 18:58:40 +0000
-Message-ID: <BN6PR2201MB1555037426D1EE0520DFCD86C84B0@BN6PR2201MB1555.namprd22.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none; lists.ettus.com; dmarc=none action=none header.from=purdue.edu; 
-x-originating-ip: [192.92.192.136]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0521b398-3deb-41e8-83a9-08d83971912d
-x-ms-traffictypediagnostic: BN6PR2201MB1747:
-x-microsoft-antispam-prvs: <BN6PR2201MB174767852A3C2AB62C41BB5EC84B0@BN6PR2201MB1747.namprd22.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: m/2aABws0IPwEIXkUtEk6JBhcPh4rcuqa4QBebkNQy7A332rBKYGN+B4Rko6OsqQ2d2E7UpuQDAFwluCoSiyyz3L2r/C5BwUuaQ/GDehjJDTpP98YY2MmXQw5PXsvyxvYmVqIsWsm2R160mqpb3RO6WjfVKtjRGockOrdUXvllOkCC+xhoE2teprKmHFmr7qbZJMyxW8T6H/hDkc2No76YhcKhgiti9oj6x5i26nur4B88JN6QyihykyBmS+gLieHBGN1bbW2dQifcx1cYRqjSp7ONH1BC/F8MHtKDd66SFC94g15eFf/078aMFys2tnh+74dXVjWGECQR6iNbXJ8w==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN6PR2201MB1555.namprd22.prod.outlook.com; PTR:; CAT:NONE;
- SFTY:;
- SFS:(396003)(366004)(136003)(39860400002)(346002)(376002)(66556008)(5660300002)(83380400001)(64756008)(6916009)(66446008)(4744005)(66946007)(66476007)(7696005)(316002)(33656002)(6506007)(19627405001)(86362001)(786003)(71200400001)(26005)(8936002)(478600001)(52536014)(8676002)(2906002)(76116006)(9686003)(55016002)(186003)(75432002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: KIGGJwaEd3m0v0RGmT2nq6Rbm7Weqn+cXBE2TzMNa4lG/pmc7H8ho43FkkOOF9qnpfz4Wh3zQ9oGCC1cqWbr4xTR86O/w521mOPrJduTpXY4UKsV0KVgq3k5fUrznWl7UzGk02Vbr6039tNmD0Xan1ktGJmQ+MKKsYwdFi2uJFN3/sBqMaa8ETXlyZxR2GdTsZP5vbhP+UftY1aUAB5zK7iE6z4PiSUfIfJ2vmyV9OGmcdY9GotL6v1VtnwCYUdseLeABLobFIoEgZaC+7f4lgXl2YaB2kw56VLelsarascOSr7IIJXghurwibvRFx7VXxXL3W6aX6eT/J2uIvfa8XhYuPsXOTGqxFMQdNJXFyUbGRXqBY3SVlk/q1kiUUHxQYK8f4Jf0gMyI+nBNmk7xwOLVChhuIOwKvBjmWYnWC1IkB3SfwUQmP3/4ZElEVQaPfY2GH1P5+d5HDMzWVQfbQSu7dB4XQStQJnJjH+WMg9vVourn12i855Jt9kpmb6rwnRVOI922bOdSLl77J3iQ5MWnhxeUPGGhw/zsbggF3ljq8WrVlJZ/SK4iSJQvZjU+lEV8Fyt6WEzyj5rswtRc1Pa+Mc4GiX4EmruLTVsXgHbUlLe6r7kZtbr8M2aWMZJe0cqIpzyEhCWP9uRijht8A==
-x-ms-exchange-transport-forked: True
+ (Exim 4.93) (envelope-from <smithgeorge1492@gmx.com>)
+ id 1k3P3g-0007MR-SN
+ for usrp-users@lists.ettus.com; Wed, 05 Aug 2020 15:26:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1596655559;
+ bh=fYU7INKv1M207JJOGCJFEPH725D6/1DxERZAvkwoH5s=;
+ h=X-UI-Sender-Class:From:To:Subject:Date;
+ b=dQDzkIeFnj1TqZE+amxSD1m0LXefBmhJLksvNk4VhNfv7LTvUjJ1fRQB4BAEs5e34
+ qKQbA7CcMFZWw8P2ybaD76VaDZ4G/YLuV8UFhnAstuJbk1vxUBTokC210IN8ckdV74
+ lDEP95490TtjgekDtbD8yM1fAwt3tYeygYtrYJZo=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [62.216.202.51] ([62.216.202.51]) by web-mail.gmx.net
+ (3c-app-gmx-bap03.server.lan [172.19.172.73]) (via HTTP); Wed, 5 Aug 2020
+ 21:25:59 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: purdue.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN6PR2201MB1555.namprd22.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0521b398-3deb-41e8-83a9-08d83971912d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Aug 2020 18:58:40.1002 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 4130bd39-7c53-419c-b1e5-8758d6d63f21
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: KvIYWC8cMtHVVAy8+CzqdbQthzbMIWCTG7PmaZl8n6/O4fDDmFkfDiMw0Cq9n5u/YOEShPAtn5JK4hd60Xrs1g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR2201MB1747
-Subject: [USRP-users] N310 10G ethernet media converters
+Message-ID: <trinity-f21300c1-4f5f-4fca-bb9c-e900f0a945ac-1596655559528@3c-app-gmx-bap03>
+To: usrp-users@lists.ettus.com
+Date: Wed, 5 Aug 2020 21:25:59 +0200
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:TRwhduzCN3MlIUZbeufRzs4oAqg8L5dluALSGpXFu9+VrOBCMrltA2W/v+5xoZd4IXLSw
+ uzAyioNDntMmTGR+CcwjGWSzZA+ZEGGgqvzLQzcQnAePzJ0knFZHD7OrE6y2tTOj33DOEfnrlCpI
+ OqMN9+o51l8qFC0WjOWUls9Ssi9pQ0e2SVyLwRv/hkPW2PXGsbu6w9EqFZ7rM39EZZF2OMQxcvqu
+ UXk86wGTAdmEzTVsvzYb0ADgrMQkb9ML5PmvLIulmnuYJqsngpQMwx+QwDR/Gct7EXFY9koLtZ0K
+ TA=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:JF13FspKXE0=:fPCQIjLp/OMg2+/JHQvJdB
+ 5XHXtPTe3WBlaxPDoD42V7nVR78VqjrDAK/pMcEDgoKOYBAW7o5NHxDFPMi6E1pft57qqSFoS
+ LF+TG+0LjzDUsyKHND5MbeTofof2G1EJJAbFjxydBJdzjPxL2R/Nd1Ja5fuimGJDdJf1n8Elf
+ b7pz0jEUrbLkgtURzpMROIO3GUBOyOq+JoF+1zyC5/3qFRvjXxdMJYxPUkFDtx27XZ5a1BEH4
+ 3iVf7IKJUrPG0tljkK12e52/atNB/3/px8tN2t26qB45KJ/qjA/I4qHmbjkjkvsaUq8svpqUQ
+ CDtc4OUeo5/wOAN2jCCRRUdvx+Idk0yBaE/haouB5IZpKU2628ly7owzHNU7tVu+WrnHsnnfd
+ YsXSESXtiTgTZ4Oasj/y395aKtFH8afXFhTikM9hGHL6Q+E4YMQWNbNavFS9U3Ok+1Kcbv6nG
+ w2XWys50qk6ordc+cbcGVYIFrEnTtDoeyM+nFOqgaKa8WKC0+wdabM6Yjnf9lozJnLESw6jUP
+ CMrFbuxgmcRZsIU3hi7DZr/vaawtT0uxHlKPslbVlCCpBweb6FSsJDAcBqvRvE5TQymJ8w7WA
+ Uou87qQE/rZ4Ff/8jKaI8sDYvQVgjytJhA+Bg/bjFHKGeqwGFt04WL0DX7dWPvDhajs+CdaGe
+ V0cmoRAk9mx+guVN7CVm67QgccCTTWUeOrMVz7875YAXathpDl8A1k3EwrTwwBirdrwY=
+Subject: [USRP-users] RFNoC: Initialization process and packaging questions!
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -87,9 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Benjamin R Nold via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Benjamin R Nold <bnold@purdue.edu>
-Content-Type: multipart/mixed; boundary="===============0790779269522847269=="
+From: George Smith via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: George Smith <smithgeorge1492@gmx.com>
+Content-Type: multipart/mixed; boundary="===============4254988051472548808=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -103,85 +76,103 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0790779269522847269==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR2201MB1555037426D1EE0520DFCD86C84B0BN6PR2201MB1555_"
+--===============4254988051472548808==
+Content-Type: text/html; charset=UTF-8
 
---_000_BN6PR2201MB1555037426D1EE0520DFCD86C84B0BN6PR2201MB1555_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div style="font-family: Verdana;font-size: 12.0px;">
+<div>Dear community,</div>
 
-Hi USRP Useres,
+<div>&nbsp;</div>
 
-I am planning on using a N310 in a system where I need to run a 10G etherne=
-t connection about 30 m outside. I am thinking a good option is to use an o=
-ptical connection to do this. What SFP+ adapters to optical are compatible =
-with the N310? Are there any pitfalls/limitations when using a SFP+ to opti=
-cal converter? Do I need to consider anything extra when selecting a 10G et=
-hernet adapter for my host PC?
+<div>I have some technical questions concerning your Ettus Hardware. I would appreciate if some members could help me with my requests.</div>
 
-Thanks,
+<div>&nbsp;</div>
+
+<div>I use the RFNoC Framework in combination with an Ettus Research Board N310 for my project.</div>
+
+<div>After reading and doing the official <em>Getting Started with RFNoc Development guide</em>, I implemented my own VHDL/Verilog files and adapted the corresponding XMLs for GNURadio and UHD-Integration. Furthermore I changed and added needed C++ functions in the include and lib folder. Afterwards I uploaded the bitstream created by Vivado 2018.3 (AR_71898 Patch).</div>
+
+<div>Unfortunately the system is not working as expected. Generally the RFNoC block is doing something (it&#39;s not hanging) but the generated output is wrong.</div>
+
+<div>Of course, I created a simulation testbench before, which generates the correct output.</div>
+
+<div>In order to eliminate the misbehaviour, I have some more or less universal questions:</div>
+
+<div>&nbsp;</div>
+
+<div>1)</div>
+
+<div>My project itself is written in VHDL, and I wrote my testbench for this (working) code. But as I understood so far the toplevel has to be in Verilog for which the RFNoC-Modtool creates a system verilog file as a testbench. Is it possible to include a Verilog toplevel file, with VHDL component files inside in your testbench? If this mixed language setting would be working I could test my system more in total.</div>
+
+<div>&nbsp;</div>
+
+<div>2)</div>
+
+<div>In my project I have some components, which need to be configured. My testbench does this for the VHDL files as following: For the initilization I use an (active-low) reset signal and set all valid signals to zero. After some clock cycle periods, I assign the configuration values and set all valid signals to one. If the configuration signals are successfully loaded the corresponding ready signals are set to one (by the components itself) and the valid signals are set to zero again. Afterwards the data from the input stream can be processed. Generally said, this corresponds to the AMBA 4 AXI4-Stream Protocol specification.</div>
+
+<div>My first question is, how does the initialization process works on the Ettus board?</div>
+
+<div>I know, that there are &quot;test1_imp1.cc&quot; and &quot;test1_block_ctrl_impl.cpp&quot; files in the lib directory, where I can set the order and the configuration in the constructor. I did this. So the configuration should be finished before the stream processing starts. But using this way, are valid (and ready) signals handled similarly as I explained before?</div>
+
+<div>&nbsp;</div>
+
+<div>3)</div>
+
+<div>If I execute the<em> uhd_ursp_probe</em> command, I always get a warning from RFNoC: <em>Can&#39;t find a block controller for key test1, using default block controller</em></div>
+
+<div>Are the &quot;<em>test1_impl.cc</em>&quot; and the the &quot;<em>test1_block_ctrl_impl.cpp</em>&quot; the default block controller or are these files the missing keys? Normally, I would interpret these ones as the missing&nbsp; keys, but as I execute the RFNoC block in GNURadio I get some debug messages included in these files. So they seem to be used and I am confused.</div>
+
+<div>&nbsp;</div>
+
+<div>4)</div>
+
+<div>Starting the RFNoC block, I get another warning from RFNoC: Assuming max packet size forr 0/FIFO_0. It does not seem to influence the basic functionality of the block, but maybe this is the reason for the wrong output.</div>
+
+<div>How can I get rid of this warning, or is it unproblematic?</div>
+
+<div>&nbsp;</div>
+
+<div>5)</div>
+
+<div>After the RFNoC block I use a copy block in order to save the output. I would assume, that the output is only generated if the (output) valid signal equals one.</div>
+
+<div>Is it true?</div>
+
+<div>&nbsp;</div>
+
+<div>6)</div>
+
+<div>Consecutively to my VHDL component, I use your RFNoC packet resizer. It resizes the input packets to a configurable size. But, how is an <em>input package </em>defined?</div>
+
+<div>Is it dependent from the bit size? Do I really need it for testing a basic functionality or is the axi_wrapper sufficient?</div>
+
+<div>&nbsp;</div>
+
+<div>7)</div>
+
+<div>I use GNURadio 3.7.14.0, UHD 3.15 with Python 2.7. Is there an Ettus FPGA version planned, which supports Python 3?</div>
+
+<div>&nbsp;</div>
+
+<div>I know these are many questions, but I hope the community can help me at least with some answers..</div>
+
+<div>&nbsp;</div>
+
+<div>Kind regards</div>
+
+<div>&nbsp;</div>
+
+<div>George</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div class="signature">&nbsp;</div>
+</div></div></body></html>
 
 
-
---_000_BN6PR2201MB1555037426D1EE0520DFCD86C84B0BN6PR2201MB1555_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Hi USRP Useres,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-I am planning on using a N310 in a system where I need to run a 10G etherne=
-t connection about 30 m outside. I am thinking a good option is to use an o=
-ptical connection to do this. What SFP+ adapters to optical are compatible =
-with the N310? Are there any pitfalls/limitations
- when using a SFP+ to optical converter? Do I need to consider anything ext=
-ra when selecting a 10G ethernet adapter for my host PC?</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Thanks,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div>
-<div id=3D"Signature">
-<div>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; ba=
-ckground-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,sans-serif">
-<div><br>
-</div>
-<p style=3D"margin-top:0px; margin-bottom:0px"></p>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_BN6PR2201MB1555037426D1EE0520DFCD86C84B0BN6PR2201MB1555_--
-
-
---===============0790779269522847269==
+--===============4254988051472548808==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -192,5 +183,4 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0790779269522847269==--
-
+--===============4254988051472548808==--
