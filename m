@@ -2,49 +2,83 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6875D23DB06
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Aug 2020 16:03:38 +0200 (CEST)
-Received: from [::1] (port=51262 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1834F23DB6E
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Aug 2020 17:47:46 +0200 (CEST)
+Received: from [::1] (port=52018 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k3gUX-00069q-OG; Thu, 06 Aug 2020 10:03:33 -0400
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:36009)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <neel.pandeya@ettus.com>)
- id 1k3gUT-000644-AS
- for usrp-users@lists.ettus.com; Thu, 06 Aug 2020 10:03:29 -0400
-Received: by mail-oi1-f169.google.com with SMTP id l204so14179588oib.3
- for <usrp-users@lists.ettus.com>; Thu, 06 Aug 2020 07:03:09 -0700 (PDT)
+	id 1k3i7I-0006RW-E7; Thu, 06 Aug 2020 11:47:40 -0400
+Received: from mail-eopbgr1380112.outbound.protection.outlook.com
+ ([40.107.138.112]:2880 helo=IND01-MA1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <sourin.mondal@vehere.com>)
+ id 1k3i7E-0006KY-Tg
+ for usrp-users@lists.ettus.com; Thu, 06 Aug 2020 11:47:37 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F0Q+5KUePadJZHtgo+wrMv9b6PuhGhWKfKptQZCzE9TFsrEVc8NCyG+FUUvBj00UMdPwBOC14PTCTWV3smwLBvp24p1KNViEZD5epqGhj8Ku3FTQlwjCqVrfR0/nLvEBUnZ0LG0Oza4SIlMpZd+cmHOfWuS5bnwTMSxzB3GtnTnoS/e3lg89UYarPTLnvFRdI7gb9yjI2DafmgAC5k36NOcf22A4oaW8pMY7H94IcgBj3aHT06GE/xI+cCE3DQu38bjRhLFMzqq1Y8KkX/xskT5GcRXkNxAsxsq4lo49hDX5fgheyzdrNks530gatECRLvpMTe0jp1JU5YzXar4MtA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VAK1f63nP941ZTBumkezEdg1N7m4nm8nz74m84KS0Dc=;
+ b=VIevrjCVKtbmBg8+ozvP7rwqgrtcs0Wf0yt7KKsoSGdfSn3TRJytOFgkwttMnJE0lxV5c/MTYfICKCfn6nGil7wJAmVVsp4hsqGF4dkVlLl1+rZIRTB0SkUcbR///lbrOadq8OIURSa4s8WoH6QKQlANltXE2+ANdT7oMqaQJpefRPVf1a8CwrufCV3HlKIXTqZxGpbe5Jo2xVfbDlQHzFZGVCbQI5LRqY82OJhTf2I6JYtq2Utv8tkQWBF9z+LV3XRDCcZFFO0XUgN4sEMYCIIGiMBM/8srpi/ukj106/XUkpLa2ClhZk5rA66PkQ5gCnYe33yCgMp/ZuPB4he3cg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
+ dkim=pass header.d=vehere.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:from:date:message-id:subject:to;
- bh=y13jtNXEYrILLPTIJ9rST140uMo/L5n0Bq7qYPHzenQ=;
- b=Ps4zct32IIJAAFCDDFL5VPhB5pL8Hr4pSCgSe8OMQ/JQul6EPuWQCu3m1xGp1LYiu+
- 9GXpqKyIy3KjLBTk8ProhIdh+yKGjkVnwCIttClTlTHyyn36MKVWZJgNz4eyAjNk9pRk
- C3kQFz45KGL2F3IgZifA77gFN8VRFzbsKy7qEPtMzK6qWtrNNOPD6vE8TT2xcDGveWZC
- ZxpIW/nvCcLW5MEyVKwb8A5L/G6GolFzMztOmBOE9EsQPweRP+RMkMTc9eYcTSK18R5c
- qNNOPXR5KHS3rP1Jf04PnI2F4db6srCHN0gyl3S9EAWAjDpjhXJ9XnLiklw43zhzdc23
- R0Xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=y13jtNXEYrILLPTIJ9rST140uMo/L5n0Bq7qYPHzenQ=;
- b=BavNJ+FhReOh+lic1RVaj3e2aLoUpmMGPns9I1AALmcsTCIyMVf9hYmAmBZ484aIPU
- ga5hDrwQ2iKDdmTZIAkIuI5whSsAw3tHYgh8PBJEWvsRYJHty/jb5d0WH2NPzrgBThKr
- jm0PZrR972oHyYEp9SdfpjzS9PbFPMGfJv+UpIOs4WnKKHKIRh9fqadr/vd8f7+Epww4
- UHGjU/3vOmIo7NT0c/zdKv8VkNuZ+DY1wMezufIKnwm69x/JQhdnARQJ/N5pcw2Bqcug
- XJPI03svoWLpuLNjKRyNp6MlLjYbI5NOUsyvk6Pkxk8qE14/EdDva5PrnXhuon54FTT0
- rysg==
-X-Gm-Message-State: AOAM531Ck89+rQdQMgB8gkDc+xhghiyoW6XhVBr6Pb8k0M9SEzbhvduP
- hNmP6TqVvlqVBL+VqIma4ITNKLQZ3BcE2fNUcSB76dgcwHDNjg==
-X-Google-Smtp-Source: ABdhPJzjieJNdAla5Yhh54o64LHNKMARNSCA06lhCBKwIOvzo/Cex3NylOPk/QRJA0NDkAdaPHdvM219vUrZYqyJlQ8=
-X-Received: by 2002:a54:4817:: with SMTP id j23mr7123283oij.140.1596722567676; 
- Thu, 06 Aug 2020 07:02:47 -0700 (PDT)
+ d=vehereinteractive.onmicrosoft.com;
+ s=selector2-vehereinteractive-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VAK1f63nP941ZTBumkezEdg1N7m4nm8nz74m84KS0Dc=;
+ b=h3tGpAqn+MbcqgT9wQeHBrkt69jv4hfX2CifA8woETzw2Igz54xzScZaBjAIdZfp9zD7+KpNdB9QoBKiNs90OL8C6w3CwoJuoLkjRYBzoTTf6Xg+L5wblyjsKkf0kVE9xfoMU6cg6wIm+Y/6REozKrCmqalnvlecASI9kAHvvmw=
+Received: from PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c00:16::22) by PN1PR01MB0846.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c00:8::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3261.19; Thu, 6 Aug
+ 2020 15:46:52 +0000
+Received: from PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::cc3b:5542:4d86:3d55]) by PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::cc3b:5542:4d86:3d55%7]) with mapi id 15.20.3261.019; Thu, 6 Aug 2020
+ 15:46:52 +0000
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: USRP not receiving data from two antennas using PCI card
+Thread-Index: AQHWbAg9qgjwsPUEwke7OTDIRmASdg==
+Date: Thu, 6 Aug 2020 15:46:52 +0000
+Message-ID: <PN1PR0101MB18888E07850F604DE16381328B480@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none; lists.ettus.com; dmarc=none action=none header.from=vehere.com; 
+x-originating-ip: [103.242.190.95]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: eb551a84-7e3c-4b75-0cd7-08d83a1ff08f
+x-ms-traffictypediagnostic: PN1PR01MB0846:
+x-microsoft-antispam-prvs: <PN1PR01MB0846A861D0C127A9A479782E8B480@PN1PR01MB0846.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: FMuKKS0AIL3g4jUKIzlCRhygm8MGlOaZxVJwrjRdcQ9UQFbG8bTY7VjNlc6rLpNE29xPbRb2WcnnAEpGilxpMNKfSw+tRhw/N/ldsALLK5oohLhHrHiN14vq9cC1yzl/xu9G0SH5fXMtuWorCXtgP4oiMko+XaOSNSh5WU67gr/Aq1RteNtTj+WhRt8BasYRlFLw7I3qMoGgbqvh8SUj/u2w6NJm5B5wksN/LyPpLqlKYX6rkGsQRhyBV3QnuTAQRBFguJu+GEeJl1DvGIZdU5Wg+soRPpp8BLEuGdSi1tg+fdli2x/S7iKBRGzz67rT+DeWeiyoUEw3EoUUyMhztw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(346002)(376002)(366004)(39840400004)(396003)(136003)(33656002)(6916009)(7696005)(66946007)(52536014)(66556008)(64756008)(66446008)(66476007)(19627405001)(91956017)(8936002)(76116006)(5660300002)(26005)(186003)(6506007)(86362001)(316002)(71200400001)(55016002)(2906002)(8676002)(508600001)(9686003)(4744005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: aUeK/2O+QLYNk9V5xy4lWL13BSquXG31F+1OptsfFJZXhIvUy55AtYWVyv+zrFs1c2DVryFwN0Gwdpee26jjPeCJRcYiLyCioBAkDVqirCBOgbIHFZG7ygHimdDdWBKqSBeQ7PncTBZR5c6awByYN5SYVix0I7uJqomqvh2xwtyQcoqt1KLhkvopGbE3oNYojlezWtoQLu5mvZUwwyKsxiqyFrXKW4XCHijNHlhPC+ujRAf6jgfBgXd1y+DDsGGxHoCu1Nod9jp10G4yuOUYM4RdrOADR35KeLl7v5P0Y18dzZ+Jvk6nBF4h+YWiUksiq4SQNBUCyY+TCA83jpggNZNjeqchWbk2go3/27d+2VDoqHoLQAqaksyXjPZSQxIxaFwZq14iZocjiueD2cfl6xLkVd8oY/EolCgavLu6ff+NNPRJsQDGVnOhXLwNFfa3RGhHBzn4ZChpmX9xcpjbEMwZZLuBUelWITwBG4PspdQ3PyepBezeuKEXJEi1pUw6OpAZi6HlRwreHY3yh+G0oBKXtvsqW9kg9Pze+W3hm2OgcVeJ9aQDTdslleu7Y73WHfddxTsVbrHL78+D8JjAavhdxGYS5R9y/f66A/v58vNdy31DXTrOyM22Elh1qYS/+CeOqPHGlE6HfhdzsfD/Gw==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Date: Thu, 6 Aug 2020 09:02:11 -0500
-Message-ID: <CACaXmv9Kxwa65-yHTFqvud3x3cv6Ex0q3bN_X=1Osim3YxsiKA@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Virtual NEWSDR 2020 -- Next Week -- Wednesday August 12
+X-OriginatorOrg: vehere.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb551a84-7e3c-4b75-0cd7-08d83a1ff08f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2020 15:46:52.5879 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: O3SLT5VyElQd+cKa+UlIGNfOyREOxsfpaNsCXV44Xn+mjsHciJnpm6M7z5juiR13JjufgIgSZz6m34NaME3w4vbfAw0tOC/22BPLO8Wrj9Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN1PR01MB0846
+Subject: [USRP-users] USRP not receiving data from two antennas using PCI
+ card
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -56,9 +90,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Neel Pandeya <neel.pandeya@ettus.com>
-Content-Type: multipart/mixed; boundary="===============7169572936677470200=="
+From: "Sourin Mondal \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Sourin Mondal \(Vehere\)" <sourin.mondal@vehere.com>
+Content-Type: multipart/mixed; boundary="===============8495807632440572919=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,60 +106,89 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7169572936677470200==
-Content-Type: multipart/alternative; boundary="000000000000739f1505ac35f124"
+--===============8495807632440572919==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_PN1PR0101MB18888E07850F604DE16381328B480PN1PR0101MB1888_"
 
---000000000000739f1505ac35f124
-Content-Type: text/plain; charset="UTF-8"
-
-Just a reminder of the 10th annual New England Workshop on Software-Defined
-Radio (NEWSDR) on Wednesday August 12.  It's less than one week away!
-
-This year's event will be run virtually.  The event agenda includes keynote
-speaker Dr Tom Rondeau of DARPA, poster presentations, and three "fireside
-chats" on the topics of spectral coexistence, Internet-of-Things with 5G,
-and open-source software in SDR.
-
-The event is made possible by generous sponsorship from MathWorks, NI/Ettus
-Research, Analog Devices, MediaTek, Lynk, and Verizon.
-
-Advance registration is required but is completely free.  Registration ends
-on Sunday August 9, so please register ASAP.
-
-More details and registration available on the event website.
-
-https://newsdr.org/workshops/newsdr2020/
-
-We look forward to seeing the community there!
-
---Neel Pandeya
-
---000000000000739f1505ac35f124
-Content-Type: text/html; charset="UTF-8"
+--_000_PN1PR0101MB18888E07850F604DE16381328B480PN1PR0101MB1888_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
-sans-serif">Just a reminder of the 10th annual New England Workshop on Soft=
-ware-Defined Radio (NEWSDR) on Wednesday August 12.=C2=A0 It&#39;s less tha=
-n one week away!<br><br>This year&#39;s event will be run virtually.=C2=A0 =
-The event agenda includes keynote speaker Dr Tom Rondeau of DARPA, poster p=
-resentations, and three &quot;fireside chats&quot; on the topics of spectra=
-l coexistence, Internet-of-Things with 5G, and open-source software in SDR.=
-<br><br>The event is made possible by generous sponsorship from MathWorks, =
-NI/Ettus Research, Analog Devices, MediaTek, Lynk, and Verizon.<br><br>Adva=
-nce registration is required but is completely free.=C2=A0 Registration end=
-s on Sunday August 9, so please register ASAP.<br><br>More details and regi=
-stration available on the event website.<br><br><a href=3D"https://newsdr.o=
-rg/workshops/newsdr2020/">https://newsdr.org/workshops/newsdr2020/</a><br><=
-br>We look forward to seeing the community there!<br><br>--Neel Pandeya</di=
-v><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><br=
-></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif=
-"><br></div></div>
+Hi,
 
---000000000000739f1505ac35f124--
+I am using USRP 2955 and want to receive two channels at 100 MSPS each simu=
+ltaneously. I have connected usrp with PCIe. I am running my code but only =
+one channel is getting received. Other channel is sending zeros only. I am =
+using Ubuntu 18.04. Previously one year back I faced the same problem using=
+ USRP 2955 along with PCIe and running gnu radio. Only one channel popped u=
+p in the frequency sink graph and second graph was static with no signal. H=
+owever, 2954 was giving both channels. Where is the problem? How can I corr=
+ect that to stream two channels simultaneously using usrp 2955 and PCIe? Pl=
+ease help.
+
+Regards,
+Sourin
+
+--_000_PN1PR0101MB18888E07850F604DE16381328B480PN1PR0101MB1888_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hi,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<div dir=3D"ltr" style=3D"margin: 0px; font-size: 15px; font-family: &quot;=
+Segoe UI&quot;, &quot;Segoe UI Web (West European)&quot;, &quot;Segoe UI&qu=
+ot;, -apple-system, BlinkMacSystemFont, Roboto, &quot;Helvetica Neue&quot;,=
+ sans-serif; background-color: rgb(255, 255, 255)">
+I am using USRP 2955 and want to receive two channels at 100 MSPS each simu=
+ltaneously. I have connected usrp with PCIe. I am running my code but only =
+one channel is getting received. Other channel is sending zeros only. I am =
+using Ubuntu 18.04. Previously one
+ year back I faced the same problem using USRP 2955 along with PCIe and run=
+ning gnu radio. Only one channel popped up in the frequency sink graph and =
+second graph was static with no signal. However, 2954 was giving both chann=
+els. Where is the problem? How can
+ I correct that to stream two channels simultaneously using usrp 2955 and P=
+CIe? Please help.</div>
+<div dir=3D"ltr" style=3D"margin: 0px; font-size: 15px; font-family: &quot;=
+Segoe UI&quot;, &quot;Segoe UI Web (West European)&quot;, &quot;Segoe UI&qu=
+ot;, -apple-system, BlinkMacSystemFont, Roboto, &quot;Helvetica Neue&quot;,=
+ sans-serif; background-color: rgb(255, 255, 255)">
+<br>
+</div>
+<div dir=3D"ltr" style=3D"margin: 0px; font-size: 15px; font-family: &quot;=
+Segoe UI&quot;, &quot;Segoe UI Web (West European)&quot;, &quot;Segoe UI&qu=
+ot;, -apple-system, BlinkMacSystemFont, Roboto, &quot;Helvetica Neue&quot;,=
+ sans-serif; background-color: rgb(255, 255, 255)">
+Regards,</div>
+<div dir=3D"ltr" style=3D"margin: 0px; font-size: 15px; font-family: &quot;=
+Segoe UI&quot;, &quot;Segoe UI Web (West European)&quot;, &quot;Segoe UI&qu=
+ot;, -apple-system, BlinkMacSystemFont, Roboto, &quot;Helvetica Neue&quot;,=
+ sans-serif; background-color: rgb(255, 255, 255)">
+Sourin</div>
+</div>
+</body>
+</html>
+
+--_000_PN1PR0101MB18888E07850F604DE16381328B480PN1PR0101MB1888_--
 
 
---===============7169572936677470200==
+--===============8495807632440572919==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -136,5 +199,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7169572936677470200==--
+--===============8495807632440572919==--
 
