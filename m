@@ -2,66 +2,65 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71F3723E081
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Aug 2020 20:37:48 +0200 (CEST)
-Received: from [::1] (port=53788 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E700E23E162
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Aug 2020 20:48:32 +0200 (CEST)
+Received: from [::1] (port=53866 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k3klv-0003qb-Bz; Thu, 06 Aug 2020 14:37:47 -0400
-Received: from mail-qt1-f173.google.com ([209.85.160.173]:40380)
+	id 1k3kwI-0005EK-SY; Thu, 06 Aug 2020 14:48:30 -0400
+Received: from mail-ej1-f54.google.com ([209.85.218.54]:39404)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k3klr-0003iF-AD
- for USRP-users@lists.ettus.com; Thu, 06 Aug 2020 14:37:43 -0400
-Received: by mail-qt1-f173.google.com with SMTP id s16so37100971qtn.7
- for <USRP-users@lists.ettus.com>; Thu, 06 Aug 2020 11:37:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=pP5EApZdBR6kttZMpQyu2M08DnHSkbEgkIE58tq6vAA=;
- b=DAB5JerOxNLmNunk9QK6DERAgNXtkPvMV6eptCFFGmjcQs2gGuSwXDgez2pFdcUb5z
- bWdmzfCGSHXLCYIohVD344wRnvpHsuR8+t5NB456rKLNcSXDf95dLsgGliU/Yxbtfp21
- oK7VeNGNzO4CgU1PjP11WzfXCZETjAjS8gQ6h912VKOLTkWPG/MSOinrKnw3Q+rUh8ri
- tDN4/KgN6Y6s3fSGrw9SXJTmwC9vPZsslUuWJEoaV44tYMCAx4c4AGX7MpYn//Vh5yjc
- HFDNVU2d6pP0A+tUaoUMOIK68TSSP6/ofyhR1RwT2xSFNuAIf041yu760bOOyZOLtr4J
- uKqg==
+ (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
+ id 1k3kwE-00055c-MV
+ for usrp-users@lists.ettus.com; Thu, 06 Aug 2020 14:48:26 -0400
+Received: by mail-ej1-f54.google.com with SMTP id f24so30949567ejx.6
+ for <usrp-users@lists.ettus.com>; Thu, 06 Aug 2020 11:48:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=851CwebPwRyLtmZB2P76DcE/RKLno+pB7L6FWKxio2k=;
+ b=x32IhmFgECizouJMZENhSnnGXz7T86shYNhX8fNi04hsZP0YhWo1eX9EnnIlzJnheQ
+ 3gRY8qQIhsklI1mAZ74uwaWchdKz+8TgFtTtPGhrqOe4nVgjJty6gklh3/TqohnsE8EV
+ X7UJFZJ0fS2Max3Slas6QUBPQWp952aMOgVKnTUTGLdYEOqrjXVK4Cx9p+7uS+nyCP4o
+ Zu8Daf3D0qcK6ICdBqbrC+pMgAImiElCtUPGQl9rABA4/vLgFWDHJiSFeuSOSwk06yAG
+ t1u+RpoUIoImssjNDKLXM2NLnVQDzYcFZ7hpvnUxtqbok3PCztEjRC4fLjhPzzKDDoXj
+ 9l5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=pP5EApZdBR6kttZMpQyu2M08DnHSkbEgkIE58tq6vAA=;
- b=CfXZUMz8LoVg9TuOiv0MHaNzSWxshi88VIpISOLnNT3gTvjYjzZgRrZ78O9/MpE428
- sUisbGNh9QTLKZCf4IM8dX750hfU3YvkOqmSjysWCQzd7or9grhWeBw+CHmNS/xDwqrg
- S8ZhgDa5MS9jNMpSwQlRwWpzTr97s1kumPptnMwzkMp53JHIu17WvQwGG1G7THmKNfnF
- Nx/nZQ+R0lhau2B7J691Z/R/DtSdD0lJzihH+WQT7UnjQDlqzth0gHqISj8SgAS52rsa
- DehNml60MI6zIVSo9Q8dPcGPzNWppyGksUxQxsdFpWbDEw0pASCI01csy38xOYSIlyYx
- KL4Q==
-X-Gm-Message-State: AOAM532yEHelBCT52jA97c4itdaj/1ybAdpMDbKlfAp2DaNfH5t4AU2a
- eT1fohydSULRqlbFYY26luzwPoCHDbI=
-X-Google-Smtp-Source: ABdhPJzhKVJfaYPnzwLYE0+W2WL/yjoOfrNIj56MB6cYmkZDcM18lAbwldx2rL19QuzU1q4l2kAYSQ==
-X-Received: by 2002:ac8:73d1:: with SMTP id v17mr10337655qtp.51.1596739022456; 
- Thu, 06 Aug 2020 11:37:02 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id w32sm6038016qtw.66.2020.08.06.11.37.01
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 06 Aug 2020 11:37:01 -0700 (PDT)
-Message-ID: <5F2C4DCD.7000307@gmail.com>
-Date: Thu, 06 Aug 2020 14:37:01 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=851CwebPwRyLtmZB2P76DcE/RKLno+pB7L6FWKxio2k=;
+ b=jQ4B4AaPUI6ghW7P5mheR+AHbsW2/oo879GzZbk8sezXFiRjUJWMg+XnFnjv6TAra8
+ XHl3I5VdC5L+MJj8VbvDHTYgIkdKnJjtoylQ0fwQZxmR1qDo1bkxCqRf/d4d97TlV8dv
+ Vs8Hj5I9iCTBJTt1a7r/Kq1Q6clpZrc+wTscJUrxdjUdD3s76gFr9GSCcxIhROMlyPaM
+ Zjfn46avBrgVBYtbF5Jsd7TPgKjJvBYJneAJa5VAsyn7h9giTASVkppyngOX46QPb3ZR
+ lP/kB8MqTwgZTGPKn9wHOqMCFr7MUHUx7Azn1tHCQv8nsfG01SiUYaKCRiezP/1aS0KD
+ M4wA==
+X-Gm-Message-State: AOAM5311px8oqAm1XanMoSniQ8nN3eYFLwek85smlRxjWDto97mS/Dap
+ No8u7OekDtP7wz7QcgyputVQdk52nMZ1lw==
+X-Google-Smtp-Source: ABdhPJzNsEKQ8goKFaddI7XPtIc+VNWMvmb0lQrfk0PUP/pWBGjBrDXXCoRcU2X3xkOUvF+adCMr6w==
+X-Received: by 2002:a17:906:4ec6:: with SMTP id
+ i6mr5707966ejv.358.1596739664336; 
+ Thu, 06 Aug 2020 11:47:44 -0700 (PDT)
+Received: from [192.168.128.8]
+ (HSI-KBW-46-223-163-144.hsi.kabel-badenwuerttemberg.de. [46.223.163.144])
+ by smtp.gmail.com with ESMTPSA id g6sm4198814ejz.19.2020.08.06.11.47.43
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 06 Aug 2020 11:47:43 -0700 (PDT)
+To: usrp-users@lists.ettus.com
+References: <trinity-f21300c1-4f5f-4fca-bb9c-e900f0a945ac-1596655559528@3c-app-gmx-bap03>
+Message-ID: <e636af6b-adde-8ac6-79b0-9dce16e62058@ettus.com>
+Date: Thu, 6 Aug 2020 20:47:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-To: Brian Padalino <bpadalino@gmail.com>, 
- Jerrid Plymale <jerrid.plymale@canyon-us.com>
-CC: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-References: <MW3PR19MB42683E64A27B9B0C0A3D0683C6480@MW3PR19MB4268.namprd19.prod.outlook.com>
- <CA9262F8-E745-4A74-934E-557490486CD4@gmail.com>
- <MW3PR19MB42688D343319432B7156AE09C6480@MW3PR19MB4268.namprd19.prod.outlook.com>
- <CAEXYVK5y-7cf9Y1uCpU3CpQ8KKuueu3eq28SvtfErvgXu-+X+Q@mail.gmail.com>
- <MW3PR19MB426868CA935E2B6360B879C3C6480@MW3PR19MB4268.namprd19.prod.outlook.com>
- <CAEXYVK41auGzwJpMGWa43pwaa6xX4uy+9A+LT7SQ4-PVNgFnuA@mail.gmail.com>
-In-Reply-To: <CAEXYVK41auGzwJpMGWa43pwaa6xX4uy+9A+LT7SQ4-PVNgFnuA@mail.gmail.com>
-Subject: Re: [USRP-users] Signal transmission on a USRP X310
+In-Reply-To: <trinity-f21300c1-4f5f-4fca-bb9c-e900f0a945ac-1596655559528@3c-app-gmx-bap03>
+Content-Language: en-US
+Subject: Re: [USRP-users] RFNoC: Initialization process and packaging
+ questions!
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -73,9 +72,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============8666667604533985708=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,140 +90,118 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============8666667604533985708==
-Content-Type: multipart/alternative;
- boundary="------------000002030102070707030303"
-
-This is a multi-part message in MIME format.
---------------000002030102070707030303
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-On 08/06/2020 02:31 PM, Brian Padalino wrote:
-> On Thu, Aug 6, 2020 at 2:28 PM Jerrid Plymale 
-> <jerrid.plymale@canyon-us.com <mailto:jerrid.plymale@canyon-us.com>> 
-> wrote:
->
->     I am seeing a signal strength between -65 and -70 dBm,
->     approximately, even when transmitting all 0’s.
->
->
-> If you really can't handle any LO leakage, can you switch 
-> off-frequency between times you want to transmit?
->
-> Brian
->
-Yeah, I was just about to suggest the same thing.
-
-The UBX max TX power at 1.5GHz is about +20dBm, and with 31.5dB 
-gain-control range, what you're seeing is "sneak around" leakage
-   from the LO--that is, at minimum TX gain with a "loud" baseband, the 
-UBX would be producing about -10dBm out the antenna port. This is
-   just the LO signal bumping around inside the enclosure, and finding 
-the TX output connector.
-
-The schematic for UBX may suggest other pathways as well, like LO 
-disable.  But that may have other consequences, like it taking a while
-   for it to "come up" after a disable state (if it even has such a 
-state, not sure).
+Dear George,
 
 
+On 05.08.20 21:25, George Smith via USRP-users wrote:
+> After reading and doing the official /Getting Started with RFNoc Development 
+> guide/, I implemented my own VHDL/Verilog files and adapted the corresponding 
+> XMLs for GNURadio and UHD-Integration.
+Nice!
+>  Furthermore I changed and added needed 
+> C++ functions in the include and lib folder. Afterwards I uploaded the bitstream 
+> created by Vivado 2018.3 (AR_71898 Patch).
+> Unfortunately the system is not working as expected. Generally the RFNoC block 
+> is doing something (it's not hanging) but the generated output is wrong.
+:(
+> Of course, I created a simulation testbench before, which generates the correct 
+> output.
+:( :(
+> In order to eliminate the misbehaviour, I have some more or less universal 
+> questions:
+> 1)
+> My project itself is written in VHDL, and I wrote my testbench for this 
+> (working) code. But as I understood so far the toplevel has to be in Verilog for 
+> which the RFNoC-Modtool creates a system verilog file as a testbench. Is it 
+> possible to include a Verilog toplevel file, with VHDL component files inside in 
+> your testbench? If this mixed language setting would be working I could test my 
+> system more in total.
+Sure! All that has to match is the interface.
+> 2)
+> In my project I have some components, which need to be configured. My testbench 
+> does this for the VHDL files as following: For the initilization I use an 
+> (active-low) reset signal and set all valid signals to zero. After some clock 
+> cycle periods, I assign the configuration values and set all valid signals to 
+> one. If the configuration signals are successfully loaded the corresponding 
+> ready signals are set to one (by the components itself) and the valid signals 
+> are set to zero again. Afterwards the data from the input stream can be 
+> processed. Generally said, this corresponds to the AMBA 4 AXI4-Stream Protocol 
+> specification.
+> My first question is, how does the initialization process works on the Ettus board?
+> I know, that there are "test1_imp1.cc" and "test1_block_ctrl_impl.cpp" files in 
+> the lib directory, where I can set the order and the configuration in the 
+> constructor. I did this. So the configuration should be finished before the 
+> stream processing starts. But using this way, are valid (and ready) signals 
+> handled similarly as I explained before?
+
+Hm, not really. If your host needs to configure your RFNoC entity, it
+does so via register writes; there's no special "configuration time" signal.
 
 
+> 3)
+> If I execute the/uhd_ursp_probe/ command, I always get a warning from RFNoC: 
+> /Can't find a block controller for key test1, using default block controller/
+> Are the "/test1_impl.cc/" and the the "/test1_block_ctrl_impl.cpp/" the default 
+> block controller or are these files the missing keys?
 
---------------000002030102070707030303
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+I'd have to look that up, but I don't think so. A block controller does
+the setup mentioned above on the host side and communicates the block's
+properties to UHD / RFNoC.
 
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/06/2020 02:31 PM, Brian Padalino
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAEXYVK41auGzwJpMGWa43pwaa6xX4uy+9A+LT7SQ4-PVNgFnuA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_quote">
-          <div dir="ltr" class="gmail_attr">On Thu, Aug 6, 2020 at 2:28
-            PM Jerrid Plymale &lt;<a moz-do-not-send="true"
-              href="mailto:jerrid.plymale@canyon-us.com">jerrid.plymale@canyon-us.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class="gmail_quote" style="margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">
-            <div lang="EN-US">
-              <div class="gmail-m_1151575966745623661WordSection1">
-                <p class="MsoNormal">I am seeing a signal strength
-                  between -65 and -70 dBm, approximately, even when
-                  transmitting all 0’s.</p>
-              </div>
-            </div>
-          </blockquote>
-          <div><br>
-          </div>
-          <div>If you really can't handle any LO leakage, can you switch
-            off-frequency between times you want to transmit?</div>
-          <div><br>
-          </div>
-          <div>Brian</div>
-          <blockquote class="gmail_quote" style="margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">
-            <div lang="EN-US">
-              <div class="gmail-m_1151575966745623661WordSection1">
-                <div>
-                  <div>
-                    <div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-    Yeah, I was just about to suggest the same thing.<br>
-    <br>
-    The UBX max TX power at 1.5GHz is about +20dBm, and with 31.5dB
-    gain-control range, what you're seeing is "sneak around" leakage<br>
-      from the LO--that is, at minimum TX gain with a "loud" baseband,
-    the UBX would be producing about -10dBm out the antenna port. This
-    is<br>
-      just the LO signal bumping around inside the enclosure, and
-    finding the TX output connector.<br>
-    <br>
-    The schematic for UBX may suggest other pathways as well, like LO
-    disable.  But that may have other consequences, like it taking a
-    while<br>
-      for it to "come up" after a disable state (if it even has such a
-    state, not sure).<br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </body>
-</html>
+There's a default one (from which all others inherit).
 
---------------000002030102070707030303--
+>  Normally, I would 
+> interpret these ones as the missing  keys, but as I execute the RFNoC block in 
+> GNURadio I get some debug messages included in these files. So they seem to be 
+> used and I am confused.
+Puh, not quite sure what you're telling us here!
+> 5)
+> After the RFNoC block I use a copy block in order to save the output. I would 
+> assume, that the output is only generated if the (output) valid signal equals one.
+> Is it true?
+
+Kind of. The valid signals are part of AXI4s, as you've noticed above,
+and control the data flow between AXI4s things, like RFNoC blocks on the
+FPGA.
+
+The host doesn't see any of these, of course. It's just the way data is
+exchanged on-FPGA within the RFNoC framework (much like your PC doesn't
+see the ethernet framing of the datacenter that a webserver is in: these
+are not part of the data communicated).
+
+(also: why the copy block?)
+
+> 6)
+> Consecutively to my VHDL component, I use your RFNoC packet resizer. 
+
+Why, exactly? This feels kind of arbitrary?
+
+> It resizes 
+> the input packets to a configurable size. But, how is an /input package /defined?
+> Is it dependent from the bit size? Do I really need it for testing a basic 
+> functionality or is the axi_wrapper sufficient?
+> 7)
+> I use GNURadio 3.7.14.0, UHD 3.15 with Python 2.7. Is there an Ettus FPGA 
+> version planned, which supports Python 3?
+
+The FPGA never sees anything even remotely related to Python... so um,
+yes? Every FPGA version is Python2, 3 and Python 4 compatible!
+
+You probably mean you want GNU Radio with Python 3: Yeah, that exists.
+Update to a current version of Python. If you, for example, used a
+current Ubuntu 20.04, you'd get GNU Radio 3.8.1.0, which is Py3, and
+it's linked against Ubuntu 20.04's version of UHD, which is UHD 3.15.
+So, no more building UHD and GNU Radio from source; you'd only need to
+build gr-ettus from source. So, upgrade to a current OS, and you get all
+that.
+
+Best regards,
+
+Marcus
 
 
---===============8666667604533985708==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============8666667604533985708==--
-
