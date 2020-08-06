@@ -2,64 +2,90 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 394DC23E2DA
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Aug 2020 22:09:01 +0200 (CEST)
-Received: from [::1] (port=54424 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01E1423E350
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Aug 2020 22:51:59 +0200 (CEST)
+Received: from [::1] (port=54844 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k3mCA-00042j-Pq; Thu, 06 Aug 2020 16:08:58 -0400
-Received: from mail-qk1-f172.google.com ([209.85.222.172]:41898)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k3mC6-0003wb-UC
- for USRP-users@lists.ettus.com; Thu, 06 Aug 2020 16:08:54 -0400
-Received: by mail-qk1-f172.google.com with SMTP id l64so39354589qkb.8
- for <USRP-users@lists.ettus.com>; Thu, 06 Aug 2020 13:08:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=VKDsOjgLjaO6LEWr7LB7WesVJ60Fae/E/QY+pMSAnJA=;
- b=W8F+Z0FdYLlI3wZ9DaevvuuafuSlTbBtQN5lmZqPIomuirUGS3xXBSlVVFGjufbhj8
- ofHuOxm/8v08G4unQzewcKX0JtHoTyUEahywBq6+pibO8vOs5wUj4q6/bHw0joqE/MSj
- Ov+p6nyDSQiGhPM1y+uAVYYdg/HHXcmqiAzPczxc1FjrMSfIFxT+R8QwQ2+/4d+JUKor
- w9Iskfg0EbqRQZMS6hbDGKfYbropphP5pZV887kPD3tX35qovJ8cTric1x6dtGFF+r+H
- 0KyipkYwT2QqydloqxG2HZvIriAEa+n5JH2oANhzxABozfAoBoBLOaPO0ZOgo0Rm8IbN
- ZD8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=VKDsOjgLjaO6LEWr7LB7WesVJ60Fae/E/QY+pMSAnJA=;
- b=CdkQ/bPuCVK9WwWlLvasggbM88PNT57pt8nX+rz2pku8OT4QfonnI7ZOxzdq5n0ks7
- TMNk2kIi4gnGz4tVuV+QRbE1eB2kLDpo8pmQoENzKGcsodfs3e2vzQsH4hUvaYAgsufr
- e187gCnKXhYM4xvLFB98oLzbEOgo8fmxPjcNuiHa0E7n/okkwXIEz7L8sSG/Jcc321jq
- /jAJwvw38eA4FzOv0Q1/sur3lNrWXKhzp2snepFp/0IcdzoztkqcKJD8l6n04ZMHFwff
- XEZFjukbEmwguUtcdCvwNLGv4xJFjHGyaFk/z52jpMbtQqsrUICI8hG26qU88V1NvjXW
- VYyw==
-X-Gm-Message-State: AOAM5332QfVNQiTG0xMpZ/0cJMdjS9HHYaOrCTG12kW3cwFopEEY7AB9
- +/tvX8tvx3ALpt0tCaN/PUTxtoVnQrg=
-X-Google-Smtp-Source: ABdhPJxV8gZ49yaezHtcB/ozaUVcJkacV9FNe+UQ72RX5e30sXb5ZrdJd16Ps7Nx1vLkoIfIFGzWDg==
-X-Received: by 2002:a37:a60e:: with SMTP id p14mr10596026qke.169.1596744494115; 
- Thu, 06 Aug 2020 13:08:14 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id x137sm4927143qkb.47.2020.08.06.13.08.13
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 06 Aug 2020 13:08:13 -0700 (PDT)
-Message-ID: <5F2C632D.8020705@gmail.com>
-Date: Thu, 06 Aug 2020 16:08:13 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>, 
- Brian Padalino <bpadalino@gmail.com>
+	id 1k3mrl-0008Rt-CM; Thu, 06 Aug 2020 16:51:57 -0400
+Received: from mail-dm6nam10on2068.outbound.protection.outlook.com
+ ([40.107.93.68]:53888 helo=NAM10-DM6-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <jerrid.plymale@canyon-us.com>)
+ id 1k3mrh-0008IX-O7
+ for USRP-users@lists.ettus.com; Thu, 06 Aug 2020 16:51:53 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Bv6zjIjDO1x2mLIuLAXXk+CCKJRjY6aHB5UqwkUea4RDWZsCyecDbCQ2s1wQvLCYak+Zkm/yADmsptfCnEr54BGYX8mAC6veFiLpp6SNQMYFR3A/dam/EfJLlNcyVUhrSd89+IqPr8z1jGrvJvXb2V29OafMJNlcNLpgwGTIdnONgOV2ZGdWjqGBQX3BlkooZK0V8HqT2hqzKMV1Y4m1kiKk0YrU5gbEwjCjTQcL2JIjZs81rQ/Cfe/PpcV1JiewdinzE6fAfmZGFbAfiy6UQTqytmVVcdRsS8LyPrQQZARzvXqlbNlyqL5aRmSr4hARXnoZGJDJKD1g5EtfusqqdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kjBGcFq72fYciQtEL1WA9RjtXgz2QatOdhanmQB0k0A=;
+ b=jWxigcRGcQsElp57GYni/8Vy/zgz/cAGNbfhR4k6RGj1MVkUK0hFu8I/aUfoJgX1dCxd0Zk7isrVxRKqPhIMXoyD5awyC+FsbUPXA/JmRcbYP7fQ7GW4YJtZaY/J1LgtQ/eQe2uNQio/4neranhL5w/Q2xa/EndGfi+IZQ81I9yh7XzNrMXgvpA11et5Cdo6wfKN2vHzC0NblKVr6v488zIsgxBFtpLPF6ViObi+iD9Vd2ezR3KMOrz/yJ/ivH/IRBs6ccVELUChXRiDMtHWl7DDb7ENfxgz8s34fx8hIVWMgt2Sy2CuwlF4vmpT6HuCsbjuBq7D4tEteBcmbhjncg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=canyon-us.com; dmarc=pass action=none
+ header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=canyonconsulting.onmicrosoft.com;
+ s=selector2-canyonconsulting-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kjBGcFq72fYciQtEL1WA9RjtXgz2QatOdhanmQB0k0A=;
+ b=O68VvNC0npFXzJHa8uEh/U/i9zf6tTyq/yAqFortAXnPDuvqu68iQdmLiaV+JJJsBLkGWt2XczE0T0nNACJo39/Xm64xPiXF00MlwzLFqPwJHJSv5uYil+q+ZpTAs9925aTGO4Q8ATKNEkksF7ZFiBCxFtbDYHtWPCB3acqzvpM=
+Received: from MW3PR19MB4268.namprd19.prod.outlook.com (2603:10b6:303:4f::17)
+ by MWHPR19MB0927.namprd19.prod.outlook.com (2603:10b6:300:a6::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3261.15; Thu, 6 Aug
+ 2020 20:51:12 +0000
+Received: from MW3PR19MB4268.namprd19.prod.outlook.com
+ ([fe80::d91a:dc76:10a:e643]) by MW3PR19MB4268.namprd19.prod.outlook.com
+ ([fe80::d91a:dc76:10a:e643%9]) with mapi id 15.20.3261.015; Thu, 6 Aug 2020
+ 20:51:12 +0000
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, Brian Padalino
+ <bpadalino@gmail.com>
 CC: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Signal transmission on a USRP X310
+Thread-Index: AQHWbBe66KsuxaU9ckeZYi1/jo+tgqkrV2uwgAAJc4CAAAU8IIAAHFeAgAAJ6lA=
+Date: Thu, 6 Aug 2020 20:51:12 +0000
+Message-ID: <MW3PR19MB42685A0718160D077D5A87B6C6480@MW3PR19MB4268.namprd19.prod.outlook.com>
 References: <MW3PR19MB42683E64A27B9B0C0A3D0683C6480@MW3PR19MB4268.namprd19.prod.outlook.com>
  <CA9262F8-E745-4A74-934E-557490486CD4@gmail.com>
  <MW3PR19MB42688D343319432B7156AE09C6480@MW3PR19MB4268.namprd19.prod.outlook.com>
  <CAEXYVK5y-7cf9Y1uCpU3CpQ8KKuueu3eq28SvtfErvgXu-+X+Q@mail.gmail.com>
  <MW3PR19MB426868CA935E2B6360B879C3C6480@MW3PR19MB4268.namprd19.prod.outlook.com>
-In-Reply-To: <MW3PR19MB426868CA935E2B6360B879C3C6480@MW3PR19MB4268.namprd19.prod.outlook.com>
+ <5F2C632D.8020705@gmail.com>
+In-Reply-To: <5F2C632D.8020705@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=canyon-us.com;
+x-originating-ip: [98.153.200.210]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: aef94b6e-8c57-4312-7c4a-08d83a4a7405
+x-ms-traffictypediagnostic: MWHPR19MB0927:
+x-microsoft-antispam-prvs: <MWHPR19MB09275C22D8F5CF9E2DBF93BDC6480@MWHPR19MB0927.namprd19.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: DLW6Xs7E0SdRbBBEwats9Ql52bt1xkUpysliiAJw1htP1pjvRHJ6F5MVpggHm87LAjJlVtMqvK8oRCG945A8AsLFOnXPJxSFq604O/Lr92+M6n9O2ESHz4odZVzqfB/LZK+CJ1gyQgm055lX82Mj9pt5nCxGtHaE74CPEkHVsDPssMJwekm9UmmMirZyxOymimDR4P3FYCvOibFfR6XP++WcX+7DBIYNzUCiJNeHpc1ZsD/fGYm9DZon/T568iwt3dhUWd6oYccwEtgbRW+fSQC9XAbYWF4I0CT15knoebbs/b38SrVpMDwTo60kyjLidX7IlB3ThAJr+h/CqADJeg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW3PR19MB4268.namprd19.prod.outlook.com; PTR:; CAT:NONE;
+ SFTY:;
+ SFS:(4636009)(136003)(346002)(396003)(366004)(39840400004)(376002)(7696005)(4326008)(110136005)(8936002)(71200400001)(8676002)(316002)(33656002)(26005)(508600001)(52536014)(44832011)(2906002)(186003)(66946007)(9686003)(66476007)(66556008)(64756008)(66446008)(6506007)(5660300002)(76116006)(55016002)(86362001)(83380400001)(53546011);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: mpvGamhYYK3A9ewzyA2xXmeLueMVIKj6q6D3enlw33L9MdOpm1pGVM56JIGhlS0BtGwHE1Dv43Y5pK5D1CiVvPS2amp5eyga/CEjBLoPHTPQeWzdr3sFDrQlkB86Yfn1vt08URlgjVNQb6h9QN3FaI8MIy01K+zEI1rZ/LU5YxfG4U0NyXRrJ2Z8g2OX+cV59YuVBeF314iVLVGFiY/8EuI3P03PPfbWACBlAFfHMLJJo2U7Oj96u+T1bbfqFMJx3UTMeTbG0hp4jJQ1hmxtQ8+6nNDYNJvOdcF8CDrgOJ5YjIbJ/kaU2wmfVuV7cQQQawnVL7F/slU5WKSY5+L7QEo3Bh54NOqxuBhMAe8OBUsJlYLFP9L8aiMPNU5No0H0pc4/cIt05iGnxSBMqm8NC5cjv764d2tumnebRZ6mfpHfGRdEwkSns+evgWlybMPG0kVGdGJBPW7Ek1U0lc7++ppYnr6AGDe0lCv77uZ8+CgxIkAXSprnL2lA3Y/NBK27WSLVutPi26Zo1rGHMUurffaUOWUySJs/1VL471x6eukZ7NRmsRO+vEXlpOu3YJFJOyLxl6co0M1ctSMQMfNdt2rmau9YVE7H3Sf22ZhqqNorB49WfiHlBk172oqz796fwXKR2W7jUNpZBlCdgb8Khg==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: canyon-us.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW3PR19MB4268.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aef94b6e-8c57-4312-7c4a-08d83a4a7405
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2020 20:51:12.0476 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: hIjx4AXPfRuNzYOHToCttN+ep+VUuz5RTAP3I6Nf/ZRNrg0B+3wkyg+fUJt5/J2fvY+lGXxVDIQ1Cdi/53S2F6oro5Swm5ZCqQmaT9tZTSk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR19MB0927
 Subject: Re: [USRP-users] Signal transmission on a USRP X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -72,9 +98,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6056010551368571161=="
+From: Jerrid Plymale via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+Content-Type: multipart/mixed; boundary="===============1621392182938184897=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -88,179 +114,163 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============6056010551368571161==
+--===============1621392182938184897==
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="------------080305080201030803020305"
+	boundary="_000_MW3PR19MB42685A0718160D077D5A87B6C6480MW3PR19MB4268namp_"
 
-This is a multi-part message in MIME format.
---------------080305080201030803020305
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_MW3PR19MB42685A0718160D077D5A87B6C6480MW3PR19MB4268namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 08/06/2020 02:28 PM, Jerrid Plymale wrote:
->
-> I am seeing a signal strength between -65 and -70 dBm, approximately, 
-> even when transmitting all 0’s.
->
-> Best Regards,
->
-> Jerrid Plymale
->
-Just to get some perspective, those levels are about 6dB *below* the 
-limits of CFR 47 Part 15 for *radiated* power at *3M* from the box.
+VGhhbmtzIGZvciBhbGwgdGhlIGluZm8sIEkgdGhpbmsgSSBhbSBzdGFydGluZyB0byB3cmFwIG15
+IGhlYWQgYXJvdW5kIGFsbCBvZiB0aGlzLiBTbyBJIGRpZCBzb21lIG1vcmUgZGlnZ2luZyBhbmQg
+aGF2ZSBmb3VuZCBzb21lIGRpc2N1c3Npb25zIG9uIFRyYW5zbWl0dGVyIExPIGxlYWthZ2UgKExP
+TCkgdGhhdCBzdWdnZXN0IGNyZWF0aW5nIGEgY2FuY2VsbGF0aW9uIHNpZ25hbCBieSBhcHBseWlu
+ZyBkYyBvZmZzZXRzIHRvIHRoZSB0cmFuc21pdHRlcnMgaW5wdXRzLiBCeSBkb2luZyB0aGlzLCB3
+b3VsZCB0aGlzIG1lYW4gdGhhdCBJIHdvdWxkIG5lZWQgdG8gc2V0IHVwIEkgYW5kIFEgc2lnbmFs
+IHNvdXJjZXMgaW4gR05VIFJhZGlvIGNvbXBhbmlvbiB0aGF0IGFyZSBhbHdheXMgb24gYW5kIGhh
+dmUgdG8gY29ycmVjdCBkYyBvZmZzZXQgdG8gY2FuY2VsIHRoZSBMT0wgc2lnbmFsLCBvciBjYW4g
+SSBhcHBseSBkYyBvZmZzZXRzIHRvIG15IHNpZ25hbHMgdGhhdCBJIHdhbnQgdG8gYmUgdHJhbnNt
+aXR0ZWQgYW5kIHdoZW5ldmVyIEkgdHVybiB0aGVtIG9uIHRoZSBMT0wgc2lnbmFsIHdpbGwgYmUg
+Y2FuY2VsbGVkIG91dD8NCg0KQmVzdCBSZWdhcmRzLA0KDQpKZXJyaWQgUGx5bWFsZQ0KDQpGcm9t
+OiBNYXJjdXMgRC4gTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0KU2VudDogVGh1cnNk
+YXksIEF1Z3VzdCA2LCAyMDIwIDE6MDggUE0NClRvOiBKZXJyaWQgUGx5bWFsZSA8amVycmlkLnBs
+eW1hbGVAY2FueW9uLXVzLmNvbT47IEJyaWFuIFBhZGFsaW5vIDxicGFkYWxpbm9AZ21haWwuY29t
+Pg0KQ2M6IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBSZTogW1VTUlAtdXNl
+cnNdIFNpZ25hbCB0cmFuc21pc3Npb24gb24gYSBVU1JQIFgzMTANCg0KT24gMDgvMDYvMjAyMCAw
+MjoyOCBQTSwgSmVycmlkIFBseW1hbGUgd3JvdGU6DQpJIGFtIHNlZWluZyBhIHNpZ25hbCBzdHJl
+bmd0aCBiZXR3ZWVuIC02NSBhbmQgLTcwIGRCbSwgYXBwcm94aW1hdGVseSwgZXZlbiB3aGVuIHRy
+YW5zbWl0dGluZyBhbGwgMOKAmXMuDQoNCkJlc3QgUmVnYXJkcywNCg0KSmVycmlkIFBseW1hbGUN
+Cg0KSnVzdCB0byBnZXQgc29tZSBwZXJzcGVjdGl2ZSwgdGhvc2UgbGV2ZWxzIGFyZSBhYm91dCA2
+ZEIgKmJlbG93KiB0aGUgbGltaXRzIG9mIENGUiA0NyBQYXJ0IDE1IGZvciAqcmFkaWF0ZWQqIHBv
+d2VyIGF0ICozTSogZnJvbSB0aGUgYm94Lg0KDQpHcmFudGVkLCBpbmNvbnZlbmllbnQgYW5kIGEg
+cGFpbi4NCg0KDQpGcm9tOiBCcmlhbiBQYWRhbGlubyA8YnBhZGFsaW5vQGdtYWlsLmNvbT48bWFp
+bHRvOmJwYWRhbGlub0BnbWFpbC5jb20+DQpTZW50OiBUaHVyc2RheSwgQXVndXN0IDYsIDIwMjAg
+MTE6MDggQU0NClRvOiBKZXJyaWQgUGx5bWFsZSA8amVycmlkLnBseW1hbGVAY2FueW9uLXVzLmNv
+bT48bWFpbHRvOmplcnJpZC5wbHltYWxlQGNhbnlvbi11cy5jb20+DQpDYzogTWFyY3VzIEQgTGVl
+Y2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPjxtYWlsdG86cGF0Y2h2b25icmF1bkBnbWFpbC5j
+b20+OyB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb20+DQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIFNpZ25hbCB0cmFuc21pc3Npb24g
+b24gYSBVU1JQIFgzMTANCg0KT24gVGh1LCBBdWcgNiwgMjAyMCBhdCAyOjAyIFBNIEplcnJpZCBQ
+bHltYWxlIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+PiB3cm90ZToNCkl0IGRvZXMsIGFuZCBhY3R1YWxs
+eSBpdCBoYXMgYSBzdHJlbmd0aCBjbG9zZXIgdG8gLTcwIGRCbSwgSSBoYWQgbXkgbWFya2VycyBp
+biB0aGUgd3JvbmcgcGxhY2Ugd2hlbiBJIHRob3VnaHQgdGhlIHNpZ25hbCB3YXMgYXQgLTEwMCBk
+Qm0uDQoNCklmIHlvdSB0cmFuc21pdCBhbGwgMCdzIHdpdGggdGhlIGdhaW4gdHVybmVkIGFsbCB0
+aGUgd2F5IGRvd24sIHdoYXQgc3RyZW5ndGggZG8geW91IHNlZSBjb21pbmcgZnJvbSB0aGUgcmFk
+aW8gb24gdGhlIGNhcnJpZXI/DQoNCkJyaWFuDQoNCg==
 
-Granted, inconvenient and a pain.
+--_000_MW3PR19MB42685A0718160D077D5A87B6C6480MW3PR19MB4268namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> *From:* Brian Padalino <bpadalino@gmail.com>
-> *Sent:* Thursday, August 6, 2020 11:08 AM
-> *To:* Jerrid Plymale <jerrid.plymale@canyon-us.com>
-> *Cc:* Marcus D Leech <patchvonbraun@gmail.com>; usrp-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Signal transmission on a USRP X310
->
-> On Thu, Aug 6, 2020 at 2:02 PM Jerrid Plymale via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     It does, and actually it has a strength closer to -70 dBm, I had
->     my markers in the wrong place when I thought the signal was at
->     -100 dBm.
->
-> If you transmit all 0's with the gain turned all the way down, what 
-> strength do you see coming from the radio on the carrier?
->
-> Brian
->
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCglj
+b2xvcjpibGFjazt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlv
+cml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KLk1z
+b0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEw
+LjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2lu
+OjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3Jk
+U2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBl
+ZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0t
+LT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4N
+CjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1s
+PjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgYmdjb2xvcj0id2hpdGUiIGxhbmc9IkVOLVVT
+IiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6d2luZG93dGV4dCI+VGhh
+bmtzIGZvciBhbGwgdGhlIGluZm8sIEkgdGhpbmsgSSBhbSBzdGFydGluZyB0byB3cmFwIG15IGhl
+YWQgYXJvdW5kIGFsbCBvZiB0aGlzLiBTbyBJIGRpZCBzb21lIG1vcmUgZGlnZ2luZyBhbmQgaGF2
+ZSBmb3VuZCBzb21lIGRpc2N1c3Npb25zIG9uIFRyYW5zbWl0dGVyIExPIGxlYWthZ2UgKExPTCkg
+dGhhdCBzdWdnZXN0IGNyZWF0aW5nIGEgY2FuY2VsbGF0aW9uDQogc2lnbmFsIGJ5IGFwcGx5aW5n
+IGRjIG9mZnNldHMgdG8gdGhlIHRyYW5zbWl0dGVycyBpbnB1dHMuIEJ5IGRvaW5nIHRoaXMsIHdv
+dWxkIHRoaXMgbWVhbiB0aGF0IEkgd291bGQgbmVlZCB0byBzZXQgdXAgSSBhbmQgUSBzaWduYWwg
+c291cmNlcyBpbiBHTlUgUmFkaW8gY29tcGFuaW9uIHRoYXQgYXJlIGFsd2F5cyBvbiBhbmQgaGF2
+ZSB0byBjb3JyZWN0IGRjIG9mZnNldCB0byBjYW5jZWwgdGhlIExPTCBzaWduYWwsIG9yIGNhbiBJ
+IGFwcGx5IGRjDQogb2Zmc2V0cyB0byBteSBzaWduYWxzIHRoYXQgSSB3YW50IHRvIGJlIHRyYW5z
+bWl0dGVkIGFuZCB3aGVuZXZlciBJIHR1cm4gdGhlbSBvbiB0aGUgTE9MIHNpZ25hbCB3aWxsIGJl
+IGNhbmNlbGxlZCBvdXQ/PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImNvbG9yOndpbmRvd3RleHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjp3aW5kb3d0ZXh0
+Ij5CZXN0IFJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImNvbG9yOndpbmRvd3RleHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjp3aW5kb3d0ZXh0
+Ij5KZXJyaWQgUGx5bWFsZTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJjb2xvcjp3aW5kb3d0ZXh0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAj
+RTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PGI+PHNwYW4gc3R5bGU9ImNvbG9yOndpbmRvd3RleHQiPkZyb206PC9zcGFuPjwvYj48
+c3BhbiBzdHlsZT0iY29sb3I6d2luZG93dGV4dCI+IE1hcmN1cyBELiBMZWVjaCAmbHQ7cGF0Y2h2
+b25icmF1bkBnbWFpbC5jb20mZ3Q7DQo8YnI+DQo8Yj5TZW50OjwvYj4gVGh1cnNkYXksIEF1Z3Vz
+dCA2LCAyMDIwIDE6MDggUE08YnI+DQo8Yj5Ubzo8L2I+IEplcnJpZCBQbHltYWxlICZsdDtqZXJy
+aWQucGx5bWFsZUBjYW55b24tdXMuY29tJmd0OzsgQnJpYW4gUGFkYWxpbm8gJmx0O2JwYWRhbGlu
+b0BnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bTxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIFNpZ25hbCB0cmFuc21pc3Np
+b24gb24gYSBVU1JQIFgzMTA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+T24gMDgvMDYvMjAyMCAwMjoyOCBQTSwgSmVycmlkIFBseW1hbGUgd3Jv
+dGU6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9w
+OjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBhbSBz
+ZWVpbmcgYSBzaWduYWwgc3RyZW5ndGggYmV0d2VlbiAtNjUgYW5kIC03MCBkQm0sIGFwcHJveGlt
+YXRlbHksIGV2ZW4gd2hlbiB0cmFuc21pdHRpbmcgYWxsIDDigJlzLjxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj5CZXN0IFJlZ2FyZHMsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkplcnJpZCBQbHlt
+YWxlPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpw
+PjwvcD4NCjwvYmxvY2txdW90ZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkp1c3QgdG8gZ2V0IHNv
+bWUgcGVyc3BlY3RpdmUsIHRob3NlIGxldmVscyBhcmUgYWJvdXQgNmRCICpiZWxvdyogdGhlIGxp
+bWl0cyBvZiBDRlIgNDcgUGFydCAxNSBmb3IgKnJhZGlhdGVkKiBwb3dlciBhdCAqM00qIGZyb20g
+dGhlIGJveC48YnI+DQo8YnI+DQpHcmFudGVkLCBpbmNvbnZlbmllbnQgYW5kIGEgcGFpbi48YnI+
+DQo8YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvcD4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4t
+dG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7
+Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4i
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IEJyaWFuIFBhZGFsaW5vIDxhIGhy
+ZWY9Im1haWx0bzpicGFkYWxpbm9AZ21haWwuY29tIj4NCiZsdDticGFkYWxpbm9AZ21haWwuY29t
+Jmd0OzwvYT4gPGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBBdWd1c3QgNiwgMjAyMCAxMTow
+OCBBTTxicj4NCjxiPlRvOjwvYj4gSmVycmlkIFBseW1hbGUgPGEgaHJlZj0ibWFpbHRvOmplcnJp
+ZC5wbHltYWxlQGNhbnlvbi11cy5jb20iPiZsdDtqZXJyaWQucGx5bWFsZUBjYW55b24tdXMuY29t
+Jmd0OzwvYT48YnI+DQo8Yj5DYzo8L2I+IE1hcmN1cyBEIExlZWNoIDxhIGhyZWY9Im1haWx0bzpw
+YXRjaHZvbmJyYXVuQGdtYWlsLmNvbSI+Jmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0Ozwv
+YT47DQo8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iPnVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNl
+cnNdIFNpZ25hbCB0cmFuc21pc3Npb24gb24gYSBVU1JQIFgzMTA8bzpwPjwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8ZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFRodSwgQXVnIDYsIDIwMjAgYXQgMjowMiBQ
+TSBKZXJyaWQgUGx5bWFsZSB2aWEgVVNSUC11c2VycyAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4mZ3Q7
+IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9
+ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4g
+MGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1y
+aWdodDowaW47bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRv
+bS1hbHQ6YXV0byI+SXQgZG9lcywgYW5kIGFjdHVhbGx5IGl0IGhhcyBhIHN0cmVuZ3RoIGNsb3Nl
+ciB0byAtNzAgZEJtLCBJIGhhZCBteSBtYXJrZXJzIGluIHRoZSB3cm9uZyBwbGFjZSB3aGVuIEkg
+dGhvdWdodCB0aGUgc2lnbmFsIHdhcyBhdCAtMTAwIGRCbS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2
+Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5i
+c3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5J
+ZiB5b3UgdHJhbnNtaXQgYWxsIDAncyB3aXRoIHRoZSZuYnNwO2dhaW4gdHVybmVkIGFsbCB0aGUg
+d2F5IGRvd24sIHdoYXQgc3RyZW5ndGggZG8geW91IHNlZSBjb21pbmcgZnJvbSB0aGUgcmFkaW8g
+b24gdGhlIGNhcnJpZXI/PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPkJyaWFuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+
+DQo8L2Jsb2NrcXVvdGU+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-
---------------080305080201030803020305
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/06/2020 02:28 PM, Jerrid Plymale
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:MW3PR19MB426868CA935E2B6360B879C3C6480@MW3PR19MB4268.namprd19.prod.outlook.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">I am seeing a signal strength between -65
-          and -70 dBm, approximately, even when transmitting all 0’s.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Best Regards,<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Jerrid Plymale<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-      </div>
-    </blockquote>
-    Just to get some perspective, those levels are about 6dB *below* the
-    limits of CFR 47 Part 15 for *radiated* power at *3M* from the box.<br>
-    <br>
-    Granted, inconvenient and a pain.<br>
-    <br>
-    <blockquote
-cite="mid:MW3PR19MB426868CA935E2B6360B879C3C6480@MW3PR19MB4268.namprd19.prod.outlook.com"
-      type="cite">
-      <div class="WordSection1">
-        <div style="border:none;border-top:solid #E1E1E1
-          1.0pt;padding:3.0pt 0in 0in 0in">
-          <p class="MsoNormal"><b>From:</b> Brian Padalino
-            <a class="moz-txt-link-rfc2396E" href="mailto:bpadalino@gmail.com">&lt;bpadalino@gmail.com&gt;</a> <br>
-            <b>Sent:</b> Thursday, August 6, 2020 11:08 AM<br>
-            <b>To:</b> Jerrid Plymale
-            <a class="moz-txt-link-rfc2396E" href="mailto:jerrid.plymale@canyon-us.com">&lt;jerrid.plymale@canyon-us.com&gt;</a><br>
-            <b>Cc:</b> Marcus D Leech <a class="moz-txt-link-rfc2396E" href="mailto:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a>;
-            <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
-            <b>Subject:</b> Re: [USRP-users] Signal transmission on a
-            USRP X310<o:p></o:p></p>
-        </div>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <div>
-          <div>
-            <p class="MsoNormal">On Thu, Aug 6, 2020 at 2:02 PM Jerrid
-              Plymale via USRP-users &lt;<a moz-do-not-send="true"
-                href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
-              wrote:<o:p></o:p></p>
-          </div>
-          <div>
-            <blockquote style="border:none;border-left:solid #CCCCCC
-              1.0pt;padding:0in 0in 0in
-              6.0pt;margin-left:4.8pt;margin-right:0in">
-              <div>
-                <div>
-                  <p class="MsoNormal"
-                    style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto">It
-                    does, and actually it has a strength closer to -70
-                    dBm, I had my markers in the wrong place when I
-                    thought the signal was at -100 dBm.<o:p></o:p></p>
-                </div>
-              </div>
-            </blockquote>
-            <div>
-              <p class="MsoNormal"><o:p> </o:p></p>
-            </div>
-            <div>
-              <p class="MsoNormal">If you transmit all 0's with the gain
-                turned all the way down, what strength do you see coming
-                from the radio on the carrier?<o:p></o:p></p>
-            </div>
-            <div>
-              <p class="MsoNormal"><o:p> </o:p></p>
-            </div>
-            <div>
-              <p class="MsoNormal">Brian<o:p></o:p></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------080305080201030803020305--
+--_000_MW3PR19MB42685A0718160D077D5A87B6C6480MW3PR19MB4268namp_--
 
 
---===============6056010551368571161==
+--===============1621392182938184897==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -271,5 +281,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6056010551368571161==--
+--===============1621392182938184897==--
 
