@@ -2,53 +2,65 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D585223E05D
-	for <lists+usrp-users@lfdr.de>; Thu,  6 Aug 2020 20:32:14 +0200 (CEST)
-Received: from [::1] (port=53744 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71F3723E081
+	for <lists+usrp-users@lfdr.de>; Thu,  6 Aug 2020 20:37:48 +0200 (CEST)
+Received: from [::1] (port=53788 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k3kgX-0003DA-Ti; Thu, 06 Aug 2020 14:32:13 -0400
-Received: from mail-ed1-f52.google.com ([209.85.208.52]:35442)
+	id 1k3klv-0003qb-Bz; Thu, 06 Aug 2020 14:37:47 -0400
+Received: from mail-qt1-f173.google.com ([209.85.160.173]:40380)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <bpadalino@gmail.com>) id 1k3kgT-0002zM-AJ
- for USRP-users@lists.ettus.com; Thu, 06 Aug 2020 14:32:09 -0400
-Received: by mail-ed1-f52.google.com with SMTP id m20so26373073eds.2
- for <USRP-users@lists.ettus.com>; Thu, 06 Aug 2020 11:31:49 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1k3klr-0003iF-AD
+ for USRP-users@lists.ettus.com; Thu, 06 Aug 2020 14:37:43 -0400
+Received: by mail-qt1-f173.google.com with SMTP id s16so37100971qtn.7
+ for <USRP-users@lists.ettus.com>; Thu, 06 Aug 2020 11:37:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=qbb/YuC3UNzpKU6ijcowkKin2UOYiBX2merc1Q3DK1o=;
- b=TLULhLI6oVY+5CyC23WDuDpwZaDeMmzGAlLGDwvGmuX0I1H7vg31lASRNRGl/jbgIi
- 0DeF5gOeGGOYYV6bTjjNE2Tud0rRv4NnXeR6eEx+DJK4XCfcotf/8OKQ8OeWceKHCI2a
- hYfx2XsXLPH28oz52Exq/HvAaPMRrX0N5nGT9B7tNKSVzUv7xg166HGghTqlJV0WDgqT
- hVey0y/W8aggDqGjWiMK0+l49ls/K6z6NYF1FzRRfQugJpcIrUWHR1kxNaJZfLbi4WLp
- MMZJB852T87PuRl2Nag28DbrIGYIC5tE1ViVeggs0S27fAX7fTFYPDpLD8kF92sOUvER
- iDrg==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=pP5EApZdBR6kttZMpQyu2M08DnHSkbEgkIE58tq6vAA=;
+ b=DAB5JerOxNLmNunk9QK6DERAgNXtkPvMV6eptCFFGmjcQs2gGuSwXDgez2pFdcUb5z
+ bWdmzfCGSHXLCYIohVD344wRnvpHsuR8+t5NB456rKLNcSXDf95dLsgGliU/Yxbtfp21
+ oK7VeNGNzO4CgU1PjP11WzfXCZETjAjS8gQ6h912VKOLTkWPG/MSOinrKnw3Q+rUh8ri
+ tDN4/KgN6Y6s3fSGrw9SXJTmwC9vPZsslUuWJEoaV44tYMCAx4c4AGX7MpYn//Vh5yjc
+ HFDNVU2d6pP0A+tUaoUMOIK68TSSP6/ofyhR1RwT2xSFNuAIf041yu760bOOyZOLtr4J
+ uKqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=qbb/YuC3UNzpKU6ijcowkKin2UOYiBX2merc1Q3DK1o=;
- b=fTUpiTcpRTP8Ht5VjVQlRmEnpsWpopE/F9F1LhrPFnZ82WVnBl8RNDNJX4PjuppGC0
- KQQEPgOqg07LV2orlihF75ndljq8IBEbZTcuKkwDG9GWEfNy5KMqLwwHZiqa0CKMFxIe
- ft9KM/Aux9pgEGCON+Zhly6urHGYi/jFIJ+JOAZq7Fq+fLX2dCMhAq3UflVmUlUKp1+7
- mkr9ttkAfaxdfrqmRTAjilBVHe0Fh05KDIU4UDXXcedvQ7AYn8EP6mEw/TMX9c9HwML+
- nmDIrJtMBDciO0P0DK54Onleodrg6CEAddumuAunl31r1uDOjeImTg93gucYG63lDPhz
- BNpw==
-X-Gm-Message-State: AOAM530QbXjZuDGw0bAqisOJMHpynUaVVHdOE6Qq6OuuJDNq+UP5ccOK
- a/gjv8MZEn/sX4RyHu3thJtpmGTuus48XpK5miceLlmA
-X-Google-Smtp-Source: ABdhPJz0F8asnWyz0+FJKqz4Lxy7CTRybSlUcbu04Izm0RrnnEwqZnwB/uROAOkn91mN5+urJPzG7QOD2UaRMh1J8Vk=
-X-Received: by 2002:a50:cf46:: with SMTP id d6mr5287620edk.339.1596738688258; 
- Thu, 06 Aug 2020 11:31:28 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=pP5EApZdBR6kttZMpQyu2M08DnHSkbEgkIE58tq6vAA=;
+ b=CfXZUMz8LoVg9TuOiv0MHaNzSWxshi88VIpISOLnNT3gTvjYjzZgRrZ78O9/MpE428
+ sUisbGNh9QTLKZCf4IM8dX750hfU3YvkOqmSjysWCQzd7or9grhWeBw+CHmNS/xDwqrg
+ S8ZhgDa5MS9jNMpSwQlRwWpzTr97s1kumPptnMwzkMp53JHIu17WvQwGG1G7THmKNfnF
+ Nx/nZQ+R0lhau2B7J691Z/R/DtSdD0lJzihH+WQT7UnjQDlqzth0gHqISj8SgAS52rsa
+ DehNml60MI6zIVSo9Q8dPcGPzNWppyGksUxQxsdFpWbDEw0pASCI01csy38xOYSIlyYx
+ KL4Q==
+X-Gm-Message-State: AOAM532yEHelBCT52jA97c4itdaj/1ybAdpMDbKlfAp2DaNfH5t4AU2a
+ eT1fohydSULRqlbFYY26luzwPoCHDbI=
+X-Google-Smtp-Source: ABdhPJzhKVJfaYPnzwLYE0+W2WL/yjoOfrNIj56MB6cYmkZDcM18lAbwldx2rL19QuzU1q4l2kAYSQ==
+X-Received: by 2002:ac8:73d1:: with SMTP id v17mr10337655qtp.51.1596739022456; 
+ Thu, 06 Aug 2020 11:37:02 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
+ [174.95.14.148])
+ by smtp.googlemail.com with ESMTPSA id w32sm6038016qtw.66.2020.08.06.11.37.01
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 06 Aug 2020 11:37:01 -0700 (PDT)
+Message-ID: <5F2C4DCD.7000307@gmail.com>
+Date: Thu, 06 Aug 2020 14:37:01 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: Brian Padalino <bpadalino@gmail.com>, 
+ Jerrid Plymale <jerrid.plymale@canyon-us.com>
+CC: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 References: <MW3PR19MB42683E64A27B9B0C0A3D0683C6480@MW3PR19MB4268.namprd19.prod.outlook.com>
  <CA9262F8-E745-4A74-934E-557490486CD4@gmail.com>
  <MW3PR19MB42688D343319432B7156AE09C6480@MW3PR19MB4268.namprd19.prod.outlook.com>
  <CAEXYVK5y-7cf9Y1uCpU3CpQ8KKuueu3eq28SvtfErvgXu-+X+Q@mail.gmail.com>
  <MW3PR19MB426868CA935E2B6360B879C3C6480@MW3PR19MB4268.namprd19.prod.outlook.com>
-In-Reply-To: <MW3PR19MB426868CA935E2B6360B879C3C6480@MW3PR19MB4268.namprd19.prod.outlook.com>
-Date: Thu, 6 Aug 2020 14:31:16 -0400
-Message-ID: <CAEXYVK41auGzwJpMGWa43pwaa6xX4uy+9A+LT7SQ4-PVNgFnuA@mail.gmail.com>
-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+ <CAEXYVK41auGzwJpMGWa43pwaa6xX4uy+9A+LT7SQ4-PVNgFnuA@mail.gmail.com>
+In-Reply-To: <CAEXYVK41auGzwJpMGWa43pwaa6xX4uy+9A+LT7SQ4-PVNgFnuA@mail.gmail.com>
 Subject: Re: [USRP-users] Signal transmission on a USRP X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -61,10 +73,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5149125679978874432=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8666667604533985708=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,66 +89,131 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5149125679978874432==
-Content-Type: multipart/alternative; boundary="00000000000050161705ac39b227"
+This is a multi-part message in MIME format.
+--===============8666667604533985708==
+Content-Type: multipart/alternative;
+ boundary="------------000002030102070707030303"
 
---00000000000050161705ac39b227
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------000002030102070707030303
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Aug 6, 2020 at 2:28 PM Jerrid Plymale <jerrid.plymale@canyon-us.com=
+On 08/06/2020 02:31 PM, Brian Padalino wrote:
+> On Thu, Aug 6, 2020 at 2:28 PM Jerrid Plymale 
+> <jerrid.plymale@canyon-us.com <mailto:jerrid.plymale@canyon-us.com>> 
+> wrote:
 >
-wrote:
-
-> I am seeing a signal strength between -65 and -70 dBm, approximately, eve=
-n
-> when transmitting all 0=E2=80=99s.
+>     I am seeing a signal strength between -65 and -70 dBm,
+>     approximately, even when transmitting all 0’s.
 >
-
-If you really can't handle any LO leakage, can you switch off-frequency
-between times you want to transmit?
-
-Brian
-
 >
+> If you really can't handle any LO leakage, can you switch 
+> off-frequency between times you want to transmit?
+>
+> Brian
+>
+Yeah, I was just about to suggest the same thing.
 
---00000000000050161705ac39b227
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The UBX max TX power at 1.5GHz is about +20dBm, and with 31.5dB 
+gain-control range, what you're seeing is "sneak around" leakage
+   from the LO--that is, at minimum TX gain with a "loud" baseband, the 
+UBX would be producing about -10dBm out the antenna port. This is
+   just the LO signal bumping around inside the enclosure, and finding 
+the TX output connector.
 
-<div dir=3D"ltr"><div dir=3D"ltr"></div><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Thu, Aug 6, 2020 at 2:28 PM Jerrid Plymale=
- &lt;<a href=3D"mailto:jerrid.plymale@canyon-us.com">jerrid.plymale@canyon-=
-us.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex">
-
-
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_1151575966745623661WordSection1">
-<p class=3D"MsoNormal">I am seeing a signal strength between -65 and -70 dB=
-m, approximately, even when transmitting all 0=E2=80=99s.</p></div></div></=
-blockquote><div><br></div><div>If you really can&#39;t handle any LO leakag=
-e, can you switch off-frequency between times you want to transmit?</div><d=
-iv><br></div><div>Brian</div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex"><div lang=3D"EN-US"><div class=3D"gmail-m_1151575966745623661WordSectio=
-n1"><div><div><div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</blockquote></div></div>
-
---00000000000050161705ac39b227--
+The schematic for UBX may suggest other pathways as well, like LO 
+disable.  But that may have other consequences, like it taking a while
+   for it to "come up" after a disable state (if it even has such a 
+state, not sure).
 
 
---===============5149125679978874432==
+
+
+
+--------------000002030102070707030303
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 08/06/2020 02:31 PM, Brian Padalino
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAEXYVK41auGzwJpMGWa43pwaa6xX4uy+9A+LT7SQ4-PVNgFnuA@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div class="gmail_quote">
+          <div dir="ltr" class="gmail_attr">On Thu, Aug 6, 2020 at 2:28
+            PM Jerrid Plymale &lt;<a moz-do-not-send="true"
+              href="mailto:jerrid.plymale@canyon-us.com">jerrid.plymale@canyon-us.com</a>&gt;
+            wrote:<br>
+          </div>
+          <blockquote class="gmail_quote" style="margin:0px 0px 0px
+            0.8ex;border-left:1px solid
+            rgb(204,204,204);padding-left:1ex">
+            <div lang="EN-US">
+              <div class="gmail-m_1151575966745623661WordSection1">
+                <p class="MsoNormal">I am seeing a signal strength
+                  between -65 and -70 dBm, approximately, even when
+                  transmitting all 0’s.</p>
+              </div>
+            </div>
+          </blockquote>
+          <div><br>
+          </div>
+          <div>If you really can't handle any LO leakage, can you switch
+            off-frequency between times you want to transmit?</div>
+          <div><br>
+          </div>
+          <div>Brian</div>
+          <blockquote class="gmail_quote" style="margin:0px 0px 0px
+            0.8ex;border-left:1px solid
+            rgb(204,204,204);padding-left:1ex">
+            <div lang="EN-US">
+              <div class="gmail-m_1151575966745623661WordSection1">
+                <div>
+                  <div>
+                    <div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+    </blockquote>
+    Yeah, I was just about to suggest the same thing.<br>
+    <br>
+    The UBX max TX power at 1.5GHz is about +20dBm, and with 31.5dB
+    gain-control range, what you're seeing is "sneak around" leakage<br>
+      from the LO--that is, at minimum TX gain with a "loud" baseband,
+    the UBX would be producing about -10dBm out the antenna port. This
+    is<br>
+      just the LO signal bumping around inside the enclosure, and
+    finding the TX output connector.<br>
+    <br>
+    The schematic for UBX may suggest other pathways as well, like LO
+    disable.  But that may have other consequences, like it taking a
+    while<br>
+      for it to "come up" after a disable state (if it even has such a
+    state, not sure).<br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------000002030102070707030303--
+
+
+--===============8666667604533985708==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,5 +224,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5149125679978874432==--
+--===============8666667604533985708==--
 
