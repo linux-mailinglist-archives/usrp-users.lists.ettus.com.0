@@ -2,92 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F8C23E70B
-	for <lists+usrp-users@lfdr.de>; Fri,  7 Aug 2020 07:31:19 +0200 (CEST)
-Received: from [::1] (port=58876 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 877C223F0C1
+	for <lists+usrp-users@lfdr.de>; Fri,  7 Aug 2020 18:12:52 +0200 (CEST)
+Received: from [::1] (port=35666 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k3uyL-0006U2-Gc; Fri, 07 Aug 2020 01:31:17 -0400
-Received: from mail-eopbgr1390107.outbound.protection.outlook.com
- ([40.107.139.107]:48096 helo=IND01-BO1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <sourin.mondal@vehere.com>)
- id 1k3uyH-0006CS-7z
- for usrp-users@lists.ettus.com; Fri, 07 Aug 2020 01:31:13 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MfQM3Yus2Co/H6Ed1WfL+qeatPCcUnjkmKn7JD2yBUc+FkwDOBoz1VVbnoHgo9S3nZcAIIXt4PJmz5pqbnt9gMHWhxx6nuLrMuqf7XaWKPGth+jmgF7bpaA7mrCyeUbDgmmnC0FgA5co5b4TbPYYLNp2lSoBM7kohcdrR64qdKm3q/dgR8ukydT+ejt/qOd3/GQ/xglc7F2IKIKd1fNW/ONVzSIH8K+YDwnX0nauCxCaUZMDGm/8rmMZeENxHRGXD82hm4tDUXgGEygW2PN2zTup3qjwFwanUj+hEcWfPHaX534qKltnyPdOl6vnOGD1xfjGZgZ14X4xdtrajQiaKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q7CqKWIAySFfl4OYYCdrRZCh5J00WZQGgB1qPus6yQw=;
- b=C6sMqVByuBM/popPOdD0FmQoIiYIurHG2frpfoUOZyfzDHlIgrd2X1bXIS/L8h89DfPdwSpbPtNx/K3aJDgQZHrY/lzZwUCRZ06Gd1QvxMlP5p7mXfkOgEbgkEN2Ri1WQmZEdz6q+3dZ0K2PpVUn9T2WlgSfdcDF02qzSaUBfo5ogm1QosHbW2ngD+jookaow0EPdsH+M7Yy1rzH+zFvBrvotGEwPpcJce1IUoHsqwP1etKxU4dowooWJEe0nf1v4oShLPXIVqqr5tr/G38aiY8jC+6qqh69qMQF/jN0tXnF6Ju/fdngo2SuEa2t3AfHvUAi81ULYy/CV8f/Hx3DVw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
- dkim=pass header.d=vehere.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=vehereinteractive.onmicrosoft.com;
- s=selector2-vehereinteractive-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q7CqKWIAySFfl4OYYCdrRZCh5J00WZQGgB1qPus6yQw=;
- b=ik6cFMKiUmYhfUOfqKGj9hujuXHzbQ79iuzfch1Vjnt5qfE/j3mvRyYlM+FytwH3PPBRk58dzC7kTvXlB0WswqBiT+HtLYEa/XEEkDZ56jrDaVvaO1LMAA8W8rRj6NkwVViDQ/nRJJFzLNV2AHWHtML2nhnxthgHow3LrU5/hd8=
-Received: from PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c00:16::22) by PN1PR01MB0751.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c00:9::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3261.18; Fri, 7 Aug
- 2020 05:30:28 +0000
-Received: from PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::cc3b:5542:4d86:3d55]) by PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::cc3b:5542:4d86:3d55%7]) with mapi id 15.20.3261.020; Fri, 7 Aug 2020
- 05:30:28 +0000
-To: Neel Pandeya <neel.pandeya@ettus.com>, "Sourin Mondal (Vehere)"
- <sourin.mondal@vehere.com>
+	id 1k44zB-0004Mk-9K; Fri, 07 Aug 2020 12:12:49 -0400
+Received: from mail-qv1-f53.google.com ([209.85.219.53]:40358)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1k44z7-0004EW-FH
+ for usrp-users@lists.ettus.com; Fri, 07 Aug 2020 12:12:45 -0400
+Received: by mail-qv1-f53.google.com with SMTP id s15so977555qvv.7
+ for <usrp-users@lists.ettus.com>; Fri, 07 Aug 2020 09:12:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=qWkx0pdiVuFK99H8BFplTLCcVk8HF2viKEUKBsw7WMg=;
+ b=rNlI//w/FLxWRqh+cPNJ7R/zyKV60TxkcK5NXWpfSfF89wPARA5jAY+l1/1GJ/m46h
+ xUwHv4Qscdf2M8WPjqfs7U44Tn3JSDYycE4WmKqMe9DR3k38uWoNg8Jq9gST2nWOr+Uo
+ 9GLJPWHHm4bQCFy5HraQrKOxYB6BVrXRsq4mSxzJsNa4qWkcy7O9OFfOonCjs6s+N6wg
+ F1RRt4smFuuLe80nzr2i2vPXMXQDTgOVm6yVP7T+NtbFzhZiVCzFBUFn2p7FGnVUYOC4
+ OdrVwuV3HNiIf/W4W5LYnNpxN7FjaPrhnFg22f18lebd4FCTWH+41JrSCO2aUwx3E2z7
+ NFoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=qWkx0pdiVuFK99H8BFplTLCcVk8HF2viKEUKBsw7WMg=;
+ b=MvUaKXc7w4DAcU8FRJKP5w2dLyItrow8gldsR8lTYrexUsUoNUldZZRG6va7CNuV1u
+ fxH2fygC9RpC9kVIfQHu3Q+qQFnIavIsvJaJBy9fzgScNBM+qqBjb23XGEwTH7bIps2n
+ FNsJxlWeTHk6/AEsAveRcVJ3lHURrDztIn7CWHJM/pDKqfWN4t7kZEX+hXVIl4kfrVjM
+ 3rMTpcyK/AD+mvaZ5C0sWP3befpWPxU9lUMUCTojrrfrlaZHbTNe1A9ygDO23t6RChVt
+ 3zlv68VkG5XkI4l/DTRLtePPbcEtRqAU6CTtDcO5ByjOJLfN+XWdtqmTpPgzMaK/xdb0
+ 4/EQ==
+X-Gm-Message-State: AOAM532NbgMHSpkUfch6c7fLsWVTfNNZyuWLdr0zI3bhbZpOBc+ZE4nZ
+ 58FCd5OLhfZ1thQI0ckqx3IJ3W7HcDo=
+X-Google-Smtp-Source: ABdhPJyX47CLNuiI1GLyqvTzMCtk5UKPjxT6A5Fg8XZjztj+yD4pPc+tkjIPIu1Bw0Ew0FnMZCRIPQ==
+X-Received: by 2002:a0c:e30c:: with SMTP id s12mr15792322qvl.138.1596816724624; 
+ Fri, 07 Aug 2020 09:12:04 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
+ [174.95.14.148])
+ by smtp.googlemail.com with ESMTPSA id x67sm7171571qke.136.2020.08.07.09.12.03
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 07 Aug 2020 09:12:04 -0700 (PDT)
+Message-ID: <5F2D7D53.70900@gmail.com>
+Date: Fri, 07 Aug 2020 12:12:03 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: "Sourin Mondal (Vehere)" <sourin.mondal@vehere.com>, 
+ Neel Pandeya <neel.pandeya@ettus.com>
 CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] USRP not receiving data from two antennas using PCI
- card
-Thread-Index: AQHWbAg9qgjwsPUEwke7OTDIRmASdqkrO3eAgAAPtbaAAAVBgIAAxdS3gAAIYs0=
-Date: Fri, 7 Aug 2020 05:30:28 +0000
-Message-ID: <PN1PR0101MB1888D39ABB9166138962B80A8B490@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM>
 References: <PN1PR0101MB18888E07850F604DE16381328B480@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM>
  <838FBFE1-52F7-445B-B841-E05F0B7FEA31@gmail.com>
  <PN1PR0101MB1888C69D81516A613A69241E8B480@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM>,
- <CACaXmv-ibAFFSg=ivd4bhsejqn1b9fGO4c-BVVJvzGMERYhZVw@mail.gmail.com>,
- <PN1PR0101MB18883F59732DCC7522AE37C08B490@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <PN1PR0101MB18883F59732DCC7522AE37C08B490@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-authentication-results: ettus.com; dkim=none (message not signed)
- header.d=none;ettus.com; dmarc=none action=none header.from=vehere.com;
-x-originating-ip: [219.65.75.30]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 77253bef-6420-446e-e57c-08d83a92fedf
-x-ms-traffictypediagnostic: PN1PR01MB0751:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <PN1PR01MB0751AFA51964350DF5722F408B490@PN1PR01MB0751.INDPRD01.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 22BbeIXHxWL9ntWO38q/HX4oyyZBnNWKjkqRvEqMDe4FID5nFpOhUOjkJ22uVwlUCDfn1SRUN+q3adPv4z2a0ixZ2h0kRYncftE5lZLWLSRnHqsE6UDg56UPas0IjPKJg+n0hkcrn+JrqRJmub+EcZ99vIWFzrJ2/A6kvM72LC3XTkVk0whrtSTxSHE5M9ZRBG/PnyP4h3Qs21atFsUoQLX8kPhhoN7BiNVHJsxjq46wX6AYoBieJQlTanAcBkPo8U4j7tGSe0xOmNzVGBTnN31YGjQHq8slnwGczHyyIFclkRcDwpf/Es588AKi1HZRjTeScAZXWEJDNpfZa8m8d3pMT7FryUHEj6WPmdRo7y5oXfQx/+rz3sJC5I9ZSINYFyMiGNe4EHdp/wfdGxahxA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFTY:;
- SFS:(366004)(346002)(53546011)(6506007)(66476007)(2906002)(2940100002)(8936002)(66616009)(11855715004)(83380400001)(64756008)(52536014)(55885007)(33656002)(55016002)(5660300002)(66946007)(7696005)(9686003)(66446008)(66556008)(76116006)(86362001)(8676002)(110136005)(4326008)(166002)(186003)(99936003)(508600001)(71200400001)(19627405001)(26005)(966005)(19627235002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: WqD4K6XKYdcpUXewL/26gCiktk7DI2ASC6n1ZHtLA2auNKul5ofkK/XabAPHjNVdTn9buE9Wd9iVF0PtLIhXpmobCCNcyCaFQI9EN5OxXsokLjeC3bVYfDfram5ALTKCKWGScbqpRJtrCYfo+MnePkJvRwedv8xeE1Xi9h7pASQ24l768VzTRFgf6FsEAlqqsOwOeHCp/RaZRpY7/7oX2Pw2gEoknYCMABrPVqWVlG0PwmMLSCFnoLlFxc2OqYx4c9jJ4F629oMr2BE0QfKAgit6Acz2dDObmHu68Tor2d9bmurb5itO8idaANax2delhVYPeTDr9OmNfZPl2NK2j/UcQe6jOXnRLxL8URHnfE4/cqZSaZysnAGwH+GAarCeObiWbfVZQ2zxBxRoE22ZrV1F3b3ZvE8u8gWVxQYycJreRdG5CSjPUE7R7KhT/UAkTL/xKbEktN6YeT0BCpT8jV81AdylkoPUlyNadlH0jupBrwChMHUPTWpxEr91hoPMriB1TeRaahCQeWSH4661ZA7ytxAW4HenHlbRLdAI84ahMEyLQByJYB/on4dkTOnX+3L1umj7VxARTGICLuvqLkyyNlZphVAC/PRsoJ++KONPER/dpLrtc4bnK/HD0h65t1PJSnFV1BH2VYMBKDyQ2w==
-Content-Type: multipart/mixed;
- boundary="_004_PN1PR0101MB1888D39ABB9166138962B80A8B490PN1PR0101MB1888_"
-MIME-Version: 1.0
-X-OriginatorOrg: vehere.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77253bef-6420-446e-e57c-08d83a92fedf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2020 05:30:28.7268 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: k/d3SQQo9fizuieOc1Ho52BvsFIVo5j4rUgNQUGxhEPHqLdwFIvVa7aZgNy7EI65ALKsMs9d+u1y+nuazcTNX3NKVGrohi50MEQ0CPSPuOY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN1PR01MB0751
+ <CACaXmv-ibAFFSg=ivd4bhsejqn1b9fGO4c-BVVJvzGMERYhZVw@mail.gmail.com>
+ <PN1PR0101MB188829BCAE89F6DD136D31F08B490@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <PN1PR0101MB188829BCAE89F6DD136D31F08B490@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM>
 Subject: Re: [USRP-users] USRP not receiving data from two antennas using
  PCI card
 X-BeenThere: usrp-users@lists.ettus.com
@@ -101,8 +73,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Sourin Mondal \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Sourin Mondal \(Vehere\)" <sourin.mondal@vehere.com>
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4645963290601006302=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -116,315 +89,367 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---_004_PN1PR0101MB1888D39ABB9166138962B80A8B490PN1PR0101MB1888_
+This is a multi-part message in MIME format.
+--===============4645963290601006302==
 Content-Type: multipart/alternative;
-	boundary="_000_PN1PR0101MB1888D39ABB9166138962B80A8B490PN1PR0101MB1888_"
+ boundary="------------010603030102070708030401"
 
---_000_PN1PR0101MB1888D39ABB9166138962B80A8B490PN1PR0101MB1888_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------010603030102070708030401
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-SGksDQpDdXJyZW50bHkgdGhlIHNhbXBsZSByYXRlIGlzIHNldCB0byAyMGU2IGp1c3QgZm9yIHRl
-c3RpbmcuIExhdGVyIHdlIHdpbGwgY2hhbmdlIHRvIDEwMGU2IHdoZW4gdGhpcyB3b3Jrcy4gU28g
-cGxlYXNlIGZpcnN0IGhlbHAgdXMgdG8gc3RyZWFtIHR3byBjaGFubmVscyBzaW11bHRhbmVvdXNs
-eSB1c2luZyB0aGlzIHNlbnQgY29kZSBhbmQgcmVmZXIgdG8gUkVBRE1FLiBTdGlsbCBpZiB5b3Ug
-aGF2ZSBhbnkgcHJvYmxlbSBpbiBydW5uaW5nIHRoZSBjb2RlIHRoZW4gbGV0IG1lIGtub3cuDQpB
-bHNvIEkgYW0gYXR0YWNoaW5nIHRoZSBSRUFETUUgZmlsZSBhZ2Fpbi4NClBsZWFzZSBmaW5kIHRo
-ZSBhdHRhY2htZW50Lg0KDQpGcm9tLA0KU291cmluDQoNCg0KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18NCkZyb206IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5l
-dHR1cy5jb20+IG9uIGJlaGFsZiBvZiBTb3VyaW4gTW9uZGFsIChWZWhlcmUpIHZpYSBVU1JQLXVz
-ZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClNlbnQ6IEZyaWRheSwgQXVndXN0IDcs
-IDIwMjAgMTA6MjggQU0NClRvOiBOZWVsIFBhbmRleWEgPG5lZWwucGFuZGV5YUBldHR1cy5jb20+
-DQpDYzogVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tPg0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBVU1JQIG5vdCByZWNlaXZpbmcgZGF0YSBm
-cm9tIHR3byBhbnRlbm5hcyB1c2luZyBQQ0kgY2FyZA0KDQpIaSwNCkkgYW0gdXNpbmcgVUJVTlRV
-IDE4LjA0Lg0KSSBhbSBhdHRhY2hpbmcgYSBsaW5rLiBWaXNpdCB0aGF0IGxpbmsgdG8gZ2V0IHRo
-ZSBDKysgY29kZS4NCg0KDQpbaHR0cHM6Ly9yMi5yZXMub3V0bG9vay5jb20vb3dhL3ByZW0vaW1h
-Z2VzL3ppcF8xNngxNi5wbmddaXFfZmlsZV93cml0dGVyLnppcDxodHRwczovL3ZlaGVyZWludGVy
-YWN0aXZlLW15LnNoYXJlcG9pbnQuY29tLzp1Oi9nL3BlcnNvbmFsL3NvdXJpbl9tb25kYWxfdmVo
-ZXJlX2NvbS9FWVJvSm9lSEN4dEtyem5hZ0VrczNjc0JUUWp6SWtqS1VLYmFiQjY0Z2hkX1hRP2U9
-RjZWR2pmPg0KDQpmcm9tLA0KU291cmluDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xw0KRnJvbTogTmVlbCBQYW5kZXlhIDxuZWVsLnBhbmRleWFAZXR0dXMuY29tPg0KU2VudDogVGh1
-cnNkYXksIEF1Z3VzdCA2LCAyMDIwIDEwOjM4IFBNDQpUbzogU291cmluIE1vbmRhbCAoVmVoZXJl
-KSA8c291cmluLm1vbmRhbEB2ZWhlcmUuY29tPg0KQ2M6IE1hcmN1cyBEIExlZWNoIDxwYXRjaHZv
-bmJyYXVuQGdtYWlsLmNvbT47IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDx1c3JwLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbT4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gVVNSUCBub3QgcmVj
-ZWl2aW5nIGRhdGEgZnJvbSB0d28gYW50ZW5uYXMgdXNpbmcgUENJIGNhcmQNCg0KSGVsbG8gU291
-cmluOg0KDQpDb3VsZCB5b3Ugc2hhcmUgeW91ciBDKysgcHJvZ3JhbSwgc28gdGhhdCB3ZSBtaWdo
-dCB0cnkgdG8gcmVwcm9kdWNlIHRoZSBwcm9ibGVtIGhlcmU/DQoNCldoaWNoIHZlcnNpb24gb2Yg
-TGludXggLyBVYnVudHUgYXJlIHlvdSBydW5uaW5nPw0KDQotLU5lZWwgUGFuZGV5YQ0KDQoNCg0K
-T24gVGh1LCA2IEF1ZyAyMDIwIGF0IDExOjUxLCBTb3VyaW4gTW9uZGFsIChWZWhlcmUpIHZpYSBV
-U1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb20+PiB3cm90ZToNCkhpLA0KSSBhbSB1c2luZyBVSEQtMy4xNC4xLjANCkkg
-YW0gbm90IHVzaW5nIGdudXJhZGlvIG5vdy4gSSB1c2VkIHRoYXQgb25lIHllYXIgYmFjayBhbmQg
-ZmFjZWQgdGhlIG1lbnRpb25lZCBwcm9ibGVtLiBOb3cgSSBhbSB1c2luZyBjKysgY29kZSBhbmQg
-YW0gZmFjaW5nIHRoZSBzYW1lIGlzc3VlIG9mIG5vdCBhYmxlIHRvIHN0cmVhbSB0d28gY2hhbm5l
-bHMgc2ltdWx0YW5lb3VzbHkuDQpGcm9tLA0KU291cmluDQoNCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fDQpGcm9tOiBNYXJjdXMgRCBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5j
-b208bWFpbHRvOnBhdGNodm9uYnJhdW5AZ21haWwuY29tPj4NClNlbnQ6IFRodXJzZGF5LCBBdWd1
-c3QgNiwgMjAyMCA5OjIzIFBNDQpUbzogU291cmluIE1vbmRhbCAoVmVoZXJlKSA8c291cmluLm1v
-bmRhbEB2ZWhlcmUuY29tPG1haWx0bzpzb3VyaW4ubW9uZGFsQHZlaGVyZS5jb20+Pg0KQ2M6IFVT
-UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bT4gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbT4+DQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIFVTUlAgbm90IHJlY2VpdmluZyBk
-YXRhIGZyb20gdHdvIGFudGVubmFzIHVzaW5nIFBDSSBjYXJkDQoNCldoYXQgdmVyc2lvbiBvZiBV
-SEQ/DQoNCkNvdWxkIHlvdSBzaGFyZSB0aGUgZmxvdyBncmFwaCB5b3XigJlyZSB1c2luZz8NCg0K
-DQoNClNlbnQgZnJvbSBteSBpUGhvbmUNCg0KT24gQXVnIDYsIDIwMjAsIGF0IDExOjQ3IEFNLCBT
-b3VyaW4gTW9uZGFsIChWZWhlcmUpIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+PiB3cm90ZToNCg0K77u/
-DQpIaSwNCg0KSSBhbSB1c2luZyBVU1JQIDI5NTUgYW5kIHdhbnQgdG8gcmVjZWl2ZSB0d28gY2hh
-bm5lbHMgYXQgMTAwIE1TUFMgZWFjaCBzaW11bHRhbmVvdXNseS4gSSBoYXZlIGNvbm5lY3RlZCB1
-c3JwIHdpdGggUENJZS4gSSBhbSBydW5uaW5nIG15IGNvZGUgYnV0IG9ubHkgb25lIGNoYW5uZWwg
-aXMgZ2V0dGluZyByZWNlaXZlZC4gT3RoZXIgY2hhbm5lbCBpcyBzZW5kaW5nIHplcm9zIG9ubHku
-IEkgYW0gdXNpbmcgVWJ1bnR1IDE4LjA0LiBQcmV2aW91c2x5IG9uZSB5ZWFyIGJhY2sgSSBmYWNl
-ZCB0aGUgc2FtZSBwcm9ibGVtIHVzaW5nIFVTUlAgMjk1NSBhbG9uZyB3aXRoIFBDSWUgYW5kIHJ1
-bm5pbmcgZ251IHJhZGlvLiBPbmx5IG9uZSBjaGFubmVsIHBvcHBlZCB1cCBpbiB0aGUgZnJlcXVl
-bmN5IHNpbmsgZ3JhcGggYW5kIHNlY29uZCBncmFwaCB3YXMgc3RhdGljIHdpdGggbm8gc2lnbmFs
-LiBIb3dldmVyLCAyOTU0IHdhcyBnaXZpbmcgYm90aCBjaGFubmVscy4gV2hlcmUgaXMgdGhlIHBy
-b2JsZW0/IEhvdyBjYW4gSSBjb3JyZWN0IHRoYXQgdG8gc3RyZWFtIHR3byBjaGFubmVscyBzaW11
-bHRhbmVvdXNseSB1c2luZyB1c3JwIDI5NTUgYW5kIFBDSWU/IFBsZWFzZSBoZWxwLg0KDQpSZWdh
-cmRzLA0KU291cmluDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QNClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-PG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCmh0dHA6Ly9saXN0cy5ldHR1cy5j
-b20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0KX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGlu
-ZyBsaXN0DQpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86VVNSUC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb20+DQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNy
-cC11c2Vyc19saXN0cy5ldHR1cy5jb20NCg==
+On 08/07/2020 12:54 AM, Sourin Mondal (Vehere) wrote:
+> Hi,
+> I am using UBUNTU 18.04.
+> I am attaching the c++ code that I am using.
+>
+> From,
+>
+> Sourin
+Near as I can tell from you code, you never actually establish the 
+channel map in the stream_args.
 
---_000_PN1PR0101MB1888D39ABB9166138962B80A8B490PN1PR0101MB1888_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Please consult the code for rx_multi_samples.cpp
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
-YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
-bG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkhpLDwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6
-IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsg
-Y29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGRpdiBzdHlsZT0iYm94LXNpemluZzogYm9yZGVyLWJv
-eDsgZm9udC1mYW1pbHk6ICZxdW90O1NlZ29lIFVJJnF1b3Q7LCBzeXN0ZW0tdWksICZxdW90O0Fw
-cGxlIENvbG9yIEVtb2ppJnF1b3Q7LCAmcXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90Oywgc2Fucy1z
-ZXJpZjsgZm9udC1zaXplOiAxNHB4OyBvcnBoYW5zOiAyOyB3aWRvd3M6IDIiPg0KQ3VycmVudGx5
-IHRoZSBzYW1wbGUgcmF0ZSBpcyBzZXQgdG8gMjBlNiBqdXN0IGZvciB0ZXN0aW5nLiBMYXRlciB3
-ZSB3aWxsIGNoYW5nZSB0byAxMDBlNiB3aGVuIHRoaXMgd29ya3MuIFNvIHBsZWFzZSBmaXJzdCBo
-ZWxwIHVzIHRvIHN0cmVhbSB0d28gY2hhbm5lbHMgc2ltdWx0YW5lb3VzbHkgdXNpbmcgdGhpcyBz
-ZW50IGNvZGUgYW5kIHJlZmVyIHRvIFJFQURNRS4gU3RpbGwgaWYgeW91IGhhdmUgYW55IHByb2Js
-ZW0gaW4gcnVubmluZyB0aGUgY29kZQ0KIHRoZW4gbGV0IG1lIGtub3cuPC9kaXY+DQo8ZGl2IHN0
-eWxlPSJib3gtc2l6aW5nOiBib3JkZXItYm94OyBmb250LWZhbWlseTogJnF1b3Q7U2Vnb2UgVUkm
-cXVvdDssIHN5c3RlbS11aSwgJnF1b3Q7QXBwbGUgQ29sb3IgRW1vamkmcXVvdDssICZxdW90O1Nl
-Z29lIFVJIEVtb2ppJnF1b3Q7LCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IG9ycGhhbnM6
-IDI7IHdpZG93czogMiI+DQpBbHNvIEkgYW0gYXR0YWNoaW5nIHRoZSBSRUFETUUgZmlsZSBhZ2Fp
-bi48L2Rpdj4NCjxkaXYgc3R5bGU9ImJveC1zaXppbmc6IGJvcmRlci1ib3g7IGZvbnQtZmFtaWx5
-OiAmcXVvdDtTZWdvZSBVSSZxdW90Oywgc3lzdGVtLXVpLCAmcXVvdDtBcHBsZSBDb2xvciBFbW9q
-aSZxdW90OywgJnF1b3Q7U2Vnb2UgVUkgRW1vamkmcXVvdDssIHNhbnMtc2VyaWY7IGZvbnQtc2l6
-ZTogMTRweDsgb3JwaGFuczogMjsgd2lkb3dzOiAyIj4NClBsZWFzZSBmaW5kIHRoZSBhdHRhY2ht
-ZW50Ljxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iYm94LXNpemluZzogYm9yZGVyLWJveDsgZm9u
-dC1mYW1pbHk6ICZxdW90O1NlZ29lIFVJJnF1b3Q7LCBzeXN0ZW0tdWksICZxdW90O0FwcGxlIENv
-bG9yIEVtb2ppJnF1b3Q7LCAmcXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90Oywgc2Fucy1zZXJpZjsg
-Zm9udC1zaXplOiAxNHB4OyBvcnBoYW5zOiAyOyB3aWRvd3M6IDIiPg0KPGJyPg0KPC9kaXY+DQo8
-ZGl2IHN0eWxlPSJib3gtc2l6aW5nOiBib3JkZXItYm94OyBmb250LWZhbWlseTogJnF1b3Q7U2Vn
-b2UgVUkmcXVvdDssIHN5c3RlbS11aSwgJnF1b3Q7QXBwbGUgQ29sb3IgRW1vamkmcXVvdDssICZx
-dW90O1NlZ29lIFVJIEVtb2ppJnF1b3Q7LCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IG9y
-cGhhbnM6IDI7IHdpZG93czogMiI+DQpGcm9tLDwvZGl2Pg0KPGRpdiBzdHlsZT0iYm94LXNpemlu
-ZzogYm9yZGVyLWJveDsgZm9udC1mYW1pbHk6ICZxdW90O1NlZ29lIFVJJnF1b3Q7LCBzeXN0ZW0t
-dWksICZxdW90O0FwcGxlIENvbG9yIEVtb2ppJnF1b3Q7LCAmcXVvdDtTZWdvZSBVSSBFbW9qaSZx
-dW90Oywgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBvcnBoYW5zOiAyOyB3aWRvd3M6IDIi
-Pg0KU291cmluPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJib3gtc2l6aW5nOiBib3JkZXItYm94
-OyBmb250LWZhbWlseTogJnF1b3Q7U2Vnb2UgVUkmcXVvdDssIHN5c3RlbS11aSwgJnF1b3Q7QXBw
-bGUgQ29sb3IgRW1vamkmcXVvdDssICZxdW90O1NlZ29lIFVJIEVtb2ppJnF1b3Q7LCBzYW5zLXNl
-cmlmOyBmb250LXNpemU6IDE0cHg7IG9ycGhhbnM6IDI7IHdpZG93czogMiI+DQo8YnI+DQo8L2Rp
-dj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBpZD0iYXBwZW5kb25zZW5kIj48L2Rpdj4NCjxociBzdHls
-ZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7d2lkdGg6OTglIiB0YWJpbmRleD0iLTEiPg0KPGRpdiBp
-ZD0iZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IGZhY2U9IkNhbGlicmksIHNhbnMtc2Vy
-aWYiIHN0eWxlPSJmb250LXNpemU6MTFwdCIgY29sb3I9IiMwMDAwMDAiPjxiPkZyb206PC9iPiBV
-U1JQLXVzZXJzICZsdDt1c3JwLXVzZXJzLWJvdW5jZXNAbGlzdHMuZXR0dXMuY29tJmd0OyBvbiBi
-ZWhhbGYgb2YgU291cmluIE1vbmRhbCAoVmVoZXJlKSB2aWEgVVNSUC11c2VycyAmbHQ7dXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+U2VudDo8L2I+IEZyaWRheSwgQXVndXN0
-IDcsIDIwMjAgMTA6MjggQU08YnI+DQo8Yj5Ubzo8L2I+IE5lZWwgUGFuZGV5YSAmbHQ7bmVlbC5w
-YW5kZXlhQGV0dHVzLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IFVTUlAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0
-OjwvYj4gUmU6IFtVU1JQLXVzZXJzXSBVU1JQIG5vdCByZWNlaXZpbmcgZGF0YSBmcm9tIHR3byBh
-bnRlbm5hcyB1c2luZyBQQ0kgY2FyZDwvZm9udD4NCjxkaXY+Jm5ic3A7PC9kaXY+DQo8L2Rpdj4N
-CjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9ImRpc3BsYXk6bm9uZSI+DQo8IS0tDQpwDQoJ
-e21hcmdpbi10b3A6MDsNCgltYXJnaW4tYm90dG9tOjB9DQotLT4NCjwvc3R5bGU+DQo8ZGl2IGRp
-cj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNh
-LHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkhpLDwvZGl2
-Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1z
-ZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KSSBhbSB1c2luZyBVQlVO
-VFUgMTguMDQuPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhl
-bHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpJ
-IGFtIGF0dGFjaGluZyBhIGxpbmsuIFZpc2l0IHRoYXQgbGluayB0byBnZXQgdGhlIEMrKyBjb2Rl
-LjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Es
-c2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPC9k
-aXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5z
-LXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8YSBocmVm
-PSJodHRwczovL3ZlaGVyZWludGVyYWN0aXZlLW15LnNoYXJlcG9pbnQuY29tLzp1Oi9nL3BlcnNv
-bmFsL3NvdXJpbl9tb25kYWxfdmVoZXJlX2NvbS9FWVJvSm9lSEN4dEtyem5hZ0VrczNjc0JUUWp6
-SWtqS1VLYmFiQjY0Z2hkX1hRP2U9RjZWR2pmIiBpZD0iT0xLX0JlYXV0aWZpZWRfT1dBMTVkMTYy
-MzgtMzdmNS03ODJlLWY3MTAtODM4MTVmNjQzNmY2IiBjbGFzcz0ieF9PV0FBdXRvTGluayB4X18z
-aUxnenI4dW43TDVHZWJDbHVjcnBWIHhfXzFxSkhsUGZZODNXZ3FMQkpUSVpQaiIgc3R5bGU9InBh
-ZGRpbmc6MHB4IDFweDsgYm9yZGVyLXJhZGl1czoycHg7IGJhY2tncm91bmQtY29sb3I6cmdiKDI0
-MywyNDIsMjQxKSI+PGltZyBhbHQ9IiIgcm9sZT0icHJlc2VudGF0aW9uIiBzdHlsZT0id2lkdGg6
-MTZweDsgaGVpZ2h0OjE2cHg7IHZlcnRpY2FsLWFsaWduOm1pZGRsZTsgcGFkZGluZzoxcHggMnB4
-IDJweCAwcHgiIHNyYz0iaHR0cHM6Ly9yMi5yZXMub3V0bG9vay5jb20vb3dhL3ByZW0vaW1hZ2Vz
-L3ppcF8xNngxNi5wbmciPmlxX2ZpbGVfd3JpdHRlci56aXA8L2E+PC9kaXY+DQo8ZGl2IHN0eWxl
-PSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNp
-emU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZv
-bnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTox
-MnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCmZyb20sPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZh
-bWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsg
-Y29sb3I6cmdiKDAsMCwwKSI+DQpTb3VyaW48YnI+DQo8L2Rpdj4NCjxkaXYgaWQ9InhfYXBwZW5k
-b25zZW5kIj48L2Rpdj4NCjxociB0YWJpbmRleD0iLTEiIHN0eWxlPSJkaXNwbGF5OmlubGluZS1i
-bG9jazsgd2lkdGg6OTglIj4NCjxkaXYgaWQ9InhfZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxm
-b250IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYiIGNvbG9yPSIjMDAwMDAwIiBzdHlsZT0iZm9u
-dC1zaXplOjExcHQiPjxiPkZyb206PC9iPiBOZWVsIFBhbmRleWEgJmx0O25lZWwucGFuZGV5YUBl
-dHR1cy5jb20mZ3Q7PGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBBdWd1c3QgNiwgMjAyMCAx
-MDozOCBQTTxicj4NCjxiPlRvOjwvYj4gU291cmluIE1vbmRhbCAoVmVoZXJlKSAmbHQ7c291cmlu
-Lm1vbmRhbEB2ZWhlcmUuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gTWFyY3VzIEQgTGVlY2ggJmx0
-O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0OzsgVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20g
-Jmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBS
-ZTogW1VTUlAtdXNlcnNdIFVTUlAgbm90IHJlY2VpdmluZyBkYXRhIGZyb20gdHdvIGFudGVubmFz
-IHVzaW5nIFBDSSBjYXJkPC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4N
-CjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBjbGFzcz0ieF94X2dtYWlsX2RlZmF1bHQiIHN0eWxlPSJm
-b250LWZhbWlseTp2ZXJkYW5hLHNhbnMtc2VyaWYiPkhlbGxvIFNvdXJpbjo8L2Rpdj4NCjxkaXYg
-Y2xhc3M9InhfeF9nbWFpbF9kZWZhdWx0IiBzdHlsZT0iZm9udC1mYW1pbHk6dmVyZGFuYSxzYW5z
-LXNlcmlmIj48YnI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9InhfeF9nbWFpbF9kZWZhdWx0IiBzdHls
-ZT0iZm9udC1mYW1pbHk6dmVyZGFuYSxzYW5zLXNlcmlmIj5Db3VsZCB5b3Ugc2hhcmUgeW91ciBD
-KysgcHJvZ3JhbSwgc28gdGhhdCB3ZSBtaWdodCB0cnkgdG8gcmVwcm9kdWNlIHRoZSBwcm9ibGVt
-IGhlcmU/PC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X3hfZ21haWxfZGVmYXVsdCIgc3R5bGU9ImZvbnQt
-ZmFtaWx5OnZlcmRhbmEsc2Fucy1zZXJpZiI+PGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X3hf
-Z21haWxfZGVmYXVsdCIgc3R5bGU9ImZvbnQtZmFtaWx5OnZlcmRhbmEsc2Fucy1zZXJpZiI+V2hp
-Y2ggdmVyc2lvbiBvZiBMaW51eCAvIFVidW50dSBhcmUgeW91IHJ1bm5pbmc/PGJyPg0KPC9kaXY+
-DQo8ZGl2IGNsYXNzPSJ4X3hfZ21haWxfZGVmYXVsdCIgc3R5bGU9ImZvbnQtZmFtaWx5OnZlcmRh
-bmEsc2Fucy1zZXJpZiI+PGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X3hfZ21haWxfZGVmYXVs
-dCIgc3R5bGU9ImZvbnQtZmFtaWx5OnZlcmRhbmEsc2Fucy1zZXJpZiI+LS1OZWVsIFBhbmRleWE8
-L2Rpdj4NCjxkaXYgY2xhc3M9InhfeF9nbWFpbF9kZWZhdWx0IiBzdHlsZT0iZm9udC1mYW1pbHk6
-dmVyZGFuYSxzYW5zLXNlcmlmIj48YnI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9InhfeF9nbWFpbF9k
-ZWZhdWx0IiBzdHlsZT0iZm9udC1mYW1pbHk6dmVyZGFuYSxzYW5zLXNlcmlmIj48YnI+DQo8L2Rp
-dj4NCjwvZGl2Pg0KPGJyPg0KPGRpdiBjbGFzcz0ieF94X2dtYWlsX3F1b3RlIj4NCjxkaXYgZGly
-PSJsdHIiIGNsYXNzPSJ4X3hfZ21haWxfYXR0ciI+T24gVGh1LCA2IEF1ZyAyMDIwIGF0IDExOjUx
-LCBTb3VyaW4gTW9uZGFsIChWZWhlcmUpIHZpYSBVU1JQLXVzZXJzICZsdDs8YSBocmVmPSJtYWls
-dG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-PC9hPiZndDsgd3JvdGU6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBjbGFzcz0ieF94X2dtYWls
-X3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4OyBib3JkZXItbGVmdDoxcHgg
-c29saWQgcmdiKDIwNCwyMDQsMjA0KTsgcGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2IGRpcj0ibHRy
-Ij4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMt
-c2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxkaXYgc3R5bGU9Im1h
-cmdpbjowcHg7IGZvbnQtc2l6ZToxMnB0OyBmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZl
-dGljYSxzYW5zLXNlcmlmOyBjb2xvcjpibGFjazsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1
-NSwyNTUpIj4NCkhpLDwvZGl2Pg0KPGRpdiBzdHlsZT0ibWFyZ2luOjBweDsgZm9udC1zaXplOjEy
-cHQ7IGZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGNvbG9y
-OmJsYWNrOyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPg0KSSBhbSB1c2luZyBV
-SEQtMy4xNC4xLjAmbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9Im1hcmdpbjowcHg7IGZvbnQtc2l6
-ZToxMnB0OyBmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBj
-b2xvcjpibGFjazsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj4NCjxkaXYgc3R5
-bGU9Im1hcmdpbjowcHg7IGZvbnQtc2l6ZToxNHB4OyBmb250LWZhbWlseTomcXVvdDtTZWdvZSBV
-SSZxdW90OyxzeXN0ZW0tdWksJnF1b3Q7QXBwbGUgQ29sb3IgRW1vamkmcXVvdDssJnF1b3Q7U2Vn
-b2UgVUkgRW1vamkmcXVvdDssc2Fucy1zZXJpZjsgYm94LXNpemluZzpib3JkZXItYm94Ij4NCkkg
-YW0gbm90IHVzaW5nIGdudXJhZGlvIG5vdy4gSSB1c2VkIHRoYXQgb25lIHllYXIgYmFjayBhbmQg
-ZmFjZWQgdGhlIG1lbnRpb25lZCBwcm9ibGVtLiBOb3cgSSBhbSB1c2luZyBjKysgY29kZSBhbmQg
-YW0gZmFjaW5nIHRoZSBzYW1lIGlzc3VlIG9mIG5vdCBhYmxlIHRvIHN0cmVhbSB0d28gY2hhbm5l
-bHMgc2ltdWx0YW5lb3VzbHkuPC9kaXY+DQpGcm9tLDwvZGl2Pg0KPGRpdiBzdHlsZT0ibWFyZ2lu
-OjBweDsgZm9udC1zaXplOjEycHQ7IGZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNh
-LHNhbnMtc2VyaWY7IGNvbG9yOmJsYWNrOyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1
-NSkiPg0KU291cmluPC9kaXY+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgaWQ9InhfeF9nbWFpbC1tXy00
-MTg0MDM5MzYzMTE0ODgwNDg2YXBwZW5kb25zZW5kIj48L2Rpdj4NCjxociBzdHlsZT0iZGlzcGxh
-eTppbmxpbmUtYmxvY2s7IHdpZHRoOjk4JSI+DQo8ZGl2IGlkPSJ4X3hfZ21haWwtbV8tNDE4NDAz
-OTM2MzExNDg4MDQ4NmRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBmYWNlPSJDYWxpYnJp
-LCBzYW5zLXNlcmlmIiBjb2xvcj0iIzAwMDAwMCIgc3R5bGU9ImZvbnQtc2l6ZToxMXB0Ij48Yj5G
-cm9tOjwvYj4gTWFyY3VzIEQgTGVlY2ggJmx0OzxhIGhyZWY9Im1haWx0bzpwYXRjaHZvbmJyYXVu
-QGdtYWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnBhdGNodm9uYnJhdW5AZ21haWwuY29tPC9hPiZn
-dDs8YnI+DQo8Yj5TZW50OjwvYj4gVGh1cnNkYXksIEF1Z3VzdCA2LCAyMDIwIDk6MjMgUE08YnI+
-DQo8Yj5Ubzo8L2I+IFNvdXJpbiBNb25kYWwgKFZlaGVyZSkgJmx0OzxhIGhyZWY9Im1haWx0bzpz
-b3VyaW4ubW9uZGFsQHZlaGVyZS5jb20iIHRhcmdldD0iX2JsYW5rIj5zb3VyaW4ubW9uZGFsQHZl
-aGVyZS5jb208L2E+Jmd0Ozxicj4NCjxiPkNjOjwvYj4gPGEgaHJlZj0ibWFpbHRvOlVTUlAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+VVNSUC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb208L2E+ICZsdDs8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20i
-IHRhcmdldD0iX2JsYW5rIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT4mZ3Q7PGJyPg0K
-PGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gVVNSUCBub3QgcmVjZWl2aW5nIGRhdGEg
-ZnJvbSB0d28gYW50ZW5uYXMgdXNpbmcgUENJIGNhcmQ8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2
-Pg0KPC9kaXY+DQo8ZGl2IGRpcj0iYXV0byI+V2hhdCB2ZXJzaW9uIG9mIFVIRD8NCjxkaXY+PGJy
-Pg0KPC9kaXY+DQo8ZGl2PkNvdWxkIHlvdSBzaGFyZSB0aGUgZmxvdyBncmFwaCB5b3XigJlyZSB1
-c2luZz88L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pjxicj4NCjxicj4NCjxkaXYgZGly
-PSJsdHIiPlNlbnQgZnJvbSBteSBpUGhvbmU8L2Rpdj4NCjxkaXYgZGlyPSJsdHIiPjxicj4NCjxi
-bG9ja3F1b3RlIHR5cGU9ImNpdGUiPk9uIEF1ZyA2LCAyMDIwLCBhdCAxMTo0NyBBTSwgU291cmlu
-IE1vbmRhbCAoVmVoZXJlKSB2aWEgVVNSUC11c2VycyAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb208L2E+Jmd0OyB3cm90ZTo8YnI+DQo8YnI+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4N
-CjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdiBkaXI9Imx0ciI+77u/DQo8ZGl2IHN0eWxl
-PSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNp
-emU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpIaSw8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQt
-ZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0
-OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1p
-bHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNv
-bG9yOnJnYigwLDAsMCkiPg0KPGRpdiBkaXI9Imx0ciIgc3R5bGU9Im1hcmdpbjowcHg7IGZvbnQt
-c2l6ZToxNXB4OyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPg0KSSBhbSB1c2lu
-ZyBVU1JQIDI5NTUgYW5kIHdhbnQgdG8gcmVjZWl2ZSB0d28gY2hhbm5lbHMgYXQgMTAwIE1TUFMg
-ZWFjaCBzaW11bHRhbmVvdXNseS4gSSBoYXZlIGNvbm5lY3RlZCB1c3JwIHdpdGggUENJZS4gSSBh
-bSBydW5uaW5nIG15IGNvZGUgYnV0IG9ubHkgb25lIGNoYW5uZWwgaXMgZ2V0dGluZyByZWNlaXZl
-ZC4gT3RoZXIgY2hhbm5lbCBpcyBzZW5kaW5nIHplcm9zIG9ubHkuIEkgYW0gdXNpbmcgVWJ1bnR1
-IDE4LjA0LiBQcmV2aW91c2x5IG9uZQ0KIHllYXIgYmFjayBJIGZhY2VkIHRoZSBzYW1lIHByb2Js
-ZW0gdXNpbmcgVVNSUCAyOTU1IGFsb25nIHdpdGggUENJZSBhbmQgcnVubmluZyBnbnUgcmFkaW8u
-IE9ubHkgb25lIGNoYW5uZWwgcG9wcGVkIHVwIGluIHRoZSBmcmVxdWVuY3kgc2luayBncmFwaCBh
-bmQgc2Vjb25kIGdyYXBoIHdhcyBzdGF0aWMgd2l0aCBubyBzaWduYWwuIEhvd2V2ZXIsIDI5NTQg
-d2FzIGdpdmluZyBib3RoIGNoYW5uZWxzLiBXaGVyZSBpcyB0aGUgcHJvYmxlbT8gSG93IGNhbg0K
-IEkgY29ycmVjdCB0aGF0IHRvIHN0cmVhbSB0d28gY2hhbm5lbHMgc2ltdWx0YW5lb3VzbHkgdXNp
-bmcgdXNycCAyOTU1IGFuZCBQQ0llPyBQbGVhc2UgaGVscC48L2Rpdj4NCjxkaXYgZGlyPSJsdHIi
-IHN0eWxlPSJtYXJnaW46MHB4OyBmb250LXNpemU6MTVweDsgYmFja2dyb3VuZC1jb2xvcjpyZ2Io
-MjU1LDI1NSwyNTUpIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9Imx0ciIgc3R5bGU9Im1hcmdp
-bjowcHg7IGZvbnQtc2l6ZToxNXB4OyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSki
-Pg0KUmVnYXJkcyw8L2Rpdj4NCjxkaXYgZGlyPSJsdHIiIHN0eWxlPSJtYXJnaW46MHB4OyBmb250
-LXNpemU6MTVweDsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj4NClNvdXJpbjwv
-ZGl2Pg0KPC9kaXY+DQo8c3Bhbj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXzwvc3Bhbj48YnI+DQo8c3Bhbj5VU1JQLXVzZXJzIG1haWxpbmcgbGlzdDwvc3Bh
-bj48YnI+DQo8c3Bhbj48YSBocmVmPSJtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20i
-IHRhcmdldD0iX2JsYW5rIj5VU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48L3NwYW4+PGJy
-Pg0KPHNwYW4+PGEgaHJlZj0iaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZv
-L3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+aHR0cDovL2xpc3Rz
-LmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC9h
-Pjwvc3Bhbj48YnI+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
-dj4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0K
-VVNSUC11c2VycyBtYWlsaW5nIGxpc3Q8YnI+DQo8YSBocmVmPSJtYWlsdG86VVNSUC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj5VU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bTwvYT48YnI+DQo8YSBocmVmPSJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGlu
-Zm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20iIHJlbD0ibm9yZWZlcnJlciIgdGFyZ2V0PSJf
-YmxhbmsiPmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJz
-X2xpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0K
-PC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---_000_PN1PR0101MB1888D39ABB9166138962B80A8B490PN1PR0101MB1888_--
+> ------------------------------------------------------------------------
+> *From:* Neel Pandeya <neel.pandeya@ettus.com>
+> *Sent:* Thursday, August 6, 2020 10:38 PM
+> *To:* Sourin Mondal (Vehere) <sourin.mondal@vehere.com>
+> *Cc:* Marcus D Leech <patchvonbraun@gmail.com>; 
+> USRP-users@lists.ettus.com <usrp-users@lists.ettus.com>
+> *Subject:* Re: [USRP-users] USRP not receiving data from two antennas 
+> using PCI card
+> Hello Sourin:
+>
+> Could you share your C++ program, so that we might try to reproduce 
+> the problem here?
+>
+> Which version of Linux / Ubuntu are you running?
+>
+> --Neel Pandeya
+>
+>
+>
+> On Thu, 6 Aug 2020 at 11:51, Sourin Mondal (Vehere) via USRP-users 
+> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+>
+>     Hi,
+>     I am using UHD-3.14.1.0
+>     I am not using gnuradio now. I used that one year back and faced
+>     the mentioned problem. Now I am using c++ code and am facing the
+>     same issue of not able to stream two channels simultaneously.
+>     From,
+>     Sourin
+>
+>     ------------------------------------------------------------------------
+>     *From:* Marcus D Leech <patchvonbraun@gmail.com
+>     <mailto:patchvonbraun@gmail.com>>
+>     *Sent:* Thursday, August 6, 2020 9:23 PM
+>     *To:* Sourin Mondal (Vehere) <sourin.mondal@vehere.com
+>     <mailto:sourin.mondal@vehere.com>>
+>     *Cc:* USRP-users@lists.ettus.com
+>     <mailto:USRP-users@lists.ettus.com> <usrp-users@lists.ettus.com
+>     <mailto:usrp-users@lists.ettus.com>>
+>     *Subject:* Re: [USRP-users] USRP not receiving data from two
+>     antennas using PCI card
+>     What version of UHD?
+>
+>     Could you share the flow graph you’re using?
+>
+>
+>
+>     Sent from my iPhone
+>
+>>     On Aug 6, 2020, at 11:47 AM, Sourin Mondal (Vehere) via
+>>     USRP-users <usrp-users@lists.ettus.com
+>>     <mailto:usrp-users@lists.ettus.com>> wrote:
+>>
+>>     ﻿
+>>     Hi,
+>>
+>>     I am using USRP 2955 and want to receive two channels at 100 MSPS
+>>     each simultaneously. I have connected usrp with PCIe. I am
+>>     running my code but only one channel is getting received. Other
+>>     channel is sending zeros only. I am using Ubuntu 18.04.
+>>     Previously one year back I faced the same problem using USRP 2955
+>>     along with PCIe and running gnu radio. Only one channel popped up
+>>     in the frequency sink graph and second graph was static with no
+>>     signal. However, 2954 was giving both channels. Where is the
+>>     problem? How can I correct that to stream two channels
+>>     simultaneously using usrp 2955 and PCIe? Please help.
+>>
+>>     Regards,
+>>     Sourin
+>>     _______________________________________________
+>>     USRP-users mailing list
+>>     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>     _______________________________________________
+>     USRP-users mailing list
+>     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---_004_PN1PR0101MB1888D39ABB9166138962B80A8B490PN1PR0101MB1888_
-Content-Type: application/octet-stream; name="README"
-Content-Description: README
-Content-Disposition: attachment; filename="README"; size=1058;
-	creation-date="Fri, 07 Aug 2020 05:29:54 GMT";
-	modification-date="Fri, 07 Aug 2020 05:30:20 GMT"
-Content-Transfer-Encoding: base64
 
-UkVBRE1FOiBGb2xsb3cgdGhlIGJlbG93IGluc3RydWN0aW9uIHRvIHJ1biB0aGlzIGFwcGxpY2F0
-aW9uLgoKRGVwZW5kZW5jaWVzOiBnKyssIHVoZC0zLjE0LjEuMCwgTkkgTGludXggZHJpdmVyIDIw
-MjAKdWhkLTMuMTQuMS4wIGNhbiBiZSBkb3dubG9hZGVkIGZyb20gaGVyZSBodHRwczovL2dpdGh1
-Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvcmVsZWFzZXMvdGFnL3YzLjE0LjEuMApOSSBMSVVOWCBE
-UklWRVIgMjAyMDogaHR0cHM6Ly93d3cubmkuY29tL2VuLWluL3N1cHBvcnQvZG93bmxvYWRzL2Ry
-aXZlcnMvZG93bmxvYWQubmktbGludXgtZGV2aWNlLWRyaXZlcnMuaHRtbCMzNTAwMDMKZ2NjOiBz
-dWRvIGFwdC1nZXQgaW5zdGFsbCBnY2MKCkNvbXBpbGF0aW9uOiBjZCA8cGF0aCB0byB1aGRfZmls
-ZV93cml0dGVyPi9EZWJ1Zy8KCQkJIG1ha2UgY2xlYW4gJiYgbWFrZQoJCQkgClRvIFJ1biB0aGUg
-YXBwbGljYXRpb246IGNkIDxwYXRoIHRvIHVoZF9maWxlX3dyaXR0ZXI+L0RlYnVnLwoJCQkJCQlz
-dWRvIC4vdWhkX2ZpbGVfd3JpdHRlciA8cGFybTE+IDxwYXJtMj4KCQkJCQkJVG8gc2VlIHRoZSBs
-aXN0IG9mIHBhcmFtZXRlcnMgdXNlIHRoZSBiZWxvdyBjb21tYW5kOiBzdWRvIC4vdWhkX2ZpbGVf
-d3JpdHRlciAtaAoJCQkJCQlUbyBzZWUgdGhlIGN1dXJlbnQgdmVyc2lvbiBhbmQgY29tcGlsYXRp
-b24gZGF0ZTogc3VkbyAuL3VoZF9maWxlX3dyaXR0ZXIgLXYKCQkJCQkJCkluY2FzZSBvZiBhbnkg
-YnVnIG9yIHN1cHBvcnQ6IHBsZWFzZSBtYWlsIHRoZSBsb2cgdmlwbF91aGRfZmlsZV93cml0dGVy
-LmxvZyBhdCAvdmFyL2xvZy8gdG8gbWUuCgpCZXN0IG9mIGx1Y2shIQoKCkNyZWF0ZSBSYW1kaXNr
-IG9mIDIgR0I6ICIvbW50L3JhbWRpc2svIgpUbyBydW4gdGhlIHByb2dyYW0sIGVudGVyIHRoZSBm
-b2xsb3dpbmcgY29tbWFuZCBpbiB0ZXJtaW5hbCA6CnN1ZG8gLi91aGRfZmlsZV93cml0dGVyIC1m
-IDIuNGU5IC1nIDcwIC1wIC9tbnQvcmFtZGlzay9BbnRlbm5hMV9kYXRhLmJpbiAtcSAvbW50L3Jh
-bWRpc2svQW50ZW5uYTJfZGF0YS5iaW4gLXQgMjBlNgo=
+--------------010603030102070708030401
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
---_004_PN1PR0101MB1888D39ABB9166138962B80A8B490PN1PR0101MB1888_
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 08/07/2020 12:54 AM, Sourin Mondal
+      (Vehere) wrote:<br>
+    </div>
+    <blockquote
+cite="mid:PN1PR0101MB188829BCAE89F6DD136D31F08B490@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        Hi,</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        I am using UBUNTU 18.04.</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        I am attaching the c++ code that I am using.</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        From,</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        Sourin<br>
+      </div>
+    </blockquote>
+    Near as I can tell from you code, you never actually establish the
+    channel map in the stream_args.<br>
+    <br>
+    Please consult the code for rx_multi_samples.cpp<br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:PN1PR0101MB188829BCAE89F6DD136D31F08B490@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM"
+      type="cite">
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+      </div>
+      <hr style="display:inline-block;width:98%" tabindex="-1">
+      <div id="divRplyFwdMsg" dir="ltr"><font style="font-size:11pt"
+          color="#000000" face="Calibri, sans-serif"><b>From:</b> Neel
+          Pandeya <a class="moz-txt-link-rfc2396E" href="mailto:neel.pandeya@ettus.com">&lt;neel.pandeya@ettus.com&gt;</a><br>
+          <b>Sent:</b> Thursday, August 6, 2020 10:38 PM<br>
+          <b>To:</b> Sourin Mondal (Vehere)
+          <a class="moz-txt-link-rfc2396E" href="mailto:sourin.mondal@vehere.com">&lt;sourin.mondal@vehere.com&gt;</a><br>
+          <b>Cc:</b> Marcus D Leech <a class="moz-txt-link-rfc2396E" href="mailto:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a>;
+          <a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a> <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
+          <b>Subject:</b> Re: [USRP-users] USRP not receiving data from
+          two antennas using PCI card</font>
+        <div> </div>
+      </div>
+      <div>
+        <div dir="ltr">
+          <div class="x_gmail_default"
+            style="font-family:verdana,sans-serif">Hello Sourin:</div>
+          <div class="x_gmail_default"
+            style="font-family:verdana,sans-serif"><br>
+          </div>
+          <div class="x_gmail_default"
+            style="font-family:verdana,sans-serif">Could you share your
+            C++ program, so that we might try to reproduce the problem
+            here?</div>
+          <div class="x_gmail_default"
+            style="font-family:verdana,sans-serif"><br>
+          </div>
+          <div class="x_gmail_default"
+            style="font-family:verdana,sans-serif">Which version of
+            Linux / Ubuntu are you running?<br>
+          </div>
+          <div class="x_gmail_default"
+            style="font-family:verdana,sans-serif"><br>
+          </div>
+          <div class="x_gmail_default"
+            style="font-family:verdana,sans-serif">--Neel Pandeya</div>
+          <div class="x_gmail_default"
+            style="font-family:verdana,sans-serif"><br>
+          </div>
+          <div class="x_gmail_default"
+            style="font-family:verdana,sans-serif"><br>
+          </div>
+        </div>
+        <br>
+        <div class="x_gmail_quote">
+          <div dir="ltr" class="x_gmail_attr">On Thu, 6 Aug 2020 at
+            11:51, Sourin Mondal (Vehere) via USRP-users &lt;<a
+              moz-do-not-send="true"
+              href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
+            wrote:<br>
+          </div>
+          <blockquote class="x_gmail_quote" style="margin:0px 0px 0px
+            0.8ex; border-left:1px solid rgb(204,204,204);
+            padding-left:1ex">
+            <div dir="ltr">
+              <div
+                style="font-family:Calibri,Arial,Helvetica,sans-serif;
+                font-size:12pt; color:rgb(0,0,0)">
+                <div style="margin:0px; font-size:12pt;
+                  font-family:Calibri,Arial,Helvetica,sans-serif;
+                  color:black; background-color:rgb(255,255,255)">
+                  Hi,</div>
+                <div style="margin:0px; font-size:12pt;
+                  font-family:Calibri,Arial,Helvetica,sans-serif;
+                  color:black; background-color:rgb(255,255,255)">
+                  I am using UHD-3.14.1.0 </div>
+                <div style="margin:0px; font-size:12pt;
+                  font-family:Calibri,Arial,Helvetica,sans-serif;
+                  color:black; background-color:rgb(255,255,255)">
+                  <div style="margin:0px; font-size:14px;
+                    font-family:&quot;Segoe
+                    UI&quot;,system-ui,&quot;Apple Color
+                    Emoji&quot;,&quot;Segoe UI Emoji&quot;,sans-serif;
+                    box-sizing:border-box">
+                    I am not using gnuradio now. I used that one year
+                    back and faced the mentioned problem. Now I am using
+                    c++ code and am facing the same issue of not able to
+                    stream two channels simultaneously.</div>
+                  From,</div>
+                <div style="margin:0px; font-size:12pt;
+                  font-family:Calibri,Arial,Helvetica,sans-serif;
+                  color:black; background-color:rgb(255,255,255)">
+                  Sourin</div>
+                <br>
+              </div>
+              <hr style="display:inline-block; width:98%">
+              <div id="x_gmail-m_-4184039363114880486divRplyFwdMsg"
+                dir="ltr"><font style="font-size:11pt" color="#000000"
+                  face="Calibri, sans-serif"><b>From:</b> Marcus D Leech
+                  &lt;<a moz-do-not-send="true"
+                    href="mailto:patchvonbraun@gmail.com"
+                    target="_blank">patchvonbraun@gmail.com</a>&gt;<br>
+                  <b>Sent:</b> Thursday, August 6, 2020 9:23 PM<br>
+                  <b>To:</b> Sourin Mondal (Vehere) &lt;<a
+                    moz-do-not-send="true"
+                    href="mailto:sourin.mondal@vehere.com"
+                    target="_blank">sourin.mondal@vehere.com</a>&gt;<br>
+                  <b>Cc:</b> <a moz-do-not-send="true"
+                    href="mailto:USRP-users@lists.ettus.com"
+                    target="_blank">USRP-users@lists.ettus.com</a> &lt;<a
+                    moz-do-not-send="true"
+                    href="mailto:usrp-users@lists.ettus.com"
+                    target="_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+                  <b>Subject:</b> Re: [USRP-users] USRP not receiving
+                  data from two antennas using PCI card</font>
+                <div> </div>
+              </div>
+              <div dir="auto">What version of UHD?
+                <div><br>
+                </div>
+                <div>Could you share the flow graph you’re using?</div>
+                <div><br>
+                </div>
+                <div><br>
+                  <br>
+                  <div dir="ltr">Sent from my iPhone</div>
+                  <div dir="ltr"><br>
+                    <blockquote type="cite">On Aug 6, 2020, at 11:47 AM,
+                      Sourin Mondal (Vehere) via USRP-users &lt;<a
+                        moz-do-not-send="true"
+                        href="mailto:usrp-users@lists.ettus.com"
+                        target="_blank">usrp-users@lists.ettus.com</a>&gt;
+                      wrote:<br>
+                      <br>
+                    </blockquote>
+                  </div>
+                  <blockquote type="cite">
+                    <div dir="ltr">﻿
+                      <div
+                        style="font-family:Calibri,Arial,Helvetica,sans-serif;
+                        font-size:12pt; color:rgb(0,0,0)">
+                        Hi,</div>
+                      <div
+                        style="font-family:Calibri,Arial,Helvetica,sans-serif;
+                        font-size:12pt; color:rgb(0,0,0)">
+                        <br>
+                      </div>
+                      <div
+                        style="font-family:Calibri,Arial,Helvetica,sans-serif;
+                        font-size:12pt; color:rgb(0,0,0)">
+                        <div dir="ltr" style="margin:0px;
+                          font-size:15px;
+                          background-color:rgb(255,255,255)">
+                          I am using USRP 2955 and want to receive two
+                          channels at 100 MSPS each simultaneously. I
+                          have connected usrp with PCIe. I am running my
+                          code but only one channel is getting received.
+                          Other channel is sending zeros only. I am
+                          using Ubuntu 18.04. Previously one year back I
+                          faced the same problem using USRP 2955 along
+                          with PCIe and running gnu radio. Only one
+                          channel popped up in the frequency sink graph
+                          and second graph was static with no signal.
+                          However, 2954 was giving both channels. Where
+                          is the problem? How can I correct that to
+                          stream two channels simultaneously using usrp
+                          2955 and PCIe? Please help.</div>
+                        <div dir="ltr" style="margin:0px;
+                          font-size:15px;
+                          background-color:rgb(255,255,255)">
+                          <br>
+                        </div>
+                        <div dir="ltr" style="margin:0px;
+                          font-size:15px;
+                          background-color:rgb(255,255,255)">
+                          Regards,</div>
+                        <div dir="ltr" style="margin:0px;
+                          font-size:15px;
+                          background-color:rgb(255,255,255)">
+                          Sourin</div>
+                      </div>
+                      <span>_______________________________________________</span><br>
+                      <span>USRP-users mailing list</span><br>
+                      <span><a moz-do-not-send="true"
+                          href="mailto:USRP-users@lists.ettus.com"
+                          target="_blank">USRP-users@lists.ettus.com</a></span><br>
+                      <span><a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                          target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></span><br>
+                    </div>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+            _______________________________________________<br>
+            USRP-users mailing list<br>
+            <a moz-do-not-send="true"
+              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
+            <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+          </blockquote>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------010603030102070708030401--
+
+
+--===============4645963290601006302==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -435,5 +460,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---_004_PN1PR0101MB1888D39ABB9166138962B80A8B490PN1PR0101MB1888_--
+--===============4645963290601006302==--
 
