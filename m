@@ -2,66 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 877C223F0C1
-	for <lists+usrp-users@lfdr.de>; Fri,  7 Aug 2020 18:12:52 +0200 (CEST)
-Received: from [::1] (port=35666 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D1AE23F7F1
+	for <lists+usrp-users@lfdr.de>; Sat,  8 Aug 2020 16:27:14 +0200 (CEST)
+Received: from [::1] (port=45332 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k44zB-0004Mk-9K; Fri, 07 Aug 2020 12:12:49 -0400
-Received: from mail-qv1-f53.google.com ([209.85.219.53]:40358)
+	id 1k4PoR-0004lB-M5; Sat, 08 Aug 2020 10:27:07 -0400
+Received: from mail-lj1-f175.google.com ([209.85.208.175]:38107)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k44z7-0004EW-FH
- for usrp-users@lists.ettus.com; Fri, 07 Aug 2020 12:12:45 -0400
-Received: by mail-qv1-f53.google.com with SMTP id s15so977555qvv.7
- for <usrp-users@lists.ettus.com>; Fri, 07 Aug 2020 09:12:25 -0700 (PDT)
+ (Exim 4.93) (envelope-from <vjain0974@gmail.com>) id 1k4PoO-0004hq-8Z
+ for usrp-users@lists.ettus.com; Sat, 08 Aug 2020 10:27:04 -0400
+Received: by mail-lj1-f175.google.com with SMTP id m22so5056296ljj.5
+ for <usrp-users@lists.ettus.com>; Sat, 08 Aug 2020 07:26:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=qWkx0pdiVuFK99H8BFplTLCcVk8HF2viKEUKBsw7WMg=;
- b=rNlI//w/FLxWRqh+cPNJ7R/zyKV60TxkcK5NXWpfSfF89wPARA5jAY+l1/1GJ/m46h
- xUwHv4Qscdf2M8WPjqfs7U44Tn3JSDYycE4WmKqMe9DR3k38uWoNg8Jq9gST2nWOr+Uo
- 9GLJPWHHm4bQCFy5HraQrKOxYB6BVrXRsq4mSxzJsNa4qWkcy7O9OFfOonCjs6s+N6wg
- F1RRt4smFuuLe80nzr2i2vPXMXQDTgOVm6yVP7T+NtbFzhZiVCzFBUFn2p7FGnVUYOC4
- OdrVwuV3HNiIf/W4W5LYnNpxN7FjaPrhnFg22f18lebd4FCTWH+41JrSCO2aUwx3E2z7
- NFoQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=MyGNDpJhG3bqfRNoHs8BmB/bSCx6yzeDtXj3ikBhyKw=;
+ b=JEP1KJHNOERBmemAnlHIc6/k53bYDsx5MQTBXzZ9g4OPVt99OVo0uxqMXsid/Kshnm
+ +Cx341OKjWVIGMLt2B3ZuBuJU0cwsPFTcjXB58/6I9oQKkuG4G2H2t4sZhvfVEfWRXv0
+ ajauqzVORZa9E6AIPHxtNkegGblokC9QM3nsI0s8tpPzw6iZWmDtcv8nv/nl2hFNLxwu
+ P1SKrIMJ7RIurdAYsuiQdiGTECZamnmkGJ3Ao0rkm2My3eUD35KJuKD9V/+2zsW1MiCN
+ GnN4GH4nMAQP0RdPzSBCUnoZinJl3EAs4WCKtEfC8i9VrsksetsrOoSB7GGCg6/460VI
+ DlZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=qWkx0pdiVuFK99H8BFplTLCcVk8HF2viKEUKBsw7WMg=;
- b=MvUaKXc7w4DAcU8FRJKP5w2dLyItrow8gldsR8lTYrexUsUoNUldZZRG6va7CNuV1u
- fxH2fygC9RpC9kVIfQHu3Q+qQFnIavIsvJaJBy9fzgScNBM+qqBjb23XGEwTH7bIps2n
- FNsJxlWeTHk6/AEsAveRcVJ3lHURrDztIn7CWHJM/pDKqfWN4t7kZEX+hXVIl4kfrVjM
- 3rMTpcyK/AD+mvaZ5C0sWP3befpWPxU9lUMUCTojrrfrlaZHbTNe1A9ygDO23t6RChVt
- 3zlv68VkG5XkI4l/DTRLtePPbcEtRqAU6CTtDcO5ByjOJLfN+XWdtqmTpPgzMaK/xdb0
- 4/EQ==
-X-Gm-Message-State: AOAM532NbgMHSpkUfch6c7fLsWVTfNNZyuWLdr0zI3bhbZpOBc+ZE4nZ
- 58FCd5OLhfZ1thQI0ckqx3IJ3W7HcDo=
-X-Google-Smtp-Source: ABdhPJyX47CLNuiI1GLyqvTzMCtk5UKPjxT6A5Fg8XZjztj+yD4pPc+tkjIPIu1Bw0Ew0FnMZCRIPQ==
-X-Received: by 2002:a0c:e30c:: with SMTP id s12mr15792322qvl.138.1596816724624; 
- Fri, 07 Aug 2020 09:12:04 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id x67sm7171571qke.136.2020.08.07.09.12.03
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 07 Aug 2020 09:12:04 -0700 (PDT)
-Message-ID: <5F2D7D53.70900@gmail.com>
-Date: Fri, 07 Aug 2020 12:12:03 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=MyGNDpJhG3bqfRNoHs8BmB/bSCx6yzeDtXj3ikBhyKw=;
+ b=daDNv7esv1xj1jEACHOYVWpZgLzqD+jr+ZuyiAY8IYFPYZVuYFYY821Fv96UZlpByZ
+ H6FqbZtptH6vCTM9F9WSRBr7rlLBo3yheGRr/YFH+fyf7v07t4qcfvU2LDo8oYNP5sH+
+ 02u5PnAF7ZrkSQ03OCuwlAX531p31KbvmSFWdbJ1EXcgKfj+gLW+ErJq9a1w4KFjvuHk
+ gzBg9H+zyy5HpmsG+8KMvrym5U2a9nAteTBryOHUhtE8Ee9uzX/mHouetUBYSc53WMGb
+ rmZIqgPDBC1w8EP0GkOETYjWcVAB0g19UFx+bfwY8WdKRPI9I40ovOVHQmsYAeCF5KgE
+ Qiuw==
+X-Gm-Message-State: AOAM530rTavsk5tuCCIeO5I4Jf3j2zlnZrIXJRKWclmymu76Z5p3t5yx
+ gjxArkfJY0ABmgSJYJqi+lh89bSGSf8E18hpE68qHR8b
+X-Google-Smtp-Source: ABdhPJxggQHihIYEmf7FrDemUWo/mDYjs26D3YhpLFGzbcncqxiT6OgDz7xYgHxvbip41B4Vw10GGOQwGbfJKn/uatQ=
+X-Received: by 2002:a2e:92c4:: with SMTP id k4mr8767666ljh.238.1596896782586; 
+ Sat, 08 Aug 2020 07:26:22 -0700 (PDT)
 MIME-Version: 1.0
-To: "Sourin Mondal (Vehere)" <sourin.mondal@vehere.com>, 
- Neel Pandeya <neel.pandeya@ettus.com>
-CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <PN1PR0101MB18888E07850F604DE16381328B480@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM>
- <838FBFE1-52F7-445B-B841-E05F0B7FEA31@gmail.com>
- <PN1PR0101MB1888C69D81516A613A69241E8B480@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM>,
- <CACaXmv-ibAFFSg=ivd4bhsejqn1b9fGO4c-BVVJvzGMERYhZVw@mail.gmail.com>
- <PN1PR0101MB188829BCAE89F6DD136D31F08B490@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <PN1PR0101MB188829BCAE89F6DD136D31F08B490@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM>
-Subject: Re: [USRP-users] USRP not receiving data from two antennas using
- PCI card
+References: <CALn8ZzkBoAruW4fFNGDKD0fhmi7-nmh_9OsA942wo9cmBECPxg@mail.gmail.com>
+ <04dca4c1-59c7-fbc1-fa03-b512bada3d35@ettus.com>
+In-Reply-To: <04dca4c1-59c7-fbc1-fa03-b512bada3d35@ettus.com>
+Date: Sat, 8 Aug 2020 07:26:11 -0700
+Message-ID: <CALn8ZzmSk-4zFFRN2WhGs82a87cx1wMN5rNXUy0cCLsOYnCZHQ@mail.gmail.com>
+To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
+Cc: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] Unable to see dissected USB CHDR packets in
+ Wireshark
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -73,9 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4645963290601006302=="
+From: Vikas Jain via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Vikas Jain <vjain0974@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4007125151141588875=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,367 +76,227 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============4645963290601006302==
-Content-Type: multipart/alternative;
- boundary="------------010603030102070708030401"
+--===============4007125151141588875==
+Content-Type: multipart/alternative; boundary="0000000000007818bc05ac5e81d5"
 
-This is a multi-part message in MIME format.
---------------010603030102070708030401
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--0000000000007818bc05ac5e81d5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 08/07/2020 12:54 AM, Sourin Mondal (Vehere) wrote:
-> Hi,
-> I am using UBUNTU 18.04.
-> I am attaching the c++ code that I am using.
->
-> From,
->
-> Sourin
-Near as I can tell from you code, you never actually establish the 
-channel map in the stream_args.
+Thanks for the suggestion, Marcus. When I right click and do "Decode as",
+it is not presenting RFNoC as one of the protocols in the menu list. Will
+look at it some more. Could there be any issue with RFNoC not being
+registered as a sub-dissector for USB protocol?
 
-Please consult the code for rx_multi_samples.cpp
+On Mon, Aug 3, 2020 at 9:04 AM Marcus M=C3=BCller via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-
-> ------------------------------------------------------------------------
-> *From:* Neel Pandeya <neel.pandeya@ettus.com>
-> *Sent:* Thursday, August 6, 2020 10:38 PM
-> *To:* Sourin Mondal (Vehere) <sourin.mondal@vehere.com>
-> *Cc:* Marcus D Leech <patchvonbraun@gmail.com>; 
-> USRP-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> *Subject:* Re: [USRP-users] USRP not receiving data from two antennas 
-> using PCI card
-> Hello Sourin:
+> Hi Vikas,
 >
-> Could you share your C++ program, so that we might try to reproduce 
-> the problem here?
+> the ZPU dissector shouldn't help you (IIRC, there's no DUDEBRO protocol
+> between host and B2xx). However, yes, the RFNoC dissector is what has
+> become of the CHDR dissector.
 >
-> Which version of Linux / Ubuntu are you running?
+> When I look at your screenshot, it looks to me as if Wireshark wasn't
+> told to actually decode the packets as RFNoC. Could you try right click
+> -> Decode as... and try that?
 >
-> --Neel Pandeya
+> Best regards,
 >
+> Marcus
 >
+> On 02.08.20 17:49, Vikas Jain via USRP-users wrote:
+> > Hi All,
+> >
+> > I am using a B210 running UHD implementation corresponding to the SHA
+> > commit (457192600b3c51d4ddfccac222f2a19d1a5b4995) on the master. Releva=
+nt
+> > git log snippet below:
+> >
+> > =3D=3D=3D
+> > commit 457192600b3c51d4ddfccac222f2a19d1a5b4995
+> > Author: Brent Stapleton <brent.stapleton@ettus.com>
+> > Date:   Mon Jan 6 12:19:56 2020 -0800
+> >
+> >     images: update FPGA image packages for RFNoC
+> >
+> >     Updating FPGA image packages, filesystems, and submodule pointer to
+> >     include recent RFNoC changes.
+> > =3D=3D=3D
+> >
+> > I am running the pdsch_enodeb example program (in srsLTE) which runs on
+> my
+> > Linux box and transmits a certain waveform over USB connected to B210. =
+I
+> > captured the I/Q stream USB packets on the usbmon interface using
+> wireshark
+> > and noticed that the I/Q data packets are not getting parsed by the
+> > dissector. I have installed both the rfnoc.so and zpu.so dissector
+> plugins
+> > in the appropriate folders that wireshark is able to see (see attached
+> jpeg
+> > showing the plugins visible to wireshark). I am using wireshark version
+> 3.2.
+> >
+> > I have also attached a png file showing the wireshark output with the I=
+/Q
+> > data USB packets captured but not being interpreted. Not sure if I am
+> > missing something. Appreciate any help or pointers to address this issu=
+e.
+> >
+> >
+> > Thanks.
+> >
+> > PS: I was looking at the UHD git log history and noticed the following
+> > commit wherein the tools/dissectors/packet-chdr.c file (which used to
+> > earlier contain the CHDR dissector implementation) was removed. I had
+> used
+> > earlier UHD implementations which did not had this change and was able =
+to
+> > see the USB packets being dissected in wireshark.
+> >
+> > --
+> > commit 9f29b9a556634e41d13fa298f9634b67fdd0a749
+> > Author: Alex Williams <alex.williams@ni.com>
+> > Date:   Tue Jul 30 19:45:58 2019 -0700
+> >
+> >     tools: Update dissectors for Wireshark major version 3, new CHDR
+> >
+> >     Dissectors may now be incompatible with earlier versions.
+> >     Fixes ZPU dissector.
+> >
+> >
+> > _______________________________________________
+> > USRP-users mailing list
+> > USRP-users@lists.ettus.com
+> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
-> On Thu, 6 Aug 2020 at 11:51, Sourin Mondal (Vehere) via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     Hi,
->     I am using UHD-3.14.1.0
->     I am not using gnuradio now. I used that one year back and faced
->     the mentioned problem. Now I am using c++ code and am facing the
->     same issue of not able to stream two channels simultaneously.
->     From,
->     Sourin
->
->     ------------------------------------------------------------------------
->     *From:* Marcus D Leech <patchvonbraun@gmail.com
->     <mailto:patchvonbraun@gmail.com>>
->     *Sent:* Thursday, August 6, 2020 9:23 PM
->     *To:* Sourin Mondal (Vehere) <sourin.mondal@vehere.com
->     <mailto:sourin.mondal@vehere.com>>
->     *Cc:* USRP-users@lists.ettus.com
->     <mailto:USRP-users@lists.ettus.com> <usrp-users@lists.ettus.com
->     <mailto:usrp-users@lists.ettus.com>>
->     *Subject:* Re: [USRP-users] USRP not receiving data from two
->     antennas using PCI card
->     What version of UHD?
->
->     Could you share the flow graph you’re using?
->
->
->
->     Sent from my iPhone
->
->>     On Aug 6, 2020, at 11:47 AM, Sourin Mondal (Vehere) via
->>     USRP-users <usrp-users@lists.ettus.com
->>     <mailto:usrp-users@lists.ettus.com>> wrote:
->>
->>     ﻿
->>     Hi,
->>
->>     I am using USRP 2955 and want to receive two channels at 100 MSPS
->>     each simultaneously. I have connected usrp with PCIe. I am
->>     running my code but only one channel is getting received. Other
->>     channel is sending zeros only. I am using Ubuntu 18.04.
->>     Previously one year back I faced the same problem using USRP 2955
->>     along with PCIe and running gnu radio. Only one channel popped up
->>     in the frequency sink graph and second graph was static with no
->>     signal. However, 2954 was giving both channels. Where is the
->>     problem? How can I correct that to stream two channels
->>     simultaneously using usrp 2955 and PCIe? Please help.
->>
->>     Regards,
->>     Sourin
->>     _______________________________________________
->>     USRP-users mailing list
->>     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
+--0000000000007818bc05ac5e81d5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------010603030102070708030401
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+<div dir=3D"ltr">Thanks for the suggestion, Marcus. When I right click and =
+do &quot;Decode as&quot;, it is not presenting RFNoC as one of the protocol=
+s in the menu list. Will look at it some more. Could=C2=A0there be any issu=
+e with RFNoC not being registered as a sub-dissector for USB protocol?</div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mo=
+n, Aug 3, 2020 at 9:04 AM Marcus M=C3=BCller via USRP-users &lt;<a href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Vikas,<br>
+<br>
+the ZPU dissector shouldn&#39;t help you (IIRC, there&#39;s no DUDEBRO prot=
+ocol<br>
+between host and B2xx). However, yes, the RFNoC dissector is what has<br>
+become of the CHDR dissector.<br>
+<br>
+When I look at your screenshot, it looks to me as if Wireshark wasn&#39;t<b=
+r>
+told to actually decode the packets as RFNoC. Could you try right click<br>
+-&gt; Decode as... and try that?<br>
+<br>
+Best regards,<br>
+<br>
+Marcus<br>
+<br>
+On 02.08.20 17:49, Vikas Jain via USRP-users wrote:<br>
+&gt; Hi All,<br>
+&gt;<br>
+&gt; I am using a B210 running UHD implementation corresponding to the SHA<=
+br>
+&gt; commit (457192600b3c51d4ddfccac222f2a19d1a5b4995) on the master. Relev=
+ant<br>
+&gt; git log snippet below:<br>
+&gt;<br>
+&gt; =3D=3D=3D<br>
+&gt; commit 457192600b3c51d4ddfccac222f2a19d1a5b4995<br>
+&gt; Author: Brent Stapleton &lt;<a href=3D"mailto:brent.stapleton@ettus.co=
+m" target=3D"_blank">brent.stapleton@ettus.com</a>&gt;<br>
+&gt; Date:=C2=A0 =C2=A0Mon Jan 6 12:19:56 2020 -0800<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0images: update FPGA image packages for RFNoC<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Updating FPGA image packages, filesystems, and subm=
+odule pointer to<br>
+&gt;=C2=A0 =C2=A0 =C2=A0include recent RFNoC changes.<br>
+&gt; =3D=3D=3D<br>
+&gt;<br>
+&gt; I am running the pdsch_enodeb example program (in srsLTE) which runs o=
+n my<br>
+&gt; Linux box and transmits a certain waveform over USB connected to B210.=
+ I<br>
+&gt; captured the I/Q stream USB packets on the usbmon interface using wire=
+shark<br>
+&gt; and noticed that the I/Q data packets are not getting parsed by the<br=
+>
+&gt; dissector. I have installed both the rfnoc.so and zpu.so dissector plu=
+gins<br>
+&gt; in the appropriate folders that wireshark is able to see (see attached=
+ jpeg<br>
+&gt; showing the plugins visible to wireshark). I am using wireshark versio=
+n 3.2.<br>
+&gt;<br>
+&gt; I have also attached a png file showing the wireshark output with the =
+I/Q<br>
+&gt; data USB packets captured but not being interpreted. Not sure if I am<=
+br>
+&gt; missing something. Appreciate any help or pointers to address this iss=
+ue.<br>
+&gt;<br>
+&gt;<br>
+&gt; Thanks.<br>
+&gt;<br>
+&gt; PS: I was looking at the UHD git log history and noticed the following=
+<br>
+&gt; commit wherein the tools/dissectors/packet-chdr.c file (which used to<=
+br>
+&gt; earlier contain the CHDR dissector implementation) was removed. I had =
+used<br>
+&gt; earlier UHD implementations which did not had this change and was able=
+ to<br>
+&gt; see the USB packets being dissected in wireshark.<br>
+&gt;<br>
+&gt; --<br>
+&gt; commit 9f29b9a556634e41d13fa298f9634b67fdd0a749<br>
+&gt; Author: Alex Williams &lt;<a href=3D"mailto:alex.williams@ni.com" targ=
+et=3D"_blank">alex.williams@ni.com</a>&gt;<br>
+&gt; Date:=C2=A0 =C2=A0Tue Jul 30 19:45:58 2019 -0700<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0tools: Update dissectors for Wireshark major versio=
+n 3, new CHDR<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Dissectors may now be incompatible with earlier ver=
+sions.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Fixes ZPU dissector.<br>
+&gt;<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
+n/listinfo/usrp-users_lists.ettus.com</a><br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/07/2020 12:54 AM, Sourin Mondal
-      (Vehere) wrote:<br>
-    </div>
-    <blockquote
-cite="mid:PN1PR0101MB188829BCAE89F6DD136D31F08B490@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        Hi,</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        I am using UBUNTU 18.04.</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        I am attaching the c++ code that I am using.</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        From,</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        Sourin<br>
-      </div>
-    </blockquote>
-    Near as I can tell from you code, you never actually establish the
-    channel map in the stream_args.<br>
-    <br>
-    Please consult the code for rx_multi_samples.cpp<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:PN1PR0101MB188829BCAE89F6DD136D31F08B490@PN1PR0101MB1888.INDPRD01.PROD.OUTLOOK.COM"
-      type="cite">
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-      </div>
-      <hr style="display:inline-block;width:98%" tabindex="-1">
-      <div id="divRplyFwdMsg" dir="ltr"><font style="font-size:11pt"
-          color="#000000" face="Calibri, sans-serif"><b>From:</b> Neel
-          Pandeya <a class="moz-txt-link-rfc2396E" href="mailto:neel.pandeya@ettus.com">&lt;neel.pandeya@ettus.com&gt;</a><br>
-          <b>Sent:</b> Thursday, August 6, 2020 10:38 PM<br>
-          <b>To:</b> Sourin Mondal (Vehere)
-          <a class="moz-txt-link-rfc2396E" href="mailto:sourin.mondal@vehere.com">&lt;sourin.mondal@vehere.com&gt;</a><br>
-          <b>Cc:</b> Marcus D Leech <a class="moz-txt-link-rfc2396E" href="mailto:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a>;
-          <a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a> <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
-          <b>Subject:</b> Re: [USRP-users] USRP not receiving data from
-          two antennas using PCI card</font>
-        <div> </div>
-      </div>
-      <div>
-        <div dir="ltr">
-          <div class="x_gmail_default"
-            style="font-family:verdana,sans-serif">Hello Sourin:</div>
-          <div class="x_gmail_default"
-            style="font-family:verdana,sans-serif"><br>
-          </div>
-          <div class="x_gmail_default"
-            style="font-family:verdana,sans-serif">Could you share your
-            C++ program, so that we might try to reproduce the problem
-            here?</div>
-          <div class="x_gmail_default"
-            style="font-family:verdana,sans-serif"><br>
-          </div>
-          <div class="x_gmail_default"
-            style="font-family:verdana,sans-serif">Which version of
-            Linux / Ubuntu are you running?<br>
-          </div>
-          <div class="x_gmail_default"
-            style="font-family:verdana,sans-serif"><br>
-          </div>
-          <div class="x_gmail_default"
-            style="font-family:verdana,sans-serif">--Neel Pandeya</div>
-          <div class="x_gmail_default"
-            style="font-family:verdana,sans-serif"><br>
-          </div>
-          <div class="x_gmail_default"
-            style="font-family:verdana,sans-serif"><br>
-          </div>
-        </div>
-        <br>
-        <div class="x_gmail_quote">
-          <div dir="ltr" class="x_gmail_attr">On Thu, 6 Aug 2020 at
-            11:51, Sourin Mondal (Vehere) via USRP-users &lt;<a
-              moz-do-not-send="true"
-              href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class="x_gmail_quote" style="margin:0px 0px 0px
-            0.8ex; border-left:1px solid rgb(204,204,204);
-            padding-left:1ex">
-            <div dir="ltr">
-              <div
-                style="font-family:Calibri,Arial,Helvetica,sans-serif;
-                font-size:12pt; color:rgb(0,0,0)">
-                <div style="margin:0px; font-size:12pt;
-                  font-family:Calibri,Arial,Helvetica,sans-serif;
-                  color:black; background-color:rgb(255,255,255)">
-                  Hi,</div>
-                <div style="margin:0px; font-size:12pt;
-                  font-family:Calibri,Arial,Helvetica,sans-serif;
-                  color:black; background-color:rgb(255,255,255)">
-                  I am using UHD-3.14.1.0 </div>
-                <div style="margin:0px; font-size:12pt;
-                  font-family:Calibri,Arial,Helvetica,sans-serif;
-                  color:black; background-color:rgb(255,255,255)">
-                  <div style="margin:0px; font-size:14px;
-                    font-family:&quot;Segoe
-                    UI&quot;,system-ui,&quot;Apple Color
-                    Emoji&quot;,&quot;Segoe UI Emoji&quot;,sans-serif;
-                    box-sizing:border-box">
-                    I am not using gnuradio now. I used that one year
-                    back and faced the mentioned problem. Now I am using
-                    c++ code and am facing the same issue of not able to
-                    stream two channels simultaneously.</div>
-                  From,</div>
-                <div style="margin:0px; font-size:12pt;
-                  font-family:Calibri,Arial,Helvetica,sans-serif;
-                  color:black; background-color:rgb(255,255,255)">
-                  Sourin</div>
-                <br>
-              </div>
-              <hr style="display:inline-block; width:98%">
-              <div id="x_gmail-m_-4184039363114880486divRplyFwdMsg"
-                dir="ltr"><font style="font-size:11pt" color="#000000"
-                  face="Calibri, sans-serif"><b>From:</b> Marcus D Leech
-                  &lt;<a moz-do-not-send="true"
-                    href="mailto:patchvonbraun@gmail.com"
-                    target="_blank">patchvonbraun@gmail.com</a>&gt;<br>
-                  <b>Sent:</b> Thursday, August 6, 2020 9:23 PM<br>
-                  <b>To:</b> Sourin Mondal (Vehere) &lt;<a
-                    moz-do-not-send="true"
-                    href="mailto:sourin.mondal@vehere.com"
-                    target="_blank">sourin.mondal@vehere.com</a>&gt;<br>
-                  <b>Cc:</b> <a moz-do-not-send="true"
-                    href="mailto:USRP-users@lists.ettus.com"
-                    target="_blank">USRP-users@lists.ettus.com</a> &lt;<a
-                    moz-do-not-send="true"
-                    href="mailto:usrp-users@lists.ettus.com"
-                    target="_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-                  <b>Subject:</b> Re: [USRP-users] USRP not receiving
-                  data from two antennas using PCI card</font>
-                <div> </div>
-              </div>
-              <div dir="auto">What version of UHD?
-                <div><br>
-                </div>
-                <div>Could you share the flow graph you’re using?</div>
-                <div><br>
-                </div>
-                <div><br>
-                  <br>
-                  <div dir="ltr">Sent from my iPhone</div>
-                  <div dir="ltr"><br>
-                    <blockquote type="cite">On Aug 6, 2020, at 11:47 AM,
-                      Sourin Mondal (Vehere) via USRP-users &lt;<a
-                        moz-do-not-send="true"
-                        href="mailto:usrp-users@lists.ettus.com"
-                        target="_blank">usrp-users@lists.ettus.com</a>&gt;
-                      wrote:<br>
-                      <br>
-                    </blockquote>
-                  </div>
-                  <blockquote type="cite">
-                    <div dir="ltr">﻿
-                      <div
-                        style="font-family:Calibri,Arial,Helvetica,sans-serif;
-                        font-size:12pt; color:rgb(0,0,0)">
-                        Hi,</div>
-                      <div
-                        style="font-family:Calibri,Arial,Helvetica,sans-serif;
-                        font-size:12pt; color:rgb(0,0,0)">
-                        <br>
-                      </div>
-                      <div
-                        style="font-family:Calibri,Arial,Helvetica,sans-serif;
-                        font-size:12pt; color:rgb(0,0,0)">
-                        <div dir="ltr" style="margin:0px;
-                          font-size:15px;
-                          background-color:rgb(255,255,255)">
-                          I am using USRP 2955 and want to receive two
-                          channels at 100 MSPS each simultaneously. I
-                          have connected usrp with PCIe. I am running my
-                          code but only one channel is getting received.
-                          Other channel is sending zeros only. I am
-                          using Ubuntu 18.04. Previously one year back I
-                          faced the same problem using USRP 2955 along
-                          with PCIe and running gnu radio. Only one
-                          channel popped up in the frequency sink graph
-                          and second graph was static with no signal.
-                          However, 2954 was giving both channels. Where
-                          is the problem? How can I correct that to
-                          stream two channels simultaneously using usrp
-                          2955 and PCIe? Please help.</div>
-                        <div dir="ltr" style="margin:0px;
-                          font-size:15px;
-                          background-color:rgb(255,255,255)">
-                          <br>
-                        </div>
-                        <div dir="ltr" style="margin:0px;
-                          font-size:15px;
-                          background-color:rgb(255,255,255)">
-                          Regards,</div>
-                        <div dir="ltr" style="margin:0px;
-                          font-size:15px;
-                          background-color:rgb(255,255,255)">
-                          Sourin</div>
-                      </div>
-                      <span>_______________________________________________</span><br>
-                      <span>USRP-users mailing list</span><br>
-                      <span><a moz-do-not-send="true"
-                          href="mailto:USRP-users@lists.ettus.com"
-                          target="_blank">USRP-users@lists.ettus.com</a></span><br>
-                      <span><a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                          target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></span><br>
-                    </div>
-                  </blockquote>
-                </div>
-              </div>
-            </div>
-            _______________________________________________<br>
-            USRP-users mailing list<br>
-            <a moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-            <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------010603030102070708030401--
+--0000000000007818bc05ac5e81d5--
 
 
---===============4645963290601006302==
+--===============4007125151141588875==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -460,5 +307,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4645963290601006302==--
+--===============4007125151141588875==--
 
