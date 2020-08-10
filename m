@@ -2,48 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DEEC240679
-	for <lists+usrp-users@lfdr.de>; Mon, 10 Aug 2020 15:13:18 +0200 (CEST)
-Received: from [::1] (port=36258 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D197240B6F
+	for <lists+usrp-users@lfdr.de>; Mon, 10 Aug 2020 18:53:53 +0200 (CEST)
+Received: from [::1] (port=38114 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k57c0-000554-KK; Mon, 10 Aug 2020 09:13:12 -0400
-Received: from mail-qk1-f171.google.com ([209.85.222.171]:34207)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <dapodun@gmail.com>) id 1k57bw-00050v-QU
- for usrp-users@lists.ettus.com; Mon, 10 Aug 2020 09:13:08 -0400
-Received: by mail-qk1-f171.google.com with SMTP id x69so8236605qkb.1
- for <usrp-users@lists.ettus.com>; Mon, 10 Aug 2020 06:12:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=H3S+IJAG7S6/97BifThBZr383tLgXyY8nhoxcAl/Gqc=;
- b=KDmiJTLWr/7yt8lkNTX7HBGDDgosXS6e0juf4UZ41N0dJZlboxDbZERB+bMLuGzlml
- 5rptcxhViYLq+CD3NOvdzseDZZxnNniF4dcf/ASvNt02+BQhwORcFhotgM85UN10AT+c
- j/r1aKN4LxHoauXs4Stw9t/ulLoXsKMb44b1ObHYEB+mtc3Us1VqvlbTXLzhv2UK2qC2
- +vDaLrHZ9qZMiRKosOdgxv4pHUiWV5XKe4/yyVNros6fJ0BCguvPVCgcnV7+zv/NGCd3
- zpqs7VF6sbcL//skC3pxeJxpY7MeSs694RNMQbje9NT1vEG/H3ks+GGRrq3vNKKwtd5V
- GgZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=H3S+IJAG7S6/97BifThBZr383tLgXyY8nhoxcAl/Gqc=;
- b=O/p56qexgz5mIgQAmT4QfG5kN7azTbhLN0x0IWLOrUsbPdi4VATpve7SSwBW+uqtcc
- hNW8N7Rppadw9/k+5i22znHNyhRzJO4JGMpmrL8TXwtyrEIsfq2NbRC8To4tBKd5Ieh5
- TVEQ4MFf1M4HHR+oHhKIcC9d08+gQVfomFbCFAN0DcChmtjhoMHHIOKikHejf06YWn57
- 1p0iBFKmqWOfdVawMXLL4ngWKZ/hMN+c7OOCVJseXwPIQcmgb3AmWnLfJ7bHw5H3sWwi
- sGLxBq0Uq+762qYW42LqiRBW+UYNR/56Uurnv8pX5F+yJu+NZlkAa8v0LPFrRYUll4uh
- U7Xg==
-X-Gm-Message-State: AOAM533ihAEgg4zJYl7TgGqLl3/RgZKJGg7x0kGmwBILrJ3n0pUB5jjS
- pVylyTkdDdHwDLzYLnuJAudCCtBgyzYuTtb5Cw+pkWUE
-X-Google-Smtp-Source: ABdhPJxWJ+Yue3ymQhVmur3roL8BVGTwcB6f3AKCIfs8T3EybQOFnO5CMthCxwoiS478J2xafa5d7glu6Uj586APodA=
-X-Received: by 2002:a05:620a:c16:: with SMTP id
- l22mr25258463qki.271.1597065147764; 
- Mon, 10 Aug 2020 06:12:27 -0700 (PDT)
+	id 1k5B3T-0006Oy-Pf; Mon, 10 Aug 2020 12:53:47 -0400
+Received: from ns13-777.999servers.com ([103.14.122.123]:55519)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <kpras@trilcomm.com>) id 1k5B3O-0006K1-Ae
+ for usrp-users@lists.ettus.com; Mon, 10 Aug 2020 12:53:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=trilcomm.com; s=default; h=Content-Type:MIME-Version:Message-ID:Date:
+ Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=texYj8XDAtv2xGWyDjPfOkqc9GBZTwF2/VNe5lp9aaU=; b=XyZndqFrln/QEgddVfN5mFt72H
+ DyBeBvvf1XLtKtHhrfBE4DBbl1NUHsYzYpsiRms1jNjoCFsuWAYjX2CEeTHLkkKG6OqBxjZ+zFowT
+ C2c5EkcecPD37r3WiX+Kv44ZrAzG+fgSWtB7C4wKrrjyPUEXjdVU58R14hW1FaFBk6p9l/ZhfgpAC
+ 05706NoVsQJAJjkPpmGBlcE3soo4uu9ft+hhiyWfn7hcSiFxAs8ucFPJ+QtnUljGWPMXwLZgqlApv
+ 1M+Ou8D8/p3vZNyMB73ZqQRZ3eFe59MS/QfDaTnAB0c7fX+V6yqgAV5MTisQd839EBi9bTY+CxPeq
+ qVM9AZsg==;
+Received: from [183.83.141.206] (port=45635 helo=AetherGT)
+ by ns13-777.999servers.com with esmtpsa (TLS1) tls
+ TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (Exim 4.93)
+ (envelope-from <kpras@trilcomm.com>)
+ id 1k5B2f-00GTwB-HS; Mon, 10 Aug 2020 22:22:57 +0530
+To: <usrp-users@lists.ettus.com>
+Cc: "'Rao Yenamandra'" <yrao@trilcomm.com>
+Date: Mon, 10 Aug 2020 22:22:58 +0530
+Message-ID: <001201d66f36$b4160f30$1c422d90$@com>
 MIME-Version: 1.0
-Date: Mon, 10 Aug 2020 21:12:16 +0800
-Message-ID: <CAHH7kPZ0J2GCKJ_cC2BhCNSQUvTtKktA7aGn-85pnhEt8rErag@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] adaptive modulation using USRP
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdZvNrLv83yoSEcjRTy8FVDTeC8NYQ==
+Content-Language: en-us
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - ns13-777.999servers.com
+X-AntiAbuse: Original Domain - lists.ettus.com
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - trilcomm.com
+X-Get-Message-Sender-Via: ns13-777.999servers.com: authenticated_id:
+ kpras@trilcomm.com
+X-Authenticated-Sender: ns13-777.999servers.com: kpras@trilcomm.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [USRP-users] [USRP B210] Getting zero samples from received stream
+ for 2 RX channel
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: dapodun nudopad via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: dapodun nudopad <dapodun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============8828521503789284057=="
+From: Prasad via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Prasad <kpras@trilcomm.com>
+Content-Type: multipart/mixed; boundary="===============3673451361888946197=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,37 +78,182 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8828521503789284057==
-Content-Type: multipart/alternative; boundary="000000000000d0d49805ac85b472"
+This is a multipart message in MIME format.
 
---000000000000d0d49805ac85b472
-Content-Type: text/plain; charset="UTF-8"
+--===============3673451361888946197==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0013_01D66F64.CDCE4B30"
+Content-Language: en-us
 
-Hello everyone,
-I am looking towards how to make a flowgraph to detect when received signal
-strength is below -20 dB for instance. It'll automatically change
-modulation techniques to a low-order modulation (QPSK) and when more than
--20 dB (say -10 dB). It'll take a high modulation technique (16QAM).
-May I know if anyone is working on this. I am willing to learn and
-contribute as well.
-Thank you.
+This is a multipart message in MIME format.
 
---000000000000d0d49805ac85b472
-Content-Type: text/html; charset="UTF-8"
+------=_NextPart_000_0013_01D66F64.CDCE4B30
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi Everyone,
+
+ 
+
+Getting zero samples from received stream, when number of RX channel set to
+2.
+
+ 
+
+Bellows are the USRP setting:
+
+Master-clock-rate: 30.72e6
+
+Rate:
+
+               Channel0: 30.72e6
+
+               Channel1: 30.72e6
+
+Gain: 
+
+               Channel0: 45
+
+               Channel1: 45
+
+Frequency:
+
+               Channel0: 3.8GHz
+
+Channel1: 3.8GHz
+
+ 
+
+Thanks,
+
+
+------=_NextPart_000_0013_01D66F64.CDCE4B30
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello everyone,<div>I am looking towards how to make a flo=
-wgraph to detect when received signal strength is below -20 dB for instance=
-. It&#39;ll automatically change modulation techniques to a low-order modul=
-ation (QPSK) and when more than -20 dB (say -10 dB). It&#39;ll take a high =
-modulation technique (16QAM).<br></div><div>May I know if anyone is working=
- on this. I am willing to learn and contribute as well.</div><div>Thank you=
-.</div></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40">
 
---000000000000d0d49805ac85b472--
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii">
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
+
+<div class=3DSection1>
+
+<p class=3DMsoNormal>Hi Everyone,<o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>Getting zero samples from received stream, when =
+number of RX
+channel set to 2.<o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>Bellows are the USRP setting:<o:p></o:p></p>
+
+<p class=3DMsoNormal>Master-clock-rate: 30.72e6<o:p></o:p></p>
+
+<p class=3DMsoNormal>Rate:<o:p></o:p></p>
+
+<p =
+class=3DMsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Channel0:
+30.72e6<o:p></o:p></p>
+
+<p =
+class=3DMsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Channel1:
+30.72e6<o:p></o:p></p>
+
+<p class=3DMsoNormal>Gain: <o:p></o:p></p>
+
+<p =
+class=3DMsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Channel0:
+45<o:p></o:p></p>
+
+<p =
+class=3DMsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Channel1:
+45<o:p></o:p></p>
+
+<p class=3DMsoNormal>Frequency:<o:p></o:p></p>
+
+<p =
+class=3DMsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Channel0:
+3.8GHz<o:p></o:p></p>
+
+<p class=3DMsoNormal style=3D'text-indent:.5in'>Channel1: =
+3.8GHz<o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>Thanks,<o:p></o:p></p>
+
+</div>
+
+</body>
+
+</html>
+
+------=_NextPart_000_0013_01D66F64.CDCE4B30--
 
 
---===============8828521503789284057==
+
+--===============3673451361888946197==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,5 +264,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8828521503789284057==--
+--===============3673451361888946197==--
+
 
