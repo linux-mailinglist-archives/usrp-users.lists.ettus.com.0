@@ -2,59 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03A7E2414CA
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Aug 2020 04:06:26 +0200 (CEST)
-Received: from [::1] (port=41888 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64768241987
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Aug 2020 12:18:17 +0200 (CEST)
+Received: from [::1] (port=46942 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k5JgG-00077X-JG; Mon, 10 Aug 2020 22:06:24 -0400
-Received: from mail-qv1-f52.google.com ([209.85.219.52]:36236)
+	id 1k5RMC-0008Np-Tk; Tue, 11 Aug 2020 06:18:12 -0400
+Received: from mail-ed1-f51.google.com ([209.85.208.51]:41321)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k5JgC-00070x-KR
- for usrp-users@lists.ettus.com; Mon, 10 Aug 2020 22:06:20 -0400
-Received: by mail-qv1-f52.google.com with SMTP id a19so5276913qvy.3
- for <usrp-users@lists.ettus.com>; Mon, 10 Aug 2020 19:06:00 -0700 (PDT)
+ (Exim 4.93) (envelope-from <danielozer22@gmail.com>)
+ id 1k5RM9-0008II-GY
+ for usrp-users@lists.ettus.com; Tue, 11 Aug 2020 06:18:09 -0400
+Received: by mail-ed1-f51.google.com with SMTP id w17so1577406edt.8
+ for <usrp-users@lists.ettus.com>; Tue, 11 Aug 2020 03:17:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=27b946gSXCEJFPxHwesULydk85ZD61ibieaXjCUGdHM=;
- b=gB+ulFcxfCQXUgkCgtksVOQjuhs5PBzniabkrvZmI82pBLW6qoFEL91vk5qiCSbJX1
- U9IfhvxS8sVNyhR6MnZC0IcOI+tGtmHV255SShddOV4wHZvX3oMVXzKFRNBpZdUwqD4D
- YWi0KRsN2TD5gBFBkU4xQgI/VgFjxVgUYejycPsJt7yHetMNCWRMoAUeWeSor2fHWvOF
- fxrJwkl/IwpTHYY7nmCALu6lDYbt0bH55wyGGyBDanntf+PJaq9sZZTekejcuqteS5ZJ
- uM9o0CtlzUk5TrRrRO+HjK1nG8pMpoD5Go/w55HcBHO+vuaelPlGa/YmLwfYmumV9IBq
- xw/Q==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=JJV8Z0zwi8levzihHjptv1JcpuMCzBF8aekphm7Tlws=;
+ b=sjjs9KuGDZiihkN/WGxLffO8wIXKFaGBxPD2cuQblVXuIH0dQmCX1ogpeUpDtpRa96
+ ZBj1EP2+4ukPXxfq9FXQ8ad8EQrRL2+Qv60EnPZWyKX2nmanzlJCf6TGH9nxBVvlXZX7
+ NfFc6ZnFcLpkr48AizEjaXFhs8E2LYZsQbE4wCGNEgB0nHli5MbXQecH2mldN/S4JawS
+ 7Bi/wrJGkcpN/RGintJHRIVvUS4rA//hj/5v4+EfsCaHfSTbOMZArRLGg+g2hEirclj0
+ LLaBhK+YOjgG0+hjsoExni1iker3Wn+BYVVgcK/bzk17xwhtoFTealS700NJcPxisKTN
+ 3Ngg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=27b946gSXCEJFPxHwesULydk85ZD61ibieaXjCUGdHM=;
- b=szB7iwdxeW75u9OumJ33B3DPjNpEZtTkY1drVSQmyv0WQZWxc9Jy/JmgMP/aUtusg6
- yaL1tgjEzSimD7oKiPiBxn4jXQmB9iBptYkEcBfYpxlapo6D/w1tJqOx2W+QHPTLBXMf
- 7f0QP8E3r7u5ZYBU+j6TZcCP+rT3ygbqE0N8haDkKQ2bo5OfH/D9Yxqf0JKQeRbbiaRb
- 6YWS1YbMD8vowmMaX4Z8N6JTo9rrZ9wZDags8U3eJncDiLpWZkcR+fJ5NUchJGBic91p
- vwRZ9oIHOilM/XnXb0hmY3dkdrK9g4XjdRGokfhL/LwisdsWjzIYo3hV7nh8gAi37uvq
- ppNA==
-X-Gm-Message-State: AOAM530D62yS7YIJ2GhXX5+VNluXX3+5+GmwOD7x/dTnWdvzmKkBStfF
- BMP5J5tf/OCEdUp52VbjZo3Vg50DaKw=
-X-Google-Smtp-Source: ABdhPJxZVnh5R9HA3SIUhD38gdSeYSkcMJbpCg4E16Js0mWC6++bxp8ii3w3CDFwssbECLcl9fP5Nw==
-X-Received: by 2002:a0c:e90b:: with SMTP id a11mr31386102qvo.168.1597111539853; 
- Mon, 10 Aug 2020 19:05:39 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id x5sm17131150qtp.76.2020.08.10.19.05.39
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 10 Aug 2020 19:05:39 -0700 (PDT)
-Message-ID: <5F31FCF3.9000505@gmail.com>
-Date: Mon, 10 Aug 2020 22:05:39 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=JJV8Z0zwi8levzihHjptv1JcpuMCzBF8aekphm7Tlws=;
+ b=qvb9O/ErlGfdq3fvsgDEB8hS9Dm+FZSFpKc02cibeqbZZoUVqBh5xEdHYYVD4rTow+
+ sMUCV40+FWVdQhsk1nyDVU8j07JfUKWsW6MrPOH/OiH7Fqcz6DwiIEOaMbH7FNOUrpwr
+ dcbk65tFhaKy6XEB4Vm51WxzZ32PtX6hBuTjCYpMR1QTUsTFS1ZcBkaABf7zdazVTBpZ
+ O5KhXP68FpF8IilkzlE5+HN4H2x4m2keoATBMrDXAO9XnhQXAzWbqraEs79mQlPO+ISd
+ B6w6XbhkvdG1F7DZsETNkTHoAOVwfStptNJR6NVxD8JOEYpUcO9MN22DaAOb8BNlUHKd
+ IUog==
+X-Gm-Message-State: AOAM533vEq62SMXfz8xTw5W3KNCefFzvSGzDROxJAur5xnerskCq/2h/
+ iN8tE/eX20yL2KfV5KFanPkSv1xjgk90W3ylfWr5q2l4
+X-Google-Smtp-Source: ABdhPJycwTvxewilRon3xUgAA61KpKSXDPAo6Ylu3TxZ4h/Ave7vbRPdKkz6CpmDbDqDMenGQOUoDp2iFSIgVq2k2Rk=
+X-Received: by 2002:a05:6402:1ad1:: with SMTP id
+ ba17mr24642337edb.119.1597141048162; 
+ Tue, 11 Aug 2020 03:17:28 -0700 (PDT)
 MIME-Version: 1.0
+Date: Tue, 11 Aug 2020 13:17:12 +0300
+Message-ID: <CAE_Rk55Bde-UiKK93hR-RGU5VpJGS7eoBB_2pe-bMw_Evd=1KQ@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <CA+fwWkznupY1U19V2hemTBkwNx6nmEBPKUa=Es7udqd-t8=6YQ@mail.gmail.com>
-In-Reply-To: <CA+fwWkznupY1U19V2hemTBkwNx6nmEBPKUa=Es7udqd-t8=6YQ@mail.gmail.com>
-Subject: Re: [USRP-users] PDU socket block
+Subject: [USRP-users] =?utf-8?b?cmZub2MgcXVlc3Rpb25zOuKAj+KAjw==?=
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5808522006769517506=="
+From: Daniel Ozer via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Daniel Ozer <danielozer22@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4094662173527281689=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,101 +72,74 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============5808522006769517506==
-Content-Type: multipart/alternative;
- boundary="------------060304040804010702000103"
+--===============4094662173527281689==
+Content-Type: multipart/alternative; boundary="000000000000d4fcbb05ac9760be"
 
-This is a multi-part message in MIME format.
---------------060304040804010702000103
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000d4fcbb05ac9760be
+Content-Type: text/plain; charset="UTF-8"
 
-On 08/10/2020 10:00 PM, Felipe Gama via USRP-users wrote:
-> I'm developing my doctoral research on wavelet coding and I'm trying 
-> to automate the experimental tests developed from the developed codes, 
-> I made a python script from a TCP client that sends it to a TCP server 
-> created by the socket block PDU, however at the reception of this 
-> client I'm not able to handle the data received because I don't know 
-> which format the PDU socket sends and I didn't find it in the 
-> documentation. Sending to the PDU socket the output of the block 
-> created by me, which is of the complex message type. Attached is the 
-> client in python, flowchart code and the client output.
->
->
-> Thankful,
->
-> Me. Eng. Felipe Gama
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-You'll probably get a better response from the discuss-gnuradio mailing 
-list rather than here.
+Hi everyone,
+Im just started  developing on the usrp X310 platform and i have some
+questions :
 
+1. Is the crossbar is capable to transfer data between 2 rfnoc blocks at
+maximum rate of the crossbar clock ?(bus_clk=187.5MHZ)
 
+2. if i have this theoretical chain : rfnoc: block1 ->  rfnoc: block2 ->
+rfnoc: block3 ->  rfnoc: block4
+ Is every block can send data to the next block at the maximum rate of the
+crossbar clk ?
 
---------------060304040804010702000103
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+3. I have a chain :  rfnoc: signal source -> rfnoc: DUC (1M to 200M) ->
+rfnoc:radio_block.
+how is it possible that the connection between the duc and the radio block
+doesn't throw an error because the transfer rate is bigger than the clk
+speed of the crossbar ?
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/10/2020 10:00 PM, Felipe Gama via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CA+fwWkznupY1U19V2hemTBkwNx6nmEBPKUa=Es7udqd-t8=6YQ@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div dir="ltr">
-          <div>I'm developing my doctoral research on wavelet coding and
-            I'm trying to automate the experimental tests developed from
-            the developed codes, I made a python script from a TCP
-            client that sends it to a TCP server created by the socket
-            block PDU, however at the reception of this client I'm not
-            able to handle the data received because I don't know which
-            format the PDU socket sends and I didn't find it in the
-            documentation. Sending to the PDU socket the output of the
-            block created by me, which is of the complex message type.
-            Attached is the client in python, flowchart code and the
-            client output.</div>
-          <div><br>
-          </div>
-          <div><br>
-          </div>
-          <div>Thankful,</div>
-          <div><br>
-          </div>
-          <div>Me. Eng. Felipe Gama</div>
-        </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    You'll probably get a better response from the discuss-gnuradio
-    mailing list rather than here.<br>
-    <br>
-    <br>
-  </body>
-</html>
+4. Is it possible to change the crossbar clk to ce_clk=214MHZ instead of
+bus clk ?
 
---------------060304040804010702000103--
+5. I saw in the article (" Measured Latency Introduced by RFNoC
+Architecture" )that the nocshell and the axi wrapper have a big latency
+(100nanosec and 1.7microsec) . There is a way to drop down the latency ?
+
+thanks in advanced
+
+--000000000000d4fcbb05ac9760be
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"rtl"><div id=3D"gmail-m_5740917156441633232gmail-:17g" style=3D=
+"font-size:0.875rem;direction:rtl;margin:8px 0px 0px;padding:0px"><div id=
+=3D"gmail-m_5740917156441633232gmail-:17f" style=3D"overflow:hidden;font-va=
+riant-numeric:normal;font-variant-east-asian:normal;font-stretch:normal;fon=
+t-size:small;line-height:1.5"><div dir=3D"rtl"><div dir=3D"ltr"><div dir=3D=
+"ltr">Hi everyone,</div><div dir=3D"ltr">Im just started=C2=A0=C2=A0develop=
+ing=C2=A0on the usrp X310 platform=C2=A0and i have some questions :<br><br>=
+</div><div dir=3D"ltr">1. Is the crossbar is capable to transfer data betwe=
+en 2 rfnoc blocks=C2=A0at maximum rate of the crossbar clock ?(bus_clk=3D18=
+7.5MHZ)=C2=A0</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">2. if i have=
+ this theoretical chain : rfnoc: block1 -&gt;=C2=A0 rfnoc: block2 -&gt;=C2=
+=A0 rfnoc: block3 -&gt;=C2=A0 rfnoc: block4</div><div dir=3D"ltr">=C2=A0Is =
+every block can send data to the next block at the maximum rate of the cros=
+sbar clk ?</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">3. I have a cha=
+in :=C2=A0 rfnoc: signal source=C2=A0-&gt; rfnoc: DUC (1M to 200M) -&gt; rf=
+noc:radio_block.</div><div dir=3D"ltr">how is it possible that the connecti=
+on between the duc and the radio block doesn&#39;t=C2=A0throw an error beca=
+use the transfer rate is bigger than the clk speed of the crossbar ?<br><br=
+></div><div dir=3D"ltr">4. Is it possible to change=C2=A0the crossbar clk t=
+o ce_clk=3D214MHZ instead=C2=A0of bus clk ?</div><div dir=3D"ltr"><br></div=
+><div dir=3D"ltr">5. I saw in the article (&quot; Measured Latency Introduc=
+ed by
+RFNoC Architecture&quot; )that the nocshell=C2=A0and the axi wrapper have a=
+ big latency (100nanosec and 1.7microsec) . There is a way to drop down the=
+ latency ?</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">thanks in advan=
+ced</div></div></div></div></div></div>
+
+--000000000000d4fcbb05ac9760be--
 
 
---===============5808522006769517506==
+--===============4094662173527281689==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -187,5 +150,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5808522006769517506==--
+--===============4094662173527281689==--
 
