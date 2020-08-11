@@ -2,52 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C915241B96
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Aug 2020 15:32:41 +0200 (CEST)
-Received: from [::1] (port=49220 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21671241BAC
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Aug 2020 15:43:21 +0200 (CEST)
+Received: from [::1] (port=49338 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k5UOM-0003TT-JW; Tue, 11 Aug 2020 09:32:38 -0400
-Received: from mail-ej1-f41.google.com ([209.85.218.41]:35938)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <bpadalino@gmail.com>) id 1k5UOI-0003Ge-RP
- for usrp-users@lists.ettus.com; Tue, 11 Aug 2020 09:32:34 -0400
-Received: by mail-ej1-f41.google.com with SMTP id kq25so13106421ejb.3
- for <usrp-users@lists.ettus.com>; Tue, 11 Aug 2020 06:32:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1hDT427kN1bmQtc2CtHAawLu+m/TQNWg0wSPuG3/nI4=;
- b=X80MuA5eqFK/WgEWkp0yxY4gZ3cx7uIjXDu/qfD1qqH3CZfEu4sOWf+YgDVJndPTDD
- VDcY5MEKojKB2L4a7u/FjdBmZOQBBb4ixtmuGvEU5XjcCF9QbF9kAmHs9IbjTvFzHe5k
- l0g+x7vSxOwhq6+u+ijb0LLhtYAdGqb0WZkiwfH5H12UPkOfUhfUhYZN2NfzIkXap9ss
- UtVlSvyf24UwV4f0dytqJcJQ8B4iauUHyg0Glxg5dXXgkS30/EMDfWYUpSX0JZi8kcAV
- YdDeEqvc0jcsUNTIg7mSvnEEYstWa5J8A/Btg/M0+RvJLEzeHqhRJuCO3MEQKYn3ite0
- Ybyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=1hDT427kN1bmQtc2CtHAawLu+m/TQNWg0wSPuG3/nI4=;
- b=tuqmjeHmkNlT8LVp61ak9O5Yk7xP8om5r9LuDCirYnqvOEMLaF7I3b3Zt0WF73eUhF
- XLgyRd/ji7XHfdiuR+l4z36oABwmE+YcDnlhx8C2ay/8QckGPW/vANLY554hk8GKOnnh
- 8brSywSum5a3LuPQ8Q6AhyXTKM9QPhHFmUOFYOQtdFqWAZP9H01xg0VTb+kKfeBAzvi7
- 8kb3mjVQ028LNqboHnGFdUSGv1kJzjvihfEvBo2u4HvXRs8csrOn5yI3UL0M88zspqx8
- TI/lXPCBAWusyo1liIGIzq/4WA9AP7FbJ5O6PI9rpKEBuXQnrOnJoZKiqPU2/mhnC5Qh
- hIHA==
-X-Gm-Message-State: AOAM532tEniVu+9t0VMCrBK0cRMDav37XqVxbJ0JVg5hcnrmNpTNGmPz
- c4fejWLjw94ZWrJqcfw9E5tCqJhDDFAklshJto0=
-X-Google-Smtp-Source: ABdhPJwhyElicmHTUP1jxuT07eW3jw9rMQn02CRYvI4mKCNQ+VOvdr1POB3ozUPzc9pBggeAZJWOUKDs6FoRd8j66GE=
-X-Received: by 2002:a17:906:80c:: with SMTP id
- e12mr26779190ejd.128.1597152713706; 
- Tue, 11 Aug 2020 06:31:53 -0700 (PDT)
+	id 1k5UYh-0004tr-Jb; Tue, 11 Aug 2020 09:43:19 -0400
+Received: from ns13-777.999servers.com ([103.14.122.123]:58348)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <kpras@trilcomm.com>) id 1k5UYc-0004bj-4I
+ for USRP-users@lists.ettus.com; Tue, 11 Aug 2020 09:43:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=trilcomm.com; s=default; h=Content-Type:MIME-Version:Message-ID:Date:
+ Subject:In-Reply-To:References:Cc:To:From:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=NVXwX/WVW7UUKgXMkMjn+Jf/yJkOatsbcZn+7o0yo5k=; b=Svq61gSDveAO3ZoyngSUyuMwG
+ xmP60//u33hMdZt1i+s1QUby3pU3JEiRxDcXE9CvjIkZVT9MOfc3Pga6rUBWBFIw/V9F2Hv39GPC7
+ O4Vt+aCVHlfxDmuJCW7T1OTC/PooDZrFWDQMB80P64MeHn9AWiJRwIt6/bfJ5KBG/3zo34RNya47a
+ X53x2ZnkjHmcD6dvOdE9oJP9oR7N7TfRopdw2fMc6ynZC/W1GvhDEuHhUyuxRhUxRAoAzH4PlzuDB
+ wH1U16CUWRHkwL5OYkugjlHVJPezfSNAIg9jDJ45j+rpfLXTUZ461PE97Du1AODNCfNTVgFNriOKH
+ 6iJTtvAYA==;
+Received: from [183.83.141.206] (port=46712 helo=AetherGT)
+ by ns13-777.999servers.com with esmtpsa (TLS1) tls
+ TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (Exim 4.93)
+ (envelope-from <kpras@trilcomm.com>)
+ id 1k5UXo-009zCP-Fi; Tue, 11 Aug 2020 19:12:24 +0530
+To: "'Marcus D Leech'" <patchvonbraun@gmail.com>
+Cc: <USRP-users@lists.ettus.com>,
+	"'Rao Yenamandra'" <yrao@trilcomm.com>
+References: <001201d66f36$b4160f30$1c422d90$@com>
+ <BF8AEB98-F90B-4A41-BA65-CC3C944E6A6D@gmail.com>
+In-Reply-To: <BF8AEB98-F90B-4A41-BA65-CC3C944E6A6D@gmail.com>
+Date: Tue, 11 Aug 2020 19:12:25 +0530
+Message-ID: <000301d66fe5$405aba50$c1102ef0$@com>
 MIME-Version: 1.0
-References: <CAE_Rk55Bde-UiKK93hR-RGU5VpJGS7eoBB_2pe-bMw_Evd=1KQ@mail.gmail.com>
-In-Reply-To: <CAE_Rk55Bde-UiKK93hR-RGU5VpJGS7eoBB_2pe-bMw_Evd=1KQ@mail.gmail.com>
-Date: Tue, 11 Aug 2020 09:31:42 -0400
-Message-ID: <CAEXYVK6cxU9WufzXn10i5QQh3-QBSo9UDmDBkt5VpVg=++30Xg@mail.gmail.com>
-To: Daniel Ozer <danielozer22@gmail.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] =?utf-8?b?cmZub2MgcXVlc3Rpb25zOuKAj+KAjw==?=
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdZvOEbCq/XzB0EHRAeLGgs8USRsYwArLIgw
+Content-Language: en-us
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - ns13-777.999servers.com
+X-AntiAbuse: Original Domain - lists.ettus.com
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - trilcomm.com
+X-Get-Message-Sender-Via: ns13-777.999servers.com: authenticated_id:
+ kpras@trilcomm.com
+X-Authenticated-Sender: ns13-777.999servers.com: kpras@trilcomm.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Re: [USRP-users] [USRP B210] Getting zero samples from received
+ stream for 2 RX channel
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,9 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7191763418823806486=="
+From: Prasad via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Prasad <kpras@trilcomm.com>
+Content-Type: multipart/mixed; boundary="===============7676303546221069209=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,151 +82,944 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7191763418823806486==
-Content-Type: multipart/alternative; boundary="000000000000270f9305ac9a1832"
+This is a multipart message in MIME format.
 
---000000000000270f9305ac9a1832
-Content-Type: text/plain; charset="UTF-8"
+--===============7676303546221069209==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0004_01D67013.5A12F650"
+Content-Language: en-us
 
-On Tue, Aug 11, 2020 at 6:18 AM Daniel Ozer via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+This is a multipart message in MIME format.
 
-> Hi everyone,
-> Im just started  developing on the usrp X310 platform and i have some
-> questions :
->
-> 1. Is the crossbar is capable to transfer data between 2 rfnoc blocks at
-> maximum rate of the crossbar clock ?(bus_clk=187.5MHZ)
->
-
-Yes.  Each port can handle 200MHz worth of bandwidth, but it cannot handle
-full bandwidth from both radios at the same time.  You'd need multiple
-crossbar ports for that.
-
->
-> 2. if i have this theoretical chain : rfnoc: block1 ->  rfnoc: block2 ->
-> rfnoc: block3 ->  rfnoc: block4
->  Is every block can send data to the next block at the maximum rate of the
-> crossbar clk ?
->
-
-Yes.  The crossbar acts as a switch.
-
-
->
-> 3. I have a chain :  rfnoc: signal source -> rfnoc: DUC (1M to 200M) ->
-> rfnoc:radio_block.
-> how is it possible that the connection between the duc and the radio block
-> doesn't throw an error because the transfer rate is bigger than the clk
-> speed of the crossbar ?
->
-
-The bus widths are different between the two domains.  Most everything on
-ce_clk is 32-bit IQ samples, whereas the bus_clk domain is 64-bits wide.
-
-
->
-> 4. Is it possible to change the crossbar clk to ce_clk=214MHZ instead of
-> bus clk ?
->
-
-Maybe, but what would be the point?  You'll probably end up not being able
-to close timing on the design, but that's just a guess.
-
-
->
-> 5. I saw in the article (" Measured Latency Introduced by RFNoC
-> Architecture" )that the nocshell and the axi wrapper have a big latency
-> (100nanosec and 1.7microsec) . There is a way to drop down the latency ?
->
-
-I don't know how to address this.  Maybe a link to the article and to
-figure out where the "large" latencies are?  What is your target latency?
-
-Brian
-
---000000000000270f9305ac9a1832
-Content-Type: text/html; charset="UTF-8"
+------=_NextPart_000_0004_01D67013.5A12F650
+Content-Type: text/plain;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Tue, Aug 11, 2020 at 6:18 AM Daniel Oz=
-er via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-us=
-ers@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"rtl"><div id=3D"g=
-mail-m_64641900704133377gmail-m_5740917156441633232gmail-:17g" style=3D"fon=
-t-size:0.875rem;direction:rtl;margin:8px 0px 0px;padding:0px"><div id=3D"gm=
-ail-m_64641900704133377gmail-m_5740917156441633232gmail-:17f" style=3D"over=
-flow:hidden;font-variant-numeric:normal;font-variant-east-asian:normal;font=
--stretch:normal;font-size:small;line-height:1.5"><div dir=3D"rtl"><div dir=
-=3D"ltr"><div dir=3D"ltr">Hi everyone,</div><div dir=3D"ltr">Im just starte=
-d=C2=A0=C2=A0developing=C2=A0on the usrp X310 platform=C2=A0and i have some=
- questions :<br><br></div><div dir=3D"ltr">1. Is the crossbar is capable to=
- transfer data between 2 rfnoc blocks=C2=A0at maximum rate of the crossbar =
-clock ?(bus_clk=3D187.5MHZ)=C2=A0</div></div></div></div></div></div></bloc=
-kquote><div><br></div><div>Yes.=C2=A0 Each port can handle 200MHz worth of =
-bandwidth, but it cannot handle full bandwidth from both radios at the same=
- time.=C2=A0 You&#39;d need multiple crossbar ports for that.</div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
- solid rgb(204,204,204);padding-left:1ex"><div dir=3D"rtl"><div id=3D"gmail=
--m_64641900704133377gmail-m_5740917156441633232gmail-:17g" style=3D"font-si=
-ze:0.875rem;direction:rtl;margin:8px 0px 0px;padding:0px"><div id=3D"gmail-=
-m_64641900704133377gmail-m_5740917156441633232gmail-:17f" style=3D"overflow=
-:hidden;font-variant-numeric:normal;font-variant-east-asian:normal;font-str=
-etch:normal;font-size:small;line-height:1.5"><div dir=3D"rtl"><div dir=3D"l=
-tr"><div dir=3D"ltr"><br></div><div dir=3D"ltr">2. if i have this theoretic=
-al chain : rfnoc: block1 -&gt;=C2=A0 rfnoc: block2 -&gt;=C2=A0 rfnoc: block=
-3 -&gt;=C2=A0 rfnoc: block4</div><div dir=3D"ltr">=C2=A0Is every block can =
-send data to the next block at the maximum rate of the crossbar clk ?</div>=
-</div></div></div></div></div></blockquote><div><br></div><div>Yes.=C2=A0 T=
-he crossbar acts as a switch.</div><div>=C2=A0<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"rtl"><div id=3D"gmail-m_646419=
-00704133377gmail-m_5740917156441633232gmail-:17g" style=3D"font-size:0.875r=
-em;direction:rtl;margin:8px 0px 0px;padding:0px"><div id=3D"gmail-m_6464190=
-0704133377gmail-m_5740917156441633232gmail-:17f" style=3D"overflow:hidden;f=
-ont-variant-numeric:normal;font-variant-east-asian:normal;font-stretch:norm=
-al;font-size:small;line-height:1.5"><div dir=3D"rtl"><div dir=3D"ltr"><div =
-dir=3D"ltr"><br></div><div dir=3D"ltr">3. I have a chain :=C2=A0 rfnoc: sig=
-nal source=C2=A0-&gt; rfnoc: DUC (1M to 200M) -&gt; rfnoc:radio_block.</div=
-><div dir=3D"ltr">how is it possible that the connection between the duc an=
-d the radio block doesn&#39;t=C2=A0throw an error because the transfer rate=
- is bigger than the clk speed of the crossbar ?<br></div></div></div></div>=
-</div></div></blockquote><div><br></div><div>The bus widths are different b=
-etween the two domains.=C2=A0 Most everything on ce_clk is 32-bit IQ sample=
-s, whereas the bus_clk domain is 64-bits wide.</div><div>=C2=A0</div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"rtl"><div id=3D"gma=
-il-m_64641900704133377gmail-m_5740917156441633232gmail-:17g" style=3D"font-=
-size:0.875rem;direction:rtl;margin:8px 0px 0px;padding:0px"><div id=3D"gmai=
-l-m_64641900704133377gmail-m_5740917156441633232gmail-:17f" style=3D"overfl=
-ow:hidden;font-variant-numeric:normal;font-variant-east-asian:normal;font-s=
-tretch:normal;font-size:small;line-height:1.5"><div dir=3D"rtl"><div dir=3D=
-"ltr"><div dir=3D"ltr"><br></div><div dir=3D"ltr">4. Is it possible to chan=
-ge=C2=A0the crossbar clk to ce_clk=3D214MHZ instead=C2=A0of bus clk ?</div>=
-</div></div></div></div></div></blockquote><div><br></div><div>Maybe, but w=
-hat would be the point?=C2=A0 You&#39;ll probably end up not being able to =
-close timing on the design, but that&#39;s just a guess.</div><div>=C2=A0</=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"rtl"><div=
- id=3D"gmail-m_64641900704133377gmail-m_5740917156441633232gmail-:17g" styl=
-e=3D"font-size:0.875rem;direction:rtl;margin:8px 0px 0px;padding:0px"><div =
-id=3D"gmail-m_64641900704133377gmail-m_5740917156441633232gmail-:17f" style=
-=3D"overflow:hidden;font-variant-numeric:normal;font-variant-east-asian:nor=
-mal;font-stretch:normal;font-size:small;line-height:1.5"><div dir=3D"rtl"><=
-div dir=3D"ltr"><div dir=3D"ltr"><br></div><div dir=3D"ltr">5. I saw in the=
- article (&quot; Measured Latency Introduced by
-RFNoC Architecture&quot; )that the nocshell=C2=A0and the axi wrapper have a=
- big latency (100nanosec and 1.7microsec) . There is a way to drop down the=
- latency ?</div></div></div></div></div></div></blockquote><div><br></div><=
-div>I don&#39;t know how to address this.=C2=A0 Maybe a link to the article=
- and to figure out where the &quot;large&quot; latencies are?=C2=A0 What is=
- your target latency?</div><div><br></div><div>Brian</div></div></div>
+Hi Marcus,
 
---000000000000270f9305ac9a1832--
+=20
+
+Please find the below info.
+
+=20
+
+Yes! We use our own software.
+
+=20
+
+Usb_prob outputs:=20
+
+  _____________________________________________________
+
+ /
+
+|       Device: B-Series Device
+
+|     _____________________________________________________
+
+|    /
+
+|   |       Mboard: B210
+
+|   |   serial: 311B3EB
+
+|   |   name: MyB210
+
+|   |   product: 2
+
+|   |   revision: 4
+
+|   |   FW Version: 8.0
+
+|   |   FPGA Version: 16.0
+
+|   |  =20
+
+|   |   Time sources:  none, internal, external, gpsdo
+
+|   |   Clock sources: internal, external, gpsdo
+
+|   |   Sensors: ref_locked
+
+|   |     _____________________________________________________
+
+|   |    /
+
+|   |   |       RX DSP: 0
+
+|   |   |  =20
+
+|   |   |   Freq range: -8.000 to 8.000 MHz
+
+|   |     _____________________________________________________
+
+|   |    /
+
+|   |   |       RX DSP: 1
+
+|   |   |  =20
+
+|   |   |   Freq range: -8.000 to 8.000 MHz
+
+|   |     _____________________________________________________
+
+|   |    /
+
+|   |   |       RX Dboard: A
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       RX Frontend: A
+
+|   |   |   |   Name: FE-RX2
+
+|   |   |   |   Antennas: TX/RX, RX2
+
+|   |   |   |   Sensors: temp, rssi, lo_locked
+
+|   |   |   |   Freq range: 50.000 to 6000.000 MHz
+
+|   |   |   |   Gain range PGA: 0.0 to 76.0 step 1.0 dB
+
+|   |   |   |   Bandwidth range: 200000.0 to 56000000.0 step 0.0 Hz
+
+|   |   |   |   Connection Type: IQ
+
+|   |   |   |   Uses LO offset: No
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       RX Frontend: B
+
+|   |   |   |   Name: FE-RX1
+
+|   |   |   |   Antennas: TX/RX, RX2
+
+|   |   |   |   Sensors: temp, rssi, lo_locked
+
+|   |   |   |   Freq range: 50.000 to 6000.000 MHz
+
+|   |   |   |   Gain range PGA: 0.0 to 76.0 step 1.0 dB
+
+|   |   |   |   Bandwidth range: 200000.0 to 56000000.0 step 0.0 Hz
+
+|   |   |   |   Connection Type: IQ
+
+|   |   |   |   Uses LO offset: No
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       RX Codec: A
+
+|   |   |   |   Name: B210 RX dual ADC
+
+|   |   |   |   Gain Elements: None
+
+|   |     _____________________________________________________
+
+|   |    /
+
+|   |   |       TX DSP: 0
+
+|   |   |  =20
+
+|   |   |   Freq range: -8.000 to 8.000 MHz
+
+|   |     _____________________________________________________
+
+|   |    /
+
+|   |   |       TX DSP: 1
+
+|   |   |  =20
+
+|   |   |   Freq range: -8.000 to 8.000 MHz
+
+|   |     _____________________________________________________
+
+|   |    /
+
+|   |   |       TX Dboard: A
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       TX Frontend: A
+
+|   |   |   |   Name: FE-TX2
+
+|   |   |   |   Antennas: TX/RX
+
+|   |   |   |   Sensors: temp, lo_locked
+
+|   |   |   |   Freq range: 50.000 to 6000.000 MHz
+
+|   |   |   |   Gain range PGA: 0.0 to 89.8 step 0.2 dB
+
+|   |   |   |   Bandwidth range: 200000.0 to 56000000.0 step 0.0 Hz
+
+|   |   |   |   Connection Type: IQ
+
+|   |   |   |   Uses LO offset: No
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       TX Frontend: B
+
+|   |   |   |   Name: FE-TX1
+
+|   |   |   |   Antennas: TX/RX
+
+|   |   |   |   Sensors: temp, lo_locked
+
+|   |   |   |   Freq range: 50.000 to 6000.000 MHz
+
+|   |   |   |   Gain range PGA: 0.0 to 89.8 step 0.2 dB
+
+|   |   |   |   Bandwidth range: 200000.0 to 56000000.0 step 0.0 Hz
+
+|   |   |   |   Connection Type: IQ
+
+|   |   |   |   Uses LO offset: No
+
+|   |   |     _____________________________________________________
+
+|   |   |    /
+
+|   |   |   |       TX Codec: A
+
+|   |   |   |   Name: B210 TX dual DAC
+
+|   |   |   |   Gain Elements: None
+
+Regards,
+
+Prasad.
+
+=20
+
+From: Marcus D Leech [mailto:patchvonbraun@gmail.com]=20
+Sent: Monday, August 10, 2020 10:33 PM
+To: Prasad
+Cc: USRP-users@lists.ettus.com; Rao Yenamandra
+Subject: Re: [USRP-users] [USRP B210] Getting zero samples from received =
+stream for 2 RX channel
+
+=20
+
+What are you using to receive? Your own software? gnu Radio? UHD =
+examples?
+
+=20
+
+Please share the output of usrp_probe with us.=20
+
+=20
+
+=20
+
+=20
+
+Sent from my iPhone
 
 
---===============7191763418823806486==
+
+
+
+On Aug 10, 2020, at 12:53 PM, Prasad via USRP-users =
+<usrp-users@lists.ettus.com> wrote:
+
+=EF=BB=BF=20
+
+Hi Everyone,
+
+=20
+
+Getting zero samples from received stream, when number of RX channel set =
+to 2.
+
+=20
+
+Bellows are the USRP setting:
+
+Master-clock-rate: 30.72e6
+
+Rate:
+
+               Channel0: 30.72e6
+
+               Channel1: 30.72e6
+
+Gain:=20
+
+               Channel0: 45
+
+               Channel1: 45
+
+Frequency:
+
+               Channel0: 3.8GHz
+
+Channel1: 3.8GHz
+
+=20
+
+Thanks,
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+------=_NextPart_000_0004_01D67013.5A12F650
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8">
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
+
+<div class=3DSection1>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Hi =
+Marcus,<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Please find the below =
+info.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Yes! We use our own =
+software.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>Usb_prob outputs: =
+<o:p></o:p></span></p>
+
+<div>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>=C2=A0
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>=C2=A0/<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Device: =
+B-Series Device<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>|=C2=A0=C2=A0=C2=A0=C2=A0
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0=C2=A0 =
+/<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 |=C2=A0 =
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Mboard: B210<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 serial: 311B3EB<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 name: MyB210<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 product: 2<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 revision: 4<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 FW Version: 8.0<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 FPGA Version: 16.0<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 <o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 Time sources:=C2=A0 none,
+internal, external, gpsdo<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 Clock sources: internal,
+external, gpsdo<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 Sensors: ref_locked<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0=C2=A0=C2=A0
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0=C2=A0 /<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX DSP: =
+0<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 <o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range: -8.000
+to 8.000 MHz<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0=C2=A0=C2=A0 =
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0=C2=A0 /<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX DSP: =
+1<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 <o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range: -8.000
+to 8.000 MHz<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0=C2=A0=C2=A0
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0=C2=A0 /<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX Dboard: =
+A<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 =
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX =
+Frontend:
+A<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: =
+FE-RX2<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Antennas: TX/RX,
+RX2<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Sensors: temp,
+rssi, lo_locked<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range:
+50.000 to 6000.000 MHz<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain range PGA:
+0.0 to 76.0 step 1.0 dB<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Bandwidth range:
+200000.0 to 56000000.0 step 0.0 Hz<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Connection Type:
+IQ<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Uses LO offset:
+No<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX =
+Frontend:
+B<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: =
+FE-RX1<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Antennas: TX/RX,
+RX2<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Sensors: temp,
+rssi, lo_locked<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range:
+50.000 to 6000.000 MHz<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain range PGA:
+0.0 to 76.0 step 1.0 dB<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Bandwidth range:
+200000.0 to 56000000.0 step 0.0 Hz<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Connection Type:
+IQ<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Uses LO offset:
+No<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX =
+Codec: A<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: B210 RX
+dual ADC<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain Elements:
+None<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0=C2=A0=C2=A0
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0=C2=A0 /<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX DSP: =
+0<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 <o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range: -8.000
+to 8.000 MHz<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0=C2=A0=C2=A0
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0=C2=A0 /<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX DSP: =
+1<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 <o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range: -8.000
+to 8.000 MHz<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0=C2=A0=C2=A0
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0 =
+=C2=A0|=C2=A0=C2=A0=C2=A0 /<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX Dboard: =
+A<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX =
+Frontend:
+A<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: =
+FE-TX2<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Antennas: =
+TX/RX<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Sensors: temp,
+lo_locked<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range:
+50.000 to 6000.000 MHz<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain range PGA:
+0.0 to 89.8 step 0.2 dB<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Bandwidth range:
+200000.0 to 56000000.0 step 0.0 Hz<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Connection Type:
+IQ<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Uses LO offset:
+No<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX =
+Frontend:
+B<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: =
+FE-TX1<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Antennas: =
+TX/RX<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Sensors: temp,
+lo_locked<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range:
+50.000 to 6000.000 MHz<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain range PGA:
+0.0 to 89.8 step 0.2 dB<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Bandwidth range:
+200000.0 to 56000000.0 step 0.0 Hz<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Connection Type:
+IQ<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Uses LO offset:
+No<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 =
+_____________________________________________________<o:p></o:p></span></=
+p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX =
+Codec: A<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: B210 TX
+dual DAC<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#1F497D'>|=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain Elements:
+None<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Regards,<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Prasad.<o:p></o:p></span></p>
+
+</div>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<div>
+
+<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt =
+0in 0in 0in'>
+
+<p class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> Marcus D =
+Leech
+[mailto:patchvonbraun@gmail.com] <br>
+<b>Sent:</b> Monday, August 10, 2020 10:33 PM<br>
+<b>To:</b> Prasad<br>
+<b>Cc:</b> USRP-users@lists.ettus.com; Rao Yenamandra<br>
+<b>Subject:</b> Re: [USRP-users] [USRP B210] Getting zero samples from =
+received
+stream for 2 RX channel<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal>What are you using to receive? Your own software? =
+gnu Radio?
+UHD examples?<o:p></o:p></p>
+
+<div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal>Please share the output of usrp_probe with =
+us.&nbsp;<o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<div>
+
+<p class=3DMsoNormal>Sent from my iPhone<o:p></o:p></p>
+
+</div>
+
+<div>
+
+<p class=3DMsoNormal><br>
+<br>
+<o:p></o:p></p>
+
+<p class=3DMsoNormal style=3D'margin-bottom:12.0pt'>On Aug 10, 2020, at =
+12:53 PM,
+Prasad via USRP-users &lt;usrp-users@lists.ettus.com&gt; =
+wrote:<o:p></o:p></p>
+
+</div>
+
+<blockquote style=3D'margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<div>
+
+<p class=3DMsoNormal>=EF=BB=BF <span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman","serif"'><o:p></o:p></span></p>
+
+<p class=3DMsoNormal>Hi Everyone,<o:p></o:p></p>
+
+<p class=3DMsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=3DMsoNormal>Getting zero samples from received stream, when =
+number of RX
+channel set to 2.<o:p></o:p></p>
+
+<p class=3DMsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=3DMsoNormal>Bellows are the USRP setting:<o:p></o:p></p>
+
+<p class=3DMsoNormal>Master-clock-rate: 30.72e6<o:p></o:p></p>
+
+<p class=3DMsoNormal>Rate:<o:p></o:p></p>
+
+<p =
+class=3DMsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Channel0: 30.72e6<o:p></o:p></p>
+
+<p =
+class=3DMsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Channel1: 30.72e6<o:p></o:p></p>
+
+<p class=3DMsoNormal>Gain: <o:p></o:p></p>
+
+<p =
+class=3DMsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Channel0: 45<o:p></o:p></p>
+
+<p =
+class=3DMsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Channel1: 45<o:p></o:p></p>
+
+<p class=3DMsoNormal>Frequency:<o:p></o:p></p>
+
+<p =
+class=3DMsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Channel0: 3.8GHz<o:p></o:p></p>
+
+<p class=3DMsoNormal style=3D'text-indent:.5in'>Channel1: =
+3.8GHz<o:p></o:p></p>
+
+<p class=3DMsoNormal>&nbsp;<o:p></o:p></p>
+
+<p class=3DMsoNormal>Thanks,<o:p></o:p></p>
+
+<p class=3DMsoNormal><span style=3D'font-size:12.0pt;font-family:"Times =
+New Roman","serif"'>_______________________________________________<br>
+USRP-users mailing list<br>
+USRP-users@lists.ettus.com<br>
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com<o:p></=
+o:p></span></p>
+
+</div>
+
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
+
+------=_NextPart_000_0004_01D67013.5A12F650--
+
+
+
+--===============7676303546221069209==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -230,5 +1030,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7191763418823806486==--
+--===============7676303546221069209==--
+
 
