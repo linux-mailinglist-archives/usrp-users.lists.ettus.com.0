@@ -2,60 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F34E241E5A
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Aug 2020 18:35:28 +0200 (CEST)
-Received: from [::1] (port=50954 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47CA2241EBA
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Aug 2020 18:57:19 +0200 (CEST)
+Received: from [::1] (port=51104 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k5XFG-00052L-F6; Tue, 11 Aug 2020 12:35:26 -0400
-Received: from mail-il1-f170.google.com ([209.85.166.170]:41022)
+	id 1k5XaO-0006e4-72; Tue, 11 Aug 2020 12:57:16 -0400
+Received: from mail-qv1-f48.google.com ([209.85.219.48]:38709)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k5XFC-0004vw-E7
- for usrp-users@lists.ettus.com; Tue, 11 Aug 2020 12:35:22 -0400
-Received: by mail-il1-f170.google.com with SMTP id c16so11165581ils.8
- for <usrp-users@lists.ettus.com>; Tue, 11 Aug 2020 09:35:02 -0700 (PDT)
+ id 1k5XaK-0006XY-C3
+ for usrp-users@lists.ettus.com; Tue, 11 Aug 2020 12:57:12 -0400
+Received: by mail-qv1-f48.google.com with SMTP id x7so6286314qvi.5
+ for <usrp-users@lists.ettus.com>; Tue, 11 Aug 2020 09:56:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=OYx8U0VfKkvCjkQqjYerE+fQ9nxHO5heoj50wdDDY2U=;
- b=LemPb2x9q2Nb/2U6iQwXtiSNfCXhP20EsgpoIydSMcqgRpFSkXCA6j8Z+Ue0x9m2/m
- 6fAiVfJbaidBE5gszPgdGQKLrzbYULDXfpakRz1wXO75f5D+cTsjcfRtuMALv5SZiQxT
- Dqu4to1ykzkVAvHggsK1UlMv903HeC1RjoE84bRkq9f1OjP09swZgpA9aKxijfOHaTII
- xt0Dl3OWJpyy8pirkHtXVJe1DOui0qAD1Q7tAZq1CfjJaIJd2WT7wvZfAPzM2/75jki5
- YFvlhANlgxgUcm4eKEmIYPzp32vJD4sbSXueFrD5VwgYRVlpSXuhTxKMXVSLC3E93B9/
- Mp9g==
+ :in-reply-to; bh=ohZZVeLReWXVW7FPFnt6xF8jNbT36aLp/CgnqVhC2J0=;
+ b=GOhoHSd/kkdKfG0BRa6YlE30J0FHLSKCMQMzod2ImwECTWYaLd92o8uiuv8cU4fRbu
+ CghjQnSm6zsfcHuNWjJD3WihuMSmasAh1MsvZknEIVnXXctino2kw3oGYq8vqvxRAZZa
+ gkFgkUI5CyCoRIngm7QytSNpFbAKBUCZjOLPuF8lisbceElZlU+WY4W2cSlGdcVTwAP5
+ AYyhrutOAuinDL3rRMRyCstV/eVy2gVOSisNBVpbcLuMYjyGHRIDuYv4LYfw0TbODCjy
+ s6uhcAVSPdUVsZTVsy62jE7khAWsXROMo7TU+vx3tIJ1DCOPUI+7LoLa2Ily27/usWWb
+ ZczA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=OYx8U0VfKkvCjkQqjYerE+fQ9nxHO5heoj50wdDDY2U=;
- b=JsJ7K6+Sn8mYuSryF7HpiSUKfD/SouGWO/jNJDWFIyRJa8gRuJ2EvYm4A2aWhwPvZm
- QBY6UvLVO3lecvvZ/HNYFmYYJftq6qHGw7AJnOXPckx738Qu62HkTND8inRZJzp2lio4
- 2oDigwkZGzyPqXxzX9wvd+aZVSQVx7DUtiLcQv376XZzCkISGtIG7EDn/93X1JSdb6l5
- ytPJNU6kLmiuJdbBUavMlGl4U4zW/Q55j+IVLtzsX6egtx31mML/S8JQr1B+KCRvm2PN
- Xgn2Q40d2MQBSWnNQ8mbUVrs5iW91GY55YFDcTenS36s7bpXw4LNgXVzohR7ntd7SABO
- euLg==
-X-Gm-Message-State: AOAM533kFtE7Hz38d5SU4QAvuduEp9ahmnC8x55ppOO0Xm2ggGYb79l/
- aE0IYs0TGQKNj+2UApBOyompD+BDS3I=
-X-Google-Smtp-Source: ABdhPJxh4vGvc6YD7LwvCDyO/tD1o3WPUuozTMBeuGIQ5BA7mIfMY+3rL9aW3L9bkNOdsZPwkZsJrQ==
-X-Received: by 2002:a92:1b84:: with SMTP id f4mr11198877ill.180.1597163681449; 
- Tue, 11 Aug 2020 09:34:41 -0700 (PDT)
+ :subject:references:in-reply-to;
+ bh=ohZZVeLReWXVW7FPFnt6xF8jNbT36aLp/CgnqVhC2J0=;
+ b=be8nCEmhR0589Tqz9FHsM9DqAnJRiLMkLRWkwFIDtR0bSD6V3v0vvHVN8X9iYDbX3J
+ ae6y1HQ1ADDt/roBzwt/Lt0smhX+owY4Iw+qlBfGbaf8vt7UNh+gTd5NeXSGT8uarkG5
+ CYpiOzAvBIjjkbic4Z13aY/yGETqDz9SkyVJpLMvQfsZiBhnHA+F5Ba1w0hCS3NogkyN
+ fU3GFCc4kuvXXv385LHYJcoWf/Bs5FALbpWVx++czgHBG7eYwbS78UILbGot9Tz5S+nh
+ lF4ETJZisgOeYf5wuI2SIXgEmDnDmXkiqNQk46sccE3reLpzwaWJbbsmsivnOY0+zvlS
+ w8IQ==
+X-Gm-Message-State: AOAM533/+bHRPMUfDB4Mq3LqlhzbhfpHpLj74ADhJnxLUyQGhA7GWt/F
+ IGSK8UC0wP7Xa9Y1rpwKoT2aPRMIOJo=
+X-Google-Smtp-Source: ABdhPJxCx1RmAA/Yit4Vej40G08P7D0WjgL5/zRKlCK+N6j7TnIu25fcxHpN/MI0Q8X3zmYEEsUpNg==
+X-Received: by 2002:ad4:49b4:: with SMTP id u20mr2278864qvx.73.1597164991597; 
+ Tue, 11 Aug 2020 09:56:31 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
  [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id h9sm11331586ils.53.2020.08.11.09.34.40
+ by smtp.googlemail.com with ESMTPSA id x3sm17953618qkx.3.2020.08.11.09.56.30
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 11 Aug 2020 09:34:41 -0700 (PDT)
-Message-ID: <5F32C89B.8010808@gmail.com>
-Date: Tue, 11 Aug 2020 12:34:35 -0400
+ Tue, 11 Aug 2020 09:56:31 -0700 (PDT)
+Message-ID: <5F32CDBC.9040207@gmail.com>
+Date: Tue, 11 Aug 2020 12:56:28 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
 To: usrp-users@lists.ettus.com
-References: <015901d66fd9$db045950$910d0bf0$@beniston.com>
-In-Reply-To: <015901d66fd9$db045950$910d0bf0$@beniston.com>
-Subject: Re: [USRP-users] B210 noise floor
+References: <MA1PR01MB2588785E0EFDCBE8DB4228A490450@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <MA1PR01MB2588785E0EFDCBE8DB4228A490450@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+Subject: Re: [USRP-users] LO sharing
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -69,8 +68,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============8344960916619099586=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,44 +82,148 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 08/11/2020 08:20 AM, Jon Beniston via USRP-users wrote:
+This is a multi-part message in MIME format.
+--===============8344960916619099586==
+Content-Type: multipart/alternative;
+ boundary="------------060207020506070504080006"
+
+This is a multi-part message in MIME format.
+--------------060207020506070504080006
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
+
+On 08/11/2020 08:34 AM, Koyel Das (Vehere) via USRP-users wrote:
 > Hi,
 >
-> At 436MHz with a gain setting of 76dB, NF of 5dB, BW of 2MHz, I expect the
-> noise floor of the B210 to be around -174+5+10*log10(2e6)=-105dBm
+> What software commands are needed for LO sharing in usrp 2955 to make 
+> all channels phase aligned? At hardware level I can see the crisscross 
+> connections inside the box in the following link figure 2:
 >
-> When I run the SDR Console software, this is what it appears to be. If I
-> feed in a 1MHz wide AWGN noise source at -100dBm, it can be seen 5dB about
-> the floor.
+> https://kb.ettus.com/Direction_Finding_with_the_USRP™_X-Series_and_TwinRX™ 
+> <https://kb.ettus.com/Direction_Finding_with_the_USRP%99_X-Series_and_TwinRX%99>
 >
-> However, when I try to capture the same data using the MatLab USRP interface
-> or the rx_samples_to_file program (with same gain and sample rate), the
-> noise floor seems to be at around -90dBm.
 >
-> (E.g: rx_samples_to_file.exe --duration 1 --rate 2000000 --freq 436e6 --gain
-> 76)
+> but what on the software side?
 >
-> Any idea why this might be? Possibly something silly, but I can't seem to
-> figure out what.
+> Regards,
+> Koyel
 >
-> Thanks,
-> Jon
->
+> Get Outlook for iOS <https://aka.ms/o0ukef>
 >
 >
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-My guess is that the applications just scale the FFT output differently.
+There is some information here:
 
-Without calibration, the FFT outputs in most apps are just relative to 
-some arbitrary full-scale value, and they are decidedly *NOT*
-   calibrated in dBm as measured at the antenna input plane.
+https://kb.ettus.com/TwinRX#New_Multi_USRP_Functions
+
+Also an app-note on gr-doa, which uses TwinRx, and the software takes 
+advantage of LO sharing
+
+https://kb.ettus.com/Direction_Finding_with_the_USRP%E2%84%A2_X-Series_and_TwinRX%E2%84%A2
+
+The API manual entry for set_rx_lo_source:
+
+https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#a865f1e3d08802842a73e1f0571110335
+
+Also, the twinrx_freq_hopping  example code uses the LO sharing 
+functionality.
 
 
+
+--------------060207020506070504080006
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 08/11/2020 08:34 AM, Koyel Das
+      (Vehere) via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:MA1PR01MB2588785E0EFDCBE8DB4228A490450@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <div dir="ltr">
+        <div>
+          <div>Hi,</div>
+          <div dir="ltr"><br>
+          </div>
+          <div>What software commands are needed for LO sharing in usrp
+            2955 to make all channels phase aligned? At hardware level I
+            can see the crisscross connections inside the box in the
+            following link figure 2: </div>
+          <div dir="ltr"><br>
+          </div>
+          <div dir="ltr"><a moz-do-not-send="true"
+href="https://kb.ettus.com/Direction_Finding_with_the_USRP%99_X-Series_and_TwinRX%99">https://kb.ettus.com/Direction_Finding_with_the_USRP™_X-Series_and_TwinRX™</a><br>
+          </div>
+          <div dir="ltr"><br>
+          </div>
+          <div dir="ltr"><br>
+          </div>
+          <div>but what on the software side?</div>
+          <div dir="ltr"><br>
+          </div>
+          <div dir="ltr">Regards,</div>
+          <div dir="ltr">Koyel </div>
+          <div><br>
+          </div>
+          <div class="ms-outlook-ios-signature"
+            id="ms-outlook-mobile-signature">Get <a
+              moz-do-not-send="true" href="https://aka.ms/o0ukef">
+              Outlook for iOS</a></div>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    There is some information here:<br>
+    <br>
+    <a class="moz-txt-link-freetext" href="https://kb.ettus.com/TwinRX#New_Multi_USRP_Functions">https://kb.ettus.com/TwinRX#New_Multi_USRP_Functions</a><br>
+    <br>
+    Also an app-note on gr-doa, which uses TwinRx, and the software
+    takes advantage of LO sharing<br>
+    <br>
+<a class="moz-txt-link-freetext" href="https://kb.ettus.com/Direction_Finding_with_the_USRP%E2%84%A2_X-Series_and_TwinRX%E2%84%A2">https://kb.ettus.com/Direction_Finding_with_the_USRP%E2%84%A2_X-Series_and_TwinRX%E2%84%A2</a><br>
+    <br>
+    The API manual entry for set_rx_lo_source:<br>
+    <br>
+<a class="moz-txt-link-freetext" href="https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#a865f1e3d08802842a73e1f0571110335">https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#a865f1e3d08802842a73e1f0571110335</a><br>
+    <br>
+    Also, the twinrx_freq_hopping  example code uses the LO sharing
+    functionality.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------060207020506070504080006--
+
+
+--===============8344960916619099586==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============8344960916619099586==--
+
