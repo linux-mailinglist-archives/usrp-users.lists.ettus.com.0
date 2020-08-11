@@ -2,62 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E43B2412EA
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Aug 2020 00:20:27 +0200 (CEST)
-Received: from [::1] (port=40570 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE022414C4
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Aug 2020 04:02:01 +0200 (CEST)
+Received: from [::1] (port=41852 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k5G9Y-00042S-C4; Mon, 10 Aug 2020 18:20:24 -0400
-Received: from mail-qk1-f171.google.com ([209.85.222.171]:44659)
+	id 1k5Jbx-0006hh-E6; Mon, 10 Aug 2020 22:01:57 -0400
+Received: from mail-ej1-f48.google.com ([209.85.218.48]:41050)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k5G9V-0003ud-I1
- for usrp-users@lists.ettus.com; Mon, 10 Aug 2020 18:20:21 -0400
-Received: by mail-qk1-f171.google.com with SMTP id j187so9935178qke.11
- for <usrp-users@lists.ettus.com>; Mon, 10 Aug 2020 15:20:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=S1deqwu87gdm615+ImeLaN4Vr1UB9xOvAGCh87nTeA8=;
- b=eZxIorvdVbr+82wMo/YJ1rTVPlhdTPOSPaE0oA3dHMYhVDZS/xgD9Xs5XenCsDnNQk
- ZxK/KRVW1PBeAmtIAxqnUqK/CY9o1uYY8QBXUM900kDl7ZsIOjbWui3kpj35eVykhaX3
- Yr/3sJJppHARw/4ZUWCzsax9CPuYjxnGFI7XB95jsfWugOZHuR0p1Bp19QouCOHID71C
- WY0crGVqEtx6COIWDqSu1+XGDtDnBLVmHn5vHxXOi/eH4cGV+7CjKLgZcr3r7Kf+UgLN
- V6UZZpxzE3CCuMxYV1jaLexds6ZSJlkAe9lGEQj2H0EgdU2o1nkLaaER2E0C4BEcYUqL
- Tn7Q==
+ (Exim 4.93) (envelope-from <felipe.gama@dca.ufrn.br>)
+ id 1k5Jbp-0006dn-4e
+ for usrp-users@lists.ettus.com; Mon, 10 Aug 2020 22:01:49 -0400
+Received: by mail-ej1-f48.google.com with SMTP id t10so7019913ejs.8
+ for <usrp-users@lists.ettus.com>; Mon, 10 Aug 2020 19:01:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=dca-ufrn-br.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=9Ov41DvqCXHsaGjYDnTmVx9xydsfpnHsAIqGrTPJ4tA=;
+ b=dqfut7jEFPUFz4R+GiYlEsTUhVIdGrHNxHmd7/QAtwMwIk0TZJL6yFDk929zxkmIHL
+ qb4u2R0qAPMsxVjJQuGzDOeIiNlyD7oZrZ+SN7jPXgL9eqvA8+Es6tCRS0Jt0dSYWCBE
+ A2c2W8JlIdGRE5RFVVbJgY+jv3noXDIUqhgQabwLlyMEQe5BK05MHABn8iuIoIzVQ4tu
+ aShCGeyPJhbWezrcqtQiR6TgGyl+5NR8UkzZgB3LZf8EZ8cNSMWSk4eBlpXSv5XkNAsd
+ Xk1ZXFMkP4KDiI7DyFNQuGrJ130i+vBWSz8ecRI2XUTY3SdO+8EseHA011DlAnGzdCD2
+ 4hWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=S1deqwu87gdm615+ImeLaN4Vr1UB9xOvAGCh87nTeA8=;
- b=Gt5N6CdhlcSTfykD4aCVkF8dGJnt/LincZnO3iClBX5iGHZoZ6EQApTxSKkAuYzCwJ
- DzrhvYQ2ko9TD1x4NTI/UVoDilZkKrSoeTw3hjPe/eYELbLzbUwceM5E1vqsnoFc/wz2
- Caq9dm6dI4hC7sh5fKkgc3aC+LSC4HQUskWuVBUPWuGnVfA8iH4ccSLxOZtQ0JPHNgHZ
- 3MDINxacy9owO2yV4fU2j9Kr93RWo9xNTePSSg7Y67eLvxl0XBaU+rrbnO3wiljGADTH
- 0Uo5QbshMSgLPR+qYuQYuKSeqvQITN3egFPtYttbddLqEwyRocql7TzIr/9JF5YBp0Nf
- MSpQ==
-X-Gm-Message-State: AOAM531VAgFN0K7c4l5A2kX1SwPirjQJPWvh2o4+L9QqAn8jftlvEnY7
- N2I/NQZTroJWOtv7exQNHca/Gzbi0go=
-X-Google-Smtp-Source: ABdhPJzHeQ/vXec/e1e6EwjSudEQj/Ofs1w3Nyh6C4PUMafuzYliyAi2Xx/jVSHWvlgobyzxT2a60A==
-X-Received: by 2002:a37:6783:: with SMTP id
- b125mr27589971qkc.465.1597097980664; 
- Mon, 10 Aug 2020 15:19:40 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id x57sm17049204qtc.61.2020.08.10.15.19.40
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 10 Aug 2020 15:19:40 -0700 (PDT)
-Message-ID: <5F31C7FB.4040406@gmail.com>
-Date: Mon, 10 Aug 2020 18:19:39 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=9Ov41DvqCXHsaGjYDnTmVx9xydsfpnHsAIqGrTPJ4tA=;
+ b=X228W32JyAXQdDl8Opg9K8ZbLE/+c1voGqelyyr6IABF1FEhr5W7S02xGVeTkUhBqM
+ HqA9q5Hp10wAy5cuBsb7sOKfhiPgvSu2Dp5oGGI+HGqlptJJwN0bl8IZ989yXuFuWoYC
+ iDg2YsEyxqHRlOPkNdS0zz2aN09SPxxMRJxNL+s2P1jRq2OkoQof2Gob4qHCBcQuzzz5
+ RDesdCCm9zI1Xe7C4IDVf2nPhIqgru9avLrP/tWvixHl6s/8P6DT5mAzDMi2BAM0+cEv
+ syilRqaDLsytIf3Xm+nyE1HZTeBJoZL6DLMvB+QH43xh2sZTzFKhjO9ERpF9f0HTIGBf
+ gsZA==
+X-Gm-Message-State: AOAM533iDYl43nJT+aZrFFnxDwP6DyeNKxLzptN+T01hyiOKIJRW5/Uc
+ YRiDrrnSbf/9928t1YugX08K/tAoXsxh4Rd0xj9UeclFXjn3Ng==
+X-Google-Smtp-Source: ABdhPJw/CqiuZXEWH4cNLE1Qw29Wzmwdq/PnXsGHqn17Ih2I9X5JCVxFwEOPg0JwfacvksOehhYVm4M/9bU4eZeoJ7s=
+X-Received: by 2002:a17:906:b2d7:: with SMTP id
+ cf23mr23646541ejb.113.1597111267599; 
+ Mon, 10 Aug 2020 19:01:07 -0700 (PDT)
 MIME-Version: 1.0
-To: Chintan Patel <cpatel@vt.edu>, 
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <CAOJfBDcLntSSPf1Ng8u4j8hvxOtfDApcnQk5tM+SP_zkb3reMA@mail.gmail.com>
- <5F31B7AD.6030000@gmail.com>
- <CAOJfBDc1D2mjsyi6ginZAyAxJ9HnHCH1QTXCRJxNW2WUCFySEA@mail.gmail.com>
-In-Reply-To: <CAOJfBDc1D2mjsyi6ginZAyAxJ9HnHCH1QTXCRJxNW2WUCFySEA@mail.gmail.com>
-Subject: Re: [USRP-users] E320 GNUradio question
+Date: Mon, 10 Aug 2020 23:00:43 -0300
+Message-ID: <CA+fwWkznupY1U19V2hemTBkwNx6nmEBPKUa=Es7udqd-t8=6YQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Content-Type: multipart/mixed; boundary="000000000000c5d92d05ac907143"
+Subject: [USRP-users] PDU socket block
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -69,9 +58,8 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2798258743288135640=="
+From: Felipe Gama via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Felipe Gama <felipe.gama@dca.ufrn.br>
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,139 +73,199 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============2798258743288135640==
-Content-Type: multipart/alternative;
- boundary="------------000301010101020704060106"
+--000000000000c5d92d05ac907143
+Content-Type: multipart/alternative; boundary="000000000000c5d92b05ac907141"
 
-This is a multi-part message in MIME format.
---------------000301010101020704060106
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000c5d92b05ac907141
+Content-Type: text/plain; charset="UTF-8"
 
-On 08/10/2020 06:03 PM, Chintan Patel wrote:
-> Hi Marcus,
->
-> I see. So the E320 would still need gnu radio installed on its PS?  
-> Are there instructions on how to do that for the Zynq device or is 
-> that already pre-installed as part of the E320 software?
->
-> Chintan
-Yes, it would.  Just like any other library your software might rely 
-upon--that has to be installed on the target system.  Gnu Radio is no
-   different.
-
-https://kb.ettus.com/E320_Getting_Started_Guide#Install_and_Setup_the_Software_Tools_on_Your_Host_Computer
->
-> On Mon, Aug 10, 2020 at 5:10 PM Marcus D. Leech via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     On 08/10/2020 05:07 PM, Chintan Patel via USRP-users wrote:
->     > Hi,
->     >
->     > In the flow-graphs that use RFNOC blocks for E320 devices, is GRC
->     > installed on the Zynq processor on the SOC or a separate PC/host?
->     >
->     > Thanks
->     > Chintan
->     >
->     You don't need GRC at run-time.  It's like an IDE.
->
->     So, you can develop code on a regular PC host, and run it on the
->     E320,
->     provided the versions of Gnu Radio and UHD are compatible.
->
->
->
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+I'm developing my doctoral research on wavelet coding and I'm trying to
+automate the experimental tests developed from the developed codes, I made
+a python script from a TCP client that sends it to a TCP server created by
+the socket block PDU, however at the reception of this client I'm not able
+to handle the data received because I don't know which format the PDU
+socket sends and I didn't find it in the documentation. Sending to the PDU
+socket the output of the block created by me, which is of the complex
+message type. Attached is the client in python, flowchart code and the
+client output.
 
 
---------------000301010101020704060106
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Thankful,
 
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/10/2020 06:03 PM, Chintan Patel
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAOJfBDc1D2mjsyi6ginZAyAxJ9HnHCH1QTXCRJxNW2WUCFySEA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Hi Marcus,
-        <div><br>
-        </div>
-        <div>I see. So the E320 would still need gnu radio installed on
-          its PS?  Are there instructions on how to do that for the Zynq
-          device or is that already pre-installed as part of the E320
-          software?</div>
-        <div><br>
-        </div>
-        <div>Chintan</div>
-      </div>
-    </blockquote>
-    Yes, it would.  Just like any other library your software might rely
-    upon--that has to be installed on the target system.  Gnu Radio is
-    no<br>
-      different.<br>
-    <br>
-<a class="moz-txt-link-freetext" href="https://kb.ettus.com/E320_Getting_Started_Guide#Install_and_Setup_the_Software_Tools_on_Your_Host_Computer">https://kb.ettus.com/E320_Getting_Started_Guide#Install_and_Setup_the_Software_Tools_on_Your_Host_Computer</a><br>
-    <blockquote
-cite="mid:CAOJfBDc1D2mjsyi6ginZAyAxJ9HnHCH1QTXCRJxNW2WUCFySEA@mail.gmail.com"
-      type="cite"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Mon, Aug 10, 2020 at 5:10
-          PM Marcus D. Leech via USRP-users &lt;<a
-            moz-do-not-send="true"
-            href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On
-          08/10/2020 05:07 PM, Chintan Patel via USRP-users wrote:<br>
-          &gt; Hi,<br>
-          &gt;<br>
-          &gt; In the flow-graphs that use RFNOC blocks for E320
-          devices, is GRC <br>
-          &gt; installed on the Zynq processor on the SOC or a separate
-          PC/host?<br>
-          &gt;<br>
-          &gt; Thanks<br>
-          &gt; Chintan<br>
-          &gt;<br>
-          You don't need GRC at run-time.  It's like an IDE.<br>
-          <br>
-          So, you can develop code on a regular PC host, and run it on
-          the E320, <br>
-          provided the versions of Gnu Radio and UHD are compatible.<br>
-          <br>
-          <br>
-          <br>
-          _______________________________________________<br>
-          USRP-users mailing list<br>
-          <a moz-do-not-send="true"
-            href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-          <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-            rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
+Me. Eng. Felipe Gama
 
---------------000301010101020704060106--
+--000000000000c5d92b05ac907141
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div dir=3D"ltr"><div>I&#39;m developing my doctoral resea=
+rch on wavelet coding and I&#39;m trying to automate the experimental tests=
+ developed from the developed codes, I made a python script from a TCP clie=
+nt that sends it to a TCP server created by the socket block PDU, however a=
+t the reception of this client I&#39;m not able to handle the data received=
+ because I don&#39;t know which format the PDU socket sends and I didn&#39;=
+t find it in the documentation. Sending to the PDU socket the output of the=
+ block created by me, which is of the complex message type. Attached is the=
+ client in python, flowchart code and the client output.</div><div><br></di=
+v><div><br></div><div>Thankful,</div><div><br></div><div>Me. Eng. Felipe Ga=
+ma</div></div></div>
 
---===============2798258743288135640==
+--000000000000c5d92b05ac907141--
+--000000000000c5d92d05ac907143
+Content-Type: text/plain; charset="UTF-8"; name="output.txt"
+Content-Disposition: attachment; filename="output.txt"
+Content-Transfer-Encoding: base64
+Content-ID: <f_kdpasmfg2>
+X-Attachment-Id: f_kdpasmfg2
+
+Cjx0eXBlICd1bmljb2RlJz4KCgpbdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywg
+dSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdc
+eDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAw
+JywgdSdceDAwJywgdSc/JywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdc
+eDAwJywgdSdceDAwJywgdSc/JywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywg
+dSdceDAwJywgdSdceDAwJywgdSc/JywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAw
+JywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywg
+dSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdc
+eDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSc/Jywg
+dSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSc/
+JywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywg
+dSc/JywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAw
+JywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywg
+dSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdc
+eDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSc/JywgdSdceDAwJywgdSdceDAwJywg
+dSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSc/JywgdSdceDAwJywgdSdceDAw
+JywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSc/JywgdSdceDAwJywgdSdc
+eDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAw
+JywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywg
+dSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdc
+eDAwJywgdSdceDAwJywgdSc/JywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywg
+dSdceDAwJywgdSdceDAwJywgdSc/JywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAw
+JywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywgdSdceDAwJywg
+dSdceDAwJywgdSdceDAwJ10KCgoKClwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAw
+MFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMO+/vT9cMDAwXDAwMFwwMDBcMDAw
+XDAwMFwwMDDvv70/XDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAw77+9P1wwMDBcMDAwXDAwMFwwMDBc
+MDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMFww
+MDBcMDAwXDAwMFwwMDDvv70/XDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAw77+9P1wwMDBcMDAwXDAw
+MFwwMDBcMDAwXDAwMO+/vT9cMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAw
+XDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAw77+9P1wwMDBc
+MDAwXDAwMFwwMDBcMDAwXDAwMO+/vT9cMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDDvv70/XDAwMFww
+MDBcMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAw
+MFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMO+/vT9cMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDDvv70/
+XDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwXDAwMFwwMDBcMDAwCgo=
+--000000000000c5d92d05ac907143
+Content-Type: text/x-python; charset="US-ASCII"; name="flowchart.py"
+Content-Disposition: attachment; filename="flowchart.py"
+Content-Transfer-Encoding: base64
+Content-ID: <f_kdpaqfz30>
+X-Attachment-Id: f_kdpaqfz30
+
+IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMgojIC0qLSBjb2Rpbmc6IHV0Zi04IC0qLQojIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwojIEdOVSBSYWRpbyBQeXRo
+b24gRmxvdyBHcmFwaAojIFRpdGxlOiB0ZXN0ZSBleHBlcmltYW50YWwKIyBBdXRob3I6IEZlbGlw
+ZSBHYW1hCiMgR2VuZXJhdGVkOiBNb24gQXVnIDEwIDIyOjUwOjU3IDIwMjAKIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKCmlmIF9fbmFtZV9fID09ICdf
+X21haW5fXyc6CiAgICBpbXBvcnQgY3R5cGVzCiAgICBpbXBvcnQgc3lzCiAgICBpZiBzeXMucGxh
+dGZvcm0uc3RhcnRzd2l0aCgnbGludXgnKToKICAgICAgICB0cnk6CiAgICAgICAgICAgIHgxMSA9
+IGN0eXBlcy5jZGxsLkxvYWRMaWJyYXJ5KCdsaWJYMTEuc28nKQogICAgICAgICAgICB4MTEuWElu
+aXRUaHJlYWRzKCkKICAgICAgICBleGNlcHQ6CiAgICAgICAgICAgIHByaW50ICJXYXJuaW5nOiBm
+YWlsZWQgdG8gWEluaXRUaHJlYWRzKCkiCgpmcm9tIFB5UXQ0IGltcG9ydCBRdApmcm9tIGdudXJh
+ZGlvIGltcG9ydCBibG9ja3MKZnJvbSBnbnVyYWRpbyBpbXBvcnQgZW5nX25vdGF0aW9uCmZyb20g
+Z251cmFkaW8gaW1wb3J0IGdyCmZyb20gZ251cmFkaW8uZW5nX29wdGlvbiBpbXBvcnQgZW5nX29w
+dGlvbgpmcm9tIGdudXJhZGlvLmZpbHRlciBpbXBvcnQgZmlyZGVzCmZyb20gb3B0cGFyc2UgaW1w
+b3J0IE9wdGlvblBhcnNlcgppbXBvcnQgbWF0aAppbXBvcnQgc3lzCmltcG9ydCB3YXZlbGV0CgoK
+Y2xhc3MgdGVzdGVfZXhwZXJpbWVudGFsKGdyLnRvcF9ibG9jaywgUXQuUVdpZGdldCk6CgogICAg
+ZGVmIF9faW5pdF9fKHNlbGYpOgogICAgICAgIGdyLnRvcF9ibG9jay5fX2luaXRfXyhzZWxmLCAi
+dGVzdGUgZXhwZXJpbWFudGFsIikKICAgICAgICBRdC5RV2lkZ2V0Ll9faW5pdF9fKHNlbGYpCiAg
+ICAgICAgc2VsZi5zZXRXaW5kb3dUaXRsZSgidGVzdGUgZXhwZXJpbWFudGFsIikKICAgICAgICB0
+cnk6CiAgICAgICAgICAgIHNlbGYuc2V0V2luZG93SWNvbihRdC5RSWNvbi5mcm9tVGhlbWUoJ2du
+dXJhZGlvLWdyYycpKQogICAgICAgIGV4Y2VwdDoKICAgICAgICAgICAgcGFzcwogICAgICAgIHNl
+bGYudG9wX3Njcm9sbF9sYXlvdXQgPSBRdC5RVkJveExheW91dCgpCiAgICAgICAgc2VsZi5zZXRM
+YXlvdXQoc2VsZi50b3Bfc2Nyb2xsX2xheW91dCkKICAgICAgICBzZWxmLnRvcF9zY3JvbGwgPSBR
+dC5RU2Nyb2xsQXJlYSgpCiAgICAgICAgc2VsZi50b3Bfc2Nyb2xsLnNldEZyYW1lU3R5bGUoUXQu
+UUZyYW1lLk5vRnJhbWUpCiAgICAgICAgc2VsZi50b3Bfc2Nyb2xsX2xheW91dC5hZGRXaWRnZXQo
+c2VsZi50b3Bfc2Nyb2xsKQogICAgICAgIHNlbGYudG9wX3Njcm9sbC5zZXRXaWRnZXRSZXNpemFi
+bGUoVHJ1ZSkKICAgICAgICBzZWxmLnRvcF93aWRnZXQgPSBRdC5RV2lkZ2V0KCkKICAgICAgICBz
+ZWxmLnRvcF9zY3JvbGwuc2V0V2lkZ2V0KHNlbGYudG9wX3dpZGdldCkKICAgICAgICBzZWxmLnRv
+cF9sYXlvdXQgPSBRdC5RVkJveExheW91dChzZWxmLnRvcF93aWRnZXQpCiAgICAgICAgc2VsZi50
+b3BfZ3JpZF9sYXlvdXQgPSBRdC5RR3JpZExheW91dCgpCiAgICAgICAgc2VsZi50b3BfbGF5b3V0
+LmFkZExheW91dChzZWxmLnRvcF9ncmlkX2xheW91dCkKCiAgICAgICAgc2VsZi5zZXR0aW5ncyA9
+IFF0LlFTZXR0aW5ncygiR05VIFJhZGlvIiwgInRlc3RlX2V4cGVyaW1lbnRhbCIpCiAgICAgICAg
+c2VsZi5yZXN0b3JlR2VvbWV0cnkoc2VsZi5zZXR0aW5ncy52YWx1ZSgiZ2VvbWV0cnkiKS50b0J5
+dGVBcnJheSgpKQoKICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIwogICAgICAgICMgVmFyaWFibGVzCiAgICAgICAgIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKICAgICAgICBzZWxmLnRleHRfbXNn
+ID0gdGV4dF9tc2cgPSAiZGlzcGFybyIKICAgICAgICBzZWxmLnRhbUZvbnRlID0gdGFtRm9udGUg
+PSAxMAogICAgICAgIHNlbGYuc2FtcF9yYXRlID0gc2FtcF9yYXRlID0gMTAwMDAwMAoKICAgICAg
+ICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwogICAg
+ICAgICMgQmxvY2tzCiAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMKICAgICAgICBzZWxmLndhdmVsZXRfZGVjb193YXZlbGV0X3N0cl8wXzAg
+PSB3YXZlbGV0LmRlY29fd2F2ZWxldF9zdHIoMzIsIiIsMCkKICAgICAgICBzZWxmLndhdmVsZXRf
+Y29kX3dhdmVsZXRfc3RyXzAgPSB3YXZlbGV0LmNvZF93YXZlbGV0X3N0cigzMikKICAgICAgICBz
+ZWxmLmJsb2Nrc19zb2NrZXRfcGR1XzAgPSBibG9ja3Muc29ja2V0X3BkdSgiVENQX1NFUlZFUiIs
+ICIxMjcuMC4wLjEiLCAiNTAwNiIsIDEwMDAwLCBGYWxzZSkKICAgICAgICBzZWxmLmJsb2Nrc19t
+ZXNzYWdlX2RlYnVnXzAgPSBibG9ja3MubWVzc2FnZV9kZWJ1ZygpCgogICAgICAgICMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiAgICAgICAgIyBDb25u
+ZWN0aW9ucwogICAgICAgICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjCiAgICAgICAgc2VsZi5tc2dfY29ubmVjdCgoc2VsZi5ibG9ja3Nfc29ja2V0X3Bk
+dV8wLCAncGR1cycpLCAoc2VsZi53YXZlbGV0X2NvZF93YXZlbGV0X3N0cl8wLCAnaW4nKSkgICAg
+CiAgICAgICAgc2VsZi5tc2dfY29ubmVjdCgoc2VsZi53YXZlbGV0X2NvZF93YXZlbGV0X3N0cl8w
+LCAnb3V0JyksIChzZWxmLndhdmVsZXRfZGVjb193YXZlbGV0X3N0cl8wXzAsICdpbicpKSAgICAK
+ICAgICAgICBzZWxmLm1zZ19jb25uZWN0KChzZWxmLndhdmVsZXRfZGVjb193YXZlbGV0X3N0cl8w
+XzAsICdvdXQnKSwgKHNlbGYuYmxvY2tzX21lc3NhZ2VfZGVidWdfMCwgJ3ByaW50JykpICAgIAog
+ICAgICAgIHNlbGYubXNnX2Nvbm5lY3QoKHNlbGYud2F2ZWxldF9kZWNvX3dhdmVsZXRfc3RyXzBf
+MCwgJ291dCcpLCAoc2VsZi5ibG9ja3Nfc29ja2V0X3BkdV8wLCAncGR1cycpKSAgICAKCiAgICBk
+ZWYgY2xvc2VFdmVudChzZWxmLCBldmVudCk6CiAgICAgICAgc2VsZi5zZXR0aW5ncyA9IFF0LlFT
+ZXR0aW5ncygiR05VIFJhZGlvIiwgInRlc3RlX2V4cGVyaW1lbnRhbCIpCiAgICAgICAgc2VsZi5z
+ZXR0aW5ncy5zZXRWYWx1ZSgiZ2VvbWV0cnkiLCBzZWxmLnNhdmVHZW9tZXRyeSgpKQogICAgICAg
+IGV2ZW50LmFjY2VwdCgpCgoKICAgIGRlZiBnZXRfdGV4dF9tc2coc2VsZik6CiAgICAgICAgcmV0
+dXJuIHNlbGYudGV4dF9tc2cKCiAgICBkZWYgc2V0X3RleHRfbXNnKHNlbGYsIHRleHRfbXNnKToK
+ICAgICAgICBzZWxmLnRleHRfbXNnID0gdGV4dF9tc2cKCiAgICBkZWYgZ2V0X3RhbUZvbnRlKHNl
+bGYpOgogICAgICAgIHJldHVybiBzZWxmLnRhbUZvbnRlCgogICAgZGVmIHNldF90YW1Gb250ZShz
+ZWxmLCB0YW1Gb250ZSk6CiAgICAgICAgc2VsZi50YW1Gb250ZSA9IHRhbUZvbnRlCgogICAgZGVm
+IGdldF9zYW1wX3JhdGUoc2VsZik6CiAgICAgICAgcmV0dXJuIHNlbGYuc2FtcF9yYXRlCgogICAg
+ZGVmIHNldF9zYW1wX3JhdGUoc2VsZiwgc2FtcF9yYXRlKToKICAgICAgICBzZWxmLnNhbXBfcmF0
+ZSA9IHNhbXBfcmF0ZQoKCmRlZiBtYWluKHRvcF9ibG9ja19jbHM9dGVzdGVfZXhwZXJpbWVudGFs
+LCBvcHRpb25zPU5vbmUpOgoKICAgIGZyb20gZGlzdHV0aWxzLnZlcnNpb24gaW1wb3J0IFN0cmlj
+dFZlcnNpb24KICAgIGlmIFN0cmljdFZlcnNpb24oUXQucVZlcnNpb24oKSkgPj0gU3RyaWN0VmVy
+c2lvbigiNC41LjAiKToKICAgICAgICBzdHlsZSA9IGdyLnByZWZzKCkuZ2V0X3N0cmluZygncXRn
+dWknLCAnc3R5bGUnLCAncmFzdGVyJykKICAgICAgICBRdC5RQXBwbGljYXRpb24uc2V0R3JhcGhp
+Y3NTeXN0ZW0oc3R5bGUpCiAgICBxYXBwID0gUXQuUUFwcGxpY2F0aW9uKHN5cy5hcmd2KQoKICAg
+IHRiID0gdG9wX2Jsb2NrX2NscygpCiAgICB0Yi5zdGFydCgpCiAgICB0Yi5zaG93KCkKCiAgICBk
+ZWYgcXVpdHRpbmcoKToKICAgICAgICB0Yi5zdG9wKCkKICAgICAgICB0Yi53YWl0KCkKICAgIHFh
+cHAuY29ubmVjdChxYXBwLCBRdC5TSUdOQUwoImFib3V0VG9RdWl0KCkiKSwgcXVpdHRpbmcpCiAg
+ICBxYXBwLmV4ZWNfKCkKCgppZiBfX25hbWVfXyA9PSAnX19tYWluX18nOgogICAgbWFpbigpCg==
+--000000000000c5d92d05ac907143
+Content-Type: text/x-python; charset="US-ASCII"; name="client.py"
+Content-Disposition: attachment; filename="client.py"
+Content-Transfer-Encoding: base64
+Content-ID: <f_kdpaqpab1>
+X-Attachment-Id: f_kdpaqpab1
+
+aW1wb3J0IHNvY2tldCAsIHBpY2tsZQppbXBvcnQgdGltZQppbXBvcnQgbWF0aApmcm9tIHJhbmRv
+bSBpbXBvcnQgcmFuZGludAppbXBvcnQgbnVtcHkgYXMgbnAKaW1wb3J0IHBtdAppbXBvcnQgYmFz
+ZTY0CgoKCgpkZWYgZm9udGUodGFtYW5obyk6CiAgICBmPVtdCiAgICBmb3IgayBpbiByYW5nZShp
+bnQodGFtYW5obykpOgogICAgICAgIGYuYXBwZW5kKHJhbmRpbnQoMCwxKSkKICAgIHJldHVybiBm
+CmRlZiBtb2R1bGFkb3JPUVBTSyhkYXRhKToKICAgIHNpID0gMioobnAuYXJyYXkoZGF0YVswOihs
+ZW4oZGF0YSkpOjJdKS0wLjUpCiAgICBzcSA9IDIqKG5wLmFycmF5KGRhdGFbMToobGVuKGRhdGEp
+KToyXSktMC41KQogICAgbW9kdWxhZG8gPSBucC5hcnJheShzaSxkdHlwZT1jb21wbGV4KQogICAg
+bW9kdWxhZG8uaW1hZyA9IG5wLmFycmF5KHNxKQogICAgcmV0dXJuIG5wLmFycmF5KG1vZHVsYWRv
+KS9tYXRoLnNxcnQoMikKCmRlZiBhcnJheVRvU3RyaW5nKGNvbXApOgogICAgcz1bXQogICAgZm9y
+IGMgaW4gY29tcDoKICAgICAgICBpZihjLmltYWc8MCk6CiAgICAgICAgICAgIHMuYXBwZW5kKHN0
+cihjLnJlYWwpK3N0cihjLmltYWcpKyJqIikKICAgICAgICBlbHNlOgogICAgICAgICAgICBzLmFw
+cGVuZChzdHIoYy5yZWFsKSsiKyIrc3RyKGMuaW1hZykrImoiKQogICAgc3RyMSA9ICcsJy5qb2lu
+KHN0cihlKSBmb3IgZSBpbiBzKQogICAgcmV0dXJuIHN0cjEKCgoKVENQX0lQID0gJzEyNy4wLjAu
+MScKVENQX1BPUlQgPSA1MDA2CkJVRkZFUl9TSVpFID0gMTAwMDAKZGF0YSA9IG1vZHVsYWRvck9R
+UFNLKGZvbnRlKDIwKSkKbGlzdFRvU3RyID0gYXJyYXlUb1N0cmluZyhkYXRhKQoKIAoKcyA9IHNv
+Y2tldC5zb2NrZXQoc29ja2V0LkFGX0lORVQsIHNvY2tldC5TT0NLX1NUUkVBTSkKcy5jb25uZWN0
+KChUQ1BfSVAsIFRDUF9QT1JUKSkKCgoKTj0xMDAwCnRlc3RlPWIiYWJjZGUiCmZvciBrIGluIHJh
+bmdlKE4pOgogICAgdGltZS5zbGVlcCgxKSAKICAgIHMuc2VuZChsaXN0VG9TdHIpCiAgICBkYXRh
+ID0gcy5yZWN2KEJVRkZFUl9TSVpFKQogICAgbGluZXMgPSBbXQogICAgZm9yIGxpbmUgaW4gZGF0
+YToKICAgICAgICB0cnk6CiAgICAgICAgICAgIGF1eD0gbGluZS5kZWNvZGUoKQogICAgICAgICAg
+ICBsaW5lcy5hcHBlbmQoYXV4KQogICAgICAgICAgICBwcmludCh0eXBlKGF1eCkpCiAgICAgICAg
+ZXhjZXB0OgogICAgICAgICAgICBwcmludCBsaW5lCiAgICAgICAgICAgIAogICAgcHJpbnQobGlu
+ZXMpCiAgICB0cnk6CiAgICAgICAgcHJpbnQoZGF0YSkKICAgIGV4Y2VwdDoKICAgICAgICBwcmlu
+dCgnRVJSTycp
+--000000000000c5d92d05ac907143
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -228,5 +276,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2798258743288135640==--
+--000000000000c5d92d05ac907143--
 
