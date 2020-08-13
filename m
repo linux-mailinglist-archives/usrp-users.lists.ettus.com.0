@@ -2,60 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F99F243F37
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Aug 2020 21:14:49 +0200 (CEST)
-Received: from [::1] (port=44916 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79918243F7A
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Aug 2020 21:47:58 +0200 (CEST)
+Received: from [::1] (port=45154 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k6IgY-0003Jj-Aj; Thu, 13 Aug 2020 15:14:46 -0400
-Received: from mail-qt1-f174.google.com ([209.85.160.174]:35904)
+	id 1k6JCe-0005xz-IC; Thu, 13 Aug 2020 15:47:56 -0400
+Received: from mail-yb1-f177.google.com ([209.85.219.177]:37300)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k6IgU-0003F1-Dz
- for usrp-users@lists.ettus.com; Thu, 13 Aug 2020 15:14:42 -0400
-Received: by mail-qt1-f174.google.com with SMTP id t23so5237560qto.3
- for <usrp-users@lists.ettus.com>; Thu, 13 Aug 2020 12:14:22 -0700 (PDT)
+ (Exim 4.93) (envelope-from <cherif.chibane@gmail.com>)
+ id 1k6JCa-0005rb-AN
+ for USRP-users@lists.ettus.com; Thu, 13 Aug 2020 15:47:52 -0400
+Received: by mail-yb1-f177.google.com with SMTP id e14so3956454ybf.4
+ for <USRP-users@lists.ettus.com>; Thu, 13 Aug 2020 12:47:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=Xc/1iErn28RBs/jv07ji9Zr1FkT5/3DcIIe9YdRuEio=;
- b=gEFRtdu9aRssuVcINzESEkKYgUhOoBXdtMLn5ipO2zaFDJ1ost+Y8h957FCfwRMAXN
- BhBcLnZK3tKJFDVmMBM8m5LEDKw5ONPGefNkyJlmmMlcIov0akbFpZax+jvXe5x9pV+H
- nKg9Xl+9YfwpQ6N8zYwoqM8rsvuySITwwyfndCwcUijpNlrVTIzDY6wECv5q30axHVqy
- s59VuWAZdddTYLFFvZHFznyjnKIxCjSr8LfN5bQZLqkUCf+phvxbNNrZGUihymP0/3Sz
- oSHgZTK9CwAb7weyfzJNM4n0V19WI1dW32dBilOYAM5hg8cVZwcc8B8+A2WH1Ud0V/Jc
- aQ7Q==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=U2MJA5WzWxO+IjMjelczWPXaX5RsJlp9cNQLnVWwJ+M=;
+ b=MvjpjApNj7NApOFBpEoFkvrvoG5NlMKp9d+pDP5Zj1BHtw7lE5Cx/t3c/JwZZ03522
+ RV+hOkL+bdh+ab+RXHIMmdJMZixVD7qGDmTIyH3a901Byz1cTUZokaGEG+pBZJ0x6ZC+
+ 9w+5xf2h+B3eUU7kRyewxbPctF9kyLd3xTaKMna0XV7WxPrn4xQDeIRKY4bmQs5Rm/nf
+ xLbGpJ6nB2IzQdclLq9+LCtudrVnFEGIOGm5cUrvs0KMN+0f2egawFXZf6v7Vm7AxQB/
+ At5BkN1v2RF+HwrhZnS2MVl4LbiRXC4rVScbJX1h7Atj16GYNKJxJFtQhmCYHLK65BLv
+ Z7kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=Xc/1iErn28RBs/jv07ji9Zr1FkT5/3DcIIe9YdRuEio=;
- b=r03YwVXm9fbRmd1cceq6clnQ4p01IRH6R3qrtKHaIrtNTU+QMqHoe/2a97cGLcDh/D
- f+tgft2vGm8BaECZAIeY58DEt5mCJvXulex8VmwNCiF3SQGI+BuvuTC3Zi7Oor/IfkCK
- INmFgn87u+cjfg23v2Hr8t4jFiZtjvgb8cfPlJjsdVWlt8syQvROVR+n6niStM5UfdFq
- 88tse6Md/1RkPu8Ws0SVUL0x1SqgL2xgOSXCaOs70HK2MwTpwGYF5n1MhRB/cHJTqXHM
- 3AhW81TeaKlLAic5LSdmydOu2GX84U8vc+PO2aBDF4i6sTWHimt9cxuwkUz6RLMFp0Tt
- EZYw==
-X-Gm-Message-State: AOAM5328FMVBJmY+uN1+dazzRVg+T2y7atgtdWVEKeXQyqtzl3eKIZ2G
- kwAvB8ixmzaAqwCGs13JvSrDXv1NvXk=
-X-Google-Smtp-Source: ABdhPJxauyqyLixFcHlX3mXGDdmPurNIlNTz4gDv24H72tGbLENxmz6vCNkkuoc8XOvKFdIew04v+Q==
-X-Received: by 2002:ac8:4719:: with SMTP id f25mr6920936qtp.291.1597346041598; 
- Thu, 13 Aug 2020 12:14:01 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id q34sm8004252qtk.32.2020.08.13.12.14.01
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 13 Aug 2020 12:14:01 -0700 (PDT)
-Message-ID: <5F3590F8.1020907@gmail.com>
-Date: Thu, 13 Aug 2020 15:14:00 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=U2MJA5WzWxO+IjMjelczWPXaX5RsJlp9cNQLnVWwJ+M=;
+ b=drGn+3Ra8+lT8SdrtSamirhN+LEbE7okHm9NZzE5Uh4WxiCEeq5dFTP97IjYuggHy0
+ 3y4lqqqkS69ePTltsp4e0W8KO1djdXfOGWGPFxlsDEmMSBHOBTVcJ4XggzcuJlEj2Ntz
+ sf81z2siLABP/iiGLO6eHPX9roU6pkGiDOiYLMzRPZodiMrNNBKj2f4Bt6wCzs5IVMpS
+ KsGgSQl8UIlHiyhc1Em/OyUlSshE59fXMFSN7TdQM9lq+2/AabuPmQt9Nzajqaw5mZOq
+ ++VMby0W6XxAF73ysSYtZQRDfTXY9U6pMpq0vBRU88a03/UPjxwlkrEQfmFs3GHufCN3
+ Xh5A==
+X-Gm-Message-State: AOAM532Wxe2C5wCR24kIQK5vCZDVQVKKYYw4exRRRnrJ2NlHFV4ZrRFU
+ 19hRw+ShTE3fltkG8dfYAV9v7fyxltsQio4XFWpY7A==
+X-Google-Smtp-Source: ABdhPJzHg22/Xw56wHurAYyso3cd0FlkVWMAVEF85jzfCD8PMYAY2KowB3s5Lgey/vfB1CVjFS1p2GyFJh+tImofshg=
+X-Received: by 2002:a25:c60b:: with SMTP id k11mr8697593ybf.482.1597348031466; 
+ Thu, 13 Aug 2020 12:47:11 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <CAEhVi8TCn4NxFeb5hnCjfxG6Hbc37pwzzBhEkNcj9Ju=Eyi2DA@mail.gmail.com>
-In-Reply-To: <CAEhVi8TCn4NxFeb5hnCjfxG6Hbc37pwzzBhEkNcj9Ju=Eyi2DA@mail.gmail.com>
-Subject: Re: [USRP-users] b200mini 1pps lock problem
+Date: Thu, 13 Aug 2020 15:47:00 -0400
+Message-ID: <CAN6+Rz=SZQ9UMYk5Nr_8L-ACG4n6nu3NcfNiVMMULzjCa3=bVw@mail.gmail.com>
+To: usrp-users <USRP-users@lists.ettus.com>
+Subject: [USRP-users] Version for UHD, GNU radio and Gr-Ettus
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: cherif chibane via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: cherif chibane <cherif.chibane@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5387521083677922955=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,32 +71,50 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 08/13/2020 01:34 PM, Aaron Holtzman via USRP-users wrote:
-> Hi there,
->
-> I have a problem with my b200mini application, where it will lock to 
-> my GPS sourced 1PPS when run 'cold', but if I restart the application 
-> it never locks. After I unplug the b200mini and let it sit for a 
-> while, it will work again. I can also hit the TCXO with a little bit 
-> of canned air and it will lock. This is using 3.15.0, I haven't tried 
-> earlier releases.
->
-> Has anyone seen this or have any suggestions?
->
-> cheers,
-> Aaron
->
-How are you detecting "lock" ?
+--===============5387521083677922955==
+Content-Type: multipart/alternative; boundary="000000000000ff918305acc79101"
 
-Could you share a code snippet of how you set up the clocking parameters?
+--000000000000ff918305acc79101
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello folks,
+
+Following up on yesterday=E2=80=99s discussion, can somebody send me the ri=
+ght
+versions for GNU radio and gr-ettus to use with UHD 3.15.LTS.
+
+Thanks
+Cherif
+--=20
+____________
+Cherif Chibane
+
+--000000000000ff918305acc79101
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hello folks,</div><div dir=3D"auto"><br></div><div dir=3D=
+"auto">Following up on yesterday=E2=80=99s discussion, can somebody send me=
+ the right versions for GNU radio and gr-ettus to use with UHD 3.15.LTS.</d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks</div><div dir=3D"au=
+to">Cherif</div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-smar=
+tmail=3D"gmail_signature"><div dir=3D"ltr"><div>____________</div>Cherif Ch=
+ibane</div></div>
+
+--000000000000ff918305acc79101--
 
 
-Have you tried a different 1PPS source?
-
-
-
+--===============5387521083677922955==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5387521083677922955==--
+
