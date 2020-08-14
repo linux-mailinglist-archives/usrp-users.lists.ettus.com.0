@@ -2,62 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB2F8244FF2
-	for <lists+usrp-users@lfdr.de>; Sat, 15 Aug 2020 00:50:50 +0200 (CEST)
-Received: from [::1] (port=57416 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1152B24501F
+	for <lists+usrp-users@lfdr.de>; Sat, 15 Aug 2020 01:24:04 +0200 (CEST)
+Received: from [::1] (port=57604 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k6iXA-0006MD-KY; Fri, 14 Aug 2020 18:50:48 -0400
-Received: from mail-qt1-f181.google.com ([209.85.160.181]:45450)
+	id 1k6j3H-0008FY-U6; Fri, 14 Aug 2020 19:23:59 -0400
+Received: from mail-yb1-f169.google.com ([209.85.219.169]:43825)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k6iX7-0006Bx-7k
- for usrp-users@lists.ettus.com; Fri, 14 Aug 2020 18:50:45 -0400
-Received: by mail-qt1-f181.google.com with SMTP id s23so8142053qtq.12
- for <usrp-users@lists.ettus.com>; Fri, 14 Aug 2020 15:50:24 -0700 (PDT)
+ (Exim 4.93) (envelope-from <cherif.chibane@gmail.com>)
+ id 1k6j3E-0008Ao-8j
+ for usrp-users@lists.ettus.com; Fri, 14 Aug 2020 19:23:56 -0400
+Received: by mail-yb1-f169.google.com with SMTP id m200so6039272ybf.10
+ for <usrp-users@lists.ettus.com>; Fri, 14 Aug 2020 16:23:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=/vbn45yNjU9YiGprXzCbZflCxhfR+qDu8rY3WhVob/w=;
- b=ixkvKAWJS4ryAJXC3D9qL5Mn6gcw/f+yJqmcD1L6BIXoVto7gLuKa1LGhleysnZTFC
- HoMbtUFUfu8L+TitwsmYAtPjMMyP3WObFtOfsxrgx7/1KipPVKXIFHX+vbqDfeE5hg0v
- 7NXsJhzUwqPWkT3VYpmGzAFJ9TUiQkH23dJwCFg8rhEfhC9dOvb8UqwGB1AmA9v3puiv
- CDcMlKCEIn6BGOXJQ+n4zMC5tOyQ3usgm/aQEgAHBs11pdhYGW8GuVZOdcRaBcB86FRm
- sdFCJqc0FsFQfGd2av2XZY84iLrRxMCgBct5eL8Gedj5CP9WB9UejD3w9mFhEgcUmM3d
- 2tpg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=v0NoUPjXPxAJiAlaUmEkGZMLlk53CFZ/t0UM046oWJU=;
+ b=kqT++H8Y97dKQoBvy/SncfeHCKjtBOqLLnuFbfEN6lunO493BtqkGz7jU+RhGs/uNr
+ ChRevRrL1kBfOjtVlMS7VrIThr8TJSfpr6OKvj3oSmF47TJb4jxg7VUsfAo4uvbF5MWy
+ FWSCaI8aikLHDcHfrjh9q1577CQpdd+oIbnBNIhCEuAQlZ3SPiZO/K1IWLlF0+K5rbZl
+ T2lQlANPEH0aNFXnq+X7GYUYGAa8tV8rC8y4fVDM6B9jUMK4v74kGHGdYdytaHh95rJm
+ BJ7Msje9IR0c5d7ZBfGg6TIO4MZ2XjL+IDJeeEV6RCGMgZYKp3G2KE2BRm6LAn3WNUvk
+ O1lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=/vbn45yNjU9YiGprXzCbZflCxhfR+qDu8rY3WhVob/w=;
- b=sEsqK2JjoJ1Q0GrWzKs8SOu4jsh58/Ogobv6cTF8NP3x29/zOenet1HYW5yciTvChp
- qjQGHKulAH0mI3Mjl4Ewgzr/FobXWoolrlGUycWdbjOzw2btUVDO9HmSs+zD5R18JHzv
- hP8pyJ6eHKYbJlblnUKyX4A8OjJpFJa1LEmhkDcxSRaCtWyvZ9+i3P+z2OlDzIRUtPIW
- HmYKkB5KN8DBanQstfH0Ldry2N5hFxU9EaIck8KrT/iGswyB7CpGior2RL2Uotc9j50m
- yGrs02N2nU6IoM7WI9E6tSUoF7q1EEfU8fd9gfHQ07OHtZI9nZGd+//qLQ42GExojeob
- 1tqg==
-X-Gm-Message-State: AOAM533LPXdJBF2HPx0t6ihNOMGU3cBoHmVjbBY4iartnr44b1DxYM/1
- iYbk364NMGjFvbtk5t4pNlppZiXb8+mOaw==
-X-Google-Smtp-Source: ABdhPJzbJoHb1tQkXvyJIrWrgLjpnkp9kXIh+n3LVSrZFw2xtS+nQiSRibMEmulIgkAyPH7BHdPdOA==
-X-Received: by 2002:aed:21a6:: with SMTP id l35mr4164292qtc.178.1597445404426; 
- Fri, 14 Aug 2020 15:50:04 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id l23sm8128980qtr.64.2020.08.14.15.50.03
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 14 Aug 2020 15:50:03 -0700 (PDT)
-Message-ID: <5F37151B.4010500@gmail.com>
-Date: Fri, 14 Aug 2020 18:50:03 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=v0NoUPjXPxAJiAlaUmEkGZMLlk53CFZ/t0UM046oWJU=;
+ b=a4D4mCcYZK4kB2xJ4jqMn1K8RVuKH0kpmEBQ4brWvESEKt9N90u7iJd0eXdNITme7j
+ Qnok25TAQLMoyyLiv062Ds+2x99cKp02GWFnlh4NIRnUUDH3W21hHEUgg+UDJJwp5064
+ Kb/j08SsO705wylVYkShhrEoiMAd/IbSZAovvQJOj8/tan1KO8XtTZNWY5zlYYk0UQDC
+ LJxS+rDCm33LvWK4I6qaHB2i9rt2BTtFwdC+i3jQAgcpO/rbaVsim/q+My2HK067fIqr
+ cM6+uPOEQUC5tI9+jRD4tqDudMI1Y0oftUeIfT++VMEYgBadpgNiLDLVLZaoYefE9QTr
+ 6Gsg==
+X-Gm-Message-State: AOAM530ZVpHa/P+N9DSSjo3fBrWWCD8hxk19LlGHF/wLydnabTHKM/pD
+ TpY8Y62gFJV81dfqO9OkDQJAhix1BAHJTRI30d0=
+X-Google-Smtp-Source: ABdhPJyoRE0PVVE1/sqjPmj41XMpdmoilupgdk1iWk1bQYdgI7j25LI1pSAbM6I7iVVkdE2NVVDDixwKmAh+V4Xnknw=
+X-Received: by 2002:a25:680e:: with SMTP id d14mr6748494ybc.15.1597447395530; 
+ Fri, 14 Aug 2020 16:23:15 -0700 (PDT)
 MIME-Version: 1.0
-To: cherif chibane <cherif.chibane@gmail.com>, 
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 References: <CAN6+RzmEiJ0ouDEW+bBw55KZRrF2n21O6YdbXJzEYHOP8aU4HA@mail.gmail.com>
  <5F370E35.40200@gmail.com>
  <CAN6+RzmxLLKfYXF9cc26k+P017Li8X7WLxYknNk8PSD4iQJXng@mail.gmail.com>
  <5F3710AA.4030503@gmail.com>
  <CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com>
-In-Reply-To: <CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com>
+ <5F37151B.4010500@gmail.com>
+In-Reply-To: <5F37151B.4010500@gmail.com>
+Date: Fri, 14 Aug 2020 19:23:04 -0400
+Message-ID: <CAN6+RzmoCdi7hLXiSk1=zKJu0X9az=SNXZhwj0ma-6hf_mJ8Bg@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] usrp_x310_fpga_RFNOC_HG.bit
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -70,9 +64,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6592672547874375833=="
+From: cherif chibane via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: cherif chibane <cherif.chibane@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7527557983844737324=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,107 +80,159 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============6592672547874375833==
-Content-Type: multipart/alternative;
- boundary="------------010105030404060500040602"
+--===============7527557983844737324==
+Content-Type: multipart/alternative; boundary="0000000000008edd9f05acdeb436"
 
-This is a multi-part message in MIME format.
---------------010105030404060500040602
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000008edd9f05acdeb436
+Content-Type: text/plain; charset="UTF-8"
 
-On 08/14/2020 06:33 PM, cherif chibane wrote:
+Sorry Marcus for the confusion and here is the story.
+
+I have the development tool and did create my own RFNoC module, loaded it
+an ran it. I have been using only UHD and using C++. So I am Ok there.
+
+I just installed GNU radio and gr-Ettus and wanted to try Phosphor with
+gmutadio-companion. But it requires that I load  the image that the user
+manual says is called
+usurp_x300_rfnoc. This image has already the blocks that are required by
+the phosphor Gnu radio-companion graph.
+
+I used the image_downloader but that image did not come with the download
+
+And of course I have a Xinlix license issue and I can not generate it here
+until I resolve the license issue.
+
+That is why I asked if it is somewhere where I can download it.
+
+Sorry for the confusion. And if it is not available that is ok I will
+generate it when the license is resolved.
+
+Thanks
+Cherif
+
+
+
+Fri, Aug 14, 2020 at 6:50 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 08/14/2020 06:33 PM, cherif chibane wrote:
+>
 > Hi Marcus,
 >
-> Is there a copy of it somewhere that I can use, or do I need to 
-> recreate it? I have issues with Xilinx license for now.
+> Is there a copy of it somewhere that I can use, or do I need to recreate
+> it? I have issues with Xilinx license for now.
 > ____________
 > Cherif Chibane
-So, I misspoke.
-
-According to this document here, in order to get the special "RFNOC 
-development" images, you'll need to actually have the RFNOC
-   development environment set-up.  Looks like you don't have the RFNOC 
-version of UHD, so none of the extra FPGA images are being downloaded.
-
-https://kb.ettus.com/Getting_Started_with_RFNoC_Development
-
-
-
+>
+> So, I misspoke.
+>
+> According to this document here, in order to get the special "RFNOC
+> development" images, you'll need to actually have the RFNOC
+>   development environment set-up.  Looks like you don't have the RFNOC
+> version of UHD, so none of the extra FPGA images are being downloaded.
+>
+> https://kb.ettus.com/Getting_Started_with_RFNoC_Development
 >
 >
-> On Fri, Aug 14, 2020 at 6:31 PM Marcus D. Leech 
-> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
 >
->     On 08/14/2020 06:29 PM, cherif chibane wrote:
->>     Hi Marcus,
+>
+>
+> On Fri, Aug 14, 2020 at 6:31 PM Marcus D. Leech <patchvonbraun@gmail.com>
+> wrote:
+>
+>> On 08/14/2020 06:29 PM, cherif chibane wrote:
 >>
->>     I am running UHD-3.15.LTS
->>     ____________
->>     Cherif Chibane
+>> Hi Marcus,
 >>
->     The RFNOC image is the standard image now (even if you aren't
->     using RFNOC at the UHD API level, the machinery in the X310 FPGA is
->       based on RFNOC).
->
->     So, you probably want:
->
->     usrp_x310_fpga_XG.bit
+>> I am running UHD-3.15.LTS
+>> ____________
+>> Cherif Chibane
 >>
->>     On Fri, Aug 14, 2020 at 6:21 PM Marcus D. Leech via USRP-users
->>     <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>
->>     wrote:
+>> The RFNOC image is the standard image now (even if you aren't using RFNOC
+>> at the UHD API level, the machinery in the X310 FPGA is
+>>   based on RFNOC).
 >>
->>         On 08/14/2020 04:06 PM, cherif chibane via USRP-users wrote:
->>>         Hello,
+>> So, you probably want:
+>>
+>> usrp_x310_fpga_XG.bit
+>>
+>>
+>> On Fri, Aug 14, 2020 at 6:21 PM Marcus D. Leech via USRP-users <
+>> usrp-users@lists.ettus.com> wrote:
+>>
+>>> On 08/14/2020 04:06 PM, cherif chibane via USRP-users wrote:
 >>>
->>>         I would like to use teh X300 bit
->>>         file:|usrp_x310_fpga_RFNOC_XG.bit.|
->>>         |Does it exist somewhere or do I need to re-create it? I
->>>         used |uhd_images_downloader to download the bitfiles but it
->>>         did not come with the files downloaded.
->>>         Thanks,
->>>         Cherif
+>>> Hello,
 >>>
->>>         |
->>>         |
->>>         |Does it exist somewhere or do I need to re-create it. I
->>>         used |uhd_images_downloader but it did not come with the
->>>         files downloaded.
->>>         ||
->>>         Thanks,
->>>         Cherif
+>>> I would like to use teh X300 bit file:   usrp_x310_fpga_RFNOC_XG.bit.
+>>> Does it exist somewhere or do I need to re-create it? I used  uhd_images_downloader
+>>> to download the bitfiles but it did not come with the files downloaded.
 >>>
->>         What version of UHD are you running?  I think the naming
->>         convention for the standard "factory" BIT files changed quite
->>         a while ago.
+>>> Thanks,
+>>>
+>>> Cherif
+>>>
+>>>
+>>>
+>>> Does it exist somewhere or do I need to re-create it. I used  uhd_images_downloader
+>>> but it did not come with the files downloaded.
+>>>
+>>> Thanks,
+>>>
+>>> Cherif
+>>>
+>>>
+>>> What version of UHD are you running?  I think the naming convention for
+>>> the standard "factory" BIT files changed quite a while ago.
+>>>
+>>>
+>>> _______________________________________________
+>>> USRP-users mailing list
+>>> USRP-users@lists.ettus.com
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>
 >>
 >>
->>         _______________________________________________
->>         USRP-users mailing list
->>         USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
+> --
+____________
+Cherif Chibane
 
+--0000000000008edd9f05acdeb436
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------010105030404060500040602
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/14/2020 06:33 PM, cherif chibane
+<div><div dir=3D"auto">Sorry Marcus for the confusion and here is the story=
+.</div></div><div dir=3D"auto"><br></div><div dir=3D"auto">I have the devel=
+opment tool and did create my own RFNoC module, loaded it an ran it. I have=
+ been using only UHD and using C++. So I am Ok there.</div><div dir=3D"auto=
+"><br></div><div dir=3D"auto">I just installed GNU radio and gr-Ettus and w=
+anted to try Phosphor with gmutadio-companion. But it requires that I load =
+=C2=A0the image that the user manual says is called</div><div dir=3D"auto">=
+usurp_x300_rfnoc. This image has already the blocks that are required by th=
+e phosphor Gnu radio-companion graph.</div><div dir=3D"auto"><br></div><div=
+ dir=3D"auto">I used the image_downloader but that image did not come with =
+the download</div><div dir=3D"auto"><br></div><div dir=3D"auto">And of cour=
+se I have a Xinlix license issue and I can not generate it here until I res=
+olve the license issue.</div><div dir=3D"auto"><br></div><div dir=3D"auto">=
+That is why I asked if it is somewhere where I can download it.</div><div d=
+ir=3D"auto"><br></div><div dir=3D"auto">Sorry=C2=A0for the confusion. And i=
+f it is not available that is ok I will generate it when the license is res=
+olved.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks</div><div =
+dir=3D"auto">Cherif</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br>=
+</div><div dir=3D"auto"><br></div><div dir=3D"auto">Fri, Aug 14, 2020 at 6:=
+50 PM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchv=
+onbraun@gmail.com</a>&gt; wrote:</div><div><div class=3D"gmail_quote"><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
+c solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div>On 08/14/2020 06:33 PM, cherif chibane
       wrote:<br>
     </div>
-    <blockquote
-cite="mid:CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
         <div>Hi Marcus,</div>
         <div><br>
         </div>
@@ -196,9 +242,8 @@ cite="mid:CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com"
         </div>
         <div>
           <div>
-            <div dir="ltr" class="gmail_signature"
-              data-smartmail="gmail_signature">
-              <div dir="ltr">
+            <div dir=3D"ltr" data-smartmail=3D"gmail_signature">
+              <div dir=3D"ltr">
                 <div>____________</div>
                 Cherif Chibane</div>
             </div>
@@ -208,45 +253,48 @@ cite="mid:CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com"
     </blockquote>
     So, I misspoke.<br>
     <br>
-    According to this document here, in order to get the special "RFNOC
-    development" images, you'll need to actually have the RFNOC<br>
-      development environment set-up.  Looks like you don't have the
+    According to this document here, in order to get the special &quot;RFNO=
+C
+    development&quot; images, you&#39;ll need to actually have the RFNOC<br=
+>
+    =C2=A0 development environment set-up.=C2=A0 Looks like you don&#39;t h=
+ave the
     RFNOC version of UHD, so none of the extra FPGA images are being
     downloaded.<br>
     <br>
-    <a class="moz-txt-link-freetext" href="https://kb.ettus.com/Getting_Started_with_RFNoC_Development">https://kb.ettus.com/Getting_Started_with_RFNoC_Development</a><br>
+    <a href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_Development"=
+ target=3D"_blank">https://kb.ettus.com/Getting_Started_with_RFNoC_Developm=
+ent</a><br>
     <br>
     <br>
     <br>
-    <blockquote
-cite="mid:CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
         <div><br>
         </div>
       </div>
       <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Fri, Aug 14, 2020 at 6:31
-          PM Marcus D. Leech &lt;<a moz-do-not-send="true"
-            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Fri, Aug 14, 2020 at 6:31
+          PM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com"=
+ target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
           wrote:<br>
         </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div bgcolor="#FFFFFF">
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div bgcolor=3D"#FFFFFF">
             <div>On 08/14/2020 06:29 PM, cherif chibane wrote:<br>
             </div>
-            <blockquote type="cite">
-              <div dir="ltr">
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">
                 <div>Hi Marcus,</div>
                 <div><br>
                 </div>
                 <div>I am running UHD-3.15.LTS</div>
                 <div>
                   <div>
-                    <div dir="ltr">
-                      <div dir="ltr">
+                    <div dir=3D"ltr">
+                      <div dir=3D"ltr">
                         <div>____________</div>
                         Cherif Chibane</div>
                     </div>
@@ -256,48 +304,48 @@ cite="mid:CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com"
               </div>
             </blockquote>
             The RFNOC image is the standard image now (even if you
-            aren't using RFNOC at the UHD API level, the machinery in
+            aren&#39;t using RFNOC at the UHD API level, the machinery in
             the X310 FPGA is<br>
-              based on RFNOC).<br>
+            =C2=A0 based on RFNOC).<br>
             <br>
             So, you probably want:<br>
             <br>
             usrp_x310_fpga_XG.bit<br>
-            <blockquote type="cite"><br>
-              <div class="gmail_quote">
-                <div dir="ltr" class="gmail_attr">On Fri, Aug 14, 2020
-                  at 6:21 PM Marcus D. Leech via USRP-users &lt;<a
-                    moz-do-not-send="true"
-                    href="mailto:usrp-users@lists.ettus.com"
-                    target="_blank">usrp-users@lists.ettus.com</a>&gt;
+            <blockquote type=3D"cite"><br>
+              <div class=3D"gmail_quote">
+                <div dir=3D"ltr" class=3D"gmail_attr">On Fri, Aug 14, 2020
+                  at 6:21 PM Marcus D. Leech via USRP-users &lt;<a href=3D"=
+mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus=
+.com</a>&gt;
                   wrote:<br>
                 </div>
-                <blockquote class="gmail_quote" style="margin:0px 0px
-                  0px 0.8ex;border-left:1px solid
-                  rgb(204,204,204);padding-left:1ex">
-                  <div bgcolor="#FFFFFF">
+                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                  <div bgcolor=3D"#FFFFFF">
                     <div>On 08/14/2020 04:06 PM, cherif chibane via
                       USRP-users wrote:<br>
                     </div>
-                    <blockquote type="cite">
-                      <div dir="ltr">
-                        <div dir="ltr">
-                          <div dir="ltr">
+                    <blockquote type=3D"cite">
+                      <div dir=3D"ltr">
+                        <div dir=3D"ltr">
+                          <div dir=3D"ltr">
                             <div>Hello,</div>
                             <div><br>
                             </div>
-                            <div>I would like to use teh X300 bit file:<code>  
+                            <div>I would like to use teh X300 bit file:<cod=
+e>=C2=A0=C2=A0
 
                                 usrp_x310_fpga_RFNOC_XG.bit.</code></div>
                             <div><code>Does it exist somewhere or do I
-                                need to re-create it? I used  </code>uhd_images_downloader
+                                need to re-create it? I used=C2=A0=C2=A0</c=
+ode>uhd_images_downloader
 
-                              to download the bitfiles but it did not
+                              to download=C2=A0the bitfiles but it did not
                               come with the files downloaded.</div>
                             <div>
-                              <pre style="white-space:pre-wrap">Thanks,
+                              <pre style=3D"white-space:pre-wrap">Thanks,
 </pre>
-                              <pre style="white-space:pre-wrap">Cherif
+                              <pre style=3D"white-space:pre-wrap">Cherif
 </pre>
                             </div>
                             <div><br>
@@ -305,14 +353,15 @@ cite="mid:CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com"
                             <div><code><br>
                               </code></div>
                             <div><code>Does it exist somewhere or do I
-                                need to re-create it. I used  </code>uhd_images_downloader
+                                need to re-create it. I used=C2=A0=C2=A0</c=
+ode>uhd_images_downloader
 
                               but it did not come with the files
                               downloaded.<br>
                               <code></code>
-                              <pre style="white-space:pre-wrap">Thanks,
+                              <pre style=3D"white-space:pre-wrap">Thanks,
 </pre>
-                              <pre style="white-space:pre-wrap">Cherif
+                              <pre style=3D"white-space:pre-wrap">Cherif
 </pre>
                             </div>
                             <br>
@@ -320,20 +369,20 @@ cite="mid:CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com"
                         </div>
                       </div>
                     </blockquote>
-                    What version of UHD are you running?  I think the
-                    naming convention for the standard "factory" BIT
+                    What version of UHD are you running?=C2=A0 I think the
+                    naming convention for the standard &quot;factory&quot; =
+BIT
                     files changed quite a while ago.<br>
                     <br>
                     <br>
                   </div>
                   _______________________________________________<br>
                   USRP-users mailing list<br>
-                  <a moz-do-not-send="true"
-                    href="mailto:USRP-users@lists.ettus.com"
-                    target="_blank">USRP-users@lists.ettus.com</a><br>
-                  <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                    rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+                  <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_=
+blank">USRP-users@lists.ettus.com</a><br>
+                  <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-u=
+sers_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ett=
+us.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
                 </blockquote>
               </div>
             </blockquote>
@@ -343,13 +392,16 @@ href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
       </div>
     </blockquote>
     <br>
-  </body>
-</html>
+  </div>
 
---------------010105030404060500040602--
+</blockquote></div></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" =
+data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div>____________</div>=
+Cherif Chibane</div></div>
+
+--0000000000008edd9f05acdeb436--
 
 
---===============6592672547874375833==
+--===============7527557983844737324==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -360,5 +412,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6592672547874375833==--
+--===============7527557983844737324==--
 
