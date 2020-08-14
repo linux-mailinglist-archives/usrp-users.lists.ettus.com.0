@@ -2,62 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2704244026
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Aug 2020 22:54:11 +0200 (CEST)
-Received: from [::1] (port=45720 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B777244514
+	for <lists+usrp-users@lfdr.de>; Fri, 14 Aug 2020 08:50:58 +0200 (CEST)
+Received: from [::1] (port=50144 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k6KEj-0004IX-4W; Thu, 13 Aug 2020 16:54:09 -0400
-Received: from mail-qk1-f172.google.com ([209.85.222.172]:35455)
+	id 1k6TYB-0003sn-N3; Fri, 14 Aug 2020 02:50:51 -0400
+Received: from mail-io1-f46.google.com ([209.85.166.46]:45851)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k6KEf-0004BF-IO
- for usrp-users@lists.ettus.com; Thu, 13 Aug 2020 16:54:05 -0400
-Received: by mail-qk1-f172.google.com with SMTP id p25so6519713qkp.2
- for <usrp-users@lists.ettus.com>; Thu, 13 Aug 2020 13:53:45 -0700 (PDT)
+ (Exim 4.93) (envelope-from <anthonyld508@gmail.com>)
+ id 1k6TY7-0003n3-Nn
+ for usrp-users@lists.ettus.com; Fri, 14 Aug 2020 02:50:47 -0400
+Received: by mail-io1-f46.google.com with SMTP id u126so9731576iod.12
+ for <usrp-users@lists.ettus.com>; Thu, 13 Aug 2020 23:50:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=3wMvG8G2y5Q1A9fzsz2tLyj61dnrafF+uZNC9ORVVUk=;
- b=sWWUrMTphjzjoO2wsRTj/jMiupVspt2txnvwYLBndtfcKMxHFH9cSz7o6Jr9Y86kfB
- Yp9ReXuZT1EiMYmE3k1G7qgDIdJCySLR6m+TdhsNz77cLiMxGmD1NBBo1P+wfE23yCKa
- h9fDAuutP2WSaoLtP+PpLxZpnHoH/dp/fbe8fmVpf+TP3nAosGeHcyxQr33Yl6iV1EsF
- b9CFyZSCLGZZTm1TF3PX7YytLa1aF3USEFJkNYU6Zcp9Y2icvP+YFW40yEPSkdgt96kX
- rq3cvZkNNwfepvfGJqHodFyHrlQ9WBtllKt7J2RgPC0uHkWOIGxeRhTUCR9npyHqldwd
- Q9Zw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=scgXkTPswRwpFqoPhj925gag0TQJl7KVfIjwQZy1DUU=;
+ b=Vbr5OjFuLXJ3njNtcU0lAgMSgaSLRkaJqvUyVI4yBRKA+GSOhQ2olyGln6vUuggze4
+ lJg4fwWVLy62aM0a3JTWKIs+AaX713xDoLJ8DDQhysHRtPJo60rJPschvNCJlxM3NKWP
+ +6ynbM2lNo0jeMy3KOEx5TIxVsJ3IJ+dVZXrwlBbp3FaeVaKApwforMeGnmc8nbS/XKC
+ Ia49Kyxq77Ba7Ox/z+78DalhbDTRjEA6BHXv79TDf+bfsGdnTK3AGRSrlOsVm4PWaCBf
+ hXPO4CH07Rn1y0bRFU6BX5w/UukQ14lWfDBah7HKeGLbTcByosey0pO76LkIo++n9XsI
+ vQDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=3wMvG8G2y5Q1A9fzsz2tLyj61dnrafF+uZNC9ORVVUk=;
- b=SYTpO4/DwVCAvpzUYHtvJIGEv534kcwifZ8cJqPzF9x/MTiZjsNLyHsT2dr/zGdiDD
- aSy23RBEqLuULXzE8QI7SvPcB9KN1WmF6f3zbGkxzxtOZTXIxhTThbRxciM3s8bHQCZe
- PzSyR/WEiqFN050kokHItHuaEtwRAK4teU0ffT8ABDAUe13mGj9039hhZISaYaPBzUjB
- Hoy7exf5XdoS95GOA4tGmkmu2WsMgf8RqaDb8rlydliYDx5XX5nypKIbXzs8xzSnxBuH
- VUS/2ZXQCxsoATXxwAupuk/sCL5HQ7xiEagxhCH6P8DU5ywjpH2N04oCYA0Amkl9J4CZ
- pNSQ==
-X-Gm-Message-State: AOAM5311gTx1jvMv6RtDvi5hRhsu5x4XKOqGfdrugj5iP5Hvd0z+Mlwj
- MrPEdtrFE0bUoPEPKbsldsdcWd8NFjM=
-X-Google-Smtp-Source: ABdhPJwdnIxEq+TqzvnnP1qi0zNlcnJy0g9InI0Dsc94b+7AGOltYKwNz6dI5UysgnESBi5rItdWmw==
-X-Received: by 2002:a37:a292:: with SMTP id l140mr5787705qke.79.1597352004770; 
- Thu, 13 Aug 2020 13:53:24 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id m17sm7220678qkn.45.2020.08.13.13.53.24
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 13 Aug 2020 13:53:24 -0700 (PDT)
-Message-ID: <5F35A843.8020903@gmail.com>
-Date: Thu, 13 Aug 2020 16:53:23 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=scgXkTPswRwpFqoPhj925gag0TQJl7KVfIjwQZy1DUU=;
+ b=mASJPwPk2J0Li29lr8Tj14dUCG3T1JDPv2a4vIWt7CGb3Ge1gQwp1gI4DJ3MS4UFaj
+ pPAXgLccPD/zXKVgYbSvfZ7KKncreAL2BcqiglA25bIpKiEw8tcXJkmMB8h4a2QHZvq/
+ ybY/StkOUYc6mJ6Sr2YR7zmPrcD8uyEAhImm7kDwYAyb55sbBs6g2dR6KDCKM6ExD50U
+ aLHxN9pVJPathEKNrxsHaaaup/Flcv30ZfzRuTHC0lwhhX0OWguOynm0EjUZkRh8lCrJ
+ oKnZ5GuZs39P6OBufq8faKHhFe96kPjcn7GgpJMD+nV6huKdfxUDhWiKPJ4rIpVKeJX9
+ wS6g==
+X-Gm-Message-State: AOAM532bhX/XLU3VFr2+5lWjdeGq/yvLHYsgPWZ03y/OtBN6hlIhE04o
+ aqKp09LvTL/Qgn6igDmTpt/aJTYWntVEvl0SJQU=
+X-Google-Smtp-Source: ABdhPJwr/bG6VzCFoP2jtfx43fkc4N9RHQu9yl/jSeAkSjndQTMyGRMqwycZTeXbXQubh8nf6kyk/SoWs5Zgb9met3k=
+X-Received: by 2002:a02:6a6b:: with SMTP id m43mr1525191jaf.79.1597387807037; 
+ Thu, 13 Aug 2020 23:50:07 -0700 (PDT)
 MIME-Version: 1.0
-To: Aaron Holtzman <aholtzma@gmail.com>
-CC: usrp-users@lists.ettus.com
-References: <CAEhVi8TCn4NxFeb5hnCjfxG6Hbc37pwzzBhEkNcj9Ju=Eyi2DA@mail.gmail.com>
- <5F3590F8.1020907@gmail.com>
- <CAEhVi8T+obpC2KiLkD2qsqrv++ATCuXxctqUNCvzk_U=M8Mh5Q@mail.gmail.com>
-In-Reply-To: <CAEhVi8T+obpC2KiLkD2qsqrv++ATCuXxctqUNCvzk_U=M8Mh5Q@mail.gmail.com>
-Subject: Re: [USRP-users] b200mini 1pps lock problem
+References: <CAP+KAYBS2ga8fHhAH7S-ii_ubhdx-6DMv=QB+E-bwAF60UKnPQ@mail.gmail.com>
+ <CAL7q81s87XnMPca0WyqSEPAz8ZyEw4YZmYuQA2o7NQE7JPYWeQ@mail.gmail.com>
+In-Reply-To: <CAL7q81s87XnMPca0WyqSEPAz8ZyEw4YZmYuQA2o7NQE7JPYWeQ@mail.gmail.com>
+Date: Fri, 14 Aug 2020 08:49:53 +0200
+Message-ID: <CAP+KAYBb6iM=chsEaGU3ZwfTVDb2GDn=uQpuhACLTGhh-QjL=Q@mail.gmail.com>
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Starting with FPGA USRP
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -69,9 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3934626422154314741=="
+From: "Anthony B. via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Anthony B." <anthonyld508@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7190452827749524904=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,117 +76,106 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============3934626422154314741==
-Content-Type: multipart/alternative;
- boundary="------------050500050409050904010008"
+--===============7190452827749524904==
+Content-Type: multipart/alternative; boundary="000000000000ce9dbc05acd0d425"
 
-This is a multi-part message in MIME format.
---------------050500050409050904010008
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000ce9dbc05acd0d425
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 08/13/2020 04:09 PM, Aaron Holtzman wrote:
-> On Thu, Aug 13, 2020 at 3:14 PM Marcus D. Leech via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     How are you detecting "lock" 
->
->
-> By querying the "ref_locked" sensor, and also looking at the LED which 
-> is consistent.
->
->     Could you share a code snippet of how you set up the clocking
->     parameters?
->
->
-> uhd_usrp_set_time_source(radio.usrp, "external", 0);
->
->      Have you tried a different 1PPS source?
->
->
-> I've tried two different GPS. NB the GPS stays powered always between 
-> application restarts and unplugging.
->
->
-Has it always had this problem, or did it develop over time?
+Hi Jonathan,
 
-If you revert to UHD 3.14 does it display the same issue?
+Thank you, that is what I was looking for.
+I did read this option, but didn't use it then haha.
 
+Best,
+Anthony
 
+Le jeu. 13 ao=C3=BBt 2020 =C3=A0 19:54, Jonathon Pendlum <jonathon.pendlum@=
+ettus.com>
+a =C3=A9crit :
 
---------------050500050409050904010008
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+> Hi Anthony,
+>
+> You can generate an ISE project by going to the directory usrp3/top/b200
+> and running "make PROJECT_ONLY=3D1 B200". The project file will be locate=
+d in
+> the build directory.
+>
+> Jonathon
+>
+> On Wed, Aug 12, 2020 at 8:51 AM Anthony B. via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hello all,
+>>
+>> I recently acquired a USRP B200 and I would like to start developing
+>> within it. I've followed the FPGA Manual :
+>> https://files.ettus.com/manual/md_usrp3_build_instructions.html
+>>
+>> So I have now Xilinx ISE and the build files from the FPGA. I was
+>> wondering where to start with these files - can we somehow open them in =
+the
+>> Xilinx Tools ? How can we have a starting view on how the USRP B200 FPGA=
+ is
+>> composed ?
+>>
+>> Thanks for your answers !
+>>
+>> Best,
+>> Anthony
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
 
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/13/2020 04:09 PM, Aaron Holtzman
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAEhVi8T+obpC2KiLkD2qsqrv++ATCuXxctqUNCvzk_U=M8Mh5Q@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div dir="ltr">
-          <div dir="ltr">
-            <div dir="ltr">On Thu, Aug 13, 2020 at 3:14 PM Marcus D.
-              Leech via USRP-users &lt;<a moz-do-not-send="true"
-                href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
-              wrote:<br>
-            </div>
-            <div class="gmail_quote">
-              <blockquote class="gmail_quote" style="margin:0px 0px 0px
-0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex">How
-                are you detecting "lock" </blockquote>
-              <div><br>
-              </div>
-              <div>By querying the "ref_locked" sensor, and also looking
-                at the LED which is consistent.</div>
-              <div> </div>
-              <blockquote class="gmail_quote" style="margin:0px 0px 0px
-0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex">
-                Could you share a code snippet of how you set up the
-                clocking parameters?</blockquote>
-              <div><br>
-              </div>
-              <div>
-                <div>uhd_usrp_set_time_source(radio.usrp, "external",
-                  0);</div>
-              </div>
-              <div><br>
-              </div>
-              <blockquote class="gmail_quote" style="margin:0px 0px 0px
-0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex"> Have
-                you tried a different 1PPS source?</blockquote>
-              <div><br>
-              </div>
-              <div>I've tried two different GPS. NB the GPS stays
-                powered always between application restarts and
-                unplugging.</div>
-              <div><br>
-              </div>
-              <br>
-            </div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    Has it always had this problem, or did it develop over time?<br>
-    <br>
-    If you revert to UHD 3.14 does it display the same issue?<br>
-    <br>
-    <br>
-  </body>
-</html>
+--000000000000ce9dbc05acd0d425
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------050500050409050904010008--
+<div dir=3D"ltr"><div>Hi Jonathan,</div><div><br></div><div>Thank you, that=
+ is what I was looking for.</div><div>I did read this option, but didn&#39;=
+t use it then haha.</div><div><br></div><div>Best,</div><div>Anthony</div><=
+/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">L=
+e=C2=A0jeu. 13 ao=C3=BBt 2020 =C3=A0=C2=A019:54, Jonathon Pendlum &lt;<a hr=
+ef=3D"mailto:jonathon.pendlum@ettus.com">jonathon.pendlum@ettus.com</a>&gt;=
+ a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><div dir=3D"ltr">Hi Anthony,<div><br></div><div>You can generate an IS=
+E project by going to the directory usrp3/top/b200 and running &quot;make P=
+ROJECT_ONLY=3D1 B200&quot;. The project file will be located in the build d=
+irectory.</div><div><br></div><div>Jonathon</div></div><br><div class=3D"gm=
+ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 12, 2020 at 8:=
+51 AM Anthony B. via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettu=
+s.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>He=
+llo all,</div><div><br></div><div>I recently acquired a USRP B200 and I wou=
+ld like to start developing within it. I&#39;ve followed the FPGA Manual : =
+<br></div><div><a href=3D"https://files.ettus.com/manual/md_usrp3_build_ins=
+tructions.html" target=3D"_blank">https://files.ettus.com/manual/md_usrp3_b=
+uild_instructions.html</a></div><div><br></div><div>So I have now Xilinx IS=
+E and the build files from the FPGA. I was wondering where to start with th=
+ese files - can we somehow open them  in the Xilinx Tools ? How can we have=
+ a starting view on how the USRP B200 FPGA is composed ?</div><div><br></di=
+v><div>Thanks for your answers ! <br></div><div><br></div><div>Best,</div><=
+div>Anthony<br></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+
+--000000000000ce9dbc05acd0d425--
 
 
---===============3934626422154314741==
+--===============7190452827749524904==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -206,5 +186,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3934626422154314741==--
+--===============7190452827749524904==--
 
