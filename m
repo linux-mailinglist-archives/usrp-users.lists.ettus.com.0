@@ -2,55 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC3C244C8D
-	for <lists+usrp-users@lfdr.de>; Fri, 14 Aug 2020 18:21:15 +0200 (CEST)
-Received: from [::1] (port=54696 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFCA4244F0C
+	for <lists+usrp-users@lfdr.de>; Fri, 14 Aug 2020 22:07:22 +0200 (CEST)
+Received: from [::1] (port=56196 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k6cS7-0000Dl-5e; Fri, 14 Aug 2020 12:21:11 -0400
-Received: from mail-ua1-f49.google.com ([209.85.222.49]:43979)
+	id 1k6fyx-0005Lt-4W; Fri, 14 Aug 2020 16:07:19 -0400
+Received: from mail-yb1-f177.google.com ([209.85.219.177]:40334)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <aholtzma@gmail.com>) id 1k6cRC-000889-5I
- for usrp-users@lists.ettus.com; Fri, 14 Aug 2020 12:20:14 -0400
-Received: by mail-ua1-f49.google.com with SMTP id u15so2813483uau.10
- for <usrp-users@lists.ettus.com>; Fri, 14 Aug 2020 09:19:53 -0700 (PDT)
+ (Exim 4.93) (envelope-from <cherif.chibane@gmail.com>)
+ id 1k6fyt-0005FU-GU
+ for USRP-users@lists.ettus.com; Fri, 14 Aug 2020 16:07:15 -0400
+Received: by mail-yb1-f177.google.com with SMTP id q3so5817439ybp.7
+ for <USRP-users@lists.ettus.com>; Fri, 14 Aug 2020 13:06:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=pvtwIERWZMn4uUNEbEwGTIUDwjPzg9R6cUphx2blWGE=;
- b=MHuvp9Ip3bIgyzB9+S3tTEPImIXtaWL1jwLio1DlZtppuOUJcm2mr0G7ilyPlGOH4+
- 6uUM2zr2SyWtXhMouxELullOE+8kRcEnllz9nTvH3+Uf2AdnEmYMmtp0FlhLAew8t7qk
- KplU0mT6fE805TZVfFc7CxklsSDxnLlXYJBINn9fNbnLCLG86zK6EdmpQ5ivQQ9QBhL7
- wv5IRTgDvT84lH3F3zW3FRqeAGCJeruL7JfmFgzVvqfo7K6C1DukTR453cx0r53kUC2q
- pftiicDXIT4kBqICQLNukaBJseizdsq1eG/2VyBtameHjx730/9OQjIj++O6dM8xV5Er
- 9xCg==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=Kllrk5WfOP6FGP832pL804MWi6inWr0wXAnhXrnBonI=;
+ b=qr/deJfa/XAy/wBIH9wyencH0UwHyqgyunRYOB8ffdkOiGklwdPkmHJg/qXY35TtAm
+ jjSeArNw3slH8j5fmMNVTDy16kmDQjqFu1Zfs9pTtQSetLavo9BqFfTqanN4XBVU1P5L
+ RDyyxgNn8ZZUURzWaYT/QAwNTsPez3RBr25UJVNuxsvl29qxcT8lkMIV04IhyoAx99V9
+ EhVwSbhZJ9vmHEAj3sb/zJqK7o5L8t1/RfeQMyfshFrIAe9+GGDrtoJ4F8GedbIP0iQ1
+ sC3tydX9LhjZgSExVW2LHK1ox35knKUPIcQ/lJYAS3ahiU/t/PNebCZi1MMOu8ORNyuz
+ rhwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=pvtwIERWZMn4uUNEbEwGTIUDwjPzg9R6cUphx2blWGE=;
- b=cHqD6kg+gGwoq5BYyfmB7bSB1lK8bsFoPO/yqoIEXPQQL1lr47F7Vu5m9tfBV8EvNt
- METDlvJ8QliHZ+myUR0mp1t80yKtnI9dAAQAvJf6r5aEHoZas7/WRy9eScUyAZ+aa0yj
- v3geEH2NZLCwZ3PZ2HW03Qere0oqNeIwwx0IbG9H/Ln2CTr4k1BDjM0CwaE1tGIUkbJe
- Yl0XUHWyE8+XUGmgH36inDQudmNnqT9AF/3onG+sEfWseMcg/y5rh20x7hF0y9gTMIn6
- N35KujcuCxgOQxtSk8Zr1RSMfQ6fpMattysw9dIN1zIygEZUt4bt+vJoHcGLT5Jy9lqB
- 8Bkg==
-X-Gm-Message-State: AOAM530CT2v7tdEXwvLHWFZ6O5qMYikTTFtC/X/VuDkvOeYihHukiH6K
- gwURj2zEoRTvSM65X3xV0qGdZtN0rgnh/CR9QLw=
-X-Google-Smtp-Source: ABdhPJyqbKDrgoMU2377SJecHm+8wetPFSFZm4uS7ch70RCNPX7V0EsNSU67XWX3B7iSWiTNR2FcqHbZoHUYzL98ppY=
-X-Received: by 2002:ab0:14c8:: with SMTP id f8mr1958086uae.23.1597421973424;
- Fri, 14 Aug 2020 09:19:33 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=Kllrk5WfOP6FGP832pL804MWi6inWr0wXAnhXrnBonI=;
+ b=EjQtWq0Y2NsT7VFwsSb4DsOQy2ecyFeI/Nuaa+7Ml2gBBZTimG/Xq6LDFVUsiAwjtU
+ erj97ck/Gr2o2T2bIB6lfbF/X1BjrhUisTxCqDFravlwIiJmV4gKkth+5xIGGXbE7vjc
+ QwfFc+jYI4+B9xBCCylLg1wVqnxOe8qi79mvv0mcbUkFrpJK4421ick9XvcdnmCQKIit
+ 8AwBZdnkdOAUw+9wAJzCAyE9P3ia/shh0BCacMJS9Yxa+GLdY+PgL04MEBgUJtgxM6sd
+ /Fi6SWMlZqE0XhvoeWe47trbLc5CgSXODIGQ2ORUuHS2UwdQg9BwAWO+6vBdLi+k+k/Y
+ cKhA==
+X-Gm-Message-State: AOAM532o0lKgbqSwa0JIKh0tj07QJiyC64j2Nqh6PsxXglacJEm998VB
+ Z/JomwgAHvcaL6B2ADCa8SGZqu41cksyhpLqHWKvJZIM2iUZXA==
+X-Google-Smtp-Source: ABdhPJzcwmZ0FINea6cfs7TFW4NawQJBZu9z7b493HuByxxq6hIqEXGlZCySy49DOA2t+ynVcom+OtaYB7M7VGRr48E=
+X-Received: by 2002:a25:c743:: with SMTP id w64mr5756840ybe.127.1597435594598; 
+ Fri, 14 Aug 2020 13:06:34 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEhVi8TCn4NxFeb5hnCjfxG6Hbc37pwzzBhEkNcj9Ju=Eyi2DA@mail.gmail.com>
- <5F3590F8.1020907@gmail.com>
- <CAEhVi8T+obpC2KiLkD2qsqrv++ATCuXxctqUNCvzk_U=M8Mh5Q@mail.gmail.com>
- <5F35A843.8020903@gmail.com>
-In-Reply-To: <5F35A843.8020903@gmail.com>
-Date: Fri, 14 Aug 2020 12:19:22 -0400
-Message-ID: <CAEhVi8RJgCvvmH3zrTDMxqTwPq=5ZGLM_ptxwWtSeo2o8_szLw@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
-X-Mailman-Approved-At: Fri, 14 Aug 2020 12:21:07 -0400
-Subject: Re: [USRP-users] b200mini 1pps lock problem
+Date: Fri, 14 Aug 2020 16:06:23 -0400
+Message-ID: <CAN6+RzmEiJ0ouDEW+bBw55KZRrF2n21O6YdbXJzEYHOP8aU4HA@mail.gmail.com>
+To: usrp-users <USRP-users@lists.ettus.com>
+Subject: [USRP-users] usrp_x310_fpga_RFNOC_HG.bit
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -62,9 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Aaron Holtzman via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Aaron Holtzman <aholtzma@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0124521087887778174=="
+From: cherif chibane via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: cherif chibane <cherif.chibane@gmail.com>
+Content-Type: multipart/mixed; boundary="===============9209894113081475481=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,61 +71,61 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0124521087887778174==
-Content-Type: multipart/alternative; boundary="000000000000484f5805acd8c914"
+--===============9209894113081475481==
+Content-Type: multipart/alternative; boundary="0000000000002aec5405acdbf5aa"
 
---000000000000484f5805acd8c914
+--0000000000002aec5405acdbf5aa
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Aug 13, 2020 at 4:53 PM Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
+Hello,
 
-> Has it always had this problem, or did it develop over time?
->
+I would like to use teh X300 bit file:   usrp_x310_fpga_RFNOC_XG.bit.
+Does it exist somewhere or do I need to re-create it? I used
+uhd_images_downloader
+to download the bitfiles but it did not come with the files downloaded.
 
-This is a new development, so yes.
+Thanks,
 
-If you revert to UHD 3.14 does it display the same issue?
->
+Cherif
 
-Yes.
 
-Does anyone have an FPGA build with chipscope hooked up to the
- b200_ref_pll internals? It would be interesting to see what the DAC is
-doing. I would do it myself, but it will probably take a day to remember
-how to do it in ISE.
 
-ah
+Does it exist somewhere or do I need to re-create it. I used
+uhd_images_downloader
+but it did not come with the files downloaded.
 
---000000000000484f5805acd8c914
+
+Thanks,
+
+Cherif
+
+
+____________
+Cherif Chibane
+
+--0000000000002aec5405acdbf5aa
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Aug 13, 2020 at 4:53 PM Marcus D.=
- Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.c=
-om</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border=
--left-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <div>Has it always had this problem, or did it develop over time?</div>=
-</div></blockquote><div><br></div><div>This is a new development, so yes.=
-=C2=A0</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-le=
-ft-color:rgb(204,204,204);padding-left:1ex"><div bgcolor=3D"#FFFFFF">
-    If you revert to UHD 3.14 does it display the same issue?<br></div></bl=
-ockquote><div><br></div><div>Yes.</div><div><br></div><div>Does anyone have=
- an FPGA build with chipscope hooked up to the =C2=A0b200_ref_pll internals=
-? It would be interesting to see what the DAC is doing. I would do it mysel=
-f, but it will probably=C2=A0take a day to remember how to do it in ISE.=C2=
-=A0</div><div><br></div><div>ah</div></div></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hello,</div><div><b=
+r></div><div>I would like to use teh X300 bit file:<code>=C2=A0=C2=A0 usrp_=
+x310_fpga_RFNOC_XG.bit.</code></div><div><code>Does it exist somewhere or d=
+o I need to re-create it? I used=C2=A0=C2=A0</code>uhd_images_downloader to=
+ download=C2=A0the bitfiles but it did not come with the files downloaded.<=
+/div><div><pre style=3D"white-space:pre-wrap">Thanks,<br></pre><pre style=
+=3D"white-space:pre-wrap">Cherif<br></pre></div><div><br></div><div><code><=
+br></code></div><div><code>Does it exist somewhere or do I need to re-creat=
+e it. I used=C2=A0=C2=A0</code>uhd_images_downloader but it did not come wi=
+th the files downloaded.<br><code></code><pre style=3D"white-space:pre-wrap=
+"><br></pre><pre style=3D"white-space:pre-wrap">Thanks,<br></pre><pre style=
+=3D"white-space:pre-wrap">Cherif<br></pre></div><div><br></div><div><div di=
+r=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div>____________</div=
+>Cherif Chibane</div></div></div></div></div></div>
 
---000000000000484f5805acd8c914--
+--0000000000002aec5405acdbf5aa--
 
 
---===============0124521087887778174==
+--===============9209894113081475481==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -143,5 +136,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0124521087887778174==--
+--===============9209894113081475481==--
 
