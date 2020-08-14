@@ -2,51 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89CC8244FE4
-	for <lists+usrp-users@lfdr.de>; Sat, 15 Aug 2020 00:39:05 +0200 (CEST)
-Received: from [::1] (port=57326 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB2F8244FF2
+	for <lists+usrp-users@lfdr.de>; Sat, 15 Aug 2020 00:50:50 +0200 (CEST)
+Received: from [::1] (port=57416 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k6iLn-0005hl-Rr; Fri, 14 Aug 2020 18:39:03 -0400
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:43708)
+	id 1k6iXA-0006MD-KY; Fri, 14 Aug 2020 18:50:48 -0400
+Received: from mail-qt1-f181.google.com ([209.85.160.181]:45450)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k6iLk-0005an-8W
- for usrp-users@lists.ettus.com; Fri, 14 Aug 2020 18:39:00 -0400
-Received: by mail-qk1-f173.google.com with SMTP id 2so9761022qkf.10
- for <usrp-users@lists.ettus.com>; Fri, 14 Aug 2020 15:38:40 -0700 (PDT)
+ id 1k6iX7-0006Bx-7k
+ for usrp-users@lists.ettus.com; Fri, 14 Aug 2020 18:50:45 -0400
+Received: by mail-qt1-f181.google.com with SMTP id s23so8142053qtq.12
+ for <usrp-users@lists.ettus.com>; Fri, 14 Aug 2020 15:50:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=svKH6uCugEimrXAYqOkpGMlZQBU85uFyGidGXg5O0l4=;
- b=tnhqBVU+BzswlcNYOVcd6nUvYM6Qo1GT6HH9sisr/WFDmoQscHEAtGJU3omXSeDhUl
- LPOs434vjE/k7JcNY4g9JdoWUVkf/nMD3Gaz5BoaORkScUY2nJElqKtoUzfW5H5KkZiq
- RX0fSajFUUCFJ+pzr+eg496/QsMJKsxm57weTN7ZkoYEd+AQsrecvhpLQ7qd47vR824r
- 3py5WETVka3M8xJPtZzuB5miEmR4j1cXGZuUixW/Twe7gZf1J4G73o3ZcKmi6w6aSlYJ
- NsnYpSzOnlEHfFPmm1XCTrz3DuWY7COQL72g/4gtM0zJRccZxBq+El9BpWEc3N5IRPws
- XhcQ==
+ :in-reply-to; bh=/vbn45yNjU9YiGprXzCbZflCxhfR+qDu8rY3WhVob/w=;
+ b=ixkvKAWJS4ryAJXC3D9qL5Mn6gcw/f+yJqmcD1L6BIXoVto7gLuKa1LGhleysnZTFC
+ HoMbtUFUfu8L+TitwsmYAtPjMMyP3WObFtOfsxrgx7/1KipPVKXIFHX+vbqDfeE5hg0v
+ 7NXsJhzUwqPWkT3VYpmGzAFJ9TUiQkH23dJwCFg8rhEfhC9dOvb8UqwGB1AmA9v3puiv
+ CDcMlKCEIn6BGOXJQ+n4zMC5tOyQ3usgm/aQEgAHBs11pdhYGW8GuVZOdcRaBcB86FRm
+ sdFCJqc0FsFQfGd2av2XZY84iLrRxMCgBct5eL8Gedj5CP9WB9UejD3w9mFhEgcUmM3d
+ 2tpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to;
- bh=svKH6uCugEimrXAYqOkpGMlZQBU85uFyGidGXg5O0l4=;
- b=K/T84ugZYEok7d4cGO5aGGUF+2JMX3Ob5FHbC1O7P7pkRGG3M2Za+691pbu0tefkd0
- +G9361L3jC+sZNALo7y6hSFDUwQM6O/YicxIBTUbNL5BP2NKhlyCN0sa357QL2AAwJ8A
- jJ0RULoRAVgPqfigqB2Iye1dZeph3oKyn13IfvWqjfVKD6Fk+EbucrwFnn84218A0vy4
- vjo4BwGVtXtSFVLojARBvnTfH1NMRpYC17Og4lfVbr98EGwN8bqQOtqu6DcqLCdTZS3H
- exA+BP/Is90LyhxSrIT/DdmrdlspX5yBrQlw0H71pc7O1K1rwD6gNqv0eMyznL6yTJZm
- j4Bg==
-X-Gm-Message-State: AOAM532x7lW1X+iV3cJxW/juDbX/ctf+FvjJeC/uAjE5i9VopvsBcCZy
- DW58HmZ/NCajWcbOhbogMXQZnoM8jMaFEA==
-X-Google-Smtp-Source: ABdhPJwop7w98HKlgmK8YyNb80eQAI26eG3F65FcnX8/0WBSahXRtdLm+aq7s+W3ArioeUW5LEF/sA==
-X-Received: by 2002:ae9:e857:: with SMTP id a84mr4173139qkg.100.1597444699413; 
- Fri, 14 Aug 2020 15:38:19 -0700 (PDT)
+ bh=/vbn45yNjU9YiGprXzCbZflCxhfR+qDu8rY3WhVob/w=;
+ b=sEsqK2JjoJ1Q0GrWzKs8SOu4jsh58/Ogobv6cTF8NP3x29/zOenet1HYW5yciTvChp
+ qjQGHKulAH0mI3Mjl4Ewgzr/FobXWoolrlGUycWdbjOzw2btUVDO9HmSs+zD5R18JHzv
+ hP8pyJ6eHKYbJlblnUKyX4A8OjJpFJa1LEmhkDcxSRaCtWyvZ9+i3P+z2OlDzIRUtPIW
+ HmYKkB5KN8DBanQstfH0Ldry2N5hFxU9EaIck8KrT/iGswyB7CpGior2RL2Uotc9j50m
+ yGrs02N2nU6IoM7WI9E6tSUoF7q1EEfU8fd9gfHQ07OHtZI9nZGd+//qLQ42GExojeob
+ 1tqg==
+X-Gm-Message-State: AOAM533LPXdJBF2HPx0t6ihNOMGU3cBoHmVjbBY4iartnr44b1DxYM/1
+ iYbk364NMGjFvbtk5t4pNlppZiXb8+mOaw==
+X-Google-Smtp-Source: ABdhPJzbJoHb1tQkXvyJIrWrgLjpnkp9kXIh+n3LVSrZFw2xtS+nQiSRibMEmulIgkAyPH7BHdPdOA==
+X-Received: by 2002:aed:21a6:: with SMTP id l35mr4164292qtc.178.1597445404426; 
+ Fri, 14 Aug 2020 15:50:04 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
  [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id y14sm11784420qtc.84.2020.08.14.15.38.18
+ by smtp.googlemail.com with ESMTPSA id l23sm8128980qtr.64.2020.08.14.15.50.03
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 14 Aug 2020 15:38:18 -0700 (PDT)
-Message-ID: <5F37125A.90805@gmail.com>
-Date: Fri, 14 Aug 2020 18:38:18 -0400
+ Fri, 14 Aug 2020 15:50:03 -0700 (PDT)
+Message-ID: <5F37151B.4010500@gmail.com>
+Date: Fri, 14 Aug 2020 18:50:03 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
@@ -72,7 +72,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1182819374344425369=="
+Content-Type: multipart/mixed; boundary="===============6592672547874375833=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,12 +87,12 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============1182819374344425369==
+--===============6592672547874375833==
 Content-Type: multipart/alternative;
- boundary="------------010803000406010902040407"
+ boundary="------------010105030404060500040602"
 
 This is a multi-part message in MIME format.
---------------010803000406010902040407
+--------------010105030404060500040602
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -103,22 +103,18 @@ On 08/14/2020 06:33 PM, cherif chibane wrote:
 > recreate it? I have issues with Xilinx license for now.
 > ____________
 > Cherif Chibane
+So, I misspoke.
+
+According to this document here, in order to get the special "RFNOC 
+development" images, you'll need to actually have the RFNOC
+   development environment set-up.  Looks like you don't have the RFNOC 
+version of UHD, so none of the extra FPGA images are being downloaded.
+
+https://kb.ettus.com/Getting_Started_with_RFNoC_Development
+
+
+
 >
-Is there some special feature of that (AFAIR, old) FPGA image that is 
-not available in the current one?  Was it a custom image?  If so, you'll
-   need to recreate it.
-
-Generally, if you try to use an older FPGA image with newer UHD, it's 
-unlikely to work.
-
-So, if you really need the older FPGA image, you would likely need to go 
-back to an older version of UHD, and use uhd_images_downloader
-   to fetch the images.
-
-But again, unless there's some special feature that you were using from 
-that image, the current-as-of-UHD-3.15 images should be just fine.
-
-
 >
 > On Fri, Aug 14, 2020 at 6:31 PM Marcus D. Leech 
 > <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
@@ -175,7 +171,7 @@ that image, the current-as-of-UHD-3.15 images should be just fine.
 >
 
 
---------------010803000406010902040407
+--------------010105030404060500040602
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -207,30 +203,29 @@ cite="mid:CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com"
                 Cherif Chibane</div>
             </div>
           </div>
-          <br>
         </div>
       </div>
     </blockquote>
-    Is there some special feature of that (AFAIR, old) FPGA image that
-    is not available in the current one?  Was it a custom image?  If so,
-    you'll<br>
-      need to recreate it.<br>
+    So, I misspoke.<br>
     <br>
-    Generally, if you try to use an older FPGA image with newer UHD,
-    it's unlikely to work.<br>
+    According to this document here, in order to get the special "RFNOC
+    development" images, you'll need to actually have the RFNOC<br>
+      development environment set-up.  Looks like you don't have the
+    RFNOC version of UHD, so none of the extra FPGA images are being
+    downloaded.<br>
     <br>
-    So, if you really need the older FPGA image, you would likely need
-    to go back to an older version of UHD, and use uhd_images_downloader<br>
-      to fetch the images.<br>
+    <a class="moz-txt-link-freetext" href="https://kb.ettus.com/Getting_Started_with_RFNoC_Development">https://kb.ettus.com/Getting_Started_with_RFNoC_Development</a><br>
     <br>
-    But again, unless there's some special feature that you were using
-    from that image, the current-as-of-UHD-3.15 images should be just
-    fine.<br>
     <br>
     <br>
     <blockquote
 cite="mid:CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com"
-      type="cite"><br>
+      type="cite">
+      <div dir="ltr">
+        <div><br>
+        </div>
+      </div>
+      <br>
       <div class="gmail_quote">
         <div dir="ltr" class="gmail_attr">On Fri, Aug 14, 2020 at 6:31
           PM Marcus D. Leech &lt;<a moz-do-not-send="true"
@@ -351,10 +346,10 @@ href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
   </body>
 </html>
 
---------------010803000406010902040407--
+--------------010105030404060500040602--
 
 
---===============1182819374344425369==
+--===============6592672547874375833==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -365,5 +360,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1182819374344425369==--
+--===============6592672547874375833==--
 
