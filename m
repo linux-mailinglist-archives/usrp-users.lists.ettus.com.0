@@ -2,58 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FDB5244FD0
-	for <lists+usrp-users@lfdr.de>; Sat, 15 Aug 2020 00:21:26 +0200 (CEST)
-Received: from [::1] (port=57192 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89CC8244FE4
+	for <lists+usrp-users@lfdr.de>; Sat, 15 Aug 2020 00:39:05 +0200 (CEST)
+Received: from [::1] (port=57326 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k6i4h-0003ra-2n; Fri, 14 Aug 2020 18:21:23 -0400
-Received: from mail-qt1-f177.google.com ([209.85.160.177]:43040)
+	id 1k6iLn-0005hl-Rr; Fri, 14 Aug 2020 18:39:03 -0400
+Received: from mail-qk1-f173.google.com ([209.85.222.173]:43708)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k6i4d-0003mB-GK
- for usrp-users@lists.ettus.com; Fri, 14 Aug 2020 18:21:19 -0400
-Received: by mail-qt1-f177.google.com with SMTP id k18so8097596qtm.10
- for <usrp-users@lists.ettus.com>; Fri, 14 Aug 2020 15:20:59 -0700 (PDT)
+ id 1k6iLk-0005an-8W
+ for usrp-users@lists.ettus.com; Fri, 14 Aug 2020 18:39:00 -0400
+Received: by mail-qk1-f173.google.com with SMTP id 2so9761022qkf.10
+ for <usrp-users@lists.ettus.com>; Fri, 14 Aug 2020 15:38:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=ICvT/NkG9LI8ZhWPq83ToaUo65Gtf7J1Aa3//RaCoxs=;
- b=lwzKUGiwJjl2/IFjZS9HHJpW0t99vE9Vjp40195Ld15G9GqH0k8dSkESs9Cygk5mdn
- P8FNo72+EkRiJsNgxP4FwhUdcHygDMHXo7E4xQBAeIoyT0FvVP2frt8a+LFZWo2XfaKg
- oQe2XrpCW5Gn0FWeSmr2ASijlilDR4/4WGzWC+c4z3604FmnnkLwKoB6svz57ct7JIT+
- ZQpLF8YBwi0jhKaY8FvmFFFF87QHSOWmInKPDrl3swWNzNBRAD7N22f9dd7JkWkEphkL
- SIxgeKZG1X6CeTqOyCOZDKGdlhIDr+1lCMqvrzQBNIesCCp/8I3xn0jZS39QbErspv5T
- zUJg==
+ :in-reply-to; bh=svKH6uCugEimrXAYqOkpGMlZQBU85uFyGidGXg5O0l4=;
+ b=tnhqBVU+BzswlcNYOVcd6nUvYM6Qo1GT6HH9sisr/WFDmoQscHEAtGJU3omXSeDhUl
+ LPOs434vjE/k7JcNY4g9JdoWUVkf/nMD3Gaz5BoaORkScUY2nJElqKtoUzfW5H5KkZiq
+ RX0fSajFUUCFJ+pzr+eg496/QsMJKsxm57weTN7ZkoYEd+AQsrecvhpLQ7qd47vR824r
+ 3py5WETVka3M8xJPtZzuB5miEmR4j1cXGZuUixW/Twe7gZf1J4G73o3ZcKmi6w6aSlYJ
+ NsnYpSzOnlEHfFPmm1XCTrz3DuWY7COQL72g/4gtM0zJRccZxBq+El9BpWEc3N5IRPws
+ XhcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to;
- bh=ICvT/NkG9LI8ZhWPq83ToaUo65Gtf7J1Aa3//RaCoxs=;
- b=m9v0bsTHc8hb6tw2hMxRT6REtSYEJW/cCZWIMH+2x1lNzv4rDWx3Xc83YJLfgMERXr
- kGEiI3jxvjPSE4YbvvsJs89g46jUrOBbeBs5DgolmsMY/BjiQxVJWhmg4004fd2E0Lki
- UAKmECueyCMgq/DWjv9Ap3/CmaJworPC4P+O7grX/hlMMqSoYVE7SHyzvZlE17IcuzPr
- GG5BTyoNfXjugvukzdZ8nuCMA47e/sJydFbJBLkowi1Ie8fJBOVyfCUz3wcZXWrBwoVA
- Bcx9mZDbTH34XZOhvjda3v6ctggTA6/rtrAcTdC6SCurJYqa5WViNo0MjPpy6HIrLxWq
- pehw==
-X-Gm-Message-State: AOAM53267rqD+URepJ1e7iuAALv9qJ6L2C+C8msjd6xvQ+5TqinB8f2V
- ICR/wyd0Vh4+gxuQD3ElLLDfRrAUGKlLkw==
-X-Google-Smtp-Source: ABdhPJxnI3eHIC5xQcOuK4PM8pPexWWNq/mtbOROmEkGS+ZiAIeROQxIaTp3bvMR/oBGx4I+U7XrZg==
-X-Received: by 2002:ac8:74c7:: with SMTP id j7mr4017638qtr.254.1597443638691; 
- Fri, 14 Aug 2020 15:20:38 -0700 (PDT)
+ bh=svKH6uCugEimrXAYqOkpGMlZQBU85uFyGidGXg5O0l4=;
+ b=K/T84ugZYEok7d4cGO5aGGUF+2JMX3Ob5FHbC1O7P7pkRGG3M2Za+691pbu0tefkd0
+ +G9361L3jC+sZNALo7y6hSFDUwQM6O/YicxIBTUbNL5BP2NKhlyCN0sa357QL2AAwJ8A
+ jJ0RULoRAVgPqfigqB2Iye1dZeph3oKyn13IfvWqjfVKD6Fk+EbucrwFnn84218A0vy4
+ vjo4BwGVtXtSFVLojARBvnTfH1NMRpYC17Og4lfVbr98EGwN8bqQOtqu6DcqLCdTZS3H
+ exA+BP/Is90LyhxSrIT/DdmrdlspX5yBrQlw0H71pc7O1K1rwD6gNqv0eMyznL6yTJZm
+ j4Bg==
+X-Gm-Message-State: AOAM532x7lW1X+iV3cJxW/juDbX/ctf+FvjJeC/uAjE5i9VopvsBcCZy
+ DW58HmZ/NCajWcbOhbogMXQZnoM8jMaFEA==
+X-Google-Smtp-Source: ABdhPJwop7w98HKlgmK8YyNb80eQAI26eG3F65FcnX8/0WBSahXRtdLm+aq7s+W3ArioeUW5LEF/sA==
+X-Received: by 2002:ae9:e857:: with SMTP id a84mr4173139qkg.100.1597444699413; 
+ Fri, 14 Aug 2020 15:38:19 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148]) by smtp.googlemail.com with ESMTPSA id
- b131sm9823912qkc.121.2020.08.14.15.20.38
- for <usrp-users@lists.ettus.com>
+ [174.95.14.148])
+ by smtp.googlemail.com with ESMTPSA id y14sm11784420qtc.84.2020.08.14.15.38.18
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 14 Aug 2020 15:20:38 -0700 (PDT)
-Message-ID: <5F370E35.40200@gmail.com>
-Date: Fri, 14 Aug 2020 18:20:37 -0400
+ Fri, 14 Aug 2020 15:38:18 -0700 (PDT)
+Message-ID: <5F37125A.90805@gmail.com>
+Date: Fri, 14 Aug 2020 18:38:18 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
+To: cherif chibane <cherif.chibane@gmail.com>, 
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 References: <CAN6+RzmEiJ0ouDEW+bBw55KZRrF2n21O6YdbXJzEYHOP8aU4HA@mail.gmail.com>
-In-Reply-To: <CAN6+RzmEiJ0ouDEW+bBw55KZRrF2n21O6YdbXJzEYHOP8aU4HA@mail.gmail.com>
+ <5F370E35.40200@gmail.com>
+ <CAN6+RzmxLLKfYXF9cc26k+P017Li8X7WLxYknNk8PSD4iQJXng@mail.gmail.com>
+ <5F3710AA.4030503@gmail.com>
+ <CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com>
+In-Reply-To: <CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com>
 Subject: Re: [USRP-users] usrp_x310_fpga_RFNOC_HG.bit
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -68,7 +72,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============8833572766535069798=="
+Content-Type: multipart/mixed; boundary="===============1182819374344425369=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,102 +87,274 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============8833572766535069798==
+--===============1182819374344425369==
 Content-Type: multipart/alternative;
- boundary="------------060404050904030809070304"
+ boundary="------------010803000406010902040407"
 
 This is a multi-part message in MIME format.
---------------060404050904030809070304
-Content-Type: text/plain; charset=windows-1252; format=flowed
+--------------010803000406010902040407
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 08/14/2020 04:06 PM, cherif chibane via USRP-users wrote:
-> Hello,
+On 08/14/2020 06:33 PM, cherif chibane wrote:
+> Hi Marcus,
 >
-> I would like to use teh X300 bit file:|usrp_x310_fpga_RFNOC_XG.bit.|
-> |Does it exist somewhere or do I need to re-create it? I used 
-> |uhd_images_downloader to download the bitfiles but it did not come 
-> with the files downloaded.
-> Thanks,
-> Cherif
+> Is there a copy of it somewhere that I can use, or do I need to 
+> recreate it? I have issues with Xilinx license for now.
+> ____________
+> Cherif Chibane
 >
-> |
-> |
-> |Does it exist somewhere or do I need to re-create it. I used 
-> |uhd_images_downloader but it did not come with the files downloaded.
-> ||
-> Thanks,
-> Cherif
->
-What version of UHD are you running?  I think the naming convention for 
-the standard "factory" BIT files changed quite a while ago.
+Is there some special feature of that (AFAIR, old) FPGA image that is 
+not available in the current one?  Was it a custom image?  If so, you'll
+   need to recreate it.
+
+Generally, if you try to use an older FPGA image with newer UHD, it's 
+unlikely to work.
+
+So, if you really need the older FPGA image, you would likely need to go 
+back to an older version of UHD, and use uhd_images_downloader
+   to fetch the images.
+
+But again, unless there's some special feature that you were using from 
+that image, the current-as-of-UHD-3.15 images should be just fine.
 
 
+>
+> On Fri, Aug 14, 2020 at 6:31 PM Marcus D. Leech 
+> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
+>
+>     On 08/14/2020 06:29 PM, cherif chibane wrote:
+>>     Hi Marcus,
+>>
+>>     I am running UHD-3.15.LTS
+>>     ____________
+>>     Cherif Chibane
+>>
+>     The RFNOC image is the standard image now (even if you aren't
+>     using RFNOC at the UHD API level, the machinery in the X310 FPGA is
+>       based on RFNOC).
+>
+>     So, you probably want:
+>
+>     usrp_x310_fpga_XG.bit
+>>
+>>     On Fri, Aug 14, 2020 at 6:21 PM Marcus D. Leech via USRP-users
+>>     <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>
+>>     wrote:
+>>
+>>         On 08/14/2020 04:06 PM, cherif chibane via USRP-users wrote:
+>>>         Hello,
+>>>
+>>>         I would like to use teh X300 bit
+>>>         file:|usrp_x310_fpga_RFNOC_XG.bit.|
+>>>         |Does it exist somewhere or do I need to re-create it? I
+>>>         used |uhd_images_downloader to download the bitfiles but it
+>>>         did not come with the files downloaded.
+>>>         Thanks,
+>>>         Cherif
+>>>
+>>>         |
+>>>         |
+>>>         |Does it exist somewhere or do I need to re-create it. I
+>>>         used |uhd_images_downloader but it did not come with the
+>>>         files downloaded.
+>>>         ||
+>>>         Thanks,
+>>>         Cherif
+>>>
+>>         What version of UHD are you running?  I think the naming
+>>         convention for the standard "factory" BIT files changed quite
+>>         a while ago.
+>>
+>>
+>>         _______________________________________________
+>>         USRP-users mailing list
+>>         USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
 
---------------060404050904030809070304
-Content-Type: text/html; charset=windows-1252
+
+--------------010803000406010902040407
+Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
 <html>
   <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   </head>
   <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/14/2020 04:06 PM, cherif chibane
-      via USRP-users wrote:<br>
+    <div class="moz-cite-prefix">On 08/14/2020 06:33 PM, cherif chibane
+      wrote:<br>
     </div>
     <blockquote
-cite="mid:CAN6+RzmEiJ0ouDEW+bBw55KZRrF2n21O6YdbXJzEYHOP8aU4HA@mail.gmail.com"
+cite="mid:CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com"
       type="cite">
       <div dir="ltr">
-        <div dir="ltr">
-          <div dir="ltr">
-            <div>Hello,</div>
-            <div><br>
+        <div>Hi Marcus,</div>
+        <div><br>
+        </div>
+        <div>Is there a copy of it somewhere that I can use, or do I
+          need to recreate it? I have issues with Xilinx license for
+          now.<br>
+        </div>
+        <div>
+          <div>
+            <div dir="ltr" class="gmail_signature"
+              data-smartmail="gmail_signature">
+              <div dir="ltr">
+                <div>____________</div>
+                Cherif Chibane</div>
             </div>
-            <div>I would like to use teh X300 bit file:<code>  
-                usrp_x310_fpga_RFNOC_XG.bit.</code></div>
-            <div><code>Does it exist somewhere or do I need to re-create
-                it? I used  </code>uhd_images_downloader to download the
-              bitfiles but it did not come with the files downloaded.</div>
-            <div>
-              <pre style="white-space:pre-wrap">Thanks,
-</pre>
-              <pre style="white-space:pre-wrap">Cherif
-</pre>
-            </div>
-            <div><br>
-            </div>
-            <div><code><br>
-              </code></div>
-            <div><code>Does it exist somewhere or do I need to re-create
-                it. I used  </code>uhd_images_downloader but it did not
-              come with the files downloaded.<br>
-              <code></code>
-              <pre style="white-space:pre-wrap">
-</pre>
-              <pre style="white-space:pre-wrap">Thanks,
-</pre>
-              <pre style="white-space:pre-wrap">Cherif
-</pre>
-            </div>
-            <br>
           </div>
+          <br>
         </div>
       </div>
     </blockquote>
-    What version of UHD are you running?  I think the naming convention
-    for the standard "factory" BIT files changed quite a while ago.<br>
+    Is there some special feature of that (AFAIR, old) FPGA image that
+    is not available in the current one?Â  Was it a custom image?Â  If so,
+    you'll<br>
+    Â  need to recreate it.<br>
     <br>
+    Generally, if you try to use an older FPGA image with newer UHD,
+    it's unlikely to work.<br>
+    <br>
+    So, if you really need the older FPGA image, you would likely need
+    to go back to an older version of UHD, and use uhd_images_downloader<br>
+    Â  to fetch the images.<br>
+    <br>
+    But again, unless there's some special feature that you were using
+    from that image, the current-as-of-UHD-3.15 images should be just
+    fine.<br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:CAN6+Rzn0w_cWYfVoY7gTVYe7MajUJbUrYq7POHjsjMgSEjSQDA@mail.gmail.com"
+      type="cite"><br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Fri, Aug 14, 2020 at 6:31
+          PM Marcus D. Leech &lt;<a moz-do-not-send="true"
+            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div bgcolor="#FFFFFF">
+            <div>On 08/14/2020 06:29 PM, cherif chibane wrote:<br>
+            </div>
+            <blockquote type="cite">
+              <div dir="ltr">
+                <div>Hi Marcus,</div>
+                <div><br>
+                </div>
+                <div>I am running UHD-3.15.LTS</div>
+                <div>
+                  <div>
+                    <div dir="ltr">
+                      <div dir="ltr">
+                        <div>____________</div>
+                        Cherif Chibane</div>
+                    </div>
+                  </div>
+                  <br>
+                </div>
+              </div>
+            </blockquote>
+            The RFNOC image is the standard image now (even if you
+            aren't using RFNOC at the UHD API level, the machinery in
+            the X310 FPGA is<br>
+            Â  based on RFNOC).<br>
+            <br>
+            So, you probably want:<br>
+            <br>
+            usrp_x310_fpga_XG.bit<br>
+            <blockquote type="cite"><br>
+              <div class="gmail_quote">
+                <div dir="ltr" class="gmail_attr">On Fri, Aug 14, 2020
+                  at 6:21 PM Marcus D. Leech via USRP-users &lt;<a
+                    moz-do-not-send="true"
+                    href="mailto:usrp-users@lists.ettus.com"
+                    target="_blank">usrp-users@lists.ettus.com</a>&gt;
+                  wrote:<br>
+                </div>
+                <blockquote class="gmail_quote" style="margin:0px 0px
+                  0px 0.8ex;border-left:1px solid
+                  rgb(204,204,204);padding-left:1ex">
+                  <div bgcolor="#FFFFFF">
+                    <div>On 08/14/2020 04:06 PM, cherif chibane via
+                      USRP-users wrote:<br>
+                    </div>
+                    <blockquote type="cite">
+                      <div dir="ltr">
+                        <div dir="ltr">
+                          <div dir="ltr">
+                            <div>Hello,</div>
+                            <div><br>
+                            </div>
+                            <div>I would like to use teh X300 bit file:<code>Â Â 
+
+                                usrp_x310_fpga_RFNOC_XG.bit.</code></div>
+                            <div><code>Does it exist somewhere or do I
+                                need to re-create it? I usedÂ Â </code>uhd_images_downloader
+
+                              to downloadÂ the bitfiles but it did not
+                              come with the files downloaded.</div>
+                            <div>
+                              <pre style="white-space:pre-wrap">Thanks,
+</pre>
+                              <pre style="white-space:pre-wrap">Cherif
+</pre>
+                            </div>
+                            <div><br>
+                            </div>
+                            <div><code><br>
+                              </code></div>
+                            <div><code>Does it exist somewhere or do I
+                                need to re-create it. I usedÂ Â </code>uhd_images_downloader
+
+                              but it did not come with the files
+                              downloaded.<br>
+                              <code></code>
+                              <pre style="white-space:pre-wrap">Thanks,
+</pre>
+                              <pre style="white-space:pre-wrap">Cherif
+</pre>
+                            </div>
+                            <br>
+                          </div>
+                        </div>
+                      </div>
+                    </blockquote>
+                    What version of UHD are you running?Â  I think the
+                    naming convention for the standard "factory" BIT
+                    files changed quite a while ago.<br>
+                    <br>
+                    <br>
+                  </div>
+                  _______________________________________________<br>
+                  USRP-users mailing list<br>
+                  <a moz-do-not-send="true"
+                    href="mailto:USRP-users@lists.ettus.com"
+                    target="_blank">USRP-users@lists.ettus.com</a><br>
+                  <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                    rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+                </blockquote>
+              </div>
+            </blockquote>
+            <br>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
     <br>
   </body>
 </html>
 
---------------060404050904030809070304--
+--------------010803000406010902040407--
 
 
---===============8833572766535069798==
+--===============1182819374344425369==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -189,5 +365,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8833572766535069798==--
+--===============1182819374344425369==--
 
