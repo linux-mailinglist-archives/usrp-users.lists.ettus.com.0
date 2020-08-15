@@ -2,54 +2,81 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C0FE245020
-	for <lists+usrp-users@lfdr.de>; Sat, 15 Aug 2020 01:24:39 +0200 (CEST)
-Received: from [::1] (port=57616 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C60D245191
+	for <lists+usrp-users@lfdr.de>; Sat, 15 Aug 2020 19:16:59 +0200 (CEST)
+Received: from [::1] (port=36628 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k6j3t-0008Vk-SG; Fri, 14 Aug 2020 19:24:37 -0400
-Received: from mail-vk1-f170.google.com ([209.85.221.170]:45344)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1k6j3p-0008BA-Ph
- for USRP-users@lists.ettus.com; Fri, 14 Aug 2020 19:24:33 -0400
-Received: by mail-vk1-f170.google.com with SMTP id j7so2353006vkk.12
- for <USRP-users@lists.ettus.com>; Fri, 14 Aug 2020 16:24:13 -0700 (PDT)
+	id 1k6znb-0005Vl-8J; Sat, 15 Aug 2020 13:16:55 -0400
+Received: from mail-eopbgr1390091.outbound.protection.outlook.com
+ ([40.107.139.91]:23168 helo=IND01-BO1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <koyel.das@vehere.com>)
+ id 1k6znX-0005Qd-F6
+ for usrp-users@lists.ettus.com; Sat, 15 Aug 2020 13:16:51 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nlnbaMykTY7++qsKQ52YxsXWqOwGXUTjvpWN6TpXNkqtKswt9LLNLVvJz5L/DQv6frKp4c1RVck4Iv3Ap5cEGlusBiRmYfoxvuVOzv/36hAmJ+MGm0vrYekvJTFVFQIFymLfzzEDjBS2PjFXif8yvQadtUEXs8eL25hmdCiZnZrF/dJjsa31NeMVx53J7YzQwoR+GU6DGEAZA6PzRcbkuGk4QbIyTjUz6KBZuQC9iSLy5l1aahAFaUaypU729WNKbPJ4lO0kXTjwjl+LlEJsBZEVSPFOa5J77BWf9EAs2qUnq0gCqLZWptjJLORsn2bxMCrHdYs2q6goExsmwolqjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Tp7U/LdCOKUmxLJ0zmsP6vWb6DzaRL1kw7WUQ0glapE=;
+ b=Ges+HQetF0KeuFPp5Qhq56VZTKi0J/sEbSRc+NV7sRqIDGMDyR+jNeq0Uap19TizeWuBx0Ul/K8lVYTMh1+agPWqAi8vXo5aAj74Z5wSK7jvJ+CafWyuVzBbh33J9pZx3wlDH6TBQ6Fl30rrZmcrOyza4L65XA9LEjioKYNEtXFpMwcVpWYWzVjmoUP91zaGFT6NfbnlsQLi+4E3EJs8Zcyyc71RC1n38m4MEgaaa+/XERI5dEbVdNxrbX6Q7h3elgyHUDt/XzcM/Yzn7lI/leZvMpG1Ri0ZuwYVCtRlM7Y/e7iYmeLR8WeWPHj/940AntYmw9TcykEf4VOtxXAPeQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
+ dkim=pass header.d=vehere.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=QmtY4oMpUcMba5n7iVTQYpq0tk65HU09SAY80S+y9/U=;
- b=cLXIc0tJcT+fmKrjBqOXKENB2xUpKzA0TmUhLJPT5jQGf2UKnA6fxRNAMmf39z1xG2
- NJ/q6Ns+Yw3RQam81olC1sN6nYaXW/Qu7lgJqRX/nvqpvBIN5EdD1CpCMQrb1um13Grl
- od6w54fKC+r/xb3mHkSEmCxOnIvxLYh2DyOsybCqOxFAdJge6G7i9AblDLT/bgHCBt3E
- uVMzq7O3kjd4HsJByoikB2gQwZSAO47K/lImwaKIGYWUqCnYqBuQxpda1m1uobJvJab4
- 2Xmd33KYEuJFGqUYmanN9PpdgJ1yCRvCI65SFB6FNWp9MIcmCyaJC4wStIvy0X8MZYC+
- 7aFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=QmtY4oMpUcMba5n7iVTQYpq0tk65HU09SAY80S+y9/U=;
- b=Vjsp1u0NasI28N6jKkQ8Yz2eOgNYSxPMKQBCgFNTA0/3PptidDYKBHnnH63eQb3Wne
- 0WhuKU/gaXqxaZOZeMEvhX2IZqQnuSLtkLWDFkIRwS+LvWo3XgZ02AdHSZlOFqjZ5lV0
- W1cxKjB7AidVTMrxxxN6kWmo1o33oXP+pzt0w6jUp5kJeJ/qPtFa4K+l0cbXPWnVZIIc
- 3cN0K3XyXWnhMvNMssEpLvl5itu2E/J0XIxIx/oLZ7fvc3+r/mp+u7TFaNe2JUfRjxXC
- vqWK+0GQxwEohAE/J9qF5WgfkWDptLSrS/T69vKlKNRX6KfNieD93Wky+ItnconxftMe
- Rpxw==
-X-Gm-Message-State: AOAM533k0drlCIM8lJMdfRdJmq1ambKI5VbZ9uUkSAYM3/Ldm6QagLpW
- 3I+eJ1uj+IilTpjCxmmUWzE+b8X2tLiQys08UTQMWphv
-X-Google-Smtp-Source: ABdhPJybURxC/+NFZTRDmIvn0s04KnqHguWtwd19kEtG4+IvJ+AbM+o7gSuDNIUKjy3/Xyf/b2xbDrYWLVhcSFi9QIY=
-X-Received: by 2002:a05:6122:2c:: with SMTP id
- q12mr3155430vkd.39.1597447433137; 
- Fri, 14 Aug 2020 16:23:53 -0700 (PDT)
+ d=vehereinteractive.onmicrosoft.com;
+ s=selector2-vehereinteractive-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Tp7U/LdCOKUmxLJ0zmsP6vWb6DzaRL1kw7WUQ0glapE=;
+ b=kkyhLxP+wQUf6EA3Lv4kxlpSib2VrpqM8b74ggKy3ZsPFV43/RLn/Sh9nVe+II/dK9s/HMBrjXGDQJQTXuU1nWl7B6fAaX8VjyHhEVOYM94My/i1enbWDlAUxqxT/H/PFx3vh1O9FiG9Jxd8iwqfzsouB0Yo6kLcyQ777qv0abU=
+Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3e::22)
+ by MAXPR0101MB1786.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:1a::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.18; Sat, 15 Aug
+ 2020 17:16:03 +0000
+Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::c050:8571:1b47:feb3]) by MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::c050:8571:1b47:feb3%6]) with mapi id 15.20.3283.024; Sat, 15 Aug 2020
+ 17:16:03 +0000
+To: "'USRP-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+Thread-Topic: Incorrect data from usrp 2955
+Thread-Index: AQHWcybNOTailyD99kmbADMt8WJI1A==
+Date: Sat, 15 Aug 2020 17:16:03 +0000
+Message-ID: <MA1PR01MB25885B004EA06FFE0C1B69DC90410@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none; lists.ettus.com; dmarc=none action=none header.from=vehere.com; 
+x-originating-ip: [42.110.154.229]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 00267bdb-b0d1-4198-f599-08d8413ee3d5
+x-ms-traffictypediagnostic: MAXPR0101MB1786:
+x-microsoft-antispam-prvs: <MAXPR0101MB1786AB2255B52A5687A21ADC90410@MAXPR0101MB1786.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: gFufSZ39fUX2oCzjPQRazDMB7m4kzKj5/p9iNTWFlm37C6lkMQXWpWUysgyn170rpSSMDzCjPVB7bqNIrkumeov7wNmCjY0mU8ZVb0rLoYh+sgfkEwY/CO/FibPhgalKBoG9CBYP6pdi6/gGDKn3VbOWnG47PJ1jXDa8AS2wGqLquya82A0wtKDIwNdJLPoTwKRx5iKxe2D64ZlshVdzNxMaYOjY39Y4BKiNbPziyOFU9HB7pP23XFgZ8dxUN/ZTmWZbDU5VWwbbocgCgSHwW9SvnXd/RqYjDXtztsNy7mXWq3TaLvfEeDDv8BIXR8awO2hmlhNfE6cafc0iN3vbhXyYioGE1iHJfMZcHxnP9/8i2UX0Fq+Ww6aJgPferV//0bhps8cuP9exMCNISYw5m1TR7qKFkXZADyrjqzKimigmN6EdJ2CU3BUTtsScyAt+ENn8h/jOkSuSOHdEez/1RQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(39830400003)(396003)(136003)(366004)(346002)(376002)(26005)(5660300002)(66556008)(66446008)(86362001)(45080400002)(66946007)(64756008)(66476007)(6916009)(2906002)(166002)(8936002)(33656002)(71200400001)(76116006)(83380400001)(52536014)(7696005)(4744005)(478600001)(8676002)(6506007)(4326008)(316002)(55016002)(9686003)(186003)(491001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: EPevBXVdzn6SDrYFF5S8G5HHDGZeE0Z44vRAvCkF8KColRGMa3NR9qItwphfpFk+XVm97qJzzvsyhxcDJCgR71PnIas8bfCIORi+lXAt0XlEi6cykXsKZB0tfzlju+4/ZHETeaUXxp/Ellm6uwOLIdpXjji3RYkmArJhqN8Ton2rVDWPgGx2bY+TYb1lt2O9HRxurIW1ETAV2+5TaOKElwh5dEBPJeAlJAm2F+ucngbCJkqxXEXGjn3vy8fq8ibCvEJZJWR2PQP8IDbrKoSa6ZFJa/p/oPm5JwPskHliLP3ObStyCB4rUlLSQaGrqmWURVF8ZdCgse3+Z8gwUl0PwH5Q+E7DGPW87W8ud+iqcau3uBweD2F8vvgAvf/4uvt/nUHOntw73Do1OPlcMH0suXHLU6ojoz+JLRb9gNBe4nldPQT0Y0hglJq3z1nkxG3yIZMPogdFQ2OCVPK3e8cZTBfllQX5BBiqs1iePjY246CONee2j9vaPnEAmoUFQ5sapDRbn4fTdBo7a6nkzMto7fUFn6gRI7IvKecrW+aNK5no5YdUZIq19DyoFBakDjRv0Anlnbr3T/5tYuJOM8Cjc8ecBHm9++9WeQhOJ2+iPA6xkiY4JItM88AgSUspGPQ4c3wSWdCmHCatoFR+R/PW1w==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CAN6+RzmEiJ0ouDEW+bBw55KZRrF2n21O6YdbXJzEYHOP8aU4HA@mail.gmail.com>
-In-Reply-To: <CAN6+RzmEiJ0ouDEW+bBw55KZRrF2n21O6YdbXJzEYHOP8aU4HA@mail.gmail.com>
-Date: Fri, 14 Aug 2020 19:23:17 -0400
-Message-ID: <CAL7q81ud-YBA3M0bT=x+MPxDvXod7-X5+qwizyyFy+vUvH-sWg@mail.gmail.com>
-To: cherif chibane <cherif.chibane@gmail.com>
-Cc: usrp-users <USRP-users@lists.ettus.com>
-Subject: Re: [USRP-users] usrp_x310_fpga_RFNOC_HG.bit
+X-OriginatorOrg: vehere.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00267bdb-b0d1-4198-f599-08d8413ee3d5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Aug 2020 17:16:03.8253 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Pz4fxDJTe15QNO3GmgTDL7HSQpk0hyXYcHQS5XReBh4OovEwzbsmEN8IPvdvvBYQZ8pBwS1fXKtcyRpK1gCsRQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAXPR0101MB1786
+Subject: [USRP-users] Incorrect data from usrp 2955
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,9 +88,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Content-Type: multipart/mixed; boundary="===============5836746525001218186=="
+From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
+Content-Type: multipart/mixed; boundary="===============2806621079592090550=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,88 +104,87 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5836746525001218186==
-Content-Type: multipart/alternative; boundary="000000000000ccc80605acdeb691"
+--===============2806621079592090550==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MA1PR01MB25885B004EA06FFE0C1B69DC90410MA1PR01MB2588INDP_"
 
---000000000000ccc80605acdeb691
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Cherif,
-
-I'll send you the bitstream directly.
-
-Jonathon
-
-On Fri, Aug 14, 2020, 16:07 cherif chibane via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hello,
->
-> I would like to use teh X300 bit file:   usrp_x310_fpga_RFNOC_XG.bit.
-> Does it exist somewhere or do I need to re-create it? I used  uhd_images_downloader
-> to download the bitfiles but it did not come with the files downloaded.
->
-> Thanks,
->
-> Cherif
->
->
->
-> Does it exist somewhere or do I need to re-create it. I used  uhd_images_downloader
-> but it did not come with the files downloaded.
->
->
-> Thanks,
->
-> Cherif
->
->
-> ____________
-> Cherif Chibane
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000ccc80605acdeb691
-Content-Type: text/html; charset="UTF-8"
+--_000_MA1PR01MB25885B004EA06FFE0C1B69DC90410MA1PR01MB2588INDP_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"auto">Hi Cherif,<div dir=3D"auto"><br></div><d=
-iv dir=3D"auto">I&#39;ll send you the bitstream directly.<br></div><div dir=
-=3D"auto"><br></div><div>Jonathon</div></div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Aug 14, 2020, 16:07 ch=
-erif chibane via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D=
-"ltr"><div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I would like to=
- use teh X300 bit file:<code>=C2=A0=C2=A0 usrp_x310_fpga_RFNOC_XG.bit.</cod=
-e></div><div><code>Does it exist somewhere or do I need to re-create it? I =
-used=C2=A0=C2=A0</code>uhd_images_downloader to download=C2=A0the bitfiles =
-but it did not come with the files downloaded.</div><div><pre style=3D"whit=
-e-space:pre-wrap">Thanks,<br></pre><pre style=3D"white-space:pre-wrap">Cher=
-if<br></pre></div><div><br></div><div><code><br></code></div><div><code>Doe=
-s it exist somewhere or do I need to re-create it. I used=C2=A0=C2=A0</code=
->uhd_images_downloader but it did not come with the files downloaded.<br><c=
-ode></code><pre style=3D"white-space:pre-wrap"><br></pre><pre style=3D"whit=
-e-space:pre-wrap">Thanks,<br></pre><pre style=3D"white-space:pre-wrap">Cher=
-if<br></pre></div><div><br></div><div><div dir=3D"ltr"><div dir=3D"ltr"><di=
-v>____________</div>Cherif Chibane</div></div></div></div></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer" target=3D"=
-_blank">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+Hi,
 
---000000000000ccc80605acdeb691--
+We are using USRP 2955. Something has gone wrong. Before we were getting co=
+nstant phase difference across channels for limited bandwidth and with time=
+ when we split single antenna signal using splitter and fed two channels of=
+ USRP but now it is not doing so. This happened on Friday that after gettin=
+g a series of correct results : constant phase difference across channels b=
+y feeding signal using splitter as mentioned above, we suddenly started to =
+receive wrong data: random phase  across channels and with time using the s=
+ame setup with splitter. The thing we did was setting gain to near maximum =
+and receiving 100 MHz sample rate. But I don't think amplifier has damaged =
+because in this usrp we have four independent channels and when we connecte=
+d the splitter to unused channels then also we got wrong data. What can go =
+wrong that USRP is streaming data but phases are wrong? What do you think? =
+Please let me know.
+
+Regards,
+Koyel
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+
+--_000_MA1PR01MB25885B004EA06FFE0C1B69DC90410MA1PR01MB2588INDP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div><span>Hi,<br>
+</span>
+<div dir=3D"ltr"><br>
+</div>
+<span>We are using USRP 2955. Something has gone wrong. Before we were gett=
+ing constant phase difference across channels for limited bandwidth&nbsp;an=
+d with time when we split single antenna signal using splitter and fed two =
+channels of USRP but now it is not doing
+ so. This happened on Friday that after getting a series of correct results=
+ : constant phase difference across channels by feeding signal&nbsp;using s=
+plitter as mentioned above,&nbsp;we suddenly started to receive wrong data:=
+ random phase &nbsp;across channels and with time
+ using the same setup with splitter.&nbsp;The thing we did was setting gain=
+ to near maximum and receiving 100 MHz sample rate. But I don't think ampli=
+fier has damaged because in this usrp we have four independent channels and=
+ when we connected the splitter to unused
+ channels then also we got wrong data. What can go wrong that USRP is strea=
+ming data but phases are wrong? What do you think? Please let me know.</spa=
+n><br>
+</div>
+<div dir=3D"ltr"><span><br>
+</span></div>
+<div dir=3D"ltr"><span>Regards,</span></div>
+<div dir=3D"ltr"><span>Koyel&nbsp;</span></div>
+<div><br>
+</div>
+<div class=3D"ms-outlook-ios-signature" id=3D"ms-outlook-mobile-signature">=
+Get <a href=3D"https://aka.ms/o0ukef">
+Outlook for iOS</a></div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_MA1PR01MB25885B004EA06FFE0C1B69DC90410MA1PR01MB2588INDP_--
 
 
---===============5836746525001218186==
+--===============2806621079592090550==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -169,5 +195,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5836746525001218186==--
+--===============2806621079592090550==--
 
