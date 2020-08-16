@@ -2,65 +2,90 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D0C2458C9
-	for <lists+usrp-users@lfdr.de>; Sun, 16 Aug 2020 19:23:41 +0200 (CEST)
-Received: from [::1] (port=45788 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB7B2458CA
+	for <lists+usrp-users@lfdr.de>; Sun, 16 Aug 2020 19:25:43 +0200 (CEST)
+Received: from [::1] (port=45814 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k7MNf-00044s-4j; Sun, 16 Aug 2020 13:23:39 -0400
-Received: from mail-qk1-f180.google.com ([209.85.222.180]:35203)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k7MNb-0003xY-FS
- for usrp-users@lists.ettus.com; Sun, 16 Aug 2020 13:23:35 -0400
-Received: by mail-qk1-f180.google.com with SMTP id p25so13062622qkp.2
- for <usrp-users@lists.ettus.com>; Sun, 16 Aug 2020 10:23:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=mIpm+JOekKt8CCw4xNvM9AyjCo1gprp2Y2X2X+pxhFI=;
- b=D9XoMETq7iXZpMunkQSdVYGYl2wJ3uanvJK4ZFugIdd862JjM8hmecrQq3NLMITFEe
- LmsE2ERaVGSse6n24SP3/+XxqvE9gU6IXMtnd1MGbvYlbkUifGZ7YV+cNUs9STTELGez
- uZb149pwZx9Plu2vW2cdAQ5KSxliYwoiI5ja7kdgFNGCywXZQewx3g+Dx8qOfzQX665J
- RBlQwj9/K/xHNkVZ3/VoMvunCBl2E0tCdjTvnpHUF4n+3COEzqNxZ0FFukmhllZeVwwc
- LQ3q+aOaYCIyXljR7832HlriVwYmpkLpfpsPxKH4YeJfaq16+0K1awALN3HQ90g3E1w/
- Ezfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=mIpm+JOekKt8CCw4xNvM9AyjCo1gprp2Y2X2X+pxhFI=;
- b=JEQy+GGrLLvhSgaJtjWB1G55pBu6+YKygXqynbsHNRl9Jt4jdOXqXlZmVTG2Dyxx0D
- 196nciOP4A+H64/pmUu95J7LPlahffzdzKEgoTo+4g0ZOwLt1iHRckCBpnmdLZstBydM
- MTCqNdJHBKoZFX1XNoUfOjOWoN3cXmLfWUiUogbHrPnGEYH5pF+petbCSqVHn2k95uo2
- tTjwc85Y+UTZhFKF4vNWWpaqLSZj1H2Nu4b+jmmqgk2p8G8haPFCnspCz6wX01P/PJDR
- 9wq0fhcEHF/Wl0arJjw+A83oIn8+AZIpCjJPkMKlGUTPGx1wMRbWt5pS4X6CoWqvrysL
- aN6w==
-X-Gm-Message-State: AOAM530gx5h3EhEKrtweLCF8rDakO65bfeniUENe20YbzU0lsZicMdu+
- PgQ1Av/xSeOxbiKZnnak2sFx9AD6Y9oltQ==
-X-Google-Smtp-Source: ABdhPJwqqwHRVlE0B0oyYOtqsUOduZIxsFuL1IvtGRZwYNMOpbnn0Tvzcv21Y2nTj52d0FjBNuapKg==
-X-Received: by 2002:a37:b145:: with SMTP id a66mr9724700qkf.338.1597598574383; 
- Sun, 16 Aug 2020 10:22:54 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id z10sm16902094qtf.24.2020.08.16.10.22.53
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 16 Aug 2020 10:22:54 -0700 (PDT)
-Message-ID: <5F396B6D.9080001@gmail.com>
-Date: Sun, 16 Aug 2020 13:22:53 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: "Koyel Das (Vehere)" <koyel.das@vehere.com>, 
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+	id 1k7MPe-0004Xz-0Y; Sun, 16 Aug 2020 13:25:42 -0400
+Received: from mail-eopbgr1390129.outbound.protection.outlook.com
+ ([40.107.139.129]:15704 helo=IND01-BO1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <koyel.das@vehere.com>)
+ id 1k7MPa-0004Pz-5O
+ for usrp-users@lists.ettus.com; Sun, 16 Aug 2020 13:25:38 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Vj4UjpOoqbQGbfyaSZg3t2CcWBwULPLkg+enhgxm5e85WWA8t1AYwZkp7TEwtLUq02XMxVm34d4Z7ycOYdCLkJaWmOBr8Tcy9++7FeEfWbVcbqFbKntF+E2Lu058NCUIgKarL0Mc37Y/tcd+QldzMn0xSmjMVvYS0ZgYay41MOlT1YA7+PZMXCIkJLlNC46CmP9fs9g8V4rqus9X3dlN5CT1XZ5t91lOZAN6egImfRoLTWl9iWpEk36cBs/7dauj33w3HS83De+KSTkTSOTYCR+KndbPn/E31P1PoG9OfKA4Ut0/YJtKW6LlEj4QLP4TRHKXJkwVeaelT8aVPHoXdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JSv6GkqztPtNfzsGFwYmnICXuy6pU2TUPear/7MUB60=;
+ b=S6SmnSH0172Gckcj9kGpO+yMSBDHwCHsPy3tV/0527VS1jmI/EeUBRfGJOkJgHOt4I9CPn/Zct7F821I3smFyfAd7uGlXNlm3t9kiHP1hPIblZvgmu+j3C3tU+Fr0w0BwL7OrL8bFzzA8TGvC4pb/XthVgtiBK71ArgGjgiB+A74FDv2xvEM1WoCNzKE0f+xsBDmA+yUkc1RAJ+lW/vzebpKHyvEHGIJi4JW/BbXeTRQ1KRS5n5wADpsbyN+mq1w7omNuq+8/I/qqm2Y5hhcZ1+6dCJCWF4qs0KXtiDl+D9YO692VOFGOCvXZ8Br72L8XESK11net5CHo20u83qbOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
+ dkim=pass header.d=vehere.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=vehereinteractive.onmicrosoft.com;
+ s=selector2-vehereinteractive-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JSv6GkqztPtNfzsGFwYmnICXuy6pU2TUPear/7MUB60=;
+ b=G1obG3Y60UGe3hBuLEP5hKjAetuxg6KT+cSjpzxMjxUMKCyGQm+1ge2bCwRFzXUgdOBP7B7F386skIcAkD93ut+3FdZTQvfc0h6roJvhOEu9PTMJ/h3rs3vmda1I6JBlnatxuhu11DMxFiILq6F7b8fmGefHCFR25ZXB00vq/Zw=
+Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3e::22)
+ by MAXPR01MB2127.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:5a::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3283.18; Sun, 16 Aug
+ 2020 17:24:54 +0000
+Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::c050:8571:1b47:feb3]) by MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::c050:8571:1b47:feb3%6]) with mapi id 15.20.3283.027; Sun, 16 Aug 2020
+ 17:24:54 +0000
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
+ <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Incorrect data from usrp 2955
+Thread-Index: AQHWcybNOTailyD99kmbADMt8WJI1Kk5hQWAgACW7GuAANQ9gIAAAHiPgAACmfWAAAZ4gIAAADeNgAAD9Uo=
+Date: Sun, 16 Aug 2020 17:24:54 +0000
+Message-ID: <MA1PR01MB25886EB4A528F11F21A10C6D905E0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
 References: <MA1PR01MB25885B004EA06FFE0C1B69DC90410@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
  <5F382FA9.60900@gmail.com>
  <MA1PR01MB258848062639094C9A33858A905E0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
  <5F39604D.6030303@gmail.com>,
  <MA1PR01MB2588632D2A24063E8E4E1F22905E0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
  <MA1PR01MB2588B859845EA8B4E4FB4477905E0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
- <5F39684D.1060702@gmail.com>
+ <5F39684D.1060702@gmail.com>,
  <MA1PR01MB25882A435C92F1F1BBE5DF2E905E0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
 In-Reply-To: <MA1PR01MB25882A435C92F1F1BBE5DF2E905E0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=vehere.com;
+x-originating-ip: [42.110.154.85]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2f518ac1-2e2a-4cbc-7c9a-08d842094aae
+x-ms-traffictypediagnostic: MAXPR01MB2127:
+x-microsoft-antispam-prvs: <MAXPR01MB21274337E4C9D04FF809711F905E0@MAXPR01MB2127.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:3276;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: tGqcmIkrN+Ju+RiX01Nym9XX+luiLoFeb05uKmT9PZummeNkc9hOwaE9T/KKXDGH3QUB929QH+5xRCHxPxT1C/3xc6QbtWoV86/K6f8Iw2U7+X5b9jScP4HCU7J+a+uucY+Pod2k4C/xaVEEerEaf6B0+6JOPqvVjQjLRS7aeWnMpK3faRbY0zcOGZrx5pBGJCL4xVW46w//3RPaDgOW66l0pBHeqJCWSj8FImZiMQaAXAQ+/dbLIGvUD5OUNZFfQg8rZ0U5JilV0YE6o4FibHEQ+E2Jwz5DLegMJqoINxXUnynEtmDG/j1XUwDdQ33PrDJhjxDpucloGrYM/pF+UMH8za/c0TGZMnsk7GPfeYhkQGQ23eIfVoiICDEs+x1aW/d3pR1ZHHcDJssd9aNxww==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(376002)(136003)(366004)(346002)(396003)(39830400003)(53546011)(5660300002)(33656002)(8936002)(478600001)(6506007)(76116006)(316002)(86362001)(71200400001)(52536014)(2906002)(110136005)(66946007)(66446008)(64756008)(66556008)(66476007)(7696005)(9686003)(2940100002)(45080400002)(166002)(55016002)(966005)(8676002)(186003)(26005)(83380400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: nARc+I4n9gLMYbNXsQS9ogM2gR+/IifksSccb0y2oLoUiFXZlrssUiPD0MaqpNQOwVknBxkg+y7SzsNlKKlzulCP8eUAcv3Y5vP+GS0SC5hyvO5ejKRrsOCCLBt3f4+rvldganV0i/NPpCWfMXriwVn89l2sVOr/OCuyiZl27f5TkySFUO+H7jW896J4bmWKdMrGVu30m7ZaM4oP76Zb6XvK2RNybw3YRFrS3K3KJqMWEJM1ZvwaRLkGh6zffjidDhDu/T+Ms/vwmm2CxBxBb/NM+n1ZQyS+W7peDXffGme8UnUrL//9sHd5BAjX1cFn/74hIrwwZ3AnVVkbLrHD6XPPQhlNzeA874pZ6UeFCdgb7wTFHJBKhQLR0pPVTlIz19Y9/O0KqYTDWSiubEZ9bftsPnkmECoVxkBCQtlYOCFykRaU6mSJSCLkJzzAPwnUjS7H240p8u10vmyStq5kpB2SmuGtgGx3V2xWTpdjj9vCbez2oWdPvQLakVXZ3OiOcPZkooDejjD36tsO5nxbayapXA6A5cxu8fhdZkhELMI4hibtdg6CkGk3ixJxWNOp19o0JNuTeZCIDLOBArqpKMA8FkndGa87NCK7eR1ECM0y95KMJCCfBxrxKDfk/akDVlPzd0/dIMMAzwzXS5qi0w==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: vehere.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f518ac1-2e2a-4cbc-7c9a-08d842094aae
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2020 17:24:54.6943 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Xf0YKLYCICCPRWCYZzs9LiP9kOiR6D4xW+sbuHbya+Z+JliEEWhfc4311izZULoR6l4Bcn+h7i0ssFUn6L1Z3Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAXPR01MB2127
 Subject: Re: [USRP-users] Incorrect data from usrp 2955
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -73,9 +98,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5306643501065705646=="
+From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
+Content-Type: multipart/mixed; boundary="===============0162202777634216556=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,459 +114,425 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============5306643501065705646==
+--===============0162202777634216556==
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="------------030809080605010408010903"
+	boundary="_000_MA1PR01MB25886EB4A528F11F21A10C6D905E0MA1PR01MB2588INDP_"
 
-This is a multi-part message in MIME format.
---------------030809080605010408010903
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_MA1PR01MB25886EB4A528F11F21A10C6D905E0MA1PR01MB2588INDP_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-On 08/16/2020 01:15 PM, Koyel Das (Vehere) wrote:
-> I am not observing one individual channel but phase difference between 
-> two channels. I very well know individual channel would show random 
-> phases but not the phase difference when same signal is injected in 
-> two channels. I hope you are aware that phase difference = 2pi/lambda* 
-> path_difference. Path difference is constant as that’s the difference 
-> between two paths of two daughterboards and hence this phase 
-> difference is constant. Remember same signal is injected so initial 
-> phases would be same for two channels and only the difference in the 
-> signal path lengths bring the difference which is constant
+I am using internal reference and I have not checked individual channel yet
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Koyel Da=
+s (Vehere) via USRP-users <usrp-users@lists.ettus.com>
+Sent: Sunday, August 16, 2020 10:45:56 PM
+To: Marcus D. Leech <patchvonbraun@gmail.com>; usrp-users@lists.ettus.com <=
+usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Incorrect data from usrp 2955
+
+I am not observing one individual channel but phase difference between two =
+channels. I very well know individual channel would show random phases but =
+not the phase difference when same signal is injected in two channels. I ho=
+pe you are aware that phase difference =3D 2pi/lambda* path_difference. Pat=
+h difference is constant as that=92s the difference between two paths of tw=
+o daughterboards and hence this phase difference is constant. Remember same=
+ signal is injected so initial phases would be same for two channels and on=
+ly the difference in the signal path lengths bring the difference which is =
+constant
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: Marcus D. Leech <patchvonbraun@gmail.com>
+Sent: Sunday, August 16, 2020 10:39 PM
+To: Koyel Das (Vehere); usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] Incorrect data from usrp 2955
+
+On 08/16/2020 12:46 PM, Koyel Das (Vehere) wrote:
+The measurement is not initial phase but the phase difference between two c=
+hannels
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+Are you using an external reference, or using the internal clock in the X31=
+0?
+
+If you observe an individual channel, is it "sane" ?  That is, apparently o=
+n-frequency, and with correct amplitudes and low distortion?
+
+
+________________________________
+From: Koyel Das (Vehere) <koyel.das@vehere.com><mailto:koyel.das@vehere.com=
 >
-> Get Outlook for iOS <https://aka.ms/o0ukef>
-Yes, I fully understand that.  I'm simply suggesting some simple 
-diagnostics to determine whether, as individual channels, the receivers are
-   working correctly.
+Sent: Sunday, August 16, 2020 10:15:48 PM
+To: Marcus D. Leech <patchvonbraun@gmail.com><mailto:patchvonbraun@gmail.co=
+m>; usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com> <usrp-use=
+rs@lists.ettus.com><mailto:usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Incorrect data from usrp 2955
+
+the phase difference between two channels of USRP as a function of frequenc=
+y and time,  when measured by splitting the same signal and feeding two cha=
+nnels of usrp, are wandering around wrt one another which was not happening=
+ before. I had given demo more than 30 times based on this principle and te=
+sted previously more than 50 times and I got correct result every time. Now=
+ only suddenly it started happening. The frequency is 2.4 GHz and bandwidth=
+ I tried from 1 MHz to 100 MHz. Previously the whole bandwidth was showing =
+similar values but then suddenly started behaving abnormally giving near to=
+ correct result sometimes and sometimes junk.
+
+Regards,
+Koyel
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: Marcus D. Leech <patchvonbraun@gmail.com><mailto:patchvonbraun@gmail.=
+com>
+Sent: Sunday, August 16, 2020 10:05 PM
+To: Koyel Das (Vehere); usrp-users@lists.ettus.com<mailto:usrp-users@lists.=
+ettus.com>
+Subject: Re: [USRP-users] Incorrect data from usrp 2955
+
+On 08/15/2020 11:59 PM, Koyel Das (Vehere) wrote:
+No it doesn=92t look better again after reducing gain. Sometimes the phase =
+differences are closeby but not so same as we were getting before and most =
+of the times they are totally incorrect. Strength of the signal when we tri=
+ed with maximum gain was near -40 dbm.
+
+Regards,
+Koyel
+To clarify some things.
+
+(A) The phase errors are just the initial phases--they don't wander around =
+with respect to one another during a run?
+(B) What frequency range?
 
 
-> ------------------------------------------------------------------------
-> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
-> *Sent:* Sunday, August 16, 2020 10:39 PM
-> *To:* Koyel Das (Vehere); usrp-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Incorrect data from usrp 2955
-> On 08/16/2020 12:46 PM, Koyel Das (Vehere) wrote:
->> The measurement is not initial phase but the phase difference between 
->> two channels
->>
->> Get Outlook for iOS <https://aka.ms/o0ukef>
-> Are you using an external reference, or using the internal clock in 
-> the X310?
->
-> If you observe an individual channel, is it "sane" ?  That is, 
-> apparently on-frequency, and with correct amplitudes and low distortion?
->
->
->> ------------------------------------------------------------------------
->> *From:* Koyel Das (Vehere) <koyel.das@vehere.com>
->> *Sent:* Sunday, August 16, 2020 10:15:48 PM
->> *To:* Marcus D. Leech <patchvonbraun@gmail.com>; 
->> usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
->> *Subject:* Re: [USRP-users] Incorrect data from usrp 2955
->> the phase difference between two channels of USRP as a function of 
->> frequency and time,  when measured by splitting the same signal and 
->> feeding two channels of usrp, are wandering around wrt one another 
->> which was not happening before. I had given demo more than 30 times 
->> based on this principle and tested previously more than 50 times and 
->> I got correct result every time. Now only suddenly it started 
->> happening. The frequency is 2.4 GHz and bandwidth I tried from 1 MHz 
->> to 100 MHz. Previously the whole bandwidth was showing similar values 
->> but then suddenly started behaving abnormally giving near to correct 
->> result sometimes and sometimes junk.
->>
->> Regards,
->> Koyel
->> Get Outlook for iOS <https://aka.ms/o0ukef>
->> ------------------------------------------------------------------------
->> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
->> *Sent:* Sunday, August 16, 2020 10:05 PM
->> *To:* Koyel Das (Vehere); usrp-users@lists.ettus.com
->> *Subject:* Re: [USRP-users] Incorrect data from usrp 2955
->> On 08/15/2020 11:59 PM, Koyel Das (Vehere) wrote:
->>> No it doesn’t look better again after reducing gain. Sometimes the 
->>> phase differences are closeby but not so same as we were getting 
->>> before and most of the times they are totally incorrect. Strength of 
->>> the signal when we tried with maximum gain was near -40 dbm.
->>>
->>> Regards,
->>> Koyel
->> To clarify some things.
->>
->> (A) The phase errors are just the initial phases--they don't wander 
->> around with respect to one another during a run?
->> (B) What frequency range?
->>
->>
->>>
->>> Get Outlook for iOS <https://aka.ms/o0ukef>
->>> ------------------------------------------------------------------------
->>> *From:* USRP-users <usrp-users-bounces@lists.ettus.com> 
->>> <mailto:usrp-users-bounces@lists.ettus.com> on behalf of Marcus D. 
->>> Leech via USRP-users <usrp-users@lists.ettus.com> 
->>> <mailto:usrp-users@lists.ettus.com>
->>> *Sent:* Sunday, August 16, 2020 12:25:37 AM
->>> *To:* usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com> 
->>> <usrp-users@lists.ettus.com> <mailto:usrp-users@lists.ettus.com>
->>> *Subject:* Re: [USRP-users] Incorrect data from usrp 2955
->>> On 08/15/2020 01:16 PM, Koyel Das (Vehere) via USRP-users wrote:
->>>> Hi,
->>>>
->>>> We are using USRP 2955. Something has gone wrong. Before we were 
->>>> getting constant phase difference across channels for limited 
->>>> bandwidth and with time when we split single antenna signal using 
->>>> splitter and fed two channels of USRP but now it is not doing so. 
->>>> This happened on Friday that after getting a series of correct 
->>>> results : constant phase difference across channels by feeding 
->>>> signal using splitter as mentioned above, we suddenly started to 
->>>> receive wrong data: random phase  across channels and with time 
->>>> using the same setup with splitter. The thing we did was setting 
->>>> gain to near maximum and receiving 100 MHz sample rate. But I don't 
->>>> think amplifier has damaged because in this usrp we have four 
->>>> independent channels and when we connected the splitter to unused 
->>>> channels then also we got wrong data. What can go wrong that USRP 
->>>> is streaming data but phases are wrong? What do you think? Please 
->>>> let me know.
->>>>
->>>> Regards,
->>>> Koyel
->>>>
->>>> Get Outlook for iOS <https://aka.ms/o0ukef>
->>>>
->>>>
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com  <mailto:USRP-users@lists.ettus.com>
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>> Does it look better again when you reduce the gain?
->>>
->>> What is the magnitude of the signals going to the RX ports?
->>>
->>>
->>
->
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: USRP-users <usrp-users-bounces@lists.ettus.com><mailto:usrp-users-bou=
+nces@lists.ettus.com> on behalf of Marcus D. Leech via USRP-users <usrp-use=
+rs@lists.ettus.com><mailto:usrp-users@lists.ettus.com>
+Sent: Sunday, August 16, 2020 12:25:37 AM
+To: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com> <usrp-use=
+rs@lists.ettus.com><mailto:usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Incorrect data from usrp 2955
+
+On 08/15/2020 01:16 PM, Koyel Das (Vehere) via USRP-users wrote:
+Hi,
+
+We are using USRP 2955. Something has gone wrong. Before we were getting co=
+nstant phase difference across channels for limited bandwidth and with time=
+ when we split single antenna signal using splitter and fed two channels of=
+ USRP but now it is not doing so. This happened on Friday that after gettin=
+g a series of correct results : constant phase difference across channels b=
+y feeding signal using splitter as mentioned above, we suddenly started to =
+receive wrong data: random phase  across channels and with time using the s=
+ame setup with splitter. The thing we did was setting gain to near maximum =
+and receiving 100 MHz sample rate. But I don't think amplifier has damaged =
+because in this usrp we have four independent channels and when we connecte=
+d the splitter to unused channels then also we got wrong data. What can go =
+wrong that USRP is streaming data but phases are wrong? What do you think? =
+Please let me know.
+
+Regards,
+Koyel
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
 
 
---------------030809080605010408010903
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+Does it look better again when you reduce the gain?
+
+What is the magnitude of the signals going to the RX ports?
+
+
+
+
+
+--_000_MA1PR01MB25886EB4A528F11F21A10C6D905E0MA1PR01MB2588INDP_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/16/2020 01:15 PM, Koyel Das
-      (Vehere) wrote:<br>
-    </div>
-    <blockquote
-cite="mid:MA1PR01MB25882A435C92F1F1BBE5DF2E905E0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <div dir="ltr">
-        <div>
-          <div>I am not observing one individual channel but phase
-            difference between two channels. I very well know individual
-            channel would show random phases but not the phase
-            difference when same signal is injected in two channels. I
-            hope you are aware that phase difference = 2pi/lambda*
-            path_difference. Path difference is constant as that’s the
-            difference between two paths of two daughterboards and hence
-            this phase difference is constant. Remember same signal is
-            injected so initial phases would be same for two channels
-            and only the difference in the signal path lengths bring the
-            difference which is constant </div>
-          <div><br>
-          </div>
-          <div class="ms-outlook-ios-signature"
-            id="ms-outlook-mobile-signature">Get <a
-              moz-do-not-send="true" href="https://aka.ms/o0ukef">
-              Outlook for iOS</a></div>
-        </div>
-      </div>
-    </blockquote>
-    Yes, I fully understand that.  I'm simply suggesting some simple
-    diagnostics to determine whether, as individual channels, the
-    receivers are<br>
-      working correctly.<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:MA1PR01MB25882A435C92F1F1BBE5DF2E905E0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM"
-      type="cite">
-      <div dir="ltr">
-        <div>
-        </div>
-        <div id="id-add88a81-197d-43fc-a088-cb38d9d34fbf"
-          class="ms-outlook-mobile-reference-message">
-          <hr style="display: inline-block; width: 98%; font-family:
-            -webkit-standard; font-size: 12pt; color: rgb(0, 0, 0);"
-            tabindex="-1">
-          <div id="divRplyFwdMsg" dir="ltr"><font face="Calibri,
-              sans-serif"><b>From:</b> Marcus D. Leech
-              <a class="moz-txt-link-rfc2396E" href="mailto:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a><br>
-              <b>Sent:</b> Sunday, August 16, 2020 10:39 PM<br>
-              <b>To:</b> Koyel Das (Vehere); <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
-              <b>Subject:</b> Re: [USRP-users] Incorrect data from usrp
-              2955
-              <div> </div>
-            </font></div>
-          <meta content="text/html; charset=Windows-1252">
-          <div class="moz-cite-prefix">On 08/16/2020 12:46 PM, Koyel Das
-            (Vehere) wrote:<br>
-          </div>
-          <blockquote type="cite">
-            <div dir="ltr">
-              <div>
-                <div dir="ltr">The measurement is not initial phase but
-                  the phase difference between two channels </div>
-                <div><br>
-                </div>
-                <div class="ms-outlook-ios-signature"
-                  id="ms-outlook-mobile-signature">Get <a
-                    moz-do-not-send="true" href="https://aka.ms/o0ukef">
-                    Outlook for iOS</a></div>
-              </div>
-            </div>
-          </blockquote>
-          Are you using an external reference, or using the internal
-          clock in the X310?<br>
-          <br>
-          If you observe an individual channel, is it "sane" ?  That is,
-          apparently on-frequency, and with correct amplitudes and low
-          distortion?<br>
-          <br>
-          <br>
-          <blockquote type="cite">
-            <div dir="ltr">
-            </div>
-            <hr tabindex="-1" style="display:inline-block; width:98%">
-            <div id="divRplyFwdMsg" dir="ltr"><font
-                style="font-size:11pt" color="#000000" face="Calibri,
-                sans-serif"><b>From:</b> Koyel Das (Vehere)
-                <a moz-do-not-send="true" class="moz-txt-link-rfc2396E"
-                  href="mailto:koyel.das@vehere.com">&lt;koyel.das@vehere.com&gt;</a><br>
-                <b>Sent:</b> Sunday, August 16, 2020 10:15:48 PM<br>
-                <b>To:</b> Marcus D. Leech <a moz-do-not-send="true"
-                  class="moz-txt-link-rfc2396E"
-                  href="mailto:patchvonbraun@gmail.com">
-                  &lt;patchvonbraun@gmail.com&gt;</a>; <a
-                  moz-do-not-send="true"
-                  class="moz-txt-link-abbreviated"
-                  href="mailto:usrp-users@lists.ettus.com">
-                  usrp-users@lists.ettus.com</a> <a
-                  moz-do-not-send="true" class="moz-txt-link-rfc2396E"
-                  href="mailto:usrp-users@lists.ettus.com">
-                  &lt;usrp-users@lists.ettus.com&gt;</a><br>
-                <b>Subject:</b> Re: [USRP-users] Incorrect data from
-                usrp 2955</font>
-              <div> </div>
-            </div>
-            <div>
-              <div dir="ltr">
-                <div>
-                  <div dir="ltr"><span style="font-size:inherit">the
-                      phase difference between two channels of USRP as a
-                      function of frequency and time,  when measured by
-                      splitting the same signal and feeding two channels
-                      of usrp, are wandering around wrt one another
-                      which was not happening before. I had given demo
-                      more than 30 times based on this principle and
-                      tested previously more than 50 times and I got
-                      correct result every time. Now only suddenly it
-                      started happening. The frequency is 2.4 GHz and
-                      bandwidth I tried from 1 MHz to 100 MHz.
-                      Previously the whole bandwidth was showing similar
-                      values but then suddenly started behaving
-                      abnormally giving near to correct result sometimes
-                      and sometimes junk.</span><br>
-                  </div>
-                  <div dir="ltr"><span style="font-size:inherit"><br>
-                    </span></div>
-                  <div dir="ltr"><span style="font-size:inherit">Regards,</span></div>
-                  <div dir="ltr">Koyel </div>
-                  <div class="x_ms-outlook-ios-signature"
-                    id="x_ms-outlook-mobile-signature">Get <a
-                      moz-do-not-send="true"
-                      href="https://aka.ms/o0ukef">
-                      Outlook for iOS</a></div>
-                </div>
-                <div id="x_id-d2ed923a-74ce-4157-8a68-f15a06251364"
-                  class="x_ms-outlook-mobile-reference-message">
-                  <hr tabindex="-1" style="display:inline-block;
-                    width:98%; font-size:12pt; color:rgb(0,0,0)">
-                  <div id="x_divRplyFwdMsg" dir="ltr"><font
-                      face="Calibri, sans-serif"><b>From:</b> Marcus D.
-                      Leech
-                      <a moz-do-not-send="true"
-                        class="moz-txt-link-rfc2396E"
-                        href="mailto:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a><br>
-                      <b>Sent:</b> Sunday, August 16, 2020 10:05 PM<br>
-                      <b>To:</b> Koyel Das (Vehere); <a
-                        moz-do-not-send="true"
-                        class="moz-txt-link-abbreviated"
-                        href="mailto:usrp-users@lists.ettus.com">
-                        usrp-users@lists.ettus.com</a><br>
-                      <b>Subject:</b> Re: [USRP-users] Incorrect data
-                      from usrp 2955
-                      <div> </div>
-                    </font></div>
-                  <meta content="text/html; charset=Windows-1252">
-                  <div class="x_moz-cite-prefix">On 08/15/2020 11:59 PM,
-                    Koyel Das (Vehere) wrote:<br>
-                  </div>
-                  <blockquote type="cite">
-                    <div dir="ltr">
-                      <div>
-                        <div>No it doesn’t look better again after
-                          reducing gain. Sometimes the phase differences
-                          are closeby but not so same as we were getting
-                          before and most of the times they are totally
-                          incorrect. Strength of the signal when we
-                          tried with maximum gain was near -40 dbm.</div>
-                        <div dir="ltr"><br>
-                        </div>
-                        <div dir="ltr">Regards,</div>
-                        <div dir="ltr">Koyel <br>
-                        </div>
-                      </div>
-                    </div>
-                  </blockquote>
-                  To clarify some things.<br>
-                  <br>
-                  (A) The phase errors are just the initial phases--they
-                  don't wander around with respect to one another during
-                  a run?<br>
-                  (B) What frequency range?<br>
-                  <br>
-                  <br>
-                  <blockquote type="cite">
-                    <div dir="ltr">
-                      <div>
-                        <div><br>
-                        </div>
-                        <div class="x_ms-outlook-ios-signature"
-                          id="x_ms-outlook-mobile-signature">Get <a
-                            moz-do-not-send="true"
-                            href="https://aka.ms/o0ukef">
-                            Outlook for iOS</a></div>
-                      </div>
-                    </div>
-                    <hr tabindex="-1" style="display:inline-block;
-                      width:98%">
-                    <div id="x_divRplyFwdMsg" dir="ltr"><font
-                        style="font-size:11pt" color="#000000"
-                        face="Calibri, sans-serif"><b>From:</b>
-                        USRP-users
-                        <a moz-do-not-send="true"
-                          class="x_moz-txt-link-rfc2396E"
-                          href="mailto:usrp-users-bounces@lists.ettus.com">
-                          &lt;usrp-users-bounces@lists.ettus.com&gt;</a>
-                        on behalf of Marcus D. Leech via USRP-users
-                        <a moz-do-not-send="true"
-                          class="x_moz-txt-link-rfc2396E"
-                          href="mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
-                        <b>Sent:</b> Sunday, August 16, 2020 12:25:37 AM<br>
-                        <b>To:</b> <a moz-do-not-send="true"
-                          class="x_moz-txt-link-abbreviated"
-                          href="mailto:usrp-users@lists.ettus.com">
-                          usrp-users@lists.ettus.com</a> <a
-                          moz-do-not-send="true"
-                          class="x_moz-txt-link-rfc2396E"
-                          href="mailto:usrp-users@lists.ettus.com">
-                          &lt;usrp-users@lists.ettus.com&gt;</a><br>
-                        <b>Subject:</b> Re: [USRP-users] Incorrect data
-                        from usrp 2955</font>
-                      <div> </div>
-                    </div>
-                    <div style="background-color:#FFFFFF">
-                      <div class="x_x_moz-cite-prefix">On 08/15/2020
-                        01:16 PM, Koyel Das (Vehere) via USRP-users
-                        wrote:<br>
-                      </div>
-                      <blockquote type="cite">
-                        <div dir="ltr">
-                          <div>
-                            <div><span>Hi,<br>
-                              </span>
-                              <div dir="ltr"><br>
-                              </div>
-                              <span>We are using USRP 2955. Something
-                                has gone wrong. Before we were getting
-                                constant phase difference across
-                                channels for limited bandwidth and with
-                                time when we split single antenna signal
-                                using splitter and fed two channels of
-                                USRP but now it is not doing so. This
-                                happened on Friday that after getting a
-                                series of correct results : constant
-                                phase difference across channels by
-                                feeding signal using splitter as
-                                mentioned above, we suddenly started to
-                                receive wrong data: random phase  across
-                                channels and with time using the same
-                                setup with splitter. The thing we did
-                                was setting gain to near maximum and
-                                receiving 100 MHz sample rate. But I
-                                don't think amplifier has damaged
-                                because in this usrp we have four
-                                independent channels and when we
-                                connected the splitter to unused
-                                channels then also we got wrong data.
-                                What can go wrong that USRP is streaming
-                                data but phases are wrong? What do you
-                                think? Please let me know.</span><br>
-                            </div>
-                            <div dir="ltr"><span><br>
-                              </span></div>
-                            <div dir="ltr"><span>Regards,</span></div>
-                            <div dir="ltr"><span>Koyel </span></div>
-                            <div><br>
-                            </div>
-                            <div class="x_x_ms-outlook-ios-signature"
-                              id="x_x_ms-outlook-mobile-signature">Get
-                              <a moz-do-not-send="true"
-                                href="https://aka.ms/o0ukef">Outlook for
-                                iOS</a></div>
-                          </div>
-                        </div>
-                        <br>
-                        <fieldset class="x_x_mimeAttachmentHeader"></fieldset>
-                        <br>
-                        <pre>_______________________________________________
-USRP-users mailing list
-<a moz-do-not-send="true" class="x_x_moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a moz-do-not-send="true" class="x_x_moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+</head>
+<body>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div>I am using internal reference and I have not checked individual channe=
+l yet&nbsp;</div>
+<div><br>
+</div>
+<div class=3D"ms-outlook-ios-signature" id=3D"ms-outlook-mobile-signature">=
+Get <a href=3D"https://aka.ms/o0ukef">
+Outlook for iOS</a></div>
+</div>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
+sers-bounces@lists.ettus.com&gt; on behalf of Koyel Das (Vehere) via USRP-u=
+sers &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Sent:</b> Sunday, August 16, 2020 10:45:56 PM<br>
+<b>To:</b> Marcus D. Leech &lt;patchvonbraun@gmail.com&gt;; usrp-users@list=
+s.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div>I am not observing one individual channel but phase difference between=
+ two channels. I very well know individual channel would show random phases=
+ but not the phase difference when same signal is injected in two channels.=
+ I hope you are aware that phase
+ difference =3D 2pi/lambda* path_difference. Path difference is constant as=
+ that=92s the difference between two paths of two daughterboards and hence =
+this phase difference is constant. Remember same signal is injected so init=
+ial phases would be same for two channels
+ and only the difference in the signal path lengths bring the difference wh=
+ich is constant&nbsp;</div>
+<div><br>
+</div>
+<div class=3D"x_ms-outlook-ios-signature" id=3D"x_ms-outlook-mobile-signatu=
+re">Get <a href=3D"https://aka.ms/o0ukef">
+Outlook for iOS</a></div>
+</div>
+<div id=3D"x_id-add88a81-197d-43fc-a088-cb38d9d34fbf" class=3D"x_ms-outlook=
+-mobile-reference-message">
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%; font-size:12p=
+t; color:rgb(0,0,0)">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif">=
+<b>From:</b> Marcus D. Leech &lt;patchvonbraun@gmail.com&gt;<br>
+<b>Sent:</b> Sunday, August 16, 2020 10:39 PM<br>
+<b>To:</b> Koyel Das (Vehere); usrp-users@lists.ettus.com<br>
+<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955
+<div>&nbsp;</div>
+</font></div>
+<meta content=3D"text/html; charset=3DWindows-1252">
+<div class=3D"x_moz-cite-prefix">On 08/16/2020 12:46 PM, Koyel Das (Vehere)=
+ wrote:<br>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr">The measurement is not initial phase but the phase differe=
+nce between two channels&nbsp;</div>
+<div><br>
+</div>
+<div class=3D"x_ms-outlook-ios-signature" id=3D"x_ms-outlook-mobile-signatu=
+re">Get <a href=3D"https://aka.ms/o0ukef">
+Outlook for iOS</a></div>
+</div>
+</div>
+</blockquote>
+Are you using an external reference, or using the internal clock in the X31=
+0?<br>
+<br>
+If you observe an individual channel, is it &quot;sane&quot; ?&nbsp; That i=
+s, apparently on-frequency, and with correct amplitudes and low distortion?=
+<br>
+<br>
+<br>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">
+<div></div>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font color=3D"#000000" face=3D"Cal=
+ibri, sans-serif" style=3D"font-size:11pt"><b>From:</b> Koyel Das (Vehere)
+<a class=3D"x_moz-txt-link-rfc2396E" href=3D"mailto:koyel.das@vehere.com">&=
+lt;koyel.das@vehere.com&gt;</a><br>
+<b>Sent:</b> Sunday, August 16, 2020 10:15:48 PM<br>
+<b>To:</b> Marcus D. Leech <a class=3D"x_moz-txt-link-rfc2396E" href=3D"mai=
+lto:patchvonbraun@gmail.com">
+&lt;patchvonbraun@gmail.com&gt;</a>; <a class=3D"x_moz-txt-link-abbreviated=
+" href=3D"mailto:usrp-users@lists.ettus.com">
+usrp-users@lists.ettus.com</a> <a class=3D"x_moz-txt-link-rfc2396E" href=3D=
+"mailto:usrp-users@lists.ettus.com">
+&lt;usrp-users@lists.ettus.com&gt;</a><br>
+<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr"><span style=3D"font-size:inherit">the phase difference bet=
+ween two channels of USRP as a function of frequency and time,&nbsp; when m=
+easured by splitting the same signal and feeding two channels of usrp,&nbsp=
+;are wandering around wrt one another which was
+ not happening before. I had given demo more than 30 times based on this pr=
+inciple and tested previously more than 50 times and I got correct result e=
+very time. Now only suddenly it started happening. The frequency is 2.4 GHz=
+ and bandwidth I tried from 1 MHz
+ to 100 MHz. Previously the whole bandwidth was showing similar values but =
+then suddenly started behaving abnormally giving near to correct result som=
+etimes and sometimes junk.</span><br>
+</div>
+<div dir=3D"ltr"><span style=3D"font-size:inherit"><br>
+</span></div>
+<div dir=3D"ltr"><span style=3D"font-size:inherit">Regards,</span></div>
+<div dir=3D"ltr">Koyel&nbsp;</div>
+<div class=3D"x_x_ms-outlook-ios-signature" id=3D"x_x_ms-outlook-mobile-sig=
+nature">Get
+<a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
+</div>
+<div id=3D"x_x_id-d2ed923a-74ce-4157-8a68-f15a06251364" class=3D"x_x_ms-out=
+look-mobile-reference-message">
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%; font-size:12p=
+t; color:rgb(0,0,0)">
+<div id=3D"x_x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri,=0A=
+                sans-serif"><b>From:</b> Marcus D. Leech
+<a class=3D"x_moz-txt-link-rfc2396E" href=3D"mailto:patchvonbraun@gmail.com=
+">&lt;patchvonbraun@gmail.com&gt;</a><br>
+<b>Sent:</b> Sunday, August 16, 2020 10:05 PM<br>
+<b>To:</b> Koyel Das (Vehere); <a class=3D"x_moz-txt-link-abbreviated" href=
+=3D"mailto:usrp-users@lists.ettus.com">
+usrp-users@lists.ettus.com</a><br>
+<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955
+<div>&nbsp;</div>
+</font></div>
+<meta content=3D"text/html; charset=3DWindows-1252">
+<div class=3D"x_x_moz-cite-prefix">On 08/15/2020 11:59 PM, Koyel Das (Veher=
+e) wrote:<br>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">
+<div>
+<div>No it doesn=92t look better again after reducing gain. Sometimes the p=
+hase differences are closeby but not so same as we were getting before and =
+most of the times they are totally incorrect. Strength of the signal when w=
+e tried with maximum gain was near
+ -40 dbm.</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Regards,</div>
+<div dir=3D"ltr">Koyel <br>
+</div>
+</div>
+</div>
+</blockquote>
+To clarify some things.<br>
+<br>
+(A) The phase errors are just the initial phases--they don't wander around =
+with respect to one another during a run?<br>
+(B) What frequency range?<br>
+<br>
+<br>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">
+<div>
+<div><br>
+</div>
+<div class=3D"x_x_ms-outlook-ios-signature" id=3D"x_x_ms-outlook-mobile-sig=
+nature">Get
+<a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
+</div>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_x_divRplyFwdMsg" dir=3D"ltr"><font color=3D"#000000" face=3D"C=
+alibri,=0A=
+                  sans-serif" style=3D"font-size:11pt"><b>From:</b> USRP-us=
+ers
+<a class=3D"x_x_moz-txt-link-rfc2396E" href=3D"mailto:usrp-users-bounces@li=
+sts.ettus.com">
+&lt;usrp-users-bounces@lists.ettus.com&gt;</a> on behalf of Marcus D. Leech=
+ via USRP-users
+<a class=3D"x_x_moz-txt-link-rfc2396E" href=3D"mailto:usrp-users@lists.ettu=
+s.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
+<b>Sent:</b> Sunday, August 16, 2020 12:25:37 AM<br>
+<b>To:</b> <a class=3D"x_x_moz-txt-link-abbreviated" href=3D"mailto:usrp-us=
+ers@lists.ettus.com">
+usrp-users@lists.ettus.com</a> <a class=3D"x_x_moz-txt-link-rfc2396E" href=
+=3D"mailto:usrp-users@lists.ettus.com">
+&lt;usrp-users@lists.ettus.com&gt;</a><br>
+<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955</font>
+<div>&nbsp;</div>
+</div>
+<div style=3D"background-color:#FFFFFF">
+<div class=3D"x_x_x_moz-cite-prefix">On 08/15/2020 01:16 PM, Koyel Das (Veh=
+ere) via USRP-users wrote:<br>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">
+<div>
+<div><span>Hi,<br>
+</span>
+<div dir=3D"ltr"><br>
+</div>
+<span>We are using USRP 2955. Something has gone wrong. Before we were gett=
+ing constant phase difference across channels for limited bandwidth&nbsp;an=
+d with time when we split single antenna signal using splitter and fed two =
+channels of USRP but now it is not doing
+ so. This happened on Friday that after getting a series of correct results=
+ : constant phase difference across channels by feeding signal&nbsp;using s=
+plitter as mentioned above,&nbsp;we suddenly started to receive wrong data:=
+ random phase &nbsp;across channels and with time
+ using the same setup with splitter.&nbsp;The thing we did was setting gain=
+ to near maximum and receiving 100 MHz sample rate. But I don't think ampli=
+fier has damaged because in this usrp we have four independent channels and=
+ when we connected the splitter to unused
+ channels then also we got wrong data. What can go wrong that USRP is strea=
+ming data but phases are wrong? What do you think? Please let me know.</spa=
+n><br>
+</div>
+<div dir=3D"ltr"><span><br>
+</span></div>
+<div dir=3D"ltr"><span>Regards,</span></div>
+<div dir=3D"ltr"><span>Koyel&nbsp;</span></div>
+<div><br>
+</div>
+<div class=3D"x_x_x_ms-outlook-ios-signature" id=3D"x_x_x_ms-outlook-mobile=
+-signature">
+Get <a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
+</div>
+</div>
+<br>
+<fieldset class=3D"x_x_x_mimeAttachmentHeader"></fieldset> <br>
+<pre>_______________________________________________=0A=
+USRP-users mailing list=0A=
+<a class=3D"x_x_x_moz-txt-link-abbreviated" href=3D"mailto:USRP-users@lists=
+.ettus.com">USRP-users@lists.ettus.com</a>=0A=
+<a class=3D"x_x_x_moz-txt-link-freetext" href=3D"http://lists.ettus.com/mai=
+lman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/li=
+stinfo/usrp-users_lists.ettus.com</a>=0A=
 </pre>
-                      </blockquote>
-                      Does it look better again when you reduce the
-                      gain?<br>
-                      <br>
-                      What is the magnitude of the signals going to the
-                      RX ports?<br>
-                      <br>
-                      <br>
-                    </div>
-                  </blockquote>
-                  <br>
-                </div>
-              </div>
-            </div>
-          </blockquote>
-          <br>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
+</blockquote>
+Does it look better again when you reduce the gain?<br>
+<br>
+What is the magnitude of the signals going to the RX ports?<br>
+<br>
+<br>
+</div>
+</blockquote>
+<br>
+</div>
+</div>
+</div>
+</blockquote>
+<br>
+</div>
+</div>
+</div>
+</body>
 </html>
 
---------------030809080605010408010903--
+--_000_MA1PR01MB25886EB4A528F11F21A10C6D905E0MA1PR01MB2588INDP_--
 
 
---===============5306643501065705646==
+--===============0162202777634216556==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -552,5 +543,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5306643501065705646==--
+--===============0162202777634216556==--
 
