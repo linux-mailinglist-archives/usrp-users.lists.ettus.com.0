@@ -2,37 +2,37 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F266245985
-	for <lists+usrp-users@lfdr.de>; Sun, 16 Aug 2020 22:49:09 +0200 (CEST)
-Received: from [::1] (port=47142 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22A3D24599D
+	for <lists+usrp-users@lfdr.de>; Sun, 16 Aug 2020 23:10:35 +0200 (CEST)
+Received: from [::1] (port=47294 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k7PaW-0007xI-6c; Sun, 16 Aug 2020 16:49:08 -0400
-Received: from mr85p00im-zteg06011501.me.com ([17.58.23.182]:40798)
+	id 1k7PvD-0000sk-UW; Sun, 16 Aug 2020 17:10:31 -0400
+Received: from mr85p00im-ztdg06021101.me.com ([17.58.23.180]:56138)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <ghulands@me.com>) id 1k7PaS-0007qA-Fe
- for usrp-users@lists.ettus.com; Sun, 16 Aug 2020 16:49:04 -0400
+ (Exim 4.93) (envelope-from <ghulands@me.com>) id 1k7PvA-0000cr-5b
+ for usrp-users@lists.ettus.com; Sun, 16 Aug 2020 17:10:28 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
- t=1597610903; bh=6id09DBa3pBnICZn2kRDVVkqd7B+CSJXhtndDB6mXxQ=;
- h=From:Message-Id:Content-Type:Mime-Version:Subject:Date:To;
- b=vj2hLJsfRXqb5ICoX2XoC2CgyvBDppb3IoUD//ONJ8LzaaqV7rEcoA4qEwHVN5jP3
- t8Od3+fklnndG0ta596PpukR5X2+2xuYx2lGTOFHcFDxJY/XVsCFK2oIWsuaDgnyiP
- LVlBOfMkt0SDf8237PGCbUcMaahH5U/tzUps9R0n8/zr9Jhs09cmCXV7184h/1N9IK
- 4NsP9pu9BA6TKNQUNncqpVzlDDnakQh1IWBroFg0UqcNAFjle3WN4LKwQ/3oiiiv2u
- THz9gwShz6P410jPdZ0bxq4jJAaGZRjYhoy4S1Qs9czYhXBp2Q2Z4R1dVms5o4WHS8
- 21I+aWe4NWNBw==
+ t=1597612187; bh=Lry8pPPk9TG9XVH2apI0oXFPA8M6FxEIVLyluXhpwGs=;
+ h=Content-Type:Mime-Version:Subject:From:Date:Message-Id:To;
+ b=0H3PhLnmtbE8JVzZRATKymGo2rmdOzQNELOGV4uJOE5gSF7zOd/GtYMbCfcnigZF8
+ eVntrn6CsQWgL1qJWGh5LuDlPyBF3rTnpG2Oskf/ZZv6hOIiArK3Pg2RZWXIzCJdgN
+ 9G8Qc62OGHdjcI8AkSINPHeOEWxwhwAx3Z3tRBZpPiVpjQaPkNlj1CzoEXZhM6iIHl
+ e9YV9UxxFyx4DfqWbnOxN6e8ZDs77RePgzI+dk1iZYcjovZrHmiCM3xZLb8AP/XL+x
+ QjoxXDJiSyzB1KhQ/DS7lTYYP1g4Q6PLhn0ZyEG5NWbobHfoFsqJ64VUAIphWdLsx7
+ 2kSFk8ze219/w==
 Received: from gregs-mbp-82.ghulands.homeip.net
  (c-73-116-156-63.hsd1.ca.comcast.net [73.116.156.63])
- by mr85p00im-zteg06011501.me.com (Postfix) with ESMTPSA id 1693C2A07D6;
- Sun, 16 Aug 2020 20:48:23 +0000 (UTC)
-Message-Id: <387BD354-DF4A-4D29-9D10-30CBE911C762@me.com>
+ by mr85p00im-ztdg06021101.me.com (Postfix) with ESMTPSA id E4F1834074A;
+ Sun, 16 Aug 2020 21:09:46 +0000 (UTC)
 Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.80.23.2.2\))
-Date: Sun, 16 Aug 2020 13:48:22 -0700
-In-Reply-To: <5F399965.3060808@gmail.com>
+In-Reply-To: <20b51081-1754-ca2c-76fc-2b727a7856db@comcast.net>
+Date: Sun, 16 Aug 2020 14:09:46 -0700
 Cc: usrp-users@lists.ettus.com
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-Id: <5035A835-9B2F-4A8C-9EBE-D84CE29FB968@me.com>
 References: <84027C06-239F-4DD5-B847-D9F777453988@me.com>
- <5F399965.3060808@gmail.com>
+ <20b51081-1754-ca2c-76fc-2b727a7856db@comcast.net>
+To: Ron Economos <w6rz@comcast.net>
 X-Mailer: Apple Mail (2.3608.80.23.2.2)
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
  definitions=2020-08-16_09:2020-08-14,
@@ -41,7 +41,7 @@ X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
  malwarescore=0
  phishscore=0 bulkscore=0 spamscore=0 clxscore=1011 mlxscore=0
  mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-2004280000 definitions=main-2008160173
+ scancount=1 engine=8.0.1-2004280000 definitions=main-2008160176
 Subject: Re: [USRP-users] B210 Got a ctrl packet with unknown SID
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -56,7 +56,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Greg Hulands via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Greg Hulands <ghulands@me.com>
-Content-Type: multipart/mixed; boundary="===============8511330768735862905=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,367 +71,84 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-
---===============8511330768735862905==
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_1D34E482-1468-4B9E-8DD1-EDB45E89C41B"
-
-
---Apple-Mail=_1D34E482-1468-4B9E-8DD1-EDB45E89C41B
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-Hi,
-Thanks for the suggestion. Adding that parameter didn=E2=80=99t help. =
-The encoding is done on the GPU of the Jetson and cpu load is only 10% =
-when this is happening.
-
-Any other ideas?
-
-Thanks,
-Greg
-
-> On Aug 16, 2020, at 1:39 PM, Marcus D. Leech via USRP-users =
-<usrp-users@lists.ettus.com> wrote:
->=20
-> On 08/16/2020 04:13 PM, Greg Hulands via USRP-users wrote:
->> Hi,
->> I=E2=80=99m playing around with a Jetson Nano dev kit and trying to =
-stream h265 encoded video over dvb-t2 using the b210. I am using the =
-example from the dtv folder of gr. I modified the source file to read =
-from a file made with mkfifo.
->>=20
->> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; =
-UHD_3.15.0.0-54-gbc585b43
->> [INFO] [B200] Detected Device: B210
->> [INFO] [B200] Operating over USB 3.
->> [INFO] [B200] Initialize CODEC control...
->> [INFO] [B200] Initialize Radio control...
->> [INFO] [B200] Performing register loopback test...
->> [INFO] [B200] Register loopback test passed
->> [INFO] [B200] Performing register loopback test...
->> [INFO] [B200] Register loopback test passed
->> [INFO] [B200] Asking for clock rate 36.571429 MHz...
->> [INFO] [B200] Actually got clock rate 36.571428 MHz.
->>=20
->> I then launch the gstreamer pipeline and then the below is output and =
-nothing is transmitted. I googled around and it was suggested that the =
-usb3 controller might be an issue, but I have seen other people =
-successfully using the Jetson Nano with the board.
->>=20
->> Does anyone have any suggestions?
->>=20
->> Thanks,
->> Greg
-> Those 'S' are a strong indication that your USB subsystem is really =
-not keeping up.  I'm not surprised, given that it's having to do both =
-encoding,
->  and managing a high-speed sample-flow to the USRP.
->=20
-> The 'S' means 'sequence error', which generally mans your USB is =
-dropping frames.   You could try adding 'num-rx_frames=3D128' to your
->  device arguments and see if that helps.
->=20
->=20
->>=20
->> SSSSSSSS[ERROR] [B200] Got a ctrl packet with unknown SID 207029870
->> SSSSSSSSSSSS[ERROR] [B200] Got a ctrl packet with unknown SID =
-392757359
->> SSSS[ERROR] [B200] Got a ctrl packet with unknown SID 57090934
->> [ERROR] [B200] Got a ctrl packet with unknown SID 190782680
->> SSSSSSSSSSS[ERROR] [B200] Got a ctrl packet with unknown SID =
-4268095150
->> [ERROR] [B200] Got a ctrl packet with unknown SID 139913854
->> [ERROR] [B200] Got a ctrl packet with unknown SID 4067295524
->> SSSSSSSSSS[ERROR] [B200] Got a ctrl packet with unknown SID =
-4284742065
->> SSSSSSSS[ERROR] [B200] Got a ctrl packet with unknown SID 22226522
->> [ERROR] [B200] Got a ctrl packet with unknown SID 90499236
->> SS[ERROR] [B200] Got a ctrl packet with unknown SID 23069098
->> SS[ERROR] [B200] Got a ctrl packet with unknown SID 4066441695
->> [ERROR] [B200] Got a ctrl packet with unknown SID 4133743282
->> S[ERROR] [B200] Got a ctrl packet with unknown SID 4150322913
->> [ERROR] [B200] Got a ctrl packet with unknown SID 90109890
->> [ERROR] [B200] Got a ctrl packet with unknown SID 441973211
->> [ERROR] [B200] Got a ctrl packet with unknown SID 241827466
->> [ERROR] [B200] Got a ctrl packet with unknown SID 124189179
->> [ERROR] [B200] Got a ctrl packet with unknown SID 73204104
->> [ERROR] [B200] Got a ctrl packet with unknown SID 458545291
->> [ERROR] [B200] Got a ctrl packet with unknown SID 3664645059
->> S[ERROR] [B200] Got a ctrl packet with unknown SID 4200001599
->> [ERROR] [B200] Got a ctrl packet with unknown SID 4184080041
->> [ERROR] [B200] Got a ctrl packet with unknown SID 3781167125
->> SSSSSSUSSSSSSSS[ERROR] [B200] Got a ctrl packet with unknown SID =
-224652429
->> [ERROR] [B200] Got a ctrl packet with unknown SID 56228458
->> SSSSSS[ERROR] [B200] Got a ctrl packet with unknown SID 3981447612
->> SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS[ERROR] [B200] Got a =
-ctrl packet with unknown SID 340790525
->> SSS[ERROR] [B200] Got a ctrl packet with unknown SID 945686494
->> SSSSSSS[ERROR] [B200] Got a ctrl packet with unknown SID 22817439
->> SSS
->>=20
->> Gstreamer pipeline:
->> gst-launch-1.0 nvarguscamerasrc ! 'video/x-raw(memory:NVMM), =
-width=3D1920, height=3D1080,format=3DNV12, framerate=3D30/1' ! =
-nvv4l2h265enc bitrate=3D8000000 ! mpegtsmux ! filesink =
-location=3Dcamera.ts
->>=20
->>=20
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->=20
->=20
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com =
-<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
-
---Apple-Mail=_1D34E482-1468-4B9E-8DD1-EDB45E89C41B
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D"">Hi,<div class=3D"">Thanks for the suggestion. Adding that =
-parameter didn=E2=80=99t help. The encoding is done on the GPU of the =
-Jetson and cpu load is only 10% when this is happening.</div><div =
-class=3D""><br class=3D""></div><div class=3D"">Any other =
-ideas?</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Thanks,</div><div class=3D"">Greg</div><div class=3D""><div><br=
- class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On Aug =
-16, 2020, at 1:39 PM, Marcus D. Leech via USRP-users &lt;<a =
-href=3D"mailto:usrp-users@lists.ettus.com" =
-class=3D"">usrp-users@lists.ettus.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><span =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none; float: none; =
-display: inline !important;" class=3D"">On 08/16/2020 04:13 PM, Greg =
-Hulands via USRP-users wrote:</span><br style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><blockquote type=3D"cite" =
-style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D"">Hi,<br class=3D"">I=E2=80=99m playing =
-around with a Jetson Nano dev kit and trying to stream h265 encoded =
-video over dvb-t2 using the b210. I am using the example from the dtv =
-folder of gr. I modified the source file to read from a file made with =
-mkfifo.<br class=3D""><br class=3D"">[INFO] [UHD] linux; GNU C++ version =
-7.5.0; Boost_106501; UHD_3.15.0.0-54-gbc585b43<br class=3D"">[INFO] =
-[B200] Detected Device: B210<br class=3D"">[INFO] [B200] Operating over =
-USB 3.<br class=3D"">[INFO] [B200] Initialize CODEC control...<br =
-class=3D"">[INFO] [B200] Initialize Radio control...<br class=3D"">[INFO] =
-[B200] Performing register loopback test...<br class=3D"">[INFO] [B200] =
-Register loopback test passed<br class=3D"">[INFO] [B200] Performing =
-register loopback test...<br class=3D"">[INFO] [B200] Register loopback =
-test passed<br class=3D"">[INFO] [B200] Asking for clock rate 36.571429 =
-MHz...<br class=3D"">[INFO] [B200] Actually got clock rate 36.571428 =
-MHz.<br class=3D""><br class=3D"">I then launch the gstreamer pipeline =
-and then the below is output and nothing is transmitted. I googled =
-around and it was suggested that the usb3 controller might be an issue, =
-but I have seen other people successfully using the Jetson Nano with the =
-board.<br class=3D""><br class=3D"">Does anyone have any suggestions?<br =
-class=3D""><br class=3D"">Thanks,<br class=3D"">Greg<br =
-class=3D""></blockquote><span style=3D"caret-color: rgb(0, 0, 0); =
-font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none; float: none; display: inline !important;" =
-class=3D"">Those 'S' are a strong indication that your USB subsystem is =
-really not keeping up. &nbsp;I'm not surprised, given that it's having =
-to do both encoding,</span><br style=3D"caret-color: rgb(0, 0, 0); =
-font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><span style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none; float: none; display: inline !important;" =
-class=3D"">&nbsp;and managing a high-speed sample-flow to the =
-USRP.</span><br style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><br style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><span style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none; float: none; display: inline !important;" class=3D"">The 'S' means =
-'sequence error', which generally mans your USB is dropping frames. =
-&nbsp;&nbsp;You could try adding 'num-rx_frames=3D128' to your</span><br =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none;" class=3D""><span =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none; float: none; =
-display: inline !important;" class=3D"">&nbsp;device arguments and see =
-if that helps.</span><br style=3D"caret-color: rgb(0, 0, 0); =
-font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><br style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><br style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><blockquote type=3D"cite" =
-style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><br class=3D"">SSSSSSSS[ERROR] [B200] =
-Got a ctrl packet with unknown SID 207029870<br =
-class=3D"">SSSSSSSSSSSS[ERROR] [B200] Got a ctrl packet with unknown SID =
-392757359<br class=3D"">SSSS[ERROR] [B200] Got a ctrl packet with =
-unknown SID 57090934<br class=3D"">[ERROR] [B200] Got a ctrl packet with =
-unknown SID 190782680<br class=3D"">SSSSSSSSSSS[ERROR] [B200] Got a ctrl =
-packet with unknown SID 4268095150<br class=3D"">[ERROR] [B200] Got a =
-ctrl packet with unknown SID 139913854<br class=3D"">[ERROR] [B200] Got =
-a ctrl packet with unknown SID 4067295524<br class=3D"">SSSSSSSSSS[ERROR] =
-[B200] Got a ctrl packet with unknown SID 4284742065<br =
-class=3D"">SSSSSSSS[ERROR] [B200] Got a ctrl packet with unknown SID =
-22226522<br class=3D"">[ERROR] [B200] Got a ctrl packet with unknown SID =
-90499236<br class=3D"">SS[ERROR] [B200] Got a ctrl packet with unknown =
-SID 23069098<br class=3D"">SS[ERROR] [B200] Got a ctrl packet with =
-unknown SID 4066441695<br class=3D"">[ERROR] [B200] Got a ctrl packet =
-with unknown SID 4133743282<br class=3D"">S[ERROR] [B200] Got a ctrl =
-packet with unknown SID 4150322913<br class=3D"">[ERROR] [B200] Got a =
-ctrl packet with unknown SID 90109890<br class=3D"">[ERROR] [B200] Got a =
-ctrl packet with unknown SID 441973211<br class=3D"">[ERROR] [B200] Got =
-a ctrl packet with unknown SID 241827466<br class=3D"">[ERROR] [B200] =
-Got a ctrl packet with unknown SID 124189179<br class=3D"">[ERROR] =
-[B200] Got a ctrl packet with unknown SID 73204104<br class=3D"">[ERROR] =
-[B200] Got a ctrl packet with unknown SID 458545291<br class=3D"">[ERROR] =
-[B200] Got a ctrl packet with unknown SID 3664645059<br =
-class=3D"">S[ERROR] [B200] Got a ctrl packet with unknown SID =
-4200001599<br class=3D"">[ERROR] [B200] Got a ctrl packet with unknown =
-SID 4184080041<br class=3D"">[ERROR] [B200] Got a ctrl packet with =
-unknown SID 3781167125<br class=3D"">SSSSSSUSSSSSSSS[ERROR] [B200] Got a =
-ctrl packet with unknown SID 224652429<br class=3D"">[ERROR] [B200] Got =
-a ctrl packet with unknown SID 56228458<br class=3D"">SSSSSS[ERROR] =
-[B200] Got a ctrl packet with unknown SID 3981447612<br =
-class=3D"">SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS[ERROR] [B200] =
-Got a ctrl packet with unknown SID 340790525<br class=3D"">SSS[ERROR] =
-[B200] Got a ctrl packet with unknown SID 945686494<br =
-class=3D"">SSSSSSS[ERROR] [B200] Got a ctrl packet with unknown SID =
-22817439<br class=3D"">SSS<br class=3D""><br class=3D"">Gstreamer =
-pipeline:<br class=3D"">gst-launch-1.0 nvarguscamerasrc ! =
-'video/x-raw(memory:NVMM), width=3D1920, height=3D1080,format=3DNV12, =
-framerate=3D30/1' ! nvv4l2h265enc bitrate=3D8000000 ! mpegtsmux ! =
-filesink location=3Dcamera.ts<br class=3D""><br class=3D""><br =
-class=3D"">_______________________________________________<br =
-class=3D"">USRP-users mailing list<br class=3D""><a =
-href=3D"mailto:USRP-users@lists.ettus.com" =
-class=3D"">USRP-users@lists.ettus.com</a><br class=3D""><a =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com</a><br class=3D""></blockquote><br style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><br style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><span style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none; float: none; display: inline !important;" =
-class=3D"">_______________________________________________</span><br =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none;" class=3D""><span =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none; float: none; =
-display: inline !important;" class=3D"">USRP-users mailing =
-list</span><br style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><a href=3D"mailto:USRP-users@lists.ettus.com" =
-style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;" =
-class=3D"">USRP-users@lists.ettus.com</a><br style=3D"caret-color: =
-rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: =
-normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
-normal; text-align: start; text-indent: 0px; text-transform: none; =
-white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><a =
-href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-" style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;" =
-class=3D"">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com</a></div></blockquote></div><br class=3D""></div></body></html>=
-
---Apple-Mail=_1D34E482-1468-4B9E-8DD1-EDB45E89C41B--
-
-
---===============8511330768735862905==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============8511330768735862905==--
-
+VGhhbmtzIFJvbi4gVGhhdCB3YXMgdGhlIGlzc3VlLgoKQ2hlZXJzLApHcmVnCgoKPiBPbiBBdWcg
+MTYsIDIwMjAsIGF0IDE6NDYgUE0sIFJvbiBFY29ub21vcyB2aWEgVVNSUC11c2VycyA8dXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+IAo+IEl0IGhhcyB0byBkbyB3aXRoIHVzaW5n
+IGEgbmV3ZXIgdmVyc2lvbiBvZiBVSEQuIEFmdGVyIHYzLjEzLjAuMy1yYzEsIHRoZSBhYmlsaXR5
+IHRvIHVzZSBsYXJnZSBVU0IgYnVmZmVycyB3YXMgY2hhbmdlZC4gVG8gZml4IHRoZSBpc3N1ZSwg
+Y2hhbmdlIHRoZSAiRGV2aWNlIEFkZHJlc3MiIHBhcmFtZXRlciBpbiB0aGUgVVNSUCBTaW5rIGJs
+b2NrIGZyb20gc2VuZF9mcmFtZV9zaXplPTY1NTM2IHRvIHNlbmRfZnJhbWVfc2l6ZT04MTkyLgo+
+IAo+IEkndmUgZml4ZWQgdGhpcyBpc3N1ZSBpbiBHTlUgUmFkaW8sIGJ1dCBpdCB3b24ndCBiZSBh
+dmFpbGFibGUgdW50aWwgdGhlIG5leHQgcmVsZWFzZSAob3IgaWYgeW91IGJ1aWxkIGZyb20gc291
+cmNlKS4KPiAKPiBodHRwczovL2dpdGh1Yi5jb20vZ251cmFkaW8vZ251cmFkaW8vY29tbWl0L2E5
+ZmM1YTVkZDNkNDU5NmI3NGFiYWE1NjE3YzY0NTg2OTU3NjIwNGYKPiAKPiBSb24KPiAKPiBPbiA4
+LzE2LzIwIDEzOjEzLCBHcmVnIEh1bGFuZHMgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4+IEhpLAo+
+PiBJ4oCZbSBwbGF5aW5nIGFyb3VuZCB3aXRoIGEgSmV0c29uIE5hbm8gZGV2IGtpdCBhbmQgdHJ5
+aW5nIHRvIHN0cmVhbSBoMjY1IGVuY29kZWQgdmlkZW8gb3ZlciBkdmItdDIgdXNpbmcgdGhlIGIy
+MTAuIEkgYW0gdXNpbmcgdGhlIGV4YW1wbGUgZnJvbSB0aGUgZHR2IGZvbGRlciBvZiBnci4gSSBt
+b2RpZmllZCB0aGUgc291cmNlIGZpbGUgdG8gcmVhZCBmcm9tIGEgZmlsZSBtYWRlIHdpdGggbWtm
+aWZvLgo+PiAKPj4gW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gNy41LjA7IEJv
+b3N0XzEwNjUwMTsgVUhEXzMuMTUuMC4wLTU0LWdiYzU4NWI0Mwo+PiBbSU5GT10gW0IyMDBdIERl
+dGVjdGVkIERldmljZTogQjIxMAo+PiBbSU5GT10gW0IyMDBdIE9wZXJhdGluZyBvdmVyIFVTQiAz
+Lgo+PiBbSU5GT10gW0IyMDBdIEluaXRpYWxpemUgQ09ERUMgY29udHJvbC4uLgo+PiBbSU5GT10g
+W0IyMDBdIEluaXRpYWxpemUgUmFkaW8gY29udHJvbC4uLgo+PiBbSU5GT10gW0IyMDBdIFBlcmZv
+cm1pbmcgcmVnaXN0ZXIgbG9vcGJhY2sgdGVzdC4uLgo+PiBbSU5GT10gW0IyMDBdIFJlZ2lzdGVy
+IGxvb3BiYWNrIHRlc3QgcGFzc2VkCj4+IFtJTkZPXSBbQjIwMF0gUGVyZm9ybWluZyByZWdpc3Rl
+ciBsb29wYmFjayB0ZXN0Li4uCj4+IFtJTkZPXSBbQjIwMF0gUmVnaXN0ZXIgbG9vcGJhY2sgdGVz
+dCBwYXNzZWQKPj4gW0lORk9dIFtCMjAwXSBBc2tpbmcgZm9yIGNsb2NrIHJhdGUgMzYuNTcxNDI5
+IE1Iei4uLgo+PiBbSU5GT10gW0IyMDBdIEFjdHVhbGx5IGdvdCBjbG9jayByYXRlIDM2LjU3MTQy
+OCBNSHouCj4+IAo+PiBJIHRoZW4gbGF1bmNoIHRoZSBnc3RyZWFtZXIgcGlwZWxpbmUgYW5kIHRo
+ZW4gdGhlIGJlbG93IGlzIG91dHB1dCBhbmQgbm90aGluZyBpcyB0cmFuc21pdHRlZC4gSSBnb29n
+bGVkIGFyb3VuZCBhbmQgaXQgd2FzIHN1Z2dlc3RlZCB0aGF0IHRoZSB1c2IzIGNvbnRyb2xsZXIg
+bWlnaHQgYmUgYW4gaXNzdWUsIGJ1dCBJIGhhdmUgc2VlbiBvdGhlciBwZW9wbGUgc3VjY2Vzc2Z1
+bGx5IHVzaW5nIHRoZSBKZXRzb24gTmFubyB3aXRoIHRoZSBib2FyZC4KPj4gCj4+IERvZXMgYW55
+b25lIGhhdmUgYW55IHN1Z2dlc3Rpb25zPwo+PiAKPj4gVGhhbmtzLAo+PiBHcmVnCj4+IAo+PiBT
+U1NTU1NTU1tFUlJPUl0gW0IyMDBdIEdvdCBhIGN0cmwgcGFja2V0IHdpdGggdW5rbm93biBTSUQg
+MjA3MDI5ODcwCj4+IFNTU1NTU1NTU1NTU1tFUlJPUl0gW0IyMDBdIEdvdCBhIGN0cmwgcGFja2V0
+IHdpdGggdW5rbm93biBTSUQgMzkyNzU3MzU5Cj4+IFNTU1NbRVJST1JdIFtCMjAwXSBHb3QgYSBj
+dHJsIHBhY2tldCB3aXRoIHVua25vd24gU0lEIDU3MDkwOTM0Cj4+IFtFUlJPUl0gW0IyMDBdIEdv
+dCBhIGN0cmwgcGFja2V0IHdpdGggdW5rbm93biBTSUQgMTkwNzgyNjgwCj4+IFNTU1NTU1NTU1NT
+W0VSUk9SXSBbQjIwMF0gR290IGEgY3RybCBwYWNrZXQgd2l0aCB1bmtub3duIFNJRCA0MjY4MDk1
+MTUwCj4+IFtFUlJPUl0gW0IyMDBdIEdvdCBhIGN0cmwgcGFja2V0IHdpdGggdW5rbm93biBTSUQg
+MTM5OTEzODU0Cj4+IFtFUlJPUl0gW0IyMDBdIEdvdCBhIGN0cmwgcGFja2V0IHdpdGggdW5rbm93
+biBTSUQgNDA2NzI5NTUyNAo+PiBTU1NTU1NTU1NTW0VSUk9SXSBbQjIwMF0gR290IGEgY3RybCBw
+YWNrZXQgd2l0aCB1bmtub3duIFNJRCA0Mjg0NzQyMDY1Cj4+IFNTU1NTU1NTW0VSUk9SXSBbQjIw
+MF0gR290IGEgY3RybCBwYWNrZXQgd2l0aCB1bmtub3duIFNJRCAyMjIyNjUyMgo+PiBbRVJST1Jd
+IFtCMjAwXSBHb3QgYSBjdHJsIHBhY2tldCB3aXRoIHVua25vd24gU0lEIDkwNDk5MjM2Cj4+IFNT
+W0VSUk9SXSBbQjIwMF0gR290IGEgY3RybCBwYWNrZXQgd2l0aCB1bmtub3duIFNJRCAyMzA2OTA5
+OAo+PiBTU1tFUlJPUl0gW0IyMDBdIEdvdCBhIGN0cmwgcGFja2V0IHdpdGggdW5rbm93biBTSUQg
+NDA2NjQ0MTY5NQo+PiBbRVJST1JdIFtCMjAwXSBHb3QgYSBjdHJsIHBhY2tldCB3aXRoIHVua25v
+d24gU0lEIDQxMzM3NDMyODIKPj4gU1tFUlJPUl0gW0IyMDBdIEdvdCBhIGN0cmwgcGFja2V0IHdp
+dGggdW5rbm93biBTSUQgNDE1MDMyMjkxMwo+PiBbRVJST1JdIFtCMjAwXSBHb3QgYSBjdHJsIHBh
+Y2tldCB3aXRoIHVua25vd24gU0lEIDkwMTA5ODkwCj4+IFtFUlJPUl0gW0IyMDBdIEdvdCBhIGN0
+cmwgcGFja2V0IHdpdGggdW5rbm93biBTSUQgNDQxOTczMjExCj4+IFtFUlJPUl0gW0IyMDBdIEdv
+dCBhIGN0cmwgcGFja2V0IHdpdGggdW5rbm93biBTSUQgMjQxODI3NDY2Cj4+IFtFUlJPUl0gW0Iy
+MDBdIEdvdCBhIGN0cmwgcGFja2V0IHdpdGggdW5rbm93biBTSUQgMTI0MTg5MTc5Cj4+IFtFUlJP
+Ul0gW0IyMDBdIEdvdCBhIGN0cmwgcGFja2V0IHdpdGggdW5rbm93biBTSUQgNzMyMDQxMDQKPj4g
+W0VSUk9SXSBbQjIwMF0gR290IGEgY3RybCBwYWNrZXQgd2l0aCB1bmtub3duIFNJRCA0NTg1NDUy
+OTEKPj4gW0VSUk9SXSBbQjIwMF0gR290IGEgY3RybCBwYWNrZXQgd2l0aCB1bmtub3duIFNJRCAz
+NjY0NjQ1MDU5Cj4+IFNbRVJST1JdIFtCMjAwXSBHb3QgYSBjdHJsIHBhY2tldCB3aXRoIHVua25v
+d24gU0lEIDQyMDAwMDE1OTkKPj4gW0VSUk9SXSBbQjIwMF0gR290IGEgY3RybCBwYWNrZXQgd2l0
+aCB1bmtub3duIFNJRCA0MTg0MDgwMDQxCj4+IFtFUlJPUl0gW0IyMDBdIEdvdCBhIGN0cmwgcGFj
+a2V0IHdpdGggdW5rbm93biBTSUQgMzc4MTE2NzEyNQo+PiBTU1NTU1NVU1NTU1NTU1NbRVJST1Jd
+IFtCMjAwXSBHb3QgYSBjdHJsIHBhY2tldCB3aXRoIHVua25vd24gU0lEIDIyNDY1MjQyOQo+PiBb
+RVJST1JdIFtCMjAwXSBHb3QgYSBjdHJsIHBhY2tldCB3aXRoIHVua25vd24gU0lEIDU2MjI4NDU4
+Cj4+IFNTU1NTU1tFUlJPUl0gW0IyMDBdIEdvdCBhIGN0cmwgcGFja2V0IHdpdGggdW5rbm93biBT
+SUQgMzk4MTQ0NzYxMgo+PiBTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NT
+U1NTU1NTU1tFUlJPUl0gW0IyMDBdIEdvdCBhIGN0cmwgcGFja2V0IHdpdGggdW5rbm93biBTSUQg
+MzQwNzkwNTI1Cj4+IFNTU1tFUlJPUl0gW0IyMDBdIEdvdCBhIGN0cmwgcGFja2V0IHdpdGggdW5r
+bm93biBTSUQgOTQ1Njg2NDk0Cj4+IFNTU1NTU1NbRVJST1JdIFtCMjAwXSBHb3QgYSBjdHJsIHBh
+Y2tldCB3aXRoIHVua25vd24gU0lEIDIyODE3NDM5Cj4+IFNTUwo+PiAKPj4gR3N0cmVhbWVyIHBp
+cGVsaW5lOgo+PiBnc3QtbGF1bmNoLTEuMCBudmFyZ3VzY2FtZXJhc3JjICEgJ3ZpZGVvL3gtcmF3
+KG1lbW9yeTpOVk1NKSwgd2lkdGg9MTkyMCwgaGVpZ2h0PTEwODAsZm9ybWF0PU5WMTIsIGZyYW1l
+cmF0ZT0zMC8xJyAhIG52djRsMmgyNjVlbmMgYml0cmF0ZT04MDAwMDAwICEgbXBlZ3RzbXV4ICEg
+ZmlsZXNpbmsgbG9jYXRpb249Y2FtZXJhLnRzCj4+IAo+PiAKPj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QK
+Pj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9t
+YWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4gCj4gX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxp
+bmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVz
+LmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWls
+aW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNv
+bS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
