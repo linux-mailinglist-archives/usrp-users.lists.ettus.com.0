@@ -2,51 +2,84 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C259A248A65
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Aug 2020 17:48:30 +0200 (CEST)
-Received: from [::1] (port=49198 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3977424A1BF
+	for <lists+usrp-users@lfdr.de>; Wed, 19 Aug 2020 16:29:32 +0200 (CEST)
+Received: from [::1] (port=58876 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k83qb-0006Xa-70; Tue, 18 Aug 2020 11:48:25 -0400
-Received: from mail-ej1-f47.google.com ([209.85.218.47]:44130)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <ncmatson95@gmail.com>)
- id 1k83qX-0006T4-KK
- for usrp-users@lists.ettus.com; Tue, 18 Aug 2020 11:48:21 -0400
-Received: by mail-ej1-f47.google.com with SMTP id bo3so22611347ejb.11
- for <usrp-users@lists.ettus.com>; Tue, 18 Aug 2020 08:48:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=gvItIyer+48LN4UA/rQw1Rvn/yuKMReKwOT8HmnM5SI=;
- b=I22TCWouo0ZQXGJ6AZEyMc6wwTz8bwVIHDhtI5Hbf0cl7VU8Bn9ZfvARfhlnLAuX09
- rSVvDQgyUzCgpgPxL4v4EyZTPw2Ut6K39+1AzKQQRiZOm1KlByXzcvnqwAZOBPmiZBgo
- Gxp2zdpk9uDPd7gnvdnxI307SfV9ShYI0AYFZpDTFgunVec69+BjNoi0ZMlUD+380sGp
- wgZdZjkJPg3c8gh8ipKWLdPAEYd8+HvR06x8SMufxijOkoysXK5QZIJuJIHJqkQBC8Yq
- MuvjMTu8yMF6LUSjURB6ZHvKTNK6J6grQPZpmNxF03yyTLsA5zh5XwQIVtSV3WiTk3nV
- 5AEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=gvItIyer+48LN4UA/rQw1Rvn/yuKMReKwOT8HmnM5SI=;
- b=gjc9BrKzxwhl1ayLlUwhELwHCH0uu16RBV7l5Raq6z+d5kknym+EiuXNmXh87BtyJC
- peH2On7cV3Kk8RbmRpcfrnXbVoq/0+XsTNXUbOpuuzLbkEIDpibJe2cAitRGkycMsAPi
- ECxtSykpIUB6GDxCGg7ePoSCRv5fS/OYHIcPIqoIk26+p90PB6q0OImTaSHAMWaOpDCi
- 1P3gaw+Fp4E1Fh7YvSr4OF2+yepaxyQ+6qONwKrj9sQBcCTceFXc14MkEaynj8Q+EdOh
- 0Itl1btWEEvPVaSnku94wJVYjp533kqPn7Ltc101UiMK9etUIRaz9zJWRzou700VTkHE
- cozA==
-X-Gm-Message-State: AOAM531j5bye+J9K2Atm9gQO0RUdPx7mnhekPUZnvx3RZ2AjGjWwRNQP
- a7kKeFvIfTF1UdIYumoVzczjDEJfy8wzwenm0KDwzJeUm8A=
-X-Google-Smtp-Source: ABdhPJzdXcA2hN9kP4RALmzYGb5qwUfl26epr5Dkt17mQ2rLKFx4z9q0JyDr4yrJFX+WfyvJSXMqHesSSUvdQ1MZB94=
-X-Received: by 2002:a17:906:a00d:: with SMTP id
- p13mr21860373ejy.535.1597765660371; 
- Tue, 18 Aug 2020 08:47:40 -0700 (PDT)
+	id 1k8P5j-0001Lj-BF; Wed, 19 Aug 2020 10:29:27 -0400
+Received: from mail-dm6nam10on2066.outbound.protection.outlook.com
+ ([40.107.93.66]:34337 helo=NAM10-DM6-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <jerrid.plymale@canyon-us.com>)
+ id 1k8P5f-0001F5-9R
+ for usrp-users@lists.ettus.com; Wed, 19 Aug 2020 10:29:23 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DE7UnerJOXyjzuvrOeDZLVtusjOiQT9IA7U10LUTKDg8ctgYAL9dSz9YqU8lJKmBZjYJNNNM3VucpPERrsmQ4Sv1Uf2Oyl4cLPlqHT/uo+NaSuJw7FZJQKbQkf2GT/Ef1iFS/4tGMCOrSwR/CciGz4gfFYyx/JsK3VLuGGP2zK2nvy+20R851KgOJc4LYlwnXyc5yJWhPxWXD9VinuP3jK3sW1dqwRLOb02VsQN49jRgjaljLKHaTvga16oYL9KDVo757E8tVy1tcMzw5bovyx3tVE0y1SbdHyOMVY26+XNOBt9GtFOhf/5jiOvfE2w/gXOM49H4LG3RVbx/PnE72Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fb+umSL2JESQyARIq7hCjW2mKdZvoMPmvwvuK9NxSmE=;
+ b=b5mO05IxPUTdC5lScuQW6V87TA7We7kNfOYZTHrS9b8LyWDLV002lH2LzQ4Zjs+Ek0mRli7+vPD9aZY9KEFRDnMUF5G8lx7BpsxQem64P+IBRbe6bqF1gOITP64fD2uUwOQ4vOhsSRqIqZfn6IS2AbDyC/2S48WRTA6BXmRjPs89JPoGAWiVPfKxwPSWGGbtRVffWsCw2uI+OnV0XNCD202eftdaYz+HKDs7Y6BlYDvhYLEyWjKTHMxzxWG4RjYqwrdoDHS0YbtQltvETUGausQi+IYOaXBvDi7Fsf6f1GuLn2gueNaxIO6glF+MSoJqlqVPb41NWt5n9NOQmmtaZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=canyon-us.com; dmarc=pass action=none
+ header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=canyonconsulting.onmicrosoft.com;
+ s=selector2-canyonconsulting-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fb+umSL2JESQyARIq7hCjW2mKdZvoMPmvwvuK9NxSmE=;
+ b=Go+LR1bV5oyX+QCS3YwM+bce5c3JzKjzGliNKIap3WbO6pWpdgAeNjnaL6+PH9Hx1w/6YT7yFcengqfB/PQ5tWbQl8xfsFmyD4a2syBtAkbc6f1+ekDrr2xnQK78so5x5FJ/HfSvQYsDia+2ca3+kBUsOjVLkoAuhBnvE3hE14s=
+Received: from MW3PR19MB4268.namprd19.prod.outlook.com (2603:10b6:303:4f::17)
+ by MW3PR19MB4250.namprd19.prod.outlook.com (2603:10b6:303:46::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.24; Wed, 19 Aug
+ 2020 14:28:41 +0000
+Received: from MW3PR19MB4268.namprd19.prod.outlook.com
+ ([fe80::d91a:dc76:10a:e643]) by MW3PR19MB4268.namprd19.prod.outlook.com
+ ([fe80::d91a:dc76:10a:e643%9]) with mapi id 15.20.3305.024; Wed, 19 Aug 2020
+ 14:28:41 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Running multiple USRP x310's on same PC causes network
+ unreachable
+Thread-Index: AdZ2Myl9b9/kWVfZRpq3xp1J3yUJFw==
+Date: Wed, 19 Aug 2020 14:28:41 +0000
+Message-ID: <MW3PR19MB426860A9432C6013CEDD969DC65D0@MW3PR19MB4268.namprd19.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=canyon-us.com;
+x-originating-ip: [98.153.200.210]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e6dbc735-f18c-4fb4-7da8-08d8444c2bd1
+x-ms-traffictypediagnostic: MW3PR19MB4250:
+x-microsoft-antispam-prvs: <MW3PR19MB4250E8559885418C0F1CBFAEC65D0@MW3PR19MB4250.namprd19.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: t8oScXyRlRtMXsWmEOH+JXP0k5PHQFRcA7Vy8cLAFl12ovjPVkKb3ePBQ+Ww+ZCjo9RSGAbIhD0ked09LIiJLeP47xZ0jiLl0ruL7Oq7QyEpw81owd3+LSVVdfYfx8NnHxvQXAXtY2ySaKD1WNX/P1q49awd0Hd8B92ol6gWukfeqsoG8xPXXoIZmEyMlWP/JtUPV1XWwiHE4zWUqq8M+UGIsa/X/B1hKUaa3VMeK0gJ1IzfTd40Me4yvCycpVP0+cO30kjlmT/hsys6RmGQb9X7ysQEaO1bg4tm/C4HO5zydBVBpg6VDLkgRg6opR29qt6ArmUSXDAzt+xGupdbbQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW3PR19MB4268.namprd19.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(346002)(39830400003)(396003)(366004)(136003)(86362001)(478600001)(9686003)(44832011)(55016002)(26005)(186003)(316002)(6506007)(7696005)(66556008)(66476007)(64756008)(6916009)(8676002)(9326002)(66946007)(8936002)(5660300002)(52536014)(66446008)(71200400001)(83380400001)(2906002)(76116006)(33656002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: 9jTQqCqE9vYGCL/+JOeFQCdltwe6ag+yFK4o8p12n1AXayOYRMs/qTZbXzjDF/ltDqewsHSNQ2hpcDlIMQ93krFQLUXbCCIqz/OGZIdqR36mzdnYVrLbbHmS2Tq/ByTByTgofdbwGitcP7k5oBs+FIr6zLpRUQB4qvWRXfvQEf5auzp66gQ8gr8q2HwHmHRvKwbUePJJYWAuzWsZDPXD4sznxzqM6fAdxf0g8myM6r58AV4icUytkwnByulUJKLWMfEDSiKEd0eYzxzRUa/JoiK+iLE7NyjlD13bZCdsXIdC6gVyFzKy2SLyFIPdv/Ity9quzGqBE7gOJVNK82u56aE8KqOaqaxu6RJ8VqAEBJ8XLel+JNMG38NBzwDvDunC70ooxtjxddp2IP5gB6Apzww5QLd0tmpZ/NLPI+5AIzxivZIUib6ncGEIqVEf2K8UqEzc4gEODnNHTgHmA+LyYv8UIW24XE96WZWnUAkfWEzdBJ+X8JF5+KACzxQY2rw2vlllrgiGe4VNLCzQ1/XQXlsYNcLQaz75y5QSG9GBE3mtQm23Ufvmnie5u4YHWeg7HldlpVNVTC70KUIsfOukWNmmn3Wq3vnhvM467GYp5uOx7fhW7Fee90iS5UGn+qXp0oYOA/Ngcm3Ly/pt2s6IvA==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Date: Tue, 18 Aug 2020 10:47:29 -0500
-Message-ID: <CAGLr63uMrepVPPPnDAc2Nd+Z4LjKAuDPT9wX5T8rvvBZ_0uksw@mail.gmail.com>
-To: GNURadio Discussion List <discuss-gnuradio@gnu.org>,
- usrp-users@lists.ettus.com
-Subject: [USRP-users] N310 self interference with packet comms and
- correlation estimator
+X-OriginatorOrg: canyon-us.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW3PR19MB4268.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6dbc735-f18c-4fb4-7da8-08d8444c2bd1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2020 14:28:41.2713 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: UgJSHjhri6vrVmanu5WwUJ3jiK9vprOF3qy69vdUsyAmzsk3hWLkvsuHurIZ9zbJ8JAYk3IuZwhjN4ULBkM3WvO8CEAy2VRk6TJKPkG1KzM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR19MB4250
+Subject: [USRP-users] Running multiple USRP x310's on same PC causes network
+ unreachable
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -58,9 +91,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Cameron Matson via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Cameron Matson <ncmatson95@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5049554807606477829=="
+From: Jerrid Plymale via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+Content-Type: multipart/mixed; boundary="===============4560105611126175382=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,96 +107,151 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5049554807606477829==
-Content-Type: multipart/alternative; boundary="0000000000009eed2905ad28ce7c"
+--===============4560105611126175382==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MW3PR19MB426860A9432C6013CEDD969DC65D0MW3PR19MB4268namp_"
 
---0000000000009eed2905ad28ce7c
-Content-Type: text/plain; charset="UTF-8"
-
-Hey everyone,
-
-I've copied both the gnuradio and usrp lists, since I'm not sure if the
-question has a software or hardware answer, so I apologize for duplicate
-emails.
-
-I am attempting to set up a wireless transceiver using N310s and the packet
-tx/rx examples from gnuradio.  I combined both the tx and rx chains in one
-flowgraph with zeromq source/sink blocks like this:
-
-[zmq source] -> [packet tx] -> [usrp sink]
-and
-[usrp source] -> [packet rx] -> [zmq sink]
-
-I have a separate python file running in a separate process.  That handles
-messages from the zmq blocks and controls state changes between "backoff",
-"listen" and "talk"
-
-I'm not sure the specific terminology for the variety of duplex I'm trying
-to implement, but I want the TX and RX to happen on the same frequency
-using one antenna.  The problem is that if I use the same frequency, my RX
-chain immediately "hears" the signal that was transmitted.  By "hears" I
-mean that the first part of the [packet rx] block, which is the
-[correlation estimator] block detects the signal as a valid packet.  The
-problem is that because the amplitude of my desired rx signal is low, I've
-had to set the threshold of the correlation estimator relatively low--and
-so the recently transmitted signal, which has a much higher amplitude being
-right next to the rx antenna, overwhelms the detector.  This doesn't happen
-if I have the TX and RX on different frequencies
-
-What I don't quite fully understand is what happens on the N310 when a flow
-graph with both transmit and receive processes are active.  I can see from
-the LEDs that it is "receiving" most of the time and when it gets a message
-to transmit it will blink to tx and then back.  What happens in this
-process?  One thought is that since its the same antenna, the tx and rx
-might share a buffer and the tx data is still present there.
-
-Is what I'm trying to do even possible?
-
-Thanks for your time,
-
-Cameron
-
---0000000000009eed2905ad28ce7c
-Content-Type: text/html; charset="UTF-8"
+--_000_MW3PR19MB426860A9432C6013CEDD969DC65D0MW3PR19MB4268namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hey everyone,<div><br></div><div>I&#39;ve copied both the =
-gnuradio and usrp lists, since I&#39;m not sure if the question has a softw=
-are or hardware answer, so I apologize for duplicate emails.</div><div><br>=
-</div><div>I am attempting to set up a wireless transceiver using N310s and=
- the packet tx/rx examples from gnuradio.=C2=A0 I combined both the tx and =
-rx chains in one flowgraph with zeromq source/sink blocks like this:<div><b=
-r></div><div>[zmq source] -&gt; [packet tx] -&gt; [usrp sink]</div><div>and=
-</div><div>[usrp source] -&gt; [packet rx] -&gt; [zmq sink]</div><div><br><=
-/div><div>I have a separate python file running in a separate process.=C2=
-=A0 That handles messages from the zmq blocks and controls state changes be=
-tween &quot;backoff&quot;, &quot;listen&quot; and &quot;talk&quot;</div><di=
-v><br></div><div>I&#39;m not sure the specific terminology for the variety =
-of duplex I&#39;m trying to implement, but I want the TX and RX to happen o=
-n the same frequency using one antenna.=C2=A0 The problem is that if I use =
-the same frequency, my RX chain immediately &quot;hears&quot; the signal th=
-at was transmitted.=C2=A0 By &quot;hears&quot; I mean that the first part o=
-f the [packet rx] block, which is the [correlation estimator] block detects=
- the signal=C2=A0as a valid packet.=C2=A0 The problem is that because the a=
-mplitude of my desired rx signal is low, I&#39;ve had to set the threshold =
-of the correlation estimator relatively low--and so the recently transmitte=
-d signal, which has a much higher amplitude being right next to the rx ante=
-nna, overwhelms the detector.=C2=A0 This doesn&#39;t happen if I have the T=
-X and RX on different frequencies</div><div><br></div><div>What I don&#39;t=
- quite fully understand is what happens on the N310 when a flow graph with =
-both transmit and receive processes are active.=C2=A0 I can see from the LE=
-Ds that it=C2=A0is &quot;receiving&quot; most of the time and when it gets =
-a message to transmit it will blink to tx and then back.=C2=A0 What happens=
- in this process?=C2=A0 One thought is that since its the same antenna, the=
- tx and rx might share a buffer and the tx data is still present there.</di=
-v><div><br></div><div>Is what I&#39;m trying to do even possible?</div><div=
-><br></div><div>Thanks for your time,</div><div><br></div><div>Cameron</div=
-></div></div>
+Hi All,
 
---0000000000009eed2905ad28ce7c--
+So I am having an issue with one of the USRP's I am using where it, after r=
+unning for less than a couple minutes, will lose its network connection to =
+the PC. To be specific, I am running two USRP x310's on the same PC, each i=
+s connected to its own 10 Gig Ethernet port on the PC, and both are using d=
+ifferent IP addresses. I am running a different GNU Radio Flowgraph on each=
+, one of the USRP's is just transmitting, while the other is both transmitt=
+ing and receiving. I get two specific errors that pop up when the USRP that=
+ is transmitting and receiving loses its network connection to the PC. The =
+following are the errors that are given:
+
+[ERROR][UHD] An unexpected exception was caught in a task loop. The task lo=
+op will now exit, things may not work. EnvironmentalError: IOError: "IP Add=
+ress": x300 fw communication failure #1 (will show three of these errors, e=
+ach one followed by the next error)
+EnvironmentalError: IOError: x300 fw poke32- reply timed out
+
+And sometimes the following is given at the end:
+
+EnvironmentalError: IOError: Send error on socket: Network unreachable
+
+Anyone know how to fix this issue? Any assistance would be greatly apprecia=
+ted.
+
+Best Regards,
+
+Jerrid
+
+--_000_MW3PR19MB426860A9432C6013CEDD969DC65D0MW3PR19MB4268namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle19
+	{mso-style-type:personal-compose;
+	font-family:"Times New Roman",serif;
+	color:black;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<div>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black">Hi All,<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black">So I am having an issue with one of the USRP&#8217;s I =
+am using where it, after running for less than a couple minutes, will lose =
+its network connection to the PC. To be specific,
+ I am running two USRP x310&#8217;s on the same PC, each is connected to it=
+s own 10 Gig Ethernet port on the PC, and both are using different IP addre=
+sses. I am running a different GNU Radio Flowgraph on each, one of the USRP=
+&#8217;s is just transmitting, while the other
+ is both transmitting and receiving. I get two specific errors that pop up =
+when the USRP that is transmitting and receiving loses its network connecti=
+on to the PC. The following are the errors that are given:<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black">[ERROR][UHD] An unexpected exception was caught in a ta=
+sk loop. The task loop will now exit, things may not work. EnvironmentalErr=
+or: IOError: &#8220;IP Address&#8221;: x300 fw communication
+ failure #1 (will show three of these errors, each one followed by the next=
+ error)<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black">EnvironmentalError: IOError: x300 fw poke32- reply time=
+d out<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black">And sometimes the following is given at the end:<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black">EnvironmentalError: IOError: Send error on socket: Netw=
+ork unreachable
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black">Anyone know how to fix this issue? Any assistance would=
+ be greatly appreciated.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black">Best Regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12.0pt;color:black">Jerrid<o:p></o:p></span></p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_MW3PR19MB426860A9432C6013CEDD969DC65D0MW3PR19MB4268namp_--
 
 
---===============5049554807606477829==
+--===============4560105611126175382==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -174,5 +262,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5049554807606477829==--
+--===============4560105611126175382==--
 
