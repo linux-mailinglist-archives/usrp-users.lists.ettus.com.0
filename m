@@ -2,49 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C24824A33B
-	for <lists+usrp-users@lfdr.de>; Wed, 19 Aug 2020 17:37:55 +0200 (CEST)
-Received: from [::1] (port=59340 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B607C24A364
+	for <lists+usrp-users@lfdr.de>; Wed, 19 Aug 2020 17:42:09 +0200 (CEST)
+Received: from [::1] (port=59428 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k8Q9y-0005K2-8E; Wed, 19 Aug 2020 11:37:54 -0400
-Received: from mail-il1-f175.google.com ([209.85.166.175]:40368)
+	id 1k8QE4-0006GT-5m; Wed, 19 Aug 2020 11:42:08 -0400
+Received: from mail-qv1-f49.google.com ([209.85.219.49]:38271)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <emoges@uncc.edu>) id 1k8Q9t-00053Z-JO
- for usrp-users@lists.ettus.com; Wed, 19 Aug 2020 11:37:49 -0400
-Received: by mail-il1-f175.google.com with SMTP id p18so17192150ilm.7
- for <usrp-users@lists.ettus.com>; Wed, 19 Aug 2020 08:37:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uncc.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Ov02iTZJ9G0djyd9DlP1dzkdarcOoZhXsOc8vFHrjUk=;
- b=ckfUpjeNHnSUF7oZRBJpmAfCM7EKwCnTen6m4rdA3HMSnZIjHKf8N6fNELH0DZWLZX
- 5VO9eAFFBMQgfNBAnRO0N1LAFUonog+HrZUcJ7+7ekzWpAhUYbitYvrhjFmkFB/GmOJX
- N4v9CSaA2iY/HpJFDRDljuKsoBWMcmGTZ6Iig=
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1k8QE0-00069A-2c
+ for usrp-users@lists.ettus.com; Wed, 19 Aug 2020 11:42:04 -0400
+Received: by mail-qv1-f49.google.com with SMTP id x7so11458672qvi.5
+ for <usrp-users@lists.ettus.com>; Wed, 19 Aug 2020 08:41:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=7DsCT4LcF2M0ySenKGWFoEL7BwG4P30P056ODgpfx7s=;
+ b=JzCzIWmLAqR3EbvqqYkhXpq6XLpQ64M2VysfHCDFKlDeXjJd+SS/uUQqcLg0/tv5cl
+ M227734LjdFJ4IM9zcmORrvFFCBCGW5yiOOM8fTono1t/bxpxP39k1tjopssNnEjSDYA
+ kB3Dwn9XHMIFze1SdxtzR3DsPWcx3h5JX+eY6/5EMFq6z2KuvuWchlqbHmLPXy+AGqgj
+ 1qnUttyAgsUJ7WU02iy0DDikeTWhlNSsoc2ZxbkFBX86pFuspNi/O4WpWpHo/DvSct/Y
+ mpygsnid3Zzd1B9B8mzjzg2yiVYGBy8lrzAKRiNRSSiUEJmRR5OEeTM/hhd+Vubj5GIt
+ zShQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Ov02iTZJ9G0djyd9DlP1dzkdarcOoZhXsOc8vFHrjUk=;
- b=J+YiOvyvhNdEfg74tatYhawqiZ4Jq+qPDu1/2PXcdHgLXTaFGu8sq5aw8wxEWYFzjs
- lL8hQhWSk1yic5pzu0+ZMWhk0ty9AuEumUmnk1kJ1gjCJzqMjNtGmqO/Qby9Sb/6uot8
- eLnIqqEE0Kl+aCJTWI68rH/erC2MIE+bt0xvssIhBGMjwCAnmf9aeKX7SNDFo2YCkh7a
- 0BcuSMZNJWHJDwX5Z5JST1gVRKliDHVsL7dA6bcEuLi9nJVIRc5N9w+aNW80I706K+WI
- 8xYh5h4CZyuzOaIIcklXW09P4UYLvZDbHlD8VOL0ZZeSRxgFGLTE+6SvbDqYrfp6O8M5
- yIKg==
-X-Gm-Message-State: AOAM530+pvOxwf1Ligi1NwfGyglD3ynYuKRtm6VQDt7+SiT3STJpI3Ha
- oTqkj4tT1mko9vk9a5lc+5eJuqo6ZjSBbFVIAC6IGw==
-X-Google-Smtp-Source: ABdhPJz9csgFuzFwwz39hK+9/dpdgAqi3CXW5KEYBJAVuMVfAxfwXik4dU4qI06R5w3KWDHqER27Sz3xR3NMIyM1Jcw=
-X-Received: by 2002:a92:ba02:: with SMTP id o2mr22266309ili.3.1597851428796;
- Wed, 19 Aug 2020 08:37:08 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=7DsCT4LcF2M0ySenKGWFoEL7BwG4P30P056ODgpfx7s=;
+ b=j++lLorZ0GBe6yb493vZU8PnxfNtoMEgKKNHoIIA3vJEzmruzmLi7h5fKnnEtquwu8
+ 7w+Qnx2TT4J42sUpmkZUxtSoLrWK9mWpnW8aqFZhbNEUrL59wufs6N7M8HvwS590rAN/
+ MB3VatndF8nlBdUi29o66NpXCNYYL9dW1lk8QGqxQGseWuSG1quIVFFMP6D03ZAbDh6X
+ olYNvhWWwhiNNmRbTz7RjCeR8EFEiFVJ+jQFoL09+Z57wMCQXwGoCorkbCyGSE/n0Ygo
+ 525tQ4a1GT36Bx/9ez62we10xT3f2Pobaw5Skd+ewii4ApMlf46gvZ4DF9lBlBLquD26
+ 7rsw==
+X-Gm-Message-State: AOAM532qPt8KQqJ+UMpyLWvFxsyEAaKSotPmQVtI3tCSA1L8b/phlU73
+ 4L2DSkg29yTex3tDvtEaTdRviyUP2KM/2Hxt
+X-Google-Smtp-Source: ABdhPJy/U4lwegFCRjx/vMKivBfycmZfaHXFuNR01JCLsLL/MHJIKNeC2CCZgShxTyFVxKXscYQvCw==
+X-Received: by 2002:a0c:f841:: with SMTP id g1mr23317588qvo.192.1597851683337; 
+ Wed, 19 Aug 2020 08:41:23 -0700 (PDT)
+Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
+ [174.95.14.148])
+ by smtp.googlemail.com with ESMTPSA id k24sm28165431qtb.26.2020.08.19.08.41.22
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 19 Aug 2020 08:41:23 -0700 (PDT)
+Message-ID: <5F3D4822.5040703@gmail.com>
+Date: Wed, 19 Aug 2020 11:41:22 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: Ephraim Moges <emoges@uncc.edu>
+CC: usrp-users@lists.ettus.com
 References: <CANwgjNqWApsiG2Nmgxr3K_KBr-XPKXK2t9FgAqkPgidXV3MP0w@mail.gmail.com>
  <CANwgjNpE_4RyMsXqVx3ObWJEB2ysogRbNQrx3k-ZOKSgRW_E8g@mail.gmail.com>
  <5F3D4697.8070503@gmail.com>
-In-Reply-To: <5F3D4697.8070503@gmail.com>
-Date: Wed, 19 Aug 2020 11:36:57 -0400
-Message-ID: <CANwgjNqTaAV=Ts3jgEhv5asqReKVU-obj+ut=dqdbqFywyS8Ow@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
+ <CANwgjNqTaAV=Ts3jgEhv5asqReKVU-obj+ut=dqdbqFywyS8Ow@mail.gmail.com>
+In-Reply-To: <CANwgjNqTaAV=Ts3jgEhv5asqReKVU-obj+ut=dqdbqFywyS8Ow@mail.gmail.com>
 Subject: Re: [USRP-users] Fwd: Benchmark_rate.py error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -57,9 +70,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ephraim Moges via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ephraim Moges <emoges@uncc.edu>
-Content-Type: multipart/mixed; boundary="===============8597094083323012361=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1989253847404136496=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,123 +86,175 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8597094083323012361==
-Content-Type: multipart/alternative; boundary="000000000000d178a905ad3cc6a4"
+This is a multi-part message in MIME format.
+--===============1989253847404136496==
+Content-Type: multipart/alternative;
+ boundary="------------080802040504090301050304"
 
---000000000000d178a905ad3cc6a4
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------080802040504090301050304
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Ubuntu 16 and I used cmake instructions
+On 08/19/2020 11:36 AM, Ephraim Moges wrote:
+> Ubuntu 16 and I used cmake instructions
+>
+> https://files.ettus.com/manual/page_build_guide.html
+OK, so when CMake ran, did it say that it was turning off various 
+features, due to missing dependencies.
 
-https://files.ettus.com/manual/page_build_guide.html
+Also, Ubuntu 16 is insanely, outrageously, out-of-date, and I'm 
+surprised that you could build current UHD AT ALL on it.
 
-On Wed, Aug 19, 2020, 11:35 AM Marcus D. Leech via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Please consider upgrading to a more-recent OS version.
 
-> On 08/19/2020 11:27 AM, Ephraim Moges via USRP-users wrote:
+In fact, on a newer Ubuntu (like the latest), you shouldn't need to 
+build UHD at all--it's already packaged and can be installed
+   using the package manager.
+
+
 >
-> Good Morning,
+> On Wed, Aug 19, 2020, 11:35 AM Marcus D. Leech via USRP-users 
+> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
 >
-> I am having a problem running the python benchmark_rate.py. The error
-> message I am receiving is in the image attached "the module uhd has no
-> attribute 'usrp'". My installation indicated everything was good when I ran
-> a make test, so I am not sure if I need to be in a specific folder so that
-> it can find the attribute or what.
+>     On 08/19/2020 11:27 AM, Ephraim Moges via USRP-users wrote:
+>>     Good Morning,
+>>
+>>     I am having a problem running the python benchmark_rate.py. The
+>>     error message I am receiving is in the image attached "the module
+>>     uhd has no attribute 'usrp'". My installation indicated
+>>     everything was good when I ran a make test, so I am not sure if I
+>>     need to be in a specific folder so that it can find the attribute
+>>     or what.
+>>
+>>     Sincerely,
+>>
+>>     Moges
+>>
+>>
+>>     _______________________________________________
+>>     USRP-users mailing list
+>>     USRP-users@lists.ettus.com  <mailto:USRP-users@lists.ettus.com>
+>>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>     What OS?   How exactly did you install UHD?
 >
-> Sincerely,
 >
-> Moges
->
->
-> _______________________________________________
-> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-> What OS?   How exactly did you install UHD?
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>     _______________________________________________
+>     USRP-users mailing list
+>     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000d178a905ad3cc6a4
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Ubuntu 16 and I used cmake instructions<div dir=3D"auto">=
-<br></div><div dir=3D"auto"><a href=3D"https://files.ettus.com/manual/page_=
-build_guide.html">https://files.ettus.com/manual/page_build_guide.html</a><=
-br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
-il_attr">On Wed, Aug 19, 2020, 11:35 AM Marcus D. Leech via USRP-users &lt;=
-<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
- 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
-    <div>On 08/19/2020 11:27 AM, Ephraim Moges
-      via USRP-users wrote:<br>
+--------------080802040504090301050304
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 08/19/2020 11:36 AM, Ephraim Moges
+      wrote:<br>
     </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"auto">
-        <div class=3D"gmail_quote" dir=3D"auto">
-          <div dir=3D"ltr" class=3D"gmail_attr">Good Morning,<br>
-          </div>
-          <div dir=3D"auto">
-            <div dir=3D"auto"><br>
-            </div>
-            <div dir=3D"auto">I am having a problem running the python
-              benchmark_rate.py. The error message I am receiving is in
-              the image attached &quot;the module uhd has no attribute
-              &#39;usrp&#39;&quot;. My installation indicated everything wa=
-s good
-              when I ran a make test, so I am not sure if I need to be
-              in a specific folder so that it can find the attribute or
-              what.<br>
-              <br>
-              <div data-smartmail=3D"gmail_signature" dir=3D"auto">Sincerel=
-y,<br>
-                <br>
-              </div>
-              <div data-smartmail=3D"gmail_signature" dir=3D"auto">Moges<br=
->
-              </div>
-            </div>
-          </div>
+    <blockquote
+cite="mid:CANwgjNqTaAV=Ts3jgEhv5asqReKVU-obj+ut=dqdbqFywyS8Ow@mail.gmail.com"
+      type="cite">
+      <div dir="auto">Ubuntu 16 and I used cmake instructions
+        <div dir="auto"><br>
+        </div>
+        <div dir="auto"><a moz-do-not-send="true"
+            href="https://files.ettus.com/manual/page_build_guide.html">https://files.ettus.com/manual/page_build_guide.html</a><br>
         </div>
       </div>
-      <br>
-      <fieldset></fieldset>
-      <br>
-      <pre>_______________________________________________
-USRP-users mailing list
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
-ferrer">USRP-users@lists.ettus.com</a>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" target=3D"_blank" rel=3D"noreferrer">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a>
-</pre>
     </blockquote>
-    What OS?=C2=A0=C2=A0 How exactly did you install UHD?=C2=A0 <br>
+    OK, so when CMake ran, did it say that it was turning off various
+    features, due to missing dependencies.<br>
+    <br>
+    Also, Ubuntu 16 is insanely, outrageously, out-of-date, and I'm
+    surprised that you could build current UHD AT ALL on it.<br>
+    <br>
+    Please consider upgrading to a more-recent OS version.<br>
+    <br>
+    In fact, on a newer Ubuntu (like the latest), you shouldn't need to
+    build UHD at all--it's already packaged and can be installed<br>
+      using the package manager.<br>
     <br>
     <br>
-  </div>
+    <blockquote
+cite="mid:CANwgjNqTaAV=Ts3jgEhv5asqReKVU-obj+ut=dqdbqFywyS8Ow@mail.gmail.com"
+      type="cite"><br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Wed, Aug 19, 2020, 11:35 AM
+          Marcus D. Leech via USRP-users &lt;<a moz-do-not-send="true"
+            href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0 0 0
+          .8ex;border-left:1px #ccc solid;padding-left:1ex">
+          <div bgcolor="#FFFFFF" text="#000000">
+            <div>On 08/19/2020 11:27 AM, Ephraim Moges via USRP-users
+              wrote:<br>
+            </div>
+            <blockquote type="cite">
+              <div dir="auto">
+                <div class="gmail_quote" dir="auto">
+                  <div dir="ltr" class="gmail_attr">Good Morning,<br>
+                  </div>
+                  <div dir="auto">
+                    <div dir="auto"><br>
+                    </div>
+                    <div dir="auto">I am having a problem running the
+                      python benchmark_rate.py. The error message I am
+                      receiving is in the image attached "the module uhd
+                      has no attribute 'usrp'". My installation
+                      indicated everything was good when I ran a make
+                      test, so I am not sure if I need to be in a
+                      specific folder so that it can find the attribute
+                      or what.<br>
+                      <br>
+                      <div data-smartmail="gmail_signature" dir="auto">Sincerely,<br>
+                        <br>
+                      </div>
+                      <div data-smartmail="gmail_signature" dir="auto">Moges<br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <fieldset></fieldset>
+              <br>
+              <pre>_______________________________________________
+USRP-users mailing list
+<a moz-do-not-send="true" href="mailto:USRP-users@lists.ettus.com" target="_blank" rel="noreferrer">USRP-users@lists.ettus.com</a>
+<a moz-do-not-send="true" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" target="_blank" rel="noreferrer">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+            </blockquote>
+            What OS?   How exactly did you install UHD?  <br>
+            <br>
+            <br>
+          </div>
+          _______________________________________________<br>
+          USRP-users mailing list<br>
+          <a moz-do-not-send="true"
+            href="mailto:USRP-users@lists.ettus.com" target="_blank"
+            rel="noreferrer">USRP-users@lists.ettus.com</a><br>
+          <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+            rel="noreferrer noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
-ferrer">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000d178a905ad3cc6a4--
+--------------080802040504090301050304--
 
 
---===============8597094083323012361==
+--===============1989253847404136496==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -200,5 +265,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8597094083323012361==--
+--===============1989253847404136496==--
 
