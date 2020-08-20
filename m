@@ -2,49 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C7E24B78C
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Aug 2020 12:58:49 +0200 (CEST)
-Received: from [::1] (port=39800 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FF3C24B884
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Aug 2020 13:23:13 +0200 (CEST)
+Received: from [::1] (port=39930 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k8iHL-00055X-99; Thu, 20 Aug 2020 06:58:43 -0400
-Received: from mail-il1-f172.google.com ([209.85.166.172]:36096)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <emoges@uncc.edu>) id 1k8iHI-000514-0n
- for USRP-users@lists.ettus.com; Thu, 20 Aug 2020 06:58:40 -0400
-Received: by mail-il1-f172.google.com with SMTP id z3so1251904ilh.3
- for <USRP-users@lists.ettus.com>; Thu, 20 Aug 2020 03:58:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uncc.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=sn753Sbmndl0WczIQ764Om2Y52nAebWOwmCxQCOxsqA=;
- b=h+3cPgppkq/lrNhXPwsdxHOxzq4FOreV/E8Xbu+3QmVsy1DkDhIZRQapw8avd4tZI5
- xF5hJRcFyfFptLOxrA7s58lzrcVsgN4uZeuxbzvYFc8iZQScP7AAbWAg37uwabaI2WCn
- Q+GWFwfQ7mhlWricbvrOMAKgyWp8Jcs4krEnY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=sn753Sbmndl0WczIQ764Om2Y52nAebWOwmCxQCOxsqA=;
- b=GuPUEHaijP4lzy1qnewIPRXaXocSlobTzcfn1j2GM8Vv17qnAHXQ2PMB+6eqn7sW8g
- dEpD6wDJFqDQvNaeRzDZltV7f8b/8q4PUhI2e5mv0qMnxOurgBRjtUjjlRgW1iI+6efn
- +ORt5uYIzfpGUfuL4yz+SDaXLWCY30jneQFsc43XoZQ1SQdwp0rzIgTpKN3JkW9Mf7Lu
- rCoo9KRTla+82SQkyaQsRfPgcxpfd4b7+qK5zrtGl/fcXKVrz+KVQuf07WjhJ/5QKwuK
- OpNiL7mrUn1DLoa2yyETnaZZuCZ+D66gJWpp9ALF2R6eIvC5RjLvQPqNNv9/d7hSRSgp
- cZLw==
-X-Gm-Message-State: AOAM532ipfx/avQNLvB5sYvFw7xnceMnpHnD6PBqhoPr2Ba9814zBkqd
- SPS5IG5ELsVf7oqyRVBDeL/iyl8qx+IYl5ZHYzFv5w==
-X-Google-Smtp-Source: ABdhPJzzZNCRy/7UB2bZLkfg0s3XBpLxJnn4yPkd6SzfrebnWztR9dE8TF9hZbTFcnZzzmZfy0Z/KtsJIjPL/2WEdNc=
-X-Received: by 2002:a92:9e48:: with SMTP id q69mr2292241ili.170.1597921078738; 
- Thu, 20 Aug 2020 03:57:58 -0700 (PDT)
+	id 1k8if0-0006HN-9r; Thu, 20 Aug 2020 07:23:10 -0400
+Received: from kda-chqmg-01.kongsberg.com ([193.71.180.4]:34852)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <Andreas.Bertheussen@kongsberg.com>)
+ id 1k8iev-0006B7-LM
+ for usrp-users@lists.ettus.com; Thu, 20 Aug 2020 07:23:05 -0400
+Received: from pps.filterd (kda-chqmg-01.kongsberg.com [127.0.0.1])
+ by kda-chqmg-01.kongsberg.com (8.16.0.42/8.16.0.42) with SMTP id
+ 07KBGN8A007246
+ for <usrp-users@lists.ettus.com>; Thu, 20 Aug 2020 13:22:23 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kongsberg.com;
+ h=from : to :
+ subject : date : message-id : content-type : mime-version; s=KDA1;
+ bh=Pdi1LQS8g5FVWE5MA1TyPuBo4h2PRNYqEvHecU7Ydh4=;
+ b=fIQAz8A3kpMGwwMCS32jg0a3Sa59WL9PcgB9vmFkZSKJuqs7DEhL/SeyDRQMKI58yErt
+ ODjysnrDE2SaymR0haYDykytqa4mQgqHScneEcB/dXbwOU2184vc5bvDE4VjZ5m/LwIU
+ t+4EMZOTq7fn3zAtIepbpvnWsH59DWjKAuLzaTXEBcNq+GlfwWPUEnqscLOAOsZlz3MJ
+ YyZu382A4Rs5dy2YbnfR4nnD7nyZUxYOVaAUanppzZe/8WGJHFCRMH9z8ir+NLvAto6U
+ SQksiLOYiyYPYA9FXOu7hSkqzl5ijD3zMU0TbIqEDJngTeuMGCRaUYZrsQn89HdZXzLX eA== 
+Received: from ukgw-exck2-p01.kda.kongsberg.com ([10.50.100.41])
+ by kda-chqmg-01.kongsberg.com with ESMTP id 3302qtrg9y-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=NOT)
+ for <usrp-users@lists.ettus.com>; Thu, 20 Aug 2020 13:22:23 +0200
+Received: from Ukgw-ExcK2-p01.kda.kongsberg.com (10.50.100.41) by
+ Ukgw-ExcK2-p01.kda.kongsberg.com (10.50.100.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.1913.5; Thu, 20 Aug 2020 13:22:23 +0200
+Received: from Ukgw-ExcK2-p01.kda.kongsberg.com ([fe80::dc6d:7bfe:de2:ea24])
+ by Ukgw-ExcK2-p01.kda.kongsberg.com ([fe80::dc6d:7bfe:de2:ea24%21]) with mapi
+ id 15.01.1913.007; Thu, 20 Aug 2020 13:22:23 +0200
+To: <usrp-users@lists.ettus.com>
+Thread-Topic: Issues with multi-usrp and UHD
+Thread-Index: AdZ21mx1YVSRD/KTRva7GPuE0XgSxA==
+Date: Thu, 20 Aug 2020 11:22:23 +0000
+Message-ID: <7d8c7731d23c412490a27750fac617a9@kongsberg.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.73.0.10]
+Content-Type: multipart/mixed;
+ boundary="_006_7d8c7731d23c412490a27750fac617a9kongsbergcom_"
 MIME-Version: 1.0
-References: <CANwgjNp9NiRfWnidoV0MGKFLP8YKKYFgjV=9jiKDz91DxfLn9w@mail.gmail.com>
- <E0495F5B-2367-4ADC-B00F-E114849470FD@gmail.com>
-In-Reply-To: <E0495F5B-2367-4ADC-B00F-E114849470FD@gmail.com>
-Date: Thu, 20 Aug 2020 06:57:48 -0400
-Message-ID: <CANwgjNoe7Qeq-KWFvNaN6vStzLupbcPsPqH4+t-BE-ZN43cQcA@mail.gmail.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: USRP-users@lists.ettus.com
-Subject: Re: [USRP-users] Fwd: Benchmark_rate.py error
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
+ definitions=2020-08-20_02:2020-08-19,
+ 2020-08-20 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 impostorscore=0
+ lowpriorityscore=0
+ malwarescore=0 suspectscore=0 phishscore=0 clxscore=1011 mlxlogscore=999
+ spamscore=0 mlxscore=0 bulkscore=0 adultscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2008200094
+Subject: [USRP-users] Issues with multi-usrp and UHD
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -56,9 +71,8 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ephraim Moges via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ephraim Moges <emoges@uncc.edu>
-Content-Type: multipart/mixed; boundary="===============5306664227837267517=="
+From: Andreas B via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Andreas.Bertheussen@kongsberg.com
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,372 +86,452 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5306664227837267517==
-Content-Type: multipart/alternative; boundary="00000000000047557905ad4cfe38"
-
---00000000000047557905ad4cfe38
-Content-Type: text/plain; charset="UTF-8"
+--_006_7d8c7731d23c412490a27750fac617a9kongsbergcom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Good Morning,
+Hi,
 
-I am getting an error when follow the package manager route. I think it is
-because their is currently no build that ettus was able to do on Ubuntu 20
-and 18 according to ettus records. Please advise if I should revert back to
-ubuntu 16 or if this problem is unique to my computer.
+I have a setup with two USRP X310. Each X310 has two UBX-40 daughterboards =
+for a total of 4 RX channels and 4 TX channels. Attached is the uhd_usrp_pr=
+obe status for the USRP X310s in my setup.
+Both X310s are connected to an OctoClock-G, where they get fed 10MHz and 1P=
+PS.
+Host computer runs Fedora 32, UHD 3.15.0.0, and connects to the X310s throu=
+gh a 1Gbps Ethernet switch.
 
-https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+packages
+I'm trying to transmit phase coherent signals using multi-usrp. For now I'm=
+ only trying to transmit two channels, but ultimately I want to use more ch=
+annels, and a third X310.
+For test purpose I'm tuning to a low frequency of 350MHz, which I can obser=
+ve on oscilloscope, and a low sample rate of 1 Msps. The signals generated =
+are DC at baseband, and show up as 350Mhz sinusoids when things work as exp=
+ected.
 
-Err:6 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu focal Release
+When I run my code with only one X310, and subdev spec ("A:0 B:0"), things =
+work fine (full output in attached success.txt file).
 
-  404  Not Found [IP: 91.189.95.83 80]
-Hit:7 https://deb.trendtechcn.com stable InRelease
+The issue occurs when I try to use two X310s, each with subdev spec "A:0". =
+I get the following error message (full output in attached failure.txt file=
+):
+"Error: RuntimeError: Multiple sampling rates downstream of TX Terminator 0=
+: RuntimeError: Node 1/DUC_0 specifies 1e+06, node 1/DUC_1 specifies 390625=
+."
+I'm not trying to use different sampling rates. This error message occurs m=
+ost of the time, but occasionally it works OK.
 
-Reading package lists... Done
-E: The repository 'http://ppa.launchpad.net/ettusresearch/uhd/ubuntu focal
-Release' does not have a Release file.
-N: Updating from such a repository can't be done securely, and is therefore
-disabled by default.
-N: See apt-secure(8) manpage for repository creation and user configuration
-details.
+Full source code is in attached siggen.cc. The code I comment/uncomment to =
+show the two cases are lines 26,27,35,36 and 39.
+I synchronize and do timed command for tune requests in order to get cohere=
+nt operation.
 
-Sincerely,
-
-Ephraim Moges
-
-
-On Wed, Aug 19, 2020 at 12:26 PM Marcus D Leech <patchvonbraun@gmail.com>
-wrote:
-
-> Please try the PPA route. Just spoke with Ettus R&D.
->
->
->
-> Sent from my iPhone
->
-> On Aug 19, 2020, at 12:16 PM, Ephraim Moges <emoges@uncc.edu> wrote:
->
-> =EF=BB=BF
-> Thank you I look forward to hearing from you. In the meantime I will
-> reinstall Ubuntu 20 and the essential libraries.
->
->
-> On Wed, Aug 19, 2020, 12:13 PM Marcus D Leech <patchvonbraun@gmail.com>
-> wrote:
->
->> That=E2=80=99s a good question. I=E2=80=99m
->> Not sure if the packaging person for Ubuntu pays attention to this
->> list=E2=80=94they would be able to definitively answer that.
->>
->> The Python API may be a separate package.
->>
->> I *think* the PPA provided by Ettus includes the Python API. Be careful
->> about
->> Mixing the official packages with the PPA packages (and by inference bit=
-s
->> and pieces built from source).  I can confirm this later today.
->>
->> Sent from my iPhone
->>
->> On Aug 19, 2020, at 11:57 AM, Ephraim Moges <emoges@uncc.edu> wrote:
->>
->> =EF=BB=BF
->> Will this also allow for me to call "import uhd" in my python scripts?
->>
->> On Wed, Aug 19, 2020, 11:47 AM Marcus D. Leech <patchvonbraun@gmail.com>
->> wrote:
->>
->>> On 08/19/2020 11:43 AM, Ephraim Moges wrote:
->>>
->>> I tried to install it on I ubuntu 20 or 18 but ran into many issues. I
->>> can reinstall Ubuntu 20 but I'm not sure what steps you would recommend=
- to
->>> follow to allow for an easy installation.
->>>
->>> https://files.ettus.com/manual/page_install.html#install_linux_pkgmgr
->>>
->>> Refer to the "using your package manager" section.
->>>
->>>
->>>
->>>
->>>
->>>
->>> On Wed, Aug 19, 2020, 11:41 AM Marcus D. Leech <patchvonbraun@gmail.com=
->
->>> wrote:
->>>
->>>> On 08/19/2020 11:36 AM, Ephraim Moges wrote:
->>>>
->>>> Ubuntu 16 and I used cmake instructions
->>>>
->>>> https://files.ettus.com/manual/page_build_guide.html
->>>>
->>>> OK, so when CMake ran, did it say that it was turning off various
->>>> features, due to missing dependencies.
->>>>
->>>> Also, Ubuntu 16 is insanely, outrageously, out-of-date, and I'm
->>>> surprised that you could build current UHD AT ALL on it.
->>>>
->>>> Please consider upgrading to a more-recent OS version.
->>>>
->>>> In fact, on a newer Ubuntu (like the latest), you shouldn't need to
->>>> build UHD at all--it's already packaged and can be installed
->>>>   using the package manager.
->>>>
->>>>
->>>>
->>>> On Wed, Aug 19, 2020, 11:35 AM Marcus D. Leech via USRP-users <
->>>> usrp-users@lists.ettus.com> wrote:
->>>>
->>>>> On 08/19/2020 11:27 AM, Ephraim Moges via USRP-users wrote:
->>>>>
->>>>> Good Morning,
->>>>>
->>>>> I am having a problem running the python benchmark_rate.py. The error
->>>>> message I am receiving is in the image attached "the module uhd has n=
-o
->>>>> attribute 'usrp'". My installation indicated everything was good when=
- I ran
->>>>> a make test, so I am not sure if I need to be in a specific folder so=
- that
->>>>> it can find the attribute or what.
->>>>>
->>>>> Sincerely,
->>>>>
->>>>> Moges
->>>>>
->>>>>
->>>>> _______________________________________________
->>>>> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.c=
-om/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>
->>>>> What OS?   How exactly did you install UHD?
->>>>>
->>>>>
->>>>> _______________________________________________
->>>>> USRP-users mailing list
->>>>> USRP-users@lists.ettus.com
->>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>
->>>>
->>>>
->>>
-
---00000000000047557905ad4cfe38
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Good Morning,<div><br></div><div>I am getting an error whe=
-n follow the package manager route. I think it is because their is currentl=
-y no build that ettus was able to do on Ubuntu 20 and 18 according to ettus=
- records. Please advise if I should revert back to ubuntu 16 or if this pro=
-blem is unique to my computer.</div><div><br></div><div><a href=3D"https://=
-launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+packages">https://launchp=
-ad.net/~ettusresearch/+archive/ubuntu/uhd/+packages</a>=C2=A0=C2=A0<br></di=
-v><div><br></div><div>Err:6 <a href=3D"http://ppa.launchpad.net/ettusresear=
-ch/uhd/ubuntu">http://ppa.launchpad.net/ettusresearch/uhd/ubuntu</a> focal =
-Release =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 <br>=C2=A0 404 =C2=A0Not Found [IP: 91.189.95.83 80]<b=
-r>Hit:7 <a href=3D"https://deb.trendtechcn.com">https://deb.trendtechcn.com=
-</a> stable InRelease =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>Reading package lists... Done =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0<br>E: The repository &#39;<a href=3D"http://ppa.launchpad=
-.net/ettusresearch/uhd/ubuntu">http://ppa.launchpad.net/ettusresearch/uhd/u=
-buntu</a> focal Release&#39; does not have a Release file.<br>N: Updating f=
-rom such a repository can&#39;t be done securely, and is therefore disabled=
- by default.<br>N: See apt-secure(8) manpage for repository creation and us=
-er configuration details.<br><div><div dir=3D"ltr" class=3D"gmail_signature=
-" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><br></div><div>S=
-incerely,<br><br></div>Ephraim Moges<br></div></div></div><br></div></div><=
-br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed,=
- Aug 19, 2020 at 12:26 PM Marcus D Leech &lt;<a href=3D"mailto:patchvonbrau=
-n@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Please try the PPA ro=
-ute. Just spoke with Ettus R&amp;D.=C2=A0<div><br></div><div><br><br><div d=
-ir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=
-=3D"cite">On Aug 19, 2020, at 12:16 PM, Ephraim Moges &lt;<a href=3D"mailto=
-:emoges@uncc.edu" target=3D"_blank">emoges@uncc.edu</a>&gt; wrote:<br><br><=
-/blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div =
-dir=3D"auto">Thank you I look forward to hearing from you. In the meantime =
-I will reinstall Ubuntu 20 and the essential libraries.=C2=A0<br><div><br><=
-/div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
-ttr">On Wed, Aug 19, 2020, 12:13 PM Marcus D Leech &lt;<a href=3D"mailto:pa=
-tchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wr=
-ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
-"auto">That=E2=80=99s a good question. I=E2=80=99m<div>Not sure if the pack=
-aging person for Ubuntu pays attention to this list=E2=80=94they would be a=
-ble to definitively answer that.=C2=A0</div><div><br></div><div>The Python =
-API may be a separate package.=C2=A0</div><div><br></div><div>I *think* the=
- PPA provided by Ettus includes the Python API. Be careful about</div><div>=
-Mixing the official packages with the PPA packages (and by inference bits a=
-nd pieces built from source).=C2=A0 I can confirm this later today.=C2=A0</=
-div><div><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br=
-><blockquote type=3D"cite">On Aug 19, 2020, at 11:57 AM, Ephraim Moges &lt;=
-<a href=3D"mailto:emoges@uncc.edu" rel=3D"noreferrer" target=3D"_blank">emo=
-ges@uncc.edu</a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"c=
-ite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"auto">Will this also allow for m=
-e to call &quot;import uhd&quot; in my python scripts?<br></div><br><div cl=
-ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 19, 2=
-020, 11:47 AM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com=
-" rel=3D"noreferrer" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <div>On 08/19/2020 11:43 AM, Ephraim Moges
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"auto">I tried to install it on I ubuntu 20 or 18 but ran
-        into many issues. I can reinstall Ubuntu 20 but I&#39;m not sure
-        what steps you would recommend to follow to allow for an easy
-        installation.</div>
-    </blockquote>
-<a href=3D"https://files.ettus.com/manual/page_install.html#install_linux_p=
-kgmgr" rel=3D"noreferrer noreferrer" target=3D"_blank">https://files.ettus.=
-com/manual/page_install.html#install_linux_pkgmgr</a><br>
-    <br>
-    Refer to the &quot;using your package manager&quot; section.<br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"><br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 19, 2020, 11:41 A=
-M
-          Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" re=
-l=3D"noreferrer noreferrer" target=3D"_blank">patchvonbraun@gmail.com</a>&g=
-t;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div bgcolor=3D"#FFFFFF">
-            <div>On 08/19/2020 11:36 AM, Ephraim Moges wrote:<br>
-            </div>
-            <blockquote type=3D"cite">
-              <div dir=3D"auto">Ubuntu 16 and I used cmake instructions
-                <div dir=3D"auto"><br>
-                </div>
-                <div dir=3D"auto"><a href=3D"https://files.ettus.com/manual=
-/page_build_guide.html" rel=3D"noreferrer noreferrer noreferrer" target=3D"=
-_blank">https://files.ettus.com/manual/page_build_guide.html</a><br>
-                </div>
-              </div>
-            </blockquote>
-            OK, so when CMake ran, did it say that it was turning off
-            various features, due to missing dependencies.<br>
-            <br>
-            Also, Ubuntu 16 is insanely, outrageously, out-of-date, and
-            I&#39;m surprised that you could build current UHD AT ALL on it=
-.<br>
-            <br>
-            Please consider upgrading to a more-recent OS version.<br>
-            <br>
-            In fact, on a newer Ubuntu (like the latest), you shouldn&#39;t
-            need to build UHD at all--it&#39;s already packaged and can be
-            installed<br>
-            =C2=A0 using the package manager.<br>
-            <br>
-            <br>
-            <blockquote type=3D"cite"><br>
-              <div class=3D"gmail_quote">
-                <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 19, 2020,
-                  11:35 AM Marcus D. Leech via USRP-users &lt;<a href=3D"ma=
-ilto:usrp-users@lists.ettus.com" rel=3D"noreferrer noreferrer noreferrer" t=
-arget=3D"_blank">usrp-users@lists.ettus.com</a>&gt;
-
-                  wrote:<br>
-                </div>
-                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-                  <div bgcolor=3D"#FFFFFF">
-                    <div>On 08/19/2020 11:27 AM, Ephraim Moges via
-                      USRP-users wrote:<br>
-                    </div>
-                    <blockquote type=3D"cite">
-                      <div dir=3D"auto">
-                        <div class=3D"gmail_quote" dir=3D"auto">
-                          <div dir=3D"ltr" class=3D"gmail_attr">Good
-                            Morning,<br>
-                          </div>
-                          <div dir=3D"auto">
-                            <div dir=3D"auto"><br>
-                            </div>
-                            <div dir=3D"auto">I am having a problem
-                              running the python benchmark_rate.py. The
-                              error message I am receiving is in the
-                              image attached &quot;the module uhd has no
-                              attribute &#39;usrp&#39;&quot;. My installati=
-on
-                              indicated everything was good when I ran a
-                              make test, so I am not sure if I need to
-                              be in a specific folder so that it can
-                              find the attribute or what.<br>
-                              <br>
-                              <div dir=3D"auto">Sincerely,<br>
-                                <br>
-                              </div>
-                              <div dir=3D"auto">Moges<br>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <br>
-                      <fieldset></fieldset>
-                      <br>
-                      <pre>_______________________________________________
-USRP-users mailing list
-<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer =
-noreferrer noreferrer" target=3D"_blank">USRP-users@lists.ettus.com</a>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer noreferrer noreferrer" target=3D"_blank">h=
-ttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-                    </blockquote>
-                    What OS?=C2=A0=C2=A0 How exactly did you install UHD?=
-=C2=A0 <br>
-                    <br>
-                    <br>
-                  </div>
-                  _______________________________________________<br>
-                  USRP-users mailing list<br>
-                  <a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"nore=
-ferrer noreferrer noreferrer noreferrer" target=3D"_blank">USRP-users@lists=
-.ettus.com</a><br>
-                  <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-u=
-sers_lists.ettus.com" rel=3D"noreferrer noreferrer noreferrer noreferrer no=
-referrer" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-us=
-ers_lists.ettus.com</a><br>
-                </blockquote>
-              </div>
-            </blockquote>
-            <br>
-          </div>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </div>
-
-</blockquote></div>
-</div></blockquote></div></div></blockquote></div>
-</div></blockquote></div></div></blockquote></div>
-
---00000000000047557905ad4cfe38--
+--
+Regards,
+Andreas.
 
 
---===============5306664227837267517==
+
+________________________________
+
+CONFIDENTIALITY
+This e-mail and any attachment contain KONGSBERG information which may be p=
+roprietary, confidential or subject to export regulations, and is only mean=
+t for the intended recipient(s). Any disclosure, copying, distribution or u=
+se is prohibited, if not otherwise explicitly agreed with KONGSBERG. If rec=
+eived in error, please delete it immediately from your system and notify th=
+e sender properly.
+
+--_006_7d8c7731d23c412490a27750fac617a9kongsbergcom_
+Content-Type: text/plain; name="failure.txt"
+Content-Description: failure.txt
+Content-Disposition: attachment; filename="failure.txt"; size=2347;
+	creation-date="Thu, 20 Aug 2020 09:49:39 GMT";
+	modification-date="Thu, 20 Aug 2020 09:14:33 GMT"
+Content-Transfer-Encoding: base64
+
+W0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gMTAuMC4xIDIwMjAwMzI4IChSZWQg
+SGF0IDEwLjAuMS0wLjExKTsgQm9vc3RfMTA2OTAwOyBVSERfMy4xNS4wLjAKW0lORk9dIFtYMzAw
+XSBYMzAwIGluaXRpYWxpemF0aW9uIHNlcXVlbmNlLi4uCltJTkZPXSBbWDMwMF0gTWF4aW11bSBm
+cmFtZSBzaXplOiAxNDcyIGJ5dGVzLgpbSU5GT10gW1gzMDBdIE1heGltdW0gZnJhbWUgc2l6ZTog
+MTQ3MiBieXRlcy4KW0lORk9dIFtYMzAwXSBSYWRpbyAxeCBjbG9jazogMjAwIE1IegpbSU5GT10g
+W1gzMDBdIFJhZGlvIDF4IGNsb2NrOiAyMDAgTUh6CltJTkZPXSBbMS9EbWFGSUZPXzBdIEluaXRp
+YWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RjFGMEQwMDAwMDAwMDAwMCkKW0lORk9d
+IFsxL0RtYUZJRk9fMF0gQklTVCBwYXNzZWQgKFRocm91Z2hwdXQ6IDEzMDcgTUIvcykKW0lORk9d
+IFsxL0RtYUZJRk9fMF0gQklTVCBwYXNzZWQgKFRocm91Z2hwdXQ6IDEzMTEgTUIvcykKW0lORk9d
+IFswL0RtYUZJRk9fMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYw
+RDAwMDAwMDAwMDAwKQpbSU5GT10gWzAvRG1hRklGT18wXSBCSVNUIHBhc3NlZCAoVGhyb3VnaHB1
+dDogMTMxMSBNQi9zKQpbSU5GT10gWzAvRG1hRklGT18wXSBCSVNUIHBhc3NlZCAoVGhyb3VnaHB1
+dDogMTMxMiBNQi9zKQpbSU5GT10gWzEvUmFkaW9fMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRy
+b2wgKE5PQyBJRDogMHgxMkFEMTAwMDAwMDAwMDAxKQpbSU5GT10gWzAvUmFkaW9fMF0gSW5pdGlh
+bGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAwMDAwMDAxKQpbSU5GT10g
+WzEvUmFkaW9fMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAw
+MDAwMDAwMDAxKQpbSU5GT10gWzAvUmFkaW9fMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wg
+KE5PQyBJRDogMHgxMkFEMTAwMDAwMDAwMDAxKQpbSU5GT10gWzEvRERDXzBdIEluaXRpYWxpemlu
+ZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RERDMDAwMDAwMDAwMDAwMCkKW0lORk9dIFswL0RE
+Q18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEREQzAwMDAwMDAwMDAw
+MDApCltJTkZPXSBbMS9ERENfMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDog
+MHhEREMwMDAwMDAwMDAwMDAwKQpbSU5GT10gWzAvRERDXzFdIEluaXRpYWxpemluZyBibG9jayBj
+b250cm9sIChOT0MgSUQ6IDB4RERDMDAwMDAwMDAwMDAwMCkKW0lORk9dIFsxL0RVQ18wXSBJbml0
+aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEQwQzAwMDAwMDAwMDAwMDApCltJTkZP
+XSBbMC9EVUNfMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAw
+MDAwMDAwMDAwKQpbSU5GT10gWzEvRFVDXzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChO
+T0MgSUQ6IDB4RDBDMDAwMDAwMDAwMDAwMCkKW0lORk9dIFswL0RVQ18xXSBJbml0aWFsaXppbmcg
+YmxvY2sgY29udHJvbCAoTk9DIElEOiAweEQwQzAwMDAwMDAwMDAwMDApCltJTkZPXSBbTVVMVElf
+VVNSUF0gICAgIDEpIGNhdGNoIHRpbWUgdHJhbnNpdGlvbiBhdCBwcHMgZWRnZQpbSU5GT10gW01V
+TFRJX1VTUlBdICAgICAyKSBzZXQgdGltZXMgbmV4dCBwcHMgKHN5bmNocm9ub3VzbHkpCltJTkZP
+XSBbQ0FMXSBDYWxpYnJhdGlvbiBkYXRhIGxvYWRlZDogL2hvbWUvYW5kcmVhcy8udWhkL2NhbC90
+eF9pcV9jYWxfdjAuMl8zMUQ1NjFFLmNzdgpbSU5GT10gW0NBTF0gQ2FsaWJyYXRpb24gZGF0YSBs
+b2FkZWQ6IC9ob21lL2FuZHJlYXMvLnVoZC9jYWwvdHhfZGNfY2FsX3YwLjJfMzFENTYxRS5jc3YK
+VHVuZWQgdG86IDM1MC4wMDAwMDAgTUh6IEAgMS4wMDAwMDAgTXNwcyAoZ2FpbiAxNS41MDAwMDAg
+ZEIpCltJTkZPXSBbQ0FMXSBDYWxpYnJhdGlvbiBkYXRhIGxvYWRlZDogL2hvbWUvYW5kcmVhcy8u
+dWhkL2NhbC90eF9pcV9jYWxfdjAuMl8zMUNCMDQ0LmNzdgpbSU5GT10gW0NBTF0gQ2FsaWJyYXRp
+b24gZGF0YSBsb2FkZWQ6IC9ob21lL2FuZHJlYXMvLnVoZC9jYWwvdHhfZGNfY2FsX3YwLjJfMzFD
+QjA0NC5jc3YKVHVuZWQgdG86IDM1MC4wMDAwMDAgTUh6IEAgMS4wMDAwMDAgTXNwcyAoZ2FpbiAx
+NS41MDAwMDAgZEIpClR1bmluZyBjb21wbGV0ZQpFcnJvcjogUnVudGltZUVycm9yOiBNdWx0aXBs
+ZSBzYW1wbGluZyByYXRlcyBkb3duc3RyZWFtIG9mIFRYIFRlcm1pbmF0b3IgMDogUnVudGltZUVy
+cm9yOiBOb2RlIDEvRFVDXzAgc3BlY2lmaWVzIDFlKzA2LCBub2RlIDEvRFVDXzEgc3BlY2lmaWVz
+IDM5MDYyNS4KCg==
+
+--_006_7d8c7731d23c412490a27750fac617a9kongsbergcom_
+Content-Type: text/plain; name="success.txt"
+Content-Description: success.txt
+Content-Disposition: attachment; filename="success.txt"; size=1694;
+	creation-date="Thu, 20 Aug 2020 09:49:39 GMT";
+	modification-date="Thu, 20 Aug 2020 09:15:36 GMT"
+Content-Transfer-Encoding: base64
+
+W0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gMTAuMC4xIDIwMjAwMzI4IChSZWQg
+SGF0IDEwLjAuMS0wLjExKTsgQm9vc3RfMTA2OTAwOyBVSERfMy4xNS4wLjAKW0lORk9dIFtYMzAw
+XSBYMzAwIGluaXRpYWxpemF0aW9uIHNlcXVlbmNlLi4uCltJTkZPXSBbWDMwMF0gTWF4aW11bSBm
+cmFtZSBzaXplOiAxNDcyIGJ5dGVzLgpbSU5GT10gW1gzMDBdIFJhZGlvIDF4IGNsb2NrOiAyMDAg
+TUh6CltJTkZPXSBbMC9EbWFGSUZPXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0Mg
+SUQ6IDB4RjFGMEQwMDAwMDAwMDAwMCkKW0lORk9dIFswL0RtYUZJRk9fMF0gQklTVCBwYXNzZWQg
+KFRocm91Z2hwdXQ6IDEzMDAgTUIvcykKW0lORk9dIFswL0RtYUZJRk9fMF0gQklTVCBwYXNzZWQg
+KFRocm91Z2hwdXQ6IDEzMDUgTUIvcykKW0lORk9dIFswL1JhZGlvXzBdIEluaXRpYWxpemluZyBi
+bG9jayBjb250cm9sIChOT0MgSUQ6IDB4MTJBRDEwMDAwMDAwMDAwMSkKW0lORk9dIFswL1JhZGlv
+XzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4MTJBRDEwMDAwMDAwMDAw
+MSkKW0lORk9dIFswL0REQ18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAw
+eEREQzAwMDAwMDAwMDAwMDApCltJTkZPXSBbMC9ERENfMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNv
+bnRyb2wgKE5PQyBJRDogMHhEREMwMDAwMDAwMDAwMDAwKQpbSU5GT10gWzAvRFVDXzBdIEluaXRp
+YWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RDBDMDAwMDAwMDAwMDAwMCkKW0lORk9d
+IFswL0RVQ18xXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEQwQzAwMDAw
+MDAwMDAwMDApCltJTkZPXSBbTVVMVElfVVNSUF0gICAgIDEpIGNhdGNoIHRpbWUgdHJhbnNpdGlv
+biBhdCBwcHMgZWRnZQpbSU5GT10gW01VTFRJX1VTUlBdICAgICAyKSBzZXQgdGltZXMgbmV4dCBw
+cHMgKHN5bmNocm9ub3VzbHkpCltJTkZPXSBbQ0FMXSBDYWxpYnJhdGlvbiBkYXRhIGxvYWRlZDog
+L2hvbWUvYW5kcmVhcy8udWhkL2NhbC90eF9pcV9jYWxfdjAuMl8zMUQ1NjFFLmNzdgpbSU5GT10g
+W0NBTF0gQ2FsaWJyYXRpb24gZGF0YSBsb2FkZWQ6IC9ob21lL2FuZHJlYXMvLnVoZC9jYWwvdHhf
+ZGNfY2FsX3YwLjJfMzFENTYxRS5jc3YKVHVuZWQgdG86IDM1MC4wMDAwMDAgTUh6IEAgMS4wMDAw
+MDAgTXNwcyAoZ2FpbiAxNS41MDAwMDAgZEIpCltJTkZPXSBbQ0FMXSBDYWxpYnJhdGlvbiBkYXRh
+IGxvYWRlZDogL2hvbWUvYW5kcmVhcy8udWhkL2NhbC90eF9pcV9jYWxfdjAuMl8zMUNCMDQ2LmNz
+dgpbSU5GT10gW0NBTF0gQ2FsaWJyYXRpb24gZGF0YSBsb2FkZWQ6IC9ob21lL2FuZHJlYXMvLnVo
+ZC9jYWwvdHhfZGNfY2FsX3YwLjJfMzFDQjA0Ni5jc3YKVHVuZWQgdG86IDM1MC4wMDAwMDAgTUh6
+IEAgMS4wMDAwMDAgTXNwcyAoZ2FpbiAxNS41MDAwMDAgZEIpClR1bmluZyBjb21wbGV0ZQpTdWJk
+ZXZpY2UgU3BlY2lmaWNhdGlvbjoKICAgIENoYW5uZWwgMDogRGF1Z2h0ZXJib2FyZCBBLCBTdWJk
+ZXZpY2UgMAogICAgQ2hhbm5lbCAxOiBEYXVnaHRlcmJvYXJkIEIsIFN1YmRldmljZSAwCgpDSCAw
+OiBUWExPOiBsb2NrZWQKQ0ggMTogVFhMTzogbG9ja2VkCk1CIDA6IFJlZjogbG9ja2VkClByZXNz
+IEN0cmwgKyBDIHRvIHN0b3Agc3RyZWFtaW5nLi4uCl5DCkRvbmUhCgo=
+
+--_006_7d8c7731d23c412490a27750fac617a9kongsbergcom_
+Content-Type: text/plain; name="uhd_usrp_probe_192.168.10.2.txt"
+Content-Description: uhd_usrp_probe_192.168.10.2.txt
+Content-Disposition: attachment; filename="uhd_usrp_probe_192.168.10.2.txt";
+	size=5397; creation-date="Thu, 20 Aug 2020 09:49:39 GMT";
+	modification-date="Thu, 20 Aug 2020 09:17:34 GMT"
+Content-Transfer-Encoding: base64
+
+L29wdC91aGQvYmluL3VoZF91c3JwX3Byb2JlIC0tYXJncz0iYWRkcj0xOTIuMTY4LjEwLjIiCltJ
+TkZPXSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIDEwLjAuMSAyMDIwMDMyOCAoUmVkIEhh
+dCAxMC4wLjEtMC4xMSk7IEJvb3N0XzEwNjkwMDsgVUhEXzMuMTUuMC4wCltJTkZPXSBbWDMwMF0g
+WDMwMCBpbml0aWFsaXphdGlvbiBzZXF1ZW5jZS4uLgpbSU5GT10gW1gzMDBdIE1heGltdW0gZnJh
+bWUgc2l6ZTogMTQ3MiBieXRlcy4KW0lORk9dIFtYMzAwXSBSYWRpbyAxeCBjbG9jazogMjAwIE1I
+egpbSU5GT10gWzAvRG1hRklGT18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElE
+OiAweEYxRjBEMDAwMDAwMDAwMDApCltJTkZPXSBbMC9EbWFGSUZPXzBdIEJJU1QgcGFzc2VkIChU
+aHJvdWdocHV0OiAxMzAxIE1CL3MpCltJTkZPXSBbMC9EbWFGSUZPXzBdIEJJU1QgcGFzc2VkIChU
+aHJvdWdocHV0OiAxMzE4IE1CL3MpCltJTkZPXSBbMC9SYWRpb18wXSBJbml0aWFsaXppbmcgYmxv
+Y2sgY29udHJvbCAoTk9DIElEOiAweDEyQUQxMDAwMDAwMDAwMDEpCltJTkZPXSBbMC9SYWRpb18x
+XSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweDEyQUQxMDAwMDAwMDAwMDEp
+CltJTkZPXSBbMC9ERENfMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhE
+REMwMDAwMDAwMDAwMDAwKQpbSU5GT10gWzAvRERDXzFdIEluaXRpYWxpemluZyBibG9jayBjb250
+cm9sIChOT0MgSUQ6IDB4RERDMDAwMDAwMDAwMDAwMCkKW0lORk9dIFswL0RVQ18wXSBJbml0aWFs
+aXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEQwQzAwMDAwMDAwMDAwMDApCltJTkZPXSBb
+MC9EVUNfMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAwMDAw
+MDAwMDAwKQogIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCiAvCnwgICAgICAgRGV2aWNlOiBYLVNlcmllcyBEZXZpY2UKfCAgICAgX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgICAvCnwgICB8
+ICAgICAgIE1ib2FyZDogWDMxMAp8ICAgfCAgIHJldmlzaW9uOiAxMQp8ICAgfCAgIHJldmlzaW9u
+X2NvbXBhdDogNwp8ICAgfCAgIHByb2R1Y3Q6IDMwODE4CnwgICB8ICAgbWFjLWFkZHIwOiAwMDo4
+MDoyZjozMDo4ZDpkOQp8ICAgfCAgIG1hYy1hZGRyMTogMDA6ODA6MmY6MzA6OGQ6ZGEKfCAgIHwg
+ICBnYXRld2F5OiAxOTIuMTY4LjEwLjEKfCAgIHwgICBpcC1hZGRyMDogMTkyLjE2OC4xMC4yCnwg
+ICB8ICAgc3VibmV0MDogMjU1LjI1NS4yNTUuMAp8ICAgfCAgIGlwLWFkZHIxOiAxOTIuMTY4LjIw
+LjIKfCAgIHwgICBzdWJuZXQxOiAyNTUuMjU1LjI1NS4wCnwgICB8ICAgaXAtYWRkcjI6IDE5Mi4x
+NjguMzAuMgp8ICAgfCAgIHN1Ym5ldDI6IDI1NS4yNTUuMjU1LjAKfCAgIHwgICBpcC1hZGRyMzog
+MTkyLjE2OC40MC4yCnwgICB8ICAgc3VibmV0MzogMjU1LjI1NS4yNTUuMAp8ICAgfCAgIHNlcmlh
+bDogMzFENzg1RQp8ICAgfCAgIEZXIFZlcnNpb246IDYuMAp8ICAgfCAgIEZQR0EgVmVyc2lvbjog
+MzYuMAp8ICAgfCAgIEZQR0EgZ2l0IGhhc2g6IGNlNDlmY2IKfCAgIHwgICBSRk5vQyBjYXBhYmxl
+OiBZZXMKfCAgIHwgICAKfCAgIHwgICBUaW1lIHNvdXJjZXM6ICBpbnRlcm5hbCwgZXh0ZXJuYWws
+IGdwc2RvCnwgICB8ICAgQ2xvY2sgc291cmNlczogaW50ZXJuYWwsIGV4dGVybmFsLCBncHNkbwp8
+ICAgfCAgIFNlbnNvcnM6IHJlZl9sb2NrZWQKfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICB8ICAgIC8KfCAgIHwgICB8ICAg
+ICAgIFJYIERib2FyZDogQQp8ICAgfCAgIHwgICBJRDogVUJYLTQwIHYyICgweDAwN2MpCnwgICB8
+ICAgfCAgIFNlcmlhbDogMzFENTYxRQp8ICAgfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICB8ICAgfCAgICAvCnwgICB8ICAg
+fCAgIHwgICAgICAgUlggRnJvbnRlbmQ6IDAKfCAgIHwgICB8ICAgfCAgIE5hbWU6IFVCWCBSWAp8
+ICAgfCAgIHwgICB8ICAgQW50ZW5uYXM6IFRYL1JYLCBSWDIsIENBTAp8ICAgfCAgIHwgICB8ICAg
+U2Vuc29yczogbG9fbG9ja2VkCnwgICB8ICAgfCAgIHwgICBGcmVxIHJhbmdlOiAxMC4wMDAgdG8g
+NjAwMC4wMDAgTUh6CnwgICB8ICAgfCAgIHwgICBHYWluIHJhbmdlIFBHQTA6IDAuMCB0byAzMS41
+IHN0ZXAgMC41IGRCCnwgICB8ICAgfCAgIHwgICBCYW5kd2lkdGggcmFuZ2U6IDQwMDAwMDAwLjAg
+dG8gNDAwMDAwMDAuMCBzdGVwIDAuMCBIegp8ICAgfCAgIHwgICB8ICAgQ29ubmVjdGlvbiBUeXBl
+OiBJUQp8ICAgfCAgIHwgICB8ICAgVXNlcyBMTyBvZmZzZXQ6IE5vCnwgICB8ICAgfCAgICAgX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwg
+ICB8ICAgIC8KfCAgIHwgICB8ICAgfCAgICAgICBSWCBDb2RlYzogQQp8ICAgfCAgIHwgICB8ICAg
+TmFtZTogYWRzNjJwNDgKfCAgIHwgICB8ICAgfCAgIEdhaW4gcmFuZ2UgZGlnaXRhbDogMC4wIHRv
+IDYuMCBzdGVwIDAuNSBkQgp8ICAgfCAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICAgLwp8ICAgfCAgIHwgICAgICAgUlggRGJv
+YXJkOiBCCnwgICB8ICAgfCAgIElEOiBVQlgtNDAgdjIgKDB4MDA3YykKfCAgIHwgICB8ICAgU2Vy
+aWFsOiAzMUNCMDQ2CnwgICB8ICAgfCAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICB8ICAgIC8KfCAgIHwgICB8ICAgfCAgICAg
+ICBSWCBGcm9udGVuZDogMAp8ICAgfCAgIHwgICB8ICAgTmFtZTogVUJYIFJYCnwgICB8ICAgfCAg
+IHwgICBBbnRlbm5hczogVFgvUlgsIFJYMiwgQ0FMCnwgICB8ICAgfCAgIHwgICBTZW5zb3JzOiBs
+b19sb2NrZWQKfCAgIHwgICB8ICAgfCAgIEZyZXEgcmFuZ2U6IDEwLjAwMCB0byA2MDAwLjAwMCBN
+SHoKfCAgIHwgICB8ICAgfCAgIEdhaW4gcmFuZ2UgUEdBMDogMC4wIHRvIDMxLjUgc3RlcCAwLjUg
+ZEIKfCAgIHwgICB8ICAgfCAgIEJhbmR3aWR0aCByYW5nZTogNDAwMDAwMDAuMCB0byA0MDAwMDAw
+MC4wIHN0ZXAgMC4wIEh6CnwgICB8ICAgfCAgIHwgICBDb25uZWN0aW9uIFR5cGU6IElRCnwgICB8
+ICAgfCAgIHwgICBVc2VzIExPIG9mZnNldDogTm8KfCAgIHwgICB8ICAgICBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwp8ICAgfCAgIHwgICAgLwp8
+ICAgfCAgIHwgICB8ICAgICAgIFJYIENvZGVjOiBCCnwgICB8ICAgfCAgIHwgICBOYW1lOiBhZHM2
+MnA0OAp8ICAgfCAgIHwgICB8ICAgR2FpbiByYW5nZSBkaWdpdGFsOiAwLjAgdG8gNi4wIHN0ZXAg
+MC41IGRCCnwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwp8ICAgfCAgICAvCnwgICB8ICAgfCAgICAgICBUWCBEYm9hcmQ6IEEKfCAg
+IHwgICB8ICAgSUQ6IFVCWC00MCB2MiAoMHgwMDdiKQp8ICAgfCAgIHwgICBTZXJpYWw6IDMxRDU2
+MUUKfCAgIHwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwp8ICAgfCAgIHwgICAgLwp8ICAgfCAgIHwgICB8ICAgICAgIFRYIEZyb250
+ZW5kOiAwCnwgICB8ICAgfCAgIHwgICBOYW1lOiBVQlggVFgKfCAgIHwgICB8ICAgfCAgIEFudGVu
+bmFzOiBUWC9SWCwgQ0FMCnwgICB8ICAgfCAgIHwgICBTZW5zb3JzOiBsb19sb2NrZWQKfCAgIHwg
+ICB8ICAgfCAgIEZyZXEgcmFuZ2U6IDEwLjAwMCB0byA2MDAwLjAwMCBNSHoKfCAgIHwgICB8ICAg
+fCAgIEdhaW4gcmFuZ2UgUEdBMDogMC4wIHRvIDMxLjUgc3RlcCAwLjUgZEIKfCAgIHwgICB8ICAg
+fCAgIEJhbmR3aWR0aCByYW5nZTogNDAwMDAwMDAuMCB0byA0MDAwMDAwMC4wIHN0ZXAgMC4wIEh6
+CnwgICB8ICAgfCAgIHwgICBDb25uZWN0aW9uIFR5cGU6IFFJCnwgICB8ICAgfCAgIHwgICBVc2Vz
+IExPIG9mZnNldDogTm8KfCAgIHwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwp8ICAgfCAgIHwgICAgLwp8ICAgfCAgIHwgICB8ICAg
+ICAgIFRYIENvZGVjOiBBCnwgICB8ICAgfCAgIHwgICBOYW1lOiBhZDkxNDYKfCAgIHwgICB8ICAg
+fCAgIEdhaW4gRWxlbWVudHM6IE5vbmUKfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICB8ICAgIC8KfCAgIHwgICB8ICAgICAg
+IFRYIERib2FyZDogQgp8ICAgfCAgIHwgICBJRDogVUJYLTQwIHYyICgweDAwN2IpCnwgICB8ICAg
+fCAgIFNlcmlhbDogMzFDQjA0Ngp8ICAgfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICB8ICAgfCAgICAvCnwgICB8ICAgfCAg
+IHwgICAgICAgVFggRnJvbnRlbmQ6IDAKfCAgIHwgICB8ICAgfCAgIE5hbWU6IFVCWCBUWAp8ICAg
+fCAgIHwgICB8ICAgQW50ZW5uYXM6IFRYL1JYLCBDQUwKfCAgIHwgICB8ICAgfCAgIFNlbnNvcnM6
+IGxvX2xvY2tlZAp8ICAgfCAgIHwgICB8ICAgRnJlcSByYW5nZTogMTAuMDAwIHRvIDYwMDAuMDAw
+IE1Iegp8ICAgfCAgIHwgICB8ICAgR2FpbiByYW5nZSBQR0EwOiAwLjAgdG8gMzEuNSBzdGVwIDAu
+NSBkQgp8ICAgfCAgIHwgICB8ICAgQmFuZHdpZHRoIHJhbmdlOiA0MDAwMDAwMC4wIHRvIDQwMDAw
+MDAwLjAgc3RlcCAwLjAgSHoKfCAgIHwgICB8ICAgfCAgIENvbm5lY3Rpb24gVHlwZTogUUkKfCAg
+IHwgICB8ICAgfCAgIFVzZXMgTE8gb2Zmc2V0OiBObwp8ICAgfCAgIHwgICAgIF9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICB8ICAgfCAgICAv
+CnwgICB8ICAgfCAgIHwgICAgICAgVFggQ29kZWM6IEIKfCAgIHwgICB8ICAgfCAgIE5hbWU6IGFk
+OTE0Ngp8ICAgfCAgIHwgICB8ICAgR2FpbiBFbGVtZW50czogTm9uZQp8ICAgfCAgICAgX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICAg
+Lwp8ICAgfCAgIHwgICAgICAgUkZOb0MgYmxvY2tzIG9uIHRoaXMgZGV2aWNlOgp8ICAgfCAgIHwg
+ICAKfCAgIHwgICB8ICAgKiBEbWFGSUZPXzAKfCAgIHwgICB8ICAgKiBSYWRpb18wCnwgICB8ICAg
+fCAgICogUmFkaW9fMQp8ICAgfCAgIHwgICAqIEREQ18wCnwgICB8ICAgfCAgICogRERDXzEKfCAg
+IHwgICB8ICAgKiBEVUNfMAp8ICAgfCAgIHwgICAqIERVQ18xCgoK
+
+--_006_7d8c7731d23c412490a27750fac617a9kongsbergcom_
+Content-Type: text/plain; name="uhd_usrp_probe_192.168.110.2.txt"
+Content-Description: uhd_usrp_probe_192.168.110.2.txt
+Content-Disposition: attachment;
+	filename="uhd_usrp_probe_192.168.110.2.txt"; size=5398;
+	creation-date="Thu, 20 Aug 2020 09:49:39 GMT";
+	modification-date="Thu, 20 Aug 2020 09:18:39 GMT"
+Content-Transfer-Encoding: base64
+
+L29wdC91aGQvYmluL3VoZF91c3JwX3Byb2JlIC0tYXJncz0iYWRkcj0xOTIuMTY4LjExMC4yIgpb
+SU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiAxMC4wLjEgMjAyMDAzMjggKFJlZCBI
+YXQgMTAuMC4xLTAuMTEpOyBCb29zdF8xMDY5MDA7IFVIRF8zLjE1LjAuMApbSU5GT10gW1gzMDBd
+IFgzMDAgaW5pdGlhbGl6YXRpb24gc2VxdWVuY2UuLi4KW0lORk9dIFtYMzAwXSBNYXhpbXVtIGZy
+YW1lIHNpemU6IDE0NzIgYnl0ZXMuCltJTkZPXSBbWDMwMF0gUmFkaW8gMXggY2xvY2s6IDIwMCBN
+SHoKW0lORk9dIFswL0RtYUZJRk9fMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJ
+RDogMHhGMUYwRDAwMDAwMDAwMDAwKQpbSU5GT10gWzAvRG1hRklGT18wXSBCSVNUIHBhc3NlZCAo
+VGhyb3VnaHB1dDogMTMwNSBNQi9zKQpbSU5GT10gWzAvRG1hRklGT18wXSBCSVNUIHBhc3NlZCAo
+VGhyb3VnaHB1dDogMTMwMSBNQi9zKQpbSU5GT10gWzAvUmFkaW9fMF0gSW5pdGlhbGl6aW5nIGJs
+b2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAwMDAwMDAxKQpbSU5GT10gWzAvUmFkaW9f
+MV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAwMDAwMDAx
+KQpbSU5GT10gWzAvRERDXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4
+RERDMDAwMDAwMDAwMDAwMCkKW0lORk9dIFswL0REQ18xXSBJbml0aWFsaXppbmcgYmxvY2sgY29u
+dHJvbCAoTk9DIElEOiAweEREQzAwMDAwMDAwMDAwMDApCltJTkZPXSBbMC9EVUNfMF0gSW5pdGlh
+bGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAwMDAwMDAwMDAwKQpbSU5GT10g
+WzAvRFVDXzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RDBDMDAwMDAw
+MDAwMDAwMCkKICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwogLwp8ICAgICAgIERldmljZTogWC1TZXJpZXMgRGV2aWNlCnwgICAgIF9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICAgLwp8ICAg
+fCAgICAgICBNYm9hcmQ6IFgzMTAKfCAgIHwgICByZXZpc2lvbjogMTEKfCAgIHwgICByZXZpc2lv
+bl9jb21wYXQ6IDcKfCAgIHwgICBwcm9kdWN0OiAzMDgxOAp8ICAgfCAgIG1hYy1hZGRyMDogMDA6
+ODA6MmY6MzA6OTA6ODUKfCAgIHwgICBtYWMtYWRkcjE6IDAwOjgwOjJmOjMwOjkwOjg2CnwgICB8
+ICAgZ2F0ZXdheTogMTkyLjE2OC4xMC4xCnwgICB8ICAgaXAtYWRkcjA6IDE5Mi4xNjguMTEwLjIK
+fCAgIHwgICBzdWJuZXQwOiAyNTUuMjU1LjI1NS4wCnwgICB8ICAgaXAtYWRkcjE6IDE5Mi4xNjgu
+MjAuMgp8ICAgfCAgIHN1Ym5ldDE6IDI1NS4yNTUuMjU1LjAKfCAgIHwgICBpcC1hZGRyMjogMTky
+LjE2OC4zMC4yCnwgICB8ICAgc3VibmV0MjogMjU1LjI1NS4yNTUuMAp8ICAgfCAgIGlwLWFkZHIz
+OiAxOTIuMTY4LjQwLjIKfCAgIHwgICBzdWJuZXQzOiAyNTUuMjU1LjI1NS4wCnwgICB8ICAgc2Vy
+aWFsOiAzMUQ4NEIzCnwgICB8ICAgRlcgVmVyc2lvbjogNi4wCnwgICB8ICAgRlBHQSBWZXJzaW9u
+OiAzNi4wCnwgICB8ICAgRlBHQSBnaXQgaGFzaDogY2U0OWZjYgp8ICAgfCAgIFJGTm9DIGNhcGFi
+bGU6IFllcwp8ICAgfCAgIAp8ICAgfCAgIFRpbWUgc291cmNlczogIGludGVybmFsLCBleHRlcm5h
+bCwgZ3BzZG8KfCAgIHwgICBDbG9jayBzb3VyY2VzOiBpbnRlcm5hbCwgZXh0ZXJuYWwsIGdwc2Rv
+CnwgICB8ICAgU2Vuc29yczogcmVmX2xvY2tlZAp8ICAgfCAgICAgX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICAgLwp8ICAgfCAgIHwg
+ICAgICAgUlggRGJvYXJkOiBBCnwgICB8ICAgfCAgIElEOiBVQlgtNDAgdjIgKDB4MDA3YykKfCAg
+IHwgICB8ICAgU2VyaWFsOiAzMUNCMDQ0CnwgICB8ICAgfCAgICAgX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICB8ICAgIC8KfCAgIHwg
+ICB8ICAgfCAgICAgICBSWCBGcm9udGVuZDogMAp8ICAgfCAgIHwgICB8ICAgTmFtZTogVUJYIFJY
+CnwgICB8ICAgfCAgIHwgICBBbnRlbm5hczogVFgvUlgsIFJYMiwgQ0FMCnwgICB8ICAgfCAgIHwg
+ICBTZW5zb3JzOiBsb19sb2NrZWQKfCAgIHwgICB8ICAgfCAgIEZyZXEgcmFuZ2U6IDEwLjAwMCB0
+byA2MDAwLjAwMCBNSHoKfCAgIHwgICB8ICAgfCAgIEdhaW4gcmFuZ2UgUEdBMDogMC4wIHRvIDMx
+LjUgc3RlcCAwLjUgZEIKfCAgIHwgICB8ICAgfCAgIEJhbmR3aWR0aCByYW5nZTogNDAwMDAwMDAu
+MCB0byA0MDAwMDAwMC4wIHN0ZXAgMC4wIEh6CnwgICB8ICAgfCAgIHwgICBDb25uZWN0aW9uIFR5
+cGU6IElRCnwgICB8ICAgfCAgIHwgICBVc2VzIExPIG9mZnNldDogTm8KfCAgIHwgICB8ICAgICBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwp8ICAg
+fCAgIHwgICAgLwp8ICAgfCAgIHwgICB8ICAgICAgIFJYIENvZGVjOiBBCnwgICB8ICAgfCAgIHwg
+ICBOYW1lOiBhZHM2MnA0OAp8ICAgfCAgIHwgICB8ICAgR2FpbiByYW5nZSBkaWdpdGFsOiAwLjAg
+dG8gNi4wIHN0ZXAgMC41IGRCCnwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwp8ICAgfCAgICAvCnwgICB8ICAgfCAgICAgICBSWCBE
+Ym9hcmQ6IEIKfCAgIHwgICB8ICAgSUQ6IFVCWC00MCB2MiAoMHgwMDdjKQp8ICAgfCAgIHwgICBT
+ZXJpYWw6IDMxRDU2MDgKfCAgIHwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwp8ICAgfCAgIHwgICAgLwp8ICAgfCAgIHwgICB8ICAg
+ICAgIFJYIEZyb250ZW5kOiAwCnwgICB8ICAgfCAgIHwgICBOYW1lOiBVQlggUlgKfCAgIHwgICB8
+ICAgfCAgIEFudGVubmFzOiBUWC9SWCwgUlgyLCBDQUwKfCAgIHwgICB8ICAgfCAgIFNlbnNvcnM6
+IGxvX2xvY2tlZAp8ICAgfCAgIHwgICB8ICAgRnJlcSByYW5nZTogMTAuMDAwIHRvIDYwMDAuMDAw
+IE1Iegp8ICAgfCAgIHwgICB8ICAgR2FpbiByYW5nZSBQR0EwOiAwLjAgdG8gMzEuNSBzdGVwIDAu
+NSBkQgp8ICAgfCAgIHwgICB8ICAgQmFuZHdpZHRoIHJhbmdlOiA0MDAwMDAwMC4wIHRvIDQwMDAw
+MDAwLjAgc3RlcCAwLjAgSHoKfCAgIHwgICB8ICAgfCAgIENvbm5lY3Rpb24gVHlwZTogSVEKfCAg
+IHwgICB8ICAgfCAgIFVzZXMgTE8gb2Zmc2V0OiBObwp8ICAgfCAgIHwgICAgIF9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICB8ICAgfCAgICAv
+CnwgICB8ICAgfCAgIHwgICAgICAgUlggQ29kZWM6IEIKfCAgIHwgICB8ICAgfCAgIE5hbWU6IGFk
+czYycDQ4CnwgICB8ICAgfCAgIHwgICBHYWluIHJhbmdlIGRpZ2l0YWw6IDAuMCB0byA2LjAgc3Rl
+cCAwLjUgZEIKfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCnwgICB8ICAgIC8KfCAgIHwgICB8ICAgICAgIFRYIERib2FyZDogQQp8
+ICAgfCAgIHwgICBJRDogVUJYLTQwIHYyICgweDAwN2IpCnwgICB8ICAgfCAgIFNlcmlhbDogMzFD
+QjA0NAp8ICAgfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCnwgICB8ICAgfCAgICAvCnwgICB8ICAgfCAgIHwgICAgICAgVFggRnJv
+bnRlbmQ6IDAKfCAgIHwgICB8ICAgfCAgIE5hbWU6IFVCWCBUWAp8ICAgfCAgIHwgICB8ICAgQW50
+ZW5uYXM6IFRYL1JYLCBDQUwKfCAgIHwgICB8ICAgfCAgIFNlbnNvcnM6IGxvX2xvY2tlZAp8ICAg
+fCAgIHwgICB8ICAgRnJlcSByYW5nZTogMTAuMDAwIHRvIDYwMDAuMDAwIE1Iegp8ICAgfCAgIHwg
+ICB8ICAgR2FpbiByYW5nZSBQR0EwOiAwLjAgdG8gMzEuNSBzdGVwIDAuNSBkQgp8ICAgfCAgIHwg
+ICB8ICAgQmFuZHdpZHRoIHJhbmdlOiA0MDAwMDAwMC4wIHRvIDQwMDAwMDAwLjAgc3RlcCAwLjAg
+SHoKfCAgIHwgICB8ICAgfCAgIENvbm5lY3Rpb24gVHlwZTogUUkKfCAgIHwgICB8ICAgfCAgIFVz
+ZXMgTE8gb2Zmc2V0OiBObwp8ICAgfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICB8ICAgfCAgICAvCnwgICB8ICAgfCAgIHwg
+ICAgICAgVFggQ29kZWM6IEEKfCAgIHwgICB8ICAgfCAgIE5hbWU6IGFkOTE0Ngp8ICAgfCAgIHwg
+ICB8ICAgR2FpbiBFbGVtZW50czogTm9uZQp8ICAgfCAgICAgX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICAgLwp8ICAgfCAgIHwgICAg
+ICAgVFggRGJvYXJkOiBCCnwgICB8ICAgfCAgIElEOiBVQlgtNDAgdjIgKDB4MDA3YikKfCAgIHwg
+ICB8ICAgU2VyaWFsOiAzMUQ1NjA4CnwgICB8ICAgfCAgICAgX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICB8ICAgIC8KfCAgIHwgICB8
+ICAgfCAgICAgICBUWCBGcm9udGVuZDogMAp8ICAgfCAgIHwgICB8ICAgTmFtZTogVUJYIFRYCnwg
+ICB8ICAgfCAgIHwgICBBbnRlbm5hczogVFgvUlgsIENBTAp8ICAgfCAgIHwgICB8ICAgU2Vuc29y
+czogbG9fbG9ja2VkCnwgICB8ICAgfCAgIHwgICBGcmVxIHJhbmdlOiAxMC4wMDAgdG8gNjAwMC4w
+MDAgTUh6CnwgICB8ICAgfCAgIHwgICBHYWluIHJhbmdlIFBHQTA6IDAuMCB0byAzMS41IHN0ZXAg
+MC41IGRCCnwgICB8ICAgfCAgIHwgICBCYW5kd2lkdGggcmFuZ2U6IDQwMDAwMDAwLjAgdG8gNDAw
+MDAwMDAuMCBzdGVwIDAuMCBIegp8ICAgfCAgIHwgICB8ICAgQ29ubmVjdGlvbiBUeXBlOiBRSQp8
+ICAgfCAgIHwgICB8ICAgVXNlcyBMTyBvZmZzZXQ6IE5vCnwgICB8ICAgfCAgICAgX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICB8ICAg
+IC8KfCAgIHwgICB8ICAgfCAgICAgICBUWCBDb2RlYzogQgp8ICAgfCAgIHwgICB8ICAgTmFtZTog
+YWQ5MTQ2CnwgICB8ICAgfCAgIHwgICBHYWluIEVsZW1lbnRzOiBOb25lCnwgICB8ICAgICBfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwp8ICAgfCAg
+ICAvCnwgICB8ICAgfCAgICAgICBSRk5vQyBibG9ja3Mgb24gdGhpcyBkZXZpY2U6CnwgICB8ICAg
+fCAgIAp8ICAgfCAgIHwgICAqIERtYUZJRk9fMAp8ICAgfCAgIHwgICAqIFJhZGlvXzAKfCAgIHwg
+ICB8ICAgKiBSYWRpb18xCnwgICB8ICAgfCAgICogRERDXzAKfCAgIHwgICB8ICAgKiBERENfMQp8
+ICAgfCAgIHwgICAqIERVQ18wCnwgICB8ICAgfCAgICogRFVDXzEKCg==
+
+--_006_7d8c7731d23c412490a27750fac617a9kongsbergcom_
+Content-Type: application/octet-stream; name="siggen.cc"
+Content-Description: siggen.cc
+Content-Disposition: attachment; filename="siggen.cc"; size=4654;
+	creation-date="Thu, 20 Aug 2020 09:57:57 GMT";
+	modification-date="Thu, 20 Aug 2020 09:57:57 GMT"
+Content-Transfer-Encoding: base64
+
+I2luY2x1ZGUgPHVoZC91dGlscy90aHJlYWQuaHBwPgojaW5jbHVkZSA8dWhkL3V0aWxzL3NhZmVf
+bWFpbi5ocHA+CiNpbmNsdWRlIDx1aGQvdXNycC9tdWx0aV91c3JwLmhwcD4KI2luY2x1ZGUgPHVo
+ZC9leGNlcHRpb24uaHBwPgojaW5jbHVkZSA8Ym9vc3QvYWxnb3JpdGhtL3N0cmluZy9jbGFzc2lm
+aWNhdGlvbi5ocHA+CiNpbmNsdWRlIDxib29zdC9hbGdvcml0aG0vc3RyaW5nLmhwcD4KI2luY2x1
+ZGUgPGJvb3N0L2Zvcm1hdC5ocHA+CiNpbmNsdWRlIDxjc2lnbmFsPgojaW5jbHVkZSA8aW9zdHJl
+YW0+CiNpbmNsdWRlIDxjbWF0aD4KCnN0YXRpYyBib29sIHN0b3Bfc2lnbmFsX2NhbGxlZCA9IGZh
+bHNlOwpjb25zdCBzaXplX3QgbnVtY2hhbiA9IDI7CmNvbnN0IGZsb2F0IGFtcGwgPSAwLjc7Cgp2
+b2lkIHNpZ19pbnRfaGFuZGxlcihpbnQpIHsKICAgIHN0b3Bfc2lnbmFsX2NhbGxlZCA9IHRydWU7
+Cn0KCmludCBVSERfU0FGRV9NQUlOKGludCBhcmdjLCBjaGFyICphcmd2W10pIHsKCXN0YXRpYyBj
+b25zdCBkb3VibGUgdGFyZ2V0X3R4X3JhdGUgPSAxZTY7Cglkb3VibGUgZnJlcSA9IDM1MGU2OwoK
+CXVoZDo6c2V0X3RocmVhZF9wcmlvcml0eV9zYWZlKCk7CgoJdWhkOjpkZXZpY2VfYWRkcl90IGFy
+Z3MoImFkZHIwPTE5Mi4xNjguMTAuMixhZGRyMT0xOTIuMTY4LjExMC4yIik7CQovLwl1aGQ6OmRl
+dmljZV9hZGRyX3QgYXJncygiYWRkcjA9MTkyLjE2OC4xMC4yIik7CgoJdWhkOjp1c3JwOjptdWx0
+aV91c3JwOjpzcHRyIHVzcnAgPSB1aGQ6OnVzcnA6Om11bHRpX3VzcnA6Om1ha2UoYXJncyk7CgkK
+CXVzcnAtPnNldF9jbG9ja19zb3VyY2UoImV4dGVybmFsIik7CgkKCQoJLy8gZWl0aGVyIHVzZSBB
+IGRldmljZSB0eCBvbiB0aGUgZmlyc3QgYW5kIHNlY29uZCBtb3RoZXJib2FyZCwKCXVzcnAtPnNl
+dF90eF9zdWJkZXZfc3BlYyhzdGQ6OnN0cmluZygiQTowIiksIDApOwoJdXNycC0+c2V0X3R4X3N1
+YmRldl9zcGVjKHN0ZDo6c3RyaW5nKCJBOjAiKSwgMSk7CgkKCS8vIG9yIHVzZSBBIGFuZCBCIGRl
+dmljZXMgb24gdGhlIGZpcnN0IG1vdGhlcmJvYXJkCi8vCXVzcnAtPnNldF90eF9zdWJkZXZfc3Bl
+YyhzdGQ6OnN0cmluZygiQTowIEI6MCIpLCAwKTsKCQoJdXNycC0+c2V0X3RpbWVfc291cmNlKCJl
+eHRlcm5hbCIpOwoKCXVzcnAtPnNldF90eF9yYXRlKHRhcmdldF90eF9yYXRlKTsKCWRvdWJsZSB0
+eF9yYXRlID0gdXNycC0+Z2V0X3R4X3JhdGUoKTsKCQoJdXNycC0+c2V0X3RpbWVfdW5rbm93bl9w
+cHModWhkOjp0aW1lX3NwZWNfdCgwLjApKTsKCQoJLyogVElNRUQgVFVORSBTVEFSVCAqLwoJdXNy
+cC0+Y2xlYXJfY29tbWFuZF90aW1lKCk7Cgl1c3JwLT5zZXRfY29tbWFuZF90aW1lKHVzcnAtPmdl
+dF90aW1lX25vdygpICsgdWhkOjp0aW1lX3NwZWNfdCgwLjUpKTsgLy9zZXQgY21kIHRpbWUgZm9y
+IC41cyBpbiB0aGUgZnV0dXJlCgkKCXVoZDo6dHVuZV9yZXF1ZXN0X3QgdHVuZV9yZXF1ZXN0KGZy
+ZXEpOwoJCglmb3IgKHNpemVfdCBjaCA9IDA7IGNoIDwgbnVtY2hhbjsgY2grKykgewoJCS8vIHNl
+dCB1cCB0eCBmcmVxdWVuY3kgYW5kIGdhaW4gZm9yIGFsbCBjaGFubmVscwoJCXVoZDo6dHVuZV9y
+ZXF1ZXN0X3QgdHVuZV9yZXF1ZXN0KGZyZXEpOwoJCXVzcnAtPnNldF90eF9mcmVxKHR1bmVfcmVx
+dWVzdCwgY2gpOwoJCXVzcnAtPnNldF9ub3JtYWxpemVkX3R4X2dhaW4oMC41LCBjaCk7CgkJc3Rk
+Ojpjb3V0IDw8IGJvb3N0Ojpmb3JtYXQoIlR1bmVkIHRvOiAlZiBNSHogQCAlZiBNc3BzIChnYWlu
+ICVmIGRCKSIpICUgKHVzcnAtPmdldF90eF9mcmVxKGNoKS8xZTYpICUgKHVzcnAtPmdldF90eF9y
+YXRlKGNoKS8xZTYpICUgdXNycC0+Z2V0X3R4X2dhaW4oY2gpIDw8IHN0ZDo6ZW5kbDsKCX0KCQoJ
+Ym9vc3Q6OnRoaXNfdGhyZWFkOjpzbGVlcChib29zdDo6cG9zaXhfdGltZTo6bWlsbGlzZWNvbmRz
+KDEwMDApKTsKCXVzcnAtPmNsZWFyX2NvbW1hbmRfdGltZSgpOwoJLyogVElNRUQgVFVORSBFTkQg
+Ki8KCQoJc3RkOjpjb3V0IDw8ICJUdW5pbmcgY29tcGxldGUiIDw8IHN0ZDo6ZW5kbDsKCQoJLy8g
+Z2V0IGEgdHggc3RyZWFtIG9iamVjdAoJdWhkOjpzdHJlYW1fYXJnc190IHN0cmVhbV9hcmdzKCJm
+YzMyIiwgInNjMTYiKTsKCXN0cmVhbV9hcmdzLmNoYW5uZWxzID0gc3RkOjp2ZWN0b3I8c2l6ZV90
+PiB7MCwxfTsKCXVoZDo6dHhfc3RyZWFtZXI6OnNwdHIgdHhfc3RyZWFtID0gdXNycC0+Z2V0X3R4
+X3N0cmVhbShzdHJlYW1fYXJncyk7CgkKCWZvciAoc2l6ZV90IG0gPSAwOyBtIDwgdXNycC0+Z2V0
+X251bV9tYm9hcmRzKCk7IG0rKykgewogICAgICAgICAgICBzdGQ6OmNvdXQgPDwgdXNycC0+Z2V0
+X3R4X3N1YmRldl9zcGVjKG0pLnRvX3BwX3N0cmluZygpIDw8IHN0ZDo6ZW5kbDsKICAgICAgICB9
+CgkKCXNpemVfdCBwYWNrZXRfYnVmZmVyX3NpemUgPSB0eF9zdHJlYW0tPmdldF9tYXhfbnVtX3Nh
+bXBzKCk7CgkKCS8vIGluaXRpYWxpc2UgcGFja2V0IGJ1ZmZlcnMgZm9yIGVub3VnaCBjaGFubmVs
+cywgd2l0aCBzb21lIGRpZmZlcmVudCBwaGFzZXMgYW5kIGFtcGxpdHVkZXMuCglzdGQ6OnZlY3Rv
+cjxzdGQ6OmNvbXBsZXg8ZmxvYXQ+PiBidWZmMShwYWNrZXRfYnVmZmVyX3NpemUsIHN0ZDo6Y29t
+cGxleDxmbG9hdD4oYW1wbCwgMCkpOwoJc3RkOjp2ZWN0b3I8c3RkOjpjb21wbGV4PGZsb2F0Pj4g
+YnVmZjIocGFja2V0X2J1ZmZlcl9zaXplLCBzdGQ6OmNvbXBsZXg8ZmxvYXQ+KChhbXBsLTAuMikq
+Y29zKDAuMzY2NTA4KSwgKGFtcGwtMC4yKSpzaW4oMC4zNjY1MDgpKSk7CglzdGQ6OnZlY3Rvcjxz
+dGQ6OmNvbXBsZXg8ZmxvYXQ+PiBidWZmMyhwYWNrZXRfYnVmZmVyX3NpemUsIHN0ZDo6Y29tcGxl
+eDxmbG9hdD4oKGFtcGwtMC40KSpjb3MoMi4xODE2KSwgKGFtcGwtMC40KSpzaW4oMi4xODE2KSkp
+OwoJc3RkOjp2ZWN0b3I8c3RkOjpjb21wbGV4PGZsb2F0Pj4gYnVmZjQocGFja2V0X2J1ZmZlcl9z
+aXplLCBzdGQ6OmNvbXBsZXg8ZmxvYXQ+KChhbXBsLTAuNikqY29zKDEuODY3NDUpLCAoYW1wbC0w
+LjYpKnNpbigxLjg2NzQ1KSkpOwoJCiAgICAJc3RkOjp2ZWN0b3I8c3RkOjpjb21wbGV4PGZsb2F0
+Pio+IGJ1ZmZzMXsmYnVmZjEuZnJvbnQoKSwgJmJ1ZmYyLmZyb250KCksICZidWZmMy5mcm9udCgp
+LCAmYnVmZjQuZnJvbnQoKX07CgoJLy8gQ2hlY2sgUmVmIGFuZCBMTyBMb2NrIGRldGVjdAoJZm9y
+IChzaXplX3QgY2ggPSAwOyBjaCA8IG51bWNoYW47IGNoKyspIHsKCQlzdGQ6OnZlY3RvcjxzdGQ6
+OnN0cmluZz4gc2Vuc29yX25hbWVzOwoJCWNvbnN0IHNpemVfdCB0eF9zZW5zb3JfY2hhbiA9IGNo
+OwoJCXNlbnNvcl9uYW1lcyA9IHVzcnAtPmdldF90eF9zZW5zb3JfbmFtZXModHhfc2Vuc29yX2No
+YW4pOwoJCXVoZDo6c2Vuc29yX3ZhbHVlX3QgbG9fbG9ja2VkID0gdXNycC0+Z2V0X3R4X3NlbnNv
+cigibG9fbG9ja2VkIiwgdHhfc2Vuc29yX2NoYW4pOwoJCXN0ZDo6Y291dCA8PCBib29zdDo6Zm9y
+bWF0KCJDSCAlaTogJXMiKSAlIGNoICUgbG9fbG9ja2VkLnRvX3BwX3N0cmluZygpIDw8IHN0ZDo6
+ZW5kbDsKCQlVSERfQVNTRVJUX1RIUk9XKGxvX2xvY2tlZC50b19ib29sKCkpOwoJfQoJCglmb3Ig
+KHNpemVfdCBtYiA9IDA7IG1iIDwgdXNycC0+Z2V0X251bV9tYm9hcmRzKCk7IG1iKyspIHsKCQlz
+dGQ6OnZlY3RvcjxzdGQ6OnN0cmluZz4gc2Vuc29yX25hbWVzOwoJCWNvbnN0IHNpemVfdCBtYm9h
+cmRfc2Vuc29yX2lkeCA9IG1iOwoJCXNlbnNvcl9uYW1lcyA9IHVzcnAtPmdldF9tYm9hcmRfc2Vu
+c29yX25hbWVzKG1ib2FyZF9zZW5zb3JfaWR4KTsKCQl1aGQ6OnNlbnNvcl92YWx1ZV90IHJlZl9s
+b2NrZWQgPSB1c3JwLT5nZXRfbWJvYXJkX3NlbnNvcigicmVmX2xvY2tlZCIsIG1ib2FyZF9zZW5z
+b3JfaWR4KTsKCQlzdGQ6OmNvdXQgPDwgYm9vc3Q6OmZvcm1hdCgiTUIgJWk6ICVzIikgJSBtYiAl
+IHJlZl9sb2NrZWQudG9fcHBfc3RyaW5nKCkgPDwgc3RkOjplbmRsOwoJCVVIRF9BU1NFUlRfVEhS
+T1cocmVmX2xvY2tlZC50b19ib29sKCkpOwoJfQoJCglzdGQ6OnNpZ25hbChTSUdJTlQsICZzaWdf
+aW50X2hhbmRsZXIpOwoJc3RkOjpjb3V0IDw8ICJQcmVzcyBDdHJsICsgQyB0byBzdG9wIHN0cmVh
+bWluZy4uLiIgPDwgc3RkOjplbmRsOwoJCgl1aGQ6OnR4X21ldGFkYXRhX3QgbWQ7CgltZC5zdGFy
+dF9vZl9idXJzdCA9IHRydWU7CgltZC5lbmRfb2ZfYnVyc3QgPSBmYWxzZTsKCW1kLmhhc190aW1l
+X3NwZWMgPSB0cnVlOwoJbWQudGltZV9zcGVjID0gdXNycC0+Z2V0X3RpbWVfbm93KCkgKyB1aGQ6
+OnRpbWVfc3BlY190KDAuMSk7CgkKCXdoaWxlICgxKSB7CgkJaWYgKHN0b3Bfc2lnbmFsX2NhbGxl
+ZCkKCQkJYnJlYWs7CgkJCgkJc2l6ZV90IG51bV90eF9zYW1wcyA9IHR4X3N0cmVhbS0+c2VuZChi
+dWZmczEsIHBhY2tldF9idWZmZXJfc2l6ZSwgbWQpOwoJCW1kLnN0YXJ0X29mX2J1cnN0ID0gZmFs
+c2U7CgkJbWQuaGFzX3RpbWVfc3BlYyA9IGZhbHNlOwoJfQoJCgkvLyBzZW5kIGEgbWluaSBFT0Ig
+cGFja2V0CgltZC5lbmRfb2ZfYnVyc3QgPSB0cnVlOwoJdHhfc3RyZWFtLT5zZW5kKCIiLCAwLCBt
+ZCk7CgkvLyBmaW5pc2hlZAoJc3RkOjpjb3V0IDw8IHN0ZDo6ZW5kbCA8PCAiRG9uZSEiIDw8IHN0
+ZDo6ZW5kbCA8PCBzdGQ6OmVuZGw7CgkKCXJldHVybiAwOwp9Cg==
+
+--_006_7d8c7731d23c412490a27750fac617a9kongsbergcom_
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -448,5 +542,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5306664227837267517==--
+--_006_7d8c7731d23c412490a27750fac617a9kongsbergcom_--
 
