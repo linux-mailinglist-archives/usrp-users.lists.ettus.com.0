@@ -2,61 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C4CB24A86A
-	for <lists+usrp-users@lfdr.de>; Wed, 19 Aug 2020 23:25:21 +0200 (CEST)
-Received: from [::1] (port=34324 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C912524AD1D
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Aug 2020 04:58:36 +0200 (CEST)
+Received: from [::1] (port=36474 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k8VaB-0003Eq-Ca; Wed, 19 Aug 2020 17:25:19 -0400
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:46383)
+	id 1k8amf-0005Yb-Ae; Wed, 19 Aug 2020 22:58:33 -0400
+Received: from mail-ua1-f50.google.com ([209.85.222.50]:35945)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k8Va7-00035q-9v
- for usrp-users@lists.ettus.com; Wed, 19 Aug 2020 17:25:15 -0400
-Received: by mail-qk1-f173.google.com with SMTP id d14so22993493qke.13
- for <usrp-users@lists.ettus.com>; Wed, 19 Aug 2020 14:24:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=uzPZrMJx3nzCrVmWFZlGgBETa24FiBcGej4wtd1CF10=;
- b=TQLBDAzr1ZuPKTI9k8bCATXQOfekcyrcpVLBPUjzqM2218V8TaiX42uPnL9OKdVjBK
- bLeyRWF4J8/1yTpzfIeGQgv5oagfdLlb99/CUl/upfCxQ6g7nQn/HJGl5wykE8PR/67o
- ufcgIbyHUSQrHt92lerK+As2f6pYDCzqRBZQXci8yY0+Nm8L+yICSYlCuOT7xxOkdIHC
- dHfSYVWA3kVzLes2t544wbd7qzqyiKG+qk84mOj19y1vfWwuWDzHjwylnknYg65LGKSP
- GSDAF3nUtIdnJEvTaEZtRaMuIBopXMdnE9R4WWQDKMv9gpLLSRSBgng31c2fw2V4tt0D
- w79Q==
+ (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1k8amb-0005UY-Ll
+ for usrp-users@lists.ettus.com; Wed, 19 Aug 2020 22:58:29 -0400
+Received: by mail-ua1-f50.google.com with SMTP id e20so154033uav.3
+ for <usrp-users@lists.ettus.com>; Wed, 19 Aug 2020 19:58:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=jiWD/JpthgWJawHYZqLiD4W/CW6dXqoOXBs4WvoAILQ=;
+ b=F2/IV47SOJSngiMJBd0Y+LEvxzF2uujzb5bFUGHNiLidKgSHv1py0D035jka1HqW8Y
+ HAXxNdUYGuAtipfcFyd8aoi/0BKk8PmMOaiW98FE1M+sJzfCJTlmVcgO/CVqUN15Ps8e
+ 9WgcRqCsmFHVy+ey0HIfoWQQZi2z6CLq+gE2+RdKpOmvHXCsw8ixJqQIBjWuPZTC8Zb2
+ Y2rv1AdakGfVDlkWWokCK9sPnRlfT0TXQvGtetI0lna5uTwkSQCmHI2wwa5MoO9qm55n
+ hKCAagOvO+/1uN7HxEGfp/5AXDtfIgt+OKc/oZAif/a1d9uvN5nX92EVissRLf09aeGF
+ 9krg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=uzPZrMJx3nzCrVmWFZlGgBETa24FiBcGej4wtd1CF10=;
- b=hKuHQy2msDPrdPtBzITrzVb61mFOJqF+E0xQ+lOpG4Srszoe0UK5jfdCbWlv+cKwhu
- K4Uc9yXaZqoM1Fsr7cjN3L7x8tHRF14KXoGTV8xS2YoUnR+R4eO5ZGMo07AJuGxeQ/kS
- lpCrfXI5b93sjWZD28bd92ITsDgb1jpSzKN93FvbuJa7GkAPBE80dLXNmtJUVKauBQ+b
- PwIqyNFeMzcYIB6re8uUzphQg7047ukb0YFMGt8NOf1OEN3wv1ZMPENs/0fwiGQI2d5J
- Q7I6QUgA8aoaPUsCFHhkT6JpmiHHlTaZ1YmKgThzvOsb2PL2rp4wn7vnAQ8iGiAMqepP
- LS7Q==
-X-Gm-Message-State: AOAM533pFNaBYVnUfJ8CStHHCCNdfYKaHl3lZrnv/LloFHWAwX3gEWof
- 9DpyVqo16572BaubMTAp14vbKjtRT0duDESO
-X-Google-Smtp-Source: ABdhPJyVJHiBol/YGRqb3EyKb1H1dWxR+pP+AaQZ6KWbI75ePwgGk4S1Q/kJ+kJQMcywcELmLbtEOA==
-X-Received: by 2002:a05:620a:20d1:: with SMTP id
- f17mr21691012qka.428.1597872274784; 
- Wed, 19 Aug 2020 14:24:34 -0700 (PDT)
-Received: from [192.168.2.29] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.gmail.com with ESMTPSA id o47sm359095qtk.19.2020.08.19.14.24.34
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 19 Aug 2020 14:24:34 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Wed, 19 Aug 2020 17:24:33 -0400
-Message-Id: <A6BA5BE9-A672-4C5A-9759-FB800B28F264@gmail.com>
-References: <1597871801.345803208@f507.i.mail.ru>
-Cc: Usrp-users <usrp-users@lists.ettus.com>
-In-Reply-To: <1597871801.345803208@f507.i.mail.ru>
-To: Vladimir <www2008_2@mail.ru>
-X-Mailer: iPhone Mail (17G68)
-Subject: Re: [USRP-users] B200mini vs B205mini - is there any performance
- difference?
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=jiWD/JpthgWJawHYZqLiD4W/CW6dXqoOXBs4WvoAILQ=;
+ b=ZTaIIor6ofZbENVg2XvPyJL9pVqJyN/uE7CS24rJy3WIC6N3ORK5UUC/fnDJGCNG2H
+ cfK4OdrcgVHEXUR5mHK3PR1EslLx4hZqrwE8S006NhC5pFqqioOhGy/tkyZgtrpILb9g
+ Fo6nND0NvsTytGeJeNJyoaTKGUeE8KSZRGDKer6icQjAC1hbJxBzjW5Ljq3h4zRbEAtb
+ vjIptiZgTwxLH758jrp1qws4lR3KsXYyHgofSnbf5pOWf2viVgyf/uMgH36FlfezmHt0
+ ZYgYeqpvKdHqSe9QT/F1pnf4UyI9sl1nxe0U4zIyxmFgdw4DFlUfj+tSIaPRKJ/LUSce
+ sLZg==
+X-Gm-Message-State: AOAM532uJtGEdFeWlZEnpq/yXT/ygGs77KUPoRCS6EXU4C03x7Rg2k6U
+ kJJNLPF5nJM1mXDKuGBrv/ZBiyxxeB5XQz78j/EyoKLY
+X-Google-Smtp-Source: ABdhPJz3Wz/fJF1Q5RFJEFzVG7360z1+2i9qNlDy4tOX/PfpIIWWFjC7eDnDc5HP2h5q6SPa9GoEeTnAKwHm3h10E7k=
+X-Received: by 2002:a9f:252a:: with SMTP id 39mr403284uaz.44.1597892268997;
+ Wed, 19 Aug 2020 19:57:48 -0700 (PDT)
+MIME-Version: 1.0
+References: <24ea3a0f1617438687b7ae32d37d5e66@ES05AMSNLNT.srn.sandia.gov>
+In-Reply-To: <24ea3a0f1617438687b7ae32d37d5e66@ES05AMSNLNT.srn.sandia.gov>
+Date: Wed, 19 Aug 2020 22:57:13 -0400
+Message-ID: <CAL7q81vu0QcrQueh0BU_qPyF8ZQqyey1Y+ThNcDg5xQJTBkWqA@mail.gmail.com>
+To: "Carey, Samuel Craig" <sccarey@sandia.gov>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] gr-ettus / GNU Radio 3.8
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Content-Type: multipart/mixed; boundary="===============6593765807547238108=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,26 +76,125 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-VGhlIEZQR0Egb24gdGhlIEIyMDUgaXMgbGFyZ2VyIGFuZCBhbHNvIGhhcyB0aGUgZXh0ZW5kZWQg
-aW5kdXN0cmlhbCB0ZW1wZXJhdHVyZSByYW5nZS4gQnV0IGFwYXJ0IGZyb20gdGhhdCB0aGV5IGFy
-ZSBpZGVudGljYWwuIAoKU2VudCBmcm9tIG15IGlQaG9uZQoKPiBPbiBBdWcgMTksIDIwMjAsIGF0
-IDU6MTcgUE0sIFZsYWRpbWlyIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbT4gd3JvdGU6Cj4gCj4g77u/Cj4gSGVsbG8hCj4gIAo+IElzIHRoZXJlIGFueSBwZXJmb3Jt
-YW5jZSBkaWZmZXJlbmNlIGJldHdlZW4gc3ViamVjdHMgaWYgd2XigJlyZSBnb2luZyB0byB1c2Ug
-c3RvY2sgZnBnYSBmaXJtd2FyZT8gSSBzZWUgdGhhdCBCMjA1bWluaSBoYXMgdHdpY2UgbGFyZ2Vy
-IGZwZ2EsIGJ1dCBkb2VzIGl0IHJlYWxseSBpbmZsdWVuY2UgcGVyZm9tYW5jZS9jYXBhYmlsaXRp
-ZXMgYW5kIGhvdz8gQXJlIHRoZXJlIGFueSBvdGhlciBkaWZmZXJlbmNlcyBiZXR3ZWVuIHRoZW0/
-IElzIEIyMDBtaW5pIGluIHNvbWUgd2F5IGxpbWl0ZWQgaW4gY29tcGFyaXNvbiB0byBCMjA1bWlu
-aSwgaWYgd2XigJlyZSBub3QgZ29pbmcgdG8gZm9yZ2Ugb3VyIG93biBmcGdhIGZ3IGZvciBpdD8g
-V2UgYXJlIHNwZWFraW5nIGFib3V0IHNvbWUgcmVndWxhciBzdHJlYW0tYmFzZWQgc2RyIGFwcGxp
-Y2F0aW9ucyBsaWtlIGV4cGVyaW1lbnRhbCBnc20tdW10cy1sdGUgc2V0dXBzIHdpdGggc2FtcGxp
-bmcgcmF0ZXMgdXAgdG8gfjE1LTIwIE1TcHMuIEN1cnJlbnRseSB3ZSBoYXZlIGRvbmUgc29tZSBl
-eHBlcmltZW50cyB3aXRoIEIyMDVtaW5pLCBhbmQgbmVlZCBtb3JlIGJvYXJkcywgc28gd2UgbmVl
-ZCB0byB1bmRlcnN0YW5kIGlmIEIyMDBtaW5pIHdvdWxkIHN1ZmZpY2UuCj4gIAo+IFRoYW5rIHlv
-dSwKPiBWbGFkaW1pciBQYXZsZW5rbwo+ICAKPiAgCj4gX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xp
-c3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGlu
-Zm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============6593765807547238108==
+Content-Type: multipart/alternative; boundary="00000000000015602505ad464946"
+
+--00000000000015602505ad464946
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sam,
+
+That branch is still a work in progress.
+
+Jonathon
+
+On Sun, Aug 9, 2020 at 6:12 PM Carey, Samuel Craig via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Howdy,
+>
+>
+>
+> I see there=E2=80=99s a gr-ettus maint-3.8 branch for adding GNU Radio 3.=
+8
+> support, which seems to be finished as of this commit:
+>
+>
+> https://github.com/EttusResearch/gr-ettus/commit/b69260655e974786ea6e611b=
+d91ab578b13ec72a
+>
+>
+>
+> Is this branch good to go?
+>
+> Are there any known drawbacks?
+>
+> Will I theoretically be able to use this in the context of rfnoc/e310
+> cross-compiling, etc.?
+>
+>
+>
+> I ask because there are a couple open issue about 3.8 without any replies
+> (#37, #46), so I=E2=80=99m wary of investing time if it=E2=80=99s not rea=
+dy.
+>
+>
+>
+> Thanks,
+>
+> Sam
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--00000000000015602505ad464946
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Sam,<div><br></div><div>That branch is still a work in =
+progress.</div><div><br></div><div>Jonathon</div></div><br><div class=3D"gm=
+ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Aug 9, 2020 at 6:1=
+2 PM Carey, Samuel Craig via USRP-users &lt;<a href=3D"mailto:usrp-users@li=
+sts.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_3711773533637986752WordSection1">
+<p class=3D"MsoNormal">Howdy,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I see there=E2=80=99s a gr-ettus maint-3.8 branch fo=
+r adding GNU Radio 3.8 support, which seems to be finished as of this commi=
+t:<u></u><u></u></p>
+<p class=3D"MsoNormal"><a href=3D"https://github.com/EttusResearch/gr-ettus=
+/commit/b69260655e974786ea6e611bd91ab578b13ec72a" target=3D"_blank">https:/=
+/github.com/EttusResearch/gr-ettus/commit/b69260655e974786ea6e611bd91ab578b=
+13ec72a</a><u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Is this branch good to go? <u></u><u></u></p>
+<p class=3D"MsoNormal">Are there any known drawbacks?<u></u><u></u></p>
+<p class=3D"MsoNormal">Will I theoretically be able to use this in the cont=
+ext of rfnoc/e310 cross-compiling, etc.?<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I ask because there are a couple open issue about 3.=
+8 without any replies (#37, #46), so I=E2=80=99m wary of investing time if =
+it=E2=80=99s not ready.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
+<p class=3D"MsoNormal">Sam<i><span style=3D"font-family:&quot;Courier New&q=
+uot;"><u></u><u></u></span></i></p>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--00000000000015602505ad464946--
+
+
+--===============6593765807547238108==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============6593765807547238108==--
+
