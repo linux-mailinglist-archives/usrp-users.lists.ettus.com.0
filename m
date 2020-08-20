@@ -2,49 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B3D524B8F7
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Aug 2020 13:36:37 +0200 (CEST)
-Received: from [::1] (port=40000 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A393224BE28
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Aug 2020 15:21:45 +0200 (CEST)
+Received: from [::1] (port=40792 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k8irz-0007Eb-5U; Thu, 20 Aug 2020 07:36:35 -0400
-Received: from f704.i.mail.ru ([128.140.169.192]:45772)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <www2008_2@mail.ru>) id 1k8iru-000785-OD
- for usrp-users@lists.ettus.com; Thu, 20 Aug 2020 07:36:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru;
- s=mail2; 
- h=References:In-Reply-To:Content-Type:Message-ID:Reply-To:Date:MIME-Version:Subject:Cc:To:From;
- bh=MpNdySvMKyLVkAA5NKtb5PMjiGgiK/5MWXxGel6Ns7A=; 
- b=YGpvoagwMghjsaRb8+Znk9zjjYw/nG3albRHUMJm/dVNSXP/ivxrfPrfUgnHpqmuHFXsQ7IRAZlwEzCX0pLIla5liE+QTiv6USxh72Ry3gW2vzsjRgCsbKM5MBOaZkihi6HYC1hCSyHn/GMdyTteiRynQshajUCFcqiz75PTDFc=;
-Received: by f704.i.mail.ru with local (envelope-from <www2008_2@mail.ru>)
- id 1k8irE-0002YH-HR; Thu, 20 Aug 2020 14:35:48 +0300
-Received: by e.mail.ru with HTTP;
-	Thu, 20 Aug 2020 14:35:48 +0300
-To: =?UTF-8?B?TWFyY3VzIEQgTGVlY2g=?= <patchvonbraun@gmail.com>
-Cc: =?UTF-8?B?VXNycC11c2Vycw==?= <usrp-users@lists.ettus.com>
+	id 1k8kVj-0004Tl-9w; Thu, 20 Aug 2020 09:21:43 -0400
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:33869)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1k8kVf-0004O5-Cb
+ for usrp-users@lists.ettus.com; Thu, 20 Aug 2020 09:21:39 -0400
+Received: by mail-ot1-f42.google.com with SMTP id k12so1435068otr.1
+ for <usrp-users@lists.ettus.com>; Thu, 20 Aug 2020 06:21:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=DcJCEkXZfUweGc8g6K6VvhWAIYvsZYliXZ8ovUpzjj8=;
+ b=ihdHzzY8zgEyPTe8wjLkBuyVh63f1LZYNNiy1d54oXqZzbxGP/UDhxJGK0QschhWXU
+ 7vroq1I+fbSslARfZzkAw3GaSe2M5RY1jKiRpikNOBp8ho9YMJOJjTX5L7lsaqcVJSuy
+ OIl7R5+jK9i0paZY/rfMJBi6Ea8YOC9c1pjfdJDkYmbtvvv3PHm6BnH2+4ERHHbJKEjg
+ FTSM7VCeSCqy6pTZUgTd+yYcOH0X6D+ZF6g1myquvzSVopHI1tnpJsqNhYI2pDE+J/jK
+ 2CqFmKAWw09u8eRSbMpulc7eH5bd3DYBBbcRkOJ+0Fbq5MkQDqWp2J/X4+8xabsx8fRJ
+ xnOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=DcJCEkXZfUweGc8g6K6VvhWAIYvsZYliXZ8ovUpzjj8=;
+ b=C7U2OYrYfwqXuDHsp139nhLy3ChCjF7wUZZOuh4W/XbxmkmQb0OLCpBeVPElH8Es4c
+ 9D8/BKcBfGMTxgNg+vvxd1khVt7rMAwqvngLhqEwRmOOcenksVtsmcLrDB/UwfMCZ3us
+ 03d6eOI4e6ro5CwaSnXmardQDvoo085YmEFxxZwFvzthJvd1j6ZSfRNGj/dZyc2Mj3HG
+ e+2JUIyvw5cPFw6OfZsnZJ7UPZoFGpFRf6ImN3esAriD+EbiL2f5uNs5U8wjO+iApQKO
+ zf5QVhJOCeQuwgq4Cm79CQ+qPUZECMyPQ1wQOfodSkPm9schRAxFaJMReHxwaoWVr8Ie
+ e+sQ==
+X-Gm-Message-State: AOAM530fBt2earP8ozr/SpTFXvUEDlmNkb4KJZcs+0s5vWR6VwbC24nR
+ x6I9aMycEmVqEMStCDwk8k/G6r7COkIYleU517T1ZBRIngQ=
+X-Google-Smtp-Source: ABdhPJxJEzDljkfP1vEtFiGWu7dOhQV85vYgCWc1D6tP08M8AkQuW37+UaC1PcZz27qQ0m1LKfb74INyp64RN3Qbkks=
+X-Received: by 2002:a9d:604c:: with SMTP id v12mr2048646otj.301.1597929658540; 
+ Thu, 20 Aug 2020 06:20:58 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Mail.Ru Mailer 1.0
-Date: Thu, 20 Aug 2020 14:35:48 +0300
-X-Priority: 3 (Normal)
-Message-ID: <1597923348.315197297@f704.i.mail.ru>
-In-Reply-To: <A6BA5BE9-A672-4C5A-9759-FB800B28F264@gmail.com>
-References: <1597871801.345803208@f507.i.mail.ru>
- <A6BA5BE9-A672-4C5A-9759-FB800B28F264@gmail.com>
-Authentication-Results: f704.i.mail.ru; auth=pass smtp.auth=www2008_2@mail.ru
- smtp.mailfrom=www2008_2@mail.ru
-X-7564579A: 646B95376F6C166E
-X-77F55803: 119C1F4DF6A9251C486602A66260CCB9AFF384BFEA812471D736C5B2E97A73E38FD872164937FA4C35DAAAC89C4B35721C304DD3E1F95D6428720D1694D21C32D0ABD9575FFF631F
-X-7FA49CB5: 70AAF3C13DB7016878DA827A17800CE792BE6E174CF8D759B5C8C57E37DE458B7ECB26F6F819F3F58638F802B75D45FFA18204E546F3947C093C2F12201C912AAC83A81C8FD4AD23E2E44EFD321A7F275571747095F342E85644E22E05AA81AEE6DE07D961CB05C20AC5B80A05675ACD6CEA61CADDE926D952120BFB3F63BC1840A5AABA2AD371197C6FB206A91F05B2944BCA4AF8996D02628578F2E5BD58883896EE2C32233946D2E47CDBA5A9658378DA827A17800CE709B92020B71E24959FA2833FD35BB23DF004C90652538430B5A2CE51C9BA1AE293EC92FD9297F6718AA50765F7900637F42730888E86278DA7F4EDE966BC389F395957E7521B51C24C7702A67D5C33162DBA43225CD8A89F890A246B268E114E42539A7722CA490CB5C8C57E37DE458B4C7702A67D5C3316FA3894348FB808DBA1CE242F1348D5363B503F486389A921A5CC5B56E945C8DA
-X-C8649E89: E7F179E53ED6705CAE419691CD360B1681D4F26FA0834D8ADE3CA19DFEE582DB93144F7A503CD80B
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5+wYjsrrSY/u8Y3PrTqANeitKFiSd6Yd7yPpbiiZ/d5BsxIjK0jGQgCHUM3Ry2Lt2G3MDkMauH3h0dBdQGj+BB/iPzQYh7XS329fgu+/vnDhZqSVEcwWLKFpwx2KrjqGvg==
-X-Mailru-MI: 800
-X-Mailru-Sender: 52DCB9B128D398EB1BE0C6CEF6333CEC57595458A811E6A91C304DD3E1F95D64B47B10D461E40A577326B261E47C33357903AA853BEC14D6D848F695D5A7BE1BF6989F9D090B0B91560353A9654834529B9FE91371BF28445FEEDEB644C299C0ED14614B50AE0675
-X-Mras: Ok
-X-Spam: undefined
-Subject: Re: [USRP-users] 
- =?utf-8?q?B200mini_vs_B205mini_-_is_there_any_perfo?=
- =?utf-8?q?rmance_difference=3F?=
+References: <7d8c7731d23c412490a27750fac617a9@kongsberg.com>
+In-Reply-To: <7d8c7731d23c412490a27750fac617a9@kongsberg.com>
+Date: Thu, 20 Aug 2020 09:20:47 -0400
+Message-ID: <CAB__hTR_n5zEHbSNSADeV+euNu5m-Chb7agX5D+RhZo5LOK00Q@mail.gmail.com>
+To: Andreas.Bertheussen@kongsberg.com
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Issues with multi-usrp and UHD
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -56,9 +58,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Vladimir via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?VmxhZGltaXI=?= <www2008_2@mail.ru>
-Content-Type: multipart/mixed; boundary="===============5637328892559189206=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============6494366163758890230=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,95 +74,160 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============6494366163758890230==
+Content-Type: multipart/alternative; boundary="000000000000aca50a05ad4efd8e"
 
---===============5637328892559189206==
-Content-Type: multipart/alternative;
-	boundary="--ALT--4280cF6f33aCB40891Fc362dE04fE8aF1597923348"
+--000000000000aca50a05ad4efd8e
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Andreas,
+I wouldn't be at all surprised if this is a bug.  It looks like the issue
+has to do with the DUC rates being mismatched because you aren't setting
+the tx rate for one of the channels in the 2 USRP case (and you can't set
+it because it is not really a channel after you use subdev A:0). As an
+alternative, could you use subdev spec A:0 B:0 for the 2 USRP cases but
+then just include channels 0 and 2 in your tx streamer in order to stream
+on the desired antenna ports?
+Rob
+
+On Thu, Aug 20, 2020 at 7:23 AM Andreas B via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi,
+>
+> I have a setup with two USRP X310. Each X310 has two UBX-40 daughterboards
+> for a total of 4 RX channels and 4 TX channels. Attached is the
+> uhd_usrp_probe status for the USRP X310s in my setup.
+> Both X310s are connected to an OctoClock-G, where they get fed 10MHz and
+> 1PPS.
+> Host computer runs Fedora 32, UHD 3.15.0.0, and connects to the X310s
+> through a 1Gbps Ethernet switch.
+>
+> I'm trying to transmit phase coherent signals using multi-usrp. For now
+> I'm only trying to transmit two channels, but ultimately I want to use more
+> channels, and a third X310.
+> For test purpose I'm tuning to a low frequency of 350MHz, which I can
+> observe on oscilloscope, and a low sample rate of 1 Msps. The signals
+> generated are DC at baseband, and show up as 350Mhz sinusoids when things
+> work as expected.
+>
+> When I run my code with only one X310, and subdev spec ("A:0 B:0"), things
+> work fine (full output in attached success.txt file).
+>
+> The issue occurs when I try to use two X310s, each with subdev spec "A:0".
+> I get the following error message (full output in attached failure.txt
+> file):
+> "Error: RuntimeError: Multiple sampling rates downstream of TX Terminator
+> 0: RuntimeError: Node 1/DUC_0 specifies 1e+06, node 1/DUC_1 specifies
+> 390625."
+> I'm not trying to use different sampling rates. This error message occurs
+> most of the time, but occasionally it works OK.
+>
+> Full source code is in attached siggen.cc. The code I comment/uncomment to
+> show the two cases are lines 26,27,35,36 and 39.
+> I synchronize and do timed command for tune requests in order to get
+> coherent operation.
+>
+> --
+> Regards,
+> Andreas.
+>
+>
+>
+> ________________________________
+>
+> CONFIDENTIALITY
+> This e-mail and any attachment contain KONGSBERG information which may be
+> proprietary, confidential or subject to export regulations, and is only
+> meant for the intended recipient(s). Any disclosure, copying, distribution
+> or use is prohibited, if not otherwise explicitly agreed with KONGSBERG. If
+> received in error, please delete it immediately from your system and notify
+> the sender properly.
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000aca50a05ad4efd8e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Andreas,<div>I wouldn&#39;t be at all surprised if this=
+ is a bug.=C2=A0 It looks like the issue has to do with the DUC rates being=
+ mismatched because you aren&#39;t setting the tx rate for=C2=A0one of the =
+channels in the 2 USRP case (and you can&#39;t set it because it=C2=A0is no=
+t really a channel after you use=C2=A0subdev A:0). As an alternative, could=
+ you use subdev spec A:0 B:0 for the 2 USRP cases but then just include cha=
+nnels 0 and 2 in your tx streamer in order to stream on the desired antenna=
+ ports?</div><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Thu, Aug 20, 2020 at 7:23 AM Andreas B via US=
+RP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists=
+.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">Hi,<br>
+<br>
+I have a setup with two USRP X310. Each X310 has two UBX-40 daughterboards =
+for a total of 4 RX channels and 4 TX channels. Attached is the uhd_usrp_pr=
+obe status for the USRP X310s in my setup.<br>
+Both X310s are connected to an OctoClock-G, where they get fed 10MHz and 1P=
+PS.<br>
+Host computer runs Fedora 32, UHD 3.15.0.0, and connects to the X310s throu=
+gh a 1Gbps Ethernet switch.<br>
+<br>
+I&#39;m trying to transmit phase coherent signals using multi-usrp. For now=
+ I&#39;m only trying to transmit two channels, but ultimately I want to use=
+ more channels, and a third X310.<br>
+For test purpose I&#39;m tuning to a low frequency of 350MHz, which I can o=
+bserve on oscilloscope, and a low sample rate of 1 Msps. The signals genera=
+ted are DC at baseband, and show up as 350Mhz sinusoids when things work as=
+ expected.<br>
+<br>
+When I run my code with only one X310, and subdev spec (&quot;A:0 B:0&quot;=
+), things work fine (full output in attached success.txt file).<br>
+<br>
+The issue occurs when I try to use two X310s, each with subdev spec &quot;A=
+:0&quot;. I get the following error message (full output in attached failur=
+e.txt file):<br>
+&quot;Error: RuntimeError: Multiple sampling rates downstream of TX Termina=
+tor 0: RuntimeError: Node 1/DUC_0 specifies 1e+06, node 1/DUC_1 specifies 3=
+90625.&quot;<br>
+I&#39;m not trying to use different sampling rates. This error message occu=
+rs most of the time, but occasionally it works OK.<br>
+<br>
+Full source code is in attached siggen.cc. The code I comment/uncomment to =
+show the two cases are lines 26,27,35,36 and 39.<br>
+I synchronize and do timed command for tune requests in order to get cohere=
+nt operation.<br>
+<br>
+--<br>
+Regards,<br>
+Andreas.<br>
+<br>
+<br>
+<br>
+________________________________<br>
+<br>
+CONFIDENTIALITY<br>
+This e-mail and any attachment contain KONGSBERG information which may be p=
+roprietary, confidential or subject to export regulations, and is only mean=
+t for the intended recipient(s). Any disclosure, copying, distribution or u=
+se is prohibited, if not otherwise explicitly agreed with KONGSBERG. If rec=
+eived in error, please delete it immediately from your system and notify th=
+e sender properly.<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000aca50a05ad4efd8e--
 
 
-----ALT--4280cF6f33aCB40891Fc362dE04fE8aF1597923348
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
-
-Ck1hcmN1cywKwqAKVGhhbmtzIGZvciB0aGUgYW5zd2VyLiBJIGxvb2sgYXQgdGhlIHN0b2NrwqBG
-UEdBIGltYWdlc8KgYW5kIEIyMDVtaW5p4oCZcyBmaWxlIGlzIGFsbW9zdCB0d2ljZSBsYXJnZXIu
-IEFyZSB0aGV5wqBhY3R1YWxseSB0aGUgc2FtZSBieSBmdW5jdGlvbmFsaXR5L3Jlc291cmNlcyB1
-c2VkIGJ5IHN0b2NrIGltYWdlLMKgb3LCoDIwNSBoYXMgc29tZSBtb3JlIGJ1ZmZlcnMgb3Igc29t
-ZXRoaW5nIGxpa2UgdGhhdD8KwqAKVmxhZGltaXIKwqAgCj7Qp9C10YLQstC10YDQsywgMjAg0LDQ
-stCz0YPRgdGC0LAgMjAyMCwgMDoyNCArMDM6MDAg0L7RgiBNYXJjdXMgRCBMZWVjaCA8cGF0Y2h2
-b25icmF1bkBnbWFpbC5jb20+Ogo+wqAKPlRoZSBGUEdBIG9uIHRoZSBCMjA1IGlzIGxhcmdlciBh
-bmQgYWxzbyBoYXMgdGhlIGV4dGVuZGVkIGluZHVzdHJpYWwgdGVtcGVyYXR1cmUgcmFuZ2UuIEJ1
-dCBhcGFydCBmcm9tIHRoYXQgdGhleSBhcmUgaWRlbnRpY2FsLgo+Cj5TZW50IGZyb20gbXkgaVBo
-b25lCj7CoAo+PiBPbiBBdWcgMTksIDIwMjAsIGF0IDU6MTcgUE0sIFZsYWRpbWlyIHZpYSBVU1JQ
-LXVzZXJzIDwgdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPiB3cm90ZToKPj4KPj4KPj4gSGVs
-bG8hCj4+Cj4+IElzIHRoZXJlIGFueSBwZXJmb3JtYW5jZSBkaWZmZXJlbmNlIGJldHdlZW4gc3Vi
-amVjdHMgaWYgd2XigJlyZSBnb2luZyB0byB1c2Ugc3RvY2sgZnBnYSBmaXJtd2FyZT8gSSBzZWUg
-dGhhdCBCMjA1bWluaSBoYXMgdHdpY2UgbGFyZ2VyIGZwZ2EsIGJ1dCBkb2VzIGl0IHJlYWxseSBp
-bmZsdWVuY2UgcGVyZm9tYW5jZS9jYXBhYmlsaXRpZXMgYW5kIGhvdz8gQXJlIHRoZXJlIGFueSBv
-dGhlciBkaWZmZXJlbmNlcyBiZXR3ZWVuIHRoZW0/IElzIEIyMDBtaW5pIGluIHNvbWUgd2F5IGxp
-bWl0ZWQgaW4gY29tcGFyaXNvbiB0byBCMjA1bWluaSwgaWYgd2XigJlyZSBub3QgZ29pbmcgdG8g
-Zm9yZ2Ugb3VyIG93biBmcGdhIGZ3IGZvciBpdD8gV2UgYXJlIHNwZWFraW5nIGFib3V0IHNvbWUg
-cmVndWxhciBzdHJlYW0tYmFzZWQgc2RyIGFwcGxpY2F0aW9ucyBsaWtlIGV4cGVyaW1lbnRhbCBn
-c20tdW10cy1sdGUgc2V0dXBzIHdpdGggc2FtcGxpbmcgcmF0ZXMgdXAgdG8gfjE1LTIwIE1TcHMu
-IEN1cnJlbnRseSB3ZSBoYXZlIGRvbmUgc29tZSBleHBlcmltZW50cyB3aXRoIEIyMDVtaW5pLCBh
-bmQgbmVlZCBtb3JlIGJvYXJkcywgc28gd2UgbmVlZCB0byB1bmRlcnN0YW5kIGlmIEIyMDBtaW5p
-IHdvdWxkIHN1ZmZpY2UuCj4+Cj4+IFRoYW5rIHlvdSwKPj4gVmxhZGltaXIgUGF2bGVua28KPj4K
-Pj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4g
-VVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4gIFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+
-ICBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0
-cy5ldHR1cy5jb20gCsKgCsKgCsKgCsKg
-
-----ALT--4280cF6f33aCB40891Fc362dE04fE8aF1597923348
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
-
-CjxIVE1MPjxCT0RZPjxkaXY+PGRpdj5NYXJjdXMsPC9kaXY+PGRpdj4mbmJzcDs8L2Rpdj48ZGl2
-PlRoYW5rcyBmb3IgdGhlIGFuc3dlci4gSSBsb29rIGF0IHRoZSBzdG9jayZuYnNwO0ZQR0EgaW1h
-Z2VzJm5ic3A7YW5kIEIyMDVtaW5p4oCZcyBmaWxlIGlzIGFsbW9zdCB0d2ljZSBsYXJnZXIuIEFy
-ZSB0aGV5Jm5ic3A7YWN0dWFsbHkgdGhlIHNhbWUgYnkgZnVuY3Rpb25hbGl0eS9yZXNvdXJjZXMg
-dXNlZCBieSBzdG9jayBpbWFnZSwmbmJzcDtvciZuYnNwOzIwNSBoYXMgc29tZSBtb3JlIGJ1ZmZl
-cnMgb3Igc29tZXRoaW5nIGxpa2UgdGhhdD88L2Rpdj48ZGl2PiZuYnNwOzwvZGl2PjxkaXY+Vmxh
-ZGltaXI8YnI+Jm5ic3A7PC9kaXY+PGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlci1sZWZ0OjFweCBz
-b2xpZCAjMDg1N0E2OyBtYXJnaW46MTBweDsgcGFkZGluZzowIDAgMCAxMHB4OyI+0KfQtdGC0LLQ
-tdGA0LMsIDIwINCw0LLQs9GD0YHRgtCwIDIwMjAsIDA6MjQgKzAzOjAwINC+0YIgTWFyY3VzIEQg
-TGVlY2ggJmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0Ozo8YnI+Jm5ic3A7PGRpdiBpZD0i
-Ij48ZGl2IGNsYXNzPSJqcy1oZWxwZXIganMtcmVhZG1zZy1tc2ciPjxzdHlsZSB0eXBlPSJ0ZXh0
-L2NzcyI+PC9zdHlsZT48ZGl2PjxkaXYgaWQ9InN0eWxlXzE1OTc4NzIyNzYyMDA2NjAyNzgwX0JP
-RFkiPlRoZSBGUEdBIG9uIHRoZSBCMjA1IGlzIGxhcmdlciBhbmQgYWxzbyBoYXMgdGhlIGV4dGVu
-ZGVkIGluZHVzdHJpYWwgdGVtcGVyYXR1cmUgcmFuZ2UuIEJ1dCBhcGFydCBmcm9tIHRoYXQgdGhl
-eSBhcmUgaWRlbnRpY2FsLjxicj48YnI+U2VudCBmcm9tIG15IGlQaG9uZTxicj4mbmJzcDs8ZGl2
-IGNsYXNzPSJtYWlsLXF1b3RlLWNvbGxhcHNlIj4mZ3Q7IE9uIEF1ZyAxOSwgMjAyMCwgYXQgNTox
-NyBQTSwgVmxhZGltaXIgdmlhIFVTUlAtdXNlcnMgJmx0OzxhIGhyZWY9Ii9jb21wb3NlP1RvPXVz
-cnAlMmR1c2Vyc0BsaXN0cy5ldHR1cy5jb20iPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9h
-PiZndDsgd3JvdGU6PGJyPiZndDs8YnI+Jmd0Ozxicj4mZ3Q7IEhlbGxvITxicj4mZ3Q7PGJyPiZn
-dDsgSXMgdGhlcmUgYW55IHBlcmZvcm1hbmNlIGRpZmZlcmVuY2UgYmV0d2VlbiBzdWJqZWN0cyBp
-ZiB3ZeKAmXJlIGdvaW5nIHRvIHVzZSBzdG9jayBmcGdhIGZpcm13YXJlPyBJIHNlZSB0aGF0IEIy
-MDVtaW5pIGhhcyB0d2ljZSBsYXJnZXIgZnBnYSwgYnV0IGRvZXMgaXQgcmVhbGx5IGluZmx1ZW5j
-ZSBwZXJmb21hbmNlL2NhcGFiaWxpdGllcyBhbmQgaG93PyBBcmUgdGhlcmUgYW55IG90aGVyIGRp
-ZmZlcmVuY2VzIGJldHdlZW4gdGhlbT8gSXMgQjIwMG1pbmkgaW4gc29tZSB3YXkgbGltaXRlZCBp
-biBjb21wYXJpc29uIHRvIEIyMDVtaW5pLCBpZiB3ZeKAmXJlIG5vdCBnb2luZyB0byBmb3JnZSBv
-dXIgb3duIGZwZ2EgZncgZm9yIGl0PyBXZSBhcmUgc3BlYWtpbmcgYWJvdXQgc29tZSByZWd1bGFy
-IHN0cmVhbS1iYXNlZCBzZHIgYXBwbGljYXRpb25zIGxpa2UgZXhwZXJpbWVudGFsIGdzbS11bXRz
-LWx0ZSBzZXR1cHMgd2l0aCBzYW1wbGluZyByYXRlcyB1cCB0byB+MTUtMjAgTVNwcy4gQ3VycmVu
-dGx5IHdlIGhhdmUgZG9uZSBzb21lIGV4cGVyaW1lbnRzIHdpdGggQjIwNW1pbmksIGFuZCBuZWVk
-IG1vcmUgYm9hcmRzLCBzbyB3ZSBuZWVkIHRvIHVuZGVyc3RhbmQgaWYgQjIwMG1pbmkgd291bGQg
-c3VmZmljZS48YnI+Jmd0Ozxicj4mZ3Q7IFRoYW5rIHlvdSw8YnI+Jmd0OyBWbGFkaW1pciBQYXZs
-ZW5rbzxicj4mZ3Q7PGJyPiZndDs8YnI+Jmd0OyBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXzxicj4mZ3Q7IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0PGJyPiZn
-dDsgPGEgaHJlZj0iL2NvbXBvc2U/VG89VVNSUCUyZHVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+VVNS
-UC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPiZndDsgPGEgaHJlZj0iaHR0cDovL2xpc3Rz
-LmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tIiB0
-YXJnZXQ9Il9ibGFuayI+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
-cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC9hPjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2
-PjwvYmxvY2txdW90ZT4mbmJzcDs8ZGl2PiZuYnNwOzwvZGl2PjxkaXYgZGF0YS1zaWduYXR1cmUt
-d2lkZ2V0PSJjb250YWluZXIiPjxkaXYgZGF0YS1zaWduYXR1cmUtd2lkZ2V0PSJjb250ZW50Ij48
-ZGl2PiZuYnNwOzwvZGl2PjwvZGl2PjwvZGl2PjxkaXY+Jm5ic3A7PC9kaXY+PC9kaXY+PC9CT0RZ
-PjwvSFRNTD4K
-
-----ALT--4280cF6f33aCB40891Fc362dE04fE8aF1597923348--
-
-
---===============5637328892559189206==
+--===============6494366163758890230==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -171,5 +238,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5637328892559189206==--
+--===============6494366163758890230==--
 
