@@ -2,53 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FF8024C28B
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Aug 2020 17:52:02 +0200 (CEST)
-Received: from [::1] (port=41962 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D91924C607
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Aug 2020 21:01:29 +0200 (CEST)
+Received: from [::1] (port=43654 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k8mr8-00081y-7N; Thu, 20 Aug 2020 11:51:58 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:40658)
+	id 1k8poQ-0007jJ-Jh; Thu, 20 Aug 2020 15:01:22 -0400
+Received: from mail-il1-f177.google.com ([209.85.166.177]:46001)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1k8mr4-0007wU-Ik
- for usrp-users@lists.ettus.com; Thu, 20 Aug 2020 11:51:54 -0400
-Received: by mail-oi1-f180.google.com with SMTP id u24so2270052oic.7
- for <usrp-users@lists.ettus.com>; Thu, 20 Aug 2020 08:51:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ (Exim 4.93) (envelope-from <emoges@uncc.edu>) id 1k8poN-0007ai-2s
+ for USRP-users@lists.ettus.com; Thu, 20 Aug 2020 15:01:19 -0400
+Received: by mail-il1-f177.google.com with SMTP id k4so2535213ilr.12
+ for <USRP-users@lists.ettus.com>; Thu, 20 Aug 2020 12:00:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uncc.edu; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=TATHy+StRw2Nr+l+jNCG/fk6+yxLzrTH/5jLySVaCTM=;
- b=GcqbTlPwSjrSJ6KieBOQXq0Dku+FKUeea3SRURWqPIh0q7LSHa3JrVTbviLp8mRMuu
- +vxgjL+v31tDw+Vkm0Y7EUw3EZTIuf6kj9qtxxs/7CDeDDT62X0ienBMgOkenY0rWwqc
- hrYCv02QCxpMimkE0yZXPpIBQh/sWVkur5MiswBRRLZftEgTv78Zd1VVPPEMYJDXrEgR
- JYChEF5qhLcmiabuCarIVsA/IDBLO1u6YneoaaFI3yKMcf3pEsqHHFPrRh9JdAvG+GFE
- 1Lo8FwgqIZ4z5gHN6S/X461xKQOzaPHPrae3uI6FFucQ6BS7uDmvrWif+8WvVFW0Y1SJ
- BTRw==
+ :cc; bh=6G1vqriYbcv4T9tm4CCS7d/4ggDcqRhXykOihRb0u5M=;
+ b=GpJxLFe3a4N0KOBh6sIUiHW3SWdPzpnZLvKrdjS62HL+a1PbHOFC8qjXDnIqWK2qIz
+ BRbyCfd4NdwsiaxOapw4Xr4fDBl5hBTyS9h0P4OX1tYULx5VACDAGk29KTn8oeW7FdR6
+ eMgACkEu2mMivM1g69rG3Fe5Q1wxE0t4rKv/4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=TATHy+StRw2Nr+l+jNCG/fk6+yxLzrTH/5jLySVaCTM=;
- b=m0pvOB4T8i8a8o8lKqeCKpvIzOKmO0JFEvMyE35hm2FmdRp7sUWUBKvnqvhW4KW8jf
- cdpt2qHEepCQnfFgQEmESi9fAozruTeIsGgTshinwmG0lc49oAiP6sDk4i6kO07ptB5G
- RRS1o2f1BULMTOab2FkMUrl2BgqhEGwcnIbJIg8nEODEmOupJeoqh9UfNLQHR42Ap8p0
- Zuc3ZUxZnCpCnASlsc6JqXIWOLIRpxaZ67r+U6BcH8DvOrvyGZleE2gWqXm89acW0KxS
- kix8GdCccbImIhsoXxyQUsfJeFX1uxcJ5vq6cPggIH/WQ3EtjAyFyLq3Yp+oB1YokwDF
- vMiQ==
-X-Gm-Message-State: AOAM533FzzqHkr3rLBRdI7ptwICWp+mNUrmIHApNNVR+d9zL1rRnzr5E
- e51Je2tZGncCQRS3ISaAMisJwlTok/eVxjZ7HLZ63udsqX4=
-X-Google-Smtp-Source: ABdhPJwiabiDcrElcLX4L847xrmdq6+NS788Ay5Lw0gklEkkFNZ0nchDhv5+zjOjG232zvf7WO4g39K/+RKBIWf3ypU=
-X-Received: by 2002:a05:6808:b:: with SMTP id u11mr2129521oic.33.1597938673636; 
- Thu, 20 Aug 2020 08:51:13 -0700 (PDT)
+ bh=6G1vqriYbcv4T9tm4CCS7d/4ggDcqRhXykOihRb0u5M=;
+ b=S+52+CWkcBpFx6ys0DXisiP+Y4BX3TNrbg0mNyYrKJo3cYLUD4iIWu8MrmwhHFS6XY
+ wSlyowcUiD5199vBz7tuTBAR068F9I192Nlf+JWCnaH9S3Fa3dUIPlExbGJ6j0UBdtop
+ aN7ipkU88Y+U/tboY231T3U74fg/dtDRuuuTDKgqF6yuVHSz+xQGj3RivW1aSxRZXIiU
+ 5/rJt7+bPKzDyAcgvV87hL/e3h6EVdTTBR2xaVLYW2tVaJDEEfDFbB/3d9yfWtKzmWh6
+ 8sUEgr3PJU7Xs+mzTb9uWcOyAlTwOKj2CuMwYVlu4cbMuKo870cSz8L7W/KrmTcBNUwD
+ sY0Q==
+X-Gm-Message-State: AOAM531SnqvdtpBFsfRtx01TrH/eoA94p3HCHVEKxAY/fEsZNguhKlRu
+ jvwRgP72GTs6fraaF4Ya2/GZFgABZXeFRbRFLZMuOQ==
+X-Google-Smtp-Source: ABdhPJw3m0kwbRKKpdmLs/1+yRPqVDm80YzYPd9lRbiXD4NMvo1nI7Z/vR7r9O4/Lqh/G5cZa3OvKnZCUQAT5r97fbE=
+X-Received: by 2002:a92:9fdb:: with SMTP id z88mr48219ilk.57.1597950038048;
+ Thu, 20 Aug 2020 12:00:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <7d8c7731d23c412490a27750fac617a9@kongsberg.com>
- <CAB__hTR_n5zEHbSNSADeV+euNu5m-Chb7agX5D+RhZo5LOK00Q@mail.gmail.com>
- <a836f011bfdb46fb9403baafa0060800@kongsberg.com>
-In-Reply-To: <a836f011bfdb46fb9403baafa0060800@kongsberg.com>
-Date: Thu, 20 Aug 2020 11:51:02 -0400
-Message-ID: <CAB__hTRbkX2HVfC5zVK7p17W9Q1keFoGMO7K9xC3GfaLVUjWFg@mail.gmail.com>
-To: Andreas.Bertheussen@kongsberg.com
-Cc: usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] Issues with multi-usrp and UHD
+References: <CANwgjNp9NiRfWnidoV0MGKFLP8YKKYFgjV=9jiKDz91DxfLn9w@mail.gmail.com>
+ <E0495F5B-2367-4ADC-B00F-E114849470FD@gmail.com>
+ <CANwgjNoe7Qeq-KWFvNaN6vStzLupbcPsPqH4+t-BE-ZN43cQcA@mail.gmail.com>
+ <5F3E951A.9080107@gmail.com>
+In-Reply-To: <5F3E951A.9080107@gmail.com>
+Date: Thu, 20 Aug 2020 15:00:25 -0400
+Message-ID: <CANwgjNqtFTwdjX+-1HFwcSKFVWLkTzo=JNdeEqkeJCgQ-sd6dw@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: USRP-users@lists.ettus.com
+Subject: Re: [USRP-users] Fwd: Benchmark_rate.py error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -60,9 +58,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============5734394559885841643=="
+From: Ephraim Moges via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ephraim Moges <emoges@uncc.edu>
+Content-Type: multipart/mixed; boundary="===============6113563898421888450=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,165 +74,130 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5734394559885841643==
-Content-Type: multipart/alternative; boundary="000000000000042a7005ad5117f4"
+--===============6113563898421888450==
+Content-Type: multipart/alternative; boundary="000000000000633dc405ad53bc45"
 
---000000000000042a7005ad5117f4
+--000000000000633dc405ad53bc45
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Andreas,
-Can you resend the source code for the first case you describe below along
-with command line?
-Rob
+Thank you so much for your help. I was able to get it to work after so
+troubleshooting.
 
-On Thu, Aug 20, 2020 at 10:38 AM <Andreas.Bertheussen@kongsberg.com> wrote:
+Sincerely,
 
-> Thanks for that suggestion Rob,
+ Moges
+
+On Thu, Aug 20, 2020, 11:22 AM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 08/20/2020 06:57 AM, Ephraim Moges wrote:
+> > Good Morning,
+> >
+> > I am getting an error when follow the package manager route. I think
+> > it is because their is currently no build that ettus was able to do on
+> > Ubuntu 20 and 18 according to ettus records. Please advise if I should
+> > revert back to ubuntu 16 or if this problem is unique to my computer.
+> >
+> > https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+packages
+> > <https://launchpad.net/%7Eettusresearch/+archive/ubuntu/uhd/+packages>
+> >
+> > Err:6 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu focal Release
+> >   404  Not Found [IP: 91.189.95.83 80]
+> > Hit:7 https://deb.trendtechcn.com stable InRelease
+> > Reading package lists... Done
+> > E: The repository 'http://ppa.launchpad.net/ettusresearch/uhd/ubuntu
+> > focal Release' does not have a Release file.
+> > N: Updating from such a repository can't be done securely, and is
+> > therefore disabled by default.
+> > N: See apt-secure(8) manpage for repository creation and user
+> > configuration details.
+> >
+> > Sincerely,
+> >
+> > Ephraim Moges
+> >
+> >
+> It looks like for Ubuntu 20.04 (Focal), there exists a python3-uhd package:
 >
+> https://packages.ubuntu.com/focal/python3-uhd
 >
+> So, you don't need the PPAs---the standard distribution includes what
+> you need.
 >
-> I have tested this now, I now address both devices, I have changed subdev
-> spec to "A:0 B:0" for both motherboards (lines 35, 36).
->
-> Then I tried several values for stream_args.channels:
->
->
->
-> I tried with stream_args.channels = (0,2). Here I expect signal on A
-> outputs on both X310s. But I get the following two cases:
->
-> * The A and B outputs on the first X310 are enabled (TX LED), with signal
-> visible on output, first channel mapped to A output and second channel
-> mapped to B output.
->
-> * The A and B outputs on the second X310 are enabled (TX LED), with _no
-> signal_ on output. Channel mapping can't be determined because there is no
-> signal.
->
->
->
-> I tried with stream_args.channels = (1,3). Here I expect signal on B
-> outputs on both X310s. But I get the following two cases:
->
-> * The A and B outputs on the first X310 are enabled (TX LED), with signal
-> visible on output, first channel is mapped to B output and second channel
-> mapped to A output. (Notice reversal of first and second channel)
->
-> * The A and B outputs on the second X310 are enabled (TX LED), with _no
-> signal_ on output. Channel mapping can't be determined because there is no
-> signal.
->
->
->
-> I tried with stream_args.channels = (2,3). Here I ecpect signal on A and B
-> outputs on the second X310. But I get the following two cases:
->
-> * The B outputs on both X310 are enabled (TX LED), with signal only
-> visible on the first X310. First channel mapped to B output on first X310.
->
-> * The A outputs on both X310 are enabled (TX LED), with signal only
-> visible on the first X310. Second channel is mapped to A output on first
-> X310.
->
->
->
-> There is some randomness as to which case happens, I have tested approx 10
-> runs of each.
->
->
->
-> It looks like what occurs is some shuffling around of the channels, so
-> that the logical channel number (the indexes in the buffer array passed to
-> send()) does not match up with the subdev specification.
->
-> Since some incorrect outputs get enabled, but with no signal, maybe that
-> helps in understanding where in UHD this could occur.
->
->
->
-> In all these cases, I don't receive the error message I mentioned in my
-> first mail, but the changing channel mapping is just as bad for what I'm
-> trying to do.
->
->
->
-> Regards
->
-> Andreas
->
->
->
-> ________________________________
->
->
->
-> CONFIDENTIALITY
->
-> This e-mail and any attachment contain KONGSBERG information which may be
-> proprietary, confidential or subject to export regulations, and is only
-> meant for the intended recipient(s). Any disclosure, copying, distribution
-> or use is prohibited, if not otherwise explicitly agreed with KONGSBERG. If
-> received in error, please delete it immediately from your system and notify
-> the sender properly.
 >
 >
 
---000000000000042a7005ad5117f4
+--000000000000633dc405ad53bc45
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div><div dir=3D"auto">Hi Andreas,</div><div dir=3D"auto">Can you resend th=
-e source code for the first case you describe below along with command line=
-?</div><div dir=3D"auto">Rob</div></div><div><br><div class=3D"gmail_quote"=
-><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug 20, 2020 at 10:38 AM &lt=
-;<a href=3D"mailto:Andreas.Bertheussen@kongsberg.com">Andreas.Bertheussen@k=
-ongsberg.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid=
-;padding-left:1ex;border-left-color:rgb(204,204,204)">Thanks for that sugge=
-stion Rob,<br><br><br><br>I have tested this now, I now address both device=
-s, I have changed subdev spec to &quot;A:0 B:0&quot; for both motherboards =
-(lines 35, 36).<br><br>Then I tried several values for stream_args.channels=
-:<br><br><br><br>I tried with stream_args.channels =3D (0,2). Here I expect=
- signal on A outputs on both X310s. But I get the following two cases:<br><=
-br>* The A and B outputs on the first X310 are enabled (TX LED), with signa=
-l visible on output, first channel mapped to A output and second channel ma=
-pped to B output.<br><br>* The A and B outputs on the second X310 are enabl=
-ed (TX LED), with _no signal_ on output. Channel mapping can&#39;t be deter=
-mined because there is no signal.<br><br><br><br>I tried with stream_args.c=
-hannels =3D (1,3). Here I expect signal on B outputs on both X310s. But I g=
-et the following two cases:<br><br>* The A and B outputs on the first X310 =
-are enabled (TX LED), with signal visible on output, first channel is mappe=
-d to B output and second channel mapped to A output. (Notice reversal of fi=
-rst and second channel)<br><br>* The A and B outputs on the second X310 are=
- enabled (TX LED), with _no signal_ on output. Channel mapping can&#39;t be=
- determined because there is no signal.<br><br><br><br>I tried with stream_=
-args.channels =3D (2,3). Here I ecpect signal on A and B outputs on the sec=
-ond X310. But I get the following two cases:<br><br>* The B outputs on both=
- X310 are enabled (TX LED), with signal only visible on the first X310. Fir=
-st channel mapped to B output on first X310.<br><br>* The A outputs on both=
- X310 are enabled (TX LED), with signal only visible on the first X310. Sec=
-ond channel is mapped to A output on first X310.<br><br><br><br>There is so=
-me randomness as to which case happens, I have tested approx 10 runs of eac=
-h.<br><br><br><br>It looks like what occurs is some shuffling around of the=
- channels, so that the logical channel number (the indexes in the buffer ar=
-ray passed to send()) does not match up with the subdev specification.<br><=
-br>Since some incorrect outputs get enabled, but with no signal, maybe that=
- helps in understanding where in UHD this could occur.<br><br><br><br>In al=
-l these cases, I don&#39;t receive the error message I mentioned in my firs=
-t mail, but the changing channel mapping is just as bad for what I&#39;m tr=
-ying to do.<br><br><br><br>Regards<br><br>Andreas<br><br><br><br>__________=
-______________________<br><br><br><br>CONFIDENTIALITY<br><br>This e-mail an=
-d any attachment contain KONGSBERG information which may be proprietary, co=
-nfidential or subject to export regulations, and is only meant for the inte=
-nded recipient(s). Any disclosure, copying, distribution or use is prohibit=
-ed, if not otherwise explicitly agreed with KONGSBERG. If received in error=
-, please delete it immediately from your system and notify the sender prope=
-rly.<br><br></blockquote></div></div>
+<div dir=3D"auto">Thank you so much for your help. I was able to get it to =
+work after so troubleshooting.<br><br><div data-smartmail=3D"gmail_signatur=
+e">Sincerely,<br><br>=C2=A0Moges</div></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug 20, 2020, 11:22 AM Marcus=
+ D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmai=
+l.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On 08/20/2020 =
+06:57 AM, Ephraim Moges wrote:<br>
+&gt; Good Morning,<br>
+&gt;<br>
+&gt; I am getting an error when follow the package manager route. I think <=
+br>
+&gt; it is because their is currently no build that ettus was able to do on=
+ <br>
+&gt; Ubuntu 20 and 18 according to ettus records. Please advise if I should=
+ <br>
+&gt; revert back to ubuntu 16 or if this problem is unique to my computer.<=
+br>
+&gt;<br>
+&gt; <a href=3D"https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+p=
+ackages" rel=3D"noreferrer noreferrer" target=3D"_blank">https://launchpad.=
+net/~ettusresearch/+archive/ubuntu/uhd/+packages</a> <br>
+&gt; &lt;<a href=3D"https://launchpad.net/%7Eettusresearch/+archive/ubuntu/=
+uhd/+packages" rel=3D"noreferrer noreferrer" target=3D"_blank">https://laun=
+chpad.net/%7Eettusresearch/+archive/ubuntu/uhd/+packages</a>&gt;<br>
+&gt;<br>
+&gt; Err:6 <a href=3D"http://ppa.launchpad.net/ettusresearch/uhd/ubuntu" re=
+l=3D"noreferrer noreferrer" target=3D"_blank">http://ppa.launchpad.net/ettu=
+sresearch/uhd/ubuntu</a> focal Release<br>
+&gt;=C2=A0 =C2=A0404=C2=A0 Not Found [IP: 91.189.95.83 80]<br>
+&gt; Hit:7 <a href=3D"https://deb.trendtechcn.com" rel=3D"noreferrer norefe=
+rrer" target=3D"_blank">https://deb.trendtechcn.com</a> stable InRelease<br=
+>
+&gt; Reading package lists... Done<br>
+&gt; E: The repository &#39;<a href=3D"http://ppa.launchpad.net/ettusresear=
+ch/uhd/ubuntu" rel=3D"noreferrer noreferrer" target=3D"_blank">http://ppa.l=
+aunchpad.net/ettusresearch/uhd/ubuntu</a> <br>
+&gt; focal Release&#39; does not have a Release file.<br>
+&gt; N: Updating from such a repository can&#39;t be done securely, and is =
+<br>
+&gt; therefore disabled by default.<br>
+&gt; N: See apt-secure(8) manpage for repository creation and user <br>
+&gt; configuration details.<br>
+&gt;<br>
+&gt; Sincerely,<br>
+&gt;<br>
+&gt; Ephraim Moges<br>
+&gt;<br>
+&gt;<br>
+It looks like for Ubuntu 20.04 (Focal), there exists a python3-uhd package:=
+<br>
+<br>
+<a href=3D"https://packages.ubuntu.com/focal/python3-uhd" rel=3D"noreferrer=
+ noreferrer" target=3D"_blank">https://packages.ubuntu.com/focal/python3-uh=
+d</a><br>
+<br>
+So, you don&#39;t need the PPAs---the standard distribution includes what <=
+br>
+you need.<br>
+<br>
+<br>
+</blockquote></div>
 
---000000000000042a7005ad5117f4--
+--000000000000633dc405ad53bc45--
 
 
---===============5734394559885841643==
+--===============6113563898421888450==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -245,5 +208,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5734394559885841643==--
+--===============6113563898421888450==--
 
