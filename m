@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 393A424C1F9
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Aug 2020 17:18:03 +0200 (CEST)
-Received: from [::1] (port=41628 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F6A424C20F
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Aug 2020 17:22:51 +0200 (CEST)
+Received: from [::1] (port=41748 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k8mKE-0003vd-KV; Thu, 20 Aug 2020 11:17:58 -0400
-Received: from mail-qv1-f54.google.com ([209.85.219.54]:39200)
+	id 1k8mOu-00064S-V5; Thu, 20 Aug 2020 11:22:48 -0400
+Received: from mail-qk1-f169.google.com ([209.85.222.169]:36762)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k8mKB-0003pV-Fq
- for USRP-users@lists.ettus.com; Thu, 20 Aug 2020 11:17:55 -0400
-Received: by mail-qv1-f54.google.com with SMTP id o2so1060433qvk.6
- for <USRP-users@lists.ettus.com>; Thu, 20 Aug 2020 08:17:35 -0700 (PDT)
+ id 1k8mOq-0005uA-T0
+ for USRP-users@lists.ettus.com; Thu, 20 Aug 2020 11:22:44 -0400
+Received: by mail-qk1-f169.google.com with SMTP id g26so1840119qka.3
+ for <USRP-users@lists.ettus.com>; Thu, 20 Aug 2020 08:22:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:cc:subject
  :references:in-reply-to:content-transfer-encoding;
- bh=g6rDMtDAlYLvSsO1xZ/ky06LZa10+Ml0xBYOqex6h9Q=;
- b=swBeSpIi6dF9z0oZbtxlPHlNL3EjzeQWX4+fkGiwKOzj2tFLED7Ri4WmS1SAHm5Gph
- rB1wOejoE4kzf3KT2U/IN8WMnLY/YatjtarQbFZG2RDFRVZrH1I17RJxwHvIo1UjZ/hx
- NzWWKybv6p25tzctN57knSyaF+nco/R6w7SBOvERj0o1wsRA3WVCBl6zid517gvykjdg
- IcXXCK+UgHHh8AGkjo16MXwewIQ1WoSixR1FQAqjQXyg46HlRus4fJYNL76A8GkQYzHc
- R/D/0RLmZTrZ5DzA8euBUwrylmB4kNQlC8ZbfUgtoT9DIrb1XiWHDpcVwfHiXe+ldxSn
- D4+g==
+ bh=KsN6EGVOfxQZfvQO7a66wQmHLZ30DpTUFI2CVoryAbg=;
+ b=o/x0yE3S8X2ACYVh/y6MOGWb/E0zi7aHjK3I6uM4ANG0kDG8PeGQI76llbO9YBMLS7
+ y75L+nE9wmeZ4kQNczr35HyA90qKmD+lFrgOCtp868TCJIDWpf49g59K4/1QhN5Ow2Qq
+ xcJ7itGyT6l6Cse4KrM78y3+rYG5TeQEEq1B8tk8HjwnpSwdHZaSk62OK7EFWh/WD7Px
+ WOqi3tgEn+rLOBfsMU8UK3H5hnJ+QIKV1P1Efj2Cj7uJmzwb+erk1lP1JchiHGB8X3BH
+ QJzZT5s/OtGQoSXrV6MgUTga50MA9rGTzgHDqThk5W+fcj8X6K7HPf4NbWuTZy3OxZUp
+ mGJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=g6rDMtDAlYLvSsO1xZ/ky06LZa10+Ml0xBYOqex6h9Q=;
- b=kV8+//czaZwoZEv9zf2Fe3iqMfDMgDLLxaCFb2EzkFgx2wjNnlI9I0jAHMqEmH0Qd6
- UDqanM0SX50wdIPUyLZINOcHiwJwsaEEEv3Pf2UwwxBeYDgIv0mxFWbc/fq5Oyyl5APK
- kv5OscY6Jw7JTgtWBQqDkPbI1d2aPROndNoV8yw/jSIJ6LUy1G66JkXzbZjsR2YOtneq
- x0qYazEwPJ8nCPrDYHBiMVJdqXacZ1vYUAtDYaJpmfFtSUUsDEswDuX0Mw4HVu1g96gO
- cZlmlwPBIQiLkd57mvcSxgEmliex2OlShnNYXO9he9bPyQ9zL1e3WHaKcO9nb6Mpid3N
- gvSg==
-X-Gm-Message-State: AOAM533uI4MbOS+VfiLNjS609AXIQvyo7qlqjX+ood1iQdmIHcnCSBZx
- 9R08WJq87q0yLb23CANOTfbgosnzwzC0KBXj
-X-Google-Smtp-Source: ABdhPJzZwwz0h6/2af+uuUnvPbdfKbLnacL607aWdaqqMz29yn+U2JXY+H8Dr+NTgWhOg0UidpzPpA==
-X-Received: by 2002:ad4:54ce:: with SMTP id j14mr3467167qvx.185.1597936634750; 
- Thu, 20 Aug 2020 08:17:14 -0700 (PDT)
+ bh=KsN6EGVOfxQZfvQO7a66wQmHLZ30DpTUFI2CVoryAbg=;
+ b=S6xiODonf16Xg4ZUUvOU+BJ+jHGi68RD8vfsJT/RSMpl+vOiFsFDuMFhpFdD4dAbNr
+ jev2ZZ3R1RlffA6unq3x3w0jC3rA8qQ0+WtXvO/BQzuJO4tG5Oosx5ZMuvodNCOnlend
+ O9h3lBzv6XmpDumBfE5gxP1+8rwDYftTsNExnt1+iYzQG4zAFZd4DJY0AICX2X+sEStm
+ q61L7zSuXRjq//hhjXjrBZBCUDjqhm5Mj2bGTsdoTfOBjWWz2Yct4a1YPyeePm8aKXVT
+ jXb4Mxwf1189yvKEqzCjeE3Kbv7fQLy7na6vi4+E5A/tMvCmDMrl9zMpDAw93KR6Y31j
+ A2wQ==
+X-Gm-Message-State: AOAM531rJSVX8BuY6ni5YC2I9k57BXhqpQev9qzGcVLB9yvBhgfUa0dN
+ DSRY0oiiEy959S+sK03EkQqaze8jeiRi6bvt
+X-Google-Smtp-Source: ABdhPJxxyYJGPKFskrqVkiNqAqA7BpT7+2gPWkhhWY6J7Vj4YePGrGU2YTTVXgp+T++e0kN1ObJIRQ==
+X-Received: by 2002:a37:a4c:: with SMTP id 73mr3066044qkk.275.1597936923638;
+ Thu, 20 Aug 2020 08:22:03 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
  [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id d124sm2344613qkg.65.2020.08.20.08.17.14
+ by smtp.googlemail.com with ESMTPSA id s56sm3414848qtk.72.2020.08.20.08.22.03
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 20 Aug 2020 08:17:14 -0700 (PDT)
-Message-ID: <5F3E93F9.2060402@gmail.com>
-Date: Thu, 20 Aug 2020 11:17:13 -0400
+ Thu, 20 Aug 2020 08:22:03 -0700 (PDT)
+Message-ID: <5F3E951A.9080107@gmail.com>
+Date: Thu, 20 Aug 2020 11:22:02 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
@@ -113,8 +113,12 @@ On 08/20/2020 06:57 AM, Ephraim Moges wrote:
 > Ephraim Moges
 >
 >
-Hmm, it looks like Ubuntu 19.10 (Eoan Ermine) was the most recent 
-successful build.
+It looks like for Ubuntu 20.04 (Focal), there exists a python3-uhd package:
+
+https://packages.ubuntu.com/focal/python3-uhd
+
+So, you don't need the PPAs---the standard distribution includes what 
+you need.
 
 
 
