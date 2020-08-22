@@ -2,45 +2,68 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB30424E69C
-	for <lists+usrp-users@lfdr.de>; Sat, 22 Aug 2020 11:12:00 +0200 (CEST)
-Received: from [::1] (port=60420 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 536AF24E860
+	for <lists+usrp-users@lfdr.de>; Sat, 22 Aug 2020 17:28:31 +0200 (CEST)
+Received: from [::1] (port=34670 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k9PZ8-0006bi-8Z; Sat, 22 Aug 2020 05:11:58 -0400
-Received: from resqmta-po-12v.sys.comcast.net ([96.114.154.171]:37975)
+	id 1k9VRS-0001qL-9m; Sat, 22 Aug 2020 11:28:26 -0400
+Received: from ns13-777.999servers.com ([103.14.122.123]:44841)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <w6rz@comcast.net>) id 1k9PZ4-0006TY-D4
- for usrp-users@lists.ettus.com; Sat, 22 Aug 2020 05:11:54 -0400
-Received: from resomta-po-14v.sys.comcast.net ([96.114.154.238])
- by resqmta-po-12v.sys.comcast.net with ESMTP
- id 9PXYkkDYqYKFp9PYPkWPC5; Sat, 22 Aug 2020 09:11:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
- s=20190202a; t=1598087473;
- bh=vt+Bh5Ez4ZxsGddH5Oig2mcIrIFcVrjQqc50FvI9cAc=;
- h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
- Content-Type;
- b=GiYufnZmo64q5zu/IE+8cJ1VbyjeGnKUAkxCqCwBK9Y/OncYimhyAOuar3jeJT+9W
- bDDDeHteE8Bv7EB3zgCOAcboRfp+G0Ad1h8D9CLR7ZB0fk0xW6vw6+3+FmFK57XlQ+
- hx3D5I8xVUXyccduOItk13/6EUozTsl3TEjikzRGShhW2eFj8S1vkiRnPe2RyUvsaT
- UulTlKAiYBAg2UjTr2OBM1TxqdFKH+GV8L9C9FJ95rq9jsEUQNT91FZHSEnEOeXxRj
- X5KGzVNiti1YG2W+ue2fKHCHii3ZIW/3I35b3OAKjA+iDNMvc1A5iPLJg0T06QW0Ff
- uS4yZ5sEuUwCQ==
-Received: from [IPv6:2601:647:4200:ea30:5911:4f18:938b:c0b6]
- ([IPv6:2601:647:4200:ea30:5911:4f18:938b:c0b6])
- by resomta-po-14v.sys.comcast.net with ESMTPSA
- id 9PYOkCkaiZziU9PYOkGjEN; Sat, 22 Aug 2020 09:11:13 +0000
-X-Xfinity-VMeta: sc=0.00;st=legit
-To: usrp-users@lists.ettus.com
-References: <CAMVZM+9wHRAeTFc+H84XqGqanVfYFr0nEZDY=rm7-s6B9omDLA@mail.gmail.com>
-Message-ID: <4679cc66-5de2-1cbc-358d-7255729ab011@comcast.net>
-Date: Sat, 22 Aug 2020 02:11:12 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ (Exim 4.93) (envelope-from <kpras@trilcomm.com>) id 1k9VRO-0001mX-A4
+ for usrp-users@lists.ettus.com; Sat, 22 Aug 2020 11:28:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=trilcomm.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+ MIME-Version:Message-ID:Date:Subject:In-Reply-To:References:To:From:Sender:
+ Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=D36t0gKka53iD6qJ88gfxIJ3s7uCKglAUSI7kFnKdhA=; b=jpJaHRojLGZbOWNhLtC5SYDQrI
+ yExKzyeBWAAauB+ZvHSkxjY2BXuCEInL4XK7mQXo0FcgBbI1UutG21SNFbPmeGMfjqxhr7rqPYAXo
+ GsTwjk4xE+mtMPr8iv4VyLNzVBev8ctnHFQcYjj76vXNQH2Im17YOWm2d08PEu3bsQSIFqClKt8aj
+ qxsk6UAezrt6ha2GRPNvwJOoWNDRhTF9Vluzc6YjHcsYlmuk1Etgh9vyJxuNA1g3GJsvws4IX+ENb
+ Vr3KMIRTfPxFjfeIU4D3n4tJWzRr7cadrXgxDtGPmuf1+ZE7Qn10DpcXnoDwXK08F1M0aeUQw0dNz
+ ZURdEULA==;
+Received: from [183.83.141.206] (port=45798 helo=AetherGT)
+ by ns13-777.999servers.com with esmtpsa (TLS1) tls
+ TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (Exim 4.93)
+ (envelope-from <kpras@trilcomm.com>)
+ id 1k9VQe-0002RM-Lx; Sat, 22 Aug 2020 20:57:36 +0530
+To: =?iso-8859-1?Q?'Marcus_M=FCller'?= <marcus.mueller@ettus.com>,
+ <usrp-users@lists.ettus.com>
+References: <001b01d65f79$eae66ea0$c0b34be0$@com> <5F171581.7080201@gmail.com>
+ <003b01d65f7b$852d6850$8f8838f0$@com> <5F17172A.9040600@gmail.com>
+ <004301d65f7c$7138a750$53a9f5f0$@com> <5F1719EB.6000400@gmail.com>
+ <cf7f523f-4017-1467-4782-f06b9f0bc786@ettus.com> 
+In-Reply-To: 
+Date: Sat, 22 Aug 2020 20:57:41 +0530
+Message-ID: <000901d67898$c6bf8290$543e87b0$@com>
 MIME-Version: 1.0
-In-Reply-To: <CAMVZM+9wHRAeTFc+H84XqGqanVfYFr0nEZDY=rm7-s6B9omDLA@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] Antenna suggestion for usrp B210, LTE band 7
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdZfhaP0JHWKw2IvQ4aszYr2JszFUQAwoWTAAVy2WbAEt1BeUA==
+Content-Language: en-us
+x-cr-hashedpuzzle: AjwS C1qN DCeQ D/Ij KWoR MYgn M2zh NSKj Nre7 O1A4 Qn/x T+6Y
+ UAwo Vedv VpzM Wo5u; 2;
+ bQBhAHIAYwB1AHMALgBtAHUAZQBsAGwAZQByAEAAZQB0AHQAdQBzAC4AYwBvAG0AOwB1AHMAcgBwAC0AdQBzAGUAcgBzAEAAbABpAHMAdABzAC4AZQB0AHQAdQBzAC4AYwBvAG0A;
+ Sosha1_v1; 7; {BA0B7CF1-A5C6-4A5F-9F8D-7576E7D8E212};
+ awBwAHIAYQBzAEAAdAByAGkAbABjAG8AbQBtAC4AYwBvAG0A;
+ Sat, 22 Aug 2020 15:27:37 GMT;
+ UgBFADoAIABbAFUAUwBSAFAALQB1AHMAZQByAHMAXQAgAFUAUwBSAFAAIABCADIAMQAwADoAIABnAGUAdAB0AGkAbgBnACAAUgBYACAAcwBhAG0AcABsAGUAcwAgAHcAaQB0AGgAIABnAHIAYQBkAHUAYQBsAGwAeQAgAGkAbgBjAHIAZQBhAHMAZQAgAGQAZQBsAGEAeQA=
+x-cr-puzzleid: {BA0B7CF1-A5C6-4A5F-9F8D-7576E7D8E212}
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - ns13-777.999servers.com
+X-AntiAbuse: Original Domain - lists.ettus.com
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - trilcomm.com
+X-Get-Message-Sender-Via: ns13-777.999servers.com: authenticated_id:
+ kpras@trilcomm.com
+X-Authenticated-Sender: ns13-777.999servers.com: kpras@trilcomm.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Re: [USRP-users] USRP B210: getting RX samples with gradually
+ increase delay
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -52,9 +75,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ron Economos <w6rz@comcast.net>
-Content-Type: multipart/mixed; boundary="===============3181455810759437221=="
+From: Prasad via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Prasad <kpras@trilcomm.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -68,105 +92,225 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============3181455810759437221==
-Content-Type: multipart/alternative;
- boundary="------------483A8DDC576DFC187F3B0A3C"
-Content-Language: en-US
+Hi Marcus,
 
-This is a multi-part message in MIME format.
---------------483A8DDC576DFC187F3B0A3C
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+This delay is gradually increased and sometimes it goes beyond 0.5
+milliseconds.
+I think it is not like frequency error but the delay in receiving packet.
+So are we missing anything during the UHD API ?
 
-The RFSpace TSA600 works well at 2.6 GHz.
+Thanks,
+Prasad.
+-----Original Message-----
+From: Marcus M=FCller [mailto:marcus.mueller@ettus.com] =
 
-http://rfspace.com/RFSPACE/Antennas_files/TSA600.pdf
+Sent: Tuesday, July 21, 2020 11:07 PM
+To: usrp-users@lists.ettus.com; Prasad
+Subject: Re: [USRP-users] 1 Ts delay in USRP B210
 
-https://antennatestlab.com/wp-content/uploads/2017/02/EX03A_RFSpace-TSA600_Excel-Summary.xlsx
+Hello Prasad,
 
-Ron
+I second everything Marcus L said, and will add:
 
-On 8/22/20 01:58, Pavlos Basaras via USRP-users wrote:
-> Hello,
->
-> I hope everyone is well.
->
-> I am looking for suggestions for antennas for the usrp B210. I am 
-> interested in LTE band 7 at 2.6 (to be used with openairinterface) 
-> with sma-male connector.
-> I found some relevant ones from several sites, but I am looking for 
-> more options. Any suggestions?
->
-> all the best,
-> Pavlos.
->
+In your first email you said this is about the UE.
+
+UE (user equipment) are normally things like phones. These don't have
+any great clocks of their own. They derive their clocks from that of the
+network.
+
+Sure, for prototyping, reducing the frequency error makes sense, but
+even if both your basestation (gNodeB in 5G jargon) and your UE have
+atomic clocks, they will be unsynchronized if either moves. Doppler!
+
+So, in the end, if you're not in the business of evaluating
+synchronization algorithms, you're probably requesting the wrong thing:
+Make your UE implementation extract frequency information from the
+received downlink signal (there's plenty of implicit and explicit info
+in LTE/5G for exactly that), and live with the oscillator you have - it
+only needs to be stable for short times. I'm almost certain that any
+smartphone will have a worse oscillator than your B210 has.
+
+Best regards,
+Marcus M
+
+On 21.07.20 18:38, Marcus D. Leech via USRP-users wrote:
+> On 07/21/2020 12:31 PM, Prasad wrote:
+>>
+>> Then how we can handle this drift in our 5G-NR stack by using
+>> /uhd_rx_streamer_issue_stream_cmd/?
+>>
+>> Or we should go with GPSDO/external clock?
+>>
+>> Thanks,
+>>
+> Well, since most users on here aren't experts on 5G stacks, me included,
+> I can't tell you what to do to your stack to handle
+> =A0 clock drift.=A0 But I WILL say that clock drift is an inevitable issu=
+e,
+> and as you get better clocks, the scale of that issue becomes
+> =A0 smaller as you spend more money on better clocks.
+> =
+
+> A built-in GPSDO would not be a bad investment if clock drift at a scale
+> of 0.8PPM is an issue for your implementation.
+> =
+
+> Many digital demodulators implement algorithms for dealing with
+> clock-drift and imprecision on the rx side using PLLs and the like.
+> =A0 But for 5G I have no idea how that would play out.
+> =
+
+> =
+
+>> *From:*Marcus D. Leech [mailto:patchvonbraun@gmail.com]
+>> *Sent:* Tuesday, July 21, 2020 9:56 PM
+>> *To:* Prasad; usrp-users@lists.ettus.com
+>> *Subject:* Re: [USRP-users] 1 Ts delay in USRP B210
+>>
+>> On 07/21/2020 12:25 PM, Prasad wrote:
+>>
+>> =A0=A0=A0 We are using internal clock, don=92t use any GPSDO or external=
+ clock.
+>>
+>> =A0=A0=A0 So for internal clock is this expected?
+>>
+>> =A0=A0=A0 Thanks,
+>>
+>> The internal clock is specced to +/- 2PPM.=A0=A0 You're seeing much less
+>> than that, so it's within spec.
+>>
+>>
+>>
+>> *From:*USRP-users [mailto:usrp-users-bounces@lists.ettus.com] *On
+>> Behalf Of *Marcus D. Leech via USRP-users
+>> *Sent:* Tuesday, July 21, 2020 9:49 PM
+>> *To:* usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
+>> *Subject:* Re: [USRP-users] 1 Ts delay in USRP B210
+>>
+>> On 07/21/2020 12:13 PM, Prasad via USRP-users wrote:
+>>
+>> =A0=A0=A0 Soft reminder!
+>>
+>> =A0=A0=A0 Thanks,
+>>
+>> =A0=A0=A0 *From:*Prasad [mailto:kpras@trilcomm.com]
+>> =A0=A0=A0 *Sent:* Monday, July 20, 2020 7:58 PM
+>> =A0=A0=A0 *To:* 'usrp-users@lists.ettus.com
+>> <mailto:usrp-users@lists.ettus.com>'
+>> =A0=A0=A0 *Cc:* 'Rao Yenamandra'
+>> =A0=A0=A0 *Subject:* 1 Ts delay in USRP B210
+>>
+>> =A0=A0=A0 Dear Team.
+>>
+>> =A0=A0=A0 Hope you are doing well and safe.
+>>
+>> =A0=A0=A0 We are bringing up our NR-5G UE stack with USRP B210.
+>>
+>> =A0=A0=A0 If time permits, would you pls. reply to below concern with yo=
+ur
+>> =A0=A0=A0 valuable information.
+>>
+>> =A0=A0=A0 During the synchronization procedure, we observe atleast /=B1/1
+>> =A0=A0=A0 /Ts/ (Sampling Time) drift in rx streamer in every=A0 ~40ms ti=
+me
+>> period.
+>>
+>> =A0=A0=A0 Are we missing any time_spec during /uhd_rx_streamer_recv/ api=
+ or
+>> =A0=A0=A0 in /uhd_tx_streamer_send/ ?
+>>
+>> =A0=A0=A0 Master clock rate: 30.72e6
+>>
+>> =A0=A0=A0 Sampling rate: 30.72e6
+>>
+>> =A0=A0=A0 Carrier frequency: 3.8e9
+>>
+>> =A0=A0=A0 We use one B210 to transmit time domain samples back to back a=
+nd
+>> =A0=A0=A0 others to receive.
+>>
+>> =A0=A0=A0 Log snippet:
+>>
+>> =A0=A0=A0 Init PSS detected with lag: /4469/ (/PSS detection offset from=
+ the
+>> =A0=A0=A0 slot boundary/ )
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4469
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4469
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4469
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4470 =E01 Ts drift
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4470
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4470
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4471 =E01 Ts drift.
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4472=E01 Ts drift
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4472
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4472
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Init PSS detected with lag: 4484 =E012 Ts drift
+>>
+>> =A0=A0=A0 sss has been detected
+>>
+>> =A0=A0=A0 Thanks! in advance.
+>>
+>> =A0=A0=A0 Regards,
+>>
+>> =A0=A0=A0 Prasad.
+>>
+>> Are you just using the on-board reference clock, or using something
+>> like a GPS module?
+>>
+>> The drift you show is roughly 0.8PPM (if I've done my math correctly),
+>> which is well within spec for this board without a better reference
+>> clock.
+>>
+>>
+>>
+> =
+
+> =
+
+> =
+
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---------------483A8DDC576DFC187F3B0A3C
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>The RFSpace TSA600 works well at 2.6 GHz.</p>
-    <p><a class="moz-txt-link-freetext" href="http://rfspace.com/RFSPACE/Antennas_files/TSA600.pdf">http://rfspace.com/RFSPACE/Antennas_files/TSA600.pdf</a></p>
-    <p><a class="moz-txt-link-freetext" href="https://antennatestlab.com/wp-content/uploads/2017/02/EX03A_RFSpace-TSA600_Excel-Summary.xlsx">https://antennatestlab.com/wp-content/uploads/2017/02/EX03A_RFSpace-TSA600_Excel-Summary.xlsx</a><br>
-    </p>
-    <p>Ron<br>
-    </p>
-    <div class="moz-cite-prefix">On 8/22/20 01:58, Pavlos Basaras via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAMVZM+9wHRAeTFc+H84XqGqanVfYFr0nEZDY=rm7-s6B9omDLA@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">Hello,<br>
-        <div><br>
-        </div>
-        <div>I hope everyone is well.</div>
-        <div><br>
-        </div>
-        <div>I am looking for suggestions for antennas for the usrp
-          B210. I am interested in LTE band 7 at 2.6 (to be used with
-          openairinterface) with sma-male connector. </div>
-        <div>I found some relevant ones from several sites, but I am
-          looking for more options. Any suggestions?</div>
-        <div><br>
-        </div>
-        <div>all the best,</div>
-        <div>Pavlos.</div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------483A8DDC576DFC187F3B0A3C--
+> =
 
 
---===============3181455810759437221==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3181455810759437221==--
-
