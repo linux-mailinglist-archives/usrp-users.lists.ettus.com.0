@@ -2,63 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC23B24E938
-	for <lists+usrp-users@lfdr.de>; Sat, 22 Aug 2020 20:09:42 +0200 (CEST)
-Received: from [::1] (port=35912 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0523524EAC0
+	for <lists+usrp-users@lfdr.de>; Sun, 23 Aug 2020 03:27:06 +0200 (CEST)
+Received: from [::1] (port=38590 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k9XxS-0003ux-3c; Sat, 22 Aug 2020 14:09:38 -0400
-Received: from mail-qv1-f46.google.com ([209.85.219.46]:37100)
+	id 1k9emj-0003Pt-QR; Sat, 22 Aug 2020 21:27:01 -0400
+Received: from mail-qk1-f173.google.com ([209.85.222.173]:34344)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k9XxO-0003o0-GD
- for usrp-users@lists.ettus.com; Sat, 22 Aug 2020 14:09:34 -0400
-Received: by mail-qv1-f46.google.com with SMTP id y11so2058886qvl.4
- for <usrp-users@lists.ettus.com>; Sat, 22 Aug 2020 11:09:14 -0700 (PDT)
+ id 1k9emf-0003LD-R4
+ for usrp-users@lists.ettus.com; Sat, 22 Aug 2020 21:26:57 -0400
+Received: by mail-qk1-f173.google.com with SMTP id x69so4626584qkb.1
+ for <usrp-users@lists.ettus.com>; Sat, 22 Aug 2020 18:26:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=qIq/1M6PiLLMzApWkIEtRS5gjR0ioH/92h+q88J6hPE=;
- b=vh0SqYTIXwzVcPswlWKS8UyuSqWDHsQplfPCZ+LN3J02yxY186TakcTvzVIh7fFoIr
- 367t1E8QqRMh5fsSlA1LaSaKxfayvkIOKaOsUrSKUbCwn17dJZvcHrDZ1LSqKIOPuAxt
- PBgJhMrJKhBMppFA2Ek4weeAl/89JBKG2gpETI75KKybC9ckVGVBKczzOjZ1WQ/GXYmX
- /imzDqQri6fgzvTLTLOmX0eU6AqK+Bmp/rYENI4yzwTR6foGbprmvyblDVugjUp3HPRB
- O1+nCoDb4AF2ZfR/qKIGIa0mRIX9OlK/wiNwmECnVn86u+5WgH0C0oUPsdWa6OS8xfBH
- 33ng==
+ :in-reply-to; bh=YPHAOocI6mHqh9HuPiPKlXaSKPPoBT/J5FiyYYUjJBg=;
+ b=Z+LwttOfCE2TBB0Ei9L5ZP/1u5ht8aahgjUKizBtuQ/7RcjZEcqGlUhuxX3SxYV9JW
+ vhWS/6CKWz/CLp/xqmpwCL7th9LrMVjLY7L1mjGd094EGLTFw3n4NTcKjcRCzNr4Ayir
+ eITaHS+s0YtVw/q/+Q/kNuZlKrCNp6ZdrZTQ48GTZ04T7pSgfxrEhmwbbiclnpUxktSY
+ WRqRbO+44T2EYRubogxIDG7Sv8+Ph5JK7YybXvzQtQZifgi19Gr24nwBU3N9fFqM5F4Y
+ X2qAoWFwDAMxUx6jAVkmIKbWbsiREHAJzbNlIQ5HlXsjT0L+TUZV/zWv9Jsxg4euark7
+ 9ekQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=qIq/1M6PiLLMzApWkIEtRS5gjR0ioH/92h+q88J6hPE=;
- b=EngUHK/b5jD2www0AKZS0PCsxwDKxXBzRdCsaNJVTZXnVEirUJKAtfokyGZeNoP0Wv
- VK0SwWYYkwo+/2dZs/KpWPrpfHRjddOL6dzQy/2ro4AIGnN96VZ04vjiCDiV2UHjIwBw
- iH8UFsQ92q6upahM69OC3vCryn16Sch8ssc7Y/8IZ+VQ0VdIjA5YPohKvWnlGSHeJaWA
- laxPdwVuBEC0bvcLBNu69UomUdc84dYnWqPPTqok+0N+Jq284ButfV91FzuIWaISAmmF
- BPnr/ptTNw160aSABV92Ws00jOLoiKEmTSHMWVcPCNY2uFn7Yn4IWa3A1f4B5wb8Myhg
- Rogw==
-X-Gm-Message-State: AOAM533H7jeuFr6DJxTf1HsOv4wtJk7sUaeGOiUfWXSUd+UVED8JV2hg
- rTxDxvaupy+docsM0+W9RNMfI6Lp6o+h1A==
-X-Google-Smtp-Source: ABdhPJyJcJiazKPoDN6e/Oj+ayrTpcEI5JP6Yyy/NDmujy4OUQI9HADbjcqJhOgahlsh5/IhkyZL3A==
-X-Received: by 2002:ad4:518b:: with SMTP id b11mr7440179qvp.139.1598119733658; 
- Sat, 22 Aug 2020 11:08:53 -0700 (PDT)
+ :subject:references:in-reply-to;
+ bh=YPHAOocI6mHqh9HuPiPKlXaSKPPoBT/J5FiyYYUjJBg=;
+ b=ADR6EWhCuv0/Mipyb1ZfN/YM/cW5aIVh0RSV/FQatpb5cXgcimT7txEMBCA4gSZ2ZY
+ bk2NPS9SrKrw+0k4Pv2QRcYrhWeF+q0Rov6wITmvmjTKggnv50N7FL1lWAtWra9crDn0
+ hVMXrfzrTRsAilXfEvEhiuKqT22HJ1fT+hxcOVBmvt9pvQSD/1Q6Gy/LCnI87aJd/IYu
+ rErsXsgq4atst3ShFh5moj2GiLUq12+628t863m9Xdk38QAa+0XXpEnt4wWgaplNJtNE
+ 9wATCSmDBsaSKPhN/cW/HZRSMi72/sM8RYQl0FGpcl1QlT+l/Ml4jeONYRJk8cAEsUCa
+ 93hw==
+X-Gm-Message-State: AOAM5337hHBgld5/3T9zh8ELcQKdYs4U+nFuDZFqezxOnTttD2J+e4BD
+ CPh7py9io2Ap0wiK+1hijXKeLPxFtabk4w==
+X-Google-Smtp-Source: ABdhPJyhHbEehBlWuHbFohCeU1h+3k9reekI91VXeI6XceFkCZw0yzK6OVUhLU9F/7ARP28H9HwUfQ==
+X-Received: by 2002:ae9:e641:: with SMTP id x1mr8327508qkl.424.1598145976938; 
+ Sat, 22 Aug 2020 18:26:16 -0700 (PDT)
 Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
  [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id o17sm6017272qtr.13.2020.08.22.11.08.52
- for <usrp-users@lists.ettus.com>
+ by smtp.googlemail.com with ESMTPSA id n128sm6118075qke.8.2020.08.22.18.26.16
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 22 Aug 2020 11:08:53 -0700 (PDT)
-Message-ID: <5F415F34.6020706@gmail.com>
-Date: Sat, 22 Aug 2020 14:08:52 -0400
+ Sat, 22 Aug 2020 18:26:16 -0700 (PDT)
+Message-ID: <5F41C5B7.9030201@gmail.com>
+Date: Sat, 22 Aug 2020 21:26:15 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <001b01d65f79$eae66ea0$c0b34be0$@com> <5F171581.7080201@gmail.com>
- <003b01d65f7b$852d6850$8f8838f0$@com> <5F17172A.9040600@gmail.com>
- <004301d65f7c$7138a750$53a9f5f0$@com> <5F1719EB.6000400@gmail.com>
- <cf7f523f-4017-1467-4782-f06b9f0bc786@ettus.com>
- <000901d67898$c6bf8290$543e87b0$@com>
-In-Reply-To: <000901d67898$c6bf8290$543e87b0$@com>
+To: kpras@trilcomm.com, 
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <53F074DDB8EF9CF2.b08124db-1501-4661-9a63-6aee26d65445@mail.outlook.com>
+In-Reply-To: <53F074DDB8EF9CF2.b08124db-1501-4661-9a63-6aee26d65445@mail.outlook.com>
 Subject: Re: [USRP-users] USRP B210: getting RX samples with gradually
  increase delay
 X-BeenThere: usrp-users@lists.ettus.com
@@ -74,8 +69,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="windows-1252"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============1000684563523297670=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,219 +83,86 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 08/22/2020 11:27 AM, Prasad via USRP-users wrote:
-> Hi Marcus,
->
-> This delay is gradually increased and sometimes it goes beyond 0.5
-> milliseconds.
-> I think it is not like frequency error but the delay in receiving packet.
-> So are we missing anything during the UHD API ?
+This is a multi-part message in MIME format.
+--===============1000684563523297670==
+Content-Type: multipart/alternative;
+ boundary="------------060409040008000109020007"
+
+This is a multi-part message in MIME format.
+--------------060409040008000109020007
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 08/22/2020 09:08 PM, kpras@trilcomm.com wrote:
+> Yes relative delay between samples in buffer.
+> While detecting SYNC signal of 5G periodically, it  detects gradually 
+> increased delay from its expected position.
+> It means expected to receive at  2280 position of buffer but its keep 
+> detecting away from expected position, 2281,2282,2284,........ and so on.
 >
 > Thanks,
 > Prasad.
-Delay *as measured where?*  Relative delay between samples in the same =
+>
+My guess is that you have an off-by-one error in your buffer-harvesting 
+code.  This has nothing to do with the device.
 
-buffer?  Please be more specific...
 
 
-> -----Original Message-----
-> From: Marcus M=FCller [mailto:marcus.mueller@ettus.com]
-> Sent: Tuesday, July 21, 2020 11:07 PM
-> To: usrp-users@lists.ettus.com; Prasad
-> Subject: Re: [USRP-users] 1 Ts delay in USRP B210
->
-> Hello Prasad,
->
-> I second everything Marcus L said, and will add:
->
-> In your first email you said this is about the UE.
->
-> UE (user equipment) are normally things like phones. These don't have
-> any great clocks of their own. They derive their clocks from that of the
-> network.
->
-> Sure, for prototyping, reducing the frequency error makes sense, but
-> even if both your basestation (gNodeB in 5G jargon) and your UE have
-> atomic clocks, they will be unsynchronized if either moves. Doppler!
->
-> So, in the end, if you're not in the business of evaluating
-> synchronization algorithms, you're probably requesting the wrong thing:
-> Make your UE implementation extract frequency information from the
-> received downlink signal (there's plenty of implicit and explicit info
-> in LTE/5G for exactly that), and live with the oscillator you have - it
-> only needs to be stable for short times. I'm almost certain that any
-> smartphone will have a worse oscillator than your B210 has.
->
-> Best regards,
-> Marcus M
->
-> On 21.07.20 18:38, Marcus D. Leech via USRP-users wrote:
->> On 07/21/2020 12:31 PM, Prasad wrote:
->>> Then how we can handle this drift in our 5G-NR stack by using
->>> /uhd_rx_streamer_issue_stream_cmd/?
->>>
->>> Or we should go with GPSDO/external clock?
->>>
->>> Thanks,
->>>
->> Well, since most users on here aren't experts on 5G stacks, me included,
->> I can't tell you what to do to your stack to handle
->>    clock drift.  But I WILL say that clock drift is an inevitable issue,
->> and as you get better clocks, the scale of that issue becomes
->>    smaller as you spend more money on better clocks.
->>
->> A built-in GPSDO would not be a bad investment if clock drift at a scale
->> of 0.8PPM is an issue for your implementation.
->>
->> Many digital demodulators implement algorithms for dealing with
->> clock-drift and imprecision on the rx side using PLLs and the like.
->>    But for 5G I have no idea how that would play out.
->>
->>
->>> *From:*Marcus D. Leech [mailto:patchvonbraun@gmail.com]
->>> *Sent:* Tuesday, July 21, 2020 9:56 PM
->>> *To:* Prasad; usrp-users@lists.ettus.com
->>> *Subject:* Re: [USRP-users] 1 Ts delay in USRP B210
->>>
->>> On 07/21/2020 12:25 PM, Prasad wrote:
->>>
->>>      We are using internal clock, don=92t use any GPSDO or external clo=
-ck.
->>>
->>>      So for internal clock is this expected?
->>>
->>>      Thanks,
->>>
->>> The internal clock is specced to +/- 2PPM.   You're seeing much less
->>> than that, so it's within spec.
->>>
->>>
->>>
->>> *From:*USRP-users [mailto:usrp-users-bounces@lists.ettus.com] *On
->>> Behalf Of *Marcus D. Leech via USRP-users
->>> *Sent:* Tuesday, July 21, 2020 9:49 PM
->>> *To:* usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
->>> *Subject:* Re: [USRP-users] 1 Ts delay in USRP B210
->>>
->>> On 07/21/2020 12:13 PM, Prasad via USRP-users wrote:
->>>
->>>      Soft reminder!
->>>
->>>      Thanks,
->>>
->>>      *From:*Prasad [mailto:kpras@trilcomm.com]
->>>      *Sent:* Monday, July 20, 2020 7:58 PM
->>>      *To:* 'usrp-users@lists.ettus.com
->>> <mailto:usrp-users@lists.ettus.com>'
->>>      *Cc:* 'Rao Yenamandra'
->>>      *Subject:* 1 Ts delay in USRP B210
->>>
->>>      Dear Team.
->>>
->>>      Hope you are doing well and safe.
->>>
->>>      We are bringing up our NR-5G UE stack with USRP B210.
->>>
->>>      If time permits, would you pls. reply to below concern with your
->>>      valuable information.
->>>
->>>      During the synchronization procedure, we observe atleast /=B1/1
->>>      /Ts/ (Sampling Time) drift in rx streamer in every  ~40ms time
->>> period.
->>>
->>>      Are we missing any time_spec during /uhd_rx_streamer_recv/ api or
->>>      in /uhd_tx_streamer_send/ ?
->>>
->>>      Master clock rate: 30.72e6
->>>
->>>      Sampling rate: 30.72e6
->>>
->>>      Carrier frequency: 3.8e9
->>>
->>>      We use one B210 to transmit time domain samples back to back and
->>>      others to receive.
->>>
->>>      Log snippet:
->>>
->>>      Init PSS detected with lag: /4469/ (/PSS detection offset from the
->>>      slot boundary/ )
->>>
->>>      sss has been detected
->>>
->>>      Init PSS detected with lag: 4469
->>>
->>>      sss has been detected
->>>
->>>      Init PSS detected with lag: 4469
->>>
->>>      sss has been detected
->>>
->>>      Init PSS detected with lag: 4469
->>>
->>>      sss has been detected
->>>
->>>      Init PSS detected with lag: 4470 =E01 Ts drift
->>>
->>>      sss has been detected
->>>
->>>      Init PSS detected with lag: 4470
->>>
->>>      sss has been detected
->>>
->>>      Init PSS detected with lag: 4470
->>>
->>>      sss has been detected
->>>
->>>      Init PSS detected with lag: 4471 =E01 Ts drift.
->>>
->>>      sss has been detected
->>>
->>>      Init PSS detected with lag: 4472=E01 Ts drift
->>>
->>>      sss has been detected
->>>
->>>      Init PSS detected with lag: 4472
->>>
->>>      sss has been detected
->>>
->>>      Init PSS detected with lag: 4472
->>>
->>>      sss has been detected
->>>
->>>      Init PSS detected with lag: 4484 =E012 Ts drift
->>>
->>>      sss has been detected
->>>
->>>      Thanks! in advance.
->>>
->>>      Regards,
->>>
->>>      Prasad.
->>>
->>> Are you just using the on-board reference clock, or using something
->>> like a GPS module?
->>>
->>> The drift you show is roughly 0.8PPM (if I've done my math correctly),
->>> which is well within spec for this board without a better reference
->>> clock.
->>>
->>>
->>>
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+--------------060409040008000109020007
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 08/22/2020 09:08 PM,
+      <a class="moz-txt-link-abbreviated" href="mailto:kpras@trilcomm.com">kpras@trilcomm.com</a> wrote:<br>
+    </div>
+    <blockquote
+cite="mid:53F074DDB8EF9CF2.b08124db-1501-4661-9a63-6aee26d65445@mail.outlook.com"
+      type="cite">
+      <div style="color: rgb(33, 33, 33); background-color: rgb(255,
+        255, 255); text-align: left;" dir="auto">Yes relative delay
+        between samples in buffer.</div>
+      <div style="color: rgb(33, 33, 33); background-color: rgb(255,
+        255, 255); text-align: left;" dir="auto">While detecting SYNC
+        signal of 5G periodically, it  detects gradually increased delay
+        from its expected position.</div>
+      <div style="color: rgb(33, 33, 33); background-color: rgb(255,
+        255, 255); text-align: left;" dir="auto">It means expected to
+        receive at  2280 position of buffer but its keep detecting away
+        from expected position, 2281,2282,2284,........ and so on.</div>
+      <div style="color: rgb(33, 33, 33); background-color: rgb(255,
+        255, 255); text-align: left;" dir="auto"><br>
+      </div>
+      <div style="color: rgb(33, 33, 33); background-color: rgb(255,
+        255, 255); text-align: left;" dir="auto">Thanks,</div>
+      <div style="color: rgb(33, 33, 33); background-color: rgb(255,
+        255, 255); text-align: left;" dir="auto">Prasad.</div>
+      <br>
+    </blockquote>
+    My guess is that you have an off-by-one error in your
+    buffer-harvesting code.  This has nothing to do with the device.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------060409040008000109020007--
+
+
+--===============1000684563523297670==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============1000684563523297670==--
+
