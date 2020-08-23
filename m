@@ -2,58 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0523524EAC0
-	for <lists+usrp-users@lfdr.de>; Sun, 23 Aug 2020 03:27:06 +0200 (CEST)
-Received: from [::1] (port=38590 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6027E24ED34
+	for <lists+usrp-users@lfdr.de>; Sun, 23 Aug 2020 14:29:45 +0200 (CEST)
+Received: from [::1] (port=42764 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k9emj-0003Pt-QR; Sat, 22 Aug 2020 21:27:01 -0400
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:34344)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k9emf-0003LD-R4
- for usrp-users@lists.ettus.com; Sat, 22 Aug 2020 21:26:57 -0400
-Received: by mail-qk1-f173.google.com with SMTP id x69so4626584qkb.1
- for <usrp-users@lists.ettus.com>; Sat, 22 Aug 2020 18:26:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=YPHAOocI6mHqh9HuPiPKlXaSKPPoBT/J5FiyYYUjJBg=;
- b=Z+LwttOfCE2TBB0Ei9L5ZP/1u5ht8aahgjUKizBtuQ/7RcjZEcqGlUhuxX3SxYV9JW
- vhWS/6CKWz/CLp/xqmpwCL7th9LrMVjLY7L1mjGd094EGLTFw3n4NTcKjcRCzNr4Ayir
- eITaHS+s0YtVw/q/+Q/kNuZlKrCNp6ZdrZTQ48GTZ04T7pSgfxrEhmwbbiclnpUxktSY
- WRqRbO+44T2EYRubogxIDG7Sv8+Ph5JK7YybXvzQtQZifgi19Gr24nwBU3N9fFqM5F4Y
- X2qAoWFwDAMxUx6jAVkmIKbWbsiREHAJzbNlIQ5HlXsjT0L+TUZV/zWv9Jsxg4euark7
- 9ekQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=YPHAOocI6mHqh9HuPiPKlXaSKPPoBT/J5FiyYYUjJBg=;
- b=ADR6EWhCuv0/Mipyb1ZfN/YM/cW5aIVh0RSV/FQatpb5cXgcimT7txEMBCA4gSZ2ZY
- bk2NPS9SrKrw+0k4Pv2QRcYrhWeF+q0Rov6wITmvmjTKggnv50N7FL1lWAtWra9crDn0
- hVMXrfzrTRsAilXfEvEhiuKqT22HJ1fT+hxcOVBmvt9pvQSD/1Q6Gy/LCnI87aJd/IYu
- rErsXsgq4atst3ShFh5moj2GiLUq12+628t863m9Xdk38QAa+0XXpEnt4wWgaplNJtNE
- 9wATCSmDBsaSKPhN/cW/HZRSMi72/sM8RYQl0FGpcl1QlT+l/Ml4jeONYRJk8cAEsUCa
- 93hw==
-X-Gm-Message-State: AOAM5337hHBgld5/3T9zh8ELcQKdYs4U+nFuDZFqezxOnTttD2J+e4BD
- CPh7py9io2Ap0wiK+1hijXKeLPxFtabk4w==
-X-Google-Smtp-Source: ABdhPJyhHbEehBlWuHbFohCeU1h+3k9reekI91VXeI6XceFkCZw0yzK6OVUhLU9F/7ARP28H9HwUfQ==
-X-Received: by 2002:ae9:e641:: with SMTP id x1mr8327508qkl.424.1598145976938; 
- Sat, 22 Aug 2020 18:26:16 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id n128sm6118075qke.8.2020.08.22.18.26.16
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 22 Aug 2020 18:26:16 -0700 (PDT)
-Message-ID: <5F41C5B7.9030201@gmail.com>
-Date: Sat, 22 Aug 2020 21:26:15 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: kpras@trilcomm.com, 
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+	id 1k9p81-0003MF-CA; Sun, 23 Aug 2020 08:29:41 -0400
+Received: from ns13-777.999servers.com ([103.14.122.123]:48434)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <kpras@trilcomm.com>) id 1k9p7w-0003HZ-Oa
+ for usrp-users@lists.ettus.com; Sun, 23 Aug 2020 08:29:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=trilcomm.com; s=default; h=Content-Type:MIME-Version:Message-ID:Date:
+ Subject:In-Reply-To:References:To:From:Sender:Reply-To:Cc:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=CF6uwlETwns51Qdym9ZIzMaJwvFdg0vN2CibexwMh94=; b=lyL0zvWT2sD8+VjDXcw7YHC8D
+ TpAbQA+6hUhcAc2IFydg2WcCEITfPeMaDe4qVN7O2cy9V1doAZitR26Q42DfwEoK+QStIOzKaUfZt
+ L7Nt7SdI4MmdO4BEauMNpPaEGsEJsFNf54+yUpa+M6jbyWEKXQ2GHOPkwZA+NMt36JkigHSAfA4q3
+ pTx35ZnK/ZMhULZ5q2mJI0UuN55B7YH2IvWjRa++MijXGNuJyGTEYSe6C6DeBjNNDaTXEP70fA47F
+ ondrIk9Ow6qjAMTb/mj/Hz7IrKS2/v14M7hLlT5z/9RanUSbFXvwtPtjPPSEMvcX+kG+dN6XnJkuO
+ pdCfF3hYg==;
+Received: from [183.83.141.206] (port=46808 helo=AetherGT)
+ by ns13-777.999servers.com with esmtpsa (TLS1) tls
+ TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (Exim 4.93)
+ (envelope-from <kpras@trilcomm.com>)
+ id 1k9p7D-0000PH-SD; Sun, 23 Aug 2020 17:58:52 +0530
+To: "'Marcus D. Leech'" <patchvonbraun@gmail.com>, <usrp-users@lists.ettus.com>
 References: <53F074DDB8EF9CF2.b08124db-1501-4661-9a63-6aee26d65445@mail.outlook.com>
-In-Reply-To: <53F074DDB8EF9CF2.b08124db-1501-4661-9a63-6aee26d65445@mail.outlook.com>
+ <5F41C5B7.9030201@gmail.com>
+In-Reply-To: <5F41C5B7.9030201@gmail.com>
+Date: Sun, 23 Aug 2020 17:58:52 +0530
+Message-ID: <000301d67948$f6b23a50$e416aef0$@com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdZ47IE+twAMVGWkTuSaALQVAhlcbQAXCuAA
+Content-Language: en-us
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - ns13-777.999servers.com
+X-AntiAbuse: Original Domain - lists.ettus.com
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - trilcomm.com
+X-Get-Message-Sender-Via: ns13-777.999servers.com: authenticated_id:
+ kpras@trilcomm.com
+X-Authenticated-Sender: ns13-777.999servers.com: kpras@trilcomm.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Subject: Re: [USRP-users] USRP B210: getting RX samples with gradually
  increase delay
 X-BeenThere: usrp-users@lists.ettus.com
@@ -67,9 +64,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1000684563523297670=="
+From: Prasad via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Prasad <kpras@trilcomm.com>
+Content-Type: multipart/mixed; boundary="===============4154775175054648335=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,77 +80,258 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============1000684563523297670==
-Content-Type: multipart/alternative;
- boundary="------------060409040008000109020007"
+This is a multipart message in MIME format.
 
-This is a multi-part message in MIME format.
---------------060409040008000109020007
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--===============4154775175054648335==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0004_01D67977.106A7650"
+Content-Language: en-us
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0004_01D67977.106A7650
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Marcus,
+
+=20
+
+Verified the code couple of time even tested bypassing USRP and it works =
+fine.
+
+So, suspecting any time_spec either in RX or TX missing in the code?
+
+=20
+
+Regards,
+
+Prasad.
+
+=20
+
+From: Marcus D. Leech [mailto:patchvonbraun@gmail.com]=20
+Sent: Sunday, August 23, 2020 6:56 AM
+To: kpras@trilcomm.com; usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] USRP B210: getting RX samples with gradually =
+increase delay
+
+=20
 
 On 08/22/2020 09:08 PM, kpras@trilcomm.com wrote:
-> Yes relative delay between samples in buffer.
-> While detecting SYNC signal of 5G periodically, it  detects gradually 
-> increased delay from its expected position.
-> It means expected to receive at  2280 position of buffer but its keep 
-> detecting away from expected position, 2281,2282,2284,........ and so on.
->
-> Thanks,
-> Prasad.
->
-My guess is that you have an off-by-one error in your buffer-harvesting 
+
+Yes relative delay between samples in buffer.
+
+While detecting SYNC signal of 5G periodically, it  detects gradually =
+increased delay from its expected position.
+
+It means expected to receive at  2280 position of buffer but its keep =
+detecting away from expected position, 2281,2282,2284,........ and so =
+on.
+
+=20
+
+Thanks,
+
+Prasad.
+
+=20
+
+My guess is that you have an off-by-one error in your buffer-harvesting =
 code.  This has nothing to do with the device.
 
 
 
---------------060409040008000109020007
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
 
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/22/2020 09:08 PM,
-      <a class="moz-txt-link-abbreviated" href="mailto:kpras@trilcomm.com">kpras@trilcomm.com</a> wrote:<br>
-    </div>
-    <blockquote
-cite="mid:53F074DDB8EF9CF2.b08124db-1501-4661-9a63-6aee26d65445@mail.outlook.com"
-      type="cite">
-      <div style="color: rgb(33, 33, 33); background-color: rgb(255,
-        255, 255); text-align: left;" dir="auto">Yes relative delay
-        between samples in buffer.</div>
-      <div style="color: rgb(33, 33, 33); background-color: rgb(255,
-        255, 255); text-align: left;" dir="auto">While detecting SYNC
-        signal of 5G periodically, it  detects gradually increased delay
-        from its expected position.</div>
-      <div style="color: rgb(33, 33, 33); background-color: rgb(255,
-        255, 255); text-align: left;" dir="auto">It means expected to
-        receive at  2280 position of buffer but its keep detecting away
-        from expected position, 2281,2282,2284,........ and so on.</div>
-      <div style="color: rgb(33, 33, 33); background-color: rgb(255,
-        255, 255); text-align: left;" dir="auto"><br>
-      </div>
-      <div style="color: rgb(33, 33, 33); background-color: rgb(255,
-        255, 255); text-align: left;" dir="auto">Thanks,</div>
-      <div style="color: rgb(33, 33, 33); background-color: rgb(255,
-        255, 255); text-align: left;" dir="auto">Prasad.</div>
-      <br>
-    </blockquote>
-    My guess is that you have an off-by-one error in your
-    buffer-harvesting code.  This has nothing to do with the device.<br>
-    <br>
-    <br>
-  </body>
+------=_NextPart_000_0004_01D67977.106A7650
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8">
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=3Dwhite lang=3DEN-US link=3Dblue vlink=3Dpurple>
+
+<div class=3DSection1>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'>Dear Marcus,<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'>Verified the code couple of time even tested bypassing =
+USRP and
+it works fine.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'>So, suspecting any time_spec either in RX or TX missing =
+in the
+code?<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'>Regards,<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'>Prasad.<o:p></o:p></span></p>
+
+</div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'><o:p>&nbsp;</o:p></span></p>
+
+<div>
+
+<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt =
+0in 0in 0in'>
+
+<p class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif";
+color:windowtext'>From:</span></b><span =
+style=3D'font-size:10.0pt;font-family:
+"Tahoma","sans-serif";color:windowtext'> Marcus D. Leech
+[mailto:patchvonbraun@gmail.com] <br>
+<b>Sent:</b> Sunday, August 23, 2020 6:56 AM<br>
+<b>To:</b> kpras@trilcomm.com; usrp-users@lists.ettus.com<br>
+<b>Subject:</b> Re: [USRP-users] USRP B210: getting RX samples with =
+gradually
+increase delay<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<div>
+
+<p class=3DMsoNormal>On 08/22/2020 09:08 PM, <a =
+href=3D"mailto:kpras@trilcomm.com">kpras@trilcomm.com</a>
+wrote:<o:p></o:p></p>
+
+</div>
+
+<blockquote style=3D'margin-top:5.0pt;margin-bottom:5.0pt'>
+
+<p class=3DMsoNormal><span style=3D'color:#212121'>Yes relative delay =
+between
+samples in buffer.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#212121'>While detecting SYNC =
+signal of
+5G periodically, it&nbsp; detects gradually increased delay from its =
+expected
+position.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span style=3D'color:#212121'>It means expected to =
+receive
+at&nbsp; 2280 position of buffer but its keep detecting away from =
+expected
+position, 2281,2282,2284,........ and so on.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#212121'><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#212121'>Thanks,<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span =
+style=3D'color:#212121'>Prasad.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+</blockquote>
+
+<p class=3DMsoNormal style=3D'margin-bottom:12.0pt'>My guess is that you =
+have an
+off-by-one error in your buffer-harvesting code.&nbsp; This has nothing =
+to do
+with the device.<br>
+<br>
+<o:p></o:p></p>
+
+</div>
+
+</body>
+
 </html>
 
---------------060409040008000109020007--
+------=_NextPart_000_0004_01D67977.106A7650--
 
 
---===============1000684563523297670==
+
+--===============4154775175054648335==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -164,5 +342,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1000684563523297670==--
+--===============4154775175054648335==--
+
 
