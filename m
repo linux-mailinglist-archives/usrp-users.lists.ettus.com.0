@@ -2,109 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CF6B250630
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Aug 2020 19:29:26 +0200 (CEST)
-Received: from [::1] (port=55064 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CB222506FC
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Aug 2020 19:54:51 +0200 (CEST)
+Received: from [::1] (port=55350 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kAGHZ-0003jB-JJ; Mon, 24 Aug 2020 13:29:21 -0400
-Received: from email3-east.aero.org ([130.221.184.167]:26765)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <prvs=498978330=jonathan.nguyen@aero.org>)
- id 1kAGHW-0003cA-6U
- for usrp-users@lists.ettus.com; Mon, 24 Aug 2020 13:29:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
- t=1598290157; x=1629826157;
- h=from:to:subject:date:message-id:mime-version;
- bh=D3UG4teI+VygaHTKGci68IGpEU/vClu1uIwxmO06xww=;
- b=tlSP+6hvSedQHXC3W+Oz9loro7YBxv3W0svv9VNElZf9TkMq5oigGIZ5
- lzf0qioLxQ7ZnPLZV5pCGxteCJ1lBtHIWOyCDPKvP9ZvvQb8Fd20KF5yv
- A0JjMK00oe5XVCdXCiBu4SU9AZYHyEjWP9ufBHKYk4HITcBPWicSlrfxm 4=;
-x-SBRS: 3.5
-x-SenderGroup: Inbound_Office365
-X-IronPort-AV: E=McAfee;i="6000,8403,9723"; a="3701949"
-X-IronPort-AV: E=Sophos;i="5.76,349,1592895600"; d="scan'208,217";a="3701949"
-IronPort-PHdr: =?us-ascii?q?9a23=3A905miR0xhmzve5d1smDT+zVfbzU7u7jyIg8e44?=
- =?us-ascii?q?YmjLQLaKm44pD+JxWFuKdpjUTVRsPW9+5ZkKzdtKWzEWAD4JPUtncEfdQMUh?=
- =?us-ascii?q?IekswZkkQmB9LNEkz0KvPmLklYVMRPXVNo5Te3ZE5SHsutY1zJvmb04CIOBw?=
- =?us-ascii?q?65Pg1wdaz5H4fIhJGx0Oa/s5TYfwRPgm+7ZrV/ZBW7pAncrI8Ym4xnf6880B?=
- =?us-ascii?q?yPpWFHKOk=3D?=
-X-IPAS-Result: =?us-ascii?q?A2EOAgCC90Nfh2tAL2hfgQmCbS9Rd4EzCoEiAoZPA4U4j?=
- =?us-ascii?q?VuOW4dBA1ULAQEBAQEBAQEBBgItAgQBAQINhD0CgkYlOBMCAw0BAQEFAQEBA?=
- =?us-ascii?q?QEGAwECAhABAQEIDQkIKYVjAQuDVIEDAQEBAQEBAQEBAQEBAQEBAQEBAQEBA?=
- =?us-ascii?q?QEBAQEBAQEBAQEBAQEBBQKBDFYbEwEBOBEBDHQmAQQbGoMEAYF+TQMuAaYTA?=
- =?us-ascii?q?oE5iGABAXOBNIMBAQEFhQ8YV4E3CYE4gnGCVBI5iG4/gVSCH4Urg0iCLY93i?=
- =?us-ascii?q?XacVgeCZgSHYJJhoDKSQ5sfhCgCBAIEBQIOAQEFgWuBe00wgyxQFwINjjmDV?=
- =?us-ascii?q?4pWQzE3AgYKAQEDCXyPDAGBEAEB?=
-Received: from mail-bl2gcc02lp2107.outbound.protection.outlook.com (HELO
- GCC02-BL0-obe.outbound.protection.outlook.com) ([104.47.64.107])
- by email3-east.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2020 10:28:35 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jh/GNRsOAZapXEdOxK3ZM98zXX6se0Gf0qj8YQmZ9yz3Vig3GDMViBuVYAks+96wKm99+3gDJaRS+B6gJiTUpqytJaYeA2/GXFyW4de1j1R4Ct4xM4X/QiOr4BJBYkcgL80gSPCHsc8nuAkshkTqlf9Ikp0KGZefe0tlyX6tF4CCkvWIFEOBe74J3pKXgZvwB7LtVx9qRiWcYpj9EkSXE5lrgycNlJJuJ5tF2JgPFGzMZCCSzd+Izzlv3dcDy7ltfj7/iyGZMApPGWlWv7/vgxztU3nAW5WTvKQDNzWDVoxfjnX1KpxYwjlral4oNGZbYH01RhlxGKLfyeFVB7dxug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=653wjvk+ui6yVwkdm45+TzSEYjujrMgjJu9TZzmnliA=;
- b=SDIqQZ3ic8y/C/jZV5+Oq3W2+qP42meJ8idFRlQ3/kUxSzqjXqfVHzjDPUSxtJ4VApvTy84vOV72pxs8kSqdaQ2qgzwprP3RHJLn7gh3VrEmAq/S8Ia73TcCNk1frr+uYPItx5NGHigOLmRM8ahKfrxGO2f9fh4FdE4nH2npBsunz632lKENWDGl1Q4ojqiknrf1+zyHrBZngWhg4UBxJw+ZpeSV2eMJW7laYGlps+bocpSlIUlNwMz/qabGQ+IdwQbLUhbW6LLEhMyMc4CRZHA4TrGEsWiv9es0P1c7d5lE80b7+4bZytMufvZWP0ebVYk5K3e1c9gwBreWY/1Ufg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
- dkim=pass header.d=aero.org; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=653wjvk+ui6yVwkdm45+TzSEYjujrMgjJu9TZzmnliA=;
- b=ltJODHgil908zrdX3Ttj7geTgUsFPpa+6/4v5e9dbUjhTWBHwlNPwwtWIEo+IYSXwlLEuy2+j8TCRajtk5cbtdsU1KuKLNAfhnWdyeQ09ch6bptOW1hz+IuruqO31fzAZAne9bmkGP1dDGmDCjtukIVLM1rk0xpatJc/ANwEGsI=
-Received: from BYAPR09MB3494.namprd09.prod.outlook.com (2603:10b6:a03:10f::31)
- by BY5PR09MB4294.namprd09.prod.outlook.com (2603:10b6:a03:1d9::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.26; Mon, 24 Aug
- 2020 17:28:35 +0000
-Received: from BYAPR09MB3494.namprd09.prod.outlook.com
- ([fe80::118c:c6b8:2c76:c304]) by BYAPR09MB3494.namprd09.prod.outlook.com
- ([fe80::118c:c6b8:2c76:c304%3]) with mapi id 15.20.3261.026; Mon, 24 Aug 2020
- 17:28:35 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Finding multiple USRPs on the Python API
-Thread-Index: AdZ6O1rxhjyfUYHhTC65yHPfTUiscw==
-Date: Mon, 24 Aug 2020 17:28:35 +0000
-Message-ID: <BYAPR09MB3494FDB408B6F5F3F7CC91438E560@BYAPR09MB3494.namprd09.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL1RoZUFlcm9zcGFjZUNvcnAiLCJpZCI6ImQxNGIyZjNhLWMwODAtNGE0ZC1hZWU1LWRkNjg4MjBjNDYyZCIsInByb3BzIjpbeyJuIjoiU2Vuc2l0aXZpdHkiLCJ2YWxzIjpbeyJ2YWx1ZSI6Ik5vbmUifV19LHsibiI6IlJlbGVhc2UiLCJ2YWxzIjpbXX0seyJuIjoiT3B0aW9uYWwiLCJ2YWxzIjpbXX1dfSwiU3ViamVjdExhYmVscyI6W10sIlRNQ1ZlcnNpb24iOiIxNy41LjEyLjEzIiwiVHJ1c3RlZExhYmVsSGFzaCI6IjFvTnFcL3FoV3lJbjFMMlhjVzk4XC9OdUU4MXZMOTg0UzFmQWtSRkdhbmJoRmQyZGFGamFmOE9veVFnR3lFVk1DcyJ9
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none header.from=aero.org;
-x-originating-ip: [130.221.224.7]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 1b4c4e93-6614-4ef1-2d47-08d84853218d
-x-ms-traffictypediagnostic: BY5PR09MB4294:
-x-microsoft-antispam-prvs: <BY5PR09MB4294D35C8EF81C0B92B944818E560@BY5PR09MB4294.namprd09.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KeD+WsqKXRioivDBtQG5upfDpYep9Jg/jU6zceq2T+U75kGkGCntwG9oNBnmvqUcsnzNuRgTCu2pY8DZomsjPgMgsVIwzFHtKd2lawYaYfkA1GtNF1NvIkQyG2lT6IFhHzFaNtDt1/GrUFpjHCC8O1A2VQ0+0NXgAS9lJdsPoPRzpx19mmcCT/1h/RhiiCECyzbqYv09pKOClcuGBO+Mi/6DGG+bvXK1QYvrCx61iFyedr5mdNPbIQLsUosrB/VHE9mgWszXyP/qWUjRYa3LGTlXAm5qTYG2NNmnJX+dPv574FXJP+GQOmJ6D/iN8fdtNPk7HdFCX6q1Do1s2nziJQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR09MB3494.namprd09.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(376002)(39850400004)(396003)(366004)(346002)(52536014)(66556008)(86362001)(76116006)(66946007)(64756008)(66446008)(316002)(66476007)(4744005)(5660300002)(6506007)(9326002)(478600001)(26005)(186003)(8936002)(33656002)(6916009)(7696005)(8676002)(71200400001)(9686003)(2906002)(55016002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: LIRcMjv11hYIXu7lC97peKh782o5youQgZJQ8PfKkJ0jc+pGiMnHsKAJx2KMMtoUPyiwhw3V00d8+reofRhv513Om1AV3SdI6Ug57RaApQ3hCQuKB55JLXPq+TkV6FPRhAtD/2V8QNdm+NIsNVFV4yb2FgC+XEwWifyJciTJxPf6OE8zP4KoYpXIJbzglz4OvHh1BIqrASwZ2eaRneJ+ce0AQsVmoUkcsf3cGOR1Wf5dTcokK3jfe6nRdynCRgcuwlXXGsKFOXcB0lViQi7UzKVucCmuVa92NlAeF/hNzCgGLNNIe4zG1iwTS+2xM99P/YV8k4J5LjSahdraTTUEjuvJsAlFSF5y9nuZP+oUC6nybShroDMVoSrRuq1s7LTOnLQOyhwhRQUTKABlcrRtGxH+6tRJDJH/2z/ddsRE24iS94OPGxQxdtyNp4poBXSYtUvaYZYQ3U9kJoT8fUZ1trLHkOpkVYoIA8SNF/whVFyS4VXjK6JyvXLgLIdZvCm6Kt73WMsPegvlRMakZV4/uBdZ344I4j5py7lK50+qiCvNEjA+SyDM02iAhHTMc+v2Bp+3tQ7kNwZg9sBFPgfMKfpAQOzwdwxz3nE2NjOnW+bwhrEYl6JiXKS7Jw3pLkZAP95vZTHcFkoXL7i53PrXcw==
-x-ms-exchange-transport-forked: True
+	id 1kAGgD-0007LA-G0; Mon, 24 Aug 2020 13:54:49 -0400
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:33799)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kAGg9-0007DU-Hu
+ for usrp-users@lists.ettus.com; Mon, 24 Aug 2020 13:54:45 -0400
+Received: by mail-oi1-f174.google.com with SMTP id z22so9049518oid.1
+ for <usrp-users@lists.ettus.com>; Mon, 24 Aug 2020 10:54:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=1rK85hYcqOPWRzVd9IB+k/ySI5kTAUrz4esXmVFBBzY=;
+ b=VTOrfbhh8WKLWSXw86k627p0yGjSYRGav6lfk+hlUAAwcEhCmjDVO7RblmNBGRi5rh
+ eINBdWyyqq59Ac5bgN4ElSaADcPXKfmQ8xTVGOvOXrhRiZjIKFKI52j9ysa6KbKjcaO0
+ M5ePo4rVyQ97jNJIgQNyjxkvp5B8tBqezR8k1ygJ32u5Z3RkvMNJu70P+6eg58DsyxKz
+ enrN0SxN1kGjpSrt5vyf3+Lmvq4BuzZd5XuoCGIFAaHzzdSZKnIsUb2StBeVZRjpOjoM
+ aBGbBJgRtjykJCUAoAIFSgW936Rs7jgi5L6IZnCKW8sMl4DE4DH5MugTl/J4LFFE/qtc
+ lMQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=1rK85hYcqOPWRzVd9IB+k/ySI5kTAUrz4esXmVFBBzY=;
+ b=OOKAqSfpZrVTDqulErOkf3PXwuqYqavn91nFsSPAUOdqZ/1wzCUEGf5VapRXZ53Iot
+ 9GC03nJ+TpiEwiqX78Z2zvoNiKXrH/JiDTf7hkS4/zwbzBZT+47x2lF1v/8X4dZk/bWI
+ BeUjqYEHG2dTUPOXjL98eZ2KU2Au/t8XwJcbKJLBEJ2YOWrQIcvPowY4u2NJ/ZnRJNv8
+ 0jX04Nodtqdy8AJYY5Xy4H920v9t1togODLKTNw3GBEABe2jtkPl96+91TNrIgGaziw9
+ ldtqs4DUu20v4Ly0DN5SOVaYgVhicSLY4/oAaLJu5FXdY+ZfYhn7ahUl+Urri8vAhSyP
+ Sr4A==
+X-Gm-Message-State: AOAM530cLk5MFGSI0dfUOO+fdI9hJ/JMWKrOpXgYNBmsh2QamjGoAC0u
+ hcZVAlrW0jkd0/AM7FCHuc7rfojFqKKRrInAgrnIBQ==
+X-Google-Smtp-Source: ABdhPJwBknSBxbSCDqnbTt/EWefZ3S/NLKjvAEWLlymbxngQY2WCb+zlAAwNbpxPc+1a2cAwjLnj6pxd6/xSbPfs/Xc=
+X-Received: by 2002:a54:4019:: with SMTP id x25mr315176oie.124.1598291644601; 
+ Mon, 24 Aug 2020 10:54:04 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: aero.org
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR09MB3494.namprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b4c4e93-6614-4ef1-2d47-08d84853218d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2020 17:28:35.3222 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qAh5T/b6Ms8aERtPoQWwdeHBwZPMXutCM/M248y4lRjENbdflSXfrPNKa8I574aD
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR09MB4294
-Subject: [USRP-users] Finding multiple USRPs on the Python API
+References: <7d8c7731d23c412490a27750fac617a9@kongsberg.com>
+ <CAB__hTR_n5zEHbSNSADeV+euNu5m-Chb7agX5D+RhZo5LOK00Q@mail.gmail.com>
+ <a836f011bfdb46fb9403baafa0060800@kongsberg.com>
+ <CAB__hTRbkX2HVfC5zVK7p17W9Q1keFoGMO7K9xC3GfaLVUjWFg@mail.gmail.com>
+ <6ced606fafac42f28485978c0a087227@kongsberg.com>
+ <CAB__hTQ4yy8Mrbgn4tn1hJj8GmeY4W5hi1sMSbuMhp3cAFELfg@mail.gmail.com>
+ <1b04cfb3f883498198f57a793d8c55e7@kongsberg.com>
+In-Reply-To: <1b04cfb3f883498198f57a793d8c55e7@kongsberg.com>
+Date: Mon, 24 Aug 2020 13:53:53 -0400
+Message-ID: <CAB__hTTVvDbo-A5oS3i85y=BdjYVD=Dj9DEHNLk-myhLedxJkg@mail.gmail.com>
+To: Andreas.Bertheussen@kongsberg.com
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Issues with multi-usrp and UHD
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -116,9 +64,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathan V Nguyen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathan V Nguyen <jonathan.nguyen@aero.org>
-Content-Type: multipart/mixed; boundary="===============2155242315914799047=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============2416546479065041129=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -132,102 +80,388 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2155242315914799047==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BYAPR09MB3494FDB408B6F5F3F7CC91438E560BYAPR09MB3494namp_"
+--===============2416546479065041129==
+Content-Type: multipart/alternative; boundary="000000000000b99bb205ada3452e"
 
---_000_BYAPR09MB3494FDB408B6F5F3F7CC91438E560BYAPR09MB3494namp_
-Content-Type: text/plain; charset="us-ascii"
+--000000000000b99bb205ada3452e
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi Andreas,
+A few comments:
 
-I was wondering if there was a way to get the addresses of all the USRPS cu=
-rrently connected to a host on the Python API. I saw that the C++ API had t=
-he uhd::device::find() function, but this seems to be missing in the Python=
- API. The main goal is to be able to create a multiUSRP object with all con=
-nected USRPs without knowing their addresses / serial numbers beforehand.
+   - I downloaded, compiled and ran your example and got similar results to
+   you
+   - I ran the following Ettus stock program and saw similar bad behavior:
+   benchmark_rate --args=3D"addr0=3D192.168.43.2,addr1=3D192.168.51.2" --tx=
+_rate 5e6
+   --tx_channels=3D"0,2"
+   - For this example, I should have had "--ref=3Dexternal -pps=3Dexternal"
+      also, but since I did not have an external reference handy, I ran wit=
+h
+      internal reference and so I frequently got a warning about time
+deviation.
+      But, this is not really important I think.
+      - The key issue is that the LEDs should always be the first channel
+      on the two devices but that is not what happens.  The Tx LEDs that li=
+ght
+      are somewhat random (but always 2 of them) from run to run
+      - See if you can verify this on your end while using an external
+      reference/PPS and adding the corresponding command line arguments.
 
-Thanks,
-Jonathan
+Assuming that you can duplicate this with benchmark_rate as indicated
+above, then this takes your software out of the equation.  I suggest
+contacting Ettus and asking them to take a look.  If this is a bug in UHD
+as it seems, it is a pretty significant one that they should fix.
+
+Rob
 
 
---_000_BYAPR09MB3494FDB408B6F5F3F7CC91438E560BYAPR09MB3494namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Fri, Aug 21, 2020 at 2:45 PM <Andreas.Bertheussen@kongsberg.com> wrote:
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Thanks for pointing that out Rob.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I was wondering if there was a way to get the addres=
-ses of all the USRPS currently connected to a host on the Python API. I saw=
- that the C++ API had the uhd::device::find() function, but this seems to b=
-e missing in the Python API. The main
- goal is to be able to create a multiUSRP object with all connected USRPs w=
-ithout knowing their addresses / serial numbers beforehand.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Jonathan<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+>
+>
+> I have created a std::vector<size_t> enabled_channels =3D {0, 2}. I also
+> changed so that those channel numbers (0 and 2) are used to tune the
+> radios, adjust gain and check for locked LO. Code is attached.
+>
+>
+>
+> Now I still have similar issues and I observe 3 cases:
+>
+> =C2=B7         60% of the time: Outputs A and B on first X310 are only on=
+es
+> enabled. Signal of first buffer is present on A (correct), B output is
+> quiet.
+>
+> =C2=B7         35% of the time: Outputs A and B on second X310 are only o=
+nes
+> enabled. Signal of second buffer is present on A (correct(?)), B output i=
+s
+> quiet.
+>
+> =C2=B7         5% of the time: Outputs A on both X310s are the only ones
+> enabled. Signal of first buffer on the first X310 A output, signal of
+> second buffer on the second X310 A output. This is expected behaviour.
+>
+>
+>
+> With respect to the channel mapping for the buffers passed to send(), I=
+=E2=80=99m
+> not quite sure. My understanding is that if I have only two channels
+> selected when creating my tx streamer, for instance =E2=80=A6args.channel=
+s =3D {0,2},
+> then the buffer vector passed to send() must be of size 2, and first buff=
+er
+> gets mapped to channel 0, and second buffer to channel 2.
+>
+>
+>
+> To sum it up, I now have the correct signal appear at the correct output
+> whenever it is enabled, and that the issue is that incorrect outputs get
+> enabled.
+>
+>
+>
+> Regards,
+>
+> Andreas.
+>
+>
+>
+> *From:* Rob Kossler <rkossler@nd.edu>
+> *Sent:* 21. august 2020 18:21
+> *To:* Bertheussen, Andreas <Andreas.Bertheussen@kongsberg.com>
+> *Cc:* usrp-users <usrp-users@lists.ettus.com>
+> *Subject:* Re: [USRP-users] Issues with multi-usrp and UHD
+>
+>
+>
+> Hi Andreas,
+>
+> When you set the subdev spec to "A:0 B:0" for both devices as you do in
+> this case, UHD now has 4 channels where channels 0/1 are on device 1 and
+> 2/3 are o{n device 2. So, your streaming command is correct in choosing
+> {0,2} as the desired stream channels. But other parts of your code are no=
+t
+> because you have "num_chan" set to 2 and so you are only manipulating
+> channels 0/1 with your other commands.  Perhaps you could set a vector at
+> the top such as:
+>
+>   std::vector<size_t> my_chan =3D {0,2};
+>
+> and then you could have num_chan=3D2 (as is now) but then you always need=
+ to
+> use "my_chan[chan_index]" when providing a channel index to UHD (such as
+> tune commands or gain commands). This "my_chan" vector could be used
+> directly also in the stream args.
+>
+>
+>
+> I don't know if this will fix your overall issue, but the channel indexin=
+g
+> needs to be modified to match what UHD is expecting.
+>
+> Rob
+>
+>
+>
+>
+>
+> On Fri, Aug 21, 2020 at 5:39 AM <Andreas.Bertheussen@kongsberg.com> wrote=
+:
+>
+> > Can you resend the source code for the first case you describe below
+> along with command line?
+>
+> I have attached the code for a channel mapping of (0,2) in siggen.cc. I
+> also include my CMakeLists file.
+>
+> Program is run without arguments; ./siggen
+>
+> Attached output_case_1.txt shows the program output when outputs A and B
+> on first X310 get enabled, and I do observe signals on those outputs.
+> Attached output_case_2.txt shows the program output when outputs A and B
+> on second X310 get enabled, but I _do not_ observe signals on those outpu=
+ts.
+>
+> Looking back on the mailing list this also seems similar to the "issue
+> about subdev spec" posted by Damon qi, earlier this month.
+>
+> Regards,
+> Andreas.
+>
+> ________________________________
+>
+> CONFIDENTIALITY
+> This e-mail and any attachment contain KONGSBERG information which may be
+> proprietary, confidential or subject to export regulations, and is only
+> meant for the intended recipient(s). Any disclosure, copying, distributio=
+n
+> or use is prohibited, if not otherwise explicitly agreed with KONGSBERG. =
+If
+> received in error, please delete it immediately from your system and noti=
+fy
+> the sender properly.
+>
+>
+
+--000000000000b99bb205ada3452e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Andreas,</div><div>A few comments:</div><div><ul><=
+li>I downloaded, compiled and ran your example and got similar results to y=
+ou</li><li>I ran the following Ettus stock program and saw similar bad beha=
+vior:=C2=A0 benchmark_rate --args=3D&quot;addr0=3D192.168.43.2,addr1=3D192.=
+168.51.2&quot; --tx_rate 5e6 --tx_channels=3D&quot;0,2&quot;<br></li><ul><l=
+i>For this example, I should have had &quot;--ref=3Dexternal -pps=3Dexterna=
+l&quot; also, but since I did not have an external reference handy, I ran w=
+ith internal reference and so I frequently got a warning about time deviati=
+on. But, this is not really important I think.=C2=A0=C2=A0</li><li>The key =
+issue is that the LEDs should always be the first channel on the two device=
+s but that is not what=C2=A0happens.=C2=A0 The Tx LEDs that light are somew=
+hat random (but always 2 of them) from run to run</li><li>See if you can ve=
+rify this on your end while using an external reference/PPS and adding the =
+corresponding command line arguments.</li></ul></ul><div>Assuming that you =
+can duplicate this with benchmark_rate as indicated above, then this takes =
+your software out of the equation.=C2=A0 I suggest contacting Ettus and ask=
+ing them to take a look.=C2=A0 If this is a bug in UHD as it seems, it is a=
+ pretty significant one that they should fix.</div></div><div><br></div><di=
+v>Rob</div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"=
+ltr" class=3D"gmail_attr">On Fri, Aug 21, 2020 at 2:45 PM &lt;<a href=3D"ma=
+ilto:Andreas.Bertheussen@kongsberg.com">Andreas.Bertheussen@kongsberg.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"NO-BOK">
+<div class=3D"gmail-m_5110629281059098521WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)">Thanks for pointing that out =
+Rob.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)">I have created a std::vector&=
+lt;size_t&gt; enabled_channels =3D {0, 2}. I also changed so that those cha=
+nnel numbers (0 and 2)
+ are used to tune the radios, adjust gain and check for locked LO. Code is =
+attached.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)">Now I still have similar issu=
+es and I observe 3 cases:<u></u><u></u></span></p>
+<p class=3D"gmail-m_5110629281059098521MsoListParagraph"><u></u><span lang=
+=3D"EN-GB" style=3D"font-size:11pt;font-family:Symbol;color:rgb(31,73,125)"=
+><span>=C2=B7<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><u></u><span lang=3D"EN-GB" style=3D"font-size:11pt;fo=
+nt-family:Calibri,sans-serif;color:rgb(31,73,125)">60% of the time: Outputs=
+ A and B on first X310 are only ones enabled. Signal of first buffer is pre=
+sent on A
+ (correct), B output is quiet.<u></u><u></u></span></p>
+<p class=3D"gmail-m_5110629281059098521MsoListParagraph"><u></u><span lang=
+=3D"EN-GB" style=3D"font-size:11pt;font-family:Symbol;color:rgb(31,73,125)"=
+><span>=C2=B7<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><u></u><span lang=3D"EN-GB" style=3D"font-size:11pt;fo=
+nt-family:Calibri,sans-serif;color:rgb(31,73,125)">35% of the time: Outputs=
+ A and B on second X310 are only ones enabled. Signal of second buffer is p=
+resent on
+ A (correct(?)), B output is quiet.<u></u><u></u></span></p>
+<p class=3D"gmail-m_5110629281059098521MsoListParagraph"><u></u><span lang=
+=3D"EN-GB" style=3D"font-size:11pt;font-family:Symbol;color:rgb(31,73,125)"=
+><span>=C2=B7<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><u></u><span lang=3D"EN-GB" style=3D"font-size:11pt;fo=
+nt-family:Calibri,sans-serif;color:rgb(31,73,125)">5% of the time: Outputs =
+A on both X310s are the only ones enabled. Signal of first buffer on the fi=
+rst X310
+ A output, signal of second buffer on the second X310 A output. This is exp=
+ected behaviour.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)">With respect to the channel m=
+apping for the buffers passed to send(), I=E2=80=99m not quite sure. My und=
+erstanding is that if
+ I have only two channels selected when creating my tx streamer, for instan=
+ce =E2=80=A6args.channels =3D {0,2}, then the buffer vector passed to send(=
+) must be of size 2, and first buffer gets mapped to channel 0, and second =
+buffer to channel 2.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)">To sum it up, I now have the =
+correct signal appear at the correct output whenever it is enabled, and tha=
+t the issue is
+ that incorrect outputs get enabled.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)">Regards,<u></u><u></u></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)">Andreas.<u></u><u></u></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11pt;font=
+-family:Calibri,sans-serif">From:</span></b><span lang=3D"EN-US" style=3D"f=
+ont-size:11pt;font-family:Calibri,sans-serif"> Rob Kossler &lt;<a href=3D"m=
+ailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt;
+<br>
+<b>Sent:</b> 21. august 2020 18:21<br>
+<b>To:</b> Bertheussen, Andreas &lt;<a href=3D"mailto:Andreas.Bertheussen@k=
+ongsberg.com" target=3D"_blank">Andreas.Bertheussen@kongsberg.com</a>&gt;<b=
+r>
+<b>Cc:</b> usrp-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" tar=
+get=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Issues with multi-usrp and UHD<u></u><u></=
+u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u></u></span></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Hi Andreas,<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">When you set the subdev spec to &quot;A:0 B:0&quot; =
+for both devices as you do in this case, UHD now has 4 channels where chann=
+els 0/1 are on device 1 and 2/3 are o{n device 2. So, your streaming comman=
+d is correct in choosing {0,2} as the desired
+ stream channels. But other parts of your code are not because you have &qu=
+ot;num_chan&quot; set to 2 and so you are only manipulating channels 0/1 wi=
+th your other commands.=C2=A0 Perhaps you could set a vector at the top suc=
+h as:<u></u><u></u></p>
 </div>
-</body>
-</html>
+<div>
+<p class=3D"MsoNormal">=C2=A0 std::vector&lt;size_t&gt; my_chan =3D {0,2};<=
+u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">and then you could have num_chan=3D2 (as is now) but=
+ then you always need to use &quot;my_chan[chan_index]&quot; when providing=
+ a channel index to UHD (such as tune commands or gain commands). This &quo=
+t;my_chan&quot; vector could be used directly also in the
+ stream args.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I don&#39;t know if this will fix your overall issue=
+, but the channel indexing needs to be modified to match what UHD is expect=
+ing.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Rob<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Fri, Aug 21, 2020 at 5:39 AM &lt;<a href=3D"mailt=
+o:Andreas.Bertheussen@kongsberg.com" target=3D"_blank">Andreas.Bertheussen@=
+kongsberg.com</a>&gt; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
+order-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:4=
+.8pt;margin-right:0cm">
+<p class=3D"MsoNormal">&gt; Can you resend the source code for the first ca=
+se you describe below along with command line?<br>
+<br>
+I have attached the code for a channel mapping of (0,2) in siggen.cc. I als=
+o include my CMakeLists file.<br>
+<br>
+Program is run without arguments; ./siggen<br>
+<br>
+Attached output_case_1.txt shows the program output when outputs A and B on=
+ first X310 get enabled, and I do observe signals on those outputs.<br>
+Attached output_case_2.txt shows the program output when outputs A and B on=
+ second X310 get enabled, but I _do not_ observe signals on those outputs.<=
+br>
+<br>
+Looking back on the mailing list this also seems similar to the &quot;issue=
+ about subdev spec&quot; posted by Damon qi, earlier this month.<br>
+<br>
+Regards,<br>
+Andreas.<br>
+<br>
+________________________________<br>
+<br>
+CONFIDENTIALITY<br>
+This e-mail and any attachment contain KONGSBERG information which may be p=
+roprietary, confidential or subject to export regulations, and is only mean=
+t for the intended recipient(s). Any disclosure, copying, distribution or u=
+se is prohibited, if not otherwise
+ explicitly agreed with KONGSBERG. If received in error, please delete it i=
+mmediately from your system and notify the sender properly.<u></u><u></u></=
+p>
+</blockquote>
+</div>
+</div>
+</div>
 
---_000_BYAPR09MB3494FDB408B6F5F3F7CC91438E560BYAPR09MB3494namp_--
+</blockquote></div>
+
+--000000000000b99bb205ada3452e--
 
 
---===============2155242315914799047==
+--===============2416546479065041129==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -238,5 +472,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2155242315914799047==--
+--===============2416546479065041129==--
 
