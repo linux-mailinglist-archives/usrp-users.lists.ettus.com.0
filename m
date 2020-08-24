@@ -2,63 +2,66 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C62124EED2
-	for <lists+usrp-users@lfdr.de>; Sun, 23 Aug 2020 18:42:51 +0200 (CEST)
-Received: from [::1] (port=44684 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAC2524F6A2
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Aug 2020 11:02:25 +0200 (CEST)
+Received: from [::1] (port=51112 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1k9t4z-00060s-Ja; Sun, 23 Aug 2020 12:42:49 -0400
-Received: from mail-qk1-f175.google.com ([209.85.222.175]:40077)
+	id 1kA8Mu-0001pr-Bv; Mon, 24 Aug 2020 05:02:20 -0400
+Received: from mail-ed1-f53.google.com ([209.85.208.53]:37165)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1k9t4v-0005t0-NL
- for usrp-users@lists.ettus.com; Sun, 23 Aug 2020 12:42:45 -0400
-Received: by mail-qk1-f175.google.com with SMTP id z3so1198821qkz.7
- for <usrp-users@lists.ettus.com>; Sun, 23 Aug 2020 09:42:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=TkDMGhjtj2o6wgGr0HIMLlvCfQhQHmVyAqgyJmSaYME=;
- b=ueMra/6gyTRtcC+X+imvxwP7nMS0LTWq8qUpfYDLwZdCO4Ycs6bAYZAY8KWH1W4GwS
- s2rpKXd28nJdP+Z8zt34lRGf7r7P6AEEuaSe1NVnF/F4ipe/cZv+x+xVFE4c+ihcXKYd
- Swqk3O+141kPne58uRh2rk8K5mgzK2EzdnuDTMxOsq2eZ9eKq1ggafiaijuyn2zg+Jzk
- R9gAHPpNLvGho3c7DBsdEFVfHiRpU4LrN1xT0wwRmupfnlx6ZzFDXRUypbE3wwNc/fdX
- U6cvvP8i6QFVV9y+XRweSp4VFbKAyed2kWPiiWVco74iIAnYxIXMqX7mESQ4OdkPCPWB
- gjRA==
+ (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
+ id 1kA8Mq-0001mh-VW
+ for usrp-users@lists.ettus.com; Mon, 24 Aug 2020 05:02:17 -0400
+Received: by mail-ed1-f53.google.com with SMTP id i26so7340565edv.4
+ for <usrp-users@lists.ettus.com>; Mon, 24 Aug 2020 02:01:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=Fb4fQtjjbob2zolAxCkE4j6VFtsDZtMxFs/Tp+NIzYU=;
+ b=1uIrJe/+ruutrvsBo/6Fii0NelG0kaXIxjIGGrllgkA3Ipgn2oRltFgZRJN2xLakWf
+ HfSnrgBWuHDRWyG9p8HzIMX7KsMegBLkoTX+7C/Kivb7Ld4D5m4ujX4aO7K9ZiUf32z3
+ +iXcNiYgarXH00F+1OWwTewVjlo01U306k1nLtcidjPqbjQAr/iuxy1vbcSqm04hc7bd
+ B0C+M1wK4RqXovEVjRxsY+TOB6oSCHdvW2cQ5yO+hv/2U6tWl46avXHLAIC2LbYFJcci
+ lLlpdvrsxYcCZHJLpIdP7yfSfZFF8QtyBERCU+hXu7VTmwdoaqXqAdThZl8q2FtwPBbR
+ qFpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=TkDMGhjtj2o6wgGr0HIMLlvCfQhQHmVyAqgyJmSaYME=;
- b=LqAirEytfeOctwtU3BQV8RHBuB3lT9wVxz7SdF1TT/YKqG1e2kikvH39nyVreDXax+
- TgrDHQpM8nT2sd+LyPuKMmDVT+TUCbfB34v5fZaP8W1Bn0J/bNsTMJ238Fi1n2dSGwbj
- tmbncn1kssgOh6/aYpWxCQdwEbqW4G06FJVi5AombkhXHc+XHEPW5OSWBhMlmfJrh/s3
- Ixbj/WCfnzK5Czh3YUoPigUumhLujncV1PvUkM0Dty9FTgN+tfJs32BPUbPuRD6LMLKJ
- HN/Xh6VlSXbvn3VfMRKBg2qMio1U2hKcg7Ea30M9C0VtF6tbVakfLkudptdv9uoAbpI4
- eaRg==
-X-Gm-Message-State: AOAM531scccLQnsuplt71TJ4pOMHbSQI1VaVuTo3qC4taFTgFtORfAyo
- vzEnNrUEL2Uz78rU/K5n3avutQORO5+Rgw==
-X-Google-Smtp-Source: ABdhPJyROK7wOKQyAc9kYeI1PzfKlZr4B5v99f7K+TZiUJEAF2FcLQHsZ8sq7Q+/iW0OdwrwuztyQQ==
-X-Received: by 2002:a05:620a:1085:: with SMTP id
- g5mr1461468qkk.343.1598200924949; 
- Sun, 23 Aug 2020 09:42:04 -0700 (PDT)
-Received: from [192.168.2.12] (smflon1825w-lp140-01-174-95-14-148.dsl.bell.ca.
- [174.95.14.148])
- by smtp.googlemail.com with ESMTPSA id w20sm7471730qki.108.2020.08.23.09.42.04
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 23 Aug 2020 09:42:04 -0700 (PDT)
-Message-ID: <5F429C5B.3080901@gmail.com>
-Date: Sun, 23 Aug 2020 12:42:03 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=Fb4fQtjjbob2zolAxCkE4j6VFtsDZtMxFs/Tp+NIzYU=;
+ b=kdnPZH8F4QqvlJxgfe+ecWOZU5Iw0EZMpk/Mrhfmkv0JV6j7znYzZblaqTBHHar22c
+ k5vH3n/PCQw05y+B4ZzYTyOPcN+wT38Kk7oYAM8Jkshm+DCIpeqazIjrkXPuS8MIjJ6N
+ vtGvrkmcoGfjb4JChYCiXZqbDWTmbJ+VTPb8cWUlo/4+AL9KM55w/H4kYEwTav9uyrFd
+ bkGhQ28JFrGF2AyJumLG3FzizM8hCJBRjReYPEf/khM2dp0VUabByg48bklWxuuRd/Z0
+ oQQrdW+thuIR3ZVGlEzdUO5Ukcer6haNntQVf8yB5kj71lPYxdU0Sk9BuVyS6zxlLpSN
+ /NHw==
+X-Gm-Message-State: AOAM530wMI3ouptq47TxnHDokfK7dRedX9TOYBG0V6ufKZ3a0MgXSbyl
+ E/6fIMkesJjODHyKp2iX49z/6nfM+VAOXEiy
+X-Google-Smtp-Source: ABdhPJyidt+Q0OKzxLzxlKfxPERH6Esaedf2GMEfaeDfUga7g3oTU2e/dDRGkhFCtb242C8ZumMQAQ==
+X-Received: by 2002:a50:d80b:: with SMTP id o11mr4345708edj.148.1598259695249; 
+ Mon, 24 Aug 2020 02:01:35 -0700 (PDT)
+Received: from [192.168.128.8]
+ (HSI-KBW-46-223-163-144.hsi.kabel-badenwuerttemberg.de. [46.223.163.144])
+ by smtp.gmail.com with ESMTPSA id hh9sm9156182ejb.113.2020.08.24.02.01.34
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 24 Aug 2020 02:01:34 -0700 (PDT)
 To: Prasad <kpras@trilcomm.com>, usrp-users@lists.ettus.com
-References: <53F074DDB8EF9CF2.b08124db-1501-4661-9a63-6aee26d65445@mail.outlook.com>
- <5F41C5B7.9030201@gmail.com> <000301d67948$f6b23a50$e416aef0$@com>
- <5F428F1C.1030103@gmail.com> <001101d67964$be070570$3a151050$@com>
- <5F42952C.4040200@gmail.com> <003a01d6796a$2ac62010$80526030$@com>
-In-Reply-To: <003a01d6796a$2ac62010$80526030$@com>
-Subject: Re: [USRP-users] USRP B210: getting RX samples with gradually
- increase delay
+References: <001b01d65f79$eae66ea0$c0b34be0$@com> <5F171581.7080201@gmail.com>
+ <003b01d65f7b$852d6850$8f8838f0$@com> <5F17172A.9040600@gmail.com>
+ <004301d65f7c$7138a750$53a9f5f0$@com> <5F1719EB.6000400@gmail.com>
+ <cf7f523f-4017-1467-4782-f06b9f0bc786@ettus.com>
+ <000001d665bb$6cb8fa00$462aee00$@com>
+Message-ID: <e8c50215-2d1d-254d-6c2d-0fede36c6586@ettus.com>
+Date: Mon, 24 Aug 2020 11:01:33 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <000001d665bb$6cb8fa00$462aee00$@com>
+Content-Language: en-US
+Subject: Re: [USRP-users] 1 Ts delay in USRP B210
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -70,9 +73,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0518930791737016016=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,145 +91,126 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============0518930791737016016==
-Content-Type: multipart/alternative;
- boundary="------------070302050907040703060902"
-
-This is a multi-part message in MIME format.
---------------070302050907040703060902
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 08/23/2020 12:26 PM, Prasad wrote:
->
-> I understand it is within the time spec. But the delay goes 
-> incremented linearly, it means if we wait for 30mins we are getting 
-> expected signal after 0.5milliseconds from the desire time boundary
->
-> So do we need to use rx streamer command to adjust it?.
->
-Since none of us here (likely) are intimately familiar with your 5G 
-implementation details, it's hard to say which "button to push" to make
-   your implementation correctly deal with inevitable clock-slip.
-
-You'll need a strategy, that's about as much as I can offer, since I'm 
-not myself a 5G implementation expert.
-
-
-
---------------070302050907040703060902
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/23/2020 12:26 PM, Prasad wrote:<br>
-    </div>
-    <blockquote cite="mid:003a01d6796a$2ac62010$80526030$@com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <meta name="Generator" content="Microsoft Word 12 (filtered
-        medium)">
-      <style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	color:black;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page Section1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.Section1
-	{page:Section1;}
--->
-</style><!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext="edit">
-  <o:idmap v:ext="edit" data="1" />
- </o:shapelayout></xml><![endif]-->
-      <div class="Section1"><o:p></o:p>
-        <p class="MsoNormal" style="margin-bottom:12.0pt"><span
-            style="font-size:11.0pt;
-font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497D">I
-            understand it is within the
-            time spec. But the delay goes incremented linearly, it means
-            if we wait for
-            30mins we are getting expected signal after 0.5milliseconds
-            from the desire
-            time boundary <o:p></o:p></span></p>
-        <p class="MsoNormal" style="margin-bottom:12.0pt"><span
-            style="font-size:11.0pt;
-font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497D">So
-            do we need to use rx
-            streamer command to adjust it?.<o:p></o:p></span></p>
-      </div>
-    </blockquote>
-    Since none of us here (likely) are intimately familiar with your 5G
-    implementation details, it's hard to say which "button to push" to
-    make<br>
-      your implementation correctly deal with inevitable clock-slip.<br>
-    <br>
-    You'll need a strategy, that's about as much as I can offer, since
-    I'm not myself a 5G implementation expert.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------070302050907040703060902--
-
-
---===============0518930791737016016==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============0518930791737016016==--
-
+RG9uJ3Qga25vdyB5b3VyIHJlY2VpdmVyIGFuZCB5b3VyIEltcGxlbWVudGF0aW9uIGluIGRldGFp
+bCwgYnV0IGlzbid0CnRoYXQgUEJDSCBhIGxpdHRsZSBzdHJvbmc/IHlvdSdyZSBwcm9iYWJseSAi
+c2NyZWFtaW5nIiBhdCB5b3VyIHJlY2VpdmVyCnNvIGxvdWRseSB0aGF0IGl0IGRyYXN0aWNhbGx5
+IGRpc3RvcnRzIHRoZSByZWNlaXZlIHNpZ25hbC4gVHJ5IHdpdGgKbG93ZXIgZ2Fpbi4KCk9uIDI5
+LjA3LjIwIDE3OjE3LCBQcmFzYWQgd3JvdGU6Cj4gSGkgTXVsbGVyLCAKPgo+IEp1c3QgYSBxdWlj
+ayBxdWVzdGlvbi4KPiBEdXJpbmcgb3VyIDVHLU5SIGludGVncmF0aW9uIHdpdGggVVNSUCBCMjEw
+LCB3ZSBvYnNlcnZlIHZlcnkgaGlnaCBub2lzZQo+IHBvd2VyIGF0IHJlY2VpdmVyLgo+IElzIGl0
+IGV4cGVjdGVkIGJlaGF2aW9yID8KPiBQQkNIIHJzcnA6IC0xMy43NzU1NTQgZEJtLCBTTlI6IC0x
+Mi45NDI1OTEgZEIsIE5PSVNFX1BPV0VSOiAtMC44MzI5NjMgZEJtLAo+IHJzc2k6IDEuNjQzNjYy
+ZEJtLgo+Cj4gQXBwbGllZCBnYWluIGluIFVTUlA6Cj4gVHggR2FpbjogNDUKPiBSeCBHYWluOiA0
+NQo+IFRyYW5zbWl0IHBvd2VyOi0gMGRCbS4KPgo+IFJlZ2FyZHMsCj4gUHJhc2FkLgo+Cj4gLS0t
+LS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0KPiBGcm9tOiBQcmFzYWQgW21haWx0bzprcHJhc0B0cmls
+Y29tbS5jb21dIAo+IFNlbnQ6IFdlZG5lc2RheSwgSnVseSAyMiwgMjAyMCAxMDoyMSBQTQo+IFRv
+OiAnTWFyY3VzIE3DvGxsZXInOyAndXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20nCj4gU3ViamVj
+dDogUkU6IFtVU1JQLXVzZXJzXSAxIFRzIGRlbGF5IGluIFVTUlAgQjIxMAo+Cj4gVGhhbmtzISBh
+IGxvdCBNYXJjdXMgTSBhbmQgTWFyY3VzIEQgZm9yIHlvdXIgdmFsdWFibGUgaW5mb3JtYXRpb24u
+Cj4KPiBUaGFua3MsCj4KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQo+IEZyb206IE1hcmN1
+cyBNw7xsbGVyIFttYWlsdG86bWFyY3VzLm11ZWxsZXJAZXR0dXMuY29tXSAKPiBTZW50OiBUdWVz
+ZGF5LCBKdWx5IDIxLCAyMDIwIDExOjA3IFBNCj4gVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tOyBQcmFzYWQKPiBTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIDEgVHMgZGVsYXkgaW4gVVNS
+UCBCMjEwCj4KPiBIZWxsbyBQcmFzYWQsCj4KPiBJIHNlY29uZCBldmVyeXRoaW5nIE1hcmN1cyBM
+IHNhaWQsIGFuZCB3aWxsIGFkZDoKPgo+IEluIHlvdXIgZmlyc3QgZW1haWwgeW91IHNhaWQgdGhp
+cyBpcyBhYm91dCB0aGUgVUUuCj4KPiBVRSAodXNlciBlcXVpcG1lbnQpIGFyZSBub3JtYWxseSB0
+aGluZ3MgbGlrZSBwaG9uZXMuIFRoZXNlIGRvbid0IGhhdmUKPiBhbnkgZ3JlYXQgY2xvY2tzIG9m
+IHRoZWlyIG93bi4gVGhleSBkZXJpdmUgdGhlaXIgY2xvY2tzIGZyb20gdGhhdCBvZiB0aGUKPiBu
+ZXR3b3JrLgo+Cj4gU3VyZSwgZm9yIHByb3RvdHlwaW5nLCByZWR1Y2luZyB0aGUgZnJlcXVlbmN5
+IGVycm9yIG1ha2VzIHNlbnNlLCBidXQKPiBldmVuIGlmIGJvdGggeW91ciBiYXNlc3RhdGlvbiAo
+Z05vZGVCIGluIDVHIGphcmdvbikgYW5kIHlvdXIgVUUgaGF2ZQo+IGF0b21pYyBjbG9ja3MsIHRo
+ZXkgd2lsbCBiZSB1bnN5bmNocm9uaXplZCBpZiBlaXRoZXIgbW92ZXMuIERvcHBsZXIhCj4KPiBT
+bywgaW4gdGhlIGVuZCwgaWYgeW91J3JlIG5vdCBpbiB0aGUgYnVzaW5lc3Mgb2YgZXZhbHVhdGlu
+Zwo+IHN5bmNocm9uaXphdGlvbiBhbGdvcml0aG1zLCB5b3UncmUgcHJvYmFibHkgcmVxdWVzdGlu
+ZyB0aGUgd3JvbmcgdGhpbmc6Cj4gTWFrZSB5b3VyIFVFIGltcGxlbWVudGF0aW9uIGV4dHJhY3Qg
+ZnJlcXVlbmN5IGluZm9ybWF0aW9uIGZyb20gdGhlCj4gcmVjZWl2ZWQgZG93bmxpbmsgc2lnbmFs
+ICh0aGVyZSdzIHBsZW50eSBvZiBpbXBsaWNpdCBhbmQgZXhwbGljaXQgaW5mbwo+IGluIExURS81
+RyBmb3IgZXhhY3RseSB0aGF0KSwgYW5kIGxpdmUgd2l0aCB0aGUgb3NjaWxsYXRvciB5b3UgaGF2
+ZSAtIGl0Cj4gb25seSBuZWVkcyB0byBiZSBzdGFibGUgZm9yIHNob3J0IHRpbWVzLiBJJ20gYWxt
+b3N0IGNlcnRhaW4gdGhhdCBhbnkKPiBzbWFydHBob25lIHdpbGwgaGF2ZSBhIHdvcnNlIG9zY2ls
+bGF0b3IgdGhhbiB5b3VyIEIyMTAgaGFzLgo+Cj4gQmVzdCByZWdhcmRzLAo+IE1hcmN1cyBNCj4K
+PiBPbiAyMS4wNy4yMCAxODozOCwgTWFyY3VzIEQuIExlZWNoIHZpYSBVU1JQLXVzZXJzIHdyb3Rl
+Ogo+PiBPbiAwNy8yMS8yMDIwIDEyOjMxIFBNLCBQcmFzYWQgd3JvdGU6Cj4+PiBUaGVuIGhvdyB3
+ZSBjYW4gaGFuZGxlIHRoaXMgZHJpZnQgaW4gb3VyIDVHLU5SIHN0YWNrIGJ5IHVzaW5nCj4+PiAv
+dWhkX3J4X3N0cmVhbWVyX2lzc3VlX3N0cmVhbV9jbWQvPwo+Pj4KPj4+IE9yIHdlIHNob3VsZCBn
+byB3aXRoIEdQU0RPL2V4dGVybmFsIGNsb2NrPwo+Pj4KPj4+IFRoYW5rcywKPj4+Cj4+IFdlbGws
+IHNpbmNlIG1vc3QgdXNlcnMgb24gaGVyZSBhcmVuJ3QgZXhwZXJ0cyBvbiA1RyBzdGFja3MsIG1l
+IGluY2x1ZGVkLAo+PiBJIGNhbid0IHRlbGwgeW91IHdoYXQgdG8gZG8gdG8geW91ciBzdGFjayB0
+byBoYW5kbGUKPj4gwqAgY2xvY2sgZHJpZnQuwqAgQnV0IEkgV0lMTCBzYXkgdGhhdCBjbG9jayBk
+cmlmdCBpcyBhbiBpbmV2aXRhYmxlIGlzc3VlLAo+PiBhbmQgYXMgeW91IGdldCBiZXR0ZXIgY2xv
+Y2tzLCB0aGUgc2NhbGUgb2YgdGhhdCBpc3N1ZSBiZWNvbWVzCj4+IMKgIHNtYWxsZXIgYXMgeW91
+IHNwZW5kIG1vcmUgbW9uZXkgb24gYmV0dGVyIGNsb2Nrcy4KPj4KPj4gQSBidWlsdC1pbiBHUFNE
+TyB3b3VsZCBub3QgYmUgYSBiYWQgaW52ZXN0bWVudCBpZiBjbG9jayBkcmlmdCBhdCBhIHNjYWxl
+Cj4+IG9mIDAuOFBQTSBpcyBhbiBpc3N1ZSBmb3IgeW91ciBpbXBsZW1lbnRhdGlvbi4KPj4KPj4g
+TWFueSBkaWdpdGFsIGRlbW9kdWxhdG9ycyBpbXBsZW1lbnQgYWxnb3JpdGhtcyBmb3IgZGVhbGlu
+ZyB3aXRoCj4+IGNsb2NrLWRyaWZ0IGFuZCBpbXByZWNpc2lvbiBvbiB0aGUgcnggc2lkZSB1c2lu
+ZyBQTExzIGFuZCB0aGUgbGlrZS4KPj4gwqAgQnV0IGZvciA1RyBJIGhhdmUgbm8gaWRlYSBob3cg
+dGhhdCB3b3VsZCBwbGF5IG91dC4KPj4KPj4KPj4+ICpGcm9tOipNYXJjdXMgRC4gTGVlY2ggW21h
+aWx0bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbV0KPj4+ICpTZW50OiogVHVlc2RheSwgSnVseSAy
+MSwgMjAyMCA5OjU2IFBNCj4+PiAqVG86KiBQcmFzYWQ7IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tCj4+PiAqU3ViamVjdDoqIFJlOiBbVVNSUC11c2Vyc10gMSBUcyBkZWxheSBpbiBVU1JQIEIy
+MTAKPj4+Cj4+PiBPbiAwNy8yMS8yMDIwIDEyOjI1IFBNLCBQcmFzYWQgd3JvdGU6Cj4+Pgo+Pj4g
+wqDCoMKgIFdlIGFyZSB1c2luZyBpbnRlcm5hbCBjbG9jaywgZG9u4oCZdCB1c2UgYW55IEdQU0RP
+IG9yIGV4dGVybmFsIGNsb2NrLgo+Pj4KPj4+IMKgwqDCoCBTbyBmb3IgaW50ZXJuYWwgY2xvY2sg
+aXMgdGhpcyBleHBlY3RlZD8KPj4+Cj4+PiDCoMKgwqAgVGhhbmtzLAo+Pj4KPj4+IFRoZSBpbnRl
+cm5hbCBjbG9jayBpcyBzcGVjY2VkIHRvICsvLSAyUFBNLsKgwqAgWW91J3JlIHNlZWluZyBtdWNo
+IGxlc3MKPj4+IHRoYW4gdGhhdCwgc28gaXQncyB3aXRoaW4gc3BlYy4KPj4+Cj4+Pgo+Pj4KPj4+
+ICpGcm9tOipVU1JQLXVzZXJzIFttYWlsdG86dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVz
+LmNvbV0gKk9uCj4+PiBCZWhhbGYgT2YgKk1hcmN1cyBELiBMZWVjaCB2aWEgVVNSUC11c2Vycwo+
+Pj4gKlNlbnQ6KiBUdWVzZGF5LCBKdWx5IDIxLCAyMDIwIDk6NDkgUE0KPj4+ICpUbzoqIHVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tIDxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
+Cj4+PiAqU3ViamVjdDoqIFJlOiBbVVNSUC11c2Vyc10gMSBUcyBkZWxheSBpbiBVU1JQIEIyMTAK
+Pj4+Cj4+PiBPbiAwNy8yMS8yMDIwIDEyOjEzIFBNLCBQcmFzYWQgdmlhIFVTUlAtdXNlcnMgd3Jv
+dGU6Cj4+Pgo+Pj4gwqDCoMKgIFNvZnQgcmVtaW5kZXIhCj4+Pgo+Pj4gwqDCoMKgIFRoYW5rcywK
+Pj4+Cj4+PiDCoMKgwqAgKkZyb206KlByYXNhZCBbbWFpbHRvOmtwcmFzQHRyaWxjb21tLmNvbV0K
+Pj4+IMKgwqDCoCAqU2VudDoqIE1vbmRheSwgSnVseSAyMCwgMjAyMCA3OjU4IFBNCj4+PiDCoMKg
+wqAgKlRvOiogJ3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+PiA8bWFpbHRvOnVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tPicKPj4+IMKgwqDCoCAqQ2M6KiAnUmFvIFllbmFtYW5kcmEnCj4+
+PiDCoMKgwqAgKlN1YmplY3Q6KiAxIFRzIGRlbGF5IGluIFVTUlAgQjIxMAo+Pj4KPj4+IMKgwqDC
+oCBEZWFyIFRlYW0uCj4+Pgo+Pj4gwqDCoMKgIEhvcGUgeW91IGFyZSBkb2luZyB3ZWxsIGFuZCBz
+YWZlLgo+Pj4KPj4+IMKgwqDCoCBXZSBhcmUgYnJpbmdpbmcgdXAgb3VyIE5SLTVHIFVFIHN0YWNr
+IHdpdGggVVNSUCBCMjEwLgo+Pj4KPj4+IMKgwqDCoCBJZiB0aW1lIHBlcm1pdHMsIHdvdWxkIHlv
+dSBwbHMuIHJlcGx5IHRvIGJlbG93IGNvbmNlcm4gd2l0aCB5b3VyCj4+PiDCoMKgwqAgdmFsdWFi
+bGUgaW5mb3JtYXRpb24uCj4+Pgo+Pj4gwqDCoMKgIER1cmluZyB0aGUgc3luY2hyb25pemF0aW9u
+IHByb2NlZHVyZSwgd2Ugb2JzZXJ2ZSBhdGxlYXN0IC/CsS8xCj4+PiDCoMKgwqAgL1RzLyAoU2Ft
+cGxpbmcgVGltZSkgZHJpZnQgaW4gcnggc3RyZWFtZXIgaW4gZXZlcnnCoCB+NDBtcyB0aW1lCj4+
+PiBwZXJpb2QuCj4+Pgo+Pj4gwqDCoMKgIEFyZSB3ZSBtaXNzaW5nIGFueSB0aW1lX3NwZWMgZHVy
+aW5nIC91aGRfcnhfc3RyZWFtZXJfcmVjdi8gYXBpIG9yCj4+PiDCoMKgwqAgaW4gL3VoZF90eF9z
+dHJlYW1lcl9zZW5kLyA/Cj4+Pgo+Pj4gwqDCoMKgIE1hc3RlciBjbG9jayByYXRlOiAzMC43MmU2
+Cj4+Pgo+Pj4gwqDCoMKgIFNhbXBsaW5nIHJhdGU6IDMwLjcyZTYKPj4+Cj4+PiDCoMKgwqAgQ2Fy
+cmllciBmcmVxdWVuY3k6IDMuOGU5Cj4+Pgo+Pj4gwqDCoMKgIFdlIHVzZSBvbmUgQjIxMCB0byB0
+cmFuc21pdCB0aW1lIGRvbWFpbiBzYW1wbGVzIGJhY2sgdG8gYmFjayBhbmQKPj4+IMKgwqDCoCBv
+dGhlcnMgdG8gcmVjZWl2ZS4KPj4+Cj4+PiDCoMKgwqAgTG9nIHNuaXBwZXQ6Cj4+Pgo+Pj4gwqDC
+oMKgIEluaXQgUFNTIGRldGVjdGVkIHdpdGggbGFnOiAvNDQ2OS8gKC9QU1MgZGV0ZWN0aW9uIG9m
+ZnNldCBmcm9tIHRoZQo+Pj4gwqDCoMKgIHNsb3QgYm91bmRhcnkvICkKPj4+Cj4+PiDCoMKgwqAg
+c3NzIGhhcyBiZWVuIGRldGVjdGVkCj4+Pgo+Pj4gwqDCoMKgIEluaXQgUFNTIGRldGVjdGVkIHdp
+dGggbGFnOiA0NDY5Cj4+Pgo+Pj4gwqDCoMKgIHNzcyBoYXMgYmVlbiBkZXRlY3RlZAo+Pj4KPj4+
+IMKgwqDCoCBJbml0IFBTUyBkZXRlY3RlZCB3aXRoIGxhZzogNDQ2OQo+Pj4KPj4+IMKgwqDCoCBz
+c3MgaGFzIGJlZW4gZGV0ZWN0ZWQKPj4+Cj4+PiDCoMKgwqAgSW5pdCBQU1MgZGV0ZWN0ZWQgd2l0
+aCBsYWc6IDQ0NjkKPj4+Cj4+PiDCoMKgwqAgc3NzIGhhcyBiZWVuIGRldGVjdGVkCj4+Pgo+Pj4g
+wqDCoMKgIEluaXQgUFNTIGRldGVjdGVkIHdpdGggbGFnOiA0NDcwIMOgMSBUcyBkcmlmdAo+Pj4K
+Pj4+IMKgwqDCoCBzc3MgaGFzIGJlZW4gZGV0ZWN0ZWQKPj4+Cj4+PiDCoMKgwqAgSW5pdCBQU1Mg
+ZGV0ZWN0ZWQgd2l0aCBsYWc6IDQ0NzAKPj4+Cj4+PiDCoMKgwqAgc3NzIGhhcyBiZWVuIGRldGVj
+dGVkCj4+Pgo+Pj4gwqDCoMKgIEluaXQgUFNTIGRldGVjdGVkIHdpdGggbGFnOiA0NDcwCj4+Pgo+
+Pj4gwqDCoMKgIHNzcyBoYXMgYmVlbiBkZXRlY3RlZAo+Pj4KPj4+IMKgwqDCoCBJbml0IFBTUyBk
+ZXRlY3RlZCB3aXRoIGxhZzogNDQ3MSDDoDEgVHMgZHJpZnQuCj4+Pgo+Pj4gwqDCoMKgIHNzcyBo
+YXMgYmVlbiBkZXRlY3RlZAo+Pj4KPj4+IMKgwqDCoCBJbml0IFBTUyBkZXRlY3RlZCB3aXRoIGxh
+ZzogNDQ3MsOgMSBUcyBkcmlmdAo+Pj4KPj4+IMKgwqDCoCBzc3MgaGFzIGJlZW4gZGV0ZWN0ZWQK
+Pj4+Cj4+PiDCoMKgwqAgSW5pdCBQU1MgZGV0ZWN0ZWQgd2l0aCBsYWc6IDQ0NzIKPj4+Cj4+PiDC
+oMKgwqAgc3NzIGhhcyBiZWVuIGRldGVjdGVkCj4+Pgo+Pj4gwqDCoMKgIEluaXQgUFNTIGRldGVj
+dGVkIHdpdGggbGFnOiA0NDcyCj4+Pgo+Pj4gwqDCoMKgIHNzcyBoYXMgYmVlbiBkZXRlY3RlZAo+
+Pj4KPj4+IMKgwqDCoCBJbml0IFBTUyBkZXRlY3RlZCB3aXRoIGxhZzogNDQ4NCDDoDEyIFRzIGRy
+aWZ0Cj4+Pgo+Pj4gwqDCoMKgIHNzcyBoYXMgYmVlbiBkZXRlY3RlZAo+Pj4KPj4+IMKgwqDCoCBU
+aGFua3MhIGluIGFkdmFuY2UuCj4+Pgo+Pj4gwqDCoMKgIFJlZ2FyZHMsCj4+Pgo+Pj4gwqDCoMKg
+IFByYXNhZC4KPj4+Cj4+PiBBcmUgeW91IGp1c3QgdXNpbmcgdGhlIG9uLWJvYXJkIHJlZmVyZW5j
+ZSBjbG9jaywgb3IgdXNpbmcgc29tZXRoaW5nCj4+PiBsaWtlIGEgR1BTIG1vZHVsZT8KPj4+Cj4+
+PiBUaGUgZHJpZnQgeW91IHNob3cgaXMgcm91Z2hseSAwLjhQUE0gKGlmIEkndmUgZG9uZSBteSBt
+YXRoIGNvcnJlY3RseSksCj4+PiB3aGljaCBpcyB3ZWxsIHdpdGhpbiBzcGVjIGZvciB0aGlzIGJv
+YXJkIHdpdGhvdXQgYSBiZXR0ZXIgcmVmZXJlbmNlCj4+PiBjbG9jay4KPj4+Cj4+Pgo+Pj4KPj4K
+Pj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4g
+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4g
+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMu
+ZXR0dXMuY29tCj4+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpo
+dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
+dHR1cy5jb20K
