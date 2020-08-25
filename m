@@ -2,46 +2,45 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 541A7251D61
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Aug 2020 18:43:43 +0200 (CEST)
-Received: from [::1] (port=39486 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 631E6251DA2
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Aug 2020 18:55:11 +0200 (CEST)
+Received: from [::1] (port=39574 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kAc2u-00066p-Ow; Tue, 25 Aug 2020 12:43:40 -0400
-Received: from kda-chqmg-01.kongsberg.com ([193.71.180.4]:52356)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Andreas.Bertheussen@kongsberg.com>)
- id 1kAc2q-0005y9-2o
- for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 12:43:36 -0400
-Received: from pps.filterd (kda-chqmg-01.kongsberg.com [127.0.0.1])
- by kda-chqmg-01.kongsberg.com (8.16.0.42/8.16.0.42) with SMTP id
- 07PGf04M024975; Tue, 25 Aug 2020 18:42:53 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kongsberg.com;
- h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- mime-version; s=KDA1; bh=IlbnJYMyYlu4jayYpYYoLtK9U7lYe88VoI1vchEUvcg=;
- b=R4dtbF1P0ksix/5TG1UKmmzb7Uw1DoUOZUtgJW9+HVClqoGbOwW/xlzVHV7gZGKJK8bf
- H2F/fODvMCBjL0k+6IkJ/Rl3V6FfPkJCz6MYI03qRvC1xRODLN/TTjQcB7iJ39yo8Qdg
- UYDntg5AVDbaDmOi3EaU04ycHROdRDb9ac5BaVAmmTC8yEwTPbj605W0HXLm4SOdwjXa
- bj7tgf2Uch7uvK5RSEXjMVD6U/WrLLmZkRRnmp3JQ9AUJ5j2H3ms17Ak1UpnHKjE+5xM
- ljFhXmq92VPPRBkA5+vDmtKEsXK28KHWTKmn4v5Pv0OsTkBbEb0AvcoxN+p9olG2Smyu hw== 
-Received: from ukgw-exca2-p01.kda.kongsberg.com ([10.50.100.47])
- by kda-chqmg-01.kongsberg.com with ESMTP id 332se5gj4k-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=NOT);
- Tue, 25 Aug 2020 18:42:53 +0200
-Received: from Ukgw-ExcK2-p01.kda.kongsberg.com (10.50.100.41) by
- Ukgw-ExcA2-p01.kda.kongsberg.com (10.50.100.47) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2044.4; Tue, 25 Aug 2020 18:42:52 +0200
-Received: from Ukgw-ExcK2-p01.kda.kongsberg.com ([fe80::3098:b04:69aa:1c60])
- by Ukgw-ExcK2-p01.kda.kongsberg.com ([fe80::3098:b04:69aa:1c60%21]) with mapi
- id 15.01.2044.004; Tue, 25 Aug 2020 18:42:53 +0200
-To: <rkossler@nd.edu>
-CC: <usrp-users@lists.ettus.com>, <qiu.guowang007@gmail.com>
-Thread-Topic: [USRP-users] Issues with multi-usrp and UHD
-Thread-Index: AdZ21mx1YVSRD/KTRva7GPuE0XgSxAADYcaAAAbWWUD///NHAP/+uPLQgALhvAD//8kPAIAFB+qAgAAOegD//rrsIABQ7i2A//+xPgA=
-Date: Tue, 25 Aug 2020 16:42:53 +0000
-Message-ID: <d4b7d58acf9e4987b94c69cd2e0e32b4@kongsberg.com>
+	id 1kAcE1-0006yV-L1; Tue, 25 Aug 2020 12:55:09 -0400
+Received: from mail-qk1-f176.google.com ([209.85.222.176]:40937)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <qiu.guowang007@gmail.com>)
+ id 1kAcDx-0006qM-50
+ for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 12:55:05 -0400
+Received: by mail-qk1-f176.google.com with SMTP id z3so7276291qkz.7
+ for <usrp-users@lists.ettus.com>; Tue, 25 Aug 2020 09:54:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=cQvmMh00swt3eTXIMFhHAL0PCbaV0wUokYOIxVnxoeo=;
+ b=Dy7zIBqJSI9Y8+8TmqDcYSZ7uVTVdqz5Q6SiWzQlYp37Xi9Rif6Nl9bz06nmhM820b
+ Y6aloqhZKymHuBgZ4Diqa4R6LMBXkZEXZt84mjHS1eI0h4niXEGnTOpaQLqD1vQ+X205
+ zTtODGF1I3enBAapMhuhyi+B4ZcIQLQRpz0cEKGOt6VJT7V7Q+nWEgprnAoHyGZZ1yN9
+ Zj0o/FWxu/uDaNuVP0QmaAzu0qhk3SjLmO5qJ0nLnCJMC6n1ga9kes5VwiZPDAK0Ms5J
+ 9rPb05epgRGYXBvOcdix5bqXCkgfkmeFDt/1F7tZ7ccEwSQTtS2qwMH8Wh5RXVPAZ0xy
+ XSTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=cQvmMh00swt3eTXIMFhHAL0PCbaV0wUokYOIxVnxoeo=;
+ b=EK0EJH6OsWGkvJ3XBkgTDGfkxR7ZC1qYoIR3BjEauhFf51Yl/wqE9yFKtv4/d7jZdn
+ dXb2cGhJ8gVmq/D00AN1zVr+NNwp/PMtxWvl5LnTIv54sBXkX4yUmtBl5n+pOoFiePmZ
+ 9g2qJLdBeS+TzyRG8zwI2P0brQ52OtkWnIIt6nEjaDzy+R63KB0FM1aYLF1rjwA4qusx
+ +ynfyo8TnLIkGhBoHlZJ12C91YVWp33BWE43o8XQnxjy7xEQaH14tgPLV4uT5up4+Sb3
+ JxfBFUsJffVWAL0aApqBfMqlHOGY5liBM7QA9WVARR608Oduwobi3uD7bhJ6TGXbWqrY
+ UdEA==
+X-Gm-Message-State: AOAM5334zYAANNRQlsrHEzG8k/x+aYOuh27UHyHiCU9P1vdE9gUQuhMF
+ RsCCKan2bXL6t9MxzAkeeM+OL8upFF2ZQOujohE=
+X-Google-Smtp-Source: ABdhPJzbltQY09UQBP26TQQFBhWI+91T8/8gjzMvVyfZhI2IyHsia7FyGV4utXYNFEj5LtMTmw9SyYFz2a1aOwHazao=
+X-Received: by 2002:ae9:f106:: with SMTP id k6mr9735861qkg.3.1598374463721;
+ Tue, 25 Aug 2020 09:54:23 -0700 (PDT)
+MIME-Version: 1.0
 References: <7d8c7731d23c412490a27750fac617a9@kongsberg.com>
  <CAB__hTR_n5zEHbSNSADeV+euNu5m-Chb7agX5D+RhZo5LOK00Q@mail.gmail.com>
  <a836f011bfdb46fb9403baafa0060800@kongsberg.com>
@@ -53,22 +52,12 @@ References: <7d8c7731d23c412490a27750fac617a9@kongsberg.com>
  <CAB__hTREsrpeC7tqqTMUkAGbfqePU48maQsSRiCSCRyAqkOVRQ@mail.gmail.com>
  <7f7405916dd74d6893d0ce89e7703a92@kongsberg.com>
  <CAB__hTRHAZOjROC3eEnN25rB=V_reRFusJmrz_9ZaxqyoBej5A@mail.gmail.com>
-In-Reply-To: <CAB__hTRHAZOjROC3eEnN25rB=V_reRFusJmrz_9ZaxqyoBej5A@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.73.0.10]
-MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
- definitions=2020-08-25_06:2020-08-25,
- 2020-08-25 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
- phishscore=0
- clxscore=1011 mlxscore=0 malwarescore=0 priorityscore=1501 bulkscore=0
- adultscore=0 suspectscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2008250124
+ <d4b7d58acf9e4987b94c69cd2e0e32b4@kongsberg.com>
+In-Reply-To: <d4b7d58acf9e4987b94c69cd2e0e32b4@kongsberg.com>
+Date: Wed, 26 Aug 2020 00:54:12 +0800
+Message-ID: <CACjmV_nsf1MboeJNt8xQiyL_mbOvwc1c8gfWdYWT15w7m6kh9A@mail.gmail.com>
+To: Andreas.Bertheussen@kongsberg.com
+Cc: Rob Kossler <rkossler@nd.edu>, usrp-users <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] Issues with multi-usrp and UHD
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -81,9 +70,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Andreas B via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Andreas.Bertheussen@kongsberg.com
-Content-Type: multipart/mixed; boundary="===============5400156103888811942=="
+From: Damon qiu via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Damon qiu <qiu.guowang007@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7660476921783243723=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -97,201 +86,286 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5400156103888811942==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_d4b7d58acf9e4987b94c69cd2e0e32b4kongsbergcom_"
+--===============7660476921783243723==
+Content-Type: multipart/alternative; boundary="00000000000020d5bb05adb68e2c"
 
---_000_d4b7d58acf9e4987b94c69cd2e0e32b4kongsbergcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--00000000000020d5bb05adb68e2c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-VGhhbmtzIFJvYi4NCg0KSSBoYXZlIHJlZ2lzdGVyZWQgdGhlIGlzc3VlIGluIGh0dHBzOi8vZ2l0
-aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9pc3N1ZXMvMzY3IGFuZCBuYWdnZWQgdGhlaXIgc3Vw
-cG9ydCBlbWFpbC4NCg0KQW5kcmVhcy4NCg0KRnJvbTogUm9iIEtvc3NsZXIgPHJrb3NzbGVyQG5k
-LmVkdT4NClNlbnQ6IDI1LiBhdWd1c3QgMjAyMCAxNTo1OQ0KVG86IEJlcnRoZXVzc2VuLCBBbmRy
-ZWFzIDxBbmRyZWFzLkJlcnRoZXVzc2VuQGtvbmdzYmVyZy5jb20+DQpDYzogdXNycC11c2VycyA8
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIElz
-c3VlcyB3aXRoIG11bHRpLXVzcnAgYW5kIFVIRA0KDQpIaSBBbmRyZWFzLA0KWW91IG1pZ2h0IHdh
-bnQgdG8gdmVyaWZ5IHRoYXQgYmVuY2htYXJrX3JhdGUgYWxzbyBtaXNiZWhhdmVzIGlmIHlvdSB1
-c2UgIi0tcmVmPWV4dGVybmFsIC0tcHBzPWV4dGVybmFsIi4gSSB3YXNuJ3QgYWJsZSB0byBkbyB0
-aGlzIGJlY2F1c2UgSSBkb24ndCBoYXZlIGFuIGV4dGVybmFsIHJlZmVyZW5jZSBoYW5keS4gUmVn
-YXJkaW5nIHJlcG9ydGluZyBvZiB0aGUgYnVnLCB5b3UgY291bGQgZG8gc28gd2l0aCBnaWh1YiBh
-cyB5b3Ugc3VnZ2VzdGVkLCBidXQgSSBoYXZlIGJlZW4gbGF6eSBpbiB0aGUgcGFzdCBhbmQganVz
-dCBzZW50IGFuIGVtYWlsIHRvICJzdXBwb3J0QGV0dHVzLmNvbTxtYWlsdG86c3VwcG9ydEBldHR1
-cy5jb20+Ii4gVGhpcyBnZW5lcmFsbHkganVzdCBjYXVzZXMgdGhlbSB0byBjcmVhdGUgdGhlIGlz
-c3VlLg0KDQpSZWdhcmRpbmcgVUhEIGxvZ2dpbmcsIHRha2UgYSBsb29rIGF0IHRoaXMgbGluazxo
-dHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0cHM6L2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwv
-bG9nXzhocHAuaHRtbCpsb2docHBfbG9nZ2luZ19fO0l3ISFMOGYzLXdQVlNuZyFTOVU0cEdGTWVw
-V09oQlpoWWhNZ000RW8yaF8wN3UzOGxYNXRKUEF5TGlXb05IME5wdUFnT1p1WmN4cFBIcTFYU3cz
-VVFnY24wQSQ+LiBCZWxvdyBhcmUgdGhlIGNvbW1hbmRzIEkgdXNlZCBpbiBVYnVudHUgcHJpb3Ig
-dG8gcnVubmluZyB0aGUgcHJvZ3JhbS4gIFRoaXMgY2FwYWJpbGl0eSBzaG91bGQgd29yayB3aXRo
-IGFueSBwcm9ncmFtIHRoYXQgdXNlcyBVSEQgaW5jbHVkaW5nIHlvdXIgY3VzdG9tIHByb2dyYW0u
-IEZvciBteSBvd24gY3VzdG9tIHByb2dyYW0sIEkgYWxzbyB1c2UgdGhlIFVIRCBsb2dnaW5nIGNv
-bW1hbmRzIGluIG15IHNvdXJjZSBjb2RlIHN1Y2ggYXMgVUhEX0xPR0dFUl9JTkZPKCkgYW5kIFVI
-RF9MT0dHRVJfREVCVUcoKSB0byBwcmludCBtZXNzYWdlcyB0byB0aGUgdXNlciByYXRoZXIgdGhh
-biB1c2luZyBzdGQ6OmNvdXQuDQoNCmV4cG9ydCBVSERfTE9HX0xFVkVMPXRyYWNlDQpleHBvcnQg
-VUhEX0xPR19DT05TT0xFX0xFVkVMPXRyYWNlDQpleHBvcnQgVUhEX0xPR19GSUxFX0xFVkVMPXRy
-YWNlDQpleHBvcnQgVUhEX0xPR19GSUxFPXVoZC5sb2cNCg0KUm9iDQoNCk9uIFR1ZSwgQXVnIDI1
-LCAyMDIwIGF0IDg6MjEgQU0gPEFuZHJlYXMuQmVydGhldXNzZW5Aa29uZ3NiZXJnLmNvbTxtYWls
-dG86QW5kcmVhcy5CZXJ0aGV1c3NlbkBrb25nc2JlcmcuY29tPj4gd3JvdGU6DQpSb2INCg0KSSBy
-YW4gYmVuY2htYXJrX3JhdGUgLS1hcmdzPT0iYWRkcjA9MTkyLjE2OC4xMC4yLGFkZHIxPTE5Mi4x
-NjguMTEwLjIiIC0tdHhfcmF0ZSA1ZTYgLS10eF9jaGFubmVscz0iMCwyIg0KQW5kIEkgb2JzZXJ2
-ZWQgdGhlIHNhbWUgaXNzdWUgSSBkZXNjcmliZWQgZWFybGllciDigJMgbW9zdGx5IHRoYXQgZXRo
-ZXIgY2hhbm5lbHMgMCwxICAgb3IgY2hhbm5lbHMgIDIsMywgb3IgdmVyeSByYXJlbHkgY2hhbm5l
-bHMgMCwyIGdldCBlbmFibGVkLg0KV2hlbiBJIGFkZCDigJxza2lwX2RyYW09MeKAnSB0byBhcmdz
-LCB0aGUgY2hhbm5lbCBtYXBwaW5nIGlzIGNvcnJlY3QhIEl0IGlzIHByb25lIHRvIHVuZGVycnVu
-cyBidXQgbm93IEkgY2FuIHByb2NlZWQgYSBiaXQgZnVydGhlciB3aXRoIG15IFVIRCBzb2Z0d2Fy
-ZS4NCg0KSG93IGRpZCB5b3UgbWFrZSB0aGUgdHJhY2UgbG9nPyBBbmQgZGlkIHlvdSBkbyBpdCB0
-byBteSBwcm9ncmFtIG9yIHRvIHRoZSBiZW5jaG1hcmtfcmF0ZSBwcm9ncmFtPw0KDQpJdCBpcyBk
-ZWZpbml0ZWx5IGEgc2V2ZXJlIGlzc3VlIEkgd291bGQgZXhwZWN0IHRvIGJlIGZpeGVkLCBzbyBJ
-IHdpbGwgcmVwb3J0IGl0LiBJcyBjcmVhdGluZyBhIEdpdGh1YiBpc3N1ZSB0aGUgcHJvcGVyIGF2
-ZW51ZT8NCg0KTWFueSB0aGFua3MgZm9yIGhlbHBpbmcgdHJhY2sgdGhpcyBkb3duLCBSb2IhDQoN
-ClJlZ2FyZHMsDQpBbmRyZWFzLg0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-DQoNCkNPTkZJREVOVElBTElUWQ0KVGhpcyBlLW1haWwgYW5kIGFueSBhdHRhY2htZW50IGNvbnRh
-aW4gS09OR1NCRVJHIGluZm9ybWF0aW9uIHdoaWNoIG1heSBiZSBwcm9wcmlldGFyeSwgY29uZmlk
-ZW50aWFsIG9yIHN1YmplY3QgdG8gZXhwb3J0IHJlZ3VsYXRpb25zLCBhbmQgaXMgb25seSBtZWFu
-dCBmb3IgdGhlIGludGVuZGVkIHJlY2lwaWVudChzKS4gQW55IGRpc2Nsb3N1cmUsIGNvcHlpbmcs
-IGRpc3RyaWJ1dGlvbiBvciB1c2UgaXMgcHJvaGliaXRlZCwgaWYgbm90IG90aGVyd2lzZSBleHBs
-aWNpdGx5IGFncmVlZCB3aXRoIEtPTkdTQkVSRy4gSWYgcmVjZWl2ZWQgaW4gZXJyb3IsIHBsZWFz
-ZSBkZWxldGUgaXQgaW1tZWRpYXRlbHkgZnJvbSB5b3VyIHN5c3RlbSBhbmQgbm90aWZ5IHRoZSBz
-ZW5kZXIgcHJvcGVybHkuDQo=
+Hi Andreas,
 
---_000_d4b7d58acf9e4987b94c69cd2e0e32b4kongsbergcom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Great job. Hope this issue can be solved as soon as possible.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1z
-b25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCglt
-c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4t
-Ym90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTIuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTE4
-DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
-IixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0
-eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7
-DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3Np
-emU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgNzAuODVwdCA3MC44
-NXB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHls
-ZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQi
-IHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+
-PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0
-IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFk
-Pg0KPGJvZHkgbGFuZz0iTk8tQk9LIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYg
-Y2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJF
-Ti1HQiIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMi
-PlRoYW5rcyBSb2IuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gbGFuZz0iRU4tR0IiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxh
-bmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1HQiIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZh
-cmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkkgaGF2ZSByZWdpc3RlcmVkIHRoZSBpc3N1ZSBpbg0KPGEg
-aHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2lzc3Vlcy8zNjciPmh0
-dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9pc3N1ZXMvMzY3PC9hPiBhbmQgbmFn
-Z2VkIHRoZWlyIHN1cHBvcnQgZW1haWwuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tR0IiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21z
-by1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1HQiIgc3R5bGU9ImZvbnQtc2l6ZTox
-MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMx
-RjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkFuZHJlYXMuPG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tR0IiIHN0eWxlPSJt
-c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJv
-bTo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBSb2IgS29zc2xlciAm
-bHQ7cmtvc3NsZXJAbmQuZWR1Jmd0Ow0KPGJyPg0KPGI+U2VudDo8L2I+IDI1LiBhdWd1c3QgMjAy
-MCAxNTo1OTxicj4NCjxiPlRvOjwvYj4gQmVydGhldXNzZW4sIEFuZHJlYXMgJmx0O0FuZHJlYXMu
-QmVydGhldXNzZW5Aa29uZ3NiZXJnLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IHVzcnAtdXNlcnMg
-Jmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBS
-ZTogW1VTUlAtdXNlcnNdIElzc3VlcyB3aXRoIG11bHRpLXVzcnAgYW5kIFVIRDxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
-PGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGkgQW5kcmVhcyw8bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPllvdSBtaWdo
-dCB3YW50IHRvIHZlcmlmeSB0aGF0IGJlbmNobWFya19yYXRlIGFsc28gbWlzYmVoYXZlcyBpZiZu
-YnNwO3lvdSB1c2UgJnF1b3Q7LS1yZWY9ZXh0ZXJuYWwgLS1wcHM9ZXh0ZXJuYWwmcXVvdDsuIEkg
-d2Fzbid0IGFibGUgdG8gZG8gdGhpcyBiZWNhdXNlIEkgZG9uJ3QgaGF2ZSBhbiBleHRlcm5hbCBy
-ZWZlcmVuY2UgaGFuZHkuIFJlZ2FyZGluZyByZXBvcnRpbmcgb2YgdGhlIGJ1ZywgeW91IGNvdWxk
-IGRvIHNvIHdpdGggZ2lodWImbmJzcDthcw0KIHlvdSBzdWdnZXN0ZWQsIGJ1dCBJIGhhdmUgYmVl
-biBsYXp5IGluIHRoZSBwYXN0IGFuZCBqdXN0IHNlbnQgYW4gZW1haWwgdG8gJnF1b3Q7PGEgaHJl
-Zj0ibWFpbHRvOnN1cHBvcnRAZXR0dXMuY29tIj5zdXBwb3J0QGV0dHVzLmNvbTwvYT4mcXVvdDsu
-IFRoaXMgZ2VuZXJhbGx5IGp1c3QgY2F1c2VzIHRoZW0gdG8gY3JlYXRlIHRoZSBpc3N1ZS48bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+UmVnYXJk
-aW5nIFVIRCBsb2dnaW5nLCB0YWtlIGEgbG9vayBhdCB0aGlzIDxhIGhyZWY9Imh0dHBzOi8vdXJs
-ZGVmZW5zZS5jb20vdjMvX19odHRwczovZmlsZXMuZXR0dXMuY29tL21hbnVhbC9sb2dfOGhwcC5o
-dG1sKmxvZ2hwcF9sb2dnaW5nX187SXchIUw4ZjMtd1BWU25nIVM5VTRwR0ZNZXBXT2hCWmhZaE1n
-TTRFbzJoXzA3dTM4bFg1dEpQQXlMaVdvTkgwTnB1QWdPWnVaY3hwUEhxMVhTdzNVUWdjbjBBJCI+
-DQpsaW5rPC9hPi4gQmVsb3cgYXJlIHRoZSBjb21tYW5kcyBJIHVzZWQgaW4gVWJ1bnR1IHByaW9y
-IHRvIHJ1bm5pbmcgdGhlIHByb2dyYW0uJm5ic3A7IFRoaXMgY2FwYWJpbGl0eSBzaG91bGQgd29y
-ayB3aXRoIGFueSBwcm9ncmFtIHRoYXQgdXNlcyBVSEQgaW5jbHVkaW5nIHlvdXIgY3VzdG9tIHBy
-b2dyYW0uIEZvciBteSBvd24gY3VzdG9tIHByb2dyYW0sIEkgYWxzbyB1c2UgdGhlIFVIRCBsb2dn
-aW5nIGNvbW1hbmRzIGluIG15IHNvdXJjZSBjb2RlIHN1Y2gNCiBhcyBVSERfTE9HR0VSX0lORk8o
-KSBhbmQgVUhEX0xPR0dFUl9ERUJVRygpIHRvIHByaW50IG1lc3NhZ2VzIHRvIHRoZSB1c2VyIHJh
-dGhlciB0aGFuIHVzaW5nIHN0ZDo6Y291dC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+ZXhwb3J0IFVIRF9MT0dfTEVWRUw9dHJhY2U8bzpwPjwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmV4cG9ydCBVSERf
-TE9HX0NPTlNPTEVfTEVWRUw9dHJhY2U8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPmV4cG9ydCBVSERfTE9HX0ZJTEVfTEVWRUw9dHJhY2U8bzpwPjwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+ZXhwb3J0IFVIRF9MT0dfRklM
-RT11aGQubG9nPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-Um9iPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
-cDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFR1ZSwg
-QXVnIDI1LCAyMDIwIGF0IDg6MjEgQU0gJmx0OzxhIGhyZWY9Im1haWx0bzpBbmRyZWFzLkJlcnRo
-ZXVzc2VuQGtvbmdzYmVyZy5jb20iPkFuZHJlYXMuQmVydGhldXNzZW5Aa29uZ3NiZXJnLmNvbTwv
-YT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0i
-Ym9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBjbSAw
-Y20gMGNtIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20iPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+Um9iPGJyPg0KPGJyPg0KSSByYW4gYmVuY2htYXJrX3JhdGUgLS1hcmdz
-PT0mcXVvdDthZGRyMD0xOTIuMTY4LjEwLjIsYWRkcjE9MTkyLjE2OC4xMTAuMiZxdW90OyAtLXR4
-X3JhdGUgNWU2IC0tdHhfY2hhbm5lbHM9JnF1b3Q7MCwyJnF1b3Q7PGJyPg0KQW5kIEkgb2JzZXJ2
-ZWQgdGhlIHNhbWUgaXNzdWUgSSBkZXNjcmliZWQgZWFybGllciDigJMgbW9zdGx5IHRoYXQgZXRo
-ZXIgY2hhbm5lbHMgMCwxJm5ic3A7ICZuYnNwO29yIGNoYW5uZWxzJm5ic3A7IDIsMywgb3IgdmVy
-eSByYXJlbHkgY2hhbm5lbHMgMCwyIGdldCBlbmFibGVkLjxicj4NCldoZW4gSSBhZGQg4oCcc2tp
-cF9kcmFtPTHigJ0gdG8gYXJncywgdGhlIGNoYW5uZWwgbWFwcGluZyBpcyBjb3JyZWN0ISBJdCBp
-cyBwcm9uZSB0byB1bmRlcnJ1bnMgYnV0IG5vdyBJIGNhbiBwcm9jZWVkIGEgYml0IGZ1cnRoZXIg
-d2l0aCBteSBVSEQgc29mdHdhcmUuPGJyPg0KPGJyPg0KSG93IGRpZCB5b3UgbWFrZSB0aGUgdHJh
-Y2UgbG9nPyBBbmQgZGlkIHlvdSBkbyBpdCB0byBteSBwcm9ncmFtIG9yIHRvIHRoZSBiZW5jaG1h
-cmtfcmF0ZSBwcm9ncmFtPzxicj4NCjxicj4NCkl0IGlzIGRlZmluaXRlbHkgYSBzZXZlcmUgaXNz
-dWUgSSB3b3VsZCBleHBlY3QgdG8gYmUgZml4ZWQsIHNvIEkgd2lsbCByZXBvcnQgaXQuIElzIGNy
-ZWF0aW5nIGEgR2l0aHViIGlzc3VlIHRoZSBwcm9wZXIgYXZlbnVlPzxicj4NCjxicj4NCk1hbnkg
-dGhhbmtzIGZvciBoZWxwaW5nIHRyYWNrIHRoaXMgZG93biwgUm9iITxicj4NCjxicj4NClJlZ2Fy
-ZHMsPGJyPg0KQW5kcmVhcy48YnI+DQo8YnI+DQo8YnI+DQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXzxicj4NCjxicj4NCkNPTkZJREVOVElBTElUWTxicj4NClRoaXMgZS1tYWlsIGFu
-ZCBhbnkgYXR0YWNobWVudCBjb250YWluIEtPTkdTQkVSRyBpbmZvcm1hdGlvbiB3aGljaCBtYXkg
-YmUgcHJvcHJpZXRhcnksIGNvbmZpZGVudGlhbCBvciBzdWJqZWN0IHRvIGV4cG9ydCByZWd1bGF0
-aW9ucywgYW5kIGlzIG9ubHkgbWVhbnQgZm9yIHRoZSBpbnRlbmRlZCByZWNpcGllbnQocykuIEFu
-eSBkaXNjbG9zdXJlLCBjb3B5aW5nLCBkaXN0cmlidXRpb24gb3IgdXNlIGlzIHByb2hpYml0ZWQs
-IGlmIG5vdCBvdGhlcndpc2UNCiBleHBsaWNpdGx5IGFncmVlZCB3aXRoIEtPTkdTQkVSRy4gSWYg
-cmVjZWl2ZWQgaW4gZXJyb3IsIHBsZWFzZSBkZWxldGUgaXQgaW1tZWRpYXRlbHkgZnJvbSB5b3Vy
-IHN5c3RlbSBhbmQgbm90aWZ5IHRoZSBzZW5kZXIgcHJvcGVybHkuPG86cD48L286cD48L3A+DQo8
-L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
-aHRtbD4NCg==
+Best regards,
+Damon
 
---_000_d4b7d58acf9e4987b94c69cd2e0e32b4kongsbergcom_--
+On Wed, 26 Aug 2020 at 00:42, <Andreas.Bertheussen@kongsberg.com> wrote:
+
+> Thanks Rob.
+>
+>
+>
+> I have registered the issue in
+> https://github.com/EttusResearch/uhd/issues/367 and nagged their support
+> email.
+>
+>
+>
+> Andreas.
+>
+>
+>
+> *From:* Rob Kossler <rkossler@nd.edu>
+> *Sent:* 25. august 2020 15:59
+> *To:* Bertheussen, Andreas <Andreas.Bertheussen@kongsberg.com>
+> *Cc:* usrp-users <usrp-users@lists.ettus.com>
+> *Subject:* Re: [USRP-users] Issues with multi-usrp and UHD
+>
+>
+>
+> Hi Andreas,
+>
+> You might want to verify that benchmark_rate also misbehaves if you use
+> "--ref=3Dexternal --pps=3Dexternal". I wasn't able to do this because I d=
+on't
+> have an external reference handy. Regarding reporting of the bug, you cou=
+ld
+> do so with gihub as you suggested, but I have been lazy in the past and
+> just sent an email to "support@ettus.com". This generally just causes
+> them to create the issue.
+>
+>
+>
+> Regarding UHD logging, take a look at this link
+> <https://urldefense.com/v3/__https:/files.ettus.com/manual/log_8hpp.html*=
+loghpp_logging__;Iw!!L8f3-wPVSng!S9U4pGFMepWOhBZhYhMgM4Eo2h_07u38lX5tJPAyLi=
+WoNH0NpuAgOZuZcxpPHq1XSw3UQgcn0A$>.
+> Below are the commands I used in Ubuntu prior to running the program.  Th=
+is
+> capability should work with any program that uses UHD including your cust=
+om
+> program. For my own custom program, I also use the UHD logging commands i=
+n
+> my source code such as UHD_LOGGER_INFO() and UHD_LOGGER_DEBUG() to print
+> messages to the user rather than using std::cout.
+>
+>
+>
+> export UHD_LOG_LEVEL=3Dtrace
+>
+> export UHD_LOG_CONSOLE_LEVEL=3Dtrace
+>
+> export UHD_LOG_FILE_LEVEL=3Dtrace
+>
+> export UHD_LOG_FILE=3Duhd.log
+>
+>
+>
+> Rob
+>
+>
+>
+> On Tue, Aug 25, 2020 at 8:21 AM <Andreas.Bertheussen@kongsberg.com> wrote=
+:
+>
+> Rob
+>
+> I ran benchmark_rate --args=3D=3D"addr0=3D192.168.10.2,addr1=3D192.168.11=
+0.2"
+> --tx_rate 5e6 --tx_channels=3D"0,2"
+> And I observed the same issue I described earlier =E2=80=93 mostly that e=
+ther
+> channels 0,1   or channels  2,3, or very rarely channels 0,2 get enabled.
+> When I add =E2=80=9Cskip_dram=3D1=E2=80=9D to args, the channel mapping i=
+s correct! It is
+> prone to underruns but now I can proceed a bit further with my UHD softwa=
+re.
+>
+> How did you make the trace log? And did you do it to my program or to the
+> benchmark_rate program?
+>
+> It is definitely a severe issue I would expect to be fixed, so I will
+> report it. Is creating a Github issue the proper avenue?
+>
+> Many thanks for helping track this down, Rob!
+>
+> Regards,
+> Andreas.
+>
+>
+> ________________________________
+>
+> CONFIDENTIALITY
+> This e-mail and any attachment contain KONGSBERG information which may be
+> proprietary, confidential or subject to export regulations, and is only
+> meant for the intended recipient(s). Any disclosure, copying, distributio=
+n
+> or use is prohibited, if not otherwise explicitly agreed with KONGSBERG. =
+If
+> received in error, please delete it immediately from your system and noti=
+fy
+> the sender properly.
+>
+>
+
+--00000000000020d5bb05adb68e2c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Andreas,<div><br></div><div>Great job. Hope this issue =
+can be solved as soon as possible.</div><div><br></div><div>Best regards,</=
+div><div>Damon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Wed, 26 Aug 2020 at 00:42, &lt;<a href=3D"mailto:And=
+reas.Bertheussen@kongsberg.com">Andreas.Bertheussen@kongsberg.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
 
 
---===============5400156103888811942==
+
+
+
+<div lang=3D"NO-BOK">
+<div class=3D"gmail-m_-3477244464925967687WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)">Thanks Rob.<u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)">I have registered the issue i=
+n
+<a href=3D"https://github.com/EttusResearch/uhd/issues/367" target=3D"_blan=
+k">https://github.com/EttusResearch/uhd/issues/367</a> and nagged their sup=
+port email.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:rgb(31,73,125)">Andreas.<u></u><u></u></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11pt;font=
+-family:Calibri,sans-serif">From:</span></b><span lang=3D"EN-US" style=3D"f=
+ont-size:11pt;font-family:Calibri,sans-serif"> Rob Kossler &lt;<a href=3D"m=
+ailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt;
+<br>
+<b>Sent:</b> 25. august 2020 15:59<br>
+<b>To:</b> Bertheussen, Andreas &lt;<a href=3D"mailto:Andreas.Bertheussen@k=
+ongsberg.com" target=3D"_blank">Andreas.Bertheussen@kongsberg.com</a>&gt;<b=
+r>
+<b>Cc:</b> usrp-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" tar=
+get=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Issues with multi-usrp and UHD<u></u><u></=
+u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Hi Andreas,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">You might want to verify that benchmark_rate also mi=
+sbehaves if=C2=A0you use &quot;--ref=3Dexternal --pps=3Dexternal&quot;. I w=
+asn&#39;t able to do this because I don&#39;t have an external reference ha=
+ndy. Regarding reporting of the bug, you could do so with gihub=C2=A0as
+ you suggested, but I have been lazy in the past and just sent an email to =
+&quot;<a href=3D"mailto:support@ettus.com" target=3D"_blank">support@ettus.=
+com</a>&quot;. This generally just causes them to create the issue.<u></u><=
+u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Regarding UHD logging, take a look at this <a href=
+=3D"https://urldefense.com/v3/__https:/files.ettus.com/manual/log_8hpp.html=
+*loghpp_logging__;Iw!!L8f3-wPVSng!S9U4pGFMepWOhBZhYhMgM4Eo2h_07u38lX5tJPAyL=
+iWoNH0NpuAgOZuZcxpPHq1XSw3UQgcn0A$" target=3D"_blank">
+link</a>. Below are the commands I used in Ubuntu prior to running the prog=
+ram.=C2=A0 This capability should work with any program that uses UHD inclu=
+ding your custom program. For my own custom program, I also use the UHD log=
+ging commands in my source code such
+ as UHD_LOGGER_INFO() and UHD_LOGGER_DEBUG() to print messages to the user =
+rather than using std::cout.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">export UHD_LOG_LEVEL=3Dtrace<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">export UHD_LOG_CONSOLE_LEVEL=3Dtrace<u></u><u></u></=
+p>
+</div>
+<div>
+<p class=3D"MsoNormal">export UHD_LOG_FILE_LEVEL=3Dtrace<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal">export UHD_LOG_FILE=3Duhd.log<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<p class=3D"MsoNormal">Rob<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Tue, Aug 25, 2020 at 8:21 AM &lt;<a href=3D"mailt=
+o:Andreas.Bertheussen@kongsberg.com" target=3D"_blank">Andreas.Bertheussen@=
+kongsberg.com</a>&gt; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
+order-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:4=
+.8pt;margin-right:0cm">
+<p class=3D"MsoNormal">Rob<br>
+<br>
+I ran benchmark_rate --args=3D=3D&quot;addr0=3D192.168.10.2,addr1=3D192.168=
+.110.2&quot; --tx_rate 5e6 --tx_channels=3D&quot;0,2&quot;<br>
+And I observed the same issue I described earlier =E2=80=93 mostly that eth=
+er channels 0,1=C2=A0 =C2=A0or channels=C2=A0 2,3, or very rarely channels =
+0,2 get enabled.<br>
+When I add =E2=80=9Cskip_dram=3D1=E2=80=9D to args, the channel mapping is =
+correct! It is prone to underruns but now I can proceed a bit further with =
+my UHD software.<br>
+<br>
+How did you make the trace log? And did you do it to my program or to the b=
+enchmark_rate program?<br>
+<br>
+It is definitely a severe issue I would expect to be fixed, so I will repor=
+t it. Is creating a Github issue the proper avenue?<br>
+<br>
+Many thanks for helping track this down, Rob!<br>
+<br>
+Regards,<br>
+Andreas.<br>
+<br>
+<br>
+________________________________<br>
+<br>
+CONFIDENTIALITY<br>
+This e-mail and any attachment contain KONGSBERG information which may be p=
+roprietary, confidential or subject to export regulations, and is only mean=
+t for the intended recipient(s). Any disclosure, copying, distribution or u=
+se is prohibited, if not otherwise
+ explicitly agreed with KONGSBERG. If received in error, please delete it i=
+mmediately from your system and notify the sender properly.<u></u><u></u></=
+p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</blockquote></div>
+
+--00000000000020d5bb05adb68e2c--
+
+
+--===============7660476921783243723==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -302,5 +376,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5400156103888811942==--
+--===============7660476921783243723==--
 
