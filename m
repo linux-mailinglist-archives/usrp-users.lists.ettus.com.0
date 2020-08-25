@@ -2,60 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2100B251A56
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Aug 2020 16:00:29 +0200 (CEST)
-Received: from [::1] (port=37848 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00F05251D49
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Aug 2020 18:37:31 +0200 (CEST)
+Received: from [::1] (port=39444 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kAZUu-0007On-Lw; Tue, 25 Aug 2020 10:00:24 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:45222)
+	id 1kAbws-0005N4-E1; Tue, 25 Aug 2020 12:37:26 -0400
+Received: from mail-qk1-f173.google.com ([209.85.222.173]:36032)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kAZUr-0007JQ-5l
- for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 10:00:21 -0400
-Received: by mail-ot1-f54.google.com with SMTP id 5so7596914otp.12
- for <usrp-users@lists.ettus.com>; Tue, 25 Aug 2020 07:00:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ (Exim 4.93) (envelope-from <qiu.guowang007@gmail.com>)
+ id 1kAbwo-0005Eo-0q
+ for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 12:37:22 -0400
+Received: by mail-qk1-f173.google.com with SMTP id g26so11530169qka.3
+ for <usrp-users@lists.ettus.com>; Tue, 25 Aug 2020 09:37:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=YpxvjXghNVj5NlFpb1VnJmh2nTTn3bOHhS9BY+07jJk=;
- b=Estsc5dpOJgRhvDO57uMq7K49oFt9s0ZgwzSZBu9+whESMsGefwzvpG0iNXGugB4bN
- 0bSJxvDqfT1PlRU0okvSvDI+faKLN8lCBilefPEIAi3Qqpj9n74ZOkhPxOax3A2yMGG5
- N0c7iX5FqklByDw2MyGL6hUhxA8Je5Kp45+zA6YX8iIDUe7YGgnndIhuHsE1w5nV+orh
- f0oj9jKKEfud+0fJEx2QV7JQ900qlQ/JYg6hWCEmYlyidEPRvuk34I3mTQnnCuCdPfxN
- 1M1CNIPdBSmf//5qfao8UqJ/8IOfwD26xdbYHmduEZbyLPOvUKXAglFe7+AHwRkzEEOI
- LdXA==
+ :cc; bh=TM6DLG4SSlnhhwPTA70r1BUo7beCmG8nLf19qVvP9R4=;
+ b=HdnYVXkvsNnRh39J1unl8h3tsslkBehMgfewjZ53vJjlCFXV4Bme+umSG3hxGzpfng
+ B9iX/k13QcseHnorxlz3bxSmBK+Bxpb1mCCBiZZGavn0RxM3IVof9QhVXqrJmDSQcBdi
+ pvK+1jyq4ml57J7SitIwf+HpzO4aavgP5ZTD1pkoDHvbB1Yk0UfWQdwiu1T2vKNlIbct
+ WHKF9AIOIEtGhPG62hHP8EaruhzNMJ6l/UI3xM+/LJ8IEu2Oqr+h3J6IWYVRgy5Hv1uv
+ GAcbMn3AHvV6TsjCaHzmW7zDogiUZvztUHy8+xyMhrgP3pxqmCK0oPzk1yZIWzwe7dG/
+ LaXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=YpxvjXghNVj5NlFpb1VnJmh2nTTn3bOHhS9BY+07jJk=;
- b=K9n/MoGlyzEBqHiCL16DXSHQcWStyRhTnFRHCsLmIWmxTiih66VikTcjZ7yh5sEIHO
- NEEi/eTto5f+UK5/zJjEJIeU7sPr8lpKrlwCX6xcWXEBDpO5s2pAdIvDcQmdtvko/LpT
- p4+kTWzPHmSS8248tEn2eWCTuFK0NONrXXJIE4u6UXn3bw11uz2SlhRQ0nImn336GCm1
- 1aRDe/fGU/9nVltRNdMFSBgQ1OOeXQ675VMQm+YYgEhC19qI9euzjl1Tn8iRnN5oiTQ1
- pYGLMSykUv8c9hB+7gMZh2lQnjwdryjIj9I5dXFINl+6YFFGHEvMVSnoEMp4FikAPZ19
- GSsQ==
-X-Gm-Message-State: AOAM531nwwjzU2dJOcXdlh7mt5A7nfWldg8VRxFGkmJiKRgTQDIZL14H
- 0gnWRlq2wN8pGtVzY5qTe17JTmUFnTAxz8F8DD9QMg==
-X-Google-Smtp-Source: ABdhPJykz1R7JxDJ7jnEo4unZZmDzVOdZ4PF9rXAVkwEVS8YTK+gfXQR9CDZfjDu3VvjVvo7OYZftjDb/DUFWmQ4tpU=
-X-Received: by 2002:a9d:604c:: with SMTP id v12mr6699151otj.301.1598363980245; 
- Tue, 25 Aug 2020 06:59:40 -0700 (PDT)
+ bh=TM6DLG4SSlnhhwPTA70r1BUo7beCmG8nLf19qVvP9R4=;
+ b=nDds9E1ygK6FHN4po5rfojYbcsmROj97uiPHsrytR0zBGyLx6JICZrJbDFuG8GvjjN
+ yMUDVNLqSTjC/4PqwVSTWrlYEYObE+n4Rhdh+XINtmNAZ+brQDhPF1f9RpFehLrbaJtO
+ jY7lNdThbqCtOm0zttpEHue7+IEKlExP71BN7dOp+EYepBS49oaDIcROqe8BqfXxxzsA
+ IuHUyFujUAfVxHz2pvmodT8BoydEszWRuqyrDshdg+EueHSOgHLqIOfqy8Ib4yI/NmX4
+ KPwHMTOda1eLk4aA4Dnw9vu9D/9vKf1KU1dRqTq0ftEnW+fLFDWj1FiKjgRseUI3EFbV
+ +Xbg==
+X-Gm-Message-State: AOAM533kIj3DELZkrZTjxJg/bpx7/droDjlTdrH46Bfi6zBcAvahpYZR
+ 8mt6t2atA63wie41e6EoabiUwL9BnXOUGLSUYOI=
+X-Google-Smtp-Source: ABdhPJxi3iWn6rRmC5dia/HbTvR8Ms6jOUUbTGH+monfg8ETxZktwgGowdAae1mQZhKsj/gKzpGrCUAdC+0pynlwPKo=
+X-Received: by 2002:ae9:f106:: with SMTP id k6mr9666240qkg.3.1598373401555;
+ Tue, 25 Aug 2020 09:36:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <7d8c7731d23c412490a27750fac617a9@kongsberg.com>
- <CAB__hTR_n5zEHbSNSADeV+euNu5m-Chb7agX5D+RhZo5LOK00Q@mail.gmail.com>
- <a836f011bfdb46fb9403baafa0060800@kongsberg.com>
- <CAB__hTRbkX2HVfC5zVK7p17W9Q1keFoGMO7K9xC3GfaLVUjWFg@mail.gmail.com>
- <6ced606fafac42f28485978c0a087227@kongsberg.com>
- <CAB__hTQ4yy8Mrbgn4tn1hJj8GmeY4W5hi1sMSbuMhp3cAFELfg@mail.gmail.com>
- <1b04cfb3f883498198f57a793d8c55e7@kongsberg.com>
- <CAB__hTTVvDbo-A5oS3i85y=BdjYVD=Dj9DEHNLk-myhLedxJkg@mail.gmail.com>
- <CAB__hTREsrpeC7tqqTMUkAGbfqePU48maQsSRiCSCRyAqkOVRQ@mail.gmail.com>
- <7f7405916dd74d6893d0ce89e7703a92@kongsberg.com>
-In-Reply-To: <7f7405916dd74d6893d0ce89e7703a92@kongsberg.com>
-Date: Tue, 25 Aug 2020 09:59:29 -0400
-Message-ID: <CAB__hTRHAZOjROC3eEnN25rB=V_reRFusJmrz_9ZaxqyoBej5A@mail.gmail.com>
-To: Andreas.Bertheussen@kongsberg.com
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Issues with multi-usrp and UHD
+References: <CACjmV_=fW9LdJPb0TtAgP_QH19cSDD13BgRkvDzOd1JohUJ8TQ@mail.gmail.com>
+ <CACjmV_kMaOvLJuaYv8rj0o1QcMjW2+9w1x9BK6BxHjufM348WA@mail.gmail.com>
+ <CAB__hTTxVNg4WU8x3Pec2Q1M9HwWGj+_xHCaFFJMmrWSTnO0Dw@mail.gmail.com>
+In-Reply-To: <CAB__hTTxVNg4WU8x3Pec2Q1M9HwWGj+_xHCaFFJMmrWSTnO0Dw@mail.gmail.com>
+Date: Wed, 26 Aug 2020 00:36:29 +0800
+Message-ID: <CACjmV_=WHoqSYzjMW4aBBvmFFkJNVAwobAWbw6vzuvty_b8QyQ@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>,
+ Damon Qiu <qiu.guowang007@gmail.com>
+Subject: Re: [USRP-users] issue about subdev spec
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,9 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============8257400126294276253=="
+From: Damon qiu via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Damon qiu <qiu.guowang007@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8090505448263638003=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,141 +78,193 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8257400126294276253==
-Content-Type: multipart/alternative; boundary="00000000000043f67b05adb41d49"
+--===============8090505448263638003==
+Content-Type: multipart/alternative; boundary="000000000000d175eb05adb64e2b"
 
---00000000000043f67b05adb41d49
+--000000000000d175eb05adb64e2b
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Andreas,
-You might want to verify that benchmark_rate also misbehaves if you use
-"--ref=3Dexternal --pps=3Dexternal". I wasn't able to do this because I don=
-'t
-have an external reference handy. Regarding reporting of the bug, you could
-do so with gihub as you suggested, but I have been lazy in the past and
-just sent an email to "support@ettus.com". This generally just causes them
-to create the issue.
+Hi Rob,
 
-Regarding UHD logging, take a look at this link
-<https://files.ettus.com/manual/log_8hpp.html#loghpp_logging>. Below are
-the commands I used in Ubuntu prior to running the program.  This
-capability should work with any program that uses UHD including your custom
-program. For my own custom program, I also use the UHD logging commands in
-my source code such as UHD_LOGGER_INFO() and UHD_LOGGER_DEBUG() to print
-messages to the user rather than using std::cout.
+Thank you very much for your reply.I just read through your discussion with
+Andreas about this issue.  However, your temporary solution is not suitable
+for my case. I need to transmit signals in two channels with 200Msps sample
+rate for each channel. I can only wait for the Ettus engineers to fix this
+bug. It's not sure whether Ettus engineers are already investigating the
+bug, as there are no official replies to two threads about this bug.
 
-export UHD_LOG_LEVEL=3Dtrace
-export UHD_LOG_CONSOLE_LEVEL=3Dtrace
-export UHD_LOG_FILE_LEVEL=3Dtrace
-export UHD_LOG_FILE=3Duhd.log
+Best regards,
+Damon
 
-Rob
+On Tue, 25 Aug 2020 at 03:35, Rob Kossler <rkossler@nd.edu> wrote:
 
-On Tue, Aug 25, 2020 at 8:21 AM <Andreas.Bertheussen@kongsberg.com> wrote:
-
+> Hi Damon,
+> See my other post today regarding "skip_dram=1".  I believe there is a
+> bug.  But, if you can skip the Dma FIFO (if your sample rate is low
+> enough), you can get around the bug.
 > Rob
 >
-> I ran benchmark_rate --args=3D=3D"addr0=3D192.168.10.2,addr1=3D192.168.11=
-0.2"
-> --tx_rate 5e6 --tx_channels=3D"0,2"
-> And I observed the same issue I described earlier =E2=80=93 mostly that e=
-ther
-> channels 0,1   or channels  2,3, or very rarely channels 0,2 get enabled.
-> When I add =E2=80=9Cskip_dram=3D1=E2=80=9D to args, the channel mapping i=
-s correct! It is
-> prone to underruns but now I can proceed a bit further with my UHD softwa=
-re.
+> On Mon, Aug 24, 2020 at 3:31 PM Damon qiu via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
 >
-> How did you make the trace log? And did you do it to my program or to the
-> benchmark_rate program?
->
-> It is definitely a severe issue I would expect to be fixed, so I will
-> report it. Is creating a Github issue the proper avenue?
->
-> Many thanks for helping track this down, Rob!
->
-> Regards,
-> Andreas.
->
->
-> ________________________________
->
-> CONFIDENTIALITY
-> This e-mail and any attachment contain KONGSBERG information which may be
-> proprietary, confidential or subject to export regulations, and is only
-> meant for the intended recipient(s). Any disclosure, copying, distributio=
-n
-> or use is prohibited, if not otherwise explicitly agreed with KONGSBERG. =
-If
-> received in error, please delete it immediately from your system and noti=
-fy
-> the sender properly.
+>> Hi all,
+>>
+>> After repeated tests, we feel that two of the four channels of two
+>> devices will be randomly selected, and the probability of choosing the
+>> correct channel is very low. It must be a bug.
+>>
+>> Hi Macus,
+>>
+>> > try:
+>> >
+>> > stream_args.channels.push_back(0);
+>> > stream_args.channels.push_back(1):
+>> >
+>> > Instead of your:
+>> >
+>> > stream_args.channels = {0,1};
+>>
+>> > I think these should be equivalent, but my C++ fluency is low...
+>>
+>> Thank you for your reply, but your suggestion didn't work. Please don't
+>> forget to cc it to me next time.
+>>
+>> Best regards,
+>> Damon
+>>
+>>
+>>
+>> On Fri, 7 Aug 2020 at 01:32, Damon qiu <qiu.guowang007@gmail.com> wrote:
+>>
+>>> Hi all,
+>>>
+>>> I am using two USRP X310s to transmit signals on 2 channels. The two
+>>> USRP are synchronized through a octoclock-g.
+>>>
+>>> A multi_usrp object is used to control those two USRP, device address is
+>>> set to addr0=192.168.40.2,addr1=192.168.60.2. I want to set two USRP
+>>> transmitting signal at RFA at the same time. I tried two ways to set up the
+>>> tx channel and subdev spec:
+>>>
+>>> Method 1: The TX frontend specification is set to A:0 for both two
+>>> mboard.
+>>> d_dev->set_tx_subdev_spec("A:0");
+>>> or
+>>> d_dev->set_tx_subdev_spec("A:0", 0);
+>>> d_dev->set_tx_subdev_spec("A:0", 1);
+>>>
+>>> uhd::stream_args_t stream_args(tx_cpu, tx_otw);
+>>> stream_args.channels = {0, 1};
+>>> uhd::tx_streamer::sptr tx_stream = d_dev->get_tx_stream(stream_args);
+>>>
+>>> Method 2: The TX frontend specification is set to "A:0 B:0"for both two
+>>> mboard.
+>>> d_dev->set_tx_subdev_spec("A:0 B:0");
+>>> or
+>>> d_dev->set_tx_subdev_spec("A:0 B:0", 0);
+>>> d_dev->set_tx_subdev_spec("A:0 B:0", 1);
+>>>
+>>> uhd::stream_args_t stream_args(tx_cpu, tx_otw);
+>>> stream_args.channels = {0, 2};
+>>> uhd::tx_streamer::sptr tx_stream = d_dev->get_tx_stream(stream_args);
+>>>
+>>> In the above two methods, there is a certain probability (about 10% to
+>>> 30%) that the two transmission channels are on the same motherboard. I
+>>> guess this is a bug of UHD.
+>>>
+>>> OS: Ubuntu 18.04
+>>> UHD: UHD-3.15.LTS
+>>>
+>>> Please CC me as I can only receive the daily digest of the mailing list.
+>>>
+>>> Best regards,
+>>> Damon
+>>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 >
 
---00000000000043f67b05adb41d49
+--000000000000d175eb05adb64e2b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Andreas,</div><div>You might want=
- to verify that benchmark_rate also misbehaves if=C2=A0you use &quot;--ref=
-=3Dexternal --pps=3Dexternal&quot;. I wasn&#39;t able to do this because I =
-don&#39;t have an external reference handy. Regarding reporting of the bug,=
- you could do so with gihub=C2=A0as you suggested, but I have been lazy in =
-the past and just sent an email to &quot;<a href=3D"mailto:support@ettus.co=
-m">support@ettus.com</a>&quot;. This generally just causes them to create t=
-he issue.</div><div><br></div><div>Regarding UHD logging, take a look at th=
-is <a href=3D"https://files.ettus.com/manual/log_8hpp.html#loghpp_logging">=
-link</a>. Below are the commands I used in Ubuntu prior to running the prog=
-ram.=C2=A0 This capability should work with any program that uses UHD inclu=
-ding your custom program. For my own custom program, I also use the UHD log=
-ging commands in my source code such as UHD_LOGGER_INFO() and UHD_LOGGER_DE=
-BUG() to print messages to the user rather than using std::cout.</div><div>=
-<br></div><div>export UHD_LOG_LEVEL=3Dtrace</div><div>export UHD_LOG_CONSOL=
-E_LEVEL=3Dtrace</div><div>export UHD_LOG_FILE_LEVEL=3Dtrace<br></div>export=
- UHD_LOG_FILE=3Duhd.log<br></div><div><br></div>Rob<div><br><div class=3D"g=
-mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 25, 2020 at 8=
-:21 AM &lt;<a href=3D"mailto:Andreas.Bertheussen@kongsberg.com">Andreas.Ber=
-theussen@kongsberg.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
-04);padding-left:1ex">Rob<br>
-<br>
-I ran benchmark_rate --args=3D=3D&quot;addr0=3D192.168.10.2,addr1=3D192.168=
-.110.2&quot; --tx_rate 5e6 --tx_channels=3D&quot;0,2&quot;<br>
-And I observed the same issue I described earlier =E2=80=93 mostly that eth=
-er channels 0,1=C2=A0 =C2=A0or channels=C2=A0 2,3, or very rarely channels =
-0,2 get enabled.<br>
-When I add =E2=80=9Cskip_dram=3D1=E2=80=9D to args, the channel mapping is =
-correct! It is prone to underruns but now I can proceed a bit further with =
-my UHD software.<br>
-<br>
-How did you make the trace log? And did you do it to my program or to the b=
-enchmark_rate program?<br>
-<br>
-It is definitely a severe issue I would expect to be fixed, so I will repor=
-t it. Is creating a Github issue the proper avenue?<br>
-<br>
-Many thanks for helping track this down, Rob!<br>
-<br>
-Regards,<br>
-Andreas.<br>
-<br>
-<br>
-________________________________<br>
-<br>
-CONFIDENTIALITY<br>
-This e-mail and any attachment contain KONGSBERG information which may be p=
-roprietary, confidential or subject to export regulations, and is only mean=
-t for the intended recipient(s). Any disclosure, copying, distribution or u=
-se is prohibited, if not otherwise explicitly agreed with KONGSBERG. If rec=
-eived in error, please delete it immediately from your system and notify th=
-e sender properly.<br>
-</blockquote></div></div></div>
+<div dir=3D"ltr"><div dir=3D"ltr">Hi Rob,<div><br></div><div>Thank you very=
+ much for your reply.I just read through=C2=A0your discussion with Andreas =
+about this issue.=C2=A0 However, your temporary solution is not suitable fo=
+r my case. I need to transmit signals in two channels with 200Msps=C2=A0sam=
+ple rate for each channel. I can only wait for the Ettus engineers to fix t=
+his bug. It&#39;s not sure whether Ettus engineers are already investigatin=
+g the bug, as there are no official replies to two threads about this bug.<=
+/div><br><div>Best regards,</div><div>Damon</div></div><br><div class=3D"gm=
+ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 25 Aug 2020 at 03:=
+35, Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&=
+gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
+dir=3D"ltr"><div dir=3D"ltr">Hi Damon,<div>See my other post today regardin=
+g &quot;skip_dram=3D1&quot;.=C2=A0 I believe there is a bug.=C2=A0 But, if =
+you can skip the Dma FIFO (if your sample rate is low enough), you can get =
+around the bug.</div><div>Rob</div></div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Mon, Aug 24, 2020 at 3:31 PM Damon qi=
+u via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=
+=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi =
+all,<br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr">After repeated te=
+sts, we feel that two of the four channels of two devices will be randomly =
+selected, and the probability of choosing the correct channel is very low. =
+It must be a bug.=C2=A0</div><div dir=3D"ltr"><br></div><div>Hi Macus,</div=
+><div><br></div><div>&gt; try:<br>&gt;=C2=A0<br>&gt; stream_args.channels.p=
+ush_back(0);<br>&gt; stream_args.channels.push_back(1):<br>&gt;=C2=A0<br>&g=
+t; Instead of your:<br>&gt;=C2=A0<br>&gt; stream_args.channels =3D {0,1};<b=
+r><br>&gt; I think these should be equivalent, but my C++ fluency is low...=
+<br></div><div><br></div><div>Thank you for your reply, but your suggestion=
+ didn&#39;t work. Please don&#39;t forget to cc it to me next time.</div><d=
+iv><br></div><div>Best regards,</div><div>Damon</div><div dir=3D"ltr"><br><=
+/div><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote"><div dir=3D"=
+ltr" class=3D"gmail_attr">On Fri, 7 Aug 2020 at 01:32, Damon qiu &lt;<a hre=
+f=3D"mailto:qiu.guowang007@gmail.com" target=3D"_blank">qiu.guowang007@gmai=
+l.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><div dir=3D"ltr">Hi all,<br><br>I am using two USRP X310s=C2=A0to tran=
+smit signals on 2 channels. The two USRP are synchronized through a octoclo=
+ck-g.<br><br>A multi_usrp object is used to control those two USRP, device =
+address is set to addr0=3D192.168.40.2,addr1=3D192.168.60.2. I want to set =
+two USRP transmitting=C2=A0signal at RFA at the same time. I tried two ways=
+ to set up the tx channel and subdev spec:<br><br>Method 1: The TX frontend=
+ specification is set to A:0 for both two mboard.<br>d_dev-&gt;set_tx_subde=
+v_spec(&quot;A:0&quot;);<br>or<br>d_dev-&gt;set_tx_subdev_spec(&quot;A:0&qu=
+ot;, 0);<br>d_dev-&gt;set_tx_subdev_spec(&quot;A:0&quot;, 1);<br><br>uhd::s=
+tream_args_t stream_args(tx_cpu, tx_otw);<br>stream_args.channels =3D {0, 1=
+};<br>uhd::tx_streamer::sptr tx_stream =3D d_dev-&gt;get_tx_stream(stream_a=
+rgs);<br><br>Method 2: The TX frontend specification is set to &quot;A:0 B:=
+0&quot;for both two mboard.<br>d_dev-&gt;set_tx_subdev_spec(&quot;A:0 B:0&q=
+uot;);<br>or<br>d_dev-&gt;set_tx_subdev_spec(&quot;A:0 B:0&quot;, 0);<br>d_=
+dev-&gt;set_tx_subdev_spec(&quot;A:0 B:0&quot;, 1);<br><br>uhd::stream_args=
+_t stream_args(tx_cpu, tx_otw);<br>stream_args.channels =3D {0, 2};<br>uhd:=
+:tx_streamer::sptr tx_stream =3D d_dev-&gt;get_tx_stream(stream_args);<br><=
+br>In the above two methods, there is a certain probability (about 10% to 3=
+0%) that the two transmission channels are on the same motherboard. I guess=
+ this is a bug of UHD.<br><br>OS: Ubuntu 18.04<br>UHD: UHD-3.15.LTS<br><br>=
+Please CC me as I can only receive the daily digest of the mailing list.<br=
+><br>Best regards,<br>Damon<br></div>
+</blockquote></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+</blockquote></div></div>
 
---00000000000043f67b05adb41d49--
+--000000000000d175eb05adb64e2b--
 
 
---===============8257400126294276253==
+--===============8090505448263638003==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -228,5 +275,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8257400126294276253==--
+--===============8090505448263638003==--
 
