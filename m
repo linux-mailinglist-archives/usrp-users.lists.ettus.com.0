@@ -2,55 +2,74 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00F05251D49
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Aug 2020 18:37:31 +0200 (CEST)
-Received: from [::1] (port=39444 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 541A7251D61
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Aug 2020 18:43:43 +0200 (CEST)
+Received: from [::1] (port=39486 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kAbws-0005N4-E1; Tue, 25 Aug 2020 12:37:26 -0400
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:36032)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <qiu.guowang007@gmail.com>)
- id 1kAbwo-0005Eo-0q
- for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 12:37:22 -0400
-Received: by mail-qk1-f173.google.com with SMTP id g26so11530169qka.3
- for <usrp-users@lists.ettus.com>; Tue, 25 Aug 2020 09:37:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=TM6DLG4SSlnhhwPTA70r1BUo7beCmG8nLf19qVvP9R4=;
- b=HdnYVXkvsNnRh39J1unl8h3tsslkBehMgfewjZ53vJjlCFXV4Bme+umSG3hxGzpfng
- B9iX/k13QcseHnorxlz3bxSmBK+Bxpb1mCCBiZZGavn0RxM3IVof9QhVXqrJmDSQcBdi
- pvK+1jyq4ml57J7SitIwf+HpzO4aavgP5ZTD1pkoDHvbB1Yk0UfWQdwiu1T2vKNlIbct
- WHKF9AIOIEtGhPG62hHP8EaruhzNMJ6l/UI3xM+/LJ8IEu2Oqr+h3J6IWYVRgy5Hv1uv
- GAcbMn3AHvV6TsjCaHzmW7zDogiUZvztUHy8+xyMhrgP3pxqmCK0oPzk1yZIWzwe7dG/
- LaXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=TM6DLG4SSlnhhwPTA70r1BUo7beCmG8nLf19qVvP9R4=;
- b=nDds9E1ygK6FHN4po5rfojYbcsmROj97uiPHsrytR0zBGyLx6JICZrJbDFuG8GvjjN
- yMUDVNLqSTjC/4PqwVSTWrlYEYObE+n4Rhdh+XINtmNAZ+brQDhPF1f9RpFehLrbaJtO
- jY7lNdThbqCtOm0zttpEHue7+IEKlExP71BN7dOp+EYepBS49oaDIcROqe8BqfXxxzsA
- IuHUyFujUAfVxHz2pvmodT8BoydEszWRuqyrDshdg+EueHSOgHLqIOfqy8Ib4yI/NmX4
- KPwHMTOda1eLk4aA4Dnw9vu9D/9vKf1KU1dRqTq0ftEnW+fLFDWj1FiKjgRseUI3EFbV
- +Xbg==
-X-Gm-Message-State: AOAM533kIj3DELZkrZTjxJg/bpx7/droDjlTdrH46Bfi6zBcAvahpYZR
- 8mt6t2atA63wie41e6EoabiUwL9BnXOUGLSUYOI=
-X-Google-Smtp-Source: ABdhPJxi3iWn6rRmC5dia/HbTvR8Ms6jOUUbTGH+monfg8ETxZktwgGowdAae1mQZhKsj/gKzpGrCUAdC+0pynlwPKo=
-X-Received: by 2002:ae9:f106:: with SMTP id k6mr9666240qkg.3.1598373401555;
- Tue, 25 Aug 2020 09:36:41 -0700 (PDT)
+	id 1kAc2u-00066p-Ow; Tue, 25 Aug 2020 12:43:40 -0400
+Received: from kda-chqmg-01.kongsberg.com ([193.71.180.4]:52356)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <Andreas.Bertheussen@kongsberg.com>)
+ id 1kAc2q-0005y9-2o
+ for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 12:43:36 -0400
+Received: from pps.filterd (kda-chqmg-01.kongsberg.com [127.0.0.1])
+ by kda-chqmg-01.kongsberg.com (8.16.0.42/8.16.0.42) with SMTP id
+ 07PGf04M024975; Tue, 25 Aug 2020 18:42:53 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kongsberg.com;
+ h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ mime-version; s=KDA1; bh=IlbnJYMyYlu4jayYpYYoLtK9U7lYe88VoI1vchEUvcg=;
+ b=R4dtbF1P0ksix/5TG1UKmmzb7Uw1DoUOZUtgJW9+HVClqoGbOwW/xlzVHV7gZGKJK8bf
+ H2F/fODvMCBjL0k+6IkJ/Rl3V6FfPkJCz6MYI03qRvC1xRODLN/TTjQcB7iJ39yo8Qdg
+ UYDntg5AVDbaDmOi3EaU04ycHROdRDb9ac5BaVAmmTC8yEwTPbj605W0HXLm4SOdwjXa
+ bj7tgf2Uch7uvK5RSEXjMVD6U/WrLLmZkRRnmp3JQ9AUJ5j2H3ms17Ak1UpnHKjE+5xM
+ ljFhXmq92VPPRBkA5+vDmtKEsXK28KHWTKmn4v5Pv0OsTkBbEb0AvcoxN+p9olG2Smyu hw== 
+Received: from ukgw-exca2-p01.kda.kongsberg.com ([10.50.100.47])
+ by kda-chqmg-01.kongsberg.com with ESMTP id 332se5gj4k-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=NOT);
+ Tue, 25 Aug 2020 18:42:53 +0200
+Received: from Ukgw-ExcK2-p01.kda.kongsberg.com (10.50.100.41) by
+ Ukgw-ExcA2-p01.kda.kongsberg.com (10.50.100.47) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2044.4; Tue, 25 Aug 2020 18:42:52 +0200
+Received: from Ukgw-ExcK2-p01.kda.kongsberg.com ([fe80::3098:b04:69aa:1c60])
+ by Ukgw-ExcK2-p01.kda.kongsberg.com ([fe80::3098:b04:69aa:1c60%21]) with mapi
+ id 15.01.2044.004; Tue, 25 Aug 2020 18:42:53 +0200
+To: <rkossler@nd.edu>
+CC: <usrp-users@lists.ettus.com>, <qiu.guowang007@gmail.com>
+Thread-Topic: [USRP-users] Issues with multi-usrp and UHD
+Thread-Index: AdZ21mx1YVSRD/KTRva7GPuE0XgSxAADYcaAAAbWWUD///NHAP/+uPLQgALhvAD//8kPAIAFB+qAgAAOegD//rrsIABQ7i2A//+xPgA=
+Date: Tue, 25 Aug 2020 16:42:53 +0000
+Message-ID: <d4b7d58acf9e4987b94c69cd2e0e32b4@kongsberg.com>
+References: <7d8c7731d23c412490a27750fac617a9@kongsberg.com>
+ <CAB__hTR_n5zEHbSNSADeV+euNu5m-Chb7agX5D+RhZo5LOK00Q@mail.gmail.com>
+ <a836f011bfdb46fb9403baafa0060800@kongsberg.com>
+ <CAB__hTRbkX2HVfC5zVK7p17W9Q1keFoGMO7K9xC3GfaLVUjWFg@mail.gmail.com>
+ <6ced606fafac42f28485978c0a087227@kongsberg.com>
+ <CAB__hTQ4yy8Mrbgn4tn1hJj8GmeY4W5hi1sMSbuMhp3cAFELfg@mail.gmail.com>
+ <1b04cfb3f883498198f57a793d8c55e7@kongsberg.com>
+ <CAB__hTTVvDbo-A5oS3i85y=BdjYVD=Dj9DEHNLk-myhLedxJkg@mail.gmail.com>
+ <CAB__hTREsrpeC7tqqTMUkAGbfqePU48maQsSRiCSCRyAqkOVRQ@mail.gmail.com>
+ <7f7405916dd74d6893d0ce89e7703a92@kongsberg.com>
+ <CAB__hTRHAZOjROC3eEnN25rB=V_reRFusJmrz_9ZaxqyoBej5A@mail.gmail.com>
+In-Reply-To: <CAB__hTRHAZOjROC3eEnN25rB=V_reRFusJmrz_9ZaxqyoBej5A@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.73.0.10]
 MIME-Version: 1.0
-References: <CACjmV_=fW9LdJPb0TtAgP_QH19cSDD13BgRkvDzOd1JohUJ8TQ@mail.gmail.com>
- <CACjmV_kMaOvLJuaYv8rj0o1QcMjW2+9w1x9BK6BxHjufM348WA@mail.gmail.com>
- <CAB__hTTxVNg4WU8x3Pec2Q1M9HwWGj+_xHCaFFJMmrWSTnO0Dw@mail.gmail.com>
-In-Reply-To: <CAB__hTTxVNg4WU8x3Pec2Q1M9HwWGj+_xHCaFFJMmrWSTnO0Dw@mail.gmail.com>
-Date: Wed, 26 Aug 2020 00:36:29 +0800
-Message-ID: <CACjmV_=WHoqSYzjMW4aBBvmFFkJNVAwobAWbw6vzuvty_b8QyQ@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Cc: usrp-users <usrp-users@lists.ettus.com>,
- Damon Qiu <qiu.guowang007@gmail.com>
-Subject: Re: [USRP-users] issue about subdev spec
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
+ definitions=2020-08-25_06:2020-08-25,
+ 2020-08-25 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
+ phishscore=0
+ clxscore=1011 mlxscore=0 malwarescore=0 priorityscore=1501 bulkscore=0
+ adultscore=0 suspectscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2008250124
+Subject: Re: [USRP-users] Issues with multi-usrp and UHD
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -62,9 +81,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Damon qiu via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Damon qiu <qiu.guowang007@gmail.com>
-Content-Type: multipart/mixed; boundary="===============8090505448263638003=="
+From: Andreas B via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Andreas.Bertheussen@kongsberg.com
+Content-Type: multipart/mixed; boundary="===============5400156103888811942=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,193 +97,201 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8090505448263638003==
-Content-Type: multipart/alternative; boundary="000000000000d175eb05adb64e2b"
+--===============5400156103888811942==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_d4b7d58acf9e4987b94c69cd2e0e32b4kongsbergcom_"
 
---000000000000d175eb05adb64e2b
-Content-Type: text/plain; charset="UTF-8"
+--_000_d4b7d58acf9e4987b94c69cd2e0e32b4kongsbergcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Rob,
+VGhhbmtzIFJvYi4NCg0KSSBoYXZlIHJlZ2lzdGVyZWQgdGhlIGlzc3VlIGluIGh0dHBzOi8vZ2l0
+aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9pc3N1ZXMvMzY3IGFuZCBuYWdnZWQgdGhlaXIgc3Vw
+cG9ydCBlbWFpbC4NCg0KQW5kcmVhcy4NCg0KRnJvbTogUm9iIEtvc3NsZXIgPHJrb3NzbGVyQG5k
+LmVkdT4NClNlbnQ6IDI1LiBhdWd1c3QgMjAyMCAxNTo1OQ0KVG86IEJlcnRoZXVzc2VuLCBBbmRy
+ZWFzIDxBbmRyZWFzLkJlcnRoZXVzc2VuQGtvbmdzYmVyZy5jb20+DQpDYzogdXNycC11c2VycyA8
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIElz
+c3VlcyB3aXRoIG11bHRpLXVzcnAgYW5kIFVIRA0KDQpIaSBBbmRyZWFzLA0KWW91IG1pZ2h0IHdh
+bnQgdG8gdmVyaWZ5IHRoYXQgYmVuY2htYXJrX3JhdGUgYWxzbyBtaXNiZWhhdmVzIGlmIHlvdSB1
+c2UgIi0tcmVmPWV4dGVybmFsIC0tcHBzPWV4dGVybmFsIi4gSSB3YXNuJ3QgYWJsZSB0byBkbyB0
+aGlzIGJlY2F1c2UgSSBkb24ndCBoYXZlIGFuIGV4dGVybmFsIHJlZmVyZW5jZSBoYW5keS4gUmVn
+YXJkaW5nIHJlcG9ydGluZyBvZiB0aGUgYnVnLCB5b3UgY291bGQgZG8gc28gd2l0aCBnaWh1YiBh
+cyB5b3Ugc3VnZ2VzdGVkLCBidXQgSSBoYXZlIGJlZW4gbGF6eSBpbiB0aGUgcGFzdCBhbmQganVz
+dCBzZW50IGFuIGVtYWlsIHRvICJzdXBwb3J0QGV0dHVzLmNvbTxtYWlsdG86c3VwcG9ydEBldHR1
+cy5jb20+Ii4gVGhpcyBnZW5lcmFsbHkganVzdCBjYXVzZXMgdGhlbSB0byBjcmVhdGUgdGhlIGlz
+c3VlLg0KDQpSZWdhcmRpbmcgVUhEIGxvZ2dpbmcsIHRha2UgYSBsb29rIGF0IHRoaXMgbGluazxo
+dHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0cHM6L2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwv
+bG9nXzhocHAuaHRtbCpsb2docHBfbG9nZ2luZ19fO0l3ISFMOGYzLXdQVlNuZyFTOVU0cEdGTWVw
+V09oQlpoWWhNZ000RW8yaF8wN3UzOGxYNXRKUEF5TGlXb05IME5wdUFnT1p1WmN4cFBIcTFYU3cz
+VVFnY24wQSQ+LiBCZWxvdyBhcmUgdGhlIGNvbW1hbmRzIEkgdXNlZCBpbiBVYnVudHUgcHJpb3Ig
+dG8gcnVubmluZyB0aGUgcHJvZ3JhbS4gIFRoaXMgY2FwYWJpbGl0eSBzaG91bGQgd29yayB3aXRo
+IGFueSBwcm9ncmFtIHRoYXQgdXNlcyBVSEQgaW5jbHVkaW5nIHlvdXIgY3VzdG9tIHByb2dyYW0u
+IEZvciBteSBvd24gY3VzdG9tIHByb2dyYW0sIEkgYWxzbyB1c2UgdGhlIFVIRCBsb2dnaW5nIGNv
+bW1hbmRzIGluIG15IHNvdXJjZSBjb2RlIHN1Y2ggYXMgVUhEX0xPR0dFUl9JTkZPKCkgYW5kIFVI
+RF9MT0dHRVJfREVCVUcoKSB0byBwcmludCBtZXNzYWdlcyB0byB0aGUgdXNlciByYXRoZXIgdGhh
+biB1c2luZyBzdGQ6OmNvdXQuDQoNCmV4cG9ydCBVSERfTE9HX0xFVkVMPXRyYWNlDQpleHBvcnQg
+VUhEX0xPR19DT05TT0xFX0xFVkVMPXRyYWNlDQpleHBvcnQgVUhEX0xPR19GSUxFX0xFVkVMPXRy
+YWNlDQpleHBvcnQgVUhEX0xPR19GSUxFPXVoZC5sb2cNCg0KUm9iDQoNCk9uIFR1ZSwgQXVnIDI1
+LCAyMDIwIGF0IDg6MjEgQU0gPEFuZHJlYXMuQmVydGhldXNzZW5Aa29uZ3NiZXJnLmNvbTxtYWls
+dG86QW5kcmVhcy5CZXJ0aGV1c3NlbkBrb25nc2JlcmcuY29tPj4gd3JvdGU6DQpSb2INCg0KSSBy
+YW4gYmVuY2htYXJrX3JhdGUgLS1hcmdzPT0iYWRkcjA9MTkyLjE2OC4xMC4yLGFkZHIxPTE5Mi4x
+NjguMTEwLjIiIC0tdHhfcmF0ZSA1ZTYgLS10eF9jaGFubmVscz0iMCwyIg0KQW5kIEkgb2JzZXJ2
+ZWQgdGhlIHNhbWUgaXNzdWUgSSBkZXNjcmliZWQgZWFybGllciDigJMgbW9zdGx5IHRoYXQgZXRo
+ZXIgY2hhbm5lbHMgMCwxICAgb3IgY2hhbm5lbHMgIDIsMywgb3IgdmVyeSByYXJlbHkgY2hhbm5l
+bHMgMCwyIGdldCBlbmFibGVkLg0KV2hlbiBJIGFkZCDigJxza2lwX2RyYW09MeKAnSB0byBhcmdz
+LCB0aGUgY2hhbm5lbCBtYXBwaW5nIGlzIGNvcnJlY3QhIEl0IGlzIHByb25lIHRvIHVuZGVycnVu
+cyBidXQgbm93IEkgY2FuIHByb2NlZWQgYSBiaXQgZnVydGhlciB3aXRoIG15IFVIRCBzb2Z0d2Fy
+ZS4NCg0KSG93IGRpZCB5b3UgbWFrZSB0aGUgdHJhY2UgbG9nPyBBbmQgZGlkIHlvdSBkbyBpdCB0
+byBteSBwcm9ncmFtIG9yIHRvIHRoZSBiZW5jaG1hcmtfcmF0ZSBwcm9ncmFtPw0KDQpJdCBpcyBk
+ZWZpbml0ZWx5IGEgc2V2ZXJlIGlzc3VlIEkgd291bGQgZXhwZWN0IHRvIGJlIGZpeGVkLCBzbyBJ
+IHdpbGwgcmVwb3J0IGl0LiBJcyBjcmVhdGluZyBhIEdpdGh1YiBpc3N1ZSB0aGUgcHJvcGVyIGF2
+ZW51ZT8NCg0KTWFueSB0aGFua3MgZm9yIGhlbHBpbmcgdHJhY2sgdGhpcyBkb3duLCBSb2IhDQoN
+ClJlZ2FyZHMsDQpBbmRyZWFzLg0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+DQoNCkNPTkZJREVOVElBTElUWQ0KVGhpcyBlLW1haWwgYW5kIGFueSBhdHRhY2htZW50IGNvbnRh
+aW4gS09OR1NCRVJHIGluZm9ybWF0aW9uIHdoaWNoIG1heSBiZSBwcm9wcmlldGFyeSwgY29uZmlk
+ZW50aWFsIG9yIHN1YmplY3QgdG8gZXhwb3J0IHJlZ3VsYXRpb25zLCBhbmQgaXMgb25seSBtZWFu
+dCBmb3IgdGhlIGludGVuZGVkIHJlY2lwaWVudChzKS4gQW55IGRpc2Nsb3N1cmUsIGNvcHlpbmcs
+IGRpc3RyaWJ1dGlvbiBvciB1c2UgaXMgcHJvaGliaXRlZCwgaWYgbm90IG90aGVyd2lzZSBleHBs
+aWNpdGx5IGFncmVlZCB3aXRoIEtPTkdTQkVSRy4gSWYgcmVjZWl2ZWQgaW4gZXJyb3IsIHBsZWFz
+ZSBkZWxldGUgaXQgaW1tZWRpYXRlbHkgZnJvbSB5b3VyIHN5c3RlbSBhbmQgbm90aWZ5IHRoZSBz
+ZW5kZXIgcHJvcGVybHkuDQo=
 
-Thank you very much for your reply.I just read through your discussion with
-Andreas about this issue.  However, your temporary solution is not suitable
-for my case. I need to transmit signals in two channels with 200Msps sample
-rate for each channel. I can only wait for the Ettus engineers to fix this
-bug. It's not sure whether Ettus engineers are already investigating the
-bug, as there are no official replies to two threads about this bug.
+--_000_d4b7d58acf9e4987b94c69cd2e0e32b4kongsbergcom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Best regards,
-Damon
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
+Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
+dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1z
+b25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCglt
+c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4t
+Ym90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTIuMHB0Ow0K
+CWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTE4
+DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
+IixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0
+eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7
+DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3Np
+emU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgNzAuODVwdCA3MC44
+NXB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHls
+ZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQi
+IHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+
+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0
+IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFk
+Pg0KPGJvZHkgbGFuZz0iTk8tQk9LIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYg
+Y2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJF
+Ti1HQiIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMi
+PlRoYW5rcyBSb2IuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iRU4tR0IiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxh
+bmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1HQiIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZh
+cmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkkgaGF2ZSByZWdpc3RlcmVkIHRoZSBpc3N1ZSBpbg0KPGEg
+aHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2lzc3Vlcy8zNjciPmh0
+dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9pc3N1ZXMvMzY3PC9hPiBhbmQgbmFn
+Z2VkIHRoZWlyIHN1cHBvcnQgZW1haWwuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tR0IiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21z
+by1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1HQiIgc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMx
+RjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkFuZHJlYXMuPG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tR0IiIHN0eWxlPSJt
+c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJv
+bTo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBSb2IgS29zc2xlciAm
+bHQ7cmtvc3NsZXJAbmQuZWR1Jmd0Ow0KPGJyPg0KPGI+U2VudDo8L2I+IDI1LiBhdWd1c3QgMjAy
+MCAxNTo1OTxicj4NCjxiPlRvOjwvYj4gQmVydGhldXNzZW4sIEFuZHJlYXMgJmx0O0FuZHJlYXMu
+QmVydGhldXNzZW5Aa29uZ3NiZXJnLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IHVzcnAtdXNlcnMg
+Jmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBS
+ZTogW1VTUlAtdXNlcnNdIElzc3VlcyB3aXRoIG11bHRpLXVzcnAgYW5kIFVIRDxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGkgQW5kcmVhcyw8bzpw
+PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPllvdSBtaWdo
+dCB3YW50IHRvIHZlcmlmeSB0aGF0IGJlbmNobWFya19yYXRlIGFsc28gbWlzYmVoYXZlcyBpZiZu
+YnNwO3lvdSB1c2UgJnF1b3Q7LS1yZWY9ZXh0ZXJuYWwgLS1wcHM9ZXh0ZXJuYWwmcXVvdDsuIEkg
+d2Fzbid0IGFibGUgdG8gZG8gdGhpcyBiZWNhdXNlIEkgZG9uJ3QgaGF2ZSBhbiBleHRlcm5hbCBy
+ZWZlcmVuY2UgaGFuZHkuIFJlZ2FyZGluZyByZXBvcnRpbmcgb2YgdGhlIGJ1ZywgeW91IGNvdWxk
+IGRvIHNvIHdpdGggZ2lodWImbmJzcDthcw0KIHlvdSBzdWdnZXN0ZWQsIGJ1dCBJIGhhdmUgYmVl
+biBsYXp5IGluIHRoZSBwYXN0IGFuZCBqdXN0IHNlbnQgYW4gZW1haWwgdG8gJnF1b3Q7PGEgaHJl
+Zj0ibWFpbHRvOnN1cHBvcnRAZXR0dXMuY29tIj5zdXBwb3J0QGV0dHVzLmNvbTwvYT4mcXVvdDsu
+IFRoaXMgZ2VuZXJhbGx5IGp1c3QgY2F1c2VzIHRoZW0gdG8gY3JlYXRlIHRoZSBpc3N1ZS48bzpw
+PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+UmVnYXJk
+aW5nIFVIRCBsb2dnaW5nLCB0YWtlIGEgbG9vayBhdCB0aGlzIDxhIGhyZWY9Imh0dHBzOi8vdXJs
+ZGVmZW5zZS5jb20vdjMvX19odHRwczovZmlsZXMuZXR0dXMuY29tL21hbnVhbC9sb2dfOGhwcC5o
+dG1sKmxvZ2hwcF9sb2dnaW5nX187SXchIUw4ZjMtd1BWU25nIVM5VTRwR0ZNZXBXT2hCWmhZaE1n
+TTRFbzJoXzA3dTM4bFg1dEpQQXlMaVdvTkgwTnB1QWdPWnVaY3hwUEhxMVhTdzNVUWdjbjBBJCI+
+DQpsaW5rPC9hPi4gQmVsb3cgYXJlIHRoZSBjb21tYW5kcyBJIHVzZWQgaW4gVWJ1bnR1IHByaW9y
+IHRvIHJ1bm5pbmcgdGhlIHByb2dyYW0uJm5ic3A7IFRoaXMgY2FwYWJpbGl0eSBzaG91bGQgd29y
+ayB3aXRoIGFueSBwcm9ncmFtIHRoYXQgdXNlcyBVSEQgaW5jbHVkaW5nIHlvdXIgY3VzdG9tIHBy
+b2dyYW0uIEZvciBteSBvd24gY3VzdG9tIHByb2dyYW0sIEkgYWxzbyB1c2UgdGhlIFVIRCBsb2dn
+aW5nIGNvbW1hbmRzIGluIG15IHNvdXJjZSBjb2RlIHN1Y2gNCiBhcyBVSERfTE9HR0VSX0lORk8o
+KSBhbmQgVUhEX0xPR0dFUl9ERUJVRygpIHRvIHByaW50IG1lc3NhZ2VzIHRvIHRoZSB1c2VyIHJh
+dGhlciB0aGFuIHVzaW5nIHN0ZDo6Y291dC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+ZXhwb3J0IFVIRF9MT0dfTEVWRUw9dHJhY2U8bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmV4cG9ydCBVSERf
+TE9HX0NPTlNPTEVfTEVWRUw9dHJhY2U8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPmV4cG9ydCBVSERfTE9HX0ZJTEVfTEVWRUw9dHJhY2U8bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+ZXhwb3J0IFVIRF9MT0dfRklM
+RT11aGQubG9nPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+Um9iPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFR1ZSwg
+QXVnIDI1LCAyMDIwIGF0IDg6MjEgQU0gJmx0OzxhIGhyZWY9Im1haWx0bzpBbmRyZWFzLkJlcnRo
+ZXVzc2VuQGtvbmdzYmVyZy5jb20iPkFuZHJlYXMuQmVydGhldXNzZW5Aa29uZ3NiZXJnLmNvbTwv
+YT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0i
+Ym9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBjbSAw
+Y20gMGNtIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20iPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+Um9iPGJyPg0KPGJyPg0KSSByYW4gYmVuY2htYXJrX3JhdGUgLS1hcmdz
+PT0mcXVvdDthZGRyMD0xOTIuMTY4LjEwLjIsYWRkcjE9MTkyLjE2OC4xMTAuMiZxdW90OyAtLXR4
+X3JhdGUgNWU2IC0tdHhfY2hhbm5lbHM9JnF1b3Q7MCwyJnF1b3Q7PGJyPg0KQW5kIEkgb2JzZXJ2
+ZWQgdGhlIHNhbWUgaXNzdWUgSSBkZXNjcmliZWQgZWFybGllciDigJMgbW9zdGx5IHRoYXQgZXRo
+ZXIgY2hhbm5lbHMgMCwxJm5ic3A7ICZuYnNwO29yIGNoYW5uZWxzJm5ic3A7IDIsMywgb3IgdmVy
+eSByYXJlbHkgY2hhbm5lbHMgMCwyIGdldCBlbmFibGVkLjxicj4NCldoZW4gSSBhZGQg4oCcc2tp
+cF9kcmFtPTHigJ0gdG8gYXJncywgdGhlIGNoYW5uZWwgbWFwcGluZyBpcyBjb3JyZWN0ISBJdCBp
+cyBwcm9uZSB0byB1bmRlcnJ1bnMgYnV0IG5vdyBJIGNhbiBwcm9jZWVkIGEgYml0IGZ1cnRoZXIg
+d2l0aCBteSBVSEQgc29mdHdhcmUuPGJyPg0KPGJyPg0KSG93IGRpZCB5b3UgbWFrZSB0aGUgdHJh
+Y2UgbG9nPyBBbmQgZGlkIHlvdSBkbyBpdCB0byBteSBwcm9ncmFtIG9yIHRvIHRoZSBiZW5jaG1h
+cmtfcmF0ZSBwcm9ncmFtPzxicj4NCjxicj4NCkl0IGlzIGRlZmluaXRlbHkgYSBzZXZlcmUgaXNz
+dWUgSSB3b3VsZCBleHBlY3QgdG8gYmUgZml4ZWQsIHNvIEkgd2lsbCByZXBvcnQgaXQuIElzIGNy
+ZWF0aW5nIGEgR2l0aHViIGlzc3VlIHRoZSBwcm9wZXIgYXZlbnVlPzxicj4NCjxicj4NCk1hbnkg
+dGhhbmtzIGZvciBoZWxwaW5nIHRyYWNrIHRoaXMgZG93biwgUm9iITxicj4NCjxicj4NClJlZ2Fy
+ZHMsPGJyPg0KQW5kcmVhcy48YnI+DQo8YnI+DQo8YnI+DQpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXzxicj4NCjxicj4NCkNPTkZJREVOVElBTElUWTxicj4NClRoaXMgZS1tYWlsIGFu
+ZCBhbnkgYXR0YWNobWVudCBjb250YWluIEtPTkdTQkVSRyBpbmZvcm1hdGlvbiB3aGljaCBtYXkg
+YmUgcHJvcHJpZXRhcnksIGNvbmZpZGVudGlhbCBvciBzdWJqZWN0IHRvIGV4cG9ydCByZWd1bGF0
+aW9ucywgYW5kIGlzIG9ubHkgbWVhbnQgZm9yIHRoZSBpbnRlbmRlZCByZWNpcGllbnQocykuIEFu
+eSBkaXNjbG9zdXJlLCBjb3B5aW5nLCBkaXN0cmlidXRpb24gb3IgdXNlIGlzIHByb2hpYml0ZWQs
+IGlmIG5vdCBvdGhlcndpc2UNCiBleHBsaWNpdGx5IGFncmVlZCB3aXRoIEtPTkdTQkVSRy4gSWYg
+cmVjZWl2ZWQgaW4gZXJyb3IsIHBsZWFzZSBkZWxldGUgaXQgaW1tZWRpYXRlbHkgZnJvbSB5b3Vy
+IHN5c3RlbSBhbmQgbm90aWZ5IHRoZSBzZW5kZXIgcHJvcGVybHkuPG86cD48L286cD48L3A+DQo8
+L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
+aHRtbD4NCg==
 
-On Tue, 25 Aug 2020 at 03:35, Rob Kossler <rkossler@nd.edu> wrote:
-
-> Hi Damon,
-> See my other post today regarding "skip_dram=1".  I believe there is a
-> bug.  But, if you can skip the Dma FIFO (if your sample rate is low
-> enough), you can get around the bug.
-> Rob
->
-> On Mon, Aug 24, 2020 at 3:31 PM Damon qiu via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hi all,
->>
->> After repeated tests, we feel that two of the four channels of two
->> devices will be randomly selected, and the probability of choosing the
->> correct channel is very low. It must be a bug.
->>
->> Hi Macus,
->>
->> > try:
->> >
->> > stream_args.channels.push_back(0);
->> > stream_args.channels.push_back(1):
->> >
->> > Instead of your:
->> >
->> > stream_args.channels = {0,1};
->>
->> > I think these should be equivalent, but my C++ fluency is low...
->>
->> Thank you for your reply, but your suggestion didn't work. Please don't
->> forget to cc it to me next time.
->>
->> Best regards,
->> Damon
->>
->>
->>
->> On Fri, 7 Aug 2020 at 01:32, Damon qiu <qiu.guowang007@gmail.com> wrote:
->>
->>> Hi all,
->>>
->>> I am using two USRP X310s to transmit signals on 2 channels. The two
->>> USRP are synchronized through a octoclock-g.
->>>
->>> A multi_usrp object is used to control those two USRP, device address is
->>> set to addr0=192.168.40.2,addr1=192.168.60.2. I want to set two USRP
->>> transmitting signal at RFA at the same time. I tried two ways to set up the
->>> tx channel and subdev spec:
->>>
->>> Method 1: The TX frontend specification is set to A:0 for both two
->>> mboard.
->>> d_dev->set_tx_subdev_spec("A:0");
->>> or
->>> d_dev->set_tx_subdev_spec("A:0", 0);
->>> d_dev->set_tx_subdev_spec("A:0", 1);
->>>
->>> uhd::stream_args_t stream_args(tx_cpu, tx_otw);
->>> stream_args.channels = {0, 1};
->>> uhd::tx_streamer::sptr tx_stream = d_dev->get_tx_stream(stream_args);
->>>
->>> Method 2: The TX frontend specification is set to "A:0 B:0"for both two
->>> mboard.
->>> d_dev->set_tx_subdev_spec("A:0 B:0");
->>> or
->>> d_dev->set_tx_subdev_spec("A:0 B:0", 0);
->>> d_dev->set_tx_subdev_spec("A:0 B:0", 1);
->>>
->>> uhd::stream_args_t stream_args(tx_cpu, tx_otw);
->>> stream_args.channels = {0, 2};
->>> uhd::tx_streamer::sptr tx_stream = d_dev->get_tx_stream(stream_args);
->>>
->>> In the above two methods, there is a certain probability (about 10% to
->>> 30%) that the two transmission channels are on the same motherboard. I
->>> guess this is a bug of UHD.
->>>
->>> OS: Ubuntu 18.04
->>> UHD: UHD-3.15.LTS
->>>
->>> Please CC me as I can only receive the daily digest of the mailing list.
->>>
->>> Best regards,
->>> Damon
->>>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
-
---000000000000d175eb05adb64e2b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Rob,<div><br></div><div>Thank you very=
- much for your reply.I just read through=C2=A0your discussion with Andreas =
-about this issue.=C2=A0 However, your temporary solution is not suitable fo=
-r my case. I need to transmit signals in two channels with 200Msps=C2=A0sam=
-ple rate for each channel. I can only wait for the Ettus engineers to fix t=
-his bug. It&#39;s not sure whether Ettus engineers are already investigatin=
-g the bug, as there are no official replies to two threads about this bug.<=
-/div><br><div>Best regards,</div><div>Damon</div></div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 25 Aug 2020 at 03:=
-35, Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
-dir=3D"ltr"><div dir=3D"ltr">Hi Damon,<div>See my other post today regardin=
-g &quot;skip_dram=3D1&quot;.=C2=A0 I believe there is a bug.=C2=A0 But, if =
-you can skip the Dma FIFO (if your sample rate is low enough), you can get =
-around the bug.</div><div>Rob</div></div><br><div class=3D"gmail_quote"><di=
-v dir=3D"ltr" class=3D"gmail_attr">On Mon, Aug 24, 2020 at 3:31 PM Damon qi=
-u via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=
-=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi =
-all,<br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr">After repeated te=
-sts, we feel that two of the four channels of two devices will be randomly =
-selected, and the probability of choosing the correct channel is very low. =
-It must be a bug.=C2=A0</div><div dir=3D"ltr"><br></div><div>Hi Macus,</div=
-><div><br></div><div>&gt; try:<br>&gt;=C2=A0<br>&gt; stream_args.channels.p=
-ush_back(0);<br>&gt; stream_args.channels.push_back(1):<br>&gt;=C2=A0<br>&g=
-t; Instead of your:<br>&gt;=C2=A0<br>&gt; stream_args.channels =3D {0,1};<b=
-r><br>&gt; I think these should be equivalent, but my C++ fluency is low...=
-<br></div><div><br></div><div>Thank you for your reply, but your suggestion=
- didn&#39;t work. Please don&#39;t forget to cc it to me next time.</div><d=
-iv><br></div><div>Best regards,</div><div>Damon</div><div dir=3D"ltr"><br><=
-/div><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr" class=3D"gmail_attr">On Fri, 7 Aug 2020 at 01:32, Damon qiu &lt;<a hre=
-f=3D"mailto:qiu.guowang007@gmail.com" target=3D"_blank">qiu.guowang007@gmai=
-l.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex"><div dir=3D"ltr">Hi all,<br><br>I am using two USRP X310s=C2=A0to tran=
-smit signals on 2 channels. The two USRP are synchronized through a octoclo=
-ck-g.<br><br>A multi_usrp object is used to control those two USRP, device =
-address is set to addr0=3D192.168.40.2,addr1=3D192.168.60.2. I want to set =
-two USRP transmitting=C2=A0signal at RFA at the same time. I tried two ways=
- to set up the tx channel and subdev spec:<br><br>Method 1: The TX frontend=
- specification is set to A:0 for both two mboard.<br>d_dev-&gt;set_tx_subde=
-v_spec(&quot;A:0&quot;);<br>or<br>d_dev-&gt;set_tx_subdev_spec(&quot;A:0&qu=
-ot;, 0);<br>d_dev-&gt;set_tx_subdev_spec(&quot;A:0&quot;, 1);<br><br>uhd::s=
-tream_args_t stream_args(tx_cpu, tx_otw);<br>stream_args.channels =3D {0, 1=
-};<br>uhd::tx_streamer::sptr tx_stream =3D d_dev-&gt;get_tx_stream(stream_a=
-rgs);<br><br>Method 2: The TX frontend specification is set to &quot;A:0 B:=
-0&quot;for both two mboard.<br>d_dev-&gt;set_tx_subdev_spec(&quot;A:0 B:0&q=
-uot;);<br>or<br>d_dev-&gt;set_tx_subdev_spec(&quot;A:0 B:0&quot;, 0);<br>d_=
-dev-&gt;set_tx_subdev_spec(&quot;A:0 B:0&quot;, 1);<br><br>uhd::stream_args=
-_t stream_args(tx_cpu, tx_otw);<br>stream_args.channels =3D {0, 2};<br>uhd:=
-:tx_streamer::sptr tx_stream =3D d_dev-&gt;get_tx_stream(stream_args);<br><=
-br>In the above two methods, there is a certain probability (about 10% to 3=
-0%) that the two transmission channels are on the same motherboard. I guess=
- this is a bug of UHD.<br><br>OS: Ubuntu 18.04<br>UHD: UHD-3.15.LTS<br><br>=
-Please CC me as I can only receive the daily digest of the mailing list.<br=
-><br>Best regards,<br>Damon<br></div>
-</blockquote></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-</blockquote></div></div>
-
---000000000000d175eb05adb64e2b--
+--_000_d4b7d58acf9e4987b94c69cd2e0e32b4kongsbergcom_--
 
 
---===============8090505448263638003==
+--===============5400156103888811942==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -275,5 +302,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8090505448263638003==--
+--===============5400156103888811942==--
 
