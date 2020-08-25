@@ -2,53 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ADFB25216F
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Aug 2020 22:00:50 +0200 (CEST)
-Received: from [::1] (port=40894 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10830252194
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Aug 2020 22:08:12 +0200 (CEST)
+Received: from [::1] (port=40952 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kAf7g-0001pP-Q1; Tue, 25 Aug 2020 16:00:48 -0400
-Received: from sonic308-2.consmr.mail.bf2.yahoo.com ([74.6.130.41]:33349)
+	id 1kAfEp-0002GP-2Q; Tue, 25 Aug 2020 16:08:11 -0400
+Received: from sonic306-2.consmr.mail.bf2.yahoo.com ([74.6.132.41]:32906)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jayl0583@yahoo.com>) id 1kAf7c-0001i9-ON
- for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 16:00:44 -0400
+ (Exim 4.93) (envelope-from <jayl0583@yahoo.com>) id 1kAfEk-00026O-Md
+ for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 16:08:06 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1598385603; bh=qWVAQ/jiEJg3s6HfhSxQ+gwq1MqSC1gOHpImMjE5d5k=;
- h=Date:From:To:Subject:References:From:Subject;
- b=Z4ArFK27EjcCzH4j0mdy/Ri+0jbtMBtxOn+5RJmuJKPnHbjsj6/G2FcCge908VG8b+/uD0O/Uhl1NLqe4rAV94ZFwnUurn6vKuFJYE+keUfZprzBC3QAauadOMte0kpv8BSEJ1YqcwmC58ds+dYH8gbKT+tgS8q9IU/T9EVbCUl/E+Z/pmb/GS65W26Yx5gxvZEL7UNRZnXOBGsBqZI7uFJuV/gyjvCu2C5PjsEH6gXqng0PHntBTg2HgVP1KqNvojKVt3mLYpkM0Gmc3NqCqi8QHRuwYjH8kLofsuvMvmmESdhElUFjw4OJty07t2eXOcsg9PiTYGZF0PGeYZWd+A==
-X-YMail-OSG: gIgcWuwVM1lOQdI3aGEzGrooW_uaqf9LdR6wDE1aUtohCyWC2A1KLCINYu37MLt
- xgxr0DuTQFC55xpXltbYIhWZYsd9hajsvfxDJGeA20wLfqoy0IRZvAqH_4Ofx7yQgUugL7464_to
- IR_ixwTU9Lqu1oHYyCdMA2.gsp4qpljMPsqIqvHwW.BzGI5O74qrKE711MxdHnZrlo8WlXqL2cYO
- nAza3c9_Bu5SC5H27JtxfZrDY148_5D7_Wc6hS5JvmgM8lJe5rAm4qukLwPmgr.DkWtfxtE2CqLA
- 0Qz9LbcMaHpmTOp9ulNTUqRjOSbZIk5CwqYEhO.xiB5Rl3L525SYXdTfBdstKhxwLEvrSf34DKJa
- jroKorCqw89O8lQ_5hWDPTjtlHRPhAnBt4niS5byCcWHGdgnGw7x5r1Cvx_lDVvbZAlU7cYyQ6VT
- f5OqOutOXjxpJ3noy8uIffkaMIMzDrSnTR7KFaHcN2JnLrg67J.wMdn2qtmNi1v0q8kum4Gf_LTW
- kihjlibTplKTQbVLsLOxwbcY8wZucfN4nn.7aFHAVEnfBflffCX25av35IXM87B2tkKnU7Cr6Cez
- i5X8CGMBzyMO2REh3J0Vz6.FeEWP0qSy7BaBJfPsNM8V3sFFobUrU.NuEh8L7rFLWjGgYsG6H6mg
- 70P3GigBG3x1i9NsGXio63WidQK228tvy4S5GHe__8I0xykB7wDZ1R4CAd0IVReCTk1j1m5EwXWI
- i4GP5AiCqk1fC_LU723Yw68yCGRsKz3_Urx7PWyod5_g3vKV0iD5UcSp9wysje.xmDdjoFd9jsGQ
- cXzu.aYJn5sWaddkTtD6cAmry_vkVGaH8kK1WnvncEZo78qTq5z6_4k.Z.muPiRjSLW73PREIw4O
- 1b7SurCppl7a3EJeuhZUBoh2yuVBjTO.SO3eCYSlP1az.m6iV8iS26rIemfhhzeriz8iUZikteVt
- ai0GWceikknYwSP7BE0RIxEER9lqpl5Ae0VDo6yGl5kgJN20OoJlMq2ojOuPeJQAAxMzF.1vdd4R
- UIvMZjDqG1lghVkfWol75B2RIpqLBMxGtWMNRunY1u.LRhZY74FHwjKoy6JnM5ZsW7JUNA_eZwhq
- F6kD8OfSLzBsiRuGChIdBJ_5VftvRVQ_J9BEXgVCg4Zoo_58Gax0NwSP2KudKWc1r.mb93qm8ilM
- gPpLOs_BHY2emDU3AlivQ63NBKgLG9J_mHGdEJbTeG.BC50Ng6I1bAzXoja7Z7dHLBIWPIPPa5Pe
- WZoL7lqzTda7w48p_gfLsDuAIWwUurdR6qHiv0INj2gOI.Fd2isunZMNubgw.CIqqyir8D.UCdbl
- lUdADQ1k45CfUR6GswRk84XJ68i68RF1JoX29eti8XfEkdKArRw.1fAuzSablzp5H1ssIW_EE..X
- R7f6fY30qv.8iJEASOwuO.4vjJGhMEqZgehLBsv318a3rGX65hLmRDyURqgLOnYDLO_ggdJHmnCF
- s3X7_
+ t=1598386045; bh=skg1hy+ixAw145bg3YXYgpT6Sg3UcHSDnNStdKkyzXg=;
+ h=Date:From:To:In-Reply-To:References:Subject:From:Subject;
+ b=H0wRQ6VB+UPqhJnbbvCtEgJqjRSHHMmeVcBDLzQNem5ENpVpROJXMuMvo/fraoYudZgXCxAfVrrBvvUfxLHsXkPNN7PKOVd+rzqU4FZuzuPAdVjh5lpUbkqxqocf1iub1oTahj59wOdnG93/FrpnkARcW/7xoCPZgm9n171KBVufmF53MrFwgyLjsEHnqmiHhDHonUNvBD3922I1Q5mWlwz1UCWBgY+cD7LaVvIsgOOyGGwPXo9DzopTM1dYQbbZ9JKGXiH4huUrGTHE1ptgoa2/kjDM0VdR6Le4wyZv4wBQ5d9iOJq8aFog4j8BT2+VJ7lkuqtwGe9hlZRIbjXBsw==
+X-YMail-OSG: QG4gDikVM1mnoZy80ZYCyCyngSy.UChp8nxa7LR0W9oMdLjk.H0oJD7.zB1A10w
+ jagkS_p6prK2Ehulhfpptzr0KwfGp3BdGHV_htHeml74TjJgQcoiOKPElhWj43bwZlxE7nQo7VRG
+ oeYaCrWypFt34Y6bwKcYPHE5DQOjFgz431NLBudm2XDZziRVzVa_Es1T3UWXZcuRr0D6JChSOOMF
+ IKbzIAV7J7TfZIr6TSL6Zl95mUVpbsYH8W6esLQmRCpLG2iCLSMdLoSY30T4gliR2K3EsYa7HJkd
+ b.eKzGXAiJiYPSOHntwVVtPt6_4olZj7fk2yG1L0a1mHEVi7h19TRX.rfLUIJEytmZDkeGsGGjYa
+ rTk88hvFmNmelfaQW3U_1ClEKDe8_B4ab__B7ULykOPk4W7IEJ6JYjAcZtm7rJ2u8hORxUv70jbf
+ eIvCl1uk6idVt6V2k9JTSiDN1gZp8QvIErCN03EeqqvfkqoTuOoCB5bLQf4gzz1.MyupXnOstUNE
+ x4ycTvfU84iXIdALLdgzYFJNFw8X0J392iW7LRRoJJVt_jC767TZL8bfhfArPIFWQMxuFEEq_oaB
+ bHeWyeex.6nw0PEUi7EPpRwzPcFll3Tm29eLQ0sqydiAybQ9QowWn_NrVFSlq35U7XA98PMLW_Hz
+ KDoQxs8DA04d42KjfPDMpZxfJY26pxzQkZwepbvEbjSFWsjAPiACJVfNOyk9Am4tCsZBoG.Q.jGn
+ pY6UoaF_xAvCyd0e6AL3Rb57aeCNdWEVCicUqzbps9ZM02OcUIXffT3s3YJkwWRt7qbA.ckm8db8
+ gypqW4u6widPN2abcB0yxlA9QIFVwiQ3dosqQzEicyYRY_ZvXg5xFiiFXf.cOOJ3M73jAWqRh6sr
+ REvtpg_UAor.XGh_0wSuuiFx04HW.28D96jy7WwXii18ZWf4kT_rZTxaEbUzoKl4tsKmiTC8OLea
+ GkwlbATOS9prDS5bmb3dl4qV3SwTSYT2wMveqRkY31Jc.8AL.1FkxrHHtG5Hef2OGDnOlJb7VH7k
+ 3KNwsO3t_dm3PJT8cUMCS1bHYrCO3cXFP1TfjN0PN6MnCVWRyAaM0cxQYZmnqU4CfDBj05QweCgp
+ YLT2_tfHyWpka0XMJR0h3cD6zuBS5YcLl.9oQCGnGVePKPTnF8HW0O7bO_hzbxBYr0wgrVW24.OH
+ 1UrvYqD4M6TvAkC2UunrRL4hPQUKzneb4KJkMiXlKcNV.Vca6R6D42f0dZia5J1xLPUewW668Rtz
+ 0rwzShyRttAlFeGQfEcy7Mk8jiggaxb7LpPve705Fsulxg1QdgVRHiytgieNu.4jQugw9x1wt4As
+ 7rEGWf0TtF5kQELfNxt1EeBp7sNVYd7bWI5OWi5r9Ka9LJAuTbfunmfbPVifDk0IEuB3UGD.1.mQ
+ 0LcMRce8R0Aos3.dr3xpDwjBzrYcaoI8nCFIAkEZAgUBhYv9Um.N78kJKq3Ay32GjlQ--
 Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic308.consmr.mail.bf2.yahoo.com with HTTP; Tue, 25 Aug 2020 20:00:03 +0000
-Date: Tue, 25 Aug 2020 20:00:00 +0000 (UTC)
+ sonic306.consmr.mail.bf2.yahoo.com with HTTP; Tue, 25 Aug 2020 20:07:25 +0000
+Date: Tue, 25 Aug 2020 20:07:20 +0000 (UTC)
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID: <1068579459.5506610.1598385600265@mail.yahoo.com>
+Message-ID: <776900095.5505230.1598386040331@mail.yahoo.com>
+In-Reply-To: <1068579459.5506610.1598385600265@mail.yahoo.com>
+References: <1068579459.5506610.1598385600265.ref@mail.yahoo.com>
+ <1068579459.5506610.1598385600265@mail.yahoo.com>
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
- boundary="----=_Part_5506609_2057431402.1598385600264"
-References: <1068579459.5506610.1598385600265.ref@mail.yahoo.com>
+ boundary="----=_Part_5505229_313416514.1598386040331"
 X-Mailer: WebService/1.1.16455 YMailNorrin Mozilla/5.0 (X11; Ubuntu;
  Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0
-Subject: [USRP-users] B210 RX 2 channels
+Subject: Re: [USRP-users] B210 RX 2 channels
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -75,15 +76,21 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-------=_Part_5506609_2057431402.1598385600264
+------=_Part_5505229_313416514.1598386040331
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_5506608_1101195106.1598385600115"
+	boundary="----=_Part_5505228_195712853.1598386040264"
 
-------=_Part_5506608_1101195106.1598385600115
+------=_Part_5505228_195712853.1598386040264
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+ Forgot to add the parameters
+--subdev=3D"A:A A:B" --dilv --channels=3D"0,1" --nsamps=3D1000000
+
+    On Tuesday, August 25, 2020, 3:00:48 PM CDT, Jay Labhart via USRP-users=
+ <usrp-users@lists.ettus.com> wrote: =20
+=20
+ Hello,
 I have started to work with the B210 on a project.=C2=A0 My interest is to =
 collect samples from the 2 RX of the B210 looking at a frequency of channel=
  1 of 2.4GHz (2412).=C2=A0 My goal is to use a grc to workout the algorithm=
@@ -325,277 +332,212 @@ Done!
 
 
 
-
-------=_Part_5506608_1101195106.1598385600115
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+ =20
+------=_Part_5505228_195712853.1598386040264
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
-ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
-=3D"ltr" data-setdir=3D"false">Hello,</div><div dir=3D"ltr" data-setdir=3D"=
-false"><br></div><div dir=3D"ltr" data-setdir=3D"false">I have started to w=
-ork with the B210 on a project.&nbsp; My interest is to collect samples fro=
-m the 2 RX of the B210 looking at a frequency of channel 1 of 2.4GHz (<span=
->2412).&nbsp; My goal is to use a grc to workout the algorithm then move to=
- c++.&nbsp; I am having some challenges that I would like to ask the group =
-for help.</span></div><div dir=3D"ltr" data-setdir=3D"false"><span><br></sp=
-an></div><div dir=3D"ltr" data-setdir=3D"false">I used a .grc to collect sa=
-mples and review the algorithm.&nbsp; The graph is attached. At this point =
-I am just collecting data. I use a series of variables to create 2 data fil=
-es.<br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"l=
-tr" data-setdir=3D"false">I moved to c++ and modified a sample to collect t=
-he same dataset.</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div=
- dir=3D"ltr" data-setdir=3D"false">I am using the python file gr_plot_iq.py=
- to review the signals.&nbsp; When I review the grc graph the signals appea=
-r as I would think.&nbsp; The c++ the signals are scattered way apart and A=
-&amp;B are consistent.</div><div dir=3D"ltr" data-setdir=3D"false"><br></di=
-v><div dir=3D"ltr" data-setdir=3D"false">Any thoughts would be greatful.<br=
-></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" da=
-ta-setdir=3D"false">Test:</div><div dir=3D"ltr" data-setdir=3D"false"><div>=
-<div dir=3D"ltr" data-setdir=3D"false">&nbsp;&nbsp;&nbsp; 2.4 GHz router ch=
-irping every 100 ms<br></div></div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; local area with no wireless except router</div></div><div dir=3D"lt=
-r" data-setdir=3D"false">&nbsp;&nbsp;&nbsp; <span>uhd <br></span></div><div=
- dir=3D"ltr" data-setdir=3D"false"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;2412000000</span>&nbsp; channel 1</div><div dir=3D"ltr" data-=
-setdir=3D"false">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rate - 20 MSPS =
-(only get 15)<br></div><div dir=3D"ltr" data-setdir=3D"false">&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; looking at 2 RX channels at same freq<br></di=
-v><div><br></div><div dir=3D"ltr" data-setdir=3D"false"><div>hardware &amp;=
- os<br>Intel=C2=AE Core=E2=84=A2 i5-6400 CPU @ 2.70GHz =C3=97 4 <br>12GB RA=
-M<br><div>Ubuntu 18.04.5 LTS</div><div><br></div><div dir=3D"ltr" data-setd=
-ir=3D"false">attached is the probe from the uhd</div><div dir=3D"ltr" data-=
-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">The chall=
-enge is that I am seeing different results from the grc and the c++ file.&n=
-bsp; On the grc graph I collect a variety of samples from the router.&nbsp;=
- On the c++ file there only seems to be 1-2 samples.&nbsp; I would expect t=
-o see a similar set of samples.</div><div dir=3D"ltr" data-setdir=3D"false"=
-><br></div><div dir=3D"ltr" data-setdir=3D"false"><img title=3D"Inline imag=
-e" alt=3D"Inline image" src=3D"cid:b89b4bc5-4986-c099-0e86-5f22b13ff6aa@yah=
-oo.com" class=3D"yahoo-inline-image" style=3D"max-width: 628px; width: 100%=
-;" draggable=3D"false" data-id=3D"<b89b4bc5-4986-c099-0e86-5f22b13ff6aa@yah=
-oo.com>"><br><br></div><div><br></div><div dir=3D"ltr" data-setdir=3D"false=
-"><b>c++ code excerpt</b></div><div dir=3D"ltr" data-setdir=3D"false"><br><=
-/div><div dir=3D"ltr" data-setdir=3D"false"><div>&nbsp;&nbsp;&nbsp; // dete=
-ct which channels to use<br>&nbsp;&nbsp;&nbsp; std::vector&lt;std::string&g=
-t; channel_strings;<br>&nbsp;&nbsp;&nbsp; std::vector&lt;size_t&gt; channel=
-_nums;<br>&nbsp;&nbsp;&nbsp; boost::split(channel_strings, channel_list, bo=
-ost::is_any_of("\"',"));<br>&nbsp;&nbsp;&nbsp; for (size_t ch =3D 0; ch &lt=
-; channel_strings.size(); ch++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; size_t chan =3D std::stoi(channel_strings[ch]);<br>&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; if (chan &gt;=3D usrp-&gt;get_rx_num_channels()) {<=
-br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw=
- std::runtime_error("Invalid channel(s) specified.");<br>&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; } else<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; channel_nums.push_back(std::stoi(channel_strings=
-[ch]));<br>&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; // create a recei=
-ve streamer<br>&nbsp;&nbsp;&nbsp; // linearly map channels (index0 =3D chan=
-nel0, index1 =3D channel1, ...)<br>&nbsp;&nbsp;&nbsp; uhd::stream_args_t st=
-ream_args("fc32"); // complex floats<br>&nbsp;&nbsp;&nbsp; stream_args.chan=
-nels&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-; =3D channel_nums;<br>&nbsp;&nbsp;&nbsp; uhd::rx_streamer::sptr rx_stream =
-=3D usrp-&gt;get_rx_stream(stream_args);<br><br>&nbsp;&nbsp; &nbsp;&nbsp; i=
-f (total_num_samps =3D=3D 0){<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; std::signa=
-l(SIGINT, &amp;sig_int_handler);<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; std::co=
-ut &lt;&lt; "Press Ctrl + C to stop streaming..." &lt;&lt; std::endl;<br>&n=
-bsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; // setup streamin=
-g<br>&nbsp;&nbsp;&nbsp; std::cout &lt;&lt; std::endl;<br>&nbsp;&nbsp;&nbsp;=
- std::cout &lt;&lt; boost::format("Begin streaming %u samples, %f seconds i=
-n the future...")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; % total_=
-num_samps % seconds_in_future<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt; std::endl;<br>&nbsp;&nbsp;&nb=
-sp; uhd::stream_cmd_t stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_A=
-ND_DONE);<br>&nbsp;&nbsp;&nbsp; stream_cmd.num_samps&nbsp; =3D total_num_sa=
-mps;<br>&nbsp;&nbsp;&nbsp; stream_cmd.stream_now =3D false;<br>&nbsp;&nbsp;=
-&nbsp; stream_cmd.time_spec&nbsp; =3D uhd::time_spec_t(seconds_in_future);<=
-br>&nbsp;&nbsp;&nbsp; rx_stream-&gt;issue_stream_cmd(stream_cmd); // tells =
-all channels to stream<br><br>&nbsp;&nbsp;&nbsp; // meta-data will be fille=
-d in by recv()<br>&nbsp;&nbsp;&nbsp; uhd::rx_metadata_t md;<br><br>&nbsp;&n=
-bsp;&nbsp; // allocate buffers to receive with samples (one buffer per chan=
-nel)<br>&nbsp;&nbsp;&nbsp; const size_t samps_per_buff =3D rx_stream-&gt;ge=
-t_max_num_samps();<br>&nbsp;&nbsp;&nbsp; std::vector&lt;std::vector&lt;std:=
-:complex&lt;float&gt;&gt;&gt; buffs(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; usrp-&gt;get_rx_num_channels(), std::vector&lt;std::complex&lt;floa=
-t&gt;&gt;(samps_per_buff));<br><br>&nbsp;&nbsp;&nbsp; // create a vector of=
- pointers to point to each of the channel buffers<br>&nbsp;&nbsp;&nbsp; std=
-::vector&lt;std::complex&lt;float&gt;*&gt; buff_ptrs;<br>&nbsp;&nbsp;&nbsp;=
- for (size_t i =3D 0; i &lt; buffs.size(); i++)<br>&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; buff_ptrs.push_back(&amp;buffs[i].front());<br><br>&nbsp=
-;&nbsp;&nbsp; // the first call to recv() will block this many seconds befo=
-re receiving<br>&nbsp;&nbsp;&nbsp; double timeout =3D seconds_in_future + 0=
-.1; // timeout (delay before receive + padding)<br><br>&nbsp;&nbsp;&nbsp; s=
-ize_t num_acc_samps =3D 0; // number of accumulated samples<br>&nbsp;&nbsp;=
- &nbsp;std::ofstream outfile1, outfile2;<br>&nbsp;&nbsp; &nbsp;outfile1.ope=
-n(file1.c_str(), std::ofstream::binary);<br>&nbsp;&nbsp; &nbsp;outfile2.ope=
-n(file2.c_str(), std::ofstream::binary);<br>&nbsp;&nbsp; &nbsp;<br>&nbsp;&n=
-bsp;&nbsp; while (not stop_signal_called) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; // receive a single packet<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; size_t num_rx_samps =3D rx_stream-&gt;recv(buff_ptrs, samps_pe=
-r_buff, md, timeout);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // =
-use a small timeout for subsequent packets<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; timeout =3D 0.1;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; // handle the error code<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-; if (md.error_code =3D=3D uhd::rx_metadata_t::ERROR_CODE_TIMEOUT)<br>&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (md.error_code !=3D uhd::rx_meta=
-data_t::ERROR_CODE_NONE) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; //throw std::runtime_error(str(boost::format("Receive=
-r error %s") % md.strerror()));<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&n=
-bsp;&nbsp; &nbsp;std::cout &lt;&lt; md.strerror() &lt;&lt; std::endl;<br>&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; if (verbose)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; std::cout &lt;&lt; boost::format(<br>&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; "Received packet: %u samples, %u full secs, %f frac secs")<br>&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; % num_rx_samps % md.time_spec.get_full_secs()<br>&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+<html><head></head><body><div class=3D"ydp4cca5c61yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Forgot to add the parameters=
+</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" dat=
+a-setdir=3D"false"><span>--subdev=3D"A:A A:B" --dilv --channels=3D"0,1" --n=
+samps=3D1000000</span><br></div><div><br></div>
+       =20
+        </div><div id=3D"yahoo_quoted_9253632763" class=3D"yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                    On Tuesday, August 25, 2020, 3:00:48 PM CDT, Jay Labhar=
+t via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"yiv6603245200"><div><div class=3D"yiv660324=
+5200yahoo-style-wrap" style=3D"font-family:Helvetica Neue, Helvetica, Arial=
+, sans-serif;font-size:16px;"><div dir=3D"ltr">Hello,</div><div dir=3D"ltr"=
+><br></div><div dir=3D"ltr">I have started to work with the B210 on a proje=
+ct.&nbsp; My interest is to collect samples from the 2 RX of the B210 looki=
+ng at a frequency of channel 1 of 2.4GHz (<span>2412).&nbsp; My goal is to =
+use a grc to workout the algorithm then move to c++.&nbsp; I am having some=
+ challenges that I would like to ask the group for help.</span></div><div d=
+ir=3D"ltr"><span><br></span></div><div dir=3D"ltr">I used a .grc to collect=
+ samples and review the algorithm.&nbsp; The graph is attached. At this poi=
+nt I am just collecting data. I use a series of variables to create 2 data =
+files.<br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr">I moved to c++ =
+and modified a sample to collect the same dataset.</div><div dir=3D"ltr"><b=
+r></div><div dir=3D"ltr">I am using the python file gr_plot_iq.py to review=
+ the signals.&nbsp; When I review the grc graph the signals appear as I wou=
+ld think.&nbsp; The c++ the signals are scattered way apart and A&amp;B are=
+ consistent.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Any thoughts =
+would be greatful.<br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Tes=
+t:</div><div dir=3D"ltr"><div><div dir=3D"ltr">&nbsp;&nbsp;&nbsp; 2.4 GHz r=
+outer chirping every 100 ms<br></div></div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; local area with no wireless except router</div></div><div d=
+ir=3D"ltr">&nbsp;&nbsp;&nbsp; <span>uhd <br></span></div><div dir=3D"ltr"><=
+span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2412000000</span>&nbsp=
+; channel 1</div><div dir=3D"ltr">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; rate - 20 MSPS (only get 15)<br></div><div dir=3D"ltr">&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; looking at 2 RX channels at same freq<br></div><di=
+v><br></div><div dir=3D"ltr"><div>hardware &amp; os<br>Intel=C2=AE Core=E2=
+=84=A2 i5-6400 CPU @ 2.70GHz =C3=97 4 <br>12GB RAM<br><div>Ubuntu 18.04.5 L=
+TS</div><div><br></div><div dir=3D"ltr">attached is the probe from the uhd<=
+/div><div dir=3D"ltr"><br></div><div dir=3D"ltr">The challenge is that I am=
+ seeing different results from the grc and the c++ file.&nbsp; On the grc g=
+raph I collect a variety of samples from the router.&nbsp; On the c++ file =
+there only seems to be 1-2 samples.&nbsp; I would expect to see a similar s=
+et of samples.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><img title=
+=3D"Inline image" alt=3D"Inline image" src=3D"cid:OHrRZRqKVvrakMKW5EjJ" yah=
+oo_partid=3D"3" class=3D"yiv6603245200yahoo-inline-image" style=3D"max-widt=
+h:628px;width:100%;" data-id=3D"<cf85d414-84d3-ca80-a0b9-96d736ca9a15@yahoo=
+.com>"><br><br></div><div><br></div><div dir=3D"ltr"><b>c++ code excerpt</b=
+></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><div>&nbsp;&nbsp;&nbsp; =
+// detect which channels to use<br>&nbsp;&nbsp;&nbsp; std::vector&lt;std::s=
+tring&gt; channel_strings;<br>&nbsp;&nbsp;&nbsp; std::vector&lt;size_t&gt; =
+channel_nums;<br>&nbsp;&nbsp;&nbsp; boost::split(channel_strings, channel_l=
+ist, boost::is_any_of("\"',"));<br>&nbsp;&nbsp;&nbsp; for (size_t ch =3D 0;=
+ ch &lt; channel_strings.size(); ch++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; size_t chan =3D std::stoi(channel_strings[ch]);<br>&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (chan &gt;=3D usrp-&gt;get_rx_num_channel=
+s()) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; throw std::runtime_error("Invalid channel(s) specified.");<br>&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; channel_nums.push_back(std::stoi(channel_=
+strings[ch]));<br>&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; // create =
+a receive streamer<br>&nbsp;&nbsp;&nbsp; // linearly map channels (index0 =
+=3D channel0, index1 =3D channel1, ...)<br>&nbsp;&nbsp;&nbsp; uhd::stream_a=
+rgs_t stream_args("fc32"); // complex floats<br>&nbsp;&nbsp;&nbsp; stream_a=
+rgs.channels&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; =3D channel_nums;<br>&nbsp;&nbsp;&nbsp; uhd::rx_streamer::sptr rx=
+_stream =3D usrp-&gt;get_rx_stream(stream_args);<br><br>&nbsp;&nbsp; &nbsp;=
+&nbsp; if (total_num_samps =3D=3D 0){<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; st=
+d::signal(SIGINT, &amp;sig_int_handler);<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;=
+ std::cout &lt;&lt; "Press Ctrl + C to stop streaming..." &lt;&lt; std::end=
+l;<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp; // setup =
+streaming<br>&nbsp;&nbsp;&nbsp; std::cout &lt;&lt; std::endl;<br>&nbsp;&nbs=
+p;&nbsp; std::cout &lt;&lt; boost::format("Begin streaming %u samples, %f s=
+econds in the future...")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+% total_num_samps % seconds_in_future<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt; std::endl;<br>&nbsp;&=
+nbsp;&nbsp; uhd::stream_cmd_t stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM=
+_SAMPS_AND_DONE);<br>&nbsp;&nbsp;&nbsp; stream_cmd.num_samps&nbsp; =3D tota=
+l_num_samps;<br>&nbsp;&nbsp;&nbsp; stream_cmd.stream_now =3D false;<br>&nbs=
+p;&nbsp;&nbsp; stream_cmd.time_spec&nbsp; =3D uhd::time_spec_t(seconds_in_f=
+uture);<br>&nbsp;&nbsp;&nbsp; rx_stream-&gt;issue_stream_cmd(stream_cmd); /=
+/ tells all channels to stream<br><br>&nbsp;&nbsp;&nbsp; // meta-data will =
+be filled in by recv()<br>&nbsp;&nbsp;&nbsp; uhd::rx_metadata_t md;<br><br>=
+&nbsp;&nbsp;&nbsp; // allocate buffers to receive with samples (one buffer =
+per channel)<br>&nbsp;&nbsp;&nbsp; const size_t samps_per_buff =3D rx_strea=
+m-&gt;get_max_num_samps();<br>&nbsp;&nbsp;&nbsp; std::vector&lt;std::vector=
+&lt;std::complex&lt;float&gt;&gt;&gt; buffs(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; usrp-&gt;get_rx_num_channels(), std::vector&lt;std::complex=
+&lt;float&gt;&gt;(samps_per_buff));<br><br>&nbsp;&nbsp;&nbsp; // create a v=
+ector of pointers to point to each of the channel buffers<br>&nbsp;&nbsp;&n=
+bsp; std::vector&lt;std::complex&lt;float&gt;*&gt; buff_ptrs;<br>&nbsp;&nbs=
+p;&nbsp; for (size_t i =3D 0; i &lt; buffs.size(); i++)<br>&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; buff_ptrs.push_back(&amp;buffs[i].front());<br><=
+br>&nbsp;&nbsp;&nbsp; // the first call to recv() will block this many seco=
+nds before receiving<br>&nbsp;&nbsp;&nbsp; double timeout =3D seconds_in_fu=
+ture + 0.1; // timeout (delay before receive + padding)<br><br>&nbsp;&nbsp;=
+&nbsp; size_t num_acc_samps =3D 0; // number of accumulated samples<br>&nbs=
+p;&nbsp; &nbsp;std::ofstream outfile1, outfile2;<br>&nbsp;&nbsp; &nbsp;outf=
+ile1.open(file1.c_str(), std::ofstream::binary);<br>&nbsp;&nbsp; &nbsp;outf=
+ile2.open(file2.c_str(), std::ofstream::binary);<br>&nbsp;&nbsp; &nbsp;<br>=
+&nbsp;&nbsp;&nbsp; while (not stop_signal_called) {<br>&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; // receive a single packet<br>&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; size_t num_rx_samps =3D rx_stream-&gt;recv(buff_ptrs, =
+samps_per_buff, md, timeout);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; // use a small timeout for subsequent packets<br>&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; timeout =3D 0.1;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; // handle the error code<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; if (md.error_code =3D=3D uhd::rx_metadata_t::ERROR_CODE_TIMEOUT)<=
+br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break=
+;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (md.error_code !=3D uhd:=
+:rx_metadata_t::ERROR_CODE_NONE) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //throw std::runtime_error(str(boost::format(=
+"Receiver error %s") % md.strerror()));<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; =
+&nbsp;&nbsp;&nbsp; &nbsp;std::cout &lt;&lt; md.strerror() &lt;&lt; std::end=
+l;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; if (verbose)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; std::cout &lt;&lt; boost::format(<br>&nbs=
 p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; % md.time_spec.get_frac_secs()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; "Received packet: %u samples, %u full secs, %f frac secs")<b=
+r>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; % num_rx_samps % md.time_spec.get_full_secs()<br>&nbsp=
 ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; &lt;&lt; std::endl;<br><br>&nbsp;&nbsp; &nbsp;&nbsp; if (o=
-utfile1.is_open())<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; outfile1.write((const=
- char*)(&amp;buffs[0].front()),<br>&nbsp;&nbsp; &nbsp;&nbsp; num_rx_samps*s=
-izeof(std::complex&lt;float&gt;));<br>&nbsp;&nbsp; &nbsp;&nbsp; if (outfile=
-2.is_open())<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; outfile2.write((const char*=
-)(&amp;buffs[1].front()),<br>&nbsp;&nbsp; &nbsp;&nbsp; num_rx_samps*sizeof(=
-std::complex&lt;float&gt;));<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; num_acc_samps +=3D num_rx_samps;<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nb=
-sp;// check if continuous or number of samples<br>&nbsp;&nbsp; &nbsp;&nbsp;=
-&nbsp; &nbsp;if (total_num_samps !=3D 0) {<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbs=
-p; &nbsp;&nbsp;&nbsp; &nbsp;if (num_acc_samps &gt;=3D total_num_samps)<br>&=
-nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;=
-stop_signal_called =3D true;<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br>=
-&nbsp;&nbsp;&nbsp; }<br><br></div><div dir=3D"ltr" data-setdir=3D"false"><b=
->output from run with uhd</b></div><div dir=3D"ltr" data-setdir=3D"false"><=
-br></div><div dir=3D"ltr" data-setdir=3D"false"><div>Creating the usrp devi=
-ce with: ...<br>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UH=
-D_3.14.1.HEAD-0-g0347a6d8<br>[INFO] [B200] Detected Device: B210<br>[INFO] =
-[B200] Operating over USB 3.<br>[INFO] [B200] Initialize CODEC control...<b=
-r>[INFO] [B200] Initialize Radio control...<br>[INFO] [B200] Performing reg=
-ister loopback test... <br>[INFO] [B200] Register loopback test passed<br>[=
-INFO] [B200] Performing register loopback test... <br>[INFO] [B200] Registe=
-r loopback test passed<br>[INFO] [B200] Setting master clock rate selection=
- to 'automatic'.<br>[INFO] [B200] Asking for clock rate 16.000000 MHz... <b=
-r>[INFO] [B200] Actually got clock rate 16.000000 MHz.<br>Using Device: Sin=
-gle USRP:<br>&nbsp; Device: B-Series Device<br>&nbsp; Mboard 0: B210<br>&nb=
-sp; RX Channel: 0<br>&nbsp;&nbsp;&nbsp; RX DSP: 0<br>&nbsp;&nbsp;&nbsp; RX =
-Dboard: A<br>&nbsp;&nbsp;&nbsp; RX Subdev: FE-RX2<br>&nbsp; RX Channel: 1<b=
-r>&nbsp;&nbsp;&nbsp; RX DSP: 1<br>&nbsp;&nbsp;&nbsp; RX Dboard: A<br>&nbsp;=
-&nbsp;&nbsp; RX Subdev: FE-RX1<br>&nbsp; TX Channel: 0<br>&nbsp;&nbsp;&nbsp=
-; TX DSP: 0<br>&nbsp;&nbsp;&nbsp; TX Dboard: A<br>&nbsp;&nbsp;&nbsp; TX Sub=
-dev: FE-TX2<br>&nbsp; TX Channel: 1<br>&nbsp;&nbsp;&nbsp; TX DSP: 1<br>&nbs=
-p;&nbsp;&nbsp; TX Dboard: A<br>&nbsp;&nbsp;&nbsp; TX Subdev: FE-TX1<br><br>=
-Using Antenna 0: RX2<br>Using Antenna 1: RX2<br>Actual RX Freq: 2412.000000=
- MHz...<br>Actual RX Freq: 2411.999998 MHz...<br><br>RX Gain Range 0: (0, 7=
-6, 1)<br>...<br>Setting RX Gain: 64.000000 dB...<br>Actual RX Gain: 64.0000=
-00 dB...<br><br>Setting RX Bandwidth: 15.000000 MHz...<br>Actual RX Bandwid=
-th: 15.000000 MHz...<br><br>Setting RX Rate: 15.000000 Msps...<br>[INFO] [B=
-200] Asking for clock rate 60.000000 MHz... <br>[INFO] [B200] Actually got =
-clock rate 60.000000 MHz.<br>Actual RX Rate: 15.000000 Msps...<br><br>Setti=
-ng device timestamp to 0...<br><br>Begin streaming 10000 samples, 10.000000=
- seconds in the future...<br>Received packet: 2040 samples, 10 full secs, 0=
-.000003 frac secs<br>Received packet: 2040 samples, 10 full secs, 0.000139 =
-frac secs<br>Received packet: 2040 samples, 10 full secs, 0.000275 frac sec=
-s<br>Received packet: 2040 samples, 10 full secs, 0.000411 frac secs<br>Rec=
-eived packet: 1840 samples, 10 full secs, 0.000547 frac secs<br><br>Done!<b=
-r><br></div><div><br></div></div></div></div><div><br></div></div></div></b=
-ody></html>
-------=_Part_5506608_1101195106.1598385600115--
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; % md.time_spec.get_frac_secs()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt; std::endl;<br><br>&nbsp;&nbsp; &nbsp;&nbs=
+p; if (outfile1.is_open())<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; outfile1.writ=
+e((const char*)(&amp;buffs[0].front()),<br>&nbsp;&nbsp; &nbsp;&nbsp; num_rx=
+_samps*sizeof(std::complex&lt;float&gt;));<br>&nbsp;&nbsp; &nbsp;&nbsp; if =
+(outfile2.is_open())<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; outfile2.write((con=
+st char*)(&amp;buffs[1].front()),<br>&nbsp;&nbsp; &nbsp;&nbsp; num_rx_samps=
+*sizeof(std::complex&lt;float&gt;));<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; num_acc_samps +=3D num_rx_samps;<br>&nbsp;&nbsp; &nbsp;&nbsp;&n=
+bsp; &nbsp;// check if continuous or number of samples<br>&nbsp;&nbsp; &nbs=
+p;&nbsp;&nbsp; &nbsp;if (total_num_samps !=3D 0) {<br>&nbsp;&nbsp; &nbsp;&n=
+bsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if (num_acc_samps &gt;=3D total_num_sam=
+ps)<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp=
+; &nbsp;stop_signal_called =3D true;<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nb=
+sp;}<br>&nbsp;&nbsp;&nbsp; }<br><br></div><div dir=3D"ltr"><b>output from r=
+un with uhd</b></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><div>Creat=
+ing the usrp device with: ...<br>[INFO] [UHD] linux; GNU C++ version 7.5.0;=
+ Boost_106501; UHD_3.14.1.HEAD-0-g0347a6d8<br>[INFO] [B200] Detected Device=
+: B210<br>[INFO] [B200] Operating over USB 3.<br>[INFO] [B200] Initialize C=
+ODEC control...<br>[INFO] [B200] Initialize Radio control...<br>[INFO] [B20=
+0] Performing register loopback test... <br>[INFO] [B200] Register loopback=
+ test passed<br>[INFO] [B200] Performing register loopback test... <br>[INF=
+O] [B200] Register loopback test passed<br>[INFO] [B200] Setting master clo=
+ck rate selection to 'automatic'.<br>[INFO] [B200] Asking for clock rate 16=
+.000000 MHz... <br>[INFO] [B200] Actually got clock rate 16.000000 MHz.<br>=
+Using Device: Single USRP:<br>&nbsp; Device: B-Series Device<br>&nbsp; Mboa=
+rd 0: B210<br>&nbsp; RX Channel: 0<br>&nbsp;&nbsp;&nbsp; RX DSP: 0<br>&nbsp=
+;&nbsp;&nbsp; RX Dboard: A<br>&nbsp;&nbsp;&nbsp; RX Subdev: FE-RX2<br>&nbsp=
+; RX Channel: 1<br>&nbsp;&nbsp;&nbsp; RX DSP: 1<br>&nbsp;&nbsp;&nbsp; RX Db=
+oard: A<br>&nbsp;&nbsp;&nbsp; RX Subdev: FE-RX1<br>&nbsp; TX Channel: 0<br>=
+&nbsp;&nbsp;&nbsp; TX DSP: 0<br>&nbsp;&nbsp;&nbsp; TX Dboard: A<br>&nbsp;&n=
+bsp;&nbsp; TX Subdev: FE-TX2<br>&nbsp; TX Channel: 1<br>&nbsp;&nbsp;&nbsp; =
+TX DSP: 1<br>&nbsp;&nbsp;&nbsp; TX Dboard: A<br>&nbsp;&nbsp;&nbsp; TX Subde=
+v: FE-TX1<br><br>Using Antenna 0: RX2<br>Using Antenna 1: RX2<br>Actual RX =
+Freq: 2412.000000 MHz...<br>Actual RX Freq: 2411.999998 MHz...<br><br>RX Ga=
+in Range 0: (0, 76, 1)<br>...<br>Setting RX Gain: 64.000000 dB...<br>Actual=
+ RX Gain: 64.000000 dB...<br><br>Setting RX Bandwidth: 15.000000 MHz...<br>=
+Actual RX Bandwidth: 15.000000 MHz...<br><br>Setting RX Rate: 15.000000 Msp=
+s...<br>[INFO] [B200] Asking for clock rate 60.000000 MHz... <br>[INFO] [B2=
+00] Actually got clock rate 60.000000 MHz.<br>Actual RX Rate: 15.000000 Msp=
+s...<br><br>Setting device timestamp to 0...<br><br>Begin streaming 10000 s=
+amples, 10.000000 seconds in the future...<br>Received packet: 2040 samples=
+, 10 full secs, 0.000003 frac secs<br>Received packet: 2040 samples, 10 ful=
+l secs, 0.000139 frac secs<br>Received packet: 2040 samples, 10 full secs, =
+0.000275 frac secs<br>Received packet: 2040 samples, 10 full secs, 0.000411=
+ frac secs<br>Received packet: 1840 samples, 10 full secs, 0.000547 frac se=
+cs<br><br>Done!<br><br></div><div><br></div></div></div></div><div><br></di=
+v></div></div></div></div>_______________________________________________<b=
+r>USRP-users mailing list<br><a ymailto=3D"mailto:USRP-users@lists.ettus.co=
+m" href=3D"mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a=
+><br><a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-use=
+rs_lists.ettus.com</a><br></div>
+            </div>
+        </div></body></html>
+------=_Part_5505228_195712853.1598386040264--
 
-------=_Part_5506609_2057431402.1598385600264
-Content-Type: application/octet-stream
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="probe output"
-Content-ID: <9c316038-042a-0dcf-a824-8e127888fb3b@yahoo.com>
-
-amF5QG52bWU6fiQgdWhkX3VzcnBfcHJvYmUKW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZl
-cnNpb24gNy41LjA7IEJvb3N0XzEwNjUwMTsgVUhEXzMuMTQuMS5IRUFELTAtZzAzNDdhNmQ4CltJ
-TkZPXSBbQjIwMF0gTG9hZGluZyBmaXJtd2FyZSBpbWFnZTogL3Vzci9sb2NhbC9zaGFyZS91aGQv
-aW1hZ2VzL3VzcnBfYjIwMF9mdy5oZXguLi4KW0lORk9dIFtCMjAwXSBEZXRlY3RlZCBEZXZpY2U6
-IEIyMTAKW0lORk9dIFtCMjAwXSBMb2FkaW5nIEZQR0EgaW1hZ2U6IC91c3IvbG9jYWwvc2hhcmUv
-dWhkL2ltYWdlcy91c3JwX2IyMTBfZnBnYS5iaW4uLi4KW0lORk9dIFtCMjAwXSBPcGVyYXRpbmcg
-b3ZlciBVU0IgMy4KW0lORk9dIFtCMjAwXSBEZXRlY3RpbmcgaW50ZXJuYWwgR1BTRE8uLi4uIApb
-SU5GT10gW0dQU10gTm8gR1BTRE8gZm91bmQKW0lORk9dIFtCMjAwXSBJbml0aWFsaXplIENPREVD
-IGNvbnRyb2wuLi4KW0lORk9dIFtCMjAwXSBJbml0aWFsaXplIFJhZGlvIGNvbnRyb2wuLi4KW0lO
-Rk9dIFtCMjAwXSBQZXJmb3JtaW5nIHJlZ2lzdGVyIGxvb3BiYWNrIHRlc3QuLi4gCltJTkZPXSBb
-QjIwMF0gUmVnaXN0ZXIgbG9vcGJhY2sgdGVzdCBwYXNzZWQKW0lORk9dIFtCMjAwXSBQZXJmb3Jt
-aW5nIHJlZ2lzdGVyIGxvb3BiYWNrIHRlc3QuLi4gCltJTkZPXSBbQjIwMF0gUmVnaXN0ZXIgbG9v
-cGJhY2sgdGVzdCBwYXNzZWQKW0lORk9dIFtCMjAwXSBTZXR0aW5nIG1hc3RlciBjbG9jayByYXRl
-IHNlbGVjdGlvbiB0byAnYXV0b21hdGljJy4KW0lORk9dIFtCMjAwXSBBc2tpbmcgZm9yIGNsb2Nr
-IHJhdGUgMTYuMDAwMDAwIE1Iei4uLiAKW0lORk9dIFtCMjAwXSBBY3R1YWxseSBnb3QgY2xvY2sg
-cmF0ZSAxNi4wMDAwMDAgTUh6LgogIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCiAvCnwgICAgICAgRGV2aWNlOiBCLVNlcmllcyBEZXZpY2UKfCAg
-ICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-fCAgICAvCnwgICB8ICAgICAgIE1ib2FyZDogQjIxMAp8ICAgfCAgIHNlcmlhbDogMzFDOTI5Qwp8
-ICAgfCAgIG5hbWU6IE15QjIxMAp8ICAgfCAgIHByb2R1Y3Q6IDIKfCAgIHwgICByZXZpc2lvbjog
-NAp8ICAgfCAgIEZXIFZlcnNpb246IDguMAp8ICAgfCAgIEZQR0EgVmVyc2lvbjogMTYuMAp8ICAg
-fCAgIAp8ICAgfCAgIFRpbWUgc291cmNlczogIG5vbmUsIGludGVybmFsLCBleHRlcm5hbCwgZ3Bz
-ZG8KfCAgIHwgICBDbG9jayBzb3VyY2VzOiBpbnRlcm5hbCwgZXh0ZXJuYWwsIGdwc2RvCnwgICB8
-ICAgU2Vuc29yczogcmVmX2xvY2tlZAp8ICAgfCAgICAgX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICAgLwp8ICAgfCAgIHwgICAgICAg
-UlggRFNQOiAwCnwgICB8ICAgfCAgIAp8ICAgfCAgIHwgICBGcmVxIHJhbmdlOiAtOC4wMDAgdG8g
-OC4wMDAgTUh6CnwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwp8ICAgfCAgICAvCnwgICB8ICAgfCAgICAgICBSWCBEU1A6IDEKfCAg
-IHwgICB8ICAgCnwgICB8ICAgfCAgIEZyZXEgcmFuZ2U6IC04LjAwMCB0byA4LjAwMCBNSHoKfCAg
-IHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCnwgICB8ICAgIC8KfCAgIHwgICB8ICAgICAgIFJYIERib2FyZDogQQp8ICAgfCAgIHwgICAg
-IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwg
-ICB8ICAgfCAgICAvCnwgICB8ICAgfCAgIHwgICAgICAgUlggRnJvbnRlbmQ6IEEKfCAgIHwgICB8
-ICAgfCAgIE5hbWU6IEZFLVJYMgp8ICAgfCAgIHwgICB8ICAgQW50ZW5uYXM6IFRYL1JYLCBSWDIK
-fCAgIHwgICB8ICAgfCAgIFNlbnNvcnM6IHRlbXAsIHJzc2ksIGxvX2xvY2tlZAp8ICAgfCAgIHwg
-ICB8ICAgRnJlcSByYW5nZTogNTAuMDAwIHRvIDYwMDAuMDAwIE1Iegp8ICAgfCAgIHwgICB8ICAg
-R2FpbiByYW5nZSBQR0E6IDAuMCB0byA3Ni4wIHN0ZXAgMS4wIGRCCnwgICB8ICAgfCAgIHwgICBC
-YW5kd2lkdGggcmFuZ2U6IDIwMDAwMC4wIHRvIDU2MDAwMDAwLjAgc3RlcCAwLjAgSHoKfCAgIHwg
-ICB8ICAgfCAgIENvbm5lY3Rpb24gVHlwZTogSVEKfCAgIHwgICB8ICAgfCAgIFVzZXMgTE8gb2Zm
-c2V0OiBObwp8ICAgfCAgIHwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCnwgICB8ICAgfCAgICAvCnwgICB8ICAgfCAgIHwgICAgICAgUlgg
-RnJvbnRlbmQ6IEIKfCAgIHwgICB8ICAgfCAgIE5hbWU6IEZFLVJYMQp8ICAgfCAgIHwgICB8ICAg
-QW50ZW5uYXM6IFRYL1JYLCBSWDIKfCAgIHwgICB8ICAgfCAgIFNlbnNvcnM6IHRlbXAsIHJzc2ks
-IGxvX2xvY2tlZAp8ICAgfCAgIHwgICB8ICAgRnJlcSByYW5nZTogNTAuMDAwIHRvIDYwMDAuMDAw
-IE1Iegp8ICAgfCAgIHwgICB8ICAgR2FpbiByYW5nZSBQR0E6IDAuMCB0byA3Ni4wIHN0ZXAgMS4w
-IGRCCnwgICB8ICAgfCAgIHwgICBCYW5kd2lkdGggcmFuZ2U6IDIwMDAwMC4wIHRvIDU2MDAwMDAw
-LjAgc3RlcCAwLjAgSHoKfCAgIHwgICB8ICAgfCAgIENvbm5lY3Rpb24gVHlwZTogSVEKfCAgIHwg
-ICB8ICAgfCAgIFVzZXMgTE8gb2Zmc2V0OiBObwp8ICAgfCAgIHwgICAgIF9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICB8ICAgfCAgICAvCnwg
-ICB8ICAgfCAgIHwgICAgICAgUlggQ29kZWM6IEEKfCAgIHwgICB8ICAgfCAgIE5hbWU6IEIyMTAg
-UlggZHVhbCBBREMKfCAgIHwgICB8ICAgfCAgIEdhaW4gRWxlbWVudHM6IE5vbmUKfCAgIHwgICAg
-IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwg
-ICB8ICAgIC8KfCAgIHwgICB8ICAgICAgIFRYIERTUDogMAp8ICAgfCAgIHwgICAKfCAgIHwgICB8
-ICAgRnJlcSByYW5nZTogLTguMDAwIHRvIDguMDAwIE1Iegp8ICAgfCAgICAgX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICAgLwp8ICAg
-fCAgIHwgICAgICAgVFggRFNQOiAxCnwgICB8ICAgfCAgIAp8ICAgfCAgIHwgICBGcmVxIHJhbmdl
-OiAtOC4wMDAgdG8gOC4wMDAgTUh6CnwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwp8ICAgfCAgICAvCnwgICB8ICAgfCAgICAgICBU
-WCBEYm9hcmQ6IEEKfCAgIHwgICB8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwp8ICAgfCAgIHwgICAgLwp8ICAgfCAgIHwgICB8ICAgICAg
-IFRYIEZyb250ZW5kOiBBCnwgICB8ICAgfCAgIHwgICBOYW1lOiBGRS1UWDIKfCAgIHwgICB8ICAg
-fCAgIEFudGVubmFzOiBUWC9SWAp8ICAgfCAgIHwgICB8ICAgU2Vuc29yczogdGVtcCwgbG9fbG9j
-a2VkCnwgICB8ICAgfCAgIHwgICBGcmVxIHJhbmdlOiA1MC4wMDAgdG8gNjAwMC4wMDAgTUh6Cnwg
-ICB8ICAgfCAgIHwgICBHYWluIHJhbmdlIFBHQTogMC4wIHRvIDg5Ljggc3RlcCAwLjIgZEIKfCAg
-IHwgICB8ICAgfCAgIEJhbmR3aWR0aCByYW5nZTogMjAwMDAwLjAgdG8gNTYwMDAwMDAuMCBzdGVw
-IDAuMCBIegp8ICAgfCAgIHwgICB8ICAgQ29ubmVjdGlvbiBUeXBlOiBJUQp8ICAgfCAgIHwgICB8
-ICAgVXNlcyBMTyBvZmZzZXQ6IE5vCnwgICB8ICAgfCAgICAgX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KfCAgIHwgICB8ICAgIC8KfCAgIHwgICB8
-ICAgfCAgICAgICBUWCBGcm9udGVuZDogQgp8ICAgfCAgIHwgICB8ICAgTmFtZTogRkUtVFgxCnwg
-ICB8ICAgfCAgIHwgICBBbnRlbm5hczogVFgvUlgKfCAgIHwgICB8ICAgfCAgIFNlbnNvcnM6IHRl
-bXAsIGxvX2xvY2tlZAp8ICAgfCAgIHwgICB8ICAgRnJlcSByYW5nZTogNTAuMDAwIHRvIDYwMDAu
-MDAwIE1Iegp8ICAgfCAgIHwgICB8ICAgR2FpbiByYW5nZSBQR0E6IDAuMCB0byA4OS44IHN0ZXAg
-MC4yIGRCCnwgICB8ICAgfCAgIHwgICBCYW5kd2lkdGggcmFuZ2U6IDIwMDAwMC4wIHRvIDU2MDAw
-MDAwLjAgc3RlcCAwLjAgSHoKfCAgIHwgICB8ICAgfCAgIENvbm5lY3Rpb24gVHlwZTogSVEKfCAg
-IHwgICB8ICAgfCAgIFVzZXMgTE8gb2Zmc2V0OiBObwp8ICAgfCAgIHwgICAgIF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnwgICB8ICAgfCAgICAv
-CnwgICB8ICAgfCAgIHwgICAgICAgVFggQ29kZWM6IEEKfCAgIHwgICB8ICAgfCAgIE5hbWU6IEIy
-MTAgVFggZHVhbCBEQUMKfCAgIHwgICB8ICAgfCAgIEdhaW4gRWxlbWVudHM6IE5vbmUKCg==
-
-------=_Part_5506609_2057431402.1598385600264
+------=_Part_5505229_313416514.1598386040331
 Content-Type: image/png
 Content-Transfer-Encoding: base64
 Content-Disposition: inline; filename="grc-File.png"
-Content-ID: <b89b4bc5-4986-c099-0e86-5f22b13ff6aa@yahoo.com>
+Content-ID: <OHrRZRqKVvrakMKW5EjJ>
 
 iVBORw0KGgoAAAANSUhEUgAAAnQAAAHGCAYAAAD9gxYsAAAABHNCSVQICAgIfAhkiAAAIABJREFU
 eJzs3XdYFEcfwPHvNRTFDhbsWBAEFbCLAvaGDXuJiYWo2EUsUVDsYu89Mfqq2HuJDUVRAXsXe9RY
@@ -1845,7 +1787,7 @@ TgghhLB2Euj+rtS1CfzHuwT+yWpUjn6MC/f7S5okhBBCiIcjbykJIYQQQlRyEuiEEEIIISo5CXRC
 CCGEEJWcBDohhBBCiErukW+KuPPzD0IIIYQQ4q8hM3RCCCGEEJXcI/thYSGEEEII8Z8hM3RCCCGE
 EJWcBDohhBBCiEpOAp0QQgghRCX3/5HAbD1FpcIVAAAAAElFTkSuQmCC
 
-------=_Part_5506609_2057431402.1598385600264
+------=_Part_5505229_313416514.1598386040331
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1856,5 +1798,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
-------=_Part_5506609_2057431402.1598385600264--
+------=_Part_5505229_313416514.1598386040331--
 
