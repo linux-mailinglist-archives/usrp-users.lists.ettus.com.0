@@ -2,80 +2,73 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 955CE2514F2
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Aug 2020 11:04:11 +0200 (CEST)
-Received: from [::1] (port=34288 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29EA2251875
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Aug 2020 14:21:37 +0200 (CEST)
+Received: from [::1] (port=36692 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kAUsD-0001Sf-Hm; Tue, 25 Aug 2020 05:04:09 -0400
-Received: from mail-oln040092254067.outbound.protection.outlook.com
- ([40.92.254.67]:37376 helo=APC01-PU1-obe.outbound.protection.outlook.com)
+	id 1kAXxE-0007Xl-Ai; Tue, 25 Aug 2020 08:21:32 -0400
+Received: from kda-chqmg-04.kongsberg.com ([193.71.180.8]:39458)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <snehasish.cse@LIVE.COM>)
- id 1kAUs9-0001L3-4H
- for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 05:04:05 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=goCZEl8U0gSHIByq2T9O4aCXA5IyOoDFPOkB289EIJZWtadaQjv02QtNHjbFFUIx3zEPVda7r9jiLOYJp0Lb53JtlW9KDZzOXQ8MJlw7HcMu4QskILtrN4nnRF9QJozMhR0xvit+g5EPeM8Gd+oQPqLcb8IYGYyCUYEiQYBAcKdV7W8jjv/D0gQyZwSQvN0vDqpkSqlt/+DsOZ9jt4DZpNKtXzsiNNd3hfyPAYRJ1J1IuqJA2fsmHWSXcqFj/DnF7xbcIbzMmwEM83r3dZOz1q0u+P3CwjX3q1vG+TfFltcWF/abdNWnHmlD1Ouc9cgQ3+vhGY4IQOuU7wM/n35lvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/yg5muv4Ahu/T/2NSsdmD5vCJ8ZxQspjLOI6wsvwH4Y=;
- b=gSF3j/cg6GJJeOjTVBFttiUmGPbxRggBxgGudocxPjdUbFHkTi45RnB8UJrp+Ecy7sMESv0B5Rre2F3REM+fxcDTf424AXZ5TVAQPFleemxaJFGGq9rEZMMmajwPdOstz1yQ9FhMhyhZPNFxrtSe3ZuyLyZfU7Brc5qYV8Fklnmi1vLg+PaO08Vqs2rRy93f+L0Ata76WexXm/CFH54LHIZfQU67i9Hft5xcCskA827VlnAiNZq4pga8XLofI1O+kmeVo6LktbapBMcQdnX38zKyH7bmfNYFkinRUkmHl71o/dz3sMRmZHFLl5/vDgLNbRzFUfRz4fmQdmlsjAj3WQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/yg5muv4Ahu/T/2NSsdmD5vCJ8ZxQspjLOI6wsvwH4Y=;
- b=a6tAHhj1sLRlH//3gZjnJUBji6IUHHsBkBs/yzxJ87J2eBg+BE5oQOk82d3qrxCl4M5j/fBlaCrTl5Okzunafb5UWh3ug2MsJJSncV+CbZhIg2ZxAxL/pI6Fj6YHz+Oqif6fiTLq1SvfISP2cQdUYbWfWHD7X9x3XMF1DCPbJ9FVsrUIiOwj6j2VKM7o0ew//KV7iOO3zwSEZN2iXHbyZJUIRfi7tjgrLRcjfXcwcc//XAby4qYfZ02X+nCleajCPflIMQeLcmEn9VJ1bY2FrUp3jL8wybbF6zTK4z9At8SpU18Os60mDoqPMc1sdMDcqI6lzm/HskyHgXYT6cxbyw==
-Received: from HK2APC01FT003.eop-APC01.prod.protection.outlook.com
- (2a01:111:e400:7ebc::48) by
- HK2APC01HT062.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebc::327)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.24; Tue, 25 Aug
- 2020 09:03:21 +0000
-Received: from BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM
- (2a01:111:e400:7ebc::50) by HK2APC01FT003.mail.protection.outlook.com
- (2a01:111:e400:7ebc::173) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3305.24 via Frontend
- Transport; Tue, 25 Aug 2020 09:03:21 +0000
-Received: from BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::41d9:9d26:e06d:33e]) by BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::41d9:9d26:e06d:33e%6]) with mapi id 15.20.3305.026; Tue, 25 Aug 2020
- 09:03:21 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Query regarding rfnoc
-Thread-Index: AQHWer4tWJy755xK3E6X5PGf6ygTkQ==
-Date: Tue, 25 Aug 2020 09:03:21 +0000
-Message-ID: <BM1PR0101MB1491979F3271BB642990E69188570@BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM>
+ (Exim 4.93) (envelope-from <Andreas.Bertheussen@kongsberg.com>)
+ id 1kAXxA-0007SS-4k
+ for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 08:21:28 -0400
+Received: from pps.filterd (kda-chqmg-04.kongsberg.com [127.0.0.1])
+ by kda-chqmg-04.kongsberg.com (8.16.0.42/8.16.0.42) with SMTP id
+ 07PCKjt8002407; Tue, 25 Aug 2020 14:20:45 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kongsberg.com;
+ h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=KDA1;
+ bh=79/dq5zxi9/IgwHfmiuSi8kLoprg4FG694NcVc1o15w=;
+ b=Q3XLgh9iTOwPQIjwgZ2aLApF9M07yTvpqlQUR+ZBZgtZdwIiedDS11UjZtXnYZKt/hu+
+ kvdYnSkU+03K+fJtPQcxvTA7j7cB9aP8yFIkoHK/o92iVcXbYZ5nbqy8x/oPrSetys5h
+ +SBfeQUGRIGQynhrH/eMrSNZ53ofq573EACYdK2ShJ2AujCrOLM2SOwipRWRPtw2P0PS
+ IQnOS/LWqovHdR7oICNZB4rTX/7wjo+Nz7GbdANAZ7G/qtcaBknsdtpWgLCBzFIh85IY
+ ToS21hb+8ubLqxjuzy59O+7SHDx/JqETv2nAUp7pMWoRqxNWT2N2LV9EAiSCzJ1/buQw VA== 
+Received: from ukgw-exck2-p01.kda.kongsberg.com ([10.50.100.41])
+ by kda-chqmg-04.kongsberg.com with ESMTP id 332se58gqw-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=NOT);
+ Tue, 25 Aug 2020 14:20:45 +0200
+Received: from Ukgw-ExcK2-p01.kda.kongsberg.com (10.50.100.41) by
+ Ukgw-ExcK2-p01.kda.kongsberg.com (10.50.100.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2044.4; Tue, 25 Aug 2020 14:20:45 +0200
+Received: from Ukgw-ExcK2-p01.kda.kongsberg.com ([fe80::3098:b04:69aa:1c60])
+ by Ukgw-ExcK2-p01.kda.kongsberg.com ([fe80::3098:b04:69aa:1c60%21]) with mapi
+ id 15.01.2044.004; Tue, 25 Aug 2020 14:20:45 +0200
+To: <rkossler@nd.edu>
+CC: <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Issues with multi-usrp and UHD
+Thread-Index: AdZ21mx1YVSRD/KTRva7GPuE0XgSxAADYcaAAAbWWUD///NHAP/+uPLQgALhvAD//8kPAIAFB+qAgAAOegD//rrsIA==
+Date: Tue, 25 Aug 2020 12:20:45 +0000
+Message-ID: <7f7405916dd74d6893d0ce89e7703a92@kongsberg.com>
+References: <7d8c7731d23c412490a27750fac617a9@kongsberg.com>
+ <CAB__hTR_n5zEHbSNSADeV+euNu5m-Chb7agX5D+RhZo5LOK00Q@mail.gmail.com>
+ <a836f011bfdb46fb9403baafa0060800@kongsberg.com>
+ <CAB__hTRbkX2HVfC5zVK7p17W9Q1keFoGMO7K9xC3GfaLVUjWFg@mail.gmail.com>
+ <6ced606fafac42f28485978c0a087227@kongsberg.com>
+ <CAB__hTQ4yy8Mrbgn4tn1hJj8GmeY4W5hi1sMSbuMhp3cAFELfg@mail.gmail.com>
+ <1b04cfb3f883498198f57a793d8c55e7@kongsberg.com>
+ <CAB__hTTVvDbo-A5oS3i85y=BdjYVD=Dj9DEHNLk-myhLedxJkg@mail.gmail.com>
+ <CAB__hTREsrpeC7tqqTMUkAGbfqePU48maQsSRiCSCRyAqkOVRQ@mail.gmail.com>
+In-Reply-To: <CAB__hTREsrpeC7tqqTMUkAGbfqePU48maQsSRiCSCRyAqkOVRQ@mail.gmail.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:11070F045214AEA26C4F688C7F254A3313B55138DF39AA0F42E58DBA7C87E25D;
- UpperCasedChecksum:9E2E3C24CF491BEC83487635CA35B740B0F834C7934822F04992BD0294324624;
- SizeAsReceived:6609; Count:41
-x-tmn: [YZ0WR01kEdUwtj8sqKI910q4VgRyUzX+]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 41
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: e384f829-52d0-4bda-b600-08d848d5b764
-x-ms-traffictypediagnostic: HK2APC01HT062:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: MZ/ANLNIbMxt84wcHCpngwwOribw/Hgy79BUHhCNPYR2wbfI54l/4YPTXkfcPft4bcM7yOv2q5/QzbQIUb+A7wu98v6zadaJlKwYTKNXfuQDAgtWhvaQw1Rcdj4cvkbRnunYkWx8PTmW0qguj0IEm42J72VJDle7Wy/xzLofrbJrzRtKaKRa3xq7g1qitIVAYjfyLgI2YmPT4snLTCi8vw==
-x-ms-exchange-antispam-messagedata: oF/c3L9v/dMYWTev7Xec77xoHvz2z1bBKCpzU7gmC90QJ2r++FldT3fZLmi4xkzAw86ZrdcB0iRKeHaF1woaTdk66RxQSIraEXYVaqr7r6VphBD4MnomIfbKB4qb7fUVnAkTzGoSzcQrEFlrFgoJyw==
-x-ms-exchange-transport-forked: True
+x-originating-ip: [10.73.0.10]
 MIME-Version: 1.0
-X-OriginatorOrg: live.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: HK2APC01FT003.eop-APC01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: e384f829-52d0-4bda-b600-08d848d5b764
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Aug 2020 09:03:21.4480 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2APC01HT062
-Subject: [USRP-users] Query regarding rfnoc
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
+ definitions=2020-08-25_03:2020-08-25,
+ 2020-08-25 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ mlxscore=0 bulkscore=0
+ lowpriorityscore=0 spamscore=0 priorityscore=1501 adultscore=0
+ phishscore=0 clxscore=1015 impostorscore=0 malwarescore=0 mlxlogscore=882
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2008250094
+Subject: Re: [USRP-users] Issues with multi-usrp and UHD
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -87,9 +80,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Snehasish Kar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Snehasish Kar <snehasish.cse@LIVE.COM>
-Content-Type: multipart/mixed; boundary="===============3053055043943310216=="
+From: Andreas B via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Andreas.Bertheussen@kongsberg.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -103,82 +97,27 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3053055043943310216==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BM1PR0101MB1491979F3271BB642990E69188570BM1PR0101MB1491_"
-
---_000_BM1PR0101MB1491979F3271BB642990E69188570BM1PR0101MB1491_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Hello
-
-We are trying to implement some filters in rfnoc, we wanted to use fixed po=
-int numbers. As per my knowledge, I and Q are I16 bits individually and IQ =
-combined I32 bits. We wanted to convert them into fixed point numbers. But =
-I am concerned about the host UHD driver's interpretation of the data. Do w=
-e need to keep a stage at the last where we are converting from fixed point=
- back to integer I32?
-
-Regards
-Snehasish
-
-
-
---_000_BM1PR0101MB1491979F3271BB642990E69188570BM1PR0101MB1491_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Hello</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<div>We are trying to implement some filters in rfnoc, we wanted to use fix=
-ed point numbers. As per my knowledge, I and Q are I16 bits individually an=
-d IQ combined I32 bits. We wanted to convert them into fixed point&nbsp;num=
-bers. But I am concerned about the host
- UHD driver's interpretation&nbsp;of the data. Do we need to keep a stage a=
-t the last where we are converting from fixed point back to integer I32?</d=
-iv>
-<div><br>
-</div>
-<div>Regards</div>
-<div>Snehasish<br>
-</div>
-<div><br>
-</div>
-<br>
-</div>
-</body>
-</html>
-
---_000_BM1PR0101MB1491979F3271BB642990E69188570BM1PR0101MB1491_--
-
-
---===============3053055043943310216==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3053055043943310216==--
-
+Um9iDQoNCkkgcmFuIGJlbmNobWFya19yYXRlIC0tYXJncz09ImFkZHIwPTE5Mi4xNjguMTAuMixh
+ZGRyMT0xOTIuMTY4LjExMC4yIiAtLXR4X3JhdGUgNWU2IC0tdHhfY2hhbm5lbHM9IjAsMiINCkFu
+ZCBJIG9ic2VydmVkIHRoZSBzYW1lIGlzc3VlIEkgZGVzY3JpYmVkIGVhcmxpZXIg4oCTIG1vc3Rs
+eSB0aGF0IGV0aGVyIGNoYW5uZWxzIDAsMSAgIG9yIGNoYW5uZWxzICAyLDMsIG9yIHZlcnkgcmFy
+ZWx5IGNoYW5uZWxzIDAsMiBnZXQgZW5hYmxlZC4NCldoZW4gSSBhZGQg4oCcc2tpcF9kcmFtPTHi
+gJ0gdG8gYXJncywgdGhlIGNoYW5uZWwgbWFwcGluZyBpcyBjb3JyZWN0ISBJdCBpcyBwcm9uZSB0
+byB1bmRlcnJ1bnMgYnV0IG5vdyBJIGNhbiBwcm9jZWVkIGEgYml0IGZ1cnRoZXIgd2l0aCBteSBV
+SEQgc29mdHdhcmUuDQoNCkhvdyBkaWQgeW91IG1ha2UgdGhlIHRyYWNlIGxvZz8gQW5kIGRpZCB5
+b3UgZG8gaXQgdG8gbXkgcHJvZ3JhbSBvciB0byB0aGUgYmVuY2htYXJrX3JhdGUgcHJvZ3JhbT8N
+Cg0KSXQgaXMgZGVmaW5pdGVseSBhIHNldmVyZSBpc3N1ZSBJIHdvdWxkIGV4cGVjdCB0byBiZSBm
+aXhlZCwgc28gSSB3aWxsIHJlcG9ydCBpdC4gSXMgY3JlYXRpbmcgYSBHaXRodWIgaXNzdWUgdGhl
+IHByb3BlciBhdmVudWU/DQoNCk1hbnkgdGhhbmtzIGZvciBoZWxwaW5nIHRyYWNrIHRoaXMgZG93
+biwgUm9iIQ0KDQpSZWdhcmRzLA0KQW5kcmVhcy4NCg0KDQpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXw0KDQpDT05GSURFTlRJQUxJVFkNClRoaXMgZS1tYWlsIGFuZCBhbnkgYXR0YWNo
+bWVudCBjb250YWluIEtPTkdTQkVSRyBpbmZvcm1hdGlvbiB3aGljaCBtYXkgYmUgcHJvcHJpZXRh
+cnksIGNvbmZpZGVudGlhbCBvciBzdWJqZWN0IHRvIGV4cG9ydCByZWd1bGF0aW9ucywgYW5kIGlz
+IG9ubHkgbWVhbnQgZm9yIHRoZSBpbnRlbmRlZCByZWNpcGllbnQocykuIEFueSBkaXNjbG9zdXJl
+LCBjb3B5aW5nLCBkaXN0cmlidXRpb24gb3IgdXNlIGlzIHByb2hpYml0ZWQsIGlmIG5vdCBvdGhl
+cndpc2UgZXhwbGljaXRseSBhZ3JlZWQgd2l0aCBLT05HU0JFUkcuIElmIHJlY2VpdmVkIGluIGVy
+cm9yLCBwbGVhc2UgZGVsZXRlIGl0IGltbWVkaWF0ZWx5IGZyb20geW91ciBzeXN0ZW0gYW5kIG5v
+dGlmeSB0aGUgc2VuZGVyIHByb3Blcmx5Lg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAt
+dXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
