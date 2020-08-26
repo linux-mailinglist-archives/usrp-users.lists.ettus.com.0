@@ -2,55 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FF6D2524FE
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Aug 2020 03:17:08 +0200 (CEST)
-Received: from [::1] (port=42998 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 378E3252611
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Aug 2020 06:17:27 +0200 (CEST)
+Received: from [::1] (port=44272 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kAk3m-00088L-G6; Tue, 25 Aug 2020 21:17:06 -0400
-Received: from mail-qk1-f169.google.com ([209.85.222.169]:42705)
+	id 1kAmsF-0006B2-Gs; Wed, 26 Aug 2020 00:17:23 -0400
+Received: from mail-qk1-f169.google.com ([209.85.222.169]:41264)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <qiu.guowang007@gmail.com>)
- id 1kAk3i-00082C-1Q
- for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 21:17:02 -0400
-Received: by mail-qk1-f169.google.com with SMTP id u3so480723qkd.9
- for <usrp-users@lists.ettus.com>; Tue, 25 Aug 2020 18:16:41 -0700 (PDT)
+ (Exim 4.93) (envelope-from <carsenat@gmail.com>) id 1kAmsC-00065e-7K
+ for usrp-users@lists.ettus.com; Wed, 26 Aug 2020 00:17:20 -0400
+Received: by mail-qk1-f169.google.com with SMTP id o196so256566qke.8
+ for <usrp-users@lists.ettus.com>; Tue, 25 Aug 2020 21:16:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=GjipsCHmWZVK4uGdDTakjPSSByGPadMDR3Pr94wZBfY=;
- b=ei7YU2LT5Vp6BbEJG3vKZTcM6EXaUQKPGb7g+ZNQEj9GWfG/k2UED/8dXgukXAgzi4
- IHATtAeNKFBtaRqBPpMxfNFnoPpaGflIRXjUCcz2K9+4FZpYZxw73LpnXoN1nipdQOeM
- iWH0iTwyhjtWVYCbF/+vudXZ9T0odIi/ZIyg8Sq7MUVcLTD9yW1NPJ1EGbQVqOij6nP+
- DuoCcWl7usLgjF2ndVfkz2ntZQy+31d5ZzR0fHI635rZPOQ6r/5qP/ZFEigxvRraGSAN
- VgPQJFVoHPiWvScKltzO7aavEufkvpczUwWsg92c2Ads249ulz8y9mtLvM45S+NNvAbO
- CGlQ==
+ :cc; bh=D7I16n6lgH6TDNQtIsTr8NuDCsF3AS5e001ua2dOAYI=;
+ b=UW254puZ/PR1lYxOoafKh7WrTuTT0fQsZWPOErx0wJklM3J4jK8NEqClLxcLXhKsws
+ OaTxXAgqbWiKjGfBtRu1uzT85RIAqnK/Or36MtoRwd3e12IiA0Qk9DbNyAL7TyyiaD7w
+ 2waLJUdC+TTx9GlUzCBIv2W58WfTlFjhieeX65JsY06ZYkDHnhOo0pqMAYxKdRRq/BhS
+ YefpEWX117I95pew7whMSEV27ptsHBqTmu9ySX/A6TV7YVgEJ/OzUW+2p7IfUiIrGwfW
+ cGbhPoKr+CKM1poNExzdNfMXUaXvtS3wuMn8IiNLMkudK8MudiS4fabIdT8ykmsqxjBM
+ R/hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=GjipsCHmWZVK4uGdDTakjPSSByGPadMDR3Pr94wZBfY=;
- b=PS4EVQnAjyFco0HUqvBxKRWGg/4ttiwuxwIdtqzaawCv2FtXE2k57ZruZ+DBKIKRdO
- jdU45JoJXF7SIT29uZimVq8AvgIjTcxOo1l47xMX1o4d5BCEuvg/JOH7Wr/+AKoBWi3T
- Zn9uz5wXjxdeyQkoERnipk4+1Pw8+mNd+upfX05Mc+ES9Ze0AEnwAlbUOrZGNVEesAiq
- eLXnCL5WU5tI8YIptuOSIRKrJ4g4DjgPXNLqCqyNKYoGPwTHmETMiRQs3z9AoGLa1ogP
- tSDnJbgFSoskrswrwzOlZK/80aglDLTjOVrB6wx0+nzZ5/Zp+c7BYkwfxKhB97RFBWRP
- iU/A==
-X-Gm-Message-State: AOAM5335xLOkeTsU6vaV3kSZG2zTh5FT4cVAG0g2i46duYM8R6J86aJ7
- lak8HfBeGKUzINJIn08rM4BR4M2Tmy+qjMwPXxc=
-X-Google-Smtp-Source: ABdhPJynkgvBUHRoVkiU59c6nHOl+AGpg5NVAAEg8ytYRNN230ZX8t00zjOizEZj00Mz/N0caw0Ngv42mVJjzo+Y5z4=
-X-Received: by 2002:a37:4e4d:: with SMTP id c74mr11813110qkb.311.1598404581001; 
- Tue, 25 Aug 2020 18:16:21 -0700 (PDT)
+ bh=D7I16n6lgH6TDNQtIsTr8NuDCsF3AS5e001ua2dOAYI=;
+ b=HZhgppPNOQZgfxFFKKz9s6RiL6rt+XSSFiyrqmnhYZUwhfV2P/BRy6Y48nVGERhq76
+ uA7JMelc7shGiAf7skJrJleC9955NUeHmPvl6BrwknsqHVRCVkx/r1GRcsDVE9WIXIh4
+ G6uJ2E20WkARBBa4MFZQ+Zy1F90p85HiQ7M++0/luLdDc3LL5EEyESitD7cMcP+TX/yx
+ YRPBQhC5BLzClVQrXB5bpOLaRSwMueG8PGhNZpZXaVCYNC5Q/p4T4aCvgm7kkyszMTGY
+ yAU3Y9EVdZvwSom3gsti8gUezYZil1xfhi4Y14v9h3y31YzGdyIXfbzwovjpe6oR9ves
+ LIBg==
+X-Gm-Message-State: AOAM533jEXyOkB2YpLOiB8CoJhhBYI9VUDWSwAxCg/MhZNodud2mEqTV
+ o5f/+EeA+1pcubzojQxhydFk8KmtShewD66gTxJjuhJIHkw=
+X-Google-Smtp-Source: ABdhPJzPjPnK+ZDG0WGLxkA/Erho/59gcGKHZccXJ9wo5zhC5JucNFkHGWe5rs/ClTu38fTkcxzbV/+Ri8j6vIO3TCw=
+X-Received: by 2002:a37:3d4:: with SMTP id 203mr1855395qkd.497.1598415399562; 
+ Tue, 25 Aug 2020 21:16:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <CACjmV_=fW9LdJPb0TtAgP_QH19cSDD13BgRkvDzOd1JohUJ8TQ@mail.gmail.com>
- <CACjmV_kMaOvLJuaYv8rj0o1QcMjW2+9w1x9BK6BxHjufM348WA@mail.gmail.com>
- <CAB__hTTxVNg4WU8x3Pec2Q1M9HwWGj+_xHCaFFJMmrWSTnO0Dw@mail.gmail.com>
- <CACjmV_=WHoqSYzjMW4aBBvmFFkJNVAwobAWbw6vzuvty_b8QyQ@mail.gmail.com>
- <CAB__hTRjGBQDXxmeTigO3nZnu+5P5Y=q4GdYnOX1mHw3rW233g@mail.gmail.com>
-In-Reply-To: <CAB__hTRjGBQDXxmeTigO3nZnu+5P5Y=q4GdYnOX1mHw3rW233g@mail.gmail.com>
-Date: Wed, 26 Aug 2020 09:16:09 +0800
-Message-ID: <CACjmV_k=oSsZYiG7KqiQ8YNjETshEpySDBSrgMSr1DOXAJVXMQ@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Subject: Re: [USRP-users] issue about subdev spec
+References: <CA+w2ZysdtLyTCsbY4GaLKGqJ1vGUnV=r8_A5Kzv2LVa8pXfWWA@mail.gmail.com>
+ <79405f9e-125a-8947-5530-eca1e909e5b6@elitecoding.org>
+In-Reply-To: <79405f9e-125a-8947-5530-eca1e909e5b6@elitecoding.org>
+Date: Wed, 26 Aug 2020 06:16:28 +0200
+Message-ID: <CA+w2Zyshn2yyJw9b0nhP_xAGSr75RGkJm0C8BvajtaFLG8kLxw@mail.gmail.com>
+To: Julian Arnold <julian@elitecoding.org>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] List of filters and where they are located
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -62,11 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Damon qiu via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Damon qiu <qiu.guowang007@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>,
- Damon Qiu <qiu.guowang007@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6867785675807793560=="
+From: David Carsenat via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: David Carsenat <carsenat@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6823930565537307696=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,270 +75,131 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6867785675807793560==
-Content-Type: multipart/alternative; boundary="000000000000420c4d05adbd9120"
+--===============6823930565537307696==
+Content-Type: multipart/alternative; boundary="0000000000001832d805adc016a8"
 
---000000000000420c4d05adbd9120
+--0000000000001832d805adc016a8
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Rob,
+Ok thanks a lotJulian, this is very helpful.
+Does your example allow to list FPGA filters also ?
 
-Yes, it is not possible to transmit 2 channels @ 200 MS/s with a single
-X310 using cpu-to-host streaming, because the dma_fifo could not keep up
-with this sampling rate on 2 channels.
-In my application, it is transmitting a section of baseband data
-repeatedly, and each channel has different data. Update the baseband data
-to be transmitted in real time when necessary. For rfnoc, the biggest
-problem is that I am not familiar with FPGA programming, and the existing
-rfnoc module can not meet my needs.
-Now I have found a temporary solution: for the frequency and gain settings,
-the channel mapping is correct, and the channels are set to {0,2}; for
-streaming, the channels are set to {0,1}. In this way, either the RFB side
-of the two USRP x310 or the RFA side is selected, so I can run several more
-times until the signal is transmitted on the correct channels.
+Le mar. 25 ao=C3=BBt 2020 =C3=A0 21:57, Julian Arnold <julian@elitecoding.o=
+rg> a
+=C3=A9crit :
 
-Best regards,
-Damon
-
-
-On Wed, 26 Aug 2020 at 01:13, Rob Kossler <rkossler@nd.edu> wrote:
-
-> Hi Damon,
-> Transmitting at 200 MS/s is very challenging. I'm assuming that you are
-> using two X310s with only 1 channel active on each X310 because it is not
-> possible to transmit 2 channels @ 200 MS/s with a single X310 using
-> cpu-to-host streaming. Is this correct?
+> David,
 >
-> Is it possible for your transmission to be implemented in the FPGA using
-> either a fixed length arbitrary waveform (such as with the Replay block) or
-> with a on-the-fly calculated waveform (such as with SigGen block or perhaps
-> your own custom block)? Or does your transmission require continuously
-> updated calculations on the CPU?
-> Rob
+> take a look at the ad9361 user guide [1]. It has all the information you
+> are looking for.
 >
-> On Tue, Aug 25, 2020 at 12:36 PM Damon qiu <qiu.guowang007@gmail.com>
-> wrote:
+> If you want to know which filters you can configure and how, take a look
+> at [2]. It's a simple example I wrote quite a while back but it should
+> still be good to get you started.
 >
->> Hi Rob,
->>
->> Thank you very much for your reply.I just read through your discussion
->> with Andreas about this issue.  However, your temporary solution is not
->> suitable for my case. I need to transmit signals in two channels with
->> 200Msps sample rate for each channel. I can only wait for the Ettus
->> engineers to fix this bug. It's not sure whether Ettus engineers are
->> already investigating the bug, as there are no official replies to two
->> threads about this bug.
->>
->> Best regards,
->> Damon
->>
->> On Tue, 25 Aug 2020 at 03:35, Rob Kossler <rkossler@nd.edu> wrote:
->>
->>> Hi Damon,
->>> See my other post today regarding "skip_dram=1".  I believe there is a
->>> bug.  But, if you can skip the Dma FIFO (if your sample rate is low
->>> enough), you can get around the bug.
->>> Rob
->>>
->>> On Mon, Aug 24, 2020 at 3:31 PM Damon qiu via USRP-users <
->>> usrp-users@lists.ettus.com> wrote:
->>>
->>>> Hi all,
->>>>
->>>> After repeated tests, we feel that two of the four channels of two
->>>> devices will be randomly selected, and the probability of choosing the
->>>> correct channel is very low. It must be a bug.
->>>>
->>>> Hi Macus,
->>>>
->>>> > try:
->>>> >
->>>> > stream_args.channels.push_back(0);
->>>> > stream_args.channels.push_back(1):
->>>> >
->>>> > Instead of your:
->>>> >
->>>> > stream_args.channels = {0,1};
->>>>
->>>> > I think these should be equivalent, but my C++ fluency is low...
->>>>
->>>> Thank you for your reply, but your suggestion didn't work. Please don't
->>>> forget to cc it to me next time.
->>>>
->>>> Best regards,
->>>> Damon
->>>>
->>>>
->>>>
->>>> On Fri, 7 Aug 2020 at 01:32, Damon qiu <qiu.guowang007@gmail.com>
->>>> wrote:
->>>>
->>>>> Hi all,
->>>>>
->>>>> I am using two USRP X310s to transmit signals on 2 channels. The two
->>>>> USRP are synchronized through a octoclock-g.
->>>>>
->>>>> A multi_usrp object is used to control those two USRP, device address
->>>>> is set to addr0=192.168.40.2,addr1=192.168.60.2. I want to set two USRP
->>>>> transmitting signal at RFA at the same time. I tried two ways to set up the
->>>>> tx channel and subdev spec:
->>>>>
->>>>> Method 1: The TX frontend specification is set to A:0 for both two
->>>>> mboard.
->>>>> d_dev->set_tx_subdev_spec("A:0");
->>>>> or
->>>>> d_dev->set_tx_subdev_spec("A:0", 0);
->>>>> d_dev->set_tx_subdev_spec("A:0", 1);
->>>>>
->>>>> uhd::stream_args_t stream_args(tx_cpu, tx_otw);
->>>>> stream_args.channels = {0, 1};
->>>>> uhd::tx_streamer::sptr tx_stream = d_dev->get_tx_stream(stream_args);
->>>>>
->>>>> Method 2: The TX frontend specification is set to "A:0 B:0"for both
->>>>> two mboard.
->>>>> d_dev->set_tx_subdev_spec("A:0 B:0");
->>>>> or
->>>>> d_dev->set_tx_subdev_spec("A:0 B:0", 0);
->>>>> d_dev->set_tx_subdev_spec("A:0 B:0", 1);
->>>>>
->>>>> uhd::stream_args_t stream_args(tx_cpu, tx_otw);
->>>>> stream_args.channels = {0, 2};
->>>>> uhd::tx_streamer::sptr tx_stream = d_dev->get_tx_stream(stream_args);
->>>>>
->>>>> In the above two methods, there is a certain probability (about 10% to
->>>>> 30%) that the two transmission channels are on the same motherboard. I
->>>>> guess this is a bug of UHD.
->>>>>
->>>>> OS: Ubuntu 18.04
->>>>> UHD: UHD-3.15.LTS
->>>>>
->>>>> Please CC me as I can only receive the daily digest of the mailing
->>>>> list.
->>>>>
->>>>> Best regards,
->>>>> Damon
->>>>>
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>>
+> Hope that helps!
+>
+> Cheers,
+> Julian
+>
+> [1]
+>
+> https://form.analog.com/Form_Pages/Catalina/CatalinaDesign.aspx?prodid=3D=
+AD9361
+> [2] https://github.com/jarn0ld/uhd-filter-tool
+>
+> On 8/25/20 9:09 PM, David Carsenat via USRP-users wrote:
+> > Hi, I am using a B205 and I'd just like to know what are the
+> > difference filter stages (analog and digital) seen by the signal (both
+> > Tx and Rx), in the AD936x and in the FPGA.
+> > Another way to help me, should be to have a description of the filter
+> > that I can address with the filter.hpp functions : Can I address and
+> > change filters behaviours that are part only on FPGA or also the AD9361
+> > filters ?
+> >
+> > Many thanks
+> >
+> > David
+> >
+> >
+> >
+> >
+> > _______________________________________________
+> > USRP-users mailing list
+> > USRP-users@lists.ettus.com
+> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> >
+>
 
---000000000000420c4d05adbd9120
+--0000000000001832d805adc016a8
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Rob,<div><br></div><div>Yes, it is not=
- possible to transmit 2 channels=C2=A0@ 200 MS/s with a single X310 using c=
-pu-to-host streaming, because the dma_fifo could not keep up with this samp=
-ling rate on 2 channels.</div><div>In my application, it is transmitting a =
-section of baseband data repeatedly, and each channel has different data. U=
-pdate the baseband data to be transmitted in real time when necessary. For =
-rfnoc, the biggest problem is that I am not familiar with FPGA programming,=
- and the existing rfnoc module can not meet my needs.<br></div><div>Now I h=
-ave found a temporary solution: for the frequency and gain settings, the ch=
-annel mapping is correct, and the channels are set to {0,2}; for streaming,=
- the channels are set to {0,1}. In this way, either the RFB side of the two=
- USRP x310 or the RFA side is selected, so I can run several more times unt=
-il the signal is transmitted on the correct channels.<br><br></div>Best reg=
-ards,<div>Damon</div></div><div class=3D"gmail-yj6qo gmail-ajU" style=3D"ou=
-tline:none;padding:10px 0px;width:22px;margin:2px 0px 0px"><br class=3D"gma=
-il-Apple-interchange-newline"></div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Wed, 26 Aug 2020 at 01:13, Rob Kossl=
-er &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><=
-div dir=3D"ltr">Hi Damon,<div>Transmitting at 200 MS/s is very challenging.=
- I&#39;m assuming that you are using two X310s with only 1 channel active o=
-n each X310 because it is not possible to transmit 2 channels=C2=A0@ 200 MS=
-/s with a single X310 using cpu-to-host streaming. Is this correct?</div><d=
-iv><br></div><div>Is it possible for your transmission to be implemented in=
- the FPGA using either a fixed length arbitrary waveform (such as with the =
-Replay block) or with a on-the-fly calculated waveform (such as with SigGen=
- block or perhaps your own custom block)? Or does your transmission require=
- continuously updated calculations on the CPU?</div><div>Rob</div></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, A=
-ug 25, 2020 at 12:36 PM Damon qiu &lt;<a href=3D"mailto:qiu.guowang007@gmai=
-l.com" target=3D"_blank">qiu.guowang007@gmail.com</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=
-=3D"ltr">Hi Rob,<div><br></div><div>Thank you very much for your reply.I ju=
-st read through=C2=A0your discussion with Andreas about this issue.=C2=A0 H=
-owever, your temporary solution is not suitable for my case. I need to tran=
-smit signals in two channels with 200Msps=C2=A0sample rate for each channel=
-. I can only wait for the Ettus engineers to fix this bug. It&#39;s not sur=
-e whether Ettus engineers are already investigating the bug, as there are n=
-o official replies to two threads about this bug.</div><br><div>Best regard=
-s,</div><div>Damon</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Tue, 25 Aug 2020 at 03:35, Rob Kossler &lt;<a hr=
-ef=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wro=
-te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
-ltr"><div dir=3D"ltr">Hi Damon,<div>See my other post today regarding &quot=
-;skip_dram=3D1&quot;.=C2=A0 I believe there is a bug.=C2=A0 But, if you can=
- skip the Dma FIFO (if your sample rate is low enough), you can get around =
-the bug.</div><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Mon, Aug 24, 2020 at 3:31 PM Damon qiu via=
- USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bl=
-ank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi all,<=
-br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr">After repeated tests, =
-we feel that two of the four channels of two devices will be randomly selec=
-ted, and the probability of choosing the correct channel is very low. It mu=
-st be a bug.=C2=A0</div><div dir=3D"ltr"><br></div><div>Hi Macus,</div><div=
-><br></div><div>&gt; try:<br>&gt;=C2=A0<br>&gt; stream_args.channels.push_b=
-ack(0);<br>&gt; stream_args.channels.push_back(1):<br>&gt;=C2=A0<br>&gt; In=
-stead of your:<br>&gt;=C2=A0<br>&gt; stream_args.channels =3D {0,1};<br><br=
->&gt; I think these should be equivalent, but my C++ fluency is low...<br><=
-/div><div><br></div><div>Thank you for your reply, but your suggestion didn=
-&#39;t work. Please don&#39;t forget to cc it to me next time.</div><div><b=
-r></div><div>Best regards,</div><div>Damon</div><div dir=3D"ltr"><br></div>=
-<div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
-class=3D"gmail_attr">On Fri, 7 Aug 2020 at 01:32, Damon qiu &lt;<a href=3D"=
-mailto:qiu.guowang007@gmail.com" target=3D"_blank">qiu.guowang007@gmail.com=
-</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-<div dir=3D"ltr">Hi all,<br><br>I am using two USRP X310s=C2=A0to transmit =
-signals on 2 channels. The two USRP are synchronized through a octoclock-g.=
-<br><br>A multi_usrp object is used to control those two USRP, device addre=
-ss is set to addr0=3D192.168.40.2,addr1=3D192.168.60.2. I want to set two U=
-SRP transmitting=C2=A0signal at RFA at the same time. I tried two ways to s=
-et up the tx channel and subdev spec:<br><br>Method 1: The TX frontend spec=
-ification is set to A:0 for both two mboard.<br>d_dev-&gt;set_tx_subdev_spe=
-c(&quot;A:0&quot;);<br>or<br>d_dev-&gt;set_tx_subdev_spec(&quot;A:0&quot;, =
-0);<br>d_dev-&gt;set_tx_subdev_spec(&quot;A:0&quot;, 1);<br><br>uhd::stream=
-_args_t stream_args(tx_cpu, tx_otw);<br>stream_args.channels =3D {0, 1};<br=
->uhd::tx_streamer::sptr tx_stream =3D d_dev-&gt;get_tx_stream(stream_args);=
-<br><br>Method 2: The TX frontend specification is set to &quot;A:0 B:0&quo=
-t;for both two mboard.<br>d_dev-&gt;set_tx_subdev_spec(&quot;A:0 B:0&quot;)=
-;<br>or<br>d_dev-&gt;set_tx_subdev_spec(&quot;A:0 B:0&quot;, 0);<br>d_dev-&=
-gt;set_tx_subdev_spec(&quot;A:0 B:0&quot;, 1);<br><br>uhd::stream_args_t st=
-ream_args(tx_cpu, tx_otw);<br>stream_args.channels =3D {0, 2};<br>uhd::tx_s=
-treamer::sptr tx_stream =3D d_dev-&gt;get_tx_stream(stream_args);<br><br>In=
- the above two methods, there is a certain probability (about 10% to 30%) t=
-hat the two transmission channels are on the same motherboard. I guess this=
- is a bug of UHD.<br><br>OS: Ubuntu 18.04<br>UHD: UHD-3.15.LTS<br><br>Pleas=
-e CC me as I can only receive the daily digest of the mailing list.<br><br>=
-Best regards,<br>Damon<br></div>
-</blockquote></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-</blockquote></div></div>
-</blockquote></div></div>
+<div dir=3D"ltr">Ok thanks a lotJulian, this is very helpful.<div>Does your=
+ example allow to list FPGA filters also ?</div></div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0mar. 25 ao=C3=BBt 2=
+020 =C3=A0=C2=A021:57, Julian Arnold &lt;<a href=3D"mailto:julian@elitecodi=
+ng.org">julian@elitecoding.org</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex">David,<br>
+<br>
+take a look at the ad9361 user guide [1]. It has all the information you <b=
+r>
+are looking for.<br>
+<br>
+If you want to know which filters you can configure and how, take a look <b=
+r>
+at [2]. It&#39;s a simple example I wrote quite a while back but it should =
+<br>
+still be good to get you started.<br>
+<br>
+Hope that helps!<br>
+<br>
+Cheers,<br>
+Julian<br>
+<br>
+[1] <br>
+<a href=3D"https://form.analog.com/Form_Pages/Catalina/CatalinaDesign.aspx?=
+prodid=3DAD9361" rel=3D"noreferrer" target=3D"_blank">https://form.analog.c=
+om/Form_Pages/Catalina/CatalinaDesign.aspx?prodid=3DAD9361</a><br>
+[2] <a href=3D"https://github.com/jarn0ld/uhd-filter-tool" rel=3D"noreferre=
+r" target=3D"_blank">https://github.com/jarn0ld/uhd-filter-tool</a><br>
+<br>
+On 8/25/20 9:09 PM, David Carsenat via USRP-users wrote:<br>
+&gt; Hi, I am using a B205 and I&#39;d just like to know what are the <br>
+&gt; difference=C2=A0filter stages (analog and digital) seen by the signal =
+(both <br>
+&gt; Tx and Rx), in the AD936x and in the FPGA.<br>
+&gt; Another way to help me, should be to have a description of the filter =
+<br>
+&gt; that I can address=C2=A0with the filter.hpp functions=C2=A0: Can I add=
+ress=C2=A0and <br>
+&gt; change filters behaviours that are part only on FPGA or also the AD936=
+1 <br>
+&gt; filters ?<br>
+&gt; <br>
+&gt; Many thanks<br>
+&gt; <br>
+&gt; David<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
+n/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt; <br>
 </blockquote></div>
 
---000000000000420c4d05adbd9120--
+--0000000000001832d805adc016a8--
 
 
---===============6867785675807793560==
+--===============6823930565537307696==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -354,5 +210,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6867785675807793560==--
+--===============6823930565537307696==--
 
