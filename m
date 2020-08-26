@@ -2,61 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE934252244
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Aug 2020 22:56:25 +0200 (CEST)
-Received: from [::1] (port=41258 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74B8B2524CF
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Aug 2020 02:46:59 +0200 (CEST)
+Received: from [::1] (port=42824 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kAfzT-0004it-Ew; Tue, 25 Aug 2020 16:56:23 -0400
-Received: from mail-qk1-f172.google.com ([209.85.222.172]:46363)
+	id 1kAjaY-0006t6-Ag; Tue, 25 Aug 2020 20:46:54 -0400
+Received: from mail-io1-f47.google.com ([209.85.166.47]:36535)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kAfzP-0004cC-EB
- for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 16:56:19 -0400
-Received: by mail-qk1-f172.google.com with SMTP id o12so81930qki.13
- for <usrp-users@lists.ettus.com>; Tue, 25 Aug 2020 13:55:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=P3RqQ7hYZnRf5ZJWJRPQzoTEl/3DYVxGQbX8ENE/uRI=;
- b=EFO9oVDjv9IPs9jxTjB71s2VovL2ZA184lhh0E3qz9vqMCe8DPAnlm2B1f8nX8/0L1
- yNgdQLMvc2Jvc+GKbc68IqsEij6COIX+/LILVZJoE0UuyrlhqvxUqEx8P0UrHHakOCF4
- PdYkgCGkhCGtzJF8Ij44gBSuFUOeXpaOalT422dB/oszI3NEjxNdlFjnJgKzcgHs7iYY
- f9gj0nTTUG3AemV4mgITRSUdCPA8kb6KPkpWSu09x6SjxbKWy+kBfqsrD3+4+PwxeNBc
- NjnCBiLGucnEdhNsZsL5g/rAJX4fNimAzYrf1zbcZBH6w5tepM1WGNrqm3wlGhnNJ9nD
- m7IA==
+ (Exim 4.93) (envelope-from <michael.west@ettus.com>)
+ id 1kAjaU-0006nj-Kp
+ for usrp-users@lists.ettus.com; Tue, 25 Aug 2020 20:46:50 -0400
+Received: by mail-io1-f47.google.com with SMTP id i10so435240iow.3
+ for <usrp-users@lists.ettus.com>; Tue, 25 Aug 2020 17:46:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=lMOwMHiTW+MlqqRhpGGxYYpoEEx4YbcPxDNMkOjO9rM=;
+ b=r2xrlV1OVOstFhBeTojRgoe/3/UgekTbQ+ch/5vl/VPfdEbB4epqygKPtR7Y7Hk707
+ By9KaRnHNHWeOewtLfYsxjnUe5O4BltBBjLe6nNR7r7joFoaC5VXijhEF0cQQepXU0uj
+ U31Vg9bgRtNnjWCz8xsvTJhgCajfUOKxJ6h5Hrg2LT6LLu378UVCMLYw+2UnzP1lDeLL
+ 5QimUJ7KDgwo6VSPoTK5TPzOarc8mGjrppMQNYq/Qj6n5DIuTAnpFf3Cv/s1+44f8eiu
+ 2AhR2eHwNTx/nLrVtkWHkBWGVOxu+Mu7ijGafMQIcQJS+m8fkMOukW9GETBdLdI718ss
+ 47hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=P3RqQ7hYZnRf5ZJWJRPQzoTEl/3DYVxGQbX8ENE/uRI=;
- b=YckjyQVKugDFYbWZgfRNlJPM4zL9JNgNVbgUngkbTmQ0QVGwrySiKR0anJZAp3tIFE
- bvVlYkwp3H3Sov3O/mq8pm0sfJ7EM5Ol4ab4CTSFs+AnAuGvaKKbz1bZVne3UjyQ8hn1
- 1JP78TWMLSjSOZGL+4Bx2Qcpae50/t71G5SiX98OFvtF6WWE2fue44q+wVsGBT/pfjV7
- uO95tzHlv0vnnTnSPxzCSeIKBxJzWsjtI5pbTe5GR1XJ+3P1Q1j6cxmGGcJayB3Px6pY
- rfBca/veL6rU8V0WRJputNapJywpGu1xrCLYhwJa9f4hRTyZjvX1PT75CCo0Op8ZyGtT
- Impg==
-X-Gm-Message-State: AOAM530DTIq+ZGm7cGJDqY+Avci5kgGdcY1mU/Mp+BXmD/ZDA/7v5Ex9
- p/FDUI0n/b5dwc6dSDqRfCD6r3LkR72Rkw==
-X-Google-Smtp-Source: ABdhPJx2HtqIAkFd5Z2cCyLrK8ip4rZ7WCFs+Hx+T2mKSh+9Nc/TuTuZkWQe3FAYkJd/Y667OMgs2Q==
-X-Received: by 2002:a37:96c5:: with SMTP id
- y188mr10828941qkd.412.1598388938729; 
- Tue, 25 Aug 2020 13:55:38 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
- by smtp.googlemail.com with ESMTPSA id y3sm214907qtj.55.2020.08.25.13.55.38
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 25 Aug 2020 13:55:38 -0700 (PDT)
-Message-ID: <5F457AC9.6070805@gmail.com>
-Date: Tue, 25 Aug 2020 16:55:37 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=lMOwMHiTW+MlqqRhpGGxYYpoEEx4YbcPxDNMkOjO9rM=;
+ b=H2lRFCva65z+Zwf79Ux5Gb4HHRun2bFXDwj+SxxhfVodKPV64y1m56DKfTfiit9G7o
+ yb2GDgr7JKKJYKjv+Wv116mCYv7iq5R54iRoap7GFx8PQbNCGbr5z1o8dz0JaZQsxc7h
+ Yt/NBXUrI7QO8ftOAdLMWaJ6wuCdeaGdhrbh1FZAhOUD4dW37r5gmOdlBz9aPYOV973s
+ a8YHdYQmFSIAr7SlS1/mNtrTiy9Do3awCqrTNDkckZqHEVp8BT/cttPgRtM0Pu+LaSlW
+ SbQKUsP5raqMIC2qienXTCakce9zGabnUIgonoGPM2Dx2bJbGSN2Q9oFjPrRbn3KEc5L
+ /8WA==
+X-Gm-Message-State: AOAM532EIMtVWLfJe0GQyIBjC1LIfvVtgveaiqFkrZ5Te3gprOT9mIo6
+ AxhX4L+4AL7CPogTza5K6QcsN1NpwM/Fuv7JxLbVzmc69kwdUyod
+X-Google-Smtp-Source: ABdhPJw4ZIr+6gSYRgVXgEtTSyQRV/rSNM5Y0kXoijNskYH70CK3i/2GIAjggq0h6oX6cJludE58EfNagUyO70DIPCI=
+X-Received: by 2002:a02:6341:: with SMTP id j62mr13061257jac.69.1598402769038; 
+ Tue, 25 Aug 2020 17:46:09 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <1068579459.5506610.1598385600265.ref@mail.yahoo.com>
- <1068579459.5506610.1598385600265@mail.yahoo.com>
-In-Reply-To: <1068579459.5506610.1598385600265@mail.yahoo.com>
-Subject: Re: [USRP-users] B210 RX 2 channels
+Date: Tue, 25 Aug 2020 17:45:58 -0700
+Message-ID: <CAM4xKrrtSjhM1FFYGvuXrQFBop1d+H78JzQCx5OMh4iQ3rm3TQ@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
+ discuss-gnuradio@gnu.org
+Subject: [USRP-users] [UHD] Announcing 4.0.0.0 Release Candidate 1
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,9 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7337260664400773358=="
+From: Michael West via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael West <michael.west@ettus.com>
+Content-Type: multipart/mixed; boundary="===============2956893033691288429=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,578 +73,424 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============7337260664400773358==
-Content-Type: multipart/alternative;
- boundary="------------090406080603060108070200"
+--===============2956893033691288429==
+Content-Type: multipart/alternative; boundary="00000000000041c95f05adbd25a2"
 
-This is a multi-part message in MIME format.
---------------090406080603060108070200
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--00000000000041c95f05adbd25a2
+Content-Type: text/plain; charset="UTF-8"
 
-On 08/25/2020 04:00 PM, Jay Labhart via USRP-users wrote:
-> Hello,
->
-> I have started to work with the B210 on a project.  My interest is to 
-> collect samples from the 2 RX of the B210 looking at a frequency of 
-> channel 1 of 2.4GHz (2412).  My goal is to use a grc to workout the 
-> algorithm then move to c++.  I am having some challenges that I would 
-> like to ask the group for help.
->
-> I used a .grc to collect samples and review the algorithm.  The graph 
-> is attached. At this point I am just collecting data. I use a series 
-> of variables to create 2 data files.
->
-> I moved to c++ and modified a sample to collect the same dataset.
->
-> I am using the python file gr_plot_iq.py to review the signals.  When 
-> I review the grc graph the signals appear as I would think.  The c++ 
-> the signals are scattered way apart and A&B are consistent.
->
-> Any thoughts would be greatful.
->
-> Test:
->     2.4 GHz router chirping every 100 ms
->         local area with no wireless except router
-> uhd
->         2412000000 channel 1
->         rate - 20 MSPS (only get 15)
->         looking at 2 RX channels at same freq
->
-> hardware & os
-> Intel® Core™ i5-6400 CPU @ 2.70GHz × 4
-> 12GB RAM
-> Ubuntu 18.04.5 LTS
->
-> attached is the probe from the uhd
->
-> The challenge is that I am seeing different results from the grc and 
-> the c++ file.  On the grc graph I collect a variety of samples from 
-> the router.  On the c++ file there only seems to be 1-2 samples.  I 
-> would expect to see a similar set of samples.
->
-> Inline image
->
->
-> *c++ code excerpt*
->
->     // detect which channels to use
->     std::vector<std::string> channel_strings;
->     std::vector<size_t> channel_nums;
->     boost::split(channel_strings, channel_list, boost::is_any_of("\"',"));
->     for (size_t ch = 0; ch < channel_strings.size(); ch++) {
->         size_t chan = std::stoi(channel_strings[ch]);
->         if (chan >= usrp->get_rx_num_channels()) {
->             throw std::runtime_error("Invalid channel(s) specified.");
->         } else
-> channel_nums.push_back(std::stoi(channel_strings[ch]));
->     }
->
->     // create a receive streamer
->     // linearly map channels (index0 = channel0, index1 = channel1, ...)
->     uhd::stream_args_t stream_args("fc32"); // complex floats
->     stream_args.channels             = channel_nums;
->     uhd::rx_streamer::sptr rx_stream = usrp->get_rx_stream(stream_args);
->
->       if (total_num_samps == 0){
->        std::signal(SIGINT, &sig_int_handler);
->        std::cout << "Press Ctrl + C to stop streaming..." << std::endl;
->        }
->
->     // setup streaming
->     std::cout << std::endl;
->     std::cout << boost::format("Begin streaming %u samples, %f seconds 
-> in the future...")
->                      % total_num_samps % seconds_in_future
->               << std::endl;
->     uhd::stream_cmd_t 
-> stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);
->     stream_cmd.num_samps  = total_num_samps;
->     stream_cmd.stream_now = false;
->     stream_cmd.time_spec  = uhd::time_spec_t(seconds_in_future);
->     rx_stream->issue_stream_cmd(stream_cmd); // tells all channels to 
-> stream
->
->     // meta-data will be filled in by recv()
->     uhd::rx_metadata_t md;
->
->     // allocate buffers to receive with samples (one buffer per channel)
->     const size_t samps_per_buff = rx_stream->get_max_num_samps();
-> std::vector<std::vector<std::complex<float>>> buffs(
->         usrp->get_rx_num_channels(), 
-> std::vector<std::complex<float>>(samps_per_buff));
->
->     // create a vector of pointers to point to each of the channel buffers
->     std::vector<std::complex<float>*> buff_ptrs;
->     for (size_t i = 0; i < buffs.size(); i++)
->         buff_ptrs.push_back(&buffs[i].front());
->
->     // the first call to recv() will block this many seconds before 
-> receiving
->     double timeout = seconds_in_future + 0.1; // timeout (delay before 
-> receive + padding)
->
->     size_t num_acc_samps = 0; // number of accumulated samples
->     std::ofstream outfile1, outfile2;
->     outfile1.open(file1.c_str(), std::ofstream::binary);
->     outfile2.open(file2.c_str(), std::ofstream::binary);
->
->     while (not stop_signal_called) {
->         // receive a single packet
->         size_t num_rx_samps = rx_stream->recv(buff_ptrs, 
-> samps_per_buff, md, timeout);
->
->         // use a small timeout for subsequent packets
->         timeout = 0.1;
->
->         // handle the error code
->         if (md.error_code == uhd::rx_metadata_t::ERROR_CODE_TIMEOUT)
->             break;
->         if (md.error_code != uhd::rx_metadata_t::ERROR_CODE_NONE) {
->             //throw std::runtime_error(str(boost::format("Receiver 
-> error %s") % md.strerror()));
->             std::cout << md.strerror() << std::endl;
->         }
->
->         if (verbose)
->             std::cout << boost::format(
->                              "Received packet: %u samples, %u full 
-> secs, %f frac secs")
->                              % num_rx_samps % md.time_spec.get_full_secs()
->                              % md.time_spec.get_frac_secs()
->                       << std::endl;
->
->       if (outfile1.is_open())
->        outfile1.write((const char*)(&buffs[0].front()),
->       num_rx_samps*sizeof(std::complex<float>));
->       if (outfile2.is_open())
->        outfile2.write((const char*)(&buffs[1].front()),
->       num_rx_samps*sizeof(std::complex<float>));
->
->         num_acc_samps += num_rx_samps;
->         // check if continuous or number of samples
->         if (total_num_samps != 0) {
->             if (num_acc_samps >= total_num_samps)
->                 stop_signal_called = true;
->         }
->     }
->
-> *output from run with uhd*
->
-> Creating the usrp device with: ...
-> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; 
-> UHD_3.14.1.HEAD-0-g0347a6d8
-> [INFO] [B200] Detected Device: B210
-> [INFO] [B200] Operating over USB 3.
-> [INFO] [B200] Initialize CODEC control...
-> [INFO] [B200] Initialize Radio control...
-> [INFO] [B200] Performing register loopback test...
-> [INFO] [B200] Register loopback test passed
-> [INFO] [B200] Performing register loopback test...
-> [INFO] [B200] Register loopback test passed
-> [INFO] [B200] Setting master clock rate selection to 'automatic'.
-> [INFO] [B200] Asking for clock rate 16.000000 MHz...
-> [INFO] [B200] Actually got clock rate 16.000000 MHz.
-> Using Device: Single USRP:
->   Device: B-Series Device
->   Mboard 0: B210
->   RX Channel: 0
->     RX DSP: 0
->     RX Dboard: A
->     RX Subdev: FE-RX2
->   RX Channel: 1
->     RX DSP: 1
->     RX Dboard: A
->     RX Subdev: FE-RX1
->   TX Channel: 0
->     TX DSP: 0
->     TX Dboard: A
->     TX Subdev: FE-TX2
->   TX Channel: 1
->     TX DSP: 1
->     TX Dboard: A
->     TX Subdev: FE-TX1
->
-> Using Antenna 0: RX2
-> Using Antenna 1: RX2
-> Actual RX Freq: 2412.000000 MHz...
-> Actual RX Freq: 2411.999998 MHz...
->
-> RX Gain Range 0: (0, 76, 1)
-> ...
-> Setting RX Gain: 64.000000 dB...
-> Actual RX Gain: 64.000000 dB...
->
-> Setting RX Bandwidth: 15.000000 MHz...
-> Actual RX Bandwidth: 15.000000 MHz...
->
-> Setting RX Rate: 15.000000 Msps...
-> [INFO] [B200] Asking for clock rate 60.000000 MHz...
-> [INFO] [B200] Actually got clock rate 60.000000 MHz.
-> Actual RX Rate: 15.000000 Msps...
->
-> Setting device timestamp to 0...
->
-> Begin streaming 10000 samples, 10.000000 seconds in the future...
-> Received packet: 2040 samples, 10 full secs, 0.000003 frac secs
-> Received packet: 2040 samples, 10 full secs, 0.000139 frac secs
-> Received packet: 2040 samples, 10 full secs, 0.000275 frac secs
-> Received packet: 2040 samples, 10 full secs, 0.000411 frac secs
-> Received packet: 1840 samples, 10 full secs, 0.000547 frac secs
->
-> Done!
->
->
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-For one, you're using a 2Msps rate in your .grc flow-graph.
+The release candidate of the long awaited UHD version 4.0.0.0 has been
+tagged and is available for testing.  This major release introduces a new
+RFNoC framework, a new streaming infrastructure, a power calibration
+utility and API, and many other features and bug fixes.  The new
+infrastructure provides improved performance, more flexibility, and the
+foundation for future demands of higher throughput and lower latencies.
 
+The tag for this release candidate:
+https://github.com/EttusResearch/uhd/releases/tag/v4.0.0.0-rc1
 
+There have been 831 commits since the last release (3.15.0.0) which can be
+viewed here:
+https://github.com/EttusResearch/uhd/compare/v3.15.0.0...v4.0.0.0-rc1
 
---------------090406080603060108070200
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+Please report any bugs found on the UHD issue tracker:
+http://github.com/EttusResearch/uhd/issues
+* Please do not use the issue tracker for help or support.
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 08/25/2020 04:00 PM, Jay Labhart via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote
-      cite="mid:1068579459.5506610.1598385600265@mail.yahoo.com"
-      type="cite">
-      <div class="yahoo-style-wrap" style="font-family:Helvetica Neue,
-        Helvetica, Arial, sans-serif;font-size:16px;">
-        <div dir="ltr" data-setdir="false">Hello,</div>
-        <div dir="ltr" data-setdir="false"><br>
-        </div>
-        <div dir="ltr" data-setdir="false">I have started to work with
-          the B210 on a project.  My interest is to collect samples from
-          the 2 RX of the B210 looking at a frequency of channel 1 of
-          2.4GHz (<span>2412).  My goal is to use a grc to workout the
-            algorithm then move to c++.  I am having some challenges
-            that I would like to ask the group for help.</span></div>
-        <div dir="ltr" data-setdir="false"><span><br>
-          </span></div>
-        <div dir="ltr" data-setdir="false">I used a .grc to collect
-          samples and review the algorithm.  The graph is attached. At
-          this point I am just collecting data. I use a series of
-          variables to create 2 data files.<br>
-        </div>
-        <div dir="ltr" data-setdir="false"><br>
-        </div>
-        <div dir="ltr" data-setdir="false">I moved to c++ and modified a
-          sample to collect the same dataset.</div>
-        <div dir="ltr" data-setdir="false"><br>
-        </div>
-        <div dir="ltr" data-setdir="false">I am using the python file
-          gr_plot_iq.py to review the signals.  When I review the grc
-          graph the signals appear as I would think.  The c++ the
-          signals are scattered way apart and A&amp;B are consistent.</div>
-        <div dir="ltr" data-setdir="false"><br>
-        </div>
-        <div dir="ltr" data-setdir="false">Any thoughts would be
-          greatful.<br>
-        </div>
-        <div dir="ltr" data-setdir="false"><br>
-        </div>
-        <div dir="ltr" data-setdir="false">Test:</div>
-        <div dir="ltr" data-setdir="false">
-          <div>
-            <div dir="ltr" data-setdir="false">    2.4 GHz router
-              chirping every 100 ms<br>
-            </div>
-          </div>
-          <div>        local area with no wireless except router</div>
-        </div>
-        <div dir="ltr" data-setdir="false">    <span>uhd <br>
-          </span></div>
-        <div dir="ltr" data-setdir="false"><span>        2412000000</span> 
-          channel 1</div>
-        <div dir="ltr" data-setdir="false">        rate - 20 MSPS (only
-          get 15)<br>
-        </div>
-        <div dir="ltr" data-setdir="false">        looking at 2 RX
-          channels at same freq<br>
-        </div>
-        <div><br>
-        </div>
-        <div dir="ltr" data-setdir="false">
-          <div>hardware &amp; os<br>
-            Intel® Core™ i5-6400 CPU @ 2.70GHz × 4 <br>
-            12GB RAM<br>
-            <div>Ubuntu 18.04.5 LTS</div>
-            <div><br>
-            </div>
-            <div dir="ltr" data-setdir="false">attached is the probe
-              from the uhd</div>
-            <div dir="ltr" data-setdir="false"><br>
-            </div>
-            <div dir="ltr" data-setdir="false">The challenge is that I
-              am seeing different results from the grc and the c++
-              file.  On the grc graph I collect a variety of samples
-              from the router.  On the c++ file there only seems to be
-              1-2 samples.  I would expect to see a similar set of
-              samples.</div>
-            <div dir="ltr" data-setdir="false"><br>
-            </div>
-            <div dir="ltr" data-setdir="false"><img
-                moz-do-not-send="true" title="Inline image" alt="Inline
-                image"
-                src="cid:b89b4bc5-4986-c099-0e86-5f22b13ff6aa@yahoo.com"
-                class="yahoo-inline-image" style="max-width: 628px;
-                width: 100%;" draggable="false"
-                data-id="&lt;b89b4bc5-4986-c099-0e86-5f22b13ff6aa@yahoo.com&gt;"><br>
-              <br>
-            </div>
-            <div><br>
-            </div>
-            <div dir="ltr" data-setdir="false"><b>c++ code excerpt</b></div>
-            <div dir="ltr" data-setdir="false"><br>
-            </div>
-            <div dir="ltr" data-setdir="false">
-              <div>    // detect which channels to use<br>
-                    std::vector&lt;std::string&gt; channel_strings;<br>
-                    std::vector&lt;size_t&gt; channel_nums;<br>
-                    boost::split(channel_strings, channel_list,
-                boost::is_any_of("\"',"));<br>
-                    for (size_t ch = 0; ch &lt; channel_strings.size();
-                ch++) {<br>
-                        size_t chan = std::stoi(channel_strings[ch]);<br>
-                        if (chan &gt;= usrp-&gt;get_rx_num_channels()) {<br>
-                            throw std::runtime_error("Invalid channel(s)
-                specified.");<br>
-                        } else<br>
-                           
-                channel_nums.push_back(std::stoi(channel_strings[ch]));<br>
-                    }<br>
-                <br>
-                    // create a receive streamer<br>
-                    // linearly map channels (index0 = channel0, index1
-                = channel1, ...)<br>
-                    uhd::stream_args_t stream_args("fc32"); // complex
-                floats<br>
-                    stream_args.channels             = channel_nums;<br>
-                    uhd::rx_streamer::sptr rx_stream =
-                usrp-&gt;get_rx_stream(stream_args);<br>
-                <br>
-                      if (total_num_samps == 0){<br>
-                       std::signal(SIGINT, &amp;sig_int_handler);<br>
-                       std::cout &lt;&lt; "Press Ctrl + C to stop
-                streaming..." &lt;&lt; std::endl;<br>
-                       }<br>
-                <br>
-                    // setup streaming<br>
-                    std::cout &lt;&lt; std::endl;<br>
-                    std::cout &lt;&lt; boost::format("Begin streaming %u
-                samples, %f seconds in the future...")<br>
-                                     % total_num_samps %
-                seconds_in_future<br>
-                              &lt;&lt; std::endl;<br>
-                    uhd::stream_cmd_t
-                stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);<br>
-                    stream_cmd.num_samps  = total_num_samps;<br>
-                    stream_cmd.stream_now = false;<br>
-                    stream_cmd.time_spec  =
-                uhd::time_spec_t(seconds_in_future);<br>
-                    rx_stream-&gt;issue_stream_cmd(stream_cmd); // tells
-                all channels to stream<br>
-                <br>
-                    // meta-data will be filled in by recv()<br>
-                    uhd::rx_metadata_t md;<br>
-                <br>
-                    // allocate buffers to receive with samples (one
-                buffer per channel)<br>
-                    const size_t samps_per_buff =
-                rx_stream-&gt;get_max_num_samps();<br>
-                   
-                std::vector&lt;std::vector&lt;std::complex&lt;float&gt;&gt;&gt;
-                buffs(<br>
-                        usrp-&gt;get_rx_num_channels(),
-                std::vector&lt;std::complex&lt;float&gt;&gt;(samps_per_buff));<br>
-                <br>
-                    // create a vector of pointers to point to each of
-                the channel buffers<br>
-                    std::vector&lt;std::complex&lt;float&gt;*&gt;
-                buff_ptrs;<br>
-                    for (size_t i = 0; i &lt; buffs.size(); i++)<br>
-                        buff_ptrs.push_back(&amp;buffs[i].front());<br>
-                <br>
-                    // the first call to recv() will block this many
-                seconds before receiving<br>
-                    double timeout = seconds_in_future + 0.1; // timeout
-                (delay before receive + padding)<br>
-                <br>
-                    size_t num_acc_samps = 0; // number of accumulated
-                samples<br>
-                    std::ofstream outfile1, outfile2;<br>
-                    outfile1.open(file1.c_str(), std::ofstream::binary);<br>
-                    outfile2.open(file2.c_str(), std::ofstream::binary);<br>
-                    <br>
-                    while (not stop_signal_called) {<br>
-                        // receive a single packet<br>
-                        size_t num_rx_samps =
-                rx_stream-&gt;recv(buff_ptrs, samps_per_buff, md,
-                timeout);<br>
-                <br>
-                        // use a small timeout for subsequent packets<br>
-                        timeout = 0.1;<br>
-                <br>
-                        // handle the error code<br>
-                        if (md.error_code ==
-                uhd::rx_metadata_t::ERROR_CODE_TIMEOUT)<br>
-                            break;<br>
-                        if (md.error_code !=
-                uhd::rx_metadata_t::ERROR_CODE_NONE) {<br>
-                            //throw
-                std::runtime_error(str(boost::format("Receiver error
-                %s") % md.strerror()));<br>
-                            std::cout &lt;&lt; md.strerror() &lt;&lt;
-                std::endl;<br>
-                        }<br>
-                <br>
-                        if (verbose)<br>
-                            std::cout &lt;&lt; boost::format(<br>
-                                             "Received packet: %u
-                samples, %u full secs, %f frac secs")<br>
-                                             % num_rx_samps %
-                md.time_spec.get_full_secs()<br>
-                                             %
-                md.time_spec.get_frac_secs()<br>
-                                      &lt;&lt; std::endl;<br>
-                <br>
-                      if (outfile1.is_open())<br>
-                       outfile1.write((const
-                char*)(&amp;buffs[0].front()),<br>
-                      num_rx_samps*sizeof(std::complex&lt;float&gt;));<br>
-                      if (outfile2.is_open())<br>
-                       outfile2.write((const
-                char*)(&amp;buffs[1].front()),<br>
-                      num_rx_samps*sizeof(std::complex&lt;float&gt;));<br>
-                <br>
-                        num_acc_samps += num_rx_samps;<br>
-                        // check if continuous or number of samples<br>
-                        if (total_num_samps != 0) {<br>
-                            if (num_acc_samps &gt;= total_num_samps)<br>
-                                stop_signal_called = true;<br>
-                        }<br>
-                    }<br>
-                <br>
-              </div>
-              <div dir="ltr" data-setdir="false"><b>output from run with
-                  uhd</b></div>
-              <div dir="ltr" data-setdir="false"><br>
-              </div>
-              <div dir="ltr" data-setdir="false">
-                <div>Creating the usrp device with: ...<br>
-                  [INFO] [UHD] linux; GNU C++ version 7.5.0;
-                  Boost_106501; UHD_3.14.1.HEAD-0-g0347a6d8<br>
-                  [INFO] [B200] Detected Device: B210<br>
-                  [INFO] [B200] Operating over USB 3.<br>
-                  [INFO] [B200] Initialize CODEC control...<br>
-                  [INFO] [B200] Initialize Radio control...<br>
-                  [INFO] [B200] Performing register loopback test... <br>
-                  [INFO] [B200] Register loopback test passed<br>
-                  [INFO] [B200] Performing register loopback test... <br>
-                  [INFO] [B200] Register loopback test passed<br>
-                  [INFO] [B200] Setting master clock rate selection to
-                  'automatic'.<br>
-                  [INFO] [B200] Asking for clock rate 16.000000 MHz... <br>
-                  [INFO] [B200] Actually got clock rate 16.000000 MHz.<br>
-                  Using Device: Single USRP:<br>
-                    Device: B-Series Device<br>
-                    Mboard 0: B210<br>
-                    RX Channel: 0<br>
-                      RX DSP: 0<br>
-                      RX Dboard: A<br>
-                      RX Subdev: FE-RX2<br>
-                    RX Channel: 1<br>
-                      RX DSP: 1<br>
-                      RX Dboard: A<br>
-                      RX Subdev: FE-RX1<br>
-                    TX Channel: 0<br>
-                      TX DSP: 0<br>
-                      TX Dboard: A<br>
-                      TX Subdev: FE-TX2<br>
-                    TX Channel: 1<br>
-                      TX DSP: 1<br>
-                      TX Dboard: A<br>
-                      TX Subdev: FE-TX1<br>
-                  <br>
-                  Using Antenna 0: RX2<br>
-                  Using Antenna 1: RX2<br>
-                  Actual RX Freq: 2412.000000 MHz...<br>
-                  Actual RX Freq: 2411.999998 MHz...<br>
-                  <br>
-                  RX Gain Range 0: (0, 76, 1)<br>
-                  ...<br>
-                  Setting RX Gain: 64.000000 dB...<br>
-                  Actual RX Gain: 64.000000 dB...<br>
-                  <br>
-                  Setting RX Bandwidth: 15.000000 MHz...<br>
-                  Actual RX Bandwidth: 15.000000 MHz...<br>
-                  <br>
-                  Setting RX Rate: 15.000000 Msps...<br>
-                  [INFO] [B200] Asking for clock rate 60.000000 MHz... <br>
-                  [INFO] [B200] Actually got clock rate 60.000000 MHz.<br>
-                  Actual RX Rate: 15.000000 Msps...<br>
-                  <br>
-                  Setting device timestamp to 0...<br>
-                  <br>
-                  Begin streaming 10000 samples, 10.000000 seconds in
-                  the future...<br>
-                  Received packet: 2040 samples, 10 full secs, 0.000003
-                  frac secs<br>
-                  Received packet: 2040 samples, 10 full secs, 0.000139
-                  frac secs<br>
-                  Received packet: 2040 samples, 10 full secs, 0.000275
-                  frac secs<br>
-                  Received packet: 2040 samples, 10 full secs, 0.000411
-                  frac secs<br>
-                  Received packet: 1840 samples, 10 full secs, 0.000547
-                  frac secs<br>
-                  <br>
-                  Done!<br>
-                  <br>
-                </div>
-                <div><br>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div><br>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    For one, you're using a 2Msps rate in your .grc flow-graph.<br>
-    <br>
-    <br>
-  </body>
-</html>
+Pull requests for direct code changes may be submitted to the UHD or FPGA
+repositories:
+http://github.com/EttusResearch/uhd/pulls
+http://github.com/EttusResearch/fpga/pulls
 
---------------090406080603060108070200--
+CHANGELOG:
+## 004.000.000.000
+* b200:
+  - Enable power calibration API
+  - Add a prop tree node usb_version
+* cal:
+  - Add utility to update all .fbs files, or check the generated ones
+  - Add pwr_cal container
+* cmake:
+  - Add ability to pass CXXFLAGS to CMake environment
+* docs:
+  - Update PCIe xport instructions for NI Repos
+  - n3xx: Include WX in table of N320 images
+  - Add stream and transport args documentation
+  - Update Basic/LF dboard references to use new operating mode
+  - e3xx/n3xx: Add sections on FP-GPIOs and how to drive them
+  - n3xx: Document eeprom flags
+  - Add note about DPDK needing to be built as shared libraries
+  - Change DPDK version to 18.11 and make args use underscores
+  - Clarifying which devices support DPDK
+* dpdk:
+  - Add new DPDK stack to integrate with I/O services
+* e31x:
+  - Change RFNoC Ctrl clock to 40 MHz
+  - Fix timeout for timekeeper registers
+  - Fix filter bank and antenna switching for channel 0
+  - Swap out liberio for internal Ethernet
+* e320:
+  - Fix timeout for timekeeper registers
+  - Swap out liberio for internal Ethernet
+* examples:
+  - Add usrp_power_meter example
+  - Update test_messages example
+  - Update gpio example
+  - Add options to benchmark_rate
+  - Add example out-of-tree module for RFNoC modules
+  - Remove thread priority elevation
+* fpga:
+  - Replaced RFNoC architecture with new 4.0 version
+  - Added modelsim make simulation target
+  - Upgrade to Vivade 2019.1
+  - Removed unused coregen files and modules
+  - Removed fpga submodule and merged into uhd repo
+  - lib: Change max FFT size to 1024
+  - lib: add Intel MAX10 architecture for 2clk FIFO
+  - rfnoc: Port RFNoC Keep One in N block to new RFNoC architecture
+  - rfnoc: Port RFNoC Replay block to new RFNoC architecture
+  - rfnoc: Port Signal Generator RFNoC block to new RFNoC architecture
+  - Add Switchboard RFNoC block
+  - Remove liberio
+  - rfnoc: Port RFNoC Moving Average block to new RFNoC architecture
+  - rfnoc: Port Log-Power block to new RFNoC architecture
+  - rfnoc: Port RFNoC Window block to new RFNoC architecture
+  - lib: Add synthesizable AXI4-Stream SV components
+  - lib: Add interface and model for AXI4-Lite
+  - rfnoc: Add support for 512-bit CHDR widths
+  - rfnoc: Port RFNoC Add/Sub block to new RFNoC architecture
+  - rfnoc: Port Vector IIR RFNoC block to new RFNoC architecture
+  - lib: Add AXI-Stream splitter (axis_split)
+* lib:
+  - Add power cal manager
+  - deps: Add FlatBuffers 1.11.0 header files
+  - Add DPDK service queue
+* mpm:
+  - Exclude internal NIC for network hosts
+  - Add ability to run scripts to MPM shell
+  - n3xx: Remove eth1, eth2 from interface list
+  - Default virtual NIC CHDR IP selection
+  - Enable internal NIC on the N3xx
+  - Clean up code, improve Pylint score
+  - Move common mboard regs code to common location
+* mpmd:
+  - Remove liberio
+* multi_usrp:
+  - Fix connect/disconnect of RFNoC chains
+  - Various multi_usrp_rfnoc fixes
+* n310:
+  - Fix GPIO registers
+* n320:
+  - Double radio ingress buffer size
+  - Enable inverse sinc filter for DAC37J82
+* n3xx:
+  - Fix timeout for timekeeper registers
+  - Swap out liberio for internal Ethernet
+* python:
+  - Add Keep One in N block controller bindings
+  - Add replay RFNoC block controller bindings
+  - Add siggen RFNoC block controller bindings
+  - Add Switchboard block python bindings
+  - Add moving average RFNoC block controller bindings
+  - Add bindings for C++ CHDR Parser
+  - Add window RFNoC block controller bindings
+  - Add FFT RFNoC block controller bindings
+  - Add null RFNoC block controller bindings
+  - Add vector IIR RFNoC block controller bindings
+  - Add radio RFNoC block controller bindings
+  - Add FIR filter RFNoC block controller bindings
+  - Add Fosphor RFNoC block controller bindings
+  - Add DUC RFNoC block controller bindings
+  - Add DDC RFNoC block controller bindings
+  - Added new RFNoC image builder module under the uhd module
+  - Remove Python2-specific code
+  - Included complex.h to allow pybind to convert that data type
+* rfnoc:
+  - Add multichannel register interface
+  - Added support for destruction of streamers
+  - Add Keep One in N block support
+  - Port siggen RFNoC block controller support to new RFNoC architecture
+  - Add Switchboard block support
+  - Port Moving Average block controller to new RFNoC architecture
+  - Port Log Power RFNoC block support to new RFNoC architecture
+  - Port window RFNoC block controller to new RFNoC architecture
+  - Port Add/Sub RFNoC block support to new RFNoC architecture
+  - Add USE_MAP prop/action forwarding policy
+  - Port Split Stream RFNoC block to new RFNoC architecture
+  - Port Vector IIR RFNoC block support to new RFNoC architecture
+  - Port RFNoC fosphor block to new RFNoC architecture
+  - Port FIR filter RFNoC block controller to new RFNoC architecture
+  - Add multichannel register interface
+  - Add RFNoC Python API
+  - Unify endianness of transports
+  - Add DMA FIFO block controller
+  - examples: Port examples to new RFNoC
+  - Implement flushing on overrun
+  - client_zero can track num SEPs and num ctrl EPs separately
+  - Add basic round-robin allocation for links
+  - Add ability to select transport for streamers to user APIs
+  - Use link_stream_manager's mgmt_portal for all mgmt packets
+  - graph: Optimize property propagation algorithm
+  - Port DUC block controller to new RFNoC architecture
+  - Add MTU tracking
+  - Implement overrun handling using action API
+  - Port null block controller to new RFNoC architecture
+  - Add mb_controller API
+  - Port radio block controller to new RFNoC architecture
+  - Port default block controller to new RFNoC architecture
+  - Port DDC block controller to new RFNoC architecture
+  - Add rfnoc_graph class
+  - Add action API
+  - Refactored CHDR packet interfaces
+  - Add noc_block_base class
+* tests:
+  - Add unit tests for new RFNoC block controllers
+  - Fix multi_usrp_test
+  - Add unit tests for pwr_cal_mgr
+  - Migrated rfnoc block tests to dedicated subdirectory
+  - Add more tests for max rate streaming
+  - Add tests to exercise max streaming rates and report results
+* tools:
+  - Update dissectors for Wireshark major version 3, new CHDR
+  - Update FPGA functional verification tests for X3x0 mcr's & dpdk
+* transport:
+  - Implement eov indications for Rx and Tx streams
+  - Implement an I/O service that uses an offload thread
+  - Implement a single-threaded I/O service
+* twinrx:
+  - Update synthesizer register values for improved rf performance
+  - Fix increased noise floor
+  - Remove decimation from frontend
+* uhd:
+  - Disable optimizations for Mac for build speed
+  - remove liberio
+  - improved handling of empty serial number hints
+  - Add discoverable_features API
+  - Add reference power level API to multi_usrp and radio_control
+  - Add fuzzy serial number checking
+  - paths: Harmonize around XDG Base Directory specification
+  - cal: Use usrp::cal::database instead of CSV files
+  - cal: Add iq_cal calibration data container class
+  - cal: Add calibration container class
+  - cal: Add database class
+  - Introduce I/O service manager
+  - Replace usage of boost smart pointers with C++11 counterparts
+  - add udp boost asio implementation of transport interface
+  - Add thread affinity utility functions
+  - types: Extend stream_cmd_t::num_samps to 64 bits
+* utils:
+  - Expose CHDR Parsing API
+  - Expose CHDR Types in Public API
+  - Support expressions for num_ports in block defs
+  - Let uhd_images_downloader also use HTTPS proxies
+  - Fix FPGA search in rfnoc_image_builder from fpga-src to fpga
+  - Add convert_cal_data utility
+  - image_builder: Support parameterized number of ports on blocks
+* x300:
+  - Update frame sizes for 10GbE
+  - Fix for incorrect PCIe buffer size values
+  - Change default dboard clock rate from 50 to 100 MHz
+  - Update maximum bitstream size
+  - Enable power reference API
+  - Expand DRAM address space to 1G
+  - Add front-panel GPIO source control
+
+As always, we at Ettus Research would like to thank all of the UHD users in
+the open source SDR community.  This release contains commits from users in
+the community that submitted pull requests against the UHD
+<https://github.com/EttusResearch/uhd> and FPGA
+<https://github.com/EttusResearch/fpga> repositories as well as many
+commits that are a direct result of issues reported back to us by users
+like you through the UHD <https://github.com/EttusResearch/uhd/issues> and
+FPGA <https://github.com/EttusResearch/fpga/issues> issue trackers,
+the USRP-users
+mailing list
+<http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, and Ettus
+support <support@ettus.com>.  You have all helped contribute to the
+continued improvement of UHD.  Thank you!
+
+Best regards,
+Michael
+
+--00000000000041c95f05adbd25a2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div><div><div>The <span><span><span><spa=
+n><span>release</span></span></span></span></span> <span><span><span><span>=
+candidate</span></span></span></span>
+ of the long awaited UHD version 4.0.0.0 has been tagged and is available f=
+or testing.=C2=A0=20
+This major release introduces a new RFNoC framework, a new streaming infras=
+tructure, a power calibration utility and API, and many other features and =
+bug fixes.=C2=A0 The new infrastructure provides improved performance, more=
+ flexibility, and the foundation for future demands of higher throughput an=
+d lower latencies.<br></div><div><br></div>The tag for this <span><span><sp=
+an><span><span>release candidate</span></span></span></span></span>:<br><a =
+href=3D"https://github.com/EttusResearch/uhd/releases/tag/v4.0.0.0-rc1" tar=
+get=3D"_blank">https://github.com/EttusResearch/uhd/releases/tag/v4.0.0.0-r=
+c1</a><br><br></div>There have been 831 commits since the last release (3.1=
+5.0.0)<span><span><span><span><span></span></span></span></span></span> whi=
+ch can be viewed here:<br><div><a href=3D"https://github.com/EttusResearch/=
+uhd/compare/v3.15.0.0...v4.0.0.0-rc1" target=3D"_blank">https://github.com/=
+EttusResearch/uhd/compare/v3.15.0.0...v4.0.0.0-rc1</a></div><div><br></div>=
+<div><div>Please report any bugs found on the UHD issue tracker:</div><div>=
+<a href=3D"http://github.com/EttusResearch/uhd/issues" target=3D"_blank">ht=
+tp://github.com/EttusResearch/uhd/issues</a><br></div><div>* Please do not =
+use the issue tracker for help or support.<br></div><div><br></div><div>Pul=
+l requests for direct code changes may be submitted to the UHD or FPGA repo=
+sitories:</div><div><div><a href=3D"http://github.com/EttusResearch/uhd/pul=
+ls" target=3D"_blank">http://github.com/EttusResearch/uhd/pulls</a><div><di=
+v><a href=3D"http://github.com/EttusResearch/fpga/pulls" target=3D"_blank">=
+http://github.com/EttusResearch/fpga/pulls</a></div></div></div></div></div=
+><div><br></div><div>CHANGELOG:</div></div><div>## 004.000.000.000<br>* b20=
+0:<br>=C2=A0 - Enable power calibration API<br>=C2=A0 - Add a prop tree nod=
+e usb_version<br>* cal:<br>=C2=A0 - Add utility to update all .fbs files, o=
+r check the generated ones<br>=C2=A0 - Add pwr_cal container<br>* cmake:<br=
+>=C2=A0 - Add ability to pass CXXFLAGS to CMake environment<br>* docs:<br>=
+=C2=A0 - Update PCIe xport instructions for NI Repos<br>=C2=A0 - n3xx: Incl=
+ude WX in table of N320 images<br>=C2=A0 - Add stream and transport args do=
+cumentation<br>=C2=A0 - Update Basic/LF dboard references to use new operat=
+ing mode<br>=C2=A0 - e3xx/n3xx: Add sections on FP-GPIOs and how to drive t=
+hem<br>=C2=A0 - n3xx: Document eeprom flags<br>=C2=A0 - Add note about DPDK=
+ needing to be built as shared libraries<br>=C2=A0 - Change DPDK version to=
+ 18.11 and make args use underscores<br>=C2=A0 - Clarifying which devices s=
+upport DPDK<br>* dpdk:<br>=C2=A0 - Add new DPDK stack to integrate with I/O=
+ services<br>* e31x:<br>=C2=A0 - Change RFNoC Ctrl clock to 40 MHz<br>=C2=
+=A0 - Fix timeout for timekeeper registers<br>=C2=A0 - Fix filter bank and =
+antenna switching for channel 0<br>=C2=A0 - Swap out liberio for internal E=
+thernet<br>* e320:<br>=C2=A0 - Fix timeout for timekeeper registers<br>=C2=
+=A0 - Swap out liberio for internal Ethernet<br>* examples:<br>=C2=A0 - Add=
+ usrp_power_meter example<br>=C2=A0 - Update test_messages example<br>=C2=
+=A0 - Update gpio example<br>=C2=A0 - Add options to benchmark_rate<br>=C2=
+=A0 - Add example out-of-tree module for RFNoC modules<br>=C2=A0 - Remove t=
+hread priority elevation<br>* fpga:<br>=C2=A0 - Replaced RFNoC architecture=
+ with new 4.0 version<br>=C2=A0 - Added modelsim make simulation target<br>=
+=C2=A0 - Upgrade to Vivade 2019.1<br>=C2=A0 - Removed unused coregen files =
+and modules<br>=C2=A0 - Removed fpga submodule and merged into uhd repo<br>=
+=C2=A0 - lib: Change max FFT size to 1024<br>=C2=A0 - lib: add Intel MAX10 =
+architecture for 2clk FIFO<br>=C2=A0 - rfnoc: Port RFNoC Keep One in N bloc=
+k to new RFNoC architecture<br>=C2=A0 - rfnoc: Port RFNoC Replay block to n=
+ew RFNoC architecture<br>=C2=A0 - rfnoc: Port Signal Generator RFNoC block =
+to new RFNoC architecture<br>=C2=A0 - Add Switchboard RFNoC block<br>=C2=A0=
+ - Remove liberio<br>=C2=A0 - rfnoc: Port RFNoC Moving Average block to new=
+ RFNoC architecture<br>=C2=A0 - rfnoc: Port Log-Power block to new RFNoC ar=
+chitecture<br>=C2=A0 - rfnoc: Port RFNoC Window block to new RFNoC architec=
+ture<br>=C2=A0 - lib: Add synthesizable AXI4-Stream SV components<br>=C2=A0=
+ - lib: Add interface and model for AXI4-Lite<br>=C2=A0 - rfnoc: Add suppor=
+t for 512-bit CHDR widths<br>=C2=A0 - rfnoc: Port RFNoC Add/Sub block to ne=
+w RFNoC architecture<br>=C2=A0 - rfnoc: Port Vector IIR RFNoC block to new =
+RFNoC architecture<br>=C2=A0 - lib: Add AXI-Stream splitter (axis_split)<br=
+>* lib:<br>=C2=A0 - Add power cal manager<br>=C2=A0 - deps: Add FlatBuffers=
+ 1.11.0 header files<br>=C2=A0 - Add DPDK service queue<br>* mpm:<br>=C2=A0=
+ - Exclude internal NIC for network hosts<br>=C2=A0 - Add ability to run sc=
+ripts to MPM shell<br>=C2=A0 - n3xx: Remove eth1, eth2 from interface list<=
+br>=C2=A0 - Default virtual NIC CHDR IP selection<br>=C2=A0 - Enable intern=
+al NIC on the N3xx<br>=C2=A0 - Clean up code, improve Pylint score<br>=C2=
+=A0 - Move common mboard regs code to common location<br>* mpmd:<br>=C2=A0 =
+- Remove liberio<br>* multi_usrp:<br>=C2=A0 - Fix connect/disconnect of RFN=
+oC chains<br>=C2=A0 - Various multi_usrp_rfnoc fixes<br>* n310:<br>=C2=A0 -=
+ Fix GPIO registers<br>* n320:<br>=C2=A0 - Double radio ingress buffer size=
+<br>=C2=A0 - Enable inverse sinc filter for DAC37J82<br>* n3xx:<br>=C2=A0 -=
+ Fix timeout for timekeeper registers<br>=C2=A0 - Swap out liberio for inte=
+rnal Ethernet<br>* python:<br>=C2=A0 - Add Keep One in N block controller b=
+indings<br>=C2=A0 - Add replay RFNoC block controller bindings<br>=C2=A0 - =
+Add siggen RFNoC block controller bindings<br>=C2=A0 - Add Switchboard bloc=
+k python bindings<br>=C2=A0 - Add moving average RFNoC block controller bin=
+dings<br>=C2=A0 - Add bindings for C++ CHDR Parser<br>=C2=A0 - Add window R=
+FNoC block controller bindings<br>=C2=A0 - Add FFT RFNoC block controller b=
+indings<br>=C2=A0 - Add null RFNoC block controller bindings<br>=C2=A0 - Ad=
+d vector IIR RFNoC block controller bindings<br>=C2=A0 - Add radio RFNoC bl=
+ock controller bindings<br>=C2=A0 - Add FIR filter RFNoC block controller b=
+indings<br>=C2=A0 - Add Fosphor RFNoC block controller bindings<br>=C2=A0 -=
+ Add DUC RFNoC block controller bindings<br>=C2=A0 - Add DDC RFNoC block co=
+ntroller bindings<br>=C2=A0 - Added new RFNoC image builder module under th=
+e uhd module<br>=C2=A0 - Remove Python2-specific code<br>=C2=A0 - Included =
+complex.h to allow pybind to convert that data type<br>* rfnoc:<br>=C2=A0 -=
+ Add multichannel register interface<br>=C2=A0 - Added support for destruct=
+ion of streamers<br>=C2=A0 - Add Keep One in N block support<br>=C2=A0 - Po=
+rt siggen RFNoC block controller support to new RFNoC architecture<br>=C2=
+=A0 - Add Switchboard block support<br>=C2=A0 - Port Moving Average block c=
+ontroller to new RFNoC architecture<br>=C2=A0 - Port Log Power RFNoC block =
+support to new RFNoC architecture<br>=C2=A0 - Port window RFNoC block contr=
+oller to new RFNoC architecture<br>=C2=A0 - Port Add/Sub RFNoC block suppor=
+t to new RFNoC architecture<br>=C2=A0 - Add USE_MAP prop/action forwarding =
+policy<br>=C2=A0 - Port Split Stream RFNoC block to new RFNoC architecture<=
+br>=C2=A0 - Port Vector IIR RFNoC block support to new RFNoC architecture<b=
+r>=C2=A0 - Port RFNoC fosphor block to new RFNoC architecture<br>=C2=A0 - P=
+ort FIR filter RFNoC block controller to new RFNoC architecture<br>=C2=A0 -=
+ Add multichannel register interface<br>=C2=A0 - Add RFNoC Python API<br>=
+=C2=A0 - Unify endianness of transports<br>=C2=A0 - Add DMA FIFO block cont=
+roller<br>=C2=A0 - examples: Port examples to new RFNoC<br>=C2=A0 - Impleme=
+nt flushing on overrun<br>=C2=A0 - client_zero can track num SEPs and num c=
+trl EPs separately<br>=C2=A0 - Add basic round-robin allocation for links<b=
+r>=C2=A0 - Add ability to select transport for streamers to user APIs<br>=
+=C2=A0 - Use link_stream_manager&#39;s mgmt_portal for all mgmt packets<br>=
+=C2=A0 - graph: Optimize property propagation algorithm<br>=C2=A0 - Port DU=
+C block controller to new RFNoC architecture<br>=C2=A0 - Add MTU tracking<b=
+r>=C2=A0 - Implement overrun handling using action API<br>=C2=A0 - Port nul=
+l block controller to new RFNoC architecture<br>=C2=A0 - Add mb_controller =
+API<br>=C2=A0 - Port radio block controller to new RFNoC architecture<br>=
+=C2=A0 - Port default block controller to new RFNoC architecture<br>=C2=A0 =
+- Port DDC block controller to new RFNoC architecture<br>=C2=A0 - Add rfnoc=
+_graph class<br>=C2=A0 - Add action API<br>=C2=A0 - Refactored CHDR packet =
+interfaces<br>=C2=A0 - Add noc_block_base class<br>* tests:<br>=C2=A0 - Add=
+ unit tests for new RFNoC block controllers<br>=C2=A0 - Fix multi_usrp_test=
+<br>=C2=A0 - Add unit tests for pwr_cal_mgr<br>=C2=A0 - Migrated rfnoc bloc=
+k tests to dedicated subdirectory<br>=C2=A0 - Add more tests for max rate s=
+treaming<br>=C2=A0 - Add tests to exercise max streaming rates and report r=
+esults<br>* tools:<br>=C2=A0 - Update dissectors for Wireshark major versio=
+n 3, new CHDR<br>=C2=A0 - Update FPGA functional verification tests for X3x=
+0 mcr&#39;s &amp; dpdk<br>* transport:<br>=C2=A0 - Implement eov indication=
+s for Rx and Tx streams<br>=C2=A0 - Implement an I/O service that uses an o=
+ffload thread<br>=C2=A0 - Implement a single-threaded I/O service<br>* twin=
+rx:<br>=C2=A0 - Update synthesizer register values for improved rf performa=
+nce<br>=C2=A0 - Fix increased noise floor<br>=C2=A0 - Remove decimation fro=
+m frontend<br>* uhd:<br>=C2=A0 - Disable optimizations for Mac for build sp=
+eed<br>=C2=A0 - remove liberio<br>=C2=A0 - improved handling of empty seria=
+l number hints<br>=C2=A0 - Add discoverable_features API<br>=C2=A0 - Add re=
+ference power level API to multi_usrp and radio_control<br>=C2=A0 - Add fuz=
+zy serial number checking<br>=C2=A0 - paths: Harmonize around XDG Base Dire=
+ctory specification<br>=C2=A0 - cal: Use usrp::cal::database instead of CSV=
+ files<br>=C2=A0 - cal: Add iq_cal calibration data container class<br>=C2=
+=A0 - cal: Add calibration container class<br>=C2=A0 - cal: Add database cl=
+ass<br>=C2=A0 - Introduce I/O service manager<br>=C2=A0 - Replace usage of =
+boost smart pointers with C++11 counterparts<br>=C2=A0 - add udp boost asio=
+ implementation of transport interface<br>=C2=A0 - Add thread affinity util=
+ity functions<br>=C2=A0 - types: Extend stream_cmd_t::num_samps to 64 bits<=
+br>* utils:<br>=C2=A0 - Expose CHDR Parsing API<br>=C2=A0 - Expose CHDR Typ=
+es in Public API<br>=C2=A0 - Support expressions for num_ports in block def=
+s<br>=C2=A0 - Let uhd_images_downloader also use HTTPS proxies<br>=C2=A0 - =
+Fix FPGA search in rfnoc_image_builder from fpga-src to fpga<br>=C2=A0 - Ad=
+d convert_cal_data utility<br>=C2=A0 - image_builder: Support parameterized=
+ number of ports on blocks<br>* x300:<br>=C2=A0 - Update frame sizes for 10=
+GbE<br>=C2=A0 - Fix for incorrect PCIe buffer size values<br>=C2=A0 - Chang=
+e default dboard clock rate from 50 to 100 MHz<br>=C2=A0 - Update maximum b=
+itstream size<br>=C2=A0 - Enable power reference API<br>=C2=A0 - Expand DRA=
+M address space to 1G<br>=C2=A0 - Add front-panel GPIO source control<br></=
+div><div><br></div><div><div><div><div>As always, we at Ettus Research woul=
+d like to thank all of the UHD users=20
+in the open source SDR community.=C2=A0 This release contains commits from =
+users in the community that submitted pull requests
+against the <a href=3D"https://github.com/EttusResearch/uhd" target=3D"_bla=
+nk">UHD</a> and <a href=3D"https://github.com/EttusResearch/fpga" target=3D=
+"_blank">FPGA</a>
+ repositories as well as many commits that are a direct result of issues re=
+ported back to us by users like you
+through the <a href=3D"https://github.com/EttusResearch/uhd/issues" target=
+=3D"_blank">UHD</a> and <a href=3D"https://github.com/EttusResearch/fpga/is=
+sues" target=3D"_blank">FPGA</a>
+  issue trackers, the <a href=3D"http://lists.ettus.com/mailman/listinfo/us=
+rp-users_lists.ettus.com" target=3D"_blank">USRP-users mailing list</a>, an=
+d <a href=3D"mailto:support@ettus.com" target=3D"_blank">Ettus support</a>.=
+=C2=A0 You have all helped contribute to the continued improvement of
+ UHD.=C2=A0 Thank you!</div></div><div><br></div><div>Best regards,</div><d=
+iv>Michael<br></div></div></div></div></div>
+
+--00000000000041c95f05adbd25a2--
 
 
---===============7337260664400773358==
+--===============2956893033691288429==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -666,5 +501,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7337260664400773358==--
+--===============2956893033691288429==--
 
