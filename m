@@ -2,60 +2,65 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D3E256F44
-	for <lists+usrp-users@lfdr.de>; Sun, 30 Aug 2020 18:05:32 +0200 (CEST)
-Received: from [::1] (port=47128 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B431256FB3
+	for <lists+usrp-users@lfdr.de>; Sun, 30 Aug 2020 20:34:39 +0200 (CEST)
+Received: from [::1] (port=48792 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kCPpj-0003rJ-Ss; Sun, 30 Aug 2020 12:05:31 -0400
-Received: from mail-qk1-f177.google.com ([209.85.222.177]:33229)
+	id 1kCS9z-0001bM-JY; Sun, 30 Aug 2020 14:34:35 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:43534)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kCPpg-0003ju-F3
- for usrp-users@lists.ettus.com; Sun, 30 Aug 2020 12:05:28 -0400
-Received: by mail-qk1-f177.google.com with SMTP id p4so4154930qkf.0
- for <usrp-users@lists.ettus.com>; Sun, 30 Aug 2020 09:05:08 -0700 (PDT)
+ id 1kCS9v-0001Wt-Ih
+ for usrp-users@lists.ettus.com; Sun, 30 Aug 2020 14:34:31 -0400
+Received: by mail-qt1-f195.google.com with SMTP id k18so3285076qtm.10
+ for <usrp-users@lists.ettus.com>; Sun, 30 Aug 2020 11:34:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
  :in-reply-to:content-transfer-encoding;
- bh=N7PfavHNLbulpcyIPQRirwmaGGuEI+GmXS5T5jPXaVg=;
- b=avdB06bBnuj3S2G7KyPwcsfUIdBXjTSvJt2eK/eGn1eaegd8rYFOrAi9kaiXWCI+iA
- 6aspKn0bRq/1z8xfO96QU6HbV8NwGlLDldkm5LeqREU57ZoSd+m8zb9C31OC6lIEdSRc
- otuAzt3HBpTdwC4TYoMo974/MJE7GjHXcOCJIl8C3382fgr/FIm+nw/9/OLv+CDHnTs/
- L75IVxYAnlG98Mh2rVru+q8mKaKC3rZ5WEdcMELwgSK7oD6TVK9XLW1p12v+xT1faPr/
- RZjg/qURsu9hNmMtpoDUhMVCRplY2zPjgH5xNaFIAIv++uy8gi+w+r2Mf58+eKmoFlAF
- 1oEw==
+ bh=kCsbR61v2q9Bn2oGQr1S9+bMObgBw476uyx2gKOWkCA=;
+ b=qT7WnzJQ/kOaKxAI16xPIiyaBNMjIDSffCaxDI0xHPg/Q1HUkapwLuZOoYjPSJE8xI
+ oUaSNm73pIWDXWOvo8PB5e8w3aK2AmM34wytsBXBtEjF8KhTSOWWJB4e3F2wgJ1YC2ny
+ U10XpL86daT4JbfmSmTpQ3a2feOsXQ07/6KpcJRqVGf+yCP/VC1NADLwUobc3kErFm6t
+ qX4qWwpgaGU4YSUucuq3BGo8hQbvGnCuBv9l6uaEBqs1LiLY3I59kAtaE7SAHpaffs6P
+ OAiyBE6+l/aR15sTP3hSPIoGRsEzJlVSDkn3kxrEFzynKaupQbgGH13cCv35cAJ2YEIF
+ qMnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to:content-transfer-encoding;
- bh=N7PfavHNLbulpcyIPQRirwmaGGuEI+GmXS5T5jPXaVg=;
- b=dCo/THzzLFqvl3ore/bqfksg9SZBipSNg9JjTG6BsoaZMXir19fJ+Z4b+xs4ClWRdT
- WbyWlkYnsLTIeCmonurj7p2e38POTckMJjrvaKid2vkxo318C+CHxLlPkLwGMgcwkCMX
- 1Tx08l2bHXpYs6mOI6U/Hu02xnNjge29irkVwVUxSHjI/yzawnzrIXS5OXRiD2DuwnRU
- nvVZUxi/rVW36VBe8IUdHltPkKddbvo9vGea1LAZYHYMjXfWPpuib8Y6U7cnuab8bkAF
- K+Xc4gn0Uf+ElzFmT+V9XQ1cqSK8z+3Q5BXLIzZxzPwjTt8Xn0Y3cAISOUuqt4amjDOu
- oWFA==
-X-Gm-Message-State: AOAM531c8q4JA0yloIyg1h/so8mboZB6NbIh5ZV+ZUeEe+nT4RlvNFJY
- 2vCudpuR8wRhlrTDdEuaPSgUoQ72bEQ=
-X-Google-Smtp-Source: ABdhPJz3SVVcGMrwaY1HFLLTcdClq+fhzxLgAvmEReHTf91j1e7GcZyRNU0qyQbXJKChJG7aPvch1Q==
-X-Received: by 2002:a37:a953:: with SMTP id s80mr1623526qke.152.1598803487667; 
- Sun, 30 Aug 2020 09:04:47 -0700 (PDT)
+ bh=kCsbR61v2q9Bn2oGQr1S9+bMObgBw476uyx2gKOWkCA=;
+ b=NEjDK7EubxlO2+ZeQObzAlxuAhOquODf74Z5TxemngBKgPIj7KcTUwA+bs3odcBZHi
+ gOx9UQ4BDw7kfluAv4v3ktWsk6nvvGtUZXKYZZK2GCBO5n7ZQZvpBk20Beb3Y9bb90f5
+ nPh1NaWLtuAMpDeDepDoV0tEMOS6i7/EzISoumPAjT8z30/eKIPvnKG+p6QMeGjI3+0p
+ WOkfTLU7Fnn5/lm0sCLE+LQzZMFF0/Jjnua+d9Cl1Ft3MZsihcjcoRC5dK2RUHTYJlF2
+ v7GEJx/TESJ+T1Zrk+gDioLPWteketLtyjKidw+4f2QEoHRfisYlq8x7gVQJ0EbHGQ6y
+ 8rew==
+X-Gm-Message-State: AOAM530YnzvY2kxJz85V8e9pp0LBvy3FgN8aZmMFOvX+IXIAtTpi5puP
+ 0BQ08axnHNF7GJ23sonukusOAVTEy58=
+X-Google-Smtp-Source: ABdhPJxD3HXO6ns5RR7lLRliEv0KauCGoUuSZj1Azv56VuielUzNQ/b8HvKJIVDlY64nP1y0IVqB8A==
+X-Received: by 2002:ac8:73c3:: with SMTP id v3mr10408557qtp.266.1598812430585; 
+ Sun, 30 Aug 2020 11:33:50 -0700 (PDT)
 Received: from [192.168.2.12]
  (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
- by smtp.googlemail.com with ESMTPSA id g184sm6179564qkd.51.2020.08.30.09.04.47
- for <usrp-users@lists.ettus.com>
+ by smtp.googlemail.com with ESMTPSA id w59sm1797456qtd.1.2020.08.30.11.33.49
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 30 Aug 2020 09:04:47 -0700 (PDT)
-Message-ID: <5F4BCE1E.5000102@gmail.com>
-Date: Sun, 30 Aug 2020 12:04:46 -0400
+ Sun, 30 Aug 2020 11:33:50 -0700 (PDT)
+Message-ID: <5F4BF10D.9060405@gmail.com>
+Date: Sun, 30 Aug 2020 14:33:49 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <c81b36ff-236a-9820-04ae-015b7cc99f89@126.com>
-In-Reply-To: <c81b36ff-236a-9820-04ae-015b7cc99f89@126.com>
-Subject: Re: [USRP-users] how to build firmware locally
+To: Nando Pellegrini <i1ndp.nando@gmail.com>, 
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <CAM4xKrrtSjhM1FFYGvuXrQFBop1d+H78JzQCx5OMh4iQ3rm3TQ@mail.gmail.com>
+ <CAGNhwTMtPx8aygM-kUgcAyK_L2+nmLxtnJJDjpLXk5HpjK0uwQ@mail.gmail.com>
+ <67e4d928-2f30-1faa-bb29-6e59916f6578@gmail.com> <5F492AC3.6070005@gmail.com>
+ <e2e93aff-492b-4c4b-21bb-c510e4152ca0@gmail.com> <5F493640.4080504@gmail.com>
+ <bea321bb-bcf2-3263-c2b2-75f044d9aecc@gmail.com> <5F4AA3CF.1010908@gmail.com>
+ <7364b2c0-0005-e1c9-0607-5865841dc6d1@gmail.com>
+In-Reply-To: <7364b2c0-0005-e1c9-0607-5865841dc6d1@gmail.com>
+Subject: Re: [USRP-users] [UHD] Announcing 4.0.0.0 Release Candidate 1
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -69,8 +74,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,20 +89,174 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMDgvMzAvMjAyMCAwMjo0MiBBTSwg5byg5b+g5bGxIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+
-IFdoZW4gYnVpbGRpbmcgZmlsZXN5c3RlbSBmb3IgTjMxMCB1c2luZyB0aGUgZmxvd3dpbmcgY29t
-bWFuZCBsaW5lCj4gYWNjb3JkaW5nIGh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL2V0
-dHVzLWRvY2tlci90cmVlL21hc3Rlci9vZS1idWlsZC4KPgo+ICAgICAgLi9tZXRhLWV0dHVzL2Nv
-bnRyaWIvYnVpbGRfaW1nc19wYWNrYWdlLnNoIG4zeHggdjMuMTUuMC4wCj4KPiBJdCB3b3VsZCBk
-b3dubG9hZCB0aGUgZmxvd3dpbmcgZmlybXdhcmUgaW1hZ2UgZmlsZXM6Cj4KPiAgICAgICAgICBu
-M3h4X24zMDBfZnBnYV9kZWZhdWx0Cj4gICAgICAgICAgbjN4eF9uMzEwX2ZwZ2FfZGVmYXVsdAo+
-ICAgICAgICAgIG4zeHhfbjMyMF9mcGdhX2RlZmF1bHQKPiAgICAgICAgICBuM3h4X24zMTBfY3Bs
-ZF9kZWZhdWx0Cj4gICAgICAgICAgbjN4eF9uMzIwX2NwbGRfZGVmYXVsdAo+Cj4gU28sIG15IHF1
-ZXN0aW9uIGlzIDoKPgo+ICAgICAgMS4gTWF5IEkgYnVpbHQgdGhlbSBsb2NhbGx5Cj4gICAgICAy
-LiBJZiBJIGNhbiwgd2hlcmUgYXJlIHRoZSBzb3VyY2UgY29kcyBhbmQgLi4uCj4gICAgICAzLiBI
-b3cgdG8gYnVpbGQgdGhlbQo+ClRoaXMgbWF5IGJlIG9mIHNvbWUgaGVscDoKCmh0dHBzOi8vZmls
-ZXMuZXR0dXMuY29tL21hbnVhbC9tZF91c3JwM19idWlsZF9pbnN0cnVjdGlvbnMuaHRtbAoKWW91
-J2xsIG5lZWQgdGhlIGFwcHJvcHJpYXRlIFZpdmFkbyB0b29sY2hhaW4uCgoKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBs
-aXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFp
-bG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+On 08/30/2020 02:44 AM, Nando Pellegrini wrote:
+> Marcus,
+> I really do not understand what you are trying to demonstrate i have 
+> started long ago trying to use the easy GR blocks withe the B200mini 
+> and found out at once that the overhead introduced be the Gr blocks 
+> were  limiting the efficiency so you discovered the "warm water" as we 
+> say in Italy , i was just going to waste some more of my time 
+> following your indications but to be frank i am tired of reporting 
+> problems and receiving back questions instead of answers, 
+> considerations more philosophic than technical .
+> The point is that i bought  from Ettus a device which was promising 
+> and publishing certain level of performances.
+> I have to admit that all was true up  to about a year ago , not 
+> anymore now why? What should i do to be able  to see my expectations 
+> satisfied?
+> If a USB Linux based system is not able to sustain your products what 
+> type of consideration you think we are forced to have?
+> nando
+I'm not sure how I can provide technical support if asking clarifying 
+questions is not acceptable.
+
+You note that "up to a year ago, I could achieve this performance". But 
+what has changed?  From your messages it seems like
+   OS and computer hardware have changed.  Unless I'm misunderstanding 
+what you're saying.  When you say performance has changed,
+   do you mean with *exactly the same hardware and OS environment*?? If 
+so, the only thing I can think of is that a kernel update has
+   changed the performance envelope of USB support.   If you're on an 
+Intel CPU, that kernel update may have turned on something called
+   KPTI, which has often significant performance implications--up to 
+30%.  You might check the status of KPTI on your systems, to see if any
+   kernel update has suddenly turned this on:
+
+https://askubuntu.com/questions/992137/how-to-check-that-kpti-is-enabled-on-my-ubuntu
+
+Having said all that, I went into the lab today to try out 
+high-performance using a B200mini, on a different system.  I was able to 
+achieve
+   56Msps sustained without over-runs.
+
+This is with:
+
+processor : 0
+vendor_id : GenuineIntel
+cpu family : 6
+model : 58
+model name : Intel(R) Xeon(R) CPU E3-1230 V2 @ 3.30GHz
+
+The USB controller was:
+
+03:00.0 USB controller:
+Etron Technology, Inc. EJ188/EJ198 USB 3.0 Host Controller (prog-if 30 
+[XHCI])
+Subsystem: Etron Technology, Inc. EJ188/EJ198 USB 3.0
+Host Controller Flags: bus master, fast devsel, latency 0, IRQ 31 Memory 
+at df300000 (64-bit, non-prefetchable) [size=32K]
+Capabilities: <access denied> Kernel driver in use: xhci_hcd
+
+And kernel version is:
+
+Linux localhost.localdomain 5.7.15-100.fc31.x86_64 #1 SMP Tue Aug 11 
+17:18:01 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+The UHD version was 3.14.1.0 -- same as on the AMD Phenom II X6 system I 
+tested yesterday.
+
+I used a simple Gnu Radio flow-graph, just like yesterday.
+
+I will go back into the lab later this evening or tomorrow and try the 
+latest RC version of UHD, but my success with 56Msps against
+   UHD 3.14.1.0  (what is packaged in Fedora 31) indicates that 
+streaming at that rate continues to be possible with the right
+   compute hardware and USB controller.
+
+It is interesting to note that on this system, the CPUs are operating in 
+"Power Save" mode, and KPTI is *enabled*.  On the AMD system I tested
+   yesterday, KPTI isn't enabled (because AMD doesn't need it), and the 
+CPUs were operating in "Performance" mode.   So system performance
+   envelope as a whole plays a significant role.
+
+
+
+>
+> On 8/29/2020 20:51, Marcus D. Leech wrote:
+>> On 08/29/2020 03:35 AM, Nando Pellegrini wrote:
+>>> Marcus,
+>>> Attached you can find the results of the benchmark test.
+>>> I have been also compared the behavior with 2 different CPU and 
+>>> different USB type 3.0 for the older tower PC, USB 3.1 on the 
+>>> laptop, very strange the case of the older CPU generating an 
+>>> overflow every minute.
+>>> The conditions were exactly the same in all test with no other 
+>>> visible activity on the machines.
+>>> Release 14.0 seems a bit better with the benchmark but,sadly, the 2 
+>>> UHD release are not comparable because the 14.0 as soon as generates 
+>>> an overflow indication drops in the timeout with no recovery but 
+>>> final consideration is that fast sample rate became unusable for 
+>>> long signal recording regardless to software release and PC.
+>>> I really hope for a solution.
+>>> nando
+>> I played a bit with a B210 on a Fedora 31 system today, and was 
+>> unable to achieve greater than 37MSPS without overruns.
+>>
+>> I constructed a "degenerate-case" Gnu Radio flow graph that was just:
+>>
+>> uhd-source-->null-sink
+>>
+>> That's roughly equivalent to what benchmark_rate does, and I was 
+>> forced to do that since F31 doesn't appear to package tools
+>>   like benchmark_rate and some of the other UHD examples.
+>>
+>> This was with UHD 3.14.0.1
+>>
+>> The system was an AMD Phenom II X6 1090T.
+>>
+>> What i noticed was that above 38Msps, you'd get continuous over-runs, 
+>> and at 38Msps, you'd get a burst of overruns whenever you switched to
+>>   a new window.  This is CLEARLY a system effect, unrelated to UHD at 
+>> all.  Likely contention for memory access, interrupt latency, or PCI-e
+>>   transaction contention.  The CPU consumption for the gr-uhd thread 
+>> that was servicing the USB interface never rose above 38% CPU.
+>>   Now the UHD transport code is single-threaded.  It's tempting to 
+>> suggest "why not make it multi-threaded?".  That was tried, several 
+>> times,
+>>   a few years back, and performance was *worse* with UHD transport 
+>> spread over multiple threads.   Probably due to resource contention
+>>   at the kernel interface.
+>>
+>> I'll note that no matter whether I specified sc8, sc12, or sc16 
+>> sample sizes I saw the same behavior.  This indicates to me that it 
+>> isn't
+>>   USB *bandwidth* so much as USB (and by implication PCIe) offered 
+>> *TRANSACTION* load.    It is likely the case that different USB3 
+>> controllers
+>>   make this better/worse, depending on their interrupt behavior, how 
+>> they do DMA, etc, etc.  I did have to use num_recv_frames > 200 to
+>>   achieve even this.
+>>
+>> I'll make a general comment that achieving loss-free, "real time", 
+>> high-bandwidth streaming using a general-purpose operating system is
+>>   always going to require a lot of tuning, and not a small amount of 
+>> good luck.    Other applications of high-speed streaming are somewhat
+>>   tolerant if one end does a "hey stop sending for a bit" -- like 
+>> disk drives and network interfaces, etc.   But when you're trying to 
+>> sample
+>>   the "real world", you cannot reasonably put it "on hold" while you 
+>> "catch up".  Which is why throwing more buffering at this problem 
+>> generally
+>>   doesn't work that well.  If the offered load exceeds long-term 
+>> capacity, even by a tiny bit, you will end up "losing".    It is 
+>> clear that "capacity"
+>>   is only loosely-coupled to CPU performance, and much-better 
+>> represented by overall *system* performance.
+>>
+>> Over the years, folks have pointed at UHD, hoping that some kind of 
+>> performance-tuning exercise within UHD will get them the performance
+>>   their application requires.  UHD has been, over the years (roughly 
+>> 10 years at this point) optimized quite a bit.  But UHD lives within 
+>> an overall
+>>   *system* and it can only do as well as that *system* can provide.
+>>
+>>
+>>
+>>
+>
+
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
