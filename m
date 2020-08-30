@@ -2,38 +2,65 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2201F256C64
-	for <lists+usrp-users@lfdr.de>; Sun, 30 Aug 2020 08:44:00 +0200 (CEST)
-Received: from [::1] (port=40894 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB77256C65
+	for <lists+usrp-users@lfdr.de>; Sun, 30 Aug 2020 08:45:17 +0200 (CEST)
+Received: from [::1] (port=40914 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kCH4H-0003DA-9D; Sun, 30 Aug 2020 02:43:57 -0400
-Received: from m15112.mail.126.com ([220.181.15.112]:39865)
- by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_DHE_RSA_WITH_AES_256_CBC_SHA
- (Exim 4.93) (envelope-from <zzs213@126.com>) id 1kCH4A-00037C-Oq
- for usrp-users@lists.ettus.com; Sun, 30 Aug 2020 02:43:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
- s=s110527; h=From:Subject:Message-ID:Date:MIME-Version; bh=QUi2m
- kD8Mt6Q66VuSrO58xuE10DsQcJKR73tePYLmPY=; b=k9wSEGFCRdI5dCFmoJ/S/
- 5sEY3D5Cnfi3qW0e0X1fjk9S/zcwHSA+oE+qfoBr9s3vPG00LbZVzV3wHUaUuydb
- 1v7FrWkrXa+uFMHH/oEN1TpIoUHMgSY+sc9v4uIzauR3WzzaI+jU2CE2rC68Z+sM
- fU+4E7dDdnb3BxfvfaR2xs=
-Received: from [192.168.0.106] (unknown [117.173.226.247])
- by smtp2 (Coremail) with SMTP id DMmowACntvp0Sktf+YsbGw--.55751S2;
- Sun, 30 Aug 2020 14:43:01 +0800 (CST)
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <c81b36ff-236a-9820-04ae-015b7cc99f89@126.com>
-Date: Sun, 30 Aug 2020 14:42:58 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	id 1kCH5Y-0003Ty-IV; Sun, 30 Aug 2020 02:45:16 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:54391)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <i1ndp.nando@gmail.com>)
+ id 1kCH5U-0003MP-54
+ for usrp-users@lists.ettus.com; Sun, 30 Aug 2020 02:45:12 -0400
+Received: by mail-wm1-f65.google.com with SMTP id s13so2595424wmh.4
+ for <usrp-users@lists.ettus.com>; Sat, 29 Aug 2020 23:44:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=Yo/ZUriob2DWGg9ISNBZrB7Rgi8eHD/KsdO3a8c6R7s=;
+ b=vLl54M57nw2Vl7nH3NdiQfRRNlDarEX+SDfRPMGliHouHm+YHH7eEicozG9qxX97ji
+ RicpnYpUbAo37obKLDo3JboKPuDP6cFC2cKqC6QFuNcsz8pz3V0MwJ2nquXE89p6FuwW
+ ON2fwKo1ZgtlkF7lDvNFoUV1AXKxpv+0rodmfZSA1mgwz0q2HHZlsFT7qcgUGH3leGKk
+ Bv/c8K06bjjAt5vC5Rnx8J97JUPpP+EER8V2l2APghP5PWMcjIMDgy5UPelk908txi1h
+ FYQnbxOI0rnrAD8O9xl2e/o16/UautZqy4mI1y5bUIEyxDvfM3u5VIohSzziLisS+Mad
+ wdlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=Yo/ZUriob2DWGg9ISNBZrB7Rgi8eHD/KsdO3a8c6R7s=;
+ b=ii1p89sI+Yj5htvUAWk8nRtDQzDSi4O13eN+18ns9pWtIOBVzzJOhqF1+Blujv/hI2
+ 7/34naaTy7N4tzgTalOHd6NFRFmC6oPuOQuAdPyiIZ9Ddp9CF9mi6sCyZGkdWPzmh3y/
+ roGqRbdMWllE5vFJDyHUJirOEBnOaw9Hxk5Od0Y9slRjFylP8PKNSWwpJ2xSSY5T+uO9
+ fTKQtEcEp5bUEIRkPepRrP+hZ8b/e1egoYIIZHuaHnyr7CHuy5KMhWcWDw75jp3qEqrw
+ VS3wLE7Pw8+ER+NV7UFzC/hWsWRaZnWKcU33XkKRzBzqBS2xdrrVjOyc95kd17et60Kn
+ kGJg==
+X-Gm-Message-State: AOAM5333JEKv/Bnn911+nzjN7b2a/U4yfgbkoWRs86tnIALdFst7GTU6
+ GKlAV4FYejOfnAWL1rxV8uj0N+IiYmx1wg==
+X-Google-Smtp-Source: ABdhPJxWW7824u/8P5UcxM2v9kFjNCNdiFwgWaatZCDEBKyGPt47+g96hMybXzwZnBUwi4/0OTf20Q==
+X-Received: by 2002:a1c:c906:: with SMTP id f6mr6173047wmb.5.1598769870826;
+ Sat, 29 Aug 2020 23:44:30 -0700 (PDT)
+Received: from [10.0.0.3] ([176.65.80.99])
+ by smtp.gmail.com with ESMTPSA id n7sm6168188wrs.2.2020.08.29.23.44.30
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 29 Aug 2020 23:44:30 -0700 (PDT)
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <CAM4xKrrtSjhM1FFYGvuXrQFBop1d+H78JzQCx5OMh4iQ3rm3TQ@mail.gmail.com>
+ <CAGNhwTMtPx8aygM-kUgcAyK_L2+nmLxtnJJDjpLXk5HpjK0uwQ@mail.gmail.com>
+ <67e4d928-2f30-1faa-bb29-6e59916f6578@gmail.com> <5F492AC3.6070005@gmail.com>
+ <e2e93aff-492b-4c4b-21bb-c510e4152ca0@gmail.com> <5F493640.4080504@gmail.com>
+ <bea321bb-bcf2-3263-c2b2-75f044d9aecc@gmail.com> <5F4AA3CF.1010908@gmail.com>
+Message-ID: <7364b2c0-0005-e1c9-0607-5865841dc6d1@gmail.com>
+Date: Sun, 30 Aug 2020 08:44:30 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
+In-Reply-To: <5F4AA3CF.1010908@gmail.com>
 Content-Language: en-US
-X-CM-TRANSID: DMmowACntvp0Sktf+YsbGw--.55751S2
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
- VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU9nXODUUUU
-X-Originating-IP: [117.173.226.247]
-X-CM-SenderInfo: x22vjiat6rjloofrz/1tbiTxaQGVpEBZ7dGQAAsR
-Subject: [USRP-users] how to build firmware locally
+Subject: Re: [USRP-users] [UHD] Announcing 4.0.0.0 Release Candidate 1
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -45,10 +72,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?5byg5b+g5bGxIHZpYSBVU1JQLXVzZXJz?= <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?5byg5b+g5bGx?= <zzs213@126.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Nando Pellegrini via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nando Pellegrini <i1ndp.nando@gmail.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -62,31 +89,90 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-When building filesystem for N310 using the flowwing command line
-according https://github.com/EttusResearch/ettus-docker/tree/master/oe-build.
-
-    ./meta-ettus/contrib/build_imgs_package.sh n3xx v3.15.0.0
-
-It would download the flowwing firmware image files:
-
-        n3xx_n300_fpga_default 
-        n3xx_n310_fpga_default 
-        n3xx_n320_fpga_default 
-        n3xx_n310_cpld_default 
-        n3xx_n320_cpld_default 
-
-So, my question is :
-
-    1. May I built them locally
-    2. If I can, where are the source cods and ...
-    3. How to build them
-
--- 
-Best Regards,
-zzs
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+TWFyY3VzLApJIHJlYWxseSBkbyBub3QgdW5kZXJzdGFuZCB3aGF0IHlvdSBhcmUgdHJ5aW5nIHRv
+IGRlbW9uc3RyYXRlIGkgaGF2ZSAKc3RhcnRlZCBsb25nIGFnbyB0cnlpbmcgdG8gdXNlIHRoZSBl
+YXN5IEdSIGJsb2NrcyB3aXRoZSB0aGUgQjIwMG1pbmkgYW5kIApmb3VuZCBvdXQgYXQgb25jZSB0
+aGF0IHRoZSBvdmVyaGVhZCBpbnRyb2R1Y2VkIGJlIHRoZSBHciBibG9ja3Mgd2VyZcKgIApsaW1p
+dGluZyB0aGUgZWZmaWNpZW5jeSBzbyB5b3UgZGlzY292ZXJlZCB0aGUgIndhcm0gd2F0ZXIiIGFz
+IHdlIHNheSBpbiAKSXRhbHkgLCBpIHdhcyBqdXN0IGdvaW5nIHRvIHdhc3RlIHNvbWUgbW9yZSBv
+ZiBteSB0aW1lIGZvbGxvd2luZyB5b3VyIAppbmRpY2F0aW9ucyBidXQgdG8gYmUgZnJhbmsgaSBh
+bSB0aXJlZCBvZiByZXBvcnRpbmcgcHJvYmxlbXMgYW5kIApyZWNlaXZpbmcgYmFjayBxdWVzdGlv
+bnMgaW5zdGVhZCBvZiBhbnN3ZXJzLCBjb25zaWRlcmF0aW9ucyBtb3JlIApwaGlsb3NvcGhpYyB0
+aGFuIHRlY2huaWNhbCAuClRoZSBwb2ludCBpcyB0aGF0IGkgYm91Z2h0wqAgZnJvbSBFdHR1cyBh
+IGRldmljZSB3aGljaCB3YXMgcHJvbWlzaW5nIGFuZCAKcHVibGlzaGluZyBjZXJ0YWluIGxldmVs
+IG9mIHBlcmZvcm1hbmNlcy4KSSBoYXZlIHRvIGFkbWl0IHRoYXQgYWxsIHdhcyB0cnVlIHVwwqAg
+dG8gYWJvdXQgYSB5ZWFyIGFnbyAsIG5vdCBhbnltb3JlIApub3cgd2h5PyBXaGF0IHNob3VsZCBp
+IGRvIHRvIGJlIGFibGXCoCB0byBzZWUgbXkgZXhwZWN0YXRpb25zIHNhdGlzZmllZD8KSWYgYSBV
+U0IgTGludXggYmFzZWQgc3lzdGVtIGlzIG5vdCBhYmxlIHRvIHN1c3RhaW4geW91ciBwcm9kdWN0
+cyB3aGF0IAp0eXBlIG9mIGNvbnNpZGVyYXRpb24geW91IHRoaW5rIHdlIGFyZSBmb3JjZWQgdG8g
+aGF2ZT8KbmFuZG8KCk9uIDgvMjkvMjAyMCAyMDo1MSwgTWFyY3VzIEQuIExlZWNoIHdyb3RlOgo+
+IE9uIDA4LzI5LzIwMjAgMDM6MzUgQU0sIE5hbmRvIFBlbGxlZ3Jpbmkgd3JvdGU6Cj4+IE1hcmN1
+cywKPj4gQXR0YWNoZWQgeW91IGNhbiBmaW5kIHRoZSByZXN1bHRzIG9mIHRoZSBiZW5jaG1hcmsg
+dGVzdC4KPj4gSSBoYXZlIGJlZW4gYWxzbyBjb21wYXJlZCB0aGUgYmVoYXZpb3Igd2l0aCAyIGRp
+ZmZlcmVudCBDUFUgYW5kIAo+PiBkaWZmZXJlbnQgVVNCIHR5cGUgMy4wIGZvciB0aGUgb2xkZXIg
+dG93ZXIgUEMsIFVTQiAzLjEgb24gdGhlIGxhcHRvcCwgCj4+IHZlcnkgc3RyYW5nZSB0aGUgY2Fz
+ZSBvZiB0aGUgb2xkZXIgQ1BVIGdlbmVyYXRpbmcgYW4gb3ZlcmZsb3cgZXZlcnkgCj4+IG1pbnV0
+ZS4KPj4gVGhlIGNvbmRpdGlvbnMgd2VyZSBleGFjdGx5IHRoZSBzYW1lIGluIGFsbCB0ZXN0IHdp
+dGggbm8gb3RoZXIgCj4+IHZpc2libGUgYWN0aXZpdHkgb24gdGhlIG1hY2hpbmVzLgo+PiBSZWxl
+YXNlIDE0LjAgc2VlbXMgYSBiaXQgYmV0dGVyIHdpdGggdGhlIGJlbmNobWFyayBidXQsc2FkbHks
+IHRoZSAyIAo+PiBVSEQgcmVsZWFzZSBhcmUgbm90IGNvbXBhcmFibGUgYmVjYXVzZSB0aGUgMTQu
+MCBhcyBzb29uIGFzIGdlbmVyYXRlcyAKPj4gYW4gb3ZlcmZsb3cgaW5kaWNhdGlvbiBkcm9wcyBp
+biB0aGUgdGltZW91dCB3aXRoIG5vIHJlY292ZXJ5IGJ1dCAKPj4gZmluYWwgY29uc2lkZXJhdGlv
+biBpcyB0aGF0IGZhc3Qgc2FtcGxlIHJhdGUgYmVjYW1lIHVudXNhYmxlIGZvciBsb25nIAo+PiBz
+aWduYWwgcmVjb3JkaW5nIHJlZ2FyZGxlc3MgdG8gc29mdHdhcmUgcmVsZWFzZSBhbmQgUEMuCj4+
+IEkgcmVhbGx5IGhvcGUgZm9yIGEgc29sdXRpb24uCj4+IG5hbmRvCj4gSSBwbGF5ZWQgYSBiaXQg
+d2l0aCBhIEIyMTAgb24gYSBGZWRvcmEgMzEgc3lzdGVtIHRvZGF5LCBhbmQgd2FzIHVuYWJsZSAK
+PiB0byBhY2hpZXZlIGdyZWF0ZXIgdGhhbiAzN01TUFMgd2l0aG91dCBvdmVycnVucy4KPgo+IEkg
+Y29uc3RydWN0ZWQgYSAiZGVnZW5lcmF0ZS1jYXNlIiBHbnUgUmFkaW8gZmxvdyBncmFwaCB0aGF0
+IHdhcyBqdXN0Ogo+Cj4gdWhkLXNvdXJjZS0tPm51bGwtc2luawo+Cj4gVGhhdCdzIHJvdWdobHkg
+ZXF1aXZhbGVudCB0byB3aGF0IGJlbmNobWFya19yYXRlIGRvZXMsIGFuZCBJIHdhcyAKPiBmb3Jj
+ZWQgdG8gZG8gdGhhdCBzaW5jZSBGMzEgZG9lc24ndCBhcHBlYXIgdG8gcGFja2FnZSB0b29scwo+
+IMKgIGxpa2UgYmVuY2htYXJrX3JhdGUgYW5kIHNvbWUgb2YgdGhlIG90aGVyIFVIRCBleGFtcGxl
+cy4KPgo+IFRoaXMgd2FzIHdpdGggVUhEIDMuMTQuMC4xCj4KPiBUaGUgc3lzdGVtIHdhcyBhbiBB
+TUQgUGhlbm9tIElJIFg2IDEwOTBULgo+Cj4gV2hhdCBpIG5vdGljZWQgd2FzIHRoYXQgYWJvdmUg
+MzhNc3BzLCB5b3UnZCBnZXQgY29udGludW91cyBvdmVyLXJ1bnMsIAo+IGFuZCBhdCAzOE1zcHMs
+IHlvdSdkIGdldCBhIGJ1cnN0IG9mIG92ZXJydW5zIHdoZW5ldmVyIHlvdSBzd2l0Y2hlZCB0bwo+
+IMKgIGEgbmV3IHdpbmRvdy7CoCBUaGlzIGlzIENMRUFSTFkgYSBzeXN0ZW0gZWZmZWN0LCB1bnJl
+bGF0ZWQgdG8gVUhEIGF0IAo+IGFsbC7CoCBMaWtlbHkgY29udGVudGlvbiBmb3IgbWVtb3J5IGFj
+Y2VzcywgaW50ZXJydXB0IGxhdGVuY3ksIG9yIFBDSS1lCj4gwqAgdHJhbnNhY3Rpb24gY29udGVu
+dGlvbi7CoCBUaGUgQ1BVIGNvbnN1bXB0aW9uIGZvciB0aGUgZ3ItdWhkIHRocmVhZCAKPiB0aGF0
+IHdhcyBzZXJ2aWNpbmcgdGhlIFVTQiBpbnRlcmZhY2UgbmV2ZXIgcm9zZSBhYm92ZSAzOCUgQ1BV
+Lgo+IMKgIE5vdyB0aGUgVUhEIHRyYW5zcG9ydCBjb2RlIGlzIHNpbmdsZS10aHJlYWRlZC7CoCBJ
+dCdzIHRlbXB0aW5nIHRvIAo+IHN1Z2dlc3QgIndoeSBub3QgbWFrZSBpdCBtdWx0aS10aHJlYWRl
+ZD8iLsKgIFRoYXQgd2FzIHRyaWVkLCBzZXZlcmFsIAo+IHRpbWVzLAo+IMKgIGEgZmV3IHllYXJz
+IGJhY2ssIGFuZCBwZXJmb3JtYW5jZSB3YXMgKndvcnNlKiB3aXRoIFVIRCB0cmFuc3BvcnQgCj4g
+c3ByZWFkIG92ZXIgbXVsdGlwbGUgdGhyZWFkcy7CoMKgIFByb2JhYmx5IGR1ZSB0byByZXNvdXJj
+ZSBjb250ZW50aW9uCj4gwqAgYXQgdGhlIGtlcm5lbCBpbnRlcmZhY2UuCj4KPiBJJ2xsIG5vdGUg
+dGhhdCBubyBtYXR0ZXIgd2hldGhlciBJIHNwZWNpZmllZCBzYzgsIHNjMTIsIG9yIHNjMTYgc2Ft
+cGxlIAo+IHNpemVzIEkgc2F3IHRoZSBzYW1lIGJlaGF2aW9yLsKgIFRoaXMgaW5kaWNhdGVzIHRv
+IG1lIHRoYXQgaXQgaXNuJ3QKPiDCoCBVU0IgKmJhbmR3aWR0aCogc28gbXVjaCBhcyBVU0IgKGFu
+ZCBieSBpbXBsaWNhdGlvbiBQQ0llKSBvZmZlcmVkIAo+ICpUUkFOU0FDVElPTiogbG9hZC7CoMKg
+wqAgSXQgaXMgbGlrZWx5IHRoZSBjYXNlIHRoYXQgZGlmZmVyZW50IFVTQjMgCj4gY29udHJvbGxl
+cnMKPiDCoCBtYWtlIHRoaXMgYmV0dGVyL3dvcnNlLCBkZXBlbmRpbmcgb24gdGhlaXIgaW50ZXJy
+dXB0IGJlaGF2aW9yLCBob3cgCj4gdGhleSBkbyBETUEsIGV0YywgZXRjLsKgIEkgZGlkIGhhdmUg
+dG8gdXNlIG51bV9yZWN2X2ZyYW1lcyA+IDIwMCB0bwo+IMKgIGFjaGlldmUgZXZlbiB0aGlzLgo+
+Cj4gSSdsbCBtYWtlIGEgZ2VuZXJhbCBjb21tZW50IHRoYXQgYWNoaWV2aW5nIGxvc3MtZnJlZSwg
+InJlYWwgdGltZSIsIAo+IGhpZ2gtYmFuZHdpZHRoIHN0cmVhbWluZyB1c2luZyBhIGdlbmVyYWwt
+cHVycG9zZSBvcGVyYXRpbmcgc3lzdGVtIGlzCj4gwqAgYWx3YXlzIGdvaW5nIHRvIHJlcXVpcmUg
+YSBsb3Qgb2YgdHVuaW5nLCBhbmQgbm90IGEgc21hbGwgYW1vdW50IG9mIAo+IGdvb2QgbHVjay7C
+oMKgwqAgT3RoZXIgYXBwbGljYXRpb25zIG9mIGhpZ2gtc3BlZWQgc3RyZWFtaW5nIGFyZSBzb21l
+d2hhdAo+IMKgIHRvbGVyYW50IGlmIG9uZSBlbmQgZG9lcyBhICJoZXkgc3RvcCBzZW5kaW5nIGZv
+ciBhIGJpdCIgLS0gbGlrZSBkaXNrIAo+IGRyaXZlcyBhbmQgbmV0d29yayBpbnRlcmZhY2VzLCBl
+dGMuwqDCoCBCdXQgd2hlbiB5b3UncmUgdHJ5aW5nIHRvIHNhbXBsZQo+IMKgIHRoZSAicmVhbCB3
+b3JsZCIsIHlvdSBjYW5ub3QgcmVhc29uYWJseSBwdXQgaXQgIm9uIGhvbGQiIHdoaWxlIHlvdSAK
+PiAiY2F0Y2ggdXAiLsKgIFdoaWNoIGlzIHdoeSB0aHJvd2luZyBtb3JlIGJ1ZmZlcmluZyBhdCB0
+aGlzIHByb2JsZW0gCj4gZ2VuZXJhbGx5Cj4gwqAgZG9lc24ndCB3b3JrIHRoYXQgd2VsbC7CoCBJ
+ZiB0aGUgb2ZmZXJlZCBsb2FkIGV4Y2VlZHMgbG9uZy10ZXJtIAo+IGNhcGFjaXR5LCBldmVuIGJ5
+IGEgdGlueSBiaXQsIHlvdSB3aWxsIGVuZCB1cCAibG9zaW5nIi7CoMKgwqAgSXQgaXMgY2xlYXIg
+Cj4gdGhhdCAiY2FwYWNpdHkiCj4gwqAgaXMgb25seSBsb29zZWx5LWNvdXBsZWQgdG8gQ1BVIHBl
+cmZvcm1hbmNlLCBhbmQgbXVjaC1iZXR0ZXIgCj4gcmVwcmVzZW50ZWQgYnkgb3ZlcmFsbCAqc3lz
+dGVtKiBwZXJmb3JtYW5jZS4KPgo+IE92ZXIgdGhlIHllYXJzLCBmb2xrcyBoYXZlIHBvaW50ZWQg
+YXQgVUhELCBob3BpbmcgdGhhdCBzb21lIGtpbmQgb2YgCj4gcGVyZm9ybWFuY2UtdHVuaW5nIGV4
+ZXJjaXNlIHdpdGhpbiBVSEQgd2lsbCBnZXQgdGhlbSB0aGUgcGVyZm9ybWFuY2UKPiDCoCB0aGVp
+ciBhcHBsaWNhdGlvbiByZXF1aXJlcy7CoCBVSEQgaGFzIGJlZW4sIG92ZXIgdGhlIHllYXJzIChy
+b3VnaGx5IAo+IDEwIHllYXJzIGF0IHRoaXMgcG9pbnQpIG9wdGltaXplZCBxdWl0ZSBhIGJpdC7C
+oCBCdXQgVUhEIGxpdmVzIHdpdGhpbiAKPiBhbiBvdmVyYWxsCj4gwqAgKnN5c3RlbSogYW5kIGl0
+IGNhbiBvbmx5IGRvIGFzIHdlbGwgYXMgdGhhdCAqc3lzdGVtKiBjYW4gcHJvdmlkZS4KPgo+Cj4K
+PgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAt
+dXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0
+cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
