@@ -2,65 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB77256C65
-	for <lists+usrp-users@lfdr.de>; Sun, 30 Aug 2020 08:45:17 +0200 (CEST)
-Received: from [::1] (port=40914 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F3EC256F41
+	for <lists+usrp-users@lfdr.de>; Sun, 30 Aug 2020 18:03:26 +0200 (CEST)
+Received: from [::1] (port=47086 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kCH5Y-0003Ty-IV; Sun, 30 Aug 2020 02:45:16 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:54391)
+	id 1kCPne-0003Yd-Jp; Sun, 30 Aug 2020 12:03:22 -0400
+Received: from mail-il1-f175.google.com ([209.85.166.175]:42101)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <i1ndp.nando@gmail.com>)
- id 1kCH5U-0003MP-54
- for usrp-users@lists.ettus.com; Sun, 30 Aug 2020 02:45:12 -0400
-Received: by mail-wm1-f65.google.com with SMTP id s13so2595424wmh.4
- for <usrp-users@lists.ettus.com>; Sat, 29 Aug 2020 23:44:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-transfer-encoding:content-language;
- bh=Yo/ZUriob2DWGg9ISNBZrB7Rgi8eHD/KsdO3a8c6R7s=;
- b=vLl54M57nw2Vl7nH3NdiQfRRNlDarEX+SDfRPMGliHouHm+YHH7eEicozG9qxX97ji
- RicpnYpUbAo37obKLDo3JboKPuDP6cFC2cKqC6QFuNcsz8pz3V0MwJ2nquXE89p6FuwW
- ON2fwKo1ZgtlkF7lDvNFoUV1AXKxpv+0rodmfZSA1mgwz0q2HHZlsFT7qcgUGH3leGKk
- Bv/c8K06bjjAt5vC5Rnx8J97JUPpP+EER8V2l2APghP5PWMcjIMDgy5UPelk908txi1h
- FYQnbxOI0rnrAD8O9xl2e/o16/UautZqy4mI1y5bUIEyxDvfM3u5VIohSzziLisS+Mad
- wdlA==
+ (Exim 4.93) (envelope-from <eb@comsec.com>) id 1kCPnb-0003Se-3z
+ for usrp-users@lists.ettus.com; Sun, 30 Aug 2020 12:03:19 -0400
+Received: by mail-il1-f175.google.com with SMTP id t13so4549801ile.9
+ for <usrp-users@lists.ettus.com>; Sun, 30 Aug 2020 09:02:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=comsec-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=2690Jv0f1WuUFZK1tr68OoxEEAOdWTAZEQeuUCid/lw=;
+ b=lMuiUiMAScGIhqRRZ2O5bMyBCG4/SwkK/m2LgxmQKpQjHByhxtTh9h1Srsle0elp3p
+ 31ZBT400r3K9KKr6pO5teOTEopZbhzoBLknFOqNTQ4Ljk52l3AH3B2+RE1lOMsVXe8EP
+ Tx47qDegBxgT9857Tr4NJYhRq+Hi5JhJ63aFnuyiNVxYcgt8cmvO5t7OmwBmMNam0a7+
+ s8BkJeBaJ+GF5NrfyET4dgxm9UMfssPv49gvVqOZGTIBfC2ot6acLDzacuC4MQdtl5se
+ dJSuZtI6pbMLGY6VemM+isqJupbW2PITXL8HPUARazENeKUoYEMeDdrDB0DSEzl/MgYR
+ bXYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=Yo/ZUriob2DWGg9ISNBZrB7Rgi8eHD/KsdO3a8c6R7s=;
- b=ii1p89sI+Yj5htvUAWk8nRtDQzDSi4O13eN+18ns9pWtIOBVzzJOhqF1+Blujv/hI2
- 7/34naaTy7N4tzgTalOHd6NFRFmC6oPuOQuAdPyiIZ9Ddp9CF9mi6sCyZGkdWPzmh3y/
- roGqRbdMWllE5vFJDyHUJirOEBnOaw9Hxk5Od0Y9slRjFylP8PKNSWwpJ2xSSY5T+uO9
- fTKQtEcEp5bUEIRkPepRrP+hZ8b/e1egoYIIZHuaHnyr7CHuy5KMhWcWDw75jp3qEqrw
- VS3wLE7Pw8+ER+NV7UFzC/hWsWRaZnWKcU33XkKRzBzqBS2xdrrVjOyc95kd17et60Kn
- kGJg==
-X-Gm-Message-State: AOAM5333JEKv/Bnn911+nzjN7b2a/U4yfgbkoWRs86tnIALdFst7GTU6
- GKlAV4FYejOfnAWL1rxV8uj0N+IiYmx1wg==
-X-Google-Smtp-Source: ABdhPJxWW7824u/8P5UcxM2v9kFjNCNdiFwgWaatZCDEBKyGPt47+g96hMybXzwZnBUwi4/0OTf20Q==
-X-Received: by 2002:a1c:c906:: with SMTP id f6mr6173047wmb.5.1598769870826;
- Sat, 29 Aug 2020 23:44:30 -0700 (PDT)
-Received: from [10.0.0.3] ([176.65.80.99])
- by smtp.gmail.com with ESMTPSA id n7sm6168188wrs.2.2020.08.29.23.44.30
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 29 Aug 2020 23:44:30 -0700 (PDT)
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <CAM4xKrrtSjhM1FFYGvuXrQFBop1d+H78JzQCx5OMh4iQ3rm3TQ@mail.gmail.com>
- <CAGNhwTMtPx8aygM-kUgcAyK_L2+nmLxtnJJDjpLXk5HpjK0uwQ@mail.gmail.com>
- <67e4d928-2f30-1faa-bb29-6e59916f6578@gmail.com> <5F492AC3.6070005@gmail.com>
- <e2e93aff-492b-4c4b-21bb-c510e4152ca0@gmail.com> <5F493640.4080504@gmail.com>
- <bea321bb-bcf2-3263-c2b2-75f044d9aecc@gmail.com> <5F4AA3CF.1010908@gmail.com>
-Message-ID: <7364b2c0-0005-e1c9-0607-5865841dc6d1@gmail.com>
-Date: Sun, 30 Aug 2020 08:44:30 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=2690Jv0f1WuUFZK1tr68OoxEEAOdWTAZEQeuUCid/lw=;
+ b=PxeL1vm9B9/TFCrcxS22fcCyOAWb+UmT070CvQXMBLoks57VVbT27pLkHg66iBvTmG
+ VNAF0VSGrSSMhY2LmbH9OOHC6FIWyZZIEzMZtPu3PJYw6puNgxgr4GNaMC5fz6msh1fW
+ NYRN7UDHj6eGXXIIqmQDnJO9d8zJIZHy3PXshPOCMDcoqK3Ll1lpihZ8fDrGUOi6cGbx
+ dKfxE//9utZTKq4U/uMcjRMHknuqg42fQHf/hxo1jWJHdIJoeITS2KoLBqv2gC2Reqey
+ dUi7k7DkvU59GjTv2Hb/SmjFbNKKwC1MKKLkIqkM3RJHKAUZXAb50dWrjueZepb2HGgH
+ aqag==
+X-Gm-Message-State: AOAM533iRPMcQ3usXasMS7XIFy0GGasbNI6A1qa49nTfxoy3sMlL96pD
+ cIl63g7aWt8HcrvL3SGkQSnImcxgRLEDmrwZ1gpaKA==
+X-Google-Smtp-Source: ABdhPJytFTmDw7UXheLIZ++uQs+eQo6cxngMJjXPVENDCF1fRN23yx27VfMtgaqAO1Jzjz+/9mAHB3yV0tTwU2g1TTw=
+X-Received: by 2002:a92:6d10:: with SMTP id i16mr6396856ilc.228.1598803358298; 
+ Sun, 30 Aug 2020 09:02:38 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <5F4AA3CF.1010908@gmail.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] [UHD] Announcing 4.0.0.0 Release Candidate 1
+References: <CAJF_3i7gu0QMiY3pVc7Qt7pyG2NNBsXjut292g_4E4HEV_t6wg@mail.gmail.com>
+ <CAL7q81vKgWaSKbX61E+Sfr7ahF-RBimt73r2Lvwj-DFMo65XRw@mail.gmail.com>
+In-Reply-To: <CAL7q81vKgWaSKbX61E+Sfr7ahF-RBimt73r2Lvwj-DFMo65XRw@mail.gmail.com>
+Date: Sun, 30 Aug 2020 09:02:27 -0700
+Message-ID: <CAJF_3i6=GJhXOx0yDoFZ5W0V2jqh23AAPpEJc+sQnf=TbBVofQ@mail.gmail.com>
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Speeding up build of usrp3 fpga code??
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -72,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nando Pellegrini via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nando Pellegrini <i1ndp.nando@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: Eric Blossom via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Eric Blossom <eb@comsec.com>
+Content-Type: multipart/mixed; boundary="===============6864455598823028391=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,90 +76,102 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-TWFyY3VzLApJIHJlYWxseSBkbyBub3QgdW5kZXJzdGFuZCB3aGF0IHlvdSBhcmUgdHJ5aW5nIHRv
-IGRlbW9uc3RyYXRlIGkgaGF2ZSAKc3RhcnRlZCBsb25nIGFnbyB0cnlpbmcgdG8gdXNlIHRoZSBl
-YXN5IEdSIGJsb2NrcyB3aXRoZSB0aGUgQjIwMG1pbmkgYW5kIApmb3VuZCBvdXQgYXQgb25jZSB0
-aGF0IHRoZSBvdmVyaGVhZCBpbnRyb2R1Y2VkIGJlIHRoZSBHciBibG9ja3Mgd2VyZcKgIApsaW1p
-dGluZyB0aGUgZWZmaWNpZW5jeSBzbyB5b3UgZGlzY292ZXJlZCB0aGUgIndhcm0gd2F0ZXIiIGFz
-IHdlIHNheSBpbiAKSXRhbHkgLCBpIHdhcyBqdXN0IGdvaW5nIHRvIHdhc3RlIHNvbWUgbW9yZSBv
-ZiBteSB0aW1lIGZvbGxvd2luZyB5b3VyIAppbmRpY2F0aW9ucyBidXQgdG8gYmUgZnJhbmsgaSBh
-bSB0aXJlZCBvZiByZXBvcnRpbmcgcHJvYmxlbXMgYW5kIApyZWNlaXZpbmcgYmFjayBxdWVzdGlv
-bnMgaW5zdGVhZCBvZiBhbnN3ZXJzLCBjb25zaWRlcmF0aW9ucyBtb3JlIApwaGlsb3NvcGhpYyB0
-aGFuIHRlY2huaWNhbCAuClRoZSBwb2ludCBpcyB0aGF0IGkgYm91Z2h0wqAgZnJvbSBFdHR1cyBh
-IGRldmljZSB3aGljaCB3YXMgcHJvbWlzaW5nIGFuZCAKcHVibGlzaGluZyBjZXJ0YWluIGxldmVs
-IG9mIHBlcmZvcm1hbmNlcy4KSSBoYXZlIHRvIGFkbWl0IHRoYXQgYWxsIHdhcyB0cnVlIHVwwqAg
-dG8gYWJvdXQgYSB5ZWFyIGFnbyAsIG5vdCBhbnltb3JlIApub3cgd2h5PyBXaGF0IHNob3VsZCBp
-IGRvIHRvIGJlIGFibGXCoCB0byBzZWUgbXkgZXhwZWN0YXRpb25zIHNhdGlzZmllZD8KSWYgYSBV
-U0IgTGludXggYmFzZWQgc3lzdGVtIGlzIG5vdCBhYmxlIHRvIHN1c3RhaW4geW91ciBwcm9kdWN0
-cyB3aGF0IAp0eXBlIG9mIGNvbnNpZGVyYXRpb24geW91IHRoaW5rIHdlIGFyZSBmb3JjZWQgdG8g
-aGF2ZT8KbmFuZG8KCk9uIDgvMjkvMjAyMCAyMDo1MSwgTWFyY3VzIEQuIExlZWNoIHdyb3RlOgo+
-IE9uIDA4LzI5LzIwMjAgMDM6MzUgQU0sIE5hbmRvIFBlbGxlZ3Jpbmkgd3JvdGU6Cj4+IE1hcmN1
-cywKPj4gQXR0YWNoZWQgeW91IGNhbiBmaW5kIHRoZSByZXN1bHRzIG9mIHRoZSBiZW5jaG1hcmsg
-dGVzdC4KPj4gSSBoYXZlIGJlZW4gYWxzbyBjb21wYXJlZCB0aGUgYmVoYXZpb3Igd2l0aCAyIGRp
-ZmZlcmVudCBDUFUgYW5kIAo+PiBkaWZmZXJlbnQgVVNCIHR5cGUgMy4wIGZvciB0aGUgb2xkZXIg
-dG93ZXIgUEMsIFVTQiAzLjEgb24gdGhlIGxhcHRvcCwgCj4+IHZlcnkgc3RyYW5nZSB0aGUgY2Fz
-ZSBvZiB0aGUgb2xkZXIgQ1BVIGdlbmVyYXRpbmcgYW4gb3ZlcmZsb3cgZXZlcnkgCj4+IG1pbnV0
-ZS4KPj4gVGhlIGNvbmRpdGlvbnMgd2VyZSBleGFjdGx5IHRoZSBzYW1lIGluIGFsbCB0ZXN0IHdp
-dGggbm8gb3RoZXIgCj4+IHZpc2libGUgYWN0aXZpdHkgb24gdGhlIG1hY2hpbmVzLgo+PiBSZWxl
-YXNlIDE0LjAgc2VlbXMgYSBiaXQgYmV0dGVyIHdpdGggdGhlIGJlbmNobWFyayBidXQsc2FkbHks
-IHRoZSAyIAo+PiBVSEQgcmVsZWFzZSBhcmUgbm90IGNvbXBhcmFibGUgYmVjYXVzZSB0aGUgMTQu
-MCBhcyBzb29uIGFzIGdlbmVyYXRlcyAKPj4gYW4gb3ZlcmZsb3cgaW5kaWNhdGlvbiBkcm9wcyBp
-biB0aGUgdGltZW91dCB3aXRoIG5vIHJlY292ZXJ5IGJ1dCAKPj4gZmluYWwgY29uc2lkZXJhdGlv
-biBpcyB0aGF0IGZhc3Qgc2FtcGxlIHJhdGUgYmVjYW1lIHVudXNhYmxlIGZvciBsb25nIAo+PiBz
-aWduYWwgcmVjb3JkaW5nIHJlZ2FyZGxlc3MgdG8gc29mdHdhcmUgcmVsZWFzZSBhbmQgUEMuCj4+
-IEkgcmVhbGx5IGhvcGUgZm9yIGEgc29sdXRpb24uCj4+IG5hbmRvCj4gSSBwbGF5ZWQgYSBiaXQg
-d2l0aCBhIEIyMTAgb24gYSBGZWRvcmEgMzEgc3lzdGVtIHRvZGF5LCBhbmQgd2FzIHVuYWJsZSAK
-PiB0byBhY2hpZXZlIGdyZWF0ZXIgdGhhbiAzN01TUFMgd2l0aG91dCBvdmVycnVucy4KPgo+IEkg
-Y29uc3RydWN0ZWQgYSAiZGVnZW5lcmF0ZS1jYXNlIiBHbnUgUmFkaW8gZmxvdyBncmFwaCB0aGF0
-IHdhcyBqdXN0Ogo+Cj4gdWhkLXNvdXJjZS0tPm51bGwtc2luawo+Cj4gVGhhdCdzIHJvdWdobHkg
-ZXF1aXZhbGVudCB0byB3aGF0IGJlbmNobWFya19yYXRlIGRvZXMsIGFuZCBJIHdhcyAKPiBmb3Jj
-ZWQgdG8gZG8gdGhhdCBzaW5jZSBGMzEgZG9lc24ndCBhcHBlYXIgdG8gcGFja2FnZSB0b29scwo+
-IMKgIGxpa2UgYmVuY2htYXJrX3JhdGUgYW5kIHNvbWUgb2YgdGhlIG90aGVyIFVIRCBleGFtcGxl
-cy4KPgo+IFRoaXMgd2FzIHdpdGggVUhEIDMuMTQuMC4xCj4KPiBUaGUgc3lzdGVtIHdhcyBhbiBB
-TUQgUGhlbm9tIElJIFg2IDEwOTBULgo+Cj4gV2hhdCBpIG5vdGljZWQgd2FzIHRoYXQgYWJvdmUg
-MzhNc3BzLCB5b3UnZCBnZXQgY29udGludW91cyBvdmVyLXJ1bnMsIAo+IGFuZCBhdCAzOE1zcHMs
-IHlvdSdkIGdldCBhIGJ1cnN0IG9mIG92ZXJydW5zIHdoZW5ldmVyIHlvdSBzd2l0Y2hlZCB0bwo+
-IMKgIGEgbmV3IHdpbmRvdy7CoCBUaGlzIGlzIENMRUFSTFkgYSBzeXN0ZW0gZWZmZWN0LCB1bnJl
-bGF0ZWQgdG8gVUhEIGF0IAo+IGFsbC7CoCBMaWtlbHkgY29udGVudGlvbiBmb3IgbWVtb3J5IGFj
-Y2VzcywgaW50ZXJydXB0IGxhdGVuY3ksIG9yIFBDSS1lCj4gwqAgdHJhbnNhY3Rpb24gY29udGVu
-dGlvbi7CoCBUaGUgQ1BVIGNvbnN1bXB0aW9uIGZvciB0aGUgZ3ItdWhkIHRocmVhZCAKPiB0aGF0
-IHdhcyBzZXJ2aWNpbmcgdGhlIFVTQiBpbnRlcmZhY2UgbmV2ZXIgcm9zZSBhYm92ZSAzOCUgQ1BV
-Lgo+IMKgIE5vdyB0aGUgVUhEIHRyYW5zcG9ydCBjb2RlIGlzIHNpbmdsZS10aHJlYWRlZC7CoCBJ
-dCdzIHRlbXB0aW5nIHRvIAo+IHN1Z2dlc3QgIndoeSBub3QgbWFrZSBpdCBtdWx0aS10aHJlYWRl
-ZD8iLsKgIFRoYXQgd2FzIHRyaWVkLCBzZXZlcmFsIAo+IHRpbWVzLAo+IMKgIGEgZmV3IHllYXJz
-IGJhY2ssIGFuZCBwZXJmb3JtYW5jZSB3YXMgKndvcnNlKiB3aXRoIFVIRCB0cmFuc3BvcnQgCj4g
-c3ByZWFkIG92ZXIgbXVsdGlwbGUgdGhyZWFkcy7CoMKgIFByb2JhYmx5IGR1ZSB0byByZXNvdXJj
-ZSBjb250ZW50aW9uCj4gwqAgYXQgdGhlIGtlcm5lbCBpbnRlcmZhY2UuCj4KPiBJJ2xsIG5vdGUg
-dGhhdCBubyBtYXR0ZXIgd2hldGhlciBJIHNwZWNpZmllZCBzYzgsIHNjMTIsIG9yIHNjMTYgc2Ft
-cGxlIAo+IHNpemVzIEkgc2F3IHRoZSBzYW1lIGJlaGF2aW9yLsKgIFRoaXMgaW5kaWNhdGVzIHRv
-IG1lIHRoYXQgaXQgaXNuJ3QKPiDCoCBVU0IgKmJhbmR3aWR0aCogc28gbXVjaCBhcyBVU0IgKGFu
-ZCBieSBpbXBsaWNhdGlvbiBQQ0llKSBvZmZlcmVkIAo+ICpUUkFOU0FDVElPTiogbG9hZC7CoMKg
-wqAgSXQgaXMgbGlrZWx5IHRoZSBjYXNlIHRoYXQgZGlmZmVyZW50IFVTQjMgCj4gY29udHJvbGxl
-cnMKPiDCoCBtYWtlIHRoaXMgYmV0dGVyL3dvcnNlLCBkZXBlbmRpbmcgb24gdGhlaXIgaW50ZXJy
-dXB0IGJlaGF2aW9yLCBob3cgCj4gdGhleSBkbyBETUEsIGV0YywgZXRjLsKgIEkgZGlkIGhhdmUg
-dG8gdXNlIG51bV9yZWN2X2ZyYW1lcyA+IDIwMCB0bwo+IMKgIGFjaGlldmUgZXZlbiB0aGlzLgo+
-Cj4gSSdsbCBtYWtlIGEgZ2VuZXJhbCBjb21tZW50IHRoYXQgYWNoaWV2aW5nIGxvc3MtZnJlZSwg
-InJlYWwgdGltZSIsIAo+IGhpZ2gtYmFuZHdpZHRoIHN0cmVhbWluZyB1c2luZyBhIGdlbmVyYWwt
-cHVycG9zZSBvcGVyYXRpbmcgc3lzdGVtIGlzCj4gwqAgYWx3YXlzIGdvaW5nIHRvIHJlcXVpcmUg
-YSBsb3Qgb2YgdHVuaW5nLCBhbmQgbm90IGEgc21hbGwgYW1vdW50IG9mIAo+IGdvb2QgbHVjay7C
-oMKgwqAgT3RoZXIgYXBwbGljYXRpb25zIG9mIGhpZ2gtc3BlZWQgc3RyZWFtaW5nIGFyZSBzb21l
-d2hhdAo+IMKgIHRvbGVyYW50IGlmIG9uZSBlbmQgZG9lcyBhICJoZXkgc3RvcCBzZW5kaW5nIGZv
-ciBhIGJpdCIgLS0gbGlrZSBkaXNrIAo+IGRyaXZlcyBhbmQgbmV0d29yayBpbnRlcmZhY2VzLCBl
-dGMuwqDCoCBCdXQgd2hlbiB5b3UncmUgdHJ5aW5nIHRvIHNhbXBsZQo+IMKgIHRoZSAicmVhbCB3
-b3JsZCIsIHlvdSBjYW5ub3QgcmVhc29uYWJseSBwdXQgaXQgIm9uIGhvbGQiIHdoaWxlIHlvdSAK
-PiAiY2F0Y2ggdXAiLsKgIFdoaWNoIGlzIHdoeSB0aHJvd2luZyBtb3JlIGJ1ZmZlcmluZyBhdCB0
-aGlzIHByb2JsZW0gCj4gZ2VuZXJhbGx5Cj4gwqAgZG9lc24ndCB3b3JrIHRoYXQgd2VsbC7CoCBJ
-ZiB0aGUgb2ZmZXJlZCBsb2FkIGV4Y2VlZHMgbG9uZy10ZXJtIAo+IGNhcGFjaXR5LCBldmVuIGJ5
-IGEgdGlueSBiaXQsIHlvdSB3aWxsIGVuZCB1cCAibG9zaW5nIi7CoMKgwqAgSXQgaXMgY2xlYXIg
-Cj4gdGhhdCAiY2FwYWNpdHkiCj4gwqAgaXMgb25seSBsb29zZWx5LWNvdXBsZWQgdG8gQ1BVIHBl
-cmZvcm1hbmNlLCBhbmQgbXVjaC1iZXR0ZXIgCj4gcmVwcmVzZW50ZWQgYnkgb3ZlcmFsbCAqc3lz
-dGVtKiBwZXJmb3JtYW5jZS4KPgo+IE92ZXIgdGhlIHllYXJzLCBmb2xrcyBoYXZlIHBvaW50ZWQg
-YXQgVUhELCBob3BpbmcgdGhhdCBzb21lIGtpbmQgb2YgCj4gcGVyZm9ybWFuY2UtdHVuaW5nIGV4
-ZXJjaXNlIHdpdGhpbiBVSEQgd2lsbCBnZXQgdGhlbSB0aGUgcGVyZm9ybWFuY2UKPiDCoCB0aGVp
-ciBhcHBsaWNhdGlvbiByZXF1aXJlcy7CoCBVSEQgaGFzIGJlZW4sIG92ZXIgdGhlIHllYXJzIChy
-b3VnaGx5IAo+IDEwIHllYXJzIGF0IHRoaXMgcG9pbnQpIG9wdGltaXplZCBxdWl0ZSBhIGJpdC7C
-oCBCdXQgVUhEIGxpdmVzIHdpdGhpbiAKPiBhbiBvdmVyYWxsCj4gwqAgKnN5c3RlbSogYW5kIGl0
-IGNhbiBvbmx5IGRvIGFzIHdlbGwgYXMgdGhhdCAqc3lzdGVtKiBjYW4gcHJvdmlkZS4KPgo+Cj4K
-PgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAt
-dXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0
-cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+--===============6864455598823028391==
+Content-Type: multipart/alternative; boundary="0000000000003ccfab05ae1a6a2f"
+
+--0000000000003ccfab05ae1a6a2f
+Content-Type: text/plain; charset="UTF-8"
+
+Thank you!
+
+On Sat, Aug 29, 2020 at 10:42 PM Jonathon Pendlum <
+jonathon.pendlum@ettus.com> wrote:
+
+> Hi Eric,
+>
+> Unfortunately no, but luckily that is usually a one time ordeal. The built
+> IP is kept separately from the main build, and it is not removed when you
+> run 'make clean'. Instead, you have to run 'make cleanall' if you want to
+> remove the IP build directory, which can be necessary if you switch UHD
+> releases and the supported Vivado version changed.
+>
+> Jonathon
+>
+> On Sat, Aug 29, 2020 at 8:07 PM Eric Blossom via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hi Folks,
+>>
+>> I'm in the midst of building the fpga code for the x310 on master.  I'm
+>> building on a 24-thread xeon with plenty of memory.
+>> Is there a magic flag, setting, etc that enables parallelism in
+>> generating the ip (the invocations of viv_generate_ip.tcl)??
+>> I tried make -j4 to no avail.
+>>
+>> I really like how the build system regenerates the ip for different
+>> families and part numbers.  NIcely done!
+>>
+>> Thanks!
+>> Eric
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
+
+--0000000000003ccfab05ae1a6a2f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thank you!</div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Sat, Aug 29, 2020 at 10:42 PM Jonathon Pendlu=
+m &lt;<a href=3D"mailto:jonathon.pendlum@ettus.com">jonathon.pendlum@ettus.=
+com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div dir=3D"ltr">Hi Eric,<div><br></div><div>Unfortunately no, but lucki=
+ly that is usually a one time ordeal. The built IP is kept separately from =
+the main=C2=A0build, and it is not removed when you run &#39;make clean&#39=
+;. Instead, you have to run &#39;make cleanall&#39; if you want to remove t=
+he IP build directory, which can be necessary if you switch UHD releases an=
+d the supported Vivado version changed.</div><div><br></div><div>Jonathon</=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Sat, Aug 29, 2020 at 8:07 PM Eric Blossom via USRP-users &lt;<a href=
+=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
+ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex"><div dir=3D"ltr">Hi Folks,<div><br></div><div>I&#39;m in the midst =
+of building the fpga code for the x310 on master.=C2=A0 I&#39;m building on=
+ a 24-thread xeon with plenty of memory.</div><div>Is there a magic flag, s=
+etting, etc that enables parallelism in generating the ip (the invocations =
+of viv_generate_ip.tcl)??</div><div>I tried make -j4 to no avail.</div><div=
+><br></div><div>I really like how the build system regenerates the ip for d=
+ifferent families and part numbers.=C2=A0 NIcely done!</div><div><br></div>=
+<div>Thanks!</div><div>Eric</div><div><br></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+
+--0000000000003ccfab05ae1a6a2f--
+
+
+--===============6864455598823028391==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============6864455598823028391==--
+
