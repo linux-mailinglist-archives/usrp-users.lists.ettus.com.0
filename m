@@ -2,64 +2,65 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B431256FB3
-	for <lists+usrp-users@lfdr.de>; Sun, 30 Aug 2020 20:34:39 +0200 (CEST)
-Received: from [::1] (port=48792 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F21257360
+	for <lists+usrp-users@lfdr.de>; Mon, 31 Aug 2020 07:44:00 +0200 (CEST)
+Received: from [::1] (port=56312 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kCS9z-0001bM-JY; Sun, 30 Aug 2020 14:34:35 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:43534)
+	id 1kCcbj-0005Eh-M4; Mon, 31 Aug 2020 01:43:55 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:39661)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kCS9v-0001Wt-Ih
- for usrp-users@lists.ettus.com; Sun, 30 Aug 2020 14:34:31 -0400
-Received: by mail-qt1-f195.google.com with SMTP id k18so3285076qtm.10
- for <usrp-users@lists.ettus.com>; Sun, 30 Aug 2020 11:34:11 -0700 (PDT)
+ (Exim 4.93) (envelope-from <i1ndp.nando@gmail.com>)
+ id 1kCcbf-0005A2-Aw
+ for usrp-users@lists.ettus.com; Mon, 31 Aug 2020 01:43:51 -0400
+Received: by mail-wr1-f66.google.com with SMTP id a17so3772569wrn.6
+ for <usrp-users@lists.ettus.com>; Sun, 30 Aug 2020 22:43:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=kCsbR61v2q9Bn2oGQr1S9+bMObgBw476uyx2gKOWkCA=;
- b=qT7WnzJQ/kOaKxAI16xPIiyaBNMjIDSffCaxDI0xHPg/Q1HUkapwLuZOoYjPSJE8xI
- oUaSNm73pIWDXWOvo8PB5e8w3aK2AmM34wytsBXBtEjF8KhTSOWWJB4e3F2wgJ1YC2ny
- U10XpL86daT4JbfmSmTpQ3a2feOsXQ07/6KpcJRqVGf+yCP/VC1NADLwUobc3kErFm6t
- qX4qWwpgaGU4YSUucuq3BGo8hQbvGnCuBv9l6uaEBqs1LiLY3I59kAtaE7SAHpaffs6P
- OAiyBE6+l/aR15sTP3hSPIoGRsEzJlVSDkn3kxrEFzynKaupQbgGH13cCv35cAJ2YEIF
- qMnA==
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=xypY6CpIRPnGHvP6oh+BbIrRKwvhFNyc+xyaVPZnJsI=;
+ b=tj0uHiASUmv+VwzyRtFdvxfMO5AW9V6t+0MgMhiSLxLfbfV24bVZA+BKq5mXFawZNl
+ 4/ygWamDeGn8dcs69YTvDqNPK3Si70nV2iwoJlHPrCJJ9p11KJNXdtb224vTPSesKSb0
+ CzNGSoCHzyRWgNXMEw6atvaMy66FQ/8Of/dMRv4iLRkZS1zM3I63QmDVuh1N6+DWXqMU
+ Md8yMTuw8K4fOyzsmLV8HMkFoYz+azfNRNaRhFEeiRzRXYoEuT4OGL5EwxcPJwIPa21Q
+ hs3ibEUIFppOmGo6aUbii1idUYd+aA/J9YNcyNYydhyYQrsBx1IEABgUVwOq0epbRy4h
+ 3bWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=kCsbR61v2q9Bn2oGQr1S9+bMObgBw476uyx2gKOWkCA=;
- b=NEjDK7EubxlO2+ZeQObzAlxuAhOquODf74Z5TxemngBKgPIj7KcTUwA+bs3odcBZHi
- gOx9UQ4BDw7kfluAv4v3ktWsk6nvvGtUZXKYZZK2GCBO5n7ZQZvpBk20Beb3Y9bb90f5
- nPh1NaWLtuAMpDeDepDoV0tEMOS6i7/EzISoumPAjT8z30/eKIPvnKG+p6QMeGjI3+0p
- WOkfTLU7Fnn5/lm0sCLE+LQzZMFF0/Jjnua+d9Cl1Ft3MZsihcjcoRC5dK2RUHTYJlF2
- v7GEJx/TESJ+T1Zrk+gDioLPWteketLtyjKidw+4f2QEoHRfisYlq8x7gVQJ0EbHGQ6y
- 8rew==
-X-Gm-Message-State: AOAM530YnzvY2kxJz85V8e9pp0LBvy3FgN8aZmMFOvX+IXIAtTpi5puP
- 0BQ08axnHNF7GJ23sonukusOAVTEy58=
-X-Google-Smtp-Source: ABdhPJxD3HXO6ns5RR7lLRliEv0KauCGoUuSZj1Azv56VuielUzNQ/b8HvKJIVDlY64nP1y0IVqB8A==
-X-Received: by 2002:ac8:73c3:: with SMTP id v3mr10408557qtp.266.1598812430585; 
- Sun, 30 Aug 2020 11:33:50 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
- by smtp.googlemail.com with ESMTPSA id w59sm1797456qtd.1.2020.08.30.11.33.49
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 30 Aug 2020 11:33:50 -0700 (PDT)
-Message-ID: <5F4BF10D.9060405@gmail.com>
-Date: Sun, 30 Aug 2020 14:33:49 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: Nando Pellegrini <i1ndp.nando@gmail.com>, 
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=xypY6CpIRPnGHvP6oh+BbIrRKwvhFNyc+xyaVPZnJsI=;
+ b=XOKfkOd4Y5n1vlSJU4dHdy6U4TP3KIof7mUno1FLgmA7hXjL3/qW/czVyIrAhBE1+7
+ alt2H+f8CcjevT0yaLGXHZl3jXiJXVsjxINajjHhBS9dABIz4czPERbz1uKMp2E7kUvh
+ p/Qo57wTzaMwqvZyHNaKr1eJOUliP4voiDiittGMbgwb2iq7/eg9HQgcxfYvvzJgM8xy
+ EtjMqcnhT6N6w1B+SiD7gWKb8hqBq1U/uGJ8euoBZHFd1E8y2+stqbOfGkXWWut8l+2X
+ wj8wBAlgOSZV5dpB2JltDrx+1NAqzsvINepyFP9eY0THNT+5QJgpcjqIxwx/hNN48SK8
+ aQOw==
+X-Gm-Message-State: AOAM5310Y2Nr5rBzOAhyjU8qrhU/5CV4WUwxtuqBtXnWultsSA+QsBRB
+ 3Z/UGVQ7JlHFqCmtZobcvnW0DudovB5mug==
+X-Google-Smtp-Source: ABdhPJwxtzwkmUbg4cHIHbuEQZgJZzbw+o+qrd6sKV3gBRUucucbEPiQfXBzPCDkSTM0GH5qa0gp6Q==
+X-Received: by 2002:adf:a443:: with SMTP id e3mr9257659wra.146.1598852590474; 
+ Sun, 30 Aug 2020 22:43:10 -0700 (PDT)
+Received: from [10.0.0.3] ([176.65.80.99])
+ by smtp.gmail.com with ESMTPSA id x10sm28744wmi.37.2020.08.30.22.43.09
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 30 Aug 2020 22:43:09 -0700 (PDT)
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>,
  "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 References: <CAM4xKrrtSjhM1FFYGvuXrQFBop1d+H78JzQCx5OMh4iQ3rm3TQ@mail.gmail.com>
  <CAGNhwTMtPx8aygM-kUgcAyK_L2+nmLxtnJJDjpLXk5HpjK0uwQ@mail.gmail.com>
  <67e4d928-2f30-1faa-bb29-6e59916f6578@gmail.com> <5F492AC3.6070005@gmail.com>
  <e2e93aff-492b-4c4b-21bb-c510e4152ca0@gmail.com> <5F493640.4080504@gmail.com>
  <bea321bb-bcf2-3263-c2b2-75f044d9aecc@gmail.com> <5F4AA3CF.1010908@gmail.com>
- <7364b2c0-0005-e1c9-0607-5865841dc6d1@gmail.com>
-In-Reply-To: <7364b2c0-0005-e1c9-0607-5865841dc6d1@gmail.com>
+ <7364b2c0-0005-e1c9-0607-5865841dc6d1@gmail.com> <5F4BF10D.9060405@gmail.com>
+Message-ID: <f51a66ed-5030-07ff-78b8-38836d4e303f@gmail.com>
+Date: Mon, 31 Aug 2020 07:43:09 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <5F4BF10D.9060405@gmail.com>
+Content-Language: en-US
 Subject: Re: [USRP-users] [UHD] Announcing 4.0.0.0 Release Candidate 1
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -72,10 +73,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Nando Pellegrini via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nando Pellegrini <i1ndp.nando@gmail.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,174 +90,166 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 08/30/2020 02:44 AM, Nando Pellegrini wrote:
-> Marcus,
-> I really do not understand what you are trying to demonstrate i have 
-> started long ago trying to use the easy GR blocks withe the B200mini 
-> and found out at once that the overhead introduced be the Gr blocks 
-> were  limiting the efficiency so you discovered the "warm water" as we 
-> say in Italy , i was just going to waste some more of my time 
-> following your indications but to be frank i am tired of reporting 
-> problems and receiving back questions instead of answers, 
-> considerations more philosophic than technical .
-> The point is that i bought  from Ettus a device which was promising 
-> and publishing certain level of performances.
-> I have to admit that all was true up  to about a year ago , not 
-> anymore now why? What should i do to be able  to see my expectations 
-> satisfied?
-> If a USB Linux based system is not able to sustain your products what 
-> type of consideration you think we are forced to have?
-> nando
-I'm not sure how I can provide technical support if asking clarifying 
-questions is not acceptable.
-
-You note that "up to a year ago, I could achieve this performance". But 
-what has changed?  From your messages it seems like
-   OS and computer hardware have changed.  Unless I'm misunderstanding 
-what you're saying.  When you say performance has changed,
-   do you mean with *exactly the same hardware and OS environment*?? If 
-so, the only thing I can think of is that a kernel update has
-   changed the performance envelope of USB support.   If you're on an 
-Intel CPU, that kernel update may have turned on something called
-   KPTI, which has often significant performance implications--up to 
-30%.  You might check the status of KPTI on your systems, to see if any
-   kernel update has suddenly turned this on:
-
-https://askubuntu.com/questions/992137/how-to-check-that-kpti-is-enabled-on-my-ubuntu
-
-Having said all that, I went into the lab today to try out 
-high-performance using a B200mini, on a different system.  I was able to 
-achieve
-   56Msps sustained without over-runs.
-
-This is with:
-
-processor : 0
-vendor_id : GenuineIntel
-cpu family : 6
-model : 58
-model name : Intel(R) Xeon(R) CPU E3-1230 V2 @ 3.30GHz
-
-The USB controller was:
-
-03:00.0 USB controller:
-Etron Technology, Inc. EJ188/EJ198 USB 3.0 Host Controller (prog-if 30 
-[XHCI])
-Subsystem: Etron Technology, Inc. EJ188/EJ198 USB 3.0
-Host Controller Flags: bus master, fast devsel, latency 0, IRQ 31 Memory 
-at df300000 (64-bit, non-prefetchable) [size=32K]
-Capabilities: <access denied> Kernel driver in use: xhci_hcd
-
-And kernel version is:
-
-Linux localhost.localdomain 5.7.15-100.fc31.x86_64 #1 SMP Tue Aug 11 
-17:18:01 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
-
-The UHD version was 3.14.1.0 -- same as on the AMD Phenom II X6 system I 
-tested yesterday.
-
-I used a simple Gnu Radio flow-graph, just like yesterday.
-
-I will go back into the lab later this evening or tomorrow and try the 
-latest RC version of UHD, but my success with 56Msps against
-   UHD 3.14.1.0  (what is packaged in Fedora 31) indicates that 
-streaming at that rate continues to be possible with the right
-   compute hardware and USB controller.
-
-It is interesting to note that on this system, the CPUs are operating in 
-"Power Save" mode, and KPTI is *enabled*.  On the AMD system I tested
-   yesterday, KPTI isn't enabled (because AMD doesn't need it), and the 
-CPUs were operating in "Performance" mode.   So system performance
-   envelope as a whole plays a significant role.
-
-
-
->
-> On 8/29/2020 20:51, Marcus D. Leech wrote:
->> On 08/29/2020 03:35 AM, Nando Pellegrini wrote:
->>> Marcus,
->>> Attached you can find the results of the benchmark test.
->>> I have been also compared the behavior with 2 different CPU and 
->>> different USB type 3.0 for the older tower PC, USB 3.1 on the 
->>> laptop, very strange the case of the older CPU generating an 
->>> overflow every minute.
->>> The conditions were exactly the same in all test with no other 
->>> visible activity on the machines.
->>> Release 14.0 seems a bit better with the benchmark but,sadly, the 2 
->>> UHD release are not comparable because the 14.0 as soon as generates 
->>> an overflow indication drops in the timeout with no recovery but 
->>> final consideration is that fast sample rate became unusable for 
->>> long signal recording regardless to software release and PC.
->>> I really hope for a solution.
->>> nando
->> I played a bit with a B210 on a Fedora 31 system today, and was 
->> unable to achieve greater than 37MSPS without overruns.
->>
->> I constructed a "degenerate-case" Gnu Radio flow graph that was just:
->>
->> uhd-source-->null-sink
->>
->> That's roughly equivalent to what benchmark_rate does, and I was 
->> forced to do that since F31 doesn't appear to package tools
->>   like benchmark_rate and some of the other UHD examples.
->>
->> This was with UHD 3.14.0.1
->>
->> The system was an AMD Phenom II X6 1090T.
->>
->> What i noticed was that above 38Msps, you'd get continuous over-runs, 
->> and at 38Msps, you'd get a burst of overruns whenever you switched to
->>   a new window.  This is CLEARLY a system effect, unrelated to UHD at 
->> all.  Likely contention for memory access, interrupt latency, or PCI-e
->>   transaction contention.  The CPU consumption for the gr-uhd thread 
->> that was servicing the USB interface never rose above 38% CPU.
->>   Now the UHD transport code is single-threaded.  It's tempting to 
->> suggest "why not make it multi-threaded?".  That was tried, several 
->> times,
->>   a few years back, and performance was *worse* with UHD transport 
->> spread over multiple threads.   Probably due to resource contention
->>   at the kernel interface.
->>
->> I'll note that no matter whether I specified sc8, sc12, or sc16 
->> sample sizes I saw the same behavior.  This indicates to me that it 
->> isn't
->>   USB *bandwidth* so much as USB (and by implication PCIe) offered 
->> *TRANSACTION* load.    It is likely the case that different USB3 
->> controllers
->>   make this better/worse, depending on their interrupt behavior, how 
->> they do DMA, etc, etc.  I did have to use num_recv_frames > 200 to
->>   achieve even this.
->>
->> I'll make a general comment that achieving loss-free, "real time", 
->> high-bandwidth streaming using a general-purpose operating system is
->>   always going to require a lot of tuning, and not a small amount of 
->> good luck.    Other applications of high-speed streaming are somewhat
->>   tolerant if one end does a "hey stop sending for a bit" -- like 
->> disk drives and network interfaces, etc.   But when you're trying to 
->> sample
->>   the "real world", you cannot reasonably put it "on hold" while you 
->> "catch up".  Which is why throwing more buffering at this problem 
->> generally
->>   doesn't work that well.  If the offered load exceeds long-term 
->> capacity, even by a tiny bit, you will end up "losing".    It is 
->> clear that "capacity"
->>   is only loosely-coupled to CPU performance, and much-better 
->> represented by overall *system* performance.
->>
->> Over the years, folks have pointed at UHD, hoping that some kind of 
->> performance-tuning exercise within UHD will get them the performance
->>   their application requires.  UHD has been, over the years (roughly 
->> 10 years at this point) optimized quite a bit.  But UHD lives within 
->> an overall
->>   *system* and it can only do as well as that *system* can provide.
->>
->>
->>
->>
->
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+TWFyY3VzLApMZXQncyB0cnkgdG8gbG93ZXIgdGhlIHZvbHVtZSBvZiB0aGUgZGlzY3Vzc2lvbiwg
+d2hhdCBpIGNyaXRpY2l6ZSBpcyB0aGUgCnR5cGUgb2YgYXBwcm9hY2ggdG8gcHJvYmxlbXMgYW5k
+IHRoZSBmZWVsaW5nIG9mIGJlaW5nIHRyZWF0ZWQgYXMgCnJlbGlhYmxlIHBlcnNvbnMgaWYgbm90
+IGFzIGlnbm9yYW50LiBFdmUgaWYgaXQncyB0aGUgY2FzZSwgcGxlYXNlIGRvIG5vdCAKZm9yZ2V0
+IHRoYXQgeW91IGFyZSByZXByZXNlbnRpbmcgRXR0dXMgYW5kIHdlIGFyZSBjdXN0b21lcnMuClNh
+aWQgdGhhdCBsZXQncyBnbyB0byB0aGUgcHJvYmxlbSAsIGkgc2FpZCBhbHJlYWR5IHRoYXQgdGhl
+IGhhcmR3YXJlIGFuZCAKc29mdHdhcmUgc2l0dWF0aW9uIGlzIGlkZW50aWNhbCB0byB3aGF0IGkg
+aGF2ZSB1c2VkIGluIHRoZSBwYXN0IGFuZCBpIGRvIApub3Qga25vdyBpZiB0aGUgbG93ZXIgcGVy
+Zm9ybWFuY2Ugd2FzIGNhdXNlZCBieSB0aGUgVUhEIHNvZnR3YXJlIG9yIHRvIAp0aGUgTGludXgg
+dXBkYXRlcyBidXQgLi4uLiBmaW5hbGx5IGdvb2QgbmV3cy4gSSB0cmllZCB0byBhcHBseSB5b3Vy
+IGxhc3QgCnN1Z2dlc3Rpb24gYW5kIHRoZSBwcm9ibGVtIHNlZW1zIHRvIGJlIHNvbHZlZCwgeWVz
+dGVyZGF5IGkgd2FzIGFibGUgdG8gCm1ha2UgYSAzIGhvdXJzIHJlY29yZGluZyB3aXRoIG5vIHBy
+b2JsZW1zIGFuZCBpIGhhdmUgdmVyeSBncmF0ZWZ1bCB0byAKeW91IGJ1dCBhbHNvIGhlcmUgaSBo
+YWQgdG8gZ28gdGhyb3VnaCB0aGUgc291cmNlIGNvZGUgdG8gdW5kZXJzdGFuZCB0aGUgCm1lYW5p
+bmcgb2YgeW91ciBwYXJhbWV0ZXIsIGkgZmluYWxseSBmb3VuZCBpdCB3YXMgdGhlIHNpemUgb2Yg
+dGhlIGJ1ZmZlciAKcG9vbCAoMTYgdGhlIGRlZmF1bHQgY2VydGFpbmx5IGluYWRlcXVhdGUgZm9y
+IHRoZSBjYXNlKS4KTm93IGkgY2FuIGFjY2VwdCB0aGUgbmVlZCBmb3IgdHVuaW5nIHByb2NlZHVy
+ZSBpbiBzdWNoIGNyaXRpY2FsIApzaXR1YXRpb24gYnV0IHdoZXJlIGlzIHRoZSBkb2N1bWVudGF0
+aW9uIGdvb2QgZW5vdWdoIHRvIG1ha2UgeW91IGFibGUgdG8gCmhhbmRsZSBpdD8KVGhlIHdob2xl
+IGRvY3VtZW50YXRpb24gLCBtYWRlIGF1dG9tYXRpY2FsbHkswqAgaXMgdmVyeSBjcnlwdGljIGFu
+ZCBpcyAKb25seSB0aGFua3MgdG8gdGhlIHNhbXBsZXMgdGhhdCB5b3UgY2FuIGFwcHJvYWNoIHRo
+ZSBkZXZlbG9wIG9mIAphcHBsaWNhdGlvbiBidXQgbm90IGNvdmVyaW5nIHRoZSBuZWVkcy4gVGhp
+cyBhcmUgdGhlIG1haW4gcmVhc29ucyB3aHkgCnRoZSBwYXRpZW5jZSBydW5zIG91dC4KQmVzdCB3
+aXNoZXMsbmFuZG8KCgpPbiA4LzMwLzIwMjAgMjA6MzMsIE1hcmN1cyBELiBMZWVjaCB3cm90ZToK
+PiBPbiAwOC8zMC8yMDIwIDAyOjQ0IEFNLCBOYW5kbyBQZWxsZWdyaW5pIHdyb3RlOgo+PiBNYXJj
+dXMsCj4+IEkgcmVhbGx5IGRvIG5vdCB1bmRlcnN0YW5kIHdoYXQgeW91IGFyZSB0cnlpbmcgdG8g
+ZGVtb25zdHJhdGUgaSBoYXZlIAo+PiBzdGFydGVkIGxvbmcgYWdvIHRyeWluZyB0byB1c2UgdGhl
+IGVhc3kgR1IgYmxvY2tzIHdpdGhlIHRoZSBCMjAwbWluaSAKPj4gYW5kIGZvdW5kIG91dCBhdCBv
+bmNlIHRoYXQgdGhlIG92ZXJoZWFkIGludHJvZHVjZWQgYmUgdGhlIEdyIGJsb2NrcyAKPj4gd2Vy
+ZcKgIGxpbWl0aW5nIHRoZSBlZmZpY2llbmN5IHNvIHlvdSBkaXNjb3ZlcmVkIHRoZSAid2FybSB3
+YXRlciIgYXMgCj4+IHdlIHNheSBpbiBJdGFseSAsIGkgd2FzIGp1c3QgZ29pbmcgdG8gd2FzdGUg
+c29tZSBtb3JlIG9mIG15IHRpbWUgCj4+IGZvbGxvd2luZyB5b3VyIGluZGljYXRpb25zIGJ1dCB0
+byBiZSBmcmFuayBpIGFtIHRpcmVkIG9mIHJlcG9ydGluZyAKPj4gcHJvYmxlbXMgYW5kIHJlY2Vp
+dmluZyBiYWNrIHF1ZXN0aW9ucyBpbnN0ZWFkIG9mIGFuc3dlcnMsIAo+PiBjb25zaWRlcmF0aW9u
+cyBtb3JlIHBoaWxvc29waGljIHRoYW4gdGVjaG5pY2FsIC4KPj4gVGhlIHBvaW50IGlzIHRoYXQg
+aSBib3VnaHTCoCBmcm9tIEV0dHVzIGEgZGV2aWNlIHdoaWNoIHdhcyBwcm9taXNpbmcgCj4+IGFu
+ZCBwdWJsaXNoaW5nIGNlcnRhaW4gbGV2ZWwgb2YgcGVyZm9ybWFuY2VzLgo+PiBJIGhhdmUgdG8g
+YWRtaXQgdGhhdCBhbGwgd2FzIHRydWUgdXDCoCB0byBhYm91dCBhIHllYXIgYWdvICwgbm90IAo+
+PiBhbnltb3JlIG5vdyB3aHk/IFdoYXQgc2hvdWxkIGkgZG8gdG8gYmUgYWJsZcKgIHRvIHNlZSBt
+eSBleHBlY3RhdGlvbnMgCj4+IHNhdGlzZmllZD8KPj4gSWYgYSBVU0IgTGludXggYmFzZWQgc3lz
+dGVtIGlzIG5vdCBhYmxlIHRvIHN1c3RhaW4geW91ciBwcm9kdWN0cyB3aGF0IAo+PiB0eXBlIG9m
+IGNvbnNpZGVyYXRpb24geW91IHRoaW5rIHdlIGFyZSBmb3JjZWQgdG8gaGF2ZT8KPj4gbmFuZG8K
+PiBJJ20gbm90IHN1cmUgaG93IEkgY2FuIHByb3ZpZGUgdGVjaG5pY2FsIHN1cHBvcnQgaWYgYXNr
+aW5nIGNsYXJpZnlpbmcgCj4gcXVlc3Rpb25zIGlzIG5vdCBhY2NlcHRhYmxlLgo+Cj4gWW91IG5v
+dGUgdGhhdCAidXAgdG8gYSB5ZWFyIGFnbywgSSBjb3VsZCBhY2hpZXZlIHRoaXMgcGVyZm9ybWFu
+Y2UiLiAKPiBCdXQgd2hhdCBoYXMgY2hhbmdlZD/CoCBGcm9tIHlvdXIgbWVzc2FnZXMgaXQgc2Vl
+bXMgbGlrZQo+IMKgIE9TIGFuZCBjb21wdXRlciBoYXJkd2FyZSBoYXZlIGNoYW5nZWQuwqAgVW5s
+ZXNzIEknbSBtaXN1bmRlcnN0YW5kaW5nIAo+IHdoYXQgeW91J3JlIHNheWluZy7CoCBXaGVuIHlv
+dSBzYXkgcGVyZm9ybWFuY2UgaGFzIGNoYW5nZWQsCj4gwqAgZG8geW91IG1lYW4gd2l0aCAqZXhh
+Y3RseSB0aGUgc2FtZSBoYXJkd2FyZSBhbmQgT1MgZW52aXJvbm1lbnQqPz8gSWYgCj4gc28sIHRo
+ZSBvbmx5IHRoaW5nIEkgY2FuIHRoaW5rIG9mIGlzIHRoYXQgYSBrZXJuZWwgdXBkYXRlIGhhcwo+
+IMKgIGNoYW5nZWQgdGhlIHBlcmZvcm1hbmNlIGVudmVsb3BlIG9mIFVTQiBzdXBwb3J0LsKgwqAg
+SWYgeW91J3JlIG9uIGFuIAo+IEludGVsIENQVSwgdGhhdCBrZXJuZWwgdXBkYXRlIG1heSBoYXZl
+IHR1cm5lZCBvbiBzb21ldGhpbmcgY2FsbGVkCj4gwqAgS1BUSSwgd2hpY2ggaGFzIG9mdGVuIHNp
+Z25pZmljYW50IHBlcmZvcm1hbmNlIGltcGxpY2F0aW9ucy0tdXAgdG8gCj4gMzAlLsKgIFlvdSBt
+aWdodCBjaGVjayB0aGUgc3RhdHVzIG9mIEtQVEkgb24geW91ciBzeXN0ZW1zLCB0byBzZWUgaWYg
+YW55Cj4gwqAga2VybmVsIHVwZGF0ZSBoYXMgc3VkZGVubHkgdHVybmVkIHRoaXMgb246Cj4KPiBo
+dHRwczovL2Fza3VidW50dS5jb20vcXVlc3Rpb25zLzk5MjEzNy9ob3ctdG8tY2hlY2stdGhhdC1r
+cHRpLWlzLWVuYWJsZWQtb24tbXktdWJ1bnR1IAo+Cj4KPiBIYXZpbmcgc2FpZCBhbGwgdGhhdCwg
+SSB3ZW50IGludG8gdGhlIGxhYiB0b2RheSB0byB0cnkgb3V0IAo+IGhpZ2gtcGVyZm9ybWFuY2Ug
+dXNpbmcgYSBCMjAwbWluaSwgb24gYSBkaWZmZXJlbnQgc3lzdGVtLsKgIEkgd2FzIGFibGUgCj4g
+dG8gYWNoaWV2ZQo+IMKgIDU2TXNwcyBzdXN0YWluZWQgd2l0aG91dCBvdmVyLXJ1bnMuCj4KPiBU
+aGlzIGlzIHdpdGg6Cj4KPiBwcm9jZXNzb3IgOiAwCj4gdmVuZG9yX2lkIDogR2VudWluZUludGVs
+Cj4gY3B1IGZhbWlseSA6IDYKPiBtb2RlbCA6IDU4Cj4gbW9kZWwgbmFtZSA6IEludGVsKFIpIFhl
+b24oUikgQ1BVIEUzLTEyMzAgVjIgQCAzLjMwR0h6Cj4KPiBUaGUgVVNCIGNvbnRyb2xsZXIgd2Fz
+Ogo+Cj4gMDM6MDAuMCBVU0IgY29udHJvbGxlcjoKPiBFdHJvbiBUZWNobm9sb2d5LCBJbmMuIEVK
+MTg4L0VKMTk4IFVTQiAzLjAgSG9zdCBDb250cm9sbGVyIChwcm9nLWlmIDMwIAo+IFtYSENJXSkK
+PiBTdWJzeXN0ZW06IEV0cm9uIFRlY2hub2xvZ3ksIEluYy4gRUoxODgvRUoxOTggVVNCIDMuMAo+
+IEhvc3QgQ29udHJvbGxlciBGbGFnczogYnVzIG1hc3RlciwgZmFzdCBkZXZzZWwsIGxhdGVuY3kg
+MCwgSVJRIDMxIAo+IE1lbW9yeSBhdCBkZjMwMDAwMCAoNjQtYml0LCBub24tcHJlZmV0Y2hhYmxl
+KSBbc2l6ZT0zMktdCj4gQ2FwYWJpbGl0aWVzOiA8YWNjZXNzIGRlbmllZD4gS2VybmVsIGRyaXZl
+ciBpbiB1c2U6IHhoY2lfaGNkCj4KPiBBbmQga2VybmVsIHZlcnNpb24gaXM6Cj4KPiBMaW51eCBs
+b2NhbGhvc3QubG9jYWxkb21haW4gNS43LjE1LTEwMC5mYzMxLng4Nl82NCAjMSBTTVAgVHVlIEF1
+ZyAxMSAKPiAxNzoxODowMSBVVEMgMjAyMCB4ODZfNjQgeDg2XzY0IHg4Nl82NCBHTlUvTGludXgK
+Pgo+IFRoZSBVSEQgdmVyc2lvbiB3YXMgMy4xNC4xLjAgLS0gc2FtZSBhcyBvbiB0aGUgQU1EIFBo
+ZW5vbSBJSSBYNiBzeXN0ZW0gCj4gSSB0ZXN0ZWQgeWVzdGVyZGF5Lgo+Cj4gSSB1c2VkIGEgc2lt
+cGxlIEdudSBSYWRpbyBmbG93LWdyYXBoLCBqdXN0IGxpa2UgeWVzdGVyZGF5Lgo+Cj4gSSB3aWxs
+IGdvIGJhY2sgaW50byB0aGUgbGFiIGxhdGVyIHRoaXMgZXZlbmluZyBvciB0b21vcnJvdyBhbmQg
+dHJ5IHRoZSAKPiBsYXRlc3QgUkMgdmVyc2lvbiBvZiBVSEQsIGJ1dCBteSBzdWNjZXNzIHdpdGgg
+NTZNc3BzIGFnYWluc3QKPiDCoCBVSEQgMy4xNC4xLjDCoCAod2hhdCBpcyBwYWNrYWdlZCBpbiBG
+ZWRvcmEgMzEpIGluZGljYXRlcyB0aGF0IAo+IHN0cmVhbWluZyBhdCB0aGF0IHJhdGUgY29udGlu
+dWVzIHRvIGJlIHBvc3NpYmxlIHdpdGggdGhlIHJpZ2h0Cj4gwqAgY29tcHV0ZSBoYXJkd2FyZSBh
+bmQgVVNCIGNvbnRyb2xsZXIuCj4KPiBJdCBpcyBpbnRlcmVzdGluZyB0byBub3RlIHRoYXQgb24g
+dGhpcyBzeXN0ZW0sIHRoZSBDUFVzIGFyZSBvcGVyYXRpbmcgCj4gaW4gIlBvd2VyIFNhdmUiIG1v
+ZGUsIGFuZCBLUFRJIGlzICplbmFibGVkKi7CoCBPbiB0aGUgQU1EIHN5c3RlbSBJIHRlc3RlZAo+
+IMKgIHllc3RlcmRheSwgS1BUSSBpc24ndCBlbmFibGVkIChiZWNhdXNlIEFNRCBkb2Vzbid0IG5l
+ZWQgaXQpLCBhbmQgdGhlIAo+IENQVXMgd2VyZSBvcGVyYXRpbmcgaW4gIlBlcmZvcm1hbmNlIiBt
+b2RlLsKgwqAgU28gc3lzdGVtIHBlcmZvcm1hbmNlCj4gwqAgZW52ZWxvcGUgYXMgYSB3aG9sZSBw
+bGF5cyBhIHNpZ25pZmljYW50IHJvbGUuCj4KPgo+Cj4+Cj4+IE9uIDgvMjkvMjAyMCAyMDo1MSwg
+TWFyY3VzIEQuIExlZWNoIHdyb3RlOgo+Pj4gT24gMDgvMjkvMjAyMCAwMzozNSBBTSwgTmFuZG8g
+UGVsbGVncmluaSB3cm90ZToKPj4+PiBNYXJjdXMsCj4+Pj4gQXR0YWNoZWQgeW91IGNhbiBmaW5k
+IHRoZSByZXN1bHRzIG9mIHRoZSBiZW5jaG1hcmsgdGVzdC4KPj4+PiBJIGhhdmUgYmVlbiBhbHNv
+IGNvbXBhcmVkIHRoZSBiZWhhdmlvciB3aXRoIDIgZGlmZmVyZW50IENQVSBhbmQgCj4+Pj4gZGlm
+ZmVyZW50IFVTQiB0eXBlIDMuMCBmb3IgdGhlIG9sZGVyIHRvd2VyIFBDLCBVU0IgMy4xIG9uIHRo
+ZSAKPj4+PiBsYXB0b3AsIHZlcnkgc3RyYW5nZSB0aGUgY2FzZSBvZiB0aGUgb2xkZXIgQ1BVIGdl
+bmVyYXRpbmcgYW4gCj4+Pj4gb3ZlcmZsb3cgZXZlcnkgbWludXRlLgo+Pj4+IFRoZSBjb25kaXRp
+b25zIHdlcmUgZXhhY3RseSB0aGUgc2FtZSBpbiBhbGwgdGVzdCB3aXRoIG5vIG90aGVyIAo+Pj4+
+IHZpc2libGUgYWN0aXZpdHkgb24gdGhlIG1hY2hpbmVzLgo+Pj4+IFJlbGVhc2UgMTQuMCBzZWVt
+cyBhIGJpdCBiZXR0ZXIgd2l0aCB0aGUgYmVuY2htYXJrIGJ1dCxzYWRseSwgdGhlIDIgCj4+Pj4g
+VUhEIHJlbGVhc2UgYXJlIG5vdCBjb21wYXJhYmxlIGJlY2F1c2UgdGhlIDE0LjAgYXMgc29vbiBh
+cyAKPj4+PiBnZW5lcmF0ZXMgYW4gb3ZlcmZsb3cgaW5kaWNhdGlvbiBkcm9wcyBpbiB0aGUgdGlt
+ZW91dCB3aXRoIG5vIAo+Pj4+IHJlY292ZXJ5IGJ1dCBmaW5hbCBjb25zaWRlcmF0aW9uIGlzIHRo
+YXQgZmFzdCBzYW1wbGUgcmF0ZSBiZWNhbWUgCj4+Pj4gdW51c2FibGUgZm9yIGxvbmcgc2lnbmFs
+IHJlY29yZGluZyByZWdhcmRsZXNzIHRvIHNvZnR3YXJlIHJlbGVhc2UgCj4+Pj4gYW5kIFBDLgo+
+Pj4+IEkgcmVhbGx5IGhvcGUgZm9yIGEgc29sdXRpb24uCj4+Pj4gbmFuZG8KPj4+IEkgcGxheWVk
+IGEgYml0IHdpdGggYSBCMjEwIG9uIGEgRmVkb3JhIDMxIHN5c3RlbSB0b2RheSwgYW5kIHdhcyAK
+Pj4+IHVuYWJsZSB0byBhY2hpZXZlIGdyZWF0ZXIgdGhhbiAzN01TUFMgd2l0aG91dCBvdmVycnVu
+cy4KPj4+Cj4+PiBJIGNvbnN0cnVjdGVkIGEgImRlZ2VuZXJhdGUtY2FzZSIgR251IFJhZGlvIGZs
+b3cgZ3JhcGggdGhhdCB3YXMganVzdDoKPj4+Cj4+PiB1aGQtc291cmNlLS0+bnVsbC1zaW5rCj4+
+Pgo+Pj4gVGhhdCdzIHJvdWdobHkgZXF1aXZhbGVudCB0byB3aGF0IGJlbmNobWFya19yYXRlIGRv
+ZXMsIGFuZCBJIHdhcyAKPj4+IGZvcmNlZCB0byBkbyB0aGF0IHNpbmNlIEYzMSBkb2Vzbid0IGFw
+cGVhciB0byBwYWNrYWdlIHRvb2xzCj4+PiDCoCBsaWtlIGJlbmNobWFya19yYXRlIGFuZCBzb21l
+IG9mIHRoZSBvdGhlciBVSEQgZXhhbXBsZXMuCj4+Pgo+Pj4gVGhpcyB3YXMgd2l0aCBVSEQgMy4x
+NC4wLjEKPj4+Cj4+PiBUaGUgc3lzdGVtIHdhcyBhbiBBTUQgUGhlbm9tIElJIFg2IDEwOTBULgo+
+Pj4KPj4+IFdoYXQgaSBub3RpY2VkIHdhcyB0aGF0IGFib3ZlIDM4TXNwcywgeW91J2QgZ2V0IGNv
+bnRpbnVvdXMgCj4+PiBvdmVyLXJ1bnMsIGFuZCBhdCAzOE1zcHMsIHlvdSdkIGdldCBhIGJ1cnN0
+IG9mIG92ZXJydW5zIHdoZW5ldmVyIHlvdSAKPj4+IHN3aXRjaGVkIHRvCj4+PiDCoCBhIG5ldyB3
+aW5kb3cuwqAgVGhpcyBpcyBDTEVBUkxZIGEgc3lzdGVtIGVmZmVjdCwgdW5yZWxhdGVkIHRvIFVI
+RCAKPj4+IGF0IGFsbC7CoCBMaWtlbHkgY29udGVudGlvbiBmb3IgbWVtb3J5IGFjY2VzcywgaW50
+ZXJydXB0IGxhdGVuY3ksIG9yIAo+Pj4gUENJLWUKPj4+IMKgIHRyYW5zYWN0aW9uIGNvbnRlbnRp
+b24uwqAgVGhlIENQVSBjb25zdW1wdGlvbiBmb3IgdGhlIGdyLXVoZCB0aHJlYWQgCj4+PiB0aGF0
+IHdhcyBzZXJ2aWNpbmcgdGhlIFVTQiBpbnRlcmZhY2UgbmV2ZXIgcm9zZSBhYm92ZSAzOCUgQ1BV
+Lgo+Pj4gwqAgTm93IHRoZSBVSEQgdHJhbnNwb3J0IGNvZGUgaXMgc2luZ2xlLXRocmVhZGVkLsKg
+IEl0J3MgdGVtcHRpbmcgdG8gCj4+PiBzdWdnZXN0ICJ3aHkgbm90IG1ha2UgaXQgbXVsdGktdGhy
+ZWFkZWQ/Ii7CoCBUaGF0IHdhcyB0cmllZCwgc2V2ZXJhbCAKPj4+IHRpbWVzLAo+Pj4gwqAgYSBm
+ZXcgeWVhcnMgYmFjaywgYW5kIHBlcmZvcm1hbmNlIHdhcyAqd29yc2UqIHdpdGggVUhEIHRyYW5z
+cG9ydCAKPj4+IHNwcmVhZCBvdmVyIG11bHRpcGxlIHRocmVhZHMuwqDCoCBQcm9iYWJseSBkdWUg
+dG8gcmVzb3VyY2UgY29udGVudGlvbgo+Pj4gwqAgYXQgdGhlIGtlcm5lbCBpbnRlcmZhY2UuCj4+
+Pgo+Pj4gSSdsbCBub3RlIHRoYXQgbm8gbWF0dGVyIHdoZXRoZXIgSSBzcGVjaWZpZWQgc2M4LCBz
+YzEyLCBvciBzYzE2IAo+Pj4gc2FtcGxlIHNpemVzIEkgc2F3IHRoZSBzYW1lIGJlaGF2aW9yLsKg
+IFRoaXMgaW5kaWNhdGVzIHRvIG1lIHRoYXQgaXQgCj4+PiBpc24ndAo+Pj4gwqAgVVNCICpiYW5k
+d2lkdGgqIHNvIG11Y2ggYXMgVVNCIChhbmQgYnkgaW1wbGljYXRpb24gUENJZSkgb2ZmZXJlZCAK
+Pj4+ICpUUkFOU0FDVElPTiogbG9hZC7CoMKgwqAgSXQgaXMgbGlrZWx5IHRoZSBjYXNlIHRoYXQg
+ZGlmZmVyZW50IFVTQjMgCj4+PiBjb250cm9sbGVycwo+Pj4gwqAgbWFrZSB0aGlzIGJldHRlci93
+b3JzZSwgZGVwZW5kaW5nIG9uIHRoZWlyIGludGVycnVwdCBiZWhhdmlvciwgaG93IAo+Pj4gdGhl
+eSBkbyBETUEsIGV0YywgZXRjLsKgIEkgZGlkIGhhdmUgdG8gdXNlIG51bV9yZWN2X2ZyYW1lcyA+
+IDIwMCB0bwo+Pj4gwqAgYWNoaWV2ZSBldmVuIHRoaXMuCj4+Pgo+Pj4gSSdsbCBtYWtlIGEgZ2Vu
+ZXJhbCBjb21tZW50IHRoYXQgYWNoaWV2aW5nIGxvc3MtZnJlZSwgInJlYWwgdGltZSIsIAo+Pj4g
+aGlnaC1iYW5kd2lkdGggc3RyZWFtaW5nIHVzaW5nIGEgZ2VuZXJhbC1wdXJwb3NlIG9wZXJhdGlu
+ZyBzeXN0ZW0gaXMKPj4+IMKgIGFsd2F5cyBnb2luZyB0byByZXF1aXJlIGEgbG90IG9mIHR1bmlu
+ZywgYW5kIG5vdCBhIHNtYWxsIGFtb3VudCBvZiAKPj4+IGdvb2QgbHVjay7CoMKgwqAgT3RoZXIg
+YXBwbGljYXRpb25zIG9mIGhpZ2gtc3BlZWQgc3RyZWFtaW5nIGFyZSBzb21ld2hhdAo+Pj4gwqAg
+dG9sZXJhbnQgaWYgb25lIGVuZCBkb2VzIGEgImhleSBzdG9wIHNlbmRpbmcgZm9yIGEgYml0IiAt
+LSBsaWtlIAo+Pj4gZGlzayBkcml2ZXMgYW5kIG5ldHdvcmsgaW50ZXJmYWNlcywgZXRjLsKgwqAg
+QnV0IHdoZW4geW91J3JlIHRyeWluZyB0byAKPj4+IHNhbXBsZQo+Pj4gwqAgdGhlICJyZWFsIHdv
+cmxkIiwgeW91IGNhbm5vdCByZWFzb25hYmx5IHB1dCBpdCAib24gaG9sZCIgd2hpbGUgeW91IAo+
+Pj4gImNhdGNoIHVwIi7CoCBXaGljaCBpcyB3aHkgdGhyb3dpbmcgbW9yZSBidWZmZXJpbmcgYXQg
+dGhpcyBwcm9ibGVtIAo+Pj4gZ2VuZXJhbGx5Cj4+PiDCoCBkb2Vzbid0IHdvcmsgdGhhdCB3ZWxs
+LsKgIElmIHRoZSBvZmZlcmVkIGxvYWQgZXhjZWVkcyBsb25nLXRlcm0gCj4+PiBjYXBhY2l0eSwg
+ZXZlbiBieSBhIHRpbnkgYml0LCB5b3Ugd2lsbCBlbmQgdXAgImxvc2luZyIuwqDCoMKgIEl0IGlz
+IAo+Pj4gY2xlYXIgdGhhdCAiY2FwYWNpdHkiCj4+PiDCoCBpcyBvbmx5IGxvb3NlbHktY291cGxl
+ZCB0byBDUFUgcGVyZm9ybWFuY2UsIGFuZCBtdWNoLWJldHRlciAKPj4+IHJlcHJlc2VudGVkIGJ5
+IG92ZXJhbGwgKnN5c3RlbSogcGVyZm9ybWFuY2UuCj4+Pgo+Pj4gT3ZlciB0aGUgeWVhcnMsIGZv
+bGtzIGhhdmUgcG9pbnRlZCBhdCBVSEQsIGhvcGluZyB0aGF0IHNvbWUga2luZCBvZiAKPj4+IHBl
+cmZvcm1hbmNlLXR1bmluZyBleGVyY2lzZSB3aXRoaW4gVUhEIHdpbGwgZ2V0IHRoZW0gdGhlIHBl
+cmZvcm1hbmNlCj4+PiDCoCB0aGVpciBhcHBsaWNhdGlvbiByZXF1aXJlcy7CoCBVSEQgaGFzIGJl
+ZW4sIG92ZXIgdGhlIHllYXJzIChyb3VnaGx5IAo+Pj4gMTAgeWVhcnMgYXQgdGhpcyBwb2ludCkg
+b3B0aW1pemVkIHF1aXRlIGEgYml0LsKgIEJ1dCBVSEQgbGl2ZXMgd2l0aGluIAo+Pj4gYW4gb3Zl
+cmFsbAo+Pj4gwqAgKnN5c3RlbSogYW5kIGl0IGNhbiBvbmx5IGRvIGFzIHdlbGwgYXMgdGhhdCAq
+c3lzdGVtKiBjYW4gcHJvdmlkZS4KPj4+Cj4+Pgo+Pj4KPj4+Cj4+Cj4KCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlz
+dApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
+YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
