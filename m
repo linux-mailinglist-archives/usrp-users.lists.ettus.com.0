@@ -2,53 +2,82 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20644257E2F
-	for <lists+usrp-users@lfdr.de>; Mon, 31 Aug 2020 18:07:15 +0200 (CEST)
-Received: from [::1] (port=34884 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FFF9257E79
+	for <lists+usrp-users@lfdr.de>; Mon, 31 Aug 2020 18:18:39 +0200 (CEST)
+Received: from [::1] (port=35112 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kCmKu-0005m7-68; Mon, 31 Aug 2020 12:07:12 -0400
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:45803)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1kCmKq-0005fZ-Gt
- for usrp-users@lists.ettus.com; Mon, 31 Aug 2020 12:07:08 -0400
-Received: by mail-oi1-f176.google.com with SMTP id d189so1380007oig.12
- for <usrp-users@lists.ettus.com>; Mon, 31 Aug 2020 09:06:48 -0700 (PDT)
+	id 1kCmVw-0007G7-8c; Mon, 31 Aug 2020 12:18:36 -0400
+Received: from mail-eopbgr700119.outbound.protection.outlook.com
+ ([40.107.70.119]:56512 helo=NAM04-SN1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <bnold@purdue.edu>) id 1kCmVr-00077H-Ny
+ for usrp-users@lists.ettus.com; Mon, 31 Aug 2020 12:18:31 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=V6U0GVXQWRKBXdNB0lIW/ZLelG/F7ZgDMLay3oLgEwj5UB77csgBD7pMwyZiQkgHqQt+xJ7yI77N3Y4R8vkv2bCxdafZWUovwolOCJCajRYJNv5EZ+5xssT95SBaVGcoXwSC/n7ynL4YdKdukQERo+UJHkfg3nw38rZFlh8lVKLZaN8kkutlFtovfca0b+eaERMo9APB0LMDpmWeOOqOBgC+nYaTlHrsHEqR3r8N1FovDimbGvihW7jxizVaU3sJHH806zW9/w199yVoAMSOII1BGJp4EIpQj7xb6F1EVVHmCuYMTo65jo4xe4sXQNgFtPbZeVHNKguBvrA/p8F3rQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yBH/EpZwOE2oI29P3pxs4e0ODcDHLEKK2b4L7NL6iRw=;
+ b=ONk6LN9NsbMfubmThzgJVFVHuhKSj7wVRxLtd3KgsSiu21NROdlmeQKTbYFC/rB5CeJ4Tm3Pk9jEDL281SRwErPfTFiA8V+FLIRPQAQw8yxIMrH8uv1DEEkq6LTyGzUMG3p6lkXrgC+fdq7CSaAaOy18S++hBvtYSDEGPA5CMHAaQLU2tA4/MVI6VjQ7/hMY4+HGCXrgXNtU9eMrN+D/n80FhmL8j088LsTqWKuK6g8XjVdso8FnK8uZcz2wFuTvL+v+1e+8Ase14sUANd4CWwyMC26RGkTYT5TCs7FD2D2LkB/Wd/iwmnA8g4HHGLyxs7c60TQNpuGG8hN6oEEa7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=purdue.edu; dmarc=pass action=none header.from=purdue.edu;
+ dkim=pass header.d=purdue.edu; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=2PM1A9e8SS4QsdpsVW9bRrO6iiEMtpEg7p/CJegy9xY=;
- b=NyVyRMc4ZtwJ+OZapZq1p/Se/ciYNk68G61mAJ0iG/VIQ4bjxGV/MmQ6uIxFM6AIM5
- kwl0FD2qlSJpJhJKoUxd8r9nKUeYeLyg5nRQfs5nc37ranfivAax8JFLd0XUPXQs63V7
- YUyWH5vNRtNW8dCiSW6S6Arep9fIvEu/mnA+fuetozM8KtOk2hYY09U+fHdFiWdWCEuq
- +v5OUCe3ZbRB9aYFVqBCZf5sHOhA2m2fjmqUxS9NsGj1P+LVkmh/zSK7WJtqQhYZO0hM
- yXvr5RlnJ8hFCvdpLvDpQhSZ4HU465uUTgijt1BomyCQhxFVqVVPzmW4vLN/pzpCukqI
- NKOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=2PM1A9e8SS4QsdpsVW9bRrO6iiEMtpEg7p/CJegy9xY=;
- b=JHjm2nWEgcWU6tR6tTRREsxk36V2H18YdgovnvbO5TxVGomN+GYvhIv3zvw4xH7yQi
- 5BFsA4HJAv7Ek7gUlGwoo9+rNmyZF4AiXg6IPTpnUjEV1HhJSznFm1qOEsXyHI86M+x0
- 11OCjKBZeXP9TKitJHMj6p1d7HClqkT6c2DztB53dNfVHgpf79YFhpSd8ZkvGDAyxuqj
- eJNaqpF7ILIIgsI2LaiCW9HeJP9qnjbe2J3tr6R9f1yyGY9QbGu1Bz6LsxSWHDaVPkAo
- hqPJjjBYHKbt7GnwOoIq6GnI//X+Za1daYwrMoVQnw5pwYru4dfAV0jRwOn40/BScOUT
- U5vQ==
-X-Gm-Message-State: AOAM532kcC2bAJaYRI5CwAmE7fYupojWmf1K9lxQmlz94oBlRgMT9L6b
- HC1m08WXo49COz5WCDJA5TbksEwUc1CaQQ3/zk+axvJgwkOPhw==
-X-Google-Smtp-Source: ABdhPJxBG+liwX21fiOMdNtJ79CKXW8153yjjhO7sJqgSrhF96W+O6u4eWgQ6tk5YgewX/WBu7kgBq+/GzuUDEhQLro=
-X-Received: by 2002:a05:6808:b37:: with SMTP id
- t23mr67002oij.174.1598889987653; 
- Mon, 31 Aug 2020 09:06:27 -0700 (PDT)
-MIME-Version: 1.0
+ d=purdue0.onmicrosoft.com; s=selector2-purdue0-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yBH/EpZwOE2oI29P3pxs4e0ODcDHLEKK2b4L7NL6iRw=;
+ b=qcBdDEuu9Fq6ZWwPUBcHFd42W6bNN4iDVvkibIN2cqpgkeo7jEBmUQ5a8TJNouz5m6uE+uylY0vUeEB7mfbaGU3aR7ogFaCG3VfJRoFbJPTUMC1Dk8DgbVma+lLjOFaGrzieHn7Qehoh67nBdWa8wts1uIWi3629FWzCmXjQ49c=
+Received: from DM5PR2201MB1564.namprd22.prod.outlook.com (2603:10b6:4:1a::23)
+ by DM5PR22MB0876.namprd22.prod.outlook.com (2603:10b6:3:13c::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.23; Mon, 31 Aug
+ 2020 16:17:50 +0000
+Received: from DM5PR2201MB1564.namprd22.prod.outlook.com
+ ([fe80::749a:3074:70c8:cd33]) by DM5PR2201MB1564.namprd22.prod.outlook.com
+ ([fe80::749a:3074:70c8:cd33%8]) with mapi id 15.20.3326.025; Mon, 31 Aug 2020
+ 16:17:50 +0000
+To: =?utf-8?B?TWFyY3VzIE3DvGxsZXI=?= <marcus.mueller@ettus.com>
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] N310 10G ethernet media converters
+Thread-Index: AQHWa1nj0swlb0JGpU+/bZgalYCSpqlSipsAgAADJ0A=
+Date: Mon, 31 Aug 2020 16:17:50 +0000
+Message-ID: <DM5PR2201MB15644764CE22A1E190A4713EC8510@DM5PR2201MB1564.namprd22.prod.outlook.com>
 References: <BN6PR2201MB1555037426D1EE0520DFCD86C84B0@BN6PR2201MB1555.namprd22.prod.outlook.com>
-In-Reply-To: <BN6PR2201MB1555037426D1EE0520DFCD86C84B0@BN6PR2201MB1555.namprd22.prod.outlook.com>
-Date: Mon, 31 Aug 2020 18:06:16 +0200
-Message-ID: <CAHrJaSU23bUHoM6B0hoRDwDXF61vRem18fzY+eDOJmVXbNFizQ@mail.gmail.com>
-To: Benjamin R Nold <bnold@purdue.edu>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+ <CAHrJaSU23bUHoM6B0hoRDwDXF61vRem18fzY+eDOJmVXbNFizQ@mail.gmail.com>
+In-Reply-To: <CAHrJaSU23bUHoM6B0hoRDwDXF61vRem18fzY+eDOJmVXbNFizQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: ettus.com; dkim=none (message not signed)
+ header.d=none;ettus.com; dmarc=none action=none header.from=purdue.edu;
+x-originating-ip: [172.87.22.112]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 51989781-3c75-4423-b527-08d84dc96818
+x-ms-traffictypediagnostic: DM5PR22MB0876:
+x-microsoft-antispam-prvs: <DM5PR22MB0876291A159BACD7830C71EFC8510@DM5PR22MB0876.namprd22.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: my+oZZbv97f+bWcPqbWxXBIGLAo5tcbAaM5ps67s9wOFSjoJOy5r24rI0BiGY5DKhn6VJYGmpbcaDQ8eIcceNGgN/vVg4hV+mi4SOR04IyOBnhmjBRfmyPCnW1G4D/YogEsQHH1nOpsJn+EMFW5sVu38em7/mDy3SELt1dekGG8qbuHl/Z8+IgRQTabpnF9VKA1LcQAJWV9dMs6pw98Pvc6hJGOJAuTE6pPKrUwWzzbaNbwNsoGyxilLoWsXPAEoOZaV4pIxIqTe3We9foalwj4KNLyMD9wy+4Ozc9yax2f/6Xz9NsSj4R0jCpH5mHLj69wyuaTFlrh8jl6tWU4OXPWvuVP6gYbEgLoVUX6bUmpseIFlQlRhKs4Njz9Jgvpc+ax8d9CtOSF7kNGZKfsNTw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR2201MB1564.namprd22.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(39860400002)(376002)(346002)(136003)(366004)(396003)(55016002)(786003)(316002)(66946007)(86362001)(8936002)(8676002)(26005)(66556008)(186003)(52536014)(53546011)(9686003)(64756008)(478600001)(66446008)(2906002)(66476007)(7696005)(71200400001)(6506007)(166002)(966005)(33656002)(6916009)(83380400001)(5660300002)(4326008)(75432002)(76116006);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: fj8nH4UsLtkGakoMLlTiD4whDfNJjwcunZTvmmvyu7FdqUbi+4/ldVDRoxYwqN0pztRzPU8p43hb/XtG+EU3x0pQMBaKSRS8uWP8WGiyofT5G/2n1BFyT0Y3qcqGObMP/DmIybLJY8NSs+/MbregACyJujEE7CTabS3oFrWIJmAs+AuYYOakm3xABwL9hPVYVbwRJuE6ZCXWl3Qh2ZQSnY+bBWtk+VMtnEJLmg8/xjThgJAHNRwvt7QXRc1SiyZkPj0fvARLH0Pp3CLCl1n3z7tv+cisyRfyNdFoL4iLD5wuC0rpLNCPQk8BTW3QXXljfSD5vikoFYFTr33NY3ufJcWeC1DKoAUVWbwprH6RDAPuFPPJA+i63Vnbidi9ckhYIgfhd1NFtWn5RZ65/2l0vsojiw73CYHiyK2BQwStqISWRlOoqAmhY1uJbfM9e2ob9dDeexa7BrVp4DN+/cRoI1dQmj8okiyHNkY7QJPzFfbzNb9kNGXgLEPHHj1G36158SXgJQOdrUL705fX6unzyGjXEuHO67z1imGIDnduJCHvdnBJenDUMJJpejGQHwXEU3YRxCIuOpL0Tg8Lrxf8856QCgQIUjq6QTEu4rC6OUSYXzJKNOyULE/GxFJOIV4srD19PvbOsvMr52/0H3P+BA==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: purdue.edu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR2201MB1564.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51989781-3c75-4423-b527-08d84dc96818
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Aug 2020 16:17:50.1410 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 4130bd39-7c53-419c-b1e5-8758d6d63f21
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Y15S31TCuC9tRRUGTW9l/vG0H/80StBwLEVGxsa3a8/txE3C7Pqa7RPWvOvfGOhNdTJTYuVwZSDhVkIdH8uytQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR22MB0876
 Subject: Re: [USRP-users] N310 10G ethernet media converters
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -61,10 +90,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-Content-Type: multipart/mixed; boundary="===============2485713381599863188=="
+From: Benjamin R Nold via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Benjamin R Nold <bnold@purdue.edu>
+Content-Type: multipart/mixed; boundary="===============4872335161320586505=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,140 +106,162 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2485713381599863188==
-Content-Type: multipart/alternative; boundary="000000000000bfd52305ae2e9545"
+--===============4872335161320586505==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DM5PR2201MB15644764CE22A1E190A4713EC8510DM5PR2201MB1564_"
 
---000000000000bfd52305ae2e9545
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_DM5PR2201MB15644764CE22A1E190A4713EC8510DM5PR2201MB1564_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Dear Benjamin,
+QXdlc29tZSwgdGhhbmtzIGZvciB0aGUgaW5zaWdodHMgTWFyY3VzIQ0KDQoNCg0KRnJvbTogTWFy
+Y3VzIE3DvGxsZXIgPG1hcmN1cy5tdWVsbGVyQGV0dHVzLmNvbT4NClNlbnQ6IE1vbmRheSwgQXVn
+dXN0IDMxLCAyMDIwIDEyOjA2IFBNDQpUbzogQmVuamFtaW4gUiBOb2xkIDxibm9sZEBwdXJkdWUu
+ZWR1Pg0KQ2M6IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBSZTogW1VTUlAt
+dXNlcnNdIE4zMTAgMTBHIGV0aGVybmV0IG1lZGlhIGNvbnZlcnRlcnMNCg0KRGVhciBCZW5qYW1p
+biwNCg0KSSdtIHNvcnJ5IHRoaXMgbGF5IGRvcm1hbnQgZm9yIHNvIGxvbmc6DQpHZW5lcmFsbHks
+IGFsbCBzdGFuZGFyZHMtY29tcGxpYW50IDEwR0Jhc2UtKiBTRlArIHRyYW5zY2VpdmVycyBhcmUg
+dXNhYmxlIHdpdGggdGhlIFVTUlAgWDN4eCBhbmQgTjN4eCBzZXJpZXMg4oCTIHRoZXNlIHBvcnRz
+IGFyZSBkaXJlY3RseSBhdHRhY2hlZCB0byBhbiBldGhlcm5ldCBNQUMgb24gdGhlIEZQR0EsIGFu
+ZCB0aGF0J3MgcmVhbGx5IG5vdCBwaWNreS4NCjMwIG0gc291bmRzIGxpa2UgbGlrZSAxMEdCYXNl
+LVNSIG92ZXIgT00zIGZpYmVyLiAoQ29pbmNpZGVudGFsbHksIHRoYXQncyB3aGF0IEkgdXNlIHRv
+IGNvbm5lY3QgbXkgWDMxMCB0byBteSB3b3Jrc3RhdGlvbiBpbiBteSBsaXZpbmcgcm9vbS4gSXQg
+d29ya3Mgd2VsbC4pDQpUaGUgdHJhbnNjZWl2ZXJzOiBUcmFuc2NlaXZlcnMgb2YgdGhlIHNhbWUg
+c3RhbmRhcmQgc2hvdWxkIGJlIGNvbXBhdGlibGUsIGJ1dCBzaW5jZSB5b3UnbGwgYnV5IGJvdGgg
+c2lkZXMgYXQgb25jZSwgeW91IHByb2JhYmx5IHJlYWxseSBkb24ndCBoYXZlIHRvIHdvcnJ5LiBU
+aGUgb25lcyBJIHVzZSBwcml2YXRlbHkgSSd2ZSBnb3Qgb2ZmIGViYXksIGFuZCBldmVuIHRoZXNl
+IHdvcmsgd2VsbC4NCklmIHlvdSBhbHNvIG5lZWQgdG8gc2hvcCBmb3IgTmV0d29yayBjYXJkczog
+V2VsbCwgSSd2ZSBnb3QgdGhlIEludGVsIFg1MjAtREEyICh3aGljaCBpcyB0aGUgb25lIHNvbGQg
+YnkgRXR0dXMpLCBidXQgYW55IG5ldHdvcmsgY2FyZCBzaG91bGQgZG8g4oCTIGEgcmVjb21tZW5k
+YXRpb24gaXMgdGhhdCBpdCdzIG5vdCB0b28gb2xkLCBhbmQgaWYgeW91IHdhbnQgdG8gdXNlIHRo
+ZSBEUERLIHRyYW5zcG9ydCwgdGhhdCBpdCdzIHN1cHBvcnRlZCBieSB0aGF0IChtb3N0IG1vZGVy
+biBjYXJkcyBhcmUpLg0KDQpCZXN0IHJlZ2FyZHMsDQpNYXJjdXMNCg0KT24gV2VkLCBBdWcgNSwg
+MjAyMCBhdCA4OjU5IFBNIEJlbmphbWluIFIgTm9sZCB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4gd3Jv
+dGU6DQpIaSBVU1JQIFVzZXJlcywNCg0KSSBhbSBwbGFubmluZyBvbiB1c2luZyBhIE4zMTAgaW4g
+YSBzeXN0ZW0gd2hlcmUgSSBuZWVkIHRvIHJ1biBhIDEwRyBldGhlcm5ldCBjb25uZWN0aW9uIGFi
+b3V0IDMwIG0gb3V0c2lkZS4gSSBhbSB0aGlua2luZyBhIGdvb2Qgb3B0aW9uIGlzIHRvIHVzZSBh
+biBvcHRpY2FsIGNvbm5lY3Rpb24gdG8gZG8gdGhpcy4gV2hhdCBTRlArIGFkYXB0ZXJzIHRvIG9w
+dGljYWwgYXJlIGNvbXBhdGlibGUgd2l0aCB0aGUgTjMxMD8gQXJlIHRoZXJlIGFueSBwaXRmYWxs
+cy9saW1pdGF0aW9ucyB3aGVuIHVzaW5nIGEgU0ZQKyB0byBvcHRpY2FsIGNvbnZlcnRlcj8gRG8g
+SSBuZWVkIHRvIGNvbnNpZGVyIGFueXRoaW5nIGV4dHJhIHdoZW4gc2VsZWN0aW5nIGEgMTBHIGV0
+aGVybmV0IGFkYXB0ZXIgZm9yIG15IGhvc3QgUEM/DQoNClRoYW5rcywNCg0KDQpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5n
+IGxpc3QNClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbT4NCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3Jw
+LXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
 
-I'm sorry this lay dormant for so long:
-Generally, all standards-compliant 10GBase-* SFP+ transceivers are usable
-with the USRP X3xx and N3xx series =E2=80=93 these ports are directly attac=
-hed to
-an ethernet MAC on the FPGA, and that's really not picky.
-30 m sounds like like 10GBase-SR over OM3 fiber. (Coincidentally, that's
-what I use to connect my X310 to my workstation in my living room. It works
-well.)
-The transceivers: Transceivers of the same standard should be compatible,
-but since you'll buy both sides at once, you probably really don't have to
-worry. The ones I use privately I've got off ebay, and even these work well=
-.
-If you also need to shop for Network cards: Well, I've got the Intel
-X520-DA2 (which is the one sold by Ettus), but any network card should do =
-=E2=80=93
-a recommendation is that it's not too old, and if you want to use the DPDK
-transport, that it's supported by that (most modern cards are).
+--_000_DM5PR2201MB15644764CE22A1E190A4713EC8510DM5PR2201MB1564_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Best regards,
-Marcus
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
+OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTkN
+Cgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmki
+LHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
+c3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJp
+Zjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEu
+MGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2Vj
+dGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVm
+YXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48
+IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxv
+OmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwh
+W2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5r
+PSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPkF3ZXNvbWUsIHRoYW5rcyBmb3IgdGhlIGluc2lnaHRzIE1hcmN1cyE8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPkZyb206PC9iPiBN
+YXJjdXMgTcO8bGxlciAmbHQ7bWFyY3VzLm11ZWxsZXJAZXR0dXMuY29tJmd0OyA8YnI+DQo8Yj5T
+ZW50OjwvYj4gTW9uZGF5LCBBdWd1c3QgMzEsIDIwMjAgMTI6MDYgUE08YnI+DQo8Yj5Ubzo8L2I+
+IEJlbmphbWluIFIgTm9sZCAmbHQ7Ym5vbGRAcHVyZHVlLmVkdSZndDs8YnI+DQo8Yj5DYzo8L2I+
+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNS
+UC11c2Vyc10gTjMxMCAxMEcgZXRoZXJuZXQgbWVkaWEgY29udmVydGVyczxvOnA+PC9vOnA+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkRlYXIgQmVuamFtaW4sIDxvOnA+PC9vOnA+PC9wPg0K
+PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JJ20gc29ycnkgdGhpcyBsYXkg
+ZG9ybWFudCBmb3Igc28gbG9uZzo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPkdlbmVyYWxseSwgYWxsIHN0YW5kYXJkcy1jb21wbGlhbnQgMTBHQmFz
+ZS0qIFNGUCsgdHJhbnNjZWl2ZXJzIGFyZSB1c2FibGUgd2l0aCB0aGUgVVNSUCBYM3h4IGFuZCBO
+M3h4IHNlcmllcyDigJMgdGhlc2UgcG9ydHMgYXJlIGRpcmVjdGx5IGF0dGFjaGVkIHRvIGFuIGV0
+aGVybmV0IE1BQyBvbiB0aGUgRlBHQSwgYW5kIHRoYXQncyByZWFsbHkgbm90IHBpY2t5LjxvOnA+
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+MzAgbSBzb3Vu
+ZHMgbGlrZSBsaWtlIDEwR0Jhc2UtU1Igb3ZlciBPTTMgZmliZXIuIChDb2luY2lkZW50YWxseSwg
+dGhhdCdzIHdoYXQgSSB1c2UgdG8gY29ubmVjdCBteSBYMzEwIHRvIG15IHdvcmtzdGF0aW9uIGlu
+IG15IGxpdmluZyByb29tLiBJdCB3b3JrcyB3ZWxsLik8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSB0cmFuc2NlaXZlcnM6IFRyYW5zY2VpdmVy
+cyBvZiB0aGUgc2FtZSBzdGFuZGFyZCBzaG91bGQgYmUgY29tcGF0aWJsZSwgYnV0IHNpbmNlIHlv
+dSdsbCBidXkgYm90aCBzaWRlcyBhdCBvbmNlLCB5b3UgcHJvYmFibHkgcmVhbGx5IGRvbid0IGhh
+dmUgdG8gd29ycnkuIFRoZSBvbmVzIEkgdXNlIHByaXZhdGVseSBJJ3ZlIGdvdCBvZmYgZWJheSwg
+YW5kIGV2ZW4gdGhlc2Ugd29yayB3ZWxsLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+SWYgeW91IGFsc28gbmVlZCB0byBzaG9wIGZvciBOZXR3b3Jr
+IGNhcmRzOiBXZWxsLCBJJ3ZlIGdvdCB0aGUgSW50ZWwgWDUyMC1EQTIgKHdoaWNoIGlzIHRoZSBv
+bmUgc29sZCBieSBFdHR1cyksIGJ1dCBhbnkgbmV0d29yayBjYXJkIHNob3VsZCBkbyDigJMgYSBy
+ZWNvbW1lbmRhdGlvbiBpcyB0aGF0IGl0J3Mgbm90IHRvbyBvbGQsIGFuZCBpZiB5b3Ugd2FudCB0
+byB1c2UgdGhlIERQREsgdHJhbnNwb3J0LCB0aGF0DQogaXQncyBzdXBwb3J0ZWQgYnkgdGhhdCAo
+bW9zdCBtb2Rlcm4gY2FyZHMgYXJlKS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+QmVzdCByZWdhcmRzLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TWFyY3VzPG86cD48L286cD48L3A+DQo8L2Rp
+dj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFdlZCwgQXVnIDUsIDIwMjAgYXQg
+ODo1OSBQTSBCZW5qYW1pbiBSIE5vbGQgdmlhIFVTUlAtdXNlcnMgJmx0OzxhIGhyZWY9Im1haWx0
+bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
+L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9
+ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4g
+MGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4NCjxkaXY+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4w
+cHQ7Y29sb3I6YmxhY2siPkhpIFVTUlAgVXNlcmVzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTIuMHB0O2NvbG9yOmJsYWNrIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBw
+dDtjb2xvcjpibGFjayI+SSBhbSBwbGFubmluZyBvbiB1c2luZyBhIE4zMTAgaW4gYSBzeXN0ZW0g
+d2hlcmUgSSBuZWVkIHRvIHJ1biBhIDEwRyBldGhlcm5ldCBjb25uZWN0aW9uIGFib3V0IDMwIG0g
+b3V0c2lkZS4gSSBhbSB0aGlua2luZyBhIGdvb2Qgb3B0aW9uIGlzIHRvIHVzZSBhbiBvcHRpY2Fs
+IGNvbm5lY3Rpb24gdG8gZG8gdGhpcy4gV2hhdCBTRlArIGFkYXB0ZXJzDQogdG8gb3B0aWNhbCBh
+cmUgY29tcGF0aWJsZSB3aXRoIHRoZSBOMzEwPyBBcmUgdGhlcmUgYW55IHBpdGZhbGxzL2xpbWl0
+YXRpb25zIHdoZW4gdXNpbmcgYSBTRlArIHRvIG9wdGljYWwgY29udmVydGVyPyBEbyBJIG5lZWQg
+dG8gY29uc2lkZXIgYW55dGhpbmcgZXh0cmEgd2hlbiBzZWxlY3RpbmcgYSAxMEcgZXRoZXJuZXQg
+YWRhcHRlciBmb3IgbXkgaG9zdCBQQz88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtj
+b2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6
+YmxhY2siPlRoYW5rcyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtjb2xvcjpibGFj
+ayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBpZD0i
+Z21haWwtbV8tMTUwODE5OTIyNDMyMDYwMTcxMVNpZ25hdHVyZSI+DQo8ZGl2Pg0KPGRpdiBpZD0i
+Z21haWwtbV8tMTUwODE5OTIyNDMyMDYwMTcxMWRpdnRhZ2RlZmF1bHR3cmFwcGVyIj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZSI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3Q8YnI+DQo8YSBocmVmPSJtYWls
+dG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj5VU1JQLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8YSBocmVmPSJodHRwOi8vbGlzdHMuZXR0dXMuY29t
+L21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2Js
+YW5rIj5odHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
+aXN0cy5ldHR1cy5jb208L2E+PG86cD48L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4N
+CjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-On Wed, Aug 5, 2020 at 8:59 PM Benjamin R Nold via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi USRP Useres,
->
-> I am planning on using a N310 in a system where I need to run a 10G
-> ethernet connection about 30 m outside. I am thinking a good option is to
-> use an optical connection to do this. What SFP+ adapters to optical are
-> compatible with the N310? Are there any pitfalls/limitations when using a
-> SFP+ to optical converter? Do I need to consider anything extra when
-> selecting a 10G ethernet adapter for my host PC?
->
-> Thanks,
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000bfd52305ae2e9545
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Dear Benjamin, <br></div><div><br></div><div>I&#39;m =
-sorry this lay dormant for so long:</div><div>Generally, all standards-comp=
-liant 10GBase-* SFP+ transceivers are usable with the USRP X3xx and N3xx se=
-ries =E2=80=93 these ports are directly attached to an ethernet MAC on the =
-FPGA, and that&#39;s really not picky.</div><div>30 m sounds like like 10GB=
-ase-SR over OM3 fiber. (Coincidentally, that&#39;s what I use to connect my=
- X310 to my workstation in my living room. It works well.)</div><div>The tr=
-ansceivers: Transceivers of the same standard should be compatible, but sin=
-ce you&#39;ll buy both sides at once, you probably really don&#39;t have to=
- worry. The ones I use privately I&#39;ve got off ebay, and even these work=
- well.</div><div>If you also need to shop for Network cards: Well, I&#39;ve=
- got the Intel X520-DA2 (which is the one sold by Ettus), but any network c=
-ard should do =E2=80=93 a recommendation is that it&#39;s not too old, and =
-if you want to use the DPDK transport, that it&#39;s supported by that (mos=
-t modern cards are).</div><div><br></div><div>Best regards,</div><div>Marcu=
-s<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Wed, Aug 5, 2020 at 8:59 PM Benjamin R Nold via USRP-users &l=
-t;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Hi USRP Useres,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-I am planning on using a N310 in a system where I need to run a 10G etherne=
-t connection about 30 m outside. I am thinking a good option is to use an o=
-ptical connection to do this. What SFP+ adapters to optical are compatible =
-with the N310? Are there any pitfalls/limitations
- when using a SFP+ to optical converter? Do I need to consider anything ext=
-ra when selecting a 10G ethernet adapter for my host PC?</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Thanks,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div>
-<div id=3D"gmail-m_-1508199224320601711Signature">
-<div>
-<div id=3D"gmail-m_-1508199224320601711divtagdefaultwrapper" style=3D"font-=
-size:12pt;color:rgb(0,0,0);background-color:rgb(255,255,255);font-family:Ca=
-libri,Arial,Helvetica,sans-serif">
-<div><br>
-</div>
-<p style=3D"margin-top:0px;margin-bottom:0px"></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000bfd52305ae2e9545--
+--_000_DM5PR2201MB15644764CE22A1E190A4713EC8510DM5PR2201MB1564_--
 
 
---===============2485713381599863188==
+--===============4872335161320586505==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -222,5 +272,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2485713381599863188==--
+--===============4872335161320586505==--
 
