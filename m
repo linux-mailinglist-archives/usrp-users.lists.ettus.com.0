@@ -2,63 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17FD82581A6
-	for <lists+usrp-users@lfdr.de>; Mon, 31 Aug 2020 21:19:30 +0200 (CEST)
-Received: from [::1] (port=36486 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DDE3258254
+	for <lists+usrp-users@lfdr.de>; Mon, 31 Aug 2020 22:17:10 +0200 (CEST)
+Received: from [::1] (port=37028 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kCpKv-000313-SE; Mon, 31 Aug 2020 15:19:25 -0400
-Received: from mail-qv1-f47.google.com ([209.85.219.47]:35301)
+	id 1kCqEl-0007tR-25; Mon, 31 Aug 2020 16:17:07 -0400
+Received: from mail-yb1-f176.google.com ([209.85.219.176]:46483)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kCpKr-0002xB-FS
- for usrp-users@lists.ettus.com; Mon, 31 Aug 2020 15:19:21 -0400
-Received: by mail-qv1-f47.google.com with SMTP id b13so3019156qvl.2
- for <usrp-users@lists.ettus.com>; Mon, 31 Aug 2020 12:19:01 -0700 (PDT)
+ (Exim 4.93) (envelope-from <cherif.chibane@gmail.com>)
+ id 1kCqEh-0007ki-3X
+ for USRP-users@lists.ettus.com; Mon, 31 Aug 2020 16:17:03 -0400
+Received: by mail-yb1-f176.google.com with SMTP id x10so4735262ybj.13
+ for <USRP-users@lists.ettus.com>; Mon, 31 Aug 2020 13:16:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=h2W5ZuAkB7YBFSNxrNiCeSg2hyT3tb2rqxLLuBJJjq0=;
- b=M28ELusNImY9YMPasZodpxaaN2V/wcC2yaLo+PwhxBWIX9HILagwMiLYNjrQZDMib1
- qt3IWEQjrWd0cG6uLLopsj28eAk3p3/Jxyf9bT60R7l4ypXQygQN65tAyMy/2l2x9VBt
- 0Xx0EGLg5RrwZsct1Z/Dr1TIN/u0EHorTj+GW4frUT4migPxr9eozqMqWcQQIz8K6sQH
- KkzgL6MdPIiJNQbVCT/yHkzA5zkguMkejxsjKU/yzLpM6RUg8n+Yla+Cz7YX0fkThbEB
- /8YvRfmVyFKWsDEXBj2NDAZO2MDEyhrQYvBF8j1YdMXGMra55y92r+Q7VuFnd6ZR81hS
- p7GA==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=V6XKfAQHu/zOGkOb6vqNGzfsvsPvNwSq8+JtWb/qHNs=;
+ b=Eyof/mAqXPV6JfXO9nZ3URUjG3gQkqNEgJoSbiIPdgjORU+u0cjHToTCar3zvLfvnZ
+ YBeLJlwnxZw8j5/Yp4x61I8QUp8vThw3xYCfmY4Dmpj+EYlXLoTA8Ay+UJWZWpycfpp7
+ zHK6OgNHXlJzPVVCHC0y5f46X4jHgyBWSuDyhZPr0MZRmOsURh1fR19SCvKTiZLp3HiQ
+ HVQgEpFeDXwKexIG7thbhajbeuaR27inNSz+af2WuUJVLpqMWkS2lhYCuIPuvXDW/DwV
+ 4FEIe4FeWJM1gglVFB3g4r61y4BlVLSIs1/TgmO7qrOk1cA3bxYBRx7b74rWkLvE5Z7u
+ gNWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=h2W5ZuAkB7YBFSNxrNiCeSg2hyT3tb2rqxLLuBJJjq0=;
- b=UU3x4rDkyjtGvjfx6eRriVdGMaApkk41owAneQkuO+YtpVTZfeF0uE9G5pUKKu9D/X
- CigKBAZzntb00NReLLEvEInTp5FQnan5tpCgl902J2gATc2F1M9tU3eXZJMrwbJCTFAk
- b3t2FVBTxYfceHIWFufit3RJtYM/CVDyG/9IQKWHypymfm1nwrlhiHJ5xiRORNMxAdQz
- yNFwtdQuQvObhyXRAcAZs5LY2sN7HDRAxrHZ4P1SAevaEHMHflezTjX/51zmZCVLEDlF
- 5yPd3zPmmggXdKkX7tcxLdCmSfjUeDqj4y+2xXFznuT7QS6ZohOwL33UZ7M1tOWdQKNi
- 9efw==
-X-Gm-Message-State: AOAM531gmy+VdRKBh+XpSQrec8YHGV/tpAqNozbGGsxC1Vhq2c4oIfac
- c4AZnngU6lJzjMHaARQgO/SGM+nDQco=
-X-Google-Smtp-Source: ABdhPJzVnuCv19wTkn9bX/lrw3sjIrUW2n10OZ3Um7QbNjkpUcS8C+gDzGdPfF1TeRL/flI513Nn+Q==
-X-Received: by 2002:a0c:f607:: with SMTP id r7mr2578732qvm.219.1598901520873; 
- Mon, 31 Aug 2020 12:18:40 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
- by smtp.googlemail.com with ESMTPSA id i7sm10416511qkb.131.2020.08.31.12.18.40
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 31 Aug 2020 12:18:40 -0700 (PDT)
-Message-ID: <5F4D4D0F.4050702@gmail.com>
-Date: Mon, 31 Aug 2020 15:18:39 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=V6XKfAQHu/zOGkOb6vqNGzfsvsPvNwSq8+JtWb/qHNs=;
+ b=eBHzfIlBt4BUC5R/Np79nuKLuBQ3trDVe0rBwxjIptnOsGoS9bdcGtElgaZ7NBksHu
+ mrqToMyuzDZfhA4VZ2u4J0EQRYf0zakbjlsdSLrld/0lwRQcSEUlaL23u2SyxZFSQO2k
+ CAL0UuhGSpEoz6TtMPgQOKgmDneJZLpePs9hp9RUroZ2llTdVRe2QPYrIBtQkIZcpfaY
+ /KznvDReoP+nJ2pJHwGgeK/1hwqLOfRy2PW2Ck+5Rhhx0Eusv4D5pWtXiWQIvnB+t9JS
+ TobF43xHS3nzgsLspUnCWf6vPbPkvj/pBYmY0OGjHQn3koM9TaOFXMtua48dterYNXUc
+ IPgw==
+X-Gm-Message-State: AOAM531/84QA3adxZJYfkcj8G3cimQsBOf3v2NxsnP9nXMPGyLG7ADWj
+ nIWpLH/Smh2lVvx46WPV09gVnaPAb7jVAHj7gprJDiv159zIXA==
+X-Google-Smtp-Source: ABdhPJwwHvyBVjjcB7k2KyjsNxdNQFjveFAMG2LqYl7CJTIL+bFY3kgZkX6iX4WB4rY6VQXNJBP2U/RaknzsWxqJFUU=
+X-Received: by 2002:a25:3b53:: with SMTP id i80mr4695182yba.465.1598904982262; 
+ Mon, 31 Aug 2020 13:16:22 -0700 (PDT)
 MIME-Version: 1.0
-To: Sylvain Munaut <246tnt@gmail.com>
-CC: usrp-users <usrp-users@lists.ettus.com>
-References: <CAM4xKrrtSjhM1FFYGvuXrQFBop1d+H78JzQCx5OMh4iQ3rm3TQ@mail.gmail.com>
- <CAGNhwTMtPx8aygM-kUgcAyK_L2+nmLxtnJJDjpLXk5HpjK0uwQ@mail.gmail.com>
- <67e4d928-2f30-1faa-bb29-6e59916f6578@gmail.com> <5F492AC3.6070005@gmail.com>
- <CAHL+j09qPSV6XAj-fvURxyR3KHwxjqc1y7rJmto-tjSZqTuqBw@mail.gmail.com>
-In-Reply-To: <CAHL+j09qPSV6XAj-fvURxyR3KHwxjqc1y7rJmto-tjSZqTuqBw@mail.gmail.com>
-Subject: [USRP-users] UHD num_recv_frames, etc
+Date: Mon, 31 Aug 2020 16:16:11 -0400
+Message-ID: <CAN6+Rzn7K2ejfOEHbv0GDQKC5bGuXhmNu34_2y169i2mVGV2kA@mail.gmail.com>
+To: usrp-users <USRP-users@lists.ettus.com>
+Subject: [USRP-users] GNUradio-companion blocks location
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -70,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: cherif chibane via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: cherif chibane <cherif.chibane@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2512666720772307532=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,28 +71,70 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 08/28/2020 12:21 PM, Sylvain Munaut wrote:
->
-> I've always been curious why UHD doesn't automatically set those
-> parameters depending on the sample rate ... because AFAICT the
-> defaults universally sucks for high sample rate and changing them is
-> always the first thing to do to get things to work.
->
-> I understand at low sample rate you don't want useless buffering but
-> UHD knows the rate of data flow, so it could have defaults based on a
-> "time" measurement and then convert that time into buffer size /
-> buffer count so that the buffering is always about the same time-wise.
->
-> Cheers,
->
->      Sylvain
-I'm fairly sure that you have to specify those parameters at the time 
-you create the underlying libusb device, which means that
-   supporting mid-session sample-rate changes gets awkward...
+--===============2512666720772307532==
+Content-Type: multipart/alternative; boundary="0000000000007f55fc05ae3213cf"
+
+--0000000000007f55fc05ae3213cf
+Content-Type: text/plain; charset="UTF-8"
+
+Hello all,
+
+I have installed uhd, gr-ettus and gnuradio-comanion installed.
+
+This how I have set up the env variables in my /.bashrc file
+
+export LD_LIBRARY_PATH=~/user_opt/uhd-3.15.LTS/lib
+export PATH=$PATH:~/user_opt/uhd-3.15.LTS/bin
+export PYTHONPATH=~/user_opt/uhd-3.15.LTS/lib/python
+
+my gnuradio is installed in ( not sure how it got there):
+/usr/local/share$
+
+How does gnuradio-companion know its block path directory?
+I have commented  the env variables in my /.bashrc  and gnuradio-comapnion
+still finds the blocks as follows::
+
+Block paths:
+/home/rfnocdev/.grc_gnuradio
+/usr/local/share/gnuradio/grc/blocks
+
+Sorry if this is the wrong forum.
+____________
+Cherif Chibane
+
+--0000000000007f55fc05ae3213cf
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello all,</div><div>=C2=A0<br></div><div>I have inst=
+alled uhd, gr-ettus and gnuradio-comanion installed.</div><div><br></div><d=
+iv>This how I have set up the env variables in my /.bashrc file</div><div><=
+br></div><div>export LD_LIBRARY_PATH=3D~/user_opt/uhd-3.15.LTS/lib<br>expor=
+t PATH=3D$PATH:~/user_opt/uhd-3.15.LTS/bin<br>export PYTHONPATH=3D~/user_op=
+t/uhd-3.15.LTS/lib/python</div><div><br></div><div>my gnuradio is installed=
+ in ( not sure how it got there): <br></div><div>/usr/local/share$=C2=A0</d=
+iv><div><br></div><div>How does gnuradio-companion know its block path dire=
+ctory?</div><div> I have commented=C2=A0 the env variables in my /.bashrc=
+=C2=A0 and gnuradio-comapnion still finds the blocks as follows::</div><div=
+><br></div><div>Block paths:<br>	/home/rfnocdev/.grc_gnuradio<br>	/usr/loca=
+l/share/gnuradio/grc/blocks</div><div><br></div><div>Sorry if this is the w=
+rong forum.<br></div><div><div><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div>____________</div>C=
+herif Chibane</div></div></div></div></div>
+
+--0000000000007f55fc05ae3213cf--
 
 
+--===============2512666720772307532==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============2512666720772307532==--
+
