@@ -2,49 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3EDC2592DF
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Sep 2020 17:18:11 +0200 (CEST)
-Received: from [::1] (port=33230 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCB15259365
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Sep 2020 17:25:50 +0200 (CEST)
+Received: from [::1] (port=33282 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kD82w-0005U2-5y; Tue, 01 Sep 2020 11:18:06 -0400
-Received: from mail-lf1-f45.google.com ([209.85.167.45]:46761)
+	id 1kD8AP-0005xy-Am; Tue, 01 Sep 2020 11:25:49 -0400
+Received: from mail-qt1-f169.google.com ([209.85.160.169]:42815)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <chfl5156@colorado.edu>)
- id 1kD82s-0005Ma-1S
- for usrp-users@lists.ettus.com; Tue, 01 Sep 2020 11:18:02 -0400
-Received: by mail-lf1-f45.google.com with SMTP id u27so982759lfm.13
- for <usrp-users@lists.ettus.com>; Tue, 01 Sep 2020 08:17:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=colorado.edu; s=google;
- h=mime-version:reply-to:from:date:message-id:subject:to;
- bh=V/z+QnT3RkrlrQV/uwCawfACIKhQvintVHe+KdBhEzw=;
- b=cOpQOuQ+oySAX63eRqVkcp4AhICOnZ+ziR71IZ1g5eDeHCS+XkJSSXG9GgTDzwTpKR
- k4LNAgEg+4SX2YPnyF/MWeL5tsQAVIqYHxqZ0aiG5dQ/VMfdaTY63NmYcWcVstBR1H95
- t78y74u83ho9fhpnhF5cWLveq0Vq/936dY7EnBbbfGFc37L/6ptrslnnW08eVOLhQzE6
- N6WWogUSlZb15mxzlkDqvdNNkaTZ5RYTyHC54DKgAe12G61aFshKhTmjfo3H6/lXXEzh
- A9FGwWv/USTm4itK/bAkMmcxwFA3+8PEKjqrPAl/JqYq4ZZTFBd2WPwSDWwkgZmwNJM9
- Tx6Q==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kD8AK-0005r9-Mk
+ for USRP-users@lists.ettus.com; Tue, 01 Sep 2020 11:25:44 -0400
+Received: by mail-qt1-f169.google.com with SMTP id 60so1166231qtc.9
+ for <USRP-users@lists.ettus.com>; Tue, 01 Sep 2020 08:25:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=/YOd/XwW6xLFeZ7QxVqSF8ktiVASPMzVB1KoZSotff4=;
+ b=TET4ZYu0gn0oNrnjOMWV/H43VcTvAtQe4GdY81QMUrzaJESw8eaP/p8Fpqvwsv6tFW
+ Hnr1HnaMPVQwQAZ3hCrCb7SgfDbFw+fjtgbEAOtAXV0DNJ5YEm01ls5Hmmz8LoEOvpOl
+ 1E/mulD3757guFL0AUL9PuqFLrYigSp1aY2d09NoMNyC75WVUH+NAPU1XQKotGGqt3zL
+ eBZsRIy0SlWVpvZ4u8SZ47V+uQHn7JyKLAwrWKEO95BmzethePu6GB0TGx8h0z0buzg0
+ RnfaY6lWEH/mZxjWSTqB4UwlMdAN51cctjUktqp0O6/poEVJFTXvH8yMk3odlygKqAFJ
+ 0MFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:reply-to:from:date:message-id
- :subject:to;
- bh=V/z+QnT3RkrlrQV/uwCawfACIKhQvintVHe+KdBhEzw=;
- b=Mkr3p7RJcYzFTN94P6UpOq7mY5k7P3pcWRIl4UPk/g6p5gbEQoTkl5/U9mHyTXGk5H
- 0gc5h54MVlUNv//QL25VnLF3xrs1qmqLLVZY+2LF8l53YqVGh2XLfKz/uYUSmqgy1mE9
- RmDF3Bvxa3TzurN0Rg7ZPfrTzsoSWGz5hSBAlsnqCmPz1JHAwawNymirVDmF//ry+jwd
- RgfNJ/SyAEMtrF54prDF9Q+uPYlpuDmK81d056Bypd4csbSSAvftLi1PEzJY+leAmWmQ
- zbDVrDbvZVVmhDrXbh4YMJHrxPMTiRq4fyc51e/dA2LfqHOF7dqjZJPjhWuzzQ5psW/q
- 61uw==
-X-Gm-Message-State: AOAM530Cwv8iSnn2fxN+DCe4ie/MDJa4W0m7MxjV/6tV31AbJ6j/dhBk
- r6G4yRsYh2J4r9KUCg6P0QZagaHkBpUx+YzKSRsEsw8ND5HT1zo3
-X-Google-Smtp-Source: ABdhPJy9PNiXs5AI4L2fpfsTV6DZl2qUGGwPnsFqygT26qfCheLiuEbYXs9z9snEBQCBR9VS4lrnZPnRogBWephSSRk=
-X-Received: by 2002:a19:48d2:: with SMTP id v201mr881277lfa.96.1598973440005; 
- Tue, 01 Sep 2020 08:17:20 -0700 (PDT)
-MIME-Version: 1.0
-Date: Tue, 1 Sep 2020 09:17:08 -0600
-Message-ID: <CAM+cdhJvnNTRtukiKPx9OhGQAqeFOTBz+Vp3yc1ye4CYV44+OQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] External Oscillator with Ettus N310
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=/YOd/XwW6xLFeZ7QxVqSF8ktiVASPMzVB1KoZSotff4=;
+ b=ov/JO72H0DsdaI/nErIne93pRhlaz/+nUR3INVYlGMdEWf+YS6C/AzYTV0QUzhMwUC
+ rSynFLaHydOGWy8IKXPU2lHwm4OSi/Xaz6lzgJYz0MZ6DLtZS9ER5lI8G0Fz3sXoo8Uz
+ JIT6qhxSbHIrtRwtzHb5o+8dfJBFGZS5Gn1YojmiH1/s/7vqt3ZB+srRgDFeXJ9/y0cG
+ JcUtlWlxL+DEuuCKh6JOqWE+1BKb6Rhs4UgweqC2ldf96OrdxSWtDFlrwiD4AbFAq/Q6
+ o3ita1keCbuQ4X7Hq3jI8++jlRRCMLpZoO0iyA1Ct2QD7hlW9sx+uI1001RwWYdwZ6pw
+ 9Eog==
+X-Gm-Message-State: AOAM5329G0N6yshaox1ZgIviJhSgt8bbVZP5z3sN3C/J1/x9nZIvgNtt
+ ZebIdGhNSkGfZhNreMpw/jsqVlWt790=
+X-Google-Smtp-Source: ABdhPJzaYF5fTIh7GQvHGdXLCcM0QU39gkmW/Ws0xwAovQrrs20iUMa5Y/zj6LdBWwEGt65X+7VFxQ==
+X-Received: by 2002:ac8:140b:: with SMTP id k11mr2336016qtj.287.1598973904037; 
+ Tue, 01 Sep 2020 08:25:04 -0700 (PDT)
+Received: from [192.168.2.29]
+ (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
+ by smtp.gmail.com with ESMTPSA id t20sm1263603qke.79.2020.09.01.08.25.03
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 01 Sep 2020 08:25:03 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+Date: Tue, 1 Sep 2020 11:25:02 -0400
+Message-Id: <75B13EC1-5F7C-4E97-9614-26221D8E5C20@gmail.com>
+References: <CAM+cdhJvnNTRtukiKPx9OhGQAqeFOTBz+Vp3yc1ye4CYV44+OQ@mail.gmail.com>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <CAM+cdhJvnNTRtukiKPx9OhGQAqeFOTBz+Vp3yc1ye4CYV44+OQ@mail.gmail.com>
+To: Christopher.Flood@colorado.edu
+X-Mailer: iPhone Mail (17G80)
+Subject: Re: [USRP-users] External Oscillator with Ettus N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -56,9 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Christopher Flood via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Christopher.Flood@colorado.edu
-Content-Type: multipart/mixed; boundary="===============1136264984869338215=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,84 +83,36 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1136264984869338215==
-Content-Type: multipart/alternative; boundary="000000000000e5b51c05ae42038a"
-
---000000000000e5b51c05ae42038a
-Content-Type: text/plain; charset="UTF-8"
-
-  Hi all,
-
-Sorry if this is coming through twice - I sent it once before I subscribed
-to the list, but didn't know if it went through or not! (I didn't see it in
-the archives...)
-
--------
-
-I'm having some trouble using an external reference with the Ettus N310.
-The reference I am using is a FS725 Rubidium Frequency Standard.
-
-To test the difference between the internal clock and the external
-reference, I transmitted a 10MHz signal from the Ettus N310 with and
-without the external reference. Using just the internal clock of the SDR,
-the 10MHz signal slowly wanders with respect to the 10MHz signal from the
-Rubidium Frequency Standard as seen on an oscilloscope. This is to be
-expected since the stability of the internal clock in the SDR is worse than
-the Rubidium Frequency Standard.
-
-However, when I connect the 10MHz signal from the Rubidium to the external
-reference of the N310 and tell the N310 to use the external reference, the
-10MHz signal that the N310 generates wanders much faster with respect to
-the 10MHz signal from the Rubidium. This is opposite of what I believe
-should happen, assuming the N310 is truly using the external reference
-signal.
-
-Have any of you experienced this or have any tips as to what might be going
-on?
-
-Thanks!
-
--Chris
-
---000000000000e5b51c05ae42038a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">=C2=A0 Hi all,<div><br></div><div>Sorry if this is coming =
-through twice - I sent it once before I=C2=A0subscribed to the list, but di=
-dn&#39;t know if it went through=C2=A0or not! (I didn&#39;t see it in the a=
-rchives...)</div><div><br></div><div>-------</div><div><br></div><div>I&#39=
-;m having some trouble using an external reference with the Ettus N310. The=
- reference I am using is a FS725 Rubidium Frequency Standard.</div><div><br=
-></div><div>To test the difference between the internal clock and the exter=
-nal reference, I transmitted a 10MHz signal from the Ettus N310 with and wi=
-thout the external reference. Using just the internal clock of the SDR, the=
- 10MHz signal slowly wanders with respect to the 10MHz signal from the Rubi=
-dium Frequency Standard as seen on an oscilloscope. This is to be expected =
-since the stability of the internal clock in the SDR is worse than the Rubi=
-dium Frequency Standard.</div><div><br></div><div>However, when I connect t=
-he 10MHz signal from the Rubidium to the external reference of the N310 and=
- tell the N310 to use the external reference, the 10MHz signal that the N31=
-0 generates wanders much faster with respect to the 10MHz signal from the R=
-ubidium. This is opposite of what I believe should happen, assuming the N31=
-0 is truly using the external reference signal.=C2=A0</div><div><br></div><=
-div>Have any of you experienced this or have any tips as to what might be g=
-oing on?</div><div><br></div><div>Thanks!</div><div><br></div><div>-Chris=
-=C2=A0</div></div>
-
---000000000000e5b51c05ae42038a--
-
-
---===============1136264984869338215==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============1136264984869338215==--
-
+V2hhdCBhcmUgdGhlIG91dHB1dCBwYXJhbWV0ZXJzIG9mIHlvdXIgUmIgcmVmZXJlbmNlPyBTaWdu
+YWwgYW1wbGl0dWRlIGFuZCBzaGFwZSwgZXRjLiAKClNlbnQgZnJvbSBteSBpUGhvbmUKCj4gT24g
+U2VwIDEsIDIwMjAsIGF0IDExOjE4IEFNLCBDaHJpc3RvcGhlciBGbG9vZCB2aWEgVVNSUC11c2Vy
+cyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+IAo+IO+7vwo+ICAgSGkgYWxs
+LAo+IAo+IFNvcnJ5IGlmIHRoaXMgaXMgY29taW5nIHRocm91Z2ggdHdpY2UgLSBJIHNlbnQgaXQg
+b25jZSBiZWZvcmUgSSBzdWJzY3JpYmVkIHRvIHRoZSBsaXN0LCBidXQgZGlkbid0IGtub3cgaWYg
+aXQgd2VudCB0aHJvdWdoIG9yIG5vdCEgKEkgZGlkbid0IHNlZSBpdCBpbiB0aGUgYXJjaGl2ZXMu
+Li4pCj4gCj4gLS0tLS0tLQo+IAo+IEknbSBoYXZpbmcgc29tZSB0cm91YmxlIHVzaW5nIGFuIGV4
+dGVybmFsIHJlZmVyZW5jZSB3aXRoIHRoZSBFdHR1cyBOMzEwLiBUaGUgcmVmZXJlbmNlIEkgYW0g
+dXNpbmcgaXMgYSBGUzcyNSBSdWJpZGl1bSBGcmVxdWVuY3kgU3RhbmRhcmQuCj4gCj4gVG8gdGVz
+dCB0aGUgZGlmZmVyZW5jZSBiZXR3ZWVuIHRoZSBpbnRlcm5hbCBjbG9jayBhbmQgdGhlIGV4dGVy
+bmFsIHJlZmVyZW5jZSwgSSB0cmFuc21pdHRlZCBhIDEwTUh6IHNpZ25hbCBmcm9tIHRoZSBFdHR1
+cyBOMzEwIHdpdGggYW5kIHdpdGhvdXQgdGhlIGV4dGVybmFsIHJlZmVyZW5jZS4gVXNpbmcganVz
+dCB0aGUgaW50ZXJuYWwgY2xvY2sgb2YgdGhlIFNEUiwgdGhlIDEwTUh6IHNpZ25hbCBzbG93bHkg
+d2FuZGVycyB3aXRoIHJlc3BlY3QgdG8gdGhlIDEwTUh6IHNpZ25hbCBmcm9tIHRoZSBSdWJpZGl1
+bSBGcmVxdWVuY3kgU3RhbmRhcmQgYXMgc2VlbiBvbiBhbiBvc2NpbGxvc2NvcGUuIFRoaXMgaXMg
+dG8gYmUgZXhwZWN0ZWQgc2luY2UgdGhlIHN0YWJpbGl0eSBvZiB0aGUgaW50ZXJuYWwgY2xvY2sg
+aW4gdGhlIFNEUiBpcyB3b3JzZSB0aGFuIHRoZSBSdWJpZGl1bSBGcmVxdWVuY3kgU3RhbmRhcmQu
+Cj4gCj4gSG93ZXZlciwgd2hlbiBJIGNvbm5lY3QgdGhlIDEwTUh6IHNpZ25hbCBmcm9tIHRoZSBS
+dWJpZGl1bSB0byB0aGUgZXh0ZXJuYWwgcmVmZXJlbmNlIG9mIHRoZSBOMzEwIGFuZCB0ZWxsIHRo
+ZSBOMzEwIHRvIHVzZSB0aGUgZXh0ZXJuYWwgcmVmZXJlbmNlLCB0aGUgMTBNSHogc2lnbmFsIHRo
+YXQgdGhlIE4zMTAgZ2VuZXJhdGVzIHdhbmRlcnMgbXVjaCBmYXN0ZXIgd2l0aCByZXNwZWN0IHRv
+IHRoZSAxME1IeiBzaWduYWwgZnJvbSB0aGUgUnViaWRpdW0uIFRoaXMgaXMgb3Bwb3NpdGUgb2Yg
+d2hhdCBJIGJlbGlldmUgc2hvdWxkIGhhcHBlbiwgYXNzdW1pbmcgdGhlIE4zMTAgaXMgdHJ1bHkg
+dXNpbmcgdGhlIGV4dGVybmFsIHJlZmVyZW5jZSBzaWduYWwuIAo+IAo+IEhhdmUgYW55IG9mIHlv
+dSBleHBlcmllbmNlZCB0aGlzIG9yIGhhdmUgYW55IHRpcHMgYXMgdG8gd2hhdCBtaWdodCBiZSBn
+b2luZyBvbj8KPiAKPiBUaGFua3MhCj4gCj4gLUNocmlzIAo+IF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBV
+U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1h
+bi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNS
+UC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xp
+c3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
