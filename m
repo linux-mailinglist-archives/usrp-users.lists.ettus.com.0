@@ -2,48 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B05825B6FA
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Sep 2020 01:02:58 +0200 (CEST)
-Received: from [::1] (port=48180 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3496125B73F
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Sep 2020 01:25:34 +0200 (CEST)
+Received: from [::1] (port=48310 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kDbmH-0002PD-N8; Wed, 02 Sep 2020 19:02:53 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:34981)
+	id 1kDc8B-0003h7-A7; Wed, 02 Sep 2020 19:25:31 -0400
+Received: from mail-qk1-f180.google.com ([209.85.222.180]:46096)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <vesathya@eng.ucsd.edu>)
- id 1kDbmB-0002EV-B8
- for usrp-users@lists.ettus.com; Wed, 02 Sep 2020 19:02:47 -0400
-Received: by mail-ot1-f46.google.com with SMTP id i4so858667ota.2
- for <usrp-users@lists.ettus.com>; Wed, 02 Sep 2020 16:02:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=eng.ucsd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=qDg68EZv7/BTTp1J7GwOdh08IqTeqkV3lmZZdKmZhyg=;
- b=JVc5fGcVkgkc5fPTnvEx1XJG4jvgHKZmm9EQu6boN5xz6APGh5PHv/UnVKopHx39Q2
- 49oGT5NUNFd95PUzvtR/lwft4qnLcofTesd1rpm0er1BsaelYk2fOKCO0c4bTGwHwQom
- XNMjRt27vwFNtxCaneL+Zk6eJEHxCiYO+fHPk=
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kDc87-0003ai-Lc
+ for usrp-users@lists.ettus.com; Wed, 02 Sep 2020 19:25:27 -0400
+Received: by mail-qk1-f180.google.com with SMTP id f142so1380410qke.13
+ for <usrp-users@lists.ettus.com>; Wed, 02 Sep 2020 16:25:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=Lmr0JgW8tOqSdL6cm0wLs74ZCIGlPRTW0QyOgj+k8lQ=;
+ b=IA+zL/H16feIMqtyDqd8rU6kFtawk1j3lIwCIm7BpQtDiHxxbJRd4X9ww2ESxo9cOk
+ sep5/W01QForiuxZRPmtBls0b+BnB8YJJkBECmVVReiPSLPhEc+VYAjB/QvY0a0uXPri
+ Fg56d/zWoO/fUwjI2ogZFBmA0nuZ35syHej9PM9XqWHf1CQhwdqEqdpZhHXyF6XIY2Sb
+ nBGnMV2j/wQHHPg8DSTWVvrrX8tRRHQ3p0XWD6yd4oyaJhWHOodCRj6RtTrcpOGiyMwW
+ vY9xdkj+DVvFOil/7KtnY9GifNReX3KYvKVB5UJqLqSAjsB5/LF1HuNmlfAMl+9q6wXB
+ pGEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=qDg68EZv7/BTTp1J7GwOdh08IqTeqkV3lmZZdKmZhyg=;
- b=dAVYLreq7gnTpNpRudPxYCtLsn9LPumJn7FC5SGV1tlNZJlMTa9NTBw0rdGdcd+dzB
- ck+XgbXZ+FrAERyCp3dZ+JEQpOCQfNKRkvE40LvPe90fbOixfDLvzFwliusSZJ2jv7P/
- S8WWL5vtIgRKuDRdMxj9JWiNMFj8fxLIz73BYKjFQkmK6o0mQh2BuAtg+EYYJNeZNmfF
- OwAHezG690S5W1jKHPPi7ilJGt8/dk6ZYpgpdibuKjGjrN47FF5u1YevNmsu49CKv4cY
- H54nb01tbj1MvW38hcSM78CKC79o/B5Y15S8TwopItHvJWnox4CdgCmk34hGItx3YDOh
- axDQ==
-X-Gm-Message-State: AOAM531HKW86Kg0JPQvWEs6h+iwBGlDmDQWzYrQcbnVqEE2vHRDJl9lM
- 1oWuu5eDzDbUfufAM0Q7ZXhWOfivEJKZgBPmgm6IF/z1rQbwaWdf
-X-Google-Smtp-Source: ABdhPJz/1njbNvI4US1PRWxIWYKbHFB14PzmuA1CUU4uBj/96QI6pF94ff21x0Is1PP2zW4BDW0h8guEFAEGDvwDvCA=
-X-Received: by 2002:a9d:758b:: with SMTP id s11mr399777otk.251.1599087726239; 
- Wed, 02 Sep 2020 16:02:06 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=Lmr0JgW8tOqSdL6cm0wLs74ZCIGlPRTW0QyOgj+k8lQ=;
+ b=BK/qYbFcanOSclhHOTiUbKFWPnzgfDJsKKDQt/cF+dmfeCyLpbysmVY6OLg4yIjMZP
+ jaG3bfVC3mkaLYHa6/YjexDtGBc2f1+36fU09jf4FFjIflm/8C/iRs9jpjuwCVDHzs1P
+ x9JWd2jalfMCKCbtv2QXFZvMJHoGh2KM+u9sz59QM0NdDEkptYK3xBVcBq+O4cfhnBqo
+ 8L4UrF4nWsItK6gSLIr5qQQANiap689qYLyKTUUpJ88RHXb8J1gUBTIb1Qy09mdza3CI
+ mTZLtRbSX6E9sQ0SddqWaofHC/NH6Z4h7AKvw+REqOyiBUcHBXjqwzA+NYLWm00eLRqI
+ xIdQ==
+X-Gm-Message-State: AOAM532qWx72pMGVUxD1LEW3o/AZ5x0fdknKiuRhCpEt75OJN5KbzTZn
+ sXi3eXxcGjJc2dmELfst+ycIFm3E+Sc=
+X-Google-Smtp-Source: ABdhPJyMH+YMG9PSANRpO1n7HvF5jUx83SuGKxuIq3UwshpmzPOMYgNXL0Rm6lLtbYywBvVskAe2Mg==
+X-Received: by 2002:a37:c09:: with SMTP id 9mr405297qkm.471.1599089086828;
+ Wed, 02 Sep 2020 16:24:46 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
+ by smtp.googlemail.com with ESMTPSA id a203sm885540qkg.30.2020.09.02.16.24.46
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 02 Sep 2020 16:24:46 -0700 (PDT)
+Message-ID: <5F5029BD.7030105@gmail.com>
+Date: Wed, 02 Sep 2020 19:24:45 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <CANYmVj-oSiMz_v-EpodsX173Q2iMKBPM-WVf2BsSOrZnPQtvUw@mail.gmail.com>
-In-Reply-To: <CANYmVj-oSiMz_v-EpodsX173Q2iMKBPM-WVf2BsSOrZnPQtvUw@mail.gmail.com>
-Date: Wed, 2 Sep 2020 16:01:55 -0700
-Message-ID: <CANYmVj8vkBEry_XrQsz4QxYu29bd-mr1uVpwqdPsFLxQ1vSjRA@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-Cc: Ankush Jolly <ajolly@eng.ucsd.edu>
+References: <CANYmVj-oSiMz_v-EpodsX173Q2iMKBPM-WVf2BsSOrZnPQtvUw@mail.gmail.com>
+ <CANYmVj8vkBEry_XrQsz4QxYu29bd-mr1uVpwqdPsFLxQ1vSjRA@mail.gmail.com>
+In-Reply-To: <CANYmVj8vkBEry_XrQsz4QxYu29bd-mr1uVpwqdPsFLxQ1vSjRA@mail.gmail.com>
 Subject: Re: [USRP-users] Link going up and down periodically every 45
  seconds on USRP N310
 X-BeenThere: usrp-users@lists.ettus.com
@@ -57,9 +68,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Venkatesh Sathyanarayanan via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Venkatesh Sathyanarayanan <vesathya@eng.ucsd.edu>
-Content-Type: multipart/mixed; boundary="===============1470123387668879737=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1126588616152672567=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,155 +84,92 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1470123387668879737==
-Content-Type: multipart/alternative; boundary="000000000000e33d3105ae5c9f3c"
+This is a multi-part message in MIME format.
+--===============1126588616152672567==
+Content-Type: multipart/alternative;
+ boundary="------------080600050101030503050406"
 
---000000000000e33d3105ae5c9f3c
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------080600050101030503050406
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-Small correction:
-
-*Questions:*
-I notice that the test stops when the link goes down every 45 seconds. This
-happens for all types of tests(with and without GUI).
-Kindly let me know how to debug this - i.e. why the link goes down every 45
-seconds?
-
-Regards
-Venkatesh
-
-On Wed, Sep 2, 2020 at 3:10 PM Venkatesh Sathyanarayanan <
-vesathya@eng.ucsd.edu> wrote:
-
+On 09/02/2020 07:01 PM, Venkatesh Sathyanarayanan via USRP-users wrote:
 > Hi,
 >
->
-> *Setup details:*
-> I am using an USRP N310 and I have the host computer connected to the USRP
-> via SFP cable. I additionally have a serial connection between the two and
-> have a screen session running.
->
-> *Observation:*
-> On the screen session, I noticed the following messages:
-> [ 2151.041079] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
-> [ 2195.841088] nixge 40000000.ethernet sfp0: Link is Down
-> [ 2196.961090] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
-> [ 2241.761098] nixge 40000000.ethernet sfp0: Link is Down
-> [ 2242.881106] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
-> [ 2287.681109] nixge 40000000.ethernet sfp0: Link is Down
-> [ 2288.801114] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
-> [ 2333.601129] nixge 40000000.ethernet sfp0: Link is Down
-> [ 2334.721127] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
-> [ 2379.521132] nixge 40000000.ethernet sfp0: Link is Down
-> [ 2380.641137] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
-> [ 2425.441143] nixge 40000000.ethernet sfp0: Link is Down
-> [ 2426.561149] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
-> [ 2471.361159] nixge 40000000.ethernet sfp0: Link is Down
-> [ 2472.481166] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
-> [ 2517.281166] nixge 40000000.ethernet sfp0: Link is Down
-> [ 2518.401171] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
->
-> ..........................................................................................................................................................................
->
-> ..........................................................................................................................................................................
->
->
-> ..........................................................................................................................................................................
->
-> ..........................................................................................................................................................................
+> Small correction:
 >
 > *Questions:*
-> When I have a GNU radio GRC running with an active GUI displaying the
-> spectrum, I see that it halts at the time when the link goes down.
-> When I run a file with no GUI active - say IQ samples saved to a file,
-> things running in the background and I do not see any interruption.
->
->
->    1. Kindly let me know why I am seeing this issue of link going down
->    every 45 seconds and
->    2. also if this could potentially affect my tests (all my tests are
->    without any GUI.)
->
+> I notice that the test stops when the link goes down every 45 seconds. 
+> This happens for all types of tests(with and without GUI).
+> Kindly let me know how to debug this - i.e. why the link goes down 
+> every 45 seconds?
 >
 > Regards
 > Venkatesh
 >
->
+You probably have a faulty link of some sort.
 
---000000000000e33d3105ae5c9f3c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>Small correction:</div><div><br></d=
-iv><div><div><font size=3D"4"><b>Questions:</b></font><br></div><div>I noti=
-ce that the test stops when the link goes down every 45 seconds. This happe=
-ns for all types of tests(with and without GUI).</div></div><div>Kindly let=
- me know how to debug this - i.e. why the link goes down every 45 seconds?<=
-/div><div><br></div><div>Regards</div><div>Venkatesh</div></div><br><div cl=
-ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Sep 2, 20=
-20 at 3:10 PM Venkatesh Sathyanarayanan &lt;<a href=3D"mailto:vesathya@eng.=
-ucsd.edu">vesathya@eng.ucsd.edu</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi,</div><div><br></=
-div><div><br></div><div><b>Setup details:</b></div><div>I am using an USRP =
-N310 and I have the host computer connected to the USRP via SFP cable. I ad=
-ditionally have a serial connection between the two and have a screen sessi=
-on running.</div><div><br></div><div><b>Observation:</b><br></div><div>On t=
-he screen session, I noticed the following messages:</div><div>[ 2151.04107=
-9] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control of=
-f<br>[ 2195.841088] nixge 40000000.ethernet sfp0: Link is Down<br>[ 2196.96=
-1090] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control=
- off<br>[ 2241.761098] nixge 40000000.ethernet sfp0: Link is Down<br>[ 2242=
-.881106] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow cont=
-rol off<br>[ 2287.681109] nixge 40000000.ethernet sfp0: Link is Down<br>[ 2=
-288.801114] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow c=
-ontrol off<br>[ 2333.601129] nixge 40000000.ethernet sfp0: Link is Down<br>=
-[ 2334.721127] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flo=
-w control off<br>[ 2379.521132] nixge 40000000.ethernet sfp0: Link is Down<=
-br>[ 2380.641137] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full - =
-flow control off<br>[ 2425.441143] nixge 40000000.ethernet sfp0: Link is Do=
-wn<br>[ 2426.561149] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full=
- - flow control off<br>[ 2471.361159] nixge 40000000.ethernet sfp0: Link is=
- Down<br>[ 2472.481166] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/F=
-ull - flow control off<br>[ 2517.281166] nixge 40000000.ethernet sfp0: Link=
- is Down<br>[ 2518.401171] nixge 40000000.ethernet sfp0: Link is Up - 10Gbp=
-s/Full - flow control off<br>..............................................=
-...........................................................................=
-.................................................</div><div>...............=
-...........................................................................=
-...........................................................................=
-.....</div><div><br></div><div>............................................=
-...........................................................................=
-...................................................</div><div>.............=
-...........................................................................=
-...........................................................................=
-.......</div><div><font size=3D"4"><br></font></div><div><font size=3D"4"><=
-b>Questions:</b></font><br></div><div>When I have a GNU radio GRC running w=
-ith an active GUI displaying the spectrum, I see that it halts at the time =
-when the link goes down.</div><div>When I run a file with no GUI active - s=
-ay IQ samples saved to a file, things running in the background and I do no=
-t see any interruption.</div><div><br></div><ol><li>Kindly let me know why =
-I am seeing this issue of link going down every 45 seconds and </li><li>als=
-o if this could potentially affect my tests (all my tests are without any G=
-UI.)</li></ol><div><br></div><div>Regards</div><div>Venkatesh<br></div><div=
-><br></div></div>
-</blockquote></div>
-
---000000000000e33d3105ae5c9f3c--
+Check the configuration on your host computer--what does 'dmesg' report 
+in terms of the link state on your host computer?
 
 
---===============1470123387668879737==
+
+
+
+--------------080600050101030503050406
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 09/02/2020 07:01 PM, Venkatesh
+      Sathyanarayanan via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CANYmVj8vkBEry_XrQsz4QxYu29bd-mr1uVpwqdPsFLxQ1vSjRA@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">Hi,
+        <div><br>
+        </div>
+        <div>Small correction:</div>
+        <div><br>
+        </div>
+        <div>
+          <div><font size="4"><b>Questions:</b></font><br>
+          </div>
+          <div>I notice that the test stops when the link goes down
+            every 45 seconds. This happens for all types of tests(with
+            and without GUI).</div>
+        </div>
+        <div>Kindly let me know how to debug this - i.e. why the link
+          goes down every 45 seconds?</div>
+        <div><br>
+        </div>
+        <div>Regards</div>
+        <div>Venkatesh</div>
+      </div>
+      <br>
+    </blockquote>
+    You probably have a faulty link of some sort.<br>
+    <br>
+    Check the configuration on your host computer--what does 'dmesg'
+    report in terms of the link state on your host computer?<br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------080600050101030503050406--
+
+
+--===============1126588616152672567==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -232,5 +180,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1470123387668879737==--
+--===============1126588616152672567==--
 
