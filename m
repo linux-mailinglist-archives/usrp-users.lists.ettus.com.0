@@ -2,96 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D15FC25B3AC
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Sep 2020 20:23:42 +0200 (CEST)
-Received: from [::1] (port=45852 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91C0A25B3B7
+	for <lists+usrp-users@lfdr.de>; Wed,  2 Sep 2020 20:29:16 +0200 (CEST)
+Received: from [::1] (port=45908 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kDXQ4-0006wT-Ka; Wed, 02 Sep 2020 14:23:40 -0400
-Received: from mail-eopbgr1390129.outbound.protection.outlook.com
- ([40.107.139.129]:37415 helo=IND01-BO1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <koyel.das@vehere.com>)
- id 1kDXPz-0006nU-Lf
- for usrp-users@lists.ettus.com; Wed, 02 Sep 2020 14:23:36 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=id20UD/aRHJNZ7ahrOy3O+aOdq8xDM3bw+V8Igdu/brtpJ78TnrYYD2uQWj7+L8SeIhCX3KGdzyuOeqnXTsjS3Se4pTMPbZoT3Fklry/5nws4NGfpnT4yfMTFcj0PgtxaWo9Uet+rL3M9j+3ijxMxHBBdkxVVVUQKyKoP6Vb3zhSeDMdoNorhHuA/xwpwQHm/DOQAyQqYcGsSOdFr/0aOZnqtp2wT2ZLdoF3EIacaWID+0fzfqXfjVYqTHvKcS1DWv2HFPVP54D0RF6V2LOPA/t8wh3jg22TO2Ip7FboPiv4yfXAnRC/u6/KLOo9zoGZCEluA8gBwTZ7hJpdaKSipw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=O8oDv3QbmgabgT2PRXsoef+Kw8KIWEiO3avg3euKmqc=;
- b=E8AWCazWswnBJkOTdNdQBw1Fp/VtpoPk8mNPdxtoEbiE23WP2p5OOO3DQ1uZhKCoJE9OZ8asMXjrv+jjhqG6vNaPwZaLxu/wZuK8vYGG42Y85YFwlxvwecAsHkhKOxETDBA/4PWhqtiypiwby0kYeTv0+jtugxsL/b2iFzz7+TuAooUG7QTX4Ngs1K5CDC94z3V0t4xK0NIZ5yC+amSl/wnKp48FWqvqnleSZl1Ymx0xoBq2Wg7LbY373nuLYS2M1rm42pk6fXJj9cQDTboJJulSOEv+6WOIYXzLT625VirxuYGrzz9h59uqIlN17zvyGY7R4Fpbr4lCa3yIzJvp8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
- dkim=pass header.d=vehere.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=vehereinteractive.onmicrosoft.com;
- s=selector2-vehereinteractive-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=O8oDv3QbmgabgT2PRXsoef+Kw8KIWEiO3avg3euKmqc=;
- b=f1Wb1WYcDyIm7vA12bHm/I42nBnMTgizbB+mWmKkTCMt9DE5pa44FNT9y5k7LeC8dxe8W4cEN0mDIzfZqBlsWoOXP7u30EnKZ4ClNGeoAKTPkeHQZn7YUiBJHS5aLVDFXp1w+qtVt0GtVsExlPlLbGa2eBEIR0zEKbSDdtLPBr0=
-Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3e::22)
- by MA1PR01MB3451.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:76::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3326.21; Wed, 2 Sep
- 2020 18:22:51 +0000
-Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::5d37:8959:e500:82fe]) by MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::5d37:8959:e500:82fe%5]) with mapi id 15.20.3348.015; Wed, 2 Sep 2020
- 18:22:51 +0000
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
- <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Incorrect data from usrp 2955
-Thread-Index: AQHWcybNOTailyD99kmbADMt8WJI1Kk5hQWAgACW7GuAANQ9gIAAAHiPgAACmfWAAAZ4gIAAADeNgAADg4CAALwlEoAGybengAA7bICAAAG2Z4ATBQhQ
-Date: Wed, 2 Sep 2020 18:22:51 +0000
-Message-ID: <MA1PR01MB25888C4508C701B88B04C267902F0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
-References: <MA1PR01MB25885B004EA06FFE0C1B69DC90410@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
- <5F382FA9.60900@gmail.com>
- <MA1PR01MB258848062639094C9A33858A905E0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
- <5F39604D.6030303@gmail.com>,
- <MA1PR01MB2588632D2A24063E8E4E1F22905E0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
- <MA1PR01MB2588B859845EA8B4E4FB4477905E0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
- <5F39684D.1060702@gmail.com>
- <MA1PR01MB25882A435C92F1F1BBE5DF2E905E0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
- <5F396B6D.9080001@gmail.com>,
- <MA1PR01MB2588A12BD3A661DE22EABC31905F0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
- <MA1PR01MB25880E3EA627B040438A1F57905B0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
- <5F3FECCD.7020402@gmail.com>,
- <MA1PR01MB2588AD9F00DE334378574F15905B0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <MA1PR01MB2588AD9F00DE334378574F15905B0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=vehere.com;
-x-originating-ip: [42.110.137.139]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b7e7365b-36dd-4c72-6fc3-08d84f6d3412
-x-ms-traffictypediagnostic: MA1PR01MB3451:
-x-microsoft-antispam-prvs: <MA1PR01MB3451DDA6EB644B37DF456010902F0@MA1PR01MB3451.INDPRD01.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:4714;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: jyWwY/H5edn3+JvDjeNrnhL9c5IkBeCXVLFSrLDWsSyrhIC7umsOS1Qt4RqFGLolRZHP0oNt7i5JmAXJ5MdJnE4xpajJVa52f4yYqV5feioGzCLTuzNvJ1ICib7gAQmwyw9GRGHlQMH3x1Q5q2TeOvkgbjD2MuF7GlnGbrV8MBYLwoQ5dECQeIQ2D9eSobdcp7KfP6+wsyYFTPQkXhZWe6MLlbhfiC3mAxE0BJ9Yh43xjwgWrDrO+YfhfAx0n7p0RPppaHzrOm5xpCdH2fM9DApkK8nlhvBU4FYceEMSxrlUc343t7yGKhQ5w5wvdQKYNJEVcmkcHNHWq6p3y4qKApyYEwOVEWJk8R0mhzR1qtXX4107oJixbcA8mGHfMs69Y2TZQQVesI/VfVm2E6+EMQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(396003)(39840400004)(346002)(136003)(376002)(366004)(86362001)(19627405001)(66476007)(45080400002)(52536014)(5660300002)(9686003)(166002)(66946007)(76116006)(33656002)(55016002)(83380400001)(2906002)(6506007)(26005)(110136005)(316002)(8676002)(478600001)(53546011)(7696005)(186003)(64756008)(8936002)(66446008)(71200400001)(66556008)(966005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: QOzqnk7HF6DEQI7ksScm3JGnx050cg/CnBlPw4OYjrHxl9GCDNqB94bUBp96SST46L5uwfqhLoYHvjptrD8A4ySFPT7PNzw2DC2OSgOJCEz2ispzueTb491vXsti7xAtyAvYxAx3q4gqC4WijsBX1FwyqlkIBJpIFBOT4yJTItq+/hI9cLmfrRsazhZtKJ355/nYQvZFhNKBu535VvqMIxxQtb5/guZeFhwNPmLAe5yLAq8WcM+7ivkNR9WHWjWRXWkviUODszHBxOZU4OExoVCWvafDpod4zIbVJqLJTJANH7cyfyf0pCk8Ht+1EmnSWNiw0hJilGdvXqb7HhEsKyCsZ9RDvl7grQneX/TSgaf16MSlCfRou3MmYWEG3U+oL1hAGnlo/tsdmiQWXvHY243hMeMkyERXps2jsGffH+S9zFsPl856ko0AT5WUPv+gx2J2lo+qpZxnmxPNwjhvyaXLZpiDTOgAQ8jCTn8hqSgyVkqa5HZneIaNuWigK+EvOzu3qJVUf8hl+c50u8oJ0C6zjU8NStOpJiP7kKhzskF8bnRPOWgCU1dRmkQ+wrmwWYWX1CflCK8QExdrMIcemp1Cqgi3LTszkYLtRt8+gHll1DiIC+sderrHqTstt6GJfp9wn71IxaFfWIyA/hKtUQ==
-x-ms-exchange-transport-forked: True
+	id 1kDXVS-0008CP-MC; Wed, 02 Sep 2020 14:29:14 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:40999)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <cogwsn@gmail.com>) id 1kDXVO-00084l-Cy
+ for USRP-users@lists.ettus.com; Wed, 02 Sep 2020 14:29:10 -0400
+Received: by mail-oi1-f171.google.com with SMTP id 2so293727ois.8
+ for <USRP-users@lists.ettus.com>; Wed, 02 Sep 2020 11:28:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=Ovs+hs64riV7tLtjttYmVFykaUEDp2w4l+AtOmZ0yIY=;
+ b=ovcACUKfDjhpz3ns2ARCTYEGAtrrDGDNh22M+W0XEQw8ZWGX0PHNS0mR6s+XECzvyI
+ cpM2V8xX5QRPstgupeA68xLoY8/B60iwE1Y9OWUF8RU2buo6wjPz/kvh5vWuKD21bsE7
+ Q+AGJlBppdn1JXc2NxWsZR8hprYAJNTFizRtMtk4XIFH7rkmpDb1KW3YKmH4iTqQ0Vbl
+ 45EhzgpKjogE0Lo7UdXOfn2agnP2ZKwyz+c7STzvzI4MT1yOdjHemydDP0KhRPzqsaxq
+ I+82LBYXOkS1WEa1rPS1ZUVqhnsuGu8DTirD1A/giFeIIvQof29j9kkBmlsZsEIGbFeP
+ jIYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=Ovs+hs64riV7tLtjttYmVFykaUEDp2w4l+AtOmZ0yIY=;
+ b=EEyDeOUqG64E/85iyJykcNQizBymYXMXhqfDl0xbuLcxcE+rljmn0shxR95s/Vxbkw
+ ZpbzwAiphgmUFuPbGHHgubDXfr7FJZO2t7ThXBYcXcdiskSIaoQS3Jr/+ALAVR3Dgz/E
+ Kh4cCoWYtuYE+C0YdX0Rbq6HwcMOhKhi/HOZDnOEunzpKpVQsElvj4FWJmkHjD1Gp/UW
+ aNgskBiz5P95oJkr1wMFtpZ9GuC9fq6DFuowvw5f7kGd+b7n3wezLVu+aToJwbvNzTpp
+ 5n6AsEQLSPJg2WNSJb3VuEY/sRG8x2jINexUWtrWe7zCO5kNodTozll2iMAtSh1YmSId
+ vOBg==
+X-Gm-Message-State: AOAM533tSuzn60A06uVx2x//hRGWafmAfJdj9IklARqM4hZTbBboIRI2
+ GnDAFBwOTNsdV4eqSOr05oNemj8JJQ3tD8053B6FxydJI88=
+X-Google-Smtp-Source: ABdhPJxWNnBkZmZWhvlr7zF2HYuc906uCP9BcmgE4wuZFTDS8YHWF8ci+L7Q5jHgoLtQBYoDA92NOKLK6W2Rrg6bHYA=
+X-Received: by 2002:aca:6c6:: with SMTP id 189mr2698991oig.134.1599071309348; 
+ Wed, 02 Sep 2020 11:28:29 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: vehere.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7e7365b-36dd-4c72-6fc3-08d84f6d3412
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2020 18:22:51.5668 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: UAvD9BBt+54oCE2bwNEFtP1UeVRiRF+8CW/TW5fP73/mpIfPaELALf8tH+D1cuA9bIk7CSPHChTFAgdhgyOuYg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR01MB3451
-Subject: Re: [USRP-users] Incorrect data from usrp 2955
+References: <5144B3B6-EEDB-446E-BE6F-8EA289E45146@jhuapl.edu>
+ <CAOExtcTaVfk6B7L_9qVCYCiqR2tYsbzspU4Zd+BUk6nKidbX5g@mail.gmail.com>
+In-Reply-To: <CAOExtcTaVfk6B7L_9qVCYCiqR2tYsbzspU4Zd+BUk6nKidbX5g@mail.gmail.com>
+Date: Wed, 2 Sep 2020 20:28:17 +0200
+Message-ID: <CAOExtcSOM5ewcVpJoePq-6FO=iZSCvhEURgoCCBtDKUsywtzMA@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Subject: Re: [USRP-users] -- GPIO on N320 --
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -103,9 +58,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
-Content-Type: multipart/mixed; boundary="===============8927173919654578494=="
+From: Sumit Kumar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Sumit Kumar <cogwsn@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1195334617300623055=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -119,687 +74,1257 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8927173919654578494==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MA1PR01MB25888C4508C701B88B04C267902F0MA1PR01MB2588INDP_"
+--===============1195334617300623055==
+Content-Type: multipart/alternative; boundary="0000000000005d412105ae58cd64"
 
---_000_MA1PR01MB25888C4508C701B88B04C267902F0MA1PR01MB2588INDP_
-Content-Type: text/plain; charset="Windows-1252"
+--0000000000005d412105ae58cd64
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Marcus,
+Just now I tried to print the available GPIO available. For N310 it shows:
 
-Just an update. One cable was faulty and not the usrp.
+FP0
+RXA
+TXA
+RXB
+TXB
 
-Regards,
-Koyel
-
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: Koyel Das (Vehere) <koyel.das@vehere.com>
-Sent: Friday, August 21, 2020 9:26:16 PM
-To: Marcus D. Leech <patchvonbraun@gmail.com>; usrp-users@lists.ettus.com <=
-usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Incorrect data from usrp 2955
-
-Ok thanks. I will then generate a tone and see the amplitude  and if any di=
-stortion on the received signal.
-
-Regards,
-Koyel
-
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: Marcus D. Leech <patchvonbraun@gmail.com>
-Sent: Friday, August 21, 2020 9:18:29 PM
-To: Koyel Das (Vehere) <koyel.das@vehere.com>; usrp-users@lists.ettus.com <=
-usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Incorrect data from usrp 2955
-
-On 08/21/2020 08:47 AM, Koyel Das (Vehere) wrote:
-Hi Marcus,
-
-In order to see if single channel of usrp is giving correct phase, I will t=
-ransmit a qpsk signal using one usrp and receive using the usrp under test.=
- The qpsk signal should appear same in receiver as in transmitter and that =
-will confirm if single channel is working fine. Attached is the flowgraph f=
-or qpsk signal generator. I have a doubt that =93Random Source=94 block is =
-not accepting any datatype other than =93byte=94 else the connection is get=
-ting red and =93USRP Sink=94 is not accepting anything other than =93comple=
-x float=94. In between is the =93Constellation Modulator=94 block. The conn=
-ections are showing compatible (please refer the attached flowgraph). Perha=
-ps "Constellation Modulator" is sending out data as "complex float" to "USR=
-P Sink" otherwise how can the two blocks be compatible?
-
-So can I expect usrp sink will get correct data and not deform the data out=
- of =93Constellation Modulator=94 to some incorrect data, since "Random Sou=
-rce" is sending "Byte" and "USRP Sink" is receiving "complex float"? Means =
-is the flowgraph correct taking all datatypes into consideration?
-
-I am also attaching the grc files of transmitter and receiver.
-
-Regards,
-Koyel
-
-Neither of your attached .grc files have anything useful in them...
-
-When I said "check sanity of individual channels", I wasn't concerned with =
-phase--only that they were grossly "sane".  When you inject
-  a signal in to them, do the resulting signals have the correct attributes=
-?  Is the SNR roughly correct, etc?
+But for N320 it shows:
+RXA
+TXA
+RXB
+TXB
 
 
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com><mailto:usrp-users-bou=
-nces@lists.ettus.com> on behalf of Koyel Das (Vehere) via USRP-users <usrp-=
-users@lists.ettus.com><mailto:usrp-users@lists.ettus.com>
-Sent: Monday, August 17, 2020 10:07:05 AM
-To: Marcus D. Leech <patchvonbraun@gmail.com><mailto:patchvonbraun@gmail.co=
-m>; usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com> <usrp-use=
-rs@lists.ettus.com><mailto:usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Incorrect data from usrp 2955
+On Wed, Sep 2, 2020 at 7:58 PM Sumit Kumar <cogwsn@gmail.com> wrote:
 
-Ok Marcus I will try to figure out if individual channels are working fine.
-
-Regards,
-Koyel
-
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: Marcus D. Leech <patchvonbraun@gmail.com><mailto:patchvonbraun@gmail.=
-com>
-Sent: Sunday, August 16, 2020 10:52 PM
-To: Koyel Das (Vehere); usrp-users@lists.ettus.com<mailto:usrp-users@lists.=
-ettus.com>
-Subject: Re: [USRP-users] Incorrect data from usrp 2955
-
-On 08/16/2020 01:15 PM, Koyel Das (Vehere) wrote:
-I am not observing one individual channel but phase difference between two =
-channels. I very well know individual channel would show random phases but =
-not the phase difference when same signal is injected in two channels. I ho=
-pe you are aware that phase difference =3D 2pi/lambda* path_difference. Pat=
-h difference is constant as that=92s the difference between two paths of tw=
-o daughterboards and hence this phase difference is constant. Remember same=
- signal is injected so initial phases would be same for two channels and on=
-ly the difference in the signal path lengths bring the difference which is =
-constant
-
-Get Outlook for iOS<https://aka.ms/o0ukef>
-Yes, I fully understand that.  I'm simply suggesting some simple diagnostic=
-s to determine whether, as individual channels, the receivers are
-  working correctly.
-
-
-________________________________
-From: Marcus D. Leech <patchvonbraun@gmail.com><mailto:patchvonbraun@gmail.=
-com>
-Sent: Sunday, August 16, 2020 10:39 PM
-To: Koyel Das (Vehere); usrp-users@lists.ettus.com<mailto:usrp-users@lists.=
-ettus.com>
-Subject: Re: [USRP-users] Incorrect data from usrp 2955
-
-On 08/16/2020 12:46 PM, Koyel Das (Vehere) wrote:
-The measurement is not initial phase but the phase difference between two c=
-hannels
-
-Get Outlook for iOS<https://aka.ms/o0ukef>
-Are you using an external reference, or using the internal clock in the X31=
-0?
-
-If you observe an individual channel, is it "sane" ?  That is, apparently o=
-n-frequency, and with correct amplitudes and low distortion?
-
-
-________________________________
-From: Koyel Das (Vehere) <koyel.das@vehere.com><mailto:koyel.das@vehere.com=
+> Hi,
 >
-Sent: Sunday, August 16, 2020 10:15:48 PM
-To: Marcus D. Leech <patchvonbraun@gmail.com><mailto:patchvonbraun@gmail.co=
-m>; usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com> <usrp-use=
-rs@lists.ettus.com><mailto:usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Incorrect data from usrp 2955
+> I am also having the issue. Can anyone please help with the information :=
+)
+>
+> For N310, there is FP0 available but for N320 I get following run time
+> error:
+> "  what():  RuntimeError: The hardware has no GPIO bank `FP0' "
+>
+> Regards
+> Sumit
+>
+> On Mon, Jan 27, 2020 at 11:02 PM Nowicki, Ed H. via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> When I call the UHD API function get_gpio_banks()
+>>
+>> I get the following banks:
+>>
+>> =E2=80=98RXB=E2=80=99 =E2=80=98TXB=E2=80=99 =E2=80=98RXA=E2=80=99 TXA=E2=
+=80=99 but I do NOT get =E2=80=98FP0=E2=80=99.
+>>
+>>
+>>
+>> Thoughts?
+>>
+>>
+>>
+>> Thanks,
+>>
+>> Ed
+>>
+>>
+>>
+>> *From: *USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of
+>> "Nowicki, Ed H. via USRP-users" <usrp-users@lists.ettus.com>
+>> *Reply-To: *"Nowicki, Ed H." <Ed.Nowicki@jhuapl.edu>
+>> *Date: *Monday, January 27, 2020 at 8:45 AM
+>> *To: *"usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+>> *Subject: *[EXT] [USRP-users] -- GPIO on N320 --
+>>
+>>
+>>
+>> *APL external email warning: *Verify sender
+>> usrp-users-bounces@lists.ettus.com before clicking links or attachments
+>>
+>>
+>>
+>> Hi,
+>>
+>>
+>>
+>> I=E2=80=99m having a problem using the front panel GPIO on an N320.  I r=
+everted
+>> back to a standard =E2=80=9CHG=E2=80=9D FPGA build and compiled the GPIO=
+ example program
+>> (UHD 3.14.0).   However, when I run the example program I get the follow=
+ing:
+>>
+>>
+>>
+>> Error: RuntimeError: The hardware has no gpio bank `FP0'
+>>
+>>
+>>
+>> Is the front panel GPIO bank on the N320 called =E2=80=9CFP0=E2=80=9D or=
+ something else?
+>> I did not see a reference to this in the .dts.
+>>
+>>
+>>
+>> See below for a =E2=80=9Cuhd_uspr_probe=E2=80=9D, =E2=80=9Cuhd_config_in=
+fo=E2=80=9D dump, and the
+>> terminal output after running ./gpio.
+>>
+>>
+>>
+>> Thanks for any help.
+>>
+>>
+>>
+>> Regards,
+>>
+>> Ed Nowicki
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> ~~~~~~~~~~~~~~
+>>
+>> xku@sdr_nuc:~/workarea-uhd/uhd/host/examples/gpio/build$ uhd_usrp_probe
+>>
+>> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+>> UHD_3.14.0.HEAD-0-g6875d061
+>>
+>> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+>> mgmt_addr=3D192.168.20.2,type=3Dn3xx,product=3Dn320,serial=3D31A5C5A,cla=
+imed=3DFalse,addr=3D192.168.20.2
+>>
+>> [INFO] [MPM.PeriphManager] init() called with device args
+>> `mgmt_addr=3D192.168.20.2,clock_source=3Dinternal,time_source=3Dinternal=
+,product=3Dn320'.
+>>
+>> [INFO] [MPM.Rhodium-0] init() called with args
+>> `mgmt_addr=3D192.168.20.2,clock_source=3Dinternal,time_source=3Dinternal=
+,product=3Dn320'
+>>
+>> [INFO] [MPM.Rhodium-1] init() called with args
+>> `mgmt_addr=3D192.168.20.2,clock_source=3Dinternal,time_source=3Dinternal=
+,product=3Dn320'
+>>
+>> [INFO] [0/Replay_0] Initializing block control (NOC ID:
+>> 0x4E91A00000000004)
+>>
+>> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD10000000032=
+0)
+>>
+>> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD10000000032=
+0)
+>>
+>> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000001)
+>>
+>> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000001)
+>>
+>> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
+>>
+>> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
+>>
+>> [INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000=
+)
+>>
+>> [INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000=
+)
+>>
+>> _____________________________________________________
+>>
+>> /
+>>
+>> |       Device: N300-Series Device
+>>
+>> |     _____________________________________________________
+>>
+>> |    /
+>>
+>> |   |       Mboard: ni-n3xx-31A5C5A
+>>
+>> |   |   eeprom_version: 2
+>>
+>> |   |   mpm_version: 3.14.1.0-gbfb9c1c7
+>>
+>> |   |   pid: 16962
+>>
+>> |   |   product: n320
+>>
+>> |   |   rev: 7
+>>
+>> |   |   rpc_connection: remote
+>>
+>> |   |   serial: 31A5C5A
+>>
+>> |   |   type: n3xx
+>>
+>> |   |   MPM Version: 1.2
+>>
+>> |   |   FPGA Version: 5.3
+>>
+>> |   |   FPGA git hash: 3de8954.clean
+>>
+>> |   |   RFNoC capable: Yes
+>>
+>> |   |
+>>
+>> |   |   Time sources:  internal, external, gpsdo, sfp0
+>>
+>> |   |   Clock sources: external, internal, gpsdo
+>>
+>> |   |   Sensors: temp, gps_tpv, gps_time, fan, gps_sky, ref_locked,
+>> gps_gpgga, gps_locked
+>>
+>> |   |     _____________________________________________________
+>>
+>> |   |    /
+>>
+>> |   |   |       RX Dboard: A
+>>
+>> |   |   |   ID: Unknown (0x0152)
+>>
+>> |   |   |   Serial: 3191E7D
+>>
+>> |   |   |     _____________________________________________________
+>>
+>> |   |   |    /
+>>
+>> |   |   |   |       RX Frontend: 0
+>>
+>> |   |   |   |   Name: Rhodium
+>>
+>> |   |   |   |   Antennas: TX/RX, RX2, CAL, TERM
+>>
+>> |   |   |   |   Sensors: lo_locked
+>>
+>> |   |   |   |   Freq range: 1.000 to 6000.000 MHz
+>>
+>> |   |   |   |   Gain range all: 0.0 to 60.0 step 1.0 dB
+>>
+>> |   |   |   |   Bandwidth range: 250000000.0 to 250000000.0 step 0.0 Hz
+>>
+>> |   |   |   |   Connection Type:
+>>
+>> |   |   |   |   Uses LO offset: No
+>>
+>> |   |   |     _____________________________________________________
+>>
+>> |   |   |    /
+>>
+>> |   |   |   |       RX Codec: A
+>>
+>> |   |   |   |   Name: ad9695-625
+>>
+>> |   |   |   |   Gain Elements: None
+>>
+>> |   |     _____________________________________________________
+>>
+>> |   |    /
+>>
+>> |   |   |       RX Dboard: B
+>>
+>> |   |   |   ID: Unknown (0x0152)
+>>
+>> |   |   |   Serial: 3191E79
+>>
+>> |   |   |     _____________________________________________________
+>>
+>> |   |   |    /
+>>
+>> |   |   |   |       RX Frontend: 0
+>>
+>> |   |   |   |   Name: Rhodium
+>>
+>> |   |   |   |   Antennas: TX/RX, RX2, CAL, TERM
+>>
+>> |   |   |   |   Sensors: lo_locked
+>>
+>> |   |   |   |   Freq range: 1.000 to 6000.000 MHz
+>>
+>> |   |   |   |   Gain range all: 0.0 to 60.0 step 1.0 dB
+>>
+>> |   |   |   |   Bandwidth range: 250000000.0 to 250000000.0 step 0.0 Hz
+>>
+>> |   |   |   |   Connection Type:
+>>
+>> |   |   |   |   Uses LO offset: No
+>>
+>> |   |   |     _____________________________________________________
+>>
+>> |   |   |    /
+>>
+>> |   |   |   |       RX Codec: B
+>>
+>> |   |   |   |   Name: ad9695-625
+>>
+>> |   |   |   |   Gain Elements: None
+>>
+>> |   |     _____________________________________________________
+>>
+>> |   |    /
+>>
+>> |   |   |       TX Dboard: A
+>>
+>> |   |   |   ID: Unknown (0x0152)
+>>
+>> |   |   |   Serial: 3191E7D
+>>
+>> |   |   |     _____________________________________________________
+>>
+>> |   |   |    /
+>>
+>> |   |   |   |       TX Frontend: 0
+>>
+>> |   |   |   |   Name: Rhodium
+>>
+>> |   |   |   |   Antennas: TX/RX, CAL, TERM
+>>
+>> |   |   |   |   Sensors: lo_locked
+>>
+>> |   |   |   |   Freq range: 1.000 to 6000.000 MHz
+>>
+>> |   |   |   |   Gain range all: 0.0 to 60.0 step 1.0 dB
+>>
+>> |   |   |   |   Bandwidth range: 250000000.0 to 250000000.0 step 0.0 Hz
+>>
+>> |   |   |   |   Connection Type:
+>>
+>> |   |   |   |   Uses LO offset: No
+>>
+>> |   |   |     _____________________________________________________
+>>
+>> |   |   |    /
+>>
+>> |   |   |   |       TX Codec: A
+>>
+>> |   |   |   |   Name: dac37j82
+>>
+>> |   |   |   |   Gain Elements: None
+>>
+>> |   |     _____________________________________________________
+>>
+>> |   |    /
+>>
+>> |   |   |       TX Dboard: B
+>>
+>> |   |   |   ID: Unknown (0x0152)
+>>
+>> |   |   |   Serial: 3191E79
+>>
+>> |   |   |     _____________________________________________________
+>>
+>> |   |   |    /
+>>
+>> |   |   |   |       TX Frontend: 0
+>>
+>> |   |   |   |   Name: Rhodium
+>>
+>> |   |   |   |   Antennas: TX/RX, CAL, TERM
+>>
+>> |   |   |   |   Sensors: lo_locked
+>>
+>> |   |   |   |   Freq range: 1.000 to 6000.000 MHz
+>>
+>> |   |   |   |   Gain range all: 0.0 to 60.0 step 1.0 dB
+>>
+>> |   |   |   |   Bandwidth range: 250000000.0 to 250000000.0 step 0.0 Hz
+>>
+>> |   |   |   |   Connection Type:
+>>
+>> |   |   |   |   Uses LO offset: No
+>>
+>> |   |   |     _____________________________________________________
+>>
+>> |   |   |    /
+>>
+>> |   |   |   |       TX Codec: B
+>>
+>> |   |   |   |   Name: dac37j82
+>>
+>> |   |   |   |   Gain Elements: None
+>>
+>> |   |     _____________________________________________________
+>>
+>> |   |    /
+>>
+>> |   |   |       RFNoC blocks on this device:
+>>
+>> |   |   |
+>>
+>> |   |   |   * Replay_0
+>>
+>> |   |   |   * Radio_0
+>>
+>> |   |   |   * Radio_1
+>>
+>> |   |   |   * DDC_0
+>>
+>> |   |   |   * DDC_1
+>>
+>> |   |   |   * DUC_0
+>>
+>> |   |   |   * DUC_1
+>>
+>> |   |   |   * FIFO_0
+>>
+>> |   |   |   * FIFO_1
+>>
+>>
+>>
+>> ~~~~~~~~~~~~~
+>>
+>>
+>>
+>> xku@sdr_nuc:~/workarea-uhd/uhd/host/examples/gpio/build$ uhd_config_info
+>> --print-all
+>>
+>> UHD 3.14.0.HEAD-0-g6875d061
+>>
+>> Build date: Thu, 20 Jun 2019 18:53:05
+>>
+>> C compiler: GNU 7.4.0
+>>
+>> C++ compiler: GNU 7.4.0
+>>
+>> C flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1
+>> -DUHD_LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_C=
+OLOR
+>>
+>> C++ flags: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1
+>> -DUHD_LOG_CONSOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_C=
+OLOR
+>> -fvisibility=3Dhidden -fvisibility-inlines-hidden
+>>
+>> Enabled components: LibUHD, LibUHD - C API, LibUHD - Python API,
+>> Examples, Utils, Tests, USB, B100, B200, USRP1, USRP2, X300, N230, MPMD,
+>> N300, N320, E320, OctoClock
+>>
+>> Install prefix: /usr/local
+>>
+>> Boost version: 1.65.1
+>>
+>> Libusb version: 1.0.23
+>>
+>> Package path: /usr/local
+>>
+>> Images directory: /usr/local/share/uhd/images
+>>
+>> ABI version string: 3.14.0
+>>
+>>
+>>
+>> ~~~~~~~~~~~~~~~~~~~~
+>>
+>>
+>>
+>> xku@sdr_nuc:~/workarea-uhd/uhd/host/examples/gpio/build$
+>>
+>> xku@sdr_nuc:~/workarea-uhd/uhd/host/examples/gpio/build$ ./gpio
+>>
+>>
+>>
+>> Creating the usrp device with: ...
+>>
+>> [INFO] [UHD] linux; GNU C++ version 7.4.0; Boost_106501;
+>> UHD_3.14.0.HEAD-0-g6875d061
+>>
+>> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+>> mgmt_addr=3D192.168.20.2,type=3Dn3xx,product=3Dn320,serial=3D31A5C5A,cla=
+imed=3DFalse,addr=3D192.168.20.2
+>>
+>> [INFO] [MPM.PeriphManager] init() called with device args
+>> `mgmt_addr=3D192.168.20.2,clock_source=3Dinternal,time_source=3Dinternal=
+,product=3Dn320'.
+>>
+>> [INFO] [MPM.Rhodium-0] init() called with args
+>> `mgmt_addr=3D192.168.20.2,clock_source=3Dinternal,time_source=3Dinternal=
+,product=3Dn320'
+>>
+>> [INFO] [MPM.Rhodium-1] init() called with args
+>> `mgmt_addr=3D192.168.20.2,clock_source=3Dinternal,time_source=3Dinternal=
+,product=3Dn320'
+>>
+>> [INFO] [0/Replay_0] Initializing block control (NOC ID:
+>> 0x4E91A00000000004)
+>>
+>> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD10000000032=
+0)
+>>
+>> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD10000000032=
+0)
+>>
+>> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000001)
+>>
+>> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000001)
+>>
+>> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
+>>
+>> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
+>>
+>> [INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000=
+)
+>>
+>> [INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000=
+)
+>>
+>> Using Device: Single USRP:
+>>
+>> Device: N300-Series Device
+>>
+>> Mboard 0: ni-n3xx-31A5C5A
+>>
+>> RX Channel: 0
+>>
+>> RX DSP: 0
+>>
+>> RX Dboard: A
+>>
+>> RX Subdev: Rhodium
+>>
+>> RX Channel: 1
+>>
+>> RX DSP: 0
+>>
+>> RX Dboard: B
+>>
+>> RX Subdev: Rhodium
+>>
+>> TX Channel: 0
+>>
+>> TX DSP: 0
+>>
+>> TX Dboard: A
+>>
+>> TX Subdev: Rhodium
+>>
+>> TX Channel: 1
+>>
+>> TX DSP: 0
+>>
+>> TX Dboard: B
+>>
+>> TX Subdev: Rhodium
+>>
+>>
+>>
+>> Initial GPIO values:
+>>
+>>    Bit  10  9  8  7  6  5  4  3  2  1  0
+>>
+>> Error: RuntimeError: The hardware has no gpio bank `FP0'
+>>
+>> xku@sdr_nuc:~/workarea-uhd/uhd/host/examples/gpio/build$
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
+>
+> --
+> --
+> Sumit kumar
+> Postdoc
+> SnT, Luxembourg
+>
+>
+>
 
-the phase difference between two channels of USRP as a function of frequenc=
-y and time,  when measured by splitting the same signal and feeding two cha=
-nnels of usrp, are wandering around wrt one another which was not happening=
- before. I had given demo more than 30 times based on this principle and te=
-sted previously more than 50 times and I got correct result every time. Now=
- only suddenly it started happening. The frequency is 2.4 GHz and bandwidth=
- I tried from 1 MHz to 100 MHz. Previously the whole bandwidth was showing =
-similar values but then suddenly started behaving abnormally giving near to=
- correct result sometimes and sometimes junk.
+--=20
+--=20
+Sumit kumar
+Postdoc
+SnT, Luxembourg
 
-Regards,
-Koyel
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: Marcus D. Leech <patchvonbraun@gmail.com><mailto:patchvonbraun@gmail.=
-com>
-Sent: Sunday, August 16, 2020 10:05 PM
-To: Koyel Das (Vehere); usrp-users@lists.ettus.com<mailto:usrp-users@lists.=
-ettus.com>
-Subject: Re: [USRP-users] Incorrect data from usrp 2955
-
-On 08/15/2020 11:59 PM, Koyel Das (Vehere) wrote:
-No it doesn=92t look better again after reducing gain. Sometimes the phase =
-differences are closeby but not so same as we were getting before and most =
-of the times they are totally incorrect. Strength of the signal when we tri=
-ed with maximum gain was near -40 dbm.
-
-Regards,
-Koyel
-To clarify some things.
-
-(A) The phase errors are just the initial phases--they don't wander around =
-with respect to one another during a run?
-(B) What frequency range?
-
-
-
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com><mailto:usrp-users-bou=
-nces@lists.ettus.com> on behalf of Marcus D. Leech via USRP-users <usrp-use=
-rs@lists.ettus.com><mailto:usrp-users@lists.ettus.com>
-Sent: Sunday, August 16, 2020 12:25:37 AM
-To: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com> <usrp-use=
-rs@lists.ettus.com><mailto:usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Incorrect data from usrp 2955
-
-On 08/15/2020 01:16 PM, Koyel Das (Vehere) via USRP-users wrote:
-Hi,
-
-We are using USRP 2955. Something has gone wrong. Before we were getting co=
-nstant phase difference across channels for limited bandwidth and with time=
- when we split single antenna signal using splitter and fed two channels of=
- USRP but now it is not doing so. This happened on Friday that after gettin=
-g a series of correct results : constant phase difference across channels b=
-y feeding signal using splitter as mentioned above, we suddenly started to =
-receive wrong data: random phase  across channels and with time using the s=
-ame setup with splitter. The thing we did was setting gain to near maximum =
-and receiving 100 MHz sample rate. But I don't think amplifier has damaged =
-because in this usrp we have four independent channels and when we connecte=
-d the splitter to unused channels then also we got wrong data. What can go =
-wrong that USRP is streaming data but phases are wrong? What do you think? =
-Please let me know.
-
-Regards,
-Koyel
-
-Get Outlook for iOS<https://aka.ms/o0ukef>
-
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-
-Does it look better again when you reduce the gain?
-
-What is the magnitude of the signals going to the RX ports?
-
-
-
-
-
-
-
---_000_MA1PR01MB25888C4508C701B88B04C267902F0MA1PR01MB2588INDP_
-Content-Type: text/html; charset="Windows-1252"
+--0000000000005d412105ae58cd64
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-</head>
-<body>
-<div dir=3D"ltr">
-<div></div>
-<div>
-<div>Hi Marcus,</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Just an update. One cable was faulty and not the&nbsp;usrp=
-.&nbsp;</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Regards,</div>
-<div dir=3D"ltr">Koyel&nbsp;</div>
-<div><br>
-</div>
-<div class=3D"ms-outlook-ios-signature" id=3D"ms-outlook-mobile-signature">=
-Get <a href=3D"https://aka.ms/o0ukef">
-Outlook for iOS</a></div>
-</div>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Koyel Das (Vehere) &l=
-t;koyel.das@vehere.com&gt;<br>
-<b>Sent:</b> Friday, August 21, 2020 9:26:16 PM<br>
-<b>To:</b> Marcus D. Leech &lt;patchvonbraun@gmail.com&gt;; usrp-users@list=
-s.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div></div>
-<div>
-<div>Ok thanks. I will then generate a tone and see the amplitude &nbsp;and=
- if any distortion on the received signal.</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Regards,</div>
-<div dir=3D"ltr">Koyel&nbsp;</div>
-<div><br>
-</div>
-<div class=3D"x_ms-outlook-ios-signature" id=3D"x_ms-outlook-mobile-signatu=
-re">Get <a href=3D"https://aka.ms/o0ukef">
-Outlook for iOS</a></div>
-</div>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Marcus D. Leech &lt=
-;patchvonbraun@gmail.com&gt;<br>
-<b>Sent:</b> Friday, August 21, 2020 9:18:29 PM<br>
-<b>To:</b> Koyel Das (Vehere) &lt;koyel.das@vehere.com&gt;; usrp-users@list=
-s.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955</font>
-<div>&nbsp;</div>
-</div>
-<div style=3D"background-color:#FFFFFF">
-<div class=3D"x_x_moz-cite-prefix">On 08/21/2020 08:47 AM, Koyel Das (Veher=
-e) wrote:<br>
-</div>
-<blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-</div>
-<div>
-<div>Hi Marcus,</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">In order to see if single channel of usrp is giving correc=
-t phase, I will transmit a qpsk signal using one usrp and receive using the=
- usrp under test. The qpsk signal should appear same in receiver as in tran=
-smitter and that will confirm if single
- channel is working fine. Attached is the flowgraph for qpsk signal generat=
-or. I have a doubt that =93Random Source=94 block is not accepting any data=
-type other than =93byte=94 else the connection is getting red and =93USRP S=
-ink=94 is not accepting anything other than
- =93complex float=94. In between is the =93Constellation Modulator=94 block=
-.&nbsp;The connections are showing compatible (please refer the attached fl=
-owgraph). Perhaps &quot;Constellation Modulator&quot; is sending out data a=
-s &quot;complex float&quot; to &quot;USRP Sink&quot; otherwise how can the
- two blocks be compatible?</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">So can I expect usrp sink will get correct data and not de=
-form the data out of =93Constellation Modulator=94 to some incorrect data, =
-since &quot;Random Source&quot; is sending &quot;Byte&quot; and &quot;USRP =
-Sink&quot; is receiving &quot;complex float&quot;? Means is the flowgraph c=
-orrect
- taking all datatypes into consideration?</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">I am also attaching the grc files of transmitter and recei=
-ver.&nbsp;</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Regards,</div>
-<div dir=3D"ltr">Koyel&nbsp;</div>
-<div><br>
-</div>
-</div>
-</div>
-</blockquote>
-Neither of your attached .grc files have anything useful in them...<br>
-<br>
-When I said &quot;check sanity of individual channels&quot;, I wasn't conce=
-rned with phase--only that they were grossly &quot;sane&quot;.&nbsp; When y=
-ou inject<br>
-&nbsp; a signal in to them, do the resulting signals have the correct attri=
-butes?&nbsp; Is the SNR roughly correct, etc?<br>
-<br>
-<br>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">
-<div>
-<div></div>
-<div class=3D"x_x_ms-outlook-ios-signature" id=3D"x_x_ms-outlook-mobile-sig=
-nature">Get
-<a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
-</div>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_x_divRplyFwdMsg" dir=3D"ltr"><font color=3D"#000000" face=3D"C=
-alibri, sans-serif" style=3D"font-size:11pt"><b>From:</b> USRP-users
-<a class=3D"x_x_moz-txt-link-rfc2396E" href=3D"mailto:usrp-users-bounces@li=
-sts.ettus.com">
-&lt;usrp-users-bounces@lists.ettus.com&gt;</a> on behalf of Koyel Das (Vehe=
-re) via USRP-users
-<a class=3D"x_x_moz-txt-link-rfc2396E" href=3D"mailto:usrp-users@lists.ettu=
-s.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
-<b>Sent:</b> Monday, August 17, 2020 10:07:05 AM<br>
-<b>To:</b> Marcus D. Leech <a class=3D"x_x_moz-txt-link-rfc2396E" href=3D"m=
-ailto:patchvonbraun@gmail.com">
-&lt;patchvonbraun@gmail.com&gt;</a>; <a class=3D"x_x_moz-txt-link-abbreviat=
-ed" href=3D"mailto:usrp-users@lists.ettus.com">
-usrp-users@lists.ettus.com</a> <a class=3D"x_x_moz-txt-link-rfc2396E" href=
-=3D"mailto:usrp-users@lists.ettus.com">
-&lt;usrp-users@lists.ettus.com&gt;</a><br>
-<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div>
-<div>Ok Marcus I will try to figure out if individual channels are working =
-fine.</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Regards,</div>
-<div dir=3D"ltr">Koyel&nbsp;</div>
-<div><br>
-</div>
-<div class=3D"x_x_x_ms-outlook-ios-signature" id=3D"x_x_x_ms-outlook-mobile=
--signature">
-Get <a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
-</div>
-<div id=3D"x_x_x_id-605e9ec6-33cb-4fce-8630-166096f685f2" class=3D"x_x_x_ms=
--outlook-mobile-reference-message">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%; font-size:12p=
-t; color:rgb(0,0,0)">
-<div id=3D"x_x_x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri,
-                sans-serif"><b>From:</b> Marcus D. Leech
-<a class=3D"x_x_moz-txt-link-rfc2396E" href=3D"mailto:patchvonbraun@gmail.c=
-om">&lt;patchvonbraun@gmail.com&gt;</a><br>
-<b>Sent:</b> Sunday, August 16, 2020 10:52 PM<br>
-<b>To:</b> Koyel Das (Vehere); <a class=3D"x_x_moz-txt-link-abbreviated" hr=
-ef=3D"mailto:usrp-users@lists.ettus.com">
-usrp-users@lists.ettus.com</a><br>
-<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955
-<div>&nbsp;</div>
-</font></div>
-<meta content=3D"text/html; charset=3DWindows-1252">
-<div class=3D"x_x_x_moz-cite-prefix">On 08/16/2020 01:15 PM, Koyel Das (Veh=
-ere) wrote:<br>
-</div>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">
-<div>
-<div>I am not observing one individual channel but phase difference between=
- two channels. I very well know individual channel would show random phases=
- but not the phase difference when same signal is injected in two channels.=
- I hope you are aware that phase
- difference =3D 2pi/lambda* path_difference. Path difference is constant as=
- that=92s the difference between two paths of two daughterboards and hence =
-this phase difference is constant. Remember same signal is injected so init=
-ial phases would be same for two channels
- and only the difference in the signal path lengths bring the difference wh=
-ich is constant&nbsp;</div>
-<div><br>
-</div>
-<div class=3D"x_x_x_ms-outlook-ios-signature" id=3D"x_x_x_ms-outlook-mobile=
--signature">
-Get <a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
-</div>
-</div>
-</blockquote>
-Yes, I fully understand that.&nbsp; I'm simply suggesting some simple diagn=
-ostics to determine whether, as individual channels, the receivers are<br>
-&nbsp; working correctly.<br>
-<br>
-<br>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">
-<div id=3D"x_x_x_id-add88a81-197d-43fc-a088-cb38d9d34fbf" class=3D"x_x_x_ms=
--outlook-mobile-reference-message">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%; font-size:12p=
-t; color:rgb(0,0,0)">
-<div id=3D"x_x_x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-ser=
-if"><b>From:</b> Marcus D. Leech
-<a class=3D"x_x_x_moz-txt-link-rfc2396E" href=3D"mailto:patchvonbraun@gmail=
-.com">&lt;patchvonbraun@gmail.com&gt;</a><br>
-<b>Sent:</b> Sunday, August 16, 2020 10:39 PM<br>
-<b>To:</b> Koyel Das (Vehere); <a class=3D"x_x_x_moz-txt-link-abbreviated" =
-href=3D"mailto:usrp-users@lists.ettus.com">
-usrp-users@lists.ettus.com</a><br>
-<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955
-<div>&nbsp;</div>
-</font></div>
-<meta content=3D"text/html; charset=3DWindows-1252">
-<div class=3D"x_x_x_moz-cite-prefix">On 08/16/2020 12:46 PM, Koyel Das (Veh=
-ere) wrote:<br>
-</div>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">
-<div>
-<div dir=3D"ltr">The measurement is not initial phase but the phase differe=
-nce between two channels&nbsp;</div>
-<div><br>
-</div>
-<div class=3D"x_x_x_ms-outlook-ios-signature" id=3D"x_x_x_ms-outlook-mobile=
--signature">
-Get <a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
-</div>
-</div>
-</blockquote>
-Are you using an external reference, or using the internal clock in the X31=
-0?<br>
-<br>
-If you observe an individual channel, is it &quot;sane&quot; ?&nbsp; That i=
-s, apparently on-frequency, and with correct amplitudes and low distortion?=
-<br>
-<br>
-<br>
-<blockquote type=3D"cite">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_x_x_divRplyFwdMsg" dir=3D"ltr"><font color=3D"#000000" face=3D=
-"Calibri, sans-serif" style=3D"font-size:11pt"><b>From:</b> Koyel Das (Vehe=
-re)
-<a class=3D"x_x_x_moz-txt-link-rfc2396E" href=3D"mailto:koyel.das@vehere.co=
-m">&lt;koyel.das@vehere.com&gt;</a><br>
-<b>Sent:</b> Sunday, August 16, 2020 10:15:48 PM<br>
-<b>To:</b> Marcus D. Leech <a class=3D"x_x_x_moz-txt-link-rfc2396E" href=3D=
-"mailto:patchvonbraun@gmail.com">
-&lt;patchvonbraun@gmail.com&gt;</a>; <a class=3D"x_x_x_moz-txt-link-abbrevi=
-ated" href=3D"mailto:usrp-users@lists.ettus.com">
-usrp-users@lists.ettus.com</a> <a class=3D"x_x_x_moz-txt-link-rfc2396E" hre=
-f=3D"mailto:usrp-users@lists.ettus.com">
-&lt;usrp-users@lists.ettus.com&gt;</a><br>
-<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div>
-<div dir=3D"ltr"><span style=3D"font-size:inherit">the phase difference bet=
-ween two channels of USRP as a function of frequency and time,&nbsp; when m=
-easured by splitting the same signal and feeding two channels of usrp,&nbsp=
-;are wandering around wrt one another which was
- not happening before. I had given demo more than 30 times based on this pr=
-inciple and tested previously more than 50 times and I got correct result e=
-very time. Now only suddenly it started happening. The frequency is 2.4 GHz=
- and bandwidth I tried from 1 MHz
- to 100 MHz. Previously the whole bandwidth was showing similar values but =
-then suddenly started behaving abnormally giving near to correct result som=
-etimes and sometimes junk.</span><br>
-</div>
-<div dir=3D"ltr"><span style=3D"font-size:inherit"><br>
-</span></div>
-<div dir=3D"ltr"><span style=3D"font-size:inherit">Regards,</span></div>
-<div dir=3D"ltr">Koyel&nbsp;</div>
-<div class=3D"x_x_x_x_ms-outlook-ios-signature" id=3D"x_x_x_x_ms-outlook-mo=
-bile-signature">
-Get <a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
-</div>
-<div id=3D"x_x_x_x_id-d2ed923a-74ce-4157-8a68-f15a06251364" class=3D"x_x_x_=
-x_ms-outlook-mobile-reference-message">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%; font-size:12p=
-t; color:rgb(0,0,0)">
-<div id=3D"x_x_x_x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-s=
-erif"><b>From:</b> Marcus D. Leech
-<a class=3D"x_x_x_moz-txt-link-rfc2396E" href=3D"mailto:patchvonbraun@gmail=
-.com">&lt;patchvonbraun@gmail.com&gt;</a><br>
-<b>Sent:</b> Sunday, August 16, 2020 10:05 PM<br>
-<b>To:</b> Koyel Das (Vehere); <a class=3D"x_x_x_moz-txt-link-abbreviated" =
-href=3D"mailto:usrp-users@lists.ettus.com">
-usrp-users@lists.ettus.com</a><br>
-<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955
-<div>&nbsp;</div>
-</font></div>
-<meta content=3D"text/html;
-                            charset=3DWindows-1252">
-<div class=3D"x_x_x_x_moz-cite-prefix">On 08/15/2020 11:59 PM, Koyel Das (V=
-ehere) wrote:<br>
-</div>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">
-<div>
-<div>No it doesn=92t look better again after reducing gain. Sometimes the p=
-hase differences are closeby but not so same as we were getting before and =
-most of the times they are totally incorrect. Strength of the signal when w=
-e tried with maximum gain was near
- -40 dbm.</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Regards,</div>
-<div dir=3D"ltr">Koyel <br>
-</div>
-</div>
-</div>
-</blockquote>
-To clarify some things.<br>
-<br>
-(A) The phase errors are just the initial phases--they don't wander around =
-with respect to one another during a run?<br>
-(B) What frequency range?<br>
-<br>
-<br>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">
-<div>
-<div><br>
-</div>
-<div class=3D"x_x_x_x_ms-outlook-ios-signature" id=3D"x_x_x_x_ms-outlook-mo=
-bile-signature">
-Get <a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
-</div>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_x_x_x_divRplyFwdMsg" dir=3D"ltr"><font color=3D"#000000" face=
-=3D"Calibri, sans-serif" style=3D"font-size:11pt"><b>From:</b> USRP-users
-<a class=3D"x_x_x_x_moz-txt-link-rfc2396E" href=3D"mailto:usrp-users-bounce=
-s@lists.ettus.com">
-&lt;usrp-users-bounces@lists.ettus.com&gt;</a> on behalf of Marcus D. Leech=
- via USRP-users
-<a class=3D"x_x_x_x_moz-txt-link-rfc2396E" href=3D"mailto:usrp-users@lists.=
-ettus.com">
-&lt;usrp-users@lists.ettus.com&gt;</a><br>
-<b>Sent:</b> Sunday, August 16, 2020 12:25:37 AM<br>
-<b>To:</b> <a class=3D"x_x_x_x_moz-txt-link-abbreviated" href=3D"mailto:usr=
-p-users@lists.ettus.com">
-usrp-users@lists.ettus.com</a> <a class=3D"x_x_x_x_moz-txt-link-rfc2396E" h=
-ref=3D"mailto:usrp-users@lists.ettus.com">
-&lt;usrp-users@lists.ettus.com&gt;</a><br>
-<b>Subject:</b> Re: [USRP-users] Incorrect data from usrp 2955</font>
-<div>&nbsp;</div>
-</div>
-<div style=3D"background-color:#FFFFFF">
-<div class=3D"x_x_x_x_x_moz-cite-prefix">On 08/15/2020 01:16 PM, Koyel Das =
-(Vehere) via USRP-users wrote:<br>
-</div>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">
-<div>
-<div><span>Hi,<br>
-</span>
-<div dir=3D"ltr"><br>
-</div>
-<span>We are using USRP 2955. Something has gone wrong. Before we were gett=
-ing constant phase difference across channels for limited bandwidth&nbsp;an=
-d with time when we split single antenna signal using splitter and fed two =
-channels of USRP but now it is not doing
- so. This happened on Friday that after getting a series of correct results=
- : constant phase difference across channels by feeding signal&nbsp;using s=
-plitter as mentioned above,&nbsp;we suddenly started to receive wrong data:=
- random phase &nbsp;across channels and with time
- using the same setup with splitter.&nbsp;The thing we did was setting gain=
- to near maximum and receiving 100 MHz sample rate. But I don't think ampli=
-fier has damaged because in this usrp we have four independent channels and=
- when we connected the splitter to unused
- channels then also we got wrong data. What can go wrong that USRP is strea=
-ming data but phases are wrong? What do you think? Please let me know.</spa=
-n><br>
-</div>
-<div dir=3D"ltr"><span><br>
-</span></div>
-<div dir=3D"ltr"><span>Regards,</span></div>
-<div dir=3D"ltr"><span>Koyel&nbsp;</span></div>
-<div><br>
-</div>
-<div class=3D"x_x_x_x_x_ms-outlook-ios-signature" id=3D"x_x_x_x_x_ms-outloo=
-k-mobile-signature">
-Get <a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
-</div>
-</div>
-<br>
-<fieldset class=3D"x_x_x_x_x_mimeAttachmentHeader"></fieldset> <br>
-<pre>_______________________________________________
-USRP-users mailing list
-<a class=3D"x_x_x_x_x_moz-txt-link-abbreviated" href=3D"mailto:USRP-users@l=
-ists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class=3D"x_x_x_x_x_moz-txt-link-freetext" href=3D"http://lists.ettus.com=
-/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-</blockquote>
-Does it look better again when you reduce the gain?<br>
-<br>
-What is the magnitude of the signals going to the RX ports?<br>
-<br>
-<br>
-</div>
-</blockquote>
-<br>
-</div>
-</div>
-</div>
-</blockquote>
-<br>
-</div>
-</div>
-</blockquote>
-<br>
-</div>
-</div>
-</div>
-</blockquote>
-<br>
-</div>
-</div>
-</body>
-</html>
-
---_000_MA1PR01MB25888C4508C701B88B04C267902F0MA1PR01MB2588INDP_--
+<div dir=3D"ltr"><div>Just now I tried to print the available=C2=A0GPIO ava=
+ilable. For N310 it shows:=C2=A0</div><div><br></div><div>FP0<br>RXA<br>TXA=
+<br>RXB<br>TXB<br></div><div><br></div><div>But for N320 it shows:=C2=A0</d=
+iv><div>RXA</div>TXA<br>RXB<br>TXB<br><div><br></div><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Sep 2, 2020 at 7:58 =
+PM Sumit Kumar &lt;<a href=3D"mailto:cogwsn@gmail.com">cogwsn@gmail.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
+ dir=3D"ltr"><div dir=3D"ltr">Hi,=C2=A0<div><br></div><div>I am also having=
+ the issue. Can anyone please help with the information :)</div><div><br></=
+div><div>For N310, there is FP0 available=C2=A0but for N320 I get following=
+ run time error:=C2=A0</div><div>&quot;=C2=A0 what(): =C2=A0RuntimeError: T=
+he hardware has no GPIO bank `FP0&#39; &quot;</div><div><br></div><div>Rega=
+rds</div><div>Sumit=C2=A0</div></div><br><div class=3D"gmail_quote"><div di=
+r=3D"ltr" class=3D"gmail_attr">On Mon, Jan 27, 2020 at 11:02 PM Nowicki, Ed=
+ H. via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=
+=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex">
 
 
---===============8927173919654578494==
+
+
+
+<div lang=3D"EN-US">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">When I call the UHD A=
+PI function get_gpio_banks()<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">I get the following b=
+anks:<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">=E2=80=98RXB=E2=80=99=
+ =E2=80=98TXB=E2=80=99 =E2=80=98RXA=E2=80=99 TXA=E2=80=99 but I do NOT get =
+=E2=80=98FP0=E2=80=99.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thoughts?<u></u><u></=
+u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thanks,<u></u><u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Ed<u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
+top:1pt solid rgb(181,196,223);padding:3pt 0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"color:black">From: </span></b><spa=
+n style=3D"color:black">USRP-users &lt;<a href=3D"mailto:usrp-users-bounces=
+@lists.ettus.com" target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&=
+gt; on behalf of &quot;Nowicki, Ed H. via USRP-users&quot; &lt;<a href=3D"m=
+ailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.=
+com</a>&gt;<br>
+<b>Reply-To: </b>&quot;Nowicki, Ed H.&quot; &lt;<a href=3D"mailto:Ed.Nowick=
+i@jhuapl.edu" target=3D"_blank">Ed.Nowicki@jhuapl.edu</a>&gt;<br>
+<b>Date: </b>Monday, January 27, 2020 at 8:45 AM<br>
+<b>To: </b>&quot;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_b=
+lank">usrp-users@lists.ettus.com</a>&quot; &lt;<a href=3D"mailto:usrp-users=
+@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject: </b>[EXT] [USRP-users] -- GPIO on N320 --<u></u><u></u></span><=
+/p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+</div>
+<div>
+<div id=3D"gmail-m_8513138530320433264gmail-m_5465625335197139286APLWarning=
+Text">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"left">
+<tbody>
+<tr>
+<td width=3D"100%" style=3D"width:100%;background:rgb(224,224,224);padding:=
+0in">
+<p class=3D"MsoNormal">
+<b><span style=3D"font-size:11pt;color:red">APL external email warning: </s=
+pan></b><span style=3D"font-size:11pt;color:black">Verify sender <a href=3D=
+"mailto:usrp-users-bounces@lists.ettus.com" target=3D"_blank">usrp-users-bo=
+unces@lists.ettus.com</a> before clicking links or attachments</span><span =
+style=3D"font-size:11pt"><u></u><u></u></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>=C2=A0<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Hi,</span=
+><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">I=E2=80=
+=99m having a problem using the front panel GPIO on an N320.=C2=A0 I revert=
+ed back to a standard =E2=80=9CHG=E2=80=9D FPGA build and compiled the GPIO=
+ example program (UHD 3.14.0). =C2=A0=C2=A0However, when I run the example
+ program I get the following:</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Error: Ru=
+ntimeError: The hardware has no gpio bank `FP0&#39;</span><u></u><u></u></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Is the fr=
+ont panel GPIO bank on the N320 called =E2=80=9CFP0=E2=80=9D or something e=
+lse?=C2=A0 I did not see a reference to this in the .dts.=C2=A0</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">See below=
+ for a =E2=80=9Cuhd_uspr_probe=E2=80=9D, =E2=80=9Cuhd_config_info=E2=80=9D =
+dump, and the terminal output after running ./gpio.</span><u></u><u></u></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Thanks fo=
+r any help.</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Regards,<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Ed Nowick=
+i</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">~~~~~~~~~=
+~~~~~</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">xku@sdr_n=
+uc:~/workarea-uhd/uhd/host/examples/gpio/build$ uhd_usrp_probe</span><u></u=
+><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [U=
+HD] linux; GNU C++ version 7.4.0; Boost_106501; UHD_3.14.0.HEAD-0-g6875d061=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [M=
+PMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D192.168.20=
+.2,type=3Dn3xx,product=3Dn320,serial=3D31A5C5A,claimed=3DFalse,addr=3D192.1=
+68.20.2</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [M=
+PM.PeriphManager] init() called with device args `mgmt_addr=3D192.168.20.2,=
+clock_source=3Dinternal,time_source=3Dinternal,product=3Dn320&#39;.</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [M=
+PM.Rhodium-0] init() called with args `mgmt_addr=3D192.168.20.2,clock_sourc=
+e=3Dinternal,time_source=3Dinternal,product=3Dn320&#39;</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [M=
+PM.Rhodium-1] init() called with args `mgmt_addr=3D192.168.20.2,clock_sourc=
+e=3Dinternal,time_source=3Dinternal,product=3Dn320&#39;</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000004)</span><u=
+></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/Radio_0] Initializing block control (NOC ID: 0x12AD100000000320)</span><u>=
+</u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/Radio_1] Initializing block control (NOC ID: 0x12AD100000000320)</span><u>=
+</u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000001)</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000001)</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)</span><u><=
+/u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)</span><u><=
+/u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">_________=
+____________________________________________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">/</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Device: N300-Series Device</span><u></u><u><=
+/u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0=C2=A0=C2=A0 _____________________________________________________</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 | =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Mboard: ni-n3xx-31A5C5A</span>=
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 eeprom_version: 2</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 mpm_version: 3.14.1.0-gbfb9c1c7</span><u></u><u></u></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 pid: 16962</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 product: n320</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 rev: 7</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 rpc_connection: remote</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 serial: 31A5C5A</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 type: n3xx</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 MPM Version: 1.2</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 FPGA Version: 5.3</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 FPGA git hash: 3de8954.clean</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 RFNoC capable: Yes</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 Time sources:=C2=A0 internal, external, gpsdo, sfp0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 Clock sources: external, internal, gpsdo</span><u></u>=
+<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 Sensors: temp, gps_tpv, gps_time, fan, gps_sky, ref_lo=
+cked, gps_gpgga, gps_locked</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 __________________________________________=
+___________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX Dboard: A</sp=
+an><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 ID: Unknown (0x0152)</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Serial: 3191E7D</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ____________________________=
+_________________________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX=
+ Frontend: 0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: Rhodium</span><u></u=
+><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Antennas: TX/RX, RX2, CAL,=
+ TERM</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Sensors: lo_locked</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range: 1.000 to 6000.=
+000 MHz</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain range all: 0.0 to 60.=
+0 step 1.0 dB</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Bandwidth range: 250000000=
+.0 to 250000000.0 step 0.0 Hz</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Connection Type:</span><u>=
+</u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Uses LO offset: No</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ____________________________=
+_________________________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX=
+ Codec: A</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: ad9695-625</span><u>=
+</u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain Elements: None</span>=
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 __________________________________________=
+___________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX Dboard: B</sp=
+an><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 ID: Unknown (0x0152)</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Serial: 3191E79</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ____________________________=
+_________________________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX=
+ Frontend: 0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: Rhodium</span><u></u=
+><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Antennas: TX/RX, RX2, CAL,=
+ TERM</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Sensors: lo_locked</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0 =C2=A0Freq range: 1.000 to 6000.=
+000 MHz</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain range all: 0.0 to 60.=
+0 step 1.0 dB</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Bandwidth range: 250000000=
+.0 to 250000000.0 step 0.0 Hz</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Connection Type:</span><u>=
+</u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Uses LO offset: No</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ____________________________=
+_________________________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX=
+ Codec: B</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: ad9695-625</span><u>=
+</u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain Elements: None</span>=
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 __________________________________________=
+___________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX Dboard: A</sp=
+an><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 ID: Unknown (0x0152)</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Serial: 3191E7D</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ____________________________=
+_________________________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX=
+ Frontend: 0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: Rhodium</span><u></u=
+><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Antennas: TX/RX, CAL, TERM=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Sensors: lo_locked</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range: 1.000 to 6000.=
+000 MHz</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain range all: 0.0 to 60.=
+0 step 1.0 dB</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Bandwidth range: 250000000=
+.0 to 250000000.0 step 0.0 Hz</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Connection Type:</span><u>=
+</u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Uses LO offset: No</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ____________________________=
+_________________________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX=
+ Codec: A</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: dac37j82</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain Elements: None</span>=
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 __________________________________________=
+___________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX Dboard: B</sp=
+an><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 ID: Unknown (0x0152)</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Serial: 3191E79</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ____________________________=
+_________________________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX=
+ Frontend: 0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: Rhodium</span><u></u=
+><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Antennas: TX/RX, CAL, TERM=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Sensors: lo_locked</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range: 1.000 to 6000.=
+000 MHz</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain range all: 0.0 to 60.=
+0 step 1.0 dB</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Bandwidth range: 250000000=
+.0 to 250000000.0 step 0.0 Hz</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Connection Type:</span><u>=
+</u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Uses LO offset: No</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ____________________________=
+_________________________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX=
+ Codec: B</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: dac37j82</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain Elements: None</span>=
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 __________________________________________=
+___________</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0 /</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RFNoC blocks on =
+this device:</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 * Replay_0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 * Radio_0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 * Radio_1</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 * DDC_0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 * DDC_1</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 * DUC_0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 * DUC_1</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 * FIFO_0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">|=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 * FIFO_1</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">~~~~~~~~~=
+~~~~</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">xku@sdr_n=
+uc:~/workarea-uhd/uhd/host/examples/gpio/build$ uhd_config_info --print-all=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">UHD 3.14.=
+0.HEAD-0-g6875d061</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Build dat=
+e: Thu, 20 Jun 2019 18:53:05</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">C compile=
+r: GNU 7.4.0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">C++ compi=
+ler: GNU 7.4.0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">C flags: =
+-DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUHD_LOG_CONSO=
+LE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLOR</span><u></u>=
+<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">C++ flags=
+: -DUHD_RFNOC_ENABLED -DHAVE_CONFIG_H -DUHD_LOG_MIN_LEVEL=3D1 -DUHD_LOG_CON=
+SOLE_LEVEL=3D2 -DUHD_LOG_FILE_LEVEL=3D2 -DUHD_LOG_CONSOLE_COLOR -fvisibilit=
+y=3Dhidden -fvisibility-inlines-hidden</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Enabled c=
+omponents: LibUHD, LibUHD - C API, LibUHD - Python API, Examples, Utils, Te=
+sts, USB, B100, B200, USRP1, USRP2, X300, N230, MPMD, N300, N320, E320, Oct=
+oClock</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Install p=
+refix: /usr/local</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Boost ver=
+sion: 1.65.1</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Libusb ve=
+rsion: 1.0.23</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Package p=
+ath: /usr/local</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Images di=
+rectory: /usr/local/share/uhd/images</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">ABI versi=
+on string: 3.14.0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">~~~~~~~~~=
+~~~~~~~~~~~</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">xku@sdr_n=
+uc:~/workarea-uhd/uhd/host/examples/gpio/build$</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">xku@sdr_n=
+uc:~/workarea-uhd/uhd/host/examples/gpio/build$ ./gpio</span><u></u><u></u>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Creating =
+the usrp device with: ...</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [U=
+HD] linux; GNU C++ version 7.4.0; Boost_106501; UHD_3.14.0.HEAD-0-g6875d061=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [M=
+PMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D192.168.20=
+.2,type=3Dn3xx,product=3Dn320,serial=3D31A5C5A,claimed=3DFalse,addr=3D192.1=
+68.20.2</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [M=
+PM.PeriphManager] init() called with device args `mgmt_addr=3D192.168.20.2,=
+clock_source=3Dinternal,time_source=3Dinternal,product=3Dn320&#39;.</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [M=
+PM.Rhodium-0] init() called with args `mgmt_addr=3D192.168.20.2,clock_sourc=
+e=3Dinternal,time_source=3Dinternal,product=3Dn320&#39;</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [M=
+PM.Rhodium-1] init() called with args `mgmt_addr=3D192.168.20.2,clock_sourc=
+e=3Dinternal,time_source=3Dinternal,product=3Dn320&#39;</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000004)</span><u=
+></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/Radio_0] Initializing block control (NOC ID: 0x12AD100000000320)</span><u>=
+</u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/Radio_1] Initializing block control (NOC ID: 0x12AD100000000320)</span><u>=
+</u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000001)</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000001)</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)</span><u><=
+/u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">[INFO] [0=
+/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)</span><u><=
+/u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Using Dev=
+ice: Single USRP:</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Device: N=
+300-Series Device</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Mboard 0:=
+ ni-n3xx-31A5C5A</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">RX Channe=
+l: 0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">RX DSP: 0=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">RX Dboard=
+: A</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">RX Subdev=
+: Rhodium</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">RX Channe=
+l: 1</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">RX DSP: 0=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">RX Dboard=
+: B</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">RX Subdev=
+: Rhodium</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">TX Channe=
+l: 0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">TX DSP: 0=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">TX Dboard=
+: A</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">TX Subdev=
+: Rhodium</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">TX Channe=
+l: 1</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">TX DSP: 0=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">TX Dboard=
+: B</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">TX Subdev=
+: Rhodium</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0</s=
+pan><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Initial G=
+PIO values:</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">=C2=A0=C2=
+=A0 Bit=C2=A0 10=C2=A0 9=C2=A0 8=C2=A0 7=C2=A0 6=C2=A0 5=C2=A0 4=C2=A0 3=C2=
+=A0 2=C2=A0 1=C2=A0 0</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">Error: Ru=
+ntimeError: The hardware has no gpio bank `FP0&#39;</span><u></u><u></u></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;color:black">xku@sdr_n=
+uc:~/workarea-uhd/uhd/host/examples/gpio/build$</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=A0</span><u></u><=
+u></u></p>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+><div dir=3D"ltr"><div><div dir=3D"ltr"><span style=3D"color:rgb(136,136,13=
+6);font-size:12.8px">--=C2=A0</span><br style=3D"color:rgb(136,136,136);fon=
+t-size:12.8px"><div style=3D"color:rgb(136,136,136);font-size:12.8px">Sumit=
+ kumar<br>Postdoc</div><div style=3D"color:rgb(136,136,136);font-size:12.8p=
+x">SnT, Luxembourg</div><div style=3D"color:rgb(136,136,136);font-size:12.8=
+px"><br></div><br></div></div></div></div></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><span sty=
+le=3D"color:rgb(136,136,136);font-size:12.8px">--=C2=A0</span><br style=3D"=
+color:rgb(136,136,136);font-size:12.8px"><div style=3D"color:rgb(136,136,13=
+6);font-size:12.8px">Sumit kumar<br>Postdoc</div><div style=3D"color:rgb(13=
+6,136,136);font-size:12.8px">SnT, Luxembourg</div><div style=3D"color:rgb(1=
+36,136,136);font-size:12.8px"><br></div><br></div></div></div></div></div>
+
+--0000000000005d412105ae58cd64--
+
+
+--===============1195334617300623055==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -810,5 +1335,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8927173919654578494==--
+--===============1195334617300623055==--
 
