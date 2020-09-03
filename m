@@ -2,50 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 475F725CB77
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Sep 2020 22:46:53 +0200 (CEST)
-Received: from [::1] (port=57820 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C245725CBD8
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Sep 2020 23:09:14 +0200 (CEST)
+Received: from [::1] (port=57956 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kDw8A-0004L0-0w; Thu, 03 Sep 2020 16:46:50 -0400
-Received: from resqmta-po-03v.sys.comcast.net ([96.114.154.162]:56620)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <w6rz@comcast.net>) id 1kDw86-00048l-3q
- for usrp-users@lists.ettus.com; Thu, 03 Sep 2020 16:46:46 -0400
-Received: from resomta-po-15v.sys.comcast.net ([96.114.154.239])
- by resqmta-po-03v.sys.comcast.net with ESMTP
- id DthYkZMoNejU4Dw7RkJ4WY; Thu, 03 Sep 2020 20:46:05 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
- s=20190202a; t=1599165965;
- bh=5ctZsgGfLzB/3ex4cfiWp4vllIyRWTAtwJJu2xxW6RI=;
- h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
- Content-Type;
- b=kK0NX1pJLLxuyEjXaW90EfDjbG1RACbzF8vqUU22qQNku4JfJNW2fnED/v55EER6r
- GcaXReA5FzAiT/bnfhr1BR70M4Wsuv8Lt+PmcKwFXvb4nbLMLzk6FwlAmS0smlfh3G
- vdkl2EiJWTwGSxAUX1A1DZ1PeUCMFtuGLnXi85Dpf7sz4q/x6QzWqMrdjf/+nANLmX
- nrEtPEkfq4vkZ9mCtlQ30H9AKIyWMRS/MYl3AKjXXL95HyiGb6TStwiPMjtjVRoAqb
- hS8PIuvUHo/LPW99xiL+WpRVCLnvodh3hXdFVfzvCbS7hpMKQCYbDbMovHh12nAOB4
- GAxZzQ1doXtCQ==
-Received: from [IPv6:2601:647:4200:ea30:f104:f6ca:21dc:71ff]
- ([IPv6:2601:647:4200:ea30:f104:f6ca:21dc:71ff])
- by resomta-po-15v.sys.comcast.net with ESMTPSA
- id Dw7Ikn4FJ2ChdDw7JkLygL; Thu, 03 Sep 2020 20:46:04 +0000
-X-Xfinity-VMeta: sc=0.00;st=legit
-To: usrp-users@lists.ettus.com
-References: <CANYmVj-oSiMz_v-EpodsX173Q2iMKBPM-WVf2BsSOrZnPQtvUw@mail.gmail.com>
- <CANYmVj8vkBEry_XrQsz4QxYu29bd-mr1uVpwqdPsFLxQ1vSjRA@mail.gmail.com>
- <fd998121-4494-a528-71ac-0b12a52f8311@eurecom.fr>
- <CAGNhwTPhAab289kk_CAV2q2-PCvno44v=CuxMjv2ukrcEmNcVA@mail.gmail.com>
- <CANYmVj8aSNhizY0h1akgQzMJfAyR2J0bW9Zw7zLLaof+jgvV+g@mail.gmail.com>
-Message-ID: <1876c7e3-3164-3d4a-4844-e4c9d5be5dd6@comcast.net>
-Date: Thu, 3 Sep 2020 13:45:56 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	id 1kDwTo-0005Tg-83; Thu, 03 Sep 2020 17:09:12 -0400
+Received: from mail-oo1-f52.google.com ([209.85.161.52]:39079)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kDwTk-0005Mh-8f
+ for usrp-users@lists.ettus.com; Thu, 03 Sep 2020 17:09:08 -0400
+Received: by mail-oo1-f52.google.com with SMTP id m4so1132412oos.6
+ for <usrp-users@lists.ettus.com>; Thu, 03 Sep 2020 14:08:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=NXx6PiQMj4AWpLKktAHSwDY6/gcC5z7VQXOX9Qrsusc=;
+ b=B5p2Do91wEqOhET1yCYPBIO5BBoxPcEXCslQKbuIGXz592mBQ5fSIW8htdyCIjN83A
+ T6HIX52b9UDXtftmTbh4Ihu7zQaaEhtRFV+2akdnVz2ytA4HVfeajb+AM/EVcZpyKgc2
+ rQZGwGJevyapIJpIiUtMdWfwuljtpTEc6DNo5P7kcrW8i2m3RXw7gD3u/QazrxkmW2yF
+ MsTbjLi/04fh0756jZrKhHkfcnq71sgt1+vAi924DARr/hMKXK89hTGJKf8l2VW/nLOw
+ Rq/F5dy8NkD0ITIMeoHxEmmLr29uSHHOq/CFzfZu3oBtNOT2ZKttbuqOP7rx/hAie97E
+ 2+Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=NXx6PiQMj4AWpLKktAHSwDY6/gcC5z7VQXOX9Qrsusc=;
+ b=VZDuTFGuk03UW8/CRZ2Bqih2aeCwx/qoppiycUL68j61aLZPt/hQ0Xf/ICnjTuvbLh
+ uTJc12in4eeeDj7eNQgqbkpXfvwO2fTcV+KgvPCziYAFygsuXzdLbfaXyX3CB/6WYphP
+ 3fH4P/KrqiOtgzKx0k7RtUoH2hBzjLphfglkfFhmHXLenURURWs6biF8qqw9511zSG9E
+ xtBtADURWyUSNbgUVe5IRexg+OT64MNYLTuZtZmomGyOS77aeavTLi1UCSqEJZ9mDw6E
+ nJUZ8lV6G4XsZhfT6XokhX/u757oqB0foKyud4dLFq/FJq6MsseF7k/kqzkXGwettwGV
+ p1gw==
+X-Gm-Message-State: AOAM532RjJIRXCzDC1kf/1bAEAMnCqIuw3UOB1GYKfD3zLIrYbX4F4gf
+ MM35KXBkYFhOEdQlDl+QhRYRDAWcKVlT/GJ/St4tvumytsZqQg==
+X-Google-Smtp-Source: ABdhPJxIR5KUB1WUWagSucaVAOAp1Pnp86nkzqQ2jCILQ3vhs/tKChsGOyv6c5XSnjMcqIFwibaqIRMn4ISp/QVFmS0=
+X-Received: by 2002:a05:6820:384:: with SMTP id
+ r4mr3352409ooj.62.1599167306645; 
+ Thu, 03 Sep 2020 14:08:26 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CANYmVj8aSNhizY0h1akgQzMJfAyR2J0bW9Zw7zLLaof+jgvV+g@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] Link going up and down periodically every 45
- seconds on USRP N310
+Date: Thu, 3 Sep 2020 17:08:16 -0400
+Message-ID: <CAB__hTSYn8r7hXcGCfJxvz7nEk=9XmLhirDwP=VOk46Bw5NNfw@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] How to connect blocks dynamically in UHD 4.0?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -57,9 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ron Economos <w6rz@comcast.net>
-Content-Type: multipart/mixed; boundary="===============5405648277837877922=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============6366779848191257415=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,423 +71,354 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============5405648277837877922==
-Content-Type: multipart/alternative;
- boundary="------------3EB1D8B879648568BAB7215D"
-Content-Language: en-US
+--===============6366779848191257415==
+Content-Type: multipart/alternative; boundary="0000000000003feb9a05ae6f27ea"
 
-This is a multi-part message in MIME format.
---------------3EB1D8B879648568BAB7215D
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--0000000000003feb9a05ae6f27ea
+Content-Type: text/plain; charset="UTF-8"
 
-If that helps, you can disable individual interfaces from being managed.
-
-In /etc/NetworkManager/NetworkManager.conf
-
-add the lines:
-
-[keyfile]
-unmanaged-devices=interface-name:sfp0
-
-Ron
-
-On 9/3/20 12:41, Venkatesh Sathyanarayanan via USRP-users wrote:
-> Thanks a lot Michael and cedric for taking time to answer my 
-> questions.. I will try to stop the network manager and see if that helps.
->
-> Regards
-> Venkatesh
->
-> On Thursday, September 3, 2020, Michael Dickens 
-> <michael.dickens@ettus.com <mailto:michael.dickens@ettus.com>> wrote:
->
->     In my experience, this happens when the networking isn't stable,
->     which can be for all sorts of reasons:
->
->     * connectors / cables are flaky;
->
->     * host SW configuration isn't quite correct;
->
->     * actual NIC has issues, HW or FW / configuration;
->
->     * USRP NIC has issues ... very rare, but it can happen;
->
->     * USRP FPGA has issues ... again rare, but it can happen;
->
->     * USRP filesystem has issues ... could be the FS itself, or
->     configuration ... this happens sometimes & is usually resolved by
->     overwriting the whole SDcard filesystem & starting from "go" there.
->
->     If you're Linux has the network manager, that doesn't help things
->     since it thinks it knows better than you what to be doing.
->
->     There is no "one size fits all" answer unfortunately; just
->     investigate the networking & make sure all of the parts are
->     functional.
->
->     Hope this is useful! - MLD
->
->     On Thu, Sep 3, 2020 at 3:30 AM Cedric Roux via USRP-users
->     <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>
->     wrote:
->
->         maybe network manager (if you have that thing running) on the
->         computer doing funny things with the interface? I had this
->         issue with some 4g dongles in the past.
->
->         On 2020-09-03 01:01, Venkatesh Sathyanarayanan via USRP-users
->         wrote:
->         > Hi,
->         >
->         > Small correction:
->         >
->         > *Questions:*
->         > I notice that the test stops when the link goes down every
->         45 seconds.
->         > This happens for all types of tests(with and without GUI).
->         > Kindly let me know how to debug this - i.e. why the link
->         goes down every
->         > 45 seconds?
->         >
->         > Regards
->         > Venkatesh
->         >
->         > On Wed, Sep 2, 2020 at 3:10 PM Venkatesh Sathyanarayanan
->         > <vesathya@eng.ucsd.edu <mailto:vesathya@eng.ucsd.edu>
->         <mailto:vesathya@eng.ucsd.edu <mailto:vesathya@eng.ucsd.edu>>>
->         wrote:
->         >
->         >     Hi,
->         >
->         >
->         >     *Setup details:*
->         >     I am using an USRP N310 and I have the host computer
->         connected to
->         >     the USRP via SFP cable. I additionally have a serial
->         connection
->         >     between the two and have a screen session running.
->         >
->         >     *Observation:*
->         >     On the screen session, I noticed the following messages:
->         >     [ 2151.041079] nixge 40000000.ethernet sfp0: Link is Up -
->         >     10Gbps/Full - flow control off
->         >     [ 2195.841088] nixge 40000000.ethernet sfp0: Link is Down
->         >     [ 2196.961090] nixge 40000000.ethernet sfp0: Link is Up -
->         >     10Gbps/Full - flow control off
->         >     [ 2241.761098] nixge 40000000.ethernet sfp0: Link is Down
->         >     [ 2242.881106] nixge 40000000.ethernet sfp0: Link is Up -
->         >     10Gbps/Full - flow control off
->         >     [ 2287.681109] nixge 40000000.ethernet sfp0: Link is Down
->         >     [ 2288.801114] nixge 40000000.ethernet sfp0: Link is Up -
->         >     10Gbps/Full - flow control off
->         >     [ 2333.601129] nixge 40000000.ethernet sfp0: Link is Down
->         >     [ 2334.721127] nixge 40000000.ethernet sfp0: Link is Up -
->         >     10Gbps/Full - flow control off
->         >     [ 2379.521132] nixge 40000000.ethernet sfp0: Link is Down
->         >     [ 2380.641137] nixge 40000000.ethernet sfp0: Link is Up -
->         >     10Gbps/Full - flow control off
->         >     [ 2425.441143] nixge 40000000.ethernet sfp0: Link is Down
->         >     [ 2426.561149] nixge 40000000.ethernet sfp0: Link is Up -
->         >     10Gbps/Full - flow control off
->         >     [ 2471.361159] nixge 40000000.ethernet sfp0: Link is Down
->         >     [ 2472.481166] nixge 40000000.ethernet sfp0: Link is Up -
->         >     10Gbps/Full - flow control off
->         >     [ 2517.281166] nixge 40000000.ethernet sfp0: Link is Down
->         >     [ 2518.401171] nixge 40000000.ethernet sfp0: Link is Up -
->         >     10Gbps/Full - flow control off
->         >   
->          ..........................................................................................................................................................................
->         >   
->          ..........................................................................................................................................................................
->         >
->         >   
->          ..........................................................................................................................................................................
->         >   
->          ..........................................................................................................................................................................
->         >
->         >     *Questions:*
->         >     When I have a GNU radio GRC running with an active GUI
->         displaying
->         >     the spectrum, I see that it halts at the time when the
->         link goes down.
->         >     When I run a file with no GUI active - say IQ samples
->         saved to a
->         >     file, things running in the background and I do not see any
->         >     interruption.
->         >
->         >      1. Kindly let me know why I am seeing this issue of
->         link going down
->         >         every 45 seconds and
->         >      2. also if this could potentially affect my tests (all
->         my tests are
->         >         without any GUI.)
->         >
->         >
->         >     Regards
->         >     Venkatesh
->         >
->         >
->         > _______________________________________________
->         > USRP-users mailing list
->         > USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->         >
->         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->         <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->         >
->
->         _______________________________________________
->         USRP-users mailing list
->         USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->         <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---------------3EB1D8B879648568BAB7215D
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>If that helps, you can disable individual interfaces from being
-      managed.</p>
-    <p>In /etc/NetworkManager/NetworkManager.conf</p>
-    <p>add the lines:</p>
-    <p>[keyfile]<br>
-      unmanaged-devices=interface-name:sfp0</p>
-    <p>Ron<br>
-    </p>
-    <div class="moz-cite-prefix">On 9/3/20 12:41, Venkatesh
-      Sathyanarayanan via USRP-users wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CANYmVj8aSNhizY0h1akgQzMJfAyR2J0bW9Zw7zLLaof+jgvV+g@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      Thanks a lot Michael and cedric for taking time to answer my
-      questions.. I will try to stop the network manager and see if that
-      helps.
-      <div><br>
-      </div>
-      <div>Regards</div>
-      <div>Venkatesh<br>
-        <br>
-        On Thursday, September 3, 2020, Michael Dickens &lt;<a
-          href="mailto:michael.dickens@ettus.com" moz-do-not-send="true">michael.dickens@ettus.com</a>&gt;
-        wrote:<br>
-        <blockquote class="gmail_quote" style="margin:0 0 0
-          .8ex;border-left:1px #ccc solid;padding-left:1ex">
-          <div dir="ltr">In my experience, this happens when the
-            networking isn't stable, which can be for all sorts of
-            reasons:
-            <div><br>
-            </div>
-            <div>* connectors / cables are flaky;</div>
-            <div><br>
-            </div>
-            <div>* host SW configuration isn't quite correct;</div>
-            <div><br>
-            </div>
-            <div>* actual NIC has issues, HW or FW / configuration;</div>
-            <div><br>
-            </div>
-            <div>* USRP NIC has issues ... very rare, but it can happen;</div>
-            <div><br>
-            </div>
-            <div>* USRP FPGA has issues ... again rare, but it can
-              happen;</div>
-            <div><br>
-            </div>
-            <div>
-              <div>* USRP filesystem has issues ... could be the FS
-                itself, or configuration ... this happens sometimes
-                &amp; is usually resolved by overwriting the whole
-                SDcard filesystem &amp; starting from "go" there.</div>
-              <div><br>
-              </div>
-            </div>
-            <div>If you're Linux has the network manager, that doesn't
-              help things since it thinks it knows better than you what
-              to be doing.</div>
-            <div><br>
-            </div>
-            <div>There is no "one size fits all" answer unfortunately;
-              just investigate the networking &amp; make sure all of the
-              parts are functional.</div>
-            <div><br>
-            </div>
-            <div>Hope this is useful! - MLD</div>
-          </div>
-          <br>
-          <div class="gmail_quote">
-            <div dir="ltr" class="gmail_attr">On Thu, Sep 3, 2020 at
-              3:30 AM Cedric Roux via USRP-users &lt;<a
-                href="mailto:usrp-users@lists.ettus.com" target="_blank"
-                moz-do-not-send="true">usrp-users@lists.ettus.com</a>&gt;
-              wrote:<br>
-            </div>
-            <blockquote class="gmail_quote" style="margin:0px 0px 0px
-              0.8ex;border-left:1px solid
-              rgb(204,204,204);padding-left:1ex">maybe network manager
-              (if you have that thing running) on the<br>
-              computer doing funny things with the interface? I had this<br>
-              issue with some 4g dongles in the past.<br>
-              <br>
-              On 2020-09-03 01:01, Venkatesh Sathyanarayanan via
-              USRP-users wrote:<br>
-              &gt; Hi,<br>
-              &gt; <br>
-              &gt; Small correction:<br>
-              &gt; <br>
-              &gt; *Questions:*<br>
-              &gt; I notice that the test stops when the link goes down
-              every 45 seconds. <br>
-              &gt; This happens for all types of tests(with and without
-              GUI).<br>
-              &gt; Kindly let me know how to debug this - i.e. why the
-              link goes down every <br>
-              &gt; 45 seconds?<br>
-              &gt; <br>
-              &gt; Regards<br>
-              &gt; Venkatesh<br>
-              &gt; <br>
-              &gt; On Wed, Sep 2, 2020 at 3:10 PM Venkatesh
-              Sathyanarayanan <br>
-              &gt; &lt;<a href="mailto:vesathya@eng.ucsd.edu"
-                target="_blank" moz-do-not-send="true">vesathya@eng.ucsd.edu</a>
-              &lt;mailto:<a href="mailto:vesathya@eng.ucsd.edu"
-                target="_blank" moz-do-not-send="true">vesathya@eng.ucsd.edu</a>&gt;<wbr>&gt;
-              wrote:<br>
-              &gt; <br>
-              &gt;     Hi,<br>
-              &gt; <br>
-              &gt; <br>
-              &gt;     *Setup details:*<br>
-              &gt;     I am using an USRP N310 and I have the host
-              computer connected to<br>
-              &gt;     the USRP via SFP cable. I additionally have a
-              serial connection<br>
-              &gt;     between the two and have a screen session
-              running.<br>
-              &gt; <br>
-              &gt;     *Observation:*<br>
-              &gt;     On the screen session, I noticed the following
-              messages:<br>
-              &gt;     [ 2151.041079] nixge 40000000.ethernet sfp0: Link
-              is Up -<br>
-              &gt;     10Gbps/Full - flow control off<br>
-              &gt;     [ 2195.841088] nixge 40000000.ethernet sfp0: Link
-              is Down<br>
-              &gt;     [ 2196.961090] nixge 40000000.ethernet sfp0: Link
-              is Up -<br>
-              &gt;     10Gbps/Full - flow control off<br>
-              &gt;     [ 2241.761098] nixge 40000000.ethernet sfp0: Link
-              is Down<br>
-              &gt;     [ 2242.881106] nixge 40000000.ethernet sfp0: Link
-              is Up -<br>
-              &gt;     10Gbps/Full - flow control off<br>
-              &gt;     [ 2287.681109] nixge 40000000.ethernet sfp0: Link
-              is Down<br>
-              &gt;     [ 2288.801114] nixge 40000000.ethernet sfp0: Link
-              is Up -<br>
-              &gt;     10Gbps/Full - flow control off<br>
-              &gt;     [ 2333.601129] nixge 40000000.ethernet sfp0: Link
-              is Down<br>
-              &gt;     [ 2334.721127] nixge 40000000.ethernet sfp0: Link
-              is Up -<br>
-              &gt;     10Gbps/Full - flow control off<br>
-              &gt;     [ 2379.521132] nixge 40000000.ethernet sfp0: Link
-              is Down<br>
-              &gt;     [ 2380.641137] nixge 40000000.ethernet sfp0: Link
-              is Up -<br>
-              &gt;     10Gbps/Full - flow control off<br>
-              &gt;     [ 2425.441143] nixge 40000000.ethernet sfp0: Link
-              is Down<br>
-              &gt;     [ 2426.561149] nixge 40000000.ethernet sfp0: Link
-              is Up -<br>
-              &gt;     10Gbps/Full - flow control off<br>
-              &gt;     [ 2471.361159] nixge 40000000.ethernet sfp0: Link
-              is Down<br>
-              &gt;     [ 2472.481166] nixge 40000000.ethernet sfp0: Link
-              is Up -<br>
-              &gt;     10Gbps/Full - flow control off<br>
-              &gt;     [ 2517.281166] nixge 40000000.ethernet sfp0: Link
-              is Down<br>
-              &gt;     [ 2518.401171] nixge 40000000.ethernet sfp0: Link
-              is Up -<br>
-              &gt;     10Gbps/Full - flow control off<br>
-              &gt;     .............................<wbr>..............................<wbr>..............................<wbr>..............................<wbr>..............................<wbr>.....................<br>
-              &gt;     .............................<wbr>..............................<wbr>..............................<wbr>..............................<wbr>..............................<wbr>.....................<br>
-              &gt; <br>
-              &gt;     .............................<wbr>..............................<wbr>..............................<wbr>..............................<wbr>..............................<wbr>.....................<br>
-              &gt;     .............................<wbr>..............................<wbr>..............................<wbr>..............................<wbr>..............................<wbr>.....................<br>
-              &gt; <br>
-              &gt;     *Questions:*<br>
-              &gt;     When I have a GNU radio GRC running with an
-              active GUI displaying<br>
-              &gt;     the spectrum, I see that it halts at the time
-              when the link goes down.<br>
-              &gt;     When I run a file with no GUI active - say IQ
-              samples saved to a<br>
-              &gt;     file, things running in the background and I do
-              not see any<br>
-              &gt;     interruption.<br>
-              &gt; <br>
-              &gt;      1. Kindly let me know why I am seeing this issue
-              of link going down<br>
-              &gt;         every 45 seconds and<br>
-              &gt;      2. also if this could potentially affect my
-              tests (all my tests are<br>
-              &gt;         without any GUI.)<br>
-              &gt; <br>
-              &gt; <br>
-              &gt;     Regards<br>
-              &gt;     Venkatesh<br>
-              &gt; <br>
-              &gt; <br>
-              &gt; ______________________________<wbr>_________________<br>
-              &gt; USRP-users mailing list<br>
-              &gt; <a href="mailto:USRP-users@lists.ettus.com"
-                target="_blank" moz-do-not-send="true">USRP-users@lists.ettus.com</a><br>
-              &gt; <a
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                rel="noreferrer" target="_blank" moz-do-not-send="true">http://lists.ettus.com/<wbr>mailman/listinfo/usrp-users_<wbr>lists.ettus.com</a><br>
-              &gt; <br>
-              <br>
-              ______________________________<wbr>_________________<br>
-              USRP-users mailing list<br>
-              <a href="mailto:USRP-users@lists.ettus.com"
-                target="_blank" moz-do-not-send="true">USRP-users@lists.ettus.com</a><br>
-              <a
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                rel="noreferrer" target="_blank" moz-do-not-send="true">http://lists.ettus.com/<wbr>mailman/listinfo/usrp-users_<wbr>lists.ettus.com</a><br>
-            </blockquote>
-          </div>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------3EB1D8B879648568BAB7215D--
+Hi,
+I built a custom N310 XG image which simply added two 2-channel replay
+blocks to the default image.  The yml for the N310 is provided below.
+Basically, I added 4 stream endpoints and connected each one individually
+to one of the four available replay block ports. My thought was that these
+could then be dynamically routed to that default static graph
+(duc->Radio->ddc).  The build succeeded but now I am having difficulty
+connecting in UHD. I have tried the graph->connect() and the graph util
+connect_through_blocks().  I am simply trying to connect the Replay output
+to the DUC input.  Any advice?
+Thanks.
+Rob
 
 
---===============5405648277837877922==
+# General parameters
+# -----------------------------------------
+schema: rfnoc_imagebuilder_args         # Identifier for the schema used to
+validate this file
+copyright: 'Ettus Research, A National Instruments Brand' # Copyright
+information used in file headers
+license: 'SPDX-License-Identifier: LGPL-3.0-or-later' # License information
+used in file headers
+version: 1.0                            # File version
+rfnoc_version: 1.0                      # RFNoC protocol version
+chdr_width: 64                          # Bit width of the CHDR bus for
+this image
+device: 'n310'
+default_target: 'N310_XG'
+
+# A list of all stream endpoints in design
+# ----------------------------------------
+stream_endpoints:
+  ep0:                       # Stream endpoint name
+    ctrl: True                      # Endpoint passes control traffic
+    data: True                      # Endpoint passes data traffic
+    buff_size: 32768                # Ingress buffer size for data
+  ep1:                       # Stream endpoint name
+    ctrl: False                     # Endpoint passes control traffic
+    data: True                      # Endpoint passes data traffic
+    buff_size: 32768                # Ingress buffer size for data
+  ep2:                       # Stream endpoint name
+    ctrl: False                     # Endpoint passes control traffic
+    data: True                      # Endpoint passes data traffic
+    buff_size: 32768                # Ingress buffer size for data
+  ep3:                       # Stream endpoint name
+    ctrl: False                     # Endpoint passes control traffic
+    data: True                      # Endpoint passes data traffic
+    buff_size: 32768                # Ingress buffer size for data
+  ep4:                       # Stream endpoint name
+    ctrl: False                     # Endpoint passes control traffic
+    data: True                      # Endpoint passes data traffic
+    buff_size: 256                  # Ingress buffer size for data
+  ep5:                       # Stream endpoint name
+    ctrl: False                     # Endpoint passes control traffic
+    data: True                      # Endpoint passes data traffic
+    buff_size: 256                  # Ingress buffer size for data
+  ep6:                       # Stream endpoint name
+    ctrl: False                     # Endpoint passes control traffic
+    data: True                      # Endpoint passes data traffic
+    buff_size: 256                  # Ingress buffer size for data
+  ep7:                       # Stream endpoint name
+    ctrl: False                     # Endpoint passes control traffic
+    data: True                      # Endpoint passes data traffic
+    buff_size: 256                  # Ingress buffer size for data
+
+# A list of all NoC blocks in design
+# ----------------------------------
+noc_blocks:
+  duc0:                      # NoC block name
+    block_desc: 'duc.yml'    # Block device descriptor file
+    parameters:
+      NUM_PORTS: 2
+  ddc0:
+    block_desc: 'ddc.yml'
+    parameters:
+      NUM_PORTS: 2
+  radio0:
+    block_desc: 'radio_2x64.yml'
+  duc1:
+    block_desc: 'duc.yml'
+    parameters:
+      NUM_PORTS: 2
+  ddc1:
+    block_desc: 'ddc.yml'
+    parameters:
+      NUM_PORTS: 2
+  radio1:
+    block_desc: 'radio_2x64.yml'
+  replay0:
+    block_desc: 'replay.yml'
+    parameters:
+      NUM_PORTS: 2
+      MEM_DATA_W: 64
+      MEM_ADDR_W: 30
+  replay1:
+    block_desc: 'replay.yml'
+    parameters:
+      NUM_PORTS: 2
+      MEM_DATA_W: 64
+      MEM_ADDR_W: 30
+
+# A list of all static connections in design
+# ------------------------------------------
+# Format: A list of connection maps (list of key-value pairs) with the
+following keys
+#         - srcblk  = Source block to connect
+#         - srcport = Port on the source block to connect
+#         - dstblk  = Destination block to connect
+#         - dstport = Port on the destination block to connect
+connections:
+  - { srcblk: ep0,    srcport: out0,  dstblk: duc0,   dstport: in_0 }
+  - { srcblk: duc0,   srcport: out_0, dstblk: radio0, dstport: in_0 }
+  - { srcblk: radio0, srcport: out_0, dstblk: ddc0,   dstport: in_0 }
+  - { srcblk: ddc0,   srcport: out_0, dstblk: ep0,    dstport: in0  }
+  - { srcblk: ep1,    srcport: out0,  dstblk: duc0,   dstport: in_1 }
+  - { srcblk: duc0,   srcport: out_1, dstblk: radio0, dstport: in_1 }
+  - { srcblk: radio0, srcport: out_1, dstblk: ddc0,   dstport: in_1 }
+  - { srcblk: ddc0,   srcport: out_1, dstblk: ep1,    dstport: in0  }
+  - { srcblk: ep2,    srcport: out0,  dstblk: duc1,   dstport: in_0 }
+  - { srcblk: duc1,   srcport: out_0, dstblk: radio1, dstport: in_0 }
+  - { srcblk: radio1, srcport: out_0, dstblk: ddc1,   dstport: in_0 }
+  - { srcblk: ddc1,   srcport: out_0, dstblk: ep2,    dstport: in0  }
+  - { srcblk: ep3,    srcport: out0,  dstblk: duc1,   dstport: in_1 }
+  - { srcblk: duc1,   srcport: out_1, dstblk: radio1, dstport: in_1 }
+  - { srcblk: radio1, srcport: out_1, dstblk: ddc1,   dstport: in_1 }
+  - { srcblk: ddc1,   srcport: out_1, dstblk: ep3,    dstport: in0  }
+  - { srcblk: ep4,    srcport: out0,  dstblk: replay0,dstport: in_0 }
+  - { srcblk: replay0,srcport: out_0, dstblk: ep4,    dstport: in0  }
+  - { srcblk: ep5,    srcport: out0,  dstblk: replay0,dstport: in_1 }
+  - { srcblk: replay0,srcport: out_1, dstblk: ep5,    dstport: in0  }
+  - { srcblk: ep6,    srcport: out0,  dstblk: replay1,dstport: in_0 }
+  - { srcblk: replay1,srcport: out_0, dstblk: ep6,    dstport: in0  }
+  - { srcblk: ep7,    srcport: out0,  dstblk: replay1,dstport: in_1 }
+  - { srcblk: replay1,srcport: out_1, dstblk: ep7,    dstport: in0  }
+  - { srcblk: radio0, srcport: ctrl_port, dstblk: _device_, dstport:
+ctrlport_radio0 }
+  - { srcblk: radio1, srcport: ctrl_port, dstblk: _device_, dstport:
+ctrlport_radio1 }
+  - { srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport:
+x300_radio }
+  - { srcblk: _device_, srcport: x300_radio1, dstblk: radio1, dstport:
+x300_radio }
+  - { srcblk: _device_, srcport: time_keeper, dstblk: radio0, dstport:
+time_keeper }
+  - { srcblk: _device_, srcport: time_keeper, dstblk: radio1, dstport:
+time_keeper }
+
+# A list of all clock domain connections in design
+# ------------------------------------------------
+# Format: A list of connection maps (list of key-value pairs) with the
+following keys
+#         - srcblk  = Source block to connect (Always "_device"_)
+#         - srcport = Clock domain on the source block to connect
+#         - dstblk  = Destination block to connect
+#         - dstport = Clock domain on the destination block to connect
+clk_domains:
+  - { srcblk: _device_, srcport: radio,      dstblk: radio0, dstport: radio
+}
+  - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc0,   dstport: ce
+ }
+  - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: duc0,   dstport: ce
+ }
+  - { srcblk: _device_, srcport: radio,      dstblk: radio1, dstport: radio
+}
+  - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc1,   dstport: ce
+ }
+  - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: duc1,   dstport: ce
+ }
+  - { srcblk: _device_, srcport: dram,       dstblk: replay0,dstport: mem
+}
+  - { srcblk: _device_, srcport: dram,       dstblk: replay1,dstport: mem
+}
+
+--0000000000003feb9a05ae6f27ea
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div>I built=C2=A0a custom N310 XG image which simply a=
+dded two 2-channel replay blocks to the default image.=C2=A0 The yml for th=
+e N310 is provided below. Basically, I added 4 stream endpoints and connect=
+ed each one individually to one of the four available replay block ports. M=
+y thought was that these could then be dynamically routed to that default s=
+tatic graph (duc-&gt;Radio-&gt;ddc).=C2=A0 The build succeeded but now I am=
+ having difficulty connecting in UHD. I have tried the graph-&gt;connect() =
+and the graph util connect_through_blocks().=C2=A0 I am simply trying to co=
+nnect the Replay output to the DUC input.=C2=A0 Any advice?</div><div>Thank=
+s.</div><div>Rob</div><div><br></div><div><font face=3D"monospace"><br></fo=
+nt></div><div><font face=3D"monospace"># General parameters<br># ----------=
+-------------------------------<br>schema: rfnoc_imagebuilder_args =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 # Identifier for the schema used to validate this file=
+<br>copyright: &#39;Ettus Research, A National Instruments Brand&#39; # Cop=
+yright information used in file headers<br>license: &#39;SPDX-License-Ident=
+ifier: LGPL-3.0-or-later&#39; # License information used in file headers<br=
+>version: 1.0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# File version<br>rfnoc_version: 1.0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0# RFNoC protocol version<br>chdr_width: 64 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Bit width o=
+f the CHDR bus for this image<br>device: &#39;n310&#39;<br>default_target: =
+&#39;N310_XG&#39;<br><br># A list of all stream endpoints in design<br># --=
+--------------------------------------<br>stream_endpoints:<br>=C2=A0 ep0: =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 # Stream endpoint name<br>=C2=A0 =C2=A0 ctrl: True =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes c=
+ontrol traffic<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic=
+<br>=C2=A0 =C2=A0 buff_size: 32768 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0# Ingress buffer size for data<br>=C2=A0 ep1: =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream=
+ endpoint name<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic<br=
+>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 =
+buff_size: 32768 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# I=
+ngress buffer size for data<br>=C2=A0 ep2: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint name<br>=C2=
+=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic<br>=C2=A0 =C2=A0 data: =
+True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_size: 32768 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buffer size f=
+or data<br>=C2=A0 ep3: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint name<br>=C2=A0 =C2=A0 ctrl: Fals=
+e =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # E=
+ndpoint passes control traffic<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint pa=
+sses data traffic<br>=C2=A0 =C2=A0 buff_size: 32768 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buffer size for data<br>=C2=A0 =
+ep4: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 # Stream endpoint name<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes c=
+ontrol traffic<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic=
+<br>=C2=A0 =C2=A0 buff_size: 256 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0# Ingress buffer size for data<br>=C2=A0 ep5: =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Str=
+eam endpoint name<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic=
+<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=
+=A0 buff_size: 256 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0# Ingress buffer size for data<br>=C2=A0 ep6: =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint n=
+ame<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic<br>=C2=A0 =C2=
+=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_size:=
+ 256 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingres=
+s buffer size for data<br>=C2=A0 ep7: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint name<br>=C2=A0 =
+=C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 # Endpoint passes control traffic<br>=C2=A0 =C2=A0 data: True=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_size: 256 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buffer siz=
+e for data<br><br># A list of all NoC blocks in design<br># ---------------=
+-------------------<br>noc_blocks:<br>=C2=A0 duc0: =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# NoC block name<br>=C2=
+=A0 =C2=A0 block_desc: &#39;duc.yml&#39; =C2=A0 =C2=A0# Block device descri=
+ptor file<br>=C2=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2=
+<br>=C2=A0 ddc0:<br>=C2=A0 =C2=A0 block_desc: &#39;ddc.yml&#39;<br>=C2=A0 =
+=C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 radio0:<b=
+r>=C2=A0 =C2=A0 block_desc: &#39;radio_2x64.yml&#39;<br>=C2=A0 duc1:<br>=C2=
+=A0 =C2=A0 block_desc: &#39;duc.yml&#39;<br>=C2=A0 =C2=A0 parameters:<br>=
+=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 ddc1:<br>=C2=A0 =C2=A0 block_de=
+sc: &#39;ddc.yml&#39;<br>=C2=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 =
+NUM_PORTS: 2<br>=C2=A0 radio1:<br>=C2=A0 =C2=A0 block_desc: &#39;radio_2x64=
+.yml&#39;<br>=C2=A0 replay0:<br>=C2=A0 =C2=A0 block_desc: &#39;replay.yml&#=
+39;<br>=C2=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=
+=C2=A0 =C2=A0 =C2=A0 MEM_DATA_W: 64<br>=C2=A0 =C2=A0 =C2=A0 MEM_ADDR_W: 30<=
+br>=C2=A0 replay1:<br>=C2=A0 =C2=A0 block_desc: &#39;replay.yml&#39;<br>=C2=
+=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 =C2=
+=A0 =C2=A0 MEM_DATA_W: 64<br>=C2=A0 =C2=A0 =C2=A0 MEM_ADDR_W: 30<br><br># A=
+ list of all static connections in design<br># ----------------------------=
+--------------<br># Format: A list of connection maps (list of key-value pa=
+irs) with the following keys<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - srcblk =C2=
+=A0=3D Source block to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - srcport =
+=3D Port on the source block to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - =
+dstblk =C2=A0=3D Destination block to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 - dstport =3D Port on the destination block to connect<br>connections:<=
+br>=C2=A0 - { srcblk: ep0, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: duc0, =
+=C2=A0 dstport: in_0 }<br>=C2=A0 - { srcblk: duc0, =C2=A0 srcport: out_0, d=
+stblk: radio0, dstport: in_0 }<br>=C2=A0 - { srcblk: radio0, srcport: out_0=
+, dstblk: ddc0, =C2=A0 dstport: in_0 }<br>=C2=A0 - { srcblk: ddc0, =C2=A0 s=
+rcport: out_0, dstblk: ep0, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - {=
+ srcblk: ep1, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: duc0, =C2=A0 dstpor=
+t: in_1 }<br>=C2=A0 - { srcblk: duc0, =C2=A0 srcport: out_1, dstblk: radio0=
+, dstport: in_1 }<br>=C2=A0 - { srcblk: radio0, srcport: out_1, dstblk: ddc=
+0, =C2=A0 dstport: in_1 }<br>=C2=A0 - { srcblk: ddc0, =C2=A0 srcport: out_1=
+, dstblk: ep1, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep2,=
+ =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: duc1, =C2=A0 dstport: in_0 }<br>=
+=C2=A0 - { srcblk: duc1, =C2=A0 srcport: out_0, dstblk: radio1, dstport: in=
+_0 }<br>=C2=A0 - { srcblk: radio1, srcport: out_0, dstblk: ddc1, =C2=A0 dst=
+port: in_0 }<br>=C2=A0 - { srcblk: ddc1, =C2=A0 srcport: out_0, dstblk: ep2=
+, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep3, =C2=A0 =C2=
+=A0srcport: out0, =C2=A0dstblk: duc1, =C2=A0 dstport: in_1 }<br>=C2=A0 - { =
+srcblk: duc1, =C2=A0 srcport: out_1, dstblk: radio1, dstport: in_1 }<br>=C2=
+=A0 - { srcblk: radio1, srcport: out_1, dstblk: ddc1, =C2=A0 dstport: in_1 =
+}<br>=C2=A0 - { srcblk: ddc1, =C2=A0 srcport: out_1, dstblk: ep3, =C2=A0 =
+=C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep4, =C2=A0 =C2=A0srcport:=
+ out0, =C2=A0dstblk: replay0,dstport: in_0 }<br>=C2=A0 - { srcblk: replay0,=
+srcport: out_0, dstblk: ep4, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - =
+{ srcblk: ep5, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: replay0,dstport: i=
+n_1 }<br>=C2=A0 - { srcblk: replay0,srcport: out_1, dstblk: ep5, =C2=A0 =C2=
+=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep6, =C2=A0 =C2=A0srcport: ou=
+t0, =C2=A0dstblk: replay1,dstport: in_0 }<br>=C2=A0 - { srcblk: replay1,src=
+port: out_0, dstblk: ep6, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { s=
+rcblk: ep7, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: replay1,dstport: in_1=
+ }<br>=C2=A0 - { srcblk: replay1,srcport: out_1, dstblk: ep7, =C2=A0 =C2=A0=
+dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: radio0, srcport: ctrl_port, dstb=
+lk: _device_, dstport: ctrlport_radio0 }<br>=C2=A0 - { srcblk: radio1, srcp=
+ort: ctrl_port, dstblk: _device_, dstport: ctrlport_radio1 }<br>=C2=A0 - { =
+srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport: x300_radio=
+ }<br>=C2=A0 - { srcblk: _device_, srcport: x300_radio1, dstblk: radio1, ds=
+tport: x300_radio }<br>=C2=A0 - { srcblk: _device_, srcport: time_keeper, d=
+stblk: radio0, dstport: time_keeper }<br>=C2=A0 - { srcblk: _device_, srcpo=
+rt: time_keeper, dstblk: radio1, dstport: time_keeper }<br><br># A list of =
+all clock domain connections in design<br># -------------------------------=
+-----------------<br># Format: A list of connection maps (list of key-value=
+ pairs) with the following keys<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - srcblk =
+=C2=A0=3D Source block to connect (Always &quot;_device&quot;_)<br># =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 - srcport =3D Clock domain on the source block to con=
+nect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - dstblk =C2=A0=3D Destination block =
+to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - dstport =3D Clock domain on t=
+he destination block to connect<br>clk_domains:<br>=C2=A0 - { srcblk: _devi=
+ce_, srcport: radio, =C2=A0 =C2=A0 =C2=A0dstblk: radio0, dstport: radio }<b=
+r>=C2=A0 - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc0, =C2=A0 ds=
+tport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk: _device_, srcport: rfnoc_chd=
+r, dstblk: duc0, =C2=A0 dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk: _d=
+evice_, srcport: radio, =C2=A0 =C2=A0 =C2=A0dstblk: radio1, dstport: radio =
+}<br>=C2=A0 - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc1, =C2=A0=
+ dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk: _device_, srcport: rfnoc_=
+chdr, dstblk: duc1, =C2=A0 dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk:=
+ _device_, srcport: dram, =C2=A0 =C2=A0 =C2=A0 dstblk: replay0,dstport: mem=
+ =C2=A0 }<br>=C2=A0 - { srcblk: _device_, srcport: dram, =C2=A0 =C2=A0 =C2=
+=A0 dstblk: replay1,dstport: mem =C2=A0 }<br></font></div><div><br></div></=
+div>
+
+--0000000000003feb9a05ae6f27ea--
+
+
+--===============6366779848191257415==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -500,5 +429,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5405648277837877922==--
+--===============6366779848191257415==--
 
