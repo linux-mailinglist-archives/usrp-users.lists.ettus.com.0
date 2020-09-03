@@ -2,47 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C07225CD8A
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Sep 2020 00:28:17 +0200 (CEST)
-Received: from [::1] (port=58588 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DF4125CE26
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Sep 2020 00:58:52 +0200 (CEST)
+Received: from [::1] (port=58778 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kDxiI-0001gD-Lm; Thu, 03 Sep 2020 18:28:14 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:41489)
+	id 1kDyBv-0003Tt-6S; Thu, 03 Sep 2020 18:58:51 -0400
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:36618)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kDxiE-0001Zm-An
- for usrp-users@lists.ettus.com; Thu, 03 Sep 2020 18:28:10 -0400
-Received: by mail-ot1-f46.google.com with SMTP id a65so4187678otc.8
- for <usrp-users@lists.ettus.com>; Thu, 03 Sep 2020 15:27:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:from:date:message-id:subject:to;
- bh=rkhI42Q/+hVOaxSfw9BD0izH00o58GJj9fuUrALadSE=;
- b=hEeydtXHon1SadI5/EW55FAdi+ZEF+kFjJDP4XLJ5al+yLSU7q40O7E85QQRFQYdAh
- agGPZ/eLbixd7wJyrhTJ0z+QhxgkMfV6FVmu2ZlqZ8hnC/TbaT/fB+7e1HWtaQ422dwm
- ZpmLPCsHp9tKAQueFKL7+HAnE4iy0yh9D+Z4dwVT4RwtSelAFVXA1PNzLA4J3i0tv39Z
- UKvyIlhMFDQN9P48u5LtbiLNF6TnwHcbJjFQQIozMrtD8PjJSgUfjlqmxJwlSeU2Pi5H
- tlgl/r6A5YiKFTUo7y1ZOGPliokEtO8n1fw8ji3qhXbeUH6C34Od9r0C9NKj07kvcmy0
- 5qrg==
+ (Exim 4.93) (envelope-from <vesathya@eng.ucsd.edu>)
+ id 1kDyBq-0003Kp-Jd
+ for usrp-users@lists.ettus.com; Thu, 03 Sep 2020 18:58:46 -0400
+Received: by mail-ot1-f42.google.com with SMTP id 109so4269958otv.3
+ for <usrp-users@lists.ettus.com>; Thu, 03 Sep 2020 15:58:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=eng.ucsd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=sgDnMRwzeVFe7bjXZuNyzA7OMBVFuouf4IBOs4h4qVc=;
+ b=bE85PFoeBJ2h24Mv8NVdZwN2LFG3zl4YYJa82YbKiH9G9gy1ESO3NB63sY8/o+PO6P
+ 208jUiwhaeS1qzgpRFDovb0JIVOUKgNqXAC0fEgsV3Q+zYijhIVYg+jjY9Nz/DbiTuvd
+ q4bh7u9ZjgqVRWvocy2Wz3emyPm+ZMrkHQhpo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=rkhI42Q/+hVOaxSfw9BD0izH00o58GJj9fuUrALadSE=;
- b=FAPJjB1p+CQ2nPSSVieAcITBfqNrZGKVA+5v4rppMOrW5Pj8COFGKSf8qPmhVpE192
- md+c2+S13T5V5tnxJ3GbHNtDLmuXe4ZA0VkOMqyJb7ek+QXGTSjbmSqY8Az/zpAk/l90
- gn9sIw7IrfCUcc7ChERFCpoTPz/ibuqhpN9vLiejfLX0tI6VnoFGx62K5Z/GeYt1tbjo
- nMVWr37kOifhFaUeQUCh0GyBXgLr5TpwsKjGf0qL++bMsChtuDAhZ6sHkTVqbDloDtER
- IWD2YzPAVIb+q3xjH152tJ5tabnmWKXVlRwV/cWsXfarzahOrPd3AgMv6q1YWe300ub4
- HQMQ==
-X-Gm-Message-State: AOAM530i4X3W6eYDec3ei3ndsM50WlwTs0Mf1kDvGg+ijBaoWnvRoAsG
- 1RK6AnBEAjeKT+CK6x4iK/uogBTiXhwxakofW0p2vSSdojjpKQ==
-X-Google-Smtp-Source: ABdhPJypsHLPnegUCV81MSH14wodKohlh2vVl1mJNJMDGtowB+J7qoykFChYBreEGe8uBCmm0/2O80GrVAGNb/k/B8Y=
-X-Received: by 2002:a9d:5a9:: with SMTP id 38mr3369925otd.58.1599172049059;
- Thu, 03 Sep 2020 15:27:29 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=sgDnMRwzeVFe7bjXZuNyzA7OMBVFuouf4IBOs4h4qVc=;
+ b=hg4jxEklFJH/D4D5VFxD4N8mFW+RIuemiskR8sjZSgr3kw1SbHisjtnL9824qZIl56
+ M+mKcIobsZ0PGBIs/eyxyjXcaMrPATa9tggUoVrM6CH0oXo6mlDnesUb/rK1Z1UEoTj7
+ vqkgAsQGfkIsrvZNcGYhFrbpo0E110m5hu5HvSURv6rHlob2niJYW9b44EprBsIBLiCX
+ U+D3wEhWJ+aBb1k0JIK3JsUlL6Fx/3RdDuNHlaute39Xz6h1uzZtQISzap80CjZlcq8W
+ 2nVxM5YdpRlXWabL4B7udMtGYwDri2bpKT4Njf8NoA4gs98ZRGMG46mTisW1aGUH+KbY
+ yokw==
+X-Gm-Message-State: AOAM532fg9XC7yW6r9Def+AJiyWOyBgb3pHp2Cy1vsH2MBYbkB6ukjuQ
+ 2wasrlIGrWn7afcXPm8298U0a1wokItCIdFBYrm97CFTALDPxyB7
+X-Google-Smtp-Source: ABdhPJzizY61100q4bCf9T60Arvb+LGw56ShVqCsOnys010Zsr36xEbEw+QKYsIFlPhSQ7vXrYuu6LlB4COGoqJl11g=
+X-Received: by 2002:a9d:758b:: with SMTP id s11mr3206420otk.251.1599173885654; 
+ Thu, 03 Sep 2020 15:58:05 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 3 Sep 2020 18:27:18 -0400
-Message-ID: <CAB__hTTxYJoOW1Sk64CGui+1iH7P+i_frNjrF8RbyO4TunUeOA@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Using Replay block in UHD-4.0
+References: <CANYmVj-oSiMz_v-EpodsX173Q2iMKBPM-WVf2BsSOrZnPQtvUw@mail.gmail.com>
+ <CANYmVj8vkBEry_XrQsz4QxYu29bd-mr1uVpwqdPsFLxQ1vSjRA@mail.gmail.com>
+ <fd998121-4494-a528-71ac-0b12a52f8311@eurecom.fr>
+ <CAGNhwTPhAab289kk_CAV2q2-PCvno44v=CuxMjv2ukrcEmNcVA@mail.gmail.com>
+ <CANYmVj8aSNhizY0h1akgQzMJfAyR2J0bW9Zw7zLLaof+jgvV+g@mail.gmail.com>
+In-Reply-To: <CANYmVj8aSNhizY0h1akgQzMJfAyR2J0bW9Zw7zLLaof+jgvV+g@mail.gmail.com>
+Date: Thu, 3 Sep 2020 15:57:54 -0700
+Message-ID: <CANYmVj-Hr4Qw8B2iEe9mVecytYae6G=oBqbehyZG++FQ1ZGCFg@mail.gmail.com>
+To: Michael Dickens <michael.dickens@ettus.com>
+Subject: Re: [USRP-users] Link going up and down periodically every 45
+ seconds on USRP N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============0839876300006337869=="
+From: Venkatesh Sathyanarayanan via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Venkatesh Sathyanarayanan <vesathya@eng.ucsd.edu>
+Cc: Ankush Jolly <ajolly@eng.ucsd.edu>, USRP list <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2508869228866925551=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,374 +77,473 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0839876300006337869==
-Content-Type: multipart/alternative; boundary="000000000000eba7b605ae7041e3"
+--===============2508869228866925551==
+Content-Type: multipart/alternative; boundary="00000000000063934605ae70af4b"
 
---000000000000eba7b605ae7041e3
+--00000000000063934605ae70af4b
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
-I am having trouble using rfnoc_replay_samples_from_file with a custom FPGA
-image I built (N310 XG - UHD-4.0). I used rfnoc_image_builder and manually
-modified the yml (see below) to include two 2-channel Replay blocks in
-addition to the default statically linked blocks. When I try to run the
-rfnoc_replay_samples_from_file example, I get the following error.  Any
-ideas?
-Rob
+Hi Guys,
 
-// ************* rfnoc_samples_from_file output **************
-$ rfnoc_replay_samples_from_file --args="addr=192.168.61.2" --file
-/media/ramfolder/tx_0.dat --freq 2400e6 --rate 125e6
-...
-Replay file size:     32768 bytes (4096 qwords, 8192 samples)
-Record base address:  0x0
-Record buffer size:   32768 bytes
-Record fullness:      0 bytes
+Thanks a lot for the tips. I stopped the network manager and everything
+worked fine.
 
-Emptying record buffer...
-Record fullness:      0 bytes
-
-Sending data to be recorded...
-ERROR: Unable to send 8192 samples
+I am also copying some notes I took as a part of learning from this bug.
+Since these emails are archived, I thought it might help someone else
+having this issue.
 
 
-// *************  yml file used in rfnoc_image_builder ************
-# General parameters
-# -----------------------------------------
-schema: rfnoc_imagebuilder_args         # Identifier for the schema used to
-validate this file
-copyright: 'Ettus Research, A National Instruments Brand' # Copyright
-information used in file headers
-license: 'SPDX-License-Identifier: LGPL-3.0-or-later' # License information
-used in file headers
-version: 1.0                            # File version
-rfnoc_version: 1.0                      # RFNoC protocol version
-chdr_width: 64                          # Bit width of the CHDR bus for
-this image
-device: 'n310'
-default_target: 'N310_XG'
 
-# A list of all stream endpoints in design
-# ----------------------------------------
-stream_endpoints:
-  ep0:                       # Stream endpoint name
-    ctrl: True                      # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 32768                # Ingress buffer size for data
-  ep1:                       # Stream endpoint name
-    ctrl: False                     # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 32768                # Ingress buffer size for data
-  ep2:                       # Stream endpoint name
-    ctrl: False                     # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 32768                # Ingress buffer size for data
-  ep3:                       # Stream endpoint name
-    ctrl: False                     # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 32768                # Ingress buffer size for data
-  ep4:                       # Stream endpoint name
-    ctrl: False                     # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 256                  # Ingress buffer size for data
-  ep5:                       # Stream endpoint name
-    ctrl: False                     # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 256                  # Ingress buffer size for data
-  ep6:                       # Stream endpoint name
-    ctrl: False                     # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 256                  # Ingress buffer size for data
-  ep7:                       # Stream endpoint name
-    ctrl: False                     # Endpoint passes control traffic
-    data: True                      # Endpoint passes data traffic
-    buff_size: 256                  # Ingress buffer size for data
+Network Manager issues:
 
-# A list of all NoC blocks in design
-# ----------------------------------
-noc_blocks:
-  duc0:                      # NoC block name
-    block_desc: 'duc.yml'    # Block device descriptor file
-    parameters:
-      NUM_PORTS: 2
-  ddc0:
-    block_desc: 'ddc.yml'
-    parameters:
-      NUM_PORTS: 2
-  radio0:
-    block_desc: 'radio_2x64.yml'
-  duc1:
-    block_desc: 'duc.yml'
-    parameters:
-      NUM_PORTS: 2
-  ddc1:
-    block_desc: 'ddc.yml'
-    parameters:
-      NUM_PORTS: 2
-  radio1:
-    block_desc: 'radio_2x64.yml'
-  replay0:
-    block_desc: 'replay.yml'
-    parameters:
-      NUM_PORTS: 2
-      MEM_DATA_W: 64
-      MEM_ADDR_W: 30
-  replay1:
-    block_desc: 'replay.yml'
-    parameters:
-      NUM_PORTS: 2
-      MEM_DATA_W: 64
-      MEM_ADDR_W: 30
+The server network manager started doing weird things and was messing up
+the SFP connection to the USRP. It is recommended that the network manager
+is disabled on the server - else it can potentially interrupt your testing.
 
-# A list of all static connections in design
-# ------------------------------------------
-# Format: A list of connection maps (list of key-value pairs) with the
-following keys
-#         - srcblk  = Source block to connect
-#         - srcport = Port on the source block to connect
-#         - dstblk  = Destination block to connect
-#         - dstport = Port on the destination block to connect
-connections:
-  - { srcblk: ep0,    srcport: out0,  dstblk: duc0,   dstport: in_0 }
-  - { srcblk: duc0,   srcport: out_0, dstblk: radio0, dstport: in_0 }
-  - { srcblk: radio0, srcport: out_0, dstblk: ddc0,   dstport: in_0 }
-  - { srcblk: ddc0,   srcport: out_0, dstblk: ep0,    dstport: in0  }
-  - { srcblk: ep1,    srcport: out0,  dstblk: duc0,   dstport: in_1 }
-  - { srcblk: duc0,   srcport: out_1, dstblk: radio0, dstport: in_1 }
-  - { srcblk: radio0, srcport: out_1, dstblk: ddc0,   dstport: in_1 }
-  - { srcblk: ddc0,   srcport: out_1, dstblk: ep1,    dstport: in0  }
-  - { srcblk: ep2,    srcport: out0,  dstblk: duc1,   dstport: in_0 }
-  - { srcblk: duc1,   srcport: out_0, dstblk: radio1, dstport: in_0 }
-  - { srcblk: radio1, srcport: out_0, dstblk: ddc1,   dstport: in_0 }
-  - { srcblk: ddc1,   srcport: out_0, dstblk: ep2,    dstport: in0  }
-  - { srcblk: ep3,    srcport: out0,  dstblk: duc1,   dstport: in_1 }
-  - { srcblk: duc1,   srcport: out_1, dstblk: radio1, dstport: in_1 }
-  - { srcblk: radio1, srcport: out_1, dstblk: ddc1,   dstport: in_1 }
-  - { srcblk: ddc1,   srcport: out_1, dstblk: ep3,    dstport: in0  }
-  - { srcblk: ep4,    srcport: out0,  dstblk: replay0,dstport: in_0 }
-  - { srcblk: replay0,srcport: out_0, dstblk: ep4,    dstport: in0  }
-  - { srcblk: ep5,    srcport: out0,  dstblk: replay0,dstport: in_1 }
-  - { srcblk: replay0,srcport: out_1, dstblk: ep5,    dstport: in0  }
-  - { srcblk: ep6,    srcport: out0,  dstblk: replay1,dstport: in_0 }
-  - { srcblk: replay1,srcport: out_0, dstblk: ep6,    dstport: in0  }
-  - { srcblk: ep7,    srcport: out0,  dstblk: replay1,dstport: in_1 }
-  - { srcblk: replay1,srcport: out_1, dstblk: ep7,    dstport: in0  }
-  - { srcblk: radio0, srcport: ctrl_port, dstblk: _device_, dstport:
-ctrlport_radio0 }
-  - { srcblk: radio1, srcport: ctrl_port, dstblk: _device_, dstport:
-ctrlport_radio1 }
-  - { srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport:
-x300_radio }
-  - { srcblk: _device_, srcport: x300_radio1, dstblk: radio1, dstport:
-x300_radio }
-  - { srcblk: _device_, srcport: time_keeper, dstblk: radio0, dstport:
-time_keeper }
-  - { srcblk: _device_, srcport: time_keeper, dstblk: radio1, dstport:
-time_keeper }
+Details:
 
-# A list of all clock domain connections in design
-# ------------------------------------------------
-# Format: A list of connection maps (list of key-value pairs) with the
-following keys
-#         - srcblk  = Source block to connect (Always "_device"_)
-#         - srcport = Clock domain on the source block to connect
-#         - dstblk  = Destination block to connect
-#         - dstport = Clock domain on the destination block to connect
-clk_domains:
-  - { srcblk: _device_, srcport: radio,      dstblk: radio0, dstport: radio
-}
-  - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc0,   dstport: ce
- }
-  - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: duc0,   dstport: ce
- }
-  - { srcblk: _device_, srcport: radio,      dstblk: radio1, dstport: radio
-}
-  - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc1,   dstport: ce
- }
-  - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: duc1,   dstport: ce
- }
-  - { srcblk: _device_, srcport: dram,       dstblk: replay0,dstport: mem
-}
-  - { srcblk: _device_, srcport: dram,       dstblk: replay1,dstport: mem
-}
+One symptom: SFP connection was going down and coming up every 45 seconds
+for eg. It would be down for a second and come back up. Therefore say if I
+was collecting data onto a file for 60 seconds, data collection would stop.
+This is detrimental to our testing.
 
---000000000000eba7b605ae7041e3
+How do we know that the connection is down: when you have a serial
+connection on to the USRP and have a screen session in place, error
+messages are displayed onto the screen/terminal. This displays if the
+connection is up or down.
+
+Exact command used:
+
+   1.
+
+   To stop network manager: sudo service network-manager stop
+   2.
+
+   sudo ifconfig eth0 down (eth0 is a placeholder for the network you are
+   referring to)
+   3.
+
+   setting IP via ifconfig utility. sudo ifconfig eth0 [static IP address:
+   say 192.168.6.10] netmask [netmask - typically 255.255.255.0] up
+   4.
+
+   ifconfig etho - check IP, netmask and gateway are all set correctly (GW
+   should be something like 192.168.6.1. If not set gateway explicitly via
+   ifconfig)
+
+The network manager might come back up on a reboot. You will have to issue
+the command on every reboot or check for other methods online for a
+persistent setting.
+Regards
+Venkatesh
+
+On Thu, Sep 3, 2020 at 12:41 PM Venkatesh Sathyanarayanan <
+vesathya@eng.ucsd.edu> wrote:
+
+> Thanks a lot Michael and cedric for taking time to answer my questions.. I
+> will try to stop the network manager and see if that helps.
+>
+> Regards
+> Venkatesh
+>
+> On Thursday, September 3, 2020, Michael Dickens <michael.dickens@ettus.com>
+> wrote:
+>
+>> In my experience, this happens when the networking isn't stable, which
+>> can be for all sorts of reasons:
+>>
+>> * connectors / cables are flaky;
+>>
+>> * host SW configuration isn't quite correct;
+>>
+>> * actual NIC has issues, HW or FW / configuration;
+>>
+>> * USRP NIC has issues ... very rare, but it can happen;
+>>
+>> * USRP FPGA has issues ... again rare, but it can happen;
+>>
+>> * USRP filesystem has issues ... could be the FS itself, or
+>> configuration ... this happens sometimes & is usually resolved by
+>> overwriting the whole SDcard filesystem & starting from "go" there.
+>>
+>> If you're Linux has the network manager, that doesn't help things since
+>> it thinks it knows better than you what to be doing.
+>>
+>> There is no "one size fits all" answer unfortunately; just investigate
+>> the networking & make sure all of the parts are functional.
+>>
+>> Hope this is useful! - MLD
+>>
+>> On Thu, Sep 3, 2020 at 3:30 AM Cedric Roux via USRP-users <
+>> usrp-users@lists.ettus.com> wrote:
+>>
+>>> maybe network manager (if you have that thing running) on the
+>>> computer doing funny things with the interface? I had this
+>>> issue with some 4g dongles in the past.
+>>>
+>>> On 2020-09-03 01:01, Venkatesh Sathyanarayanan via USRP-users wrote:
+>>> > Hi,
+>>> >
+>>> > Small correction:
+>>> >
+>>> > *Questions:*
+>>> > I notice that the test stops when the link goes down every 45 seconds.
+>>> > This happens for all types of tests(with and without GUI).
+>>> > Kindly let me know how to debug this - i.e. why the link goes down
+>>> every
+>>> > 45 seconds?
+>>> >
+>>> > Regards
+>>> > Venkatesh
+>>> >
+>>> > On Wed, Sep 2, 2020 at 3:10 PM Venkatesh Sathyanarayanan
+>>> > <vesathya@eng.ucsd.edu <mailto:vesathya@eng.ucsd.edu>> wrote:
+>>> >
+>>> >     Hi,
+>>> >
+>>> >
+>>> >     *Setup details:*
+>>> >     I am using an USRP N310 and I have the host computer connected to
+>>> >     the USRP via SFP cable. I additionally have a serial connection
+>>> >     between the two and have a screen session running.
+>>> >
+>>> >     *Observation:*
+>>> >     On the screen session, I noticed the following messages:
+>>> >     [ 2151.041079] nixge 40000000.ethernet sfp0: Link is Up -
+>>> >     10Gbps/Full - flow control off
+>>> >     [ 2195.841088] nixge 40000000.ethernet sfp0: Link is Down
+>>> >     [ 2196.961090] nixge 40000000.ethernet sfp0: Link is Up -
+>>> >     10Gbps/Full - flow control off
+>>> >     [ 2241.761098] nixge 40000000.ethernet sfp0: Link is Down
+>>> >     [ 2242.881106] nixge 40000000.ethernet sfp0: Link is Up -
+>>> >     10Gbps/Full - flow control off
+>>> >     [ 2287.681109] nixge 40000000.ethernet sfp0: Link is Down
+>>> >     [ 2288.801114] nixge 40000000.ethernet sfp0: Link is Up -
+>>> >     10Gbps/Full - flow control off
+>>> >     [ 2333.601129] nixge 40000000.ethernet sfp0: Link is Down
+>>> >     [ 2334.721127] nixge 40000000.ethernet sfp0: Link is Up -
+>>> >     10Gbps/Full - flow control off
+>>> >     [ 2379.521132] nixge 40000000.ethernet sfp0: Link is Down
+>>> >     [ 2380.641137] nixge 40000000.ethernet sfp0: Link is Up -
+>>> >     10Gbps/Full - flow control off
+>>> >     [ 2425.441143] nixge 40000000.ethernet sfp0: Link is Down
+>>> >     [ 2426.561149] nixge 40000000.ethernet sfp0: Link is Up -
+>>> >     10Gbps/Full - flow control off
+>>> >     [ 2471.361159] nixge 40000000.ethernet sfp0: Link is Down
+>>> >     [ 2472.481166] nixge 40000000.ethernet sfp0: Link is Up -
+>>> >     10Gbps/Full - flow control off
+>>> >     [ 2517.281166] nixge 40000000.ethernet sfp0: Link is Down
+>>> >     [ 2518.401171] nixge 40000000.ethernet sfp0: Link is Up -
+>>> >     10Gbps/Full - flow control off
+>>> >
+>>>  ..........................................................................................................................................................................
+>>> >
+>>>  ..........................................................................................................................................................................
+>>> >
+>>> >
+>>>  ..........................................................................................................................................................................
+>>> >
+>>>  ..........................................................................................................................................................................
+>>> >
+>>> >     *Questions:*
+>>> >     When I have a GNU radio GRC running with an active GUI displaying
+>>> >     the spectrum, I see that it halts at the time when the link goes
+>>> down.
+>>> >     When I run a file with no GUI active - say IQ samples saved to a
+>>> >     file, things running in the background and I do not see any
+>>> >     interruption.
+>>> >
+>>> >      1. Kindly let me know why I am seeing this issue of link going
+>>> down
+>>> >         every 45 seconds and
+>>> >      2. also if this could potentially affect my tests (all my tests
+>>> are
+>>> >         without any GUI.)
+>>> >
+>>> >
+>>> >     Regards
+>>> >     Venkatesh
+>>> >
+>>> >
+>>> > _______________________________________________
+>>> > USRP-users mailing list
+>>> > USRP-users@lists.ettus.com
+>>> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>> >
+>>>
+>>> _______________________________________________
+>>> USRP-users mailing list
+>>> USRP-users@lists.ettus.com
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>
+>>
+
+--00000000000063934605ae70af4b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<br><div>I am having trouble using rfnoc_replay_samples=
-_from_file with a custom FPGA image I built (N310 XG - UHD-4.0). I used rfn=
-oc_image_builder and manually modified the yml (see below) to include two 2=
--channel Replay blocks in addition to the default statically linked blocks.=
- When I try to run the rfnoc_replay_samples_from_file example, I get the fo=
-llowing error.=C2=A0 Any ideas?</div><div>Rob</div><div><font face=3D"monos=
-pace"><br></font></div><div><font face=3D"monospace">// ************* rfnoc=
-_samples_from_file output **************</font></div><div><font face=3D"mon=
-ospace">$=C2=A0</font>rfnoc_replay_samples_from_file --args=3D&quot;addr=3D=
-192.168.61.2&quot; --file /media/ramfolder/tx_0.dat --freq 2400e6 --rate 12=
-5e6</div><div>...</div><div><font face=3D"monospace">Replay file size: =C2=
-=A0 =C2=A0 32768 bytes (4096 qwords, 8192 samples)<br>Record base address: =
-=C2=A00x0<br>Record buffer size: =C2=A0 32768 bytes<br>Record fullness: =C2=
-=A0 =C2=A0 =C2=A00 bytes<br><br>Emptying record buffer...<br>Record fullnes=
-s: =C2=A0 =C2=A0 =C2=A00 bytes<br><br>Sending data to be recorded...<br>ERR=
-OR: Unable to send 8192 samples<br></font></div><div><font face=3D"monospac=
-e"><br></font></div><div><br></div><div><font face=3D"monospace">// *******=
-******=C2=A0 yml file used in rfnoc_image_builder ************</font></div>=
-<div><div><font face=3D"monospace"># General parameters<br># --------------=
----------------------------<br>schema: rfnoc_imagebuilder_args =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 # Identifier for the schema used to validate this file<br=
->copyright: &#39;Ettus Research, A National Instruments Brand&#39; # Copyri=
-ght information used in file headers<br>license: &#39;SPDX-License-Identifi=
-er: LGPL-3.0-or-later&#39; # License information used in file headers<br>ve=
-rsion: 1.0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# File version<br>rfnoc_version: 1.0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# =
-RFNoC protocol version<br>chdr_width: 64 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Bit width of the =
-CHDR bus for this image<br>device: &#39;n310&#39;<br>default_target: &#39;N=
-310_XG&#39;<br><br># A list of all stream endpoints in design<br># --------=
---------------------------------<br>stream_endpoints:<br>=C2=A0 ep0: =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # St=
-ream endpoint name<br>=C2=A0 =C2=A0 ctrl: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes control t=
-raffic<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=
-=A0 =C2=A0 buff_size: 32768 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0# Ingress buffer size for data<br>=C2=A0 ep1: =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoi=
-nt name<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic<br>=C2=A0=
- =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_si=
-ze: 32768 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress =
-buffer size for data<br>=C2=A0 ep2: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint name<br>=C2=A0 =C2=
-=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 # Endpoint passes control traffic<br>=C2=A0 =C2=A0 data: True =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_size: 32768 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buffer size for d=
-ata<br>=C2=A0 ep3: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 # Stream endpoint name<br>=C2=A0 =C2=A0 ctrl: False =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # End=
-point passes control traffic<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passe=
-s data traffic<br>=C2=A0 =C2=A0 buff_size: 32768 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buffer size for data<br>=C2=A0 ep4=
-: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 # Stream endpoint name<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes cont=
-rol traffic<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=
-=C2=A0 =C2=A0 buff_size: 256 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0# Ingress buffer size for data<br>=C2=A0 ep5: =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream=
- endpoint name<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic<br=
->=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 =
-buff_size: 256 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0# Ingress buffer size for data<br>=C2=A0 ep6: =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint name=
-<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic<br>=C2=A0 =C2=A0=
- data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_size: 256=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress bu=
-ffer size for data<br>=C2=A0 ep7: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint name<br>=C2=A0 =C2=A0=
- ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 # Endpoint passes control traffic<br>=C2=A0 =C2=A0 data: True =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# =
-Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_size: 256 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buffer size for d=
-ata<br><br># A list of all NoC blocks in design<br># ----------------------=
-------------<br>noc_blocks:<br>=C2=A0 duc0: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# NoC block name<br>=C2=A0 =C2=
-=A0 block_desc: &#39;duc.yml&#39; =C2=A0 =C2=A0# Block device descriptor fi=
-le<br>=C2=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=
-=A0 ddc0:<br>=C2=A0 =C2=A0 block_desc: &#39;ddc.yml&#39;<br>=C2=A0 =C2=A0 p=
-arameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 radio0:<br>=C2=A0=
- =C2=A0 block_desc: &#39;radio_2x64.yml&#39;<br>=C2=A0 duc1:<br>=C2=A0 =C2=
-=A0 block_desc: &#39;duc.yml&#39;<br>=C2=A0 =C2=A0 parameters:<br>=C2=A0 =
-=C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 ddc1:<br>=C2=A0 =C2=A0 block_desc: &#3=
-9;ddc.yml&#39;<br>=C2=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_POR=
-TS: 2<br>=C2=A0 radio1:<br>=C2=A0 =C2=A0 block_desc: &#39;radio_2x64.yml&#3=
-9;<br>=C2=A0 replay0:<br>=C2=A0 =C2=A0 block_desc: &#39;replay.yml&#39;<br>=
-=C2=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 =
-=C2=A0 =C2=A0 MEM_DATA_W: 64<br>=C2=A0 =C2=A0 =C2=A0 MEM_ADDR_W: 30<br>=C2=
-=A0 replay1:<br>=C2=A0 =C2=A0 block_desc: &#39;replay.yml&#39;<br>=C2=A0 =
-=C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 =C2=A0 =
-=C2=A0 MEM_DATA_W: 64<br>=C2=A0 =C2=A0 =C2=A0 MEM_ADDR_W: 30<br><br># A lis=
-t of all static connections in design<br># --------------------------------=
-----------<br># Format: A list of connection maps (list of key-value pairs)=
- with the following keys<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - srcblk =C2=A0=
-=3D Source block to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - srcport =3D =
-Port on the source block to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - dstb=
-lk =C2=A0=3D Destination block to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-- dstport =3D Port on the destination block to connect<br>connections:<br>=
-=C2=A0 - { srcblk: ep0, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: duc0, =C2=
-=A0 dstport: in_0 }<br>=C2=A0 - { srcblk: duc0, =C2=A0 srcport: out_0, dstb=
-lk: radio0, dstport: in_0 }<br>=C2=A0 - { srcblk: radio0, srcport: out_0, d=
-stblk: ddc0, =C2=A0 dstport: in_0 }<br>=C2=A0 - { srcblk: ddc0, =C2=A0 srcp=
-ort: out_0, dstblk: ep0, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { sr=
-cblk: ep1, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: duc0, =C2=A0 dstport: =
-in_1 }<br>=C2=A0 - { srcblk: duc0, =C2=A0 srcport: out_1, dstblk: radio0, d=
-stport: in_1 }<br>=C2=A0 - { srcblk: radio0, srcport: out_1, dstblk: ddc0, =
-=C2=A0 dstport: in_1 }<br>=C2=A0 - { srcblk: ddc0, =C2=A0 srcport: out_1, d=
-stblk: ep1, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep2, =
-=C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: duc1, =C2=A0 dstport: in_0 }<br>=
-=C2=A0 - { srcblk: duc1, =C2=A0 srcport: out_0, dstblk: radio1, dstport: in=
-_0 }<br>=C2=A0 - { srcblk: radio1, srcport: out_0, dstblk: ddc1, =C2=A0 dst=
-port: in_0 }<br>=C2=A0 - { srcblk: ddc1, =C2=A0 srcport: out_0, dstblk: ep2=
-, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep3, =C2=A0 =C2=
-=A0srcport: out0, =C2=A0dstblk: duc1, =C2=A0 dstport: in_1 }<br>=C2=A0 - { =
-srcblk: duc1, =C2=A0 srcport: out_1, dstblk: radio1, dstport: in_1 }<br>=C2=
-=A0 - { srcblk: radio1, srcport: out_1, dstblk: ddc1, =C2=A0 dstport: in_1 =
-}<br>=C2=A0 - { srcblk: ddc1, =C2=A0 srcport: out_1, dstblk: ep3, =C2=A0 =
-=C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep4, =C2=A0 =C2=A0srcport:=
- out0, =C2=A0dstblk: replay0,dstport: in_0 }<br>=C2=A0 - { srcblk: replay0,=
-srcport: out_0, dstblk: ep4, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - =
-{ srcblk: ep5, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: replay0,dstport: i=
-n_1 }<br>=C2=A0 - { srcblk: replay0,srcport: out_1, dstblk: ep5, =C2=A0 =C2=
-=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep6, =C2=A0 =C2=A0srcport: ou=
-t0, =C2=A0dstblk: replay1,dstport: in_0 }<br>=C2=A0 - { srcblk: replay1,src=
-port: out_0, dstblk: ep6, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { s=
-rcblk: ep7, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: replay1,dstport: in_1=
- }<br>=C2=A0 - { srcblk: replay1,srcport: out_1, dstblk: ep7, =C2=A0 =C2=A0=
-dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: radio0, srcport: ctrl_port, dstb=
-lk: _device_, dstport: ctrlport_radio0 }<br>=C2=A0 - { srcblk: radio1, srcp=
-ort: ctrl_port, dstblk: _device_, dstport: ctrlport_radio1 }<br>=C2=A0 - { =
-srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport: x300_radio=
- }<br>=C2=A0 - { srcblk: _device_, srcport: x300_radio1, dstblk: radio1, ds=
-tport: x300_radio }<br>=C2=A0 - { srcblk: _device_, srcport: time_keeper, d=
-stblk: radio0, dstport: time_keeper }<br>=C2=A0 - { srcblk: _device_, srcpo=
-rt: time_keeper, dstblk: radio1, dstport: time_keeper }<br><br># A list of =
-all clock domain connections in design<br># -------------------------------=
------------------<br># Format: A list of connection maps (list of key-value=
- pairs) with the following keys<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - srcblk =
-=C2=A0=3D Source block to connect (Always &quot;_device&quot;_)<br># =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 - srcport =3D Clock domain on the source block to con=
-nect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - dstblk =C2=A0=3D Destination block =
-to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - dstport =3D Clock domain on t=
-he destination block to connect<br>clk_domains:<br>=C2=A0 - { srcblk: _devi=
-ce_, srcport: radio, =C2=A0 =C2=A0 =C2=A0dstblk: radio0, dstport: radio }<b=
-r>=C2=A0 - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc0, =C2=A0 ds=
-tport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk: _device_, srcport: rfnoc_chd=
-r, dstblk: duc0, =C2=A0 dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk: _d=
-evice_, srcport: radio, =C2=A0 =C2=A0 =C2=A0dstblk: radio1, dstport: radio =
-}<br>=C2=A0 - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc1, =C2=A0=
- dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk: _device_, srcport: rfnoc_=
-chdr, dstblk: duc1, =C2=A0 dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk:=
- _device_, srcport: dram, =C2=A0 =C2=A0 =C2=A0 dstblk: replay0,dstport: mem=
- =C2=A0 }<br>=C2=A0 - { srcblk: _device_, srcport: dram, =C2=A0 =C2=A0 =C2=
-=A0 dstblk: replay1,dstport: mem =C2=A0 }<br></font></div><div class=3D"gma=
-il-yj6qo"></div><div class=3D"gmail-adL"><br></div></div></div>
+<div dir=3D"ltr">Hi Guys,<div><br></div><div>Thanks a lot for the tips. I s=
+topped the network manager and everything worked fine.</div><div><br></div>=
+<div>I am also copying some notes I took as a part of learning from=C2=A0th=
+is bug. Since these emails are archived, I thought it might help someone=C2=
+=A0else having this issue.</div><div><br></div><div><br></div><div><br></di=
+v><div><span id=3D"gmail-docs-internal-guid-2f423eff-7fff-1ea1-2018-6974c57=
+bc87c"><p dir=3D"ltr" style=3D"line-height:1.295;margin-top:0pt;margin-bott=
+om:8pt"><span style=3D"color:rgb(0,0,0);background-color:transparent;font-w=
+eight:700;font-variant-numeric:normal;font-variant-east-asian:normal;vertic=
+al-align:baseline;white-space:pre-wrap"><font size=3D"1" style=3D"" face=3D=
+"times new roman, serif">Network Manager issues:</font></span></p><p dir=3D=
+"ltr" style=3D"line-height:1.295;margin-top:0pt;margin-bottom:8pt"><span st=
+yle=3D"color:rgb(152,0,0);background-color:transparent;font-variant-numeric=
+:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space:=
+pre-wrap"><font size=3D"1" face=3D"times new roman, serif">The server netwo=
+rk manager started doing weird things and was messing up the SFP connection=
+ to the USRP. It is recommended that the network manager is disabled on the=
+ server - else it can potentially interrupt your testing.=C2=A0</font></spa=
+n></p><p dir=3D"ltr" style=3D"line-height:1.295;margin-top:0pt;margin-botto=
+m:8pt"><span style=3D"color:rgb(0,0,0);background-color:transparent;font-we=
+ight:700;font-variant-numeric:normal;font-variant-east-asian:normal;vertica=
+l-align:baseline;white-space:pre-wrap"><font size=3D"1" face=3D"times new r=
+oman, serif">Details:</font></span></p><p dir=3D"ltr" style=3D"line-height:=
+1.295;margin-top:0pt;margin-bottom:8pt"><font size=3D"1" face=3D"times new =
+roman, serif"><span style=3D"color:rgb(0,0,0);background-color:transparent;=
+font-weight:700;font-variant-numeric:normal;font-variant-east-asian:normal;=
+vertical-align:baseline;white-space:pre-wrap">One symptom:</span><span styl=
+e=3D"color:rgb(0,0,0);background-color:transparent;font-variant-numeric:nor=
+mal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-=
+wrap"> SFP connection was going down and coming up every 45 seconds for eg.=
+ It would be down for a second and come back up. Therefore say if I was col=
+lecting data onto a file for 60 seconds, data collection would stop. This i=
+s detrimental to our testing.=C2=A0</span></font></p><p dir=3D"ltr" style=
+=3D"line-height:1.295;margin-top:0pt;margin-bottom:8pt"><font size=3D"1" fa=
+ce=3D"times new roman, serif"><span style=3D"color:rgb(0,0,0);background-co=
+lor:transparent;font-weight:700;font-variant-numeric:normal;font-variant-ea=
+st-asian:normal;vertical-align:baseline;white-space:pre-wrap">How do we kno=
+w that the connection is down: </span><span style=3D"color:rgb(0,0,0);backg=
+round-color:transparent;font-variant-numeric:normal;font-variant-east-asian=
+:normal;vertical-align:baseline;white-space:pre-wrap">when you have a seria=
+l connection on to the USRP and have a screen session in place, error messa=
+ges are displayed onto the screen/terminal. This displays if the connection=
+ is up or down.</span></font></p><font size=3D"1" face=3D"times new roman, =
+serif"><br></font><p dir=3D"ltr" style=3D"line-height:1.295;margin-top:0pt;=
+margin-bottom:8pt"><span style=3D"color:rgb(0,0,0);background-color:transpa=
+rent;font-weight:700;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;vertical-align:baseline;white-space:pre-wrap"><font size=3D"1" face=3D=
+"times new roman, serif">Exact command used:</font></span></p><ol style=3D"=
+margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:=
+decimal;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:=
+normal;font-variant-east-asian:normal;vertical-align:baseline;white-space:p=
+re"><p dir=3D"ltr" style=3D"line-height:1.295;margin-top:0pt;margin-bottom:=
+0pt"><span style=3D"background-color:transparent;font-variant-numeric:norma=
+l;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wr=
+ap"><font size=3D"1" face=3D"times new roman, serif">To stop network manage=
+r: sudo service network-manager stop</font></span></p></li><li dir=3D"ltr" =
+style=3D"list-style-type:decimal;color:rgb(0,0,0);background-color:transpar=
+ent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-ali=
+gn:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.295;marg=
+in-top:0pt;margin-bottom:0pt"><span style=3D"background-color:transparent;f=
+ont-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:ba=
+seline;white-space:pre-wrap"><font size=3D"1" face=3D"times new roman, seri=
+f">sudo ifconfig eth0 down (eth0 is a placeholder for the network you are r=
+eferring to)</font></span></p></li><li dir=3D"ltr" style=3D"list-style-type=
+:decimal;color:rgb(0,0,0);background-color:transparent;font-variant-numeric=
+:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space:=
+pre"><p dir=3D"ltr" style=3D"line-height:1.295;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"background-color:transparent;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-w=
+rap"><font size=3D"1" face=3D"times new roman, serif">setting IP via ifconf=
+ig utility. sudo ifconfig eth0 [static IP address: say 192.168.6.10] netmas=
+k [netmask - typically 255.255.255.0] up</font></span></p></li><li dir=3D"l=
+tr" style=3D"list-style-type:decimal;color:rgb(0,0,0);background-color:tran=
+sparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical=
+-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.295;=
+margin-top:0pt;margin-bottom:8pt"><span style=3D"background-color:transpare=
+nt;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-alig=
+n:baseline;white-space:pre-wrap"><font size=3D"1" face=3D"times new roman, =
+serif">ifconfig etho - check IP, netmask and gateway are all set correctly =
+(GW should be something like 192.168.6.1. If not set gateway explicitly via=
+ ifconfig)=C2=A0</font></span></p></li></ol><p dir=3D"ltr" style=3D"line-he=
+ight:1.295;margin-top:0pt;margin-bottom:8pt"><span style=3D"color:rgb(0,0,0=
+);background-color:transparent;font-variant-numeric:normal;font-variant-eas=
+t-asian:normal;vertical-align:baseline;white-space:pre-wrap"><font size=3D"=
+1" style=3D"" face=3D"times new roman, serif">The network manager might com=
+e back up on a reboot. You will have to issue the command on every reboot o=
+r check for other methods online for a persistent setting.</font></span></p=
+></span>Regards<br>Venkatesh</div></div><br><div class=3D"gmail_quote"><div=
+ dir=3D"ltr" class=3D"gmail_attr">On Thu, Sep 3, 2020 at 12:41 PM Venkatesh=
+ Sathyanarayanan &lt;<a href=3D"mailto:vesathya@eng.ucsd.edu">vesathya@eng.=
+ucsd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex">Thanks a lot Michael and cedric for taking time to answer my questi=
+ons.. I will try to stop the network manager and see if that helps.<div><br=
+></div><div>Regards</div><div>Venkatesh<br><br>On Thursday, September 3, 20=
+20, Michael Dickens &lt;<a href=3D"mailto:michael.dickens@ettus.com" target=
+=3D"_blank">michael.dickens@ettus.com</a>&gt; wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr">In my experience, this ha=
+ppens when the networking isn&#39;t stable, which can be for all sorts of r=
+easons:<div><br></div><div>* connectors / cables are flaky;</div><div><br><=
+/div><div>* host SW configuration isn&#39;t quite correct;</div><div><br></=
+div><div>* actual NIC has issues, HW or FW / configuration;</div><div><br><=
+/div><div>* USRP NIC has issues ... very rare, but it can happen;</div><div=
+><br></div><div>* USRP FPGA has issues ... again rare, but it can happen;</=
+div><div><br></div><div><div>* USRP filesystem has issues ... could be the =
+FS itself, or configuration=C2=A0... this happens sometimes &amp; is usuall=
+y=C2=A0resolved by overwriting the whole SDcard filesystem &amp; starting f=
+rom &quot;go&quot; there.</div><div><br></div><div></div></div><div>If you&=
+#39;re Linux has the network manager, that doesn&#39;t help things since it=
+ thinks it knows better than you what to be doing.</div><div><br></div><div=
+>There is no &quot;one size fits all&quot; answer unfortunately; just inves=
+tigate the networking &amp; make sure all of the parts are functional.</div=
+><div><br></div><div>Hope this is useful! - MLD</div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Sep 3, 2020 =
+at 3:30 AM Cedric Roux via USRP-users &lt;<a href=3D"mailto:usrp-users@list=
+s.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex">maybe network mana=
+ger (if you have that thing running) on the<br>
+computer doing funny things with the interface? I had this<br>
+issue with some 4g dongles in the past.<br>
+<br>
+On 2020-09-03 01:01, Venkatesh Sathyanarayanan via USRP-users wrote:<br>
+&gt; Hi,<br>
+&gt; <br>
+&gt; Small correction:<br>
+&gt; <br>
+&gt; *Questions:*<br>
+&gt; I notice that the test stops when the link goes down every 45 seconds.=
+ <br>
+&gt; This happens for all types of tests(with and without GUI).<br>
+&gt; Kindly let me know how to debug this - i.e. why the link goes down eve=
+ry <br>
+&gt; 45 seconds?<br>
+&gt; <br>
+&gt; Regards<br>
+&gt; Venkatesh<br>
+&gt; <br>
+&gt; On Wed, Sep 2, 2020 at 3:10 PM Venkatesh Sathyanarayanan <br>
+&gt; &lt;<a href=3D"mailto:vesathya@eng.ucsd.edu" target=3D"_blank">vesathy=
+a@eng.ucsd.edu</a> &lt;mailto:<a href=3D"mailto:vesathya@eng.ucsd.edu" targ=
+et=3D"_blank">vesathya@eng.ucsd.edu</a>&gt;&gt; wrote:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0Hi,<br>
+&gt; <br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0*Setup details:*<br>
+&gt;=C2=A0 =C2=A0 =C2=A0I am using an USRP N310 and I have the host compute=
+r connected to<br>
+&gt;=C2=A0 =C2=A0 =C2=A0the USRP via SFP cable. I additionally have a seria=
+l connection<br>
+&gt;=C2=A0 =C2=A0 =C2=A0between the two and have a screen session running.<=
+br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0*Observation:*<br>
+&gt;=C2=A0 =C2=A0 =C2=A0On the screen session, I noticed the following mess=
+ages:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2151.041079] nixge 40000000.ethernet sfp0: Link i=
+s Up -<br>
+&gt;=C2=A0 =C2=A0 =C2=A010Gbps/Full - flow control off<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2195.841088] nixge 40000000.ethernet sfp0: Link i=
+s Down<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2196.961090] nixge 40000000.ethernet sfp0: Link i=
+s Up -<br>
+&gt;=C2=A0 =C2=A0 =C2=A010Gbps/Full - flow control off<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2241.761098] nixge 40000000.ethernet sfp0: Link i=
+s Down<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2242.881106] nixge 40000000.ethernet sfp0: Link i=
+s Up -<br>
+&gt;=C2=A0 =C2=A0 =C2=A010Gbps/Full - flow control off<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2287.681109] nixge 40000000.ethernet sfp0: Link i=
+s Down<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2288.801114] nixge 40000000.ethernet sfp0: Link i=
+s Up -<br>
+&gt;=C2=A0 =C2=A0 =C2=A010Gbps/Full - flow control off<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2333.601129] nixge 40000000.ethernet sfp0: Link i=
+s Down<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2334.721127] nixge 40000000.ethernet sfp0: Link i=
+s Up -<br>
+&gt;=C2=A0 =C2=A0 =C2=A010Gbps/Full - flow control off<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2379.521132] nixge 40000000.ethernet sfp0: Link i=
+s Down<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2380.641137] nixge 40000000.ethernet sfp0: Link i=
+s Up -<br>
+&gt;=C2=A0 =C2=A0 =C2=A010Gbps/Full - flow control off<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2425.441143] nixge 40000000.ethernet sfp0: Link i=
+s Down<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2426.561149] nixge 40000000.ethernet sfp0: Link i=
+s Up -<br>
+&gt;=C2=A0 =C2=A0 =C2=A010Gbps/Full - flow control off<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2471.361159] nixge 40000000.ethernet sfp0: Link i=
+s Down<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2472.481166] nixge 40000000.ethernet sfp0: Link i=
+s Up -<br>
+&gt;=C2=A0 =C2=A0 =C2=A010Gbps/Full - flow control off<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2517.281166] nixge 40000000.ethernet sfp0: Link i=
+s Down<br>
+&gt;=C2=A0 =C2=A0 =C2=A0[ 2518.401171] nixge 40000000.ethernet sfp0: Link i=
+s Up -<br>
+&gt;=C2=A0 =C2=A0 =C2=A010Gbps/Full - flow control off<br>
+&gt;=C2=A0 =C2=A0 =C2=A0...................................................=
+...........................................................................=
+............................................<br>
+&gt;=C2=A0 =C2=A0 =C2=A0...................................................=
+...........................................................................=
+............................................<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0...................................................=
+...........................................................................=
+............................................<br>
+&gt;=C2=A0 =C2=A0 =C2=A0...................................................=
+...........................................................................=
+............................................<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0*Questions:*<br>
+&gt;=C2=A0 =C2=A0 =C2=A0When I have a GNU radio GRC running with an active =
+GUI displaying<br>
+&gt;=C2=A0 =C2=A0 =C2=A0the spectrum, I see that it halts at the time when =
+the link goes down.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0When I run a file with no GUI active - say IQ sampl=
+es saved to a<br>
+&gt;=C2=A0 =C2=A0 =C2=A0file, things running in the background and I do not=
+ see any<br>
+&gt;=C2=A0 =C2=A0 =C2=A0interruption.<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 1. Kindly let me know why I am seeing this issue o=
+f link going down<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0every 45 seconds and<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 2. also if this could potentially affect my tests =
+(all my tests are<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0without any GUI.)<br>
+&gt; <br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0Regards<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Venkatesh<br>
+&gt; <br>
+&gt; <br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
+n/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt; <br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
 
---000000000000eba7b605ae7041e3--
+--00000000000063934605ae70af4b--
 
 
---===============0839876300006337869==
+--===============2508869228866925551==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -448,5 +554,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0839876300006337869==--
+--===============2508869228866925551==--
 
