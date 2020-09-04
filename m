@@ -2,54 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 928B025DAE7
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Sep 2020 16:04:29 +0200 (CEST)
-Received: from [::1] (port=36622 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A12E25DCB8
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Sep 2020 17:04:01 +0200 (CEST)
+Received: from [::1] (port=36972 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kECKH-0006wy-8f; Fri, 04 Sep 2020 10:04:25 -0400
-Received: from cirse-smtp-out.extra.cea.fr ([132.167.192.148]:56748)
+	id 1kEDFu-0002BG-IT; Fri, 04 Sep 2020 11:03:58 -0400
+Received: from sanddollar.geekisp.com ([216.168.135.167]:36144)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <rodolphe.bertolini@cea.fr>)
- id 1kECKD-0006s8-IF
- for usrp-users@lists.ettus.com; Fri, 04 Sep 2020 10:04:21 -0400
-Received: from pisaure.intra.cea.fr (pisaure.intra.cea.fr [132.166.88.21])
- by cirse-sys.extra.cea.fr (8.14.7/8.14.7/CEAnet-Internet-out-4.0) with ESMTP
- id 084E3dWA031927
- for <usrp-users@lists.ettus.com>; Fri, 4 Sep 2020 16:03:39 +0200
-Received: from pisaure.intra.cea.fr (localhost [127.0.0.1])
- by localhost (Postfix) with SMTP id B8A0A204DA6
- for <usrp-users@lists.ettus.com>; Fri,  4 Sep 2020 16:03:39 +0200 (CEST)
-Received: from muguet1-smtp-out.intra.cea.fr (muguet1-smtp-out.intra.cea.fr
- [132.166.192.12])
- by pisaure.intra.cea.fr (Postfix) with ESMTP id ACB45204D6C
- for <usrp-users@lists.ettus.com>; Fri,  4 Sep 2020 16:03:39 +0200 (CEST)
-Received: from EXCAH-A2.intra.cea.fr (excah-a2.intra.cea.fr [132.166.88.76])
- by muguet1-sys.intra.cea.fr (8.14.7/8.14.7/CEAnet-Internet-out-4.0) with ESMTP
- id 084E3dM8025977
- for <usrp-users@lists.ettus.com>; Fri, 4 Sep 2020 16:03:39 +0200
-Received: from EXDAG0-B2.intra.cea.fr ([fe80::d079:8496:6c6c:9b1f]) by
- EXCAH-A2.intra.cea.fr ([fe80::1424:a20d:95ab:8077%10]) with mapi id
- 14.03.0487.000; Fri, 4 Sep 2020 16:03:39 +0200
-To: USRP list <usrp-users@lists.ettus.com>
-Thread-Topic: X310: HG image, both link were functional until this morning
-Thread-Index: AQHWgqGO5bmqOqzgRkm4+DEZrU72talYgwEa
-Date: Fri, 4 Sep 2020 14:03:38 +0000
-Message-ID: <F479266F97CCAE47854721C82406934E24CF53C6@EXDAG0-B2.intra.cea.fr>
-References: <F479266F97CCAE47854721C82406934E24CF534F@EXDAG0-B2.intra.cea.fr>
-In-Reply-To: <F479266F97CCAE47854721C82406934E24CF534F@EXDAG0-B2.intra.cea.fr>
-Accept-Language: fr-FR, en-US
-Content-Language: fr-FR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [132.166.88.110]
-x-tm-as-product-ver: SMEX-11.0.0.4179-8.100.1062-23234.003
-x-tm-as-result: No--5.896100-0.000000-31
-x-tm-as-user-approved-sender: Yes
-x-tm-as-user-blocked-sender: No
+ (Exim 4.93) (envelope-from <philip@opensdr.com>) id 1kEDFp-00024H-D9
+ for USRP-users@lists.ettus.com; Fri, 04 Sep 2020 11:03:53 -0400
+Received: (qmail 16278 invoked by uid 1003); 4 Sep 2020 15:03:17 -0000
+Received: from unknown (HELO ?192.168.11.139?)
+ (philip@opensdr.com@73.152.143.112)
+ by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
+ 4 Sep 2020 15:03:17 -0000
+To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Autocrypt: addr=philip@opensdr.com; prefer-encrypt=mutual; keydata=
+ mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+ HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+ rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+ 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+ fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+ AAG0JFBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQG9wZW5zZHIuY29tPokBPgQTAQIAKAIbIwYL
+ CQgHAwIGFQgCCQoLBBYCAwECHgECF4AFAlgzUPgFCREo52oACgkQwMl3iuvSZ6uB2AgAy9gW
+ ohjdrM5M86NbGPR6oysosmC6yabL1PBzRK/B86HwWaH29S71ptFvHfitbK37uWI/b3KGO18Q
+ d6cD9MM9da/G/zjTrakw9KMmZcY12Mtotm0vZjv8dzdqoyNZnIFlGNAT92zTLWUiUQqV8CvS
+ 1lxDubidjoyXlQi7YJmzQbETYsGZZmErRRjSK//fgl/ceaak0lPYnwuVlxuEOcqmREg5UfAf
+ AeFH0a6csdF3T9COH4bOQVNBwjUSCfs6jsTE/lw8ujZfhbFbFb/7/BYZYnfED1unj+6vrDRn
+ VI20tLTKmDG7vcE55HiaHvVmx+1rb1wDL8aspyoeg/bjGQv1mLkBDQROjzeBAQgA+z5kLRGA
+ XhuWtEiJUd2QBGdwDFTBJRu2Lkq7bd1DSIGLOjOHhga5yBbjyDGy8kKQJz2z/gL17e9iIJkZ
+ UYLzHouXe8TvHBFD965WonSZcbu00rXMA+lKAjpqig9JkJbs8G/Bjy4y/PMLM/4QF3T6gDm5
+ dBIRzI4lRjLht596ugdSIGMGTI136/aJol/sqMBhjEk5w++2er9UvT2GWa0IPnOCE6fzSu0u
+ oXroEmQeYBOilJbKivWrPuCajB0KQWRQkM1bvIlPXBUA2oN30/kDy9iGeDAlMey9dV+2a8GA
+ uImNi4qy3fobYA4eCbiWzmNExr+TuNa57VEozkvHOAG0tQARAQABiQElBBgBAgAPAhsMBQJY
+ M1FsBQkRKOfkAAoJEMDJd4rr0merWpgH/3dqIF16cC67Qf/MZYQUUHXhx2ENHhLirQRt9eXX
+ P2jcitrPDpYy0t7XbMnj9eXjUyH8gfz/4CAOeKCKyuQpE3VOSI4YNRWdLRqSSEwvc41t4V2h
+ xgTAEA8NPEBpY2jKMN79s5GiRImffVwWgbpBjLNRy3v2ekeittpdbTNb4oLvsOjnfJQpDz6J
+ xal+IIyTVjNIcKvTLk1k1XFpz1rT4gPMf9gFs10ks1oy9dy56B7VCrPzml1HQ/he4JVEPaNk
+ BtwYnNleW71nOkgeO1mjIXylolExDDNYQ7f9PGSyabsrx67xPPYlWmOI4iPjgw5MqhEYqM7p
+ 5R+vS7sLCcTKqJA=
+Message-ID: <30dc3ba4-1f68-448d-2f24-3bc3855302aa@opensdr.com>
+Date: Fri, 4 Sep 2020 11:03:10 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Subject: Re: [USRP-users] X310: HG image,
- both link were functional until this morning
+Content-Language: en-US
+Subject: [USRP-users] GPS Antenna for E310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,9 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: BERTOLINI Rodolphe via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: BERTOLINI Rodolphe <rodolphe.bertolini@cea.fr>
-Content-Type: multipart/mixed; boundary="===============0088100174383157696=="
+From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Philip Balister <philip@opensdr.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,137 +77,12 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0088100174383157696==
-Content-Language: fr-FR
-Content-Type: multipart/alternative;
-	boundary="_000_F479266F97CCAE47854721C82406934E24CF53C6EXDAG0B2intrace_"
+Is there a recommended GPA antenna for the E310? I had one but the dof
+ate it :(
 
---_000_F479266F97CCAE47854721C82406934E24CF53C6EXDAG0B2intrace_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Hi again,
-
-Sorry, followed https://kb.ettus.com/X300/X310_Device_Recovery and it now w=
-orks like a charm.
-
-Regards,
-Rodolphe
-________________________________
-De : USRP-users [usrp-users-bounces@lists.ettus.com] de la part de BERTOLIN=
-I Rodolphe via USRP-users [usrp-users@lists.ettus.com]
-Envoy=E9 : vendredi 4 septembre 2020 11:55
-=C0 : USRP list
-Objet : [USRP-users] X310: HG image, both link were functional until this m=
-orning
-
-Hello,
-
-I work with an X310 and OpenAirInterface. I use HG image, and switch from t=
-imes to times between 10Gb (when connected to a server) and 1Gb interface (=
-when connected to a laptop).
-It worked very fine during one year, and since this morning link leds don't=
- light up, neither port 1 nor port 2 (https://kb.ettus.com/Troubleshooting_=
-X300/X310_Device_Discovery_Issues)
-
-I didn't change anything between yesterday (working) and this morning (not =
-working).
-I triple-checked IP configurations, they are fine.
-
-Any hint?
-
-Thank you.
-Regards,
-Rodolphe
-
---_000_F479266F97CCAE47854721C82406934E24CF53C6EXDAG0B2intrace_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" id=3D"owaParaStyle"></style>
-</head>
-<body fpstyle=3D"1" ocsi=3D"0">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">
-<div>Hi again,</div>
-<div><br>
-</div>
-<div>Sorry, followed <a href=3D"https://kb.ettus.com/X300/X310_Device_Recov=
-ery" target=3D"_blank">
-https://kb.ettus.com/X300/X310_Device_Recovery</a> and it now works like a =
-charm.</div>
-<div><br>
-</div>
-<div>Regards,</div>
-<div>Rodolphe<br>
-</div>
-<div style=3D"font-family: Times New Roman; color: #000000; font-size: 16px=
-">
-<hr tabindex=3D"-1">
-<div id=3D"divRpF508086" style=3D"direction: ltr;"><font size=3D"2" face=3D=
-"Tahoma" color=3D"#000000"><b>De :</b> USRP-users [usrp-users-bounces@lists=
-.ettus.com] de la part de BERTOLINI Rodolphe via USRP-users [usrp-users@lis=
-ts.ettus.com]<br>
-<b>Envoy=E9 :</b> vendredi 4 septembre 2020 11:55<br>
-<b>=C0 :</b> USRP list<br>
-<b>Objet :</b> [USRP-users] X310: HG image, both link were functional until=
- this morning<br>
-</font><br>
-</div>
-<div></div>
-<div>
-<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
-0pt">
-<div>Hello,</div>
-<div><br>
-</div>
-<div>I work with an X310 and OpenAirInterface. I use HG image, and switch f=
-rom times to times between 10Gb (when connected to a server) and 1Gb interf=
-ace (when connected to a laptop).</div>
-<div>It worked very fine during one year, and since this morning link leds =
-don't light up, neither port 1 nor port 2 (<a href=3D"https://kb.ettus.com/=
-Troubleshooting_X300/X310_Device_Discovery_Issues" target=3D"_blank" rel=3D=
-"noopener noreferrer">https://kb.ettus.com/Troubleshooting_X300/X310_Device=
-_Discovery_Issues</a>)</div>
-<div><br>
-</div>
-<div>I didn't change anything between yesterday (working) and this morning =
-(not working).</div>
-<div>I triple-checked IP configurations, they are fine.</div>
-<div><br>
-</div>
-<div>Any hint?</div>
-<div><br>
-</div>
-<div>Thank you.<br>
-</div>
-<div>Regards,</div>
-<div>Rodolphe<br>
-</div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_F479266F97CCAE47854721C82406934E24CF53C6EXDAG0B2intrace_--
-
-
---===============0088100174383157696==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Philip
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============0088100174383157696==--
-
