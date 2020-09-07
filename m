@@ -2,85 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD23425F318
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Sep 2020 08:18:36 +0200 (CEST)
-Received: from [::1] (port=34422 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5548E25FF61
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Sep 2020 18:31:18 +0200 (CEST)
+Received: from [::1] (port=38760 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kFAU4-00045M-4D; Mon, 07 Sep 2020 02:18:32 -0400
-Received: from mail-eopbgr1390128.outbound.protection.outlook.com
- ([40.107.139.128]:20040 helo=IND01-BO1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <koyel.das@vehere.com>)
- id 1kFATz-00040k-Mo
- for usrp-users@lists.ettus.com; Mon, 07 Sep 2020 02:18:27 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AUpcd5BRBvhsOBgGF+Ohjcko9XZHJFgFlC9GQArFVJ+0qT6UVrL1q/v0vUjfjyvpmkaBaXa3CcpLe8f8Yp+yF4sKhXvG7it6A8VGjVeV5pR42uVYnY2l8bxIO7fMWBvjaMB2/U5njz6oRG1ox+vUOKxk7h7xNP0KrlnjOw8jWN1f6icVvkFt8PlDwbKRABZWH/kxZJ2KZKY7IqaHhgQMY5hPlcUnuqvR9lClFX8FBOhbK2raV3pINbJ0esue4eoqWDWK9Mfcu1ijDhC9OAt1ibOFHDenKOEysjjZdU8M6AaaJ+7dPbQ845jTwsE1bVb/24vQNf/zf6uYoR0Lo5HFww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dk4r1vVM+9L6vFRS8deSGqwIYx8iCO2kSwTOf+zOB2A=;
- b=jfM2n7a9pbX2C5hN7giJ9JRr//hfYMnIRU3hPsIZ4M3jLhGwYXhce9ohAJlDpKMjNewXb5oO6Qd4CPJfohyRMc2uhxBaecCWZnVBO/0ZLFazS1CitQevHkDFKiMcE9LecQ+63yFY0wxhYzGfWDLX5pMUf55u6XwkZWv6z0dx47zr/XkSqsMi9XTICUDhcikLD5rPCTXh4wwFphMhbXZxUUR2Kp7Fxp/AfNeDRWiqhcux1MBKdy+I+8dldnV/vQjIepzt2gvwih/EVTb245OQFOrckPcAHactg75NrTmRe4u43ym/XhEpTxMLfnxd9vqGhMrwNOLORNyhD9LHjUBDoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
- dkim=pass header.d=vehere.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=vehereinteractive.onmicrosoft.com;
- s=selector2-vehereinteractive-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dk4r1vVM+9L6vFRS8deSGqwIYx8iCO2kSwTOf+zOB2A=;
- b=QkjWnwcf32a0ioEOp5a5pwP6+SKBh/KLAnC7ks20f2RiaQmiYfl7F9FJAra6kC60xqMvL+oqstMd3sei8aHP1xjemyEF2vTnBgBNHdx8s2zUxdwoAvSrbAx+q3arYXrQwAXTf3e09VYKkNs5dIjpO5jpkEDAqyx2stwvCoHaMAY=
-Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3e::22)
- by MAXPR01MB3152.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:6c::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15; Mon, 7 Sep
- 2020 06:17:39 +0000
-Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::5d37:8959:e500:82fe]) by MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::5d37:8959:e500:82fe%5]) with mapi id 15.20.3348.019; Mon, 7 Sep 2020
- 06:17:39 +0000
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
- <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] USRP sensitivity
-Thread-Index: AQHWg5OMJebIind1hUCTMMLlf4n416laVpEAgAJebF8=
-Date: Mon, 7 Sep 2020 06:17:39 +0000
-Message-ID: <MA1PR01MB2588D546B056E4D5828FFBB990280@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
-References: <MA1PR01MB25887D46F7718F3B577EB766902A0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
- <5F53D2F2.2080107@gmail.com>
-In-Reply-To: <5F53D2F2.2080107@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=vehere.com;
-x-originating-ip: [42.110.139.115]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2b2a2833-0e77-4db1-fca4-08d852f5b8ca
-x-ms-traffictypediagnostic: MAXPR01MB3152:
-x-microsoft-antispam-prvs: <MAXPR01MB3152FEC8DFB643B30F4FBAFB90280@MAXPR01MB3152.INDPRD01.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:2657;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: jWDMXktHpQDD7xoEB3dUPv8NR/HCAvrdGzpXqJVANP1AlgpxL/xV5IjalUBAWHVwXHrtau09WLZA8BysQAqh8JJjaO/1huKjIL2+8PBLy4YB92Mdvyua2P/Ijb2NsNl/TjF0HMmhVeYBno0xW9jvTklIQ+S+BGI1+6qCJwjF/zmWK9jopjH/E8KVqwymzV8cOZgkNahz2QDeC5QetgPecEyZtaX340U3n2/dUvIDwJSd2oIzYhFNgMyWX7GSx9Q4AHExZ7HEOiKTdMJaDQCLFmjs/YzZ+TnFUQfge/JRQan6nokCplXvLB1O7Kgua/T8MZTvr2IPrpj1D5J/XBA9PgwIIPzKNO+OCMLAYsoXQDyyWXv7LTJWzAqfXvxVxfE0gnDggS9Gw5aUE3AQekqqxw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(376002)(346002)(366004)(136003)(39830400003)(396003)(55016002)(86362001)(316002)(71200400001)(166002)(478600001)(45080400002)(83380400001)(9686003)(33656002)(8936002)(52536014)(8676002)(5660300002)(2906002)(53546011)(6506007)(7696005)(26005)(64756008)(66476007)(66556008)(66446008)(76116006)(91956017)(66946007)(186003)(110136005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: npTTM3Ch+mgm+NTfjIzfIOiKLzpnpd9xsvi7w6Jl8ejMiwPVJMGek9FZjfDiHa9Scjaa695hy0We+zI4heeli3ZTFDn1i5NNVSHJ4GpN2pIHa8EFLoPHw1IyS/A9/XVtsByfOtpqfDCo8iEIcHmCmePCBSqe/mG8Q3tHBrbohFRvtHfq4ZTDrLKbNXAsTTNyiRnWKybkfWLzxXNFsi2hSnDklajhFqiM8UlKXPVZRHd5t7g+6RQDdFvQAiqFKx/M7HAz5A5234oXFGs1c5M4lFp6jRmdu1sC747hc2JLxbLDbe6/VuOSPE6xE5CfxDCEzMXEyI5yaYTCawi4RluoqJcGt7OevVFOknya1eFDv6DaC10TyCWha9w8fT8saLDv8RbeSWl0/o1jNcc4S933zhBNDGbfQt9Bvyllbv6SwQoMXKTwDP4bvbyWsGLDtTOIwJ0+CM6i5Z7i0iXV3FeuuCzKwkEFZ0+GT4jhu14hWx2PAiAiNonSXmuuhUvAKoTHmbOl1cVQhql1p5RmvXWTzRhBeoMYpiBrah0D95zSAYIimDpdMjStDAtfxb52wfffRuuAeeOD72knGt86oDzD85d4i9xXF4eM+zqiW+xnQnN9YCNMYxmjxO5sC26A/k+MUUsnxCGAglm/pQqLAAEmNw==
-x-ms-exchange-transport-forked: True
+	id 1kFK30-0004YE-3a; Mon, 07 Sep 2020 12:31:14 -0400
+Received: from mail-lf1-f42.google.com ([209.85.167.42]:38973)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <horvlint@gmail.com>) id 1kFK2w-0004U5-If
+ for usrp-users@lists.ettus.com; Mon, 07 Sep 2020 12:31:10 -0400
+Received: by mail-lf1-f42.google.com with SMTP id q8so7775299lfb.6
+ for <usrp-users@lists.ettus.com>; Mon, 07 Sep 2020 09:30:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=g2ksFpZ2EROKnnNXx6fL1TU4Dwy/v/cC3T2AmGuBGXY=;
+ b=KRH0lh6zG8deaa69Hzc2hOu+lrEz+YCYYamI95jcfa+0NPTlcybSg7xFVuwHErWTdG
+ /tNYVjkV1WTTs2xl0nmfr/cLqm1DEv/F66iUN+qNt4a+kuFoyfN4JdGlNPg9R6MjUX21
+ i2GphKT5fM0/iO5NHH4uHxNuO/d6sn5vXGVaGBYwFa22nlG9Wu+QcbY00jHZ/3By6fTo
+ E8OFIGMcFNdisv4KxR3N6quoVraOSXLXjjOna2xuD7VUqJHiCiVT3VfMS1FbGGH/oQNw
+ tMgDeNW0zUiOEcq1YReuOIKzmnE+3otOtGfV/gAUtAfWmexub8HLs1Uy6FT7nYaPYlT+
+ QMug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=g2ksFpZ2EROKnnNXx6fL1TU4Dwy/v/cC3T2AmGuBGXY=;
+ b=In82/AWPwg0yEILq3GWDQ0iGq/W8d2opjwwkyHnIwbfqAK/cW4PBZLk8TzzHm79t5z
+ vKc0WeFOJzV8XWhkGQ4AWvVSEQR7QFoEQVMqUjWaAnKB7O2jWIQ+eB+aUnc5eqsVQlPx
+ Zknu+emJZJFN4U2TrSs6cI3+xgEYWy6/ImQ7fjUvSKuAdkaFg+sfuY+ZNOxKosg1y1Zz
+ hIsCwHglFN5XYwgpXUmGjvdjIJ9RW3pfO3j6lcTdQN2VO5zD9z2vp+t0c5zm0+m7/OVn
+ BtMTgZ4PAgyFCGV+5q/GOfL/Sj+Vkacs+fkhiCy1yAFoNeKRszi4kJupQ1HR173/Aura
+ H2ww==
+X-Gm-Message-State: AOAM532f7ZaPq5J1yonM6lOo8Gr538CI+BPLsxoPIUxpGY+ra5Aj+qGl
+ uaaZ9QyKPwBRXrvqgYGUvLhpJdlwAYSUC9UPvcU=
+X-Google-Smtp-Source: ABdhPJzbi2tlTM7eDjPV0YU4VC0LCEy8P8ALqzy7wOs3Ptk57exOUz/VNK8RsTaZ/4jlF9icUld/md9KpZqgzu8XDUc=
+X-Received: by 2002:a19:ac4:: with SMTP id 187mr10449486lfk.102.1599496229244; 
+ Mon, 07 Sep 2020 09:30:29 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: vehere.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b2a2833-0e77-4db1-fca4-08d852f5b8ca
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2020 06:17:39.3121 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nlh8rWv5a/OlbmHnQ3w3bkFYXuo7+59O/ZVpbZGIlRCmyoV4/vZGP/GXG3PiO1AdrIl6eFyEVZk3qUPbiCTkFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAXPR01MB3152
-Subject: Re: [USRP-users] USRP sensitivity
+References: <CAL-X26Rgr9H=-bNKr2_O3OAaWc2=HZ1Ro7RQ_81UDkaFNWYodg@mail.gmail.com>
+ <CAB__hTT7RN1LN9ypf+-Ozc4ub7dQcH6RRMow0rz8ywheA2QwYg@mail.gmail.com>
+In-Reply-To: <CAB__hTT7RN1LN9ypf+-Ozc4ub7dQcH6RRMow0rz8ywheA2QwYg@mail.gmail.com>
+Date: Mon, 7 Sep 2020 18:30:18 +0200
+Message-ID: <CAL-X26SBhMr-FGWP6_-B9r20Xo3_XOwEAemEpfV0CYyGOaiHDg@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] N310 Late command/packet error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -92,9 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
-Content-Type: multipart/mixed; boundary="===============1178771070888756623=="
+From: =?utf-8?q?B=C3=A1lint_Horv=C3=A1th_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?QsOhbGludCBIb3J2w6F0aA==?= <horvlint@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4433938734844483553=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -108,227 +76,181 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1178771070888756623==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MA1PR01MB2588D546B056E4D5828FFBB990280MA1PR01MB2588INDP_"
+--===============4433938734844483553==
+Content-Type: multipart/alternative; boundary="0000000000009053cf05aebbbcdf"
 
---_000_MA1PR01MB2588D546B056E4D5828FFBB990280MA1PR01MB2588INDP_
-Content-Type: text/plain; charset="Windows-1252"
+--0000000000009053cf05aebbbcdf
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Marcus,
+Hello Rob,
 
-Thanks so much for the explanation. If IQ samples are not voltages then ofc=
-ourse I can=92t do this analysis. However, FYI I am using usrp 2955 and fre=
-quency is 2.4 GHz.
+Thank you very much for your advice. The benchmark test is working on all 4
+channels for 1 MSamp/sec, which is sufficient for the current application
+(though sometimes there are some S and U at startup). The ram drive did not
+solve the problem, however if I set a settling time for 1 (sec) for the
+txrx_loopback it started working for the 4 channels. In this case the RX
+starts only 1 sec after the TX. So it kind of seems like there is a problem
+at startup and after that everything is fine. I don't know if that makes
+sense though.
 
-Regards,
-Koyel
+I tried to make the settling time thing happen in gnuradio with
+issue_stream_cmd after init/start with a python snippet, but oddly there is
+a very short time at startup when both TX and RX are active, and the
+command seems to take effect only after that. Maybe I'm missing something
+here.
 
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Marcus D=
-. Leech via USRP-users <usrp-users@lists.ettus.com>
-Sent: Saturday, September 5, 2020 11:33:30 PM
-To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] USRP sensitivity
+So now I'm trying to merge and customize the txrx_loopback with the
+tx_samples from file examples hoping that it will work.
 
-On 09/05/2020 10:57 AM, Koyel Das (Vehere) via USRP-users wrote:
-Hi,
+Also I checked the CPU load with htop and it is only 15% on all 4 cores
+during the loopback.
 
-NI told me magnitude of IQ samples received in usrp is the voltage in volts=
-.
-The I/Q samples are *linearly proportional* to the antenna voltage.  But yo=
-u can't use an analysis like below to come to any conclusions
-  about absolute antenna voltage from the samples.
+Any further advice is still welcome!
 
+Balint
 
+Rob Kossler <rkossler@nd.edu> ezt =C3=ADrta (id=C5=91pont: 2020. szept. 3.,=
+ Cs,
+19:55):
 
-Info: Office wifi 10 m distant USRP 70 dB (power) gain gives 10^-3 (volts? =
-ie magnitude of IQ samples)
-
-Assume wifi transmits +20 dBm, isotropic radiator, isotropic receiving ante=
-nna
-
-Voltage expected at receiving antenna terminals in 50 ohm:
-
-Effective area receiving antenna: lambda^2 / (4 pi) =3D (0.125 m)^2 / (4 pi=
-) =3D 1.2e-3 m^2
-Power per area at 10 m distance =3D 0.01 W / (4 pi * (10 m)^2) =3D 8e-6 W/m=
-^2
-Received power =3D power per area * effective area =3D 8e-6 W/m^2 * 1.2e-3 =
-m^2 =3D 9.5e-9 W
-P =3D V^2/R 9.5e-9 W =3D V^2 / 50 ohm V =3D 7e-4 V is voltage across antenn=
-a terminals
-
-Voltage at ADC:
-
-Power gain =3D 70 dB -> voltage gain =3D 45 dB.
-7e-4 V at antenna terminal is amplified by factor 10^4.5, gives 22 V
-The ADCs are set to a reference voltage of 1.2V.  That's as much as they ca=
-n reasonably see.
-
-Also, you haven't said what USRP you're using, nor what frequency you're op=
-erating at.
-
-Further 70dB power gain =3D=3D 35dB voltage gain.
-
-I prefer to do this type of analysis with any of the online path-loss calcu=
-lator tools, and set both the TX and TX antenna gain to 0.
-
-Further, you can't infer the total system gain from the gain setting in the=
- API--that just sets a gain-setting hardware "variable", which in
-  most cases, is an attenuator.  Without knowing WHICH exact hardware you'r=
-e using, you simply cannot know what the exact system gain
-  is ahead of the ADC.
-
-But wait there's more.  Unless your sample-rate =3D=3D ADC clock rate, you'=
-ll be getting decimated samples, which will tend to reduce the
-  total power in the output channel, leading to lower-magnitude samples.
-
-
-
-
-
---_000_MA1PR01MB2588D546B056E4D5828FFBB990280MA1PR01MB2588INDP_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-</head>
-<body>
-<div dir=3D"ltr">
-<div></div>
-<div>
-<div>Hi Marcus,</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Thanks so much for the explanation. If IQ samples are not =
-voltages then ofcourse I can=92t do this analysis. However, FYI I am using =
-usrp 2955 and frequency is 2.4 GHz.</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Regards,</div>
-<div dir=3D"ltr">Koyel&nbsp;</div>
-<div><br>
-</div>
-<div class=3D"ms-outlook-ios-signature" id=3D"ms-outlook-mobile-signature">=
-Get <a href=3D"https://aka.ms/o0ukef">
-Outlook for iOS</a></div>
-</div>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
-sers-bounces@lists.ettus.com&gt; on behalf of Marcus D. Leech via USRP-user=
-s &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Sent:</b> Saturday, September 5, 2020 11:33:30 PM<br>
-<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
+> Hi B=C3=A1lint,
+> You may want to step backwards once more and run the "benchmark_rate"
+> utility with 4 channels with tx & rx rates at 1MHz.  This will eliminate
+> the file I/O considerations (both for tx and rx).  If benchmark_rate is
+> successful, see how high you can increase the rate. The n4200 is not a ve=
+ry
+> powerful CPU, so you might be significantly limited.  If you are using th=
+e
+> 1Gb interface, then the max sample rate you can achieve (assuming your CP=
+U
+> is not limiting you) for 4 channels is ~6.25 MS/s because of the 1Gb limi=
+t
+> (4 chan x 6.25MS/s x 4 bytes/sample x 8 bits/byte =3D 800Mb/s).
 >
-<b>Subject:</b> Re: [USRP-users] USRP sensitivity</font>
-<div>&nbsp;</div>
-</div>
-<div style=3D"background-color:#FFFFFF">
-<div class=3D"x_moz-cite-prefix">On 09/05/2020 10:57 AM, Koyel Das (Vehere)=
- via USRP-users wrote:<br>
-</div>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">
-<div>
-<div>Hi,</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">NI told me magnitude of IQ samples received in usrp is the=
- voltage in volts.</div>
-</div>
-</div>
-</blockquote>
-The I/Q samples are *linearly proportional* to the antenna voltage.&nbsp; B=
-ut you can't use an analysis like below to come to any conclusions<br>
-&nbsp; about absolute antenna voltage from the samples.<br>
-<br>
-<br>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">
-<div>
-<div dir=3D"ltr"><br>
-</div>
-<div><span style=3D"font-size:14.666666984558105px; display:inline!importan=
-t">Info: Office wifi 10 m distant USRP 70 dB (power) gain gives 10^-3 (volt=
-s? ie magnitude of IQ samples)</span><br style=3D"font-size:14.666666984558=
-105px">
-<br style=3D"font-size:14.666666984558105px">
-<span style=3D"font-size:14.666666984558105px; display:inline!important">As=
-sume wifi transmits +20 dBm, isotropic radiator, isotropic receiving antenn=
-a</span><br style=3D"font-size:14.666666984558105px">
-<br style=3D"font-size:14.666666984558105px">
-<span style=3D"font-size:14.666666984558105px; display:inline!important">Vo=
-ltage expected at receiving antenna terminals in 50 ohm:</span><br style=3D=
-"font-size:14.666666984558105px">
-<br style=3D"font-size:14.666666984558105px">
-<span style=3D"font-size:14.666666984558105px; display:inline!important">Ef=
-fective area receiving antenna: lambda^2 / (4 pi) =3D (0.125 m)^2 / (4 pi) =
-=3D 1.2e-3 m^2</span><br style=3D"font-size:14.666666984558105px">
-<span style=3D"font-size:14.666666984558105px; display:inline!important">Po=
-wer per area at 10 m distance =3D 0.01 W / (4 pi * (10 m)^2) =3D 8e-6 W/m^2=
-</span><br style=3D"font-size:14.666666984558105px">
-<span style=3D"font-size:14.666666984558105px; display:inline!important">Re=
-ceived power =3D power per area * effective area =3D 8e-6 W/m^2 * 1.2e-3 m^=
-2 =3D 9.5e-9 W</span><br style=3D"font-size:14.666666984558105px">
-<span style=3D"font-size:14.666666984558105px; display:inline!important">P =
-=3D V^2/R 9.5e-9 W =3D V^2 / 50 ohm V =3D 7e-4 V is voltage across antenna =
-terminals</span><br style=3D"font-size:14.666666984558105px">
-<br style=3D"font-size:14.666666984558105px">
-<span style=3D"font-size:14.666666984558105px; display:inline!important">Vo=
-ltage at ADC:</span><br style=3D"font-size:14.666666984558105px">
-<br style=3D"font-size:14.666666984558105px">
-<span style=3D"font-size:14.666666984558105px; display:inline!important">Po=
-wer gain =3D 70 dB -&gt; voltage gain =3D 45 dB.</span><br style=3D"font-si=
-ze:14.666666984558105px">
-<span style=3D"font-size:14.666666984558105px; display:inline!important">7e=
--4 V at antenna terminal is amplified by factor 10^4.5, gives 22 V</span></=
-div>
-</div>
-</div>
-</blockquote>
-The ADCs are set to a reference voltage of 1.2V.&nbsp; That's as much as th=
-ey can reasonably see.<br>
-<br>
-Also, you haven't said what USRP you're using, nor what frequency you're op=
-erating at.<br>
-<br>
-Further 70dB power gain =3D=3D 35dB voltage gain.<br>
-<br>
-I prefer to do this type of analysis with any of the online path-loss calcu=
-lator tools, and set both the TX and TX antenna gain to 0.<br>
-<br>
-Further, you can't infer the total system gain from the gain setting in the=
- API--that just sets a gain-setting hardware &quot;variable&quot;, which in=
-<br>
-&nbsp; most cases, is an attenuator.&nbsp; Without knowing WHICH exact hard=
-ware you're using, you simply cannot know what the exact system gain<br>
-&nbsp; is ahead of the ADC.<br>
-<br>
-But wait there's more.&nbsp; Unless your sample-rate =3D=3D ADC clock rate,=
- you'll be getting decimated samples, which will tend to reduce the<br>
-&nbsp; total power in the output channel, leading to lower-magnitude sample=
-s.<br>
-<br>
-<br>
-<br>
-<br>
-</div>
-</body>
-</html>
+> Once you are satisfied with the USRP streaming rates, you can try putting
+> your tx and rx files in a ram drive in order to improve the file I/O so
+> that it does not impact overall performance appreciably. Then retry
+> txrx_loopback_to_file.
+> Rob
+>
+>
+> On Thu, Sep 3, 2020 at 3:23 AM B=C3=A1lint Horv=C3=A1th via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hello,
+>>
+>> I have a USRP N310 and in my application I want to do a 4 channel
+>> loopback. Transmit sources are files and the received samples are
+>> processed. However, I ran into stability issues receiving a lot of Late
+>> packet errors (LLLLL). To trace the problem I executed the basic UHD
+>> example txrx_loopback_to_file on 4 channels with 1Msamp/sec sample rate.
+>> There every time I got ERROR_CODE_LATE_COMMAND. When I executed it for 3
+>> channels I got it working, though on some occasions the same error would
+>> occur. With netstat I see that in case I receive the L-s, the UDP packet
+>> error is increasing.
+>>
+>> After reading through the manual and threads I tried several things but
+>> could not resolve the issue.
+>> - I set the net.core.rmem_max and wmem_max as suggested
+>> - I set the MTU on both host and N310 to 8000 (also tried 1500)
+>> - I put the CPU to performance mode with cpupower
+>>
+>> My system config is:
+>> - Ubuntu 20.04, UHD version 3.15, (gnuradio installed with apt)
+>> - quad core intel n4200, 8GB RAM
+>> - N310 is loaded with default HG firmware (sfp0 is 1GBit)
+>>
+>> Do you have any tips on how to resolve this?
+>>
+>> Thanks!
+>>
+>> Balint
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
 
---_000_MA1PR01MB2588D546B056E4D5828FFBB990280MA1PR01MB2588INDP_--
+--0000000000009053cf05aebbbcdf
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello Rob,<div><br></div><div>Thank you very much for your=
+ advice. The benchmark test is working on all 4 channels for 1 MSamp/sec, w=
+hich is sufficient for the current application (though sometimes there are =
+some S and U at startup). The ram drive did not solve the problem, however =
+if I set a settling time for 1 (sec) for the txrx_loopback it started worki=
+ng for the 4 channels. In this case the RX starts only 1 sec after the TX. =
+So it kind of seems like there is a problem at startup and after that every=
+thing is fine. I don&#39;t know if that makes sense though.=C2=A0</div><div=
+><br></div><div>I tried to make the settling time thing happen in gnuradio =
+with issue_stream_cmd after init/start with a python snippet, but oddly the=
+re is a very short time at startup when both TX and RX are active, and the =
+command seems to take effect only after that. Maybe I&#39;m missing somethi=
+ng here.</div><div><br></div><div>So now I&#39;m trying to merge and custom=
+ize the txrx_loopback with the tx_samples from file examples hoping that it=
+ will work.</div><div><br></div><div>Also I checked the CPU load with htop =
+and it is only 15% on all 4 cores during the loopback.=C2=A0</div><div><br>=
+</div><div>Any further advice is still welcome!</div><div><br></div><div>Ba=
+lint</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
+ail_attr">Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.ed=
+u</a>&gt; ezt =C3=ADrta (id=C5=91pont: 2020. szept. 3., Cs, 19:55):<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204)=
+;padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi B=C3=A1lint,<div>Yo=
+u may want to step backwards once more and run the &quot;benchmark_rate&quo=
+t; utility with 4 channels with tx &amp; rx rates at 1MHz.=C2=A0 This will =
+eliminate the file I/O considerations (both for tx and rx).=C2=A0 If benchm=
+ark_rate is successful, see how high you can increase the rate. The n4200 i=
+s not a very powerful CPU, so you might be significantly limited.=C2=A0 If =
+you are using the 1Gb interface, then the max sample rate you can achieve (=
+assuming your CPU is not limiting you) for 4 channels is ~6.25 MS/s because=
+ of the 1Gb limit (4 chan x 6.25MS/s x 4 bytes/sample x 8 bits/byte =3D 800=
+Mb/s).</div><div><br></div><div>Once you are satisfied with the USRP stream=
+ing rates, you can try putting your tx and rx files in a ram drive in order=
+ to improve the file I/O so that it does not impact overall performance app=
+reciably. Then retry txrx_loopback_to_file.</div><div>Rob</div><div><br></d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Thu, Sep 3, 2020 at 3:23 AM B=C3=A1lint Horv=C3=A1th via USRP-users &=
+lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-use=
+rs@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style=
+:solid;border-left-color:rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I have a USRP N310 =
+and in my application I want to do a 4 channel loopback. Transmit sources a=
+re files and the received samples are processed. However, I ran into stabil=
+ity issues receiving a lot of Late packet errors (LLLLL). To trace the prob=
+lem I executed the basic UHD example txrx_loopback_to_file on 4 channels wi=
+th 1Msamp/sec sample rate. There every time I got ERROR_CODE_LATE_COMMAND. =
+When I executed it for 3 channels I got it working, though on some occasion=
+s the same error would occur. With netstat I see that in case I receive the=
+ L-s, the UDP packet error is increasing.</div><div><br></div><div>After re=
+ading through the manual and threads I tried several things but could not r=
+esolve the issue.</div><div>- I set the net.core.rmem_max and wmem_max as s=
+uggested</div><div>- I set the MTU on both host and N310 to 8000 (also trie=
+d 1500)</div><div>- I put the CPU to performance mode with cpupower</div><d=
+iv><br></div><div>My system config is:</div><div>- Ubuntu 20.04, UHD versio=
+n 3.15, (gnuradio installed with apt)</div><div>- quad core intel n4200, 8G=
+B RAM</div><div>- N310 is loaded with default HG firmware (sfp0 is 1GBit)</=
+div><div><br></div><div>Do you have any tips on how to resolve this?</div><=
+div><br></div><div>Thanks!</div><div><br></div><div>Balint</div></div></div=
+>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+</blockquote></div>
+
+--0000000000009053cf05aebbbcdf--
 
 
---===============1178771070888756623==
+--===============4433938734844483553==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -339,5 +261,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1178771070888756623==--
+--===============4433938734844483553==--
 
