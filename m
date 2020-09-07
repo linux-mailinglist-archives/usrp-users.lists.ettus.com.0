@@ -2,54 +2,85 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5918225F187
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Sep 2020 03:41:33 +0200 (CEST)
-Received: from [::1] (port=60726 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD23425F318
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Sep 2020 08:18:36 +0200 (CEST)
+Received: from [::1] (port=34422 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kF69x-0000zZ-0y; Sun, 06 Sep 2020 21:41:29 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:34382)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1kF69t-0000ut-NH
- for usrp-users@lists.ettus.com; Sun, 06 Sep 2020 21:41:25 -0400
-Received: by mail-oi1-f182.google.com with SMTP id n2so926243oij.1
- for <usrp-users@lists.ettus.com>; Sun, 06 Sep 2020 18:41:05 -0700 (PDT)
+	id 1kFAU4-00045M-4D; Mon, 07 Sep 2020 02:18:32 -0400
+Received: from mail-eopbgr1390128.outbound.protection.outlook.com
+ ([40.107.139.128]:20040 helo=IND01-BO1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <koyel.das@vehere.com>)
+ id 1kFATz-00040k-Mo
+ for usrp-users@lists.ettus.com; Mon, 07 Sep 2020 02:18:27 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AUpcd5BRBvhsOBgGF+Ohjcko9XZHJFgFlC9GQArFVJ+0qT6UVrL1q/v0vUjfjyvpmkaBaXa3CcpLe8f8Yp+yF4sKhXvG7it6A8VGjVeV5pR42uVYnY2l8bxIO7fMWBvjaMB2/U5njz6oRG1ox+vUOKxk7h7xNP0KrlnjOw8jWN1f6icVvkFt8PlDwbKRABZWH/kxZJ2KZKY7IqaHhgQMY5hPlcUnuqvR9lClFX8FBOhbK2raV3pINbJ0esue4eoqWDWK9Mfcu1ijDhC9OAt1ibOFHDenKOEysjjZdU8M6AaaJ+7dPbQ845jTwsE1bVb/24vQNf/zf6uYoR0Lo5HFww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dk4r1vVM+9L6vFRS8deSGqwIYx8iCO2kSwTOf+zOB2A=;
+ b=jfM2n7a9pbX2C5hN7giJ9JRr//hfYMnIRU3hPsIZ4M3jLhGwYXhce9ohAJlDpKMjNewXb5oO6Qd4CPJfohyRMc2uhxBaecCWZnVBO/0ZLFazS1CitQevHkDFKiMcE9LecQ+63yFY0wxhYzGfWDLX5pMUf55u6XwkZWv6z0dx47zr/XkSqsMi9XTICUDhcikLD5rPCTXh4wwFphMhbXZxUUR2Kp7Fxp/AfNeDRWiqhcux1MBKdy+I+8dldnV/vQjIepzt2gvwih/EVTb245OQFOrckPcAHactg75NrTmRe4u43ym/XhEpTxMLfnxd9vqGhMrwNOLORNyhD9LHjUBDoA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
+ dkim=pass header.d=vehere.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Rlt3sjnwD81QE+NXWTr1oVcjTH3hq65NotrFxWNrf+8=;
- b=WmBVwVcRxlEKFxD3g2IV5ooVsbYBcPKb1axSx3trxmg3NtZxvLOS8/FAEbNmD3zJTg
- rUT3nWry+3Rs/gFv2yBETw5gsI4BNd9NX8yA0r5PP7zfSn+oa9tgxZLqbYMliEB1QJna
- nhgK10Ss47bwvWYphLr77jtmDTwejaUtSuzK0Eq4D9qH+1lo7Zst5Qk24d5HY74S7Qk/
- EGjDpCcErBy0VtaS0ymtsTfccRMQqYOzE5eIGNx8Otrhc9ZJ8M8BONsn6uBu0EqCtZSd
- id2/XGdWxFIOgeBxuFD0EIXpQqyAacXQWc6g8SyvrnllG2YmKzsGcIIhbxxFH8MIqUME
- RxBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Rlt3sjnwD81QE+NXWTr1oVcjTH3hq65NotrFxWNrf+8=;
- b=l1Wn7PP6wg/5bKWNfwm8gl5fvaWLLZOBCWB+wSgO/wdEUZUML4k3Lub9b4ASD84MZg
- aaTTEK9AC9e5UxMpgNnMC+DmVITMSt5dmdl/qPDOqRiNsTaXwzkKTZyBoyr63ofDhN2b
- 72JpSbsDC7YtwF2FSXxwLDRd4UAwc8wQLAInvgLkldCCjSH2KGf1k4A6G/UY0zzXPvGi
- 8wtCxxwGI6oAqci8iF262vtsDhQyrayQFgWRyZ72tq+36eB+tSerc/Szc/OZSLAUvkrU
- fD+Y1yykZX3kjZImxaH1Iorw70L/p+sg7z0Msw5zr9ceqYzJIWzJeQklfj61cdRfpCwK
- xBXw==
-X-Gm-Message-State: AOAM530epssRscMyajbCuwvm6nO8xEpc/s0/ZNDgERVKZrefPWXrZkec
- FOr+UTJQdM2x5Ky3OOlyUSxkuFAH3GFOmosez5Ay0BjL
-X-Google-Smtp-Source: ABdhPJw1R7zIQnHovYyQlDIEVB2Syy2FF2BtJGjuMOMtvUsp3TGRpRWa9JRqBnQTG15gBbxpl10W5snSbbTWrk4TGb8=
-X-Received: by 2002:a54:4086:: with SMTP id i6mr11260665oii.62.1599442844959; 
- Sun, 06 Sep 2020 18:40:44 -0700 (PDT)
+ d=vehereinteractive.onmicrosoft.com;
+ s=selector2-vehereinteractive-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dk4r1vVM+9L6vFRS8deSGqwIYx8iCO2kSwTOf+zOB2A=;
+ b=QkjWnwcf32a0ioEOp5a5pwP6+SKBh/KLAnC7ks20f2RiaQmiYfl7F9FJAra6kC60xqMvL+oqstMd3sei8aHP1xjemyEF2vTnBgBNHdx8s2zUxdwoAvSrbAx+q3arYXrQwAXTf3e09VYKkNs5dIjpO5jpkEDAqyx2stwvCoHaMAY=
+Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3e::22)
+ by MAXPR01MB3152.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:6c::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15; Mon, 7 Sep
+ 2020 06:17:39 +0000
+Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::5d37:8959:e500:82fe]) by MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::5d37:8959:e500:82fe%5]) with mapi id 15.20.3348.019; Mon, 7 Sep 2020
+ 06:17:39 +0000
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
+ <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] USRP sensitivity
+Thread-Index: AQHWg5OMJebIind1hUCTMMLlf4n416laVpEAgAJebF8=
+Date: Mon, 7 Sep 2020 06:17:39 +0000
+Message-ID: <MA1PR01MB2588D546B056E4D5828FFBB990280@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+References: <MA1PR01MB25887D46F7718F3B577EB766902A0@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>,
+ <5F53D2F2.2080107@gmail.com>
+In-Reply-To: <5F53D2F2.2080107@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=vehere.com;
+x-originating-ip: [42.110.139.115]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2b2a2833-0e77-4db1-fca4-08d852f5b8ca
+x-ms-traffictypediagnostic: MAXPR01MB3152:
+x-microsoft-antispam-prvs: <MAXPR01MB3152FEC8DFB643B30F4FBAFB90280@MAXPR01MB3152.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:2657;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jWDMXktHpQDD7xoEB3dUPv8NR/HCAvrdGzpXqJVANP1AlgpxL/xV5IjalUBAWHVwXHrtau09WLZA8BysQAqh8JJjaO/1huKjIL2+8PBLy4YB92Mdvyua2P/Ijb2NsNl/TjF0HMmhVeYBno0xW9jvTklIQ+S+BGI1+6qCJwjF/zmWK9jopjH/E8KVqwymzV8cOZgkNahz2QDeC5QetgPecEyZtaX340U3n2/dUvIDwJSd2oIzYhFNgMyWX7GSx9Q4AHExZ7HEOiKTdMJaDQCLFmjs/YzZ+TnFUQfge/JRQan6nokCplXvLB1O7Kgua/T8MZTvr2IPrpj1D5J/XBA9PgwIIPzKNO+OCMLAYsoXQDyyWXv7LTJWzAqfXvxVxfE0gnDggS9Gw5aUE3AQekqqxw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(376002)(346002)(366004)(136003)(39830400003)(396003)(55016002)(86362001)(316002)(71200400001)(166002)(478600001)(45080400002)(83380400001)(9686003)(33656002)(8936002)(52536014)(8676002)(5660300002)(2906002)(53546011)(6506007)(7696005)(26005)(64756008)(66476007)(66556008)(66446008)(76116006)(91956017)(66946007)(186003)(110136005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: npTTM3Ch+mgm+NTfjIzfIOiKLzpnpd9xsvi7w6Jl8ejMiwPVJMGek9FZjfDiHa9Scjaa695hy0We+zI4heeli3ZTFDn1i5NNVSHJ4GpN2pIHa8EFLoPHw1IyS/A9/XVtsByfOtpqfDCo8iEIcHmCmePCBSqe/mG8Q3tHBrbohFRvtHfq4ZTDrLKbNXAsTTNyiRnWKybkfWLzxXNFsi2hSnDklajhFqiM8UlKXPVZRHd5t7g+6RQDdFvQAiqFKx/M7HAz5A5234oXFGs1c5M4lFp6jRmdu1sC747hc2JLxbLDbe6/VuOSPE6xE5CfxDCEzMXEyI5yaYTCawi4RluoqJcGt7OevVFOknya1eFDv6DaC10TyCWha9w8fT8saLDv8RbeSWl0/o1jNcc4S933zhBNDGbfQt9Bvyllbv6SwQoMXKTwDP4bvbyWsGLDtTOIwJ0+CM6i5Z7i0iXV3FeuuCzKwkEFZ0+GT4jhu14hWx2PAiAiNonSXmuuhUvAKoTHmbOl1cVQhql1p5RmvXWTzRhBeoMYpiBrah0D95zSAYIimDpdMjStDAtfxb52wfffRuuAeeOD72knGt86oDzD85d4i9xXF4eM+zqiW+xnQnN9YCNMYxmjxO5sC26A/k+MUUsnxCGAglm/pQqLAAEmNw==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CAB__hTTxYJoOW1Sk64CGui+1iH7P+i_frNjrF8RbyO4TunUeOA@mail.gmail.com>
- <CAFche=jzoK9A_d9GH8-n-0V9B4T553LU9V0scO_oH_29BcYc4g@mail.gmail.com>
- <CAB__hTQMTJSxHusMh5Ck_yKQQ70OseUE=bGND6cCrQpVxdyEDg@mail.gmail.com>
-In-Reply-To: <CAB__hTQMTJSxHusMh5Ck_yKQQ70OseUE=bGND6cCrQpVxdyEDg@mail.gmail.com>
-Date: Sun, 6 Sep 2020 20:40:34 -0500
-Message-ID: <CAFche=g5FvqUAy+b4H2i950hJ3r2pqJ0TW+0DMx9t=XS+P0cUg@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Using Replay block in UHD-4.0
+X-OriginatorOrg: vehere.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b2a2833-0e77-4db1-fca4-08d852f5b8ca
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2020 06:17:39.3121 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: nlh8rWv5a/OlbmHnQ3w3bkFYXuo7+59O/ZVpbZGIlRCmyoV4/vZGP/GXG3PiO1AdrIl6eFyEVZk3qUPbiCTkFg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAXPR01MB3152
+Subject: Re: [USRP-users] USRP sensitivity
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,9 +92,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Wade Fife <wade.fife@ettus.com>
-Content-Type: multipart/mixed; boundary="===============5895169367103833057=="
+From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
+Content-Type: multipart/mixed; boundary="===============1178771070888756623=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,463 +108,227 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5895169367103833057==
-Content-Type: multipart/alternative; boundary="0000000000009cdcd205aeaf4eeb"
+--===============1178771070888756623==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MA1PR01MB2588D546B056E4D5828FFBB990280MA1PR01MB2588INDP_"
 
---0000000000009cdcd205aeaf4eeb
-Content-Type: text/plain; charset="UTF-8"
-
-No, I'm not aware of anyone who's tried 4 channels simultaneously yet.
-
-Wade
-
-On Fri, Sep 4, 2020 at 6:18 PM Rob Kossler <rkossler@nd.edu> wrote:
-
-> Hi Wade,
-> Thanks for the info. Sounds like I might need to wait for the fixes that
-> will allow multiple DRAM ports to work.
->
-> Do you know if anyone has tested for the possibility of simultaneous play
-> of 4 channels at 125 MS/s using Replay blocks on the N310 (assuming that we
-> are not simultaneously loading new samples but only playing out)?
-> Rob
->
-> On Fri, Sep 4, 2020 at 5:15 PM Wade Fife <wade.fife@ettus.com> wrote:
->
->> Hi Rob,
->>
->> We actually just added the Replay to the default images, so that should
->> show up in the next release candidate, along with some fixes that will
->> allow multiple DRAM ports to work. It looks like you're missing the
->> connection to the DRAM data port. Here's an example of what to add for each
->> Replay block to the connections:
->>
->> - { srcblk: replay0, srcport: axi_ram, dstblk: _device_, dstport: dram }
->>
->> Also, make sure that MEM_ADDR_W matches the size of the memory on the
->> device (so it should be 31 for N3xx) series.
->>
->> Thanks,
->>
->> Wade
->>
->>
->> On Thu, Sep 3, 2020 at 5:28 PM Rob Kossler via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
->>
->>> Hi,
->>> I am having trouble using rfnoc_replay_samples_from_file with a custom
->>> FPGA image I built (N310 XG - UHD-4.0). I used rfnoc_image_builder and
->>> manually modified the yml (see below) to include two 2-channel Replay
->>> blocks in addition to the default statically linked blocks. When I try to
->>> run the rfnoc_replay_samples_from_file example, I get the following error.
->>> Any ideas?
->>> Rob
->>>
->>> // ************* rfnoc_samples_from_file output **************
->>> $ rfnoc_replay_samples_from_file --args="addr=192.168.61.2" --file
->>> /media/ramfolder/tx_0.dat --freq 2400e6 --rate 125e6
->>> ...
->>> Replay file size:     32768 bytes (4096 qwords, 8192 samples)
->>> Record base address:  0x0
->>> Record buffer size:   32768 bytes
->>> Record fullness:      0 bytes
->>>
->>> Emptying record buffer...
->>> Record fullness:      0 bytes
->>>
->>> Sending data to be recorded...
->>> ERROR: Unable to send 8192 samples
->>>
->>>
->>> // *************  yml file used in rfnoc_image_builder ************
->>> # General parameters
->>> # -----------------------------------------
->>> schema: rfnoc_imagebuilder_args         # Identifier for the schema used
->>> to validate this file
->>> copyright: 'Ettus Research, A National Instruments Brand' # Copyright
->>> information used in file headers
->>> license: 'SPDX-License-Identifier: LGPL-3.0-or-later' # License
->>> information used in file headers
->>> version: 1.0                            # File version
->>> rfnoc_version: 1.0                      # RFNoC protocol version
->>> chdr_width: 64                          # Bit width of the CHDR bus for
->>> this image
->>> device: 'n310'
->>> default_target: 'N310_XG'
->>>
->>> # A list of all stream endpoints in design
->>> # ----------------------------------------
->>> stream_endpoints:
->>>   ep0:                       # Stream endpoint name
->>>     ctrl: True                      # Endpoint passes control traffic
->>>     data: True                      # Endpoint passes data traffic
->>>     buff_size: 32768                # Ingress buffer size for data
->>>   ep1:                       # Stream endpoint name
->>>     ctrl: False                     # Endpoint passes control traffic
->>>     data: True                      # Endpoint passes data traffic
->>>     buff_size: 32768                # Ingress buffer size for data
->>>   ep2:                       # Stream endpoint name
->>>     ctrl: False                     # Endpoint passes control traffic
->>>     data: True                      # Endpoint passes data traffic
->>>     buff_size: 32768                # Ingress buffer size for data
->>>   ep3:                       # Stream endpoint name
->>>     ctrl: False                     # Endpoint passes control traffic
->>>     data: True                      # Endpoint passes data traffic
->>>     buff_size: 32768                # Ingress buffer size for data
->>>   ep4:                       # Stream endpoint name
->>>     ctrl: False                     # Endpoint passes control traffic
->>>     data: True                      # Endpoint passes data traffic
->>>     buff_size: 256                  # Ingress buffer size for data
->>>   ep5:                       # Stream endpoint name
->>>     ctrl: False                     # Endpoint passes control traffic
->>>     data: True                      # Endpoint passes data traffic
->>>     buff_size: 256                  # Ingress buffer size for data
->>>   ep6:                       # Stream endpoint name
->>>     ctrl: False                     # Endpoint passes control traffic
->>>     data: True                      # Endpoint passes data traffic
->>>     buff_size: 256                  # Ingress buffer size for data
->>>   ep7:                       # Stream endpoint name
->>>     ctrl: False                     # Endpoint passes control traffic
->>>     data: True                      # Endpoint passes data traffic
->>>     buff_size: 256                  # Ingress buffer size for data
->>>
->>> # A list of all NoC blocks in design
->>> # ----------------------------------
->>> noc_blocks:
->>>   duc0:                      # NoC block name
->>>     block_desc: 'duc.yml'    # Block device descriptor file
->>>     parameters:
->>>       NUM_PORTS: 2
->>>   ddc0:
->>>     block_desc: 'ddc.yml'
->>>     parameters:
->>>       NUM_PORTS: 2
->>>   radio0:
->>>     block_desc: 'radio_2x64.yml'
->>>   duc1:
->>>     block_desc: 'duc.yml'
->>>     parameters:
->>>       NUM_PORTS: 2
->>>   ddc1:
->>>     block_desc: 'ddc.yml'
->>>     parameters:
->>>       NUM_PORTS: 2
->>>   radio1:
->>>     block_desc: 'radio_2x64.yml'
->>>   replay0:
->>>     block_desc: 'replay.yml'
->>>     parameters:
->>>       NUM_PORTS: 2
->>>       MEM_DATA_W: 64
->>>       MEM_ADDR_W: 30
->>>   replay1:
->>>     block_desc: 'replay.yml'
->>>     parameters:
->>>       NUM_PORTS: 2
->>>       MEM_DATA_W: 64
->>>       MEM_ADDR_W: 30
->>>
->>> # A list of all static connections in design
->>> # ------------------------------------------
->>> # Format: A list of connection maps (list of key-value pairs) with the
->>> following keys
->>> #         - srcblk  = Source block to connect
->>> #         - srcport = Port on the source block to connect
->>> #         - dstblk  = Destination block to connect
->>> #         - dstport = Port on the destination block to connect
->>> connections:
->>>   - { srcblk: ep0,    srcport: out0,  dstblk: duc0,   dstport: in_0 }
->>>   - { srcblk: duc0,   srcport: out_0, dstblk: radio0, dstport: in_0 }
->>>   - { srcblk: radio0, srcport: out_0, dstblk: ddc0,   dstport: in_0 }
->>>   - { srcblk: ddc0,   srcport: out_0, dstblk: ep0,    dstport: in0  }
->>>   - { srcblk: ep1,    srcport: out0,  dstblk: duc0,   dstport: in_1 }
->>>   - { srcblk: duc0,   srcport: out_1, dstblk: radio0, dstport: in_1 }
->>>   - { srcblk: radio0, srcport: out_1, dstblk: ddc0,   dstport: in_1 }
->>>   - { srcblk: ddc0,   srcport: out_1, dstblk: ep1,    dstport: in0  }
->>>   - { srcblk: ep2,    srcport: out0,  dstblk: duc1,   dstport: in_0 }
->>>   - { srcblk: duc1,   srcport: out_0, dstblk: radio1, dstport: in_0 }
->>>   - { srcblk: radio1, srcport: out_0, dstblk: ddc1,   dstport: in_0 }
->>>   - { srcblk: ddc1,   srcport: out_0, dstblk: ep2,    dstport: in0  }
->>>   - { srcblk: ep3,    srcport: out0,  dstblk: duc1,   dstport: in_1 }
->>>   - { srcblk: duc1,   srcport: out_1, dstblk: radio1, dstport: in_1 }
->>>   - { srcblk: radio1, srcport: out_1, dstblk: ddc1,   dstport: in_1 }
->>>   - { srcblk: ddc1,   srcport: out_1, dstblk: ep3,    dstport: in0  }
->>>   - { srcblk: ep4,    srcport: out0,  dstblk: replay0,dstport: in_0 }
->>>   - { srcblk: replay0,srcport: out_0, dstblk: ep4,    dstport: in0  }
->>>   - { srcblk: ep5,    srcport: out0,  dstblk: replay0,dstport: in_1 }
->>>   - { srcblk: replay0,srcport: out_1, dstblk: ep5,    dstport: in0  }
->>>   - { srcblk: ep6,    srcport: out0,  dstblk: replay1,dstport: in_0 }
->>>   - { srcblk: replay1,srcport: out_0, dstblk: ep6,    dstport: in0  }
->>>   - { srcblk: ep7,    srcport: out0,  dstblk: replay1,dstport: in_1 }
->>>   - { srcblk: replay1,srcport: out_1, dstblk: ep7,    dstport: in0  }
->>>   - { srcblk: radio0, srcport: ctrl_port, dstblk: _device_, dstport:
->>> ctrlport_radio0 }
->>>   - { srcblk: radio1, srcport: ctrl_port, dstblk: _device_, dstport:
->>> ctrlport_radio1 }
->>>   - { srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport:
->>> x300_radio }
->>>   - { srcblk: _device_, srcport: x300_radio1, dstblk: radio1, dstport:
->>> x300_radio }
->>>   - { srcblk: _device_, srcport: time_keeper, dstblk: radio0, dstport:
->>> time_keeper }
->>>   - { srcblk: _device_, srcport: time_keeper, dstblk: radio1, dstport:
->>> time_keeper }
->>>
->>> # A list of all clock domain connections in design
->>> # ------------------------------------------------
->>> # Format: A list of connection maps (list of key-value pairs) with the
->>> following keys
->>> #         - srcblk  = Source block to connect (Always "_device"_)
->>> #         - srcport = Clock domain on the source block to connect
->>> #         - dstblk  = Destination block to connect
->>> #         - dstport = Clock domain on the destination block to connect
->>> clk_domains:
->>>   - { srcblk: _device_, srcport: radio,      dstblk: radio0, dstport:
->>> radio }
->>>   - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc0,   dstport: ce
->>>    }
->>>   - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: duc0,   dstport: ce
->>>    }
->>>   - { srcblk: _device_, srcport: radio,      dstblk: radio1, dstport:
->>> radio }
->>>   - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc1,   dstport: ce
->>>    }
->>>   - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: duc1,   dstport: ce
->>>    }
->>>   - { srcblk: _device_, srcport: dram,       dstblk: replay0,dstport:
->>> mem   }
->>>   - { srcblk: _device_, srcport: dram,       dstblk: replay1,dstport:
->>> mem   }
->>>
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>
-
---0000000000009cdcd205aeaf4eeb
-Content-Type: text/html; charset="UTF-8"
+--_000_MA1PR01MB2588D546B056E4D5828FFBB990280MA1PR01MB2588INDP_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>No, I&#39;m not aware of anyone who&#39;s tried 4 cha=
-nnels simultaneously yet. <br></div><div><br></div><div>Wade<br></div></div=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fr=
-i, Sep 4, 2020 at 6:18 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu=
-">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex"><div dir=3D"ltr">Hi Wade,<div>Thanks for the info. Sounds =
-like I might need to wait for the fixes that will allow=C2=A0multiple DRAM =
-ports to work.</div><div><br><div>Do you know if anyone has tested for the =
-possibility of simultaneous play of 4 channels at 125 MS/s using Replay blo=
-cks on the N310 (assuming that we are not simultaneously loading new sample=
-s but only playing out)?</div><div>Rob</div></div></div><br><div class=3D"g=
-mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Sep 4, 2020 at 5:=
-15 PM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank=
-">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex"><div dir=3D"ltr">
-<div>Hi Rob,</div><div><br></div><div>We actually just added the Replay=20
-to the default images, so that should show up in the next release=20
-candidate, along with some fixes that will allow multiple DRAM ports to=20
-work. It looks like you&#39;re missing the connection to the DRAM data port=
+Hi Marcus,
+
+Thanks so much for the explanation. If IQ samples are not voltages then ofc=
+ourse I can=92t do this analysis. However, FYI I am using usrp 2955 and fre=
+quency is 2.4 GHz.
+
+Regards,
+Koyel
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Marcus D=
+. Leech via USRP-users <usrp-users@lists.ettus.com>
+Sent: Saturday, September 5, 2020 11:33:30 PM
+To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] USRP sensitivity
+
+On 09/05/2020 10:57 AM, Koyel Das (Vehere) via USRP-users wrote:
+Hi,
+
+NI told me magnitude of IQ samples received in usrp is the voltage in volts=
 .
- Here&#39;s an example of what to add for each Replay block to the=20
-connections:</div><div><br></div><div>- { srcblk: replay0, srcport: axi_ram=
-, dstblk: _device_, dstport: dram }</div><div><br></div><div>Also, make sur=
-e that MEM_ADDR_W matches the size of the memory on the device (so it shoul=
-d be 31 for N3xx) series.</div><div><br></div><div>Thanks,</div><div><br></=
-div><div>Wade</div><div><br></div>
-
-</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Thu, Sep 3, 2020 at 5:28 PM Rob Kossler via USRP-users &lt;<a href=3D"ma=
-ilto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.c=
-om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-"><div dir=3D"ltr">Hi,<br><div>I am having trouble using rfnoc_replay_sampl=
-es_from_file with a custom FPGA image I built (N310 XG - UHD-4.0). I used r=
-fnoc_image_builder and manually modified the yml (see below) to include two=
- 2-channel Replay blocks in addition to the default statically linked block=
-s. When I try to run the rfnoc_replay_samples_from_file example, I get the =
-following error.=C2=A0 Any ideas?</div><div>Rob</div><div><font face=3D"mon=
-ospace"><br></font></div><div><font face=3D"monospace">// ************* rfn=
-oc_samples_from_file output **************</font></div><div><font face=3D"m=
-onospace">$=C2=A0</font>rfnoc_replay_samples_from_file --args=3D&quot;addr=
-=3D192.168.61.2&quot; --file /media/ramfolder/tx_0.dat --freq 2400e6 --rate=
- 125e6</div><div>...</div><div><font face=3D"monospace">Replay file size: =
-=C2=A0 =C2=A0 32768 bytes (4096 qwords, 8192 samples)<br>Record base addres=
-s: =C2=A00x0<br>Record buffer size: =C2=A0 32768 bytes<br>Record fullness: =
-=C2=A0 =C2=A0 =C2=A00 bytes<br><br>Emptying record buffer...<br>Record full=
-ness: =C2=A0 =C2=A0 =C2=A00 bytes<br><br>Sending data to be recorded...<br>=
-ERROR: Unable to send 8192 samples<br></font></div><div><font face=3D"monos=
-pace"><br></font></div><div><br></div><div><font face=3D"monospace">// ****=
-*********=C2=A0 yml file used in rfnoc_image_builder ************</font></d=
-iv><div><div><font face=3D"monospace"># General parameters<br># -----------=
-------------------------------<br>schema: rfnoc_imagebuilder_args =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 # Identifier for the schema used to validate this file=
-<br>copyright: &#39;Ettus Research, A National Instruments Brand&#39; # Cop=
-yright information used in file headers<br>license: &#39;SPDX-License-Ident=
-ifier: LGPL-3.0-or-later&#39; # License information used in file headers<br=
->version: 1.0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# File version<br>rfnoc_version: 1.0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0# RFNoC protocol version<br>chdr_width: 64 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Bit width o=
-f the CHDR bus for this image<br>device: &#39;n310&#39;<br>default_target: =
-&#39;N310_XG&#39;<br><br># A list of all stream endpoints in design<br># --=
---------------------------------------<br>stream_endpoints:<br>=C2=A0 ep0: =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 # Stream endpoint name<br>=C2=A0 =C2=A0 ctrl: True =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes c=
-ontrol traffic<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic=
-<br>=C2=A0 =C2=A0 buff_size: 32768 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0# Ingress buffer size for data<br>=C2=A0 ep1: =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream=
- endpoint name<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic<br=
->=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 =
-buff_size: 32768 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# I=
-ngress buffer size for data<br>=C2=A0 ep2: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint name<br>=C2=
-=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic<br>=C2=A0 =C2=A0 data: =
-True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_size: 32768 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buffer size f=
-or data<br>=C2=A0 ep3: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint name<br>=C2=A0 =C2=A0 ctrl: Fals=
-e =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # E=
-ndpoint passes control traffic<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint pa=
-sses data traffic<br>=C2=A0 =C2=A0 buff_size: 32768 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buffer size for data<br>=C2=A0 =
-ep4: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 # Stream endpoint name<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes c=
-ontrol traffic<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic=
-<br>=C2=A0 =C2=A0 buff_size: 256 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0# Ingress buffer size for data<br>=C2=A0 ep5: =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Str=
-eam endpoint name<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic=
-<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=
-=A0 buff_size: 256 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0# Ingress buffer size for data<br>=C2=A0 ep6: =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint n=
-ame<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic<br>=C2=A0 =C2=
-=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_size:=
- 256 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingres=
-s buffer size for data<br>=C2=A0 ep7: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint name<br>=C2=A0 =
-=C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 # Endpoint passes control traffic<br>=C2=A0 =C2=A0 data: True=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_size: 256 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buffer siz=
-e for data<br><br># A list of all NoC blocks in design<br># ---------------=
--------------------<br>noc_blocks:<br>=C2=A0 duc0: =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# NoC block name<br>=C2=
-=A0 =C2=A0 block_desc: &#39;duc.yml&#39; =C2=A0 =C2=A0# Block device descri=
-ptor file<br>=C2=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2=
-<br>=C2=A0 ddc0:<br>=C2=A0 =C2=A0 block_desc: &#39;ddc.yml&#39;<br>=C2=A0 =
-=C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 radio0:<b=
-r>=C2=A0 =C2=A0 block_desc: &#39;radio_2x64.yml&#39;<br>=C2=A0 duc1:<br>=C2=
-=A0 =C2=A0 block_desc: &#39;duc.yml&#39;<br>=C2=A0 =C2=A0 parameters:<br>=
-=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 ddc1:<br>=C2=A0 =C2=A0 block_de=
-sc: &#39;ddc.yml&#39;<br>=C2=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 =
-NUM_PORTS: 2<br>=C2=A0 radio1:<br>=C2=A0 =C2=A0 block_desc: &#39;radio_2x64=
-.yml&#39;<br>=C2=A0 replay0:<br>=C2=A0 =C2=A0 block_desc: &#39;replay.yml&#=
-39;<br>=C2=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=
-=C2=A0 =C2=A0 =C2=A0 MEM_DATA_W: 64<br>=C2=A0 =C2=A0 =C2=A0 MEM_ADDR_W: 30<=
-br>=C2=A0 replay1:<br>=C2=A0 =C2=A0 block_desc: &#39;replay.yml&#39;<br>=C2=
-=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 =C2=
-=A0 =C2=A0 MEM_DATA_W: 64<br>=C2=A0 =C2=A0 =C2=A0 MEM_ADDR_W: 30<br><br># A=
- list of all static connections in design<br># ----------------------------=
---------------<br># Format: A list of connection maps (list of key-value pa=
-irs) with the following keys<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - srcblk =C2=
-=A0=3D Source block to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - srcport =
-=3D Port on the source block to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - =
-dstblk =C2=A0=3D Destination block to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 - dstport =3D Port on the destination block to connect<br>connections:<=
-br>=C2=A0 - { srcblk: ep0, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: duc0, =
-=C2=A0 dstport: in_0 }<br>=C2=A0 - { srcblk: duc0, =C2=A0 srcport: out_0, d=
-stblk: radio0, dstport: in_0 }<br>=C2=A0 - { srcblk: radio0, srcport: out_0=
-, dstblk: ddc0, =C2=A0 dstport: in_0 }<br>=C2=A0 - { srcblk: ddc0, =C2=A0 s=
-rcport: out_0, dstblk: ep0, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - {=
- srcblk: ep1, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: duc0, =C2=A0 dstpor=
-t: in_1 }<br>=C2=A0 - { srcblk: duc0, =C2=A0 srcport: out_1, dstblk: radio0=
-, dstport: in_1 }<br>=C2=A0 - { srcblk: radio0, srcport: out_1, dstblk: ddc=
-0, =C2=A0 dstport: in_1 }<br>=C2=A0 - { srcblk: ddc0, =C2=A0 srcport: out_1=
-, dstblk: ep1, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep2,=
- =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: duc1, =C2=A0 dstport: in_0 }<br>=
-=C2=A0 - { srcblk: duc1, =C2=A0 srcport: out_0, dstblk: radio1, dstport: in=
-_0 }<br>=C2=A0 - { srcblk: radio1, srcport: out_0, dstblk: ddc1, =C2=A0 dst=
-port: in_0 }<br>=C2=A0 - { srcblk: ddc1, =C2=A0 srcport: out_0, dstblk: ep2=
-, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep3, =C2=A0 =C2=
-=A0srcport: out0, =C2=A0dstblk: duc1, =C2=A0 dstport: in_1 }<br>=C2=A0 - { =
-srcblk: duc1, =C2=A0 srcport: out_1, dstblk: radio1, dstport: in_1 }<br>=C2=
-=A0 - { srcblk: radio1, srcport: out_1, dstblk: ddc1, =C2=A0 dstport: in_1 =
-}<br>=C2=A0 - { srcblk: ddc1, =C2=A0 srcport: out_1, dstblk: ep3, =C2=A0 =
-=C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep4, =C2=A0 =C2=A0srcport:=
- out0, =C2=A0dstblk: replay0,dstport: in_0 }<br>=C2=A0 - { srcblk: replay0,=
-srcport: out_0, dstblk: ep4, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - =
-{ srcblk: ep5, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: replay0,dstport: i=
-n_1 }<br>=C2=A0 - { srcblk: replay0,srcport: out_1, dstblk: ep5, =C2=A0 =C2=
-=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep6, =C2=A0 =C2=A0srcport: ou=
-t0, =C2=A0dstblk: replay1,dstport: in_0 }<br>=C2=A0 - { srcblk: replay1,src=
-port: out_0, dstblk: ep6, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { s=
-rcblk: ep7, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: replay1,dstport: in_1=
- }<br>=C2=A0 - { srcblk: replay1,srcport: out_1, dstblk: ep7, =C2=A0 =C2=A0=
-dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: radio0, srcport: ctrl_port, dstb=
-lk: _device_, dstport: ctrlport_radio0 }<br>=C2=A0 - { srcblk: radio1, srcp=
-ort: ctrl_port, dstblk: _device_, dstport: ctrlport_radio1 }<br>=C2=A0 - { =
-srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport: x300_radio=
- }<br>=C2=A0 - { srcblk: _device_, srcport: x300_radio1, dstblk: radio1, ds=
-tport: x300_radio }<br>=C2=A0 - { srcblk: _device_, srcport: time_keeper, d=
-stblk: radio0, dstport: time_keeper }<br>=C2=A0 - { srcblk: _device_, srcpo=
-rt: time_keeper, dstblk: radio1, dstport: time_keeper }<br><br># A list of =
-all clock domain connections in design<br># -------------------------------=
------------------<br># Format: A list of connection maps (list of key-value=
- pairs) with the following keys<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - srcblk =
-=C2=A0=3D Source block to connect (Always &quot;_device&quot;_)<br># =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 - srcport =3D Clock domain on the source block to con=
-nect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - dstblk =C2=A0=3D Destination block =
-to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - dstport =3D Clock domain on t=
-he destination block to connect<br>clk_domains:<br>=C2=A0 - { srcblk: _devi=
-ce_, srcport: radio, =C2=A0 =C2=A0 =C2=A0dstblk: radio0, dstport: radio }<b=
-r>=C2=A0 - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc0, =C2=A0 ds=
-tport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk: _device_, srcport: rfnoc_chd=
-r, dstblk: duc0, =C2=A0 dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk: _d=
-evice_, srcport: radio, =C2=A0 =C2=A0 =C2=A0dstblk: radio1, dstport: radio =
-}<br>=C2=A0 - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc1, =C2=A0=
- dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk: _device_, srcport: rfnoc_=
-chdr, dstblk: duc1, =C2=A0 dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk:=
- _device_, srcport: dram, =C2=A0 =C2=A0 =C2=A0 dstblk: replay0,dstport: mem=
- =C2=A0 }<br>=C2=A0 - { srcblk: _device_, srcport: dram, =C2=A0 =C2=A0 =C2=
-=A0 dstblk: replay1,dstport: mem =C2=A0 }<br></font></div><div></div><div><=
-br></div></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-
---0000000000009cdcd205aeaf4eeb--
+The I/Q samples are *linearly proportional* to the antenna voltage.  But yo=
+u can't use an analysis like below to come to any conclusions
+  about absolute antenna voltage from the samples.
 
 
---===============5895169367103833057==
+
+Info: Office wifi 10 m distant USRP 70 dB (power) gain gives 10^-3 (volts? =
+ie magnitude of IQ samples)
+
+Assume wifi transmits +20 dBm, isotropic radiator, isotropic receiving ante=
+nna
+
+Voltage expected at receiving antenna terminals in 50 ohm:
+
+Effective area receiving antenna: lambda^2 / (4 pi) =3D (0.125 m)^2 / (4 pi=
+) =3D 1.2e-3 m^2
+Power per area at 10 m distance =3D 0.01 W / (4 pi * (10 m)^2) =3D 8e-6 W/m=
+^2
+Received power =3D power per area * effective area =3D 8e-6 W/m^2 * 1.2e-3 =
+m^2 =3D 9.5e-9 W
+P =3D V^2/R 9.5e-9 W =3D V^2 / 50 ohm V =3D 7e-4 V is voltage across antenn=
+a terminals
+
+Voltage at ADC:
+
+Power gain =3D 70 dB -> voltage gain =3D 45 dB.
+7e-4 V at antenna terminal is amplified by factor 10^4.5, gives 22 V
+The ADCs are set to a reference voltage of 1.2V.  That's as much as they ca=
+n reasonably see.
+
+Also, you haven't said what USRP you're using, nor what frequency you're op=
+erating at.
+
+Further 70dB power gain =3D=3D 35dB voltage gain.
+
+I prefer to do this type of analysis with any of the online path-loss calcu=
+lator tools, and set both the TX and TX antenna gain to 0.
+
+Further, you can't infer the total system gain from the gain setting in the=
+ API--that just sets a gain-setting hardware "variable", which in
+  most cases, is an attenuator.  Without knowing WHICH exact hardware you'r=
+e using, you simply cannot know what the exact system gain
+  is ahead of the ADC.
+
+But wait there's more.  Unless your sample-rate =3D=3D ADC clock rate, you'=
+ll be getting decimated samples, which will tend to reduce the
+  total power in the output channel, leading to lower-magnitude samples.
+
+
+
+
+
+--_000_MA1PR01MB2588D546B056E4D5828FFBB990280MA1PR01MB2588INDP_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+</head>
+<body>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div>Hi Marcus,</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Thanks so much for the explanation. If IQ samples are not =
+voltages then ofcourse I can=92t do this analysis. However, FYI I am using =
+usrp 2955 and frequency is 2.4 GHz.</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Regards,</div>
+<div dir=3D"ltr">Koyel&nbsp;</div>
+<div><br>
+</div>
+<div class=3D"ms-outlook-ios-signature" id=3D"ms-outlook-mobile-signature">=
+Get <a href=3D"https://aka.ms/o0ukef">
+Outlook for iOS</a></div>
+</div>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
+sers-bounces@lists.ettus.com&gt; on behalf of Marcus D. Leech via USRP-user=
+s &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Sent:</b> Saturday, September 5, 2020 11:33:30 PM<br>
+<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
+>
+<b>Subject:</b> Re: [USRP-users] USRP sensitivity</font>
+<div>&nbsp;</div>
+</div>
+<div style=3D"background-color:#FFFFFF">
+<div class=3D"x_moz-cite-prefix">On 09/05/2020 10:57 AM, Koyel Das (Vehere)=
+ via USRP-users wrote:<br>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">
+<div>
+<div>Hi,</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">NI told me magnitude of IQ samples received in usrp is the=
+ voltage in volts.</div>
+</div>
+</div>
+</blockquote>
+The I/Q samples are *linearly proportional* to the antenna voltage.&nbsp; B=
+ut you can't use an analysis like below to come to any conclusions<br>
+&nbsp; about absolute antenna voltage from the samples.<br>
+<br>
+<br>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr"><br>
+</div>
+<div><span style=3D"font-size:14.666666984558105px; display:inline!importan=
+t">Info: Office wifi 10 m distant USRP 70 dB (power) gain gives 10^-3 (volt=
+s? ie magnitude of IQ samples)</span><br style=3D"font-size:14.666666984558=
+105px">
+<br style=3D"font-size:14.666666984558105px">
+<span style=3D"font-size:14.666666984558105px; display:inline!important">As=
+sume wifi transmits +20 dBm, isotropic radiator, isotropic receiving antenn=
+a</span><br style=3D"font-size:14.666666984558105px">
+<br style=3D"font-size:14.666666984558105px">
+<span style=3D"font-size:14.666666984558105px; display:inline!important">Vo=
+ltage expected at receiving antenna terminals in 50 ohm:</span><br style=3D=
+"font-size:14.666666984558105px">
+<br style=3D"font-size:14.666666984558105px">
+<span style=3D"font-size:14.666666984558105px; display:inline!important">Ef=
+fective area receiving antenna: lambda^2 / (4 pi) =3D (0.125 m)^2 / (4 pi) =
+=3D 1.2e-3 m^2</span><br style=3D"font-size:14.666666984558105px">
+<span style=3D"font-size:14.666666984558105px; display:inline!important">Po=
+wer per area at 10 m distance =3D 0.01 W / (4 pi * (10 m)^2) =3D 8e-6 W/m^2=
+</span><br style=3D"font-size:14.666666984558105px">
+<span style=3D"font-size:14.666666984558105px; display:inline!important">Re=
+ceived power =3D power per area * effective area =3D 8e-6 W/m^2 * 1.2e-3 m^=
+2 =3D 9.5e-9 W</span><br style=3D"font-size:14.666666984558105px">
+<span style=3D"font-size:14.666666984558105px; display:inline!important">P =
+=3D V^2/R 9.5e-9 W =3D V^2 / 50 ohm V =3D 7e-4 V is voltage across antenna =
+terminals</span><br style=3D"font-size:14.666666984558105px">
+<br style=3D"font-size:14.666666984558105px">
+<span style=3D"font-size:14.666666984558105px; display:inline!important">Vo=
+ltage at ADC:</span><br style=3D"font-size:14.666666984558105px">
+<br style=3D"font-size:14.666666984558105px">
+<span style=3D"font-size:14.666666984558105px; display:inline!important">Po=
+wer gain =3D 70 dB -&gt; voltage gain =3D 45 dB.</span><br style=3D"font-si=
+ze:14.666666984558105px">
+<span style=3D"font-size:14.666666984558105px; display:inline!important">7e=
+-4 V at antenna terminal is amplified by factor 10^4.5, gives 22 V</span></=
+div>
+</div>
+</div>
+</blockquote>
+The ADCs are set to a reference voltage of 1.2V.&nbsp; That's as much as th=
+ey can reasonably see.<br>
+<br>
+Also, you haven't said what USRP you're using, nor what frequency you're op=
+erating at.<br>
+<br>
+Further 70dB power gain =3D=3D 35dB voltage gain.<br>
+<br>
+I prefer to do this type of analysis with any of the online path-loss calcu=
+lator tools, and set both the TX and TX antenna gain to 0.<br>
+<br>
+Further, you can't infer the total system gain from the gain setting in the=
+ API--that just sets a gain-setting hardware &quot;variable&quot;, which in=
+<br>
+&nbsp; most cases, is an attenuator.&nbsp; Without knowing WHICH exact hard=
+ware you're using, you simply cannot know what the exact system gain<br>
+&nbsp; is ahead of the ADC.<br>
+<br>
+But wait there's more.&nbsp; Unless your sample-rate =3D=3D ADC clock rate,=
+ you'll be getting decimated samples, which will tend to reduce the<br>
+&nbsp; total power in the output channel, leading to lower-magnitude sample=
+s.<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+</body>
+</html>
+
+--_000_MA1PR01MB2588D546B056E4D5828FFBB990280MA1PR01MB2588INDP_--
+
+
+--===============1178771070888756623==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -544,5 +339,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5895169367103833057==--
+--===============1178771070888756623==--
 
