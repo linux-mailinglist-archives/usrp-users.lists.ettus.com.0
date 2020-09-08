@@ -2,54 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8004E26122D
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Sep 2020 15:52:57 +0200 (CEST)
-Received: from [::1] (port=49926 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D9AB261244
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Sep 2020 16:02:12 +0200 (CEST)
+Received: from [::1] (port=50004 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kFe3K-00086P-FU; Tue, 08 Sep 2020 09:52:54 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:39343)
+	id 1kFeCJ-0000LF-A7; Tue, 08 Sep 2020 10:02:11 -0400
+Received: from mail-qk1-f176.google.com ([209.85.222.176]:37692)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kFe3G-00081Z-Mn
- for usrp-users@lists.ettus.com; Tue, 08 Sep 2020 09:52:50 -0400
-Received: by mail-ot1-f54.google.com with SMTP id u25so14888905otq.6
- for <usrp-users@lists.ettus.com>; Tue, 08 Sep 2020 06:52:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=/XthwX4b9mDMkb+Rq6HbImpa5v12Tp/nkjZrLgi++VM=;
- b=hfoYiy4bQoSrwemTB+TJQ1lZVgX+khEw9BKOVGbOj+dFUa49MZ/QzyfZvwHXtX3ZcH
- kgkaggd9Vs1eK2HlBXc8EdyzmFc8geng68hREQUG45nKaaroFm0iJV+LVADAzs1JJER+
- fYRqS9g75orf3uMy9pxHQFC72IcxHWMOgwtpIAdCTHhyV1Q0COibJNp8JPBjXBCeIrtG
- t6dusBXPHVf3EpvqnCWMOGMkhGHzRcHKc3BBQoXZmCBj0NEiHZuVKOvSBPtm1DG3A/8F
- jjCiw+G4Lccy/BwdvLuR6nlN+xBqfpgFrbMNUjNfMbbpSC2+6bcPPSdywsr+3xQQSJKA
- AX2A==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kFeCF-0000E7-Bt
+ for usrp-users@lists.ettus.com; Tue, 08 Sep 2020 10:02:07 -0400
+Received: by mail-qk1-f176.google.com with SMTP id 16so5996254qkf.4
+ for <usrp-users@lists.ettus.com>; Tue, 08 Sep 2020 07:01:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=6t4rrMmOMDXBMCP3nk47KykXHKUwBuNa6wlWVkoAts0=;
+ b=QK3Gj2yXdS0zozVg3r1+3Z/mcEOU/L5gt94hB1MneohNERwwcV7cJ2S4sy6reTsemo
+ KPK0X/2cT/isteqX0tL5/PduhaQtXLKbOm5YawQMcZb9GbStqBmF0h2pW1LcAEhNa7D4
+ C9pWogDJej5LE6aPj+zLhpg86VTtYuaKN/8bNhn2cPNUTKi5rjldUiVBOnP5JGPMl1sa
+ 2Zog7jMNArnsRMWd4oWGxyf2K3fRHqcCFGw7ACYCoPub4hiJC++MSUPrG45mEuKjPYqp
+ rOUImJIDlNDZ8wpj3EYopvlYH5O5mu8i1ILmVtr1W1gkI1wNRglLSJzKJYZHEWpn42Tf
+ 9QAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=/XthwX4b9mDMkb+Rq6HbImpa5v12Tp/nkjZrLgi++VM=;
- b=PPj5A0y28hd0RMtrRIUDSHrV0B61bYHRktiWhrBZ4xTkv8XJihBFyW8OroIbkJs6v/
- ZrpFxw8xTjiJj3djbfB9EUg9Uh0bDhjj8vT+zQABf8K1CbFRJVJjIe0JVs8IHfoFynmm
- dxv5cmHFqo3LQ8dWVjAwV+MuSZicwXRlegI/nExdqC5PYZXZXgOW0xOMfvINvr9if58d
- kzY7NoV1v4CysKc0Dc1X5mbZICpBsYkoKN5Zb6gMnJep67R9YbryekMPkUqJAYN+NbJp
- TI5MOAiC3FVcPNXdISxjpoCKGPIdX/l8ztfm/SsRgHN/0U79SbH5byZOreJxjuE98J43
- GSTA==
-X-Gm-Message-State: AOAM532e5YiARC8tRF0v3PyIS1vH+Kr50cZpc6aAidBdClEQzQyFq2Sc
- m1OLm50vVYTSKsEg0+FXIfKk94aSfa9iW3fszHAJtg==
-X-Google-Smtp-Source: ABdhPJy4ODqSg70bgctrqUCcGv/jt6Cb69m43IHPgw88KViW0Eu518XkDIOQbwxHGIv7ewmPOPM3xluKvcZ9M4cmRa0=
-X-Received: by 2002:a9d:65cc:: with SMTP id z12mr10441347oth.301.1599573129790; 
- Tue, 08 Sep 2020 06:52:09 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=6t4rrMmOMDXBMCP3nk47KykXHKUwBuNa6wlWVkoAts0=;
+ b=Ch0xFJE5fzhzyK2eXdElhjQedchdJCuQ2PkqsyvyFQhY4Vtfz5rpOPb7HgFowZERhS
+ VwjEuZR5VObQx2SBvXy7UAUIeMUR9EGHFrxb1cf8ebTFKLLU4UX/DSgOdvjJaBL/YPJs
+ vB8JulgjkrubK6ITwX9jIkmogvJfSvDMC6MczZ7uXmVz8SCpMe6g+JLzFzq+yASwGt73
+ U/JkLCkgp4i1oOYHtYyfU4pHZTThhuc7cwq4PuUhju1ZebiSliign7MAyEqMiffRYwTL
+ /X+mOqeP6jeTErlpev/jLgoHVIIpqrONxvtI2KZKPjyPVSfgkjhRUB6TMn4GeoWqMsey
+ PXtQ==
+X-Gm-Message-State: AOAM5327L9jvPlNf6mGcy/1iz/2ksfckMzVRrRuVl/6DsrtQhPmHp2gL
+ kefz0/Z83tAT3f/aCYvDpvbRjU78rac=
+X-Google-Smtp-Source: ABdhPJzfQLGPkZvQvhhvgqH3pOeKiAcVawi+inKAxHBYHDQJPI73lL0jsIUFZtdlQSteVV4CmKGDfw==
+X-Received: by 2002:a37:a00d:: with SMTP id j13mr156762qke.349.1599573686550; 
+ Tue, 08 Sep 2020 07:01:26 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
+ by smtp.googlemail.com with ESMTPSA id g37sm14710114qtk.76.2020.09.08.07.01.26
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 08 Sep 2020 07:01:26 -0700 (PDT)
+Message-ID: <5F578EB5.2020308@gmail.com>
+Date: Tue, 08 Sep 2020 10:01:25 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <CAB__hTTxYJoOW1Sk64CGui+1iH7P+i_frNjrF8RbyO4TunUeOA@mail.gmail.com>
- <CAFche=jzoK9A_d9GH8-n-0V9B4T553LU9V0scO_oH_29BcYc4g@mail.gmail.com>
- <CAB__hTQMTJSxHusMh5Ck_yKQQ70OseUE=bGND6cCrQpVxdyEDg@mail.gmail.com>
- <CAFche=g5FvqUAy+b4H2i950hJ3r2pqJ0TW+0DMx9t=XS+P0cUg@mail.gmail.com>
-In-Reply-To: <CAFche=g5FvqUAy+b4H2i950hJ3r2pqJ0TW+0DMx9t=XS+P0cUg@mail.gmail.com>
-Date: Tue, 8 Sep 2020 09:51:59 -0400
-Message-ID: <CAB__hTSympre24Kx=j4gxXvW0BbmvA8x=jjUUwHx1e-P0WveBg@mail.gmail.com>
-To: Wade Fife <wade.fife@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Using Replay block in UHD-4.0
+To: usrp-users@lists.ettus.com
+References: <BM1PR01MB07697B6272A4EC36F8DA7F388B290@BM1PR01MB0769.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <BM1PR01MB07697B6272A4EC36F8DA7F388B290@BM1PR01MB0769.INDPRD01.PROD.OUTLOOK.COM>
+Subject: Re: [USRP-users] Problem in detecting the USRP from my system
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,9 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============8373583501631113612=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4242944851666254090=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,494 +82,130 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8373583501631113612==
-Content-Type: multipart/alternative; boundary="00000000000031ce9f05aecda4e3"
+This is a multi-part message in MIME format.
+--===============4242944851666254090==
+Content-Type: multipart/alternative;
+ boundary="------------000704040108020406010703"
 
---00000000000031ce9f05aecda4e3
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------000704040108020406010703
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-One more question.  I just looked at the latest commits which include the
-Replay block in the default images.  I notice that for each device only one
-multi-port Replay block is added rather than multiple one-port Replay
-blocks (e.g., for N310, one 4-port Replay is added rather than four 1-port
-or two 2-port Replay blocks).  Is there still a performance issue related
-to this choice? In the past (UHD 3.x), the max streaming to/from a block
-was limited such that it mattered how you allocated these ports.  I think
-that is why the DUC and DDC are populated as two 2-port blocks so that they
-can handle the streaming rates (which they couldn't handle if they were
-single 4-port blocks).
-
-Rob
-
-On Sun, Sep 6, 2020 at 9:40 PM Wade Fife <wade.fife@ettus.com> wrote:
-
-> No, I'm not aware of anyone who's tried 4 channels simultaneously yet.
+On 09/08/2020 06:15 AM, Sourin Mondal (Vehere) via USRP-users wrote:
+> Hi,
+> 2 days back I have used a C++ code which can acquire data from Antenna 
+> via USRP 2955. Previously that code works fine in another machine. But 
+> when I tried to run in another machine, it was showing "no device 
+> found" when I run the command "*uhd_find_devices*". Even when i run 
+> the command "*uhd_usrp_probe*" it is showing no device found. But when 
+> I run the command -> uhd_usrp_probe --args="addr=192.168.10.2" , it is 
+> detecting the device as well as showing all the details.
+> The OS of my system is Ubuntu 18.04.
+> Dependencies to run this code : g++, uhd-3.14.1.0, NI Linux driver 2020.
+> Communication from USRP to system is done via PCI e cable.
 >
-> Wade
+> Can you please help me why this is happening & how to solve this? I 
+> can ensure that there is no problem in that code neither in any 
+> dependency's installation.
 >
-> On Fri, Sep 4, 2020 at 6:18 PM Rob Kossler <rkossler@nd.edu> wrote:
+> with regards,
+> Sourin Mondal
 >
->> Hi Wade,
->> Thanks for the info. Sounds like I might need to wait for the fixes that
->> will allow multiple DRAM ports to work.
->>
->> Do you know if anyone has tested for the possibility of simultaneous play
->> of 4 channels at 125 MS/s using Replay blocks on the N310 (assuming that we
->> are not simultaneously loading new samples but only playing out)?
->> Rob
->>
->> On Fri, Sep 4, 2020 at 5:15 PM Wade Fife <wade.fife@ettus.com> wrote:
->>
->>> Hi Rob,
->>>
->>> We actually just added the Replay to the default images, so that should
->>> show up in the next release candidate, along with some fixes that will
->>> allow multiple DRAM ports to work. It looks like you're missing the
->>> connection to the DRAM data port. Here's an example of what to add for each
->>> Replay block to the connections:
->>>
->>> - { srcblk: replay0, srcport: axi_ram, dstblk: _device_, dstport: dram }
->>>
->>> Also, make sure that MEM_ADDR_W matches the size of the memory on the
->>> device (so it should be 31 for N3xx) series.
->>>
->>> Thanks,
->>>
->>> Wade
->>>
->>>
->>> On Thu, Sep 3, 2020 at 5:28 PM Rob Kossler via USRP-users <
->>> usrp-users@lists.ettus.com> wrote:
->>>
->>>> Hi,
->>>> I am having trouble using rfnoc_replay_samples_from_file with a custom
->>>> FPGA image I built (N310 XG - UHD-4.0). I used rfnoc_image_builder and
->>>> manually modified the yml (see below) to include two 2-channel Replay
->>>> blocks in addition to the default statically linked blocks. When I try to
->>>> run the rfnoc_replay_samples_from_file example, I get the following error.
->>>> Any ideas?
->>>> Rob
->>>>
->>>> // ************* rfnoc_samples_from_file output **************
->>>> $ rfnoc_replay_samples_from_file --args="addr=192.168.61.2" --file
->>>> /media/ramfolder/tx_0.dat --freq 2400e6 --rate 125e6
->>>> ...
->>>> Replay file size:     32768 bytes (4096 qwords, 8192 samples)
->>>> Record base address:  0x0
->>>> Record buffer size:   32768 bytes
->>>> Record fullness:      0 bytes
->>>>
->>>> Emptying record buffer...
->>>> Record fullness:      0 bytes
->>>>
->>>> Sending data to be recorded...
->>>> ERROR: Unable to send 8192 samples
->>>>
->>>>
->>>> // *************  yml file used in rfnoc_image_builder ************
->>>> # General parameters
->>>> # -----------------------------------------
->>>> schema: rfnoc_imagebuilder_args         # Identifier for the schema
->>>> used to validate this file
->>>> copyright: 'Ettus Research, A National Instruments Brand' # Copyright
->>>> information used in file headers
->>>> license: 'SPDX-License-Identifier: LGPL-3.0-or-later' # License
->>>> information used in file headers
->>>> version: 1.0                            # File version
->>>> rfnoc_version: 1.0                      # RFNoC protocol version
->>>> chdr_width: 64                          # Bit width of the CHDR bus for
->>>> this image
->>>> device: 'n310'
->>>> default_target: 'N310_XG'
->>>>
->>>> # A list of all stream endpoints in design
->>>> # ----------------------------------------
->>>> stream_endpoints:
->>>>   ep0:                       # Stream endpoint name
->>>>     ctrl: True                      # Endpoint passes control traffic
->>>>     data: True                      # Endpoint passes data traffic
->>>>     buff_size: 32768                # Ingress buffer size for data
->>>>   ep1:                       # Stream endpoint name
->>>>     ctrl: False                     # Endpoint passes control traffic
->>>>     data: True                      # Endpoint passes data traffic
->>>>     buff_size: 32768                # Ingress buffer size for data
->>>>   ep2:                       # Stream endpoint name
->>>>     ctrl: False                     # Endpoint passes control traffic
->>>>     data: True                      # Endpoint passes data traffic
->>>>     buff_size: 32768                # Ingress buffer size for data
->>>>   ep3:                       # Stream endpoint name
->>>>     ctrl: False                     # Endpoint passes control traffic
->>>>     data: True                      # Endpoint passes data traffic
->>>>     buff_size: 32768                # Ingress buffer size for data
->>>>   ep4:                       # Stream endpoint name
->>>>     ctrl: False                     # Endpoint passes control traffic
->>>>     data: True                      # Endpoint passes data traffic
->>>>     buff_size: 256                  # Ingress buffer size for data
->>>>   ep5:                       # Stream endpoint name
->>>>     ctrl: False                     # Endpoint passes control traffic
->>>>     data: True                      # Endpoint passes data traffic
->>>>     buff_size: 256                  # Ingress buffer size for data
->>>>   ep6:                       # Stream endpoint name
->>>>     ctrl: False                     # Endpoint passes control traffic
->>>>     data: True                      # Endpoint passes data traffic
->>>>     buff_size: 256                  # Ingress buffer size for data
->>>>   ep7:                       # Stream endpoint name
->>>>     ctrl: False                     # Endpoint passes control traffic
->>>>     data: True                      # Endpoint passes data traffic
->>>>     buff_size: 256                  # Ingress buffer size for data
->>>>
->>>> # A list of all NoC blocks in design
->>>> # ----------------------------------
->>>> noc_blocks:
->>>>   duc0:                      # NoC block name
->>>>     block_desc: 'duc.yml'    # Block device descriptor file
->>>>     parameters:
->>>>       NUM_PORTS: 2
->>>>   ddc0:
->>>>     block_desc: 'ddc.yml'
->>>>     parameters:
->>>>       NUM_PORTS: 2
->>>>   radio0:
->>>>     block_desc: 'radio_2x64.yml'
->>>>   duc1:
->>>>     block_desc: 'duc.yml'
->>>>     parameters:
->>>>       NUM_PORTS: 2
->>>>   ddc1:
->>>>     block_desc: 'ddc.yml'
->>>>     parameters:
->>>>       NUM_PORTS: 2
->>>>   radio1:
->>>>     block_desc: 'radio_2x64.yml'
->>>>   replay0:
->>>>     block_desc: 'replay.yml'
->>>>     parameters:
->>>>       NUM_PORTS: 2
->>>>       MEM_DATA_W: 64
->>>>       MEM_ADDR_W: 30
->>>>   replay1:
->>>>     block_desc: 'replay.yml'
->>>>     parameters:
->>>>       NUM_PORTS: 2
->>>>       MEM_DATA_W: 64
->>>>       MEM_ADDR_W: 30
->>>>
->>>> # A list of all static connections in design
->>>> # ------------------------------------------
->>>> # Format: A list of connection maps (list of key-value pairs) with the
->>>> following keys
->>>> #         - srcblk  = Source block to connect
->>>> #         - srcport = Port on the source block to connect
->>>> #         - dstblk  = Destination block to connect
->>>> #         - dstport = Port on the destination block to connect
->>>> connections:
->>>>   - { srcblk: ep0,    srcport: out0,  dstblk: duc0,   dstport: in_0 }
->>>>   - { srcblk: duc0,   srcport: out_0, dstblk: radio0, dstport: in_0 }
->>>>   - { srcblk: radio0, srcport: out_0, dstblk: ddc0,   dstport: in_0 }
->>>>   - { srcblk: ddc0,   srcport: out_0, dstblk: ep0,    dstport: in0  }
->>>>   - { srcblk: ep1,    srcport: out0,  dstblk: duc0,   dstport: in_1 }
->>>>   - { srcblk: duc0,   srcport: out_1, dstblk: radio0, dstport: in_1 }
->>>>   - { srcblk: radio0, srcport: out_1, dstblk: ddc0,   dstport: in_1 }
->>>>   - { srcblk: ddc0,   srcport: out_1, dstblk: ep1,    dstport: in0  }
->>>>   - { srcblk: ep2,    srcport: out0,  dstblk: duc1,   dstport: in_0 }
->>>>   - { srcblk: duc1,   srcport: out_0, dstblk: radio1, dstport: in_0 }
->>>>   - { srcblk: radio1, srcport: out_0, dstblk: ddc1,   dstport: in_0 }
->>>>   - { srcblk: ddc1,   srcport: out_0, dstblk: ep2,    dstport: in0  }
->>>>   - { srcblk: ep3,    srcport: out0,  dstblk: duc1,   dstport: in_1 }
->>>>   - { srcblk: duc1,   srcport: out_1, dstblk: radio1, dstport: in_1 }
->>>>   - { srcblk: radio1, srcport: out_1, dstblk: ddc1,   dstport: in_1 }
->>>>   - { srcblk: ddc1,   srcport: out_1, dstblk: ep3,    dstport: in0  }
->>>>   - { srcblk: ep4,    srcport: out0,  dstblk: replay0,dstport: in_0 }
->>>>   - { srcblk: replay0,srcport: out_0, dstblk: ep4,    dstport: in0  }
->>>>   - { srcblk: ep5,    srcport: out0,  dstblk: replay0,dstport: in_1 }
->>>>   - { srcblk: replay0,srcport: out_1, dstblk: ep5,    dstport: in0  }
->>>>   - { srcblk: ep6,    srcport: out0,  dstblk: replay1,dstport: in_0 }
->>>>   - { srcblk: replay1,srcport: out_0, dstblk: ep6,    dstport: in0  }
->>>>   - { srcblk: ep7,    srcport: out0,  dstblk: replay1,dstport: in_1 }
->>>>   - { srcblk: replay1,srcport: out_1, dstblk: ep7,    dstport: in0  }
->>>>   - { srcblk: radio0, srcport: ctrl_port, dstblk: _device_, dstport:
->>>> ctrlport_radio0 }
->>>>   - { srcblk: radio1, srcport: ctrl_port, dstblk: _device_, dstport:
->>>> ctrlport_radio1 }
->>>>   - { srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport:
->>>> x300_radio }
->>>>   - { srcblk: _device_, srcport: x300_radio1, dstblk: radio1, dstport:
->>>> x300_radio }
->>>>   - { srcblk: _device_, srcport: time_keeper, dstblk: radio0, dstport:
->>>> time_keeper }
->>>>   - { srcblk: _device_, srcport: time_keeper, dstblk: radio1, dstport:
->>>> time_keeper }
->>>>
->>>> # A list of all clock domain connections in design
->>>> # ------------------------------------------------
->>>> # Format: A list of connection maps (list of key-value pairs) with the
->>>> following keys
->>>> #         - srcblk  = Source block to connect (Always "_device"_)
->>>> #         - srcport = Clock domain on the source block to connect
->>>> #         - dstblk  = Destination block to connect
->>>> #         - dstport = Clock domain on the destination block to connect
->>>> clk_domains:
->>>>   - { srcblk: _device_, srcport: radio,      dstblk: radio0, dstport:
->>>> radio }
->>>>   - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc0,   dstport:
->>>> ce    }
->>>>   - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: duc0,   dstport:
->>>> ce    }
->>>>   - { srcblk: _device_, srcport: radio,      dstblk: radio1, dstport:
->>>> radio }
->>>>   - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc1,   dstport:
->>>> ce    }
->>>>   - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: duc1,   dstport:
->>>> ce    }
->>>>   - { srcblk: _device_, srcport: dram,       dstblk: replay0,dstport:
->>>> mem   }
->>>>   - { srcblk: _device_, srcport: dram,       dstblk: replay1,dstport:
->>>> mem   }
->>>>
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>>
+>
+If it's responding at that address, then it clearly isn't connected via 
+PCI-e.
 
---00000000000031ce9f05aecda4e3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">One more question.=C2=A0 I just looked at the latest commi=
-ts which include the Replay block in the default images.=C2=A0 I notice tha=
-t for each device only one multi-port Replay block is added rather than mul=
-tiple one-port Replay blocks (e.g., for N310, one 4-port Replay is added ra=
-ther than four 1-port or two 2-port Replay blocks).=C2=A0 Is there still a =
-performance issue related to this choice? In the past (UHD 3.x), the max st=
-reaming to/from a block was limited such that it mattered how you allocated=
- these ports.=C2=A0 I think that is why the DUC and DDC are populated as tw=
-o 2-port blocks so that they can handle the streaming rates (which they cou=
-ldn&#39;t handle if they were single 4-port blocks).<div><br></div><div>Rob=
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Sun, Sep 6, 2020 at 9:40 PM Wade Fife &lt;<a href=3D"mailto:wade.f=
-ife@ettus.com">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>No, I&#39;m not awa=
-re of anyone who&#39;s tried 4 channels simultaneously yet. <br></div><div>=
-<br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Fri, Sep 4, 2020 at 6:18 PM Rob Kossler &l=
-t;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
-dir=3D"ltr">Hi Wade,<div>Thanks for the info. Sounds like I might need to w=
-ait for the fixes that will allow=C2=A0multiple DRAM ports to work.</div><d=
-iv><br><div>Do you know if anyone has tested for the possibility of simulta=
-neous play of 4 channels at 125 MS/s using Replay blocks on the N310 (assum=
-ing that we are not simultaneously loading new samples but only playing out=
-)?</div><div>Rob</div></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Fri, Sep 4, 2020 at 5:15 PM Wade Fife &lt;=
-<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.co=
-m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
-><div dir=3D"ltr">
-<div>Hi Rob,</div><div><br></div><div>We actually just added the Replay=20
-to the default images, so that should show up in the next release=20
-candidate, along with some fixes that will allow multiple DRAM ports to=20
-work. It looks like you&#39;re missing the connection to the DRAM data port=
-.
- Here&#39;s an example of what to add for each Replay block to the=20
-connections:</div><div><br></div><div>- { srcblk: replay0, srcport: axi_ram=
-, dstblk: _device_, dstport: dram }</div><div><br></div><div>Also, make sur=
-e that MEM_ADDR_W matches the size of the memory on the device (so it shoul=
-d be 31 for N3xx) series.</div><div><br></div><div>Thanks,</div><div><br></=
-div><div>Wade</div><div><br></div>
-
-</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Thu, Sep 3, 2020 at 5:28 PM Rob Kossler via USRP-users &lt;<a href=3D"ma=
-ilto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.c=
-om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-"><div dir=3D"ltr">Hi,<br><div>I am having trouble using rfnoc_replay_sampl=
-es_from_file with a custom FPGA image I built (N310 XG - UHD-4.0). I used r=
-fnoc_image_builder and manually modified the yml (see below) to include two=
- 2-channel Replay blocks in addition to the default statically linked block=
-s. When I try to run the rfnoc_replay_samples_from_file example, I get the =
-following error.=C2=A0 Any ideas?</div><div>Rob</div><div><font face=3D"mon=
-ospace"><br></font></div><div><font face=3D"monospace">// ************* rfn=
-oc_samples_from_file output **************</font></div><div><font face=3D"m=
-onospace">$=C2=A0</font>rfnoc_replay_samples_from_file --args=3D&quot;addr=
-=3D192.168.61.2&quot; --file /media/ramfolder/tx_0.dat --freq 2400e6 --rate=
- 125e6</div><div>...</div><div><font face=3D"monospace">Replay file size: =
-=C2=A0 =C2=A0 32768 bytes (4096 qwords, 8192 samples)<br>Record base addres=
-s: =C2=A00x0<br>Record buffer size: =C2=A0 32768 bytes<br>Record fullness: =
-=C2=A0 =C2=A0 =C2=A00 bytes<br><br>Emptying record buffer...<br>Record full=
-ness: =C2=A0 =C2=A0 =C2=A00 bytes<br><br>Sending data to be recorded...<br>=
-ERROR: Unable to send 8192 samples<br></font></div><div><font face=3D"monos=
-pace"><br></font></div><div><br></div><div><font face=3D"monospace">// ****=
-*********=C2=A0 yml file used in rfnoc_image_builder ************</font></d=
-iv><div><div><font face=3D"monospace"># General parameters<br># -----------=
-------------------------------<br>schema: rfnoc_imagebuilder_args =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 # Identifier for the schema used to validate this file=
-<br>copyright: &#39;Ettus Research, A National Instruments Brand&#39; # Cop=
-yright information used in file headers<br>license: &#39;SPDX-License-Ident=
-ifier: LGPL-3.0-or-later&#39; # License information used in file headers<br=
->version: 1.0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# File version<br>rfnoc_version: 1.0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0# RFNoC protocol version<br>chdr_width: 64 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Bit width o=
-f the CHDR bus for this image<br>device: &#39;n310&#39;<br>default_target: =
-&#39;N310_XG&#39;<br><br># A list of all stream endpoints in design<br># --=
---------------------------------------<br>stream_endpoints:<br>=C2=A0 ep0: =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 # Stream endpoint name<br>=C2=A0 =C2=A0 ctrl: True =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes c=
-ontrol traffic<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic=
-<br>=C2=A0 =C2=A0 buff_size: 32768 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0# Ingress buffer size for data<br>=C2=A0 ep1: =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream=
- endpoint name<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic<br=
->=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 =
-buff_size: 32768 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# I=
-ngress buffer size for data<br>=C2=A0 ep2: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint name<br>=C2=
-=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic<br>=C2=A0 =C2=A0 data: =
-True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_size: 32768 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buffer size f=
-or data<br>=C2=A0 ep3: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint name<br>=C2=A0 =C2=A0 ctrl: Fals=
-e =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # E=
-ndpoint passes control traffic<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint pa=
-sses data traffic<br>=C2=A0 =C2=A0 buff_size: 32768 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buffer size for data<br>=C2=A0 =
-ep4: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 # Stream endpoint name<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes c=
-ontrol traffic<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic=
-<br>=C2=A0 =C2=A0 buff_size: 256 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0# Ingress buffer size for data<br>=C2=A0 ep5: =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Str=
-eam endpoint name<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic=
-<br>=C2=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=
-=A0 buff_size: 256 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0# Ingress buffer size for data<br>=C2=A0 ep6: =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint n=
-ame<br>=C2=A0 =C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic<br>=C2=A0 =C2=
-=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_size:=
- 256 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingres=
-s buffer size for data<br>=C2=A0 ep7: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint name<br>=C2=A0 =
-=C2=A0 ctrl: False =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 # Endpoint passes control traffic<br>=C2=A0 =C2=A0 data: True=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buff_size: 256 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buffer siz=
-e for data<br><br># A list of all NoC blocks in design<br># ---------------=
--------------------<br>noc_blocks:<br>=C2=A0 duc0: =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# NoC block name<br>=C2=
-=A0 =C2=A0 block_desc: &#39;duc.yml&#39; =C2=A0 =C2=A0# Block device descri=
-ptor file<br>=C2=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2=
-<br>=C2=A0 ddc0:<br>=C2=A0 =C2=A0 block_desc: &#39;ddc.yml&#39;<br>=C2=A0 =
-=C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 radio0:<b=
-r>=C2=A0 =C2=A0 block_desc: &#39;radio_2x64.yml&#39;<br>=C2=A0 duc1:<br>=C2=
-=A0 =C2=A0 block_desc: &#39;duc.yml&#39;<br>=C2=A0 =C2=A0 parameters:<br>=
-=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 ddc1:<br>=C2=A0 =C2=A0 block_de=
-sc: &#39;ddc.yml&#39;<br>=C2=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 =
-NUM_PORTS: 2<br>=C2=A0 radio1:<br>=C2=A0 =C2=A0 block_desc: &#39;radio_2x64=
-.yml&#39;<br>=C2=A0 replay0:<br>=C2=A0 =C2=A0 block_desc: &#39;replay.yml&#=
-39;<br>=C2=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=
-=C2=A0 =C2=A0 =C2=A0 MEM_DATA_W: 64<br>=C2=A0 =C2=A0 =C2=A0 MEM_ADDR_W: 30<=
-br>=C2=A0 replay1:<br>=C2=A0 =C2=A0 block_desc: &#39;replay.yml&#39;<br>=C2=
-=A0 =C2=A0 parameters:<br>=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 2<br>=C2=A0 =C2=
-=A0 =C2=A0 MEM_DATA_W: 64<br>=C2=A0 =C2=A0 =C2=A0 MEM_ADDR_W: 30<br><br># A=
- list of all static connections in design<br># ----------------------------=
---------------<br># Format: A list of connection maps (list of key-value pa=
-irs) with the following keys<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - srcblk =C2=
-=A0=3D Source block to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - srcport =
-=3D Port on the source block to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - =
-dstblk =C2=A0=3D Destination block to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 - dstport =3D Port on the destination block to connect<br>connections:<=
-br>=C2=A0 - { srcblk: ep0, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: duc0, =
-=C2=A0 dstport: in_0 }<br>=C2=A0 - { srcblk: duc0, =C2=A0 srcport: out_0, d=
-stblk: radio0, dstport: in_0 }<br>=C2=A0 - { srcblk: radio0, srcport: out_0=
-, dstblk: ddc0, =C2=A0 dstport: in_0 }<br>=C2=A0 - { srcblk: ddc0, =C2=A0 s=
-rcport: out_0, dstblk: ep0, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - {=
- srcblk: ep1, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: duc0, =C2=A0 dstpor=
-t: in_1 }<br>=C2=A0 - { srcblk: duc0, =C2=A0 srcport: out_1, dstblk: radio0=
-, dstport: in_1 }<br>=C2=A0 - { srcblk: radio0, srcport: out_1, dstblk: ddc=
-0, =C2=A0 dstport: in_1 }<br>=C2=A0 - { srcblk: ddc0, =C2=A0 srcport: out_1=
-, dstblk: ep1, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep2,=
- =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: duc1, =C2=A0 dstport: in_0 }<br>=
-=C2=A0 - { srcblk: duc1, =C2=A0 srcport: out_0, dstblk: radio1, dstport: in=
-_0 }<br>=C2=A0 - { srcblk: radio1, srcport: out_0, dstblk: ddc1, =C2=A0 dst=
-port: in_0 }<br>=C2=A0 - { srcblk: ddc1, =C2=A0 srcport: out_0, dstblk: ep2=
-, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep3, =C2=A0 =C2=
-=A0srcport: out0, =C2=A0dstblk: duc1, =C2=A0 dstport: in_1 }<br>=C2=A0 - { =
-srcblk: duc1, =C2=A0 srcport: out_1, dstblk: radio1, dstport: in_1 }<br>=C2=
-=A0 - { srcblk: radio1, srcport: out_1, dstblk: ddc1, =C2=A0 dstport: in_1 =
-}<br>=C2=A0 - { srcblk: ddc1, =C2=A0 srcport: out_1, dstblk: ep3, =C2=A0 =
-=C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep4, =C2=A0 =C2=A0srcport:=
- out0, =C2=A0dstblk: replay0,dstport: in_0 }<br>=C2=A0 - { srcblk: replay0,=
-srcport: out_0, dstblk: ep4, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - =
-{ srcblk: ep5, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: replay0,dstport: i=
-n_1 }<br>=C2=A0 - { srcblk: replay0,srcport: out_1, dstblk: ep5, =C2=A0 =C2=
-=A0dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: ep6, =C2=A0 =C2=A0srcport: ou=
-t0, =C2=A0dstblk: replay1,dstport: in_0 }<br>=C2=A0 - { srcblk: replay1,src=
-port: out_0, dstblk: ep6, =C2=A0 =C2=A0dstport: in0 =C2=A0}<br>=C2=A0 - { s=
-rcblk: ep7, =C2=A0 =C2=A0srcport: out0, =C2=A0dstblk: replay1,dstport: in_1=
- }<br>=C2=A0 - { srcblk: replay1,srcport: out_1, dstblk: ep7, =C2=A0 =C2=A0=
-dstport: in0 =C2=A0}<br>=C2=A0 - { srcblk: radio0, srcport: ctrl_port, dstb=
-lk: _device_, dstport: ctrlport_radio0 }<br>=C2=A0 - { srcblk: radio1, srcp=
-ort: ctrl_port, dstblk: _device_, dstport: ctrlport_radio1 }<br>=C2=A0 - { =
-srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport: x300_radio=
- }<br>=C2=A0 - { srcblk: _device_, srcport: x300_radio1, dstblk: radio1, ds=
-tport: x300_radio }<br>=C2=A0 - { srcblk: _device_, srcport: time_keeper, d=
-stblk: radio0, dstport: time_keeper }<br>=C2=A0 - { srcblk: _device_, srcpo=
-rt: time_keeper, dstblk: radio1, dstport: time_keeper }<br><br># A list of =
-all clock domain connections in design<br># -------------------------------=
------------------<br># Format: A list of connection maps (list of key-value=
- pairs) with the following keys<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - srcblk =
-=C2=A0=3D Source block to connect (Always &quot;_device&quot;_)<br># =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 - srcport =3D Clock domain on the source block to con=
-nect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - dstblk =C2=A0=3D Destination block =
-to connect<br># =C2=A0 =C2=A0 =C2=A0 =C2=A0 - dstport =3D Clock domain on t=
-he destination block to connect<br>clk_domains:<br>=C2=A0 - { srcblk: _devi=
-ce_, srcport: radio, =C2=A0 =C2=A0 =C2=A0dstblk: radio0, dstport: radio }<b=
-r>=C2=A0 - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc0, =C2=A0 ds=
-tport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk: _device_, srcport: rfnoc_chd=
-r, dstblk: duc0, =C2=A0 dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk: _d=
-evice_, srcport: radio, =C2=A0 =C2=A0 =C2=A0dstblk: radio1, dstport: radio =
-}<br>=C2=A0 - { srcblk: _device_, srcport: rfnoc_chdr, dstblk: ddc1, =C2=A0=
- dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk: _device_, srcport: rfnoc_=
-chdr, dstblk: duc1, =C2=A0 dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 - { srcblk:=
- _device_, srcport: dram, =C2=A0 =C2=A0 =C2=A0 dstblk: replay0,dstport: mem=
- =C2=A0 }<br>=C2=A0 - { srcblk: _device_, srcport: dram, =C2=A0 =C2=A0 =C2=
-=A0 dstblk: replay1,dstport: mem =C2=A0 }<br></font></div><div></div><div><=
-br></div></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-
---00000000000031ce9f05aecda4e3--
+Now, if it isn't 'auto finding' that address, then it means your 
+firewall configuration in the system is blocking subnet broadcast packets.
 
 
---===============8373583501631113612==
+
+
+--------------000704040108020406010703
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 09/08/2020 06:15 AM, Sourin Mondal
+      (Vehere) via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:BM1PR01MB07697B6272A4EC36F8DA7F388B290@BM1PR01MB0769.INDPRD01.PROD.OUTLOOK.COM"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
+      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+        font-size:12pt; color:rgb(0,0,0)">
+        Hi,</div>
+      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+        font-size:12pt; color:rgb(0,0,0)">
+        2 days back I have used a C++ code which can acquire data from
+        Antenna via USRP 2955. Previously that code works fine in
+        another machine. But when I tried to run in another machine, it
+        was showing "no device found" when I run the command "<b>uhd_find_devices</b>".
+
+        Even when i run the command "<b>uhd_usrp_probe</b>" it is
+        showing no device found. But when I run the command -&gt;
+        uhd_usrp_probe --args="addr=192.168.10.2" , it is detecting the
+        device as well as showing all the details.</div>
+      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+        font-size:12pt; color:rgb(0,0,0)">
+        The OS of my system is Ubuntu 18.04. <br>
+      </div>
+      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+        font-size:12pt; color:rgb(0,0,0)">
+        Dependencies to run this code : g++, uhd-3.14.1.0, NI Linux
+        driver 2020.</div>
+      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+        font-size:12pt; color:rgb(0,0,0)">
+        Communication from USRP to system is done via PCI e cable.</div>
+      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+        font-size:12pt; color:rgb(0,0,0)">
+        <br>
+      </div>
+      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+        font-size:12pt; color:rgb(0,0,0)">
+        Can you please help me why this is happening &amp; how to solve
+        this? I can ensure that there is no problem in that code neither
+        in any dependency's installation.<br>
+      </div>
+      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+        font-size:12pt; color:rgb(0,0,0)">
+        <br>
+      </div>
+      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+        font-size:12pt; color:rgb(0,0,0)">
+        with regards,</div>
+      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+        font-size:12pt; color:rgb(0,0,0)">
+        Sourin Mondal<br>
+      </div>
+      <br>
+      <br>
+    </blockquote>
+    If it's responding at that address, then it clearly isn't connected
+    via PCI-e.<br>
+    <br>
+    Now, if it isn't 'auto finding' that address, then it means your
+    firewall configuration in the system is blocking subnet broadcast
+    packets.<br>
+    <br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------000704040108020406010703--
+
+
+--===============4242944851666254090==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -575,5 +216,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8373583501631113612==--
+--===============4242944851666254090==--
 
