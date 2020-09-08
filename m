@@ -2,52 +2,81 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5548E25FF61
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Sep 2020 18:31:18 +0200 (CEST)
-Received: from [::1] (port=38760 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 616EF260F7C
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Sep 2020 12:16:43 +0200 (CEST)
+Received: from [::1] (port=47494 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kFK30-0004YE-3a; Mon, 07 Sep 2020 12:31:14 -0400
-Received: from mail-lf1-f42.google.com ([209.85.167.42]:38973)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <horvlint@gmail.com>) id 1kFK2w-0004U5-If
- for usrp-users@lists.ettus.com; Mon, 07 Sep 2020 12:31:10 -0400
-Received: by mail-lf1-f42.google.com with SMTP id q8so7775299lfb.6
- for <usrp-users@lists.ettus.com>; Mon, 07 Sep 2020 09:30:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=g2ksFpZ2EROKnnNXx6fL1TU4Dwy/v/cC3T2AmGuBGXY=;
- b=KRH0lh6zG8deaa69Hzc2hOu+lrEz+YCYYamI95jcfa+0NPTlcybSg7xFVuwHErWTdG
- /tNYVjkV1WTTs2xl0nmfr/cLqm1DEv/F66iUN+qNt4a+kuFoyfN4JdGlNPg9R6MjUX21
- i2GphKT5fM0/iO5NHH4uHxNuO/d6sn5vXGVaGBYwFa22nlG9Wu+QcbY00jHZ/3By6fTo
- E8OFIGMcFNdisv4KxR3N6quoVraOSXLXjjOna2xuD7VUqJHiCiVT3VfMS1FbGGH/oQNw
- tMgDeNW0zUiOEcq1YReuOIKzmnE+3otOtGfV/gAUtAfWmexub8HLs1Uy6FT7nYaPYlT+
- QMug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=g2ksFpZ2EROKnnNXx6fL1TU4Dwy/v/cC3T2AmGuBGXY=;
- b=In82/AWPwg0yEILq3GWDQ0iGq/W8d2opjwwkyHnIwbfqAK/cW4PBZLk8TzzHm79t5z
- vKc0WeFOJzV8XWhkGQ4AWvVSEQR7QFoEQVMqUjWaAnKB7O2jWIQ+eB+aUnc5eqsVQlPx
- Zknu+emJZJFN4U2TrSs6cI3+xgEYWy6/ImQ7fjUvSKuAdkaFg+sfuY+ZNOxKosg1y1Zz
- hIsCwHglFN5XYwgpXUmGjvdjIJ9RW3pfO3j6lcTdQN2VO5zD9z2vp+t0c5zm0+m7/OVn
- BtMTgZ4PAgyFCGV+5q/GOfL/Sj+Vkacs+fkhiCy1yAFoNeKRszi4kJupQ1HR173/Aura
- H2ww==
-X-Gm-Message-State: AOAM532f7ZaPq5J1yonM6lOo8Gr538CI+BPLsxoPIUxpGY+ra5Aj+qGl
- uaaZ9QyKPwBRXrvqgYGUvLhpJdlwAYSUC9UPvcU=
-X-Google-Smtp-Source: ABdhPJzbi2tlTM7eDjPV0YU4VC0LCEy8P8ALqzy7wOs3Ptk57exOUz/VNK8RsTaZ/4jlF9icUld/md9KpZqgzu8XDUc=
-X-Received: by 2002:a19:ac4:: with SMTP id 187mr10449486lfk.102.1599496229244; 
- Mon, 07 Sep 2020 09:30:29 -0700 (PDT)
+	id 1kFag3-0003lK-IM; Tue, 08 Sep 2020 06:16:39 -0400
+Received: from mail-eopbgr1390120.outbound.protection.outlook.com
+ ([40.107.139.120]:58585 helo=IND01-BO1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <sourin.mondal@vehere.com>)
+ id 1kFafy-0003h3-TB
+ for usrp-users@lists.ettus.com; Tue, 08 Sep 2020 06:16:35 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=js3dfIrVDnWohSkrUGBna3pBJ5VGVGuNVYip1xaLTEqGjSFPonDN7kOJ/avEokhkFyjKAZd2KyEtYyoY9wLaLmwHOJ4K8bcUSEhDjTFIyCiUVEcQTLHs7FcHWINWFxYWPpmHDZL1W7z9SeM7k5Nn6LoLVD0vcKmQ0pBxA7lOoLvYN+A0N038DOvfQuxs3YS7KuEQC/LOllOmYivZc2Ue48H4HjOucLqzyP0zVV3cZ3GBEMMNOehYgKvrJEXtZnGFTflBi28QC0QkiLjRJuamS+VHJ06JO2iiE183cA2C4c4TxLNerdBB+o6Shf2PL8XXlwic9oUM1xgNZ6td2loVTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=B8UhxGpwZ7oHXe/hErtH3hOCefql23fHCD2YurrwaK4=;
+ b=Gmbc2p6x0BdYAGgDNq1RDUleLahhxHzWFRUPhtMeTO8Lw5jpaoSOHx2tvX8SdJOCIdTnbuzwmUVZJrMws2e14krru32zYw5rXmfapADNS7cmnUyx4F3DGGRVWMrzmlL2ESsuAdaH3l68tJ4WQ4EHcYjqgWs6LEMzNlaNu1o520aDa51coPPNj/ayapteMYrqTT3Im4Wt2oRGogvFLzoe6sUoXu5DOGRFuBfohh2PvtiCX73wQgWCSvolo755EC6CGU/834RygXEC28JqltXgho+VMEhTljx65RUIuorJFY5HII/dSY9CSYV9A1FI5TDjG+TiVrSUR5SnkyXTcx9WRQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
+ dkim=pass header.d=vehere.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=vehereinteractive.onmicrosoft.com;
+ s=selector2-vehereinteractive-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=B8UhxGpwZ7oHXe/hErtH3hOCefql23fHCD2YurrwaK4=;
+ b=L99kMo3KFDnas0e3vIyD/Q749doeNQy861ZYE4M4sWJYNTXanX1DXGdimj6m+apfM59Q+p3p63sNBtM9TSGAK0/NDCiCn3LOjXRe23kzuH838OctABE4wfjzONIDQiK4vYuhNzrCXSORjnO75aELfHCObBekUhY4/kSYOWGTgQM=
+Received: from BM1PR01MB0769.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:5::16)
+ by BMXPR01MB2166.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:31::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.17; Tue, 8 Sep
+ 2020 10:15:50 +0000
+Received: from BM1PR01MB0769.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::99a5:f6e1:13ee:a84f]) by BM1PR01MB0769.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::99a5:f6e1:13ee:a84f%6]) with mapi id 15.20.3348.019; Tue, 8 Sep 2020
+ 10:15:50 +0000
+To: USRP list <usrp-users@lists.ettus.com>
+Thread-Topic: Problem in detecting the USRP from my system
+Thread-Index: AQHWhZ1Ztds4L/K3o0mfbD8Cq1NLGA==
+Date: Tue, 8 Sep 2020 10:15:50 +0000
+Message-ID: <BM1PR01MB07697B6272A4EC36F8DA7F388B290@BM1PR01MB0769.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none; lists.ettus.com; dmarc=none action=none header.from=vehere.com; 
+x-originating-ip: [219.65.75.30]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 219b5f69-3a83-4fbc-a878-08d853e02963
+x-ms-traffictypediagnostic: BMXPR01MB2166:
+x-microsoft-antispam-prvs: <BMXPR01MB21660042931CCC5FA19EC7BF8B290@BMXPR01MB2166.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: BNeyzbCoh9fAk6vOsrr7ynfVANsrtXTVCmPtnprxO5mKyCreF1Tt7FUSSIoOapyYqdcD/IC4c9H9FmZc2mOupLY3GBVJ1bk1DhTyC7tK1pZ7c+LaVbNtq2ZKITfngBsUaRXAm6qngwDdnJ6U1k3ZVEcLb1Z7kL0rkF16t7wKkU1II/kKdF5cS0b4g/dXwvWci25Id4E5TM5WT8nQfgnVObCQrAIhAL0gZEixm66bfbTVJM8E5QItC1/iIjiH6BsvgMKGB3L97k/bekCaJMADCBYzJl11LukOaUgy4Iyf4C6cPASX5aXQfxQFy3eV60QI
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BM1PR01MB0769.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(366004)(39840400004)(396003)(376002)(136003)(346002)(6506007)(26005)(64756008)(186003)(6916009)(83380400001)(66446008)(66476007)(76116006)(8676002)(33656002)(66556008)(66946007)(4744005)(52536014)(5660300002)(86362001)(55016002)(9686003)(316002)(478600001)(7696005)(19627405001)(8936002)(71200400001)(2906002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: /uFupBcMVLpeQHmzjV4yQVu9fGPlqGFVpMmaXlv2MMf4O0yeGZCyjH1XlxRcul4onJwtSRvI03eesNdOyp40bmxdEixNNeEg0jxgg2qQgmXFBOcbetcRAkuH2W8MfCVBg14DIU11pU3e58TErjhI3tzWQkZ3SgUOwF3PMNFYgYlu9fZ3YLk08ujaF7IRO/ilJS7dEboLDrixHy0OmRSaxuC37ILVTjqZaQ5NKgqRIrQ5Vmq+qeT1B6RmrPenkrnwSyBxW5lRMBJa2Ohg0PyPBXmcv296nb4GtD6tQHa3Uufm+g/NYzI9oo05eMkBA4Q5sIDp1RmA2Md01ByzFzRfV4xCy4kYHajj/0c1FQGZWzyzFgmMhs9oChOEMsXczhe2eapKGjZwF+ijmbDubkaL+EUJQoA5qK8MiesjTGX73w3HsjpnEI/xmP4BSgEr//UzAgX039BzriR+JWl1DrZ3hqdLnH2i2GDPzkf+ZMyveRooc4IO44UdfSOjPhZMFdrNPwmfFZAPgwRRSa0LWD/csRQ27TYu0QpQIrN5v9cDR4xFVQd7hOy6FV03Qa6EfoTw8dzIho99ZVH1gcTAXn9GWT2H7kdzOpRfaGsw1AZQls/tuBcSFH7YexyBNpNMgvDwC4FFjHZ7imFT82LbdzMecQ==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CAL-X26Rgr9H=-bNKr2_O3OAaWc2=HZ1Ro7RQ_81UDkaFNWYodg@mail.gmail.com>
- <CAB__hTT7RN1LN9ypf+-Ozc4ub7dQcH6RRMow0rz8ywheA2QwYg@mail.gmail.com>
-In-Reply-To: <CAB__hTT7RN1LN9ypf+-Ozc4ub7dQcH6RRMow0rz8ywheA2QwYg@mail.gmail.com>
-Date: Mon, 7 Sep 2020 18:30:18 +0200
-Message-ID: <CAL-X26SBhMr-FGWP6_-B9r20Xo3_XOwEAemEpfV0CYyGOaiHDg@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] N310 Late command/packet error
+X-OriginatorOrg: vehere.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BM1PR01MB0769.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 219b5f69-3a83-4fbc-a878-08d853e02963
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Sep 2020 10:15:50.3832 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pvGoYTAXhFmtxj5er2uOzJbfaw+ye3yVtMEJfVF1wFL9tE2Nqe2oeJA47607ZY1eR3YUMTTM15vRNRcAxJ4+fZPe1ZOfYd45JYT3b+k9HiA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BMXPR01MB2166
+Subject: [USRP-users] Problem in detecting the USRP from my system
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,10 +88,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?B=C3=A1lint_Horv=C3=A1th_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?QsOhbGludCBIb3J2w6F0aA==?= <horvlint@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4433938734844483553=="
+From: "Sourin Mondal \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Sourin Mondal \(Vehere\)" <sourin.mondal@vehere.com>
+Content-Type: multipart/mixed; boundary="===============7148630148537004254=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,181 +104,98 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4433938734844483553==
-Content-Type: multipart/alternative; boundary="0000000000009053cf05aebbbcdf"
+--===============7148630148537004254==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BM1PR01MB07697B6272A4EC36F8DA7F388B290BM1PR01MB0769INDP_"
 
---0000000000009053cf05aebbbcdf
-Content-Type: text/plain; charset="UTF-8"
+--_000_BM1PR01MB07697B6272A4EC36F8DA7F388B290BM1PR01MB0769INDP_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Rob,
+Hi,
+2 days back I have used a C++ code which can acquire data from Antenna via =
+USRP 2955. Previously that code works fine in another machine. But when I t=
+ried to run in another machine, it was showing "no device found" when I run=
+ the command "uhd_find_devices". Even when i run the command "uhd_usrp_prob=
+e" it is showing no device found. But when I run the command -> uhd_usrp_pr=
+obe --args=3D"addr=3D192.168.10.2" , it is detecting the device as well as =
+showing all the details.
+The OS of my system is Ubuntu 18.04.
+Dependencies to run this code : g++, uhd-3.14.1.0, NI Linux driver 2020.
+Communication from USRP to system is done via PCI e cable.
 
-Thank you very much for your advice. The benchmark test is working on all 4
-channels for 1 MSamp/sec, which is sufficient for the current application
-(though sometimes there are some S and U at startup). The ram drive did not
-solve the problem, however if I set a settling time for 1 (sec) for the
-txrx_loopback it started working for the 4 channels. In this case the RX
-starts only 1 sec after the TX. So it kind of seems like there is a problem
-at startup and after that everything is fine. I don't know if that makes
-sense though.
+Can you please help me why this is happening & how to solve this? I can ens=
+ure that there is no problem in that code neither in any dependency's insta=
+llation.
 
-I tried to make the settling time thing happen in gnuradio with
-issue_stream_cmd after init/start with a python snippet, but oddly there is
-a very short time at startup when both TX and RX are active, and the
-command seems to take effect only after that. Maybe I'm missing something
-here.
+with regards,
+Sourin Mondal
 
-So now I'm trying to merge and customize the txrx_loopback with the
-tx_samples from file examples hoping that it will work.
-
-Also I checked the CPU load with htop and it is only 15% on all 4 cores
-during the loopback.
-
-Any further advice is still welcome!
-
-Balint
-
-Rob Kossler <rkossler@nd.edu> ezt =C3=ADrta (id=C5=91pont: 2020. szept. 3.,=
- Cs,
-19:55):
-
-> Hi B=C3=A1lint,
-> You may want to step backwards once more and run the "benchmark_rate"
-> utility with 4 channels with tx & rx rates at 1MHz.  This will eliminate
-> the file I/O considerations (both for tx and rx).  If benchmark_rate is
-> successful, see how high you can increase the rate. The n4200 is not a ve=
-ry
-> powerful CPU, so you might be significantly limited.  If you are using th=
-e
-> 1Gb interface, then the max sample rate you can achieve (assuming your CP=
-U
-> is not limiting you) for 4 channels is ~6.25 MS/s because of the 1Gb limi=
-t
-> (4 chan x 6.25MS/s x 4 bytes/sample x 8 bits/byte =3D 800Mb/s).
->
-> Once you are satisfied with the USRP streaming rates, you can try putting
-> your tx and rx files in a ram drive in order to improve the file I/O so
-> that it does not impact overall performance appreciably. Then retry
-> txrx_loopback_to_file.
-> Rob
->
->
-> On Thu, Sep 3, 2020 at 3:23 AM B=C3=A1lint Horv=C3=A1th via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hello,
->>
->> I have a USRP N310 and in my application I want to do a 4 channel
->> loopback. Transmit sources are files and the received samples are
->> processed. However, I ran into stability issues receiving a lot of Late
->> packet errors (LLLLL). To trace the problem I executed the basic UHD
->> example txrx_loopback_to_file on 4 channels with 1Msamp/sec sample rate.
->> There every time I got ERROR_CODE_LATE_COMMAND. When I executed it for 3
->> channels I got it working, though on some occasions the same error would
->> occur. With netstat I see that in case I receive the L-s, the UDP packet
->> error is increasing.
->>
->> After reading through the manual and threads I tried several things but
->> could not resolve the issue.
->> - I set the net.core.rmem_max and wmem_max as suggested
->> - I set the MTU on both host and N310 to 8000 (also tried 1500)
->> - I put the CPU to performance mode with cpupower
->>
->> My system config is:
->> - Ubuntu 20.04, UHD version 3.15, (gnuradio installed with apt)
->> - quad core intel n4200, 8GB RAM
->> - N310 is loaded with default HG firmware (sfp0 is 1GBit)
->>
->> Do you have any tips on how to resolve this?
->>
->> Thanks!
->>
->> Balint
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
-
---0000000000009053cf05aebbbcdf
-Content-Type: text/html; charset="UTF-8"
+--_000_BM1PR01MB07697B6272A4EC36F8DA7F388B290BM1PR01MB0769INDP_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello Rob,<div><br></div><div>Thank you very much for your=
- advice. The benchmark test is working on all 4 channels for 1 MSamp/sec, w=
-hich is sufficient for the current application (though sometimes there are =
-some S and U at startup). The ram drive did not solve the problem, however =
-if I set a settling time for 1 (sec) for the txrx_loopback it started worki=
-ng for the 4 channels. In this case the RX starts only 1 sec after the TX. =
-So it kind of seems like there is a problem at startup and after that every=
-thing is fine. I don&#39;t know if that makes sense though.=C2=A0</div><div=
-><br></div><div>I tried to make the settling time thing happen in gnuradio =
-with issue_stream_cmd after init/start with a python snippet, but oddly the=
-re is a very short time at startup when both TX and RX are active, and the =
-command seems to take effect only after that. Maybe I&#39;m missing somethi=
-ng here.</div><div><br></div><div>So now I&#39;m trying to merge and custom=
-ize the txrx_loopback with the tx_samples from file examples hoping that it=
- will work.</div><div><br></div><div>Also I checked the CPU load with htop =
-and it is only 15% on all 4 cores during the loopback.=C2=A0</div><div><br>=
-</div><div>Any further advice is still welcome!</div><div><br></div><div>Ba=
-lint</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
-ail_attr">Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.ed=
-u</a>&gt; ezt =C3=ADrta (id=C5=91pont: 2020. szept. 3., Cs, 19:55):<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204)=
-;padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi B=C3=A1lint,<div>Yo=
-u may want to step backwards once more and run the &quot;benchmark_rate&quo=
-t; utility with 4 channels with tx &amp; rx rates at 1MHz.=C2=A0 This will =
-eliminate the file I/O considerations (both for tx and rx).=C2=A0 If benchm=
-ark_rate is successful, see how high you can increase the rate. The n4200 i=
-s not a very powerful CPU, so you might be significantly limited.=C2=A0 If =
-you are using the 1Gb interface, then the max sample rate you can achieve (=
-assuming your CPU is not limiting you) for 4 channels is ~6.25 MS/s because=
- of the 1Gb limit (4 chan x 6.25MS/s x 4 bytes/sample x 8 bits/byte =3D 800=
-Mb/s).</div><div><br></div><div>Once you are satisfied with the USRP stream=
-ing rates, you can try putting your tx and rx files in a ram drive in order=
- to improve the file I/O so that it does not impact overall performance app=
-reciably. Then retry txrx_loopback_to_file.</div><div>Rob</div><div><br></d=
-iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
-r">On Thu, Sep 3, 2020 at 3:23 AM B=C3=A1lint Horv=C3=A1th via USRP-users &=
-lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-use=
-rs@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style=
-:solid;border-left-color:rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
-"><div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I have a USRP N310 =
-and in my application I want to do a 4 channel loopback. Transmit sources a=
-re files and the received samples are processed. However, I ran into stabil=
-ity issues receiving a lot of Late packet errors (LLLLL). To trace the prob=
-lem I executed the basic UHD example txrx_loopback_to_file on 4 channels wi=
-th 1Msamp/sec sample rate. There every time I got ERROR_CODE_LATE_COMMAND. =
-When I executed it for 3 channels I got it working, though on some occasion=
-s the same error would occur. With netstat I see that in case I receive the=
- L-s, the UDP packet error is increasing.</div><div><br></div><div>After re=
-ading through the manual and threads I tried several things but could not r=
-esolve the issue.</div><div>- I set the net.core.rmem_max and wmem_max as s=
-uggested</div><div>- I set the MTU on both host and N310 to 8000 (also trie=
-d 1500)</div><div>- I put the CPU to performance mode with cpupower</div><d=
-iv><br></div><div>My system config is:</div><div>- Ubuntu 20.04, UHD versio=
-n 3.15, (gnuradio installed with apt)</div><div>- quad core intel n4200, 8G=
-B RAM</div><div>- N310 is loaded with default HG firmware (sfp0 is 1GBit)</=
-div><div><br></div><div>Do you have any tips on how to resolve this?</div><=
-div><br></div><div>Thanks!</div><div><br></div><div>Balint</div></div></div=
->
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-</blockquote></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Hi,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+2 days back I have used a C++ code which can acquire data from Antenna via =
+USRP 2955. Previously that code works fine in another machine. But when I t=
+ried to run in another machine, it was showing &quot;no device found&quot; =
+when I run the command &quot;<b>uhd_find_devices</b>&quot;.
+ Even when i run the command &quot;<b>uhd_usrp_probe</b>&quot; it is showin=
+g no device found. But when I run the command -&gt; uhd_usrp_probe --args=
+=3D&quot;addr=3D192.168.10.2&quot; , it is detecting the device as well as =
+showing all the details.</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+The OS of my system is Ubuntu 18.04. <br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Dependencies to run this code : g++, uhd-3.14.1.0, NI Linux driver 2020.</d=
+iv>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Communication from USRP to system is done via PCI e cable.</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Can you please help me why this is happening &amp; how to solve this? I can=
+ ensure that there is no problem in that code neither in any dependency's i=
+nstallation.<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+with regards,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Sourin Mondal<br>
+</div>
+</body>
+</html>
 
---0000000000009053cf05aebbbcdf--
+--_000_BM1PR01MB07697B6272A4EC36F8DA7F388B290BM1PR01MB0769INDP_--
 
 
---===============4433938734844483553==
+--===============7148630148537004254==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -261,5 +206,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4433938734844483553==--
+--===============7148630148537004254==--
 
