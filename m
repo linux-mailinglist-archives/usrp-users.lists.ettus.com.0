@@ -2,58 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D9AB261244
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Sep 2020 16:02:12 +0200 (CEST)
-Received: from [::1] (port=50004 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id F355F261337
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Sep 2020 17:12:12 +0200 (CEST)
+Received: from [::1] (port=50534 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kFeCJ-0000LF-A7; Tue, 08 Sep 2020 10:02:11 -0400
-Received: from mail-qk1-f176.google.com ([209.85.222.176]:37692)
+	id 1kFfI2-0005Je-32; Tue, 08 Sep 2020 11:12:10 -0400
+Received: from mail-ed1-f52.google.com ([209.85.208.52]:44984)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kFeCF-0000E7-Bt
- for usrp-users@lists.ettus.com; Tue, 08 Sep 2020 10:02:07 -0400
-Received: by mail-qk1-f176.google.com with SMTP id 16so5996254qkf.4
- for <usrp-users@lists.ettus.com>; Tue, 08 Sep 2020 07:01:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=6t4rrMmOMDXBMCP3nk47KykXHKUwBuNa6wlWVkoAts0=;
- b=QK3Gj2yXdS0zozVg3r1+3Z/mcEOU/L5gt94hB1MneohNERwwcV7cJ2S4sy6reTsemo
- KPK0X/2cT/isteqX0tL5/PduhaQtXLKbOm5YawQMcZb9GbStqBmF0h2pW1LcAEhNa7D4
- C9pWogDJej5LE6aPj+zLhpg86VTtYuaKN/8bNhn2cPNUTKi5rjldUiVBOnP5JGPMl1sa
- 2Zog7jMNArnsRMWd4oWGxyf2K3fRHqcCFGw7ACYCoPub4hiJC++MSUPrG45mEuKjPYqp
- rOUImJIDlNDZ8wpj3EYopvlYH5O5mu8i1ILmVtr1W1gkI1wNRglLSJzKJYZHEWpn42Tf
- 9QAw==
+ (Exim 4.93) (envelope-from <martin.braun@ettus.com>)
+ id 1kFfHy-0005AY-EU
+ for usrp-users@lists.ettus.com; Tue, 08 Sep 2020 11:12:06 -0400
+Received: by mail-ed1-f52.google.com with SMTP id b12so16331222edz.11
+ for <usrp-users@lists.ettus.com>; Tue, 08 Sep 2020 08:11:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-language:content-transfer-encoding;
+ bh=QnHLC8LakFNRlFBp/gurx6npn17CPhKX1baTurvm4jc=;
+ b=gXp0djtWs7ve+HZAZd3IilzN437Ll9vNWYoU0Qf2sQa/mtMI3UWq4pGG87vKmu/MkL
+ xi4I3Sx1xCrYJTb47byh6OdqylTfqBHoc6FhtVV2iCeGmWwPGagusu3scqsLS5dECh6X
+ epNyMaG9z3VcAQc9hgJKUEOisrKr0Y1c+pYOWNyB445akSaKnxk3F4IPhviRTVNtaEPx
+ Muvja9uGMLagUd1nXeemDxXSlgtvuvbz+I25NaMjLtD4AIrROMwLW4NYjS8u8HlXRIcB
+ NwEYDyX6Xkmu9e5Q3P6QJ/l7quwgv/v9A3lljgyt2t0KAn1FqloLCPea/06bYJ55pgVY
+ T+kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=6t4rrMmOMDXBMCP3nk47KykXHKUwBuNa6wlWVkoAts0=;
- b=Ch0xFJE5fzhzyK2eXdElhjQedchdJCuQ2PkqsyvyFQhY4Vtfz5rpOPb7HgFowZERhS
- VwjEuZR5VObQx2SBvXy7UAUIeMUR9EGHFrxb1cf8ebTFKLLU4UX/DSgOdvjJaBL/YPJs
- vB8JulgjkrubK6ITwX9jIkmogvJfSvDMC6MczZ7uXmVz8SCpMe6g+JLzFzq+yASwGt73
- U/JkLCkgp4i1oOYHtYyfU4pHZTThhuc7cwq4PuUhju1ZebiSliign7MAyEqMiffRYwTL
- /X+mOqeP6jeTErlpev/jLgoHVIIpqrONxvtI2KZKPjyPVSfgkjhRUB6TMn4GeoWqMsey
- PXtQ==
-X-Gm-Message-State: AOAM5327L9jvPlNf6mGcy/1iz/2ksfckMzVRrRuVl/6DsrtQhPmHp2gL
- kefz0/Z83tAT3f/aCYvDpvbRjU78rac=
-X-Google-Smtp-Source: ABdhPJzfQLGPkZvQvhhvgqH3pOeKiAcVawi+inKAxHBYHDQJPI73lL0jsIUFZtdlQSteVV4CmKGDfw==
-X-Received: by 2002:a37:a00d:: with SMTP id j13mr156762qke.349.1599573686550; 
- Tue, 08 Sep 2020 07:01:26 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
- by smtp.googlemail.com with ESMTPSA id g37sm14710114qtk.76.2020.09.08.07.01.26
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=QnHLC8LakFNRlFBp/gurx6npn17CPhKX1baTurvm4jc=;
+ b=rtAFVAvpaMv74SbH+GE1DVipNF3/RMZAwh4aCI2cRJ9Gk3MvEjSDOCGkNptZXpED+d
+ dJdrHEz1FvhVhM3DU0IW0XQ9Pgb8iMcjIpQmKwgxp+jLIQW6F++CUfkKrfQ5TIv2NyyC
+ hUdKQptoxxfyr+beYHqcaTiWj28PaoSZJv8hmQlZevK3Rzt7FMdFVM4K1ha3n+jPBPAT
+ 4jf1Vn91+eunCbRkVAp5g/GGkWCkOQ4olit9OmLUZTqmSG2ETOSkV87Hs8k8CdqML9Sr
+ JmMa4p0zW1MdCmrYW8ycNPaIGxFtnKvjWswGbT4gmCz4bTIxby4T7kKGNE0uIzeZuHMZ
+ ERhg==
+X-Gm-Message-State: AOAM5306fVwgoIvxAPmgo3DE/O/SFpZbqx1L3IXzR1pshGHitImIIS56
+ CgLYefS1Gh71C8rjzOdFrpu3BOUi+syk+wtF5eM=
+X-Google-Smtp-Source: ABdhPJxJhh/+B7oKknqK6vaXY64tV/GX68kWHejqQRmbW+pvHJElblk1L8NBrcV3CPFjk0lqX8ASeg==
+X-Received: by 2002:a50:ed8d:: with SMTP id h13mr26799364edr.50.1599577885077; 
+ Tue, 08 Sep 2020 08:11:25 -0700 (PDT)
+Received: from ?IPv6:2a02:8071:2c80:c4f0::e6a? ([2a02:8071:2c80:c4f0::e6a])
+ by smtp.gmail.com with ESMTPSA id v23sm17828161ejh.84.2020.09.08.08.11.24
  for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 08 Sep 2020 07:01:26 -0700 (PDT)
-Message-ID: <5F578EB5.2020308@gmail.com>
-Date: Tue, 08 Sep 2020 10:01:25 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 08 Sep 2020 08:11:24 -0700 (PDT)
 To: usrp-users@lists.ettus.com
 References: <BM1PR01MB07697B6272A4EC36F8DA7F388B290@BM1PR01MB0769.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <BM1PR01MB07697B6272A4EC36F8DA7F388B290@BM1PR01MB0769.INDPRD01.PROD.OUTLOOK.COM>
+ <5F578EB5.2020308@gmail.com>
+Message-ID: <2846a593-e653-73ee-d537-3c41a987b28d@ettus.com>
+Date: Tue, 8 Sep 2020 17:11:23 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
+MIME-Version: 1.0
+In-Reply-To: <5F578EB5.2020308@gmail.com>
+Content-Language: en-US
 Subject: Re: [USRP-users] Problem in detecting the USRP from my system
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -66,9 +70,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4242944851666254090=="
+From: Martin Braun via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Martin Braun <martin.braun@ettus.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,139 +87,37 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============4242944851666254090==
-Content-Type: multipart/alternative;
- boundary="------------000704040108020406010703"
+On 9/8/20 4:01 PM, Marcus D. Leech via USRP-users wrote:
+>> 2 days back I have used a C++ code which can acquire data from Antenna
+>> via USRP 2955. Previously that code works fine in another machine. But
+>> when I tried to run in another machine, it was showing "no device
+>> found" when I run the command "*uhd_find_devices*". Even when i run
+>> the command "*uhd_usrp_probe*" it is showing no device found. But when
+>> I run the command -> uhd_usrp_probe --args="addr=192.168.10.2" , it is
+>> detecting the device as well as showing all the details.
+>> The OS of my system is Ubuntu 18.04.
+>> Dependencies to run this code : g++, uhd-3.14.1.0, NI Linux driver 2020.
+>> Communication from USRP to system is done via PCI e cable.
+>>
+>> Can you please help me why this is happening & how to solve this? I
+>> can ensure that there is no problem in that code neither in any
+>> dependency's installation.
+>>
+>> with regards,
+>> Sourin Mondal
+>>
+>>
+> If it's responding at that address, then it clearly isn't connected via
+> PCI-e.
 
-This is a multi-part message in MIME format.
---------------000704040108020406010703
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+If PCIe is what you want, then try resource=RIO0 (or maybe even just
+"type=x300") as an arg string. Also, make sure the RIO driver is running
+("niusrprio_pcie start"). See also
+https://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_comm_issues_not_enumerated.
 
-On 09/08/2020 06:15 AM, Sourin Mondal (Vehere) via USRP-users wrote:
-> Hi,
-> 2 days back I have used a C++ code which can acquire data from Antenna 
-> via USRP 2955. Previously that code works fine in another machine. But 
-> when I tried to run in another machine, it was showing "no device 
-> found" when I run the command "*uhd_find_devices*". Even when i run 
-> the command "*uhd_usrp_probe*" it is showing no device found. But when 
-> I run the command -> uhd_usrp_probe --args="addr=192.168.10.2" , it is 
-> detecting the device as well as showing all the details.
-> The OS of my system is Ubuntu 18.04.
-> Dependencies to run this code : g++, uhd-3.14.1.0, NI Linux driver 2020.
-> Communication from USRP to system is done via PCI e cable.
->
-> Can you please help me why this is happening & how to solve this? I 
-> can ensure that there is no problem in that code neither in any 
-> dependency's installation.
->
-> with regards,
-> Sourin Mondal
->
->
-If it's responding at that address, then it clearly isn't connected via 
-PCI-e.
-
-Now, if it isn't 'auto finding' that address, then it means your 
-firewall configuration in the system is blocking subnet broadcast packets.
-
-
-
-
---------------000704040108020406010703
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 09/08/2020 06:15 AM, Sourin Mondal
-      (Vehere) via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:BM1PR01MB07697B6272A4EC36F8DA7F388B290@BM1PR01MB0769.INDPRD01.PROD.OUTLOOK.COM"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
-      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-        font-size:12pt; color:rgb(0,0,0)">
-        Hi,</div>
-      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-        font-size:12pt; color:rgb(0,0,0)">
-        2 days back I have used a C++ code which can acquire data from
-        Antenna via USRP 2955. Previously that code works fine in
-        another machine. But when I tried to run in another machine, it
-        was showing "no device found" when I run the command "<b>uhd_find_devices</b>".
-
-        Even when i run the command "<b>uhd_usrp_probe</b>" it is
-        showing no device found. But when I run the command -&gt;
-        uhd_usrp_probe --args="addr=192.168.10.2" , it is detecting the
-        device as well as showing all the details.</div>
-      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-        font-size:12pt; color:rgb(0,0,0)">
-        The OS of my system is Ubuntu 18.04. <br>
-      </div>
-      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-        font-size:12pt; color:rgb(0,0,0)">
-        Dependencies to run this code : g++, uhd-3.14.1.0, NI Linux
-        driver 2020.</div>
-      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-        font-size:12pt; color:rgb(0,0,0)">
-        Communication from USRP to system is done via PCI e cable.</div>
-      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-        font-size:12pt; color:rgb(0,0,0)">
-        <br>
-      </div>
-      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-        font-size:12pt; color:rgb(0,0,0)">
-        Can you please help me why this is happening &amp; how to solve
-        this? I can ensure that there is no problem in that code neither
-        in any dependency's installation.<br>
-      </div>
-      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-        font-size:12pt; color:rgb(0,0,0)">
-        <br>
-      </div>
-      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-        font-size:12pt; color:rgb(0,0,0)">
-        with regards,</div>
-      <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
-        font-size:12pt; color:rgb(0,0,0)">
-        Sourin Mondal<br>
-      </div>
-      <br>
-      <br>
-    </blockquote>
-    If it's responding at that address, then it clearly isn't connected
-    via PCI-e.<br>
-    <br>
-    Now, if it isn't 'auto finding' that address, then it means your
-    firewall configuration in the system is blocking subnet broadcast
-    packets.<br>
-    <br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------000704040108020406010703--
-
-
---===============4242944851666254090==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+--M
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4242944851666254090==--
-
