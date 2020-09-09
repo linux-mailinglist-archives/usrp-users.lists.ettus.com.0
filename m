@@ -2,57 +2,82 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 417A526237E
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Sep 2020 01:17:16 +0200 (CEST)
-Received: from [::1] (port=54684 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 963CC2625C0
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Sep 2020 05:15:52 +0200 (CEST)
+Received: from [::1] (port=56252 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kFmrO-0007g2-5x; Tue, 08 Sep 2020 19:17:10 -0400
-Received: from mail-qk1-f171.google.com ([209.85.222.171]:41527)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kFmrJ-0006vd-QK
- for USRP-users@lists.ettus.com; Tue, 08 Sep 2020 19:17:05 -0400
-Received: by mail-qk1-f171.google.com with SMTP id g72so794710qke.8
- for <USRP-users@lists.ettus.com>; Tue, 08 Sep 2020 16:16:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=wBRe7TkVm5cT5Yw9B2rURmPfNHQ63HBgNj2cukv2kdE=;
- b=lILBh+WIF6c5VwlkVNQiTtUqlI6tLNSh3ls0WavRoDYwpr4qPE+c13ALzDAGKVHzoI
- xFhhU3pWPe0C02F+OUx3kbAyvaiDgVK1yZ78TyO5C3vkOgsPS6h4RoCF/KPe0mDT7vXy
- NWrdVt+9VH27nhKf41I/DP6y2j4GNOcD/145H3C4ZJReTT4pb6KLSWqvqz8V5m77JH9J
- /883Txyih+Q0lVCzs0Nan/g7YDDC6h9NQJBi2ONqZVMUTRalxj1CVJIW8e1amY7hoCou
- LrYwnZdN3NH70Ajp0asvGrUQtzYa5b7Mqnu3RuRyzR9QlcQnS/eJmF14gNbedJuzQjWA
- ELrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=wBRe7TkVm5cT5Yw9B2rURmPfNHQ63HBgNj2cukv2kdE=;
- b=n77Nye6jVhzvIFy+HEOoAR0D0GWh/sphs5D01g2zJ8BXMh7jh5sMowlMXSgnatFruX
- XKoY9tcdMe7c5ELzTAph9kLX2NWzoW7D/+eZv5/vfTqLYyKTWhM6itXv7PXbE+xYqDBF
- uKBbwv7eBJdGnioORn7Mz/F6aDzr52P8BqHmbBKbAO4Q+EVGtiLp05QWrAcD9UMJ/9r4
- 8jSEPXGATH/E/+N32bsRYWZXjyrjS4RjQ8N7qlmbc3tee3oxLTAyzLfJZa2baQLgWntZ
- H18nhqLWSsk4BYGnYxOGd6ixqYwOeFpPK5incSJavAAssc1tpBshe9fIu254LFD89xLr
- Lfhg==
-X-Gm-Message-State: AOAM531vUVoEZxlb3w33RKhnRzfciyLGkn/Qflb4q9zBCzbVTy1uqU05
- IrqV2fc7fS18MUhGxw2aIF8=
-X-Google-Smtp-Source: ABdhPJz03bECLsuBpbH1JwSAS3xJvpxaoxvpu1oRfWk3nHxSqkxQJo567CB+8pgfCtwpj8Kk0xFfxQ==
-X-Received: by 2002:a37:6805:: with SMTP id d5mr878969qkc.116.1599606985121;
- Tue, 08 Sep 2020 16:16:25 -0700 (PDT)
-Received: from [192.168.2.29]
- (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
- by smtp.gmail.com with ESMTPSA id x126sm757986qka.91.2020.09.08.16.16.24
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 08 Sep 2020 16:16:24 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Tue, 8 Sep 2020 19:16:23 -0400
-Message-Id: <67756EB6-9B3C-4C53-BE41-4F856F9DCAA7@gmail.com>
-References: <BM1PR0101MB149191EDB483E8E0D9393EDB88290@BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <BM1PR0101MB149191EDB483E8E0D9393EDB88290@BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM>
-To: Snehasish Kar <snehasish.cse@live.com>
-X-Mailer: iPhone Mail (17G80)
+	id 1kFqaK-0000GC-Je; Tue, 08 Sep 2020 23:15:48 -0400
+Received: from mail-oln040092254049.outbound.protection.outlook.com
+ ([40.92.254.49]:6992 helo=APC01-PU1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <snehasish.cse@live.com>)
+ id 1kFqaG-0000AB-5j
+ for USRP-users@lists.ettus.com; Tue, 08 Sep 2020 23:15:44 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HJQ+7OUlubSPzawTbDpmhOJvL8quRX42ioDZhiELNUV4nnXA8pwNeEvWB0nu1pF1lJaD2Hd/SZ0qifee+7dNugThyX+wAB2m59uqjXT3k4j8WIQRLHkgLC0k0ZLKRk9pN1mfAFCXQVkkm8n7SBhvv3GSTrxEnmkTYOO+uqs9sCdre76NSTca1w4Bz7HSt5clpd1fM5INOx360KGvVecTOnQjHlFmZPoUmG9C6oXMlDn84mkBv9APoGULzAFSW3JTHPMOfev5iCaQ2u8EE9JGSThICUWiDqsDvE9WLJRjh5bN5UE+T0ryR9LvXfuwMs/++q6AvMifLmEFZwWrzweBCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dVnateRiax8z7vDEmQFvEfERvUp2A8YIf4sDS+d51Bg=;
+ b=Qx0n//GfvSYvt5AK3Kv6fDZdraWHmaPk3jMJiXM5u1fJuI3RMePgIU1fMN0R5UzOLChYkimpxoei4SXb7ipCrpgqeE8DaPsDcH7BCZ1imtM0U/Eka6Zppogp5vnZSw1NV7y4h1NRlrcxY+yQs2jsjP1dkO9qSrXwbE+2fo75gZZcGY9ZmsMzWxIAE9lkCY4P9MnuF3Dl1RfNYEnPwEqmJVOZxHG47oFDtSnaGx08IBAGln1uN2DbCTRujBNP3uUNZczkQnaGPmW8Ye75E1SvpcpHsdgbe5Ky+h+EN/FlaPMr2T+1L74MR6LoUqiTDB7atMIEXNv3kbe9sEGniNAxMg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dVnateRiax8z7vDEmQFvEfERvUp2A8YIf4sDS+d51Bg=;
+ b=Z/pVTH4DCNyUz+SOFcdXPUlmbD9plmzGU6LD+GAkgxJ+/XsA9kKP6Q/RO/Fh91dz9MFwQi6+xDSzYV0wUEeasUjbEvp9/Cg+9sAi3XtmSCsJIc+1XwTqk6w1rrIU+pPN4dAcBZUSmMPOCQNyOsJWtG0+SMMERPWCVlkqH1jXwFgOOfKfiD8Gxdwjq2z0YZ+aVjcXm73kvo9Nfg1taOJ2v00cWzYnTURv3qK1Z4wLzLRiXPrQooQPDNgO0KEIrwAVW/MeY60mI+5zGMu9VxiIxMlDn8tDRbYyKamMkWsxlnykbskCZ4Deq+Ucl/hLnyGOLA4ZtEyBtF+MjJ7mSUxlTg==
+Received: from PU1APC01FT057.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebe::53) by
+ PU1APC01HT036.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebe::305)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.16; Wed, 9 Sep
+ 2020 03:14:58 +0000
+Received: from BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM (10.152.252.54) by
+ PU1APC01FT057.mail.protection.outlook.com (10.152.253.7) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3370.16 via Frontend Transport; Wed, 9 Sep 2020 03:14:58 +0000
+Received: from BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::8573:9456:db8d:adc]) by BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::8573:9456:db8d:adc%8]) with mapi id 15.20.3348.019; Wed, 9 Sep 2020
+ 03:14:58 +0000
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] USRP sensitivity
+Thread-Index: AQHWg5OMJebIind1hUCTMMLlf4n416laIvELgAS+C4CAAF9xf4AAJI6AgABCThE=
+Date: Wed, 9 Sep 2020 03:14:58 +0000
+Message-ID: <BM1PR0101MB149161E4559D65E7140B303388260@BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM>
+References: <BM1PR0101MB149191EDB483E8E0D9393EDB88290@BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM>,
+ <67756EB6-9B3C-4C53-BE41-4F856F9DCAA7@gmail.com>
+In-Reply-To: <67756EB6-9B3C-4C53-BE41-4F856F9DCAA7@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:9C9F9CD3E3829CDE591713BBDF1A180BB2414A5DEFE14E4EF7119057FB1DE74F;
+ UpperCasedChecksum:1CB69B3C794B430F03211D39ECE42CC68C59615C3E9F0B9CD2CCBA3833954781;
+ SizeAsReceived:7028; Count:45
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [1ZDc+cFGQjKS7swdj76nVWzVU04XFw9f]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 45
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 151c86c3-6a47-49f1-bac3-08d8546e883c
+x-ms-traffictypediagnostic: PU1APC01HT036:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Gn3l/hFrdAqPPlCzt+weg6sxNSG9jFdKs6V8rBmfMZ9Z5jlwwocCc1cRVR+fBDdF20A5lIld5OC6wNQgkzi45z0iyVylnk7le5u9lVaZatMYK7cn6HEQAFHE33MPxdD5ut2293LDKu/7cNgCUM8mJHH4b0f5lcl5x+2N3e+98moK7drCwVNWCxfO4tp4o2qyQuxmEf99TXCsY9KNfhYYHJJ6CntNephQRI8aFvOr5qVO5lhw6fJJdcjD3BR5CfUE
+x-ms-exchange-antispam-messagedata: W0OdCM/mwk7PVxRPEVRACNr0CgrHyhciqpeS92fL4kbkS+Qcon0Zpz5UOHL6r5KGA5Ltka5s1efyCWjkaBb2xSqKOc59IggE14aKtqZEQ0Ngfn9gCVQyb1qfGeE9kgzL0aM5G2+T1xuCS+tTGql5jg==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: live.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: PU1APC01FT057.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 151c86c3-6a47-49f1-bac3-08d8546e883c
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2020 03:14:58.1212 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT036
 Subject: Re: [USRP-users] USRP sensitivity
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -65,10 +90,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+From: Snehasish Kar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Snehasish Kar <snehasish.cse@live.com>
 Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7156235110275659956=="
+Content-Type: multipart/mixed; boundary="===============3487181060375031230=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,169 +107,142 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============3487181060375031230==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BM1PR0101MB149161E4559D65E7140B303388260BM1PR0101MB1491_"
 
---===============7156235110275659956==
-Content-Type: multipart/alternative; boundary=Apple-Mail-28B97CC7-DF17-40C7-87AA-769ED234BC2E
-Content-Transfer-Encoding: 7bit
+--_000_BM1PR0101MB149161E4559D65E7140B303388260BM1PR0101MB1491_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+T2suIFRoYW5rcyBmb3IgdGhlIGluZm8uDQoNClJlZ2FyZHMNClNuZWhhc2lzaA0KDQpHZXQgT3V0
+bG9vayBmb3IgaU9TPGh0dHBzOi8vYWthLm1zL28wdWtlZj4NCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fDQpGcm9tOiBNYXJjdXMgRCBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5j
+b20+DQpTZW50OiBXZWRuZXNkYXksIFNlcHRlbWJlciA5LCAyMDIwIDQ6NDY6MjMgQU0NClRvOiBT
+bmVoYXNpc2ggS2FyIDxzbmVoYXNpc2guY3NlQGxpdmUuY29tPg0KQ2M6IE1hcnRpbiBCcmF1biA8
+bWFydGluLmJyYXVuQGV0dHVzLmNvbT47IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxVU1JQ
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gVVNSUCBz
+ZW5zaXRpdml0eQ0KDQpZb3UgZGlkIG5lZWQgdG8gdXNlIGEga25vd24gY2FsaWJyYXRpb24gc291
+cmNlLg0KDQpZb3XigJlkIG5lZWQgdG8gYnVpbGQgYSBjYWxpYnJhdGlvbiB0YWJsZSBvdmVyIHlv
+dXIgZXhwZWN0ZWQgb3BlcmF0aW5nIHBhcmFtZXRlciBzcGFjZSwgaW5jbHVkaW5nOg0KDQpGcmVx
+dWVuY3kNCkdhaW4NClNhbXBsZSByYXRlDQpBbmFsb2cgYmFuZHdpZHRoIHNldHRpbmcgKGlmIGFw
+cGxpY2FibGUpDQoNClRoZSBJL1Egc2FtcGxlcyB3aWxsIGJlIGxpbmVhcmx5IHByb3BvcnRpb25h
+bCBvdmVyIGEgZ29vZGx5IGNodW5rIG9mIHRoZSBpbnB1dCBkeW5hbWljIHJhbmdlLiBUaGV5IHdp
+bGwgZGlmZmVyIGZyb20gbGluZWFyIGF0IHRoZSBib3R0b20gYW5kIHRvcCBvZiB0aGUgcmFuZ2Uu
+DQoNCkxhYiBpbnN0cnVtZW50cyBsaW5lIHNwZWN0cnVtIGFuYWx5c2VycyB0eXBpY2FsbHkgaGF2
+ZSB0aGlzIGRvbmUgYXQgdGhlIGZhY3RvcnksIHVzaW5nIGV4cGVuc2l2ZSBjYWxpYnJhdGlvbiBz
+b3VyY2VzLiBUaGV5IG11c3QgYmUgcmVjYWxpYnJhdGVkIHJlZ3VsYXJseS4NCg0KDQpTZW50IGZy
+b20gbXkgaVBob25lDQoNCk9uIFNlcCA4LCAyMDIwLCBhdCA1OjA4IFBNLCBTbmVoYXNpc2ggS2Fy
+IHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6DQoNCu+7
+vw0KSGVsbG8gTWFyY3VzDQoNCkp1c3QgaGFkIGEgcXVlcnkgaW4gdGhpcyBjb250ZXh0LCBob3cg
+ZG8gd2UgY2FsY3VsYXRlIHRoZSBQb3dlciBvciBSZWNlaXZlZCBzaWduYWwgc3RyZW5ndGggdGhl
+biBmcm9tIHRoZSBJUSBzYW1wbGVzLg0KDQpSZWdhcmRzDQpTbmVoYXNpc2gNCg0KR2V0IE91dGxv
+b2sgZm9yIGlPUzxodHRwczovL2FrYS5tcy9vMHVrZWY+DQpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXw0KRnJvbTogVVNSUC11c2VycyA8dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0
+dHVzLmNvbT4gb24gYmVoYWxmIG9mIE1hcnRpbiBCcmF1biB2aWEgVVNSUC11c2VycyA8dXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTZW50OiBUdWVzZGF5LCBTZXB0ZW1iZXIgOCwgMjAyMCA4
+OjUzOjU3IFBNDQpUbzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPHVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tPg0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBVU1JQIHNlbnNpdGl2aXR5
+DQoNCk9uIDkvNS8yMCA0OjU5IFBNLCBLb3llbCBEYXMgKFZlaGVyZSkgdmlhIFVTUlAtdXNlcnMg
+d3JvdGU6DQo+IE5JIHRvbGQgbWUgbWFnbml0dWRlIG9mIElRIHNhbXBsZXMgcmVjZWl2ZWQgaW4g
+dXNycCBpcyB0aGUgdm9sdGFnZSBpbiB2b2x0cy4NCg0KQ2FuIHlvdSBwb2ludCB1cyB0byB3aGVy
+ZSB5b3UgZ290IHRoYXQgaW5mb3JtYXRpb24/DQoNCkZvciB0aGUgbGlzdCBhcmNoaXZlczogVUhE
+IDQuMCB3aWxsIGhhdmUgdGhlIGFiaWxpdHkgdG8gbWFwIGRpZ2l0YWwNCnNpZ25hbHMgdG8gcG93
+ZXIgbGV2ZWxzIGZvciBYM3gwIGFuZCBCMjAwIHNlcmllcywgaWYgeW91IGNhbiBwcm92aWRlDQp5
+b3VyIG93biBjYWxpYnJhdGVkIGdlYXIuDQoNCi0tTQ0KDQpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QNClVTUlAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tDQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
+dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20NCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdA0KVVNSUC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20NCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0
+aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
 
---Apple-Mail-28B97CC7-DF17-40C7-87AA-769ED234BC2E
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+--_000_BM1PR0101MB149161E4559D65E7140B303388260BM1PR0101MB1491_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-You did need to use a known calibration source.=20
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdj4NCjxkaXY+
+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsiPk9rLiBUaGFua3MgZm9yIHRoZSBpbmZvLjwv
+ZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyI+UmVn
+YXJkczwvZGl2Pg0KPGRpdiBzdHlsZT0iZGlyZWN0aW9uOiBsdHI7Ij5TbmVoYXNpc2ggPHNwYW4g
+aWQ9Im1zLW91dGxvb2staW9zLWN1cnNvciI+PC9zcGFuPjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pjxi
+cj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0ibXMtb3V0bG9vay1pb3Mtc2lnbmF0dXJlIj5HZXQgPGEg
+aHJlZj0iaHR0cHM6Ly9ha2EubXMvbzB1a2VmIj5PdXRsb29rIGZvciBpT1M8L2E+PC9kaXY+DQo8
+L2Rpdj4NCjxociBzdHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7d2lkdGg6OTglIiB0YWJpbmRl
+eD0iLTEiPg0KPGRpdiBpZD0iZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IGZhY2U9IkNh
+bGlicmksIHNhbnMtc2VyaWYiIHN0eWxlPSJmb250LXNpemU6MTFwdCIgY29sb3I9IiMwMDAwMDAi
+PjxiPkZyb206PC9iPiBNYXJjdXMgRCBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5jb20m
+Z3Q7PGJyPg0KPGI+U2VudDo8L2I+IFdlZG5lc2RheSwgU2VwdGVtYmVyIDksIDIwMjAgNDo0Njoy
+MyBBTTxicj4NCjxiPlRvOjwvYj4gU25laGFzaXNoIEthciAmbHQ7c25laGFzaXNoLmNzZUBsaXZl
+LmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IE1hcnRpbiBCcmF1biAmbHQ7bWFydGluLmJyYXVuQGV0
+dHVzLmNvbSZndDs7IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tICZsdDtVU1JQLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtVU1JQLXVzZXJzXSBV
+U1JQIHNlbnNpdGl2aXR5PC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBk
+aXI9ImF1dG8iPllvdSBkaWQgbmVlZCB0byB1c2UgYSBrbm93biBjYWxpYnJhdGlvbiBzb3VyY2Uu
+Jm5ic3A7DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5Zb3XigJlkIG5lZWQgdG8gYnVpbGQgYSBj
+YWxpYnJhdGlvbiB0YWJsZSBvdmVyIHlvdXIgZXhwZWN0ZWQgb3BlcmF0aW5nIHBhcmFtZXRlciBz
+cGFjZSwgaW5jbHVkaW5nOjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+RnJlcXVlbmN5
+PC9kaXY+DQo8ZGl2PkdhaW48L2Rpdj4NCjxkaXY+U2FtcGxlIHJhdGU8L2Rpdj4NCjxkaXY+QW5h
+bG9nIGJhbmR3aWR0aCBzZXR0aW5nIChpZiBhcHBsaWNhYmxlKTwvZGl2Pg0KPGRpdj48YnI+DQo8
+L2Rpdj4NCjxkaXY+VGhlIEkvUSBzYW1wbGVzIHdpbGwgYmUgbGluZWFybHkgcHJvcG9ydGlvbmFs
+IG92ZXIgYSBnb29kbHkgY2h1bmsgb2YgdGhlIGlucHV0IGR5bmFtaWMgcmFuZ2UuIFRoZXkgd2ls
+bCBkaWZmZXIgZnJvbSBsaW5lYXIgYXQgdGhlIGJvdHRvbSBhbmQgdG9wIG9mIHRoZSByYW5nZS4m
+bmJzcDs8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PkxhYiBpbnN0cnVtZW50cyBsaW5l
+IHNwZWN0cnVtIGFuYWx5c2VycyB0eXBpY2FsbHkgaGF2ZSB0aGlzIGRvbmUgYXQgdGhlIGZhY3Rv
+cnksIHVzaW5nIGV4cGVuc2l2ZSBjYWxpYnJhdGlvbiBzb3VyY2VzLiBUaGV5IG11c3QgYmUgcmVj
+YWxpYnJhdGVkIHJlZ3VsYXJseS48L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pjxicj4N
+CjxkaXYgZGlyPSJsdHIiPlNlbnQgZnJvbSBteSBpUGhvbmU8L2Rpdj4NCjxkaXYgZGlyPSJsdHIi
+Pjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPk9uIFNlcCA4LCAyMDIwLCBhdCA1OjA4IFBN
+LCBTbmVoYXNpc2ggS2FyIHZpYSBVU1JQLXVzZXJzICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbSZndDsgd3JvdGU6PGJyPg0KPGJyPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8YmxvY2tx
+dW90ZSB0eXBlPSJjaXRlIj4NCjxkaXYgZGlyPSJsdHIiPu+7vw0KPGRpdiBkaXI9Imx0ciI+DQo8
+ZGl2PjwvZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246bHRyIj5IZWxs
+byBNYXJjdXM8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBkaXI9Imx0ciIgc3R5bGU9ImRpcmVjdGlvbjps
+dHIiPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9Imx0ciIgc3R5bGU9ImRpcmVjdGlvbjpsdHIiPkp1
+c3QgaGFkIGEgcXVlcnkgaW4gdGhpcyBjb250ZXh0LCBob3cgZG8gd2UgY2FsY3VsYXRlIHRoZSBQ
+b3dlciBvciBSZWNlaXZlZCBzaWduYWwgc3RyZW5ndGggdGhlbiBmcm9tIHRoZSBJUSBzYW1wbGVz
+LjwvZGl2Pg0KPGRpdiBkaXI9Imx0ciIgc3R5bGU9ImRpcmVjdGlvbjpsdHIiPjxicj4NCjwvZGl2
+Pg0KPGRpdiBkaXI9Imx0ciIgc3R5bGU9ImRpcmVjdGlvbjpsdHIiPlJlZ2FyZHMmbmJzcDs8L2Rp
+dj4NCjxkaXYgZGlyPSJsdHIiIHN0eWxlPSJkaXJlY3Rpb246bHRyIj5TbmVoYXNpc2g8L2Rpdj4N
+CjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X21zLW91dGxvb2staW9zLXNpZ25hdHVy
+ZSI+R2V0IDxhIGhyZWY9Imh0dHBzOi8vYWthLm1zL28wdWtlZiI+T3V0bG9vayBmb3IgaU9TPC9h
+PjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxociB0YWJpbmRleD0iLTEiIHN0eWxlPSJkaXNwbGF5
+OmlubGluZS1ibG9jazsgd2lkdGg6OTglIj4NCjxkaXYgaWQ9InhfZGl2UnBseUZ3ZE1zZyIgZGly
+PSJsdHIiPjxmb250IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYiIGNvbG9yPSIjMDAwMDAwIiBz
+dHlsZT0iZm9udC1zaXplOjExcHQiPjxiPkZyb206PC9iPiBVU1JQLXVzZXJzICZsdDt1c3JwLXVz
+ZXJzLWJvdW5jZXNAbGlzdHMuZXR0dXMuY29tJmd0OyBvbiBiZWhhbGYgb2YgTWFydGluIEJyYXVu
+IHZpYSBVU1JQLXVzZXJzICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8YnI+DQo8
+Yj5TZW50OjwvYj4gVHVlc2RheSwgU2VwdGVtYmVyIDgsIDIwMjAgODo1Mzo1NyBQTTxicj4NCjxi
+PlRvOjwvYj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gJmx0O3VzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIFVTUlAg
+c2Vuc2l0aXZpdHk8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2IGNsYXNz
+PSJ4X0JvZHlGcmFnbWVudCI+PGZvbnQgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MXB0Ij4NCjxkaXYgY2xhc3M9InhfUGxhaW5UZXh0Ij5PbiA5LzUvMjAgNDo1OSBQTSwgS295ZWwg
+RGFzIChWZWhlcmUpIHZpYSBVU1JQLXVzZXJzIHdyb3RlOjxicj4NCiZndDsgTkkgdG9sZCBtZSBt
+YWduaXR1ZGUgb2YgSVEgc2FtcGxlcyByZWNlaXZlZCBpbiB1c3JwIGlzIHRoZSB2b2x0YWdlIGlu
+IHZvbHRzLjxicj4NCjxicj4NCkNhbiB5b3UgcG9pbnQgdXMgdG8gd2hlcmUgeW91IGdvdCB0aGF0
+IGluZm9ybWF0aW9uPzxicj4NCjxicj4NCkZvciB0aGUgbGlzdCBhcmNoaXZlczogVUhEIDQuMCB3
+aWxsIGhhdmUgdGhlIGFiaWxpdHkgdG8gbWFwIGRpZ2l0YWw8YnI+DQpzaWduYWxzIHRvIHBvd2Vy
+IGxldmVscyBmb3IgWDN4MCBhbmQgQjIwMCBzZXJpZXMsIGlmIHlvdSBjYW4gcHJvdmlkZTxicj4N
+CnlvdXIgb3duIGNhbGlicmF0ZWQgZ2Vhci48YnI+DQo8YnI+DQotLU08YnI+DQo8YnI+DQpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0PGJyPg0KVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8YSBo
+cmVmPSJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
+aXN0cy5ldHR1cy5jb20iPmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91
+c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8L2Rpdj4NCjwvc3Bhbj48L2ZvbnQ+
+PC9kaXY+DQo8c3Bhbj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXzwvc3Bhbj48YnI+DQo8c3Bhbj5VU1JQLXVzZXJzIG1haWxpbmcgbGlzdDwvc3Bhbj48YnI+
+DQo8c3Bhbj5VU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvc3Bhbj48YnI+DQo8c3Bhbj5odHRw
+Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
+cy5jb208L3NwYW4+PGJyPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PC9ib2R5Pg0KPC9odG1sPg0K
 
-You=E2=80=99d need to build a calibration table over your expected operating=
- parameter space, including:
-
-Frequency
-Gain
-Sample rate
-Analog bandwidth setting (if applicable)
-
-The I/Q samples will be linearly proportional over a goodly chunk of the inp=
-ut dynamic range. They will differ from linear at the bottom and top of the r=
-ange.=20
-
-Lab instruments line spectrum analysers typically have this done at the fact=
-ory, using expensive calibration sources. They must be recalibrated regularl=
-y.
-
-
-Sent from my iPhone
-
-> On Sep 8, 2020, at 5:08 PM, Snehasish Kar via USRP-users <usrp-users@lists=
-.ettus.com> wrote:
->=20
-> =EF=BB=BF
-> Hello Marcus
->=20
-> Just had a query in this context, how do we calculate the Power or Receive=
-d signal strength then from the IQ samples.
->=20
-> Regards=20
-> Snehasish
->=20
-> Get Outlook for iOS
-> From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Martin B=
-raun via USRP-users <usrp-users@lists.ettus.com>
-> Sent: Tuesday, September 8, 2020 8:53:57 PM
-> To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> Subject: Re: [USRP-users] USRP sensitivity
-> =20
-> On 9/5/20 4:59 PM, Koyel Das (Vehere) via USRP-users wrote:
-> > NI told me magnitude of IQ samples received in usrp is the voltage in vo=
-lts.
->=20
-> Can you point us to where you got that information?
->=20
-> For the list archives: UHD 4.0 will have the ability to map digital
-> signals to power levels for X3x0 and B200 series, if you can provide
-> your own calibrated gear.
->=20
-> --M
->=20
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---Apple-Mail-28B97CC7-DF17-40C7-87AA-769ED234BC2E
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">You did need to use a known calibration sou=
-rce.&nbsp;<div><br></div><div>You=E2=80=99d need to build a calibration tabl=
-e over your expected operating parameter space, including:</div><div><br></d=
-iv><div>Frequency</div><div>Gain</div><div>Sample rate</div><div>Analog band=
-width setting (if applicable)</div><div><br></div><div>The I/Q samples will b=
-e linearly proportional over a goodly chunk of the input dynamic range. They=
- will differ from linear at the bottom and top of the range.&nbsp;</div><div=
-><br></div><div>Lab instruments line spectrum analysers typically have this d=
-one at the factory, using expensive calibration sources. They must be recali=
-brated regularly.</div><div><br></div><div><br><div dir=3D"ltr">Sent from my=
- iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Sep 8, 2020, a=
-t 5:08 PM, Snehasish Kar via USRP-users &lt;usrp-users@lists.ettus.com&gt; w=
-rote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=
-=BB=BF
-
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
-
-
-
-<div dir=3D"ltr">
-<div></div>
-<div>
-<div>
-<div style=3D"direction: ltr;">Hello Marcus</div>
-</div>
-<div style=3D"direction: ltr;" dir=3D"ltr"><br>
-</div>
-<div style=3D"direction: ltr;" dir=3D"ltr">Just had a query in this context,=
- how do we calculate the Power or Received signal strength then from the IQ s=
-amples.</div>
-<div style=3D"direction: ltr;" dir=3D"ltr"><br>
-</div>
-<div style=3D"direction: ltr;" dir=3D"ltr">Regards&nbsp;</div>
-<div style=3D"direction: ltr;" dir=3D"ltr">Snehasish</div>
-<div><br>
-</div>
-<div class=3D"ms-outlook-ios-signature">Get <a href=3D"https://aka.ms/o0ukef=
-">Outlook for iOS</a></div>
-</div>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" sty=
-le=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-use=
-rs-bounces@lists.ettus.com&gt; on behalf of Martin Braun via USRP-users &lt;=
-usrp-users@lists.ettus.com&gt;<br>
-<b>Sent:</b> Tuesday, September 8, 2020 8:53:57 PM<br>
-<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br>=
-
-<b>Subject:</b> Re: [USRP-users] USRP sensitivity</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;"=
->
-<div class=3D"PlainText">On 9/5/20 4:59 PM, Koyel Das (Vehere) via USRP-user=
-s wrote:<br>
-&gt; NI told me magnitude of IQ samples received in usrp is the voltage in v=
-olts.<br>
-<br>
-Can you point us to where you got that information?<br>
-<br>
-For the list archives: UHD 4.0 will have the ability to map digital<br>
-signals to power levels for X3x0 and B200 series, if you can provide<br>
-your own calibrated gear.<br>
-<br>
---M<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-USRP-users@lists.ettus.com<br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br=
->
-</div>
-</span></font></div>
+--_000_BM1PR0101MB149161E4559D65E7140B303388260BM1PR0101MB1491_--
 
 
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
->http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
-r></div></blockquote></div></body></html>=
-
---Apple-Mail-28B97CC7-DF17-40C7-87AA-769ED234BC2E--
-
-
---===============7156235110275659956==
+--===============3487181060375031230==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -255,5 +253,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7156235110275659956==--
+--===============3487181060375031230==--
 
