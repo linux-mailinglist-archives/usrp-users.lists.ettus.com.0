@@ -2,83 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 963CC2625C0
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Sep 2020 05:15:52 +0200 (CEST)
-Received: from [::1] (port=56252 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E82AD2625F6
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Sep 2020 05:48:07 +0200 (CEST)
+Received: from [::1] (port=56426 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kFqaK-0000GC-Je; Tue, 08 Sep 2020 23:15:48 -0400
-Received: from mail-oln040092254049.outbound.protection.outlook.com
- ([40.92.254.49]:6992 helo=APC01-PU1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <snehasish.cse@live.com>)
- id 1kFqaG-0000AB-5j
- for USRP-users@lists.ettus.com; Tue, 08 Sep 2020 23:15:44 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HJQ+7OUlubSPzawTbDpmhOJvL8quRX42ioDZhiELNUV4nnXA8pwNeEvWB0nu1pF1lJaD2Hd/SZ0qifee+7dNugThyX+wAB2m59uqjXT3k4j8WIQRLHkgLC0k0ZLKRk9pN1mfAFCXQVkkm8n7SBhvv3GSTrxEnmkTYOO+uqs9sCdre76NSTca1w4Bz7HSt5clpd1fM5INOx360KGvVecTOnQjHlFmZPoUmG9C6oXMlDn84mkBv9APoGULzAFSW3JTHPMOfev5iCaQ2u8EE9JGSThICUWiDqsDvE9WLJRjh5bN5UE+T0ryR9LvXfuwMs/++q6AvMifLmEFZwWrzweBCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dVnateRiax8z7vDEmQFvEfERvUp2A8YIf4sDS+d51Bg=;
- b=Qx0n//GfvSYvt5AK3Kv6fDZdraWHmaPk3jMJiXM5u1fJuI3RMePgIU1fMN0R5UzOLChYkimpxoei4SXb7ipCrpgqeE8DaPsDcH7BCZ1imtM0U/Eka6Zppogp5vnZSw1NV7y4h1NRlrcxY+yQs2jsjP1dkO9qSrXwbE+2fo75gZZcGY9ZmsMzWxIAE9lkCY4P9MnuF3Dl1RfNYEnPwEqmJVOZxHG47oFDtSnaGx08IBAGln1uN2DbCTRujBNP3uUNZczkQnaGPmW8Ye75E1SvpcpHsdgbe5Ky+h+EN/FlaPMr2T+1L74MR6LoUqiTDB7atMIEXNv3kbe9sEGniNAxMg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dVnateRiax8z7vDEmQFvEfERvUp2A8YIf4sDS+d51Bg=;
- b=Z/pVTH4DCNyUz+SOFcdXPUlmbD9plmzGU6LD+GAkgxJ+/XsA9kKP6Q/RO/Fh91dz9MFwQi6+xDSzYV0wUEeasUjbEvp9/Cg+9sAi3XtmSCsJIc+1XwTqk6w1rrIU+pPN4dAcBZUSmMPOCQNyOsJWtG0+SMMERPWCVlkqH1jXwFgOOfKfiD8Gxdwjq2z0YZ+aVjcXm73kvo9Nfg1taOJ2v00cWzYnTURv3qK1Z4wLzLRiXPrQooQPDNgO0KEIrwAVW/MeY60mI+5zGMu9VxiIxMlDn8tDRbYyKamMkWsxlnykbskCZ4Deq+Ucl/hLnyGOLA4ZtEyBtF+MjJ7mSUxlTg==
-Received: from PU1APC01FT057.eop-APC01.prod.protection.outlook.com
- (2a01:111:e400:7ebe::53) by
- PU1APC01HT036.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebe::305)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.16; Wed, 9 Sep
- 2020 03:14:58 +0000
-Received: from BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM (10.152.252.54) by
- PU1APC01FT057.mail.protection.outlook.com (10.152.253.7) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3370.16 via Frontend Transport; Wed, 9 Sep 2020 03:14:58 +0000
-Received: from BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::8573:9456:db8d:adc]) by BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::8573:9456:db8d:adc%8]) with mapi id 15.20.3348.019; Wed, 9 Sep 2020
- 03:14:58 +0000
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] USRP sensitivity
-Thread-Index: AQHWg5OMJebIind1hUCTMMLlf4n416laIvELgAS+C4CAAF9xf4AAJI6AgABCThE=
-Date: Wed, 9 Sep 2020 03:14:58 +0000
-Message-ID: <BM1PR0101MB149161E4559D65E7140B303388260@BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM>
-References: <BM1PR0101MB149191EDB483E8E0D9393EDB88290@BM1PR0101MB1491.INDPRD01.PROD.OUTLOOK.COM>,
- <67756EB6-9B3C-4C53-BE41-4F856F9DCAA7@gmail.com>
-In-Reply-To: <67756EB6-9B3C-4C53-BE41-4F856F9DCAA7@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:9C9F9CD3E3829CDE591713BBDF1A180BB2414A5DEFE14E4EF7119057FB1DE74F;
- UpperCasedChecksum:1CB69B3C794B430F03211D39ECE42CC68C59615C3E9F0B9CD2CCBA3833954781;
- SizeAsReceived:7028; Count:45
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [1ZDc+cFGQjKS7swdj76nVWzVU04XFw9f]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 45
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: 151c86c3-6a47-49f1-bac3-08d8546e883c
-x-ms-traffictypediagnostic: PU1APC01HT036:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Gn3l/hFrdAqPPlCzt+weg6sxNSG9jFdKs6V8rBmfMZ9Z5jlwwocCc1cRVR+fBDdF20A5lIld5OC6wNQgkzi45z0iyVylnk7le5u9lVaZatMYK7cn6HEQAFHE33MPxdD5ut2293LDKu/7cNgCUM8mJHH4b0f5lcl5x+2N3e+98moK7drCwVNWCxfO4tp4o2qyQuxmEf99TXCsY9KNfhYYHJJ6CntNephQRI8aFvOr5qVO5lhw6fJJdcjD3BR5CfUE
-x-ms-exchange-antispam-messagedata: W0OdCM/mwk7PVxRPEVRACNr0CgrHyhciqpeS92fL4kbkS+Qcon0Zpz5UOHL6r5KGA5Ltka5s1efyCWjkaBb2xSqKOc59IggE14aKtqZEQ0Ngfn9gCVQyb1qfGeE9kgzL0aM5G2+T1xuCS+tTGql5jg==
-x-ms-exchange-transport-forked: True
+	id 1kFr5Y-0001kO-ND; Tue, 08 Sep 2020 23:48:04 -0400
+Received: from postman.dtnt.info ([62.219.91.51]:42156)
+ by mm2.emwd.com with esmtp (Exim 4.93)
+ (envelope-from <ofer@navigicom.com>) id 1kFr5U-0001do-Cd
+ for usrp-users@lists.ettus.com; Tue, 08 Sep 2020 23:48:00 -0400
+Received: from o.dtnt.email (o.dtnt.email [62.219.91.154])
+ by postman.dtnt.info (Postfix) with ESMTPS id 1E513476B2
+ for <usrp-users@lists.ettus.com>; Wed,  9 Sep 2020 06:47:06 +0300 (IDT)
+Received: from o.dtnt.email (o.dtnt.email [127.0.0.1])
+ by o.dtnt.email (Postfix) with ESMTP id DB3349FB36
+ for <usrp-users@lists.ettus.com>; Wed,  9 Sep 2020 06:47:05 +0300 (IDT)
+X-Virus-Scanned: Debian amavisd-new at o.dtnt.email
+Received: from o.dtnt.email ([127.0.0.1])
+ by o.dtnt.email (o.dtnt.email [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id yd91ADoRvuSD for <usrp-users@lists.ettus.com>;
+ Wed,  9 Sep 2020 06:47:04 +0300 (IDT)
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com
+ [209.85.210.54]) by o.dtnt.email (Postfix) with ESMTPSA id 4EED19FB0E
+ for <usrp-users@lists.ettus.com>; Wed,  9 Sep 2020 06:47:04 +0300 (IDT)
+Received: by mail-ot1-f54.google.com with SMTP id c10so1097340otm.13
+ for <usrp-users@lists.ettus.com>; Tue, 08 Sep 2020 20:47:04 -0700 (PDT)
+X-Gm-Message-State: AOAM532sPpXBx1zY1Bbhz97m9koXaiHML/2y5vzHmVE9AGO9lu6MpkNQ
+ qrSCG6u7if6dH7EIdIu8Na73pdjHPYC2JHWydDU=
+X-Google-Smtp-Source: ABdhPJwo1grhdFru5kSfkpau72yEtd/IqtuS+LCxUs71AfFQXPa8G8c8WBKdgcJUZYkMUUlIgIFVqbaIh0Jpd1YOpFo=
+X-Received: by 2002:a9d:c44:: with SMTP id 62mr1657283otr.185.1599623222280;
+ Tue, 08 Sep 2020 20:47:02 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: live.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: PU1APC01FT057.eop-APC01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 151c86c3-6a47-49f1-bac3-08d8546e883c
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2020 03:14:58.1212 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT036
-Subject: Re: [USRP-users] USRP sensitivity
+References: <mailman.44.1599580802.32464.usrp-users_lists.ettus.com@lists.ettus.com>
+In-Reply-To: <mailman.44.1599580802.32464.usrp-users_lists.ettus.com@lists.ettus.com>
+Date: Wed, 9 Sep 2020 06:46:51 +0300
+X-Gmail-Original-Message-ID: <CACDReSzm2jTnnq7YLENKr==RCZy2_epGo0Tce6yrxDtFy49sNQ@mail.gmail.com>
+Message-ID: <CACDReSzm2jTnnq7YLENKr==RCZy2_epGo0Tce6yrxDtFy49sNQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+X-DTNT-MailScanner-Information: Please contact the ISP for more information
+X-DTNT-MailScanner-ID: 1E513476B2.A34D7
+X-DTNT-MailScanner: Found to be clean
+X-DTNT-MailScanner-From: ofer@navigicom.com
+X-Spam-Status: No
+Subject: Re: [USRP-users] Rx sample rate for USRP E310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -90,10 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Snehasish Kar via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Snehasish Kar <snehasish.cse@live.com>
-Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3487181060375031230=="
+From: Ofer Saferman via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ofer Saferman <ofer@navigicom.com>
+Content-Type: multipart/mixed; boundary="===============4830541644812061427=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -107,142 +73,200 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3487181060375031230==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BM1PR0101MB149161E4559D65E7140B303388260BM1PR0101MB1491_"
+--===============4830541644812061427==
+Content-Type: multipart/alternative; boundary="000000000000f0454d05aed94dcd"
 
---_000_BM1PR0101MB149161E4559D65E7140B303388260BM1PR0101MB1491_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000f0454d05aed94dcd
+Content-Type: text/plain; charset="UTF-8"
 
-T2suIFRoYW5rcyBmb3IgdGhlIGluZm8uDQoNClJlZ2FyZHMNClNuZWhhc2lzaA0KDQpHZXQgT3V0
-bG9vayBmb3IgaU9TPGh0dHBzOi8vYWthLm1zL28wdWtlZj4NCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fDQpGcm9tOiBNYXJjdXMgRCBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5j
-b20+DQpTZW50OiBXZWRuZXNkYXksIFNlcHRlbWJlciA5LCAyMDIwIDQ6NDY6MjMgQU0NClRvOiBT
-bmVoYXNpc2ggS2FyIDxzbmVoYXNpc2guY3NlQGxpdmUuY29tPg0KQ2M6IE1hcnRpbiBCcmF1biA8
-bWFydGluLmJyYXVuQGV0dHVzLmNvbT47IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxVU1JQ
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gVVNSUCBz
-ZW5zaXRpdml0eQ0KDQpZb3UgZGlkIG5lZWQgdG8gdXNlIGEga25vd24gY2FsaWJyYXRpb24gc291
-cmNlLg0KDQpZb3XigJlkIG5lZWQgdG8gYnVpbGQgYSBjYWxpYnJhdGlvbiB0YWJsZSBvdmVyIHlv
-dXIgZXhwZWN0ZWQgb3BlcmF0aW5nIHBhcmFtZXRlciBzcGFjZSwgaW5jbHVkaW5nOg0KDQpGcmVx
-dWVuY3kNCkdhaW4NClNhbXBsZSByYXRlDQpBbmFsb2cgYmFuZHdpZHRoIHNldHRpbmcgKGlmIGFw
-cGxpY2FibGUpDQoNClRoZSBJL1Egc2FtcGxlcyB3aWxsIGJlIGxpbmVhcmx5IHByb3BvcnRpb25h
-bCBvdmVyIGEgZ29vZGx5IGNodW5rIG9mIHRoZSBpbnB1dCBkeW5hbWljIHJhbmdlLiBUaGV5IHdp
-bGwgZGlmZmVyIGZyb20gbGluZWFyIGF0IHRoZSBib3R0b20gYW5kIHRvcCBvZiB0aGUgcmFuZ2Uu
-DQoNCkxhYiBpbnN0cnVtZW50cyBsaW5lIHNwZWN0cnVtIGFuYWx5c2VycyB0eXBpY2FsbHkgaGF2
-ZSB0aGlzIGRvbmUgYXQgdGhlIGZhY3RvcnksIHVzaW5nIGV4cGVuc2l2ZSBjYWxpYnJhdGlvbiBz
-b3VyY2VzLiBUaGV5IG11c3QgYmUgcmVjYWxpYnJhdGVkIHJlZ3VsYXJseS4NCg0KDQpTZW50IGZy
-b20gbXkgaVBob25lDQoNCk9uIFNlcCA4LCAyMDIwLCBhdCA1OjA4IFBNLCBTbmVoYXNpc2ggS2Fy
-IHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6DQoNCu+7
-vw0KSGVsbG8gTWFyY3VzDQoNCkp1c3QgaGFkIGEgcXVlcnkgaW4gdGhpcyBjb250ZXh0LCBob3cg
-ZG8gd2UgY2FsY3VsYXRlIHRoZSBQb3dlciBvciBSZWNlaXZlZCBzaWduYWwgc3RyZW5ndGggdGhl
-biBmcm9tIHRoZSBJUSBzYW1wbGVzLg0KDQpSZWdhcmRzDQpTbmVoYXNpc2gNCg0KR2V0IE91dGxv
-b2sgZm9yIGlPUzxodHRwczovL2FrYS5tcy9vMHVrZWY+DQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXw0KRnJvbTogVVNSUC11c2VycyA8dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0
-dHVzLmNvbT4gb24gYmVoYWxmIG9mIE1hcnRpbiBCcmF1biB2aWEgVVNSUC11c2VycyA8dXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTZW50OiBUdWVzZGF5LCBTZXB0ZW1iZXIgOCwgMjAyMCA4
-OjUzOjU3IFBNDQpUbzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPHVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tPg0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBVU1JQIHNlbnNpdGl2aXR5
-DQoNCk9uIDkvNS8yMCA0OjU5IFBNLCBLb3llbCBEYXMgKFZlaGVyZSkgdmlhIFVTUlAtdXNlcnMg
-d3JvdGU6DQo+IE5JIHRvbGQgbWUgbWFnbml0dWRlIG9mIElRIHNhbXBsZXMgcmVjZWl2ZWQgaW4g
-dXNycCBpcyB0aGUgdm9sdGFnZSBpbiB2b2x0cy4NCg0KQ2FuIHlvdSBwb2ludCB1cyB0byB3aGVy
-ZSB5b3UgZ290IHRoYXQgaW5mb3JtYXRpb24/DQoNCkZvciB0aGUgbGlzdCBhcmNoaXZlczogVUhE
-IDQuMCB3aWxsIGhhdmUgdGhlIGFiaWxpdHkgdG8gbWFwIGRpZ2l0YWwNCnNpZ25hbHMgdG8gcG93
-ZXIgbGV2ZWxzIGZvciBYM3gwIGFuZCBCMjAwIHNlcmllcywgaWYgeW91IGNhbiBwcm92aWRlDQp5
-b3VyIG93biBjYWxpYnJhdGVkIGdlYXIuDQoNCi0tTQ0KDQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QNClVTUlAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tDQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
-dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20NCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdA0KVVNSUC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20NCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0
-aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
+Thank you Marcus and Martin.
+Maybe I will try to explain what I am trying to do and you can correct what
+I am doing wrong.
+I don't want to stream the samples. I understand the limitations of the ARM
+processor.
+What I would like to do is to record (capture) samples to DDR memory in
+real time. Only one block of samples.
+Then, write that block, offline, to the SD card as slow as necessary. So
+definitely no streaming to SD card.
+This should be possible and not related at all to the speed of the ARM
+processor. It should be handled by a DMA of the FPGA directly to DDR memory
+and the FPGA should be fast enough to handle the task.
+I thought that by specifying --nsamps instead of --duration it would
+achieve exactly what I wanted. I thought that specifying --duration is a
+streaming operation while specifying --nsamps makes it one-shot.
 
---_000_BM1PR0101MB149161E4559D65E7140B303388260BM1PR0101MB1491_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
-
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdj4NCjxkaXY+
-DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsiPk9rLiBUaGFua3MgZm9yIHRoZSBpbmZvLjwv
-ZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyI+UmVn
-YXJkczwvZGl2Pg0KPGRpdiBzdHlsZT0iZGlyZWN0aW9uOiBsdHI7Ij5TbmVoYXNpc2ggPHNwYW4g
-aWQ9Im1zLW91dGxvb2staW9zLWN1cnNvciI+PC9zcGFuPjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pjxi
-cj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0ibXMtb3V0bG9vay1pb3Mtc2lnbmF0dXJlIj5HZXQgPGEg
-aHJlZj0iaHR0cHM6Ly9ha2EubXMvbzB1a2VmIj5PdXRsb29rIGZvciBpT1M8L2E+PC9kaXY+DQo8
-L2Rpdj4NCjxociBzdHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7d2lkdGg6OTglIiB0YWJpbmRl
-eD0iLTEiPg0KPGRpdiBpZD0iZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IGZhY2U9IkNh
-bGlicmksIHNhbnMtc2VyaWYiIHN0eWxlPSJmb250LXNpemU6MTFwdCIgY29sb3I9IiMwMDAwMDAi
-PjxiPkZyb206PC9iPiBNYXJjdXMgRCBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5jb20m
-Z3Q7PGJyPg0KPGI+U2VudDo8L2I+IFdlZG5lc2RheSwgU2VwdGVtYmVyIDksIDIwMjAgNDo0Njoy
-MyBBTTxicj4NCjxiPlRvOjwvYj4gU25laGFzaXNoIEthciAmbHQ7c25laGFzaXNoLmNzZUBsaXZl
-LmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IE1hcnRpbiBCcmF1biAmbHQ7bWFydGluLmJyYXVuQGV0
-dHVzLmNvbSZndDs7IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tICZsdDtVU1JQLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtVU1JQLXVzZXJzXSBV
-U1JQIHNlbnNpdGl2aXR5PC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBk
-aXI9ImF1dG8iPllvdSBkaWQgbmVlZCB0byB1c2UgYSBrbm93biBjYWxpYnJhdGlvbiBzb3VyY2Uu
-Jm5ic3A7DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5Zb3XigJlkIG5lZWQgdG8gYnVpbGQgYSBj
-YWxpYnJhdGlvbiB0YWJsZSBvdmVyIHlvdXIgZXhwZWN0ZWQgb3BlcmF0aW5nIHBhcmFtZXRlciBz
-cGFjZSwgaW5jbHVkaW5nOjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+RnJlcXVlbmN5
-PC9kaXY+DQo8ZGl2PkdhaW48L2Rpdj4NCjxkaXY+U2FtcGxlIHJhdGU8L2Rpdj4NCjxkaXY+QW5h
-bG9nIGJhbmR3aWR0aCBzZXR0aW5nIChpZiBhcHBsaWNhYmxlKTwvZGl2Pg0KPGRpdj48YnI+DQo8
-L2Rpdj4NCjxkaXY+VGhlIEkvUSBzYW1wbGVzIHdpbGwgYmUgbGluZWFybHkgcHJvcG9ydGlvbmFs
-IG92ZXIgYSBnb29kbHkgY2h1bmsgb2YgdGhlIGlucHV0IGR5bmFtaWMgcmFuZ2UuIFRoZXkgd2ls
-bCBkaWZmZXIgZnJvbSBsaW5lYXIgYXQgdGhlIGJvdHRvbSBhbmQgdG9wIG9mIHRoZSByYW5nZS4m
-bmJzcDs8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PkxhYiBpbnN0cnVtZW50cyBsaW5l
-IHNwZWN0cnVtIGFuYWx5c2VycyB0eXBpY2FsbHkgaGF2ZSB0aGlzIGRvbmUgYXQgdGhlIGZhY3Rv
-cnksIHVzaW5nIGV4cGVuc2l2ZSBjYWxpYnJhdGlvbiBzb3VyY2VzLiBUaGV5IG11c3QgYmUgcmVj
-YWxpYnJhdGVkIHJlZ3VsYXJseS48L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pjxicj4N
-CjxkaXYgZGlyPSJsdHIiPlNlbnQgZnJvbSBteSBpUGhvbmU8L2Rpdj4NCjxkaXYgZGlyPSJsdHIi
-Pjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPk9uIFNlcCA4LCAyMDIwLCBhdCA1OjA4IFBN
-LCBTbmVoYXNpc2ggS2FyIHZpYSBVU1JQLXVzZXJzICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbSZndDsgd3JvdGU6PGJyPg0KPGJyPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8YmxvY2tx
-dW90ZSB0eXBlPSJjaXRlIj4NCjxkaXYgZGlyPSJsdHIiPu+7vw0KPGRpdiBkaXI9Imx0ciI+DQo8
-ZGl2PjwvZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246bHRyIj5IZWxs
-byBNYXJjdXM8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBkaXI9Imx0ciIgc3R5bGU9ImRpcmVjdGlvbjps
-dHIiPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9Imx0ciIgc3R5bGU9ImRpcmVjdGlvbjpsdHIiPkp1
-c3QgaGFkIGEgcXVlcnkgaW4gdGhpcyBjb250ZXh0LCBob3cgZG8gd2UgY2FsY3VsYXRlIHRoZSBQ
-b3dlciBvciBSZWNlaXZlZCBzaWduYWwgc3RyZW5ndGggdGhlbiBmcm9tIHRoZSBJUSBzYW1wbGVz
-LjwvZGl2Pg0KPGRpdiBkaXI9Imx0ciIgc3R5bGU9ImRpcmVjdGlvbjpsdHIiPjxicj4NCjwvZGl2
-Pg0KPGRpdiBkaXI9Imx0ciIgc3R5bGU9ImRpcmVjdGlvbjpsdHIiPlJlZ2FyZHMmbmJzcDs8L2Rp
-dj4NCjxkaXYgZGlyPSJsdHIiIHN0eWxlPSJkaXJlY3Rpb246bHRyIj5TbmVoYXNpc2g8L2Rpdj4N
-CjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X21zLW91dGxvb2staW9zLXNpZ25hdHVy
-ZSI+R2V0IDxhIGhyZWY9Imh0dHBzOi8vYWthLm1zL28wdWtlZiI+T3V0bG9vayBmb3IgaU9TPC9h
-PjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxociB0YWJpbmRleD0iLTEiIHN0eWxlPSJkaXNwbGF5
-OmlubGluZS1ibG9jazsgd2lkdGg6OTglIj4NCjxkaXYgaWQ9InhfZGl2UnBseUZ3ZE1zZyIgZGly
-PSJsdHIiPjxmb250IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYiIGNvbG9yPSIjMDAwMDAwIiBz
-dHlsZT0iZm9udC1zaXplOjExcHQiPjxiPkZyb206PC9iPiBVU1JQLXVzZXJzICZsdDt1c3JwLXVz
-ZXJzLWJvdW5jZXNAbGlzdHMuZXR0dXMuY29tJmd0OyBvbiBiZWhhbGYgb2YgTWFydGluIEJyYXVu
-IHZpYSBVU1JQLXVzZXJzICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8YnI+DQo8
-Yj5TZW50OjwvYj4gVHVlc2RheSwgU2VwdGVtYmVyIDgsIDIwMjAgODo1Mzo1NyBQTTxicj4NCjxi
-PlRvOjwvYj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gJmx0O3VzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIFVTUlAg
-c2Vuc2l0aXZpdHk8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2IGNsYXNz
-PSJ4X0JvZHlGcmFnbWVudCI+PGZvbnQgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
-MXB0Ij4NCjxkaXYgY2xhc3M9InhfUGxhaW5UZXh0Ij5PbiA5LzUvMjAgNDo1OSBQTSwgS295ZWwg
-RGFzIChWZWhlcmUpIHZpYSBVU1JQLXVzZXJzIHdyb3RlOjxicj4NCiZndDsgTkkgdG9sZCBtZSBt
-YWduaXR1ZGUgb2YgSVEgc2FtcGxlcyByZWNlaXZlZCBpbiB1c3JwIGlzIHRoZSB2b2x0YWdlIGlu
-IHZvbHRzLjxicj4NCjxicj4NCkNhbiB5b3UgcG9pbnQgdXMgdG8gd2hlcmUgeW91IGdvdCB0aGF0
-IGluZm9ybWF0aW9uPzxicj4NCjxicj4NCkZvciB0aGUgbGlzdCBhcmNoaXZlczogVUhEIDQuMCB3
-aWxsIGhhdmUgdGhlIGFiaWxpdHkgdG8gbWFwIGRpZ2l0YWw8YnI+DQpzaWduYWxzIHRvIHBvd2Vy
-IGxldmVscyBmb3IgWDN4MCBhbmQgQjIwMCBzZXJpZXMsIGlmIHlvdSBjYW4gcHJvdmlkZTxicj4N
-CnlvdXIgb3duIGNhbGlicmF0ZWQgZ2Vhci48YnI+DQo8YnI+DQotLU08YnI+DQo8YnI+DQpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0PGJyPg0KVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8YSBo
-cmVmPSJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
-aXN0cy5ldHR1cy5jb20iPmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91
-c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8L2Rpdj4NCjwvc3Bhbj48L2ZvbnQ+
-PC9kaXY+DQo8c3Bhbj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXzwvc3Bhbj48YnI+DQo8c3Bhbj5VU1JQLXVzZXJzIG1haWxpbmcgbGlzdDwvc3Bhbj48YnI+
-DQo8c3Bhbj5VU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvc3Bhbj48YnI+DQo8c3Bhbj5odHRw
-Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
-cy5jb208L3NwYW4+PGJyPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0K
-PC9ib2R5Pg0KPC9odG1sPg0K
-
---_000_BM1PR0101MB149161E4559D65E7140B303388260BM1PR0101MB1491_--
+Regards,
+Ofer Saferman
 
 
---===============3487181060375031230==
+---------- Forwarded message ----------
+> From: Martin Braun <martin.braun@ettus.com>
+> To: usrp-users@lists.ettus.com
+> Cc:
+> Bcc:
+> Date: Tue, 8 Sep 2020 17:16:45 +0200
+> Subject: Re: [USRP-users] Rx sample rate for USRP E310
+> On 9/5/20 2:59 PM, Ofer Saferman via USRP-users wrote:
+> > Hello,
+> >
+> > I am just starting out with the USRP E310 so bare with me.
+> > I am trying to capture samples to file using: ./rx_samples_to_file
+> > --freq 2.4e9 --rate 40e6 --bw 40e6 --gain 30 --nsamps 1000000 --file
+> > samp4.dat
+> > I get the following two warnings during processing:
+> >
+> ------------------------------------------------------------------------------------------------------
+> > [WARNING] [RFNOC] [legacy_compat] No FIFO detected. Higher transmit
+> > rates may encounter errors.
+> >
+> ------------------------------------------------------------------------------------------------------
+> >
+> > Setting RX Rate: 40.000000 Msps...
+> > [WARNING] [MULTI_USRP] The hardware does not support the requested RX
+> > sample rate:
+> > Target sample rate: 40.000000 MSps
+> > Actual sample rate: 16.000000 MSps
+> >
+> ------------------------------------------------------------------------------------------------------
+> >
+> > Are the warnings related?
+> > I tried various combinations of number of samples bandwidths and sample
+> > rates and can't get more than 16 Msps.
+> > Why can't I get a sample rate of more than 16 MSps?
+> > Any help will be appreciated.
+>
+> On top of what Marcus said, you need to specify master_clock_rate to set
+> other rates. 16 MHz is the default master clock rate. If you were able
+> to stream 40 MHz, you would need to do
+>
+>     ./rx_samples_to_file --args master_clock_rate=40e6 [...other args..]
+>
+> This is also relevant for other sampling rates. For example, 3 Msps is
+> something the device can handle (maybe even write to SD card), but you
+> would need a different master clock rate that is an integer multiple,
+> ideally an even one. In this case, I'd recommend master_clock_rate=12e6
+> which is 4 times 3. The USRP will engage 2 halfband filters to decimate
+> the rate. A master clock rate of 3 Msps is theoretically possible, but
+> not recommended since it will slow down other parts of the chip, too.
+>
+> The FIFO warning is unrelated. You can ignore that. It should probably
+> not be there in the first place.
+>
+> --M
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+-- 
+This message has been scanned for viruses and
+dangerous content by MailScanner, and is
+believed to be clean.
+
+
+--000000000000f0454d05aed94dcd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Thank you Marcus and Martin.</div><div>Maybe I will t=
+ry to explain what I am trying to do and you can correct what I am doing wr=
+ong.</div><div>I don&#39;t want to stream the samples. I understand the lim=
+itations of the ARM processor.</div><div>What I would like to do is to reco=
+rd (capture) samples to DDR memory in real time. Only one block of samples.=
+</div><div>Then, write that block, offline, to the SD card as slow as neces=
+sary. So definitely no streaming to SD card.<br></div><div>This should be p=
+ossible and not related at all to the speed of the ARM processor. It should=
+ be handled by a DMA of the FPGA directly to DDR memory and the FPGA should=
+ be fast enough to handle the task.<br></div><div>I thought that by specify=
+ing --nsamps instead of --duration it would achieve exactly what I wanted. =
+I thought that specifying --duration is a streaming operation while specify=
+ing --nsamps makes it one-shot.</div><div><br></div><div>Regards,</div><div=
+>Ofer Saferman<br></div><br><div class=3D"gmail_quote"><br><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">---------- Forwarded message ----------<b=
+r>From:=C2=A0Martin Braun &lt;<a href=3D"mailto:martin.braun@ettus.com" tar=
+get=3D"_blank">martin.braun@ettus.com</a>&gt;<br>To:=C2=A0<a href=3D"mailto=
+:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</=
+a><br>Cc:=C2=A0<br>Bcc:=C2=A0<br>Date:=C2=A0Tue, 8 Sep 2020 17:16:45 +0200<=
+br>Subject:=C2=A0Re: [USRP-users] Rx sample rate for USRP E310<br>On 9/5/20=
+ 2:59 PM, Ofer Saferman via USRP-users wrote:<br>
+&gt; Hello,<br>
+&gt; <br>
+&gt; I am just starting out with the USRP E310 so bare with me.<br>
+&gt; I am trying to capture samples to file using: ./rx_samples_to_file<br>
+&gt; --freq 2.4e9 --rate 40e6 --bw 40e6 --gain 30 --nsamps 1000000 --file<b=
+r>
+&gt; samp4.dat<br>
+&gt; I get the following two warnings during processing:<br>
+&gt; ----------------------------------------------------------------------=
+--------------------------------<br>
+&gt; [WARNING] [RFNOC] [legacy_compat] No FIFO detected. Higher transmit<br>
+&gt; rates may encounter errors.<br>
+&gt; ----------------------------------------------------------------------=
+--------------------------------<br>
+&gt; <br>
+&gt; Setting RX Rate: 40.000000 Msps...<br>
+&gt; [WARNING] [MULTI_USRP] The hardware does not support the requested RX<=
+br>
+&gt; sample rate:<br>
+&gt; Target sample rate: 40.000000 MSps<br>
+&gt; Actual sample rate: 16.000000 MSps<br>
+&gt; ----------------------------------------------------------------------=
+--------------------------------<br>
+&gt; <br>
+&gt; Are the warnings related?<br>
+&gt; I tried various combinations of number of samples bandwidths and sampl=
+e<br>
+&gt; rates and can&#39;t get more than 16 Msps.<br>
+&gt; Why can&#39;t I get a sample rate of more than 16 MSps?<br>
+&gt; Any help will be appreciated.<br>
+<br>
+On top of what Marcus said, you need to specify master_clock_rate to set<br>
+other rates. 16 MHz is the default master clock rate. If you were able<br>
+to stream 40 MHz, you would need to do<br>
+<br>
+=C2=A0 =C2=A0 ./rx_samples_to_file --args master_clock_rate=3D40e6 [...othe=
+r args..]<br>
+<br>
+This is also relevant for other sampling rates. For example, 3 Msps is<br>
+something the device can handle (maybe even write to SD card), but you<br>
+would need a different master clock rate that is an integer multiple,<br>
+ideally an even one. In this case, I&#39;d recommend master_clock_rate=3D12=
+e6<br>
+which is 4 times 3. The USRP will engage 2 halfband filters to decimate<br>
+the rate. A master clock rate of 3 Msps is theoretically possible, but<br>
+not recommended since it will slow down other parts of the chip, too.<br>
+<br>
+The FIFO warning is unrelated. You can ignore that. It should probably<br>
+not be there in the first place.<br>
+<br>
+--M<br>
+<br>
+
+
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+<br />--=20
+<br />This message has been scanned for viruses and
+<br />dangerous content by
+<a href=3D"http://www.mailscanner.info/"><b>MailScanner</b></a>, and is
+<br />believed to be clean.
+
+
+--000000000000f0454d05aed94dcd--
+
+
+--===============4830541644812061427==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -253,5 +277,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3487181060375031230==--
+--===============4830541644812061427==--
 
