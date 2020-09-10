@@ -2,66 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7E22263FDF
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Sep 2020 10:31:13 +0200 (CEST)
-Received: from [::1] (port=41118 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C69226466B
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Sep 2020 14:56:50 +0200 (CEST)
+Received: from [::1] (port=42848 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kGHyv-0007Qe-0B; Thu, 10 Sep 2020 04:31:01 -0400
-Received: from mail-ej1-f45.google.com ([209.85.218.45]:33453)
+	id 1kGM84-0001mr-Tj; Thu, 10 Sep 2020 08:56:44 -0400
+Received: from mail-wr1-f44.google.com ([209.85.221.44]:42513)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <martin.braun@ettus.com>)
- id 1kGHyr-000792-Dp
- for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 04:30:57 -0400
-Received: by mail-ej1-f45.google.com with SMTP id j11so7525317ejk.0
- for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 01:30:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=subject:cc:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=W+82NgQZ+YOGT27QVlBnfJMRalr267Qe1UKG3zvyvfY=;
- b=ppY+6zvP09atFi4JmABo68fKTQvVCOxF3Z2YAidHJ9dcDrKBiGsbLFvb7mNh+ESIdl
- b3Hr7QIfdbYP1x+nfbXwujyrIkWHML3lERmSx4yt7op4EIVxPTLjAHKQwZ2aub41Zj98
- HXdYUItalJBIkNN8hyipjThlPuClo4ix2MH4ZwFOYBf2GpLtTBFgNoo8+9I6uFudNS6b
- Csj4yHtKf0bNYcDBKI5MDVpcDTla9OmmHGQ9/TBEU+Iz9JpoOf+EerReWiHIOfH4c0kx
- n/xwy8786iKCRSLM2KAaKsGIgMcAWIpwPh2KGwYzcYXRhTDDMtLR6gvDjPuO/NcWv53y
- UPRw==
+ (Exim 4.93) (envelope-from <dasypuss@gmail.com>) id 1kGM81-0001dm-G5
+ for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 08:56:41 -0400
+Received: by mail-wr1-f44.google.com with SMTP id c18so6571449wrm.9
+ for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 05:56:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=to:from:subject:message-id:date:user-agent:mime-version
+ :content-language;
+ bh=uepRtzxtjZEjw/O2ssTJLl1raD3fGM2VygF7HnnHmq4=;
+ b=vBwSq3YOn3bChTFi1HVYBpDhVoi6bdEDcJl55o7MphiKP/VNbgiJRkYLsVdKr8zc4Z
+ ZN3xMdQLdJU9yZbPhEdbzVbdWzP1YqbE1H1LUq9s2BtERqR1mbQ1dxnGOz9RVgx3mKCp
+ VZeHW/L6LmqXWEwUSlBFXrqRTEIxs/CdwvNAKqkHi+AgrAL3hl/LhnBPLR6TArCaAzMa
+ ZovSak5ptzno9LJi/MEXCzJInIH+4cLxgZSQLZ5eM5rWjEmXsDEU3CwHuNeNkQ2au7Ot
+ 6pLWhXZ0I0zrcd32yOQ8zK3s/MtcMCLFLhz5+2VNzYl5c98twJpwxmzX7kD4F9kuIFj6
+ XE1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=W+82NgQZ+YOGT27QVlBnfJMRalr267Qe1UKG3zvyvfY=;
- b=tIZcgigrS6UehDPbQNG9WoqqASPqXgGnBKyaYhyrSlI7rPU5tCwFliTzH6tx554+HJ
- FEN7VW0+K043qC5t/gKAk3iOpja8ztQPze3l0GXM99y+BN7F4jzDQNWuCosklLhDyqwj
- LxDPnRuIa/t86OQkrdArgm4Yin5SZ+pUerHCYdfRWUCqOCvdKwleXWbz5RmmMKBglily
- 0av6d+dMvUom452myoRjkBAtBmHgVTL9ryHDk6UXlM3Xj1cSAnVJrwIEsqMk7lfJ4wBI
- DgIfMhIs2BiSjQskGeJfaAlpo8Y/eC34/SvLimcJVxFHGhrIKYVinEOuora/oFl0qoAa
- tzEw==
-X-Gm-Message-State: AOAM530vzht49bSiPscmcG6gpvAgmZcQrKucIC7k3uARDeYVxcdNVg1T
- 8hUYrKEyiVTphm3eCTxZUjBT/P7qiRwKYezc+eE=
-X-Google-Smtp-Source: ABdhPJzVRog8ophLF9VEjl9oR1gKZ1OhPOI1HjzMtpRMliHh86Z/lqOSM9v3DlhP9jtpKEJ3e47eDQ==
-X-Received: by 2002:a17:907:444f:: with SMTP id
- on23mr7426082ejb.392.1599726616108; 
- Thu, 10 Sep 2020 01:30:16 -0700 (PDT)
-Received: from ?IPv6:2a02:8071:2c80:c4f0::e6a? ([2a02:8071:2c80:c4f0::e6a])
- by smtp.gmail.com with ESMTPSA id k1sm5901991eji.20.2020.09.10.01.30.15
+ h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+ :mime-version:content-language;
+ bh=uepRtzxtjZEjw/O2ssTJLl1raD3fGM2VygF7HnnHmq4=;
+ b=VrSJTAe5+Ol4gu6NAPO/5HOdqaNvj67qgDTDr2m9c95RI9e0JQBK2gxprqkDm5mAux
+ trfxneqQ4a30FnW5mRndep38u6hcaLC2NQAiKVDk1QNHPKSpCCK6AhSlu0vxV58YyKTb
+ FIAQMCVoZ3KTqCX7gmrcIkdrKYCreKT3TDpCyUsDSA0vrkkVJkjKf/Hji8XxO2UeVhpv
+ qpoljnTXFt9IA1d1siGsRVbpocHMBTrrFpIHKMfd9cYwF984RuKj4z0rQJYJJ4/NyGkg
+ sqbvXCFl8ZaRg9Ri2xv9uuDs3lHpE50aalpAdAkxWAreRMM+hCfEdF5N5TqI+qHw9AoB
+ d9Pg==
+X-Gm-Message-State: AOAM530ehGUpdwqv1qyH2wgKgzfFPJpeH+rke34Sv+dLbMVakioYuPd7
+ NPD2HocA/BuL7zi3CNWUVabWU3pdXfg=
+X-Google-Smtp-Source: ABdhPJxSVAmuKOlGe1SOJ601URaC+7RM7+RZwT1eN3X/xh++dW8PJaVGuM3/fs8FaoJJh3VBtw0DFw==
+X-Received: by 2002:a5d:458a:: with SMTP id p10mr8677451wrq.282.1599742560125; 
+ Thu, 10 Sep 2020 05:56:00 -0700 (PDT)
+Received: from ?IPv6:2a00:23c6:7081:1d01:11fe:8115:256d:581f?
+ ([2a00:23c6:7081:1d01:11fe:8115:256d:581f])
+ by smtp.gmail.com with ESMTPSA id m4sm9540156wro.18.2020.09.10.05.55.59
  for <usrp-users@lists.ettus.com>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 10 Sep 2020 01:30:15 -0700 (PDT)
-Cc: usrp-users <usrp-users@lists.ettus.com>
-References: <mailman.44.1599580802.32464.usrp-users_lists.ettus.com@lists.ettus.com>
- <CACDReSzm2jTnnq7YLENKr==RCZy2_epGo0Tce6yrxDtFy49sNQ@mail.gmail.com>
- <9f6e3cf9-46ae-1fd8-bcb3-62cfbf0d2e8d@ettus.com>
- <CAB__hTT3KM-QmBMaD+j2RAf7PbHiVWpZnL=uhdZn0NKSfouDkw@mail.gmail.com>
-Message-ID: <64f859c5-8b8a-1212-c92b-73c826dfeec9@ettus.com>
-Date: Thu, 10 Sep 2020 10:30:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+ Thu, 10 Sep 2020 05:55:59 -0700 (PDT)
+To: usrp-users@lists.ettus.com
+Message-ID: <d0a3da7b-2ecc-b56b-f405-f1a0c9547906@gmail.com>
+Date: Thu, 10 Sep 2020 13:55:59 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <CAB__hTT3KM-QmBMaD+j2RAf7PbHiVWpZnL=uhdZn0NKSfouDkw@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] Rx sample rate for USRP E310
+Content-Language: en-GB
+Subject: [USRP-users] b200mini stops sampling
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -73,10 +65,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Martin Braun via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Martin Braun <martin.braun@ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: David Evans via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: David Evans <dasypuss@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0946790252380864203=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -90,45 +81,167 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gOS85LzIwIDM6NDkgUE0sIFJvYiBLb3NzbGVyIHdyb3RlOgo+IERvZXMgdGhlIGF4aV9yYW1f
-ZmlmbyByZm5vYyBibG9jayB3b3JrIGZvciB0aGUgRTMxMCAocGVyaGFwcyBpbiB1aGQKPiA0LjAp
-P8KgIElmIHNvLCBjb3VsZG4ndCB5b3UgaW1wbGVtZW50IGFuIHJmbm9jIGdyYXBoIHN1Y2ggYXMK
-PiBSYWRpby0+YXhpX3JhbV9maWZvLT5ob3N0IGFuZCB0aGVuIHlvdSBzaG91bGQgYmUgYWJsZSB0
-byBjYXB0dXJlCj4gMjUwTVNhbXBsZXMgKDFHQikgYXQgYSB0aW1lIHdoaWNoIGNvdWxkIGJlIHN0
-cmVhbWVkIGF0IGEgc2xvd2VyIHJhdGUgdG8KPiBob3N0PwoKVW5mb3J0dW5hdGVseSwgbm8sIHRo
-ZSBQTC1EUkFNIGlzIG5vdCBleHBvc2VkIHRvIHRoZSBibG9ja3Mgb24gdGhlIEUzMTAKYXMgd2l0
-aCB0aGUgb3RoZXIgZGV2aWNlcy4gSXQncyBzb21ldGhpbmcgdGhhdCBjb3VsZCBiZSBhZGRlZCBp
-biB0aGUKZnV0dXJlOyB0aGUgZGVjaXNpb24gdG8gbm90IGV4cG9zZSB0aGUgUEwtRFJBTSBpbiB0
-aGUgc2FtZSB3YXkgYXMgdGhlCm90aGVyIGRldmljZXMgcHJlZGF0ZXMgUkZOb0MgYW5kIGFsbCB0
-aGF0LgoKLS1NCj4gUm9iCj4gCj4gT24gV2VkLCBTZXAgOSwgMjAyMCBhdCAzOjI4IEFNIE1hcnRp
-biBCcmF1biB2aWEgVVNSUC11c2Vycwo+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFp
-bHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4gd3JvdGU6Cj4gCj4gICAgIE9uIDkvOS8y
-MCA1OjQ2IEFNLCBPZmVyIFNhZmVybWFuIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+ICAgICA+IFRo
-YW5rIHlvdSBNYXJjdXMgYW5kIE1hcnRpbi4KPiAgICAgPiBNYXliZSBJIHdpbGwgdHJ5IHRvIGV4
-cGxhaW4gd2hhdCBJIGFtIHRyeWluZyB0byBkbyBhbmQgeW91IGNhbiBjb3JyZWN0Cj4gICAgID4g
-d2hhdCBJIGFtIGRvaW5nIHdyb25nLgo+ICAgICA+IEkgZG9uJ3Qgd2FudCB0byBzdHJlYW0gdGhl
-IHNhbXBsZXMuIEkgdW5kZXJzdGFuZCB0aGUgbGltaXRhdGlvbnMKPiAgICAgb2YgdGhlCj4gICAg
-ID4gQVJNIHByb2Nlc3Nvci4KPiAgICAgPiBXaGF0IEkgd291bGQgbGlrZSB0byBkbyBpcyB0byBy
-ZWNvcmQgKGNhcHR1cmUpIHNhbXBsZXMgdG8gRERSCj4gICAgIG1lbW9yeSBpbgo+ICAgICA+IHJl
-YWwgdGltZS4gT25seSBvbmUgYmxvY2sgb2Ygc2FtcGxlcy4KPiAgICAgPiBUaGVuLCB3cml0ZSB0
-aGF0IGJsb2NrLCBvZmZsaW5lLCB0byB0aGUgU0QgY2FyZCBhcyBzbG93IGFzCj4gICAgIG5lY2Vz
-c2FyeS4gU28KPiAgICAgPiBkZWZpbml0ZWx5IG5vIHN0cmVhbWluZyB0byBTRCBjYXJkLgo+ICAg
-ICA+IFRoaXMgc2hvdWxkIGJlIHBvc3NpYmxlIGFuZCBub3QgcmVsYXRlZCBhdCBhbGwgdG8gdGhl
-IHNwZWVkIG9mIHRoZSBBUk0KPiAgICAgPiBwcm9jZXNzb3IuIEl0IHNob3VsZCBiZSBoYW5kbGVk
-IGJ5IGEgRE1BIG9mIHRoZSBGUEdBIGRpcmVjdGx5IHRvIEREUgo+ICAgICA+IG1lbW9yeSBhbmQg
-dGhlIEZQR0Egc2hvdWxkIGJlIGZhc3QgZW5vdWdoIHRvIGhhbmRsZSB0aGUgdGFzay4KPiAKPiAg
-ICAgT2ZlciwKPiAKPiAgICAgVUhEIHdvbid0IGluaXRpYXRlIGRpcmVjdCBETUEgaWYgeW91IGRv
-IHRoYXQuIEV2ZXJ5IHBhY2tldCBvZiBkYXRhCj4gICAgIGNvbWluZyBmcm9tIHRoZSBGUEdBIG5l
-ZWRzIHRvIGdvIHRvIHRoZSBDUFUgZmlyc3QuCj4gCj4gICAgIElmIHlvdSB3YW50IHlvdXIgc2Ft
-cGxlcyB0byBETUEgZGlyZWN0bHkgdG8gbWVtb3J5LCB5b3UgbmVlZCB0byBkbwo+ICAgICBzb21l
-dGhpbmcgbGlrZSB0aGlzOiBodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PVk4UVEwc2g1
-SWhJCj4gCj4gICAgIHJ4X3NhbXBsZXNfdG9fZmlsZSBpcyBhIGdlbmVyaWMgdG9vbCB0aGF0IHdv
-cmtzIGVxdWFsbHkgd2l0aCBhbGwgVVNSUHMsCj4gICAgIHJlZ2FyZGxlc3Mgb2YgdGhlaXIgdHJh
-bnNwb3J0IHR5cGUuCj4gCj4gICAgIC0tTQo+IAo+ICAgICBfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwo+ICAgICBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+
-ICAgICBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPgo+ICAgICBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8v
-dXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAKCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8v
-dXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+This is a multi-part message in MIME format.
+--===============0946790252380864203==
+Content-Type: multipart/alternative;
+ boundary="------------75BCB95AC9416B86B89EDE36"
+Content-Language: en-GB
+
+This is a multi-part message in MIME format.
+--------------75BCB95AC9416B86B89EDE36
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Hi,
+I have just installed the latest "master" branch of UHD (4.0.0.0).
+
+If an overrun occurs during sampling, sampling does not continue thereafter.
+I noticed this with uhd_fft, which hangs with rates over 8MHz, and also 
+rx_samples_to_file:
+
+./rx_samples_to_file --freq 900000000 --rate 40000000
+
+Creating the usrp device with: ...
+[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; 
+UHD_4.0.0.0-34-g2655b0aa
+[INFO] [B200] Detected Device: B200mini
+[INFO] [B200] Operating over USB 3.
+[INFO] [B200] Initialize CODEC control...
+[INFO] [B200] Initialize Radio control...
+[INFO] [B200] Performing register loopback test...
+[INFO] [B200] Register loopback test passed
+[INFO] [B200] Setting master clock rate selection to 'automatic'.
+[INFO] [B200] Asking for clock rate 16.000000 MHz...
+[INFO] [B200] Actually got clock rate 16.000000 MHz.
+Using Device: Single USRP:
+   Device: B-Series Device
+   Mboard 0: B200mini
+   RX Channel: 0
+     RX DSP: 0
+     RX Dboard: A
+     RX Subdev: FE-RX1
+   TX Channel: 0
+     TX DSP: 0
+     TX Dboard: A
+     TX Subdev: FE-TX1
+
+Setting RX Rate: 40.000000 Msps...
+[INFO] [B200] Asking for clock rate 40.000000 MHz...
+[INFO] [B200] Actually got clock rate 40.000000 MHz.
+Actual RX Rate: 40.000000 Msps...
+
+Setting RX Freq: 900.000000 MHz...
+Setting RX LO Offset: 0.000000 MHz...
+Actual RX Freq: 900.000000 MHz...
+
+Waiting for "lo_locked": ++++++++++ locked.
+
+Press Ctrl + C to stop streaming...
+OGot an overflow indication. Please consider the following:
+   Your write medium must sustain a rate of 160.000000MB/s.
+   Dropped samples will not be written to the file.
+   Please modify this example for your purposes.
+   This message will not appear again.
+*Timeout while streaming*
+
+Done!
+
+Any ideas please?
+Should I be using the master branch, if not how do I checkout a stable 
+branch ?
+
+Thanks,
+Dave
+
+
+--------------75BCB95AC9416B86B89EDE36
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    Hi,<br>
+    I have just installed the latest "master" branch of UHD (4.0.0.0).<br>
+    <br>
+    If an overrun occurs during sampling, sampling does not continue
+    thereafter.<br>
+    I noticed this with uhd_fft, which hangs with rates over 8MHz, and
+    also rx_samples_to_file:<br>
+    <br>
+    ./rx_samples_to_file --freq 900000000 --rate 40000000<br>
+    <br>
+    Creating the usrp device with: ...<br>
+    [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+    UHD_4.0.0.0-34-g2655b0aa<br>
+    [INFO] [B200] Detected Device: B200mini<br>
+    [INFO] [B200] Operating over USB 3.<br>
+    [INFO] [B200] Initialize CODEC control...<br>
+    [INFO] [B200] Initialize Radio control...<br>
+    [INFO] [B200] Performing register loopback test...<br>
+    [INFO] [B200] Register loopback test passed<br>
+    [INFO] [B200] Setting master clock rate selection to 'automatic'.<br>
+    [INFO] [B200] Asking for clock rate 16.000000 MHz...<br>
+    [INFO] [B200] Actually got clock rate 16.000000 MHz.<br>
+    Using Device: Single USRP:<br>
+      Device: B-Series Device<br>
+      Mboard 0: B200mini<br>
+      RX Channel: 0<br>
+        RX DSP: 0<br>
+        RX Dboard: A<br>
+        RX Subdev: FE-RX1<br>
+      TX Channel: 0<br>
+        TX DSP: 0<br>
+        TX Dboard: A<br>
+        TX Subdev: FE-TX1<br>
+    <br>
+    Setting RX Rate: 40.000000 Msps...<br>
+    [INFO] [B200] Asking for clock rate 40.000000 MHz...<br>
+    [INFO] [B200] Actually got clock rate 40.000000 MHz.<br>
+    Actual RX Rate: 40.000000 Msps...<br>
+    <br>
+    Setting RX Freq: 900.000000 MHz...<br>
+    Setting RX LO Offset: 0.000000 MHz...<br>
+    Actual RX Freq: 900.000000 MHz...<br>
+    <br>
+    Waiting for "lo_locked": ++++++++++ locked.<br>
+    <br>
+    Press Ctrl + C to stop streaming...<br>
+    OGot an overflow indication. Please consider the following:<br>
+      Your write medium must sustain a rate of 160.000000MB/s.<br>
+      Dropped samples will not be written to the file.<br>
+      Please modify this example for your purposes.<br>
+      This message will not appear again.<br>
+    <b>Timeout while streaming</b><br>
+    <br>
+    Done!<br>
+    <br>
+    Any ideas please?  <br>
+    Should I be using the master branch, if not how do I checkout a
+    stable branch ?<br>
+    <br>
+    Thanks,<br>
+    Dave<br>
+    <br>
+  </body>
+</html>
+
+--------------75BCB95AC9416B86B89EDE36--
+
+
+--===============0946790252380864203==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0946790252380864203==--
+
