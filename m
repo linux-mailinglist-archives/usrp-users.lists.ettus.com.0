@@ -2,53 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D88F2649B1
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Sep 2020 18:27:19 +0200 (CEST)
-Received: from [::1] (port=44882 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E132649D1
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Sep 2020 18:32:40 +0200 (CEST)
+Received: from [::1] (port=44950 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kGPPo-0001D4-OA; Thu, 10 Sep 2020 12:27:16 -0400
-Received: from mail-yb1-f179.google.com ([209.85.219.179]:39147)
+	id 1kGPV1-0002G4-CG; Thu, 10 Sep 2020 12:32:39 -0400
+Received: from mail-qv1-f48.google.com ([209.85.219.48]:40717)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <marxwolfs@gmail.com>) id 1kGPPk-00013l-1G
- for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 12:27:12 -0400
-Received: by mail-yb1-f179.google.com with SMTP id r7so4462865ybl.6
- for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 09:26:51 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kGPUx-00026R-5t
+ for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 12:32:35 -0400
+Received: by mail-qv1-f48.google.com with SMTP id j3so3636571qvi.7
+ for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 09:32:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=67n2itW3rtLmmOhSIeMRNwqAaMAnRoQH0PputJQ4K2c=;
- b=iAmdOrS2HOjgOtDxJ6zv8enAfGqnxWyobPTZs6AoOr2uhh9X15GHEKEgtfbI1Mk4ir
- PE3WaNUQZopQWL6UKtO2TR9kFSWvUMirXzsNK+MCP7O+ud+V1o0UOa6ExYzNK58th+hT
- Jj5uHVVyU4Oh9mkUjzX0CySsLBrw2B1AgeAqYtxpsevAWnXE/I7v0nsrXCj4GwDnOdjM
- aksuWX/WsM7u7gPnU0XOPKD+CubEmDVIQhzLOyrwbLPY7ajgUZ4K2eYdl+D7yWhry4Ym
- zWRPOVsYK/No5YT4R1adgAttZ6GLS1GgUXhOd+c7trdl9t5oKBFQGgX63+EY24zelxm3
- KHkg==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to:content-transfer-encoding;
+ bh=3idVTPLI4Txxd90XKW7YDCvSYyvyMDjXv45+gEC6BDI=;
+ b=DUy9SrVOQ6S/KmsgGcSj/bJSG93qhFY1KTxXfSKjB0i43t+qwCsmCgc/T2XHVbk25h
+ +MuXsEvvP7atp6IOSDw6q0o9yZ9lX13Dj/F83GzCnQ5/f7CKh3X+73/5YD1gXZjTJTeR
+ wOrC1y8M+Q4Aq2NrPhe7jQo8bSz3IdswWDjsBGY3sWFtaFGQ8Sg335f6da44gNwzKe3P
+ q25PhO5Se3kLksrURwsYSP5ap3cERfXsCYhdvpl48YYCUnwo7mMkmtVaCPVu/qRYbNep
+ VqwquQGy2PbDjK8MUh7qJWSIEdfCNk5GfDcl7ybrQ/EYt/niUpxb/mJg0QAF/VgUDORI
+ 5rOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=67n2itW3rtLmmOhSIeMRNwqAaMAnRoQH0PputJQ4K2c=;
- b=s3NlRZzN7dlDo0PEsWgy/TL2Tq+zmylEBACv4v2Dmp4p01Kp34gNxHizzvS8TqkMYc
- /d6o/Me6Ad5AHseKDGkUlk5cVtIUrjS3JI3aHS10n8Wacuncn80odE61MFIhames6op0
- tBw1/mWGxRrvtCvCN9RzPBxOjfsXhgjEWrdDGk0y4E1caO/gZcOI7N5GqQ+DwQ3V1nNZ
- 76yYg+86FK6NgNUwcOt7e/I07ZaZIJbBqYp7AO/t96MZNa8enQVpaWCQ6CtqIdfuAH69
- MEAou+24+o0uMDb7yChy5+ML0Z+hdSa/2oUyMUy42Nfs2Rvcs3w23OemBIyrMGNaT6GQ
- K0eA==
-X-Gm-Message-State: AOAM530pU9+oTBXOFlK35rhH/0pEYyui5ipvBkCE04zGV83wvM76d30q
- 8ire84GbRaLfaSpXXWW6ri4fQE3nR7fQ3CC5OgY=
-X-Google-Smtp-Source: ABdhPJzHMS5MpVgsJB89uJDkhJoyYjQGEA8CwJ+7PS+3Jdz0y/PM2TmRXQqTMayt3ZFg1iJF0/qvkpDX6uxKr+LQCJA=
-X-Received: by 2002:a5b:8c8:: with SMTP id w8mr13122751ybq.199.1599755191389; 
- Thu, 10 Sep 2020 09:26:31 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to:content-transfer-encoding;
+ bh=3idVTPLI4Txxd90XKW7YDCvSYyvyMDjXv45+gEC6BDI=;
+ b=WbmCDlESZNw18kkQDpX5XOd82CQY0xrFCeLKe94tfIYyel8r8SWYdbQuFcFC5k93Sf
+ WIirYv6AkUXuvJtERpu3H+D8/MEm/+NxmhKtfzuPo24H6EYkubKl3jF+EIfbDsbSpxz1
+ G9GXy/Fgm7iD3liV5qNVFgG9nd0YjBU4NLjEu5JkRdoBBdi+nR0korfr2zOkAqYG2xhS
+ 0+uIb7/V0LSmk6YlpbSIYxHzh6LnAR16D5c73IMhgAoFpqujCRwQooFs7uIuawrD//2U
+ lvIprEjc3IYw4XllkCFWegqRwfR78h+92bIp5FwJAorrjrJWt4cEqunKHW+r6ULWIt7f
+ C9Iw==
+X-Gm-Message-State: AOAM531l1HvlDBJXwV8w1Y+1ze1AtQBGQj9KEm6HkcW67fWW9cXW3Q67
+ uipJteHLeMIOPuOTXAoB998lTdkrPFatVA==
+X-Google-Smtp-Source: ABdhPJzpE9aBp+djnQKat1uo/+/OiIJs+X3BvhzFcfNZvE9DL1JOTUaYRQkzp4jIBOm5gkx3xNCSTw==
+X-Received: by 2002:a0c:f887:: with SMTP id u7mr9241060qvn.124.1599755514329; 
+ Thu, 10 Sep 2020 09:31:54 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
+ by smtp.googlemail.com with ESMTPSA id d49sm7799407qtc.55.2020.09.10.09.31.53
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 10 Sep 2020 09:31:53 -0700 (PDT)
+Message-ID: <5F5A54F9.2000502@gmail.com>
+Date: Thu, 10 Sep 2020 12:31:53 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: Xiang Ma <marxwolfs@gmail.com>
+CC: usrp-users@lists.ettus.com
 References: <CACryqrG8a3S1ARULWRPYte8aoUVmh8B-qBxjX6GS_j_kam_q-w@mail.gmail.com>
  <5F5A50F1.4080500@gmail.com>
  <CACryqrG3Eo6KTFM1v2SpA2Dc8Q71iznrLtai=79bPWgDG=xXRw@mail.gmail.com>
  <5F5A52C5.20703@gmail.com>
-In-Reply-To: <5F5A52C5.20703@gmail.com>
-Date: Thu, 10 Sep 2020 10:26:21 -0600
-Message-ID: <CACryqrG_kG4==1T_zjWqNPENWoe3y5ff7j9EOeHxQqFv1tFnmg@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
+ <CACryqrG_kG4==1T_zjWqNPENWoe3y5ff7j9EOeHxQqFv1tFnmg@mail.gmail.com>
+In-Reply-To: <CACryqrG_kG4==1T_zjWqNPENWoe3y5ff7j9EOeHxQqFv1tFnmg@mail.gmail.com>
 Subject: Re: [USRP-users] RuntimeError: System receive MTU size
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -61,9 +71,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Xiang Ma via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Xiang Ma <marxwolfs@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7937778253471700880=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,106 +88,61 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7937778253471700880==
-Content-Type: multipart/alternative; boundary="000000000000e9104705aef80798"
-
---000000000000e9104705aef80798
-Content-Type: text/plain; charset="UTF-8"
-
-Yes, no errors and warnings.
-
-On Thu, Sep 10, 2020 at 10:22 AM Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
-
-> On 09/10/2020 12:18 PM, Xiang Ma wrote:
-> > No, I run on a real Ubuntu 18.04 machine. I do not find anything
-> > special in the ifconfig result:
-> > (base) hu@hu:~/torch$ ifconfig
-> > enp6s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-> >         inet 192.168.10.66  netmask 255.255.255.0  broadcast
-> > 192.168.10.255
-> >         inet6 fe80::ba85:84ff:febb:bb5c  prefixlen 64  scopeid 0x20<link>
-> >         ether b8:85:84:bb:bb:5c  txqueuelen 1000  (Ethernet)
-> >         RX packets 211324  bytes 13170668 (13.1 MB)
-> >         RX errors 0  dropped 0  overruns 0  frame 0
-> >         TX packets 212033  bytes 13064575 (13.0 MB)
-> >         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-> >         device interrupt 19
-> >
-> If you just run:
+On 09/10/2020 12:26 PM, Xiang Ma wrote:
+> Yes, no errors and warnings.
 >
-> uhd_usrp_probe   does that produce a "normal" result?
->
->
->
+OK, so it's likely that your rfid receiver code is doing something 
+"weird" with the setup of the USRP.
 
--- 
-*Xiang Ma, *Ph.D. Student
-College of Engineering
-Utah State University
-E-mail:marxwolfs@gmail.com <congshanya@gmail.com>
+Try something simple like the "benchmark_rate" utility:
 
---000000000000e9104705aef80798
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+UHD Benchmark Rate Allowed options:
+   --help                   help message
+   --args arg               single uhd device address args
+   --duration arg (=10)     duration for the test in seconds
+   --rx_subdev arg          specify the device subdev for RX
+   --tx_subdev arg          specify the device subdev for TX
+   --rx_rate arg            specify to perform a RX rate test (sps)
+   --tx_rate arg            specify to perform a TX rate test (sps)
+   --rx_otw arg (=sc16)     specify the over-the-wire sample mode for RX
+   --tx_otw arg (=sc16)     specify the over-the-wire sample mode for TX
+   --rx_cpu arg (=fc32)     specify the host/cpu sample mode for RX
+   --tx_cpu arg (=fc32)     specify the host/cpu sample mode for TX
+   --ref arg                clock reference (internal, external, mimo, 
+gpsdo)
+   --pps arg                PPS source (internal, external, mimo, gpsdo)
+   --mode arg               DEPRECATED - use "ref" and "pps" instead (none,
+                            mimo)
+   --random                 Run with random values of samples in send() and
+                            recv() to stress-test the I/O.
+   --channels arg (=0)      which channel(s) to use (specify "0", "1", 
+"0,1",
+                            etc)
+   --rx_channels arg        which RX channel(s) to use (specify "0", 
+"1", "0,1",
+                            etc)
+   --tx_channels arg        which TX channel(s) to use (specify "0", 
+"1", "0,1",
+                            etc)
+   --overrun-threshold arg  Number of overruns (O) which will declare the
+                            benchmark a failure.
+   --underrun-threshold arg Number of underruns (U) which will declare the
+                            benchmark a failure.
+   --drop-threshold arg     Number of dropped packets (D) which will 
+declare the
+                            benchmark a failure.
+   --seq-threshold arg      Number of dropped packets (D) which will 
+declare the
+                            benchmark a failure.
 
-<div dir=3D"ltr">Yes, no errors and warnings.</div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Sep 10, 2020 at 10:22 =
-AM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonb=
-raun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex">On 09/10/2020 12:18 PM, Xiang Ma wrote:<br>
-&gt; No, I run on a real Ubuntu 18.04 machine. I do not find anything <br>
-&gt; special in the ifconfig result:<br>
-&gt; (base) hu@hu:~/torch$ ifconfig<br>
-&gt; enp6s0: flags=3D4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;=C2=A0 mtu 1=
-500<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0inet 192.168.10.66=C2=A0 netmask 255.=
-255.255.0=C2=A0 broadcast <br>
-&gt; 192.168.10.255<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0inet6 fe80::ba85:84ff:febb:bb5c=C2=A0=
- prefixlen 64=C2=A0 scopeid 0x20&lt;link&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ether b8:85:84:bb:bb:5c=C2=A0 txqueue=
-len 1000=C2=A0 (Ethernet)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0RX packets 211324=C2=A0 bytes 1317066=
-8 (13.1 MB)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0RX errors 0=C2=A0 dropped 0=C2=A0 ove=
-rruns 0=C2=A0 frame 0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0TX packets 212033=C2=A0 bytes 1306457=
-5 (13.0 MB)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0TX errors 0=C2=A0 dropped 0 overruns =
-0=C2=A0 carrier 0=C2=A0 collisions 0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0device interrupt 19<br>
-&gt;<br>
-If you just run:<br>
-<br>
-uhd_usrp_probe=C2=A0 =C2=A0does that produce a &quot;normal&quot; result?<b=
-r>
-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><font face=3D"times new roman, =
-serif" size=3D"4" style=3D"color:rgb(136,136,136)"><i><b>Xiang Ma,=C2=A0</b=
-></i></font><span style=3D"color:rgb(136,136,136)">Ph.D. Student</span><div=
-><div style=3D"color:rgb(136,136,136)"><font color=3D"#444444">College of E=
-ngineering</font></div><div><font color=3D"#444444">Utah State University</=
-font></div><div style=3D"color:rgb(136,136,136)"><font color=3D"#444444">E-=
-mail:<a href=3D"mailto:congshanya@gmail.com" style=3D"color:rgb(17,85,204)"=
- target=3D"_blank">marxwolfs@gmail.com</a></font></div></div></div></div>
-
---000000000000e9104705aef80798--
+     Specify --rx_rate for a receive-only test.
+     Specify --tx_rate for a transmit-only test.
+     Specify both options for a full-duplex test.
 
 
---===============7937778253471700880==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7937778253471700880==--
-
