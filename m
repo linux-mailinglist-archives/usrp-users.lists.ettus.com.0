@@ -2,56 +2,65 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E26E264C3F
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Sep 2020 20:07:21 +0200 (CEST)
-Received: from [::1] (port=45600 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF4F264DDC
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Sep 2020 20:54:34 +0200 (CEST)
+Received: from [::1] (port=45992 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kGQyd-00032M-Hl; Thu, 10 Sep 2020 14:07:19 -0400
-Received: from mail-yb1-f179.google.com ([209.85.219.179]:42849)
+	id 1kGRiJ-0007bx-7i; Thu, 10 Sep 2020 14:54:31 -0400
+Received: from mail-qv1-f47.google.com ([209.85.219.47]:40864)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <marxwolfs@gmail.com>) id 1kGQyZ-0002uU-08
- for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 14:07:15 -0400
-Received: by mail-yb1-f179.google.com with SMTP id 195so4639346ybl.9
- for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 11:06:54 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kGRiF-0007Vv-3q
+ for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 14:54:27 -0400
+Received: by mail-qv1-f47.google.com with SMTP id j3so3872984qvi.7
+ for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 11:54:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rdAOJih3ETFFOI/46/QhJ2P8KzcIxPPgSOqX/UTbtUg=;
- b=lZwPFmF8yaVmuiSCJ0RY9z/vK0YdHUMv5VgCC5la1kin6TAAeGHqnQXG/90VvpP+H/
- EqPAKWs+fISVAGtfiNGHf9X1Jo+UsHCCXDZ1fTiyhSkU4Lxduft44KesJN3LB/lcZ8AQ
- C2y5QwJ+H9ItGO8H8G2kwMgelbmhwx3Mo9IERI3e8QheroKipe7oYcmdvvCgIzK4WgUK
- u6IGIFw20qtzSawWQBUMtlzfZiVKfBfUBRv2ss7hjQkkirLbSjwSV5Sd5OHqzW3tfPse
- 3gFlFw/Om79Iz3l9zgYHXaYM6bnGF8PvvA1vsc+EDraCNEwzdIJNsHV8dNX//smklIU8
- mDsA==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=lhECuteTtzh4SR2oxxn+sjtcR59lwtbBSIX9YG2IjG0=;
+ b=Azon1rKC4er4G9I10drbWFgyCgssIQUyy/gA08b61/u32t4ks+51Ox7jlOm1IhdVUV
+ 3T+LG4xin35SbfqjBNCR2FwXhtnSoIOOIKJhv/Ajr7XsTzAXas20Hdl0akpMqP30dMJL
+ UIo7MzrEg1hgbLTasdoXsWlYVoxK5cE12qMMOcohGWjUHIu7PWY3P/GuiJM0xA56i8K4
+ HNI1JOvmJhog0jiTBx12tT/R8PWqXuwIuZl8Bw8frvdhNxsEwZaklmeMg0VvDKiOfHZx
+ y4mI7nLy100tfB9hlnRU3zLhlHKCoHfehN7d2qkNaYdLcmAeKcokYxYDtLLCX+ER1H6u
+ 3+SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=rdAOJih3ETFFOI/46/QhJ2P8KzcIxPPgSOqX/UTbtUg=;
- b=OxeNdtECClcJZoQrE0RP3/GYxitCcNckT1CYukoOciW8KqLf+531JxzOsIcK9OdLHf
- UCz+3FrbL7XYh4Ovt9T+Rwgdz/jNEvxBhoEnPLGry2UoWVTthv6y9M02QGtVPsaxTnVF
- 1yFkixz3yp/WPdmIV2yGlYCxK4Tb48PmM9c3BFPKHio2x8KoK6MShB4a3aEZikpfxAgb
- jmPknYTDOnBKgyZKOi7dQqAzA6HUQPFErFu1SfwECHw/laI0JxJE4TGDpqtsiHqYzl7V
- vU5zgRT+0u6ivyavoislhvRTyJ3VnkQvOrRX5V0rOAb0k1ElX0Lc0Fpq85AH0i5Jvxpn
- WZ1Q==
-X-Gm-Message-State: AOAM533zY1V7yMZEzqDrswLymBcPwML73VB+90PIZqcdzF3DvyE/YkVB
- ltoOHi+RdUcKRCvEXVblzsX5SmBZKxMtlac/luU=
-X-Google-Smtp-Source: ABdhPJwVPavR2LVeU0cD/LHKttX9tu2yLmcUVNYqJoZ28zlZGW7MJUrHWa91lgH8CT0rwSDVA/Y8JIqa9j5QVbz2iEA=
-X-Received: by 2002:a25:2182:: with SMTP id
- h124mr14997184ybh.336.1599761194320; 
- Thu, 10 Sep 2020 11:06:34 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=lhECuteTtzh4SR2oxxn+sjtcR59lwtbBSIX9YG2IjG0=;
+ b=GkfE9fVaU0F9xbL3+WzUf9AHJt2TS6H+6633mvT/6jhBb9v4fdXfgJFUyeCHK83U7R
+ U29WydA9uUbsHyyEKYfSNT0f+OPDSQHzgeP/GGymMOoME+B6roigGGdGy4/mySNmmMIp
+ WT+2yOXGiq+sOOuKn9Yv5rz6QRcbayHzlJiP1cI11j2ndokCWrcwK0oBFArnTR/XX6BT
+ 0Y6GdtbjXXfxn2/LPQ2JGX8+0O9IXbHQh5a79LHeOHHC8IessyoH3EaiaNHtWdUyFWgS
+ Q/pA2lextRaFCayK+M64rrBtItK5jHv2U6RwbjZ7KIjTyXj9PNnevX937VWTgnDFp1g5
+ gT8w==
+X-Gm-Message-State: AOAM530XzkEVTUUOxJ6V8Mq+15AVFXi1Ex0/SWd7myjuQAWuaak9aSIK
+ uchXbgmPVznM7c4QI6KYXdsoJ1hdkqzurQ==
+X-Google-Smtp-Source: ABdhPJxVbvXa75V+k4prcDg0AcEPjJMeCh0Vs9GyJBRs5skBkfZA5yYbahPvEJeo3VuurYo32dUz2Q==
+X-Received: by 2002:ad4:534c:: with SMTP id v12mr9828809qvs.27.1599764026323; 
+ Thu, 10 Sep 2020 11:53:46 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
+ by smtp.googlemail.com with ESMTPSA id g25sm7731636qto.47.2020.09.10.11.53.44
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 10 Sep 2020 11:53:45 -0700 (PDT)
+Message-ID: <5F5A7638.8010704@gmail.com>
+Date: Thu, 10 Sep 2020 14:53:44 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: Xiang Ma <marxwolfs@gmail.com>
+CC: usrp-users@lists.ettus.com
 References: <CACryqrG8a3S1ARULWRPYte8aoUVmh8B-qBxjX6GS_j_kam_q-w@mail.gmail.com>
  <5F5A50F1.4080500@gmail.com>
  <CACryqrG3Eo6KTFM1v2SpA2Dc8Q71iznrLtai=79bPWgDG=xXRw@mail.gmail.com>
  <5F5A52C5.20703@gmail.com>
  <CACryqrG_kG4==1T_zjWqNPENWoe3y5ff7j9EOeHxQqFv1tFnmg@mail.gmail.com>
  <5F5A54F9.2000502@gmail.com>
-In-Reply-To: <5F5A54F9.2000502@gmail.com>
-Date: Thu, 10 Sep 2020 12:06:23 -0600
-Message-ID: <CACryqrHxwT6RF_xoU=q9n3JSp+fBGyoHZO-+ifG_oxas3Hw2wA@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
+ <CACryqrHxwT6RF_xoU=q9n3JSp+fBGyoHZO-+ifG_oxas3Hw2wA@mail.gmail.com>
+In-Reply-To: <CACryqrHxwT6RF_xoU=q9n3JSp+fBGyoHZO-+ifG_oxas3Hw2wA@mail.gmail.com>
 Subject: Re: [USRP-users] RuntimeError: System receive MTU size
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -64,9 +73,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Xiang Ma via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Xiang Ma <marxwolfs@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3287026045248510893=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5383456329664614567=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,243 +89,118 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3287026045248510893==
-Content-Type: multipart/alternative; boundary="000000000000b6863105aef96dd7"
+This is a multi-part message in MIME format.
+--===============5383456329664614567==
+Content-Type: multipart/alternative;
+ boundary="------------040609070102010602080508"
 
---000000000000b6863105aef96dd7
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------040609070102010602080508
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I tried several commands including benchmark_rate, there are no explicit
-errors.
-
-But I find my USRP is x310 with 2 UBX-160 daughtboards. But the rfid code
-is N200 with only 1 daughterboard slot.
-This is the python code generated by my grc:
-
-
-
-
-*self.uhd_usrp_source_0.set_samp_rate(samp_rate)
-self.uhd_usrp_source_0.set_center_freq(89500000, 0)
-self.uhd_usrp_source_0.set_gain(0, 0)
-self.uhd_usrp_source_0.set_auto_dc_offset(True, 0)
-self.uhd_usrp_source_0.set_auto_iq_balance(True, 0)*
-
-This is the code of rfid:
-
-
-
-
-
-
-
-
-
-
-
-*self.source = uhd.usrp_source(    device_addr=self.usrp_address_source,
-stream_args=uhd.stream_args(    cpu_format="fc32",    channels=range(1),
-),    )    self.source.set_samp_rate(self.adc_rate)
-self.source.set_center_freq(self.freq, 0)
-self.source.set_gain(self.rx_gain, 0)    self.source.set_antenna("RX2", 0)
-  self.source.set_auto_dc_offset(False) # Uncomment this line for SBX
-daughterboard*
-
-Is it a reason why the error occurs?
-
-Best.
-
-On Thu, Sep 10, 2020 at 10:31 AM Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
-
-> On 09/10/2020 12:26 PM, Xiang Ma wrote:
-> > Yes, no errors and warnings.
-> >
-> OK, so it's likely that your rfid receiver code is doing something
-> "weird" with the setup of the USRP.
+On 09/10/2020 02:06 PM, Xiang Ma wrote:
+> I tried several commands including benchmark_rate, there are no 
+> explicit errors.
 >
-> Try something simple like the "benchmark_rate" utility:
+> But I find my USRP is x310 with 2 UBX-160 daughtboards. But the rfid 
+> code is N200 with only 1 daughterboard slot.
+> This is the python code generated by my grc:
+> /self.uhd_usrp_source_0.set_samp_rate(samp_rate)
+>         self.uhd_usrp_source_0.set_center_freq(89500000, 0)
+>         self.uhd_usrp_source_0.set_gain(0, 0)
+>         self.uhd_usrp_source_0.set_auto_dc_offset(True, 0)
+>         self.uhd_usrp_source_0.set_auto_iq_balance(True, 0)/
+> /
+> /
+> This is the code of rfid:
+> /self.source = uhd.usrp_source(
+>     device_addr=self.usrp_address_source,
+>     stream_args=uhd.stream_args(
+>     cpu_format="fc32",
+>     channels=range(1),
+>     ),
+>     )
+>     self.source.set_samp_rate(self.adc_rate)
+>     self.source.set_center_freq(self.freq, 0)
+>     self.source.set_gain(self.rx_gain, 0)
+>     self.source.set_antenna("RX2", 0)
+>     self.source.set_auto_dc_offset(False) # Uncomment this line for 
+> SBX daughterboard/
 >
-> UHD Benchmark Rate Allowed options:
->    --help                   help message
->    --args arg               single uhd device address args
->    --duration arg (=10)     duration for the test in seconds
->    --rx_subdev arg          specify the device subdev for RX
->    --tx_subdev arg          specify the device subdev for TX
->    --rx_rate arg            specify to perform a RX rate test (sps)
->    --tx_rate arg            specify to perform a TX rate test (sps)
->    --rx_otw arg (=sc16)     specify the over-the-wire sample mode for RX
->    --tx_otw arg (=sc16)     specify the over-the-wire sample mode for TX
->    --rx_cpu arg (=fc32)     specify the host/cpu sample mode for RX
->    --tx_cpu arg (=fc32)     specify the host/cpu sample mode for TX
->    --ref arg                clock reference (internal, external, mimo,
-> gpsdo)
->    --pps arg                PPS source (internal, external, mimo, gpsdo)
->    --mode arg               DEPRECATED - use "ref" and "pps" instead (none,
->                             mimo)
->    --random                 Run with random values of samples in send() and
->                             recv() to stress-test the I/O.
->    --channels arg (=0)      which channel(s) to use (specify "0", "1",
-> "0,1",
->                             etc)
->    --rx_channels arg        which RX channel(s) to use (specify "0",
-> "1", "0,1",
->                             etc)
->    --tx_channels arg        which TX channel(s) to use (specify "0",
-> "1", "0,1",
->                             etc)
->    --overrun-threshold arg  Number of overruns (O) which will declare the
->                             benchmark a failure.
->    --underrun-threshold arg Number of underruns (U) which will declare the
->                             benchmark a failure.
->    --drop-threshold arg     Number of dropped packets (D) which will
-> declare the
->                             benchmark a failure.
->    --seq-threshold arg      Number of dropped packets (D) which will
-> declare the
->                             benchmark a failure.
+> Is it a reason why the error occurs?
 >
->      Specify --rx_rate for a receive-only test.
->      Specify --tx_rate for a transmit-only test.
->      Specify both options for a full-duplex test.
+> Best.
 >
->
->
->
+Can you share the .grc code ?
 
--- 
-*Xiang Ma, *Ph.D. Student
-College of Engineering
-Utah State University
-E-mail:marxwolfs@gmail.com <congshanya@gmail.com>
+Do you have both an N200 and an X310 plugged in to your system, or just 
+the X310?
 
---000000000000b6863105aef96dd7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--------------040609070102010602080508
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-<div dir=3D"ltr"><div>I tried several commands including benchmark_rate, th=
-ere are no explicit errors.</div><div><br></div><div>But I find my USRP is =
-x310 with 2 UBX-160 daughtboards. But the rfid code is N200 with only 1 dau=
-ghterboard slot.</div><div>This is the python code generated by my grc:</di=
-v><div><i>self.uhd_usrp_source_0.set_samp_rate(samp_rate)<br>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 self.uhd_usrp_source_0.set_center_freq(89500000, 0)<br>=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_source_0.set_gain(0, 0)<br>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 self.uhd_usrp_source_0.set_auto_dc_offset(True, 0)<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_source_0.set_auto_iq_balance(True, 0=
-)</i></div><div><i><br></i></div><div>This is the code of rfid:</div><div><=
-i>self.source =3D uhd.usrp_source(<br>=C2=A0 =C2=A0 device_addr=3Dself.usrp=
-_address_source,<br>=C2=A0 =C2=A0 stream_args=3Duhd.stream_args(<br>=C2=A0 =
-=C2=A0 cpu_format=3D&quot;fc32&quot;,<br>=C2=A0 =C2=A0 channels=3Drange(1),=
-<br>=C2=A0 =C2=A0 ),<br>=C2=A0 =C2=A0 )<br>=C2=A0 =C2=A0 self.source.set_sa=
-mp_rate(self.adc_rate)<br>=C2=A0 =C2=A0 self.source.set_center_freq(self.fr=
-eq, 0)<br>=C2=A0 =C2=A0 self.source.set_gain(self.rx_gain, 0)<br>=C2=A0 =C2=
-=A0 self.source.set_antenna(&quot;RX2&quot;, 0)<br>=C2=A0 =C2=A0 self.sourc=
-e.set_auto_dc_offset(False) # Uncomment this line for SBX daughterboard</i>=
-</div><div><i></i></div><div><br></div><div>Is it a reason why the error oc=
-curs?</div><div><br></div><div>Best.<br></div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Sep 10, 2020 at 10:31=
- AM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=
-=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex">On 09/10/2020 12:26 PM, Xiang Ma wrote:<=
-br>
-&gt; Yes, no errors and warnings.<br>
-&gt;<br>
-OK, so it&#39;s likely that your rfid receiver code is doing something <br>
-&quot;weird&quot; with the setup of the USRP.<br>
-<br>
-Try something simple like the &quot;benchmark_rate&quot; utility:<br>
-<br>
-UHD Benchmark Rate Allowed options:<br>
-=C2=A0 =C2=A0--help=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0help message<br>
-=C2=A0 =C2=A0--args arg=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0single uhd device address args<br>
-=C2=A0 =C2=A0--duration arg (=3D10)=C2=A0 =C2=A0 =C2=A0duration for the tes=
-t in seconds<br>
-=C2=A0 =C2=A0--rx_subdev arg=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 specify the =
-device subdev for RX<br>
-=C2=A0 =C2=A0--tx_subdev arg=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 specify the =
-device subdev for TX<br>
-=C2=A0 =C2=A0--rx_rate arg=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 specify=
- to perform a RX rate test (sps)<br>
-=C2=A0 =C2=A0--tx_rate arg=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 specify=
- to perform a TX rate test (sps)<br>
-=C2=A0 =C2=A0--rx_otw arg (=3Dsc16)=C2=A0 =C2=A0 =C2=A0specify the over-the=
--wire sample mode for RX<br>
-=C2=A0 =C2=A0--tx_otw arg (=3Dsc16)=C2=A0 =C2=A0 =C2=A0specify the over-the=
--wire sample mode for TX<br>
-=C2=A0 =C2=A0--rx_cpu arg (=3Dfc32)=C2=A0 =C2=A0 =C2=A0specify the host/cpu=
- sample mode for RX<br>
-=C2=A0 =C2=A0--tx_cpu arg (=3Dfc32)=C2=A0 =C2=A0 =C2=A0specify the host/cpu=
- sample mode for TX<br>
-=C2=A0 =C2=A0--ref arg=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 clock reference (internal, external, mimo, <br>
-gpsdo)<br>
-=C2=A0 =C2=A0--pps arg=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 PPS source (internal, external, mimo, gpsdo)<br>
-=C2=A0 =C2=A0--mode arg=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0DEPRECATED - use &quot;ref&quot; and &quot;pps&quot; instead (none,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 mimo)<br>
-=C2=A0 =C2=A0--random=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0Run with random values of samples in send() and<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 recv() to stress-test the I/O.<br>
-=C2=A0 =C2=A0--channels arg (=3D0)=C2=A0 =C2=A0 =C2=A0 which channel(s) to =
-use (specify &quot;0&quot;, &quot;1&quot;, <br>
-&quot;0,1&quot;,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 etc)<br>
-=C2=A0 =C2=A0--rx_channels arg=C2=A0 =C2=A0 =C2=A0 =C2=A0 which RX channel(=
-s) to use (specify &quot;0&quot;, <br>
-&quot;1&quot;, &quot;0,1&quot;,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 etc)<br>
-=C2=A0 =C2=A0--tx_channels arg=C2=A0 =C2=A0 =C2=A0 =C2=A0 which TX channel(=
-s) to use (specify &quot;0&quot;, <br>
-&quot;1&quot;, &quot;0,1&quot;,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 etc)<br>
-=C2=A0 =C2=A0--overrun-threshold arg=C2=A0 Number of overruns (O) which wil=
-l declare the<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 benchmark a failure.<br>
-=C2=A0 =C2=A0--underrun-threshold arg Number of underruns (U) which will de=
-clare the<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 benchmark a failure.<br>
-=C2=A0 =C2=A0--drop-threshold arg=C2=A0 =C2=A0 =C2=A0Number of dropped pack=
-ets (D) which will <br>
-declare the<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 benchmark a failure.<br>
-=C2=A0 =C2=A0--seq-threshold arg=C2=A0 =C2=A0 =C2=A0 Number of dropped pack=
-ets (D) which will <br>
-declare the<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 benchmark a failure.<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0Specify --rx_rate for a receive-only test.<br>
-=C2=A0 =C2=A0 =C2=A0Specify --tx_rate for a transmit-only test.<br>
-=C2=A0 =C2=A0 =C2=A0Specify both options for a full-duplex test.<br>
-<br>
-<br>
-<br>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr"><div dir=
-=3D"ltr"><font style=3D"color:rgb(136,136,136)" size=3D"4" face=3D"times ne=
-w roman, serif"><i><b>Xiang Ma,=C2=A0</b></i></font><span style=3D"color:rg=
-b(136,136,136)">Ph.D. Student</span><div><div style=3D"color:rgb(136,136,13=
-6)"><font color=3D"#444444">College of Engineering</font></div><div><font c=
-olor=3D"#444444">Utah State University</font></div><div style=3D"color:rgb(=
-136,136,136)"><font color=3D"#444444">E-mail:<a href=3D"mailto:congshanya@g=
-mail.com" style=3D"color:rgb(17,85,204)" target=3D"_blank">marxwolfs@gmail.=
-com</a></font></div></div></div></div>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 09/10/2020 02:06 PM, Xiang Ma wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CACryqrHxwT6RF_xoU=q9n3JSp+fBGyoHZO-+ifG_oxas3Hw2wA@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>I tried several commands including benchmark_rate, there
+          are no explicit errors.</div>
+        <div><br>
+        </div>
+        <div>But I find my USRP is x310 with 2 UBX-160 daughtboards. But
+          the rfid code is N200 with only 1 daughterboard slot.</div>
+        <div>This is the python code generated by my grc:</div>
+        <div><i>self.uhd_usrp_source_0.set_samp_rate(samp_rate)<br>
+                    self.uhd_usrp_source_0.set_center_freq(89500000, 0)<br>
+                    self.uhd_usrp_source_0.set_gain(0, 0)<br>
+                    self.uhd_usrp_source_0.set_auto_dc_offset(True, 0)<br>
+                    self.uhd_usrp_source_0.set_auto_iq_balance(True, 0)</i></div>
+        <div><i><br>
+          </i></div>
+        <div>This is the code of rfid:</div>
+        <div><i>self.source = uhd.usrp_source(<br>
+                device_addr=self.usrp_address_source,<br>
+                stream_args=uhd.stream_args(<br>
+                cpu_format="fc32",<br>
+                channels=range(1),<br>
+                ),<br>
+                )<br>
+                self.source.set_samp_rate(self.adc_rate)<br>
+                self.source.set_center_freq(self.freq, 0)<br>
+                self.source.set_gain(self.rx_gain, 0)<br>
+                self.source.set_antenna("RX2", 0)<br>
+                self.source.set_auto_dc_offset(False) # Uncomment this
+            line for SBX daughterboard</i></div>
+        <div><br>
+        </div>
+        <div>Is it a reason why the error occurs?</div>
+        <div><br>
+        </div>
+        <div>Best.<br>
+        </div>
+      </div>
+      <br>
+    </blockquote>
+    Can you share the .grc code ?<br>
+    <br>
+    Do you have both an N200 and an X310 plugged in to your system, or
+    just the X310?<br>
+  </body>
+</html>
 
---000000000000b6863105aef96dd7--
+--------------040609070102010602080508--
 
 
---===============3287026045248510893==
+--===============5383456329664614567==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -327,5 +211,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3287026045248510893==--
+--===============5383456329664614567==--
 
