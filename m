@@ -2,59 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019562648FA
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Sep 2020 17:43:57 +0200 (CEST)
-Received: from [::1] (port=44092 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BBAE2648FB
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Sep 2020 17:44:40 +0200 (CEST)
+Received: from [::1] (port=44104 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kGOjp-0007Fp-G3; Thu, 10 Sep 2020 11:43:53 -0400
-Received: from mail-qk1-f176.google.com ([209.85.222.176]:45306)
+	id 1kGOkZ-0007Ur-IT; Thu, 10 Sep 2020 11:44:39 -0400
+Received: from mail-yb1-f175.google.com ([209.85.219.175]:45426)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kGOjl-00077O-3A
- for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 11:43:49 -0400
-Received: by mail-qk1-f176.google.com with SMTP id o5so6479545qke.12
- for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 08:43:28 -0700 (PDT)
+ (Exim 4.93) (envelope-from <marxwolfs@gmail.com>) id 1kGOkV-0007MU-6p
+ for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 11:44:35 -0400
+Received: by mail-yb1-f175.google.com with SMTP id p81so4357592ybc.12
+ for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 08:44:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=1wmfUTMqorr4QKjeHnMrUs1grFtT2B0qbcv0J0dGrUY=;
- b=EJioi4LbYtgZLPA5QvkGBlf0zUqlOCk1+fYTeZogJFCs3LpOUCHW2B4Zr0VqC+1zhr
- NevZaP0co4Bq8F6Rtgz8L16QJr8YKmLqFena07tj2xrkiDnHik9UpAhqmTfKyZN80f0K
- Vqw+eZbtlla5CJoRfTTV/3aPn07jDQwAsVxeh8qVWoMqdYncEJdFb6GZlJhu9lTv5+rb
- ibEREtgVUG29CuPBZQjuinU8Y0UTb6h9Z1Ex5fbFl7Vth1OPZb6sdvBmyR+pq2nwEX82
- 2gFIdAG/I4kYS6Ipzu9axu/Pv980TVUsH1fXl/TII2ObZlAfurfeLpx31ErGhqLv9gSz
- +wIw==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=SzJ9qohHkeAI9XJ0Vk0dXG8/mqunMrEzyieF9k/ZGFg=;
+ b=jv9tdfUPQFCfoZnBSJXSDWKyTGOqioZsJ+t5ktrMO63sEgvNpQDJeHDLl1js/lR57w
+ oCiYyTmhH8XWjf6nU3JVuGNjughM5mMEuuOUKWsBSz2na0yrFkK0G/an4K6NA8C9zSfx
+ fvNzUo2JQMvgcIzTqiMYv5vWkUhud5MwvvVatz2MbhQb07dTbryT2LRA6qVD0eAKJpVu
+ Ukt+0QNfkw3vIG6DuGkqTk+y2+7Jn7kPNo/P45EoISEPUIjC9TIHd0MV4bZmFCbeY0aC
+ xvEt1mASfs9GsUXsbSV+I5CoyiXMzbtr/Ee2m4HGbF75aa/r2DZGBymVp+LD07JaLSHo
+ YlDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=1wmfUTMqorr4QKjeHnMrUs1grFtT2B0qbcv0J0dGrUY=;
- b=k2f4QqtR4yssUnK+N0BB4hM9dOvXuC6YE/itODVopmwQ4XlT449Bfy0iy2mPiAk2Hy
- TKOTbSeWANBc3oK5pVD2hp2RVuFNuh8Km4QtaJqC8YZvZZ35ne/WshP1MeRkPqGBMfwx
- p6vJhvV6tzSlsv3WcH41g5HRCYfWEdZsKS6drR6o9g8+sp89qzBx/f+zAYAUoSA4nUhl
- VmeWz0V2I/qOvYF10bpywe2L2r0CdhfoRd7wUoAMzNWWxuG6MFYOmM/OMEwL3i0w8mjS
- 1lF/6bnZjCHC4Idi9fCwIO+d5A3Ew3r5Eph+fvgomAxVYQk42RaI06F1zgCiyTG2qxaf
- ST0A==
-X-Gm-Message-State: AOAM5339R5SzS94ogZmSZkq8I00q4c3LnJYPVuN+enqk2w8qj26Od0uR
- PgjUHX2362qilGnAwZD7su5Jl1mgv0zhjA==
-X-Google-Smtp-Source: ABdhPJzwaRJa+L0jDxM3ZAuO8DDW4oBQZPHzr64RqIioC5ooAQR0Gv21PrRYKN4HaAsj7oyLAFciBg==
-X-Received: by 2002:a37:a84a:: with SMTP id r71mr8166645qke.481.1599752588295; 
- Thu, 10 Sep 2020 08:43:08 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
- by smtp.googlemail.com with ESMTPSA id s15sm1873817qkj.21.2020.09.10.08.43.07
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 10 Sep 2020 08:43:07 -0700 (PDT)
-Message-ID: <5F5A498A.8060202@gmail.com>
-Date: Thu, 10 Sep 2020 11:43:06 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=SzJ9qohHkeAI9XJ0Vk0dXG8/mqunMrEzyieF9k/ZGFg=;
+ b=T4sMzCa0SOwZpwjGgeksiE4942BRhbtgHh1dvlF6ACB4uyC3nla9rpS+giJs9ZBGL4
+ m8/GmziFOMkutbWY1BX0erwz5xjx9VHqENxuafhsOyAsPZjOuz0GE69wZ5r+6jhbKuKf
+ cbPbDUwtTYDU2KW+B/h82pZ4tNRLPw1P4NDZey5wTpfxtlDKrUyFf5IbmOtySCmBBuTi
+ yKiiqOM6Xtxnbe0yx6KKIhraO+2kMvbBTE9qhyXLCjLMLxeVjRDCNWDa4z/D2HK6yahQ
+ BYC2JGPE0lw37qsOqh4VundkHZeinDWVRDvwi4CxqN7JUT6AvVZwzHbNBemssh55IvmS
+ t3Sg==
+X-Gm-Message-State: AOAM532Ne3TyNKeKQ1or89vEIvH3RZYu6sCSncYwHe3pExgMFcuJn0OD
+ wfNe5AB5Z7araYHF3hYRtAfj83pJXgMVButXdaon+tE3xZ07XA==
+X-Google-Smtp-Source: ABdhPJy97DtDpIIN+U3DjlPZRxTIfetBFEnD7btnxPTDaqBaGrpvP1xkdmpxAY8Eg/eovCgPK+7k+0mhAyXrMrxqsqA=
+X-Received: by 2002:a25:2182:: with SMTP id
+ h124mr13997372ybh.336.1599752633857; 
+ Thu, 10 Sep 2020 08:43:53 -0700 (PDT)
 MIME-Version: 1.0
+Date: Thu, 10 Sep 2020 09:43:43 -0600
+Message-ID: <CACryqrG8a3S1ARULWRPYte8aoUVmh8B-qBxjX6GS_j_kam_q-w@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <d0a3da7b-2ecc-b56b-f405-f1a0c9547906@gmail.com>
-In-Reply-To: <d0a3da7b-2ecc-b56b-f405-f1a0c9547906@gmail.com>
-Subject: Re: [USRP-users] b200mini stops sampling
+Subject: [USRP-users] RuntimeError: System receive MTU size
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============8991234027257820085=="
+From: Xiang Ma via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Xiang Ma <marxwolfs@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8371434708949093591=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,199 +71,139 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============8991234027257820085==
-Content-Type: multipart/alternative;
- boundary="------------040900030900090800010804"
+--===============8371434708949093591==
+Content-Type: multipart/alternative; boundary="0000000000007839d105aef76f19"
 
-This is a multi-part message in MIME format.
---------------040900030900090800010804
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000007839d105aef76f19
+Content-Type: text/plain; charset="UTF-8"
 
-On 09/10/2020 08:55 AM, David Evans via USRP-users wrote:
-> Hi,
-> I have just installed the latest "master" branch of UHD (4.0.0.0).
->
-> If an overrun occurs during sampling, sampling does not continue 
-> thereafter.
-> I noticed this with uhd_fft, which hangs with rates over 8MHz, and 
-> also rx_samples_to_file:
->
-> ./rx_samples_to_file --freq 900000000 --rate 40000000
->
-> Creating the usrp device with: ...
-> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; 
-> UHD_4.0.0.0-34-g2655b0aa
-> [INFO] [B200] Detected Device: B200mini
-> [INFO] [B200] Operating over USB 3.
-> [INFO] [B200] Initialize CODEC control...
-> [INFO] [B200] Initialize Radio control...
-> [INFO] [B200] Performing register loopback test...
-> [INFO] [B200] Register loopback test passed
-> [INFO] [B200] Setting master clock rate selection to 'automatic'.
-> [INFO] [B200] Asking for clock rate 16.000000 MHz...
-> [INFO] [B200] Actually got clock rate 16.000000 MHz.
-> Using Device: Single USRP:
->   Device: B-Series Device
->   Mboard 0: B200mini
->   RX Channel: 0
->     RX DSP: 0
->     RX Dboard: A
->     RX Subdev: FE-RX1
->   TX Channel: 0
->     TX DSP: 0
->     TX Dboard: A
->     TX Subdev: FE-TX1
->
-> Setting RX Rate: 40.000000 Msps...
-> [INFO] [B200] Asking for clock rate 40.000000 MHz...
-> [INFO] [B200] Actually got clock rate 40.000000 MHz.
-> Actual RX Rate: 40.000000 Msps...
->
-> Setting RX Freq: 900.000000 MHz...
-> Setting RX LO Offset: 0.000000 MHz...
-> Actual RX Freq: 900.000000 MHz...
->
-> Waiting for "lo_locked": ++++++++++ locked.
->
-> Press Ctrl + C to stop streaming...
-> OGot an overflow indication. Please consider the following:
->   Your write medium must sustain a rate of 160.000000MB/s.
->   Dropped samples will not be written to the file.
->   Please modify this example for your purposes.
->   This message will not appear again.
-> *Timeout while streaming*
->
-> Done!
->
-> Any ideas please?
-> Should I be using the master branch, if not how do I checkout a stable 
-> branch ?
->
-> Thanks,
-> Dave
->
+Hi, I am running a rfid code on USRP, but there occur some errors and
+warnings, and I am not sure where do the errors come from and how to
+address them. Please help me.
 
-You can get a list of tagged versions using:
-
-git tag
-
-Try again with:
-
-git checkout   v3.15.0.0
-
-Sometimes when the overruns are persistent and at very high rates, the 
-software is unable to recover, because so much information has been
-   dropped, any recovery procedure would be roughly as drastic as having 
-to re-start.
+hu@hu:~/rfid/Gen2-UHF-RFID-Reader/gr-rfid/apps$ sudo GR_SCHEDULER=STS nice
+-n -20 python ./reader.py
+[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
+UHD_3.15.0.HEAD-0-gaea0e2de
+[INFO] [X300] X300 initialization sequence...
+*[ERROR] [X300] RuntimeError: System receive MTU size is less than the
+minimum required by the IP protocol.*
 
 
 
---------------040900030900090800010804
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 09/10/2020 08:55 AM, David Evans via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote
-      cite="mid:d0a3da7b-2ecc-b56b-f405-f1a0c9547906@gmail.com"
-      type="cite">
-      <meta http-equiv="content-type" content="text/html;
-        charset=windows-1252">
-      Hi,<br>
-      I have just installed the latest "master" branch of UHD (4.0.0.0).<br>
-      <br>
-      If an overrun occurs during sampling, sampling does not continue
-      thereafter.<br>
-      I noticed this with uhd_fft, which hangs with rates over 8MHz, and
-      also rx_samples_to_file:<br>
-      <br>
-      ./rx_samples_to_file --freq 900000000 --rate 40000000<br>
-      <br>
-      Creating the usrp device with: ...<br>
-      [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
-      UHD_4.0.0.0-34-g2655b0aa<br>
-      [INFO] [B200] Detected Device: B200mini<br>
-      [INFO] [B200] Operating over USB 3.<br>
-      [INFO] [B200] Initialize CODEC control...<br>
-      [INFO] [B200] Initialize Radio control...<br>
-      [INFO] [B200] Performing register loopback test...<br>
-      [INFO] [B200] Register loopback test passed<br>
-      [INFO] [B200] Setting master clock rate selection to 'automatic'.<br>
-      [INFO] [B200] Asking for clock rate 16.000000 MHz...<br>
-      [INFO] [B200] Actually got clock rate 16.000000 MHz.<br>
-      Using Device: Single USRP:<br>
-        Device: B-Series Device<br>
-        Mboard 0: B200mini<br>
-        RX Channel: 0<br>
-          RX DSP: 0<br>
-          RX Dboard: A<br>
-          RX Subdev: FE-RX1<br>
-        TX Channel: 0<br>
-          TX DSP: 0<br>
-          TX Dboard: A<br>
-          TX Subdev: FE-TX1<br>
-      <br>
-      Setting RX Rate: 40.000000 Msps...<br>
-      [INFO] [B200] Asking for clock rate 40.000000 MHz...<br>
-      [INFO] [B200] Actually got clock rate 40.000000 MHz.<br>
-      Actual RX Rate: 40.000000 Msps...<br>
-      <br>
-      Setting RX Freq: 900.000000 MHz...<br>
-      Setting RX LO Offset: 0.000000 MHz...<br>
-      Actual RX Freq: 900.000000 MHz...<br>
-      <br>
-      Waiting for "lo_locked": ++++++++++ locked.<br>
-      <br>
-      Press Ctrl + C to stop streaming...<br>
-      OGot an overflow indication. Please consider the following:<br>
-        Your write medium must sustain a rate of 160.000000MB/s.<br>
-        Dropped samples will not be written to the file.<br>
-        Please modify this example for your purposes.<br>
-        This message will not appear again.<br>
-      <b>Timeout while streaming</b><br>
-      <br>
-      Done!<br>
-      <br>
-      Any ideas please?  <br>
-      Should I be using the master branch, if not how do I checkout a
-      stable branch ?<br>
-      <br>
-      Thanks,<br>
-      Dave<br>
-      <br>
-    </blockquote>
-    <br>
-    You can get a list of tagged versions using:<br>
-    <br>
-    git tag<br>
-    <br>
-    Try again with:<br>
-    <br>
-    git checkout   v3.15.0.0<br>
-    <br>
-    Sometimes when the overruns are persistent and at very high rates,
-    the software is unable to recover, because so much information has
-    been<br>
-      dropped, any recovery procedure would be roughly as drastic as
-    having to re-start.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------040900030900090800010804--
 
 
---===============8991234027257820085==
+
+*[WARNING] [X300] You requested a receive frame size of (256) but your
+NIC's max frame size is (0).Please verify your NIC's MTU setting using 'ip
+link' or set the recv_frame_size argument appropriately.UHD will use the
+auto-detected max frame size for this connection.[WARNING] [X300] For the
+192.168.10.2 connection, UHD recommends a send frame size of at least 1472
+for bestperformance, but your configuration will only allow 0.This may
+negatively impact your maximum achievable sample rate.Check the MTU on the
+interface and/or the send_frame_size argument.[WARNING] [X300] For the
+192.168.10.2 connection, UHD recommends a receive frame size of at least
+1472 for bestperformance, but your configuration will only allow 0.This may
+negatively impact your maximum achievable sample rate.Check the MTU on the
+interface and/or the recv_frame_size argument.*
+[INFO] [X300] Radio 1x clock: 200 MHz
+[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929b
+[INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D00000000000)
+[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1311 MB/s)
+[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1311 MB/s)
+[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)
+[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001)
+[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
+[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
+[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
+[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
+[WARNING] [RFNOC] Assuming max packet size for 0/Radio_0
+[WARNING] [RFNOC] Assuming max packet size for 0/Radio_0
+[WARNING] [RFNOC] Assuming max packet size for 0/Radio_1
+[WARNING] [RFNOC] Assuming max packet size for 0/Radio_1
+[WARNING] [RFNOC] Assuming max packet size for 0/DUC_0
+[WARNING] [RFNOC] Assuming max packet size for 0/DUC_1
+[WARNING] [RFNOC] Assuming max packet size for 0/DmaFIFO_0
+[WARNING] [RFNOC] Assuming max packet size for 0/DmaFIFO_0
+'Q' to quit
+[WARNING] [STREAMER] Requested recv_frame_size of 256 exceeds the maximum
+possible on this stream. Using 0
+Uq
+
+ --------------------------
+| Number of queries/queryreps sent : 0
+| Current Inventory round : 1
+ --------------------------
+| Correctly decoded EPC : 0
+| Number of unique tags : 0
+ --------------------------
+
+-- 
+*Xiang Ma, *Ph.D. Student
+College of Engineering
+Utah State University
+E-mail:marxwolfs@gmail.com <congshanya@gmail.com>
+
+--0000000000007839d105aef76f19
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi, I am running a rfid code on USRP, but there occur=
+ some errors and warnings, and I am not sure where do the errors come from =
+and how to address them. Please help me.<br></div><div><br></div><div>hu@hu=
+:~/rfid/Gen2-UHF-RFID-Reader/gr-rfid/apps$ sudo GR_SCHEDULER=3DSTS nice -n =
+-20 python ./reader.py<br>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_=
+106501; UHD_3.15.0.HEAD-0-gaea0e2de<br>[INFO] [X300] X300 initialization se=
+quence...<br><b>[ERROR] [X300] RuntimeError: System receive MTU size is les=
+s than the minimum required by the IP protocol.</b><br><b>[WARNING] [X300] =
+You requested a receive frame size of (256) but your NIC&#39;s max frame si=
+ze is (0).Please verify your NIC&#39;s MTU setting using &#39;ip link&#39; =
+or set the recv_frame_size argument appropriately.UHD will use the auto-det=
+ected max frame size for this connection.<br>[WARNING] [X300] For the 192.1=
+68.10.2 connection, UHD recommends a send frame size of at least 1472 for b=
+est<br>performance, but your configuration will only allow 0.This may negat=
+ively impact your maximum achievable sample rate.<br>Check the MTU on the i=
+nterface and/or the send_frame_size argument.<br>[WARNING] [X300] For the 1=
+92.168.10.2 connection, UHD recommends a receive frame size of at least 147=
+2 for best<br>performance, but your configuration will only allow 0.This ma=
+y negatively impact your maximum achievable sample rate.<br>Check the MTU o=
+n the interface and/or the recv_frame_size argument.</b><br>[INFO] [X300] R=
+adio 1x clock: 200 MHz<br>[INFO] [GPS] Found an internal GPSDO: LC_XO, Firm=
+ware Rev 0.929b<br>[INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:=
+ 0xF1F0D00000000000)<br>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1311 =
+MB/s)<br>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1311 MB/s)<br>[INFO]=
+ [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)<br>[IN=
+FO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001)<br>=
+[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)<br=
+>[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)<b=
+r>[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)<=
+br>[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)=
+<br>[WARNING] [RFNOC] Assuming max packet size for 0/Radio_0<br>[WARNING] [=
+RFNOC] Assuming max packet size for 0/Radio_0<br>[WARNING] [RFNOC] Assuming=
+ max packet size for 0/Radio_1<br>[WARNING] [RFNOC] Assuming max packet siz=
+e for 0/Radio_1<br>[WARNING] [RFNOC] Assuming max packet size for 0/DUC_0<b=
+r>[WARNING] [RFNOC] Assuming max packet size for 0/DUC_1<br>[WARNING] [RFNO=
+C] Assuming max packet size for 0/DmaFIFO_0<br>[WARNING] [RFNOC] Assuming m=
+ax packet size for 0/DmaFIFO_0<br>&#39;Q&#39; to quit<br>[WARNING] [STREAME=
+R] Requested recv_frame_size of 256 exceeds the maximum possible on this st=
+ream. Using 0<br>Uq<br><br>=C2=A0--------------------------<br>| Number of =
+queries/queryreps sent : 0<br>| Current Inventory round : 1<br>=C2=A0------=
+--------------------<br>| Correctly decoded EPC : 0<br>| Number of unique t=
+ags : 0<br>=C2=A0--------------------------</div><div><br></div>-- <br><div=
+ dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><=
+div dir=3D"ltr"><font face=3D"times new roman, serif" size=3D"4" style=3D"c=
+olor:rgb(136,136,136)"><i><b>Xiang Ma,=C2=A0</b></i></font><span style=3D"c=
+olor:rgb(136,136,136)">Ph.D. Student</span><div><div style=3D"color:rgb(136=
+,136,136)"><font color=3D"#444444">College of Engineering</font></div><div>=
+<font color=3D"#444444">Utah State University</font></div><div style=3D"col=
+or:rgb(136,136,136)"><font color=3D"#444444">E-mail:<a href=3D"mailto:congs=
+hanya@gmail.com" style=3D"color:rgb(17,85,204)" target=3D"_blank">marxwolfs=
+@gmail.com</a></font></div></div></div></div></div>
+
+--0000000000007839d105aef76f19--
+
+
+--===============8371434708949093591==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -285,5 +214,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8991234027257820085==--
+--===============8371434708949093591==--
 
