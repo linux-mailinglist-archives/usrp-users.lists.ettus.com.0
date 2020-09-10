@@ -2,62 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6AB0264983
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Sep 2020 18:18:14 +0200 (CEST)
-Received: from [::1] (port=44760 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7E8A264988
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Sep 2020 18:19:03 +0200 (CEST)
+Received: from [::1] (port=44794 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kGPH3-0006q0-7B; Thu, 10 Sep 2020 12:18:13 -0400
-Received: from mail-qt1-f180.google.com ([209.85.160.180]:37601)
+	id 1kGPHq-0007Ah-KL; Thu, 10 Sep 2020 12:19:02 -0400
+Received: from mail-yb1-f181.google.com ([209.85.219.181]:45067)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kGPGy-0006gi-RJ
- for USRP-users@lists.ettus.com; Thu, 10 Sep 2020 12:18:08 -0400
-Received: by mail-qt1-f180.google.com with SMTP id k25so5309398qtu.4
- for <USRP-users@lists.ettus.com>; Thu, 10 Sep 2020 09:17:48 -0700 (PDT)
+ (Exim 4.93) (envelope-from <marxwolfs@gmail.com>) id 1kGPHl-0006xR-J9
+ for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 12:18:57 -0400
+Received: by mail-yb1-f181.google.com with SMTP id p81so4429362ybc.12
+ for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 09:18:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=BkX2F74vSCXhnKwXhy9q1ZPdGhN2pv6O6mM89wHCqC8=;
- b=DkYWBFoUxGX3lOeQ3X27bwu2kS2DcdzyIeVdVHfeMMH5R6ieJzQZk9qNlA7kB+Cjaj
- gIPwCzCutCxfhi9u1P0aAC24MYfVf+b3dBm4Qtl/JoKOCH73NbE1GEGToYqCn1qpH9xN
- tDD8QVZIg+/TlRI93c6f5V6ondsrgueQ7JNSLsc5ZGEPi7WM1aIVJprG3z/4MAv4B9AB
- MOz6VLVgJDOE5EGukZQlf0TyHz7wMvzaUg6GZbm1yE5Q3xhGApLriyi72bVS9ilqmBH5
- 0yAEUnPEtt1Tpqti5XugjKqo6cEadGbcOM46NJev39O1T3C07/0JVkceZOHePnabH5sj
- GOjQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=A5GoUArY5eUPwPSYgovh0KumvxsK8zgMbPhixcStuSk=;
+ b=K5KHmq9UhTT4VL1cj8RBkkPdZkrQorR6OOUF4zVLAorvJ2w+AcQPo0wy3cwm4GJ7/x
+ 7NAd9jJSX87WiWqUMS9lC8PHEbX9aaQMZxOhJKbcmr4H4CgU8BX2Rc3spWvYi2LQuV2p
+ p/EcBu5B2JH6xf2rYS4knpZrT1/po+7ObobulUwB5/XelHedeSso87miAPoTTqJ9jajn
+ GJ1qo0rePproC2kEyklMFsTh8T1As98Ooo5ZAEEvQ/RGwg9mz0tx38B2BCeTNhLMxhZO
+ CX5MTkkngP8nLzz+zZlJ9xjv4E5cZhWysS6oORYc0B3Y7G+81b5fyVJ27BzLrXD/UM2h
+ bAzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=BkX2F74vSCXhnKwXhy9q1ZPdGhN2pv6O6mM89wHCqC8=;
- b=r4aEmzYINS521eZ4V2nDeD7jsigN8I3QtSi7acEuhfE1Aie/sxg5wfjiAzFiU2DWoZ
- DRqI9I4y9ERaBXNFXcS/Oo4j+nLHOcjg2uLFoDCH876A1+Ls4i+0lU8sxrufUi4C3Nzc
- rY9M/0jpIqkIDZLjErfx26z0H42YPkniNVWzfrwY7DvGsKhThhuT5LJre1KUZpfSluGG
- 2vrSl/k4oMIEzZN54dPWw4l/pX/Dj961RAJe9BUwiMQj5DdHgFsvPmbsJtPsfvwT9oU+
- n+uVE5YbJy/Jryh6H1z3JyrorJymvTBOH1L4124t1ErF6Fg65/bj8/1rHtlOh40A2Gfx
- eLdQ==
-X-Gm-Message-State: AOAM530rGyE8yV8+n2gGTdz20KzNbIC/n9ZJ6MNRELZpzUGD1TIqb19A
- QrDRVwFe1LV144XrbKm1BBi2yKrOO38aYQ==
-X-Google-Smtp-Source: ABdhPJzJx/mFVpJO7AWuggwAYkrb3hGxpC3JczRJsl3MJZNJR9iAe+7txOO8b7N/RPvTHh9U/9OtwA==
-X-Received: by 2002:aed:3e2e:: with SMTP id l43mr9110736qtf.392.1599754648016; 
- Thu, 10 Sep 2020 09:17:28 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
- by smtp.googlemail.com with ESMTPSA id v18sm7119483qtq.15.2020.09.10.09.17.27
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 10 Sep 2020 09:17:27 -0700 (PDT)
-Message-ID: <5F5A5196.7040905@gmail.com>
-Date: Thu, 10 Sep 2020 12:17:26 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=A5GoUArY5eUPwPSYgovh0KumvxsK8zgMbPhixcStuSk=;
+ b=EIs0Yhr+cRGjO7vrNk15F7jqI5ymO5c1AP7q4bHCdxkq89RU5M8YQhrMjT7d+eGJKP
+ uS0/2R6LCvcJTLEP8J7n6puQlR1idWekmgkHWbnbgBZ13N4c/T9a6Z7Ym3INO+S8aVuY
+ LQ9aD6Z3/6bldwkNUQRKn/WDclNx27rsfoNUxP/PBwMJdf/8BgMfcDKYEU1oJiE/4v0b
+ aBX+QFg+ERkjg4Tu86iBHmNC1dHxEOFPmpIYEYYPq3UcpkmI7wReHxjaFAnqT5byctSj
+ wFr+Fzk9TmgVEeME28y/47jRTkZg/ur0lcx0aV9RzMZzN5FUFizhG0MJ/60tz9Z87TyC
+ FKSw==
+X-Gm-Message-State: AOAM530CSfN4Fr1kv8P+pQbYgTS9qA0IIVyJZkdOGTQwCLvaJsRWAFkc
+ ZIvCppmZ5U1NMuAzIk/nA0Ig7Q5efJMy39gYVdA=
+X-Google-Smtp-Source: ABdhPJwuvyuv4WvUTXibME5WM0yamyaWXSg3N1a8nUGQrUKtzTcUJqlOstMB1ceULNL6jxEl4oHnectvFEVdeRM2DJc=
+X-Received: by 2002:a25:260d:: with SMTP id m13mr14004906ybm.45.1599754696959; 
+ Thu, 10 Sep 2020 09:18:16 -0700 (PDT)
 MIME-Version: 1.0
-To: Xiang Ma <marxwolfs@gmail.com>
-CC: USRP-users@lists.ettus.com
-References: <CACryqrFS9dZo5N6am5VyGFq3xqfy0rrW5z=jtP3Y947kz-5Rrw@mail.gmail.com>
- <D6AE7F12-CCA7-4CC9-B8C6-763CB6523273@gmail.com>
- <CACryqrFJrZBcJaWdq=Cknn2v9oE8+zraJd21Viqqtxpi=nCM_w@mail.gmail.com>
-In-Reply-To: <CACryqrFJrZBcJaWdq=Cknn2v9oE8+zraJd21Viqqtxpi=nCM_w@mail.gmail.com>
-Subject: Re: [USRP-users] UHD query gpsdo sensor command
+References: <CACryqrG8a3S1ARULWRPYte8aoUVmh8B-qBxjX6GS_j_kam_q-w@mail.gmail.com>
+ <5F5A50F1.4080500@gmail.com>
+In-Reply-To: <5F5A50F1.4080500@gmail.com>
+Date: Thu, 10 Sep 2020 10:18:05 -0600
+Message-ID: <CACryqrG3Eo6KTFM1v2SpA2Dc8Q71iznrLtai=79bPWgDG=xXRw@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] RuntimeError: System receive MTU size
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -69,9 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3374207086700337790=="
+From: Xiang Ma via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Xiang Ma <marxwolfs@gmail.com>
+Content-Type: multipart/mixed; boundary="===============3401273195900185863=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,634 +75,247 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============3374207086700337790==
-Content-Type: multipart/alternative;
- boundary="------------040402030109080300080207"
+--===============3401273195900185863==
+Content-Type: multipart/alternative; boundary="00000000000070ae3705aef7ea0d"
 
-This is a multi-part message in MIME format.
---------------040402030109080300080207
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--00000000000070ae3705aef7ea0d
+Content-Type: text/plain; charset="UTF-8"
 
-On 09/10/2020 12:12 PM, Xiang Ma wrote:
-> I double checked the installation, I think it is ok. When I start the 
-> USRP,
-> There will be two green lights on, several seconds later, 1 light off, 
-> and 1-2 seconds later, another light is also off.
->
-> also if there is a GPSDO installation problem, why /[INFO] [GPS] Found 
-> an internal GPSDO: LC_XO, Firmware Rev 0.929b appears?/
-/Because it can "find" the GPSDO and there can still be problems with 
-the electrical interface to it.  There are several signals between the
-   motherboard and the GPSDO module.  So, if the NMEA signals work, the 
-motherboard can still "find" the GPSDO, but other things will
-   go wrong despite that.  That's what the message at the bottom of your 
-test shows--it cannot see the GPSDO-Locked signal--which in this
-   case might be expected, since you reported that you're running this 
-inside a building--no GPS LOCK is possible in that case, since the GPSDO
-   cannot see the sky (and, hence, the satellites that provide GPS service).
+No, I run on a real Ubuntu 18.04 machine. I do not find anything special in
+the ifconfig result:
+(base) hu@hu:~/torch$ ifconfig
+enp6s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.10.66  netmask 255.255.255.0  broadcast 192.168.10.255
+        inet6 fe80::ba85:84ff:febb:bb5c  prefixlen 64  scopeid 0x20<link>
+        ether b8:85:84:bb:bb:5c  txqueuelen 1000  (Ethernet)
+        RX packets 211324  bytes 13170668 (13.1 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 212033  bytes 13064575 (13.0 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 19
 
+On Thu, Sep 10, 2020 at 10:15 AM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-/
-> /
-> /
-> Thanks.
+> On 09/10/2020 11:43 AM, Xiang Ma via USRP-users wrote:
 >
-> On Thu, Sep 10, 2020 at 10:07 AM Marcus D Leech 
-> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
+> Hi, I am running a rfid code on USRP, but there occur some errors and
+> warnings, and I am not sure where do the errors come from and how to
+> address them. Please help me.
 >
->     To me the message at the end suggests even more strongly that
->     there’s a hardware problem with the GPSDO installation.
->
->     Sent from my iPhone
->
->>     On Sep 10, 2020, at 11:50 AM, Xiang Ma <marxwolfs@gmail.com
->>     <mailto:marxwolfs@gmail.com>> wrote:
->>
->>     ﻿
->>     But you can see there is an info:
->>     /[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929b/
->>
->>     Also, when I run /usr/local/lib/uhd/examples/sync_to_gps
->>
->>     It shows:
->>     Creating the USRP device with: ...
->>     [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
->>     UHD_3.15.0.HEAD-0-gaea0e2de
->>     [INFO] [X300] X300 initialization sequence...
->>     [INFO] [X300] Maximum frame size: 1472 bytes.
->>     [INFO] [X300] Radio 1x clock: 200 MHz
->>     [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929b
->>     [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
->>     0xF1F0D00000000000)
->>     [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1300 MB/s)
->>     [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1317 MB/s)
->>     [INFO] [0/Radio_0] Initializing block control (NOC ID:
->>     0x12AD100000000001)
->>     [INFO] [0/Radio_1] Initializing block control (NOC ID:
->>     0x12AD100000000001)
->>     [INFO] [0/DDC_0] Initializing block control (NOC ID:
->>     0xDDC0000000000000)
->>     [INFO] [0/DDC_1] Initializing block control (NOC ID:
->>     0xDDC0000000000000)
->>     [INFO] [0/DUC_0] Initializing block control (NOC ID:
->>     0xD0C0000000000000)
->>     [INFO] [0/DUC_1] Initializing block control (NOC ID:
->>     0xD0C0000000000000)
->>     Using Device: Single USRP:
->>       Device: X-Series Device
->>       Mboard 0: X310
->>       RX Channel: 0
->>         RX DSP: 0
->>         RX Dboard: A
->>         RX Subdev: UBX RX
->>       RX Channel: 1
->>         RX DSP: 0
->>         RX Dboard: B
->>         RX Subdev: UBX RX
->>       TX Channel: 0
->>         TX DSP: 0
->>         TX Dboard: A
->>         TX Subdev: UBX TX
->>       TX Channel: 1
->>         TX DSP: 0
->>         TX Dboard: B
->>         TX Subdev: UBX TX
->>
->>     Synchronizing mboard 0: X310
->>
->>     **************************************Helpful Notes on Clock/PPS
->>     Selection**************************************
->>     As you can see, the default 10 MHz Reference and 1 PPS signals
->>     are now from the GPSDO.
->>     If you would like to use the internal reference(TCXO) in other
->>     applications, you must configure that explicitly.
->>     You can no longer select the external SMAs for 10 MHz or 1 PPS
->>     signaling.
->>     ****************************************************************************************************************
->>
->>     Waiting for reference lock...LOCKED
->>
->>     Error: ValueError: locked(): unable to determine GPS lock
->>     statusThis could mean that you have not installed the GPSDO
->>     correctly.
->>
->>     Visit one of these pages if the problem persists:
->>      * N2X0/E1X0: http://files.ettus.com/manual/page_gpsdo.html *
->>     X3X0: http://files.ettus.com/manual/page_gpsdo_x3x0.html
->>
->>      * E3X0:
->>     http://files.ettus.com/manual/page_usrp_e3x0.html#e3x0_hw_gps
->>
->>     On Thu, Sep 10, 2020 at 9:38 AM Marcus D. Leech via USRP-users
->>     <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>
->>     wrote:
->>
->>         On 09/10/2020 10:12 AM, Xiang Ma via USRP-users wrote:
->>>         Hi,
->>>
->>>            I am using the
->>>         /usr/local/lib/uhd/utils/query_gpsdo_sensors to get gps
->>>         information, but it shows: /Waiting for the GPSDO to warm
->>>         up...........
->>>         No response from GPSDO in 30 seconds/
->>>         /
->>>         /
->>>         This is the whole information:
->>>
->>>         /hu@hu:~$ /usr/local/lib/uhd/utils/query_gpsdo_sensors
->>>
->>>         Creating the USRP device with: ...
->>>         [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
->>>         UHD_3.15.0.HEAD-0-gaea0e2de
->>>         [INFO] [X300] X300 initialization sequence...
->>>         [INFO] [X300] Maximum frame size: 1472 bytes.
->>>         [INFO] [X300] Radio 1x clock: 200 MHz
->>>         [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929b
->>>         [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
->>>         0xF1F0D00000000000)
->>>         [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1304 MB/s)
->>>         [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1306 MB/s)
->>>         [INFO] [0/Radio_0] Initializing block control (NOC ID:
->>>         0x12AD100000000001)
->>>         [INFO] [0/Radio_1] Initializing block control (NOC ID:
->>>         0x12AD100000000001)
->>>         [INFO] [0/DDC_0] Initializing block control (NOC ID:
->>>         0xDDC0000000000000)
->>>         [INFO] [0/DDC_1] Initializing block control (NOC ID:
->>>         0xDDC0000000000000)
->>>         [INFO] [0/DUC_0] Initializing block control (NOC ID:
->>>         0xD0C0000000000000)
->>>         [INFO] [0/DUC_1] Initializing block control (NOC ID:
->>>         0xD0C0000000000000)
->>>         Using Device: Single USRP:
->>>           Device: X-Series Device
->>>           Mboard 0: X310
->>>           RX Channel: 0
->>>             RX DSP: 0
->>>             RX Dboard: A
->>>             RX Subdev: UBX RX
->>>           RX Channel: 1
->>>             RX DSP: 0
->>>             RX Dboard: B
->>>             RX Subdev: UBX RX
->>>           TX Channel: 0
->>>             TX DSP: 0
->>>             TX Dboard: A
->>>             TX Subdev: UBX TX
->>>           TX Channel: 1
->>>             TX DSP: 0
->>>             TX Dboard: B
->>>             TX Subdev: UBX TX
->>>
->>>         Setting the reference clock source to "gpsdo"...
->>>         Clock source is now gpsdo
->>>         Setting the reference clock source to "gpsdo"...
->>>         Time source is now gpsdo
->>>         Waiting for ref_locked...USRP Locked to Reference.
->>>         **************************************Helpful Notes on
->>>         Clock/PPS Selection**************************************
->>>         As you can see, the default 10 MHz Reference and 1 PPS
->>>         signals are now from the GPSDO.
->>>         If you would like to use the internal reference(TCXO) in
->>>         other applications, you must configure that explicitly.
->>>         ****************************************************************************************************************
->>>         Waiting for the GPSDO to warm up...........
->>>         No response from GPSDO in 30 seconds/
->>>         /
->>>         /
->>>         I do plug the GPSDO to the board, and I plug the 5V active
->>>         GPS antenna in the `GPS ANT` connector at the rear panel.
->>>         But I am not sure why. I just want to get the location
->>>         information. (btw, is it because I am in the indoor area?)
->>>
->>>         Thanks,
->>>
->>>         Xiang Ma
->>>
->>>         -- 
->>>         /*Xiang Ma, */Ph.D. Student
->>>         College of Engineering
->>>         Utah State University
->>>         E-mail:marxwolfs@gmail.com <mailto:congshanya@gmail.com>
->>>
->>>
->>         I would re-check the GPSDO installation.  You may have bent
->>         one of the pins when you installed it.
->>
->>         Also, it won't be able to get a "fix" unless the antenna can
->>         "see" the sky.  Most buildings are not that transparent at
->>         1575MHz.
->>
->>
->>
->>         _______________________________________________
->>         USRP-users mailing list
->>         USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>         http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->>
->>
->>     -- 
->>     /*Xiang Ma, */Ph.D. Student
->>     College of Engineering
->>     Utah State University
->>     E-mail:marxwolfs@gmail.com <mailto:congshanya@gmail.com>
+> hu@hu:~/rfid/Gen2-UHF-RFID-Reader/gr-rfid/apps$ sudo GR_SCHEDULER=STS
+> nice -n -20 python ./reader.py
+> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
+> UHD_3.15.0.HEAD-0-gaea0e2de
+> [INFO] [X300] X300 initialization sequence...
+> *[ERROR] [X300] RuntimeError: System receive MTU size is less than the
+> minimum required by the IP protocol.*
 >
 >
 >
-> -- 
-> /*Xiang Ma, */Ph.D. Student
-> College of Engineering
-> Utah State University
-> E-mail:marxwolfs@gmail.com <mailto:congshanya@gmail.com>
+>
+>
+>
+> *[WARNING] [X300] You requested a receive frame size of (256) but your
+> NIC's max frame size is (0).Please verify your NIC's MTU setting using 'ip
+> link' or set the recv_frame_size argument appropriately.UHD will use the
+> auto-detected max frame size for this connection. [WARNING] [X300] For the
+> 192.168.10.2 connection, UHD recommends a send frame size of at least 1472
+> for best performance, but your configuration will only allow 0.This may
+> negatively impact your maximum achievable sample rate. Check the MTU on the
+> interface and/or the send_frame_size argument. [WARNING] [X300] For the
+> 192.168.10.2 connection, UHD recommends a receive frame size of at least
+> 1472 for best performance, but your configuration will only allow 0.This
+> may negatively impact your maximum achievable sample rate. Check the MTU on
+> the interface and/or the recv_frame_size argument.*
+> [INFO] [X300] Radio 1x clock: 200 MHz
+> [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929b
+> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
+> 0xF1F0D00000000000)
+> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1311 MB/s)
+> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1311 MB/s)
+> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)
+> [INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001)
+> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
+> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
+> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
+> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
+> [WARNING] [RFNOC] Assuming max packet size for 0/Radio_0
+> [WARNING] [RFNOC] Assuming max packet size for 0/Radio_0
+> [WARNING] [RFNOC] Assuming max packet size for 0/Radio_1
+> [WARNING] [RFNOC] Assuming max packet size for 0/Radio_1
+> [WARNING] [RFNOC] Assuming max packet size for 0/DUC_0
+> [WARNING] [RFNOC] Assuming max packet size for 0/DUC_1
+> [WARNING] [RFNOC] Assuming max packet size for 0/DmaFIFO_0
+> [WARNING] [RFNOC] Assuming max packet size for 0/DmaFIFO_0
+> 'Q' to quit
+> [WARNING] [STREAMER] Requested recv_frame_size of 256 exceeds the maximum
+> possible on this stream. Using 0
+> Uq
+>
+>  --------------------------
+> | Number of queries/queryreps sent : 0
+> | Current Inventory round : 1
+>  --------------------------
+> | Correctly decoded EPC : 0
+> | Number of unique tags : 0
+>  --------------------------
+>
+>
+> Are you running inside a VM?
+>
+> What does 'ifconfig' return for the interface the X3xx USRP is connected
+> to?  It looks like the MTU is badly misconfigured.
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
 
---------------040402030109080300080207
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+-- 
+*Xiang Ma, *Ph.D. Student
+College of Engineering
+Utah State University
+E-mail:marxwolfs@gmail.com <congshanya@gmail.com>
 
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 09/10/2020 12:12 PM, Xiang Ma wrote:<br>
+--00000000000070ae3705aef7ea0d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>No, I run on a real Ubuntu 18.04 machine. I do not fi=
+nd anything special in the ifconfig result:<br></div><div>(base) hu@hu:~/to=
+rch$ ifconfig <br>enp6s0: flags=3D4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt=
+; =C2=A0mtu 1500<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 inet 192.168.10.66 =C2=A0ne=
+tmask 255.255.255.0 =C2=A0broadcast 192.168.10.255<br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 inet6 fe80::ba85:84ff:febb:bb5c =C2=A0prefixlen 64 =C2=A0scopeid 0x2=
+0&lt;link&gt;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 ether b8:85:84:bb:bb:5c =C2=A0=
+txqueuelen 1000 =C2=A0(Ethernet)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 RX packets =
+211324 =C2=A0bytes 13170668 (13.1 MB)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 RX err=
+ors 0 =C2=A0dropped 0 =C2=A0overruns 0 =C2=A0frame 0<br>=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 TX packets 212033 =C2=A0bytes 13064575 (13.0 MB)<br>=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 TX errors 0 =C2=A0dropped 0 overruns 0 =C2=A0carrier 0 =
+=C2=A0collisions 0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 device interrupt 19=C2=A0=
+ <br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Thu, Sep 10, 2020 at 10:15 AM Marcus D. Leech via USRP-users =
+&lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.co=
+m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+>
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 09/10/2020 11:43 AM, Xiang Ma via
+      USRP-users wrote:<br>
     </div>
-    <blockquote
-cite="mid:CACryqrFJrZBcJaWdq=Cknn2v9oE8+zraJd21Viqqtxpi=nCM_w@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">I double checked the installation, I think it is
-        ok. When I start the USRP,
-        <div>There will be two green lights on, several seconds later, 1
-          light off, and 1-2 seconds later, another light is also off.</div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div>Hi, I am running a rfid code on USRP, but there occur some
+          errors and warnings, and I am not sure where do the errors
+          come from and how to address them. Please help me.<br>
+        </div>
         <div><br>
         </div>
-        <div>also if there is a GPSDO installation problem, why <i
-            style="color:rgb(80,0,80)">[INFO] [GPS] Found an internal
-            GPSDO: LC_XO, Firmware Rev 0.929b appears?</i></div>
+        <div>hu@hu:~/rfid/Gen2-UHF-RFID-Reader/gr-rfid/apps$ sudo
+          GR_SCHEDULER=3DSTS nice -n -20 python ./reader.py<br>
+          [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
+          UHD_3.15.0.HEAD-0-gaea0e2de<br>
+          [INFO] [X300] X300 initialization sequence...<br>
+          <b>[ERROR] [X300] RuntimeError: System receive MTU size is
+            less than the minimum required by the IP protocol.</b><br>
+          <b>[WARNING] [X300] You requested a receive frame size of
+            (256) but your NIC&#39;s max frame size is (0).Please verify
+            your NIC&#39;s MTU setting using &#39;ip link&#39; or set the
+            recv_frame_size argument appropriately.UHD will use the
+            auto-detected max frame size for this connection.<br>
+            [WARNING] [X300] For the 192.168.10.2 connection, UHD
+            recommends a send frame size of at least 1472 for best<br>
+            performance, but your configuration will only allow 0.This
+            may negatively impact your maximum achievable sample rate.<br>
+            Check the MTU on the interface and/or the send_frame_size
+            argument.<br>
+            [WARNING] [X300] For the 192.168.10.2 connection, UHD
+            recommends a receive frame size of at least 1472 for best<br>
+            performance, but your configuration will only allow 0.This
+            may negatively impact your maximum achievable sample rate.<br>
+            Check the MTU on the interface and/or the recv_frame_size
+            argument.</b><br>
+          [INFO] [X300] Radio 1x clock: 200 MHz<br>
+          [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev
+          0.929b<br>
+          [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
+          0xF1F0D00000000000)<br>
+          [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1311 MB/s)<br>
+          [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1311 MB/s)<br>
+          [INFO] [0/Radio_0] Initializing block control (NOC ID:
+          0x12AD100000000001)<br>
+          [INFO] [0/Radio_1] Initializing block control (NOC ID:
+          0x12AD100000000001)<br>
+          [INFO] [0/DDC_0] Initializing block control (NOC ID:
+          0xDDC0000000000000)<br>
+          [INFO] [0/DDC_1] Initializing block control (NOC ID:
+          0xDDC0000000000000)<br>
+          [INFO] [0/DUC_0] Initializing block control (NOC ID:
+          0xD0C0000000000000)<br>
+          [INFO] [0/DUC_1] Initializing block control (NOC ID:
+          0xD0C0000000000000)<br>
+          [WARNING] [RFNOC] Assuming max packet size for 0/Radio_0<br>
+          [WARNING] [RFNOC] Assuming max packet size for 0/Radio_0<br>
+          [WARNING] [RFNOC] Assuming max packet size for 0/Radio_1<br>
+          [WARNING] [RFNOC] Assuming max packet size for 0/Radio_1<br>
+          [WARNING] [RFNOC] Assuming max packet size for 0/DUC_0<br>
+          [WARNING] [RFNOC] Assuming max packet size for 0/DUC_1<br>
+          [WARNING] [RFNOC] Assuming max packet size for 0/DmaFIFO_0<br>
+          [WARNING] [RFNOC] Assuming max packet size for 0/DmaFIFO_0<br>
+          &#39;Q&#39; to quit<br>
+          [WARNING] [STREAMER] Requested recv_frame_size of 256 exceeds
+          the maximum possible on this stream. Using 0<br>
+          Uq<br>
+          <br>
+          =C2=A0--------------------------<br>
+          | Number of queries/queryreps sent : 0<br>
+          | Current Inventory round : 1<br>
+          =C2=A0--------------------------<br>
+          | Correctly decoded EPC : 0<br>
+          | Number of unique tags : 0<br>
+          =C2=A0--------------------------</div>
+        <div><br>
+        </div>
+        <br>
       </div>
     </blockquote>
-    <i>Because it can "find" the GPSDO and there can still be problems
-      with the electrical interface to it.  There are several signals
-      between the<br>
-        motherboard and the GPSDO module.  So, if the NMEA signals work,
-      the motherboard can still "find" the GPSDO, but other things will<br>
-        go wrong despite that.  That's what the message at the bottom of
-      your test shows--it cannot see the GPSDO-Locked signal--which in
-      this<br>
-        case might be expected, since you reported that you're running
-      this inside a building--no GPS LOCK is possible in that case,
-      since the GPSDO<br>
-        cannot see the sky (and, hence, the satellites that provide GPS
-      service).<br>
-      <br>
-      <br>
-    </i>
-    <blockquote
-cite="mid:CACryqrFJrZBcJaWdq=Cknn2v9oE8+zraJd21Viqqtxpi=nCM_w@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div><i style="color:rgb(80,0,80)"><br>
-          </i></div>
-        <div><span style="color:rgb(80,0,80)">Thanks.</span></div>
-      </div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Thu, Sep 10, 2020 at 10:07
-          AM Marcus D Leech &lt;<a moz-do-not-send="true"
-            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir="auto">To me the message at the end suggests even
-            more strongly that there’s a hardware problem with the GPSDO
-            installation. <br>
-            <br>
-            <div dir="ltr">Sent from my iPhone</div>
-            <div dir="ltr"><br>
-              <blockquote type="cite">On Sep 10, 2020, at 11:50 AM,
-                Xiang Ma &lt;<a moz-do-not-send="true"
-                  href="mailto:marxwolfs@gmail.com" target="_blank">marxwolfs@gmail.com</a>&gt;
-                wrote:<br>
-                <br>
-              </blockquote>
-            </div>
-            <blockquote type="cite">
-              <div dir="ltr">﻿
-                <div dir="ltr">But you can see there is an info:
-                  <div><i>[INFO] [GPS] Found an internal GPSDO: LC_XO,
-                      Firmware Rev 0.929b</i></div>
-                  <div><br>
-                  </div>
-                  <div>Also, when I run
-                    /usr/local/lib/uhd/examples/sync_to_gps</div>
-                  <div><br>
-                  </div>
-                  <div>It shows:</div>
-                  <div>Creating the USRP device with: ...<br>
-                    [INFO] [UHD] linux; GNU C++ version 7.5.0;
-                    Boost_106501; UHD_3.15.0.HEAD-0-gaea0e2de<br>
-                    [INFO] [X300] X300 initialization sequence...<br>
-                    [INFO] [X300] Maximum frame size: 1472 bytes.<br>
-                    [INFO] [X300] Radio 1x clock: 200 MHz<br>
-                    [INFO] [GPS] Found an internal GPSDO: LC_XO,
-                    Firmware Rev 0.929b<br>
-                    [INFO] [0/DmaFIFO_0] Initializing block control (NOC
-                    ID: 0xF1F0D00000000000)<br>
-                    [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1300
-                    MB/s)<br>
-                    [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1317
-                    MB/s)<br>
-                    [INFO] [0/Radio_0] Initializing block control (NOC
-                    ID: 0x12AD100000000001)<br>
-                    [INFO] [0/Radio_1] Initializing block control (NOC
-                    ID: 0x12AD100000000001)<br>
-                    [INFO] [0/DDC_0] Initializing block control (NOC ID:
-                    0xDDC0000000000000)<br>
-                    [INFO] [0/DDC_1] Initializing block control (NOC ID:
-                    0xDDC0000000000000)<br>
-                    [INFO] [0/DUC_0] Initializing block control (NOC ID:
-                    0xD0C0000000000000)<br>
-                    [INFO] [0/DUC_1] Initializing block control (NOC ID:
-                    0xD0C0000000000000)<br>
-                    Using Device: Single USRP:<br>
-                      Device: X-Series Device<br>
-                      Mboard 0: X310<br>
-                      RX Channel: 0<br>
-                        RX DSP: 0<br>
-                        RX Dboard: A<br>
-                        RX Subdev: UBX RX<br>
-                      RX Channel: 1<br>
-                        RX DSP: 0<br>
-                        RX Dboard: B<br>
-                        RX Subdev: UBX RX<br>
-                      TX Channel: 0<br>
-                        TX DSP: 0<br>
-                        TX Dboard: A<br>
-                        TX Subdev: UBX TX<br>
-                      TX Channel: 1<br>
-                        TX DSP: 0<br>
-                        TX Dboard: B<br>
-                        TX Subdev: UBX TX<br>
-                    <br>
-                    Synchronizing mboard 0: X310<br>
-                    <br>
-                    **************************************Helpful Notes
-                    on Clock/PPS
-                    Selection**************************************<br>
-                    As you can see, the default 10 MHz Reference and 1
-                    PPS signals are now from the GPSDO.<br>
-                    If you would like to use the internal
-                    reference(TCXO) in other applications, you must
-                    configure that explicitly.<br>
-                    You can no longer select the external SMAs for 10
-                    MHz or 1 PPS signaling.<br>
-****************************************************************************************************************<br>
-                    <br>
-                    Waiting for reference lock...LOCKED<br>
-                    <br>
-                    Error: ValueError: locked(): unable to determine GPS
-                    lock statusThis could mean that you have not
-                    installed the GPSDO correctly.<br>
-                    <br>
-                    Visit one of these pages if the problem persists:<br>
-                     * N2X0/E1X0: <a moz-do-not-send="true"
-                      href="http://files.ettus.com/manual/page_gpsdo.html"
-                      target="_blank">http://files.ettus.com/manual/page_gpsdo.html</a>
-                    * X3X0: <a moz-do-not-send="true"
-                      href="http://files.ettus.com/manual/page_gpsdo_x3x0.html"
-                      target="_blank">http://files.ettus.com/manual/page_gpsdo_x3x0.html</a><br>
-                    <br>
-                     * E3X0: <a moz-do-not-send="true"
-                      href="http://files.ettus.com/manual/page_usrp_e3x0.html#e3x0_hw_gps"
-                      target="_blank">http://files.ettus.com/manual/page_usrp_e3x0.html#e3x0_hw_gps</a><br>
-                  </div>
-                </div>
-                <br>
-                <div class="gmail_quote">
-                  <div dir="ltr" class="gmail_attr">On Thu, Sep 10, 2020
-                    at 9:38 AM Marcus D. Leech via USRP-users &lt;<a
-                      moz-do-not-send="true"
-                      href="mailto:usrp-users@lists.ettus.com"
-                      target="_blank">usrp-users@lists.ettus.com</a>&gt;
-                    wrote:<br>
-                  </div>
-                  <blockquote class="gmail_quote" style="margin:0px 0px
-                    0px 0.8ex;border-left:1px solid
-                    rgb(204,204,204);padding-left:1ex">
-                    <div bgcolor="#FFFFFF">
-                      <div>On 09/10/2020 10:12 AM, Xiang Ma via
-                        USRP-users wrote:<br>
-                      </div>
-                      <blockquote type="cite">
-                        <div dir="ltr">Hi,
-                          <div><br>
-                          </div>
-                          <div>   I am using the
-                            /usr/local/lib/uhd/utils/query_gpsdo_sensors
-                            to get gps information, but it shows: <i>Waiting
-                              for the GPSDO to warm up...........<br>
-                              No response from GPSDO in 30 seconds</i></div>
-                          <div><i><br>
-                            </i></div>
-                          <div>This is the whole information:</div>
-                          <div><br>
-                          </div>
-                          <div>
-                            <div><i>hu@hu:~$
-                                /usr/local/lib/uhd/utils/query_gpsdo_sensors<br>
-                                <br>
-                                Creating the USRP device with: ...<br>
-                                [INFO] [UHD] linux; GNU C++ version
-                                7.5.0; Boost_106501;
-                                UHD_3.15.0.HEAD-0-gaea0e2de<br>
-                                [INFO] [X300] X300 initialization
-                                sequence...<br>
-                                [INFO] [X300] Maximum frame size: 1472
-                                bytes.<br>
-                                [INFO] [X300] Radio 1x clock: 200 MHz<br>
-                                [INFO] [GPS] Found an internal GPSDO:
-                                LC_XO, Firmware Rev 0.929b<br>
-                                [INFO] [0/DmaFIFO_0] Initializing block
-                                control (NOC ID: 0xF1F0D00000000000)<br>
-                                [INFO] [0/DmaFIFO_0] BIST passed
-                                (Throughput: 1304 MB/s)<br>
-                                [INFO] [0/DmaFIFO_0] BIST passed
-                                (Throughput: 1306 MB/s)<br>
-                                [INFO] [0/Radio_0] Initializing block
-                                control (NOC ID: 0x12AD100000000001)<br>
-                                [INFO] [0/Radio_1] Initializing block
-                                control (NOC ID: 0x12AD100000000001)<br>
-                                [INFO] [0/DDC_0] Initializing block
-                                control (NOC ID: 0xDDC0000000000000)<br>
-                                [INFO] [0/DDC_1] Initializing block
-                                control (NOC ID: 0xDDC0000000000000)<br>
-                                [INFO] [0/DUC_0] Initializing block
-                                control (NOC ID: 0xD0C0000000000000)<br>
-                                [INFO] [0/DUC_1] Initializing block
-                                control (NOC ID: 0xD0C0000000000000)<br>
-                                Using Device: Single USRP:<br>
-                                  Device: X-Series Device<br>
-                                  Mboard 0: X310<br>
-                                  RX Channel: 0<br>
-                                    RX DSP: 0<br>
-                                    RX Dboard: A<br>
-                                    RX Subdev: UBX RX<br>
-                                  RX Channel: 1<br>
-                                    RX DSP: 0<br>
-                                    RX Dboard: B<br>
-                                    RX Subdev: UBX RX<br>
-                                  TX Channel: 0<br>
-                                    TX DSP: 0<br>
-                                    TX Dboard: A<br>
-                                    TX Subdev: UBX TX<br>
-                                  TX Channel: 1<br>
-                                    TX DSP: 0<br>
-                                    TX Dboard: B<br>
-                                    TX Subdev: UBX TX<br>
-                                <br>
-                                Setting the reference clock source to
-                                "gpsdo"...<br>
-                                Clock source is now gpsdo<br>
-                                Setting the reference clock source to
-                                "gpsdo"...<br>
-                                Time source is now gpsdo<br>
-                                Waiting for ref_locked...USRP Locked to
-                                Reference.<br>
-                                **************************************Helpful
-                                Notes on Clock/PPS
-                                Selection**************************************<br>
-                                As you can see, the default 10 MHz
-                                Reference and 1 PPS signals are now from
-                                the GPSDO.<br>
-                                If you would like to use the internal
-                                reference(TCXO) in other applications,
-                                you must configure that explicitly.<br>
-****************************************************************************************************************<br>
-                                Waiting for the GPSDO to warm
-                                up...........<br>
-                                No response from GPSDO in 30 seconds</i></div>
-                            <div><i><br>
-                              </i></div>
-                            <div>I do plug the GPSDO to the board, and I
-                              plug the 5V active GPS antenna in the `GPS
-                              ANT` connector at the rear panel. But I am
-                              not sure why. I just want to get the
-                              location information. (btw, is it because
-                              I am in the indoor area?)</div>
-                            <div><br>
-                            </div>
-                            <div>Thanks,</div>
-                            <div><br>
-                            </div>
-                            <div>Xiang Ma</div>
-                          </div>
-                          <div><br>
-                          </div>
-                          -- <br>
-                          <div dir="ltr">
-                            <div dir="ltr"><font
-                                style="color:rgb(136,136,136)"
-                                face="times new roman, serif" size="4"><i><b>Xiang
-                                    Ma, </b></i></font><span
-                                style="color:rgb(136,136,136)">Ph.D.
-                                Student</span>
-                              <div>
-                                <div style="color:rgb(136,136,136)"><font
-                                    color="#444444">College of
-                                    Engineering</font></div>
-                                <div><font color="#444444">Utah State
-                                    University</font></div>
-                                <div style="color:rgb(136,136,136)"><font
-                                    color="#444444">E-mail:<a
-                                      moz-do-not-send="true"
-                                      href="mailto:congshanya@gmail.com"
-                                      style="color:rgb(17,85,204)"
-                                      target="_blank">marxwolfs@gmail.com</a></font></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <br>
-                        <br>
-                      </blockquote>
-                      I would re-check the GPSDO installation.  You may
-                      have bent one of the pins when you installed it.<br>
-                      <br>
-                      Also, it won't be able to get a "fix" unless the
-                      antenna can "see" the sky.  Most buildings are not
-                      that transparent at 1575MHz.<br>
-                      <br>
-                      <br>
-                      <br>
-                    </div>
-                    _______________________________________________<br>
-                    USRP-users mailing list<br>
-                    <a moz-do-not-send="true"
-                      href="mailto:USRP-users@lists.ettus.com"
-                      target="_blank">USRP-users@lists.ettus.com</a><br>
-                    <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                      rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-                  </blockquote>
-                </div>
-                <br clear="all">
-                <div><br>
-                </div>
-                -- <br>
-                <div dir="ltr">
-                  <div dir="ltr"><font style="color:rgb(136,136,136)"
-                      face="times new roman, serif" size="4"><i><b>Xiang
-                          Ma, </b></i></font><span
-                      style="color:rgb(136,136,136)">Ph.D. Student</span>
-                    <div>
-                      <div style="color:rgb(136,136,136)"><font
-                          color="#444444">College of Engineering</font></div>
-                      <div><font color="#444444">Utah State University</font></div>
-                      <div style="color:rgb(136,136,136)"><font
-                          color="#444444">E-mail:<a
-                            moz-do-not-send="true"
-                            href="mailto:congshanya@gmail.com"
-                            style="color:rgb(17,85,204)" target="_blank">marxwolfs@gmail.com</a></font></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </blockquote>
-          </div>
-        </blockquote>
-      </div>
-      <br clear="all">
-      <div><br>
-      </div>
-      -- <br>
-      <div dir="ltr" class="gmail_signature">
-        <div dir="ltr"><font style="color:rgb(136,136,136)" face="times
-            new roman, serif" size="4"><i><b>Xiang Ma, </b></i></font><span
-            style="color:rgb(136,136,136)">Ph.D. Student</span>
-          <div>
-            <div style="color:rgb(136,136,136)"><font color="#444444">College
-                of Engineering</font></div>
-            <div><font color="#444444">Utah State University</font></div>
-            <div style="color:rgb(136,136,136)"><font color="#444444">E-mail:<a
-                  moz-do-not-send="true"
-                  href="mailto:congshanya@gmail.com"
-                  style="color:rgb(17,85,204)" target="_blank">marxwolfs@gmail.com</a></font></div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
+    Are you running inside a VM?<br>
     <br>
-  </body>
-</html>
+    What does &#39;ifconfig&#39; return for the interface the X3xx USRP is
+    connected to?=C2=A0 It looks like the MTU is badly misconfigured.<br>
+    <br>
+    <br>
+  </div>
 
---------------040402030109080300080207--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"g=
+mail_signature"><div dir=3D"ltr"><font style=3D"color:rgb(136,136,136)" siz=
+e=3D"4" face=3D"times new roman, serif"><i><b>Xiang Ma,=C2=A0</b></i></font=
+><span style=3D"color:rgb(136,136,136)">Ph.D. Student</span><div><div style=
+=3D"color:rgb(136,136,136)"><font color=3D"#444444">College of Engineering<=
+/font></div><div><font color=3D"#444444">Utah State University</font></div>=
+<div style=3D"color:rgb(136,136,136)"><font color=3D"#444444">E-mail:<a hre=
+f=3D"mailto:congshanya@gmail.com" style=3D"color:rgb(17,85,204)" target=3D"=
+_blank">marxwolfs@gmail.com</a></font></div></div></div></div>
+
+--00000000000070ae3705aef7ea0d--
 
 
---===============3374207086700337790==
+--===============3401273195900185863==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -723,5 +326,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3374207086700337790==--
+--===============3401273195900185863==--
 
