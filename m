@@ -2,61 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85A7F264681
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Sep 2020 15:03:02 +0200 (CEST)
-Received: from [::1] (port=42910 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F2C52647CA
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Sep 2020 16:13:49 +0200 (CEST)
+Received: from [::1] (port=43434 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kGME8-0002KT-Pn; Thu, 10 Sep 2020 09:03:00 -0400
-Received: from mail-ed1-f52.google.com ([209.85.208.52]:37046)
+	id 1kGNKd-0007LM-1Z; Thu, 10 Sep 2020 10:13:47 -0400
+Received: from mail-yb1-f182.google.com ([209.85.219.182]:39650)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <i1ndp.nando@gmail.com>)
- id 1kGME4-0002Di-Q5
- for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 09:02:56 -0400
-Received: by mail-ed1-f52.google.com with SMTP id n22so6233768edt.4
- for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 06:02:36 -0700 (PDT)
+ (Exim 4.93) (envelope-from <marxwolfs@gmail.com>) id 1kGNKM-0005sI-S9
+ for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 10:13:30 -0400
+Received: by mail-yb1-f182.google.com with SMTP id r7so4179789ybl.6
+ for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 07:13:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language;
- bh=B+qLk1UOc3LqZudFOH7mPm+/mMGz4L2uT5HdshbHbrU=;
- b=CNvIhUZRESEMPpJOTLAlcrl6YjhDmH0R0sVA8Q7Dll2m1Q7fG3F0DUVWsbM5Ri9hxt
- iAb5FDjy1lPDHE95JFY4ijcKtENJ2hMB5N0W9mw82QGsHaHX3u0qHmEqhlwkwGAXHVZB
- 9PcHPd+MJ8CGoXljXPKNFr/wf9G7B8MUy8NWi5DYn9D2VZ2itbUs94XeBWNjfK6MAb/M
- zSSlO1KXeWFGb9DgppcapEr5YnP+6sED/fjtCcK8UhBJKQpQXawQWZHU7Wm9uoeQPa/0
- 4jLKAlM1IYPCQWYoRkDnf7D9DHNEHke9MkHsLykafAkMX7n9hschQOMEqWj5FS8gB7Vy
- A6hQ==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=pnluleA2nU3Q5RE/yfKtW7u0mQntfuCLAPP3L0RQnU0=;
+ b=uFhrBqq1jjVn4LRI2OpUbyyoK+ZFJLgpr56VfTZxTkALkskPSOeSApRCsQXfq4ApLT
+ hEGwTq3nTd46nF5E4i+khTe27LJCemi+3vO4B4UE+5GjX6SgO1hWkrUCaRlpF+mHze7Z
+ 5UH1cu97MeQHtElSLStJvf1RPF0UsTNxDgybXvX6WDC9EGHVPZe9KDKhcJ7eGB8yTynw
+ NSt9dItoTsIRctxX7wQBtIhX7DwK85D9MWTtPLVfMLfuo/5npH1piD248L/gIQaCWi2J
+ /+d2EPJNHJTi2OVEmQHWHg0AJTMCDvWxIXa0vQq1rPEfjVYe7e30w+7UblljreCPIHxt
+ YvHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language;
- bh=B+qLk1UOc3LqZudFOH7mPm+/mMGz4L2uT5HdshbHbrU=;
- b=coVzyYBD5jb+tQECbjfsNDbroNoLa7smXFuGDzjQ6/XHyqkIkGnuwQpGqhG7hVkxqS
- vodMILFNBoLCma5Jg2GrcSgIuJu1S0ypxJQVa7nAAF2ZcmD6Mvncw60sZTIwfRI3NkxG
- rGZ22x6Xrq7VHAHj+hQdHN8Nex0HgF5rRB30nFl+gVBsOVKEBo1G+3ACQMzxmXhSXV0y
- dyyWVGNh/1YRf1aVRgtgsSUQ9hnpI45O9psguO0FJYfX7L9abm3bdVor8QzBetwAOKii
- yayNU8lSaJaSoHDhpd9ak2m+KBOLsXqwniPeWe98/BvbQW15JnIa8OBNvLXmlGB10qDW
- YdjA==
-X-Gm-Message-State: AOAM5338ZtPwv+NL/ImcaLkAmF00kwDpJf8KfrpNE8CfGvVfS0m6FtGB
- /E0UPkdgX8KhBkJp8/eKyGv3e/NUmyd/6A==
-X-Google-Smtp-Source: ABdhPJwqhMwleZndUiQZDsSbQEkti03mAuupC/7XW1I9Emj/r+2gM2A4h8ULnNG7DSjyAhk7AcGOXQ==
-X-Received: by 2002:a05:6402:164d:: with SMTP id
- s13mr9061669edx.222.1599742935643; 
- Thu, 10 Sep 2020 06:02:15 -0700 (PDT)
-Received: from [10.0.0.3] ([176.65.80.99])
- by smtp.gmail.com with ESMTPSA id z21sm6913840eja.72.2020.09.10.06.02.14
- for <usrp-users@lists.ettus.com>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 10 Sep 2020 06:02:15 -0700 (PDT)
-To: usrp-users@lists.ettus.com
-References: <d0a3da7b-2ecc-b56b-f405-f1a0c9547906@gmail.com>
-Message-ID: <400843b9-bc89-cc1b-a0ff-c9f213bbe973@gmail.com>
-Date: Thu, 10 Sep 2020 15:02:14 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=pnluleA2nU3Q5RE/yfKtW7u0mQntfuCLAPP3L0RQnU0=;
+ b=a4NQyAlV1o5nOSp4rc8LQXTxL4w0zUcYeFe6tPsrX+MoDmyt/0s4tQ69oe+/thuVRs
+ weUIcmhq+aAe0d8t9VJ+xristQiEg+LNF7KZM3HOymskDF2SuE++ymOkgx6vrY7SFEoC
+ 2VBCOkXQub6i+W6N4k2U6/DVLvnAKMnJjqScaRZHR4/VUp6Xvex6nBbCSu2FmMzed7gD
+ fL7sChCQDa94LDFAs+081PAVTE1IXLv5PJzloZUFCugKCUhifNdxj3DIB53bQGWgHOAF
+ gTaB6RzcMu/WdzQ3YfFaUpQf+eacqGU1Imt3khbxHIRNyKK/BWEzixjE8XFvMmJxDuxv
+ v8mA==
+X-Gm-Message-State: AOAM533moJOaYCFJdLCOL7HMjmm4HOd7WsfKQnRAKESXJbEmsYf+a9Nv
+ U4eriL7Bcg8QLeWsMEE/LXhg6CHaIz5RKF3mLaK9EZpEDCkKnA==
+X-Google-Smtp-Source: ABdhPJzs/vakH4gzRwn4TwfC30J/9Qig+7n8MnGk2WL4alyrd+G0XyBmmgux45vHvUWMYBJ8NxZ+bcSag6g3C/4KNvc=
+X-Received: by 2002:a25:b3c9:: with SMTP id x9mr14161666ybf.365.1599747169866; 
+ Thu, 10 Sep 2020 07:12:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <d0a3da7b-2ecc-b56b-f405-f1a0c9547906@gmail.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] b200mini stops sampling
+Date: Thu, 10 Sep 2020 08:12:39 -0600
+Message-ID: <CACryqrHQEgaTdm=ECtc2rAT7Bh8uuhMg9ar1H-km22wzWtiCzA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] UHD query gpsdo sensor command
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,9 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Nando Pellegrini via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Nando Pellegrini <i1ndp.nando@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4717498043555853214=="
+From: Xiang Ma via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Xiang Ma <marxwolfs@gmail.com>
+Content-Type: multipart/mixed; boundary="===============9080217931911516294=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,193 +70,172 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============4717498043555853214==
-Content-Type: multipart/alternative;
- boundary="------------52103B39646547FE46E857CC"
-Content-Language: en-US
+--===============9080217931911516294==
+Content-Type: multipart/alternative; boundary="000000000000ca566205aef629d4"
 
-This is a multi-part message in MIME format.
---------------52103B39646547FE46E857CC
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--000000000000ca566205aef629d4
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Dave,
-I have seen the same following an overflow error the code drops in a 
-time out message and no way to continue.
-It is certainly a problem but hopefully it'll be fixed with next releases.
-nando
+Hi,
 
-On 9/10/2020 14:55, David Evans via USRP-users wrote:
-> Hi,
-> I have just installed the latest "master" branch of UHD (4.0.0.0).
->
-> If an overrun occurs during sampling, sampling does not continue 
-> thereafter.
-> I noticed this with uhd_fft, which hangs with rates over 8MHz, and 
-> also rx_samples_to_file:
->
-> ./rx_samples_to_file --freq 900000000 --rate 40000000
->
-> Creating the usrp device with: ...
-> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; 
-> UHD_4.0.0.0-34-g2655b0aa
-> [INFO] [B200] Detected Device: B200mini
-> [INFO] [B200] Operating over USB 3.
-> [INFO] [B200] Initialize CODEC control...
-> [INFO] [B200] Initialize Radio control...
-> [INFO] [B200] Performing register loopback test...
-> [INFO] [B200] Register loopback test passed
-> [INFO] [B200] Setting master clock rate selection to 'automatic'.
-> [INFO] [B200] Asking for clock rate 16.000000 MHz...
-> [INFO] [B200] Actually got clock rate 16.000000 MHz.
-> Using Device: Single USRP:
->   Device: B-Series Device
->   Mboard 0: B200mini
->   RX Channel: 0
->     RX DSP: 0
->     RX Dboard: A
->     RX Subdev: FE-RX1
->   TX Channel: 0
->     TX DSP: 0
->     TX Dboard: A
->     TX Subdev: FE-TX1
->
-> Setting RX Rate: 40.000000 Msps...
-> [INFO] [B200] Asking for clock rate 40.000000 MHz...
-> [INFO] [B200] Actually got clock rate 40.000000 MHz.
-> Actual RX Rate: 40.000000 Msps...
->
-> Setting RX Freq: 900.000000 MHz...
-> Setting RX LO Offset: 0.000000 MHz...
-> Actual RX Freq: 900.000000 MHz...
->
-> Waiting for "lo_locked": ++++++++++ locked.
->
-> Press Ctrl + C to stop streaming...
-> OGot an overflow indication. Please consider the following:
->   Your write medium must sustain a rate of 160.000000MB/s.
->   Dropped samples will not be written to the file.
->   Please modify this example for your purposes.
->   This message will not appear again.
-> *Timeout while streaming*
->
-> Done!
->
-> Any ideas please?
-> Should I be using the master branch, if not how do I checkout a stable 
-> branch ?
->
-> Thanks,
-> Dave
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+   I am using the /usr/local/lib/uhd/utils/query_gpsdo_sensors to get gps
+information, but it shows:
+*Waiting for the GPSDO to warm up...........No response from GPSDO in 30
+seconds*
+
+This is the whole information:
 
 
---------------52103B39646547FE46E857CC
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    Hi Dave,<br>
-    I have seen the same following an overflow error the code drops in a
-    time out message and no way to continue.<br>
-    It is certainly a problem but hopefully it'll be fixed with next
-    releases.<br>
-    nando<br>
-    <br>
-    <div class="moz-cite-prefix">On 9/10/2020 14:55, David Evans via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:d0a3da7b-2ecc-b56b-f405-f1a0c9547906@gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      Hi,<br>
-      I have just installed the latest "master" branch of UHD (4.0.0.0).<br>
-      <br>
-      If an overrun occurs during sampling, sampling does not continue
-      thereafter.<br>
-      I noticed this with uhd_fft, which hangs with rates over 8MHz, and
-      also rx_samples_to_file:<br>
-      <br>
-      ./rx_samples_to_file --freq 900000000 --rate 40000000<br>
-      <br>
-      Creating the usrp device with: ...<br>
-      [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
-      UHD_4.0.0.0-34-g2655b0aa<br>
-      [INFO] [B200] Detected Device: B200mini<br>
-      [INFO] [B200] Operating over USB 3.<br>
-      [INFO] [B200] Initialize CODEC control...<br>
-      [INFO] [B200] Initialize Radio control...<br>
-      [INFO] [B200] Performing register loopback test...<br>
-      [INFO] [B200] Register loopback test passed<br>
-      [INFO] [B200] Setting master clock rate selection to 'automatic'.<br>
-      [INFO] [B200] Asking for clock rate 16.000000 MHz...<br>
-      [INFO] [B200] Actually got clock rate 16.000000 MHz.<br>
-      Using Device: Single USRP:<br>
-        Device: B-Series Device<br>
-        Mboard 0: B200mini<br>
-        RX Channel: 0<br>
-          RX DSP: 0<br>
-          RX Dboard: A<br>
-          RX Subdev: FE-RX1<br>
-        TX Channel: 0<br>
-          TX DSP: 0<br>
-          TX Dboard: A<br>
-          TX Subdev: FE-TX1<br>
-      <br>
-      Setting RX Rate: 40.000000 Msps...<br>
-      [INFO] [B200] Asking for clock rate 40.000000 MHz...<br>
-      [INFO] [B200] Actually got clock rate 40.000000 MHz.<br>
-      Actual RX Rate: 40.000000 Msps...<br>
-      <br>
-      Setting RX Freq: 900.000000 MHz...<br>
-      Setting RX LO Offset: 0.000000 MHz...<br>
-      Actual RX Freq: 900.000000 MHz...<br>
-      <br>
-      Waiting for "lo_locked": ++++++++++ locked.<br>
-      <br>
-      Press Ctrl + C to stop streaming...<br>
-      OGot an overflow indication. Please consider the following:<br>
-        Your write medium must sustain a rate of 160.000000MB/s.<br>
-        Dropped samples will not be written to the file.<br>
-        Please modify this example for your purposes.<br>
-        This message will not appear again.<br>
-      <b>Timeout while streaming</b><br>
-      <br>
-      Done!<br>
-      <br>
-      Any ideas please?  <br>
-      Should I be using the master branch, if not how do I checkout a
-      stable branch ?<br>
-      <br>
-      Thanks,<br>
-      Dave<br>
-      <br>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------52103B39646547FE46E857CC--
 
 
---===============4717498043555853214==
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*hu@hu:~$ /usr/local/lib/uhd/utils/query_gpsdo_sensorsCreating the USRP
+device with: ...[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
+UHD_3.15.0.HEAD-0-gaea0e2de[INFO] [X300] X300 initialization
+sequence...[INFO] [X300] Maximum frame size: 1472 bytes.[INFO] [X300] Radio
+1x clock: 200 MHz[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev
+0.929b[INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
+0xF1F0D00000000000)[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1304
+MB/s)[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1306 MB/s)[INFO]
+[0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000001)[INFO]
+[0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000001)[INFO]
+[0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)[INFO]
+[0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)[INFO]
+[0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)[INFO]
+[0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)Using
+Device: Single USRP:  Device: X-Series Device  Mboard 0: X310  RX Channel:
+0    RX DSP: 0    RX Dboard: A    RX Subdev: UBX RX  RX Channel: 1    RX
+DSP: 0    RX Dboard: B    RX Subdev: UBX RX  TX Channel: 0    TX DSP: 0
+TX Dboard: A    TX Subdev: UBX TX  TX Channel: 1    TX DSP: 0    TX Dboard:
+B    TX Subdev: UBX TXSetting the reference clock source to "gpsdo"...Clock
+source is now gpsdoSetting the reference clock source to "gpsdo"...Time
+source is now gpsdoWaiting for ref_locked...USRP Locked to
+Reference.**************************************Helpful Notes on Clock/PPS
+Selection**************************************As you can see, the default
+10 MHz Reference and 1 PPS signals are now from the GPSDO.If you would like
+to use the internal reference(TCXO) in other applications, you must
+configure that
+explicitly.****************************************************************************************************************Waiting
+for the GPSDO to warm up...........No response from GPSDO in 30 seconds*
+
+I do plug the GPSDO to the board, and I plug the 5V active GPS antenna in
+the `GPS ANT` connector at the rear panel. But I am not sure why. I just
+want to get the location information. (btw, is it because I am in the
+indoor area?)
+
+Thanks,
+
+Xiang Ma
+
+-- 
+*Xiang Ma, *Ph.D. Student
+College of Engineering
+Utah State University
+E-mail:marxwolfs@gmail.com <congshanya@gmail.com>
+
+--000000000000ca566205aef629d4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>=C2=A0 =C2=A0I am using the /usr/lo=
+cal/lib/uhd/utils/query_gpsdo_sensors to get gps information, but it shows:=
+=C2=A0<i>Waiting for the GPSDO to warm up...........<br>No response from GP=
+SDO in 30 seconds</i></div><div><i><br></i></div><div>This is the whole inf=
+ormation:</div><div><br></div><div><i></i></div><div><div><i>hu@hu:~$ /usr/=
+local/lib/uhd/utils/query_gpsdo_sensors<br><br>Creating the USRP device wit=
+h: ...<br>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_3.15=
+.0.HEAD-0-gaea0e2de<br>[INFO] [X300] X300 initialization sequence...<br>[IN=
+FO] [X300] Maximum frame size: 1472 bytes.<br>[INFO] [X300] Radio 1x clock:=
+ 200 MHz<br>[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929=
+b<br>[INFO] [0/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D000000=
+00000)<br>[INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1304 MB/s)<br>[INFO=
+] [0/DmaFIFO_0] BIST passed (Throughput: 1306 MB/s)<br>[INFO] [0/Radio_0] I=
+nitializing block control (NOC ID: 0x12AD100000000001)<br>[INFO] [0/Radio_1=
+] Initializing block control (NOC ID: 0x12AD100000000001)<br>[INFO] [0/DDC_=
+0] Initializing block control (NOC ID: 0xDDC0000000000000)<br>[INFO] [0/DDC=
+_1] Initializing block control (NOC ID: 0xDDC0000000000000)<br>[INFO] [0/DU=
+C_0] Initializing block control (NOC ID: 0xD0C0000000000000)<br>[INFO] [0/D=
+UC_1] Initializing block control (NOC ID: 0xD0C0000000000000)<br>Using Devi=
+ce: Single USRP:<br>=C2=A0 Device: X-Series Device<br>=C2=A0 Mboard 0: X310=
+<br>=C2=A0 RX Channel: 0<br>=C2=A0 =C2=A0 RX DSP: 0<br>=C2=A0 =C2=A0 RX Dbo=
+ard: A<br>=C2=A0 =C2=A0 RX Subdev: UBX RX<br>=C2=A0 RX Channel: 1<br>=C2=A0=
+ =C2=A0 RX DSP: 0<br>=C2=A0 =C2=A0 RX Dboard: B<br>=C2=A0 =C2=A0 RX Subdev:=
+ UBX RX<br>=C2=A0 TX Channel: 0<br>=C2=A0 =C2=A0 TX DSP: 0<br>=C2=A0 =C2=A0=
+ TX Dboard: A<br>=C2=A0 =C2=A0 TX Subdev: UBX TX<br>=C2=A0 TX Channel: 1<br=
+>=C2=A0 =C2=A0 TX DSP: 0<br>=C2=A0 =C2=A0 TX Dboard: B<br>=C2=A0 =C2=A0 TX =
+Subdev: UBX TX<br><br>Setting the reference clock source to &quot;gpsdo&quo=
+t;...<br>Clock source is now gpsdo<br>Setting the reference clock source to=
+ &quot;gpsdo&quot;...<br>Time source is now gpsdo<br>Waiting for ref_locked=
+...USRP Locked to Reference.<br>**************************************Helpf=
+ul Notes on Clock/PPS Selection**************************************<br>As=
+ you can see, the default 10 MHz Reference and 1 PPS signals are now from t=
+he GPSDO.<br>If you would like to use the internal reference(TCXO) in other=
+ applications, you must configure that explicitly.<br>*********************=
+***************************************************************************=
+****************<br>Waiting for the GPSDO to warm up...........<br>No respo=
+nse from GPSDO in 30 seconds</i></div><div><i><br></i></div><div>I do plug =
+the GPSDO to the board, and I plug the 5V active GPS antenna in the `GPS AN=
+T` connector at the rear panel. But I am not sure why. I just want to get t=
+he location information. (btw, is it because I am in the indoor area?)</div=
+><div><br></div><div>Thanks,</div><div><br></div><div>Xiang Ma</div></div><=
+div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-smartm=
+ail=3D"gmail_signature"><div dir=3D"ltr"><font face=3D"times new roman, ser=
+if" size=3D"4" style=3D"color:rgb(136,136,136)"><i><b>Xiang Ma,=C2=A0</b></=
+i></font><span style=3D"color:rgb(136,136,136)">Ph.D. Student</span><div><d=
+iv style=3D"color:rgb(136,136,136)"><font color=3D"#444444">College of Engi=
+neering</font></div><div><font color=3D"#444444">Utah State University</fon=
+t></div><div style=3D"color:rgb(136,136,136)"><font color=3D"#444444">E-mai=
+l:<a href=3D"mailto:congshanya@gmail.com" style=3D"color:rgb(17,85,204)" ta=
+rget=3D"_blank">marxwolfs@gmail.com</a></font></div></div></div></div></div=
+>
+
+--000000000000ca566205aef629d4--
+
+
+--===============9080217931911516294==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -281,5 +246,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4717498043555853214==--
+--===============9080217931911516294==--
 
