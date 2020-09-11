@@ -2,44 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E9F265603
-	for <lists+usrp-users@lfdr.de>; Fri, 11 Sep 2020 02:29:29 +0200 (CEST)
-Received: from [::1] (port=48512 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D853726562D
+	for <lists+usrp-users@lfdr.de>; Fri, 11 Sep 2020 02:49:57 +0200 (CEST)
+Received: from [::1] (port=48626 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kGWwS-0000Ir-Nm; Thu, 10 Sep 2020 20:29:28 -0400
-Received: from mail-yb1-f181.google.com ([209.85.219.181]:34999)
+	id 1kGXGF-0001GP-Dm; Thu, 10 Sep 2020 20:49:55 -0400
+Received: from mail-qt1-f169.google.com ([209.85.160.169]:37551)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <marxwolfs@gmail.com>) id 1kGWwO-0008T6-Su
- for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 20:29:24 -0400
-Received: by mail-yb1-f181.google.com with SMTP id s92so5279577ybi.2
- for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 17:29:04 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kGXGA-00018e-Kv
+ for usrp-users@lists.ettus.com; Thu, 10 Sep 2020 20:49:50 -0400
+Received: by mail-qt1-f169.google.com with SMTP id k25so6523394qtu.4
+ for <usrp-users@lists.ettus.com>; Thu, 10 Sep 2020 17:49:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+QYh3Azi/2gqfqqSvLY5IZa//Ri/ntb9qRbmLentn54=;
- b=IfGvtjDZa4/J4NwhMOznHhhGxBMcVAltb1BHL4C/ll+Rn1fwi9amczHzeK+XcvqlB5
- 1mdCNo/wYEk9vgyAFZZrzz2HNyBrrTwkMxnZlaAuwIvlc3yiA9Ww36zdU+7K7Rj43peQ
- 3+f1jgJmPLMyTq7GPpKXgVuSRW4VqpGVO7xf3y+D+WJ2v/rkJCvfINHh5ctSZ0/wnFvO
- 9FqkNjrPgiASfyBTAwLdB2RRvcm+RyVGURKvNtUxaJXzWYwTFKzsfR8aqSEzWEQGWMOH
- QachVCOm1BX5Du3pWBXqXtXEENW5OU7JZaihRtn++nZg4qyL4tEOiCPqSZWiZ1K2f4Tw
- /YmA==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=GzEl5ItSOwaxW0mliQF00Bn7d4QQmSFsv7QsJEMdIDk=;
+ b=K60C4sus/tzIxEmtlqH/X+/ZxV7PYbW3EELhICobHc4qmufxgtqgHaa5zGMNGNlRws
+ alonQOOD3hLb13vrM30RhntIWV6zzMAEKYvH4JSpDXyxCcbCaJK2FOtnLgXZJD6h6Pvz
+ 48dUXohKdQ+wLsk6of25QIlQ/0NoSeM+tgPUX74mYWfKcw282vZKuua7n416h7c4QbcI
+ mmpyba1vlSpeH7IEq0LYRtXRg0uqW4QdI19hu2FwIf2ht+e7H4JVkBljfL4XSaC0wVaM
+ EksZTVICyPQRzzbmuuxmnqDCEugBjdW1q1JSDeKiwOCqCv59MOq0DFazfXrrkSV2wxe3
+ S08g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=+QYh3Azi/2gqfqqSvLY5IZa//Ri/ntb9qRbmLentn54=;
- b=B6m5wcprrgOtd0YMTdaC/k+JfiHuQbqhorZFNkmutTZqpNsWOXKp0ZC40FHynKJv0O
- KJlr0EJXkjb/gMEHSVyrRWugCOIPtUDIROwHKAfFA3fa5c2LkdwHfqNLGeoKP0seN1ZG
- y8VqtwXLlKT0B96QckTh40QsF6ivQ0CsOdeVw5rlGjV0qw8W5nqVswmzsYRCLLv2BF9l
- HG84OPJpZQEr2ARUWCmUZpVYOWqTaNzqzogHSBItNIdHmt9ASwj5Zi/FG6IwxQqNTTjU
- 96SIJswhGdSyintP6FTCjDV80Sq94S3f65yaaJgOWXkR0SneQOKgOoVKrdGPE5RkP24Y
- AoOw==
-X-Gm-Message-State: AOAM533Q4+AlIZXBwbVCX4F74bwSI4qQn8REFa7DFJXOLLtz6SKTYXlG
- x2RVzX5rZFbZDIx/K6TfKOi/if5x/XsL6uff1HQ=
-X-Google-Smtp-Source: ABdhPJw2hrmx7hkTgpUTRJ2LqD84gEm4hld8hT4asmKhKN+zGsOQZ+XP0QAvsurqkEzQ8SaOUr9WbbTrR6ff626db54=
-X-Received: by 2002:a25:a504:: with SMTP id h4mr17723177ybi.374.1599784124289; 
- Thu, 10 Sep 2020 17:28:44 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=GzEl5ItSOwaxW0mliQF00Bn7d4QQmSFsv7QsJEMdIDk=;
+ b=SdaecHzaDOmNhu7Jh+QgAUEkLHinI1UpS0EM6zCT+go2GaYEJXZXoVomPdsQk5j3W4
+ PY8Q61xL/9MeOrxh+58eLhKQ0A20fva6nlhsZePOMSr/mNvxFWml8HuIV6+2rOrX228x
+ Pz4dcpNiA3BjgZ/vr1d7/6yVCx/m7zFsWa2dtB1BdeM1U/67QOFs6GFYGqLX+bOp1EQU
+ bHCNisB1QSIh3ICiV6gV/88SMZsEhfgZ3Gu9SgBl8MChkxPF7QDD3yGH+EiIUOFFJfjJ
+ d/K6o5Ee/+JOlj2gYyoVYN7pPEwaIWr88H0lEfCtqXBUScCKvOczGz2d4E+8NEUXcKeN
+ /7+Q==
+X-Gm-Message-State: AOAM533805lXObynRXsXXXNn75Lo1IPKRt18CoxgGdRMRJI/u1QzJYBE
+ rui9uKVB7CWt1KU5U8FOP6nM/YXuQKOqnw==
+X-Google-Smtp-Source: ABdhPJxRB4Rs1WfBYqbN9WG78mgHRrK51PnXJhKZ2zH/yY9sE0wpPUoFH2B6HTClKuJer0Fezv/e1Q==
+X-Received: by 2002:ac8:2675:: with SMTP id v50mr10431925qtv.160.1599785349855; 
+ Thu, 10 Sep 2020 17:49:09 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
+ by smtp.googlemail.com with ESMTPSA id k23sm877998qki.98.2020.09.10.17.49.09
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 10 Sep 2020 17:49:09 -0700 (PDT)
+Message-ID: <5F5AC984.3020105@gmail.com>
+Date: Thu, 10 Sep 2020 20:49:08 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: Xiang Ma <marxwolfs@gmail.com>
+CC: usrp-users@lists.ettus.com
 References: <CACryqrG8a3S1ARULWRPYte8aoUVmh8B-qBxjX6GS_j_kam_q-w@mail.gmail.com>
  <5F5A50F1.4080500@gmail.com>
  <CACryqrG3Eo6KTFM1v2SpA2Dc8Q71iznrLtai=79bPWgDG=xXRw@mail.gmail.com>
@@ -50,11 +63,8 @@ References: <CACryqrG8a3S1ARULWRPYte8aoUVmh8B-qBxjX6GS_j_kam_q-w@mail.gmail.com>
  <5F5A7638.8010704@gmail.com>
  <CACryqrE+wQDyQt6X1EK2PvgSAEVv8pqaa=rbfur0xKN33hrn5A@mail.gmail.com>
  <5F5AC383.4020200@gmail.com>
-In-Reply-To: <5F5AC383.4020200@gmail.com>
-Date: Thu, 10 Sep 2020 18:28:32 -0600
-Message-ID: <CACryqrEMEZHxzCaoiEPMrD4FdjoZ2x0mJaOTE7tQz7SrbL2mKQ@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
+ <CACryqrEMEZHxzCaoiEPMrD4FdjoZ2x0mJaOTE7tQz7SrbL2mKQ@mail.gmail.com>
+In-Reply-To: <CACryqrEMEZHxzCaoiEPMrD4FdjoZ2x0mJaOTE7tQz7SrbL2mKQ@mail.gmail.com>
 Subject: Re: [USRP-users] RuntimeError: System receive MTU size
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -67,9 +77,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Xiang Ma via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Xiang Ma <marxwolfs@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2813269519146905299=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============1153403873725404868=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,264 +93,321 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2813269519146905299==
-Content-Type: multipart/alternative; boundary="00000000000072170705aefec450"
+This is a multi-part message in MIME format.
+--===============1153403873725404868==
+Content-Type: multipart/alternative;
+ boundary="------------070102020804020604070503"
 
---00000000000072170705aefec450
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------070102020804020604070503
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Sorry. I do not make it clear.
-The RFID code is based on N200, I do not have RFID code for my x310.
-The code I metioned of x310 is generate by a FM receicer.
-
-I want to make the RFID code run on my x310. But errors occur. So I ask
-this question.
-
-Best,
-
-
-On Thu, Sep 10, 2020, 6:23 PM Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
-
-> On 09/10/2020 07:00 PM, Xiang Ma wrote:
+On 09/10/2020 08:28 PM, Xiang Ma wrote:
+> Sorry. I do not make it clear.
+> The RFID code is based on N200, I do not have RFID code for my x310.
+> The code I metioned of x310 is generate by a FM receicer.
 >
-> I only have X310, the rfid code is written by someone else that works on
-> N200.
-> For the RFID code, I do not have .grc code. But the .py code is here
-> https://github.com/nkargas/Gen2-UHF-RFID-Reader/blob/master/gr-rfid/apps/reader.py
-> So what is the difference between *self.source.set_antenna("RX2", 0) *and*
-> self.uhd_usrp_source_0.set_antenna('RX2', 0)?*
+> I want to make the RFID code run on my x310. But errors occur. So I 
+> ask this question.
 >
 > Best,
 >
-> I'm now confused about what you're asking.
+ From the code you pointed us to, there's a lot of "hard-coded 
+knowledge" within the code.
+
+You might try adding "type=x300" in the address variables in the RFID code.
+
+But this leads into the general topic of:
+
+https://files.ettus.com/manual/page_identification.html
+
+Which is about how devices are "named" so they can be found.  Since 
+there are multiple device types that use an ethernet interface you sometimes
+   need to add a "type=" to tell the code what type of device it is.   
+This may be the source of some of your trouble.
+
+
 >
-> It sounds like there's TWO DIFFERENT bits of code we're talking about,
-> neither of which works?  You refer to your own .grc code.  Could you
->   share that?
+> On Thu, Sep 10, 2020, 6:23 PM Marcus D. Leech <patchvonbraun@gmail.com 
+> <mailto:patchvonbraun@gmail.com>> wrote:
 >
-> At this point, it's clear that the X310 grossly works, since the standard
-> test tools are working, but your own code isn't, and you're asking the
->   list here to help you debug it.
+>     On 09/10/2020 07:00 PM, Xiang Ma wrote:
+>>     I only have X310, the rfid code is written by someone else that
+>>     works on N200.
+>>     For the RFID code, I do not have .grc code. But the .py code is
+>>     here
+>>     https://github.com/nkargas/Gen2-UHF-RFID-Reader/blob/master/gr-rfid/apps/reader.py
+>>     So what is the difference between /self.source.set_antenna("RX2",
+>>     0) /and/self.uhd_usrp_source_0.set_antenna('RX2', 0)?/
+>>     /
+>>     /
+>>     Best,/
+>>     /
+>     I'm now confused about what you're asking.
 >
+>     It sounds like there's TWO DIFFERENT bits of code we're talking
+>     about, neither of which works?  You refer to your own .grc code. 
+>     Could you
+>       share that?
 >
->
-> On Thu, Sep 10, 2020 at 12:53 PM Marcus D. Leech <patchvonbraun@gmail.com>
-> wrote:
->
->> On 09/10/2020 02:06 PM, Xiang Ma wrote:
->>
->> I tried several commands including benchmark_rate, there are no explicit
->> errors.
->>
->> But I find my USRP is x310 with 2 UBX-160 daughtboards. But the rfid code
->> is N200 with only 1 daughterboard slot.
->> This is the python code generated by my grc:
->>
->>
->>
->>
->> *self.uhd_usrp_source_0.set_samp_rate(samp_rate)
->> self.uhd_usrp_source_0.set_center_freq(89500000, 0)
->> self.uhd_usrp_source_0.set_gain(0, 0)
->> self.uhd_usrp_source_0.set_auto_dc_offset(True, 0)
->> self.uhd_usrp_source_0.set_auto_iq_balance(True, 0)*
->>
->> This is the code of rfid:
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->> *self.source = uhd.usrp_source(     device_addr=self.usrp_address_source,
->>     stream_args=uhd.stream_args(     cpu_format="fc32",
->> channels=range(1),     ),     )
->> self.source.set_samp_rate(self.adc_rate)
->> self.source.set_center_freq(self.freq, 0)
->> self.source.set_gain(self.rx_gain, 0)     self.source.set_antenna("RX2", 0)
->>     self.source.set_auto_dc_offset(False) # Uncomment this line for SBX
->> daughterboard*
->>
->> Is it a reason why the error occurs?
->>
->> Best.
->>
->> Can you share the .grc code ?
->>
->> Do you have both an N200 and an X310 plugged in to your system, or just
->> the X310?
->>
+>     At this point, it's clear that the X310 grossly works, since the
+>     standard test tools are working, but your own code isn't, and
+>     you're asking the
+>       list here to help you debug it.
 >
 >
-> --
-> *Xiang Ma, *Ph.D. Student
-> College of Engineering
-> Utah State University
-> E-mail:marxwolfs@gmail.com <congshanya@gmail.com>
->
->
+>>
+>>     On Thu, Sep 10, 2020 at 12:53 PM Marcus D. Leech
+>>     <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
+>>
+>>         On 09/10/2020 02:06 PM, Xiang Ma wrote:
+>>>         I tried several commands including benchmark_rate, there are
+>>>         no explicit errors.
+>>>
+>>>         But I find my USRP is x310 with 2 UBX-160 daughtboards. But
+>>>         the rfid code is N200 with only 1 daughterboard slot.
+>>>         This is the python code generated by my grc:
+>>>         /self.uhd_usrp_source_0.set_samp_rate(samp_rate)
+>>>         self.uhd_usrp_source_0.set_center_freq(89500000, 0)
+>>>                 self.uhd_usrp_source_0.set_gain(0, 0)
+>>>         self.uhd_usrp_source_0.set_auto_dc_offset(True, 0)
+>>>         self.uhd_usrp_source_0.set_auto_iq_balance(True, 0)/
+>>>         /
+>>>         /
+>>>         This is the code of rfid:
+>>>         /self.source = uhd.usrp_source(
+>>>             device_addr=self.usrp_address_source,
+>>>             stream_args=uhd.stream_args(
+>>>             cpu_format="fc32",
+>>>             channels=range(1),
+>>>             ),
+>>>             )
+>>>             self.source.set_samp_rate(self.adc_rate)
+>>>             self.source.set_center_freq(self.freq, 0)
+>>>             self.source.set_gain(self.rx_gain, 0)
+>>>             self.source.set_antenna("RX2", 0)
+>>>             self.source.set_auto_dc_offset(False) # Uncomment this
+>>>         line for SBX daughterboard/
+>>>
+>>>         Is it a reason why the error occurs?
+>>>
+>>>         Best.
+>>>
+>>         Can you share the .grc code ?
+>>
+>>         Do you have both an N200 and an X310 plugged in to your
+>>         system, or just the X310?
+>>
+>>
+>>
+>>     -- 
+>>     /*Xiang Ma, */Ph.D. Student
+>>     College of Engineering
+>>     Utah State University
+>>     E-mail:marxwolfs@gmail.com <mailto:congshanya@gmail.com>
 >
 
---00000000000072170705aefec450
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Sorry. I do not make it clear.<div dir=3D"auto">The RFID =
-code is based on N200, I do not have RFID code for my x310.</div><div dir=
-=3D"auto">The code I metioned of x310 is generate by a FM receicer.</div><d=
-iv dir=3D"auto"><br></div><div dir=3D"auto">I want to make the RFID code ru=
-n on my x310. But errors occur. So I ask this question.</div><div dir=3D"au=
-to"><br></div><div dir=3D"auto">Best,</div><div dir=3D"auto"><br></div></di=
-v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On T=
-hu, Sep 10, 2020, 6:23 PM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbra=
-un@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
-    <div>On 09/10/2020 07:00 PM, Xiang Ma wrote:<br>
+--------------070102020804020604070503
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 09/10/2020 08:28 PM, Xiang Ma wrote:<br>
     </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">
-        <div>I only have X310, the rfid code is written by someone else
-          that works on N200.</div>
-        <div>For the RFID code, I do not have .grc code. But the .py
-          code is here <a href=3D"https://github.com/nkargas/Gen2-UHF-RFID-=
-Reader/blob/master/gr-rfid/apps/reader.py" target=3D"_blank" rel=3D"norefer=
-rer">https://github.com/nkargas/Gen2-UHF-RFID-Reader/blob/master/gr-rfid/ap=
-ps/reader.py</a></div>
-        <div>So what is the difference between <span><i>self.source.set_ant=
-enna(&quot;RX2&quot;,
-              0) </i>and<i> self.uhd_usrp_source_0.set_antenna(&#39;RX2&#39=
-;,
-              0)?</i></span></div>
-        <div><span><i><br>
-            </i></span></div>
-        <div><span>Best,<i><br>
-            </i></span></div>
+    <blockquote
+cite="mid:CACryqrEMEZHxzCaoiEPMrD4FdjoZ2x0mJaOTE7tQz7SrbL2mKQ@mail.gmail.com"
+      type="cite">
+      <div dir="auto">Sorry. I do not make it clear.
+        <div dir="auto">The RFID code is based on N200, I do not have
+          RFID code for my x310.</div>
+        <div dir="auto">The code I metioned of x310 is generate by a FM
+          receicer.</div>
+        <div dir="auto"><br>
+        </div>
+        <div dir="auto">I want to make the RFID code run on my x310. But
+          errors occur. So I ask this question.</div>
+        <div dir="auto"><br>
+        </div>
+        <div dir="auto">Best,</div>
+        <div dir="auto"><br>
+        </div>
       </div>
     </blockquote>
-    I&#39;m now confused about what you&#39;re asking.<br>
+    From the code you pointed us to, there's a lot of "hard-coded
+    knowledge" within the code.<br>
     <br>
-    It sounds like there&#39;s TWO DIFFERENT bits of code we&#39;re talking
-    about, neither of which works?=C2=A0 You refer to your own .grc code.=
-=C2=A0
-    Could you<br>
-    =C2=A0 share that?<br>
+    You might try adding "type=x300" in the address variables in the
+    RFID code.  <br>
     <br>
-    At this point, it&#39;s clear that the X310 grossly works, since the
-    standard test tools are working, but your own code isn&#39;t, and you&#=
-39;re
-    asking the<br>
-    =C2=A0 list here to help you debug it.<br>
+    But this leads into the general topic of:<br>
+    <br>
+    <a class="moz-txt-link-freetext" href="https://files.ettus.com/manual/page_identification.html">https://files.ettus.com/manual/page_identification.html</a><br>
+    <br>
+    Which is about how devices are "named" so they can be found.  Since
+    there are multiple device types that use an ethernet interface you
+    sometimes<br>
+      need to add a "type=" to tell the code what type of device it
+    is.   This may be the source of some of your trouble.<br>
     <br>
     <br>
-    <blockquote type=3D"cite"><br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Sep 10, 2020 at 12:53
-          PM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com"=
- target=3D"_blank" rel=3D"noreferrer">patchvonbraun@gmail.com</a>&gt;
+    <blockquote
+cite="mid:CACryqrEMEZHxzCaoiEPMrD4FdjoZ2x0mJaOTE7tQz7SrbL2mKQ@mail.gmail.com"
+      type="cite"><br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Thu, Sep 10, 2020, 6:23 PM
+          Marcus D. Leech &lt;<a moz-do-not-send="true"
+            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
           wrote:<br>
         </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div bgcolor=3D"#FFFFFF">
-            <div>On 09/10/2020 02:06 PM, Xiang Ma wrote:<br>
+        <blockquote class="gmail_quote" style="margin:0 0 0
+          .8ex;border-left:1px #ccc solid;padding-left:1ex">
+          <div bgcolor="#FFFFFF" text="#000000">
+            <div>On 09/10/2020 07:00 PM, Xiang Ma wrote:<br>
             </div>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">
-                <div>I tried several commands including benchmark_rate,
-                  there are no explicit errors.</div>
-                <div><br>
+            <blockquote type="cite">
+              <div dir="ltr">
+                <div>I only have X310, the rfid code is written by
+                  someone else that works on N200.</div>
+                <div>For the RFID code, I do not have .grc code. But the
+                  .py code is here <a moz-do-not-send="true"
+href="https://github.com/nkargas/Gen2-UHF-RFID-Reader/blob/master/gr-rfid/apps/reader.py"
+                    target="_blank" rel="noreferrer">https://github.com/nkargas/Gen2-UHF-RFID-Reader/blob/master/gr-rfid/apps/reader.py</a></div>
+                <div>So what is the difference between <span><i>self.source.set_antenna("RX2",
+
+                      0) </i>and<i>
+                      self.uhd_usrp_source_0.set_antenna('RX2', 0)?</i></span></div>
+                <div><span><i><br>
+                    </i></span></div>
+                <div><span>Best,<i><br>
+                    </i></span></div>
+              </div>
+            </blockquote>
+            I'm now confused about what you're asking.<br>
+            <br>
+            It sounds like there's TWO DIFFERENT bits of code we're
+            talking about, neither of which works?  You refer to your
+            own .grc code.  Could you<br>
+              share that?<br>
+            <br>
+            At this point, it's clear that the X310 grossly works, since
+            the standard test tools are working, but your own code
+            isn't, and you're asking the<br>
+              list here to help you debug it.<br>
+            <br>
+            <br>
+            <blockquote type="cite"><br>
+              <div class="gmail_quote">
+                <div dir="ltr" class="gmail_attr">On Thu, Sep 10, 2020
+                  at 12:53 PM Marcus D. Leech &lt;<a
+                    moz-do-not-send="true"
+                    href="mailto:patchvonbraun@gmail.com"
+                    target="_blank" rel="noreferrer">patchvonbraun@gmail.com</a>&gt;
+
+                  wrote:<br>
                 </div>
-                <div>But I find my USRP is x310 with 2 UBX-160
-                  daughtboards. But the rfid code is N200 with only 1
-                  daughterboard slot.</div>
-                <div>This is the python code generated by my grc:</div>
-                <div><i>self.uhd_usrp_source_0.set_samp_rate(samp_rate)<br>
-                    =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                    self.uhd_usrp_source_0.set_center_freq(89500000, 0)<br>
-                    =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_source_0.set_=
-gain(0, 0)<br>
-                    =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                    self.uhd_usrp_source_0.set_auto_dc_offset(True, 0)<br>
-                    =C2=A0 =C2=A0 =C2=A0 =C2=A0
-                    self.uhd_usrp_source_0.set_auto_iq_balance(True, 0)</i>=
-</div>
-                <div><i><br>
-                  </i></div>
-                <div>This is the code of rfid:</div>
-                <div><i>self.source =3D uhd.usrp_source(<br>
-                    =C2=A0 =C2=A0 device_addr=3Dself.usrp_address_source,<b=
-r>
-                    =C2=A0 =C2=A0 stream_args=3Duhd.stream_args(<br>
-                    =C2=A0 =C2=A0 cpu_format=3D&quot;fc32&quot;,<br>
-                    =C2=A0 =C2=A0 channels=3Drange(1),<br>
-                    =C2=A0 =C2=A0 ),<br>
-                    =C2=A0 =C2=A0 )<br>
-                    =C2=A0 =C2=A0 self.source.set_samp_rate(self.adc_rate)<=
-br>
-                    =C2=A0 =C2=A0 self.source.set_center_freq(self.freq, 0)=
-<br>
-                    =C2=A0 =C2=A0 self.source.set_gain(self.rx_gain, 0)<br>
-                    =C2=A0 =C2=A0 self.source.set_antenna(&quot;RX2&quot;, =
-0)<br>
-                    =C2=A0 =C2=A0 self.source.set_auto_dc_offset(False) #
-                    Uncomment this line for SBX daughterboard</i></div>
-                <div><br>
-                </div>
-                <div>Is it a reason why the error occurs?</div>
-                <div><br>
-                </div>
-                <div>Best.<br>
+                <blockquote class="gmail_quote" style="margin:0px 0px
+                  0px 0.8ex;border-left:1px solid
+                  rgb(204,204,204);padding-left:1ex">
+                  <div bgcolor="#FFFFFF">
+                    <div>On 09/10/2020 02:06 PM, Xiang Ma wrote:<br>
+                    </div>
+                    <blockquote type="cite">
+                      <div dir="ltr">
+                        <div>I tried several commands including
+                          benchmark_rate, there are no explicit errors.</div>
+                        <div><br>
+                        </div>
+                        <div>But I find my USRP is x310 with 2 UBX-160
+                          daughtboards. But the rfid code is N200 with
+                          only 1 daughterboard slot.</div>
+                        <div>This is the python code generated by my
+                          grc:</div>
+                        <div><i>self.uhd_usrp_source_0.set_samp_rate(samp_rate)<br>
+                                   
+                            self.uhd_usrp_source_0.set_center_freq(89500000,
+                            0)<br>
+                                    self.uhd_usrp_source_0.set_gain(0,
+                            0)<br>
+                                   
+                            self.uhd_usrp_source_0.set_auto_dc_offset(True,
+                            0)<br>
+                                   
+                            self.uhd_usrp_source_0.set_auto_iq_balance(True,
+                            0)</i></div>
+                        <div><i><br>
+                          </i></div>
+                        <div>This is the code of rfid:</div>
+                        <div><i>self.source = uhd.usrp_source(<br>
+                                device_addr=self.usrp_address_source,<br>
+                                stream_args=uhd.stream_args(<br>
+                                cpu_format="fc32",<br>
+                                channels=range(1),<br>
+                                ),<br>
+                                )<br>
+                                self.source.set_samp_rate(self.adc_rate)<br>
+                                self.source.set_center_freq(self.freq,
+                            0)<br>
+                                self.source.set_gain(self.rx_gain, 0)<br>
+                                self.source.set_antenna("RX2", 0)<br>
+                                self.source.set_auto_dc_offset(False) #
+                            Uncomment this line for SBX daughterboard</i></div>
+                        <div><br>
+                        </div>
+                        <div>Is it a reason why the error occurs?</div>
+                        <div><br>
+                        </div>
+                        <div>Best.<br>
+                        </div>
+                      </div>
+                      <br>
+                    </blockquote>
+                    Can you share the .grc code ?<br>
+                    <br>
+                    Do you have both an N200 and an X310 plugged in to
+                    your system, or just the X310?<br>
+                  </div>
+                </blockquote>
+              </div>
+              <br clear="all">
+              <br>
+              -- <br>
+              <div dir="ltr">
+                <div dir="ltr"><font style="color:rgb(136,136,136)"
+                    face="times new roman, serif" size="4"><i><b>Xiang
+                        Ma, </b></i></font><span
+                    style="color:rgb(136,136,136)">Ph.D. Student</span>
+                  <div>
+                    <div style="color:rgb(136,136,136)"><font
+                        color="#444444">College of Engineering</font></div>
+                    <div><font color="#444444">Utah State University</font></div>
+                    <div style="color:rgb(136,136,136)"><font
+                        color="#444444">E-mail:<a moz-do-not-send="true"
+                          href="mailto:congshanya@gmail.com"
+                          style="color:rgb(17,85,204)" target="_blank"
+                          rel="noreferrer">marxwolfs@gmail.com</a></font></div>
+                  </div>
                 </div>
               </div>
-              <br>
             </blockquote>
-            Can you share the .grc code ?<br>
             <br>
-            Do you have both an N200 and an X310 plugged in to your
-            system, or just the X310?<br>
           </div>
         </blockquote>
       </div>
-      <br clear=3D"all">
-      <br>
-      -- <br>
-      <div dir=3D"ltr">
-        <div dir=3D"ltr"><font style=3D"color:rgb(136,136,136)" face=3D"tim=
-es
-            new roman, serif" size=3D"4"><i><b>Xiang Ma,=C2=A0</b></i></fon=
-t><span style=3D"color:rgb(136,136,136)">Ph.D. Student</span>
-          <div>
-            <div style=3D"color:rgb(136,136,136)"><font color=3D"#444444">C=
-ollege
-                of Engineering</font></div>
-            <div><font color=3D"#444444">Utah State University</font></div>
-            <div style=3D"color:rgb(136,136,136)"><font color=3D"#444444">E=
--mail:<a href=3D"mailto:congshanya@gmail.com" style=3D"color:rgb(17,85,204)=
-" target=3D"_blank" rel=3D"noreferrer">marxwolfs@gmail.com</a></font></div>
-          </div>
-        </div>
-      </div>
     </blockquote>
     <br>
-  </div>
+  </body>
+</html>
 
-</blockquote></div>
-
---00000000000072170705aefec450--
+--------------070102020804020604070503--
 
 
---===============2813269519146905299==
+--===============1153403873725404868==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -351,5 +418,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2813269519146905299==--
+--===============1153403873725404868==--
 
