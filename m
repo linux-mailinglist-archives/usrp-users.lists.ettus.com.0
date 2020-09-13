@@ -2,48 +2,69 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BEDF267CAA
-	for <lists+usrp-users@lfdr.de>; Sun, 13 Sep 2020 00:41:14 +0200 (CEST)
-Received: from [::1] (port=39368 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C5AD2680AB
+	for <lists+usrp-users@lfdr.de>; Sun, 13 Sep 2020 20:01:35 +0200 (CEST)
+Received: from [::1] (port=47012 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kHECj-00015F-Np; Sat, 12 Sep 2020 18:41:09 -0400
-Received: from resqmta-po-09v.sys.comcast.net ([96.114.154.168]:50853)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <w6rz@comcast.net>) id 1kHECg-00011L-Cw
- for usrp-users@lists.ettus.com; Sat, 12 Sep 2020 18:41:06 -0400
-Received: from resomta-po-07v.sys.comcast.net ([96.114.154.231])
- by resqmta-po-09v.sys.comcast.net with ESMTP
- id HDYTkBtrO96XrHEC1k1tp8; Sat, 12 Sep 2020 22:40:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
- s=20190202a; t=1599950425;
- bh=/dYM+trTEGyVXtZUjco+VwmH23+e6yeDzJuyrhsqo/o=;
- h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
- Content-Type;
- b=NBmS0n+JIrPkkW1f7GboVvHfSFI2dfI7L3gYOTVNaGio2EL12E0N9OTVojWokO8Lo
- PHUxv59LzhbRiUjPcL2utfCFuGaHSkGdGzp0YshkHRK2WeoIpBQr4mDp4N+JBRCfg4
- e2kayi43unHTm+2pc6P0gaV7v5Gd9pzBo2k6RwpF8Pmvx+A5ymSl2fKS3j1Sk5UC4B
- YPvrF0CcTzIgOIBl3k50Zcrp+WUYDYiLgHCaKT5TAkmZUlZf+z0xqQU5ccfok/T+Ob
- ARNaqq6ek+V5WjZHhTyNQt4K4qM9cq0hQZTCdcSA4tv+V20EDcb5R95QhtULg1lAAw
- iq/3qwBAeTZSA==
-Received: from [IPv6:2601:647:4200:ea30:8f3:f2bd:f8d1:564]
- ([IPv6:2601:647:4200:ea30:8f3:f2bd:f8d1:564])
- by resomta-po-07v.sys.comcast.net with ESMTPSA
- id HEC0kKSiPie3MHEC0kpfiB; Sat, 12 Sep 2020 22:40:25 +0000
-X-Xfinity-VMeta: sc=0.00;st=legit
+	id 1kHWJe-0002I8-3Q; Sun, 13 Sep 2020 14:01:30 -0400
+Received: from mail-ed1-f45.google.com ([209.85.208.45]:36588)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
+ id 1kHWJZ-0002C0-VE
+ for usrp-users@lists.ettus.com; Sun, 13 Sep 2020 14:01:26 -0400
+Received: by mail-ed1-f45.google.com with SMTP id w1so15421133edr.3
+ for <usrp-users@lists.ettus.com>; Sun, 13 Sep 2020 11:01:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=zIeaL548gJX0JL6iT5Rbrs8rxByg7yc3qxImIPimDLM=;
+ b=M3gxTMwDd3tYiFhjH0K0Q0PwzDOVxDfIuEkMW07fcjzSSwrsW+WdLnOYjBIo8YxEJP
+ 7FHhZpBhGhOIFUWpPnPoHTerAtNsEPszeY2UZGzqRsPBLIPTWmr8KUQiotEHdQ+Dn7OD
+ bkFJVBU2wc1Gd2d5NfaA9vFIBgp/XcpcDUTQ2YCY8NVO8WkkLF/s2fxJFASs+6hTwCX6
+ 1Wtuzo6P3YGjALQg1WRMRk/XIIj7Mr54OXsebI26GPlEwWmqSipAfirdDihINzewUnaW
+ r52B+GlpraysGrY3JaOG0rPT1vqnepYrpkUjFKkkd+3NyW5SLlytiyJhHdPmUXCx28cr
+ /NmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=zIeaL548gJX0JL6iT5Rbrs8rxByg7yc3qxImIPimDLM=;
+ b=lvd3PsI5pTMrtn0qI2V1m8Km2Z64hM3FCKtYldr6M7Q5CuyAXto3mc521r0BAjZDyG
+ 00AzWMG031Ruh750r3dG5pR4MF5lXt2QOl32oPe4+HXDRlD878G5F/joGj7aPfdBPQP0
+ 4ijnZkQ0F6/+ipqnEbdxJ4ewtxqGb3NQUi4aymVCm0AUj8XXBHJxmPzU+2e3E94NfqoS
+ R1xv7TC+LncMjOVviG9IeRR5IwqL8fei/AuSzEtQa5fhKaGTXeJBRtQCVldO/05EDq6+
+ /qE5ZdqxgfC9c80AV1infwviWG/dnjcVlhwFYOvWCPFmeuD6pObX+8bhJXU0sApzHWgU
+ dfyA==
+X-Gm-Message-State: AOAM532GSCUn8pEKwkc1nB4Hkhzb75E7mdO6o5Aw5k1lYBqkr71/ukGO
+ 4j1i5HWmPPxD+ULYxJI7SThM6e+J2abi0GFA
+X-Google-Smtp-Source: ABdhPJxkLqzgNnjRiS0uIfSH779AvZU1MVhVWj5vShpRv68riCq1hhZ0ehzJQAqObN4e9ggeklto3A==
+X-Received: by 2002:a05:6402:1818:: with SMTP id
+ g24mr13510954edy.332.1600020044514; 
+ Sun, 13 Sep 2020 11:00:44 -0700 (PDT)
+Received: from [192.168.128.8]
+ (HSI-KBW-46-223-163-144.hsi.kabel-badenwuerttemberg.de. [46.223.163.144])
+ by smtp.gmail.com with ESMTPSA id n7sm5785084eji.13.2020.09.13.11.00.43
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 13 Sep 2020 11:00:43 -0700 (PDT)
 To: usrp-users@lists.ettus.com
-References: <24fbcdd2-35fd-9d14-1c17-7a05d0d2a4e1@gmail.com>
- <95DB5B7C-BC71-4222-992C-41DBE2F7B0FA@gmail.com>
- <4545f155-bf08-13f8-b1f4-5a77e78fe6a2@comcast.net>
- <aa42c2a9-dff6-e0fd-54b3-0926884e48e0@gmail.com>
-Message-ID: <6d0885e6-7502-1ee1-8b56-0510f7312b8e@comcast.net>
-Date: Sat, 12 Sep 2020 15:40:24 -0700
+References: <CAM+cdhJvnNTRtukiKPx9OhGQAqeFOTBz+Vp3yc1ye4CYV44+OQ@mail.gmail.com>
+ <75B13EC1-5F7C-4E97-9614-26221D8E5C20@gmail.com>
+ <CAM+cdhJQbH0s+rLMcfH8dVgYNqcnZVEodQCqhtLynupdChz92g@mail.gmail.com>
+ <5F4E70FD.4000400@gmail.com>
+ <CAM+cdhJ9F4v7q2Nq7NxoqkttPgB6eR1_6v9bJkpefoQKpQONLg@mail.gmail.com>
+ <5F4E73F0.9010302@gmail.com>
+Message-ID: <d32b2c60-88aa-3d07-2405-2685d0ca2595@ettus.com>
+Date: Sun, 13 Sep 2020 20:00:42 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <aa42c2a9-dff6-e0fd-54b3-0926884e48e0@gmail.com>
+In-Reply-To: <5F4E73F0.9010302@gmail.com>
 Content-Language: en-US
-Subject: Re: [USRP-users] b200mini stops sampling
+Subject: Re: [USRP-users] External Oscillator with Ettus N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +76,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ron Economos <w6rz@comcast.net>
-Content-Type: multipart/mixed; boundary="===============4337877195546317950=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,210 +94,25 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============4337877195546317950==
-Content-Type: multipart/alternative;
- boundary="------------E8036D9E6339D0E1E0B1627D"
-Content-Language: en-US
+wow, doesn't at the very least that Schmitt trigger kind of worsen the
+phase cleanliness, seeing it's a temperature-dependent active part?
 
-This is a multi-part message in MIME format.
---------------E8036D9E6339D0E1E0B1627D
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-All the old releases are already in the clone. You don't have to do git 
-pull.
-
-git checkout v3.15.0.0 -b tmp is all you have to do. If you want to try 
-another release, switch back to master and then checkout another tag 
-(with a different branch name).
-
-git checkout master
-
-git checkout v4.0.0.0-rc1 -b tmp1
-
-If you liked v3.15.0.0. more, switch back to it.
-
-git checkout tmp
-
-To see where you are in the history, do:
-
-git log
-
-Ron
-
-On 9/12/20 07:38, David Evans via USRP-users wrote:
-> Thanks Ron,
->
-> However, I too think GIT is Arcane :-) ...
->
-> Doing that (git checkout v3.15.0.0 -b tmp) creates a new local err... 
-> branch, repo... called tmp.
->
-> How do I get the contents of the requested branch/tag up onto my machine?
-> It's not a branch, doing a git pull results in...
-> "
-> There is no tracking information for the current branch.
-> Please specify which branch you want to merge with.
-> See git-pull(1) for details.
->
->     git pull <remote> <branch>
->
-> If you wish to set tracking information for this branch you can do so 
-> with:
->
->     git branch --set-upstream-to=origin/<branch> tmp
-> "
-> Originally cloning the UHD repo results in one being on the Master 
-> branch, i.e.
->  "git clone https://github.com/EttusResearch/uhd.git"
-> so how does one revert back to an earlier release please?
->
-> Hope you can help, sorry for my noob git knowledge!
->
-> Cheers,
-> Dave
->
->
->
->
->
->
-> On 12/09/2020 00:02, Ron Economos via USRP-users wrote:
+On 01.09.20 18:16, Marcus D. Leech via USRP-users wrote:
+> On 09/01/2020 12:15 PM, Christopher Flood wrote:
+>> I have not looked at the output spectrum of the Rb, I kind of just
+>> assumed it would be okay since it's the most stable oscillator that
+>> we have in our lab. I can take a look at the spectrum and report back.
 >>
->> Yes, it's not a problem. If you don't want to see the message, use:
+>> If I do see output spurs, do you have any suggestions / tips on
+>> cleaning up the signal to the point where it would work as an
+>> external reference?
 >>
->> git checkout v3.15.0.0 -b tmp
+>> -Chris
 >>
->> Also, you should never use the master branch of UHD. It's really a 
->> development branch and could be unstable. Always use a release tag.
->>
->> To see all the release tags:
->>
->> git tag
->>
->> Ron
->>
->> On 9/11/20 10:38, Marcus D Leech via USRP-users wrote:
->>> That should be fine.
->>>
->>> GIT is arcane. Others have more facility with it than I.
->>>
->>> Sent from my iPhone
->>>
->>>> On Sep 11, 2020, at 12:07 PM, David Evans via USRP-users 
->>>> <usrp-users@lists.ettus.com> wrote:
->>>>
->>>> ﻿ Thanks Marcus,
->>>>
->>>> Sorry,, I know this isn't the place, but when i check out a version 
->>>> I get "detached head...".
->>>> I also don't want to check anything back in, do I ignore this (I've 
->>>> never understood what detached head means, even after looking it up!).
->>>>
->>>> Cheers,
->>>> Dave
->>>>
->>>> On 10/09/2020 16:43, Marcus D. Leech via USRP-users wrote:
->>>>> On 09/10/2020 08:55 AM, David Evans via USRP-users wrote:
->>>>>> Hi,
->>>>>> I have just installed the latest "master" branch of UHD (4.0.0.0).
->>>>>>
->>>>>> If an overrun occurs during sampling, sampling does not continue 
->>>>>> thereafter.
->>>>>> I noticed this with uhd_fft, which hangs with rates over 8MHz, 
->>>>>> and also rx_samples_to_file:
->>>>>>
->>>>>> ./rx_samples_to_file --freq 900000000 --rate 40000000
->>>>>>
->>>>>> Creating the usrp device with: ...
->>>>>> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; 
->>>>>> UHD_4.0.0.0-34-g2655b0aa
->>>>>> [INFO] [B200] Detected Device: B200mini
->>>>>> [INFO] [B200] Operating over USB 3.
->>>>>> [INFO] [B200] Initialize CODEC control...
->>>>>> [INFO] [B200] Initialize Radio control...
->>>>>> [INFO] [B200] Performing register loopback test...
->>>>>> [INFO] [B200] Register loopback test passed
->>>>>> [INFO] [B200] Setting master clock rate selection to 'automatic'.
->>>>>> [INFO] [B200] Asking for clock rate 16.000000 MHz...
->>>>>> [INFO] [B200] Actually got clock rate 16.000000 MHz.
->>>>>> Using Device: Single USRP:
->>>>>>   Device: B-Series Device
->>>>>>   Mboard 0: B200mini
->>>>>>   RX Channel: 0
->>>>>>     RX DSP: 0
->>>>>>     RX Dboard: A
->>>>>>     RX Subdev: FE-RX1
->>>>>>   TX Channel: 0
->>>>>>     TX DSP: 0
->>>>>>     TX Dboard: A
->>>>>>     TX Subdev: FE-TX1
->>>>>>
->>>>>> Setting RX Rate: 40.000000 Msps...
->>>>>> [INFO] [B200] Asking for clock rate 40.000000 MHz...
->>>>>> [INFO] [B200] Actually got clock rate 40.000000 MHz.
->>>>>> Actual RX Rate: 40.000000 Msps...
->>>>>>
->>>>>> Setting RX Freq: 900.000000 MHz...
->>>>>> Setting RX LO Offset: 0.000000 MHz...
->>>>>> Actual RX Freq: 900.000000 MHz...
->>>>>>
->>>>>> Waiting for "lo_locked": ++++++++++ locked.
->>>>>>
->>>>>> Press Ctrl + C to stop streaming...
->>>>>> OGot an overflow indication. Please consider the following:
->>>>>>   Your write medium must sustain a rate of 160.000000MB/s.
->>>>>>   Dropped samples will not be written to the file.
->>>>>>   Please modify this example for your purposes.
->>>>>>   This message will not appear again.
->>>>>> *Timeout while streaming*
->>>>>>
->>>>>> Done!
->>>>>>
->>>>>> Any ideas please?
->>>>>> Should I be using the master branch, if not how do I checkout a 
->>>>>> stable branch ?
->>>>>>
->>>>>> Thanks,
->>>>>> Dave
->>>>>>
->>>>>
->>>>> You can get a list of tagged versions using:
->>>>>
->>>>> git tag
->>>>>
->>>>> Try again with:
->>>>>
->>>>> git checkout   v3.15.0.0
->>>>>
->>>>> Sometimes when the overruns are persistent and at very high rates, 
->>>>> the software is unable to recover, because so much information has 
->>>>> been
->>>>>   dropped, any recovery procedure would be roughly as drastic as 
->>>>> having to re-start.
->>>>>
->>>>>
->>>>>
->>>>> _______________________________________________
->>>>> USRP-users mailing list
->>>>> USRP-users@lists.ettus.com
->>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> I have an Rb module that I had to send through a 3-element 10Mhz
+> crystal filter and Schmitt trigger to get something clean enough to
+> use...
+>
 >
 >
 > _______________________________________________
@@ -282,290 +120,7 @@ On 9/12/20 07:38, David Evans via USRP-users wrote:
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---------------E8036D9E6339D0E1E0B1627D
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>All the old releases are already in the clone. You don't have to
-      do git pull.</p>
-    <p>git checkout v3.15.0.0 -b tmp is all you have to do. If you want
-      to try another release, switch back to master and then checkout
-      another tag (with a different branch name).</p>
-    <p>git checkout master</p>
-    <p>git checkout v4.0.0.0-rc1 -b tmp1</p>
-    <p>If you liked v3.15.0.0. more, switch back to it.</p>
-    <p>git checkout tmp</p>
-    <p>To see where you are in the history, do:</p>
-    <p>git log<br>
-    </p>
-    <p>Ron<br>
-    </p>
-    <div class="moz-cite-prefix">On 9/12/20 07:38, David Evans via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:aa42c2a9-dff6-e0fd-54b3-0926884e48e0@gmail.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      Thanks Ron,<br>
-      <br>
-      However, I too think GIT is Arcane :-) ...<br>
-      <br>
-      Doing that (git checkout v3.15.0.0 -b tmp) creates a new local
-      err... branch, repo... called tmp.<br>
-      <br>
-      How do I get the contents of the requested branch/tag up onto my
-      machine?<br>
-      It's not a branch, doing a git pull results in...<br>
-      "<br>
-      There is no tracking information for the current branch.<br>
-      Please specify which branch you want to merge with.<br>
-      See git-pull(1) for details.<br>
-      <br>
-          git pull &lt;remote&gt; &lt;branch&gt;<br>
-      <br>
-      If you wish to set tracking information for this branch you can do
-      so with:<br>
-      <br>
-          git branch --set-upstream-to=origin/&lt;branch&gt; tmp<br>
-      "<br>
-      Originally cloning the UHD repo results in one being on the Master
-      branch, i.e.<br>
-       "git clone <a class="moz-txt-link-freetext"
-        href="https://github.com/EttusResearch/uhd.git"
-        moz-do-not-send="true">https://github.com/EttusResearch/uhd.git</a>"<br>
-      so how does one revert back to an earlier release please?<br>
-      <br>
-      Hope you can help, sorry for my noob git knowledge!<br>
-      <br>
-      Cheers,<br>
-      Dave<br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <div class="moz-cite-prefix">On 12/09/2020 00:02, Ron Economos via
-        USRP-users wrote:<br>
-      </div>
-      <blockquote type="cite"
-        cite="mid:4545f155-bf08-13f8-b1f4-5a77e78fe6a2@comcast.net">
-        <meta http-equiv="Content-Type" content="text/html;
-          charset=UTF-8">
-        <p>Yes, it's not a problem. If you don't want to see the
-          message, use:</p>
-        <p>git checkout v3.15.0.0 -b tmp</p>
-        <p>Also, you should never use the master branch of UHD. It's
-          really a development branch and could be unstable. Always use
-          a release tag.</p>
-        <p>To see all the release tags:</p>
-        <p>git tag<br>
-        </p>
-        <p>Ron<br>
-        </p>
-        <div class="moz-cite-prefix">On 9/11/20 10:38, Marcus D Leech
-          via USRP-users wrote:<br>
-        </div>
-        <blockquote type="cite"
-          cite="mid:95DB5B7C-BC71-4222-992C-41DBE2F7B0FA@gmail.com">
-          <meta http-equiv="content-type" content="text/html;
-            charset=UTF-8">
-          That should be fine. 
-          <div><br>
-          </div>
-          <div>GIT is arcane. Others have more facility with it than I. <br>
-            <br>
-            <div dir="ltr">Sent from my iPhone</div>
-            <div dir="ltr"><br>
-              <blockquote type="cite">On Sep 11, 2020, at 12:07 PM,
-                David Evans via USRP-users <a
-                  class="moz-txt-link-rfc2396E"
-                  href="mailto:usrp-users@lists.ettus.com"
-                  moz-do-not-send="true">&lt;usrp-users@lists.ettus.com&gt;</a>
-                wrote:<br>
-                <br>
-              </blockquote>
-            </div>
-            <blockquote type="cite">
-              <div dir="ltr">﻿
-                <meta http-equiv="Content-Type" content="text/html;
-                  charset=UTF-8">
-                Thanks Marcus,<br>
-                <br>
-                Sorry,, I know this isn't the place, but when i check
-                out a version I get "detached head...".<br>
-                I also don't want to check anything back in, do I ignore
-                this (I've never understood what detached head means,
-                even after looking it up!).<br>
-                <br>
-                Cheers,<br>
-                Dave<br>
-                <br>
-                <div class="moz-cite-prefix">On 10/09/2020 16:43, Marcus
-                  D. Leech via USRP-users wrote:<br>
-                </div>
-                <blockquote type="cite"
-                  cite="mid:5F5A498A.8060202@gmail.com">
-                  <meta content="text/html; charset=UTF-8"
-                    http-equiv="Content-Type">
-                  <div class="moz-cite-prefix">On 09/10/2020 08:55 AM,
-                    David Evans via USRP-users wrote:<br>
-                  </div>
-                  <blockquote
-                    cite="mid:d0a3da7b-2ecc-b56b-f405-f1a0c9547906@gmail.com"
-                    type="cite">
-                    <meta http-equiv="content-type" content="text/html;
-                      charset=UTF-8">
-                    Hi,<br>
-                    I have just installed the latest "master" branch of
-                    UHD (4.0.0.0).<br>
-                    <br>
-                    If an overrun occurs during sampling, sampling does
-                    not continue thereafter.<br>
-                    I noticed this with uhd_fft, which hangs with rates
-                    over 8MHz, and also rx_samples_to_file:<br>
-                    <br>
-                    ./rx_samples_to_file --freq 900000000 --rate
-                    40000000<br>
-                    <br>
-                    Creating the usrp device with: ...<br>
-                    [INFO] [UHD] linux; GNU C++ version 9.3.0;
-                    Boost_107100; UHD_4.0.0.0-34-g2655b0aa<br>
-                    [INFO] [B200] Detected Device: B200mini<br>
-                    [INFO] [B200] Operating over USB 3.<br>
-                    [INFO] [B200] Initialize CODEC control...<br>
-                    [INFO] [B200] Initialize Radio control...<br>
-                    [INFO] [B200] Performing register loopback test...<br>
-                    [INFO] [B200] Register loopback test passed<br>
-                    [INFO] [B200] Setting master clock rate selection to
-                    'automatic'.<br>
-                    [INFO] [B200] Asking for clock rate 16.000000 MHz...<br>
-                    [INFO] [B200] Actually got clock rate 16.000000 MHz.<br>
-                    Using Device: Single USRP:<br>
-                      Device: B-Series Device<br>
-                      Mboard 0: B200mini<br>
-                      RX Channel: 0<br>
-                        RX DSP: 0<br>
-                        RX Dboard: A<br>
-                        RX Subdev: FE-RX1<br>
-                      TX Channel: 0<br>
-                        TX DSP: 0<br>
-                        TX Dboard: A<br>
-                        TX Subdev: FE-TX1<br>
-                    <br>
-                    Setting RX Rate: 40.000000 Msps...<br>
-                    [INFO] [B200] Asking for clock rate 40.000000 MHz...<br>
-                    [INFO] [B200] Actually got clock rate 40.000000 MHz.<br>
-                    Actual RX Rate: 40.000000 Msps...<br>
-                    <br>
-                    Setting RX Freq: 900.000000 MHz...<br>
-                    Setting RX LO Offset: 0.000000 MHz...<br>
-                    Actual RX Freq: 900.000000 MHz...<br>
-                    <br>
-                    Waiting for "lo_locked": ++++++++++ locked.<br>
-                    <br>
-                    Press Ctrl + C to stop streaming...<br>
-                    OGot an overflow indication. Please consider the
-                    following:<br>
-                      Your write medium must sustain a rate of
-                    160.000000MB/s.<br>
-                      Dropped samples will not be written to the file.<br>
-                      Please modify this example for your purposes.<br>
-                      This message will not appear again.<br>
-                    <b>Timeout while streaming</b><br>
-                    <br>
-                    Done!<br>
-                    <br>
-                    Any ideas please?  <br>
-                    Should I be using the master branch, if not how do I
-                    checkout a stable branch ?<br>
-                    <br>
-                    Thanks,<br>
-                    Dave<br>
-                    <br>
-                  </blockquote>
-                  <br>
-                  You can get a list of tagged versions using:<br>
-                  <br>
-                  git tag<br>
-                  <br>
-                  Try again with:<br>
-                  <br>
-                  git checkout   v3.15.0.0<br>
-                  <br>
-                  Sometimes when the overruns are persistent and at very
-                  high rates, the software is unable to recover, because
-                  so much information has been<br>
-                    dropped, any recovery procedure would be roughly as
-                  drastic as having to re-start.<br>
-                  <br>
-                  <br>
-                  <br>
-                  <fieldset class="mimeAttachmentHeader"></fieldset>
-                  <pre class="moz-quote-pre" wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com" moz-do-not-send="true">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-                </blockquote>
-                <br>
-                <span>_______________________________________________</span><br>
-                <span>USRP-users mailing list</span><br>
-                <span><a class="moz-txt-link-abbreviated"
-                    href="mailto:USRP-users@lists.ettus.com"
-                    moz-do-not-send="true">USRP-users@lists.ettus.com</a></span><br>
-                <span><a class="moz-txt-link-freetext"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                    moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></span><br>
-              </div>
-            </blockquote>
-          </div>
-          <br>
-          <fieldset class="mimeAttachmentHeader"></fieldset>
-          <pre class="moz-quote-pre" wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com" moz-do-not-send="true">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-        </blockquote>
-        <br>
-        <fieldset class="mimeAttachmentHeader"></fieldset>
-        <pre class="moz-quote-pre" wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com" moz-do-not-send="true">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-      </blockquote>
-      <br>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------E8036D9E6339D0E1E0B1627D--
-
-
---===============4337877195546317950==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4337877195546317950==--
-
