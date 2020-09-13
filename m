@@ -2,68 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C5AD2680AB
-	for <lists+usrp-users@lfdr.de>; Sun, 13 Sep 2020 20:01:35 +0200 (CEST)
-Received: from [::1] (port=47012 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 476252680AC
+	for <lists+usrp-users@lfdr.de>; Sun, 13 Sep 2020 20:04:15 +0200 (CEST)
+Received: from [::1] (port=47052 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kHWJe-0002I8-3Q; Sun, 13 Sep 2020 14:01:30 -0400
-Received: from mail-ed1-f45.google.com ([209.85.208.45]:36588)
+	id 1kHWMI-0002tI-9q; Sun, 13 Sep 2020 14:04:14 -0400
+Received: from mail-qt1-f172.google.com ([209.85.160.172]:38346)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1kHWJZ-0002C0-VE
- for usrp-users@lists.ettus.com; Sun, 13 Sep 2020 14:01:26 -0400
-Received: by mail-ed1-f45.google.com with SMTP id w1so15421133edr.3
- for <usrp-users@lists.ettus.com>; Sun, 13 Sep 2020 11:01:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-transfer-encoding:content-language;
- bh=zIeaL548gJX0JL6iT5Rbrs8rxByg7yc3qxImIPimDLM=;
- b=M3gxTMwDd3tYiFhjH0K0Q0PwzDOVxDfIuEkMW07fcjzSSwrsW+WdLnOYjBIo8YxEJP
- 7FHhZpBhGhOIFUWpPnPoHTerAtNsEPszeY2UZGzqRsPBLIPTWmr8KUQiotEHdQ+Dn7OD
- bkFJVBU2wc1Gd2d5NfaA9vFIBgp/XcpcDUTQ2YCY8NVO8WkkLF/s2fxJFASs+6hTwCX6
- 1Wtuzo6P3YGjALQg1WRMRk/XIIj7Mr54OXsebI26GPlEwWmqSipAfirdDihINzewUnaW
- r52B+GlpraysGrY3JaOG0rPT1vqnepYrpkUjFKkkd+3NyW5SLlytiyJhHdPmUXCx28cr
- /NmQ==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kHWME-0002WF-LV
+ for usrp-users@lists.ettus.com; Sun, 13 Sep 2020 14:04:10 -0400
+Received: by mail-qt1-f172.google.com with SMTP id c18so11848936qtw.5
+ for <usrp-users@lists.ettus.com>; Sun, 13 Sep 2020 11:03:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=4vat6vOB+q5k7THJ857qY+oTTWmDVhht2xInaAfFr20=;
+ b=R6HYGk/YcWPbvJL7G+WDpyJe9aY6jtZG1LpnMFUU98pnh34q8I4AqrIcpQpfFUi49l
+ 1v5XmOQDYmbIzA9komp4pYyZpQp/2cBFDSYe9M1Ore5/kHsLjG+Qlns92VqE3ZChhm8E
+ z88HbYEIodYLQei3MIq+5kBfVSFnxBo4SptFCfQNFyH2cOgIZG2K6TNvZ5mj0WROGEbg
+ RADZ9hQaY28ZdYw65f54NNjTWjZ2kw5omGA7S/OoAGdk4V2xG4qOpAlvqt2k/ZquMiPp
+ CoGZ+qiNDU8SexBVm4DuEzT7/bnXsQTjgYPK/UcMkZmDsFKMzIKn4Rgy4+wOHeyLmjpH
+ N6uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=zIeaL548gJX0JL6iT5Rbrs8rxByg7yc3qxImIPimDLM=;
- b=lvd3PsI5pTMrtn0qI2V1m8Km2Z64hM3FCKtYldr6M7Q5CuyAXto3mc521r0BAjZDyG
- 00AzWMG031Ruh750r3dG5pR4MF5lXt2QOl32oPe4+HXDRlD878G5F/joGj7aPfdBPQP0
- 4ijnZkQ0F6/+ipqnEbdxJ4ewtxqGb3NQUi4aymVCm0AUj8XXBHJxmPzU+2e3E94NfqoS
- R1xv7TC+LncMjOVviG9IeRR5IwqL8fei/AuSzEtQa5fhKaGTXeJBRtQCVldO/05EDq6+
- /qE5ZdqxgfC9c80AV1infwviWG/dnjcVlhwFYOvWCPFmeuD6pObX+8bhJXU0sApzHWgU
- dfyA==
-X-Gm-Message-State: AOAM532GSCUn8pEKwkc1nB4Hkhzb75E7mdO6o5Aw5k1lYBqkr71/ukGO
- 4j1i5HWmPPxD+ULYxJI7SThM6e+J2abi0GFA
-X-Google-Smtp-Source: ABdhPJxkLqzgNnjRiS0uIfSH779AvZU1MVhVWj5vShpRv68riCq1hhZ0ehzJQAqObN4e9ggeklto3A==
-X-Received: by 2002:a05:6402:1818:: with SMTP id
- g24mr13510954edy.332.1600020044514; 
- Sun, 13 Sep 2020 11:00:44 -0700 (PDT)
-Received: from [192.168.128.8]
- (HSI-KBW-46-223-163-144.hsi.kabel-badenwuerttemberg.de. [46.223.163.144])
- by smtp.gmail.com with ESMTPSA id n7sm5785084eji.13.2020.09.13.11.00.43
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=4vat6vOB+q5k7THJ857qY+oTTWmDVhht2xInaAfFr20=;
+ b=onazrEt6R/703V+zJID1M3+pjbDar3kbPZGvc/NVgl6vmlCg9zAw3ta4Y8upiWgcpO
+ wAy4jvs2kgNFO6BIH9wP1WxdxUocKJVToNeWzJzkL7Muup62+cPodIKRxFnRYJPQfWDn
+ ziNFtA95un+vmbeA0UiEfnpkHxqBaZtVWouXIyONQrCpI8Bn/kxe2m5UMqNi4Xd36YfX
+ 3Q4j9IVwHzwUwrn13PJ7Bes8nqzuDh0i6PoXLT1MYP8ORwdylEqDLXsz4+AilWtYG2Oy
+ 65z2PUeKndbUgGLb/7B4x2aswlXVv2ceVMHRwNjaEOywdE8PZ/oLuBqRcs5+xcUBBA5v
+ RGkg==
+X-Gm-Message-State: AOAM530NGaxpmWrvpzlezHnoqkWY3AHyEFQzX5fHq9fW3f76MRsWHoX9
+ ynFRvGBN7s/QJm0WVEBnAGs9YdD+2Hg08Q==
+X-Google-Smtp-Source: ABdhPJxi1DzGjxpTV+OD5D7/0lNf3EcVO4wxXVdCAGq9gPqtU6u/ke9qOWbvYAHlWcoFizpkSIc0PA==
+X-Received: by 2002:aed:2ce7:: with SMTP id g94mr10500218qtd.184.1600020209842; 
+ Sun, 13 Sep 2020 11:03:29 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
+ by smtp.googlemail.com with ESMTPSA id e13sm11346645qtr.85.2020.09.13.11.03.29
  for <usrp-users@lists.ettus.com>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 13 Sep 2020 11:00:43 -0700 (PDT)
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Sun, 13 Sep 2020 11:03:29 -0700 (PDT)
+Message-ID: <5F5E5EF0.3030100@gmail.com>
+Date: Sun, 13 Sep 2020 14:03:28 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
 To: usrp-users@lists.ettus.com
 References: <CAM+cdhJvnNTRtukiKPx9OhGQAqeFOTBz+Vp3yc1ye4CYV44+OQ@mail.gmail.com>
  <75B13EC1-5F7C-4E97-9614-26221D8E5C20@gmail.com>
  <CAM+cdhJQbH0s+rLMcfH8dVgYNqcnZVEodQCqhtLynupdChz92g@mail.gmail.com>
  <5F4E70FD.4000400@gmail.com>
  <CAM+cdhJ9F4v7q2Nq7NxoqkttPgB6eR1_6v9bJkpefoQKpQONLg@mail.gmail.com>
- <5F4E73F0.9010302@gmail.com>
-Message-ID: <d32b2c60-88aa-3d07-2405-2685d0ca2595@ettus.com>
-Date: Sun, 13 Sep 2020 20:00:42 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <5F4E73F0.9010302@gmail.com>
-Content-Language: en-US
+ <5F4E73F0.9010302@gmail.com> <d32b2c60-88aa-3d07-2405-2685d0ca2595@ettus.com>
+In-Reply-To: <d32b2c60-88aa-3d07-2405-2685d0ca2595@ettus.com>
 Subject: Re: [USRP-users] External Oscillator with Ettus N310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -76,11 +72,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="windows-1252"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -94,31 +89,16 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-wow, doesn't at the very least that Schmitt trigger kind of worsen the
-phase cleanliness, seeing it's a temperature-dependent active part?
+On 09/13/2020 02:00 PM, Marcus M=FCller via USRP-users wrote:
+> wow, doesn't at the very least that Schmitt trigger kind of worsen the
+> phase cleanliness, seeing it's a temperature-dependent active part?
+>
+>
+In practice it didn't seem to be a problem in my application.  I needed =
 
-On 01.09.20 18:16, Marcus D. Leech via USRP-users wrote:
-> On 09/01/2020 12:15 PM, Christopher Flood wrote:
->> I have not looked at the output spectrum of the Rb, I kind of just
->> assumed it would be okay since it's the most stable oscillator that
->> we have in our lab. I can take a look at the spectrum and report back.
->>
->> If I do see output spurs, do you have any suggestions / tips on
->> cleaning up the signal to the point where it would work as an
->> external reference?
->>
->> -Chris
->>
-> I have an Rb module that I had to send through a 3-element 10Mhz
-> crystal filter and Schmitt trigger to get something clean enough to
-> use...
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+*something* to square-up the output.
+
+
 
 _______________________________________________
 USRP-users mailing list
