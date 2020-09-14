@@ -2,58 +2,73 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12E0A2693D6
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Sep 2020 19:43:55 +0200 (CEST)
-Received: from [::1] (port=56988 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62047269600
+	for <lists+usrp-users@lfdr.de>; Mon, 14 Sep 2020 22:04:59 +0200 (CEST)
+Received: from [::1] (port=57828 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kHsW8-0006Oi-LC; Mon, 14 Sep 2020 13:43:52 -0400
-Received: from postman.dtnt.info ([62.219.91.51]:59202)
- by mm2.emwd.com with esmtp (Exim 4.93)
- (envelope-from <ofer@navigicom.com>) id 1kHsW4-0006BT-85
- for usrp-users@lists.ettus.com; Mon, 14 Sep 2020 13:43:48 -0400
-Received: from o.dtnt.email (o.dtnt.email [62.219.91.154])
- by postman.dtnt.info (Postfix) with ESMTPS id F003C43388
- for <usrp-users@lists.ettus.com>; Mon, 14 Sep 2020 20:42:25 +0300 (IDT)
-Received: from o.dtnt.email (o.dtnt.email [127.0.0.1])
- by o.dtnt.email (Postfix) with ESMTP id D8F6E9FB80
- for <usrp-users@lists.ettus.com>; Mon, 14 Sep 2020 20:42:25 +0300 (IDT)
-X-Virus-Scanned: Debian amavisd-new at o.dtnt.email
-Received: from o.dtnt.email ([127.0.0.1])
- by o.dtnt.email (o.dtnt.email [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id 0AzFEDZ_FgI8 for <usrp-users@lists.ettus.com>;
- Mon, 14 Sep 2020 20:42:24 +0300 (IDT)
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com
- [209.85.167.173])
- by o.dtnt.email (Postfix) with ESMTPSA id 3180F9FB75
- for <usrp-users@lists.ettus.com>; Mon, 14 Sep 2020 20:42:24 +0300 (IDT)
-Received: by mail-oi1-f173.google.com with SMTP id a3so756497oib.4
- for <usrp-users@lists.ettus.com>; Mon, 14 Sep 2020 10:42:23 -0700 (PDT)
-X-Gm-Message-State: AOAM533N883NBosJgmuWJ03MRwmMSBvqQpF6IcqEgFuIam5EXx+cgtfU
- 3xMZh6uKBXMRXuPy/eSHyBOWKXDCLy/+ffB2RNY=
-X-Google-Smtp-Source: ABdhPJxdCY45UISNazDcSEPsmL4lntrmz876OgEJabvg/GRVmbKaiNlXpbaZE9yRmc1UvHk212ZGtbdnXdsiFurTir4=
-X-Received: by 2002:aca:4b0b:: with SMTP id y11mr322380oia.147.1600105342255; 
- Mon, 14 Sep 2020 10:42:22 -0700 (PDT)
+	id 1kHuid-00043Z-C5; Mon, 14 Sep 2020 16:04:55 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:30216)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <duixian@us.ibm.com>) id 1kHuiY-0003z0-U6
+ for USRP-users@lists.ettus.com; Mon, 14 Sep 2020 16:04:51 -0400
+Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 08EJemwI095254
+ for <USRP-users@lists.ettus.com>; Mon, 14 Sep 2020 16:04:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=in-reply-to : to : cc :
+ from : date : references : content-type : message-id : mime-version :
+ subject; s=pp1; bh=lGbbOG1JEEFlm0b4C5Wkm0LI5BdLPwH4e++h8e669LY=;
+ b=h/y6Qb5PGFfqQUSRkCKKwVmtGlCELWGl/pVok2fLxEtOLr41WA6MnQ/bz+Fb8cmEoT30
+ o9gvYZK3JVSHezkL7fUqLDh9tG7cMu4VJdKUjgGn4P10m/h5LUfnRe8zAgNv0f+ejRrS
+ gz2WnaxONjtyTLOrakQU06MyoW7mIem+rp/n1SFPn6/4oxIZyn0kgzakDKcPZe3XprQ5
+ 8RHIRrP8olkwBbEY0aT1BWRP/oCqVBV0wX1d20slvqCLZIoxzaeTVIt6MjBsVDG4O7ka
+ /icvHOyO42w0aywQuwmfg+6lgIVeWHK+0vCfppghMTVQo8IKL5TDVAvy0WBULLLmFkVt Qg== 
+Received: from smtp.notes.na.collabserv.com (smtp.notes.na.collabserv.com
+ [192.155.248.74])
+ by mx0a-001b2d01.pphosted.com with ESMTP id 33jc93w06b-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <USRP-users@lists.ettus.com>; Mon, 14 Sep 2020 16:04:09 -0400
+Received: from localhost
+ by smtp.notes.na.collabserv.com with smtp.notes.na.collabserv.com ESMTP
+ for <USRP-users@lists.ettus.com> from <duixian@us.ibm.com>;
+ Mon, 14 Sep 2020 20:04:09 -0000
+Received: from us1a3-smtp03.a3.dal06.isc4sb.com (10.106.154.98)
+ by smtp.notes.na.collabserv.com (10.106.227.92) with
+ smtp.notes.na.collabserv.com ESMTP; Mon, 14 Sep 2020 20:04:07 -0000
+Received: from us1a3-mail163.a3.dal06.isc4sb.com ([10.146.71.41])
+ by us1a3-smtp03.a3.dal06.isc4sb.com
+ with ESMTP id 2020091420040699-790456 ;
+ Mon, 14 Sep 2020 20:04:06 +0000 
+In-Reply-To: <300817F0-EA15-4CC7-9A58-62EBEF427C98@gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Date: Mon, 14 Sep 2020 16:04:04 -0400
+References: <OF4FD4A827.30B9CEDF-ON002585E0.00685374-852585E0.0069447D@notes.na.collabserv.com>
+ <300817F0-EA15-4CC7-9A58-62EBEF427C98@gmail.com>
+X-KeepSent: D12B3F23:07067C06-002585E3:006E063A;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 10.0.1FP1 March 26, 2019
+X-LLNOutbound: False
+X-Disclaimed: 33795
+X-TNEFEvaluated: 1
+x-cbid: 20091420-3165-0000-0000-00000486A13D
+X-IBM-SpamModules-Scores: BY=0; FL=0; FP=0; FZ=0; HX=0; KW=0; PH=0;
+ SC=0.433748; ST=0; TS=0; UL=0; ISC=; MB=0.137854
+X-IBM-SpamModules-Versions: BY=3.00013837; HX=3.00000242; KW=3.00000007;
+ PH=3.00000004; SC=3.00000295; SDB=6.01434857; UDB=6.00770667; IPR=6.01217535; 
+ MB=3.00034051; MTD=3.00000008; XFM=3.00000015; UTC=2020-09-14 20:04:08
+X-IBM-AV-DETECTION: SAVI=unsuspicious REMOTE=unsuspicious XFE=unused
+X-IBM-AV-VERSION: SAVI=2020-09-14 18:27:20 - 6.00011840
+x-cbparentid: 20091420-3166-0000-0000-00008DC8E971
+Message-Id: <OFD12B3F23.07067C06-ON002585E3.006E063A-852585E3.006E2678@notes.na.collabserv.com>
+X-Proofpoint-UnRewURL: 1 URL was un-rewritten
 MIME-Version: 1.0
-References: <CACDReSwTxVn4CxgsKtza3YNTdOABNVk86NH3VY=2hR8N3P+VFA@mail.gmail.com>
- <CAB__hTTbSA4ipiKS2O9NgeD8TLq_Bm4-LmHPW0r5LrwDv7S1PA@mail.gmail.com>
- <CACDReSxG6r1nV+WrkUCYA7tDchH8uSZGXUa1U6k1qOb12LqH_Q@mail.gmail.com>
- <CAB__hTR0g85geW_Sy__0BDLr5Bk61=mq+fesPJePKbhY_CVNEw@mail.gmail.com>
- <CACDReSyJO9po2EBXVH1Rkk2tH2EXuyznmrA9cpn6Nb15VP9BVQ@mail.gmail.com>
- <CAB__hTQWr5ehASz2tCDzG9vu4EK4-drTT66fZk38yRbaxcS8Qw@mail.gmail.com>
-In-Reply-To: <CAB__hTQWr5ehASz2tCDzG9vu4EK4-drTT66fZk38yRbaxcS8Qw@mail.gmail.com>
-Date: Mon, 14 Sep 2020 20:42:11 +0300
-X-Gmail-Original-Message-ID: <CACDReSzt=L8+P+1Umx+wpOArDoGpY6qUQD+3C0HWY2qC5KDFMg@mail.gmail.com>
-Message-ID: <CACDReSzt=L8+P+1Umx+wpOArDoGpY6qUQD+3C0HWY2qC5KDFMg@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Cc: Ofer Saferman <ofer@navigicom.com>, usrp-users <usrp-users@lists.ettus.com>
-X-DTNT-MailScanner-Information: Please contact the ISP for more information
-X-DTNT-MailScanner-ID: F003C43388.A28F6
-X-DTNT-MailScanner: Found to be clean
-X-DTNT-MailScanner-From: ofer@navigicom.com
-X-Spam-Status: No
-Subject: Re: [USRP-users] Extending example "rfnoc_replay_samples_from_file"
- to 2 Tx channels
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
+ definitions=2020-09-14_08:2020-09-14,
+ 2020-09-14 signatures=0
+X-Proofpoint-Spam-Reason: orgsafe
+Subject: Re: [USRP-users] N310 stoped working
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -65,9 +80,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ofer Saferman via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ofer Saferman <ofer@navigicom.com>
-Content-Type: multipart/mixed; boundary="===============8122312635480926955=="
+From: Duixian Liu via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Duixian Liu <duixian@us.ibm.com>
+Cc: USRP-users@lists.ettus.com
+Content-Type: multipart/mixed; boundary="===============5365848189330794690=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -81,297 +97,137 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8122312635480926955==
-Content-Type: multipart/alternative; boundary="00000000000087479505af498e5e"
 
---00000000000087479505af498e5e
+--===============5365848189330794690==
+Content-Type: multipart/alternative; boundary="=_alternative 006E25D1852585E3_="
+
+
+--=_alternative 006E25D1852585E3_=
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
 
-This is exactly the capability I need. An arbitrary waveform generator that
-runs from the device (without a host computer) and is able to repeatedly
-transmit two waveforms to Tx1 and Tx2 channels.
-I was hoping not to do any FPGA development.
-As for the number of samples - I can make do with several thousands if need
-be.
-Maybe UHD ver. 4 supports the replay block for E310?
+QWN0dWFsbHkgSSBjYW4gcGluZyB0aGUgZGV2aWNlLg0KDQpXaGVuIEkgZG8gdGhlIG1lYXN1cmVt
+ZW50cywgSSB1c2UgU0ZQKyBwb3J0IDAuIEJ1dCBmb3IgdGhlIG1hbmFnZW1lbnQsIEkgDQp1c2Ug
+MTAvMTAwLzEwMDAgRU5FVCBSSi00NSBFTkVUIHBvcnQuDQpUaGUgInBpbmcgMTkyLjE2OC4xMC4x
+MDAiIHRvIHRoZSAxMC8xMDAvMTAwMCBFTkVUIFJKLTQ1IEVORVQgcG9ydCBpcyBPay4gDQpCdXQg
+InVoZF91c3JwX3Byb2JlIiBzYXlzICJubyBkZXZpY2VzIGZvdW5kIiBhbmQgInVoZF9maW5kX2Rl
+dmljZXMiIHNheXMgDQoicmVhY2hhYmxlOiBObyIuDQoNCg0KRHVpeGlhbiBMaXUsIFBoRC4sIEZl
+bGxvdyBvZiBJRUVFDQpNYXN0ZXIgSW52ZW50b3INClJlc2VhcmNoIFN0YWZmIE1lbWJlcg0KV2ly
+ZWxlc3MgU3lzdGVtIERlc2lnbiAmIFBhY2thZ2luZw0KSUJNIFRob21hcyBKLiBXYXRzb24gUmVz
+ZWFyY2ggQ2VudGVyDQoxMTAxIEtpdGNoYXdhbiBSZA0KWW9ya3Rvd24gSGVpZ2h0cywgTlkgMTA1
+OTgNClRlbDogOTE0LTk0NS0xMjc4DQpGYXg6IDkxNC05NDUtNDIxOQ0KRW1haWw6IGR1aXhpYW5A
+dXMuaWJtLmNvbQ0KDQoNCg0KRnJvbTogICBNYXJjdXMgRCBMZWVjaCA8cGF0Y2h2b25icmF1bkBn
+bWFpbC5jb20+DQpUbzogICAgIER1aXhpYW4gTGl1IDxkdWl4aWFuQHVzLmlibS5jb20+DQpDYzog
+ICAgIEV0dHVzIFJlc2VhcmNoIFN1cHBvcnQgPHN1cHBvcnRAZXR0dXMuY29tPiwgDQpVU1JQLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbQ0KRGF0ZTogICAwOS8xMi8yMDIwIDAxOjE2IFBNDQpTdWJqZWN0
+OiAgICAgICAgW0VYVEVSTkFMXSBSZTogW1VTUlAtdXNlcnNdIE4zMTAgc3RvcGVkIHdvcmtpbmcN
+Cg0KDQoNCllvdXIgRXRoZXJuZXQgaW50ZXJmYWNlIG9uIHlvdXIgaG9zdCBoYXMuIEkgYWRkcmVz
+cy4gSSBzdXNwZWN0IA0KTmV0d29ya01hbmFnZXIgaGFzIHRoYXQgSSBpbnRlcmZhY2UgY29uZmln
+dXJlZCBmb3IgREhDUCBhbmQgaXMgdGFraW5nIGl0IA0Kb3V0IG9mIHNlcnZpY2UgYWZ0ZXIgcmVw
+ZWF0ZWQgREhDUCB0cmFuc2FjdGlvbiBmYWlsdXJlcy4gQnV0IHRoZXJlIG1pZ2h0IA0KYmUgc29t
+ZSBvdGhlciByZWFzb24uIFJlZ2FyZGxlc3MgdGhlcmXigJlzIG5vIElQIGFkZHJlc3Mgb24geW91
+ciBob3N0IA0KaW50ZXJmYWNlLiANCg0KU2VudCBmcm9tIG15IGlQaG9uZQ0KDQpPbiBTZXAgMTIs
+IDIwMjAsIGF0IDg6MjcgQU0sIER1aXhpYW4gTGl1IHZpYSBVU1JQLXVzZXJzIA0KPHVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tPiB3cm90ZToNCg0K77u/SGkgLA0KQWZ0ZXIgbWFueSBtZWFzdXJl
+bWVudHMsIE4zMTAgc3RvcHBlZCB3b3JraW5nLiBUaGUgZXRoZXJuZXQgY29ubmVjdGlvbiBpcyAN
+Ck9rIChhdCBsZWFzdCBpdCBpbmRpY2F0ZXMgY29ubmVjdGlvbiBlc3RhYmxpc2hlZCkuIEJ1dCBO
+MzEwIGlzIG5vdCANCnJlYWNoYWJsZSBhbnltb3JlLiAgSSBoYXZlIHJlYm9vdGVkIHRoZSBjb21w
+dXRlciBhbmQgTjMxMCBzZXZlcmFsIHRpbWVzIA0KYW5kIGRpZCBhbGwgdGhlIG5lY2Vzc2FyeSBz
+dGVwcyB0byBydW4gbXkgcHJvZ3JhbXMsIHRoZSBwcm9ibGVtIGlzIHN0aWxsIA0Kbm90IHJlc29s
+dmVkLiBXaGVuIHBpbmcgdGhlIGRldmljZSwgaXQgc2F5cyAiTmV0d29yayBpcyB1bnJlYWNoYWJs
+ZSIuDQoNCg0KDQoNCkR1aXhpYW4gTGl1LCBQaEQuLCBGZWxsb3cgb2YgSUVFRQ0KTWFzdGVyIElu
+dmVudG9yDQpSZXNlYXJjaCBTdGFmZiBNZW1iZXINCldpcmVsZXNzIFN5c3RlbSBEZXNpZ24gJiBQ
+YWNrYWdpbmcNCklCTSBUaG9tYXMgSi4gV2F0c29uIFJlc2VhcmNoIENlbnRlcg0KMTEwMSBLaXRj
+aGF3YW4gUmQNCllvcmt0b3duIEhlaWdodHMsIE5ZIDEwNTk4DQpUZWw6IDkxNC05NDUtMTI3OA0K
+RmF4OiA5MTQtOTQ1LTQyMTkNCkVtYWlsOiBkdWl4aWFuQHVzLmlibS5jb20NCg0KPElNR180NTc0
+LkpQRz4NCjxJTUdfNDU4MS5KUEc+DQo8SU1HXzQ1ODMuSlBHPg0KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0DQpV
+U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
+L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tDQoNCg0KDQo=
 
-Ofer
-
-On Mon, Sep 14, 2020 at 8:11 PM Rob Kossler <rkossler@nd.edu> wrote:
-
-> In order to do so, you need to build a new FPGA image (using Xilinx
-> Vivado). Ettus provides a "siggen" rfnoc block that can be used to transmit
-> a signal, but the waveform types supported by this block are very simple.
-> However, if this works for you, then you don't have to do any development -
-> you can just build a new image with this existing block.
->
-> If you want to be able to have an arbitrary waveform signal generation
-> capability (with fixed length waveforms that are repeated), you need a
-> custom block that includes enough memory to store the largest expected
-> waveforms.  Is this the capability you need and if so, how large (how many
-> samples) are your waveforms?
-> Rob
->
-> On Mon, Sep 14, 2020 at 12:24 PM Ofer Saferman <ofer@navigicom.com> wrote:
->
->> Thank you.
->> Last question: If the E310 does not support the replay block is it
->> possible in any way to transmit a signal using the device only without
->> streaming it from a host computer? If so how?
->>
->> Regards,
->> Ofer Saferman
->>
->> On Mon, Sep 14, 2020 at 4:42 PM Rob Kossler <rkossler@nd.edu> wrote:
->>
->>> Hi Ofer,
->>> Unfortunately, the Replay block is only available for X3x0 and N3x0
->>> USRPs.  This block does not work for the E310 and I have not heard any
->>> plans from Ettus to change this.
->>>
->>> But, if you were using one of these supported USRPs, you would likely
->>> just have one Replay block with multiple ports (that is the way Ettus
->>> builds this block in the N310 default FPGA image). You are correct that you
->>> will effectively have 2 software commands, but if you provide the same
->>> "start time" in both commands (where the start time is slightly in the
->>> future from "now"), the FPGA Radio block will delay streaming until the
->>> specified time is reached such that both streams start simultaneously.
->>>
->>> Rob
->>>
->>> On Sun, Sep 13, 2020 at 11:59 PM Ofer Saferman via USRP-users <
->>> usrp-users@lists.ettus.com> wrote:
->>>
->>>> Hello Rob,
->>>> Thank you for your response.
->>>> I am using USRP E310.
->>>> I am using UHD 3.15.
->>>>
->>>> So, use one replay block with multiple ports? Or use two replay blocks?
->>>> Could you point me to the relevant methods to handle more than one port?
->>>>
->>>> Is there a detailed block diagram of the various modules (classes) or
->>>> some class diagram ? It is hard to navigate between the various blocks and
->>>> know what methods they have only from example code. I looked at the class
->>>> documentation but couldn't find such block diagram.
->>>>
->>>> Regarding synchronization - How does providing the same start time
->>>> ensure synchronization? How can you actually start replay at the same time?
->>>> I am asking because everything is controlled by software so if you have to
->>>> issue two commands in software to start each of the replays they will not
->>>> be synchronized. Which command in code actually starts replay of signal?
->>>>
->>>> Thanks,
->>>> Ofer.
->>>>
->>>> On Mon, Sep 14, 2020 at 5:43 AM Rob Kossler <rkossler@nd.edu> wrote:
->>>>
->>>>> Hi Ofer,
->>>>> This is possible. The Replay block has multiple ports. You can connect
->>>>> the ports to the various DUC or Radio ports.  Which device?  Which version
->>>>> of UHD?
->>>>> Yes, you can start them synchronized by providing the same start time
->>>>> to each channel.
->>>>> Rob
->>>>>
->>>>> On Sat, Sep 12, 2020 at 9:42 AM Ofer Saferman via USRP-users <
->>>>> usrp-users@lists.ettus.com> wrote:
->>>>>
->>>>>> Hello,
->>>>>>
->>>>>> I would like to extend the example called
->>>>>> "rfnoc_replay_sample_from_file" to play 2 files, one for Tx1 and one for
->>>>>> Tx2.
->>>>>> I would also like both playbacks to start simultaneously (be
->>>>>> synchronized). Is the synchronization possible?
->>>>>>
->>>>>> What would be the methodology? Creating 2 instances of the replay
->>>>>> blocks each connected to a Tx channel? Are there even more than one replay
->>>>>> blocks available?
->>>>>>
->>>>>> I am walking blind in the woods here and any direction would be
->>>>>> helpful.
->>>>>>
->>>>>> Regards,
->>>>>> Ofer Saferman
->>>>>>
->>>>>> --
->>>>>> This message has been scanned for viruses and
->>>>>> dangerous content by *MailScanner* <http://www.mailscanner.info/>,
->>>>>> and is
->>>>>> believed to be clean. _______________________________________________
->>>>>> USRP-users mailing list
->>>>>> USRP-users@lists.ettus.com
->>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>>
->>>>>
->>>> --
->>>> This message has been scanned for viruses and
->>>> dangerous content by *MailScanner* <http://www.mailscanner.info/>, and
->>>> is
->>>> believed to be clean. _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>>
->> --
->> This message has been scanned for viruses and
->> dangerous content by *MailScanner* <http://www.mailscanner.info/>, and
->> is
->> believed to be clean.
->
->
-
--- 
-This message has been scanned for viruses and
-dangerous content by MailScanner, and is
-believed to be clean.
-
-
---00000000000087479505af498e5e
+--=_alternative 006E25D1852585E3_=
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-<div dir=3D"ltr"><div>This is exactly the capability I need. An arbitrary w=
-aveform generator that runs from the device (without a host computer) and i=
-s able to repeatedly transmit two waveforms to Tx1 and Tx2 channels.</div><=
-div>I was hoping not to do any FPGA development.</div><div>As for the numbe=
-r of samples - I can make do with several thousands if need be.</div><div>M=
-aybe UHD ver. 4 supports the replay block for E310?</div><div><br></div><di=
-v>Ofer<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Mon, Sep 14, 2020 at 8:11 PM Rob Kossler &lt;<a href=3D"=
-mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">In order to do so, =
-you need to build a new FPGA image (using Xilinx Vivado). Ettus provides a =
-&quot;siggen&quot; rfnoc block that can be used to transmit a signal, but t=
-he waveform types supported by this block are very simple. However, if this=
- works for you, then you don&#39;t have to do any development - you can jus=
-t build a new image with this existing block.<div><br></div><div>If you wan=
-t to be able to have an arbitrary waveform signal generation capability (wi=
-th fixed length waveforms that are repeated), you need a custom block that =
-includes enough memory=C2=A0to store the largest expected waveforms.=C2=A0 =
-Is this the capability you need and if so, how large (how many samples) are=
- your waveforms?<div>Rob</div></div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 14, 2020 at 12:24 PM Ofer S=
-aferman &lt;<a href=3D"mailto:ofer@navigicom.com" target=3D"_blank">ofer@na=
-vigicom.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr"><div>Thank you.</div><div>Last question: If the=
- E310 does not support the replay block is it possible in any way to transm=
-it a signal using the device only without streaming it from a host computer=
-? If so how?</div><div><br></div><div>Regards,</div><div>Ofer Saferman<br><=
-/div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
-ttr">On Mon, Sep 14, 2020 at 4:42 PM Rob Kossler &lt;<a href=3D"mailto:rkos=
-sler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Ofer=
-,</div><div>Unfortunately, the Replay block is only available for X3x0 and =
-N3x0 USRPs.=C2=A0 This block does not work for the E310 and I have not hear=
-d any plans from Ettus to change this.</div><div><br></div><div>But, if you=
- were using one of these supported USRPs, you would likely just have one Re=
-play block with multiple ports (that is the way Ettus builds this block in =
-the N310 default FPGA image). You are correct that you will effectively hav=
-e 2 software commands, but if you provide the same &quot;start time&quot; i=
-n both commands (where the start time is slightly in the future from &quot;=
-now&quot;), the FPGA Radio block will delay streaming until the specified t=
-ime is reached such that both streams start simultaneously.</div><div><br><=
-/div><div>Rob</div><div><br></div><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Sun, Sep 13, 2020 at 11:59 PM Ofer Saferman via =
-USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
-nk">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D=
-"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
-04,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello Rob,</div><div>Th=
-ank you for your response.</div><div>I am using USRP E310.</div><div>I am u=
-sing UHD 3.15.</div><div><br></div><div>So, use one replay block with multi=
-ple ports? Or use two replay blocks?</div><div>Could you point me to the re=
-levant methods to handle more than one port?</div><div><br></div><div>Is th=
-ere a detailed block diagram of the various modules (classes) or some class=
- diagram ? It is hard to navigate between the various blocks and know what =
-methods they have only from example code. I looked at the class documentati=
-on but couldn&#39;t find such block diagram.<br></div><div><br></div><div><=
-/div><div>Regarding synchronization - How does providing the same start tim=
-e ensure synchronization? How can you actually start replay at the same tim=
-e? I am asking because everything is controlled by software so if you have =
-to issue two commands in software to start each of the replays they will no=
-t be synchronized. Which command in code actually starts replay of signal?<=
-br></div><div><br></div><div>Thanks,</div><div>Ofer.<br></div></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 1=
-4, 2020 at 5:43 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" targe=
-t=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Ofer,</div><div>This i=
-s possible. The Replay block has multiple ports. You can connect the ports =
-to the various DUC or Radio ports.=C2=A0 Which device?=C2=A0 Which version =
-of UHD?</div><div>Yes, you can start them synchronized by providing the sam=
-e start time to each channel.</div><div>Rob</div><br><div class=3D"gmail_qu=
-ote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Sep 12, 2020 at 9:42 AM =
-Ofer Saferman via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.c=
-om" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello=
-,</div><div><br></div><div>I would like to extend the example called &quot;=
-rfnoc_replay_sample_from_file&quot; to play 2 files, one for Tx1 and one fo=
-r Tx2.</div><div>I would also like both playbacks to start simultaneously (=
-be synchronized). Is the synchronization possible?</div><div><br></div><div=
->What would be the methodology? Creating 2 instances of the replay blocks e=
-ach connected to a Tx channel? Are there even more than one replay blocks a=
-vailable?</div><div><br></div><div>I am walking blind in the woods here and=
- any direction would be helpful.</div><div><br></div><div>Regards,</div><di=
-v>Ofer Saferman<br></div></div>
-<br>--=20
-<br>This message has been scanned for viruses and
-<br>dangerous content by
-<a href=3D"http://www.mailscanner.info/" target=3D"_blank"><b>MailScanner</=
-b></a>, and is
-<br>believed to be clean.
+PHNwYW4gc3R5bGU9IiBmb250LXNpemU6MTBwdDtmb250LWZhbWlseTpzYW5zLXNlcmlmIj5BY3R1
+YWxseSBJIGNhbiBwaW5nDQp0aGUgZGV2aWNlLjwvc3Bhbj48YnI+PGJyPjxzcGFuIHN0eWxlPSIg
+Zm9udC1zaXplOjEwcHQ7Zm9udC1mYW1pbHk6c2Fucy1zZXJpZiI+V2hlbiBJIGRvIHRoZQ0KbWVh
+c3VyZW1lbnRzLCBJIHVzZSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LXNpemU6MTJwdDtmb250
+LWZhbWlseTpWZXJkYW5hIj5TRlArDQpwb3J0IDAuIEJ1dCBmb3IgdGhlIG1hbmFnZW1lbnQsIEkg
+dXNlIDEwLzEwMC8xMDAwIEVORVQgUkotNDUgRU5FVCBwb3J0Ljwvc3Bhbj48YnI+PHNwYW4gc3R5
+bGU9IiBmb250LXNpemU6MTJwdDtmb250LWZhbWlseTpWZXJkYW5hIj5UaGUgJnF1b3Q7cGluZyAx
+OTIuMTY4LjEwLjEwMCZxdW90Ow0KdG8gdGhlIDEwLzEwMC8xMDAwIEVORVQgUkotNDUgRU5FVCBw
+b3J0IGlzIE9rLiBCdXQgJnF1b3Q7dWhkX3VzcnBfcHJvYmUmcXVvdDsNCnNheXMgJnF1b3Q7bm8g
+ZGV2aWNlcyBmb3VuZCZxdW90OyBhbmQgJnF1b3Q7dWhkX2ZpbmRfZGV2aWNlcyZxdW90OyBzYXlz
+DQomcXVvdDtyZWFjaGFibGU6IE5vJnF1b3Q7Ljwvc3Bhbj48YnI+PHNwYW4gc3R5bGU9IiBmb250
+LXNpemU6MTBwdDtmb250LWZhbWlseTpzYW5zLXNlcmlmIj48YnI+PGJyPkR1aXhpYW4gTGl1LCBQ
+aEQuLCBGZWxsb3cgb2YgSUVFRTxicj5NYXN0ZXIgSW52ZW50b3I8YnI+UmVzZWFyY2ggU3RhZmYg
+TWVtYmVyPGJyPldpcmVsZXNzIFN5c3RlbSBEZXNpZ24gJmFtcDsgUGFja2FnaW5nPGJyPklCTSBU
+aG9tYXMgSi4gV2F0c29uIFJlc2VhcmNoIENlbnRlcjxicj4xMTAxIEtpdGNoYXdhbiBSZDxicj5Z
+b3JrdG93biBIZWlnaHRzLCBOWSAxMDU5ODxicj5UZWw6IDkxNC05NDUtMTI3ODxicj5GYXg6IDkx
+NC05NDUtNDIxOTxicj5FbWFpbDogZHVpeGlhbkB1cy5pYm0uY29tPC9zcGFuPjxicj48YnI+PGJy
+Pjxicj48c3BhbiBzdHlsZT0iIGZvbnQtc2l6ZTo5cHQ7Y29sb3I6IzVmNWY1Zjtmb250LWZhbWls
+eTpzYW5zLXNlcmlmIj5Gcm9tOg0KJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7PC9zcGFuPjxz
+cGFuIHN0eWxlPSIgZm9udC1zaXplOjlwdDtmb250LWZhbWlseTpzYW5zLXNlcmlmIj5NYXJjdXMN
+CkQgTGVlY2ggJmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0Ozwvc3Bhbj48YnI+PHNwYW4g
+c3R5bGU9IiBmb250LXNpemU6OXB0O2NvbG9yOiM1ZjVmNWY7Zm9udC1mYW1pbHk6c2Fucy1zZXJp
+ZiI+VG86DQombmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9IiBm
+b250LXNpemU6OXB0O2ZvbnQtZmFtaWx5OnNhbnMtc2VyaWYiPkR1aXhpYW4NCkxpdSAmbHQ7ZHVp
+eGlhbkB1cy5pYm0uY29tJmd0Ozwvc3Bhbj48YnI+PHNwYW4gc3R5bGU9IiBmb250LXNpemU6OXB0
+O2NvbG9yOiM1ZjVmNWY7Zm9udC1mYW1pbHk6c2Fucy1zZXJpZiI+Q2M6DQombmJzcDsgJm5ic3A7
+ICZuYnNwOyAmbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LXNpemU6OXB0O2ZvbnQtZmFt
+aWx5OnNhbnMtc2VyaWYiPkV0dHVzDQpSZXNlYXJjaCBTdXBwb3J0ICZsdDtzdXBwb3J0QGV0dHVz
+LmNvbSZndDssIFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9zcGFuPjxicj48c3BhbiBzdHls
+ZT0iIGZvbnQtc2l6ZTo5cHQ7Y29sb3I6IzVmNWY1Zjtmb250LWZhbWlseTpzYW5zLXNlcmlmIj5E
+YXRlOg0KJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9u
+dC1zaXplOjlwdDtmb250LWZhbWlseTpzYW5zLXNlcmlmIj4wOS8xMi8yMDIwDQowMToxNiBQTTwv
+c3Bhbj48YnI+PHNwYW4gc3R5bGU9IiBmb250LXNpemU6OXB0O2NvbG9yOiM1ZjVmNWY7Zm9udC1m
+YW1pbHk6c2Fucy1zZXJpZiI+U3ViamVjdDoNCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOzwv
+c3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtc2l6ZTo5cHQ7Zm9udC1mYW1pbHk6c2Fucy1zZXJpZiI+
+W0VYVEVSTkFMXQ0KUmU6IFtVU1JQLXVzZXJzXSBOMzEwIHN0b3BlZCB3b3JraW5nPC9zcGFuPjxi
+cj48aHIgbm9zaGFkZT48YnI+PGJyPjxicj48c3BhbiBzdHlsZT0iIGZvbnQtc2l6ZToxMnB0Ij5Z
+b3VyIEV0aGVybmV0IGludGVyZmFjZSBvbiB5b3VyIGhvc3QNCmhhcy4gSSBhZGRyZXNzLiBJIHN1
+c3BlY3QgTmV0d29ya01hbmFnZXIgaGFzIHRoYXQgSSBpbnRlcmZhY2UgY29uZmlndXJlZA0KZm9y
+IERIQ1AgYW5kIGlzIHRha2luZyBpdCBvdXQgb2Ygc2VydmljZSBhZnRlciByZXBlYXRlZCBESENQ
+IHRyYW5zYWN0aW9uDQpmYWlsdXJlcy4gQnV0IHRoZXJlIG1pZ2h0IGJlIHNvbWUgb3RoZXIgcmVh
+c29uLiBSZWdhcmRsZXNzIHRoZXJl4oCZcyBubw0KSVAgYWRkcmVzcyBvbiB5b3VyIGhvc3QgaW50
+ZXJmYWNlLiA8YnI+PC9zcGFuPjxicj48c3BhbiBzdHlsZT0iIGZvbnQtc2l6ZToxMnB0Ij5TZW50
+IGZyb20gbXkgaVBob25lPC9zcGFuPjxicj48YnI+PHNwYW4gc3R5bGU9IiBmb250LXNpemU6MTJw
+dCI+T24gU2VwIDEyLCAyMDIwLCBhdCA4OjI3IEFNLCBEdWl4aWFuDQpMaXUgdmlhIFVTUlAtdXNl
+cnMgJmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0OyB3cm90ZTo8YnI+PC9zcGFuPjxi
+cj48c3BhbiBzdHlsZT0iIGZvbnQtc2l6ZToxMnB0Ij7vu788L3NwYW4+PHNwYW4gc3R5bGU9IiBm
+b250LXNpemU6MTBwdDtmb250LWZhbWlseTpzYW5zLXNlcmlmIj5IaQ0KLDxicj5BZnRlciBtYW55
+IG1lYXN1cmVtZW50cywgTjMxMCBzdG9wcGVkIHdvcmtpbmcuIFRoZSBldGhlcm5ldCBjb25uZWN0
+aW9uDQppcyBPayAoYXQgbGVhc3QgaXQgaW5kaWNhdGVzIGNvbm5lY3Rpb24gZXN0YWJsaXNoZWQp
+LiBCdXQgTjMxMCBpcyBub3QgcmVhY2hhYmxlDQphbnltb3JlLiAmbmJzcDtJIGhhdmUgcmVib290
+ZWQgdGhlIGNvbXB1dGVyIGFuZCBOMzEwIHNldmVyYWwgdGltZXMgYW5kDQpkaWQgYWxsIHRoZSBu
+ZWNlc3Nhcnkgc3RlcHMgdG8gcnVuIG15IHByb2dyYW1zLCB0aGUgcHJvYmxlbSBpcyBzdGlsbCBu
+b3QNCnJlc29sdmVkLiBXaGVuIHBpbmcgdGhlIGRldmljZSwgaXQgc2F5cyAmcXVvdDtOZXR3b3Jr
+IGlzIHVucmVhY2hhYmxlJnF1b3Q7Ljwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtc2l6ZToxMnB0
+Ij48YnI+PGJyPjwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtc2l6ZToxMHB0O2ZvbnQtZmFtaWx5
+OnNhbnMtc2VyaWYiPjxicj48YnI+PGJyPkR1aXhpYW4gTGl1LCBQaEQuLCBGZWxsb3cgb2YgSUVF
+RTxicj5NYXN0ZXIgSW52ZW50b3I8YnI+UmVzZWFyY2ggU3RhZmYgTWVtYmVyPGJyPldpcmVsZXNz
+IFN5c3RlbSBEZXNpZ24gJmFtcDsgUGFja2FnaW5nPGJyPklCTSBUaG9tYXMgSi4gV2F0c29uIFJl
+c2VhcmNoIENlbnRlcjxicj4xMTAxIEtpdGNoYXdhbiBSZDxicj5Zb3JrdG93biBIZWlnaHRzLCBO
+WSAxMDU5ODxicj5UZWw6IDkxNC05NDUtMTI3ODxicj5GYXg6IDkxNC05NDUtNDIxOTxicj5FbWFp
+bDogZHVpeGlhbkB1cy5pYm0uY29tPC9zcGFuPjxicj48YnI+PHNwYW4gc3R5bGU9IiBmb250LXNp
+emU6MTJwdCI+Jmx0O0lNR180NTc0LkpQRyZndDs8L3NwYW4+PGJyPjxzcGFuIHN0eWxlPSIgZm9u
+dC1zaXplOjEycHQiPiZsdDtJTUdfNDU4MS5KUEcmZ3Q7PC9zcGFuPjxicj48c3BhbiBzdHlsZT0i
+IGZvbnQtc2l6ZToxMnB0Ij4mbHQ7SU1HXzQ1ODMuSlBHJmd0Ozwvc3Bhbj48YnI+PHNwYW4gc3R5
+bGU9IiBmb250LXNpemU6MTJwdCI+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX188YnI+VVNSUC11c2VycyBtYWlsaW5nIGxpc3Q8YnI+VVNSUC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb208L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LXNpemU6MTJwdDtjb2xvcjpibHVl
+Ij48dT48YnI+PC91Pjwvc3Bhbj48YSBocmVmPSJodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
+YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20iPjxzcGFuIHN0eWxlPSIgZm9u
+dC1zaXplOjEycHQ7Y29sb3I6Ymx1ZSI+PHU+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
+L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC91Pjwvc3Bhbj48L2E+PGJyPjxi
+cj48QlI+DQo=
 
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-</blockquote></div>
-<br>--=20
-<br>This message has been scanned for viruses and
-<br>dangerous content by
-<a href=3D"http://www.mailscanner.info/" target=3D"_blank"><b>MailScanner</=
-b></a>, and is
-<br>believed to be clean.
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-</blockquote></div>
-<br>--=20
-<br>This message has been scanned for viruses and
-<br>dangerous content by
-<a href=3D"http://www.mailscanner.info/" target=3D"_blank"><b>MailScanner</=
-b></a>, and is
-<br>believed to be clean.
-
-</blockquote></div>
-</blockquote></div>
-<br />--=20
-<br />This message has been scanned for viruses and
-<br />dangerous content by
-<a href=3D"http://www.mailscanner.info/"><b>MailScanner</b></a>, and is
-<br />believed to be clean.
+--=_alternative 006E25D1852585E3_=--
 
 
---00000000000087479505af498e5e--
 
-
---===============8122312635480926955==
+--===============5365848189330794690==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -382,5 +238,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8122312635480926955==--
+--===============5365848189330794690==--
+
 
