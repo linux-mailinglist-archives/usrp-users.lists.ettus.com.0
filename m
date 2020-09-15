@@ -2,67 +2,81 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1363B269874
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Sep 2020 23:59:57 +0200 (CEST)
-Received: from [::1] (port=58594 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C557426A4D3
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Sep 2020 14:15:39 +0200 (CEST)
+Received: from [::1] (port=37520 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kHwVu-00035c-41; Mon, 14 Sep 2020 17:59:54 -0400
-Received: from a8-31.smtp-out.amazonses.com ([54.240.8.31]:35922)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
- (Exim 4.93) (envelope-from
- <010001748ea0faca-5195f8e1-5fdc-4d29-8473-ec0d9d392eef-000000@amazonses.com>)
- id 1kHwVp-000306-TT
- for usrp-users@lists.ettus.com; Mon, 14 Sep 2020 17:59:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
- s=leirvt27dq24qdtfhpelrkwnirsvxls5; d=ltsnet.net; t=1600120749;
- h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
- bh=PsFkhi7YM4HCPplutdDOUJvM3iDqtKbeVUwEVewrdGM=;
- b=ITGr+2lRtj5iJdD1kCsaEJYF/Iguo8JVOdOS6Bk5arIXT0huB4OhmxMOOVdIKtHV
- LxUw0tgRT06Kg7Cu7VmukZ1yWcIGztG8bYKmHcpLPhVdjQXFjIi9hmH2T2fLeLpVfgw
- GBkgGoOTC7/ash0e9gKJJK5K8oZAeJvien5ARsH4=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
- s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1600120749;
- h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:Feedback-ID;
- bh=PsFkhi7YM4HCPplutdDOUJvM3iDqtKbeVUwEVewrdGM=;
- b=k7Z7pcZ2DHWAtLwxFdQco4H+WlqOI9NX5tlvnHLkRadRQMm5nnyciv/PZWYaeDxt
- 9I1li48Idg4tFWAfn9vkMOzRbUMkmBw+UfbA/nMvLpuHiFPFj81TvMJk4tvuWo+OnN0
- DDj23HJzcbjzUagnkY1XDzzyZ9jvcLfKfKFO4Mng=
-X-ASG-Debug-ID: 1600120748-13da5840a61263b0001-5wTQH4
-X-Barracuda-Envelope-From: rclancy@ltsnet.net
-X-Barracuda-Effective-Source-IP: UNKNOWN[65.127.220.148]
-X-Barracuda-Apparent-Source-IP: 65.127.220.148
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [ERROR] [RPC] TDC Failed to reset.
-X-ASG-Orig-Subj: [ERROR] [RPC] TDC Failed to reset.
-Thread-Index: AQHWiuEpivxXYXHZuEGTrlk1wh9QxA==
-Date: Mon, 14 Sep 2020 21:59:08 +0000
-Message-ID: <010001748ea0faca-5195f8e1-5fdc-4d29-8473-ec0d9d392eef-000000@email.amazonses.com>
+	id 1kI9rx-00024n-RD; Tue, 15 Sep 2020 08:15:33 -0400
+Received: from mail-eopbgr1380115.outbound.protection.outlook.com
+ ([40.107.138.115]:36706 helo=IND01-MA1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <koyel.das@vehere.com>)
+ id 1kI9rt-0001zt-Qd
+ for usrp-users@lists.ettus.com; Tue, 15 Sep 2020 08:15:30 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MaCbEOH8ihvPLEJxJ56JAqRJihWHryv1TOiqlS+tJN7t9v642OM+Qb+dpIgbZ+bQVMwGbtKHFST1N7LBc+uGXBbWSug01LdAroRyPYPBQTVnTRvcOI1WhAwLCxlODmXYRdEeurGJaCijQFT8OPk8eAcCxsDiu3c6ygcf2HkTTg42sf69jTV79LY74igOtY9mgf0ge/AKHYJ/2TkTrVakCBKp3Rk5qmIX082Zxv6xVBLQ7XYtptuwRxMJF+Vd3DlwB5WAeVlxycDv3/kLhmrMknWKck5COabB7loK1y2BKzgcpXIW5+TOvLSm0XE0kQmgj8/aI76u3hfDYG+RcnnwIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HNKVJVE2dxPTHaGj5oBW7l9WIeoXMyS7e8oNnKP2OPc=;
+ b=SHJ/HY7wQ1H1mM1LYx3/Bia/RWOJ5qYS/FjlEfR7Gv5hitSgurtMgKOFlSleubvSkFRhnL7zPbQbKQBfx7MGasEOuZVzhJa8sRzfPw6CKrchcpvuddhQ1Uv8HaHqcKuRZ7tKtkJiN5NtQ5FLDkFp0xV38qjDEPOT1K4vQWNON0WjaqAwe7k7tLryc76ZVaVRM2g3U6yVeWpV7vWFsG/Jx3J14j0iCT+c/pH+bvhQLhVbgnLpP030bS0hSoNdv3xu+/PGnEv3iXW+dJ9cZEIwEUKfINHduDNMRgv0z1WN8xmCtyWdjMUqopTnL5kRPlWdTR5CK6POOriutYWivcj9og==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vehere.com; dmarc=pass action=none header.from=vehere.com;
+ dkim=pass header.d=vehere.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=vehereinteractive.onmicrosoft.com;
+ s=selector2-vehereinteractive-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HNKVJVE2dxPTHaGj5oBW7l9WIeoXMyS7e8oNnKP2OPc=;
+ b=CY1W2MpM0MKrAdiwCci+0xt6m7fkVcXjY449rkCbNa4nE8EpAVAgvqMrwby9V1YL0xANuXA2VZPr8Q+WUAf1TPFB3KZjRTF6zXU8bpd7aMG0uAJr8N1s6P2oJ6n8kaj2g+cJ9gsLnRu1Hq55cNDQwxZ0Oa5859tgKmXXvzcpzKo=
+Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:3e::22)
+ by MA1PR01MB2665.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:40::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Tue, 15 Sep
+ 2020 12:14:41 +0000
+Received: from MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::5d37:8959:e500:82fe]) by MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::5d37:8959:e500:82fe%5]) with mapi id 15.20.3370.019; Tue, 15 Sep 2020
+ 12:14:41 +0000
+To: "'USRP-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+Thread-Topic: 100 MSps in usrp 2955
+Thread-Index: AQHWi1mRs8aHg56CiEyOlH2FB7lCwg==
+Date: Tue, 15 Sep 2020 12:14:41 +0000
+Message-ID: <MA1PR01MB2588860E8055E12D760E47D590200@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.40.195.107]
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none; lists.ettus.com; dmarc=none action=none header.from=vehere.com; 
+x-originating-ip: [42.110.138.43]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 00b0729b-e510-4888-2bb0-08d85970ec81
+x-ms-traffictypediagnostic: MA1PR01MB2665:
+x-microsoft-antispam-prvs: <MA1PR01MB2665FCD737B12A9C0960FF6090200@MA1PR01MB2665.INDPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:2331;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: X32ti2zyfiii4DXP0GYF50BiK7Wtm29U7RdczhvI/LCPe9nKuM0jHvIe+kJ6znnRQ27tDxe+lyZKqFtkzzuehJPfsAivO85a7bHrSoNVf72A0yfydw7klsaUCxZu86xrpqS6UTPw/tVY9h/O12F5SIgj+bDXmNJ25rMJ2mNZku7wzRtl1inUCeqkLoOOguG/IQ3bml9VAjUpmu5QoCCq8dOr+ErV8kNksiG+rDDQoUJN+EpvCL0jbOSuILvXt0V+BcE2pTjQ/BG/l+vN+uaVmp8iEdhnIKdsheH27uHFXVnP9S2w8avae3CEuGPF+AkVfhL9KEalWSyV+VjgDnk0LDZ036Y+VUr3ufHy9nwzNmD9YApswFArigPDLc740Yo35ppasc3/AZ3fqkgyBVolEI439QSqRotB/dUVgiqdaPtit3+7C/kGmVY84USqLeq8
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(346002)(39840400004)(396003)(366004)(376002)(136003)(64756008)(66556008)(66946007)(558084003)(9686003)(71200400001)(5660300002)(52536014)(186003)(86362001)(66446008)(55016002)(26005)(316002)(7696005)(6506007)(66476007)(8676002)(478600001)(45080400002)(2906002)(8936002)(76116006)(33656002)(166002)(6916009)(491001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: 5WCSdun0ArrMIIfBy74eLU5jrMV8UtNjE0dsScuR7lSQZKM4pc1CcayMPuO0bMp874lIdK3XHwHZsACGJnLvLA48NyBGDY9oS/Cv4VoFzB68xaJre77KJfxnApWxIDiZ/cqrXtpBP0LfZyy23p+tt7s1PgqPytifnSNml3m3WWKpQqui3PymB9JjiEEu6DQJy6Y1TGFM1FeIfmy9rOK5yaMWik9uy1uG8RbhUMHNtKsJa/OP3zzNMViNKQc+SjQNMHR2fy5UNAhpeut1YQkEOmOhnnkxqladrBtRyq+oYn48kGa+avqrH5Wq3H8ZVhj02gHYC+sq6fvKlbbIP3dZErepM7ZFm0yGrvjKMQiKezr3buaXHwFGID+D2BAAV1ROaiOp851rs30iyXaQada/TcDqvarkGJBZSHkLdtwAMg8zTEXAfBTNSy0BVunskyq5oc9/oHgA86lXP+QZo/rLVTFlCOcA7mLlPKYqbV5NuPmyHb/ZJwwbnuV5PVvTHUPqBdzW3673wMwzlTIsnrUtpkkQ4EEUdTDjIhZn//AO3zhTMb+VLxCiHfoPsoX7oz+iZhjwnjv0meS1V8bqxdiaCNChxsrWMtKHW+FOvA9zBpYWZZTRpj2rlgLt8/wyQ+f2g/u2iyI+pMkQ1i04iEn+5w==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-Barracuda-Connect: UNKNOWN[65.127.220.148]
-X-Barracuda-Start-Time: 1600120748
-X-Barracuda-Encrypted: ECDHE-RSA-AES128-GCM-SHA256
-X-Barracuda-URL: https://mx0.ltsnet.net:443/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at ltsnet.net
-X-Barracuda-Scan-Msg-Size: 9220
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.50
-X-Barracuda-Spam-Status: No, SCORE=0.50 using global scores of TAG_LEVEL=1000.0
- QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=BSF_RULE7568M, HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.84632
- Rule breakdown below
- pts rule name              description
- ---- ---------------------- --------------------------------------------------
- 0.00 HTML_MESSAGE           BODY: HTML included in message
- 0.50 BSF_RULE7568M          Custom Rule 7568M
-X-SES-Outgoing: 2020.09.14-54.240.8.31
-Feedback-ID: 1.us-east-1.V/CRDAuSMjsGd/XgcRknIHwtEgjJofZ/T2DY67iFlVQ=:AmazonSES
-Subject: [USRP-users] [ERROR] [RPC] TDC Failed to reset.
+X-OriginatorOrg: vehere.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00b0729b-e510-4888-2bb0-08d85970ec81
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2020 12:14:41.1293 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: cbbeaea2-058a-4ae2-88ed-73be16b8230b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EaRmTGrPSzyhgLStJayYw5tChv1qNM6xobNs6l88ts3Tg5YhQqoezgmb/RkuzUUnNtgkg9nKzlz64dmsTvfoXQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR01MB2665
+Subject: [USRP-users] 100 MSps in usrp 2955
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -74,9 +88,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Robert Clancy via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Robert Clancy <rclancy@ltsnet.net>
-Content-Type: multipart/mixed; boundary="===============7824606629285478452=="
+From: "Koyel Das \(Vehere\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Koyel Das \(Vehere\)" <koyel.das@vehere.com>
+Content-Type: multipart/mixed; boundary="===============0219784505935634057=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -90,270 +104,61 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7824606629285478452==
+--===============0219784505935634057==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_3cc5eda9897e49a2b0d81220a39daabeltsnetnet_"
+	boundary="_000_MA1PR01MB2588860E8055E12D760E47D590200MA1PR01MB2588INDP_"
 
---_000_3cc5eda9897e49a2b0d81220a39daabeltsnetnet_
-Content-Type: text/plain; charset="iso-8859-1"
+--_000_MA1PR01MB2588860E8055E12D760E47D590200MA1PR01MB2588INDP_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I'm trying to get an N321 working with a WhiteRabbit switch.
+Hi,
 
+When we set sample rate at 100 MSps in usrp 2955, is the actual sample rate=
+ 100 MSps only or 128 MSps?
 
-First, if I don't try to set the timing to sfp0, everything is fine:
+Regards,
+Koyel
 
+Get Outlook for iOS<https://aka.ms/o0ukef>
 
-myprompt:./rx_samples_to_file --args "addr=3D192.168.10.2,clock_source=3Din=
-ternal,master_clock_rate=3D250e06" --file blob.dat --type short --duration =
-1 --freq 75010000 --ant "TX/RX" --channel 0
-
-Creating the usrp device with: addr=3D192.168.10.2,clock_source=3Dinternal,=
-master_clock_rate=3D250e06...
-[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_3.15.0.0-54-gb=
-c585b43
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
-92.168.10.2,type=3Dn3xx,product=3Dn320,serial=3D31B36CF,claimed=3DFalse,add=
-r=3D192.168.10.2,clock_source=3Dinternal,master_clock_rate=3D250e06
-[INFO] [MPM.PeriphManager] init() called with device args `clock_source=3Di=
-nternal,master_clock_rate=3D250e06,product=3Dn320,mgmt_addr=3D192.168.10.2,=
-time_source=3Dinternal'.
-[INFO] [MPM.Rhodium-0] init() called with args `clock_source=3Dinternal,mas=
-ter_clock_rate=3D250e06,product=3Dn320,mgmt_addr=3D192.168.10.2,time_source=
-=3Dinternal'
-[INFO] [MPM.Rhodium-1] init() called with args `clock_source=3Dinternal,mas=
-ter_clock_rate=3D250e06,product=3Dn320,mgmt_addr=3D192.168.10.2,time_source=
-=3Dinternal'
-[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000004)
-[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000320)
-[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000320)
-[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000001)
-[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000001)
-[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)
-[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)
-[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)
-[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)
-Using Device: Single USRP:
-  Device: N300-Series Device
-  Mboard 0: ni-n3xx-31B36CF
-  RX Channel: 0
-    RX DSP: 0
-    RX Dboard: A
-    RX Subdev: Rhodium
-  RX Channel: 1
-    RX DSP: 0
-    RX Dboard: B
-    RX Subdev: Rhodium
-  TX Channel: 0
-    TX DSP: 0
-    TX Dboard: A
-    TX Subdev: Rhodium
-  TX Channel: 1
-    TX DSP: 0
-    TX Dboard: B
-    TX Subdev: Rhodium
-
-Setting RX Rate: 1.000000 Msps...
-Actual RX Rate: 1.000000 Msps...
-
-Setting RX Freq: 75.010000 MHz...
-Setting RX LO Offset: 0.000000 MHz...
-Actual RX Freq: 75.010000 MHz...
-
-Waiting for "lo_locked": ++++++++++ locked.
-
-Press Ctrl + C to stop streaming...
-
-Done!
-
-However if I include the required argument to set the timing source to SFP0=
-, then I get a TDC error:
-
-myprompt:~/WR_sandbox/uhd/Debug_Build/examples$ ./rx_samples_to_file --args=
- "addr=3D192.168.10.2,clock_source=3Dinternal,time_source=3Dsfp0,master_clo=
-ck_rate=3D250e06" --file blob.dat --type short --duration 1 --freq 75010000=
- --ant "TX/RX" --channel 0
-
-Creating the usrp device with: addr=3D192.168.10.2,clock_source=3Dinternal,=
-time_source=3Dsfp0,master_clock_rate=3D250e06...
-[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_3.15.0.0-54-gb=
-c585b43
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
-92.168.10.2,type=3Dn3xx,product=3Dn320,serial=3D31B36CF,claimed=3DFalse,add=
-r=3D192.168.10.2,clock_source=3Dinternal,time_source=3Dsfp0,master_clock_ra=
-te=3D250e06
-[INFO] [MPM.Rhodium-0] Re-initializing daughter board. This may take some t=
-ime.
-[INFO] [MPM.Rhodium-0] init() called with args `clock_source=3Dinternal,mgm=
-t_addr=3D192.168.10.2,skip_rfic=3DNone,master_clock_rate=3D250000000.0,ref_=
-clk_freq=3D25000000.0,time_source=3Dsfp0,product=3Dn320'
-[ERROR] [RPC] TDC Failed to reset.
-[INFO] [MPM.Rhodium-0.init.LMK04828] LMK initialized and locked!
-[ERROR] [MPM.Sync-0] TDC Failed to Reset! Check your clocks! Status: 0x0
-[ERROR] [MPM.RPCServer] init() failed with error: TDC Failed to reset.
-Error: RuntimeError: Error during RPC call to `init'. Error message: TDC Fa=
-iled to reset.
-
-
-I've loaded the WX firmware and am using UHD-3.15-LTS.
-
-Any ideas what is going on?
-
-Otto
-
-
---_000_3cc5eda9897e49a2b0d81220a39daabeltsnetnet_
-Content-Type: text/html; charset="iso-8859-1"
+--_000_MA1PR01MB2588860E8055E12D760E47D590200MA1PR01MB2588INDP_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
 </head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p>I'm trying to get an N321 working with a WhiteRabbit switch. <br>
-</p>
-<p><br>
-</p>
-<p>First, if I don't try to set the timing to sfp0, everything is fine:</p>
-<p><br>
-</p>
-<p></p>
-<div><i>myprompt:./rx_samples_to_file --args &quot;addr=3D192.168.10.2,cloc=
-k_source=3Dinternal,master_clock_rate=3D250e06&quot; --file blob.dat --type=
- short --duration 1 --freq 75010000 --ant &quot;TX/RX&quot; --channel 0
-<br>
-<br>
-Creating the usrp device with: addr=3D192.168.10.2,clock_source=3Dinternal,=
-master_clock_rate=3D250e06...<br>
-[INFO] [UHD] linux; GNU C&#43;&#43; version 7.5.0; Boost_106501; UHD_3.15.0=
-.0-54-gbc585b43<br>
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
-92.168.10.2,type=3Dn3xx,product=3Dn320,serial=3D31B36CF,claimed=3DFalse,add=
-r=3D192.168.10.2,clock_source=3Dinternal,master_clock_rate=3D250e06<br>
-[INFO] [MPM.PeriphManager] init() called with device args `clock_source=3Di=
-nternal,master_clock_rate=3D250e06,product=3Dn320,mgmt_addr=3D192.168.10.2,=
-time_source=3Dinternal'.<br>
-[INFO] [MPM.Rhodium-0] init() called with args `clock_source=3Dinternal,mas=
-ter_clock_rate=3D250e06,product=3Dn320,mgmt_addr=3D192.168.10.2,time_source=
-=3Dinternal'<br>
-[INFO] [MPM.Rhodium-1] init() called with args `clock_source=3Dinternal,mas=
-ter_clock_rate=3D250e06,product=3Dn320,mgmt_addr=3D192.168.10.2,time_source=
-=3Dinternal'<br>
-[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000004)=
-<br>
-[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000000320)<=
-br>
-[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000000320)<=
-br>
-[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000001)<br=
->
-[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000001)<br=
->
-[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)<br=
->
-[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)<br=
->
-[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)<b=
-r>
-[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)<b=
-r>
-Using Device: Single USRP:<br>
-&nbsp; Device: N300-Series Device<br>
-&nbsp; Mboard 0: ni-n3xx-31B36CF<br>
-&nbsp; RX Channel: 0<br>
-&nbsp;&nbsp;&nbsp; RX DSP: 0<br>
-&nbsp;&nbsp;&nbsp; RX Dboard: A<br>
-&nbsp;&nbsp;&nbsp; RX Subdev: Rhodium<br>
-&nbsp; RX Channel: 1<br>
-&nbsp;&nbsp;&nbsp; RX DSP: 0<br>
-&nbsp;&nbsp;&nbsp; RX Dboard: B<br>
-&nbsp;&nbsp;&nbsp; RX Subdev: Rhodium<br>
-&nbsp; TX Channel: 0<br>
-&nbsp;&nbsp;&nbsp; TX DSP: 0<br>
-&nbsp;&nbsp;&nbsp; TX Dboard: A<br>
-&nbsp;&nbsp;&nbsp; TX Subdev: Rhodium<br>
-&nbsp; TX Channel: 1<br>
-&nbsp;&nbsp;&nbsp; TX DSP: 0<br>
-&nbsp;&nbsp;&nbsp; TX Dboard: B<br>
-&nbsp;&nbsp;&nbsp; TX Subdev: Rhodium<br>
-<br>
-Setting RX Rate: 1.000000 Msps...<br>
-Actual RX Rate: 1.000000 Msps...<br>
-<br>
-Setting RX Freq: 75.010000 MHz...<br>
-Setting RX LO Offset: 0.000000 MHz...<br>
-Actual RX Freq: 75.010000 MHz...<br>
-<br>
-Waiting for &quot;lo_locked&quot;: &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;=
-&#43;&#43; locked.<br>
-<br>
-Press Ctrl &#43; C to stop streaming...<br>
-<br>
-Done!<br>
-</i></div>
-<div><br>
-</div>
-<div>However if I include the required argument to set the timing source to=
- SFP0, then I get a TDC error:</div>
-<div><br>
-</div>
+<body>
+<div dir=3D"ltr">
+<div></div>
 <div>
-<div><i>myprompt:~/WR_sandbox/uhd/Debug_Build/examples$ ./rx_samples_to_fil=
-e --args &quot;addr=3D192.168.10.2,clock_source=3Dinternal,time_source=3Dsf=
-p0,master_clock_rate=3D250e06&quot; --file blob.dat --type short --duration=
- 1 --freq 75010000 --ant &quot;TX/RX&quot; --channel 0
-<br>
-<br>
-Creating the usrp device with: addr=3D192.168.10.2,clock_source=3Dinternal,=
-time_source=3Dsfp0,master_clock_rate=3D250e06...<br>
-[INFO] [UHD] linux; GNU C&#43;&#43; version 7.5.0; Boost_106501; UHD_3.15.0=
-.0-54-gbc585b43<br>
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
-92.168.10.2,type=3Dn3xx,product=3Dn320,serial=3D31B36CF,claimed=3DFalse,add=
-r=3D192.168.10.2,clock_source=3Dinternal,time_source=3Dsfp0,master_clock_ra=
-te=3D250e06<br>
-[INFO] [MPM.Rhodium-0] Re-initializing daughter board. This may take some t=
-ime.<br>
-[INFO] [MPM.Rhodium-0] init() called with args `clock_source=3Dinternal,mgm=
-t_addr=3D192.168.10.2,skip_rfic=3DNone,master_clock_rate=3D250000000.0,ref_=
-clk_freq=3D25000000.0,time_source=3Dsfp0,product=3Dn320'<br>
-[ERROR] [RPC] TDC Failed to reset.<br>
-[INFO] [MPM.Rhodium-0.init.LMK04828] LMK initialized and locked!<br>
-[ERROR] [MPM.Sync-0] TDC Failed to Reset! Check your clocks! Status: 0x0<br=
->
-[ERROR] [MPM.RPCServer] init() failed with error: TDC Failed to reset.<br>
-Error: RuntimeError: Error during RPC call to `init'. Error message: TDC Fa=
-iled to reset.<br>
-</i><br>
+<div>Hi,</div>
+<div dir=3D"ltr"><br>
 </div>
-<br>
+<div dir=3D"ltr">When we set sample rate at 100 MSps in usrp 2955, is the a=
+ctual sample rate 100 MSps only or 128 MSps?</div>
+<div dir=3D"ltr"><br>
 </div>
-<div><i></i>I've loaded the WX firmware and am using UHD-3.15-LTS. <br>
-</div>
+<div dir=3D"ltr">Regards,</div>
+<div dir=3D"ltr">Koyel&nbsp;</div>
 <div><br>
 </div>
-<div>Any ideas what is going on?</div>
-<div><br>
+<div class=3D"ms-outlook-ios-signature" id=3D"ms-outlook-mobile-signature">=
+Get <a href=3D"https://aka.ms/o0ukef">
+Outlook for iOS</a></div>
 </div>
-<div>Otto<br>
-</div>
-<br>
-<p></p>
 </div>
 </body>
 </html>
 
---_000_3cc5eda9897e49a2b0d81220a39daabeltsnetnet_--
+--_000_MA1PR01MB2588860E8055E12D760E47D590200MA1PR01MB2588INDP_--
 
 
---===============7824606629285478452==
+--===============0219784505935634057==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -364,5 +169,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7824606629285478452==--
+--===============0219784505935634057==--
 
