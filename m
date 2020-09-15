@@ -2,62 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0115F26A650
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Sep 2020 15:31:50 +0200 (CEST)
-Received: from [::1] (port=38452 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B40E026A656
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Sep 2020 15:35:12 +0200 (CEST)
+Received: from [::1] (port=38512 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kIB3j-0006OV-I2; Tue, 15 Sep 2020 09:31:47 -0400
-Received: from mail-ed1-f43.google.com ([209.85.208.43]:42377)
+	id 1kIB71-0006qw-8y; Tue, 15 Sep 2020 09:35:11 -0400
+Received: from mail-ed1-f52.google.com ([209.85.208.52]:46400)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <martin.braun@ettus.com>)
- id 1kIB3f-0006CA-LF
- for usrp-users@lists.ettus.com; Tue, 15 Sep 2020 09:31:43 -0400
-Received: by mail-ed1-f43.google.com with SMTP id j2so3015122eds.9
- for <usrp-users@lists.ettus.com>; Tue, 15 Sep 2020 06:31:23 -0700 (PDT)
+ id 1kIB6x-0006je-ID
+ for usrp-users@lists.ettus.com; Tue, 15 Sep 2020 09:35:07 -0400
+Received: by mail-ed1-f52.google.com with SMTP id a12so3002699eds.13
+ for <usrp-users@lists.ettus.com>; Tue, 15 Sep 2020 06:34:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
+ h=subject:from:to:references:message-id:date:user-agent:mime-version
  :in-reply-to:content-language:content-transfer-encoding;
- bh=A59XcxKIq9bMHPcyWOlBOQAbBlg84DbiKfuXoqGliiw=;
- b=hAyLmOnsh1UqBfC8o35zKPCH+zCV3oQmvaE0o783Vn2qDl2dV37Pn/vtlPKuAIyZC/
- ok+E0yy07YR8QL7A6nkOTW8O1DtgmLPQA+uH6RYc1Dtn/n3eB9Yz0ORWwY7PlHbcrA2U
- /D3PMnOf4u/Fdipx97W4NIZmIWAuGvQTgb/c+lRWkvca0Mpry+YNWr/gICPIKBV/S3o0
- 090M6aLLiQNzhdMwLq08M0iFLpk1Q2jCRbmcBvCUFnhimZdBTwcLC79mlFnxcgBCSoRC
- xK/G3ocIzDkMU84Mrn5X+rxpfoJooeavr5WT/c1XMSeW9A+RxLWIUmDt96aa+uX87nzW
- Scjg==
+ bh=a6aAiLPpnxMm+XdmuSjnosRd8VWe/PM+9eS3bHucYBg=;
+ b=bFC0sG7P7RM/t0khBfIwKRfEENjYXYTqv/yOE396WLLd1b026vmNI7uU7JSMWmE28C
+ /Owk33exCqJAreSu4dcgCFmqnVT9NhxyXypsX09J02B4Jub5muxHvzE7bc3/jkxm9CNV
+ bqTloJG3S6FU8wDJ3LQN4n3O+ZXnIKOP2f4d8eqADWwCnLAe4OBF+8uiOG7kuG8D7ce7
+ Il1Rtrp+wA8H1srycc+ce7dLLGZQQwrRv8a8yuOiM1FYmVRsGUNiETOfd78st+mllf7A
+ 1BkwolEcQ836VviSefdcNT/DgjqgOyguZAudyAxhbqs9uYF3d/Qws7uOpQRoyj6n5mN7
+ q/AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
+ h=x-gm-message-state:subject:from:to:references:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=A59XcxKIq9bMHPcyWOlBOQAbBlg84DbiKfuXoqGliiw=;
- b=RQ8NYNcw6f7MZjY8Nge8HJktXkkQcYGLOs2hkdd8SCMAlXuiJIjopvNop+nRs3nFGG
- LCEEnejuf+8qhVGQ/MrEZ5e158CZ8zh2JoRo2b2TKeIv7t14n8TaKqEpXxQNGZ+ak3SO
- fd7mHepDIyfW2tzc+9sTHpTHX0PFus5cxF0X8y/vUAjoo6dijb1Tp0DJpUEp8uWekJ7H
- Prw2hUyIt4nKczkD8hUNxhzjju+svYc6VZpe9QVRNif6exs3VT5SsLuCDXyn8tvtSPOW
- Urjc+QeAgm/CIwdBbM58obVyV7dYwcWfy2j3b2Bi4rJ6j83dxIrj0+oeFcPRhiXJiWVK
- 3zBw==
-X-Gm-Message-State: AOAM530H/ILFnRQpoHl5QlQdtw+2iKXISYVsziJOfQU7fiYb2A8FHL97
- sxFKl5UbLpyT85LxqRQAVzMsXAP+q6cjsnen
-X-Google-Smtp-Source: ABdhPJxxFIcU4GaNuQvWGBnPzGdMpNFSfrP6c37L1BMCjH+X2NcnzwT+Xb9+zyY2o+PfBUjIiMFIUA==
-X-Received: by 2002:aa7:d059:: with SMTP id n25mr22331476edo.270.1600176662445; 
- Tue, 15 Sep 2020 06:31:02 -0700 (PDT)
+ bh=a6aAiLPpnxMm+XdmuSjnosRd8VWe/PM+9eS3bHucYBg=;
+ b=nfMDnXQnGZTpAsl9AUltHIzto6ohTxP4YK1AI60m3kCQYk9H+DZrWyb7sqRSbuULY3
+ Ha+fDc60cBQ6BdwRaAy7kHzy1xh9dhTo4h7SnO3O/Q4IJXICSpRI2CxgOWUdY1UVcntL
+ Cgo/Kwzo5WRhmW2StdV6VBd3gf0UbAHWwwA4NT5+uhG16LfyESACrMXD5onHp4Aq9lGX
+ H/wkEt8z10+ZHBy6vAFX8lxpO+VTf+E958O8hIgf+3bh72FchrzrQw0ORVCUZuKPrZzt
+ NNpUOr6Yxsatt7kaYXek+eUZFmak7XXfAVIKwpR6321Moj8A7Fl581b/TRXiNsz/dfK+
+ /yDA==
+X-Gm-Message-State: AOAM530x86WAbCCpaacEaYe4xZ4MAvyXLyvp/M55Egst3QIcTARqUEHh
+ nqCWmctHlegFJLmazr+5DH4JpdhNoecAiC65
+X-Google-Smtp-Source: ABdhPJwJamnVXQMY1vJoBAgj6EsgvkK0oJ3KTGRSdNIHwt+SiCm+ZxfHanCQZy+v6/9TMJfpvDb0Sw==
+X-Received: by 2002:a05:6402:202a:: with SMTP id
+ ay10mr12738045edb.36.1600176866254; 
+ Tue, 15 Sep 2020 06:34:26 -0700 (PDT)
 Received: from ?IPv6:2a02:8071:2c80:c4f0::e6a? ([2a02:8071:2c80:c4f0::e6a])
- by smtp.gmail.com with ESMTPSA id s30sm12275259edc.8.2020.09.15.06.31.01
+ by smtp.gmail.com with ESMTPSA id l15sm10091767ejk.50.2020.09.15.06.34.25
  for <usrp-users@lists.ettus.com>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 15 Sep 2020 06:31:01 -0700 (PDT)
+ Tue, 15 Sep 2020 06:34:25 -0700 (PDT)
 To: usrp-users@lists.ettus.com
-References: <CAE_Rk55qmomHA2Akf2M0506SLj=jUB61Q-cK8zBsMqYOAaBEOQ@mail.gmail.com>
-Message-ID: <6a4f82e6-1e0a-227f-9137-87182aa67c47@ettus.com>
-Date: Tue, 15 Sep 2020 15:31:01 +0200
+References: <MA1PR01MB2588860E8055E12D760E47D590200@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+ <53af74de-6008-a04c-0931-73eee3947808@ettus.com>
+Message-ID: <0138dcdb-ab04-b8f9-751c-67a41f072e2a@ettus.com>
+Date: Tue, 15 Sep 2020 15:34:25 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.11.0
 MIME-Version: 1.0
-In-Reply-To: <CAE_Rk55qmomHA2Akf2M0506SLj=jUB61Q-cK8zBsMqYOAaBEOQ@mail.gmail.com>
+In-Reply-To: <53af74de-6008-a04c-0931-73eee3947808@ettus.com>
 Content-Language: en-US
-Subject: Re: [USRP-users] crossbar architecture
+Subject: Re: [USRP-users] 100 MSps in usrp 2955
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -71,8 +73,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Martin Braun via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Martin Braun <martin.braun@ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,20 +88,23 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gOS8xNC8yMCAxMjo1NiBQTSwgRGFuaWVsIE96ZXIgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4g
-SGkgZXZlcm9uZcKgLAo+IEltIHdvcmtpbmfCoG9uIHVzcnAgeDMxMCAuCj4gSSBoYXZlwqB0cmll
-ZMKgdG8gaWZpbmQgd2hhdCBpcyB0aGUgYXJjaGl0ZWN0dXJlIG9mIHRoZSBheGkgY3Jvc3NiYXIg
-YW5kIGkKPiBkaWRudCBmb3VuZCBhbnkgdGhpbmcgaW4gdGhlIGF1dG8gZ2VuZXJhdGVkwqB2aXZh
-ZG8gcHJvamVjdCAuCj4gSXMgaXTCoCBTaGFyZWQgV3JpdGUgYW5kIFJlYWQgQWRkcmVzcyBBcmJp
-dHJhdGlvbj8KPiBheGlfY3Jvc3NiYXJfc2hhcmVkLnBuZwo+IE9yIGlzIGl0IGZ1bGx5IHBhcmFs
-bGVsPwoKVGhlcmUncyBubyBzdWNoIHRoaW5nIGFzIHJlYWQvd3JpdGUgYWRkcmVzcyBhcmJpdHJh
-dGlvbiwgc2luY2UgaXQncyBhCnBhY2tldC1pbiwgcGFja2V0LW91dCBjcm9zc2Jhci4gTW9yZSBs
-aWtlIGEgbmV0d29yayBzd2l0Y2guIEl0J3MgZnVsbHkKcGFyYWxsZWw6IE1hc3RlciAwIGNhbiB3
-cml0ZSB0byBTbGF2ZSAwIGF0IGZ1bGwgYmFuZHdpZHRoIHdoaWxlIE1hc3RlciAxCndyaXRlcyB0
-byBTbGF2ZSAxIGF0IGZ1bGwgYmFuZHdpZHRoLiBBbHRob3VnaCBtYXN0ZXIvc2xhdmUgaXMgYWxz
-byBhIGJpdApjb25mdXNpbmcgcG90ZW50aWFsbHk7IGxldCdzIHNheSBjbGllbnQgMSBjYW4gdHJh
-bnNtaXQgdG8gY2xpZW50IDIgYXQKZnVsbCBiYW5kd2lkdGgsIGFuZCBjbGllbnQgMyBjYW4gdHJh
-bnNtaXQgdG8gY2xpZW50IDQgYXQgZnVsbCBiYW5kd2lkdGgKdGhlIHNhbWUgdGltZS4KCi0tTQoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2Vy
-cyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0
-dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+On 9/15/20 3:19 PM, Martin Braun wrote:
+> On 9/15/20 2:14 PM, Koyel Das (Vehere) via USRP-users wrote:
+>> Hi,
+>>
+>> When we set sample rate at 100 MSps in usrp 2955, is the actual sample
+>> rate 100 MSps only or 128 MSps?
+> 
+> This USRP can do 100 Msps, 200 Msps, or 184.32 MHz. It can't do 122.88
+> or 128 Msps.
+
+...minor correction: The 2955 (with the TwinRX boards) can do 100 MHz
+and integer fractions thereof. Not 184.32 or 200 Msps.
+
+--M
+
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
