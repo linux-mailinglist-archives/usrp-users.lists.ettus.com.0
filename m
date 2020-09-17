@@ -2,49 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11C7326D0ED
-	for <lists+usrp-users@lfdr.de>; Thu, 17 Sep 2020 03:59:37 +0200 (CEST)
-Received: from [::1] (port=56143 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A83EB26D3A9
+	for <lists+usrp-users@lfdr.de>; Thu, 17 Sep 2020 08:29:45 +0200 (CEST)
+Received: from [::1] (port=58184 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kIjCv-0001V8-NE; Wed, 16 Sep 2020 21:59:33 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:45090)
+	id 1kInQK-0003Fs-J3; Thu, 17 Sep 2020 02:29:40 -0400
+Received: from mail-ej1-f46.google.com ([209.85.218.46]:46953)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kIjCr-0001Pm-I1
- for usrp-users@lists.ettus.com; Wed, 16 Sep 2020 21:59:29 -0400
-Received: by mail-oi1-f172.google.com with SMTP id z26so598884oih.12
- for <usrp-users@lists.ettus.com>; Wed, 16 Sep 2020 18:59:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=zzD19RFenEkE78WWxe/pRiH84wn72YW7mmKrH74eY60=;
- b=E8UeApWGqCvpvWexpzD5Kw37JAK1MBu+auJsYDpsWZue9VYY4FwcqHk8X0CFDpls2r
- xRPT9NxjHutfzgnnQ+ZSlo1DMx0Qs6q1ccWQUKd6kVxGLXLbtfPndlHJjuyEwaAa/fWY
- ZvohKBhKBVUajSPshUUNmLXXH3JMW3AORg4bpOk5OW34AgN9/Mky+8IdcO9FGHKCng61
- JfH6wLSc35wFxYnemKT8RvEmKMYGrrF6b6PKuKC29WeR4Li22SBaeRuOOhO+SFKKAAdc
- Bxx44FB3vU0Lt5/FfZgtVxX7ScazNCSZDPW8L0EQLa3wkzsJXIgRTTBNSmOusf4lNo11
- ptpQ==
+ (Exim 4.93) (envelope-from <martin.braun@ettus.com>)
+ id 1kInQG-0003BO-Dm
+ for usrp-users@lists.ettus.com; Thu, 17 Sep 2020 02:29:36 -0400
+Received: by mail-ej1-f46.google.com with SMTP id z23so1526130ejr.13
+ for <usrp-users@lists.ettus.com>; Wed, 16 Sep 2020 23:29:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-language:content-transfer-encoding;
+ bh=ArLFpcr27018F5BAWkPhXOekcyhGSNM9Q7ljkzDY/b0=;
+ b=13QiunvA9Dj1AiwBJ0G1onpCqxjUO8XXixuoFDmOON01xIrW5kwf/mCONTp8hlW4xv
+ wCZiwN7kvA4h9hapCY4JCYcwgJAhgD1PSRXu1IFjfLXcF80tv4AulLhT4QQASgPdlfbP
+ suKu7Qs9wli++31JFjV3ShcCZNBfpRPhmWR/OBwJSiDQpa3SEkjoVR1cSjTRXev+XFiv
+ mqWqjFG5wt1YJI0ulI88U1XKqJYabbevRZXTLzbFtfnI5N0fMjZGOMyhzRVK/jJyCQ9H
+ wQJsnTirCiDY6wdRpohXyzg7V7Lwvcwld17KAy+h1EMV9OOS6jvFv/jy8LPaoHoTGn6K
+ 5M2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=zzD19RFenEkE78WWxe/pRiH84wn72YW7mmKrH74eY60=;
- b=hqr153uWm8l4iyhoQXvqOe3pyPVGh2fGCuI6GAQU27L+4kbhXk/GPm29su9JcSVa69
- 2Al2oZnx0ZLAB4ufBugGyj+JJOFl4n80foowVbsNUSsl0xLlPUDllfAWJ5XDke75rgaQ
- IsDgm1YsXEhZNqEsDiRkkiJqEMb53yz4lv8blT7CtgpbM/A5A6efwFyPXICcK2MoZhb1
- YHdmMnAteBo5gpkDykx3DLpIsZOGPa1uSBUK42OxQfjTysROM6jSQj6H6dlj/Uilut6g
- q+zIScNfKPpXs/9PVt4DFWSgm8ScIZ+EgFSufQaCCNRX9wh654JMJctS65pCyTNfqpZp
- A/Vw==
-X-Gm-Message-State: AOAM531kQPOc6xmLxISQKGhgsUzNldq4SjkKM8SCexSyyXh2DpRjj+BV
- T7ldjk77YWu9RhfbWK67yWCs9xJ28s86wOi9KPxRLOOfyok=
-X-Google-Smtp-Source: ABdhPJxf22wgO4oywj0bzKhxRgHNL3B/zg+d2DxlPuGinDQGd+Mq6lZS7F1jocyM1+m6Q74IfVYfAAOt5ZpBJZOWazc=
-X-Received: by 2002:aca:b454:: with SMTP id d81mr4844442oif.150.1600307928499; 
- Wed, 16 Sep 2020 18:58:48 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=ArLFpcr27018F5BAWkPhXOekcyhGSNM9Q7ljkzDY/b0=;
+ b=ek8zPC33OCdeKUXlysVW7CWEtUC3rvdlUn4WqzfgAjsMS7Kmzcp1kqPPs+CplH8stc
+ N/m1M0FuGAGPtKomE0uk+tp8mj9uTOyagg2ivEWcVhUtCWRsfdcEAKcUmZ92PeySkweX
+ SY8JDaffWGjmgq6nJAE8UkCR3MuCFhHnHctpGOwjttZIeMqG5wNgpw+TDEu06GCHZPcS
+ v1MxJsN3r7uaWoriBYNl1y42fXGbpomMiw6sknMsZfBV6pjwn0o5S788Iu5TrVWRttVw
+ WSEwSPAtMAvjX31FdUUcpqVmsv7vA85fRcNdXczZQIS7vBz25gf0id9IKkPPx/tGYJMi
+ W+vw==
+X-Gm-Message-State: AOAM531s+JHbrWwk4ImMbNOTltA38wDA0XFDk4HlvqlYWb8MEv2bY87b
+ bNqTYt97m8DAAi0YGr8ShtGDvy/6UNorVKGw
+X-Google-Smtp-Source: ABdhPJwv/xGnkefZ4GJlCB8LZYz4jTcL+AcdKFO2vL98w3YBtvPd14ufOWqvLRMGLqeOJkPm71fJfw==
+X-Received: by 2002:a17:906:454a:: with SMTP id
+ s10mr28821275ejq.138.1600324135059; 
+ Wed, 16 Sep 2020 23:28:55 -0700 (PDT)
+Received: from ?IPv6:2a02:8071:2c80:c4f0::e6a? ([2a02:8071:2c80:c4f0::e6a])
+ by smtp.gmail.com with ESMTPSA id k8sm14034252ejz.60.2020.09.16.23.28.54
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 16 Sep 2020 23:28:54 -0700 (PDT)
+To: usrp-users@lists.ettus.com
 References: <CAB__hTSOe=zRoKHchG3cPARPZEmnDCyw8DLYskQdspGJT9d2eQ@mail.gmail.com>
+Message-ID: <4a8e9614-633b-a942-877f-9c5f4b173300@ettus.com>
+Date: Thu, 17 Sep 2020 08:28:53 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
+MIME-Version: 1.0
 In-Reply-To: <CAB__hTSOe=zRoKHchG3cPARPZEmnDCyw8DLYskQdspGJT9d2eQ@mail.gmail.com>
-Date: Wed, 16 Sep 2020 21:58:37 -0400
-Message-ID: <CAB__hTQsBwV_rhUZNG=MA-4TsfT-bt_1GYuCfPdY70R_SrdQjg@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
+Content-Language: en-US
 Subject: Re: [USRP-users] UHD 4.0 / RFNoC 4.0 questions
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -57,9 +70,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============3859113895871551687=="
+From: Martin Braun via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Martin Braun <martin.braun@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,140 +87,104 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3859113895871551687==
-Content-Type: multipart/alternative; boundary="0000000000009c3ef105af78b993"
-
---0000000000009c3ef105af78b993
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-and one more question:
-
-   - How do we include 'rfnoc_chdr_utils.vh' in our out-of-tree rfnoc
-   module? Is there a way to specify an include path so that we don't have =
-to
-   hardcode it?
-
-
-On Wed, Sep 16, 2020 at 6:38 PM Rob Kossler <rkossler@nd.edu> wrote:
-
-> Hi,
-> After playing around with UHD 4.0 and migrating existing applications &
-> custom blocks to 4.0, I have several questions (see below).
-> Thanks.
-> Rob
->
->    - What is the status of the need for block controllers vs using
->    nocscript? The rfnoc spec shows example yml files with =E2=80=9Cregist=
-ers=E2=80=9D and
->    =E2=80=9Cproperties=E2=80=9D sections (and nocscript commands), but al=
-l blocks from Ettus
->    have these sections blank and all of the blocks have custom block
->    controllers. At NEWSDR, I asked a similar question to Jonathan Pendlum=
- /
->    Michael West and they indicated that in UHD 4.0, the need for custom b=
-lock
->    controllers should be relatively rare.
->    - Are there any plans to have rfnoc modtool part of UHD rather than
->    gr-ettus (in the near future)?  This makes way more sense.
->    - Is there a limitation on the number of stream endpoints (e.g., is it
->    similar to the limitation of 16 CEs in UHD 3.15)?
->    - What are the advantages/disadvantages of making a multi-port block
->    vs having multiple one-port blocks for blocks like ddc, window,
->    keep_one_in_n, etc, that are really just multiple instances of 1-in, 1=
--out
->    modules?  For example, are there resource or performance implications =
-if I
->    build two 1-port DDC blocks or one 2-port DDC block in my image?
->    - Why does it matter if the addresses for user registers are in steps
->    of 4 rather than 1 if we are just using the addresses as essentially
->    identifiers?  I understand that the address is intended as a byte addr=
-ess
->    of a 4-byte value, but it seems that the examples I have seen are just
->    using the address as an identifier.
->    - Will Ettus be providing replacements for blocks with deprecated
->    features such as settings bus registers? For example, in order to use
->    axi_rate_change, which uses settings registers, it=E2=80=99s easiest t=
-o use the
->    ctrlport_to_settings_bus module rather than using ctrlport directly. S=
-hould
->    we expect in  the future that axi_rate_change (and similar blocks) wil=
-l be
->    replaced by a future block?
->    - For timed commands in 3.15, only the Radio blocks were using the mb
->    time to trigger the desired action whereas other blocks such as DDC & =
-DUC
->    implemented timed commands by comparing to timestamps in the CHDR stre=
-am.
->    Is this still true for 4.0?  My question is not about =E2=80=9Cwhat is=
- possible=E2=80=9D
->    but rather =E2=80=9Cwhat is presently implemented=E2=80=9D in Ettus bl=
-ocks.
->
->
->
->
-
---0000000000009c3ef105af78b993
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">and one more question:<div><ul><li>How do we include &#39;=
-rfnoc_chdr_utils.vh&#39; in our out-of-tree rfnoc module? Is there a way to=
- specify an include path so that we don&#39;t have to hardcode it?</li></ul=
-></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Wed, Sep 16, 2020 at 6:38 PM Rob Kossler &lt;<a href=3D"mailto:rk=
-ossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D=
-"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
-04,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<div>After playing around=
- with UHD 4.0 and migrating existing applications &amp; custom blocks to 4.=
-0, I have several questions (see below).</div><div>Thanks.</div><div>Rob</d=
-iv><div><ul><li>What is the status of the need for block controllers vs usi=
-ng nocscript? The rfnoc spec shows example yml files with =E2=80=9Cregister=
-s=E2=80=9D and =E2=80=9Cproperties=E2=80=9D sections (and nocscript command=
-s), but all blocks from Ettus have these sections blank and all of the bloc=
-ks have custom block controllers. At NEWSDR, I asked a similar question to =
-Jonathan Pendlum / Michael West and they indicated that in UHD 4.0, the nee=
-d for custom block controllers should be relatively rare.</li><li>Are there=
- any plans to have rfnoc modtool part of UHD rather than gr-ettus (in the n=
-ear future)?=C2=A0 This makes way more sense.</li><li>Is there a limitation=
- on the number of stream endpoints (e.g., is it similar to the limitation o=
-f 16 CEs in UHD 3.15)?</li><li>What are the advantages/disadvantages of mak=
-ing a multi-port block vs having multiple one-port blocks for blocks like d=
-dc, window, keep_one_in_n, etc, that are really just multiple instances of =
-1-in, 1-out modules?=C2=A0 For example, are there resource or performance i=
-mplications if I build two 1-port DDC blocks or one 2-port DDC block in my =
-image?</li><li>Why does it matter if the addresses for user registers are i=
-n steps of 4 rather than 1 if we are just using the addresses as essentiall=
-y identifiers?=C2=A0 I understand that the address is intended as a byte ad=
-dress of a 4-byte value, but it seems that the examples I have seen are jus=
-t using the address as an identifier.</li><li>Will Ettus be providing repla=
-cements for blocks with deprecated features such as settings bus registers?=
- For example, in order to use axi_rate_change, which uses settings register=
-s, it=E2=80=99s easiest to use the ctrlport_to_settings_bus module rather t=
-han using ctrlport directly. Should we expect in =C2=A0the future that axi_=
-rate_change (and similar blocks) will be replaced by a future block?</li><l=
-i>For timed commands in 3.15, only the Radio blocks were using the mb time =
-to trigger the desired action whereas other blocks such as DDC &amp; DUC im=
-plemented timed commands by comparing to timestamps in the CHDR stream.=C2=
-=A0 Is this still true for 4.0?=C2=A0 My question is not about =E2=80=9Cwha=
-t is possible=E2=80=9D but rather =E2=80=9Cwhat is presently implemented=E2=
-=80=9D in Ettus blocks.</li></ul><div><br></div></div><div><br></div></div>
-</blockquote></div>
-
---0000000000009c3ef105af78b993--
-
-
---===============3859113895871551687==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3859113895871551687==--
-
+T24gOS8xNy8yMCAxMjozOCBBTSwgUm9iIEtvc3NsZXIgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4g
+SGksCj4gQWZ0ZXIgcGxheWluZyBhcm91bmQgd2l0aCBVSEQgNC4wIGFuZCBtaWdyYXRpbmcgZXhp
+c3RpbmcgYXBwbGljYXRpb25zICYKPiBjdXN0b20gYmxvY2tzIHRvIDQuMCwgSSBoYXZlIHNldmVy
+YWwgcXVlc3Rpb25zIChzZWUgYmVsb3cpLgo+IFRoYW5rcy4KPiBSb2IKCkhpIFJvYiwKCmdyZWF0
+IHF1ZXN0aW9ucy4gSSdsbCB0YWtlIGEgc3RhYjoKCj4gICAqIFdoYXQgaXMgdGhlIHN0YXR1cyBv
+ZiB0aGUgbmVlZCBmb3IgYmxvY2sgY29udHJvbGxlcnMgdnMgdXNpbmcKPiAgICAgbm9jc2NyaXB0
+PyBUaGUgcmZub2Mgc3BlYyBzaG93cyBleGFtcGxlIHltbCBmaWxlcyB3aXRoIOKAnHJlZ2lzdGVy
+c+KAnQo+ICAgICBhbmQg4oCccHJvcGVydGllc+KAnSBzZWN0aW9ucyAoYW5kIG5vY3NjcmlwdCBj
+b21tYW5kcyksIGJ1dCBhbGwgYmxvY2tzCj4gICAgIGZyb20gRXR0dXMgaGF2ZSB0aGVzZSBzZWN0
+aW9ucyBibGFuayBhbmQgYWxsIG9mIHRoZSBibG9ja3MgaGF2ZQo+ICAgICBjdXN0b20gYmxvY2sg
+Y29udHJvbGxlcnMuIEF0IE5FV1NEUiwgSSBhc2tlZCBhIHNpbWlsYXIgcXVlc3Rpb24gdG8KPiAg
+ICAgSm9uYXRoYW4gUGVuZGx1bSAvIE1pY2hhZWwgV2VzdCBhbmQgdGhleSBpbmRpY2F0ZWQgdGhh
+dCBpbiBVSEQgNC4wLAo+ICAgICB0aGUgbmVlZCBmb3IgY3VzdG9tIGJsb2NrIGNvbnRyb2xsZXJz
+IHNob3VsZCBiZSByZWxhdGl2ZWx5IHJhcmUuCgpBcyBvZiB5ZXQsIHdlIGRvbid0IGhhdmUgTm9j
+LVNjcmlwdCBzdXBwb3J0IG9yIGFueXRoaW5nIHNpbWlsYXIuIFRoYXQKbWVhbnMgeW91IGFjdHVh
+bGx5IGRvIG5lZWQgYSBDKysgYmxvY2sgY29udHJvbGxlciBmb3IgZXZlcnkgYmxvY2suCgpXZSBh
+cmUgYXdhcmUgdGhhdCB0aGlzIGlzbid0IGdyZWF0IGZvciBzaW1wbGUgdXNlIGNhc2VzLCBidXQg
+d2UncmUgYWxzbwpub3QgY29udmluY2VkIHRoYXQgTm9jLVNjcmlwdCBpdHNlbGYgaXMgdGhlIHdh
+eSB0byBnby4gRm9yIGEgc3RhcnQsIGl0CndhcyBnZXR0aW5nIGRpZmZpY3VsdCB0byBleHBhbmQg
+dGhlIGNhcGFiaWxpdGllcyBvZiBOb2MtU2NyaXB0LCBhbmQgaW4KdGhpcyB1c2UgY2FzZSwgYW4g
+ZXhpc3RpbmcgbGFuZ3VhZ2UgKGluc3RlYWQgb2YgYSBEU0wpIG1pZ2h0IGJlIG1vcmUKYXBwcm9w
+cmlhdGUuCgo+ICAgKiBBcmUgdGhlcmUgYW55IHBsYW5zIHRvIGhhdmUgcmZub2MgbW9kdG9vbCBw
+YXJ0IG9mIFVIRCByYXRoZXIgdGhhbgo+ICAgICBnci1ldHR1cyAoaW4gdGhlIG5lYXIgZnV0dXJl
+KT/CoCBUaGlzIG1ha2VzIHdheSBtb3JlIHNlbnNlLgoKWWVzLCBhdCB3ZSd2ZSBzdGFydGVkIGRv
+aW5nIHBhcnRzIG9mIHRoYXQuIFdoYXQgd2UgaGF2ZW4ndCBkZWNpZGVkIHlldAppcyBob3cgdG8g
+aW1wbGVtZW50IHRoZSBleGFjdCByZWxhdGlvbnNoaXAgYmV0d2VlbiBHTlUgUmFkaW8gY29kZSBh
+bmQKbm9uLUdOVSBSYWRpbyBjb2RlLiBTbyBsZXQncyBpZ25vcmUgR05VIFJhZGlvIGZvciBhIHNl
+Y29uZC4gVGhlIFVIRCBwYXJ0CnNoYWxsIGNvbWUgZnJvbSBVSEQsIGFzIHlvdSBzYXkuCgo+ICAg
+KiBJcyB0aGVyZSBhIGxpbWl0YXRpb24gb24gdGhlIG51bWJlciBvZiBzdHJlYW0gZW5kcG9pbnRz
+IChlLmcuLCBpcyBpdAo+ICAgICBzaW1pbGFyIHRvIHRoZSBsaW1pdGF0aW9uIG9mIDE2IENFcyBp
+biBVSEQgMy4xNSk/CgpZb3UgZG9uJ3QgaGF2ZSB0aGF0IHNhbWUgMTYtcG9ydCBsaW1pdGF0aW9u
+IChtb3JlIGlzIHBvc3NpYmxlKSwgYnV0IHRoZQpjcm9zc2JhciBzY2FsZXMgd2l0aCBPKE4qKjIp
+IElJUkMuIFRoZSBpZGVhIGlzIGNlcnRhaW5seSB0byBrZWVwIHRoZQpudW1iZXIgb2YgU0VQcyBh
+cyBzbWFsbCBhcyBwb3NzaWJsZSB0byBtaW5pbWl6ZSB0aGUgZm9vdHByaW50IG9mIHRoZQpjcm9z
+c2Jhci4KCj4gICAqIFdoYXQgYXJlIHRoZSBhZHZhbnRhZ2VzL2Rpc2FkdmFudGFnZXMgb2YgbWFr
+aW5nIGEgbXVsdGktcG9ydCBibG9jawo+ICAgICB2cyBoYXZpbmcgbXVsdGlwbGUgb25lLXBvcnQg
+YmxvY2tzIGZvciBibG9ja3MgbGlrZSBkZGMsIHdpbmRvdywKPiAgICAga2VlcF9vbmVfaW5fbiwg
+ZXRjLCB0aGF0IGFyZSByZWFsbHkganVzdCBtdWx0aXBsZSBpbnN0YW5jZXMgb2YgMS1pbiwKPiAg
+ICAgMS1vdXQgbW9kdWxlcz/CoCBGb3IgZXhhbXBsZSwgYXJlIHRoZXJlIHJlc291cmNlIG9yIHBl
+cmZvcm1hbmNlCj4gICAgIGltcGxpY2F0aW9ucyBpZiBJIGJ1aWxkIHR3byAxLXBvcnQgRERDIGJs
+b2NrcyBvciBvbmUgMi1wb3J0IEREQwo+ICAgICBibG9jayBpbiBteSBpbWFnZT8KClRoZXJlIGFy
+ZSBubyBwZXJmb3JtYW5jZSBpbXBsaWNhdGlvbnMgaW4gdGhpcyBjYXNlLiBUaGUgcmVzb3VyY2UK
+dXRpbGl6YXRpb24gd2lsbCBnbyBkb3duIGlmIHlvdSBjb21iaW5lIG1vcmUgcG9ydHMgaW50byBv
+bmUgYmxvY2suCgpUaGUgZGlzYWR2YW50YWdlcyBvZiBkb2luZyB0aGF0IGFyZToKLSBFdmVyeSBi
+bG9jayBpcyBhIGNvbnN1bWVyIG9mIGNvbW1hbmRzLiBUaGF0IG1lYW5zIHlvdSB3aWxsIGJlIHNl
+bmRpbmcKbW9yZSBjb21tYW5kcyB0byB0aGUgc2FtZSBibG9jayB3aGljaCBjb3VsZCB0aGVvcmV0
+aWNhbGx5IGJlY29tZSBhCmJvdHRsZW5lY2suCi0gUG9zc2libHkgd29yc2UgbWF0Y2ggdG8gYSBt
+ZW50YWwgbW9kZWwgKHRoaXMgaXMgY2xlYXJseSBzdWJqZWN0aXZlKS4KSW4gb3VyIFgzMTAgaW1h
+Z2UsIHdlIGhhdmUgMiBEREMgYmxvY2tzIGZvciA0IEREQ3MgdG90YWwuIFRoaXMganVzdApsb29r
+cyBhbmQgZmVlbHMgYmV0dGVyOiBFdmVyeSByYWRpbyBpcyBtYXRjaGVkIG9uZSBEREMgYmxvY2su
+IFRoZSBpbWFnZQpjb3JlIFlBTUwgaXMgbGVzcyBjb25mdXNpbmcuIElmIHdlIHdhbnQgdG8gbGVh
+dmUgb3V0IHRoZSBERENzIG9uIG9uZQpjaGFubmVsLCBpdCdzIG1vcmUgY2xlYXIgd2hhdCB0byBy
+ZW1vdmUuIEFuZCBzbyBvbi4KLSBCbG9jayBjb250cm9sbGVycyBjb3VsZCBwb3NzaWJsZSBiZWNv
+bWUgbW9yZSBjb21wbGljYXRlZCwgYnV0IHRoYXQncwp1c2UgY2FzZSBzcGVjaWZpYy4KLSBCbG9j
+ayBwYXJhbWV0ZXJzIGFyZSBvZnRlbiBwZXItYmxvY2ssIG5vdCBwZXItY2hhbm5lbC4gVGhhdCBj
+b3VsZCBiZQppbXBsZW1lbnRlZCBkaWZmZXJlbnRseSwgYnV0IHRoYXQncyB1cCB0byB0aGUgYmxv
+Y2sgYXV0aG9yLiBGb3IgZXhhbXBsZSwKdGhlIG1heCBDSUMgZGVjaW0vaW50ZXJwIHZhbHVlcyBh
+cmUgcGVyLWJsb2NrLgoKCj4gICAqIFdoeSBkb2VzIGl0IG1hdHRlciBpZiB0aGUgYWRkcmVzc2Vz
+IGZvciB1c2VyIHJlZ2lzdGVycyBhcmUgaW4gc3RlcHMKPiAgICAgb2YgNCByYXRoZXIgdGhhbiAx
+IGlmIHdlIGFyZSBqdXN0IHVzaW5nIHRoZSBhZGRyZXNzZXMgYXMgZXNzZW50aWFsbHkKPiAgICAg
+aWRlbnRpZmllcnM/wqAgSSB1bmRlcnN0YW5kIHRoYXQgdGhlIGFkZHJlc3MgaXMgaW50ZW5kZWQg
+YXMgYSBieXRlCj4gICAgIGFkZHJlc3Mgb2YgYSA0LWJ5dGUgdmFsdWUsIGJ1dCBpdCBzZWVtcyB0
+aGF0IHRoZSBleGFtcGxlcyBJIGhhdmUKPiAgICAgc2VlbiBhcmUganVzdCB1c2luZyB0aGUgYWRk
+cmVzcyBhcyBhbiBpZGVudGlmaWVyLgoKSXQgZG9lc24ndCBtYXR0ZXIgZm9yIHRoZSBoYXJkd2Fy
+ZS4gRm9yIHVzIGh1bWFucywgd2UgZGVjaWRlZCB0aGF0IHdpdGgKVUhEIDQsIHdlJ2xsIHN0b3Ag
+bWl4aW5nIGFuZCBtYXRjaGluZyB0aGUgYWRkcmVzc2luZyBzY2hlbWVzLiBUaGVyZSB3ZXJlCnNv
+bWUgdGhpbmdzICh1c3VhbGx5IG1lbW9yeS1tYXBwZWQgcmVnaXN0ZXJzKSB3aGVyZSB0aGUgc3Rl
+cHMtb2YtZm91ciBpcwpvYnZpb3VzbHkgbmVjZXNzYXJ5LiBSRk5vQyBibG9ja3MgaW4gVUhEIDMg
+dXNlZCBzdGVwcyBvZiAxLiBCZWNhdXNlIHRoZQpmb3JtZXIgKG1lbW9yeS1tYXBwZWQpIGlzIG5v
+dCBzb21ldGhpbmcgYW55b25lIHdhbnRzIHRvIGNoYW5nZSwgd2UKZGVjaWRlZCB0aGF0IGFsbCBy
+ZWdpc3RlciBwZWVrcy9wb2tlcywgcmVnYXJkbGVzcyBvZiBpZiB0aGV5J3JlIHJlYWxseQptZW1v
+cnktbWFwcGVkIG9yIG5vdCwgc2hhbGwgYmUgdHJlYXRlZCBhcyBzdWNoLiBIZW5jZSB0aGUgc3Rl
+cHMtb2YtZm91ci4KCj4gICAqIFdpbGwgRXR0dXMgYmUgcHJvdmlkaW5nIHJlcGxhY2VtZW50cyBm
+b3IgYmxvY2tzIHdpdGggZGVwcmVjYXRlZAo+ICAgICBmZWF0dXJlcyBzdWNoIGFzIHNldHRpbmdz
+IGJ1cyByZWdpc3RlcnM/IEZvciBleGFtcGxlLCBpbiBvcmRlciB0bwo+ICAgICB1c2UgYXhpX3Jh
+dGVfY2hhbmdlLCB3aGljaCB1c2VzIHNldHRpbmdzIHJlZ2lzdGVycywgaXTigJlzIGVhc2llc3Qg
+dG8KPiAgICAgdXNlIHRoZSBjdHJscG9ydF90b19zZXR0aW5nc19idXMgbW9kdWxlIHJhdGhlciB0
+aGFuIHVzaW5nIGN0cmxwb3J0Cj4gICAgIGRpcmVjdGx5LiBTaG91bGQgd2UgZXhwZWN0IGluIMKg
+dGhlIGZ1dHVyZSB0aGF0IGF4aV9yYXRlX2NoYW5nZSAoYW5kCj4gICAgIHNpbWlsYXIgYmxvY2tz
+KSB3aWxsIGJlIHJlcGxhY2VkIGJ5IGEgZnV0dXJlIGJsb2NrPwoKRm9yIHRoZSBYMzEwIHJhZGlv
+IGJsb2NrLCB3ZSBwcm9iYWJseSB3b24ndC4gVGhlcmUncyBhIGxvdCBvZiBkZWJ1Z2dpbmcKaW4g
+dGhlcmUsIGFuZCB0aGUgWDMxMCBwZXJpcGhlcmFscyAod2hpY2ggc3RpbGwgdXNlIHNldHRpbmdz
+IGJ1cykKd291bGRuJ3QgYmVuZWZpdCBmcm9tIGFuIHVwZGF0ZS4gRm9yIHRoZSBEREMvRFVDIGJs
+b2Nrcywgd2UgaW50ZW5kIHRvCm1vdmUgYXdheSBmcm9tIHNldHRpbmdzIGJ1cyBpbiB0aGUgbG9u
+ZyBydW4uIEkgZG9uJ3QgaGF2ZSBhIGxpc3Qgb2YKYmxvY2tzIHVzaW5nIHNldHRpbmdzIGJ1cywg
+YnV0IGluIHByaW5jaXBsZSwgd2Ugd2FudCB0byBnZXQgcmlkIG9mIGl0IGFzCm11Y2ggYXMgcG9z
+c2libGUsIGl0J3MganVzdCB0aGVyZSdzIG1vcmUgaW1wb3J0YW50IHN0dWZmIHRvIGRvLgoKPiAg
+ICogRm9yIHRpbWVkIGNvbW1hbmRzIGluIDMuMTUsIG9ubHkgdGhlIFJhZGlvIGJsb2NrcyB3ZXJl
+IHVzaW5nIHRoZSBtYgo+ICAgICB0aW1lIHRvIHRyaWdnZXIgdGhlIGRlc2lyZWQgYWN0aW9uIHdo
+ZXJlYXMgb3RoZXIgYmxvY2tzIHN1Y2ggYXMgRERDCj4gICAgICYgRFVDIGltcGxlbWVudGVkIHRp
+bWVkIGNvbW1hbmRzIGJ5IGNvbXBhcmluZyB0byB0aW1lc3RhbXBzIGluIHRoZQo+ICAgICBDSERS
+IHN0cmVhbS7CoCBJcyB0aGlzIHN0aWxsIHRydWUgZm9yIDQuMD/CoCBNeSBxdWVzdGlvbiBpcyBu
+b3QgYWJvdXQKPiAgICAg4oCcd2hhdCBpcyBwb3NzaWJsZeKAnSBidXQgcmF0aGVyIOKAnHdoYXQg
+aXMgcHJlc2VudGx5IGltcGxlbWVudGVk4oCdIGluCj4gICAgIEV0dHVzIGJsb2Nrcy4KCldoYXQn
+cyBwcmVzZW50bHkgaW1wbGVtZW50ZWQgaXMgdGhlIHNhbWUgYXMgaW4gMy4xNS4gVGhhdCBzYWlk
+LCB0aGUgdGltZQppcyBubyBsb25nZXIgdGhlICJyYWRpbyB0aW1lIiwgc28gY3VzdG9tIGJsb2Nr
+cyBjb3VsZCBhbHNvIHRyaWdnZXIgb2ZmCm9mIHJlYWwgdGltZSBqdXN0IGxpa2UgdGhlIHJhZGlv
+IGRvZXMuCgotLU0KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0
+dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0
+dHVzLmNvbQo=
