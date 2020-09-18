@@ -2,51 +2,86 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A68E926E555
-	for <lists+usrp-users@lfdr.de>; Thu, 17 Sep 2020 21:32:20 +0200 (CEST)
-Received: from [::1] (port=35902 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA2E326F4A7
+	for <lists+usrp-users@lfdr.de>; Fri, 18 Sep 2020 05:20:16 +0200 (CEST)
+Received: from [::1] (port=39040 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kIzdD-0006Ig-U6; Thu, 17 Sep 2020 15:31:47 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:37152)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kIzdA-0006EH-6a
- for usrp-users@lists.ettus.com; Thu, 17 Sep 2020 15:31:44 -0400
-Received: by mail-oi1-f179.google.com with SMTP id a3so3834694oib.4
- for <usrp-users@lists.ettus.com>; Thu, 17 Sep 2020 12:31:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=in9NrDQ68snBpch4igjnNEnRxcovxpeV3MgjEI1Zovk=;
- b=BM9jEK39IX2/JeGb9aReRfR0BOc4n4Rc6BryuWam93pMR8KKbBCNRMJ8PkLNWSTnHm
- vECCqgLeuYeUhtHfzvetJIQM3lNMoJZT7zyUduAEMPOvLRBkpWEsArSi951k7bo4oP/c
- ZfDzabpBAihArs0hR8oMKQAUVUGGVMBgK1cZDf6t36aA9WRJ+97HBLSBXy2QdNGx/MGO
- oDt4RTBMB9LYT7/d3vFmLjpudr9//vPokOlcVW30ZO8XaEPFMIDHfAzLqSxFsyuGaKHA
- G8GhGRq0jjCVbi7PHyPD6MZwICfq6iq7ERofO6bcDSeNZvG5LxMoNYN1HJGcslcz3kUv
- XzaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=in9NrDQ68snBpch4igjnNEnRxcovxpeV3MgjEI1Zovk=;
- b=rK5k6K7KrT9PM1Nc/5Qie++xoOnD8F7Z61i+8BGnQLrrl4x8dwE0nFzM5mz7hpR4E1
- NfTzofLhp6crKJPf2Lm2R2ykAtADaNmYnoMZohYynxkegs9vcLblrvErbAJMCyedYyyy
- FB29i1kPKiE885L3bjohJgpwZcHwqk6NVHXk9cgurreTYzATP8dX2Xuh+S8RhpEECTlb
- 98iiQUkxRZDKOTpu3THg5zsisOGB1I0qPxMIf4D1XazPPqf7UXhB+4KsnCH200365mJb
- eTVI6zdHE0i1ineUhDA6hW4CVmyvFK4mJmcKLDDvBzUdP/ytUew3Xeyj0JXwfiD68I7w
- HPBQ==
-X-Gm-Message-State: AOAM5317U+HXfZe4SfVBCti7DVqV5aIewgEyaBC1Q33JyUMJ6C6sqonR
- /gqAvjz/MfjCmrFIvvoJHCESl7TYYpS6z2lS2pUZ6gB3M2k=
-X-Google-Smtp-Source: ABdhPJyuyoEO6Fi4AtG2pjrFpMH0oYLq65PxYFkZ6zR2/0wZQVR0+07mkiRcrDD0JG5dnKGmI0dFDSFPPzDOokH0JBI=
-X-Received: by 2002:aca:b454:: with SMTP id d81mr7089903oif.150.1600371063093; 
- Thu, 17 Sep 2020 12:31:03 -0700 (PDT)
+	id 1kJ6wV-0004H5-5o; Thu, 17 Sep 2020 23:20:11 -0400
+Received: from mail-oln040092255067.outbound.protection.outlook.com
+ ([40.92.255.67]:34588 helo=APC01-HK2-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <james_ttfun@hotmail.com>)
+ id 1kJ6wQ-0004Av-8U
+ for USRP-users@lists.ettus.com; Thu, 17 Sep 2020 23:20:06 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Mh3Glec4wuoba6Pl5zI3WuDD9YKIhoYfcqtNPRf08sndi4p02hCYL8/+xMgV6Ky1XACAR+g0IPZk8J6ne1te2jOBLVezGH0wKtoQdEQ83GSPcucJlnf+K72k3OJyw26N/fPgxFThtnTyiD3O4x7rz/0V/j+NTH3e9Y98uE9V6KJPzsYBW/TuqwNHfHJ2T6JEi3iagSMAVZ7IU/s3VIEqjiAtyP/xK39QQsc/WaDGuDuVvQ74kcTijilOaFl4qkX58sCPquVgYmv2Y+jCK6FCASys2UvD6r0/8WC8C2EHHhhZ+hO1q53gES60FfPYIxltTQLUl8pX2R2rytdk0GjVqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JEzxGp8+rWH1Q2d77vAlOycwwpYDO6a9CKBRx9Hajrk=;
+ b=ecVXf/EANzxPpsL2vYrDmJbjKszaLxYI6G3k2wTN7PTi/VdDdI6Z7aGUlsmctMHfJXAnB7tNpDrfTSnaSTHhfRuhImspJchQ8ndLN1i86L3IDPe66Qtqi1fzjO8jAczb9v1Z31IpD+tMUzERKWgee59m6cyBFtJ1aIuMPX34gLsk2KV0aKW/AI7U/RCQgGCdd0iOH6ouuU10rju3ho92GTUMIckDKYJLT66Xcpr5eYXwHI1QI38L9le4WRUtLMLam0WcRCCC2vCFLowjwTP6MJ+mlZ8GfgP5ljXwzaohqbIAeK9ZmxkGzx/WWy30eNefWX4KBEGHphO5zk608kdH9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JEzxGp8+rWH1Q2d77vAlOycwwpYDO6a9CKBRx9Hajrk=;
+ b=QtuiN+35BqycbS26UoGZadEbul4QzN0FB92BjffwRxXveUENII3SEcE3+gbEGw97FAkkahvQhVC0rKGRcAY9VO4d1PlKe4w3fbbL23d2SYm9UY1WJ/K9NobzfeTP3HkiXo+LnzD6e8gboiwhFLW93dcYHMnviQgIilamWc5Xm4hhf7Tsqz7tyWY8z3Vxt/kNcKSEb4vC3MO7W0Vr0PJN+eRhCKncWaYx0ZKoSORO8a6EO9rO605nJi1ANaY/0gk2n8+RqEcVwXrMw50asv6iWXanZULjJmbX5/L5V/JCGrum8X4cFB2mVgkxpTsq5o3fQKv5s3BwoTjnT6IUXQsf2Q==
+Received: from PU1APC01FT023.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebe::4a) by
+ PU1APC01HT083.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebe::299)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.15; Fri, 18 Sep
+ 2020 03:19:22 +0000
+Received: from HK0PR03MB5091.apcprd03.prod.outlook.com
+ (2a01:111:e400:7ebe::40) by PU1APC01FT023.mail.protection.outlook.com
+ (2a01:111:e400:7ebe::260) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.15 via Frontend
+ Transport; Fri, 18 Sep 2020 03:19:22 +0000
+Received: from HK0PR03MB5091.apcprd03.prod.outlook.com
+ ([fe80::b810:da17:1df1:4312]) by HK0PR03MB5091.apcprd03.prod.outlook.com
+ ([fe80::b810:da17:1df1:4312%6]) with mapi id 15.20.3412.004; Fri, 18 Sep 2020
+ 03:19:22 +0000
+To: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>, "Marcus D.
+ Leech" <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] what is the TPM used for N310
+Thread-Index: AQHWjO+3FedFDg/USEGW0ULiIsHha6ls9BQAgADGKz0=
+Date: Fri, 18 Sep 2020 03:19:22 +0000
+Message-ID: <HK0PR03MB50919AB20089C910BEC329AE9D3F0@HK0PR03MB5091.apcprd03.prod.outlook.com>
+References: <HK0PR03MB5091FC4CE234C553C0B88B319D3E0@HK0PR03MB5091.apcprd03.prod.outlook.com>,
+ <5F638040.9080705@gmail.com>
+In-Reply-To: <5F638040.9080705@gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:B857BDFE0FDF20ABDBC25EB49BA4A86CA9525533E90648C2CCF0AB3B8DB97C18;
+ UpperCasedChecksum:E5C2F6B2940438F66A633C73244127CC17F9CBE002D310E384C26ADE55C0CCC4;
+ SizeAsReceived:6957; Count:43
+x-tmn: [ABpx9G9UWwxgrTmEGyoFCSSTEddkDjvy]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 43
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: daad24b2-80e4-47e1-ad51-08d85b81a3ae
+x-ms-traffictypediagnostic: PU1APC01HT083:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: RCC4pcMAMmE7kzEIjIrGd0OchEVmRuMH+hBgv43ZeHbziA5l+pMkoKVyNg5/jLNiz4CBdFUV9RGgBO6CmVdi3yuWckAy4ZvQ0rN4cc1ZNRprTbTCjiwLDIpHpnV9ehSuBe0HcRSZMq8GYV7Ju4GjjCZSDzhfxHktAz4QTY5stdl4nGkt3dkXNfV5ypV+SHNuTMcGN1GFlOCs/wvmeL7o7A==
+x-ms-exchange-antispam-messagedata: NIEXWKK9Dk9LYBylu5b+FtQ9CNA+wyqT7cFVdvJ+GN+uB1xeGOycYMygpYnma9RZYkB2pGW+Sy1Ir1UaADZXLcZcxl/pMpqF+37Q76S9bzhBZMBjmzu4HmIREkZ8WBGdrKZrh4PICjPpm0Bwsl6WxQ==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <MN2PR12MB33121DCC88D99FD31F550917B83E0@MN2PR12MB3312.namprd12.prod.outlook.com>
- <CAFche=ibJcUOWYhFVJUgqSx9SNWP3gvAQubTt=b6J=v=dSsTiA@mail.gmail.com>
-In-Reply-To: <CAFche=ibJcUOWYhFVJUgqSx9SNWP3gvAQubTt=b6J=v=dSsTiA@mail.gmail.com>
-Date: Thu, 17 Sep 2020 15:30:52 -0400
-Message-ID: <CAB__hTR3pOdLahQYMqyUCu-3h-=X8By0bypZPLAZjoXwaDahFg@mail.gmail.com>
-To: Wade Fife <wade.fife@ettus.com>
-Subject: Re: [USRP-users] RFNoC block not fully recognized by UHD 4.0
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: PU1APC01FT023.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: daad24b2-80e4-47e1-ad51-08d85b81a3ae
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2020 03:19:22.7338 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT083
+Subject: [USRP-users] =?gb2312?b?u9i4tDogIHdoYXQgaXMgdGhlIFRQTSB1c2VkIGZv?=
+ =?gb2312?b?ciBOMzEw?=
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -58,10 +93,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4266516995114423663=="
+From: Thomas james via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Thomas james <james_ttfun@hotmail.com>
+Content-Type: multipart/mixed; boundary="===============1918978409635470316=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,350 +109,95 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4266516995114423663==
-Content-Type: multipart/alternative; boundary="000000000000b9bdb005af876c7f"
+--===============1918978409635470316==
+Content-Language: zh-CN
+Content-Type: multipart/alternative;
+	boundary="_000_HK0PR03MB50919AB20089C910BEC329AE9D3F0HK0PR03MB5091apcp_"
 
---000000000000b9bdb005af876c7f
-Content-Type: text/plain; charset="UTF-8"
+--_000_HK0PR03MB50919AB20089C910BEC329AE9D3F0HK0PR03MB5091apcp_
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 
-Hi Wade,
-Do you mean build the block controller in tree? Or do you mean place the
-yml file in the uhd share folder? Or ??
-Rob
+SEkgTWFyY3VzLA0KdGhhbmtzLiBhbmQgaXMgdGhlIHNvdXJjZSBjb2RlIG9mIHN0bTMyICBhbmQg
+Y3BsZCAgYXZhaWFibGU/DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQq3orz+
+yMs6IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb20+ILT6se0g
+TWFyY3VzIEQuIExlZWNoIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bT4NCreiy83KsbzkOiAyMDIwxOo51MIxN8jVIDIzOjI2DQrK1bz+yMs6IHVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCtb3zOI6IFJlOiBbVVNS
+UC11c2Vyc10gd2hhdCBpcyB0aGUgVFBNIHVzZWQgZm9yIE4zMTANCg0KT24gMDkvMTcvMjAyMCAw
+ODo0MSBBTSwgVGhvbWFzIGphbWVzIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0KSGksDQppIGxlYXJu
+ZWQgdGhhdCBOMzEwIGhhdmUgdGhlIHZlcnNpb24gd2l0aCBvciB3aXRob3V0IFRQTS4gaSB3YW50
+IHRvIGtub3cgbW9yZSBhYm91dCBpdC4gd2hhdCBpcyB0aGUgVFBNIHVzZWQgZm9yPw0KDQpOb3Ro
+aW5nIGFzIGZhciBhcyBJIGtub3ctLWl0J3MgYXZhaWxhYmxlIHRvIGJlIHVzZWQgZm9yIGN1c3Rv
+bSBhcHBsaWNhdGlvbnMuDQoNCg==
 
-On Thu, Sep 17, 2020 at 12:01 PM Wade Fife via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi Jim,
->
-> I'm so glad you're trying this out! This is a known issue that we're
-> hoping to fix very soon, so you probably did everything right. In the
-> meantime, you could put your block in-tree for testing purposes. You can
-> also interact with it as "0/Block#0". I'll see if we can add a note to the
-> guide to indicate this might not show up correctly until the issue is
-> resolved.
->
-> Thanks,
->
-> Wade
->
-> On Thu, Sep 17, 2020 at 9:58 AM Jim Palladino via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hello,
->>
->> I just updated my rfnoc workflow to UHD 4.0 this week. I've gone through
->> the process of creating an RFNoC block, building the corresponding FPGA
->> image, putting it on an E320 (had to upgrade MPM), and seeing the block is
->> present when executing uhd_usrp_probe. The problem is that the block shows
->> up as "* 0/Block#0", and not "* 0/Gain#0". Basically, I'm trying to go
->> through the tuturial.
->>
->>       _____________________________________________________
->> |    /
->> |   |       RFNoC blocks on this device:
->> |   |
->> |   |   * 0/Block#0
->> |   |   * 0/DDC#0
->> |   |   * 0/DUC#0
->> |   |   * 0/DmaFIFO#0
->> |   |   * 0/Radio#0
->>
->> I've confirmed that I have a gain.yml file under my ../uhd/rfnoc/blocks
->> folder with the correct noc_id. If I do a uhd_usrp_probe with the
->> --init-only option, I get:
->>
->> ------------------------------
->> [WARNING] [RFNOC::BLOCK_FACTORY] Could not find block with Noc-ID
->> 0xbdc26af0, 0xffff
->> ------------------------------
->>
->> I confirmed that this Noc-ID matches the ID in my gain.yml file. I
->> started digging into uhd_usrp_probe code (I'm not a C++ person) and noticed
->> that the registry_factory section of code has "FIXME TODO" under the
->> descriptor registry section, but has code for the direct registry section:
->>
->> -------------------------------
->> block_factory_info_t factory::get_block_factory(noc_id_t noc_id,
->> device_type_t device_id)
->> {
->>     // First, check the descriptor registry
->>     // FIXME TODO
->>
->>     // Second, check the direct registry
->>     block_device_pair_t key{noc_id, device_id};
->>
->>     if (!get_direct_block_registry().count(key)) {
->>         key = block_device_pair_t(noc_id, ANY_DEVICE);
->>     }
->>     if (!get_direct_block_registry().count(key)) {
->>         UHD_LOG_WARNING("RFNOC::BLOCK_FACTORY",
->>             "Could not find block with Noc-ID " << std::hex << "0x" <<
->> key.first << ", 0x"
->>                                                 << key.second <<
->> std::dec);
->>         key = block_device_pair_t(DEFAULT_NOC_ID, ANY_DEVICE);
->>     }
->>     return get_direct_block_registry().at(key);
->> }
->> ----------------------------------
->>
->> Does this mean that uhd_usrp_probe is not even looking at the yml files
->> and only looks for directly registered blocks? I'm not sure what directly
->> registered means and if my example "gain" block should somehow be directly
->> registered.
->>
->> I was thinking that this is just something incomplete that doesn't work
->> with UHD right now, but in the "Getting Started with RFNoC in UHD 4.0"
->> guide (https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0), they
->> show the Gain block showing up correctly when doing a uhd_usrp_probe.
->>
->> So, I don't understand why this isn't working or how it should work. Some
->> background, I cloned/built:
->> 1) UHD (v4.0.0.0 tag)
->> 2) gnuradio (3.8.2.0 tag)
->> 3) gr-ettus (maint-3.8-uhd4.0 branch)
->>
->> I "believe" my paths/environment are setup correctly.
->>
->> Thanks for any help.
->> Jim
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000b9bdb005af876c7f
-Content-Type: text/html; charset="UTF-8"
+--_000_HK0PR03MB50919AB20089C910BEC329AE9D3F0HK0PR03MB5091apcp_
+Content-Type: text/html; charset="gb2312"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Wade,<div>Do you mean build the block controller in tre=
-e? Or do you mean place the yml file in the uhd share folder? Or ??</div><d=
-iv>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
-gmail_attr">On Thu, Sep 17, 2020 at 12:01 PM Wade Fife via USRP-users &lt;<=
-a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
-&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
- dir=3D"ltr">
-<div>Hi Jim,</div><div><br></div><div>I&#39;m so glad you&#39;re trying thi=
-s=20
-out! This is a known issue that we&#39;re hoping to fix very soon, so you=
-=20
-probably did everything right. In the meantime, you could put your block
- in-tree for testing purposes. You can also interact with it as=20
-&quot;0/Block#0&quot;. I&#39;ll see if we can add a note to the guide to in=
-dicate this
- might not show up correctly until the issue is resolved.<br></div><div><br=
-></div><div>Thanks,</div><div><br></div><div>Wade</div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dgb2312">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+HI Marcus,<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+thanks. and is the source code of stm32&nbsp; and cpld&nbsp; avaiable?<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>=B7=A2=BC=FE=C8=CB:</b> USRP-us=
+ers &lt;usrp-users-bounces@lists.ettus.com&gt; =B4=FA=B1=ED Marcus D. Leech=
+ via USRP-users &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>=B7=A2=CB=CD=CA=B1=BC=E4:</b> 2020=C4=EA9=D4=C217=C8=D5 23:26<br>
+<b>=CA=D5=BC=FE=C8=CB:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.=
+ettus.com&gt;<br>
+<b>=D6=F7=CC=E2:</b> Re: [USRP-users] what is the TPM used for N310</font>
+<div>&nbsp;</div>
+</div>
+<div style=3D"background-color:#FFFFFF">
+<div class=3D"x_moz-cite-prefix">On 09/17/2020 08:41 AM, Thomas james via U=
+SRP-users wrote:<br>
+</div>
+<blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Hi,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+i learned that N310 have the version with or without TPM. i want to know mo=
+re about it. what is the TPM used for?<br>
+</div>
+<br>
+</blockquote>
+Nothing as far as I know--it's available to be used for custom applications=
+.<br>
+<br>
+</div>
+</body>
+</html>
 
-</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Thu, Sep 17, 2020 at 9:58 AM Jim Palladino via USRP-users &lt;<a href=3D=
-"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettu=
-s.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex">
-
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Hello,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-I just updated my rfnoc workflow to UHD 4.0 this week. I&#39;ve gone throug=
-h the process of creating an RFNoC block, building the corresponding FPGA i=
-mage, putting it on an E320 (had to upgrade MPM), and seeing the block is p=
-resent when executing uhd_usrp_probe.
- The problem is that the block shows up as &quot;* 0/Block#0&quot;, and not=
- &quot;* 0/Gain#0&quot;. Basically, I&#39;m trying to go through the tuturi=
-al.=C2=A0</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-=C2=A0 =C2=A0 =C2=A0 _____________________________________________________
-<div>| =C2=A0 =C2=A0/</div>
-<div>| =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RFNoC blocks on this device:</div>
-<div>| =C2=A0 | =C2=A0 </div>
-<div>| =C2=A0 | =C2=A0 * 0/Block#0</div>
-<div>| =C2=A0 | =C2=A0 * 0/DDC#0</div>
-<div>| =C2=A0 | =C2=A0 * 0/DUC#0</div>
-<div>| =C2=A0 | =C2=A0 * 0/DmaFIFO#0</div>
-<div>| =C2=A0 | =C2=A0 * 0/Radio#0</div>
-=C2=A0</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-I&#39;ve confirmed that I have a gain.yml file under my ../uhd/rfnoc/blocks=
- folder with the correct noc_id. If I do a uhd_usrp_probe with the --init-o=
-nly option, I get:<br>
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-------------------------------</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-[WARNING] [RFNOC::BLOCK_FACTORY] Could not find block with Noc-ID 0xbdc26af=
-0, 0xffff<br>
-<div style=3D"margin:0px;font-size:12pt;font-family:Calibri,Arial,Helvetica=
-,sans-serif">
-------------------------------</div>
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-I confirmed that this Noc-ID matches the ID in my gain.yml file. I started =
-digging into uhd_usrp_probe code (I&#39;m not a C++ person) and noticed tha=
-t the registry_factory section of code has &quot;FIXME TODO&quot; under the=
- descriptor registry section, but has code for
- the direct registry section:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
--------------------------------</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-block_factory_info_t factory::get_block_factory(noc_id_t noc_id, device_typ=
-e_t device_id)
-<div>{</div>
-<div>=C2=A0 =C2=A0 // First, check the descriptor registry</div>
-<div>=C2=A0 =C2=A0 // FIXME TODO</div>
-<div><br>
-</div>
-<div>=C2=A0 =C2=A0 // Second, check the direct registry</div>
-<div>=C2=A0 =C2=A0 block_device_pair_t key{noc_id, device_id};</div>
-<div><br>
-</div>
-<div>=C2=A0 =C2=A0 if (!get_direct_block_registry().count(key)) {</div>
-<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 key =3D block_device_pair_t(noc_id, ANY_DE=
-VICE);</div>
-<div>=C2=A0 =C2=A0 }</div>
-<div>=C2=A0 =C2=A0 if (!get_direct_block_registry().count(key)) {</div>
-<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 UHD_LOG_WARNING(&quot;RFNOC::BLOCK_FACTORY=
-&quot;,</div>
-<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;Could not find block w=
-ith Noc-ID &quot; &lt;&lt; std::hex &lt;&lt; &quot;0x&quot; &lt;&lt; key.fi=
-rst &lt;&lt; &quot;, 0x&quot;</div>
-<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 &lt;&lt; key.second &lt;&lt; std::dec);</div>
-<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 key =3D block_device_pair_t(DEFAULT_NOC_ID=
-, ANY_DEVICE);</div>
-<div>=C2=A0 =C2=A0 }</div>
-<div>=C2=A0 =C2=A0 return get_direct_block_registry().at(key);</div>
-}</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-----------------------------------<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Does this mean that uhd_usrp_probe is not even looking at the yml files and=
- only looks for directly registered blocks? I&#39;m not sure what directly =
-registered means and if my example &quot;gain&quot; block should somehow be=
- directly registered.=C2=A0=C2=A0</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-I was thinking that this is just something incomplete that doesn&#39;t work=
- with UHD right now, but in the &quot;Getting Started with RFNoC in UHD 4.0=
-&quot; guide (<a href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_in=
-_UHD_4.0" id=3D"gmail-m_-7040286343267471537gmail-m_8034339854570578168LPln=
-k619354" target=3D"_blank">https://kb.ettus.com/Getting_Started_with_RFNoC_=
-in_UHD_4.0</a>),
- they show the Gain block showing up correctly when doing a uhd_usrp_probe.=
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-So, I don&#39;t understand why this isn&#39;t working or how it should work=
-. Some background, I cloned/built:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-1) UHD (v4.0.0.0 tag)</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-2) gnuradio (3.8.2.0 tag)</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-3) gr-ettus (maint-3.8-uhd4.0 branch)</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-I &quot;believe&quot; my paths/environment are setup correctly.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Thanks for any help.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Jim</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000b9bdb005af876c7f--
+--_000_HK0PR03MB50919AB20089C910BEC329AE9D3F0HK0PR03MB5091apcp_--
 
 
---===============4266516995114423663==
+--===============1918978409635470316==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -429,5 +208,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4266516995114423663==--
+--===============1918978409635470316==--
 
