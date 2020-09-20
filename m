@@ -2,89 +2,89 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5CE5271458
-	for <lists+usrp-users@lfdr.de>; Sun, 20 Sep 2020 14:50:08 +0200 (CEST)
-Received: from [::1] (port=33582 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8891271491
+	for <lists+usrp-users@lfdr.de>; Sun, 20 Sep 2020 15:30:43 +0200 (CEST)
+Received: from [::1] (port=33848 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kJyn6-0008U9-M2; Sun, 20 Sep 2020 08:50:04 -0400
-Received: from mail-oln040092254091.outbound.protection.outlook.com
- ([40.92.254.91]:22955 helo=APC01-PU1-obe.outbound.protection.outlook.com)
+	id 1kJzQP-0004zF-KC; Sun, 20 Sep 2020 09:30:41 -0400
+Received: from mail-oln040092255107.outbound.protection.outlook.com
+ ([40.92.255.107]:6179 helo=APC01-HK2-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.93) (envelope-from <james_ttfun@hotmail.com>)
- id 1kJyn2-0008Kk-OW
- for USRP-users@lists.ettus.com; Sun, 20 Sep 2020 08:50:00 -0400
+ id 1kJzQL-0004rw-93
+ for usrp-users@lists.ettus.com; Sun, 20 Sep 2020 09:30:37 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GW69OMV2Cs8/rCUsaJs5coNv6NHgBm68r5cXUPQQwnCf8FgRaLciGu13fLU8Gr/dX+W1vaciBS/fmtLfSIKji7vrUN3LcctixiwDoCZRrYApw/C3zfeqgw/+qifJL3BjNnCFJI7Ow5E3Fr2gXS/YCLYS3tKCTIuS9UhpnL9bMLjRgI7HJW8SOirZ/8buu/3uilsptJ1q1in3XDc3er1/6CqIyaX+If+1vuJa6GD9TJZgvrHycT0epfzs73BNymYHWmRWbvvrztgExSRmel5hhlw/yp2uICljpY4EQEm3Gt9fm0dAy330au415g16KPbLqplXeZSQr+uRa/+uUcHOnQ==
+ b=JOrYRpKzDtLdSuf+OrA5iERg35AuBQdtZWs8fPlehjRMnjGfwOe5PZOBdgczOzOMqVVb6fedKTVVghTB9sGt8PzspvbJbuxiVXvoVy2CpDyxAHktPFIKdP/O+uC9XA+dAjluZQAaErlBIOGpLUxhwCBHEW0HKEcDjjPodLuJk6JTEWz8nXNfoJCzF7LVorRhF6ffx9F1FW+xE6zDoQYXDJhRr5UENETQuVOPJqH6Xk87UkLUz3091prB21zcNc8yGIQrugi9i57x7KYcHuKI9rOv1azNitFd2KxfqPqy9Co6JXM+/oSHEYV4CCtcQAoqJBlSFZcjqw+g2tuOREN91A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k0RdYY8ZNmWfzXK2XRQvIeFnCXiQMEh88zMRzjvHCDo=;
- b=FmQ7T/jArTqCETM2BedbRJ/+s682ZWzTG7PwnjrbYkf2jEdDwFtQV5KfSs24mnClPos5+7JsySISB7SPGHKSJivIGFalyMJje4DA2+xQTGsMPqq+bOb2hq9zglcOofRJaxe/3UnfXESwJ/6pKO+xcgHyCLk+HEtkYN8+EEJZ45ozjUgWwtSVPJp5BcSH0bE4c0M0roW/p6nYXy4S7pxLoaE7fnpcb7P3G/q9Y0+vevwVkdnuQrd1p1aJmwla6CYevqpe6tmU4qWLoIKvlHCyD1lfbkRdJrAtxu4E75eWXhYs4mpwtalZuurlOtnP6bjS3VUBs6gil4dhSOhdygzfEw==
+ bh=6Vd99lHGjpMMKW5+JktCc5y9RNk21N8B3HFutOYxIps=;
+ b=L/hSbhBSvD8UQqz52yE15EmTxsINbSWqMZlIOJT91WNVr1niqiLCpHSFL5HHeXXw0EAyQRztJnL8TogLMY9pKxO49bMQv5iMwgA7TCMHctttBeKy8Nlchjyg6CwP4iCMEkQgekD2ji/s15cnWlQqY6ZsoJbWvG8jmJBesbehfRN/vZy0nvoRLaAEn2aPq3TNA9oHLb0ER3sxwWGNf/h66PdCs92C2GQhdghH5ZOG1GNljZh2csZFuV+EBr6Miqi+2agPl6FIQVaH8RgXQtZweFmN1uA0BqiI4/4xd0skIvuPIsC/6NCDXMysrCpvRDtKyH/qgkQKeyGJQB3Wq9AObA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k0RdYY8ZNmWfzXK2XRQvIeFnCXiQMEh88zMRzjvHCDo=;
- b=oRLfCXf++ggDJl0LV2kP9NrsEnnL2UMDdUDPfSHnuzfXwOn6WRC64YlFpP0R7c3UnxzNFX+Kf+/tGDPCbG2sKInblZZMyqt/qSRx4skqMpX9Bt3PhJuA5NgwrDOwTlvrfB3PjP4HJmYpU8vJIMYye9WLSU4ef8+gn5bLcY1yHYIrBkMIO7JN4lPoH5XkGwJZORdQ1QzXvVC5WPs6MN65uS6rKqJKm9Kgvbtt2YwlJPagTLxUbMJO7/0Ip1o+Avuis5DDINjSKAq59ZXOsuqEH6TNs68ZcgDQB8BW5s1lLg7PJBSycE1VzFyMeJO6+pnA5Ie6ytvc/OJbXRxCjxAenw==
-Received: from PU1APC01FT010.eop-APC01.prod.protection.outlook.com
- (2a01:111:e400:7ebe::4d) by
- PU1APC01HT136.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebe::495)
+ bh=6Vd99lHGjpMMKW5+JktCc5y9RNk21N8B3HFutOYxIps=;
+ b=ki++2E3zrQvROzZ7AJdiBvl+opMUmdXIzjTGGybKS6+6au9+YKLOJYnso+andvoJIjeHKcsdZ669dLpp0syD0DPVLFZ5v0nZz/jCLKj/Yt3xBabOoGDy6paw4vCO3gcwb37xMHaAZtxwQe9VHo4YUJmpfKvyA1yxKf464nHtjpC1G71YoVIXwXMCDXF2N/FuSK2cB+QzST49N1k13yUUX0pwKk4fmof2IJcbsBD68RGW3oZzrYf0jJrLQ+5GecMSdC7h5oeNNLLscdU/7XCeWfgGij/l5sQiCB3hJ0s4j5jCsWvNLSh58MGzyP1XRaerQZv6kXpu0cJ+cfxWWwBgUw==
+Received: from SG2APC01FT052.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebd::44) by
+ SG2APC01HT181.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebd::450)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.15; Sun, 20 Sep
- 2020 12:49:17 +0000
+ 2020 13:29:39 +0000
 Received: from HK0PR03MB5091.apcprd03.prod.outlook.com
- (2a01:111:e400:7ebe::40) by PU1APC01FT010.mail.protection.outlook.com
- (2a01:111:e400:7ebe::83) with Microsoft SMTP Server (version=TLS1_2,
+ (2a01:111:e400:7ebd::44) by SG2APC01FT052.mail.protection.outlook.com
+ (2a01:111:e400:7ebd::270) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.15 via Frontend
- Transport; Sun, 20 Sep 2020 12:49:17 +0000
+ Transport; Sun, 20 Sep 2020 13:29:39 +0000
 Received: from HK0PR03MB5091.apcprd03.prod.outlook.com
  ([fe80::b810:da17:1df1:4312]) by HK0PR03MB5091.apcprd03.prod.outlook.com
  ([fe80::b810:da17:1df1:4312%6]) with mapi id 15.20.3412.015; Sun, 20 Sep 2020
- 12:49:17 +0000
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
- <USRP-users@lists.ettus.com>
-Thread-Topic: =?gb2312?B?u9i4tDogW1VTUlAtdXNlcnNdIHdoYXQgaXMgdGhlIFRQTSB1c2VkIGZvciBO?=
- =?gb2312?Q?310?=
-Thread-Index: AQHWjO+3FedFDg/USEGW0ULiIsHha6ls9BQAgADGKz2AAX2ugIACRl/J
-Date: Sun, 20 Sep 2020 12:49:17 +0000
-Message-ID: <HK0PR03MB5091857473EEA99A15FDE29C9D3D0@HK0PR03MB5091.apcprd03.prod.outlook.com>
-References: <HK0PR03MB5091FC4CE234C553C0B88B319D3E0@HK0PR03MB5091.apcprd03.prod.outlook.com>,
+ 13:29:39 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, Martin Braun
+ <martin.braun@ettus.com>
+Thread-Topic: =?gb2312?B?W1VTUlAtdXNlcnNdICC72Li0OiB3aGF0IGlzIHRoZSBUUE0gdXNlZCBmb3Ig?=
+ =?gb2312?Q?N310?=
+Thread-Index: AQHWjbfurdZQXHXJhUaQyzmmjNczoKlxiHT3
+Date: Sun, 20 Sep 2020 13:29:39 +0000
+Message-ID: <HK0PR03MB50915C496C2754853884466A9D3D0@HK0PR03MB5091.apcprd03.prod.outlook.com>
+References: <HK0PR03MB5091FC4CE234C553C0B88B319D3E0@HK0PR03MB5091.apcprd03.prod.outlook.com>
  <5F638040.9080705@gmail.com>
- <HK0PR03MB50919AB20089C910BEC329AE9D3F0@HK0PR03MB5091.apcprd03.prod.outlook.com>,
- <5F6566A9.5090205@gmail.com>
-In-Reply-To: <5F6566A9.5090205@gmail.com>
+ <HK0PR03MB50919AB20089C910BEC329AE9D3F0@HK0PR03MB5091.apcprd03.prod.outlook.com>
+ <5F645170.7000801@gmail.com>, <ac9e3795-2cc7-a21f-f5da-17fdc4b36ae2@ettus.com>
+In-Reply-To: <ac9e3795-2cc7-a21f-f5da-17fdc4b36ae2@ettus.com>
 Accept-Language: zh-CN, en-US
 Content-Language: zh-CN
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:F0DEF2C37736760097E727DF3DE62FDEFD0CE8AA8B52667A5AABE652228006E1;
- UpperCasedChecksum:54617608D03866F762F2BF975557E613524AD28B60C3D5F10F4306809133817A;
- SizeAsReceived:7124; Count:43
-x-tmn: [kXqmoZewwYgVMhCKIEsoUIn9FF2nlkQg]
+x-incomingtopheadermarker: OriginalChecksum:BD25F1D1D9BDDE59C98FFB3872E238E8A39A28C5EA937B6640227470F69196F6;
+ UpperCasedChecksum:57CE4469CE19E13CE4D81C6FFC158548B01F807372BB4E3ECBE44F8C6D9DCE1E;
+ SizeAsReceived:7173; Count:43
+x-tmn: [7/5d1g/isuELptC3j2YBBWKqyASnCTEH]
 x-ms-publictraffictype: Email
 x-incomingheadercount: 43
 x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: 8d549685-ad65-4126-c4ef-08d85d6395fc
-x-ms-traffictypediagnostic: PU1APC01HT136:
+x-ms-office365-filtering-correlation-id: 42af58b5-094d-4063-ba59-08d85d6939f5
+x-ms-traffictypediagnostic: SG2APC01HT181:
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: S1MeDcxdJzQ0KyIEQRUJT9A4V+R0NokhHtdx5kOrwRF+Gh33xams6r60W9jE8WagrDtgd0jby8jFhqJt3Rjeq0Trjc6xMBCOmkrV7bZ3/gc3AbjSxLVFlgGT+a5xpRfa7mKy5TXQdpQIyR+SZPrekMN5ZPuAF2huv8z0jjZ7P6Gs9xosfH0vucI8KUwwzG0zNXgyqnZle7CYmxCenlL4LeDNeRAYalWjfJlKujA33YYxDObsOCP325APLd0r17nP
-x-ms-exchange-antispam-messagedata: Xx9R8YYX7ust9DhVjBchKcM069+350iqmjdCt+KLG7m4/FP3o5I0nXnOVgekuac86z4knlX0VDG5dI0biXxzjjfOhXBYF0U4HNPp9Ku3kUnXmeII0dYU9YMFZVZGqJepTOkbWBRxnGgLwVPprjhIXA==
+x-microsoft-antispam-message-info: s2xzNCF20nqd86w3vCRJDnv/iU2P3+ZZYMr3Nakgvw+aQY6E9Ubwb5HbY4axKRsOEvd0XYYnDfIziuPHL1O8ZhHyJ6V/M7C1dbnX4d1SEw/yyQ3TfjyvZk864xjBFhja1yfpH/5iLOFabDyNGk3Rvvh37WaKu4lzr1fWzcXQNDMGW5bcygmlTFSUkKn/rPK20a60y9qdja1nXfdD0yZzNFDoY4aKDRp8K7cTWds8koEaLk/UeCbRsluuWe3FBbUy
+x-ms-exchange-antispam-messagedata: 76DavKXbbTK6X9/2woMusiu19iiyQr50VEcQ7yVzVVMUIcyn4SIwDttk74guAhGDN6nkZYkLRJxCSTfntLoOKrQysSV1cPM1BKrq+RmdF+dSS7Q1P7K5I+1ea7bcezF29wL6m8P10vr8dVv2Sn4tiw==
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
 X-OriginatorOrg: hotmail.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: PU1APC01FT010.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SG2APC01FT052.eop-APC01.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d549685-ad65-4126-c4ef-08d85d6395fc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Sep 2020 12:49:17.1861 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 42af58b5-094d-4063-ba59-08d85d6939f5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Sep 2020 13:29:39.7270 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Internet
 X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
 X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT136
-Subject: [USRP-users] =?gb2312?b?u9i4tDogu9i4tDogIHdoYXQgaXMgdGhlIFRQTSB1?=
- =?gb2312?b?c2VkIGZvciBOMzEw?=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2APC01HT181
+Subject: [USRP-users] =?gb2312?b?u9i4tDogICC72Li0OiB3aGF0IGlzIHRoZSBUUE0g?=
+ =?gb2312?b?dXNlZCBmb3IgTjMxMA==?=
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -98,7 +98,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Thomas james via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Thomas james <james_ttfun@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============8752528697578135825=="
+Content-Type: multipart/mixed; boundary="===============4047226498549718730=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -112,41 +112,36 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8752528697578135825==
+--===============4047226498549718730==
 Content-Language: zh-CN
 Content-Type: multipart/alternative;
-	boundary="_000_HK0PR03MB5091857473EEA99A15FDE29C9D3D0HK0PR03MB5091apcp_"
+	boundary="_000_HK0PR03MB50915C496C2754853884466A9D3D0HK0PR03MB5091apcp_"
 
---_000_HK0PR03MB5091857473EEA99A15FDE29C9D3D0HK0PR03MB5091apcp_
+--_000_HK0PR03MB50915C496C2754853884466A9D3D0HK0PR03MB5091apcp_
 Content-Type: text/plain; charset="gb2312"
 Content-Transfer-Encoding: base64
 
-SGkgTWFyY3VzLA0KaXMgdGhlcmUgY29tcGlsZWQgc3RtMzIgaW1hZ2VzIGFuZCBpdHMgdXBkYXRl
-IG1ldGhvZCBhdmFpbGFibGUuDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0Kt6K8
-/sjLOiBNYXJjdXMgRC4gTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0Kt6LLzcqxvOQ6
-IDIwMjDE6jnUwjE5yNUgMTA6MDINCsrVvP7IyzogVGhvbWFzIGphbWVzIDxqYW1lc190dGZ1bkBo
-b3RtYWlsLmNvbT47IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxVU1JQLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbT4NCtb3zOI6IFJlOiC72Li0OiBbVVNSUC11c2Vyc10gd2hhdCBpcyB0aGUgVFBN
-IHVzZWQgZm9yIE4zMTANCg0KT24gMDkvMTcvMjAyMCAxMToxOSBQTSwgVGhvbWFzIGphbWVzIHdy
-b3RlOg0KSEkgTWFyY3VzLA0KdGhhbmtzLiBhbmQgaXMgdGhlIHNvdXJjZSBjb2RlIG9mIHN0bTMy
-ICBhbmQgY3BsZCAgYXZhaWFibGU/DQoNCkNoZWNrIG91dDoNCg0KaHR0cHM6Ly9naXRodWIuY29t
-L0V0dHVzUmVzZWFyY2gvdXNycC1maXJtd2FyZQ0KDQpodHRwczovL2dpdGh1Yi5jb20vRXR0dXNS
-ZXNlYXJjaC9tZXRhLXN0bTMyDQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18N
-CreivP7IyzogVVNSUC11c2VycyA8dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVzLmNvbT48
-bWFpbHRvOnVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb20+ILT6se0gTWFyY3VzIEQu
-IExlZWNoIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT48bWFpbHRv
-OnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0Kt6LLzcqxvOQ6IDIwMjDE6jnUwjE3yNUgMjM6
-MjYNCsrVvP7IyzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tPiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+PG1haWx0bzp1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCtb3zOI6IFJlOiBbVVNSUC11c2Vyc10gd2hhdCBpcyB0
-aGUgVFBNIHVzZWQgZm9yIE4zMTANCg0KT24gMDkvMTcvMjAyMCAwODo0MSBBTSwgVGhvbWFzIGph
-bWVzIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0KSGksDQppIGxlYXJuZWQgdGhhdCBOMzEwIGhhdmUg
-dGhlIHZlcnNpb24gd2l0aCBvciB3aXRob3V0IFRQTS4gaSB3YW50IHRvIGtub3cgbW9yZSBhYm91
-dCBpdC4gd2hhdCBpcyB0aGUgVFBNIHVzZWQgZm9yPw0KDQpOb3RoaW5nIGFzIGZhciBhcyBJIGtu
-b3ctLWl0J3MgYXZhaWxhYmxlIHRvIGJlIHVzZWQgZm9yIGN1c3RvbSBhcHBsaWNhdGlvbnMuDQoN
-Cg0K
+SGkgTWFydGluLA0KaSBqdXN0IHNlZSB5b3VyIHJlcGx5LiBidXQgdXNycC1maXJtd2FyZSBkb24n
+dCBoYXZlIGZvbGRlciBuYW1lZCB0cmVlIGFuZCBzdWxmdXIuDQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXw0Kt6K8/sjLOiBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzLWJvdW5jZXNAbGlz
+dHMuZXR0dXMuY29tPiC0+rHtIE1hcnRpbiBCcmF1biB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20+DQq3osvNyrG85DogMjAyMMTqOdTCMTjI1SAyMDozMg0KytW8/sjL
+OiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
+DQrW98ziOiBSZTogW1VTUlAtdXNlcnNdILvYuLQ6IHdoYXQgaXMgdGhlIFRQTSB1c2VkIGZvciBO
+MzEwDQoNCk9uIDkvMTgvMjAgODoxOSBBTSwgTWFyY3VzIEQuIExlZWNoIHZpYSBVU1JQLXVzZXJz
+IHdyb3RlOg0KPiBPbiAwOS8xNy8yMDIwIDExOjE5IFBNLCBUaG9tYXMgamFtZXMgd3JvdGU6DQo+
+PiBISSBNYXJjdXMsDQo+PiB0aGFua3MuIGFuZCBpcyB0aGUgc291cmNlIGNvZGUgb2Ygc3RtMzIg
+IGFuZCBjcGxkICBhdmFpYWJsZT8NCj4+DQo+IEkgZG9uJ3QgYmVsaWV2ZSB0aGF0IGFueSBvZiB0
+aGUgQ1BMRCBjb2RlIGlzIGF2YWlsYWJsZSwgYnV0IHRoZSBTVE0zMg0KPiBjb2RlIG1pZ2h0IGJl
+LiAgSSBjYW4gYXNrIFImRC4NCg0KU1RNMzI6DQpodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNl
+YXJjaC91c3JwLWZpcm13YXJlL3RyZWUvc3VsZnVyDQoNCkNQTEQ6DQpodHRwczovL2dpdGh1Yi5j
+b20vRXR0dXNSZXNlYXJjaC91aGQvdHJlZS9tYXN0ZXIvZnBnYS91c3JwMy90b3AvbjN4eC9kYm9h
+cmRzL21nL2NwbGQNCg0KLS1NDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdA0KVVNSUC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb20NCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVz
+ZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
 
---_000_HK0PR03MB5091857473EEA99A15FDE29C9D3D0HK0PR03MB5091apcp_
+--_000_HK0PR03MB50915C496C2754853884466A9D3D0HK0PR03MB5091apcp_
 Content-Type: text/html; charset="gb2312"
 Content-Transfer-Encoding: quoted-printable
 
@@ -159,114 +154,64 @@ ttom:0;} </style>
 <body dir=3D"ltr">
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-Hi Marcus,</div>
+Hi Martin,</div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-is there compiled stm32 images and its update method available.<br>
+i just see your reply. but usrp-firmware don't have folder named tree and s=
+ulfur.<br>
 </div>
 <div id=3D"appendonsend"></div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>=B7=A2=BC=FE=C8=CB:</b> Marcus =
-D. Leech &lt;patchvonbraun@gmail.com&gt;<br>
-<b>=B7=A2=CB=CD=CA=B1=BC=E4:</b> 2020=C4=EA9=D4=C219=C8=D5 10:02<br>
-<b>=CA=D5=BC=FE=C8=CB:</b> Thomas james &lt;james_ttfun@hotmail.com&gt;; us=
-rp-users@lists.ettus.com &lt;USRP-users@lists.ettus.com&gt;<br>
-<b>=D6=F7=CC=E2:</b> Re: =BB=D8=B8=B4: [USRP-users] what is the TPM used fo=
+yle=3D"font-size:11pt" color=3D"#000000"><b>=B7=A2=BC=FE=C8=CB:</b> USRP-us=
+ers &lt;usrp-users-bounces@lists.ettus.com&gt; =B4=FA=B1=ED Martin Braun vi=
+a USRP-users &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>=B7=A2=CB=CD=CA=B1=BC=E4:</b> 2020=C4=EA9=D4=C218=C8=D5 20:32<br>
+<b>=CA=D5=BC=FE=C8=CB:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.=
+ettus.com&gt;<br>
+<b>=D6=F7=CC=E2:</b> Re: [USRP-users] =BB=D8=B8=B4: what is the TPM used fo=
 r N310</font>
 <div>&nbsp;</div>
 </div>
-<div style=3D"background-color:#FFFFFF">
-<div class=3D"x_moz-cite-prefix">On 09/17/2020 11:19 PM, Thomas james wrote=
-:<br>
-</div>
-<blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-HI Marcus,<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-thanks. and is the source code of stm32&nbsp; and cpld&nbsp; avaiable?<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">On 9/18/20 8:19 AM, Marcus D. Leech via USRP-users=
+ wrote:<br>
+&gt; On 09/17/2020 11:19 PM, Thomas james wrote:<br>
+&gt;&gt; HI Marcus,<br>
+&gt;&gt; thanks. and is the source code of stm32&nbsp; and cpld&nbsp; avaia=
+ble?<br>
+&gt;&gt;<br>
+&gt; I don't believe that any of the CPLD code is available, but the STM32<=
+br>
+&gt; code might be.&nbsp; I can ask R&amp;D.<br>
 <br>
-</div>
-</blockquote>
-Check out:<br>
+STM32:<br>
+<a href=3D"https://github.com/EttusResearch/usrp-firmware/tree/sulfur">http=
+s://github.com/EttusResearch/usrp-firmware/tree/sulfur</a><br>
 <br>
-<a class=3D"x_moz-txt-link-freetext" href=3D"https://github.com/EttusResear=
-ch/usrp-firmware">https://github.com/EttusResearch/usrp-firmware</a><br>
+CPLD:<br>
+<a href=3D"https://github.com/EttusResearch/uhd/tree/master/fpga/usrp3/top/=
+n3xx/dboards/mg/cpld">https://github.com/EttusResearch/uhd/tree/master/fpga=
+/usrp3/top/n3xx/dboards/mg/cpld</a><br>
 <br>
-<a class=3D"x_moz-txt-link-freetext" href=3D"https://github.com/EttusResear=
-ch/meta-stm32">https://github.com/EttusResearch/meta-stm32</a><br>
+--M<br>
 <br>
-<br>
-<blockquote type=3D"cite">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+_______________________________________________<br>
+USRP-users mailing list<br>
+USRP-users@lists.ettus.com<br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><=
+br>
 </div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font color=3D"#000000" face=3D"Cal=
-ibri, sans-serif" style=3D"font-size:11pt"><b>=B7=A2=BC=FE=C8=CB:</b> USRP-=
-users
-<a class=3D"x_moz-txt-link-rfc2396E" href=3D"mailto:usrp-users-bounces@list=
-s.ettus.com">
-&lt;usrp-users-bounces@lists.ettus.com&gt;</a> =B4=FA=B1=ED Marcus D. Leech=
- via USRP-users <a class=3D"x_moz-txt-link-rfc2396E" href=3D"mailto:usrp-us=
-ers@lists.ettus.com">
-&lt;usrp-users@lists.ettus.com&gt;</a><br>
-<b>=B7=A2=CB=CD=CA=B1=BC=E4:</b> 2020=C4=EA9=D4=C217=C8=D5 23:26<br>
-<b>=CA=D5=BC=FE=C8=CB:</b> <a class=3D"x_moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">
-usrp-users@lists.ettus.com</a> <a class=3D"x_moz-txt-link-rfc2396E" href=3D=
-"mailto:usrp-users@lists.ettus.com">
-&lt;usrp-users@lists.ettus.com&gt;</a><br>
-<b>=D6=F7=CC=E2:</b> Re: [USRP-users] what is the TPM used for N310</font>
-<div>&nbsp;</div>
-</div>
-<div style=3D"background-color:#FFFFFF">
-<div class=3D"x_x_moz-cite-prefix">On 09/17/2020 08:41 AM, Thomas james via=
- USRP-users wrote:<br>
-</div>
-<blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Hi,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-i learned that N310 have the version with or without TPM. i want to know mo=
-re about it. what is the TPM used for?<br>
-</div>
-<br>
-</blockquote>
-Nothing as far as I know--it's available to be used for custom applications=
-.<br>
-<br>
-</div>
-</blockquote>
-<br>
-</div>
+</span></font></div>
 </body>
 </html>
 
---_000_HK0PR03MB5091857473EEA99A15FDE29C9D3D0HK0PR03MB5091apcp_--
+--_000_HK0PR03MB50915C496C2754853884466A9D3D0HK0PR03MB5091apcp_--
 
 
---===============8752528697578135825==
+--===============4047226498549718730==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -277,5 +222,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8752528697578135825==--
+--===============4047226498549718730==--
 
