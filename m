@@ -2,69 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B770C27427A
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Sep 2020 14:52:26 +0200 (CEST)
-Received: from [::1] (port=54502 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4B75274520
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Sep 2020 17:19:56 +0200 (CEST)
+Received: from [::1] (port=56534 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kKhmT-00056W-62; Tue, 22 Sep 2020 08:52:25 -0400
-Received: from mail-ed1-f41.google.com ([209.85.208.41]:40876)
+	id 1kKk5A-0002aA-3E; Tue, 22 Sep 2020 11:19:52 -0400
+Received: from mail-io1-f52.google.com ([209.85.166.52]:38312)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1kKhmO-0004xu-W9
- for usrp-users@lists.ettus.com; Tue, 22 Sep 2020 08:52:21 -0400
-Received: by mail-ed1-f41.google.com with SMTP id t16so16052691edw.7
- for <usrp-users@lists.ettus.com>; Tue, 22 Sep 2020 05:52:00 -0700 (PDT)
+ (Exim 4.93) (envelope-from <neel.pandeya@ettus.com>)
+ id 1kKk56-0002Vt-Tq
+ for usrp-users@lists.ettus.com; Tue, 22 Sep 2020 11:19:48 -0400
+Received: by mail-io1-f52.google.com with SMTP id q4so10624026iop.5
+ for <usrp-users@lists.ettus.com>; Tue, 22 Sep 2020 08:19:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-transfer-encoding:content-language;
- bh=LoKCe0mpHAz0isWN+rzoNir5aTGmE8+ki4pe7GahToQ=;
- b=EqH9a80V2kCEP3TnkCqzOz0lfiKxIP/U1mD3gO81mwUvAaRF+Gt5vHyRJ+BZ+BDNyC
- JP/x+ZZvj/SYnKI0B0B1Ax3d2B2AbDnrFjAUYsyjnFsuEr8Kw4F4r2VWIp5DfXL66Dih
- INJvzAXlfr+mBHqpYVgW3oZeimscYOPK83s4cCAinATy0OcIdFTLc3rfZeN5c7i1oWuA
- yo1/BN+eBafw3pqg22cGAxDyDw1odAcSYovchdESdQGayINTmC6S/Eqle03qkhYIvYSr
- +3j7ptKJrMuJGDe9ys/mxT9sMATivwU89YAQjVokjCMZ5WGW6JGGYYNlCsGyMspg9yGf
- Nl6Q==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=cLEpvovPU7F/d2Yaa+eSePZiQ26jqfScTB0+nhL8SbM=;
+ b=TKZWLL8qxbUBXe2QoUp7KzGWD7dTcVaOu6HGxHq+GBOmfVfbcrOJZddFmNglN49jov
+ nPuEmFhKX2aNO1pCrD9CJioNePUR6eVnTC/6u/GxQD8L3ibAN3m4qgVDl3oH4CVA6j8F
+ 4cLAgXSdikWI8zzPV0hwvu6dP3ZjbaAHdOSW9VgS/YYX6ZtzXkMZpVgtVuJpaWsazBlA
+ cARQiRyImsiyEjR3jnMoR9HhXxS0M0sV/B59yytLQsnYSqdu5ynIl4omIO2zYLkbpYse
+ O/Ec0+NDZhlGjTqfBeD6v53QOThmz9QLrF3CZBwkoI9smOrSJ/Hs71x1TFyFbNuglvqg
+ 2Uqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=LoKCe0mpHAz0isWN+rzoNir5aTGmE8+ki4pe7GahToQ=;
- b=kDt4VrIbWDMWmpx5zhn/IP10QaOQmquUe+mPo0YcJebDRs5vx12pNPgagNAmCEwsk7
- ud4W+RBnaOEcCnvttkOXmAz7qwGd4plEBnADk1Ry4+Ag207Hiz4j0c1lTYYS+A9cICMp
- NoFXwioJaEspicWuRAIMu746FE5QKZijKvsWymXhJzboXlq6MeiJKkw3PEbEfvjWKO0i
- f3mX8Y9smGLvmC9Hy2ZXaZsilVkFb5oHvyL9U1pyakIlIPU+ZbI0lJl2vGqdjvxzv+uE
- wWN0RlQm02s1k5bO6WTAJ7cdKdwICu7UH+ehrz9TRrYDwnKNzGDFkj3r5sYzs7CoXJzC
- Q2Jw==
-X-Gm-Message-State: AOAM530yfGGLpfirgcs3vBiz5KZyFMyNUPNtj5c3b5sjx0dT/gSPC1WK
- wKxj1pH71gmX2GwxrzuFWBuEIxvdXpWOsdA00Vw=
-X-Google-Smtp-Source: ABdhPJzLdT/coTra8Y1+x7++irH0SSb65hfhqfUT1KrdxRCbAwieQQbNifoYALpz8HzHx2YmpzAqMQ==
-X-Received: by 2002:a50:a418:: with SMTP id u24mr3785031edb.103.1600779099563; 
- Tue, 22 Sep 2020 05:51:39 -0700 (PDT)
-Received: from [192.168.128.8]
- (HSI-KBW-46-223-163-144.hsi.kabel-badenwuerttemberg.de. [46.223.163.144])
- by smtp.gmail.com with ESMTPSA id j4sm5642554eds.36.2020.09.22.05.51.38
- for <usrp-users@lists.ettus.com>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 22 Sep 2020 05:51:38 -0700 (PDT)
-To: usrp-users@lists.ettus.com
-References: <HK0PR03MB5091FC4CE234C553C0B88B319D3E0@HK0PR03MB5091.apcprd03.prod.outlook.com>
- <5F638040.9080705@gmail.com>
- <HK0PR03MB50919AB20089C910BEC329AE9D3F0@HK0PR03MB5091.apcprd03.prod.outlook.com>
- <5F6566A9.5090205@gmail.com>
- <HK0PR03MB5091857473EEA99A15FDE29C9D3D0@HK0PR03MB5091.apcprd03.prod.outlook.com>
-Message-ID: <f9aa10db-8d4e-51ea-5652-979d9939a2ac@ettus.com>
-Date: Tue, 22 Sep 2020 14:51:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=cLEpvovPU7F/d2Yaa+eSePZiQ26jqfScTB0+nhL8SbM=;
+ b=F3YpDx8Laq5xHXQRaH0VV+v5RV3DSyjojg2dYs3Y8kst/khBM7il8D1lLmK0XqXBt/
+ hA8/w5GCcDMTX1PhzIeTa7I0oIGanmIdR9J3SD4b0vCrC5nxMwvpG3Ok0hEjLeX/1klF
+ v4PAgcTnfgPC4HG9yaclltzvIWxseDixUQXKi7EFoiZTN/Ca2p4x6Y+eFH8295Ddlpex
+ tTN8eI2tvEjR0uUCgPs8lW2T+XUc7hC6rvwj8n3T3dxC3ryIAlMh+DSj1BcYHJZpJ4DY
+ er5URKD/rqGcj8/qoMNxKApYbyqUowdJR3swHT5zJco215wDVES25pJddoDG8OCag4R+
+ /BJg==
+X-Gm-Message-State: AOAM532kf78IctdQ/TEOsa9klnQZifhD5pUjztoorEFumhhC1rnkDBGL
+ Rl8LN3M/3d37xqy1OYpimCfEBRLz3uF2EH/t3k4O1JxL
+X-Google-Smtp-Source: ABdhPJxuch29DcXuFwLb+i5beLhNb4r/Q+f409KsZKbFm+WxACIw/mGGffZ6PksPh8A6jYRX45at/pT0WOxVYOoGXuQ=
+X-Received: by 2002:a05:6638:224e:: with SMTP id
+ m14mr4504128jas.101.1600787948264; 
+ Tue, 22 Sep 2020 08:19:08 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <HK0PR03MB5091857473EEA99A15FDE29C9D3D0@HK0PR03MB5091.apcprd03.prod.outlook.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] 
- =?utf-8?b?5Zue5aSNOiDlm57lpI06IHdoYXQgaXMgdGhlIFRQ?=
- =?utf-8?q?M_used_for_N310?=
+References: <VI1P195MB0285728BBD364C5BCFB1C5E8D33B0@VI1P195MB0285.EURP195.PROD.OUTLOOK.COM>
+In-Reply-To: <VI1P195MB0285728BBD364C5BCFB1C5E8D33B0@VI1P195MB0285.EURP195.PROD.OUTLOOK.COM>
+Date: Tue, 22 Sep 2020 10:18:31 -0500
+Message-ID: <CACaXmv_3KbE=gPhs6XHqGBvGMk=X_oFm2ZZPTHNZ0_2tVBX5ng@mail.gmail.com>
+To: Dimitris Pliatsios <pliago@hotmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Decision between N320 or N321
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -76,11 +61,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="gbk"
-Content-Transfer-Encoding: base64
+From: Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Neel Pandeya <neel.pandeya@ettus.com>
+Content-Type: multipart/mixed; boundary="===============7148418173365619903=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -94,40 +77,149 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGkgSmFtZXMsCgpyZTpzdG0zMiBpbWFnZToKCnVtLCBpZiB5b3Ugd2FudCB0byBtb2RpZnkgdGhl
-IHNvdXJjZSBjb2RlLCBiaW5hcmllcyB3b24ndCBoZWxwIHlvdS4gSWYKdGhlcmUncyBub3RoaW5n
-IHlvdSB3YW50IHRvIG1vZGlmeSwgeW91IGRvbid0IG5lZWQgdG8gZmxhc2gsIGVpdGhlci4KClNp
-bmNlIHRoZXNlIGltYWdlcyBhcmUgbmVhcmx5IGltcG9zc2libGUgdG8gYnJlYWssIGFuZCBub24t
-dHJpdmlhbCB0bwpmbGFzaCB3aXRob3V0IGRlZGljYXRlZCBwcm9ncmFtbWVycy9jb25uZWN0b3Jz
-LCB3aGF0J3MgdGhlIHVzZSBjYXNlIGZvcgp3YW50aW5nIGJpbmFyaWVzPwoKQmVzdCByZWdhcmRz
-LAoKTWFyY3VzCgpPbiAyMC4wOS4yMCAxNDo0OSwgVGhvbWFzIGphbWVzIHZpYSBVU1JQLXVzZXJz
-IHdyb3RlOgo+IEhpIE1hcmN1cywKPiBpcyB0aGVyZSBjb21waWxlZCBzdG0zMiBpbWFnZXMgYW5k
-IGl0cyB1cGRhdGUgbWV0aG9kIGF2YWlsYWJsZS4KPiBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwo+ILeivP7IyzogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNv
-bT4KPiC3osvNyrG85DogMjAyMMTqOdTCMTnI1SAxMDowMgo+IMrVvP7IyzogVGhvbWFzIGphbWVz
-IDxqYW1lc190dGZ1bkBob3RtYWlsLmNvbT47IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxV
-U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KPiDW98ziOiBSZTogu9i4tDogW1VTUlAtdXNlcnNd
-IHdoYXQgaXMgdGhlIFRQTSB1c2VkIGZvciBOMzEwCj4KPiBPbiAwOS8xNy8yMDIwIDExOjE5IFBN
-LCBUaG9tYXMgamFtZXMgd3JvdGU6Cj4gSEkgTWFyY3VzLAo+IHRoYW5rcy4gYW5kIGlzIHRoZSBz
-b3VyY2UgY29kZSBvZiBzdG0zMiAgYW5kIGNwbGQgIGF2YWlhYmxlPwo+Cj4gQ2hlY2sgb3V0Ogo+
-Cj4gaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdXNycC1maXJtd2FyZQo+Cj4gaHR0
-cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvbWV0YS1zdG0zMgo+Cj4KPiBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwo+ILeivP7IyzogVVNSUC11c2VycyA8dXNycC11c2Vycy1i
-b3VuY2VzQGxpc3RzLmV0dHVzLmNvbT48bWFpbHRvOnVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5l
-dHR1cy5jb20+ILT6se0gTWFyY3VzIEQuIExlZWNoIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbT48bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+ILei
-y83KsbzkOiAyMDIwxOo51MIxN8jVIDIzOjI2Cj4gytW8/sjLOiB1c3JwLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IDx1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbT48bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+INb3zOI6
-IFJlOiBbVVNSUC11c2Vyc10gd2hhdCBpcyB0aGUgVFBNIHVzZWQgZm9yIE4zMTAKPgo+IE9uIDA5
-LzE3LzIwMjAgMDg6NDEgQU0sIFRob21hcyBqYW1lcyB2aWEgVVNSUC11c2VycyB3cm90ZToKPiBI
-aSwKPiBpIGxlYXJuZWQgdGhhdCBOMzEwIGhhdmUgdGhlIHZlcnNpb24gd2l0aCBvciB3aXRob3V0
-IFRQTS4gaSB3YW50IHRvIGtub3cgbW9yZSBhYm91dCBpdC4gd2hhdCBpcyB0aGUgVFBNIHVzZWQg
-Zm9yPwo+Cj4gTm90aGluZyBhcyBmYXIgYXMgSSBrbm93LS1pdCdzIGF2YWlsYWJsZSB0byBiZSB1
-c2VkIGZvciBjdXN0b20gYXBwbGljYXRpb25zLgo+Cj4KPgo+IF9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBV
-U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1h
-bi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNS
-UC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xp
-c3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+--===============7148418173365619903==
+Content-Type: multipart/alternative; boundary="00000000000004833f05afe87ddc"
+
+--00000000000004833f05afe87ddc
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Dimitris:
+
+The KB has information about the USRP N320/N321 and the LOs.
+
+https://kb.ettus.com/N320/N321
+
+https://kb.ettus.com/USRP_N320/N321_LO_Distribution
+
+The LOs cannot be imported or exported on the USRP B200/B210.
+
+https://kb.ettus.com/B200/B210/B200mini/B205mini
+
+The LO ports on the USRP N320/N321 are not transmit and receive ports.  The
+N320/N321 and B210 all have two transmit channels and two receive channels.
+
+Please let me know if you have any further questions.
+
+--Neel Pandeya
+
+
+
+On Tue, 22 Sep 2020 at 07:51, Dimitris Pliatsios via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hello all,
+>
+> I am looking to purchase 2 USRPs for research purposes (5G, beamforming,
+> =CE=9C=CE=99=CE=9C=CE=9F, etc.) and I am between the N321 and N320 model.=
+ The main
+> difference is the LO ports.
+>
+> As my previous experience with USRPs was a B210 model, I don't know
+> whether the LO ports are needed or not.
+>
+> 1) Can these ports be used as the other RX/TX RF ports, in order to
+> connect more antennas (e.g., MIMO)?
+>
+> 2) Can you please provide me examples of LO usage or any relevant
+> wiki/tutorial/guide?
+>
+> Thank you very much.
+>
+> Best regards,
+> Dimitris
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--00000000000004833f05afe87ddc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
+sans-serif">Hello Dimitris:</div><div class=3D"gmail_default" style=3D"font=
+-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D=
+"font-family:verdana,sans-serif">The KB has information about the USRP N320=
+/N321 and the LOs.</div><div class=3D"gmail_default" style=3D"font-family:v=
+erdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fam=
+ily:verdana,sans-serif"><a href=3D"https://kb.ettus.com/N320/N321">https://=
+kb.ettus.com/N320/N321</a></div><div class=3D"gmail_default" style=3D"font-=
+family:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"=
+font-family:verdana,sans-serif"><a href=3D"https://kb.ettus.com/USRP_N320/N=
+321_LO_Distribution">https://kb.ettus.com/USRP_N320/N321_LO_Distribution</a=
+></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif=
+"><br></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-=
+serif">The LOs cannot be imported or exported on the USRP B200/B210.<br></d=
+iv><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><b=
+r></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-seri=
+f"><a href=3D"https://kb.ettus.com/B200/B210/B200mini/B205mini">https://kb.=
+ettus.com/B200/B210/B200mini/B205mini</a></div><div class=3D"gmail_default"=
+ style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_def=
+ault" style=3D"font-family:verdana,sans-serif">The LO ports on the USRP N32=
+0/N321 are not transmit and receive ports.=C2=A0 The N320/N321 and B210 all=
+ have two transmit channels and two receive channels.</div><div class=3D"gm=
+ail_default" style=3D"font-family:verdana,sans-serif"><br></div><div class=
+=3D"gmail_default" style=3D"font-family:verdana,sans-serif">Please let me k=
+now if you have any further questions.</div><div class=3D"gmail_default" st=
+yle=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_defaul=
+t" style=3D"font-family:verdana,sans-serif">--Neel Pandeya</div><div class=
+=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><br></div><div =
+class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><br></div>=
+</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Tue, 22 Sep 2020 at 07:51, Dimitris Pliatsios via USRP-users &lt;<a href=
+=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hello all,=
+<br>
+<br>
+I am looking to purchase 2 USRPs for research purposes (5G, beamforming, <b=
+r>
+=CE=9C=CE=99=CE=9C=CE=9F, etc.) and I am between the N321 and N320 model. T=
+he main <br>
+difference is the LO ports.<br>
+<br>
+As my previous experience with USRPs was a B210 model, I don&#39;t know <br=
+>
+whether the LO ports are needed or not.<br>
+<br>
+1) Can these ports be used as the other RX/TX RF ports, in order to <br>
+connect more antennas (e.g., MIMO)?<br>
+<br>
+2) Can you please provide me examples of LO usage or any relevant <br>
+wiki/tutorial/guide?<br>
+<br>
+Thank you very much.<br>
+<br>
+Best regards,<br>
+Dimitris<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--00000000000004833f05afe87ddc--
+
+
+--===============7148418173365619903==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7148418173365619903==--
+
