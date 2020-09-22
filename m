@@ -2,50 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B381274A1E
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Sep 2020 22:29:34 +0200 (CEST)
-Received: from [::1] (port=59290 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B46CF274A29
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Sep 2020 22:34:24 +0200 (CEST)
+Received: from [::1] (port=59334 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kKoum-0002W1-48; Tue, 22 Sep 2020 16:29:28 -0400
-Received: from mail-lf1-f43.google.com ([209.85.167.43]:33652)
+	id 1kKozX-00035W-KJ; Tue, 22 Sep 2020 16:34:23 -0400
+Received: from mail-qk1-f175.google.com ([209.85.222.175]:39290)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <chfl5156@colorado.edu>)
- id 1kKouj-0002Rt-18
- for usrp-users@lists.ettus.com; Tue, 22 Sep 2020 16:29:25 -0400
-Received: by mail-lf1-f43.google.com with SMTP id 77so12176994lfj.0
- for <usrp-users@lists.ettus.com>; Tue, 22 Sep 2020 13:29:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=colorado.edu; s=google;
- h=mime-version:reply-to:from:date:message-id:subject:to;
- bh=kZG6pcLPwDSBWLd27Hl198sU0DCEkR6Pf+eLI1Kys0w=;
- b=YLNXhYA7NTW/mdzOyq6hc1lkE6w17+amw/nwPYpP97A3AGCB1Wr+jEbVZDH0B4mG8k
- QnVfD2lLE1ss/9DVCdUJ4rpKw7sa10bOUXvcbpCPtg4a1SZ4FNvRDGndXolVTDXwe7a/
- S566hZ6+4IF/Ln8mEucmcU0SJ9pElOJ4BI9Do4xDD2uHcfYFtOn92mO77O3N2MzXFBnE
- wo7jihQ4tVIpqZnJhgewH1esDn6oF2HDG/JQTAb8mhZwSEuQy+OAhZQJHQM+znP3cA4p
- FqpKhhrFboYob2h/tVj/TrpCZFxIv3dZR1sLoHRWjPv/zNkDgru9H4CAwvUxCjeMmf7E
- jZ9g==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kKozT-0002wU-0S
+ for USRP-users@lists.ettus.com; Tue, 22 Sep 2020 16:34:19 -0400
+Received: by mail-qk1-f175.google.com with SMTP id w12so20547574qki.6
+ for <USRP-users@lists.ettus.com>; Tue, 22 Sep 2020 13:33:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=L+xRIubEMHg9/3VrPaHdSiSWLaO+h43I99OJevd1vAE=;
+ b=iMcbikpgTEaT68v4aMLd2BLsinNBV3D4GtBs8+vg3Zb6EXDO8oyIOzfCA/ARE8UiIV
+ zxonwvC8+jpBjRr0QTHKObHIduY8u9ZMlekFOS9NRUK/X3RpM6CS8HmCT/qeOtZTY1ZJ
+ tCU+SBaZbJqYovo9VDdwfWnaw7X28BEj40KdbUvQsBXelFzAf29IDPPolCvA4hx/JdCx
+ n1v73KXa7zwrfeAvS4UeMH4mc+GUWvwbuzdpbaot6cuxJG7lgQbbSdPuhK60T7u/8Sh4
+ H4VZFmYBjrbTbjlp9414hr450qX/0chl7hFMVXhM/Ovf19VQ7dzn93dtPRQOlG11aUeF
+ GAZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:reply-to:from:date:message-id
- :subject:to;
- bh=kZG6pcLPwDSBWLd27Hl198sU0DCEkR6Pf+eLI1Kys0w=;
- b=VoCiea32Q8booPQ2W8xAlsfspxqKGT8nD8ROO6OVyvUD79LlxAoRV+pRFx/u++/6pS
- Q0XoUI6xs3KCnlU6A6XVoEEkrtGNMYbukK2E3T4pdhkv5ZNR+f302p2uzXuv4FPVREiC
- eq5UZ6mlrR2RJrZ47zuibMCGD9gY+RnwgClUcFEJ2qqvidoy7N78ozBTxNVsPSH4Mqgh
- OOL8HbMvJSE2tk3CkbNo5jafRt78p6SHjj4oG8LRG5g3D1xF6azG+ilnSRJQfnzgtZ1J
- d1dro2bI1PTktd2oepIIODsbRknhw+5N5+oSasS77Bv3RDfWLOjryhHVDchgZwOv6XZ4
- wptg==
-X-Gm-Message-State: AOAM531kng9Sg6SkgkuXvEJ5e7mDZtcePeSw+tSk6SLAHzebDnoV8kWM
- S/AWQyyyUJOC9Rjp6Yv9o0EI6plR6FO9/rJyRpnDMIvufnYLSg==
-X-Google-Smtp-Source: ABdhPJzLQkmpJjZiFNzPwm86fKDENf+yF6r3C8HQ01MF2O9GZb0HkX+nK5poa28tArDBOnZrAFmwqTjXDKx6ryA5sA8=
-X-Received: by 2002:a05:6512:31c4:: with SMTP id
- j4mr2061323lfe.323.1600806523040; 
- Tue, 22 Sep 2020 13:28:43 -0700 (PDT)
-MIME-Version: 1.0
-Date: Tue, 22 Sep 2020 14:28:32 -0600
-Message-ID: <CAM+cdhJsqS=h8E1KruwNC0gHk-fvb6TLt_r64W9aR4Vk4ZZ22Q@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Ettus N310: Tuning in GNU Radio
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=L+xRIubEMHg9/3VrPaHdSiSWLaO+h43I99OJevd1vAE=;
+ b=Rsm9Fl6JDvw1yHQjqYnzvwGGcs23M0oU4sEe2l32ImetZmkG6GGt6K28Px1Boyf+WX
+ TyM3vRBPdBf6aVMI+OMlSJCoS8qTtzK4YLKM7xxQGjYpcqZR3c1jkdfVxIFMUNJOS2R4
+ FNypoFwzW00et9XtrCH0t7mBIrRCCEwPRdaLLvQ6hNUyYx4UPFeAUnxZ/Ll/djlnVZBi
+ 8XHaq80P7New9HorLANIYsg2if5WrUX7ShZnlw+uOAuvEeMie9bIEELIRqz0qSKpwB5A
+ mYio+mzlna3y5xxiectobLbPTN2XLpeLpS3Xm2OCkTV09xFGdo5M/taWPhKv1LLxSskf
+ 7AUg==
+X-Gm-Message-State: AOAM5327CsHZCQl9Pguq5V11L1P9zZD/E17kzud7eu52xxdFnZNggnc4
+ 4n+VwAfN5VTc+dNwGNni6Yw=
+X-Google-Smtp-Source: ABdhPJy/4YaYeRHKm/oc5E5YdmMWOW6kEPOXUrs+vuLky0+nDq5N7GFSLSo3OCcNt9dKC3jjCCQwFA==
+X-Received: by 2002:a37:b03:: with SMTP id 3mr6208375qkl.181.1600806818461;
+ Tue, 22 Sep 2020 13:33:38 -0700 (PDT)
+Received: from [192.168.2.29]
+ (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
+ by smtp.gmail.com with ESMTPSA id o2sm11968479qkk.42.2020.09.22.13.33.38
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 22 Sep 2020 13:33:38 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+Date: Tue, 22 Sep 2020 16:33:37 -0400
+Message-Id: <0A090987-67A8-41CB-ACF6-66356B789250@gmail.com>
+References: <CAM+cdhJsqS=h8E1KruwNC0gHk-fvb6TLt_r64W9aR4Vk4ZZ22Q@mail.gmail.com>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <CAM+cdhJsqS=h8E1KruwNC0gHk-fvb6TLt_r64W9aR4Vk4ZZ22Q@mail.gmail.com>
+To: Christopher.Flood@colorado.edu
+X-Mailer: iPhone Mail (17H35)
+Subject: Re: [USRP-users] Ettus N310: Tuning in GNU Radio
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -57,9 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Christopher Flood via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Christopher.Flood@colorado.edu
-Content-Type: multipart/mixed; boundary="===============8167154961200966634=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,69 +83,31 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8167154961200966634==
-Content-Type: multipart/alternative; boundary="000000000000290d8805afecd037"
-
---000000000000290d8805afecd037
-Content-Type: text/plain; charset="UTF-8"
-
-Hi all,
-
-I had some questions about the tuning accuracy I should expect in GNU
-radio. I have a 10MHz sinusoidal signal coming into an RX port on the N310.
-I am interfacing with the SDR through GNU radio and the UHD: USRP Source
-block. In the RF Options box of the source block I am using the following
-command as the center frequency: uhd.tune_request(fCenter, loOff) where
-fCenter = 10MHz + 100Hz and loOff = 250kHz. The resulting signal from this
-operation is nominally a 100Hz signal. However, when I make phase /
-frequency measurements of this signal, it is off by ~1Hz, which seems high.
-
-I would expect the measured frequency offset of the incoming signal to
-reflect the stability of the incoming signal. However, based on the source
-of the incoming signal I have reason to believe that this offset is too
-large.
-
-Has anyone else had problems with this? How accurate should I expect the
-tuning process to be?
-
-Thanks,
-
-Chris
-
---000000000000290d8805afecd037
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi all,<div><br></div><div>I had some questions about the =
-tuning accuracy I should expect in GNU radio. I have a 10MHz sinusoidal sig=
-nal coming into an RX port on the N310. I am interfacing with the SDR throu=
-gh GNU radio and the UHD: USRP Source block. In the RF Options box of the s=
-ource block I am using the following command as the center frequency: uhd.t=
-une_request(fCenter, loOff) where fCenter =3D 10MHz=C2=A0+=C2=A0100Hz and l=
-oOff =3D 250kHz. The resulting signal from this operation is nominally a 10=
-0Hz signal. However, when I make phase / frequency measurements of this sig=
-nal, it is off by ~1Hz, which seems high.=C2=A0</div><div><br></div><div>I =
-would expect the measured frequency offset of the incoming signal to reflec=
-t=C2=A0the stability of the incoming signal. However, based on the source o=
-f the incoming signal I have reason to believe that this offset is too larg=
-e.=C2=A0</div><div><br></div><div>Has anyone else had problems with this? H=
-ow accurate should I expect the tuning process to be?=C2=A0</div><div><br><=
-/div><div>Thanks,</div><div><br></div><div>Chris</div><div><br></div><div><=
-br></div></div>
-
---000000000000290d8805afecd037--
-
-
---===============8167154961200966634==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============8167154961200966634==--
-
+MUh6IGluIDEwTWh6IGlzIDAuMVBQTSB3aGljaCBpcyB3aXRoaW4gdGhlIGNsb2NrIGFjY3VyYWN5
+IHNwZWMgb2YgdGhlIE4zMTAKRGV2aWNlIHdpdGhvdXQgYW4gZXh0ZXJuYWwgcmVmZXJlbmNlLiAK
+ClNlbnQgZnJvbSBteSBpUGhvbmUKCj4gT24gU2VwIDIyLCAyMDIwLCBhdCA0OjI5IFBNLCBDaHJp
+c3RvcGhlciBGbG9vZCB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
+IHdyb3RlOgo+IAo+IO+7vwo+IEhpIGFsbCwKPiAKPiBJIGhhZCBzb21lIHF1ZXN0aW9ucyBhYm91
+dCB0aGUgdHVuaW5nIGFjY3VyYWN5IEkgc2hvdWxkIGV4cGVjdCBpbiBHTlUgcmFkaW8uIEkgaGF2
+ZSBhIDEwTUh6IHNpbnVzb2lkYWwgc2lnbmFsIGNvbWluZyBpbnRvIGFuIFJYIHBvcnQgb24gdGhl
+IE4zMTAuIEkgYW0gaW50ZXJmYWNpbmcgd2l0aCB0aGUgU0RSIHRocm91Z2ggR05VIHJhZGlvIGFu
+ZCB0aGUgVUhEOiBVU1JQIFNvdXJjZSBibG9jay4gSW4gdGhlIFJGIE9wdGlvbnMgYm94IG9mIHRo
+ZSBzb3VyY2UgYmxvY2sgSSBhbSB1c2luZyB0aGUgZm9sbG93aW5nIGNvbW1hbmQgYXMgdGhlIGNl
+bnRlciBmcmVxdWVuY3k6IHVoZC50dW5lX3JlcXVlc3QoZkNlbnRlciwgbG9PZmYpIHdoZXJlIGZD
+ZW50ZXIgPSAxME1IeiArIDEwMEh6IGFuZCBsb09mZiA9IDI1MGtIei4gVGhlIHJlc3VsdGluZyBz
+aWduYWwgZnJvbSB0aGlzIG9wZXJhdGlvbiBpcyBub21pbmFsbHkgYSAxMDBIeiBzaWduYWwuIEhv
+d2V2ZXIsIHdoZW4gSSBtYWtlIHBoYXNlIC8gZnJlcXVlbmN5IG1lYXN1cmVtZW50cyBvZiB0aGlz
+IHNpZ25hbCwgaXQgaXMgb2ZmIGJ5IH4xSHosIHdoaWNoIHNlZW1zIGhpZ2guIAo+IAo+IEkgd291
+bGQgZXhwZWN0IHRoZSBtZWFzdXJlZCBmcmVxdWVuY3kgb2Zmc2V0IG9mIHRoZSBpbmNvbWluZyBz
+aWduYWwgdG8gcmVmbGVjdCB0aGUgc3RhYmlsaXR5IG9mIHRoZSBpbmNvbWluZyBzaWduYWwuIEhv
+d2V2ZXIsIGJhc2VkIG9uIHRoZSBzb3VyY2Ugb2YgdGhlIGluY29taW5nIHNpZ25hbCBJIGhhdmUg
+cmVhc29uIHRvIGJlbGlldmUgdGhhdCB0aGlzIG9mZnNldCBpcyB0b28gbGFyZ2UuIAo+IAo+IEhh
+cyBhbnlvbmUgZWxzZSBoYWQgcHJvYmxlbXMgd2l0aCB0aGlzPyBIb3cgYWNjdXJhdGUgc2hvdWxk
+IEkgZXhwZWN0IHRoZSB0dW5pbmcgcHJvY2VzcyB0byBiZT8gCj4gCj4gVGhhbmtzLAo+IAo+IENo
+cmlzCj4gCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+Cj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
+dHMuZXR0dXMuY29tCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpo
+dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
+dHR1cy5jb20K
