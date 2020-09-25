@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACB6E277CF8
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Sep 2020 02:35:00 +0200 (CEST)
-Received: from [::1] (port=53188 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BBE0277D16
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Sep 2020 02:41:47 +0200 (CEST)
+Received: from [::1] (port=53232 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kLbhS-0003dm-Um; Thu, 24 Sep 2020 20:34:58 -0400
-Received: from mail-qt1-f170.google.com ([209.85.160.170]:44156)
+	id 1kLbo1-0005Cf-Vf; Thu, 24 Sep 2020 20:41:45 -0400
+Received: from mail-qt1-f181.google.com ([209.85.160.181]:45698)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kLbhO-0003VT-O2
- for usrp-users@lists.ettus.com; Thu, 24 Sep 2020 20:34:54 -0400
-Received: by mail-qt1-f170.google.com with SMTP id e7so614824qtj.11
- for <usrp-users@lists.ettus.com>; Thu, 24 Sep 2020 17:34:34 -0700 (PDT)
+ id 1kLbnx-00055X-UA
+ for usrp-users@lists.ettus.com; Thu, 24 Sep 2020 20:41:41 -0400
+Received: by mail-qt1-f181.google.com with SMTP id z2so618437qtv.12
+ for <usrp-users@lists.ettus.com>; Thu, 24 Sep 2020 17:41:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=YcgIx0XMXaLY5hz9yClbR74Sjo4ZvXw76EYQP52Hv/M=;
- b=Z5LCf9etLCPKLEKMEejPLI3sm1xlT6h4veGMiffMf7wZWpYmIiAqsPZNgmDWmgvQV5
- +P9i2SPvr+RK/1jcBfqvW2p3XGJ2Gox0pYnj0BA2LFFXOA/AfM0T6OzVFRC9OBgccgTD
- efhBwP4DPvOTyJgZF8W2hbFmLg+99LeLrbzp9ltcCY//qcM3menW21nzX8CzC45qhLpD
- pDzULi05nb7/7p9acwhwqUjYRu7bTrlljB27zSxwlheKxVzgXLrS/wEWvIWIi2lJGOE2
- HZhzI5J43+2gma4eIppYZ3SNijtiPtPWuWNvlfVYMXAmIZiOOgI+C09qmbaLYKqezQd4
- +tvA==
+ :in-reply-to; bh=IgCkmWVfhxWNnyjuCXc9xEAatVd7hGFanQXsr4TtCus=;
+ b=fKgOsa0dcUS/jXnpAizjpjXxmIRCnc9MMVjk67Qil9FxNOVkmVWNrjwoNJmJSChoGt
+ OiMxDWLjPNZgzXry4oJ7uTRwlg9EdfwQ4IYBWskme+5s99bMk+wBVd2evRwNCd5OiA1x
+ nsPM3DMC0QVQYB7UgKCaZXQG7qaI689QpWmkPlo0rZcVi4pGxyjzuO9p+qONOiwTx30W
+ juu7d/skBm2yPaBHG0VEZX0x4j4S6xQHPHplo8HWJRpX5VZ1Q3kmUz6kndPGJeYoMM9z
+ uxRhzeaf0KFwiF8g97zqeY2MMQ4eaZOmrrb3lrsCBE5qbf9tmeUUq997gqN75gGyKJ0W
+ d60Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to;
- bh=YcgIx0XMXaLY5hz9yClbR74Sjo4ZvXw76EYQP52Hv/M=;
- b=LO12CsIis/Oxwrspr44q3apQaQyQvgNtVmC49uHyoPjA1ox09CMEw9KtB52SrNspNG
- DXp1UwnLZtEBR4etqclo7D1aPpV8oU2lYnvk2jtg+93+ZEMyXzQyMgbHIEqWKmB6N2fi
- Cj2baxPSFyzJwW2BWix2fI+bhDuKUR1i/qAQ3mXsgFfK0BDPm3cKzrDdP3kS35pCDvR4
- XZc5AZ7D9trmi1uT44cWWCVz2TCkA6jKqwOKzmDnSjN9Zk2roWnJbAIA19gIL+GXmNJI
- Ix+TgKNH6u2kOB+64DrPUA19cT/tlBhh9o+KQX+76QjfX9m4Vykk9pBNKKdNmxJpjjXV
- HqWQ==
-X-Gm-Message-State: AOAM531dyaGTfcUtY4TsPh5pSsSqYlyP6Qn2s5rFgqr6O4j5KxixTdNQ
- nEuMNmYwfLKBb1akLlDkFxTRObJB0HkBzw==
-X-Google-Smtp-Source: ABdhPJyiHmNvalNq07O4rs3xlqvDCPEuRUxAi93EcO2CxXuQuEfYymKAOHCrnUOwpFLG3NX6r8EmVg==
-X-Received: by 2002:ac8:310c:: with SMTP id g12mr1974628qtb.281.1600994053756; 
- Thu, 24 Sep 2020 17:34:13 -0700 (PDT)
+ bh=IgCkmWVfhxWNnyjuCXc9xEAatVd7hGFanQXsr4TtCus=;
+ b=o0TEgT2/DCOOrn/SpC3HZjtqbhJTz9vQ+L7t/efMA3Ol4ApbhRGGRctLF2kZuujK03
+ 1AFIcLN30SYvlh+OYZX+fcwsqeDtiRUuzcHnDUaCG/oxBi3+YwF/l+znRi6pI4TgBzix
+ Kr6WhqlpcOxrKidi5R9vEsTVccWOIJu08ExAVbs2t0XCfq1BFE/cpaYiLlpKCckCgncx
+ pSLV+KbjqPHCf+JdXR4ocM2Mko32w1n+B09nhdDdsYQl291DUt8ORDhxsTG0aIBvKftU
+ JPcj/TrvLs6lff8o2EFbC1lTzSak4HveCB3zoXxt2tpTcjeCrQsAGDymbX9AGuPQKqkT
+ N7Dw==
+X-Gm-Message-State: AOAM53149ngk7eDt5mbwcJ285AOlVY+U9oDwkwcYRA9VqwvbCfCBKyvQ
+ SG06PKTJMI9MwehD2w4T6fr11udacLbsaw==
+X-Google-Smtp-Source: ABdhPJxq+aLWFttRE6bfryawQIgqPNa6/Rve7aefm32RoC9A4GWom/pGFz1wL69EMO1B63YRMMh2cw==
+X-Received: by 2002:ac8:5205:: with SMTP id r5mr1872757qtn.371.1600994461166; 
+ Thu, 24 Sep 2020 17:41:01 -0700 (PDT)
 Received: from [192.168.2.12]
  (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
- by smtp.googlemail.com with ESMTPSA id h18sm743325qkl.12.2020.09.24.17.34.13
+ by smtp.googlemail.com with ESMTPSA id q72sm793672qka.22.2020.09.24.17.41.00
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 24 Sep 2020 17:34:13 -0700 (PDT)
-Message-ID: <5F6D3B04.2010603@gmail.com>
-Date: Thu, 24 Sep 2020 20:34:12 -0400
+ Thu, 24 Sep 2020 17:41:00 -0700 (PDT)
+Message-ID: <5F6D3C9C.5090702@gmail.com>
+Date: Thu, 24 Sep 2020 20:41:00 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
@@ -68,7 +68,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3978395235598825825=="
+Content-Type: multipart/mixed; boundary="===============3235222238476778216=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,12 +83,12 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============3978395235598825825==
+--===============3235222238476778216==
 Content-Type: multipart/alternative;
- boundary="------------030801020109040802030802"
+ boundary="------------010506020907010506030804"
 
 This is a multi-part message in MIME format.
---------------030801020109040802030802
+--------------010506020907010506030804
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -100,6 +100,17 @@ On 09/24/2020 08:21 PM, David Merit via USRP-users wrote:
 > meta-data structure sent to recv() do anything useful to resolve?
 > Ive already tried different buffer sizes, rates. its really unusual.
 > Read below for the details.. THanks for any thoughts!. Dave M.
+You should only EVER need to do 1 "set_time_unknown_pps()" call at the 
+beginning of your code.  Constantly resetting the TOD register
+   on the USRP may have unintended consequences.
+
+Since my host computer is synced to NTP, I typically use that as the 
+time I set in the "set_time_unknown_pps()" call, and I do it once
+   per session.
+
+
+
+
 >
 > Since my project code is similar, To explain the BUG, Ive modified 
 > ETTUS example code "rx_timed_samples", to
@@ -231,13 +242,16 @@ On 09/24/2020 08:21 PM, David Merit via USRP-users wrote:
 >
 > Done!
 >
-David:
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
-Is the behavior different with UHD 3.15 or UHD 3.14?
 
-
-
---------------030801020109040802030802
+--------------010506020907010506030804
 Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
@@ -268,6 +282,24 @@ cite="mid:ME2P282MB05935F7A5FEE3072C5EE0877E1360@ME2P282MB0593.AUSP282.PROD.OUTL
           unusual.</div>
         <div>Read below for the details.. THanks for any thoughts!. Dave
           M.</div>
+      </div>
+    </blockquote>
+    You should only EVER need to do 1 "set_time_unknown_pps()" call at
+    the beginning of your code.  Constantly resetting the TOD register<br>
+      on the USRP may have unintended consequences.<br>
+    <br>
+    Since my host computer is synced to NTP, I typically use that as the
+    time I set in the "set_time_unknown_pps()" call, and I do it once<br>
+      per session.<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:ME2P282MB05935F7A5FEE3072C5EE0877E1360@ME2P282MB0593.AUSP282.PROD.OUTLOOK.COM"
+      type="cite">
+      <div style="font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
         <div><br>
         </div>
         <div>Since my project code is similar, To explain the BUG, Ive
@@ -458,20 +490,25 @@ cite="mid:ME2P282MB05935F7A5FEE3072C5EE0877E1360@ME2P282MB0593.AUSP282.PROD.OUTL
         </div>
         <div>Done!</div>
         <br>
+        <br>
       </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
     </blockquote>
-    David:<br>
-    <br>
-    Is the behavior different with UHD 3.15 or UHD 3.14?<br>
-    <br>
     <br>
   </body>
 </html>
 
---------------030801020109040802030802--
+--------------010506020907010506030804--
 
 
---===============3978395235598825825==
+--===============3235222238476778216==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -482,5 +519,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3978395235598825825==--
+--===============3235222238476778216==--
 
