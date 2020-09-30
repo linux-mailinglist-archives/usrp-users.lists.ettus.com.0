@@ -2,81 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43AB127DF1C
-	for <lists+usrp-users@lfdr.de>; Wed, 30 Sep 2020 05:53:20 +0200 (CEST)
-Received: from [::1] (port=58766 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C60B27DFF4
+	for <lists+usrp-users@lfdr.de>; Wed, 30 Sep 2020 07:10:48 +0200 (CEST)
+Received: from [::1] (port=59448 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kNTB6-0006Fo-7e; Tue, 29 Sep 2020 23:53:16 -0400
-Received: from mail-oln040092254080.outbound.protection.outlook.com
- ([40.92.254.80]:29280 helo=APC01-PU1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <james_ttfun@hotmail.com>)
- id 1kNTB1-0006Bx-Ik
- for USRP-users@lists.ettus.com; Tue, 29 Sep 2020 23:53:11 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K2Z0jV9X1OdSREu+7ejBmvu8zgf/6GAjsLr6cRUiHCW0sv68++EpL1yKfqIfP4UUUu4gXmNZw1EGEEyp7kjsAO86/5KjfVB3KYPJhWed9AN+G6xkAkyV8Ug3z7uVmOSM7Z6EANbd4kyo9gwEThduOSeKCrqapZBCLGauY5uQOakR+HVcSjjB6oYxLL3OCBJz1RneXeeut/Qe0RoDrRbOOxE4AzxpU+TuKJ/DJJeY5FRSFM+ax6vcHeoZ7S6V+fu8VFGCN49RtBaJ5lvhFCEpcJLD7ouRvCfMwztlutTnTEznqWNtF93IqXNwl1OXpXqXEzYp7OU8ouopExJfFFCWVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Yavlk4plSP3LZi772oC+8RufjKxABjo8mdgj79dzTE=;
- b=EJO6gbWFOmhrcDlVHqI63cFUfmmeF50Yols7ek1T0E3P0DITjiyGJIEKSn8OE2tooNOKNVEsgwdcHWjf2OsNtd8g0ss99TKdEMz/NuuZO4UhfgaRIamoBmq2O9rWcqyrQSD0iquR4yhbDGKfMmixyxiu3yA/TPJqINNeDcyzYDpuNFjxnAehCcqxLDMy2+frp07JN+r1wMaTDNDAIIkwiHBMY6V3CVvxqT3g9IWRsvlBzamxDRLQInWOg2zJgqw8SqNYZhMfruj+VoPM3YUw07y+748ikEzHTYXvwjXmJkI9yK4y9TaobpyGyFdeMNR9pH6LIut7Bv4ssnn6Vr2UDQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Yavlk4plSP3LZi772oC+8RufjKxABjo8mdgj79dzTE=;
- b=HcdPETqsoVIiABefW/srJg5DXyC3tNTKHqb3GOAkFzUO3lBCJJolpojA2rs0do8XQ0mhI2nZQ4yuWYb52yDRBtTDqhPKgNgi9zeAm9SMsrJ+istc0yL3h1WRXqbMt7vLTzMxu+nbzQE9+Ckp1xPSDlwwCMB5uj4rJqgot1DbDnf4CiS0dlUJ8CtgGfS7zjxjzAsRzngCS5hr2QSOlfOapeIerAaFBGA5/A3bBlgLaMUs71hA6Ii22JdZP3QFh5flrQ2R4hlicQen8D7chJ4re9KUIsMHJG8B5A28IkQJ+RP+MIoFyT3D+tzyhZsaSeIFwArx1zNY45DTtuck2OPG4g==
-Received: from HK2APC01FT063.eop-APC01.prod.protection.outlook.com
- (2a01:111:e400:7ebc::40) by
- HK2APC01HT166.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebc::469)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.34; Wed, 30 Sep
- 2020 03:52:28 +0000
-Received: from HK0PR03MB5091.apcprd03.prod.outlook.com
- (2a01:111:e400:7ebc::41) by HK2APC01FT063.mail.protection.outlook.com
- (2a01:111:e400:7ebc::400) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.34 via Frontend
- Transport; Wed, 30 Sep 2020 03:52:28 +0000
-Received: from HK0PR03MB5091.apcprd03.prod.outlook.com
- ([fe80::b810:da17:1df1:4312]) by HK0PR03MB5091.apcprd03.prod.outlook.com
- ([fe80::b810:da17:1df1:4312%6]) with mapi id 15.20.3433.034; Wed, 30 Sep 2020
- 03:52:28 +0000
-To: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Thread-Topic: How to build N310 file system image
-Thread-Index: AQHWlt0B8rzEMtYCKkm5HfO8EMDqqg==
-Date: Wed, 30 Sep 2020 03:52:28 +0000
-Message-ID: <HK0PR03MB50912828D2A5D7837C4F31F89D330@HK0PR03MB5091.apcprd03.prod.outlook.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:C437EA01BFECBED8911B9BDF3C276BC69B131189DF8AB1513A6F4FEC3C5E6DCE;
- UpperCasedChecksum:185CA40EFD91566F4BF537BFCE264C9317174A01D126F5B00E9C1B178F988C84;
- SizeAsReceived:6655; Count:41
-x-tmn: [YGzw7J38m7zHtc4MO8MSr0dcax+MzP8W]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 41
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: 696db7d2-37ab-412c-355d-08d864f44010
-x-ms-traffictypediagnostic: HK2APC01HT166:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: E0zMm4CBOjhAZ7IsZplfWdLLLsfDq8CCQTJ/Ghm1lSmYtmU3oQr8IM6eEV+VzfCcq1Q9lkI+ogKRBMsWHuEPSrjTFwMqdidP4tZl9tPYVlVsKSKJL0ZGsstJnMshdpv+RSCH2daL6NOj7hIIXwuvC2rnqPQ7MoGJ0yjjCtdCY62F3OWUFvaMWfUKMQyil2+yYmesNTst5CHk3vkQX3Ikkg==
-x-ms-exchange-antispam-messagedata: 0Ohr41YY8oZ2CtoGEq/iqgHpBEv5R7iHi9R9KVp0llZhh18VcPENB5eMPbjE+6RWgFXJ1gL1hNEXNWssrorcHHJxb60taPlZ9yAgbW0KIL1pwKtscMOLQChlZWAWQhou5DUJB/SEtxF/S97q22hceA==
-x-ms-exchange-transport-forked: True
+	id 1kNUO5-0002bH-Fq; Wed, 30 Sep 2020 01:10:45 -0400
+Received: from mail-qv1-f45.google.com ([209.85.219.45]:34360)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kNUO1-0002QL-BM
+ for usrp-users@lists.ettus.com; Wed, 30 Sep 2020 01:10:41 -0400
+Received: by mail-qv1-f45.google.com with SMTP id q10so299592qvs.1
+ for <usrp-users@lists.ettus.com>; Tue, 29 Sep 2020 22:10:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=G9hrkFkT2R2b/5PBypG/GXO8v5vOHJmsObfeGk0G4vA=;
+ b=bujhJ8cFkwM2YeVXdlWVb4Ix2MSzCJe6yNIHoAOz7mvl96ySGbJhFDpDz861w1iSrQ
+ DVrPXOYPgICVKBJVQcXiJjmhW6YZrNlzSMXEHRvQWyJavNKOhFV0OEzroLoW+BnjSLIq
+ 94KarAtIPaolSEW309BzPSlK6OfEZfB4hPJMiHeTAVDif8e2HejSBilghbU98Jef34bI
+ MQTdeQUq1JQo2o8zv+sskT3n0dY+EQTpyq4qCQn+H74FnRU3OKZ2hhXEdkpkpVh6hYrW
+ p0jKs8mulQ/Sz0+zWNld6QST/5gBK/wNQlfr5NQBadcrXPcUgHPBDpJ1tqD09g6HKeVo
+ LVWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=G9hrkFkT2R2b/5PBypG/GXO8v5vOHJmsObfeGk0G4vA=;
+ b=mKml83NUMF4jOlpHMDzNgF1LSeBFk6+R5WYhJ4KTykBeNnuiLk1X3yswou3Gufg90e
+ sxszvjhSzFRJAEMuzKd+ThKU5tx+aJI0kt/QfkATHWWDBSCTQkkoQCN7ahxFlspxl0em
+ PanZxNyRuiy3Wl6ZUZ7Fx6+cF2ew9gJGza3xBMEg5FBET8PGB0bHSc6psvk9waiQ7YhM
+ OOX7XmsrWAdwnPqXFKkfUKP8SglRdWHtRkR/1rSr0UkLvftWrQ7MqvleOBZmm+gHN9Pq
+ MCAFLRL6ZOxeikbtIRhrtx1SVNw+4BlJFUEc0bFQPOihb3TzLNmg5E0nC2K5taXo3k3z
+ g5pw==
+X-Gm-Message-State: AOAM530TXP/veY8IxVmLtrG43iRSznWyu57Ozas2ZDC/dHjUeTYmZMOa
+ D4eEhUrQDPjbWMyr7+i6r1S2b2lwBVSDTA==
+X-Google-Smtp-Source: ABdhPJxxG8rj0kyvEqrwGvRdhuvzmsG3DWWII4V+fG1OJM8k9kVPvB315R6I0k6zTAtGe9FMnrEXgg==
+X-Received: by 2002:a0c:edaa:: with SMTP id h10mr687221qvr.12.1601442600480;
+ Tue, 29 Sep 2020 22:10:00 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
+ by smtp.googlemail.com with ESMTPSA id 25sm860492qks.41.2020.09.29.22.09.59
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 29 Sep 2020 22:10:00 -0700 (PDT)
+Message-ID: <5F741327.5030501@gmail.com>
+Date: Wed, 30 Sep 2020 01:09:59 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: HK2APC01FT063.eop-APC01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 696db7d2-37ab-412c-355d-08d864f44010
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2020 03:52:28.1707 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2APC01HT166
-Subject: [USRP-users] How to build N310 file system image
+To: usrp-users@lists.ettus.com
+References: <HK0PR03MB50912828D2A5D7837C4F31F89D330@HK0PR03MB5091.apcprd03.prod.outlook.com>
+In-Reply-To: <HK0PR03MB50912828D2A5D7837C4F31F89D330@HK0PR03MB5091.apcprd03.prod.outlook.com>
+Subject: Re: [USRP-users] How to build N310 file system image
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -88,9 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: james Thomas via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: james Thomas <james_ttfun@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============4661350658591850046=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5689838334161371887=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -104,44 +82,78 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4661350658591850046==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============5689838334161371887==
 Content-Type: multipart/alternative;
-	boundary="_000_HK0PR03MB50912828D2A5D7837C4F31F89D330HK0PR03MB5091apcp_"
+ boundary="------------040905030903040400020707"
 
---_000_HK0PR03MB50912828D2A5D7837C4F31F89D330HK0PR03MB5091apcp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------040905030903040400020707
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
-where is the source code of N310 file system image and how to build it?
+On 09/29/2020 11:52 PM, james Thomas via USRP-users wrote:
+> Hi,
+> where is the source code of N310 file system image and how to build it?
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+I think what you seek is here:
 
---_000_HK0PR03MB50912828D2A5D7837C4F31F89D330HK0PR03MB5091apcp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+https://github.com/EttusResearch/meta-ettus
+
+
+
+--------------040905030903040400020707
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Hi,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-where is the source code of N310 file system image and how to build it?</di=
-v>
-</body>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 09/29/2020 11:52 PM, james Thomas
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:HK0PR03MB50912828D2A5D7837C4F31F89D330@HK0PR03MB5091.apcprd03.prod.outlook.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        Hi,</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        where is the source code of N310 file system image and how to
+        build it?</div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    I think what you seek is here:<br>
+    <br>
+    <a class="moz-txt-link-freetext" href="https://github.com/EttusResearch/meta-ettus">https://github.com/EttusResearch/meta-ettus</a><br>
+    <br>
+    <br>
+  </body>
 </html>
 
---_000_HK0PR03MB50912828D2A5D7837C4F31F89D330HK0PR03MB5091apcp_--
+--------------040905030903040400020707--
 
 
---===============4661350658591850046==
+--===============5689838334161371887==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -152,5 +164,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4661350658591850046==--
+--===============5689838334161371887==--
 
