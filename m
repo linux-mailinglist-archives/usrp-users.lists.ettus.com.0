@@ -2,49 +2,45 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1A2B280BE5
-	for <lists+usrp-users@lfdr.de>; Fri,  2 Oct 2020 03:18:42 +0200 (CEST)
-Received: from [::1] (port=34964 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED2D6280D52
+	for <lists+usrp-users@lfdr.de>; Fri,  2 Oct 2020 08:14:23 +0200 (CEST)
+Received: from [::1] (port=37072 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kO9iX-0008Tw-WB; Thu, 01 Oct 2020 21:18:38 -0400
-Received: from mail-ed1-f45.google.com ([209.85.208.45]:34181)
+	id 1kOEKf-0004Cs-6n; Fri, 02 Oct 2020 02:14:17 -0400
+Received: from mail-wm1-f48.google.com ([209.85.128.48]:36967)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <kelvin.lok266@gmail.com>)
- id 1kO9iT-0008Ol-Fp
- for usrp-users@lists.ettus.com; Thu, 01 Oct 2020 21:18:33 -0400
-Received: by mail-ed1-f45.google.com with SMTP id k14so59826edo.1
- for <usrp-users@lists.ettus.com>; Thu, 01 Oct 2020 18:18:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.93) (envelope-from <jayant17154@iiitd.ac.in>)
+ id 1kOEKb-000493-5C
+ for usrp-users@lists.ettus.com; Fri, 02 Oct 2020 02:14:13 -0400
+Received: by mail-wm1-f48.google.com with SMTP id j136so405278wmj.2
+ for <usrp-users@lists.ettus.com>; Thu, 01 Oct 2020 23:13:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iiitd.ac.in; s=google;
  h=mime-version:from:date:message-id:subject:to;
- bh=2JzmMhJiFftwG9ydU6wJVxxMT8/l5C7ULzqbVgmIL2w=;
- b=DEJ7ob2+jkRpAQ8th7kH6fWPIPmxDH7xIxGSjghi/sKUBPLc3T19J63MhC1iJ5W1d6
- uyhsRDuDCXc3KPjKp2J6X3qQ+yyRyainZDUzJ+awkz7mM1KDUVG3k7RKiSOupgJGbZpn
- khiTuns/L9dvBKN2SReTw9YFFtZtPvPaPx2RdSl7JYN7FZVetBNEnuxnHlabHCRGzPbG
- uavk+QUN2rw0eSroyFyOq8PaGrfqW0O+8ppuvfktUyBFw0LJOnvNWZa8q0Hg4dxFPt2L
- NJ0hlq38rqYXnvjP9yWlvdpmIV8Mj5223innMH51sQ6KBp7OCPkRJSqX1aD2mW9A1AeQ
- 0JyQ==
+ bh=QLSr8NQ6j4/OTvfiba/QstKPrOK1k03RxtPASuHf9yU=;
+ b=fJLSsUFftSSFm5XsJXihZoDxoJzTtLmRnyjS3Za1n9zq667j1L+ADWABnSJyO2iZGs
+ Gd1MIUWI0wbZTM5FG0IWEG4m4lCk0i9l5ZRlhbtEgb+S456PuNqqW/FnHjmV9PQrh+ES
+ iJeNiqgu2K9VrXt0bNt38apIZc+Oq5IetTsdE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=2JzmMhJiFftwG9ydU6wJVxxMT8/l5C7ULzqbVgmIL2w=;
- b=XJBAOg7pY5ceEiZOX3+Ec2VJBQvPUiBT26+NAzQH9SvTLZPWuMLoEyFRpNl1CtlZDB
- ZzJtyxLzNyWT402oVoBOtBixHieie6TktyMhjDUzQo1Xkko63s5btYv2dNGNXoT5+4Sn
- DJoUpCdGa9V2Th/9kMaWUD0UaLUB0l7M107YKQVrObwyCi/b/o70pmU7ZIP1r0TpkVYU
- laFSmErX1H3qcHdRMwbBiNBi95du0oV6pYeAYLyQdtGsylYb60ROHbGwdn5EnBaB0q4u
- NxaytK1AdRwaHfw86yGJRHFQaWlP124GExQeFlzVxZRTiQZcDOo40/TpMSQjp/2L2oPj
- 1bZg==
-X-Gm-Message-State: AOAM531CxGm52ViegUJuWZJBprPPqwfEbsWu4GIMc1zBXiGC+BOs8MXx
- z/iOA5REnCWPmrjoue9XjVZitcjGKsQ6L9gJLb/w9p1MsCk=
-X-Google-Smtp-Source: ABdhPJySMp7I7hxB1sVR40xBxPUJtHvkZJc/vfML/YAUvl5XFqdcf348VKBhQeVEfiSFtMTYbMZbPA2Aw7y3TbyaPEA=
-X-Received: by 2002:a50:d5d4:: with SMTP id g20mr10112063edj.169.1601601472084; 
- Thu, 01 Oct 2020 18:17:52 -0700 (PDT)
+ bh=QLSr8NQ6j4/OTvfiba/QstKPrOK1k03RxtPASuHf9yU=;
+ b=irdaPJFRouOPgNQrUhDGJEImPLtKxlkGrxfguYbsufI2P5DRnWrEPBH6FLNsX6LSSu
+ 87Nltc+2XhEFRMflbEuLkSmQp8mMhs8HxQHWNA8l4XtdnQzHYJHans8Z8+v7SJ5zQnWM
+ QADr2vAec77wuiTzNpSRKFOipKWIWARjJr2EdEt46FrIEBnLcogb+Ik/FfwK2fKZmhPB
+ 5Sg1t1yKhzQ+oxWIKs9R3JHr6gXG0xVrSjuDRM2v7hi+4+2gsGNYqKu96s3NMQKkbiLr
+ ZnqV8h0ZcurGWsRsBaqajnmWxFnaNfsNl0eYzwv6HMMkBIEKgD7tSE1nWTLxCqsHcI1t
+ Fq9w==
+X-Gm-Message-State: AOAM5331Jm7p3bAvUqJjP1WI7pF/wdikJgNJmWA2ZtW+9/neI5tkpYFq
+ 4kNioa5rlzAWS04TUib0/XAvKOL9ArAVmn4gvDbj4LuHrxQ=
+X-Google-Smtp-Source: ABdhPJw+aJODWZzhL9VnJGC1joUViqdWdp3OwWcD9expp/ve/xceljUt9hovYNYXRel1wboVYcE96r+DFLGJnKKaMtk=
+X-Received: by 2002:a1c:18e:: with SMTP id 136mr925124wmb.22.1601619211493;
+ Thu, 01 Oct 2020 23:13:31 -0700 (PDT)
 MIME-Version: 1.0
-Date: Fri, 2 Oct 2020 09:17:41 +0800
-Message-ID: <CACSyVY2dm3ASsdK_b6k1v_CRk3G9J-wdh9_FLWHCZi+JGv=TAg@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Loading B210 firmware takes forever (i.e. hang) after
- installing NI-USRP driver
+Date: Fri, 2 Oct 2020 11:43:20 +0530
+Message-ID: <CAKwrT9T96Z6aHHd1haebhn0AiazSNiKNDZRhx7p0G6wiCHOFOg@mail.gmail.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Benchmarking RFNoC Blocks
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -56,9 +52,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Kelvin Lok via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Kelvin Lok <kelvin.lok266@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6688586857791829652=="
+From: Jayant Chhillar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jayant Chhillar <jayant17154@iiitd.ac.in>
+Content-Type: multipart/mixed; boundary="===============7249283674564448467=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,43 +68,43 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6688586857791829652==
-Content-Type: multipart/alternative; boundary="000000000000d0bf5205b0a5e612"
+--===============7249283674564448467==
+Content-Type: multipart/alternative; boundary="0000000000002ac17305b0aa08e3"
 
---000000000000d0bf5205b0a5e612
+--0000000000002ac17305b0aa08e3
 Content-Type: text/plain; charset="UTF-8"
 
-I am running on the latest release of UHD (3.15.0.0) from github. Using
-Windows 10, installed with the UHD binary installer.
+Hi everyone,
+I wanted to know if there is a way to benchmark the performance of
+different RFNoC blocks?
+Basically, I want to compare the performance (time taken) by the RFNoC
+blocks as compared to their counterparts in GNURadio.
 
-Typically, running ./uhd_usrp_probe takes only a few moments for the
-firmware to be loaded onto the USRP. However, recently I have installed
-labview runtime and NI-USRP and after that, I am no longer able to use UHD
-to communicate to the USRP. Running uhd_usrp_probe or any of the uhd_xx_xx
-commands will result in an endless wait for 'Loading firmware image'.
+Also, what factors should I keep in mind that might affect the benchmarking
+results, for example, streaming samples from blocks to sending as vectors
+(GNURADIO) or the mtu size, etc.
 
-I suspect that installing NI-USRP has resulted in a clash with my UHD.
-Anyone have any suggestions?
+Thanks,
+Jayant
 
---000000000000d0bf5205b0a5e612
+--0000000000002ac17305b0aa08e3
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I am running on the latest=C2=A0release of UHD (3.15.0.0) =
-from github. Using Windows 10, installed with the UHD binary installer.=C2=
-=A0<div><br></div><div>Typically, running ./uhd_usrp_probe takes only a few=
- moments for the firmware to be loaded onto the USRP. However, recently I h=
-ave installed labview runtime and NI-USRP and after that, I am no longer ab=
-le to use UHD to communicate to the USRP. Running uhd_usrp_probe or any of =
-the uhd_xx_xx commands will result in an endless wait for &#39;Loading firm=
-ware image&#39;.<div><br></div><div>I suspect that installing NI-USRP has r=
-esulted in a clash with my UHD. Anyone have any suggestions?</div></div></d=
-iv>
+<div dir=3D"auto">Hi everyone,</div><div dir=3D"auto">I wanted to know if t=
+here is a way to benchmark the performance of different RFNoC blocks?</div>=
+<div dir=3D"auto">Basically, I want to compare the performance (time taken)=
+ by the RFNoC blocks as compared to their counterparts in GNURadio.=C2=A0</=
+div><div dir=3D"auto"><br></div><div dir=3D"auto">Also, what factors should=
+ I keep in mind that might affect the benchmarking results, for example, st=
+reaming samples from blocks to sending as vectors (GNURADIO) or the mtu siz=
+e, etc.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks,</d=
+iv><div dir=3D"auto">Jayant</div>
 
---000000000000d0bf5205b0a5e612--
+--0000000000002ac17305b0aa08e3--
 
 
---===============6688586857791829652==
+--===============7249283674564448467==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,5 +115,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6688586857791829652==--
+--===============7249283674564448467==--
 
