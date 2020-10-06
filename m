@@ -2,56 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8DE5284C48
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Oct 2020 15:10:21 +0200 (CEST)
-Received: from [::1] (port=51050 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 901F7284CA0
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Oct 2020 15:41:10 +0200 (CEST)
+Received: from [::1] (port=51288 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kPmjS-0003rd-VU; Tue, 06 Oct 2020 09:10:18 -0400
-Received: from mail-ej1-f41.google.com ([209.85.218.41]:34130)
+	id 1kPnDH-000761-Tx; Tue, 06 Oct 2020 09:41:07 -0400
+Received: from mail-oo1-f46.google.com ([209.85.161.46]:39705)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
- id 1kPmjP-0003mt-B3
- for usrp-users@lists.ettus.com; Tue, 06 Oct 2020 09:10:15 -0400
-Received: by mail-ej1-f41.google.com with SMTP id u8so17560071ejg.1
- for <usrp-users@lists.ettus.com>; Tue, 06 Oct 2020 06:09:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kPnDD-0006zM-Vk
+ for usrp-users@lists.ettus.com; Tue, 06 Oct 2020 09:41:04 -0400
+Received: by mail-oo1-f46.google.com with SMTP id c4so3197228oou.6
+ for <usrp-users@lists.ettus.com>; Tue, 06 Oct 2020 06:40:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ANoMWuuoJ5HRL9hgFtgzdEhRVHK+X3LJ2FYM5i3z+Zk=;
- b=X8ljcGV9OLsQMvuNuVcu7qwUn8MpjYSMGCnpqKEC6k8S571dReffsdQsGbgGySwERl
- lQtAOMBs5zk1wjffA0P2Hq85BwnzzrvP80z4ZzWmIcQSEruRfiok1uQieZLpWv2hsAZN
- J9dtFS4/sf3OxOiIOcxrJkWI5maiqbrUcqxF/gWhr2La/1+Dv67ksu/7p7aSu5A5N9wu
- P+uoTd3fqU8l/EUD3AnpGcKNiSw/Npz5U2adUfSVBdCssCexuqV1X3b0E8bJrm/V2mJQ
- 0xw4pxcBSk65PIUSHkMp0zHQ4M9+1hdowagCq9MPC+nTp76eIjcSbddkukHdf4w4UCHj
- 3+5Q==
+ :cc; bh=ozCIG/PozfXPEeBNdjgiZ5G1NPewbUuUTvEsoVWRT9M=;
+ b=U9wCL7XLJw4gmEr79ZoK0K/E0Vz6PbRZxGa21wcIF7aZP7K/xyR8AoyHsLZcQleXVz
+ 7BeI2sT2wI+++BL5V4p/VainJqa3sYj9h6W5DmucCTz+LNibptzb78VAfQucTS3+d8aA
+ 0WEGf8Bo1FqUM1UYxDGlYhixtoyApq4NfDzJR4l3r1EEQXIDhmJH2RVQtcInusn/cDAT
+ 3Z930pYmEka4xRWJ4JhuBlFWU7QS3JkgdVowOgAYwxncCxVE075Lb2FsJhGDDUGkJgar
+ 1KwUpMwKC7oFBXT6Q0sVZWb/asuk7Fv+e6chZvCalFstJ44iPxPNz63rEXSRA65ECXte
+ 4ljQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=ANoMWuuoJ5HRL9hgFtgzdEhRVHK+X3LJ2FYM5i3z+Zk=;
- b=Xj3ltys80DGPWxhqujsWFy4mCeeilB9/VJAo/gJUL4gCwdQEAjYB/qhrQATZcXJdql
- bqZT9OKX4+kblnMUdeFlRLtl2nT9yIlNWkXu9pNnv8i0+XIKbpUjUD50HQmuf+NdvMMx
- MgUGb8klV3pmdy6HlVXLHYKmZeW0XzaFfyIUye4W+F28VmIZpAHxT8RNeZZYmAJko4X9
- +I1k21lDRHST5FDGXmOLqz3Qf4ifyYKZxGF4In9QrA7wYJi+1giT6vsq7WtsGpA4favA
- X4BPAvReLzyVbGcF8DseLzLQ7a2PUV7Hxp+sTItMNE975IhQJj64W23s7zjEsEwwzJA7
- cjVw==
-X-Gm-Message-State: AOAM532VItJNcpH15HbfM4ehGcmgbO9DbtuC6fr1LLB+6hqO6BoEZKim
- P3+IAFCAJTgXEX2l+UtPoQQOAMZIcN0uAxwOHz2zlXZS
-X-Google-Smtp-Source: ABdhPJxzVYWn9bGs7R/sew2ZoEEWEvdajFspNVWCi83iRXWIstp0YUPImIMq3TyCPkEVDLBvUyibR9bTeGkSuN4bNpI=
-X-Received: by 2002:a17:906:358a:: with SMTP id
- o10mr5313290ejb.371.1601989774277; 
- Tue, 06 Oct 2020 06:09:34 -0700 (PDT)
+ bh=ozCIG/PozfXPEeBNdjgiZ5G1NPewbUuUTvEsoVWRT9M=;
+ b=LtLqmzSlJj7j1tRGWBMjT8ojlfUYdiGNa58B/1kyT5oFNpZRPDV7ueQG3Vh1e3Bs/T
+ MunbeRni6peQu8ov2mg2YpkeqHajARI5LfFpHTFgAS72WA6C0L0VqnfnFDL7u4Yj/WTB
+ 45ZqjmFjJAWi5NO9UcEdXssdf4UpcFXe340unKhnMHKxLfaeL2YjLFwk4xxEqw2u+6kw
+ uMUODZR4VNbnc8qD15kv4G5FzmtxZyJw8N26HZHCG6Ho70Aj20ncoZdUPZZI1rXE8K84
+ LoSZ31wTL18mXcTh6LMV+GdAkjBeWobkqsCMpHHQpn8athBkMAMWrKmKnDKBvjHqTVCF
+ tdEw==
+X-Gm-Message-State: AOAM531S2RrDi4+HzB7ZdKkFaPBxpd8tZH5dOyZQ/v6ggo7xkY30IlUM
+ ZI1ktDpdPxx+Eh95OTzFKKBUGWNewZSh+piw+D1JTQ==
+X-Google-Smtp-Source: ABdhPJzuBIU0ueGuStEXu/H2EGYPvbo1k4rKZ0wbmNoGck6DkWaxwRclY01KMR1XRg5Fx+Qkhe0fxx8umrTAwW6tej8=
+X-Received: by 2002:a05:6820:384:: with SMTP id
+ r4mr3173772ooj.62.1601991622967; 
+ Tue, 06 Oct 2020 06:40:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEP-zC1h9MNePZLF4UnB93013d0MTbA-m+12jPCCDbyy+LeHKQ@mail.gmail.com>
- <CAGNhwTORFAfgUJsHHMjm7e+O_gD0+wmmhgdBeb0PV6Ov8aSkcQ@mail.gmail.com>
- <CAEP-zC1MiysrvbQESPAykqVP7teEwr8Jep9r-9frQigXbaT6YA@mail.gmail.com>
-In-Reply-To: <CAEP-zC1MiysrvbQESPAykqVP7teEwr8Jep9r-9frQigXbaT6YA@mail.gmail.com>
-Date: Tue, 6 Oct 2020 09:09:23 -0400
-Message-ID: <CAGNhwTNHS9U3=RX-qe5J=mr3VzayK15hOwthYxZvJbpfn5eFAA@mail.gmail.com>
-To: Anes Rose Rigiel Anony <ra.anes@globaledgesoft.com>
-Cc: USRP list <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] USRP and Bladerf Sync
+References: <CADrptxWYb5Mf83FoQF05PhhH=-r=wU5VTF+v7brk3Pdom3cxGw@mail.gmail.com>
+In-Reply-To: <CADrptxWYb5Mf83FoQF05PhhH=-r=wU5VTF+v7brk3Pdom3cxGw@mail.gmail.com>
+Date: Tue, 6 Oct 2020 09:40:12 -0400
+Message-ID: <CAB__hTQ1Kcw_+2r9FCoWK00zGOttMPPaNQg5=m0_s-LiMaUYcQ@mail.gmail.com>
+To: Emil Bjelski <emil.bjelski@gmail.com>
+Cc: USRP Users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] RFNOC REPLAY streaming to two UBX
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -63,9 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Content-Type: multipart/mixed; boundary="===============7328107543673642119=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============8068548734264159606=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,146 +75,96 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7328107543673642119==
-Content-Type: multipart/alternative; boundary="0000000000006e195d05b1004fa4"
+--===============8068548734264159606==
+Content-Type: multipart/alternative; boundary="0000000000009f083f05b100bd98"
 
---0000000000006e195d05b1004fa4
+--0000000000009f083f05b100bd98
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Rigiel - You've reached the limits of my knowledge in this regard.
-Hopefully others can chime in to augment what I've written. For all I know,
-you're in uncharted territory! Sorry I can't be of more help & good luck! -
-MLD
+Hi Emil,
+With UHD 4.0, this works.  And, the latest FPGA images from Ettus include
+the Replay block on the X310 (in the past, this was just for the N310) so
+you don't even have to build your own image. And, the latest FPGA images
+provide access to the full 1GB ram such that you could store arb waveforms
+for 2 channels with memory depth of 125M samps for each channel.
 
+I verified that I could play 4 channels at 125 MS/s from the UHD 4.0 Replay
+block on the N310. I believe that I also verified 2 channels at 200 MS/s on
+the X310, but I don't remember for certain.
 
-On Tue, Oct 6, 2020 at 1:27 AM Anes Rose Rigiel Anony <
-ra.anes@globaledgesoft.com> wrote:
+Rob
 
-> Hi Michael,
+On Tue, Oct 6, 2020 at 7:00 AM Emil Bjelski via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi All,
 >
-> Thanks for the valuable information.
+> I am investigating the option to stream samples from RFNOC_REPLAY block to
+> two UBX-160 MHz cards with full speed (i.e. 200 Msps for each board).
+> I would also like to support timing control for both of these two
+> transmissions.
 >
-> Is there any external software which will sync this both *Internally*? If
-> yes, How?
+> I am planning to use new RFNOC architecture and UHD 4.0.
+> However, before diving deeper I would like to hear from you if this is
+> possible to be done in straightforward manner with the newest RFNOC
+> developments.
 >
-> Please share the details of *external hardware required for this both
-> devices to synchronize*.
+> I see from the previous posts
+> (
+> http://ettus.80997.x6.nabble.com/USRP-users-transmitting-on-two-channels-with-replay-block-td13915.html
+> ).
+> That with older RFNOC design and UHD 3.xxx streaming from RFNOC was
+> limited to a single UBX radio.
+> Meaning that an FPGA image with 2 Replay blocks was needed in order to
+> stream samples to two UBXs radios.
 >
-> Regards,
-> Rigiel
+> What would be the easiest way to proceed with new UHD 4.0?
 >
-> On Mon, Oct 5, 2020 at 8:07 PM Michael Dickens <michael.dickens@ettus.com>
-> wrote:
+> Thanks in advance on the answers,
 >
->> Hi Rigiel - At least in theory both the Bladerf XA4 and USRP B210 provide
->> external input for a 10 MHz REF, which -might- allow for some sense of
->> synchronization between them. It's really not clear to me whether that will
->> be enough, and whether the software controlling these devices can be
->> coerced into producing even vaguely time-aligned samples based on the
->> common REF signal. Maybe others here have used this particular combination
->> of SDR hardware in a synchronized manner? Good luck! - MLD
->>
->>
->> On Mon, Oct 5, 2020 at 2:37 AM Anes Rose Rigiel Anony via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
->>
->>> Hi Team,
->>>
->>> We are using *Bladerf XA4 as Base station 1 and USRP B210 as Base
->>> Station 2*. Since both devices use an internal clock as the clock
->>> source, both are *not in sync* so our application fails.
->>>
->>> I need to sync these both devices.
->>>
->>> *Is there any way to synchronize without an external clock and with an
->>> external clock?*
->>>
->>> Please share the detailed information on this.
->>>
->>> --
->>> Regards,
->>> Rigiel,
->>> Cellular.
->>>
->>> Disclaimer:This message is intended only for the designated
->>> recipient(s). It may contain confidential or proprietary information and
->>> may be subject to other confidentiality protections. If you are not a
->>> designated recipient, you may not review, copy or distribute this message.
->>> Please notify the sender by e-mail and delete this message. GlobalEdge does
->>> not accept any liability for virus infected mails.
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>
->
-> --
-> Regards,
-> Rigiel,
-> Cellular.
->
-> Disclaimer:This message is intended only for the designated recipient(s).
-> It may contain confidential or proprietary information and may be subject
-> to other confidentiality protections. If you are not a designated
-> recipient, you may not review, copy or distribute this message. Please
-> notify the sender by e-mail and delete this message. GlobalEdge does not
-> accept any liability for virus infected mails.
+> Emil
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---0000000000006e195d05b1004fa4
+--0000000000009f083f05b100bd98
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Rigiel - You&#39;ve reached the limits of my knowledge =
-in this regard. Hopefully others can chime in to augment what I&#39;ve writ=
-ten. For all I know, you&#39;re in uncharted territory! Sorry I can&#39;t=
-=C2=A0be of more help &amp; good=C2=A0luck! - MLD<br><br></div><br><div cla=
-ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Oct 6, 202=
-0 at 1:27 AM Anes Rose Rigiel Anony &lt;<a href=3D"mailto:ra.anes@globaledg=
-esoft.com">ra.anes@globaledgesoft.com</a>&gt; wrote:<br></div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi=C2=A0Michael,<div>=
-<br></div><div>Thanks for the valuable information.</div><div><br></div><di=
-v>Is there any external software which=C2=A0will sync this both <b>Internal=
-ly</b>? If yes, How?=C2=A0</div><div><br></div><div>Please share=C2=A0the d=
-etails of <b>external hardware required for this both devices to synchroniz=
-e</b>.</div><div><br></div><div>Regards,</div><div>Rigiel</div></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Oct =
-5, 2020 at 8:07 PM Michael Dickens &lt;<a href=3D"mailto:michael.dickens@et=
-tus.com" target=3D"_blank">michael.dickens@ettus.com</a>&gt; wrote:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Rig=
-iel - At least in theory both the=C2=A0Bladerf XA4 and USRP B210 provide ex=
-ternal input for a 10 MHz REF, which -might- allow for some sense of synchr=
-onization between them. It&#39;s really not clear to me whether that will b=
-e enough, and whether the software controlling these devices can be coerced=
- into producing even vaguely time-aligned samples based on the common REF s=
-ignal. Maybe others here have used this particular combination of SDR hardw=
-are in a synchronized manner? Good luck! - MLD<div><br></div></div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Oct 5,=
- 2020 at 2:37 AM Anes Rose Rigiel Anony via USRP-users &lt;<a href=3D"mailt=
-o:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div dir=3D"ltr">Hi Team,<div><br></div><div>We are using <b>Bladerf XA4 as =
-Base station 1 and USRP B210 as Base Station 2</b>. Since both devices use =
-an internal clock as the clock source, both are <b>not in sync</b> so our a=
-pplication fails.</div><div><br></div><div>I need to sync these both device=
-s.=C2=A0</div><div><b><br></b></div><div><b>Is there any way to synchronize=
- without an external clock and with an external clock?</b></div><div><br></=
-div><div>Please share the detailed information on this.<br clear=3D"all"><d=
-iv><br></div>-- <br><div dir=3D"ltr"><div dir=3D"ltr"><div>Regards,</div><d=
-iv>Rigiel,</div><div>Cellular.</div></div></div></div></div>
-
-<br>
-<div align=3D"left">Disclaimer:This message is intended only for the design=
-ated recipient(s). It may contain confidential or proprietary information a=
-nd may be subject to other confidentiality protections. If you are not a de=
-signated recipient, you may not review, copy or distribute this message. Pl=
-ease notify the sender by e-mail and delete this message. GlobalEdge does n=
-ot accept any liability for virus infected mails.<br></div>________________=
-_______________________________<br>
+<div dir=3D"ltr">Hi Emil,<div>With UHD 4.0, this works.=C2=A0 And, the late=
+st FPGA images from Ettus include the Replay block on the X310 (in the past=
+, this was just for the N310) so you don&#39;t even have to build your own =
+image. And, the latest FPGA images provide access to the full 1GB ram such =
+that you could store arb waveforms for 2 channels with memory depth of 125M=
+ samps for each channel.=C2=A0=C2=A0</div><div><br></div><div>I verified th=
+at I could play 4 channels at 125 MS/s from the UHD 4.0 Replay block on the=
+ N310. I believe that I also verified 2 channels at 200 MS/s on the X310, b=
+ut I don&#39;t remember for certain.</div><div><br></div><div>Rob</div></di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On T=
+ue, Oct 6, 2020 at 7:00 AM Emil Bjelski via USRP-users &lt;<a href=3D"mailt=
+o:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi=
+ All,<div><br></div><div>I am investigating the option to stream samples fr=
+om RFNOC_REPLAY block to two UBX-160 MHz cards with full speed (i.e. 200 Ms=
+ps for each board).</div><div>I would also like to support timing control f=
+or both of these two transmissions.=C2=A0</div><div><br></div><div>I am pla=
+nning to use new RFNOC architecture=C2=A0and UHD 4.0.</div><div>However, be=
+fore diving deeper I would like to hear from you if this is possible to be =
+done in straightforward=C2=A0manner with the newest RFNOC developments.=C2=
+=A0</div><div><br></div><div>I see from the previous posts=C2=A0</div><div>=
+(<a href=3D"http://ettus.80997.x6.nabble.com/USRP-users-transmitting-on-two=
+-channels-with-replay-block-td13915.html" target=3D"_blank">http://ettus.80=
+997.x6.nabble.com/USRP-users-transmitting-on-two-channels-with-replay-block=
+-td13915.html</a>).</div><div>That with older RFNOC design and UHD 3.xxx st=
+reaming from RFNOC was limited to a single UBX radio.=C2=A0</div><div>Meani=
+ng that an FPGA image with 2 Replay blocks was needed in order to stream sa=
+mples to two UBXs radios.</div><div><br></div><div>What would be the easies=
+t way to proceed with new UHD 4.0?</div><div><br></div><div>Thanks in advan=
+ce on the answers,</div><div><br></div><div>Emil</div></div>
+_______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
 lists.ettus.com</a><br>
@@ -226,23 +172,11 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
-><div dir=3D"ltr"><div>Regards,</div><div>Rigiel,</div><div>Cellular.</div>=
-</div></div>
 
-<br>
-<div align=3D"left">Disclaimer:This message is intended only for the design=
-ated recipient(s). It may contain confidential or proprietary information a=
-nd may be subject to other confidentiality protections. If you are not a de=
-signated recipient, you may not review, copy or distribute this message. Pl=
-ease notify the sender by e-mail and delete this message. GlobalEdge does n=
-ot accept any liability for virus infected mails.<br></div></blockquote></d=
-iv>
-
---0000000000006e195d05b1004fa4--
+--0000000000009f083f05b100bd98--
 
 
---===============7328107543673642119==
+--===============8068548734264159606==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -253,5 +187,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7328107543673642119==--
+--===============8068548734264159606==--
 
