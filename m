@@ -2,54 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 739DB28387F
-	for <lists+usrp-users@lfdr.de>; Mon,  5 Oct 2020 16:48:36 +0200 (CEST)
-Received: from [::1] (port=40698 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0CCF284549
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Oct 2020 07:28:06 +0200 (CEST)
+Received: from [::1] (port=47506 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kPRn1-0008Uz-1p; Mon, 05 Oct 2020 10:48:35 -0400
-Received: from mail-ej1-f44.google.com ([209.85.218.44]:37466)
+	id 1kPfW6-00072v-Sl; Tue, 06 Oct 2020 01:28:02 -0400
+Received: from mail-wr1-f48.google.com ([209.85.221.48]:43181)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
- id 1kPRmx-0008Oe-9z
- for usrp-users@lists.ettus.com; Mon, 05 Oct 2020 10:48:31 -0400
-Received: by mail-ej1-f44.google.com with SMTP id e22so5525237ejr.4
- for <usrp-users@lists.ettus.com>; Mon, 05 Oct 2020 07:48:11 -0700 (PDT)
+ (Exim 4.93) (envelope-from <ra.anes@globaledgesoft.com>)
+ id 1kPfW3-0006zI-6z
+ for usrp-users@lists.ettus.com; Tue, 06 Oct 2020 01:27:59 -0400
+Received: by mail-wr1-f48.google.com with SMTP id g12so6494463wrp.10
+ for <usrp-users@lists.ettus.com>; Mon, 05 Oct 2020 22:27:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ d=globaledgesoft-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=clYoNNIzaQvTjHnfov5Lh8BmWJlpr+neSA6W96lZcgI=;
- b=fgh2FzpfKSY3zEarEzFN4Yn4guG5/LUZb9RoKmPyHEwiAstruNzD4FZLGvGlDZV3Kl
- xGpYx4V3b4QIxRg3sJ2lGu59AGcPEYLIlOA5reMkylPsLR/fxGrcQ7NAUMEtsUS4MlWp
- W08Pd2/Qrc31NrtYjsectmZQeNcsD+FF2RAPy4UttxYEQzK6mmAm200ns5TYCngvldtx
- w0UJTOGPmJHq0//gpcvEBd0xOj14wWFgGreSHxt1QPYy4epOUyNEEdEwkLeAN4QEBuf3
- XTf8bpcUNfIqi0Mteldj/r3hDYqODoky39kCY8nGcfr8QDOMrAYcgAEXbNcLzHeU3KSH
- uE/Q==
+ :cc; bh=Xr8GsOQJpJul0wqEpfvFD4SPh09tY4TUeOrCM5wPslQ=;
+ b=HJsDJo3/D+CG+4PUa4r4a8eWI3JMpEviUQJrzCXoTJtnzX/10N4tY+Y+lmNQGE/ABt
+ KpF9b+p+qvD4zwaoEQ6ePe4gqzNx1y8Wa1bnS8WdKMMlqWi81yt/D8QhBM4wosZOhilJ
+ YjF22pBKZXtfsk4OdUVq0NrCY3usUCuMGSbH9iQqSMUuwc6GFnpfE3K3cU+jUCta4j03
+ KyyvUOR7qdA2LB3JwNa5NbWT8XVmvlJV7V/U2PGogMjRmuMoSbJjsJM1fJ9Wk9wvastf
+ onXH7CI9BsvQIxqrnHNrRi2bZ/2lvSxwfCOakLFd5x/aO7+wozXqv+ev6Q9br0bcKjW1
+ Ae9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=clYoNNIzaQvTjHnfov5Lh8BmWJlpr+neSA6W96lZcgI=;
- b=FEiS8qwc4tyA7ce1z5EMi7xD02DzvwD8WWOs2PPJtzMSsZvYQl3vy9jWWhXy0H2opG
- H7Mmy737fM7xP411JHMfeQ95aMMDHk4w5CxyUdImnzJ9AXn43+5DxYVhYtZ/V7nzv6o+
- Z5QNb3SuXaEZOqBDprz9h3wAfv5RqjeNFHatwkXmw1/KX3rdHlRVor+Ek452qd+OsaXI
- +pBStAUzOBJXYIiR1FrXFtres+3si6XC6wAhM0Antc+qD/5zyRCplbweWaHSVPD9jM2i
- rU7gOaBvZ0WItDWGdGS1AzxrFBS+rbO+pO1hD62tTKzq1s9Ok+Y7jba2tUfIRtcloRLp
- SU+A==
-X-Gm-Message-State: AOAM533bhqzh4Nr8bkiLiCkP+AW0AizRGdmJWVYYiI8yvV/gATM/6CFq
- DglP2jtAPAWcYFJbRnbhas4q3Xcdmd0tuEhNrklAaCnw
-X-Google-Smtp-Source: ABdhPJwNs9UernthN7bIOXTnklKQCnu+bXAWl/A2LmPtbksEpIYQmXEMBIv65lIzWXjM6Xp/Wr9zz56gAHcEv1+QsHE=
-X-Received: by 2002:a17:907:68c:: with SMTP id
- wn12mr91850ejb.202.1601909270333; 
- Mon, 05 Oct 2020 07:47:50 -0700 (PDT)
+ bh=Xr8GsOQJpJul0wqEpfvFD4SPh09tY4TUeOrCM5wPslQ=;
+ b=s6uuB1zxSTY8dPyQBuxnQQp420ymwhZAsKkbxVpDdhqmL3GyB5UqWizvURqY/CuJlp
+ f/b74FwILo4wcY+US6Casnuagus0/rcX6QNY+g/uU64QRkzDkRAY+ynmyqeFGdvG3Jnz
+ KAFYscs2nGohb77PECP+Hy3sepP01foXWOnBz33GQHlnSVXSGQ94zsMKFSBrtkTy+i+G
+ STxX+tkzk2xtIKzP98RWG/HFc1g/zeh5iRLhki11/vbip9BVDj/nFsVDufCFd95T1RVW
+ 2aAO7yYBQZns5y8FFbxJGOCXLw7UUqd0tK+Zy6EjTBzksu5EVaRroZvGS6vF+dughrGe
+ mBeQ==
+X-Gm-Message-State: AOAM533ch7tMe6AovN3yx1AGGHIGYSXB+IQNZ8PrejSMjretwdsM1HCA
+ rclFlMc8ggvrueeurPEQBu6pupSSi4Ja7L5xWug0Ac1jb6rdpnASZogGKhurOE3VuFG2QcwU+S6
+ ugUixdo68eczki2icIj+V9kyrCyyr+a1UXh14gmQe
+X-Google-Smtp-Source: ABdhPJwLKVQRsekCr9BZhQkngfE+8HJW8xqLqmWuFxMEJL1LVV5Y/7g5wqrDnKS/d6vYmxihoDID9HBQl6y6tBRNNDI=
+X-Received: by 2002:adf:82f7:: with SMTP id 110mr2689426wrc.261.1601962037980; 
+ Mon, 05 Oct 2020 22:27:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <SN2PR01MB19689D6667D356E34D42ADE7A80C0@SN2PR01MB1968.prod.exchangelabs.com>
-In-Reply-To: <SN2PR01MB19689D6667D356E34D42ADE7A80C0@SN2PR01MB1968.prod.exchangelabs.com>
-Date: Mon, 5 Oct 2020 10:47:39 -0400
-Message-ID: <CAGNhwTNtsmSECESTmvPOrivHJzQdNs1xf9C6ntvurGFvTWaJEg@mail.gmail.com>
-To: "Andrews, Mark J." <andrews.250@osu.edu>
-Cc: USRP Users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Compiling custom C++ code on E320
+References: <CAEP-zC1h9MNePZLF4UnB93013d0MTbA-m+12jPCCDbyy+LeHKQ@mail.gmail.com>
+ <CAGNhwTORFAfgUJsHHMjm7e+O_gD0+wmmhgdBeb0PV6Ov8aSkcQ@mail.gmail.com>
+In-Reply-To: <CAGNhwTORFAfgUJsHHMjm7e+O_gD0+wmmhgdBeb0PV6Ov8aSkcQ@mail.gmail.com>
+Date: Tue, 6 Oct 2020 10:57:07 +0530
+Message-ID: <CAEP-zC1MiysrvbQESPAykqVP7teEwr8Jep9r-9frQigXbaT6YA@mail.gmail.com>
+To: Michael Dickens <michael.dickens@ettus.com>
+Cc: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] USRP and Bladerf Sync
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,9 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Content-Type: multipart/mixed; boundary="===============6436071566597369451=="
+From: Anes Rose Rigiel Anony via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Anes Rose Rigiel Anony <ra.anes@globaledgesoft.com>
+Content-Type: multipart/mixed; boundary="===============5922536865389303282=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,204 +78,130 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6436071566597369451==
-Content-Type: multipart/alternative; boundary="000000000000055d4305b0ed9148"
+--===============5922536865389303282==
+Content-Type: multipart/alternative; boundary="00000000000037d23805b0f9da24"
 
---000000000000055d4305b0ed9148
+--00000000000037d23805b0f9da24
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Mark - Yeah you can't compile your UHD application for your host
-computer (not cross-compiled using the USRP's SDK) and expect it to run on
-the USRP. The USRP comes with a full UHD and development install, so you
-should be able to compile your UHD application directly on the USRP. It
-might not be fast, but it should work -- and, be compatible for
-execution on the USRP to boot! You can alternatively obtain the USRP's SDK
-and cross-compile the UHD application on your host computer with the USRP
-as the target processor; then, move the resulting executable to the USRP
-and it should work natively there. The E320 also works in "network mode",
-meaning that you can use your host computer to run the UHD application and
-transport data samples from the USRP to the host computer. This option is
-useful and attractive for some users, and the USRP's embedded processor has
-significant limitations for processing capabilities. I hope this helps! -
-MLD
+Hi Michael,
 
-On Mon, Oct 5, 2020 at 10:17 AM Andrews, Mark J. via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Thanks for the valuable information.
 
-> Hello,
->
-> I'm pretty new to SDR and am trying to run a custom C++ program on an
-> E320.  I modified the "rx_ascii_art_dft.cpp" file on my host computer so
-> that it saves the DFTs to files instead of displaying them on the screen
-> (with a 1 second delay between DFTs to prevent a million files being
-> created).  I recompiled UHD and tested the new rx_ascii_art_dft executable
-> and it seems to be doing what I want.  I was hoping (though not really
-> expecting) that I could just copy the executable to the E320 and run it on
-> there, but that does not work ("cannot execute binary file: Exec format
-> error").  I've tried looking at the manual and searching the internet for
-> how this is supposed to work, but it's not clear to me.  Am I supposed to:
->
-> 1) Rerun the mender filesystem update?  Will this include the newly
-> compiled files or will it simply reinstall the original files?
->
-> https://kb.ettus.com/E320_Getting_Started_Guide#Updating_the_file_system_with_Mender
->
-> 2) Compile directly on the E320?
->
-> https://files.ettus.com/manual/page_usrp_e3xx.html#e3xx_software_dev_mpm_native
->
-> 3) Obtain an SDK and cross-compile?
-> https://files.ettus.com/manual/page_usrp_e3xx.html#e3xx_software_dev_sdk
->
-> 4) Something else?
->
-> If anyone can point me in the right direction or include a link to a good
-> "hello world" example/tutorial on creating custom programs that run on the
-> E320, it would be greatly appreciated.
->
-> Thank you,
-> Mark
+Is there any external software which will sync this both *Internally*? If
+yes, How?
+
+Please share the details of *external hardware required for this both
+devices to synchronize*.
+
+Regards,
+Rigiel
+
+On Mon, Oct 5, 2020 at 8:07 PM Michael Dickens <michael.dickens@ettus.com>
+wrote:
+
+> Hi Rigiel - At least in theory both the Bladerf XA4 and USRP B210 provide
+> external input for a 10 MHz REF, which -might- allow for some sense of
+> synchronization between them. It's really not clear to me whether that will
+> be enough, and whether the software controlling these devices can be
+> coerced into producing even vaguely time-aligned samples based on the
+> common REF signal. Maybe others here have used this particular combination
+> of SDR hardware in a synchronized manner? Good luck! - MLD
 >
 >
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> On Mon, Oct 5, 2020 at 2:37 AM Anes Rose Rigiel Anony via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hi Team,
+>>
+>> We are using *Bladerf XA4 as Base station 1 and USRP B210 as Base
+>> Station 2*. Since both devices use an internal clock as the clock
+>> source, both are *not in sync* so our application fails.
+>>
+>> I need to sync these both devices.
+>>
+>> *Is there any way to synchronize without an external clock and with an
+>> external clock?*
+>>
+>> Please share the detailed information on this.
+>>
+>> --
+>> Regards,
+>> Rigiel,
+>> Cellular.
+>>
+>> Disclaimer:This message is intended only for the designated recipient(s).
+>> It may contain confidential or proprietary information and may be subject
+>> to other confidentiality protections. If you are not a designated
+>> recipient, you may not review, copy or distribute this message. Please
+>> notify the sender by e-mail and delete this message. GlobalEdge does not
+>> accept any liability for virus infected mails.
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 >
 
---000000000000055d4305b0ed9148
+-- 
+Regards,
+Rigiel,
+Cellular.
+
+-- 
+Disclaimer:This message is intended only for the designated recipient(s). 
+It may contain confidential or proprietary information and may be subject 
+to other confidentiality protections. If you are not a designated 
+recipient, you may not review, copy or distribute this message. Please 
+notify the sender by e-mail and delete this message. GlobalEdge does not 
+accept any liability for virus infected mails.
+
+
+--00000000000037d23805b0f9da24
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Mark - Yeah you can&#39;t compile your UHD application=
-=C2=A0for your host computer (not cross-compiled using the USRP&#39;s=C2=A0=
-SDK) and expect it to run on the USRP. The USRP comes with a full UHD  and =
-development=C2=A0install, so you should be able to compile your UHD applica=
-tion directly on the USRP. It might not be fast, but it should work -- and,=
- be compatible=C2=A0for execution=C2=A0on the USRP to boot! You can alterna=
-tively obtain the USRP&#39;s SDK and cross-compile the UHD application on y=
-our host computer with the USRP as the target processor; then, move the res=
-ulting executable to the USRP and it should work natively there. The E320 a=
-lso works in &quot;network mode&quot;, meaning that you can use your host c=
-omputer to run the UHD application and transport data samples from the USRP=
- to the host computer. This option is useful and attractive for some users,=
- and the USRP&#39;s=C2=A0embedded processor has significant limitations for=
- processing capabilities. I hope this=C2=A0helps! - MLD<br></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Oct 5, 2=
-020 at 10:17 AM Andrews, Mark J. via USRP-users &lt;<a href=3D"mailto:usrp-=
-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr">Hi=C2=A0Michael,<div><br></div><div>Thanks for the valuabl=
+e information.</div><div><br></div><div>Is there any external software whic=
+h=C2=A0will sync this both <b>Internally</b>? If yes, How?=C2=A0</div><div>=
+<br></div><div>Please share=C2=A0the details of <b>external hardware requir=
+ed for this both devices to synchronize</b>.</div><div><br></div><div>Regar=
+ds,</div><div>Rigiel</div></div><br><div class=3D"gmail_quote"><div dir=3D"=
+ltr" class=3D"gmail_attr">On Mon, Oct 5, 2020 at 8:07 PM Michael Dickens &l=
+t;<a href=3D"mailto:michael.dickens@ettus.com">michael.dickens@ettus.com</a=
+>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
+v dir=3D"ltr">Hi Rigiel - At least in theory both the=C2=A0Bladerf XA4 and =
+USRP B210 provide external input for a 10 MHz REF, which -might- allow for =
+some sense of synchronization between them. It&#39;s really not clear to me=
+ whether that will be enough, and whether the software controlling these de=
+vices can be coerced into producing even vaguely time-aligned samples based=
+ on the common REF signal. Maybe others here have used this particular comb=
+ination of SDR hardware in a synchronized manner? Good luck! - MLD<div><br>=
+</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
+attr">On Mon, Oct 5, 2020 at 2:37 AM Anes Rose Rigiel Anony via USRP-users =
+&lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
+ers@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
+;padding-left:1ex"><div dir=3D"ltr">Hi Team,<div><br></div><div>We are usin=
+g <b>Bladerf XA4 as Base station 1 and USRP B210 as Base Station 2</b>. Sin=
+ce both devices use an internal clock as the clock source, both are <b>not =
+in sync</b> so our application fails.</div><div><br></div><div>I need to sy=
+nc these both devices.=C2=A0</div><div><b><br></b></div><div><b>Is there an=
+y way to synchronize without an external clock and with an external clock?<=
+/b></div><div><br></div><div>Please share the detailed information on this.=
+<br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"><div dir=3D"ltr"><=
+div>Regards,</div><div>Rigiel,</div><div>Cellular.</div></div></div></div><=
+/div>
 
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Hello,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
 <br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-I&#39;m pretty new to SDR and am trying to run a custom C++ program on an E=
-320.=C2=A0 I modified the &quot;rx_ascii_art_dft.cpp&quot; file on my host =
-computer so that it saves the DFTs to files instead of displaying them on t=
-he screen (with a 1 second delay between DFTs to prevent
- a million files being created).=C2=A0 I recompiled UHD and tested the new =
-rx_ascii_art_dft executable and it seems to be doing what I want.=C2=A0 I w=
-as hoping (though not really expecting) that I could just copy the executab=
-le to the E320 and run it on there, but that
- does not work (&quot;cannot execute binary file: Exec format error&quot;).=
-=C2=A0 I&#39;ve tried looking at the manual and searching the internet for =
-how this is supposed to work, but it&#39;s not clear to me.=C2=A0 Am I supp=
-osed to:
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-1) Rerun the mender filesystem update?=C2=A0 Will this include the newly co=
-mpiled files or will it simply reinstall the original files?<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<a href=3D"https://kb.ettus.com/E320_Getting_Started_Guide#Updating_the_fil=
-e_system_with_Mender" id=3D"gmail-m_-5734274394925140215LPlnk480677" target=
-=3D"_blank">https://kb.ettus.com/E320_Getting_Started_Guide#Updating_the_fi=
-le_system_with_Mender</a><br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-2) Compile directly on the E320?=C2=A0 <br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<a href=3D"https://files.ettus.com/manual/page_usrp_e3xx.html#e3xx_software=
-_dev_mpm_native" id=3D"gmail-m_-5734274394925140215LPlnk625665" target=3D"_=
-blank">https://files.ettus.com/manual/page_usrp_e3xx.html#e3xx_software_dev=
-_mpm_native</a></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-3) Obtain an SDK and cross-compile?</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<a href=3D"https://files.ettus.com/manual/page_usrp_e3xx.html#e3xx_software=
-_dev_sdk" id=3D"gmail-m_-5734274394925140215LPlnk502855" target=3D"_blank">=
-https://files.ettus.com/manual/page_usrp_e3xx.html#e3xx_software_dev_sdk</a=
-></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-4) Something else?</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-If anyone can point me in the right direction or include a link to a good &=
-quot;hello world&quot; example/tutorial on creating custom programs that ru=
-n on the E320, it would be greatly appreciated.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Thank you,<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Mark<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-</div>
-
-_______________________________________________<br>
+<div align=3D"left">Disclaimer:This message is intended only for the design=
+ated recipient(s). It may contain confidential or proprietary information a=
+nd may be subject to other confidentiality protections. If you are not a de=
+signated recipient, you may not review, copy or distribute this message. Pl=
+ease notify the sender by e-mail and delete this message. GlobalEdge does n=
+ot accept any liability for virus infected mails.<br></div>________________=
+_______________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
 lists.ettus.com</a><br>
@@ -282,11 +209,21 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div>Regards,</div><div>Rigiel,=
+</div><div>Cellular.</div></div></div>
 
---000000000000055d4305b0ed9148--
+<br>
+<div align=3D"left">Disclaimer:This message is intended only for the design=
+ated recipient(s). It may contain confidential or proprietary information a=
+nd may be subject to other confidentiality protections. If you are not a de=
+signated recipient, you may not review, copy or distribute this message. Pl=
+ease notify the sender by e-mail and delete this message. GlobalEdge does n=
+ot accept any liability for virus infected mails.<br></div>
+--00000000000037d23805b0f9da24--
 
 
---===============6436071566597369451==
+--===============5922536865389303282==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -297,5 +234,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6436071566597369451==--
+--===============5922536865389303282==--
 
