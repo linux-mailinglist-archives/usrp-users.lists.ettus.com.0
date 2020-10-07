@@ -2,52 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF86C2861E4
-	for <lists+usrp-users@lfdr.de>; Wed,  7 Oct 2020 17:13:06 +0200 (CEST)
-Received: from [::1] (port=38728 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A04EC286420
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Oct 2020 18:30:50 +0200 (CEST)
+Received: from [::1] (port=39766 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kQB7o-0003YT-Ck; Wed, 07 Oct 2020 11:13:04 -0400
-Received: from mail-qv1-f46.google.com ([209.85.219.46]:40711)
+	id 1kQCL1-0002PB-Sm; Wed, 07 Oct 2020 12:30:47 -0400
+Received: from mail-qv1-f47.google.com ([209.85.219.47]:39690)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <huacheng.zeng@gmail.com>)
- id 1kQB7k-0003SW-Ds
- for usrp-users@lists.ettus.com; Wed, 07 Oct 2020 11:13:00 -0400
-Received: by mail-qv1-f46.google.com with SMTP id j3so1315240qvi.7
- for <usrp-users@lists.ettus.com>; Wed, 07 Oct 2020 08:12:40 -0700 (PDT)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kQCKy-0002IR-4R
+ for usrp-users@lists.ettus.com; Wed, 07 Oct 2020 12:30:44 -0400
+Received: by mail-qv1-f47.google.com with SMTP id b19so1472358qvm.6
+ for <usrp-users@lists.ettus.com>; Wed, 07 Oct 2020 09:30:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=aYkwCJ/hRRGB6SJYcir3cHIreaY7Ggso89c6WvhhUB0=;
- b=BMK0VQ0R6EB9Q4Rxbvc0w36Yr5OetyqxMTFSSxWSII512KZpttOFDb9R+OS1Tf7Ayl
- EOZF4wo3oMfemVUfer0pj0VsbqiMhkZpZE5jn7ulfKBd4SHASR8Pfmy7bmTqH0pxZBBk
- K/brechSc3ZGwrYlA+AKQJE8XGePvkQDMpszKAyvOhPHpEvyasJHqkGKlQcEQwBmtF89
- PR/ZCgQlPxaI+iELBNE0H8DQQ8ciIeNELJycIA3Bo3gSET0DNRYB3WciSefTdTLKKXRM
- uEDWxud3xPnztgyj2mCo9UBr05GgYRQe7UD1lmcxJVX916daL1ukPCFabpM2v9FnXmMb
- JOlw==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to:content-transfer-encoding;
+ bh=3uqhi0Jj66DuCDmDXy1IQpQKs0eYIL1mKht4wQIQFIc=;
+ b=XobDLgOkZYpYuAXISqsdIrnX9c6fNTCj9OjEgg28qR7NPwdKXoyvcYS3zdA9+Aq0S9
+ irdYIM3byiHiXj7m73pIfGZ9BGx3SG5/j7cFEgI1BS83ZtMd0ehCYA3wCwNZ7PK2rHYN
+ ctE1fH+jF1/QYpJyyz95N2vgphLJLFZppT+UAPwflWKTTF97k7YFGcmZfOCDZhYi3flw
+ UgwYN2wVChyW72e5KwaN4PX10Ht9bf/t5ZwrArFKmvqpNRidkeX0Z4pzCou4TIGgktv9
+ g9UaFivTxUQTM4Ar0OTMMTWHnq1xBD0TB670HEEl66352vI/01jZkIjRde9tsRJkUSLw
+ Ppzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=aYkwCJ/hRRGB6SJYcir3cHIreaY7Ggso89c6WvhhUB0=;
- b=bu5wJ/QwVV72Bvr6/KFYnzm5ZZpRhrTPbJFswjiDruEdNRYf3j1BhZENDXtM9eWMEZ
- 8BHObHGxtBmsZ/jzepJ5SVH4cJls1tWiLc5BzbIk51no79dE/n+MF+xiwQc1BbSVrAYo
- oGxt5/OCW6E97Cud0kwxHsno1tRLMZ0tUjbpouwH6d3sRZMCNyXR7MXd8dzEF5LITuKZ
- TANMYqAFB0UfwK6jdBZ6+1lx/aTfoVPmnTnNe8m/O0GCV4i5chVb5erFAYcyEStNpT+s
- E6gPcaU+wpuomO2gShlv1hSDGmqK28JjjCQCfD9d7getRzpIRLd9KMLsLs9Q4HtJNiGQ
- LS0w==
-X-Gm-Message-State: AOAM533bclwoKguaLKIcV1NStYdBHpcDKIpIIOhyJ/NsaOtFcsVZejPV
- klevooyMA+BKT+7OKUujPawQSaIgoFcqc3Lp0U9npgC6aIiWMg==
-X-Google-Smtp-Source: ABdhPJw+9yXoRdyO+OnISu/rt6PEMTzZyI/n7MwCIzxODpJAAdHDvpxAcEoecy+sBuYDT592cxmS+XsSJD6sWrjvFD8=
-X-Received: by 2002:a0c:c407:: with SMTP id r7mr3763017qvi.36.1602083539636;
- Wed, 07 Oct 2020 08:12:19 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to:content-transfer-encoding;
+ bh=3uqhi0Jj66DuCDmDXy1IQpQKs0eYIL1mKht4wQIQFIc=;
+ b=h+b7F/xqknrggtr6bOASdaDVqhJzHVh69eWh20SuAmT0e0fJChjr0xiq2rud8Zn2SG
+ +FeGHTgnxrnjB+C3Dt3nkGitaVSZV3A9Yb+vdoHGxQaHR0gLMzIto3NDWCzf2+8fXYQ2
+ H1p0Zbq9BH58JweXFnW0hEzuGKAxvDYYx5Ka1vnW2h/MpM70zTr1WIjfPa6jTdBC64hf
+ mwHTxCSgKRpqkasv41Srl2g8LrEb9SAKGZQpkSw95jcXkBVNdF+cBeNuFG9KANNvfkRY
+ r87J+8BSYKpXV3sPcCh17EE6LkK/Ph9VEbrPaO/6o7FC2vBMfGWQqNNER4fhrNSWm8OR
+ XdVg==
+X-Gm-Message-State: AOAM531Bd/u47G3uAw+dOLOVoftFyFhJdCbY9KUNzN3IT23JBrE0RNYO
+ mqt87QRhCZhVcRQFG3RNZnezPwoOtCq8sw==
+X-Google-Smtp-Source: ABdhPJyxqPXtZ133Xhp52avOP5zF2QTOkifYpDgf/loGa5A6Ipki3WtvQT5WSu/5jk8/KL8wIvoMGQ==
+X-Received: by 2002:a05:6214:b0d:: with SMTP id
+ u13mr4085323qvj.17.1602088203420; 
+ Wed, 07 Oct 2020 09:30:03 -0700 (PDT)
+Received: from [192.168.2.12]
+ (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
+ by smtp.googlemail.com with ESMTPSA id
+ s123sm1719002qkd.128.2020.10.07.09.30.02
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 07 Oct 2020 09:30:02 -0700 (PDT)
+Message-ID: <5F7DED0A.9050209@gmail.com>
+Date: Wed, 07 Oct 2020 12:30:02 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: "Zeng, Huacheng" <huacheng.zeng@gmail.com>, Rob Kossler <rkossler@nd.edu>
+CC: usrp-users <usrp-users@lists.ettus.com>
 References: <CAL0m=NZHR7zZCGuYhO07r+KZEr6ZYQYvp41q+kYJo7fh1YLxpQ@mail.gmail.com>
  <5F7D3ACA.1080406@gmail.com>
  <CAB__hTQT9fHyHF=48WJbR8O975BdvautgXYJXRTzbGLY6GsQWg@mail.gmail.com>
-In-Reply-To: <CAB__hTQT9fHyHF=48WJbR8O975BdvautgXYJXRTzbGLY6GsQWg@mail.gmail.com>
-Date: Wed, 7 Oct 2020 11:12:06 -0400
-Message-ID: <CAL0m=NYj=Xp+1dSchpfi0NxKv0MD2NkzL4T22OEb6VpaB3Xnvw@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
+ <CAL0m=NYj=Xp+1dSchpfi0NxKv0MD2NkzL4T22OEb6VpaB3Xnvw@mail.gmail.com>
+In-Reply-To: <CAL0m=NYj=Xp+1dSchpfi0NxKv0MD2NkzL4T22OEb6VpaB3Xnvw@mail.gmail.com>
 Subject: Re: [USRP-users] Question about N310 Internal synchronization
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -60,10 +72,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Zeng, Huacheng via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Zeng, Huacheng" <huacheng.zeng@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2533930188718284670=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,154 +89,43 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2533930188718284670==
-Content-Type: multipart/alternative; boundary="00000000000047d88b05b1162433"
-
---00000000000047d88b05b1162433
-Content-Type: text/plain; charset="UTF-8"
-
-Dear Rob and Marcus:
-
-Thank you for the prompt response. Based on my limited knowledge of digital
-circuit, the 180 degree phase ambiguity may occur at the PLL circuit
-initiation (power on) stage. After PLL is powered on, there is no phase
-ambiguity. Is it right? My question actually comes to: When I switch N310
-from RX mode (in time slot 1) to TX mode (in time slot 2) and then back to
-RX mode (in time slot 3), would there be a phase ambiguity in those two RX
-modes (in time slots 1 & 3)?
-
-When I used USRP N210 with SBX, I did not observe such a phase ambiguity in
-this case. But when I used USRP N210 with WBX, the phase ambiguity does
-exist (based on my understanding).
-
-Thank you!
-
-Hua
-
-
-
-On Wed, Oct 7, 2020 at 10:03 AM Rob Kossler via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
+On 10/07/2020 11:12 AM, Zeng, Huacheng wrote:
+> Dear Rob and Marcus:
 >
-> On Tue, Oct 6, 2020 at 11:50 PM Marcus D. Leech via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
-> >
-> > On 10/06/2020 10:29 PM, Zeng, Huacheng via USRP-users wrote:
-> > > Hello:
-> > >
-> > > I am using N310 for 4x4 MIMO transmission. Are N310's 4 TX/RX channels
-> > > internally synchronized for MIMO applications? Does it need an
-> > > external device (e.g., OctoClock-G CDA-2990) to synchronize those 4
-> > > channels for MIMO applications?
-> > >
-> > > I am also exploring channel reciprocity using N310. I have successful
-> > > experience with SBX in the implementation of channel calibration. But
-> > > it seems WBX does not fit for this purpose because of some phase
-> > > ambiguity issue (if I remember correctly). Would the daughterboards in
-> > > N310 have the phase ambiguity issue?
-> > >
-> > > Many thanks in advance!
-> > >
-> > > Hua
-> > >
-> > The N310 has a pair of AD9371 RFFE chips.  Those chips have two channels
-> > each, and those channels are coherent with respect to each other.
-> >    There will be an unknown phase offset due to the nature of
-> > (particularly Frac-N) synthesizers between the channels of the two
-> halves.
-> >
-> > Unless the N310 channels implement phase-resynch via timed commands (I
-> > don't think that they do), you'd need some external method for
-> >    phase-aligning those channels.
-> >
-> > Now because they're using a common reference clock, once the phase
-> > offset has been factored out they should be in perfect synchronization
-> >    both in time and phase from that point forward.
+> Thank you for the prompt response. Based on my limited knowledge of 
+> digital circuit, the 180 degree phase ambiguity may occur at the PLL 
+> circuit initiation (power on) stage. After PLL is powered on, there is 
+> no phase ambiguity. Is it right? My question actually comes to: When I 
+> switch N310 from RX mode (in time slot 1) to TX mode (in time slot 2) 
+> and then back to RX mode (in time slot 3), would there be a phase 
+> ambiguity in those two RX modes (in time slots 1 & 3)?
 >
-> In addition to the common reference clock that Marcus mentioned, the N310
-> also has capability
-> <https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_mg_external_lo>
-> to use an external LO for all channels. But, there will still be a 180 deg
-> phase ambiguity.
-> Rob
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> When I used USRP N210 with SBX, I did not observe such a phase 
+> ambiguity in this case. But when I used USRP N210 with WBX, the phase 
+> ambiguity does exist (based on my understanding).
 >
+> Thank you!
+>
+> Hua
+Note that the shared-LO has to be at TWICE the desired center frequency.
 
---00000000000047d88b05b1162433
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is because the AD9371 chips (and other chips) use something called 
+a 2XLO phase-splitter to feed the mixers.  A 2XLO phase-splitter
+   has *excellent* phase quality, but it is made from flip-flops, whose 
+state cannot be predicted at power up.  So it's either in state 0 or
+   1 on power-up, leading to a 180deg phase ambiguity in the phase-split 
+signal going to the mixers.
 
-<div dir=3D"ltr">Dear Rob and Marcus:<div><br></div><div>Thank you for the =
-prompt response. Based on my limited knowledge of digital circuit, the 180 =
-degree phase ambiguity may occur at the PLL circuit initiation (power on) s=
-tage. After PLL is powered on, there is no phase ambiguity. Is it right? My=
- question actually comes to: When I switch N310 from RX mode (in time slot =
-1) to TX mode (in time slot 2) and then back to RX mode (in time slot 3), w=
-ould there be a phase ambiguity in those two RX modes (in time slots 1 &amp=
-; 3)? <br><br>When I used USRP N210 with SBX, I did not observe such a phas=
-e ambiguity in this case. But when I used USRP N210 with WBX, the phase amb=
-iguity does exist (based on my understanding). <br><br>Thank you!<br><br>Hu=
-a<br><br></div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Wed, Oct 7, 2020 at 10:03 AM Rob Kossler v=
-ia USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@=
-lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex"><div dir=3D"ltr"><br>On Tue, Oct 6, 2020 at 11:50 PM Marcus =
-D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" t=
-arget=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br>&gt;<br>&gt; =
-On 10/06/2020 10:29 PM, Zeng, Huacheng via USRP-users wrote:<br>&gt; &gt; H=
-ello:<br>&gt; &gt;<br>&gt; &gt; I am using N310 for 4x4 MIMO transmission. =
-Are N310&#39;s 4 TX/RX channels<br>&gt; &gt; internally synchronized for MI=
-MO applications? Does it need an<br>&gt; &gt; external device (e.g., OctoCl=
-ock-G CDA-2990) to synchronize those 4<br>&gt; &gt; channels for MIMO appli=
-cations?<br>&gt; &gt;<br>&gt; &gt; I am also exploring channel reciprocity =
-using N310. I have successful<br>&gt; &gt; experience with SBX in the imple=
-mentation of channel calibration. But<br>&gt; &gt; it seems WBX does not fi=
-t for this purpose because of some phase<br>&gt; &gt; ambiguity issue (if I=
- remember correctly). Would the daughterboards in<br>&gt; &gt; N310 have th=
-e phase ambiguity issue?<br>&gt; &gt;<br>&gt; &gt; Many thanks in advance!<=
-br>&gt; &gt;<br>&gt; &gt; Hua<br>&gt; &gt;<br>&gt; The N310 has a pair of A=
-D9371 RFFE chips.=C2=A0 Those chips have two channels<br>&gt; each, and tho=
-se channels are coherent with respect to each other.<br>&gt; =C2=A0 =C2=A0T=
-here will be an unknown phase offset due to the nature of<br>&gt; (particul=
-arly Frac-N) synthesizers between the channels of the two halves.<br>&gt;<b=
-r>&gt; Unless the N310 channels implement phase-resynch via timed commands =
-(I<br>&gt; don&#39;t think that they do), you&#39;d need some external meth=
-od for<br>&gt; =C2=A0 =C2=A0phase-aligning those channels.<br>&gt;<br>&gt; =
-Now because they&#39;re using a common reference clock, once the phase<br>&=
-gt; offset has been factored out they should be in perfect synchronization<=
-br>&gt; =C2=A0 =C2=A0both in time and phase from that point forward.<br><br=
-><div>In addition to the common reference clock that Marcus mentioned, the =
-N310 also has <a href=3D"https://files.ettus.com/manual/page_usrp_n3xx.html=
-#n3xx_mg_external_lo" target=3D"_blank">capability</a> to use an external L=
-O for all channels. But, there will still be a 180 deg phase ambiguity.=C2=
-=A0</div><div>Rob</div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+My understanding on the AD9371 is that this is a power-up issue--once 
+it's powered up, the phase-splitter is operational and so you only
+   take the phase-ambiguity "hit" once on power up.
 
---00000000000047d88b05b1162433--
+So if you're using shared-LO, and you've characterized your phase 
+relationships, they should not change again.
 
 
---===============2533930188718284670==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2533930188718284670==--
-
