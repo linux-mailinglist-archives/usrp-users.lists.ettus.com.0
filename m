@@ -2,52 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F16A7287C7A
-	for <lists+usrp-users@lfdr.de>; Thu,  8 Oct 2020 21:29:41 +0200 (CEST)
-Received: from [::1] (port=52112 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F4C1287C87
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Oct 2020 21:34:34 +0200 (CEST)
+Received: from [::1] (port=52220 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kQbbg-0004h2-0T; Thu, 08 Oct 2020 15:29:40 -0400
-Received: from mail-oo1-f52.google.com ([209.85.161.52]:33156)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kQbbc-0004ZQ-E9
- for usrp-users@lists.ettus.com; Thu, 08 Oct 2020 15:29:36 -0400
-Received: by mail-oo1-f52.google.com with SMTP id r7so604552ool.0
- for <usrp-users@lists.ettus.com>; Thu, 08 Oct 2020 12:29:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=nr4iApnCY9zCSzjm4R9jMIE8u2VjESFHIVXUF3NNyoo=;
- b=Hm5U9PF+ACeXAq3I5cP2xjfEkCUKpNjVu2I1dNh6wPQhGx04KaGkF7JGJsEeV74cRD
- 4A/SG1Ks4zTpSM341DI74Tcc0697z3VuD+rViXz55vJP1Wkaya1i+ZZkwiCwJaRXUsVY
- mtRgbhHaQl7gJhzMmzPBb95N05q73uTrPpsyvpw5e+cNvNwYcCno0x0Kyz7RRrEh/sQ9
- JoiTajKIklL8cxlPQmEz5vIo1UcchjU3GSwNYmCGUdI9ngDqa1NtqlDFHs0Smb6gWuW3
- X578IhM7A5JzIkxx6LK/Bb9OLMto3TRhDIsNsMwXkFLRTH67SRkFYdQ/i3M5l2wgloCa
- wNEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=nr4iApnCY9zCSzjm4R9jMIE8u2VjESFHIVXUF3NNyoo=;
- b=VzBv7Us0/9BpgZ+iq5tzMzC7EVVjRrKvG6otxFYGLY69m5sLKZ2wJYRRHqnGSEr+td
- z1F9M5fRcnKlOE2tMzi1T5ZtNJj5fvic0Maf1zAQDSELx7uIPTRwLk0udncXF2j27SLw
- n0JgpIhg/vS2KS3yq4gdAo1NYUaYNTeTNViixt6vNnFZaA7E5pUXz+Q54ykYUIWwE9ED
- vvIUPqDrhUm0iW5m0QhQrEPWV9rxGSJm7oCqxT/KAVYSIL6aHoVqbXh/Qiq4TpqLqA3G
- ESuUVt6LYV4Mf7tL9AhXlWEWW5d9yaZKG8ctZ1F+yXowmUYF3iNjW8rKCngsiamUMSJz
- 0FkA==
-X-Gm-Message-State: AOAM532CoiZcdaBG3YmZDulePTxZWA6CLmcTNfFhgFHqCOb/in6hfWd5
- by2FdncW7ep+EkaKdj6TfHeUGnRjbtDNRmYgHf5aiGzHw9I=
-X-Google-Smtp-Source: ABdhPJyXRmGmxAWsk3dnqoVWGZ+l0ORzKac56/2f7pxzn/VXlM3htS8q/cNHW/qXv17aswolycQon8KzQBe7XLCtL14=
-X-Received: by 2002:a4a:4845:: with SMTP id p66mr6545515ooa.68.1602185335198; 
- Thu, 08 Oct 2020 12:28:55 -0700 (PDT)
+	id 1kQbgP-0005pY-4R; Thu, 08 Oct 2020 15:34:33 -0400
+Received: from ssi-cc-fra1-mro-001.atmailcloud.com ([89.46.80.72]:49296)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <drtaylor@manx.net>) id 1kQbgK-0005gn-7A
+ for usrp-users@lists.ettus.com; Thu, 08 Oct 2020 15:34:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=manx.net;
+ s=20160330; h=Content-Type:MIME-Version:Date:Subject:To:From:Message-ID;
+ bh=MtNS24Z3VmesDk2yfIyiQ7qjg136ZYIOe7Z3wVXolSI=; b=ksJIAI9MGqAXuzk4vcd6guHpyh
+ sQ4Te2wfNpwscAniZaN9Qs5txRmaLpYXeigb0NF1GwCAzb8RLLms4RiPKtyE+IxgqdOJPEmBo3QTe
+ i8j/HVzhz9A+ypegi5mLXJPF6Du258jWKyR96UHCHy41U9xX+8afn5Hcvo5Cn0d5zwn8=;
+Received: from pc2-cc-fra1-mrr-001.internal.atmailcloud.com ([10.20.30.45])
+ by ssi-cc-fra1-mro-001.internal.atmailcloud.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <drtaylor@manx.net>) id 1kQbfe-0006Zo-PQ
+ for usrp-users@lists.ettus.com; Fri, 09 Oct 2020 05:33:46 +1000
+Received: from pc2-cc-fra1-mrc-005.internal.atmailcloud.com ([10.20.30.55])
+ by pc2-cc-fra1-mrr-001.internal.atmailcloud.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <drtaylor@manx.net>) id 1kQbfe-0001Wf-Ma
+ for usrp-users@lists.ettus.com; Fri, 09 Oct 2020 05:33:46 +1000
+Received: from [87.254.66.171] (helo=PC1)
+ by pc2-cc-fra1-mrc-005.internal.atmailcloud.com with esmtpsa
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <drtaylor@manx.net>) id 1kQbfe-0003mv-D3
+ for usrp-users@lists.ettus.com; Fri, 09 Oct 2020 05:33:46 +1000
+Message-ID: <8BDDB039BE74418FA519715D5BB4062B@PC1>
+To: <usrp-users@lists.ettus.com>
+References: <977DB5BC614A438B9066262CBAEDBC75@PC1> <5F7DF8FA.707@gmail.com>
+ <1316B17C73CD4E78A29C851758B9424F@PC1> <5F7F603B.3040102@gmail.com>
+In-Reply-To: <5F7F603B.3040102@gmail.com>
+Date: Thu, 8 Oct 2020 20:33:46 +0100
 MIME-Version: 1.0
-References: <CAOx6OK04fY7xSebmPM8d5b_=qDbqWm9hbgHFrhT5raAZVKDPsg@mail.gmail.com>
-In-Reply-To: <CAOx6OK04fY7xSebmPM8d5b_=qDbqWm9hbgHFrhT5raAZVKDPsg@mail.gmail.com>
-Date: Thu, 8 Oct 2020 15:28:44 -0400
-Message-ID: <CAB__hTTLPcPdV24d_R1-n0nkEvD9h4R02uU_hxxjZ4Txpn4aWw@mail.gmail.com>
-To: Jorge Arroyo Giganto <jarroyo@gradiant.org>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Custom RFNoC block test with UHD C++ (UHD-3.15.LTS)
+X-Priority: 3
+X-MSMail-Priority: Normal
+Importance: Normal
+X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
+X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
+X-Atmail-Id: drtaylor@manx.net
+X-atmail-spam-score: 0
+X-atmail-spam-action: no action
+X-atmailcloud-spam-bar: /
+Subject: Re: [USRP-users] B210 USRP object creation
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: "David Taylor \(manx.net\) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "David Taylor \(manx.net\)" <drtaylor@manx.net>
+Content-Type: multipart/mixed; boundary="===============3211124852483721032=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,75 +76,210 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gVGh1LCBPY3QgOCwgMjAyMCBhdCAxOjMzIFBNIEpvcmdlIEFycm95byBHaWdhbnRvIHZpYSBV
-U1JQLXVzZXJzCjx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6Cj4gSSBhbSB0cnlp
-bmcgdG8gdGVzdCBteSBSRk5vQyBnYWluIGJsb2NrLCB0aGUgb25lIGZyb20gdGhlIOKAmEdldHRp
-bmcgU3RhcnRlZCB3aXRoIFJGTm9DIERldmVsb3BtZW504oCZIGd1aWRlLCB0aHJvdWdoIHRoZSBV
-SEQgQysrIEFQSSBvbiBhbiBFMzEwIChJJ20gdXNpbmcgVUhELTMuMTUuTFRTLCBJIGtub3cgdGhh
-dCBVSEQgNC4wIGhhcyBqdXN0IGJlZW4gcmVsZWFzZWQgYnV0IEkgd291bGQgYXBwcmVjaWF0ZSBp
-dCBpZiBzb21lb25lIGNvdWxkIGhlbHAgbWUgd2l0aCB0aGlzIHZlcnNpb24pLgo+Cj4gSSdtIHF1
-aXRlIHN1cmUgdGhhdCB0aGUgYml0c3RyZWFtIEkgZ2VuZXJhdGVkIGlzIGNvcnJlY3QsIHdoZW4g
-bG9hZGluZyB0aGUgaW1hZ2UgYW5kIHRoZW4gcnVubmluZyB1aGRfdXNycF9wcm9iZSwgdGhlIG5h
-bWUgSSB1c2VkIGluIHRoZSBnYWluLnhtbCBmaWxlIHNob3dzIHVwIGFtb25nIHRoZSBvdGhlciBS
-Rk5vQyBibG9ja3MuIEFsc28sIHdoZW4gZG9pbmcgZ2Fpbl9ibG9ja19jdHJsLT5zcl93cml0ZSgp
-IGFuZCB0aGVuIGNoZWNraW5nIHRoZSB2YWx1ZSB0aHJvdWdoIHRoZSByZWFkYmFjayByZWdpc3Rl
-ciB3aXRoIGdhaW5fYmxvY2tfY3RybC0+dXNlcl9yZWdfcmVhZDMyKCkgZXZlcnl0aGluZyBzZWVt
-cyB0byB3b3JrIGZpbmUuCj4KPiBXaGF0IEknbSB0cnlpbmcgdG8gZmlndXJlIG91dCBpcyBob3cg
-dG8gdHJhbnNtaXQgYW5kIHJlY2VpdmUgc2FtcGxlcyBmcm9tIHRoZSBibG9jaywgSSd2ZSB0cmll
-ZCBhIGNvdXBsZSBvZiB3YXlzIGFuZCBJJ20gc3RpbGwgbm90IGdldHRpbmcgYSBnb29kIHJlc3Vs
-dC4KPgo+IEZpcnN0LCBJIHRyaWVkIHRvIHNlbmQgYSBwYWNrZXQgd2l0aCAyMDAgc2FtcGxlcyB0
-byB0aGUgYmxvY2sgKHR4X3N0cmVhbS0+c2VuZCgmdHhfYnVmZiwgdHhfYnVmZi5zaXplKCksIHR4
-X21kLDAuNSksIHdpdGggdHhfc3RyZWFtIG9idGFpbmVkIHRocm91Z2ggYSBkZXZpY2UzIHVzcnAg
-b2JqZWN0LCBpbmNsdWRpbmcgdHhfc3RyZWFtX2FyZ3MuYXJnc1siYmxvY2tfaWQiXSA9ICJnYWlu
-IiBhbmQgdHhfc3RyZWFtX2FyZ3MuYXJnc1siYmxvY2tfcG9ydCJdID0gIjAiIGluIHRoZSB0eCBz
-dHJlYW0gYXJndW1lbnRzLCB0aGUgdHhfbWQgKG1ldGFkYXRhKSBzZXQgdXAgd2l0aCB0eF9tZC5z
-dGFydF9vZl9idXJzdCA9IGZhbHNlLCB0eF9tZC5lbmRfb2ZfYnVyc3QgPSBmYWxzZSBhbmQgdHhf
-bWQuaGFzX3RpbWVfc3BlYyA9IGZhbHNlLCBhbmQgSSBkaWRuJ3QgdXNlIHRoZSByYWRpbyBhdCBh
-bGwgdGhpcyB3YXkuIFdoZW4gdHJ5aW5nIHRvIHJlY2VpdmUgKHJ4X3N0cmVhbS0+cmVjdigmcnhf
-YnVmZiwgcnhfYnVmZi5zaXplKCksIHJ4X21kLCA1LjAsIHRydWUpLCBpbmNsdWRpbmcgdGhlICJi
-bG9ja19pZCIgYW5kICJibG9ja19wb3J0IiBhcmd1bWVudHMgaW4gdGhlIHJ4IHN0cmVhbSBsaWtl
-IGluIHRoZSB0eCwgYW5kIGluIG1vZGUgU1RSRUFNX01PREVfTlVNX1NBTVBTX0FORF9ET05FKSwg
-YW5kIEkgZ290IGFuIEVSUk9SX0NPREVfVElNRU9VVC4KClRyeSBzZXR0aW5nIHRoZSB0eCBlbmQt
-b2YtYnVyc3QgdG8gdHJ1ZS4gQWxzbywgdGhlIGJsb2NrX2lkIG1heWJlCnNob3VsZCBiZSAiZ2Fp
-bl8wIiByYXRoZXIgdGhhbiAiZ2FpbiIuICBJJ20gbm90IGNvbmZpZGVudCBpbiB0aGVzZQpzdWdn
-ZXN0aW9ucywgYnV0IHdvcnRoIGEgdHJ5LgoKPiBUaGVuLCBJIHRyaWVkIHRoaXMgdGltZSBjb25u
-ZWN0aW5nIHRoZSBSRk5vQyBSYWRpbyBibG9jayB0byB0aGUgZ2FpbiBibG9jayB3aXRoIGFuIHJm
-bm9jOjpncmFwaCBhbmQgc2V0dGluZyB0aGUgcmFkaW8gYW5kIGdhaW4gImJsb2NrX2lkIiBhbmQg
-ImJsb2NrX3BvcnQiIGFyZ3VtZW50cyBpbiB0aGUgdHggc3RyZWFtLiBXaGVuIGRvaW5nIHJlY3Yo
-KSwgSSBnb3QgYW4gdW5rbm93biBlcnJvcjogIlJlY2VpdmVyIGVycm9yOiBVbmtub3duIGVycm9y
-IGNvZGU6IDB4MzAiIChkb2VzIHNvbWVvbmUga25vdyB3aGF0IHRoaXMgbWVhbnM/KSB3aGVuIGNo
-ZWNraW5nIHRoZSByeF9tZC5lcnJvcl9jb2RlLiBIb3dldmVyLCByZWN2KCkgcmV0dXJuZWQgMjAw
-LCBsaWtlIGlmIGl0IGhhZCByZWNlaXZlZCB0aGUgc2FtcGxlcyBJIHNlbnQsIGJ1dCB0aGUgcngg
-YnVmZmVyIHdhcyBlbXB0eS4KCkNhbiB5b3UgdHJ5ICJyZm5vY19yeF90b19maWxlIiB3aGljaCBh
-bGxvd3MgeW91IHRvIHNwZWNpZnkgeW91ciBjdXN0b20KYmxvY2sgbmFtZSBvbiB0aGUgY29tbWFu
-ZCBsaW5lIGFuZCBpdCB3aWxsIGluc2VydCB5b3VyIGJsb2NrIGJldHdlZW4KdGhlIFJhZGlvIGFu
-ZCB0aGUgcnhfc3RyZWFtZXI/Cgo+IEkgYWxzbyB0cmllZCB1c2luZyB0aGUgUkZOb0MgUmVwbGF5
-IGJsb2NrLCBidXQgZGlkbid0IGdldCBhbnl3aGVyZSBlaXRoZXIuIERvZXMgYW55b25lIGtub3cg
-aWYgdGhpcyBibG9jayBpcyBzdXBwb3J0ZWQgaW4gdGhlIEUzMTA/ICh0aGlzIHdhcyBhc2tlZCBp
-biB0aGUgbWFpbGluZyBsaXN0IGEgd2hpbGUgYWdvIGluIGh0dHA6Ly9ldHR1cy44MDk5Ny54Ni5u
-YWJibGUuY29tL1VTUlAtdXNlcnMtUkZOb0MtUmVwbGF5LWJsb2NrLWZvci1FMzEwLXRkMTExNTYu
-aHRtbCwgYnV0IEknZCBsaWtlIHRvIGtub3cgaWYgc29tZW9uZSBoYXMgdGVzdGVkIGl0IHNpbmNl
-IHRoZW4pLgoKQXMgZmFyIGFzIEkga25vdywgdGhlIFJlcGxheSBibG9jayBkb2VzIG5vdCB3b3Jr
-IGZvciB0aGUgRTMxMC4KCj4gTGFzdGx5LCBJIHRyaWVkIHVzaW5nIHRocmVhZHMsIG9uZSB3aXRo
-IHRoZSByZWN2KCkgd2FpdGluZyBmb3Igc2FtcGxlcyBhbmQgdGhlIG1haW4gcHJvZ3JhbSB0aHJl
-YWQgZG9pbmcgdGhlIHNlbmQoKSwgYnV0IEkgd2Fzbid0IGx1Y2t5IGFnYWluLiBJIGdvdCB0aGlz
-IG90aGVyIHVua25vd24gZXJyb3I6ICJSZWNlaXZlciBlcnJvcjogVW5rbm93biBlcnJvciBjb2Rl
-OiAweDNjZThlMmIwIi4KPgo+IFNvLCB3aGljaCB3b3VsZCBiZSB0aGUgYmVzdCB3YXkgdG8gdGVz
-dCBteSBibG9jaz8gQWdhaW4sIEkgb25seSB3YW50IHRvIHNlZSB0aGF0IHNhbXBsZXMgZW50ZXIg
-YW5kIGV4aXQgbXVsdGlwbGllZCBieSB0aGUgZ2FpbiB2YWx1ZSB0byB1bmRlcnN0YW5kIGhvdyBJ
-IGNhbiB3b3JrIHdpdGggUkZOb0MgYmxvY2tzIGZyb20gQysrLgo+Cj4gQWxzbywgSSdtIGNvbmZ1
-c2VkIGFib3V0IHRoaXMsIHdoZW4gc2VuZGluZyBzYW1wbGVzIHRvIHRoZSBibG9jayBpdHMgcmVz
-dWx0IHNob3VsZCBiZSBrZXB0IGluIHRoZSBGSUZPIHRoYXQgdGhlbiBVSEQgcmVhZHMgZnJvbSwg
-c28gSSB1bmRlcnN0YW5kIHRoYXQgdGhlcmUgc2hvdWxkIGJlIG5vIHJlYXNvbiBmb3IgYW4gYWN0
-aXZlIHR4IHN0cmVhbWVyIHRvIGJlIHN0cmVhbWluZyB3aGlsZSBkb2luZyB0aGUgcmVjdigpLCBi
-ZWNhdXNlIHRoZSByZWN2KCkgc2hvdWxkIGp1c3QgcmVhZCB0aGUgcmVzdWx0IGZyb20gdGhlIEZJ
-Rk8sIG9yIGFtIEkgZ2V0dGluZyBzb21ldGhpbmcgd3Jvbmc/CgpUaGUgdmFyaW91cyByZm5vYyBi
-bG9ja3MgZG8gaGF2ZSBpbnB1dC9vdXRwdXQgRklGT3Mgc3VjaCB0aGF0IGlmIHRoZQpudW1iZXIg
-b2Ygc2FtcGxlcyBpcyBzbWFsbCAoc3VjaCBhcyAyMDAgaW4geW91ciBjYXNlKSwgdGhleSBjYW4g
-c3RheQppbiB0aGUgRklGTyB1bnRpbCB5b3UgZ2V0IGFyb3VuZCB0byBjYWxsaW5nIHJlY3YoKS4g
-IEJ1dCwgaWYgaXQgaXMgYQpjb250aW51b3VzIHN0cmVhbSBjb21pbmcgZnJvbSB0aGUgUmFkaW8s
-IHRoZSBGSUZPcyB3aWxsIGZpbGwgdmVyeQpxdWlja2x5IGlmIHlvdSBhcmUgbm90IGNvbnN1bWlu
-ZyB0aGUgZGF0YSBhdCB0aGUgc2FtZSByYXRlIGJ5IHVzaW5nCnJlY3YoKS4KCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBs
-aXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFp
-bG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+This is a multi-part message in MIME format.
+
+--===============3211124852483721032==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0016_01D69DB2.5260BF60"
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0016_01D69DB2.5260BF60
+Content-Type: text/plain;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Point taken. - I didn=92t actually check the original default values of =
+the VID and PID, but they were reset according to the table provided, so =
+that they could be tested as arguments in the make statement below.
+=93About the Motherboard and Daughtercard EEPROM on USRP Devices (5th =
+August 2020)=94
+
+The aim is to be able to manipulate some GPIO bits in the block work =
+function and to align events using the 1PPS input.
+
+Regards,
+David GD4FMB
+
+
+
+From: Marcus D. Leech via USRP-users=20
+Sent: Thursday, October 8, 2020 7:53 PM
+To: usrp-users@lists.ettus.com=20
+Subject: Re: [USRP-users] B210 USRP object creation
+
+On 10/08/2020 12:51 PM, David Taylor (manx.net) via USRP-users wrote:
+
+  Thanks Marcus,
+
+  I have had a look at the GPIO example source. It contains some useful =
+code, but I have not compiled and run it.
+  Other example code in =93Synchronising USRP Events using Timed =
+Commands (17 April 2020)=94 has been used in the OOT block.
+
+  1) I have configured my B210(NI) EEPROM with the correct USB vid =3D =
+0x2500 and pid =3D 0x0814.
+  The device is clearly identifiable and usable over USB3.
+
+  2). I have tried to identify the USRP using the following code prior =
+to making an object:-
+  uhd:: device_addr_t hint;
+  hint[=93serial=94] =3D =933150322=94;
+  uhd:: device_addrs_t dev_addrs =3D uhd:: device::find(hint);
+
+  3). Or the following to create the object directly:-
+  uhd::usrp::multi_usrp:: sptr device =3D =
+uhd::usrp::multi_usrp::make(=93vid=3D0x2500, pid=3D0x7814=94);
+
+  The codes are placed in the OOT constructor, compile and link with the =
+appropriate headers.
+  In both cases the flow-graph fails to run with the usual =91block=92 =
+attribute error message. There are no USRP source or sink blocks in the =
+flow-graph that could possibly conflict.
+
+  Regards,
+  David=20
+
+COuld you just use one of the standard test tools like =
+"rx_samples_to_file"  and specify "type=3Db200" in the device arguments?
+
+There should NEVER have been any reason to change the VID and PID on the =
+device.
+
+
+
+
+
+-------------------------------------------------------------------------=
+-------
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+------=_NextPart_000_0016_01D69DB2.5260BF60
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<HTML><HEAD>
+<META content=3D"text/html; charset=3Dwindows-1252" =
+http-equiv=3DContent-Type></HEAD>
+<BODY dir=3Dltr text=3D#000000 bgColor=3D#ffffff>
+<DIV dir=3Dltr>
+<DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: #000000">
+<DIV>Point taken. - I didn=92t actually check the original default =
+values of the=20
+VID and PID, but they were reset according to the table provided, so =
+that they=20
+could be tested as arguments in the make statement below.</DIV>
+<DIV>=93About the Motherboard and Daughtercard EEPROM on USRP Devices =
+(5th August=20
+2020)=94</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>The aim is to be able to manipulate some GPIO bits in the block =
+work=20
+function and to align events using the 1PPS input.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Regards,</DIV>
+<DIV>David GD4FMB</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV=20
+style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: =
+"Calibri"; FONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; =
+DISPLAY: inline'>
+<DIV style=3D"FONT: 10pt tahoma">
+<DIV>&nbsp;</DIV>
+<DIV style=3D"BACKGROUND: #f5f5f5">
+<DIV style=3D"font-color: black"><B>From:</B> <A=20
+title=3Dusrp-users@lists.ettus.com>Marcus D. Leech via USRP-users</A> =
+</DIV>
+<DIV><B>Sent:</B> Thursday, October 8, 2020 7:53 PM</DIV>
+<DIV><B>To:</B> <A=20
+title=3Dusrp-users@lists.ettus.com>usrp-users@lists.ettus.com</A> </DIV>
+<DIV><B>Subject:</B> Re: [USRP-users] B210 USRP object=20
+creation</DIV></DIV></DIV>
+<DIV>&nbsp;</DIV></DIV>
+<DIV=20
+style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: =
+"Calibri"; FONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; =
+DISPLAY: inline'>
+<DIV class=3Dmoz-cite-prefix>On 10/08/2020 12:51 PM, David Taylor =
+(manx.net) via=20
+USRP-users wrote:<BR></DIV>
+<BLOCKQUOTE cite=3Dmid:1316B17C73CD4E78A29C851758B9424F@PC1 =
+type=3D"cite">
+  <DIV dir=3Dltr>
+  <DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: =
+#000000">
+  <DIV>Thanks Marcus,</DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV>I have had a look at the GPIO example source. It contains some =
+useful=20
+  code, but I have not compiled and run it.</DIV>
+  <DIV>Other example code in =93Synchronising USRP Events using Timed =
+Commands (17=20
+  April 2020)=94 has been used in the OOT block.</DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV>1) I have configured my B210(NI) EEPROM with the correct USB vid =
+=3D 0x2500=20
+  and pid =3D 0x0814.</DIV>
+  <DIV>The device is clearly identifiable and usable over USB3.</DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV>2). I have tried to identify the USRP using the following code =
+prior to=20
+  making an object:-</DIV>
+  <DIV><FONT color=3D#0000ff>uhd:: device_addr_t hint;</FONT></DIV>
+  <DIV><FONT color=3D#0000ff>hint[=93serial=94] =3D =
+=933150322=94;</FONT></DIV>
+  <DIV><FONT color=3D#0000ff>uhd:: device_addrs_t dev_addrs =3D uhd::=20
+  device::find(hint);</FONT></DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV>3). Or the following to create the object directly:-</DIV>
+  <DIV><FONT color=3D#0000ff>uhd::usrp::multi_usrp:: sptr device =3D=20
+  uhd::usrp::multi_usrp::make(=93vid=3D0x2500, =
+pid=3D0x7814=94);</FONT></DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV>The codes are placed in the OOT constructor, compile and link =
+with the=20
+  appropriate headers.</DIV>
+  <DIV>In both cases the flow-graph fails to run with the usual =
+=91block=92=20
+  attribute error message. There are no USRP source or sink blocks in =
+the=20
+  flow-graph that could possibly conflict.</DIV>
+  <DIV>&nbsp;</DIV>
+  <DIV>Regards,</DIV>
+  <DIV>David </DIV>
+  <DIV>&nbsp;</DIV></DIV></DIV></BLOCKQUOTE>COuld you just use one of =
+the standard=20
+test tools like "rx_samples_to_file"&nbsp; and specify "type=3Db200" in =
+the device=20
+arguments?<BR><BR>There should NEVER have been any reason to change the =
+VID and=20
+PID on the device.<BR><BR><BR>
+<P>
+<HR>
+_______________________________________________<BR>USRP-users mailing=20
+list<BR>USRP-users@lists.ettus.com<BR>http://lists.ettus.com/mailman/list=
+info/usrp-users_lists.ettus.com<BR></DIV></DIV></DIV></BODY></HTML>
+
+------=_NextPart_000_0016_01D69DB2.5260BF60--
+
+
+
+--===============3211124852483721032==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3211124852483721032==--
+
+
