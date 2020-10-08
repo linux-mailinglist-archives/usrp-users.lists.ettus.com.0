@@ -2,48 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54B90286AF8
-	for <lists+usrp-users@lfdr.de>; Thu,  8 Oct 2020 00:41:04 +0200 (CEST)
-Received: from [::1] (port=42700 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 342E72870FB
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Oct 2020 10:56:21 +0200 (CEST)
+Received: from [::1] (port=46956 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kQI7K-0006V8-HB; Wed, 07 Oct 2020 18:41:02 -0400
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:38605)
+	id 1kQRij-0007vP-0j; Thu, 08 Oct 2020 04:56:17 -0400
+Received: from mail-ed1-f51.google.com ([209.85.208.51]:38287)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kQI7G-0006Iz-GM
- for usrp-users@lists.ettus.com; Wed, 07 Oct 2020 18:40:58 -0400
-Received: by mail-oi1-f170.google.com with SMTP id 26so4282797ois.5
- for <usrp-users@lists.ettus.com>; Wed, 07 Oct 2020 15:40:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:from:date:message-id:subject:to;
- bh=OdMlaeVPlqB1dyWJ+nwLpTczLr8WI4coZqnKYT1bgSw=;
- b=O/aPgMHv8Sj7iag/KmGSA8+rGdINBrcD2dX4l5BZl48zefXg194ZQssJQnD/J5nkZu
- qZUcIhEHLBb/saVtsvSEUmICX8dPZF8nh4CLhha9UzzumQXGTBbp9dWVefo9rgQAK20T
- /wykn5tN8Z/v0tTv361J0BUZJYmkR2g01PlFDO4qwYmbhDp9U3/wcQ1OCw2ua9j+L5bS
- fOKa8l38pbpK/B+jrbKTKEP5840cO8CLvg4ZLj86z+nwtg1XrItGwysdkFueylWCcKNR
- DoIl3mb01sbBJk6OLmYjKZTU5W08Sleo9cN50wgy7weItEBtLfiLJ6wlmSiR8PmZm+wO
- nLGw==
+ (Exim 4.93) (envelope-from <emil.bjelski@gmail.com>)
+ id 1kQRif-0007rC-I2
+ for usrp-users@lists.ettus.com; Thu, 08 Oct 2020 04:56:13 -0400
+Received: by mail-ed1-f51.google.com with SMTP id i5so5021481edr.5
+ for <usrp-users@lists.ettus.com>; Thu, 08 Oct 2020 01:55:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=/c7kx0vHPNdaRyO1z9wD+QxIwVgEmPXxUIk17XOZ/X8=;
+ b=WeI/Rqo6NUkXrFTgQp6Zv+j7GY8BIyqBHjBIA7ieAbvTYTUHBXzfqx+3BN/8sYNSZ9
+ hBAWQaBfkvOyy/ACed+nhEGkGlcx+JsOey3xT9DtMazryfqxiKB31CdL6LH2QSpldWjQ
+ ZyHqw8e5m869kOYlGwBTJ4fyxwerlKwqFDloEyDBgEDGuoNOdNyWWi+99iYZAeryYpyE
+ i6oxPI0U5mjFBBks1ASH055FfLYvAxSFo0nZNAOl3hN7mwIitWjWQc3xi9KT6AsFTa4e
+ NvuxXIMXUIWpGML58YasVq2TjKsd3PXloAG3LolRpoH+TSC/Uk55LDXt+Fqdu/M0t9lD
+ sW1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=OdMlaeVPlqB1dyWJ+nwLpTczLr8WI4coZqnKYT1bgSw=;
- b=cnofUSCx0lrTkgP+paeQYHcuaeJ326jna10uQh5R8CvmqMHOz4XB5HvVNMJ+sbSHMo
- +eKL3Fj+4VeFaJxJvOIuQuw5wDrYA7zfg9CkK/SUyPkf8NbaP7ndBkP5GGCK5lDcQ+2s
- O1mXReKf+DrVC+FxWeQtJj8x4ThPqpXACw/yJtSaUmphAIKhofu9bTfZ6NemdEGgUleW
- VS2kOyjM2+N6GM0GJMqbh6by2v/444dM8Lygr/tvvQNWo0ALNtSbR8F1cmuzrh3suwX/
- miOC3qcwvBlAkq1VcAJXwtdVYlP4M4gXNHFHXQ9JShUmIJTG0BuWb3aO68TEs5kutNLI
- GlDQ==
-X-Gm-Message-State: AOAM5308y+1rtFJZ6PrPM6eAiWfbTEKR1Buve1S61Xb7IscGWyml2utZ
- nTNooDG+hk4wXlnkFOYOkRfD5wUsL5tHvPd0IFzd34yR6lyM9A==
-X-Google-Smtp-Source: ABdhPJzB2z1tw+MWUfS5r5eNebivkHmQMwkh6poM7Baqfcc5wywUfYLkkbmZGQFN/xiJIHa/liiwu3eTfCnqdzl9a2Q=
-X-Received: by 2002:a05:6808:216:: with SMTP id
- l22mr3147091oie.124.1602110417495; 
- Wed, 07 Oct 2020 15:40:17 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=/c7kx0vHPNdaRyO1z9wD+QxIwVgEmPXxUIk17XOZ/X8=;
+ b=fzVuHuH5UhDPpv2f1/QHAl0Hwp74TuMLYnv27PllSeY4Tu5TdNxqjo5bEohRn4Rjhz
+ H1lJB9c4SJEy6h2AzecVFdTpjK4kkV4ai/t2jlogCVs2MPVLcsfqbMHUxvB/EVHMG3Uj
+ fYKok1TItxVwovVThlJn2dP02eGJ471Hb6MjhogvikdTBYbaVoHv1WxfBLxAl9gwC6+r
+ 6kJUxELi+g+05eUtwhfzSA06YU+7TE3VZmCEleNRwvq3avyZ0/JBhBVCLbcuwOo6hpk3
+ w28w0v35FZgoaAd2zWKbb90TpBi7NdjrIwlvLRDFQPuwFRr2bYx5xgYyUW6tJ3JLh3sm
+ 0xhA==
+X-Gm-Message-State: AOAM531uqQvy54eDvWFb14LEBSIySpub1cJNNbzHTVYpf4sHCncRr2lU
+ CCxc6fKxZHHcKHRENQOgPCD7dD7f7HUAqKKxRvI=
+X-Google-Smtp-Source: ABdhPJzEcdg4kdpsWC5uCWq0nxR+V43k8frgm2M/3Qb1ZAbsJnRmJu5nAQEMs/y5rGWoSI+5U/YtFqIWWr4S3rxBhfI=
+X-Received: by 2002:a50:eb0a:: with SMTP id y10mr8187446edp.89.1602147332539; 
+ Thu, 08 Oct 2020 01:55:32 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 7 Oct 2020 18:40:06 -0400
-Message-ID: <CAB__hTTpgdLBBRBMFT7HrPdctcofvtw0VeLbCH4Z_4o+qdquDQ@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] UHD 4 "properties"
+References: <CADrptxWYb5Mf83FoQF05PhhH=-r=wU5VTF+v7brk3Pdom3cxGw@mail.gmail.com>
+ <CAB__hTQ1Kcw_+2r9FCoWK00zGOttMPPaNQg5=m0_s-LiMaUYcQ@mail.gmail.com>
+In-Reply-To: <CAB__hTQ1Kcw_+2r9FCoWK00zGOttMPPaNQg5=m0_s-LiMaUYcQ@mail.gmail.com>
+Date: Thu, 8 Oct 2020 10:55:21 +0200
+Message-ID: <CADrptxXbGuMeHDisUCxu8Xb++8Uagc+tmwgrG8aLOzbOcSmOQw@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Cc: USRP Users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] RFNOC REPLAY streaming to two UBX
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============0939922319535157433=="
+From: Emil Bjelski via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Emil Bjelski <emil.bjelski@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8432818587902420597=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,92 +76,159 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0939922319535157433==
-Content-Type: multipart/alternative; boundary="00000000000053ac3705b11c66cf"
+--===============8432818587902420597==
+Content-Type: multipart/alternative; boundary="000000000000a2473b05b124feea"
 
---00000000000053ac3705b11c66cf
+--000000000000a2473b05b124feea
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
-I have 2 issues related to properties in UHD 4.0.
+Hi Rob,
+Thank you once again for answering my question!
 
-The first is regarding the concept of a read-only property where the
-property is monitoring some HW status. This was discussed in another thread
-(which I copied  below) but I decided to move it here to a new thread. The
-proposed solution doesn't seem practical if ALWAYS_DIRTY causes numerous
-register reads as it appears to.
+I have one more question?
 
-The second issue is related to setting a property to a value that does not
-change. This may seem stupid but in the past (UHD 3.15), I could use a
-block arg as representing a string filename (e.g., a file containing Window
-coefficients).  If I registered a function as a publisher for this arg,
-then my function would run whenever this property was set (whether or not
-it changed) so that I could read my file and load the coefficients.  But,
-with UHD4 properties, my function is not getting called when the property
-is set to the same filename as it was before the set.  So, even though the
-coefficients in the file are changed, they are never loaded because the
-filename itself did not change.
+Did you change anything in the default FPGA image, in order to be able to
+sustain a maximum 125 MS/s for 4 channels on N310, or 200 MS/s for 2
+channels on  X310?
 
-Let me know if you have any suggestions on either issue.
-Rob
+By looking into x310_rfnoc_image_core.yml and the same is for
+n310_rfnoc_image_core.yml, I can notice that replay is connected over the
+crossbar to DUC.
+The Connection would look something like
+PCIe -> CrossBarSwitch ->* Replay -> CrossBarSwitch *-> DUC -> Radio.
 
 
-> Rob, you might want to check out host/tests/rfnoc_graph_mock_nodes.hpp,
-> and look at the RSSI property. It's supposed to mock a property that
-> only represents a value that is read back from the radio (none of our
-> RFNoC radios actually have that property, but we provisioned for it in
-> the specification, and this is an example of that).
+I can imagine that it would be more efficient to connect Replay directly to
+the DUC.
+PCIe -> CrossBarSwitch ->* Replay -> DUC -*> Radio.
+
+However, I am not sure, would  that work with the new design due to the
+clock domain crossings?
+
+Kind Regards,
+
+EMil
+
+On Tue, Oct 6, 2020 at 3:40 PM Rob Kossler <rkossler@nd.edu> wrote:
+
+> Hi Emil,
+> With UHD 4.0, this works.  And, the latest FPGA images from Ettus include
+> the Replay block on the X310 (in the past, this was just for the N310) so
+> you don't even have to build your own image. And, the latest FPGA images
+> provide access to the full 1GB ram such that you could store arb waveforms
+> for 2 channels with memory depth of 125M samps for each channel.
 >
-> Instead of updating a counter (which we only do because this is a mock
-> for unit testing), you would peek a register.
+> I verified that I could play 4 channels at 125 MS/s from the UHD 4.0
+> Replay block on the N310. I believe that I also verified 2 channels at 200
+> MS/s on the X310, but I don't remember for certain.
+>
+> Rob
+>
+> On Tue, Oct 6, 2020 at 7:00 AM Emil Bjelski via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hi All,
+>>
+>> I am investigating the option to stream samples from RFNOC_REPLAY block
+>> to two UBX-160 MHz cards with full speed (i.e. 200 Msps for each board).
+>> I would also like to support timing control for both of these two
+>> transmissions.
+>>
+>> I am planning to use new RFNOC architecture and UHD 4.0.
+>> However, before diving deeper I would like to hear from you if this is
+>> possible to be done in straightforward manner with the newest RFNOC
+>> developments.
+>>
+>> I see from the previous posts
+>> (
+>> http://ettus.80997.x6.nabble.com/USRP-users-transmitting-on-two-channels-with-replay-block-td13915.html
+>> ).
+>> That with older RFNOC design and UHD 3.xxx streaming from RFNOC was
+>> limited to a single UBX radio.
+>> Meaning that an FPGA image with 2 Replay blocks was needed in order to
+>> stream samples to two UBXs radios.
+>>
+>> What would be the easiest way to proceed with new UHD 4.0?
+>>
+>> Thanks in advance on the answers,
+>>
+>> Emil
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
 
-Hi Martin,
-I looked at this and implemented a property using the ALWAYS_DIRTY
-dependency shown in the mock case. This does work, but it causes my
-actual register peek to occur quite a lot - not just when a user calls
-get_property for that property.
-
---00000000000053ac3705b11c66cf
+--000000000000a2473b05b124feea
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<br><div>I have 2 issues related to properties in UHD 4=
-.0.=C2=A0</div><div><br></div><div>The first is regarding the concept of a =
-read-only property where the property is monitoring some HW status. This wa=
-s discussed in another thread (which I copied=C2=A0 below) but I decided to=
- move it here to a new thread. The proposed solution doesn&#39;t seem pract=
-ical if ALWAYS_DIRTY causes numerous register reads as it appears to.</div>=
-<div><br></div><div>The second issue is related to setting a property to a =
-value that does not change. This may seem stupid but in the past (UHD 3.15)=
-, I could use a block arg as representing a string filename (e.g., a file c=
-ontaining Window coefficients).=C2=A0 If I registered a function as a publi=
-sher for this arg, then my function would run whenever this property was se=
-t (whether or not it changed) so that I could read my file and load the coe=
-fficients.=C2=A0 But, with UHD4 properties, my function is not getting call=
-ed when the property is set to the same filename as it was before the set.=
-=C2=A0 So, even though the coefficients in the file are changed, they are n=
-ever loaded because the filename itself did not change.</div><div><br></div=
-><div>Let me know if you have any suggestions on either issue.</div><div>Ro=
-b</div><div><br></div><div><br></div><div><span class=3D"gmail-im" style=3D=
-"color:rgb(80,0,80)">&gt; Rob, you might want to check out host/tests/rfnoc=
-_graph_mock_nodes.hpp,<br>&gt; and look at the RSSI=C2=A0<span class=3D"gma=
-il-il">property</span>. It&#39;s supposed to mock a=C2=A0<span class=3D"gma=
-il-il">property</span>=C2=A0that<br>&gt; only represents a value that is re=
-ad back from the radio (none of our<br>&gt; RFNoC radios actually have that=
-=C2=A0<span class=3D"gmail-il">property</span>, but we provisioned for it i=
-n<br>&gt; the specification, and this is an example of that).<br>&gt;<br>&g=
-t; Instead of updating a counter (which we only do because this is a mock<b=
-r>&gt; for unit testing), you would peek a register.<br><br></span>Hi Marti=
-n,<br>I looked at this and implemented a=C2=A0<span class=3D"gmail-il">prop=
-erty</span>=C2=A0using the ALWAYS_DIRTY<br>dependency shown in the mock cas=
-e. This does work, but it causes my<br>actual register peek to occur quite =
-a lot - not just when a user calls<br>get_property for that=C2=A0<span clas=
-s=3D"gmail-il">property</span>.<br></div></div>
+<div dir=3D"ltr">Hi Rob,<div>Thank you once again for answering my question=
+!</div><div><br></div><div>I have one more question?</div><div><br></div><d=
+iv><div>Did you change anything=C2=A0in the default FPGA image, in order to=
+ be able to sustain a maximum 125 MS/s for 4 channels on N310, or 200 MS/s =
+for 2 channels on=C2=A0 X310?</div><div></div></div><div><br></div><div>By =
+looking into x310_rfnoc_image_core.yml and the same is for n310_rfnoc_image=
+_core.yml, I can notice that replay is connected over the crossbar to DUC.<=
+/div><div>The Connection would look something like=C2=A0</div><div>PCIe -&g=
+t; CrossBarSwitch -&gt;<b> Replay -&gt; CrossBarSwitch </b>-&gt; DUC -&gt; =
+Radio.</div><div><br></div><div><br></div><div>I can imagine that it would =
+be more efficient=C2=A0to connect Replay directly to the DUC.=C2=A0</div><d=
+iv><div>PCIe -&gt; CrossBarSwitch -&gt;<b> Replay -&gt; DUC -</b>&gt; Radio=
+.</div><div></div></div><div><br></div><div>However, I am not sure,=C2=A0wo=
+uld=C2=A0 that work with the new design due to the clock domain crossings?<=
+/div><div><br></div><div>Kind Regards,</div><div><br></div><div>EMil</div><=
+/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Tue, Oct 6, 2020 at 3:40 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd=
+.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"><div dir=3D"ltr">Hi Emil,<div>With UHD 4.0, this works=
+.=C2=A0 And, the latest FPGA images from Ettus include the Replay block on =
+the X310 (in the past, this was just for the N310) so you don&#39;t even ha=
+ve to build your own image. And, the latest FPGA images provide access to t=
+he full 1GB ram such that you could store arb waveforms for 2 channels with=
+ memory depth of 125M samps for each channel.=C2=A0=C2=A0</div><div><br></d=
+iv><div>I verified that I could play 4 channels at 125 MS/s from the UHD 4.=
+0 Replay block on the N310. I believe that I also verified 2 channels at 20=
+0 MS/s on the X310, but I don&#39;t remember for certain.</div><div><br></d=
+iv><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Tue, Oct 6, 2020 at 7:00 AM Emil Bjelski via USRP-users=
+ &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
+sers@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex"><div dir=3D"ltr">Hi All,<div><br></div><div>I am invest=
+igating the option to stream samples from RFNOC_REPLAY block to two UBX-160=
+ MHz cards with full speed (i.e. 200 Msps for each board).</div><div>I woul=
+d also like to support timing control for both of these two transmissions.=
+=C2=A0</div><div><br></div><div>I am planning to use new RFNOC architecture=
+=C2=A0and UHD 4.0.</div><div>However, before diving deeper I would like to =
+hear from you if this is possible to be done in straightforward=C2=A0manner=
+ with the newest RFNOC developments.=C2=A0</div><div><br></div><div>I see f=
+rom the previous posts=C2=A0</div><div>(<a href=3D"http://ettus.80997.x6.na=
+bble.com/USRP-users-transmitting-on-two-channels-with-replay-block-td13915.=
+html" target=3D"_blank">http://ettus.80997.x6.nabble.com/USRP-users-transmi=
+tting-on-two-channels-with-replay-block-td13915.html</a>).</div><div>That w=
+ith older RFNOC design and UHD 3.xxx streaming from RFNOC was limited to a =
+single UBX radio.=C2=A0</div><div>Meaning that an FPGA image with 2 Replay =
+blocks was needed in order to stream samples to two UBXs radios.</div><div>=
+<br></div><div>What would be the easiest way to proceed with new UHD 4.0?</=
+div><div><br></div><div>Thanks in advance on the answers,</div><div><br></d=
+iv><div>Emil</div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
 
---00000000000053ac3705b11c66cf--
+--000000000000a2473b05b124feea--
 
 
---===============0939922319535157433==
+--===============8432818587902420597==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -167,5 +239,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0939922319535157433==--
+--===============8432818587902420597==--
 
