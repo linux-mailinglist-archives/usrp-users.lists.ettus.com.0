@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEB12287C44
-	for <lists+usrp-users@lfdr.de>; Thu,  8 Oct 2020 21:16:13 +0200 (CEST)
-Received: from [::1] (port=51994 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id F16A7287C7A
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Oct 2020 21:29:41 +0200 (CEST)
+Received: from [::1] (port=52112 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kQbOe-00042G-SA; Thu, 08 Oct 2020 15:16:12 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:38536)
+	id 1kQbbg-0004h2-0T; Thu, 08 Oct 2020 15:29:40 -0400
+Received: from mail-oo1-f52.google.com ([209.85.161.52]:33156)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kQbOa-0003qr-RP
- for usrp-users@lists.ettus.com; Thu, 08 Oct 2020 15:16:08 -0400
-Received: by mail-ot1-f42.google.com with SMTP id i12so6639400ota.5
- for <usrp-users@lists.ettus.com>; Thu, 08 Oct 2020 12:15:48 -0700 (PDT)
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kQbbc-0004ZQ-E9
+ for usrp-users@lists.ettus.com; Thu, 08 Oct 2020 15:29:36 -0400
+Received: by mail-oo1-f52.google.com with SMTP id r7so604552ool.0
+ for <usrp-users@lists.ettus.com>; Thu, 08 Oct 2020 12:29:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=aZrieor5cJMtuY7/zNwePNNgssUlSqwR/JNb8mRg3yU=;
- b=Qf9amisSchEErhDVjWQPXkqT9bO4JYMw1wIySMe1nKOGvjWpQ+mWkHzfKat1yxhN8x
- UbA4gnMwalqaVBHzHUUyBAUckpJdj44xgZ5rclzFkivl0ruwJbAXVmSJAvNF8yNeZiNd
- l5+Y3y8CCkQ6g5ez1ydVS6xZtfcQmUeGFg85V4ZNUVy8Ny4Ie+ZwSJI0DgDu+D9MPD/Z
- ivHM7WkeZMGSGRIajXEPYsS/K0cVBLTvFgtvB0MPDbZvg7RB4mF4kyj71GgKMAZUk84j
- E8lVfVY5r0x6bU3JulcYWOcDQIuAcA2agLG0OYuNhOU3bM7NdnTlEWqhHSPTAp71KFL0
- zEng==
+ :cc:content-transfer-encoding;
+ bh=nr4iApnCY9zCSzjm4R9jMIE8u2VjESFHIVXUF3NNyoo=;
+ b=Hm5U9PF+ACeXAq3I5cP2xjfEkCUKpNjVu2I1dNh6wPQhGx04KaGkF7JGJsEeV74cRD
+ 4A/SG1Ks4zTpSM341DI74Tcc0697z3VuD+rViXz55vJP1Wkaya1i+ZZkwiCwJaRXUsVY
+ mtRgbhHaQl7gJhzMmzPBb95N05q73uTrPpsyvpw5e+cNvNwYcCno0x0Kyz7RRrEh/sQ9
+ JoiTajKIklL8cxlPQmEz5vIo1UcchjU3GSwNYmCGUdI9ngDqa1NtqlDFHs0Smb6gWuW3
+ X578IhM7A5JzIkxx6LK/Bb9OLMto3TRhDIsNsMwXkFLRTH67SRkFYdQ/i3M5l2wgloCa
+ wNEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=aZrieor5cJMtuY7/zNwePNNgssUlSqwR/JNb8mRg3yU=;
- b=MSAGUBnDtvv0HsgXNx5PX/q9WVsqYR1GQcj0eTAwdj7HM2GVP03y25nie5z4aP/Cde
- cLH7AqlGYNiBVMjijWe4bubVAxyP8r0gkKP/rEbesXdTiFeZmIckker1+hDIFC4Wa/t/
- faMPY/7bD/py31NkQGUbJTOWl/DAQGiqODmuaFcFQ0ukua6zgFZXxwCV7ubpss/AHLy/
- MmwQno6AzyoS45GrSK+aMrNU3XDCZ1QUCv7Bsa3QQhaMduD/o/stIwhoP+7xzbp+GfUO
- mOmjUCmOmscqVOga06XLrb9Jwp5kvuEO+xysi4JKHHyPGspQKwH5ooF/ylH/cwa/ah/u
- h/aQ==
-X-Gm-Message-State: AOAM530NefBNsElb7NmjortRfjknc98jcgEi1y6+OMIzENefrGO+z2ey
- soGiFvKhdzhSaklmWY4u3mljRIA9jH27FtA+nVJh1ceFDNU=
-X-Google-Smtp-Source: ABdhPJzzm4ckZgHkIsVG2snhuOBWfQ5TBYSiuOf5mUfaj9qe3biUaS5uHun/yHY90MqL0shB6VQwdSBgl8WI21xpCtw=
-X-Received: by 2002:a05:6830:1282:: with SMTP id
- z2mr5334592otp.301.1602184528040; 
- Thu, 08 Oct 2020 12:15:28 -0700 (PDT)
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=nr4iApnCY9zCSzjm4R9jMIE8u2VjESFHIVXUF3NNyoo=;
+ b=VzBv7Us0/9BpgZ+iq5tzMzC7EVVjRrKvG6otxFYGLY69m5sLKZ2wJYRRHqnGSEr+td
+ z1F9M5fRcnKlOE2tMzi1T5ZtNJj5fvic0Maf1zAQDSELx7uIPTRwLk0udncXF2j27SLw
+ n0JgpIhg/vS2KS3yq4gdAo1NYUaYNTeTNViixt6vNnFZaA7E5pUXz+Q54ykYUIWwE9ED
+ vvIUPqDrhUm0iW5m0QhQrEPWV9rxGSJm7oCqxT/KAVYSIL6aHoVqbXh/Qiq4TpqLqA3G
+ ESuUVt6LYV4Mf7tL9AhXlWEWW5d9yaZKG8ctZ1F+yXowmUYF3iNjW8rKCngsiamUMSJz
+ 0FkA==
+X-Gm-Message-State: AOAM532CoiZcdaBG3YmZDulePTxZWA6CLmcTNfFhgFHqCOb/in6hfWd5
+ by2FdncW7ep+EkaKdj6TfHeUGnRjbtDNRmYgHf5aiGzHw9I=
+X-Google-Smtp-Source: ABdhPJyXRmGmxAWsk3dnqoVWGZ+l0ORzKac56/2f7pxzn/VXlM3htS8q/cNHW/qXv17aswolycQon8KzQBe7XLCtL14=
+X-Received: by 2002:a4a:4845:: with SMTP id p66mr6545515ooa.68.1602185335198; 
+ Thu, 08 Oct 2020 12:28:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <2e92fb3d3f694bcca5767b03451b4f05@tudelft.nl>
-In-Reply-To: <2e92fb3d3f694bcca5767b03451b4f05@tudelft.nl>
-Date: Thu, 8 Oct 2020 15:15:17 -0400
-Message-ID: <CAB__hTQjrsTU7Y_rVSMPWaRKKKzmNwziG8QmXpfgSYoNosymow@mail.gmail.com>
-To: Cherif Diouf <C.E.V.Diouf@tudelft.nl>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Replay block time commands
+References: <CAOx6OK04fY7xSebmPM8d5b_=qDbqWm9hbgHFrhT5raAZVKDPsg@mail.gmail.com>
+In-Reply-To: <CAOx6OK04fY7xSebmPM8d5b_=qDbqWm9hbgHFrhT5raAZVKDPsg@mail.gmail.com>
+Date: Thu, 8 Oct 2020 15:28:44 -0400
+Message-ID: <CAB__hTTLPcPdV24d_R1-n0nkEvD9h4R02uU_hxxjZ4Txpn4aWw@mail.gmail.com>
+To: Jorge Arroyo Giganto <jarroyo@gradiant.org>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Custom RFNoC block test with UHD C++ (UHD-3.15.LTS)
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,7 +61,8 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============2924213459638544443=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,101 +76,75 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2924213459638544443==
-Content-Type: multipart/alternative; boundary="000000000000a8d90705b12da792"
-
---000000000000a8d90705b12da792
-Content-Type: text/plain; charset="UTF-8"
-
-I use the Replay block with timed commands. I have tested it and it seems
-to work fine. In general, I would say the Replay block functions best in
-UHD4, but I think that it will also work with timed commands in 3.15 (with
-bandwidth limitations imposed by 3.15 RFNoC architecture).
-Rob
-
-On Thu, Oct 8, 2020 at 10:51 AM Cherif Diouf via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi,
->
->
->
-> http://ettus.80997.x6.nabble.com/USRP-users-X310-Replay-Block-and-receiver-timming-td11818.html
->
->
-> From this post and at the time the replay block did not support
-> time-commands. Is the functionality now available. And did anyone test it?
->
->
-> Cherif
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000a8d90705b12da792
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">I use the Replay block with timed command=
-s. I have tested it and it seems to work fine. In general, I would say the =
-Replay block functions best in UHD4, but I think that it will also work wit=
-h timed commands in 3.15 (with bandwidth limitations imposed by 3.15 RFNoC =
-architecture).</div><div>Rob</div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Thu, Oct 8, 2020 at 10:51 AM Cherif Diouf =
-via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users=
-@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
-dding-left:1ex">
-
-
-
-
-<div dir=3D"ltr">
-<div id=3D"gmail-m_-6072726608130843518divtagdefaultwrapper" style=3D"font-=
-size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D=
-"ltr">
-<p>Hi,</p>
-<p><br>
-</p>
-<p><a href=3D"http://ettus.80997.x6.nabble.com/USRP-users-X310-Replay-Block=
--and-receiver-timming-td11818.html" target=3D"_blank">http://ettus.80997.x6=
-.nabble.com/USRP-users-X310-Replay-Block-and-receiver-timming-td11818.html<=
-/a></p>
-<p><br>
-</p>
-<p>From this post and at the time the replay block did not support time-com=
-mands. Is the functionality now available. And did anyone test it?</p>
-<p><br>
-</p>
-<p>Cherif<br>
-</p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-
---000000000000a8d90705b12da792--
-
-
---===============2924213459638544443==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2924213459638544443==--
-
+T24gVGh1LCBPY3QgOCwgMjAyMCBhdCAxOjMzIFBNIEpvcmdlIEFycm95byBHaWdhbnRvIHZpYSBV
+U1JQLXVzZXJzCjx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6Cj4gSSBhbSB0cnlp
+bmcgdG8gdGVzdCBteSBSRk5vQyBnYWluIGJsb2NrLCB0aGUgb25lIGZyb20gdGhlIOKAmEdldHRp
+bmcgU3RhcnRlZCB3aXRoIFJGTm9DIERldmVsb3BtZW504oCZIGd1aWRlLCB0aHJvdWdoIHRoZSBV
+SEQgQysrIEFQSSBvbiBhbiBFMzEwIChJJ20gdXNpbmcgVUhELTMuMTUuTFRTLCBJIGtub3cgdGhh
+dCBVSEQgNC4wIGhhcyBqdXN0IGJlZW4gcmVsZWFzZWQgYnV0IEkgd291bGQgYXBwcmVjaWF0ZSBp
+dCBpZiBzb21lb25lIGNvdWxkIGhlbHAgbWUgd2l0aCB0aGlzIHZlcnNpb24pLgo+Cj4gSSdtIHF1
+aXRlIHN1cmUgdGhhdCB0aGUgYml0c3RyZWFtIEkgZ2VuZXJhdGVkIGlzIGNvcnJlY3QsIHdoZW4g
+bG9hZGluZyB0aGUgaW1hZ2UgYW5kIHRoZW4gcnVubmluZyB1aGRfdXNycF9wcm9iZSwgdGhlIG5h
+bWUgSSB1c2VkIGluIHRoZSBnYWluLnhtbCBmaWxlIHNob3dzIHVwIGFtb25nIHRoZSBvdGhlciBS
+Rk5vQyBibG9ja3MuIEFsc28sIHdoZW4gZG9pbmcgZ2Fpbl9ibG9ja19jdHJsLT5zcl93cml0ZSgp
+IGFuZCB0aGVuIGNoZWNraW5nIHRoZSB2YWx1ZSB0aHJvdWdoIHRoZSByZWFkYmFjayByZWdpc3Rl
+ciB3aXRoIGdhaW5fYmxvY2tfY3RybC0+dXNlcl9yZWdfcmVhZDMyKCkgZXZlcnl0aGluZyBzZWVt
+cyB0byB3b3JrIGZpbmUuCj4KPiBXaGF0IEknbSB0cnlpbmcgdG8gZmlndXJlIG91dCBpcyBob3cg
+dG8gdHJhbnNtaXQgYW5kIHJlY2VpdmUgc2FtcGxlcyBmcm9tIHRoZSBibG9jaywgSSd2ZSB0cmll
+ZCBhIGNvdXBsZSBvZiB3YXlzIGFuZCBJJ20gc3RpbGwgbm90IGdldHRpbmcgYSBnb29kIHJlc3Vs
+dC4KPgo+IEZpcnN0LCBJIHRyaWVkIHRvIHNlbmQgYSBwYWNrZXQgd2l0aCAyMDAgc2FtcGxlcyB0
+byB0aGUgYmxvY2sgKHR4X3N0cmVhbS0+c2VuZCgmdHhfYnVmZiwgdHhfYnVmZi5zaXplKCksIHR4
+X21kLDAuNSksIHdpdGggdHhfc3RyZWFtIG9idGFpbmVkIHRocm91Z2ggYSBkZXZpY2UzIHVzcnAg
+b2JqZWN0LCBpbmNsdWRpbmcgdHhfc3RyZWFtX2FyZ3MuYXJnc1siYmxvY2tfaWQiXSA9ICJnYWlu
+IiBhbmQgdHhfc3RyZWFtX2FyZ3MuYXJnc1siYmxvY2tfcG9ydCJdID0gIjAiIGluIHRoZSB0eCBz
+dHJlYW0gYXJndW1lbnRzLCB0aGUgdHhfbWQgKG1ldGFkYXRhKSBzZXQgdXAgd2l0aCB0eF9tZC5z
+dGFydF9vZl9idXJzdCA9IGZhbHNlLCB0eF9tZC5lbmRfb2ZfYnVyc3QgPSBmYWxzZSBhbmQgdHhf
+bWQuaGFzX3RpbWVfc3BlYyA9IGZhbHNlLCBhbmQgSSBkaWRuJ3QgdXNlIHRoZSByYWRpbyBhdCBh
+bGwgdGhpcyB3YXkuIFdoZW4gdHJ5aW5nIHRvIHJlY2VpdmUgKHJ4X3N0cmVhbS0+cmVjdigmcnhf
+YnVmZiwgcnhfYnVmZi5zaXplKCksIHJ4X21kLCA1LjAsIHRydWUpLCBpbmNsdWRpbmcgdGhlICJi
+bG9ja19pZCIgYW5kICJibG9ja19wb3J0IiBhcmd1bWVudHMgaW4gdGhlIHJ4IHN0cmVhbSBsaWtl
+IGluIHRoZSB0eCwgYW5kIGluIG1vZGUgU1RSRUFNX01PREVfTlVNX1NBTVBTX0FORF9ET05FKSwg
+YW5kIEkgZ290IGFuIEVSUk9SX0NPREVfVElNRU9VVC4KClRyeSBzZXR0aW5nIHRoZSB0eCBlbmQt
+b2YtYnVyc3QgdG8gdHJ1ZS4gQWxzbywgdGhlIGJsb2NrX2lkIG1heWJlCnNob3VsZCBiZSAiZ2Fp
+bl8wIiByYXRoZXIgdGhhbiAiZ2FpbiIuICBJJ20gbm90IGNvbmZpZGVudCBpbiB0aGVzZQpzdWdn
+ZXN0aW9ucywgYnV0IHdvcnRoIGEgdHJ5LgoKPiBUaGVuLCBJIHRyaWVkIHRoaXMgdGltZSBjb25u
+ZWN0aW5nIHRoZSBSRk5vQyBSYWRpbyBibG9jayB0byB0aGUgZ2FpbiBibG9jayB3aXRoIGFuIHJm
+bm9jOjpncmFwaCBhbmQgc2V0dGluZyB0aGUgcmFkaW8gYW5kIGdhaW4gImJsb2NrX2lkIiBhbmQg
+ImJsb2NrX3BvcnQiIGFyZ3VtZW50cyBpbiB0aGUgdHggc3RyZWFtLiBXaGVuIGRvaW5nIHJlY3Yo
+KSwgSSBnb3QgYW4gdW5rbm93biBlcnJvcjogIlJlY2VpdmVyIGVycm9yOiBVbmtub3duIGVycm9y
+IGNvZGU6IDB4MzAiIChkb2VzIHNvbWVvbmUga25vdyB3aGF0IHRoaXMgbWVhbnM/KSB3aGVuIGNo
+ZWNraW5nIHRoZSByeF9tZC5lcnJvcl9jb2RlLiBIb3dldmVyLCByZWN2KCkgcmV0dXJuZWQgMjAw
+LCBsaWtlIGlmIGl0IGhhZCByZWNlaXZlZCB0aGUgc2FtcGxlcyBJIHNlbnQsIGJ1dCB0aGUgcngg
+YnVmZmVyIHdhcyBlbXB0eS4KCkNhbiB5b3UgdHJ5ICJyZm5vY19yeF90b19maWxlIiB3aGljaCBh
+bGxvd3MgeW91IHRvIHNwZWNpZnkgeW91ciBjdXN0b20KYmxvY2sgbmFtZSBvbiB0aGUgY29tbWFu
+ZCBsaW5lIGFuZCBpdCB3aWxsIGluc2VydCB5b3VyIGJsb2NrIGJldHdlZW4KdGhlIFJhZGlvIGFu
+ZCB0aGUgcnhfc3RyZWFtZXI/Cgo+IEkgYWxzbyB0cmllZCB1c2luZyB0aGUgUkZOb0MgUmVwbGF5
+IGJsb2NrLCBidXQgZGlkbid0IGdldCBhbnl3aGVyZSBlaXRoZXIuIERvZXMgYW55b25lIGtub3cg
+aWYgdGhpcyBibG9jayBpcyBzdXBwb3J0ZWQgaW4gdGhlIEUzMTA/ICh0aGlzIHdhcyBhc2tlZCBp
+biB0aGUgbWFpbGluZyBsaXN0IGEgd2hpbGUgYWdvIGluIGh0dHA6Ly9ldHR1cy44MDk5Ny54Ni5u
+YWJibGUuY29tL1VTUlAtdXNlcnMtUkZOb0MtUmVwbGF5LWJsb2NrLWZvci1FMzEwLXRkMTExNTYu
+aHRtbCwgYnV0IEknZCBsaWtlIHRvIGtub3cgaWYgc29tZW9uZSBoYXMgdGVzdGVkIGl0IHNpbmNl
+IHRoZW4pLgoKQXMgZmFyIGFzIEkga25vdywgdGhlIFJlcGxheSBibG9jayBkb2VzIG5vdCB3b3Jr
+IGZvciB0aGUgRTMxMC4KCj4gTGFzdGx5LCBJIHRyaWVkIHVzaW5nIHRocmVhZHMsIG9uZSB3aXRo
+IHRoZSByZWN2KCkgd2FpdGluZyBmb3Igc2FtcGxlcyBhbmQgdGhlIG1haW4gcHJvZ3JhbSB0aHJl
+YWQgZG9pbmcgdGhlIHNlbmQoKSwgYnV0IEkgd2Fzbid0IGx1Y2t5IGFnYWluLiBJIGdvdCB0aGlz
+IG90aGVyIHVua25vd24gZXJyb3I6ICJSZWNlaXZlciBlcnJvcjogVW5rbm93biBlcnJvciBjb2Rl
+OiAweDNjZThlMmIwIi4KPgo+IFNvLCB3aGljaCB3b3VsZCBiZSB0aGUgYmVzdCB3YXkgdG8gdGVz
+dCBteSBibG9jaz8gQWdhaW4sIEkgb25seSB3YW50IHRvIHNlZSB0aGF0IHNhbXBsZXMgZW50ZXIg
+YW5kIGV4aXQgbXVsdGlwbGllZCBieSB0aGUgZ2FpbiB2YWx1ZSB0byB1bmRlcnN0YW5kIGhvdyBJ
+IGNhbiB3b3JrIHdpdGggUkZOb0MgYmxvY2tzIGZyb20gQysrLgo+Cj4gQWxzbywgSSdtIGNvbmZ1
+c2VkIGFib3V0IHRoaXMsIHdoZW4gc2VuZGluZyBzYW1wbGVzIHRvIHRoZSBibG9jayBpdHMgcmVz
+dWx0IHNob3VsZCBiZSBrZXB0IGluIHRoZSBGSUZPIHRoYXQgdGhlbiBVSEQgcmVhZHMgZnJvbSwg
+c28gSSB1bmRlcnN0YW5kIHRoYXQgdGhlcmUgc2hvdWxkIGJlIG5vIHJlYXNvbiBmb3IgYW4gYWN0
+aXZlIHR4IHN0cmVhbWVyIHRvIGJlIHN0cmVhbWluZyB3aGlsZSBkb2luZyB0aGUgcmVjdigpLCBi
+ZWNhdXNlIHRoZSByZWN2KCkgc2hvdWxkIGp1c3QgcmVhZCB0aGUgcmVzdWx0IGZyb20gdGhlIEZJ
+Rk8sIG9yIGFtIEkgZ2V0dGluZyBzb21ldGhpbmcgd3Jvbmc/CgpUaGUgdmFyaW91cyByZm5vYyBi
+bG9ja3MgZG8gaGF2ZSBpbnB1dC9vdXRwdXQgRklGT3Mgc3VjaCB0aGF0IGlmIHRoZQpudW1iZXIg
+b2Ygc2FtcGxlcyBpcyBzbWFsbCAoc3VjaCBhcyAyMDAgaW4geW91ciBjYXNlKSwgdGhleSBjYW4g
+c3RheQppbiB0aGUgRklGTyB1bnRpbCB5b3UgZ2V0IGFyb3VuZCB0byBjYWxsaW5nIHJlY3YoKS4g
+IEJ1dCwgaWYgaXQgaXMgYQpjb250aW51b3VzIHN0cmVhbSBjb21pbmcgZnJvbSB0aGUgUmFkaW8s
+IHRoZSBGSUZPcyB3aWxsIGZpbGwgdmVyeQpxdWlja2x5IGlmIHlvdSBhcmUgbm90IGNvbnN1bWlu
+ZyB0aGUgZGF0YSBhdCB0aGUgc2FtZSByYXRlIGJ5IHVzaW5nCnJlY3YoKS4KCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBs
+aXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFp
+bG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
