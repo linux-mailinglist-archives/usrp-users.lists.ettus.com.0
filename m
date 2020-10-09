@@ -2,54 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E84D2889DB
-	for <lists+usrp-users@lfdr.de>; Fri,  9 Oct 2020 15:31:31 +0200 (CEST)
-Received: from [::1] (port=60276 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CD6D288AC1
+	for <lists+usrp-users@lfdr.de>; Fri,  9 Oct 2020 16:24:07 +0200 (CEST)
+Received: from [::1] (port=60664 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kQsUY-0002TY-FH; Fri, 09 Oct 2020 09:31:26 -0400
-Received: from eu21-002mrg.atmailcloud.com ([89.45.227.9]:44424)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <drtaylor@manx.net>) id 1kQsUU-0002Oo-OH
- for usrp-users@lists.ettus.com; Fri, 09 Oct 2020 09:31:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=manx.net;
- s=20160330; h=Content-Type:MIME-Version:Date:Subject:To:From:Message-ID;
- bh=xKeNW996B2dbTq4xdnTD8tmEbNh3c+Ma8fUC5Oecz2E=; b=WUPU2Rj7C34J4KlOtcEvkAd7c1
- SgYHiLUL9WPEHvl5Rsh3CKX5RmzmMDF0XBsBIzWqwR7/fzalCI0gbPkIUYeOGNr8DzxI9RXUTvOWY
- L6eif08Ui0zISGnah72jnDoUGG64FoigaorP5ixiveoLqof32anUXNYL9BXqgyVEWNY8=;
-Received: from pc2-cc-fra1-mrr-001.internal.atmailcloud.com ([10.20.30.45])
- by ssi-cc-fra1-mro-002.internal.atmailcloud.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <drtaylor@manx.net>)
- id 1kQsTp-0002uR-8X; Fri, 09 Oct 2020 23:30:41 +1000
-Received: from pc2-cc-fra1-mrc-005.internal.atmailcloud.com ([10.20.30.55])
- by pc2-cc-fra1-mrr-001.internal.atmailcloud.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <drtaylor@manx.net>)
- id 1kQsTp-0007Wa-5H; Fri, 09 Oct 2020 23:30:41 +1000
-Received: from [87.254.66.171] (helo=PC1)
- by pc2-cc-fra1-mrc-005.internal.atmailcloud.com with esmtpsa
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <drtaylor@manx.net>)
- id 1kQsTo-0000JX-Q4; Fri, 09 Oct 2020 23:30:41 +1000
-Message-ID: <6249823C72E244DD9001466CBCA8DA74@PC1>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, <usrp-users@lists.ettus.com>
-References: <977DB5BC614A438B9066262CBAEDBC75@PC1> <5F7DF8FA.707@gmail.com>
- <1316B17C73CD4E78A29C851758B9424F@PC1> <5F7F603B.3040102@gmail.com>
- <8BDDB039BE74418FA519715D5BB4062B@PC1> <5F7F6B9B.708@gmail.com>
-In-Reply-To: <5F7F6B9B.708@gmail.com>
-Date: Fri, 9 Oct 2020 14:30:40 +0100
+	id 1kQtJV-0006Qq-5h; Fri, 09 Oct 2020 10:24:05 -0400
+Received: from mail-ej1-f49.google.com ([209.85.218.49]:43738)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <martin.braun@ettus.com>)
+ id 1kQtJR-0006KX-0y
+ for usrp-users@lists.ettus.com; Fri, 09 Oct 2020 10:24:01 -0400
+Received: by mail-ej1-f49.google.com with SMTP id md26so13309302ejb.10
+ for <usrp-users@lists.ettus.com>; Fri, 09 Oct 2020 07:23:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=kSB18rQMb2MSH2zzNLvXZkVTWnd+u5T1tzUoFfypNRI=;
+ b=wJB4PM1Q744/NZgyu66P70mShzB2brOSow0nGuEBHJsJMb8wbxqecR56GU90nbUEiB
+ WzWFl8/4Vo0ULo9mfKqetxYGrtMTaACKb4l6RE3RorvvKf/J2oRE+3f8LOoP4N4n1C2c
+ lyZNsWt4I21xXss1dlXjZYQSizOXzN7XgLKDkfbQuXOxVnLLESirZNTqxWnFh6DcOt+2
+ jJB8emJr/DxYkCVr++KB8DpLEnE8ICxVzT7cxWfdwpjVQ3O48auYnbBxswc8ftEHbXMz
+ PxsZyG1c7Zve2/pHtbEBc2oIw4EBBwWDJoeXZyxv6wBMRt84bCIMcsUMZ5UeB7I3Ys9b
+ quzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=kSB18rQMb2MSH2zzNLvXZkVTWnd+u5T1tzUoFfypNRI=;
+ b=L8ACWq9Yz+qX0mV17V8KEpuzigbcszbDUXhGDus30bJ7ZmIBbfPCTvLWNqiVL8TVhQ
+ q06EVS7NhMEJ0LQvrStWNRJzjOW3VtnfvXA2PWu/HjrYt1YLpc4H7Ys4fWB0EHRE+cGl
+ gLchhHvhKV311p0fc9/HOX69oieyMKUi/VgCIlABlRSMUtavmW/z4tsJEFu+bI1Ogw1V
+ OOQZWhxVpT/PN7RxlnbdA3ucVF7qJAJYJ6+BPefH1M2yOGxkx/0ZYrIQgEFESnZniPqL
+ 3ODliqzOaaZZoUIveGQkhENbbiCA0cnLWHH3vRT9ZytT3rL3KS7TlbE3qCCKZW1Flst7
+ QTtQ==
+X-Gm-Message-State: AOAM533jeleLP0+lcyGD4Jwh2I+pOC/RyI5Ej57BweNIJ/ayISth7LIk
+ gjHSg03CgRCqPNjTXpkbZIDlsmPZc4X2wkQ3pb8q8XTY
+X-Google-Smtp-Source: ABdhPJz0Hh9pDjTLUbmR+PrgqM2VYrbv4/M2gW8gxwTCBo93dBl7z5maD7aI7Ta2y1UTLurKqve6JS8FI3E87DZVBEc=
+X-Received: by 2002:a17:906:af10:: with SMTP id
+ lx16mr14617416ejb.400.1602253399989; 
+ Fri, 09 Oct 2020 07:23:19 -0700 (PDT)
 MIME-Version: 1.0
-X-Priority: 3
-X-MSMail-Priority: Normal
-Importance: Normal
-X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
-X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
-X-Atmail-Id: drtaylor@manx.net
-X-atmail-spam-score: 0
-X-atmail-spam-action: no action
-X-atmailcloud-spam-bar: /
-Subject: Re: [USRP-users] B210 USRP object creation
+References: <CAB__hTQ1azFd2KFH-g0+ASGSfBjCp1FpizqaZS4zcm4i51JJxg@mail.gmail.com>
+ <CAGNhwTN+g3Vt=Ox68igLx1TSgXgF65eb7ftk-+=zXM-OphQxOQ@mail.gmail.com>
+In-Reply-To: <CAGNhwTN+g3Vt=Ox68igLx1TSgXgF65eb7ftk-+=zXM-OphQxOQ@mail.gmail.com>
+Date: Fri, 9 Oct 2020 16:23:08 +0200
+Message-ID: <CAFOi1A7yH57V=bOxAPAVsSe_2qUA4we44tCETEAM2Pboz7naeA@mail.gmail.com>
+To: Michael Dickens <michael.dickens@ettus.com>
+Cc: Rob Kossler <rkossler@nd.edu>, usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Operating E310 from host?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,9 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "David Taylor \(manx.net\) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "David Taylor \(manx.net\)" <drtaylor@manx.net>
-Content-Type: multipart/mixed; boundary="===============1379039304106939921=="
+From: Martin Braun via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Martin Braun <martin.braun@ettus.com>
+Content-Type: multipart/mixed; boundary="===============4360321868397295183=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,271 +78,87 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
+--===============4360321868397295183==
+Content-Type: multipart/alternative; boundary="000000000000bf3acc05b13db030"
 
---===============1379039304106939921==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_002A_01D69E48.C339D730"
+--000000000000bf3acc05b13db030
+Content-Type: text/plain; charset="UTF-8"
 
-This is a multi-part message in MIME format.
+Note that on UHD 3.15, the N310 will also not let you do that over the RJ45.
 
-------=_NextPart_000_002A_01D69E48.C339D730
-Content-Type: text/plain;
-	charset="Windows-1252"
+--M
+
+On Fri, Oct 2, 2020 at 8:01 PM Michael Dickens via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> UHD 3.15: just on the E310. No network mode.
+>
+> UHD 4.0: either.
+>
+>
+> On Fri, Oct 2, 2020 at 1:57 PM Rob Kossler via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hi,
+>> Is it possible to run an Ettus example app  & UHD on the host PC with an
+>> E310 (rather than running the app/UHD directly on the E310)?  This is a
+>> typical mode for the N310, but I wasn't sure if the E310 supported it.  I
+>> am interested in the answer for both 3.15 and 4.0.
+>> Rob
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000bf3acc05b13db030
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Marcus,
+<div dir=3D"ltr"><div>Note that on UHD 3.15, the N310 will also not let you=
+ do that over the RJ45.</div><div><br></div><div>--M<br></div></div><br><di=
+v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 2=
+, 2020 at 8:01 PM Michael Dickens via USRP-users &lt;<a href=3D"mailto:usrp=
+-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">UHD 3.15=
+: just on the E310. No network mode.<div><br></div><div>UHD 4.0: either.<br=
+><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Fri, Oct 2, 2020 at 1:57 PM Rob Kossler via USRP-users &lt;<a=
+ href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@li=
+sts.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex"><div dir=3D"ltr">Hi,<br><div>Is it possible to run an Ettus ex=
+ample app=C2=A0 &amp; UHD on the host PC with an E310 (rather than running =
+the app/UHD directly on the E310)?=C2=A0 This is a typical mode for the N31=
+0, but I wasn&#39;t sure if the E310 supported it.=C2=A0 I am interested=C2=
+=A0in the answer for both 3.15 and 4.0.</div><div>Rob</div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
-Thanks again.
-
-I am using the GRC as a test-bed for writing gr-code as the flow-graph =
-method promotes well defined partitioning of the signal processing =
-functions, including of course the UHD interface.
-
-The project which I may have mentioned previously is Direct Sequence =
-Spread Spectrum based and GRC C++ OOT blocks have been developed. These =
-generate PRN sequences for transmission and then acquire and track the =
-carrier and PRN code phases in a modular receiver.
-Much of the concept development can therefore be done using the GRC =
-stand-alone or using the USRP in RF loopback with a simple BPSK =
-modulator/demodulator pair.
-
-I am aware of the GRC scheduler shortcomings particularly in terms of =
-throughput timing stability, however for now, some form of primitive =
-access to the UHD hardware is required for external timing event =
-signalling through the GPIO.
-
-I will have look at some of Balint Seeber=92s old code and run some of =
-the UHD test code as suggested.
-
-Finally to add to my woes, the B210 is no longer =93found=94 after my =
-vid and pid experiment.
-USB finds the device with the vid and pid as written, but it can no =
-longer be accessed through UHD application. I have tried carefully =
-editing the uhd-usrp.rules file to comply with the new pid value, but =
-without success.
-Perhaps a cautionary warning should be added to the EEPROM on USRP =
-devices note!
-
-Regards,
-David
-
-
-
-From: Marcus D. Leech via USRP-users=20
-Sent: Thursday, October 8, 2020 8:42 PM
-To: usrp-users@lists.ettus.com=20
-Subject: Re: [USRP-users] B210 USRP object creation
-
-On 10/08/2020 03:33 PM, David Taylor (manx.net) via USRP-users wrote:
-
-  Point taken. - I didn=92t actually check the original default values =
-of the VID and PID, but they were reset according to the table provided, =
-so that they could be tested as arguments in the make statement below.
-  =93About the Motherboard and Daughtercard EEPROM on USRP Devices (5th =
-August 2020)=94
-
-  The aim is to be able to manipulate some GPIO bits in the block work =
-function and to align events using the 1PPS input.
-
-  Regards,
-  David GD4FMB
-
-Ok, so presumably you're using Gnu Radio, since you're talking about =
-"block work functions".
-
-So this issue straddles the two universes--UHD/USRP and Gnu Radio.
-
-I'd encourage you to use the UHD test tools to confirm sanity of your =
-setup and then move on to a stupid-simple flow-graph with standard
-  blocks.  Once THAT works, then one can think about grabbing the usrp =
-source/sink "object" and being able to use it in your own
-  processing "block".   There used to be a way to do this even within =
-GRC but I fear that it was a custom block (perhaps from the old
-  gr-balint set of blocks) that would allow you to grab an object handle =
-and pass it as a variable into your own functions.
-
-It's something I've wanted to do myself from time to time.   Of course =
-if you're coding in "naked" GR, without using GRC, it's easy.
-  But GRC uses a "data flow" model, and is less "procedural", so it =
-gives an added layer of abstraction that makes it difficult to do
-  what you want to do.   The gr-uhd module provides GPIO functions:
-
-https://www.gnuradio.org/doc/doxygen-v3.7.9.1/classgr_1_1uhd_1_1usrp__blo=
-ck.html#ab09502e1c8c43a546616b9a998f137f1
-
-But they aren't exposed in any meaningful way into GRC that I know of.
-
-I'll note that in GR3.9, there is support for something called "code =
-snippets" which would let you "dip down into the lower layers" without
-  having to post-facto edit generated Python code.
+--000000000000bf3acc05b13db030--
 
 
-
-
-
--------------------------------------------------------------------------=
--------
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-------=_NextPart_000_002A_01D69E48.C339D730
-Content-Type: text/html;
-	charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<HTML><HEAD>
-<META content=3D"text/html; charset=3Dwindows-1252" =
-http-equiv=3DContent-Type></HEAD>
-<BODY dir=3Dltr text=3D#000000 bgColor=3D#ffffff>
-<DIV dir=3Dltr>
-<DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: #000000">
-<DIV>Marcus,</DIV>
-<DIV>&nbsp;</DIV>
-<DIV>Thanks again.</DIV>
-<DIV>&nbsp;</DIV>
-<DIV>I am using the GRC as a test-bed for writing gr-code as the =
-flow-graph=20
-method promotes well defined partitioning of the signal processing =
-functions,=20
-including of course the UHD interface.</DIV>
-<DIV>&nbsp;</DIV>
-<DIV>The project which I may have mentioned previously is Direct =
-Sequence Spread=20
-Spectrum based and GRC C++ OOT blocks have been developed. These =
-generate PRN=20
-sequences for transmission and then acquire and track the carrier and =
-PRN code=20
-phases in a modular receiver.</DIV>
-<DIV>Much of the concept development can therefore be done using the GRC =
-
-stand-alone or using the USRP in RF loopback with a simple BPSK=20
-modulator/demodulator pair.</DIV>
-<DIV>&nbsp;</DIV>
-<DIV>I am aware of the GRC scheduler shortcomings particularly in terms =
-of=20
-throughput timing stability, however for now, some form of primitive =
-access to=20
-the UHD hardware is required for external timing event signalling =
-through the=20
-GPIO.</DIV>
-<DIV>&nbsp;</DIV>
-<DIV>I will have look at some of Balint Seeber=92s old code and run some =
-of the=20
-UHD test code as suggested.</DIV>
-<DIV>&nbsp;</DIV>
-<DIV>Finally to add to my woes, the B210 is no longer =93found=94 after =
-my vid and=20
-pid experiment.</DIV>
-<DIV>USB finds the device with the vid and pid as written, but it can no =
-longer=20
-be accessed through UHD application. I have tried carefully editing the=20
-uhd-usrp.rules file to comply with the new pid value, but without =
-success.</DIV>
-<DIV>Perhaps a cautionary warning should be added to the EEPROM on USRP =
-devices=20
-note!</DIV>
-<DIV>&nbsp;</DIV>
-<DIV>Regards,</DIV>
-<DIV>David</DIV>
-<DIV>&nbsp;</DIV>
-<DIV>&nbsp;</DIV>
-<DIV=20
-style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: =
-"Calibri"; FONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; =
-DISPLAY: inline'>
-<DIV style=3D"FONT: 10pt tahoma">
-<DIV>&nbsp;</DIV>
-<DIV style=3D"BACKGROUND: #f5f5f5">
-<DIV style=3D"font-color: black"><B>From:</B> <A=20
-title=3Dusrp-users@lists.ettus.com>Marcus D. Leech via USRP-users</A> =
-</DIV>
-<DIV><B>Sent:</B> Thursday, October 8, 2020 8:42 PM</DIV>
-<DIV><B>To:</B> <A=20
-title=3Dusrp-users@lists.ettus.com>usrp-users@lists.ettus.com</A> </DIV>
-<DIV><B>Subject:</B> Re: [USRP-users] B210 USRP object=20
-creation</DIV></DIV></DIV>
-<DIV>&nbsp;</DIV></DIV>
-<DIV=20
-style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: =
-"Calibri"; FONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; =
-DISPLAY: inline'>
-<DIV class=3Dmoz-cite-prefix>On 10/08/2020 03:33 PM, David Taylor =
-(manx.net) via=20
-USRP-users wrote:<BR></DIV>
-<BLOCKQUOTE cite=3Dmid:8BDDB039BE74418FA519715D5BB4062B@PC1 =
-type=3D"cite">
-  <DIV dir=3Dltr>
-  <DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: =
-#000000">
-  <DIV>Point taken. - I didn=92t actually check the original default =
-values of the=20
-  VID and PID, but they were reset according to the table provided, so =
-that they=20
-  could be tested as arguments in the make statement below.</DIV>
-  <DIV>=93About the Motherboard and Daughtercard EEPROM on USRP Devices =
-(5th=20
-  August 2020)=94</DIV>
-  <DIV>&nbsp;</DIV>
-  <DIV>The aim is to be able to manipulate some GPIO bits in the block =
-work=20
-  function and to align events using the 1PPS input.</DIV>
-  <DIV>&nbsp;</DIV>
-  <DIV>Regards,</DIV>
-  <DIV>David GD4FMB</DIV>
-  <DIV>&nbsp;</DIV></DIV></DIV></BLOCKQUOTE>Ok, so presumably you're =
-using Gnu=20
-Radio, since you're talking about "block work functions".<BR><BR>So this =
-issue=20
-straddles the two universes--UHD/USRP and Gnu Radio.<BR><BR>I'd =
-encourage you to=20
-use the UHD test tools to confirm sanity of your setup and then move on =
-to a=20
-stupid-simple flow-graph with standard<BR>&nbsp; blocks.&nbsp; Once THAT =
-works,=20
-then one can think about grabbing the usrp source/sink "object" and =
-being able=20
-to use it in your own<BR>&nbsp; processing "block".&nbsp;&nbsp; There =
-used to be=20
-a way to do this even within GRC but I fear that it was a custom block =
-(perhaps=20
-from the old<BR>&nbsp; gr-balint set of blocks) that would allow you to =
-grab an=20
-object handle and pass it as a variable into your own =
-functions.<BR><BR>It's=20
-something I've wanted to do myself from time to time.&nbsp;&nbsp; Of =
-course if=20
-you're coding in "naked" GR, without using GRC, it's easy.<BR>&nbsp; But =
-GRC=20
-uses a "data flow" model, and is less "procedural", so it gives an added =
-layer=20
-of abstraction that makes it difficult to do<BR>&nbsp; what you want to=20
-do.&nbsp;&nbsp; The gr-uhd module provides GPIO functions:<BR><BR><A=20
-class=3Dmoz-txt-link-freetext=20
-href=3D"https://www.gnuradio.org/doc/doxygen-v3.7.9.1/classgr_1_1uhd_1_1u=
-srp__block.html#ab09502e1c8c43a546616b9a998f137f1">https://www.gnuradio.o=
-rg/doc/doxygen-v3.7.9.1/classgr_1_1uhd_1_1usrp__block.html#ab09502e1c8c43=
-a546616b9a998f137f1</A><BR><BR>But=20
-they aren't exposed in any meaningful way into GRC that I know =
-of.<BR><BR>I'll=20
-note that in GR3.9, there is support for something called "code =
-snippets" which=20
-would let you "dip down into the lower layers" without<BR>&nbsp; having =
-to=20
-post-facto edit generated Python code.<BR><BR><BR>
-<P>
-<HR>
-_______________________________________________<BR>USRP-users mailing=20
-list<BR>USRP-users@lists.ettus.com<BR>http://lists.ettus.com/mailman/list=
-info/usrp-users_lists.ettus.com<BR></DIV></DIV></DIV></BODY></HTML>
-
-------=_NextPart_000_002A_01D69E48.C339D730--
-
-
-
---===============1379039304106939921==
+--===============4360321868397295183==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -352,6 +169,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1379039304106939921==--
-
+--===============4360321868397295183==--
 
