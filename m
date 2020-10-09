@@ -2,61 +2,106 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C846287C98
-	for <lists+usrp-users@lfdr.de>; Thu,  8 Oct 2020 21:43:07 +0200 (CEST)
-Received: from [::1] (port=52288 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD5FF2887CF
+	for <lists+usrp-users@lfdr.de>; Fri,  9 Oct 2020 13:28:47 +0200 (CEST)
+Received: from [::1] (port=59250 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kQbof-0006W8-H5; Thu, 08 Oct 2020 15:43:05 -0400
-Received: from mail-qt1-f174.google.com ([209.85.160.174]:38243)
+	id 1kQqZo-0001jW-Ag; Fri, 09 Oct 2020 07:28:44 -0400
+Received: from dispatch1-us1.ppe-hosted.com ([67.231.154.164]:33098)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kQbob-0006QD-HI
- for usrp-users@lists.ettus.com; Thu, 08 Oct 2020 15:43:01 -0400
-Received: by mail-qt1-f174.google.com with SMTP id q26so6133654qtb.5
- for <usrp-users@lists.ettus.com>; Thu, 08 Oct 2020 12:42:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=f1kXFdjusiC+K6eKlilWG5N2wkuTFr1fQ4V7v49T/G0=;
- b=OTBVQQgo9EN190vuZAghacdPfDLBqnsjirV0p6RfnrjnEsSAF4kJNQ11ln0nifapQP
- i/ylUzTUBQLOHnfv6MN+g7blo253EYC6F8N/JNuOurVWzjHnU+pHZaBKBhgM1W/c2O1e
- O1Pl/ZjtRtBU+j+614qsid38cglorYIQy7n4HykIVwLCw0tKJ2zDM+0fQH7q/BPtCmJS
- EuRaq3JzUu0vzhTCDQvQak2A4VwWi3/uPsApir9/z1QZDZIJS8ib6X6RQyZ6Cq/iVHM/
- +ZGd88/JM3gfKeD84Fi6EA1E+choGUgB7iALgx8ox5llii+ak/sut5hldd/0LofEn5Fb
- gQcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=f1kXFdjusiC+K6eKlilWG5N2wkuTFr1fQ4V7v49T/G0=;
- b=LHLZH8G8GuxNx2vmLYZTwpjq0Au5ZgYlEhn76LLqpdH5OeparCz0wHn+eGFZnbn/AF
- vA/so78i1r+a9PxH0UQbdI6QSEv4XmpVTeWQjaZzgf2vrn9DCMKRQv3U218BhXDwIYWq
- 7WB2U4pkWzp61c7x6jf/QcGBaoFabzsbVn2Lyr8CToheePN7zPt8wGfUyB2xd8AjeVlm
- 94rLmO3u0eIETYOQjaeznEz1Qfm9V9ZF2v6aebV/cg1n0riJg2MDmz0Hul5FEYh5Utyr
- wKbwX4bQy0h2If9t4ESbMt5q0HAZlRxiEt4A/+nDMflfGaA5yCU69uIMQrcmGE6mTJ7q
- MYfw==
-X-Gm-Message-State: AOAM530ZQCJQ4zbfCKGODFGUwlcbkFP59oNoV+bXqxbj8yrNf7hxVRVD
- 9ut2DzKFGCDGyqzEQyaGuzN4LztREOm/xw==
-X-Google-Smtp-Source: ABdhPJzpP3RjrXrJNqaSmyA6oUqL3/XsdgEb5kGNgcmAXnHd3GiWeeGz50LBQCE5cQzYLxNMJvdkqA==
-X-Received: by 2002:ac8:7188:: with SMTP id w8mr10120714qto.134.1602186140724; 
- Thu, 08 Oct 2020 12:42:20 -0700 (PDT)
-Received: from [192.168.2.12]
- (smflon1825w-lp130-01-69-158-143-119.dsl.bell.ca. [69.158.143.119])
- by smtp.googlemail.com with ESMTPSA id d47sm4800853qtk.53.2020.10.08.12.42.20
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 08 Oct 2020 12:42:20 -0700 (PDT)
-Message-ID: <5F7F6B9B.708@gmail.com>
-Date: Thu, 08 Oct 2020 15:42:19 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ (Exim 4.93) (envelope-from <jim@gardettoengineering.com>)
+ id 1kQqZk-0001fD-PC
+ for usrp-users@lists.ettus.com; Fri, 09 Oct 2020 07:28:40 -0400
+Received: from dispatch1-us1.ppe-hosted.com (localhost.localdomain [127.0.0.1])
+ by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
+ 7B20A104F9C
+ for <usrp-users@lists.ettus.com>; Fri,  9 Oct 2020 11:27:42 +0000 (UTC)
+Received: from mx1-us1.ppe-hosted.com (unknown [10.110.51.22])
+ by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
+ 6C8A78005A; Fri,  9 Oct 2020 11:27:32 +0000 (UTC)
+Received: from us1-mdac16-33.at1.mdlocal (unknown [10.110.51.91])
+ by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id 6B36C800A3; 
+ Fri,  9 Oct 2020 11:27:32 +0000 (UTC)
+X-Virus-Scanned: Proofpoint Essentials engine
+Received: from mx1-us1.ppe-hosted.com (unknown [10.110.48.236])
+ by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id CB4241C0066;
+ Fri,  9 Oct 2020 11:27:31 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12lp2042.outbound.protection.outlook.com [104.47.66.42])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 7F18B400056;
+ Fri,  9 Oct 2020 11:27:31 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=b5ZBQDju0fx0X5K13HgA8ESMZRELl2fzPj34bPeDi5ihdC88W4isTNkqFTOge2lqPgIBVoSaHEnHQQ6BmawTDD7RktyBjt74Xo/u/E5Js5/0E73KgMmTzreAZGq2QEW8KuxB7s6BatrrBePMGkaCKQyqZNtHShDmeY8aZA1+gg2aj/csOM41EQPlRs84wMf/0aDC5MxCOvUrtD8BsfRVfV4k+f6Wh6LadF4XD9XitZfYvk3LGbPwL00I3ICZ9l+gnzbaZAvclY+HrdlUo/G7o76PnDhb4lhcKbrLSK0LNIzSTvLMYSFkg4LC9ATPLRb+qc8Xk4T/UIWkOU8bdtPQVA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mC1p2KQFL36JYIdZkoWIKDoLj/9/rd+Dwl2DvCIpCDw=;
+ b=N1SHEaEhIY4hJDHmtFU2VAtek5sxtt2a5DnFEHOeaUwnG+AI+fB8LPJLTp0r8X7sQ+/Rkf4NOMwm+i3hDSZscGdnN30FfnjcWJO/xS3LuGJvNVCniAv6j/k3zdzJ7rQOkQ34C0CH6Pwn+7qdW/DnK3eH/e7q0eaOyes1fNG0IrfYdNjD6Yl3GFo6ZUZ5i1s9MqqGQqHIChWNcHW66e/EaCa/bjNEuKL5eFydDkACsdHUdnfbhzLzTGNq0DuYc8yPclVH3lZv6Zt4e+7fEvNBtPmmj3q+RaQtipdPIubSEUx/LVA/SD22kWfWijKlThH5LdJIbQFzNiBa5IAe67Wd3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
+ header.from=gardettoengineering.com; dkim=pass
+ header.d=gardettoengineering.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gardettoengineering.onmicrosoft.com;
+ s=selector2-gardettoengineering-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mC1p2KQFL36JYIdZkoWIKDoLj/9/rd+Dwl2DvCIpCDw=;
+ b=b63jvcCpc7acObO/jbd2Au/bGlIGOBabsKyERlMfSOsgl84KvqSDx7RK2wdkBzTt3qBSbFxRg8lwZdWpFQiGKJA68xXGU2RpfWQg7gsHUeMVzi/jiypQstCERyHgv4SZiXKJX8DXA1jBcvA1KsMhbChfY/r+2GYx63y/WCGED3s=
+Received: from MN2PR12MB3312.namprd12.prod.outlook.com (2603:10b6:208:ab::23)
+ by MN2PR12MB3279.namprd12.prod.outlook.com (2603:10b6:208:105::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.23; Fri, 9 Oct
+ 2020 11:27:29 +0000
+Received: from MN2PR12MB3312.namprd12.prod.outlook.com
+ ([fe80::7c9d:5fe7:77ba:1be5]) by MN2PR12MB3312.namprd12.prod.outlook.com
+ ([fe80::7c9d:5fe7:77ba:1be5%3]) with mapi id 15.20.3455.025; Fri, 9 Oct 2020
+ 11:27:29 +0000
+To: usrp-users <usrp-users@lists.ettus.com>, Rob Kossler <rkossler@nd.edu>
+Thread-Topic: [USRP-users] New mender instructions?
+Thread-Index: AQHWnabfrdx7nJ5fnEimNyynJOtT1amPITQc
+Date: Fri, 9 Oct 2020 11:27:29 +0000
+Message-ID: <MN2PR12MB33127F51EFE54032BF0ECD11B8080@MN2PR12MB3312.namprd12.prod.outlook.com>
+References: <CAB__hTQ66fKZiDJLS+JskvOOmJ7BRatHLTSoZozoLbP+L1iKLA@mail.gmail.com>
+In-Reply-To: <CAB__hTQ66fKZiDJLS+JskvOOmJ7BRatHLTSoZozoLbP+L1iKLA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=gardettoengineering.com;
+x-originating-ip: [65.127.220.137]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5e845837-a525-4fcd-d0dd-08d86c464ec0
+x-ms-traffictypediagnostic: MN2PR12MB3279:
+x-microsoft-antispam-prvs: <MN2PR12MB3279FB3AF174BE3C3700E9DDB8080@MN2PR12MB3279.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ju6AWtR53esXj9mIHGX8oDFY87reGZIfKexWrCWXWYPtYqTLUJpimbRDQpeVPIDBRISdXgasnI6dR0ObnG8UtI31f8bIBxOWnW37FQto+9aYSjhCDxf8iGpFWVVgB+6TCBfMLLnxLr15Cs2DrNoTY6XEuydGkvLAxPZWD0hFfBWj5opErei2ZUeaN0LBkXxVUyZXYk6BNuGu/OlaM4cX8kJqo+m8a1xA09W4QYfAQBjrW3DvbAdhaNcU5PPUoznz4H9mSnCx12skhZ+TrS9vMhmMIH9xmM+h+NQRgWgBzsu5W2Rr5HUOIEPoRjJEN3ht2VUjxQ6sHuNdcvrVmwiffAkgHRo9Gj9ykfJG5j/p8euKfZWFXcHX2pH+kP72aqMojvOirnEDEPr1e+SmuXUVRw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3312.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(136003)(396003)(376002)(346002)(39830400003)(366004)(66476007)(52536014)(316002)(6506007)(110136005)(86362001)(53546011)(19627405001)(76116006)(33656002)(66946007)(5660300002)(66556008)(66446008)(55016002)(186003)(64756008)(4744005)(26005)(83080400001)(2906002)(166002)(478600001)(7696005)(8936002)(8676002)(9686003)(71200400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: MZjzraqxJOOXWCT2JGVRqQG2ePxz4R6njdQyW48GmDRFtwSQIPBD/QwOTi+6gnLehqyqfiZivb+nCPvx5KHHp9UWye4gaeckLu50HSa+CDJg+c2yVM8TSr7dUVptzfMkp1eLQvwpVKex149Ok4JG1OZgYLkzv6VH+4e1+6tjQ8hEZyNi+VVh/IJ6wQGr/7Uhe/ZZpinprpjNiE+WfDjDx8OTnnxwBS5IRk0EEs+L4qvV5qr84SMd70K+rs7j6Q/e6BOBrdLA98M7lF7neVwQehvwem+CkJa02udwQHfycEdn8OSoAEZ/RP+hAXkfUzGi65lv3ZJbfuwhdgfS6IhK/RTHct5z+6ceoAgb1/G8tag3iuf7ShBmZsHK1Bh55uBoYMWp7vfokua1c595lpoW0rgbStAahRCL4s013Bke5JTMhu1SOy2ALCO4MvW5WHITIVE1HweOMqTxtL4U0Ic/ghUnLAN/cJfXMNm87s1nEjxZtHlRphpDs9rbg5ukL6OCTAdMRC4QOdlwqKjkZ9Wu6cE/uMmW2OqGRsqRrDKNHFZoS1r9ltr1MBVzCKuG6yWd+B3NckRF7Qx77Ult+oPEs9KQUeL98anFsrAUBNPsRfpVthtyigk8ul9xaVHTcOU7Rv1hRMMl6RvS2U33oUmFHA==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <977DB5BC614A438B9066262CBAEDBC75@PC1> <5F7DF8FA.707@gmail.com>
- <1316B17C73CD4E78A29C851758B9424F@PC1> <5F7F603B.3040102@gmail.com>
- <8BDDB039BE74418FA519715D5BB4062B@PC1>
-In-Reply-To: <8BDDB039BE74418FA519715D5BB4062B@PC1>
-Subject: Re: [USRP-users] B210 USRP object creation
+X-OriginatorOrg: gardettoengineering.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3312.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e845837-a525-4fcd-d0dd-08d86c464ec0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2020 11:27:29.5406 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: h3fRhBtYis0y1HkFeuy3WvKghgc+Zbg53j4yxkbJ5hG2bUSqruP5ED831/UWuumDxmeqM/To0noqCdpdVYXIduewF7IblNgiUF2azptGVa4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3279
+X-MDID: 1602242852-1LsoKKUHvH7Y
+X-PPE-DISP: 1602242852;1LsoKKUHvH7Y
+Subject: Re: [USRP-users] New mender instructions?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,9 +113,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1337326527790468268=="
+From: Jim Palladino via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jim Palladino <jim@gardettoengineering.com>
+Content-Type: multipart/mixed; boundary="===============6919625684520824923=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,134 +129,121 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============1337326527790468268==
+--===============6919625684520824923==
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="------------000601000709060307070000"
+	boundary="_000_MN2PR12MB33127F51EFE54032BF0ECD11B8080MN2PR12MB3312namp_"
 
-This is a multi-part message in MIME format.
---------------000601000709060307070000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_MN2PR12MB33127F51EFE54032BF0ECD11B8080MN2PR12MB3312namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/08/2020 03:33 PM, David Taylor (manx.net) via USRP-users wrote:
-> Point taken. - I didn’t actually check the original default values of 
-> the VID and PID, but they were reset according to the table provided, 
-> so that they could be tested as arguments in the make statement below.
-> “About the Motherboard and Daughtercard EEPROM on USRP Devices (5th 
-> August 2020)”
-> The aim is to be able to manipulate some GPIO bits in the block work 
-> function and to align events using the 1PPS input.
-> Regards,
-> David GD4FMB
->
-Ok, so presumably you're using Gnu Radio, since you're talking about 
-"block work functions".
+Hi Rob,
 
-So this issue straddles the two universes--UHD/USRP and Gnu Radio.
+Per (https://files.ettus.com/manual/page_usrp_e3xx.html#e3xx_rasm_mender) I=
+ used the following on an E320:
 
-I'd encourage you to use the UHD test tools to confirm sanity of your 
-setup and then move on to a stupid-simple flow-graph with standard
-   blocks.  Once THAT works, then one can think about grabbing the usrp 
-source/sink "object" and being able to use it in your own
-   processing "block".   There used to be a way to do this even within 
-GRC but I fear that it was a custom block (perhaps from the old
-   gr-balint set of blocks) that would allow you to grab an object 
-handle and pass it as a variable into your own functions.
+mender install /home/root/usrp_e320_fs.mender
 
-It's something I've wanted to do myself from time to time.   Of course 
-if you're coding in "naked" GR, without using GRC, it's easy.
-   But GRC uses a "data flow" model, and is less "procedural", so it 
-gives an added layer of abstraction that makes it difficult to do
-   what you want to do.   The gr-uhd module provides GPIO functions:
+I'm pretty sure I needed to add a force flag to it as well.
 
-https://www.gnuradio.org/doc/doxygen-v3.7.9.1/classgr_1_1uhd_1_1usrp__block.html#ab09502e1c8c43a546616b9a998f137f1
+Jim
 
-But they aren't exposed in any meaningful way into GRC that I know of.
+________________________________
+From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Rob Koss=
+ler via USRP-users <usrp-users@lists.ettus.com>
+Sent: Thursday, October 8, 2020 3:10 PM
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] New mender instructions?
 
-I'll note that in GR3.9, there is support for something called "code 
-snippets" which would let you "dip down into the lower layers" without
-   having to post-facto edit generated Python code.
+Hi,
+What is the new mender command to use on the N310 under UHD 4 file system? =
+ The -rootfs option from the following instructions is not a valid option.
 
 
+root@ni-n3xx-serial:~# mender -rootfs /home/root/usrp_n3xx_fs.mender
 
---------------000601000709060307070000
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+--_000_MN2PR12MB33127F51EFE54032BF0ECD11B8080MN2PR12MB3312namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 10/08/2020 03:33 PM, David Taylor
-      (manx.net) via USRP-users wrote:<br>
-    </div>
-    <blockquote cite="mid:8BDDB039BE74418FA519715D5BB4062B@PC1"
-      type="cite">
-      <meta content="text/html; charset=windows-1252"
-        http-equiv="Content-Type">
-      <div dir="ltr">
-        <div style="FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR:
-          #000000">
-          <div>Point taken. - I didn’t actually check the original
-            default values of the VID and PID, but they were reset
-            according to the table provided, so that they could be
-            tested as arguments in the make statement below.</div>
-          <div>“About the Motherboard and Daughtercard EEPROM on USRP
-            Devices (5th August 2020)”</div>
-          <div> </div>
-          <div>The aim is to be able to manipulate some GPIO bits in the
-            block work function and to align events using the 1PPS
-            input.</div>
-          <div> </div>
-          <div>Regards,</div>
-          <div>David GD4FMB</div>
-          <br>
-        </div>
-      </div>
-    </blockquote>
-    Ok, so presumably you're using Gnu Radio, since you're talking about
-    "block work functions".<br>
-    <br>
-    So this issue straddles the two universes--UHD/USRP and Gnu Radio.<br>
-    <br>
-    I'd encourage you to use the UHD test tools to confirm sanity of
-    your setup and then move on to a stupid-simple flow-graph with
-    standard<br>
-      blocks.  Once THAT works, then one can think about grabbing the
-    usrp source/sink "object" and being able to use it in your own<br>
-      processing "block".   There used to be a way to do this even
-    within GRC but I fear that it was a custom block (perhaps from the
-    old<br>
-      gr-balint set of blocks) that would allow you to grab an object
-    handle and pass it as a variable into your own functions.<br>
-    <br>
-    It's something I've wanted to do myself from time to time.   Of
-    course if you're coding in "naked" GR, without using GRC, it's easy.<br>
-      But GRC uses a "data flow" model, and is less "procedural", so it
-    gives an added layer of abstraction that makes it difficult to do<br>
-      what you want to do.   The gr-uhd module provides GPIO functions:<br>
-    <br>
-<a class="moz-txt-link-freetext" href="https://www.gnuradio.org/doc/doxygen-v3.7.9.1/classgr_1_1uhd_1_1usrp__block.html#ab09502e1c8c43a546616b9a998f137f1">https://www.gnuradio.org/doc/doxygen-v3.7.9.1/classgr_1_1uhd_1_1usrp__block.html#ab09502e1c8c43a546616b9a998f137f1</a><br>
-    <br>
-    But they aren't exposed in any meaningful way into GRC that I know
-    of.<br>
-    <br>
-    I'll note that in GR3.9, there is support for something called "code
-    snippets" which would let you "dip down into the lower layers"
-    without<br>
-      having to post-facto edit generated Python code.<br>
-    <br>
-    <br>
-  </body>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hi Rob,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Per (<a href=3D"https://files.ettus.com/manual/page_usrp_e3xx.html#e3xx_ras=
+m_mender" id=3D"LPlnk695367">https://files.ettus.com/manual/page_usrp_e3xx.=
+html#e3xx_rasm_mender</a>)&nbsp;I used the following on an E320:<br>
+<br>
+mender install /home/root/usrp_e320_fs.mender<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(0, 0, 0); font-family: Calibri, Arial, Helvetica,=
+ sans-serif; font-size: 12pt;">I'm pretty sure I needed to add a force flag=
+ to it as well.</span><br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Jim</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
+sers-bounces@lists.ettus.com&gt; on behalf of Rob Kossler via USRP-users &l=
+t;usrp-users@lists.ettus.com&gt;<br>
+<b>Sent:</b> Thursday, October 8, 2020 3:10 PM<br>
+<b>To:</b> usrp-users &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Subject:</b> [USRP-users] New mender instructions?</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">Hi,<br>
+<div>What is the new mender command to use on the N310 under UHD 4 file sys=
+tem?&nbsp; The -rootfs option from the following instructions is not a vali=
+d&nbsp;option.</div>
+<div><br>
+</div>
+<div>
+<pre style=3D"font-family:monospace,Courier; color:rgb(0,0,0); background-c=
+olor:rgb(249,249,249); border:1px solid rgb(221,221,221); padding:1em; whit=
+e-space:pre-wrap; line-height:1.3em; font-size:14px">root@ni-n3xx-serial:~#=
+ mender -rootfs /home/root/usrp_n3xx_fs.mender</pre>
+</div>
+</div>
+</div>
+</body>
 </html>
 
---------------000601000709060307070000--
+--_000_MN2PR12MB33127F51EFE54032BF0ECD11B8080MN2PR12MB3312namp_--
 
 
---===============1337326527790468268==
+--===============6919625684520824923==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -222,5 +254,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1337326527790468268==--
+--===============6919625684520824923==--
 
