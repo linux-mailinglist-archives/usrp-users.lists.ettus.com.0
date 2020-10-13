@@ -2,54 +2,80 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 361F928D140
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Oct 2020 17:29:14 +0200 (CEST)
-Received: from [::1] (port=48296 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 433FB28D16E
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Oct 2020 17:43:40 +0200 (CEST)
+Received: from [::1] (port=48414 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kSMEi-0008Ax-0M; Tue, 13 Oct 2020 11:29:12 -0400
-Received: from mail-ed1-f49.google.com ([209.85.208.49]:46466)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
- id 1kSMEd-00085n-SJ
- for usrp-users@lists.ettus.com; Tue, 13 Oct 2020 11:29:08 -0400
-Received: by mail-ed1-f49.google.com with SMTP id 33so21306182edq.13
- for <usrp-users@lists.ettus.com>; Tue, 13 Oct 2020 08:28:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=O0y4gk5SpNjwiK4EtsP9rU6dY1A0AQxXeWqne02WNF4=;
- b=Ospnb/5WAzNGH3k+usMHjRz3kZT0Z3dpdvhQF2xJV3I49Nr0nkfFfShhSNrtcTaqqj
- lXoBq6nruP75XBymZAUq7D9hYK4ag4SqTkp3INKzo/c6KNW1tfOssdfyklR4QlkW+ONM
- 1ZCBX0J1KdOS4tONVaOavKtgqYpHDCOmj9u0+l+tizVEIygCEORmwBpUO9DWcvJ3SMAu
- LwK9lgOXvsTFowH+rQyrR3MS7yAmHy1/Z/Bbaq6UNiBPICkuTzvgZ7QU53fWzsLkB4mI
- m5G4Rj877pxg3oik1lfOWynp9SdHA0Uw7fu1mSeH03R/IaIKzDX55rYJUs69WJY1mPDW
- butQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=O0y4gk5SpNjwiK4EtsP9rU6dY1A0AQxXeWqne02WNF4=;
- b=BZCn0qDSRitkNMWQIg5Axxtyg+Qe4yHYrkFq3ZVI0dkqoBtaBG9JO7ZB8qanKNgwJN
- 4f82JEcFxz4MEIJLNMmDLbCJVYSck1oO1pgW0C77l+XBDWwog2zeHQmX1KSBk3Bm2+P6
- GTKbOATf/o+4fEIiPunQYExfub/PzOrFuHAmoIAGWbf/5V6Tyg2XhgPaH5xIlYjDRwNA
- vFdYvhnu7Dggppz3MTrr3yZlMOAB4mvqOOWxGczFo6PJL3c3I9Icmv5YSIvef8n3H2Fb
- gIOG34nxAqoI1nORNz+48yWWay34g8/y8QfiHAiE8tKqdC7LLz1Mjw6+lLDwVSIm7pXv
- Mbig==
-X-Gm-Message-State: AOAM5330EIt9yN7tnzp+PYCxiMHL7Fn6wjrjp4etTDPIUitq2Rob4Mrh
- HKMU+COmKJ7qkDhNoSZaKrQ4UM1VYkgitMTVc44Coz2e
-X-Google-Smtp-Source: ABdhPJwoRIj7h13uT/r3ejrWdTlclNLoo1lOUA2g8IxOdArMbVl1ZKKL00WlZeVtsQU5auP0i8b0jBIBLDHtHcr8kNw=
-X-Received: by 2002:a50:871d:: with SMTP id i29mr78117edb.300.1602602906702;
- Tue, 13 Oct 2020 08:28:26 -0700 (PDT)
+	id 1kSMSg-0000v4-5O; Tue, 13 Oct 2020 11:43:38 -0400
+Received: from mail-dm6nam12olkn2103.outbound.protection.outlook.com
+ ([40.92.22.103]:51040 helo=NAM12-DM6-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <e070832@hotmail.com>) id 1kSMSc-0000nz-36
+ for usrp-users@lists.ettus.com; Tue, 13 Oct 2020 11:43:34 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZZlE1cw/UfJS1YOTPUrMCbpOynclsEjsX3yFZVwi5jC+1TVG8aLGfLNyxB3a6f0Z2ac3JIUkGkmCyCd+n/37C4GpHc/dmoFtTnpIE/Y9qU1Nveft10Z8RPREWIN4/lck8vZMXtQUH0gHV3gc23B1SiMSek27SGK4dj1WaOvv2mfuEQqQzQ/heX71MMiG31cLRO4GD9ItgySMqvzwd8ON2AdKEIFHamNfgjyoa2lpPLioj8h6VJcBqVxydvzUmM1MSNvWknsFpba6sFyQZV3Xo5K4XY+dcpHyzJTQ1vTZV3EREC6ZhVmw+dAcy7jI/VYNLku8QIMwT+qp+9dw7eWtig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YdOzi9gHrMJCUFBECoIS2V2TFMmO6kExysZhf74cJQg=;
+ b=bPIcOCUY3Dp1k3sp014OzFcuPGxS8joE9SclFkz7Kh+YaVT6r9ywAYArlDKNOWfwG0psQi1DpoFuYWI9C0H0AhTy5tK6cpvxKasjmKnYlr+niRBEYcswpr8CbtBZo6PwcD4pIiQJMx0RhiKJ+CQ53InLmhKYfkxieWxOauOQs1TekJbxqxr9RM6tUYMWSDypCghjrTlZnf0Y2+ULNnmA0h6pFvBcAJ4SyXTjrYP39/4s+6/N2PfSHQnhk3ICbO/o3/XE4v4v6dL4d1ZKn25bx0iqkdiCgrNI04yJFTWiHr4ViQWEW9ZqKiDDycCRR6fbi4TpcP4oiZXRJUZzJviiwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YdOzi9gHrMJCUFBECoIS2V2TFMmO6kExysZhf74cJQg=;
+ b=mSmFOTwR5ZfKi46bgS3CibY+BTZa0Ue+aPZXYqHWXbD1C0dDcQyf7zHrMznaly8Rk5bYY89LSYDCXvkmDjQ8pFy6slspVWayuhmKtVxDkVANnQO5J4N8mAjHnf2sHShCioUf3AQCbgt3cZHsLpz0nztF9DSydf1xF2VWeHNllFgKPEMiwHoQ4X8JWDY13HwKV2A9PtY9XelS8VJvqRGb2OdHRuzi/UV0H3L32FkGEXjKhufwLnPWL+IoLkZzstBN6ywabGmDSdkuL6Jxr8vq9DyB4oQflJYI6jAvZQXeSGfbL5cwMBWU3QCqBGDjkoBHUtXiuCn3UISZ9B6E/id7kg==
+Received: from DM6NAM12FT015.eop-nam12.prod.protection.outlook.com
+ (2a01:111:e400:fc64::4c) by
+ DM6NAM12HT057.eop-nam12.prod.protection.outlook.com (2a01:111:e400:fc64::227)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.11; Tue, 13 Oct
+ 2020 15:42:52 +0000
+Received: from DM6PR19MB2668.namprd19.prod.outlook.com
+ (2a01:111:e400:fc64::40) by DM6NAM12FT015.mail.protection.outlook.com
+ (2a01:111:e400:fc64::387) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.11 via Frontend
+ Transport; Tue, 13 Oct 2020 15:42:52 +0000
+Received: from DM6PR19MB2668.namprd19.prod.outlook.com
+ ([fe80::21a1:f9df:d858:f054]) by DM6PR19MB2668.namprd19.prod.outlook.com
+ ([fe80::21a1:f9df:d858:f054%6]) with mapi id 15.20.3455.031; Tue, 13 Oct 2020
+ 15:42:52 +0000
+To: Ettus Mail List <usrp-users@lists.ettus.com>
+Thread-Topic: SFP+ to RJ45 Adapter
+Thread-Index: AQHWoXbiuspza82mlEynHjCHwQQQug==
+Date: Tue, 13 Oct 2020 15:42:52 +0000
+Message-ID: <DM6PR19MB26682C0D9A7271A482546057A4040@DM6PR19MB2668.namprd19.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:792482F66B4A3579F47C997EE7EE09A4A28165D8A05270B7049A8E18B58E93DE;
+ UpperCasedChecksum:2FD52360A3A27AB985BC50BF29184FF830D55DAA9CD9417C475F0C3801D3C29F;
+ SizeAsReceived:6581; Count:41
+x-tmn: [f2OlAtQsxDP1+wvxGoSJvnyXtoDaedkF]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 41
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 2e7c45a1-a7a3-48c4-c2fe-08d86f8ea57b
+x-ms-traffictypediagnostic: DM6NAM12HT057:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ArrfhlUQaChS2KexCXJ9xDrNy9M6/ud5/vAgevNzG3PjxsTr9NBeaISBju1OcbzjBIsOWAVujSAjceCLxtcGsZXFmW7I1qqywjkyKiuIbCAUykp4qCv6GVWimquX0FdzDrkbHNhxvyqKUsdGeTQOt8DV6tUDdJv/gJjPtHEJr7eCbQTkzZUf9MX5mmyZq2j8gd2hbFXK3EgzGiJwGLx0Nw==
+x-ms-exchange-antispam-messagedata: KwhIL1+ABdgIaizbFUcEZhv8GpY4xyF6cHjUJNT0oNjlVkEauPXZBPcbfkYXSYg+5TDj23HWp2qGLAatAspe/48u0LTGoPsO6PrI5mfflGdEw48ylQhGb2i+XQeafzwifY3x8EFv40f99Pq18EetOA==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <SN2PR01MB1968CB85A0B328D1E069A0EDA8070@SN2PR01MB1968.prod.exchangelabs.com>
- <CAGNhwTOCLRdzV7pn0yv0+vOOE5ozHqg684YRgwC3=-T_f72AtQ@mail.gmail.com>
- <SN2PR01MB1968EEE8928B8C51D0E7E86EA8070@SN2PR01MB1968.prod.exchangelabs.com>
-In-Reply-To: <SN2PR01MB1968EEE8928B8C51D0E7E86EA8070@SN2PR01MB1968.prod.exchangelabs.com>
-Date: Tue, 13 Oct 2020 11:28:14 -0400
-Message-ID: <CAGNhwTNb4izj7rOu7kCG8yyktRYPaAJOsUKZpnMy=vfP-2jFgg@mail.gmail.com>
-To: "Andrews, Mark J." <andrews.250@osu.edu>
-Subject: Re: [USRP-users] Cross-Compile Issues with E320
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM12FT015.eop-nam12.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e7c45a1-a7a3-48c4-c2fe-08d86f8ea57b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Oct 2020 15:42:52.4646 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6NAM12HT057
+Subject: [USRP-users] SFP+ to RJ45 Adapter
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,10 +87,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4013366475071734168=="
+From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jeff S <e070832@hotmail.com>
+Content-Type: multipart/mixed; boundary="===============4747799861653998884=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,509 +103,66 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4013366475071734168==
-Content-Type: multipart/alternative; boundary="000000000000f86aac05b18f1044"
+--===============4747799861653998884==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DM6PR19MB26682C0D9A7271A482546057A4040DM6PR19MB2668namp_"
 
---000000000000f86aac05b18f1044
-Content-Type: text/plain; charset="UTF-8"
+--_000_DM6PR19MB26682C0D9A7271A482546057A4040DM6PR19MB2668namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-You're welcome, Mark! I'm glad that moving to a newer SDK worked; good luck
-with your USRP work! - MLD
+I acquired a Thunderbolt 10 Gigabit adapter, and I was wondering if I could=
+ connect it to the SFP+ connector on my X310.
 
-On Mon, Oct 12, 2020 at 4:59 PM Andrews, Mark J. <andrews.250@osu.edu>
-wrote:
+Has anyone done this?  And, is there a particular SFP+ to RJ45 which works =
+well?  All I see on the Ettus website is the recommendation for using the t=
+erminated cable and PC network adapter.
 
-> THANK YOU!  I thought that it seemed like the SDK had to be wrong, but
-> never saw links to the newer versions in all my searching.  Using the new=
-er
-> SDK solved the issues and I can finally run my own programs on the E320.
-> Thank you again for all the help!
-> ------------------------------
-> *From:* Michael Dickens <michael.dickens@ettus.com>
-> *Sent:* Monday, October 12, 2020 11:47 AM
-> *To:* Andrews, Mark J. <andrews.250@osu.edu>
-> *Cc:* Ettus Research Technical Support <support@ettus.com>; Ettus Mail
-> List <usrp-users@lists.ettus.com>
-> *Subject:* Re: [USRP-users] Cross-Compile Issues with E320
->
-> Hi Mark - You need to use a more recent SDK for the cross-build. Here are
-> the SDKs for the 2 most recent UHD releases. I hope this helps! - MLD
->
-> <
-> https://files.ettus.com/binaries/cache/e3xx/meta-ettus-v3.15.0.0/e3xx_e32=
-0_sdk_default-v3.15.0.0.zip
-> <https://urldefense.com/v3/__https://files.ettus.com/binaries/cache/e3xx/=
-meta-ettus-v3.15.0.0/e3xx_e320_sdk_default-v3.15.0.0.zip__;!!KGKeukY!jZp9T_=
-4Da88QXMCtooiMMf3xpwiMYKOA3KRvnWgUs4geu-DHFbTN1WbHOp5FfyZ7qkU$>
-> >
-> <
-> https://files.ettus.com/binaries/cache/e3xx/meta-ettus-v4.0.0.0/e3xx_e320=
-_sdk_default-v4.0.0.0.zip
-> <https://urldefense.com/v3/__https://files.ettus.com/binaries/cache/e3xx/=
-meta-ettus-v4.0.0.0/e3xx_e320_sdk_default-v4.0.0.0.zip__;!!KGKeukY!jZp9T_4D=
-a88QXMCtooiMMf3xpwiMYKOA3KRvnWgUs4geu-DHFbTN1WbHOp5F267rXXk$>
-> >
->
->
-> On Mon, Oct 12, 2020 at 10:47 AM Andrews, Mark J. via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
-> Hello,
->
-> I am trying to cross-compile UHD on an E320 with the OE SDK, but I cannot
-> get past the cmake step due to multiple errors.  On the host PC, I am abl=
-e
-> to install the SDK and source the environment variable without issues.
-> When I go to build UHD, the first error is that the CMakeLists.txt file f=
-or
-> UHD 3.15 has a minimum CMake version of 3.5.1, but the OE SDK cmake is
-> version 2.8.12.2 (my host PC is version 3.18.4).  I manually edited the
-> CMakeLists.txt to accept the older version of CMake, but then it has a
-> boost version error and cannot find several python packages (platform,
-> mako, requests, numpy).  I again edited it for the Boost version, but it
-> still can't find the python packages.  Do I need to somehow install all t=
-he
-> UHD dependencies in the OE SDK paths after installing it?  Or am I doing
-> something else wrong?
->
-> I also tried running "import sys" to see the Python path configuration an=
-d
-> the "program name", "sys._base_executable", and "sys.executable" are all
-> pointing to "/usr/bin/python3" instead of the
-> "/home/~/oe/sysroots/x86_64-oesdk-linux" path.  Not sure if that's part o=
-f
-> the problem or not, but it seemed suspicious.  The cmake and import sys
-> outputs are copied below.
->
->
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> cmake -DCMAKE_TOOLCHAIN_FILE=3D../host/cmake/Toolchains/oe-sdk_cross.cmak=
-e
-> -DCMAKE_INSTALL_PREFIX=3D/usr -DENABLE_E300=3DON ..
->
-> -- Configuring the Python interpreter...
-> -- Manually determining build Python version...
-> ImportError: No module named site
-> -- Python interpreter:
-> /home/~/oe/sysroots/x86_64-oesdk-linux/usr/bin/python Version:
-> -- Override with: -DPYTHON_EXECUTABLE=3D<path-to-python>
-> -- Manually determining runtime Python version...
-> ImportError: No module named site
-> -- Python runtime interpreter:
-> /home/~/oe/sysroots/x86_64-oesdk-linux/usr/bin/python Version:
-> -- Override with: -DRUNTIME_PYTHON_EXECUTABLE=3D<path-to-python>
-> -- Finding Python Libraries...
-> CMake Warning (dev) at cmake/Modules/UHDPython.cmake:168 (find_package):
->   Ignoring EXACT since no version is requested.
-> Call Stack (most recent call first):
->   cmake/Modules/UHDVersion.cmake:9 (include)
->   cmake/Modules/UHDPackage.cmake:9 (include)
->   CMakeLists.txt:103 (include)
-> This warning is for project developers.  Use -Wno-dev to suppress it.
->
-> -- Python Libraries:
-> /home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/
-> libpython2.7.so
-> <https://urldefense.com/v3/__http://libpython2.7.so__;!!KGKeukY!jZp9T_4Da=
-88QXMCtooiMMf3xpwiMYKOA3KRvnWgUs4geu-DHFbTN1WbHOp5Fnwt1ywM$>
-> -- Python include directories:
-> /home/`/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/include/python=
-2.7
-> -- Working off of feature or development branch. Updating version number.
-> ImportError: No module named site
-> ImportError: No module named site
-> ImportError: No module named site
-> -- Using UHD Images Directory: /usr/share/uhd/images
-> -- Build type not specified: defaulting to release.
-> --
-> -- Configuring Boost C++ Libraries...
-> --
-> -- Checking for Boost version 1.57 or greater
-> --   Looking for required Boost components...
-> --     Disabling boost::asio use of std::string_view
-> --   Boost version: 1.57.0
-> --   Boost include directories:
-> /home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/include
-> --   Boost library directories:
-> /home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib
-> --   Boost libraries:
-> /home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_c=
-hrono-mt.so;/home/!/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/=
-libboost_date_time-mt.so;/home/!/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnu=
-eabi/usr/lib/libboost_filesystem-mt.so;/home/~/oe/sysroots/armv7ahf-vfp-neo=
-n-oe-linux-gnueabi/usr/lib/libboost_program_options-mt.so;/home/~/oe/sysroo=
-ts/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_regex-mt.so;/home/~/=
-oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_unit_test_f=
-ramework.so;/home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/=
-libboost_serialization-mt.so;/home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux=
--gnueabi/usr/lib/libboost_thread-mt.so;/home/~/oe/sysroots/armv7ahf-vfp-neo=
-n-oe-linux-gnueabi/usr/lib/libboost_system-mt.so
-> -- Looking for Boost version 1.57 or greater - found
-> --
-> -- Python checking for Python version 2.7 or greater
-> ImportError: No module named site
-> -- Python checking for Python version 2.7 or greater - "import platform"
-> failed
-> --
-> -- Python checking for Mako templates 0.4.2 or greater
-> ImportError: No module named site
-> -- Python checking for Mako templates 0.4.2 or greater - "import mako"
-> failed
-> --
-> -- Python checking for requests 2.0 or greater
-> ImportError: No module named site
-> -- Python checking for requests 2.0 or greater - "import requests" failed
-> --
-> -- Python checking for numpy 1.7 or greater
-> ImportError: No module named site
-> -- Python checking for numpy 1.7 or greater - "import numpy" failed
-> --
-> -- Configuring LibUHD support...
-> --   Dependency Boost_FOUND =3D 1
-> --   Dependency HAVE_PYTHON_PLAT_MIN_VERSION =3D FALSE
-> --   Dependency HAVE_PYTHON_MODULE_MAKO =3D FALSE
-> CMake Error at cmake/Modules/UHDComponent.cmake:59 (message):
->   Dependencies for required component LibUHD not met.
-> Call Stack (most recent call first):
->   CMakeLists.txt:363 (LIBUHD_REGISTER_COMPONENT)
->
->
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D
-> import sys
->
-> Python path configuration:
->   PYTHONHOME =3D '/home/~/oe/sysroots/x86_64-oesdk-linux'
->   PYTHONPATH =3D (not set)
->   program name =3D '/usr/bin/python3'
->   isolated =3D 0
->   environment =3D 1
->   user site =3D 1
->   import site =3D 1
->   sys._base_executable =3D '/usr/bin/python3'
->   sys.base_prefix =3D '/home/~/oe/sysroots/x86_64-oesdk-linux'
->   sys.base_exec_prefix =3D '/home/~/oe/sysroots/x86_64-oesdk-linux'
->   sys.executable =3D '/usr/bin/python3'
->   sys.prefix =3D '/home/~/oe/sysroots/x86_64-oesdk-linux'
->   sys.exec_prefix =3D '/home/~/oe/sysroots/x86_64-oesdk-linux'
->   sys.path =3D [
->     '/home/~/oe/sysroots/x86_64-oesdk-linux/lib/python38.zip',
->     '/home/~/oe/sysroots/x86_64-oesdk-linux/lib/python3.8',
->     '/home/~/oe/sysroots/x86_64-oesdk-linux/lib/python3.8/lib-dynload',
->   ]
-> Fatal Python error: init_fs_encoding: failed to get the Python codec of
-> the filesystem encoding
-> Python runtime state: core initialized
-> ModuleNotFoundError: No module named 'encodings'
->
->
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> <https://urldefense.com/v3/__http://lists.ettus.com/mailman/listinfo/usrp=
--users_lists.ettus.com__;!!KGKeukY!jZp9T_4Da88QXMCtooiMMf3xpwiMYKOA3KRvnWgU=
-s4geu-DHFbTN1WbHOp5Frw0HsTo$>
->
->
+Thanks,
+Jeff
 
---000000000000f86aac05b18f1044
-Content-Type: text/html; charset="UTF-8"
+--_000_DM6PR19MB26682C0D9A7271A482546057A4040DM6PR19MB2668namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">You&#39;re welcome, Mark! I&#39;m glad th=
-at moving to a newer SDK=C2=A0worked; good luck with your USRP work! - MLD<=
-br><br></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
-r">On Mon, Oct 12, 2020 at 4:59 PM Andrews, Mark J. &lt;<a href=3D"mailto:a=
-ndrews.250@osu.edu">andrews.250@osu.edu</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex">
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+I acquired a Thunderbolt 10 Gigabit adapter, and I was wondering if I could=
+ connect it to the SFP+ connector on my X310.</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Has anyone done this?&nbsp; And, is there a particular SFP+ to RJ45 which w=
+orks well?&nbsp; All I see on the Ettus website is the recommendation for u=
+sing the terminated cable and PC network adapter.</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Thanks,<br>
+Jeff<br>
+</div>
+</body>
+</html>
+
+--_000_DM6PR19MB26682C0D9A7271A482546057A4040DM6PR19MB2668namp_--
 
 
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-THANK YOU!=C2=A0 I thought that it seemed like the SDK had to be wrong, but=
- never saw links to the newer versions in all my searching.=C2=A0 Using the=
- newer SDK solved the issues and I can finally run my own programs on the E=
-320.=C2=A0 Thank you again for all the help!</div>
-<div id=3D"gmail-m_6152652586640899317appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"gmail-m_6152652586640899317divRplyFwdMsg" dir=3D"ltr"><font face=
-=3D"Calibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From=
-:</b> Michael Dickens &lt;<a href=3D"mailto:michael.dickens@ettus.com" targ=
-et=3D"_blank">michael.dickens@ettus.com</a>&gt;<br>
-<b>Sent:</b> Monday, October 12, 2020 11:47 AM<br>
-<b>To:</b> Andrews, Mark J. &lt;<a href=3D"mailto:andrews.250@osu.edu" targ=
-et=3D"_blank">andrews.250@osu.edu</a>&gt;<br>
-<b>Cc:</b> Ettus Research Technical Support &lt;<a href=3D"mailto:support@e=
-ttus.com" target=3D"_blank">support@ettus.com</a>&gt;; Ettus Mail List &lt;=
-<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@=
-lists.ettus.com</a>&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Cross-Compile Issues with E320</font>
-<div>=C2=A0</div>
-</div>
-<div>
-<div dir=3D"ltr">Hi Mark - You need to use a more recent SDK for the cross-=
-build. Here are the SDKs for the 2 most recent UHD releases. I hope this he=
-lps! - MLD<br>
-<div><br>
-</div>
-<div>&lt;=C2=A0<a href=3D"https://urldefense.com/v3/__https://files.ettus.c=
-om/binaries/cache/e3xx/meta-ettus-v3.15.0.0/e3xx_e320_sdk_default-v3.15.0.0=
-.zip__;!!KGKeukY!jZp9T_4Da88QXMCtooiMMf3xpwiMYKOA3KRvnWgUs4geu-DHFbTN1WbHOp=
-5FfyZ7qkU$" target=3D"_blank">https://files.ettus.com/binaries/cache/e3xx/m=
-eta-ettus-v3.15.0.0/e3xx_e320_sdk_default-v3.15.0.0.zip</a>
- &gt;</div>
-<div>&lt;=C2=A0<a href=3D"https://urldefense.com/v3/__https://files.ettus.c=
-om/binaries/cache/e3xx/meta-ettus-v4.0.0.0/e3xx_e320_sdk_default-v4.0.0.0.z=
-ip__;!!KGKeukY!jZp9T_4Da88QXMCtooiMMf3xpwiMYKOA3KRvnWgUs4geu-DHFbTN1WbHOp5F=
-267rXXk$" target=3D"_blank">https://files.ettus.com/binaries/cache/e3xx/met=
-a-ettus-v4.0.0.0/e3xx_e320_sdk_default-v4.0.0.0.zip</a>
- &gt;</div>
-<div><br>
-</div>
-</div>
-<br>
-<div>
-<div dir=3D"ltr">On Mon, Oct 12, 2020 at 10:47 AM Andrews, Mark J. via USRP=
--users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a>&gt; wrote:<br>
-</div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Hello,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-I am trying to cross-compile UHD on an E320 with the OE SDK, but I cannot g=
-et past the cmake step due to multiple errors.=C2=A0 On the host PC, I am a=
-ble to install the SDK and source the environment variable without issues.=
-=C2=A0 When I go to build UHD, the first error
- is that the CMakeLists.txt file for UHD 3.15 has a minimum CMake version o=
-f 3.5.1, but the OE SDK cmake is version 2.8.12.2 (my host PC is version 3.=
-18.4).=C2=A0 I manually edited the CMakeLists.txt to accept the older versi=
-on of CMake, but then it has a boost
- version error and cannot find several python packages (platform, mako, req=
-uests, numpy).=C2=A0 I again edited it for the Boost version, but it still =
-can&#39;t find the python packages.=C2=A0 Do I need to somehow install all =
-the UHD dependencies in the OE SDK paths after
- installing it?=C2=A0 Or am I doing something else wrong?=C2=A0 <br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-I also tried running &quot;import sys&quot; to see the Python path configur=
-ation and the &quot;program name&quot;, &quot;sys._base_executable&quot;, a=
-nd &quot;sys.executable&quot; are all pointing to &quot;/usr/bin/python3&qu=
-ot; instead of the &quot;/home/~/oe/sysroots/x86_64-oesdk-linux&quot; path.=
-=C2=A0 Not sure if that&#39;s
- part of the problem or not, but it seemed suspicious.=C2=A0 The cmake and =
-import sys outputs are copied below.<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-cmake -DCMAKE_TOOLCHAIN_FILE=3D../host/cmake/Toolchains/oe-sdk_cross.cmake =
--DCMAKE_INSTALL_PREFIX=3D/usr -DENABLE_E300=3DON ..
-<div><br>
-</div>
--- Configuring the Python interpreter... </div>
-<div>-- Manually determining build Python version...</div>
-<div>ImportError: No module named site</div>
-<div>-- Python interpreter: /home/~/oe/sysroots/x86_64-oesdk-linux/usr/bin/=
-python Version:
-</div>
-<div>-- Override with: -DPYTHON_EXECUTABLE=3D&lt;path-to-python&gt;</div>
-<div>-- Manually determining runtime Python version...</div>
-<div>ImportError: No module named site</div>
-<div>-- Python runtime interpreter: /home/~/oe/sysroots/x86_64-oesdk-linux/=
-usr/bin/python Version:
-</div>
-<div>-- Override with: -DRUNTIME_PYTHON_EXECUTABLE=3D&lt;path-to-python&gt;=
-</div>
-<div>-- Finding Python Libraries...</div>
-<div>CMake Warning (dev) at cmake/Modules/UHDPython.cmake:168 (find_package=
-):</div>
-<div>=C2=A0 Ignoring EXACT since no version is requested.</div>
-<div>Call Stack (most recent call first):</div>
-<div>=C2=A0 cmake/Modules/UHDVersion.cmake:9 (include)</div>
-<div>=C2=A0 cmake/Modules/UHDPackage.cmake:9 (include)</div>
-<div>=C2=A0 CMakeLists.txt:103 (include)</div>
-<div>This warning is for project developers.=C2=A0 Use -Wno-dev to suppress=
- it.</div>
-<div><br>
-</div>
-<div>-- Python Libraries: /home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gn=
-ueabi/usr/lib/<a href=3D"https://urldefense.com/v3/__http://libpython2.7.so=
-__;!!KGKeukY!jZp9T_4Da88QXMCtooiMMf3xpwiMYKOA3KRvnWgUs4geu-DHFbTN1WbHOp5Fnw=
-t1ywM$" target=3D"_blank">libpython2.7.so</a></div>
-<div>-- Python include directories: /home/`/oe/sysroots/armv7ahf-vfp-neon-o=
-e-linux-gnueabi/usr/include/python2.7</div>
-<div>-- Working off of feature or development branch. Updating version numb=
-er.</div>
-<div>ImportError: No module named site</div>
-<div>ImportError: No module named site</div>
-<div>ImportError: No module named site</div>
-<div>-- Using UHD Images Directory: /usr/share/uhd/images</div>
-<div>-- Build type not specified: defaulting to release.</div>
-<div>-- </div>
-<div>-- Configuring Boost C++ Libraries...</div>
-<div>-- </div>
-<div>-- Checking for Boost version 1.57 or greater</div>
-<div>-- =C2=A0 Looking for required Boost components...</div>
-<div>-- =C2=A0 =C2=A0 Disabling boost::asio use of std::string_view</div>
-<div>-- =C2=A0 Boost version: 1.57.0</div>
-<div>-- =C2=A0 Boost include directories: /home/~/oe/sysroots/armv7ahf-vfp-=
-neon-oe-linux-gnueabi/usr/include</div>
-<div>-- =C2=A0 Boost library directories: /home/~/oe/sysroots/armv7ahf-vfp-=
-neon-oe-linux-gnueabi/usr/lib</div>
-<div>-- =C2=A0 Boost libraries: /home/~/oe/sysroots/armv7ahf-vfp-neon-oe-li=
-nux-gnueabi/usr/lib/libboost_chrono-mt.so;/home/!/oe/sysroots/armv7ahf-vfp-=
-neon-oe-linux-gnueabi/usr/lib/libboost_date_time-mt.so;/home/!/oe/sysroots/=
-armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_filesystem-mt.so;/home/=
-~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_program_o=
-ptions-mt.so;/home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib=
-/libboost_regex-mt.so;/home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueab=
-i/usr/lib/libboost_unit_test_framework.so;/home/~/oe/sysroots/armv7ahf-vfp-=
-neon-oe-linux-gnueabi/usr/lib/libboost_serialization-mt.so;/home/~/oe/sysro=
-ots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_thread-mt.so;/home/=
-~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_system-mt=
-.so</div>
-<div>-- Looking for Boost version 1.57 or greater - found</div>
-<div>-- </div>
-<div>-- Python checking for Python version 2.7 or greater</div>
-<div>ImportError: No module named site</div>
-<div>-- Python checking for Python version 2.7 or greater - &quot;import pl=
-atform&quot; failed</div>
-<div>-- </div>
-<div>-- Python checking for Mako templates 0.4.2 or greater</div>
-<div>ImportError: No module named site</div>
-<div>-- Python checking for Mako templates 0.4.2 or greater - &quot;import =
-mako&quot; failed</div>
-<div>-- </div>
-<div>-- Python checking for requests 2.0 or greater</div>
-<div>ImportError: No module named site</div>
-<div>-- Python checking for requests 2.0 or greater - &quot;import requests=
-&quot; failed</div>
-<div>-- </div>
-<div>-- Python checking for numpy 1.7 or greater</div>
-<div>ImportError: No module named site</div>
-<div>-- Python checking for numpy 1.7 or greater - &quot;import numpy&quot;=
- failed</div>
-<div>-- </div>
-<div>-- Configuring LibUHD support...</div>
-<div>-- =C2=A0 Dependency Boost_FOUND =3D 1</div>
-<div>-- =C2=A0 Dependency HAVE_PYTHON_PLAT_MIN_VERSION =3D FALSE</div>
-<div>-- =C2=A0 Dependency HAVE_PYTHON_MODULE_MAKO =3D FALSE</div>
-<div>CMake Error at cmake/Modules/UHDComponent.cmake:59 (message):</div>
-<div>=C2=A0 Dependencies for required component LibUHD not met.</div>
-<div>Call Stack (most recent call first):</div>
-<div>=C2=A0 CMakeLists.txt:363 (LIBUHD_REGISTER_COMPONENT)</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D</div>
-<div>import sys</div>
-<div><br>
-</div>
-<div>Python path configuration:
-<div>=C2=A0 PYTHONHOME =3D &#39;/home/~/oe/sysroots/x86_64-oesdk-linux&#39;=
-</div>
-<div>=C2=A0 PYTHONPATH =3D (not set)</div>
-<div>=C2=A0 program name =3D &#39;/usr/bin/python3&#39;</div>
-<div>=C2=A0 isolated =3D 0</div>
-<div>=C2=A0 environment =3D 1</div>
-<div>=C2=A0 user site =3D 1</div>
-<div>=C2=A0 import site =3D 1</div>
-<div>=C2=A0 sys._base_executable =3D &#39;/usr/bin/python3&#39;</div>
-<div>=C2=A0 sys.base_prefix =3D &#39;/home/~/oe/sysroots/x86_64-oesdk-linux=
-&#39;</div>
-<div>=C2=A0 sys.base_exec_prefix =3D &#39;/home/~/oe/sysroots/x86_64-oesdk-=
-linux&#39;</div>
-<div>=C2=A0 sys.executable =3D &#39;/usr/bin/python3&#39;</div>
-<div>=C2=A0 sys.prefix =3D &#39;/home/~/oe/sysroots/x86_64-oesdk-linux&#39;=
-</div>
-<div>=C2=A0 sys.exec_prefix =3D &#39;/home/~/oe/sysroots/x86_64-oesdk-linux=
-&#39;</div>
-<div>=C2=A0 sys.path =3D [</div>
-<div>=C2=A0 =C2=A0 &#39;/home/~/oe/sysroots/x86_64-oesdk-linux/lib/python38=
-.zip&#39;,</div>
-<div>=C2=A0 =C2=A0 &#39;/home/~/oe/sysroots/x86_64-oesdk-linux/lib/python3.=
-8&#39;,</div>
-<div>=C2=A0 =C2=A0 &#39;/home/~/oe/sysroots/x86_64-oesdk-linux/lib/python3.=
-8/lib-dynload&#39;,</div>
-<div>=C2=A0 ]</div>
-<div>Fatal Python error: init_fs_encoding: failed to get the Python codec o=
-f the filesystem encoding</div>
-<div>Python runtime state: core initialized</div>
-<div>ModuleNotFoundError: No module named &#39;encodings&#39;</div>
-<br>
-<br>
-</div>
-<br>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-</div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"https://urldefense.com/v3/__http://lists.ettus.com/mailman/listi=
-nfo/usrp-users_lists.ettus.com__;!!KGKeukY!jZp9T_4Da88QXMCtooiMMf3xpwiMYKOA=
-3KRvnWgUs4geu-DHFbTN1WbHOp5Frw0HsTo$" rel=3D"noreferrer" target=3D"_blank">=
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote>
-</div>
-</div>
-</div>
-
-</blockquote></div></div>
-
---000000000000f86aac05b18f1044--
-
-
---===============4013366475071734168==
+--===============4747799861653998884==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -591,5 +173,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4013366475071734168==--
+--===============4747799861653998884==--
 
