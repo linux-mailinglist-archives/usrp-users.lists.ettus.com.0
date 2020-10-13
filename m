@@ -2,58 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D51E028CF6B
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Oct 2020 15:46:41 +0200 (CEST)
-Received: from [::1] (port=47288 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 361F928D140
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Oct 2020 17:29:14 +0200 (CEST)
+Received: from [::1] (port=48296 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kSKdN-0000KJ-9P; Tue, 13 Oct 2020 09:46:33 -0400
-Received: from sanddollar.geekisp.com ([216.168.135.167]:36368)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <philip@opensdr.com>) id 1kSKdI-0000Ea-Sg
- for usrp-users@lists.ettus.com; Tue, 13 Oct 2020 09:46:28 -0400
-Received: (qmail 24159 invoked by uid 1003); 13 Oct 2020 13:45:50 -0000
-Received: from unknown (HELO ?192.168.11.139?)
- (philip@opensdr.com@73.251.10.143)
- by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
- 13 Oct 2020 13:45:50 -0000
-To: "Turner, Ben" <ben.turner@roke.co.uk>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <192EFF47C4A40043AB2651B150E5F75A65514F@UM-EXMBX01.comm.ad.roke.co.uk>
- <CAFOi1A6EOJknyocd3EgRES-Z-cNTd25OaJW77SK=7i+7j7C3Nw@mail.gmail.com>
- <192EFF47C4A40043AB2651B150E5F75A655702@UM-EXMBX01.comm.ad.roke.co.uk>
-Autocrypt: addr=philip@opensdr.com; prefer-encrypt=mutual; keydata=
- mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
- HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
- rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
- 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
- fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
- AAG0JFBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQG9wZW5zZHIuY29tPokBPgQTAQIAKAIbIwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4AFAlgzUPgFCREo52oACgkQwMl3iuvSZ6uB2AgAy9gW
- ohjdrM5M86NbGPR6oysosmC6yabL1PBzRK/B86HwWaH29S71ptFvHfitbK37uWI/b3KGO18Q
- d6cD9MM9da/G/zjTrakw9KMmZcY12Mtotm0vZjv8dzdqoyNZnIFlGNAT92zTLWUiUQqV8CvS
- 1lxDubidjoyXlQi7YJmzQbETYsGZZmErRRjSK//fgl/ceaak0lPYnwuVlxuEOcqmREg5UfAf
- AeFH0a6csdF3T9COH4bOQVNBwjUSCfs6jsTE/lw8ujZfhbFbFb/7/BYZYnfED1unj+6vrDRn
- VI20tLTKmDG7vcE55HiaHvVmx+1rb1wDL8aspyoeg/bjGQv1mLkBDQROjzeBAQgA+z5kLRGA
- XhuWtEiJUd2QBGdwDFTBJRu2Lkq7bd1DSIGLOjOHhga5yBbjyDGy8kKQJz2z/gL17e9iIJkZ
- UYLzHouXe8TvHBFD965WonSZcbu00rXMA+lKAjpqig9JkJbs8G/Bjy4y/PMLM/4QF3T6gDm5
- dBIRzI4lRjLht596ugdSIGMGTI136/aJol/sqMBhjEk5w++2er9UvT2GWa0IPnOCE6fzSu0u
- oXroEmQeYBOilJbKivWrPuCajB0KQWRQkM1bvIlPXBUA2oN30/kDy9iGeDAlMey9dV+2a8GA
- uImNi4qy3fobYA4eCbiWzmNExr+TuNa57VEozkvHOAG0tQARAQABiQElBBgBAgAPAhsMBQJY
- M1FsBQkRKOfkAAoJEMDJd4rr0merWpgH/3dqIF16cC67Qf/MZYQUUHXhx2ENHhLirQRt9eXX
- P2jcitrPDpYy0t7XbMnj9eXjUyH8gfz/4CAOeKCKyuQpE3VOSI4YNRWdLRqSSEwvc41t4V2h
- xgTAEA8NPEBpY2jKMN79s5GiRImffVwWgbpBjLNRy3v2ekeittpdbTNb4oLvsOjnfJQpDz6J
- xal+IIyTVjNIcKvTLk1k1XFpz1rT4gPMf9gFs10ks1oy9dy56B7VCrPzml1HQ/he4JVEPaNk
- BtwYnNleW71nOkgeO1mjIXylolExDDNYQ7f9PGSyabsrx67xPPYlWmOI4iPjgw5MqhEYqM7p
- 5R+vS7sLCcTKqJA=
-Message-ID: <b9fed33f-a47f-8764-2857-5e728c283058@opensdr.com>
-Date: Tue, 13 Oct 2020 09:45:45 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+	id 1kSMEi-0008Ax-0M; Tue, 13 Oct 2020 11:29:12 -0400
+Received: from mail-ed1-f49.google.com ([209.85.208.49]:46466)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
+ id 1kSMEd-00085n-SJ
+ for usrp-users@lists.ettus.com; Tue, 13 Oct 2020 11:29:08 -0400
+Received: by mail-ed1-f49.google.com with SMTP id 33so21306182edq.13
+ for <usrp-users@lists.ettus.com>; Tue, 13 Oct 2020 08:28:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=O0y4gk5SpNjwiK4EtsP9rU6dY1A0AQxXeWqne02WNF4=;
+ b=Ospnb/5WAzNGH3k+usMHjRz3kZT0Z3dpdvhQF2xJV3I49Nr0nkfFfShhSNrtcTaqqj
+ lXoBq6nruP75XBymZAUq7D9hYK4ag4SqTkp3INKzo/c6KNW1tfOssdfyklR4QlkW+ONM
+ 1ZCBX0J1KdOS4tONVaOavKtgqYpHDCOmj9u0+l+tizVEIygCEORmwBpUO9DWcvJ3SMAu
+ LwK9lgOXvsTFowH+rQyrR3MS7yAmHy1/Z/Bbaq6UNiBPICkuTzvgZ7QU53fWzsLkB4mI
+ m5G4Rj877pxg3oik1lfOWynp9SdHA0Uw7fu1mSeH03R/IaIKzDX55rYJUs69WJY1mPDW
+ butQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=O0y4gk5SpNjwiK4EtsP9rU6dY1A0AQxXeWqne02WNF4=;
+ b=BZCn0qDSRitkNMWQIg5Axxtyg+Qe4yHYrkFq3ZVI0dkqoBtaBG9JO7ZB8qanKNgwJN
+ 4f82JEcFxz4MEIJLNMmDLbCJVYSck1oO1pgW0C77l+XBDWwog2zeHQmX1KSBk3Bm2+P6
+ GTKbOATf/o+4fEIiPunQYExfub/PzOrFuHAmoIAGWbf/5V6Tyg2XhgPaH5xIlYjDRwNA
+ vFdYvhnu7Dggppz3MTrr3yZlMOAB4mvqOOWxGczFo6PJL3c3I9Icmv5YSIvef8n3H2Fb
+ gIOG34nxAqoI1nORNz+48yWWay34g8/y8QfiHAiE8tKqdC7LLz1Mjw6+lLDwVSIm7pXv
+ Mbig==
+X-Gm-Message-State: AOAM5330EIt9yN7tnzp+PYCxiMHL7Fn6wjrjp4etTDPIUitq2Rob4Mrh
+ HKMU+COmKJ7qkDhNoSZaKrQ4UM1VYkgitMTVc44Coz2e
+X-Google-Smtp-Source: ABdhPJwoRIj7h13uT/r3ejrWdTlclNLoo1lOUA2g8IxOdArMbVl1ZKKL00WlZeVtsQU5auP0i8b0jBIBLDHtHcr8kNw=
+X-Received: by 2002:a50:871d:: with SMTP id i29mr78117edb.300.1602602906702;
+ Tue, 13 Oct 2020 08:28:26 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <192EFF47C4A40043AB2651B150E5F75A655702@UM-EXMBX01.comm.ad.roke.co.uk>
-Content-Language: en-US
-Subject: Re: [USRP-users] Ettus E320 & PetaLinux
+References: <SN2PR01MB1968CB85A0B328D1E069A0EDA8070@SN2PR01MB1968.prod.exchangelabs.com>
+ <CAGNhwTOCLRdzV7pn0yv0+vOOE5ozHqg684YRgwC3=-T_f72AtQ@mail.gmail.com>
+ <SN2PR01MB1968EEE8928B8C51D0E7E86EA8070@SN2PR01MB1968.prod.exchangelabs.com>
+In-Reply-To: <SN2PR01MB1968EEE8928B8C51D0E7E86EA8070@SN2PR01MB1968.prod.exchangelabs.com>
+Date: Tue, 13 Oct 2020 11:28:14 -0400
+Message-ID: <CAGNhwTNb4izj7rOu7kCG8yyktRYPaAJOsUKZpnMy=vfP-2jFgg@mail.gmail.com>
+To: "Andrews, Mark J." <andrews.250@osu.edu>
+Subject: Re: [USRP-users] Cross-Compile Issues with E320
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -65,10 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Philip Balister <philip@opensdr.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Cc: Ettus Mail List <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============4013366475071734168=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,219 +78,518 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMTAvMTMvMjAgMTozNCBBTSwgVHVybmVyLCBCZW4gdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4g
-TWFydGluLAo+IAo+IFRoYW5rIHlvdSBmb3IgeW91ciByZXBseS4KPiAKPiBVbmZvcnR1bmF0ZWx5
-IHNpbXBseSBtb2RpZnlpbmcgdGhlIGZpbGVzeXN0ZW0gaXMgbm90IGVub3VnaCAtIEkgbmVlZCB0
-byBiZSBhYmxlIHRvIGN1c3RvbWlzZSB1LWJvb3QgYW5kIHRoZSBrZXJuZWwuIEFzIGl0IGlzIGEg
-WGlsaW54IGJhc2VkIHN5c3RlbSBJIHdhcyB1bmRlciB0aGUgaW1wcmVzc2lvbiB0aGF0IFBldGFM
-aW51eCB3YXMgdGhlIHNlbnNpYmxlIGFwcHJvYWNoIGFuZCBJIHNlZW0gdG8gYmUgbW9zdCBvZiB0
-aGUgd2F5IHRoZXJlLCB3aXRoIHRoZSBleGNlcHRpb24gYmVpbmcgdGhpcyBGU0JMIGVycm9yIGFu
-ZCB0aGUgZ2VuZXJhdGVkIHUtYm9vdCBub3Qgb3V0cHV0dGluZyB0byB0aGUgc2VyaWFsIHRlcm1p
-bmFsLgo+IAo+IEJ5IHNheWluZyB5b3UgYXJlIHVuYWJsZSB0byBoZWxwIHdpdGggUGV0YUxpbnV4
-IGlzc3VlcywgYXJlIHlvdSBpbXBseWluZyB5b3UgYXJlIGFibGUgdG8gaGVscCB3aXRoIGFub3Ro
-ZXIgbWVjaGFuaXNtIGZvciBnZW5lcmF0aW5nIHRoZSBGU0JMLCB1LWJvb3QgYW5kIGtlcm5lbD8g
-T3IgYXJlIHlvdSBzdGF0aW5nIHRoYXQgeW91IGZsYXQgb3V0IHJlZnVzZSB0byBoZWxwIHdpdGgg
-aXNzdWVzIHJlbGF0ZWQgdG8gZ2VuZXJhdGluZyB0aGVzZSBiaW5hcmllcz8KCkkgY2FuJ3Qgc3Bl
-YWsgZm9yIE5JLCBidXQgUGV0YWxpbnV4IGlzIGFsbW9zdCBhbHdheXMgbm90IHRoZSBzZW5zaWJs
-ZQphcHByb2FjaCA6KQoKSSB3b3VsZCBnbyBhYm91dCBjcmVhdGluZyBteSBvd24gbGF5ZXIgYW5k
-IHVzaW5nIHRoZSBiYmFwcGVuZCBtZWNoYW5pc20KdG8gbW9kaWZ5IHRoZSBtZXRhLWV0dHVzIGtl
-cm5lbCBhbmQgdS1ib290IHJlY2lwZXMuIHdpdGggeW91ciBjaGFuZ2VzCmluY2x1ZGVkIGFzIHBh
-dGNoZXMgYWdhaW5zdCB0aGUgTkkgc291cmNlcy4KCkhlcmUgYXJlIHNvbWUgc3RhcnRpbmcgcG9p
-bnRzLiBVbmZvcnR1bmF0ZWx5LCBtZXRhLWV0dHVzIGlzIGNhcnJ5aW5nIGFuCmFubm95aW5nIG51
-bWJlciBvZiBsYXllcnMgYW5kIHlvdSBuZWVkIHRvIHJlYWxseSBkaWcgdG8gZmluZCBhbGwgdGhl
-CnJlY2lwZXMgYXBwZW5kaW5nIHRoZSBiYXNlIHJlY2lwZSA6KAoKaHR0cHM6Ly9naXRodWIuY29t
-L0V0dHVzUmVzZWFyY2gvbWV0YS1ldHR1cy90cmVlL3RodWQvbWV0YS1uZW9uL3JlY2lwZXMtYnNw
-L3UtYm9vdApodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC9tZXRhLWV0dHVzL3RyZWUv
-dGh1ZC9tZXRhLW5lb24vcmVjaXBlcy1rZXJuZWwvbGludXgKCllvdSBsaWtlbHkgd2FudCB0aGlu
-Z3MgZnJvbSB0aGUgemV1cyBicmFuY2gsIEkganVzdCBsaW5rZWQgdGhlIGRlZmF1bHQKdmlldyBv
-biBnaXRodWIuIEluIGNhc2UgaXQgaXNuJ3QgY2xlYXIgZTMyMCBpcyBuZW9uLgoKUGhpbGlwCgo+
-IAo+IFJlZ2FyZHMsCj4gCj4gQmVuCj4gCj4gRnJvbTogVVNSUC11c2VycyA8dXNycC11c2Vycy1i
-b3VuY2VzQGxpc3RzLmV0dHVzLmNvbT4gT24gQmVoYWxmIE9mIE1hcnRpbiBCcmF1biB2aWEgVVNS
-UC11c2Vycwo+IFNlbnQ6IDEyIE9jdG9iZXIgMjAyMCAwOTo1OQo+IENjOiB1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbQo+IFN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gRXR0dXMgRTMyMCAmIFBl
-dGFMaW51eAo+IAo+IEJlbiwKPiAKPiB3ZSBjYW4ndCBwcm92aWRlIHlvdSB3aXRoIFBldGFMaW51
-eCBzdXBwb3J0LCBidXQgeW91IGNhbiByZWJ1aWxkIG91ciBPRS1CYXNlZCBmaWxlc3lzdGVtcy4g
-Rm9yIG5vdmljZSBPcGVuRW1iZWRkZWQgdXNlcnMsIHdlIHByb3ZpZGUgYSBEb2NrZXIgaW1hZ2Ug
-KGhlcmUncyBhIGxpbmsgZnJvbSB0aGUgRTMyMCBtYW51YWw6IGh0dHBzOi8vZ2l0aHViLmNvbS9F
-dHR1c1Jlc2VhcmNoL2V0dHVzLWRvY2tlci9ibG9iL21hc3Rlci9vZS1idWlsZC9SRUFETUUubWQ8
-aHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvZXR0dXMtZG9ja2VyL2Jsb2IvbWFzdGVy
-L29lLWJ1aWxkL1JFQURNRS5tZD4pLCBhbmQgaWYgeW91J3JlIG1vcmUgb2YgYW4gZXhwZXJ0LCB5
-b3UgY2FuIGdvIHN0cmFpZ2h0IHRvIG91ciBtYW5pZmVzdHMgKGh0dHBzOi8vZ2l0aHViLmNvbS9F
-dHR1c1Jlc2VhcmNoL29lLW1hbmlmZXN0czxodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJj
-aC9vZS1tYW5pZmVzdHM+KSB3aGljaCBjb250YWluIHJlZmVyZW5jZXMgdG8gYWxsIHRoZSBsYXll
-cnMgdXNlZCB0byBidWlsZCBvdXIgZmlsZXN5c3RlbXMuCj4gCj4gQSBidW5jaCBvZiBVU1JQIHVz
-ZXJzIGJ1aWxkIGN1c3RvbSBmaWxlc3lzdGVtcyAod2l0aCB0aGVpciBvd24gc29mdHdhcmUgZXRj
-LikgYW5kIHVzZSB0aGlzIHdvcmtmbG93Lgo+IAo+IENoZWVycywKPiBNCj4gCj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFJva2UgTWFub3IgUmVzZWFyY2ggTGlt
-aXRlZCwgUm9tc2V5LCBIYW1wc2hpcmUsIFNPNTEgMFpOLCBVbml0ZWQgS2luZ2RvbS5QYXJ0IG9m
-IHRoZSBDaGVtcmluZyBHcm91cC4gCj4gUmVnaXN0ZXJlZCBpbiBFbmdsYW5kICYgV2FsZXMuIFJl
-Z2lzdGVyZWQgTm86IDAwMjY3NTUwCj4gaHR0cDovL3d3dy5yb2tlLmNvLnVrCj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gVGhlIGluZm9ybWF0aW9uIGNvbnRhaW5l
-ZCBpbiB0aGlzIGUtbWFpbCBhbmQgYW55IGF0dGFjaG1lbnRzIGlzIHByb3ByaWV0YXJ5IHRvIFJv
-a2UgTWFub3IgUmVzZWFyY2ggTGltaXRlZCBhbmQgCj4gbXVzdCBub3QgYmUgcGFzc2VkIHRvIGFu
-eSB0aGlyZCBwYXJ0eSB3aXRob3V0IHBlcm1pc3Npb24uIFRoaXMgY29tbXVuaWNhdGlvbiBpcyBm
-b3IgaW5mb3JtYXRpb24gb25seSBhbmQgc2hhbGwgCj4gbm90IGNyZWF0ZSBvciBjaGFuZ2UgYW55
-IGNvbnRyYWN0dWFsIHJlbGF0aW9uc2hpcC4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCj4gT24gTW9uLCBPY3QgMTIsIDIwMjAgYXQgMTA6NDMgQU0gVHVybmVyLCBC
-ZW4gdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+IHdyb3RlOgo+IEkgYW0gYXR0ZW1wdGluZyB0byBidWls
-ZCBQZXRhTGludXggdGFyZ2V0aW5nIHRoZSBFMzIwLiBBcyB0aGVyZSBpcyBubyBCU1AgKHRoYXQg
-SSBjYW4gZmluZCkgZm9yIHRoZSBFMzIwLCBJIGhhdmUgYXR0ZW1wdGVkIHRvIGdlbmVyYXRlIGEg
-aGFyZHdhcmUgZGVzY3JpcHRpb24gZmlsZSBmcm9tIHRoZSBWaXZhZG8gcHJvamVjdCB0aGF0IGNh
-biBiZSBjcmVhdGVkIGZyb20gdGhlIEV0dHVzIEZQR0EgZ2l0aHViIHJlcG9zaXRvcnk8aHR0cHM6
-Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvZnBnYT4uCj4gCj4gSSBzdWNjZXNzZnVsbHkgY3Jl
-YXRlZCB0aGUgVml2YWRvIHByb2plY3QgYnkgcnVubmluZyBtYWtlIEUzMjBfMUcgR1VJPTEsIHJh
-biBzeW50aGVzaXMgYW5kIGltcGxlbWVudGF0aW9uIGFuZCB0aGVuIGV4cG9ydGVkIHRoZSAuaGRm
-LiBJIHRoZW4gY29uZmlndXJlZCB0aGUgUGV0YUxpbnV4IHByb2plY3Q6Cj4gCj4gcGV0YWxpbnV4
-LWNvbmZpZyDigJNnZXQtaHctZGVzY3JpcHRpb249PHBhdGhfdG9fLmhkZj4KPiAKPiBBbmQgYXR0
-ZW1wdGVkIHRvIGJ1aWxkIGl0Ogo+IAo+IHBldGFsaW51eC1idWlsZAo+IAo+IEl0IGlzIGR1cmlu
-ZyB0aGlzIGJ1aWxkIHN0YWdlIHRoYXQgSSBnZXQgdGhlIGZvbGxvd2luZyBlcnJvcjoKPiAKPiBO
-T1RFOiBFeGVjdXRpbmcgUnVuUXVldWUgVGFza3MKPiBFUlJPUjogZnNibC0yMDE4LjMrZ2l0QVVU
-T0lOQys1NmYzZGEyYWZiLXIwIGRvX2NvbmZpZ3VyZTogRnVuY3Rpb24gZmFpbGVkOiBkb19jb25m
-aWd1cmUgKGxvZyBmaWxlIGlzIGxvY2F0ZWQgYXQgL2hvbWUvZGV2ZWwvUHJvamVjdHMvZTMyMC9w
-bG54LTIwMTguMy1lMzIwL2J1aWxkL3RtcC93b3JrL3BsbnhfenlucTcteGlsaW54LWxpbnV4LWdu
-dWVhYmkvZnNibC8yMDE4LjMrZ2l0QVVUT0lOQys1NmYzZGEyYWZiLXIwL3RlbXAvbG9nLmRvX2Nv
-bmZpZ3VyZS4xODA4MikKPiBFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL2hv
-bWUvZGV2ZWwvUHJvamVjdHMvZTMyMC9wbG54LTIwMTguMy1lMzIwL2J1aWxkL3RtcC93b3JrL3Bs
-bnhfenlucTcteGlsaW54LWxpbnV4LWdudWVhYmkvZnNibC8yMDE4LjMrZ2l0QVVUT0lOQys1NmYz
-ZGEyYWZiLXIwL3RlbXAvbG9nLmRvX2NvbmZpZ3VyZS4xODA4Mgo+IExvZyBkYXRhIGZvbGxvd3M6
-Cj4gfCBERUJVRzogRXhlY3V0aW5nIHNoZWxsIGZ1bmN0aW9uIGRvX2NvbmZpZ3VyZQo+IHwgTUlT
-Q19BUkcgaXMgIC15YW1sY29uZiAvaG9tZS9kZXZlbC9Qcm9qZWN0cy9lMzIwL3BsbngtMjAxOC4z
-LWUzMjAvYnVpbGQvdG1wL3dvcmsvcGxueF96eW5xNy14aWxpbngtbGludXgtZ251ZWFiaS9mc2Js
-LzIwMTguMytnaXRBVVRPSU5DKzU2ZjNkYTJhZmItcjAvZnNibC55YW1sCj4gfCBBUFBfQVJHIGlz
-ICAtYXBwICJaeW5xIEZTQkwiCj4gfCBVc2luZyB4c2N0IGZyb206IC9vcHQvWGlsaW54L1BldGFM
-aW51eC8yMDE4LjMvdG9vbHMveHNjdC9TREsvMjAxOC4zL2Jpbi94c2N0Cj4gfCBjbWQgaXM6IHhz
-Y3QgLXNkeCAtbm9kaXNwIC9ob21lL2RldmVsL1Byb2plY3RzL2UzMjAvcGxueC0yMDE4LjMtZTMy
-MC9idWlsZC90bXAvd29yay9wbG54X3p5bnE3LXhpbGlueC1saW51eC1nbnVlYWJpL2ZzYmwvMjAx
-OC4zK2dpdEFVVE9JTkMrNTZmM2RhMmFmYi1yMC9hcHAudGNsIC13cyAvaG9tZS9kZXZlbC9Qcm9q
-ZWN0cy9lMzIwL3BsbngtMjAxOC4zLWUzMjAvYnVpbGQvdG1wL3dvcmsvcGxueF96eW5xNy14aWxp
-bngtbGludXgtZ251ZWFiaS9mc2JsLzIwMTguMytnaXRBVVRPSU5DKzU2ZjNkYTJhZmItcjAvYnVp
-bGQgLXBuYW1lIGZzYmwgLXJwIC9ob21lL2RldmVsL1Byb2plY3RzL2UzMjAvcGxueC0yMDE4LjMt
-ZTMyMC9idWlsZC90bXAvd29yay9wbG54X3p5bnE3LXhpbGlueC1saW51eC1nbnVlYWJpL2ZzYmwv
-MjAxOC4zK2dpdEFVVE9JTkMrNTZmM2RhMmFmYi1yMC9naXQgLXByb2Nlc3NvciBwczdfY29ydGV4
-YTlfMCAtaGRmIC9ob21lL2RldmVsL1Byb2plY3RzL2UzMjAvcGxueC0yMDE4LjMtZTMyMC9idWls
-ZC90bXAvZGVwbG95L2ltYWdlcy9wbG54LXp5bnE3L1hpbGlueC1wbG54LXp5bnE3LmhkZiAtYXJj
-aCAzMiAgLWFwcCAiWnlucSBGU0JMIiAgLXlhbWxjb25mIC9ob21lL2RldmVsL1Byb2plY3RzL2Uz
-MjAvcGxueC0yMDE4LjMtZTMyMC9idWlsZC90bXAvd29yay9wbG54X3p5bnE3LXhpbGlueC1saW51
-eC1nbnVlYWJpL2ZzYmwvMjAxOC4zK2dpdEFVVE9JTkMrNTZmM2RhMmFmYi1yMC9mc2JsLnlhbWwK
-PiB8IElORk86IFtIc2kgNTUtMTY5OF0gZWxhcHNlZCB0aW1lIGZvciByZXBvc2l0b3J5IGxvYWRp
-bmcgMCBzZWNvbmRzCj4gfCBPcGVuaW5nIHRoZSBoYXJkd2FyZSBkZXNpZ24sIHRoaXMgbWF5IHRh
-a2UgZmV3IHNlY29uZHMuCj4gfCBleHBlY3RlZCBpbnRlZ2VyIGJ1dCBnb3QgIiIKPiB8IEVSUk9S
-OiBbSHNpIDU1LTE1NDVdIFByb2JsZW0gcnVubmluZyB0Y2wgY29tbWFuZCA6OnN3X3NjdWdpY192
-M18xMDo6Z2VuZXJhdGUgOiBleHBlY3RlZCBpbnRlZ2VyIGJ1dCBnb3QgIiIKPiB8ICAgICB3aGls
-ZSBleGVjdXRpbmcKPiB8ICJmb3JtYXQgIiNkZWZpbmUgWFBBUl9GQUJSSUNfJXNfJXNfSU5UUiAl
-ZCR1U3VmZml4IiAgW3N0cmluZyB0b3VwcGVyICRpcF9uYW1lXSBbc3RyaW5nIHRvdXBwZXIgJHBv
-cnRfbmFtZV0gJHBvcnRfaW50cl9pZCIKPiB8ICAgICAoImZvcmVhY2giIGJvZHkgbGluZSA4NikK
-PiB8ICAgICBpbnZva2VkIGZyb20gd2l0aGluCj4gfCAiZm9yZWFjaCBwZXJpcGggJHBlcmlwaHMg
-ewo+IHwKPiB8ICAgICAgICAgIyBnZXQgdGhlIGdpYyBtb2RlIGluZm9ybWF0aW9uCj4gfCAgICAg
-ICAgIHNldCBzY3VnaWNfbW9kZSBbY29tbW9uOjpnZXRfcHJvcGVydHkgQ09ORklHLkNfSVJRX0Yy
-UF9NT0RFICRwZXJpcGhdCj4gfAo+IHwgICAgICAgLi4uIgo+IHwgICAgIChwcm9jZWR1cmUgInhk
-ZWZpbmVfZ2ljX3BhcmFtcyIgbGluZSAzMCkKPiB8ICAgICBpbnZva2VkIGZyb20gd2l0aGluCj4g
-fCAieGRlZmluZV9naWNfcGFyYW1zICRkcnZfaGFuZGxlIgo+IHwgICAgIChwcm9jZWR1cmUgIjo6
-c3dfc2N1Z2ljX3YzXzEwOjpnZW5lcmF0ZSIgbGluZSAxMCkKPiB8ICAgICBpbnZva2VkIGZyb20g
-d2l0aGluCj4gfCAiOjpzd19zY3VnaWNfdjNfMTA6OmdlbmVyYXRlIHBzN19zY3VnaWNfMCIKPiB8
-IEVSUk9SOiBbSHNpIDU1LTE0NDJdIEVycm9yKHMpIHdoaWxlIHJ1bm5pbmcgVENMIHByb2NlZHVy
-ZSBnZW5lcmF0ZSgpCj4gfCBGYWlsZWQgdG8gZ2VuZXJhdGUgdGhlIHBsYXRmb3JtLgo+IHwgUmVh
-c29uOiBGYWlsZWQgdG8gZ2VuZXJhdGUgdGhlIGJzcCBzb3VyY2VzIGZvciBkb21haW4uZnNibF9k
-b21haW4KPiB8ICAgICB3aGlsZSBleGVjdXRpbmcKPiB8ICJidWlsdGluX3BsYXRmb3JtIC1nZW5l
-cmF0ZSBxdWljayIKPiB8ICAgICAocHJvY2VkdXJlICJwbGF0Zm9ybSIgbGluZSAyMjEpCj4gfCAg
-ICAgaW52b2tlZCBmcm9tIHdpdGhpbgo+IHwgInBsYXRmb3JtIGdlbmVyYXRlIC1xdWljayIKPiB8
-ICAgICBpbnZva2VkIGZyb20gd2l0aGluCj4gfCAiaWYgeyAkcGFyYW1zKHdzKSBuZSAiIiB9IHsK
-PiB8ICAgICAgICAgICAgICAjTG9jYWwgV29yayBTcGFjZSBhdmFpbGFibGUKPiB8ICAgICAgICAg
-ICAgICBpZiB7ICRwYXJhbXMocG5hbWUpIG5lICIiIH0gewo+IHwgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAjIGh3cG5hbWUvYnNwbmFtZSBpcyBlbXB0eSB0aGVuIGRlZmF1bHQgaXQgdG8g
-cG5hbWUrX2h3cHJvai9iLi4uIgo+IHwgICAgIChmaWxlICIvaG9tZS9kZXZlbC9Qcm9qZWN0cy9l
-MzIwL3BsbngtMjAxOC4zLWUzMjAvYnVpbGQvdG1wL3dvcmsvcGxueF96eW5xNy14aWxpbngtbGlu
-dXgtZ251ZWFiaS9mc2JsLzIwMTguMytnaXRBVVRPSU5DKzU2ZjNkYTJhZmItcjAvYXBwLnRjbCIg
-bGluZSAxMzkpCj4gfCBXQVJOSU5HOiAvaG9tZS9kZXZlbC9Qcm9qZWN0cy9lMzIwL3BsbngtMjAx
-OC4zLWUzMjAvYnVpbGQvdG1wL3dvcmsvcGxueF96eW5xNy14aWxpbngtbGludXgtZ251ZWFiaS9m
-c2JsLzIwMTguMytnaXRBVVRPSU5DKzU2ZjNkYTJhZmItcjAvdGVtcC9ydW4uZG9fY29uZmlndXJl
-LjE4MDgyOjEgZXhpdCAxIGZyb20gJ3hzY3QgLXNkeCAtbm9kaXNwIC9ob21lL2RldmVsL1Byb2pl
-Y3RzL2UzMjAvcGxueC0yMDE4LjMtZTMyMC9idWlsZC90bXAvd29yay9wbG54X3p5bnE3LXhpbGlu
-eC1saW51eC1nbnVlYWJpL2ZzYmwvMjAxOC4zK2dpdEFVVE9JTkMrNTZmM2RhMmFmYi1yMC9hcHAu
-dGNsIC13cyAvaG9tZS9kZXZlbC9Qcm9qZWN0cy9lMzIwL3BsbngtMjAxOC4zLWUzMjAvYnVpbGQv
-dG1wL3dvcmsvcGxueF96eW5xNy14aWxpbngtbGludXgtZ251ZWFiaS9mc2JsLzIwMTguMytnaXRB
-VVRPSU5DKzU2ZjNkYTJhZmItcjAvYnVpbGQgLXBuYW1lIGZzYmwgLXJwIC9ob21lL2RldmVsL1By
-b2plY3RzL2UzMjAvcGxueC0yMDE4LjMtZTMyMC9idWlsZC90bXAvd29yay9wbG54X3p5bnE3LXhp
-bGlueC1saW51eC1nbnVlYWJpL2ZzYmwvMjAxOC4zK2dpdEFVVE9JTkMrNTZmM2RhMmFmYi1yMC9n
-aXQgLXByb2Nlc3NvciBwczdfY29ydGV4YTlfMCAtaGRmIC9ob21lL2RldmVsL1Byb2plY3RzL2Uz
-MjAvcGxueC0yMDE4LjMtZTMyMC9idWlsZC90bXAvZGVwbG95L2ltYWdlcy9wbG54LXp5bnE3L1hp
-bGlueC1wbG54LXp5bnE3LmhkZiAtYXJjaCAzMiAtYXBwICJaeW5xIEZTQkwiIC15YW1sY29uZiAv
-aG9tZS9kZXZlbC9Qcm9qZWN0cy9lMzIwL3BsbngtMjAxOC4zLWUzMjAvYnVpbGQvdG1wL3dvcmsv
-cGxueF96eW5xNy14aWxpbngtbGludXgtZ251ZWFiaS9mc2JsLzIwMTguMytnaXRBVVRPSU5DKzU2
-ZjNkYTJhZmItcjAvZnNibC55YW1sJwo+IHwgRVJST1I6IEZ1bmN0aW9uIGZhaWxlZDogZG9fY29u
-ZmlndXJlIChsb2cgZmlsZSBpcyBsb2NhdGVkIGF0IC9ob21lL2RldmVsL1Byb2plY3RzL2UzMjAv
-cGxueC0yMDE4LjMtZTMyMC9idWlsZC90bXAvd29yay9wbG54X3p5bnE3LXhpbGlueC1saW51eC1n
-bnVlYWJpL2ZzYmwvMjAxOC4zK2dpdEFVVE9JTkMrNTZmM2RhMmFmYi1yMC90ZW1wL2xvZy5kb19j
-b25maWd1cmUuMTgwODIpCj4gRVJST1I6IFRhc2sgKC9vcHQvWGlsaW54L1BldGFMaW51eC8yMDE4
-LjMvY29tcG9uZW50cy95b2N0by9zb3VyY2UvYXJtL2xheWVycy9tZXRhLXhpbGlueC10b29scy9y
-ZWNpcGVzLWJzcC9mc2JsL2ZzYmxfZ2l0LmJiOmRvX2NvbmZpZ3VyZSkgZmFpbGVkIHdpdGggZXhp
-dCBjb2RlICcxJwo+IE5PVEU6IFRhc2tzIFN1bW1hcnk6IEF0dGVtcHRlZCAyOTk5IHRhc2tzIG9m
-IHdoaWNoIDIyMzQgZGlkbid0IG5lZWQgdG8gYmUgcmVydW4gYW5kIDEgZmFpbGVkLgo+IAo+IFN1
-bW1hcnk6IDEgdGFzayBmYWlsZWQ6Cj4gICAvb3B0L1hpbGlueC9QZXRhTGludXgvMjAxOC4zL2Nv
-bXBvbmVudHMveW9jdG8vc291cmNlL2FybS9sYXllcnMvbWV0YS14aWxpbngtdG9vbHMvcmVjaXBl
-cy1ic3AvZnNibC9mc2JsX2dpdC5iYjpkb19jb25maWd1cmUKPiBTdW1tYXJ5OiBUaGVyZSB3YXMg
-MSBFUlJPUiBtZXNzYWdlIHNob3duLCByZXR1cm5pbmcgYSBub24temVybyBleGl0IGNvZGUuCj4g
-RVJST1I6IEZhaWxlZCB0byBidWlsZCBwcm9qZWN0Cj4gCj4gVGhlIGJ1aWxkIGZhaWxzIHdoZW4g
-YXR0ZW1wdGluZyB0byBjb25maWd1cmUgdGhlIGZpcnN0IHN0YWdlIGJvb3Rsb2FkZXIuCj4gCj4g
-SSBoYXZlIGFsc28gYXR0ZW1wdGVkIHRvIGNyZWF0ZSBhbiBGU0JMIGRpcmVjdGx5IHRocm91Z2gg
-dGhlIFNESyBob3dldmVyIHRoYXQgZ2l2ZXMgYSB2ZXJ5IHNpbWlsYXIgZXJyb3I6Cj4gCj4gOTo0
-MzowNCBJTkZPICA6IFJlZ2lzdGVyaW5nIGNvbW1hbmQgaGFuZGxlcnMgZm9yIFNESyBUQ0Ygc2Vy
-dmljZXMKPiAwOTo0MzowNSBJTkZPICA6IExhdW5jaGluZyBYU0NUIHNlcnZlcjogeHNjdCAtbiAt
-aW50ZXJhY3RpdmUgL2hvbWUvZGV2ZWwvUHJvamVjdHMvZTMyMC9mc2JsLTIwMTguMy90ZW1wX3hz
-ZGJfbGF1bmNoX3NjcmlwdC50Y2wKPiAwOTo0MzoxMCBJTkZPICA6IFhTQ1Qgc2VydmVyIGhhcyBz
-dGFydGVkIHN1Y2Nlc3NmdWxseS4KPiAwOTo0MzoxMCBJTkZPICA6IFN1Y2Nlc3NmdWxseSBkb25l
-IHNldHRpbmcgWFNDVCBzZXJ2ZXIgY29ubmVjdGlvbiBjaGFubmVsCj4gMDk6NDM6MTEgSU5GTyAg
-OiBTdWNjZXNzZnVsbHkgZG9uZSBzZXR0aW5nIFNESyB3b3Jrc3BhY2UKPiAwOTo0NDo1NCBJTkZP
-ICA6IFByb2plY3QgJ2ZzYmwnIGNyZWF0ZWQuIFlvdSBjYW4gbm93IGNyZWF0ZSBCU1BzIGFuZCBh
-cHBsaWNhdGlvbiBwcm9qZWN0cyB0YXJnZXRpbmcgdGhpcyBoYXJkd2FyZSBwbGF0Zm9ybS4KPiAw
-OTo0NToyMSBFUlJPUiA6IChYU0RCIFNlcnZlcilFUlJPUjogW0hzaSA1NS0xNTQ1XSBQcm9ibGVt
-IHJ1bm5pbmcgdGNsIGNvbW1hbmQgOjpzd19zY3VnaWNfdjNfMTA6OmdlbmVyYXRlIDogZXhwZWN0
-ZWQgaW50ZWdlciBidXQgZ290ICIiCj4gICAgIHdoaWxlIGV4ZWN1dGluZwo+ICJmb3JtYXQgIiNk
-ZWZpbmUgWFBBUl9GQUJSSUNfJXNfJXNfSU5UUiAlZCR1U3VmZml4IiAgW3N0cmluZyB0b3VwcGVy
-ICRpcF9uYW1lXSBbc3RyaW5nIHRvdXBwZXIgJHBvcnRfbmFtZV0gJHBvcnRfaW50cl9pZCIKPiAg
-ICAgKCJmb3JlYWNoIiBib2R5IGxpbmUgODYpCj4gICAgIGludm9rZWQgZnJvbSB3aXRoaW4KPiAi
-Zm9yZWFjaCBwZXJpcGggJHBlcmlwaHMgewo+IAo+ICAgICAgICAgIyBnZXQgdGhlIGdpYyBtb2Rl
-IGluZm9ybWF0aW9uCj4gICAgICAgICBzZXQgc2N1Z2ljX21vZGUgW2NvbW1vbjo6Z2V0X3Byb3Bl
-cnR5IENPTkZJRy5DX0lSUV9GMlBfTU9ERSAkcGVyaXBoXQo+IAo+ICAgICAgIC4uLiIKPiAgICAg
-KHByb2NlZHVyZSAieGRlZmluZV9naWNfcGFyYW1zIiBsaW5lIDMwKQo+ICAgICBpbnZva2VkIGZy
-b20gd2l0aGluCj4gInhkZWZpbmVfZ2ljX3BhcmFtcyAkZHJ2X2hhbmRsZSIKPiAgICAgKHByb2Nl
-ZHVyZSAiOjpzd19zY3VnaWNfdjNfMTA6OmdlbmVyYXRlIiBsaW5lIDEwKQo+ICAgICBpbnZva2Vk
-IGZyb20gd2l0aGluCj4gIjo6c3dfc2N1Z2ljX3YzXzEwOjpnZW5lcmF0ZSBwczdfc2N1Z2ljXzAi
-Cj4gCj4gMDk6NDU6MjEgRVJST1IgOiAoWFNEQiBTZXJ2ZXIpRVJST1I6IFtIc2kgNTUtMTQ0Ml0g
-RXJyb3Iocykgd2hpbGUgcnVubmluZyBUQ0wgcHJvY2VkdXJlIGdlbmVyYXRlKCkKPiAKPiAwOTo0
-NToyMSBFUlJPUiA6IChYU0RCIFNlcnZlcilFUlJPUjogW0hzaSA1NS0xNDUwXSBFcnJvcjogcnVu
-bmluZyBnZW5lcmF0ZV9ic3AuCj4gCj4gMDk6NDU6MjEgRVJST1IgOiBFcnJvciBnZW5lcmF0aW5n
-IGJzcCBzb3VyY2VzOiBGYWlsZWQgaW4gZ2VuZXJhdGluZyBzb3VyY2VzCj4gCj4gSSBoYXZlIG5v
-dCBjaGFuZ2VkIGFueXRoaW5nIGluIHRoZSBkZWZhdWx0IHZpdmFkbyBwcm9qZWN0IHRoYXQgaXMg
-Z2VuZXJhdGVkLgo+IAo+IEkgaGF2ZSBjaXJjdW12ZW50ZWQgYnVpbGRpbmcgdGhlIEZTQkwgZm9y
-IHRoZSB0aW1lIGJlaW5nIGJ5IGRpc2FibGluZyBpdCBpbiB0aGUgcGV0YWxpbnV4LWNvbmZpZyB0
-b3AgbGV2ZWwgbWVudSwgaG93ZXZlciBJIHdvdWxkIGlkZWFsbHkgbGlrZSB0byBiZSBhYmxlIHRv
-IGJ1aWxkIGl0IQo+IAo+IEkgYW0gdmVyeSBuZXcgdG8gRlBHQSBkZXZlbG9wbWVudCBhbmQgdGhp
-cyBpcyBteSBmaXJzdCBmb3JheSBpbnRvIHVzaW5nIHRoZSBYaWxpbnggdG9vbHMgYW5kIFBldGFM
-aW51eCwgc28gYW55IGhlbHAgd291bGQgYmUgYXBwcmVjaWF0ZWQuCj4gCj4gVGhhbmtzLAo+IAo+
-IEJlbgo+IAo+IEZvbGxvdyBVczogTGlua2VkSW48aHR0cDovL3d3dy5saW5rZWRpbi5jb20vY29t
-cGFueS9yb2tlLW1hbm9yLXJlc2VhcmNoPiB8IFR3aXR0ZXI8aHR0cHM6Ly90d2l0dGVyLmNvbS9y
-b2tlbWFub3I+IHwgRmFjZWJvb2s8aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3Jva2VtYW5vcj4K
-PiAKPiBSb2tlIE1hbm9yIFJlc2VhcmNoIExpbWl0ZWQsIFJvbXNleSwgSGFtcHNoaXJlLCBTTzUx
-IDBaTiwgVW5pdGVkIEtpbmdkb20uIFBhcnQgb2YgdGhlIENoZW1yaW5nIEdyb3VwLiBSZWdpc3Rl
-cmVkIGluIEVuZ2xhbmQgJiBXYWxlcy4gUmVnaXN0ZXJlZCBObzogMDAyNjc1NTAuIFRoZSBpbmZv
-cm1hdGlvbiBjb250YWluZWQgaW4gdGhpcyBlLW1haWwgYW5kIGFueSBhdHRhY2htZW50cyBpcyBw
-cm9wcmlldGFyeSB0byBSb2tlIE1hbm9yIFJlc2VhcmNoIExpbWl0ZWQgYW5kIG11c3Qgbm90IGJl
-IHBhc3NlZCB0byBhbnkgdGhpcmQgcGFydHkgd2l0aG91dCBwZXJtaXNzaW9uLiBUaGlzIGNvbW11
-bmljYXRpb24gaXMgZm9yIGluZm9ybWF0aW9uIG9ubHkgYW5kIHNoYWxsIG5vdCBjcmVhdGUgb3Ig
-Y2hhbmdlIGFueSBjb250cmFjdHVhbCByZWxhdGlvbnNoaXAuCj4gd3d3LnJva2UuY28udWs8aHR0
-cDovL3d3dy5yb2tlLmNvLnVrLz91dG1fc291cmNlPVJva2UmdXRtX21lZGl1bT1FbWFpbCZ1dG1f
-Y29udGVudD1Db21wYW55JTIwU2lnbmF0dXJlJnV0bV9jYW1wYWlnbj1Sb2tlPgo+IAo+IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KPiBo
-dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
-dHR1cy5jb208aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNl
-cnNfbGlzdHMuZXR0dXMuY29tPgo+IAo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5m
-by91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+IAoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZv
-L3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+--===============4013366475071734168==
+Content-Type: multipart/alternative; boundary="000000000000f86aac05b18f1044"
+
+--000000000000f86aac05b18f1044
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+You're welcome, Mark! I'm glad that moving to a newer SDK worked; good luck
+with your USRP work! - MLD
+
+On Mon, Oct 12, 2020 at 4:59 PM Andrews, Mark J. <andrews.250@osu.edu>
+wrote:
+
+> THANK YOU!  I thought that it seemed like the SDK had to be wrong, but
+> never saw links to the newer versions in all my searching.  Using the new=
+er
+> SDK solved the issues and I can finally run my own programs on the E320.
+> Thank you again for all the help!
+> ------------------------------
+> *From:* Michael Dickens <michael.dickens@ettus.com>
+> *Sent:* Monday, October 12, 2020 11:47 AM
+> *To:* Andrews, Mark J. <andrews.250@osu.edu>
+> *Cc:* Ettus Research Technical Support <support@ettus.com>; Ettus Mail
+> List <usrp-users@lists.ettus.com>
+> *Subject:* Re: [USRP-users] Cross-Compile Issues with E320
+>
+> Hi Mark - You need to use a more recent SDK for the cross-build. Here are
+> the SDKs for the 2 most recent UHD releases. I hope this helps! - MLD
+>
+> <
+> https://files.ettus.com/binaries/cache/e3xx/meta-ettus-v3.15.0.0/e3xx_e32=
+0_sdk_default-v3.15.0.0.zip
+> <https://urldefense.com/v3/__https://files.ettus.com/binaries/cache/e3xx/=
+meta-ettus-v3.15.0.0/e3xx_e320_sdk_default-v3.15.0.0.zip__;!!KGKeukY!jZp9T_=
+4Da88QXMCtooiMMf3xpwiMYKOA3KRvnWgUs4geu-DHFbTN1WbHOp5FfyZ7qkU$>
+> >
+> <
+> https://files.ettus.com/binaries/cache/e3xx/meta-ettus-v4.0.0.0/e3xx_e320=
+_sdk_default-v4.0.0.0.zip
+> <https://urldefense.com/v3/__https://files.ettus.com/binaries/cache/e3xx/=
+meta-ettus-v4.0.0.0/e3xx_e320_sdk_default-v4.0.0.0.zip__;!!KGKeukY!jZp9T_4D=
+a88QXMCtooiMMf3xpwiMYKOA3KRvnWgUs4geu-DHFbTN1WbHOp5F267rXXk$>
+> >
+>
+>
+> On Mon, Oct 12, 2020 at 10:47 AM Andrews, Mark J. via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+> Hello,
+>
+> I am trying to cross-compile UHD on an E320 with the OE SDK, but I cannot
+> get past the cmake step due to multiple errors.  On the host PC, I am abl=
+e
+> to install the SDK and source the environment variable without issues.
+> When I go to build UHD, the first error is that the CMakeLists.txt file f=
+or
+> UHD 3.15 has a minimum CMake version of 3.5.1, but the OE SDK cmake is
+> version 2.8.12.2 (my host PC is version 3.18.4).  I manually edited the
+> CMakeLists.txt to accept the older version of CMake, but then it has a
+> boost version error and cannot find several python packages (platform,
+> mako, requests, numpy).  I again edited it for the Boost version, but it
+> still can't find the python packages.  Do I need to somehow install all t=
+he
+> UHD dependencies in the OE SDK paths after installing it?  Or am I doing
+> something else wrong?
+>
+> I also tried running "import sys" to see the Python path configuration an=
+d
+> the "program name", "sys._base_executable", and "sys.executable" are all
+> pointing to "/usr/bin/python3" instead of the
+> "/home/~/oe/sysroots/x86_64-oesdk-linux" path.  Not sure if that's part o=
+f
+> the problem or not, but it seemed suspicious.  The cmake and import sys
+> outputs are copied below.
+>
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> cmake -DCMAKE_TOOLCHAIN_FILE=3D../host/cmake/Toolchains/oe-sdk_cross.cmak=
+e
+> -DCMAKE_INSTALL_PREFIX=3D/usr -DENABLE_E300=3DON ..
+>
+> -- Configuring the Python interpreter...
+> -- Manually determining build Python version...
+> ImportError: No module named site
+> -- Python interpreter:
+> /home/~/oe/sysroots/x86_64-oesdk-linux/usr/bin/python Version:
+> -- Override with: -DPYTHON_EXECUTABLE=3D<path-to-python>
+> -- Manually determining runtime Python version...
+> ImportError: No module named site
+> -- Python runtime interpreter:
+> /home/~/oe/sysroots/x86_64-oesdk-linux/usr/bin/python Version:
+> -- Override with: -DRUNTIME_PYTHON_EXECUTABLE=3D<path-to-python>
+> -- Finding Python Libraries...
+> CMake Warning (dev) at cmake/Modules/UHDPython.cmake:168 (find_package):
+>   Ignoring EXACT since no version is requested.
+> Call Stack (most recent call first):
+>   cmake/Modules/UHDVersion.cmake:9 (include)
+>   cmake/Modules/UHDPackage.cmake:9 (include)
+>   CMakeLists.txt:103 (include)
+> This warning is for project developers.  Use -Wno-dev to suppress it.
+>
+> -- Python Libraries:
+> /home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/
+> libpython2.7.so
+> <https://urldefense.com/v3/__http://libpython2.7.so__;!!KGKeukY!jZp9T_4Da=
+88QXMCtooiMMf3xpwiMYKOA3KRvnWgUs4geu-DHFbTN1WbHOp5Fnwt1ywM$>
+> -- Python include directories:
+> /home/`/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/include/python=
+2.7
+> -- Working off of feature or development branch. Updating version number.
+> ImportError: No module named site
+> ImportError: No module named site
+> ImportError: No module named site
+> -- Using UHD Images Directory: /usr/share/uhd/images
+> -- Build type not specified: defaulting to release.
+> --
+> -- Configuring Boost C++ Libraries...
+> --
+> -- Checking for Boost version 1.57 or greater
+> --   Looking for required Boost components...
+> --     Disabling boost::asio use of std::string_view
+> --   Boost version: 1.57.0
+> --   Boost include directories:
+> /home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/include
+> --   Boost library directories:
+> /home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib
+> --   Boost libraries:
+> /home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_c=
+hrono-mt.so;/home/!/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/=
+libboost_date_time-mt.so;/home/!/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnu=
+eabi/usr/lib/libboost_filesystem-mt.so;/home/~/oe/sysroots/armv7ahf-vfp-neo=
+n-oe-linux-gnueabi/usr/lib/libboost_program_options-mt.so;/home/~/oe/sysroo=
+ts/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_regex-mt.so;/home/~/=
+oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_unit_test_f=
+ramework.so;/home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/=
+libboost_serialization-mt.so;/home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux=
+-gnueabi/usr/lib/libboost_thread-mt.so;/home/~/oe/sysroots/armv7ahf-vfp-neo=
+n-oe-linux-gnueabi/usr/lib/libboost_system-mt.so
+> -- Looking for Boost version 1.57 or greater - found
+> --
+> -- Python checking for Python version 2.7 or greater
+> ImportError: No module named site
+> -- Python checking for Python version 2.7 or greater - "import platform"
+> failed
+> --
+> -- Python checking for Mako templates 0.4.2 or greater
+> ImportError: No module named site
+> -- Python checking for Mako templates 0.4.2 or greater - "import mako"
+> failed
+> --
+> -- Python checking for requests 2.0 or greater
+> ImportError: No module named site
+> -- Python checking for requests 2.0 or greater - "import requests" failed
+> --
+> -- Python checking for numpy 1.7 or greater
+> ImportError: No module named site
+> -- Python checking for numpy 1.7 or greater - "import numpy" failed
+> --
+> -- Configuring LibUHD support...
+> --   Dependency Boost_FOUND =3D 1
+> --   Dependency HAVE_PYTHON_PLAT_MIN_VERSION =3D FALSE
+> --   Dependency HAVE_PYTHON_MODULE_MAKO =3D FALSE
+> CMake Error at cmake/Modules/UHDComponent.cmake:59 (message):
+>   Dependencies for required component LibUHD not met.
+> Call Stack (most recent call first):
+>   CMakeLists.txt:363 (LIBUHD_REGISTER_COMPONENT)
+>
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+> import sys
+>
+> Python path configuration:
+>   PYTHONHOME =3D '/home/~/oe/sysroots/x86_64-oesdk-linux'
+>   PYTHONPATH =3D (not set)
+>   program name =3D '/usr/bin/python3'
+>   isolated =3D 0
+>   environment =3D 1
+>   user site =3D 1
+>   import site =3D 1
+>   sys._base_executable =3D '/usr/bin/python3'
+>   sys.base_prefix =3D '/home/~/oe/sysroots/x86_64-oesdk-linux'
+>   sys.base_exec_prefix =3D '/home/~/oe/sysroots/x86_64-oesdk-linux'
+>   sys.executable =3D '/usr/bin/python3'
+>   sys.prefix =3D '/home/~/oe/sysroots/x86_64-oesdk-linux'
+>   sys.exec_prefix =3D '/home/~/oe/sysroots/x86_64-oesdk-linux'
+>   sys.path =3D [
+>     '/home/~/oe/sysroots/x86_64-oesdk-linux/lib/python38.zip',
+>     '/home/~/oe/sysroots/x86_64-oesdk-linux/lib/python3.8',
+>     '/home/~/oe/sysroots/x86_64-oesdk-linux/lib/python3.8/lib-dynload',
+>   ]
+> Fatal Python error: init_fs_encoding: failed to get the Python codec of
+> the filesystem encoding
+> Python runtime state: core initialized
+> ModuleNotFoundError: No module named 'encodings'
+>
+>
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> <https://urldefense.com/v3/__http://lists.ettus.com/mailman/listinfo/usrp=
+-users_lists.ettus.com__;!!KGKeukY!jZp9T_4Da88QXMCtooiMMf3xpwiMYKOA3KRvnWgU=
+s4geu-DHFbTN1WbHOp5Frw0HsTo$>
+>
+>
+
+--000000000000f86aac05b18f1044
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">You&#39;re welcome, Mark! I&#39;m glad th=
+at moving to a newer SDK=C2=A0worked; good luck with your USRP work! - MLD<=
+br><br></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Mon, Oct 12, 2020 at 4:59 PM Andrews, Mark J. &lt;<a href=3D"mailto:a=
+ndrews.250@osu.edu">andrews.250@osu.edu</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+THANK YOU!=C2=A0 I thought that it seemed like the SDK had to be wrong, but=
+ never saw links to the newer versions in all my searching.=C2=A0 Using the=
+ newer SDK solved the issues and I can finally run my own programs on the E=
+320.=C2=A0 Thank you again for all the help!</div>
+<div id=3D"gmail-m_6152652586640899317appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_6152652586640899317divRplyFwdMsg" dir=3D"ltr"><font face=
+=3D"Calibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From=
+:</b> Michael Dickens &lt;<a href=3D"mailto:michael.dickens@ettus.com" targ=
+et=3D"_blank">michael.dickens@ettus.com</a>&gt;<br>
+<b>Sent:</b> Monday, October 12, 2020 11:47 AM<br>
+<b>To:</b> Andrews, Mark J. &lt;<a href=3D"mailto:andrews.250@osu.edu" targ=
+et=3D"_blank">andrews.250@osu.edu</a>&gt;<br>
+<b>Cc:</b> Ettus Research Technical Support &lt;<a href=3D"mailto:support@e=
+ttus.com" target=3D"_blank">support@ettus.com</a>&gt;; Ettus Mail List &lt;=
+<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@=
+lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Cross-Compile Issues with E320</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div dir=3D"ltr">Hi Mark - You need to use a more recent SDK for the cross-=
+build. Here are the SDKs for the 2 most recent UHD releases. I hope this he=
+lps! - MLD<br>
+<div><br>
+</div>
+<div>&lt;=C2=A0<a href=3D"https://urldefense.com/v3/__https://files.ettus.c=
+om/binaries/cache/e3xx/meta-ettus-v3.15.0.0/e3xx_e320_sdk_default-v3.15.0.0=
+.zip__;!!KGKeukY!jZp9T_4Da88QXMCtooiMMf3xpwiMYKOA3KRvnWgUs4geu-DHFbTN1WbHOp=
+5FfyZ7qkU$" target=3D"_blank">https://files.ettus.com/binaries/cache/e3xx/m=
+eta-ettus-v3.15.0.0/e3xx_e320_sdk_default-v3.15.0.0.zip</a>
+ &gt;</div>
+<div>&lt;=C2=A0<a href=3D"https://urldefense.com/v3/__https://files.ettus.c=
+om/binaries/cache/e3xx/meta-ettus-v4.0.0.0/e3xx_e320_sdk_default-v4.0.0.0.z=
+ip__;!!KGKeukY!jZp9T_4Da88QXMCtooiMMf3xpwiMYKOA3KRvnWgUs4geu-DHFbTN1WbHOp5F=
+267rXXk$" target=3D"_blank">https://files.ettus.com/binaries/cache/e3xx/met=
+a-ettus-v4.0.0.0/e3xx_e320_sdk_default-v4.0.0.0.zip</a>
+ &gt;</div>
+<div><br>
+</div>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Mon, Oct 12, 2020 at 10:47 AM Andrews, Mark J. via USRP=
+-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a>&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+Hello,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+I am trying to cross-compile UHD on an E320 with the OE SDK, but I cannot g=
+et past the cmake step due to multiple errors.=C2=A0 On the host PC, I am a=
+ble to install the SDK and source the environment variable without issues.=
+=C2=A0 When I go to build UHD, the first error
+ is that the CMakeLists.txt file for UHD 3.15 has a minimum CMake version o=
+f 3.5.1, but the OE SDK cmake is version 2.8.12.2 (my host PC is version 3.=
+18.4).=C2=A0 I manually edited the CMakeLists.txt to accept the older versi=
+on of CMake, but then it has a boost
+ version error and cannot find several python packages (platform, mako, req=
+uests, numpy).=C2=A0 I again edited it for the Boost version, but it still =
+can&#39;t find the python packages.=C2=A0 Do I need to somehow install all =
+the UHD dependencies in the OE SDK paths after
+ installing it?=C2=A0 Or am I doing something else wrong?=C2=A0 <br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+I also tried running &quot;import sys&quot; to see the Python path configur=
+ation and the &quot;program name&quot;, &quot;sys._base_executable&quot;, a=
+nd &quot;sys.executable&quot; are all pointing to &quot;/usr/bin/python3&qu=
+ot; instead of the &quot;/home/~/oe/sysroots/x86_64-oesdk-linux&quot; path.=
+=C2=A0 Not sure if that&#39;s
+ part of the problem or not, but it seemed suspicious.=C2=A0 The cmake and =
+import sys outputs are copied below.<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+cmake -DCMAKE_TOOLCHAIN_FILE=3D../host/cmake/Toolchains/oe-sdk_cross.cmake =
+-DCMAKE_INSTALL_PREFIX=3D/usr -DENABLE_E300=3DON ..
+<div><br>
+</div>
+-- Configuring the Python interpreter... </div>
+<div>-- Manually determining build Python version...</div>
+<div>ImportError: No module named site</div>
+<div>-- Python interpreter: /home/~/oe/sysroots/x86_64-oesdk-linux/usr/bin/=
+python Version:
+</div>
+<div>-- Override with: -DPYTHON_EXECUTABLE=3D&lt;path-to-python&gt;</div>
+<div>-- Manually determining runtime Python version...</div>
+<div>ImportError: No module named site</div>
+<div>-- Python runtime interpreter: /home/~/oe/sysroots/x86_64-oesdk-linux/=
+usr/bin/python Version:
+</div>
+<div>-- Override with: -DRUNTIME_PYTHON_EXECUTABLE=3D&lt;path-to-python&gt;=
+</div>
+<div>-- Finding Python Libraries...</div>
+<div>CMake Warning (dev) at cmake/Modules/UHDPython.cmake:168 (find_package=
+):</div>
+<div>=C2=A0 Ignoring EXACT since no version is requested.</div>
+<div>Call Stack (most recent call first):</div>
+<div>=C2=A0 cmake/Modules/UHDVersion.cmake:9 (include)</div>
+<div>=C2=A0 cmake/Modules/UHDPackage.cmake:9 (include)</div>
+<div>=C2=A0 CMakeLists.txt:103 (include)</div>
+<div>This warning is for project developers.=C2=A0 Use -Wno-dev to suppress=
+ it.</div>
+<div><br>
+</div>
+<div>-- Python Libraries: /home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gn=
+ueabi/usr/lib/<a href=3D"https://urldefense.com/v3/__http://libpython2.7.so=
+__;!!KGKeukY!jZp9T_4Da88QXMCtooiMMf3xpwiMYKOA3KRvnWgUs4geu-DHFbTN1WbHOp5Fnw=
+t1ywM$" target=3D"_blank">libpython2.7.so</a></div>
+<div>-- Python include directories: /home/`/oe/sysroots/armv7ahf-vfp-neon-o=
+e-linux-gnueabi/usr/include/python2.7</div>
+<div>-- Working off of feature or development branch. Updating version numb=
+er.</div>
+<div>ImportError: No module named site</div>
+<div>ImportError: No module named site</div>
+<div>ImportError: No module named site</div>
+<div>-- Using UHD Images Directory: /usr/share/uhd/images</div>
+<div>-- Build type not specified: defaulting to release.</div>
+<div>-- </div>
+<div>-- Configuring Boost C++ Libraries...</div>
+<div>-- </div>
+<div>-- Checking for Boost version 1.57 or greater</div>
+<div>-- =C2=A0 Looking for required Boost components...</div>
+<div>-- =C2=A0 =C2=A0 Disabling boost::asio use of std::string_view</div>
+<div>-- =C2=A0 Boost version: 1.57.0</div>
+<div>-- =C2=A0 Boost include directories: /home/~/oe/sysroots/armv7ahf-vfp-=
+neon-oe-linux-gnueabi/usr/include</div>
+<div>-- =C2=A0 Boost library directories: /home/~/oe/sysroots/armv7ahf-vfp-=
+neon-oe-linux-gnueabi/usr/lib</div>
+<div>-- =C2=A0 Boost libraries: /home/~/oe/sysroots/armv7ahf-vfp-neon-oe-li=
+nux-gnueabi/usr/lib/libboost_chrono-mt.so;/home/!/oe/sysroots/armv7ahf-vfp-=
+neon-oe-linux-gnueabi/usr/lib/libboost_date_time-mt.so;/home/!/oe/sysroots/=
+armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_filesystem-mt.so;/home/=
+~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_program_o=
+ptions-mt.so;/home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib=
+/libboost_regex-mt.so;/home/~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueab=
+i/usr/lib/libboost_unit_test_framework.so;/home/~/oe/sysroots/armv7ahf-vfp-=
+neon-oe-linux-gnueabi/usr/lib/libboost_serialization-mt.so;/home/~/oe/sysro=
+ots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_thread-mt.so;/home/=
+~/oe/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/usr/lib/libboost_system-mt=
+.so</div>
+<div>-- Looking for Boost version 1.57 or greater - found</div>
+<div>-- </div>
+<div>-- Python checking for Python version 2.7 or greater</div>
+<div>ImportError: No module named site</div>
+<div>-- Python checking for Python version 2.7 or greater - &quot;import pl=
+atform&quot; failed</div>
+<div>-- </div>
+<div>-- Python checking for Mako templates 0.4.2 or greater</div>
+<div>ImportError: No module named site</div>
+<div>-- Python checking for Mako templates 0.4.2 or greater - &quot;import =
+mako&quot; failed</div>
+<div>-- </div>
+<div>-- Python checking for requests 2.0 or greater</div>
+<div>ImportError: No module named site</div>
+<div>-- Python checking for requests 2.0 or greater - &quot;import requests=
+&quot; failed</div>
+<div>-- </div>
+<div>-- Python checking for numpy 1.7 or greater</div>
+<div>ImportError: No module named site</div>
+<div>-- Python checking for numpy 1.7 or greater - &quot;import numpy&quot;=
+ failed</div>
+<div>-- </div>
+<div>-- Configuring LibUHD support...</div>
+<div>-- =C2=A0 Dependency Boost_FOUND =3D 1</div>
+<div>-- =C2=A0 Dependency HAVE_PYTHON_PLAT_MIN_VERSION =3D FALSE</div>
+<div>-- =C2=A0 Dependency HAVE_PYTHON_MODULE_MAKO =3D FALSE</div>
+<div>CMake Error at cmake/Modules/UHDComponent.cmake:59 (message):</div>
+<div>=C2=A0 Dependencies for required component LibUHD not met.</div>
+<div>Call Stack (most recent call first):</div>
+<div>=C2=A0 CMakeLists.txt:363 (LIBUHD_REGISTER_COMPONENT)</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D</div>
+<div>import sys</div>
+<div><br>
+</div>
+<div>Python path configuration:
+<div>=C2=A0 PYTHONHOME =3D &#39;/home/~/oe/sysroots/x86_64-oesdk-linux&#39;=
+</div>
+<div>=C2=A0 PYTHONPATH =3D (not set)</div>
+<div>=C2=A0 program name =3D &#39;/usr/bin/python3&#39;</div>
+<div>=C2=A0 isolated =3D 0</div>
+<div>=C2=A0 environment =3D 1</div>
+<div>=C2=A0 user site =3D 1</div>
+<div>=C2=A0 import site =3D 1</div>
+<div>=C2=A0 sys._base_executable =3D &#39;/usr/bin/python3&#39;</div>
+<div>=C2=A0 sys.base_prefix =3D &#39;/home/~/oe/sysroots/x86_64-oesdk-linux=
+&#39;</div>
+<div>=C2=A0 sys.base_exec_prefix =3D &#39;/home/~/oe/sysroots/x86_64-oesdk-=
+linux&#39;</div>
+<div>=C2=A0 sys.executable =3D &#39;/usr/bin/python3&#39;</div>
+<div>=C2=A0 sys.prefix =3D &#39;/home/~/oe/sysroots/x86_64-oesdk-linux&#39;=
+</div>
+<div>=C2=A0 sys.exec_prefix =3D &#39;/home/~/oe/sysroots/x86_64-oesdk-linux=
+&#39;</div>
+<div>=C2=A0 sys.path =3D [</div>
+<div>=C2=A0 =C2=A0 &#39;/home/~/oe/sysroots/x86_64-oesdk-linux/lib/python38=
+.zip&#39;,</div>
+<div>=C2=A0 =C2=A0 &#39;/home/~/oe/sysroots/x86_64-oesdk-linux/lib/python3.=
+8&#39;,</div>
+<div>=C2=A0 =C2=A0 &#39;/home/~/oe/sysroots/x86_64-oesdk-linux/lib/python3.=
+8/lib-dynload&#39;,</div>
+<div>=C2=A0 ]</div>
+<div>Fatal Python error: init_fs_encoding: failed to get the Python codec o=
+f the filesystem encoding</div>
+<div>Python runtime state: core initialized</div>
+<div>ModuleNotFoundError: No module named &#39;encodings&#39;</div>
+<br>
+<br>
+</div>
+<br>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+</div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"https://urldefense.com/v3/__http://lists.ettus.com/mailman/listi=
+nfo/usrp-users_lists.ettus.com__;!!KGKeukY!jZp9T_4Da88QXMCtooiMMf3xpwiMYKOA=
+3KRvnWgUs4geu-DHFbTN1WbHOp5Frw0HsTo$" rel=3D"noreferrer" target=3D"_blank">=
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote>
+</div>
+</div>
+</div>
+
+</blockquote></div></div>
+
+--000000000000f86aac05b18f1044--
+
+
+--===============4013366475071734168==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============4013366475071734168==--
+
