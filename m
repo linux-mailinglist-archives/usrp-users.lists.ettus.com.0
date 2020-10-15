@@ -2,106 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C071628F7B7
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Oct 2020 19:40:25 +0200 (CEST)
-Received: from [::1] (port=41808 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12F3D28F7BF
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Oct 2020 19:43:58 +0200 (CEST)
+Received: from [::1] (port=41844 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kT7Eg-0007BY-Kl; Thu, 15 Oct 2020 13:40:18 -0400
-Received: from dispatch1-us1.ppe-hosted.com ([67.231.154.164]:50688)
+	id 1kT7ID-0007Ud-5j; Thu, 15 Oct 2020 13:43:57 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:42036)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jim@gardettoengineering.com>)
- id 1kT7Eb-00072o-Rj
- for usrp-users@lists.ettus.com; Thu, 15 Oct 2020 13:40:13 -0400
-Received: from dispatch1-us1.ppe-hosted.com (localhost.localdomain [127.0.0.1])
- by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
- 7224D111071
- for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 17:39:33 +0000 (UTC)
-Received: from mx1-us1.ppe-hosted.com (unknown [10.110.51.22])
- by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
- 6468180077
- for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 17:39:23 +0000 (UTC)
-Received: from us1-mdac16-8.at1.mdlocal (unknown [10.110.51.67])
- by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id 6121B800A3
- for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 17:39:23 +0000 (UTC)
-X-Virus-Scanned: Proofpoint Essentials engine
-Received: from mx1-us1.ppe-hosted.com (unknown [10.110.49.6])
- by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id CB3EF1C0072
- for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 17:39:22 +0000 (UTC)
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11lp2171.outbound.protection.outlook.com [104.47.56.171])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 70757B00081
- for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 17:39:22 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lqStsQPln91+GQJ929E0EoBrbboKJM7YbZuboK5oNKo+nGBDpXuhlOgpFtn8jODzZPXonwjxiNKVdW/zUjD3Wuj3wxxAequtjPCy5HGmBP7FIynM0Ei8jntI7hsF5k0HcWo542xJAUdK3Pc8mRCxxyRiAo7sXawpEmudRsSgsWZttA12ejVdYnl9aOFgbQsE49TbPuIwr4qjVN+iOqhUvsmuIy0MbugYpAjOHYFdxW9eAp/vC2Gja74uqdXPr5f3p2/Pcs2Bc6G6biwTq+VYF7VUW6fxGYzy5mfo1lZ+Jtv0H8Fy1YcYwWXm6yJ7MoRnxUb6unEp4x6T+tEDPq544g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BSI1i3pDF8r3BjKSOHNsUcbciUwKoknauFChR655rwY=;
- b=ZJ1pAEW3TmBlopJMLbJAzculiFn7WsVBctRDyScBUvoRw0CSXTqUVK5CQHmF5oPEg6vr7Ou1TwdSoNjGM8mbyn5iAM12IypQHozhg28++H1oX8MF5Tglot1azGYtZi2MvX/D1fLBLLIA3qBpb4u2un7xKwjlsZnLBa58qvfNpScvS/RvCwehJ1Ipbb3sMz4CTxUv2qyZylYM5a5UmJbBSmNWkcp3gkWphJiglpkQlQ+CPkgXBu1daLMO51nKpeU2FE97JTsLgL7O71kEQOOoM5NIFXwjbSKh/psv2XvFe7HlP+l07c3az12U9l/gGF2iP/5boxMYPxRQYVq9xYIP/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
- header.from=gardettoengineering.com; dkim=pass
- header.d=gardettoengineering.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com;
- s=selector2-gardettoengineering-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BSI1i3pDF8r3BjKSOHNsUcbciUwKoknauFChR655rwY=;
- b=SrXd1TZUQhlUSpNYOY4r8fGjBanmtdeJMLHhRJRbaM0o2oViF8av5MVbh1T5jmTgxfph2ZhrYQeQuw+qNCqMCPu5o+TgBcJ6QYSuT8GKWZFVnNamTulRC98YAhXGYYnhEkZ61j5Sdgn48zHAMxyDXgpzi04pXPMsCMrQtB9SJGs=
-Received: from MN2PR12MB3312.namprd12.prod.outlook.com (2603:10b6:208:ab::23)
- by MN2PR12MB3229.namprd12.prod.outlook.com (2603:10b6:208:102::27)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.20; Thu, 15 Oct
- 2020 17:39:15 +0000
-Received: from MN2PR12MB3312.namprd12.prod.outlook.com
- ([fe80::7c9d:5fe7:77ba:1be5]) by MN2PR12MB3312.namprd12.prod.outlook.com
- ([fe80::7c9d:5fe7:77ba:1be5%3]) with mapi id 15.20.3455.035; Thu, 15 Oct 2020
- 17:39:15 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Adding Xilinx IP to custom RFNoC block
-Thread-Index: AQHWoxPHlooJ1+IPlUOLamZ4NurgjamY7RZo
-Date: Thu, 15 Oct 2020 17:39:15 +0000
-Message-ID: <MN2PR12MB33125D99856227CEB8E2E8BAB8020@MN2PR12MB3312.namprd12.prod.outlook.com>
-References: <MN2PR12MB3312D6040F4F80A6B1E838CCB8020@MN2PR12MB3312.namprd12.prod.outlook.com>
-In-Reply-To: <MN2PR12MB3312D6040F4F80A6B1E838CCB8020@MN2PR12MB3312.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=gardettoengineering.com;
-x-originating-ip: [65.127.220.137]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 74be2e98-5542-4f1e-01ef-08d871313c61
-x-ms-traffictypediagnostic: MN2PR12MB3229:
-x-microsoft-antispam-prvs: <MN2PR12MB32299D1C5EEEA24156131FE6B8020@MN2PR12MB3229.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 0o3Aa7pGW6hTrHwPz12dquY5R7Vl8vISieBMNJ0IVw6Ce+cdnjEaodwieiJkarPkY2ONvpCVkocRBfNMsoEli2UUzo0lGmdj5Hb7WE4vSHfAxtKep2Euk6arVtoKzEVrk5ahw8JB2/1xRoMFW63dK2TmFEBYvXdtBGCYnG5SsxG2B877cqNxhKWGXNbl5662UuAFV+ZlmQBorcQFj0SjAErg+waQHLCpYOjIUboLbHsqfcDjkTbNTayuDClCPy9qZJ38xCINQhvJi6uOnerP1APW2BTn/2fMYMnUtoGL/EV5B25d8BiGs998iGgvUY+oNfLP30rCJcI2V3uDWH/xsc6P2siUcTonQCdTLZTwIkEtGuPkzojiyi93uT4x7kgT
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3312.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(39830400003)(396003)(346002)(376002)(136003)(366004)(64756008)(76116006)(66446008)(66556008)(66476007)(19627405001)(6506007)(8936002)(2940100002)(7696005)(83380400001)(53546011)(66946007)(71200400001)(33656002)(9686003)(5660300002)(52536014)(2906002)(8676002)(316002)(478600001)(186003)(26005)(55016002)(86362001)(6916009)(21314003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: nS9bYUPIpQbW6zbHmLpZDkQ/4iWmAXjImTSJJngu3yAQ4h/1JWXj8C2QU6Wp0Lv5lDU1aiecAmn9Tgy2uZVYUmlWyyhgaPYrn+d4C0FqgVh+cJZrzOYQD+cvzbCz9Tud138lY04Aui42Vdv5ZUZZDHLH/zHYjL5VDYLeXlOxVZRLk76NrTMD9GxQFw4TYO8f1ceQ8uDSsMfEpiNJiLIi82Fv7QJkkf2NF0+s9b0hlc8cdhrzdTpceECRzK8NR29X0PleEA1j9u1SCM0ZpWlK4VLIl5yzbQDi6779ujtTokYcnVabiYPgEqr3mwMywNeppa3xaQdjH8tCw/BGHvQE1xT6g2ldd9gzN0uDFNSkt99CER7/11pL4mMYhag1lSqFNny2YOOAksfQse3wYnoOzHUrjMhJ4YYPaNOf5SZn+gFvjRzEXa36eoEIeTuLzFIGROQ1CLCXkkUVXguqwShqLEbPcS9CkQQ4LUTw1IXGHaORMoWryH+gjr43ykcNN1ouuLM/fONuJEt5hEeqzWesfKf7Zfk2C5SVhbZg7nXDh+FBSTe4GOZKbW5d05be0EREbnYf+RrmyfFCogUbaYbOzKr45oHfTrebVEL0f68O4CED+r9jFqmDupvFMkVkPWbJl2SzvGn6nqMLuz1Kp6QfvA==
-x-ms-exchange-transport-forked: True
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kT7I9-0007MN-BC
+ for usrp-users@lists.ettus.com; Thu, 15 Oct 2020 13:43:53 -0400
+Received: by mail-oi1-f180.google.com with SMTP id 16so3968479oix.9
+ for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 10:43:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=QLWNZLM3glYrkGHosQg0tN04IaWh9w383oqhtZn32Ko=;
+ b=GmRkV72q+w9MGhhNmnpI9hSpV4HN2g41rqHjVQ1a0MXBZMoDycZNRHu4hQ2hdMIsN8
+ PTw5waut3TDXzkLztQi1rZPAzAOTXsW56gytulnLP5boeqQhdG+hD8InllnW6iyNqxOM
+ ThAckOVbqwZe4XnyzTptbLvqshdF6QxSE28kF80hEsUgPK6p126QJM6lv4CeQFZorur4
+ FoHyE+l0AiyMw5nRFW5RCq+bStIifd6SvdZdB79Z0wPhsQ0LA8qmHLnqLf63WEGYdKdy
+ UaqorSIjuc18iS8d6mKLGyaD6lOeV8LTsTesCrDhsvY7oy0zP+CBnJPhCRk3Hhe6p0a9
+ HyfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=QLWNZLM3glYrkGHosQg0tN04IaWh9w383oqhtZn32Ko=;
+ b=cibLYb28nnCa+9TsGJ6ufUu7h4M4KsVYFM+9PoxHyb0AnrygJlzvoHIjDYUh6tDSl5
+ y18ZJ7fe3oJspLGKp9WpA1GNLXC2YVcU89fYerHBzUXa204l6l6yJeZrgCQ/MawCQYJu
+ /+pMX8KD8O68d8DjxkJKo7O/StuDWx0CTLKN622pNhLdrlp/dM+kt8fnOSMz/egsbt49
+ qSSlsjfJzlGT8MCNELT/u/RWEE/wZPUBLbIhn9kCS+BCbNDth+paCZZunuGnGwzRID4f
+ q51aNmifG0yFfPJnq4wiaAVUo88oq6L7GK3/g3Ygl683NXq+cNIrtAdsGyR1v+HhaM0V
+ x2OQ==
+X-Gm-Message-State: AOAM530uDGw2KSFTVH6nsDX+ROj00qfSCSPo6dy/I+dEA8poB5KJw2XL
+ RTdNBA6lXhmbGvokG3/t8PD/JrxX3bxWYv5RrjOmJizuEvw=
+X-Google-Smtp-Source: ABdhPJw8TJrsf1BdxIKIHiVLE/tiUsCr3Jc6S+wIn25EPvXhkm/S9ZFV6Bl/NHRDWXdrc/R4VmASiFspWSGP8pZnnj8=
+X-Received: by 2002:aca:4085:: with SMTP id n127mr2916792oia.33.1602783792539; 
+ Thu, 15 Oct 2020 10:43:12 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3312.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 74be2e98-5542-4f1e-01ef-08d871313c61
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Oct 2020 17:39:15.2512 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +Uv+egsMk6bDNr2LuEs5TR/Bx9EDjoBMuJ0a8LV5pcLlT/UXLK1WocU4iZsUYD0PCmlQbpR1D31ai+URhmKXdyxZ4ds6ahUSB8EY5myQhMs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3229
-X-MDID: 1602783563-0EfqzJJ6Ul5Y
-X-PPE-DISP: 1602783563;0EfqzJJ6Ul5Y
+References: <MN2PR12MB3312D6040F4F80A6B1E838CCB8020@MN2PR12MB3312.namprd12.prod.outlook.com>
+ <MN2PR12MB33125D99856227CEB8E2E8BAB8020@MN2PR12MB3312.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB33125D99856227CEB8E2E8BAB8020@MN2PR12MB3312.namprd12.prod.outlook.com>
+Date: Thu, 15 Oct 2020 13:43:01 -0400
+Message-ID: <CAB__hTTC8-W8f0khfQ=Dq3Zcgy1jk-1O7VAYLR2ct=UU8vtSsg@mail.gmail.com>
+To: Jim Palladino <jim@gardettoengineering.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] Adding Xilinx IP to custom RFNoC block
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -114,9 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jim Palladino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jim Palladino <jim@gardettoengineering.com>
-Content-Type: multipart/mixed; boundary="===============5702597820571357587=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============2087953744551359720=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -130,191 +75,198 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5702597820571357587==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB33125D99856227CEB8E2E8BAB8020MN2PR12MB3312namp_"
+--===============2087953744551359720==
+Content-Type: multipart/alternative; boundary="0000000000009b5f4405b1b92e3f"
 
---_000_MN2PR12MB33125D99856227CEB8E2E8BAB8020MN2PR12MB3312namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--0000000000009b5f4405b1b92e3f
+Content-Type: text/plain; charset="UTF-8"
 
-As a quick update, with my attempt "2" described in the original post, I ac=
-tually get the same result as I do with method "1" (I fixed a typo), althou=
-gh I don't get the critical warning. So, the result of trying to build the =
-FPGA image is still:
+Jim,
+I couldn't figure it out quickly enough so I just put my ip in-tree
+(fpga/usrp3/lib/ip/) and updated the corresponding Ettus Makefile.inc
+Rob
 
-...
-[00:00:12] Starting Synthesis Command
-ERROR: [Synth 8-439] module 'DDS_Test_Signal' not found [/home/XXX/Projects=
-/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfno=
-c/fpga/rfnoc_block_Block/rfnoc_jjj.v:92]
-ERROR: [Synth 8-6156] failed synthesizing module 'jjj_const' [/home/XXX/Pro=
-jects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut=
-/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:11]
-ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_block_Block' [/home=
-/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfno=
-c-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_block_Block.v:25]
-ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_image_core' [/home/=
-XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc=
--peanut/rfnoc/icores/e320_rfnoc_image_core.v:14]
-ERROR: [Synth 8-6156] failed synthesizing module 'e320_core' [/home/XXX/Pro=
-jects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e=
-320_core.v:18]
-ERROR: [Synth 8-6156] failed synthesizing module 'e320' [/home/XXX/Projects=
-/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e320.v=
-:14]
-ERROR: [Common 17-69] Command failed: Synthesis failed - please see the con=
-sole or run log file for details
-[00:04:25] Current task: Synthesis +++ Current Phase: Starting
-[00:04:26] Current task: Synthesis +++ Current Phase: Finished
-[00:04:26] Process terminated. Status: Failure
+On Thu, Oct 15, 2020 at 1:40 PM Jim Palladino via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-Thanks,
-Jim
-
-
-
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Jim Pall=
-adino via USRP-users <usrp-users@lists.ettus.com>
-Sent: Thursday, October 15, 2020 1:13 PM
-To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Adding Xilinx IP to custom RFNoC block
-
-Hello,
-
-I'm trying to add a Xilinx DDS to a custom RFNoC block (using UHD 4.0 and a=
-ssociated gr-ettus repo). To do this, I started building the FPGA image usi=
-ng the GUI option, stopped the build shortly after Vivado opened, and saved=
- a Vivado Project. Then, in Vivado I configured/added a Xilinx DDS to my cu=
-stom RFNoC block hdl and built the project just fine.
-
-Now, I'm trying to setup my build file structure so I can use the "make" fl=
-ow to build the FPGA image. I've tried several things.
-
-1) I copied the xci file directly to my rfnoc/fpga/rfnoc_block_Block folder=
-. Then, I added the following to the Makefile.srcs file in the same folder:
-
-RFNOC_OOT_SRCS +=3D $(addprefix $(dir $(abspath $(lastword $(MAKEFILE_LIST)=
-))), rfnoc_block_Block.v noc_shell_Block.v rfnoc_jjj.v DDS_Test_Signal.xci)
-
-When I try to build the FPGA image, I get the following critical warning:
-CRITICAL WARNING: [Vivado 12-1504] The IP is already part of the fileset 's=
-ources_1'. Requested source '/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.=
-0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/DDS=
-_Test_Signal.xci' will not be added.
-
-followed by these errors:
-ERROR: [Synth 8-439] module 'DDS_Test_Signal' not found [/home/XXX/Projects=
-/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/XXX/=
-fpga/rfnoc_block_Block/rfnoc_jjj.v:92]
-ERROR: [Synth 8-6156] failed synthesizing module 'jjj_const' [/home/XXX/Pro=
-jects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut=
-/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:11]
-ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_block_Block' [/home=
-/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfno=
-c-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_block_Block.v:25]
-ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_image_core' [/home/=
-XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc=
--peanut/rfnoc/icores/e320_rfnoc_image_core.v:14]
-ERROR: [Synth 8-6156] failed synthesizing module 'e320_core' [/home/XXX/Pro=
-jects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e=
-320_core.v:18]
-ERROR: [Synth 8-6156] failed synthesizing module 'e320' [/home/XXX/Projects=
-/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e320.v=
-:14]
-ERROR: [Common 17-69] Command failed: Synthesis failed - please see the con=
-sole or run log file for details
-
-
-2) Looking at the rfnoc-example included under uhd/host, I see that this co=
-mment is in Ettus's /rfnoc-example/fpga/Makefile.srcs file:
-
-# If there are additional modules or IP (other than what is in the RFNoC bl=
-ock
-# subdirectories) that needs to get installed in order to synthesize blocks=
- from
-# this module, list them here:
-#RFNOC_OOT_SRCS +=3D $(abspath $(addprefix ${RFNOC_EXAMPLE_DIR},
-#my_other_module.v \
-#ip/my_ip_core/my_ip_core.xci \
-#))
-
-So, I created an rfnoc/fpga/ip/DDS_Test_Signal folder and copied the xci fi=
-le there. Then, I added the following line to my /rfnoc/fpga/Makefile.srcs:
-
-RFNOC_OOT_SRCS +=3D $(abspath $(addprefix ${RFNOC_EXAMPLE_DIR}, ip/DDS_Test=
-_Signal/DDS_Test_Signal.xci))
-
-When I do this, I get:
-
-Environment successfully initialized.
-BUILDER: Checking tools...
-* GNU bash, version 4.4.20(1)-release (x86_64-pc-linux-gnu)
-* Python 2.7.17
-* Vivado v2019.1 (64-bit)
-make[5]: *** No rule to make target '/home/XXX/Projects/SCISRS/usrp/gnuradi=
-o/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/ip/DDS_Test_Signal/DDS_Tes=
-t_Signal.xci', needed by 'bin'.  Stop.
-Makefile:65: recipe for target 'E320_XG' failed
-make[4]: *** [E320_XG] Error 2
-Built target Block_x310_rfnoc_image_core
-
-
-So, I'm obviously not adding the IP correctly. Can anyone point me in the r=
-ight direction?
-
-Thanks,
-Jim
-
-
---_000_MN2PR12MB33125D99856227CEB8E2E8BAB8020MN2PR12MB3312namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> As a quick update, with my attempt "2" described in the original post, I
+> actually get the same result as I do with method "1" (I fixed a typo),
+> although I don't get the critical warning. So, the result of trying to
+> build the FPGA image is still:
 >
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+> ...
+> [00:00:12] Starting Synthesis Command
+> ERROR: [Synth 8-439] module 'DDS_Test_Signal' not found
+> [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:92]
+> ERROR: [Synth 8-6156] failed synthesizing module 'jjj_const'
+> [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:11]
+> ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_block_Block'
+> [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_block_Block.v:25]
+> ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_image_core'
+> [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/icores/e320_rfnoc_image_core.v:14]
+> ERROR: [Synth 8-6156] failed synthesizing module 'e320_core'
+> [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e320_core.v:18]
+> ERROR: [Synth 8-6156] failed synthesizing module 'e320'
+> [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e320.v:14]
+> ERROR: [Common 17-69] Command failed: Synthesis failed - please see the
+> console or run log file for details
+> [00:04:25] Current task: Synthesis +++ Current Phase: Starting
+> [00:04:26] Current task: Synthesis +++ Current Phase: Finished
+> [00:04:26] Process terminated. Status: Failure
+>
+> Thanks,
+> Jim
+>
+>
+>
+> ------------------------------
+> *From:* USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Jim
+> Palladino via USRP-users <usrp-users@lists.ettus.com>
+> *Sent:* Thursday, October 15, 2020 1:13 PM
+> *To:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+> *Subject:* [USRP-users] Adding Xilinx IP to custom RFNoC block
+>
+> Hello,
+>
+> I'm trying to add a Xilinx DDS to a custom RFNoC block (using UHD 4.0 and
+> associated gr-ettus repo). To do this, I started building the FPGA image
+> using the GUI option, stopped the build shortly after Vivado opened, and
+> saved a Vivado Project. Then, in Vivado I configured/added a Xilinx DDS to
+> my custom RFNoC block hdl and built the project just fine.
+>
+> Now, I'm trying to setup my build file structure so I can use the "make"
+> flow to build the FPGA image. I've tried several things.
+>
+> 1) I copied the xci file directly to my rfnoc/fpga/rfnoc_block_Block
+> folder. Then, I added the following to the Makefile.srcs file in the same
+> folder:
+>
+> RFNOC_OOT_SRCS += $(addprefix $(dir $(abspath $(lastword
+> $(MAKEFILE_LIST)))), rfnoc_block_Block.v noc_shell_Block.v rfnoc_jjj.v
+> DDS_Test_Signal.xci)
+>
+> When I try to build the FPGA image, I get the following critical warning:
+> CRITICAL WARNING: [Vivado 12-1504] The IP is already part of the fileset
+> 'sources_1'. Requested source
+> '/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/DDS_Test_Signal.xci'
+> will not be added.
+>
+> followed by these errors:
+> ERROR: [Synth 8-439] module 'DDS_Test_Signal' not found
+> [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/XXX/fpga/rfnoc_block_Block/rfnoc_jjj.v:92]
+> ERROR: [Synth 8-6156] failed synthesizing module 'jjj_const'
+> [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:11]
+> ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_block_Block'
+> [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_block_Block.v:25]
+> ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_image_core'
+> [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/icores/e320_rfnoc_image_core.v:14]
+> ERROR: [Synth 8-6156] failed synthesizing module 'e320_core'
+> [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e320_core.v:18]
+> ERROR: [Synth 8-6156] failed synthesizing module 'e320'
+> [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e320.v:14]
+> ERROR: [Common 17-69] Command failed: Synthesis failed - please see the
+> console or run log file for details
+>
+>
+> 2) Looking at the rfnoc-example included under uhd/host, I see that this
+> comment is in Ettus's /rfnoc-example/fpga/Makefile.srcs file:
+>
+> # If there are additional modules or IP (other than what is in the RFNoC
+> block
+> # subdirectories) that needs to get installed in order to synthesize
+> blocks from
+> # this module, list them here:
+> #RFNOC_OOT_SRCS += $(abspath $(addprefix ${RFNOC_EXAMPLE_DIR},
+> #my_other_module.v \
+> #ip/my_ip_core/my_ip_core.xci \
+> #))
+>
+> So, I created an rfnoc/fpga/ip/DDS_Test_Signal folder and copied the xci
+> file there. Then, I added the following line to my
+> /rfnoc/fpga/Makefile.srcs:
+>
+> RFNOC_OOT_SRCS += $(abspath $(addprefix ${RFNOC_EXAMPLE_DIR},
+> ip/DDS_Test_Signal/DDS_Test_Signal.xci))
+>
+> When I do this, I get:
+>
+> Environment successfully initialized.
+> BUILDER: Checking tools...
+> * GNU bash, version 4.4.20(1)-release (x86_64-pc-linux-gnu)
+> * Python 2.7.17
+> * Vivado v2019.1 (64-bit)
+> make[5]: *** No rule to make target
+> '/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/ip/DDS_Test_Signal/DDS_Test_Signal.xci',
+> needed by 'bin'.  Stop.
+> Makefile:65: recipe for target 'E320_XG' failed
+> make[4]: *** [E320_XG] Error 2
+> Built target Block_x310_rfnoc_image_core
+>
+>
+> So, I'm obviously not adding the IP correctly. Can anyone point me in the
+> right direction?
+>
+> Thanks,
+> Jim
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000009b5f4405b1b92e3f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Jim,<div>I couldn&#39;t figure it out quickly enough so I =
+just put my ip in-tree (fpga/usrp3/lib/ip/) and updated the corresponding E=
+ttus Makefile.inc</div><div>Rob</div></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 15, 2020 at 1:40 PM Jim Pa=
+lladino via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">us=
+rp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 As a quick update, with my attempt &quot;2&quot; described in the original =
 post, I actually get the same result as I do with method &quot;1&quot; (I f=
-ixed a typo), although I don't get the critical warning. So, the result of =
-trying to build the FPGA image is still:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+ixed a typo), although I don&#39;t get the critical warning. So, the result=
+ of trying to build the FPGA image is still:</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 ...</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 [00:00:12] Starting Synthesis Command
-<div>ERROR: [Synth 8-439] module 'DDS_Test_Signal' not found [/home/XXX/Pro=
-jects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut=
-/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:92]</div>
-<div>ERROR: [Synth 8-6156] failed synthesizing module 'jjj_const' [/home/XX=
-X/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-p=
-eanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:11]</div>
-<div>ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_block_Block' [=
+<div>ERROR: [Synth 8-439] module &#39;DDS_Test_Signal&#39; not found [/home=
+/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfno=
+c-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:92]</div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module &#39;jjj_const&#39; [=
 /home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom=
-/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_block_Block.v:25]</div>
-<div>ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_image_core' [/=
-home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/=
-rfnoc-peanut/rfnoc/icores/e320_rfnoc_image_core.v:14]</div>
-<div>ERROR: [Synth 8-6156] failed synthesizing module 'e320_core' [/home/XX=
-X/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e=
-320/e320_core.v:18]</div>
-<div>ERROR: [Synth 8-6156] failed synthesizing module 'e320' [/home/XXX/Pro=
-jects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e=
-320.v:14]</div>
+/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:11]</div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module &#39;rfnoc_block_Bloc=
+k&#39; [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNo=
+C_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_block_Block.v:25]<=
+/div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module &#39;rfnoc_image_core=
+&#39; [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC=
+_Custom/rfnoc-peanut/rfnoc/icores/e320_rfnoc_image_core.v:14]</div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module &#39;e320_core&#39; [=
+/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usr=
+p3/top/e320/e320_core.v:18]</div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module &#39;e320&#39; [/home=
+/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/to=
+p/e320/e320.v:14]</div>
 <div>ERROR: [Common 17-69] Command failed: Synthesis failed - please see th=
 e console or run log file for details</div>
 <div>[00:04:25] Current task: Synthesis +++ Current Phase: Starting</div>
@@ -329,124 +281,124 @@ e console or run log file for details</div>
 <br>
 <br>
 </div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
-sers-bounces@lists.ettus.com&gt; on behalf of Jim Palladino via USRP-users =
-&lt;usrp-users@lists.ettus.com&gt;<br>
+<div id=3D"gmail-m_-2397178323551408827appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_-2397178323551408827divRplyFwdMsg" dir=3D"ltr"><font fac=
+e=3D"Calibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>Fro=
+m:</b> USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists.ettus.com"=
+ target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&gt; on behalf of =
+Jim Palladino via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.c=
+om" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
 <b>Sent:</b> Thursday, October 15, 2020 1:13 PM<br>
-<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
->
+<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
 <b>Subject:</b> [USRP-users] Adding Xilinx IP to custom RFNoC block</font>
-<div>&nbsp;</div>
+<div>=C2=A0</div>
 </div>
-<style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
+
 <div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 Hello,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-I'm trying to add a Xilinx DDS to a custom RFNoC block (using UHD 4.0 and a=
-ssociated gr-ettus repo). To do this, I started building the FPGA image usi=
-ng the GUI option, stopped the build shortly after Vivado opened, and saved=
- a Vivado Project. Then, in Vivado
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+I&#39;m trying to add a Xilinx DDS to a custom RFNoC block (using UHD 4.0 a=
+nd associated gr-ettus repo). To do this, I started building the FPGA image=
+ using the GUI option, stopped the build shortly after Vivado opened, and s=
+aved a Vivado Project. Then, in Vivado
  I configured/added a Xilinx DDS to my custom RFNoC block hdl and built the=
- project just fine.&nbsp;</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+ project just fine.=C2=A0</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Now, I'm trying to setup my build file structure so I can use the &quot;mak=
-e&quot; flow to build the FPGA image. I've tried several things.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+Now, I&#39;m trying to setup my build file structure so I can use the &quot=
+;make&quot; flow to build the FPGA image. I&#39;ve tried several things.</d=
+iv>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 1) I copied the xci file directly to my rfnoc/fpga/rfnoc_block_Block folder=
 . Then, I added the following to the Makefile.srcs file in the same folder:=
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 RFNOC_OOT_SRCS +=3D $(addprefix $(dir $(abspath $(lastword $(MAKEFILE_LIST)=
 ))), rfnoc_block_Block.v noc_shell_Block.v rfnoc_jjj.v DDS_Test_Signal.xci)=
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 When I try to build the FPGA image, I get the following critical warning:</=
 div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-CRITICAL WARNING: [Vivado 12-1504] The IP is already part of the fileset 's=
-ources_1'. Requested source '/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.=
-0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/DDS=
-_Test_Signal.xci' will not be added.<br>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+CRITICAL WARNING: [Vivado 12-1504] The IP is already part of the fileset &#=
+39;sources_1&#39;. Requested source &#39;/home/XXX/Projects/SCISRS/usrp/gnu=
+radio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_blo=
+ck_Block/DDS_Test_Signal.xci&#39; will not be added.<br>
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 followed by these errors:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span style=3D"color:rgb(0,0,0); font-family:Calibri,Arial,Helvetica,sans-s=
-erif; font-size:12pt">ERROR: [Synth 8-439] module 'DDS_Test_Signal' not fou=
-nd [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Cu=
-stom/rfnoc-peanut/XXX/fpga/rfnoc_block_Block/rfnoc_jjj.v:92]</span><br>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<span style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-se=
+rif;font-size:12pt">ERROR: [Synth 8-439] module &#39;DDS_Test_Signal&#39; n=
+ot found [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RF=
+NoC_Custom/rfnoc-peanut/XXX/fpga/rfnoc_block_Block/rfnoc_jjj.v:92]</span><b=
+r>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<div>ERROR: [Synth 8-6156] failed synthesizing module 'jjj_const' [/home/XX=
-X/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-p=
-eanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:11]</div>
-<div>ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_block_Block' [=
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<div>ERROR: [Synth 8-6156] failed synthesizing module &#39;jjj_const&#39; [=
 /home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom=
-/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_block_Block.v:25]</div>
-<div>ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_image_core' [/=
-home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/=
-rfnoc-peanut/rfnoc/icores/e320_rfnoc_image_core.v:14]</div>
-<div>ERROR: [Synth 8-6156] failed synthesizing module 'e320_core' [/home/XX=
-X/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e=
-320/e320_core.v:18]</div>
-<div>ERROR: [Synth 8-6156] failed synthesizing module 'e320' [/home/XXX/Pro=
-jects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e=
-320.v:14]</div>
+/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:11]</div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module &#39;rfnoc_block_Bloc=
+k&#39; [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNo=
+C_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_block_Block.v:25]<=
+/div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module &#39;rfnoc_image_core=
+&#39; [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC=
+_Custom/rfnoc-peanut/rfnoc/icores/e320_rfnoc_image_core.v:14]</div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module &#39;e320_core&#39; [=
+/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usr=
+p3/top/e320/e320_core.v:18]</div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module &#39;e320&#39; [/home=
+/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/to=
+p/e320/e320.v:14]</div>
 <div>ERROR: [Common 17-69] Command failed: Synthesis failed - please see th=
 e console or run log file for details</div>
 <div><br>
 </div>
 <br>
 2) Looking at the rfnoc-example included under uhd/host, I see that this co=
-mment is in Ettus's /rfnoc-example/fpga/Makefile.srcs file:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+mment is in Ettus&#39;s /rfnoc-example/fpga/Makefile.srcs file:</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 # If there are additional modules or IP (other than what is in the RFNoC bl=
 ock
 <div># subdirectories) that needs to get installed in order to synthesize b=
@@ -457,77 +409,85 @@ locks from</div>
 <div>#ip/my_ip_core/my_ip_core.xci \</div>
 #))<br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 So, I created an rfnoc/fpga/ip/DDS_Test_Signal folder and copied the xci fi=
 le there. Then, I added the following line to my /rfnoc/fpga/Makefile.srcs:=
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 RFNOC_OOT_SRCS +=3D $(abspath $(addprefix ${RFNOC_EXAMPLE_DIR}, ip/DDS_Test=
 _Signal/DDS_Test_Signal.xci))<br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 When I do this, I get:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 Environment successfully initialized.
 <div>BUILDER: Checking tools...</div>
 <div>* GNU bash, version 4.4.20(1)-release (x86_64-pc-linux-gnu)</div>
 <div>* Python 2.7.17</div>
 <div>* Vivado v2019.1 (64-bit)</div>
-<div>make[5]: *** No rule to make target '/home/XXX/Projects/SCISRS/usrp/gn=
-uradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/ip/DDS_Test_Signal/DD=
-S_Test_Signal.xci', needed by 'bin'. &nbsp;Stop.</div>
-<div>Makefile:65: recipe for target 'E320_XG' failed</div>
+<div>make[5]: *** No rule to make target &#39;/home/XXX/Projects/SCISRS/usr=
+p/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/ip/DDS_Test_Signa=
+l/DDS_Test_Signal.xci&#39;, needed by &#39;bin&#39;.=C2=A0 Stop.</div>
+<div>Makefile:65: recipe for target &#39;E320_XG&#39; failed</div>
 <div>make[4]: *** [E320_XG] Error 2</div>
 <div>Built target Block_x310_rfnoc_image_core</div>
 <br>
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-So, I'm obviously not adding the IP correctly. Can anyone point me in the r=
-ight direction?</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+So, I&#39;m obviously not adding the IP correctly. Can anyone point me in t=
+he right direction?</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 Thanks,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 Jim</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
 <br>
 </div>
 </div>
-</body>
-</html>
+</div>
 
---_000_MN2PR12MB33125D99856227CEB8E2E8BAB8020MN2PR12MB3312namp_--
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000009b5f4405b1b92e3f--
 
 
---===============5702597820571357587==
+--===============2087953744551359720==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -538,5 +498,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5702597820571357587==--
+--===============2087953744551359720==--
 
