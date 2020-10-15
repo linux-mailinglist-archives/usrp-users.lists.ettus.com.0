@@ -2,51 +2,85 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A9D628E9A2
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Oct 2020 03:10:36 +0200 (CEST)
-Received: from [::1] (port=34830 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F8428F1EB
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Oct 2020 14:19:33 +0200 (CEST)
+Received: from [::1] (port=39242 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kSrmq-0003NY-Eg; Wed, 14 Oct 2020 21:10:32 -0400
-Received: from mail-lj1-f176.google.com ([209.85.208.176]:33870)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <sam.reiter8@gmail.com>)
- id 1kSrmm-0003G7-9y
- for usrp-users@lists.ettus.com; Wed, 14 Oct 2020 21:10:28 -0400
-Received: by mail-lj1-f176.google.com with SMTP id y16so1423743ljk.1
- for <usrp-users@lists.ettus.com>; Wed, 14 Oct 2020 18:10:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=/N0D124c4dhR1EX6mmfoqVEv5NmukLxwTI5qUIswDRQ=;
- b=n92+UirCoJPToPaEBxcWyz6+IzppzTHmP7K0OYzNqYBtrTQl4IFfhfi5RosyLyG8e1
- AkQsD/t2LElKJMNnb5aH5vLQy2DdhiayolqL1X13uaDarfFA28x/+TSJeLGPAu0muecP
- eynZRswFbcBfyPweIbI7aL46pqCJfp65V0okD4jcQ2C4OvYHOBeEaAbHZAR/UrHCjakj
- gGGosY0dwkczddT9bWZLCZMSl67fevnlnqo255a/KDfjSx8Ko8C15PKZU407GLPKvqlV
- qp/12yf0KxgQWE442gSaQG5b+nRPxKSCpabyWLo/SGzA/RLycEZTIew97eIbPTEg0SIY
- 8gHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=/N0D124c4dhR1EX6mmfoqVEv5NmukLxwTI5qUIswDRQ=;
- b=bBxkXfhKL90nigXai/jn548l27fc5AspvN0amYLBjLboEu1WuSp9xL/tMkqLB6yFEp
- PWOw39E0lUZVFOn6QvkYiIHw0yQ+Ct/fn99HABKHa+watmpJjEhe7iP6LeNL8ylcCyce
- TEY4z0JlXM/feVA2rpc9AajC/JwH2q9/as2KGVh2Nj2eA8uowTNzWM/lYwsTfspNVtUR
- Os8CmOV64Pel0ilWM47yYhwKDSVBaXk4Ro6PGtaAZgaEo1tM/dqdO9/dNe2zqgg9o1Iz
- X5+yCMuPd4fWfUC14v4bF6VBb1mSHVbkrhWcaN2VfhFDUwyWHGpKoPdbqG/xamNsB8xA
- pjoQ==
-X-Gm-Message-State: AOAM530GS0mvi5yqvcz10tprUDiNVbPY+mfgRPRgD5fDv4ayKNxQJH4J
- Ki1jyLmmF6AHfa5P4opZtvgBWsSzzuoZtIKRN5ahVlSXa4ZalQ==
-X-Google-Smtp-Source: ABdhPJxjGq/H03D2oMWe6pBmGDXsUA54PRXsTpNI/pv4qEGGFAR2bymdcICnSBlQ1OAsBOkLe7Je565vk6W+6bETOT0=
-X-Received: by 2002:a2e:b1c2:: with SMTP id e2mr274955lja.282.1602724186814;
- Wed, 14 Oct 2020 18:09:46 -0700 (PDT)
-MIME-Version: 1.0
+	id 1kT2EC-0006hg-Pf; Thu, 15 Oct 2020 08:19:28 -0400
+Received: from mail-bn8nam12on2045.outbound.protection.outlook.com
+ ([40.107.237.45]:41505 helo=NAM12-BN8-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <mark.koenig@iubelttechnologies.com>)
+ id 1kT2E8-0006c7-G9
+ for usrp-users@lists.ettus.com; Thu, 15 Oct 2020 08:19:24 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RCLR8vb43ipzmfXJPg3Qu6XmD7pfQ3rQTewFgswRxWR6j7lAp1kXr1sw3UHD4yt8a6Ewjk5jnTMY7tyJCBjFI3V2XThPYff2jsH8ZuTVOPal2uHODAcmGRIPq3Goiom4+t396fV9YgtqIJZyLXrBJUesl0VD4SVVGchd2ENpgUeTRowivaoDPBO2v+CY9A/S6GkER3xA7LK7bg9AIGZ4WMKTqXQrfydLSfcYHmbKHbP1VzDHWpXubBPUN0SIaMCMNGfx0ug7DxOM4PkDgX+wv6azfgH0xpkUZ6DMhetrG8vvHcskFJ2hycDnt1fsCk9SF/0gjV1L/6p9O/LjXmnjrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=W9M5Bg6GdoybxxkCStgdXNrJoG/CCrTzIY0FoZ2MSAU=;
+ b=oDUqI+I7qrxzGphNWN0aUPszkFnNdLKfH/mW+F5RXC9Jux6SZk+O3/+nkO23AnqjMn3+Esy6nd9SM/wsyxlKizlV83cVzuPrhZlwDzJVw3ivMz6xxRqStI9po7zdai/wD66wbSTSzhFKPShZ20YTbB4AUXbEwESLqKmjaq+z6h19PC0Kusw68EC8+pCCIi/yT/RCRcYij35XnbaWNViK6DEhKc0sbmtitLa9/Oov1GZ6Np8RG+8C1EDnY4A8cnadDP82k0IkewXxgY1oue24mVsmj1Kkn+KPaRV0UX4XGjWdnaB3XFt6wvC6qoAXuwWt+pI5VPIOuhrifQyWy8DODg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=iubelttechnologies.com; dmarc=pass action=none
+ header.from=iubelttechnologies.com; dkim=pass
+ header.d=iubelttechnologies.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NETORG330411.onmicrosoft.com; s=selector2-NETORG330411-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=W9M5Bg6GdoybxxkCStgdXNrJoG/CCrTzIY0FoZ2MSAU=;
+ b=crOGgasq8QAo6/AjZYG7/Uezr2baBT3RkzDO4IzEJtgLUun7YjEXWmpN2r+8t56bwI/jP+cDVEGbHhbJ3mn0xLQ/NPyudrJlgHZ9RgHl8WXsxcX0juhCdswt7IgE8pNhAs+Y55sHE81rlJ4AAyIzTNkHylgGeO6xaxyPByd5E1w=
+Received: from DM6PR12MB3067.namprd12.prod.outlook.com (2603:10b6:5:115::10)
+ by DM6PR12MB3353.namprd12.prod.outlook.com (2603:10b6:5:3d::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21; Thu, 15 Oct
+ 2020 12:18:42 +0000
+Received: from DM6PR12MB3067.namprd12.prod.outlook.com
+ ([fe80::d160:b3af:428a:1c85]) by DM6PR12MB3067.namprd12.prod.outlook.com
+ ([fe80::d160:b3af:428a:1c85%5]) with mapi id 15.20.3477.024; Thu, 15 Oct 2020
+ 12:18:42 +0000
+To: Sam Reiter <sam.reiter8@gmail.com>
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Details on how these charts were made
+Thread-Index: AQHWoVV6b2e7mEPZhUylxLtQHneCZ6mX3QaAgAB344A=
+Date: Thu, 15 Oct 2020 12:18:41 +0000
+Message-ID: <74F5B6D1-D91F-448C-B833-0E8D68671EC6@iubelttechnologies.com>
 References: <9A418785-0BB4-44DA-854E-66130975896C@iubelttechnologies.com>
-In-Reply-To: <9A418785-0BB4-44DA-854E-66130975896C@iubelttechnologies.com>
-Date: Wed, 14 Oct 2020 20:09:35 -0500
-Message-ID: <CADBWrHgHDCuSwu=esnA2DGV0rm4r9wDXD7faN9YU+4KzHM-2rA@mail.gmail.com>
-To: Mark Koenig <mark.koenig@iubelttechnologies.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+ <CADBWrHgHDCuSwu=esnA2DGV0rm4r9wDXD7faN9YU+4KzHM-2rA@mail.gmail.com>
+In-Reply-To: <CADBWrHgHDCuSwu=esnA2DGV0rm4r9wDXD7faN9YU+4KzHM-2rA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none
+ header.from=iubelttechnologies.com;
+x-originating-ip: [72.9.220.173]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 0bc31f12-e8dc-4d95-8981-08d8710474a9
+x-ms-traffictypediagnostic: DM6PR12MB3353:
+x-microsoft-antispam-prvs: <DM6PR12MB3353553B51A911D79991CA228C020@DM6PR12MB3353.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: n3os1urABVSIAtjTxdnQ8XSqfWhwyJ3T8/99/QcNwI5ws8qN8uV4Gec/YRBvSM1aGmVAZ1LFNffzscvxIJqQRrSs6Gr+wahcpwbdxhpBQx4s1jDkTvedZaW0d/S4SMgNTcZI0NIBsITQHlihJonBnevx66haLlF7F6YwzjxhpmDKTey/zsxQvgiKQKIx3QlGLkdPlSaNEaGUneHCSS9HJRNXth0ooI+CO+XzHcl/Lha3NrWXgu59cP/wYuzNDZn+r3CMQB1YnaEGwRh8vbZ6STjyL9bMmyPViZtiuIxJ6ibkhtDNWDwKoVQrKhDe0R1tpetLgGPGWCvCGqqLavo25pLJwM1f6DQfoXPWLCfYO5Np2d0T7ag4HSyIHFCXatxhepRCO8LfdXWotsbduj0H8w==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3067.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(346002)(366004)(136003)(376002)(396003)(39830400003)(66476007)(76116006)(166002)(83080400001)(66556008)(36756003)(966005)(186003)(66946007)(53546011)(86362001)(6512007)(66446008)(91956017)(33656002)(2906002)(478600001)(6506007)(6916009)(71200400001)(4326008)(44832011)(2616005)(316002)(6486002)(64756008)(5660300002)(8936002)(8676002)(26005);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: aLK8U1Vt7huinEKiwDUgnx+Cvw3HpPpogbDarhpYrxm+apaV50FMVLoRBvqFhptGiKfiAjKD1ee5OgQ9wtqDNyytbr49QwJR3Gqw1GmAZiZkeCziuAdKhNciaSQolUDUHssDnXevzTfY/XLy0Krj1Df6LlVwuVScVeRh0uM1PS87tt7KTPxpzGVa6Gqm07iGZHhXHPJCEvlV9nRpagoKG7mQPMJdMZF5+Nnw0eVx7amuAxWNgolhFf2EWLy1xb87BJIkeomBRrc3Ujj8Kiog0lS/DdssU8EbIZOUuLtcEixgRC61l2gxPPpArMDLweYXaN5gWF03OYPq9c5VcvxgmmAkJnkQZYjSFDrCMAvJYdejDULeM63FZdWnxGdTyYFlndgprRbfBYvV+xCZLYzxaJcnFQ7KSNU51Z7Xd9liwvof1UlBW6ngMAtouDqOJlyQlZKlmQLZVCYBaviHSqLMYkQt5VWbA9IZS62xKjV44zAXcpV/m/27xmPpqjycliZu45zKUDX+oYtoATGFmO3H+h/rf+aMkflDRZ8GYjbwOmQiRAQ7IRipxlWinMSSroUVY1/jNd7lYBhgWAiM8Ca7mZ/shEo5PHt8mWHT2BB6iPHy9j7dukvPjtkMVGYUPpnLbkFv12lBDvQX4GljdQSoXw==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: iubelttechnologies.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3067.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0bc31f12-e8dc-4d95-8981-08d8710474a9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Oct 2020 12:18:42.2271 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1a86298a-7d59-4320-a7f5-798264e69360
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0ds2zzjzYqzoK6BT6JtYJpJy/WUGX4LiKJJlBJEq7WOrCn9uRo1z72TQiNP6T8NFfyI/DtDitI2Wn+ZOzn9CMflBbvqvg48lZWYvhhvHfEt/L/A/RnBch0OP0GZ7VY9T
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3353
 Subject: Re: [USRP-users] Details on how these charts were made
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -59,9 +93,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Sam Reiter via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Sam Reiter <sam.reiter8@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2169887646796374319=="
+From: Mark Koenig via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mark Koenig <mark.koenig@iubelttechnologies.com>
+Content-Type: multipart/mixed; boundary="===============7992473694504845836=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,144 +109,182 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2169887646796374319==
-Content-Type: multipart/alternative; boundary="000000000000d3fd4b05b1ab4d3a"
+--===============7992473694504845836==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_74F5B6D1D91F448CB8330E8D68671EC6iubelttechnologiescom_"
 
---000000000000d3fd4b05b1ab4d3a
-Content-Type: text/plain; charset="UTF-8"
+--_000_74F5B6D1D91F448CB8330E8D68671EC6iubelttechnologiescom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Mark,
+VGhhbmtzIFNhbSEgIEkgYWN0dWFsbHkgYW0ganVzdCBmaW5pc2hpbmcgdXAgZG9pbmcgd2hhdCB5
+b3UgZGVzY3JpYmVkIGluIHlvdXIgZmlyc3QgcGFyYWdyYXBoLg0KDQpXaGlsZSB3ZSBoYXZlbuKA
+mXQgbW92ZWQgdG8gdWhkIDQuMCB5ZXQsIHRoZSBwb3dlciBjYWwgZmVhdHVyZSBzb3VuZHMgaW50
+ZXJlc3RpbmcuDQoNCkNoZWVycw0KDQpNYXJrDQoNCkZyb206IFNhbSBSZWl0ZXIgPHNhbS5yZWl0
+ZXI4QGdtYWlsLmNvbT4NCkRhdGU6IFdlZG5lc2RheSwgT2N0b2JlciAxNCwgMjAyMCBhdCA5OjA5
+IFBNDQpUbzogTWFyayBLb2VuaWcgPG1hcmsua29lbmlnQGl1YmVsdHRlY2hub2xvZ2llcy5jb20+
+DQpDYzogInVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20+DQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIERldGFpbHMgb24gaG93IHRoZXNlIGNo
+YXJ0cyB3ZXJlIG1hZGUNCg0KTWFyaywNCg0KV2hpbGUgSSBkb24ndCBoYXZlIHJlY29tbWVuZGF0
+aW9ucyBmb3Igc3BlY2lmaWMgdGVzdCBpbnN0cnVtZW50YXRpb24sIEknZCBndWVzcyB5b3UgY291
+bGQgcHJldHR5IGVhc2lseSBjaGFyYWN0ZXJpemUgYSBSWCBnYWluIHZzIGZyZXF1ZW5jeSB3aXRo
+IGEgIChjYWxpYnJhdGVkKSBzaWduYWwgZ2VuZXJhdG9yIHRoYXQgaXMgYWRkcmVzc2FibGUgb3Zl
+ciBTQ1BJLiBPbmNlIHlvdSd2ZSBmaWd1cmVkIG91dCBob3cgdG8gVFggYSBDVyBhdCBhIGdpdmVu
+IHBvd2VyIGxldmVsIG92ZXIgdGhlIFNDUEkgaW50ZXJmYWNlIHRvIHlvdXIgZ2VuZXJhdG9yIHVz
+aW5nIHB5dGhvbiBvciBDKyssIHlvdSBjb3VsZCB3cml0ZSBhIHNjcmlwdCB0aGF0IG1vdmVkIHRo
+ZSBUd2luUlggYW5kIHNpZyBnZW4gZnJvbSBEQyB0byA2R0h6IGluIGtub3duIGluY3JlbWVudHMg
+YW5kIHJlY29yZGVkIHRoZSByZWNlaXZlZCBzaWduYWwgcG93ZXIuIEZyb20gdGhlcmUsIHJlY3Jl
+YXRpbmcgdGhlIHBsb3QgeW91IG1lbnRpb25lZCB3b3VsZG4ndCBiZSB0b28gZGlmZmljdWx0Lg0K
+DQpUaGF0IGJlaW5nIHNhaWQsIHRoZXJlIGFwcGVhcnMgdG8gYmUgYSBwb3dlciBjYWwgdXRpbGl0
+eSB0aGF0IGNhbWUgb3V0IHdpdGggVUhEIDQuMDoNCg0KaHR0cHM6Ly9naXRodWIuY29tL0V0dHVz
+UmVzZWFyY2gvdWhkL2Jsb2IvbWFzdGVyL2hvc3QvdXRpbHMvdWhkX3Bvd2VyX2NhbC5weQ0KDQog
+SSBoYXZlbid0IHVzZWQgaXQgYmVmb3JlLCBzbyBJJ20gbm90IHN1cmUgd2hldGhlciBvciBub3Qg
+aXQnZCBiZSBhIGdvb2Qgc3RhcnRpbmcgcG9pbnQgZm9yIHlvdSwgYnV0IGl0IG1pZ2h0IGJlIHdv
+cnRoIGNoZWNraW5nIG91dCENCg0KLVNhbQ0KDQpPbiBUdWUsIE9jdCAxMywgMjAyMCBhdCA2OjQw
+IEFNIE1hcmsgS29lbmlnIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+PiB3cm90ZToNCkkgYW0gdGhpbmtp
+bmcgb2YgZG9pbmcgc29tZSBSRiBjaGFyYWN0ZXJpemF0aW9uIG9mIHRoZSBUd2luUlggZGF1Z2h0
+ZXJib2FyZCBpbiB0aGUgbmVhciBmdXR1cmUsIGFuZCBJIHdhcyBob3BpbmcgdG8gdXNlIHRoZSBw
+ZGYgYXMgYSBndWlkZS4gIFVuZm9ydHVuYXRlbHksIHRoZXJlIGlzIG5vIHRlc3Qgc2V0IHVwIG9y
+IHRlc3QgZXF1aXBtZW50IGxpc3QgdXNlZCB0byBjcmVhdGUgc3BlY2lmaWNhbGx5IHRoZSBSeCBH
+YWluIHBsb3RzIHZzLiBGcmVxdWVuY3kgZm9yIGEgZ2l2ZW4gZ2FpbiB2YWx1ZS4gIEFueSBoZWxw
+IHdvdWxkIGJlIGdyZWF0bHkgYXBwcmVjaWF0ZWQsIGFzIEkgbWF5IGJlIGFibGUgdG8gbG9jYXRl
+IHRoZSBlcXVpcG1lbnQgaW4gbXkgbGFiLg0KDQpodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9wZXJm
+b3JtYW5jZV9kYXRhL3VieC9VQlgtd2l0aG91dC1VSEQtY29ycmVjdGlvbnMucGRmDQoNCg0KVGhh
+bmsgeW91DQoNCk1hcmsNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QNClVTUlAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCmh0dHA6Ly9saXN0cy5l
+dHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
 
-While I don't have recommendations for specific test instrumentation, I'd
-guess you could pretty easily characterize a RX gain vs frequency with a
-(calibrated) signal generator that is addressable over SCPI. Once you've
-figured out how to TX a CW at a given power level over the SCPI interface
-to your generator using python or C++, you could write a script that moved
-the TwinRX and sig gen from DC to 6GHz in known increments and recorded the
-received signal power. From there, recreating the plot you mentioned
-wouldn't be too difficult.
+--_000_74F5B6D1D91F448CB8330E8D68671EC6iubelttechnologiescom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <19029FB2FC39A342A7B526655AA02359@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-That being said, there appears to be a power cal utility that came out with
-UHD 4.0:
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iVGl0bGUiIGNvbnRlbnQ9IiI+DQo8bWV0YSBuYW1lPSJLZXl3b3JkcyIgY29udGVu
+dD0iIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUg
+KGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8N
+CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0
+IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJ
+cGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
+CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsN
+CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWls
+eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21z
+by1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRl
+cmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHls
+ZS1wcmlvcml0eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGlu
+ZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsN
+Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30N
+CnNwYW4ubXNvSW5zDQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCW1zby1zdHlsZS1u
+YW1lOiIiOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7DQoJY29sb3I6dGVhbDt9DQouTXNv
+Q2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAu
+MHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46
+MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRT
+ZWN0aW9uMTt9DQotLT48L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkgYmdjb2xvcj0id2hpdGUiIGxh
+bmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRT
+ZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFua3MgU2FtISZuYnNwOyBJIGFjdHVh
+bGx5IGFtIGp1c3QgZmluaXNoaW5nIHVwIGRvaW5nIHdoYXQgeW91IGRlc2NyaWJlZCBpbiB5b3Vy
+IGZpcnN0IHBhcmFncmFwaC4mbmJzcDsNCjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5XaGlsZSB3
+ZSBoYXZlbuKAmXQgbW92ZWQgdG8gdWhkIDQuMCB5ZXQsIHRoZSBwb3dlciBjYWwgZmVhdHVyZSBz
+b3VuZHMgaW50ZXJlc3RpbmcuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkNoZWVyczxvOnA+PC9v
+OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5NYXJrPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10
+b3A6c29saWQgI0I1QzRERiAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJs
+YWNrIj5Gcm9tOiA8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9y
+OmJsYWNrIj5TYW0gUmVpdGVyICZsdDtzYW0ucmVpdGVyOEBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+
+RGF0ZTogPC9iPldlZG5lc2RheSwgT2N0b2JlciAxNCwgMjAyMCBhdCA5OjA5IFBNPGJyPg0KPGI+
+VG86IDwvYj5NYXJrIEtvZW5pZyAmbHQ7bWFyay5rb2VuaWdAaXViZWx0dGVjaG5vbG9naWVzLmNv
+bSZndDs8YnI+DQo8Yj5DYzogPC9iPiZxdW90O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJnF1
+b3Q7ICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OiA8
+L2I+UmU6IFtVU1JQLXVzZXJzXSBEZXRhaWxzIG9uIGhvdyB0aGVzZSBjaGFydHMgd2VyZSBtYWRl
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5NYXJrLDxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+V2hpbGUgSSBkb24ndCBoYXZlJm5ic3A7cmVjb21tZW5kYXRpb25zJm5ic3A7Zm9yIHNwZWNpZmlj
+IHRlc3QgaW5zdHJ1bWVudGF0aW9uLCBJJ2QgZ3Vlc3MgeW91IGNvdWxkIHByZXR0eSBlYXNpbHkg
+Y2hhcmFjdGVyaXplIGEgUlggZ2FpbiB2cyBmcmVxdWVuY3kgd2l0aCBhJm5ic3A7IChjYWxpYnJh
+dGVkKSBzaWduYWwgZ2VuZXJhdG9yIHRoYXQgaXMgYWRkcmVzc2FibGUgb3ZlciBTQ1BJLiBPbmNl
+IHlvdSd2ZSBmaWd1cmVkIG91dCBob3cNCiB0byBUWCBhIENXIGF0IGEgZ2l2ZW4gcG93ZXIgbGV2
+ZWwgb3ZlciB0aGUgU0NQSSBpbnRlcmZhY2UgdG8geW91ciBnZW5lcmF0b3IgdXNpbmcgcHl0aG9u
+IG9yIEMrKywgeW91IGNvdWxkIHdyaXRlIGEgc2NyaXB0IHRoYXQgbW92ZWQgdGhlIFR3aW5SWCBh
+bmQgc2lnIGdlbiBmcm9tIERDIHRvIDZHSHogaW4ga25vd24gaW5jcmVtZW50cyBhbmQgcmVjb3Jk
+ZWQgdGhlIHJlY2VpdmVkIHNpZ25hbCBwb3dlci4gRnJvbSB0aGVyZSwgcmVjcmVhdGluZyB0aGUN
+CiBwbG90IHlvdSBtZW50aW9uZWQgd291bGRuJ3QgYmUgdG9vIGRpZmZpY3VsdC4mbmJzcDs8bzpw
+PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhhdCBi
+ZWluZyBzYWlkLCB0aGVyZSBhcHBlYXJzIHRvIGJlIGEgcG93ZXIgY2FsIHV0aWxpdHkgdGhhdCBj
+YW1lIG91dCB3aXRoIFVIRCA0LjA6Jm5ic3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1
+c1Jlc2VhcmNoL3VoZC9ibG9iL21hc3Rlci9ob3N0L3V0aWxzL3VoZF9wb3dlcl9jYWwucHkiPmh0
+dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9iL21hc3Rlci9ob3N0L3V0aWxz
+L3VoZF9wb3dlcl9jYWwucHk8L2E+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwO0kgaGF2ZW4ndCB1c2VkIGl0IGJlZm9yZSwgc28gSSdt
+IG5vdCBzdXJlIHdoZXRoZXIgb3Igbm90IGl0J2QgYmUgYSBnb29kIHN0YXJ0aW5nIHBvaW50IGZv
+ciB5b3UsIGJ1dCBpdCBtaWdodCBiZSB3b3J0aCBjaGVja2luZyBvdXQhJm5ic3A7PG86cD48L286
+cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPi1TYW08bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
+OzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gVHVlLCBP
+Y3QgMTMsIDIwMjAgYXQgNjo0MCBBTSBNYXJrIEtvZW5pZyB2aWEgVVNSUC11c2VycyAmbHQ7PGEg
+aHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2tx
+dW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtw
+YWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDow
+aW4iPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdp
+bi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkkgYW0gdGhpbmtpbmcg
+b2YgZG9pbmcgc29tZSBSRiBjaGFyYWN0ZXJpemF0aW9uIG9mIHRoZSBUd2luUlggZGF1Z2h0ZXJi
+b2FyZCBpbiB0aGUgbmVhciBmdXR1cmUsIGFuZCBJIHdhcyBob3BpbmcgdG8gdXNlIHRoZSBwZGYg
+YXMgYSBndWlkZS4mbmJzcDsgVW5mb3J0dW5hdGVseSwgdGhlcmUgaXMgbm8gdGVzdCBzZXQNCiB1
+cCBvciB0ZXN0IGVxdWlwbWVudCBsaXN0IHVzZWQgdG8gY3JlYXRlIHNwZWNpZmljYWxseSB0aGUg
+UnggR2FpbiBwbG90cyB2cy4gRnJlcXVlbmN5IGZvciBhIGdpdmVuIGdhaW4gdmFsdWUuJm5ic3A7
+IEFueSBoZWxwIHdvdWxkIGJlIGdyZWF0bHkgYXBwcmVjaWF0ZWQsIGFzIEkgbWF5IGJlIGFibGUg
+dG8gbG9jYXRlIHRoZSBlcXVpcG1lbnQgaW4gbXkgbGFiLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
+Ym90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
+YXV0byI+PGEgaHJlZj0iaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vcGVyZm9ybWFuY2VfZGF0YS91
+YngvVUJYLXdpdGhvdXQtVUhELWNvcnJlY3Rpb25zLnBkZiIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBz
+Oi8vZmlsZXMuZXR0dXMuY29tL3BlcmZvcm1hbmNlX2RhdGEvdWJ4L1VCWC13aXRob3V0LVVIRC1j
+b3JyZWN0aW9ucy5wZGY8L2E+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
+PiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
+YXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1h
+bHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+VGhhbmsgeW91PG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87
+bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
+Ym90dG9tLWFsdDphdXRvIj5NYXJrPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
+by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8
+bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0PGJyPg0KPGEgaHJlZj0ibWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJy
+Pg0KPGEgaHJlZj0iaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAt
+dXNlcnNfbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+aHR0cDovL2xpc3RzLmV0dHVz
+LmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC9hPjxvOnA+
+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRt
+bD4NCg==
 
-https://github.com/EttusResearch/uhd/blob/master/host/utils/uhd_power_cal.py
-
- I haven't used it before, so I'm not sure whether or not it'd be a good
-starting point for you, but it might be worth checking out!
-
--Sam
-
-On Tue, Oct 13, 2020 at 6:40 AM Mark Koenig via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> I am thinking of doing some RF characterization of the TwinRX
-> daughterboard in the near future, and I was hoping to use the pdf as a
-> guide.  Unfortunately, there is no test set up or test equipment list used
-> to create specifically the Rx Gain plots vs. Frequency for a given gain
-> value.  Any help would be greatly appreciated, as I may be able to locate
-> the equipment in my lab.
->
->
->
->
-> https://files.ettus.com/performance_data/ubx/UBX-without-UHD-corrections.pdf
->
->
->
->
->
-> Thank you
->
->
->
-> Mark
->
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000d3fd4b05b1ab4d3a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Mark,<div><br></div><div>While I don&#39;t have=C2=A0recom=
-mendations=C2=A0for specific test instrumentation, I&#39;d guess you could =
-pretty easily characterize a RX gain vs frequency with a=C2=A0 (calibrated)=
- signal generator that is addressable over SCPI. Once you&#39;ve figured ou=
-t how to TX a CW at a given power level over the SCPI interface to your gen=
-erator using python or C++, you could write a script that moved the TwinRX =
-and sig gen from DC to 6GHz in known increments and recorded the received s=
-ignal power. From there, recreating the plot you mentioned wouldn&#39;t be =
-too difficult.=C2=A0</div><div><br></div><div>That being said, there appear=
-s to be a power cal utility that came out with UHD 4.0:=C2=A0</div><div><br=
-></div><div><a href=3D"https://github.com/EttusResearch/uhd/blob/master/hos=
-t/utils/uhd_power_cal.py">https://github.com/EttusResearch/uhd/blob/master/=
-host/utils/uhd_power_cal.py</a></div><div><br></div><div>=C2=A0I haven&#39;=
-t used it before, so I&#39;m not sure whether or not it&#39;d be a good sta=
-rting point for you, but it might be worth checking out!=C2=A0</div><div><b=
-r></div><div>-Sam</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
-" class=3D"gmail_attr">On Tue, Oct 13, 2020 at 6:40 AM Mark Koenig via USRP=
--users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.e=
-ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex">
-
-
-
-
-
-
-
-<div bgcolor=3D"white" lang=3D"EN-US">
-<div class=3D"gmail-m_-8625436655479403565WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt">I am thinking of doin=
-g some RF characterization of the TwinRX daughterboard in the near future, =
-and I was hoping to use the pdf as a guide.=C2=A0 Unfortunately, there is n=
-o test set up or test equipment list used
- to create specifically the Rx Gain plots vs. Frequency for a given gain va=
-lue.=C2=A0 Any help would be greatly appreciated, as I may be able to locat=
-e the equipment in my lab.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://fi=
-les.ettus.com/performance_data/ubx/UBX-without-UHD-corrections.pdf" target=
-=3D"_blank">https://files.ettus.com/performance_data/ubx/UBX-without-UHD-co=
-rrections.pdf</a><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thank you<u></u><u></=
-u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Mark<u></u><u></u></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
-/span></p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000d3fd4b05b1ab4d3a--
+--_000_74F5B6D1D91F448CB8330E8D68671EC6iubelttechnologiescom_--
 
 
---===============2169887646796374319==
+--===============7992473694504845836==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -223,5 +295,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2169887646796374319==--
+--===============7992473694504845836==--
 
