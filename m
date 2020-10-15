@@ -2,86 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60F8428F1EB
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Oct 2020 14:19:33 +0200 (CEST)
-Received: from [::1] (port=39242 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0E9B28F209
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Oct 2020 14:26:47 +0200 (CEST)
+Received: from [::1] (port=39284 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kT2EC-0006hg-Pf; Thu, 15 Oct 2020 08:19:28 -0400
-Received: from mail-bn8nam12on2045.outbound.protection.outlook.com
- ([40.107.237.45]:41505 helo=NAM12-BN8-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <mark.koenig@iubelttechnologies.com>)
- id 1kT2E8-0006c7-G9
- for usrp-users@lists.ettus.com; Thu, 15 Oct 2020 08:19:24 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RCLR8vb43ipzmfXJPg3Qu6XmD7pfQ3rQTewFgswRxWR6j7lAp1kXr1sw3UHD4yt8a6Ewjk5jnTMY7tyJCBjFI3V2XThPYff2jsH8ZuTVOPal2uHODAcmGRIPq3Goiom4+t396fV9YgtqIJZyLXrBJUesl0VD4SVVGchd2ENpgUeTRowivaoDPBO2v+CY9A/S6GkER3xA7LK7bg9AIGZ4WMKTqXQrfydLSfcYHmbKHbP1VzDHWpXubBPUN0SIaMCMNGfx0ug7DxOM4PkDgX+wv6azfgH0xpkUZ6DMhetrG8vvHcskFJ2hycDnt1fsCk9SF/0gjV1L/6p9O/LjXmnjrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W9M5Bg6GdoybxxkCStgdXNrJoG/CCrTzIY0FoZ2MSAU=;
- b=oDUqI+I7qrxzGphNWN0aUPszkFnNdLKfH/mW+F5RXC9Jux6SZk+O3/+nkO23AnqjMn3+Esy6nd9SM/wsyxlKizlV83cVzuPrhZlwDzJVw3ivMz6xxRqStI9po7zdai/wD66wbSTSzhFKPShZ20YTbB4AUXbEwESLqKmjaq+z6h19PC0Kusw68EC8+pCCIi/yT/RCRcYij35XnbaWNViK6DEhKc0sbmtitLa9/Oov1GZ6Np8RG+8C1EDnY4A8cnadDP82k0IkewXxgY1oue24mVsmj1Kkn+KPaRV0UX4XGjWdnaB3XFt6wvC6qoAXuwWt+pI5VPIOuhrifQyWy8DODg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=iubelttechnologies.com; dmarc=pass action=none
- header.from=iubelttechnologies.com; dkim=pass
- header.d=iubelttechnologies.com; arc=none
+	id 1kT2LG-00076J-5z; Thu, 15 Oct 2020 08:26:46 -0400
+Received: from mail-ed1-f48.google.com ([209.85.208.48]:43989)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <martin.braun@ettus.com>)
+ id 1kT2LC-0006zD-NJ
+ for usrp-users@lists.ettus.com; Thu, 15 Oct 2020 08:26:42 -0400
+Received: by mail-ed1-f48.google.com with SMTP id dn5so2858945edb.10
+ for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 05:26:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG330411.onmicrosoft.com; s=selector2-NETORG330411-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W9M5Bg6GdoybxxkCStgdXNrJoG/CCrTzIY0FoZ2MSAU=;
- b=crOGgasq8QAo6/AjZYG7/Uezr2baBT3RkzDO4IzEJtgLUun7YjEXWmpN2r+8t56bwI/jP+cDVEGbHhbJ3mn0xLQ/NPyudrJlgHZ9RgHl8WXsxcX0juhCdswt7IgE8pNhAs+Y55sHE81rlJ4AAyIzTNkHylgGeO6xaxyPByd5E1w=
-Received: from DM6PR12MB3067.namprd12.prod.outlook.com (2603:10b6:5:115::10)
- by DM6PR12MB3353.namprd12.prod.outlook.com (2603:10b6:5:3d::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21; Thu, 15 Oct
- 2020 12:18:42 +0000
-Received: from DM6PR12MB3067.namprd12.prod.outlook.com
- ([fe80::d160:b3af:428a:1c85]) by DM6PR12MB3067.namprd12.prod.outlook.com
- ([fe80::d160:b3af:428a:1c85%5]) with mapi id 15.20.3477.024; Thu, 15 Oct 2020
- 12:18:42 +0000
-To: Sam Reiter <sam.reiter8@gmail.com>
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Details on how these charts were made
-Thread-Index: AQHWoVV6b2e7mEPZhUylxLtQHneCZ6mX3QaAgAB344A=
-Date: Thu, 15 Oct 2020 12:18:41 +0000
-Message-ID: <74F5B6D1-D91F-448C-B833-0E8D68671EC6@iubelttechnologies.com>
-References: <9A418785-0BB4-44DA-854E-66130975896C@iubelttechnologies.com>
- <CADBWrHgHDCuSwu=esnA2DGV0rm4r9wDXD7faN9YU+4KzHM-2rA@mail.gmail.com>
-In-Reply-To: <CADBWrHgHDCuSwu=esnA2DGV0rm4r9wDXD7faN9YU+4KzHM-2rA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none
- header.from=iubelttechnologies.com;
-x-originating-ip: [72.9.220.173]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0bc31f12-e8dc-4d95-8981-08d8710474a9
-x-ms-traffictypediagnostic: DM6PR12MB3353:
-x-microsoft-antispam-prvs: <DM6PR12MB3353553B51A911D79991CA228C020@DM6PR12MB3353.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: n3os1urABVSIAtjTxdnQ8XSqfWhwyJ3T8/99/QcNwI5ws8qN8uV4Gec/YRBvSM1aGmVAZ1LFNffzscvxIJqQRrSs6Gr+wahcpwbdxhpBQx4s1jDkTvedZaW0d/S4SMgNTcZI0NIBsITQHlihJonBnevx66haLlF7F6YwzjxhpmDKTey/zsxQvgiKQKIx3QlGLkdPlSaNEaGUneHCSS9HJRNXth0ooI+CO+XzHcl/Lha3NrWXgu59cP/wYuzNDZn+r3CMQB1YnaEGwRh8vbZ6STjyL9bMmyPViZtiuIxJ6ibkhtDNWDwKoVQrKhDe0R1tpetLgGPGWCvCGqqLavo25pLJwM1f6DQfoXPWLCfYO5Np2d0T7ag4HSyIHFCXatxhepRCO8LfdXWotsbduj0H8w==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3067.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(346002)(366004)(136003)(376002)(396003)(39830400003)(66476007)(76116006)(166002)(83080400001)(66556008)(36756003)(966005)(186003)(66946007)(53546011)(86362001)(6512007)(66446008)(91956017)(33656002)(2906002)(478600001)(6506007)(6916009)(71200400001)(4326008)(44832011)(2616005)(316002)(6486002)(64756008)(5660300002)(8936002)(8676002)(26005);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: aLK8U1Vt7huinEKiwDUgnx+Cvw3HpPpogbDarhpYrxm+apaV50FMVLoRBvqFhptGiKfiAjKD1ee5OgQ9wtqDNyytbr49QwJR3Gqw1GmAZiZkeCziuAdKhNciaSQolUDUHssDnXevzTfY/XLy0Krj1Df6LlVwuVScVeRh0uM1PS87tt7KTPxpzGVa6Gqm07iGZHhXHPJCEvlV9nRpagoKG7mQPMJdMZF5+Nnw0eVx7amuAxWNgolhFf2EWLy1xb87BJIkeomBRrc3Ujj8Kiog0lS/DdssU8EbIZOUuLtcEixgRC61l2gxPPpArMDLweYXaN5gWF03OYPq9c5VcvxgmmAkJnkQZYjSFDrCMAvJYdejDULeM63FZdWnxGdTyYFlndgprRbfBYvV+xCZLYzxaJcnFQ7KSNU51Z7Xd9liwvof1UlBW6ngMAtouDqOJlyQlZKlmQLZVCYBaviHSqLMYkQt5VWbA9IZS62xKjV44zAXcpV/m/27xmPpqjycliZu45zKUDX+oYtoATGFmO3H+h/rf+aMkflDRZ8GYjbwOmQiRAQ7IRipxlWinMSSroUVY1/jNd7lYBhgWAiM8Ca7mZ/shEo5PHt8mWHT2BB6iPHy9j7dukvPjtkMVGYUPpnLbkFv12lBDvQX4GljdQSoXw==
-x-ms-exchange-transport-forked: True
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=txL0x6pBUVhArOF8PXX1R7o2nG675x5Ni/wn7GShZVg=;
+ b=pJFjteEsFifWmzHwjV3DfGFb96v1nMcECUt6miE96SkB7Gu2wVIZqnCGOrUQUqTwUy
+ PkP9aW4XEzAj1CSSzhEVIZx9cWX+Mu8o00L519/UGrToE7UBOvo7VNiAIwU4C8NjTH9i
+ Osxo4/qtqM/zYgh+MByepaqSUS+GMpFhvMkgbyGzwEPaeXebIRXT2xgHPEhMejwnHNip
+ BJitS8yxyYlVnfU3+qInGAKoOh8p0jOQ9Dz3hZs9uoHWbGS2l5BNv8Y+IWoyBruB0c/c
+ xADLCcnymhMdHOV4Tad5hUhS/2ToJ+dGt6Kz5jCTudJ9nVsnDNA4yL3FrkEi8J1tQ08h
+ Y/+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=txL0x6pBUVhArOF8PXX1R7o2nG675x5Ni/wn7GShZVg=;
+ b=kg3+97qvepzjrda+Gz7bjNkcWMHt2ez+agXmrwlUhFKeNIkjmuKtbz3GazUpNhGX4/
+ XPLR6nGRF0jsCd+GygrdUeDnPicoVtX8BKvMC5vnF9Z0Ax1v/48DPoV+TxMDfd6c6rRy
+ e9bPNbJUiI+U+6d5Y+miLPPf7XmzIQxOZm+NmDrlRSl+IWRtqCLL35yHccQwn+PjzVfO
+ LjFZ8A6uPNsVRFVyHF7RNk1FdJWG8NEKaqnNMNxTiA6jxrguI168egH4eYwIC5DIpDuD
+ jOJXUo+5D2jZTbDZB1Sv8zKZiYfCfdkESutbXyDsYrVqWEmmf70gkFvrX4/6WEumt2eK
+ fvbQ==
+X-Gm-Message-State: AOAM533onsf5Zr9g9R5OPsrl3RYPUd5ZhAJoSromr0ICAlibBhhAP/ea
+ 3kqfRpn8jMaUx4L8FMMHTBkIlMIZVouK6SKjjcZH1mFf
+X-Google-Smtp-Source: ABdhPJxHS7BMO3WvW8YU3dJsvWpI6w7o0ydcoC+Xjuv3WsaQVPP9nRNv/5FjnhxZhk2XRRAN9tFLmHrCNx7aTU1nKEI=
+X-Received: by 2002:a50:d4dc:: with SMTP id e28mr4228074edj.137.1602764761655; 
+ Thu, 15 Oct 2020 05:26:01 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: iubelttechnologies.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3067.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0bc31f12-e8dc-4d95-8981-08d8710474a9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Oct 2020 12:18:42.2271 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1a86298a-7d59-4320-a7f5-798264e69360
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0ds2zzjzYqzoK6BT6JtYJpJy/WUGX4LiKJJlBJEq7WOrCn9uRo1z72TQiNP6T8NFfyI/DtDitI2Wn+ZOzn9CMflBbvqvg48lZWYvhhvHfEt/L/A/RnBch0OP0GZ7VY9T
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3353
-Subject: Re: [USRP-users] Details on how these charts were made
+References: <mailman.46.1601308803.20957.usrp-users_lists.ettus.com@lists.ettus.com>
+ <CABV9QyLGYgXZQANBaLZB967VEfRTOBovZ=2po6qrrm_QCKdJkg@mail.gmail.com>
+In-Reply-To: <CABV9QyLGYgXZQANBaLZB967VEfRTOBovZ=2po6qrrm_QCKdJkg@mail.gmail.com>
+Date: Thu, 15 Oct 2020 14:25:50 +0200
+Message-ID: <CAFOi1A6Kgq0fZEy4Pn5NaLMcHL0MDZtau8C3KwYomX1+Ne=fcA@mail.gmail.com>
+To: Yu-Hsuan Chen <shinge.chen@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Segmentation fault when calling
+ usrp->get_device()->get_tree()->access<bool>
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -93,9 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mark Koenig via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mark Koenig <mark.koenig@iubelttechnologies.com>
-Content-Type: multipart/mixed; boundary="===============7992473694504845836=="
+From: Martin Braun via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Martin Braun <martin.braun@ettus.com>
+Content-Type: multipart/mixed; boundary="===============3828215462825435347=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -109,182 +78,123 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7992473694504845836==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_74F5B6D1D91F448CB8330E8D68671EC6iubelttechnologiescom_"
+--===============3828215462825435347==
+Content-Type: multipart/alternative; boundary="0000000000004707dd05b1b4c0c7"
 
---_000_74F5B6D1D91F448CB8330E8D68671EC6iubelttechnologiescom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000004707dd05b1b4c0c7
+Content-Type: text/plain; charset="UTF-8"
 
-VGhhbmtzIFNhbSEgIEkgYWN0dWFsbHkgYW0ganVzdCBmaW5pc2hpbmcgdXAgZG9pbmcgd2hhdCB5
-b3UgZGVzY3JpYmVkIGluIHlvdXIgZmlyc3QgcGFyYWdyYXBoLg0KDQpXaGlsZSB3ZSBoYXZlbuKA
-mXQgbW92ZWQgdG8gdWhkIDQuMCB5ZXQsIHRoZSBwb3dlciBjYWwgZmVhdHVyZSBzb3VuZHMgaW50
-ZXJlc3RpbmcuDQoNCkNoZWVycw0KDQpNYXJrDQoNCkZyb206IFNhbSBSZWl0ZXIgPHNhbS5yZWl0
-ZXI4QGdtYWlsLmNvbT4NCkRhdGU6IFdlZG5lc2RheSwgT2N0b2JlciAxNCwgMjAyMCBhdCA5OjA5
-IFBNDQpUbzogTWFyayBLb2VuaWcgPG1hcmsua29lbmlnQGl1YmVsdHRlY2hub2xvZ2llcy5jb20+
-DQpDYzogInVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20+DQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIERldGFpbHMgb24gaG93IHRoZXNlIGNo
-YXJ0cyB3ZXJlIG1hZGUNCg0KTWFyaywNCg0KV2hpbGUgSSBkb24ndCBoYXZlIHJlY29tbWVuZGF0
-aW9ucyBmb3Igc3BlY2lmaWMgdGVzdCBpbnN0cnVtZW50YXRpb24sIEknZCBndWVzcyB5b3UgY291
-bGQgcHJldHR5IGVhc2lseSBjaGFyYWN0ZXJpemUgYSBSWCBnYWluIHZzIGZyZXF1ZW5jeSB3aXRo
-IGEgIChjYWxpYnJhdGVkKSBzaWduYWwgZ2VuZXJhdG9yIHRoYXQgaXMgYWRkcmVzc2FibGUgb3Zl
-ciBTQ1BJLiBPbmNlIHlvdSd2ZSBmaWd1cmVkIG91dCBob3cgdG8gVFggYSBDVyBhdCBhIGdpdmVu
-IHBvd2VyIGxldmVsIG92ZXIgdGhlIFNDUEkgaW50ZXJmYWNlIHRvIHlvdXIgZ2VuZXJhdG9yIHVz
-aW5nIHB5dGhvbiBvciBDKyssIHlvdSBjb3VsZCB3cml0ZSBhIHNjcmlwdCB0aGF0IG1vdmVkIHRo
-ZSBUd2luUlggYW5kIHNpZyBnZW4gZnJvbSBEQyB0byA2R0h6IGluIGtub3duIGluY3JlbWVudHMg
-YW5kIHJlY29yZGVkIHRoZSByZWNlaXZlZCBzaWduYWwgcG93ZXIuIEZyb20gdGhlcmUsIHJlY3Jl
-YXRpbmcgdGhlIHBsb3QgeW91IG1lbnRpb25lZCB3b3VsZG4ndCBiZSB0b28gZGlmZmljdWx0Lg0K
-DQpUaGF0IGJlaW5nIHNhaWQsIHRoZXJlIGFwcGVhcnMgdG8gYmUgYSBwb3dlciBjYWwgdXRpbGl0
-eSB0aGF0IGNhbWUgb3V0IHdpdGggVUhEIDQuMDoNCg0KaHR0cHM6Ly9naXRodWIuY29tL0V0dHVz
-UmVzZWFyY2gvdWhkL2Jsb2IvbWFzdGVyL2hvc3QvdXRpbHMvdWhkX3Bvd2VyX2NhbC5weQ0KDQog
-SSBoYXZlbid0IHVzZWQgaXQgYmVmb3JlLCBzbyBJJ20gbm90IHN1cmUgd2hldGhlciBvciBub3Qg
-aXQnZCBiZSBhIGdvb2Qgc3RhcnRpbmcgcG9pbnQgZm9yIHlvdSwgYnV0IGl0IG1pZ2h0IGJlIHdv
-cnRoIGNoZWNraW5nIG91dCENCg0KLVNhbQ0KDQpPbiBUdWUsIE9jdCAxMywgMjAyMCBhdCA2OjQw
-IEFNIE1hcmsgS29lbmlnIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+PiB3cm90ZToNCkkgYW0gdGhpbmtp
-bmcgb2YgZG9pbmcgc29tZSBSRiBjaGFyYWN0ZXJpemF0aW9uIG9mIHRoZSBUd2luUlggZGF1Z2h0
-ZXJib2FyZCBpbiB0aGUgbmVhciBmdXR1cmUsIGFuZCBJIHdhcyBob3BpbmcgdG8gdXNlIHRoZSBw
-ZGYgYXMgYSBndWlkZS4gIFVuZm9ydHVuYXRlbHksIHRoZXJlIGlzIG5vIHRlc3Qgc2V0IHVwIG9y
-IHRlc3QgZXF1aXBtZW50IGxpc3QgdXNlZCB0byBjcmVhdGUgc3BlY2lmaWNhbGx5IHRoZSBSeCBH
-YWluIHBsb3RzIHZzLiBGcmVxdWVuY3kgZm9yIGEgZ2l2ZW4gZ2FpbiB2YWx1ZS4gIEFueSBoZWxw
-IHdvdWxkIGJlIGdyZWF0bHkgYXBwcmVjaWF0ZWQsIGFzIEkgbWF5IGJlIGFibGUgdG8gbG9jYXRl
-IHRoZSBlcXVpcG1lbnQgaW4gbXkgbGFiLg0KDQpodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9wZXJm
-b3JtYW5jZV9kYXRhL3VieC9VQlgtd2l0aG91dC1VSEQtY29ycmVjdGlvbnMucGRmDQoNCg0KVGhh
-bmsgeW91DQoNCk1hcmsNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QNClVTUlAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCmh0dHA6Ly9saXN0cy5l
-dHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
+Question: Can you run set_tx_lo_export_enabled(true, "LO_OUT_0", 0) on your
+usrp object, or does that also fail?
 
---_000_74F5B6D1D91F448CB8330E8D68671EC6iubelttechnologiescom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <19029FB2FC39A342A7B526655AA02359@namprd12.prod.outlook.com>
-Content-Transfer-Encoding: base64
+--M
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iVGl0bGUiIGNvbnRlbnQ9IiI+DQo8bWV0YSBuYW1lPSJLZXl3b3JkcyIgY29udGVu
-dD0iIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUg
-KGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8N
-CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0
-IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJ
-cGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
-CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsN
-CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWls
-eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21z
-by1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRl
-cmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHls
-ZS1wcmlvcml0eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGlu
-ZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsN
-Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30N
-CnNwYW4ubXNvSW5zDQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCW1zby1zdHlsZS1u
-YW1lOiIiOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7DQoJY29sb3I6dGVhbDt9DQouTXNv
-Q2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAu
-MHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46
-MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRT
-ZWN0aW9uMTt9DQotLT48L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkgYmdjb2xvcj0id2hpdGUiIGxh
-bmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRT
-ZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFua3MgU2FtISZuYnNwOyBJIGFjdHVh
-bGx5IGFtIGp1c3QgZmluaXNoaW5nIHVwIGRvaW5nIHdoYXQgeW91IGRlc2NyaWJlZCBpbiB5b3Vy
-IGZpcnN0IHBhcmFncmFwaC4mbmJzcDsNCjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5XaGlsZSB3
-ZSBoYXZlbuKAmXQgbW92ZWQgdG8gdWhkIDQuMCB5ZXQsIHRoZSBwb3dlciBjYWwgZmVhdHVyZSBz
-b3VuZHMgaW50ZXJlc3RpbmcuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkNoZWVyczxvOnA+PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj5NYXJrPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10
-b3A6c29saWQgI0I1QzRERiAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJs
-YWNrIj5Gcm9tOiA8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9y
-OmJsYWNrIj5TYW0gUmVpdGVyICZsdDtzYW0ucmVpdGVyOEBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+
-RGF0ZTogPC9iPldlZG5lc2RheSwgT2N0b2JlciAxNCwgMjAyMCBhdCA5OjA5IFBNPGJyPg0KPGI+
-VG86IDwvYj5NYXJrIEtvZW5pZyAmbHQ7bWFyay5rb2VuaWdAaXViZWx0dGVjaG5vbG9naWVzLmNv
-bSZndDs8YnI+DQo8Yj5DYzogPC9iPiZxdW90O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJnF1
-b3Q7ICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OiA8
-L2I+UmU6IFtVU1JQLXVzZXJzXSBEZXRhaWxzIG9uIGhvdyB0aGVzZSBjaGFydHMgd2VyZSBtYWRl
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5NYXJrLDxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-V2hpbGUgSSBkb24ndCBoYXZlJm5ic3A7cmVjb21tZW5kYXRpb25zJm5ic3A7Zm9yIHNwZWNpZmlj
-IHRlc3QgaW5zdHJ1bWVudGF0aW9uLCBJJ2QgZ3Vlc3MgeW91IGNvdWxkIHByZXR0eSBlYXNpbHkg
-Y2hhcmFjdGVyaXplIGEgUlggZ2FpbiB2cyBmcmVxdWVuY3kgd2l0aCBhJm5ic3A7IChjYWxpYnJh
-dGVkKSBzaWduYWwgZ2VuZXJhdG9yIHRoYXQgaXMgYWRkcmVzc2FibGUgb3ZlciBTQ1BJLiBPbmNl
-IHlvdSd2ZSBmaWd1cmVkIG91dCBob3cNCiB0byBUWCBhIENXIGF0IGEgZ2l2ZW4gcG93ZXIgbGV2
-ZWwgb3ZlciB0aGUgU0NQSSBpbnRlcmZhY2UgdG8geW91ciBnZW5lcmF0b3IgdXNpbmcgcHl0aG9u
-IG9yIEMrKywgeW91IGNvdWxkIHdyaXRlIGEgc2NyaXB0IHRoYXQgbW92ZWQgdGhlIFR3aW5SWCBh
-bmQgc2lnIGdlbiBmcm9tIERDIHRvIDZHSHogaW4ga25vd24gaW5jcmVtZW50cyBhbmQgcmVjb3Jk
-ZWQgdGhlIHJlY2VpdmVkIHNpZ25hbCBwb3dlci4gRnJvbSB0aGVyZSwgcmVjcmVhdGluZyB0aGUN
-CiBwbG90IHlvdSBtZW50aW9uZWQgd291bGRuJ3QgYmUgdG9vIGRpZmZpY3VsdC4mbmJzcDs8bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhhdCBi
-ZWluZyBzYWlkLCB0aGVyZSBhcHBlYXJzIHRvIGJlIGEgcG93ZXIgY2FsIHV0aWxpdHkgdGhhdCBj
-YW1lIG91dCB3aXRoIFVIRCA0LjA6Jm5ic3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1
-c1Jlc2VhcmNoL3VoZC9ibG9iL21hc3Rlci9ob3N0L3V0aWxzL3VoZF9wb3dlcl9jYWwucHkiPmh0
-dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9iL21hc3Rlci9ob3N0L3V0aWxz
-L3VoZF9wb3dlcl9jYWwucHk8L2E+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwO0kgaGF2ZW4ndCB1c2VkIGl0IGJlZm9yZSwgc28gSSdt
-IG5vdCBzdXJlIHdoZXRoZXIgb3Igbm90IGl0J2QgYmUgYSBnb29kIHN0YXJ0aW5nIHBvaW50IGZv
-ciB5b3UsIGJ1dCBpdCBtaWdodCBiZSB3b3J0aCBjaGVja2luZyBvdXQhJm5ic3A7PG86cD48L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPi1TYW08bzpwPjwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
-OzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gVHVlLCBP
-Y3QgMTMsIDIwMjAgYXQgNjo0MCBBTSBNYXJrIEtvZW5pZyB2aWEgVVNSUC11c2VycyAmbHQ7PGEg
-aHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2tx
-dW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtw
-YWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDow
-aW4iPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdp
-bi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkkgYW0gdGhpbmtpbmcg
-b2YgZG9pbmcgc29tZSBSRiBjaGFyYWN0ZXJpemF0aW9uIG9mIHRoZSBUd2luUlggZGF1Z2h0ZXJi
-b2FyZCBpbiB0aGUgbmVhciBmdXR1cmUsIGFuZCBJIHdhcyBob3BpbmcgdG8gdXNlIHRoZSBwZGYg
-YXMgYSBndWlkZS4mbmJzcDsgVW5mb3J0dW5hdGVseSwgdGhlcmUgaXMgbm8gdGVzdCBzZXQNCiB1
-cCBvciB0ZXN0IGVxdWlwbWVudCBsaXN0IHVzZWQgdG8gY3JlYXRlIHNwZWNpZmljYWxseSB0aGUg
-UnggR2FpbiBwbG90cyB2cy4gRnJlcXVlbmN5IGZvciBhIGdpdmVuIGdhaW4gdmFsdWUuJm5ic3A7
-IEFueSBoZWxwIHdvdWxkIGJlIGdyZWF0bHkgYXBwcmVjaWF0ZWQsIGFzIEkgbWF5IGJlIGFibGUg
-dG8gbG9jYXRlIHRoZSBlcXVpcG1lbnQgaW4gbXkgbGFiLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
-Ym90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
-YXV0byI+PGEgaHJlZj0iaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vcGVyZm9ybWFuY2VfZGF0YS91
-YngvVUJYLXdpdGhvdXQtVUhELWNvcnJlY3Rpb25zLnBkZiIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBz
-Oi8vZmlsZXMuZXR0dXMuY29tL3BlcmZvcm1hbmNlX2RhdGEvdWJ4L1VCWC13aXRob3V0LVVIRC1j
-b3JyZWN0aW9ucy5wZGY8L2E+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
-dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
-PiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
-YXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpw
-PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1h
-bHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+VGhhbmsgeW91PG86cD48L286cD48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87
-bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
-Ym90dG9tLWFsdDphdXRvIj5NYXJrPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
-dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
-by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8
-bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0PGJyPg0KPGEgaHJlZj0ibWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJy
-Pg0KPGEgaHJlZj0iaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAt
-dXNlcnNfbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+aHR0cDovL2xpc3RzLmV0dHVz
-LmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC9hPjxvOnA+
-PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRt
-bD4NCg==
+On Mon, Sep 28, 2020 at 11:36 PM Yu-Hsuan Chen via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
---_000_74F5B6D1D91F448CB8330E8D68671EC6iubelttechnologiescom_--
+>
+>> Date: Mon, 28 Sep 2020 10:38:26 -0400
+>> From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+>> To: usrp-users@lists.ettus.com
+>> Subject: Re: [USRP-users] Segmentation fault when calling
+>>         usrp->get_device()->get_tree()->access<bool>
+>> Message-ID: <5F71F562.2030202@gmail.com>
+>> Content-Type: text/plain; charset=windows-1252; format=flowed
+>>
+>> On 09/28/2020 03:45 AM, Yu-Hsuan Chen via USRP-users wrote:
+>> > Hi,
+>> >
+>> > I try to build LO distribution using N321/N320 and follow the
+>> > https://kb.ettus.com/USRP_N320/N321_LO_Distribution
+>> >
+>> > But, I got the Segmentation fault at
+>> >
+>> usrp->get_device()->get_tree()->access<bool>("mboards/0/dboards/A/tx_frontends/0/los/lo1/lo_distribution/LO_OUT_0/export").set(true);
+>> >
+>> > I am using the linux; GNU C++ version 7.5.0; Boost_106501;
+>> > UHD_4.0.0.HEAD-0-g90ce6062.
+>> >
+>> > Please help me to figure it out.
+>> >
+>> > Thanks,
+>> > YH
+>> >
+>> Is your usrp object valid at the point you make this call?
+>>
+>>
+> Yes, I can set frequency, rate and gain using usrp object before this
+> call. Only get the fault after making this call.
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000004707dd05b1b4c0c7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Question: Can you run set_tx_lo_export_enabled(true, =
+&quot;LO_OUT_0&quot;, 0) on your usrp object, or does that also fail?</div>=
+<div><br></div><div>--M<br></div></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 28, 2020 at 11:36 PM Yu-Hsuan =
+Chen via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-=
+users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_quote"><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex"><br>
+Date: Mon, 28 Sep 2020 10:38:26 -0400<br>
+From: &quot;Marcus D. Leech&quot; &lt;<a href=3D"mailto:patchvonbraun@gmail=
+.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;<br>
+To: <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
+ers@lists.ettus.com</a><br>
+Subject: Re: [USRP-users] Segmentation fault when calling<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 usrp-&gt;get_device()-&gt;get_tree()-&gt;access=
+&lt;bool&gt;<br>
+Message-ID: &lt;<a href=3D"mailto:5F71F562.2030202@gmail.com" target=3D"_bl=
+ank">5F71F562.2030202@gmail.com</a>&gt;<br>
+Content-Type: text/plain; charset=3Dwindows-1252; format=3Dflowed<br>
+<br>
+On 09/28/2020 03:45 AM, Yu-Hsuan Chen via USRP-users wrote:<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; I try to build LO distribution using N321/N320 and follow the <br>
+&gt; <a href=3D"https://kb.ettus.com/USRP_N320/N321_LO_Distribution" rel=3D=
+"noreferrer" target=3D"_blank">https://kb.ettus.com/USRP_N320/N321_LO_Distr=
+ibution</a><br>
+&gt;<br>
+&gt; But, I got the Segmentation fault at<br>
+&gt; usrp-&gt;get_device()-&gt;get_tree()-&gt;access&lt;bool&gt;(&quot;mboa=
+rds/0/dboards/A/tx_frontends/0/los/lo1/lo_distribution/LO_OUT_0/export&quot=
+;).set(true);<br>
+&gt;<br>
+&gt; I am using the linux; GNU C++ version 7.5.0; Boost_106501; <br>
+&gt; UHD_4.0.0.HEAD-0-g90ce6062.<br>
+&gt;<br>
+&gt; Please help me to figure it out.<br>
+&gt;<br>
+&gt; Thanks,<br>
+&gt; YH<br>
+&gt;<br>
+Is your usrp object valid at the point you make this call?<br><br></blockqu=
+ote><div><br></div><div>Yes, I can set frequency, rate and gain using usrp =
+object before this call. Only get the fault after making this call.</div><d=
+iv><br></div></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000004707dd05b1b4c0c7--
 
 
---===============7992473694504845836==
+--===============3828215462825435347==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -295,5 +205,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7992473694504845836==--
+--===============3828215462825435347==--
 
