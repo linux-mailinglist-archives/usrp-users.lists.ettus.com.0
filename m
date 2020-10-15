@@ -2,47 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0676828F92F
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Oct 2020 21:08:44 +0200 (CEST)
-Received: from [::1] (port=42382 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD19028F9A5
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Oct 2020 21:43:05 +0200 (CEST)
+Received: from [::1] (port=42592 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kT8cC-0002r9-EG; Thu, 15 Oct 2020 15:08:40 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:40501)
+	id 1kT99T-0004Hw-Bx; Thu, 15 Oct 2020 15:43:03 -0400
+Received: from mail-vk1-f172.google.com ([209.85.221.172]:43050)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kT8c7-0002kp-TV
- for usrp-users@lists.ettus.com; Thu, 15 Oct 2020 15:08:35 -0400
-Received: by mail-oi1-f180.google.com with SMTP id m128so4264679oig.7
- for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 12:08:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:from:date:message-id:subject:to;
- bh=9AR2U6PVASCRnLIactSGAWFG2nQ5SCaVDEDkDOg/BWU=;
- b=Ara/TO9qNV+3cYaYgQ8l3zexiTz0HlDYZw3iHL8zrrM1cmtXpJOom6IDWZY3zt34wI
- ZC8ZytghwsJkfy5enG5b0n0/QuchFvgRJzGiXD7dxpoGUnGI8I/spZ+p/fRGjlzmCTm6
- dd3ZqdyecZGbRCXTfgu+cj5TTQcAKPJw7VdXnHEErgwEiNiEqVJsYRCfz4ZSyhKf3wMI
- avPFAVA3+D/Be+fJvuMQBicnLnK8BZdF29eb/sQ+vgkwNavA1N6pRgprwpx/9pZ5bDx1
- 88KR37654WGdlP/8gUd9jkUhSws58rVAKZX84OwkYKvr4MQPuSLB1Pva2Z7uzUA67L/1
- x//Q==
+ (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1kT99P-0004B4-Kq
+ for usrp-users@lists.ettus.com; Thu, 15 Oct 2020 15:42:59 -0400
+Received: by mail-vk1-f172.google.com with SMTP id d125so70463vkh.10
+ for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 12:42:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=2+52DMAVQuJkR4rwXbo3svoWJ8dnqRJeIFlzqDY0ALY=;
+ b=XBiH1YheclihL4QDgg3x/Q+s+VNJ+y+NoBg9cojtT6L4hVENdw6XUfOxAf62r/jg7g
+ 1fysMlq05BalSZxB/bExBGMLvaEJRyStowRMOa8eltLlKh2xxy0bO/ZrSfkYmrbn+xGg
+ pL3jzTz2bsulQVImT5ZeaAquH93xfaDlLmheIyrVinTHXgYdJieYSgam2woYOeBf2F4A
+ GUHOPnGhBm4fO6XjRyG8K3AdD7+nzpxcVE4Z2lU7wKNS7wOxWfnSeLBWHQmHPrPmxTri
+ FWa6Z5pEg5q7QciAAcvhe3uw4fkiAegpoQzvQ0Fclk2B5FLdPg/SvAnt/NIfzUFShHku
+ fCHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=9AR2U6PVASCRnLIactSGAWFG2nQ5SCaVDEDkDOg/BWU=;
- b=HrAFB6ZdhOTCTPPwCfTCQ0jxzq2CyhoXp4HekZL9s9ZCf9DPDT/7FVBaXV7XrMFkIh
- 43bYgn7ItX22q/2qHWumtyKzFgT9EQ/cedkuDcrtf+WFG/KlNBV2joHLFG8cn4cR4gbF
- tr0dQKeqFgExa76IrxXReth8rmtC4zH+H9j2PEHUXiFigPwMDSZPlsLDUj4IbieJ0frZ
- aWTn5VRy2u3i+sXH8VE4gJMd1aWLsOLsbQp4fSOuIk0FXwYTWKj/5K0s/+BvORAxrZ9u
- ugE8ydtdus1rEqN5BQlUzeNp9iIU/C/kDZB4w6/2yrDaI1nm/lIiroJDcqKHCVXEv8JG
- Qchw==
-X-Gm-Message-State: AOAM530I0beKdXWXrvHV8qYUP+p8EvY1kfHpC8AN8FzvmpgrCOm9e8T1
- aOdR7MJUmPAhHU1K4TEPuJW3TYFOEEGUNkeBcz+wAX1dPGQmKw==
-X-Google-Smtp-Source: ABdhPJxVrvMNsIrR/tMgTX1q9dj6z5wMW+v30O0L+Qb/iA5PkcIJKZBiS5DmOThP76uwyRatBvogGyOHMhVpAnYGR/E=
-X-Received: by 2002:aca:5515:: with SMTP id j21mr193328oib.150.1602788874748; 
- Thu, 15 Oct 2020 12:07:54 -0700 (PDT)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=2+52DMAVQuJkR4rwXbo3svoWJ8dnqRJeIFlzqDY0ALY=;
+ b=hUWUkDi3IXqnl9UA9/Kf/stC1Jr439iouCak6VSkAySJqCx26NxWFHu1z3SasWtte4
+ AUqpcZ6sMtUC/xYrs630VQqdlZty1mv23JV3sOt9+HXXfQccpnpXci6cbFikUM+9/bHJ
+ neIlRG9fw3MZaOqg9yc+wc0P2hE1UXqchkDnud0BmL9L8AS+oBjrgTLqf4rbH5ffJoBA
+ jHWGR80vjqYDIIoH9a9Wm6XgRWkB0kBB8+xkGSZbmnmLUUuiExT2sloTl9NgSIzL0Ixo
+ 1fQwfKKCML1+F8Xm3b1uoi7PPx1iSsfz1nNLxg11ZNmHZRE1Cp0RkB0nApy9Vh6/qlvh
+ WtQA==
+X-Gm-Message-State: AOAM533CHDdiRafyUWfMFefohDzjkZCYVoTqIlCutpTt7o8HA7F/8tcj
+ 7kTtUcHjJtSkGpBYEB7vc0PAy1MpLsLvQNJMEdn3zy9r
+X-Google-Smtp-Source: ABdhPJz/gloBH1r0FWjUhjT8bSZIWlGcT13+XMmnaHuNksOtNntNeF+DMbi9/mrDRnpLVdwo1Zz81VPgjV8/3kJSDzM=
+X-Received: by 2002:a05:6122:1079:: with SMTP id
+ k25mr49784vko.22.1602790939103; 
+ Thu, 15 Oct 2020 12:42:19 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 15 Oct 2020 15:07:44 -0400
-Message-ID: <CAB__hTTQ3aXadTX5KELksuongMR4QJchXS9UdxSs9cNyBBRdTg@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Failure: ERROR:add_1 must be in range [-1,DEPTH-1]
+References: <CAB__hTTQ3aXadTX5KELksuongMR4QJchXS9UdxSs9cNyBBRdTg@mail.gmail.com>
+In-Reply-To: <CAB__hTTQ3aXadTX5KELksuongMR4QJchXS9UdxSs9cNyBBRdTg@mail.gmail.com>
+Date: Thu, 15 Oct 2020 15:42:07 -0400
+Message-ID: <CAL7q81sXeHHHSHF+S9hdHk=827igYxQPiY7D070=Dr1yW4GXJg@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Failure: ERROR:add_1 must be in range [-1, DEPTH-1]
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +61,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============6954435025678098411=="
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Content-Type: multipart/mixed; boundary="===============5089623895857678110=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,43 +77,76 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6954435025678098411==
-Content-Type: multipart/alternative; boundary="00000000000087c73f05b1ba5d79"
+--===============5089623895857678110==
+Content-Type: multipart/alternative; boundary="00000000000093276405b1bad86e"
 
---00000000000087c73f05b1ba5d79
+--00000000000093276405b1bad86e
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
-I am getting this error (from the subject line) in a custom block I created
-that is effectively just the combination of a window block and a xilinx fft
-ip core. I am using UHD-4.0 (and Vivado 2019.1).
+Hey Rob,
 
-After searching the user's list, I found some old posts from Jonathan
-Pendlum that indicated that this was a known issue related to the Xilinx
-FFT IP core.  The solution in the previous posts was to copy a "wave.do"
-file from the Ettus in-tree FFT tb folder.  I didn't find such a file in
-UHD-4.0 and so I'm wondering if there is a solution that works for UHD-4.0.
-Rob
+I've ran into that issue when simulating Xilinx IP that use DSP48s. From
+what I can tell, they don't handle X and U signal states properly. Try
+double checking that all your signals are all properly driven.
 
---00000000000087c73f05b1ba5d79
+Jonathon
+
+On Thu, Oct 15, 2020, 15:08 Rob Kossler via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi,
+> I am getting this error (from the subject line) in a custom block I
+> created that is effectively just the combination of a window block and a
+> xilinx fft ip core. I am using UHD-4.0 (and Vivado 2019.1).
+>
+> After searching the user's list, I found some old posts from Jonathan
+> Pendlum that indicated that this was a known issue related to the Xilinx
+> FFT IP core.  The solution in the previous posts was to copy a "wave.do"
+> file from the Ettus in-tree FFT tb folder.  I didn't find such a file in
+> UHD-4.0 and so I'm wondering if there is a solution that works for UHD-4.0.
+> Rob
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--00000000000093276405b1bad86e
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<br><div>I am getting this error (from the subject line=
-) in a custom block I created that is effectively just the combination of a=
- window block and a xilinx fft ip core. I am using UHD-4.0 (and Vivado 2019=
-.1).=C2=A0 </div><div><br></div><div>After searching the user&#39;s list, I=
- found some old posts from Jonathan Pendlum that indicated that this was a =
-known issue related to the Xilinx FFT IP core.=C2=A0 The solution in the pr=
-evious posts was to copy a &quot;wave.do&quot; file from the Ettus in-tree =
-FFT tb folder.=C2=A0 I didn&#39;t find such a file in UHD-4.0 and so I&#39;=
-m wondering if there is a solution that works for UHD-4.0.</div><div>Rob</d=
-iv></div>
+<div dir=3D"auto">Hey Rob,<div dir=3D"auto"><br></div><div dir=3D"auto">I&#=
+39;ve ran into that issue when simulating Xilinx IP that use DSP48s. From w=
+hat I can tell, they don&#39;t handle X and U signal states properly. Try d=
+ouble checking that all your signals are all properly driven.</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Jonathon</div></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 15, 2020, 1=
+5:08 Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettu=
+s.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"ltr">Hi,<br><div>I am getting this error (from th=
+e subject line) in a custom block I created that is effectively just the co=
+mbination of a window block and a xilinx fft ip core. I am using UHD-4.0 (a=
+nd Vivado 2019.1).=C2=A0 </div><div><br></div><div>After searching the user=
+&#39;s list, I found some old posts from Jonathan Pendlum that indicated th=
+at this was a known issue related to the Xilinx FFT IP core.=C2=A0 The solu=
+tion in the previous posts was to copy a &quot;wave.do&quot; file from the =
+Ettus in-tree FFT tb folder.=C2=A0 I didn&#39;t find such a file in UHD-4.0=
+ and so I&#39;m wondering if there is a solution that works for UHD-4.0.</d=
+iv><div>Rob</div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"nore=
+ferrer">USRP-users@lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
+mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---00000000000087c73f05b1ba5d79--
+--00000000000093276405b1bad86e--
 
 
---===============6954435025678098411==
+--===============5089623895857678110==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,5 +157,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6954435025678098411==--
+--===============5089623895857678110==--
 
