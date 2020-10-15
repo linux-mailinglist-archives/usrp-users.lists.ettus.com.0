@@ -2,53 +2,105 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E19528F702
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Oct 2020 18:42:47 +0200 (CEST)
-Received: from [::1] (port=41418 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C74E28F784
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Oct 2020 19:14:02 +0200 (CEST)
+Received: from [::1] (port=41624 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kT6L0-0003eS-1R; Thu, 15 Oct 2020 12:42:46 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:46840)
+	id 1kT6pD-0005X2-4A; Thu, 15 Oct 2020 13:13:59 -0400
+Received: from dispatch1-us1.ppe-hosted.com ([67.231.154.164]:60750)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kT6Kw-0003XT-6O
- for usrp-users@lists.ettus.com; Thu, 15 Oct 2020 12:42:42 -0400
-Received: by mail-ot1-f47.google.com with SMTP id m11so3448360otk.13
- for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 09:42:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=O9cPPFGvKvGva3A8llENPVw5Y4n5/DTOmcPc0pLmdTE=;
- b=kDlq976aM9BPhMv6DSfc1iq1NQU4c2slxHjPuU79jkyA3v79BZq/hAvDoFXEUl2rG7
- OuzHshNapliYBdMnL9hZM6fka342GeXKr2pXqzLzR3D7LL3jhUVt5mzvr+6LZjDcPTsR
- /vHVGb2Dacqgjd/GwRLqMW5TJwWPkxNGau8xRT+Fr/H8I737Q6iOq13fXKKJLYsgg6rZ
- kDtQAlJ6qGez3Ib5tVn7TUMjmIWiHKwFKftHAiu7lyPRwEgZCOAEcQEL0c1wAJImQojE
- 6Zv5T327D6wgS/v8SwRU/GnkB1czYtoI4bAaq40bNncjB1Vk5p2Y6g7tNqeadc8Yu9fA
- a4EA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=O9cPPFGvKvGva3A8llENPVw5Y4n5/DTOmcPc0pLmdTE=;
- b=VUXYRpfwF6WbRpHMSQ+ypO43J8e23ltCLQ3hutmTeN25I3MW+7Ibp/rhjLxUfGESf1
- aPAOAlwzFRscDq9eyA8oDudfdWe/JL7iMVyuzmHYdluRmnpA1UsfPoB99H7mN61ugpfO
- JWSoiZ++yBsbwVcqRyQhNumZZBIkOAzAvWnjJNjMjUH6vGzPfHKk6QivlA+bomXDTvVr
- eKdRrDarZrGbOHQ2zb/7MUk85A5MZjL7SyZp0iqT56jNELSjXX8RxMkI0PPl/tNQkDrb
- mOqiSoPMndypxQ+PbpNMeXbPgybRHN1x9jW688E6ExmdcmyBN0oLM7scIOYihv0WVQvr
- g1YQ==
-X-Gm-Message-State: AOAM5322jzZp9WQN+ZCXVoa6yugT64GHXHrMOxO+F8qe7pnCY6nHyYUI
- mi8bbIJSjliwwjbZGl9/8hOBnyhoyepXq9lHS9dbbYutfDI=
-X-Google-Smtp-Source: ABdhPJywMukzfdGB0g2Lz3pjrvdJus0BhJC34GL1s5icxX2doODt+kdNbUhb/yHqI5jGtRvZi7f2SCgqEDxM9g/72qc=
-X-Received: by 2002:a05:6830:1151:: with SMTP id
- x17mr3316101otq.302.1602780121416; 
- Thu, 15 Oct 2020 09:42:01 -0700 (PDT)
+ (Exim 4.93) (envelope-from <jim@gardettoengineering.com>)
+ id 1kT6p8-0005QJ-G2
+ for usrp-users@lists.ettus.com; Thu, 15 Oct 2020 13:13:54 -0400
+Received: from dispatch1-us1.ppe-hosted.com (localhost.localdomain [127.0.0.1])
+ by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
+ EF0741015AF
+ for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 17:13:13 +0000 (UTC)
+Received: from mx1-us1.ppe-hosted.com (unknown [10.110.51.21])
+ by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
+ E01908006B
+ for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 17:13:03 +0000 (UTC)
+Received: from us1-mdac16-38.at1.mdlocal (unknown [10.110.51.96])
+ by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id DC75A200A9
+ for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 17:13:03 +0000 (UTC)
+X-Virus-Scanned: Proofpoint Essentials engine
+Received: from mx1-us1.ppe-hosted.com (unknown [10.110.49.32])
+ by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 068A32E0066
+ for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 17:13:03 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10lp2107.outbound.protection.outlook.com [104.47.58.107])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id BFD42280085
+ for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 17:13:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OUcep5Yqoz0INBeomc8V/tt4njEhmFpYyl1vf1oWYZTJvifv5pLjFPMaLF6D/ltAU1AisK5STdmN/yxEtm3c3kIuY4OGT0Dkvgv058llpuFzNcHCXlmfdF1c0+OMTZnjJRRdOXudIEykIqCy7aN6scTCG3a3a7YY25JXriuhe7x1Xaa44pdY906NhRHWE2kcvU2G0q5wkA/COPye21cEVjVWQj42OQlSqvJkeozJxv0j1hGyLkM42rtecSlhcUSLIRobsRTyeJ7Cv7qmXz0fHQUVPpctyYmIo0A0AeZ1bbLnnDsQMAUr64U9oTEbvgo0MJW5TaaEzzM0N6/ophJjKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EYvFxvT+dDOkFBjcAvSW1l7jtLEGFLmomoQrKH5L4TM=;
+ b=QLrehX+NMhrCUVPe9vAAEGaD6Mfop1STEtNwRyihqYcjCX04WxnysZSjYl1XohKUh5qRDQB5Q7Fguc1O0Rix65yo/2xzyEBScrwVN4SEHldIX/QZrEM5UZigeWJAD+ZTHZfTdCoIKWdWlOXldQWUIAb/+WyFb18kKWx/U66itIkfVpPBm0ZYelZ4eXoCHE7uxaLhBn8IZi9VoIGbpDyoVsElf/6hWvaZRDUCeThWRjDXAewwUaqvIKEtaqkW4AFbndKbwj7qoGpEIh7J4rt71UaqjrWEGWMtf1WcsBaNCC6VAMdmhMo19CcLNl630afKq07UxNQygexpDMhvdK4Olw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
+ header.from=gardettoengineering.com; dkim=pass
+ header.d=gardettoengineering.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gardettoengineering.onmicrosoft.com;
+ s=selector2-gardettoengineering-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EYvFxvT+dDOkFBjcAvSW1l7jtLEGFLmomoQrKH5L4TM=;
+ b=E9mVQ/beRIH9jkvzQWc1+jdVPT9VFjqpJ+3JaAd3ZwSsPp/fjjzKDpWar4taam7nePTu71gvGDGneqYGfq1AZwWOlfudgVwL82PZl0Z3dqxjoOD1EtZNb/XO/cERJQ5OV6XkXzUn++EHOriv94Hgw3/m6wL7PtXjvhgF6DffI1w=
+Received: from MN2PR12MB3312.namprd12.prod.outlook.com (2603:10b6:208:ab::23)
+ by MN2PR12MB2863.namprd12.prod.outlook.com (2603:10b6:208:103::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.28; Thu, 15 Oct
+ 2020 17:13:00 +0000
+Received: from MN2PR12MB3312.namprd12.prod.outlook.com
+ ([fe80::7c9d:5fe7:77ba:1be5]) by MN2PR12MB3312.namprd12.prod.outlook.com
+ ([fe80::7c9d:5fe7:77ba:1be5%3]) with mapi id 15.20.3455.035; Thu, 15 Oct 2020
+ 17:13:00 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Adding Xilinx IP to custom RFNoC block
+Thread-Index: AQHWoxPHlooJ1+IPlUOLamZ4NurgjQ==
+Date: Thu, 15 Oct 2020 17:13:00 +0000
+Message-ID: <MN2PR12MB3312D6040F4F80A6B1E838CCB8020@MN2PR12MB3312.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=gardettoengineering.com;
+x-originating-ip: [65.127.220.137]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 788e1c59-f5d3-4502-3141-08d8712d91d3
+x-ms-traffictypediagnostic: MN2PR12MB2863:
+x-microsoft-antispam-prvs: <MN2PR12MB2863BD5058CF369C403CC662B8020@MN2PR12MB2863.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: gWGLy7BpV107hHz3uyDZ0mGqurKUHyXpU1JUTlFume7bxdmateO/CZFxuXM8aJLPFyeLY1aL/+bQo5O7xljQNnzhwcvjGkDQnPObAwu7W+i3sd2fWyyte/AZWs830KjRhYJg+gNBv0DRfkvny+Wn5B58BORXre48sPICO2X/8HVf8hj20eJyJJs5oRIv0xzD2PADD4Y9yLZBn/TcmA8w6wMyvTQwyu0Ny9jqvbMi6OlsM9I1yH/zKMaRZARKGDzhvRtgwvIhHt75MbEVOB104rGAtwCJ+OcFW/BT5g5Po9dhTf0EHyPvhgtVi+9IulCu3itePvPAf+Y67hKGNrTIiKRUPqrFc5fTFS5/TfL+AiplUYYupXuFOd1jf0Z/jhOl
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3312.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(366004)(39830400003)(136003)(376002)(396003)(346002)(66556008)(5660300002)(478600001)(6506007)(26005)(6916009)(9686003)(66446008)(8936002)(33656002)(8676002)(71200400001)(7696005)(76116006)(86362001)(66476007)(64756008)(186003)(316002)(66946007)(83380400001)(52536014)(55016002)(19627405001)(2906002)(21314003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: OQE0lkJhWJt1v9avm4TS0qUXdPkc98458uSk8SHHuT1kGf2xmbJ915aQthAHG9JONLj4DGsidB927QT6lIqTvm9p1Gfn88dRoAqFdC2OIgcL4Ir04kSROy7NMbeE/bUW+RgSJI2sN9N5AX/EVoebPayBw0ETwJQvFRxdhMESLWwSnI6YthKm4iLo5/yjl76F9+xrHLjOngkbVMF64VAoz47BwoLS6VlJAg70OhKcmzKkezSCok+lDW7c8JvryqOYIDUubBK+GBk2oXaL8TvNPLLJkxe+cw2x9qXvOm44NLDkJjmnZdiMBsfPuDlachUfaatkClvRppofPEc0kL1YC+h9IJw0Mrdc/inxsDWSE97cSFhoYiu8LCL+V3WEafu5Cb+MwEoKj8aUr0Ttlpg/QrIM7jJjgrcTalwG5QzAEdeGEJeZTbv86OINoUsThezYrN2lFGEx49ncwJzhFPgP1xz6FM3Sm2l0T8ZWk+jXO5HvNXul3o3kAKR/GnPRUhvr2893TVivOkvY4WqQNcjFcdaGP0PyLKB3sgDh33X/dhca47/fU1NAfRz/i/V921k1ysCoxi7fjLJDViAG/btkun8xirijx5s6XhQyd1XEGroJnMRvdAvB3oyXYG/k1Ksa/uZbAqTdwxKrahilOPL0VA==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CAB__hTR_wKawKYJEYyD=yVdcN+UchMbSkhUVtSV5wf71W=K+3g@mail.gmail.com>
- <CAFche=jRtYz-HFy_6J3bpb1X1rTrSk6+jPNj2FOtPLi2VcTsFg@mail.gmail.com>
-In-Reply-To: <CAFche=jRtYz-HFy_6J3bpb1X1rTrSk6+jPNj2FOtPLi2VcTsFg@mail.gmail.com>
-Date: Thu, 15 Oct 2020 12:41:50 -0400
-Message-ID: <CAB__hTQQA2x3JckZDFdepVtLdpe902tKEo_QmscbAcT0cOUZEg@mail.gmail.com>
-To: Wade Fife <wade.fife@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Replay block in a bad state UHD-4.0
+X-OriginatorOrg: gardettoengineering.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3312.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 788e1c59-f5d3-4502-3141-08d8712d91d3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Oct 2020 17:13:00.5749 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: A5qGqblMi8sugy5h4oE+Hjknb8AEtW6pBCN3qmEudfxn39A1Hs8Q7CIQsiLI+NvWCRe7BRHmXggkLYEu/h1RX8kHOskMq7iXAV0iD2w3RLk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB2863
+X-MDID: 1602781983-vg0_xIM4msMC
+X-PPE-DISP: 1602781983;vg0_xIM4msMC
+Subject: [USRP-users] Adding Xilinx IP to custom RFNoC block
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -60,9 +112,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============8030094372888027441=="
+From: Jim Palladino via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jim Palladino <jim@gardettoengineering.com>
+Content-Type: multipart/mixed; boundary="===============2798005098612452785=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,381 +128,293 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8030094372888027441==
-Content-Type: multipart/alternative; boundary="000000000000ca883005b1b853b1"
+--===============2798005098612452785==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB3312D6040F4F80A6B1E838CCB8020MN2PR12MB3312namp_"
 
---000000000000ca883005b1b853b1
-Content-Type: text/plain; charset="UTF-8"
-
-So, the corruption does not occur anymore (to my knowledge) because I fixed
-the bug in my software that would allow replay_play() to get called in some
-situations prior to replay_store().  But, I'm a bit concerned that perhaps
-my code could have a bug in another place that could allow this to happen.
-That is why I was hoping to be able to guarantee a reset situation upon UHD
-"make" or with a specific "reset" function to the replay block. This bug
-was particularly bad because there was no indication of anything wrong
-(e.g., Under/Overruns, Lates, other errors) and we didn't find out about it
-until we started analyzing data that we had collected over several hours
-last Friday.
-Rob
-
-On Thu, Oct 15, 2020 at 12:35 PM Wade Fife <wade.fife@ettus.com> wrote:
-
-> Hi Rob,
->
-> All the blocks should get reset when you create the RFNoC graph. But the
-> DRAM controller and related AXI4 interconnect are outside of RFNoC, so it
-> doesn't get reset when the blocks are reset. It's possible that the DRAM
-> logic is in a bad state as well. It doesn't look like there's a way
-> currently to reset the DRAM logic on demand.
->
-> Does the corruption still occur after fixing the bug you mentioned?
->
-> Wade
->
->
->
-> On Wed, Oct 14, 2020 at 6:10 PM Rob Kossler via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hi,
->> I am using the Replay block and I ran into an issue where I have gotten
->> the Replay block into a bad state which I can't seem to fix short of
->> rebooting the N310.  The way I know it is in a bad state is that the data
->> playing out is corrupted.  Although the playout is similar to what it
->> should be, there are numerous gaps & drops that indicate the corruption.
->> If I reboot the N310, the corruption disappears.  I would like to be able
->> to "reset" things without requiring an N310 reboot.
->>
->> My custom software controls the Replay block with 3 functions:
->> replay_store() and replay_play() and replay_stop(), all provided below.  I
->> don't do anything tricky like trying to store and play simultaneously.  The
->> replay_store() function is very similar to the
->> rfnoc_replay_samples_from_file() example with the exception that it doesn't
->> actually start or stop the playout. This occurs in my other 2 functions.
->>
->> The way that I get the replay block into a bad state is by failing to
->> call replay_store() prior to replay_play().  This was a bug in my software
->> that could occur in some situations (which I have since fixed). After this
->> happens, I can't produce uncorrupted playouts without rebooting the N310.
->>
->> Let me know if you have any ideas how I can "reset" the Replay block to
->> obtain uncorrupted output.
->> Rob
->>
->>
->> /*******************************************************/
->> int nd::replay_store(
->> uhd::rfnoc::replay_block_control::sptr replay_ptr,
->> size_t port,
->>     uhd::tx_streamer::sptr tx_stream,
->> std::vector<char>& samp_vec,
->> uint32_t addr
->> ){
->> const std::string ID = replay_ptr->get_block_id().to_string() + ":" +
->> std::to_string(port);
->>
->> // Constants related to the Replay block
->> const size_t bytes_per_sample = 4; // Complex signed 16-bit is 32 bits
->> per sample
->> const size_t samples_per_word = 2; // Number of sc16 samples per 64-bit
->> word
->> const size_t bytes_per_word = bytes_per_sample*samples_per_word;
->>
->> size_t num_bytes = samp_vec.size();
->>
->> // Calculate the number of 64-bit words and samples to replay
->> size_t words_to_replay = num_bytes / bytes_per_word;
->> size_t samples_to_replay = words_to_replay * samples_per_word;
->> uint32_t bytes_to_replay = words_to_replay * bytes_per_word;
->>
->> if (bytes_to_replay != num_bytes) {
->> UHD_LOGGER_WARNING(__CLASS_AND_FUNC__) << ID
->> << "Replay block requires an even number of samples. Truncating extra
->> bytes";
->> }
->>
->> // Configure a buffer in the on-board memory at address 0 that's equal in
->> // size to the file we want to play back (rounded down to a multiple of
->> // 64-bit words). Note that it is allowed to playback a different size or
->> // location from what was recorded.
->>     UHD_LOGGER_DEBUG(__CLASS_AND_FUNC__) << ID <<
->>     ": Configuring memory at addr 0x" << std::hex << addr << std::dec <<
->> " for " << bytes_to_replay << " bytes";
->> replay_ptr->stop(port); // just in case it is presently playing
->> replay_ptr->record(addr, bytes_to_replay, port);
->>
->> // Restart record buffer repeatedly until no new data appears on the
->> Replay
->> // block's input. This will flush any data that was buffered on the input.
->> UHD_LOGGER_DEBUG(__CLASS_AND_FUNC__) << ID << ": Restarting record
->> buffer";
->> auto start_time = std::chrono::steady_clock::now();
->> while (true)
->>     {
->> replay_ptr->record_restart(port);
->> std::this_thread::sleep_for(std::chrono::milliseconds(20));
->>
->> uint32_t fullness = replay_ptr->get_record_fullness(port);
->> if (fullness==0) break;
->>
->> std::chrono::duration<double> time_diff_s =
->> std::chrono::steady_clock::now() - start_time;
->> UHD_LOGGER_DEBUG(__CLASS_AND_FUNC__) << ID
->> << ": Time: " << time_diff_s.count() << ": Fullness " << fullness;
->>
->> if (time_diff_s.count() > 2.0) {
->> UHD_LOGGER_ERROR(__CLASS_AND_FUNC__) << ID << ": Timeout waiting to flush
->> record buffer";
->> return -1;
->> }
->> }
->>
->>
->>
->> ///////////////////////////////////////////////////////////////////////////
->> // Send data to replay (record the data)
->> UHD_LOGGER_INFO(__CLASS_AND_FUNC__) << ID << ": Sending " <<
->> samples_to_replay << " samples";
->>
->> uhd::tx_metadata_t tx_md;
->> tx_md.start_of_burst = true;
->> tx_md.end_of_burst   = true;
->> size_t num_tx_samps  = tx_stream->send(&samp_vec[0], samples_to_replay,
->> tx_md);
->>
->> if (num_tx_samps != samples_to_replay) {
->> UHD_LOGGER_ERROR(__CLASS_AND_FUNC__) << ID << ": Error sending samples: "
->> << num_tx_samps << "/" << samples_to_replay;
->> return -1;
->> }
->>
->>
->>
->> ///////////////////////////////////////////////////////////////////////////
->> // Wait for data to be stored in on-board memory
->>
->> UHD_LOGGER_DEBUG(__CLASS_AND_FUNC__) << ID << ": Waiting for recording to
->> complete";
->> start_time = std::chrono::steady_clock::now();
->> while (true)
->> {
->> uint32_t fullness = replay_ptr->get_record_fullness(port);
->> if (fullness>=bytes_to_replay) break;
->>
->> std::chrono::duration<double> time_diff_s =
->> std::chrono::steady_clock::now() - start_time;
->>
->> UHD_LOGGER_DEBUG(__CLASS_AND_FUNC__) << ID << ": Time: (s): " <<
->> time_diff_s.count()
->> << ": Fullness: " << fullness << " / " << bytes_to_replay;
->>
->> if (time_diff_s.count() > 2.0) {
->> UHD_LOGGER_ERROR(__CLASS_AND_FUNC__) << ID << ": Timeout waiting for
->> recording to complete";
->> return -1;
->> }
->>
->> std::this_thread::sleep_for(std::chrono::milliseconds(1));
->> }
->>
->> UHD_LOGGER_INFO(__CLASS_AND_FUNC__) << ID << ": Successfully sent " <<
->> samples_to_replay << " samples";
->>
->> return samples_to_replay;
->> }
->> /*******************************************************/
->>
->>
->>
->> /*******************************************************/
->> void nd::replay_play(
->> uhd::rfnoc::replay_block_control::sptr replay_ptr,
->> size_t port,
->> const uhd::time_spec_t start_time
->> ){
->> const std::string ID = replay_ptr->get_block_id().to_string() + ":" +
->> std::to_string(port);
->> uint64_t rec_addr = replay_ptr->get_record_offset(port);
->> uint64_t rec_size = replay_ptr->get_record_size(port);
->>
->> UHD_LOGGER_DEBUG(ID) << "Replay Started. Samples: " << (rec_size/4);
->> replay_ptr->play(rec_addr, rec_size, port, start_time, true);
->> }
->> /*******************************************************/
->>
->>
->>
->>
->> /*******************************************************/
->> void nd::replay_stop(
->> uhd::rfnoc::replay_block_control::sptr replay_ptr,
->> size_t port
->> ){
->> const std::string ID = replay_ptr->get_block_id().to_string() + ":" +
->> std::to_string(port);
->>
->> UHD_LOGGER_DEBUG(ID) << "Replay Stopped";
->> replay_ptr->stop(port);
->> }
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
-
---000000000000ca883005b1b853b1
-Content-Type: text/html; charset="UTF-8"
+--_000_MN2PR12MB3312D6040F4F80A6B1E838CCB8020MN2PR12MB3312namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">So, the corruption does not occur anymore=
- (to my knowledge) because I fixed the bug in my software that would allow =
-replay_play() to get called in some situations prior to replay_store().=C2=
-=A0 But, I&#39;m a bit concerned that perhaps my code could have a bug in a=
-nother place that could allow this to happen. That is why I was hoping to b=
-e able to guarantee a reset situation upon UHD &quot;make&quot; or with a s=
-pecific &quot;reset&quot; function to the replay block. This bug was partic=
-ularly bad because there was no indication of anything wrong (e.g., Under/O=
-verruns, Lates, other errors) and we didn&#39;t find out about it until we =
-started analyzing data that we had collected over several hours last Friday=
-.</div><div>Rob</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Thu, Oct 15, 2020 at 12:35 PM Wade Fife &lt;<a href=3D"m=
-ailto:wade.fife@ettus.com">wade.fife@ettus.com</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Rob,=
-</div><div><br></div><div>All the blocks should get reset when you create t=
-he RFNoC graph. But the DRAM controller and related AXI4 interconnect are o=
-utside of RFNoC, so it doesn&#39;t get reset when the blocks are reset. It&=
-#39;s possible that the DRAM logic is in a bad state as well. It doesn&#39;=
-t look like there&#39;s a way currently to reset the DRAM logic on demand.<=
-br></div><div><br></div><div>Does the corruption still occur after fixing t=
-he bug you mentioned?</div><div><br></div><div>Wade<br></div><div><br></div=
-><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Wed, Oct 14, 2020 at 6:10 PM Rob Kossler via USRP-users =
-&lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
-ers@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex"><div dir=3D"ltr">Hi,<br><div>I am using the Replay block=
- and I ran into an issue where I have gotten the Replay block into a bad st=
-ate which I can&#39;t seem to fix short of rebooting the N310.=C2=A0 The wa=
-y I know it is in a bad state is that the data playing out is corrupted.=C2=
-=A0 Although the playout is similar to what it should be, there are numerou=
-s gaps &amp; drops that indicate the corruption.=C2=A0 If I reboot the N310=
-, the corruption disappears.=C2=A0 I would like to be able to &quot;reset&q=
-uot; things without requiring an N310 reboot.</div><div><br></div><div>My c=
-ustom software controls the Replay block with 3 functions: replay_store() a=
-nd replay_play() and replay_stop(), all provided below.=C2=A0 I don&#39;t d=
-o anything tricky like trying to store and play simultaneously.=C2=A0 The r=
-eplay_store() function is very similar to the rfnoc_replay_samples_from_fil=
-e() example with the exception that it doesn&#39;t actually start or stop t=
-he playout. This occurs in my other 2 functions.</div><div><br></div><div>T=
-he way that I get the replay block into a bad state is by failing to call r=
-eplay_store() prior to replay_play().=C2=A0 This was a bug in my software t=
-hat could occur in some situations (which I have since fixed). After this h=
-appens, I can&#39;t produce uncorrupted playouts without rebooting the N310=
-.</div><div><br></div><div>Let me know if you have any ideas how I can &quo=
-t;reset&quot; the Replay block to obtain uncorrupted output.</div><div>Rob<=
-/div><div><br></div><div><br></div><div><font face=3D"monospace">/*********=
-**********************************************/</font><br></div><div><font =
-face=3D"monospace">int nd::replay_store(<br>	uhd::rfnoc::replay_block_contr=
-ol::sptr replay_ptr,<br>	size_t port,<br>=C2=A0 =C2=A0 uhd::tx_streamer::sp=
-tr tx_stream,<br>	std::vector&lt;char&gt;&amp; samp_vec,<br>	uint32_t addr<=
-br>){<br>	const std::string ID =3D replay_ptr-&gt;get_block_id().to_string(=
-) + &quot;:&quot; + std::to_string(port);<br>	<br>	// Constants related to =
-the Replay block<br>	const size_t bytes_per_sample =3D 4; // Complex signed=
- 16-bit is 32 bits per sample<br>	const size_t samples_per_word =3D 2; // N=
-umber of sc16 samples per 64-bit word<br>	const size_t bytes_per_word =3D b=
-ytes_per_sample*samples_per_word;<br>	<br>	size_t num_bytes =3D samp_vec.si=
-ze();<br>	<br>	// Calculate the number of 64-bit words and samples to repla=
-y<br>	size_t words_to_replay =3D num_bytes / bytes_per_word;<br>	size_t sam=
-ples_to_replay =3D words_to_replay * samples_per_word;<br>	uint32_t bytes_t=
-o_replay =3D words_to_replay * bytes_per_word;<br>	<br>	if (bytes_to_replay=
- !=3D num_bytes) {<br>		UHD_LOGGER_WARNING(__CLASS_AND_FUNC__) &lt;&lt; ID =
-<br>		&lt;&lt; &quot;Replay block requires an even number of samples. Trunc=
-ating extra bytes&quot;;<br>	}<br>	<br>	// Configure a buffer in the on-boa=
-rd memory at address 0 that&#39;s equal in<br>	// size to the file we want =
-to play back (rounded down to a multiple of<br>	// 64-bit words). Note that=
- it is allowed to playback a different size or<br>	// location from what wa=
-s recorded.<br>=C2=A0 =C2=A0 UHD_LOGGER_DEBUG(__CLASS_AND_FUNC__) &lt;&lt; =
-ID &lt;&lt;<br>=C2=A0 =C2=A0 &quot;: Configuring memory at addr 0x&quot; &l=
-t;&lt; std::hex &lt;&lt; addr &lt;&lt; std::dec &lt;&lt; &quot; for &quot; =
-&lt;&lt; bytes_to_replay &lt;&lt; &quot; bytes&quot;;<br>	replay_ptr-&gt;st=
-op(port); // just in case it is presently playing<br>	replay_ptr-&gt;record=
-(addr, bytes_to_replay, port);<br>	<br>	// Restart record buffer repeatedly=
- until no new data appears on the Replay<br>	// block&#39;s input. This wil=
-l flush any data that was buffered on the input.<br>	UHD_LOGGER_DEBUG(__CLA=
-SS_AND_FUNC__) &lt;&lt; ID &lt;&lt; &quot;: Restarting record buffer&quot;;=
-<br>	auto start_time =3D std::chrono::steady_clock::now();<br>	while (true)=
- <br>=C2=A0 =C2=A0 {<br>		replay_ptr-&gt;record_restart(port);<br>		std::th=
-is_thread::sleep_for(std::chrono::milliseconds(20));<br>		<br>		uint32_t fu=
-llness =3D replay_ptr-&gt;get_record_fullness(port);<br>		if (fullness=3D=
-=3D0) break;<br>		<br>		std::chrono::duration&lt;double&gt; time_diff_s =3D=
- std::chrono::steady_clock::now() - start_time;<br>		UHD_LOGGER_DEBUG(__CLA=
-SS_AND_FUNC__) &lt;&lt; ID <br>		&lt;&lt; &quot;: Time: &quot; &lt;&lt; tim=
-e_diff_s.count() &lt;&lt; &quot;: Fullness &quot; &lt;&lt; fullness;<br>		<=
-br>		if (time_diff_s.count() &gt; 2.0) {<br>			UHD_LOGGER_ERROR(__CLASS_AND=
-_FUNC__) &lt;&lt; ID &lt;&lt; &quot;: Timeout waiting to flush record buffe=
-r&quot;;<br>			return -1;<br>		}<br>	}<br>	<br>	<br>	//////////////////////=
-/////////////////////////////////////////////////////<br>	// Send data to r=
-eplay (record the data)<br>	UHD_LOGGER_INFO(__CLASS_AND_FUNC__) &lt;&lt; ID=
- &lt;&lt; &quot;: Sending &quot; &lt;&lt; samples_to_replay &lt;&lt; &quot;=
- samples&quot;;<br>	<br>	uhd::tx_metadata_t tx_md;<br>	tx_md.start_of_burst=
- =3D true;<br>	tx_md.end_of_burst =C2=A0 =3D true;<br>	size_t num_tx_samps =
-=C2=A0=3D tx_stream-&gt;send(&amp;samp_vec[0], samples_to_replay, tx_md);<b=
-r>	<br>	if (num_tx_samps !=3D samples_to_replay) {<br>		UHD_LOGGER_ERROR(__=
-CLASS_AND_FUNC__) &lt;&lt; ID &lt;&lt; &quot;: Error sending samples: &quot=
-; &lt;&lt; num_tx_samps &lt;&lt; &quot;/&quot; &lt;&lt; samples_to_replay;<=
-br>		return -1;<br>	}<br>	<br>	<br>	///////////////////////////////////////=
-////////////////////////////////////<br>	// Wait for data to be stored in o=
-n-board memory<br>	<br>	UHD_LOGGER_DEBUG(__CLASS_AND_FUNC__) &lt;&lt; ID &l=
-t;&lt; &quot;: Waiting for recording to complete&quot;;<br>	start_time =3D =
-std::chrono::steady_clock::now();<br>	while (true) <br>	{<br>		uint32_t ful=
-lness =3D replay_ptr-&gt;get_record_fullness(port);<br>		if (fullness&gt;=
-=3Dbytes_to_replay) break;<br>		<br>		std::chrono::duration&lt;double&gt; t=
-ime_diff_s =3D std::chrono::steady_clock::now() - start_time;<br><br>		UHD_=
-LOGGER_DEBUG(__CLASS_AND_FUNC__) &lt;&lt; ID &lt;&lt; &quot;: Time: (s): &q=
-uot; &lt;&lt; time_diff_s.count()<br>		&lt;&lt; &quot;: Fullness: &quot; &l=
-t;&lt; fullness &lt;&lt; &quot; / &quot; &lt;&lt; bytes_to_replay;<br><br>	=
-	if (time_diff_s.count() &gt; 2.0) {<br>			UHD_LOGGER_ERROR(__CLASS_AND_FUN=
-C__) &lt;&lt; ID &lt;&lt; &quot;: Timeout waiting for recording to complete=
-&quot;;<br>			return -1;<br>		}<br>		<br>		std::this_thread::sleep_for(std:=
-:chrono::milliseconds(1));<br>	}<br>	<br>	UHD_LOGGER_INFO(__CLASS_AND_FUNC_=
-_) &lt;&lt; ID &lt;&lt; &quot;: Successfully sent &quot; &lt;&lt; samples_t=
-o_replay &lt;&lt; &quot; samples&quot;;<br>	<br>	return samples_to_replay;<=
-br>}<br>/*******************************************************/<br><br><b=
-r><br>/*******************************************************/</font></div=
-><div><font face=3D"monospace">void nd::replay_play(<br>	uhd::rfnoc::replay=
-_block_control::sptr replay_ptr, <br>	size_t port,<br>	const uhd::time_spec=
-_t start_time<br>){<br>	const std::string ID =3D replay_ptr-&gt;get_block_i=
-d().to_string() + &quot;:&quot; + std::to_string(port);<br>	uint64_t rec_ad=
-dr =3D replay_ptr-&gt;get_record_offset(port);<br>	uint64_t rec_size =3D re=
-play_ptr-&gt;get_record_size(port);<br><br>	UHD_LOGGER_DEBUG(ID) &lt;&lt; &=
-quot;Replay Started. Samples: &quot; &lt;&lt; (rec_size/4);<br>	replay_ptr-=
-&gt;play(rec_addr, rec_size, port, start_time, true);<br>}<br>/************=
-*******************************************/<br><br><br><br><br>/**********=
-*********************************************/<br>void nd::replay_stop(<br>=
-	uhd::rfnoc::replay_block_control::sptr replay_ptr,<br>	size_t port<br>){<b=
-r>	const std::string ID =3D replay_ptr-&gt;get_block_id().to_string() + &qu=
-ot;:&quot; + std::to_string(port);<br>	<br>	UHD_LOGGER_DEBUG(ID) &lt;&lt; &=
-quot;Replay Stopped&quot;;<br>	replay_ptr-&gt;stop(port);<br>}<br></font><b=
-r></div><div><br></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div></div>
+Hello,
 
---000000000000ca883005b1b853b1--
+I'm trying to add a Xilinx DDS to a custom RFNoC block (using UHD 4.0 and a=
+ssociated gr-ettus repo). To do this, I started building the FPGA image usi=
+ng the GUI option, stopped the build shortly after Vivado opened, and saved=
+ a Vivado Project. Then, in Vivado I configured/added a Xilinx DDS to my cu=
+stom RFNoC block hdl and built the project just fine.
+
+Now, I'm trying to setup my build file structure so I can use the "make" fl=
+ow to build the FPGA image. I've tried several things.
+
+1) I copied the xci file directly to my rfnoc/fpga/rfnoc_block_Block folder=
+. Then, I added the following to the Makefile.srcs file in the same folder:
+
+RFNOC_OOT_SRCS +=3D $(addprefix $(dir $(abspath $(lastword $(MAKEFILE_LIST)=
+))), rfnoc_block_Block.v noc_shell_Block.v rfnoc_jjj.v DDS_Test_Signal.xci)
+
+When I try to build the FPGA image, I get the following critical warning:
+CRITICAL WARNING: [Vivado 12-1504] The IP is already part of the fileset 's=
+ources_1'. Requested source '/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.=
+0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/DDS=
+_Test_Signal.xci' will not be added.
+
+followed by these errors:
+ERROR: [Synth 8-439] module 'DDS_Test_Signal' not found [/home/XXX/Projects=
+/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/XXX/=
+fpga/rfnoc_block_Block/rfnoc_jjj.v:92]
+ERROR: [Synth 8-6156] failed synthesizing module 'jjj_const' [/home/XXX/Pro=
+jects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut=
+/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:11]
+ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_block_Block' [/home=
+/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfno=
+c-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_block_Block.v:25]
+ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_image_core' [/home/=
+XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc=
+-peanut/rfnoc/icores/e320_rfnoc_image_core.v:14]
+ERROR: [Synth 8-6156] failed synthesizing module 'e320_core' [/home/XXX/Pro=
+jects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e=
+320_core.v:18]
+ERROR: [Synth 8-6156] failed synthesizing module 'e320' [/home/XXX/Projects=
+/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e320.v=
+:14]
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the con=
+sole or run log file for details
 
 
---===============8030094372888027441==
+2) Looking at the rfnoc-example included under uhd/host, I see that this co=
+mment is in Ettus's /rfnoc-example/fpga/Makefile.srcs file:
+
+# If there are additional modules or IP (other than what is in the RFNoC bl=
+ock
+# subdirectories) that needs to get installed in order to synthesize blocks=
+ from
+# this module, list them here:
+#RFNOC_OOT_SRCS +=3D $(abspath $(addprefix ${RFNOC_EXAMPLE_DIR},
+#my_other_module.v \
+#ip/my_ip_core/my_ip_core.xci \
+#))
+
+So, I created an rfnoc/fpga/ip/DDS_Test_Signal folder and copied the xci fi=
+le there. Then, I added the following line to my /rfnoc/fpga/Makefile.srcs:
+
+RFNOC_OOT_SRCS +=3D $(abspath $(addprefix ${RFNOC_EXAMPLE_DIR}, ip/DDS_Test=
+_Signal/DDS_Test_Signal.xci))
+
+When I do this, I get:
+
+Environment successfully initialized.
+BUILDER: Checking tools...
+* GNU bash, version 4.4.20(1)-release (x86_64-pc-linux-gnu)
+* Python 2.7.17
+* Vivado v2019.1 (64-bit)
+make[5]: *** No rule to make target '/home/XXX/Projects/SCISRS/usrp/gnuradi=
+o/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/ip/DDS_Test_Signal/DDS_Tes=
+t_Signal.xci', needed by 'bin'.  Stop.
+Makefile:65: recipe for target 'E320_XG' failed
+make[4]: *** [E320_XG] Error 2
+Built target Block_x310_rfnoc_image_core
+
+
+So, I'm obviously not adding the IP correctly. Can anyone point me in the r=
+ight direction?
+
+Thanks,
+Jim
+
+
+--_000_MN2PR12MB3312D6040F4F80A6B1E838CCB8020MN2PR12MB3312namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hello,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I'm trying to add a Xilinx DDS to a custom RFNoC block (using UHD 4.0 and a=
+ssociated gr-ettus repo). To do this, I started building the FPGA image usi=
+ng the GUI option, stopped the build shortly after Vivado opened, and saved=
+ a Vivado Project. Then, in Vivado
+ I configured/added a Xilinx DDS to my custom RFNoC block hdl and built the=
+ project just fine.&nbsp;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Now, I'm trying to setup my build file structure so I can use the &quot;mak=
+e&quot; flow to build the FPGA image. I've tried several things.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+1) I copied the xci file directly to my rfnoc/fpga/rfnoc_block_Block folder=
+. Then, I added the following to the Makefile.srcs file in the same folder:=
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+RFNOC_OOT_SRCS +=3D $(addprefix $(dir $(abspath $(lastword $(MAKEFILE_LIST)=
+))), rfnoc_block_Block.v noc_shell_Block.v rfnoc_jjj.v DDS_Test_Signal.xci)=
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+When I try to build the FPGA image, I get the following critical warning:</=
+div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+CRITICAL WARNING: [Vivado 12-1504] The IP is already part of the fileset 's=
+ources_1'. Requested source '/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.=
+0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/DDS=
+_Test_Signal.xci' will not be added.<br>
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+followed by these errors:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"color: rgb(0, 0, 0); font-family: Calibri, Arial, Helvetica,=
+ sans-serif; font-size: 12pt;">ERROR: [Synth 8-439] module 'DDS_Test_Signal=
+' not found [/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src=
+/RFNoC_Custom/rfnoc-peanut/XXX/fpga/rfnoc_block_Block/rfnoc_jjj.v:92]</span=
+><br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<div>ERROR: [Synth 8-6156] failed synthesizing module 'jjj_const' [/home/XX=
+X/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/rfnoc-p=
+eanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_jjj.v:11]</div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_block_Block' [=
+/home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom=
+/rfnoc-peanut/rfnoc/fpga/rfnoc_block_Block/rfnoc_block_Block.v:25]</div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module 'rfnoc_image_core' [/=
+home/XXX/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/RFNoC_Custom/=
+rfnoc-peanut/rfnoc/icores/e320_rfnoc_image_core.v:14]</div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module 'e320_core' [/home/XX=
+X/Projects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e=
+320/e320_core.v:18]</div>
+<div>ERROR: [Synth 8-6156] failed synthesizing module 'e320' [/home/XXX/Pro=
+jects/SCISRS/usrp/gnuradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/e=
+320.v:14]</div>
+<div>ERROR: [Common 17-69] Command failed: Synthesis failed - please see th=
+e console or run log file for details</div>
+<div><br>
+</div>
+<br>
+2) Looking at the rfnoc-example included under uhd/host, I see that this co=
+mment is in Ettus's /rfnoc-example/fpga/Makefile.srcs file:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+# If there are additional modules or IP (other than what is in the RFNoC bl=
+ock
+<div># subdirectories) that needs to get installed in order to synthesize b=
+locks from</div>
+<div># this module, list them here:</div>
+<div>#RFNOC_OOT_SRCS +=3D $(abspath $(addprefix ${RFNOC_EXAMPLE_DIR},</div>
+<div>#my_other_module.v \</div>
+<div>#ip/my_ip_core/my_ip_core.xci \</div>
+#))<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+So, I created an rfnoc/fpga/ip/DDS_Test_Signal folder and copied the xci fi=
+le there. Then, I added the following line to my /rfnoc/fpga/Makefile.srcs:=
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+RFNOC_OOT_SRCS +=3D $(abspath $(addprefix ${RFNOC_EXAMPLE_DIR}, ip/DDS_Test=
+_Signal/DDS_Test_Signal.xci))<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+When I do this, I get:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Environment successfully initialized.
+<div>BUILDER: Checking tools...</div>
+<div>* GNU bash, version 4.4.20(1)-release (x86_64-pc-linux-gnu)</div>
+<div>* Python 2.7.17</div>
+<div>* Vivado v2019.1 (64-bit)</div>
+<div>make[5]: *** No rule to make target '/home/XXX/Projects/SCISRS/usrp/gn=
+uradio/3.8.2.0_uhd4.0.0.0/src/uhd/fpga/usrp3/top/e320/ip/DDS_Test_Signal/DD=
+S_Test_Signal.xci', needed by 'bin'. &nbsp;Stop.</div>
+<div>Makefile:65: recipe for target 'E320_XG' failed</div>
+<div>make[4]: *** [E320_XG] Error 2</div>
+<div>Built target Block_x310_rfnoc_image_core</div>
+<br>
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+So, I'm obviously not adding the IP correctly. Can anyone point me in the r=
+ight direction?</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Thanks,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Jim</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+</body>
+</html>
+
+--_000_MN2PR12MB3312D6040F4F80A6B1E838CCB8020MN2PR12MB3312namp_--
+
+
+--===============2798005098612452785==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -461,5 +425,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8030094372888027441==--
+--===============2798005098612452785==--
 
