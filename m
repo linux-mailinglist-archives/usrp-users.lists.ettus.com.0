@@ -2,48 +2,46 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA94C28F792
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Oct 2020 19:19:39 +0200 (CEST)
-Received: from [::1] (port=41672 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C04328F7AE
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Oct 2020 19:35:59 +0200 (CEST)
+Received: from [::1] (port=41772 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kT6uf-0005ub-Lc; Thu, 15 Oct 2020 13:19:37 -0400
-Received: from mail-ed1-f53.google.com ([209.85.208.53]:34801)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <mcerror@gmail.com>) id 1kT6ub-0005nO-6N
- for usrp-users@lists.ettus.com; Thu, 15 Oct 2020 13:19:33 -0400
-Received: by mail-ed1-f53.google.com with SMTP id x1so3906698eds.1
- for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 10:19:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=xVI2V08UztXg3sAH4AHNGyN+S0Jd8FpAX1zfdDSqno8=;
- b=GstI2cclYa9cRuJNuxdaN/N5cFp8SiCEwHB4A/x6LIVvNoS/zoBEfGC7hzts3/uc0d
- CNTDvkRYgzctxKC4lUn3CMOs1OiAQzQpvRpUNNHeATaUQImKNuG3sz9TFpEfNiUpV/+q
- u4/ArKBm+WQFYwAlEuVckY8d4+MQmqH1pp9Np//O0SIy0DNA7lRja2fPbHWgLUroNNr6
- M+tXYaIeAdLtakRHJX2W3MGx/bzNhkGJf2libGcQUb8auUTNxAvfDdbakfFjlcdz0U8C
- 8jviq/jgs0CzHPuXl8URAP5re+CUDrG3tEQ0dpGCWmrmdvMeK7HASfbx0jx+j4MkEUd6
- OqnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=xVI2V08UztXg3sAH4AHNGyN+S0Jd8FpAX1zfdDSqno8=;
- b=EFmwY4rEjN5LLxiun22qeyKBEylIv/aBXof2pR6lH3GsJBicY0PcElceRXctzbZcDY
- UvZJvMjDSZMzKO2Fed4qAWxtf7zBEGeDa+JrXThX5vR1pOQGkQdllu+EqVMGAwDx3uDk
- ivSfETnA1f+WroOe7Y8eUufNJ/KmhqarE4il7h8Er4nSLgjLjx5qgB6+9Dq1Gn1k15rk
- IFSmJweQjWpfbMMajvdRCwZpbL2HEWVFaxiGBmFPcoTL/WuPjVh+MIS+nFNsfuG3U7wK
- qoYttigwQ3pf45vZzm8RFwOU9qXbYg2uxnXQcHNUAOJ0p4kosJHx2IKRJEr6ZJuqzo9d
- ahdQ==
-X-Gm-Message-State: AOAM533KAFvJoxz5WOlZnUK893M6YBPzcW60UBPNFAd167bJHLVu1bXt
- 7t2CS8kNIzobSDIjKtHXTngw+zg5OoGzWjrVgygpUkA1Enc=
-X-Google-Smtp-Source: ABdhPJzyk88ThW1XT3HfqKPmim85ruJHpydFTGkPoU9/ZlDjMd3pRh+cf7GmKejn9YEDMbrSDddsiCWQZQKu+NDoC3o=
-X-Received: by 2002:a05:6402:2207:: with SMTP id
- cq7mr5541489edb.359.1602782331976; 
- Thu, 15 Oct 2020 10:18:51 -0700 (PDT)
+	id 1kT7AT-0006nJ-3b; Thu, 15 Oct 2020 13:35:57 -0400
+Received: from exedge04.gtri.gatech.edu ([130.207.193.244]:22155)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <Jeff.Hodges@gtri.gatech.edu>)
+ id 1kT7AO-0006dw-RE
+ for usrp-users@lists.ettus.com; Thu, 15 Oct 2020 13:35:52 -0400
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=exedge04;
+ c=simple/simple; t=1602783310; h=from:subject:to:date:message-id;
+ bh=Nn504fJP2OzuIn2Nzy+i091iIddgj3s5ZLtpU6OIFUo=;
+ b=bbwXV7xM7oect8MTKIxkfVsqVzvCm2QFJ/xxe6zlc4UJnqEN0b89HWpCF3qYE4oy2Sj1gbQAeac
+ PiysRWHg1Z3uakOrbr9qselVU7+h1ZD/GNWiutgGlBkr8iRuMj0Pl0NiJwhvHrbGe9vS+pDQ+43II
+ s9JwABoWhRhv0kZl3qw=
+Received: from kiawah.core.gtri.org (10.41.31.71) by exedge04.gtri.org
+ (130.207.193.244) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Thu, 15 Oct
+ 2020 13:35:10 -0400
+Received: from ocracoke.core.gtri.org (10.41.22.71) by kiawah.core.gtri.org
+ (10.41.31.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2044.4; Thu, 15
+ Oct 2020 13:35:10 -0400
+Received: from ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf]) by
+ ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf%13]) with mapi id
+ 15.01.2044.004; Thu, 15 Oct 2020 13:35:10 -0400
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Error RFNoC X310 uhd_cal_tx_dc_offset
+Thread-Index: AQHWoxiSkHBUDqPnuU+0nsziSRmztQ==
+Date: Thu, 15 Oct 2020 17:35:10 +0000
+Message-ID: <3a0cb273ddd2434db40042cfc8af37a8@gtri.gatech.edu>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.41.0.30]
 MIME-Version: 1.0
-Date: Thu, 15 Oct 2020 20:18:41 +0300
-Message-ID: <CAOjuhW=a7=racuoy=fdnW4HWZW8ns3mZtZOPchW44b9qaZBnCA@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Emulator device
+Subject: [USRP-users] Error RFNoC X310 uhd_cal_tx_dc_offset
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +53,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Alexey Silyuk via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Alexey Silyuk <mcerror@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2968277104154164390=="
+From: "Hodges, Jeff via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
+Content-Type: multipart/mixed; boundary="===============7678137042796785970=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,56 +69,129 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2968277104154164390==
-Content-Type: multipart/alternative; boundary="0000000000008cbdf905b1b8d7ee"
+--===============7678137042796785970==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3a0cb273ddd2434db40042cfc8af37a8gtrigatechedu_"
 
---0000000000008cbdf905b1b8d7ee
-Content-Type: text/plain; charset="UTF-8"
-
-  Hello dear friends, i am a new usrp user, i am starting to work with uhd
-package but currently  haven't any SRD device, and i want to create or find
-some EMULATOR device.
-I am copied device in /uh/lib/usrp/ based on usrp2 device, all i want to do
-now is to simulate serial device an instead of RX and TX to use reading an
-writing to simple file.
-no i am stuck on line in
-/lib/transport/super_recv_packet_handler.hpp line with
-
-            buff = _props[index].get_buff(timeout);
-            if (buff.get() == nullptr)
-                return PACKET_TIMEOUT_ERROR;
-
-i guess that this line trying to get RX buffer from somewhere, if buffer is
-empty will return timeout error,
-how and what i can to do in this line to read from file instead of buffer?
-
-Thanks for any help
-Regards,Alexey
-
---0000000000008cbdf905b1b8d7ee
-Content-Type: text/html; charset="UTF-8"
+--_000_3a0cb273ddd2434db40042cfc8af37a8gtrigatechedu_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">=C2=A0 Hello dear friends, i am a new usrp user, i am star=
-ting to work with uhd package but currently=C2=A0 haven&#39;t any SRD devic=
-e, and i want to create or find some EMULATOR device.<div>I am copied devic=
-e in /uh/lib/usrp/ based on usrp2 device, all i want to do now is to simula=
-te serial device an instead of RX and TX to use reading an writing to simpl=
-e file.</div><div>no i am stuck on line in=C2=A0<br>/lib/transport/super_re=
-cv_packet_handler.hpp line with=C2=A0</div><div><br></div><div>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 buff =3D _props[index].get_buff(timeout);<b=
-r>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (buff.get() =3D=3D nullptr)<=
-br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return PACKET_TI=
-MEOUT_ERROR;<br></div><div><br></div><div>i guess that this line trying to =
-get RX buffer from somewhere, if buffer is empty will return timeout error,=
-</div><div>how and what i can to do in this line to read from file instead =
-of buffer?</div><div><br></div><div>Thanks=C2=A0for any help</div><div>Rega=
-rds,Alexey</div></div>
-
---0000000000008cbdf905b1b8d7ee--
+Hi, I've built my own RFNoC block and everything works fine, except the tx_=
+dc_offset is -40 dBc at all times, which seems pretty high.  I tried to fol=
+low the example from another user, since I have the same setup with my UBX =
+in the second slot (B) but I get the error:
 
 
---===============2968277104154164390==
+>> uhd_cal_tx_dc_offset  --args=3D"addr=3D192.168.10.2" --subdev "B:0"
+Error: RuntimeError: For legacy APIs, all devices require the same number o=
+f radios, DDCs and DUCs.
+
+I am using UHD 3.15-LTS with gr-ettus.
+
+In addition, I see the gr-ettus code appears to be commented out from gr-et=
+tus/lib/rfnoc_radio_impl.cc  lines 144-158:
+
+    // FIXME everything down from here needs to be mapped on to the block A=
+PI
+    void rfnoc_radio_impl::set_tx_dc_offset(bool enable, const size_t chan)
+    {
+      //get_device()->set_tx_dc_offset(enable, chan);
+    }
+
+    void rfnoc_radio_impl::set_tx_dc_offset(const std::complex< double > &o=
+ffset, const size_t chan)
+    {
+      //get_device()->set_tx_dc_offset(offset, chan);
+    }
+
+
+Any advice on how to reduce the dc_offset?
+
+Thanks,
+
+Jeff
+
+
+
+--_000_3a0cb273ddd2434db40042cfc8af37a8gtrigatechedu_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Hi, I've built my own RFNoC block and everything works fine, except the =
+tx_dc_offset is -40 dBc at all times, which seems pretty high.&nbsp; I trie=
+d to follow the example from another user, since I have the same setup with=
+ my UBX in the second slot (B) but I
+ get the error:</p>
+<p><br>
+</p>
+<div>&gt;&gt; uhd_cal_tx_dc_offset&nbsp; --args=3D&quot;addr=3D192.168.10.2=
+&quot; --subdev &quot;B:0&quot; <br>
+</div>
+<div><span>Error: RuntimeError: For legacy APIs, all devices require the sa=
+me number of radios, DDCs and DUCs.<br>
+</span></div>
+<div><br>
+</div>
+<div>I am using UHD 3.15-LTS with gr-ettus.</div>
+<div><br>
+</div>
+<div>In addition, I see the gr-ettus code appears to be commented out from =
+gr-ettus/lib/rfnoc_radio_impl.cc&nbsp; lines 144-158:</div>
+<div><br>
+</div>
+<div>
+<div>&nbsp;&nbsp;&nbsp; // FIXME everything down from here needs to be mapp=
+ed on to the block API<br>
+&nbsp;&nbsp;&nbsp; void rfnoc_radio_impl::set_tx_dc_offset(bool enable, con=
+st size_t chan)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //get_device()-&gt;set_tx_dc_offset(enable, =
+chan);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; void rfnoc_radio_impl::set_tx_dc_offset(const std::compl=
+ex&lt; double &gt; &amp;offset, const size_t chan)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //get_device()-&gt;set_tx_dc_offset(offset, =
+chan);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>Any advice on how to reduce the dc_offset?</div>
+<div><br>
+</div>
+<div>Thanks,<br>
+</div>
+<div><br>
+</div>
+<div>Jeff<br>
+</div>
+<br>
+<span></span></div>
+<br>
+</div>
+</body>
+</html>
+
+--_000_3a0cb273ddd2434db40042cfc8af37a8gtrigatechedu_--
+
+
+--===============7678137042796785970==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -131,5 +202,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2968277104154164390==--
+--===============7678137042796785970==--
 
