@@ -2,54 +2,85 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 661D428FCAC
-	for <lists+usrp-users@lfdr.de>; Fri, 16 Oct 2020 05:20:31 +0200 (CEST)
-Received: from [::1] (port=45592 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C24C128FF76
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Oct 2020 09:52:05 +0200 (CEST)
+Received: from [::1] (port=47716 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kTGI4-00025G-RM; Thu, 15 Oct 2020 23:20:24 -0400
-Received: from mail-vs1-f45.google.com ([209.85.217.45]:38345)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1kTGI0-0001tL-HV
- for usrp-users@lists.ettus.com; Thu, 15 Oct 2020 23:20:20 -0400
-Received: by mail-vs1-f45.google.com with SMTP id b3so648522vsc.5
- for <usrp-users@lists.ettus.com>; Thu, 15 Oct 2020 20:20:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=jCsyWB0Rkg1+pCDo53KFtmxUTES4cICG5od6mRyL098=;
- b=T5Bxf9Uj+YzNzmxZ6GKDoOu4/IIrws0MJWOQ5PUOsx7KyN+K9980VpZ/xwVY/OhANY
- t6DqGFUW9i2Bay8rdk1f/pIbhq/AtQSduBVPEjedflVekk+vfME9QB/70/8zri1oU5Wi
- Ij1g31Mt70N0ZYWCH/akFJUsWy6Y0GPYUzqFEFwwSEVN6iIIqDTzrN4kOQ11n4DyuKuP
- WrPRIm3VeERqIGrqxIMyN137Q7YoHMNi9LpOCRk7kYKKhZxgZZ24gzZMJ/LEtXx7fZaz
- ctV8G4y+5Y9lBkZXH84Fbizzz0bxhN2WX1stLjTTqzmJQAJxLql2GaeNkpkeFLOWdFoZ
- 1HGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=jCsyWB0Rkg1+pCDo53KFtmxUTES4cICG5od6mRyL098=;
- b=Q50FC2cI8IUmPcHhMPHYypahIJUmE6avT0ZTKJ+6tlY/b5r7Y0vWjq27FaWs5Fogu4
- yCtDRxpYNC9yBAXzSBpdKTn7v8AOUiPfevbSlPPTI2xKMUrrmOGCXk4RNiJvCBilOR1d
- 42LEPtVY2ilbL9s8jwNQ47PQxbZn2eDnDHiJdQpxYRZYVrtrVdd3+5pkXGUhjV879fv2
- 3hjoqFlmV0cugS1QtrK/riM//P27bbUzpVH0b6LwWA7LWTBU7EzLwI2ClgsC8Ectq7mM
- Dzty5msHiA33o7/1WNr7eDET0S5hrUygKY95bAHZGt6CK8OyUPkjpxLPjJ5ma7qMNdwF
- bATQ==
-X-Gm-Message-State: AOAM531OGEyEldcck2QTS510684c5zcnDOndDXOWpSrYWxWrgNXzQYtd
- 2A4hCTh7NYJoFmi421wuoSQ4DZ7uBcJxGl5S0k89TOeb
-X-Google-Smtp-Source: ABdhPJxeFg/UWfI82EvRY/u2BQ9MMhf0XscaOida5W1bkcbTc3yCxFM3CYnVEwHkfMQxwTdcYNYYVGoOZdc5ga5BaHk=
-X-Received: by 2002:a05:6102:3014:: with SMTP id
- s20mr837625vsa.27.1602818379883; 
- Thu, 15 Oct 2020 20:19:39 -0700 (PDT)
+	id 1kTKWw-000158-1C; Fri, 16 Oct 2020 03:52:02 -0400
+Received: from mail-oln040092254081.outbound.protection.outlook.com
+ ([40.92.254.81]:31378 helo=APC01-PU1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <james_ttfun@hotmail.com>)
+ id 1kTKWr-00010W-Qp
+ for USRP-users@lists.ettus.com; Fri, 16 Oct 2020 03:51:58 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dvZVJ4jQgGEh/waaLMr/x3SG6MdIABUqdlgdLirMqOEptu6rIEwmRfJKvO4HBvNKQmsZZQDOtcFLevyM8nDKZV4i2bois05n403AEPqsIl/gAaGNtD+EmXyyc9EzCIccIjeVG05+wHZUb46AMjgGBffY2Ji9TqALEYgfagykrzPTibfuVNxSyzjmarWEzfnOgtcHKQ3bSELJT4fc5Kc2eeU3tQKJdw4Vu2Y3u1BQ05t+TqmvgL1JQA9LLv315hIrLvOyS7uWJb1v2SL9NBkTDjVjwkdSYrIYsFg3CnaJuyl1kWhJgvuT0uy3NM1klq8Qwescyh2C6GxjPlTjnw8g2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RuAGzoyn39pm/r5nrsSrPnC96wiCL9iNIDVZxJbWgzo=;
+ b=EiUJ3vZEOX0YKxLc1lf7p1/44Quhtwhhamkf4UPmb9u78B/b3L5haovOonEdUzl+apqfF36DsAXpScJTrY1xxuH03J9DriKqeZCH/PbY2vaZR6q5zMGXabka7l4zyZXOQUvBm6lzLBZhIiHrnfgbcACTxBmSS2kG8uZs5uz6x1wKUYdh7qs986ECjzaumlEAnt09vLd+sAg42/6XDVMK8hMXhQFX1kGpAuHHr9NxyOFwxEf2CDAkkP+kjicT9pvjrydli1pz66+M/KcPkWumhDsBP9CgAtYmgIxPAJQBA4WsvYisHvrThq84qDUuZnAkA4CmQxkPFB4QvuzRgCse9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RuAGzoyn39pm/r5nrsSrPnC96wiCL9iNIDVZxJbWgzo=;
+ b=boELZfOaNlQvTEXmt/gp0f7lOZ5FvYnrQYwpE47shUljRN14Y63InRbRyoIOEeMSP9yrW1xV2QJZRgfQ4wNA4fzDN7TNM1MyPA6SXLUkLVm9mCTSyisXghtEzt4IY1xlCWiXg5CHCgNcv2sbPbulPs+UOqcnIO72hBoJnXHyiCaxDUSwOr3OR25L1yh0vcpYhxIyTpjBjyOBDiBNXA+HC0QJrwxECXSYxzWv4YseBSqufaOigoFCv3Sjm33osmpqnzp3ihq4fSHQpm7XvGmuMia32HUXLOuQMaeDzu5MLoukeO0JBDxpggut8rB/A2t/+hSvNHMshRV4xweIsjFwzQ==
+Received: from PU1APC01FT038.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebe::52) by
+ PU1APC01HT144.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebe::510)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.23; Fri, 16 Oct
+ 2020 07:51:14 +0000
+Received: from SYAPR01MB2848.ausprd01.prod.outlook.com
+ (2a01:111:e400:7ebe::4c) by PU1APC01FT038.mail.protection.outlook.com
+ (2a01:111:e400:7ebe::392) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.21 via Frontend
+ Transport; Fri, 16 Oct 2020 07:51:14 +0000
+Received: from SYAPR01MB2848.ausprd01.prod.outlook.com
+ ([fe80::71e9:151f:e774:a9ee]) by SYAPR01MB2848.ausprd01.prod.outlook.com
+ ([fe80::71e9:151f:e774:a9ee%7]) with mapi id 15.20.3477.022; Fri, 16 Oct 2020
+ 07:51:14 +0000
+To: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>, "Marcus D.
+ Leech" <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] How to build N310 file system image
+Thread-Index: AQHWlt0B8rzEMtYCKkm5HfO8EMDqqqmAoimAgBlSCYs=
+Date: Fri, 16 Oct 2020 07:51:14 +0000
+Message-ID: <SYAPR01MB28487ADC6FC52070151510CA9D030@SYAPR01MB2848.ausprd01.prod.outlook.com>
+References: <HK0PR03MB50912828D2A5D7837C4F31F89D330@HK0PR03MB5091.apcprd03.prod.outlook.com>,
+ <5F741327.5030501@gmail.com>
+In-Reply-To: <5F741327.5030501@gmail.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:5E755B6E4C8174A221C75034A1AB561B54CECE08AE47DA57E707E3FBEB32A6BA;
+ UpperCasedChecksum:20B6C8A1352B9C4A71B805692486F60CFD5A28166EC22420594D71747EC08BAC;
+ SizeAsReceived:6885; Count:43
+x-tmn: [AvXpfjdsPhS8EQC/qnOYJDb/hdC0P+vx]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 43
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 5890968a-c33d-40cd-86aa-08d871a841b8
+x-ms-traffictypediagnostic: PU1APC01HT144:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: TJVfnRnSf/JOCSSQMgvU1Xz6oxdg4rmsM9g69+za2UACnUYus+mlBSTz2FMIW+Ex+BWT6iv29ggt44rbsAzEwBPsWpgXBVEgFd6Ri23U4O+YhN/u7OkN6rZ2uCIklPG0Bo9zWKoI+W8/WQB89zZAVFpjT7vmlYWhsAwX4TYHtG6Z/ro4Ij7cy1spXzi/uFEsCqOn0ljjv2o5VM5m7/RyY6Emhbvs+/SfY7faMHRGSb1mB7N0IZJxKuTl2pbgP1Ez
+x-ms-exchange-antispam-messagedata: pEgV0bT4nowovTcHh8BXxDok9R1YefxT8gej2a1LTXBo6JBNt/zpFgS0sJFC7Cfi2/PYamCnH1IbAhTpQbVnMZ95nPkpensaPvGm3Dr40NonBvteaQGBQy+Vl8nA/PHfsdYC43tgiupWDEduINU2hw==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <3a0cb273ddd2434db40042cfc8af37a8@gtri.gatech.edu>
-In-Reply-To: <3a0cb273ddd2434db40042cfc8af37a8@gtri.gatech.edu>
-Date: Thu, 15 Oct 2020 23:19:04 -0400
-Message-ID: <CAL7q81va3Laww1cE_8HPKvda6DRe82aa2QYrJG7_nHUTAd0CyQ@mail.gmail.com>
-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Error RFNoC X310 uhd_cal_tx_dc_offset
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: PU1APC01FT038.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5890968a-c33d-40cd-86aa-08d871a841b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Oct 2020 07:51:14.3641 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT144
+Subject: Re: [USRP-users] How to build N310 file system image
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,9 +92,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Content-Type: multipart/mixed; boundary="===============3673701072794182312=="
+From: james Thomas via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: james Thomas <james_ttfun@hotmail.com>
+Content-Type: multipart/mixed; boundary="===============1127100409801110131=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,159 +108,116 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3673701072794182312==
-Content-Type: multipart/alternative; boundary="0000000000002c40bb05b1c13cfe"
+--===============1127100409801110131==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SYAPR01MB28487ADC6FC52070151510CA9D030SYAPR01MB2848ausp_"
 
---0000000000002c40bb05b1c13cfe
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Jeff,
-
-If you want to run code that relies on the multi-usrp API (pretty much any
-example or utility that doesn't start with rfnoc_...), you will need to
-include 1x or 2x DDC and DUC RFNoC blocks in your FPGA image. The safe bet
-is to just include 2x of each.
-
-Jonathon
-
-On Thu, Oct 15, 2020 at 1:35 PM Hodges, Jeff via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi, I've built my own RFNoC block and everything works fine, except the
-> tx_dc_offset is -40 dBc at all times, which seems pretty high.  I tried to
-> follow the example from another user, since I have the same setup with my
-> UBX in the second slot (B) but I get the error:
->
->
-> >> uhd_cal_tx_dc_offset  --args="addr=192.168.10.2" --subdev "B:0"
-> Error: RuntimeError: For legacy APIs, all devices require the same number
-> of radios, DDCs and DUCs.
->
-> I am using UHD 3.15-LTS with gr-ettus.
->
-> In addition, I see the gr-ettus code appears to be commented out from
-> gr-ettus/lib/rfnoc_radio_impl.cc  lines 144-158:
->
->     // FIXME everything down from here needs to be mapped on to the block
-> API
->     void rfnoc_radio_impl::set_tx_dc_offset(bool enable, const size_t chan)
->     {
->       //get_device()->set_tx_dc_offset(enable, chan);
->     }
->
->     void rfnoc_radio_impl::set_tx_dc_offset(const std::complex< double >
-> &offset, const size_t chan)
->     {
->       //get_device()->set_tx_dc_offset(offset, chan);
->     }
->
->
-> Any advice on how to reduce the dc_offset?
->
-> Thanks,
->
-> Jeff
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000002c40bb05b1c13cfe
-Content-Type: text/html; charset="UTF-8"
+--_000_SYAPR01MB28487ADC6FC52070151510CA9D030SYAPR01MB2848ausp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Jeff,<div><br></div><div>If you want to run code that r=
-elies on the multi-usrp API (pretty much any example or utility that doesn&=
-#39;t start with rfnoc_...), you will need to include 1x or 2x DDC and DUC =
-RFNoC blocks in your FPGA image. The safe bet is to just include=C2=A02x of=
- each.</div><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 15, 2020 at 1:35 =
-PM Hodges, Jeff via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus=
-.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">
+Hi Marcus,
+is there more document of how to build this source?
+________________________________
+From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Marcus D=
+. Leech via USRP-users <usrp-users@lists.ettus.com>
+Sent: Wednesday, September 30, 2020 01:09
+To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] How to build N310 file system image
+
+On 09/29/2020 11:52 PM, james Thomas via USRP-users wrote:
+Hi,
+where is the source code of N310 file system image and how to build it?
 
 
 
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
-<div dir=3D"ltr">
-<div id=3D"gmail-m_5877106888302841852divtagdefaultwrapper" style=3D"font-s=
-ize:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D"=
-ltr">
-<p>Hi, I&#39;ve built my own RFNoC block and everything works fine, except =
-the tx_dc_offset is -40 dBc at all times, which seems pretty high.=C2=A0 I =
-tried to follow the example from another user, since I have the same setup =
-with my UBX in the second slot (B) but I
- get the error:</p>
-<p><br>
-</p>
-<div>&gt;&gt; uhd_cal_tx_dc_offset=C2=A0 --args=3D&quot;addr=3D192.168.10.2=
-&quot; --subdev &quot;B:0&quot; <br>
+
+I think what you seek is here:
+
+https://github.com/EttusResearch/meta-ettus
+
+
+
+--_000_SYAPR01MB28487ADC6FC52070151510CA9D030SYAPR01MB2848ausp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hi Marcus,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+is there more document of how to build this source?<br>
 </div>
-<div><span>Error: RuntimeError: For legacy APIs, all devices require the sa=
-me number of radios, DDCs and DUCs.<br>
-</span></div>
-<div><br>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
+sers-bounces@lists.ettus.com&gt; on behalf of Marcus D. Leech via USRP-user=
+s &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Sent:</b> Wednesday, September 30, 2020 01:09<br>
+<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
+>
+<b>Subject:</b> Re: [USRP-users] How to build N310 file system image</font>
+<div>&nbsp;</div>
 </div>
-<div>I am using UHD 3.15-LTS with gr-ettus.</div>
-<div><br>
+<div style=3D"background-color:#FFFFFF">
+<div class=3D"x_moz-cite-prefix">On 09/29/2020 11:52 PM, james Thomas via U=
+SRP-users wrote:<br>
 </div>
-<div>In addition, I see the gr-ettus code appears to be commented out from =
-gr-ettus/lib/rfnoc_radio_impl.cc=C2=A0 lines 144-158:</div>
-<div><br>
-</div>
-<div>
-<div>=C2=A0=C2=A0=C2=A0 // FIXME everything down from here needs to be mapp=
-ed on to the block API<br>
-=C2=A0=C2=A0=C2=A0 void rfnoc_radio_impl::set_tx_dc_offset(bool enable, con=
-st size_t chan)<br>
-=C2=A0=C2=A0=C2=A0 {<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 //get_device()-&gt;set_tx_dc_offset(enable, =
-chan);<br>
-=C2=A0=C2=A0=C2=A0 }<br>
+<blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Hi,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+where is the source code of N310 file system image and how to build it?</di=
+v>
 <br>
-=C2=A0=C2=A0=C2=A0 void rfnoc_radio_impl::set_tx_dc_offset(const std::compl=
-ex&lt; double &gt; &amp;offset, const size_t chan)<br>
-=C2=A0=C2=A0=C2=A0 {<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 //get_device()-&gt;set_tx_dc_offset(offset, =
-chan);<br>
-=C2=A0=C2=A0=C2=A0 }<br>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>Any advice on how to reduce the dc_offset?</div>
-<div><br>
-</div>
-<div>Thanks,<br>
-</div>
-<div><br>
-</div>
-<div>Jeff<br>
-</div>
+<fieldset class=3D"x_mimeAttachmentHeader"></fieldset> <br>
+<pre>_______________________________________________
+USRP-users mailing list
+<a class=3D"x_moz-txt-link-abbreviated" href=3D"mailto:USRP-users@lists.ett=
+us.com">USRP-users@lists.ettus.com</a>
+<a class=3D"x_moz-txt-link-freetext" href=3D"http://lists.ettus.com/mailman=
+/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listin=
+fo/usrp-users_lists.ettus.com</a>
+</pre>
+</blockquote>
+I think what you seek is here:<br>
 <br>
-<span></span></div>
+<a class=3D"x_moz-txt-link-freetext" href=3D"https://github.com/EttusResear=
+ch/meta-ettus">https://github.com/EttusResearch/meta-ettus</a><br>
+<br>
 <br>
 </div>
-</div>
+</body>
+</html>
 
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000002c40bb05b1c13cfe--
+--_000_SYAPR01MB28487ADC6FC52070151510CA9D030SYAPR01MB2848ausp_--
 
 
---===============3673701072794182312==
+--===============1127100409801110131==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -240,5 +228,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3673701072794182312==--
+--===============1127100409801110131==--
 
