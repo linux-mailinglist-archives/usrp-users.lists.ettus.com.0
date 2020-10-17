@@ -2,59 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4514A290E29
-	for <lists+usrp-users@lfdr.de>; Sat, 17 Oct 2020 01:25:07 +0200 (CEST)
-Received: from [::1] (port=54094 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 433C5290FB0
+	for <lists+usrp-users@lfdr.de>; Sat, 17 Oct 2020 07:55:02 +0200 (CEST)
+Received: from [::1] (port=56592 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kTZ5s-0003mi-Gj; Fri, 16 Oct 2020 19:25:04 -0400
-Received: from mail-pl1-f174.google.com ([209.85.214.174]:35503)
+	id 1kTfBC-0005xV-9P; Sat, 17 Oct 2020 01:54:58 -0400
+Received: from mail-io1-f47.google.com ([209.85.166.47]:42532)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <omar.aldana@performanceembedded.com>)
- id 1kTZ5n-0003iW-W0
- for usrp-users@lists.ettus.com; Fri, 16 Oct 2020 19:25:00 -0400
-Received: by mail-pl1-f174.google.com with SMTP id 1so2077149ple.2
- for <usrp-users@lists.ettus.com>; Fri, 16 Oct 2020 16:24:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=performanceembedded.com; s=google;
- h=mime-version:date:from:subject:thread-topic:message-id:to
- :content-transfer-encoding;
- bh=qbPzIGu5/a2Iagn12VjTpVE18kMeJYuC83+ilPZdqBo=;
- b=FbaQHQFLzCIDCF/kaGUvwNjNvQ0iL/a2asd7hROtGfH/mLMaaLKDjJWhB4Bzpq10+P
- gTSFnG5wiEl2cRqRbxPwDd3VP4Lv2jwJopZ+eVwfBpv6WP1Pk9GalMjyUjrs90mY6Uet
- /wk46zu6izGN0LwnIp9L6aQNRdDdZlkuVe1Zr6Kih8CpbZ0Aciz0+F9+Hv6x8OhmLuGJ
- bR1CTmmWWcs7/UIZhVWIA+Q6va61HjHVJLM7t32qts8+iic2/Jh9WVXBfA0l+vcRV46z
- 06HocbICbg00FZKgG5d8uZ+eBiz5JrqRltyD5HwxE4y5b2xC4B1D3uLQqFI23H60cg4I
- 21Lg==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kTfB8-0005s6-0z
+ for USRP-users@lists.ettus.com; Sat, 17 Oct 2020 01:54:54 -0400
+Received: by mail-io1-f47.google.com with SMTP id k21so6596331ioa.9
+ for <USRP-users@lists.ettus.com>; Fri, 16 Oct 2020 22:54:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=r2RWoN0/g3fNL/YJKfqnDJ8h99gIdrrefmccZQTf8VY=;
+ b=PgYbPoLcfMzpt1sQCqYG0G9rek6Cz3RJ6018P//+2mHVbRbYN879ESzhZUxVrIvt58
+ 1S9eAJc/pAkfA5GrERpYQ9UgIg6/lcaTl4bFA12Y2nJTIl5x47lgCvXfQcG0O2WcvaF+
+ ICWkxvfuA1s1PKta6Y6pG/bimiBUDcIm8fMg8z8JMgGsXv6Ai6OVdAKK7QNL4rxdzFNG
+ EC1Y4remMiRTYsHcaoorfkEEOBETICCeO4AXH/7hjh3Qab8C8pCHQHNoqok4YlxOr4K4
+ 1ONMDsWGvFeIFSFV1L7Obv4P/Kbe4FZ59C919wP+hK7Gy0G/gsGpddTkgNsmTPZBi+fA
+ nSVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:from:subject:thread-topic
- :message-id:to:content-transfer-encoding;
- bh=qbPzIGu5/a2Iagn12VjTpVE18kMeJYuC83+ilPZdqBo=;
- b=ZxtDyrrGMkkBZ3xGDcoQAzORjFFE9Jxc9blSi73VJMCBZ4foyHRRkf7tsw6WuhvYcC
- xS6d4kFlNEZWIsoyQtXCD2bbLRNUjIfkAxJgKwekN1cGgTPArf3DEYQx+jxNjFrRALDS
- TSD5JWegwEjsaYxQzePokmMvc+ti0Y18JV1xEeIYuWs8c75v9cb52D7sOYLyWbrYiuzg
- j/NUTzVTn2ModWdDAMVy5GyIO2EDJHmVFNMGUvY1blI2OeFPzoXYqqzZdtQllKcGFRM9
- WEhv6LCzVMHUV90rojelftT/64tgthmoHt/qmlrWjJXMDBO5t7kVLqx+3pQE2qosXTlE
- 2GSg==
-X-Gm-Message-State: AOAM531/GopUbjr4l1WU7touAfcrS7ei1rGh8MPaNT539IYJnppgIy7D
- 08m/EBIbznq+8lxQ5a9vipr1Axnaj+EdmA==
-X-Google-Smtp-Source: ABdhPJzsLEw7bISoGCTjrH8dJExCj0g2T8RK7uAUdwSuhRPO8bgn08VUHJzyzowaeqgw9IrFFnIOVg==
-X-Received: by 2002:a17:902:7003:b029:d4:e2c6:948f with SMTP id
- y3-20020a1709027003b02900d4e2c6948fmr6471588plk.65.1602890658262; 
- Fri, 16 Oct 2020 16:24:18 -0700 (PDT)
-Received: from smtp.gmail.com (cpe-76-170-100-250.socal.res.rr.com.
- [76.170.100.250])
- by smtp.gmail.com with ESMTPSA id h2sm3980506pjv.4.2020.10.16.16.24.17
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 16 Oct 2020 16:24:17 -0700 (PDT)
-MIME-Version: 1.0
-Date: Fri, 16 Oct 2020 16:24:15 -0700
-Thread-Topic: UHD 4.0.0.0
-Message-ID: <F8945B71-33B6-456E-9B47-1698821C25A5@hxcore.ol>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: [USRP-users] UHD 4.0.0.0
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=r2RWoN0/g3fNL/YJKfqnDJ8h99gIdrrefmccZQTf8VY=;
+ b=k6UQHx06kRaf1epXF1g0j1UnGLbcRJzquH8bq4NVQwTEfUFLtelUOQzrGdtPTGvl2+
+ Lv6124ATxQ7DjVVSGh8opFirA/S/ENR/wsKFUQ2OOqNOTeJrRA2XlB94AZiGR/do0VtG
+ /0ONw/2dU2dSiTtttXTsDxn7hbmmNNG6At+ompZrmpEsMpzVGtabXJYHeABXa3LPJWNo
+ 2OiSl2mLBzSJ/YyAq9+xN9bnSrm7hxNkUMHXBE77t8BTR1ZrGBBlzcriiVW2/FJv/cF/
+ MUZHrAKxeCV4JRY6tHR02BPlO9hWLNAEx5Azr9fSpTSaO8EUFFsKdYhnjEpnpyYME/qZ
+ kp5Q==
+X-Gm-Message-State: AOAM530rJL0JrI2lA5kVkIM+vN8ZKdvapa5bMMRAGjr3hfNnlQzkGl6L
+ 16iEfb7/PbtaKs2LVALlLjw=
+X-Google-Smtp-Source: ABdhPJxZ7aY3yfEf50CHQ7Zf2v1bVDgIRN/gSZ4uCSw27RJs68r4vL830dZHjsUC62pWoc2V/HhmwA==
+X-Received: by 2002:a05:6638:d8b:: with SMTP id
+ l11mr5011029jaj.11.1602914053180; 
+ Fri, 16 Oct 2020 22:54:13 -0700 (PDT)
+Received: from [192.168.2.29]
+ (bras-base-smflon1825w-grc-07-174-93-0-246.dsl.bell.ca. [174.93.0.246])
+ by smtp.gmail.com with ESMTPSA id h125sm4260671iof.53.2020.10.16.22.54.12
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 16 Oct 2020 22:54:12 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+Date: Sat, 17 Oct 2020 01:54:11 -0400
+Message-Id: <60EF5A9C-9427-44D1-9B04-9C4FD0A615E6@gmail.com>
+References: <F8945B71-33B6-456E-9B47-1698821C25A5@hxcore.ol>
+Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+In-Reply-To: <F8945B71-33B6-456E-9B47-1698821C25A5@hxcore.ol>
+To: Omar Aldana <omar.aldana@performanceembedded.com>
+X-Mailer: iPhone Mail (17H35)
+Subject: Re: [USRP-users] UHD 4.0.0.0
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Omar Aldana via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Omar Aldana <omar.aldana@performanceembedded.com>
-Content-Type: multipart/mixed; boundary="===============7108247351013268796=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4406605824557901460=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,15 +83,54 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7108247351013268796==
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset="utf-8"
 
-<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
-hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
-fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta ht=
-tp-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta name=
-=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+--===============4406605824557901460==
+Content-Type: multipart/alternative; boundary=Apple-Mail-F5BCD218-0A46-49D1-AABE-619054D87BEB
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-F5BCD218-0A46-49D1-AABE-619054D87BEB
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Yes, as far as I know you=E2=80=99ll need to revert.=20
+
+
+Sent from my iPhone
+
+> On Oct 16, 2020, at 7:25 PM, Omar Aldana via USRP-users <usrp-users@lists.=
+ettus.com> wrote:
+>=20
+> =EF=BB=BF
+> I=E2=80=99m working to setup my E320 in network mode and need to match UHD=
+ versions on the host machine and the E320. The latest UHD version on GitHub=
+ is 4.0.0.0. However, after performing a file system update on the E320, the=
+ E320 is still running UHD version 3.15.0.0. Should I revert my host version=
+ to UHD 3.15.0.0?
+> =20
+> root@ni-e320-31ED908:~# cat /etc/mender/artifact_info
+> artifact_name=3Dv3.15.0.0_e320
+> =20
+> =20
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--Apple-Mail-F5BCD218-0A46-49D1-AABE-619054D87BEB
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Yes, as far as I know you=E2=80=99ll need t=
+o revert.&nbsp;<div><br><br><div dir=3D"ltr">Sent from my iPhone</div><div d=
+ir=3D"ltr"><br><blockquote type=3D"cite">On Oct 16, 2020, at 7:25 PM, Omar A=
+ldana via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:<br><br></bloc=
+kquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<meta http-=
+equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"><meta name=3D"=
+Generator" content=3D"Microsoft Word 15 (filtered medium)"><style><!--
 /* Font Definitions */
 @font-face
 	{font-family:"Cambria Math";
@@ -110,20 +150,26 @@ p.MsoNormal, li.MsoNormal, div.MsoNormal
 	margin:1.0in 1.0in 1.0in 1.0in;}
 div.WordSection1
 	{page:WordSection1;}
---></style></head><body lang=3DEN-US><div class=3DWordSection1><p class=3DM=
-soNormal>I=E2=80=99m working to setup my E320 in network mode and need to m=
-atch UHD versions on the host machine and the E320. The latest UHD version =
-on GitHub is 4.0.0.0. However, after performing a file system update on the=
- E320, the E320 is still running UHD version 3.15.0.0. Should I revert my h=
-ost version to UHD 3.15.0.0?</p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><=
-p style=3D'margin:0in'>root@ni-e320-31ED908:~# cat /etc/mender/artifact_inf=
-o<o:p></o:p></p><p style=3D'margin:0in'>artifact_name=3Dv3.15.0.0_e320<o:p>=
-</o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><o=
-:p>&nbsp;</o:p></p></div></body></html>=
+--></style><div class=3D"WordSection1"><p class=3D"MsoNormal">I=E2=80=99m wo=
+rking to setup my E320 in network mode and need to match UHD versions on the=
+ host machine and the E320. The latest UHD version on GitHub is 4.0.0.0. How=
+ever, after performing a file system update on the E320, the E320 is still r=
+unning UHD version 3.15.0.0. Should I revert my host version to UHD 3.15.0.0=
+?</p><p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p><p style=3D"margin:0in">roo=
+t@ni-e320-31ED908:~# cat /etc/mender/artifact_info<o:p></o:p></p><p style=3D=
+"margin:0in">artifact_name=3Dv3.15.0.0_e320<o:p></o:p></p><p class=3D"MsoNor=
+mal"><o:p>&nbsp;</o:p></p><p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p></div>=
 
 
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
+>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
+r></div></blockquote></div></body></html>=
 
---===============7108247351013268796==
+--Apple-Mail-F5BCD218-0A46-49D1-AABE-619054D87BEB--
+
+
+--===============4406605824557901460==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -134,4 +180,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7108247351013268796==--
+--===============4406605824557901460==--
+
