@@ -2,51 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BDE429163C
-	for <lists+usrp-users@lfdr.de>; Sun, 18 Oct 2020 08:13:23 +0200 (CEST)
-Received: from [::1] (port=38014 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8CD3291641
+	for <lists+usrp-users@lfdr.de>; Sun, 18 Oct 2020 08:21:19 +0200 (CEST)
+Received: from [::1] (port=38102 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kU1wX-0004yp-2h; Sun, 18 Oct 2020 02:13:21 -0400
-Received: from mail-qv1-f42.google.com ([209.85.219.42]:44744)
+	id 1kU24E-0005PD-04; Sun, 18 Oct 2020 02:21:18 -0400
+Received: from mail-qk1-f171.google.com ([209.85.222.171]:40073)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kU1wT-0004tf-6O
- for USRP-users@lists.ettus.com; Sun, 18 Oct 2020 02:13:17 -0400
-Received: by mail-qv1-f42.google.com with SMTP id s17so2961507qvr.11
- for <USRP-users@lists.ettus.com>; Sat, 17 Oct 2020 23:12:56 -0700 (PDT)
+ id 1kU249-0005Ge-MD
+ for USRP-users@lists.ettus.com; Sun, 18 Oct 2020 02:21:13 -0400
+Received: by mail-qk1-f171.google.com with SMTP id h140so5452685qke.7
+ for <USRP-users@lists.ettus.com>; Sat, 17 Oct 2020 23:20:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=ofZj8vENv5+DKkvDnjT87uv2KUOvOF+/FQCkcg31LbI=;
- b=oJHb0gyqyk6B8gER1SxSXFQsVwen1xkm4ThVEEuoHWFYdkR5wdUTQj/oWIHzaCB7ld
- GR8ZjS1L1s61LakJQGuE9WNvvvla+NZJNMjcVAVjHDXdMH1GVw2CkcD/DlTdeARydLpX
- SwI1082uejVIAXTRZmeuWq4mL/J5t/dpBp9nFhKqnQppe0DyiFN9JFfSdV9ac7WLTmNx
- isryBSmM1sgYg+cyJ+tPie8jZUQoh8Wxjfh2nXkgQgapKjk4E+LOS2YpUo2zOpiT/fvU
- W8Mr8gbyGfj3t6I0/g7ji0tCs4vNVJCzVwjLfGn/3Z6lKk2LblAd4+sr2R3W6Jbatye5
- sthw==
+ :in-reply-to; bh=Xxvlf+YMFQq9wDy1UcvPDqhLbGm+6ZdZf2NLxJcv5BY=;
+ b=tnZ0yPSDDyaF9mKMmuWTplF7Fr2J3AAfI9NB2UtTBdgtt9q2eIRMocWwAKfeli5o3l
+ hRUErMNlWSYe6O9peFQ/xrZJoqzbAl7Ax2pspuCqhCWwC9mzHzxNWOMMif/jFDSytrLV
+ NA3H5Z8JzzsQ5jDQU3C4d1lIBIZEanosb3vLRXezLVAcMlch6FLjSsyLsyZqzR6e0OfZ
+ sVwcyHoQJt2ZQmdwzRDj8duhxoVKIkW5uaZPiTsFu7fXFY15IuasPiSDv/WgWN5H8GJ6
+ Silin0zGWeodS4EflFYOT1hSYyXDFGuyOZWoVZW4pf3e3B8w7mWCL3wIEWq00Ii75xyS
+ nlfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to;
- bh=ofZj8vENv5+DKkvDnjT87uv2KUOvOF+/FQCkcg31LbI=;
- b=WPmuG9uW1OlSN1wHf/hNb++ZDsiNfbOzpmy1J7RhTslItByMASjqkFXdohxd595b1M
- niN0+JaHrkK+ii7HWzslqylgnnMkLQFYWeLlk9AY9T/Y2JWvxLfKJFVb+r/68lNLA+rO
- w6/mZ+uslyHqh29fSl3tvN0HHJJomhOOOQBo8FLYpoizaxMoAD/fnNDHtWe0yGf1fRZF
- RBowLPg4Vlby6ARS9VIrZTI1ADpsZKPKIZFe0PaxDWnfeO4maKKKHZTLBrQNo4iM9jo7
- 09dU8Srrr2eP4dZKidFzQR99dBFavviyyZOToFVmXG82EiQtEDSWqIMBp/jtMRyZcsxn
- m0TQ==
-X-Gm-Message-State: AOAM532ga2JzJxvAhF5WTq+tvCHJrShHu5bbCK6fDjaCQG9ADoKw+HgS
- R/IGQHZis7ITQcrhDaQpqDAaaGdqBibROg==
-X-Google-Smtp-Source: ABdhPJxwhgulAyla8Mm1kUtrGBeDJshTaU8xygemEGFujun6hN3L0UujFbgMSBCxfnTXOplOwVAZhA==
-X-Received: by 2002:a0c:a945:: with SMTP id z5mr11222448qva.55.1603001556430; 
- Sat, 17 Oct 2020 23:12:36 -0700 (PDT)
+ bh=Xxvlf+YMFQq9wDy1UcvPDqhLbGm+6ZdZf2NLxJcv5BY=;
+ b=Kx2JRVAVGyX+Scv7o4ONtqUOwxYilFXkmxbBqaeW/s3b+zELni7Xb8cTR0QuNmVg+E
+ RkJNf89UdmEPIXI6EiGJdBHIqN8Wz4tOpHl79p4hlu8ijRQdMntTWlRxEOPU+c+Hml1z
+ xxZdSgqpZbywLZ6cFTpBXkKIEhjPcM4QV0C2PaoKxXepmYWix3/Y3RyOhNIA2EIxYwOt
+ yCCuh1QAs+erInpdqlGMg9RSX8oLZCJSGTuQ6H581LWpIK/UlRTlB8qAIeUbcnHMRSx1
+ hVhg2Bw4vlhwvFASegO0BCT8gYNfWt2FuyUUTSW/KYJpqDM1+6DgeiSTy1iKrohE8NLW
+ SUeQ==
+X-Gm-Message-State: AOAM532kNdgDKXv1AT3VapugzHx5vB16344a6gsSJUz5c3WDYDoDnVZp
+ O+ZYnxdB4p1/hzHY4KVccfOnZNJ8iknl7Q==
+X-Google-Smtp-Source: ABdhPJxoLU6iZLuk7awdE5oagEgiDzlmfz2iz6BAc062s9QqSs/ed8i0rhfTg7+nKFmW1zzhEmpzXg==
+X-Received: by 2002:a37:c51:: with SMTP id 78mr11355024qkm.30.1603002032881;
+ Sat, 17 Oct 2020 23:20:32 -0700 (PDT)
 Received: from [192.168.2.12]
  (bras-base-smflon1825w-grc-07-174-93-0-246.dsl.bell.ca. [174.93.0.246])
- by smtp.googlemail.com with ESMTPSA id n57sm2981162qtf.52.2020.10.17.23.12.35
+ by smtp.googlemail.com with ESMTPSA id n206sm2888515qke.72.2020.10.17.23.20.32
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 17 Oct 2020 23:12:36 -0700 (PDT)
-Message-ID: <5F8BDCD3.6040502@gmail.com>
-Date: Sun, 18 Oct 2020 02:12:35 -0400
+ Sat, 17 Oct 2020 23:20:32 -0700 (PDT)
+Message-ID: <5F8BDEAF.8080806@gmail.com>
+Date: Sun, 18 Oct 2020 02:20:31 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
@@ -72,7 +72,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3054381461948866704=="
+Content-Type: multipart/mixed; boundary="===============7614756551626442799=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,12 +87,12 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============3054381461948866704==
+--===============7614756551626442799==
 Content-Type: multipart/alternative;
- boundary="------------060400080003070202050701"
+ boundary="------------050306040000090606070009"
 
 This is a multi-part message in MIME format.
---------------060400080003070202050701
+--------------050306040000090606070009
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -105,8 +105,6 @@ On 10/17/2020 11:41 PM, james Thomas wrote:
 > repo init -u git://github.com/EttusResearch/oe-manifests.git -b v3.14.1.1
 > repo: warning: Python 2 is no longer supported; Please upgrade to 
 > Python 3.6+.
-So, first things first--you need to add Python3.6 to your system.
-
 >
 > ... A new version of repo (2.8) is available.
 > ... New version is available at: /home/w/meta-ettus/.repo/repo/repo
@@ -125,9 +123,8 @@ So, first things first--you need to add Python3.6 to your system.
 >
 > fatal: cannot obtain manifest 
 > git://github.com/EttusResearch/oe-manifests.git
-My guess is that your system/network is not configured to allow GIT 
-traffic to pass through--you'll have to fix that or have your sysadmin
-   fix that.
+Also, I'll note that this whole thing assumes that you're familiar with 
+OE (OpenEmbedded) development techniques and paradigms.
 
 
 > ------------------------------------------------------------------------
@@ -147,7 +144,7 @@ traffic to pass through--you'll have to fix that or have your sysadmin
 >
 
 
---------------060400080003070202050701
+--------------050306040000090606070009
 Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
@@ -185,15 +182,6 @@ cite="mid:SYAPR01MB2848A220FC7121F6AC37D9BF9D010@SYAPR01MB2848.ausprd01.prod.out
         v3.14.1.1
         <div>repo: warning: Python 2 is no longer supported; Please
           upgrade to Python 3.6+.</div>
-      </div>
-    </blockquote>
-    So, first things first--you need to add Python3.6 to your system.  <br>
-    <br>
-    <blockquote
-cite="mid:SYAPR01MB2848A220FC7121F6AC37D9BF9D010@SYAPR01MB2848.ausprd01.prod.outlook.com"
-      type="cite">
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
         <div><br>
         </div>
         <div>... A new version of repo (2.8) is available.</div>
@@ -221,10 +209,8 @@ cite="mid:SYAPR01MB2848A220FC7121F6AC37D9BF9D010@SYAPR01MB2848.ausprd01.prod.out
         git://github.com/EttusResearch/oe-manifests.git<br>
       </div>
     </blockquote>
-    My guess is that your system/network is not configured to allow GIT
-    traffic to pass through--you'll have to fix that or have your
-    sysadmin<br>
-      fix that.<br>
+    Also, I'll note that this whole thing assumes that you're familiar
+    with OE (OpenEmbedded) development techniques and paradigms.<br>
     <br>
     <br>
     <blockquote
@@ -276,10 +262,10 @@ p
   </body>
 </html>
 
---------------060400080003070202050701--
+--------------050306040000090606070009--
 
 
---===============3054381461948866704==
+--===============7614756551626442799==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -290,5 +276,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3054381461948866704==--
+--===============7614756551626442799==--
 
