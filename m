@@ -2,49 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1BCA29308E
-	for <lists+usrp-users@lfdr.de>; Mon, 19 Oct 2020 23:33:36 +0200 (CEST)
-Received: from [::1] (port=53790 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09B7E293126
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Oct 2020 00:20:18 +0200 (CEST)
+Received: from [::1] (port=54224 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kUcmb-0003PZ-8B; Mon, 19 Oct 2020 17:33:33 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:34119)
+	id 1kUdVn-00063T-PL; Mon, 19 Oct 2020 18:20:15 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:45698)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <joshide@bc.edu>) id 1kUcmX-0003KU-A0
- for usrp-users@lists.ettus.com; Mon, 19 Oct 2020 17:33:29 -0400
-Received: by mail-ot1-f50.google.com with SMTP id d28so1255938ote.1
- for <usrp-users@lists.ettus.com>; Mon, 19 Oct 2020 14:33:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bc-edu.20150623.gappssmtp.com; s=20150623;
- h=mime-version:from:date:message-id:subject:to;
- bh=a0fTftu6bE9RZl42TNCGxY0bM3hf6OCDRjLuWLiOE3A=;
- b=AtVk6QSnItmTw+qmc6GApL/IJx0djrx8kK98ZZfdLbXUSS7F9fiU+q9IFbWv+Vj3Hg
- 6/cMILn8yrn24JcWHIv1J25ZCs4mGNDVGn7InwidcSjIHwDcKwqZKKEcQ4b8TKaIcqqN
- 3IYhU5OlhGXLzfULQlcelrISOYG7w+3BmWFk/oJE4dID2KmmdymdCtTNpbiJpVV0nHlq
- 9h5m1NlTeaP8737cT8ZUtUtFugcaMRnfVdbHxdRTH31MXdL2NYvTDu3anrCk5ocRYwsc
- d/qHxsnqGHrJpKalKlMdpnIQwpc+piN6MQ7NMfXpsQ/Hdjjefw9MAFCgue7OujlORWkO
- P0fw==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kUdVk-0005uj-0Q
+ for usrp-users@lists.ettus.com; Mon, 19 Oct 2020 18:20:12 -0400
+Received: by mail-qt1-f196.google.com with SMTP id p88so945883qtd.12
+ for <usrp-users@lists.ettus.com>; Mon, 19 Oct 2020 15:19:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=rmA/Nh0S+zJsOX6V/GbZQjMvzdFVZmi6z+NnUncbnmQ=;
+ b=H5WY2WkcK/9cqM7g7dQeMkYR9efUb7tXkICuN7ejm6Sh+y9/tagmyGonbnR+odJZsF
+ y6Z139AXITe51pmx5HgXg9eHCVkRrtyThc6yHbIxEtCo0uDFlJCEdg7eT8H2CbDFql0/
+ P4t5A2oXZ8hlUUeosVi4Yy8hjFjHWEhWj3iYmVIsgjuV8GiD6eDSi3ftAWJYHkTQjhGw
+ SVlrBxRBVJJkyF1WfT5/BXq8INvqV/OIy103nu0dgu36c+jcul0ySBXvcftDf9RPeZaf
+ gPAkgsubIYe8c8M21vW+LwKKdmRlTRVzQrqrJgcXlEPHOy+op7Oc8wYLHtMDLGn6jr/J
+ SP1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=a0fTftu6bE9RZl42TNCGxY0bM3hf6OCDRjLuWLiOE3A=;
- b=moPdz5Hn8m0qQe6mKF4Ui8qSSb64WLCpwsSK/aDfTeUiq126GKOBCHLbBL8F/vjDav
- WxBIZYZwB937T2MgsS/wzJ1LM4InY0avvlGRs5sPdiqywMjB1dFWoZZodFQ6N68E/zha
- tg/ASeRsxMxTEmpTugwSebRIdCpCz3eP1ShnC4+tZgb+849QQWbXX/jvKHxXG+fd5d5C
- 0O3ZI9M4qxD8TavrhQ35w24bJptVG1yedprcap3E4WPc6Ok/04t4/l6TSLpVeZAKEsh2
- 8RYHahOlKaWOYP+ywSOsMqMrxwFug/9dOP+bfmOG0Odwk1nKkEmJeE17Hl+LcBNDYEB8
- /L0Q==
-X-Gm-Message-State: AOAM530TQztyhdaJ93ieBNncBWPIux1A/ir6ySrpY15/6qEV/gIdaIZd
- /jLN37/OpBj3E0urjWSngQQ79kx9l6dbcQJ5VOPoF8i5zgPS6N9R
-X-Google-Smtp-Source: ABdhPJxjYgPxVMMTZw++Uxs9WQRKM1EnDuvvTrQDACjFfJD9Zt88u5f04iTXW1ZYBrao54Jp/DEP/YtAaS8epGkIoAE=
-X-Received: by 2002:a05:6830:1013:: with SMTP id
- a19mr1302226otp.226.1603143168047; 
- Mon, 19 Oct 2020 14:32:48 -0700 (PDT)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=rmA/Nh0S+zJsOX6V/GbZQjMvzdFVZmi6z+NnUncbnmQ=;
+ b=UJxQSppxrlPMpgXv8UDMNbYvyNio3sKCywNEu8Os8Xkj/MvPtKyktvl9I6zaQ2bv0B
+ BxOGLeiAOv2LbgELipFNHUJU1KBIpGiXivWmjTH3s75nubJblPZIvwEDNreHlmt3onl3
+ 2ACGQFi0kzrYwcr0N0WM2/JkngtxCk/G4VE2gAKS8zdreRJ8nstnx2QqX6QXBnglASNx
+ f9MuYBzB0T7h51joFuOhm4L/eLoMscDNJaOpbW1kJqFTj2lS//lfEkgHReJL9nInsS8B
+ 7Zs5DCIc77T4kE45JbHtr/EZhAC9coNfBuI9DAVpxo8v/a+m86r9QwO2oLDT4UfKaEOn
+ 0mzw==
+X-Gm-Message-State: AOAM530A1bdPzMM8VRQQkBE9rvO/40QZM1cVo+1t4HVOoUulEkNAnZDz
+ 7IhSUAGS1OaOnWtrosu+1ZwMzG2gA5mqcA==
+X-Google-Smtp-Source: ABdhPJz0fbDdJ9MKDvtm6V9WedzQxhcO2sKGBrsyb+y5QVxgR8doHHy2CNJKgliK+QdsRM5TlIQmXQ==
+X-Received: by 2002:ac8:5743:: with SMTP id 3mr1687832qtx.259.1603145971180;
+ Mon, 19 Oct 2020 15:19:31 -0700 (PDT)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-07-174-93-0-246.dsl.bell.ca. [174.93.0.246])
+ by smtp.googlemail.com with ESMTPSA id w7sm515888qte.83.2020.10.19.15.19.30
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 19 Oct 2020 15:19:30 -0700 (PDT)
+Message-ID: <5F8E10F2.4060907@gmail.com>
+Date: Mon, 19 Oct 2020 18:19:30 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Date: Mon, 19 Oct 2020 17:32:37 -0400
-Message-ID: <CAAq7Emf908sc+rSn87GEy7g6itEiT_PDTfM2y9yv2De=793zjA@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-Subject: [USRP-users] ETTUS N200 device start issue -- works only after
+References: <CAAq7Emf908sc+rSn87GEy7g6itEiT_PDTfM2y9yv2De=793zjA@mail.gmail.com>
+In-Reply-To: <CAAq7Emf908sc+rSn87GEy7g6itEiT_PDTfM2y9yv2De=793zjA@mail.gmail.com>
+Subject: Re: [USRP-users] ETTUS N200 device start issue -- works only after
  second and subsequent invocations
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -57,9 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Dev Joshi via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Dev Joshi <joshide@bc.edu>
-Content-Type: multipart/mixed; boundary="===============3932082438971995227=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8573213137606021766=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,153 +83,189 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3932082438971995227==
-Content-Type: multipart/alternative; boundary="0000000000000e550e05b20cdb99"
+This is a multi-part message in MIME format.
+--===============8573213137606021766==
+Content-Type: multipart/alternative;
+ boundary="------------080702060201080004080504"
 
---0000000000000e550e05b20cdb99
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------080702060201080004080504
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello everyone,
-
-I hope everyone is keeping well through these unusual times. I am writing
-to request assistance on an issue I am facing while running Ettus N200
-device. The  device is installed to receive high frequency radio waves and
-it is connected to an internet port by an Ethernet cable  as is the
-computer (Ubuntu). I can ping the device from the terminal of the computer.
-But, whenever I invoke the USRP N200 using any command, it doesn't work as
-shown below :
-
-uhd_find_devices --args="addr=xx.xx.xxx.xx"
-[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
-UHD_3.15.0.HEAD-0-gaea0e2de
-No UHD Devices Found
-
-But, if  I pass the command soon after the first invocation, it works as
-shown below:
-
-uhd_find_devices --args="addr=xx.xx.xxx.xx"
-[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
-UHD_3.15.0.HEAD-0-gaea0e2de
---------------------------------------------------
--- UHD Device 0
---------------------------------------------------
-Device Address:
-    serial: 31D09D8
-    addr: xx.xx.xxx.xx
-    name:
-    type: usrp2
-
-And, subsequent invocations in the near future work.  And, it applies for
-any other command I have used to invoke the
-USRP device. I would greatly appreciate suggestions from experienced users
-in this list.  And, one more issue, the above command used to work without
-passing the "addr" argument. But recently, it doesn't respond if I don't
-pass that argument.
-
-I would greatly appreciate suggestions on these two points.
-
-Thanks.
-
-Best,
-Dev
-
-
-Dev Joshi, PhD
-Postdoctoral Research Associate
-Department of Physics and Engineering
-The University of Scranton
-C: 617 775 9712
-
---0000000000000e550e05b20cdb99
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smart=
-mail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div d=
-ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D=
-"margin:0px;padding:0px;border:0px;font-stretch:inherit;font-size:12pt;line=
--height:inherit;font-family:Calibri,Arial,Helvetica,sans-serif;vertical-ali=
-gn:baseline;color:black"><span style=3D"margin:0px;padding:0px;border:0px;f=
-ont-style:inherit;font-variant:inherit;font-weight:inherit;font-stretch:inh=
-erit;font-size:large;line-height:inherit;font-family:Arial,Helvetica,sans-s=
-erif;vertical-align:baseline;color:rgb(34,34,34)">Hello everyone,<br><br>I =
-hope everyone is keeping well through these unusual times. I am writing to =
-request assistance on an issue I am facing while running Ettus N200 device.=
- The =C2=A0device is installed to receive high frequency radio waves and it=
- is connected to an internet port by an Ethernet cable =C2=A0as is the comp=
-uter (Ubuntu). I can ping the device from the terminal of the computer. But=
-, whenever I invoke the USRP N200 using any command, it doesn&#39;t work as=
- shown below :<br><br>uhd_find_devices --args=3D&quot;addr=3Dxx.xx.xxx.xx&q=
-uot;<br>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_3.15.0=
-.HEAD-0-gaea0e2de<br>No UHD Devices Found<br><br>But, if =C2=A0I pass the c=
-ommand soon after the first invocation, it works as shown below:<br><br>uhd=
-_find_devices --args=3D&quot;addr=3Dxx.xx.xxx.xx&quot;<br>[INFO] [UHD] linu=
-x; GNU C++ version 7.5.0; Boost_106501; UHD_3.15.0.HEAD-0-gaea0e2de<br>----=
-----------------------------------------------<br>-- UHD Device 0<br>------=
---------------------------------------------<br>Device Address:<br>=C2=A0 =
-=C2=A0 serial: 31D09D8<br>=C2=A0 =C2=A0 addr: xx.xx.xxx.xx<br>=C2=A0 =C2=A0=
- name: <br>=C2=A0 =C2=A0 type: usrp2<br><br>And, subsequent invocations in =
-the near future work.=C2=A0 And, it applies for any other command I have us=
-ed to invoke the <br>USRP device. I would greatly appreciate suggestions fr=
-om experienced users in this list.=C2=A0 And, one more issue, the above com=
-mand used to work without passing the &quot;addr&quot; argument. But recent=
-ly, it doesn&#39;t respond if I don&#39;t pass that argument. <br><br></spa=
-n></div><div style=3D"margin:0px;padding:0px;border:0px;font-stretch:inheri=
-t;font-size:12pt;line-height:inherit;font-family:Calibri,Arial,Helvetica,sa=
-ns-serif;vertical-align:baseline;color:black"><span style=3D"margin:0px;pad=
-ding:0px;border:0px;font-style:inherit;font-variant:inherit;font-weight:inh=
-erit;font-stretch:inherit;font-size:large;line-height:inherit;font-family:A=
-rial,Helvetica,sans-serif;vertical-align:baseline;color:rgb(34,34,34)">I wo=
-uld greatly appreciate suggestions on these two points. <br><br>Thanks.<br>=
-<br>Best,<br>Dev<br></span></div><div style=3D"margin:0px;padding:0px;borde=
-r:0px;font-stretch:inherit;font-size:12pt;line-height:inherit;font-family:C=
-alibri,Arial,Helvetica,sans-serif;vertical-align:baseline;color:black"><spa=
-n style=3D"margin:0px;padding:0px;border:0px;font-style:inherit;font-varian=
-t:inherit;font-weight:inherit;font-stretch:inherit;font-size:large;line-hei=
-ght:inherit;font-family:Arial,Helvetica,sans-serif;vertical-align:baseline;=
-color:rgb(34,34,34)"><br></span></div><div style=3D"margin:0px;padding:0px;=
-border:0px;font-stretch:inherit;font-size:12pt;line-height:inherit;font-fam=
-ily:Calibri,Arial,Helvetica,sans-serif;vertical-align:baseline;color:black"=
-><span style=3D"margin:0px;padding:0px;border:0px;font-style:inherit;font-v=
-ariant:inherit;font-weight:inherit;font-stretch:inherit;font-size:large;lin=
-e-height:inherit;font-family:Arial,Helvetica,sans-serif;vertical-align:base=
-line;color:rgb(34,34,34)"><br></span></div><div style=3D"margin:0px;padding=
-:0px;border:0px;font-stretch:inherit;font-size:12pt;line-height:inherit;fon=
-t-family:Calibri,Arial,Helvetica,sans-serif;vertical-align:baseline;color:b=
-lack"><span style=3D"margin:0px;padding:0px;border:0px;font-style:inherit;f=
-ont-variant:inherit;font-weight:inherit;font-stretch:inherit;font-size:larg=
-e;line-height:inherit;font-family:Arial,Helvetica,sans-serif;vertical-align=
-:baseline;color:rgb(34,34,34)">Dev Joshi, PhD</span><span style=3D"margin:0=
-px;padding:0px;border:0px;font-style:inherit;font-variant:inherit;font-weig=
-ht:inherit;font-stretch:inherit;font-size:14pt;line-height:inherit;font-fam=
-ily:inherit;vertical-align:baseline;color:rgb(102,102,102)"><b></b></span><=
-span style=3D"margin:0px;padding:0px;border:0px;font:inherit;vertical-align=
-:baseline;color:inherit"><br></span></div><div style=3D"margin:0px;padding:=
-0px;border:0px;font-stretch:inherit;font-size:12pt;line-height:inherit;font=
--family:Calibri,Arial,Helvetica,sans-serif;vertical-align:baseline;color:bl=
-ack"><div style=3D"margin:0px;padding:0px;border:0px;font:inherit;vertical-=
-align:baseline;color:inherit"><span style=3D"margin:0px;padding:0px;border:=
-0px;font:inherit;vertical-align:baseline;color:rgb(102,102,102)">Postdoctor=
-al Research Associate</span></div><div style=3D"margin:0px;padding:0px;bord=
-er:0px;font:inherit;vertical-align:baseline;color:inherit"><span style=3D"m=
-argin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color=
-:rgb(102,102,102)">Department of Physics and Engineering</span></div><div s=
-tyle=3D"margin:0px;padding:0px;border:0px;font:inherit;vertical-align:basel=
-ine;color:inherit"><span style=3D"margin:0px;padding:0px;border:0px;font:in=
-herit;vertical-align:baseline;color:rgb(102,102,102)">The University of Scr=
-anto</span><span style=3D"margin:0px;padding:0px;border:0px;font:inherit;ve=
-rtical-align:baseline;color:rgb(102,102,102)">n</span></div><div style=3D"m=
-argin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color=
-:inherit"><span style=3D"margin:0px;padding:0px;border:0px;font:inherit;ver=
-tical-align:baseline;color:rgb(102,102,102)">C:</span><span style=3D"margin=
-:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:inhe=
-rit">=C2=A0617 775 9712</span></div></div></div></div></div></div></div></d=
-iv></div></div></div></div></div>
-
---0000000000000e550e05b20cdb99--
+On 10/19/2020 05:32 PM, Dev Joshi via USRP-users wrote:
+> Hello everyone,
+>
+> I hope everyone is keeping well through these unusual times. I am 
+> writing to request assistance on an issue I am facing while running 
+> Ettus N200 device. The  device is installed to receive high frequency 
+> radio waves and it is connected to an internet port by an Ethernet 
+> cable  as is the computer (Ubuntu). I can ping the device from the 
+> terminal of the computer. But, whenever I invoke the USRP N200 using 
+> any command, it doesn't work as shown below :
+>
+> uhd_find_devices --args="addr=xx.xx.xxx.xx"
+> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; 
+> UHD_3.15.0.HEAD-0-gaea0e2de
+> No UHD Devices Found
+>
+> But, if  I pass the command soon after the first invocation, it works 
+> as shown below:
+>
+> uhd_find_devices --args="addr=xx.xx.xxx.xx"
+> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; 
+> UHD_3.15.0.HEAD-0-gaea0e2de
+> --------------------------------------------------
+> -- UHD Device 0
+> --------------------------------------------------
+> Device Address:
+>     serial: 31D09D8
+>     addr: xx.xx.xxx.xx
+>     name:
+>     type: usrp2
+>
+> And, subsequent invocations in the near future work.  And, it applies 
+> for any other command I have used to invoke the
+> USRP device. I would greatly appreciate suggestions from experienced 
+> users in this list.  And, one more issue, the above command used to 
+> work without passing the "addr" argument. But recently, it doesn't 
+> respond if I don't pass that argument.
+>
+> I would greatly appreciate suggestions on these two points.
+>
+> Thanks.
+>
+> Best,
+> Dev
+>
+>
+augment your device string with type=n2xx
 
 
---===============3932082438971995227==
+
+--------------080702060201080004080504
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 10/19/2020 05:32 PM, Dev Joshi via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAAq7Emf908sc+rSn87GEy7g6itEiT_PDTfM2y9yv2De=793zjA@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>
+          <div dir="ltr" class="gmail_signature"
+            data-smartmail="gmail_signature">
+            <div dir="ltr">
+              <div>
+                <div dir="ltr">
+                  <div>
+                    <div dir="ltr">
+                      <div dir="ltr">
+                        <div dir="ltr">
+                          <div dir="ltr">
+                            <div
+style="margin:0px;padding:0px;border:0px;font-stretch:inherit;font-size:12pt;line-height:inherit;font-family:Calibri,Arial,Helvetica,sans-serif;vertical-align:baseline;color:black"><span
+style="margin:0px;padding:0px;border:0px;font-style:inherit;font-variant:inherit;font-weight:inherit;font-stretch:inherit;font-size:large;line-height:inherit;font-family:Arial,Helvetica,sans-serif;vertical-align:baseline;color:rgb(34,34,34)">Hello
+                                everyone,<br>
+                                <br>
+                                I hope everyone is keeping well through
+                                these unusual times. I am writing to
+                                request assistance on an issue I am
+                                facing while running Ettus N200 device.
+                                The  device is installed to receive high
+                                frequency radio waves and it is
+                                connected to an internet port by an
+                                Ethernet cable  as is the computer
+                                (Ubuntu). I can ping the device from the
+                                terminal of the computer. But, whenever
+                                I invoke the USRP N200 using any
+                                command, it doesn't work as shown below
+                                :<br>
+                                <br>
+                                uhd_find_devices
+                                --args="addr=xx.xx.xxx.xx"<br>
+                                [INFO] [UHD] linux; GNU C++ version
+                                7.5.0; Boost_106501;
+                                UHD_3.15.0.HEAD-0-gaea0e2de<br>
+                                No UHD Devices Found<br>
+                                <br>
+                                But, if  I pass the command soon after
+                                the first invocation, it works as shown
+                                below:<br>
+                                <br>
+                                uhd_find_devices
+                                --args="addr=xx.xx.xxx.xx"<br>
+                                [INFO] [UHD] linux; GNU C++ version
+                                7.5.0; Boost_106501;
+                                UHD_3.15.0.HEAD-0-gaea0e2de<br>
+--------------------------------------------------<br>
+                                -- UHD Device 0<br>
+--------------------------------------------------<br>
+                                Device Address:<br>
+                                    serial: 31D09D8<br>
+                                    addr: xx.xx.xxx.xx<br>
+                                    name: <br>
+                                    type: usrp2<br>
+                                <br>
+                                And, subsequent invocations in the near
+                                future work.  And, it applies for any
+                                other command I have used to invoke the
+                                <br>
+                                USRP device. I would greatly appreciate
+                                suggestions from experienced users in
+                                this list.  And, one more issue, the
+                                above command used to work without
+                                passing the "addr" argument. But
+                                recently, it doesn't respond if I don't
+                                pass that argument. <br>
+                                <br>
+                              </span></div>
+                            <div
+style="margin:0px;padding:0px;border:0px;font-stretch:inherit;font-size:12pt;line-height:inherit;font-family:Calibri,Arial,Helvetica,sans-serif;vertical-align:baseline;color:black"><span
+style="margin:0px;padding:0px;border:0px;font-style:inherit;font-variant:inherit;font-weight:inherit;font-stretch:inherit;font-size:large;line-height:inherit;font-family:Arial,Helvetica,sans-serif;vertical-align:baseline;color:rgb(34,34,34)">I
+                                would greatly appreciate suggestions on
+                                these two points. <br>
+                                <br>
+                                Thanks.<br>
+                                <br>
+                                Best,<br>
+                                Dev<br>
+                              </span></div>
+                            <div
+style="margin:0px;padding:0px;border:0px;font-stretch:inherit;font-size:12pt;line-height:inherit;font-family:Calibri,Arial,Helvetica,sans-serif;vertical-align:baseline;color:black"><span
+style="margin:0px;padding:0px;border:0px;font-style:inherit;font-variant:inherit;font-weight:inherit;font-stretch:inherit;font-size:large;line-height:inherit;font-family:Arial,Helvetica,sans-serif;vertical-align:baseline;color:rgb(34,34,34)"><br>
+                              </span></div>
+                            <br>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    augment your device string with type=n2xx<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------080702060201080004080504--
+
+
+--===============8573213137606021766==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -230,5 +276,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3932082438971995227==--
+--===============8573213137606021766==--
 
