@@ -2,58 +2,85 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C02F6294318
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Oct 2020 21:36:07 +0200 (CEST)
-Received: from [::1] (port=36862 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9741529439A
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Oct 2020 21:53:52 +0200 (CEST)
+Received: from [::1] (port=37014 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kUxQU-0005X5-FB; Tue, 20 Oct 2020 15:36:06 -0400
-Received: from mail-qv1-f53.google.com ([209.85.219.53]:39746)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kUxQQ-0005N5-Bw
- for USRP-users@lists.ettus.com; Tue, 20 Oct 2020 15:36:02 -0400
-Received: by mail-qv1-f53.google.com with SMTP id f5so1457188qvx.6
- for <USRP-users@lists.ettus.com>; Tue, 20 Oct 2020 12:35:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=pOq9syOk9lxjFCtp9SVL7vKB/T7Q3ztAA06HXNBwsK0=;
- b=RldoRE9rYOMLM8CwVMFWZhTIvWFbuhnfyoQ/Tvki+cOGnPEhO2fqknCW/QyDXsrG3k
- RFKpZ0w1LAxZFZHOuU6TRyhadEA0+sg1MaJaza76c4t5+MFxug1XYOXhow51QPJCGkFZ
- Xriir8Au7h77TK3rKXRSD14pNMl/Bpl86BotVb+WTAJgipLhXMqSkemKsKD748hm5QT9
- Rclz3nyvXh0gshp65m4KDijtapOozkA/H5Vr/JUBt0dhLWRVKUIczsONe2/PQiIp2eZE
- uy8UXHG4iG8Ub5bmwC6bZG9ZES4lJW82IR0u+7Zh2B4MkeQaZ5T97gpEym046vEMz2Xw
- ZxDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=pOq9syOk9lxjFCtp9SVL7vKB/T7Q3ztAA06HXNBwsK0=;
- b=TIFAISvjNdbKFeWdO7xmWeh2EWplyMkUKDwLozne9RQtsdqbK9bWU6pm617Qu3G5qI
- 9Skg2b56R8Qo1b3+bP6Nen0TuH/vUBtrpGjECG5bpYpviQLWhEe3sy+e90RKrsn7ylWS
- xL7ir/+vQ5FIdJkibjE1uLeHTWlwQk1NbHanKFPqI8Mv2wGkVy1jv9Bfo9bBDYcqEzxt
- mdyLygbWZkTp1dITukGXibFMzRyJZaKnBKUe9g4C6KaS181ML5w1qceAzb5jDsSCQxdF
- +mAvCeQXpj6EZSdlWXlsxFuJEZ3VlkfOq22Zj/6+iAuru4S3+i4UFl9Aly4MhJN0zgtf
- TLAg==
-X-Gm-Message-State: AOAM531B/uBO8EySyE/A35e1BTBF7+uUtKelsOKuPtZhjoz5vrF17fFG
- 6QinrTsHrcwS/ux+zs6SfXfU7kS+rvhAlQ==
-X-Google-Smtp-Source: ABdhPJysnhJ47TqxVYVutcuDTOkhrzYQB3froOdaSnEf1VMTYcE/i8stlsdbwH5eNvPiKau6qq5GgA==
-X-Received: by 2002:a0c:f38b:: with SMTP id i11mr5019689qvk.17.1603222521624; 
- Tue, 20 Oct 2020 12:35:21 -0700 (PDT)
-Received: from [192.168.2.29]
- (bras-base-smflon1825w-grc-07-174-93-0-246.dsl.bell.ca. [174.93.0.246])
- by smtp.gmail.com with ESMTPSA id d78sm1298204qke.83.2020.10.20.12.35.20
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 20 Oct 2020 12:35:21 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Tue, 20 Oct 2020 15:35:20 -0400
-Message-Id: <867D4386-BAFF-4FEC-9C46-206D3987FB62@gmail.com>
+	id 1kUxhe-0006vr-DA; Tue, 20 Oct 2020 15:53:50 -0400
+Received: from mail-mw2nam12on2055.outbound.protection.outlook.com
+ ([40.107.244.55]:51553 helo=NAM12-MW2-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <jerrid.plymale@canyon-us.com>)
+ id 1kUxha-0006h5-2E
+ for USRP-users@lists.ettus.com; Tue, 20 Oct 2020 15:53:46 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AerVUk39P7tSpgx1rIO5Bd5Z2QpMQGXqOtcLFNriYrZroetxEyLJ5mWs+zEjipPgN1GG6P4ZCN2qBDjrm7LJy41gjoIGRwMp7/lWTQfAnzyUyzq5RvjUnuScl3Nry47Jr400lG0+6ktioYtWYcTNoDads/CdyUB4KOP3aEhbuLIgYwSbJKAE0QsG3RNKUWOViZ+JWcAt+if+6F5V9ahGU0hVAC/1sp97vqQJgKDyHE5nFIH/5hTdcSp8mxZYg+9Pv/Skhwgp3wDisHyD0vIF+Q7O2pDFDmnKEpwKa+2z3MIc/5Ddkf6kj3DATonMs6VrE4pLT8AiZSs9DoWpRT50gA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=szqCgYh/KUHOLdCAZnpbAg/QGvtmH2qEtwKcNQQBivQ=;
+ b=fe7B2Xev4lpo1L5ROgWNVd6yfojgi+8MgvMHRs4qR3kmRiTs/j1zHgs3ZiSLnSOvuN8wFC2kYdLEHVz0JF1UR22/Wt/85UiQsZhzEuWF3q4+KS0sYlVkfX3HNqP4TEN5zL6AWvyPRQ+oVRQqoJ/UHCLuNfklCe54P0Zyxj5R27LW8obhj6lSMZdIjvXL/AuQd4llE6vc6Yi7mqwhewCSFPkISMUrrOrIFh7dk0MC41XCrh7q3zoNUZj9nibmRBoi14J7H5b0TDrGUuLh53qPhrBdHsGLUWKcby9IOvDkLeSNoJg19+/7y4DxvAgBLHtaNIv86zf+HZPdZbPQiomU9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=canyon-us.com; dmarc=pass action=none
+ header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=canyonconsulting.onmicrosoft.com;
+ s=selector2-canyonconsulting-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=szqCgYh/KUHOLdCAZnpbAg/QGvtmH2qEtwKcNQQBivQ=;
+ b=g7tvLJv+IUdZDxISTaGkNusKaviAvkg0TZxBuANudphBpnFLVfjODOO7UM9cgRQGevH30TG27oKrtS/QSsCSfso8fVeMGdwBvP6YotRUq7MjQxf1MS7QSP4CDnHQkQghFhx7dZ8MwODBGkN5Q9Uk5EtyA96LuOwSfqZROvRpbF4=
+Received: from SA0PR19MB4382.namprd19.prod.outlook.com (2603:10b6:806:90::19)
+ by SA0PR19MB4459.namprd19.prod.outlook.com (2603:10b6:806:b1::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.22; Tue, 20 Oct
+ 2020 19:53:03 +0000
+Received: from SA0PR19MB4382.namprd19.prod.outlook.com
+ ([fe80::e434:eca4:30cd:7594]) by SA0PR19MB4382.namprd19.prod.outlook.com
+ ([fe80::e434:eca4:30cd:7594%7]) with mapi id 15.20.3477.028; Tue, 20 Oct 2020
+ 19:53:03 +0000
+To: Marcus D Leech <patchvonbraun@gmail.com>
+CC: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Underruns causing USRP to stop transmitting and
+ receiving
+Thread-Index: AdanF2I3U3k3IjTSQYeo+yfs0PXvNAAAMMIAAAB0y8A=
+Date: Tue, 20 Oct 2020 19:53:03 +0000
+Message-ID: <SA0PR19MB438205C5E6E5B458E39C1642C61F0@SA0PR19MB4382.namprd19.prod.outlook.com>
 References: <SA0PR19MB43827AFF6817FF8079637D64C61F0@SA0PR19MB4382.namprd19.prod.outlook.com>
-Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-In-Reply-To: <SA0PR19MB43827AFF6817FF8079637D64C61F0@SA0PR19MB4382.namprd19.prod.outlook.com>
-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
-X-Mailer: iPhone Mail (17H35)
+ <867D4386-BAFF-4FEC-9C46-206D3987FB62@gmail.com>
+In-Reply-To: <867D4386-BAFF-4FEC-9C46-206D3987FB62@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=canyon-us.com;
+x-originating-ip: [98.153.200.210]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 406966fd-e2c4-492c-188e-08d87531c190
+x-ms-traffictypediagnostic: SA0PR19MB4459:
+x-microsoft-antispam-prvs: <SA0PR19MB4459FE230B1BF3976ACBF3D3C61F0@SA0PR19MB4459.namprd19.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: bRUHyZxgEMVAQCp0d4gKEf5QTx2ofrY6QwYlconYPtXFgT83bqTDPvdD08OGFCNaMCs+DNf8ORNVkJPUFhfCYopuHPHmC8ZVQ1Sp/5+dbtEkm482siAN6aavttgr/2ig0ZfGF8ZUvZcCVfsxUelBb81F5os8K3N01BU+mnhTeW97iEfRWGHj02RB5o+cWdMQ6GDkILdoIfomjQLsqkiC69jSNKyy48AKC2+lLYmXq3/KjrVWIbB5Uc0luZPxOSRm0bCqsZayQwURQEer+YPcifG2aSRBb9qhglkc8mSzmKBuGfk2alavt2Wz7KhHrXzjsza+At8Pb4+5ZOU9X92JtJZFuo2rD1KUlGGJhuGQm53rHfIdEv9+G1QCOtyg0HOWlI6TSOApTlvT9ajJ/zZgKQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR19MB4382.namprd19.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(39830400003)(396003)(346002)(136003)(376002)(33656002)(86362001)(7696005)(66476007)(76116006)(66946007)(66446008)(44832011)(64756008)(66556008)(5660300002)(52536014)(71200400001)(83380400001)(166002)(6916009)(4326008)(6506007)(478600001)(9686003)(55016002)(2906002)(966005)(26005)(186003)(8676002)(53546011)(8936002)(316002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: QeBqkBI4jBNv5/HB5KvaHXBRHJ0gUNprSJx6m4WfG/08IlwE203jMpxidqXACTdLCnL4Ask3nGkQD7RkZkxwk0G26zXdyOik5uGkHLVgv0NeQwE0ZGinQ8Z3iqkHeM4gEEU8rp6wsJrCRutnkpXuJ6djrKcldSoHreOULPGQKyLhkiCdJZmFNjYaZUlhFdf+0bG209oa6KMEk/t7JRWEp3t8a2ZR/LHJkx52EuN+1DZLbdPG4Sb8HzCCSnM75aHaVSBv6BNeVpGDyUmSvkybFLib8ZCIDNeGEjODrMah0HxgypRR+tF/ZdZd6YR6F8Vcjx0JIc9zmr1gbvJnJpCcJK+zN8zPOET39ifR6ekHY3wXguF3jP9siyi2ocB4RxkLv0p8GdV41TARAbQ6EiF61lhQk0ueQg5JKsm6x8jMwQmsWVQi3o2pGDHb9DEWBgRtIWDhFoX51WCFw+iA4ZlV0AfIwtIzb/k/RvnoQ9sAfauQv0WP76aEjCMoG4r/jtRUh75n7x9nfspup5zJVDuGUNPuVlho5JCM898ne0F7EnsRPSqbflYgDYx1hs0NCCMnPpxCnYzCc8jgHKjXFER+AL8KQs/hPAmUXiTtBijn6l9cuPP4j4qBog+ThgTJsw2WBAKYKJT+Z9jzdQL3af5uPQ==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: canyon-us.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR19MB4382.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 406966fd-e2c4-492c-188e-08d87531c190
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2020 19:53:03.3561 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: THaw42XzibFWXQ9VkuQCMzvco8BYY59JqjSUgiTftGjEp6UeM+qpPcrkGAIsfy37AlO13UHQs96/Fp6Nx/7pUnAxfB/wvQDsYdaoaprxeSM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR19MB4459
 Subject: Re: [USRP-users] Underruns causing USRP to stop transmitting and
  receiving
 X-BeenThere: usrp-users@lists.ettus.com
@@ -67,9 +94,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6867963417635361600=="
+From: Jerrid Plymale via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+Content-Type: multipart/mixed; boundary="===============1219478234278422088=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,134 +110,153 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============1219478234278422088==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SA0PR19MB438205C5E6E5B458E39C1642C61F0SA0PR19MB4382namp_"
 
---===============6867963417635361600==
-Content-Type: multipart/alternative; boundary=Apple-Mail-BC85CF86-FDB7-4A23-8A6E-37697D9DEDE8
-Content-Transfer-Encoding: 7bit
+--_000_SA0PR19MB438205C5E6E5B458E39C1642C61F0SA0PR19MB4382namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+TWFyY3VzLA0KDQpUaGUgcHJvYmxlbSBzZWVtcyB0byBiZSByZWxhdGVkIHRvIHJ1bm5pbmcgdGhl
+IHN5c3RlbSB3aXRoIHRoZSBVU1JQIHRob3VnaC4gU29tZW9uZSB3aG8gaXMgd29ya2luZyBvbiB0
+aGlzIHByb2plY3Qgd2l0aCBtZSBpcyBhYmxlIHRvIHJ1biB0aGUgc2FtZSBlbWJlZGRlZCBweXRo
+b24gYmxvY2ssIHdpdGhvdXQgIHRoZSBVU1JQIGhhcmR3YXJlLCBhbmQgZ2V0cyBubyBVbmRlcnJ1
+bnMgd2hlbiBkb2luZyBzby4gV2UgaGF2ZSBhbHNvIGJlZW4gdW5zdWNjZXNzZnVsIGluIGZpbmRp
+bmcgYW55IHVzZWZ1bCBpbmZvcm1hdGlvbiByZWdhcmRpbmcgcG90ZW50aWFsIGNhdXNlcyBhbmQg
+c29sdXRpb25zIGZyb20gR05VIFJhZGlvIGFuZCBVU1JQIGRvY3VtZW50YXRpb24uDQoNCkJlc3Qg
+UmVnYXJkcywNCg0KSmVycmlkDQoNCkZyb206IE1hcmN1cyBEIExlZWNoIDxwYXRjaHZvbmJyYXVu
+QGdtYWlsLmNvbT4NClNlbnQ6IFR1ZXNkYXksIE9jdG9iZXIgMjAsIDIwMjAgMTI6MzUgUE0NClRv
+OiBKZXJyaWQgUGx5bWFsZSA8amVycmlkLnBseW1hbGVAY2FueW9uLXVzLmNvbT4NCkNjOiB1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBVbmRlcnJ1
+bnMgY2F1c2luZyBVU1JQIHRvIHN0b3AgdHJhbnNtaXR0aW5nIGFuZCByZWNlaXZpbmcNCg0KUHJv
+YmFibHkgYmV0dGVyIHNlcnZlZCBieSB0aGUgZGlzY3Vzcy1nbnVyYWRpbyBsaXN0IGFuZCB0aGUg
+Y2hhdC5nbnVyYWRpby5vcmcgb25saW5lIGNoYXQgY29tbXVuaXR5Lg0KU2VudCBmcm9tIG15IGlQ
+aG9uZQ0KDQoNCk9uIE9jdCAyMCwgMjAyMCwgYXQgMzozMCBQTSwgSmVycmlkIFBseW1hbGUgdmlh
+IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbT4+IHdyb3RlOg0K77u/DQpIZWxsbyBBbGwsDQoNClNvIEkgYW0gd29y
+a2luZyBvbiB3cml0aW5nIGFuIGVtYmVkZGVkIHB5dGhvbiBibG9jayBpbiBHTlUgUmFkaW8gQ29t
+cGFuaW9uIHRvIHByZWZvcm0gc29tZSBhbmFseXNpcyBvZiBSRiBzaWduYWxzIHRoYXQgaXMgcmVj
+ZWl2ZWQgYnkgYSBVU1JQIHgzMTAgYW5kIHRyYW5zbWl0dGVkIGJhY2sgb3V0IG9mIHRoZSBVU1JQ
+IGFmdGVyIGFuYWx5c2lzIGhhcyBiZWVuIGRvbmUuIEkgaGF2ZSBiZWVuIHJ1bm5pbmcgaW50byBz
+b21lIHVuZGVycnVucyBsYXRlbHkgdGhhdCBJIGhhdmUgbm90IGJlZW4gYWJsZSB0byBmaW5kIGEg
+c29sdXRpb24gZm9yLiBJZiBJIGV4ZWN1dGUgc29tZSBvZiBteSBhbmFseXNpcyBmdW5jdGlvbnMg
+aW4gdGhlIHdvcmsgZnVuY3Rpb24gb2YgdGhlIGJsb2NrLCB0aGUgYXBwbGljYXRpb24gdW5kZXJy
+dW5zIGFuZCBpdCBjYXVzZXMgdGhlIFVTUlAgdG8gc3RvcCB0cmFuc21pdHRpbmcgb3IgcmVjZWl2
+aW5nLiBIb3dldmVyLCBpZiBJIGV4ZWN1dGUgdGhlIGZ1bmN0aW9ucyBpbiBzZXBhcmF0ZSBwb2xs
+aW5nIGZ1bmN0aW9ucyB0aGF0IGFyZSBiZWluZyB1c2VkIHRvIGRpc3BsYXkgdmFsdWVzIGluIHRo
+ZSBHVUksIEkgZG8gbm90IGdldCB1bmRlcnJ1bnMuIEkgdGhpbmsgdGhpcyBtaWdodCBoYXMgdG8g
+ZG8gd2l0aCBob3cgb2Z0ZW4gdGhlIGFuYWx5c2lzIGZ1bmN0aW9uIGlzIGJlaW5nIGV4ZWN1dGVk
+LCBhcyB0aGUgcG9sbCBmdW5jdGlvbnMgYXJlIG9ubHkgY2FsbGVkIGF0IGEgcmF0ZSBvZiAxMCBI
+eiB3aGljaCBpcyBjb250cm9sbGVkIGJ5IGEgZnVuY3Rpb24gcHJvYmUuIENhbiBhbnlvbmUgZ2l2
+ZSBtZSBzdWdnZXN0aW9ucyBvbiB3aGF0IHRvIHRyeSB0byBmaXggdGhlIHVuZGVycnVuIHByb2Js
+ZW0sIGFuZCBhbnkgcmVzb3VyY2VzIHlvdSBjYW4gcG9pbnQgbWUgdG8gdGhhdCBtaWdodCBoZWxw
+IHdvdWxkIGJlIGFwcHJlY2lhdGVkLg0KDQpCZXN0IFJlZ2FyZHMsDQoNCkplcnJpZA0KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFp
+bGluZyBsaXN0DQpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86VVNSUC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20+DQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8v
+dXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20NCg==
+
+--_000_SA0PR19MB438205C5E6E5B458E39C1642C61F0SA0PR19MB4382namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
+Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0
+aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUyMA0KCXttc28tc3R5bGUtdHlwZTpwZXJz
+b25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3
+aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5
+Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4g
+MTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rp
+b24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDld
+Pjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0K
+PC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91
+dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpz
+aGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVT
+IiBsaW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiIgc3R5bGU9IndvcmQtd3JhcDpicmVhay13
+b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5N
+YXJjdXMsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBwcm9ibGVtIHNlZW1zIHRvIGJlIHJl
+bGF0ZWQgdG8gcnVubmluZyB0aGUgc3lzdGVtIHdpdGggdGhlIFVTUlAgdGhvdWdoLiBTb21lb25l
+IHdobyBpcyB3b3JraW5nIG9uIHRoaXMgcHJvamVjdCB3aXRoIG1lIGlzIGFibGUgdG8gcnVuIHRo
+ZSBzYW1lIGVtYmVkZGVkIHB5dGhvbiBibG9jaywgd2l0aG91dCAmbmJzcDt0aGUgVVNSUCBoYXJk
+d2FyZSwgYW5kIGdldHMgbm8gVW5kZXJydW5zIHdoZW4gZG9pbmcgc28uIFdlDQogaGF2ZSBhbHNv
+IGJlZW4gdW5zdWNjZXNzZnVsIGluIGZpbmRpbmcgYW55IHVzZWZ1bCBpbmZvcm1hdGlvbiByZWdh
+cmRpbmcgcG90ZW50aWFsIGNhdXNlcyBhbmQgc29sdXRpb25zIGZyb20gR05VIFJhZGlvIGFuZCBV
+U1JQIGRvY3VtZW50YXRpb24uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkJlc3QgUmVnYXJkcyw8
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SmVycmlkIDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9y
+ZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGlu
+IDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IE1hcmN1cyBEIExl
+ZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDsgPGJyPg0KPGI+U2VudDo8L2I+IFR1
+ZXNkYXksIE9jdG9iZXIgMjAsIDIwMjAgMTI6MzUgUE08YnI+DQo8Yj5Ubzo8L2I+IEplcnJpZCBQ
+bHltYWxlICZsdDtqZXJyaWQucGx5bWFsZUBjYW55b24tdXMuY29tJmd0Ozxicj4NCjxiPkNjOjwv
+Yj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtV
+U1JQLXVzZXJzXSBVbmRlcnJ1bnMgY2F1c2luZyBVU1JQIHRvIHN0b3AgdHJhbnNtaXR0aW5nIGFu
+ZCByZWNlaXZpbmc8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
+PSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+UHJvYmFibHkgYmV0dGVyIHNlcnZlZCBieSB0aGUgZGlz
+Y3Vzcy1nbnVyYWRpbyBsaXN0IGFuZCB0aGUgY2hhdC5nbnVyYWRpby5vcmcgb25saW5lIGNoYXQg
+Y29tbXVuaXR5LiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPlNlbnQgZnJvbSBteSBpUGhvbmU8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxicj4NCjxicj4NCjxvOnA+PC9vOnA+PC9wPg0KPGJsb2NrcXVv
+dGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPk9uIE9jdCAyMCwgMjAy
+MCwgYXQgMzozMCBQTSwgSmVycmlkIFBseW1hbGUgdmlhIFVTUlAtdXNlcnMgJmx0OzxhIGhyZWY9
+Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2
+Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBw
+dCI+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+77u/IDxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+SGVsbG8gQWxsLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TbyBJ
+IGFtIHdvcmtpbmcgb24gd3JpdGluZyBhbiBlbWJlZGRlZCBweXRob24gYmxvY2sgaW4gR05VIFJh
+ZGlvIENvbXBhbmlvbiB0byBwcmVmb3JtIHNvbWUgYW5hbHlzaXMgb2YgUkYgc2lnbmFscyB0aGF0
+IGlzIHJlY2VpdmVkIGJ5IGEgVVNSUCB4MzEwIGFuZCB0cmFuc21pdHRlZCBiYWNrIG91dCBvZiB0
+aGUgVVNSUCBhZnRlciBhbmFseXNpcyBoYXMgYmVlbiBkb25lLiBJIGhhdmUgYmVlbiBydW5uaW5n
+IGludG8NCiBzb21lIHVuZGVycnVucyBsYXRlbHkgdGhhdCBJIGhhdmUgbm90IGJlZW4gYWJsZSB0
+byBmaW5kIGEgc29sdXRpb24gZm9yLiBJZiBJIGV4ZWN1dGUgc29tZSBvZiBteSBhbmFseXNpcyBm
+dW5jdGlvbnMgaW4gdGhlIHdvcmsgZnVuY3Rpb24gb2YgdGhlIGJsb2NrLCB0aGUgYXBwbGljYXRp
+b24gdW5kZXJydW5zIGFuZCBpdCBjYXVzZXMgdGhlIFVTUlAgdG8gc3RvcCB0cmFuc21pdHRpbmcg
+b3IgcmVjZWl2aW5nLiBIb3dldmVyLCBpZiBJIGV4ZWN1dGUNCiB0aGUgZnVuY3Rpb25zIGluIHNl
+cGFyYXRlIHBvbGxpbmcgZnVuY3Rpb25zIHRoYXQgYXJlIGJlaW5nIHVzZWQgdG8gZGlzcGxheSB2
+YWx1ZXMgaW4gdGhlIEdVSSwgSSBkbyBub3QgZ2V0IHVuZGVycnVucy4gSSB0aGluayB0aGlzIG1p
+Z2h0IGhhcyB0byBkbyB3aXRoIGhvdyBvZnRlbiB0aGUgYW5hbHlzaXMgZnVuY3Rpb24gaXMgYmVp
+bmcgZXhlY3V0ZWQsIGFzIHRoZSBwb2xsIGZ1bmN0aW9ucyBhcmUgb25seSBjYWxsZWQgYXQgYSBy
+YXRlIG9mIDEwDQogSHogd2hpY2ggaXMgY29udHJvbGxlZCBieSBhIGZ1bmN0aW9uIHByb2JlLiBD
+YW4gYW55b25lIGdpdmUgbWUgc3VnZ2VzdGlvbnMgb24gd2hhdCB0byB0cnkgdG8gZml4IHRoZSB1
+bmRlcnJ1biBwcm9ibGVtLCBhbmQgYW55IHJlc291cmNlcyB5b3UgY2FuIHBvaW50IG1lIHRvIHRo
+YXQgbWlnaHQgaGVscCB3b3VsZCBiZSBhcHByZWNpYXRlZC4NCjxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5CZXN0IFJlZ2FyZHMsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4m
+bmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkplcnJpZDxvOnA+PC9v
+OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+X19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX188YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdDxicj4NCjxh
+IGhyZWY9Im1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+VVNSUC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb208L2E+PGJyPg0KPGEgaHJlZj0iaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWls
+bWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tIj5odHRwOi8vbGlzdHMuZXR0
+dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb208L2E+PG86
+cD48L286cD48L3A+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9o
+dG1sPg0K
+
+--_000_SA0PR19MB438205C5E6E5B458E39C1642C61F0SA0PR19MB4382namp_--
 
 
---Apple-Mail-BC85CF86-FDB7-4A23-8A6E-37697D9DEDE8
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-Probably better served by the discuss-gnuradio list and the chat.gnuradio.or=
-g online chat community.=20
-
-Sent from my iPhone
-
-> On Oct 20, 2020, at 3:30 PM, Jerrid Plymale via USRP-users <usrp-users@lis=
-ts.ettus.com> wrote:
->=20
-> =EF=BB=BF
-> Hello All,
-> =20
-> So I am working on writing an embedded python block in GNU Radio Companion=
- to preform some analysis of RF signals that is received by a USRP x310 and t=
-ransmitted back out of the USRP after analysis has been done. I have been ru=
-nning into some underruns lately that I have not been able to find a solutio=
-n for. If I execute some of my analysis functions in the work function of th=
-e block, the application underruns and it causes the USRP to stop transmitti=
-ng or receiving. However, if I execute the functions in separate polling fun=
-ctions that are being used to display values in the GUI, I do not get underr=
-uns. I think this might has to do with how often the analysis function is be=
-ing executed, as the poll functions are only called at a rate of 10 Hz which=
- is controlled by a function probe. Can anyone give me suggestions on what t=
-o try to fix the underrun problem, and any resources you can point me to tha=
-t might help would be appreciated.
-> =20
-> Best Regards,
-> =20
-> Jerrid
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---Apple-Mail-BC85CF86-FDB7-4A23-8A6E-37697D9DEDE8
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">Probably better served by the discuss-gnura=
-dio list and the chat.gnuradio.org online chat community.&nbsp;<br><br><div d=
-ir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D=
-"cite">On Oct 20, 2020, at 3:30 PM, Jerrid Plymale via USRP-users &lt;usrp-u=
-sers@lists.ettus.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D=
-"cite"><div dir=3D"ltr">=EF=BB=BF
-
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
-
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-
-
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">So I am working on writing an embedded python block i=
-n GNU Radio Companion to preform some analysis of RF signals that is receive=
-d by a USRP x310 and transmitted back out of the USRP after analysis has bee=
-n done. I have been running into
- some underruns lately that I have not been able to find a solution for. If I=
- execute some of my analysis functions in the work function of the block, th=
-e application underruns and it causes the USRP to stop transmitting or recei=
-ving. However, if I execute
- the functions in separate polling functions that are being used to display v=
-alues in the GUI, I do not get underruns. I think this might has to do with h=
-ow often the analysis function is being executed, as the poll functions are o=
-nly called at a rate of 10
- Hz which is controlled by a function probe. Can anyone give me suggestions o=
-n what to try to fix the underrun problem, and any resources you can point m=
-e to that might help would be appreciated.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Jerrid<o:p></o:p></p>
-</div>
-
-
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
->http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
-r></div></blockquote></body></html>=
-
---Apple-Mail-BC85CF86-FDB7-4A23-8A6E-37697D9DEDE8--
-
-
---===============6867963417635361600==
+--===============1219478234278422088==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -221,5 +267,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6867963417635361600==--
+--===============1219478234278422088==--
 
