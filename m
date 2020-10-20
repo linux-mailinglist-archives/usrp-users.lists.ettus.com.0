@@ -2,82 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4789B2942FD
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Oct 2020 21:31:02 +0200 (CEST)
-Received: from [::1] (port=36810 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C02F6294318
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Oct 2020 21:36:07 +0200 (CEST)
+Received: from [::1] (port=36862 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kUxLV-0004tg-8F; Tue, 20 Oct 2020 15:30:57 -0400
-Received: from mail-eopbgr770083.outbound.protection.outlook.com
- ([40.107.77.83]:25308 helo=NAM02-SN1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <jerrid.plymale@canyon-us.com>)
- id 1kUxLQ-0004Wt-Oq
- for usrp-users@lists.ettus.com; Tue, 20 Oct 2020 15:30:52 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=igLmqNM8W7MUgIiJxV4ki4EGbs1laF4T4sTvKIS6FPqfyacD9GRdeY4hajFI4vbTZcn3fouAbakyCPFvDG8/+YLW0FNVz4LqdzpUsoAMBxdlJsR/+njIjaglDVUn0KJdJaveDcho9Q7VXFZPz+S/c7P9hIW71IGP7r8w8ib1BchaNlctWcfTn7Ikk+rR+ObMWZEhtTRQOLHdWAH3a7DCA/Xzr3nfzyuPhma0qo7fw14rVP5bJrBQ59UybdAdZMuBcPe3LP8M7zkfT+e3a7zsefswjwfL3JcWWSzNHS+sTlEqVKaaQ45CYsE7SFx9W4YK830258jkEB5UAPmj/6D++g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ww751Gvt1RnDpjFBDmAITk+aRTyC+dG8TjYGh6I8aqI=;
- b=gq0+gvx/LyKIb5r6dAaYybt5I2vzpBGSUk5ZBCylaNimZddfrv9bTMA7ebf/CyzPwwJf/uxZsVrgKUHuaCIoLOO12AhRpvBYs0IJ8jOsqKJGqkfW0XyyRj82fKawfuB4PCrChi85f0kT0W8rjUII1ZcapKUkIAASAXERmCBgBISfwrXWqTjR/ypU1QKdtMi8Mt1I+jKQQIGgD6OVaT6yZhKKWgpPFiTeg0avsBt0METqMjQSyTZsARMxFB29gW3Ny8F+mLSpxTGJsoXjO9ltsMCWHyA44idzX3CdNloK3BliQqiMGOGE34ZvAMJY+nUPtEjNHdsCcfJlnG27XQaqTw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=canyon-us.com; dmarc=pass action=none
- header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=canyonconsulting.onmicrosoft.com;
- s=selector2-canyonconsulting-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ww751Gvt1RnDpjFBDmAITk+aRTyC+dG8TjYGh6I8aqI=;
- b=WrMNecNQRVoIuE7QLyYxCd9TVuMhg4AJh1jFx+SMXuKjjX7dt6bN6Sfs7jRxW2mvFhRTSKiTEZnoeLxodR9/qWcipMoJLSMd7cy68neXNcK7rMqRTXp4aeR67UgYFtGrYhh/nV2c1mvd8ZTMXQZcw3S4q0f83C6WBBxtjdd3tfY=
-Received: from SA0PR19MB4382.namprd19.prod.outlook.com (2603:10b6:806:90::19)
- by SN6PR19MB2254.namprd19.prod.outlook.com (2603:10b6:805:55::30)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Tue, 20 Oct
- 2020 19:30:10 +0000
-Received: from SA0PR19MB4382.namprd19.prod.outlook.com
- ([fe80::e434:eca4:30cd:7594]) by SA0PR19MB4382.namprd19.prod.outlook.com
- ([fe80::e434:eca4:30cd:7594%7]) with mapi id 15.20.3477.028; Tue, 20 Oct 2020
- 19:30:10 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Underruns causing USRP to stop transmitting and receiving 
-Thread-Index: AdanF2I3U3k3IjTSQYeo+yfs0PXvNA==
-Date: Tue, 20 Oct 2020 19:30:10 +0000
-Message-ID: <SA0PR19MB43827AFF6817FF8079637D64C61F0@SA0PR19MB4382.namprd19.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=canyon-us.com;
-x-originating-ip: [98.153.200.210]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 76163fda-bc11-4341-b3b1-08d8752e8f32
-x-ms-traffictypediagnostic: SN6PR19MB2254:
-x-microsoft-antispam-prvs: <SN6PR19MB22541AFE516D9AF1E86E61B6C61F0@SN6PR19MB2254.namprd19.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: HksoeyuvLz0KuzooCkCm0pcBfCaP4iIaIJJLV8nl689tRdgWQ2IvQVlY0ImgdFck7MOFsIBp58A5ICmQSXjxHabgpGhNMcaV9UFQsDkcbI4LZzsEFXtVTm6fj6ei97VlIl//ouxSIYhW3ipRqSl13BolTEislqQmAXSPW8joGDn55pkgwVwQ/Fw82v1AqhZBitA1qy6V8ejic6jcs5C6pBHWDAaafkRFhf6DZD20Z9Hx0SKQjFWhYDhLCOH60q+jJoaSovpaoXqPFj3LMoRTOfQf21RSW3E22U8iiCyjd3CpI7lvtUUY7D7Zlq2GEHg+hl6EUCeVQNtHX3RvrdV1WQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR19MB4382.namprd19.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39840400004)(366004)(346002)(396003)(136003)(376002)(66446008)(44832011)(76116006)(4744005)(2906002)(33656002)(71200400001)(7696005)(6506007)(64756008)(66556008)(66476007)(5660300002)(52536014)(83380400001)(4743002)(86362001)(9326002)(6916009)(66946007)(55016002)(478600001)(316002)(186003)(8936002)(26005)(9686003)(8676002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: Rphbh6DjVokhtirr79jUYgPWcesw5CtbFzxG2WuFBq1fu9W3A8k/kFAd2PAqYOiVKJZbqBALhEHXtV5aT+EnxTOXzSpHrP0otZmc6ktN/6MYj8bu8IgCxGQLw+Y0CYYkFXyZqv1vHyKxEuaKwIjK05NR03VVrtNCZGZxdwq6aFf1cgGJ2eVv/SpoSYzYFOAGVDZiMifsTVarqdjTJG1MRDVEiW5o2r1IxAm7XprT7HSJg49hD1JwW5RpH9ydfCFlgA1SZduyWcb/a3gDiCooiUinTCy8rhbgAwvic3Lni2q7HKISQSwm6Z01nO1np8xAN3EzVFkFmZjckyXof5SekazuIp1Xa5P3GC5JxiB/eVbmZRgJU+jWVNcL1UKEMTEIGgxYf7TqMukgPMdfLxBAQsuWFsCDw6uby+aWXDiYfBwTBu6TtUJrLsdlGTjJ3MHM5cXJQ22OhKPMeTUkJ+mAK5EqALrqd9EEMC2tszxdsfITTJ1T5cg6yib2ITQRmWt0fu3/61CFI+okO94wIHPoD8nKnguoytgEGtIvYC4pMJZrOShdp5nLMX8al4nviWIcbbXJuS4XxCaTOaNCrATUmuUtRqcyKyXAbrd+B6wOfhnjjeORqSvEnV9BgbWo+1FzJvHVbKVXiUdIyjleUvvVFg==
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: canyon-us.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR19MB4382.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 76163fda-bc11-4341-b3b1-08d8752e8f32
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2020 19:30:10.2040 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: EBA+VdbpxqDzyHqGtAPHdSN/KceD/WGN2Ks2yB1TcNsXxbkBq22VxOA2wXbADo13j5FRjwmwA81z85G90ZWLDsgCKJ/pmHWfr0B+5EeuDDA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR19MB2254
-Subject: [USRP-users] Underruns causing USRP to stop transmitting and
+	id 1kUxQU-0005X5-FB; Tue, 20 Oct 2020 15:36:06 -0400
+Received: from mail-qv1-f53.google.com ([209.85.219.53]:39746)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kUxQQ-0005N5-Bw
+ for USRP-users@lists.ettus.com; Tue, 20 Oct 2020 15:36:02 -0400
+Received: by mail-qv1-f53.google.com with SMTP id f5so1457188qvx.6
+ for <USRP-users@lists.ettus.com>; Tue, 20 Oct 2020 12:35:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=pOq9syOk9lxjFCtp9SVL7vKB/T7Q3ztAA06HXNBwsK0=;
+ b=RldoRE9rYOMLM8CwVMFWZhTIvWFbuhnfyoQ/Tvki+cOGnPEhO2fqknCW/QyDXsrG3k
+ RFKpZ0w1LAxZFZHOuU6TRyhadEA0+sg1MaJaza76c4t5+MFxug1XYOXhow51QPJCGkFZ
+ Xriir8Au7h77TK3rKXRSD14pNMl/Bpl86BotVb+WTAJgipLhXMqSkemKsKD748hm5QT9
+ Rclz3nyvXh0gshp65m4KDijtapOozkA/H5Vr/JUBt0dhLWRVKUIczsONe2/PQiIp2eZE
+ uy8UXHG4iG8Ub5bmwC6bZG9ZES4lJW82IR0u+7Zh2B4MkeQaZ5T97gpEym046vEMz2Xw
+ ZxDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=pOq9syOk9lxjFCtp9SVL7vKB/T7Q3ztAA06HXNBwsK0=;
+ b=TIFAISvjNdbKFeWdO7xmWeh2EWplyMkUKDwLozne9RQtsdqbK9bWU6pm617Qu3G5qI
+ 9Skg2b56R8Qo1b3+bP6Nen0TuH/vUBtrpGjECG5bpYpviQLWhEe3sy+e90RKrsn7ylWS
+ xL7ir/+vQ5FIdJkibjE1uLeHTWlwQk1NbHanKFPqI8Mv2wGkVy1jv9Bfo9bBDYcqEzxt
+ mdyLygbWZkTp1dITukGXibFMzRyJZaKnBKUe9g4C6KaS181ML5w1qceAzb5jDsSCQxdF
+ +mAvCeQXpj6EZSdlWXlsxFuJEZ3VlkfOq22Zj/6+iAuru4S3+i4UFl9Aly4MhJN0zgtf
+ TLAg==
+X-Gm-Message-State: AOAM531B/uBO8EySyE/A35e1BTBF7+uUtKelsOKuPtZhjoz5vrF17fFG
+ 6QinrTsHrcwS/ux+zs6SfXfU7kS+rvhAlQ==
+X-Google-Smtp-Source: ABdhPJysnhJ47TqxVYVutcuDTOkhrzYQB3froOdaSnEf1VMTYcE/i8stlsdbwH5eNvPiKau6qq5GgA==
+X-Received: by 2002:a0c:f38b:: with SMTP id i11mr5019689qvk.17.1603222521624; 
+ Tue, 20 Oct 2020 12:35:21 -0700 (PDT)
+Received: from [192.168.2.29]
+ (bras-base-smflon1825w-grc-07-174-93-0-246.dsl.bell.ca. [174.93.0.246])
+ by smtp.gmail.com with ESMTPSA id d78sm1298204qke.83.2020.10.20.12.35.20
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 20 Oct 2020 12:35:21 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+Date: Tue, 20 Oct 2020 15:35:20 -0400
+Message-Id: <867D4386-BAFF-4FEC-9C46-206D3987FB62@gmail.com>
+References: <SA0PR19MB43827AFF6817FF8079637D64C61F0@SA0PR19MB4382.namprd19.prod.outlook.com>
+Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+In-Reply-To: <SA0PR19MB43827AFF6817FF8079637D64C61F0@SA0PR19MB4382.namprd19.prod.outlook.com>
+To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+X-Mailer: iPhone Mail (17H35)
+Subject: Re: [USRP-users] Underruns causing USRP to stop transmitting and
  receiving
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -90,9 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jerrid Plymale via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
-Content-Type: multipart/mixed; boundary="===============1660316416671733074=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6867963417635361600=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -106,46 +83,65 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1660316416671733074==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_SA0PR19MB43827AFF6817FF8079637D64C61F0SA0PR19MB4382namp_"
 
---_000_SA0PR19MB43827AFF6817FF8079637D64C61F0SA0PR19MB4382namp_
-Content-Type: text/plain; charset="us-ascii"
+--===============6867963417635361600==
+Content-Type: multipart/alternative; boundary=Apple-Mail-BC85CF86-FDB7-4A23-8A6E-37697D9DEDE8
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-BC85CF86-FDB7-4A23-8A6E-37697D9DEDE8
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
+Probably better served by the discuss-gnuradio list and the chat.gnuradio.or=
+g online chat community.=20
 
-So I am working on writing an embedded python block in GNU Radio Companion =
-to preform some analysis of RF signals that is received by a USRP x310 and =
-transmitted back out of the USRP after analysis has been done. I have been =
-running into some underruns lately that I have not been able to find a solu=
-tion for. If I execute some of my analysis functions in the work function o=
-f the block, the application underruns and it causes the USRP to stop trans=
-mitting or receiving. However, if I execute the functions in separate polli=
-ng functions that are being used to display values in the GUI, I do not get=
- underruns. I think this might has to do with how often the analysis functi=
-on is being executed, as the poll functions are only called at a rate of 10=
- Hz which is controlled by a function probe. Can anyone give me suggestions=
- on what to try to fix the underrun problem, and any resources you can poin=
-t me to that might help would be appreciated.
+Sent from my iPhone
 
-Best Regards,
+> On Oct 20, 2020, at 3:30 PM, Jerrid Plymale via USRP-users <usrp-users@lis=
+ts.ettus.com> wrote:
+>=20
+> =EF=BB=BF
+> Hello All,
+> =20
+> So I am working on writing an embedded python block in GNU Radio Companion=
+ to preform some analysis of RF signals that is received by a USRP x310 and t=
+ransmitted back out of the USRP after analysis has been done. I have been ru=
+nning into some underruns lately that I have not been able to find a solutio=
+n for. If I execute some of my analysis functions in the work function of th=
+e block, the application underruns and it causes the USRP to stop transmitti=
+ng or receiving. However, if I execute the functions in separate polling fun=
+ctions that are being used to display values in the GUI, I do not get underr=
+uns. I think this might has to do with how often the analysis function is be=
+ing executed, as the poll functions are only called at a rate of 10 Hz which=
+ is controlled by a function probe. Can anyone give me suggestions on what t=
+o try to fix the underrun problem, and any resources you can point me to tha=
+t might help would be appreciated.
+> =20
+> Best Regards,
+> =20
+> Jerrid
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
-Jerrid
-
---_000_SA0PR19MB43827AFF6817FF8079637D64C61F0SA0PR19MB4382namp_
-Content-Type: text/html; charset="us-ascii"
+--Apple-Mail-BC85CF86-FDB7-4A23-8A6E-37697D9DEDE8
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Probably better served by the discuss-gnura=
+dio list and the chat.gnuradio.org online chat community.&nbsp;<br><br><div d=
+ir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D=
+"cite">On Oct 20, 2020, at 3:30 PM, Jerrid Plymale via USRP-users &lt;usrp-u=
+sers@lists.ettus.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D=
+"cite"><div dir=3D"ltr">=EF=BB=BF
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
+
 <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
 <style><!--
 /* Font Definitions */
@@ -178,40 +174,43 @@ div.WordSection1
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
+
+
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Hello All,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">So I am working on writing an embedded python block =
-in GNU Radio Companion to preform some analysis of RF signals that is recei=
-ved by a USRP x310 and transmitted back out of the USRP after analysis has =
-been done. I have been running into
- some underruns lately that I have not been able to find a solution for. If=
- I execute some of my analysis functions in the work function of the block,=
- the application underruns and it causes the USRP to stop transmitting or r=
-eceiving. However, if I execute
- the functions in separate polling functions that are being used to display=
- values in the GUI, I do not get underruns. I think this might has to do wi=
-th how often the analysis function is being executed, as the poll functions=
- are only called at a rate of 10
- Hz which is controlled by a function probe. Can anyone give me suggestions=
- on what to try to fix the underrun problem, and any resources you can poin=
-t me to that might help would be appreciated.
+<p class=3D"MsoNormal">So I am working on writing an embedded python block i=
+n GNU Radio Companion to preform some analysis of RF signals that is receive=
+d by a USRP x310 and transmitted back out of the USRP after analysis has bee=
+n done. I have been running into
+ some underruns lately that I have not been able to find a solution for. If I=
+ execute some of my analysis functions in the work function of the block, th=
+e application underruns and it causes the USRP to stop transmitting or recei=
+ving. However, if I execute
+ the functions in separate polling functions that are being used to display v=
+alues in the GUI, I do not get underruns. I think this might has to do with h=
+ow often the analysis function is being executed, as the poll functions are o=
+nly called at a rate of 10
+ Hz which is controlled by a function probe. Can anyone give me suggestions o=
+n what to try to fix the underrun problem, and any resources you can point m=
+e to that might help would be appreciated.
 <o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Jerrid<o:p></o:p></p>
 </div>
-</body>
-</html>
-
---_000_SA0PR19MB43827AFF6817FF8079637D64C61F0SA0PR19MB4382namp_--
 
 
---===============1660316416671733074==
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
+>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
+r></div></blockquote></body></html>=
+
+--Apple-Mail-BC85CF86-FDB7-4A23-8A6E-37697D9DEDE8--
+
+
+--===============6867963417635361600==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -222,5 +221,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1660316416671733074==--
+--===============6867963417635361600==--
 
