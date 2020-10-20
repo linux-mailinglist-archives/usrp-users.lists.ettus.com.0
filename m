@@ -2,85 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9741529439A
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Oct 2020 21:53:52 +0200 (CEST)
-Received: from [::1] (port=37014 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36B0F2943AF
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Oct 2020 22:04:09 +0200 (CEST)
+Received: from [::1] (port=37090 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kUxhe-0006vr-DA; Tue, 20 Oct 2020 15:53:50 -0400
-Received: from mail-mw2nam12on2055.outbound.protection.outlook.com
- ([40.107.244.55]:51553 helo=NAM12-MW2-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <jerrid.plymale@canyon-us.com>)
- id 1kUxha-0006h5-2E
- for USRP-users@lists.ettus.com; Tue, 20 Oct 2020 15:53:46 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AerVUk39P7tSpgx1rIO5Bd5Z2QpMQGXqOtcLFNriYrZroetxEyLJ5mWs+zEjipPgN1GG6P4ZCN2qBDjrm7LJy41gjoIGRwMp7/lWTQfAnzyUyzq5RvjUnuScl3Nry47Jr400lG0+6ktioYtWYcTNoDads/CdyUB4KOP3aEhbuLIgYwSbJKAE0QsG3RNKUWOViZ+JWcAt+if+6F5V9ahGU0hVAC/1sp97vqQJgKDyHE5nFIH/5hTdcSp8mxZYg+9Pv/Skhwgp3wDisHyD0vIF+Q7O2pDFDmnKEpwKa+2z3MIc/5Ddkf6kj3DATonMs6VrE4pLT8AiZSs9DoWpRT50gA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=szqCgYh/KUHOLdCAZnpbAg/QGvtmH2qEtwKcNQQBivQ=;
- b=fe7B2Xev4lpo1L5ROgWNVd6yfojgi+8MgvMHRs4qR3kmRiTs/j1zHgs3ZiSLnSOvuN8wFC2kYdLEHVz0JF1UR22/Wt/85UiQsZhzEuWF3q4+KS0sYlVkfX3HNqP4TEN5zL6AWvyPRQ+oVRQqoJ/UHCLuNfklCe54P0Zyxj5R27LW8obhj6lSMZdIjvXL/AuQd4llE6vc6Yi7mqwhewCSFPkISMUrrOrIFh7dk0MC41XCrh7q3zoNUZj9nibmRBoi14J7H5b0TDrGUuLh53qPhrBdHsGLUWKcby9IOvDkLeSNoJg19+/7y4DxvAgBLHtaNIv86zf+HZPdZbPQiomU9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=canyon-us.com; dmarc=pass action=none
- header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=canyonconsulting.onmicrosoft.com;
- s=selector2-canyonconsulting-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=szqCgYh/KUHOLdCAZnpbAg/QGvtmH2qEtwKcNQQBivQ=;
- b=g7tvLJv+IUdZDxISTaGkNusKaviAvkg0TZxBuANudphBpnFLVfjODOO7UM9cgRQGevH30TG27oKrtS/QSsCSfso8fVeMGdwBvP6YotRUq7MjQxf1MS7QSP4CDnHQkQghFhx7dZ8MwODBGkN5Q9Uk5EtyA96LuOwSfqZROvRpbF4=
-Received: from SA0PR19MB4382.namprd19.prod.outlook.com (2603:10b6:806:90::19)
- by SA0PR19MB4459.namprd19.prod.outlook.com (2603:10b6:806:b1::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.22; Tue, 20 Oct
- 2020 19:53:03 +0000
-Received: from SA0PR19MB4382.namprd19.prod.outlook.com
- ([fe80::e434:eca4:30cd:7594]) by SA0PR19MB4382.namprd19.prod.outlook.com
- ([fe80::e434:eca4:30cd:7594%7]) with mapi id 15.20.3477.028; Tue, 20 Oct 2020
- 19:53:03 +0000
-To: Marcus D Leech <patchvonbraun@gmail.com>
+	id 1kUxra-0007pO-KA; Tue, 20 Oct 2020 16:04:06 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:39422)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kUxrW-0007Y0-F8
+ for USRP-users@lists.ettus.com; Tue, 20 Oct 2020 16:04:02 -0400
+Received: by mail-qk1-f194.google.com with SMTP id k9so2949001qki.6
+ for <USRP-users@lists.ettus.com>; Tue, 20 Oct 2020 13:03:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=xJSulRbo6XhUvR1k/3tth+qa9mwX0JfpZvPnYeT/ShQ=;
+ b=fBuvnNI3rbf196ZipI90iGonrvCn6D/f0qDjtZvYvfJpd4fgV20rPuqYZMsgzHxKCX
+ y8/lEbMOxFKVkPPHk28aLjV9YUBeznuRi2k6chnVzwHiZH5EepbpeYET/d0h1NU7eCDe
+ bNpnqwZDXgLIBjN01T4Ih4q7Lyv3/bi6QVfMip/NDV+CrqIX8nF5S1GSNGEnjjmHNniM
+ yvjFFCbHRdZ7FlZ/YlYyA/Zc+KagwzW+/ya9/EqWWrRM+T/37lh1+eTLFYSNv7ffMj43
+ BOKYAbmp6M/6lcvc7VVXrSloo8tFEjVgDZ/GPOpdVL/7evKVEnsnpB6RehPKkxR1ojt8
+ 2yXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=xJSulRbo6XhUvR1k/3tth+qa9mwX0JfpZvPnYeT/ShQ=;
+ b=DSsobB0foB9xTtKeRAR5EMd7pYYVMdgGffrSqWoL8cfU40kTQU1SDtvKijucSSOcgm
+ sXR3aBwBlSmfvaVQM1POosPzci5mwjBcomhYd1Ffy2wEsu82GwrxtVZFG5JI9CH7hBR1
+ tcrHWSS/B7R3jbgfQ73ab3g1JveIAwSePP4waRMmhC1PrEU8g9IrYR6/HJb6S+gUyMgX
+ C3gW9g/CObylG1r50oaOD/Hn/Se+U42Uy+mi6FOA6EarPwRhcF8T5ul3gOCOsqIVrdOI
+ G0v8jbijraC268CUse2RuYevylJ0haANKfhQrFUe/1vnWKMNbYrKLWDkgQmdp1yxfw+m
+ suWw==
+X-Gm-Message-State: AOAM5318lVzSG9NG3NlRYbkZkF5+b8sWgMn82rphRknaMNcjjznMqvUW
+ VSlEmq1xB0ZmhquLUtwnww/oxg85Oar4og==
+X-Google-Smtp-Source: ABdhPJyE8919Guq3TJ70kX47UD3pbLHFYggJlNZj5ZwxAQop+G+r1E2dIYeUxhJtBGL0lB9IsTeG6g==
+X-Received: by 2002:ae9:c211:: with SMTP id j17mr4567424qkg.458.1603224201688; 
+ Tue, 20 Oct 2020 13:03:21 -0700 (PDT)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-07-174-93-0-246.dsl.bell.ca. [174.93.0.246])
+ by smtp.googlemail.com with ESMTPSA id t35sm1413233qtc.80.2020.10.20.13.03.20
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 20 Oct 2020 13:03:21 -0700 (PDT)
+Message-ID: <5F8F4288.8040807@gmail.com>
+Date: Tue, 20 Oct 2020 16:03:20 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
 CC: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Underruns causing USRP to stop transmitting and
- receiving
-Thread-Index: AdanF2I3U3k3IjTSQYeo+yfs0PXvNAAAMMIAAAB0y8A=
-Date: Tue, 20 Oct 2020 19:53:03 +0000
-Message-ID: <SA0PR19MB438205C5E6E5B458E39C1642C61F0@SA0PR19MB4382.namprd19.prod.outlook.com>
 References: <SA0PR19MB43827AFF6817FF8079637D64C61F0@SA0PR19MB4382.namprd19.prod.outlook.com>
  <867D4386-BAFF-4FEC-9C46-206D3987FB62@gmail.com>
-In-Reply-To: <867D4386-BAFF-4FEC-9C46-206D3987FB62@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=canyon-us.com;
-x-originating-ip: [98.153.200.210]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 406966fd-e2c4-492c-188e-08d87531c190
-x-ms-traffictypediagnostic: SA0PR19MB4459:
-x-microsoft-antispam-prvs: <SA0PR19MB4459FE230B1BF3976ACBF3D3C61F0@SA0PR19MB4459.namprd19.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: bRUHyZxgEMVAQCp0d4gKEf5QTx2ofrY6QwYlconYPtXFgT83bqTDPvdD08OGFCNaMCs+DNf8ORNVkJPUFhfCYopuHPHmC8ZVQ1Sp/5+dbtEkm482siAN6aavttgr/2ig0ZfGF8ZUvZcCVfsxUelBb81F5os8K3N01BU+mnhTeW97iEfRWGHj02RB5o+cWdMQ6GDkILdoIfomjQLsqkiC69jSNKyy48AKC2+lLYmXq3/KjrVWIbB5Uc0luZPxOSRm0bCqsZayQwURQEer+YPcifG2aSRBb9qhglkc8mSzmKBuGfk2alavt2Wz7KhHrXzjsza+At8Pb4+5ZOU9X92JtJZFuo2rD1KUlGGJhuGQm53rHfIdEv9+G1QCOtyg0HOWlI6TSOApTlvT9ajJ/zZgKQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR19MB4382.namprd19.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(39830400003)(396003)(346002)(136003)(376002)(33656002)(86362001)(7696005)(66476007)(76116006)(66946007)(66446008)(44832011)(64756008)(66556008)(5660300002)(52536014)(71200400001)(83380400001)(166002)(6916009)(4326008)(6506007)(478600001)(9686003)(55016002)(2906002)(966005)(26005)(186003)(8676002)(53546011)(8936002)(316002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: QeBqkBI4jBNv5/HB5KvaHXBRHJ0gUNprSJx6m4WfG/08IlwE203jMpxidqXACTdLCnL4Ask3nGkQD7RkZkxwk0G26zXdyOik5uGkHLVgv0NeQwE0ZGinQ8Z3iqkHeM4gEEU8rp6wsJrCRutnkpXuJ6djrKcldSoHreOULPGQKyLhkiCdJZmFNjYaZUlhFdf+0bG209oa6KMEk/t7JRWEp3t8a2ZR/LHJkx52EuN+1DZLbdPG4Sb8HzCCSnM75aHaVSBv6BNeVpGDyUmSvkybFLib8ZCIDNeGEjODrMah0HxgypRR+tF/ZdZd6YR6F8Vcjx0JIc9zmr1gbvJnJpCcJK+zN8zPOET39ifR6ekHY3wXguF3jP9siyi2ocB4RxkLv0p8GdV41TARAbQ6EiF61lhQk0ueQg5JKsm6x8jMwQmsWVQi3o2pGDHb9DEWBgRtIWDhFoX51WCFw+iA4ZlV0AfIwtIzb/k/RvnoQ9sAfauQv0WP76aEjCMoG4r/jtRUh75n7x9nfspup5zJVDuGUNPuVlho5JCM898ne0F7EnsRPSqbflYgDYx1hs0NCCMnPpxCnYzCc8jgHKjXFER+AL8KQs/hPAmUXiTtBijn6l9cuPP4j4qBog+ThgTJsw2WBAKYKJT+Z9jzdQL3af5uPQ==
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: canyon-us.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR19MB4382.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 406966fd-e2c4-492c-188e-08d87531c190
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2020 19:53:03.3561 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: THaw42XzibFWXQ9VkuQCMzvco8BYY59JqjSUgiTftGjEp6UeM+qpPcrkGAIsfy37AlO13UHQs96/Fp6Nx/7pUnAxfB/wvQDsYdaoaprxeSM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR19MB4459
+ <SA0PR19MB438205C5E6E5B458E39C1642C61F0@SA0PR19MB4382.namprd19.prod.outlook.com>
+In-Reply-To: <SA0PR19MB438205C5E6E5B458E39C1642C61F0@SA0PR19MB4382.namprd19.prod.outlook.com>
 Subject: Re: [USRP-users] Underruns causing USRP to stop transmitting and
  receiving
 X-BeenThere: usrp-users@lists.ettus.com
@@ -94,9 +70,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jerrid Plymale via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
-Content-Type: multipart/mixed; boundary="===============1219478234278422088=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6518642224312548950=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -110,153 +86,291 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1219478234278422088==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============6518642224312548950==
 Content-Type: multipart/alternative;
-	boundary="_000_SA0PR19MB438205C5E6E5B458E39C1642C61F0SA0PR19MB4382namp_"
+ boundary="------------080606030802040500040707"
 
---_000_SA0PR19MB438205C5E6E5B458E39C1642C61F0SA0PR19MB4382namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------080606030802040500040707
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-TWFyY3VzLA0KDQpUaGUgcHJvYmxlbSBzZWVtcyB0byBiZSByZWxhdGVkIHRvIHJ1bm5pbmcgdGhl
-IHN5c3RlbSB3aXRoIHRoZSBVU1JQIHRob3VnaC4gU29tZW9uZSB3aG8gaXMgd29ya2luZyBvbiB0
-aGlzIHByb2plY3Qgd2l0aCBtZSBpcyBhYmxlIHRvIHJ1biB0aGUgc2FtZSBlbWJlZGRlZCBweXRo
-b24gYmxvY2ssIHdpdGhvdXQgIHRoZSBVU1JQIGhhcmR3YXJlLCBhbmQgZ2V0cyBubyBVbmRlcnJ1
-bnMgd2hlbiBkb2luZyBzby4gV2UgaGF2ZSBhbHNvIGJlZW4gdW5zdWNjZXNzZnVsIGluIGZpbmRp
-bmcgYW55IHVzZWZ1bCBpbmZvcm1hdGlvbiByZWdhcmRpbmcgcG90ZW50aWFsIGNhdXNlcyBhbmQg
-c29sdXRpb25zIGZyb20gR05VIFJhZGlvIGFuZCBVU1JQIGRvY3VtZW50YXRpb24uDQoNCkJlc3Qg
-UmVnYXJkcywNCg0KSmVycmlkDQoNCkZyb206IE1hcmN1cyBEIExlZWNoIDxwYXRjaHZvbmJyYXVu
-QGdtYWlsLmNvbT4NClNlbnQ6IFR1ZXNkYXksIE9jdG9iZXIgMjAsIDIwMjAgMTI6MzUgUE0NClRv
-OiBKZXJyaWQgUGx5bWFsZSA8amVycmlkLnBseW1hbGVAY2FueW9uLXVzLmNvbT4NCkNjOiB1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBVbmRlcnJ1
-bnMgY2F1c2luZyBVU1JQIHRvIHN0b3AgdHJhbnNtaXR0aW5nIGFuZCByZWNlaXZpbmcNCg0KUHJv
-YmFibHkgYmV0dGVyIHNlcnZlZCBieSB0aGUgZGlzY3Vzcy1nbnVyYWRpbyBsaXN0IGFuZCB0aGUg
-Y2hhdC5nbnVyYWRpby5vcmcgb25saW5lIGNoYXQgY29tbXVuaXR5Lg0KU2VudCBmcm9tIG15IGlQ
-aG9uZQ0KDQoNCk9uIE9jdCAyMCwgMjAyMCwgYXQgMzozMCBQTSwgSmVycmlkIFBseW1hbGUgdmlh
-IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbT4+IHdyb3RlOg0K77u/DQpIZWxsbyBBbGwsDQoNClNvIEkgYW0gd29y
-a2luZyBvbiB3cml0aW5nIGFuIGVtYmVkZGVkIHB5dGhvbiBibG9jayBpbiBHTlUgUmFkaW8gQ29t
-cGFuaW9uIHRvIHByZWZvcm0gc29tZSBhbmFseXNpcyBvZiBSRiBzaWduYWxzIHRoYXQgaXMgcmVj
-ZWl2ZWQgYnkgYSBVU1JQIHgzMTAgYW5kIHRyYW5zbWl0dGVkIGJhY2sgb3V0IG9mIHRoZSBVU1JQ
-IGFmdGVyIGFuYWx5c2lzIGhhcyBiZWVuIGRvbmUuIEkgaGF2ZSBiZWVuIHJ1bm5pbmcgaW50byBz
-b21lIHVuZGVycnVucyBsYXRlbHkgdGhhdCBJIGhhdmUgbm90IGJlZW4gYWJsZSB0byBmaW5kIGEg
-c29sdXRpb24gZm9yLiBJZiBJIGV4ZWN1dGUgc29tZSBvZiBteSBhbmFseXNpcyBmdW5jdGlvbnMg
-aW4gdGhlIHdvcmsgZnVuY3Rpb24gb2YgdGhlIGJsb2NrLCB0aGUgYXBwbGljYXRpb24gdW5kZXJy
-dW5zIGFuZCBpdCBjYXVzZXMgdGhlIFVTUlAgdG8gc3RvcCB0cmFuc21pdHRpbmcgb3IgcmVjZWl2
-aW5nLiBIb3dldmVyLCBpZiBJIGV4ZWN1dGUgdGhlIGZ1bmN0aW9ucyBpbiBzZXBhcmF0ZSBwb2xs
-aW5nIGZ1bmN0aW9ucyB0aGF0IGFyZSBiZWluZyB1c2VkIHRvIGRpc3BsYXkgdmFsdWVzIGluIHRo
-ZSBHVUksIEkgZG8gbm90IGdldCB1bmRlcnJ1bnMuIEkgdGhpbmsgdGhpcyBtaWdodCBoYXMgdG8g
-ZG8gd2l0aCBob3cgb2Z0ZW4gdGhlIGFuYWx5c2lzIGZ1bmN0aW9uIGlzIGJlaW5nIGV4ZWN1dGVk
-LCBhcyB0aGUgcG9sbCBmdW5jdGlvbnMgYXJlIG9ubHkgY2FsbGVkIGF0IGEgcmF0ZSBvZiAxMCBI
-eiB3aGljaCBpcyBjb250cm9sbGVkIGJ5IGEgZnVuY3Rpb24gcHJvYmUuIENhbiBhbnlvbmUgZ2l2
-ZSBtZSBzdWdnZXN0aW9ucyBvbiB3aGF0IHRvIHRyeSB0byBmaXggdGhlIHVuZGVycnVuIHByb2Js
-ZW0sIGFuZCBhbnkgcmVzb3VyY2VzIHlvdSBjYW4gcG9pbnQgbWUgdG8gdGhhdCBtaWdodCBoZWxw
-IHdvdWxkIGJlIGFwcHJlY2lhdGVkLg0KDQpCZXN0IFJlZ2FyZHMsDQoNCkplcnJpZA0KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFp
-bGluZyBsaXN0DQpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86VVNSUC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb20+DQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8v
-dXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20NCg==
+On 10/20/2020 03:53 PM, Jerrid Plymale wrote:
+>
+> Marcus,
+>
+> The problem seems to be related to running the system with the USRP 
+> though. Someone who is working on this project with me is able to run 
+> the same embedded python block, without  the USRP hardware, and gets 
+> no Underruns when doing so. We have also been unsuccessful in finding 
+> any useful information regarding potential causes and solutions from 
+> GNU Radio and USRP documentation.
+>
+> Best Regards,
+>
+> Jerrid
+>
+Well, an underrun is conceptually simple.   It means "you aren't 
+supplying me with samples at the desired rate, so when I went to grab some
+   samples, there weren't any there".  That means your flow isn't 
+supplying them at the desired rate, either due to computational starvation,
+   or a mis-understanding/mis-configuration of things like re-samplers.
 
---_000_SA0PR19MB438205C5E6E5B458E39C1642C61F0SA0PR19MB4382namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Some SDRs out there DO NOT REPORT overruns/underruns, so things can 
+"seem" great and not be.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
-Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0
-aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUyMA0KCXttc28tc3R5bGUtdHlwZTpwZXJz
-b25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3
-aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5
-Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4g
-MTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rp
-b24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDld
-Pjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0K
-PC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91
-dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpz
-aGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVT
-IiBsaW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiIgc3R5bGU9IndvcmQtd3JhcDpicmVhay13
-b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5N
-YXJjdXMsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBwcm9ibGVtIHNlZW1zIHRvIGJlIHJl
-bGF0ZWQgdG8gcnVubmluZyB0aGUgc3lzdGVtIHdpdGggdGhlIFVTUlAgdGhvdWdoLiBTb21lb25l
-IHdobyBpcyB3b3JraW5nIG9uIHRoaXMgcHJvamVjdCB3aXRoIG1lIGlzIGFibGUgdG8gcnVuIHRo
-ZSBzYW1lIGVtYmVkZGVkIHB5dGhvbiBibG9jaywgd2l0aG91dCAmbmJzcDt0aGUgVVNSUCBoYXJk
-d2FyZSwgYW5kIGdldHMgbm8gVW5kZXJydW5zIHdoZW4gZG9pbmcgc28uIFdlDQogaGF2ZSBhbHNv
-IGJlZW4gdW5zdWNjZXNzZnVsIGluIGZpbmRpbmcgYW55IHVzZWZ1bCBpbmZvcm1hdGlvbiByZWdh
-cmRpbmcgcG90ZW50aWFsIGNhdXNlcyBhbmQgc29sdXRpb25zIGZyb20gR05VIFJhZGlvIGFuZCBV
-U1JQIGRvY3VtZW50YXRpb24uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkJlc3QgUmVnYXJkcyw8
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SmVycmlkIDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9y
-ZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGlu
-IDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IE1hcmN1cyBEIExl
-ZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDsgPGJyPg0KPGI+U2VudDo8L2I+IFR1
-ZXNkYXksIE9jdG9iZXIgMjAsIDIwMjAgMTI6MzUgUE08YnI+DQo8Yj5Ubzo8L2I+IEplcnJpZCBQ
-bHltYWxlICZsdDtqZXJyaWQucGx5bWFsZUBjYW55b24tdXMuY29tJmd0Ozxicj4NCjxiPkNjOjwv
-Yj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtV
-U1JQLXVzZXJzXSBVbmRlcnJ1bnMgY2F1c2luZyBVU1JQIHRvIHN0b3AgdHJhbnNtaXR0aW5nIGFu
-ZCByZWNlaXZpbmc8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
-PSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+UHJvYmFibHkgYmV0dGVyIHNlcnZlZCBieSB0aGUgZGlz
-Y3Vzcy1nbnVyYWRpbyBsaXN0IGFuZCB0aGUgY2hhdC5nbnVyYWRpby5vcmcgb25saW5lIGNoYXQg
-Y29tbXVuaXR5LiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPlNlbnQgZnJvbSBteSBpUGhvbmU8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxicj4NCjxicj4NCjxvOnA+PC9vOnA+PC9wPg0KPGJsb2NrcXVv
-dGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPk9uIE9jdCAyMCwgMjAy
-MCwgYXQgMzozMCBQTSwgSmVycmlkIFBseW1hbGUgdmlhIFVTUlAtdXNlcnMgJmx0OzxhIGhyZWY9
-Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2
-Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBw
-dCI+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+77u/IDxvOnA+PC9vOnA+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+SGVsbG8gQWxsLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TbyBJ
-IGFtIHdvcmtpbmcgb24gd3JpdGluZyBhbiBlbWJlZGRlZCBweXRob24gYmxvY2sgaW4gR05VIFJh
-ZGlvIENvbXBhbmlvbiB0byBwcmVmb3JtIHNvbWUgYW5hbHlzaXMgb2YgUkYgc2lnbmFscyB0aGF0
-IGlzIHJlY2VpdmVkIGJ5IGEgVVNSUCB4MzEwIGFuZCB0cmFuc21pdHRlZCBiYWNrIG91dCBvZiB0
-aGUgVVNSUCBhZnRlciBhbmFseXNpcyBoYXMgYmVlbiBkb25lLiBJIGhhdmUgYmVlbiBydW5uaW5n
-IGludG8NCiBzb21lIHVuZGVycnVucyBsYXRlbHkgdGhhdCBJIGhhdmUgbm90IGJlZW4gYWJsZSB0
-byBmaW5kIGEgc29sdXRpb24gZm9yLiBJZiBJIGV4ZWN1dGUgc29tZSBvZiBteSBhbmFseXNpcyBm
-dW5jdGlvbnMgaW4gdGhlIHdvcmsgZnVuY3Rpb24gb2YgdGhlIGJsb2NrLCB0aGUgYXBwbGljYXRp
-b24gdW5kZXJydW5zIGFuZCBpdCBjYXVzZXMgdGhlIFVTUlAgdG8gc3RvcCB0cmFuc21pdHRpbmcg
-b3IgcmVjZWl2aW5nLiBIb3dldmVyLCBpZiBJIGV4ZWN1dGUNCiB0aGUgZnVuY3Rpb25zIGluIHNl
-cGFyYXRlIHBvbGxpbmcgZnVuY3Rpb25zIHRoYXQgYXJlIGJlaW5nIHVzZWQgdG8gZGlzcGxheSB2
-YWx1ZXMgaW4gdGhlIEdVSSwgSSBkbyBub3QgZ2V0IHVuZGVycnVucy4gSSB0aGluayB0aGlzIG1p
-Z2h0IGhhcyB0byBkbyB3aXRoIGhvdyBvZnRlbiB0aGUgYW5hbHlzaXMgZnVuY3Rpb24gaXMgYmVp
-bmcgZXhlY3V0ZWQsIGFzIHRoZSBwb2xsIGZ1bmN0aW9ucyBhcmUgb25seSBjYWxsZWQgYXQgYSBy
-YXRlIG9mIDEwDQogSHogd2hpY2ggaXMgY29udHJvbGxlZCBieSBhIGZ1bmN0aW9uIHByb2JlLiBD
-YW4gYW55b25lIGdpdmUgbWUgc3VnZ2VzdGlvbnMgb24gd2hhdCB0byB0cnkgdG8gZml4IHRoZSB1
-bmRlcnJ1biBwcm9ibGVtLCBhbmQgYW55IHJlc291cmNlcyB5b3UgY2FuIHBvaW50IG1lIHRvIHRo
-YXQgbWlnaHQgaGVscCB3b3VsZCBiZSBhcHByZWNpYXRlZC4NCjxvOnA+PC9vOnA+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5CZXN0IFJlZ2FyZHMsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4m
-bmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkplcnJpZDxvOnA+PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+X19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX188YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdDxicj4NCjxh
-IGhyZWY9Im1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+VVNSUC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb208L2E+PGJyPg0KPGEgaHJlZj0iaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWls
-bWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tIj5odHRwOi8vbGlzdHMuZXR0
-dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb208L2E+PG86
-cD48L286cD48L3A+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9o
-dG1sPg0K
+Further the computational envelope and requires of the UHD driver may be 
+different-enough from other hardware that is operating at
+   similar rates that you end up with underruns.  When you're running at 
+the edge of what can be accomplished with the compute
+   hardware at hand, small differences are what makes the difference.
 
---_000_SA0PR19MB438205C5E6E5B458E39C1642C61F0SA0PR19MB4382namp_--
+What sample-rates are we talking about?  Are you configuring your 
+hardware for a sample-rate it can actually support, for example?
+
+Much of this discussion really does belong in the discuss-gnuradio 
+arena, because it comes down to Gnu Radio performance tuning.
+
+Also, you mention an embedded processing block--presumably embedded 
+Python?  Such blocks CANNOT be run at high sample
+   rates--even if you use numpy to do all your math, the marhsalling and 
+interpreter costs will kill performance compared to a
+   similar block written in C++.
 
 
---===============1219478234278422088==
+> *From:* Marcus D Leech <patchvonbraun@gmail.com>
+> *Sent:* Tuesday, October 20, 2020 12:35 PM
+> *To:* Jerrid Plymale <jerrid.plymale@canyon-us.com>
+> *Cc:* usrp-users@lists.ettus.com
+> *Subject:* Re: [USRP-users] Underruns causing USRP to stop 
+> transmitting and receiving
+>
+> Probably better served by the discuss-gnuradio list and the 
+> chat.gnuradio.org online chat community.
+>
+> Sent from my iPhone
+>
+>
+>
+>     On Oct 20, 2020, at 3:30 PM, Jerrid Plymale via USRP-users
+>     <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>
+>     wrote:
+>
+>     ﻿
+>
+>     Hello All,
+>
+>     So I am working on writing an embedded python block in GNU Radio
+>     Companion to preform some analysis of RF signals that is received
+>     by a USRP x310 and transmitted back out of the USRP after analysis
+>     has been done. I have been running into some underruns lately that
+>     I have not been able to find a solution for. If I execute some of
+>     my analysis functions in the work function of the block, the
+>     application underruns and it causes the USRP to stop transmitting
+>     or receiving. However, if I execute the functions in separate
+>     polling functions that are being used to display values in the
+>     GUI, I do not get underruns. I think this might has to do with how
+>     often the analysis function is being executed, as the poll
+>     functions are only called at a rate of 10 Hz which is controlled
+>     by a function probe. Can anyone give me suggestions on what to try
+>     to fix the underrun problem, and any resources you can point me to
+>     that might help would be appreciated.
+>
+>     Best Regards,
+>
+>     Jerrid
+>
+>     _______________________________________________
+>     USRP-users mailing list
+>     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+
+--------------080606030802040500040707
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 10/20/2020 03:53 PM, Jerrid Plymale
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:SA0PR19MB438205C5E6E5B458E39C1642C61F0@SA0PR19MB4382.namprd19.prod.outlook.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal">Marcus,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">The problem seems to be related to running
+          the system with the USRP though. Someone who is working on
+          this project with me is able to run the same embedded python
+          block, without  the USRP hardware, and gets no Underruns when
+          doing so. We have also been unsuccessful in finding any useful
+          information regarding potential causes and solutions from GNU
+          Radio and USRP documentation.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Best Regards,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Jerrid </p>
+      </div>
+    </blockquote>
+    Well, an underrun is conceptually simple.   It means "you aren't
+    supplying me with samples at the desired rate, so when I went to
+    grab some<br>
+      samples, there weren't any there".  That means your flow isn't
+    supplying them at the desired rate, either due to computational
+    starvation,<br>
+      or a mis-understanding/mis-configuration of things like
+    re-samplers.<br>
+    <br>
+    Some SDRs out there DO NOT REPORT overruns/underruns, so things can
+    "seem" great and not be.<br>
+    <br>
+    Further the computational envelope and requires of the UHD driver
+    may be different-enough from other hardware that is operating at<br>
+      similar rates that you end up with underruns.  When you're running
+    at the edge of what can be accomplished with the compute<br>
+      hardware at hand, small differences are what makes the difference.<br>
+    <br>
+    What sample-rates are we talking about?  Are you configuring your
+    hardware for a sample-rate it can actually support, for example?<br>
+    <br>
+    Much of this discussion really does belong in the discuss-gnuradio
+    arena, because it comes down to Gnu Radio performance tuning.<br>
+    <br>
+    Also, you mention an embedded processing block--presumably embedded
+    Python?  Such blocks CANNOT be run at high sample<br>
+      rates--even if you use numpy to do all your math, the marhsalling
+    and interpreter costs will kill performance compared to a<br>
+      similar block written in C++.<br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:SA0PR19MB438205C5E6E5B458E39C1642C61F0@SA0PR19MB4382.namprd19.prod.outlook.com"
+      type="cite">
+      <div class="WordSection1">
+        <p class="MsoNormal"><o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <div>
+          <div style="border:none;border-top:solid #E1E1E1
+            1.0pt;padding:3.0pt 0in 0in 0in">
+            <p class="MsoNormal"><b>From:</b> Marcus D Leech
+              <a class="moz-txt-link-rfc2396E" href="mailto:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> <br>
+              <b>Sent:</b> Tuesday, October 20, 2020 12:35 PM<br>
+              <b>To:</b> Jerrid Plymale
+              <a class="moz-txt-link-rfc2396E" href="mailto:jerrid.plymale@canyon-us.com">&lt;jerrid.plymale@canyon-us.com&gt;</a><br>
+              <b>Cc:</b> <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+              <b>Subject:</b> Re: [USRP-users] Underruns causing USRP to
+              stop transmitting and receiving<o:p></o:p></p>
+          </div>
+        </div>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal" style="margin-bottom:12.0pt">Probably
+          better served by the discuss-gnuradio list and the
+          chat.gnuradio.org online chat community. <o:p></o:p></p>
+        <div>
+          <p class="MsoNormal">Sent from my iPhone<o:p></o:p></p>
+        </div>
+        <div>
+          <p class="MsoNormal"><br>
+            <br>
+            <o:p></o:p></p>
+          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
+            <p class="MsoNormal" style="margin-bottom:12.0pt">On Oct 20,
+              2020, at 3:30 PM, Jerrid Plymale via USRP-users &lt;<a
+                moz-do-not-send="true"
+                href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
+              wrote:<o:p></o:p></p>
+          </blockquote>
+        </div>
+        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
+          <div>
+            <p class="MsoNormal">﻿ <o:p></o:p></p>
+            <p class="MsoNormal">Hello All,<o:p></o:p></p>
+            <p class="MsoNormal"> <o:p></o:p></p>
+            <p class="MsoNormal">So I am working on writing an embedded
+              python block in GNU Radio Companion to preform some
+              analysis of RF signals that is received by a USRP x310 and
+              transmitted back out of the USRP after analysis has been
+              done. I have been running into some underruns lately that
+              I have not been able to find a solution for. If I execute
+              some of my analysis functions in the work function of the
+              block, the application underruns and it causes the USRP to
+              stop transmitting or receiving. However, if I execute the
+              functions in separate polling functions that are being
+              used to display values in the GUI, I do not get underruns.
+              I think this might has to do with how often the analysis
+              function is being executed, as the poll functions are only
+              called at a rate of 10 Hz which is controlled by a
+              function probe. Can anyone give me suggestions on what to
+              try to fix the underrun problem, and any resources you can
+              point me to that might help would be appreciated.
+              <o:p></o:p></p>
+            <p class="MsoNormal"> <o:p></o:p></p>
+            <p class="MsoNormal">Best Regards,<o:p></o:p></p>
+            <p class="MsoNormal"> <o:p></o:p></p>
+            <p class="MsoNormal">Jerrid<o:p></o:p></p>
+            <p class="MsoNormal">_______________________________________________<br>
+              USRP-users mailing list<br>
+              <a moz-do-not-send="true"
+                href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
+              <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><o:p></o:p></p>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------080606030802040500040707--
+
+
+--===============6518642224312548950==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -267,5 +381,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1219478234278422088==--
+--===============6518642224312548950==--
 
