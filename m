@@ -2,48 +2,83 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D7E8293949
-	for <lists+usrp-users@lfdr.de>; Tue, 20 Oct 2020 12:39:42 +0200 (CEST)
-Received: from [::1] (port=60042 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4789B2942FD
+	for <lists+usrp-users@lfdr.de>; Tue, 20 Oct 2020 21:31:02 +0200 (CEST)
+Received: from [::1] (port=36810 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kUp3M-0004Ob-Ed; Tue, 20 Oct 2020 06:39:40 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:37326)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <ashutoshsingh7589@gmail.com>)
- id 1kUp3I-0004J9-P3
- for usrp-users@lists.ettus.com; Tue, 20 Oct 2020 06:39:36 -0400
-Received: by mail-oi1-f193.google.com with SMTP id t77so1652894oie.4
- for <usrp-users@lists.ettus.com>; Tue, 20 Oct 2020 03:39:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=ihOmRTcXBl9FWG4DC0AOq6DgggwYMYUOzlpiotEIZso=;
- b=FEh0LhbrivGjRqUUNQzWbaSHxQ85OeH9eolDlY16mK6DAu1+yqO2az82F8lu5UY1Hu
- 80No6qnukk+9Xed05M3ccXifE3k63aYSwaPcWvQfZ9JtqD07n/eqLMyWSeIN4j8FXqHF
- xGLulbtP1Z+LO8fh0VzOpgkg0et5jkwXeznqJImsDgrT9r3xGcwiYadCw5Tk/E+wPW27
- K4CrSwFemBN0iElW4ffEXNPGBp2uUlXyYFGnhlbprNFu9W1wXAoUkcg7sTTlJuBOlAtc
- P33Ndc+EnDyOjIGKe9j1TSXIIW/qyOMYdnZTqSGHe/P8WO5BMLBGO8lNTGdjiNLhmvzy
- CTuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=ihOmRTcXBl9FWG4DC0AOq6DgggwYMYUOzlpiotEIZso=;
- b=gopvUcbfxuFwmIzicWcqNA5vTKJegDblO32UIRQ9F8NhIYTKLnz9P9P0ikKM3km3AX
- 2BpWfNNKAS9B8+ConzQy2dWExiSHL/ZAFehClIwOmPx6UOtK+nz9JkvsvTY6ujk1+wP7
- EWozCUYBKCy87oKme0B3MfU0/TvfeG97htrB0MDoHfdeHBcBm9yn03R4vrLps68Zzwaz
- NHtxbDPDtOV70k8Co5Q7QbrI+6D0KUW2LkCz6yii34eho0cT0M8+8UsHrOnFoppxrDws
- QP39ICwgf2QvZeOksfTTxawRmdFheTg+uFo/qvKvVRm8AFrBjS9EQJGP+6g1VxW9rcGn
- d+mQ==
-X-Gm-Message-State: AOAM533TEN1GXoyYhht2I4W7UUPAwoT0Yw6ckQmBr+Sug/Iq0UO/UJ6A
- Ca+gD1Q7r7ffpLL/7QdW4gHF2Ntc2gXV1jab9ewJ+1kY+ElQvg==
-X-Google-Smtp-Source: ABdhPJxoLjVmKw3IFOM2fUqaggNhUzliYl4qawLvpfc5oDVYVhOpZziLGvqypJ76ElK1p1S2rsUvYX5hjnaNHqjRdlo=
-X-Received: by 2002:aca:4257:: with SMTP id p84mr1307489oia.68.1603190335450; 
- Tue, 20 Oct 2020 03:38:55 -0700 (PDT)
+	id 1kUxLV-0004tg-8F; Tue, 20 Oct 2020 15:30:57 -0400
+Received: from mail-eopbgr770083.outbound.protection.outlook.com
+ ([40.107.77.83]:25308 helo=NAM02-SN1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <jerrid.plymale@canyon-us.com>)
+ id 1kUxLQ-0004Wt-Oq
+ for usrp-users@lists.ettus.com; Tue, 20 Oct 2020 15:30:52 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=igLmqNM8W7MUgIiJxV4ki4EGbs1laF4T4sTvKIS6FPqfyacD9GRdeY4hajFI4vbTZcn3fouAbakyCPFvDG8/+YLW0FNVz4LqdzpUsoAMBxdlJsR/+njIjaglDVUn0KJdJaveDcho9Q7VXFZPz+S/c7P9hIW71IGP7r8w8ib1BchaNlctWcfTn7Ikk+rR+ObMWZEhtTRQOLHdWAH3a7DCA/Xzr3nfzyuPhma0qo7fw14rVP5bJrBQ59UybdAdZMuBcPe3LP8M7zkfT+e3a7zsefswjwfL3JcWWSzNHS+sTlEqVKaaQ45CYsE7SFx9W4YK830258jkEB5UAPmj/6D++g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ww751Gvt1RnDpjFBDmAITk+aRTyC+dG8TjYGh6I8aqI=;
+ b=gq0+gvx/LyKIb5r6dAaYybt5I2vzpBGSUk5ZBCylaNimZddfrv9bTMA7ebf/CyzPwwJf/uxZsVrgKUHuaCIoLOO12AhRpvBYs0IJ8jOsqKJGqkfW0XyyRj82fKawfuB4PCrChi85f0kT0W8rjUII1ZcapKUkIAASAXERmCBgBISfwrXWqTjR/ypU1QKdtMi8Mt1I+jKQQIGgD6OVaT6yZhKKWgpPFiTeg0avsBt0METqMjQSyTZsARMxFB29gW3Ny8F+mLSpxTGJsoXjO9ltsMCWHyA44idzX3CdNloK3BliQqiMGOGE34ZvAMJY+nUPtEjNHdsCcfJlnG27XQaqTw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=canyon-us.com; dmarc=pass action=none
+ header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=canyonconsulting.onmicrosoft.com;
+ s=selector2-canyonconsulting-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ww751Gvt1RnDpjFBDmAITk+aRTyC+dG8TjYGh6I8aqI=;
+ b=WrMNecNQRVoIuE7QLyYxCd9TVuMhg4AJh1jFx+SMXuKjjX7dt6bN6Sfs7jRxW2mvFhRTSKiTEZnoeLxodR9/qWcipMoJLSMd7cy68neXNcK7rMqRTXp4aeR67UgYFtGrYhh/nV2c1mvd8ZTMXQZcw3S4q0f83C6WBBxtjdd3tfY=
+Received: from SA0PR19MB4382.namprd19.prod.outlook.com (2603:10b6:806:90::19)
+ by SN6PR19MB2254.namprd19.prod.outlook.com (2603:10b6:805:55::30)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Tue, 20 Oct
+ 2020 19:30:10 +0000
+Received: from SA0PR19MB4382.namprd19.prod.outlook.com
+ ([fe80::e434:eca4:30cd:7594]) by SA0PR19MB4382.namprd19.prod.outlook.com
+ ([fe80::e434:eca4:30cd:7594%7]) with mapi id 15.20.3477.028; Tue, 20 Oct 2020
+ 19:30:10 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Underruns causing USRP to stop transmitting and receiving 
+Thread-Index: AdanF2I3U3k3IjTSQYeo+yfs0PXvNA==
+Date: Tue, 20 Oct 2020 19:30:10 +0000
+Message-ID: <SA0PR19MB43827AFF6817FF8079637D64C61F0@SA0PR19MB4382.namprd19.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=canyon-us.com;
+x-originating-ip: [98.153.200.210]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 76163fda-bc11-4341-b3b1-08d8752e8f32
+x-ms-traffictypediagnostic: SN6PR19MB2254:
+x-microsoft-antispam-prvs: <SN6PR19MB22541AFE516D9AF1E86E61B6C61F0@SN6PR19MB2254.namprd19.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: HksoeyuvLz0KuzooCkCm0pcBfCaP4iIaIJJLV8nl689tRdgWQ2IvQVlY0ImgdFck7MOFsIBp58A5ICmQSXjxHabgpGhNMcaV9UFQsDkcbI4LZzsEFXtVTm6fj6ei97VlIl//ouxSIYhW3ipRqSl13BolTEislqQmAXSPW8joGDn55pkgwVwQ/Fw82v1AqhZBitA1qy6V8ejic6jcs5C6pBHWDAaafkRFhf6DZD20Z9Hx0SKQjFWhYDhLCOH60q+jJoaSovpaoXqPFj3LMoRTOfQf21RSW3E22U8iiCyjd3CpI7lvtUUY7D7Zlq2GEHg+hl6EUCeVQNtHX3RvrdV1WQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR19MB4382.namprd19.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(39840400004)(366004)(346002)(396003)(136003)(376002)(66446008)(44832011)(76116006)(4744005)(2906002)(33656002)(71200400001)(7696005)(6506007)(64756008)(66556008)(66476007)(5660300002)(52536014)(83380400001)(4743002)(86362001)(9326002)(6916009)(66946007)(55016002)(478600001)(316002)(186003)(8936002)(26005)(9686003)(8676002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: Rphbh6DjVokhtirr79jUYgPWcesw5CtbFzxG2WuFBq1fu9W3A8k/kFAd2PAqYOiVKJZbqBALhEHXtV5aT+EnxTOXzSpHrP0otZmc6ktN/6MYj8bu8IgCxGQLw+Y0CYYkFXyZqv1vHyKxEuaKwIjK05NR03VVrtNCZGZxdwq6aFf1cgGJ2eVv/SpoSYzYFOAGVDZiMifsTVarqdjTJG1MRDVEiW5o2r1IxAm7XprT7HSJg49hD1JwW5RpH9ydfCFlgA1SZduyWcb/a3gDiCooiUinTCy8rhbgAwvic3Lni2q7HKISQSwm6Z01nO1np8xAN3EzVFkFmZjckyXof5SekazuIp1Xa5P3GC5JxiB/eVbmZRgJU+jWVNcL1UKEMTEIGgxYf7TqMukgPMdfLxBAQsuWFsCDw6uby+aWXDiYfBwTBu6TtUJrLsdlGTjJ3MHM5cXJQ22OhKPMeTUkJ+mAK5EqALrqd9EEMC2tszxdsfITTJ1T5cg6yib2ITQRmWt0fu3/61CFI+okO94wIHPoD8nKnguoytgEGtIvYC4pMJZrOShdp5nLMX8al4nviWIcbbXJuS4XxCaTOaNCrATUmuUtRqcyKyXAbrd+B6wOfhnjjeORqSvEnV9BgbWo+1FzJvHVbKVXiUdIyjleUvvVFg==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Date: Tue, 20 Oct 2020 12:38:44 +0200
-Message-ID: <CAO38sJ6TeArL081VG7Qg4wzu_nQyhHi3MNk9+-Z9mNZKX-FMoA@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] ltesoftmodem run error - OAI Software
+X-OriginatorOrg: canyon-us.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR19MB4382.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 76163fda-bc11-4341-b3b1-08d8752e8f32
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2020 19:30:10.2040 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EBA+VdbpxqDzyHqGtAPHdSN/KceD/WGN2Ks2yB1TcNsXxbkBq22VxOA2wXbADo13j5FRjwmwA81z85G90ZWLDsgCKJ/pmHWfr0B+5EeuDDA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR19MB2254
+Subject: [USRP-users] Underruns causing USRP to stop transmitting and
+ receiving
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +90,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ashutosh Singh via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ashutosh Singh <ashutoshsingh7589@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4872733277959834801=="
+From: Jerrid Plymale via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+Content-Type: multipart/mixed; boundary="===============1660316416671733074=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,278 +106,112 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4872733277959834801==
-Content-Type: multipart/alternative; boundary="00000000000073b0a605b217d61f"
+--===============1660316416671733074==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SA0PR19MB43827AFF6817FF8079637D64C61F0SA0PR19MB4382namp_"
 
---00000000000073b0a605b217d61f
-Content-Type: text/plain; charset="UTF-8"
-
-Hi team,
-I have below package :
-
-*root@yy212477:/home/lab_5g# dpkg -l | grep uhd*
-ii  libuhd-dev                             3.14.1.1-0ubuntu1~bionic1
-               amd64        universal hardware driver for Ettus Research
-products
-ii  libuhd003:amd64                        3.13.0.1-0ubuntu1~bionic1
-               amd64        hardware driver for Ettus Research products
-ii  libuhd3.14.1:amd64                     3.14.1.1-0ubuntu1~bionic1
-               amd64        hardware driver for Ettus Research products
-ii  uhd-host                               3.14.1.1-0ubuntu1~bionic1
-               amd64        hardware driver for Ettus Research products -
-host apps
-
-*UHD is installed following below commands :*
-1-sudo apt-get install libboost-all-dev libusb-1.0-0-dev python-mako
-doxygen python-docutils python-requests python3-pip cmake build-essential
-2-pip3 install mako numpy
-3-git clone git://github.com/EttusResearch/uhd.git
-4-cd uhd; mkdir host/build; cd host/build
-5-cmake -DCMAKE_INSTALL_PREFIX=/usr ..
-6-make -j4
-7-sudo make install
-8-sudo ldconfig
-9-sudo /usr/lib/uhd/utils/uhd_images_downloader.py
-
-
-Also I have installed :
-
-   sudo apt-get -y install git swig cmake doxygen build-essential
-libboost-all-dev libtool libusb-1.0-0 libusb-1.0-0-dev libudev-dev
-libncurses5-dev libfftw3-bin libfftw3-dev libfftw3-doc
-libcppunit-1.14-0 libcppunit-dev libcppunit-doc ncurses-bin
-cpufrequtils python-numpy python-numpy-doc python-numpy-dbg
-python-scipy python-docutils qt4-bin-dbg qt4-default qt4-doc
-libqt4-dev libqt4-dev-bin python-qt4 python-qt4-dbg python-qt4-dev
-python-qt4-doc python-qt4-doc libqwt6abi1 libfftw3-bin libfftw3-dev
-libfftw3-doc ncurses-bin libncurses5 libncurses5-dev libncurses5-dbg
-libfontconfig1-dev libxrender-dev libpulse-dev swig g++ automake
-autoconf libtool python-dev libfftw3-dev libcppunit-dev
-libboost-all-dev libusb-dev libusb-1.0-0-dev fort77 libsdl1.2-dev
-python-wxgtk3.0 git libqt4-dev python-numpy ccache python-opengl
-libgsl-dev python-cheetah python-mako python-lxml doxygen qt4-default
-qt4-dev-tools libusb-1.0-0-dev libqwtplot3d-qt5-dev pyqt4-dev-tools
-python-qwt5-qt4 cmake git wget libxi-dev gtk2-engines-pixbuf
-r-base-dev python-tk liborc-0.4-0 liborc-0.4-dev libasound2-dev
-python-gtk2 libzmq3-dev libzmq5 python-requests python-sphinx
-libcomedi-dev python-zmq libqwt-dev libqwt6abi1 python-six libgps-dev
-libgps23 gpsd gpsd-clients python-gps python-setuptools
-
-
-I just not have done below step:
-
-Finally, make sure that the LD_LIBRARY_PATH environment variable is defined
-and includes the folder under which UHD was installed. Most commonly, you
-can add the line below to the end of your $HOME/.bashrc file:
-
-   export LD_LIBRARY_PATH=/usr/local/lib
-
-
-
-*I ran the below command with gdb and found the where out as below :*
-*gdb -args ./lte-softmodem -O ../../../../opencells-mods/enb.10MHz.b200*
-
-*backtrace shows below:*
-
-Thread 1 "lte-softmodem" received signal SIGABRT, Aborted.
-__GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:51
-51      ../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
-(gdb) where
-#0  __GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:51
-#1  0x00007ffff593a8b1 in __GI_abort () at abort.c:79
-#2  0x00007ffff592a42a in __assert_fail_base (
-    fmt=0x7ffff5ab1a38 "%s%s%s:%u: %s%sAssertion `%s' failed.\n%n",
-    assertion=assertion@entry=0x7fffdb76e537 "px != 0",
-    file=file@entry=0x7fffdb76e360
-"/usr/include/boost/smart_ptr/shared_ptr.hpp",
-    line=line@entry=734,
-    function=function@entry=0x7fffdb7b7d20 "typename
-boost::detail::sp_member_access<T>::type boost::shared_ptr<T>::operator->()
-const [with T = uhd::property_tree; typename
-boost::detail::sp_member_access<T>::type = uhd::property_tree*]") at
-assert.c:92
-#3  0x00007ffff592a4a2 in __GI___assert_fail (assertion=0x7fffdb76e537 "px
-!= 0",
-    file=0x7fffdb76e360 "/usr/include/boost/smart_ptr/shared_ptr.hpp",
-line=734,
-    function=0x7fffdb7b7d20 "typename
-boost::detail::sp_member_access<T>::type boost::shared_ptr<T>::operator->()
-const [with T = uhd::property_tree; typename
-boost::detail::sp_member_access<T>::type = uhd::property_tree*]") at
-assert.c:101
-#4  0x00007fffdb166143 in ?? () from
-/usr/lib/x86_64-linux-gnu/libuhd.so.3.14.1
-#5  0x00007fffdb16dbf5 in ?? () from
-/usr/lib/x86_64-linux-gnu/libuhd.so.3.14.1
-#6  0x00007fffdb197c2f in ?? () from
-/usr/lib/x86_64-linux-gnu/libuhd.so.3.14.1
-#7  0x00007fffdbcb7f82 in device_init (device=<optimized out>,
-openair0_cfg=<optimized out>)
-    at
-/home/lab_5g/openairinterface5g/targets/ARCH/USRP/USERSPACE/LIB/usrp_lib.cpp:1112
-#8  0x000055555593661f in load_lib (device=device@entry=0x555556c7cd58,
-    openair0_cfg=openair0_cfg@entry=0x555556c7cdf8, cfg=cfg@entry=0x0,
-    flag=flag@entry=0 '\000')
-    at /home/lab_5g/openairinterface5g/targets/ARCH/COMMON/common_lib.c:124
-#9  0x0000555555936864 in openair0_device_load (device=device@entry
-=0x555556c7cd58,
-    openair0_cfg=openair0_cfg@entry=0x555556c7cdf8)
-    at /home/lab_5g/openairinterface5g/targets/ARCH/COMMON/common_lib.c:134
-#10 0x00005555559259c3 in init_RU_proc (ru=ru@entry=0x555556c7c900)
-    at /home/lab_5g/openairinterface5g/targets/RT/USER/lte-ru.c:2260
-#11 0x0000555555929dec in init_RU (rf_config_file=<optimized out>,
-    clock_source=<optimized out>, time_source=<optimized out>,
-send_dmrssync=<optimized out>)
-    at /home/lab_5g/openairinterface5g/targets/RT/USER/lte-ru.c:2687
-#12 0x00005555559032bb in main (argc=<optimized out>, argv=<optimized out>)
-    at /home/lab_5g/openairinterface5g/targets/RT/USER/lte-softmodem.c:671
-
-
-
-
-thanks
-Ashutosh
-
---00000000000073b0a605b217d61f
-Content-Type: text/html; charset="UTF-8"
+--_000_SA0PR19MB43827AFF6817FF8079637D64C61F0SA0PR19MB4382namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><font size=3D"4">Hi team,</font><div><div=
- class=3D"gmail-gs" style=3D"margin:0px;padding:0px 0px 20px;width:1120px;f=
-ont-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:medium">=
-<div class=3D"gmail-"><div id=3D"gmail-:2uk" class=3D"gmail-ii gmail-gt gma=
-il-adO" style=3D"margin:8px 0px 0px;padding:0px"><div id=3D"gmail-:2t3" cla=
-ss=3D"gmail-a3s gmail-aiL"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
-r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
- dir=3D"ltr"><div>I have below package :</div><div><b><br></b></div><div><d=
-iv><font size=3D"4"><b>root@yy212477:/home/lab_5g# dpkg -l | grep uhd</b></=
-font></div><div>ii=C2=A0 libuhd-dev=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A03.14.1.1-=
-0ubuntu1~bionic1=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0amd64=C2=A0 =C2=A0 =C2=A0 =C2=A0 universal hardware=
- driver for Ettus Research products</div><div>ii=C2=A0 libuhd003:amd64=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 3.13.0.1-0ubuntu1~bionic1=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0amd64=C2=A0 =C2=A0 =C2=A0 =C2=A0 h=
-ardware driver for Ettus Research products</div><div>ii=C2=A0 libuhd3.14.1:=
-amd64=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A03.14.1.1-0ubuntu1~bionic1=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0amd64=C2=A0 =C2=A0 =C2=A0 =C2=A0 h=
-ardware driver for Ettus Research products</div><div>ii=C2=A0 uhd-host=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A03.14.1.1-0ubuntu1~bionic1=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0amd64=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 hardware driver for Ettus Research products - h=
-ost apps</div></div><div><b><font size=3D"4"><br></font></b></div><div><b><=
-font size=3D"4">UHD is installed following=C2=A0below commands=C2=A0:</font=
-></b></div><div><div>1-sudo apt-get install libboost-all-dev libusb-1.0-0-d=
-ev python-mako doxygen python-docutils python-requests python3-pip cmake bu=
-ild-essential</div><div>2-pip3 install mako numpy</div><div>3-git clone git=
-://<a href=3D"http://github.com/EttusResearch/uhd.git" target=3D"_blank">gi=
-thub.com/EttusResearch/uhd.git</a></div><div>4-cd uhd; mkdir host/build; cd=
- host/build</div><div>5-cmake -DCMAKE_INSTALL_PREFIX=3D/usr ..</div><div>6-=
-make -j4</div><div>7-sudo make install</div><div>8-sudo ldconfig</div><div>=
-9-sudo /usr/lib/uhd/utils/uhd_images_downloader.py</div></div><div><br></di=
-v><div><br></div><div>Also I have=C2=A0installed :</div><div><pre style=3D"=
-font-family:monospace,Courier;color:rgb(0,0,0);background-color:rgb(249,249=
-,249);border:1px solid rgb(221,221,221);padding:1em;line-height:1.3em;font-=
-size:14px">   sudo apt-get -y install git swig cmake doxygen build-essentia=
-l libboost-all-dev libtool libusb-1.0-0 libusb-1.0-0-dev libudev-dev libncu=
-rses5-dev libfftw3-bin libfftw3-dev libfftw3-doc libcppunit-1.14-0 libcppun=
-it-dev libcppunit-doc ncurses-bin cpufrequtils python-numpy python-numpy-do=
-c python-numpy-dbg python-scipy python-docutils qt4-bin-dbg qt4-default qt4=
--doc libqt4-dev libqt4-dev-bin python-qt4 python-qt4-dbg python-qt4-dev pyt=
-hon-qt4-doc python-qt4-doc libqwt6abi1 libfftw3-bin libfftw3-dev libfftw3-d=
-oc ncurses-bin libncurses5 libncurses5-dev libncurses5-dbg libfontconfig1-d=
-ev libxrender-dev libpulse-dev swig g++ automake autoconf libtool python-de=
-v libfftw3-dev libcppunit-dev libboost-all-dev libusb-dev libusb-1.0-0-dev =
-fort77 libsdl1.2-dev python-wxgtk3.0 git libqt4-dev python-numpy ccache pyt=
-hon-opengl libgsl-dev python-cheetah python-mako python-lxml doxygen qt4-de=
-fault qt4-dev-tools libusb-1.0-0-dev libqwtplot3d-qt5-dev pyqt4-dev-tools p=
-ython-qwt5-qt4 cmake git wget libxi-dev gtk2-engines-pixbuf r-base-dev pyth=
-on-tk liborc-0.4-0 liborc-0.4-dev libasound2-dev python-gtk2 libzmq3-dev li=
-bzmq5 python-requests python-sphinx libcomedi-dev python-zmq libqwt-dev lib=
-qwt6abi1 python-six libgps-dev libgps23 gpsd gpsd-clients python-gps python=
--setuptools</pre></div><div><b><br></b></div><div><div><font color=3D"#ff00=
-00" size=3D"4">I just not have done below step:</font></div><div><p style=
-=3D"margin:0.5em 0px;line-height:inherit;color:rgb(0,0,0);font-family:&quot=
-;Lucida Sans Unicode&quot;,&quot;Lucida Grande&quot;,sans-serif;font-size:1=
-4px">Finally, make sure that the=C2=A0<code style=3D"font-family:monospace,=
-Courier;background-color:rgb(249,249,249);border:1px solid rgb(221,221,221)=
-;border-radius:2px;padding:1px 4px">LD_LIBRARY_PATH</code>=C2=A0environment=
- variable is defined and includes the folder under which UHD was installed.=
- Most commonly, you can add the line below to the end of your=C2=A0<code st=
-yle=3D"font-family:monospace,Courier;background-color:rgb(249,249,249);bord=
-er:1px solid rgb(221,221,221);border-radius:2px;padding:1px 4px">$HOME/.bas=
-hrc</code>=C2=A0file:</p><pre style=3D"font-family:monospace,Courier;color:=
-rgb(0,0,0);background-color:rgb(249,249,249);border:1px solid rgb(221,221,2=
-21);padding:1em;line-height:1.3em;font-size:14px">   export LD_LIBRARY_PATH=
-=3D/usr/local/lib</pre></div></div><div><br></div><div><b><br></b></div><di=
-v><b>I ran the below command with gdb and found the where out as below :</b=
-></div><div><i>gdb -args ./lte-softmodem -O ../../../../opencells-mods/enb.=
-10MHz.b200</i><br></div><div><i><br></i></div><div><b>backtrace shows below=
-:</b></div><div><i><br></i></div><div><div>Thread 1 &quot;lte-softmodem&quo=
-t; received signal SIGABRT, Aborted.</div><div>__GI_raise (sig=3Dsig@entry=
-=3D6) at ../sysdeps/unix/sysv/linux/raise.c:51</div><div>51=C2=A0 =C2=A0 =
-=C2=A0 ../sysdeps/unix/sysv/linux/raise.c: No such file or directory.</div>=
-<div>(gdb) where</div><div>#0=C2=A0 __GI_raise (sig=3Dsig@entry=3D6) at ../=
-sysdeps/unix/sysv/linux/raise.c:51</div><div>#1=C2=A0 0x00007ffff593a8b1 in=
- __GI_abort () at abort.c:79</div><div>#2=C2=A0 0x00007ffff592a42a in __ass=
-ert_fail_base (</div><div>=C2=A0 =C2=A0 fmt=3D0x7ffff5ab1a38 &quot;%s%s%s:%=
-u: %s%sAssertion `%s&#39; failed.\n%n&quot;,</div><div>=C2=A0 =C2=A0 assert=
-ion=3Dassertion@entry=3D0x7fffdb76e537 &quot;px !=3D 0&quot;,</div><div>=C2=
-=A0 =C2=A0 file=3Dfile@entry=3D0x7fffdb76e360 &quot;/usr/include/boost/smar=
-t_ptr/shared_ptr.hpp&quot;,</div><div>=C2=A0 =C2=A0 line=3Dline@entry=3D734=
-,</div><div>=C2=A0 =C2=A0 function=3Dfunction@entry=3D0x7fffdb7b7d20 &quot;=
-typename boost::detail::sp_member_access&lt;T&gt;::type boost::shared_ptr&l=
-t;T&gt;::operator-&gt;() const [with T =3D uhd::property_tree; typename boo=
-st::detail::sp_member_access&lt;T&gt;::type =3D uhd::property_tree*]&quot;)=
- at assert.c:92</div><div>#3=C2=A0 0x00007ffff592a4a2 in __GI___assert_fail=
- (assertion=3D0x7fffdb76e537 &quot;px !=3D 0&quot;,</div><div>=C2=A0 =C2=A0=
- file=3D0x7fffdb76e360 &quot;/usr/include/boost/smart_ptr/shared_ptr.hpp&qu=
-ot;, line=3D734,</div><div>=C2=A0 =C2=A0 function=3D0x7fffdb7b7d20 &quot;ty=
-pename boost::detail::sp_member_access&lt;T&gt;::type boost::shared_ptr&lt;=
-T&gt;::operator-&gt;() const [with T =3D uhd::property_tree; typename boost=
-::detail::sp_member_access&lt;T&gt;::type =3D uhd::property_tree*]&quot;) a=
-t assert.c:101</div><div>#4=C2=A0 0x00007fffdb166143 in ?? () from /usr/lib=
-/x86_64-linux-gnu/libuhd.so.3.14.1</div><div>#5=C2=A0 0x00007fffdb16dbf5 in=
- ?? () from /usr/lib/x86_64-linux-gnu/libuhd.so.3.14.1</div><div>#6=C2=A0 0=
-x00007fffdb197c2f in ?? () from /usr/lib/x86_64-linux-gnu/libuhd.so.3.14.1<=
-/div><div>#7=C2=A0 0x00007fffdbcb7f82 in device_init (device=3D&lt;optimize=
-d out&gt;, openair0_cfg=3D&lt;optimized out&gt;)</div><div>=C2=A0 =C2=A0 at=
- /home/lab_5g/openairinterface5g/targets/ARCH/USRP/USERSPACE/LIB/usrp_lib.c=
-pp:1112</div><div>#8=C2=A0 0x000055555593661f in load_lib (device=3Ddevice@=
-entry=3D0x555556c7cd58,</div><div>=C2=A0 =C2=A0 openair0_cfg=3Dopenair0_cfg=
-@entry=3D0x555556c7cdf8, cfg=3Dcfg@entry=3D0x0,</div><div>=C2=A0 =C2=A0 fla=
-g=3Dflag@entry=3D0 &#39;\000&#39;)</div><div>=C2=A0 =C2=A0 at /home/lab_5g/=
-openairinterface5g/targets/ARCH/COMMON/common_lib.c:124</div><div>#9=C2=A0 =
-0x0000555555936864 in openair0_device_load (device=3Ddevice@entry=3D0x55555=
-6c7cd58,</div><div>=C2=A0 =C2=A0 openair0_cfg=3Dopenair0_cfg@entry=3D0x5555=
-56c7cdf8)</div><div>=C2=A0 =C2=A0 at /home/lab_5g/openairinterface5g/target=
-s/ARCH/COMMON/common_lib.c:134</div><div>#10 0x00005555559259c3 in init_RU_=
-proc (ru=3Dru@entry=3D0x555556c7c900)</div><div>=C2=A0 =C2=A0 at /home/lab_=
-5g/openairinterface5g/targets/RT/USER/lte-ru.c:2260</div><div>#11 0x0000555=
-555929dec in init_RU (rf_config_file=3D&lt;optimized out&gt;,</div><div>=C2=
-=A0 =C2=A0 clock_source=3D&lt;optimized out&gt;, time_source=3D&lt;optimize=
-d out&gt;, send_dmrssync=3D&lt;optimized out&gt;)</div><div>=C2=A0 =C2=A0 a=
-t /home/lab_5g/openairinterface5g/targets/RT/USER/lte-ru.c:2687</div><div>#=
-12 0x00005555559032bb in main (argc=3D&lt;optimized out&gt;, argv=3D&lt;opt=
-imized out&gt;)</div><div>=C2=A0 =C2=A0 at /home/lab_5g/openairinterface5g/=
-targets/RT/USER/lte-softmodem.c:671</div></div><div><br></div><div><br></di=
-v><div><br></div><div><br></div><div>thanks</div><font color=3D"#888888">As=
-hutosh</font></div></div></div></div></div></div></div></div><div class=3D"=
-gmail-yj6qo gmail-ajU" style=3D"margin:2px 0px 0px"><div id=3D"gmail-:2uw" =
-class=3D"gmail-ajR" tabindex=3D"0"><img class=3D"gmail-ajT" src=3D"https://=
-ssl.gstatic.com/ui/v1/icons/mail/images/cleardot.gif" style=3D"background-i=
-mage: url(&quot;https://www.gstatic.com/images/icons/material/system/1x/mor=
-e_horiz_black_20dp.png&quot;); background-size: 20px;"></div><div><br></div=
-></div></div></div><div class=3D"gmail-hi"></div></div></div></div></div></=
-div>
+Hello All,
 
---00000000000073b0a605b217d61f--
+So I am working on writing an embedded python block in GNU Radio Companion =
+to preform some analysis of RF signals that is received by a USRP x310 and =
+transmitted back out of the USRP after analysis has been done. I have been =
+running into some underruns lately that I have not been able to find a solu=
+tion for. If I execute some of my analysis functions in the work function o=
+f the block, the application underruns and it causes the USRP to stop trans=
+mitting or receiving. However, if I execute the functions in separate polli=
+ng functions that are being used to display values in the GUI, I do not get=
+ underruns. I think this might has to do with how often the analysis functi=
+on is being executed, as the poll functions are only called at a rate of 10=
+ Hz which is controlled by a function probe. Can anyone give me suggestions=
+ on what to try to fix the underrun problem, and any resources you can poin=
+t me to that might help would be appreciated.
+
+Best Regards,
+
+Jerrid
+
+--_000_SA0PR19MB43827AFF6817FF8079637D64C61F0SA0PR19MB4382namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello All,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">So I am working on writing an embedded python block =
+in GNU Radio Companion to preform some analysis of RF signals that is recei=
+ved by a USRP x310 and transmitted back out of the USRP after analysis has =
+been done. I have been running into
+ some underruns lately that I have not been able to find a solution for. If=
+ I execute some of my analysis functions in the work function of the block,=
+ the application underruns and it causes the USRP to stop transmitting or r=
+eceiving. However, if I execute
+ the functions in separate polling functions that are being used to display=
+ values in the GUI, I do not get underruns. I think this might has to do wi=
+th how often the analysis function is being executed, as the poll functions=
+ are only called at a rate of 10
+ Hz which is controlled by a function probe. Can anyone give me suggestions=
+ on what to try to fix the underrun problem, and any resources you can poin=
+t me to that might help would be appreciated.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Jerrid<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_SA0PR19MB43827AFF6817FF8079637D64C61F0SA0PR19MB4382namp_--
 
 
---===============4872733277959834801==
+--===============1660316416671733074==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -353,5 +222,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4872733277959834801==--
+--===============1660316416671733074==--
 
