@@ -2,52 +2,85 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94CDE29454B
-	for <lists+usrp-users@lfdr.de>; Wed, 21 Oct 2020 00:58:57 +0200 (CEST)
-Received: from [::1] (port=38438 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D797E29466D
+	for <lists+usrp-users@lfdr.de>; Wed, 21 Oct 2020 04:11:16 +0200 (CEST)
+Received: from [::1] (port=39788 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kV0aj-0004IO-6m; Tue, 20 Oct 2020 18:58:53 -0400
-Received: from mail-ed1-f47.google.com ([209.85.208.47]:46295)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <ms230317@gmail.com>) id 1kV0af-0004E3-Tz
- for usrp-users@lists.ettus.com; Tue, 20 Oct 2020 18:58:50 -0400
-Received: by mail-ed1-f47.google.com with SMTP id 33so372802edq.13
- for <usrp-users@lists.ettus.com>; Tue, 20 Oct 2020 15:58:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=85OrGkLfoukdg1qaImMr1mvJGkTSFDQIBwM6rROb9S0=;
- b=X51XKh46GDkBw80f/uIVYRZ9CZZRO+a+3dnZ1ejllV2ocO//epevS14pt4umoVEH83
- XKK59nsCEyGNqimtNB0Quh++m/RnIbpNO7rB1nSCfBOqiARXtn+BC0UOsn5WNFSwjSYq
- ljXJd8XZlKXHaCn6rGzI5DcexCNbXtlMZpvk7vId+G57SH/vaRe10DR1y4zQPQTghlNQ
- faURLf8vLLg0qRRgdaAiSth3YkKoYtSmU2T8+nXT/nZd1GdfYl2dw7C65ClIQp9JofDl
- 3EWBqdPsmqHuovbVhzMa/JnUVdKCaeZYHNs2ijuBVD+1eix0QL/2JVr2eD1aOKM69Bwm
- cBgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=85OrGkLfoukdg1qaImMr1mvJGkTSFDQIBwM6rROb9S0=;
- b=pLY7ExRFw9E1IlV2zvTA85F1IGuNgz0SO5U9cFr8Dlh/FgtoPkaJjlWLvlGJt47Foc
- kQYTJgihIWo6a0XA6d5OPuH847qo7Aa61nNzfnJP258yjyma0QU6hjjnZOrwJzqmy6L1
- el0AIxVxQJ+j40K6nbQc34Ncj+pLVjcaMEUhoBPqvqswP8I8IUXmQ4GHGDnl4dUanJW9
- k44BCmyczLFECGaW4jrBLlVDj8ziP2fxveAyFvif56CK65L7iBQYx0dbELKUrIH7upmD
- BMyCpXzKExEAKBtgVnMsUjjJoGnW0R5fu7BrsGT7ccQVFIZZOlhl/O3Dyz+nnzDf3Hpm
- WEEw==
-X-Gm-Message-State: AOAM533kLSJYO2jvE7ngz8dUqyy68nJzMAFbVsPthVAJYNlEvA5st6Vw
- Z7NafwH0oXx5BtXhxCAUAP0oAiEDRuKVNvQP1EsDCMSRuVU=
-X-Google-Smtp-Source: ABdhPJzNcQEIiSH+eDFyWJ+hhmZ1/3M84svRZ2mgRWPJIQM8RqysSV6o8VnainCQjfyYsBzuvcA5EnuUBadmSWLYnuw=
-X-Received: by 2002:aa7:c792:: with SMTP id n18mr239718eds.209.1603234688821; 
- Tue, 20 Oct 2020 15:58:08 -0700 (PDT)
-MIME-Version: 1.0
+	id 1kV3aq-0005su-J1; Tue, 20 Oct 2020 22:11:12 -0400
+Received: from mail-eopbgr1280107.outbound.protection.outlook.com
+ ([40.107.128.107]:35914 helo=KOR01-PS2-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <ksshin@postech.ac.kr>)
+ id 1kV3al-0005mB-Rh
+ for usrp-users@lists.ettus.com; Tue, 20 Oct 2020 22:11:08 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ltdh+Hryo/F8S7a7B+3s/zK0sG5Bc4ADbB/jbmnmdShWWQ2AoR5OJ5NmzDgStD+d+ZXJXPtOI1e4EVUo6GAsnJKL2FPN3GwzXI6qRKKm1hyD09UwmCd9pSb/ZjNFrWGqhXmSJ466n0ji6n5Mf3xN85DzpxNvAOQTXSVSNoWsAITLfu5cjjvV6b5w8u6O9y2Af8q8Zxtkd8A2rg2ayBvuv9b8y8Uym6Gwk7E1/cQ9k7BhEgsNX+Zk3iJegldKdj8PhPAKL1RrjgeFLLn7TkXKlKf5jj9pid7gCZqf46fxGvUtFLjhylNnVETXg/S+Ep+k/Tsppz8vTIh5cTt5BsIRgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CWJohznXjLwrtvvu9Wmbh9uJN9lwwlVwMvJjoo6xXzs=;
+ b=IbdxCZ0roXmF8ERqkTpSqbbUZ0+euvGK9ss8nAkxCtZBhmgilXLeA8vHb6RFEomj01E07lvK2ME9/sQCaTzkzkNsF5ZbVhZTzTv/sw2LwzAIwTmGgHkmQ3r+8ph+3Or9JMoNPbsbj8JhVvQOJACyKugT/q7aJtzqpOEwBdwTgi2dwpw6k7kauztN5pC92mVr86CCP0oM86lsvpQOR1ZqFplZNx6kVW+KjhmWMRRSsYUXtkderQLd8OBYlmVNGvDyHszvdVeulwEX9DMCqLHE+ThNOaPI9+jVvUD/6Nc28tEljUsxBiiTUXB4al5/n7lCqY/KNV4OivpaZjUlpqsIKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=postech.ac.kr; dmarc=pass action=none
+ header.from=postech.ac.kr; dkim=pass header.d=postech.ac.kr; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=postechackr.onmicrosoft.com; s=selector2-postechackr-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CWJohznXjLwrtvvu9Wmbh9uJN9lwwlVwMvJjoo6xXzs=;
+ b=Ey+B0Oj/wrNYXwjDKGfWKX6ZMX0L+ho7b3/UaEmt6NcJfXN2wLjNrifjH8bMXWxrK4HFfVvP6e/cgA5weL2CGShbDVkmtdYn9PX16mSKuwlpR8KWEhZpIwDkaJLchTd5XM90eIAQLbwKtMikxt+s+iJrU9oTT+CizbdE7ykfGkA=
+Received: from SL2P216MB0331.KORP216.PROD.OUTLOOK.COM (2603:1096:100:1f::21)
+ by SL2P216MB0891.KORP216.PROD.OUTLOOK.COM (2603:1096:100:1d::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.20; Wed, 21 Oct
+ 2020 02:10:24 +0000
+Received: from SL2P216MB0331.KORP216.PROD.OUTLOOK.COM
+ ([fe80::9d25:dceb:9aa7:c2de]) by SL2P216MB0331.KORP216.PROD.OUTLOOK.COM
+ ([fe80::9d25:dceb:9aa7:c2de%7]) with mapi id 15.20.3499.018; Wed, 21 Oct 2020
+ 02:10:24 +0000
+To: My St <ms230317@gmail.com>, "usrp-users@lists.ettus.com"
+ <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] spectrum availability measurement with usrp
+Thread-Index: AQHWpoIeDs74OtO4NE6tU3BGzDPyXamf7OZcgAAMIICAASLcgIAAMVOJ
+Date: Wed, 21 Oct 2020 02:10:24 +0000
+Message-ID: <SL2P216MB0331A8B6C694C76308417527931C0@SL2P216MB0331.KORP216.PROD.OUTLOOK.COM>
 References: <CAFsy4Xg+g3NR1dwe8uKj=rmZQ7TV-HLWvvZcoOuMU_u5Z9_Uow@mail.gmail.com>
  <SL2P216MB0331A7E8B4DD97FAF77519B9931F0@SL2P216MB0331.KORP216.PROD.OUTLOOK.COM>
- <5F8E7777.4090502@gmail.com>
-In-Reply-To: <5F8E7777.4090502@gmail.com>
-Date: Wed, 21 Oct 2020 00:57:57 +0200
-Message-ID: <CAFsy4XiJFhKXHvo9Xi0pJ3LMJtFgp0ZKZTC5UQzkeO6gMTr3Fw@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
+ <5F8E7777.4090502@gmail.com>,
+ <CAFsy4XiJFhKXHvo9Xi0pJ3LMJtFgp0ZKZTC5UQzkeO6gMTr3Fw@mail.gmail.com>
+In-Reply-To: <CAFsy4XiJFhKXHvo9Xi0pJ3LMJtFgp0ZKZTC5UQzkeO6gMTr3Fw@mail.gmail.com>
+Accept-Language: ko-KR, en-US
+Content-Language: ko-KR
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=postech.ac.kr;
+x-originating-ip: [119.202.91.198]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 4af0651c-8365-4c07-4ea0-08d875667892
+x-ms-traffictypediagnostic: SL2P216MB0891:
+x-microsoft-antispam-prvs: <SL2P216MB0891DF669398EB49EE7A801A931C0@SL2P216MB0891.KORP216.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: DPkN0TUzhy2rzmGwspVLIlcwTPnhNS9rT0Bz1oao1StkP4sXd5X+YC7L9mfaXqPE0OLzYGm6D0i1K9ngjIKcFK2aWJFGVQsKjkcJq/pnL6Ntkq8+jq54X+yr3MUt3CojOvgLHPvAlLwL7IN6idWG9HB6YeXONHc/gM22Khqbszrmd1E0zKHpnDGcf3TzH3fTRtMZDFq/qdAWC0knYzP75eqUYMbQ1N9YhdlCf76lDBcXHBDnOsDIZnpx7qR7W5g2jZaUP3Sp7CpLyPrOJTG+ROMUx+UdCLRf6vmcyLZHol20vqmQ1Ke62mIRKkUbWJgUKhNaSF2PLEitywTR1Hp5fjMjdJCONfTw+PZbBoJeSfeEODrSnwwz98aZ/VqPMbooJhT5aXHmEEQrvvu6s1fLa3xfFP6rYu1E/GJ4PqrT99ushB/BAu7yj653BUTMkcTaw/C6Dr0U/kuX1tPdUIWr4Q==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SL2P216MB0331.KORP216.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(396003)(136003)(39850400004)(376002)(366004)(346002)(8936002)(26005)(86362001)(7696005)(5660300002)(316002)(55016002)(83380400001)(66476007)(64756008)(66556008)(110136005)(66946007)(186003)(66446008)(166002)(76116006)(786003)(52536014)(66574015)(6506007)(53546011)(33656002)(8676002)(966005)(19627405001)(71200400001)(9686003)(2906002)(478600001)(8956003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: ro2s36dPppNIfmgfs97RprNvmLep2HwHtegwSPDLnbjaNsdTipRz2+07e9FaUd+kjWveM0FZKGVHvxfxqGlwNjPEh4eT/VquCPvZJfcgb7MRf4ZTKPA/4Z3AGJe3pkFtWp63x/dmIGFfLvOjtl0v8JjX5igMHksdzDHpqJaCd7M7lyepoGPAngkeP6HdOof/AMvRdhxPgyqHLUaXGL9oBtYvFvWB657RJ3vFNw2OubMEQaY8qx/9BJ/ZqnhU/RgmX8D2TNypWUsG+rnEmNADNI5jZ8ufvHNNCOgMKxN5mVmJNN/lD7THRJpewQ4lLrOOKG2UAKT1jbbfyzVhqoGEhLFiBv+8vcghl6cjTQoltALQOB+S7u3VhJcAaOFCbZSme/+5q1/hts8X8tEjMylFUBPwSnUWcd+yHdDF8qZvm6WH7fyj6MY9F5yz/AChcCT0A+O7vaMtRpR2qL1+eXKqtfIVn+XV/fTyFnCixKcRmTXynJ8uVpzasP2o7dqGvXx8wAwZ2kybMtH2vM8lYqfzyrNH8HSk2Cp25keb/t75B/9pK8cgegwwjOPY2/ap7rmw8XruF3uqRUN8Fy7OxRgL5dwOmHUyD5TcheNGmeQfu1Rp6SKpclzoT+iF1qfwRM4NHGJr5TATFaYeALC7qAnf4A==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: postech.ac.kr
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SL2P216MB0331.KORP216.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4af0651c-8365-4c07-4ea0-08d875667892
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Oct 2020 02:10:24.1873 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: bff3e98c-5cca-455c-adc8-5fd24fc9908d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tbtqhJp+uud0xNMdyV8Jjgl6f14a9E8vQSS7IDWZyvS2I9vOpw8ZxIIsxLAGC/WldmzHLV0XP2yXmVTd5ukYsQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SL2P216MB0891
 Subject: Re: [USRP-users] spectrum availability measurement with usrp
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -60,9 +93,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: My St via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: My St <ms230317@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5515701515339168328=="
+From: Kyeong Su Shin via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Kyeong Su Shin <ksshin@postech.ac.kr>
+Content-Type: multipart/mixed; boundary="===============6387392444697761066=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,195 +109,215 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5515701515339168328==
-Content-Type: multipart/alternative; boundary="0000000000001e706205b2222a06"
+--===============6387392444697761066==
+Content-Language: ko-KR
+Content-Type: multipart/alternative;
+	boundary="_000_SL2P216MB0331A8B6C694C76308417527931C0SL2P216MB0331KORP_"
 
---0000000000001e706205b2222a06
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_SL2P216MB0331A8B6C694C76308417527931C0SL2P216MB0331KORP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Dear Kyeong and Marcus,
+SGVsbG8gVHJhbmc6DQoNClRoZW4geW91IGNhbiBwcm9iYWJseSBzdGFydCB3aXRoIGVuZXJneSBk
+ZXRlY3Rpb24uIEp1c3QgdHVuZSB0byB0aGUgY2hhbm5lbCB0aGF0IHlvdSBpbnRlbmQgdG8gY2hl
+Y2ssIGNvbGxlY3Qgc2FtcGxlcywgdGFrZSBGRlQgLT4gbWFnXjIgKG9wdGlvbmFsKSwgdGhlbiBj
+aGVjayB3aGV0aGVyIHRoZSBwb3dlciBsZXZlbCBvZiB0aGUgY2hhbm5lbCBzdGF5cyBiZWxvdyBz
+b21lIGxldmVsIGZvciBhIHByZS1kZWZpbmVkIGxlbmd0aCBvZiB0aW1lLiBJZiBpdCBzdGF5cyB1
+bmRlciB0aGF0IGxldmVsLCB5b3UgY2xhaW0gdGhhdCB0aGUgY2hhbm5lbCBpcyBhdmFpbGFibGUg
+KG9jY3VwaWVkIG90aGVyd2lzZSkuIE9uY2UgdGhhdCdzIGRvbmUsIHlvdSBjYW4gaG9wIHRvIHRo
+ZSBuZXh0IGNoYW5uZWwgYW5kIHJlcGVhdCB0aGUgd2hvbGUgcHJvY2VzLg0KDQpKdXN0IHNlYXJj
+aCBzb21ldGhpbmcgbGlrZSAidXNycCBlbmVyZ3kgZGV0ZWN0aW9uIiBvciAidXNycCBjb2duaXRp
+dmUgcmFkaW8iIG9uIHlvdXIgc2VhcmNoIGVuZ2luZXMsIGFuZCB5b3Ugd2lsbCBzZWUgc29tZSBh
+cnRpY2xlcyByZWdhcmRpbmcgdGhpcy4NCg0KUGxlYXNlIG5vdGUgdGhhdCB0aGlzIGlzIHByb2Jh
+Ymx5IG5vdCBhbiBhY2NlcHRhYmxlIHByYWN0aWNlIG9uIHNvbWUgYmFuZHMuIEZvciBXaS1GaSBi
+YW5kcywgdGhpcyBpcyBwcm9iYWJseSBhY2NlcHRhYmxlIChiZWNhdXNlIHRob3NlIGJhbmRzIGFy
+ZSBpbnRlbmRlZCBmb3IgdW5saWNlbnNlZCB1c2VzIGFueXdheSkuDQoNClJlZ2FyZHMsDQpLeWVv
+bmcgU3UgU2hpbg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCuuztOuCuCDsgqzr
+now6IE15IFN0IHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4g64yA
+7IugIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb20+DQrrs7Tr
+grgg64Kg7KecOiAyMDIw64WEIDEw7JuUIDIx7J28IOyImOyalOydvCDsmKTsoIQgNzo1Nw0K67Cb
+64qUIOyCrOuejDogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4NCuyw
+uOyhsDogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tPg0K7KCc66qpOiBSZTogW1VTUlAtdXNlcnNdIHNwZWN0cnVtIGF2YWlsYWJpbGl0eSBtZWFz
+dXJlbWVudCB3aXRoIHVzcnANCg0KRGVhciBLeWVvbmcgYW5kIE1hcmN1cywNCg0KVGhhbmsgeW91
+IHZlcnkgbXVjaCBmb3IgeW91ciBhbnN3ZXJzIHdoaWNoIGhlbHAgbWUgdG8gc2VlIGJldHRlciB0
+aGUgY2hhbGxlbmdlcy4gSSBpbnRlbmQgdG8gc3RhcnQgd2l0aCBXaS1GaSBzaWduYWxzLiBXZSBo
+YXZlIGEgbG90IG9mIFdpLUZpIG5ldHdvcmtzIGFyb3VuZCB1cyBhbmQgSSB3YW50IHRvIHNob3cg
+dGhlIG9jY3VwYXRpb24vYXZhaWxhYmlsaXR5IG9mIFdpLUZpIGNoYW5uZWxzLiBJIGFsc28gaW50
+ZW5kIHRvIHVzZSBnbnUtcmFkaW8uDQoNCldpdGggYmVzdCByZWdhcmRzLA0KVHJhbmcgTmd1eWVu
+DQoNCkxlIG1hci4gMjAgb2N0LiAyMDIwIMOgIDA3OjM3LCBNYXJjdXMgRC4gTGVlY2ggdmlhIFVT
+UlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbT4+IGEgw6ljcml0IDoNCk9uIDEwLzIwLzIwMjAgMDE6MDUgQU0sIEt5ZW9u
+ZyBTdSBTaGluIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0KSGVsbG8gVHJhbmc6DQoNCkl0IGRlcGVu
+ZHMgb24geW91ciBhcHBsaWNhdGlvbnMuIFVTUlBzIENBTiBiZSB1c2VkIHRvIHNjYW4gYW5kIG1h
+cCB0aGUgd2lyZWxlc3Mgc3BlY3RydW0sIGJ1dCB5b3Ugd2lsbCBoYXZlIHRvIGRldGVybWluZSB3
+aGV0aGVyIHRoZSBzcGVjdHJ1bSBpcyBlbXB0eSBvciBub3QsIGFuZCBpdCBpcyBub3QgYSB0cml2
+aWFsIHF1ZXN0aW9uLiBGb3IgYW4gZXhhbXBsZSwgc2lnbmFscyBmcm9tIHNhdGVsbGl0ZXMgYW5k
+IHNwYWNlY3JhZnRzIGFyZSBvZnRlbiBiZWxvdyB0aGUgdGhlcm1hbCBub2lzZSwgc28geW91IHdp
+bGwgbmVlZCB0byB1c2Ugc3BlY2lhbCBkaXNoIGFudGVubmFzIGFuZC9vciBjb3JyZWxhdGUgdGhl
+IHNpZ25hbHMgd2l0aCBrbm93biBzZXF1ZW5jZXMgaW4gb3JkZXIgdG8gZGV0ZWN0IHRoZW0uIEFs
+c28sIFVTUlAgQjIwMC9CMjEwIGFyZSBub3QgaGlnaC1lbmQgc3BlY3RydW0gYW5hbHl6ZXJzLCBz
+byB0aGV5IG1heSBzaG93IHlvdSBzb21lIHNwdXJpb3VzIHNpZ25hbHMgKHBvc3NpYmxlIGZhbHNl
+IHBvc2l0aXZlcykuDQoNClNvLCB5ZXMsIGl0IGlzIHBvc3NpYmxlLCBidXQgSSBkb24ndCBrbm93
+IHdoZXRoZXIgdGhleSBhcmUgc3VpdGFibGUgZm9yIHlvdXIgdXNlIGNhc2VzLg0KDQpSZWdhcmRz
+LA0KS3llb25nIFN1IFNoaW4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQoNClNv
+bWUgZnVydGhlciB3aXNkb20uICBTRFJzIGFyZSAqY29tcG9uZW50cyogaW4gYW4gb3ZlcmFsbCBl
+bmdpbmVlcmVkIFJGICpzeXN0ZW0gYW5kIGFwcGxpY2F0aW9uKi4gIFRoZXkgYXJlbid0ICJib3Ju
+IiBrbm93aW5nIHlvdXINCiAgcGFydGljdWxhciBhcHBsaWNhdGlvbi4NCg0KWW91J2xsIG5lZWQg
+c29tZSBub24tdHJpdmlhbCBrbm93bGVkZ2Ugb2Ygc29mdHdhcmUgZGV2ZWxvcG1lbnQgbWV0aG9k
+b2xvZ2llcywgRFNQIGtub3dsZWRnZSwgYW5kIGtub3dsZWRnZSBvZiByYWRpbyBhbmQgZWxlY3Ry
+b25pY3MNCiAgdG8gZGV2ZWxvcCBhbiBhcHBsaWNhdGlvbiB0aGF0IHN1aXRzIHlvdXIgbmVlZHMu
+DQoNCk5vdywgdGhlcmUgYXJlIGxvdHMgb2YgYXBwbGljYXRpb25zIGZvciBTRFJzIGluIGdlbmVy
+YWwgb3V0IHRoZXJlLiAgSSdkIHN1Z2dlc3QgeW91IHF1ZXJ5IHRoZSBkaXNjdXNzLWdudXJhZGlv
+IG1haWxpbmcgbGlzdCBhcyB3ZWxsLg0KDQpCdXQgZG9uJ3QgYmUgc3VycHJpc2VkIHRvIGZpbmQg
+dGhhdCBhbiBhcHBsaWNhdGlvbiB0aGF0IGZpdHMgcHJlY2lzZWx5IHdoYXQgeW91IHdhbnQgdG8g
+ZG8gZG9lc24ndCBleGlzdC4NCg0KQ29uc2lkZXIgdHdvIHRoaW5nczoNCg0KVGhlIHNldCB0aGF0
+IGNvdWxkIGJlIGRlc2NyaWJlZCBhcyAidXNlZnVsIHRoaW5ncyB5b3UgbWlnaHQgd2FudCB0byBk
+byB3aXRoIHJhZGlvIHRlY2hub2xvZ3kiDQpUaGUgc2V0IHRoYXQgY291bGQgYmUgZGVzY3JpYmVk
+IGFzICJ1c2VmdWwgdGhpbmdzIHlvdSBtaWdodCB3YW50IHRvIGRvIHdpdGggYSBjb21wdXRlciIN
+Cg0KQm90aCBvZiB0aG9zZSBzZXRzIGFyZSBzdGFnZ2VyaW5nbHkgbGFyZ2UuICBTbyBldmVuIGFu
+IGludGVyc2VjdGlvbiB3aWxsIGFsc28gYmUgc3RhZ2dlcmluZ2x5IGxhcmdlLiAgU28gaXQgc2hv
+dWxkIG5vdCBwZXJoYXBzIGJlIHN1cnByaXNpbmcgdGhhdA0KICBub3QgZXZlcnl0aGluZyB0aGF0
+IGNvdWxkIHBvc3NpYmx5IGJlIGRvbmUgd2l0aCB0aGlzIHRlY2hub2xvZ3kgaGFzIGFscmVhZHkg
+YmVlbiBpbnZlbnRlZCwgYW5kIGNvbnZlbmllbnRseSBwYWNrYWdlZC4NCg0KDQpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5n
+IGxpc3QNClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbT4NCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3Jw
+LXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
 
-Thank you very much for your answers which help me to see better the
-challenges. I intend to start with Wi-Fi signals. We have a lot of Wi-Fi
-networks around us and I want to show the occupation/availability of Wi-Fi
-channels. I also intend to use gnu-radio.
+--_000_SL2P216MB0331A8B6C694C76308417527931C0SL2P216MB0331KORP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-With best regards,
-Trang Nguyen
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
+YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
+bG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkhlbGxvIFRyYW5nOjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9u
+dC1mYW1pbHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6
+ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxl
+PSJmb250LWZhbWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9u
+dC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpUaGVuIHlvdSBjYW4gcHJvYmFi
+bHkgc3RhcnQgd2l0aCBlbmVyZ3kgZGV0ZWN0aW9uLiBKdXN0IHR1bmUgdG8gdGhlIGNoYW5uZWwg
+dGhhdCB5b3UgaW50ZW5kIHRvIGNoZWNrLCBjb2xsZWN0IHNhbXBsZXMsIHRha2UgRkZUIC0mZ3Q7
+IG1hZ14yIChvcHRpb25hbCksIHRoZW4gY2hlY2sgd2hldGhlciB0aGUgcG93ZXIgbGV2ZWwgb2Yg
+dGhlIGNoYW5uZWwgc3RheXMgYmVsb3cgc29tZSBsZXZlbCBmb3IgYSBwcmUtZGVmaW5lZCBsZW5n
+dGggb2YgdGltZS4gSWYNCiBpdCBzdGF5cyB1bmRlciB0aGF0IGxldmVsLCB5b3UgY2xhaW0gdGhh
+dCB0aGUgY2hhbm5lbCBpcyBhdmFpbGFibGUgKG9jY3VwaWVkIG90aGVyd2lzZSkuIE9uY2UgdGhh
+dCdzIGRvbmUsIHlvdSBjYW4gaG9wIHRvIHRoZSBuZXh0IGNoYW5uZWwgYW5kIHJlcGVhdCB0aGUg
+d2hvbGUgcHJvY2VzLiZuYnNwOzwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGli
+cmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6
+IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTog
+Q2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBj
+b2xvcjogcmdiKDAsIDAsIDApOyI+DQpKdXN0IHNlYXJjaCBzb21ldGhpbmcgbGlrZSAmcXVvdDt1
+c3JwIGVuZXJneSBkZXRlY3Rpb24mcXVvdDsgb3IgJnF1b3Q7dXNycCBjb2duaXRpdmUgcmFkaW8m
+cXVvdDsgb24geW91ciBzZWFyY2ggZW5naW5lcywgYW5kIHlvdSB3aWxsIHNlZSBzb21lIGFydGlj
+bGVzIHJlZ2FyZGluZyB0aGlzLjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGli
+cmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6
+IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTog
+Q2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBj
+b2xvcjogcmdiKDAsIDAsIDApOyI+DQpQbGVhc2Ugbm90ZSB0aGF0IHRoaXMgaXMgcHJvYmFibHkg
+bm90IGFuIGFjY2VwdGFibGUgcHJhY3RpY2Ugb24gc29tZSBiYW5kcy4gRm9yIFdpLUZpIGJhbmRz
+LCB0aGlzIGlzIHByb2JhYmx5IGFjY2VwdGFibGUgKGJlY2F1c2UgdGhvc2UgYmFuZHMgYXJlIGlu
+dGVuZGVkIGZvciB1bmxpY2Vuc2VkIHVzZXMgYW55d2F5KS4mbmJzcDs8L2Rpdj4NCjxkaXYgc3R5
+bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBm
+b250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRp
+diBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2Vy
+aWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KUmVnYXJkcyw8L2Rp
+dj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBz
+YW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkt5ZW9u
+ZyBTdSBTaGluPC9kaXY+DQo8ZGl2IGlkPSJhcHBlbmRvbnNlbmQiPjwvZGl2Pg0KPGhyIHN0eWxl
+PSJkaXNwbGF5OmlubGluZS1ibG9jazt3aWR0aDo5OCUiIHRhYmluZGV4PSItMSI+DQo8ZGl2IGlk
+PSJkaXZScGx5RndkTXNnIiBkaXI9Imx0ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJp
+ZiIgc3R5bGU9ImZvbnQtc2l6ZToxMXB0IiBjb2xvcj0iIzAwMDAwMCI+PGI+67O064K4IOyCrOue
+jDo8L2I+IE15IFN0IHZpYSBVU1JQLXVzZXJzICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bSZndDsg64yA7IugIFVTUlAtdXNlcnMgJmx0O3VzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1
+cy5jb20mZ3Q7PGJyPg0KPGI+67O064K4IOuCoOynnDo8L2I+IDIwMjDrhYQgMTDsm5QgMjHsnbwg
+7IiY7JqU7J28IOyYpOyghCA3OjU3PGJyPg0KPGI+67Cb64qUIOyCrOuejDo8L2I+IE1hcmN1cyBE
+LiBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+7LC47KGwOjwv
+Yj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gJmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tJmd0Ozxicj4NCjxiPuygnOuqqTo8L2I+IFJlOiBbVVNSUC11c2Vyc10gc3BlY3RydW0gYXZh
+aWxhYmlsaXR5IG1lYXN1cmVtZW50IHdpdGggdXNycDwvZm9udD4NCjxkaXY+Jm5ic3A7PC9kaXY+
+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXY+RGVhciBLeWVvbmcgYW5kIE1h
+cmN1cyw8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlRoYW5rIHlvdSB2ZXJ5IG11Y2gg
+Zm9yIHlvdXIgYW5zd2VycyB3aGljaCBoZWxwIG1lIHRvIHNlZSBiZXR0ZXIgdGhlIGNoYWxsZW5n
+ZXMuIEkgaW50ZW5kIHRvIHN0YXJ0IHdpdGggV2ktRmkgc2lnbmFscy4gV2UgaGF2ZSBhIGxvdCBv
+ZiBXaS1GaSBuZXR3b3JrcyBhcm91bmQgdXMgYW5kIEkgd2FudCB0byBzaG93IHRoZSBvY2N1cGF0
+aW9uL2F2YWlsYWJpbGl0eSBvZiBXaS1GaSBjaGFubmVscy4gSSBhbHNvIGludGVuZCB0byB1c2Ug
+Z251LXJhZGlvLjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+V2l0aCBiZXN0IHJlZ2Fy
+ZHMsPC9kaXY+DQo8ZGl2PlRyYW5nIE5ndXllbjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxk
+aXYgY2xhc3M9InhfZ21haWxfcXVvdGUiPg0KPGRpdiBkaXI9Imx0ciIgY2xhc3M9InhfZ21haWxf
+YXR0ciI+TGUmbmJzcDttYXIuIDIwIG9jdC4gMjAyMCDDoCZuYnNwOzA3OjM3LCBNYXJjdXMgRC4g
+TGVlY2ggdmlhIFVTUlAtdXNlcnMgJmx0OzxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9h
+PiZndDsgYSDDqWNyaXQmbmJzcDs6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBjbGFzcz0ieF9n
+bWFpbF9xdW90ZSIgc3R5bGU9Im1hcmdpbjowcHggMHB4IDBweCAwLjhleDsgYm9yZGVyLWxlZnQ6
+MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7IHBhZGRpbmctbGVmdDoxZXgiPg0KPGRpdiBiZ2Nv
+bG9yPSIjRkZGRkZGIj4NCjxkaXY+T24gMTAvMjAvMjAyMCAwMTowNSBBTSwgS3llb25nIFN1IFNo
+aW4gdmlhIFVTUlAtdXNlcnMgd3JvdGU6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90ZSB0eXBlPSJj
+aXRlIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNh
+bnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkhlbGxvIFRyYW5n
+OjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Es
+c2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPC9k
+aXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5z
+LXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpJdCBkZXBlbmRzIG9u
+IHlvdXIgYXBwbGljYXRpb25zLiBVU1JQcyBDQU4gYmUgdXNlZCB0byBzY2FuIGFuZCBtYXAgdGhl
+IHdpcmVsZXNzIHNwZWN0cnVtLCBidXQgeW91IHdpbGwgaGF2ZSB0byBkZXRlcm1pbmUgd2hldGhl
+ciB0aGUgc3BlY3RydW0gaXMgZW1wdHkgb3Igbm90LCBhbmQgaXQgaXMgbm90IGEgdHJpdmlhbCBx
+dWVzdGlvbi4gRm9yIGFuIGV4YW1wbGUsIHNpZ25hbHMgZnJvbSBzYXRlbGxpdGVzIGFuZCBzcGFj
+ZWNyYWZ0cyBhcmUgb2Z0ZW4NCiBiZWxvdyB0aGUgdGhlcm1hbCBub2lzZSwgc28geW91IHdpbGwg
+bmVlZCB0byB1c2Ugc3BlY2lhbCBkaXNoIGFudGVubmFzIGFuZC9vciBjb3JyZWxhdGUgdGhlIHNp
+Z25hbHMgd2l0aCBrbm93biBzZXF1ZW5jZXMgaW4gb3JkZXIgdG8gZGV0ZWN0IHRoZW0uIEFsc28s
+IFVTUlAgQjIwMC9CMjEwIGFyZSBub3QgaGlnaC1lbmQgc3BlY3RydW0gYW5hbHl6ZXJzLCBzbyB0
+aGV5IG1heSBzaG93IHlvdSBzb21lIHNwdXJpb3VzIHNpZ25hbHMgKHBvc3NpYmxlDQogZmFsc2Ug
+cG9zaXRpdmVzKS48L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWws
+SGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4N
+Cjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2
+ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KU28s
+IHllcywgaXQgaXMgcG9zc2libGUsIGJ1dCBJIGRvbid0IGtub3cgd2hldGhlciB0aGV5IGFyZSBz
+dWl0YWJsZSBmb3IgeW91ciB1c2UgY2FzZXMuPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250
+LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJw
+dDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFt
+aWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBj
+b2xvcjpyZ2IoMCwwLDApIj4NClJlZ2FyZHMsPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWls
+eTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29s
+b3I6cmdiKDAsMCwwKSI+DQpLeWVvbmcgU3UgU2hpbjxicj4NCjwvZGl2Pg0KPGhyIHN0eWxlPSJk
+aXNwbGF5OmlubGluZS1ibG9jazsgd2lkdGg6OTglIj4NCjxicj4NCjwvYmxvY2txdW90ZT4NClNv
+bWUgZnVydGhlciB3aXNkb20uJm5ic3A7IFNEUnMgYXJlICpjb21wb25lbnRzKiBpbiBhbiBvdmVy
+YWxsIGVuZ2luZWVyZWQgUkYgKnN5c3RlbSBhbmQgYXBwbGljYXRpb24qLiZuYnNwOyBUaGV5IGFy
+ZW4ndCAmcXVvdDtib3JuJnF1b3Q7IGtub3dpbmcgeW91cjxicj4NCiZuYnNwOyBwYXJ0aWN1bGFy
+IGFwcGxpY2F0aW9uLjxicj4NCjxicj4NCllvdSdsbCBuZWVkIHNvbWUgbm9uLXRyaXZpYWwga25v
+d2xlZGdlIG9mIHNvZnR3YXJlIGRldmVsb3BtZW50IG1ldGhvZG9sb2dpZXMsIERTUCBrbm93bGVk
+Z2UsIGFuZCBrbm93bGVkZ2Ugb2YgcmFkaW8gYW5kIGVsZWN0cm9uaWNzPGJyPg0KJm5ic3A7IHRv
+IGRldmVsb3AgYW4gYXBwbGljYXRpb24gdGhhdCBzdWl0cyB5b3VyIG5lZWRzLjxicj4NCjxicj4N
+Ck5vdywgdGhlcmUgYXJlIGxvdHMgb2YgYXBwbGljYXRpb25zIGZvciBTRFJzIGluIGdlbmVyYWwg
+b3V0IHRoZXJlLiZuYnNwOyBJJ2Qgc3VnZ2VzdCB5b3UgcXVlcnkgdGhlIGRpc2N1c3MtZ251cmFk
+aW8gbWFpbGluZyBsaXN0IGFzIHdlbGwuPGJyPg0KPGJyPg0KQnV0IGRvbid0IGJlIHN1cnByaXNl
+ZCB0byBmaW5kIHRoYXQgYW4gYXBwbGljYXRpb24gdGhhdCBmaXRzIHByZWNpc2VseSB3aGF0IHlv
+dSB3YW50IHRvIGRvIGRvZXNuJ3QgZXhpc3QuPGJyPg0KPGJyPg0KQ29uc2lkZXIgdHdvIHRoaW5n
+czo8YnI+DQo8YnI+DQpUaGUgc2V0IHRoYXQgY291bGQgYmUgZGVzY3JpYmVkIGFzICZxdW90O3Vz
+ZWZ1bCB0aGluZ3MgeW91IG1pZ2h0IHdhbnQgdG8gZG8gd2l0aCByYWRpbyB0ZWNobm9sb2d5JnF1
+b3Q7PGJyPg0KVGhlIHNldCB0aGF0IGNvdWxkIGJlIGRlc2NyaWJlZCBhcyAmcXVvdDt1c2VmdWwg
+dGhpbmdzIHlvdSBtaWdodCB3YW50IHRvIGRvIHdpdGggYSBjb21wdXRlciZxdW90Ozxicj4NCjxi
+cj4NCkJvdGggb2YgdGhvc2Ugc2V0cyBhcmUgc3RhZ2dlcmluZ2x5IGxhcmdlLiZuYnNwOyBTbyBl
+dmVuIGFuIGludGVyc2VjdGlvbiB3aWxsIGFsc28gYmUgc3RhZ2dlcmluZ2x5IGxhcmdlLiZuYnNw
+OyBTbyBpdCBzaG91bGQgbm90IHBlcmhhcHMgYmUgc3VycHJpc2luZyB0aGF0PGJyPg0KJm5ic3A7
+IG5vdCBldmVyeXRoaW5nIHRoYXQgY291bGQgcG9zc2libHkgYmUgZG9uZSB3aXRoIHRoaXMgdGVj
+aG5vbG9neSBoYXMgYWxyZWFkeSBiZWVuIGludmVudGVkLCBhbmQgY29udmVuaWVudGx5IHBhY2th
+Z2VkLjxicj4NCjxicj4NCjxicj4NCjwvZGl2Pg0KX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX188YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdDxicj4NCjxh
+IGhyZWY9Im1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsi
+PlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjxhIGhyZWY9Imh0dHA6Ly9saXN0
+cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbSIg
+cmVsPSJub3JlZmVycmVyIiB0YXJnZXQ9Il9ibGFuayI+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9t
+YWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjwvYmxv
+Y2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-Le mar. 20 oct. 2020 =C3=A0 07:37, Marcus D. Leech via USRP-users <
-usrp-users@lists.ettus.com> a =C3=A9crit :
-
-> On 10/20/2020 01:05 AM, Kyeong Su Shin via USRP-users wrote:
->
-> Hello Trang:
->
-> It depends on your applications. USRPs CAN be used to scan and map the
-> wireless spectrum, but you will have to determine whether the spectrum is
-> empty or not, and it is not a trivial question. For an example, signals
-> from satellites and spacecrafts are often below the thermal noise, so you
-> will need to use special dish antennas and/or correlate the signals with
-> known sequences in order to detect them. Also, USRP B200/B210 are not
-> high-end spectrum analyzers, so they may show you some spurious signals
-> (possible false positives).
->
-> So, yes, it is possible, but I don't know whether they are suitable for
-> your use cases.
->
-> Regards,
-> Kyeong Su Shin
-> ------------------------------
->
-> Some further wisdom.  SDRs are *components* in an overall engineered RF
-> *system and application*.  They aren't "born" knowing your
->   particular application.
->
-> You'll need some non-trivial knowledge of software development
-> methodologies, DSP knowledge, and knowledge of radio and electronics
->   to develop an application that suits your needs.
->
-> Now, there are lots of applications for SDRs in general out there.  I'd
-> suggest you query the discuss-gnuradio mailing list as well.
->
-> But don't be surprised to find that an application that fits precisely
-> what you want to do doesn't exist.
->
-> Consider two things:
->
-> The set that could be described as "useful things you might want to do
-> with radio technology"
-> The set that could be described as "useful things you might want to do
-> with a computer"
->
-> Both of those sets are staggeringly large.  So even an intersection will
-> also be staggeringly large.  So it should not perhaps be surprising that
->   not everything that could possibly be done with this technology has
-> already been invented, and conveniently packaged.
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000001e706205b2222a06
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Dear Kyeong and Marcus,</div><div><br></div><div>Than=
-k you very much for your answers which help me to see better the challenges=
-. I intend to start with Wi-Fi signals. We have a lot of Wi-Fi networks aro=
-und us and I want to show the occupation/availability of Wi-Fi channels. I =
-also intend to use gnu-radio.</div><div><br></div><div>With best regards,</=
-div><div>Trang Nguyen</div><div><br></div><div class=3D"gmail_quote"><div d=
-ir=3D"ltr" class=3D"gmail_attr">Le=C2=A0mar. 20 oct. 2020 =C3=A0=C2=A007:37=
-, Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ett=
-us.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; a =C3=A9crit=
-=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <div>On 10/20/2020 01:05 AM, Kyeong Su Shin
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-     =20
-      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
-e:12pt;color:rgb(0,0,0)">
-        Hello Trang:</div>
-      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
-e:12pt;color:rgb(0,0,0)">
-        <br>
-      </div>
-      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
-e:12pt;color:rgb(0,0,0)">
-        It depends on your applications. USRPs CAN be used to scan and
-        map the wireless spectrum, but you will have to determine
-        whether the spectrum is empty or not, and it is not a trivial
-        question. For an example, signals from satellites and
-        spacecrafts are often below the thermal noise, so you will need
-        to use special dish antennas and/or correlate the signals with
-        known sequences in order to detect them. Also, USRP B200/B210
-        are not high-end spectrum analyzers, so they may show you some
-        spurious signals (possible false positives).</div>
-      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
-e:12pt;color:rgb(0,0,0)">
-        <br>
-      </div>
-      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
-e:12pt;color:rgb(0,0,0)">
-        So, yes, it is possible, but I don&#39;t know whether they are
-        suitable for your use cases.<br>
-      </div>
-      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
-e:12pt;color:rgb(0,0,0)">
-        <br>
-      </div>
-      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
-e:12pt;color:rgb(0,0,0)">
-        Regards,</div>
-      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
-e:12pt;color:rgb(0,0,0)">
-        Kyeong Su Shin<br>
-      </div>
-      <hr style=3D"display:inline-block;width:98%"><br>
-    </blockquote>
-    Some further wisdom.=C2=A0 SDRs are *components* in an overall engineer=
-ed
-    RF *system and application*.=C2=A0 They aren&#39;t &quot;born&quot; kno=
-wing your<br>
-    =C2=A0 particular application.<br>
-    <br>
-    You&#39;ll need some non-trivial knowledge of software development
-    methodologies, DSP knowledge, and knowledge of radio and electronics<br=
->
-    =C2=A0 to develop an application that suits your needs.<br>
-    <br>
-    Now, there are lots of applications for SDRs in general out there.=C2=
-=A0
-    I&#39;d suggest you query the discuss-gnuradio mailing list as well.<br=
->
-    <br>
-    But don&#39;t be surprised to find that an application that fits
-    precisely what you want to do doesn&#39;t exist.<br>
-    <br>
-    Consider two things:<br>
-    <br>
-    The set that could be described as &quot;useful things you might want t=
-o
-    do with radio technology&quot;<br>
-    The set that could be described as &quot;useful things you might want t=
-o
-    do with a computer&quot;<br>
-    <br>
-    Both of those sets are staggeringly large.=C2=A0 So even an intersectio=
-n
-    will also be staggeringly large.=C2=A0 So it should not perhaps be
-    surprising that<br>
-    =C2=A0 not everything that could possibly be done with this technology
-    has already been invented, and conveniently packaged.<br>
-    <br>
-    <br>
-  </div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-
---0000000000001e706205b2222a06--
+--_000_SL2P216MB0331A8B6C694C76308417527931C0SL2P216MB0331KORP_--
 
 
---===============5515701515339168328==
+--===============6387392444697761066==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -275,5 +328,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5515701515339168328==--
+--===============6387392444697761066==--
 
