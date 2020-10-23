@@ -2,50 +2,41 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA34B296857
-	for <lists+usrp-users@lfdr.de>; Fri, 23 Oct 2020 03:41:10 +0200 (CEST)
-Received: from [::1] (port=32896 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BB852974CC
+	for <lists+usrp-users@lfdr.de>; Fri, 23 Oct 2020 18:42:35 +0200 (CEST)
+Received: from [::1] (port=40140 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kVm4l-00067y-Mz; Thu, 22 Oct 2020 21:41:03 -0400
-Received: from mail-vs1-f46.google.com ([209.85.217.46]:43601)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <koncept1@gmail.com>) id 1kVm4i-00063A-Fz
- for usrp-users@lists.ettus.com; Thu, 22 Oct 2020 21:41:00 -0400
-Received: by mail-vs1-f46.google.com with SMTP id d19so10943vso.10
- for <usrp-users@lists.ettus.com>; Thu, 22 Oct 2020 18:40:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=YrZp4sVkbbPWmVzZyDwgXxaGCeHC2GawvjU+08LZN0c=;
- b=A4yPqzfzKxuEgSm28YVWfrmq5ePXeGhDJoq8jMOMpL3Ui6ArpHR8ou6yFOK+kez8LE
- dw4RUXefnO429UscvCySO6y/oUuZLYYXWapEqwLagAyz2zLmo7L6S00072eH84e3MkMO
- XxVoiNHZNtVtkNTTXl8BNIuSs6koUj0zpXNTg7ovTwOMeINzu2+4TZPdX0+q6SrkdW2Q
- dkjay0tEv/lbB5E/1Jt/vLrkgP38z3nmkvgB1KO1x0apXU+ETWa6CXH26OF9bxAdtenH
- HCY9SB1YWtpOMhi9q81iFdSl17wIeWjq7Q2T9F/nym+z1uGSyp5ac0Yi+hiemXOCYjVt
- WusQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=YrZp4sVkbbPWmVzZyDwgXxaGCeHC2GawvjU+08LZN0c=;
- b=hVuwOKhjliulx5uIsaxTzx4fitk2CDiT9HDThZ7QQZKiyZZkSO71SG5auK1VGmL0N0
- 8cc/j1Cb756A0JxWuiRvfZrqlfWyinOvwY5rDzgJulJp/urdei8ZK6QPghw1yq5KyuZk
- VEdjbAI3JIJzMULrB8eRH2aiF9tdKL6XFhYmkRssq0Uu6kJ2JTesg4LQp29/bIOcd23F
- 9MmjogwRrhCE16OAn6lMJFrWBBf31LQZOCz0xdO7ndborlj2ymtLkFEBAdsryypVgOEP
- Q/kggJ4ALmiaRvrv3+DGOEm2UInoF2iCCiTcZwRI6XoX6WIsdxc1YeO05UT/xNTmWVJ1
- 1eUw==
-X-Gm-Message-State: AOAM530d7Pyr23E4CpmY5t64B+hPONfwFfXq+y8NAZYVtrRvK5ipewC7
- nrR405NpgpRcswmVSomSajUc/Zdsxz86e4uu016aheFinLv76g==
-X-Google-Smtp-Source: ABdhPJzfQ+6KFL9s3/x3c/ENbIoA7jVCzuMLszqbhTgQvIhJ62euDqLEzW4KoYRlVtiBxOFtUq47e4xGkTQQ8TvP2Q8=
-X-Received: by 2002:a67:1e02:: with SMTP id e2mr3626231vse.59.1603417219509;
- Thu, 22 Oct 2020 18:40:19 -0700 (PDT)
+	id 1kW098-0001yg-Bk; Fri, 23 Oct 2020 12:42:30 -0400
+Received: from smtprelay0196.hostedemail.com ([216.40.44.196]:37458
+ helo=smtprelay.hostedemail.com)
+ by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
+ (Exim 4.93) (envelope-from <jon@beniston.com>) id 1kW094-0001ro-VE
+ for usrp-users@lists.ettus.com; Fri, 23 Oct 2020 12:42:26 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay02.hostedemail.com (Postfix) with ESMTP id 2BDE81F1B
+ for <usrp-users@lists.ettus.com>; Fri, 23 Oct 2020 16:41:46 +0000 (UTC)
+X-Session-Marker: 6A6F6E4062656E6973746F6E2E636F6D
+X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, jon@beniston.com, ,
+ RULES_HIT:10:41:355:379:541:542:988:989:1155:1260:1277:1311:1313:1314:1345:1381:1437:1515:1516:1518:1534:1538:1567:1587:1593:1594:1711:1714:1730:1747:1777:1792:2393:2559:2562:2912:3138:3139:3140:3141:3142:3690:3865:3866:3867:3868:3871:3872:3874:4037:4184:4250:4362:5007:6261:6670:10004:10400:10848:11026:11658:11914:12296:12297:12760:13069:13071:13311:13357:13439:14180:21060:21080:21627:21990:30054,
+ 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
+ DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
+ LFtime:1, LUA_SUMMARY:none
+X-HE-Tag: thing37_47031d92725b
+X-Filterd-Recvd-Size: 1092
+Received: from jonpc (cpc98568-croy24-2-0-cust213.19-2.cable.virginm.net
+ [82.34.249.214]) (Authenticated sender: jon@beniston.com)
+ by omf17.hostedemail.com (Postfix) with ESMTPA
+ for <usrp-users@lists.ettus.com>; Fri, 23 Oct 2020 16:41:45 +0000 (UTC)
+To: <usrp-users@lists.ettus.com>
+Date: Fri, 23 Oct 2020 17:41:44 +0100
+Message-ID: <011c01d6a95b$6570aed0$30520c70$@beniston.com>
 MIME-Version: 1.0
-References: <mailman.48.1602950402.29849.usrp-users_lists.ettus.com@lists.ettus.com>
-In-Reply-To: <mailman.48.1602950402.29849.usrp-users_lists.ettus.com@lists.ettus.com>
-Date: Thu, 22 Oct 2020 21:40:08 -0400
-Message-ID: <CAKx8PBhSXHjXvg_HPKoJEOVAf4HzxK1ez-HhkXjVd8hUM3k-WQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] UHD 4.0.0.0 (Marcus D Leech)
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdapWiI68MUt16TrRfC00jNE2UuWBQ==
+Content-Language: en-gb
+Subject: [USRP-users] B210 set_tx_bandwidth and LO leakage
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -57,9 +48,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ben Magistro via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ben Magistro <koncept1@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4900553357249306771=="
+From: Jon Beniston via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jon Beniston <jon@beniston.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,44 +65,21 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4900553357249306771==
-Content-Type: multipart/alternative; boundary="000000000000cbb41f05b24ca91c"
+Hi,
 
---000000000000cbb41f05b24ca91c
-Content-Type: text/plain; charset="UTF-8"
+Would anyone please be able to explain the interaction between
+set_tx_bandwidth and LO/carriage leakage for the B210? 
 
-There is an image out there with UHD 4.0.0.0 in it but I'm not sure if it's
-ready for prime time yet.  I stumbled upon it while looking for a different
-e310 image.  I am actually using this image with the e310 now, locally, but
-so far it has been working for what I needed.
+It seems that the device meets the spec of -50dBc if  tx_bandwidth is set to
+a value greater than 10MHz or lower than 1MHz. However, at settings of
+around 2 - 6MHz, with max gain and IQ being driven to zero, I measure the
+carrier at around -1 to -2dBm!
 
-https://files.ettus.com/binaries/cache/e3xx/meta-ettus-v4.0.0.0/
+Thanks,
+Jon
 
---000000000000cbb41f05b24ca91c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">There is an image out there with UHD 4.0.0.0 in it but I&#=
-39;m not sure if it&#39;s ready for prime time yet.=C2=A0 I stumbled upon i=
-t while looking for a different e310 image.=C2=A0 I am actually using this =
-image with the e310 now, locally, but so far it has been working for what I=
- needed.<div><br></div><div><a href=3D"https://files.ettus.com/binaries/cac=
-he/e3xx/meta-ettus-v4.0.0.0/">https://files.ettus.com/binaries/cache/e3xx/m=
-eta-ettus-v4.0.0.0/</a><br></div></div>
-
---000000000000cbb41f05b24ca91c--
-
-
---===============4900553357249306771==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4900553357249306771==--
-
