@@ -2,64 +2,46 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66655299360
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Oct 2020 18:08:22 +0100 (CET)
-Received: from [::1] (port=41644 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85A8D29940C
+	for <lists+usrp-users@lfdr.de>; Mon, 26 Oct 2020 18:40:32 +0100 (CET)
+Received: from [::1] (port=41894 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kX5ym-0008Ei-4b; Mon, 26 Oct 2020 13:08:20 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:42903)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1kX5yi-00084G-Ln
- for usrp-users@lists.ettus.com; Mon, 26 Oct 2020 13:08:16 -0400
-Received: by mail-ed1-f66.google.com with SMTP id v19so10187144edx.9
- for <usrp-users@lists.ettus.com>; Mon, 26 Oct 2020 10:07:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-transfer-encoding:content-language;
- bh=IUVURclu4J5SqNxjPdjQP9bMIrQuMDA89LCMPcceyWQ=;
- b=MGAmVuhLJAQ3kueWX5S6AglgTRt1CB1P09ASYTtqIehviV50XDv2QQzJjidG7e1C3k
- YYM4ME7VvollSP2N++luwPJc+F8g/67/+0DqkaNi4PhI7obitQI/bV8nItiMjEdA5Znv
- RBVxQbyxxn8X3EK3foN+rpyw7pPdtx2BlAesiCS3NjX1yG0HrP5f1TkSkNJHznPDle/0
- QOlNRTp61iQkwttwCQuAZByfWXxIPzLckO8V2ulHys/hbfSE2ekOrAbZVrqEaly2OJ/P
- h2ZryzoeqaE7HT+lvlRWTdIkYUFZsDa7AhTu8Vpx9xlPHYf9dvlM94o4d7DdDPsobIqY
- f/BA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=IUVURclu4J5SqNxjPdjQP9bMIrQuMDA89LCMPcceyWQ=;
- b=p7UXcS44gItifmiJM2uKBtmVx+tGCMRmyVuCGYU/JDqeRImKEf27GX49yI7D3aJbpx
- 6mg51cA6dEFbHLaU0b5C3YO0ja+fGi6EoZIwIVujuDWftkh6hZFIBLlnDMTx1SAtl146
- m4dzOJtW+iYTYWQcBGgpHKdUoThCOhOGOqMkQKGRxwESgB5jm5JbpOdoy/FhKPvhzsNm
- B1DW5bDU6lT1izq9M1ByoB3sr8WcKnrT+6jXFPEJboTCdHnCuGGmKrxtLdM0+kIybdo4
- ytWC88JOUY1GM+zRYNXJ9H0/QdCMtKVXU40fgg00eN7MdsdHoQOrhxsnH7Re8kNDheBE
- JgWw==
-X-Gm-Message-State: AOAM530/YMF/CplL7zJs2WtQMh8glMv7eLyIBFpWHNXQ8pBpH5FXzwb1
- RJ0FCfJt0OrziUD6wRXV1ATdXADem8Xop8BY
-X-Google-Smtp-Source: ABdhPJxZS1mmrr8EaJVl6eD8OjOf5wG3gEHDNK3aVIWrrT+Hqfo+gVOONr8y3sab9yFSH+g/kMSrcA==
-X-Received: by 2002:a05:6402:7c8:: with SMTP id
- u8mr17065154edy.153.1603732055210; 
- Mon, 26 Oct 2020 10:07:35 -0700 (PDT)
-Received: from [192.168.128.8]
- (HSI-KBW-46-223-162-176.hsi.kabel-badenwuerttemberg.de. [46.223.162.176])
- by smtp.gmail.com with ESMTPSA id se12sm6230739ejb.37.2020.10.26.10.07.34
- for <usrp-users@lists.ettus.com>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 26 Oct 2020 10:07:34 -0700 (PDT)
-To: usrp-users@lists.ettus.com
-References: <CAE_Rk56YtB8XtRz6m+OSksU6a+VjdeEDS=1s=8-onsEkFz8eTA@mail.gmail.com>
-Message-ID: <58eff0f9-cdca-55fc-fdb8-266a678bc86d@ettus.com>
-Date: Mon, 26 Oct 2020 18:07:33 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
-MIME-Version: 1.0
-In-Reply-To: <CAE_Rk56YtB8XtRz6m+OSksU6a+VjdeEDS=1s=8-onsEkFz8eTA@mail.gmail.com>
+	id 1kX6Tt-0001cq-RT; Mon, 26 Oct 2020 13:40:29 -0400
+Received: from exedge04.gtri.gatech.edu ([130.207.193.244]:3253)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <Jeff.Hodges@gtri.gatech.edu>)
+ id 1kX6Tq-0001TV-Di
+ for usrp-users@lists.ettus.com; Mon, 26 Oct 2020 13:40:26 -0400
 Content-Language: en-US
-Subject: Re: [USRP-users] low send data rate - x310- VM
+DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=exedge04;
+ c=simple/simple; t=1603733985; h=from:subject:to:date:message-id;
+ bh=ymZkleDsj01JdeWhAN3n7XvNBc5ycKe3dp4ALlByxw8=;
+ b=WT0vm293DCbdHcX1tThPEdbFcugbNmluo8vC3KnqQUm4ZnGygZPupd4+OoNddM/9NIakA7CwKQn
+ vIE27p5uH9KRQQ3KVwyj3rpxRZN2nxH6GOZNBPV0vETrp6NX5Jhvu1ShMmadgX+Jk/k3AS3Mkoqsf
+ ZjLw4nibaCpx6NTEvIw=
+Received: from tybee.core.gtri.org (10.41.1.49) by exedge04.gtri.org
+ (130.207.193.244) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Mon, 26 Oct
+ 2020 13:39:45 -0400
+Received: from ocracoke.core.gtri.org (10.41.22.71) by tybee.core.gtri.org
+ (10.41.1.49) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2106.2; Mon, 26
+ Oct 2020 13:39:45 -0400
+Received: from ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf]) by
+ ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf%13]) with mapi id
+ 15.01.2106.003; Mon, 26 Oct 2020 13:39:45 -0400
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: uhd tuning with tagged stream commands
+Thread-Index: AQHWq7s4nCPWJPKpdkaD7mR0jQ9wXQ==
+Date: Mon, 26 Oct 2020 17:39:45 +0000
+Message-ID: <2e4c47914caf465a8818487b821abf0d@gtri.gatech.edu>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.41.0.30]
+MIME-Version: 1.0
+Subject: [USRP-users] uhd tuning with tagged stream commands
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -71,11 +53,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: "Hodges, Jeff via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
+Content-Type: multipart/mixed; boundary="===============7768526819287399217=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,37 +69,121 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Your virtualizer needs to support Jumbo frames for any reasonable packet
-rate. You saying the MTU being at most 1500 means that either your
-network hardware can't do Jumbo frames (unlikely, in 2020), or that
-you're not passing through your network properly into the VM.
+--===============7768526819287399217==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_2e4c47914caf465a8818487b821abf0dgtrigatechedu_"
 
-You'll want to investigate things like virtualized network cards;
-especially, you do **not** want to do NAT between your VM and your Host.
+--_000_2e4c47914caf465a8818487b821abf0dgtrigatechedu_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 23.10.20 19:07, Daniel Ozer via USRP-users wrote:
-> Hi everyone,
-> I'm working on usrp x310 .
-> After few experiment with the system, i tried to send data from file source
-> (gnuradio) to my own OOT rfnoc block that do nothing (tready is always on
-> '1'  and one register that count axi_stream data valid) i saw that the
-> average send rate to the FPGA is 320KB which is low .
-> The packet size is on the maximum MTU 1500 .
-> What can I do to make the Software send data faster ?
-> my setup is :
-> usrp x310 connected to a switch(with 1Gb ethernet ) and I'm working on
-> linux-vm( VMWARE) that is on a windows server that is connected to the same
-> switch .
->
-> thanks in advanced
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+I'm thinking that timed tune commands will not work on tagged streams in bu=
+rst mode. Is that correct? I've been looking at the USRP sink block code an=
+d it supports the timed commands on the stream, but from reading a recent t=
+hread, it seems like this will not work because of how the DUC derives it's=
+ time:
+
+
+https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-March/061=
+611.html
+
+
+This thread says DUC derives it's sense of time from the samples, and if th=
+e samples are not streaming, the DUC will not keep track of time. Therefore=
+, the timed command will not be executed.
+
+
+For example, I set the tx_time tag to 1.0 second and the burst is 0.05 sec =
+long. Then I place the tuning command tag on the last sample of the burst w=
+ith a tune time of 1.05.  The radio does not actually tune until I transmit=
+ the next burst at 1.1 sec (0.05 sec dead time) and then it tunes at approx=
+imately 0.007 sec into the middle of that burst.
+
+
+I can try to implement tuning during the dead time by making calls directly=
+ to the C++ api at the appropriate time in a separate thread, but before I =
+do that I just want to confirm that this burst time-tag method will not wor=
+k.
+
+
+Thanks in advance,
+
+
+Jeff
+
+--_000_2e4c47914caf465a8818487b821abf0dgtrigatechedu_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p><span>I'm thinking that timed tune commands will not work on tagged stre=
+ams in burst mode. Is that correct? I've been looking at the USRP sink bloc=
+k code and it supports the timed commands on the stream, but from reading a=
+ recent thread, it seems like this
+ will not work because of how the DUC derives it's time:</span></p>
+<p><br>
+</p>
+<p><a href=3D"https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/=
+2020-March/061611.html" class=3D"OWAAutoLink" id=3D"LPlnk705789" previewrem=
+oved=3D"true">https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/=
+2020-March/061611.html</a><br>
+</p>
+<p><br>
+</p>
+<p><span><span>This thread says DUC derives it's sense of time from the sam=
+ples, and if the samples are not streaming, the DUC will not keep track of =
+time. Therefore, the timed command will not be executed.</span><br>
+</span></p>
+<p><span><br>
+</span></p>
+<p>For example, I set the tx_time tag to 1.0 second and the burst is 0.05 s=
+ec long. Then I place the tuning command tag on the last sample of the burs=
+t with a tune time of 1.05.&nbsp; The radio does not actually tune until I =
+transmit the next burst at 1.1 sec (0.05
+ sec dead time) and then it tunes at approximately 0.007 sec into the middl=
+e of that burst.</p>
+<p><br>
+</p>
+<p>I can try to implement tuning during the dead time by making calls direc=
+tly to the C&#43;&#43; api at the appropriate time in a separate thread, bu=
+t before I do that I just want to confirm that this burst time-tag method w=
+ill not work.<br>
+</p>
+<p><br>
+</p>
+<p>Thanks in advance,<br>
+</p>
+<p><br>
+</p>
+<p>Jeff<br>
+</p>
+</div>
+</body>
+</html>
+
+--_000_2e4c47914caf465a8818487b821abf0dgtrigatechedu_--
+
+
+--===============7768526819287399217==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7768526819287399217==--
+
