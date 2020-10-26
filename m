@@ -2,48 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A593299547
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Oct 2020 19:27:44 +0100 (CET)
-Received: from [::1] (port=42432 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC360299614
+	for <lists+usrp-users@lfdr.de>; Mon, 26 Oct 2020 19:55:32 +0100 (CET)
+Received: from [::1] (port=42612 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kX7Db-0005Ms-6O; Mon, 26 Oct 2020 14:27:43 -0400
-Received: from exedge04.gtri.gatech.edu ([130.207.193.244]:3862)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Jeff.Hodges@gtri.gatech.edu>)
- id 1kX7DX-0005Gg-Ls
- for usrp-users@lists.ettus.com; Mon, 26 Oct 2020 14:27:39 -0400
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=exedge04;
- c=simple/simple; t=1603736819; h=from:subject:to:date:message-id;
- bh=U2mRm+3wnPjM52swPMC8QtS6ujGQH7fcfTNqoQGv6nU=;
- b=IvE/4aZpaSGxq+Y14ejJawFxZnC1qeDZjotI71nyaw9Aj54DxzejWPsWHZdY9oDM+2vFISwGn51
- xeZ/Zc/q5+izCsv4iLwl5n0iOhCYXXtk3Qn/L2s0KTtSVFmUvSd450KKUdMc9TqyNu/4pY518UW95
- GODoJTl+syL+7TU61fU=
-Received: from parris.core.gtri.org (10.41.31.72) by exedge04.gtri.org
- (130.207.193.244) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Mon, 26 Oct
- 2020 14:26:59 -0400
-Received: from ocracoke.core.gtri.org (10.41.22.71) by parris.core.gtri.org
- (10.41.31.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2106.2; Mon, 26
- Oct 2020 14:26:58 -0400
-Received: from ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf]) by
- ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf%13]) with mapi id
- 15.01.2106.003; Mon, 26 Oct 2020 14:26:58 -0400
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] uhd tuning with tagged stream commands
-Thread-Index: AQHWq7s4nCPWJPKpdkaD7mR0jQ9wXamqazWA///DLF0=
-Date: Mon, 26 Oct 2020 18:26:58 +0000
-Message-ID: <f13da5fcd69e4c8cbf69798ca4f1975f@gtri.gatech.edu>
+	id 1kX7eV-0006hp-8A; Mon, 26 Oct 2020 14:55:31 -0400
+Received: from mail-qk1-f175.google.com ([209.85.222.175]:38271)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kX7eR-0006be-Ah
+ for usrp-users@lists.ettus.com; Mon, 26 Oct 2020 14:55:27 -0400
+Received: by mail-qk1-f175.google.com with SMTP id j129so5562238qke.5
+ for <usrp-users@lists.ettus.com>; Mon, 26 Oct 2020 11:55:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=uephf71jCONoY58iNgCnnAAxHEER5TgScyn6zXtXxSI=;
+ b=NPPwtATeI6I57Ag+0vyyAfnALHf4c2za3YTrf1k+0tvibwH8JpAphUtgVLHcMbkJsL
+ DImQOgsO7Lw4/ps9R09XR6bX3zD1KlfuGMbqiyQqIs+jzEgr0U9XERy+Xqtbc7lB2iV9
+ LmhcY14+odIG7I4/HM3H4H3H+MTrsav16BwPxYBcQsfzj9fBv3eaOiM/+5Sz7E1MvVTY
+ q1UtDBh0En5yh3FAPJL3jreKH4TB7m6owgnpkH47UMIgvKgVVbXqRn2RTdmlRHuq/aI0
+ EEgBfYRbbz90PJMyBFXAgPt4zMEsSOxsFFl+we/3SuxnAYZrg7VtcPeyAnpQajeL8oNZ
+ IKBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=uephf71jCONoY58iNgCnnAAxHEER5TgScyn6zXtXxSI=;
+ b=ZICMO0ynQ8EejysUVicdiGSX0A+RQRYOEO5uTQ629X5MJmxvTIg/VhuULeQufG7RD/
+ 1j7lYoH10F9nNC4q9fzXLvHqAtwX4IvshcBfEU8Nc8mh7q23e9ZWLfbqiDAgWEINJvh9
+ Cjw/aVCoq9RJEmycEoDiRd217CL04cix6P2ff5Kp1QG/6GLNTYSDuz8xIGfPmNVt8Cp2
+ QRZLe5ehE3i9fsrCugIghbo8TcGOXxk+p4do4tYkbpG/Z1qu6Y+CRNGumadU63yc80E3
+ E6ScA0kwVboVdAoE5Pf4JgPl0s8Lvx0Mc8iW/IV5MyceNy6QqrtqjysdX+c4yClp2FiR
+ JTpw==
+X-Gm-Message-State: AOAM530FSjiC+6iy/2Pb8COyEFa/7OiaYVXbYFgErlGmNE28bJYBS+sy
+ qwf17Xh+8HicYQ/HTTygSfhajIaFyGlPCQ==
+X-Google-Smtp-Source: ABdhPJxk2l+uhpq0+Bor08p87obanGrvk8E/AAFaucxsheFUaKrwGa1Zmk5lNn9kt1Dbu0jRRhUqyQ==
+X-Received: by 2002:a05:620a:1668:: with SMTP id
+ d8mr2371695qko.192.1603738486527; 
+ Mon, 26 Oct 2020 11:54:46 -0700 (PDT)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id h4sm7043379qkl.82.2020.10.26.11.54.45
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 26 Oct 2020 11:54:45 -0700 (PDT)
+Message-ID: <5F971B74.8070400@gmail.com>
+Date: Mon, 26 Oct 2020 14:54:44 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
 References: <2e4c47914caf465a8818487b821abf0d@gtri.gatech.edu>,
  <5F970B3F.8030604@gmail.com>
-In-Reply-To: <5F970B3F.8030604@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.41.0.30]
-MIME-Version: 1.0
+ <f13da5fcd69e4c8cbf69798ca4f1975f@gtri.gatech.edu>
+In-Reply-To: <f13da5fcd69e4c8cbf69798ca4f1975f@gtri.gatech.edu>
 Subject: Re: [USRP-users] uhd tuning with tagged stream commands
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -56,9 +69,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Hodges, Jeff via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
-Content-Type: multipart/mixed; boundary="===============2205068025372230511=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============3842458427937621753=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,302 +85,336 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2205068025372230511==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============3842458427937621753==
 Content-Type: multipart/alternative;
-	boundary="_000_f13da5fcd69e4c8cbf69798ca4f1975fgtrigatechedu_"
+ boundary="------------040605070802060700050300"
 
---_000_f13da5fcd69e4c8cbf69798ca4f1975fgtrigatechedu_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------040605070802060700050300
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-That's how I read the email as well, but not the behavior I'm seeing. The D=
-EBUG strings (from the USRP_Sink_Block) are informing me that the time comm=
-and is being processed, but the tune time is really way off:
+On 10/26/2020 02:26 PM, Hodges, Jeff via USRP-users wrote:
+>
+> That's how I read the email as well, but not the behavior I'm seeing. 
+> The DEBUG strings (from the USRP_Sink_Block) are informing me that the 
+> time command is being processed, but the tune time is really way off:
+>
+>
+>
+> [INFO] [B200] Asking for clock rate 32.000000 MHz...
+> [INFO] [B200] Actually got clock rate 32.000000 MHz.
+>
+> ----------------------------------------------------------------------
+> Tag Debug:
+> Input Stream: 00
+>   Offset: 0  Source: n/a     Key: tx_time   Value: {1 0.5}
+>   Offset: 0  Source: n/a     Key: packet_len   Value: 100000
+>
+> ----------------------------------------------------------------------
+> Tag Debug:
+> Input Stream: 00
+>   Offset: 99999  Source: n/a     Key: tx_command   Value: ((time 1 . 
+> 0.6) (freq . 2e+08))
+>   Offset: 100000  Source: n/a     Key: tx_time   Value: {1 0.7}
+>   Offset: 100000  Source: n/a     Key: packet_len   Value: 100000
+> ----------------------------------------------------------------------
+> DEBUG: Setting command time on mboard
+> DEBUG: Processing command message ((time 1 . 0.6) (freq . 2e+08))
+>
+> ----------------------------------------------------------------------
+> Tag Debug:
+> Input Stream: 00
+>   Offset: 199999  Source: n/a     Key: tx_command   Value: ((time 1 . 
+> 0.8) (freq . 2.01e+08))
+>   Offset: 200000  Source: n/a     Key: tx_time   Value: {1 0.9}
+>   Offset: 200000  Source: n/a     Key: packet_len   Value: 100000
+> ----------------------------------------------------------------------
+> DEBUG: Setting command time on mboard
+> DEBUG: Processing command message ((time 1 . 0.8) (freq . 2.01e+08))
+>
+> ----------------------------------------------------------------------
+> Tag Debug:
+> Input Stream: 00
+>   Offset: 299999  Source: n/a     Key: tx_command   Value: ((time 2 . 
+> 7.45058e-09) (freq . 2.02e+08))
+>   Offset: 300000  Source: n/a     Key: tx_time   Value: {2 0.1}
+>   Offset: 300000  Source: n/a     Key: packet_len   Value: 100000
+> ----------------------------------------------------------------------
+> DEBUG: Setting command time on mboard
+> DEBUG: Processing command message ((time 2 . 7.45058e-09) (freq . 
+> 2.02e+08))
+>
+>
+>
+>
+> In this case, I'm doing 100 ms bursts + 100 ms dead time. Frequency is 
+> shifting 1 MHz at a time. Tuning is approximately 57 ms from the start 
+> of each txburst (in the middle of the burst). Somehow the tx_time 
+> commands must be interfering with my timed commands. Although, being 
+> placed in the same queue in the proper order, they shouldn't affect 
+> each other.
+>
+>
+> Jeff
+>
+> ------------------------------------------------------------------------
+> *From:* USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of 
+> Marcus D. Leech via USRP-users <usrp-users@lists.ettus.com>
+> *Sent:* Monday, October 26, 2020 1:45:35 PM
+> *To:* usrp-users@lists.ettus.com
+> *Subject:* Re: [USRP-users] uhd tuning with tagged stream commands
+> On 10/26/2020 01:39 PM, Hodges, Jeff via USRP-users wrote:
+>>
+>> I'm thinking that timed tune commands will not work on tagged streams 
+>> in burst mode. Is that correct? I've been looking at the USRP sink 
+>> block code and it supports the timed commands on the stream, but from 
+>> reading a recent thread, it seems like this will not work because of 
+>> how the DUC derives it's time:
+>>
+>>
+>> https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-March/061611.html
+>>
+>>
+>> This thread says DUC derives it's sense of time from the samples, and 
+>> if the samples are not streaming, the DUC will not keep track of 
+>> time. Therefore, the timed command will not be executed.
+>>
+>>
+>> For example, I set the tx_time tag to 1.0 second and the burst is 
+>> 0.05 sec long. Then I place the tuning command tag on the last sample 
+>> of the burst with a tune time of 1.05.  The radio does not actually 
+>> tune until I transmit the next burst at 1.1 sec (0.05 sec dead time) 
+>> and then it tunes at approximately 0.007 sec into the middle of that 
+>> burst.
+>>
+>>
+>> I can try to implement tuning during the dead time by making calls 
+>> directly to the C++ api at the appropriate time in a separate thread, 
+>> but before I do that I just want to confirm that this burst time-tag 
+>> method will not work.
+>>
+>>
+>> Thanks in advance,
+>>
+>>
+>> Jeff
+>>
+>>
+> From the quoted thread, it seems that the *radio* part of the timing 
+> will work fine, but the DUC won't be able to do its part of the deal--so
+>   if your tuning requires "mop up" action on the part of the DUC, it 
+> won't work properly.
+>
+>
+>
+>
+This KB article may be useful in understanding the time-domain behavior 
+of AD936x-based devices, such as the B210:
+
+https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD
 
 
-[INFO] [B200] Asking for clock rate 32.000000 MHz...
-[INFO] [B200] Actually got clock rate 32.000000 MHz.
-
-----------------------------------------------------------------------
-Tag Debug:
-Input Stream: 00
-  Offset: 0  Source: n/a     Key: tx_time   Value: {1 0.5}
-  Offset: 0  Source: n/a     Key: packet_len   Value: 100000
-
-----------------------------------------------------------------------
-Tag Debug:
-Input Stream: 00
-  Offset: 99999  Source: n/a     Key: tx_command   Value: ((time 1 . 0.6) (=
-freq . 2e+08))
-  Offset: 100000  Source: n/a     Key: tx_time   Value: {1 0.7}
-  Offset: 100000  Source: n/a     Key: packet_len   Value: 100000
-----------------------------------------------------------------------
-DEBUG: Setting command time on mboard
-DEBUG: Processing command message ((time 1 . 0.6) (freq . 2e+08))
-
-----------------------------------------------------------------------
-Tag Debug:
-Input Stream: 00
-  Offset: 199999  Source: n/a     Key: tx_command   Value: ((time 1 . 0.8) =
-(freq . 2.01e+08))
-  Offset: 200000  Source: n/a     Key: tx_time   Value: {1 0.9}
-  Offset: 200000  Source: n/a     Key: packet_len   Value: 100000
-----------------------------------------------------------------------
-DEBUG: Setting command time on mboard
-DEBUG: Processing command message ((time 1 . 0.8) (freq . 2.01e+08))
-
-----------------------------------------------------------------------
-Tag Debug:
-Input Stream: 00
-  Offset: 299999  Source: n/a     Key: tx_command   Value: ((time 2 . 7.450=
-58e-09) (freq . 2.02e+08))
-  Offset: 300000  Source: n/a     Key: tx_time   Value: {2 0.1}
-  Offset: 300000  Source: n/a     Key: packet_len   Value: 100000
-----------------------------------------------------------------------
-DEBUG: Setting command time on mboard
-DEBUG: Processing command message ((time 2 . 7.45058e-09) (freq . 2.02e+08)=
-)
 
 
-
-
-
-In this case, I'm doing 100 ms bursts + 100 ms dead time. Frequency is shif=
-ting 1 MHz at a time. Tuning is approximately 57 ms from the start of each =
-txburst (in the middle of the burst). Somehow the tx_time commands must be =
-interfering with my timed commands. Although, being placed in the same queu=
-e in the proper order, they shouldn't affect each other.
-
-
-Jeff
-
-________________________________
-From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Marcus D=
-. Leech via USRP-users <usrp-users@lists.ettus.com>
-Sent: Monday, October 26, 2020 1:45:35 PM
-To: usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] uhd tuning with tagged stream commands
-
-On 10/26/2020 01:39 PM, Hodges, Jeff via USRP-users wrote:
-
-I'm thinking that timed tune commands will not work on tagged streams in bu=
-rst mode. Is that correct? I've been looking at the USRP sink block code an=
-d it supports the timed commands on the stream, but from reading a recent t=
-hread, it seems like this will not work because of how the DUC derives it's=
- time:
-
-
-https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-March/061=
-611.html
-
-
-This thread says DUC derives it's sense of time from the samples, and if th=
-e samples are not streaming, the DUC will not keep track of time. Therefore=
-, the timed command will not be executed.
-
-
-For example, I set the tx_time tag to 1.0 second and the burst is 0.05 sec =
-long. Then I place the tuning command tag on the last sample of the burst w=
-ith a tune time of 1.05.  The radio does not actually tune until I transmit=
- the next burst at 1.1 sec (0.05 sec dead time) and then it tunes at approx=
-imately 0.007 sec into the middle of that burst.
-
-
-I can try to implement tuning during the dead time by making calls directly=
- to the C++ api at the appropriate time in a separate thread, but before I =
-do that I just want to confirm that this burst time-tag method will not wor=
-k.
-
-
-Thanks in advance,
-
-
-Jeff
-
-From the quoted thread, it seems that the *radio* part of the timing will w=
-ork fine, but the DUC won't be able to do its part of the deal--so
-  if your tuning requires "mop up" action on the part of the DUC, it won't =
-work properly.
-
-
-
-
---_000_f13da5fcd69e4c8cbf69798ca4f1975fgtrigatechedu_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+--------------040605070802060700050300
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-</head>
-<body bgcolor=3D"#FFFFFF" text=3D"#000000">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p>That's how I read the email as well, but not the behavior I'm seeing. Th=
-e DEBUG strings (from the USRP_Sink_Block) are informing me that the time c=
-ommand is being processed, but the tune time is really way off:</p>
-<p><br>
-</p>
-<p></p>
-<div>
-<div><br>
-[INFO] [B200] Asking for clock rate 32.000000 MHz... <br>
-[INFO] [B200] Actually got clock rate 32.000000 MHz.<br>
-<br>
-<div>----------------------------------------------------------------------=
-<br>
-Tag Debug: <br>
-Input Stream: 00<br>
-&nbsp; Offset: 0&nbsp; Source: n/a&nbsp;&nbsp;&nbsp;&nbsp; Key: tx_time&nbs=
-p;&nbsp; Value: {1 0.5}<br>
-&nbsp; Offset: 0&nbsp; Source: n/a&nbsp;&nbsp;&nbsp;&nbsp; Key: packet_len&=
-nbsp;&nbsp; Value: 100000<br>
-<br>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 10/26/2020 02:26 PM, Hodges, Jeff
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:f13da5fcd69e4c8cbf69798ca4f1975f@gtri.gatech.edu"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <style type="text/css" style="display:none;"><!-- P {margin-top:0;margin-bottom:0;} --></style>
+      <div id="divtagdefaultwrapper"
+style="font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sans-serif;"
+        dir="ltr">
+        <p>That's how I read the email as well, but not the behavior I'm
+          seeing. The DEBUG strings (from the USRP_Sink_Block) are
+          informing me that the time command is being processed, but the
+          tune time is really way off:</p>
+        <p><br>
+        </p>
+        <div>
+          <div><br>
+            [INFO] [B200] Asking for clock rate 32.000000 MHz... <br>
+            [INFO] [B200] Actually got clock rate 32.000000 MHz.<br>
+            <br>
+            <div>----------------------------------------------------------------------<br>
+              Tag Debug: <br>
+              Input Stream: 00<br>
+                Offset: 0  Source: n/a     Key: tx_time   Value: {1 0.5}<br>
+                Offset: 0  Source: n/a     Key: packet_len   Value:
+              100000<br>
+              <br>
 ----------------------------------------------------------------------<br>
-Tag Debug: <br>
-Input Stream: 00<br>
-&nbsp; Offset: 99999&nbsp; Source: n/a&nbsp;&nbsp;&nbsp;&nbsp; Key: tx_comm=
-and&nbsp;&nbsp; Value: ((time 1 . 0.6) (freq . 2e&#43;08))<br>
-&nbsp; Offset: 100000&nbsp; Source: n/a&nbsp;&nbsp;&nbsp;&nbsp; Key: tx_tim=
-e&nbsp;&nbsp; Value: {1 0.7}<br>
-&nbsp; Offset: 100000&nbsp; Source: n/a&nbsp;&nbsp;&nbsp;&nbsp; Key: packet=
-_len&nbsp;&nbsp; Value: 100000<br>
+              Tag Debug: <br>
+              Input Stream: 00<br>
+                Offset: 99999  Source: n/a     Key: tx_command   Value:
+              ((time 1 . 0.6) (freq . 2e+08))<br>
+                Offset: 100000  Source: n/a     Key: tx_time   Value: {1
+              0.7}<br>
+                Offset: 100000  Source: n/a     Key: packet_len   Value:
+              100000<br>
 ----------------------------------------------------------------------<br>
-DEBUG: Setting command time on mboard <br>
-DEBUG: Processing command message ((time 1 . 0.6) (freq . 2e&#43;08))<br>
-<br>
+              DEBUG: Setting command time on mboard <br>
+              DEBUG: Processing command message ((time 1 . 0.6) (freq .
+              2e+08))<br>
+              <br>
 ----------------------------------------------------------------------<br>
-Tag Debug: <br>
-Input Stream: 00<br>
-&nbsp; Offset: 199999&nbsp; Source: n/a&nbsp;&nbsp;&nbsp;&nbsp; Key: tx_com=
-mand&nbsp;&nbsp; Value: ((time 1 . 0.8) (freq . 2.01e&#43;08))<br>
-&nbsp; Offset: 200000&nbsp; Source: n/a&nbsp;&nbsp;&nbsp;&nbsp; Key: tx_tim=
-e&nbsp;&nbsp; Value: {1 0.9}<br>
-&nbsp; Offset: 200000&nbsp; Source: n/a&nbsp;&nbsp;&nbsp;&nbsp; Key: packet=
-_len&nbsp;&nbsp; Value: 100000<br>
+              Tag Debug: <br>
+              Input Stream: 00<br>
+                Offset: 199999  Source: n/a     Key: tx_command   Value:
+              ((time 1 . 0.8) (freq . 2.01e+08))<br>
+                Offset: 200000  Source: n/a     Key: tx_time   Value: {1
+              0.9}<br>
+                Offset: 200000  Source: n/a     Key: packet_len   Value:
+              100000<br>
 ----------------------------------------------------------------------<br>
-DEBUG: Setting command time on mboard <br>
-DEBUG: Processing command message ((time 1 . 0.8) (freq . 2.01e&#43;08))<br=
->
-<br>
+              DEBUG: Setting command time on mboard <br>
+              DEBUG: Processing command message ((time 1 . 0.8) (freq .
+              2.01e+08))<br>
+              <br>
 ----------------------------------------------------------------------<br>
-Tag Debug: <br>
-Input Stream: 00<br>
-&nbsp; Offset: 299999&nbsp; Source: n/a&nbsp;&nbsp;&nbsp;&nbsp; Key: tx_com=
-mand&nbsp;&nbsp; Value: ((time 2 . 7.45058e-09) (freq . 2.02e&#43;08))<br>
-&nbsp; Offset: 300000&nbsp; Source: n/a&nbsp;&nbsp;&nbsp;&nbsp; Key: tx_tim=
-e&nbsp;&nbsp; Value: {2 0.1}<br>
-&nbsp; Offset: 300000&nbsp; Source: n/a&nbsp;&nbsp;&nbsp;&nbsp; Key: packet=
-_len&nbsp;&nbsp; Value: 100000<br>
+              Tag Debug: <br>
+              Input Stream: 00<br>
+                Offset: 299999  Source: n/a     Key: tx_command   Value:
+              ((time 2 . 7.45058e-09) (freq . 2.02e+08))<br>
+                Offset: 300000  Source: n/a     Key: tx_time   Value: {2
+              0.1}<br>
+                Offset: 300000  Source: n/a     Key: packet_len   Value:
+              100000<br>
 ----------------------------------------------------------------------<br>
-DEBUG: Setting command time on mboard<br>
-DEBUG: Processing command message ((time 2 . 7.45058e-09) (freq . 2.02e&#43=
-;08))<br>
-<br>
-</div>
-<br>
-<br>
-</div>
-</div>
-<p></p>
-<p><br>
-</p>
-<p>In this case, I'm doing 100 ms bursts &#43; 100 ms dead time. Frequency =
-is shifting 1 MHz at a time. Tuning is approximately 57 ms from the start o=
-f each txburst (in the middle of the burst). Somehow the tx_time commands m=
-ust be interfering with my timed commands.
- Although, being placed in the same queue in the proper order, they shouldn=
-'t affect each other.<br>
-</p>
-<p><br>
-</p>
-<p>Jeff<br>
-</p>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
-sers-bounces@lists.ettus.com&gt; on behalf of Marcus D. Leech via USRP-user=
-s &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Sent:</b> Monday, October 26, 2020 1:45:35 PM<br>
-<b>To:</b> usrp-users@lists.ettus.com<br>
-<b>Subject:</b> Re: [USRP-users] uhd tuning with tagged stream commands</fo=
-nt>
-<div>&nbsp;</div>
-</div>
-<div>
-<div class=3D"moz-cite-prefix">On 10/26/2020 01:39 PM, Hodges, Jeff via USR=
-P-users wrote:<br>
-</div>
-<blockquote cite=3D"mid:2e4c47914caf465a8818487b821abf0d@gtri.gatech.edu" t=
-ype=3D"cite">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p><span>I'm thinking that timed tune commands will not work on tagged stre=
-ams in burst mode. Is that correct? I've been looking at the USRP sink bloc=
-k code and it supports the timed commands on the stream, but from reading a=
- recent thread, it seems like this
- will not work because of how the DUC derives it's time:</span></p>
-<p><br>
-</p>
-<p><a moz-do-not-send=3D"true" href=3D"https://lists.ettus.com/pipermail/us=
-rp-users_lists.ettus.com/2020-March/061611.html" class=3D"OWAAutoLink" id=
-=3D"LPlnk705789" previewremoved=3D"true">https://lists.ettus.com/pipermail/=
-usrp-users_lists.ettus.com/2020-March/061611.html</a><br>
-</p>
-<p><br>
-</p>
-<p><span><span>This thread says DUC derives it's sense of time from the sam=
-ples, and if the samples are not streaming, the DUC will not keep track of =
-time. Therefore, the timed command will not be executed.</span><br>
-</span></p>
-<p><span><br>
-</span></p>
-<p>For example, I set the tx_time tag to 1.0 second and the burst is 0.05 s=
-ec long. Then I place the tuning command tag on the last sample of the burs=
-t with a tune time of 1.05.&nbsp; The radio does not actually tune until I =
-transmit the next burst at 1.1 sec (0.05
- sec dead time) and then it tunes at approximately 0.007 sec into the middl=
-e of that burst.</p>
-<p><br>
-</p>
-<p>I can try to implement tuning during the dead time by making calls direc=
-tly to the C&#43;&#43; api at the appropriate time in a separate thread, bu=
-t before I do that I just want to confirm that this burst time-tag method w=
-ill not work.<br>
-</p>
-<p><br>
-</p>
-<p>Thanks in advance,<br>
-</p>
-<p><br>
-</p>
-<p>Jeff<br>
-</p>
-</div>
-<br>
-</blockquote>
-From the quoted thread, it seems that the *radio* part of the timing will w=
-ork fine, but the DUC won't be able to do its part of the deal--so<br>
-&nbsp; if your tuning requires &quot;mop up&quot; action on the part of the=
- DUC, it won't work properly.<br>
-<br>
-<br>
-<br>
-</div>
-</body>
+              DEBUG: Setting command time on mboard<br>
+              DEBUG: Processing command message ((time 2 . 7.45058e-09)
+              (freq . 2.02e+08))<br>
+              <br>
+            </div>
+            <br>
+            <br>
+          </div>
+        </div>
+        <p><br>
+        </p>
+        <p>In this case, I'm doing 100 ms bursts + 100 ms dead time.
+          Frequency is shifting 1 MHz at a time. Tuning is approximately
+          57 ms from the start of each txburst (in the middle of the
+          burst). Somehow the tx_time commands must be interfering with
+          my timed commands. Although, being placed in the same queue in
+          the proper order, they shouldn't affect each other.<br>
+        </p>
+        <p><br>
+        </p>
+        <p>Jeff<br>
+        </p>
+      </div>
+      <hr style="display:inline-block;width:98%" tabindex="-1">
+      <div id="divRplyFwdMsg" dir="ltr"><font style="font-size:11pt"
+          color="#000000" face="Calibri, sans-serif"><b>From:</b>
+          USRP-users <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users-bounces@lists.ettus.com">&lt;usrp-users-bounces@lists.ettus.com&gt;</a> on
+          behalf of Marcus D. Leech via USRP-users
+          <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
+          <b>Sent:</b> Monday, October 26, 2020 1:45:35 PM<br>
+          <b>To:</b> <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+          <b>Subject:</b> Re: [USRP-users] uhd tuning with tagged stream
+          commands</font>
+        <div> </div>
+      </div>
+      <div>
+        <div class="moz-cite-prefix">On 10/26/2020 01:39 PM, Hodges,
+          Jeff via USRP-users wrote:<br>
+        </div>
+        <blockquote
+          cite="mid:2e4c47914caf465a8818487b821abf0d@gtri.gatech.edu"
+          type="cite">
+          <style type="text/css" style="display:none;"><!-- P {margin-top:0;margin-bottom:0;} --></style>
+          <div id="divtagdefaultwrapper"
+style="font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sans-serif;"
+            dir="ltr">
+            <p><span>I'm thinking that timed tune commands will not work
+                on tagged streams in burst mode. Is that correct? I've
+                been looking at the USRP sink block code and it supports
+                the timed commands on the stream, but from reading a
+                recent thread, it seems like this will not work because
+                of how the DUC derives it's time:</span></p>
+            <p><br>
+            </p>
+            <p><a moz-do-not-send="true"
+href="https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-March/061611.html"
+                class="OWAAutoLink" id="LPlnk705789"
+                previewremoved="true">https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-March/061611.html</a><br>
+            </p>
+            <p><br>
+            </p>
+            <p><span><span>This thread says DUC derives it's sense of
+                  time from the samples, and if the samples are not
+                  streaming, the DUC will not keep track of time.
+                  Therefore, the timed command will not be executed.</span><br>
+              </span></p>
+            <p><span><br>
+              </span></p>
+            <p>For example, I set the tx_time tag to 1.0 second and the
+              burst is 0.05 sec long. Then I place the tuning command
+              tag on the last sample of the burst with a tune time of
+              1.05.  The radio does not actually tune until I transmit
+              the next burst at 1.1 sec (0.05 sec dead time) and then it
+              tunes at approximately 0.007 sec into the middle of that
+              burst.</p>
+            <p><br>
+            </p>
+            <p>I can try to implement tuning during the dead time by
+              making calls directly to the C++ api at the appropriate
+              time in a separate thread, but before I do that I just
+              want to confirm that this burst time-tag method will not
+              work.<br>
+            </p>
+            <p><br>
+            </p>
+            <p>Thanks in advance,<br>
+            </p>
+            <p><br>
+            </p>
+            <p>Jeff<br>
+            </p>
+          </div>
+          <br>
+        </blockquote>
+        From the quoted thread, it seems that the *radio* part of the
+        timing will work fine, but the DUC won't be able to do its part
+        of the deal--so<br>
+          if your tuning requires "mop up" action on the part of the
+        DUC, it won't work properly.<br>
+        <br>
+        <br>
+        <br>
+      </div>
+      <br>
+    </blockquote>
+    This KB article may be useful in understanding the time-domain
+    behavior of AD936x-based devices, such as the B210:<br>
+    <br>
+<a class="moz-txt-link-freetext" href="https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD">https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD</a><br>
+    <br>
+    <br>
+    <br>
+  </body>
 </html>
 
---_000_f13da5fcd69e4c8cbf69798ca4f1975fgtrigatechedu_--
+--------------040605070802060700050300--
 
 
---===============2205068025372230511==
+--===============3842458427937621753==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -378,5 +425,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2205068025372230511==--
+--===============3842458427937621753==--
 
