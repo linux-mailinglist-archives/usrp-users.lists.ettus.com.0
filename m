@@ -2,46 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85A8D29940C
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Oct 2020 18:40:32 +0100 (CET)
-Received: from [::1] (port=41894 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD3B7299434
+	for <lists+usrp-users@lfdr.de>; Mon, 26 Oct 2020 18:46:21 +0100 (CET)
+Received: from [::1] (port=41944 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kX6Tt-0001cq-RT; Mon, 26 Oct 2020 13:40:29 -0400
-Received: from exedge04.gtri.gatech.edu ([130.207.193.244]:3253)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Jeff.Hodges@gtri.gatech.edu>)
- id 1kX6Tq-0001TV-Di
- for usrp-users@lists.ettus.com; Mon, 26 Oct 2020 13:40:26 -0400
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=exedge04;
- c=simple/simple; t=1603733985; h=from:subject:to:date:message-id;
- bh=ymZkleDsj01JdeWhAN3n7XvNBc5ycKe3dp4ALlByxw8=;
- b=WT0vm293DCbdHcX1tThPEdbFcugbNmluo8vC3KnqQUm4ZnGygZPupd4+OoNddM/9NIakA7CwKQn
- vIE27p5uH9KRQQ3KVwyj3rpxRZN2nxH6GOZNBPV0vETrp6NX5Jhvu1ShMmadgX+Jk/k3AS3Mkoqsf
- ZjLw4nibaCpx6NTEvIw=
-Received: from tybee.core.gtri.org (10.41.1.49) by exedge04.gtri.org
- (130.207.193.244) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Mon, 26 Oct
- 2020 13:39:45 -0400
-Received: from ocracoke.core.gtri.org (10.41.22.71) by tybee.core.gtri.org
- (10.41.1.49) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2106.2; Mon, 26
- Oct 2020 13:39:45 -0400
-Received: from ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf]) by
- ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf%13]) with mapi id
- 15.01.2106.003; Mon, 26 Oct 2020 13:39:45 -0400
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: uhd tuning with tagged stream commands
-Thread-Index: AQHWq7s4nCPWJPKpdkaD7mR0jQ9wXQ==
-Date: Mon, 26 Oct 2020 17:39:45 +0000
-Message-ID: <2e4c47914caf465a8818487b821abf0d@gtri.gatech.edu>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.41.0.30]
+	id 1kX6ZY-0002PE-Rq; Mon, 26 Oct 2020 13:46:20 -0400
+Received: from mail-qk1-f169.google.com ([209.85.222.169]:44093)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kX6ZV-0002I4-1B
+ for usrp-users@lists.ettus.com; Mon, 26 Oct 2020 13:46:17 -0400
+Received: by mail-qk1-f169.google.com with SMTP id s14so9154827qkg.11
+ for <usrp-users@lists.ettus.com>; Mon, 26 Oct 2020 10:45:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=U9cFxBBkLNePpSzVJAGjb6NrHDJBmDzhGcJE/N/OnDg=;
+ b=oa8MTglc9gAiDNabkNUjLw5zcmExvbL+9+6a/oSPCKKqxvRiBGIewZq8z4uUJqt0uT
+ 1XolypV/XahOa6zHd4dXmeqhX+Z0lnKCuE7Gg0IZkqcRyjVdtCyU5cwqXuPyPjdU5Ttw
+ 6RoBNG5fO87y3f+1Q0yh1sW5iSknoj7XmTYln57hzWkoKhFQGbup4DmibX9IwXm7NEKa
+ CdxMrQy2rdsLBTBzY3CDc5RbNHwNSKDtmxD4Fj4jkx+CXY4H+nw6aYP37grX3KdaWr9W
+ ERMucBGV3I1XBZJ3XG+bTwREtMQX6ctIoguAuD5Va32V8PKY7/mLKfoLpyYyYml+S317
+ XiDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=U9cFxBBkLNePpSzVJAGjb6NrHDJBmDzhGcJE/N/OnDg=;
+ b=H5izHWH4tadHvI4iN2lpiaGmLKYeFr6ixiMhs9EmhpUWChbVdOpHcz+IunK/P4k1bh
+ SdokPjwcpk6oSSnqdOgIgnymWSkpCG1FU+soziCeI+oVe/VjDV3+/FG51jP4pHUG9neH
+ 1wKFnU+gfhHJ/tgTNPoh5EoNwWZirUO5S7S3Jj4zMHZXht5fcCn1jEAb7wuJa0EzQnbC
+ js/ztmhKaXxIFRF96nMrkRHQir2idUF1BTWEnRz2viuDX1l9Jrh08m3vzsn6g/KBQ99C
+ kHVUOXUM1GReQjhH4qPiVJKh8Ok5oD1xZdd1VxmhOscGac2Co2RGubEnVYkSzmdSrfr7
+ JdAA==
+X-Gm-Message-State: AOAM5319BeYpti6GA3ybq31nQuGwvUGFfNJEzaEYMV6z4R4Hv0Voq1Jc
+ +XrLMZHb7+yXa2ksEIlR3/jLtIMfpeBVKQ==
+X-Google-Smtp-Source: ABdhPJzictunUfcvtSuB+g7plv3ujHbA7ytJVu1CXzioTq0AKXC+sjyjWbg8dqAUa3BgXft+RwkaDA==
+X-Received: by 2002:a37:a9c9:: with SMTP id
+ s192mr16447171qke.128.1603734336332; 
+ Mon, 26 Oct 2020 10:45:36 -0700 (PDT)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id t70sm6778800qke.119.2020.10.26.10.45.35
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 26 Oct 2020 10:45:35 -0700 (PDT)
+Message-ID: <5F970B3F.8030604@gmail.com>
+Date: Mon, 26 Oct 2020 13:45:35 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Subject: [USRP-users] uhd tuning with tagged stream commands
+To: usrp-users@lists.ettus.com
+References: <2e4c47914caf465a8818487b821abf0d@gtri.gatech.edu>
+In-Reply-To: <2e4c47914caf465a8818487b821abf0d@gtri.gatech.edu>
+Subject: Re: [USRP-users] uhd tuning with tagged stream commands
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -53,9 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Hodges, Jeff via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
-Content-Type: multipart/mixed; boundary="===============7768526819287399217=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6040151301384697175=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -69,112 +83,142 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7768526819287399217==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============6040151301384697175==
 Content-Type: multipart/alternative;
-	boundary="_000_2e4c47914caf465a8818487b821abf0dgtrigatechedu_"
+ boundary="------------000908020106000400020808"
 
---_000_2e4c47914caf465a8818487b821abf0dgtrigatechedu_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------000908020106000400020808
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I'm thinking that timed tune commands will not work on tagged streams in bu=
-rst mode. Is that correct? I've been looking at the USRP sink block code an=
-d it supports the timed commands on the stream, but from reading a recent t=
-hread, it seems like this will not work because of how the DUC derives it's=
- time:
+On 10/26/2020 01:39 PM, Hodges, Jeff via USRP-users wrote:
+>
+> I'm thinking that timed tune commands will not work on tagged streams 
+> in burst mode. Is that correct? I've been looking at the USRP sink 
+> block code and it supports the timed commands on the stream, but from 
+> reading a recent thread, it seems like this will not work because of 
+> how the DUC derives it's time:
+>
+>
+> https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-March/061611.html
+>
+>
+> This thread says DUC derives it's sense of time from the samples, and 
+> if the samples are not streaming, the DUC will not keep track of time. 
+> Therefore, the timed command will not be executed.
+>
+>
+> For example, I set the tx_time tag to 1.0 second and the burst is 0.05 
+> sec long. Then I place the tuning command tag on the last sample of 
+> the burst with a tune time of 1.05.  The radio does not actually tune 
+> until I transmit the next burst at 1.1 sec (0.05 sec dead time) and 
+> then it tunes at approximately 0.007 sec into the middle of that burst.
+>
+>
+> I can try to implement tuning during the dead time by making calls 
+> directly to the C++ api at the appropriate time in a separate thread, 
+> but before I do that I just want to confirm that this burst time-tag 
+> method will not work.
+>
+>
+> Thanks in advance,
+>
+>
+> Jeff
+>
+>
+ From the quoted thread, it seems that the *radio* part of the timing 
+will work fine, but the DUC won't be able to do its part of the deal--so
+   if your tuning requires "mop up" action on the part of the DUC, it 
+won't work properly.
 
 
-https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-March/061=
-611.html
 
 
-This thread says DUC derives it's sense of time from the samples, and if th=
-e samples are not streaming, the DUC will not keep track of time. Therefore=
-, the timed command will not be executed.
-
-
-For example, I set the tx_time tag to 1.0 second and the burst is 0.05 sec =
-long. Then I place the tuning command tag on the last sample of the burst w=
-ith a tune time of 1.05.  The radio does not actually tune until I transmit=
- the next burst at 1.1 sec (0.05 sec dead time) and then it tunes at approx=
-imately 0.007 sec into the middle of that burst.
-
-
-I can try to implement tuning during the dead time by making calls directly=
- to the C++ api at the appropriate time in a separate thread, but before I =
-do that I just want to confirm that this burst time-tag method will not wor=
-k.
-
-
-Thanks in advance,
-
-
-Jeff
-
---_000_2e4c47914caf465a8818487b821abf0dgtrigatechedu_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--------------000908020106000400020808
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p><span>I'm thinking that timed tune commands will not work on tagged stre=
-ams in burst mode. Is that correct? I've been looking at the USRP sink bloc=
-k code and it supports the timed commands on the stream, but from reading a=
- recent thread, it seems like this
- will not work because of how the DUC derives it's time:</span></p>
-<p><br>
-</p>
-<p><a href=3D"https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/=
-2020-March/061611.html" class=3D"OWAAutoLink" id=3D"LPlnk705789" previewrem=
-oved=3D"true">https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/=
-2020-March/061611.html</a><br>
-</p>
-<p><br>
-</p>
-<p><span><span>This thread says DUC derives it's sense of time from the sam=
-ples, and if the samples are not streaming, the DUC will not keep track of =
-time. Therefore, the timed command will not be executed.</span><br>
-</span></p>
-<p><span><br>
-</span></p>
-<p>For example, I set the tx_time tag to 1.0 second and the burst is 0.05 s=
-ec long. Then I place the tuning command tag on the last sample of the burs=
-t with a tune time of 1.05.&nbsp; The radio does not actually tune until I =
-transmit the next burst at 1.1 sec (0.05
- sec dead time) and then it tunes at approximately 0.007 sec into the middl=
-e of that burst.</p>
-<p><br>
-</p>
-<p>I can try to implement tuning during the dead time by making calls direc=
-tly to the C&#43;&#43; api at the appropriate time in a separate thread, bu=
-t before I do that I just want to confirm that this burst time-tag method w=
-ill not work.<br>
-</p>
-<p><br>
-</p>
-<p>Thanks in advance,<br>
-</p>
-<p><br>
-</p>
-<p>Jeff<br>
-</p>
-</div>
-</body>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 10/26/2020 01:39 PM, Hodges, Jeff
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:2e4c47914caf465a8818487b821abf0d@gtri.gatech.edu"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <style type="text/css" style="display:none;"><!-- P {margin-top:0;margin-bottom:0;} --></style>
+      <div id="divtagdefaultwrapper"
+style="font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sans-serif;"
+        dir="ltr">
+        <p><span>I'm thinking that timed tune commands will not work on
+            tagged streams in burst mode. Is that correct? I've been
+            looking at the USRP sink block code and it supports the
+            timed commands on the stream, but from reading a recent
+            thread, it seems like this will not work because of how the
+            DUC derives it's time:</span></p>
+        <p><br>
+        </p>
+        <p><a moz-do-not-send="true"
+href="https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-March/061611.html"
+            class="OWAAutoLink" id="LPlnk705789" previewremoved="true">https://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-March/061611.html</a><br>
+        </p>
+        <p><br>
+        </p>
+        <p><span><span>This thread says DUC derives it's sense of time
+              from the samples, and if the samples are not streaming,
+              the DUC will not keep track of time. Therefore, the timed
+              command will not be executed.</span><br>
+          </span></p>
+        <p><span><br>
+          </span></p>
+        <p>For example, I set the tx_time tag to 1.0 second and the
+          burst is 0.05 sec long. Then I place the tuning command tag on
+          the last sample of the burst with a tune time of 1.05.  The
+          radio does not actually tune until I transmit the next burst
+          at 1.1 sec (0.05 sec dead time) and then it tunes at
+          approximately 0.007 sec into the middle of that burst.</p>
+        <p><br>
+        </p>
+        <p>I can try to implement tuning during the dead time by making
+          calls directly to the C++ api at the appropriate time in a
+          separate thread, but before I do that I just want to confirm
+          that this burst time-tag method will not work.<br>
+        </p>
+        <p><br>
+        </p>
+        <p>Thanks in advance,<br>
+        </p>
+        <p><br>
+        </p>
+        <p>Jeff<br>
+        </p>
+      </div>
+      <br>
+    </blockquote>
+    From the quoted thread, it seems that the *radio* part of the timing
+    will work fine, but the DUC won't be able to do its part of the
+    deal--so<br>
+      if your tuning requires "mop up" action on the part of the DUC, it
+    won't work properly.<br>
+    <br>
+    <br>
+    <br>
+  </body>
 </html>
 
---_000_2e4c47914caf465a8818487b821abf0dgtrigatechedu_--
+--------------000908020106000400020808--
 
 
---===============7768526819287399217==
+--===============6040151301384697175==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -185,5 +229,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7768526819287399217==--
+--===============6040151301384697175==--
 
