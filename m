@@ -2,58 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA0229BD69
-	for <lists+usrp-users@lfdr.de>; Tue, 27 Oct 2020 17:49:42 +0100 (CET)
-Received: from [::1] (port=53674 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3963129C04C
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Oct 2020 18:13:55 +0100 (CET)
+Received: from [::1] (port=53848 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kXSAH-00015C-HK; Tue, 27 Oct 2020 12:49:41 -0400
-Received: from mail-qt1-f172.google.com ([209.85.160.172]:37618)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kXSAD-0000xy-P9
- for USRP-users@lists.ettus.com; Tue, 27 Oct 2020 12:49:37 -0400
-Received: by mail-qt1-f172.google.com with SMTP id h19so1478920qtq.4
- for <USRP-users@lists.ettus.com>; Tue, 27 Oct 2020 09:49:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=fRQqZgDwl7hI8/8JepDk/KKI7AYUGHsPpB8pULfXe9g=;
- b=U4wSdkNMT4PpYxrHn9h8pQLOPWiPcOVoCvTWlvEUhTdEuzNtay0sScFF720EG31uUX
- H5bHvUDilKisVwuetlUzskqFepohgE64/eZ2emFw3kcOe51i8dxOZY/8sw28dAXN08Hy
- 1jIHKJkooymzi1VKNN4Cn6lPYg9YBSojHfZo/V97TlVbzGSHoQG2liArDnXWVkDP+ByK
- jPcdIcUlE70BbblCMPBtXaNWLLhdnLfPZ/UBUG6hNAc5W1NxYVVeiFacT6niQeMlXQmu
- SPViN9a6lkgUbEyyABDcoAvHIiuiZ2Acy6e5swGtTxoxTW3lh1xXqpB22uyhH50pxLAR
- GdNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=fRQqZgDwl7hI8/8JepDk/KKI7AYUGHsPpB8pULfXe9g=;
- b=EUM2OAxVhUciBEgJGnG28lI7CtIRBWh7bNePVlAuWD5PFZcrlJIRZHQbGVt9/U6a8i
- MIAMCv2yKIHehfe75+Fo6HuixjErmpaKt0Z7rKEgkHQg+EvYA3/uoO5xVz9uh63wdrbE
- +zAYMbhpvqBTJx/gKtY3Qu4McyStgdlilYIrif8e0Zf45bodgxWNcsdmHnsyAyUPqqfZ
- 6gt416wyK37GAL5PM4eQ9NjfrWwhNW3P02TS4Lu6LWS1ro3ZV7AH5BOYOfzX228VrkUR
- 1OUVBjgV5htRShknv6nN2+ekVJ7PEXITx0cHqx/B6XZukGWM7EqyI994rfkCJzxieIvj
- 3Duw==
-X-Gm-Message-State: AOAM532A5oKqlhB6l/YJJMyPEI9oIkm/bwdqDx7l5EOZ/oF2nDyft9VW
- WeqHWQrtfNbKMdf+mmgH8d8=
-X-Google-Smtp-Source: ABdhPJy5z1oi+6PkA4yOpLXwHSF3+XqgdUuqCq6kiEJJ5rOOxv+ByH7rPY7l1T39xCSDxF3MIRHA3Q==
-X-Received: by 2002:ac8:60ca:: with SMTP id i10mr3024444qtm.206.1603817337163; 
- Tue, 27 Oct 2020 09:48:57 -0700 (PDT)
-Received: from [192.168.2.29]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.gmail.com with ESMTPSA id t184sm989144qka.19.2020.10.27.09.48.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 27 Oct 2020 09:48:56 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Tue, 27 Oct 2020 12:48:54 -0400
-Message-Id: <77AD9DDC-6ED5-41F6-98CE-0DA956728821@gmail.com>
-References: <0b218fc462bf455fa059abfbbae584c7@gtri.gatech.edu>
-Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-In-Reply-To: <0b218fc462bf455fa059abfbbae584c7@gtri.gatech.edu>
-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
-X-Mailer: iPhone Mail (17H35)
+	id 1kXSXg-0003CR-BN; Tue, 27 Oct 2020 13:13:52 -0400
+Received: from exedge04.gtri.gatech.edu ([130.207.193.244]:4558)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <Jeff.Hodges@gtri.gatech.edu>)
+ id 1kXSXc-00033Q-E8
+ for usrp-users@lists.ettus.com; Tue, 27 Oct 2020 13:13:48 -0400
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=exedge04;
+ c=simple/simple; t=1603818787; h=from:subject:to:date:message-id;
+ bh=ImlLJGz9Jco0ty8Xw5RQ4pZfXbiKEhh6tjOzFNYXLNA=;
+ b=XeQ3hSrfIRehOgR0AkxpqwJJyvw5CDooJnPvkzbXy14YhJPLOdde2AdPF6K47vZnsalwUQUfNj2
+ imtsdk6h/8y9VcYWdsBiHzuMMxQxXZwVwUBX7Idq97rOXqRQPdpEaK4OwcXjuqr2chmYuJOSOzPmY
+ A3XO40z65D6IgPKqpCM=
+Received: from hatteras.core.gtri.org (10.41.22.72) by exedge04.gtri.org
+ (130.207.193.244) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Tue, 27 Oct
+ 2020 13:13:07 -0400
+Received: from ocracoke.core.gtri.org (2610:148:610:2916::71) by
+ hatteras.core.gtri.org (2610:148:610:2916::72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2106.2; Tue, 27 Oct 2020 13:13:07 -0400
+Received: from ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf]) by
+ ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf%13]) with mapi id
+ 15.01.2106.003; Tue, 27 Oct 2020 13:13:07 -0400
+To: Marcus D Leech <patchvonbraun@gmail.com>
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] C++ how to get usrp::multi_usrp::sptr from
+ USRP_Sink_Block
+Thread-Index: AQHWrHmUYJkh34YlB0S+eM/7YGpY9Kmr7DcA//++P48=
+Date: Tue, 27 Oct 2020 17:13:07 +0000
+Message-ID: <5bf9a51d45a745c5b167eb8856ae1c28@gtri.gatech.edu>
+References: <0b218fc462bf455fa059abfbbae584c7@gtri.gatech.edu>,
+ <77AD9DDC-6ED5-41F6-98CE-0DA956728821@gmail.com>
+In-Reply-To: <77AD9DDC-6ED5-41F6-98CE-0DA956728821@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.41.0.30]
+MIME-Version: 1.0
 Subject: Re: [USRP-users] C++ how to get usrp::multi_usrp::sptr from
  USRP_Sink_Block
 X-BeenThere: usrp-users@lists.ettus.com
@@ -67,9 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3322033967346549910=="
+From: "Hodges, Jeff via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
+Content-Type: multipart/mixed; boundary="===============5195783405349591528=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,143 +75,150 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============5195783405349591528==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_5bf9a51d45a745c5b167eb8856ae1c28gtrigatechedu_"
 
---===============3322033967346549910==
-Content-Type: multipart/alternative; boundary=Apple-Mail-9B975160-8061-4966-9E51-BE1E6113CF97
-Content-Transfer-Encoding: 7bit
+--_000_5bf9a51d45a745c5b167eb8856ae1c28gtrigatechedu_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+TWFyY3VzLCB0aGFuayB5b3UgZm9yIHRoYXQgYWR2aWNlLiBJIHdhcyBjb25jZXJuZWQgdGhhdCBt
+YWtpbmcgdGhlIGNhbGxzIHRocm91Z2ggdGhlIGdyLXVoZCB3b3VsZCBnaXZlIHRoZSBzYW1lIHBy
+b2JsZW1zIEkgd2FzIGV4cGVyaWVuY2luZyB3aXRoIHRoZSB0YWdnZWQgc3RyZWFtIGJ1dCB1cG9u
+IGNsb3NlciBpbnNwZWN0aW9uIGl0IG1ha2VzIGNhbGxzIGRpcmVjdGx5IHRvIHRoZSB1aGQ6OnVz
+cnA6Om11bHRpX3VzcnAuDQoNCg0KVXBvbiBzZWNvbmQgZ2xhbmNlIHVzaW5nIHRoZSBnci11aGQg
+d291bGQgYmUgdGhlIGJldHRlciBhcHByb2FjaCEgVGhlIGZ1bmN0aW9ucyBJIG5lZWQgYXJlIGF2
+YWlsYWJsZS4NCg0KDQpJIGRpZCByZXNvbHZlIG15IG9yaWdpbmFsIHByb2JsZW06DQoNCg0KSGVy
+ZSB3YXMgbXkgZXJyb3I6DQoNCi0gZF91c3JwID0gYm9vc3Q6OmR5bmFtaWNfcG9pbnRlcl9jYXN0
+PGdyOjp1aGQ6OnVzcnBfc2luazo6c3B0cj4oYmxrKTsNCisgZF91c3JwID0gYm9vc3Q6OmR5bmFt
+aWNfcG9pbnRlcl9jYXN0PGdyOjp1aGQ6OnVzcnBfc2luaz4oYmxrKTsNCg0KSmVmZg0KDQoNCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpGcm9tOiBNYXJjdXMgRCBMZWVjaCA8cGF0
+Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBUdWVzZGF5LCBPY3RvYmVyIDI3LCAyMDIwIDEy
+OjQ4IFBNDQpUbzogSG9kZ2VzLCBKZWZmDQpDYzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20N
+ClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gQysrIGhvdyB0byBnZXQgdXNycDo6bXVsdGlfdXNy
+cDo6c3B0ciBmcm9tIFVTUlBfU2lua19CbG9jaw0KDQpBcmUgeW91IHN1cmUgdGhlIGNhbGxzIHlv
+dSBuZWVkIGFyZW7igJl0IGFscmVhZHkgYXZhaWxhYmxlIGluIHRoZSBnci1VSEQgd3JhcHBlcj8N
+Cg0KU29tZSBwYXJ0cyBvZiBnci1VSEQgYXJlbuKAmXQgdmlzaWJsZSBpbiBHUkMgYmFzZWQgZmxv
+d3MgYnV0IGFyZSBzdGlsbCBpbiB0aGUgZ3ItVUhEIEFQSSwgYW5kIGlmIHlvdSB3ZXJlIGp1c3Qg
+dXNpbmcgdGhlIHN0cmFpZ2h0IFB5dGhvbiBwcm9ncmFtbWluZyBtb2RlbCB5b3UgY291bGQgdXNl
+IHRoZW0gZGlyZWN0bHkuDQoNCg0KU2VudCBmcm9tIG15IGlQaG9uZQ0KDQpPbiBPY3QgMjcsIDIw
+MjAsIGF0IDEyOjI1IFBNLCBIb2RnZXMsIEplZmYgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tPiB3cm90ZToNCg0K77u/DQoNCkhvdyBkbyBJIGdldCB0aGUgZGV2aWNl
+IHNwdHIgKDo6dWhkOjp1c3JwOjptdWx0aV91c3JwOjpzcHRyKSBmcm9tIHRoZSB1c3JwX3Npbmtf
+YmxvY2sgc3B0cj8NCg0KDQpGb3IgZXhhbXBsZSwgdGhlIGZvbGxvd2luZyB3b3JrczoNCg0KDQog
+ICAgICAgICAgICAgICAgYmFzaWNfYmxvY2tfc3B0ciBibGsgPSBnbG9iYWxfYmxvY2tfcmVnaXN0
+cnkuYmxvY2tfbG9va3VwKHBtdDo6aW50ZXJuKHVzcnBfYWxpYXMpKTsNCiAgICAgICAgICAgICAg
+ICBkX3VzcnAgPSBib29zdDo6ZHluYW1pY19wb2ludGVyX2Nhc3Q8Z3I6OnVoZDo6dXNycF9zaW5r
+OjpzcHRyPihibGspOw0KDQpCdXQgZXJyb3JzIGhlcmU6DQoNCiAgICAgICAgICAgICAgICA6OnVo
+ZDo6dXNycDo6bXVsdGlfdXNycDo6c3B0ciBkX3VzcnBfZGV2ID0gZF91c3JwLT5nZXRfZGV2aWNl
+KCk7DQoNCg0KV2hhdCBoYXBwZW5zIGlmIEkganVzdCBjcmVhdGUgYW5vdGhlciB1c3JwIG9iamVj
+dCBmb3IgdGhlIHNhbWUgZGV2aWNlIGluIGFkZGl0aW9uIHRvIHRoZSBvbmUgYWxyZWFkeSBjcmVh
+dGVkIGJ5IHRoZSB1aGRfc2lua19ibG9jaz8gSSdtIGd1ZXNzaW5nIHRoYXQgd2lsbCBub3Qgd29y
+ay4NCg0KDQpNeSBlbmQgZ29hbCBpcyB0byBiZSBhYmxlIHRvIGNyZWF0ZSBhIGJsb2NrIHRoYXQg
+bWFrZXMgZGlyZWN0IEMrKyBhcGkgY2FsbHMgdG8gdGhlIHVzcnAgdG8gdHVuZSBpdCBiZXR3ZWVu
+IGJ1cnN0cywgc2luY2UgdGhlIHVoZCAoZm9yIHVua25vd24gcmVhc29ucykgZG9lcyBub3Qgc3Vw
+cG9ydCB0aW1lZCBjb21tYW5kIHR1bmluZyBvbiBhIHRhZ2dlZCBzdHJlYW0gaW4gYnVyc3QgbW9k
+ZSAoYXMgaSBtZW50aW9uZWQgaW4geWVzdGVyZGF5J3MgZW1haWwpLg0KDQpKZWZmDQoNCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1h
+aWxpbmcgbGlzdA0KVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCmh0dHA6Ly9saXN0cy5ldHR1
+cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
+
+--_000_5bf9a51d45a745c5b167eb8856ae1c28gtrigatechedu_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPjwhLS0gUCB7bWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDt9IC0t
+Pjwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBkaXI9Imx0ciI+DQo8ZGl2IGlkPSJkaXZ0YWdkZWZh
+dWx0d3JhcHBlciIgZGlyPSJsdHIiIHN0eWxlPSJmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2Io
+MCwgMCwgMCk7IGZvbnQtZmFtaWx5OiBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYsICZx
+dW90O0Vtb2ppRm9udCZxdW90OywgJnF1b3Q7QXBwbGUgQ29sb3IgRW1vamkmcXVvdDssICZxdW90
+O1NlZ29lIFVJIEVtb2ppJnF1b3Q7LCBOb3RvQ29sb3JFbW9qaSwgJnF1b3Q7U2Vnb2UgVUkgU3lt
+Ym9sJnF1b3Q7LCAmcXVvdDtBbmRyb2lkIEVtb2ppJnF1b3Q7LCBFbW9qaVN5bWJvbHM7Ij4NCjxw
+Pk1hcmN1cywgdGhhbmsgeW91IGZvciB0aGF0IGFkdmljZS4gSSB3YXMgY29uY2VybmVkIHRoYXQg
+bWFraW5nIHRoZSBjYWxscyB0aHJvdWdoIHRoZSBnci11aGQgd291bGQgZ2l2ZSB0aGUgc2FtZSBw
+cm9ibGVtcyBJIHdhcyBleHBlcmllbmNpbmcgd2l0aCB0aGUgdGFnZ2VkIHN0cmVhbSBidXQgdXBv
+biBjbG9zZXIgaW5zcGVjdGlvbiBpdCBtYWtlcyBjYWxscyBkaXJlY3RseSB0byB0aGUgdWhkOjp1
+c3JwOjptdWx0aV91c3JwLjwvcD4NCjxwPjxicj4NCjwvcD4NCjxwPlVwb24gc2Vjb25kIGdsYW5j
+ZSB1c2luZyB0aGUgZ3ItdWhkIHdvdWxkIGJlIHRoZSBiZXR0ZXIgYXBwcm9hY2ghIFRoZSBmdW5j
+dGlvbnMgSSBuZWVkIGFyZSBhdmFpbGFibGUuPC9wPg0KPHA+PGJyPg0KPC9wPg0KPHA+SSBkaWQg
+cmVzb2x2ZSBteSBvcmlnaW5hbCBwcm9ibGVtOjwvcD4NCjxwPjxicj4NCjwvcD4NCjxwPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTJwdDsiIGlkPSJkaXZ0YWdkZWZhdWx0d3JhcHBlciI+PC9wPg0K
+PGRpdiBzdHlsZT0ibWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDsiPkhlcmUgd2FzIG15IGVy
+cm9yOjwvZGl2Pg0KPGRpdiBzdHlsZT0ibWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDsiPjxi
+cj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0ibWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDsiPjxm
+b250IHNpemU9IjMiIGNvbG9yPSJibGFjayI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+
+LSBkX3VzcnAgPSBib29zdDo6ZHluYW1pY19wb2ludGVyX2Nhc3QmbHQ7Z3I6OnVoZDo6dXNycF9z
+aW5rOjpzcHRyJmd0OyhibGspOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2IHN0eWxlPSJtYXJn
+aW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowOyI+PGZvbnQgc2l6ZT0iMyIgY29sb3I9ImJsYWNrIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mIzQzOyBkX3VzcnAgPSBib29zdDo6ZHluYW1p
+Y19wb2ludGVyX2Nhc3QmbHQ7Z3I6OnVoZDo6dXNycF9zaW5rJmd0OyhibGspOzwvc3Bhbj48L2Zv
+bnQ+PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJtYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTow
+OyI+PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJtYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTow
+OyI+SmVmZjwvZGl2Pg0KPC9zcGFuPjxicj4NCjxwPjwvcD4NCjxicj4NCjxkaXYgc3R5bGU9ImNv
+bG9yOnJnYigwLDAsMCkiPg0KPGhyIHRhYmluZGV4PSItMSIgc3R5bGU9ImRpc3BsYXk6aW5saW5l
+LWJsb2NrOyB3aWR0aDo5OCUiPg0KPGRpdiBpZD0iZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxm
+b250IHN0eWxlPSJmb250LXNpemU6MTFwdCIgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJpZiIgY29s
+b3I9IiMwMDAwMDAiPjxiPkZyb206PC9iPiBNYXJjdXMgRCBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1
+bkBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+U2VudDo8L2I+IFR1ZXNkYXksIE9jdG9iZXIgMjcsIDIw
+MjAgMTI6NDggUE08YnI+DQo8Yj5Ubzo8L2I+IEhvZGdlcywgSmVmZjxicj4NCjxiPkNjOjwvYj4g
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtVU1JQ
+LXVzZXJzXSBDJiM0MzsmIzQzOyBob3cgdG8gZ2V0IHVzcnA6Om11bHRpX3VzcnA6OnNwdHIgZnJv
+bSBVU1JQX1NpbmtfQmxvY2s8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2
+PkFyZSB5b3Ugc3VyZSB0aGUgY2FsbHMgeW91IG5lZWQgYXJlbuKAmXQgYWxyZWFkeSBhdmFpbGFi
+bGUgaW4gdGhlIGdyLVVIRCB3cmFwcGVyPw0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+U29tZSBw
+YXJ0cyBvZiBnci1VSEQgYXJlbuKAmXQgdmlzaWJsZSBpbiBHUkMgYmFzZWQgZmxvd3MgYnV0IGFy
+ZSBzdGlsbCBpbiB0aGUgZ3ItVUhEIEFQSSwgYW5kIGlmIHlvdSB3ZXJlIGp1c3QgdXNpbmcgdGhl
+IHN0cmFpZ2h0IFB5dGhvbiBwcm9ncmFtbWluZyBtb2RlbCB5b3UgY291bGQgdXNlIHRoZW0gZGly
+ZWN0bHkuJm5ic3A7PC9kaXY+DQo8ZGl2Pjxicj4NCjxicj4NCjxkaXYgZGlyPSJsdHIiPlNlbnQg
+ZnJvbSBteSBpUGhvbmU8L2Rpdj4NCjxkaXYgZGlyPSJsdHIiPjxicj4NCjxibG9ja3F1b3RlIHR5
+cGU9ImNpdGUiPk9uIE9jdCAyNywgMjAyMCwgYXQgMTI6MjUgUE0sIEhvZGdlcywgSmVmZiB2aWEg
+VVNSUC11c2VycyAmbHQ7dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7IHdyb3RlOjxicj4N
+Cjxicj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8
+ZGl2IGRpcj0ibHRyIj7vu78NCjxkaXYgaWQ9ImRpdnRhZ2RlZmF1bHR3cmFwcGVyIiBkaXI9Imx0
+ciIgc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApOyBmb250LWZhbWlseTpD
+YWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmLCZxdW90O0Vtb2ppRm9udCZxdW90OywmcXVvdDtB
+cHBsZSBDb2xvciBFbW9qaSZxdW90OywmcXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90OyxOb3RvQ29s
+b3JFbW9qaSwmcXVvdDtTZWdvZSBVSSBTeW1ib2wmcXVvdDssJnF1b3Q7QW5kcm9pZCBFbW9qaSZx
+dW90OyxFbW9qaVN5bWJvbHMiPg0KPHA+SG93IGRvIEkgZ2V0IHRoZSBkZXZpY2Ugc3B0ciAoOjp1
+aGQ6OnVzcnA6Om11bHRpX3VzcnA6OnNwdHIpIGZyb20gdGhlIHVzcnBfc2lua19ibG9jayBzcHRy
+PyZuYnNwOw0KPGJyPg0KPC9wPg0KPHA+PGJyPg0KPC9wPg0KPHA+Rm9yIGV4YW1wbGUsIHRoZSBm
+b2xsb3dpbmcgd29ya3M6PC9wPg0KPHA+PC9wPg0KPGRpdj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsgPGJyPg0KPC9kaXY+DQo8ZGl2PiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyBiYXNpY19ibG9ja19zcHRyIGJsayA9IGdsb2JhbF9ibG9ja19yZWdpc3RyeS5ibG9j
+a19sb29rdXAocG10OjppbnRlcm4odXNycF9hbGlhcykpOzxicj4NCiZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyBkX3VzcnAgPSBib29zdDo6ZHluYW1pY19wb2ludGVyX2Nhc3QmbHQ7
+Z3I6OnVoZDo6dXNycF9zaW5rOjpzcHRyJmd0OyhibGspOzwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rp
+dj4NCjxkaXY+QnV0IGVycm9ycyBoZXJlOjxicj4NCjwvZGl2Pg0KPGRpdj48YnI+DQombmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgOjp1aGQ6OnVzcnA6Om11bHRpX3VzcnA6OnNwdHIg
+ZF91c3JwX2RldiA9IGRfdXNycC0mZ3Q7Z2V0X2RldmljZSgpOzxicj4NCjxicj4NCjwvZGl2Pg0K
+PHA+V2hhdCBoYXBwZW5zIGlmIEkganVzdCBjcmVhdGUgYW5vdGhlciB1c3JwIG9iamVjdCBmb3Ig
+dGhlIHNhbWUgZGV2aWNlIGluIGFkZGl0aW9uIHRvIHRoZSBvbmUgYWxyZWFkeSBjcmVhdGVkIGJ5
+IHRoZSB1aGRfc2lua19ibG9jaz8gSSdtIGd1ZXNzaW5nIHRoYXQgd2lsbCBub3Qgd29yay48L3A+
+DQo8cD48YnI+DQo8L3A+DQo8cD5NeSBlbmQgZ29hbCBpcyB0byBiZSBhYmxlIHRvIGNyZWF0ZSBh
+IGJsb2NrIHRoYXQgbWFrZXMgZGlyZWN0IEMmIzQzOyYjNDM7IGFwaSBjYWxscyB0byB0aGUgdXNy
+cCB0byB0dW5lIGl0IGJldHdlZW4gYnVyc3RzLCBzaW5jZSB0aGUgdWhkIChmb3IgdW5rbm93biBy
+ZWFzb25zKSBkb2VzIG5vdCBzdXBwb3J0IHRpbWVkIGNvbW1hbmQgdHVuaW5nIG9uIGEgdGFnZ2Vk
+IHN0cmVhbSBpbiBidXJzdCBtb2RlIChhcyBpIG1lbnRpb25lZCBpbiB5ZXN0ZXJkYXkncyBlbWFp
+bCkuPGJyPg0KPGJyPg0KSmVmZjxicj4NCjwvcD4NCjwvZGl2Pg0KPHNwYW4+X19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188L3NwYW4+PGJyPg0KPHNwYW4+VVNS
+UC11c2VycyBtYWlsaW5nIGxpc3Q8L3NwYW4+PGJyPg0KPHNwYW4+VVNSUC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb208L3NwYW4+PGJyPg0KPHNwYW4+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
+L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC9zcGFuPjxicj4NCjwvZGl2Pg0K
+PC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8
+L2h0bWw+DQo=
+
+--_000_5bf9a51d45a745c5b167eb8856ae1c28gtrigatechedu_--
 
 
---Apple-Mail-9B975160-8061-4966-9E51-BE1E6113CF97
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-Are you sure the calls you need aren=E2=80=99t already available in the gr-U=
-HD wrapper?
-
-Some parts of gr-UHD aren=E2=80=99t visible in GRC based flows but are still=
- in the gr-UHD API, and if you were just using the straight Python programmi=
-ng model you could use them directly.=20
-
-
-Sent from my iPhone
-
-> On Oct 27, 2020, at 12:25 PM, Hodges, Jeff via USRP-users <usrp-users@list=
-s.ettus.com> wrote:
->=20
-> =EF=BB=BF
-> How do I get the device sptr (::uhd::usrp::multi_usrp::sptr) from the usrp=
-_sink_block sptr? =20
->=20
->=20
->=20
-> For example, the following works:
->=20
->                =20
->                 basic_block_sptr blk =3D global_block_registry.block_looku=
-p(pmt::intern(usrp_alias));
->                 d_usrp =3D boost::dynamic_pointer_cast<gr::uhd::usrp_sink:=
-:sptr>(blk);
->=20
-> But errors here:
->=20
->                 ::uhd::usrp::multi_usrp::sptr d_usrp_dev =3D d_usrp->get_d=
-evice();
->=20
-> What happens if I just create another usrp object for the same device in a=
-ddition to the one already created by the uhd_sink_block? I'm guessing that w=
-ill not work.
->=20
->=20
->=20
-> My end goal is to be able to create a block that makes direct C++ api call=
-s to the usrp to tune it between bursts, since the uhd (for unknown reasons)=
- does not support timed command tuning on a tagged stream in burst mode (as i=
- mentioned in yesterday's email).
->=20
-> Jeff
->=20
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---Apple-Mail-9B975160-8061-4966-9E51-BE1E6113CF97
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">Are you sure the calls you need aren=E2=80=99=
-t already available in the gr-UHD wrapper?<div><br></div><div>Some parts of g=
-r-UHD aren=E2=80=99t visible in GRC based flows but are still in the gr-UHD A=
-PI, and if you were just using the straight Python programming model you cou=
-ld use them directly.&nbsp;</div><div><br><br><div dir=3D"ltr">Sent from my i=
-Phone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Oct 27, 2020, a=
-t 12:25 PM, Hodges, Jeff via USRP-users &lt;usrp-users@lists.ettus.com&gt; w=
-rote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=
-=BB=BF
-
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-1=
-">
-
-
-
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color:=
-rgb(0,0,0); font-family:Calibri,Helvetica,sans-serif,&quot;EmojiFont&quot;,&=
-quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot=
-;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols">
-<p>How do I get the device sptr (::uhd::usrp::multi_usrp::sptr) from the usr=
-p_sink_block sptr?&nbsp;
-<br>
-</p>
-<p><br>
-</p>
-<p>For example, the following works:</p>
-<p></p>
-<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; <br>
-</div>
-<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; basic_block_sptr blk =3D global_block_registry.block_loo=
-kup(pmt::intern(usrp_alias));<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; d_usrp =3D boost::dynamic_pointer_cast&lt;gr::uhd::usrp_sink:=
-:sptr&gt;(blk);</div>
-<div><br>
-</div>
-<div>But errors here:<br>
-</div>
-<div><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; ::uhd::usrp::multi_usrp::sptr d_usrp_dev =3D d_usrp-&gt;get_d=
-evice();<br>
-<br>
-</div>
-<p>What happens if I just create another usrp object for the same device in a=
-ddition to the one already created by the uhd_sink_block? I'm guessing that w=
-ill not work.</p>
-<p><br>
-</p>
-<p>My end goal is to be able to create a block that makes direct C++ api cal=
-ls to the usrp to tune it between bursts, since the uhd (for unknown reasons=
-) does not support timed command tuning on a tagged stream in burst mode (as=
- i mentioned in yesterday's email).<br>
-<br>
-Jeff<br>
-</p>
-</div>
-
-
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
->http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
-r></div></blockquote></div></body></html>=
-
---Apple-Mail-9B975160-8061-4966-9E51-BE1E6113CF97--
-
-
---===============3322033967346549910==
+--===============5195783405349591528==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -230,5 +229,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3322033967346549910==--
+--===============5195783405349591528==--
 
