@@ -2,105 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 557EC29ACFD
-	for <lists+usrp-users@lfdr.de>; Tue, 27 Oct 2020 14:17:21 +0100 (CET)
-Received: from [::1] (port=50846 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6847729AF55
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Oct 2020 15:11:06 +0100 (CET)
+Received: from [::1] (port=52196 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kXOqj-0006YC-EJ; Tue, 27 Oct 2020 09:17:17 -0400
-Received: from dispatch1-us1.ppe-hosted.com ([67.231.154.164]:35156)
+	id 1kXPgk-00044i-Vr; Tue, 27 Oct 2020 10:11:02 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:43493)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jim@gardettoengineering.com>)
- id 1kXOqf-0006Ot-3n
- for usrp-users@lists.ettus.com; Tue, 27 Oct 2020 09:17:13 -0400
-Received: from dispatch1-us1.ppe-hosted.com (localhost.localdomain [127.0.0.1])
- by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
- A8C6B10B903
- for <usrp-users@lists.ettus.com>; Tue, 27 Oct 2020 13:16:32 +0000 (UTC)
-Received: from mx1-us1.ppe-hosted.com (unknown [10.110.51.21])
- by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
- 9BF7980091
- for <usrp-users@lists.ettus.com>; Tue, 27 Oct 2020 13:16:22 +0000 (UTC)
-Received: from us1-mdac16-3.at1.mdlocal (unknown [10.110.51.62])
- by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id 9AB06200A7
- for <usrp-users@lists.ettus.com>; Tue, 27 Oct 2020 13:16:22 +0000 (UTC)
-X-Virus-Scanned: Proofpoint Essentials engine
-Received: from mx1-us1.ppe-hosted.com (unknown [10.110.49.105])
- by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 2F75B2E0064
- for <usrp-users@lists.ettus.com>; Tue, 27 Oct 2020 13:16:22 +0000 (UTC)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12lp2177.outbound.protection.outlook.com [104.47.59.177])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 02F2A9C0074
- for <usrp-users@lists.ettus.com>; Tue, 27 Oct 2020 13:16:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jVn1+W+wERM7SUiCPqy3TPiGoe7GpCgVOfOOX/Yyw92xR9AUUG0rhTqIC+hLSrjOaS2/DQOop+oz7McLstgudGHrAkV2k/9KwVgPyZUMGf+QQUMBXQMjOkPMrUCUkq5B2qurK23dEGhkpkNbbR3MXMg7yWVCrQgFnZ1NPqul6uTa89s5og5pfrC7k1dYCdDKX1l7ZR39r1fYoqqkuxuol1AjBRpPjT70hMWbfe5py1RnbpZ4qi+d6GVHznmCV6WDTWlxJEbAw1l3xU8ksHnySaafbYFvE0Q0zczHgQ5BpzUz3spxlerhvsKHjVR0GabJVJK/V8dQZ1VJkU3st1eCRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BpaGPrqzS0XSNShjhR+aT6MXuYML6/JG/8usYIxVujw=;
- b=KaDZ5+ioyA0ZE0LwT644AzHS74l9QY+XqkhueuA0pw0BEABG7VPuBdI3eV7rruFziYYMioFbknyUURww009wXtoPsTHucdX5lEG9OMuZi7U6S1cKIP0PYVTZJ9eUQtztGOHcbmDbxqnuqNnzYDTUTc53q0PvwwFjcd1M/Ami1Z1TOK29OHUS84PEFQYGFYiLu0d95pP5xjS3dNtGf8nnOG+TajEtCzZ1gmsescgupPZV/Tg2BWP0utSc5gJLtdaBXR/JOXMs4vVhSGxAxEzUuagw2kS10FT4ug/2bIot/7iW4TpttZKxmDHUXXUL40VV+/SZ2CEGRFoVwtBP+n5PgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
- header.from=gardettoengineering.com; dkim=pass
- header.d=gardettoengineering.com; arc=none
+ (Exim 4.93) (envelope-from <neel.pandeya@ettus.com>)
+ id 1kXPgg-0003yl-Pd
+ for usrp-users@lists.ettus.com; Tue, 27 Oct 2020 10:10:58 -0400
+Received: by mail-il1-f196.google.com with SMTP id k1so1595074ilc.10
+ for <usrp-users@lists.ettus.com>; Tue, 27 Oct 2020 07:10:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com;
- s=selector2-gardettoengineering-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BpaGPrqzS0XSNShjhR+aT6MXuYML6/JG/8usYIxVujw=;
- b=FHhh/zW/F3UGSyKPqJcMx684HABjb0BlGeAOP8V4jT7iCINhRVgONZ7/SVGa2xYUdAgHBOThwlDLx7C6zIdi7vWmiox3yiMXgDmSW5eutr5EJ99ACYbmvhtlW3FZqLpZfN3tJEgGqSJRs4vjyBt2RUblbyUpzhKdx22TCWV78Sw=
-Received: from MN2PR12MB3312.namprd12.prod.outlook.com (2603:10b6:208:ab::23)
- by MN2PR12MB3102.namprd12.prod.outlook.com (2603:10b6:208:c6::25)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.22; Tue, 27 Oct
- 2020 13:16:18 +0000
-Received: from MN2PR12MB3312.namprd12.prod.outlook.com
- ([fe80::1134:9197:c49:fa0f]) by MN2PR12MB3312.namprd12.prod.outlook.com
- ([fe80::1134:9197:c49:fa0f%5]) with mapi id 15.20.3477.028; Tue, 27 Oct 2020
- 13:16:18 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: E320 Autoboot
-Thread-Index: AQHWrGLfErTVJwHTykSOCUCfRqOJrA==
-Date: Tue, 27 Oct 2020 13:16:18 +0000
-Message-ID: <MN2PR12MB3312A7830750D47A990F15F7B8160@MN2PR12MB3312.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=gardettoengineering.com;
-x-originating-ip: [65.127.220.137]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 91f116b9-a2cb-4109-0431-08d87a7a7dac
-x-ms-traffictypediagnostic: MN2PR12MB3102:
-x-microsoft-antispam-prvs: <MN2PR12MB310275B18399F4C066241AD9B8160@MN2PR12MB3102.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: VaqlutGX4esSafEgsFCkzvdoAtzcExOUiSmaw240/QDLefrn51XuQFg5lVYuBZSfPMyF26kDlpkG+31UpZXnIeMsl6DTqNWtPZnTsoiEkOD+aRf3HuIoIYQJH0brucYOS7/uxx1DNoIllwRQuSfv1puPlFYi+AAd44+gWVNz0r9ixE1FlgaaEProBS/XbFCW+hZkmx9FTGbNYSTzWfy+/M5i0Rg7CWG6Nyj0LFzqi9r9nCQn6MCkW/W8lVMalPOvwtCM6wE3V2OvoeuS5erxpMV8C9ncD/ftOjvHUoM5OfYK57bScoXt1bTKJvd1D349/SjQ0gcqoDuaWjzq8hKAOiUx9sWr53+T2Lbf/kc2SvWteR6RuNCJx+XJdam0aonC4afJLH/KpoJT78JEEugd5w==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3312.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(136003)(366004)(376002)(346002)(39830400003)(396003)(64756008)(478600001)(166002)(8676002)(66476007)(66446008)(6506007)(76116006)(86362001)(66556008)(8936002)(6916009)(316002)(2906002)(186003)(4744005)(26005)(66946007)(52536014)(5660300002)(9686003)(55016002)(7696005)(7116003)(33656002)(19627405001)(83380400001)(71200400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: WS8RQJHxKLv7/Ny7q1nlrSZFkeECYMxIoDHMFEZe7nynnkVbHJSlQZqDtWB3OAM839MkQSwveW8ZgGJVFALf+v28rk1dtyF9rbSv9PYOhY6DUmywYONzSTm48Cx5tFJwz4TD4V/rpwjEMoSmMsKJrHjbWr9/amH9OdqbkaaueBW+L4PjD73vRRWJurGaXuar8S5bp0vHJtANE5jMBGs91XPOAsDsq8Rvyd4Q6FxDAdCKi2YwSBddA5H8uOiJvVCqvaWeaGJdMuaf/A+10AE1Jo0TfT9msr8nQuoTVgCWkPZKPKTsj3cGSQ3Dy455VyCGP4kGFTWavPNdD55JYo1mx69cIgy2zSRSVjjKjOWICAbnAbbPCL3dCakXC9WoL7q+ZTIJQPENXQL5vrGTyD7YPSjUgYGahTDJOCCXDuDi3q46Um+XT5RRYxWvYhTZbvev5MKp3i3VJGhCvW9ze8p4ORf1KqCeYxjArTIIRoPBIBTrE9OW2otTy9zbm/qep6EUJK0uQnjk3YEUspktfPYArIBEryRnJJ+8jQFv6EskpfMpLodmL8N0F4eLlG+162cxkhaqwYm0qXBtB7j9/aEy77JW710xArXO2bkL0EvB5IxNRuoy4TGU6sQqahyOGQSlSebUjWR12y98kFvirTqYkA==
-x-ms-exchange-transport-forked: True
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Yt7XmeEvUUCjbByU0OfIP9kjPXxJBesfR+AUrlMy6j0=;
+ b=VgfZ7aDffrb/IqCucxkQwW3anICkwxx4CZK5XFulm2rAbZMzxDBNK9abfj112mPsi2
+ 0qzrReW5qnFuIy03JYJbWshDu5OBNzWFS4uUqu1BzNFtKRyj/zeXFFaLGpty53xRuiGB
+ W2rAhM2bDaF/DVRapgWyWL+0VUZSmFNWrjjDs9VWieRtywOrYDjSlr9M8/pcqJgMpSex
+ rhFf8VYfPf+hJnZPCOytzAi0KIMP6qYu/fCTdOvbzZhVAe6BTDlEnCgJb5MELiQc3jrA
+ 7au6OgajVT+Yq4Db2/cFSd7tW9QxcA/R/xku8PAieRPotVrJqMeDq5e9DHPr1DO2xUBp
+ BFAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Yt7XmeEvUUCjbByU0OfIP9kjPXxJBesfR+AUrlMy6j0=;
+ b=hoKRVIa+1GrSWzCiHoiyuqp2MmfN7+TPJjYaUk2zrigI/Uoj56uOkq/Hjw2ozVRHM2
+ LI7MSc+iMNJEHbplfsRd41U3Dyl0VZ22h+6ULieW6HgYpe7NZ1N4dkDXf8ELRv7ttZZj
+ ATH3+6E4QY0YtspLGljkO4J2yBPiQktK5fADweV7tYLztEUrxAWJ+FfqoTN+2zc8yxWE
+ +c4RhG+WFjT5t3U9ZM2Sclk4gNjHN9FiJ2u1jsvmjdgTJ58z75LrBMaiSeKyGt+2i8S5
+ 4x+ABuLkMQ1bWk9C1/+s4tNjuNcl1RmkzZbfTBiV+1s0GRnEYU2gOsOnqlRNzjxO6N3T
+ 6fqA==
+X-Gm-Message-State: AOAM531gMSU1OMdorFbEPSlOshzekGk4iaDu7vk1CmbHqf1G9zkYJf7a
+ xKqtqODOh2EOsCKIf6pj4iB/USpBa51OHMGP2gYIvnG/
+X-Google-Smtp-Source: ABdhPJwrwigx4lv0XTHGL4Ca1udNc4uq2qJOr+LoCCZvKSgb3V+BrDAPbKotzHrswXql6c/PV7f7mgqRorTH4YAHtVM=
+X-Received: by 2002:a92:c885:: with SMTP id w5mr1400988ilo.20.1603807818139;
+ Tue, 27 Oct 2020 07:10:18 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3312.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 91f116b9-a2cb-4109-0431-08d87a7a7dac
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Oct 2020 13:16:18.4240 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vuJPZCov64yB72bD8Nu6OlG71GyOQwOJnXxZcIfRWFguU2dr4h8xaFB/05+LQO88CMYMlyVD2tzzfhPckXK2pXjzsnRVEUSwwCK7zKVXCfc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3102
-X-MDID: 1603804582-THA-Nkko4Xnm
-X-PPE-DISP: 1603804582;THA-Nkko4Xnm
-Subject: [USRP-users] E320 Autoboot
+References: <CAAq7Emf908sc+rSn87GEy7g6itEiT_PDTfM2y9yv2De=793zjA@mail.gmail.com>
+ <5F8E10F2.4060907@gmail.com>
+In-Reply-To: <5F8E10F2.4060907@gmail.com>
+Date: Tue, 27 Oct 2020 09:09:41 -0500
+Message-ID: <CACaXmv9AZeMpu5FViJgfm23Qt7+Y1L15yKdKoC1nUCnwboPyag@mail.gmail.com>
+To: Dev Joshi <joshide@bc.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] ETTUS N200 device start issue -- works only after
+ second and subsequent invocations
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -112,9 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jim Palladino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jim Palladino <jim@gardettoengineering.com>
-Content-Type: multipart/mixed; boundary="===============5007260331506400784=="
+From: Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Neel Pandeya <neel.pandeya@ettus.com>
+Content-Type: multipart/mixed; boundary="===============3227840861805215077=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -128,88 +78,242 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5007260331506400784==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB3312A7830750D47A990F15F7B8160MN2PR12MB3312namp_"
+--===============3227840861805215077==
+Content-Type: multipart/alternative; boundary="00000000000049e24205b2a79bec"
 
---_000_MN2PR12MB3312A7830750D47A990F15F7B8160MN2PR12MB3312namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--00000000000049e24205b2a79bec
+Content-Type: text/plain; charset="UTF-8"
+
+Hello Dev Joshi:
+
+Is the N200 directly connected to the host computer?
+
+What are the IP addresses and netmask of the host and the N200? Do you have
+a gateway address configured?
+
+Earlier, Marcus suggested trying to augment your device string with
+"type=n2xx". Did you try that?
+
+--Neel Pandeya
+
+
+
+On Mon, 19 Oct 2020 at 17:20, Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> On 10/19/2020 05:32 PM, Dev Joshi via USRP-users wrote:
+>
+> Hello everyone,
+>
+> I hope everyone is keeping well through these unusual times. I am writing
+> to request assistance on an issue I am facing while running Ettus N200
+> device. The  device is installed to receive high frequency radio waves and
+> it is connected to an internet port by an Ethernet cable  as is the
+> computer (Ubuntu). I can ping the device from the terminal of the computer.
+> But, whenever I invoke the USRP N200 using any command, it doesn't work as
+> shown below :
+>
+> uhd_find_devices --args="addr=xx.xx.xxx.xx"
+> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
+> UHD_3.15.0.HEAD-0-gaea0e2de
+> No UHD Devices Found
+>
+> But, if  I pass the command soon after the first invocation, it works as
+> shown below:
+>
+> uhd_find_devices --args="addr=xx.xx.xxx.xx"
+> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
+> UHD_3.15.0.HEAD-0-gaea0e2de
+> --------------------------------------------------
+> -- UHD Device 0
+> --------------------------------------------------
+> Device Address:
+>     serial: 31D09D8
+>     addr: xx.xx.xxx.xx
+>     name:
+>     type: usrp2
+>
+> And, subsequent invocations in the near future work.  And, it applies for
+> any other command I have used to invoke the
+> USRP device. I would greatly appreciate suggestions from experienced users
+> in this list.  And, one more issue, the above command used to work without
+> passing the "addr" argument. But recently, it doesn't respond if I don't
+> pass that argument.
+>
+> I would greatly appreciate suggestions on these two points.
+>
+> Thanks.
+>
+> Best,
+> Dev
+>
+>
+> augment your device string with type=n2xx
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--00000000000049e24205b2a79bec
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
+sans-serif">Hello Dev Joshi:<br><br>Is the N200 directly connected to the h=
+ost computer?<br><br>What are the IP addresses and netmask of the host and =
+the N200? Do you have a gateway address configured?<br><br>Earlier, Marcus =
+suggested trying to augment your device string with &quot;type=3Dn2xx&quot;=
+. Did you try that?<br clear=3D"all"></div><div class=3D"gmail_default" sty=
+le=3D"font-family:verdana,sans-serif"><br></div><div><div dir=3D"ltr" class=
+=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><f=
+ont face=3D"verdana, sans-serif">--Neel Pandeya</font><div><br></div><div><=
+br></div></div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Mon, 19 Oct 2020 at 17:20, Marcus D. Leech vi=
+a USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@l=
+ists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 10/19/2020 05:32 PM, Dev Joshi via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div>
+          <div dir=3D"ltr">
+            <div dir=3D"ltr">
+              <div>
+                <div dir=3D"ltr">
+                  <div>
+                    <div dir=3D"ltr">
+                      <div dir=3D"ltr">
+                        <div dir=3D"ltr">
+                          <div dir=3D"ltr">
+                            <div style=3D"margin:0px;padding:0px;border:0px=
+;font-stretch:inherit;font-size:12pt;line-height:inherit;font-family:Calibr=
+i,Arial,Helvetica,sans-serif;vertical-align:baseline;color:black"><span sty=
+le=3D"margin:0px;padding:0px;border:0px;font-style:inherit;font-variant:inh=
+erit;font-weight:inherit;font-stretch:inherit;font-size:large;line-height:i=
+nherit;font-family:Arial,Helvetica,sans-serif;vertical-align:baseline;color=
+:rgb(34,34,34)">Hello
+                                everyone,<br>
+                                <br>
+                                I hope everyone is keeping well through
+                                these unusual times. I am writing to
+                                request assistance on an issue I am
+                                facing while running Ettus N200 device.
+                                The =C2=A0device is installed to receive hi=
+gh
+                                frequency radio waves and it is
+                                connected to an internet port by an
+                                Ethernet cable =C2=A0as is the computer
+                                (Ubuntu). I can ping the device from the
+                                terminal of the computer. But, whenever
+                                I invoke the USRP N200 using any
+                                command, it doesn&#39;t work as shown below
+                                :<br>
+                                <br>
+                                uhd_find_devices
+                                --args=3D&quot;addr=3Dxx.xx.xxx.xx&quot;<br=
+>
+                                [INFO] [UHD] linux; GNU C++ version
+                                7.5.0; Boost_106501;
+                                UHD_3.15.0.HEAD-0-gaea0e2de<br>
+                                No UHD Devices Found<br>
+                                <br>
+                                But, if =C2=A0I pass the command soon after
+                                the first invocation, it works as shown
+                                below:<br>
+                                <br>
+                                uhd_find_devices
+                                --args=3D&quot;addr=3Dxx.xx.xxx.xx&quot;<br=
+>
+                                [INFO] [UHD] linux; GNU C++ version
+                                7.5.0; Boost_106501;
+                                UHD_3.15.0.HEAD-0-gaea0e2de<br>
+--------------------------------------------------<br>
+                                -- UHD Device 0<br>
+--------------------------------------------------<br>
+                                Device Address:<br>
+                                =C2=A0 =C2=A0 serial: 31D09D8<br>
+                                =C2=A0 =C2=A0 addr: xx.xx.xxx.xx<br>
+                                =C2=A0 =C2=A0 name: <br>
+                                =C2=A0 =C2=A0 type: usrp2<br>
+                                <br>
+                                And, subsequent invocations in the near
+                                future work.=C2=A0 And, it applies for any
+                                other command I have used to invoke the
+                                <br>
+                                USRP device. I would greatly appreciate
+                                suggestions from experienced users in
+                                this list.=C2=A0 And, one more issue, the
+                                above command used to work without
+                                passing the &quot;addr&quot; argument. But
+                                recently, it doesn&#39;t respond if I don&#=
+39;t
+                                pass that argument. <br>
+                                <br>
+                              </span></div>
+                            <div style=3D"margin:0px;padding:0px;border:0px=
+;font-stretch:inherit;font-size:12pt;line-height:inherit;font-family:Calibr=
+i,Arial,Helvetica,sans-serif;vertical-align:baseline;color:black"><span sty=
+le=3D"margin:0px;padding:0px;border:0px;font-style:inherit;font-variant:inh=
+erit;font-weight:inherit;font-stretch:inherit;font-size:large;line-height:i=
+nherit;font-family:Arial,Helvetica,sans-serif;vertical-align:baseline;color=
+:rgb(34,34,34)">I
+                                would greatly appreciate suggestions on
+                                these two points. <br>
+                                <br>
+                                Thanks.<br>
+                                <br>
+                                Best,<br>
+                                Dev<br>
+                              </span></div>
+                            <div style=3D"margin:0px;padding:0px;border:0px=
+;font-stretch:inherit;font-size:12pt;line-height:inherit;font-family:Calibr=
+i,Arial,Helvetica,sans-serif;vertical-align:baseline;color:black"><span sty=
+le=3D"margin:0px;padding:0px;border:0px;font-style:inherit;font-variant:inh=
+erit;font-weight:inherit;font-stretch:inherit;font-size:large;line-height:i=
+nherit;font-family:Arial,Helvetica,sans-serif;vertical-align:baseline;color=
+:rgb(34,34,34)"><br>
+                              </span></div>
+                            <br>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    augment your device string with type=3Dn2xx<br>
+    <br>
+    <br>
+  </div>
 
-I have an E320 that I'm trying to get to auto-boot when power is applied (s=
-o the button doesn't need pushed). I followed instructions here (https://kb=
-.ettus.com/E320_Getting_Started_Guide#Enable_Auto_Booting) to set the autob=
-oot flag, but it isn't working (not automatically booting when power is app=
-lied). Per the above-mentioned webpage, I sent a request to support@ettus.c=
-om for instructions to update the E320 RO and RW firmware. It's been about =
-a week and I haven't heard anything back, so I'm wondering if anyone here k=
-nows how to update the firmware.
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
-Thanks,
-Jim
-
+--00000000000049e24205b2a79bec--
 
 
-
---_000_MN2PR12MB3312A7830750D47A990F15F7B8160MN2PR12MB3312namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Hello,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<div style=3D"margin:0px;font-size:12pt">I have an E320 that I'm trying to =
-get to auto-boot when power is applied (so the button doesn't need pushed).=
- I followed instructions here&nbsp;<span style=3D"font-size: 12pt;">(</span=
-><a href=3D"https://kb.ettus.com/E320_Getting_Started_Guide#Enable_Auto_Boo=
-ting" target=3D"_blank" rel=3D"noopener noreferrer" data-auth=3D"NotApplica=
-ble" style=3D"font-size: 12pt;">https://kb.ettus.com/E320_Getting_Started_G=
-uide#Enable_Auto_Booting</a><span style=3D"font-size: 12pt;">)
- to set the autoboot flag, but it isn't working (not automatically booting =
-when power is applied). Per the above-mentioned webpage, I sent a request t=
-o support@ettus.com for instructions to update the E320 RO and RW firmware.=
- It's been about a week and I haven't
- heard anything back, so I'm wondering if anyone here knows how to update t=
-he firmware.</span></div>
-<div style=3D"margin:0px;font-size:12pt"><span style=3D"font-size: 12pt;"><=
-br>
-</span></div>
-<div style=3D"margin:0px;font-size:12pt"><span style=3D"font-size: 12pt;">T=
-hanks,</span></div>
-<div style=3D"margin:0px;font-size:12pt"><span style=3D"font-size: 12pt;">J=
-im</span></div>
-<div style=3D"margin:0px;font-size:12pt"><span style=3D"font-size: 12pt;"><=
-br>
-</span></div>
-<div style=3D"margin:0px;font-size:12pt"><br style=3D"font-size:16px;backgr=
-ound-color:rgb(255, 255, 255)">
-</div>
-<br>
-</div>
-</body>
-</html>
-
---_000_MN2PR12MB3312A7830750D47A990F15F7B8160MN2PR12MB3312namp_--
-
-
---===============5007260331506400784==
+--===============3227840861805215077==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -220,5 +324,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5007260331506400784==--
+--===============3227840861805215077==--
 
