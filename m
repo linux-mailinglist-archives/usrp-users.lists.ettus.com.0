@@ -2,86 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00DC729D10D
-	for <lists+usrp-users@lfdr.de>; Wed, 28 Oct 2020 17:44:27 +0100 (CET)
-Received: from [::1] (port=35964 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B84E429D11D
+	for <lists+usrp-users@lfdr.de>; Wed, 28 Oct 2020 17:50:27 +0100 (CET)
+Received: from [::1] (port=36014 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kXoYk-0000Zw-2Z; Wed, 28 Oct 2020 12:44:26 -0400
-Received: from mail-eopbgr70125.outbound.protection.outlook.com
- ([40.107.7.125]:28037 helo=EUR04-HE1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <demel@ant.uni-bremen.de>)
- id 1kXoYf-0000DJ-1D
- for usrp-users@lists.ettus.com; Wed, 28 Oct 2020 12:44:21 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EojP1wEp+JybhaeURfpARtjeS3khE5v3xCZQYe4cfdNgcKK95kTO5h7YtbhpaUBpPNQTqxA3SYw1OI0Xyha78aWbDHxuVaSpn2FE5gq/7FVgCYXzLBXmJ8uMihi9+bJjfAu5yKKa+TqluiO5rvN/EuJJPmgaSjiPx4grssLKGidv7tfjwXyfTc13/uf8xFcnjVsGwIueZ6qCD5bajgy1QCihvObyT5SIyMGLEwYMyzZnn4WmGyatJR687QMVODvWwyAzHeDfIB0ULIbZg7zW1UGJIKXZXe5EWhPk5kogRdCDAu2rSytozk5pEKjUDNus0A8NzCsjxCAbOT3mSnF3Yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q6ulkvQSpad72KtS1iu4yDHvxLCGIAwUZ9q9KZU5k3U=;
- b=dFv5Hfuz1NmmpbmWQAFRmbZpb+0pIvYPywMsEhR7pyhvXCcu+ojFbgrP4Wo8kD6KhVFa6R4ltNVo6xZy+yGMoyUeeoaxOZXAY/ETCF9VTqXANsl8uvMroxYepJ8LsodtTJZtMcySy+Y/FbAD91pTHjOdKwQqTXN7jkkfUg57OeA3rppJ7I8dkF/ldeoienjIsWaHdIW9901i4o5gBbDAohYBomzXY6qGf/CxSp4/HCAPUmpaByL6HjOltlGi8nmwLrSCsbLl8dT4wSufumkgvnP17J24Bih/Sru0Yt2G1L1NoUdIHY9LwswkKbSbDzenDhihdWK9zMecW//aJZ9e4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
- header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q6ulkvQSpad72KtS1iu4yDHvxLCGIAwUZ9q9KZU5k3U=;
- b=woVGbgYUMmA0o/ynMyq7WctjK6gyRFceoFgS78xVSf9j8PXRsixt3PtV0d5lY6A+kLJ0G4sBH3w0HIpKLPpdc/P3MMrQguAnpxf8ic8Qr7riHNN2uS3CkCXIj/KoBMnNbwF0JQ5SuOXUMGPVuHxnCIHnIeXai0miATu37L1L8z0=
-Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=ant.uni-bremen.de;
-Received: from AM6PR0402MB3398.eurprd04.prod.outlook.com (2603:10a6:209:6::15)
- by AM6PR04MB5463.eurprd04.prod.outlook.com (2603:10a6:20b:28::26)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Wed, 28 Oct
- 2020 16:43:37 +0000
-Received: from AM6PR0402MB3398.eurprd04.prod.outlook.com
- ([fe80::282a:ff14:6e38:fc15]) by AM6PR0402MB3398.eurprd04.prod.outlook.com
- ([fe80::282a:ff14:6e38:fc15%3]) with mapi id 15.20.3477.033; Wed, 28 Oct 2020
- 16:43:37 +0000
-To: usrp-users@lists.ettus.com
-Message-ID: <d0056d81-fabb-f90d-6365-4841ce8f9329@ant.uni-bremen.de>
-Date: Wed, 28 Oct 2020 17:43:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-Content-Language: en-US
-X-Originating-IP: [2003:ca:7f17:d400:30f6:b168:1864:61a4]
-X-ClientProxiedBy: AM0PR02CA0030.eurprd02.prod.outlook.com
- (2603:10a6:208:3e::43) To AM6PR0402MB3398.eurprd04.prod.outlook.com
- (2603:10a6:209:6::15)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2003:ca:7f17:d400:30f6:b168:1864:61a4]
- (2003:ca:7f17:d400:30f6:b168:1864:61a4) by
- AM0PR02CA0030.eurprd02.prod.outlook.com (2603:10a6:208:3e::43) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3499.22 via Frontend Transport; Wed, 28 Oct 2020 16:43:36 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 61a3129c-1a1e-4cde-c930-08d87b609d9d
-X-MS-TrafficTypeDiagnostic: AM6PR04MB5463:
-X-Microsoft-Antispam-PRVS: <AM6PR04MB5463AEA3BAE65C43637BD172A9170@AM6PR04MB5463.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wDgL/O2I3rQ8HmuAY+eIz7UHGvYWL/RvJKCHDcJxUPMMfhtXCUhJsrGl3ixv2v1DgGPRe+Ipn0Po02eYuNrF4Mr9wVocJbm06c9RUHh2r6neL+LmOMftlsKp1BQALjgqcEE19ewsR+ei0MQ/8IaYc2L2hookc5vMLa5d16NywEo0cShgyYbmhYq9uCpCefvJDHPq8PPq3DaEa5FHPvwM0L5VzNXuBoVH5pB0lJxgUbn7wbOSjrITQ4cADeIZCl68mRw6n/myfnRz13tBXzAK0ZQhRh3gwJgGTjqI470YBlqjfVpuDtLGxRwIHkC5ACdkgVdl/psmHdpBds7iHVEriTlUkHq7heUZ8jsJmsJqWsnxbm/SIR/wjDRIBN+rlh8G
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM6PR0402MB3398.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(396003)(376002)(366004)(136003)(346002)(39830400003)(31696002)(2906002)(8676002)(186003)(86362001)(52116002)(2616005)(5660300002)(6916009)(8936002)(83380400001)(66946007)(6486002)(66556008)(66476007)(16526019)(31686004)(316002)(478600001)(786003)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: FTFB8i6VOoPm5Fg7t3Pmqx6a5V6/qm4O6+Ygkm4cL8p54j27ySfrDNHFcHl699ZQkA3oZPKK1zeoXMG+gfcTD+LudB2GuOs+dzAVjGQIrDJfSoXQB4hafDCDB0zUKH7MWAR40V5wVqazcJi+SFfonOxjWzSlMecsGoNLKyHJ8NhXuCnFv/YHHbIWcnJDF2pjvXHnoRcqElHf62cjEj8APafGo6L4dk2didwM029eyrYi0aIiF1RKLg0cwbmcjzEGPfzZUYgs60vHPcMyVUyHKU8uuXT1ZBNotCRiORz7oJQMPheZVWHwjFZdmmIdhnbZcsYbXbQt9AYVVXqgPYBmxGci5XvvR2RcwzGbhgNhaFIFrDCH26y0ZNjrUbO8Q+5jKcCX0IqzVLahtkkulAH5Jj/Zakf76TJ9xZs+ipjmXLpnmJbl8fKH8zDggFNlp8Z+bNVZKfvXcrntFfOVCyIQzNDRRqQCYisGKlLEsThTQeyfs+7EH1mlYigOws0Lak4WKHXtIDR4oUns6Nn/bjA+W7sUWdTKPh80XrG8XMRlzzHslrG2J/X39WE1Yh4ITcOIyi4EOi4j+VmnpQYNMUDfuDZdbwXCLkP7+n7eTfO7/VreP7gQZ1HLSpSNGuNOCWTKqrQ6wy9kxeVJoC6JHyvlP+BXunMprG1NF1/HiHSwkaVhQqjWaQk7mvBKH9LBO7is6E/l5pQc+uL+P1Ahc9IwmA==
-X-OriginatorOrg: ant.uni-bremen.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 61a3129c-1a1e-4cde-c930-08d87b609d9d
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR0402MB3398.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2020 16:43:36.9092 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f018440b-2792-4fa0-b2bd-233acaf88ad2
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vrMwOzFtmuc+6cc/vvqw0WHKffTffnkvFzzL5KDWfsO+lAUbDs/ybxDV67Gr7c49H/JxByJzlG19+Ywr3QEx6A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5463
-Subject: [USRP-users] N310 transmit benchmark_rate fails
+	id 1kXoeX-00013y-Lz; Wed, 28 Oct 2020 12:50:25 -0400
+Received: from mail-qk1-f173.google.com ([209.85.222.173]:43275)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kXoeT-0000wq-4H
+ for USRP-users@lists.ettus.com; Wed, 28 Oct 2020 12:50:21 -0400
+Received: by mail-qk1-f173.google.com with SMTP id q199so5133329qke.10
+ for <USRP-users@lists.ettus.com>; Wed, 28 Oct 2020 09:50:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=C1eGz9+5TM0ba1GyOt7ZKwQ6FHs8D+jK/sTuopPoDwI=;
+ b=jZdx/NeGT72uyJIR5ZskzWXUdUnE3zkOOZSKT0KWrqYh8rBarv6Cy3hXAZ+zPId01T
+ rHEV+UroWoGi3iyuMJUpUfXZompOt8TnbSlOh5oWWCV4mT9xXQyCxtOGAgG/fFIrHdZD
+ b8g83VRkDHk/8mtzc7x8/tAdFW/foAKb44DSSufXldkbJMqyELbiWQ0DWNWP75ZvRMvP
+ 2Od/d692CSrS4/YpFMv/TStmEo3rwDaoLtyPFUMa8eZCUc8h+YgrYT9d7JLTfh7ZnbSx
+ cubKPDHcokIU6D2PYAmP6B4hv9dZYBTJDRtZJQyvi2OVRBWs1DiJ5mKehViRi6AZyV1E
+ gDBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=C1eGz9+5TM0ba1GyOt7ZKwQ6FHs8D+jK/sTuopPoDwI=;
+ b=J67BOQnxwlBPG9EKci73EO0TGor7HficvUgr/NjRTltKRlvUzQ8EsBVOrXYaGRqElT
+ hzLddOU5F41LLHiDcz2Kv2VgXqzY6wvElTqvlWa5Z0higmGZXyq3AlmpcwXZG4/1MF+d
+ AV9nvyfUfnWooEht097a8+pQJiuqDToGbR0/erSa3OeNz7rMOUFRYsKEMuthtaB/j+6L
+ ocgoTQdpt9/zCR9NjMptCms5MdR9JibFQT7srsLqx5r+m0YLi2l6zaNAkRCX2Kzv9SnG
+ e9N2OyOTntoXkMUKCC1LZ4r2GD9PAB97hKbCgLtN42FuALro3fBhD8+avVIc+PcRuaXf
+ AbiA==
+X-Gm-Message-State: AOAM532ym5UfLMTqcXQkr853jHpy2dFHzYWnrorgLgrQ+RxYIvbvsCZX
+ zi/0mTedVka9GFrkFMlm0j/H59W8ywxY1A==
+X-Google-Smtp-Source: ABdhPJwf74x5MwOWlXmPo0AXIvUX6fQ3pXGLx1viN8qrX5SDcjEuO2Qu+dMwTnjIlyWGuZFQaXpzoQ==
+X-Received: by 2002:ae9:eb83:: with SMTP id b125mr7219999qkg.379.1603903780306; 
+ Wed, 28 Oct 2020 09:49:40 -0700 (PDT)
+Received: from [192.168.2.29]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.gmail.com with ESMTPSA id 66sm3291693qkh.3.2020.10.28.09.49.39
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 28 Oct 2020 09:49:39 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+Date: Wed, 28 Oct 2020 12:49:38 -0400
+Message-Id: <7C88BDC0-F5CF-4A9E-A001-7D1F098FB79D@gmail.com>
+References: <d0056d81-fabb-f90d-6365-4841ce8f9329@ant.uni-bremen.de>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <d0056d81-fabb-f90d-6365-4841ce8f9329@ant.uni-bremen.de>
+To: Johannes Demel <demel@ant.uni-bremen.de>
+X-Mailer: iPhone Mail (17H35)
+Subject: Re: [USRP-users] N310 transmit benchmark_rate fails
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -93,10 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -110,188 +83,119 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi all,
-
-we have a couple of N310s in our lab and some of them seem to fail to 
-transmit reliably.
-
-Each N310 is connected to a host via one of those SFP+ cables that came 
-with them from Ettus. We have 3 N310s that are connected via said cables 
-to one host each with an Intel X710 DA2 with an AMD TRX3970. All 
-machines run Ubuntu 20.04 with all updates.
-I use the UHD 3.15LTS branch: UHD_3.15.0.0-7-g8d228dbe
-I made sure to check out the very same commit and recompile and install it.
-
-On 2 hosts I can run:
-`./benchmark_rate --args 
-"addr=192.168.20.213,master_clock_rate=122.88e6" --tx_rate 61.44e6 
---tx_channels "3" --rx_rate 61.44e6 --rx_channels "0,1"`
-The full output is attached at the bottom of this email.
-
-What I observe:
-- It runs fine with 2 hosts
-- The third host fails.
--- On the third host RX only works.
--- On the third host TX only is haunted: cf. full test output.
-- We have a server with Intel Xeon 6254 and X722 where I observe the 
-same issue
-- I switched USRPs between hosts, the issue seems to stick with the host.
-
-It started with one host a couple of weeks back. But now our server 
-starts to fail with the same error: The exact same setup used to work on 
-that machine.
-I am looking into this for quite a while now. I can't find the source of 
-the issue.
-
-Has anyone had experience with that? I'd really appreciate hints how to 
-debug this.
-
-
-Cheers
-Johannes
-
-
-On the working hosts the benchmark rate summary looks like this:
----------
-Benchmark rate summary:
-   Num received samples:     1270556340
-   Num dropped samples:      0
-   Num overruns detected:    0
-   Num transmitted samples:  614440368
-   Num sequence errors (Tx): 0
-   Num sequence errors (Rx): 0
-   Num underruns detected:   0
-   Num late commands:        0
-   Num timeouts (Tx):        0
-   Num timeouts (Rx):        0
----------
-
-But on the third device:
----------
-[....]
-SUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSU[00:00:16.262123] 
-Receiver error: ERROR_CODE_TIMEOUT, continuing...
-SUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUU[00:00:16.565159] 
-Benchmark complete.
-
-
-Benchmark rate summary:
-   Num received samples:     66501280
-   Num dropped samples:      0
-   Num overruns detected:    0
-   Num transmitted samples:  154312704
-   Num sequence errors (Tx): 3149
-   Num sequence errors (Rx): 0
-   Num underruns detected:   3156
-   Num late commands:        0
-   Num timeouts (Tx):        0
-   Num timeouts (Rx):        97
-----------
-
-We have a server with Intel X722 and Intel Xeon Gold 6252 that reports 
-the same issue:
-----------
-UUUUUUUU[00:00:16.180094] Receiver error: ERROR_CODE_TIMEOUT, continuing...
-US[00:00:16.382393] Benchmark complete.
-
-
-Benchmark rate summary:
-   Num received samples:     99763328
-   Num dropped samples:      0
-   Num overruns detected:    0
-   Num transmitted samples:  155804944
-   Num sequence errors (Tx): 3180
-   Num sequence errors (Rx): 0
-   Num underruns detected:   164974
-   Num late commands:        0
-   Num timeouts (Tx):        0
-   Num timeouts (Rx):        95
-----------
-Though, there are even more underruns.
-
-
-
-Working output:
-============
-[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; 
-UHD_3.15.0.0-7-g8d228dbe
-[00:00:00.000002] Creating the usrp device with: 
-addr=192.168.20.213,master_clock_rate=122.88e6...
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: 
-mgmt_addr=192.168.20.213,type=n3xx,product=n310,serial=319841B,claimed=False,addr=192.168.20.213,master_clock_rate=122.88e6
-[INFO] [MPM.PeriphManager] init() called with device args 
-`time_source=gpsdo,clock_source=gpsdo,mgmt_addr=192.168.20.213,product=n310,master_clock_rate=122.88e6'.
-[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000004)
-[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000011312)
-[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000011312)
-[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
-[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
-[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)
-[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000002)
-[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)
-[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)
-[INFO] [0/FIFO_2] Initializing block control (NOC ID: 0xF1F0000000000000)
-[INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)
-Using Device: Single USRP:
-   Device: N300-Series Device
-   RX Channel: 0
-     RX DSP: 0
-     RX Dboard: A
-     RX Subdev: Magnesium
-   RX Channel: 1
-     RX DSP: 1
-     RX Dboard: A
-     RX Subdev: Magnesium
-   RX Channel: 2
-     RX DSP: 0
-     RX Dboard: B
-     RX Subdev: Magnesium
-   RX Channel: 3
-     RX DSP: 1
-     RX Dboard: B
-     RX Subdev: Magnesium
-   TX Channel: 0
-     TX DSP: 0
-     TX Dboard: A
-     TX Subdev: Magnesium
-   TX Channel: 1
-     TX DSP: 1
-     TX Dboard: A
-     TX Subdev: Magnesium
-   TX Channel: 2
-     TX DSP: 0
-     TX Dboard: B
-     TX Subdev: Magnesium
-   TX Channel: 3
-     TX DSP: 1
-     TX Dboard: B
-     TX Subdev: Magnesium
-
-[00:00:04.045700] Setting device timestamp to 0...
-[INFO] [MULTI_USRP]     1) catch time transition at pps edge
-[INFO] [MULTI_USRP]     2) set times next pps (synchronously)
-[00:00:05.689405] Testing receive rate 61.440000 Msps on 2 channels
-[00:00:05.829315] Testing transmit rate 61.440000 Msps on 1 channels
-[00:00:16.180163] Benchmark complete.
-
-
-Benchmark rate summary:
-   Num received samples:     1270556340
-   Num dropped samples:      0
-   Num overruns detected:    0
-   Num transmitted samples:  614440368
-   Num sequence errors (Tx): 0
-   Num sequence errors (Rx): 0
-   Num underruns detected:   0
-   Num late commands:        0
-   Num timeouts (Tx):        0
-   Num timeouts (Rx):        0
-
-
-Done!
-=====================
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+SGF2ZSB5b3UgdHJpZWQgc3dhcHBpbmcgY2FibGVzIHRvIHNlZSBpZiB0aGUgcHJvYmxlbSBmb2xs
+b3dzIHRoZSBjYWJsZT8KClNlbnQgZnJvbSBteSBpUGhvbmUKCj4gT24gT2N0IDI4LCAyMDIwLCBh
+dCAxMjo0NCBQTSwgSm9oYW5uZXMgRGVtZWwgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tPiB3cm90ZToKPiAKPiDvu79IaSBhbGwsCj4gCj4gd2UgaGF2ZSBhIGNvdXBs
+ZSBvZiBOMzEwcyBpbiBvdXIgbGFiIGFuZCBzb21lIG9mIHRoZW0gc2VlbSB0byBmYWlsIHRvIHRy
+YW5zbWl0IHJlbGlhYmx5Lgo+IAo+IEVhY2ggTjMxMCBpcyBjb25uZWN0ZWQgdG8gYSBob3N0IHZp
+YSBvbmUgb2YgdGhvc2UgU0ZQKyBjYWJsZXMgdGhhdCBjYW1lIHdpdGggdGhlbSBmcm9tIEV0dHVz
+LiBXZSBoYXZlIDMgTjMxMHMgdGhhdCBhcmUgY29ubmVjdGVkIHZpYSBzYWlkIGNhYmxlcyB0byBv
+bmUgaG9zdCBlYWNoIHdpdGggYW4gSW50ZWwgWDcxMCBEQTIgd2l0aCBhbiBBTUQgVFJYMzk3MC4g
+QWxsIG1hY2hpbmVzIHJ1biBVYnVudHUgMjAuMDQgd2l0aCBhbGwgdXBkYXRlcy4KPiBJIHVzZSB0
+aGUgVUhEIDMuMTVMVFMgYnJhbmNoOiBVSERfMy4xNS4wLjAtNy1nOGQyMjhkYmUKPiBJIG1hZGUg
+c3VyZSB0byBjaGVjayBvdXQgdGhlIHZlcnkgc2FtZSBjb21taXQgYW5kIHJlY29tcGlsZSBhbmQg
+aW5zdGFsbCBpdC4KPiAKPiBPbiAyIGhvc3RzIEkgY2FuIHJ1bjoKPiBgLi9iZW5jaG1hcmtfcmF0
+ZSAtLWFyZ3MgImFkZHI9MTkyLjE2OC4yMC4yMTMsbWFzdGVyX2Nsb2NrX3JhdGU9MTIyLjg4ZTYi
+IC0tdHhfcmF0ZSA2MS40NGU2IC0tdHhfY2hhbm5lbHMgIjMiIC0tcnhfcmF0ZSA2MS40NGU2IC0t
+cnhfY2hhbm5lbHMgIjAsMSJgCj4gVGhlIGZ1bGwgb3V0cHV0IGlzIGF0dGFjaGVkIGF0IHRoZSBi
+b3R0b20gb2YgdGhpcyBlbWFpbC4KPiAKPiBXaGF0IEkgb2JzZXJ2ZToKPiAtIEl0IHJ1bnMgZmlu
+ZSB3aXRoIDIgaG9zdHMKPiAtIFRoZSB0aGlyZCBob3N0IGZhaWxzLgo+IC0tIE9uIHRoZSB0aGly
+ZCBob3N0IFJYIG9ubHkgd29ya3MuCj4gLS0gT24gdGhlIHRoaXJkIGhvc3QgVFggb25seSBpcyBo
+YXVudGVkOiBjZi4gZnVsbCB0ZXN0IG91dHB1dC4KPiAtIFdlIGhhdmUgYSBzZXJ2ZXIgd2l0aCBJ
+bnRlbCBYZW9uIDYyNTQgYW5kIFg3MjIgd2hlcmUgSSBvYnNlcnZlIHRoZSBzYW1lIGlzc3VlCj4g
+LSBJIHN3aXRjaGVkIFVTUlBzIGJldHdlZW4gaG9zdHMsIHRoZSBpc3N1ZSBzZWVtcyB0byBzdGlj
+ayB3aXRoIHRoZSBob3N0Lgo+IAo+IEl0IHN0YXJ0ZWQgd2l0aCBvbmUgaG9zdCBhIGNvdXBsZSBv
+ZiB3ZWVrcyBiYWNrLiBCdXQgbm93IG91ciBzZXJ2ZXIgc3RhcnRzIHRvIGZhaWwgd2l0aCB0aGUg
+c2FtZSBlcnJvcjogVGhlIGV4YWN0IHNhbWUgc2V0dXAgdXNlZCB0byB3b3JrIG9uIHRoYXQgbWFj
+aGluZS4KPiBJIGFtIGxvb2tpbmcgaW50byB0aGlzIGZvciBxdWl0ZSBhIHdoaWxlIG5vdy4gSSBj
+YW4ndCBmaW5kIHRoZSBzb3VyY2Ugb2YgdGhlIGlzc3VlLgo+IAo+IEhhcyBhbnlvbmUgaGFkIGV4
+cGVyaWVuY2Ugd2l0aCB0aGF0PyBJJ2QgcmVhbGx5IGFwcHJlY2lhdGUgaGludHMgaG93IHRvIGRl
+YnVnIHRoaXMuCj4gCj4gCj4gQ2hlZXJzCj4gSm9oYW5uZXMKPiAKPiAKPiBPbiB0aGUgd29ya2lu
+ZyBob3N0cyB0aGUgYmVuY2htYXJrIHJhdGUgc3VtbWFyeSBsb29rcyBsaWtlIHRoaXM6Cj4gLS0t
+LS0tLS0tCj4gQmVuY2htYXJrIHJhdGUgc3VtbWFyeToKPiAgTnVtIHJlY2VpdmVkIHNhbXBsZXM6
+ICAgICAxMjcwNTU2MzQwCj4gIE51bSBkcm9wcGVkIHNhbXBsZXM6ICAgICAgMAo+ICBOdW0gb3Zl
+cnJ1bnMgZGV0ZWN0ZWQ6ICAgIDAKPiAgTnVtIHRyYW5zbWl0dGVkIHNhbXBsZXM6ICA2MTQ0NDAz
+NjgKPiAgTnVtIHNlcXVlbmNlIGVycm9ycyAoVHgpOiAwCj4gIE51bSBzZXF1ZW5jZSBlcnJvcnMg
+KFJ4KTogMAo+ICBOdW0gdW5kZXJydW5zIGRldGVjdGVkOiAgIDAKPiAgTnVtIGxhdGUgY29tbWFu
+ZHM6ICAgICAgICAwCj4gIE51bSB0aW1lb3V0cyAoVHgpOiAgICAgICAgMAo+ICBOdW0gdGltZW91
+dHMgKFJ4KTogICAgICAgIDAKPiAtLS0tLS0tLS0KPiAKPiBCdXQgb24gdGhlIHRoaXJkIGRldmlj
+ZToKPiAtLS0tLS0tLS0KPiBbLi4uLl0KPiBTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VT
+VVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVWzAwOjAwOjE2LjI2MjEyM10gUmVjZWl2
+ZXIgZXJyb3I6IEVSUk9SX0NPREVfVElNRU9VVCwgY29udGludWluZy4uLgo+IFNVU1VTVVNVU1VT
+VVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VVWzAw
+OjAwOjE2LjU2NTE1OV0gQmVuY2htYXJrIGNvbXBsZXRlLgo+IAo+IAo+IEJlbmNobWFyayByYXRl
+IHN1bW1hcnk6Cj4gIE51bSByZWNlaXZlZCBzYW1wbGVzOiAgICAgNjY1MDEyODAKPiAgTnVtIGRy
+b3BwZWQgc2FtcGxlczogICAgICAwCj4gIE51bSBvdmVycnVucyBkZXRlY3RlZDogICAgMAo+ICBO
+dW0gdHJhbnNtaXR0ZWQgc2FtcGxlczogIDE1NDMxMjcwNAo+ICBOdW0gc2VxdWVuY2UgZXJyb3Jz
+IChUeCk6IDMxNDkKPiAgTnVtIHNlcXVlbmNlIGVycm9ycyAoUngpOiAwCj4gIE51bSB1bmRlcnJ1
+bnMgZGV0ZWN0ZWQ6ICAgMzE1Ngo+ICBOdW0gbGF0ZSBjb21tYW5kczogICAgICAgIDAKPiAgTnVt
+IHRpbWVvdXRzIChUeCk6ICAgICAgICAwCj4gIE51bSB0aW1lb3V0cyAoUngpOiAgICAgICAgOTcK
+PiAtLS0tLS0tLS0tCj4gCj4gV2UgaGF2ZSBhIHNlcnZlciB3aXRoIEludGVsIFg3MjIgYW5kIElu
+dGVsIFhlb24gR29sZCA2MjUyIHRoYXQgcmVwb3J0cyB0aGUgc2FtZSBpc3N1ZToKPiAtLS0tLS0t
+LS0tCj4gVVVVVVVVVVVbMDA6MDA6MTYuMTgwMDk0XSBSZWNlaXZlciBlcnJvcjogRVJST1JfQ09E
+RV9USU1FT1VULCBjb250aW51aW5nLi4uCj4gVVNbMDA6MDA6MTYuMzgyMzkzXSBCZW5jaG1hcmsg
+Y29tcGxldGUuCj4gCj4gCj4gQmVuY2htYXJrIHJhdGUgc3VtbWFyeToKPiAgTnVtIHJlY2VpdmVk
+IHNhbXBsZXM6ICAgICA5OTc2MzMyOAo+ICBOdW0gZHJvcHBlZCBzYW1wbGVzOiAgICAgIDAKPiAg
+TnVtIG92ZXJydW5zIGRldGVjdGVkOiAgICAwCj4gIE51bSB0cmFuc21pdHRlZCBzYW1wbGVzOiAg
+MTU1ODA0OTQ0Cj4gIE51bSBzZXF1ZW5jZSBlcnJvcnMgKFR4KTogMzE4MAo+ICBOdW0gc2VxdWVu
+Y2UgZXJyb3JzIChSeCk6IDAKPiAgTnVtIHVuZGVycnVucyBkZXRlY3RlZDogICAxNjQ5NzQKPiAg
+TnVtIGxhdGUgY29tbWFuZHM6ICAgICAgICAwCj4gIE51bSB0aW1lb3V0cyAoVHgpOiAgICAgICAg
+MAo+ICBOdW0gdGltZW91dHMgKFJ4KTogICAgICAgIDk1Cj4gLS0tLS0tLS0tLQo+IFRob3VnaCwg
+dGhlcmUgYXJlIGV2ZW4gbW9yZSB1bmRlcnJ1bnMuCj4gCj4gCj4gCj4gV29ya2luZyBvdXRwdXQ6
+Cj4gPT09PT09PT09PT09Cj4gW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gOS4z
+LjA7IEJvb3N0XzEwNzEwMDsgVUhEXzMuMTUuMC4wLTctZzhkMjI4ZGJlCj4gWzAwOjAwOjAwLjAw
+MDAwMl0gQ3JlYXRpbmcgdGhlIHVzcnAgZGV2aWNlIHdpdGg6IGFkZHI9MTkyLjE2OC4yMC4yMTMs
+bWFzdGVyX2Nsb2NrX3JhdGU9MTIyLjg4ZTYuLi4KPiBbSU5GT10gW01QTURdIEluaXRpYWxpemlu
+ZyAxIGRldmljZShzKSBpbiBwYXJhbGxlbCB3aXRoIGFyZ3M6IG1nbXRfYWRkcj0xOTIuMTY4LjIw
+LjIxMyx0eXBlPW4zeHgscHJvZHVjdD1uMzEwLHNlcmlhbD0zMTk4NDFCLGNsYWltZWQ9RmFsc2Us
+YWRkcj0xOTIuMTY4LjIwLjIxMyxtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNgo+IFtJTkZPXSBb
+TVBNLlBlcmlwaE1hbmFnZXJdIGluaXQoKSBjYWxsZWQgd2l0aCBkZXZpY2UgYXJncyBgdGltZV9z
+b3VyY2U9Z3BzZG8sY2xvY2tfc291cmNlPWdwc2RvLG1nbXRfYWRkcj0xOTIuMTY4LjIwLjIxMyxw
+cm9kdWN0PW4zMTAsbWFzdGVyX2Nsb2NrX3JhdGU9MTIyLjg4ZTYnLgo+IFtJTkZPXSBbMC9SZXBs
+YXlfMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHg0RTkxQTAwMDAwMDAw
+MDA0KQo+IFtJTkZPXSBbMC9SYWRpb18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9D
+IElEOiAweDEyQUQxMDAwMDAwMTEzMTIpCj4gW0lORk9dIFswL1JhZGlvXzFdIEluaXRpYWxpemlu
+ZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4MTJBRDEwMDAwMDAxMTMxMikKPiBbSU5GT10gWzAv
+RERDXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RERDMDAwMDAwMDAw
+MDAwMCkKPiBbSU5GT10gWzAvRERDXzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0Mg
+SUQ6IDB4RERDMDAwMDAwMDAwMDAwMCkKPiBbSU5GT10gWzAvRFVDXzBdIEluaXRpYWxpemluZyBi
+bG9jayBjb250cm9sIChOT0MgSUQ6IDB4RDBDMDAwMDAwMDAwMDAwMikKPiBbSU5GT10gWzAvRFVD
+XzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RDBDMDAwMDAwMDAwMDAw
+MikKPiBbSU5GT10gWzAvRklGT18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElE
+OiAweEYxRjAwMDAwMDAwMDAwMDApCj4gW0lORk9dIFswL0ZJRk9fMV0gSW5pdGlhbGl6aW5nIGJs
+b2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAwKQo+IFtJTkZPXSBbMC9GSUZP
+XzJdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RjFGMDAwMDAwMDAwMDAw
+MCkKPiBbSU5GT10gWzAvRklGT18zXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElE
+OiAweEYxRjAwMDAwMDAwMDAwMDApCj4gVXNpbmcgRGV2aWNlOiBTaW5nbGUgVVNSUDoKPiAgRGV2
+aWNlOiBOMzAwLVNlcmllcyBEZXZpY2UKPiAgUlggQ2hhbm5lbDogMAo+ICAgIFJYIERTUDogMAo+
+ICAgIFJYIERib2FyZDogQQo+ICAgIFJYIFN1YmRldjogTWFnbmVzaXVtCj4gIFJYIENoYW5uZWw6
+IDEKPiAgICBSWCBEU1A6IDEKPiAgICBSWCBEYm9hcmQ6IEEKPiAgICBSWCBTdWJkZXY6IE1hZ25l
+c2l1bQo+ICBSWCBDaGFubmVsOiAyCj4gICAgUlggRFNQOiAwCj4gICAgUlggRGJvYXJkOiBCCj4g
+ICAgUlggU3ViZGV2OiBNYWduZXNpdW0KPiAgUlggQ2hhbm5lbDogMwo+ICAgIFJYIERTUDogMQo+
+ICAgIFJYIERib2FyZDogQgo+ICAgIFJYIFN1YmRldjogTWFnbmVzaXVtCj4gIFRYIENoYW5uZWw6
+IDAKPiAgICBUWCBEU1A6IDAKPiAgICBUWCBEYm9hcmQ6IEEKPiAgICBUWCBTdWJkZXY6IE1hZ25l
+c2l1bQo+ICBUWCBDaGFubmVsOiAxCj4gICAgVFggRFNQOiAxCj4gICAgVFggRGJvYXJkOiBBCj4g
+ICAgVFggU3ViZGV2OiBNYWduZXNpdW0KPiAgVFggQ2hhbm5lbDogMgo+ICAgIFRYIERTUDogMAo+
+ICAgIFRYIERib2FyZDogQgo+ICAgIFRYIFN1YmRldjogTWFnbmVzaXVtCj4gIFRYIENoYW5uZWw6
+IDMKPiAgICBUWCBEU1A6IDEKPiAgICBUWCBEYm9hcmQ6IEIKPiAgICBUWCBTdWJkZXY6IE1hZ25l
+c2l1bQo+IAo+IFswMDowMDowNC4wNDU3MDBdIFNldHRpbmcgZGV2aWNlIHRpbWVzdGFtcCB0byAw
+Li4uCj4gW0lORk9dIFtNVUxUSV9VU1JQXSAgICAgMSkgY2F0Y2ggdGltZSB0cmFuc2l0aW9uIGF0
+IHBwcyBlZGdlCj4gW0lORk9dIFtNVUxUSV9VU1JQXSAgICAgMikgc2V0IHRpbWVzIG5leHQgcHBz
+IChzeW5jaHJvbm91c2x5KQo+IFswMDowMDowNS42ODk0MDVdIFRlc3RpbmcgcmVjZWl2ZSByYXRl
+IDYxLjQ0MDAwMCBNc3BzIG9uIDIgY2hhbm5lbHMKPiBbMDA6MDA6MDUuODI5MzE1XSBUZXN0aW5n
+IHRyYW5zbWl0IHJhdGUgNjEuNDQwMDAwIE1zcHMgb24gMSBjaGFubmVscwo+IFswMDowMDoxNi4x
+ODAxNjNdIEJlbmNobWFyayBjb21wbGV0ZS4KPiAKPiAKPiBCZW5jaG1hcmsgcmF0ZSBzdW1tYXJ5
+Ogo+ICBOdW0gcmVjZWl2ZWQgc2FtcGxlczogICAgIDEyNzA1NTYzNDAKPiAgTnVtIGRyb3BwZWQg
+c2FtcGxlczogICAgICAwCj4gIE51bSBvdmVycnVucyBkZXRlY3RlZDogICAgMAo+ICBOdW0gdHJh
+bnNtaXR0ZWQgc2FtcGxlczogIDYxNDQ0MDM2OAo+ICBOdW0gc2VxdWVuY2UgZXJyb3JzIChUeCk6
+IDAKPiAgTnVtIHNlcXVlbmNlIGVycm9ycyAoUngpOiAwCj4gIE51bSB1bmRlcnJ1bnMgZGV0ZWN0
+ZWQ6ICAgMAo+ICBOdW0gbGF0ZSBjb21tYW5kczogICAgICAgIDAKPiAgTnVtIHRpbWVvdXRzIChU
+eCk6ICAgICAgICAwCj4gIE51bSB0aW1lb3V0cyAoUngpOiAgICAgICAgMAo+IAo+IAo+IERvbmUh
+Cj4gPT09PT09PT09PT09PT09PT09PT09Cj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
+bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8v
+dXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
