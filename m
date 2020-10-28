@@ -2,52 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3963129C04C
-	for <lists+usrp-users@lfdr.de>; Tue, 27 Oct 2020 18:13:55 +0100 (CET)
-Received: from [::1] (port=53848 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4699529CCC9
+	for <lists+usrp-users@lfdr.de>; Wed, 28 Oct 2020 01:25:57 +0100 (CET)
+Received: from [::1] (port=56602 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kXSXg-0003CR-BN; Tue, 27 Oct 2020 13:13:52 -0400
-Received: from exedge04.gtri.gatech.edu ([130.207.193.244]:4558)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Jeff.Hodges@gtri.gatech.edu>)
- id 1kXSXc-00033Q-E8
- for usrp-users@lists.ettus.com; Tue, 27 Oct 2020 13:13:48 -0400
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=exedge04;
- c=simple/simple; t=1603818787; h=from:subject:to:date:message-id;
- bh=ImlLJGz9Jco0ty8Xw5RQ4pZfXbiKEhh6tjOzFNYXLNA=;
- b=XeQ3hSrfIRehOgR0AkxpqwJJyvw5CDooJnPvkzbXy14YhJPLOdde2AdPF6K47vZnsalwUQUfNj2
- imtsdk6h/8y9VcYWdsBiHzuMMxQxXZwVwUBX7Idq97rOXqRQPdpEaK4OwcXjuqr2chmYuJOSOzPmY
- A3XO40z65D6IgPKqpCM=
-Received: from hatteras.core.gtri.org (10.41.22.72) by exedge04.gtri.org
- (130.207.193.244) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Tue, 27 Oct
- 2020 13:13:07 -0400
-Received: from ocracoke.core.gtri.org (2610:148:610:2916::71) by
- hatteras.core.gtri.org (2610:148:610:2916::72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2106.2; Tue, 27 Oct 2020 13:13:07 -0400
-Received: from ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf]) by
- ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf%13]) with mapi id
- 15.01.2106.003; Tue, 27 Oct 2020 13:13:07 -0400
-To: Marcus D Leech <patchvonbraun@gmail.com>
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] C++ how to get usrp::multi_usrp::sptr from
- USRP_Sink_Block
-Thread-Index: AQHWrHmUYJkh34YlB0S+eM/7YGpY9Kmr7DcA//++P48=
-Date: Tue, 27 Oct 2020 17:13:07 +0000
-Message-ID: <5bf9a51d45a745c5b167eb8856ae1c28@gtri.gatech.edu>
-References: <0b218fc462bf455fa059abfbbae584c7@gtri.gatech.edu>,
- <77AD9DDC-6ED5-41F6-98CE-0DA956728821@gmail.com>
-In-Reply-To: <77AD9DDC-6ED5-41F6-98CE-0DA956728821@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.41.0.30]
+	id 1kXZHk-0001uI-By; Tue, 27 Oct 2020 20:25:52 -0400
+Received: from mail-qk1-f169.google.com ([209.85.222.169]:37266)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <apruhd@gmail.com>) id 1kXZHg-0001qG-NB
+ for usrp-users@lists.ettus.com; Tue, 27 Oct 2020 20:25:48 -0400
+Received: by mail-qk1-f169.google.com with SMTP id z6so3090711qkz.4
+ for <usrp-users@lists.ettus.com>; Tue, 27 Oct 2020 17:25:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=901mWY8jQc6X1sM63/jh1hDLpcxpB4ypag1rdcVMNVQ=;
+ b=hH2bJgCCl9V0oXNg3JdOW3nTpL/EPEMo0EJ53ajzMuvH6SpPR5LOlP2UFD5USb9G7f
+ LDGW4BHppyzUMItTdZMBTM3xANyRShQ7oE7z39kIwOwyWt7y+bavlLLMVfKzKGFbSBjO
+ VAvvn7HmHoL9bchp0+XMC3HK9vuU0mFUo9qpQ0K0IKeJoySKUKXpIPQW8sCEqBvMYZcR
+ pQP1+iXKwpTA8iNgJcmbRPRMj4iHTpK734hqQoevhFIpangKRlGlZ4msc6EKT5PJ9oKK
+ uDzHWV45vnNxZT5Vt8GSJ8Xs2fhtOsIOJQtm6o39T1oWou3ORNmQIXXuPDlAl/9L2jjG
+ yQ7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=901mWY8jQc6X1sM63/jh1hDLpcxpB4ypag1rdcVMNVQ=;
+ b=VDtOUzTt166Wez+b5wY240q6RycbL3i5z3UWVrav1a17w+Dhvlht5daApCKKRL7vFV
+ P/6P1o/n6TwO6c58nulMGm8Ov32dQ51+gI5hRf/Dtlz1Kq7sLRY3dazc5qAUscUF06u7
+ e5OYaJVsGWcEE3SPv/8Nld0oZisDK0ZDmPS2GxOVvCe466CU82Bl6OJzhjhmQl/NFXfN
+ f8iMBOw+6hyBBtv3W2GiOz7oGBaOGNCrjeX+QLT6zUZDBI3kaGyuFkrVHKHshnp2XAfz
+ lky4Uo5d/jALzHlC8w7ysRRvY+hT4SkO3jLmBKqWR+CndgN2ZiJBvgofvflIlTjhB3u5
+ gDnA==
+X-Gm-Message-State: AOAM533lEmU/I7b63YXc2HwkST4xLsd/cRDLrbfIb6ol45xx1SNMhSTr
+ fBNwbKNbR+YFGXwLK/NlUtWb3xmzZI4LqVYr+9glt5srpklW3MUP
+X-Google-Smtp-Source: ABdhPJx/IpNZgFGrjpWU1YfKZhLmLSk+LX/qbk22TmqJnESDxjqBkWhuGlpVAyEHecJnp7Xvkp0ahJ/GloMWEgc6Sro=
+X-Received: by 2002:ae9:ee15:: with SMTP id i21mr4574334qkg.76.1603844707723; 
+ Tue, 27 Oct 2020 17:25:07 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [USRP-users] C++ how to get usrp::multi_usrp::sptr from
- USRP_Sink_Block
+Date: Wed, 28 Oct 2020 01:24:54 +0100
+Message-ID: <CAAC=UJPpvpO2GaKDEfMuaHDyepNhydZ+DRBqKvXOMgkCuQSf-w@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] USRP B200mini half-duplex 1 port
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,9 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Hodges, Jeff via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
-Content-Type: multipart/mixed; boundary="===============5195783405349591528=="
+From: Alvaro Pendas Recondo via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Alvaro Pendas Recondo <apruhd@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7268840318588527122=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,150 +70,48 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5195783405349591528==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_5bf9a51d45a745c5b167eb8856ae1c28gtrigatechedu_"
+--===============7268840318588527122==
+Content-Type: multipart/alternative; boundary="000000000000142e6605b2b032be"
 
---_000_5bf9a51d45a745c5b167eb8856ae1c28gtrigatechedu_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000142e6605b2b032be
+Content-Type: text/plain; charset="UTF-8"
 
-TWFyY3VzLCB0aGFuayB5b3UgZm9yIHRoYXQgYWR2aWNlLiBJIHdhcyBjb25jZXJuZWQgdGhhdCBt
-YWtpbmcgdGhlIGNhbGxzIHRocm91Z2ggdGhlIGdyLXVoZCB3b3VsZCBnaXZlIHRoZSBzYW1lIHBy
-b2JsZW1zIEkgd2FzIGV4cGVyaWVuY2luZyB3aXRoIHRoZSB0YWdnZWQgc3RyZWFtIGJ1dCB1cG9u
-IGNsb3NlciBpbnNwZWN0aW9uIGl0IG1ha2VzIGNhbGxzIGRpcmVjdGx5IHRvIHRoZSB1aGQ6OnVz
-cnA6Om11bHRpX3VzcnAuDQoNCg0KVXBvbiBzZWNvbmQgZ2xhbmNlIHVzaW5nIHRoZSBnci11aGQg
-d291bGQgYmUgdGhlIGJldHRlciBhcHByb2FjaCEgVGhlIGZ1bmN0aW9ucyBJIG5lZWQgYXJlIGF2
-YWlsYWJsZS4NCg0KDQpJIGRpZCByZXNvbHZlIG15IG9yaWdpbmFsIHByb2JsZW06DQoNCg0KSGVy
-ZSB3YXMgbXkgZXJyb3I6DQoNCi0gZF91c3JwID0gYm9vc3Q6OmR5bmFtaWNfcG9pbnRlcl9jYXN0
-PGdyOjp1aGQ6OnVzcnBfc2luazo6c3B0cj4oYmxrKTsNCisgZF91c3JwID0gYm9vc3Q6OmR5bmFt
-aWNfcG9pbnRlcl9jYXN0PGdyOjp1aGQ6OnVzcnBfc2luaz4oYmxrKTsNCg0KSmVmZg0KDQoNCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpGcm9tOiBNYXJjdXMgRCBMZWVjaCA8cGF0
-Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBUdWVzZGF5LCBPY3RvYmVyIDI3LCAyMDIwIDEy
-OjQ4IFBNDQpUbzogSG9kZ2VzLCBKZWZmDQpDYzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20N
-ClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gQysrIGhvdyB0byBnZXQgdXNycDo6bXVsdGlfdXNy
-cDo6c3B0ciBmcm9tIFVTUlBfU2lua19CbG9jaw0KDQpBcmUgeW91IHN1cmUgdGhlIGNhbGxzIHlv
-dSBuZWVkIGFyZW7igJl0IGFscmVhZHkgYXZhaWxhYmxlIGluIHRoZSBnci1VSEQgd3JhcHBlcj8N
-Cg0KU29tZSBwYXJ0cyBvZiBnci1VSEQgYXJlbuKAmXQgdmlzaWJsZSBpbiBHUkMgYmFzZWQgZmxv
-d3MgYnV0IGFyZSBzdGlsbCBpbiB0aGUgZ3ItVUhEIEFQSSwgYW5kIGlmIHlvdSB3ZXJlIGp1c3Qg
-dXNpbmcgdGhlIHN0cmFpZ2h0IFB5dGhvbiBwcm9ncmFtbWluZyBtb2RlbCB5b3UgY291bGQgdXNl
-IHRoZW0gZGlyZWN0bHkuDQoNCg0KU2VudCBmcm9tIG15IGlQaG9uZQ0KDQpPbiBPY3QgMjcsIDIw
-MjAsIGF0IDEyOjI1IFBNLCBIb2RnZXMsIEplZmYgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tPiB3cm90ZToNCg0K77u/DQoNCkhvdyBkbyBJIGdldCB0aGUgZGV2aWNl
-IHNwdHIgKDo6dWhkOjp1c3JwOjptdWx0aV91c3JwOjpzcHRyKSBmcm9tIHRoZSB1c3JwX3Npbmtf
-YmxvY2sgc3B0cj8NCg0KDQpGb3IgZXhhbXBsZSwgdGhlIGZvbGxvd2luZyB3b3JrczoNCg0KDQog
-ICAgICAgICAgICAgICAgYmFzaWNfYmxvY2tfc3B0ciBibGsgPSBnbG9iYWxfYmxvY2tfcmVnaXN0
-cnkuYmxvY2tfbG9va3VwKHBtdDo6aW50ZXJuKHVzcnBfYWxpYXMpKTsNCiAgICAgICAgICAgICAg
-ICBkX3VzcnAgPSBib29zdDo6ZHluYW1pY19wb2ludGVyX2Nhc3Q8Z3I6OnVoZDo6dXNycF9zaW5r
-OjpzcHRyPihibGspOw0KDQpCdXQgZXJyb3JzIGhlcmU6DQoNCiAgICAgICAgICAgICAgICA6OnVo
-ZDo6dXNycDo6bXVsdGlfdXNycDo6c3B0ciBkX3VzcnBfZGV2ID0gZF91c3JwLT5nZXRfZGV2aWNl
-KCk7DQoNCg0KV2hhdCBoYXBwZW5zIGlmIEkganVzdCBjcmVhdGUgYW5vdGhlciB1c3JwIG9iamVj
-dCBmb3IgdGhlIHNhbWUgZGV2aWNlIGluIGFkZGl0aW9uIHRvIHRoZSBvbmUgYWxyZWFkeSBjcmVh
-dGVkIGJ5IHRoZSB1aGRfc2lua19ibG9jaz8gSSdtIGd1ZXNzaW5nIHRoYXQgd2lsbCBub3Qgd29y
-ay4NCg0KDQpNeSBlbmQgZ29hbCBpcyB0byBiZSBhYmxlIHRvIGNyZWF0ZSBhIGJsb2NrIHRoYXQg
-bWFrZXMgZGlyZWN0IEMrKyBhcGkgY2FsbHMgdG8gdGhlIHVzcnAgdG8gdHVuZSBpdCBiZXR3ZWVu
-IGJ1cnN0cywgc2luY2UgdGhlIHVoZCAoZm9yIHVua25vd24gcmVhc29ucykgZG9lcyBub3Qgc3Vw
-cG9ydCB0aW1lZCBjb21tYW5kIHR1bmluZyBvbiBhIHRhZ2dlZCBzdHJlYW0gaW4gYnVyc3QgbW9k
-ZSAoYXMgaSBtZW50aW9uZWQgaW4geWVzdGVyZGF5J3MgZW1haWwpLg0KDQpKZWZmDQoNCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1h
-aWxpbmcgbGlzdA0KVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCmh0dHA6Ly9saXN0cy5ldHR1
-cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
+Hello,
 
---_000_5bf9a51d45a745c5b167eb8856ae1c28gtrigatechedu_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I am trying to implement a half-duplex system with one antenna, preferably
+using just one port in the USRP device. I have noticed that the port that
+is labelled as TX in the B200mini can also receive (the same as the TX/RX
+port in the "normal" B200). My question is, is it possible to change modes
+in that port during execution time? I have read that, as a rule of thumb,
+the port should receive as default and transmit when it receives samples to
+do so. However, I do not know if that functionality applies to the B200mini.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPjwhLS0gUCB7bWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDt9IC0t
-Pjwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBkaXI9Imx0ciI+DQo8ZGl2IGlkPSJkaXZ0YWdkZWZh
-dWx0d3JhcHBlciIgZGlyPSJsdHIiIHN0eWxlPSJmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2Io
-MCwgMCwgMCk7IGZvbnQtZmFtaWx5OiBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYsICZx
-dW90O0Vtb2ppRm9udCZxdW90OywgJnF1b3Q7QXBwbGUgQ29sb3IgRW1vamkmcXVvdDssICZxdW90
-O1NlZ29lIFVJIEVtb2ppJnF1b3Q7LCBOb3RvQ29sb3JFbW9qaSwgJnF1b3Q7U2Vnb2UgVUkgU3lt
-Ym9sJnF1b3Q7LCAmcXVvdDtBbmRyb2lkIEVtb2ppJnF1b3Q7LCBFbW9qaVN5bWJvbHM7Ij4NCjxw
-Pk1hcmN1cywgdGhhbmsgeW91IGZvciB0aGF0IGFkdmljZS4gSSB3YXMgY29uY2VybmVkIHRoYXQg
-bWFraW5nIHRoZSBjYWxscyB0aHJvdWdoIHRoZSBnci11aGQgd291bGQgZ2l2ZSB0aGUgc2FtZSBw
-cm9ibGVtcyBJIHdhcyBleHBlcmllbmNpbmcgd2l0aCB0aGUgdGFnZ2VkIHN0cmVhbSBidXQgdXBv
-biBjbG9zZXIgaW5zcGVjdGlvbiBpdCBtYWtlcyBjYWxscyBkaXJlY3RseSB0byB0aGUgdWhkOjp1
-c3JwOjptdWx0aV91c3JwLjwvcD4NCjxwPjxicj4NCjwvcD4NCjxwPlVwb24gc2Vjb25kIGdsYW5j
-ZSB1c2luZyB0aGUgZ3ItdWhkIHdvdWxkIGJlIHRoZSBiZXR0ZXIgYXBwcm9hY2ghIFRoZSBmdW5j
-dGlvbnMgSSBuZWVkIGFyZSBhdmFpbGFibGUuPC9wPg0KPHA+PGJyPg0KPC9wPg0KPHA+SSBkaWQg
-cmVzb2x2ZSBteSBvcmlnaW5hbCBwcm9ibGVtOjwvcD4NCjxwPjxicj4NCjwvcD4NCjxwPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTJwdDsiIGlkPSJkaXZ0YWdkZWZhdWx0d3JhcHBlciI+PC9wPg0K
-PGRpdiBzdHlsZT0ibWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDsiPkhlcmUgd2FzIG15IGVy
-cm9yOjwvZGl2Pg0KPGRpdiBzdHlsZT0ibWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDsiPjxi
-cj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0ibWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDsiPjxm
-b250IHNpemU9IjMiIGNvbG9yPSJibGFjayI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+
-LSBkX3VzcnAgPSBib29zdDo6ZHluYW1pY19wb2ludGVyX2Nhc3QmbHQ7Z3I6OnVoZDo6dXNycF9z
-aW5rOjpzcHRyJmd0OyhibGspOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2IHN0eWxlPSJtYXJn
-aW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowOyI+PGZvbnQgc2l6ZT0iMyIgY29sb3I9ImJsYWNrIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mIzQzOyBkX3VzcnAgPSBib29zdDo6ZHluYW1p
-Y19wb2ludGVyX2Nhc3QmbHQ7Z3I6OnVoZDo6dXNycF9zaW5rJmd0OyhibGspOzwvc3Bhbj48L2Zv
-bnQ+PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJtYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTow
-OyI+PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJtYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTow
-OyI+SmVmZjwvZGl2Pg0KPC9zcGFuPjxicj4NCjxwPjwvcD4NCjxicj4NCjxkaXYgc3R5bGU9ImNv
-bG9yOnJnYigwLDAsMCkiPg0KPGhyIHRhYmluZGV4PSItMSIgc3R5bGU9ImRpc3BsYXk6aW5saW5l
-LWJsb2NrOyB3aWR0aDo5OCUiPg0KPGRpdiBpZD0iZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxm
-b250IHN0eWxlPSJmb250LXNpemU6MTFwdCIgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJpZiIgY29s
-b3I9IiMwMDAwMDAiPjxiPkZyb206PC9iPiBNYXJjdXMgRCBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1
-bkBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+U2VudDo8L2I+IFR1ZXNkYXksIE9jdG9iZXIgMjcsIDIw
-MjAgMTI6NDggUE08YnI+DQo8Yj5Ubzo8L2I+IEhvZGdlcywgSmVmZjxicj4NCjxiPkNjOjwvYj4g
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtVU1JQ
-LXVzZXJzXSBDJiM0MzsmIzQzOyBob3cgdG8gZ2V0IHVzcnA6Om11bHRpX3VzcnA6OnNwdHIgZnJv
-bSBVU1JQX1NpbmtfQmxvY2s8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2
-PkFyZSB5b3Ugc3VyZSB0aGUgY2FsbHMgeW91IG5lZWQgYXJlbuKAmXQgYWxyZWFkeSBhdmFpbGFi
-bGUgaW4gdGhlIGdyLVVIRCB3cmFwcGVyPw0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+U29tZSBw
-YXJ0cyBvZiBnci1VSEQgYXJlbuKAmXQgdmlzaWJsZSBpbiBHUkMgYmFzZWQgZmxvd3MgYnV0IGFy
-ZSBzdGlsbCBpbiB0aGUgZ3ItVUhEIEFQSSwgYW5kIGlmIHlvdSB3ZXJlIGp1c3QgdXNpbmcgdGhl
-IHN0cmFpZ2h0IFB5dGhvbiBwcm9ncmFtbWluZyBtb2RlbCB5b3UgY291bGQgdXNlIHRoZW0gZGly
-ZWN0bHkuJm5ic3A7PC9kaXY+DQo8ZGl2Pjxicj4NCjxicj4NCjxkaXYgZGlyPSJsdHIiPlNlbnQg
-ZnJvbSBteSBpUGhvbmU8L2Rpdj4NCjxkaXYgZGlyPSJsdHIiPjxicj4NCjxibG9ja3F1b3RlIHR5
-cGU9ImNpdGUiPk9uIE9jdCAyNywgMjAyMCwgYXQgMTI6MjUgUE0sIEhvZGdlcywgSmVmZiB2aWEg
-VVNSUC11c2VycyAmbHQ7dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7IHdyb3RlOjxicj4N
-Cjxicj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8
-ZGl2IGRpcj0ibHRyIj7vu78NCjxkaXYgaWQ9ImRpdnRhZ2RlZmF1bHR3cmFwcGVyIiBkaXI9Imx0
-ciIgc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApOyBmb250LWZhbWlseTpD
-YWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmLCZxdW90O0Vtb2ppRm9udCZxdW90OywmcXVvdDtB
-cHBsZSBDb2xvciBFbW9qaSZxdW90OywmcXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90OyxOb3RvQ29s
-b3JFbW9qaSwmcXVvdDtTZWdvZSBVSSBTeW1ib2wmcXVvdDssJnF1b3Q7QW5kcm9pZCBFbW9qaSZx
-dW90OyxFbW9qaVN5bWJvbHMiPg0KPHA+SG93IGRvIEkgZ2V0IHRoZSBkZXZpY2Ugc3B0ciAoOjp1
-aGQ6OnVzcnA6Om11bHRpX3VzcnA6OnNwdHIpIGZyb20gdGhlIHVzcnBfc2lua19ibG9jayBzcHRy
-PyZuYnNwOw0KPGJyPg0KPC9wPg0KPHA+PGJyPg0KPC9wPg0KPHA+Rm9yIGV4YW1wbGUsIHRoZSBm
-b2xsb3dpbmcgd29ya3M6PC9wPg0KPHA+PC9wPg0KPGRpdj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsgPGJyPg0KPC9kaXY+DQo8ZGl2PiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyBiYXNpY19ibG9ja19zcHRyIGJsayA9IGdsb2JhbF9ibG9ja19yZWdpc3RyeS5ibG9j
-a19sb29rdXAocG10OjppbnRlcm4odXNycF9hbGlhcykpOzxicj4NCiZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyBkX3VzcnAgPSBib29zdDo6ZHluYW1pY19wb2ludGVyX2Nhc3QmbHQ7
-Z3I6OnVoZDo6dXNycF9zaW5rOjpzcHRyJmd0OyhibGspOzwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rp
-dj4NCjxkaXY+QnV0IGVycm9ycyBoZXJlOjxicj4NCjwvZGl2Pg0KPGRpdj48YnI+DQombmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgOjp1aGQ6OnVzcnA6Om11bHRpX3VzcnA6OnNwdHIg
-ZF91c3JwX2RldiA9IGRfdXNycC0mZ3Q7Z2V0X2RldmljZSgpOzxicj4NCjxicj4NCjwvZGl2Pg0K
-PHA+V2hhdCBoYXBwZW5zIGlmIEkganVzdCBjcmVhdGUgYW5vdGhlciB1c3JwIG9iamVjdCBmb3Ig
-dGhlIHNhbWUgZGV2aWNlIGluIGFkZGl0aW9uIHRvIHRoZSBvbmUgYWxyZWFkeSBjcmVhdGVkIGJ5
-IHRoZSB1aGRfc2lua19ibG9jaz8gSSdtIGd1ZXNzaW5nIHRoYXQgd2lsbCBub3Qgd29yay48L3A+
-DQo8cD48YnI+DQo8L3A+DQo8cD5NeSBlbmQgZ29hbCBpcyB0byBiZSBhYmxlIHRvIGNyZWF0ZSBh
-IGJsb2NrIHRoYXQgbWFrZXMgZGlyZWN0IEMmIzQzOyYjNDM7IGFwaSBjYWxscyB0byB0aGUgdXNy
-cCB0byB0dW5lIGl0IGJldHdlZW4gYnVyc3RzLCBzaW5jZSB0aGUgdWhkIChmb3IgdW5rbm93biBy
-ZWFzb25zKSBkb2VzIG5vdCBzdXBwb3J0IHRpbWVkIGNvbW1hbmQgdHVuaW5nIG9uIGEgdGFnZ2Vk
-IHN0cmVhbSBpbiBidXJzdCBtb2RlIChhcyBpIG1lbnRpb25lZCBpbiB5ZXN0ZXJkYXkncyBlbWFp
-bCkuPGJyPg0KPGJyPg0KSmVmZjxicj4NCjwvcD4NCjwvZGl2Pg0KPHNwYW4+X19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188L3NwYW4+PGJyPg0KPHNwYW4+VVNS
-UC11c2VycyBtYWlsaW5nIGxpc3Q8L3NwYW4+PGJyPg0KPHNwYW4+VVNSUC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb208L3NwYW4+PGJyPg0KPHNwYW4+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFu
-L2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPC9zcGFuPjxicj4NCjwvZGl2Pg0K
-PC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8
-L2h0bWw+DQo=
+If it is possible, do you have any general ideal about the best way to do
+it in GNURadio?
 
---_000_5bf9a51d45a745c5b167eb8856ae1c28gtrigatechedu_--
+Best regards,
+
+Alvaro
+
+--000000000000142e6605b2b032be
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<br><br>I am trying to implement a half-duplex syste=
+m with one antenna, preferably using just one port in the USRP device. I ha=
+ve noticed that the port that is labelled as TX in the B200mini can also re=
+ceive (the same as the TX/RX port in the &quot;normal&quot; B200). My quest=
+ion is, is it possible to change modes in that port during execution time? =
+I have read that, as a rule of thumb, the port should receive as default an=
+d transmit when it receives samples to do so. However, I do not know if tha=
+t functionality applies to the B200mini.<br><br>If it is possible, do you h=
+ave any general ideal about the best way to do it in GNURadio? <br><br>Best=
+ regards,<br><br>Alvaro<br><div></div></div>
+
+--000000000000142e6605b2b032be--
 
 
---===============5195783405349591528==
+--===============7268840318588527122==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -229,5 +122,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5195783405349591528==--
+--===============7268840318588527122==--
 
