@@ -2,60 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A059629D13F
-	for <lists+usrp-users@lfdr.de>; Wed, 28 Oct 2020 18:11:06 +0100 (CET)
-Received: from [::1] (port=36194 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69D4029D1B1
+	for <lists+usrp-users@lfdr.de>; Wed, 28 Oct 2020 20:26:14 +0100 (CET)
+Received: from [::1] (port=37008 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kXoyW-0002zw-Ji; Wed, 28 Oct 2020 13:11:04 -0400
-Received: from mail-qk1-f178.google.com ([209.85.222.178]:34272)
+	id 1kXr5H-0007jY-FD; Wed, 28 Oct 2020 15:26:11 -0400
+Received: from mail-qk1-f177.google.com ([209.85.222.177]:39906)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kXoyS-0002rv-VY
- for USRP-users@lists.ettus.com; Wed, 28 Oct 2020 13:11:00 -0400
-Received: by mail-qk1-f178.google.com with SMTP id x20so5234719qkn.1
- for <USRP-users@lists.ettus.com>; Wed, 28 Oct 2020 10:10:40 -0700 (PDT)
+ id 1kXr5D-0007eR-6y
+ for usrp-users@lists.ettus.com; Wed, 28 Oct 2020 15:26:07 -0400
+Received: by mail-qk1-f177.google.com with SMTP id k9so117822qki.6
+ for <usrp-users@lists.ettus.com>; Wed, 28 Oct 2020 12:25:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=TSYwNSzH1CGPwupy/8A9cq5p3S8Ps5gvPF97i3KlpVA=;
- b=Bbn2ZLI9f9Aa0YMQbyrXgt2Mzy/IveRjOrpWdtirmgEWoJ/WXsE6ebmieTfuLbSlTb
- TA2ZQP1ML86MDRDjDLCcuQCW8jrGbkVb7qiq3yGzmw+P+523L1tT7vGGCe4aek0WdJ/0
- CJRmgV0nEwLG2TcPJG2lcHpJH5XI9V5nDgn7gED2S2OSZQnNCs5DtwkZWdDGbI5YTjmy
- kPYc0cUdoGTGk0jZz6p2Lbh5KEPPDKiNOkSfiGDTJr9FKTqEtdUAj+6V9tSRZOWVQ1xl
- g/VWpRXgfb/Mx++zq1sUgn+s4Z8LsmRHSiA8aJz07YNTidnuY/xju6Q3Nd6Gg9UXs8fm
- fCRA==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=1b7QV/JxCPvaMujxzmRFvaLWatTvRKsZxapgqaH1Qds=;
+ b=VQKh8iEuikyfPRmHxxsUltX5pz5138lCL4mmXw33YaKyt+/JpZ7cvy9iYNS24BFv3V
+ m49cN4S2ZVcURJkxxkLXNhuGP3fvJzJogFl2wLCjUf4haH5Tm95dlkIA9ll0cpcelxQs
+ 3SlOrqcWD/i/1bn3P79wXd8WERqCLsHpAmhEcJnHZNYqr5SVGZQ5L73d6NTcqIz0fZ+M
+ yayJ49KBLxla1zANGgxYRF+w4eCGQ9epspjQto+V1/Hdye+HphUqN3CZWsebv/McY6qX
+ krm6OHgHEXD5XEI3/0WapfTodMmVcmcMlzPofAMGuEHrjdColEL/bvhCTjf2XxGvB/T8
+ AzWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=TSYwNSzH1CGPwupy/8A9cq5p3S8Ps5gvPF97i3KlpVA=;
- b=qIdx1CXmXw6n47uH25wqvxqVlnn+gPBp6k8uJj/EJf+X+xzeQY3EBOWub8yIxekode
- N6G/oTo0EGscCXYOff2TsBpAvgj3tlQ3SyRoD0TJ0zsqX1K/LBAj5XdoppqYFG7zTHp/
- cJ6RI0Ox3JQ4P/ExUU1kLUd6Hg9Yle6rnvsQ+1hYU4TIXr2LmnEVR4KEKIeQVp1NA7vS
- qCeG/00lBHkjBSqJhlJ2GUBXz2IjfdtqbGWGhCuvk0Jm0BCd9nyDW4vZ1ySJoQpydu10
- w8FQe/9/T93+El1AIqMzyF1W48SSEM3ezGwK9MypJqdydWepPO8MJt+7DDHO9l7hOIkK
- XG0g==
-X-Gm-Message-State: AOAM530LYwUv3/bu6qRxQAZSrmKnvbwQroZP3QRNunaJAh+uotbrxaia
- 7c/dPNXtM2rrKr8dmAdgSI6QPNi0TqxpGw==
-X-Google-Smtp-Source: ABdhPJx05+30cLmUbqZRwKDk2yiZIIZRhPAtNMFHMliAiC3Nrd70SqnEHBJjo2QlCLRSR5PnyxZ4AQ==
-X-Received: by 2002:a05:620a:10b3:: with SMTP id
- h19mr8143315qkk.341.1603905019668; 
- Wed, 28 Oct 2020 10:10:19 -0700 (PDT)
-Received: from [192.168.2.29]
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=1b7QV/JxCPvaMujxzmRFvaLWatTvRKsZxapgqaH1Qds=;
+ b=PZNJXFw3RMhQTRbmzLS4muWonRb2Hi6bE1aug+AVMZhsjX0POAuN279hBhOx9OIEBv
+ EjDVC6zBXFPghjV2lgxT+z+C06N6Oacpd8lPFzConv+1GHA1gcjNSmVCcjBtr50qly5h
+ tsm4xyTr029Sev07JEuadU3f9OgM25nKVGtJ/8tgHFiNPshIAaX/ZBEwIUYCx8YwjT8P
+ 8gTFO/qrCztCE3VCAnsgziEDi4IIC6BFTXuPNmpoEdoBaHxssaWwTH5llJtSCKwPPJCA
+ 21uE4SuQFCMtMspOIQQXTHXUQF6AszP0DN0Qzm82u/yhTbkFc77JSudSFIc6bYHG21eS
+ FfBw==
+X-Gm-Message-State: AOAM531ppySzWSaeifVrkW1TGj4XbVnohHj1s0F/x9dZhJIBIo7mc/aA
+ 2nSZSOM35ZWdsITqoK0n3FF9+xNeSq4J9A==
+X-Google-Smtp-Source: ABdhPJzcOrqz1ZRYNn50ebBi0/XGGS9+f+LbEhe7etlykD9+bq0EInYd0vsBUugjDvJBIk1c75ClRA==
+X-Received: by 2002:a37:7c3:: with SMTP id 186mr345069qkh.417.1603913126471;
+ Wed, 28 Oct 2020 12:25:26 -0700 (PDT)
+Received: from [192.168.2.12]
  (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.gmail.com with ESMTPSA id k30sm3362118qte.21.2020.10.28.10.10.19
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 28 Oct 2020 10:10:19 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-Date: Wed, 28 Oct 2020 13:10:16 -0400
-Message-Id: <96B3C74C-2EE9-4BC2-998F-30C798E24A98@gmail.com>
-References: <4abb6853-2374-a640-6e38-9dc9dc7249b8@ant.uni-bremen.de>
-Cc: USRP-users@lists.ettus.com
-In-Reply-To: <4abb6853-2374-a640-6e38-9dc9dc7249b8@ant.uni-bremen.de>
-To: Johannes Demel <demel@ant.uni-bremen.de>
-X-Mailer: iPhone Mail (17H35)
-Subject: Re: [USRP-users] N310 transmit benchmark_rate fails
+ by smtp.googlemail.com with ESMTPSA id q188sm216272qka.56.2020.10.28.12.25.25
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 28 Oct 2020 12:25:25 -0700 (PDT)
+Message-ID: <5F99C5A5.2030307@gmail.com>
+Date: Wed, 28 Oct 2020 15:25:25 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
+References: <CACO3nRTjNOzQ9_e3m0CYWjJi30U8J94adjBaHDNOaSmrZZherQ@mail.gmail.com>
+In-Reply-To: <CACO3nRTjNOzQ9_e3m0CYWjJi30U8J94adjBaHDNOaSmrZZherQ@mail.gmail.com>
+Subject: Re: [USRP-users] USRP B200mini half-duplex 1 port
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,10 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0684661061653530416=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,134 +82,253 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Q2hlY2sgdGhlIG5ldHdvcmsgY29uZmlndXJhdGlvbiBvZiB0aGUgY2FyZHMgb24gYWxsIGhvc3Rz
-LiBEbyB0aGV5IGhhdmUgdGhlIHNhbWUgTVRVcz8gQXJlIHRoZXJlIGVycm9ycyBzaG93aW5nIG9u
-IHRoZSBpbnRlcmZhY2U/ICBEbyByZWd1bGFyIHBpbmdzIHdvcmsgcmVsaWFibHk/CgpTZW50IGZy
-b20gbXkgaVBob25lCgo+IE9uIE9jdCAyOCwgMjAyMCwgYXQgMTowNSBQTSwgSm9oYW5uZXMgRGVt
-ZWwgPGRlbWVsQGFudC51bmktYnJlbWVuLmRlPiB3cm90ZToKPiAKPiDvu79IaSBNYXJjdXMsCj4g
-Cj4gbm8sIEkgZGlkbid0IHN3YXAgY2FibGVzLiBJIHB1dCB0aGlzIG9uIHRoZSBsaXN0IG9mIHRo
-aW5ncyBJIHdpbGwgdHJ5LiBQaHlzaWNhbCBhY2Nlc3MgaXMgY3VtYmVyc29tZSB0aGlzIHllYXIu
-Cj4gCj4gVGhhbmtzIGZvciB0aGUgaGludC4KPiBEbyB5b3UgaGF2ZSBtb3JlIGlkZWFzIHdoYXQg
-dG8gY2hlY2s/Cj4gCj4gQ2hlZXJzCj4gSm9oYW5uZXMKPiAKPj4gT24gMjguMTAuMjAgMTc6NDks
-IE1hcmN1cyBEIExlZWNoIHdyb3RlOgo+PiBIYXZlIHlvdSB0cmllZCBzd2FwcGluZyBjYWJsZXMg
-dG8gc2VlIGlmIHRoZSBwcm9ibGVtIGZvbGxvd3MgdGhlIGNhYmxlPwo+PiBTZW50IGZyb20gbXkg
-aVBob25lCj4+Pj4gT24gT2N0IDI4LCAyMDIwLCBhdCAxMjo0NCBQTSwgSm9oYW5uZXMgRGVtZWwg
-dmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiB3cm90ZToKPj4+IAo+
-Pj4g77u/SGkgYWxsLAo+Pj4gCj4+PiB3ZSBoYXZlIGEgY291cGxlIG9mIE4zMTBzIGluIG91ciBs
-YWIgYW5kIHNvbWUgb2YgdGhlbSBzZWVtIHRvIGZhaWwgdG8gdHJhbnNtaXQgcmVsaWFibHkuCj4+
-PiAKPj4+IEVhY2ggTjMxMCBpcyBjb25uZWN0ZWQgdG8gYSBob3N0IHZpYSBvbmUgb2YgdGhvc2Ug
-U0ZQKyBjYWJsZXMgdGhhdCBjYW1lIHdpdGggdGhlbSBmcm9tIEV0dHVzLiBXZSBoYXZlIDMgTjMx
-MHMgdGhhdCBhcmUgY29ubmVjdGVkIHZpYSBzYWlkIGNhYmxlcyB0byBvbmUgaG9zdCBlYWNoIHdp
-dGggYW4gSW50ZWwgWDcxMCBEQTIgd2l0aCBhbiBBTUQgVFJYMzk3MC4gQWxsIG1hY2hpbmVzIHJ1
-biBVYnVudHUgMjAuMDQgd2l0aCBhbGwgdXBkYXRlcy4KPj4+IEkgdXNlIHRoZSBVSEQgMy4xNUxU
-UyBicmFuY2g6IFVIRF8zLjE1LjAuMC03LWc4ZDIyOGRiZQo+Pj4gSSBtYWRlIHN1cmUgdG8gY2hl
-Y2sgb3V0IHRoZSB2ZXJ5IHNhbWUgY29tbWl0IGFuZCByZWNvbXBpbGUgYW5kIGluc3RhbGwgaXQu
-Cj4+PiAKPj4+IE9uIDIgaG9zdHMgSSBjYW4gcnVuOgo+Pj4gYC4vYmVuY2htYXJrX3JhdGUgLS1h
-cmdzICJhZGRyPTE5Mi4xNjguMjAuMjEzLG1hc3Rlcl9jbG9ja19yYXRlPTEyMi44OGU2IiAtLXR4
-X3JhdGUgNjEuNDRlNiAtLXR4X2NoYW5uZWxzICIzIiAtLXJ4X3JhdGUgNjEuNDRlNiAtLXJ4X2No
-YW5uZWxzICIwLDEiYAo+Pj4gVGhlIGZ1bGwgb3V0cHV0IGlzIGF0dGFjaGVkIGF0IHRoZSBib3R0
-b20gb2YgdGhpcyBlbWFpbC4KPj4+IAo+Pj4gV2hhdCBJIG9ic2VydmU6Cj4+PiAtIEl0IHJ1bnMg
-ZmluZSB3aXRoIDIgaG9zdHMKPj4+IC0gVGhlIHRoaXJkIGhvc3QgZmFpbHMuCj4+PiAtLSBPbiB0
-aGUgdGhpcmQgaG9zdCBSWCBvbmx5IHdvcmtzLgo+Pj4gLS0gT24gdGhlIHRoaXJkIGhvc3QgVFgg
-b25seSBpcyBoYXVudGVkOiBjZi4gZnVsbCB0ZXN0IG91dHB1dC4KPj4+IC0gV2UgaGF2ZSBhIHNl
-cnZlciB3aXRoIEludGVsIFhlb24gNjI1NCBhbmQgWDcyMiB3aGVyZSBJIG9ic2VydmUgdGhlIHNh
-bWUgaXNzdWUKPj4+IC0gSSBzd2l0Y2hlZCBVU1JQcyBiZXR3ZWVuIGhvc3RzLCB0aGUgaXNzdWUg
-c2VlbXMgdG8gc3RpY2sgd2l0aCB0aGUgaG9zdC4KPj4+IAo+Pj4gSXQgc3RhcnRlZCB3aXRoIG9u
-ZSBob3N0IGEgY291cGxlIG9mIHdlZWtzIGJhY2suIEJ1dCBub3cgb3VyIHNlcnZlciBzdGFydHMg
-dG8gZmFpbCB3aXRoIHRoZSBzYW1lIGVycm9yOiBUaGUgZXhhY3Qgc2FtZSBzZXR1cCB1c2VkIHRv
-IHdvcmsgb24gdGhhdCBtYWNoaW5lLgo+Pj4gSSBhbSBsb29raW5nIGludG8gdGhpcyBmb3IgcXVp
-dGUgYSB3aGlsZSBub3cuIEkgY2FuJ3QgZmluZCB0aGUgc291cmNlIG9mIHRoZSBpc3N1ZS4KPj4+
-IAo+Pj4gSGFzIGFueW9uZSBoYWQgZXhwZXJpZW5jZSB3aXRoIHRoYXQ/IEknZCByZWFsbHkgYXBw
-cmVjaWF0ZSBoaW50cyBob3cgdG8gZGVidWcgdGhpcy4KPj4+IAo+Pj4gCj4+PiBDaGVlcnMKPj4+
-IEpvaGFubmVzCj4+PiAKPj4+IAo+Pj4gT24gdGhlIHdvcmtpbmcgaG9zdHMgdGhlIGJlbmNobWFy
-ayByYXRlIHN1bW1hcnkgbG9va3MgbGlrZSB0aGlzOgo+Pj4gLS0tLS0tLS0tCj4+PiBCZW5jaG1h
-cmsgcmF0ZSBzdW1tYXJ5Ogo+Pj4gIE51bSByZWNlaXZlZCBzYW1wbGVzOiAgICAgMTI3MDU1NjM0
-MAo+Pj4gIE51bSBkcm9wcGVkIHNhbXBsZXM6ICAgICAgMAo+Pj4gIE51bSBvdmVycnVucyBkZXRl
-Y3RlZDogICAgMAo+Pj4gIE51bSB0cmFuc21pdHRlZCBzYW1wbGVzOiAgNjE0NDQwMzY4Cj4+PiAg
-TnVtIHNlcXVlbmNlIGVycm9ycyAoVHgpOiAwCj4+PiAgTnVtIHNlcXVlbmNlIGVycm9ycyAoUngp
-OiAwCj4+PiAgTnVtIHVuZGVycnVucyBkZXRlY3RlZDogICAwCj4+PiAgTnVtIGxhdGUgY29tbWFu
-ZHM6ICAgICAgICAwCj4+PiAgTnVtIHRpbWVvdXRzIChUeCk6ICAgICAgICAwCj4+PiAgTnVtIHRp
-bWVvdXRzIChSeCk6ICAgICAgICAwCj4+PiAtLS0tLS0tLS0KPj4+IAo+Pj4gQnV0IG9uIHRoZSB0
-aGlyZCBkZXZpY2U6Cj4+PiAtLS0tLS0tLS0KPj4+IFsuLi4uXQo+Pj4gU1VTVVNVU1VTVVNVU1VT
-VVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVswMDowMDox
-Ni4yNjIxMjNdIFJlY2VpdmVyIGVycm9yOiBFUlJPUl9DT0RFX1RJTUVPVVQsIGNvbnRpbnVpbmcu
-Li4KPj4+IFNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNV
-U1VTVVNVU1VTVVNVU1VVWzAwOjAwOjE2LjU2NTE1OV0gQmVuY2htYXJrIGNvbXBsZXRlLgo+Pj4g
-Cj4+PiAKPj4+IEJlbmNobWFyayByYXRlIHN1bW1hcnk6Cj4+PiAgTnVtIHJlY2VpdmVkIHNhbXBs
-ZXM6ICAgICA2NjUwMTI4MAo+Pj4gIE51bSBkcm9wcGVkIHNhbXBsZXM6ICAgICAgMAo+Pj4gIE51
-bSBvdmVycnVucyBkZXRlY3RlZDogICAgMAo+Pj4gIE51bSB0cmFuc21pdHRlZCBzYW1wbGVzOiAg
-MTU0MzEyNzA0Cj4+PiAgTnVtIHNlcXVlbmNlIGVycm9ycyAoVHgpOiAzMTQ5Cj4+PiAgTnVtIHNl
-cXVlbmNlIGVycm9ycyAoUngpOiAwCj4+PiAgTnVtIHVuZGVycnVucyBkZXRlY3RlZDogICAzMTU2
-Cj4+PiAgTnVtIGxhdGUgY29tbWFuZHM6ICAgICAgICAwCj4+PiAgTnVtIHRpbWVvdXRzIChUeCk6
-ICAgICAgICAwCj4+PiAgTnVtIHRpbWVvdXRzIChSeCk6ICAgICAgICA5Nwo+Pj4gLS0tLS0tLS0t
-LQo+Pj4gCj4+PiBXZSBoYXZlIGEgc2VydmVyIHdpdGggSW50ZWwgWDcyMiBhbmQgSW50ZWwgWGVv
-biBHb2xkIDYyNTIgdGhhdCByZXBvcnRzIHRoZSBzYW1lIGlzc3VlOgo+Pj4gLS0tLS0tLS0tLQo+
-Pj4gVVVVVVVVVVVbMDA6MDA6MTYuMTgwMDk0XSBSZWNlaXZlciBlcnJvcjogRVJST1JfQ09ERV9U
-SU1FT1VULCBjb250aW51aW5nLi4uCj4+PiBVU1swMDowMDoxNi4zODIzOTNdIEJlbmNobWFyayBj
-b21wbGV0ZS4KPj4+IAo+Pj4gCj4+PiBCZW5jaG1hcmsgcmF0ZSBzdW1tYXJ5Ogo+Pj4gIE51bSBy
-ZWNlaXZlZCBzYW1wbGVzOiAgICAgOTk3NjMzMjgKPj4+ICBOdW0gZHJvcHBlZCBzYW1wbGVzOiAg
-ICAgIDAKPj4+ICBOdW0gb3ZlcnJ1bnMgZGV0ZWN0ZWQ6ICAgIDAKPj4+ICBOdW0gdHJhbnNtaXR0
-ZWQgc2FtcGxlczogIDE1NTgwNDk0NAo+Pj4gIE51bSBzZXF1ZW5jZSBlcnJvcnMgKFR4KTogMzE4
-MAo+Pj4gIE51bSBzZXF1ZW5jZSBlcnJvcnMgKFJ4KTogMAo+Pj4gIE51bSB1bmRlcnJ1bnMgZGV0
-ZWN0ZWQ6ICAgMTY0OTc0Cj4+PiAgTnVtIGxhdGUgY29tbWFuZHM6ICAgICAgICAwCj4+PiAgTnVt
-IHRpbWVvdXRzIChUeCk6ICAgICAgICAwCj4+PiAgTnVtIHRpbWVvdXRzIChSeCk6ICAgICAgICA5
-NQo+Pj4gLS0tLS0tLS0tLQo+Pj4gVGhvdWdoLCB0aGVyZSBhcmUgZXZlbiBtb3JlIHVuZGVycnVu
-cy4KPj4+IAo+Pj4gCj4+PiAKPj4+IFdvcmtpbmcgb3V0cHV0Ogo+Pj4gPT09PT09PT09PT09Cj4+
-PiBbSU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA5LjMuMDsgQm9vc3RfMTA3MTAw
-OyBVSERfMy4xNS4wLjAtNy1nOGQyMjhkYmUKPj4+IFswMDowMDowMC4wMDAwMDJdIENyZWF0aW5n
-IHRoZSB1c3JwIGRldmljZSB3aXRoOiBhZGRyPTE5Mi4xNjguMjAuMjEzLG1hc3Rlcl9jbG9ja19y
-YXRlPTEyMi44OGU2Li4uCj4+PiBbSU5GT10gW01QTURdIEluaXRpYWxpemluZyAxIGRldmljZShz
-KSBpbiBwYXJhbGxlbCB3aXRoIGFyZ3M6IG1nbXRfYWRkcj0xOTIuMTY4LjIwLjIxMyx0eXBlPW4z
-eHgscHJvZHVjdD1uMzEwLHNlcmlhbD0zMTk4NDFCLGNsYWltZWQ9RmFsc2UsYWRkcj0xOTIuMTY4
-LjIwLjIxMyxtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNgo+Pj4gW0lORk9dIFtNUE0uUGVyaXBo
-TWFuYWdlcl0gaW5pdCgpIGNhbGxlZCB3aXRoIGRldmljZSBhcmdzIGB0aW1lX3NvdXJjZT1ncHNk
-byxjbG9ja19zb3VyY2U9Z3BzZG8sbWdtdF9hZGRyPTE5Mi4xNjguMjAuMjEzLHByb2R1Y3Q9bjMx
-MCxtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNicuCj4+PiBbSU5GT10gWzAvUmVwbGF5XzBdIElu
-aXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4NEU5MUEwMDAwMDAwMDAwNCkKPj4+
-IFtJTkZPXSBbMC9SYWRpb18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAw
-eDEyQUQxMDAwMDAwMTEzMTIpCj4+PiBbSU5GT10gWzAvUmFkaW9fMV0gSW5pdGlhbGl6aW5nIGJs
-b2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAwMDExMzEyKQo+Pj4gW0lORk9dIFswL0RE
-Q18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEREQzAwMDAwMDAwMDAw
-MDApCj4+PiBbSU5GT10gWzAvRERDXzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0Mg
-SUQ6IDB4RERDMDAwMDAwMDAwMDAwMCkKPj4+IFtJTkZPXSBbMC9EVUNfMF0gSW5pdGlhbGl6aW5n
-IGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAwMDAwMDAwMDAyKQo+Pj4gW0lORk9dIFsw
-L0RVQ18xXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEQwQzAwMDAwMDAw
-MDAwMDIpCj4+PiBbSU5GT10gWzAvRklGT18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAo
-Tk9DIElEOiAweEYxRjAwMDAwMDAwMDAwMDApCj4+PiBbSU5GT10gWzAvRklGT18xXSBJbml0aWFs
-aXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEYxRjAwMDAwMDAwMDAwMDApCj4+PiBbSU5G
-T10gWzAvRklGT18yXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEYxRjAw
-MDAwMDAwMDAwMDApCj4+PiBbSU5GT10gWzAvRklGT18zXSBJbml0aWFsaXppbmcgYmxvY2sgY29u
-dHJvbCAoTk9DIElEOiAweEYxRjAwMDAwMDAwMDAwMDApCj4+PiBVc2luZyBEZXZpY2U6IFNpbmds
-ZSBVU1JQOgo+Pj4gIERldmljZTogTjMwMC1TZXJpZXMgRGV2aWNlCj4+PiAgUlggQ2hhbm5lbDog
-MAo+Pj4gICAgUlggRFNQOiAwCj4+PiAgICBSWCBEYm9hcmQ6IEEKPj4+ICAgIFJYIFN1YmRldjog
-TWFnbmVzaXVtCj4+PiAgUlggQ2hhbm5lbDogMQo+Pj4gICAgUlggRFNQOiAxCj4+PiAgICBSWCBE
-Ym9hcmQ6IEEKPj4+ICAgIFJYIFN1YmRldjogTWFnbmVzaXVtCj4+PiAgUlggQ2hhbm5lbDogMgo+
-Pj4gICAgUlggRFNQOiAwCj4+PiAgICBSWCBEYm9hcmQ6IEIKPj4+ICAgIFJYIFN1YmRldjogTWFn
-bmVzaXVtCj4+PiAgUlggQ2hhbm5lbDogMwo+Pj4gICAgUlggRFNQOiAxCj4+PiAgICBSWCBEYm9h
-cmQ6IEIKPj4+ICAgIFJYIFN1YmRldjogTWFnbmVzaXVtCj4+PiAgVFggQ2hhbm5lbDogMAo+Pj4g
-ICAgVFggRFNQOiAwCj4+PiAgICBUWCBEYm9hcmQ6IEEKPj4+ICAgIFRYIFN1YmRldjogTWFnbmVz
-aXVtCj4+PiAgVFggQ2hhbm5lbDogMQo+Pj4gICAgVFggRFNQOiAxCj4+PiAgICBUWCBEYm9hcmQ6
-IEEKPj4+ICAgIFRYIFN1YmRldjogTWFnbmVzaXVtCj4+PiAgVFggQ2hhbm5lbDogMgo+Pj4gICAg
-VFggRFNQOiAwCj4+PiAgICBUWCBEYm9hcmQ6IEIKPj4+ICAgIFRYIFN1YmRldjogTWFnbmVzaXVt
-Cj4+PiAgVFggQ2hhbm5lbDogMwo+Pj4gICAgVFggRFNQOiAxCj4+PiAgICBUWCBEYm9hcmQ6IEIK
-Pj4+ICAgIFRYIFN1YmRldjogTWFnbmVzaXVtCj4+PiAKPj4+IFswMDowMDowNC4wNDU3MDBdIFNl
-dHRpbmcgZGV2aWNlIHRpbWVzdGFtcCB0byAwLi4uCj4+PiBbSU5GT10gW01VTFRJX1VTUlBdICAg
-ICAxKSBjYXRjaCB0aW1lIHRyYW5zaXRpb24gYXQgcHBzIGVkZ2UKPj4+IFtJTkZPXSBbTVVMVElf
-VVNSUF0gICAgIDIpIHNldCB0aW1lcyBuZXh0IHBwcyAoc3luY2hyb25vdXNseSkKPj4+IFswMDow
-MDowNS42ODk0MDVdIFRlc3RpbmcgcmVjZWl2ZSByYXRlIDYxLjQ0MDAwMCBNc3BzIG9uIDIgY2hh
-bm5lbHMKPj4+IFswMDowMDowNS44MjkzMTVdIFRlc3RpbmcgdHJhbnNtaXQgcmF0ZSA2MS40NDAw
-MDAgTXNwcyBvbiAxIGNoYW5uZWxzCj4+PiBbMDA6MDA6MTYuMTgwMTYzXSBCZW5jaG1hcmsgY29t
-cGxldGUuCj4+PiAKPj4+IAo+Pj4gQmVuY2htYXJrIHJhdGUgc3VtbWFyeToKPj4+ICBOdW0gcmVj
-ZWl2ZWQgc2FtcGxlczogICAgIDEyNzA1NTYzNDAKPj4+ICBOdW0gZHJvcHBlZCBzYW1wbGVzOiAg
-ICAgIDAKPj4+ICBOdW0gb3ZlcnJ1bnMgZGV0ZWN0ZWQ6ICAgIDAKPj4+ICBOdW0gdHJhbnNtaXR0
-ZWQgc2FtcGxlczogIDYxNDQ0MDM2OAo+Pj4gIE51bSBzZXF1ZW5jZSBlcnJvcnMgKFR4KTogMAo+
-Pj4gIE51bSBzZXF1ZW5jZSBlcnJvcnMgKFJ4KTogMAo+Pj4gIE51bSB1bmRlcnJ1bnMgZGV0ZWN0
-ZWQ6ICAgMAo+Pj4gIE51bSBsYXRlIGNvbW1hbmRzOiAgICAgICAgMAo+Pj4gIE51bSB0aW1lb3V0
-cyAoVHgpOiAgICAgICAgMAo+Pj4gIE51bSB0aW1lb3V0cyAoUngpOiAgICAgICAgMAo+Pj4gCj4+
-PiAKPj4+IERvbmUhCj4+PiA9PT09PT09PT09PT09PT09PT09PT0KPj4+IAo+Pj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+IFVTUlAtdXNlcnMgbWFp
-bGluZyBsaXN0Cj4+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+Pj4gaHR0cDovL2xpc3Rz
-LmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJz
-IG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0
-dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+This is a multi-part message in MIME format.
+--===============0684661061653530416==
+Content-Type: multipart/alternative;
+ boundary="------------000000070807030208040900"
+
+This is a multi-part message in MIME format.
+--------------000000070807030208040900
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 10/28/2020 12:42 PM, Tom McDermott via USRP-users wrote:
+> -----------------------------  Included message ---------------
+> Message: 5
+> Date: Tue, 27 Oct 2020 20:28:12 -0400
+> From: "Marcus D. Leech" <patchvonbraun@gmail.com 
+> <mailto:patchvonbraun@gmail.com>>
+> To: usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
+> Subject: Re: [USRP-users] USRP B200mini half-duplex 1 port
+> Message-ID: <5F98BB1C.7070300@gmail.com 
+> <mailto:5F98BB1C.7070300@gmail.com>>
+> Content-Type: text/plain; charset=windows-1252; format=flowed
+>
+> On 10/27/2020 08:24 PM, Alvaro Pendas Recondo via USRP-users wrote:
+> > Hello,
+> >
+> > I am trying to implement a half-duplex system with one antenna,
+> > preferably using just one port in the USRP device. I have noticed that
+> > the port that is labelled as TX in the B200mini can also receive (the
+> > same as the TX/RX port in the "normal" B200). My question is, is it
+> > possible to change modes in that port during execution time? I have
+> > read that, as a rule of thumb, the port should receive as default and
+> > transmit when it receives samples to do so. However, I do not know if
+> > that functionality applies to the B200mini.
+> >
+> > If it is possible, do you have any general ideal about the best way to
+> > do it in GNURadio?
+> >
+> > Best regards,
+> >
+> > Alvaro
+> >
+> >
+> As far as I know the TX port on the B200mini is actually a TX/RX port,
+> and the transmit/receive switching logic is implemented in the hardware.
+>
+> You might post to the discuss-gnuradio mailing list on topics related to
+> Gnu Radio.   I've never implemented a TX/RX application in GR myself,
+>    but I'm fairly sure the hardware supports it.
+>
+> ---------------------------------------------------------------
+>
+> Assuming you are using the B205mini - the TX/RX port switching appears 
+> to work on
+> detecting samples in the transmit buffer (FIFO). When the Tx FIFO is 
+> empty it switches to receive.
+> There are a number of problems with this, in that once in receive it 
+> is very difficult to fill
+> the transmit FIFO enough to get it to transmit continuously again.
+>
+> What happens is that if the transmit source is throttled in any 
+> manner, a few samples get TX queued
+> then the mini switches to TX and empties the FIFO enough to switch 
+> back to receive. So it
+> goes into a high-speed Tx/Rx/Tx/Rx/Tx/Rx .....     mode. Using for 
+> example an audio source
+> causes sample rate limiting to the rate of that source.
+>
+> If instead a source is provided that can burst a whole bunch of 
+> samples to the TX Fifo, then
+> it gets into TX mode and stays. For example, a constant source with no 
+> throttling.  Unfortunately this
+> isn't so useful for actual information.
+>
+> All the above tested at a sample rates of 96 ksps and some lower.    
+> Higher sample rates have not been tried,
+> probably the behavior would be different.   Finding any documentation 
+> about what is
+> going on, how it works, FIFO sizes, %FULL %EMPTY trigger levels, etc.  
+> has been fruitless so far.
+>
+> -- Tom, N5EG
+>
+>
+My guess is that 96ksps is way too low a sample rate to keep the TX FIFO 
+happy.  If you're using an audio source, you probably need to
+   re-sample up to a higher rate, and whenever you have two bits of 
+hardware with their own sample clocks, you have the "two clock"
+   problem.  What is needed is an elastic buffer with notions (feedback) 
+about how close the audio system is to over-running or under-running,
+   and the DSP flow tweaks the sample rate ever-so-slightly as appropriate.
+
+This is why professional audio systems use samplers that are all 
+mutually clock-locked to one another--otherwise, the "two clock"
+   problem is inevitable.
+
+
+
+--------------000000070807030208040900
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 10/28/2020 12:42 PM, Tom McDermott
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CACO3nRTjNOzQ9_e3m0CYWjJi30U8J94adjBaHDNOaSmrZZherQ@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>-----------------------------  Included message 
+          ---------------<br>
+        </div>
+        <div>Message: 5</div>
+        Date: Tue, 27 Oct 2020 20:28:12 -0400<br>
+        From: "Marcus D. Leech" &lt;<a moz-do-not-send="true"
+          href="mailto:patchvonbraun@gmail.com" target="_blank">patchvonbraun@gmail.com</a>&gt;<br>
+        To: <a moz-do-not-send="true"
+          href="mailto:usrp-users@lists.ettus.com" target="_blank">usrp-users@lists.ettus.com</a><br>
+        Subject: Re: [USRP-users] USRP B200mini half-duplex 1 port<br>
+        Message-ID: &lt;<a moz-do-not-send="true"
+          href="mailto:5F98BB1C.7070300@gmail.com" target="_blank">5F98BB1C.7070300@gmail.com</a>&gt;<br>
+        Content-Type: text/plain; charset=windows-1252; format=flowed<br>
+        <br>
+        On 10/27/2020 08:24 PM, Alvaro Pendas Recondo via USRP-users
+        wrote:<br>
+        &gt; Hello,<br>
+        &gt;<br>
+        &gt; I am trying to implement a half-duplex system with one
+        antenna, <br>
+        &gt; preferably using just one port in the USRP device. I have
+        noticed that <br>
+        &gt; the port that is labelled as TX in the B200mini can also
+        receive (the <br>
+        &gt; same as the TX/RX port in the "normal" B200). My question
+        is, is it <br>
+        &gt; possible to change modes in that port during execution
+        time? I have <br>
+        &gt; read that, as a rule of thumb, the port should receive as
+        default and <br>
+        &gt; transmit when it receives samples to do so. However, I do
+        not know if <br>
+        &gt; that functionality applies to the B200mini.<br>
+        &gt;<br>
+        &gt; If it is possible, do you have any general ideal about the
+        best way to <br>
+        &gt; do it in GNURadio?<br>
+        &gt;<br>
+        &gt; Best regards,<br>
+        &gt;<br>
+        &gt; Alvaro<br>
+        &gt;<br>
+        &gt;<br>
+        As far as I know the TX port on the B200mini is actually a TX/RX
+        port, <br>
+        and the transmit/receive switching logic is implemented in the
+        hardware.<br>
+        <br>
+        You might post to the discuss-gnuradio mailing list on topics
+        related to <br>
+        Gnu Radio.   I've never implemented a TX/RX application in GR
+        myself,<br>
+        <div>
+             but I'm fairly sure the hardware supports it.</div>
+        <div><br>
+        </div>
+        <div>---------------------------------------------------------------</div>
+        <div><br>
+        </div>
+        <div>Assuming you are using the B205mini - the TX/RX port
+          switching appears to work on <br>
+        </div>
+        <div>detecting samples in the transmit buffer (FIFO). When the
+          Tx FIFO is empty it switches to receive.</div>
+        <div>There are a number of problems with this, in that once in
+          receive it is very difficult to fill</div>
+        <div>the transmit FIFO enough to get it to transmit continuously
+          again.</div>
+        <div><br>
+        </div>
+        <div>What happens is that if the transmit source is throttled in
+          any manner, a few samples get TX queued</div>
+        <div>then the mini switches to TX and empties the FIFO enough to
+          switch back to receive. So it</div>
+        <div>goes into a high-speed Tx/Rx/Tx/Rx/Tx/Rx .....     mode.   
+          Using for example an audio source</div>
+        <div>causes sample rate limiting to the rate of that source.<br>
+        </div>
+        <div><br>
+        </div>
+        <div>If instead a source is provided that can burst a whole
+          bunch of samples to the TX Fifo, then</div>
+        <div>it gets into TX mode and stays. For example, a constant
+          source with no throttling.  Unfortunately this</div>
+        <div>isn't so useful for actual information.</div>
+        <div><br>
+        </div>
+        <div>All the above tested at a sample rates of 96 ksps and some
+          lower.    Higher sample rates have not been tried, <br>
+        </div>
+        <div>probably the behavior would be different.   Finding any
+          documentation about what is</div>
+        <div>going on, how it works, FIFO sizes, %FULL %EMPTY trigger
+          levels, etc.  has been fruitless so far.</div>
+        <div><br>
+        </div>
+        <div>-- Tom, N5EG</div>
+        <div><br>
+        </div>
+        <br>
+      </div>
+    </blockquote>
+    My guess is that 96ksps is way too low a sample rate to keep the TX
+    FIFO happy.  If you're using an audio source, you probably need to<br>
+      re-sample up to a higher rate, and whenever you have two bits of
+    hardware with their own sample clocks, you have the "two clock"<br>
+      problem.  What is needed is an elastic buffer with notions
+    (feedback) about how close the audio system is to over-running or
+    under-running,<br>
+      and the DSP flow tweaks the sample rate ever-so-slightly as
+    appropriate.<br>
+    <br>
+    This is why professional audio systems use samplers that are all
+    mutually clock-locked to one another--otherwise, the "two clock"<br>
+      problem is inevitable.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------000000070807030208040900--
+
+
+--===============0684661061653530416==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0684661061653530416==--
+
