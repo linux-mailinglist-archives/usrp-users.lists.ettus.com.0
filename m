@@ -2,90 +2,29 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8CA129E6B2
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Oct 2020 09:58:49 +0100 (CET)
-Received: from [::1] (port=42646 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3780529E7DD
+	for <lists+usrp-users@lfdr.de>; Thu, 29 Oct 2020 10:54:16 +0100 (CET)
+Received: from [::1] (port=42958 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kY3lg-0004Pg-Hu; Thu, 29 Oct 2020 04:58:48 -0400
-Received: from mail-vi1eur05on2131.outbound.protection.outlook.com
- ([40.107.21.131]:39329 helo=EUR05-VI1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <demel@ant.uni-bremen.de>)
- id 1kY3lc-0004IP-Ad
- for USRP-users@lists.ettus.com; Thu, 29 Oct 2020 04:58:44 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jxLvpICljDUi+4+j3g07+P5jE7p/OgSZXhZRN5iCItH6zBKb8z3QxCEUTwOCfCzio8CSZLiD5oZrc4K84hdHRqI1xn7EcJQ4wI7MPQzXJM0Q0kuu6TMzKJ5y0COsEZWFTWTcJfIpV5WtQvd2Eo3hE9JvhOuDAsAEFvBMqw2aw+HrCbE6Cr4rYVK6SJKEXu4MoROTJrq6zcO1nw9F7OlY7uG+1seU+g24CjJllgLrO4sjM5uZS7ZqzwOkPawf2dyOOcvquhFb4+3ZOi+P7kgLRrj37ymRxGpgWmHE0MAIMrgrhJbF7jbxoubIxi1a3VyG8c3yDTdTVOSz/NqO3do9kQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=O3idiK7zECaLD/sUeJMHHCSyn51Wj/ed+Tke0RlHpgU=;
- b=cnejfQGFCjq/wsEpC6CZ7F+UgZgZ4dVc9PUZh8Vk3fc4HUOp7L5dsU7GDEsh+AEG8xb2+tFm1QVNf1AAjWNFC3g2VsliMQ4G8u5ZO0RfRYvAL/CKxpSRzrNNdDtsRMqAbs4xrbdt965a9Bh/SGN/0GIqSnO+UR8R4Ppo4nc3ZQ71ZJ0YN49kSdVUGG084jHIotaZMo5otqZ6VR/GE6PO/NBeNR/uSC66+vRqoFCJeMrSBTiyuiS0jCgHHG8sruvgoaUgx4SBlE2DUqTwj4vAUin1ugK9qw9NGex6ZPo4VgBnIAPL2pS+Qfbze8VF6Z8UGZN9WaTb0MlgE2/J5i2HFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
- header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=O3idiK7zECaLD/sUeJMHHCSyn51Wj/ed+Tke0RlHpgU=;
- b=q17SDgOvgZCb5sEq56wzhaaiZwWRvHZigdH12ouAnTUsqk+baQy2jYIQHCU5EvDVwA82IondNX6OwrtVp0Pk/O5iYboXJc0E6zw3CfLO2J/YPGCYqXZIkQbYtNXjQRw7LqfWIDeWMJBdyOVA95zL9Mbxj1ry2bswy+YRdI6ECA4=
-Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=ant.uni-bremen.de;
-Received: from VI1PR0402MB3406.eurprd04.prod.outlook.com (2603:10a6:803:c::27)
- by VI1PR0402MB3837.eurprd04.prod.outlook.com (2603:10a6:803:25::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Thu, 29 Oct
- 2020 08:58:02 +0000
-Received: from VI1PR0402MB3406.eurprd04.prod.outlook.com
- ([fe80::bc9c:10e5:4748:aafa]) by VI1PR0402MB3406.eurprd04.prod.outlook.com
- ([fe80::bc9c:10e5:4748:aafa%2]) with mapi id 15.20.3477.028; Thu, 29 Oct 2020
- 08:58:02 +0000
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: USRP-users@lists.ettus.com
-References: <4abb6853-2374-a640-6e38-9dc9dc7249b8@ant.uni-bremen.de>
- <96B3C74C-2EE9-4BC2-998F-30C798E24A98@gmail.com>
-Message-ID: <bda1042b-69b2-0120-71f4-56b0244dffbf@ant.uni-bremen.de>
-Date: Thu, 29 Oct 2020 09:58:00 +0100
+	id 1kY4dJ-0005vc-E1; Thu, 29 Oct 2020 05:54:13 -0400
+Received: from dslsn201.fix.netvision.net.il ([82.166.192.201]:37617
+ helo=sept12.barochoren.com) by mm2.emwd.com with esmtp (Exim 4.93)
+ (envelope-from <baroch@6tzvaim.com>) id 1kY4dE-0005pG-OB
+ for usrp-users@lists.ettus.com; Thu, 29 Oct 2020 05:54:09 -0400
+Received: from [192.168.14.139] (bzq-79-179-191-47.red.bezeqint.net
+ [79.179.191.47])
+ by sept12.barochoren.com (Postfix) with ESMTPSA id F107622F8AE
+ for <usrp-users@lists.ettus.com>; Thu, 29 Oct 2020 11:43:19 +0200 (IST)
+To: usrp-users@lists.ettus.com
+Message-ID: <73588971-021a-f7fc-dbe8-236843ff27b7@6tzvaim.com>
+Date: Thu, 29 Oct 2020 11:53:26 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
-In-Reply-To: <96B3C74C-2EE9-4BC2-998F-30C798E24A98@gmail.com>
-Content-Language: en-US
-X-Originating-IP: [2003:ca:7f17:d400:30f6:b168:1864:61a4]
-X-ClientProxiedBy: FRYP281CA0003.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10::13)
- To VI1PR0402MB3406.eurprd04.prod.outlook.com
- (2603:10a6:803:c::27)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2003:ca:7f17:d400:30f6:b168:1864:61a4]
- (2003:ca:7f17:d400:30f6:b168:1864:61a4) by
- FRYP281CA0003.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3499.11 via Frontend Transport; Thu, 29 Oct 2020 08:58:01 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7b068f6d-a585-4e76-72d3-08d87be8bde0
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB3837:
-X-Microsoft-Antispam-PRVS: <VI1PR0402MB3837B47C6D5881155C37C12AA9140@VI1PR0402MB3837.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: I2lveiBGNeULKNe3fRsMHMMk/YKci+ijYWIFnPgneJgeWQR6afofFKng5SipTJi82nTG/qU/8rbf4lExQwoBH05b9shVV9KStv8D/9ah0e5xAfWXiiynekYtgEjoaNvIU0YlaN7168i8j0BTQnMOZvb7m/GX8JIOawM0tM7avmbDOk46UEFQ9ZRzY5BlS5gDAH6qTpKvSBAVO7Z9c/59tPjN6f7TlIO7egMq36ebxDUmYV5CQ2PWgQV56iCkhCgm/9CZ7gfzF5E6GeeZ4EXWIhgEfGPlOLAxKiIcF0RLbwjlyP+QpdnQyLHZKzR04xxlcUjfLJhSy+Nja5q0nuvc1Y4EetaBBT3Z3OquH1B6a3QWh9NT8Uju8tSTckiu1pvC15bOfYXJ5fu4PM62qrroN07LjTJbAuVjagnWiiuIXc4XI0WaaRjmw1GyYEAs83G/hqcCC//t2Sg8l3y2i9vKRg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VI1PR0402MB3406.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(376002)(396003)(346002)(39830400003)(136003)(366004)(5660300002)(53546011)(2906002)(6486002)(6916009)(86362001)(83380400001)(8936002)(31686004)(66476007)(52116002)(4326008)(316002)(8676002)(478600001)(66556008)(786003)(66946007)(31696002)(186003)(16526019)(2616005)(966005)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: uLN5TM2qT5vLH8LFkQM4w25osIy6jrmHMtEDN19ckBKDP8qXuqph+/dhcfVddVyej0tTam9gF1JViNgnrqiX72YzXAnD6JyBA/8wpbgDZw+s0z33rC5oQWh3W8Z/BKMIrSNSQPH+8z3wIqIN2MsQzJ4Abo0TDLiYCe0a9TZP7gSbN1GJp+2K36fgksSUWyxBzahNwsRezZDE3MCqWJFL6045BnlhFMs3cTdUy/B/DouDIl3SUQB3S2eWMA3+bHO3bfk6bCgKZ6u1z4qt9tdpfTmDSvn6XMYdNlY7MssT1aGY+9/Hn2iQwkHdoJv0GustYh4objXQomjzF3D13aa67z/mt0iDL3jYJUx7LDDFqKDEJPVXlvNWHgcFDRgjOeKonbOqfPQefbCE0hvrDOMCSwcuou2mmruyK6qIA2f88GnshNiMbcCPegqH5/kvyOvgoDvezz0aSIbiTG31wV1QwNtbLKcCqDFjZd/RJI13Zq5FTOf1gBuDnmdUykpur+6KPX+TaE0AiB60j1eKfIZIvbQ0f7eGGi9OMOK1iVvQkxiKI5pWNxnKSSPjaLXlP8bFMBePwuCj/Dgy/BCmSslyghOdXS/nBTTa8/Cxm1EB8TeZ/wbdazD3iz3UmWDC/ArQnllvUj/XGmYuzf4Enqjz3YtFFezeFYJiBcca4/IYCTKPamJY6KqHphRcnLB4/9SnFmxGJXjZOz8uxeMJ9R561g==
-X-OriginatorOrg: ant.uni-bremen.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b068f6d-a585-4e76-72d3-08d87be8bde0
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3406.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2020 08:58:02.3186 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f018440b-2792-4fa0-b2bd-233acaf88ad2
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xEYid4/DX/GG/r98qzPMMMz4ix4uC99NUz/lqKcXJfftcsTHNHmaeF7y9dr+TZGAJIFSEOyEjsB+CcQ57jxjUA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3837
-Subject: Re: [USRP-users] N310 transmit benchmark_rate fails
+Content-Language: en-US
+Subject: [USRP-users] UHD HOST build fails on ubuntu 20.04 LTS - (missing
+ dependencies)
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -97,10 +36,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: Baroch Oren via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Baroch Oren <baroch@6tzvaim.com>
+Content-Type: multipart/mixed; boundary="===============2167306790904632659=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -114,152 +52,571 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-VGhhbmtzIE1hcmN1cyEKCkkgdGhvdWdodCBJIGhhZCBzZXQgdGhlIE1UVSBmb3IgdGhlIGludGVy
-ZmFjZXMgaW4gcXVlc3Rpb24gdG8gTVRVIDkwMDAgCnBlcm1hbmVudGx5LiBJIHdhcyB3cm9uZy4g
-Rm9yIHNvbWUgcmVhc29uIGl0IHdlbnQgYmFjayB0byBNVFUgMTUwMC4gTm93IAp0aGluZ3MgYXJl
-IHdvcmtpbmcgYWdhaW4uIEkgdG90YWxseSBmb3Jnb3QgYWJvdXQgdGhpcyBjb25maWd1cmF0aW9u
-LgoKRm9yIHJlZmVyZW5jZToKYHN1ZG8gaXAgbGluayBzZXQgW0lOVEVSRkFDRU5BTUVdIG10dSA5
-MDAwYC4KCllvdSBtYXkgd2FudCB0byBjb25maWd1cmUgdGhpcyBwZXJtYW5lbnRseSBpbiBgL2V0
-Yy9uZXRwbGFuLyoveWFtbGAgd2l0aCAKYW4gYG10dTogOTAwMGAgZW50cnkgZm9yIHRoZSBpbnRl
-cmZhY2UgaW4gcXVlc3Rpb24uCgpJIGhhdmUgYSBmZWF0dXJlIHJlcXVlc3Q6CkNhbiBVSEQgY2hl
-Y2sgdGhlIE1UVSBzZXR0aW5ncyBvbiB0aGUgSG9zdCBhbmQgdGhlIGRldmljZSBkdXJpbmcgCmlu
-aXRpYWxpemF0aW9uIGFuZCBwcmludCBhIFdBUk5JTkcgaW4gY2FzZSB0aGVyZSdzIGEgbWlzbWF0
-Y2g/IFRoYXQgCndvdWxkIGJlIHJlYWxseSBhd2Vzb21lLiAoQW5kIHdvdWxkJ3ZlIHNhdmVkIG1l
-IGEgbG90IG9mIHRpbWUpIFRoYXQgCndvdWxkIGJlIGluIGxpbmUgd2l0aCB0aGUgYHN1ZG8gc3lz
-Y3RsIC13IG5ldC5jb3JlLnJtZW1fbWF4PTYyNTAwMDAwYCAKaGludC93YXJuaW5nLgoKQ2hlZXJz
-CkpvaGFubmVzCgpPbiAyOC4xMC4yMCAxODoxMCwgTWFyY3VzIEQgTGVlY2ggd3JvdGU6Cj4gQ2hl
-Y2sgdGhlIG5ldHdvcmsgY29uZmlndXJhdGlvbiBvZiB0aGUgY2FyZHMgb24gYWxsIGhvc3RzLiBE
-byB0aGV5IGhhdmUgdGhlIHNhbWUgTVRVcz8gQXJlIHRoZXJlIGVycm9ycyBzaG93aW5nIG9uIHRo
-ZSBpbnRlcmZhY2U/ICBEbyByZWd1bGFyIHBpbmdzIHdvcmsgcmVsaWFibHk/Cj4gCj4gU2VudCBm
-cm9tIG15IGlQaG9uZQo+IAo+PiBPbiBPY3QgMjgsIDIwMjAsIGF0IDE6MDUgUE0sIEpvaGFubmVz
-IERlbWVsIDxkZW1lbEBhbnQudW5pLWJyZW1lbi5kZT4gd3JvdGU6Cj4+Cj4+IO+7v0hpIE1hcmN1
-cywKPj4KPj4gbm8sIEkgZGlkbid0IHN3YXAgY2FibGVzLiBJIHB1dCB0aGlzIG9uIHRoZSBsaXN0
-IG9mIHRoaW5ncyBJIHdpbGwgdHJ5LiBQaHlzaWNhbCBhY2Nlc3MgaXMgY3VtYmVyc29tZSB0aGlz
-IHllYXIuCj4+Cj4+IFRoYW5rcyBmb3IgdGhlIGhpbnQuCj4+IERvIHlvdSBoYXZlIG1vcmUgaWRl
-YXMgd2hhdCB0byBjaGVjaz8KPj4KPj4gQ2hlZXJzCj4+IEpvaGFubmVzCj4+Cj4+PiBPbiAyOC4x
-MC4yMCAxNzo0OSwgTWFyY3VzIEQgTGVlY2ggd3JvdGU6Cj4+PiBIYXZlIHlvdSB0cmllZCBzd2Fw
-cGluZyBjYWJsZXMgdG8gc2VlIGlmIHRoZSBwcm9ibGVtIGZvbGxvd3MgdGhlIGNhYmxlPwo+Pj4g
-U2VudCBmcm9tIG15IGlQaG9uZQo+Pj4+PiBPbiBPY3QgMjgsIDIwMjAsIGF0IDEyOjQ0IFBNLCBK
-b2hhbm5lcyBEZW1lbCB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
-IHdyb3RlOgo+Pj4+Cj4+Pj4g77u/SGkgYWxsLAo+Pj4+Cj4+Pj4gd2UgaGF2ZSBhIGNvdXBsZSBv
-ZiBOMzEwcyBpbiBvdXIgbGFiIGFuZCBzb21lIG9mIHRoZW0gc2VlbSB0byBmYWlsIHRvIHRyYW5z
-bWl0IHJlbGlhYmx5Lgo+Pj4+Cj4+Pj4gRWFjaCBOMzEwIGlzIGNvbm5lY3RlZCB0byBhIGhvc3Qg
-dmlhIG9uZSBvZiB0aG9zZSBTRlArIGNhYmxlcyB0aGF0IGNhbWUgd2l0aCB0aGVtIGZyb20gRXR0
-dXMuIFdlIGhhdmUgMyBOMzEwcyB0aGF0IGFyZSBjb25uZWN0ZWQgdmlhIHNhaWQgY2FibGVzIHRv
-IG9uZSBob3N0IGVhY2ggd2l0aCBhbiBJbnRlbCBYNzEwIERBMiB3aXRoIGFuIEFNRCBUUlgzOTcw
-LiBBbGwgbWFjaGluZXMgcnVuIFVidW50dSAyMC4wNCB3aXRoIGFsbCB1cGRhdGVzLgo+Pj4+IEkg
-dXNlIHRoZSBVSEQgMy4xNUxUUyBicmFuY2g6IFVIRF8zLjE1LjAuMC03LWc4ZDIyOGRiZQo+Pj4+
-IEkgbWFkZSBzdXJlIHRvIGNoZWNrIG91dCB0aGUgdmVyeSBzYW1lIGNvbW1pdCBhbmQgcmVjb21w
-aWxlIGFuZCBpbnN0YWxsIGl0Lgo+Pj4+Cj4+Pj4gT24gMiBob3N0cyBJIGNhbiBydW46Cj4+Pj4g
-YC4vYmVuY2htYXJrX3JhdGUgLS1hcmdzICJhZGRyPTE5Mi4xNjguMjAuMjEzLG1hc3Rlcl9jbG9j
-a19yYXRlPTEyMi44OGU2IiAtLXR4X3JhdGUgNjEuNDRlNiAtLXR4X2NoYW5uZWxzICIzIiAtLXJ4
-X3JhdGUgNjEuNDRlNiAtLXJ4X2NoYW5uZWxzICIwLDEiYAo+Pj4+IFRoZSBmdWxsIG91dHB1dCBp
-cyBhdHRhY2hlZCBhdCB0aGUgYm90dG9tIG9mIHRoaXMgZW1haWwuCj4+Pj4KPj4+PiBXaGF0IEkg
-b2JzZXJ2ZToKPj4+PiAtIEl0IHJ1bnMgZmluZSB3aXRoIDIgaG9zdHMKPj4+PiAtIFRoZSB0aGly
-ZCBob3N0IGZhaWxzLgo+Pj4+IC0tIE9uIHRoZSB0aGlyZCBob3N0IFJYIG9ubHkgd29ya3MuCj4+
-Pj4gLS0gT24gdGhlIHRoaXJkIGhvc3QgVFggb25seSBpcyBoYXVudGVkOiBjZi4gZnVsbCB0ZXN0
-IG91dHB1dC4KPj4+PiAtIFdlIGhhdmUgYSBzZXJ2ZXIgd2l0aCBJbnRlbCBYZW9uIDYyNTQgYW5k
-IFg3MjIgd2hlcmUgSSBvYnNlcnZlIHRoZSBzYW1lIGlzc3VlCj4+Pj4gLSBJIHN3aXRjaGVkIFVT
-UlBzIGJldHdlZW4gaG9zdHMsIHRoZSBpc3N1ZSBzZWVtcyB0byBzdGljayB3aXRoIHRoZSBob3N0
-Lgo+Pj4+Cj4+Pj4gSXQgc3RhcnRlZCB3aXRoIG9uZSBob3N0IGEgY291cGxlIG9mIHdlZWtzIGJh
-Y2suIEJ1dCBub3cgb3VyIHNlcnZlciBzdGFydHMgdG8gZmFpbCB3aXRoIHRoZSBzYW1lIGVycm9y
-OiBUaGUgZXhhY3Qgc2FtZSBzZXR1cCB1c2VkIHRvIHdvcmsgb24gdGhhdCBtYWNoaW5lLgo+Pj4+
-IEkgYW0gbG9va2luZyBpbnRvIHRoaXMgZm9yIHF1aXRlIGEgd2hpbGUgbm93LiBJIGNhbid0IGZp
-bmQgdGhlIHNvdXJjZSBvZiB0aGUgaXNzdWUuCj4+Pj4KPj4+PiBIYXMgYW55b25lIGhhZCBleHBl
-cmllbmNlIHdpdGggdGhhdD8gSSdkIHJlYWxseSBhcHByZWNpYXRlIGhpbnRzIGhvdyB0byBkZWJ1
-ZyB0aGlzLgo+Pj4+Cj4+Pj4KPj4+PiBDaGVlcnMKPj4+PiBKb2hhbm5lcwo+Pj4+Cj4+Pj4KPj4+
-PiBPbiB0aGUgd29ya2luZyBob3N0cyB0aGUgYmVuY2htYXJrIHJhdGUgc3VtbWFyeSBsb29rcyBs
-aWtlIHRoaXM6Cj4+Pj4gLS0tLS0tLS0tCj4+Pj4gQmVuY2htYXJrIHJhdGUgc3VtbWFyeToKPj4+
-PiAgIE51bSByZWNlaXZlZCBzYW1wbGVzOiAgICAgMTI3MDU1NjM0MAo+Pj4+ICAgTnVtIGRyb3Bw
-ZWQgc2FtcGxlczogICAgICAwCj4+Pj4gICBOdW0gb3ZlcnJ1bnMgZGV0ZWN0ZWQ6ICAgIDAKPj4+
-PiAgIE51bSB0cmFuc21pdHRlZCBzYW1wbGVzOiAgNjE0NDQwMzY4Cj4+Pj4gICBOdW0gc2VxdWVu
-Y2UgZXJyb3JzIChUeCk6IDAKPj4+PiAgIE51bSBzZXF1ZW5jZSBlcnJvcnMgKFJ4KTogMAo+Pj4+
-ICAgTnVtIHVuZGVycnVucyBkZXRlY3RlZDogICAwCj4+Pj4gICBOdW0gbGF0ZSBjb21tYW5kczog
-ICAgICAgIDAKPj4+PiAgIE51bSB0aW1lb3V0cyAoVHgpOiAgICAgICAgMAo+Pj4+ICAgTnVtIHRp
-bWVvdXRzIChSeCk6ICAgICAgICAwCj4+Pj4gLS0tLS0tLS0tCj4+Pj4KPj4+PiBCdXQgb24gdGhl
-IHRoaXJkIGRldmljZToKPj4+PiAtLS0tLS0tLS0KPj4+PiBbLi4uLl0KPj4+PiBTVVNVU1VTVVNV
-U1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVWzAw
-OjAwOjE2LjI2MjEyM10gUmVjZWl2ZXIgZXJyb3I6IEVSUk9SX0NPREVfVElNRU9VVCwgY29udGlu
-dWluZy4uLgo+Pj4+IFNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNV
-U1VTVVNVU1VTVVNVU1VTVVNVU1VVWzAwOjAwOjE2LjU2NTE1OV0gQmVuY2htYXJrIGNvbXBsZXRl
-Lgo+Pj4+Cj4+Pj4KPj4+PiBCZW5jaG1hcmsgcmF0ZSBzdW1tYXJ5Ogo+Pj4+ICAgTnVtIHJlY2Vp
-dmVkIHNhbXBsZXM6ICAgICA2NjUwMTI4MAo+Pj4+ICAgTnVtIGRyb3BwZWQgc2FtcGxlczogICAg
-ICAwCj4+Pj4gICBOdW0gb3ZlcnJ1bnMgZGV0ZWN0ZWQ6ICAgIDAKPj4+PiAgIE51bSB0cmFuc21p
-dHRlZCBzYW1wbGVzOiAgMTU0MzEyNzA0Cj4+Pj4gICBOdW0gc2VxdWVuY2UgZXJyb3JzIChUeCk6
-IDMxNDkKPj4+PiAgIE51bSBzZXF1ZW5jZSBlcnJvcnMgKFJ4KTogMAo+Pj4+ICAgTnVtIHVuZGVy
-cnVucyBkZXRlY3RlZDogICAzMTU2Cj4+Pj4gICBOdW0gbGF0ZSBjb21tYW5kczogICAgICAgIDAK
-Pj4+PiAgIE51bSB0aW1lb3V0cyAoVHgpOiAgICAgICAgMAo+Pj4+ICAgTnVtIHRpbWVvdXRzIChS
-eCk6ICAgICAgICA5Nwo+Pj4+IC0tLS0tLS0tLS0KPj4+Pgo+Pj4+IFdlIGhhdmUgYSBzZXJ2ZXIg
-d2l0aCBJbnRlbCBYNzIyIGFuZCBJbnRlbCBYZW9uIEdvbGQgNjI1MiB0aGF0IHJlcG9ydHMgdGhl
-IHNhbWUgaXNzdWU6Cj4+Pj4gLS0tLS0tLS0tLQo+Pj4+IFVVVVVVVVVVWzAwOjAwOjE2LjE4MDA5
-NF0gUmVjZWl2ZXIgZXJyb3I6IEVSUk9SX0NPREVfVElNRU9VVCwgY29udGludWluZy4uLgo+Pj4+
-IFVTWzAwOjAwOjE2LjM4MjM5M10gQmVuY2htYXJrIGNvbXBsZXRlLgo+Pj4+Cj4+Pj4KPj4+PiBC
-ZW5jaG1hcmsgcmF0ZSBzdW1tYXJ5Ogo+Pj4+ICAgTnVtIHJlY2VpdmVkIHNhbXBsZXM6ICAgICA5
-OTc2MzMyOAo+Pj4+ICAgTnVtIGRyb3BwZWQgc2FtcGxlczogICAgICAwCj4+Pj4gICBOdW0gb3Zl
-cnJ1bnMgZGV0ZWN0ZWQ6ICAgIDAKPj4+PiAgIE51bSB0cmFuc21pdHRlZCBzYW1wbGVzOiAgMTU1
-ODA0OTQ0Cj4+Pj4gICBOdW0gc2VxdWVuY2UgZXJyb3JzIChUeCk6IDMxODAKPj4+PiAgIE51bSBz
-ZXF1ZW5jZSBlcnJvcnMgKFJ4KTogMAo+Pj4+ICAgTnVtIHVuZGVycnVucyBkZXRlY3RlZDogICAx
-NjQ5NzQKPj4+PiAgIE51bSBsYXRlIGNvbW1hbmRzOiAgICAgICAgMAo+Pj4+ICAgTnVtIHRpbWVv
-dXRzIChUeCk6ICAgICAgICAwCj4+Pj4gICBOdW0gdGltZW91dHMgKFJ4KTogICAgICAgIDk1Cj4+
-Pj4gLS0tLS0tLS0tLQo+Pj4+IFRob3VnaCwgdGhlcmUgYXJlIGV2ZW4gbW9yZSB1bmRlcnJ1bnMu
-Cj4+Pj4KPj4+Pgo+Pj4+Cj4+Pj4gV29ya2luZyBvdXRwdXQ6Cj4+Pj4gPT09PT09PT09PT09Cj4+
-Pj4gW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gOS4zLjA7IEJvb3N0XzEwNzEw
-MDsgVUhEXzMuMTUuMC4wLTctZzhkMjI4ZGJlCj4+Pj4gWzAwOjAwOjAwLjAwMDAwMl0gQ3JlYXRp
-bmcgdGhlIHVzcnAgZGV2aWNlIHdpdGg6IGFkZHI9MTkyLjE2OC4yMC4yMTMsbWFzdGVyX2Nsb2Nr
-X3JhdGU9MTIyLjg4ZTYuLi4KPj4+PiBbSU5GT10gW01QTURdIEluaXRpYWxpemluZyAxIGRldmlj
-ZShzKSBpbiBwYXJhbGxlbCB3aXRoIGFyZ3M6IG1nbXRfYWRkcj0xOTIuMTY4LjIwLjIxMyx0eXBl
-PW4zeHgscHJvZHVjdD1uMzEwLHNlcmlhbD0zMTk4NDFCLGNsYWltZWQ9RmFsc2UsYWRkcj0xOTIu
-MTY4LjIwLjIxMyxtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNgo+Pj4+IFtJTkZPXSBbTVBNLlBl
-cmlwaE1hbmFnZXJdIGluaXQoKSBjYWxsZWQgd2l0aCBkZXZpY2UgYXJncyBgdGltZV9zb3VyY2U9
-Z3BzZG8sY2xvY2tfc291cmNlPWdwc2RvLG1nbXRfYWRkcj0xOTIuMTY4LjIwLjIxMyxwcm9kdWN0
-PW4zMTAsbWFzdGVyX2Nsb2NrX3JhdGU9MTIyLjg4ZTYnLgo+Pj4+IFtJTkZPXSBbMC9SZXBsYXlf
-MF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHg0RTkxQTAwMDAwMDAwMDA0
-KQo+Pj4+IFtJTkZPXSBbMC9SYWRpb18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9D
-IElEOiAweDEyQUQxMDAwMDAwMTEzMTIpCj4+Pj4gW0lORk9dIFswL1JhZGlvXzFdIEluaXRpYWxp
-emluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4MTJBRDEwMDAwMDAxMTMxMikKPj4+PiBbSU5G
-T10gWzAvRERDXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RERDMDAw
-MDAwMDAwMDAwMCkKPj4+PiBbSU5GT10gWzAvRERDXzFdIEluaXRpYWxpemluZyBibG9jayBjb250
-cm9sIChOT0MgSUQ6IDB4RERDMDAwMDAwMDAwMDAwMCkKPj4+PiBbSU5GT10gWzAvRFVDXzBdIElu
-aXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RDBDMDAwMDAwMDAwMDAwMikKPj4+
-PiBbSU5GT10gWzAvRFVDXzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4
-RDBDMDAwMDAwMDAwMDAwMikKPj4+PiBbSU5GT10gWzAvRklGT18wXSBJbml0aWFsaXppbmcgYmxv
-Y2sgY29udHJvbCAoTk9DIElEOiAweEYxRjAwMDAwMDAwMDAwMDApCj4+Pj4gW0lORk9dIFswL0ZJ
-Rk9fMV0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAw
-MDAwKQo+Pj4+IFtJTkZPXSBbMC9GSUZPXzJdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChO
-T0MgSUQ6IDB4RjFGMDAwMDAwMDAwMDAwMCkKPj4+PiBbSU5GT10gWzAvRklGT18zXSBJbml0aWFs
-aXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEYxRjAwMDAwMDAwMDAwMDApCj4+Pj4gVXNp
-bmcgRGV2aWNlOiBTaW5nbGUgVVNSUDoKPj4+PiAgIERldmljZTogTjMwMC1TZXJpZXMgRGV2aWNl
-Cj4+Pj4gICBSWCBDaGFubmVsOiAwCj4+Pj4gICAgIFJYIERTUDogMAo+Pj4+ICAgICBSWCBEYm9h
-cmQ6IEEKPj4+PiAgICAgUlggU3ViZGV2OiBNYWduZXNpdW0KPj4+PiAgIFJYIENoYW5uZWw6IDEK
-Pj4+PiAgICAgUlggRFNQOiAxCj4+Pj4gICAgIFJYIERib2FyZDogQQo+Pj4+ICAgICBSWCBTdWJk
-ZXY6IE1hZ25lc2l1bQo+Pj4+ICAgUlggQ2hhbm5lbDogMgo+Pj4+ICAgICBSWCBEU1A6IDAKPj4+
-PiAgICAgUlggRGJvYXJkOiBCCj4+Pj4gICAgIFJYIFN1YmRldjogTWFnbmVzaXVtCj4+Pj4gICBS
-WCBDaGFubmVsOiAzCj4+Pj4gICAgIFJYIERTUDogMQo+Pj4+ICAgICBSWCBEYm9hcmQ6IEIKPj4+
-PiAgICAgUlggU3ViZGV2OiBNYWduZXNpdW0KPj4+PiAgIFRYIENoYW5uZWw6IDAKPj4+PiAgICAg
-VFggRFNQOiAwCj4+Pj4gICAgIFRYIERib2FyZDogQQo+Pj4+ICAgICBUWCBTdWJkZXY6IE1hZ25l
-c2l1bQo+Pj4+ICAgVFggQ2hhbm5lbDogMQo+Pj4+ICAgICBUWCBEU1A6IDEKPj4+PiAgICAgVFgg
-RGJvYXJkOiBBCj4+Pj4gICAgIFRYIFN1YmRldjogTWFnbmVzaXVtCj4+Pj4gICBUWCBDaGFubmVs
-OiAyCj4+Pj4gICAgIFRYIERTUDogMAo+Pj4+ICAgICBUWCBEYm9hcmQ6IEIKPj4+PiAgICAgVFgg
-U3ViZGV2OiBNYWduZXNpdW0KPj4+PiAgIFRYIENoYW5uZWw6IDMKPj4+PiAgICAgVFggRFNQOiAx
-Cj4+Pj4gICAgIFRYIERib2FyZDogQgo+Pj4+ICAgICBUWCBTdWJkZXY6IE1hZ25lc2l1bQo+Pj4+
-Cj4+Pj4gWzAwOjAwOjA0LjA0NTcwMF0gU2V0dGluZyBkZXZpY2UgdGltZXN0YW1wIHRvIDAuLi4K
-Pj4+PiBbSU5GT10gW01VTFRJX1VTUlBdICAgICAxKSBjYXRjaCB0aW1lIHRyYW5zaXRpb24gYXQg
-cHBzIGVkZ2UKPj4+PiBbSU5GT10gW01VTFRJX1VTUlBdICAgICAyKSBzZXQgdGltZXMgbmV4dCBw
-cHMgKHN5bmNocm9ub3VzbHkpCj4+Pj4gWzAwOjAwOjA1LjY4OTQwNV0gVGVzdGluZyByZWNlaXZl
-IHJhdGUgNjEuNDQwMDAwIE1zcHMgb24gMiBjaGFubmVscwo+Pj4+IFswMDowMDowNS44MjkzMTVd
-IFRlc3RpbmcgdHJhbnNtaXQgcmF0ZSA2MS40NDAwMDAgTXNwcyBvbiAxIGNoYW5uZWxzCj4+Pj4g
-WzAwOjAwOjE2LjE4MDE2M10gQmVuY2htYXJrIGNvbXBsZXRlLgo+Pj4+Cj4+Pj4KPj4+PiBCZW5j
-aG1hcmsgcmF0ZSBzdW1tYXJ5Ogo+Pj4+ICAgTnVtIHJlY2VpdmVkIHNhbXBsZXM6ICAgICAxMjcw
-NTU2MzQwCj4+Pj4gICBOdW0gZHJvcHBlZCBzYW1wbGVzOiAgICAgIDAKPj4+PiAgIE51bSBvdmVy
-cnVucyBkZXRlY3RlZDogICAgMAo+Pj4+ICAgTnVtIHRyYW5zbWl0dGVkIHNhbXBsZXM6ICA2MTQ0
-NDAzNjgKPj4+PiAgIE51bSBzZXF1ZW5jZSBlcnJvcnMgKFR4KTogMAo+Pj4+ICAgTnVtIHNlcXVl
-bmNlIGVycm9ycyAoUngpOiAwCj4+Pj4gICBOdW0gdW5kZXJydW5zIGRldGVjdGVkOiAgIDAKPj4+
-PiAgIE51bSBsYXRlIGNvbW1hbmRzOiAgICAgICAgMAo+Pj4+ICAgTnVtIHRpbWVvdXRzIChUeCk6
-ICAgICAgICAwCj4+Pj4gICBOdW0gdGltZW91dHMgKFJ4KTogICAgICAgIDAKPj4+Pgo+Pj4+Cj4+
-Pj4gRG9uZSEKPj4+PiA9PT09PT09PT09PT09PT09PT09PT0KPj4+Pgo+Pj4+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+Pj4gVVNSUC11c2VycyBtYWls
-aW5nIGxpc3QKPj4+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+Pj4+IGh0dHA6Ly9saXN0
-cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2Vy
-cyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0
-dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+--===============2167306790904632659==
+Content-Type: text/html; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+
+<html style="direction: ltr;">
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <style id="bidiui-paragraph-margins" type="text/css">body p { margin-bottom: 0cm; margin-top: 0pt; } </style>
+  </head>
+  <body bidimailui-charset-is-forced="true" style="direction: ltr;">
+    <p>Hello,</p>
+    <p>I've been following Application Note AN-445
+<a class="moz-txt-link-freetext" href="https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux">https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux</a></p>
+    <p>Couldn't build it. Please advise.</p>
+    <p><br>
+    </p>
+    <p>These are the requirements that were reported missing on the
+      apt-get line:</p>
+    <blockquote>
+      <p>E: Unable to locate package libcppunit-1.14-0<br>
+        E: Package 'python-scipy' has no installation candidate<br>
+        E: Unable to locate package qt4-bin-dbg<br>
+        E: Package 'qt4-default' has no installation candidate<br>
+        E: Package 'qt4-doc' has no installation candidate<br>
+        E: Package 'libqt4-dev' has no installation candidate<br>
+        E: Unable to locate package libqt4-dev-bin<br>
+        E: Unable to locate package python-qt4<br>
+        E: Unable to locate package python-qt4-dbg<br>
+        E: Unable to locate package python-qt4-dev<br>
+        E: Unable to locate package python-qt4-doc<br>
+        E: Unable to locate package libqwt6abi1<br>
+        E: Unable to locate package libncurses6-dbg<br>
+        E: Package 'libqt4-dev' has no installation candidate<br>
+        E: Package 'qt4-default' has no installation candidate<br>
+        E: Unable to locate package qt4-dev-tools<br>
+        E: Unable to locate package pyqt4-dev-tools<br>
+        E: Unable to locate package python-qwt5-qt4<br>
+        E: Unable to locate package python-gtk2<br>
+        E: Unable to locate package python-requests<br>
+        E: Package 'python-sphinx' has no installation candidate<br>
+        E: Unable to locate package python-zmq<br>
+        E: Package 'libqwt-dev' has no installation candidate<br>
+        E: Unable to locate package libqwt6abi1<br>
+        E: Unable to locate package libgps23<br>
+        E: Package 'python-gps' has no installation candidate<br>
+        <br>
+      </p>
+    </blockquote>
+    <p>following attempt to make &amp; build gives countless warning and
+      tthe following error:</p>
+    <blockquote>
+      <p>baroch@reliable:~/uhd/host/build$ cmake -DENABLE_GPSD=ON ../<br>
+        -- <br>
+        -- Configuring the python interpreter...<br>
+        -- Python interpreter: /usr/bin/python2<br>
+        -- Override with: -DPYTHON_EXECUTABLE=&lt;path-to-python&gt;<br>
+        -- Python runtime interpreter: /usr/bin/python2<br>
+        -- Override with:
+        -DRUNTIME_PYTHON_EXECUTABLE=&lt;path-to-python&gt;<br>
+        -- Working off of feature or development branch. Updating
+        version number.<br>
+        -- Using UHD Images Directory: /usr/local/share/uhd/images<br>
+        -- Build type not specified: defaulting to release.<br>
+        -- <br>
+        -- Configuring Boost C++ Libraries...<br>
+        -- Looking for optional Boost components...<br>
+        -- Found Boost:
+        /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake
+        (found suitable version "1.71.0", minimum required is "1.53")
+        found components: python <br>
+        -- Looking for required Boost components...<br>
+        -- Found Boost:
+        /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake
+        (found suitable version "1.71.0", minimum required is "1.53")
+        found components: chrono date_time filesystem program_options
+        regex system unit_test_framework serialization thread <br>
+        -- Boost include directories: /usr/include<br>
+        -- Boost library directories: /usr/lib/x86_64-linux-gnu<br>
+        -- Boost libraries:
+Boost::chrono;Boost::date_time;Boost::filesystem;Boost::program_options;Boost::regex;Boost::system;Boost::unit_test_framework;Boost::serialization;Boost::thread<br>
+        CMake Warning (dev) at cmake/Modules/UHDLog.cmake:68 (set):<br>
+          implicitly converting 'FILE' to 'STRING' type.<br>
+        Call Stack (most recent call first):<br>
+          CMakeLists.txt:365 (include)<br>
+        This warning is for project developers.  Use -Wno-dev to
+        suppress it.<br>
+        <br>
+        -- <br>
+        -- Python checking for Python version 2.7 or greater<br>
+        -- Python checking for Python version 2.7 or greater - found<br>
+        -- <br>
+        -- Python checking for Mako templates 0.4.2 or greater<br>
+        -- Python checking for Mako templates 0.4.2 or greater - found<br>
+        -- <br>
+        -- Python checking for requests 2.0 or greater<br>
+        -- Python checking for requests 2.0 or greater - "import
+        requests" failed<br>
+        -- <br>
+        -- Python checking for numpy 1.7 or greater<br>
+        -- Python checking for numpy 1.7 or greater - found<br>
+        -- <br>
+        -- Configuring LibUHD support...<br>
+        --   Dependency Boost_FOUND = TRUE<br>
+        --   Dependency HAVE_PYTHON_PLAT_MIN_VERSION = TRUE<br>
+        --   Dependency HAVE_PYTHON_MODULE_MAKO = TRUE<br>
+        --   Enabling LibUHD support.<br>
+        --   Override with -DENABLE_LIBUHD=ON/OFF<br>
+        -- <br>
+        -- Configuring LibUHD - C API support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Enabling LibUHD - C API support.<br>
+        --   Override with -DENABLE_C_API=ON/OFF<br>
+        -- <br>
+        -- Configuring LibUHD - Python API support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Dependency BOOST_PYTHON_FOUND = 1<br>
+        --   Dependency HAVE_PYTHON_MODULE_NUMPY = TRUE<br>
+        --   Dependency PythonLibs_FOUND = TRUE<br>
+        --   Enabling LibUHD - Python API support.<br>
+        --   Override with -DENABLE_PYTHON_API=ON/OFF<br>
+        -- <br>
+        -- Configuring Examples support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Enabling Examples support.<br>
+        --   Override with -DENABLE_EXAMPLES=ON/OFF<br>
+        -- <br>
+        -- Configuring Utils support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Enabling Utils support.<br>
+        --   Override with -DENABLE_UTILS=ON/OFF<br>
+        -- <br>
+        -- Configuring Tests support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Enabling Tests support.<br>
+        --   Override with -DENABLE_TESTS=ON/OFF<br>
+        -- <br>
+        -- Could NOT find LIBERIO (missing: LIBERIO_LIBRARY
+        LIBERIO_INCLUDE_DIR) <br>
+        -- Could NOT find dpdk (missing: DPDK_INCLUDE_DIR) <br>
+        -- <br>
+        -- Configuring LIBERIO support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Dependency LIBERIO_FOUND = FALSE<br>
+        --   Disabling LIBERIO support.<br>
+        --   Override with -DENABLE_LIBERIO=ON/OFF<br>
+        -- <br>
+        -- Configuring USB support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Dependency LIBUSB_FOUND = TRUE<br>
+        --   Enabling USB support.<br>
+        --   Override with -DENABLE_USB=ON/OFF<br>
+        -- <br>
+        -- Configuring GPSD support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Dependency ENABLE_GPSD = ON<br>
+        --   Dependency LIBGPS_FOUND = TRUE<br>
+        --   Enabling GPSD support.<br>
+        --   Override with -DENABLE_GPSD=ON/OFF<br>
+        -- <br>
+        -- Configuring B100 support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Dependency ENABLE_USB = ON<br>
+        --   Enabling B100 support.<br>
+        --   Override with -DENABLE_B100=ON/OFF<br>
+        -- <br>
+        -- Configuring B200 support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Dependency ENABLE_USB = ON<br>
+        --   Enabling B200 support.<br>
+        --   Override with -DENABLE_B200=ON/OFF<br>
+        -- <br>
+        -- Configuring E300 support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Disabling E300 support.<br>
+        --   Override with -DENABLE_E300=ON/OFF<br>
+        -- <br>
+        -- Configuring USRP1 support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Dependency ENABLE_USB = ON<br>
+        --   Enabling USRP1 support.<br>
+        --   Override with -DENABLE_USRP1=ON/OFF<br>
+        -- <br>
+        -- Configuring USRP2 support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Enabling USRP2 support.<br>
+        --   Override with -DENABLE_USRP2=ON/OFF<br>
+        -- <br>
+        -- Configuring X300 support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Enabling X300 support.<br>
+        --   Override with -DENABLE_X300=ON/OFF<br>
+        -- <br>
+        -- Configuring N230 support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Enabling N230 support.<br>
+        --   Override with -DENABLE_N230=ON/OFF<br>
+        -- <br>
+        -- Configuring MPMD support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Enabling MPMD support.<br>
+        --   Override with -DENABLE_MPMD=ON/OFF<br>
+        -- <br>
+        -- Configuring N300 support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Dependency ENABLE_MPMD = ON<br>
+        --   Enabling N300 support.<br>
+        --   Override with -DENABLE_N300=ON/OFF<br>
+        -- <br>
+        -- Configuring N320 support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Dependency ENABLE_MPMD = ON<br>
+        --   Enabling N320 support.<br>
+        --   Override with -DENABLE_N320=ON/OFF<br>
+        -- <br>
+        -- Configuring E320 support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Dependency ENABLE_MPMD = ON<br>
+        --   Enabling E320 support.<br>
+        --   Override with -DENABLE_E320=ON/OFF<br>
+        -- <br>
+        -- Configuring OctoClock support...<br>
+        --   Dependency ENABLE_LIBUHD = ON<br>
+        --   Enabling OctoClock support.<br>
+        --   Override with -DENABLE_OCTOCLOCK=ON/OFF<br>
+        -- <br>
+        -- Configuring DPDK support...<br>
+        --   Dependency ENABLE_MPMD = ON<br>
+        --   Dependency DPDK_FOUND = FALSE<br>
+        --   Disabling DPDK support.<br>
+        --   Override with -DENABLE_DPDK=ON/OFF<br>
+        -- <br>
+        -- <br>
+        -- <br>
+        -- Configuring priority scheduling...<br>
+        --   Priority scheduling supported through
+        pthread_setschedparam.<br>
+        --   Setting thread names is supported through
+        pthread_setname_np.<br>
+        -- <br>
+        -- Configuring high resolution timing...<br>
+        --   High resolution timing supported through clock_gettime.<br>
+        -- <br>
+        -- Configuring module loading...<br>
+        --   Module loading supported through dlopen.<br>
+        -- <br>
+        -- Processing NI-RIO FPGA LVBITX Bitstreams...<br>
+        --   Using x300.lvbitx_base for codegen<br>
+        --   Using x310.lvbitx_base for codegen<br>
+        -- <br>
+        -- USB support enabled via libusb.<br>
+        -- <br>
+        -- Configuring interface address discovery...<br>
+        --   Interface address discovery supported through getifaddrs.<br>
+        -- <br>
+        -- Loading build info.<br>
+        -- <br>
+        -- Adding B2XX device test target<br>
+        -- Adding X3x0 device test target<br>
+        -- Adding N3XX device test target<br>
+        -- Adding E32x device test target<br>
+        -- <br>
+        CMake Warning at utils/CMakeLists.txt:123 (message):<br>
+          Python module `requests' not found -- uhd_images_downloader.py
+        will not<br>
+          work without it.<br>
+        <br>
+        <br>
+        CMake Warning at utils/CMakeLists.txt:124 (message):<br>
+          You may be able to install this by running 'pip install
+        requests'<br>
+        <br>
+        <br>
+        -- <br>
+        -- Configuring Manual support...<br>
+        --   Dependency DOXYGEN_FOUND = YES<br>
+        --   Enabling Manual support.<br>
+        --   Override with -DENABLE_MANUAL=ON/OFF<br>
+        -- <br>
+        -- Configuring API/Doxygen support...<br>
+        --   Dependency DOXYGEN_FOUND = YES<br>
+        --   Enabling API/Doxygen support.<br>
+        --   Override with -DENABLE_DOXYGEN=ON/OFF<br>
+        -- <br>
+        -- Configuring Man Pages support...<br>
+        --   Dependency GZIP_FOUND = TRUE<br>
+        --   Dependency NOT_WIN32 = TRUE<br>
+        --   Enabling Man Pages support.<br>
+        --   Override with -DENABLE_MAN_PAGES=ON/OFF<br>
+        -- <br>
+        -- Python checking for virtualenv<br>
+        -- Python checking for virtualenv - "assert hasattr(sys,
+        'real_prefix')" failed<br>
+        -- Utilizing the python install directory:
+        /usr/local/lib/python2.7/dist-packages<br>
+        -- <br>
+        -- ######################################################<br>
+        -- # UHD enabled components                              <br>
+        -- ######################################################<br>
+        --   * LibUHD<br>
+        --   * LibUHD - C API<br>
+        --   * LibUHD - Python API<br>
+        --   * Examples<br>
+        --   * Utils<br>
+        --   * Tests<br>
+        --   * USB<br>
+        --   * GPSD<br>
+        --   * B100<br>
+        --   * B200<br>
+        --   * USRP1<br>
+        --   * USRP2<br>
+        --   * X300<br>
+        --   * N230<br>
+        --   * MPMD<br>
+        --   * N300<br>
+        --   * N320<br>
+        --   * E320<br>
+        --   * OctoClock<br>
+        --   * Manual<br>
+        --   * API/Doxygen<br>
+        --   * Man Pages<br>
+        -- <br>
+        -- ######################################################<br>
+        -- # UHD disabled components                             <br>
+        -- ######################################################<br>
+        --   * LIBERIO<br>
+        --   * E300<br>
+        --   * DPDK<br>
+        -- <br>
+        -- ******************************************************<br>
+        -- * You are building a development branch of UHD.<br>
+        -- * These branches are designed to provide early access<br>
+        -- * to UHD and USRP features, but should be considered<br>
+        -- * unstable and/or experimental!<br>
+        -- ******************************************************<br>
+        -- Building version: 3.14.1.HEAD-0-g0347a6d8<br>
+        -- Using install prefix: /usr/local<br>
+        -- Configuring done<br>
+        -- Generating done<br>
+        -- Build files have been written to: /home/baroch/uhd/host/build<br>
+        baroch@reliable:~/uhd/host/build$ make<br>
+        Scanning dependencies of target uhd_rpclib<br>
+        [  0%] Building CXX object
+        lib/deps/rpclib/CMakeFiles/uhd_rpclib.dir/lib/rpc/dispatcher.cc.o<br>
+        In file included from
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,<br>
+                         from
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/dispatcher.h:12,<br>
+                         from
+        /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/dispatcher.cc:1:<br>
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp: In
+        function ‘void
+        clmdep_msgpack::v1::operator&lt;&lt;(clmdep_msgpack::v1::object&amp;,
+        const msgpack_object&amp;)’:<br>
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:613:34:
+        warning: ‘void* memcpy(void*, const void*, size_t)’ copying an
+        object of non-trivial type ‘struct clmdep_msgpack::v1::object’
+        from an array of ‘const msgpack_object’ {aka ‘const struct
+        msgpack_object’} [-Wclass-memaccess]<br>
+          613 |     std::memcpy(&amp;o, &amp;v, sizeof(v));<br>
+              |                                  ^<br>
+        In file included from
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/adaptor/adaptor_base.hpp:21,<br>
+                         from
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:24,<br>
+                         from
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,<br>
+                         from
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/dispatcher.h:12,<br>
+                         from
+        /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/dispatcher.cc:1:<br>
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object_fwd.hpp:111:8:
+        note: ‘struct clmdep_msgpack::v1::object’ declared here<br>
+          111 | struct object {<br>
+              |        ^~~~~~<br>
+        [  0%] Building CXX object
+        lib/deps/rpclib/CMakeFiles/uhd_rpclib.dir/lib/rpc/server.cc.o<br>
+        In file included from
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,<br>
+                         from
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/server.h:7,<br>
+                         from
+        /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/server.cc:1:<br>
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp: In
+        function ‘void
+        clmdep_msgpack::v1::operator&lt;&lt;(clmdep_msgpack::v1::object&amp;,
+        const msgpack_object&amp;)’:<br>
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:613:34:
+        warning: ‘void* memcpy(void*, const void*, size_t)’ copying an
+        object of non-trivial type ‘struct clmdep_msgpack::v1::object’
+        from an array of ‘const msgpack_object’ {aka ‘const struct
+        msgpack_object’} [-Wclass-memaccess]<br>
+          613 |     std::memcpy(&amp;o, &amp;v, sizeof(v));<br>
+              |                                  ^<br>
+        In file included from
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/adaptor/adaptor_base.hpp:21,<br>
+                         from
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:24,<br>
+                         from
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,<br>
+                         from
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/server.h:7,<br>
+                         from
+        /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/server.cc:1:<br>
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object_fwd.hpp:111:8:
+        note: ‘struct clmdep_msgpack::v1::object’ declared here<br>
+          111 | struct object {<br>
+              |        ^~~~~~<br>
+        <br>
+              <br>
+        [ a lot of warnings truncated B.O.]      <br>
+              <br>
+              <br>
+              <br>
+        [ 22%] Building CXX object
+        lib/CMakeFiles/uhd.dir/usrp/subdev_spec.cpp.o<br>
+        [ 23%] Building CXX object
+        lib/CMakeFiles/uhd.dir/usrp/fe_connection.cpp.o<br>
+        [ 23%] Building CXX object
+        lib/CMakeFiles/uhd.dir/usrp/dboard_eeprom_c.cpp.o<br>
+        [ 23%] Building CXX object
+        lib/CMakeFiles/uhd.dir/usrp/mboard_eeprom_c.cpp.o<br>
+        [ 23%] Building CXX object
+        lib/CMakeFiles/uhd.dir/usrp/subdev_spec_c.cpp.o<br>
+        [ 23%] Building CXX object
+        lib/CMakeFiles/uhd.dir/usrp/usrp_c.cpp.o<br>
+        [ 23%] Building CXX object
+        lib/CMakeFiles/uhd.dir/usrp/gpsd_iface.cpp.o<br>
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member
+        function ‘int64_t uhd::usrp::gpsd_iface_impl::_epoch_time()’:<br>
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:141:62: error:
+        cannot convert ‘timespec_t’ {aka ‘timespec’} to ‘time_t’ {aka
+        ‘long int’}<br>
+          141 |         return
+        (boost::posix_time::from_time_t(_gps_data.fix.time)<br>
+              |                                               
+        ~~~~~~~~~~~~~~^~~~<br>
+             
+        |                                                              |<br>
+             
+        |                                                             
+        timespec_t {aka timespec}<br>
+        In file included from /usr/include/boost/thread/xtime.hpp:16,<br>
+                         from
+        /usr/include/boost/thread/pthread/mutex.hpp:20,<br>
+                         from /usr/include/boost/thread/mutex.hpp:16,<br>
+                         from
+        /usr/include/boost/thread/pthread/shared_mutex.hpp:14,<br>
+                         from
+        /usr/include/boost/thread/shared_mutex.hpp:28,<br>
+                         from
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:16:<br>
+        /usr/include/boost/date_time/posix_time/conversion.hpp:27:33:
+        note:   initializing argument 1 of ‘boost::posix_time::ptime
+        boost::posix_time::from_time_t(time_t)’<br>
+           27 |   ptime from_time_t(std::time_t t)<br>
+              |                     ~~~~~~~~~~~~^<br>
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member
+        function ‘boost::gregorian::date
+        uhd::usrp::gpsd_iface_impl::_gregorian_date()’:<br>
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:148:61: error:
+        cannot convert ‘timespec_t’ {aka ‘timespec’} to ‘time_t’ {aka
+        ‘long int’}<br>
+          148 |         return
+        boost::posix_time::from_time_t(_gps_data.fix.time).date();<br>
+              |                                              
+        ~~~~~~~~~~~~~~^~~~<br>
+             
+        |                                                             |<br>
+             
+        |                                                            
+        timespec_t {aka timespec}<br>
+        In file included from /usr/include/boost/thread/xtime.hpp:16,<br>
+                         from
+        /usr/include/boost/thread/pthread/mutex.hpp:20,<br>
+                         from /usr/include/boost/thread/mutex.hpp:16,<br>
+                         from
+        /usr/include/boost/thread/pthread/shared_mutex.hpp:14,<br>
+                         from
+        /usr/include/boost/thread/shared_mutex.hpp:28,<br>
+                         from
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:16:<br>
+        /usr/include/boost/date_time/posix_time/conversion.hpp:27:33:
+        note:   initializing argument 1 of ‘boost::posix_time::ptime
+        boost::posix_time::from_time_t(time_t)’<br>
+           27 |   ptime from_time_t(std::time_t t)<br>
+              |                     ~~~~~~~~~~~~^<br>
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member
+        function ‘std::string uhd::usrp::gpsd_iface_impl::_gps_gprmc()’:<br>
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:206:49: error:
+        invalid cast from type ‘timespec_t’ {aka ‘timespec’} to type
+        ‘time_t’ {aka ‘long int’}<br>
+          206 |             intfixtime = (time_t) _gps_data.fix.time;<br>
+              |                                                 ^~~~<br>
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member
+        function ‘std::string uhd::usrp::gpsd_iface_impl::_gps_gpgga()’:<br>
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:241:45: error:
+        invalid cast from type ‘timespec_t’ {aka ‘timespec’} to type
+        ‘time_t’ {aka ‘long int’}<br>
+          241 |         intfixtime = (time_t) _gps_data.fix.time;<br>
+              |                                             ^~~~<br>
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:268:42: error:
+        ‘struct gps_data_t’ has no member named ‘separation’<br>
+          268 |         if (boost::math::isnan(_gps_data.separation))<br>
+              |                                          ^~~~~~~~~~<br>
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:58: error:
+        ‘struct gps_data_t’ has no member named ‘separation’<br>
+          272 |                 str(boost::format("%.3f,M,") %
+        _gps_data.separation));<br>
+              |                                                         
+        ^~~~~~~~~~<br>
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: error:
+        ‘str’ was not declared in this scope<br>
+          272 |                 str(boost::format("%.3f,M,") %
+        _gps_data.separation));<br>
+              |                 ^~~<br>
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: note:
+        suggested alternatives:<br>
+        In file included from /usr/include/boost/format.hpp:53,<br>
+                         from
+        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:15:<br>
+        /usr/include/boost/format/free_funcs.hpp:22:38: note:  
+        ‘boost::str’<br>
+           22 |     std::basic_string&lt;Ch, Tr, Alloc&gt; str(const
+        basic_format&lt;Ch, Tr, Alloc&gt;&amp; f) {<br>
+              |                                      ^~~<br>
+        /usr/include/boost/format/free_funcs.hpp:22:38: note:  
+        ‘boost::str’<br>
+        make[2]: *** [lib/CMakeFiles/uhd.dir/build.make:1303:
+        lib/CMakeFiles/uhd.dir/usrp/gpsd_iface.cpp.o] Error 1<br>
+        make[1]: *** [CMakeFiles/Makefile2:731:
+        lib/CMakeFiles/uhd.dir/all] Error 2<br>
+        make: *** [Makefile:163: all] Error 2<br>
+        <br>
+      </p>
+    </blockquote>
+    <p>Thanks, </p>
+    <p>Baroch Oren<br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <div class="moz-signature">-- <br>
+      <div dir="rtl">
+        <p><bold>ברוך אורן بروح اورن Baroch Oren</bold></p>
+        <p>טל' 058-7799233 cell</p>
+        <p><a href="https://www.patreon.com/barochoren">תמכו באקטיביזם
+            שלי support my activism</a></p>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+--===============2167306790904632659==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============2167306790904632659==--
