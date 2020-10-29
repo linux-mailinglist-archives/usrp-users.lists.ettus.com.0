@@ -2,30 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28CBD29EBC2
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Oct 2020 13:21:11 +0100 (CET)
-Received: from [::1] (port=43962 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB87C29F4CC
+	for <lists+usrp-users@lfdr.de>; Thu, 29 Oct 2020 20:19:29 +0100 (CET)
+Received: from [::1] (port=47704 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kY6vT-0000zF-0O; Thu, 29 Oct 2020 08:21:07 -0400
-Received: from dslsn201.fix.netvision.net.il ([82.166.192.201]:37865
- helo=sept12.barochoren.com) by mm2.emwd.com with esmtp (Exim 4.93)
- (envelope-from <baroch@6tzvaim.com>) id 1kY6vO-0000uU-GI
- for usrp-users@lists.ettus.com; Thu, 29 Oct 2020 08:21:02 -0400
-Received: from [192.168.14.139] (bzq-79-179-191-47.red.bezeqint.net
- [79.179.191.47])
- by sept12.barochoren.com (Postfix) with ESMTPSA id B38152357F9
- for <usrp-users@lists.ettus.com>; Thu, 29 Oct 2020 14:10:13 +0200 (IST)
-To: usrp-users@lists.ettus.com
+	id 1kYDSH-0007EP-Uj; Thu, 29 Oct 2020 15:19:25 -0400
+Received: from mail-lf1-f52.google.com ([209.85.167.52]:37584)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <coxe@close-haul.com>) id 1kYDSD-00075r-AV
+ for usrp-users@lists.ettus.com; Thu, 29 Oct 2020 15:19:21 -0400
+Received: by mail-lf1-f52.google.com with SMTP id j30so4751964lfp.4
+ for <usrp-users@lists.ettus.com>; Thu, 29 Oct 2020 12:19:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quanttux-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=OT09K26w4zlRn6mcGmLp2fzsQyNId8OiXBDuZ8ysGVA=;
+ b=vwhYqPQe1WG1OSMkr9ofVy5rbgYHhf/hMEOqH3v9VzQiNlvMBRpr6euAROqsuEqetE
+ xsWBj+1zhCSZVBpE1AVVnTMKy30Frol1fl9cvlRZWCGVPPsY1Bb/BY7jGcD25C9P2cWe
+ ThanyvkejoZcV8JHKIsE8ArCy0RZWPx7nlqcWqSqdqU/nb3qNISnInnrTdVGDWZi7Ne/
+ LqDks9vWwgzP1lUJRcJer47z9fPxfuXZDqj+0eV0eRrXE+Opzx2N278RT8BrjSrq0188
+ jgfls+4n3m6yVPmEU4Ee1t3qoS/yfSRygkXNZALgx1mCiFNsJ3m77X2er+4Ji7tR03fL
+ l87A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=OT09K26w4zlRn6mcGmLp2fzsQyNId8OiXBDuZ8ysGVA=;
+ b=XI9Buxk0mZ6gkC1kD0GjNeEc9L4wp+MufLvQxmDzaaRCGQicxsgh5epEFxX+zgMUm1
+ zJF4d6nzctuMANmHq0XBFljXpFR1upQukOMoOMxipcIeOx2b6YorF1z2PUwA8qBjikr0
+ I2Vld8nyhgUZndc9vvJzoJXxcMf3K+vYq1KPVMRp9qN5vRdpatNlHd3wUfmgY6nS3vmV
+ 6+05U3E/u2tsTq5VP8PQSdQnM+K3zC9QEbvhTziPeDXCTC2r+ACX4hXUBqyns86ZDcIX
+ QUFyi4o+DphUcvjA+lqEDRvWLJOyv1GRcOqPlNokdCUxfqQVZnebp031cPPgV/YsPbxX
+ frkw==
+X-Gm-Message-State: AOAM533cIz2CZzTRVZekNEKjP/b8C2iWFtypvjyGKokcnbPGDcO0Y+na
+ DS9UdvlAK7TUQqILDQqI5TwjAxLhLLGhjs/fekGMrOOvb+nTIoMz
+X-Google-Smtp-Source: ABdhPJzYNX+6X/FhQx0Vh+kWkLnkBJTKJ7ELEdESLOhXvdsJp4voqseEN9Z7SdhUIahnuQ8zndE/XVOXOmo0y9o6jNo=
+X-Received: by 2002:a19:e56:: with SMTP id 83mr1938394lfo.362.1603999119772;
+ Thu, 29 Oct 2020 12:18:39 -0700 (PDT)
+MIME-Version: 1.0
 References: <73588971-021a-f7fc-dbe8-236843ff27b7@6tzvaim.com>
  <fd64bc6e-6c5d-87e0-5fb5-d9a06432c2b1@ant.uni-bremen.de>
-Message-ID: <d6651526-9995-a59d-aab5-b38da227afc0@6tzvaim.com>
-Date: Thu, 29 Oct 2020 14:20:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <fd64bc6e-6c5d-87e0-5fb5-d9a06432c2b1@ant.uni-bremen.de>
-Content-Language: en-US
+ <d6651526-9995-a59d-aab5-b38da227afc0@6tzvaim.com>
+In-Reply-To: <d6651526-9995-a59d-aab5-b38da227afc0@6tzvaim.com>
+Date: Thu, 29 Oct 2020 12:18:28 -0700
+Message-ID: <CAKJyDkLUy8aPcYiBRC_1c7d4ixgjDjPei52+77o7K4RW2RrMbA@mail.gmail.com>
+To: Baroch Oren <baroch@6tzvaim.com>
+Cc: Ettus Mail List <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] UHD HOST build fails on ubuntu 20.04 LTS -
  (missing dependencies)
 X-BeenThere: usrp-users@lists.ettus.com
@@ -39,9 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Baroch Oren via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Baroch Oren <baroch@6tzvaim.com>
-Content-Type: multipart/mixed; boundary="===============4421819334637552295=="
+From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Robin Coxe <coxe@quanttux.com>
+Content-Type: multipart/mixed; boundary="===============5594653367459635216=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -55,146 +78,938 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4421819334637552295==
-Content-Type: text/html; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+--===============5594653367459635216==
+Content-Type: multipart/alternative; boundary="000000000000c128b605b2d425e7"
 
-<html style="direction: rtl;">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <style id="bidiui-paragraph-margins" type="text/css">body p { margin-bottom: 0cm; margin-top: 0pt; } </style>
-  </head>
-  <body bidimailui-charset-is-forced="true" style="direction: rtl;">
-    <p style="direction: ltr;">Thank you so much Johannes for the prompt
+--000000000000c128b605b2d425e7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+This branch will allow you to build UHD 4.0.0 from source on Ubuntu 20.04:
+https://github.com/EttusResearch/uhd/tree/atrnati/ubuntu-20.04-workaround
+
+You could also try disabling the GPSDO if you don't need it with the cmake
+argument  *-DENABLE_GPSD=3DOFF*
+
+
+
+On Thu, Oct 29, 2020 at 5:21 AM Baroch Oren via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Thank you so much Johannes for the prompt reply. It was very helpful.
+>
+> Actually I just need to build UHD HOST from source, as I'm tweaking code
+> from the examples directory.
+>
+>
+> I've removed python 2 & 2.7 from the system completely. now only python 3
+> is there.
+>
+> still same casting errors for compiling 3.14 in file gpsd_iface.cpp
+>
+>
+> here:
+>
+> baroch@reliable:~/uhd/host/build$ make
+> [  2%] Built target uhd_rpclib
+> [  2%] Building CXX object lib/CMakeFiles/uhd.dir/usrp/gpsd_iface.cpp.o
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member function =E2=80=
+=98int64_t
+> uhd::usrp::gpsd_iface_impl::_epoch_time()=E2=80=99:
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:141:62: error: cannot
+> convert =E2=80=98timespec_t=E2=80=99 {aka =E2=80=98timespec=E2=80=99} to =
+=E2=80=98time_t=E2=80=99 {aka =E2=80=98long int=E2=80=99}
+>   141 |         return (boost::posix_time::from_time_t(_gps_data.fix.time=
+)
+>       |                                                ~~~~~~~~~~~~~~^~~~
+>       |                                                              |
+>       |
+> timespec_t {aka timespec}
+> In file included from /usr/include/boost/thread/xtime.hpp:16,
+>                  from /usr/include/boost/thread/pthread/mutex.hpp:20,
+>                  from /usr/include/boost/thread/mutex.hpp:16,
+>                  from
+> /usr/include/boost/thread/pthread/shared_mutex.hpp:14,
+>                  from /usr/include/boost/thread/shared_mutex.hpp:28,
+>                  from /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:16:
+> /usr/include/boost/date_time/posix_time/conversion.hpp:27:33: note:
+> initializing argument 1 of =E2=80=98boost::posix_time::ptime
+> boost::posix_time::from_time_t(time_t)=E2=80=99
+>    27 |   ptime from_time_t(std::time_t t)
+>       |                     ~~~~~~~~~~~~^
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member function
+> =E2=80=98boost::gregorian::date uhd::usrp::gpsd_iface_impl::_gregorian_da=
+te()=E2=80=99:
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:148:61: error: cannot
+> convert =E2=80=98timespec_t=E2=80=99 {aka =E2=80=98timespec=E2=80=99} to =
+=E2=80=98time_t=E2=80=99 {aka =E2=80=98long int=E2=80=99}
+>   148 |         return
+> boost::posix_time::from_time_t(_gps_data.fix.time).date();
+>       |                                               ~~~~~~~~~~~~~~^~~~
+>       |                                                             |
+>       |
+> timespec_t {aka timespec}
+> In file included from /usr/include/boost/thread/xtime.hpp:16,
+>                  from /usr/include/boost/thread/pthread/mutex.hpp:20,
+>                  from /usr/include/boost/thread/mutex.hpp:16,
+>                  from
+> /usr/include/boost/thread/pthread/shared_mutex.hpp:14,
+>                  from /usr/include/boost/thread/shared_mutex.hpp:28,
+>                  from /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:16:
+> /usr/include/boost/date_time/posix_time/conversion.hpp:27:33: note:
+> initializing argument 1 of =E2=80=98boost::posix_time::ptime
+> boost::posix_time::from_time_t(time_t)=E2=80=99
+>    27 |   ptime from_time_t(std::time_t t)
+>       |                     ~~~~~~~~~~~~^
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member function
+> =E2=80=98std::string uhd::usrp::gpsd_iface_impl::_gps_gprmc()=E2=80=99:
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:206:49: error: invalid cast
+> from type =E2=80=98timespec_t=E2=80=99 {aka =E2=80=98timespec=E2=80=99} t=
+o type =E2=80=98time_t=E2=80=99 {aka =E2=80=98long int=E2=80=99}
+>   206 |             intfixtime =3D (time_t) _gps_data.fix.time;
+>       |                                                 ^~~~
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member function
+> =E2=80=98std::string uhd::usrp::gpsd_iface_impl::_gps_gpgga()=E2=80=99:
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:241:45: error: invalid cast
+> from type =E2=80=98timespec_t=E2=80=99 {aka =E2=80=98timespec=E2=80=99} t=
+o type =E2=80=98time_t=E2=80=99 {aka =E2=80=98long int=E2=80=99}
+>   241 |         intfixtime =3D (time_t) _gps_data.fix.time;
+>       |                                             ^~~~
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:268:42: error: =E2=80=98str=
+uct
+> gps_data_t=E2=80=99 has no member named =E2=80=98separation=E2=80=99
+>   268 |         if (boost::math::isnan(_gps_data.separation))
+>       |                                          ^~~~~~~~~~
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:58: error: =E2=80=98str=
+uct
+> gps_data_t=E2=80=99 has no member named =E2=80=98separation=E2=80=99
+>   272 |                 str(boost::format("%.3f,M,") %
+> _gps_data.separation));
+>       |                                                          ^~~~~~~~=
+~~
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: error: =E2=80=98str=
+=E2=80=99 was not
+> declared in this scope
+>   272 |                 str(boost::format("%.3f,M,") %
+> _gps_data.separation));
+>       |                 ^~~
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: note: suggested
+> alternatives:
+> In file included from /usr/include/boost/format.hpp:53,
+>                  from /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:15:
+> /usr/include/boost/format/free_funcs.hpp:22:38: note:   =E2=80=98boost::s=
+tr=E2=80=99
+>    22 |     std::basic_string<Ch, Tr, Alloc> str(const basic_format<Ch,
+> Tr, Alloc>& f) {
+>       |                                      ^~~
+>
+> - Baroch
+>
+>
+>
+> On 29/10/2020 12:12, Johannes Demel via USRP-users wrote:
+>
+> Hi Baroch,
+>
+> Do you need UHD 3.14? UHD 3.15 is probably easier to install on your
+> system.
+>
+> Besides, the missing dependencies indicate that you want to install a
+> really old version of UHD? or GNU Radio? On a modern system. The clock ra=
+n
+> out on Python2. For some reason cmake seems to find a python2 install on
+> your system. That wasn't there by default. And it would probably be good =
+to
+> not have it there to minimize potential mixups.
+>
+> Further, your system lacks Qt4 which is again really old and everything
+> should be ported to Qt5 by now. At least GNU Radio works with Qt5.
+>
+> Besides, unfortunately the guide you link to lacks Ubuntu 20.04
+> instructions which differ.
+>
+> This would be the required list of dependencies on 20.04:
+> https://wiki.gnuradio.org/index.php/UbuntuInstall#Focal_Fossa_.2820.04.29
+>
+> If you want to install UHD only, you might also go for `libuhd-dev` and
+> `python3-uhd`. These should install UHD 3.15 on your system as well. No
+> need for a source install.
+>
+> Cheers
+> Johannes
+>
+> On 29.10.20 10:53, Baroch Oren via USRP-users wrote:
+>
+> Hello,
+>
+> I've been following Application Note AN-445
+> https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolcha=
+in_(UHD_and_GNU_Radio)_on_Linux
+>
+> Couldn't build it. Please advise.
+>
+>
+> These are the requirements that were reported missing on the apt-get line=
+:
+>
+>     E: Unable to locate package libcppunit-1.14-0
+>     E: Package 'python-scipy' has no installation candidate
+>     E: Unable to locate package qt4-bin-dbg
+>     E: Package 'qt4-default' has no installation candidate
+>     E: Package 'qt4-doc' has no installation candidate
+>     E: Package 'libqt4-dev' has no installation candidate
+>     E: Unable to locate package libqt4-dev-bin
+>     E: Unable to locate package python-qt4
+>     E: Unable to locate package python-qt4-dbg
+>     E: Unable to locate package python-qt4-dev
+>     E: Unable to locate package python-qt4-doc
+>     E: Unable to locate package libqwt6abi1
+>     E: Unable to locate package libncurses6-dbg
+>     E: Package 'libqt4-dev' has no installation candidate
+>     E: Package 'qt4-default' has no installation candidate
+>     E: Unable to locate package qt4-dev-tools
+>     E: Unable to locate package pyqt4-dev-tools
+>     E: Unable to locate package python-qwt5-qt4
+>     E: Unable to locate package python-gtk2
+>     E: Unable to locate package python-requests
+>     E: Package 'python-sphinx' has no installation candidate
+>     E: Unable to locate package python-zmq
+>     E: Package 'libqwt-dev' has no installation candidate
+>     E: Unable to locate package libqwt6abi1
+>     E: Unable to locate package libgps23
+>     E: Package 'python-gps' has no installation candidate
+>
+> following attempt to make & build gives countless warning and tthe
+> following error:
+>
+>     baroch@reliable:~/uhd/host/build$ cmake -DENABLE_GPSD=3DON ../
+>     --     -- Configuring the python interpreter...
+>     -- Python interpreter: /usr/bin/python2
+>     -- Override with: -DPYTHON_EXECUTABLE=3D<path-to-python>
+>     -- Python runtime interpreter: /usr/bin/python2
+>     -- Override with: -DRUNTIME_PYTHON_EXECUTABLE=3D<path-to-python>
+>     -- Working off of feature or development branch. Updating version
+>     number.
+>     -- Using UHD Images Directory: /usr/local/share/uhd/images
+>     -- Build type not specified: defaulting to release.
+>     --     -- Configuring Boost C++ Libraries...
+>     -- Looking for optional Boost components...
+>     -- Found Boost:
+>     /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake
+>     (found suitable version "1.71.0", minimum required is "1.53") found
+>     components: python
+>     -- Looking for required Boost components...
+>     -- Found Boost:
+>     /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake
+>     (found suitable version "1.71.0", minimum required is "1.53") found
+>     components: chrono date_time filesystem program_options regex system
+>     unit_test_framework serialization thread
+>     -- Boost include directories: /usr/include
+>     -- Boost library directories: /usr/lib/x86_64-linux-gnu
+>     -- Boost libraries:
+>
+> Boost::chrono;Boost::date_time;Boost::filesystem;Boost::program_options;B=
+oost::regex;Boost::system;Boost::unit_test_framework;Boost::serialization;B=
+oost::thread
+>     CMake Warning (dev) at cmake/Modules/UHDLog.cmake:68 (set):
+>        implicitly converting 'FILE' to 'STRING' type.
+>     Call Stack (most recent call first):
+>        CMakeLists.txt:365 (include)
+>     This warning is for project developers.  Use -Wno-dev to suppress it.
+>
+>     --     -- Python checking for Python version 2.7 or greater
+>     -- Python checking for Python version 2.7 or greater - found
+>     --     -- Python checking for Mako templates 0.4.2 or greater
+>     -- Python checking for Mako templates 0.4.2 or greater - found
+>     --     -- Python checking for requests 2.0 or greater
+>     -- Python checking for requests 2.0 or greater - "import requests"
+>     failed
+>     --     -- Python checking for numpy 1.7 or greater
+>     -- Python checking for numpy 1.7 or greater - found
+>     --     -- Configuring LibUHD support...
+>     --   Dependency Boost_FOUND =3D TRUE
+>     --   Dependency HAVE_PYTHON_PLAT_MIN_VERSION =3D TRUE
+>     --   Dependency HAVE_PYTHON_MODULE_MAKO =3D TRUE
+>     --   Enabling LibUHD support.
+>     --   Override with -DENABLE_LIBUHD=3DON/OFF
+>     --     -- Configuring LibUHD - C API support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Enabling LibUHD - C API support.
+>     --   Override with -DENABLE_C_API=3DON/OFF
+>     --     -- Configuring LibUHD - Python API support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Dependency BOOST_PYTHON_FOUND =3D 1
+>     --   Dependency HAVE_PYTHON_MODULE_NUMPY =3D TRUE
+>     --   Dependency PythonLibs_FOUND =3D TRUE
+>     --   Enabling LibUHD - Python API support.
+>     --   Override with -DENABLE_PYTHON_API=3DON/OFF
+>     --     -- Configuring Examples support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Enabling Examples support.
+>     --   Override with -DENABLE_EXAMPLES=3DON/OFF
+>     --     -- Configuring Utils support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Enabling Utils support.
+>     --   Override with -DENABLE_UTILS=3DON/OFF
+>     --     -- Configuring Tests support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Enabling Tests support.
+>     --   Override with -DENABLE_TESTS=3DON/OFF
+>     --     -- Could NOT find LIBERIO (missing: LIBERIO_LIBRARY
+>     LIBERIO_INCLUDE_DIR)
+>     -- Could NOT find dpdk (missing: DPDK_INCLUDE_DIR)
+>     --     -- Configuring LIBERIO support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Dependency LIBERIO_FOUND =3D FALSE
+>     --   Disabling LIBERIO support.
+>     --   Override with -DENABLE_LIBERIO=3DON/OFF
+>     --     -- Configuring USB support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Dependency LIBUSB_FOUND =3D TRUE
+>     --   Enabling USB support.
+>     --   Override with -DENABLE_USB=3DON/OFF
+>     --     -- Configuring GPSD support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Dependency ENABLE_GPSD =3D ON
+>     --   Dependency LIBGPS_FOUND =3D TRUE
+>     --   Enabling GPSD support.
+>     --   Override with -DENABLE_GPSD=3DON/OFF
+>     --     -- Configuring B100 support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Dependency ENABLE_USB =3D ON
+>     --   Enabling B100 support.
+>     --   Override with -DENABLE_B100=3DON/OFF
+>     --     -- Configuring B200 support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Dependency ENABLE_USB =3D ON
+>     --   Enabling B200 support.
+>     --   Override with -DENABLE_B200=3DON/OFF
+>     --     -- Configuring E300 support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Disabling E300 support.
+>     --   Override with -DENABLE_E300=3DON/OFF
+>     --     -- Configuring USRP1 support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Dependency ENABLE_USB =3D ON
+>     --   Enabling USRP1 support.
+>     --   Override with -DENABLE_USRP1=3DON/OFF
+>     --     -- Configuring USRP2 support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Enabling USRP2 support.
+>     --   Override with -DENABLE_USRP2=3DON/OFF
+>     --     -- Configuring X300 support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Enabling X300 support.
+>     --   Override with -DENABLE_X300=3DON/OFF
+>     --     -- Configuring N230 support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Enabling N230 support.
+>     --   Override with -DENABLE_N230=3DON/OFF
+>     --     -- Configuring MPMD support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Enabling MPMD support.
+>     --   Override with -DENABLE_MPMD=3DON/OFF
+>     --     -- Configuring N300 support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Dependency ENABLE_MPMD =3D ON
+>     --   Enabling N300 support.
+>     --   Override with -DENABLE_N300=3DON/OFF
+>     --     -- Configuring N320 support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Dependency ENABLE_MPMD =3D ON
+>     --   Enabling N320 support.
+>     --   Override with -DENABLE_N320=3DON/OFF
+>     --     -- Configuring E320 support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Dependency ENABLE_MPMD =3D ON
+>     --   Enabling E320 support.
+>     --   Override with -DENABLE_E320=3DON/OFF
+>     --     -- Configuring OctoClock support...
+>     --   Dependency ENABLE_LIBUHD =3D ON
+>     --   Enabling OctoClock support.
+>     --   Override with -DENABLE_OCTOCLOCK=3DON/OFF
+>     --     -- Configuring DPDK support...
+>     --   Dependency ENABLE_MPMD =3D ON
+>     --   Dependency DPDK_FOUND =3D FALSE
+>     --   Disabling DPDK support.
+>     --   Override with -DENABLE_DPDK=3DON/OFF
+>     --     --     --     -- Configuring priority scheduling...
+>     --   Priority scheduling supported through pthread_setschedparam.
+>     --   Setting thread names is supported through pthread_setname_np.
+>     --     -- Configuring high resolution timing...
+>     --   High resolution timing supported through clock_gettime.
+>     --     -- Configuring module loading...
+>     --   Module loading supported through dlopen.
+>     --     -- Processing NI-RIO FPGA LVBITX Bitstreams...
+>     --   Using x300.lvbitx_base for codegen
+>     --   Using x310.lvbitx_base for codegen
+>     --     -- USB support enabled via libusb.
+>     --     -- Configuring interface address discovery...
+>     --   Interface address discovery supported through getifaddrs.
+>     --     -- Loading build info.
+>     --     -- Adding B2XX device test target
+>     -- Adding X3x0 device test target
+>     -- Adding N3XX device test target
+>     -- Adding E32x device test target
+>     --     CMake Warning at utils/CMakeLists.txt:123 (message):
+>        Python module `requests' not found -- uhd_images_downloader.py
+>     will not
+>        work without it.
+>
+>
+>     CMake Warning at utils/CMakeLists.txt:124 (message):
+>        You may be able to install this by running 'pip install requests'
+>
+>
+>     --     -- Configuring Manual support...
+>     --   Dependency DOXYGEN_FOUND =3D YES
+>     --   Enabling Manual support.
+>     --   Override with -DENABLE_MANUAL=3DON/OFF
+>     --     -- Configuring API/Doxygen support...
+>     --   Dependency DOXYGEN_FOUND =3D YES
+>     --   Enabling API/Doxygen support.
+>     --   Override with -DENABLE_DOXYGEN=3DON/OFF
+>     --     -- Configuring Man Pages support...
+>     --   Dependency GZIP_FOUND =3D TRUE
+>     --   Dependency NOT_WIN32 =3D TRUE
+>     --   Enabling Man Pages support.
+>     --   Override with -DENABLE_MAN_PAGES=3DON/OFF
+>     --     -- Python checking for virtualenv
+>     -- Python checking for virtualenv - "assert hasattr(sys,
+>     'real_prefix')" failed
+>     -- Utilizing the python install directory:
+>     /usr/local/lib/python2.7/dist-packages
+>     --     -- ######################################################
+>     -- # UHD enabled components
+>     -- ######################################################
+>     --   * LibUHD
+>     --   * LibUHD - C API
+>     --   * LibUHD - Python API
+>     --   * Examples
+>     --   * Utils
+>     --   * Tests
+>     --   * USB
+>     --   * GPSD
+>     --   * B100
+>     --   * B200
+>     --   * USRP1
+>     --   * USRP2
+>     --   * X300
+>     --   * N230
+>     --   * MPMD
+>     --   * N300
+>     --   * N320
+>     --   * E320
+>     --   * OctoClock
+>     --   * Manual
+>     --   * API/Doxygen
+>     --   * Man Pages
+>     --     -- ######################################################
+>     -- # UHD disabled components
+>     -- ######################################################
+>     --   * LIBERIO
+>     --   * E300
+>     --   * DPDK
+>     --     -- ******************************************************
+>     -- * You are building a development branch of UHD.
+>     -- * These branches are designed to provide early access
+>     -- * to UHD and USRP features, but should be considered
+>     -- * unstable and/or experimental!
+>     -- ******************************************************
+>     -- Building version: 3.14.1.HEAD-0-g0347a6d8
+>     -- Using install prefix: /usr/local
+>     -- Configuring done
+>     -- Generating done
+>     -- Build files have been written to: /home/baroch/uhd/host/build
+>     baroch@reliable:~/uhd/host/build$ make
+>     Scanning dependencies of target uhd_rpclib
+>     [  0%] Building CXX object
+>     lib/deps/rpclib/CMakeFiles/uhd_rpclib.dir/lib/rpc/dispatcher.cc.o
+>     In file included from
+>     /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,
+>                       from
+>     /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/dispatcher.h:12,
+>                       from
+>     /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/dispatcher.cc:1:
+>     /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:
+> In
+>     function =E2=80=98void
+>     clmdep_msgpack::v1::operator<<(clmdep_msgpack::v1::object&, const
+>     msgpack_object&)=E2=80=99:
+>
+> /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:613:=
+34:
+>     warning: =E2=80=98void* memcpy(void*, const void*, size_t)=E2=80=99 c=
+opying an
+>     object of non-trivial type =E2=80=98struct clmdep_msgpack::v1::object=
+=E2=80=99 from
+>     an array of =E2=80=98const msgpack_object=E2=80=99 {aka =E2=80=98cons=
+t struct
+>     msgpack_object=E2=80=99} [-Wclass-memaccess]
+>        613 |     std::memcpy(&o, &v, sizeof(v));
+>            |                                  ^
+>     In file included from
+>
+> /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/adaptor/adaptor=
+_base.hpp:21,
+>                       from
+>
+> /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:24,
+>                       from
+>     /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,
+>                       from
+>     /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/dispatcher.h:12,
+>                       from
+>     /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/dispatcher.cc:1:
+>
+> /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object_fwd.hpp:=
+111:8:
+>     note: =E2=80=98struct clmdep_msgpack::v1::object=E2=80=99 declared he=
+re
+>        111 | struct object {
+>            |        ^~~~~~
+>     [  0%] Building CXX object
+>     lib/deps/rpclib/CMakeFiles/uhd_rpclib.dir/lib/rpc/server.cc.o
+>     In file included from
+>     /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,
+>                       from
+>     /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/server.h:7,
+>                       from
+>     /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/server.cc:1:
+>     /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:
+> In
+>     function =E2=80=98void
+>     clmdep_msgpack::v1::operator<<(clmdep_msgpack::v1::object&, const
+>     msgpack_object&)=E2=80=99:
+>
+> /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:613:=
+34:
+>     warning: =E2=80=98void* memcpy(void*, const void*, size_t)=E2=80=99 c=
+opying an
+>     object of non-trivial type =E2=80=98struct clmdep_msgpack::v1::object=
+=E2=80=99 from
+>     an array of =E2=80=98const msgpack_object=E2=80=99 {aka =E2=80=98cons=
+t struct
+>     msgpack_object=E2=80=99} [-Wclass-memaccess]
+>        613 |     std::memcpy(&o, &v, sizeof(v));
+>            |                                  ^
+>     In file included from
+>
+> /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/adaptor/adaptor=
+_base.hpp:21,
+>                       from
+>
+> /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:24,
+>                       from
+>     /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,
+>                       from
+>     /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/server.h:7,
+>                       from
+>     /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/server.cc:1:
+>
+> /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object_fwd.hpp:=
+111:8:
+>     note: =E2=80=98struct clmdep_msgpack::v1::object=E2=80=99 declared he=
+re
+>        111 | struct object {
+>            |        ^~~~~~
+>
+>
+>     [ a lot of warnings truncated B.O.]
+>
+>
+>
+>     [ 22%] Building CXX object
+> lib/CMakeFiles/uhd.dir/usrp/subdev_spec.cpp.o
+>     [ 23%] Building CXX object
+>     lib/CMakeFiles/uhd.dir/usrp/fe_connection.cpp.o
+>     [ 23%] Building CXX object
+>     lib/CMakeFiles/uhd.dir/usrp/dboard_eeprom_c.cpp.o
+>     [ 23%] Building CXX object
+>     lib/CMakeFiles/uhd.dir/usrp/mboard_eeprom_c.cpp.o
+>     [ 23%] Building CXX object
+>     lib/CMakeFiles/uhd.dir/usrp/subdev_spec_c.cpp.o
+>     [ 23%] Building CXX object lib/CMakeFiles/uhd.dir/usrp/usrp_c.cpp.o
+>     [ 23%] Building CXX object
+> lib/CMakeFiles/uhd.dir/usrp/gpsd_iface.cpp.o
+>     /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member function
+>     =E2=80=98int64_t uhd::usrp::gpsd_iface_impl::_epoch_time()=E2=80=99:
+>     /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:141:62: error: cannot
+>     convert =E2=80=98timespec_t=E2=80=99 {aka =E2=80=98timespec=E2=80=99}=
+ to =E2=80=98time_t=E2=80=99 {aka =E2=80=98long int=E2=80=99}
+>        141 |         return
+>     (boost::posix_time::from_time_t(_gps_data.fix.time)
+>            | ~~~~~~~~~~~~~~^~~~
+>     |                                                              |
+>     | timespec_t {aka timespec}
+>     In file included from /usr/include/boost/thread/xtime.hpp:16,
+>                       from /usr/include/boost/thread/pthread/mutex.hpp:20=
+,
+>                       from /usr/include/boost/thread/mutex.hpp:16,
+>                       from
+>     /usr/include/boost/thread/pthread/shared_mutex.hpp:14,
+>                       from /usr/include/boost/thread/shared_mutex.hpp:28,
+>                       from
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:16:
+>     /usr/include/boost/date_time/posix_time/conversion.hpp:27:33:
+>     note:   initializing argument 1 of =E2=80=98boost::posix_time::ptime
+>     boost::posix_time::from_time_t(time_t)=E2=80=99
+>         27 |   ptime from_time_t(std::time_t t)
+>            |                     ~~~~~~~~~~~~^
+>     /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member function
+>     =E2=80=98boost::gregorian::date
+> uhd::usrp::gpsd_iface_impl::_gregorian_date()=E2=80=99:
+>     /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:148:61: error: cannot
+>     convert =E2=80=98timespec_t=E2=80=99 {aka =E2=80=98timespec=E2=80=99}=
+ to =E2=80=98time_t=E2=80=99 {aka =E2=80=98long int=E2=80=99}
+>        148 |         return
+>     boost::posix_time::from_time_t(_gps_data.fix.time).date();
+>            | ~~~~~~~~~~~~~~^~~~
+>     |                                                             |
+>     | timespec_t {aka timespec}
+>     In file included from /usr/include/boost/thread/xtime.hpp:16,
+>                       from /usr/include/boost/thread/pthread/mutex.hpp:20=
+,
+>                       from /usr/include/boost/thread/mutex.hpp:16,
+>                       from
+>     /usr/include/boost/thread/pthread/shared_mutex.hpp:14,
+>                       from /usr/include/boost/thread/shared_mutex.hpp:28,
+>                       from
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:16:
+>     /usr/include/boost/date_time/posix_time/conversion.hpp:27:33:
+>     note:   initializing argument 1 of =E2=80=98boost::posix_time::ptime
+>     boost::posix_time::from_time_t(time_t)=E2=80=99
+>         27 |   ptime from_time_t(std::time_t t)
+>            |                     ~~~~~~~~~~~~^
+>     /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member function
+>     =E2=80=98std::string uhd::usrp::gpsd_iface_impl::_gps_gprmc()=E2=80=
+=99:
+>     /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:206:49: error: invalid
+>     cast from type =E2=80=98timespec_t=E2=80=99 {aka =E2=80=98timespec=E2=
+=80=99} to type =E2=80=98time_t=E2=80=99 {aka
+>     =E2=80=98long int=E2=80=99}
+>        206 |             intfixtime =3D (time_t) _gps_data.fix.time;
+>            |                                                 ^~~~
+>     /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member function
+>     =E2=80=98std::string uhd::usrp::gpsd_iface_impl::_gps_gpgga()=E2=80=
+=99:
+>     /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:241:45: error: invalid
+>     cast from type =E2=80=98timespec_t=E2=80=99 {aka =E2=80=98timespec=E2=
+=80=99} to type =E2=80=98time_t=E2=80=99 {aka
+>     =E2=80=98long int=E2=80=99}
+>        241 |         intfixtime =3D (time_t) _gps_data.fix.time;
+>            |                                             ^~~~
+>     /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:268:42: error: =E2=80=
+=98struct
+>     gps_data_t=E2=80=99 has no member named =E2=80=98separation=E2=80=99
+>        268 |         if (boost::math::isnan(_gps_data.separation))
+>            |                                          ^~~~~~~~~~
+>     /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:58: error: =E2=80=
+=98struct
+>     gps_data_t=E2=80=99 has no member named =E2=80=98separation=E2=80=99
+>        272 |                 str(boost::format("%.3f,M,") %
+>     _gps_data.separation));
+>            | ^~~~~~~~~~
+>     /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: error: =E2=80=
+=98str=E2=80=99
+>     was not declared in this scope
+>        272 |                 str(boost::format("%.3f,M,") %
+>     _gps_data.separation));
+>            |                 ^~~
+>     /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: note:
+>     suggested alternatives:
+>     In file included from /usr/include/boost/format.hpp:53,
+>                       from
+> /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:15:
+>     /usr/include/boost/format/free_funcs.hpp:22:38: note: =E2=80=98boost:=
+:str=E2=80=99
+>         22 |     std::basic_string<Ch, Tr, Alloc> str(const
+>     basic_format<Ch, Tr, Alloc>& f) {
+>            |                                      ^~~
+>     /usr/include/boost/format/free_funcs.hpp:22:38: note: =E2=80=98boost:=
+:str=E2=80=99
+>     make[2]: *** [lib/CMakeFiles/uhd.dir/build.make:1303:
+>     lib/CMakeFiles/uhd.dir/usrp/gpsd_iface.cpp.o] Error 1
+>     make[1]: *** [CMakeFiles/Makefile2:731: lib/CMakeFiles/uhd.dir/all]
+>     Error 2
+>     make: *** [Makefile:163: all] Error 2
+>
+> Thanks,
+>
+> Baroch Oren
+>
+>
+>
+> --
+>
+> =D7=91=D7=A8=D7=95=D7=9A =D7=90=D7=95=D7=A8=D7=9F =D8=A8=D8=B1=D9=88=D8=
+=AD =D8=A7=D9=88=D8=B1=D9=86 Baroch Oren
+>
+> =D7=98=D7=9C' 058-7799233 cell
+>
+> =D7=AA=D7=9E=D7=9B=D7=95 =D7=91=D7=90=D7=A7=D7=98=D7=99=D7=91=D7=99=D7=96=
+=D7=9D =D7=A9=D7=9C=D7=99 support my activism
+> <https://www.patreon.com/barochoren> <https://www.patreon.com/barochoren>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> --
+>
+> =D7=91=D7=A8=D7=95=D7=9A =D7=90=D7=95=D7=A8=D7=9F =D8=A8=D8=B1=D9=88=D8=
+=AD =D8=A7=D9=88=D8=B1=D9=86 Baroch Oren
+>
+> =D7=98=D7=9C' 058-7799233 cell
+>
+> =D7=AA=D7=9E=D7=9B=D7=95 =D7=91=D7=90=D7=A7=D7=98=D7=99=D7=91=D7=99=D7=96=
+=D7=9D =D7=A9=D7=9C=D7=99 support my activism
+> <https://www.patreon.com/barochoren>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000c128b605b2d425e7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><br></div><div>This branch will allow you to build UH=
+D 4.0.0 from source on Ubuntu 20.04:=C2=A0 <a href=3D"https://github.com/Et=
+tusResearch/uhd/tree/atrnati/ubuntu-20.04-workaround">https://github.com/Et=
+tusResearch/uhd/tree/atrnati/ubuntu-20.04-workaround</a></div><div></div><d=
+iv><br></div><div>You could also try disabling the GPSDO if you don&#39;t n=
+eed it with the cmake argument=C2=A0 <i>-DENABLE_GPSD=3DOFF</i></div><div><=
+br></div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Thu, Oct 29, 2020 at 5:21 AM Baroch Oren via USR=
+P-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.=
+ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">
+ =20
+   =20
+   =20
+ =20
+  <div style=3D"direction:rtl">
+    <p style=3D"direction:ltr">Thank you so much Johannes for the prompt
       reply. It was very helpful.</p>
-    <p style="direction: ltr;">Actually I just need to build UHD HOST
-      from source, as I'm tweaking code from the examples directory.</p>
-    <p style="direction: ltr;"><br>
+    <p style=3D"direction:ltr">Actually I just need to build UHD HOST
+      from source, as I&#39;m tweaking code from the examples directory.</p=
+>
+    <p style=3D"direction:ltr"><br>
     </p>
-    <p style="direction: ltr;">I've removed python 2 &amp; 2.7 from the
+    <p style=3D"direction:ltr">I&#39;ve removed python 2 &amp; 2.7 from the
       system completely. now only python 3 is there.</p>
-    <p style="direction: ltr;">still same casting errors for compiling
+    <p style=3D"direction:ltr">still same casting errors for compiling
       3.14 in file gpsd_iface.cpp</p>
-    <p style="direction: ltr;"><br>
+    <p style=3D"direction:ltr"><br>
     </p>
-    <p style="direction: ltr;">here:<br>
+    <p style=3D"direction:ltr">here:<br>
     </p>
-    <p style="direction: ltr;">baroch@reliable:~/uhd/host/build$ make<br>
-      [  2%] Built target uhd_rpclib<br>
-      [  2%] Building CXX object
+    <p style=3D"direction:ltr">baroch@reliable:~/uhd/host/build$ make<br>
+      [=C2=A0 2%] Built target uhd_rpclib<br>
+      [=C2=A0 2%] Building CXX object
       lib/CMakeFiles/uhd.dir/usrp/gpsd_iface.cpp.o<br>
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member function
-      ‘int64_t uhd::usrp::gpsd_iface_impl::_epoch_time()’:<br>
+      =E2=80=98int64_t uhd::usrp::gpsd_iface_impl::_epoch_time()=E2=80=99:<=
+br>
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:141:62: error:
-      cannot convert ‘timespec_t’ {aka ‘timespec’} to ‘time_t’ {aka
-      ‘long int’}<br>
-        141 |         return
+      cannot convert =E2=80=98timespec_t=E2=80=99 {aka =E2=80=98timespec=E2=
+=80=99} to =E2=80=98time_t=E2=80=99 {aka
+      =E2=80=98long int=E2=80=99}<br>
+      =C2=A0 141 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return
       (boost::posix_time::from_time_t(_gps_data.fix.time)<br>
-            |                                               
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0
       ~~~~~~~~~~~~~~^~~~<br>
-           
-      |                                                              |<br>
-           
-      |                                                             
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+      |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+      |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
       timespec_t {aka timespec}<br>
       In file included from /usr/include/boost/thread/xtime.hpp:16,<br>
-                       from
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
       /usr/include/boost/thread/pthread/mutex.hpp:20,<br>
-                       from /usr/include/boost/thread/mutex.hpp:16,<br>
-                       from
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 from /usr/include/boost/thread/mutex.hpp:16,<br=
+>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
       /usr/include/boost/thread/pthread/shared_mutex.hpp:14,<br>
-                       from
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
       /usr/include/boost/thread/shared_mutex.hpp:28,<br>
-                       from
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:16:<br>
       /usr/include/boost/date_time/posix_time/conversion.hpp:27:33:
-      note:   initializing argument 1 of ‘boost::posix_time::ptime
-      boost::posix_time::from_time_t(time_t)’<br>
-         27 |   ptime from_time_t(std::time_t t)<br>
-            |                     ~~~~~~~~~~~~^<br>
+      note:=C2=A0=C2=A0 initializing argument 1 of =E2=80=98boost::posix_ti=
+me::ptime
+      boost::posix_time::from_time_t(time_t)=E2=80=99<br>
+      =C2=A0=C2=A0 27 |=C2=A0=C2=A0 ptime from_time_t(std::time_t t)<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 ~~~~~~~~~~~~^<br>
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member function
-      ‘boost::gregorian::date
-      uhd::usrp::gpsd_iface_impl::_gregorian_date()’:<br>
+      =E2=80=98boost::gregorian::date
+      uhd::usrp::gpsd_iface_impl::_gregorian_date()=E2=80=99:<br>
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:148:61: error:
-      cannot convert ‘timespec_t’ {aka ‘timespec’} to ‘time_t’ {aka
-      ‘long int’}<br>
-        148 |         return
+      cannot convert =E2=80=98timespec_t=E2=80=99 {aka =E2=80=98timespec=E2=
+=80=99} to =E2=80=98time_t=E2=80=99 {aka
+      =E2=80=98long int=E2=80=99}<br>
+      =C2=A0 148 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return
       boost::posix_time::from_time_t(_gps_data.fix.time).date();<br>
-            |                                              
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0
       ~~~~~~~~~~~~~~^~~~<br>
-           
-      |                                                             |<br>
-           
-      |                                                            
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+      |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+      |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
       timespec_t {aka timespec}<br>
       In file included from /usr/include/boost/thread/xtime.hpp:16,<br>
-                       from
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
       /usr/include/boost/thread/pthread/mutex.hpp:20,<br>
-                       from /usr/include/boost/thread/mutex.hpp:16,<br>
-                       from
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 from /usr/include/boost/thread/mutex.hpp:16,<br=
+>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
       /usr/include/boost/thread/pthread/shared_mutex.hpp:14,<br>
-                       from
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
       /usr/include/boost/thread/shared_mutex.hpp:28,<br>
-                       from
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:16:<br>
       /usr/include/boost/date_time/posix_time/conversion.hpp:27:33:
-      note:   initializing argument 1 of ‘boost::posix_time::ptime
-      boost::posix_time::from_time_t(time_t)’<br>
-         27 |   ptime from_time_t(std::time_t t)<br>
-            |                     ~~~~~~~~~~~~^<br>
+      note:=C2=A0=C2=A0 initializing argument 1 of =E2=80=98boost::posix_ti=
+me::ptime
+      boost::posix_time::from_time_t(time_t)=E2=80=99<br>
+      =C2=A0=C2=A0 27 |=C2=A0=C2=A0 ptime from_time_t(std::time_t t)<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 ~~~~~~~~~~~~^<br>
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member function
-      ‘std::string uhd::usrp::gpsd_iface_impl::_gps_gprmc()’:<br>
+      =E2=80=98std::string uhd::usrp::gpsd_iface_impl::_gps_gprmc()=E2=80=
+=99:<br>
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:206:49: error:
-      invalid cast from type ‘timespec_t’ {aka ‘timespec’} to type
-      ‘time_t’ {aka ‘long int’}<br>
-        206 |             intfixtime = (time_t) _gps_data.fix.time;<br>
-            |                                                 ^~~~<br>
+      invalid cast from type =E2=80=98timespec_t=E2=80=99 {aka =E2=80=98tim=
+espec=E2=80=99} to type
+      =E2=80=98time_t=E2=80=99 {aka =E2=80=98long int=E2=80=99}<br>
+      =C2=A0 206 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 intfixtime =3D (time_t) _gps_data.fix.time;<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~<br>
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member function
-      ‘std::string uhd::usrp::gpsd_iface_impl::_gps_gpgga()’:<br>
+      =E2=80=98std::string uhd::usrp::gpsd_iface_impl::_gps_gpgga()=E2=80=
+=99:<br>
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:241:45: error:
-      invalid cast from type ‘timespec_t’ {aka ‘timespec’} to type
-      ‘time_t’ {aka ‘long int’}<br>
-        241 |         intfixtime = (time_t) _gps_data.fix.time;<br>
-            |                                             ^~~~<br>
+      invalid cast from type =E2=80=98timespec_t=E2=80=99 {aka =E2=80=98tim=
+espec=E2=80=99} to type
+      =E2=80=98time_t=E2=80=99 {aka =E2=80=98long int=E2=80=99}<br>
+      =C2=A0 241 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 intfixti=
+me =3D (time_t) _gps_data.fix.time;<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 ^~~~<br>
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:268:42: error:
-      ‘struct gps_data_t’ has no member named ‘separation’<br>
-        268 |         if (boost::math::isnan(_gps_data.separation))<br>
-            |                                          ^~~~~~~~~~<br>
+      =E2=80=98struct gps_data_t=E2=80=99 has no member named =E2=80=98sepa=
+ration=E2=80=99<br>
+      =C2=A0 268 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (boos=
+t::math::isnan(_gps_data.separation))<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~~<br>
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:58: error:
-      ‘struct gps_data_t’ has no member named ‘separation’<br>
-        272 |                 str(boost::format("%.3f,M,") %
+      =E2=80=98struct gps_data_t=E2=80=99 has no member named =E2=80=98sepa=
+ration=E2=80=99<br>
+      =C2=A0 272 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 str(boost::format(&quot;%.3f,M,&quo=
+t;) %
       _gps_data.separation));<br>
-            |                                                         
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0
       ^~~~~~~~~~<br>
-      /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: error: ‘str’
+      /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: error: =E2=80=
+=98str=E2=80=99
       was not declared in this scope<br>
-        272 |                 str(boost::format("%.3f,M,") %
+      =C2=A0 272 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 str(boost::format(&quot;%.3f,M,&quo=
+t;) %
       _gps_data.separation));<br>
-            |                 ^~~<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~<br>
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: note:
       suggested alternatives:<br>
       In file included from /usr/include/boost/format.hpp:53,<br>
-                       from
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
       /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:15:<br>
-      /usr/include/boost/format/free_funcs.hpp:22:38: note:  
-      ‘boost::str’<br>
-         22 |     std::basic_string&lt;Ch, Tr, Alloc&gt; str(const
+      /usr/include/boost/format/free_funcs.hpp:22:38: note:=C2=A0=C2=A0
+      =E2=80=98boost::str=E2=80=99<br>
+      =C2=A0=C2=A0 22 |=C2=A0=C2=A0=C2=A0=C2=A0 std::basic_string&lt;Ch, Tr=
+, Alloc&gt; str(const
       basic_format&lt;Ch, Tr, Alloc&gt;&amp; f) {<br>
-            |                                      ^~~<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~<br>
       <br>
       - Baroch<br>
     </p>
-    <p style="direction: ltr;"><br>
+    <p style=3D"direction:ltr"><br>
     </p>
-    <p style="direction: ltr;"><br>
+    <p style=3D"direction:ltr"><br>
     </p>
-    <div class="moz-cite-prefix" style="direction: ltr;">On 29/10/2020
+    <div style=3D"direction:ltr">On 29/10/2020
       12:12, Johannes Demel via USRP-users wrote:<br>
     </div>
-    <blockquote type="cite"
-      cite="mid:fd64bc6e-6c5d-87e0-5fb5-d9a06432c2b1@ant.uni-bremen.de"
-      style="direction: ltr;">Hi Baroch,
+    <blockquote type=3D"cite" style=3D"direction:ltr">Hi Baroch,
       <br>
       <br>
       Do you need UHD 3.14? UHD 3.15 is probably easier to install on
@@ -204,7 +1019,7 @@ Content-Transfer-Encoding: 8bit
       Besides, the missing dependencies indicate that you want to
       install a really old version of UHD? or GNU Radio? On a modern
       system. The clock ran out on Python2. For some reason cmake seems
-      to find a python2 install on your system. That wasn't there by
+      to find a python2 install on your system. That wasn&#39;t there by
       default. And it would probably be good to not have it there to
       minimize potential mixups.
       <br>
@@ -220,7 +1035,9 @@ Content-Transfer-Encoding: 8bit
       <br>
       This would be the required list of dependencies on 20.04:
       <br>
-<a class="moz-txt-link-freetext" href="https://wiki.gnuradio.org/index.php/UbuntuInstall#Focal_Fossa_.2820.04.29">https://wiki.gnuradio.org/index.php/UbuntuInstall#Focal_Fossa_.2820.04.29</a>
+<a href=3D"https://wiki.gnuradio.org/index.php/UbuntuInstall#Focal_Fossa_.2=
+820.04.29" target=3D"_blank">https://wiki.gnuradio.org/index.php/UbuntuInst=
+all#Focal_Fossa_.2820.04.29</a>
       <br>
       <br>
       If you want to install UHD only, you might also go for
@@ -235,13 +1052,16 @@ Content-Transfer-Encoding: 8bit
       <br>
       On 29.10.20 10:53, Baroch Oren via USRP-users wrote:
       <br>
-      <blockquote type="cite" style="direction: ltr;">Hello,
+      <blockquote type=3D"cite" style=3D"direction:ltr">Hello,
         <br>
         <br>
-        I've been following Application Note AN-445
-<a class="moz-txt-link-freetext" href="https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux">https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux</a><br>
+        I&#39;ve been following Application Note AN-445
+<a href=3D"https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Sourc=
+e_Toolchain_(UHD_and_GNU_Radio)_on_Linux" target=3D"_blank">https://kb.ettu=
+s.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_R=
+adio)_on_Linux</a><br>
         <br>
-        Couldn't build it. Please advise.
+        Couldn&#39;t build it. Please advise.
         <br>
         <br>
         <br>
@@ -249,949 +1069,1199 @@ Content-Transfer-Encoding: 8bit
         apt-get line:
         <br>
         <br>
-            E: Unable to locate package libcppunit-1.14-0
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package libcppunit-1.14-0
         <br>
-            E: Package 'python-scipy' has no installation candidate
+        =C2=A0=C2=A0=C2=A0 E: Package &#39;python-scipy&#39; has no install=
+ation candidate
         <br>
-            E: Unable to locate package qt4-bin-dbg
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package qt4-bin-dbg
         <br>
-            E: Package 'qt4-default' has no installation candidate
+        =C2=A0=C2=A0=C2=A0 E: Package &#39;qt4-default&#39; has no installa=
+tion candidate
         <br>
-            E: Package 'qt4-doc' has no installation candidate
+        =C2=A0=C2=A0=C2=A0 E: Package &#39;qt4-doc&#39; has no installation=
+ candidate
         <br>
-            E: Package 'libqt4-dev' has no installation candidate
+        =C2=A0=C2=A0=C2=A0 E: Package &#39;libqt4-dev&#39; has no installat=
+ion candidate
         <br>
-            E: Unable to locate package libqt4-dev-bin
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package libqt4-dev-bin
         <br>
-            E: Unable to locate package python-qt4
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package python-qt4
         <br>
-            E: Unable to locate package python-qt4-dbg
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package python-qt4-dbg
         <br>
-            E: Unable to locate package python-qt4-dev
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package python-qt4-dev
         <br>
-            E: Unable to locate package python-qt4-doc
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package python-qt4-doc
         <br>
-            E: Unable to locate package libqwt6abi1
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package libqwt6abi1
         <br>
-            E: Unable to locate package libncurses6-dbg
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package libncurses6-dbg
         <br>
-            E: Package 'libqt4-dev' has no installation candidate
+        =C2=A0=C2=A0=C2=A0 E: Package &#39;libqt4-dev&#39; has no installat=
+ion candidate
         <br>
-            E: Package 'qt4-default' has no installation candidate
+        =C2=A0=C2=A0=C2=A0 E: Package &#39;qt4-default&#39; has no installa=
+tion candidate
         <br>
-            E: Unable to locate package qt4-dev-tools
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package qt4-dev-tools
         <br>
-            E: Unable to locate package pyqt4-dev-tools
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package pyqt4-dev-tools
         <br>
-            E: Unable to locate package python-qwt5-qt4
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package python-qwt5-qt4
         <br>
-            E: Unable to locate package python-gtk2
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package python-gtk2
         <br>
-            E: Unable to locate package python-requests
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package python-requests
         <br>
-            E: Package 'python-sphinx' has no installation candidate
+        =C2=A0=C2=A0=C2=A0 E: Package &#39;python-sphinx&#39; has no instal=
+lation candidate
         <br>
-            E: Unable to locate package python-zmq
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package python-zmq
         <br>
-            E: Package 'libqwt-dev' has no installation candidate
+        =C2=A0=C2=A0=C2=A0 E: Package &#39;libqwt-dev&#39; has no installat=
+ion candidate
         <br>
-            E: Unable to locate package libqwt6abi1
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package libqwt6abi1
         <br>
-            E: Unable to locate package libgps23
+        =C2=A0=C2=A0=C2=A0 E: Unable to locate package libgps23
         <br>
-            E: Package 'python-gps' has no installation candidate
+        =C2=A0=C2=A0=C2=A0 E: Package &#39;python-gps&#39; has no installat=
+ion candidate
         <br>
         <br>
         following attempt to make &amp; build gives countless warning
         and tthe following error:
         <br>
         <br>
-            baroch@reliable:~/uhd/host/build$ cmake -DENABLE_GPSD=ON ../
+        =C2=A0=C2=A0=C2=A0 baroch@reliable:~/uhd/host/build$ cmake -DENABLE=
+_GPSD=3DON ../
         <br>
-            --     -- Configuring the python interpreter...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring the python =
+interpreter...
         <br>
-            -- Python interpreter: /usr/bin/python2
+        =C2=A0=C2=A0=C2=A0 -- Python interpreter: /usr/bin/python2
         <br>
-            -- Override with: -DPYTHON_EXECUTABLE=&lt;path-to-python&gt;
+        =C2=A0=C2=A0=C2=A0 -- Override with: -DPYTHON_EXECUTABLE=3D&lt;path=
+-to-python&gt;
         <br>
-            -- Python runtime interpreter: /usr/bin/python2
+        =C2=A0=C2=A0=C2=A0 -- Python runtime interpreter: /usr/bin/python2
         <br>
-            -- Override with:
-        -DRUNTIME_PYTHON_EXECUTABLE=&lt;path-to-python&gt;
+        =C2=A0=C2=A0=C2=A0 -- Override with:
+        -DRUNTIME_PYTHON_EXECUTABLE=3D&lt;path-to-python&gt;
         <br>
-            -- Working off of feature or development branch. Updating
+        =C2=A0=C2=A0=C2=A0 -- Working off of feature or development branch.=
+ Updating
         version
         <br>
-            number.
+        =C2=A0=C2=A0=C2=A0 number.
         <br>
-            -- Using UHD Images Directory: /usr/local/share/uhd/images
+        =C2=A0=C2=A0=C2=A0 -- Using UHD Images Directory: /usr/local/share/=
+uhd/images
         <br>
-            -- Build type not specified: defaulting to release.
+        =C2=A0=C2=A0=C2=A0 -- Build type not specified: defaulting to relea=
+se.
         <br>
-            --     -- Configuring Boost C++ Libraries...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring Boost C++ L=
+ibraries...
         <br>
-            -- Looking for optional Boost components...
+        =C2=A0=C2=A0=C2=A0 -- Looking for optional Boost components...
         <br>
-            -- Found Boost:
+        =C2=A0=C2=A0=C2=A0 -- Found Boost:
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake
         <br>
-            (found suitable version "1.71.0", minimum required is
-        "1.53") found
+        =C2=A0=C2=A0=C2=A0 (found suitable version &quot;1.71.0&quot;, mini=
+mum required is
+        &quot;1.53&quot;) found
         <br>
-            components: python
+        =C2=A0=C2=A0=C2=A0 components: python
         <br>
-            -- Looking for required Boost components...
+        =C2=A0=C2=A0=C2=A0 -- Looking for required Boost components...
         <br>
-            -- Found Boost:
+        =C2=A0=C2=A0=C2=A0 -- Found Boost:
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake
         <br>
-            (found suitable version "1.71.0", minimum required is
-        "1.53") found
+        =C2=A0=C2=A0=C2=A0 (found suitable version &quot;1.71.0&quot;, mini=
+mum required is
+        &quot;1.53&quot;) found
         <br>
-            components: chrono date_time filesystem program_options
+        =C2=A0=C2=A0=C2=A0 components: chrono date_time filesystem program_=
+options
         regex system
         <br>
-            unit_test_framework serialization thread
+        =C2=A0=C2=A0=C2=A0 unit_test_framework serialization thread
         <br>
-            -- Boost include directories: /usr/include
+        =C2=A0=C2=A0=C2=A0 -- Boost include directories: /usr/include
         <br>
-            -- Boost library directories: /usr/lib/x86_64-linux-gnu
+        =C2=A0=C2=A0=C2=A0 -- Boost library directories: /usr/lib/x86_64-li=
+nux-gnu
         <br>
-            -- Boost libraries:
+        =C2=A0=C2=A0=C2=A0 -- Boost libraries:
         <br>
-           
-Boost::chrono;Boost::date_time;Boost::filesystem;Boost::program_options;Boost::regex;Boost::system;Boost::unit_test_framework;Boost::serialization;Boost::thread<br>
-            CMake Warning (dev) at cmake/Modules/UHDLog.cmake:68 (set):
+        =C2=A0=C2=A0=C2=A0
+Boost::chrono;Boost::date_time;Boost::filesystem;Boost::program_options;Boo=
+st::regex;Boost::system;Boost::unit_test_framework;Boost::serialization;Boo=
+st::thread<br>
+        =C2=A0=C2=A0=C2=A0 CMake Warning (dev) at cmake/Modules/UHDLog.cmak=
+e:68 (set):
         <br>
-               implicitly converting 'FILE' to 'STRING' type.
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 implicitly converting &#39;FILE&#39=
+; to &#39;STRING&#39; type.
         <br>
-            Call Stack (most recent call first):
+        =C2=A0=C2=A0=C2=A0 Call Stack (most recent call first):
         <br>
-               CMakeLists.txt:365 (include)
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 CMakeLists.txt:365 (include)
         <br>
-            This warning is for project developers.  Use -Wno-dev to
+        =C2=A0=C2=A0=C2=A0 This warning is for project developers.=C2=A0 Us=
+e -Wno-dev to
         suppress it.
         <br>
         <br>
-            --     -- Python checking for Python version 2.7 or greater
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Python checking for Pyt=
+hon version 2.7 or greater
         <br>
-            -- Python checking for Python version 2.7 or greater - found
+        =C2=A0=C2=A0=C2=A0 -- Python checking for Python version 2.7 or gre=
+ater - found
         <br>
-            --     -- Python checking for Mako templates 0.4.2 or
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Python checking for Mak=
+o templates 0.4.2 or
         greater
         <br>
-            -- Python checking for Mako templates 0.4.2 or greater -
+        =C2=A0=C2=A0=C2=A0 -- Python checking for Mako templates 0.4.2 or g=
+reater -
         found
         <br>
-            --     -- Python checking for requests 2.0 or greater
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Python checking for req=
+uests 2.0 or greater
         <br>
-            -- Python checking for requests 2.0 or greater - "import
-        requests"
+        =C2=A0=C2=A0=C2=A0 -- Python checking for requests 2.0 or greater -=
+ &quot;import
+        requests&quot;
         <br>
-            failed
+        =C2=A0=C2=A0=C2=A0 failed
         <br>
-            --     -- Python checking for numpy 1.7 or greater
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Python checking for num=
+py 1.7 or greater
         <br>
-            -- Python checking for numpy 1.7 or greater - found
+        =C2=A0=C2=A0=C2=A0 -- Python checking for numpy 1.7 or greater - fo=
+und
         <br>
-            --     -- Configuring LibUHD support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring LibUHD supp=
+ort...
         <br>
-            --   Dependency Boost_FOUND = TRUE
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency Boost_FOUND =3D TRUE
         <br>
-            --   Dependency HAVE_PYTHON_PLAT_MIN_VERSION = TRUE
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency HAVE_PYTHON_PLAT_MIN_V=
+ERSION =3D TRUE
         <br>
-            --   Dependency HAVE_PYTHON_MODULE_MAKO = TRUE
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency HAVE_PYTHON_MODULE_MAK=
+O =3D TRUE
         <br>
-            --   Enabling LibUHD support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling LibUHD support.
         <br>
-            --   Override with -DENABLE_LIBUHD=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_LIBUHD=3DO=
+N/OFF
         <br>
-            --     -- Configuring LibUHD - C API support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring LibUHD - C =
+API support...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Enabling LibUHD - C API support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling LibUHD - C API support.
         <br>
-            --   Override with -DENABLE_C_API=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_C_API=3DON=
+/OFF
         <br>
-            --     -- Configuring LibUHD - Python API support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring LibUHD - Py=
+thon API support...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Dependency BOOST_PYTHON_FOUND = 1
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency BOOST_PYTHON_FOUND =3D=
+ 1
         <br>
-            --   Dependency HAVE_PYTHON_MODULE_NUMPY = TRUE
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency HAVE_PYTHON_MODULE_NUM=
+PY =3D TRUE
         <br>
-            --   Dependency PythonLibs_FOUND = TRUE
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency PythonLibs_FOUND =3D T=
+RUE
         <br>
-            --   Enabling LibUHD - Python API support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling LibUHD - Python API supp=
+ort.
         <br>
-            --   Override with -DENABLE_PYTHON_API=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_PYTHON_API=
+=3DON/OFF
         <br>
-            --     -- Configuring Examples support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring Examples su=
+pport...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Enabling Examples support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling Examples support.
         <br>
-            --   Override with -DENABLE_EXAMPLES=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_EXAMPLES=
+=3DON/OFF
         <br>
-            --     -- Configuring Utils support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring Utils suppo=
+rt...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Enabling Utils support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling Utils support.
         <br>
-            --   Override with -DENABLE_UTILS=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_UTILS=3DON=
+/OFF
         <br>
-            --     -- Configuring Tests support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring Tests suppo=
+rt...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Enabling Tests support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling Tests support.
         <br>
-            --   Override with -DENABLE_TESTS=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_TESTS=3DON=
+/OFF
         <br>
-            --     -- Could NOT find LIBERIO (missing: LIBERIO_LIBRARY
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Could NOT find LIBERIO =
+(missing: LIBERIO_LIBRARY
         <br>
-            LIBERIO_INCLUDE_DIR)
+        =C2=A0=C2=A0=C2=A0 LIBERIO_INCLUDE_DIR)
         <br>
-            -- Could NOT find dpdk (missing: DPDK_INCLUDE_DIR)
+        =C2=A0=C2=A0=C2=A0 -- Could NOT find dpdk (missing: DPDK_INCLUDE_DI=
+R)
         <br>
-            --     -- Configuring LIBERIO support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring LIBERIO sup=
+port...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Dependency LIBERIO_FOUND = FALSE
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency LIBERIO_FOUND =3D FALS=
+E
         <br>
-            --   Disabling LIBERIO support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Disabling LIBERIO support.
         <br>
-            --   Override with -DENABLE_LIBERIO=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_LIBERIO=3D=
+ON/OFF
         <br>
-            --     -- Configuring USB support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring USB support=
+...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Dependency LIBUSB_FOUND = TRUE
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency LIBUSB_FOUND =3D TRUE
         <br>
-            --   Enabling USB support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling USB support.
         <br>
-            --   Override with -DENABLE_USB=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_USB=3DON/O=
+FF
         <br>
-            --     -- Configuring GPSD support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring GPSD suppor=
+t...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Dependency ENABLE_GPSD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_GPSD =3D ON
         <br>
-            --   Dependency LIBGPS_FOUND = TRUE
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency LIBGPS_FOUND =3D TRUE
         <br>
-            --   Enabling GPSD support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling GPSD support.
         <br>
-            --   Override with -DENABLE_GPSD=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_GPSD=3DON/=
+OFF
         <br>
-            --     -- Configuring B100 support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring B100 suppor=
+t...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Dependency ENABLE_USB = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_USB =3D ON
         <br>
-            --   Enabling B100 support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling B100 support.
         <br>
-            --   Override with -DENABLE_B100=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_B100=3DON/=
+OFF
         <br>
-            --     -- Configuring B200 support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring B200 suppor=
+t...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Dependency ENABLE_USB = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_USB =3D ON
         <br>
-            --   Enabling B200 support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling B200 support.
         <br>
-            --   Override with -DENABLE_B200=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_B200=3DON/=
+OFF
         <br>
-            --     -- Configuring E300 support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring E300 suppor=
+t...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Disabling E300 support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Disabling E300 support.
         <br>
-            --   Override with -DENABLE_E300=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_E300=3DON/=
+OFF
         <br>
-            --     -- Configuring USRP1 support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring USRP1 suppo=
+rt...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Dependency ENABLE_USB = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_USB =3D ON
         <br>
-            --   Enabling USRP1 support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling USRP1 support.
         <br>
-            --   Override with -DENABLE_USRP1=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_USRP1=3DON=
+/OFF
         <br>
-            --     -- Configuring USRP2 support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring USRP2 suppo=
+rt...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Enabling USRP2 support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling USRP2 support.
         <br>
-            --   Override with -DENABLE_USRP2=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_USRP2=3DON=
+/OFF
         <br>
-            --     -- Configuring X300 support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring X300 suppor=
+t...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Enabling X300 support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling X300 support.
         <br>
-            --   Override with -DENABLE_X300=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_X300=3DON/=
+OFF
         <br>
-            --     -- Configuring N230 support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring N230 suppor=
+t...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Enabling N230 support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling N230 support.
         <br>
-            --   Override with -DENABLE_N230=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_N230=3DON/=
+OFF
         <br>
-            --     -- Configuring MPMD support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring MPMD suppor=
+t...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Enabling MPMD support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling MPMD support.
         <br>
-            --   Override with -DENABLE_MPMD=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_MPMD=3DON/=
+OFF
         <br>
-            --     -- Configuring N300 support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring N300 suppor=
+t...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Dependency ENABLE_MPMD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_MPMD =3D ON
         <br>
-            --   Enabling N300 support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling N300 support.
         <br>
-            --   Override with -DENABLE_N300=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_N300=3DON/=
+OFF
         <br>
-            --     -- Configuring N320 support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring N320 suppor=
+t...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Dependency ENABLE_MPMD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_MPMD =3D ON
         <br>
-            --   Enabling N320 support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling N320 support.
         <br>
-            --   Override with -DENABLE_N320=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_N320=3DON/=
+OFF
         <br>
-            --     -- Configuring E320 support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring E320 suppor=
+t...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Dependency ENABLE_MPMD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_MPMD =3D ON
         <br>
-            --   Enabling E320 support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling E320 support.
         <br>
-            --   Override with -DENABLE_E320=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_E320=3DON/=
+OFF
         <br>
-            --     -- Configuring OctoClock support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring OctoClock s=
+upport...
         <br>
-            --   Dependency ENABLE_LIBUHD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_LIBUHD =3D ON
         <br>
-            --   Enabling OctoClock support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling OctoClock support.
         <br>
-            --   Override with -DENABLE_OCTOCLOCK=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_OCTOCLOCK=
+=3DON/OFF
         <br>
-            --     -- Configuring DPDK support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring DPDK suppor=
+t...
         <br>
-            --   Dependency ENABLE_MPMD = ON
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency ENABLE_MPMD =3D ON
         <br>
-            --   Dependency DPDK_FOUND = FALSE
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency DPDK_FOUND =3D FALSE
         <br>
-            --   Disabling DPDK support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Disabling DPDK support.
         <br>
-            --   Override with -DENABLE_DPDK=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_DPDK=3DON/=
+OFF
         <br>
-            --     --     --     -- Configuring priority scheduling...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- =
+=C2=A0=C2=A0=C2=A0 -- Configuring priority scheduling...
         <br>
-            --   Priority scheduling supported through
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Priority scheduling supported thr=
+ough
         pthread_setschedparam.
         <br>
-            --   Setting thread names is supported through
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Setting thread names is supported=
+ through
         pthread_setname_np.
         <br>
-            --     -- Configuring high resolution timing...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring high resolu=
+tion timing...
         <br>
-            --   High resolution timing supported through clock_gettime.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 High resolution timing supported =
+through clock_gettime.
         <br>
-            --     -- Configuring module loading...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring module load=
+ing...
         <br>
-            --   Module loading supported through dlopen.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Module loading supported through =
+dlopen.
         <br>
-            --     -- Processing NI-RIO FPGA LVBITX Bitstreams...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Processing NI-RIO FPGA =
+LVBITX Bitstreams...
         <br>
-            --   Using x300.lvbitx_base for codegen
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Using x300.lvbitx_base for codege=
+n
         <br>
-            --   Using x310.lvbitx_base for codegen
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Using x310.lvbitx_base for codege=
+n
         <br>
-            --     -- USB support enabled via libusb.
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- USB support enabled via=
+ libusb.
         <br>
-            --     -- Configuring interface address discovery...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring interface a=
+ddress discovery...
         <br>
-            --   Interface address discovery supported through
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Interface address discovery suppo=
+rted through
         getifaddrs.
         <br>
-            --     -- Loading build info.
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Loading build info.
         <br>
-            --     -- Adding B2XX device test target
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Adding B2XX device test=
+ target
         <br>
-            -- Adding X3x0 device test target
+        =C2=A0=C2=A0=C2=A0 -- Adding X3x0 device test target
         <br>
-            -- Adding N3XX device test target
+        =C2=A0=C2=A0=C2=A0 -- Adding N3XX device test target
         <br>
-            -- Adding E32x device test target
+        =C2=A0=C2=A0=C2=A0 -- Adding E32x device test target
         <br>
-            --     CMake Warning at utils/CMakeLists.txt:123 (message):
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 CMake Warning at utils/CMa=
+keLists.txt:123 (message):
         <br>
-               Python module `requests' not found --
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 Python module `requests&#39; not fo=
+und --
         uhd_images_downloader.py
         <br>
-            will not
+        =C2=A0=C2=A0=C2=A0 will not
         <br>
-               work without it.
-        <br>
-        <br>
-        <br>
-            CMake Warning at utils/CMakeLists.txt:124 (message):
-        <br>
-               You may be able to install this by running 'pip install
-        requests'
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 work without it.
         <br>
         <br>
         <br>
-            --     -- Configuring Manual support...
+        =C2=A0=C2=A0=C2=A0 CMake Warning at utils/CMakeLists.txt:124 (messa=
+ge):
         <br>
-            --   Dependency DOXYGEN_FOUND = YES
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 You may be able to install this by =
+running &#39;pip install
+        requests&#39;
         <br>
-            --   Enabling Manual support.
         <br>
-            --   Override with -DENABLE_MANUAL=ON/OFF
         <br>
-            --     -- Configuring API/Doxygen support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring Manual supp=
+ort...
         <br>
-            --   Dependency DOXYGEN_FOUND = YES
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency DOXYGEN_FOUND =3D YES
         <br>
-            --   Enabling API/Doxygen support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling Manual support.
         <br>
-            --   Override with -DENABLE_DOXYGEN=ON/OFF
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_MANUAL=3DO=
+N/OFF
         <br>
-            --     -- Configuring Man Pages support...
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring API/Doxygen=
+ support...
         <br>
-            --   Dependency GZIP_FOUND = TRUE
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency DOXYGEN_FOUND =3D YES
         <br>
-            --   Dependency NOT_WIN32 = TRUE
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling API/Doxygen support.
         <br>
-            --   Enabling Man Pages support.
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_DOXYGEN=3D=
+ON/OFF
         <br>
-            --   Override with -DENABLE_MAN_PAGES=ON/OFF
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Configuring Man Pages s=
+upport...
         <br>
-            --     -- Python checking for virtualenv
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency GZIP_FOUND =3D TRUE
         <br>
-            -- Python checking for virtualenv - "assert hasattr(sys,
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Dependency NOT_WIN32 =3D TRUE
         <br>
-            'real_prefix')" failed
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Enabling Man Pages support.
         <br>
-            -- Utilizing the python install directory:
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 Override with -DENABLE_MAN_PAGES=
+=3DON/OFF
         <br>
-            /usr/local/lib/python2.7/dist-packages
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 -- Python checking for vir=
+tualenv
         <br>
-            --     --
+        =C2=A0=C2=A0=C2=A0 -- Python checking for virtualenv - &quot;assert=
+ hasattr(sys,
+        <br>
+        =C2=A0=C2=A0=C2=A0 &#39;real_prefix&#39;)&quot; failed
+        <br>
+        =C2=A0=C2=A0=C2=A0 -- Utilizing the python install directory:
+        <br>
+        =C2=A0=C2=A0=C2=A0 /usr/local/lib/python2.7/dist-packages
+        <br>
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 --
         ######################################################
         <br>
-            -- # UHD enabled components
+        =C2=A0=C2=A0=C2=A0 -- # UHD enabled components
         <br>
-            -- ######################################################
+        =C2=A0=C2=A0=C2=A0 -- #############################################=
+#########
         <br>
-            --   * LibUHD
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * LibUHD
         <br>
-            --   * LibUHD - C API
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * LibUHD - C API
         <br>
-            --   * LibUHD - Python API
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * LibUHD - Python API
         <br>
-            --   * Examples
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * Examples
         <br>
-            --   * Utils
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * Utils
         <br>
-            --   * Tests
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * Tests
         <br>
-            --   * USB
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * USB
         <br>
-            --   * GPSD
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * GPSD
         <br>
-            --   * B100
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * B100
         <br>
-            --   * B200
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * B200
         <br>
-            --   * USRP1
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * USRP1
         <br>
-            --   * USRP2
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * USRP2
         <br>
-            --   * X300
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * X300
         <br>
-            --   * N230
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * N230
         <br>
-            --   * MPMD
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * MPMD
         <br>
-            --   * N300
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * N300
         <br>
-            --   * N320
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * N320
         <br>
-            --   * E320
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * E320
         <br>
-            --   * OctoClock
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * OctoClock
         <br>
-            --   * Manual
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * Manual
         <br>
-            --   * API/Doxygen
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * API/Doxygen
         <br>
-            --   * Man Pages
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * Man Pages
         <br>
-            --     --
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 --
         ######################################################
         <br>
-            -- # UHD disabled components
+        =C2=A0=C2=A0=C2=A0 -- # UHD disabled components
         <br>
-            -- ######################################################
+        =C2=A0=C2=A0=C2=A0 -- #############################################=
+#########
         <br>
-            --   * LIBERIO
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * LIBERIO
         <br>
-            --   * E300
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * E300
         <br>
-            --   * DPDK
+        =C2=A0=C2=A0=C2=A0 --=C2=A0=C2=A0 * DPDK
         <br>
-            --     --
+        =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 --
         ******************************************************
         <br>
-            -- * You are building a development branch of UHD.
+        =C2=A0=C2=A0=C2=A0 -- * You are building a development branch of UH=
+D.
         <br>
-            -- * These branches are designed to provide early access
+        =C2=A0=C2=A0=C2=A0 -- * These branches are designed to provide earl=
+y access
         <br>
-            -- * to UHD and USRP features, but should be considered
+        =C2=A0=C2=A0=C2=A0 -- * to UHD and USRP features, but should be con=
+sidered
         <br>
-            -- * unstable and/or experimental!
+        =C2=A0=C2=A0=C2=A0 -- * unstable and/or experimental!
         <br>
-            -- ******************************************************
+        =C2=A0=C2=A0=C2=A0 -- *********************************************=
+*********
         <br>
-            -- Building version: 3.14.1.HEAD-0-g0347a6d8
+        =C2=A0=C2=A0=C2=A0 -- Building version: 3.14.1.HEAD-0-g0347a6d8
         <br>
-            -- Using install prefix: /usr/local
+        =C2=A0=C2=A0=C2=A0 -- Using install prefix: /usr/local
         <br>
-            -- Configuring done
+        =C2=A0=C2=A0=C2=A0 -- Configuring done
         <br>
-            -- Generating done
+        =C2=A0=C2=A0=C2=A0 -- Generating done
         <br>
-            -- Build files have been written to:
+        =C2=A0=C2=A0=C2=A0 -- Build files have been written to:
         /home/baroch/uhd/host/build
         <br>
-            baroch@reliable:~/uhd/host/build$ make
+        =C2=A0=C2=A0=C2=A0 baroch@reliable:~/uhd/host/build$ make
         <br>
-            Scanning dependencies of target uhd_rpclib
+        =C2=A0=C2=A0=C2=A0 Scanning dependencies of target uhd_rpclib
         <br>
-            [  0%] Building CXX object
+        =C2=A0=C2=A0=C2=A0 [=C2=A0 0%] Building CXX object
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         lib/deps/rpclib/CMakeFiles/uhd_rpclib.dir/lib/rpc/dispatcher.cc.o
         <br>
-            In file included from
+        =C2=A0=C2=A0=C2=A0 In file included from
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/dispatcher.h:12,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/dispatcher.cc:1:
         <br>
-           
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:
+        =C2=A0=C2=A0=C2=A0
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hp=
+p:
         In
         <br>
-            function ‘void
+        =C2=A0=C2=A0=C2=A0 function =E2=80=98void
         <br>
-           
-        clmdep_msgpack::v1::operator&lt;&lt;(clmdep_msgpack::v1::object&amp;,
+        =C2=A0=C2=A0=C2=A0
+        clmdep_msgpack::v1::operator&lt;&lt;(clmdep_msgpack::v1::object&amp=
+;,
         const
         <br>
-            msgpack_object&amp;)’:
+        =C2=A0=C2=A0=C2=A0 msgpack_object&amp;)=E2=80=99:
         <br>
-           
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:613:34:<br>
-            warning: ‘void* memcpy(void*, const void*, size_t)’ copying
+        =C2=A0=C2=A0=C2=A0
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:613:34=
+:<br>
+        =C2=A0=C2=A0=C2=A0 warning: =E2=80=98void* memcpy(void*, const void=
+*, size_t)=E2=80=99 copying
         an
         <br>
-            object of non-trivial type ‘struct
-        clmdep_msgpack::v1::object’ from
+        =C2=A0=C2=A0=C2=A0 object of non-trivial type =E2=80=98struct
+        clmdep_msgpack::v1::object=E2=80=99 from
         <br>
-            an array of ‘const msgpack_object’ {aka ‘const struct
+        =C2=A0=C2=A0=C2=A0 an array of =E2=80=98const msgpack_object=E2=80=
+=99 {aka =E2=80=98const struct
         <br>
-            msgpack_object’} [-Wclass-memaccess]
+        =C2=A0=C2=A0=C2=A0 msgpack_object=E2=80=99} [-Wclass-memaccess]
         <br>
-               613 |     std::memcpy(&amp;o, &amp;v, sizeof(v));
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 613 |=C2=A0=C2=A0=C2=A0=C2=A0 std::=
+memcpy(&amp;o, &amp;v, sizeof(v));
         <br>
-                   |                                  ^
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
         <br>
-            In file included from
+        =C2=A0=C2=A0=C2=A0 In file included from
         <br>
-           
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/adaptor/adaptor_base.hpp:21,<br>
-                              from
+        =C2=A0=C2=A0=C2=A0
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/adaptor/adaptor_b=
+ase.hpp:21,<br>
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-           
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:24,
+        =C2=A0=C2=A0=C2=A0
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hp=
+p:24,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/dispatcher.h:12,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/dispatcher.cc:1:
         <br>
-           
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object_fwd.hpp:111:8:<br>
-            note: ‘struct clmdep_msgpack::v1::object’ declared here
+        =C2=A0=C2=A0=C2=A0
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object_fwd.hpp:11=
+1:8:<br>
+        =C2=A0=C2=A0=C2=A0 note: =E2=80=98struct clmdep_msgpack::v1::object=
+=E2=80=99 declared here
         <br>
-               111 | struct object {
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 111 | struct object {
         <br>
-                   |        ^~~~~~
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~
         <br>
-            [  0%] Building CXX object
+        =C2=A0=C2=A0=C2=A0 [=C2=A0 0%] Building CXX object
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         lib/deps/rpclib/CMakeFiles/uhd_rpclib.dir/lib/rpc/server.cc.o
         <br>
-            In file included from
+        =C2=A0=C2=A0=C2=A0 In file included from
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/server.h:7,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-            /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/server.cc:1:
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/se=
+rver.cc:1:
         <br>
-           
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:
+        =C2=A0=C2=A0=C2=A0
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hp=
+p:
         In
         <br>
-            function ‘void
+        =C2=A0=C2=A0=C2=A0 function =E2=80=98void
         <br>
-           
-        clmdep_msgpack::v1::operator&lt;&lt;(clmdep_msgpack::v1::object&amp;,
+        =C2=A0=C2=A0=C2=A0
+        clmdep_msgpack::v1::operator&lt;&lt;(clmdep_msgpack::v1::object&amp=
+;,
         const
         <br>
-            msgpack_object&amp;)’:
+        =C2=A0=C2=A0=C2=A0 msgpack_object&amp;)=E2=80=99:
         <br>
-           
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:613:34:<br>
-            warning: ‘void* memcpy(void*, const void*, size_t)’ copying
+        =C2=A0=C2=A0=C2=A0
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:613:34=
+:<br>
+        =C2=A0=C2=A0=C2=A0 warning: =E2=80=98void* memcpy(void*, const void=
+*, size_t)=E2=80=99 copying
         an
         <br>
-            object of non-trivial type ‘struct
-        clmdep_msgpack::v1::object’ from
+        =C2=A0=C2=A0=C2=A0 object of non-trivial type =E2=80=98struct
+        clmdep_msgpack::v1::object=E2=80=99 from
         <br>
-            an array of ‘const msgpack_object’ {aka ‘const struct
+        =C2=A0=C2=A0=C2=A0 an array of =E2=80=98const msgpack_object=E2=80=
+=99 {aka =E2=80=98const struct
         <br>
-            msgpack_object’} [-Wclass-memaccess]
+        =C2=A0=C2=A0=C2=A0 msgpack_object=E2=80=99} [-Wclass-memaccess]
         <br>
-               613 |     std::memcpy(&amp;o, &amp;v, sizeof(v));
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 613 |=C2=A0=C2=A0=C2=A0=C2=A0 std::=
+memcpy(&amp;o, &amp;v, sizeof(v));
         <br>
-                   |                                  ^
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
         <br>
-            In file included from
+        =C2=A0=C2=A0=C2=A0 In file included from
         <br>
-           
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/adaptor/adaptor_base.hpp:21,<br>
-                              from
+        =C2=A0=C2=A0=C2=A0
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/adaptor/adaptor_b=
+ase.hpp:21,<br>
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-           
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:24,
+        =C2=A0=C2=A0=C2=A0
+        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hp=
+p:24,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/server.h:7,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-            /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/server.cc:1:
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/se=
+rver.cc:1:
         <br>
-           
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object_fwd.hpp:111:8:<br>
-            note: ‘struct clmdep_msgpack::v1::object’ declared here
+        =C2=A0=C2=A0=C2=A0
+/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object_fwd.hpp:11=
+1:8:<br>
+        =C2=A0=C2=A0=C2=A0 note: =E2=80=98struct clmdep_msgpack::v1::object=
+=E2=80=99 declared here
         <br>
-               111 | struct object {
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 111 | struct object {
         <br>
-                   |        ^~~~~~
-        <br>
-        <br>
-        <br>
-            [ a lot of warnings truncated B.O.]
-        <br>
-        <br>
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~
         <br>
         <br>
-            [ 22%] Building CXX object
+        <br>
+        =C2=A0=C2=A0=C2=A0 [ a lot of warnings truncated B.O.]
+        <br>
+        <br>
+        <br>
+        <br>
+        =C2=A0=C2=A0=C2=A0 [ 22%] Building CXX object
         lib/CMakeFiles/uhd.dir/usrp/subdev_spec.cpp.o
         <br>
-            [ 23%] Building CXX object
+        =C2=A0=C2=A0=C2=A0 [ 23%] Building CXX object
         <br>
-            lib/CMakeFiles/uhd.dir/usrp/fe_connection.cpp.o
+        =C2=A0=C2=A0=C2=A0 lib/CMakeFiles/uhd.dir/usrp/fe_connection.cpp.o
         <br>
-            [ 23%] Building CXX object
+        =C2=A0=C2=A0=C2=A0 [ 23%] Building CXX object
         <br>
-            lib/CMakeFiles/uhd.dir/usrp/dboard_eeprom_c.cpp.o
+        =C2=A0=C2=A0=C2=A0 lib/CMakeFiles/uhd.dir/usrp/dboard_eeprom_c.cpp.=
+o
         <br>
-            [ 23%] Building CXX object
+        =C2=A0=C2=A0=C2=A0 [ 23%] Building CXX object
         <br>
-            lib/CMakeFiles/uhd.dir/usrp/mboard_eeprom_c.cpp.o
+        =C2=A0=C2=A0=C2=A0 lib/CMakeFiles/uhd.dir/usrp/mboard_eeprom_c.cpp.=
+o
         <br>
-            [ 23%] Building CXX object
+        =C2=A0=C2=A0=C2=A0 [ 23%] Building CXX object
         <br>
-            lib/CMakeFiles/uhd.dir/usrp/subdev_spec_c.cpp.o
+        =C2=A0=C2=A0=C2=A0 lib/CMakeFiles/uhd.dir/usrp/subdev_spec_c.cpp.o
         <br>
-            [ 23%] Building CXX object
+        =C2=A0=C2=A0=C2=A0 [ 23%] Building CXX object
         lib/CMakeFiles/uhd.dir/usrp/usrp_c.cpp.o
         <br>
-            [ 23%] Building CXX object
+        =C2=A0=C2=A0=C2=A0 [ 23%] Building CXX object
         lib/CMakeFiles/uhd.dir/usrp/gpsd_iface.cpp.o
         <br>
-            /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: I=
+n member
         function
         <br>
-            ‘int64_t uhd::usrp::gpsd_iface_impl::_epoch_time()’:
+        =C2=A0=C2=A0=C2=A0 =E2=80=98int64_t uhd::usrp::gpsd_iface_impl::_ep=
+och_time()=E2=80=99:
         <br>
-            /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:141:62: error:
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:14=
+1:62: error:
         cannot
         <br>
-            convert ‘timespec_t’ {aka ‘timespec’} to ‘time_t’ {aka ‘long
-        int’}
+        =C2=A0=C2=A0=C2=A0 convert =E2=80=98timespec_t=E2=80=99 {aka =E2=80=
+=98timespec=E2=80=99} to =E2=80=98time_t=E2=80=99 {aka =E2=80=98long
+        int=E2=80=99}
         <br>
-               141 |         return
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 141 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 return
         <br>
-            (boost::posix_time::from_time_t(_gps_data.fix.time)
+        =C2=A0=C2=A0=C2=A0 (boost::posix_time::from_time_t(_gps_data.fix.ti=
+me)
         <br>
-                   | ~~~~~~~~~~~~~~^~~~
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | ~~~~~~~~~=
+~~~~~^~~~
         <br>
-           
-        |                                                              |
+        =C2=A0=C2=A0=C2=A0
+        |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |
         <br>
-            | timespec_t {aka timespec}
+        =C2=A0=C2=A0=C2=A0 | timespec_t {aka timespec}
         <br>
-            In file included from
+        =C2=A0=C2=A0=C2=A0 In file included from
         /usr/include/boost/thread/xtime.hpp:16,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         /usr/include/boost/thread/pthread/mutex.hpp:20,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         /usr/include/boost/thread/mutex.hpp:16,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-            /usr/include/boost/thread/pthread/shared_mutex.hpp:14,
+        =C2=A0=C2=A0=C2=A0 /usr/include/boost/thread/pthread/shared_mutex.h=
+pp:14,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         /usr/include/boost/thread/shared_mutex.hpp:28,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:16:
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /usr/include/boost/date_time/posix_time/conversion.hpp:27:33:
         <br>
-            note:   initializing argument 1 of ‘boost::posix_time::ptime
+        =C2=A0=C2=A0=C2=A0 note:=C2=A0=C2=A0 initializing argument 1 of =E2=
+=80=98boost::posix_time::ptime
         <br>
-            boost::posix_time::from_time_t(time_t)’
+        =C2=A0=C2=A0=C2=A0 boost::posix_time::from_time_t(time_t)=E2=80=99
         <br>
-                27 |   ptime from_time_t(std::time_t t)
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 27 |=C2=A0=C2=A0 ptime from_t=
+ime_t(std::time_t t)
         <br>
-                   |                     ~~~~~~~~~~~~^
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ~~~~~~~~~~~~^
         <br>
-            /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: I=
+n member
         function
         <br>
-            ‘boost::gregorian::date
-        uhd::usrp::gpsd_iface_impl::_gregorian_date()’:
+        =C2=A0=C2=A0=C2=A0 =E2=80=98boost::gregorian::date
+        uhd::usrp::gpsd_iface_impl::_gregorian_date()=E2=80=99:
         <br>
-            /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:148:61: error:
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:14=
+8:61: error:
         cannot
         <br>
-            convert ‘timespec_t’ {aka ‘timespec’} to ‘time_t’ {aka ‘long
-        int’}
+        =C2=A0=C2=A0=C2=A0 convert =E2=80=98timespec_t=E2=80=99 {aka =E2=80=
+=98timespec=E2=80=99} to =E2=80=98time_t=E2=80=99 {aka =E2=80=98long
+        int=E2=80=99}
         <br>
-               148 |         return
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 148 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 return
         <br>
-            boost::posix_time::from_time_t(_gps_data.fix.time).date();
+        =C2=A0=C2=A0=C2=A0 boost::posix_time::from_time_t(_gps_data.fix.tim=
+e).date();
         <br>
-                   | ~~~~~~~~~~~~~~^~~~
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | ~~~~~~~~~=
+~~~~~^~~~
         <br>
-           
-        |                                                             |
+        =C2=A0=C2=A0=C2=A0
+        |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
         <br>
-            | timespec_t {aka timespec}
+        =C2=A0=C2=A0=C2=A0 | timespec_t {aka timespec}
         <br>
-            In file included from
+        =C2=A0=C2=A0=C2=A0 In file included from
         /usr/include/boost/thread/xtime.hpp:16,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         /usr/include/boost/thread/pthread/mutex.hpp:20,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         /usr/include/boost/thread/mutex.hpp:16,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         <br>
-            /usr/include/boost/thread/pthread/shared_mutex.hpp:14,
+        =C2=A0=C2=A0=C2=A0 /usr/include/boost/thread/pthread/shared_mutex.h=
+pp:14,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         /usr/include/boost/thread/shared_mutex.hpp:28,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:16:
         <br>
-           
+        =C2=A0=C2=A0=C2=A0
         /usr/include/boost/date_time/posix_time/conversion.hpp:27:33:
         <br>
-            note:   initializing argument 1 of ‘boost::posix_time::ptime
+        =C2=A0=C2=A0=C2=A0 note:=C2=A0=C2=A0 initializing argument 1 of =E2=
+=80=98boost::posix_time::ptime
         <br>
-            boost::posix_time::from_time_t(time_t)’
+        =C2=A0=C2=A0=C2=A0 boost::posix_time::from_time_t(time_t)=E2=80=99
         <br>
-                27 |   ptime from_time_t(std::time_t t)
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 27 |=C2=A0=C2=A0 ptime from_t=
+ime_t(std::time_t t)
         <br>
-                   |                     ~~~~~~~~~~~~^
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ~~~~~~~~~~~~^
         <br>
-            /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: I=
+n member
         function
         <br>
-            ‘std::string uhd::usrp::gpsd_iface_impl::_gps_gprmc()’:
+        =C2=A0=C2=A0=C2=A0 =E2=80=98std::string uhd::usrp::gpsd_iface_impl:=
+:_gps_gprmc()=E2=80=99:
         <br>
-            /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:206:49: error:
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:20=
+6:49: error:
         invalid
         <br>
-            cast from type ‘timespec_t’ {aka ‘timespec’} to type
-        ‘time_t’ {aka
+        =C2=A0=C2=A0=C2=A0 cast from type =E2=80=98timespec_t=E2=80=99 {aka=
+ =E2=80=98timespec=E2=80=99} to type
+        =E2=80=98time_t=E2=80=99 {aka
         <br>
-            ‘long int’}
+        =C2=A0=C2=A0=C2=A0 =E2=80=98long int=E2=80=99}
         <br>
-               206 |             intfixtime = (time_t)
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 206 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 intfixtime =3D (time_t)
         _gps_data.fix.time;
         <br>
-                   |                                                
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
         ^~~~
         <br>
-            /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: I=
+n member
         function
         <br>
-            ‘std::string uhd::usrp::gpsd_iface_impl::_gps_gpgga()’:
+        =C2=A0=C2=A0=C2=A0 =E2=80=98std::string uhd::usrp::gpsd_iface_impl:=
+:_gps_gpgga()=E2=80=99:
         <br>
-            /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:241:45: error:
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:24=
+1:45: error:
         invalid
         <br>
-            cast from type ‘timespec_t’ {aka ‘timespec’} to type
-        ‘time_t’ {aka
+        =C2=A0=C2=A0=C2=A0 cast from type =E2=80=98timespec_t=E2=80=99 {aka=
+ =E2=80=98timespec=E2=80=99} to type
+        =E2=80=98time_t=E2=80=99 {aka
         <br>
-            ‘long int’}
+        =C2=A0=C2=A0=C2=A0 =E2=80=98long int=E2=80=99}
         <br>
-               241 |         intfixtime = (time_t) _gps_data.fix.time;
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 241 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 intfixtime =3D (time_t) _gps_data.fix.time;
         <br>
-                   |                                             ^~~~
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~
         <br>
-            /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:268:42: error:
-        ‘struct
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:26=
+8:42: error:
+        =E2=80=98struct
         <br>
-            gps_data_t’ has no member named ‘separation’
+        =C2=A0=C2=A0=C2=A0 gps_data_t=E2=80=99 has no member named =E2=80=
+=98separation=E2=80=99
         <br>
-               268 |         if
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 268 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 if
         (boost::math::isnan(_gps_data.separation))
         <br>
-                   |                                          ^~~~~~~~~~
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 ^~~~~~~~~~
         <br>
-            /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:58: error:
-        ‘struct
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:27=
+2:58: error:
+        =E2=80=98struct
         <br>
-            gps_data_t’ has no member named ‘separation’
+        =C2=A0=C2=A0=C2=A0 gps_data_t=E2=80=99 has no member named =E2=80=
+=98separation=E2=80=99
         <br>
-               272 |                 str(boost::format("%.3f,M,") %
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 272 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 str(boos=
+t::format(&quot;%.3f,M,&quot;) %
         <br>
-            _gps_data.separation));
+        =C2=A0=C2=A0=C2=A0 _gps_data.separation));
         <br>
-                   | ^~~~~~~~~~
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | ^~~~~~~~~=
+~
         <br>
-            /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: error:
-        ‘str’
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:27=
+2:17: error:
+        =E2=80=98str=E2=80=99
         <br>
-            was not declared in this scope
+        =C2=A0=C2=A0=C2=A0 was not declared in this scope
         <br>
-               272 |                 str(boost::format("%.3f,M,") %
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 272 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 str(boos=
+t::format(&quot;%.3f,M,&quot;) %
         <br>
-            _gps_data.separation));
+        =C2=A0=C2=A0=C2=A0 _gps_data.separation));
         <br>
-                   |                 ^~~
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 ^~~
         <br>
-            /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: note:
+        =C2=A0=C2=A0=C2=A0 /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:27=
+2:17: note:
         <br>
-            suggested alternatives:
+        =C2=A0=C2=A0=C2=A0 suggested alternatives:
         <br>
-            In file included from /usr/include/boost/format.hpp:53,
+        =C2=A0=C2=A0=C2=A0 In file included from /usr/include/boost/format.=
+hpp:53,
         <br>
-                              from
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from
         /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:15:
         <br>
-            /usr/include/boost/format/free_funcs.hpp:22:38: note:
-        ‘boost::str’
+        =C2=A0=C2=A0=C2=A0 /usr/include/boost/format/free_funcs.hpp:22:38: =
+note:
+        =E2=80=98boost::str=E2=80=99
         <br>
-                22 |     std::basic_string&lt;Ch, Tr, Alloc&gt;
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 22 |=C2=A0=C2=A0=C2=A0=C2=A0 =
+std::basic_string&lt;Ch, Tr, Alloc&gt;
         str(const
         <br>
-            basic_format&lt;Ch, Tr, Alloc&gt;&amp; f) {
+        =C2=A0=C2=A0=C2=A0 basic_format&lt;Ch, Tr, Alloc&gt;&amp; f) {
         <br>
-                   |                                      ^~~
+        =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~
         <br>
-            /usr/include/boost/format/free_funcs.hpp:22:38: note:
-        ‘boost::str’
+        =C2=A0=C2=A0=C2=A0 /usr/include/boost/format/free_funcs.hpp:22:38: =
+note:
+        =E2=80=98boost::str=E2=80=99
         <br>
-            make[2]: *** [lib/CMakeFiles/uhd.dir/build.make:1303:
+        =C2=A0=C2=A0=C2=A0 make[2]: *** [lib/CMakeFiles/uhd.dir/build.make:=
+1303:
         <br>
-            lib/CMakeFiles/uhd.dir/usrp/gpsd_iface.cpp.o] Error 1
+        =C2=A0=C2=A0=C2=A0 lib/CMakeFiles/uhd.dir/usrp/gpsd_iface.cpp.o] Er=
+ror 1
         <br>
-            make[1]: *** [CMakeFiles/Makefile2:731:
+        =C2=A0=C2=A0=C2=A0 make[1]: *** [CMakeFiles/Makefile2:731:
         lib/CMakeFiles/uhd.dir/all]
         <br>
-            Error 2
+        =C2=A0=C2=A0=C2=A0 Error 2
         <br>
-            make: *** [Makefile:163: all] Error 2
+        =C2=A0=C2=A0=C2=A0 make: *** [Makefile:163: all] Error 2
         <br>
         <br>
         Thanks,
@@ -1202,16 +2272,19 @@ Boost::chrono;Boost::date_time;Boost::filesystem;Boost::program_options;Boost::r
         <br>
         <br>
         <br>
-        -- <br>
+        --=C2=A0<br>
         <br>
-        ברוך אורן بروح اورن Baroch Oren
-        <br>
-        <br>
-        טל' 058-7799233 cell
+        =D7=91=D7=A8=D7=95=D7=9A =D7=90=D7=95=D7=A8=D7=9F =D8=A8=D8=B1=D9=
+=88=D8=AD =D8=A7=D9=88=D8=B1=D9=86 Baroch Oren
         <br>
         <br>
-        תמכו באקטיביזם שלי support my activism
-        <a class="moz-txt-link-rfc2396E" href="https://www.patreon.com/barochoren">&lt;https://www.patreon.com/barochoren&gt;</a>
+        =D7=98=D7=9C&#39; 058-7799233 cell
+        <br>
+        <br>
+        =D7=AA=D7=9E=D7=9B=D7=95 =D7=91=D7=90=D7=A7=D7=98=D7=99=D7=91=D7=99=
+=D7=96=D7=9D =D7=A9=D7=9C=D7=99 support my activism
+        <a href=3D"https://www.patreon.com/barochoren" target=3D"_blank">&l=
+t;https://www.patreon.com/barochoren&gt;</a>
         <br>
         <br>
         <br>
@@ -1219,9 +2292,12 @@ Boost::chrono;Boost::date_time;Boost::filesystem;Boost::program_options;Boost::r
         <br>
         USRP-users mailing list
         <br>
-        <a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+        <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USR=
+P-users@lists.ettus.com</a>
         <br>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a>
         <br>
         <br>
       </blockquote>
@@ -1230,24 +2306,41 @@ Boost::chrono;Boost::date_time;Boost::filesystem;Boost::program_options;Boost::r
       <br>
       USRP-users mailing list
       <br>
-      <a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+      <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-=
+users@lists.ettus.com</a>
       <br>
-      <a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+      <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.e=
+ttus.com" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-us=
+ers_lists.ettus.com</a>
       <br>
     </blockquote>
-    <div class="moz-signature" style="direction: ltr;">-- <br>
-      <div dir="rtl">
-        <p><bold>ברוך אורן بروح اورن Baroch Oren</bold></p>
-        <p>טל' 058-7799233 cell</p>
-        <p><a href="https://www.patreon.com/barochoren">תמכו באקטיביזם
-            שלי support my activism</a></p>
+    <div style=3D"direction:ltr">-- <br>
+      <div dir=3D"rtl">
+        <p><u></u>=D7=91=D7=A8=D7=95=D7=9A =D7=90=D7=95=D7=A8=D7=9F =D8=A8=
+=D8=B1=D9=88=D8=AD =D8=A7=D9=88=D8=B1=D9=86 Baroch Oren<u></u></p>
+        <p>=D7=98=D7=9C&#39; 058-7799233 cell</p>
+        <p><a href=3D"https://www.patreon.com/barochoren" target=3D"_blank"=
+>=D7=AA=D7=9E=D7=9B=D7=95 =D7=91=D7=90=D7=A7=D7=98=D7=99=D7=91=D7=99=D7=96=
+=D7=9D
+            =D7=A9=D7=9C=D7=99 support my activism</a></p>
       </div>
     </div>
-  </body>
-</html>
+  </div>
 
 
---===============4421819334637552295==
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000c128b605b2d425e7--
+
+
+--===============5594653367459635216==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1258,4 +2351,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4421819334637552295==--
+--===============5594653367459635216==--
+
