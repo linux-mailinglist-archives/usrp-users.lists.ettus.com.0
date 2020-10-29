@@ -2,29 +2,89 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3780529E7DD
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Oct 2020 10:54:16 +0100 (CET)
-Received: from [::1] (port=42958 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32F6B29E8A6
+	for <lists+usrp-users@lfdr.de>; Thu, 29 Oct 2020 11:13:41 +0100 (CET)
+Received: from [::1] (port=43078 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kY4dJ-0005vc-E1; Thu, 29 Oct 2020 05:54:13 -0400
-Received: from dslsn201.fix.netvision.net.il ([82.166.192.201]:37617
- helo=sept12.barochoren.com) by mm2.emwd.com with esmtp (Exim 4.93)
- (envelope-from <baroch@6tzvaim.com>) id 1kY4dE-0005pG-OB
- for usrp-users@lists.ettus.com; Thu, 29 Oct 2020 05:54:09 -0400
-Received: from [192.168.14.139] (bzq-79-179-191-47.red.bezeqint.net
- [79.179.191.47])
- by sept12.barochoren.com (Postfix) with ESMTPSA id F107622F8AE
- for <usrp-users@lists.ettus.com>; Thu, 29 Oct 2020 11:43:19 +0200 (IST)
+	id 1kY4w6-0006aK-Pm; Thu, 29 Oct 2020 06:13:38 -0400
+Received: from mail-db8eur05on2112.outbound.protection.outlook.com
+ ([40.107.20.112]:49600 helo=EUR05-DB8-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <demel@ant.uni-bremen.de>)
+ id 1kY4w2-0006Ta-00
+ for usrp-users@lists.ettus.com; Thu, 29 Oct 2020 06:13:34 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XxuFh3z0rjszvzS1r+YfPebZWIcB5g5vOwQswABXF28g6MItLoKEVYKnaDQcoQaTFPW30zpGC2p8qxSxS5JxHzV8eENJB2hL90c90q1KViyH03NlckCB+N3xUYlZ59HFzrVpyrYZc33mEs3PDEFzW5ul2cIByNg4ZGthPy6jLPPOj7UJQgVeQvMpI6I27992AUiwzBT7LJSckX7kz4zTjUxXBWaq1lShNQv0bhkmdKjuDC1hBKhPtooErgDmZ4xE6j2cceGElTeAWX1eCzc5Mzt32v3CzXUbu0Q6Yp3u+ARr+m3CuoHr9wZkAaGuCvS0ZW3+0tTOgrxXTv/q/deeOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BOmLoyYqOZYrE51xA3W40RKvJYSmsl3g+/BzeyWCW8k=;
+ b=BptCNrqaTkKNdjP1VGigKsiVl5+Wo3VCJH0o/FVsUw6WrsYXXZfeflZXmX9VgCTefA5tBDntirus3ixick38N32Ig5C+nmVIeVQaBY6jmt3nGdVRKWYfNYD8IWxnLF/bq2kw7xFBAi9xbgnqFL2XxU098JZI/9lgacsFLgEHSZedvwWzg75VrreP5ox0BxY2VHYPsDJNzlDhsJ/4uWO/wVrXVs7FMSB4lQXXL/uguPP5pEGaAk8ZvzQOhc8U0haBcSvQUrU9o69cMGh5ujCXdW/EhvAOGZkxsDZyuC7epLQjJnEMhSe/zo6MVlCMC8GmyqRZnha1R9kfn+6LCIo8xw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
+ header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BOmLoyYqOZYrE51xA3W40RKvJYSmsl3g+/BzeyWCW8k=;
+ b=S9DEAHDFmZFMXeC6RZUTPTES2g+3hUargjRK9ID5Jf1mDUL98M+1nGhFojKZSpY35Pr7wnoSAwv1qYV11nYOWkKtdHIF75yq14cXWP1B0qHycAUmprlFkyp4CW01ccUOmDL+YfBH4q8KI0AD0jJPEpm6/uTHz72tm+cOkR/eTSY=
+Authentication-Results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=ant.uni-bremen.de;
+Received: from VI1PR0402MB3406.eurprd04.prod.outlook.com (2603:10a6:803:c::27)
+ by VI1PR04MB6944.eurprd04.prod.outlook.com (2603:10a6:803:133::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Thu, 29 Oct
+ 2020 10:12:50 +0000
+Received: from VI1PR0402MB3406.eurprd04.prod.outlook.com
+ ([fe80::bc9c:10e5:4748:aafa]) by VI1PR0402MB3406.eurprd04.prod.outlook.com
+ ([fe80::bc9c:10e5:4748:aafa%2]) with mapi id 15.20.3477.028; Thu, 29 Oct 2020
+ 10:12:50 +0000
 To: usrp-users@lists.ettus.com
-Message-ID: <73588971-021a-f7fc-dbe8-236843ff27b7@6tzvaim.com>
-Date: Thu, 29 Oct 2020 11:53:26 +0200
+References: <73588971-021a-f7fc-dbe8-236843ff27b7@6tzvaim.com>
+Message-ID: <fd64bc6e-6c5d-87e0-5fb5-d9a06432c2b1@ant.uni-bremen.de>
+Date: Thu, 29 Oct 2020 11:12:48 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
-MIME-Version: 1.0
+In-Reply-To: <73588971-021a-f7fc-dbe8-236843ff27b7@6tzvaim.com>
 Content-Language: en-US
-Subject: [USRP-users] UHD HOST build fails on ubuntu 20.04 LTS - (missing
- dependencies)
+X-Originating-IP: [2003:ca:7f17:d400:30f6:b168:1864:61a4]
+X-ClientProxiedBy: AM0PR10CA0075.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:15::28) To VI1PR0402MB3406.eurprd04.prod.outlook.com
+ (2603:10a6:803:c::27)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2003:ca:7f17:d400:30f6:b168:1864:61a4]
+ (2003:ca:7f17:d400:30f6:b168:1864:61a4) by
+ AM0PR10CA0075.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:15::28) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3499.18 via Frontend Transport; Thu, 29 Oct 2020 10:12:49 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 870a3fc9-27cc-4c8b-c02f-08d87bf330c4
+X-MS-TrafficTypeDiagnostic: VI1PR04MB6944:
+X-Microsoft-Antispam-PRVS: <VI1PR04MB6944A183D16228121351DE66A9140@VI1PR04MB6944.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: UphlpSu6NNc6zmILBGACmOutaoUO2lw6HfRBHs+Tc56+8MrowgijilOhW0UBsa9UmMOXLAX1O1vpZTdHJl2wWzxp1SK48hnN3Xnt6N83uWat8UeIcynomUBDKfmFNY2wkAhyX2hkyupU6Ps6Qq5fi8WfQHdA6T96ZBOqbevYQcjuPZnJNGW+mxB7eNxjgVx0bnkaTLX5FEepHOTBXqiwA9D8jE1Vf+nYE3SHQ8EdCjBOne6A1xq1O2O6fA+AD0voazNaLGPtuY4hvL6TCzZ6Myu1mllgVLT0hdm2n2bw0ARXcnVaDDk28rNfFKiMHg8g6hnn5DguAAxBYvA2ko7h7MI8f7R5H/aKUEfqy7NtdjqJZywZz2MZiXIBouIN2QCaVl+PmdQzFWXoKbzbcx7E84nPeJqPGhXeZCp0RfWdRJhTtYEzj4EgKYOOr4jX389r9faFDOyj5KVdOIbE53BsjQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:VI1PR0402MB3406.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(39830400003)(346002)(376002)(366004)(396003)(136003)(966005)(31696002)(31686004)(8936002)(52116002)(2906002)(16799955002)(53546011)(478600001)(83380400001)(186003)(8676002)(66556008)(316002)(786003)(16526019)(6486002)(2616005)(5660300002)(66946007)(30864003)(86362001)(6916009)(66476007)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData: zze7HmmwaU8m2itEttu2id5uy5hivsKL6oCi/TW6DTs1bxtsUR4Mis7vAOeRxSYXyA4wrP6HtS7Dl5gYSBrWHZ9tbSutGUkHqhQcgVhgLPEuHUkL0sN48sf6iMGpd/UevbFe0UODb2Vk4MhjEvxponkOHksibPnw1ANgWLyVfcs+NCEYGNm7OuT+oTrGsrxj5C6jO4TUvvGvaJvMoAv4VnDiISGWSVBr8zHv46pw0ETdQEr96s1T0mW7YA0mlm2c+v5HvBg0RjkH/UVgD0aftrw3+vciZVY++LIWlbh7S7YSU4gsOu4Z6nqT8kVfYU8KC3BzDTXe97qBtdzVGC0TpMO8eUuaPu6fKC1whBQ3P/jvgeP+nRMNi9HzbJG0ufvAxowwCunkEAQms2XR7TqPoI4Sx0/Z0+jPVGWKyIoRmfLNLxRQD8sykBp3ovuK76YoNPR3gNbUEIs+w5QqOdU76GKC4X9CPU6eogV6rqsXWqf8QunhAHdyvFJMVwU+P7CkeRg/5WFhEP/KfQXz6zpR9B79CV0vSehfsJCH8BfAOrQhQLBw0kXcw+tQhH8UNKd6if1GLk20UZcayf59ZpKt5fpWASvwNXadpXnDruqEwxUn/z1+ISRWU5pvyrkn+RGK22cGGcdd7pjFsXzv6d8bpCOpDjtW374kTm6nxcDD1t0DHy/6q0e2KUZqXxi6Fhw0W2wmn6f1+HTeY//vh9OeTQ==
+X-OriginatorOrg: ant.uni-bremen.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 870a3fc9-27cc-4c8b-c02f-08d87bf330c4
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3406.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2020 10:12:50.0414 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f018440b-2792-4fa0-b2bd-233acaf88ad2
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3htKjFKgZxbCwxMlektwji8dY2YDNpzxvyDYYrTt4gcNpvcRA12gTHXKylZpx61uXgC1Pudtd8hD1gQm9JT8uw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6944
+Subject: Re: [USRP-users] UHD HOST build fails on ubuntu 20.04 LTS -
+ (missing dependencies)
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -36,9 +96,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Baroch Oren via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Baroch Oren <baroch@6tzvaim.com>
-Content-Type: multipart/mixed; boundary="===============2167306790904632659=="
+From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -52,571 +113,433 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2167306790904632659==
-Content-Type: text/html; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-
-<html style="direction: ltr;">
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <style id="bidiui-paragraph-margins" type="text/css">body p { margin-bottom: 0cm; margin-top: 0pt; } </style>
-  </head>
-  <body bidimailui-charset-is-forced="true" style="direction: ltr;">
-    <p>Hello,</p>
-    <p>I've been following Application Note AN-445
-<a class="moz-txt-link-freetext" href="https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux">https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux</a></p>
-    <p>Couldn't build it. Please advise.</p>
-    <p><br>
-    </p>
-    <p>These are the requirements that were reported missing on the
-      apt-get line:</p>
-    <blockquote>
-      <p>E: Unable to locate package libcppunit-1.14-0<br>
-        E: Package 'python-scipy' has no installation candidate<br>
-        E: Unable to locate package qt4-bin-dbg<br>
-        E: Package 'qt4-default' has no installation candidate<br>
-        E: Package 'qt4-doc' has no installation candidate<br>
-        E: Package 'libqt4-dev' has no installation candidate<br>
-        E: Unable to locate package libqt4-dev-bin<br>
-        E: Unable to locate package python-qt4<br>
-        E: Unable to locate package python-qt4-dbg<br>
-        E: Unable to locate package python-qt4-dev<br>
-        E: Unable to locate package python-qt4-doc<br>
-        E: Unable to locate package libqwt6abi1<br>
-        E: Unable to locate package libncurses6-dbg<br>
-        E: Package 'libqt4-dev' has no installation candidate<br>
-        E: Package 'qt4-default' has no installation candidate<br>
-        E: Unable to locate package qt4-dev-tools<br>
-        E: Unable to locate package pyqt4-dev-tools<br>
-        E: Unable to locate package python-qwt5-qt4<br>
-        E: Unable to locate package python-gtk2<br>
-        E: Unable to locate package python-requests<br>
-        E: Package 'python-sphinx' has no installation candidate<br>
-        E: Unable to locate package python-zmq<br>
-        E: Package 'libqwt-dev' has no installation candidate<br>
-        E: Unable to locate package libqwt6abi1<br>
-        E: Unable to locate package libgps23<br>
-        E: Package 'python-gps' has no installation candidate<br>
-        <br>
-      </p>
-    </blockquote>
-    <p>following attempt to make &amp; build gives countless warning and
-      tthe following error:</p>
-    <blockquote>
-      <p>baroch@reliable:~/uhd/host/build$ cmake -DENABLE_GPSD=ON ../<br>
-        -- <br>
-        -- Configuring the python interpreter...<br>
-        -- Python interpreter: /usr/bin/python2<br>
-        -- Override with: -DPYTHON_EXECUTABLE=&lt;path-to-python&gt;<br>
-        -- Python runtime interpreter: /usr/bin/python2<br>
-        -- Override with:
-        -DRUNTIME_PYTHON_EXECUTABLE=&lt;path-to-python&gt;<br>
-        -- Working off of feature or development branch. Updating
-        version number.<br>
-        -- Using UHD Images Directory: /usr/local/share/uhd/images<br>
-        -- Build type not specified: defaulting to release.<br>
-        -- <br>
-        -- Configuring Boost C++ Libraries...<br>
-        -- Looking for optional Boost components...<br>
-        -- Found Boost:
-        /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake
-        (found suitable version "1.71.0", minimum required is "1.53")
-        found components: python <br>
-        -- Looking for required Boost components...<br>
-        -- Found Boost:
-        /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake
-        (found suitable version "1.71.0", minimum required is "1.53")
-        found components: chrono date_time filesystem program_options
-        regex system unit_test_framework serialization thread <br>
-        -- Boost include directories: /usr/include<br>
-        -- Boost library directories: /usr/lib/x86_64-linux-gnu<br>
-        -- Boost libraries:
-Boost::chrono;Boost::date_time;Boost::filesystem;Boost::program_options;Boost::regex;Boost::system;Boost::unit_test_framework;Boost::serialization;Boost::thread<br>
-        CMake Warning (dev) at cmake/Modules/UHDLog.cmake:68 (set):<br>
-          implicitly converting 'FILE' to 'STRING' type.<br>
-        Call Stack (most recent call first):<br>
-          CMakeLists.txt:365 (include)<br>
-        This warning is for project developers.  Use -Wno-dev to
-        suppress it.<br>
-        <br>
-        -- <br>
-        -- Python checking for Python version 2.7 or greater<br>
-        -- Python checking for Python version 2.7 or greater - found<br>
-        -- <br>
-        -- Python checking for Mako templates 0.4.2 or greater<br>
-        -- Python checking for Mako templates 0.4.2 or greater - found<br>
-        -- <br>
-        -- Python checking for requests 2.0 or greater<br>
-        -- Python checking for requests 2.0 or greater - "import
-        requests" failed<br>
-        -- <br>
-        -- Python checking for numpy 1.7 or greater<br>
-        -- Python checking for numpy 1.7 or greater - found<br>
-        -- <br>
-        -- Configuring LibUHD support...<br>
-        --   Dependency Boost_FOUND = TRUE<br>
-        --   Dependency HAVE_PYTHON_PLAT_MIN_VERSION = TRUE<br>
-        --   Dependency HAVE_PYTHON_MODULE_MAKO = TRUE<br>
-        --   Enabling LibUHD support.<br>
-        --   Override with -DENABLE_LIBUHD=ON/OFF<br>
-        -- <br>
-        -- Configuring LibUHD - C API support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Enabling LibUHD - C API support.<br>
-        --   Override with -DENABLE_C_API=ON/OFF<br>
-        -- <br>
-        -- Configuring LibUHD - Python API support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Dependency BOOST_PYTHON_FOUND = 1<br>
-        --   Dependency HAVE_PYTHON_MODULE_NUMPY = TRUE<br>
-        --   Dependency PythonLibs_FOUND = TRUE<br>
-        --   Enabling LibUHD - Python API support.<br>
-        --   Override with -DENABLE_PYTHON_API=ON/OFF<br>
-        -- <br>
-        -- Configuring Examples support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Enabling Examples support.<br>
-        --   Override with -DENABLE_EXAMPLES=ON/OFF<br>
-        -- <br>
-        -- Configuring Utils support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Enabling Utils support.<br>
-        --   Override with -DENABLE_UTILS=ON/OFF<br>
-        -- <br>
-        -- Configuring Tests support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Enabling Tests support.<br>
-        --   Override with -DENABLE_TESTS=ON/OFF<br>
-        -- <br>
-        -- Could NOT find LIBERIO (missing: LIBERIO_LIBRARY
-        LIBERIO_INCLUDE_DIR) <br>
-        -- Could NOT find dpdk (missing: DPDK_INCLUDE_DIR) <br>
-        -- <br>
-        -- Configuring LIBERIO support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Dependency LIBERIO_FOUND = FALSE<br>
-        --   Disabling LIBERIO support.<br>
-        --   Override with -DENABLE_LIBERIO=ON/OFF<br>
-        -- <br>
-        -- Configuring USB support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Dependency LIBUSB_FOUND = TRUE<br>
-        --   Enabling USB support.<br>
-        --   Override with -DENABLE_USB=ON/OFF<br>
-        -- <br>
-        -- Configuring GPSD support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Dependency ENABLE_GPSD = ON<br>
-        --   Dependency LIBGPS_FOUND = TRUE<br>
-        --   Enabling GPSD support.<br>
-        --   Override with -DENABLE_GPSD=ON/OFF<br>
-        -- <br>
-        -- Configuring B100 support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Dependency ENABLE_USB = ON<br>
-        --   Enabling B100 support.<br>
-        --   Override with -DENABLE_B100=ON/OFF<br>
-        -- <br>
-        -- Configuring B200 support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Dependency ENABLE_USB = ON<br>
-        --   Enabling B200 support.<br>
-        --   Override with -DENABLE_B200=ON/OFF<br>
-        -- <br>
-        -- Configuring E300 support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Disabling E300 support.<br>
-        --   Override with -DENABLE_E300=ON/OFF<br>
-        -- <br>
-        -- Configuring USRP1 support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Dependency ENABLE_USB = ON<br>
-        --   Enabling USRP1 support.<br>
-        --   Override with -DENABLE_USRP1=ON/OFF<br>
-        -- <br>
-        -- Configuring USRP2 support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Enabling USRP2 support.<br>
-        --   Override with -DENABLE_USRP2=ON/OFF<br>
-        -- <br>
-        -- Configuring X300 support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Enabling X300 support.<br>
-        --   Override with -DENABLE_X300=ON/OFF<br>
-        -- <br>
-        -- Configuring N230 support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Enabling N230 support.<br>
-        --   Override with -DENABLE_N230=ON/OFF<br>
-        -- <br>
-        -- Configuring MPMD support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Enabling MPMD support.<br>
-        --   Override with -DENABLE_MPMD=ON/OFF<br>
-        -- <br>
-        -- Configuring N300 support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Dependency ENABLE_MPMD = ON<br>
-        --   Enabling N300 support.<br>
-        --   Override with -DENABLE_N300=ON/OFF<br>
-        -- <br>
-        -- Configuring N320 support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Dependency ENABLE_MPMD = ON<br>
-        --   Enabling N320 support.<br>
-        --   Override with -DENABLE_N320=ON/OFF<br>
-        -- <br>
-        -- Configuring E320 support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Dependency ENABLE_MPMD = ON<br>
-        --   Enabling E320 support.<br>
-        --   Override with -DENABLE_E320=ON/OFF<br>
-        -- <br>
-        -- Configuring OctoClock support...<br>
-        --   Dependency ENABLE_LIBUHD = ON<br>
-        --   Enabling OctoClock support.<br>
-        --   Override with -DENABLE_OCTOCLOCK=ON/OFF<br>
-        -- <br>
-        -- Configuring DPDK support...<br>
-        --   Dependency ENABLE_MPMD = ON<br>
-        --   Dependency DPDK_FOUND = FALSE<br>
-        --   Disabling DPDK support.<br>
-        --   Override with -DENABLE_DPDK=ON/OFF<br>
-        -- <br>
-        -- <br>
-        -- <br>
-        -- Configuring priority scheduling...<br>
-        --   Priority scheduling supported through
-        pthread_setschedparam.<br>
-        --   Setting thread names is supported through
-        pthread_setname_np.<br>
-        -- <br>
-        -- Configuring high resolution timing...<br>
-        --   High resolution timing supported through clock_gettime.<br>
-        -- <br>
-        -- Configuring module loading...<br>
-        --   Module loading supported through dlopen.<br>
-        -- <br>
-        -- Processing NI-RIO FPGA LVBITX Bitstreams...<br>
-        --   Using x300.lvbitx_base for codegen<br>
-        --   Using x310.lvbitx_base for codegen<br>
-        -- <br>
-        -- USB support enabled via libusb.<br>
-        -- <br>
-        -- Configuring interface address discovery...<br>
-        --   Interface address discovery supported through getifaddrs.<br>
-        -- <br>
-        -- Loading build info.<br>
-        -- <br>
-        -- Adding B2XX device test target<br>
-        -- Adding X3x0 device test target<br>
-        -- Adding N3XX device test target<br>
-        -- Adding E32x device test target<br>
-        -- <br>
-        CMake Warning at utils/CMakeLists.txt:123 (message):<br>
-          Python module `requests' not found -- uhd_images_downloader.py
-        will not<br>
-          work without it.<br>
-        <br>
-        <br>
-        CMake Warning at utils/CMakeLists.txt:124 (message):<br>
-          You may be able to install this by running 'pip install
-        requests'<br>
-        <br>
-        <br>
-        -- <br>
-        -- Configuring Manual support...<br>
-        --   Dependency DOXYGEN_FOUND = YES<br>
-        --   Enabling Manual support.<br>
-        --   Override with -DENABLE_MANUAL=ON/OFF<br>
-        -- <br>
-        -- Configuring API/Doxygen support...<br>
-        --   Dependency DOXYGEN_FOUND = YES<br>
-        --   Enabling API/Doxygen support.<br>
-        --   Override with -DENABLE_DOXYGEN=ON/OFF<br>
-        -- <br>
-        -- Configuring Man Pages support...<br>
-        --   Dependency GZIP_FOUND = TRUE<br>
-        --   Dependency NOT_WIN32 = TRUE<br>
-        --   Enabling Man Pages support.<br>
-        --   Override with -DENABLE_MAN_PAGES=ON/OFF<br>
-        -- <br>
-        -- Python checking for virtualenv<br>
-        -- Python checking for virtualenv - "assert hasattr(sys,
-        'real_prefix')" failed<br>
-        -- Utilizing the python install directory:
-        /usr/local/lib/python2.7/dist-packages<br>
-        -- <br>
-        -- ######################################################<br>
-        -- # UHD enabled components                              <br>
-        -- ######################################################<br>
-        --   * LibUHD<br>
-        --   * LibUHD - C API<br>
-        --   * LibUHD - Python API<br>
-        --   * Examples<br>
-        --   * Utils<br>
-        --   * Tests<br>
-        --   * USB<br>
-        --   * GPSD<br>
-        --   * B100<br>
-        --   * B200<br>
-        --   * USRP1<br>
-        --   * USRP2<br>
-        --   * X300<br>
-        --   * N230<br>
-        --   * MPMD<br>
-        --   * N300<br>
-        --   * N320<br>
-        --   * E320<br>
-        --   * OctoClock<br>
-        --   * Manual<br>
-        --   * API/Doxygen<br>
-        --   * Man Pages<br>
-        -- <br>
-        -- ######################################################<br>
-        -- # UHD disabled components                             <br>
-        -- ######################################################<br>
-        --   * LIBERIO<br>
-        --   * E300<br>
-        --   * DPDK<br>
-        -- <br>
-        -- ******************************************************<br>
-        -- * You are building a development branch of UHD.<br>
-        -- * These branches are designed to provide early access<br>
-        -- * to UHD and USRP features, but should be considered<br>
-        -- * unstable and/or experimental!<br>
-        -- ******************************************************<br>
-        -- Building version: 3.14.1.HEAD-0-g0347a6d8<br>
-        -- Using install prefix: /usr/local<br>
-        -- Configuring done<br>
-        -- Generating done<br>
-        -- Build files have been written to: /home/baroch/uhd/host/build<br>
-        baroch@reliable:~/uhd/host/build$ make<br>
-        Scanning dependencies of target uhd_rpclib<br>
-        [  0%] Building CXX object
-        lib/deps/rpclib/CMakeFiles/uhd_rpclib.dir/lib/rpc/dispatcher.cc.o<br>
-        In file included from
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,<br>
-                         from
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/dispatcher.h:12,<br>
-                         from
-        /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/dispatcher.cc:1:<br>
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp: In
-        function ‘void
-        clmdep_msgpack::v1::operator&lt;&lt;(clmdep_msgpack::v1::object&amp;,
-        const msgpack_object&amp;)’:<br>
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:613:34:
-        warning: ‘void* memcpy(void*, const void*, size_t)’ copying an
-        object of non-trivial type ‘struct clmdep_msgpack::v1::object’
-        from an array of ‘const msgpack_object’ {aka ‘const struct
-        msgpack_object’} [-Wclass-memaccess]<br>
-          613 |     std::memcpy(&amp;o, &amp;v, sizeof(v));<br>
-              |                                  ^<br>
-        In file included from
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/adaptor/adaptor_base.hpp:21,<br>
-                         from
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:24,<br>
-                         from
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,<br>
-                         from
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/dispatcher.h:12,<br>
-                         from
-        /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/dispatcher.cc:1:<br>
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object_fwd.hpp:111:8:
-        note: ‘struct clmdep_msgpack::v1::object’ declared here<br>
-          111 | struct object {<br>
-              |        ^~~~~~<br>
-        [  0%] Building CXX object
-        lib/deps/rpclib/CMakeFiles/uhd_rpclib.dir/lib/rpc/server.cc.o<br>
-        In file included from
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,<br>
-                         from
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/server.h:7,<br>
-                         from
-        /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/server.cc:1:<br>
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp: In
-        function ‘void
-        clmdep_msgpack::v1::operator&lt;&lt;(clmdep_msgpack::v1::object&amp;,
-        const msgpack_object&amp;)’:<br>
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:613:34:
-        warning: ‘void* memcpy(void*, const void*, size_t)’ copying an
-        object of non-trivial type ‘struct clmdep_msgpack::v1::object’
-        from an array of ‘const msgpack_object’ {aka ‘const struct
-        msgpack_object’} [-Wclass-memaccess]<br>
-          613 |     std::memcpy(&amp;o, &amp;v, sizeof(v));<br>
-              |                                  ^<br>
-        In file included from
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/adaptor/adaptor_base.hpp:21,<br>
-                         from
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object.hpp:24,<br>
-                         from
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack.hpp:23,<br>
-                         from
-        /home/baroch/uhd/host/lib/deps/rpclib/include/rpc/server.h:7,<br>
-                         from
-        /home/baroch/uhd/host/lib/deps/rpclib/lib/rpc/server.cc:1:<br>
-/home/baroch/uhd/host/lib/deps/rpclib/include/rpc/msgpack/object_fwd.hpp:111:8:
-        note: ‘struct clmdep_msgpack::v1::object’ declared here<br>
-          111 | struct object {<br>
-              |        ^~~~~~<br>
-        <br>
-              <br>
-        [ a lot of warnings truncated B.O.]      <br>
-              <br>
-              <br>
-              <br>
-        [ 22%] Building CXX object
-        lib/CMakeFiles/uhd.dir/usrp/subdev_spec.cpp.o<br>
-        [ 23%] Building CXX object
-        lib/CMakeFiles/uhd.dir/usrp/fe_connection.cpp.o<br>
-        [ 23%] Building CXX object
-        lib/CMakeFiles/uhd.dir/usrp/dboard_eeprom_c.cpp.o<br>
-        [ 23%] Building CXX object
-        lib/CMakeFiles/uhd.dir/usrp/mboard_eeprom_c.cpp.o<br>
-        [ 23%] Building CXX object
-        lib/CMakeFiles/uhd.dir/usrp/subdev_spec_c.cpp.o<br>
-        [ 23%] Building CXX object
-        lib/CMakeFiles/uhd.dir/usrp/usrp_c.cpp.o<br>
-        [ 23%] Building CXX object
-        lib/CMakeFiles/uhd.dir/usrp/gpsd_iface.cpp.o<br>
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member
-        function ‘int64_t uhd::usrp::gpsd_iface_impl::_epoch_time()’:<br>
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:141:62: error:
-        cannot convert ‘timespec_t’ {aka ‘timespec’} to ‘time_t’ {aka
-        ‘long int’}<br>
-          141 |         return
-        (boost::posix_time::from_time_t(_gps_data.fix.time)<br>
-              |                                               
-        ~~~~~~~~~~~~~~^~~~<br>
-             
-        |                                                              |<br>
-             
-        |                                                             
-        timespec_t {aka timespec}<br>
-        In file included from /usr/include/boost/thread/xtime.hpp:16,<br>
-                         from
-        /usr/include/boost/thread/pthread/mutex.hpp:20,<br>
-                         from /usr/include/boost/thread/mutex.hpp:16,<br>
-                         from
-        /usr/include/boost/thread/pthread/shared_mutex.hpp:14,<br>
-                         from
-        /usr/include/boost/thread/shared_mutex.hpp:28,<br>
-                         from
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:16:<br>
-        /usr/include/boost/date_time/posix_time/conversion.hpp:27:33:
-        note:   initializing argument 1 of ‘boost::posix_time::ptime
-        boost::posix_time::from_time_t(time_t)’<br>
-           27 |   ptime from_time_t(std::time_t t)<br>
-              |                     ~~~~~~~~~~~~^<br>
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member
-        function ‘boost::gregorian::date
-        uhd::usrp::gpsd_iface_impl::_gregorian_date()’:<br>
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:148:61: error:
-        cannot convert ‘timespec_t’ {aka ‘timespec’} to ‘time_t’ {aka
-        ‘long int’}<br>
-          148 |         return
-        boost::posix_time::from_time_t(_gps_data.fix.time).date();<br>
-              |                                              
-        ~~~~~~~~~~~~~~^~~~<br>
-             
-        |                                                             |<br>
-             
-        |                                                            
-        timespec_t {aka timespec}<br>
-        In file included from /usr/include/boost/thread/xtime.hpp:16,<br>
-                         from
-        /usr/include/boost/thread/pthread/mutex.hpp:20,<br>
-                         from /usr/include/boost/thread/mutex.hpp:16,<br>
-                         from
-        /usr/include/boost/thread/pthread/shared_mutex.hpp:14,<br>
-                         from
-        /usr/include/boost/thread/shared_mutex.hpp:28,<br>
-                         from
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:16:<br>
-        /usr/include/boost/date_time/posix_time/conversion.hpp:27:33:
-        note:   initializing argument 1 of ‘boost::posix_time::ptime
-        boost::posix_time::from_time_t(time_t)’<br>
-           27 |   ptime from_time_t(std::time_t t)<br>
-              |                     ~~~~~~~~~~~~^<br>
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member
-        function ‘std::string uhd::usrp::gpsd_iface_impl::_gps_gprmc()’:<br>
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:206:49: error:
-        invalid cast from type ‘timespec_t’ {aka ‘timespec’} to type
-        ‘time_t’ {aka ‘long int’}<br>
-          206 |             intfixtime = (time_t) _gps_data.fix.time;<br>
-              |                                                 ^~~~<br>
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp: In member
-        function ‘std::string uhd::usrp::gpsd_iface_impl::_gps_gpgga()’:<br>
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:241:45: error:
-        invalid cast from type ‘timespec_t’ {aka ‘timespec’} to type
-        ‘time_t’ {aka ‘long int’}<br>
-          241 |         intfixtime = (time_t) _gps_data.fix.time;<br>
-              |                                             ^~~~<br>
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:268:42: error:
-        ‘struct gps_data_t’ has no member named ‘separation’<br>
-          268 |         if (boost::math::isnan(_gps_data.separation))<br>
-              |                                          ^~~~~~~~~~<br>
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:58: error:
-        ‘struct gps_data_t’ has no member named ‘separation’<br>
-          272 |                 str(boost::format("%.3f,M,") %
-        _gps_data.separation));<br>
-              |                                                         
-        ^~~~~~~~~~<br>
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: error:
-        ‘str’ was not declared in this scope<br>
-          272 |                 str(boost::format("%.3f,M,") %
-        _gps_data.separation));<br>
-              |                 ^~~<br>
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:272:17: note:
-        suggested alternatives:<br>
-        In file included from /usr/include/boost/format.hpp:53,<br>
-                         from
-        /home/baroch/uhd/host/lib/usrp/gpsd_iface.cpp:15:<br>
-        /usr/include/boost/format/free_funcs.hpp:22:38: note:  
-        ‘boost::str’<br>
-           22 |     std::basic_string&lt;Ch, Tr, Alloc&gt; str(const
-        basic_format&lt;Ch, Tr, Alloc&gt;&amp; f) {<br>
-              |                                      ^~~<br>
-        /usr/include/boost/format/free_funcs.hpp:22:38: note:  
-        ‘boost::str’<br>
-        make[2]: *** [lib/CMakeFiles/uhd.dir/build.make:1303:
-        lib/CMakeFiles/uhd.dir/usrp/gpsd_iface.cpp.o] Error 1<br>
-        make[1]: *** [CMakeFiles/Makefile2:731:
-        lib/CMakeFiles/uhd.dir/all] Error 2<br>
-        make: *** [Makefile:163: all] Error 2<br>
-        <br>
-      </p>
-    </blockquote>
-    <p>Thanks, </p>
-    <p>Baroch Oren<br>
-    </p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
-    <div class="moz-signature">-- <br>
-      <div dir="rtl">
-        <p><bold>ברוך אורן بروح اورن Baroch Oren</bold></p>
-        <p>טל' 058-7799233 cell</p>
-        <p><a href="https://www.patreon.com/barochoren">תמכו באקטיביזם
-            שלי support my activism</a></p>
-      </div>
-    </div>
-  </body>
-</html>
-
-
---===============2167306790904632659==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2167306790904632659==--
+SGkgQmFyb2NoLAoKRG8geW91IG5lZWQgVUhEIDMuMTQ/IFVIRCAzLjE1IGlzIHByb2JhYmx5IGVh
+c2llciB0byBpbnN0YWxsIG9uIHlvdXIgc3lzdGVtLgoKQmVzaWRlcywgdGhlIG1pc3NpbmcgZGVw
+ZW5kZW5jaWVzIGluZGljYXRlIHRoYXQgeW91IHdhbnQgdG8gaW5zdGFsbCBhIApyZWFsbHkgb2xk
+IHZlcnNpb24gb2YgVUhEPyBvciBHTlUgUmFkaW8/IE9uIGEgbW9kZXJuIHN5c3RlbS4gVGhlIGNs
+b2NrIApyYW4gb3V0IG9uIFB5dGhvbjIuIEZvciBzb21lIHJlYXNvbiBjbWFrZSBzZWVtcyB0byBm
+aW5kIGEgcHl0aG9uMiAKaW5zdGFsbCBvbiB5b3VyIHN5c3RlbS4gVGhhdCB3YXNuJ3QgdGhlcmUg
+YnkgZGVmYXVsdC4gQW5kIGl0IHdvdWxkIApwcm9iYWJseSBiZSBnb29kIHRvIG5vdCBoYXZlIGl0
+IHRoZXJlIHRvIG1pbmltaXplIHBvdGVudGlhbCBtaXh1cHMuCgpGdXJ0aGVyLCB5b3VyIHN5c3Rl
+bSBsYWNrcyBRdDQgd2hpY2ggaXMgYWdhaW4gcmVhbGx5IG9sZCBhbmQgZXZlcnl0aGluZyAKc2hv
+dWxkIGJlIHBvcnRlZCB0byBRdDUgYnkgbm93LiBBdCBsZWFzdCBHTlUgUmFkaW8gd29ya3Mgd2l0
+aCBRdDUuCgpCZXNpZGVzLCB1bmZvcnR1bmF0ZWx5IHRoZSBndWlkZSB5b3UgbGluayB0byBsYWNr
+cyBVYnVudHUgMjAuMDQgCmluc3RydWN0aW9ucyB3aGljaCBkaWZmZXIuCgpUaGlzIHdvdWxkIGJl
+IHRoZSByZXF1aXJlZCBsaXN0IG9mIGRlcGVuZGVuY2llcyBvbiAyMC4wNDoKaHR0cHM6Ly93aWtp
+LmdudXJhZGlvLm9yZy9pbmRleC5waHAvVWJ1bnR1SW5zdGFsbCNGb2NhbF9Gb3NzYV8uMjgyMC4w
+NC4yOQoKSWYgeW91IHdhbnQgdG8gaW5zdGFsbCBVSEQgb25seSwgeW91IG1pZ2h0IGFsc28gZ28g
+Zm9yIGBsaWJ1aGQtZGV2YCBhbmQgCmBweXRob24zLXVoZGAuIFRoZXNlIHNob3VsZCBpbnN0YWxs
+IFVIRCAzLjE1IG9uIHlvdXIgc3lzdGVtIGFzIHdlbGwuIE5vIApuZWVkIGZvciBhIHNvdXJjZSBp
+bnN0YWxsLgoKQ2hlZXJzCkpvaGFubmVzCgpPbiAyOS4xMC4yMCAxMDo1MywgQmFyb2NoIE9yZW4g
+dmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4gSGVsbG8sCj4gCj4gSSd2ZSBiZWVuIGZvbGxvd2luZyBB
+cHBsaWNhdGlvbiBOb3RlIEFOLTQ0NSAKPiBodHRwczovL2tiLmV0dHVzLmNvbS9CdWlsZGluZ19h
+bmRfSW5zdGFsbGluZ190aGVfVVNSUF9PcGVuLVNvdXJjZV9Ub29sY2hhaW5fKFVIRF9hbmRfR05V
+X1JhZGlvKV9vbl9MaW51eAo+IAo+IENvdWxkbid0IGJ1aWxkIGl0LiBQbGVhc2UgYWR2aXNlLgo+
+IAo+IAo+IFRoZXNlIGFyZSB0aGUgcmVxdWlyZW1lbnRzIHRoYXQgd2VyZSByZXBvcnRlZCBtaXNz
+aW5nIG9uIHRoZSBhcHQtZ2V0IGxpbmU6Cj4gCj4gICAgIEU6IFVuYWJsZSB0byBsb2NhdGUgcGFj
+a2FnZSBsaWJjcHB1bml0LTEuMTQtMAo+ICAgICBFOiBQYWNrYWdlICdweXRob24tc2NpcHknIGhh
+cyBubyBpbnN0YWxsYXRpb24gY2FuZGlkYXRlCj4gICAgIEU6IFVuYWJsZSB0byBsb2NhdGUgcGFj
+a2FnZSBxdDQtYmluLWRiZwo+ICAgICBFOiBQYWNrYWdlICdxdDQtZGVmYXVsdCcgaGFzIG5vIGlu
+c3RhbGxhdGlvbiBjYW5kaWRhdGUKPiAgICAgRTogUGFja2FnZSAncXQ0LWRvYycgaGFzIG5vIGlu
+c3RhbGxhdGlvbiBjYW5kaWRhdGUKPiAgICAgRTogUGFja2FnZSAnbGlicXQ0LWRldicgaGFzIG5v
+IGluc3RhbGxhdGlvbiBjYW5kaWRhdGUKPiAgICAgRTogVW5hYmxlIHRvIGxvY2F0ZSBwYWNrYWdl
+IGxpYnF0NC1kZXYtYmluCj4gICAgIEU6IFVuYWJsZSB0byBsb2NhdGUgcGFja2FnZSBweXRob24t
+cXQ0Cj4gICAgIEU6IFVuYWJsZSB0byBsb2NhdGUgcGFja2FnZSBweXRob24tcXQ0LWRiZwo+ICAg
+ICBFOiBVbmFibGUgdG8gbG9jYXRlIHBhY2thZ2UgcHl0aG9uLXF0NC1kZXYKPiAgICAgRTogVW5h
+YmxlIHRvIGxvY2F0ZSBwYWNrYWdlIHB5dGhvbi1xdDQtZG9jCj4gICAgIEU6IFVuYWJsZSB0byBs
+b2NhdGUgcGFja2FnZSBsaWJxd3Q2YWJpMQo+ICAgICBFOiBVbmFibGUgdG8gbG9jYXRlIHBhY2th
+Z2UgbGlibmN1cnNlczYtZGJnCj4gICAgIEU6IFBhY2thZ2UgJ2xpYnF0NC1kZXYnIGhhcyBubyBp
+bnN0YWxsYXRpb24gY2FuZGlkYXRlCj4gICAgIEU6IFBhY2thZ2UgJ3F0NC1kZWZhdWx0JyBoYXMg
+bm8gaW5zdGFsbGF0aW9uIGNhbmRpZGF0ZQo+ICAgICBFOiBVbmFibGUgdG8gbG9jYXRlIHBhY2th
+Z2UgcXQ0LWRldi10b29scwo+ICAgICBFOiBVbmFibGUgdG8gbG9jYXRlIHBhY2thZ2UgcHlxdDQt
+ZGV2LXRvb2xzCj4gICAgIEU6IFVuYWJsZSB0byBsb2NhdGUgcGFja2FnZSBweXRob24tcXd0NS1x
+dDQKPiAgICAgRTogVW5hYmxlIHRvIGxvY2F0ZSBwYWNrYWdlIHB5dGhvbi1ndGsyCj4gICAgIEU6
+IFVuYWJsZSB0byBsb2NhdGUgcGFja2FnZSBweXRob24tcmVxdWVzdHMKPiAgICAgRTogUGFja2Fn
+ZSAncHl0aG9uLXNwaGlueCcgaGFzIG5vIGluc3RhbGxhdGlvbiBjYW5kaWRhdGUKPiAgICAgRTog
+VW5hYmxlIHRvIGxvY2F0ZSBwYWNrYWdlIHB5dGhvbi16bXEKPiAgICAgRTogUGFja2FnZSAnbGli
+cXd0LWRldicgaGFzIG5vIGluc3RhbGxhdGlvbiBjYW5kaWRhdGUKPiAgICAgRTogVW5hYmxlIHRv
+IGxvY2F0ZSBwYWNrYWdlIGxpYnF3dDZhYmkxCj4gICAgIEU6IFVuYWJsZSB0byBsb2NhdGUgcGFj
+a2FnZSBsaWJncHMyMwo+ICAgICBFOiBQYWNrYWdlICdweXRob24tZ3BzJyBoYXMgbm8gaW5zdGFs
+bGF0aW9uIGNhbmRpZGF0ZQo+IAo+IGZvbGxvd2luZyBhdHRlbXB0IHRvIG1ha2UgJiBidWlsZCBn
+aXZlcyBjb3VudGxlc3Mgd2FybmluZyBhbmQgdHRoZSAKPiBmb2xsb3dpbmcgZXJyb3I6Cj4gCj4g
+ICAgIGJhcm9jaEByZWxpYWJsZTp+L3VoZC9ob3N0L2J1aWxkJCBjbWFrZSAtREVOQUJMRV9HUFNE
+PU9OIC4uLwo+ICAgICAtLSAKPiAgICAgLS0gQ29uZmlndXJpbmcgdGhlIHB5dGhvbiBpbnRlcnBy
+ZXRlci4uLgo+ICAgICAtLSBQeXRob24gaW50ZXJwcmV0ZXI6IC91c3IvYmluL3B5dGhvbjIKPiAg
+ICAgLS0gT3ZlcnJpZGUgd2l0aDogLURQWVRIT05fRVhFQ1VUQUJMRT08cGF0aC10by1weXRob24+
+Cj4gICAgIC0tIFB5dGhvbiBydW50aW1lIGludGVycHJldGVyOiAvdXNyL2Jpbi9weXRob24yCj4g
+ICAgIC0tIE92ZXJyaWRlIHdpdGg6IC1EUlVOVElNRV9QWVRIT05fRVhFQ1VUQUJMRT08cGF0aC10
+by1weXRob24+Cj4gICAgIC0tIFdvcmtpbmcgb2ZmIG9mIGZlYXR1cmUgb3IgZGV2ZWxvcG1lbnQg
+YnJhbmNoLiBVcGRhdGluZyB2ZXJzaW9uCj4gICAgIG51bWJlci4KPiAgICAgLS0gVXNpbmcgVUhE
+IEltYWdlcyBEaXJlY3Rvcnk6IC91c3IvbG9jYWwvc2hhcmUvdWhkL2ltYWdlcwo+ICAgICAtLSBC
+dWlsZCB0eXBlIG5vdCBzcGVjaWZpZWQ6IGRlZmF1bHRpbmcgdG8gcmVsZWFzZS4KPiAgICAgLS0g
+Cj4gICAgIC0tIENvbmZpZ3VyaW5nIEJvb3N0IEMrKyBMaWJyYXJpZXMuLi4KPiAgICAgLS0gTG9v
+a2luZyBmb3Igb3B0aW9uYWwgQm9vc3QgY29tcG9uZW50cy4uLgo+ICAgICAtLSBGb3VuZCBCb29z
+dDoKPiAgICAgL3Vzci9saWIveDg2XzY0LWxpbnV4LWdudS9jbWFrZS9Cb29zdC0xLjcxLjAvQm9v
+c3RDb25maWcuY21ha2UKPiAgICAgKGZvdW5kIHN1aXRhYmxlIHZlcnNpb24gIjEuNzEuMCIsIG1p
+bmltdW0gcmVxdWlyZWQgaXMgIjEuNTMiKSBmb3VuZAo+ICAgICBjb21wb25lbnRzOiBweXRob24K
+PiAgICAgLS0gTG9va2luZyBmb3IgcmVxdWlyZWQgQm9vc3QgY29tcG9uZW50cy4uLgo+ICAgICAt
+LSBGb3VuZCBCb29zdDoKPiAgICAgL3Vzci9saWIveDg2XzY0LWxpbnV4LWdudS9jbWFrZS9Cb29z
+dC0xLjcxLjAvQm9vc3RDb25maWcuY21ha2UKPiAgICAgKGZvdW5kIHN1aXRhYmxlIHZlcnNpb24g
+IjEuNzEuMCIsIG1pbmltdW0gcmVxdWlyZWQgaXMgIjEuNTMiKSBmb3VuZAo+ICAgICBjb21wb25l
+bnRzOiBjaHJvbm8gZGF0ZV90aW1lIGZpbGVzeXN0ZW0gcHJvZ3JhbV9vcHRpb25zIHJlZ2V4IHN5
+c3RlbQo+ICAgICB1bml0X3Rlc3RfZnJhbWV3b3JrIHNlcmlhbGl6YXRpb24gdGhyZWFkCj4gICAg
+IC0tIEJvb3N0IGluY2x1ZGUgZGlyZWN0b3JpZXM6IC91c3IvaW5jbHVkZQo+ICAgICAtLSBCb29z
+dCBsaWJyYXJ5IGRpcmVjdG9yaWVzOiAvdXNyL2xpYi94ODZfNjQtbGludXgtZ251Cj4gICAgIC0t
+IEJvb3N0IGxpYnJhcmllczoKPiAgICAgQm9vc3Q6OmNocm9ubztCb29zdDo6ZGF0ZV90aW1lO0Jv
+b3N0OjpmaWxlc3lzdGVtO0Jvb3N0Ojpwcm9ncmFtX29wdGlvbnM7Qm9vc3Q6OnJlZ2V4O0Jvb3N0
+OjpzeXN0ZW07Qm9vc3Q6OnVuaXRfdGVzdF9mcmFtZXdvcms7Qm9vc3Q6OnNlcmlhbGl6YXRpb247
+Qm9vc3Q6OnRocmVhZAo+ICAgICBDTWFrZSBXYXJuaW5nIChkZXYpIGF0IGNtYWtlL01vZHVsZXMv
+VUhETG9nLmNtYWtlOjY4IChzZXQpOgo+ICAgICAgwqAgaW1wbGljaXRseSBjb252ZXJ0aW5nICdG
+SUxFJyB0byAnU1RSSU5HJyB0eXBlLgo+ICAgICBDYWxsIFN0YWNrIChtb3N0IHJlY2VudCBjYWxs
+IGZpcnN0KToKPiAgICAgIMKgIENNYWtlTGlzdHMudHh0OjM2NSAoaW5jbHVkZSkKPiAgICAgVGhp
+cyB3YXJuaW5nIGlzIGZvciBwcm9qZWN0IGRldmVsb3BlcnMuwqAgVXNlIC1Xbm8tZGV2IHRvIHN1
+cHByZXNzIGl0Lgo+IAo+ICAgICAtLSAKPiAgICAgLS0gUHl0aG9uIGNoZWNraW5nIGZvciBQeXRo
+b24gdmVyc2lvbiAyLjcgb3IgZ3JlYXRlcgo+ICAgICAtLSBQeXRob24gY2hlY2tpbmcgZm9yIFB5
+dGhvbiB2ZXJzaW9uIDIuNyBvciBncmVhdGVyIC0gZm91bmQKPiAgICAgLS0gCj4gICAgIC0tIFB5
+dGhvbiBjaGVja2luZyBmb3IgTWFrbyB0ZW1wbGF0ZXMgMC40LjIgb3IgZ3JlYXRlcgo+ICAgICAt
+LSBQeXRob24gY2hlY2tpbmcgZm9yIE1ha28gdGVtcGxhdGVzIDAuNC4yIG9yIGdyZWF0ZXIgLSBm
+b3VuZAo+ICAgICAtLSAKPiAgICAgLS0gUHl0aG9uIGNoZWNraW5nIGZvciByZXF1ZXN0cyAyLjAg
+b3IgZ3JlYXRlcgo+ICAgICAtLSBQeXRob24gY2hlY2tpbmcgZm9yIHJlcXVlc3RzIDIuMCBvciBn
+cmVhdGVyIC0gImltcG9ydCByZXF1ZXN0cyIKPiAgICAgZmFpbGVkCj4gICAgIC0tIAo+ICAgICAt
+LSBQeXRob24gY2hlY2tpbmcgZm9yIG51bXB5IDEuNyBvciBncmVhdGVyCj4gICAgIC0tIFB5dGhv
+biBjaGVja2luZyBmb3IgbnVtcHkgMS43IG9yIGdyZWF0ZXIgLSBmb3VuZAo+ICAgICAtLSAKPiAg
+ICAgLS0gQ29uZmlndXJpbmcgTGliVUhEIHN1cHBvcnQuLi4KPiAgICAgLS3CoMKgIERlcGVuZGVu
+Y3kgQm9vc3RfRk9VTkQgPSBUUlVFCj4gICAgIC0twqDCoCBEZXBlbmRlbmN5IEhBVkVfUFlUSE9O
+X1BMQVRfTUlOX1ZFUlNJT04gPSBUUlVFCj4gICAgIC0twqDCoCBEZXBlbmRlbmN5IEhBVkVfUFlU
+SE9OX01PRFVMRV9NQUtPID0gVFJVRQo+ICAgICAtLcKgwqAgRW5hYmxpbmcgTGliVUhEIHN1cHBv
+cnQuCj4gICAgIC0twqDCoCBPdmVycmlkZSB3aXRoIC1ERU5BQkxFX0xJQlVIRD1PTi9PRkYKPiAg
+ICAgLS0gCj4gICAgIC0tIENvbmZpZ3VyaW5nIExpYlVIRCAtIEMgQVBJIHN1cHBvcnQuLi4KPiAg
+ICAgLS3CoMKgIERlcGVuZGVuY3kgRU5BQkxFX0xJQlVIRCA9IE9OCj4gICAgIC0twqDCoCBFbmFi
+bGluZyBMaWJVSEQgLSBDIEFQSSBzdXBwb3J0Lgo+ICAgICAtLcKgwqAgT3ZlcnJpZGUgd2l0aCAt
+REVOQUJMRV9DX0FQST1PTi9PRkYKPiAgICAgLS0gCj4gICAgIC0tIENvbmZpZ3VyaW5nIExpYlVI
+RCAtIFB5dGhvbiBBUEkgc3VwcG9ydC4uLgo+ICAgICAtLcKgwqAgRGVwZW5kZW5jeSBFTkFCTEVf
+TElCVUhEID0gT04KPiAgICAgLS3CoMKgIERlcGVuZGVuY3kgQk9PU1RfUFlUSE9OX0ZPVU5EID0g
+MQo+ICAgICAtLcKgwqAgRGVwZW5kZW5jeSBIQVZFX1BZVEhPTl9NT0RVTEVfTlVNUFkgPSBUUlVF
+Cj4gICAgIC0twqDCoCBEZXBlbmRlbmN5IFB5dGhvbkxpYnNfRk9VTkQgPSBUUlVFCj4gICAgIC0t
+wqDCoCBFbmFibGluZyBMaWJVSEQgLSBQeXRob24gQVBJIHN1cHBvcnQuCj4gICAgIC0twqDCoCBP
+dmVycmlkZSB3aXRoIC1ERU5BQkxFX1BZVEhPTl9BUEk9T04vT0ZGCj4gICAgIC0tIAo+ICAgICAt
+LSBDb25maWd1cmluZyBFeGFtcGxlcyBzdXBwb3J0Li4uCj4gICAgIC0twqDCoCBEZXBlbmRlbmN5
+IEVOQUJMRV9MSUJVSEQgPSBPTgo+ICAgICAtLcKgwqAgRW5hYmxpbmcgRXhhbXBsZXMgc3VwcG9y
+dC4KPiAgICAgLS3CoMKgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVfRVhBTVBMRVM9T04vT0ZGCj4g
+ICAgIC0tIAo+ICAgICAtLSBDb25maWd1cmluZyBVdGlscyBzdXBwb3J0Li4uCj4gICAgIC0twqDC
+oCBEZXBlbmRlbmN5IEVOQUJMRV9MSUJVSEQgPSBPTgo+ICAgICAtLcKgwqAgRW5hYmxpbmcgVXRp
+bHMgc3VwcG9ydC4KPiAgICAgLS3CoMKgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVfVVRJTFM9T04v
+T0ZGCj4gICAgIC0tIAo+ICAgICAtLSBDb25maWd1cmluZyBUZXN0cyBzdXBwb3J0Li4uCj4gICAg
+IC0twqDCoCBEZXBlbmRlbmN5IEVOQUJMRV9MSUJVSEQgPSBPTgo+ICAgICAtLcKgwqAgRW5hYmxp
+bmcgVGVzdHMgc3VwcG9ydC4KPiAgICAgLS3CoMKgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVfVEVT
+VFM9T04vT0ZGCj4gICAgIC0tIAo+ICAgICAtLSBDb3VsZCBOT1QgZmluZCBMSUJFUklPIChtaXNz
+aW5nOiBMSUJFUklPX0xJQlJBUlkKPiAgICAgTElCRVJJT19JTkNMVURFX0RJUikKPiAgICAgLS0g
+Q291bGQgTk9UIGZpbmQgZHBkayAobWlzc2luZzogRFBES19JTkNMVURFX0RJUikKPiAgICAgLS0g
+Cj4gICAgIC0tIENvbmZpZ3VyaW5nIExJQkVSSU8gc3VwcG9ydC4uLgo+ICAgICAtLcKgwqAgRGVw
+ZW5kZW5jeSBFTkFCTEVfTElCVUhEID0gT04KPiAgICAgLS3CoMKgIERlcGVuZGVuY3kgTElCRVJJ
+T19GT1VORCA9IEZBTFNFCj4gICAgIC0twqDCoCBEaXNhYmxpbmcgTElCRVJJTyBzdXBwb3J0Lgo+
+ICAgICAtLcKgwqAgT3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9MSUJFUklPPU9OL09GRgo+ICAgICAt
+LSAKPiAgICAgLS0gQ29uZmlndXJpbmcgVVNCIHN1cHBvcnQuLi4KPiAgICAgLS3CoMKgIERlcGVu
+ZGVuY3kgRU5BQkxFX0xJQlVIRCA9IE9OCj4gICAgIC0twqDCoCBEZXBlbmRlbmN5IExJQlVTQl9G
+T1VORCA9IFRSVUUKPiAgICAgLS3CoMKgIEVuYWJsaW5nIFVTQiBzdXBwb3J0Lgo+ICAgICAtLcKg
+wqAgT3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9VU0I9T04vT0ZGCj4gICAgIC0tIAo+ICAgICAtLSBD
+b25maWd1cmluZyBHUFNEIHN1cHBvcnQuLi4KPiAgICAgLS3CoMKgIERlcGVuZGVuY3kgRU5BQkxF
+X0xJQlVIRCA9IE9OCj4gICAgIC0twqDCoCBEZXBlbmRlbmN5IEVOQUJMRV9HUFNEID0gT04KPiAg
+ICAgLS3CoMKgIERlcGVuZGVuY3kgTElCR1BTX0ZPVU5EID0gVFJVRQo+ICAgICAtLcKgwqAgRW5h
+YmxpbmcgR1BTRCBzdXBwb3J0Lgo+ICAgICAtLcKgwqAgT3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9H
+UFNEPU9OL09GRgo+ICAgICAtLSAKPiAgICAgLS0gQ29uZmlndXJpbmcgQjEwMCBzdXBwb3J0Li4u
+Cj4gICAgIC0twqDCoCBEZXBlbmRlbmN5IEVOQUJMRV9MSUJVSEQgPSBPTgo+ICAgICAtLcKgwqAg
+RGVwZW5kZW5jeSBFTkFCTEVfVVNCID0gT04KPiAgICAgLS3CoMKgIEVuYWJsaW5nIEIxMDAgc3Vw
+cG9ydC4KPiAgICAgLS3CoMKgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVfQjEwMD1PTi9PRkYKPiAg
+ICAgLS0gCj4gICAgIC0tIENvbmZpZ3VyaW5nIEIyMDAgc3VwcG9ydC4uLgo+ICAgICAtLcKgwqAg
+RGVwZW5kZW5jeSBFTkFCTEVfTElCVUhEID0gT04KPiAgICAgLS3CoMKgIERlcGVuZGVuY3kgRU5B
+QkxFX1VTQiA9IE9OCj4gICAgIC0twqDCoCBFbmFibGluZyBCMjAwIHN1cHBvcnQuCj4gICAgIC0t
+wqDCoCBPdmVycmlkZSB3aXRoIC1ERU5BQkxFX0IyMDA9T04vT0ZGCj4gICAgIC0tIAo+ICAgICAt
+LSBDb25maWd1cmluZyBFMzAwIHN1cHBvcnQuLi4KPiAgICAgLS3CoMKgIERlcGVuZGVuY3kgRU5B
+QkxFX0xJQlVIRCA9IE9OCj4gICAgIC0twqDCoCBEaXNhYmxpbmcgRTMwMCBzdXBwb3J0Lgo+ICAg
+ICAtLcKgwqAgT3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9FMzAwPU9OL09GRgo+ICAgICAtLSAKPiAg
+ICAgLS0gQ29uZmlndXJpbmcgVVNSUDEgc3VwcG9ydC4uLgo+ICAgICAtLcKgwqAgRGVwZW5kZW5j
+eSBFTkFCTEVfTElCVUhEID0gT04KPiAgICAgLS3CoMKgIERlcGVuZGVuY3kgRU5BQkxFX1VTQiA9
+IE9OCj4gICAgIC0twqDCoCBFbmFibGluZyBVU1JQMSBzdXBwb3J0Lgo+ICAgICAtLcKgwqAgT3Zl
+cnJpZGUgd2l0aCAtREVOQUJMRV9VU1JQMT1PTi9PRkYKPiAgICAgLS0gCj4gICAgIC0tIENvbmZp
+Z3VyaW5nIFVTUlAyIHN1cHBvcnQuLi4KPiAgICAgLS3CoMKgIERlcGVuZGVuY3kgRU5BQkxFX0xJ
+QlVIRCA9IE9OCj4gICAgIC0twqDCoCBFbmFibGluZyBVU1JQMiBzdXBwb3J0Lgo+ICAgICAtLcKg
+wqAgT3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9VU1JQMj1PTi9PRkYKPiAgICAgLS0gCj4gICAgIC0t
+IENvbmZpZ3VyaW5nIFgzMDAgc3VwcG9ydC4uLgo+ICAgICAtLcKgwqAgRGVwZW5kZW5jeSBFTkFC
+TEVfTElCVUhEID0gT04KPiAgICAgLS3CoMKgIEVuYWJsaW5nIFgzMDAgc3VwcG9ydC4KPiAgICAg
+LS3CoMKgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVfWDMwMD1PTi9PRkYKPiAgICAgLS0gCj4gICAg
+IC0tIENvbmZpZ3VyaW5nIE4yMzAgc3VwcG9ydC4uLgo+ICAgICAtLcKgwqAgRGVwZW5kZW5jeSBF
+TkFCTEVfTElCVUhEID0gT04KPiAgICAgLS3CoMKgIEVuYWJsaW5nIE4yMzAgc3VwcG9ydC4KPiAg
+ICAgLS3CoMKgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVfTjIzMD1PTi9PRkYKPiAgICAgLS0gCj4g
+ICAgIC0tIENvbmZpZ3VyaW5nIE1QTUQgc3VwcG9ydC4uLgo+ICAgICAtLcKgwqAgRGVwZW5kZW5j
+eSBFTkFCTEVfTElCVUhEID0gT04KPiAgICAgLS3CoMKgIEVuYWJsaW5nIE1QTUQgc3VwcG9ydC4K
+PiAgICAgLS3CoMKgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVfTVBNRD1PTi9PRkYKPiAgICAgLS0g
+Cj4gICAgIC0tIENvbmZpZ3VyaW5nIE4zMDAgc3VwcG9ydC4uLgo+ICAgICAtLcKgwqAgRGVwZW5k
+ZW5jeSBFTkFCTEVfTElCVUhEID0gT04KPiAgICAgLS3CoMKgIERlcGVuZGVuY3kgRU5BQkxFX01Q
+TUQgPSBPTgo+ICAgICAtLcKgwqAgRW5hYmxpbmcgTjMwMCBzdXBwb3J0Lgo+ICAgICAtLcKgwqAg
+T3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9OMzAwPU9OL09GRgo+ICAgICAtLSAKPiAgICAgLS0gQ29u
+ZmlndXJpbmcgTjMyMCBzdXBwb3J0Li4uCj4gICAgIC0twqDCoCBEZXBlbmRlbmN5IEVOQUJMRV9M
+SUJVSEQgPSBPTgo+ICAgICAtLcKgwqAgRGVwZW5kZW5jeSBFTkFCTEVfTVBNRCA9IE9OCj4gICAg
+IC0twqDCoCBFbmFibGluZyBOMzIwIHN1cHBvcnQuCj4gICAgIC0twqDCoCBPdmVycmlkZSB3aXRo
+IC1ERU5BQkxFX04zMjA9T04vT0ZGCj4gICAgIC0tIAo+ICAgICAtLSBDb25maWd1cmluZyBFMzIw
+IHN1cHBvcnQuLi4KPiAgICAgLS3CoMKgIERlcGVuZGVuY3kgRU5BQkxFX0xJQlVIRCA9IE9OCj4g
+ICAgIC0twqDCoCBEZXBlbmRlbmN5IEVOQUJMRV9NUE1EID0gT04KPiAgICAgLS3CoMKgIEVuYWJs
+aW5nIEUzMjAgc3VwcG9ydC4KPiAgICAgLS3CoMKgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVfRTMy
+MD1PTi9PRkYKPiAgICAgLS0gCj4gICAgIC0tIENvbmZpZ3VyaW5nIE9jdG9DbG9jayBzdXBwb3J0
+Li4uCj4gICAgIC0twqDCoCBEZXBlbmRlbmN5IEVOQUJMRV9MSUJVSEQgPSBPTgo+ICAgICAtLcKg
+wqAgRW5hYmxpbmcgT2N0b0Nsb2NrIHN1cHBvcnQuCj4gICAgIC0twqDCoCBPdmVycmlkZSB3aXRo
+IC1ERU5BQkxFX09DVE9DTE9DSz1PTi9PRkYKPiAgICAgLS0gCj4gICAgIC0tIENvbmZpZ3VyaW5n
+IERQREsgc3VwcG9ydC4uLgo+ICAgICAtLcKgwqAgRGVwZW5kZW5jeSBFTkFCTEVfTVBNRCA9IE9O
+Cj4gICAgIC0twqDCoCBEZXBlbmRlbmN5IERQREtfRk9VTkQgPSBGQUxTRQo+ICAgICAtLcKgwqAg
+RGlzYWJsaW5nIERQREsgc3VwcG9ydC4KPiAgICAgLS3CoMKgIE92ZXJyaWRlIHdpdGggLURFTkFC
+TEVfRFBESz1PTi9PRkYKPiAgICAgLS0gCj4gICAgIC0tIAo+ICAgICAtLSAKPiAgICAgLS0gQ29u
+ZmlndXJpbmcgcHJpb3JpdHkgc2NoZWR1bGluZy4uLgo+ICAgICAtLcKgwqAgUHJpb3JpdHkgc2No
+ZWR1bGluZyBzdXBwb3J0ZWQgdGhyb3VnaCBwdGhyZWFkX3NldHNjaGVkcGFyYW0uCj4gICAgIC0t
+wqDCoCBTZXR0aW5nIHRocmVhZCBuYW1lcyBpcyBzdXBwb3J0ZWQgdGhyb3VnaCBwdGhyZWFkX3Nl
+dG5hbWVfbnAuCj4gICAgIC0tIAo+ICAgICAtLSBDb25maWd1cmluZyBoaWdoIHJlc29sdXRpb24g
+dGltaW5nLi4uCj4gICAgIC0twqDCoCBIaWdoIHJlc29sdXRpb24gdGltaW5nIHN1cHBvcnRlZCB0
+aHJvdWdoIGNsb2NrX2dldHRpbWUuCj4gICAgIC0tIAo+ICAgICAtLSBDb25maWd1cmluZyBtb2R1
+bGUgbG9hZGluZy4uLgo+ICAgICAtLcKgwqAgTW9kdWxlIGxvYWRpbmcgc3VwcG9ydGVkIHRocm91
+Z2ggZGxvcGVuLgo+ICAgICAtLSAKPiAgICAgLS0gUHJvY2Vzc2luZyBOSS1SSU8gRlBHQSBMVkJJ
+VFggQml0c3RyZWFtcy4uLgo+ICAgICAtLcKgwqAgVXNpbmcgeDMwMC5sdmJpdHhfYmFzZSBmb3Ig
+Y29kZWdlbgo+ICAgICAtLcKgwqAgVXNpbmcgeDMxMC5sdmJpdHhfYmFzZSBmb3IgY29kZWdlbgo+
+ICAgICAtLSAKPiAgICAgLS0gVVNCIHN1cHBvcnQgZW5hYmxlZCB2aWEgbGlidXNiLgo+ICAgICAt
+LSAKPiAgICAgLS0gQ29uZmlndXJpbmcgaW50ZXJmYWNlIGFkZHJlc3MgZGlzY292ZXJ5Li4uCj4g
+ICAgIC0twqDCoCBJbnRlcmZhY2UgYWRkcmVzcyBkaXNjb3Zlcnkgc3VwcG9ydGVkIHRocm91Z2gg
+Z2V0aWZhZGRycy4KPiAgICAgLS0gCj4gICAgIC0tIExvYWRpbmcgYnVpbGQgaW5mby4KPiAgICAg
+LS0gCj4gICAgIC0tIEFkZGluZyBCMlhYIGRldmljZSB0ZXN0IHRhcmdldAo+ICAgICAtLSBBZGRp
+bmcgWDN4MCBkZXZpY2UgdGVzdCB0YXJnZXQKPiAgICAgLS0gQWRkaW5nIE4zWFggZGV2aWNlIHRl
+c3QgdGFyZ2V0Cj4gICAgIC0tIEFkZGluZyBFMzJ4IGRldmljZSB0ZXN0IHRhcmdldAo+ICAgICAt
+LSAKPiAgICAgQ01ha2UgV2FybmluZyBhdCB1dGlscy9DTWFrZUxpc3RzLnR4dDoxMjMgKG1lc3Nh
+Z2UpOgo+ICAgICAgwqAgUHl0aG9uIG1vZHVsZSBgcmVxdWVzdHMnIG5vdCBmb3VuZCAtLSB1aGRf
+aW1hZ2VzX2Rvd25sb2FkZXIucHkKPiAgICAgd2lsbCBub3QKPiAgICAgIMKgIHdvcmsgd2l0aG91
+dCBpdC4KPiAKPiAKPiAgICAgQ01ha2UgV2FybmluZyBhdCB1dGlscy9DTWFrZUxpc3RzLnR4dDox
+MjQgKG1lc3NhZ2UpOgo+ICAgICAgwqAgWW91IG1heSBiZSBhYmxlIHRvIGluc3RhbGwgdGhpcyBi
+eSBydW5uaW5nICdwaXAgaW5zdGFsbCByZXF1ZXN0cycKPiAKPiAKPiAgICAgLS0gCj4gICAgIC0t
+IENvbmZpZ3VyaW5nIE1hbnVhbCBzdXBwb3J0Li4uCj4gICAgIC0twqDCoCBEZXBlbmRlbmN5IERP
+WFlHRU5fRk9VTkQgPSBZRVMKPiAgICAgLS3CoMKgIEVuYWJsaW5nIE1hbnVhbCBzdXBwb3J0Lgo+
+ICAgICAtLcKgwqAgT3ZlcnJpZGUgd2l0aCAtREVOQUJMRV9NQU5VQUw9T04vT0ZGCj4gICAgIC0t
+IAo+ICAgICAtLSBDb25maWd1cmluZyBBUEkvRG94eWdlbiBzdXBwb3J0Li4uCj4gICAgIC0twqDC
+oCBEZXBlbmRlbmN5IERPWFlHRU5fRk9VTkQgPSBZRVMKPiAgICAgLS3CoMKgIEVuYWJsaW5nIEFQ
+SS9Eb3h5Z2VuIHN1cHBvcnQuCj4gICAgIC0twqDCoCBPdmVycmlkZSB3aXRoIC1ERU5BQkxFX0RP
+WFlHRU49T04vT0ZGCj4gICAgIC0tIAo+ICAgICAtLSBDb25maWd1cmluZyBNYW4gUGFnZXMgc3Vw
+cG9ydC4uLgo+ICAgICAtLcKgwqAgRGVwZW5kZW5jeSBHWklQX0ZPVU5EID0gVFJVRQo+ICAgICAt
+LcKgwqAgRGVwZW5kZW5jeSBOT1RfV0lOMzIgPSBUUlVFCj4gICAgIC0twqDCoCBFbmFibGluZyBN
+YW4gUGFnZXMgc3VwcG9ydC4KPiAgICAgLS3CoMKgIE92ZXJyaWRlIHdpdGggLURFTkFCTEVfTUFO
+X1BBR0VTPU9OL09GRgo+ICAgICAtLSAKPiAgICAgLS0gUHl0aG9uIGNoZWNraW5nIGZvciB2aXJ0
+dWFsZW52Cj4gICAgIC0tIFB5dGhvbiBjaGVja2luZyBmb3IgdmlydHVhbGVudiAtICJhc3NlcnQg
+aGFzYXR0cihzeXMsCj4gICAgICdyZWFsX3ByZWZpeCcpIiBmYWlsZWQKPiAgICAgLS0gVXRpbGl6
+aW5nIHRoZSBweXRob24gaW5zdGFsbCBkaXJlY3Rvcnk6Cj4gICAgIC91c3IvbG9jYWwvbGliL3B5
+dGhvbjIuNy9kaXN0LXBhY2thZ2VzCj4gICAgIC0tIAo+ICAgICAtLSAjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKPiAgICAgLS0gIyBVSEQgZW5h
+YmxlZCBjb21wb25lbnRzCj4gICAgIC0tICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIwo+ICAgICAtLcKgwqAgKiBMaWJVSEQKPiAgICAgLS3CoMKg
+ICogTGliVUhEIC0gQyBBUEkKPiAgICAgLS3CoMKgICogTGliVUhEIC0gUHl0aG9uIEFQSQo+ICAg
+ICAtLcKgwqAgKiBFeGFtcGxlcwo+ICAgICAtLcKgwqAgKiBVdGlscwo+ICAgICAtLcKgwqAgKiBU
+ZXN0cwo+ICAgICAtLcKgwqAgKiBVU0IKPiAgICAgLS3CoMKgICogR1BTRAo+ICAgICAtLcKgwqAg
+KiBCMTAwCj4gICAgIC0twqDCoCAqIEIyMDAKPiAgICAgLS3CoMKgICogVVNSUDEKPiAgICAgLS3C
+oMKgICogVVNSUDIKPiAgICAgLS3CoMKgICogWDMwMAo+ICAgICAtLcKgwqAgKiBOMjMwCj4gICAg
+IC0twqDCoCAqIE1QTUQKPiAgICAgLS3CoMKgICogTjMwMAo+ICAgICAtLcKgwqAgKiBOMzIwCj4g
+ICAgIC0twqDCoCAqIEUzMjAKPiAgICAgLS3CoMKgICogT2N0b0Nsb2NrCj4gICAgIC0twqDCoCAq
+IE1hbnVhbAo+ICAgICAtLcKgwqAgKiBBUEkvRG94eWdlbgo+ICAgICAtLcKgwqAgKiBNYW4gUGFn
+ZXMKPiAgICAgLS0gCj4gICAgIC0tICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIwo+ICAgICAtLSAjIFVIRCBkaXNhYmxlZCBjb21wb25lbnRzCj4g
+ICAgIC0tICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIwo+ICAgICAtLcKgwqAgKiBMSUJFUklPCj4gICAgIC0twqDCoCAqIEUzMDAKPiAgICAgLS3C
+oMKgICogRFBESwo+ICAgICAtLSAKPiAgICAgLS0gKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqCj4gICAgIC0tICogWW91IGFyZSBidWlsZGluZyBh
+IGRldmVsb3BtZW50IGJyYW5jaCBvZiBVSEQuCj4gICAgIC0tICogVGhlc2UgYnJhbmNoZXMgYXJl
+IGRlc2lnbmVkIHRvIHByb3ZpZGUgZWFybHkgYWNjZXNzCj4gICAgIC0tICogdG8gVUhEIGFuZCBV
+U1JQIGZlYXR1cmVzLCBidXQgc2hvdWxkIGJlIGNvbnNpZGVyZWQKPiAgICAgLS0gKiB1bnN0YWJs
+ZSBhbmQvb3IgZXhwZXJpbWVudGFsIQo+ICAgICAtLSAqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioKPiAgICAgLS0gQnVpbGRpbmcgdmVyc2lvbjog
+My4xNC4xLkhFQUQtMC1nMDM0N2E2ZDgKPiAgICAgLS0gVXNpbmcgaW5zdGFsbCBwcmVmaXg6IC91
+c3IvbG9jYWwKPiAgICAgLS0gQ29uZmlndXJpbmcgZG9uZQo+ICAgICAtLSBHZW5lcmF0aW5nIGRv
+bmUKPiAgICAgLS0gQnVpbGQgZmlsZXMgaGF2ZSBiZWVuIHdyaXR0ZW4gdG86IC9ob21lL2Jhcm9j
+aC91aGQvaG9zdC9idWlsZAo+ICAgICBiYXJvY2hAcmVsaWFibGU6fi91aGQvaG9zdC9idWlsZCQg
+bWFrZQo+ICAgICBTY2FubmluZyBkZXBlbmRlbmNpZXMgb2YgdGFyZ2V0IHVoZF9ycGNsaWIKPiAg
+ICAgW8KgIDAlXSBCdWlsZGluZyBDWFggb2JqZWN0Cj4gICAgIGxpYi9kZXBzL3JwY2xpYi9DTWFr
+ZUZpbGVzL3VoZF9ycGNsaWIuZGlyL2xpYi9ycGMvZGlzcGF0Y2hlci5jYy5vCj4gICAgIEluIGZp
+bGUgaW5jbHVkZWQgZnJvbQo+ICAgICAvaG9tZS9iYXJvY2gvdWhkL2hvc3QvbGliL2RlcHMvcnBj
+bGliL2luY2x1ZGUvcnBjL21zZ3BhY2suaHBwOjIzLAo+ICAgICAgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgZnJvbQo+ICAgICAvaG9tZS9iYXJvY2gvdWhkL2hvc3QvbGliL2RlcHMv
+cnBjbGliL2luY2x1ZGUvcnBjL2Rpc3BhdGNoZXIuaDoxMiwKPiAgICAgIMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIGZyb20KPiAgICAgL2hvbWUvYmFyb2NoL3VoZC9ob3N0L2xpYi9k
+ZXBzL3JwY2xpYi9saWIvcnBjL2Rpc3BhdGNoZXIuY2M6MToKPiAgICAgL2hvbWUvYmFyb2NoL3Vo
+ZC9ob3N0L2xpYi9kZXBzL3JwY2xpYi9pbmNsdWRlL3JwYy9tc2dwYWNrL29iamVjdC5ocHA6IElu
+Cj4gICAgIGZ1bmN0aW9uIOKAmHZvaWQKPiAgICAgY2xtZGVwX21zZ3BhY2s6OnYxOjpvcGVyYXRv
+cjw8KGNsbWRlcF9tc2dwYWNrOjp2MTo6b2JqZWN0JiwgY29uc3QKPiAgICAgbXNncGFja19vYmpl
+Y3QmKeKAmToKPiAgICAgL2hvbWUvYmFyb2NoL3VoZC9ob3N0L2xpYi9kZXBzL3JwY2xpYi9pbmNs
+dWRlL3JwYy9tc2dwYWNrL29iamVjdC5ocHA6NjEzOjM0Ogo+ICAgICB3YXJuaW5nOiDigJh2b2lk
+KiBtZW1jcHkodm9pZCosIGNvbnN0IHZvaWQqLCBzaXplX3Qp4oCZIGNvcHlpbmcgYW4KPiAgICAg
+b2JqZWN0IG9mIG5vbi10cml2aWFsIHR5cGUg4oCYc3RydWN0IGNsbWRlcF9tc2dwYWNrOjp2MTo6
+b2JqZWN04oCZIGZyb20KPiAgICAgYW4gYXJyYXkgb2Yg4oCYY29uc3QgbXNncGFja19vYmplY3Ti
+gJkge2FrYSDigJhjb25zdCBzdHJ1Y3QKPiAgICAgbXNncGFja19vYmplY3TigJl9IFstV2NsYXNz
+LW1lbWFjY2Vzc10KPiAgICAgIMKgIDYxMyB8wqDCoMKgwqAgc3RkOjptZW1jcHkoJm8sICZ2LCBz
+aXplb2YodikpOwo+ICAgICAgwqDCoMKgwqDCoCB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIF4KPiAgICAgSW4gZmlsZSBp
+bmNsdWRlZCBmcm9tCj4gICAgIC9ob21lL2Jhcm9jaC91aGQvaG9zdC9saWIvZGVwcy9ycGNsaWIv
+aW5jbHVkZS9ycGMvbXNncGFjay9hZGFwdG9yL2FkYXB0b3JfYmFzZS5ocHA6MjEsCj4gICAgICDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBmcm9tCj4gICAgIC9ob21lL2Jhcm9jaC91
+aGQvaG9zdC9saWIvZGVwcy9ycGNsaWIvaW5jbHVkZS9ycGMvbXNncGFjay9vYmplY3QuaHBwOjI0
+LAo+ICAgICAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZnJvbQo+ICAgICAvaG9t
+ZS9iYXJvY2gvdWhkL2hvc3QvbGliL2RlcHMvcnBjbGliL2luY2x1ZGUvcnBjL21zZ3BhY2suaHBw
+OjIzLAo+ICAgICAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZnJvbQo+ICAgICAv
+aG9tZS9iYXJvY2gvdWhkL2hvc3QvbGliL2RlcHMvcnBjbGliL2luY2x1ZGUvcnBjL2Rpc3BhdGNo
+ZXIuaDoxMiwKPiAgICAgIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZyb20KPiAg
+ICAgL2hvbWUvYmFyb2NoL3VoZC9ob3N0L2xpYi9kZXBzL3JwY2xpYi9saWIvcnBjL2Rpc3BhdGNo
+ZXIuY2M6MToKPiAgICAgL2hvbWUvYmFyb2NoL3VoZC9ob3N0L2xpYi9kZXBzL3JwY2xpYi9pbmNs
+dWRlL3JwYy9tc2dwYWNrL29iamVjdF9md2QuaHBwOjExMTo4Ogo+ICAgICBub3RlOiDigJhzdHJ1
+Y3QgY2xtZGVwX21zZ3BhY2s6OnYxOjpvYmplY3TigJkgZGVjbGFyZWQgaGVyZQo+ICAgICAgwqAg
+MTExIHwgc3RydWN0IG9iamVjdCB7Cj4gICAgICDCoMKgwqDCoMKgIHzCoMKgwqDCoMKgwqDCoCBe
+fn5+fn4KPiAgICAgW8KgIDAlXSBCdWlsZGluZyBDWFggb2JqZWN0Cj4gICAgIGxpYi9kZXBzL3Jw
+Y2xpYi9DTWFrZUZpbGVzL3VoZF9ycGNsaWIuZGlyL2xpYi9ycGMvc2VydmVyLmNjLm8KPiAgICAg
+SW4gZmlsZSBpbmNsdWRlZCBmcm9tCj4gICAgIC9ob21lL2Jhcm9jaC91aGQvaG9zdC9saWIvZGVw
+cy9ycGNsaWIvaW5jbHVkZS9ycGMvbXNncGFjay5ocHA6MjMsCj4gICAgICDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBmcm9tCj4gICAgIC9ob21lL2Jhcm9jaC91aGQvaG9zdC9saWIv
+ZGVwcy9ycGNsaWIvaW5jbHVkZS9ycGMvc2VydmVyLmg6NywKPiAgICAgIMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIGZyb20KPiAgICAgL2hvbWUvYmFyb2NoL3VoZC9ob3N0L2xpYi9k
+ZXBzL3JwY2xpYi9saWIvcnBjL3NlcnZlci5jYzoxOgo+ICAgICAvaG9tZS9iYXJvY2gvdWhkL2hv
+c3QvbGliL2RlcHMvcnBjbGliL2luY2x1ZGUvcnBjL21zZ3BhY2svb2JqZWN0LmhwcDogSW4KPiAg
+ICAgZnVuY3Rpb24g4oCYdm9pZAo+ICAgICBjbG1kZXBfbXNncGFjazo6djE6Om9wZXJhdG9yPDwo
+Y2xtZGVwX21zZ3BhY2s6OnYxOjpvYmplY3QmLCBjb25zdAo+ICAgICBtc2dwYWNrX29iamVjdCYp
+4oCZOgo+ICAgICAvaG9tZS9iYXJvY2gvdWhkL2hvc3QvbGliL2RlcHMvcnBjbGliL2luY2x1ZGUv
+cnBjL21zZ3BhY2svb2JqZWN0LmhwcDo2MTM6MzQ6Cj4gICAgIHdhcm5pbmc6IOKAmHZvaWQqIG1l
+bWNweSh2b2lkKiwgY29uc3Qgdm9pZCosIHNpemVfdCnigJkgY29weWluZyBhbgo+ICAgICBvYmpl
+Y3Qgb2Ygbm9uLXRyaXZpYWwgdHlwZSDigJhzdHJ1Y3QgY2xtZGVwX21zZ3BhY2s6OnYxOjpvYmpl
+Y3TigJkgZnJvbQo+ICAgICBhbiBhcnJheSBvZiDigJhjb25zdCBtc2dwYWNrX29iamVjdOKAmSB7
+YWthIOKAmGNvbnN0IHN0cnVjdAo+ICAgICBtc2dwYWNrX29iamVjdOKAmX0gWy1XY2xhc3MtbWVt
+YWNjZXNzXQo+ICAgICAgwqAgNjEzIHzCoMKgwqDCoCBzdGQ6Om1lbWNweSgmbywgJnYsIHNpemVv
+Zih2KSk7Cj4gICAgICDCoMKgwqDCoMKgIHzCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgXgo+ICAgICBJbiBmaWxlIGluY2x1
+ZGVkIGZyb20KPiAgICAgL2hvbWUvYmFyb2NoL3VoZC9ob3N0L2xpYi9kZXBzL3JwY2xpYi9pbmNs
+dWRlL3JwYy9tc2dwYWNrL2FkYXB0b3IvYWRhcHRvcl9iYXNlLmhwcDoyMSwKPiAgICAgIMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZyb20KPiAgICAgL2hvbWUvYmFyb2NoL3VoZC9o
+b3N0L2xpYi9kZXBzL3JwY2xpYi9pbmNsdWRlL3JwYy9tc2dwYWNrL29iamVjdC5ocHA6MjQsCj4g
+ICAgICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBmcm9tCj4gICAgIC9ob21lL2Jh
+cm9jaC91aGQvaG9zdC9saWIvZGVwcy9ycGNsaWIvaW5jbHVkZS9ycGMvbXNncGFjay5ocHA6MjMs
+Cj4gICAgICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBmcm9tCj4gICAgIC9ob21l
+L2Jhcm9jaC91aGQvaG9zdC9saWIvZGVwcy9ycGNsaWIvaW5jbHVkZS9ycGMvc2VydmVyLmg6NywK
+PiAgICAgIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZyb20KPiAgICAgL2hvbWUv
+YmFyb2NoL3VoZC9ob3N0L2xpYi9kZXBzL3JwY2xpYi9saWIvcnBjL3NlcnZlci5jYzoxOgo+ICAg
+ICAvaG9tZS9iYXJvY2gvdWhkL2hvc3QvbGliL2RlcHMvcnBjbGliL2luY2x1ZGUvcnBjL21zZ3Bh
+Y2svb2JqZWN0X2Z3ZC5ocHA6MTExOjg6Cj4gICAgIG5vdGU6IOKAmHN0cnVjdCBjbG1kZXBfbXNn
+cGFjazo6djE6Om9iamVjdOKAmSBkZWNsYXJlZCBoZXJlCj4gICAgICDCoCAxMTEgfCBzdHJ1Y3Qg
+b2JqZWN0IHsKPiAgICAgIMKgwqDCoMKgwqAgfMKgwqDCoMKgwqDCoMKgIF5+fn5+fgo+IAo+IAo+
+ICAgICBbIGEgbG90IG9mIHdhcm5pbmdzIHRydW5jYXRlZCBCLk8uXQo+IAo+IAo+IAo+ICAgICBb
+IDIyJV0gQnVpbGRpbmcgQ1hYIG9iamVjdCBsaWIvQ01ha2VGaWxlcy91aGQuZGlyL3VzcnAvc3Vi
+ZGV2X3NwZWMuY3BwLm8KPiAgICAgWyAyMyVdIEJ1aWxkaW5nIENYWCBvYmplY3QKPiAgICAgbGli
+L0NNYWtlRmlsZXMvdWhkLmRpci91c3JwL2ZlX2Nvbm5lY3Rpb24uY3BwLm8KPiAgICAgWyAyMyVd
+IEJ1aWxkaW5nIENYWCBvYmplY3QKPiAgICAgbGliL0NNYWtlRmlsZXMvdWhkLmRpci91c3JwL2Ri
+b2FyZF9lZXByb21fYy5jcHAubwo+ICAgICBbIDIzJV0gQnVpbGRpbmcgQ1hYIG9iamVjdAo+ICAg
+ICBsaWIvQ01ha2VGaWxlcy91aGQuZGlyL3VzcnAvbWJvYXJkX2VlcHJvbV9jLmNwcC5vCj4gICAg
+IFsgMjMlXSBCdWlsZGluZyBDWFggb2JqZWN0Cj4gICAgIGxpYi9DTWFrZUZpbGVzL3VoZC5kaXIv
+dXNycC9zdWJkZXZfc3BlY19jLmNwcC5vCj4gICAgIFsgMjMlXSBCdWlsZGluZyBDWFggb2JqZWN0
+IGxpYi9DTWFrZUZpbGVzL3VoZC5kaXIvdXNycC91c3JwX2MuY3BwLm8KPiAgICAgWyAyMyVdIEJ1
+aWxkaW5nIENYWCBvYmplY3QgbGliL0NNYWtlRmlsZXMvdWhkLmRpci91c3JwL2dwc2RfaWZhY2Uu
+Y3BwLm8KPiAgICAgL2hvbWUvYmFyb2NoL3VoZC9ob3N0L2xpYi91c3JwL2dwc2RfaWZhY2UuY3Bw
+OiBJbiBtZW1iZXIgZnVuY3Rpb24KPiAgICAg4oCYaW50NjRfdCB1aGQ6OnVzcnA6Omdwc2RfaWZh
+Y2VfaW1wbDo6X2Vwb2NoX3RpbWUoKeKAmToKPiAgICAgL2hvbWUvYmFyb2NoL3VoZC9ob3N0L2xp
+Yi91c3JwL2dwc2RfaWZhY2UuY3BwOjE0MTo2MjogZXJyb3I6IGNhbm5vdAo+ICAgICBjb252ZXJ0
+IOKAmHRpbWVzcGVjX3TigJkge2FrYSDigJh0aW1lc3BlY+KAmX0gdG8g4oCYdGltZV904oCZIHth
+a2Eg4oCYbG9uZyBpbnTigJl9Cj4gICAgICDCoCAxNDEgfMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJu
+Cj4gICAgIChib29zdDo6cG9zaXhfdGltZTo6ZnJvbV90aW1lX3QoX2dwc19kYXRhLmZpeC50aW1l
+KQo+ICAgICAgwqDCoMKgwqDCoCB8IH5+fn5+fn5+fn5+fn5+Xn5+fgo+ICAgICB8wqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+fAo+ICAgICB8IHRpbWVzcGVjX3Qge2FrYSB0aW1lc3BlY30KPiAgICAgSW4gZmlsZSBpbmNsdWRl
+ZCBmcm9tIC91c3IvaW5jbHVkZS9ib29zdC90aHJlYWQveHRpbWUuaHBwOjE2LAo+ICAgICAgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZnJvbSAvdXNyL2luY2x1ZGUvYm9vc3QvdGhy
+ZWFkL3B0aHJlYWQvbXV0ZXguaHBwOjIwLAo+ICAgICAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgZnJvbSAvdXNyL2luY2x1ZGUvYm9vc3QvdGhyZWFkL211dGV4LmhwcDoxNiwKPiAg
+ICAgIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZyb20KPiAgICAgL3Vzci9pbmNs
+dWRlL2Jvb3N0L3RocmVhZC9wdGhyZWFkL3NoYXJlZF9tdXRleC5ocHA6MTQsCj4gICAgICDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBmcm9tIC91c3IvaW5jbHVkZS9ib29zdC90aHJl
+YWQvc2hhcmVkX211dGV4LmhwcDoyOCwKPiAgICAgIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIGZyb20gL2hvbWUvYmFyb2NoL3VoZC9ob3N0L2xpYi91c3JwL2dwc2RfaWZhY2UuY3Bw
+OjE2Ogo+ICAgICAvdXNyL2luY2x1ZGUvYm9vc3QvZGF0ZV90aW1lL3Bvc2l4X3RpbWUvY29udmVy
+c2lvbi5ocHA6Mjc6MzM6Cj4gICAgIG5vdGU6wqDCoCBpbml0aWFsaXppbmcgYXJndW1lbnQgMSBv
+ZiDigJhib29zdDo6cG9zaXhfdGltZTo6cHRpbWUKPiAgICAgYm9vc3Q6OnBvc2l4X3RpbWU6OmZy
+b21fdGltZV90KHRpbWVfdCnigJkKPiAgICAgIMKgwqAgMjcgfMKgwqAgcHRpbWUgZnJvbV90aW1l
+X3Qoc3RkOjp0aW1lX3QgdCkKPiAgICAgIMKgwqDCoMKgwqAgfMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgfn5+fn5+fn5+fn5+Xgo+ICAgICAvaG9tZS9iYXJvY2gvdWhk
+L2hvc3QvbGliL3VzcnAvZ3BzZF9pZmFjZS5jcHA6IEluIG1lbWJlciBmdW5jdGlvbgo+ICAgICDi
+gJhib29zdDo6Z3JlZ29yaWFuOjpkYXRlIHVoZDo6dXNycDo6Z3BzZF9pZmFjZV9pbXBsOjpfZ3Jl
+Z29yaWFuX2RhdGUoKeKAmToKPiAgICAgL2hvbWUvYmFyb2NoL3VoZC9ob3N0L2xpYi91c3JwL2dw
+c2RfaWZhY2UuY3BwOjE0ODo2MTogZXJyb3I6IGNhbm5vdAo+ICAgICBjb252ZXJ0IOKAmHRpbWVz
+cGVjX3TigJkge2FrYSDigJh0aW1lc3BlY+KAmX0gdG8g4oCYdGltZV904oCZIHtha2Eg4oCYbG9u
+ZyBpbnTigJl9Cj4gICAgICDCoCAxNDggfMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuCj4gICAgIGJv
+b3N0Ojpwb3NpeF90aW1lOjpmcm9tX3RpbWVfdChfZ3BzX2RhdGEuZml4LnRpbWUpLmRhdGUoKTsK
+PiAgICAgIMKgwqDCoMKgwqAgfCB+fn5+fn5+fn5+fn5+fl5+fn4KPiAgICAgfMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8Cj4g
+ICAgIHwgdGltZXNwZWNfdCB7YWthIHRpbWVzcGVjfQo+ICAgICBJbiBmaWxlIGluY2x1ZGVkIGZy
+b20gL3Vzci9pbmNsdWRlL2Jvb3N0L3RocmVhZC94dGltZS5ocHA6MTYsCj4gICAgICDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBmcm9tIC91c3IvaW5jbHVkZS9ib29zdC90aHJlYWQv
+cHRocmVhZC9tdXRleC5ocHA6MjAsCj4gICAgICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBmcm9tIC91c3IvaW5jbHVkZS9ib29zdC90aHJlYWQvbXV0ZXguaHBwOjE2LAo+ICAgICAg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZnJvbQo+ICAgICAvdXNyL2luY2x1ZGUv
+Ym9vc3QvdGhyZWFkL3B0aHJlYWQvc2hhcmVkX211dGV4LmhwcDoxNCwKPiAgICAgIMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZyb20gL3Vzci9pbmNsdWRlL2Jvb3N0L3RocmVhZC9z
+aGFyZWRfbXV0ZXguaHBwOjI4LAo+ICAgICAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgZnJvbSAvaG9tZS9iYXJvY2gvdWhkL2hvc3QvbGliL3VzcnAvZ3BzZF9pZmFjZS5jcHA6MTY6
+Cj4gICAgIC91c3IvaW5jbHVkZS9ib29zdC9kYXRlX3RpbWUvcG9zaXhfdGltZS9jb252ZXJzaW9u
+LmhwcDoyNzozMzoKPiAgICAgbm90ZTrCoMKgIGluaXRpYWxpemluZyBhcmd1bWVudCAxIG9mIOKA
+mGJvb3N0Ojpwb3NpeF90aW1lOjpwdGltZQo+ICAgICBib29zdDo6cG9zaXhfdGltZTo6ZnJvbV90
+aW1lX3QodGltZV90KeKAmQo+ICAgICAgwqDCoCAyNyB8wqDCoCBwdGltZSBmcm9tX3RpbWVfdChz
+dGQ6OnRpbWVfdCB0KQo+ICAgICAgwqDCoMKgwqDCoCB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCB+fn5+fn5+fn5+fn5eCj4gICAgIC9ob21lL2Jhcm9jaC91aGQvaG9z
+dC9saWIvdXNycC9ncHNkX2lmYWNlLmNwcDogSW4gbWVtYmVyIGZ1bmN0aW9uCj4gICAgIOKAmHN0
+ZDo6c3RyaW5nIHVoZDo6dXNycDo6Z3BzZF9pZmFjZV9pbXBsOjpfZ3BzX2dwcm1jKCnigJk6Cj4g
+ICAgIC9ob21lL2Jhcm9jaC91aGQvaG9zdC9saWIvdXNycC9ncHNkX2lmYWNlLmNwcDoyMDY6NDk6
+IGVycm9yOiBpbnZhbGlkCj4gICAgIGNhc3QgZnJvbSB0eXBlIOKAmHRpbWVzcGVjX3TigJkge2Fr
+YSDigJh0aW1lc3BlY+KAmX0gdG8gdHlwZSDigJh0aW1lX3TigJkge2FrYQo+ICAgICDigJhsb25n
+IGludOKAmX0KPiAgICAgIMKgIDIwNiB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGludGZpeHRp
+bWUgPSAodGltZV90KSBfZ3BzX2RhdGEuZml4LnRpbWU7Cj4gICAgICDCoMKgwqDCoMKgIHzCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgXn5+fgo+ICAgICAvaG9tZS9iYXJv
+Y2gvdWhkL2hvc3QvbGliL3VzcnAvZ3BzZF9pZmFjZS5jcHA6IEluIG1lbWJlciBmdW5jdGlvbgo+
+ICAgICDigJhzdGQ6OnN0cmluZyB1aGQ6OnVzcnA6Omdwc2RfaWZhY2VfaW1wbDo6X2dwc19ncGdn
+YSgp4oCZOgo+ICAgICAvaG9tZS9iYXJvY2gvdWhkL2hvc3QvbGliL3VzcnAvZ3BzZF9pZmFjZS5j
+cHA6MjQxOjQ1OiBlcnJvcjogaW52YWxpZAo+ICAgICBjYXN0IGZyb20gdHlwZSDigJh0aW1lc3Bl
+Y1904oCZIHtha2Eg4oCYdGltZXNwZWPigJl9IHRvIHR5cGUg4oCYdGltZV904oCZIHtha2EKPiAg
+ICAg4oCYbG9uZyBpbnTigJl9Cj4gICAgICDCoCAyNDEgfMKgwqDCoMKgwqDCoMKgwqAgaW50Zml4
+dGltZSA9ICh0aW1lX3QpIF9ncHNfZGF0YS5maXgudGltZTsKPiAgICAgIMKgwqDCoMKgwqAgfMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgXn5+fgo+ICAgICAvaG9tZS9iYXJvY2gvdWhk
+L2hvc3QvbGliL3VzcnAvZ3BzZF9pZmFjZS5jcHA6MjY4OjQyOiBlcnJvcjog4oCYc3RydWN0Cj4g
+ICAgIGdwc19kYXRhX3TigJkgaGFzIG5vIG1lbWJlciBuYW1lZCDigJhzZXBhcmF0aW9u4oCZCj4g
+ICAgICDCoCAyNjggfMKgwqDCoMKgwqDCoMKgwqAgaWYgKGJvb3N0OjptYXRoOjppc25hbihfZ3Bz
+X2RhdGEuc2VwYXJhdGlvbikpCj4gICAgICDCoMKgwqDCoMKgIHzCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIF5+fn5+fn5+fn4KPiAgICAgL2hvbWUvYmFyb2NoL3VoZC9ob3N0L2xpYi91c3JwL2dw
+c2RfaWZhY2UuY3BwOjI3Mjo1ODogZXJyb3I6IOKAmHN0cnVjdAo+ICAgICBncHNfZGF0YV904oCZ
+IGhhcyBubyBtZW1iZXIgbmFtZWQg4oCYc2VwYXJhdGlvbuKAmQo+ICAgICAgwqAgMjcyIHzCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHIoYm9vc3Q6OmZvcm1hdCgiJS4zZixNLCIp
+ICUKPiAgICAgX2dwc19kYXRhLnNlcGFyYXRpb24pKTsKPiAgICAgIMKgwqDCoMKgwqAgfCBefn5+
+fn5+fn5+Cj4gICAgIC9ob21lL2Jhcm9jaC91aGQvaG9zdC9saWIvdXNycC9ncHNkX2lmYWNlLmNw
+cDoyNzI6MTc6IGVycm9yOiDigJhzdHLigJkKPiAgICAgd2FzIG5vdCBkZWNsYXJlZCBpbiB0aGlz
+IHNjb3BlCj4gICAgICDCoCAyNzIgfMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0
+cihib29zdDo6Zm9ybWF0KCIlLjNmLE0sIikgJQo+ICAgICBfZ3BzX2RhdGEuc2VwYXJhdGlvbikp
+Owo+ICAgICAgwqDCoMKgwqDCoCB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgXn5+
+Cj4gICAgIC9ob21lL2Jhcm9jaC91aGQvaG9zdC9saWIvdXNycC9ncHNkX2lmYWNlLmNwcDoyNzI6
+MTc6IG5vdGU6Cj4gICAgIHN1Z2dlc3RlZCBhbHRlcm5hdGl2ZXM6Cj4gICAgIEluIGZpbGUgaW5j
+bHVkZWQgZnJvbSAvdXNyL2luY2x1ZGUvYm9vc3QvZm9ybWF0LmhwcDo1MywKPiAgICAgIMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZyb20gL2hvbWUvYmFyb2NoL3VoZC9ob3N0L2xp
+Yi91c3JwL2dwc2RfaWZhY2UuY3BwOjE1Ogo+ICAgICAvdXNyL2luY2x1ZGUvYm9vc3QvZm9ybWF0
+L2ZyZWVfZnVuY3MuaHBwOjIyOjM4OiBub3RlOiDigJhib29zdDo6c3Ry4oCZCj4gICAgICDCoMKg
+IDIyIHzCoMKgwqDCoCBzdGQ6OmJhc2ljX3N0cmluZzxDaCwgVHIsIEFsbG9jPiBzdHIoY29uc3QK
+PiAgICAgYmFzaWNfZm9ybWF0PENoLCBUciwgQWxsb2M+JiBmKSB7Cj4gICAgICDCoMKgwqDCoMKg
+IHzCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBefn4KPiAgICAgL3Vzci9pbmNsdWRlL2Jvb3N0L2Zvcm1hdC9m
+cmVlX2Z1bmNzLmhwcDoyMjozODogbm90ZTog4oCYYm9vc3Q6OnN0cuKAmQo+ICAgICBtYWtlWzJd
+OiAqKiogW2xpYi9DTWFrZUZpbGVzL3VoZC5kaXIvYnVpbGQubWFrZToxMzAzOgo+ICAgICBsaWIv
+Q01ha2VGaWxlcy91aGQuZGlyL3VzcnAvZ3BzZF9pZmFjZS5jcHAub10gRXJyb3IgMQo+ICAgICBt
+YWtlWzFdOiAqKiogW0NNYWtlRmlsZXMvTWFrZWZpbGUyOjczMTogbGliL0NNYWtlRmlsZXMvdWhk
+LmRpci9hbGxdCj4gICAgIEVycm9yIDIKPiAgICAgbWFrZTogKioqIFtNYWtlZmlsZToxNjM6IGFs
+bF0gRXJyb3IgMgo+IAo+IFRoYW5rcywKPiAKPiBCYXJvY2ggT3Jlbgo+IAo+IAo+IAo+IC0tIAo+
+IAo+INeR16jXldeaINeQ15XXqNefINio2LHZiNitINin2YjYsdmGIEJhcm9jaCBPcmVuCj4gCj4g
+15jXnCcgMDU4LTc3OTkyMzMgY2VsbAo+IAo+INeq157Xm9eVINeR15DXp9eY15nXkdeZ15bXnSDX
+qdec15kgc3VwcG9ydCBteSBhY3RpdmlzbSA8aHR0cHM6Ly93d3cucGF0cmVvbi5jb20vYmFyb2No
+b3Jlbj4KPiAKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
+aXN0cy5ldHR1cy5jb20KPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xp
+c3RzLmV0dHVzLmNvbQo=
