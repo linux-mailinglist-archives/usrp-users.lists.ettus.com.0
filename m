@@ -2,41 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07A8E2A2B6E
-	for <lists+usrp-users@lfdr.de>; Mon,  2 Nov 2020 14:24:38 +0100 (CET)
-Received: from [::1] (port=40040 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 645AE2A2D67
+	for <lists+usrp-users@lfdr.de>; Mon,  2 Nov 2020 15:53:23 +0100 (CET)
+Received: from [::1] (port=40560 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kZZp4-00082r-K6; Mon, 02 Nov 2020 08:24:34 -0500
-Received: from mx03.forces.gc.ca ([131.137.245.203]:27990)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <ALAIN.JOYAL@forces.gc.ca>)
- id 1kZZp0-0007x2-PD
- for USRP-users@lists.ettus.com; Mon, 02 Nov 2020 08:24:30 -0500
-Received: from unknown (HELO IMG-LSL-EP00895.forces.mil.ca) ([10.68.4.30])
- by mx03.forces.gc.ca with ESMTP; 02 Nov 2020 13:23:50 +0000
-Received: from EIS-LS2-EP06147.forces.mil.ca (10.240.27.15) by
- IMG-LSL-EP00895.forces.mil.ca (10.68.4.30) with Microsoft SMTP Server (TLS)
- id 14.3.408.0; Mon, 2 Nov 2020 08:23:49 -0500
-Received: from EIS-LS2-EP06148.forces.mil.ca (10.240.27.16) by
- EIS-LS2-EP06147.forces.mil.ca (10.240.27.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1847.3; Mon, 2 Nov 2020 08:23:48 -0500
-Received: from EIS-LS2-EP06148.forces.mil.ca ([fe80::fc30:a6a6:a267:782f]) by
- EIS-LS2-EP06148.forces.mil.ca ([fe80::fc30:a6a6:a267:782f%7]) with
- mapi id 15.01.1847.005; Mon, 2 Nov 2020 08:23:48 -0500
-To: <USRP-users@lists.ettus.com>
-Thread-Topic: Unsubscribe
-Thread-Index: AdaxGy8YSNt5xWnMRhmTTo0zRx6AHA==
-Date: Mon, 2 Nov 2020 13:23:48 +0000
-Message-ID: <b6148bdffe2f484ca10dcf50791e5799@forces.gc.ca>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.214.57.33]
+	id 1kZbCy-0003e5-N2; Mon, 02 Nov 2020 09:53:20 -0500
+Received: from mail-wr1-f43.google.com ([209.85.221.43]:45735)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
+ id 1kZbCu-0003XV-Hn
+ for USRP-users@lists.ettus.com; Mon, 02 Nov 2020 09:53:16 -0500
+Received: by mail-wr1-f43.google.com with SMTP id a9so14914325wrg.12
+ for <USRP-users@lists.ettus.com>; Mon, 02 Nov 2020 06:52:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=ZczzIh2l0m9BRNsMDyvcx5nlApk/Kx5jZK9z+ogr6PA=;
+ b=seaF8Bjdj6ah8LnpfiLgsTK2k1omIfOK9Ew5au/8ArplBmYZbA/ghxtK5Sy+Rb8fZ5
+ U6hXtDEB3jkbKAAfsIkvSimnkzWSD4qieNdpqrBFNUJ3lLs2n+MOCAAUsBgu4ZeFMgyW
+ q5PsUlw5AN9volZ//vfFXQnJkeZJNiPi3Mvjo9hPY98vSog1F6OMQJ2fmuM/O5dAX+ou
+ YOivfybQZAD9mQwZfiXZP4EuvMQssPQ7IqSIXd1537dC7nENPiBhUzpWLTS8b9SObwG4
+ y7C3ciw/IDMkpg8CJrwRDHzu2NLSQBKAfao4LehABisnN5JFrxdZ0ybyp6BPFa8ZumJF
+ g6Nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=ZczzIh2l0m9BRNsMDyvcx5nlApk/Kx5jZK9z+ogr6PA=;
+ b=Uj8xoFZ+tnY2616m60M7Qpi2yRsjQ0sOnViTnJGTnnud36jtk3g9DlB0oOpOgYhQaa
+ XHVqHHpoQTeZh4dFN3ER0cju6HWOodbp84UJDeMOWBc6mG1PrAR7dBLysfmtxJqMgkH6
+ y9hNfc33bFNNXwx1SoHxRaT+6X/q6pNvp7RZ7oDmvDZLILYaZjvFmrhzsMpHrrJh6IgP
+ U1Cg3aWQ3Xvra+aSIX0xPfbPI3+YtYY8ztWVRuzLykXMd5tfHQMIcGHRSS8b7Zhjnvy4
+ bM/D2GQDPpUrDVUN1TCkzP8/upqTbXsxpPeWwd1rAxzqvePtalwKXYCHU942bX0MnGZH
+ gYDA==
+X-Gm-Message-State: AOAM531gxpAmEm6zoygFHQo+s7V4ULyOHNKnqPoxyMgkaFrhOmXFITp9
+ mRtsQV7R+tJd2G6417Upkf7YpX8HHSOcfyem
+X-Google-Smtp-Source: ABdhPJxO4pmKMHrlMMVAUB1khkBFwJN9qGi1xZXpjoFGgVUpDvswguh62lEXMIDnE54xGj1lU5CFOg==
+X-Received: by 2002:adf:f4ca:: with SMTP id h10mr20112268wrp.89.1604328755291; 
+ Mon, 02 Nov 2020 06:52:35 -0800 (PST)
+Received: from [192.168.128.8]
+ (HSI-KBW-46-223-162-176.hsi.kabel-badenwuerttemberg.de. [46.223.162.176])
+ by smtp.gmail.com with ESMTPSA id y4sm22293736wrp.74.2020.11.02.06.52.34
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 02 Nov 2020 06:52:34 -0800 (PST)
+To: ALAIN.JOYAL@forces.gc.ca, USRP-users@lists.ettus.com
+References: <b6148bdffe2f484ca10dcf50791e5799@forces.gc.ca>
+Message-ID: <eb361645-268d-bf4b-06bb-7d5e9b94bb2a@ettus.com>
+Date: Mon, 2 Nov 2020 15:52:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-Subject: [USRP-users] Unsubscribe
+In-Reply-To: <b6148bdffe2f484ca10dcf50791e5799@forces.gc.ca>
+Content-Language: en-US
+Subject: Re: [USRP-users] Unsubscribe
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -48,9 +69,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Alain Joyal via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: ALAIN.JOYAL@forces.gc.ca
-Content-Type: multipart/mixed; boundary="===============2965551307470816603=="
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -64,103 +87,59 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2965551307470816603==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_b6148bdffe2f484ca10dcf50791e5799forcesgcca_"
+Hi!
 
---_000_b6148bdffe2f484ca10dcf50791e5799forcesgcca_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+a) please do tell your administation that this happens to you. Often,
+closed tickets are a currency in which improvement is measured, and
+honestly, I don't see why it's you spending time working around that to
+open an obviously non-malicious link on a PC on which you're allowed to
+read and send email.
+b) in absence of success in spending your administrator's time instead
+of yours:
+It's rather simple to self-serve this mailing list via an Email service
+bot. Send an email with nothing but the subject line "unsubscribe" to
+usrp-users-request@lists.ettus.com
+You'll get an email asking you to confirm by replying with a special
+message.
 
-Please remove email address alain.joyal@forces.gc.ca<mailto:alain.joyal@for=
-ces.gc.ca> from the distribution list.  Any incoming links to do so are blo=
-cked by our email manager.
+Best regards,
+Marcus
 
-Thanks,
-Alain Joyal
+DISCLAIMER: Any attached Code is provided As Is. It has not been tested or =
+validated as a product, for use in a deployed application or system, or for=
+ use in hazardous environments. You assume all risks for use of the Code. U=
+se of the Code is subject to terms of the licenses to the UHD or RFNoC code=
+ with which the Code is used. Standard licenses to UHD and RFNoC can be fou=
+nd at https://www.ettus.com/sdr-software/licenses/.
 
---_000_b6148bdffe2f484ca10dcf50791e5799forcesgcca_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+NI will only perform services based on its understanding and condition that=
+ the goods or services (i) are not for the use in the production or develop=
+ment of any item produced, purchased, or ordered by any entity with a footn=
+ote 1 designation in the license requirement column of Supplement No. 4 to =
+Part 744, U.S. Export Administration Regulations and (ii) such a company is=
+ not a party to the transaction.  If our understanding is incorrect, please=
+ notify us immediately because a specific authorization may be required fro=
+m the U.S. Commerce Department before the transaction may proceed further.
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 02.11.20 14:23, Alain Joyal via USRP-users wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-CA" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Please remove email address <a href=3D"mailto:alain.=
-joyal@forces.gc.ca">
-alain.joyal@forces.gc.ca</a> from the distribution list.&nbsp; Any incoming=
- links to do so are blocked by our email manager.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Alain Joyal<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_b6148bdffe2f484ca10dcf50791e5799forcesgcca_--
-
-
---===============2965551307470816603==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> Please remove email address alain.joyal@forces.gc.ca
+> <mailto:alain.joyal@forces.gc.ca> from the distribution list.=A0 Any
+> incoming links to do so are blocked by our email manager.
+>
+> =A0
+>
+> Thanks,
+>
+> Alain Joyal
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2965551307470816603==--
-
