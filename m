@@ -2,55 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39A062A3037
-	for <lists+usrp-users@lfdr.de>; Mon,  2 Nov 2020 17:50:14 +0100 (CET)
-Received: from [::1] (port=41380 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C64E92A4A58
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Nov 2020 16:50:22 +0100 (CET)
+Received: from [::1] (port=52530 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kZd23-00048A-TX; Mon, 02 Nov 2020 11:50:11 -0500
-Received: from mail-ej1-f54.google.com ([209.85.218.54]:46037)
+	id 1kZyZe-0003Ln-5c; Tue, 03 Nov 2020 10:50:18 -0500
+Received: from mail-qt1-f172.google.com ([209.85.160.172]:35334)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <kelvin.lok266@gmail.com>)
- id 1kZd20-000424-JR
- for usrp-users@lists.ettus.com; Mon, 02 Nov 2020 11:50:08 -0500
-Received: by mail-ej1-f54.google.com with SMTP id dk16so19218176ejb.12
- for <usrp-users@lists.ettus.com>; Mon, 02 Nov 2020 08:49:48 -0800 (PST)
+ (Exim 4.93) (envelope-from <apruhd@gmail.com>) id 1kZyZb-0003E1-1U
+ for usrp-users@lists.ettus.com; Tue, 03 Nov 2020 10:50:15 -0500
+Received: by mail-qt1-f172.google.com with SMTP id t5so3330055qtp.2
+ for <usrp-users@lists.ettus.com>; Tue, 03 Nov 2020 07:49:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=BcsOFVt31XjWDMvSg6J1eVi4O27IF8+mUGy+f4FA5is=;
- b=QSLACVzhZvI5IWHxaYGEGL5hOlKjWPRKe6PLhwrFA3btqtjToBqZRV/bfRykmEFRkL
- sNU2+BuaFUwmVHGnYjk0k9paZSIBS7RCPloGi3/eo/9Pv+vU9r/INU6CgVIjN9AbIPQN
- f8vWzAWtDX36DQgYyRWMvBzsHT5JswsJl9Cv5uyr0eUYlA2HjhAQVe4/78ppVTa5QnCY
- jaElYnf5iuiEUoNPdbm4Qj+v8OluC5a9q9B1MxUnqTmpNJ8w8LXbqxONOHlD3y7hsfE8
- gi+q0pHveWd5QNh8jFJa9pHSBiR+pEZSc0euwpcLFuReWPrUfZO13iRiiteEHdYyIMSr
- 1SAw==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=0ZEmJ6VOpmQaXw24k8ZjaQYfE9UV0gt6AnHy5GQBqsk=;
+ b=ifOgKZTrVQo6/f4xkWWbElx4O3g/ts7B2EhZVbHaZh1+cEz/RX6fS42o+NsKRfoTMX
+ NK5yTzeg/6AUqQoDw1aYAQWF8nA/L/ixzubJCo9LcEOUSi9zf+7Chbv7d0Xhb5TjiWjf
+ hA50Qp3x4Weo/3ZTSufVpZcS1PEekubp8J5Zri8/psSsAQ/uN4yKuEOpubIn4h3dQvLR
+ XK87RO8/w1tiH3w8mgU3AIEntwRZqUJo1V0qsGDmTDwHLN1xX46/ojLCODEjX8H+Iyjw
+ LWO7jdey7RhJsGUFqnfJiVkNvvRfAprokJTjmB1D4CMrQZ5QKLevPIzTFdNvBA49iEba
+ L5Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=BcsOFVt31XjWDMvSg6J1eVi4O27IF8+mUGy+f4FA5is=;
- b=n/7DO8Lk0/w12azmP0qK8zduchVoko1nEIe7T5xSPbyVNsx78B2h58tajZnrgpyASf
- hYCuIH+Ny8JEObnzJXEax3RgY4BQQ7FFkaUQyOeVAuRl2S+jlErA96hDBJn/ammK7PPk
- jd2GMcIagLPry9UUm7qTAkGebbLXxaBXnrqFm41Pj4DKHANxW/TdB6v4uHPA5IB/yoek
- hWHZzoRdaNWpPX2A0arBJzVycsxD1I7cSe3y0NRQS+XnVoPg3EbwbVW2SISkkWUJ+xGS
- +/fBJ6YHlF8PTUg+6GmC2pGYKaomZaEM2rWBg8psGuPsRBfNKVpaEuLT1xYua85Wq78A
- 2/uQ==
-X-Gm-Message-State: AOAM533PVZOpjbEO1VJAhWSHmhsGu1y5VrZGwV4PFT38TwsT3JyO3IgM
- 3SO8QisnQGXgQK2bE6Iwfk2h2EPDWlT9bpG2Baw=
-X-Google-Smtp-Source: ABdhPJxWZP3Muwq9uq4ZpobsPS43QJsv9XdjcHiYiNV3maRTaQniN1EHqyufN2o5TcLKANNXFRJSWeaJc0f7rv9I+w8=
-X-Received: by 2002:a17:906:f84f:: with SMTP id
- ks15mr8121429ejb.337.1604335767594; 
- Mon, 02 Nov 2020 08:49:27 -0800 (PST)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=0ZEmJ6VOpmQaXw24k8ZjaQYfE9UV0gt6AnHy5GQBqsk=;
+ b=b5PYRib6OSKXqbiNi3keKtfLij2Skn9QP8fR8MLJAzuVdFAAhiIoh4uI/umfKzhxte
+ +wCumu7f/OBlC8aHaadBUfu27ZCyYO+AdHIPXimkWvfvIcN74f2xkciSCRAVRIrSGK8g
+ 1OK4NeFx6UZBY25ErXe0CfMX3Ep+XRDIVbMyx3qZ6k2lDSWhwFZ8ZibWK5eVeOyaE6u2
+ zHc1R2oeCmklkp7mFQcCfs/D1DaYb+psAGHmH2qxeQv/o6qnwxaFYTOsKcBr+EpTl9dL
+ YCSbpPwdPJvEKEl/OSfQbNFT7F3r4vGsdQt2IsfpZRoG6X9UiTJiGh0W4CPw3M2zqZSW
+ UBGg==
+X-Gm-Message-State: AOAM531nfTqBTnmmxMMtzgBrfPVdnvRbZlzB2DXQLc26U+YSykI6lCnq
+ iT9DgCbfZYIyMAlPsEL0CSgZMhc1LxNY7geQ746yI5Hd
+X-Google-Smtp-Source: ABdhPJxbOJpbczCSqMwZwuou4qlgIDndV+ISyChbFXYS5NVtubKRL+lgF2VSqzyQd8D4hLWpTixqdwsnJmFJnsIqzqc=
+X-Received: by 2002:ac8:7543:: with SMTP id b3mr14177257qtr.286.1604418574142; 
+ Tue, 03 Nov 2020 07:49:34 -0800 (PST)
 MIME-Version: 1.0
-References: <CACSyVY2dm3ASsdK_b6k1v_CRk3G9J-wdh9_FLWHCZi+JGv=TAg@mail.gmail.com>
- <CADBWrHjmb7niNhg0Sr1TK6HFK65+4XzymvcB5hTca6n2Urc-7Q@mail.gmail.com>
-In-Reply-To: <CADBWrHjmb7niNhg0Sr1TK6HFK65+4XzymvcB5hTca6n2Urc-7Q@mail.gmail.com>
-Date: Tue, 3 Nov 2020 00:49:15 +0800
-Message-ID: <CACSyVY1GKpg55vQDS31yR_TT8UVnHbvywbXw2cUSSWrVXah3-A@mail.gmail.com>
-To: Sam Reiter <sam.reiter8@gmail.com>
-Cc: "usrp-users (usrp-users@lists.ettus.com)" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Loading B210 firmware takes forever (i.e. hang)
- after installing NI-USRP driver
+Date: Tue, 3 Nov 2020 16:49:22 +0100
+Message-ID: <CAAC=UJP-ZpTgGyAx0gVZ0ApfvnZmF6G27GOXPwJMKMStbF5W_Q@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Raspberry Pi 4 sampling Rate
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -62,9 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Kelvin Lok via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Kelvin Lok <kelvin.lok266@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7682920317482164233=="
+From: Alvaro Pendas Recondo via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Alvaro Pendas Recondo <apruhd@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4415648609574133100=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,103 +70,222 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7682920317482164233==
-Content-Type: multipart/alternative; boundary="000000000000872ae305b322870a"
+--===============4415648609574133100==
+Content-Type: multipart/alternative; boundary="0000000000002ed1be05b335cfa8"
 
---000000000000872ae305b322870a
+--0000000000002ed1be05b335cfa8
 Content-Type: text/plain; charset="UTF-8"
 
-Thanks Sam, that did the trick. For anyone with the same problem, to solve
-my issue I used a batch script to set the UHD environments to point to my
-uhd build whenever I needed UHD instead of NI-USRP. With that, I can run
-both UHD apps and labview runtime apps.
+Hello,
 
-Cheers!
+I am using a USRP B200mini with a sampling rate of 40MS that works
+perfectly fine connected to a laptop with USB 3. However, when I connect it
+to a Raspberry Pi 4 (which has two USB 3 ports) and I run the example
+benchmark_rate with the same sampling rate I get the output that I copy
+below. It seems that even if it is also operating over USB 3, this
+connection cannot meet the expected performance anymore. If I reduce the
+sampling rate (down to 12 MS approx) everything works fine. Any ideas about
+what might be causing this problem?
 
-On Sat, Oct 3, 2020 at 4:46 AM Sam Reiter <sam.reiter8@gmail.com> wrote:
 
-> Kelvin,
->
-> If I remember correctly, NI-USRP overwrites a handful of environment
-> variables in Windows to point to RFNoC image paths for NI-USRP. However, I
-> can't imagine why the B210 image would be any different between UHD and
-> NI-USRP. You might try changing these paths to point back at the images
-> from your installation of UHD.
->
-> Alternative solution would be to just uninstall NI-USRP and reinstall UHD
-> :)
->
-> -Sam
->
-> On Thu, Oct 1, 2020 at 8:18 PM Kelvin Lok via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> I am running on the latest release of UHD (3.15.0.0) from github. Using
->> Windows 10, installed with the UHD binary installer.
->>
->> Typically, running ./uhd_usrp_probe takes only a few moments for the
->> firmware to be loaded onto the USRP. However, recently I have installed
->> labview runtime and NI-USRP and after that, I am no longer able to use UHD
->> to communicate to the USRP. Running uhd_usrp_probe or any of the uhd_xx_xx
->> commands will result in an endless wait for 'Loading firmware image'.
->>
->> I suspect that installing NI-USRP has resulted in a clash with my UHD.
->> Anyone have any suggestions?
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
+By the way, I already followed all the instructions explained at
+https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:~:text=Thread%20Priority%20Scheduling,-When%20UHD%20spawns&text=To%20address%20this%20issue%2C%20non,%2Fetc%2Fsecurity%2Flimits
+.
 
---000000000000872ae305b322870a
+
+./benchmark_rate --rx_rate 40e6 --tx_rate 40e6
+
+[INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;
+UHD_3.15.0.HEAD-0-gaea0e2de
+[INFO] [B200] Loading firmware image:
+/usr/local/share/uhd/images/usrp_b200_fw.hex...
+[00:00:00.000044] Creating the usrp device with: ...
+[INFO] [B200] Detected Device: B200mini
+[INFO] [B200] Loading FPGA image:
+/usr/local/share/uhd/images/usrp_b200mini_fpga.bin...
+[INFO] [B200] Operating over USB 3.
+[INFO] [B200] Initialize CODEC control...
+[INFO] [B200] Initialize Radio control...
+[INFO] [B200] Performing register loopback test...
+[INFO] [B200] Register loopback test passed
+[INFO] [B200] Setting master clock rate selection to 'automatic'.
+[INFO] [B200] Asking for clock rate 16.000000 MHz...
+[INFO] [B200] Actually got clock rate 16.000000 MHz.
+Using Device: Single USRP:
+  Device: B-Series Device
+  Mboard 0: B200mini
+  RX Channel: 0
+    RX DSP: 0
+    RX Dboard: A
+    RX Subdev: FE-RX1
+  TX Channel: 0
+    TX DSP: 0
+    TX Dboard: A
+    TX Subdev: FE-TX1
+
+[00:00:11.448560] Setting device timestamp to 0...
+[INFO] [B200] Asking for clock rate 40.000000 MHz...
+[INFO] [B200] Actually got clock rate 40.000000 MHz.
+[WARNING] [MULTI_USRP] The total sum of rates (40.000000 MSps on 1
+channels) exceeds the maximum capacity of the connection (overflows (O)
+MSps).
+This can cause 22.7428.
+[00:00:11.766752] Testing receive rate 40.000000 Msps on 1 channels
+[WARNING] [MULTI_USRP] The total sum of rates (40.000000 MSps on 1
+channels) exceeds the maximum capacity of the connection (underruns (U)
+MSps).
+This can cause 22.7428.
+[00:00:11.790580] Testing transmit rate 40.000000 Msps on 1 channels
+[00:00:11.891995] Tx timeouts: 1
+UUUUUUUUUUUUUUUO[00:00:12.078147] Timestamp after overrun recovery ahead of
+error timestamp! Unable to calculate number of dropped samples.(Delta:
+-3170 ticks)
+UUUUUUUUUUUUUUUUUUUUO[00:00:12.092404] Timestamp after overrun recovery
+ahead of error timestamp! Unable to calculate number of dropped
+samples.(Delta: -3170 ticks)
+UUUUUUUUUUUUUO[00:00:12.108355] Timestamp after overrun recovery ahead of
+error timestamp! Unable to calculate number of dropped samples.(Delta:
+-3170 ticks)
+UUUUUUUUUUUUUUUUUUUUUUUUU[OU00:00:12.123737] Timestamp after overrun
+recovery ahead of error timestamp! Unable to calculate number of dropped
+samples.(Delta: -3170 ticks)
+UUUUUUUUUUUUUUUUUUUUOU[00:00:12.132437] Timestamp after overrun recovery
+ahead of error timestamp! Unable to calculate number of dropped
+samples.(Delta: -3170 ticks)
+UUUUUUUUUUUUUUUUUUUUUUOU[00:00:12.142422] Timestamp after overrun recovery
+ahead of error timestamp! Unable to calculate number of dropped
+samples.(Delta: -3170 ticks)
+UUUUUUUUUUUUUUO[00:00:12.155257] Timestamp after overrun recovery ahead of
+error timestamp! Unable to calculate number of dropped samples.(Delta:
+-3170 ticks)
+UUUUUUUUUUUUUUUO[00:00:12.168528] Timestamp after overrun recovery ahead of
+error timestamp! Unable to calculate number of dropped samples.(Delta:
+-3170 ticks)
+UUUUUUUUUUU[O00:00:12.178400] Timestamp after overrun recovery ahead of
+error timestamp! Unable to calculate number of dropped samples.(Delta:
+-3170 ticks)
+UUUUUUUUU[00:00:12.193251] Timestamp after overrun recovery ahead of error
+timestamp! Unable to calculate number of dropped samples.(Delta: -3170
+ticks)
+OUUUUUUUUUUUUUUUUUO[00:00:12.204356] Timestamp after overrun recovery ahead
+of error timestamp! Unable to calculate number of dropped samples.(Delta:
+-3170 ticks)
+UUUUUUUUUUUUUUUUO[00:00:12.224770] Timestamp after overrun recovery ahead
+of error timestamp! Unable to calculate number of dropped samples.(Delta:
+-3170 ticks)
+UUUUUUUUUUUUUUUUUO[00:00:12.235145] Timestamp after overrun recovery ahead
+of error timestamp! Unable to calculate number of dropped samples.(Delta:
+-3170 ticks)
+UUUUUUUUUUUUU[O00:00:12.247517] Timestamp after overrun recovery ahead of
+error timestamp! Unable to calculate number of dropped samples.(Delta:
+-3170 ticks)
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU[00:00:12.475571] Receiver error:
+ERROR_CODE_TIMEOUT, continuing...
+[00:00:12.575910] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+[00:00:12.676171] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+[00:00:12.776414] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+[00:00:12.876663] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+[00:00:12.976968] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+[00:00:13.077257] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+terminate called after throwing an instance of 'uhd::io_error'
+  what():  EnvironmentError: IOError: usb tx2 transfer status:
+LIBUSB_TRANSFER_NO_DEVICE[
+00:00:13.083166] Caught an IO exception.
+EnvironmentError: IOError: usb rx6 transfer status:
+LIBUSB_TRANSFER_NO_DEVICE
+
+--0000000000002ed1be05b335cfa8
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks Sam, that did the trick. For anyone with the same p=
-roblem, to solve my issue I used a batch script to set the UHD environments=
- to point to my uhd build whenever I needed UHD instead of NI-USRP. With th=
-at, I can run both UHD apps and labview runtime apps.<div><br></div><div>Ch=
-eers!</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Sat, Oct 3, 2020 at 4:46 AM Sam Reiter &lt;<a href=3D"mailto:=
-sam.reiter8@gmail.com">sam.reiter8@gmail.com</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Kelvin,<div><b=
-r></div><div>If I remember correctly, NI-USRP overwrites a handful of envir=
-onment variables in Windows to point to RFNoC image paths for NI-USRP. Howe=
-ver, I can&#39;t imagine why the B210 image would be any different between =
-UHD and NI-USRP. You might try changing these paths to point back at the im=
-ages from your installation of UHD.=C2=A0</div><div><br></div><div>Alternat=
-ive solution would be to just uninstall NI-USRP and reinstall UHD :)=C2=A0<=
-/div><div><br></div><div>-Sam</div></div><br><div class=3D"gmail_quote"><di=
-v dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 1, 2020 at 8:18 PM Kelvin Lo=
-k via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=
-=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">I am running on the =
-latest=C2=A0release of UHD (3.15.0.0) from github. Using Windows 10, instal=
-led with the UHD binary installer.=C2=A0<div><br></div><div>Typically, runn=
-ing ./uhd_usrp_probe takes only a few moments for the firmware to be loaded=
- onto the USRP. However, recently I have installed labview runtime and NI-U=
-SRP and after that, I am no longer able to use UHD to communicate to the US=
-RP. Running uhd_usrp_probe or any of the uhd_xx_xx commands will result in =
-an endless wait for &#39;Loading firmware image&#39;.<div><br></div><div>I =
-suspect that installing NI-USRP has resulted in a clash with my UHD. Anyone=
- have any suggestions?</div></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
+<div dir=3D"ltr">Hello,<div><br></div><div>I am using a USRP B200mini with =
+a sampling rate of 40MS that works perfectly fine connected=C2=A0to a lapto=
+p with USB 3. However, when I connect it to a Raspberry Pi 4 (which has two=
+ USB 3 ports) and I run the example benchmark_rate with the same sampling r=
+ate I get the output that I copy below. It seems that even if it is also op=
+erating over USB 3, this connection cannot meet the expected performance an=
+ymore. If I reduce the sampling rate (down to 12 MS approx) everything work=
+s fine. Any ideas about what might be causing this problem?</div><div><br><=
+/div><div><br></div><div>By the way, I already followed all the instruction=
+s explained at=C2=A0<a href=3D"https://kb.ettus.com/USRP_Host_Performance_T=
+uning_Tips_and_Tricks#:~:text=3DThread%20Priority%20Scheduling,-When%20UHD%=
+20spawns&amp;text=3DTo%20address%20this%20issue%2C%20non,%2Fetc%2Fsecurity%=
+2Flimits" target=3D"_blank">https://kb.ettus.com/USRP_Host_Performance_Tuni=
+ng_Tips_and_Tricks#:~:text=3DThread%20Priority%20Scheduling,-When%20UHD%20s=
+pawns&amp;text=3DTo%20address%20this%20issue%2C%20non,%2Fetc%2Fsecurity%2Fl=
+imits</a>.=C2=A0</div><div><br></div><div><br></div><div>./benchmark_rate -=
+-rx_rate 40e6 --tx_rate 40e6<br></div><div><br></div><div>[INFO] [UHD] linu=
+x; GNU C++ version 8.3.0; Boost_106700; UHD_3.15.0.HEAD-0-gaea0e2de<br>[INF=
+O] [B200] Loading firmware image: /usr/local/share/uhd/images/usrp_b200_fw.=
+hex...<br>[00:00:00.000044] Creating the usrp device with: ...<br>[INFO] [B=
+200] Detected Device: B200mini<br>[INFO] [B200] Loading FPGA image: /usr/lo=
+cal/share/uhd/images/usrp_b200mini_fpga.bin...<br>[INFO] [B200] Operating o=
+ver USB 3.<br>[INFO] [B200] Initialize CODEC control...<br>[INFO] [B200] In=
+itialize Radio control...<br>[INFO] [B200] Performing register loopback tes=
+t... <br>[INFO] [B200] Register loopback test passed<br>[INFO] [B200] Setti=
+ng master clock rate selection to &#39;automatic&#39;.<br>[INFO] [B200] Ask=
+ing for clock rate 16.000000 MHz... <br>[INFO] [B200] Actually got clock ra=
+te 16.000000 MHz.<br>Using Device: Single USRP:<br>=C2=A0 Device: B-Series =
+Device<br>=C2=A0 Mboard 0: B200mini<br>=C2=A0 RX Channel: 0<br>=C2=A0 =C2=
+=A0 RX DSP: 0<br>=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=A0 RX Subdev: FE-=
+RX1<br>=C2=A0 TX Channel: 0<br>=C2=A0 =C2=A0 TX DSP: 0<br>=C2=A0 =C2=A0 TX =
+Dboard: A<br>=C2=A0 =C2=A0 TX Subdev: FE-TX1<br><br>[00:00:11.448560] Setti=
+ng device timestamp to 0...<br>[INFO] [B200] Asking for clock rate 40.00000=
+0 MHz... <br>[INFO] [B200] Actually got clock rate 40.000000 MHz.<br>[WARNI=
+NG] [MULTI_USRP] The total sum of rates (40.000000 MSps on 1 channels) exce=
+eds the maximum capacity of the connection (overflows (O) MSps).<br>This ca=
+n cause 22.7428.<br>[00:00:11.766752] Testing receive rate 40.000000 Msps o=
+n 1 channels<br>[WARNING] [MULTI_USRP] The total sum of rates (40.000000 MS=
+ps on 1 channels) exceeds the maximum capacity of the connection (underruns=
+ (U) MSps).<br>This can cause 22.7428.<br>[00:00:11.790580] Testing transmi=
+t rate 40.000000 Msps on 1 channels<br>[00:00:11.891995] Tx timeouts: 1<br>=
+UUUUUUUUUUUUUUUO[00:00:12.078147] Timestamp after overrun recovery ahead of=
+ error timestamp! Unable to calculate number of dropped samples.(Delta: -31=
+70 ticks)<br>UUUUUUUUUUUUUUUUUUUUO[00:00:12.092404] Timestamp after overrun=
+ recovery ahead of error timestamp! Unable to calculate number of dropped s=
+amples.(Delta: -3170 ticks)<br>UUUUUUUUUUUUUO[00:00:12.108355] Timestamp af=
+ter overrun recovery ahead of error timestamp! Unable to calculate number o=
+f dropped samples.(Delta: -3170 ticks)<br>UUUUUUUUUUUUUUUUUUUUUUUUU[OU00:00=
+:12.123737] Timestamp after overrun recovery ahead of error timestamp! Unab=
+le to calculate number of dropped samples.(Delta: -3170 ticks)<br>UUUUUUUUU=
+UUUUUUUUUUUOU[00:00:12.132437] Timestamp after overrun recovery ahead of er=
+ror timestamp! Unable to calculate number of dropped samples.(Delta: -3170 =
+ticks)<br>UUUUUUUUUUUUUUUUUUUUUUOU[00:00:12.142422] Timestamp after overrun=
+ recovery ahead of error timestamp! Unable to calculate number of dropped s=
+amples.(Delta: -3170 ticks)<br>UUUUUUUUUUUUUUO[00:00:12.155257] Timestamp a=
+fter overrun recovery ahead of error timestamp! Unable to calculate number =
+of dropped samples.(Delta: -3170 ticks)<br>UUUUUUUUUUUUUUUO[00:00:12.168528=
+] Timestamp after overrun recovery ahead of error timestamp! Unable to calc=
+ulate number of dropped samples.(Delta: -3170 ticks)<br>UUUUUUUUUUU[O00:00:=
+12.178400] Timestamp after overrun recovery ahead of error timestamp! Unabl=
+e to calculate number of dropped samples.(Delta: -3170 ticks)<br>UUUUUUUUU[=
+00:00:12.193251] Timestamp after overrun recovery ahead of error timestamp!=
+ Unable to calculate number of dropped samples.(Delta: -3170 ticks)<br>OUUU=
+UUUUUUUUUUUUUUO[00:00:12.204356] Timestamp after overrun recovery ahead of =
+error timestamp! Unable to calculate number of dropped samples.(Delta: -317=
+0 ticks)<br>UUUUUUUUUUUUUUUUO[00:00:12.224770] Timestamp after overrun reco=
+very ahead of error timestamp! Unable to calculate number of dropped sample=
+s.(Delta: -3170 ticks)<br>UUUUUUUUUUUUUUUUUO[00:00:12.235145] Timestamp aft=
+er overrun recovery ahead of error timestamp! Unable to calculate number of=
+ dropped samples.(Delta: -3170 ticks)<br>UUUUUUUUUUUUU[O00:00:12.247517] Ti=
+mestamp after overrun recovery ahead of error timestamp! Unable to calculat=
+e number of dropped samples.(Delta: -3170 ticks)<br>UUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUU[00:00:12.475571] Receiver error: ERROR_CODE_TIMEOUT, continuing..=
+.<br>[00:00:12.575910] Receiver error: ERROR_CODE_TIMEOUT, continuing...<br=
+>[00:00:12.676171] Receiver error: ERROR_CODE_TIMEOUT, continuing...<br>[00=
+:00:12.776414] Receiver error: ERROR_CODE_TIMEOUT, continuing...<br>[00:00:=
+12.876663] Receiver error: ERROR_CODE_TIMEOUT, continuing...<br>[00:00:12.9=
+76968] Receiver error: ERROR_CODE_TIMEOUT, continuing...<br>[00:00:13.07725=
+7] Receiver error: ERROR_CODE_TIMEOUT, continuing...<br>terminate called af=
+ter throwing an instance of &#39;uhd::io_error&#39;<br>=C2=A0 what(): =C2=
+=A0EnvironmentError: IOError: usb tx2 transfer status: LIBUSB_TRANSFER_NO_D=
+EVICE[<br>00:00:13.083166] Caught an IO exception. <br>EnvironmentError: IO=
+Error: usb rx6 transfer status: LIBUSB_TRANSFER_NO_DEVICE<br></div></div>
 
---000000000000872ae305b322870a--
+--0000000000002ed1be05b335cfa8--
 
 
---===============7682920317482164233==
+--===============4415648609574133100==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -185,5 +296,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7682920317482164233==--
+--===============4415648609574133100==--
 
