@@ -2,51 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A3D32A5CBD
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Nov 2020 03:32:57 +0100 (CET)
-Received: from [::1] (port=57682 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 504422A6579
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Nov 2020 14:46:10 +0100 (CET)
+Received: from [::1] (port=33978 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ka8bQ-0005TQ-RP; Tue, 03 Nov 2020 21:32:48 -0500
-Received: from mail-ua1-f46.google.com ([209.85.222.46]:40376)
+	id 1kaJ6t-0001gK-Hn; Wed, 04 Nov 2020 08:45:59 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:43180)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1ka8bN-0005PM-Ec
- for usrp-users@lists.ettus.com; Tue, 03 Nov 2020 21:32:45 -0500
-Received: by mail-ua1-f46.google.com with SMTP id q20so5634970uar.7
- for <usrp-users@lists.ettus.com>; Tue, 03 Nov 2020 18:32:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ (Exim 4.93) (envelope-from <robertbenwilson0@gmail.com>)
+ id 1kaJ6p-0001Ys-Dy
+ for usrp-users@lists.ettus.com; Wed, 04 Nov 2020 08:45:55 -0500
+Received: by mail-ot1-f52.google.com with SMTP id y22so8831599oti.10
+ for <usrp-users@lists.ettus.com>; Wed, 04 Nov 2020 05:45:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ccNPkPDlP8BJQ8CSI38kRR2addUPKkip9pPE8B0wDlQ=;
- b=JXFGXvaG8jrbRMlLp/42OaFUq3icoDI9sazlBHg2Jjp2s6W2mT1fKl5P1H5MRrbXkN
- 95f2reardN7OaqoEZkgWRz4ncLo4JlXC9fovjLy6r51b/fNJZ3H9YVSv33r2gcliicsF
- al7arJ+mS+fBE1yAhNLIU0810UZPQzb+19JlXNkI1OsEalCsc09/XHi1Tw30xDBwNdpv
- RyGElev9x5UatRAMQByIKDx6XbO9e3NnQwvzAbh+srT/ykGMN1MwoJtfNr/Q8LL53PEp
- kqPaH9YAYgex4kKeA9/4BH4gtTQ7HrFWpv9yEKKKwHJDdfCltw/0aIpzNYy0FquYgu7n
- yJVw==
+ :cc; bh=tVxl8qWTOiLTbdE+h/psBU8rb0S28DtV/KfMiIk8i0o=;
+ b=P4L2iAfj4Rfx7EwwBVFZQvAO6CfS20cF8KoVPUlZnkc12vnw0upoIe0kLtd2hs5bxY
+ Lsqe+1Ir/vvbFcYt+ebyc18BQ/s99bXKy/fiKnAO/pVRKVSFxLy56p9j0CcxBtg4bI4z
+ GTRo3u9geXB3C89BLjn5MfD0fFfwe+SGcsu8e7OsmQMzamvQ3xXpAazEDufJu5SIrfBd
+ LUqTjKJgCrwiTLN6LCFjGKKXU92HeiGmJmXGx23u8YwOPUFgjV3vKHA/Y0nSwWcuwkdr
+ w7oENeronDUW4SsUhDe0BecxZ8tVSbmUVzNwkT2/8gMVVuoq/31HVIOxEr7wJ1aoSPNk
+ 1lTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=ccNPkPDlP8BJQ8CSI38kRR2addUPKkip9pPE8B0wDlQ=;
- b=Jg1PoSPvJgYlMcyyjEO3NDMGwhDF//SNfbG5gLbc9Wo+bI5Pa1YGRjL3+5J81mhXNc
- nFMiJ/psQyXRRrU7RWhFLvXImTt3IMZcO6r49uDYU5xomFSs3Fr9Le5y7RwJLqgwL39m
- AYdvmeWjEirnzZihdy7Pkwi5LqLabwFL++pmnNp2rSEngJcGk5Xw5lW5b1tCddQpqCbt
- bxjIJiTR4wVFr7tt40SG8UMMx6RtNPwG7GIO2s7rlxyYQAbO+u1To4LsyhR4PFfrYlDB
- ksNIXpDCYuF1MkEfN1HAzPGFxOTPldMqJDMsenmJ9LL5vudozHg34apLgaCUHhPTmUpi
- tEwA==
-X-Gm-Message-State: AOAM5322OQRDnA6LcdU/mDcy8XEF8cXZ1DWG6bhgF5m+F7tQfmmIgU8v
- 1fYKwQVFTWvG+pN6H3uaJCbGkXHrDvfZBSb3ZXM2NJB+
-X-Google-Smtp-Source: ABdhPJwqf3I7LdvUEScs8W4YCLFKkq8ctyQ7jnK0838Dp+Pdk1YEmWEojW3nKsDi5Np6OuvaiFWSueqcPHtz0e1SBN4=
-X-Received: by 2002:ab0:3112:: with SMTP id e18mr12210583ual.112.1604457124759; 
- Tue, 03 Nov 2020 18:32:04 -0800 (PST)
+ bh=tVxl8qWTOiLTbdE+h/psBU8rb0S28DtV/KfMiIk8i0o=;
+ b=KNZWceKQKxn311ibWFAug8vy/mqB8gxRu/tfUBtSiPmoR7dvDMJQ1zH9Tr7vYAFesz
+ RHZr0LiqY59BU+rhv3Xcfjrq3NBRpLbTLEjJl/qCtrsJGYpIy0bKLyyeZTFUj9GHwjiR
+ VrvsI/Wyi8ZFsNG2N/E/EjKW58XnNs7GFIQsJaKtn2VF4A2e2WRFoE0tI4MZxFBAYtAK
+ 8jEMfB61C+1ebE3cVmH1UEhsWJxOTfgRLss5s3k3+JcKmj//svN3YOR0Zfy2h1+khq02
+ n0Tj8vzNNaN+cp1Lu9joi8TYOgS/bWXlWYSbX4aN9t6iBN1NH2D0OU5TnO8pbnstXlJv
+ l3hg==
+X-Gm-Message-State: AOAM530Prei/Ni9rug/t0ylw2InEHL7G0mw5bfwRqpmhdK0tWXOS1WTR
+ EjK/rCFZfboC5Z8WHwp7bezI+OE0jtGCmWf0PGbZN9PpxVw=
+X-Google-Smtp-Source: ABdhPJweC7vD6FnaSPY1esfLF51QWly4YMZ4opA9Ly7USM/m494l7UCCb0bB3Kta/z5OfMd33kPatdBjnPG0AzC6+jM=
+X-Received: by 2002:a9d:6c8d:: with SMTP id c13mr18652091otr.222.1604497514440; 
+ Wed, 04 Nov 2020 05:45:14 -0800 (PST)
 MIME-Version: 1.0
 References: <CAGJu-nZLreKPAhpynaXE27rxSm_NhHDym+Ftfpaj0VogaBE7Lw@mail.gmail.com>
-In-Reply-To: <CAGJu-nZLreKPAhpynaXE27rxSm_NhHDym+Ftfpaj0VogaBE7Lw@mail.gmail.com>
-Date: Tue, 3 Nov 2020 21:31:28 -0500
-Message-ID: <CAL7q81sJ1tL_XV_8S=MFE4TO+P1_veyFZX=bpmB-NYYBjUahtA@mail.gmail.com>
-To: Robert Wilson <robertbenwilson0@gmail.com>
+ <CAL7q81sJ1tL_XV_8S=MFE4TO+P1_veyFZX=bpmB-NYYBjUahtA@mail.gmail.com>
+In-Reply-To: <CAL7q81sJ1tL_XV_8S=MFE4TO+P1_veyFZX=bpmB-NYYBjUahtA@mail.gmail.com>
+Date: Wed, 4 Nov 2020 08:45:03 -0500
+Message-ID: <CAGJu-namsauwtchamfjn_wS=uGwFkx8i4sRaHH3AWk0G=JkLLA@mail.gmail.com>
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
 Cc: usrp-users <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] RFNoC Fosphor error
 X-BeenThere: usrp-users@lists.ettus.com
@@ -60,9 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Content-Type: multipart/mixed; boundary="===============3964314741269028174=="
+From: Robert Wilson via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Robert Wilson <robertbenwilson0@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8361942690883826763=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,106 +76,137 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3964314741269028174==
-Content-Type: multipart/alternative; boundary="000000000000faa30e05b33ec891"
+--===============8361942690883826763==
+Content-Type: multipart/alternative; boundary="000000000000643ec205b348306d"
 
---000000000000faa30e05b33ec891
+--000000000000643ec205b348306d
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Ben,
+My Ethernet Controller is a Qualcomm Atheros AR8151 it=E2=80=99s max MTU is=
+ 6144
+bytes. I=E2=80=99ve changed MTU to the max with no change in gnuRadio respo=
+nse. Is
+the 6144 bytes not enough?
 
-Try setting your NIC's MTU to 9000.
+On Tue, Nov 3, 2020 at 9:32 PM Jonathon Pendlum <jonathon.pendlum@ettus.com=
+>
+wrote:
 
-Jonathon
+> Hi Ben,
+>
+> Try setting your NIC's MTU to 9000.
+>
+> Jonathon
+>
+> On Mon, Nov 2, 2020 at 6:55 AM Robert Wilson via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hello,
+>>
+>> OS: Linux Ubuntu 20.04.1 LTS
+>> GRC: 3.8
+>> UHD: 4.0
+>> USRP:X310 (HG)
+>>
+>> I have been looking at RFNoC only for a few weeks. I have followed the
+>> RFNoC Workshop 4 tutorial and successfully built my own custom gain bloc=
+k
+>> as well as implemented and FFT from existing blocks using the "Getting
+>> Started with RFNoC" document online.
+>>
+>> I am now attempting to get Fosphor up and running on my X310 to further
+>> understand bitstream generation from YAML files. At one point I believe
+>> there was an example bitstream that had the correct Fosphor configuratio=
+n I
+>> don't see it in the build of UHD I have.
+>>
+>> I've attached my .yml file and a copy of my GRC flow graph.
+>> Below is the error message I'm receiving.
+>>
+>> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+>> UHD_4.0.0.0-1-gcf570707
+>> [INFO] [X300] X300 initialization sequence...
+>> [INFO] [X300] Maximum frame size: 1472 bytes.
+>> [INFO] [GPS] No GPSDO found
+>> [INFO] [X300] Radio 1x clock: 200 MHz
+>> [WARNING] [RFNOC::BLOCK_FACTORY] Could not find block with Noc-ID
+>> 0xfd7d809a, 0xffff
+>> [WARNING] [0/Radio#0] Setting RX IQ Balance is not possible on this
+>> device.
+>> gr::log :DEBUG: rfnoc_rx_streamer0 - Committing graph...
+>> [WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
+>> gr::log :DEBUG: rfnoc_rx_streamer1 - Committing graph...
+>> gr::log :DEBUG: rfnoc_rx_streamer1 - Sending start stream command...
+>> gr::log :DEBUG: rfnoc_rx_streamer0 - Sending start stream command...
+>>
+>> >>> Done (return code -11)
+>>
+>> More resources of this type of development would be welcome as well.
+>>
+>> Many Thanks,
+>> Ben Wilson
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
 
-On Mon, Nov 2, 2020 at 6:55 AM Robert Wilson via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hello,
->
-> OS: Linux Ubuntu 20.04.1 LTS
-> GRC: 3.8
-> UHD: 4.0
-> USRP:X310 (HG)
->
-> I have been looking at RFNoC only for a few weeks. I have followed the
-> RFNoC Workshop 4 tutorial and successfully built my own custom gain block
-> as well as implemented and FFT from existing blocks using the "Getting
-> Started with RFNoC" document online.
->
-> I am now attempting to get Fosphor up and running on my X310 to further
-> understand bitstream generation from YAML files. At one point I believe
-> there was an example bitstream that had the correct Fosphor configuration I
-> don't see it in the build of UHD I have.
->
-> I've attached my .yml file and a copy of my GRC flow graph.
-> Below is the error message I'm receiving.
->
-> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
-> UHD_4.0.0.0-1-gcf570707
-> [INFO] [X300] X300 initialization sequence...
-> [INFO] [X300] Maximum frame size: 1472 bytes.
-> [INFO] [GPS] No GPSDO found
-> [INFO] [X300] Radio 1x clock: 200 MHz
-> [WARNING] [RFNOC::BLOCK_FACTORY] Could not find block with Noc-ID
-> 0xfd7d809a, 0xffff
-> [WARNING] [0/Radio#0] Setting RX IQ Balance is not possible on this device.
-> gr::log :DEBUG: rfnoc_rx_streamer0 - Committing graph...
-> [WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
-> gr::log :DEBUG: rfnoc_rx_streamer1 - Committing graph...
-> gr::log :DEBUG: rfnoc_rx_streamer1 - Sending start stream command...
-> gr::log :DEBUG: rfnoc_rx_streamer0 - Sending start stream command...
->
-> >>> Done (return code -11)
->
-> More resources of this type of development would be welcome as well.
->
-> Many Thanks,
-> Ben Wilson
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000faa30e05b33ec891
+--000000000000643ec205b348306d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Ben,<div><br></div><div>Try setting your NIC&#39;s MTU =
-to 9000.</div><div><br></div><div>Jonathon</div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Nov 2, 2020 at 6:55=
- AM Robert Wilson via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ett=
-us.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello,</div><div><b=
-r></div><div>OS: Linux Ubuntu 20.04.1 LTS<br></div><div>GRC: 3.8</div><div>=
-UHD: 4.0</div><div>USRP:X310 (HG)<br></div><div><br></div><div>I have been =
-looking at RFNoC only for a few weeks. I have followed the RFNoC Workshop 4=
- tutorial and successfully built my own custom gain block as well as implem=
-ented and FFT from existing blocks using the &quot;Getting Started with RFN=
-oC&quot; document online.</div><div><br></div><div>I am now attempting to g=
-et Fosphor up and running on my X310 to further understand bitstream genera=
-tion from YAML files. At one point I believe there was an example bitstream=
- that had the correct Fosphor configuration I don&#39;t see it in the build=
- of UHD I have.</div><div><br></div><div>I&#39;ve attached my .yml file and=
- a copy of my GRC flow graph. <br></div><div>Below is the error message I&#=
-39;m receiving.</div><div><br></div><div>[INFO] [UHD] linux; GNU C++ versio=
-n 9.3.0; Boost_107100; UHD_4.0.0.0-1-gcf570707<br>[INFO] [X300] X300 initia=
-lization sequence...<br>[INFO] [X300] Maximum frame size: 1472 bytes.<br>[I=
-NFO] [GPS] No GPSDO found<br>[INFO] [X300] Radio 1x clock: 200 MHz<br>[WARN=
-ING] [RFNOC::BLOCK_FACTORY] Could not find block with Noc-ID 0xfd7d809a, 0x=
-ffff<br>[WARNING] [0/Radio#0] Setting RX IQ Balance is not possible on this=
- device.<br>gr::log :DEBUG: rfnoc_rx_streamer0 - Committing graph...<br>[WA=
-RNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.<br>gr::log :=
-DEBUG: rfnoc_rx_streamer1 - Committing graph...<br>gr::log :DEBUG: rfnoc_rx=
-_streamer1 - Sending start stream command...<br>gr::log :DEBUG: rfnoc_rx_st=
-reamer0 - Sending start stream command...<br><br>&gt;&gt;&gt; Done (return =
-code -11)</div><div><br></div><div>More resources of this type of developme=
-nt would be welcome as well.<br></div><div><br></div><div>Many Thanks,</div=
-><div>Ben Wilson<br></div><div><br></div><div><br></div></div>
+<div dir=3D"auto">My Ethernet Controller is a Qualcomm Atheros AR8151 it=E2=
+=80=99s max MTU is 6144 bytes. I=E2=80=99ve changed MTU to the max with no =
+change in gnuRadio response. Is the 6144 bytes not enough?=C2=A0</div><div>=
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue=
+, Nov 3, 2020 at 9:32 PM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pe=
+ndlum@ettus.com">jonathon.pendlum@ettus.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-wi=
+dth:1px;border-left-style:solid;padding-left:1ex;border-left-color:rgb(204,=
+204,204)"><div dir=3D"ltr">Hi Ben,<div><br></div><div>Try setting your NIC&=
+#39;s MTU to 9000.</div><div><br></div><div>Jonathon</div></div><br><div cl=
+ass=3D"gmail_quote"></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Mon, Nov 2, 2020 at 6:55 AM Robert Wilson via USRP-users=
+ &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
+sers@lists.ettus.com</a>&gt; wrote:<br></div></div><div class=3D"gmail_quot=
+e"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left-width:1px;border-left-style:solid;padding-left:1ex;border-left-colo=
+r:rgb(204,204,204)"></blockquote></div><div class=3D"gmail_quote"><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-widt=
+h:1px;border-left-style:solid;padding-left:1ex;border-left-color:rgb(204,20=
+4,204)"><div dir=3D"ltr"><div>Hello,</div><div><br></div><div>OS: Linux Ubu=
+ntu 20.04.1 LTS<br></div><div>GRC: 3.8</div><div>UHD: 4.0</div><div>USRP:X3=
+10 (HG)<br></div><div><br></div><div>I have been looking at RFNoC only for =
+a few weeks. I have followed the RFNoC Workshop 4 tutorial and successfully=
+ built my own custom gain block as well as implemented and FFT from existin=
+g blocks using the &quot;Getting Started with RFNoC&quot; document online.<=
+/div><div><br></div><div>I am now attempting to get Fosphor up and running =
+on my X310 to further understand bitstream generation from YAML files. At o=
+ne point I believe there was an example bitstream that had the correct Fosp=
+hor configuration I don&#39;t see it in the build of UHD I have.</div><div>=
+<br></div><div>I&#39;ve attached my .yml file and a copy of my GRC flow gra=
+ph. <br></div><div>Below is the error message I&#39;m receiving.</div><div>=
+<br></div><div>[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD=
+_4.0.0.0-1-gcf570707<br>[INFO] [X300] X300 initialization sequence...<br>[I=
+NFO] [X300] Maximum frame size: 1472 bytes.<br>[INFO] [GPS] No GPSDO found<=
+br>[INFO] [X300] Radio 1x clock: 200 MHz<br>[WARNING] [RFNOC::BLOCK_FACTORY=
+] Could not find block with Noc-ID 0xfd7d809a, 0xffff<br>[WARNING] [0/Radio=
+#0] Setting RX IQ Balance is not possible on this device.<br>gr::log :DEBUG=
+: rfnoc_rx_streamer0 - Committing graph...<br>[WARNING] [0/Radio#0] Attempt=
+ing to set tick rate to 0. Skipping.<br>gr::log :DEBUG: rfnoc_rx_streamer1 =
+- Committing graph...<br>gr::log :DEBUG: rfnoc_rx_streamer1 - Sending start=
+ stream command...<br>gr::log :DEBUG: rfnoc_rx_streamer0 - Sending start st=
+ream command...<br><br>&gt;&gt;&gt; Done (return code -11)</div><div><br></=
+div><div>More resources of this type of development would be welcome as wel=
+l.<br></div><div><br></div><div>Many Thanks,</div><div>Ben Wilson<br></div>=
+<div><br></div><div><br></div></div></blockquote></div><div class=3D"gmail_=
+quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left-width:1px;border-left-style:solid;padding-left:1ex;border-left-=
+color:rgb(204,204,204)">
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -184,11 +215,12 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div></div>
 
---000000000000faa30e05b33ec891--
+--000000000000643ec205b348306d--
 
 
---===============3964314741269028174==
+--===============8361942690883826763==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -199,5 +231,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3964314741269028174==--
+--===============8361942690883826763==--
 
