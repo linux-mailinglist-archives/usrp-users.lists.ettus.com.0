@@ -2,62 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2024B2A6B78
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Nov 2020 18:13:57 +0100 (CET)
-Received: from [::1] (port=35667 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2C3F2A6B83
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Nov 2020 18:20:07 +0100 (CET)
+Received: from [::1] (port=35826 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kaMM6-0004Ke-07; Wed, 04 Nov 2020 12:13:54 -0500
-Received: from mail-wr1-f46.google.com ([209.85.221.46]:34184)
+	id 1kaMS5-0004w9-N9; Wed, 04 Nov 2020 12:20:05 -0500
+Received: from mail-qv1-f41.google.com ([209.85.219.41]:37677)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <dasypuss@gmail.com>) id 1kaMM2-0004EH-Po
- for usrp-users@lists.ettus.com; Wed, 04 Nov 2020 12:13:50 -0500
-Received: by mail-wr1-f46.google.com with SMTP id e6so5629613wro.1
- for <usrp-users@lists.ettus.com>; Wed, 04 Nov 2020 09:13:30 -0800 (PST)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kaMS1-0004oK-Ha
+ for USRP-users@lists.ettus.com; Wed, 04 Nov 2020 12:20:01 -0500
+Received: by mail-qv1-f41.google.com with SMTP id ed14so6686168qvb.4
+ for <USRP-users@lists.ettus.com>; Wed, 04 Nov 2020 09:19:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language;
- bh=2mnMws2G2MeekIbQzVOQLIjd4BA9svaD675CmDdM9OA=;
- b=IMhjSxK90sPTEIgCCahwk6ozBPwf6PUGSwRpUANwmG+lorQWTHd6WpDLASKcnylp9Y
- bSleGOmHG8ZCP1mXb4WllaHwx51omwuth+1hpRXllrUigUNFTXzHZjbTempeHxBnMrfI
- QPngXi+IeMjZDnoq6SyyvF2jFQBPJKRsv26jY1A35h93nh8so//Z1EjhZ3bqyOagIvQx
- o6TTRvOb1mXl/7a29Y2kwd0+WI22YUQ9Ttiar1mGitTv+7RBS6uDdBQlpi+CEkjyH51U
- uW6VjB1pxn023fY7GGWB9PCMhc6eH6zJUcBS3I6+1/t1Xih4d6kJqg03QCGHqDDK3trr
- yt+Q==
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=62mDTqv4qKd6vZlM02b7Dbx9ZBo8YfV77G1pK5ryX8Y=;
+ b=bCSZ5I33x9GsHDanQ8waNmHVLZc+46SDRR5x9+3q6cl/2PX/+Sv+yzwzNJLYYkKVQb
+ VPQKh/GJg/ORaQCjiqgKlAd12qKhSa2UJY0YiaPN9C1FCiRNDZ8oWvWFshCAV5NxZLOz
+ Ze6iZDikSDC/2VJBGc+1n4JR1ot1k69FoDh3ViksZXjfPvMqQ5vYMx7GNJIH/+wFZfLx
+ bZOIMgCthFYmfbTkwVR6zxlz4azS8RyErkNQSum+JmhXUvOdd8WNA1D968xT74s+YvQD
+ DGRU5YI2UkYYcWWwyglD1lXPMexJjbEhoaWJdxn600b5P+TdbLcQi61AnAe4qi84P3ZH
+ cPzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language;
- bh=2mnMws2G2MeekIbQzVOQLIjd4BA9svaD675CmDdM9OA=;
- b=LsxcPTWc2g98dT2H/t5YJp21lGUXBKB9vN8+34XTpeXpdFLL255GAZAx3TJ90+CCtj
- 0u9MiAmOC4pcHpgHJB6PcD28cgKwcI1S3H9/leqd01NRV5lA5RaGx9o4UQqPlx0s1YgT
- YvbklNkt8w5NWqUGT9KKZG2vdFj012wA2GmH8NhVxNaAY/la6g85iiFHc7rjbgYXrPMI
- UAqZQyhKCq9uKjR9IVnaRcqIWiEgrUPHon/ykckeDSTM5Z1U8I5Wz6b/ZWze8ZgB8H5w
- F132IRHDMLf6NgU2QaVJ1ihTOP/ryw+nXfliPu8un/4lJGqNcLu89CYhO2Njt6AbkQrB
- WEGw==
-X-Gm-Message-State: AOAM530u392+LbJ3QIG1qYzmW3YXZwKPSU5sLYrKtQe2ECiuqoIWg6IL
- Ufv79G4I6fIpNz9POIboOE3wz0ithDI=
-X-Google-Smtp-Source: ABdhPJwV06ZzJlziaKSmCUSy7rFG+/5CuB4vDxyPQnVk0bg0flr5E3n+J2aiQB7mPUyYr2iYAgsvWQ==
-X-Received: by 2002:a5d:54d0:: with SMTP id x16mr32763867wrv.75.1604509989554; 
- Wed, 04 Nov 2020 09:13:09 -0800 (PST)
-Received: from ?IPv6:2a00:23c6:7095:7e01:dc45:8a8f:f989:6820?
- ([2a00:23c6:7095:7e01:dc45:8a8f:f989:6820])
- by smtp.gmail.com with ESMTPSA id h12sm3384249wrw.70.2020.11.04.09.13.08
- for <usrp-users@lists.ettus.com>
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=62mDTqv4qKd6vZlM02b7Dbx9ZBo8YfV77G1pK5ryX8Y=;
+ b=kgGUNpUsC/y2/vLnx20YHiyPDaaARxHGIV/Gn2A97SxO4UG9rt/YOY6T9otiorja4y
+ hWKsDHlkQFSEx/odyye7MgDp7AuOb8aGhPTqJ1EXAXErSYEzw1yM6VWiSpd5kz0WiTGA
+ lPuYPyGPR/sGdmKygjOjxiLS0aZlou8cp+5PM8y7292zZNDRqxNLPRN1RIjYn8BI0QU2
+ HBTnWWrJVe68I978mURcNLIvmz7Hp8u8UaiI3qOOxk4syUY8aPVs7l5pJKF+U8wkoUKq
+ oN9LdIJ6wXDXuIQI28LPd4Gqn6QHQ0YEf0ptpBks+Jcz1mjqToVZ52Kk7HSf1Dl27gH0
+ 9hdw==
+X-Gm-Message-State: AOAM531ImaOPfLyh5n9aALiy5QLDZg/7NCr64Lkgls9i3OVKNLMhsqmA
+ Grtb4LFrXsU36OFuspMf5lY=
+X-Google-Smtp-Source: ABdhPJzh6Zl8j6rrstYDVrz7n84+9M52q44XnCw9qa0tUQ65cIbkzoNQzlGsOaJaI1TzOrtKa57AfA==
+X-Received: by 2002:a0c:b44a:: with SMTP id e10mr8689335qvf.4.1604510360956;
+ Wed, 04 Nov 2020 09:19:20 -0800 (PST)
+Received: from [192.168.2.132]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.gmail.com with ESMTPSA id n201sm3086962qka.32.2020.11.04.09.19.20
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 04 Nov 2020 09:13:08 -0800 (PST)
-To: usrp-users@lists.ettus.com
-References: <CAAC=UJP-ZpTgGyAx0gVZ0ApfvnZmF6G27GOXPwJMKMStbF5W_Q@mail.gmail.com>
- <5FA19137.10205@gmail.com>
- <CAJr+t_rBcTQ_5_y3MdMTmgxbYbg3rOtvZS4LnOZ+tmcCkxu4gg@mail.gmail.com>
- <5FA1BE7D.7080504@gmail.com>
-Message-ID: <a77af2cd-9f0a-9464-35a5-26cba461da78@gmail.com>
-Date: Wed, 4 Nov 2020 17:13:08 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
-MIME-Version: 1.0
-In-Reply-To: <5FA1BE7D.7080504@gmail.com>
-Content-Language: en-GB
+ Wed, 04 Nov 2020 09:19:20 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Wed, 4 Nov 2020 12:19:19 -0500
+Message-Id: <13D50B16-32FC-49DD-9B5D-55BEA697E611@gmail.com>
+References: <a77af2cd-9f0a-9464-35a5-26cba461da78@gmail.com>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <a77af2cd-9f0a-9464-35a5-26cba461da78@gmail.com>
+To: David Evans <dasypuss@gmail.com>
+X-Mailer: iPhone Mail (18A8395)
 Subject: Re: [USRP-users] Raspberry Pi 4 sampling Rate
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -70,9 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: David Evans via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: David Evans <dasypuss@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4951674207466414293=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============3441789225949504587=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,238 +82,255 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============4951674207466414293==
-Content-Type: multipart/alternative;
- boundary="------------858CBE1CA666FEDF517E65EF"
-Content-Language: en-GB
 
-This is a multi-part message in MIME format.
---------------858CBE1CA666FEDF517E65EF
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--===============3441789225949504587==
+Content-Type: multipart/alternative; boundary=Apple-Mail-BF074852-91B2-4D88-A214-90C695E1C143
+Content-Transfer-Encoding: 7bit
 
-I too was able to sustain around 12Msps on an XU4+B200mini, and was also 
-able to get OpenBTS to work.
-Marcus, hope it's OK to ask, but did you use a USB3 hub? When I tried it 
-the XU4 was unable to supply enough current, causing the SDcard to get 
-corrupted (I had a lot of fun with this!), the solution to this 
-apparently known issue was to use a hub.
-Cheers,
-Dave
 
-On 03/11/2020 20:33, Marcus D. Leech via USRP-users wrote:
-> On 11/03/2020 02:19 PM, Luke Stutters wrote:
->> I have only succeeded in running a B210 on a Raspberry Pi at lower 
->> data rates (closer to 12MS) so your experience is consistent with mine.
-> In certain very-simple DSP flows, I've achieved 14Msps on an Odroid 
-> XU4--which is spec-similar to the Rpi4 B.
->
-> CPU/Memory/IO performance really matters.  Just because the system has 
-> a USB3 interface does NOT mean that it can
->   sustain high rates.   Even just moving samples through your system, 
-> without doing anything to them (as in the benchmark_rate
->   example) requires code-paths that are at least several hundred 
-> instructions long.  Multi-core doesn't necessarily help much with
->   this because there's no performant way to effectively parallelize 
-> the simple process of pulling samples off of USB and getting them
->   into the user layer.  The SMP aspects of most modern systems only 
-> really start to "shine" when you have a DSP work-flow with
->   lots of steps that can each benefit from running in their own 
-> thread.  But you *still* have a rate-limiting step of getting the samples
->   out of the device and into the work-flow.  In that portion, system 
-> details matter A LOT.
->
->
->>
->> On Tue, 3 Nov 2020 at 17:20, Marcus D. Leech via USRP-users 
->> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->>
->>     On 11/03/2020 10:49 AM, Alvaro Pendas Recondo via USRP-users wrote:
->>     > Hello,
->>     >
->>     > I am using a USRP B200mini with a sampling rate of 40MS that works
->>     > perfectly fine connected to a laptop with USB 3. However, when I
->>     > connect it to a Raspberry Pi 4 (which has two USB 3 ports) and
->>     I run
->>     > the example benchmark_rate with the same sampling rate I get the
->>     > output that I copy below. It seems that even if it is also
->>     operating
->>     > over USB 3, this connection cannot meet the expected performance
->>     > anymore. If I reduce the sampling rate (down to 12 MS approx)
->>     > everything works fine. Any ideas about what might be causing
->>     this problem?
->>     >
->>     >
->>     > By the way, I already followed all the instructions explained at
->>     >
->>     https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:~:text=Thread%20Priority%20Scheduling,-When%20UHD%20spawns&text=To%20address%20this%20issue%2C%20non,%2Fetc%2Fsecurity%2Flimits
->>     <https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:text=Thread%20Priority%20Scheduling,-When%20UHD%20spawns&text=To%20address%20this%20issue%2C%20non,%2Fetc%2Fsecurity%2Flimits>
->>
->>     >
->>     <https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:text=Thread%20Priority%20Scheduling,-When%20UHD%20spawns&text=To%20address%20this%20issue%2C%20non,%2Fetc%2Fsecurity%2Flimits
->>     <https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:text=Thread%20Priority%20Scheduling,-When%20UHD%20spawns&text=To%20address%20this%20issue%2C%20non,%2Fetc%2Fsecurity%2Flimits>>.
->>
->>     >
->>     >
->>     >
->>     > ./benchmark_rate --rx_rate 40e6 --tx_rate 40e6
->>     >
->>     > [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;
->>     > UHD_3.15.0.HEAD-0-gaea0e2de
->>     > [INFO] [B200] Loading firmware image:
->>     > /usr/local/share/uhd/images/usrp_b200_fw.hex...
->>     > [00:00:00.000044] Creating the usrp device with: ...
->>     > [INFO] [B200] Detected Device: B200mini
->>     > [INFO] [B200] Loading FPGA image:
->>     > /usr/local/share/uhd/images/usrp_b200mini_fpga.bin...
->>     > [INFO] [B200] Operating over USB 3.
->>     > [INFO] [B200] Initialize CODEC control...
->>     > [INFO] [B200] Initialize Radio control...
->>     > [INFO] [B200] Performing register loopback test...
->>     > [INFO] [B200] Register loopback test passed
->>     > [INFO] [B200] Setting master clock rate selection to 'automatic'.
->>     > [INFO] [B200] Asking for clock rate 16.000000 MHz...
->>     > [INFO] [B200] Actually got clock rate 16.000000 MHz.
->>     > Using Device: Single USRP:
->>     >   Device: B-Series Device
->>     >   Mboard 0: B200mini
->>     >   RX Channel: 0
->>     >     RX DSP: 0
->>     >     RX Dboard: A
->>     >     RX Subdev: FE-RX1
->>     >   TX Channel: 0
->>     >     TX DSP: 0
->>     >     TX Dboard: A
->>     >     TX Subdev: FE-TX1
->>     >
->>     > [00:00:11.448560] Setting device timestamp to 0...
->>     > [INFO] [B200] Asking for clock rate 40.000000 MHz...
->>     > [INFO] [B200] Actually got clock rate 40.000000 MHz.
->>     > [WARNING] [MULTI_USRP] The total sum of rates (40.000000 MSps on 1
->>     > channels) exceeds the maximum capacity of the connection
->>     (overflows
->>     > (O) MSps).
->>     > This can cause 22.7428.
->>     > [00:00:11.766752] Testing receive rate 40.000000 Msps on 1 channels
->>     > [WARNING] [MULTI_USRP] The total sum of rates (40.000000 MSps on 1
->>     > channels) exceeds the maximum capacity of the connection
->>     (underruns
->>     > (U) MSps).
->>     > This can cause 22.7428.
->>     > [00:00:11.790580] Testing transmit rate 40.000000 Msps on 1
->>     channels
->>     > [00:00:11.891995] Tx timeouts: 1
->>     > UUUUUUUUUUUUUUUO[00:00:12.078147] Timestamp after overrun recovery
->>     > ahead of error timestamp! Unable to calculate number of dropped
->>     > samples.(Delta: -3170 ticks)
->>     > UUUUUUUUUUUUUUUUUUUUO[00:00:12.092404] Timestamp after overrun
->>     > recovery ahead of error timestamp! Unable to calculate number of
->>     > dropped samples.(Delta: -3170 ticks)
->>     > UUUUUUUUUUUUUO[00:00:12.108355] Timestamp after overrun
->>     recovery ahead
->>     > of error timestamp! Unable to calculate number of dropped
->>     > samples.(Delta: -3170 ticks)
->>     > UUUUUUUUUUUUUUUUUUUUUUUUU[OU00:00:12.123737] Timestamp after
->>     overrun
->>     > recovery ahead of error timestamp! Unable to calculate number of
->>     > dropped samples.(Delta: -3170 ticks)
->>     > UUUUUUUUUUUUUUUUUUUUOU[00:00:12.132437] Timestamp after overrun
->>     > recovery ahead of error timestamp! Unable to calculate number of
->>     > dropped samples.(Delta: -3170 ticks)
->>     > UUUUUUUUUUUUUUUUUUUUUUOU[00:00:12.142422] Timestamp after overrun
->>     > recovery ahead of error timestamp! Unable to calculate number of
->>     > dropped samples.(Delta: -3170 ticks)
->>     > UUUUUUUUUUUUUUO[00:00:12.155257] Timestamp after overrun recovery
->>     > ahead of error timestamp! Unable to calculate number of dropped
->>     > samples.(Delta: -3170 ticks)
->>     > UUUUUUUUUUUUUUUO[00:00:12.168528] Timestamp after overrun recovery
->>     > ahead of error timestamp! Unable to calculate number of dropped
->>     > samples.(Delta: -3170 ticks)
->>     > UUUUUUUUUUU[O00:00:12.178400] Timestamp after overrun recovery
->>     ahead
->>     > of error timestamp! Unable to calculate number of dropped
->>     > samples.(Delta: -3170 ticks)
->>     > UUUUUUUUU[00:00:12.193251] Timestamp after overrun recovery
->>     ahead of
->>     > error timestamp! Unable to calculate number of dropped
->>     samples.(Delta:
->>     > -3170 ticks)
->>     > OUUUUUUUUUUUUUUUUUO[00:00:12.204356] Timestamp after overrun
->>     recovery
->>     > ahead of error timestamp! Unable to calculate number of dropped
->>     > samples.(Delta: -3170 ticks)
->>     > UUUUUUUUUUUUUUUUO[00:00:12.224770] Timestamp after overrun
->>     recovery
->>     > ahead of error timestamp! Unable to calculate number of dropped
->>     > samples.(Delta: -3170 ticks)
->>     > UUUUUUUUUUUUUUUUUO[00:00:12.235145] Timestamp after overrun
->>     recovery
->>     > ahead of error timestamp! Unable to calculate number of dropped
->>     > samples.(Delta: -3170 ticks)
->>     > UUUUUUUUUUUUU[O00:00:12.247517] Timestamp after overrun
->>     recovery ahead
->>     > of error timestamp! Unable to calculate number of dropped
->>     > samples.(Delta: -3170 ticks)
->>     > UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU[00:00:12.475571] Receiver error:
->>     > ERROR_CODE_TIMEOUT, continuing...
->>     > [00:00:12.575910] Receiver error: ERROR_CODE_TIMEOUT, continuing...
->>     > [00:00:12.676171] Receiver error: ERROR_CODE_TIMEOUT, continuing...
->>     > [00:00:12.776414] Receiver error: ERROR_CODE_TIMEOUT, continuing...
->>     > [00:00:12.876663] Receiver error: ERROR_CODE_TIMEOUT, continuing...
->>     > [00:00:12.976968] Receiver error: ERROR_CODE_TIMEOUT, continuing...
->>     > [00:00:13.077257] Receiver error: ERROR_CODE_TIMEOUT, continuing...
->>     > terminate called after throwing an instance of 'uhd::io_error'
->>     >   what():  EnvironmentError: IOError: usb tx2 transfer status:
->>     > LIBUSB_TRANSFER_NO_DEVICE[
->>     > 00:00:13.083166] Caught an IO exception.
->>     > EnvironmentError: IOError: usb rx6 transfer status:
->>     > LIBUSB_TRANSFER_NO_DEVICE
->>     >
->>     Well, the main reason is that your typical laptop compute
->>     environment,
->>     based on x86 processor technology, is going to be more powerful
->>        than the ARM on a Raspberry Pi4.
->>
->>     Now, you *may* be able to improve things slightly by adjusting
->>     the USB
->>     transport parameters, as described here:
->>
->>     https://files.ettus.com/manual/page_transport.html#transport_usb
->>     <https://files.ettus.com/manual/page_transport.html#transport_usb>
->>
->>     But once you actually start "doing stuff" on the Raspberry Pi,
->>     you'll
->>     find that it can't process as many samples per second as on an x86
->>        system--whether a laptop or desktop machine.  There's a reason
->>     that a
->>     Raspberry Pi is $50, and a typical low-end laptop is 10 times that.
->>
->>
->>
->>     _______________________________________________
->>     USRP-users mailing list
->>     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>     <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
->>
->
->
+--Apple-Mail-BF074852-91B2-4D88-A214-90C695E1C143
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+I used the external power input on the B210.=20
+
+Sent from my iPhone
+
+> On Nov 4, 2020, at 12:13 PM, David Evans via USRP-users <usrp-users@lists.=
+ettus.com> wrote:
+>=20
+> =EF=BB=BF I too was able to sustain around 12Msps on an XU4+B200mini, and w=
+as also able to get OpenBTS to work.
+> Marcus, hope it's OK to ask, but did you use a USB3 hub? When I tried it t=
+he XU4 was unable to supply enough current, causing the SDcard to get corrup=
+ted (I had a lot of fun with this!), the solution to this apparently known i=
+ssue was to use a hub.
+> Cheers,
+> Dave
+>=20
+> On 03/11/2020 20:33, Marcus D. Leech via USRP-users wrote:
+>> On 11/03/2020 02:19 PM, Luke Stutters wrote:
+>>> I have only succeeded in running a B210 on a Raspberry Pi at lower data r=
+ates (closer to 12MS) so your experience is consistent with mine.
+>> In certain very-simple DSP flows, I've achieved 14Msps on an Odroid XU4--=
+which is spec-similar to the Rpi4 B.
+>>=20
+>> CPU/Memory/IO performance really matters.  Just because the system has a U=
+SB3 interface does NOT mean that it can
+>>   sustain high rates.   Even just moving samples through your system, wit=
+hout doing anything to them (as in the benchmark_rate
+>>   example) requires code-paths that are at least several hundred instruct=
+ions long.  Multi-core doesn't necessarily help much with
+>>   this because there's no performant way to effectively parallelize the s=
+imple process of pulling samples off of USB and getting them
+>>   into the user layer.  The SMP aspects of most modern systems only reall=
+y start to "shine" when you have a DSP work-flow with
+>>   lots of steps that can each benefit from running in their own thread.  B=
+ut you *still* have a rate-limiting step of getting the samples
+>>   out of the device and into the work-flow.  In that portion, system deta=
+ils matter A LOT. =20
+>>=20
+>>=20
+>>>=20
+>>> On Tue, 3 Nov 2020 at 17:20, Marcus D. Leech via USRP-users <usrp-users@=
+lists.ettus.com> wrote:
+>>>> On 11/03/2020 10:49 AM, Alvaro Pendas Recondo via USRP-users wrote:
+>>>> > Hello,
+>>>> >
+>>>> > I am using a USRP B200mini with a sampling rate of 40MS that works=20=
+
+>>>> > perfectly fine connected to a laptop with USB 3. However, when I=20
+>>>> > connect it to a Raspberry Pi 4 (which has two USB 3 ports) and I run=20=
+
+>>>> > the example benchmark_rate with the same sampling rate I get the=20
+>>>> > output that I copy below. It seems that even if it is also operating=20=
+
+>>>> > over USB 3, this connection cannot meet the expected performance=20
+>>>> > anymore. If I reduce the sampling rate (down to 12 MS approx)=20
+>>>> > everything works fine. Any ideas about what might be causing this pro=
+blem?
+>>>> >
+>>>> >
+>>>> > By the way, I already followed all the instructions explained at=20
+>>>> > https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:~:=
+text=3DThread%20Priority%20Scheduling,-When%20UHD%20spawns&text=3DTo%20addre=
+ss%20this%20issue%2C%20non,%2Fetc%2Fsecurity%2Flimits=20
+>>>> > <https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%=
+7E:text=3DThread%20Priority%20Scheduling,-When%20UHD%20spawns&text=3DTo%20ad=
+dress%20this%20issue%2C%20non,%2Fetc%2Fsecurity%2Flimits>.=20
+>>>> >
+>>>> >
+>>>> >
+>>>> > ./benchmark_rate --rx_rate 40e6 --tx_rate 40e6
+>>>> >
+>>>> > [INFO] [UHD] linux; GNU C++ version 8.3.0; Boost_106700;=20
+>>>> > UHD_3.15.0.HEAD-0-gaea0e2de
+>>>> > [INFO] [B200] Loading firmware image:=20
+>>>> > /usr/local/share/uhd/images/usrp_b200_fw.hex...
+>>>> > [00:00:00.000044] Creating the usrp device with: ...
+>>>> > [INFO] [B200] Detected Device: B200mini
+>>>> > [INFO] [B200] Loading FPGA image:=20
+>>>> > /usr/local/share/uhd/images/usrp_b200mini_fpga.bin...
+>>>> > [INFO] [B200] Operating over USB 3.
+>>>> > [INFO] [B200] Initialize CODEC control...
+>>>> > [INFO] [B200] Initialize Radio control...
+>>>> > [INFO] [B200] Performing register loopback test...
+>>>> > [INFO] [B200] Register loopback test passed
+>>>> > [INFO] [B200] Setting master clock rate selection to 'automatic'.
+>>>> > [INFO] [B200] Asking for clock rate 16.000000 MHz...
+>>>> > [INFO] [B200] Actually got clock rate 16.000000 MHz.
+>>>> > Using Device: Single USRP:
+>>>> >   Device: B-Series Device
+>>>> >   Mboard 0: B200mini
+>>>> >   RX Channel: 0
+>>>> >     RX DSP: 0
+>>>> >     RX Dboard: A
+>>>> >     RX Subdev: FE-RX1
+>>>> >   TX Channel: 0
+>>>> >     TX DSP: 0
+>>>> >     TX Dboard: A
+>>>> >     TX Subdev: FE-TX1
+>>>> >
+>>>> > [00:00:11.448560] Setting device timestamp to 0...
+>>>> > [INFO] [B200] Asking for clock rate 40.000000 MHz...
+>>>> > [INFO] [B200] Actually got clock rate 40.000000 MHz.
+>>>> > [WARNING] [MULTI_USRP] The total sum of rates (40.000000 MSps on 1=20=
+
+>>>> > channels) exceeds the maximum capacity of the connection (overflows=20=
+
+>>>> > (O) MSps).
+>>>> > This can cause 22.7428.
+>>>> > [00:00:11.766752] Testing receive rate 40.000000 Msps on 1 channels
+>>>> > [WARNING] [MULTI_USRP] The total sum of rates (40.000000 MSps on 1=20=
+
+>>>> > channels) exceeds the maximum capacity of the connection (underruns=20=
+
+>>>> > (U) MSps).
+>>>> > This can cause 22.7428.
+>>>> > [00:00:11.790580] Testing transmit rate 40.000000 Msps on 1 channels
+>>>> > [00:00:11.891995] Tx timeouts: 1
+>>>> > UUUUUUUUUUUUUUUO[00:00:12.078147] Timestamp after overrun recovery=20=
+
+>>>> > ahead of error timestamp! Unable to calculate number of dropped=20
+>>>> > samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUUUUUUUUUUUUUO[00:00:12.092404] Timestamp after overrun=20
+>>>> > recovery ahead of error timestamp! Unable to calculate number of=20
+>>>> > dropped samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUUUUUUO[00:00:12.108355] Timestamp after overrun recovery ahea=
+d=20
+>>>> > of error timestamp! Unable to calculate number of dropped=20
+>>>> > samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUUUUUUUUUUUUUUUUUU[OU00:00:12.123737] Timestamp after overrun=20=
+
+>>>> > recovery ahead of error timestamp! Unable to calculate number of=20
+>>>> > dropped samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUUUUUUUUUUUUUOU[00:00:12.132437] Timestamp after overrun=20
+>>>> > recovery ahead of error timestamp! Unable to calculate number of=20
+>>>> > dropped samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUUUUUUUUUUUUUUUOU[00:00:12.142422] Timestamp after overrun=20
+>>>> > recovery ahead of error timestamp! Unable to calculate number of=20
+>>>> > dropped samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUUUUUUUO[00:00:12.155257] Timestamp after overrun recovery=20
+>>>> > ahead of error timestamp! Unable to calculate number of dropped=20
+>>>> > samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUUUUUUUUO[00:00:12.168528] Timestamp after overrun recovery=20=
+
+>>>> > ahead of error timestamp! Unable to calculate number of dropped=20
+>>>> > samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUUUU[O00:00:12.178400] Timestamp after overrun recovery ahead=20=
+
+>>>> > of error timestamp! Unable to calculate number of dropped=20
+>>>> > samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUU[00:00:12.193251] Timestamp after overrun recovery ahead of=20=
+
+>>>> > error timestamp! Unable to calculate number of dropped samples.(Delta=
+:=20
+>>>> > -3170 ticks)
+>>>> > OUUUUUUUUUUUUUUUUUO[00:00:12.204356] Timestamp after overrun recovery=
+
+>>>> > ahead of error timestamp! Unable to calculate number of dropped=20
+>>>> > samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUUUUUUUUUO[00:00:12.224770] Timestamp after overrun recovery=20=
+
+>>>> > ahead of error timestamp! Unable to calculate number of dropped=20
+>>>> > samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUUUUUUUUUUO[00:00:12.235145] Timestamp after overrun recovery=20=
+
+>>>> > ahead of error timestamp! Unable to calculate number of dropped=20
+>>>> > samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUUUUUU[O00:00:12.247517] Timestamp after overrun recovery ahea=
+d=20
+>>>> > of error timestamp! Unable to calculate number of dropped=20
+>>>> > samples.(Delta: -3170 ticks)
+>>>> > UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU[00:00:12.475571] Receiver error:=20
+>>>> > ERROR_CODE_TIMEOUT, continuing...
+>>>> > [00:00:12.575910] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>>>> > [00:00:12.676171] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>>>> > [00:00:12.776414] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>>>> > [00:00:12.876663] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>>>> > [00:00:12.976968] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>>>> > [00:00:13.077257] Receiver error: ERROR_CODE_TIMEOUT, continuing...
+>>>> > terminate called after throwing an instance of 'uhd::io_error'
+>>>> >   what():  EnvironmentError: IOError: usb tx2 transfer status:=20
+>>>> > LIBUSB_TRANSFER_NO_DEVICE[
+>>>> > 00:00:13.083166] Caught an IO exception.
+>>>> > EnvironmentError: IOError: usb rx6 transfer status:=20
+>>>> > LIBUSB_TRANSFER_NO_DEVICE
+>>>> >
+>>>> Well, the main reason is that your typical laptop compute environment,=20=
+
+>>>> based on x86 processor technology, is going to be more powerful
+>>>>    than the ARM on a Raspberry Pi4.
+>>>>=20
+>>>> Now, you *may* be able to improve things slightly by adjusting the USB=20=
+
+>>>> transport parameters, as described here:
+>>>>=20
+>>>> https://files.ettus.com/manual/page_transport.html#transport_usb
+>>>>=20
+>>>> But once you actually start "doing stuff" on the Raspberry Pi, you'll=20=
+
+>>>> find that it can't process as many samples per second as on an x86
+>>>>    system--whether a laptop or desktop machine.  There's a reason that a=
+=20
+>>>> Raspberry Pi is $50, and a typical low-end laptop is 10 times that.
+>>>>=20
+>>>>=20
+>>>>=20
+>>>> _______________________________________________
+>>>> USRP-users mailing list
+>>>> USRP-users@lists.ettus.com
+>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>=20
+>>=20
+>>=20
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>=20
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
+--Apple-Mail-BF074852-91B2-4D88-A214-90C695E1C143
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
---------------858CBE1CA666FEDF517E65EF
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">I used the external power input on the B210=
+.&nbsp;<div><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><=
+br><blockquote type=3D"cite">On Nov 4, 2020, at 12:13 PM, David Evans via US=
+RP-users &lt;usrp-users@lists.ettus.com&gt; wrote:<br><br></blockquote></div=
+><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+ =20
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"=
+>
+ =20
+ =20
     I too was able to sustain around 12Msps on an XU4+B200mini, and was
     also able to get OpenBTS to work.<br>
     Marcus, hope it's OK to ask, but did you use a USB3 hub? When I
@@ -327,52 +340,59 @@ Content-Transfer-Encoding: 8bit
     Cheers,<br>
     Dave<br>
     <br>
-    <div class="moz-cite-prefix">On 03/11/2020 20:33, Marcus D. Leech
+    <div class=3D"moz-cite-prefix">On 03/11/2020 20:33, Marcus D. Leech
       via USRP-users wrote:<br>
     </div>
-    <blockquote type="cite" cite="mid:5FA1BE7D.7080504@gmail.com">
-      <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-      <div class="moz-cite-prefix">On 11/03/2020 02:19 PM, Luke Stutters
+    <blockquote type=3D"cite" cite=3D"mid:5FA1BE7D.7080504@gmail.com">
+      <meta content=3D"text/html; charset=3DUTF-8" http-equiv=3D"Content-Typ=
+e">
+      <div class=3D"moz-cite-prefix">On 11/03/2020 02:19 PM, Luke Stutters
         wrote:<br>
       </div>
-      <blockquote
-cite="mid:CAJr+t_rBcTQ_5_y3MdMTmgxbYbg3rOtvZS4LnOZ+tmcCkxu4gg@mail.gmail.com"
-        type="cite">
-        <div dir="ltr">I have only succeeded in running a B210 on a
+      <blockquote cite=3D"mid:CAJr+t_rBcTQ_5_y3MdMTmgxbYbg3rOtvZS4LnOZ+tmcCk=
+xu4gg@mail.gmail.com" type=3D"cite">
+        <div dir=3D"ltr">I have only succeeded in running a B210 on a
           Raspberry Pi at lower data rates (closer to 12MS) so your
           experience is consistent with mine.</div>
       </blockquote>
       In certain very-simple DSP flows, I've achieved 14Msps on an
       Odroid XU4--which is spec-similar to the Rpi4 B.<br>
       <br>
-      CPU/Memory/IO performance really matters.  Just because the system
+      CPU/Memory/IO performance really matters.&nbsp; Just because the syste=
+m
       has a USB3 interface does NOT mean that it can<br>
-        sustain high rates.   Even just moving samples through your
+      &nbsp; sustain high rates.&nbsp;&nbsp; Even just moving samples throug=
+h your
       system, without doing anything to them (as in the benchmark_rate<br>
-        example) requires code-paths that are at least several hundred
-      instructions long.  Multi-core doesn't necessarily help much with<br>
-        this because there's no performant way to effectively
+      &nbsp; example) requires code-paths that are at least several hundred
+      instructions long.&nbsp; Multi-core doesn't necessarily help much with=
+<br>
+      &nbsp; this because there's no performant way to effectively
       parallelize the simple process of pulling samples off of USB and
       getting them<br>
-        into the user layer.  The SMP aspects of most modern systems
+      &nbsp; into the user layer.&nbsp; The SMP aspects of most modern syste=
+ms
       only really start to "shine" when you have a DSP work-flow with<br>
-        lots of steps that can each benefit from running in their own
-      thread.  But you *still* have a rate-limiting step of getting the
+      &nbsp; lots of steps that can each benefit from running in their own
+      thread.&nbsp; But you *still* have a rate-limiting step of getting the=
+
       samples<br>
-        out of the device and into the work-flow.  In that portion,
-      system details matter A LOT.  <br>
+      &nbsp; out of the device and into the work-flow.&nbsp; In that portion=
+,
+      system details matter A LOT.&nbsp; <br>
       <br>
       <br>
-      <blockquote
-cite="mid:CAJr+t_rBcTQ_5_y3MdMTmgxbYbg3rOtvZS4LnOZ+tmcCkxu4gg@mail.gmail.com"
-        type="cite"><br>
-        <div class="gmail_quote">
-          <div dir="ltr" class="gmail_attr">On Tue, 3 Nov 2020 at 17:20,
-            Marcus D. Leech via USRP-users &lt;<a moz-do-not-send="true"
-              href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
+      <blockquote cite=3D"mid:CAJr+t_rBcTQ_5_y3MdMTmgxbYbg3rOtvZS4LnOZ+tmcCk=
+xu4gg@mail.gmail.com" type=3D"cite"><br>
+        <div class=3D"gmail_quote">
+          <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 3 Nov 2020 at 17:20,=
+
+            Marcus D. Leech via USRP-users &lt;<a moz-do-not-send=3D"true" h=
+ref=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;=
+
             wrote:<br>
           </div>
-          <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
             0.8ex;border-left:1px solid
             rgb(204,204,204);padding-left:1ex">On 11/03/2020 10:49 AM,
             Alvaro Pendas Recondo via USRP-users wrote:<br>
@@ -398,13 +418,21 @@ cite="mid:CAJr+t_rBcTQ_5_y3MdMTmgxbYbg3rOtvZS4LnOZ+tmcCkxu4gg@mail.gmail.com"
             &gt;<br>
             &gt; By the way, I already followed all the instructions
             explained at <br>
-            &gt; <a moz-do-not-send="true"
-href="https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:text=Thread%20Priority%20Scheduling,-When%20UHD%20spawns&amp;text=To%20address%20this%20issue%2C%20non,%2Fetc%2Fsecurity%2Flimits"
-              rel="noreferrer" target="_blank">https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:~:text=Thread%20Priority%20Scheduling,-When%20UHD%20spawns&amp;text=To%20address%20this%20issue%2C%20non,%2Fetc%2Fsecurity%2Flimits</a>
+            &gt; <a moz-do-not-send=3D"true" href=3D"https://kb.ettus.com/US=
+RP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:text=3DThread%20Priority%20S=
+cheduling,-When%20UHD%20spawns&amp;text=3DTo%20address%20this%20issue%2C%20n=
+on,%2Fetc%2Fsecurity%2Flimits" rel=3D"noreferrer" target=3D"_blank">https://=
+kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:~:text=3DThread%2=
+0Priority%20Scheduling,-When%20UHD%20spawns&amp;text=3DTo%20address%20this%2=
+0issue%2C%20non,%2Fetc%2Fsecurity%2Flimits</a>
             <br>
-            &gt; &lt;<a moz-do-not-send="true"
-href="https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:text=Thread%20Priority%20Scheduling,-When%20UHD%20spawns&amp;text=To%20address%20this%20issue%2C%20non,%2Fetc%2Fsecurity%2Flimits"
-              rel="noreferrer" target="_blank">https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:text=Thread%20Priority%20Scheduling,-When%20UHD%20spawns&amp;text=To%20address%20this%20issue%2C%20non,%2Fetc%2Fsecurity%2Flimits</a>&gt;.
+            &gt; &lt;<a moz-do-not-send=3D"true" href=3D"https://kb.ettus.co=
+m/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:text=3DThread%20Priority=
+%20Scheduling,-When%20UHD%20spawns&amp;text=3DTo%20address%20this%20issue%2C=
+%20non,%2Fetc%2Fsecurity%2Flimits" rel=3D"noreferrer" target=3D"_blank">http=
+s://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:text=3DTh=
+read%20Priority%20Scheduling,-When%20UHD%20spawns&amp;text=3DTo%20address%20=
+this%20issue%2C%20non,%2Fetc%2Fsecurity%2Flimits</a>&gt;.
             <br>
             &gt;<br>
             &gt;<br>
@@ -430,16 +458,16 @@ href="https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:tex
             &gt; [INFO] [B200] Asking for clock rate 16.000000 MHz...<br>
             &gt; [INFO] [B200] Actually got clock rate 16.000000 MHz.<br>
             &gt; Using Device: Single USRP:<br>
-            &gt;   Device: B-Series Device<br>
-            &gt;   Mboard 0: B200mini<br>
-            &gt;   RX Channel: 0<br>
-            &gt;     RX DSP: 0<br>
-            &gt;     RX Dboard: A<br>
-            &gt;     RX Subdev: FE-RX1<br>
-            &gt;   TX Channel: 0<br>
-            &gt;     TX DSP: 0<br>
-            &gt;     TX Dboard: A<br>
-            &gt;     TX Subdev: FE-TX1<br>
+            &gt;&nbsp; &nbsp;Device: B-Series Device<br>
+            &gt;&nbsp; &nbsp;Mboard 0: B200mini<br>
+            &gt;&nbsp; &nbsp;RX Channel: 0<br>
+            &gt;&nbsp; &nbsp; &nbsp;RX DSP: 0<br>
+            &gt;&nbsp; &nbsp; &nbsp;RX Dboard: A<br>
+            &gt;&nbsp; &nbsp; &nbsp;RX Subdev: FE-RX1<br>
+            &gt;&nbsp; &nbsp;TX Channel: 0<br>
+            &gt;&nbsp; &nbsp; &nbsp;TX DSP: 0<br>
+            &gt;&nbsp; &nbsp; &nbsp;TX Dboard: A<br>
+            &gt;&nbsp; &nbsp; &nbsp;TX Subdev: FE-TX1<br>
             &gt;<br>
             &gt; [00:00:11.448560] Setting device timestamp to 0...<br>
             &gt; [INFO] [B200] Asking for clock rate 40.000000 MHz...<br>
@@ -548,7 +576,8 @@ href="https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:tex
             continuing...<br>
             &gt; terminate called after throwing an instance of
             'uhd::io_error'<br>
-            &gt;   what():  EnvironmentError: IOError: usb tx2 transfer
+            &gt;&nbsp; &nbsp;what():&nbsp; EnvironmentError: IOError: usb tx=
+2 transfer
             status: <br>
             &gt; LIBUSB_TRANSFER_NO_DEVICE[<br>
             &gt; 00:00:13.083166] Caught an IO exception.<br>
@@ -559,21 +588,22 @@ href="https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:tex
             environment, <br>
             based on x86 processor technology, is going to be more
             powerful<br>
-               than the ARM on a Raspberry Pi4.<br>
+            &nbsp; &nbsp;than the ARM on a Raspberry Pi4.<br>
             <br>
             Now, you *may* be able to improve things slightly by
             adjusting the USB <br>
             transport parameters, as described here:<br>
             <br>
-            <a moz-do-not-send="true"
-              href="https://files.ettus.com/manual/page_transport.html#transport_usb"
-              rel="noreferrer" target="_blank">https://files.ettus.com/manual/page_transport.html#transport_usb</a><br>
+            <a moz-do-not-send=3D"true" href=3D"https://files.ettus.com/manu=
+al/page_transport.html#transport_usb" rel=3D"noreferrer" target=3D"_blank">h=
+ttps://files.ettus.com/manual/page_transport.html#transport_usb</a><br>
             <br>
             But once you actually start "doing stuff" on the Raspberry
             Pi, you'll <br>
             find that it can't process as many samples per second as on
             an x86<br>
-               system--whether a laptop or desktop machine.  There's a
+            &nbsp; &nbsp;system--whether a laptop or desktop machine.&nbsp; T=
+here's a
             reason that a <br>
             Raspberry Pi is $50, and a typical low-end laptop is 10
             times that.<br>
@@ -582,31 +612,39 @@ href="https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#:%7E:tex
             <br>
             _______________________________________________<br>
             USRP-users mailing list<br>
-            <a moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-            <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+            <a moz-do-not-send=3D"true" href=3D"mailto:USRP-users@lists.ettu=
+s.com" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+            <a moz-do-not-send=3D"true" href=3D"http://lists.ettus.com/mailm=
+an/listinfo/usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank"=
+>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
           </blockquote>
         </div>
       </blockquote>
       <br>
       <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">_______________________________=
+________________
 USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:USRP-users@lists.ettus.=
+com">USRP-users@lists.ettus.com</a>
+<a class=3D"moz-txt-link-freetext" href=3D"http://lists.ettus.com/mailman/li=
+stinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/u=
+srp-users_lists.ettus.com</a>
 </pre>
     </blockquote>
     <br>
-  </body>
-</html>
+ =20
 
---------------858CBE1CA666FEDF517E65EF--
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
+>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
+r></div></blockquote></div></body></html>=
+
+--Apple-Mail-BF074852-91B2-4D88-A214-90C695E1C143--
 
 
---===============4951674207466414293==
+--===============3441789225949504587==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -617,5 +655,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4951674207466414293==--
+--===============3441789225949504587==--
 
