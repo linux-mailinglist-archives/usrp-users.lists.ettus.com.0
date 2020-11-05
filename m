@@ -2,51 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17BB92A81E4
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Nov 2020 16:09:21 +0100 (CET)
-Received: from [::1] (port=44176 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF3EE2A839D
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Nov 2020 17:37:10 +0100 (CET)
+Received: from [::1] (port=44634 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kagt5-00087F-Ie; Thu, 05 Nov 2020 10:09:19 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:32779)
+	id 1kaiG3-0002eC-LR; Thu, 05 Nov 2020 11:37:07 -0500
+Received: from mail-qt1-f169.google.com ([209.85.160.169]:46291)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kagt1-0007zr-IP
- for USRP-users@lists.ettus.com; Thu, 05 Nov 2020 10:09:15 -0500
-Received: by mail-ot1-f42.google.com with SMTP id i18so1721447ots.0
- for <USRP-users@lists.ettus.com>; Thu, 05 Nov 2020 07:08:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=y8Y4CiWDXNAqqz8NjVLK4UxY1N2BfTwa4Cg3XiKZXpk=;
- b=Zf8k3eimt1qO2AitVw4JE5C/VIVIUgZV6eTcHDRMUoOYrYiU6BCYp8TBd/TzKQXJQO
- mjlSUJ+lAIF88up3/xOepyqXwFTVH5HteuxtE1eIwhJW/1yqaoelUtavtQWm0pp8x+fu
- 94UlX2hKmvBtmE+0652y0spxYyW/xiRNAtDL9o32BuINwQ67LGk7oGGuuuV1uJiA2LmN
- xxXxzdDNaBWzgbFaEVkKMRZE7D9nOTKRqBV1/x7KfO+9dFdMG1Arubxcs3LvrJLy5gj4
- FrQdxF1kzEB9Qzm7u5UR4+/SoTQuTGMYpg7OX4dhb82xKZ1xvMoErVe4wOPYrv0FhyYs
- 4sTQ==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kaiG0-0002Yi-33
+ for USRP-users@lists.ettus.com; Thu, 05 Nov 2020 11:37:04 -0500
+Received: by mail-qt1-f169.google.com with SMTP id r8so1485054qtp.13
+ for <USRP-users@lists.ettus.com>; Thu, 05 Nov 2020 08:36:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=GSOcUVMv5F7Y5Qrr1LWREGwAmrRUYBg6SF0n1IbHsbQ=;
+ b=Zb7ROyaHduVrPsD8pFb+qv8lw07gYnaI7nbbiseEaX4txy3sk6G+jxa+na0A8VdVqK
+ NUsNMX9W9SSo0cF5FT0oPq8r5tEYa3uSIH4/cuCCjQzHzb0Vh35scqyIo1u80Dmp4s60
+ 7/TLajQj1HgeQ7MY/SetgwRI2DbrQTuOH2Aqhsla1+TXlZgyPbID0YNEkNWKWBdqxdno
+ zdocrawFfaEcPlwht04D6F1Jm2kj8lCakedNOy96cqy8nTrwdLQDm3VrGyvYISLJ7/GD
+ MHY58j6V06OGUb5TiUeD2gJODE7TGPzUVecX5d5kOoZvkTLAAHjOnmW7ypxekSsOVk25
+ HIdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=y8Y4CiWDXNAqqz8NjVLK4UxY1N2BfTwa4Cg3XiKZXpk=;
- b=HiGv2BbMYYtUEbes61T5Sl1/05vWDM7nauUDvyS7BRtHoVsNvx/GgKDtNb73PaXE7p
- uYPuSqg3K9nEiQhNrwn1eK1Vd1vLNm0aB7hYUompgJW2gqvrYop6RziWF/9j17K46M5Z
- K9CJxZmbvyI2qc6dDQz4lbwj840AwWyzjIEP5o8qRIKqNepPJe3ta01y24LIHn+NhIkr
- tONOd0hfoqm30/z069Qd9YmE61/jxJydcS8R3OeUhKKy7mRdRyr0TEayqWaluh3PRgcJ
- fmQZ8JmRHQlf55hIEsBnA7/1B5JyKElMtMbHW7/uNZYXFginjk3oaNoJa3W2imN/fM2w
- BRNg==
-X-Gm-Message-State: AOAM531pxQoGz7McCpzpn8hnAF3T2PvhpYlI8bnH230YqO/XMN4BIB8j
- oOCRRZuVNFBJxRf+ciwQWJnn4wPIfU0AHZzoCy1nRw==
-X-Google-Smtp-Source: ABdhPJx4R4QgG2M2BSQfQDE62r5eYSSfu2xNB+4+bulPaRRdZicz8U02Gzf6Sv0yiH0N6BQnl4TMaw3SjhYIiobz1ho=
-X-Received: by 2002:a9d:27c9:: with SMTP id c67mr1476534otb.301.1604588914677; 
- Thu, 05 Nov 2020 07:08:34 -0800 (PST)
-MIME-Version: 1.0
-References: <1b7351208b9b471c89c06bbf261751a6@fau.de>
- <CAKJyDkJZBbKjzdz+Be9D0htO_BqiGP-XTMw8UJ86BvRO3iDHdA@mail.gmail.com>
-In-Reply-To: <CAKJyDkJZBbKjzdz+Be9D0htO_BqiGP-XTMw8UJ86BvRO3iDHdA@mail.gmail.com>
-Date: Thu, 5 Nov 2020 10:08:23 -0500
-Message-ID: <CAB__hTTvoX5hzq-vWqhzayr0Nfon-O09mn_LWzSjLDqQX2PhsA@mail.gmail.com>
-To: Robin Coxe <coxe@quanttux.com>
-Subject: Re: [USRP-users] Use of IEEE1588 PTP
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=GSOcUVMv5F7Y5Qrr1LWREGwAmrRUYBg6SF0n1IbHsbQ=;
+ b=l1qsjEdnggnn05aBj0KSaLBD/nlp94twgan/amKiWTBe/UYxfB1FcQ3g5O1i3Qptnl
+ Cc2hN5TJqX0LeeYXZa/kfrPD32/586SR33D7NyzhZgQdPxnY7DOLltd2bP3Hj71M95qL
+ h6lZqLfoVi+zXJFp07VYUdw4q2afyRmx6pmqootgSnT8sq/gOn9J5lVps7xmaE6mXKBk
+ nQvXgprJTN4p3hjOjlfFIkgs7CEl1+n83UCc3Bu7VwYu8pVlnRf/HHjl6/aXtQTN7sEY
+ dibeUn9/x23gtjBY91UQ/xA91QCMdifnqNwFLk8vPWuyoLRx1m82qZ01uRh+avggE0dI
+ Lm4g==
+X-Gm-Message-State: AOAM532OMUIxWQaCzVkdTlIpBxHo+am4PGSy8rEDrA8G7AG9nT+L94O4
+ v0m/c1Zbc6BQ9Tm/uF72K9Y=
+X-Google-Smtp-Source: ABdhPJzD85xjUAEW9cWbL5rOniSz11xAzLUYcAaY61q8zklwigJfBpurh/9HW079lvTwXv43tFZyig==
+X-Received: by 2002:aed:26e3:: with SMTP id q90mr2651814qtd.121.1604594183615; 
+ Thu, 05 Nov 2020 08:36:23 -0800 (PST)
+Received: from [192.168.2.132]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.gmail.com with ESMTPSA id b197sm1369159qkg.65.2020.11.05.08.36.23
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 05 Nov 2020 08:36:23 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Thu, 5 Nov 2020 11:36:22 -0500
+Message-Id: <0D23DE77-8694-4C39-905F-A7FE8585EA94@gmail.com>
+References: <1604578102.815714.8740.55788@mail.rambler.ru>
+Cc: Usrp Users <USRP-users@lists.ettus.com>
+In-Reply-To: <1604578102.815714.8740.55788@mail.rambler.ru>
+To: =?utf-8?B?0JDQvdC00YDQtdC5INCQ?= <andrew4010@rambler.ru>
+X-Mailer: iPhone Mail (18A8395)
+Subject: Re: [USRP-users] UHD Binary installation
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -58,10 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6559953194685091768=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4037834260217869615=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,143 +82,65 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6559953194685091768==
-Content-Type: multipart/alternative; boundary="0000000000004571c005b35d7873"
 
---0000000000004571c005b35d7873
-Content-Type: text/plain; charset="UTF-8"
+--===============4037834260217869615==
+Content-Type: multipart/alternative; boundary=Apple-Mail-47610A62-F110-4C14-B6F9-F421512AD405
+Content-Transfer-Encoding: 7bit
 
-Although the X310 does not support White Rabbit, it should be possible to
-use the WR-LEN products mentioned in the link below to provide 10MHz and
-PPS outputs such that they can be used with one or more X310s to provide
-the desired synchronization.  The "cost" is that you need a WR-LEN in close
-proximity to each X310.
-Rob
 
-On Thu, Oct 29, 2020 at 3:22 PM Robin Coxe via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+--Apple-Mail-47610A62-F110-4C14-B6F9-F421512AD405
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-> The X310 does not support White Rabbit or IEEE 1588.
->
-> The N310/N320 have only been validated using a White Rabbit Master such as
-> this one: https://sevensols.es/index.php/index/timing-products/wr-len/
-> A simple PTP Master will almost certainly not work with the WR FPGA
-> bitstream.
->
->
-> On Thu, Oct 29, 2020 at 1:56 AM Bruckmeyer, Heiko via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Hello,
->>
->>
->>
->> I have a question regarding the use of the simple synchronization
->> protocol IEEE1588 Precision-Time-Protocol.
->>
->> I want to use Ettus USRP N3xx. I know that they support the White Rabbit
->> protocol for synchronizing. PTP is a part of the White Rabbit. So is it
->> possible to use a simple PTP Master and synchronize the USRP to it or do I
->> need a White Rabbit Master?
->>
->> I know that the use of simple PTP will degrade the synchronization
->> accuracy.
->>
->>
->>
->> Does the USRP X3xx also support White Rabbit or IEEE1588 PTP?
->>
->>
->>
->> Thanks and best regards,
->>
->> H. Bruckmeyer
->>
->>
->>
->>
->>
->>
->>
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
+https://files.ettus.com/manual/page_install.html#install_linux_ourbins_ubunt=
+u
+
+Uninstall the versions installed by your package manager first.=20
+
+Sent from my iPhone
+
+> On Nov 5, 2020, at 7:09 AM, =D0=90=D0=BD=D0=B4=D1=80=D0=B5=D0=B9 =D0=90 vi=
+a USRP-users <usrp-users@lists.ettus.com> wrote:
+>=20
+> =EF=BB=BF
+> Hello
+>=20
+> Ubuntu 18.04 default installation package is 3.10.3.=20
+> Can UHD 3.15 be installed on Ubuntu 18.04?
+>=20
+> Thank you
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
 
---0000000000004571c005b35d7873
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail-47610A62-F110-4C14-B6F9-F421512AD405
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Although the X310 does not support White =
-Rabbit, it should be possible to use the WR-LEN products mentioned in the l=
-ink below to provide 10MHz and PPS outputs such that they can be used with =
-one or more X310s to provide the desired synchronization.=C2=A0 The &quot;c=
-ost&quot; is that you need a WR-LEN in close proximity to each X310.<div>Ro=
-b</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Thu, Oct 29, 2020 at 3:22 PM Robin Coxe via USRP-users &lt;<a hre=
-f=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr">The X310 does not support White Rabbit or IEEE 1588.<div><br></div=
-><div>The N310/N320 have only been validated using a White Rabbit Master su=
-ch as this one:=C2=A0<a href=3D"https://sevensols.es/index.php/index/timing=
--products/wr-len/" target=3D"_blank">https://sevensols.es/index.php/index/t=
-iming-products/wr-len/</a>=C2=A0=C2=A0</div><div>A simple PTP Master will a=
-lmost certainly not work with the WR FPGA bitstream.</div><div><br></div></=
-div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Thu, Oct 29, 2020 at 1:56 AM Bruckmeyer, Heiko via USRP-users &lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
-ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div lang=3D"DE"><div><p class=3D"MsoNormal">Hello,<u></u><u></u></=
-p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal"><sp=
-an lang=3D"EN-GB">I have a question regarding the use of the simple synchro=
-nization protocol IEEE1588 Precision-Time-Protocol. <u></u><u></u></span></=
-p><p class=3D"MsoNormal"><span lang=3D"EN-GB">I want to use Ettus USRP N3xx=
-. I know that they support the White Rabbit protocol for synchronizing. PTP=
- is a part of the White Rabbit. So is it possible to use a simple PTP Maste=
-r and synchronize the USRP to it or do I need a White Rabbit Master? <u></u=
-><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-GB">I know that =
-the use of simple PTP will degrade the synchronization accuracy. <u></u><u>=
-</u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u>=
-</u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-GB">Does the USRP X3=
-xx also support White Rabbit or IEEE1588 PTP?<u></u><u></u></span></p><p cl=
-ass=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u></u></span></p><p cl=
-ass=3D"MsoNormal"><span lang=3D"EN-GB">Thanks and best regards,<u></u><u></=
-u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-GB">H. Bruckmeyer<u></=
-u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=
-=A0<u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=
-=A0<u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=
-=A0<u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=
-=A0<u></u></span></p></div></div>__________________________________________=
-_____<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><a href=3D"https://files.ettus.com/manual/p=
+age_install.html#install_linux_ourbins_ubuntu">https://files.ettus.com/manua=
+l/page_install.html#install_linux_ourbins_ubuntu</a><div><br></div><div>Unin=
+stall the versions installed by your package manager first.&nbsp;<br><br><di=
+v dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=
+=3D"cite">On Nov 5, 2020, at 7:09 AM, =D0=90=D0=BD=D0=B4=D1=80=D0=B5=D0=B9 =D0=
+=90 via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:<br><br></blockq=
+uote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div></div><d=
+iv>Hello</div><div><br data-mce-bogus=3D"1"></div><div>Ubuntu 18.04 default i=
+nstallation package is 3.10.3.&nbsp;<br>Can UHD 3.15 be installed on Ubuntu 1=
+8.04?<br></div><div><br data-mce-bogus=3D"1"></div><div>Thank you</div><span=
+>_______________________________________________</span><br><span>USRP-users m=
+ailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span>http:=
+//lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><br></di=
+v></blockquote></div></body></html>=
 
---0000000000004571c005b35d7873--
+--Apple-Mail-47610A62-F110-4C14-B6F9-F421512AD405--
 
 
---===============6559953194685091768==
+--===============4037834260217869615==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -222,5 +151,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6559953194685091768==--
+--===============4037834260217869615==--
 
