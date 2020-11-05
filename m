@@ -2,47 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 669B52A7660
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Nov 2020 05:25:59 +0100 (CET)
-Received: from [::1] (port=39774 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FB9F2A7716
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Nov 2020 06:38:04 +0100 (CET)
+Received: from [::1] (port=40424 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kaWqS-0001eM-2z; Wed, 04 Nov 2020 23:25:56 -0500
-Received: from mail-vs1-f42.google.com ([209.85.217.42]:36704)
+	id 1kaXyC-00049T-TW; Thu, 05 Nov 2020 00:38:00 -0500
+Received: from mail-io1-f50.google.com ([209.85.166.50]:42358)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <koncept1@gmail.com>) id 1kaWqO-0001Wu-6p
- for usrp-users@lists.ettus.com; Wed, 04 Nov 2020 23:25:52 -0500
-Received: by mail-vs1-f42.google.com with SMTP id h5so62304vsp.3
- for <usrp-users@lists.ettus.com>; Wed, 04 Nov 2020 20:25:31 -0800 (PST)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kaXy8-00044E-U3
+ for USRP-users@lists.ettus.com; Thu, 05 Nov 2020 00:37:56 -0500
+Received: by mail-io1-f50.google.com with SMTP id k21so574166ioa.9
+ for <USRP-users@lists.ettus.com>; Wed, 04 Nov 2020 21:37:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=tsKjv1yCBijHToJTKojjGkLksrOgUAM7++mXuaI3oyc=;
- b=aEngaji7MLYJwjFPb59DGWMuXw64KL3TeR7SRohIlDo05EUmheCVkn92tL2UJX9gfA
- V9VFk7nktb3h4OGU21B4dFtBtNgJMQHy80FJCSl5wl3uodiET3Ur91RkIxSIpukgYMGI
- Pt9KpPydDncbBbEtFPEynXkV8osKVQIoE6ZLoBwa4rKpblbrQVbMXTIpYGO5iOb5Q4Ui
- 7rGY418TtjDAIYeSeyNomI2+uQyCstcM3PuoSZcqe7nSkfp2I9o7k4EpIN1ZKRlHnCng
- WEk6uTeIKCHoK321Wb88RTMFCFbCC32RYJ7cUtGzC5J7C/Y7WITcpUrE8Bp3xx79WNce
- 5bCw==
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=GRKJwa4I0/fYNXLazSN+VaVssksxtrZ1QF5OcZD6ANY=;
+ b=rNyacu7Er+0q/W3A5/ObI/11jCsYam4SMY2tmWqqvk/Z8Pb0oCmy0ygGKrxxFWpm0N
+ tYiedtJx2KZ+w3IcMlYzvGfeFQ1fw1sIqJwgnRx2pDyEWEQYbZCOt2OlQH1IxZEIChP7
+ Jsbp7heMCGbZEIYScvesLWNDnTL97Mpzjq3gvrBMuXHUHL/vrSLQtc00oCQGP0uBN9t3
+ 7jXAXOp1NCFqt+eNdGKiFd37E4hSF56sUIrsAGxcTpn8sluHl1Aah8GDq/BTn5Joji/d
+ YWN6HwbX8+8h59Tnj/sdGtMl8ow38XgZt15LCMFu1f8opPfcQjxnd14vtcYCPco7Eb/x
+ /eVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=tsKjv1yCBijHToJTKojjGkLksrOgUAM7++mXuaI3oyc=;
- b=aTvAuFxnpqcdM2IkV2Zmf16/EPhXw1QTnrrJjCzLra6wV4yh3Q9Mi7QhAMWZV0gVCM
- fbA+8ejOzT9wyZCTZAJg/uMHNyBUsBWwqKExkR2GzjTg/3dPFmz6wxnpp65549TPfj6+
- AaEKEPl/KKH69JCjdQ0qkWF491SgxllfhQjelxt0iIkNyeoimljryrdnBznEQioNeuZG
- ykXYdKOhtJxRgSfTkAeBllytI9aRAOiV3lNv4Jgk1suC2WPN7nt1Pt/LkjwSAq7kjLOF
- KspP61BgL0iy5924loc5ENhnmkX6DJR0pzgjVBlRzUec/hCMAXVv/sa+MMyKNkDdJO8s
- bksA==
-X-Gm-Message-State: AOAM530zLH+zwIBtdpGVb03+qjREIjJpgtHoCuaabnhJKizgrG+jpBh1
- YVifftMnj2W6H5hEvcs0LyHlTNOFh6+tB+44rheyAYjfVV6Cyw==
-X-Google-Smtp-Source: ABdhPJysbak9+PoHVpfYva2P6omic/V9XQh9GKGPdkwqrQMRfhlxrxalIn8azCLVuG8ZJwXaUB1Tfly8pJcNILibUJo=
-X-Received: by 2002:a67:ee93:: with SMTP id n19mr243237vsp.36.1604550311161;
- Wed, 04 Nov 2020 20:25:11 -0800 (PST)
-MIME-Version: 1.0
-Date: Wed, 4 Nov 2020 23:24:59 -0500
-Message-ID: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] meta-ettus-v4.0.0.0 segfault
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=GRKJwa4I0/fYNXLazSN+VaVssksxtrZ1QF5OcZD6ANY=;
+ b=qc4GVrq+3E4SfN5b0GvpQ7r1he62cD2U/05FyyZjma0/lKq4XCMrJL55YotjbUwa4z
+ BknaAQHN1JmxnUkVIHSkpWHRHQyVOAMXj0WhHDLjFKu7QjOix8V8iU6E4iv2pagbt5oB
+ 6VDbulmveiqA4Un/q6a1YX0wDTU0I1ZH+3q1HEQ2EY/PVay15o9PtwfvZ32TEdHXHADo
+ V9ua8Jc1PyHjhcenbLWqlnqODLkDYevmb0XW8tiu4YkOv1O2YOHsg6AlOs9BmZmY3iOg
+ EzbwDxdDVASQwlhr5nkbGLgjpq5hBiiCeUtqVyCaoot0ZmKJmkvvIAjKOjYcH4AyyyZ4
+ ADZQ==
+X-Gm-Message-State: AOAM531jftZXUlI7fj2Gs9rgcCJfbnXsVYRet/uR1m6PAl4X2S4ippRL
+ rZKhfjUoRA9yf9rZVMhDpBg=
+X-Google-Smtp-Source: ABdhPJz03ARqrbPFY6082iqWi8RkaNmuW3KR5/qcMF7XtsdXy6LvccMOUpph77rWs6RuuE6zggkrbA==
+X-Received: by 2002:a5e:930d:: with SMTP id k13mr635273iom.33.1604554636149;
+ Wed, 04 Nov 2020 21:37:16 -0800 (PST)
+Received: from [192.168.2.132]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.gmail.com with ESMTPSA id e8sm395856ios.10.2020.11.04.21.37.15
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 04 Nov 2020 21:37:15 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Thu, 5 Nov 2020 00:37:14 -0500
+Message-Id: <79CA51AB-6E28-428B-B5DD-B9D7FFF38CB8@gmail.com>
+References: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
+To: Ben Magistro <koncept1@gmail.com>
+X-Mailer: iPhone Mail (18A8395)
+Subject: Re: [USRP-users] meta-ettus-v4.0.0.0 segfault
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ben Magistro via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ben Magistro <koncept1@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1604322086205541250=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,62 +83,27 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1604322086205541250==
-Content-Type: multipart/alternative; boundary="00000000000052347905b3547b92"
-
---00000000000052347905b3547b92
-Content-Type: text/plain; charset="UTF-8"
-
-Is anyone else using meta-ettus-v4.0.0.0 yet?  if so, have you had any
-issues with libfftw?
-
-Using the image on an E310, adding a single OOT module (gr-ais) and trying
-to run an app distributed with it, the app segfaults.  To further
-troubleshoot, I added gdb and it comes back with the following.  I have a
-separate development host that has gnuradio 3.8 setup using pybombs and do
-not experience this issue there.
-
-Thread 1 "python3" received signal SIGSEGV, Segmentation fault.
-0xb6947836 in ?? () from /usr/lib/libfftw3f.so.3
-
-To compile, I've needed to override PYTHON_EXECUTABLE as it points to a
-non-existent path in /home/oe-builder.... in
-/usr/lib/cmake/gnuradio/GnuradioConfig.cmake.  To run I also needed to
-define LD_EXPORT_PATH pointing to /usr/local/lib/.
-
-Thanks in advance.
-
---00000000000052347905b3547b92
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Is anyone else using meta-ettus-v4.0.0.0 yet?=C2=A0 i=
-f so, have you had any issues with libfftw?<br></div><div><br></div><div>Us=
-ing the image on an E310, adding a single OOT module (gr-ais) and trying to=
- run an app distributed with it, the app segfaults.=C2=A0 To further troubl=
-eshoot, I added gdb and it comes back with the following.=C2=A0 I have a se=
-parate development host that has gnuradio 3.8 setup using pybombs and do no=
-t experience this issue there.<br></div><div><br></div><div>Thread 1 &quot;=
-python3&quot; received signal SIGSEGV, Segmentation fault.<br>0xb6947836 in=
- ?? () from /usr/lib/libfftw3f.so.3</div><div><br></div><div>To compile, I&=
-#39;ve needed to override PYTHON_EXECUTABLE as it points to a non-existent =
-path in /home/oe-builder.... in /usr/lib/cmake/gnuradio/GnuradioConfig.cmak=
-e.=C2=A0 To run I also needed to define LD_EXPORT_PATH pointing to /usr/loc=
-al/lib/.</div><div><br></div><div>Thanks in advance.<br></div></div>
-
---00000000000052347905b3547b92--
-
-
---===============1604322086205541250==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============1604322086205541250==--
-
+RG8gb3RoZXIgYXBwcyB0aGF0IHVzZSBGRlRzIGV4aGliaXQgc2VnZmF1bHRzLiAKClNlbnQgZnJv
+bSBteSBpUGhvbmUKCj4gT24gTm92IDQsIDIwMjAsIGF0IDExOjI1IFBNLCBCZW4gTWFnaXN0cm8g
+dmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiB3cm90ZToKPiAKPiDv
+u78KPiBJcyBhbnlvbmUgZWxzZSB1c2luZyBtZXRhLWV0dHVzLXY0LjAuMC4wIHlldD8gIGlmIHNv
+LCBoYXZlIHlvdSBoYWQgYW55IGlzc3VlcyB3aXRoIGxpYmZmdHc/Cj4gCj4gVXNpbmcgdGhlIGlt
+YWdlIG9uIGFuIEUzMTAsIGFkZGluZyBhIHNpbmdsZSBPT1QgbW9kdWxlIChnci1haXMpIGFuZCB0
+cnlpbmcgdG8gcnVuIGFuIGFwcCBkaXN0cmlidXRlZCB3aXRoIGl0LCB0aGUgYXBwIHNlZ2ZhdWx0
+cy4gIFRvIGZ1cnRoZXIgdHJvdWJsZXNob290LCBJIGFkZGVkIGdkYiBhbmQgaXQgY29tZXMgYmFj
+ayB3aXRoIHRoZSBmb2xsb3dpbmcuICBJIGhhdmUgYSBzZXBhcmF0ZSBkZXZlbG9wbWVudCBob3N0
+IHRoYXQgaGFzIGdudXJhZGlvIDMuOCBzZXR1cCB1c2luZyBweWJvbWJzIGFuZCBkbyBub3QgZXhw
+ZXJpZW5jZSB0aGlzIGlzc3VlIHRoZXJlLgo+IAo+IFRocmVhZCAxICJweXRob24zIiByZWNlaXZl
+ZCBzaWduYWwgU0lHU0VHViwgU2VnbWVudGF0aW9uIGZhdWx0Lgo+IDB4YjY5NDc4MzYgaW4gPz8g
+KCkgZnJvbSAvdXNyL2xpYi9saWJmZnR3M2Yuc28uMwo+IAo+IFRvIGNvbXBpbGUsIEkndmUgbmVl
+ZGVkIHRvIG92ZXJyaWRlIFBZVEhPTl9FWEVDVVRBQkxFIGFzIGl0IHBvaW50cyB0byBhIG5vbi1l
+eGlzdGVudCBwYXRoIGluIC9ob21lL29lLWJ1aWxkZXIuLi4uIGluIC91c3IvbGliL2NtYWtlL2du
+dXJhZGlvL0dudXJhZGlvQ29uZmlnLmNtYWtlLiAgVG8gcnVuIEkgYWxzbyBuZWVkZWQgdG8gZGVm
+aW5lIExEX0VYUE9SVF9QQVRIIHBvaW50aW5nIHRvIC91c3IvbG9jYWwvbGliLy4KPiAKPiBUaGFu
+a3MgaW4gYWR2YW5jZS4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vy
+c19saXN0cy5ldHR1cy5jb20KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xp
+c3RzLmV0dHVzLmNvbQo=
