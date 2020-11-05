@@ -2,60 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 740592A85FD
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Nov 2020 19:18:05 +0100 (CET)
-Received: from [::1] (port=45514 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 356982A8ADE
+	for <lists+usrp-users@lfdr.de>; Fri,  6 Nov 2020 00:43:34 +0100 (CET)
+Received: from [::1] (port=47728 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kajpk-0002X5-Gb; Thu, 05 Nov 2020 13:18:04 -0500
-Received: from mail-qt1-f173.google.com ([209.85.160.173]:37633)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kajpg-0002PR-Fs
- for usrp-users@lists.ettus.com; Thu, 05 Nov 2020 13:18:00 -0500
-Received: by mail-qt1-f173.google.com with SMTP id n63so1769580qte.4
- for <usrp-users@lists.ettus.com>; Thu, 05 Nov 2020 10:17:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=wVvywEMExxZ8jPjoF4yqWc/pYOKE4rVWb2qHPoaDbxo=;
- b=khOJiO4o+jDvbXiUXGmq+0IEYsltwo3mQLQV3V/ZHpVLsZa+2uc3kzWcNolBvPAXas
- cRwTPJhOYEUQibu0oZnZdpGgAyMY/cnH8lqoEN0Xoc/KUM7ar4Umbalok6qWvLK283Ad
- q3HeWFSrr1XzajEY4bH7ci6GJ9sRCB99XEDOmHDbY3OmthIZ4rK3pO4ACPIm0sNFLaJq
- +gpHaUqQmKumJexwr4gtXVikFr4LlKXHQtK3wn/Rb8wd3ODgLXTH1s80U5PTfxPZHPGp
- JrZvVnWdF6xXjZidK+7N/EDAoYvm/gmo96XP4iv3pmetFwsN1KE0ZY6yXxQ7CKg1zvIg
- Q+EQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=wVvywEMExxZ8jPjoF4yqWc/pYOKE4rVWb2qHPoaDbxo=;
- b=NAX34n4FztXkp3htwBPaDgs7dYl8s62J2zrpuVrdE80NWri5XYM7vy+zY5nbhZdkT3
- 5wfnOvKrP1JclSOQRxHI1N95NwlP0EUpu5W66H0MqxSlc/alTxFkh321GDQjhlkP5ojm
- WVsO4faxjHE9G1xSZCnF8Ib3sN1QVF277QfnTH4lKIwrDisKqn8UECmIPKlwLgvngR4b
- C769GX63IrSER2jFU236yV3N9L01Agy3X53bcL9FyUlGj5pll7MlT+r6UNZXYtnCbJif
- IiU8RqE2aovSYp9IGzEfLc6D8/rPeyRK6xsTeAJujAqjpnkOEjRh2zln6TEKq33PQvEq
- gs4A==
-X-Gm-Message-State: AOAM533C9oHhFf9NUdlIT/LC/DffFVjwaugiAmRNVCBaeitXv0VhnytO
- esttZQB5F2LpCq9381Ea0O4vaFrpeHUVRw==
-X-Google-Smtp-Source: ABdhPJw1VZwNpQmazn96eZnUP6pe+UVoOn5d4UBFTJLsHFhnT0s4PbFYDGIIK2SjXzVlj60rfUicYg==
-X-Received: by 2002:aed:2c44:: with SMTP id f62mr3065231qtd.214.1604600239833; 
- Thu, 05 Nov 2020 10:17:19 -0800 (PST)
-Received: from [192.168.2.132]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.gmail.com with ESMTPSA id n7sm1336219qtp.93.2020.11.05.10.17.19
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 05 Nov 2020 10:17:19 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Thu, 5 Nov 2020 13:17:18 -0500
-Message-Id: <AFED7F6F-6C08-4D78-B399-7201B561195A@gmail.com>
-References: <CA+ce6i3QLjnXtd27qzi87J_=R2NFTsOpkiXsUJQsedUhEVt0hw@mail.gmail.com>
-Cc: Mark Koenig <mark.koenig@iubelttechnologies.com>,
- usrp-users <usrp-users@lists.ettus.com>
-In-Reply-To: <CA+ce6i3QLjnXtd27qzi87J_=R2NFTsOpkiXsUJQsedUhEVt0hw@mail.gmail.com>
-To: Luke Whittlesey <luke.whittlesey@gmail.com>
-X-Mailer: iPhone Mail (18A8395)
-Subject: Re: [USRP-users] uhd_cal_rx_iq_balance
+	id 1kaouf-0004k8-J2; Thu, 05 Nov 2020 18:43:29 -0500
+Received: from mout.gmx.net ([212.227.17.21]:47955)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1kaoub-0004eg-4d
+ for usrp-users@lists.ettus.com; Thu, 05 Nov 2020 18:43:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1604619763;
+ bh=KOs+LO4oX8+2T8eSU0G7YrCNwx+pZFn+jy3zHrxCWOw=;
+ h=X-UI-Sender-Class:From:To:Subject:Date;
+ b=M7TXcGAGkYvd1qOGpnvPph9mUCUUvdut1GANRhXwxJqceYtyoIxtrD0QuxIIloZDy
+ TdQUOtpAhSA7R00R9CqKT4dO5EzwgQhDBos+s0vxEpF8v5cHIQNk7A1r6XW0i9/31s
+ +TdarJyRLaPVAe5hPxJuxR9dBg0/BAI7Z/voWnIo=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
+ (3c-app-gmx-bs37.server.lan [172.19.170.89]) (via HTTP); Fri, 6 Nov 2020
+ 00:42:43 +0100
+MIME-Version: 1.0
+Message-ID: <trinity-d956d742-6c11-4844-ae74-ae4878387766-1604619763606@3c-app-gmx-bs37>
+To: usrp-users@lists.ettus.com
+Date: Fri, 6 Nov 2020 00:42:43 +0100
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:llw8r17G8pzSLk+Y14KyAs7B7BvUPINoVTy73k5g3aP3jQ3c7U+gOWxjoEEYTkInF+vuZ
+ srF0jH1DzJEO5Qulk4D1UcWOUKgFYmgmg/QCiGCHn1TDUQ5sh1vmFgCoZfQkBgsXW3PTN+kjRezV
+ s9192Cl86hgnUWVZr68S4mxRYbQJ0Jq4L8cjFWWFtgxdpRZDZG5U7hZB2LHt0azRuZckaLT+KGFL
+ iZ5zKeNT4x13v7omSgigoJoDeCs0AeqgrYt5MEbDMm5B85M6Rne5tITzEdo3A96PfkBKRccu3eeL
+ LQ=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:nybH/uIEuMM=:rqQ+c6frW4ox2jeXlJEjHL
+ 65px8p1gDtVOIcf+S7iz/uhZ/YraD+nkHPa1OGMCw5qOGDbnGdGr6ITsN1Nb+wUBsZfs5qkg6
+ 1XflciWwiTmXaj57C78M8cmEVmkTOv0PEdkC7Zd/DMEeqbP+KnOj2ZdIiSJxmy4Tete8bJv+m
+ j+ITVXkcF8slXT7SKhDwn920uP+giODuTiy0lwUhLU94lh2LfrW5/pvbfUYUKvcDL+MjYJRBn
+ c9gmU6RsNW3zVJwguDjeNhYnhhZVUkKKyynjWPx922bgv6mptWjlc2Y+AS0Kf/wfyFPp9fjxC
+ 3pbRgg/Z71rS1xANjgJdejYmEKED05e8hQ2bTAqMPX3x8uPFgvn9tX9o5lgHBhN8VFoemJmkM
+ 13Chxc5avYvRAtuyF76UPW/2wcvf0ojEVBE0ZPTBmLXMW12i24Gqc/M1yXqmn90NFXZvSFRhM
+ XwnkJDaDl7BXqyFnaEOiyRI0AxWhzdQYs7afPFQksqpzOeU4jhZlL6t3d4JFjvH7rr4HNfw0G
+ iRx+0Ld8GQB7dijv09MS1enIXknZS1t54kOaT/KIYG9cmvW3ehOMA6KnFhSpMYtzylivTy/l/
+ Kr7jtP3KEKmpc=
+Subject: [USRP-users] How exactly is "Receiver Gain" defined?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,10 +58,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,34 +75,35 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-THVrZS4gTm8gaXQgZG9lcyBub3QuIAoKVGhlIEFEOTM2eCBmYW1pbHkgaGFzIGJ1aWx0LWluIGFs
-d2F5cyBvbiBJL1EgY29ycmVjdGlvbiBsb2dpYy4gCgoKU2VudCBmcm9tIG15IGlQaG9uZQoKPiBP
-biBOb3YgNSwgMjAyMCwgYXQgMToxNSBQTSwgTHVrZSBXaGl0dGxlc2V5IDxsdWtlLndoaXR0bGVz
-ZXlAZ21haWwuY29tPiB3cm90ZToKPiAKPiDvu79Eb2VzIHRoaXMgSVEgY2FsaWJyYXRpb24gZnVu
-Y3Rpb24gYXBwbHkgdG8gdGhlIEUzMTAsIG9yIGFueSBvZiB0aGUKPiBBRDkzNnggYmFzZWQgU0RS
-cz8KPiAKPj4gT24gVGh1LCBOb3YgNSwgMjAyMCBhdCAxMTo1NyBBTSBNYXJjdXMgRCBMZWVjaCB2
-aWEgVVNSUC11c2Vycwo+PiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+PiAK
-Pj4gVGhlIFZhbCByb3V0aW5lcyB1c2UgdGhlIHNlcmlhbCBudW1iZXIgb2YgdGhlIGRhdWdodGVy
-IGNhcmQgdG8gaW5kZXggaW50byB0aGUgZGF0YWJhc2UuIEl0IHNob3VsZG7igJl0IG1hdHRlciB3
-aGVyZSB0aGUgY2FyZCBpcyBtb3ZlZC4KPj4gCj4+IFNlbnQgZnJvbSBteSBpUGhvbmUKPj4gCj4+
-IE9uIE5vdiA1LCAyMDIwLCBhdCAxMDowNiBBTSwgTWFyayBLb2VuaWcgdmlhIFVTUlAtdXNlcnMg
-PHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiB3cm90ZToKPj4gCj4+IO+7vwo+PiAKPj4gSGVs
-bG8sCj4+IAo+PiAKPj4gCj4+IEkgaGF2ZSBzb21lIHF1ZXN0aW9ucyByZWdhcmRpbmcgdGhlIFJ4
-IGlxIGJhbGFuY2UgZnVuY3Rpb24uICBBZnRlciBydW5uaW5nIHRoaXMgc2NyaXB0IG9uIGEgcGFy
-dGljdWxhciByYWRpbyAoeDMxMCBvciBOMjEwKSB3aXRoIGEgVUJYIGl0IHNhdmVzIHRoZSByZXN1
-bHRzIG9uIHRoZSBtYWNoaW5lIGluIHdoaWNoIGl0IHdhcyByYW4gb24sIGNvcnJlY3Q/ICBJZiBJ
-IG5lZWQgdG8gbW92ZSB0aGUgVUJYIHRvIGFub3RoZXIgcmFkaW8gKFgzMTAgb3IgTjIxMCksIGJ1
-dCB0aGUgbmV3IHJhZGlvIHdpdGggdGhlIFVCWCB3aWxsIGJlIG9uIHRoZSBzYW1lIG1hY2hpbmUs
-IGRvIEkgbmVlZCB0byByZXJ1biB0aGUgSVEgYmFsYW5jZSBzY3JpcHQ/Cj4+IAo+PiAKPj4gCj4+
-IElzIHRoZXJlIGEgc2NlbmFyaW8gSSB3b3VsZG7igJl0IHdhbnQgdG8gYWx3YXlzIGJlIGFwcGx5
-aW5nIHRoZSBJUSBiYWxhbmNlIGNvcnJlY3Rpb25zPwo+PiAKPj4gCj4+IAo+PiBUaGFua3MKPj4g
-Cj4+IAo+PiAKPj4gTWFyawo+PiAKPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KPj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4gVVNSUC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb20KPj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZv
-L3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCj4+IAo+PiBfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+PiBV
-U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+PiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
-YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVT
-UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
-aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+Hi,
+
+I m studying:
+
+https://files.ettus.com/performance_data/ubx/UBX-without-UHD-corrections.pdf
+
+How exactly is "Gain" in the "RX Figures" defined? Can it be related to the digital samples (e.g. in dBFS or RMS)?
+
+If, for example, I apply a exactly Pin=-20dBm, f=916MHz CW (calibrated via VNA) at the SMA input, I get -14.05dBFS (=rms value of IQ samples in 20*log10) when I calculate the RMS values of the samples.
+
+(Note: set_rx_gain(0) and I use 516MHz as center frequency to avoid DC correction).
+
+
+Also, the statement on the gain values is not quite clear: "Gain range for both RX and TX is 0-31.5 (the maximum RX gain seen in the tests of 37.5dB is due to the additional 6dB provided by the ADC in the USRP motherboard on top of the UBX's maximum gain".
+
+How does this relate to the value which is set with set_rx_gain()?
+Does that mean that a "Gain" value of 10 dB on the plot corresponds to set_rx_gain(4) ?
+
+What confuses me is that I *can* call set_rx_gain() with values of 0...37.5, and the output scales accordingly (i.e., the lowest value seems to be 0 and the highest 37.5; not 31.5).
+
+
+Would be great if someone could confirm.
+
+Thanks,
+Luke
+
+
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
