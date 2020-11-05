@@ -2,38 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604162A7E54
-	for <lists+usrp-users@lfdr.de>; Thu,  5 Nov 2020 13:09:12 +0100 (CET)
-Received: from [::1] (port=42990 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20E912A80C7
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Nov 2020 15:23:40 +0100 (CET)
+Received: from [::1] (port=43868 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kae4i-0007jy-KR; Thu, 05 Nov 2020 07:09:08 -0500
-Received: from mxout4.rambler.ru ([81.19.78.115]:43408)
- by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
- (Exim 4.93) (envelope-from <andrew4010@rambler.ru>)
- id 1kae4e-0007et-KF
- for usrp-users@lists.ettus.com; Thu, 05 Nov 2020 07:09:04 -0500
-Received: from saddam4.rambler.ru (saddam4.rambler.ru [10.32.16.4])
- by mxout4.rambler.ru (Postfix) with ESMTP id E7916140343
- for <usrp-users@lists.ettus.com>; Thu,  5 Nov 2020 15:08:22 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rambler.ru; s=mail;
- t=1604578102; bh=Zbho+xYb6CJRy3UGeQgw72DVFF7d3l5wFm4QWemI1Lc=;
- h=From:To:Reply-To:Subject:Date;
- b=O5x3sazIkrgtkv7lWySGdCmuZaY2msDbaxeoVSCci8OWpJ18BPtuhSEkV/UU4feVi
- g8oCY3VR/bmtpmhkgcpqZi01hIzLrh1xgB7tLRb4uPS4x9E5LcjQg7DicAdqx5dAGo
- oFBgx4WN4oxzeN4t3Kzjk5FDaliILtSDUzNWEQBE=
-Received: from localhost.localdomain (localhost [127.0.0.1])
- by saddam4.rambler.ru (Postfix) with ESMTP id C89C277AA88
- for <usrp-users@lists.ettus.com>; Thu,  5 Nov 2020 15:08:22 +0300 (MSK)
-Received: from [79.171.124.155] by mail.rambler.ru with HTTP;
- Thu, 5 Nov 2020 15:08:22 +0300
-To: "Usrp Users" <usrp-users@lists.ettus.com>
-Date: Thu, 5 Nov 2020 15:08:22 +0300
-Message-Id: <1604578102.815714.8740.55788@mail.rambler.ru>
+	id 1kagAq-0003sB-OE; Thu, 05 Nov 2020 09:23:36 -0500
+Received: from mail-ed1-f50.google.com ([209.85.208.50]:39854)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
+ id 1kagAn-0003m5-Hb
+ for usrp-users@lists.ettus.com; Thu, 05 Nov 2020 09:23:33 -0500
+Received: by mail-ed1-f50.google.com with SMTP id e18so1728319edy.6
+ for <usrp-users@lists.ettus.com>; Thu, 05 Nov 2020 06:23:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=7kBd5M7ATW/mSxQZLDS22IueK+Wt5AAd1PerSSwCRKE=;
+ b=CuKWvLtiGjjyjIUU0x2p+M79RdLA7/oD96UhGAKuEzq2W2C/iXC/UyMTyFFlvonZIQ
+ 6BsZYRxSLu8Sa+Su3x/qOXZ4e+qVw5jT5IkWykoxB3w4wl4qmZDFoK0v+en/a6X9TRPF
+ BCOWEQXEYUxlp49V3x7qhdtMh4sk1imiFqwWwsxg2XhNOV+rcnoqP3L5LT6/ZfXdVtzV
+ R0kS4KaSkdzSNzz03/3ji7k7fdPH7t2syw6jCjHS19kBKFTAp5Uap1MNrwQO6+pn/Sdm
+ S1rniMPiwj4fvTYnSeHjlNa10I2d+9PiROQhf+rHxiKEocATWGMGy4IaTykXyuJDVyym
+ vdhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=7kBd5M7ATW/mSxQZLDS22IueK+Wt5AAd1PerSSwCRKE=;
+ b=IhIlT/tzlOhRWgF1zhYP7MIW094iwy9oi6jcckvQO4XlAuv3Jv9K8OBXcLzoB7VlzI
+ 3OGU+mlSg3JMG+DF1aT2Eoi2hXcGceoUIaHr0Y+wow9sIlUT5xpAJG+TdOttZOVTXIPD
+ NdHbd4kWGsqsnETGqGSaxwzJp/HL8Ft8hxXiOJpOolQielM36csX7ofTn/2rpg3MRRP5
+ xjQUBnvY7KWxIyU0BwK5GcxBEC/ViOHNMXrTduLm10f2kZJqtcjOobQv3ST9GqEwoRcl
+ FOoK7Nk0j8Flwa+VvzltrP8acjLkfilVzTOfVbqWDNqrbWIxTsBqaw9jrmd0Q0Cy6oTZ
+ ww0w==
+X-Gm-Message-State: AOAM533T/BEPndwwzE16qeHZqALQJh15A0SGX2whmcILsBw2g1XzN8LD
+ D7YtjdVklUPpx+oNgupdGhGyRIe08llylktixIrBFopv
+X-Google-Smtp-Source: ABdhPJxpDop9UKfINMnYtIny6uNW4b+a1Hr3OHicwT7cyUkv2nb2fcEiBIVYOiqlRm6/cFOZDZiYsN9xqOSmgacK/Xs=
+X-Received: by 2002:a50:ec10:: with SMTP id g16mr2463449edr.63.1604586172558; 
+ Thu, 05 Nov 2020 06:22:52 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Rambler WebMail, http://mail.rambler.ru/
-X-Rambler-User: andrew4010@rambler.ru/79.171.124.155
-Subject: [USRP-users] UHD Binary installation
+References: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
+In-Reply-To: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
+Date: Thu, 5 Nov 2020 09:22:41 -0500
+Message-ID: <CAGNhwTMz2w-kD=a4m9EeLHqsXP9cKgXhok+jsW1Tu=einSvgyQ@mail.gmail.com>
+To: Ben Magistro <koncept1@gmail.com>
+Cc: USRP list <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] meta-ettus-v4.0.0.0 segfault
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -45,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?0JDQvdC00YDQtdC5INCQIHZpYSBVU1JQLXVzZXJz?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?koi8-r?B?4c7E0sXKIOE=?= <andrew4010@rambler.ru>
-Content-Type: multipart/mixed; boundary="===============6667865325239729326=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Content-Type: multipart/mixed; boundary="===============2250394771482883738=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -62,41 +76,82 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============2250394771482883738==
+Content-Type: multipart/alternative; boundary="000000000000d3ded705b35cd4ff"
 
-This is a multi-part message in MIME format.
+--000000000000d3ded705b35cd4ff
+Content-Type: text/plain; charset="UTF-8"
 
---===============6667865325239729326==
-Content-Transfer-Encoding: 7bit
-Content-Type: multipart/alternative; boundary="_----------=_1604578102874078"
+Hi Ben - This issue has been reported to R&D internally. If you wish to
+create a public-facing UHD issue on our Github tracker please go ahead & do
+so, and tag me on it so that we can keep track of it internally. - MLD
 
+On Wed, Nov 4, 2020 at 11:25 PM Ben Magistro via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-This is a multi-part message in MIME format.
+> Is anyone else using meta-ettus-v4.0.0.0 yet?  if so, have you had any
+> issues with libfftw?
+>
+> Using the image on an E310, adding a single OOT module (gr-ais) and trying
+> to run an app distributed with it, the app segfaults.  To further
+> troubleshoot, I added gdb and it comes back with the following.  I have a
+> separate development host that has gnuradio 3.8 setup using pybombs and do
+> not experience this issue there.
+>
+> Thread 1 "python3" received signal SIGSEGV, Segmentation fault.
+> 0xb6947836 in ?? () from /usr/lib/libfftw3f.so.3
+>
+> To compile, I've needed to override PYTHON_EXECUTABLE as it points to a
+> non-existent path in /home/oe-builder.... in
+> /usr/lib/cmake/gnuradio/GnuradioConfig.cmake.  To run I also needed to
+> define LD_EXPORT_PATH pointing to /usr/local/lib/.
+>
+> Thanks in advance.
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---_----------=_1604578102874078
-Content-Disposition: inline
+--000000000000d3ded705b35cd4ff
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"; format="flowed"
 
-Hello
-Ubuntu 18.04 default installation package is 3.10.3.
-Can UHD 3.15 be installed on Ubuntu 18.04?
+<div dir=3D"ltr"><div dir=3D"ltr">Hi Ben - This issue has been reported to =
+R&amp;D internally. If you wish to create a public-facing UHD issue on our =
+Github tracker please go ahead &amp; do so, and tag me on it so that we can=
+ keep track of it internally. - MLD<br><br></div><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Nov 4, 2020 at 11:25 PM Ben =
+Magistro via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">u=
+srp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div dir=3D"ltr"><div>Is anyone else using meta-et=
+tus-v4.0.0.0 yet?=C2=A0 if so, have you had any issues with libfftw?<br></d=
+iv><div><br></div><div>Using the image on an E310, adding a single OOT modu=
+le (gr-ais) and trying to run an app distributed with it, the app segfaults=
+.=C2=A0 To further troubleshoot, I added gdb and it comes back with the fol=
+lowing.=C2=A0 I have a separate development host that has gnuradio 3.8 setu=
+p using pybombs and do not experience this issue there.<br></div><div><br><=
+/div><div>Thread 1 &quot;python3&quot; received signal SIGSEGV, Segmentatio=
+n fault.<br>0xb6947836 in ?? () from /usr/lib/libfftw3f.so.3</div><div><br>=
+</div><div>To compile, I&#39;ve needed to override PYTHON_EXECUTABLE as it =
+points to a non-existent path in /home/oe-builder.... in /usr/lib/cmake/gnu=
+radio/GnuradioConfig.cmake.=C2=A0 To run I also needed to define LD_EXPORT_=
+PATH pointing to /usr/local/lib/.</div><div><br></div><div>Thanks in advanc=
+e.<br></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
 
-Thank you
-
---_----------=_1604578102874078
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset="utf-8"
-
-<div></div><div>Hello</div><div><br data-mce-bogus=3D"1"></div><div>Ubuntu =
-18.04 default installation package is 3.10.3.&nbsp;<br>Can UHD 3.15 be inst=
-alled on Ubuntu 18.04?<br></div><div><br data-mce-bogus=3D"1"></div><div>Th=
-ank you</div>=
-
---_----------=_1604578102874078--
+--000000000000d3ded705b35cd4ff--
 
 
---===============6667865325239729326==
+--===============2250394771482883738==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -107,5 +162,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6667865325239729326==--
+--===============2250394771482883738==--
 
