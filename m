@@ -2,34 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FABE2AAE1C
-	for <lists+usrp-users@lfdr.de>; Sun,  8 Nov 2020 23:54:42 +0100 (CET)
-Received: from [::1] (port=48716 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CC6D2AAE4C
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Nov 2020 00:31:12 +0100 (CET)
+Received: from [::1] (port=49096 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kbta1-0006iF-7W; Sun, 08 Nov 2020 17:54:37 -0500
-Received: from 93-63-88-25.ip27.fastwebnet.it ([93.63.88.25]:62979
- helo=exchange.iptronix.local)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
- (Exim 4.93) (envelope-from <dario@iptronix.com>) id 1kbtZx-0006ci-1i
- for usrp-users@lists.ettus.com; Sun, 08 Nov 2020 17:54:33 -0500
-Received: from exchange.iptronix.local (192.168.1.30) by
- exchange.iptronix.local (192.168.1.30) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sun, 8 Nov 2020 23:53:39 +0100
-Received: from exchange.iptronix.local ([::1]) by exchange.iptronix.local
- ([::1]) with mapi id 15.00.1497.007; Sun, 8 Nov 2020 23:53:33 +0100
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: rfnoc on uhd4 &grc 3.8/9
-Thread-Index: AQHWtiH7Ih4QLc/xtE6dxYD6FYYhwQ==
-Date: Sun, 8 Nov 2020 22:53:32 +0000
-Message-ID: <585bd1dbd1d942c8bfafd898cc230039@exchange.iptronix.local>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
+	id 1kbu9O-0001VF-Ey; Sun, 08 Nov 2020 18:31:10 -0500
+Received: from mail-ua1-f46.google.com ([209.85.222.46]:46876)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1kbu9K-0001Bm-46
+ for usrp-users@lists.ettus.com; Sun, 08 Nov 2020 18:31:06 -0500
+Received: by mail-ua1-f46.google.com with SMTP id y1so2234882uac.13
+ for <usrp-users@lists.ettus.com>; Sun, 08 Nov 2020 15:30:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=m1F3oUdJSsiARDeWtHIwYCvEeUMo2uzsVmOQHEiA5uE=;
+ b=FWRn35iwOw5/QnlYreAknQ/6LAJ+gy8jTHdpjELuvI8ptfmeCXD62PP6shfrOefH5F
+ UtuGEMg7ifOWZEora6PFDH9hBLd36dOZ+BHqwKYBi+LxYgrhY7zzZcBamcEeVNTSC3AA
+ Abk4FBfRJkcdH2qrDXtH+/zNYKNMX0vIW7GA5SjvKw7fsOsyKPUg6ccM9oDVNX4q9gl2
+ fG1ayvwTyZ+W+hFPH51+djkl/nk3zvs5pBsKNTrRYh+7IwBxOfJZK1K5vBhMwcEOxYWL
+ j0SNt7qERgT4cw0bTkJyjCxEG/k/p09ZsDJ/46PtGu5BRfSegRvTA11CoYcH+e78MIqN
+ ZVdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=m1F3oUdJSsiARDeWtHIwYCvEeUMo2uzsVmOQHEiA5uE=;
+ b=kTjLjbgltlpdv+5OO/4kItKEEpCtSWZ9dHf08yXry8Wbd8oT8JKJv4TEiSd3XurcmE
+ 5Mz181C18bs2wCVA5g+qMzpAlH+tRkfayW7x6r5yd9rjotsltCflP0dSdMSRllkfjP0X
+ Np3wy5PBzZsoegCkWdTKsgSDhkeF7N2W3KHV3Xx+F5Sr1nYsq27fvjc1tfRs3hdYdAC1
+ rdw/FO5DMY8PVrCtESwX9DYlsVvBtktVdTkPxsbbZyk8gnfuyNhvQ0Z2ACr0e3oUkbjY
+ W06mypjM+SRSBMnSV1gtySvV6Vo59m99kHVZtUK47arYS6xGJYz045GMvuA/nZM/MLCd
+ rcXA==
+X-Gm-Message-State: AOAM531m7yfNlZ36gWRI0Zed0KNIhzcvsFy61b9XTEjuhopmAkDvR728
+ Kep0YGD9SUk4nq8YqDxWPQjAp4ahqvPPjIAaryk0wz0TOyGjY5JW
+X-Google-Smtp-Source: ABdhPJx5LWnK4o8V7tLfBju8e3yFOF2rfSleVT2JDlSkEI1pUzBme+VC+nm9C+LCyWt0fgYxC8dJFpDk5Q1H25410k0=
+X-Received: by 2002:ab0:3565:: with SMTP id e5mr5725931uaa.139.1604878225387; 
+ Sun, 08 Nov 2020 15:30:25 -0800 (PST)
 MIME-Version: 1.0
-Subject: [USRP-users] rfnoc on uhd4 &grc 3.8/9
+References: <585bd1dbd1d942c8bfafd898cc230039@exchange.iptronix.local>
+In-Reply-To: <585bd1dbd1d942c8bfafd898cc230039@exchange.iptronix.local>
+Date: Sun, 8 Nov 2020 18:29:49 -0500
+Message-ID: <CAL7q81vFv46PG0jBcf1gRPjUyUCmeiuCb=6vD1kYwRK84kHvuA@mail.gmail.com>
+To: Dario Pennisi <dario@iptronix.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] rfnoc on uhd4 &grc 3.8/9
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -41,9 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Dario Pennisi via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Dario Pennisi <dario@iptronix.com>
-Content-Type: multipart/mixed; boundary="===============7392724634625941992=="
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Content-Type: multipart/mixed; boundary="===============3718955074763755985=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -57,97 +76,193 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7392724634625941992==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_585bd1dbd1d942c8bfafd898cc230039exchangeiptronixlocal_"
+--===============3718955074763755985==
+Content-Type: multipart/alternative; boundary="0000000000008849a205b3a0d4b9"
 
---_000_585bd1dbd1d942c8bfafd898cc230039exchangeiptronixlocal_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000008849a205b3a0d4b9
+Content-Type: text/plain; charset="UTF-8"
 
-SGksDQpJJ3ZlIGJlZW4gdHJ5aW5nIHRvIGNyZWF0ZSBhbmQgdXNlIGEgcmZub2MgYmxvY2sgZm9y
-IG4zMTAgd2l0aGluIGdudXJhZGlvIDMuOCBhbmQgdWhkNC4wLiBJIGZpcnN0IHRyaWVkIHdpdGgg
-cHlib21icyBidXQgdGhpcyBkb2Vzbid0IG5vdCBzZWVtIHRvIHdvcmsgdmVyeSB3ZWxsIGFuZCB0
-aGVyZSBpcyBubyBkZWZhdWx0IHJlY2lwZSB0aGF0IHdvcmtzLiBJIHRoZW4gbW92ZWQgdG8gbWFu
-dWFsIGluc3RhbGwgZnJvbSBzb3VyY2UgYW5kIGdvdCBzb21ldGhpbmcgdXAgdXNpbmcgdGhlIG1h
-aW50LTMuOCBhbmQgdWhkLTQuMCBicmFuY2hlcyBob3dldmVyIG5vbmUgb2YgdGhlIHJmbm9jIGJs
-b2NrcyBpbiB1aGQgNC4wIHNlZW0gdG8gYmUgdXNhYmxlIGRpcmVjdGx5IGluIGdudXJhZGlvIGNv
-bXBhbmlvbiBhcyB0aGUgeWFtbCBmaWxlcyBpbiB1aGQgYXJlIG5vdCBjb21wYXRpYmxlIHdpdGgg
-dGhlIHlhbWwgYmxvY2sgZmlsZXMgcmVxdWlyZWQgYnkgZ3JjLg0KDQpJIHRoZW4gbW92ZWQgdG8g
-bWFzdGVyIGJyYW5jaCBvZiBib3RoIHJlcG9zaXRvcmllcyBhbmQgdGhpcyBpbnN0YWxscyB3aXRo
-IGdudXJhZGlvLCBzb21lIHlhbWwgZmlsZXMgZm9yIHNvbWUgb2YgdGhlIGJsb2NrcyBpbiB1aGQs
-IHNvIEkgdGlyZWQgY29tcGlsaW5nIGEgZnBnYSB3aXRoIGZmdCBibG9jayBhcyBpbnN0cnVjdGVk
-IGluIHRoZSB0dXRvcmlhbCBidXQgdGhlIGZmdCB3b3VsZCBub3QgcHJvZHVjZSBvdXRwdXQgZGF0
-YS4NCg0KRmluYWxseSBJIHRyaWVkIGNvbXBpbGluZyB0aGUgZ2FpbiBleGFtcGxlIGJsb2NrIG91
-dCBvZiB0cmVlIGFuZCBpbnN0YWxsZWQgaXRzIGNvbnRyb2wgYmxvY2sgYm90aCB3aXRoIG1haW50
-IDMuOCBicmFuY2ggKHRoYXQgdXNlcyBzd2lnKSBhbmQgbWFzdGVyIGJyYW5jaGVzICh0aGF0IHVz
-ZXMgcHliaW5kMTEpIGJ1dCBpbiBib3RoIGNhc2VzIHRoZSBibG9jayBkb2Vzbid0IGdldCByZWNv
-Z25pemVkIHdoZW4gaSBpc3N1ZSB1aGRfdXNycF9wcm9iZSBhbmQgaXQgZ2V0cyBsaXN0ZWQgYXMg
-YmxvY2sjMCByZWdhcmRsZXNzIG9mIExkY29uZmlnLg0KSSBnZXQgaXQgbGlzdGVkIGluIGdyYyBh
-ZnRlciBJIGNyZWF0ZWQgYSBzZWNvbmQgeWFtbCBmaWxlIGNvbXBhdGlibGUgd2l0aCBncmMgYnV0
-IG9mIGNvdXJzZSBydW5uaW5nIGEgZ3JhcGggd2lsbCBmYWlsIGFzIGl0IGRvZXNuJ3QgZmluZCB0
-aGUgYmxvY2sgY29udHJvbCBjbGFzcywgbGlrZWx5IGJlY2F1c2UgaW4gdGhlIGluc3RhbGxhdGlv
-biBwcm9jZXNzIEkgZG9uJ3Qgc2VlIHB5dGhvbiBiaW5kaW5ncyBiZWluZyBnZW5lcmF0ZWQgZm9y
-IGl0LCByZWdhcmRsZXNzIG9mIHRoZSBiaW5kaW5nIGNyZWF0aW9uIG1lY2hhbmlzbS4NCg0KU28g
-bXkgcXVlc3Rpb25zIGFyZToNCjEpIGlzIHRoZXJlIGFueSB3YXkgdG8gdXNlIHJmbm9jIGluIGdy
-YyBhcyBvZiB0b2RheSB0aGF0IGRvZXNuJ3QgbmVlZCBtYW51YWwgY3JlYXRpb24gb2YgdGhlIGJs
-b2NrLnlhbWwgZmlsZXM/DQoyKSB3aHkgdGhlIGZmdCBibG9jayB1c2luZyB0aGUgYmxvY2sueWFt
-bCBkZWZpbml0aW9uIGZyb20gZ3ItdWhkIGRvZXNuJ3Qgc2VlbSB0byB3b3JrPw0KMykgaG93IGRv
-IEkgbWFrZSBvb3QgYmxvY2tzIHJlY29nbml6ZWQgYnkgcHJvYmUgYW5kIGdyYz8NCg0KVGhhbmtz
-LA0KDQoNCkRhcmlvIFBlbm5pc2kNCg0K
+Hi Dario,
 
---_000_585bd1dbd1d942c8bfafd898cc230039exchangeiptronixlocal_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <76D870F5178D6A449363B273F68E69DD@iptronix.com>
-Content-Transfer-Encoding: base64
+Building UHD and gr-ettus from source is the correct approach. You can
+either build GNURadio 3.8 from source or install it via your
+distribution's package manager.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGRpcj0iYXV0byI+DQo8
-ZGl2IGRpcj0iYXV0byI+DQo8ZGl2IGRpcj0iYXV0byI+SGksPC9kaXY+DQo8ZGl2IGRpcj0iYXV0
-byI+SSd2ZSBiZWVuIHRyeWluZyB0byBjcmVhdGUgYW5kIHVzZSBhIHJmbm9jIGJsb2NrIGZvciBu
-MzEwIHdpdGhpbiBnbnVyYWRpbyAzLjggYW5kIHVoZDQuMC4gSSBmaXJzdCB0cmllZCB3aXRoIHB5
-Ym9tYnMgYnV0IHRoaXMgZG9lc24ndCBub3Qgc2VlbSB0byB3b3JrIHZlcnkgd2VsbCBhbmQgdGhl
-cmUgaXMgbm8gZGVmYXVsdCByZWNpcGUgdGhhdCB3b3Jrcy4gSSB0aGVuIG1vdmVkIHRvIG1hbnVh
-bCBpbnN0YWxsIGZyb20gc291cmNlDQogYW5kIGdvdCBzb21ldGhpbmcgdXAgdXNpbmcgdGhlIG1h
-aW50LTMuOCBhbmQgdWhkLTQuMCBicmFuY2hlcyBob3dldmVyIG5vbmUgb2YgdGhlIHJmbm9jIGJs
-b2NrcyBpbiB1aGQgNC4wIHNlZW0gdG8gYmUgdXNhYmxlIGRpcmVjdGx5IGluIGdudXJhZGlvIGNv
-bXBhbmlvbiBhcyB0aGUgeWFtbCBmaWxlcyBpbiB1aGQgYXJlIG5vdCBjb21wYXRpYmxlIHdpdGgg
-dGhlIHlhbWwgYmxvY2sgZmlsZXMgcmVxdWlyZWQgYnkgZ3JjLjwvZGl2Pg0KPGRpdiBkaXI9ImF1
-dG8iPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPkkgdGhlbiBtb3ZlZCB0byBtYXN0ZXIg
-YnJhbmNoIG9mIGJvdGggcmVwb3NpdG9yaWVzIGFuZCB0aGlzIGluc3RhbGxzIHdpdGggZ251cmFk
-aW8sIHNvbWUgeWFtbCBmaWxlcyBmb3Igc29tZSBvZiB0aGUgYmxvY2tzIGluIHVoZCwgc28gSSB0
-aXJlZCBjb21waWxpbmcgYSBmcGdhIHdpdGggZmZ0IGJsb2NrIGFzIGluc3RydWN0ZWQgaW4gdGhl
-IHR1dG9yaWFsIGJ1dCB0aGUgZmZ0IHdvdWxkIG5vdCBwcm9kdWNlIG91dHB1dA0KIGRhdGEuPC9k
-aXY+DQo8ZGl2IGRpcj0iYXV0byI+PGJyPg0KPC9kaXY+DQo8ZGl2IGRpcj0iYXV0byI+RmluYWxs
-eSBJIHRyaWVkIGNvbXBpbGluZyB0aGUgZ2FpbiBleGFtcGxlIGJsb2NrIG91dCBvZiB0cmVlIGFu
-ZCBpbnN0YWxsZWQgaXRzIGNvbnRyb2wgYmxvY2sgYm90aCB3aXRoIG1haW50IDMuOCBicmFuY2gg
-KHRoYXQgdXNlcyBzd2lnKSBhbmQgbWFzdGVyIGJyYW5jaGVzICh0aGF0IHVzZXMgcHliaW5kMTEp
-IGJ1dCBpbiBib3RoIGNhc2VzIHRoZSBibG9jayBkb2Vzbid0IGdldCByZWNvZ25pemVkIHdoZW4g
-aSBpc3N1ZQ0KIHVoZF91c3JwX3Byb2JlIGFuZCBpdCBnZXRzIGxpc3RlZCBhcyBibG9jayMwIHJl
-Z2FyZGxlc3Mgb2YgTGRjb25maWcuJm5ic3A7PC9kaXY+DQo8ZGl2IGRpcj0iYXV0byI+SSBnZXQg
-aXQgbGlzdGVkIGluIGdyYyBhZnRlciBJIGNyZWF0ZWQgYSBzZWNvbmQgeWFtbCBmaWxlIGNvbXBh
-dGlibGUgd2l0aCBncmMgYnV0IG9mIGNvdXJzZSBydW5uaW5nIGEgZ3JhcGggd2lsbCBmYWlsIGFz
-IGl0IGRvZXNuJ3QgZmluZCB0aGUgYmxvY2sgY29udHJvbCBjbGFzcywgbGlrZWx5IGJlY2F1c2Ug
-aW4gdGhlIGluc3RhbGxhdGlvbiBwcm9jZXNzIEkgZG9uJ3Qgc2VlIHB5dGhvbiBiaW5kaW5ncyBi
-ZWluZyBnZW5lcmF0ZWQNCiBmb3IgaXQsIHJlZ2FyZGxlc3Mgb2YgdGhlIGJpbmRpbmcgY3JlYXRp
-b24gbWVjaGFuaXNtLjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPjxicj4NCjwvZGl2Pg0KPGRpdiBk
-aXI9ImF1dG8iPlNvIG15IHF1ZXN0aW9ucyBhcmU6PC9kaXY+DQo8ZGl2IGRpcj0iYXV0byI+MSkg
-aXMgdGhlcmUgYW55IHdheSB0byB1c2UgcmZub2MgaW4gZ3JjIGFzIG9mIDxhPnRvZGF5PC9hPiB0
-aGF0IGRvZXNuJ3QgbmVlZCBtYW51YWwgY3JlYXRpb24gb2YgdGhlIGJsb2NrLnlhbWwgZmlsZXM/
-PC9kaXY+DQo8ZGl2IGRpcj0iYXV0byI+Mikgd2h5IHRoZSBmZnQgYmxvY2sgdXNpbmcgdGhlIGJs
-b2NrLnlhbWwgZGVmaW5pdGlvbiBmcm9tIGdyLXVoZCBkb2Vzbid0IHNlZW0gdG8gd29yaz88L2Rp
-dj4NCjxkaXYgZGlyPSJhdXRvIj4zKSBob3cgZG8gSSBtYWtlIG9vdCBibG9ja3MgcmVjb2duaXpl
-ZCBieSBwcm9iZSBhbmQgZ3JjPzwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPjxicj4NCjwvZGl2Pg0K
-PGRpdiBkaXI9ImF1dG8iPlRoYW5rcyw8L2Rpdj4NCjxkaXYgZGlyPSJhdXRvIj48YnI+DQo8L2Rp
-dj4NCjxkaXYgZGlyPSJhdXRvIj48YnI+DQo8L2Rpdj4NCjxkaXYgZGlyPSJhdXRvIiBpZD0iY29t
-cG9zZXJfc2lnbmF0dXJlIj5EYXJpbyBQZW5uaXNpPC9kaXY+DQo8L2Rpdj4NCjxkaXYgZGlyPSJh
-dXRvIj48YnI+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+When building from source, make sure to use the following branches:
+- UHD: UHD-4.0
+- GNU Radio: maint-3.8
+- gr-ettus: maint-3.8-uhd4.0
 
---_000_585bd1dbd1d942c8bfafd898cc230039exchangeiptronixlocal_--
+1) is there any way to use rfnoc in grc as of today that doesn't need
+> manual creation of the block.yaml files?
 
 
---===============7392724634625941992==
+I think your issue stems from using the wrong gr-ettus branch (maint-3.8 vs
+maint-3.8-uhd4.0). Make sure you are using the branches I listed above.
+
+
+> 2) why the fft block using the block.yaml definition from gr-uhd doesn't
+> seem to work?
+
+
+Do not build from GNURadio's master branch. Use the maint-3.8 branch.
+
+
+> 3) how do I make oot blocks recognized by probe and grc?
+
+
+R&D is aware of the uhd_usrp_probe Block#0 issue. It is benign and can be
+ignored as it does not affect the functionality of your block.
+
+Jonathon
+
+On Sun, Nov 8, 2020 at 5:54 PM Dario Pennisi via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi,
+> I've been trying to create and use a rfnoc block for n310 within gnuradio
+> 3.8 and uhd4.0. I first tried with pybombs but this doesn't not seem to
+> work very well and there is no default recipe that works. I then moved to
+> manual install from source and got something up using the maint-3.8 and
+> uhd-4.0 branches however none of the rfnoc blocks in uhd 4.0 seem to be
+> usable directly in gnuradio companion as the yaml files in uhd are not
+> compatible with the yaml block files required by grc.
+>
+> I then moved to master branch of both repositories and this installs with
+> gnuradio, some yaml files for some of the blocks in uhd, so I tired
+> compiling a fpga with fft block as instructed in the tutorial but the fft
+> would not produce output data.
+>
+> Finally I tried compiling the gain example block out of tree and installed
+> its control block both with maint 3.8 branch (that uses swig) and master
+> branches (that uses pybind11) but in both cases the block doesn't get
+> recognized when i issue uhd_usrp_probe and it gets listed as block#0
+> regardless of Ldconfig.
+> I get it listed in grc after I created a second yaml file compatible with
+> grc but of course running a graph will fail as it doesn't find the block
+> control class, likely because in the installation process I don't see
+> python bindings being generated for it, regardless of the binding creation
+> mechanism.
+>
+> So my questions are:
+> 1) is there any way to use rfnoc in grc as of today that doesn't need
+> manual creation of the block.yaml files?
+> 2) why the fft block using the block.yaml definition from gr-uhd doesn't
+> seem to work?
+> 3) how do I make oot blocks recognized by probe and grc?
+>
+> Thanks,
+>
+>
+> Dario Pennisi
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000008849a205b3a0d4b9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Dario,<div><br></div><div>Building UHD and gr-ettus fro=
+m source is the correct approach. You can either build GNURadio=C2=A03.8 fr=
+om source or install it via your distribution&#39;s=C2=A0package manager.</=
+div><div><br></div><div><div>When building from source, make sure to use th=
+e following branches:</div><div>- UHD: UHD-4.0</div><div>- GNU Radio: maint=
+-3.8</div><div>- gr-ettus: maint-3.8-uhd4.0</div><div><br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex">1) is there any way to use rfnoc in =
+grc as of=C2=A0<a>today</a>=C2=A0that doesn&#39;t need manual creation of t=
+he block.yaml files?</blockquote><div><br></div><div>I think your issue ste=
+ms from using the wrong gr-ettus branch (maint-3.8 vs maint-3.8-uhd4.0). Ma=
+ke sure you are using the branches I listed above.</div><div>=C2=A0</div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex">2) why the fft block using =
+the block.yaml definition from gr-uhd doesn&#39;t seem to work?</blockquote=
+><div><br></div><div>Do not build from GNURadio&#39;s master branch. Use th=
+e maint-3.8 branch.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex">3) how do I make oot blocks recognized by probe and grc?</=
+blockquote><div><br></div><div>R&amp;D is aware of the uhd_usrp_probe Block=
+#0 issue. It is benign and can be ignored as it does not affect the functio=
+nality=C2=A0of your block.</div></div><div><br></div><div>Jonathon</div></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Sun, Nov 8, 2020 at 5:54 PM Dario Pennisi via USRP-users &lt;<a href=3D"mai=
+lto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+<div dir=3D"auto">
+<div dir=3D"auto">
+<div dir=3D"auto">Hi,</div>
+<div dir=3D"auto">I&#39;ve been trying to create and use a rfnoc block for =
+n310 within gnuradio 3.8 and uhd4.0. I first tried with pybombs but this do=
+esn&#39;t not seem to work very well and there is no default recipe that wo=
+rks. I then moved to manual install from source
+ and got something up using the maint-3.8 and uhd-4.0 branches however none=
+ of the rfnoc blocks in uhd 4.0 seem to be usable directly in gnuradio comp=
+anion as the yaml files in uhd are not compatible with the yaml block files=
+ required by grc.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">I then moved to master branch of both repositories and th=
+is installs with gnuradio, some yaml files for some of the blocks in uhd, s=
+o I tired compiling a fpga with fft block as instructed in the tutorial but=
+ the fft would not produce output
+ data.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Finally I tried compiling the gain example block out of t=
+ree and installed its control block both with maint 3.8 branch (that uses s=
+wig) and master branches (that uses pybind11) but in both cases the block d=
+oesn&#39;t get recognized when i issue
+ uhd_usrp_probe and it gets listed as block#0 regardless of Ldconfig.=C2=A0=
+</div>
+<div dir=3D"auto">I get it listed in grc after I created a second yaml file=
+ compatible with grc but of course running a graph will fail as it doesn&#3=
+9;t find the block control class, likely because in the installation proces=
+s I don&#39;t see python bindings being generated
+ for it, regardless of the binding creation mechanism.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">So my questions are:</div>
+<div dir=3D"auto">1) is there any way to use rfnoc in grc as of <a>today</a=
+> that doesn&#39;t need manual creation of the block.yaml files?</div>
+<div dir=3D"auto">2) why the fft block using the block.yaml definition from=
+ gr-uhd doesn&#39;t seem to work?</div>
+<div dir=3D"auto">3) how do I make oot blocks recognized by probe and grc?<=
+/div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Thanks,</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto" id=3D"gmail-m_-5990431940125830798composer_signature">Dar=
+io Pennisi</div>
+</div>
+<div dir=3D"auto"><br>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000008849a205b3a0d4b9--
+
+
+--===============3718955074763755985==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -158,5 +273,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7392724634625941992==--
+--===============3718955074763755985==--
 
