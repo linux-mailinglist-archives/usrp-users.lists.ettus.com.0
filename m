@@ -2,60 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DAB52AC0C4
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Nov 2020 17:24:48 +0100 (CET)
-Received: from [::1] (port=55468 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 231322AC36E
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Nov 2020 19:13:56 +0100 (CET)
+Received: from [::1] (port=56972 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kc9yI-00028W-G1; Mon, 09 Nov 2020 11:24:46 -0500
-Received: from mail-qt1-f174.google.com ([209.85.160.174]:45781)
+	id 1kcBfr-0001st-AZ; Mon, 09 Nov 2020 13:13:51 -0500
+Received: from mail-oo1-f45.google.com ([209.85.161.45]:33364)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kc9yE-00020j-Bt
- for usrp-users@lists.ettus.com; Mon, 09 Nov 2020 11:24:42 -0500
-Received: by mail-qt1-f174.google.com with SMTP id v11so5967572qtq.12
- for <usrp-users@lists.ettus.com>; Mon, 09 Nov 2020 08:24:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=4+CmTl+dXWMHQSfALZiIznA7TxgtVZXx0FkqXfmmwFQ=;
- b=qmsDIKE8gHAmqLrt7i4SQheVidulEzXDBBdgxB+G7wtzeI+iphsqnWsBnDBsiuNYx3
- n/f3VgAfmPDk39IdB37EPcJRZtzrNwgEAAm6nrELV/5EPIaRcxgIZ4czjjwBi9I+euzz
- wsiAH5m+cW7aV3Of+/hWZZ51ZuwtvurNTTOq44L3vOE+nyjBQMnqQap4gaMrl+WkHY5D
- ZBoKL0JYupepZzGxkSPsyuxt6EU2snEwSu5JtwDFRach3vLYWKoXpt16DYl8t53HR2Im
- XtVvQb0qAR3Sc066hYxWUd6kueUEkaJbUQ53uS34RD1xQSjVvI6/lQ0tgYOjIJr7x0TJ
- 8e3g==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kcBfn-0001jY-6I
+ for usrp-users@lists.ettus.com; Mon, 09 Nov 2020 13:13:47 -0500
+Received: by mail-oo1-f45.google.com with SMTP id f8so1915693oou.0
+ for <usrp-users@lists.ettus.com>; Mon, 09 Nov 2020 10:13:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=s5bdbBsCcqDD1Z8OjPQ1umieSM6ykQ82pgG19lBhw5k=;
+ b=M+VEX23SO+hH7204DDici90oWAcTtIAVQwYTVeiMgN7s1O1e/lrsaJsKjRZIqlbpKD
+ HGdXXy4NjwNHB5eIq9Sc3O4smTAxOiUsrOwABTJHe9+lVTUyZihamWSHd7hXlT+xW4xP
+ 5RVob+yA2wg1wMQDgfEs6dNKrLYw+lbPuFwyBBAfntlciVmkD2LhFSd/L+bkXuZhNKfs
+ ABxvPmNhbvXwVDdy7AVdZJKfGi9sAGODVRW4N5wqCAzf8XmQAMmFYtSVcl8ukJLA7F6B
+ C3AJeX+GsqENe7UH9wz/dxC0YnXFImbuDWp/lqAgN599zWohc04uNspVQ3UVXz8DJ5yA
+ KHng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=4+CmTl+dXWMHQSfALZiIznA7TxgtVZXx0FkqXfmmwFQ=;
- b=SvPoQODQMxnZecSCAztp1oXfhcR9SYNj+F+UgMfwUQxUSrLurjeE43HhkPJvt3DZun
- Fi0DGsE/NF00vaTv1W4PWk/SUS+o25tkyJnA+RQ9e1mzl/FuB2Q6zn6bZQOrjQf/33iU
- cODBZCCUdMm8SQ6nkLaF3y0316Q7UFnfZqS8Cb+qPcEF2PpUOgo2blwONb+w8ghFwaQN
- +sgSMe304A7aVeVqPb+IVGAIK7Ze3WP6nxiPhLtdbdqXkchljOUEDTwXSSUvmTy8tnWe
- Kz5BnyD5GPSwU41R0UqYFHcEATN1bfoVd/69ipRqePwmGPkPTiqJ8huJRgiAzAeVyY60
- lHMg==
-X-Gm-Message-State: AOAM531HI11+RpJC95VdlGV0/VKrcl0QTr6nNsDEJ8pK4FwAW0rAPrF6
- Os75kMNMugjiKgQkoI0vhz8YKjaxDpI=
-X-Google-Smtp-Source: ABdhPJzIfAg07M8hCV4mOe5u5EnnwWGM5LyJx4rLJP6+1GaT0eCo+EM0CHdlNCyTqG2CEShGISmkKw==
-X-Received: by 2002:ac8:1287:: with SMTP id y7mr14041117qti.108.1604939041130; 
- Mon, 09 Nov 2020 08:24:01 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id x22sm6302060qkn.125.2020.11.09.08.24.00
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 09 Nov 2020 08:24:00 -0800 (PST)
-Message-ID: <5FA96D1F.9030905@gmail.com>
-Date: Mon, 09 Nov 2020 11:23:59 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=s5bdbBsCcqDD1Z8OjPQ1umieSM6ykQ82pgG19lBhw5k=;
+ b=keRQtxFVqt7+rW7qyOUbYbRRP5S3oV2a1dAxAiNgOmBokH/3+T4kbJ3k0iT1wVZuZR
+ qyDIwPn5qhQX6QVp2Cp5oN+Isp9NLS5CtJ2DPJtwamgdgdv6flSNpvuTm7NZl2c8tkCN
+ dVVjeIomc+CUa7936tfJIVcvE8gKfvplKY0rWkVSEL1HLaogRQyuY8XLrTGJKpvzGcOr
+ O0Ggipl/8cLvPKu4lqytCPceL0ShKATa+yAHrKvPJWd8/tiBU9iXdmaJzMJpttkiY9vB
+ LqhIFi9MLmHnSWJEDNylmHVggbUxCDenN4xX9JlYyDDM17lnZRxk83Lye0HVUUJiB7t7
+ Q79w==
+X-Gm-Message-State: AOAM531UaCujQSktWrgay8Zj1/Tx3sUhvJNOudw9kIvMlYE6kJ6/ZQ1Q
+ mDTxt/WyxMgmjGZZILOOYzt1JNpvaBvWjEefCr7AVw==
+X-Google-Smtp-Source: ABdhPJyAtOo5vP3ctgMGtBFfvqaGFZf9k6E56u2Erhomfnd+RbClWBzal8NjQAR0UKgo9rmfzwGa1n5TFH1+cj5dFBY=
+X-Received: by 2002:a4a:6b1a:: with SMTP id g26mr10850798ooc.13.1604945586359; 
+ Mon, 09 Nov 2020 10:13:06 -0800 (PST)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <CALNMZ8Wf-ZjvRRW9soXiF7xqAzxS81+5TA_8kSPYgBKzrrkSxg@mail.gmail.com>
- <CAGNhwTNMjBJKp_xpLkW_2a4pk+k+xWZGRkStvz1eQHJURE6w6Q@mail.gmail.com>
-In-Reply-To: <CAGNhwTNMjBJKp_xpLkW_2a4pk+k+xWZGRkStvz1eQHJURE6w6Q@mail.gmail.com>
-Subject: Re: [USRP-users] Trouble with Python API
+References: <trinity-d956d742-6c11-4844-ae74-ae4878387766-1604619763606@3c-app-gmx-bs37>
+ <5FA493B5.2040704@gmail.com>
+In-Reply-To: <5FA493B5.2040704@gmail.com>
+Date: Mon, 9 Nov 2020 13:12:55 -0500
+Message-ID: <CAB__hTTOhVVVmiaw9-AzVKTYjM36h9FZotOn2hCtiABUm==1Uw@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] How exactly is "Receiver Gain" defined?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,9 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2888020425585351839=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============2157670470804890400=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,125 +75,95 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============2888020425585351839==
-Content-Type: multipart/alternative;
- boundary="------------090002070406050009060804"
+--===============2157670470804890400==
+Content-Type: multipart/alternative; boundary="0000000000008f603905b3b0837f"
 
-This is a multi-part message in MIME format.
---------------090002070406050009060804
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000008f603905b3b0837f
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/09/2020 09:59 AM, Michael Dickens via USRP-users wrote:
-> Check the PYTHONPATH to make sure it holds the correct install 
-> directory for UHD Python. I'm guessing it does not. I'm pretty sure 
-> UHD by default installs its Python library and files into 
-> "/usr/local/lib/python3/site-packages" ... or "dist-packages" ... note 
-> the "/python3/" rather than some specific 3.X version as was the case 
-> for earlier UHD (and many other projects). - MLD
-Also in the log of activities, I see BOTH a "pybombs install uhd", AND a 
-build of the latest HEAD of UHD, but no actual compile+install of
-   that built code.
+Hi Lukas,
+For the UBX, the gain values of 0-31.5 are probably where you want to
+stay.  I have not found a reason to use the additional 6dB of digital
+gain.  The gain values you set should be reasonably accurate in a relative
+sense.  If you want to increase/decrease by 10 dB on your FFT display, then
+changing the gain value by 10 dB should get you pretty close.  The example
+you provided is essentially your "calibration".  You know that your input
+is at -20dBm and you know the RMS value of your samples at the given
+settings so the difference is the calibration value. If you then apply a
+new signal with the same settings, you can measure the RMS value and you
+will know the actual power level at the input.  This can change with
+frequency - the curves in the performance data give you an idea how much
+frequency dependency exists.
+Rob
 
+On Thu, Nov 5, 2020 at 7:08 PM Marcus D. Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> On 11/05/2020 06:42 PM, Lukas Haase via USRP-users wrote:
+> > Hi,
+> >
+> > I m studying:
+> >
+> >
+> https://files.ettus.com/performance_data/ubx/UBX-without-UHD-corrections.pdf
+> >
+> > How exactly is "Gain" in the "RX Figures" defined? Can it be related to
+> the digital samples (e.g. in dBFS or RMS)?
+> >
+> > If, for example, I apply a exactly Pin=-20dBm, f=916MHz CW (calibrated
+> via VNA) at the SMA input, I get -14.05dBFS (=rms value of IQ samples in
+> 20*log10) when I calculate the RMS values of the samples.
+> >
+> > (Note: set_rx_gain(0) and I use 516MHz as center frequency to avoid DC
+> correction).
+> >
+> >
+> > Also, the statement on the gain values is not quite clear: "Gain range
+> for both RX and TX is 0-31.5 (the maximum RX gain seen in the tests of
+> 37.5dB is due to the additional 6dB provided by the ADC in the USRP
+> motherboard on top of the UBX's maximum gain".
+> >
+> > How does this relate to the value which is set with set_rx_gain()?
+> > Does that mean that a "Gain" value of 10 dB on the plot corresponds to
+> set_rx_gain(4) ?
+> >
+> > What confuses me is that I *can* call set_rx_gain() with values of
+> 0...37.5, and the output scales accordingly (i.e., the lowest value seems
+> to be 0 and the highest 37.5; not 31.5).
+> >
+> >
+> > Would be great if someone could confirm.
+> >
+> > Thanks,
+> > Luke
+> >
+> The precise implications of the gain-setting function are highly
+> dependent on the particular daughterboard architecture.  When you set
+>    the gain, you're typically (certainly true on UBX) setting a step
+> attenuator, which is usually sandwiched between a pair of low-noise
+>    amplifiers, then a mixer, which may have either gain or loss of a few
+> dB.
 >
-> On Mon, Nov 9, 2020 at 1:36 AM Brendan Horsfield via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
+> The only way you can relate the dB values in your FFT display to
+> power-as-seen-at-the-RF-connector is using an external calibration source,
+>    and you'll have to do this exercise over your entire expected
+> operating-parameter space.  RF analog components will NOT provide exacty
+>    the same gain/loss levels across their entire operating range.
 >
->     Hi Folks,
->
->     I would like to write my own Python 3 script to stream Rx samples
->     off my Ettus B210 USRP.  I have installed the Python API on my
->     Ubuntu laptop, but I can't seem to get it to work, despite trying
->     numerous ideas I found on the Ettus Knowledge Base.
->
->     For example, check out the following Python interpreter log.  I
->     can call "import uhd" OK, but the call to uhd.usrp.MultiUSRP()
->     causes an error:
->
->     Python 3.7.7 (default, Mar 26 2020, 15:48:22)
->     [GCC 7.3.0] :: Anaconda, Inc. on linux
->     Type "help", "copyright", "credits" or "license" for more information.
->     >>> import uhd
->     >>> my_usrp = uhd.usrp.MultiUSRP("type=b200")
->     Traceback (most recent call last):
->       File "<stdin>", line 1, in <module>
->     AttributeError: module 'uhd' has no attribute 'usrp'
->     >>>
->
->     Another example:  If I try to run the example script
->     "uhd/host/examples/python/rx_to_file.py", I get the following
->     error:  "ModuleNotFoundError: No module named 'uhd'"
->
->     The API installation procedure I have followed to this point is as
->     follows:
->     1.  python3 -m pip install python-dev-tools --user --upgrade
->     2.  git clone https://github.com/EttusResearch/uhd.git
->     3.  pybombs install uhd
->     4.  cmake $HOME/uhd/host
->
->     ######################################################
->     -- # UHD enabled components
->     -- ######################################################
->     --   * LibUHD
->     --   * LibUHD - C API
->     --   * LibUHD - Python API
->     --   * Examples
->     --   * Utils
->     --   * Tests
->     --   * USB
->     --   * B100
->     --   * B200
->     --   * USRP1
->     --   * USRP2
->     --   * X300
->     --   * MPMD
->     --   * N300
->     --   * N320
->     --   * E320
->     --   * E300
->     --   * OctoClock
->     --   * Manual
->     --   * API/Doxygen
->     --   * Man Pages
->     -- 
->     -- ######################################################
->     -- # UHD disabled components
->     -- ######################################################
->     --   * DPDK
->     -- 
->     -- ******************************************************
->     -- * You are building the UHD development master branch.
->     -- * For production code, we recommend our stable,
->     -- * releases or using the release branch (maint).
->     -- ******************************************************
->     -- Building version: 4.0.0.0-46-g57ca4235
->     -- Using install prefix: /usr/local
->     -- Configuring done
->     -- Generating done
->     -- Build files have been written to: /home/anyone/uhd/host
->
->     5.  Set up Ubuntu dependencies: sudo apt-get install
->     libboost-all-dev libusb-1.0-0-dev doxygen python3-docutils
->     python3-mako python3-numpy python3-requests python3-ruamel.yaml
->     python3-setuptools cmake build-essential
->     6.  Add the following line to .bashrc:  export
->     LD_LIBRARY_PATH=/usr/local/lib
->
->     FYI -- I am running Ubuntu 18.04 on an HP Omen laptop with an
->     Intel i7-8750H CPU and 32 GB of RAM.
->
->     Can anyone tell me what the source of this problem could be?  Any
->     advice or suggestions would be greatly appreciated!
->
->     Thanks & Regards,
->     Brendan.
+> The additional gain-range setting is due to the presence of a *baseband*
+> VGA on some motherboards ahead of the ADCs.  UHD will distribute
+>    gain settings over the available gain-setting elements (in both the
+> daughtercards and motherboard).  By default, it will distribute gain to
+>    favor noise figure over linearity.  You can set individual gain
+> elements if you prefer:
 >
 >
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#ad602e7681b796deddd9231f022ffef11
+>
+>
+> Now the names for the various gain elements will differ depending on the
+> motherboard and daughterboard in use, and they can be
+>    shown using "uhd_usrp_probe".
 >
 >
 >
@@ -209,187 +171,125 @@ build of the latest HEAD of UHD, but no actual compile+install of
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000008f603905b3b0837f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hi Lukas,<div>For the UBX, the gain value=
+s of 0-31.5 are probably where you want to stay.=C2=A0 I have not found a r=
+eason to use the additional 6dB of digital gain.=C2=A0 The gain values you =
+set should be reasonably accurate in a relative sense.=C2=A0 If you want to=
+ increase/decrease by 10 dB on your FFT display, then changing the gain val=
+ue by 10 dB should get you pretty close.=C2=A0 The example you provided is =
+essentially your &quot;calibration&quot;.=C2=A0 You know that your input is=
+ at -20dBm and you know the RMS value of your samples at the given settings=
+ so the difference is the calibration value. If you then apply a new signal=
+ with the same settings, you can measure the RMS value and you will know th=
+e actual power level at the input.=C2=A0 This can change with frequency - t=
+he curves in the performance data give you an idea how much frequency depen=
+dency exists.=C2=A0</div><div>Rob</div></div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 5, 2020 at 7:08 PM Marcu=
+s D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com"=
+>usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex">On 11/05/2020 06:42 PM, Lukas Haase via USRP-use=
+rs wrote:<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; I m studying:<br>
+&gt;<br>
+&gt; <a href=3D"https://files.ettus.com/performance_data/ubx/UBX-without-UH=
+D-corrections.pdf" rel=3D"noreferrer" target=3D"_blank">https://files.ettus=
+.com/performance_data/ubx/UBX-without-UHD-corrections.pdf</a><br>
+&gt;<br>
+&gt; How exactly is &quot;Gain&quot; in the &quot;RX Figures&quot; defined?=
+ Can it be related to the digital samples (e.g. in dBFS or RMS)?<br>
+&gt;<br>
+&gt; If, for example, I apply a exactly Pin=3D-20dBm, f=3D916MHz CW (calibr=
+ated via VNA) at the SMA input, I get -14.05dBFS (=3Drms value of IQ sample=
+s in 20*log10) when I calculate the RMS values of the samples.<br>
+&gt;<br>
+&gt; (Note: set_rx_gain(0) and I use 516MHz as center frequency to avoid DC=
+ correction).<br>
+&gt;<br>
+&gt;<br>
+&gt; Also, the statement on the gain values is not quite clear: &quot;Gain =
+range for both RX and TX is 0-31.5 (the maximum RX gain seen in the tests o=
+f 37.5dB is due to the additional 6dB provided by the ADC in the USRP mothe=
+rboard on top of the UBX&#39;s maximum gain&quot;.<br>
+&gt;<br>
+&gt; How does this relate to the value which is set with set_rx_gain()?<br>
+&gt; Does that mean that a &quot;Gain&quot; value of 10 dB on the plot corr=
+esponds to set_rx_gain(4) ?<br>
+&gt;<br>
+&gt; What confuses me is that I *can* call set_rx_gain() with values of 0..=
+.37.5, and the output scales accordingly (i.e., the lowest value seems to b=
+e 0 and the highest 37.5; not 31.5).<br>
+&gt;<br>
+&gt;<br>
+&gt; Would be great if someone could confirm.<br>
+&gt;<br>
+&gt; Thanks,<br>
+&gt; Luke<br>
+&gt;<br>
+The precise implications of the gain-setting function are highly <br>
+dependent on the particular daughterboard architecture.=C2=A0 When you set<=
+br>
+=C2=A0 =C2=A0the gain, you&#39;re typically (certainly true on UBX) setting=
+ a step <br>
+attenuator, which is usually sandwiched between a pair of low-noise<br>
+=C2=A0 =C2=A0amplifiers, then a mixer, which may have either gain or loss o=
+f a few dB.<br>
+<br>
+The only way you can relate the dB values in your FFT display to <br>
+power-as-seen-at-the-RF-connector is using an external calibration source,<=
+br>
+=C2=A0 =C2=A0and you&#39;ll have to do this exercise over your entire expec=
+ted <br>
+operating-parameter space.=C2=A0 RF analog components will NOT provide exac=
+ty<br>
+=C2=A0 =C2=A0the same gain/loss levels across their entire operating range.=
+<br>
+<br>
+The additional gain-range setting is due to the presence of a *baseband* <b=
+r>
+VGA on some motherboards ahead of the ADCs.=C2=A0 UHD will distribute<br>
+=C2=A0 =C2=A0gain settings over the available gain-setting elements (in bot=
+h the <br>
+daughtercards and motherboard).=C2=A0 By default, it will distribute gain t=
+o<br>
+=C2=A0 =C2=A0favor noise figure over linearity.=C2=A0 You can set individua=
+l gain <br>
+elements if you prefer:<br>
+<br>
+<a href=3D"https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.h=
+tml#ad602e7681b796deddd9231f022ffef11" rel=3D"noreferrer" target=3D"_blank"=
+>https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#ad602e=
+7681b796deddd9231f022ffef11</a><br>
+<br>
+<br>
+Now the names for the various gain elements will differ depending on the <b=
+r>
+motherboard and daughterboard in use, and they can be<br>
+=C2=A0 =C2=A0shown using &quot;uhd_usrp_probe&quot;.<br>
+<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+
+--0000000000008f603905b3b0837f--
 
 
---------------090002070406050009060804
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 11/09/2020 09:59 AM, Michael Dickens
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAGNhwTNMjBJKp_xpLkW_2a4pk+k+xWZGRkStvz1eQHJURE6w6Q@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Check the PYTHONPATH to make sure it holds the
-        correct install directory for UHD Python. I'm guessing it does
-        not. I'm pretty sure UHD by default installs its Python library
-        and files into "/usr/local/lib/python3/site-packages" ... or
-        "dist-packages" ... note the "/python3/" rather than some
-        specific 3.X version as was the case for earlier UHD (and many
-        other projects). - MLD</div>
-    </blockquote>
-    Also in the log of activities, I see BOTH a "pybombs install uhd",
-    AND a build of the latest HEAD of UHD, but no actual compile+install
-    of<br>
-      that built code.<br>
-    <br>
-    <blockquote
-cite="mid:CAGNhwTNMjBJKp_xpLkW_2a4pk+k+xWZGRkStvz1eQHJURE6w6Q@mail.gmail.com"
-      type="cite"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Mon, Nov 9, 2020 at 1:36 AM
-          Brendan Horsfield via USRP-users &lt;<a moz-do-not-send="true"
-            href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir="ltr">Hi Folks,
-            <div><br>
-            </div>
-            <div>I would like to write my own Python 3 script to stream
-              Rx samples off my Ettus B210 USRP.  I have installed the
-              Python API on my Ubuntu laptop, but I can't seem to get it
-              to work, despite trying numerous ideas I found on the
-              Ettus Knowledge Base.</div>
-            <div><br>
-            </div>
-            <div>For example, check out the following Python interpreter
-              log.  I can call "import uhd" OK, but the call to
-              uhd.usrp.MultiUSRP() causes an error: </div>
-            <div><br>
-            </div>
-            <div>Python 3.7.7 (default, Mar 26 2020, 15:48:22) <br>
-              [GCC 7.3.0] :: Anaconda, Inc. on linux<br>
-              Type "help", "copyright", "credits" or "license" for more
-              information.<br>
-              &gt;&gt;&gt; import uhd<br>
-              &gt;&gt;&gt; my_usrp = uhd.usrp.MultiUSRP("type=b200")<br>
-              Traceback (most recent call last):<br>
-                File "&lt;stdin&gt;", line 1, in &lt;module&gt;<br>
-              AttributeError: module 'uhd' has no attribute 'usrp'<br>
-              &gt;&gt;&gt; <br>
-            </div>
-            <div><br>
-            </div>
-            <div>Another example:  If I try to run the example script
-              "uhd/host/examples/python/rx_to_file.py", I get the
-              following error:  "ModuleNotFoundError: No module named
-              'uhd'" </div>
-            <div><br>
-            </div>
-            <div>The API installation procedure I have followed to this
-              point is as follows:</div>
-            <div>1.  python3 -m pip install python-dev-tools --user
-              --upgrade</div>
-            <div>2.  git clone <a moz-do-not-send="true"
-                href="https://github.com/EttusResearch/uhd.git"
-                target="_blank">https://github.com/EttusResearch/uhd.git</a></div>
-            <div>3.  pybombs install uhd</div>
-            <div>4.  cmake $HOME/uhd/host</div>
-            <div><br>
-            </div>
-            <div>######################################################<br>
-              -- # UHD enabled components                              <br>
-              -- ######################################################<br>
-              --   * LibUHD<br>
-              --   * LibUHD - C API<br>
-              --   * LibUHD - Python API<br>
-              --   * Examples<br>
-              --   * Utils<br>
-              --   * Tests<br>
-              --   * USB<br>
-              --   * B100<br>
-              --   * B200<br>
-              --   * USRP1<br>
-              --   * USRP2<br>
-              --   * X300<br>
-              --   * MPMD<br>
-              --   * N300<br>
-              --   * N320<br>
-              --   * E320<br>
-              --   * E300<br>
-              --   * OctoClock<br>
-              --   * Manual<br>
-              --   * API/Doxygen<br>
-              --   * Man Pages<br>
-              -- <br>
-              -- ######################################################<br>
-              -- # UHD disabled components                             <br>
-              -- ######################################################<br>
-              --   * DPDK<br>
-              -- <br>
-              -- ******************************************************<br>
-              -- * You are building the UHD development master branch.<br>
-              -- * For production code, we recommend our stable,<br>
-              -- * releases or using the release branch (maint).<br>
-              -- ******************************************************<br>
-              -- Building version: 4.0.0.0-46-g57ca4235<br>
-              -- Using install prefix: /usr/local<br>
-              -- Configuring done<br>
-              -- Generating done<br>
-              -- Build files have been written to: /home/anyone/uhd/host<br>
-            </div>
-            <div><br>
-            </div>
-            <div>5.  Set up Ubuntu dependencies: sudo apt-get install
-              libboost-all-dev libusb-1.0-0-dev doxygen python3-docutils
-              python3-mako python3-numpy python3-requests
-              python3-ruamel.yaml python3-setuptools cmake
-              build-essential</div>
-            <div>6.  Add the following line to .bashrc:  export
-              LD_LIBRARY_PATH=/usr/local/lib</div>
-            <div><br>
-            </div>
-            <div>FYI -- I am running Ubuntu 18.04 on an HP Omen laptop
-              with an Intel i7-8750H CPU and 32 GB of RAM.</div>
-            <div><br>
-            </div>
-            <div>Can anyone tell me what the source of this problem
-              could be?  Any advice or suggestions would be greatly
-              appreciated!</div>
-            <div><br>
-            </div>
-            <div>Thanks &amp; Regards,</div>
-            <div>Brendan.</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-          </div>
-          _______________________________________________<br>
-          USRP-users mailing list<br>
-          <a moz-do-not-send="true"
-            href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-          <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-            rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------090002070406050009060804--
-
-
---===============2888020425585351839==
+--===============2157670470804890400==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -400,5 +300,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2888020425585351839==--
+--===============2157670470804890400==--
 
