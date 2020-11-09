@@ -2,52 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0844E2AC50B
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Nov 2020 20:34:21 +0100 (CET)
-Received: from [::1] (port=57524 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6CE32AC8A1
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Nov 2020 23:30:50 +0100 (CET)
+Received: from [::1] (port=58628 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kcCvi-0001KQ-F1; Mon, 09 Nov 2020 14:34:18 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:46968)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kcCve-0001Ew-W2
- for usrp-users@lists.ettus.com; Mon, 09 Nov 2020 14:34:15 -0500
-Received: by mail-oi1-f169.google.com with SMTP id q206so11440212oif.13
- for <usrp-users@lists.ettus.com>; Mon, 09 Nov 2020 11:33:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+vYu666ip/s2sfhMfYT/XjVth7I5nLasTs0ZJAH0t18=;
- b=Qh7nmAyTf/ITzr1i3p/0jBVCk26ZzAQJ6e9BQIFrNsZJYwK3JCODGhvI5Rjj41g8A+
- 5u9ypJcA4pyPWPByxk5h6FIPskQFcMo1gyZvEZwr+avoufGJ0urHPm9mCe3ecUmC8HxG
- 9Y3o6OkKfQ+rM8/N/4RcaSguJdMtDlV/AhnU1KoqQ7rTnKswCEjZMVUYYGAzaLRbMA8W
- AEse9h97rWd/b/1ipDT9eWbxT7/qR0LWTowOpD48TXcVemhqpe+YSe8MDo34vxEsPR8/
- sk9Ux8D7sbnQVX5WBJMzBqX0L9O+ppyeVDu+V/F4m5A1QJ4HkeL4CWCAV5D2cG3y2S0y
- mW4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=+vYu666ip/s2sfhMfYT/XjVth7I5nLasTs0ZJAH0t18=;
- b=svInCSXg6QI3r+e9qyRGvBEqaW4c8qA1S8+6xwUKzCwJOFomdG9YomPq1F2GOoXq4q
- mvvQYCN8KJ41SXeIWms2f1WiQKmjbbJTavy6gHxgI4IVo5lqeQ9eN/0kob202aFlQSXQ
- kL8azCauPNaS78gxxBh6lQOUC72qwOkNIUBNlaI+8/xciOCKcRoQB9k1weOrOncL+tLJ
- JUUlVHA2UdlMwIE56OlxalqVklzZB2e2sp8/XfesbAr3A8CZgYQiWcMSCkK1LZmyuOM/
- o7r4l5ToyMb901zZRxGc3cygHF5lMOUDkXSad3KgJh+5EDuYu/Dzzo0o24n3YGnicEVk
- nbdQ==
-X-Gm-Message-State: AOAM532x1SqdVmQvwfK2ANJhuuh3huZJ95Di0Hw+rWYBfaOo8DrL3eDi
- C08AXRIonfTABNmGlHvZ8f7hV60EEzfk44bQEoclruhvG4w=
-X-Google-Smtp-Source: ABdhPJz1FY9EtfPHGKYjS4k//BDopskqQ9Nu1YO8WoRldXFIGuW81mMPzPJWsCwhIFzYEohZ8jdxHHf7t2GY+2z71SE=
-X-Received: by 2002:aca:5c82:: with SMTP id q124mr502566oib.33.1604950414012; 
- Mon, 09 Nov 2020 11:33:34 -0800 (PST)
+	id 1kcFgT-00067W-Ja; Mon, 09 Nov 2020 17:30:45 -0500
+Received: from mout-xforward.gmx.net ([82.165.159.41]:35757)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1kcFgP-000630-D4
+ for usrp-users@lists.ettus.com; Mon, 09 Nov 2020 17:30:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1604961000;
+ bh=43mLiQGA4sT4Ka5udm8lxD3kHmlUQ+D1zq1IyjFql98=;
+ h=X-UI-Sender-Class:From:To:Subject:Date:In-Reply-To:References;
+ b=gh2hsW3bBe8QAb+Ljp/tOX+SksmkSWLDi45Dbw8o+KWrrlvWWJ3f8YoHpZ/3H71WE
+ EFrADBi+U74++RlAt38GKpyw6PXYJK4r5sVCwdBnmIxFXPZeGKfhkOt56iHHsgEuzW
+ nBXiRVA/ava/MPoGeA1TEbPSVNC+IX3rPrBAfKew=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [176.113.74.228] ([176.113.74.228]) by web-mail.gmx.net
+ (3c-app-gmx-bs24.server.lan [172.19.170.76]) (via HTTP); Mon, 9 Nov 2020
+ 23:29:59 +0100
 MIME-Version: 1.0
-References: <CAOx6OK0Mz1E1MRyi1LxBo4MuGjsye_J6g+w3Z3FSoeaZABTfAA@mail.gmail.com>
-In-Reply-To: <CAOx6OK0Mz1E1MRyi1LxBo4MuGjsye_J6g+w3Z3FSoeaZABTfAA@mail.gmail.com>
-Date: Mon, 9 Nov 2020 14:33:23 -0500
-Message-ID: <CAB__hTTwqjd==Aj=S-w17t48vSMM3KdCWwMeCmnBHZV+qQhgAw@mail.gmail.com>
-To: Jorge Arroyo Giganto <jarroyo@gradiant.org>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] RFNoC loopback without radio cores in C++
- (UHD-3.15.LTS)
+Message-ID: <trinity-a6d773e5-0fa6-4a78-b74c-9466abc11433-1604960999939@3c-app-gmx-bs24>
+To: usrp-users@lists.ettus.com
+Date: Mon, 9 Nov 2020 23:29:59 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <mailman.51.1604682002.4255.usrp-users_lists.ettus.com@lists.ettus.com>
+References: <mailman.51.1604682002.4255.usrp-users_lists.ettus.com@lists.ettus.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:nK6VOdVnY+FoL8m/io3WWHmIo6usNVqkt2zRLcedYocdKG0ew5euLxLGGCEDIVYpFvd1S
+ MulcrRXW5Lzpx3Wa/tcLSl3p6C16bMljXA3RNT1cO4IXlbaHO5FLjnfA7awCk35psoz8imiPs622
+ SsRetBaVAHY8aRNuvh+OtGWH5zy03/bwv2aO1x9EZZh0vpTJbK/poBfwGZ2WITv6WUVA7LsaZGTe
+ aV/5jTDy+FSexxTYP6NNl/NVMaAmzHhtDtWti/69Mp+bEofSYb/NOAoWpLqU+E4EDzaqW0bf3dEb
+ Qc=
+X-Spam-Flag: YES
+X-UI-Out-Filterresults: junk:10;V03:K0:x01rOhfP2+Q=:9eTnlfbt/E+eBizQfMblM0ip
+ xOETO/1KAypK1f8AMO0AgiiPbKUosZ3NhE5THT+IhWCP5gnFDAIT8/Q8bJ7WXPYtGEirtRxdo
+ K0v1sTjL1NqqzYghyH1JHyS0V7n6f+fh5gh57EuCrsNbxlmBTuGOy6IGsoGDznbCH2td9p57Q
+ d3+mqSyZ3ddRr1kI78Sv+NReqZ2V4gZKS1HB++snBZKQ69y0pt1OHuCdVgCva9Y2fS/bsJBW2
+ Tp0Ehu7Dguh72Z+85wh3+ThzCCvjXuU+bh6d9vOcfj+yNBfgETjMrE1+SUr6VpIhLmzsbZ0e/
+ XhPVX9RF7UBg6W7NleNtDtVqiuNlV1FtmAmYbDPnJCFBqkvY0Cl9xZjzdJdmWRVkMqXnCcmXl
+ TJwoq1usOWtU4HuxsjpPHgvQmhSAxbo6jygFEvwy51eE7bgS8omcubQJLhkxbhwp8PAE4pg6D
+ St5UN104WnqPNxoJdVMkytofCxZZ8ANXA0gq/xfbkKCwJstTopK1i0QSZ67mVFHyCdj19o+zz
+ N6jsM3vy+hO8dg3h8EkVPfzDTiOfcuWAzCYSzHpKns7OA4HJ7GeOGXeSqHGW3f7iTGKo/IX2G
+ 4glSso5F/LCgyrvziiyCwHBOjFw8PfLk
+Subject: Re: [USRP-users] How exactly is "Receiver Gain" defined?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,9 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============6002694611842036338=="
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,164 +78,93 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6002694611842036338==
-Content-Type: multipart/alternative; boundary="0000000000004f6f8805b3b1a398"
+Hi Marcus,
 
---0000000000004f6f8805b3b1a398
-Content-Type: text/plain; charset="UTF-8"
+> From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+> On 11/05/2020 06:42 PM, Lukas Haase via USRP-users wrote:
+> > Hi,
+> >
+> > I m studying:
+> >
+> > https://files.ettus.com/performance_data/ubx/UBX-without-UHD-corrections.pdf
+> >
+> > How exactly is "Gain" in the "RX Figures" defined? Can it be related to the digital samples (e.g. in dBFS or RMS)?
+> >
+> > If, for example, I apply a exactly Pin=-20dBm, f=916MHz CW (calibrated via VNA) at the SMA input, I get -14.05dBFS (=rms value of IQ samples in 20*log10) when I calculate the RMS values of the samples.
+> >
+> > (Note: set_rx_gain(0) and I use 516MHz as center frequency to avoid DC correction).
+> >
+> >
+> > Also, the statement on the gain values is not quite clear: "Gain range for both RX and TX is 0-31.5 (the maximum RX gain seen in the tests of 37.5dB is due to the additional 6dB provided by the ADC in the USRP motherboard on top of the UBX's maximum gain".
+> >
+> > How does this relate to the value which is set with set_rx_gain()?
+> > Does that mean that a "Gain" value of 10 dB on the plot corresponds to set_rx_gain(4) ?
+> >
+> > What confuses me is that I *can* call set_rx_gain() with values of 0...37.5, and the output scales accordingly (i.e., the lowest value seems to be 0 and the highest 37.5; not 31.5).
+> >
+> >
+> > Would be great if someone could confirm.
+> >
+> > Thanks,
+> > Luke
+> >
+> The precise implications of the gain-setting function are highly
+> dependent on the particular daughterboard architecture.  When you set
+>    the gain, you're typically (certainly true on UBX) setting a step
+> attenuator, which is usually sandwiched between a pair of low-noise
+>    amplifiers, then a mixer, which may have either gain or loss of a few dB.
+>
+> The only way you can relate the dB values in your FFT display to
+> power-as-seen-at-the-RF-connector is using an external calibration source,
+>    and you'll have to do this exercise over your entire expected
+> operating-parameter space.  RF analog components will NOT provide exacty
+>    the same gain/loss levels across their entire operating range.
 
-Hi Jorge,
-I don't see any indication that you are calling the Connect() function to
-connect the RFNoC blocks in the FPGA.
-Rob
+Yes, I am aware of that but my question related specifically to https://files.ettus.com/performance_data/ubx/UBX-without-UHD-corrections.pdf because I want to sanity-check my measurements (and I want to know how much off I am compared to the figures).
 
-On Mon, Nov 9, 2020 at 1:35 PM Jorge Arroyo Giganto via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Hence my question is how the "Gain" in the "RX Figure" in this document is defined. It's not written anywhere.
 
-> Hi all,
+> The additional gain-range setting is due to the presence of a *baseband*
+> VGA on some motherboards ahead of the ADCs.  UHD will distribute
+>    gain settings over the available gain-setting elements (in both the
+> daughtercards and motherboard).  By default, it will distribute gain to
+>    favor noise figure over linearity.  You can set individual gain
+> elements if you prefer:
 >
-> After testing a loopback in GNU Radio with a custom block (the gain
-> example from the Getting Started with RFNoC guide), I managed to get the
-> samples going from the host to the "RFNoC domain" and back to the host,
-> without involving the radio cores at all. My flowgraph was Signal Source
-> (Host) -> RFNoC: DmaFIFO -> RFNoC: gain -> QT GUI Freq Sink (Host), and
-> everything worked fine, so I know that what I'm trying to do is possible.
->
-> I have also made examples in UHD with C++ transmitting (Host -> TX Radio)
-> and receiving (RX Radio -> Host) using the custom RFNoC block in the graph,
-> by modifying the tx_waveforms and rfnoc_rx_to_file examples, and everything
-> worked fine as well, I checked that all of the examples had a resulting
-> signal that looked like it was expected.
->
-> Now, I would like to replicate in UHD with C++ something similar to what I
-> have in GNU Radio, a loopback using the RFNoC custom block but without
-> involving the radio cores, basically: Host -> RFNoC -> Host. Right now my
-> approach is to have a graph looking like Host TX -> DmaFIFO -> Gain Custom
-> -> Host RX, I am configuring the tx and rx streamers this way:
->
-> uhd::device_addr_t tx_streamer_args;
-> uhd::stream_args_t tx_stream_args("fc32", "sc16");
-> tx_streamer_args["block_id"] = dmafifo_blockid;
-> tx_streamer_args["block_port"] = "0";
-> tx_stream_args.args = tx_streamer_args;
-> tx_stream_args.args["spp"] = boost::lexical_cast<std::string>(spp);
-> //spp=364
-> uhd::tx_streamer::sptr tx_stream = usrp3->get_tx_stream(tx_stream_args);
->
-> ----
->
-> uhd::device_addr_t rx_streamer_args;
-> uhd::stream_args_t rx_stream_args("fc32", "sc16");
-> rx_streamer_args["block_id"] = gain_blockid;
-> rx_streamer_args["block_port"] = "0";
-> rx_stream_args.args["spp"] = boost::lexical_cast<std::string>(spp);
-> rx_stream_args.args = rx_streamer_args;
-> uhd::rx_streamer::sptr rx_stream = usrp->get_rx_stream(rx_stream_args);
->
-> I'm creating a thread that continuously sends (send()) samples to the
-> DmaFIFO, and then I try to do the recv() until I get something, but I
-> always get a timeout. It's like if the samples aren't flowing through the
-> blocks, or like if I'm not doing the recv() right. Also, I'm getting a
-> strange warning ([INFO] [RFNOC] No upstream blocks.) that I don't
-> understand quite well in this context, does it have anything to do with the
-> fact that I'm not using the radio cores? I have also tried to put a FIFO
-> after the Gain block but I get pretty much the same result.
->
-> I would appreciate any help or recommendations on how to achieve in C++
-> this idea of Host TX -> RFNoC -> Host RX, is there something I am missing
-> or should consider?
->
-> I am using UHD-3.15.LTS on a X310, and GNU Radio 3.7. Everything is
-> running on Ubuntu 16.04.
->
-> Thanks in advance,
->
-> Jorge
+> https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#ad602e7681b796deddd9231f022ffef11
 >
 >
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+> Now the names for the various gain elements will differ depending on the
+> motherboard and daughterboard in use, and they can be
+>    shown using "uhd_usrp_probe".
 
---0000000000004f6f8805b3b1a398
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Thank you, that I did not know.
 
-<div dir=3D"ltr">Hi Jorge,<div>I don&#39;t see any indication that you are =
-calling the Connect() function to connect the RFNoC blocks in the FPGA.=C2=
-=A0</div><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
-" class=3D"gmail_attr">On Mon, Nov 9, 2020 at 1:35 PM Jorge Arroyo Giganto =
-via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users=
-@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
-dding-left:1ex"><div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>Afte=
-r testing a loopback in GNU Radio with a custom block (the gain example fro=
-m the Getting Started with RFNoC guide), I managed to get the samples going=
- from the host to the &quot;RFNoC domain&quot; and back to the host, withou=
-t involving the radio cores at all. My flowgraph was Signal Source (Host) -=
-&gt; RFNoC: DmaFIFO -&gt; RFNoC: gain -&gt; QT GUI Freq Sink (Host), and ev=
-erything worked fine, so I know that what I&#39;m trying to do is possible.=
-</div><div><br></div><div>I have also made examples in UHD with C++ transmi=
-tting (Host -&gt; TX Radio) and receiving (RX Radio -&gt; Host) using the c=
-ustom RFNoC block in the graph, by modifying the tx_waveforms and rfnoc_rx_=
-to_file examples, and everything worked fine as well, I checked that all of=
- the examples had a resulting signal that looked like it was expected.</div=
-><br>Now, I would like to replicate in UHD with C++ something similar to wh=
-at I have in GNU Radio, a loopback using the RFNoC custom block but without=
- involving the radio cores, basically: Host -&gt; RFNoC -&gt; Host. Right n=
-ow my approach is to have a graph looking like Host TX -&gt; DmaFIFO -&gt; =
-Gain Custom -&gt; Host RX, I am configuring the tx and rx streamers this wa=
-y:<br><br>uhd::device_addr_t tx_streamer_args;<br>uhd::stream_args_t tx_str=
-eam_args(&quot;fc32&quot;, &quot;sc16&quot;);<br>tx_streamer_args[&quot;blo=
-ck_id&quot;] =3D dmafifo_blockid;<br>tx_streamer_args[&quot;block_port&quot=
-;] =3D &quot;0&quot;;<br>tx_stream_args.args =3D tx_streamer_args;<br>tx_st=
-ream_args.args[&quot;spp&quot;] =3D boost::lexical_cast&lt;std::string&gt;(=
-spp); //spp=3D364<br>uhd::tx_streamer::sptr tx_stream =3D usrp3-&gt;get_tx_=
-stream(tx_stream_args);<br><br>----<br><br>uhd::device_addr_t rx_streamer_a=
-rgs;<br>uhd::stream_args_t rx_stream_args(&quot;fc32&quot;, &quot;sc16&quot=
-;);<br>rx_streamer_args[&quot;block_id&quot;] =3D gain_blockid;<br>rx_strea=
-mer_args[&quot;block_port&quot;] =3D &quot;0&quot;;<br>rx_stream_args.args[=
-&quot;spp&quot;] =3D boost::lexical_cast&lt;std::string&gt;(spp);<br>rx_str=
-eam_args.args =3D rx_streamer_args;<br><div>uhd::rx_streamer::sptr rx_strea=
-m =3D usrp-&gt;get_rx_stream(rx_stream_args);</div><div><br></div><div>I&#3=
-9;m creating a thread that continuously sends (send()) samples to the DmaFI=
-FO, and then I try to do the recv() until I get something, but I always get=
- a timeout. It&#39;s like if the samples aren&#39;t flowing through the blo=
-cks, or like if I&#39;m not doing the recv() right. Also, I&#39;m getting a=
- strange warning ([INFO] [RFNOC] No upstream blocks.) that I don&#39;t unde=
-rstand quite well in this context, does it have anything to do with the fac=
-t that I&#39;m not using the radio cores? I have also tried to put a FIFO a=
-fter the Gain block but I get pretty much the same result.<br></div><div><b=
-r></div><div>I would appreciate any help or recommendations on how to achie=
-ve in C++ this idea of Host TX -&gt; RFNoC -&gt; Host RX, is there somethin=
-g I am missing or should consider?<br></div><div><br></div><div>I am using =
-UHD-3.15.LTS on a X310, and GNU Radio 3.7. Everything is running on Ubuntu =
-16.04.</div><div><br></div><div>Thanks in advance,</div><div><br></div><div=
->Jorge<br></div><div><br></div><div><br></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+For me the result is:
 
---0000000000004f6f8805b3b1a398--
+TX Frontend 0, RX Frontend 0: Gain range PGA0: 0.0 to 31.5 step 0.5 dB
+RX Codec A, RX Codec B: Gain range digital: 0.0 to 6.0 step 0.5 dB
+TX Codec A, TX Codec B: None
+
+Is the "RX Codec" the "VGA on some motherboards ahead of the ADCs" you were referring to above?
 
 
---===============6002694611842036338==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+A related question (of course, I studied the the schematic https://files.ettus.com/schematics/ubx/UBX-160_revE.pdf as well): For both TX and RX path the only programmable element are attenuators (HMC624LP4E, 6-bit).
+
+That would fit nicely the "PGA0" from above: 0 to 31.5dB in 0.5dB steps are 64 steps (6 bit).
+
+The other gain elements (TX: NBB-400, PHA-1+, RX: MGA-62563, NBB-400 are static).
+
+Why would you painstakingly gain up a signal, just to attenuate it again? Why a programmable attenuator instead of a real programmable amplifier?
+For the TX path I can somewhat see for simplicity ... but for RX path? The attenuator unnecessarily generates noise (the noise figure of a passive attenuator is identical to its attenuation).
+
+Thanks,
+Lukas
+
+
+
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6002694611842036338==--
-
