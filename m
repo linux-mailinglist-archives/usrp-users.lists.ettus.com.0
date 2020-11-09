@@ -2,57 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 683EF2AAE65
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Nov 2020 00:58:24 +0100 (CET)
-Received: from [::1] (port=49328 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 080572AB156
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Nov 2020 07:36:36 +0100 (CET)
+Received: from [::1] (port=51796 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kbuZi-0003xR-O8; Sun, 08 Nov 2020 18:58:22 -0500
-Received: from mail-vk1-f179.google.com ([209.85.221.179]:38896)
+	id 1kc0n1-0006kb-Ig; Mon, 09 Nov 2020 01:36:31 -0500
+Received: from mail-vs1-f41.google.com ([209.85.217.41]:33850)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1kbuZf-0003rK-4y
- for usrp-users@lists.ettus.com; Sun, 08 Nov 2020 18:58:19 -0500
-Received: by mail-vk1-f179.google.com with SMTP id o73so1516600vka.5
- for <usrp-users@lists.ettus.com>; Sun, 08 Nov 2020 15:57:58 -0800 (PST)
+ (Exim 4.93) (envelope-from <brendan.horsfield@vectalabs.com>)
+ id 1kc0mx-0006TS-Py
+ for usrp-users@lists.ettus.com; Mon, 09 Nov 2020 01:36:27 -0500
+Received: by mail-vs1-f41.google.com with SMTP id b129so4366314vsb.1
+ for <usrp-users@lists.ettus.com>; Sun, 08 Nov 2020 22:36:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LYshkQ5Y/CCY08xzX45KjbyTsuNDg9l7B5t7+rlQUcw=;
- b=a21Ai3mz3IOQKS2efpCFCVqZuPHr30gCnYrP50eMUNI5/YnGG+GOkcQhn/3Grw3oCp
- aJFYJkG9f7VCnw4FWaAH39IzNhLdh7auWGvIJZ8PaaZhKi38R37+KurcjSzS8X8HI+Cs
- MUgYxBnbtD448XfnUvbmpy+BH+lJbnAmHXyNoKZ7tCT4zyMJfaJ3ERt3hd0PK41WwShb
- QvMGkC1h530qkv8PAhk6Y6qNjPOAJV94egaHOkm1Mz4sEc7t3X7OUCgj5h+w1xN97Wpb
- KrYbgkRFVqktY4iNsbxkKoiiwAaEkmvojDwPtbGCEcL8LDj6B48jBPsaKW4z5ExeHk0c
- 5WsA==
+ d=vectalabs-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=+5Cwhxhb1a4X1nlLvSWC2Xn2377UbFScDOdcm3N+OA4=;
+ b=m3awGUyv7razkaah7zexJBYo2vFCjvye9JcHj/YFHDFmakO4epmln7kVTIrmHl5IVc
+ aDi5WQc577JwJBWH768B7VvDBo4LUkRyEEKYTkRdhFERygeqiTchzqRLmimKnbsy6Zbl
+ n65GfEr/c5UB6VOWVS0W/n7CJW7u8jOhwGd3tNfAYqPZynCVZy7gTXRkFEz4CDbraHnn
+ YpssuXtuvMCNfka+9trZ9rtBFU/jrNZ9HRtEcBQfD406/i47JFlUhvKerA4ymi1PA4hX
+ JojPHZkaGHCDWMzGCywPwpz+i79oT0K0EvJASddBnzdlXLUs2hkl8J35Qlep552CNpXq
+ E50Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=LYshkQ5Y/CCY08xzX45KjbyTsuNDg9l7B5t7+rlQUcw=;
- b=fg7aGikC+ZE8BHMuT8oVFGOY1C0p+LP1i2kbMatugceUyxr1Qqufu2NOs8fseC68VS
- 2znoo0kORJqct8tkWVjTB/2mGDbje54ofBVQHGDym/9fRzO+6BXRUwAlJBsohyA5Tlrm
- htbwiDZ+paoSYN6HQ5Y0f8F0l5xsmZ0ORlFmB55xGQZ/yeD8RLIkGoCxxx4mLUEgsetn
- mMx5m2d8CL8I1nOyW7ou0/dU+ZxfLA9vUF7UV3ZlsOsnJoADlGj0NAk7w+XhgDO9K6j6
- MuLmSnbEcZdRD8InJN+b7di7ZNRVSY7pzDxOrTyb2jIuBZVa7A/Lc4W2YuWrAp2DOl1m
- Jrxg==
-X-Gm-Message-State: AOAM531gQtl4t8dpCnVHsg4WoAAJxvSxhpOCA/QNybW5L3uO45Gd9pAL
- GjdDdmRg10uwkpRxrkeqQK0mJd9v4km0t02cpuqZWPDS
-X-Google-Smtp-Source: ABdhPJz7RaYKU2+84AbwajJymbL+oBEh8UdlXvoSkQmmmQBVB6RrIC3E6f4+9HcEnD6LWE37kNCsccFdZt7MgurUNc8=
-X-Received: by 2002:a1f:9682:: with SMTP id y124mr5804318vkd.6.1604879858468; 
- Sun, 08 Nov 2020 15:57:38 -0800 (PST)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=+5Cwhxhb1a4X1nlLvSWC2Xn2377UbFScDOdcm3N+OA4=;
+ b=IoEFSKp2ViXHNjWyMu3m7FCaq/sVsbEgulo3vnkNI+uR0pIh/IboVlf36PTE8MhgqY
+ Pv0fZUrjGrY5UIXC4olzA3q/vv2oCqXnkIJVdIkPB/U9dct+bcgfbroe8bL9HG4/rsX2
+ ZwVWkEwZY+nACZifukgBpEApInKDIbbJB6prygcpJP2EpdoEzuekBYPfSpWJTHTX3lJl
+ 7l4AhuWtZWikcdMJQyp189tuX0gKPAgizPDTPyKW6X/rtYlqE1SWHT2gwMhqzR0JL8IM
+ 3xChnetTHGVmr9f4d3z9lvSNo4pRh+2qfegv7WXc615mvNqCFX79zj4/3Yg5ZF/H+Q97
+ SYVg==
+X-Gm-Message-State: AOAM530BhRCqAuHP3nrdJ3ktWJCAl72V1CnZWDOxatSgopnmXfvGLYRb
+ gTNwXqLreXOH5JrJFETI80qRPglmeMP/C1nph90XazpgzjE4xdqe
+X-Google-Smtp-Source: ABdhPJxlH2fcSZnpbk4PEeags6N7QiMeert5Fsn2+jIqOWJQtFTM7Q4ogtXlYvVIIynnPo6K8ZuMTvXx6bq+YkzBmeM=
+X-Received: by 2002:a67:fb8f:: with SMTP id n15mr4035724vsr.30.1604903747085; 
+ Sun, 08 Nov 2020 22:35:47 -0800 (PST)
 MIME-Version: 1.0
-References: <CAGJu-nZLreKPAhpynaXE27rxSm_NhHDym+Ftfpaj0VogaBE7Lw@mail.gmail.com>
- <CAL7q81sJ1tL_XV_8S=MFE4TO+P1_veyFZX=bpmB-NYYBjUahtA@mail.gmail.com>
- <CAGJu-namsauwtchamfjn_wS=uGwFkx8i4sRaHH3AWk0G=JkLLA@mail.gmail.com>
- <CAL7q81uRieZtRCSur8X5GiLjYtMBRsxmDFYQwQwEMF_U_6yGMw@mail.gmail.com>
- <CAGJu-nb25ZtS+DfkT4=N16e3vyWC8vXD4uvtCQN6t6gPhowy3Q@mail.gmail.com>
-In-Reply-To: <CAGJu-nb25ZtS+DfkT4=N16e3vyWC8vXD4uvtCQN6t6gPhowy3Q@mail.gmail.com>
-Date: Sun, 8 Nov 2020 18:57:02 -0500
-Message-ID: <CAL7q81uWuk_oHTfNnrxOBF8qKSZQiGjERh6TALZaAYqNTvAiuA@mail.gmail.com>
-To: Robert Wilson <robertbenwilson0@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] RFNoC Fosphor error
+Date: Mon, 9 Nov 2020 16:35:36 +1000
+Message-ID: <CALNMZ8Wf-ZjvRRW9soXiF7xqAzxS81+5TA_8kSPYgBKzrrkSxg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Trouble with Python API
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -64,9 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Content-Type: multipart/mixed; boundary="===============4696285638575022029=="
+From: Brendan Horsfield via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Brendan Horsfield <brendan.horsfield@vectalabs.com>
+Content-Type: multipart/mixed; boundary="===============6836320793253419021=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,205 +72,160 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4696285638575022029==
-Content-Type: multipart/alternative; boundary="000000000000df21bc05b3a135cc"
+--===============6836320793253419021==
+Content-Type: multipart/alternative; boundary="000000000000be7b2605b3a6c575"
 
---000000000000df21bc05b3a135cc
+--000000000000be7b2605b3a6c575
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Robert,
+Hi Folks,
 
-Can you try rebuilding gr-ettus with the cmake flag
-"-DCMAKE_BUILD_TYPE=3DDebug" and see if the issue goes away?
+I would like to write my own Python 3 script to stream Rx samples off my
+Ettus B210 USRP.  I have installed the Python API on my Ubuntu laptop, but
+I can't seem to get it to work, despite trying numerous ideas I found on
+the Ettus Knowledge Base.
 
-Jonathon
+For example, check out the following Python interpreter log.  I can call
+"import uhd" OK, but the call to uhd.usrp.MultiUSRP() causes an error:
 
-On Fri, Nov 6, 2020 at 8:57 AM Robert Wilson <robertbenwilson0@gmail.com>
-wrote:
-
->   Hi Jonathon,
->
-> I've reduced both with no change.
->
-> Ben
->
-> On Wed, Nov 4, 2020 at 1:59 PM Jonathon Pendlum <
-> jonathon.pendlum@ettus.com> wrote:
->
->> Hi Robert,
->>
->> Try using the maximum MTU size supported. Also, try reducing the FFT siz=
-e
->> and SPP to 512.
->>
->> Jonathon
->>
->> On Wed, Nov 4, 2020 at 8:45 AM Robert Wilson <robertbenwilson0@gmail.com=
->
->> wrote:
->>
->>> My Ethernet Controller is a Qualcomm Atheros AR8151 it=E2=80=99s max MT=
-U is 6144
->>> bytes. I=E2=80=99ve changed MTU to the max with no change in gnuRadio r=
-esponse. Is
->>> the 6144 bytes not enough?
+Python 3.7.7 (default, Mar 26 2020, 15:48:22)
+[GCC 7.3.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import uhd
+>>> my_usrp = uhd.usrp.MultiUSRP("type=b200")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'uhd' has no attribute 'usrp'
 >>>
->>> On Tue, Nov 3, 2020 at 9:32 PM Jonathon Pendlum <
->>> jonathon.pendlum@ettus.com> wrote:
->>>
->>>> Hi Ben,
->>>>
->>>> Try setting your NIC's MTU to 9000.
->>>>
->>>> Jonathon
->>>>
->>>> On Mon, Nov 2, 2020 at 6:55 AM Robert Wilson via USRP-users <
->>>> usrp-users@lists.ettus.com> wrote:
->>>>
->>>>> Hello,
->>>>>
->>>>> OS: Linux Ubuntu 20.04.1 LTS
->>>>> GRC: 3.8
->>>>> UHD: 4.0
->>>>> USRP:X310 (HG)
->>>>>
->>>>> I have been looking at RFNoC only for a few weeks. I have followed th=
-e
->>>>> RFNoC Workshop 4 tutorial and successfully built my own custom gain b=
-lock
->>>>> as well as implemented and FFT from existing blocks using the "Gettin=
-g
->>>>> Started with RFNoC" document online.
->>>>>
->>>>> I am now attempting to get Fosphor up and running on my X310 to
->>>>> further understand bitstream generation from YAML files. At one point=
- I
->>>>> believe there was an example bitstream that had the correct Fosphor
->>>>> configuration I don't see it in the build of UHD I have.
->>>>>
->>>>> I've attached my .yml file and a copy of my GRC flow graph.
->>>>> Below is the error message I'm receiving.
->>>>>
->>>>> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
->>>>> UHD_4.0.0.0-1-gcf570707
->>>>> [INFO] [X300] X300 initialization sequence...
->>>>> [INFO] [X300] Maximum frame size: 1472 bytes.
->>>>> [INFO] [GPS] No GPSDO found
->>>>> [INFO] [X300] Radio 1x clock: 200 MHz
->>>>> [WARNING] [RFNOC::BLOCK_FACTORY] Could not find block with Noc-ID
->>>>> 0xfd7d809a, 0xffff
->>>>> [WARNING] [0/Radio#0] Setting RX IQ Balance is not possible on this
->>>>> device.
->>>>> gr::log :DEBUG: rfnoc_rx_streamer0 - Committing graph...
->>>>> [WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
->>>>> gr::log :DEBUG: rfnoc_rx_streamer1 - Committing graph...
->>>>> gr::log :DEBUG: rfnoc_rx_streamer1 - Sending start stream command...
->>>>> gr::log :DEBUG: rfnoc_rx_streamer0 - Sending start stream command...
->>>>>
->>>>> >>> Done (return code -11)
->>>>>
->>>>> More resources of this type of development would be welcome as well.
->>>>>
->>>>> Many Thanks,
->>>>> Ben Wilson
->>>>>
->>>>>
->>>>> _______________________________________________
->>>>> USRP-users mailing list
->>>>> USRP-users@lists.ettus.com
->>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>
->>>>
 
---000000000000df21bc05b3a135cc
+Another example:  If I try to run the example script
+"uhd/host/examples/python/rx_to_file.py", I get the following error:
+"ModuleNotFoundError: No module named 'uhd'"
+
+The API installation procedure I have followed to this point is as follows:
+1.  python3 -m pip install python-dev-tools --user --upgrade
+2.  git clone https://github.com/EttusResearch/uhd.git
+3.  pybombs install uhd
+4.  cmake $HOME/uhd/host
+
+######################################################
+-- # UHD enabled components
+-- ######################################################
+--   * LibUHD
+--   * LibUHD - C API
+--   * LibUHD - Python API
+--   * Examples
+--   * Utils
+--   * Tests
+--   * USB
+--   * B100
+--   * B200
+--   * USRP1
+--   * USRP2
+--   * X300
+--   * MPMD
+--   * N300
+--   * N320
+--   * E320
+--   * E300
+--   * OctoClock
+--   * Manual
+--   * API/Doxygen
+--   * Man Pages
+-- 
+-- ######################################################
+-- # UHD disabled components
+-- ######################################################
+--   * DPDK
+-- 
+-- ******************************************************
+-- * You are building the UHD development master branch.
+-- * For production code, we recommend our stable,
+-- * releases or using the release branch (maint).
+-- ******************************************************
+-- Building version: 4.0.0.0-46-g57ca4235
+-- Using install prefix: /usr/local
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/anyone/uhd/host
+
+5.  Set up Ubuntu dependencies: sudo apt-get install libboost-all-dev
+libusb-1.0-0-dev doxygen python3-docutils python3-mako python3-numpy
+python3-requests python3-ruamel.yaml python3-setuptools cmake
+build-essential
+6.  Add the following line to .bashrc:  export
+LD_LIBRARY_PATH=/usr/local/lib
+
+FYI -- I am running Ubuntu 18.04 on an HP Omen laptop with an Intel
+i7-8750H CPU and 32 GB of RAM.
+
+Can anyone tell me what the source of this problem could be?  Any advice or
+suggestions would be greatly appreciated!
+
+Thanks & Regards,
+Brendan.
+
+--000000000000be7b2605b3a6c575
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Robert,<div><br></div><div>Can you try rebuilding gr-et=
-tus with the cmake flag &quot;-DCMAKE_BUILD_TYPE=3DDebug&quot; and see if t=
-he issue goes away?<br></div><div><br></div><div>Jonathon</div></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Nov =
-6, 2020 at 8:57 AM Robert Wilson &lt;<a href=3D"mailto:robertbenwilson0@gma=
-il.com">robertbenwilson0@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=C2=A0 Hi Jonathon,<div>=
-<br></div><div>I&#39;ve reduced both with no change.=C2=A0</div><div><br></=
-div><div>Ben</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Wed, Nov 4, 2020 at 1:59 PM Jonathon Pendlum &lt;<a hr=
-ef=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_blank">jonathon.pendlum=
-@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr">Hi Robert,<div><br></div><div>Try using the max=
-imum MTU size supported. Also, try reducing the FFT size and SPP to 512.</d=
-iv><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Wed, Nov 4, 2020 at 8:45 AM Robert =
-Wilson &lt;<a href=3D"mailto:robertbenwilson0@gmail.com" target=3D"_blank">=
-robertbenwilson0@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex"><div dir=3D"auto">My Ethernet Controller is a Qua=
-lcomm Atheros AR8151 it=E2=80=99s max MTU is 6144 bytes. I=E2=80=99ve chang=
-ed MTU to the max with no change in gnuRadio response. Is the 6144 bytes no=
-t enough?=C2=A0</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
-lass=3D"gmail_attr">On Tue, Nov 3, 2020 at 9:32 PM Jonathon Pendlum &lt;<a =
-href=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_blank">jonathon.pendl=
-um@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><div dir=3D"ltr">Hi Ben,<div><br></div><div>Try setting your NI=
-C&#39;s MTU to 9000.</div><div><br></div><div>Jonathon</div></div><br><div =
-class=3D"gmail_quote"></div><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Mon, Nov 2, 2020 at 6:55 AM Robert Wilson via USRP-use=
-rs &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp=
--users@lists.ettus.com</a>&gt; wrote:<br></div></div><div class=3D"gmail_qu=
-ote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex"></blockquote></div><=
-div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
-><div dir=3D"ltr"><div>Hello,</div><div><br></div><div>OS: Linux Ubuntu 20.=
-04.1 LTS<br></div><div>GRC: 3.8</div><div>UHD: 4.0</div><div>USRP:X310 (HG)=
-<br></div><div><br></div><div>I have been looking at RFNoC only for a few w=
-eeks. I have followed the RFNoC Workshop 4 tutorial and successfully built =
-my own custom gain block as well as implemented and FFT from existing block=
-s using the &quot;Getting Started with RFNoC&quot; document online.</div><d=
-iv><br></div><div>I am now attempting to get Fosphor up and running on my X=
-310 to further understand bitstream generation from YAML files. At one poin=
-t I believe there was an example bitstream that had the correct Fosphor con=
-figuration I don&#39;t see it in the build of UHD I have.</div><div><br></d=
-iv><div>I&#39;ve attached my .yml file and a copy of my GRC flow graph. <br=
-></div><div>Below is the error message I&#39;m receiving.</div><div><br></d=
-iv><div>[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_4.0.0.=
-0-1-gcf570707<br>[INFO] [X300] X300 initialization sequence...<br>[INFO] [X=
-300] Maximum frame size: 1472 bytes.<br>[INFO] [GPS] No GPSDO found<br>[INF=
-O] [X300] Radio 1x clock: 200 MHz<br>[WARNING] [RFNOC::BLOCK_FACTORY] Could=
- not find block with Noc-ID 0xfd7d809a, 0xffff<br>[WARNING] [0/Radio#0] Set=
-ting RX IQ Balance is not possible on this device.<br>gr::log :DEBUG: rfnoc=
-_rx_streamer0 - Committing graph...<br>[WARNING] [0/Radio#0] Attempting to =
-set tick rate to 0. Skipping.<br>gr::log :DEBUG: rfnoc_rx_streamer1 - Commi=
-tting graph...<br>gr::log :DEBUG: rfnoc_rx_streamer1 - Sending start stream=
- command...<br>gr::log :DEBUG: rfnoc_rx_streamer0 - Sending start stream co=
-mmand...<br><br>&gt;&gt;&gt; Done (return code -11)</div><div><br></div><di=
-v>More resources of this type of development would be welcome as well.<br><=
-/div><div><br></div><div>Many Thanks,</div><div>Ben Wilson<br></div><div><b=
-r></div><div><br></div></div></blockquote></div><div class=3D"gmail_quote">=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex">
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
+<div dir=3D"ltr">Hi Folks,<div><br></div><div>I would like to write my own =
+Python 3 script to stream Rx samples off my Ettus B210 USRP.=C2=A0 I have i=
+nstalled the Python API on my Ubuntu laptop, but I can&#39;t seem to get it=
+ to work, despite trying numerous ideas I found on the Ettus Knowledge Base=
+.</div><div><br></div><div>For example, check out the following Python inte=
+rpreter log.=C2=A0 I can call &quot;import uhd&quot; OK, but the call to uh=
+d.usrp.MultiUSRP() causes an error:=C2=A0</div><div><br></div><div>Python 3=
+.7.7 (default, Mar 26 2020, 15:48:22) <br>[GCC 7.3.0] :: Anaconda, Inc. on =
+linux<br>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; =
+or &quot;license&quot; for more information.<br>&gt;&gt;&gt; import uhd<br>=
+&gt;&gt;&gt; my_usrp =3D uhd.usrp.MultiUSRP(&quot;type=3Db200&quot;)<br>Tra=
+ceback (most recent call last):<br>=C2=A0 File &quot;&lt;stdin&gt;&quot;, l=
+ine 1, in &lt;module&gt;<br>AttributeError: module &#39;uhd&#39; has no att=
+ribute &#39;usrp&#39;<br>&gt;&gt;&gt;=C2=A0<br></div><div><br></div><div>An=
+other example:=C2=A0 If I try to run the example script &quot;uhd/host/exam=
+ples/python/rx_to_file.py&quot;, I get the following error:=C2=A0 &quot;Mod=
+uleNotFoundError: No module named &#39;uhd&#39;&quot;=C2=A0</div><div><br><=
+/div><div>The API installation procedure I have followed to this point is a=
+s follows:</div><div>1.=C2=A0 python3 -m pip install python-dev-tools --use=
+r --upgrade</div><div>2.=C2=A0 git clone <a href=3D"https://github.com/Ettu=
+sResearch/uhd.git">https://github.com/EttusResearch/uhd.git</a></div><div>3=
+.=C2=A0 pybombs install uhd</div><div>4.=C2=A0 cmake $HOME/uhd/host</div><d=
+iv><br></div><div>######################################################<br=
+>-- # UHD enabled components =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>-- #########=
+#############################################<br>-- =C2=A0 * LibUHD<br>-- =
+=C2=A0 * LibUHD - C API<br>-- =C2=A0 * LibUHD - Python API<br>-- =C2=A0 * E=
+xamples<br>-- =C2=A0 * Utils<br>-- =C2=A0 * Tests<br>-- =C2=A0 * USB<br>-- =
+=C2=A0 * B100<br>-- =C2=A0 * B200<br>-- =C2=A0 * USRP1<br>-- =C2=A0 * USRP2=
+<br>-- =C2=A0 * X300<br>-- =C2=A0 * MPMD<br>-- =C2=A0 * N300<br>-- =C2=A0 *=
+ N320<br>-- =C2=A0 * E320<br>-- =C2=A0 * E300<br>-- =C2=A0 * OctoClock<br>-=
+- =C2=A0 * Manual<br>-- =C2=A0 * API/Doxygen<br>-- =C2=A0 * Man Pages<br>--=
+ <br>-- ######################################################<br>-- # UHD =
+disabled components =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>-- #########################=
+#############################<br>-- =C2=A0 * DPDK<br>-- <br>-- ************=
+******************************************<br>-- * You are building the UHD=
+ development master branch.<br>-- * For production code, we recommend our s=
+table,<br>-- * releases or using the release branch (maint).<br>-- ********=
+**********************************************<br>-- Building version: 4.0.=
+0.0-46-g57ca4235<br>-- Using install prefix: /usr/local<br>-- Configuring d=
+one<br>-- Generating done<br>-- Build files have been written to: /home/any=
+one/uhd/host<br></div><div><br></div><div>5.=C2=A0 Set up Ubuntu dependenci=
+es: sudo apt-get install libboost-all-dev libusb-1.0-0-dev doxygen python3-=
+docutils python3-mako python3-numpy python3-requests python3-ruamel.yaml py=
+thon3-setuptools cmake build-essential</div><div>6.=C2=A0 Add the following=
+ line to .bashrc:=C2=A0=C2=A0export LD_LIBRARY_PATH=3D/usr/local/lib</div><=
+div><br></div><div>FYI -- I am running Ubuntu 18.04 on an HP Omen laptop wi=
+th an Intel i7-8750H CPU and 32 GB of RAM.</div><div><br></div><div>Can any=
+one tell me what the source of this problem could be?=C2=A0 Any advice or s=
+uggestions would be greatly appreciated!</div><div><br></div><div>Thanks &a=
+mp; Regards,</div><div>Brendan.</div><div><br></div><div><br></div></div>
 
---000000000000df21bc05b3a135cc--
+--000000000000be7b2605b3a6c575--
 
 
---===============4696285638575022029==
+--===============6836320793253419021==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -289,5 +236,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4696285638575022029==--
+--===============6836320793253419021==--
 
