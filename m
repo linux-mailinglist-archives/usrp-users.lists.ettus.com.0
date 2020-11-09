@@ -2,52 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 773B42ABF4D
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Nov 2020 16:00:44 +0100 (CET)
-Received: from [::1] (port=54908 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DAB52AC0C4
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Nov 2020 17:24:48 +0100 (CET)
+Received: from [::1] (port=55468 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kc8et-0003ub-EG; Mon, 09 Nov 2020 10:00:39 -0500
-Received: from mail-ed1-f53.google.com ([209.85.208.53]:38724)
+	id 1kc9yI-00028W-G1; Mon, 09 Nov 2020 11:24:46 -0500
+Received: from mail-qt1-f174.google.com ([209.85.160.174]:45781)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
- id 1kc8ep-0003n6-8l
- for usrp-users@lists.ettus.com; Mon, 09 Nov 2020 10:00:35 -0500
-Received: by mail-ed1-f53.google.com with SMTP id k9so9071250edo.5
- for <usrp-users@lists.ettus.com>; Mon, 09 Nov 2020 07:00:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=m56kOibl0Cs4cqbjVRiePwmCP9wLRE4rnKngdVg1Na4=;
- b=JlieA4Z+JTDTvrnxS++B4A6BPNpHtpkAnPrqWVhKDu9NIL4QHkFRHUchB1VwwD+JzS
- JBTTZ3p4UGWTJpcoYKXA1T9vovopTCkva9vve+GwbCgKSrLUEJ3q7uI8rxLriAD/z5IU
- hxKE70RP1X3EDIQnCVrEDK2KFgMep5wF1Xfv0uRIx45JNCdTZk0RkHHsiz+Arqx0RJgH
- +oJWeMPjE+JBNih8pNg4TEYo8SUP1/CG4mR47NNRa7uh0HtlxaweLDD6JqSGfXbq2hjt
- 39ULcYmc/Ybv/3Nv43asPLaXCS7ggb1PUcLpIZPWbKZepJruNWgjAVd+crNibSsxdxLO
- D3nA==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kc9yE-00020j-Bt
+ for usrp-users@lists.ettus.com; Mon, 09 Nov 2020 11:24:42 -0500
+Received: by mail-qt1-f174.google.com with SMTP id v11so5967572qtq.12
+ for <usrp-users@lists.ettus.com>; Mon, 09 Nov 2020 08:24:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=4+CmTl+dXWMHQSfALZiIznA7TxgtVZXx0FkqXfmmwFQ=;
+ b=qmsDIKE8gHAmqLrt7i4SQheVidulEzXDBBdgxB+G7wtzeI+iphsqnWsBnDBsiuNYx3
+ n/f3VgAfmPDk39IdB37EPcJRZtzrNwgEAAm6nrELV/5EPIaRcxgIZ4czjjwBi9I+euzz
+ wsiAH5m+cW7aV3Of+/hWZZ51ZuwtvurNTTOq44L3vOE+nyjBQMnqQap4gaMrl+WkHY5D
+ ZBoKL0JYupepZzGxkSPsyuxt6EU2snEwSu5JtwDFRach3vLYWKoXpt16DYl8t53HR2Im
+ XtVvQb0qAR3Sc066hYxWUd6kueUEkaJbUQ53uS34RD1xQSjVvI6/lQ0tgYOjIJr7x0TJ
+ 8e3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=m56kOibl0Cs4cqbjVRiePwmCP9wLRE4rnKngdVg1Na4=;
- b=S80zRaBLhpaAG6qikGU3A2toGGy13Zz8SkNcAqRpJ8/kG0g7MBxj3DUi5BxcatxcKz
- V0cu9Eu/137nb/22s9uMVBq0LI0m+hAkFYRpICfXsqOfhVP+BCFfsojPYGyjIv+6k67p
- Kd0siNDIhgJUcsTFvn7KPK/vKrLCqfiieHcRapLcEf1M6dse/7yiKIzpIhdWisRquzAs
- PuZvBj8ZyJBX/m57kvYVXHHy/1tiz6RyM6yMovy72r+9fw018OvPwQ4IS0oIVPyuzlBC
- PhKz5nvGhlsPpZelNc+tDlPecjP5rEnOfreMiaVVWDs79D7vPsrNXDoIuUsBTTOc7ETN
- p8fA==
-X-Gm-Message-State: AOAM530Y9+KcWGbtBWCRTX46BHEc7SG+qrQWWkdbEKxHc+GX3cYHYuJC
- jxrQEB+9iVD66e3If8IWYsvabDXRKUe4SJjiQSO5qoncG7O4hWQB
-X-Google-Smtp-Source: ABdhPJwaiz0AGo7U33CszDigNamNT2LZF/fS3PxFGnrhI+VColiPQEWos13viwroFWXqGdeyU69e1Gxq6Lu2uzf45xI=
-X-Received: by 2002:a50:ec10:: with SMTP id g16mr16279690edr.63.1604933994317; 
- Mon, 09 Nov 2020 06:59:54 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=4+CmTl+dXWMHQSfALZiIznA7TxgtVZXx0FkqXfmmwFQ=;
+ b=SvPoQODQMxnZecSCAztp1oXfhcR9SYNj+F+UgMfwUQxUSrLurjeE43HhkPJvt3DZun
+ Fi0DGsE/NF00vaTv1W4PWk/SUS+o25tkyJnA+RQ9e1mzl/FuB2Q6zn6bZQOrjQf/33iU
+ cODBZCCUdMm8SQ6nkLaF3y0316Q7UFnfZqS8Cb+qPcEF2PpUOgo2blwONb+w8ghFwaQN
+ +sgSMe304A7aVeVqPb+IVGAIK7Ze3WP6nxiPhLtdbdqXkchljOUEDTwXSSUvmTy8tnWe
+ Kz5BnyD5GPSwU41R0UqYFHcEATN1bfoVd/69ipRqePwmGPkPTiqJ8huJRgiAzAeVyY60
+ lHMg==
+X-Gm-Message-State: AOAM531HI11+RpJC95VdlGV0/VKrcl0QTr6nNsDEJ8pK4FwAW0rAPrF6
+ Os75kMNMugjiKgQkoI0vhz8YKjaxDpI=
+X-Google-Smtp-Source: ABdhPJzIfAg07M8hCV4mOe5u5EnnwWGM5LyJx4rLJP6+1GaT0eCo+EM0CHdlNCyTqG2CEShGISmkKw==
+X-Received: by 2002:ac8:1287:: with SMTP id y7mr14041117qti.108.1604939041130; 
+ Mon, 09 Nov 2020 08:24:01 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id x22sm6302060qkn.125.2020.11.09.08.24.00
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 09 Nov 2020 08:24:00 -0800 (PST)
+Message-ID: <5FA96D1F.9030905@gmail.com>
+Date: Mon, 09 Nov 2020 11:23:59 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
 References: <CALNMZ8Wf-ZjvRRW9soXiF7xqAzxS81+5TA_8kSPYgBKzrrkSxg@mail.gmail.com>
-In-Reply-To: <CALNMZ8Wf-ZjvRRW9soXiF7xqAzxS81+5TA_8kSPYgBKzrrkSxg@mail.gmail.com>
-Date: Mon, 9 Nov 2020 09:59:42 -0500
-Message-ID: <CAGNhwTNMjBJKp_xpLkW_2a4pk+k+xWZGRkStvz1eQHJURE6w6Q@mail.gmail.com>
-To: Brendan Horsfield <brendan.horsfield@vectalabs.com>
-Cc: USRP list <usrp-users@lists.ettus.com>
+ <CAGNhwTNMjBJKp_xpLkW_2a4pk+k+xWZGRkStvz1eQHJURE6w6Q@mail.gmail.com>
+In-Reply-To: <CAGNhwTNMjBJKp_xpLkW_2a4pk+k+xWZGRkStvz1eQHJURE6w6Q@mail.gmail.com>
 Subject: Re: [USRP-users] Trouble with Python API
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -60,9 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Content-Type: multipart/mixed; boundary="===============5176527597332401582=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2888020425585351839=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,197 +83,313 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5176527597332401582==
-Content-Type: multipart/alternative; boundary="0000000000009eaa5905b3add056"
+This is a multi-part message in MIME format.
+--===============2888020425585351839==
+Content-Type: multipart/alternative;
+ boundary="------------090002070406050009060804"
 
---0000000000009eaa5905b3add056
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------090002070406050009060804
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Check the PYTHONPATH to make sure it holds the correct install directory
-for UHD Python. I'm guessing it does not. I'm pretty sure UHD by default
-installs its Python library and files into
-"/usr/local/lib/python3/site-packages" ... or "dist-packages" ... note the
-"/python3/" rather than some specific 3.X version as was the case for
-earlier UHD (and many other projects). - MLD
+On 11/09/2020 09:59 AM, Michael Dickens via USRP-users wrote:
+> Check the PYTHONPATH to make sure it holds the correct install 
+> directory for UHD Python. I'm guessing it does not. I'm pretty sure 
+> UHD by default installs its Python library and files into 
+> "/usr/local/lib/python3/site-packages" ... or "dist-packages" ... note 
+> the "/python3/" rather than some specific 3.X version as was the case 
+> for earlier UHD (and many other projects). - MLD
+Also in the log of activities, I see BOTH a "pybombs install uhd", AND a 
+build of the latest HEAD of UHD, but no actual compile+install of
+   that built code.
 
-On Mon, Nov 9, 2020 at 1:36 AM Brendan Horsfield via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi Folks,
 >
-> I would like to write my own Python 3 script to stream Rx samples off my
-> Ettus B210 USRP.  I have installed the Python API on my Ubuntu laptop, but
-> I can't seem to get it to work, despite trying numerous ideas I found on
-> the Ettus Knowledge Base.
+> On Mon, Nov 9, 2020 at 1:36 AM Brendan Horsfield via USRP-users 
+> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
 >
-> For example, check out the following Python interpreter log.  I can call
-> "import uhd" OK, but the call to uhd.usrp.MultiUSRP() causes an error:
+>     Hi Folks,
 >
-> Python 3.7.7 (default, Mar 26 2020, 15:48:22)
-> [GCC 7.3.0] :: Anaconda, Inc. on linux
-> Type "help", "copyright", "credits" or "license" for more information.
-> >>> import uhd
-> >>> my_usrp = uhd.usrp.MultiUSRP("type=b200")
-> Traceback (most recent call last):
->   File "<stdin>", line 1, in <module>
-> AttributeError: module 'uhd' has no attribute 'usrp'
-> >>>
+>     I would like to write my own Python 3 script to stream Rx samples
+>     off my Ettus B210 USRP.  I have installed the Python API on my
+>     Ubuntu laptop, but I can't seem to get it to work, despite trying
+>     numerous ideas I found on the Ettus Knowledge Base.
 >
-> Another example:  If I try to run the example script
-> "uhd/host/examples/python/rx_to_file.py", I get the following error:
-> "ModuleNotFoundError: No module named 'uhd'"
+>     For example, check out the following Python interpreter log.  I
+>     can call "import uhd" OK, but the call to uhd.usrp.MultiUSRP()
+>     causes an error:
 >
-> The API installation procedure I have followed to this point is as follows:
-> 1.  python3 -m pip install python-dev-tools --user --upgrade
-> 2.  git clone https://github.com/EttusResearch/uhd.git
-> 3.  pybombs install uhd
-> 4.  cmake $HOME/uhd/host
+>     Python 3.7.7 (default, Mar 26 2020, 15:48:22)
+>     [GCC 7.3.0] :: Anaconda, Inc. on linux
+>     Type "help", "copyright", "credits" or "license" for more information.
+>     >>> import uhd
+>     >>> my_usrp = uhd.usrp.MultiUSRP("type=b200")
+>     Traceback (most recent call last):
+>       File "<stdin>", line 1, in <module>
+>     AttributeError: module 'uhd' has no attribute 'usrp'
+>     >>>
 >
-> ######################################################
-> -- # UHD enabled components
-> -- ######################################################
-> --   * LibUHD
-> --   * LibUHD - C API
-> --   * LibUHD - Python API
-> --   * Examples
-> --   * Utils
-> --   * Tests
-> --   * USB
-> --   * B100
-> --   * B200
-> --   * USRP1
-> --   * USRP2
-> --   * X300
-> --   * MPMD
-> --   * N300
-> --   * N320
-> --   * E320
-> --   * E300
-> --   * OctoClock
-> --   * Manual
-> --   * API/Doxygen
-> --   * Man Pages
-> --
-> -- ######################################################
-> -- # UHD disabled components
-> -- ######################################################
-> --   * DPDK
-> --
-> -- ******************************************************
-> -- * You are building the UHD development master branch.
-> -- * For production code, we recommend our stable,
-> -- * releases or using the release branch (maint).
-> -- ******************************************************
-> -- Building version: 4.0.0.0-46-g57ca4235
-> -- Using install prefix: /usr/local
-> -- Configuring done
-> -- Generating done
-> -- Build files have been written to: /home/anyone/uhd/host
+>     Another example:  If I try to run the example script
+>     "uhd/host/examples/python/rx_to_file.py", I get the following
+>     error:  "ModuleNotFoundError: No module named 'uhd'"
 >
-> 5.  Set up Ubuntu dependencies: sudo apt-get install libboost-all-dev
-> libusb-1.0-0-dev doxygen python3-docutils python3-mako python3-numpy
-> python3-requests python3-ruamel.yaml python3-setuptools cmake
-> build-essential
-> 6.  Add the following line to .bashrc:  export
-> LD_LIBRARY_PATH=/usr/local/lib
+>     The API installation procedure I have followed to this point is as
+>     follows:
+>     1.  python3 -m pip install python-dev-tools --user --upgrade
+>     2.  git clone https://github.com/EttusResearch/uhd.git
+>     3.  pybombs install uhd
+>     4.  cmake $HOME/uhd/host
 >
-> FYI -- I am running Ubuntu 18.04 on an HP Omen laptop with an Intel
-> i7-8750H CPU and 32 GB of RAM.
+>     ######################################################
+>     -- # UHD enabled components
+>     -- ######################################################
+>     --   * LibUHD
+>     --   * LibUHD - C API
+>     --   * LibUHD - Python API
+>     --   * Examples
+>     --   * Utils
+>     --   * Tests
+>     --   * USB
+>     --   * B100
+>     --   * B200
+>     --   * USRP1
+>     --   * USRP2
+>     --   * X300
+>     --   * MPMD
+>     --   * N300
+>     --   * N320
+>     --   * E320
+>     --   * E300
+>     --   * OctoClock
+>     --   * Manual
+>     --   * API/Doxygen
+>     --   * Man Pages
+>     -- 
+>     -- ######################################################
+>     -- # UHD disabled components
+>     -- ######################################################
+>     --   * DPDK
+>     -- 
+>     -- ******************************************************
+>     -- * You are building the UHD development master branch.
+>     -- * For production code, we recommend our stable,
+>     -- * releases or using the release branch (maint).
+>     -- ******************************************************
+>     -- Building version: 4.0.0.0-46-g57ca4235
+>     -- Using install prefix: /usr/local
+>     -- Configuring done
+>     -- Generating done
+>     -- Build files have been written to: /home/anyone/uhd/host
 >
-> Can anyone tell me what the source of this problem could be?  Any advice
-> or suggestions would be greatly appreciated!
+>     5.  Set up Ubuntu dependencies: sudo apt-get install
+>     libboost-all-dev libusb-1.0-0-dev doxygen python3-docutils
+>     python3-mako python3-numpy python3-requests python3-ruamel.yaml
+>     python3-setuptools cmake build-essential
+>     6.  Add the following line to .bashrc:  export
+>     LD_LIBRARY_PATH=/usr/local/lib
 >
-> Thanks & Regards,
-> Brendan.
+>     FYI -- I am running Ubuntu 18.04 on an HP Omen laptop with an
+>     Intel i7-8750H CPU and 32 GB of RAM.
+>
+>     Can anyone tell me what the source of this problem could be?  Any
+>     advice or suggestions would be greatly appreciated!
+>
+>     Thanks & Regards,
+>     Brendan.
+>
+>
+>     _______________________________________________
+>     USRP-users mailing list
+>     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 >
 >
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000009eaa5905b3add056
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Check the PYTHONPATH to make sure it holds the correct ins=
-tall directory for UHD Python. I&#39;m guessing it does not. I&#39;m pretty=
-=C2=A0sure UHD by default installs its=C2=A0Python library and files into &=
-quot;/usr/local/lib/python3/site-packages&quot; ... or &quot;dist-packages&=
-quot; ... note the &quot;/python3/&quot; rather than some specific 3.X vers=
-ion as was the case for earlier UHD (and many other projects). - MLD</div><=
-br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon,=
- Nov 9, 2020 at 1:36 AM Brendan Horsfield via USRP-users &lt;<a href=3D"mai=
-lto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
-Hi Folks,<div><br></div><div>I would like to write my own Python 3 script t=
-o stream Rx samples off my Ettus B210 USRP.=C2=A0 I have installed the Pyth=
-on API on my Ubuntu laptop, but I can&#39;t seem to get it to work, despite=
- trying numerous ideas I found on the Ettus Knowledge Base.</div><div><br><=
-/div><div>For example, check out the following Python interpreter log.=C2=
-=A0 I can call &quot;import uhd&quot; OK, but the call to uhd.usrp.MultiUSR=
-P() causes an error:=C2=A0</div><div><br></div><div>Python 3.7.7 (default, =
-Mar 26 2020, 15:48:22) <br>[GCC 7.3.0] :: Anaconda, Inc. on linux<br>Type &=
-quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licens=
-e&quot; for more information.<br>&gt;&gt;&gt; import uhd<br>&gt;&gt;&gt; my=
-_usrp =3D uhd.usrp.MultiUSRP(&quot;type=3Db200&quot;)<br>Traceback (most re=
-cent call last):<br>=C2=A0 File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;m=
-odule&gt;<br>AttributeError: module &#39;uhd&#39; has no attribute &#39;usr=
-p&#39;<br>&gt;&gt;&gt;=C2=A0<br></div><div><br></div><div>Another example:=
-=C2=A0 If I try to run the example script &quot;uhd/host/examples/python/rx=
-_to_file.py&quot;, I get the following error:=C2=A0 &quot;ModuleNotFoundErr=
-or: No module named &#39;uhd&#39;&quot;=C2=A0</div><div><br></div><div>The =
-API installation procedure I have followed to this point is as follows:</di=
-v><div>1.=C2=A0 python3 -m pip install python-dev-tools --user --upgrade</d=
-iv><div>2.=C2=A0 git clone <a href=3D"https://github.com/EttusResearch/uhd.=
-git" target=3D"_blank">https://github.com/EttusResearch/uhd.git</a></div><d=
-iv>3.=C2=A0 pybombs install uhd</div><div>4.=C2=A0 cmake $HOME/uhd/host</di=
-v><div><br></div><div>#####################################################=
-#<br>-- # UHD enabled components =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>-- ######=
-################################################<br>-- =C2=A0 * LibUHD<br>-=
-- =C2=A0 * LibUHD - C API<br>-- =C2=A0 * LibUHD - Python API<br>-- =C2=A0 *=
- Examples<br>-- =C2=A0 * Utils<br>-- =C2=A0 * Tests<br>-- =C2=A0 * USB<br>-=
-- =C2=A0 * B100<br>-- =C2=A0 * B200<br>-- =C2=A0 * USRP1<br>-- =C2=A0 * USR=
-P2<br>-- =C2=A0 * X300<br>-- =C2=A0 * MPMD<br>-- =C2=A0 * N300<br>-- =C2=A0=
- * N320<br>-- =C2=A0 * E320<br>-- =C2=A0 * E300<br>-- =C2=A0 * OctoClock<br=
->-- =C2=A0 * Manual<br>-- =C2=A0 * API/Doxygen<br>-- =C2=A0 * Man Pages<br>=
--- <br>-- ######################################################<br>-- # UH=
-D disabled components =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>-- ######################=
-################################<br>-- =C2=A0 * DPDK<br>-- <br>-- *********=
-*********************************************<br>-- * You are building the =
-UHD development master branch.<br>-- * For production code, we recommend ou=
-r stable,<br>-- * releases or using the release branch (maint).<br>-- *****=
-*************************************************<br>-- Building version: 4=
-.0.0.0-46-g57ca4235<br>-- Using install prefix: /usr/local<br>-- Configurin=
-g done<br>-- Generating done<br>-- Build files have been written to: /home/=
-anyone/uhd/host<br></div><div><br></div><div>5.=C2=A0 Set up Ubuntu depende=
-ncies: sudo apt-get install libboost-all-dev libusb-1.0-0-dev doxygen pytho=
-n3-docutils python3-mako python3-numpy python3-requests python3-ruamel.yaml=
- python3-setuptools cmake build-essential</div><div>6.=C2=A0 Add the follow=
-ing line to .bashrc:=C2=A0=C2=A0export LD_LIBRARY_PATH=3D/usr/local/lib</di=
-v><div><br></div><div>FYI -- I am running Ubuntu 18.04 on an HP Omen laptop=
- with an Intel i7-8750H CPU and 32 GB of RAM.</div><div><br></div><div>Can =
-anyone tell me what the source of this problem could be?=C2=A0 Any advice o=
-r suggestions would be greatly appreciated!</div><div><br></div><div>Thanks=
- &amp; Regards,</div><div>Brendan.</div><div><br></div><div><br></div></div=
->
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000009eaa5905b3add056--
 
 
---===============5176527597332401582==
+--------------090002070406050009060804
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 11/09/2020 09:59 AM, Michael Dickens
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAGNhwTNMjBJKp_xpLkW_2a4pk+k+xWZGRkStvz1eQHJURE6w6Q@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">Check the PYTHONPATH to make sure it holds the
+        correct install directory for UHD Python. I'm guessing it does
+        not. I'm pretty sure UHD by default installs its Python library
+        and files into "/usr/local/lib/python3/site-packages" ... or
+        "dist-packages" ... note the "/python3/" rather than some
+        specific 3.X version as was the case for earlier UHD (and many
+        other projects). - MLD</div>
+    </blockquote>
+    Also in the log of activities, I see BOTH a "pybombs install uhd",
+    AND a build of the latest HEAD of UHD, but no actual compile+install
+    of<br>
+      that built code.<br>
+    <br>
+    <blockquote
+cite="mid:CAGNhwTNMjBJKp_xpLkW_2a4pk+k+xWZGRkStvz1eQHJURE6w6Q@mail.gmail.com"
+      type="cite"><br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Mon, Nov 9, 2020 at 1:36 AM
+          Brendan Horsfield via USRP-users &lt;<a moz-do-not-send="true"
+            href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div dir="ltr">Hi Folks,
+            <div><br>
+            </div>
+            <div>I would like to write my own Python 3 script to stream
+              Rx samples off my Ettus B210 USRP.  I have installed the
+              Python API on my Ubuntu laptop, but I can't seem to get it
+              to work, despite trying numerous ideas I found on the
+              Ettus Knowledge Base.</div>
+            <div><br>
+            </div>
+            <div>For example, check out the following Python interpreter
+              log.  I can call "import uhd" OK, but the call to
+              uhd.usrp.MultiUSRP() causes an error: </div>
+            <div><br>
+            </div>
+            <div>Python 3.7.7 (default, Mar 26 2020, 15:48:22) <br>
+              [GCC 7.3.0] :: Anaconda, Inc. on linux<br>
+              Type "help", "copyright", "credits" or "license" for more
+              information.<br>
+              &gt;&gt;&gt; import uhd<br>
+              &gt;&gt;&gt; my_usrp = uhd.usrp.MultiUSRP("type=b200")<br>
+              Traceback (most recent call last):<br>
+                File "&lt;stdin&gt;", line 1, in &lt;module&gt;<br>
+              AttributeError: module 'uhd' has no attribute 'usrp'<br>
+              &gt;&gt;&gt; <br>
+            </div>
+            <div><br>
+            </div>
+            <div>Another example:  If I try to run the example script
+              "uhd/host/examples/python/rx_to_file.py", I get the
+              following error:  "ModuleNotFoundError: No module named
+              'uhd'" </div>
+            <div><br>
+            </div>
+            <div>The API installation procedure I have followed to this
+              point is as follows:</div>
+            <div>1.  python3 -m pip install python-dev-tools --user
+              --upgrade</div>
+            <div>2.  git clone <a moz-do-not-send="true"
+                href="https://github.com/EttusResearch/uhd.git"
+                target="_blank">https://github.com/EttusResearch/uhd.git</a></div>
+            <div>3.  pybombs install uhd</div>
+            <div>4.  cmake $HOME/uhd/host</div>
+            <div><br>
+            </div>
+            <div>######################################################<br>
+              -- # UHD enabled components                              <br>
+              -- ######################################################<br>
+              --   * LibUHD<br>
+              --   * LibUHD - C API<br>
+              --   * LibUHD - Python API<br>
+              --   * Examples<br>
+              --   * Utils<br>
+              --   * Tests<br>
+              --   * USB<br>
+              --   * B100<br>
+              --   * B200<br>
+              --   * USRP1<br>
+              --   * USRP2<br>
+              --   * X300<br>
+              --   * MPMD<br>
+              --   * N300<br>
+              --   * N320<br>
+              --   * E320<br>
+              --   * E300<br>
+              --   * OctoClock<br>
+              --   * Manual<br>
+              --   * API/Doxygen<br>
+              --   * Man Pages<br>
+              -- <br>
+              -- ######################################################<br>
+              -- # UHD disabled components                             <br>
+              -- ######################################################<br>
+              --   * DPDK<br>
+              -- <br>
+              -- ******************************************************<br>
+              -- * You are building the UHD development master branch.<br>
+              -- * For production code, we recommend our stable,<br>
+              -- * releases or using the release branch (maint).<br>
+              -- ******************************************************<br>
+              -- Building version: 4.0.0.0-46-g57ca4235<br>
+              -- Using install prefix: /usr/local<br>
+              -- Configuring done<br>
+              -- Generating done<br>
+              -- Build files have been written to: /home/anyone/uhd/host<br>
+            </div>
+            <div><br>
+            </div>
+            <div>5.  Set up Ubuntu dependencies: sudo apt-get install
+              libboost-all-dev libusb-1.0-0-dev doxygen python3-docutils
+              python3-mako python3-numpy python3-requests
+              python3-ruamel.yaml python3-setuptools cmake
+              build-essential</div>
+            <div>6.  Add the following line to .bashrc:  export
+              LD_LIBRARY_PATH=/usr/local/lib</div>
+            <div><br>
+            </div>
+            <div>FYI -- I am running Ubuntu 18.04 on an HP Omen laptop
+              with an Intel i7-8750H CPU and 32 GB of RAM.</div>
+            <div><br>
+            </div>
+            <div>Can anyone tell me what the source of this problem
+              could be?  Any advice or suggestions would be greatly
+              appreciated!</div>
+            <div><br>
+            </div>
+            <div>Thanks &amp; Regards,</div>
+            <div>Brendan.</div>
+            <div><br>
+            </div>
+            <div><br>
+            </div>
+          </div>
+          _______________________________________________<br>
+          USRP-users mailing list<br>
+          <a moz-do-not-send="true"
+            href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
+          <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+            rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------090002070406050009060804--
+
+
+--===============2888020425585351839==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -277,5 +400,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5176527597332401582==--
+--===============2888020425585351839==--
 
