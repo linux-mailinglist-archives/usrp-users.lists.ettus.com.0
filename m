@@ -2,60 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9587B2AFB95
-	for <lists+usrp-users@lfdr.de>; Thu, 12 Nov 2020 00:02:09 +0100 (CET)
-Received: from [::1] (port=51940 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DFE72AFB9F
+	for <lists+usrp-users@lfdr.de>; Thu, 12 Nov 2020 00:20:58 +0100 (CET)
+Received: from [::1] (port=52204 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kcz7r-0002PR-T7; Wed, 11 Nov 2020 18:02:03 -0500
-Received: from mail-qk1-f181.google.com ([209.85.222.181]:46127)
+	id 1kczQ7-0004AJ-Ld; Wed, 11 Nov 2020 18:20:55 -0500
+Received: from mail-qk1-f173.google.com ([209.85.222.173]:33490)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kcz7o-0002Ib-8a
- for usrp-users@lists.ettus.com; Wed, 11 Nov 2020 18:02:00 -0500
-Received: by mail-qk1-f181.google.com with SMTP id h15so3517197qkl.13
- for <usrp-users@lists.ettus.com>; Wed, 11 Nov 2020 15:01:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=VBkHNJfADi1ftUygUhXcko7fN21rEgw1f4wwKD/WIjY=;
- b=gkVAMUHa5Y2IHzWGYx8VjC6IxO1lTuvxuiA/8qaqtp97iERH43p0V8AYI4+bNN/ZvT
- K2yCPOgASFRIvRtMpq8HBHZnRLujxuuMErCRdAZaA7jo3Cc2CkC1bXdRG5iQthLx95bm
- A6OsGRyJXx9mG14RBqgzTRgP2hGtcLBBrx4oUIQcdihg4QeF0LuirGmmj/YHIZGFKSEf
- bR3Vpd9QELj1KMw0Q7ZW8/TqsIJ+LaoTOkMEgFG5qNfFz84gWaetYO+WJzFiuAH6Eq88
- VShlrti92Dfwr1V5EqSG2q3khnVQbJFnDrPwSMcS9wWxyNpsdffewy6DXIqIQM88oFLi
- OUtw==
+ (Exim 4.93) (envelope-from <dw2zq@virginia.edu>) id 1kczQ2-00042D-Sn
+ for usrp-users@lists.ettus.com; Wed, 11 Nov 2020 18:20:50 -0500
+Received: by mail-qk1-f173.google.com with SMTP id l2so3644160qkf.0
+ for <usrp-users@lists.ettus.com>; Wed, 11 Nov 2020 15:20:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=virginia-edu.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+ :mime-version:content-transfer-encoding;
+ bh=iAHkTgE1gu14LEmTPdXlI+GygwaWAKZ8Do6hzqaQm04=;
+ b=vuJndO6eU9v4k+2QtrJ9yvJTLlcaV0UhmDybQfciM086eebncpWtuMvkPT1yJ0V8rQ
+ ytRXM2o6r1QQHsVMAwo6aDFgTGB1GrAhlK/DcED9w7fMwxc+Aj6OwpHH2qSVwd65Vkd6
+ a8NBwFNlmohlOImts7cIR4XW6SWJlzT+3D85eGVVIKUel7GQBitbWV1qu5QSV7kWHuu2
+ XVhAXMqz8MI6JSLXLT9pMkHNri7qeSjIsgYM2wTTRMU7E5AhfyMo5ZP/IR1dkgtlrPtN
+ sRQ7Ayk9ipGBHfiQrXxP6iZGriMhunO0rPk1Y8NQplZIbFQDPb7yPHbN2nV2SuQRczlI
+ q3XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=VBkHNJfADi1ftUygUhXcko7fN21rEgw1f4wwKD/WIjY=;
- b=ANfh3Yvn7VnetfskdZ+XyYyfv5avdqPih1LLMMCUPYusZ2K6iwbjRTLGwUtGId1i7Z
- GaUIKE7lb1w+FaTiZOsg+q69U1SB2oOxGBwz8P/XoxoCJjzeuBOfZbVnFJJqzQ9ra/pE
- vlXUmkI6nS/Y+UYUpwiwwbt9aMBIQr6ZYh/umsRy0m9QszGCACW5gAyq9fLcmJ5LfsIG
- lEHupuDcE+jp4OUYAxN0hHcZgIUjcM4xArf9uQDQKjqTpnIfnBDLuh0qb7kPjwGVV1HG
- d3fwq/DxVirhmMiZmyKGf5gntuiTE97kI1bXWTKQNmWlOdpHU1Jt3O07NtwJC4I/JgYl
- 9L+A==
-X-Gm-Message-State: AOAM5304efKZVTsBVqVP0qlYuctyHewo6gpkNgko2Ewhm7c87T+49cLc
- lAb642oKzWNfYtC9wdxW/RsuFuCAmdg=
-X-Google-Smtp-Source: ABdhPJy+IMqCmflfsc2Of07y7H2p2xyBsy9Clei4gqPDHl5M652pESE27WbNa/YIfQqifN8IHR1huw==
-X-Received: by 2002:a37:ac11:: with SMTP id e17mr26955567qkm.238.1605135679561; 
- Wed, 11 Nov 2020 15:01:19 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id r41sm3813788qtj.23.2020.11.11.15.01.19
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 11 Nov 2020 15:01:19 -0800 (PST)
-Message-ID: <5FAC6D3E.9030409@gmail.com>
-Date: Wed, 11 Nov 2020 18:01:18 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=iAHkTgE1gu14LEmTPdXlI+GygwaWAKZ8Do6hzqaQm04=;
+ b=QiEQDHUh/4mICEfVtwAqEmVuoWdf7N3CQkMmx4yVgCTLqRaHrVhHrtAXQ91XmftJiE
+ 2/Z2eMh7MGsFyHWKIZ8rIUsPYFITa8RZl+9c6W+lxmH4U0zEzYmnbUkB6XAhwA8J7GMX
+ OwUuS3z38nb2Wb4I5XnMZUaQlu9zkfTrAYGzc0r43g735PaWvozGnjR9BBcK6HVDynJs
+ uXwwQ89svR/uzVJEP9v2fvgn+NSBmPKwlOZkqy9Cmali6iVB0qp2hSrX3rCYN7R01RgK
+ nr4YYMVZgAoDXgrmbLAodjkt7wvF+JdPVJrBscGCsd5CS+2TW3nMl3kf+gFgaHyfRyAE
+ aggw==
+X-Gm-Message-State: AOAM530V+Y4ZTXvRVymLERz9v2nK2TdQ9E/y4rLvS801cW/ZLnljxhPT
+ Uf+V4vopvJc1id5tzJ67IftzIQ==
+X-Google-Smtp-Source: ABdhPJxeS/TPkKxWgZtnzQDRlTzMOu52mNfvJ5pEj2jtDCaCrXVWbBec0lIx5vIZ0pXjb2HTtryFOA==
+X-Received: by 2002:a05:620a:c9a:: with SMTP id
+ q26mr24929969qki.272.1605136810101; 
+ Wed, 11 Nov 2020 15:20:10 -0800 (PST)
+Received: from [10.45.150.181] (c-73-40-68-102.hsd1.va.comcast.net.
+ [73.40.68.102])
+ by smtp.gmail.com with ESMTPSA id p12sm3471281qkp.88.2020.11.11.15.20.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 11 Nov 2020 15:20:09 -0800 (PST)
+Message-ID: <4150ed6df83730bba2cbc5ef916af8064c284edf.camel@virginia.edu>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
+Date: Wed, 11 Nov 2020 18:20:03 -0500
+In-Reply-To: <5FAC37FA.1060605@gmail.com>
+References: <35ae5da8ab09a4c3bbb77d059d775a91b98d4c9b.camel@virginia.edu>
+ <5FAC37FA.1060605@gmail.com>
+User-Agent: Evolution 3.38.1 
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <CAMvz+5awThbHfeqxf_hy2fJE0e_u6FG59hn8SPLiD5Lyi8FaSw@mail.gmail.com>
-In-Reply-To: <CAMvz+5awThbHfeqxf_hy2fJE0e_u6FG59hn8SPLiD5Lyi8FaSw@mail.gmail.com>
-Subject: Re: [USRP-users] X310 with OAI FPGA Image Compatibility
+Subject: Re: [USRP-users] twinrx consistent phase offset
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,10 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Dustin Widmann via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Dustin Widmann <dw2zq@virginia.edu>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,17 +84,113 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 11/11/2020 05:47 PM, Matt Lanoue via USRP-users wrote:
-> Team Ettus,
->
-> While running code to simulate an eNB, I get a failure because FPGA 
-> compatibility number 36 is expected, but 38 is found.
->
->
-https://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_load_fpga_imgs
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+VGhhbmtzIGZvciB0aGUgcXVpY2sgcmVzcG9uc2UgTWFyY3VzIQoKSXQgc2VlbXMgdG8gYmUgZmFp
+cmx5IGZyZXF1ZW5jeSBkZXBlbmRlbnQuIEknbSBhdHRhY2hpbmcgYSBsaW5rIHRvIGEKZGF0YSBm
+aWxlIHNvIHknYWxsIGNhbiB0YWtlIGEgbG9vayBhdCB3aGF0IEkgbWVhbi4gSSByYW4gYSBkZW5z
+ZS1pc2gKc3dlZXAgc2V2ZXJhbCB0aW1lcyB0byB0cnkgdG8gZ2V0IGEgZmVlbCBmb3IgaG93IHJl
+cHJvZHVjaWJsZSB0aGluZ3MKd2VyZSAvZXRjLiBUaGUgdHJhbnNtaXR0ZXIgd2FzIHJldHVuZWQg
+YXQgZWFjaCBmcmVxdWVuY3ksIGJ1dCB0aGUKcmVjZWl2ZXIgd2FzIG9ubHkgcmV0dW5lZCBldmVy
+eSAxME1Iei7CoApodHRwczovL3UucGNsb3VkLmxpbmsvcHVibGluay9zaG93P2NvZGU9WFp2aWV6
+WFpHbDVZcGt2NDZMU1ZmOWw5bjFZdE9WMDV6OTJrCmluIHRoaXMgZmlsZTogCiogYmx1ZSBvciBn
+cmVlbiB0ZXh0ID0gcmFuZ2Ugb2YgZGF0YXBvaW50cyB0aGF0IHNlZW0gdG8gaGF2ZQpyZXByb2R1
+Y2libGUgcGhhc2Ugb2Zmc2V0cyAoSSBhbHRlcm5hdGVkIGJldHdlZW4gYmx1ZSBhbmQgZ3JlZW4g
+d2hlbiBJCm5vdGljZWQgYSAianVtcCIgaW4gdGhlIHZhbHVlIDs7IHNvbWV0aW1lcyB0aGVzZSBq
+dW1wcyB3ZXJlIDkwLzE4MC8yNzAKZGVncmVlLCBidXQgb2Z0ZW4gbm90LCBhbmQgd2VyZSByZXBy
+b2R1Y2libGUgcmVnYXJkbGVzcykKKiBvcmFuZ2UgdGV4dCA9IHBoYXNlIG9mZnNldCBpcyBvZmYg
+aW4gc29tZSBjb25zaXN0ZW50IG1hbm5lcgooOTAvMTgwLzI3MCBkZWdyZWUganVtcCkgYW5kL29y
+IHJlcHJvZHVjaWJsZSBhYmVycmFudCB2YWx1ZQoqIHJlZCB0ZXh0ID0gcGhhc2Ugb2Zmc2V0IHNl
+ZW1zIHRvIGJlIHJhbmRvbS9nYXJiYWdlCiogcmVkIGJhY2tncm91bmQgPSBpbnZhbGlkIGRhdGFw
+b2ludCAoZWl0aGVyIHRvbmUgaXMgYXQgdW5leHBlY3RlZCBiaW4Kb24gY2hhbm5lbCAxLCBjaGFu
+bmVsIDIsIG9yIGJvdGggOzsgdGhpcyBpcyBvbmUgb2YgdGhlIG90aGVyIHF1ZXN0aW9ucwpJIHdh
+cyBhbGx1ZGluZyB0byBpbiBteSBmaXJzdCBlbWFpbCwgSSdtIHByZXN1bWluZyBpdHMgYSBzZXBh
+cmF0ZQppc3N1ZSwgYnV0IG1heWJlIG5vdC4gSXQncyB3b3J0aCBub3RpbmcgdGhhdCB3aGVuIHRo
+ZSB0b25lIGlzIG9ic2VydmVkCmF0IHRoZSB3cm9uZyBmcmVxdWVuY3ksIHRoZSBmcmVxdWVuY3kg
+d2hlcmUgaXQgaXMgb2JzZXJ2ZWQgaXMgb2Z0ZW4gYQptdWx0aXBsZSBvZiB0aGUgcmVmZXJlbmNl
+IGNsb2NrIGluc3RlYWQpCgpEdXN0aW4KClAuUy4gSXQgdG9vayBtZSBxdWl0ZSBhIHdoaWxlIHRv
+IGdvIHRocm91Z2ggdGhpcyBmaWxlLCBJIG5lZWQgdG8gZmluZCBhCmJldHRlciB3YXkgdG8gZ28g
+YWJvdXQgdGhhdCAuLi4uCgpPbiBXZWQsIDIwMjAtMTEtMTEgYXQgMTQ6MTQgLTA1MDAsIE1hcmN1
+cyBELiBMZWVjaCB2aWEgVVNSUC11c2Vycwp3cm90ZToKPiBPbiAxMS8xMS8yMDIwIDExOjI2IEFN
+LCBEdXN0aW4gV2lkbWFubiB2aWEgVVNSUC11c2VycyB3cm90ZToKPiA+IEhpIHVzcnAtdXNlcnMh
+Cj4gPiAKPiA+IEknbSBzdGlsbCByZWxhdGl2ZWx5IGluZXhwZXJpZW5jZWQgd2l0aCB3b3JraW5n
+IHdpdGggVUhEIGFuZCBVU1JQCj4gPiByYWRpb3MgaW4gZ2VuZXJhbCwgYnV0IEkgZmVlbCBsaWtl
+IEknbSBnZXR0aW5nIGJldHRlci4gQW55aG93LCBJCj4gPiBoYXZlCj4gPiAqc2V2ZXJhbCogcXVl
+c3Rpb25zLCBidXQgSSdsbCBzdGFydCB3aXRoIG9uZS4KPiA+IAo+ID4gU2V0dXA6Cj4gPiBVU1JQ
+IFgzMTAgUmFkaW86IEE6VUJYLCBCOlR3aW5SWAo+ID4gSWYgeW91J3JlIGZhbWlsaWFyIHdpdGgg
+YSAicmVmbGVjdG9tZXRlciIsIGl0J3Mgc2V0dXAgbGlrZSB0aGF0LiBJZgo+ID4gbm90LCB0aGUg
+c2ltcGxlc3Qgc3VmZmljaWVudCB0ZXN0IHNldHVwIGZvciB0aGlzIHByb2JsZW0gd291bGQgYmUK
+PiA+IHRvCj4gPiB3aXJlIHRoZSBVQlggVFggdG8gYSByZXNpc3RpdmUgc3BsaXR0ZXIsIHRvIGJv
+dGggcG9ydHMgb2YgdGhlCj4gPiBUd2luUlguCj4gPiBIb3cgdGhlIHNvZnR3YXJlIHdvcmtzIGlz
+IHZlcnkgc2ltcGxlOiB0aGUgdHJhbnNtaXR0ZXIgaXMgdHVuZWQgdG8KPiA+IGEKPiA+IGZyZXF1
+ZW5jeSwgdHJhbnNtaXQgdmFsdWUgaXMgYSB0b25lIGF0IDBIeiAodHJhbnNtaXQgYW4gYXJyYXkg
+b2YKPiA+ICcxJ3MpLAo+ID4gcmVjZWl2ZXIgaXMgdHVuZWQgdG8gYSBuZWFyYnkgZnJlcXVlbmN5
+IGFuZCB0aGUgdG9uZSBpcyBvYnNlcnZlZCBvbgo+ID4gYm90aCBjaGFubmVscy4gVGhlIHZhbHVl
+IG9mIGludGVyZXN0IGlzIHRoZSByYXRpbyBvZiB0aGUgdmFsdWUgb2YKPiA+IHRoZQo+ID4gdG9u
+ZSBvZiB0aGUgdHdvIGNoYW5uZWxzLiBUaGUgb2JqZWN0aXZlIGlzIHRvIHF1aWNrbHkgYW5kCj4g
+PiBhY2N1cmF0ZWx5IGRvCj4gPiB0aGlzIGluIGEgc3dlZXAgYWNyb3NzIH41ME1Iei02R0h6Lgo+
+ID4gCj4gPiBVSEQgdmVyc2lvbjogVUhEXzQuMC4wLjAtMS1nY2Y1NzA3MDcKPiA+IFdoYXQgSSBl
+eHBlY3Q6IHRoZSBwaGFzZSBkaWZmZXJlbmNlIGJldHdlZW4gdGhlIHR3byBjaGFubmVscyBhdCBh
+bnkKPiA+IGdpdmVuIGZyZXF1ZW5jeSB0byBiZSBjb25zaXN0ZW50IGZyb20gcnVuLXRvLXJ1bi4K
+PiA+IFdoYXQgSSBzZWU6IEkgY2FuIHVzdWFsbHkgZ2V0IGNvbnNpc3RlbnQgcmVzdWx0cywgYnV0
+IHNvbWV0aW1lcyBJCj4gPiBzZWUKPiA+IDkwLDE4MCwyNzAgZGVncmVlIG9mZnNldHMgaW5zdGVh
+ZC4KPiA+IAo+ID4gSSBleHBlY3QgdGhlIHJlbGV2YW50IHNlY3Rpb24gdG8gdGhpcyBwcm9ibGVt
+IHRvIGJlIHdoZW4gYW5kIGhvdyBJCj4gPiBoYW5kbGUgdHVuaW5nLCBzbyBJJ3ZlIGluY2x1ZGVk
+IHRoYXQgYmVsb3c6Cj4gPiAKPiA+IFRoZSB0dW5lIGZ1bmN0aW9uOiAoc2ltcGxpZmllZCBmb3Ig
+YnJldml0eS9jbGFyaXR5KQo+ID4gX3NldEZyZXF1ZW5jeShkb3VibGUgZnJlcSkgewo+ID4gwqDC
+oMKgwqAgZG91YmxlIHJ4X2ZyZXEgPSAwOyBpbnQgY2xvc2VzdF9pZHggPSAwOyBkb3VibGUgdHhf
+ZnJlcSA9Cj4gPiBmcmVxOwo+ID4gwqDCoMKgwqAgYm9vbCB0eF90dW5lZCA9IGZhbHNlOyBib29s
+IHJ4X3R1bmVkID0gZmFsc2U7Cj4gPiDCoMKgwqDCoCAvLyBsb29wIHRvIGdldCBjbG9zZXN0IGZy
+ZXEgaW4gYSBwcmVkZWZpbmVkIGxpc3QgOwo+ID4gwqDCoMKgwqAgLy8gdGhlIGlkZWEgaXMgdG8g
+dHVuZSB0aGUgcmVjZWl2ZXIgbXVjaCBsZXNzIG9mdGVuIGJlY2F1c2UKPiA+IMKgwqDCoMKgIC8v
+IGl0IHNlZW1zIHRvIHRha2UgYSBsb3QgbG9uZ2VyIGR1ZSB0byB0aGUgbmVlZCB0byB1c2UgdGlt
+ZWQKPiA+IMKgwqDCoMKgIC8vIGNvbW1hbmRzCj4gPiDCoMKgwqDCoCBmb3IgKGludCBpZHggPSAw
+OyBpZHggPCBfZnJlcV9saXN0LnNpemUoKTsgaWR4KyspIHsKPiA+IMKgwqDCoMKgwqDCoMKgwqAg
+aWYgKHN0ZDo6YWJzKGZyZXEgLSBfZnJlcV9saXN0W2lkeF0pIDwgc3RkOjphYnMoZnJlcS0KPiA+
+IHJ4X2ZyZXEpKXsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9zZXN0X2lkeCA9IGlk
+eDsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByeF9mcmVxID0gX2ZyZXFfbGlzdFtpZHhd
+Owo+ID4gwqDCoMKgwqDCoMKgwqDCoCB9Cj4gPiDCoMKgwqDCoCB9Cj4gPiDCoMKgwqDCoCBpZiAo
+dHhfZnJlcSA9PSByeF9mcmVxKSB7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgIC8vIChjcnVkZWx5KSBh
+dm9pZCB0dW5pbmcgcnggdG8gZXhhY3RseSB0aGUgc2FtZSBmcmVxIGFzCj4gPiB0eAo+ID4gwqDC
+oMKgwqDCoMKgwqDCoCB0eF9mcmVxICs9IDUwZTM7Cj4gPiDCoMKgwqDCoCB9Cj4gPiDCoMKgwqDC
+oCBpZiAoX2N1cnJlbnRfdHhfZnJlcSAhPSB0eF9mcmVxKSB7Cj4gPiDCoMKgwqDCoMKgwqDCoMKg
+IF91c3JwLT5jbGVhcl9jb21tYW5kX3RpbWUoKTsgLy8gdHVuZSB0eCBpbW1lZGlhdGVseQo+ID4g
+wqDCoMKgwqDCoMKgwqDCoCBhdXRvIHR4X3JlcSA9IHVoZDo6dHVuZV9yZXF1ZXN0X3QodHhfZnJl
+cSk7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgIF91c3JwLT5zZXRfdHhfZnJlcSh0eF9mcmVxLDApOwo+
+ID4gwqDCoMKgwqDCoMKgwqDCoCBfY3VycmVudF90eF9mcmVxID0gdHhfZnJlcTsKPiA+IMKgwqDC
+oMKgwqDCoMKgwqAgdHhfdHVuZWQgPSB0cnVlOwo+ID4gwqDCoMKgwqAgfQo+ID4gwqDCoMKgwqAg
+aWYgKF9jdXJyZW50X3J4X2ZyZXEgIT0gcnhfZnJlcSkKPiA+IMKgwqDCoMKgIHsKPiA+IMKgwqDC
+oMKgwqDCoMKgwqAgX3VzcnAtPmNsZWFyX2NvbW1hbmRfdGltZSgpOwo+ID4gwqDCoMKgwqDCoMKg
+wqDCoCBfdXNycC0+c2V0X2NvbW1hbmRfdGltZShfdXNycC0KPiA+ID4gZ2V0X3RpbWVfbm93KCkr
+dWhkOjp0aW1lX3NwZWNfdCgwLjEwMCkpOwo+ID4gwqDCoMKgwqDCoMKgwqDCoCBfdXNycC0+c2V0
+X3J4X2ZyZXEocnhfZnJlcSwwKTsKPiA+IMKgwqDCoMKgwqDCoMKgwqAgX3VzcnAtPnNldF9yeF9m
+cmVxKHJ4X2ZyZXEsMSk7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgIF9kZWxheV9tcygyNTApOyAvLyBk
+ZWxheSwgYnV0IGtlZXAgZXZlbnQgbG9vcCBhbGl2ZQo+ID4gwqDCoMKgwqDCoMKgwqDCoCAvLyB0
+dW5lIGFnYWluLCBiZWNhdXNlIGl0IHNlZW1zIHRvIGhlbHAKPiA+IMKgwqDCoMKgwqDCoMKgwqAg
+X3VzcnAtPmNsZWFyX2NvbW1hbmRfdGltZSgpOwo+ID4gwqDCoMKgwqDCoMKgwqDCoCBfdXNycC0+
+c2V0X2NvbW1hbmRfdGltZShfdXNycC0KPiA+ID4gZ2V0X3RpbWVfbm93KCkrdWhkOjp0aW1lX3Nw
+ZWNfdCgwLjEwMCkpOwo+ID4gwqDCoMKgwqDCoMKgwqDCoCBfZGVsYXlfbXMoMjUwKTsKPiA+IMKg
+wqDCoMKgwqDCoMKgwqAgX3VzcnAtPmNsZWFyX2NvbW1hbmRfdGltZSgpOwo+ID4gwqDCoMKgwqDC
+oMKgwqDCoCByeF90dW5lZCA9IHRydWU7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgIF9jdXJyZW50X3J4
+X2ZyZXEgPSByeF9mcmVxOwo+ID4gwqDCoMKgwqAgfQo+ID4gwqDCoMKgwqAgaWYgKHR4X3R1bmVk
+IGFuZCBub3QgcnhfdHVuZWQpIHsKPiA+IMKgwqDCoMKgwqDCoMKgwqAgX2RlbGF5X21zKDUwKTsK
+PiA+IMKgwqDCoMKgIH0KPiA+IH0KPiA+IAo+ID4gdG8gZ2V0IGEgdmFsdWU6IChzaW1wbGlmaWVk
+IGZvciBicmV2aXR5L2NsYXJpdHkpCj4gPiByZWNlaXZlIHNvbWUgc2FtcGxlcyBvZiBjaGFubmVs
+IGEgYW5kIGNoYW5uZWwgYgo+ID4gQSA9IGZmdChhKQo+ID4gQiA9IGZmdChiKQo+ID4gYWluZGV4
+ID0gZmluZCB0aGUgaW5kZXggb2YgdGhlIHRvbmUgaW4gQSAoYnkgbG9vcGluZyB0aHJvdWdoIHRo
+ZQo+ID4gdmFsdWVzCj4gPiBvZiB0aGUgbWFnbml0dWRlIG9mIEEpCj4gPiBiaW5kZXggPSBmaW5k
+IHRoZSBpbmRleCBvZiB0aGUgdG9uZSBpbiBCIChieSBsb29waW5nIHRocm91Z2ggdGhlCj4gPiB2
+YWx1ZXMKPiA+IG9mIHRoZSBtYWduaXR1ZGUgb2YgQikKPiA+IGVuc3VyZSB0aGF0IHRoZSB0b25l
+IGlzIGF0IHRoZSBleHBlY3RlZCBmcmVxdWVuY3kgZm9yIGJvdGggY2hhbm5lbHMKPiA+IFIgPSBC
+W2JpbmRleF0gLyBBW2FpbmRleF07Cj4gPiBSZGIgPSAyMCAqIGxvZzEwKHN0ZDo6YWJzKFIpKTsK
+PiA+IFJwaGFzZSA9IHN0ZDo6YXJnKFIpKjE4MC9NX1BJOwo+ID4gCj4gPiBSZXNwZWN0ZnVsbHks
+Cj4gPiBEdXN0aW4KPiA+IAo+ID4gCj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+ID4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiA+IFVTUlAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tCj4gPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
+dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiBEbyB0aGUgdW5leHBlY3RlZCBwaGFz
+ZSBvZmZzZXRzIG9ubHkgb2NjdXIgb3ZlciBjZXJ0YWluIGZyZXF1ZW5jeQo+IHJhbmdlcyAKPiBv
+ciBvdmVyIHRoZSB3aG9sZSBzY2FuIHJhbmdlPwo+IAo+IAo+IAo+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QK
+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFp
+bG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQoKCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlz
+dApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
+YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
