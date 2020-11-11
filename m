@@ -2,52 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 659C12AF85D
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Nov 2020 19:44:13 +0100 (CET)
-Received: from [::1] (port=50338 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CAD82AF8C2
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Nov 2020 20:14:51 +0100 (CET)
+Received: from [::1] (port=50514 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kcv3c-00070L-PX; Wed, 11 Nov 2020 13:41:24 -0500
-Received: from mail-vs1-f52.google.com ([209.85.217.52]:33000)
+	id 1kcvZw-0000DQ-QY; Wed, 11 Nov 2020 14:14:48 -0500
+Received: from mail-qk1-f172.google.com ([209.85.222.172]:38421)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <koncept1@gmail.com>) id 1kcv3D-0006vk-PU
- for usrp-users@lists.ettus.com; Wed, 11 Nov 2020 13:40:59 -0500
-Received: by mail-vs1-f52.google.com with SMTP id z123so1752732vsb.0
- for <usrp-users@lists.ettus.com>; Wed, 11 Nov 2020 10:39:49 -0800 (PST)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kcvZs-0008Ut-Eg
+ for usrp-users@lists.ettus.com; Wed, 11 Nov 2020 14:14:44 -0500
+Received: by mail-qk1-f172.google.com with SMTP id 11so2807053qkd.5
+ for <usrp-users@lists.ettus.com>; Wed, 11 Nov 2020 11:14:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1vTsDfU6c462rlH6kQMym0/pGEmAtXvLdcJ4HOYqIS4=;
- b=YT5cVOc5VcyZIkUe2HgX4vkGkPcW6HhPNQtPPXbFItySB9VP5E8kumactaYxDlwRET
- UX0vX/0fcLBj439lrGaMlg+lXuiOWCDNlPyJq5on6wE3N4k1Hxy0BrxPYsY505lDvDu/
- CCRFjfE7ktFht8Du5bWwkETAx2Kfthzmh3hwM7JnaoP+bgMETdAfORHqhb9i7sJ4dEQc
- eSEbvxviuU58WvhIuDDEvHoKfYbUAn89vU1sBVS7SZsX83yzzjARMJMeoZjSAxwsHp9E
- 3tJOPx4L1TA7wTIC5+YqTND9c4q0YN8k3KXicYEdazj/BF0XyKZQ41Eu6eGsRGg+LMvu
- 0VxQ==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=eYNENfWkqYAb98Zm1XbH3NyoXR0K/weGL7cuvGwiMnM=;
+ b=tPEQmM9KrQJe/PywcsU5x/vcqOYyEw/u0mGwnv1AAZIRW2cRDVFENoCndQqAGx8AJY
+ YQCi9qwjLV8KqiSzknLg60M1+CmDz3q1uFUlT47ovCDP2vNBQoV2k9fsA1zp/F+/vU+v
+ TulHy9ddMVUeEkdvoiWAkA1xsrADiO5J4mb/Cgr/o930O6uNRuZ6f1zXMBNSX5rv1De2
+ 6DtvPZyBrsew1QfoLmeonaYhpesX9aezhuL7aNqaABqOiUKkD+3VlpZ5bbj5hcUaFOTs
+ zwqxxteFXPjqaXtU8UZbb/USGi+/D74ad0tO4jW3A4BY6pID7+75LQVew5xOn0fPuTyg
+ pg1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=1vTsDfU6c462rlH6kQMym0/pGEmAtXvLdcJ4HOYqIS4=;
- b=YCJJ5p3qVYh6jalaNa+UOtg/jSILGJiSARUS9AMm18/W2ijvmatJonj0wFiAovFJNi
- 7469MaS2zJc7RCoswwJ7ska+DmGRBI2junAs6rYGb7wev9wvSsNC+VHQkCzmq9s1byNh
- E/1Q9IU7Me335/u9lTcWeRoYsd+yju77UgIylwbAbwQHLxUqdeo0knGlzHX/8+vTtrhC
- M+sI1U0PhvTR5lLwIcO7Cp3/V7Yq+KbJy7SvryoRa+YIavmg9yXn71Lzb4pIGKmFp/cj
- /1gU7w2RvLp5wVfgtOBCuWq53THXaal9cHbhct390/ZBDNA+biOMYy8ClqmC/Khow3kd
- vZNA==
-X-Gm-Message-State: AOAM530QTO/1poKvMqeY+hpjSiP+tKJOnfy9hopYM6OjtlpTnXEcYOwU
- YdQd6VZlgNMj3rcuCaG359cbXCXN1oipW7u02ks=
-X-Google-Smtp-Source: ABdhPJxXzUFclwDKRAcC++fqv/nGmKD1NbvNW2hwluKg7UdGhtve7toUt4LTn4z2yFsbLC1S8rFpqR4VLETjTB4E+mI=
-X-Received: by 2002:a67:1e02:: with SMTP id e2mr15655741vse.59.1605119958872; 
- Wed, 11 Nov 2020 10:39:18 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=eYNENfWkqYAb98Zm1XbH3NyoXR0K/weGL7cuvGwiMnM=;
+ b=muJVRua4qWzxhjVmSjCAdNY7nQAkS12OfLhr1VzcWqB7GJwJudJvEzdmHMWA8j5fXc
+ o4ac383K9t2BqSiNwVpWtZY54GYxllbojVnyfqeCnZCCWrNdPYOUhlRTii2fuN3XIOph
+ I/vLtWzW+WI0iPx19PDi3RJ0paWS54HSlKpO9z0pIDVMMwe8Wr+d/OTcrHbhseHPrRAw
+ HRLQ5ld0hChWfUcMIvXxQz6Sl6T2BkMfFkXFz6uoAyrlp/CigNATHB3zoZ2X1gz8eZ81
+ Xagq56K9BObNIn0QfEPDUxneoc2NsqlZ7+7TIseaC0CjBGCwwnEkxlvE4p9bcGtErsci
+ 6wnQ==
+X-Gm-Message-State: AOAM531tRHz7gJBLxd4CDF6Plr3ZFv+aqkizoo9tvA9b22rpKAjmU8+P
+ TkjP+AgqXvCFkwKJ2igg26G4zW4uGvU=
+X-Google-Smtp-Source: ABdhPJyD/oAvSAC1utjP3XuntTBYv8hbkgHXRT9EsZayQXWeBfzOTKQGu6L0YBGY6uA9cCoulT+pSQ==
+X-Received: by 2002:a37:6451:: with SMTP id y78mr5157283qkb.500.1605122043642; 
+ Wed, 11 Nov 2020 11:14:03 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id e22sm2782398qtq.38.2020.11.11.11.14.03
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 11 Nov 2020 11:14:03 -0800 (PST)
+Message-ID: <5FAC37FA.1060605@gmail.com>
+Date: Wed, 11 Nov 2020 14:14:02 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
- <CAGNhwTMz2w-kD=a4m9EeLHqsXP9cKgXhok+jsW1Tu=einSvgyQ@mail.gmail.com>
-In-Reply-To: <CAGNhwTMz2w-kD=a4m9EeLHqsXP9cKgXhok+jsW1Tu=einSvgyQ@mail.gmail.com>
-Date: Wed, 11 Nov 2020 13:39:07 -0500
-Message-ID: <CAKx8PBgNoL6bAf8o-hXr0HnJnNaAj5XknPF5RPamY3Cs_hYCEg@mail.gmail.com>
-To: Michael Dickens <michael.dickens@ettus.com>
-Cc: USRP list <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] meta-ettus-v4.0.0.0 segfault
+To: usrp-users@lists.ettus.com
+References: <35ae5da8ab09a4c3bbb77d059d775a91b98d4c9b.camel@virginia.edu>
+In-Reply-To: <35ae5da8ab09a4c3bbb77d059d775a91b98d4c9b.camel@virginia.edu>
+Subject: Re: [USRP-users] twinrx consistent phase offset
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,9 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ben Magistro via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ben Magistro <koncept1@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6414057285297434946=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,155 +84,108 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6414057285297434946==
-Content-Type: multipart/alternative; boundary="000000000000f87be105b3d91cd2"
-
---000000000000f87be105b3d91cd2
-Content-Type: text/plain; charset="UTF-8"
-
-Adding some more data points.
-
-1) I've been trying to rebuild meta-ettus-v4 with debug enabled but am
-hitting an issue with image size and can't seem to get past that.  It says
-I should increase `MENDER_STORAGE_TOTAL_SIZE_MB` if the actual size is
-larger but increasing this seems to have no effect.  I am using the ettus
-docker image for oe-builder with the command
-`./meta-ettus/contrib/build_imgs_package.sh e310_sg3 v4.0.0.0`.  For the
-debug portion I've added a few lines to `build/conf/local.conf` to add the
-packages.  I'm open to suggestions to build the image with debug symbols
-and provide additional feedback.
-
-2) I put together a simple flowgraph, UHD source --> frequency xlating fft
---> null sink.  This also segfaults, no guarantees that I got the
-parameters correct.
-
-3) Since the issues seem to be with fftw, I decided to try building my own
-copy of fftw mostly to get debug symbols and continue troubleshooting.  For
-this I used `./configure --enable-debug --enable-shared --enable-threads
---enable-float` and `make CFLAGS="-ggdb"`.  These options are best guesses
-right now since I didn't look at the layers to see what parameters it is
-using (assuming it is in one of the layers).  Using this build with `export
-LD_LIBRARY_PATH=/usr/local/lib/` I do not get a segfault with gr-ais or the
-above flowgraph but I also don't get the expected output which makes me
-question the parameters I used to build it.  Output wise I get a string of
-"D" or "O" to the console.
-
-Thanks
-
-Ben
-
-On Thu, Nov 5, 2020 at 9:22 AM Michael Dickens <michael.dickens@ettus.com>
-wrote:
-
-> Hi Ben - This issue has been reported to R&D internally. If you wish to
-> create a public-facing UHD issue on our Github tracker please go ahead & do
-> so, and tag me on it so that we can keep track of it internally. - MLD
+On 11/11/2020 11:26 AM, Dustin Widmann via USRP-users wrote:
+> Hi usrp-users!
 >
-> On Wed, Nov 4, 2020 at 11:25 PM Ben Magistro via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
+> I'm still relatively inexperienced with working with UHD and USRP
+> radios in general, but I feel like I'm getting better. Anyhow, I have
+> *several* questions, but I'll start with one.
 >
->> Is anyone else using meta-ettus-v4.0.0.0 yet?  if so, have you had any
->> issues with libfftw?
->>
->> Using the image on an E310, adding a single OOT module (gr-ais) and
->> trying to run an app distributed with it, the app segfaults.  To further
->> troubleshoot, I added gdb and it comes back with the following.  I have a
->> separate development host that has gnuradio 3.8 setup using pybombs and do
->> not experience this issue there.
->>
->> Thread 1 "python3" received signal SIGSEGV, Segmentation fault.
->> 0xb6947836 in ?? () from /usr/lib/libfftw3f.so.3
->>
->> To compile, I've needed to override PYTHON_EXECUTABLE as it points to a
->> non-existent path in /home/oe-builder.... in
->> /usr/lib/cmake/gnuradio/GnuradioConfig.cmake.  To run I also needed to
->> define LD_EXPORT_PATH pointing to /usr/local/lib/.
->>
->> Thanks in advance.
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
+> Setup:
+> USRP X310 Radio: A:UBX, B:TwinRX
+> If you're familiar with a "reflectometer", it's setup like that. If
+> not, the simplest sufficient test setup for this problem would be to
+> wire the UBX TX to a resistive splitter, to both ports of the TwinRX.
+> How the software works is very simple: the transmitter is tuned to a
+> frequency, transmit value is a tone at 0Hz (transmit an array of '1's),
+> receiver is tuned to a nearby frequency and the tone is observed on
+> both channels. The value of interest is the ratio of the value of the
+> tone of the two channels. The objective is to quickly and accurately do
+> this in a sweep across ~50MHz-6GHz.
 >
+> UHD version: UHD_4.0.0.0-1-gcf570707
+> What I expect: the phase difference between the two channels at any
+> given frequency to be consistent from run-to-run.
+> What I see: I can usually get consistent results, but sometimes I see
+> 90,180,270 degree offsets instead.
+>
+> I expect the relevant section to this problem to be when and how I
+> handle tuning, so I've included that below:
+>
+> The tune function: (simplified for brevity/clarity)
+> _setFrequency(double freq) {
+>      double rx_freq = 0; int closest_idx = 0; double tx_freq = freq;
+>      bool tx_tuned = false; bool rx_tuned = false;
+>      // loop to get closest freq in a predefined list ;
+>      // the idea is to tune the receiver much less often because
+>      // it seems to take a lot longer due to the need to use timed
+>      // commands
+>      for (int idx = 0; idx < _freq_list.size(); idx++) {
+>          if (std::abs(freq - _freq_list[idx]) < std::abs(freq-rx_freq)){
+>              closest_idx = idx;
+>              rx_freq = _freq_list[idx];
+>          }
+>      }
+>      if (tx_freq == rx_freq) {
+>          // (crudely) avoid tuning rx to exactly the same freq as tx
+>          tx_freq += 50e3;
+>      }
+>      if (_current_tx_freq != tx_freq) {
+>          _usrp->clear_command_time(); // tune tx immediately
+>          auto tx_req = uhd::tune_request_t(tx_freq);
+>          _usrp->set_tx_freq(tx_freq,0);
+>          _current_tx_freq = tx_freq;
+>          tx_tuned = true;
+>      }
+>      if (_current_rx_freq != rx_freq)
+>      {
+>          _usrp->clear_command_time();
+>          _usrp->set_command_time(_usrp-
+>> get_time_now()+uhd::time_spec_t(0.100));
+>          _usrp->set_rx_freq(rx_freq,0);
+>          _usrp->set_rx_freq(rx_freq,1);
+>          _delay_ms(250); // delay, but keep event loop alive
+>          // tune again, because it seems to help
+>          _usrp->clear_command_time();
+>          _usrp->set_command_time(_usrp-
+>> get_time_now()+uhd::time_spec_t(0.100));
+>          _delay_ms(250);
+>          _usrp->clear_command_time();
+>          rx_tuned = true;
+>          _current_rx_freq = rx_freq;
+>      }
+>      if (tx_tuned and not rx_tuned) {
+>          _delay_ms(50);
+>      }
+> }
+>
+> to get a value: (simplified for brevity/clarity)
+> receive some samples of channel a and channel b
+> A = fft(a)
+> B = fft(b)
+> aindex = find the index of the tone in A (by looping through the values
+> of the magnitude of A)
+> bindex = find the index of the tone in B (by looping through the values
+> of the magnitude of B)
+> ensure that the tone is at the expected frequency for both channels
+> R = B[bindex] / A[aindex];
+> Rdb = 20 * log10(std::abs(R));
+> Rphase = std::arg(R)*180/M_PI;
+>
+> Respectfully,
+> Dustin
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+Do the unexpected phase offsets only occur over certain frequency ranges 
+or over the whole scan range?
 
---000000000000f87be105b3d91cd2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Adding some more data points.</div><div><br></div><di=
-v>1) I&#39;ve been trying to rebuild meta-ettus-v4 with debug enabled but a=
-m hitting an issue with image size and can&#39;t seem to get past that.=C2=
-=A0 It says I should increase `MENDER_STORAGE_TOTAL_SIZE_MB` if the actual =
-size is larger but increasing this seems to have no effect.=C2=A0 I am usin=
-g the ettus docker image for oe-builder with the command `./meta-ettus/cont=
-rib/build_imgs_package.sh e310_sg3 v4.0.0.0`.=C2=A0 For the debug portion I=
-&#39;ve added a few lines to `build/conf/local.conf` to add the packages.=
-=C2=A0 I&#39;m open to suggestions to build the image with debug symbols an=
-d provide additional feedback.</div><div><br></div><div>2) I put together a=
- simple flowgraph, UHD source --&gt; frequency xlating fft --&gt; null sink=
-.=C2=A0 This also segfaults, no guarantees that I got the parameters correc=
-t.</div><div><br></div><div>3) Since the issues seem to be with fftw, I dec=
-ided to try building my own copy of fftw mostly to get debug symbols and co=
-ntinue troubleshooting.=C2=A0 For this I used `./configure --enable-debug -=
--enable-shared --enable-threads --enable-float` and `make CFLAGS=3D&quot;-g=
-gdb&quot;`.=C2=A0 These options are best guesses right now since I didn&#39=
-;t look at the layers to see what parameters it is using (assuming it is in=
- one of the layers).=C2=A0 Using this build with `export LD_LIBRARY_PATH=3D=
-/usr/local/lib/` I do not get a segfault with gr-ais or the above flowgraph=
- but I also don&#39;t get the expected output which makes me question the p=
-arameters I used to build it.=C2=A0 Output wise I get a string of &quot;D&q=
-uot; or &quot;O&quot; to the console.</div><div><br></div><div>Thanks</div>=
-<div><br></div><div>Ben<br></div></div><br><div class=3D"gmail_quote"><div =
-dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 5, 2020 at 9:22 AM Michael Dic=
-kens &lt;<a href=3D"mailto:michael.dickens@ettus.com">michael.dickens@ettus=
-.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi Ben - This issue has been reported=
- to R&amp;D internally. If you wish to create a public-facing UHD issue on =
-our Github tracker please go ahead &amp; do so, and tag me on it so that we=
- can keep track of it internally. - MLD<br><br></div><div class=3D"gmail_qu=
-ote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Nov 4, 2020 at 11:25 PM =
-Ben Magistro via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Is any=
-one else using meta-ettus-v4.0.0.0 yet?=C2=A0 if so, have you had any issue=
-s with libfftw?<br></div><div><br></div><div>Using the image on an E310, ad=
-ding a single OOT module (gr-ais) and trying to run an app distributed with=
- it, the app segfaults.=C2=A0 To further troubleshoot, I added gdb and it c=
-omes back with the following.=C2=A0 I have a separate development host that=
- has gnuradio 3.8 setup using pybombs and do not experience this issue ther=
-e.<br></div><div><br></div><div>Thread 1 &quot;python3&quot; received signa=
-l SIGSEGV, Segmentation fault.<br>0xb6947836 in ?? () from /usr/lib/libfftw=
-3f.so.3</div><div><br></div><div>To compile, I&#39;ve needed to override PY=
-THON_EXECUTABLE as it points to a non-existent path in /home/oe-builder....=
- in /usr/lib/cmake/gnuradio/GnuradioConfig.cmake.=C2=A0 To run I also neede=
-d to define LD_EXPORT_PATH pointing to /usr/local/lib/.</div><div><br></div=
-><div>Thanks in advance.<br></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-</blockquote></div>
-
---000000000000f87be105b3d91cd2--
-
-
---===============6414057285297434946==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6414057285297434946==--
-
