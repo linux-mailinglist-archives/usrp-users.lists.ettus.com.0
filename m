@@ -2,53 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 470962AE4A2
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Nov 2020 01:07:11 +0100 (CET)
-Received: from [::1] (port=43034 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E4C2AE52F
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Nov 2020 01:58:16 +0100 (CET)
+Received: from [::1] (port=43376 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kcdfI-0005xl-Do; Tue, 10 Nov 2020 19:07:08 -0500
-Received: from mout.gmx.net ([212.227.17.22]:42411)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1kcdfE-0005pL-1g
- for usrp-users@lists.ettus.com; Tue, 10 Nov 2020 19:07:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1605053182;
- bh=EPuot9oloqXQM/505Dw8rGf1u008qP8eLbc+PQSUk7I=;
- h=X-UI-Sender-Class:From:To:Subject:Date:In-Reply-To:References;
- b=DgYi9cF7iDMVmHAEORRrqy1BAoxmAwg3RnfmP/Xexew3iJoMew5ZyL45mAEo1Uat3
- K+FBXk+WKv5BVA96KSZ9FWYItslOlxKZ6x1X+I6grlq0J++O2WOfzTEKQEs5FbRSTS
- sNaRtCf0cT1g2QAVwPBOhZSCe1q30ovTvZcRf7Ck=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [216.46.11.210] ([216.46.11.210]) by web-mail.gmx.net
- (3c-app-gmx-bs25.server.lan [172.19.170.77]) (via HTTP); Wed, 11 Nov 2020
- 01:06:22 +0100
+	id 1kceSk-0000SQ-BA; Tue, 10 Nov 2020 19:58:14 -0500
+Received: from mail-qk1-f180.google.com ([209.85.222.180]:44222)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kceSg-0000Jt-PG
+ for usrp-users@lists.ettus.com; Tue, 10 Nov 2020 19:58:10 -0500
+Received: by mail-qk1-f180.google.com with SMTP id d28so217037qka.11
+ for <usrp-users@lists.ettus.com>; Tue, 10 Nov 2020 16:57:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=R6kKB4CaxX7Q4VTDDxie/eUhViPDE5QdhRWHdckdpAw=;
+ b=n3dWOPXz7HPoKZcglBoOykshk7ryzVPy8leFA2+Dy2dx4PIz0mWabDF7SupmPRJAN3
+ P6dmAPCskb7RfjXeMesI+0oUKVKz9v0zzxQ7Nljvoc91zLmz6qgVfvf8fBkCC50U8HrT
+ Yw0bgVTKBPBryNpTwytX3fMpT+bRK5m28zsyo5C8+RfX8gQ6KsXx6cUDOib3kj/HZS/k
+ a7W/iKesUNtwfPKIRNT1610xX/jbXQjDqi2ayBByzs7m97cXyuHjIIgijmM8NFSbxi3r
+ oMFCicyEwWLWZYj4wmgTVL/lwhXfzJeZrPNhckTBlGRlpCKw2PCTsyZkYq3yxheQZ7JN
+ F3vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=R6kKB4CaxX7Q4VTDDxie/eUhViPDE5QdhRWHdckdpAw=;
+ b=QddCj4V4bPQSA/WRKf29ToYRj/xEtOuXjoQ6wxofG7h0wCQDkC6izcL3mYi/t1DVp3
+ cyE446GPdrnva9KaOtFGfxjy0hXdz25tEg3MsxGjfW4QoX2nK/r/KZhGP1H8JIuvk3e2
+ fk+9hElBCibCOwuxZy/Y4Yko0WxAipscdRbH3D2uXe/9jYsqtdOPWT83FhW2btMfavpi
+ 5VZaXg/80V3d6FSwHdul0ykFYpPh/pIzNbQ/d/V1TvQ5ET2Om82aF/DCX6JQmpTLp6I/
+ ZUpmpg5wPrnvZbWwWIPHwsvvD7YH7r9qLct0/aySFthgAKAwyOQQONi19+QB5LTr3BQ5
+ TvEg==
+X-Gm-Message-State: AOAM530IPj12Y1VTnrsqoF8nRdHpPPlsl2H6ZyywYU4j872baSwlc5dZ
+ GHtMTIVon6p6N44+VD6L0F4zEP4+Z/w=
+X-Google-Smtp-Source: ABdhPJwbCs5wrf6e486sgEzN4gWM8pm14935Sl5M4wLuEKmgd0mps8zDQMVgFpVzr7TB7IDJTXnasA==
+X-Received: by 2002:a37:ae07:: with SMTP id x7mr19692180qke.299.1605056250068; 
+ Tue, 10 Nov 2020 16:57:30 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id t65sm588811qkc.52.2020.11.10.16.57.29
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 10 Nov 2020 16:57:29 -0800 (PST)
+Message-ID: <5FAB36F8.7000003@gmail.com>
+Date: Tue, 10 Nov 2020 19:57:28 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Message-ID: <trinity-33c8f7bb-57cb-4bec-88b6-bf569d11f29a-1605053182553@3c-app-gmx-bs25>
 To: usrp-users@lists.ettus.com
-Date: Wed, 11 Nov 2020 01:06:22 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <mailman.63.1605027605.18432.usrp-users_lists.ettus.com@lists.ettus.com>
 References: <mailman.63.1605027605.18432.usrp-users_lists.ettus.com@lists.ettus.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:vbCWgTdQDsJ5FqPN3L1oBZ4Tvli+B6j4lxEr+NQAlYZGHB57noj2BN2B3gGeNF4KaLkkV
- NUwoBEUc+NzTqLsUCBRghK5O5gOrgXfxTZxxN/RGZDBKfZbFCrmQsBSTpaG+bA12C4iMZuKby225
- YMGdWk+alUPsmyBrVkOpBYjE96bDlMtVAK/1WCJM+YKX9lX6+05HROyey2wgiMN9CinVoH8dmGtb
- DoYee/u4NMVcsCy4JRQEDS2UHMNLLmhH9uxifL3PbkF28fr4/bztJtLbrcnlVkLm0KAHB/2PwpS3
- /A=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:EXXb93kpJZk=:ur5wF5Z3U5rxeu4hGyPb4E
- NJQ61NBZbX8Wh6iCzlt5Yay7sFNQhz6txBTrJrx2cXVlfT6m+mNVWJU1hWXeK175yTkuACQSO
- VGqp6BQCaphbRB8+Jj9d/jac29tqmsHV0zQQkH0ZzSfC/51Rh9mhNYK177vV3da50bGBgd7Di
- enXZSqbw7EAv60Fz3uMty/k5+8DFuqJ/y7/qanz0Br85VM47B2Whn9zGPCM7fGpxTslHGkBg/
- 61Numj7NMPYjsH8BSyzSPD+ZZMe0kORNjRerKW40wyNOr4q0ymaSoiOzWNexdUskBKaJdxgmQ
- vCOPimNdUmgzOeVqFvMz28u6XrZVlgVq2+SPnEQLjajfDTodUWLoW5C6YWBcCrSmfH5q2txzN
- sTuWm3tu/1GGwNwSY7akyQBjm6x40mgy3IC4SnwyYiKTPd05UCigHmuAbzLCSNLw91NqOkjIY
- qNhChisRaAyeONG637PFeoFM8pPFIbhHmOhdThv2vOSptw7RHpPDOHVaYVkJJUnRENh5UxfQP
- YmnQdNPX/gI5VxADcLvPanCdUpIp9wIsqZSCM+GhUToz5lA9MFB8T7gRafLYVWjaYnvQrP3hn
- U+yt+TiIF/3cs=
+ <trinity-33c8f7bb-57cb-4bec-88b6-bf569d11f29a-1605053182553@3c-app-gmx-bs25>
+In-Reply-To: <trinity-33c8f7bb-57cb-4bec-88b6-bf569d11f29a-1605053182553@3c-app-gmx-bs25>
 Subject: Re: [USRP-users] How exactly is "Receiver Gain" defined?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -61,10 +68,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
-Content-Type: text/plain; charset="us-ascii"
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,42 +85,37 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi,
-
-> > From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-> > On 11/05/2020 06:42 PM, Lukas Haase via USRP-users wrote:
-> > > Hi,
-> > >
-> > > I m studying:
-> > >
-> > > https://files.ettus.com/performance_data/ubx/UBX-without-UHD-corrections.pdf
-> > > [...]
-> > > Would be great if someone could confirm.
-> > > [...]
-> >
-> > The only way you can relate the dB values in your FFT display to
-> > power-as-seen-at-the-RF-connector is using an external calibration source,
-> >    and you'll have to do this exercise over your entire expected
-> > operating-parameter space.  RF analog components will NOT provide exacty
-> >    the same gain/loss levels across their entire operating range.
+On 11/10/2020 07:06 PM, Lukas Haase via USRP-users wrote:
 >
-> Yes, I am aware of that but my question related specifically to https://files.ettus.com/performance_data/ubx/UBX-without-UHD-corrections.pdf because I want to sanity-check my measurements (and I want to know how much off I am compared to the figures).
+> The reason why I am asking about this is because I would like to cross-check my measurements.
+>
+> My original question was about RX gain but it actually also relates to TX gain.
+>
+> With an X310 and UBX-160, TX Gain=0 and sending out a full-scale sinusoid at 915MHz, I measure approx. -2.5dBm.
+>
+> This is not consistent at all with the file above (assuming I interpret how "gain" is defined correctly, hence my original question).
+>
+> Would anyone with an UBX-160 be so kind to confirm/disconfirm which power level I would expect to see?
+>
+> (Preferably at 915MHz with TXgain=0 and full-scale sinusoid but I'm happy with any other configuration that I can x-check).
+>
+> Thank you!
+> Lukas
+So, according to the charts, at 900Mhz, you'd expect about -9dBm with a 
+0dB gain setting, with a full-scale baseband signal.
 
-The reason why I am asking about this is because I would like to cross-check my measurements.
+So, there's a discrepancy of about 6.5dB.  How did you measure the power 
+level?   I could easily expect a couple of
+   dB discrepancy just due to component batch-to-batch variability.    
+So, how was the power measured?
 
-My original question was about RX gain but it actually also relates to TX gain.
 
-With an X310 and UBX-160, TX Gain=0 and sending out a full-scale sinusoid at 915MHz, I measure approx. -2.5dBm.
-
-This is not consistent at all with the file above (assuming I interpret how "gain" is defined correctly, hence my original question).
-
-Would anyone with an UBX-160 be so kind to confirm/disconfirm which power level I would expect to see?
-
-(Preferably at 915MHz with TXgain=0 and full-scale sinusoid but I'm happy with any other configuration that I can x-check).
-
-Thank you!
-Lukas
-
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
 
 _______________________________________________
