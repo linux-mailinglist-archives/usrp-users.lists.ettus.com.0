@@ -2,60 +2,101 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F8F42AE71D
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Nov 2020 04:32:15 +0100 (CET)
-Received: from [::1] (port=44186 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9722AF328
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Nov 2020 15:11:02 +0100 (CET)
+Received: from [::1] (port=48430 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kcgrk-0006Nw-HT; Tue, 10 Nov 2020 22:32:12 -0500
-Received: from mail-qk1-f172.google.com ([209.85.222.172]:36876)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kcgrg-0006HU-L7
- for USRP-users@lists.ettus.com; Tue, 10 Nov 2020 22:32:08 -0500
-Received: by mail-qk1-f172.google.com with SMTP id t191so539850qka.4
- for <USRP-users@lists.ettus.com>; Tue, 10 Nov 2020 19:31:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=ppt1GGewfH/Y997241sNMqTlVbPVoV7IopiFMLHJPb8=;
- b=jqDKXOO7kBWNjGkfY2tn3/DBz56cJX90fe41v+hTHrr+l8n79O7O6xlUhBWShr0pi7
- E1iVcqoZpvLw278QHwi0T+hMefcwuIjwRLDjRuP+9ynih+ndHaTZQ0XjtoMIuFlpBK+J
- nsR3m4ipuMYlTnyKwJ7G1RUcesgztMf1077JCCgddZRAvjt30KyY3sj3IXLvdzulBZiT
- 4TLe+UguF8Vo2fIpIobagWCuR1PPcLDyuhN2B0gsZMvBGbN6Vq6lGvGKJe8pvoqqc0Yp
- qeaOa/iGoZFS913yJdoBID84FaWW195TlYedaxJow/RlvFX01d+UewNSi1Bn/UV0JYwo
- iDVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=ppt1GGewfH/Y997241sNMqTlVbPVoV7IopiFMLHJPb8=;
- b=A1Np5ut6ZCPU+Yjg9ZR/Xq8fXHAtwbNe77QBfPN1Z0JOfWlhcbfIMueW7uyWNWfLIC
- z9GW30wolbul4pFF07HmHebQGwIx8I9FuOry3BN2b39XqiprSKIR31zC9BrxS+hMU47p
- bF7MHAJr0TT4SGpboJgr18r0sxL/dk8ni8jTM/yjC/OO792ucOjfWUZOB82gXYpYjAAn
- HHTEkkqIYY60Mes4EQyYv7Vo6WafDyie2WwwvU1Z5s37XxhaGCg+28GFJczadwKJ2PZo
- TAO8SdXZ74A6coyShPeZ58GZRFvA6qnhJn3ppVi8aNFQUlEECNpVTlp7gBYwWIRyqA3O
- tLAA==
-X-Gm-Message-State: AOAM5311cqRwWdKo+suYI/v5l5w9ZiIo8wk7Tgfcg56TrANuZrYV3rMS
- 9bGQTbx7x47CT9qhqRhoelHVv5R/bE4=
-X-Google-Smtp-Source: ABdhPJwf8k4kcTAl1tJUo/XzTtPed2t+mkoEMHIt2PROXJIXSeX4zCI41F7XT+CwcOYAHAKM81CNSQ==
-X-Received: by 2002:a05:620a:4e5:: with SMTP id
- b5mr22217869qkh.255.1605065487918; 
- Tue, 10 Nov 2020 19:31:27 -0800 (PST)
-Received: from [192.168.2.132]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.gmail.com with ESMTPSA id o125sm947014qke.56.2020.11.10.19.31.27
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 10 Nov 2020 19:31:27 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Tue, 10 Nov 2020 22:31:26 -0500
-Message-Id: <36DA0005-B768-40A3-84AA-3389DDB226AC@gmail.com>
-References: <trinity-a3dc1e9f-488c-4bb8-96af-326a936e01e1-1605063685801@3c-app-gmx-bap23>
-Cc: USRP-users@lists.ettus.com
-In-Reply-To: <trinity-a3dc1e9f-488c-4bb8-96af-326a936e01e1-1605063685801@3c-app-gmx-bap23>
-To: Lukas Haase <lukashaase@gmx.at>
-X-Mailer: iPhone Mail (18A8395)
-Subject: Re: [USRP-users] How exactly is "Receiver Gain" defined?
+	id 1kcqpr-0001cR-TM; Wed, 11 Nov 2020 09:10:55 -0500
+Received: from mailserver1a.caci.com ([204.194.77.24]:12051)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <prvs=5779b1060=william.brophy@caci.com>)
+ id 1kcqpn-0001XK-BT
+ for usrp-users@lists.ettus.com; Wed, 11 Nov 2020 09:10:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=caci.com; i=@caci.com; q=dns/txt; s=caci;
+ t=1605103851; x=1636639851;
+ h=from:to:subject:date:message-id:mime-version;
+ bh=Onr5oU3ksOSqdz/RdCiBbaMTQScS7g24OAtHwhnJtRY=;
+ b=q0LbcqbQPQNES6gODzoT/Xu01IDTn7npPQu/uNTGnW6fXPLuWU+KVsOw
+ NiNxJbUrzk14q0O73YyWiNVphhJm0IyR71lP7ZKjVBPN7hQALuiPLrEd5
+ tXzmPzXDAZAHvyanHfJCqv14lFXir/CeJqbOdwwTSN9k2KFHX+FeS6rrn
+ IeudliFftcp2ASeP3ozb6Usoc9W7ZQnnz7o7bENROoIABe3CxSPtI68zj
+ nhDYMPx8utBduGLG7fWColUW/SAmAylwPRygf4lIqnd76wuvZDuih5roC
+ 4aT7EyAZZ6lcXT+VFAoqHF+0te5flIfkmstJjD1j0G5O94h2znsTCnpwP A==;
+IronPort-SDR: 90+UUpHlVrlx1WVZ2ntPmzf0mv1uNi3HMYZvRnTzjtzU2/hJiMs46qCnUa0TdZRSZVwLPVlALk
+ 9QUSurVja5dQ==
+X-IronPort-AV: E=Sophos;i="5.77,469,1596513600"; d="scan'208,217";a="3001235"
+Received: from cisexcasmb03-1a.caci.com ([10.201.50.155])
+ by mailserver1a.caci.com with ESMTP/TLS/ECDHE-RSA-AES128-SHA256;
+ 11 Nov 2020 09:10:10 -0500
+Received: from CISEXCASMB03-2A.caci.com (10.201.50.156) by
+ CISEXCASMB03-1a.caci.com (10.201.50.155) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 11 Nov 2020 09:10:10 -0500
+Received: from USG02-CY1-obe.outbound.protection.office365.us (10.201.136.40)
+ by CISEXCASMB03-2A.caci.com (10.201.50.156) with Microsoft SMTP
+ Server (TLS)
+ id 15.0.1497.2 via Frontend Transport; Wed, 11 Nov 2020 09:10:10 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=jtKzbpcIU8GTNORJdcsNfxeMM0GKHfO/hiuTEEXF0QYrhMzyxf7DRznJKdDBOkUBAHaQ72O1O9IXMoxRsP8AxtJIVPtYS5XlxoN9CavJP77TIDVONK69IJcXiDaX1K/HzDOK01nI5TPn6cWrpdfNa8HtifHYC7lbcaIaVMqHacYFhU2tcr78e7sOBv+4Dq+281u+nDKov/qOUcgS2WyZ5FXC+zVxtZG6fY8lIUPgpXZpPu1VdIRrOszl1uA+IXHGhhcP8XIoMrx8um1iN9ziwOhSM3xPQGcdeEF/PUtAUqCb4gOYLpDZqqsF7R0kXb6+aEvuyc6rwAyd15zvSYMwcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector5401;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Onr5oU3ksOSqdz/RdCiBbaMTQScS7g24OAtHwhnJtRY=;
+ b=x5zy1+e/bZQOZ1tgz2Yi0v4OW8WgUSXFxlEmv0bJ9YKH4YsgB5pJfyEiT0l6husWD/bsJ45O/anf0A4gWRRnFoOZkVY2QL95s3bbghrpHDIvhlC9XZP5VtfiGq5/PsMEQAmG38SkcZ3lZrytB53qKpG9IW6bWUPUq+sxsIMX0lX5SDnFtRxLhbOr4EDzNF5e7pWrqCuuqFgPDukZVPiIDsKkrZPKXgT9ZUXcAY20mLDVnaTA9ySjUdJLsvDPbgQMIwPsruj0APHJvttzkaeYWmfd1M6+bLXBndXOuUouC/in7+cgo43vXwqOiEDIZgP/jJftY6sV3VbOToKftIIS8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=caci.com; dmarc=pass action=none header.from=caci.com;
+ dkim=pass header.d=caci.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=caci.onmicrosoft.com; 
+ s=selector1-caci-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Onr5oU3ksOSqdz/RdCiBbaMTQScS7g24OAtHwhnJtRY=;
+ b=Oh7Yjfqq10WJSrGZvWe8kdXZzyoS9bo9GB3j+Xlz+gUrbeiMHJC0OmskwwRayK5Jg4re6znUgM47QOeN0SrPbFkwehlvvQ+R55ozCjimfFhhBi3LAW1gZ32HxWB9YYZRVKopuP+Pwx279ow37s69o3Nz5/wUq7Rjo4NaR/qfAiY=
+Received: from CY1P110MB0424.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:402::17)
+ by CY1P110MB0534.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:404::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.25; Wed, 11 Nov
+ 2020 14:10:08 +0000
+Received: from CY1P110MB0424.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::8173:ceb9:773:5888]) by CY1P110MB0424.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::8173:ceb9:773:5888%10]) with mapi id 15.20.3541.025; Wed, 11 Nov 2020
+ 14:10:08 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Networking performance in CentOs7 Docker container on Windows
+Thread-Index: AQHWuDQqx8WQRc4KfUyGqOz/+y7/lw==
+Date: Wed, 11 Nov 2020 14:10:08 +0000
+Message-ID: <CY1P110MB042489AD323AC667E19D7341F6E80@CY1P110MB0424.NAMP110.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none header.from=caci.com;
+x-originating-ip: [184.75.234.226]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 075c9c28-4c9d-4767-95ba-08d8864b7f03
+x-ms-traffictypediagnostic: CY1P110MB0534:
+x-microsoft-antispam-prvs: <CY1P110MB053427EA9CFB344840422A58F6E80@CY1P110MB0534.NAMP110.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY1P110MB0424.NAMP110.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(366004)(6916009)(8676002)(26005)(2906002)(33656002)(7696005)(6506007)(498600001)(4744005)(55016002)(186003)(86362001)(52536014)(5660300002)(19627405001)(66556008)(64756008)(66446008)(83380400001)(9686003)(76116006)(71200400001)(8936002)(66476007)(66946007);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY1P110MB0424.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 075c9c28-4c9d-4767-95ba-08d8864b7f03
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2020 14:10:08.2826 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 74cf14f4-38e0-460b-9d96-c0a51cb4a55c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1P110MB0534
+X-OriginatorOrg: caci.com
+Subject: [USRP-users] Networking performance in CentOs7 Docker container on
+ Windows
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,10 +108,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: "Brophy, William A. - US via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Brophy, William A. - US" <william.brophy@caci.com>
+Content-Type: multipart/mixed; boundary="===============8848045017497708577=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,53 +124,102 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-QmFjayB5b3VyIGJhc2ViYW5kIG1hZ25pdHVkZSBkb3duIHRvIDAuOSBhbmQgdHJ5IGFnYWluLiAK
-ClNlbnQgZnJvbSBteSBpUGhvbmUKCj4gT24gTm92IDEwLCAyMDIwLCBhdCAxMDowMiBQTSwgTHVr
-YXMgSGFhc2UgPGx1a2FzaGFhc2VAZ214LmF0PiB3cm90ZToKPiAKPiDvu78qKiogKFNvIHNvcnJ5
-IGZvciBzZW5kaW5nIHRoaXMgdHdpY2UsIEkgZm9yZ290IHRvIGF0dGFjaCB0aGUgc2NyZWVuc2hv
-dCkgKioqCj4gCj4gSGkgTWFyY3VzLAo+IAo+Pj4gT24gMTEvMTAvMjAyMCAwNzowNiBQTSwgTHVr
-YXMgSGFhc2UgdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4+PiAKPj4+IFRoZSByZWFzb24gd2h5IEkg
-YW0gYXNraW5nIGFib3V0IHRoaXMgaXMgYmVjYXVzZSBJIHdvdWxkIGxpa2UgdG8gY3Jvc3MtY2hl
-Y2sgbXkgbWVhc3VyZW1lbnRzLgo+Pj4gCj4+PiBNeSBvcmlnaW5hbCBxdWVzdGlvbiB3YXMgYWJv
-dXQgUlggZ2FpbiBidXQgaXQgYWN0dWFsbHkgYWxzbyByZWxhdGVzIHRvIFRYIGdhaW4uCj4+PiAK
-Pj4+IFdpdGggYW4gWDMxMCBhbmQgVUJYLTE2MCwgVFggR2Fpbj0wIGFuZCBzZW5kaW5nIG91dCBh
-IGZ1bGwtc2NhbGUgc2ludXNvaWQgYXQgOTE1TUh6LCBJIG1lYXN1cmUgYXBwcm94LiAtMi41ZEJt
-Lgo+Pj4gCj4+PiBUaGlzIGlzIG5vdCBjb25zaXN0ZW50IGF0IGFsbCB3aXRoIHRoZSBmaWxlIGFi
-b3ZlIChhc3N1bWluZyBJIGludGVycHJldCBob3cgImdhaW4iIGlzIGRlZmluZWQgY29ycmVjdGx5
-LCBoZW5jZSBteSBvcmlnaW5hbCBxdWVzdGlvbikuCj4+PiAKPj4+IFdvdWxkIGFueW9uZSB3aXRo
-IGFuIFVCWC0xNjAgYmUgc28ga2luZCB0byBjb25maXJtL2Rpc2NvbmZpcm0gd2hpY2ggcG93ZXIg
-bGV2ZWwgSSB3b3VsZCBleHBlY3QgdG8gc2VlPwo+Pj4gCj4+PiAoUHJlZmVyYWJseSBhdCA5MTVN
-SHogd2l0aCBUWGdhaW49MCBhbmQgZnVsbC1zY2FsZSBzaW51c29pZCBidXQgSSdtIGhhcHB5IHdp
-dGggYW55IG90aGVyIGNvbmZpZ3VyYXRpb24gdGhhdCBJIGNhbiB4LWNoZWNrKS4KPiAKPj4gU28s
-IGFjY29yZGluZyB0byB0aGUgY2hhcnRzLCBhdCA5MDBNaHosIHlvdSdkIGV4cGVjdCBhYm91dCAt
-OWRCbSB3aXRoIGEKPj4gMGRCIGdhaW4gc2V0dGluZywgd2l0aCBhIGZ1bGwtc2NhbGUgYmFzZWJh
-bmQgc2lnbmFsLgo+PiAKPj4gU28sIHRoZXJlJ3MgYSBkaXNjcmVwYW5jeSBvZiBhYm91dCA2LjVk
-Qi4KPiAKPiBFeGFjdGx5LiBUaGF0J3MgYSBiaXQgdG9vIG11Y2ggZm9yIG15IHRhc3RlIGFuZCBo
-ZW5jZSBtYXliZSBteSBtZWFzdXJlbWVudCBpcyB3cm9uZy4KPiAKPj4gSG93IGRpZCB5b3UgbWVh
-c3VyZSB0aGUgcG93ZXIKPj4gbGV2ZWw/ICAgSSBjb3VsZCBlYXNpbHkgZXhwZWN0IGEgY291cGxl
-IG9mCj4+IGRCIGRpc2NyZXBhbmN5IGp1c3QgZHVlIHRvIGNvbXBvbmVudCBiYXRjaC10by1iYXRj
-aCB2YXJpYWJpbGl0eS4KPj4gU28sIGhvdyB3YXMgdGhlIHBvd2VyIG1lYXN1cmVkPwo+IAo+IEkg
-a25vdywgaWRlYWxseSB5b3UnZCB1c2UgYSBwb3dlcm1ldGVyIGZvciB0aGF0LiBCdXQgSSBkb24n
-dCBoYXZlIG9uZS4gSW5zdGVhZCBJIGhhdmUgYSBWTkEgKEFnaWxlbnQgRTUwODBBKSB3aGljaCBp
-cyBmcmVzaGx5IGNhbGlicmF0ZWQgYW5kIGhlbmNlIHRoZSBwb3dlciBtZWFzdXJlbWVudCBpcyB2
-ZXJ5IGFjY3VyYXRlICg8PDAuNWRCKS4KPiAKPiBJIHNldCB0aGUgbWVhc3VyZW1lbnQgYXMgIkIg
-U291cmNlIFBvcnQgMSIgd2hpY2ggZ2l2ZXMgZGlyZWN0bHkgdGhlIHJlY2VpdmVkIHNpZ25hbCBp
-biBkQm0uIEkgcGljayBhICJyZWFzb25hYmxlIiBJRiBiYW5kd2lkdGggKDUwa0h6KSwgMTAweCBh
-dmVyYWdpbmcsIHNhdmUgdGhlIGRCbS9mIHRyYWNlIHRvIGEgQ1NWIGZpbGUgYW5kIGltcG9ydCBp
-bnRvIE1BVExBQi4gVGhlbiBJIGludGVncmF0ZSBvdmVyIHRoZSBmcmVxdWVuY3k6Cj4gCj4gZGVs
-dGFGID0gZnJlcXVlbmNpZXMoMiktZnJlcXVlbmNpZXMoMSk7Cj4gUHRvdCA9IDEwKmxvZzEwKHRy
-YXB6KDEwLl4oUFNELzEwKS9SQlcpKmRlbHRhRik7Cj4gCj4gSSBjYW4gdmVyaWZ5IHRoYXQgdGhl
-IGludGVncmF0ZWQgcG93ZXIgaXMgcm91Z2hseSB0aGUgc2FtZSBhcyB0aGUgbWFya2VyIG9uIHRo
-ZSBmcmVxdWVuY3kuCj4gCj4gSGF2aW5nIHNhaWQgdGhhdCwgSSBqdXN0IHJlYWxpemVkIHNvbWV0
-aGluZyB2ZXJ5LCB2ZXJ5IHdlaXJkOiBXaXRoIHRoZSBVQlgtMTYwIEkgc2V0OiBmY2VudGVyPTkx
-NU1Ieiwgc2FtcF9yYXRlPTVlNiwgVFhnYWluPTAgYW5kIHNlbmQgYSBmdWxsIHNjYWxlLCBjb21w
-bGV4IHNpbnVzb2lkIHdpdGggMU1Iei4gSGVuY2UgSSB3b3VsZCBleHBlY3QgdG8gc2VlIG9uZSB0
-b25lIGF0IDkxNk1IeiBhbmQgYSBzbWFsbCBvbmUgKGR1ZSB0byBJL1EgbWlzbWF0Y2gpIGF0IDkx
-NE1Iei4gSG93ZXZlciwgaW5zdGVhZCBJIGdldCB0aGUgc3BlY3RydW0gYXR0YWNoZWQuIFRoZXJl
-IGlzIGFub3RoZXIgdG9uZSBhdCA5MTAgTUh6IGFuZCB0aGUgc3BlY3RydW0gaXMgY2VudGVyZWQg
-YXQgOTEzIE1IeiAoc2hvdWxkIGJlIDkxNSkuCj4gCj4gVGhhdCBtYWtlcyBubyBzZW5zZSEgV2hh
-dCBjb3VsZCBiZSBnb2luZyBvbiBoZXJlPwo+IAo+IFRoYW5rcywKPiBMdWthcwo+IAo+IDxFNTA4
-MEFfVUJYMTYwX091dHB1dC5QTkc+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vy
-c19saXN0cy5ldHR1cy5jb20K
+--===============8848045017497708577==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY1P110MB042489AD323AC667E19D7341F6E80CY1P110MB0424NAMP_"
+
+--_000_CY1P110MB042489AD323AC667E19D7341F6E80CY1P110MB0424NAMP_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+I am working on deploying software that uses the USRP N210 in a centos7 doc=
+ker container on windows. However we are seeing poor networking performance=
+, even with iperf. Does anyone have any experience with adjusting the netwo=
+rking configuration options for the container and windows so that we can se=
+e higher/better performance?
+
+Thanks in advance
+Will
+
+________________________________
+
+This electronic message contains information from CACI International Inc or=
+ subsidiary companies, which may be company sensitive, proprietary, privile=
+ged or otherwise protected from disclosure. The information is intended to =
+be used solely by the recipient(s) named above. If you are not an intended =
+recipient, be aware that any review, disclosure, copying, distribution or u=
+se of this transmission or its contents is prohibited. If you have received=
+ this transmission in error, please notify the sender immediately.
+
+--_000_CY1P110MB042489AD323AC667E19D7341F6E80CY1P110MB0424NAMP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hi,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I am working on deploying software that uses the USRP N210 in a centos7 doc=
+ker container on windows. However we are seeing poor networking performance=
+, even with iperf. Does anyone have any experience with adjusting the netwo=
+rking configuration options for
+ the container and windows so that we can see higher/better performance?</d=
+iv>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Thanks in advance</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Will<br>
+</div>
+<br>
+<hr>
+<font face=3D"Arial" color=3D"Gray" size=3D"1"><br>
+This electronic message contains information from CACI International Inc or=
+ subsidiary companies, which may be company sensitive, proprietary, privile=
+ged or otherwise protected from disclosure. The information is intended to =
+be used solely by the recipient(s)
+ named above. If you are not an intended recipient, be aware that any revie=
+w, disclosure, copying, distribution or use of this transmission or its con=
+tents is prohibited. If you have received this transmission in error, pleas=
+e notify the sender immediately.<br>
+</font>
+</body>
+</html>
+
+--_000_CY1P110MB042489AD323AC667E19D7341F6E80CY1P110MB0424NAMP_--
+
+
+--===============8848045017497708577==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============8848045017497708577==--
+
