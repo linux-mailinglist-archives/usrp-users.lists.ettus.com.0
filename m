@@ -2,48 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A50802AFB8D
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Nov 2020 23:48:01 +0100 (CET)
-Received: from [::1] (port=51838 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9587B2AFB95
+	for <lists+usrp-users@lfdr.de>; Thu, 12 Nov 2020 00:02:09 +0100 (CET)
+Received: from [::1] (port=51940 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kcyuD-0001ap-5Z; Wed, 11 Nov 2020 17:47:57 -0500
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:46029)
+	id 1kcz7r-0002PR-T7; Wed, 11 Nov 2020 18:02:03 -0500
+Received: from mail-qk1-f181.google.com ([209.85.222.181]:46127)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <mattlanoue22@gmail.com>)
- id 1kcyu8-0001VX-UF
- for usrp-users@lists.ettus.com; Wed, 11 Nov 2020 17:47:52 -0500
-Received: by mail-oi1-f177.google.com with SMTP id j7so4053332oie.12
- for <usrp-users@lists.ettus.com>; Wed, 11 Nov 2020 14:47:32 -0800 (PST)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kcz7o-0002Ib-8a
+ for usrp-users@lists.ettus.com; Wed, 11 Nov 2020 18:02:00 -0500
+Received: by mail-qk1-f181.google.com with SMTP id h15so3517197qkl.13
+ for <usrp-users@lists.ettus.com>; Wed, 11 Nov 2020 15:01:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=WPTKqx0UgKgQ33QA2oUVHlGcPBLVnBr4wLOLrnqMC3s=;
- b=ePf+OW7ogOPMnvfw/5YKmuWIoIrQC4KHOJMTkJxXUr2+Vi+JBqAZHqDuPUhKvfoQlx
- 1dpmt2YzmzxaauBWTo6ACSixW4OvmJiTEUKlk4qu3mctwMu5iyDm1+M979hHfrEdID0W
- T+kLhvziUaVmYPm1HTIr41kzPaU6pDPTm4k3Zd+7RSebB4SksjZIBzBBT2JSU1Y6CmYA
- Km2q3Gan+ZiOxbK5fKSrGHHT85nFFpeo4S2CigJBpNKJhBPFngbOXVXSuk+wnDZQNLgG
- omlbgqAabz+wXpo7Zf95EFJ+TPi/7dT26UxBtsvRi+sCjIO8SzTm6NG7hFdOsQKPJijP
- 5sEw==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=VBkHNJfADi1ftUygUhXcko7fN21rEgw1f4wwKD/WIjY=;
+ b=gkVAMUHa5Y2IHzWGYx8VjC6IxO1lTuvxuiA/8qaqtp97iERH43p0V8AYI4+bNN/ZvT
+ K2yCPOgASFRIvRtMpq8HBHZnRLujxuuMErCRdAZaA7jo3Cc2CkC1bXdRG5iQthLx95bm
+ A6OsGRyJXx9mG14RBqgzTRgP2hGtcLBBrx4oUIQcdihg4QeF0LuirGmmj/YHIZGFKSEf
+ bR3Vpd9QELj1KMw0Q7ZW8/TqsIJ+LaoTOkMEgFG5qNfFz84gWaetYO+WJzFiuAH6Eq88
+ VShlrti92Dfwr1V5EqSG2q3khnVQbJFnDrPwSMcS9wWxyNpsdffewy6DXIqIQM88oFLi
+ OUtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=WPTKqx0UgKgQ33QA2oUVHlGcPBLVnBr4wLOLrnqMC3s=;
- b=uLX1rGmfzUGTLjlJfZdZUTE00Xj8a/SmbO4RaDHNiCn3/szacmsy3UB1Jq+MCHT+X7
- B+YvXCSg929iXeGfMzbje3GVt5CJdmcJvSuYPARvHXbPVM5MN1WQCwec6YMboamRcTWC
- 2ge54Pu/APOq35IwXLk8PxoPkWEX5ZY3TJtLPPsKQkWiYBSeLqSn0RK7/aJFd8yb4Vh4
- CJNZ+N2V+ASlHRFrzjXUDcY00WcvTNgmvS1Mz4xoT6travumZC1oKqgHudNwnlKQ6RA1
- 8OzDTx+q2M5elsPyQ1fhSAtUpsnHcRXdGvtY9YIpdAgurq1bgBpeFnoyliA9WDJZGze0
- TsZA==
-X-Gm-Message-State: AOAM531xCrYzY0L2QB3RwxoP5LTrTdL/bAczwY9A6iCBLfuC2HnEMKr1
- sKl6chzwZGpdEPTStpOywcQZGqOf5hgbg5c8ohe2uvPuJUdJgQ==
-X-Google-Smtp-Source: ABdhPJy2pjpXnemS6BSrQ3WXzXIuNxcH5gb4e5zGgl4aTtVSjgYIgko+RlSmUCJyhh/RBvLhwrQdIW4O42+J2o4wn6A=
-X-Received: by 2002:aca:5383:: with SMTP id h125mr3701916oib.179.1605134831882; 
- Wed, 11 Nov 2020 14:47:11 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=VBkHNJfADi1ftUygUhXcko7fN21rEgw1f4wwKD/WIjY=;
+ b=ANfh3Yvn7VnetfskdZ+XyYyfv5avdqPih1LLMMCUPYusZ2K6iwbjRTLGwUtGId1i7Z
+ GaUIKE7lb1w+FaTiZOsg+q69U1SB2oOxGBwz8P/XoxoCJjzeuBOfZbVnFJJqzQ9ra/pE
+ vlXUmkI6nS/Y+UYUpwiwwbt9aMBIQr6ZYh/umsRy0m9QszGCACW5gAyq9fLcmJ5LfsIG
+ lEHupuDcE+jp4OUYAxN0hHcZgIUjcM4xArf9uQDQKjqTpnIfnBDLuh0qb7kPjwGVV1HG
+ d3fwq/DxVirhmMiZmyKGf5gntuiTE97kI1bXWTKQNmWlOdpHU1Jt3O07NtwJC4I/JgYl
+ 9L+A==
+X-Gm-Message-State: AOAM5304efKZVTsBVqVP0qlYuctyHewo6gpkNgko2Ewhm7c87T+49cLc
+ lAb642oKzWNfYtC9wdxW/RsuFuCAmdg=
+X-Google-Smtp-Source: ABdhPJy+IMqCmflfsc2Of07y7H2p2xyBsy9Clei4gqPDHl5M652pESE27WbNa/YIfQqifN8IHR1huw==
+X-Received: by 2002:a37:ac11:: with SMTP id e17mr26955567qkm.238.1605135679561; 
+ Wed, 11 Nov 2020 15:01:19 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id r41sm3813788qtj.23.2020.11.11.15.01.19
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 11 Nov 2020 15:01:19 -0800 (PST)
+Message-ID: <5FAC6D3E.9030409@gmail.com>
+Date: Wed, 11 Nov 2020 18:01:18 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Date: Wed, 11 Nov 2020 14:47:00 -0800
-Message-ID: <CAMvz+5awThbHfeqxf_hy2fJE0e_u6FG59hn8SPLiD5Lyi8FaSw@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-Subject: [USRP-users] X310 with OAI FPGA Image Compatibility
+References: <CAMvz+5awThbHfeqxf_hy2fJE0e_u6FG59hn8SPLiD5Lyi8FaSw@mail.gmail.com>
+In-Reply-To: <CAMvz+5awThbHfeqxf_hy2fJE0e_u6FG59hn8SPLiD5Lyi8FaSw@mail.gmail.com>
+Subject: Re: [USRP-users] X310 with OAI FPGA Image Compatibility
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Matt Lanoue via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Matt Lanoue <mattlanoue22@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7084719839521221369=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,80 +84,17 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7084719839521221369==
-Content-Type: multipart/alternative; boundary="00000000000078960e05b3dc9326"
+On 11/11/2020 05:47 PM, Matt Lanoue via USRP-users wrote:
+> Team Ettus,
+>
+> While running code to simulate an eNB, I get a failure because FPGA 
+> compatibility number 36 is expected, but 38 is found.
+>
+>
+https://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_load_fpga_imgs
 
---00000000000078960e05b3dc9326
-Content-Type: text/plain; charset="UTF-8"
-
-Team Ettus,
-
-While running code to simulate an eNB, I get a failure because FPGA
-compatibility number 36 is expected, but 38 is found.
-
-[PHY]    Starting ru_thread 0, is_slave 0, send_dmr[INFO] [UHD] linux; GNU
-C++ version 7.5.0; Boost_106501; UHD_3.15.0.0-release
-[INFO] [X300] X300 initialization sequence...
-terminate called after throwing an instance of 'uhd::runtime_error'
-    what(): RuntimeError: Expected FPGA compatibility number 36, but got 38:
-The FPGA image on your device is not compatible with this host code build.
-:
-
-I am trying to run the OAI 4G LTE test setup (
-https://gitlab.eurecom.fr/oai/openairinterface5g/-/wikis/HowToConnectOAIENBWithOAIUEWithoutS1Interface#1-hw-setup)
-during the final step of 3.1 (actually initializing the eNB).
-I have updated the .conf file so that the build script detects the USRP as
-given on the Ettus knowledge base (
-https://kb.ettus.com/Getting_Started_with_4G_LTE_using_Eurecom_OpenAirInterface_(OAI)_on_the_USRP_2974
-).
-
-Can anybody help me figure out how to fix the image version mismatch?
-
-Thanks,
-Matt
-
---00000000000078960e05b3dc9326
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Team Ettus,</div><div dir=3D"ltr"><br></d=
-iv><div dir=3D"ltr">While running code to simulate an eNB, I get a failure =
-because FPGA compatibility=C2=A0number 36 is expected, but 38 is found.=C2=
-=A0=C2=A0<br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><div>[PHY]=
-=C2=A0 =C2=A0 Starting ru_thread 0, is_slave 0, send_dmr[INFO] [UHD] linux;=
- GNU C++ version 7.5.0; Boost_106501; UHD_3.15.0.0-release</div><div>[INFO]=
- [X300] X300 initialization sequence...</div><div>terminate called after th=
-rowing an instance of &#39;uhd::runtime_error&#39;</div><div>=C2=A0 =C2=A0 =
-what(): RuntimeError: Expected FPGA compatibility number 36, but got 38:</d=
-iv><div>The FPGA image on your device is not compatible=C2=A0with this host=
- code build.</div><div>:</div></div><div dir=3D"ltr"><br></div><div dir=3D"=
-ltr">I am trying to run the OAI 4G LTE test setup (<a href=3D"https://gitla=
-b.eurecom.fr/oai/openairinterface5g/-/wikis/HowToConnectOAIENBWithOAIUEWith=
-outS1Interface#1-hw-setup">https://gitlab.eurecom.fr/oai/openairinterface5g=
-/-/wikis/HowToConnectOAIENBWithOAIUEWithoutS1Interface#1-hw-setup</a>) duri=
-ng the final step of 3.1 (actually initializing the eNB).</div><div dir=3D"=
-ltr">I have updated the .conf file so that the build script detects the USR=
-P as given on the Ettus knowledge base (<a href=3D"https://kb.ettus.com/Get=
-ting_Started_with_4G_LTE_using_Eurecom_OpenAirInterface_(OAI)_on_the_USRP_2=
-974">https://kb.ettus.com/Getting_Started_with_4G_LTE_using_Eurecom_OpenAir=
-Interface_(OAI)_on_the_USRP_2974</a>).=C2=A0</div><div dir=3D"ltr"><br></di=
-v><div dir=3D"ltr"><div>Can anybody help me figure out how to fix the image=
- version mismatch?</div><div><br></div><div>Thanks,</div><div>Matt</div></d=
-iv></div>
-
---00000000000078960e05b3dc9326--
-
-
---===============7084719839521221369==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7084719839521221369==--
-
