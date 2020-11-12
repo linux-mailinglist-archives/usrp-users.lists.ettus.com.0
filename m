@@ -2,65 +2,78 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC2E92B0C88
-	for <lists+usrp-users@lfdr.de>; Thu, 12 Nov 2020 19:26:04 +0100 (CET)
-Received: from [::1] (port=59892 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8E7D2B0CD7
+	for <lists+usrp-users@lfdr.de>; Thu, 12 Nov 2020 19:40:17 +0100 (CET)
+Received: from [::1] (port=59974 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kdHIF-00081D-QW; Thu, 12 Nov 2020 13:25:59 -0500
-Received: from mail-qt1-f173.google.com ([209.85.160.173]:33998)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kdHIB-0007uk-Mu
- for usrp-users@lists.ettus.com; Thu, 12 Nov 2020 13:25:55 -0500
-Received: by mail-qt1-f173.google.com with SMTP id 7so4708051qtp.1
- for <usrp-users@lists.ettus.com>; Thu, 12 Nov 2020 10:25:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=pyj1g/ZbeBlTN/qJvmFsAY2KQW9XsynHpVfXnA0Ss8k=;
- b=RU/chCrIXPQPSaQSus4Osh9oroY/ZVzCjaCGdShoWvbLIDQisn6qetSbUfrCJc/oSe
- /EcP3sB/r7l+BwCfi2BKji7XGTWPZEUlfBmkqwvMgDQmwPLyRrmPl318AVIk7dkFRKQp
- IwI/k47Y7DIgbMNUtBCBub8XUabukgwtg2fM8pdkgUDQoDb9+ISRRsxOr8p1LtC3RAgm
- oSoE4VvXqCPeDLyqsSMdxsw3MsCmm13pFIJ7B5eZot8k12Lg/EhdYTwawKpd02P6IchY
- nhIhyhu7wzoU5qoWthYsGmnJGffDkJ90zYMiUdRh4CW01JJDG71+4pJFUGwUB/gqJJ+u
- YTxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=pyj1g/ZbeBlTN/qJvmFsAY2KQW9XsynHpVfXnA0Ss8k=;
- b=X+CDXsdpcEEZyfqV3G8Edh/sysJQ7DKj1Ci4LAY+40anR+J/F518e5zHzCHKjUYzmj
- Ew0U2Kh5jLWw6ESw4fnk1TclIN50YDf2GUQLNkMaq2tFQ3eQe3Op2lp7vCHwSR5D0a3T
- DvLBuUrwKVJ2bCGuKthQGFmN94A4Mm5VY5LO/uAJQsk45ob1RfLOmx+FIBkQhPyUYC00
- 0KWFYMXx4Q3kggVBDlwsG3o4jaWuahY6zbxOQdypwWCbzDn26etBBZjnFRcd08rcaTE3
- wlwpgtMojZGHjBTbXw479S11VsT19kK+8wDBkmUpElqyeYtcJj2zpC9LI+2itY6bYYJn
- NsdA==
-X-Gm-Message-State: AOAM5333W+gORVnV9fY5msHdGkV5n4SBPTxcnUk+RkCR4Tk2tHEqW7zj
- ukny7iRq3+pjlg26zaBP/bdxT+Fl0mk=
-X-Google-Smtp-Source: ABdhPJzZGRzyLh5b/ZF1TTg+rtTEKUjto/ZogSjti6BCvroa2nDCInkxNEsMiZMNTaUPWhwezIAszw==
-X-Received: by 2002:ac8:7593:: with SMTP id s19mr425977qtq.243.1605205515069; 
- Thu, 12 Nov 2020 10:25:15 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id v204sm5504212qka.4.2020.11.12.10.25.14
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 12 Nov 2020 10:25:14 -0800 (PST)
-Message-ID: <5FAD7E0A.6000100@gmail.com>
-Date: Thu, 12 Nov 2020 13:25:14 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1kdHW4-0000Kw-4y; Thu, 12 Nov 2020 13:40:16 -0500
+Received: from sonic315-20.consmr.mail.ne1.yahoo.com ([66.163.190.146]:40913)
+ by mm2.emwd.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
+ (envelope-from <mikerd1@verizon.net>) id 1kdHVz-0000Da-Pn
+ for usrp-users@lists.ettus.com; Thu, 12 Nov 2020 13:40:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verizon.net; s=a2048;
+ t=1605206367; bh=fbETs3Blu914jkni+/MFs5RMspfu2GMhh4pGZiovq4M=;
+ h=To:From:Subject:Date:References:From:Subject;
+ b=N0rHkDQ94qJpno0Xz0X0JCL6YoMziD+CwkURzNMFRPLhQpFZ2gM8VdLgSLqte8rgWzn0fwt0a9Xegboi6+WNGnfAwxkHXOvcZIRZIiXzLw8YIbGPLUyrzIWtgVkunEUvdyQkf7RKBXylRMWnBvTf6RhcomvENjTTlS3esggqo9ARSQtb6gwGt5Dw++s4wUBYEExX2f5KbBtOEfwvLwjt/+64vLGd+XQjbWB9fJPbJJJ8Hr/y+sAbRsBG6u/2f33/sxiGlgfpAlshzPPIuJCm1bdTFt5vtoaTYwutbZRyg2B4pebGRqDFEopQfaEUCtmoVMQMHRJ9F/0bK/6j/3xQfw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1605206367; bh=1Ht9oEezXkeb/gTO/saH+0Jojt792iw9Vx6s5+rxOmD=;
+ h=To:From:Subject:Date:From:Subject;
+ b=Cj+tGAWMI+V7OwQH68yLCKfyR5supDb252mn8ySL/qdJY7SBmBSFD+4DMLPhpGJiWN28WyiwnGETgLr6R8HvtHDtsG7Dmxw5LYFq2cSbnjlxXWJuwcq9ybKRi3X/8tw12LIjjJmNbyeMpYkycR2Ut95ufrFCGqTiy3BNldRGlVfNBTcPwDRTIF+SxVmlEORz7Oh4k4+tNNZ/dvGAYBPLjlYnuoM47nscM01NAeU5dRZtQsW1QTUL6Fhe/K0Iykn38RYXHpxIaTeKNMEuleJajOH/qUUDEXgEDY0C35x1qPTorsSeCwPypsxBItikh8DGE+/X6UwkgrwaG1LuJq5A2g==
+X-YMail-OSG: hKqzjpwVM1lFPZdMkOAEDiwSr9Om50JVKdwoHexYABVGa1d6G_Ncw9eU3F.DdDG
+ 9OJ.M475ri9qgOXxlcpsrUKhN2PzxTAVF1NrMRhCrknzGDZtRBw9XclByLa9lnSDUoLcW70CM7e6
+ KJbLHggD4WTl2HlTeplXDNKQ.tAWGS55heKSZ62NqrGt4MW3Syf_do1I2ti5ugSyhut5uWL7QePp
+ QnWrRxOFwSSb3JN_XnZmKsCvnra6YMGJwCN36Qp6yi7WtT479r9E0Fi75rAp0T641Jl6KKoUrPRm
+ cN7W_a5rtg2zHPKrnCB2ks..lqq.KH6GXWMQPoJvfQ5qXtezZnNFBQR63PtaGf3AzO5aS8thaV6O
+ gvHSnpWSIEgmWsvOtHAA7lsP2e8hnj3mkWL.3u7CcO6cqxoFKVNOyeKTrlu8qXGFduHEAifgXRbU
+ 6TVoM9XTkLewSWAqpUjQS.e.7kGgwa0bg2WoSw1mjjg.HNkav73lD8rtDbjYfGbgkpq8BIkOcfKC
+ .owebsgHStAkWaDRT.KJ8ZGy.kI_Ocx_Y8QA5oHTikfLaEztFgFWoaMXT3OnjOLF4C0Kwte9Ptwk
+ Iy8wBDENRtIDooi_Ji9Uz81AArwu0mpKMtTO2IprwU1o8Zvc26t9drWFp9yT.Yf8qm3.wmlSNQyf
+ r1xuaKO07yGyO45klY2.o0ZeXWiGPHV6POISsNrDP0iUzDM1cLKHGiShJnFpMcsEIxcZ9JIXYAfD
+ sYZ8xhKD3DKuM5s4v7RO1RgJcZRG6lmE8vNfIg29XP5c.JVYee13Pa2wfrFcXukaQwMpU02qlA3u
+ ynoqsG8MDJCPyMY_3agwbClzEGoG114bQgNMlAYhgpfscGwvuAVkHYIy4hnsiC6fsU_A0ayM_xQ1
+ qce8BKyjfjUBBhU2AwjyeEZoXE2OpWmfewo99cS29aMDdRc7.Ow5qzt3sttfFOvXLbohVrUAtwgW
+ LkESLpLNsO3hepwjpFiTngJlnsWqEVR6Yvc7ahw8hdCBMvJ2k4x2fTmsN4l0UHBepSYn6ZsWurSw
+ FfzYxXWL0uIzf5IPT6lQ3vqtInnDPrMHrbzTGJAuArQV9B.AhG1Xbenl_A4XnxEVgngSgfna5z0o
+ xOXBKhafpPG.bWuWdBmpYyaIZswKriWfN8KFdev26ybp3umvlMEEsNDE9Yeq4E1_iJ_Wa2BTmhkb
+ InM.itCNyGZRml.NGkG7m1owsfx5T_YvKGLFlMAEpzBHvA4LCjAuqSWx_UniBEWJnQorfTqlOEf4
+ YoRyTDsn5gswRC_H_xisIZ7zTunoAQuN8Y11hPZ6nOYgfKFUbkpyx0WuVpgC3LF74TZJAKU.g.Tg
+ PSbKxxM2E1uIMyCekIUqRW4O0cmHoe6f1YcX8k.4YxixDat7VGyjd5ri1jO_eUM3A2DPEVSax.qu
+ 0xh8ILPl0C9ZzcixL_j0C7OEw4eqNy1aeWlNTW.8xaNvE4fPSaWrT1IegTzC73GpqDzjnJIerwSB
+ AJhe4tVqEhSkuLb0cTbvxlwDdqF.L3XgOlWVwDbb3_QrPhAiJNBC_4fF86EsC.Il74eV6jhP4Amh
+ xy2_zSVKDUNDFYL7tRDx0RAFp5OomojBGX0BZKb_LSftWQ36v3PQLsUm5.M.yZpbrYj3B91K1VU0
+ FvZ365cPam.E76upBplXi.x.xnxL.KnCoaw3UR5LGs5Cqt_gwnfYbCNL7ixzh0vb.bFtIUKrxGXn
+ BIyxXiFHde1jrtUTcpHXt8keR2t0SAfVQtMOr_UGdQjcAezVb6ITUMTSljLH1bVd06s1g7ILaNSc
+ 6otsukIoFVo2hrOfQPJtr68PUw7ZM577oBDNDP7W_PInVMB9i.xNJTiEEQppbdy4DRXxd9C.OPqz
+ QQ2pA5TbFubdjttMibW9V.ITLJV1SiO7v2fGGyS4EFLGZ61KeNt6dZmqXffl7liDbotwlLrs5pat
+ ApKsxOHK45C2phr4eJvQE07CnTV0LYpx9.3u2AKSURQNc_wUeCqT.YOW8i7KnB2Y6eTzVVMm2Glm
+ 6Ai4147ucEhr33KJ28Au_3d6ajCdQ5JBGRIi.kEXPRnRlTYGKhbDI_NTEGPLdfdZgtCT3I8dYwYj
+ gzXDm7z0xSI9J7_qH6CWUDZ_30u3UkgncbOq7nBR.Yxu0IAP.bSTQUwKH7p9ee0DV160mna8RnAw
+ m7qYjZdiw9gS9cFJ_FPSh74AQRHgvHIBcr7f8SHyu4ghDtkwx0NpQ1AWH90IHt9SaHsUfVM_HJdH
+ Z45diq9EsZ0rsM263oilh3alwUxdRQNH5apt2CZOUVqSgADRl7Du.JvIjlB8wi.kFm.9Q7qEBv4B
+ dbfzYZVSyNaPd6GQy1GmG5AINQjXiIrz6Y5sDmdwAD5f67hpLynCaLjN75NPHmm2JiAYnEz0jFPy
+ ZFnCEFKS3IlpeXs8ZIXuC2NHT7eWOpaEHnpOQS54lc9dn4fInKQ.pyRRqumvpwM5cw_Mv1zISlh8
+ CcFmj_G4mW7wscOE3jSkjtaVWl5UtJQNA8RUgQLFbgq2Onmfg0Al45rG7DEIJk.xlRMPYc2D2Cgh
+ 8KVuvokPLw94UWuPM.iITZ6GRFkv9RiYJzQbPmPrcRYskiWxT8QpgUU.2mddcc6mISXuCTbqqgvi
+ PLQ--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic315.consmr.mail.ne1.yahoo.com with HTTP; Thu, 12 Nov 2020 18:39:27 +0000
+Received: by smtp422.mail.bf1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA
+ ID fb6a1b8037c55ac1b8f816929df6b840; 
+ Thu, 12 Nov 2020 18:39:21 +0000 (UTC)
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID: <9a4fc5b8-5c25-3a25-acf6-de2dbd816b55@verizon.net>
+Date: Thu, 12 Nov 2020 13:39:20 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-To: Dustin Widmann <dw2zq@virginia.edu>, usrp-users@lists.ettus.com
-References: <35ae5da8ab09a4c3bbb77d059d775a91b98d4c9b.camel@virginia.edu>			
- <5FAC37FA.1060605@gmail.com>		
- <4150ed6df83730bba2cbc5ef916af8064c284edf.camel@virginia.edu>		
- <5FAC8763.1090904@gmail.com>	
- <d66ce8deb5691b545bcdeb65fabf69b55306c692.camel@virginia.edu>	
- <5FAC94F5.6060909@gmail.com>
- <774356b186ed10a2ee114b00cbb480473e30f77d.camel@virginia.edu>
-In-Reply-To: <774356b186ed10a2ee114b00cbb480473e30f77d.camel@virginia.edu>
-Subject: Re: [USRP-users] twinrx consistent phase offset
+Content-Language: en-US
+References: <9a4fc5b8-5c25-3a25-acf6-de2dbd816b55.ref@verizon.net>
+X-Mailer: WebService/1.1.16944
+ mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.aol
+ Apache-HttpAsyncClient/4.1.4 (Java/11.0.8)
+Subject: [USRP-users] E310 RFNOC OOT modules
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -72,10 +85,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Mike via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mike <mikerd1@verizon.net>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -89,68 +102,32 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 11/11/2020 11:11 PM, Dustin Widmann wrote:
-> Hi Marcus
->
-> I've given this a try, unfortunately I'm running into a problem with
-> that. I've always gotten strange crashes with UHD 3.15 with this
-> codebase (probably my fault, but I'm not sure why yet).
-> I can collect around ~200 datapoints-ish (about 20-ish retunes of the
-> receiver), before it crashes with one of these errors:
->
-> *****
-> terminate called after throwing an instance of 'uhd::io_error'
->    what():  EnvironmentError: IOError: [0/DDC_1] sr_write() failed:
-> EnvironmentError: IOError: Block ctrl (CE_04_Port_70) no response
-> packet - AssertionError: bool(buff)
->    in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double)
-> [with uhd::endianness_t _endianness = uhd::ENDIANNESS_BIG; uint64_t =
-> long unsigned int]
->    at /home/sdrdev/uhd-3.15/host/lib/rfnoc/ctrl_iface.cpp:151
->
-> [1]    193504 abort (core dumped)  LD_LIBRARY_PATH=/opt/qt-
-> 5.15.1/lib:/opt/uhd-3.15/lib:/opt/boost-1.74.0/lib
-> *****
->
-> *****
-> Receiver error:  "ERROR_CODE_TIMEOUT" , continuing...
-> 21:45:08.166 ## default.fatal ## static void UhdSdrVna::uhdLogger(),
-> uhdsdrvna.cpp:866
-> [x300_fw_ctrl.cpp:53] [X300] 192.168.40.2: x300 fw communication
-> failure #1
-> EnvironmentError: IOError: x300 fw poke32 - reply timed out
-> [1]    193622 abort (core dumped)
-> *****
->
-> Each time it errors out, a hard reset of the device is required, else
-> it will error out immediately after the application is restarted with
-> the second error above. This makes automation difficult. Nevertheless,
-> I've run it several times focusing on areas that looked problematic in
-> the previous dataset. Many (not all) of those problematic areas seemed
-> unproblematic here, though they were only tried once so its difficult
-> to say for sure. On the other hand, frequencies that were giving me
-> invalid results before (no tone at the expected IF frequency on one or
-> both of the channels, cell background color highlighted red in the
-> attached files) are still problematic here however.
->
-> https://u.pcloud.link/publink/show?code=XZ7KnzXZgqYQElUagKRRKSfugQPJ4yy65ToX
->
-> Dustin
->
->
-Sigh, OK, so let's stick with UHD 4.0.
-
-I'll note that given the numbers you've provided, you're only observing 
-for about 10 samples/frequency.  That's not enough time
-   for the hardware to "settle"--at least given the 100Msps you're 
-using.  The command-time for tuning is the time at which
-   tuning will be *initiated*--there'll be some latency due to things 
-like SPI/I2C bus latency, and the vagaries of analog hardware
-   changing equilibrium, PLLs locking into place, etc.
-
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+SSBnb3QgYW4gZXJyb3Igd2hlbiBydW5uaW5nIGEgZ251cmFkaW8gcHl0aG9uIHNjcmlwdCBvbiB0
+aGUgRTMxMC7CoCBUaGUgCnB5dGhvbiBzY3JpcHQgd2FzIGNyZWF0ZWQgb24gdGhlIGhvc3QgbWFj
+aGluZSBpbiBHUkMgYW5kIHRoZW4gY29waWVkIAooc2NwKSBvdmVyIHRvIEUzMTAuIMKgIEkndmUg
+ZG9uZSB0aGlzIHN1Y2Nlc3NmdWxseSB3aXRoIGJ1aWx0LWluIAptb2R1bGVzL2Jsb2Nrcy7CoCBO
+b3cgdGhhdCBJJ3ZlIGNyZWF0ZWQgYSBjdXN0b20gRlBHQSwgSSd2ZSBzdWNjZXNzZnVsbHkgCnVw
+ZGF0ZWQgdGhlIFhNTCBmaWxlcyBpbiB0aGUgT09UIFJGTm9DIG1vZHVsZSBzbyB0aGF0IHRoZSBu
+ZXcgYmxvY2sgCnNob3dzIHVwIG5hbWVkIGNvcnJlY3RseSB3aGVuIEkgcnVuICJ1aGRfdXNycF9w
+cm9iZSIuCgpUaGUgZ251cmFkaW8gZXJyb3IgaGFwcGVucyB3aGVuIEkgdHJ5IHRvIGltcG9ydCB0
+aGUgbmV3IG1vZHVsZSAoaW4gdGhpcyAKY2FzZSAiaW1wb3J0IHR1dG9yaWFsIikuCgpyb290QG5p
+LWUzMXg6fiMgcHl0aG9uIGUzMTBfcnhfc3BlY3RydW0ucHkKVHJhY2ViYWNrIChtb3N0IHJlY2Vu
+dCBjYWxsIGxhc3QpOgogwqAgRmlsZSAiZTMxMF9yeF9zcGVjdHJ1bS5weSIsIGxpbmUgMTksIGlu
+IDxtb2R1bGU+CiDCoMKgwqAgaW1wb3J0IHR1dG9yaWFsCkltcG9ydEVycm9yOiBObyBtb2R1bGUg
+bmFtZWQgdHV0b3JpYWwKcm9vdEBuaS1lMzF4On4jCgpPbiB0aGUgaG9zdCBzaWRlIEkgYW0gYWJs
+ZSB0byBzZWUgdGhlIG5ldyBPT1QgbW9kdWxlIGFuZCBjaG9vc2UgdGhlIG5ldyAKYmxvY2sgKGlu
+IHRoaXMgY2FzZSwgImdhaW4iKSBhbmQgY3JlYXRlIHRoZSBuZXcgZ3JjIGJsb2NrIGRpYWdyYW0u
+wqAgSSAKY29tcGlsZSB0aGUgR1JDIGRpYWdyYW0gYW5kIHRoZW4gY29weSB0aGUgcHl0aG9uIHNj
+cmlwdCBvdmVyIHRvIHRoZSBFMzEwLgoKSSBjcmVhdGVkIGEgbmV3ICJidWlsZC1hcm0iIGRpcmVj
+dG9yeSBpbiB0aGUgcmZub2MgT09UIGRpcmVjdG9yeSAoaW4gCnRoaXMgY2FzZSwgInJmbm9jLXR1
+dG9yaWFsIikuwqAgSSBwZXJmb3JtZWQgYSBjbWFrZSwgbWFrZSwgYW5kIGluc3RhbGwgCnNpbWls
+YXIgdG8gdGhlIG90aGVyIGNyb3NzLWNvbXBpbGUgc3RlcHMgd2l0aCB0aGUgcmVzdWx0IHRoYXQg
+SSBzZWUgdGhlIApmaWxlcyBiZWluZyBpbnN0YWxsZWQgaW50byB0aGUgL2UzMDAgZGlyZWN0b3J5
+IChpLmUuIHRoZSBkaXJlY3RvcnkgdGhhdCAKaXMgc3NoZnMgc2hhcmVkIHdpdGggdGhlIEUzMTAp
+LsKgIEJ1dCwgSSBzdGlsbCBmZWVsIHRoYXQgc29tZXRoaW5nIGlzIAptaXNzaW5nIHNpbmNlIHRo
+ZSBlbWJlZGRlZCB2ZXJzaW9uIG9mIGdudXJhZGlvIGlzIHVuYWJsZSB0byBsb2NhdGUgdGhlIApu
+ZXcgdHV0b3JpYWwgbW9kdWxlLgoKQW55IHN1Z2dlc3Rpb25zP8KgIEkgZmVlbCBsaWtlIEknbSBy
+ZWFsIGNsb3NlLi4uCgpUaGFua3MsCgpNaWtlCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
+cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
