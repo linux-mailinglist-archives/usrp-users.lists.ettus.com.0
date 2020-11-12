@@ -2,62 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB45E2AFD1F
-	for <lists+usrp-users@lfdr.de>; Thu, 12 Nov 2020 02:51:33 +0100 (CET)
-Received: from [::1] (port=53082 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EBB92AFD9B
+	for <lists+usrp-users@lfdr.de>; Thu, 12 Nov 2020 05:12:00 +0100 (CET)
+Received: from [::1] (port=53874 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kd1lr-0002cb-5U; Wed, 11 Nov 2020 20:51:31 -0500
-Received: from mail-qv1-f52.google.com ([209.85.219.52]:35043)
+	id 1kd3xl-0007Je-0e; Wed, 11 Nov 2020 23:11:57 -0500
+Received: from mail-qt1-f171.google.com ([209.85.160.171]:33695)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kd1ln-0002WA-Da
- for usrp-users@lists.ettus.com; Wed, 11 Nov 2020 20:51:27 -0500
-Received: by mail-qv1-f52.google.com with SMTP id g19so2048670qvy.2
- for <usrp-users@lists.ettus.com>; Wed, 11 Nov 2020 17:51:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=jBbLXVco49FOebEFB6RfJ0auiGnTn+lWMKHUJED+kXA=;
- b=d5mQ8DLIqnTO2GJEkQcWccjxqw2fdi1cBH2SIN68/Te34LHtttVw18fUFZB7wI/HfK
- 3Apc130znD5Jb5JVm5/+QdN49b8mY+DSOKp+gvfDpyOEfl4nmseHqDvMpCC4u30XOJQ6
- iBws/2dRXMROolBoaoeVWCiz5/yhR6XgO4zuFoZ3UchUzYYXJbTt0QYBZdtIM94toWhC
- C+ZReqoeePbEeQ30t6pcUZc/S4LQgbKGxscKKNuzUZH6y/zTBQmXrhLfjmDiDsXaxGxf
- 6ncRSjbEdxFIdQKkDFL3hgc4Cu4+NCpEHJWDAR8sn3obSLwt1XssZvjHW4ngJ5BGE7wF
- oCgw==
+ (Exim 4.93) (envelope-from <dw2zq@virginia.edu>) id 1kd3xg-0007CX-A9
+ for usrp-users@lists.ettus.com; Wed, 11 Nov 2020 23:11:52 -0500
+Received: by mail-qt1-f171.google.com with SMTP id i12so3136234qtj.0
+ for <usrp-users@lists.ettus.com>; Wed, 11 Nov 2020 20:11:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=virginia-edu.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+ :mime-version:content-transfer-encoding;
+ bh=+Csdj7t8Gb2WV/ny5Vmpk+cG7jYrOGYpF5LIbCNcVv0=;
+ b=hQlbdTr2x0Rr6b5lraiXFHXPbo1JBnfVa341xTlqCwhw3hmybDlcPsjFdWx/2epHVe
+ ud82MO3lUeOcGzGBKkq+Xn8NCXMLCEdvKo0+o3OMCEeNY0EO8T33zEn6ztTo4OpKCKMc
+ NqOLxo+vco97UBdNj9BZlzywyvBxE/zGlRpn8RDvoblMzSUazci6G5B7uLe+iFqAV/pc
+ AyAkZiPm5IhxtUVOpcAeJVpVkOz5627h0kJ+S5PaXHKbi83pt1DeY1Nc2/S1XU+CGzMC
+ fJvpt+kJaB6GdJ9mcsTzv6whd5g1eUQ2pcWSOi3a3Hq9vS0q1utrAf6+lTDveWFML+Vz
+ d93A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=jBbLXVco49FOebEFB6RfJ0auiGnTn+lWMKHUJED+kXA=;
- b=nRKOT0EgpCR6wXiVkSENMeqL0ll0qhua0DP+QmXlyQfl5pru53VrC64vByLxQ6OyZc
- pVtuwxpMTyR6hABzss0q7XtUa7+ewuVex2+OxhFuDBbkYJ5ocWduPF09iAFjUQGjfQsX
- SiUyCGD8pkcj3bWP2IjjwCdARMiaXnm/UKFMBHMaCfg+QO8Ozj7ndG7xuZbt+vzEqUrt
- 2jOlxIy1COMIuukrJZhUQ2Ak9sSRHs4uG3q5yVMznsf9977H81z+EL+1Az0MPH1zCyb4
- k9rXKss9/mlJh/8N7CIfgz5aS/rjLGJr8URNtkv3/icUulSgbkFZtYcEtM5f0PnUo1gt
- vJOA==
-X-Gm-Message-State: AOAM531dvpFvNXeX3+UtddFe2LMIgraYDBIrlh3oYHYHlVc61DT30Vdx
- X1JZwQDn7+74hPV8SAA8/QjyWdXJpVY=
-X-Google-Smtp-Source: ABdhPJxynvqegtA8TbQS9UDFjjOCqeF+Fz28BNLJSDSjJECDbdmz/JpNXriaQ6HuGYt7qEJjXYUnZw==
-X-Received: by 2002:ad4:4e13:: with SMTP id dl19mr10211046qvb.53.1605145846534; 
- Wed, 11 Nov 2020 17:50:46 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id b12sm4022734qkk.71.2020.11.11.17.50.46
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 11 Nov 2020 17:50:46 -0800 (PST)
-Message-ID: <5FAC94F5.6060909@gmail.com>
-Date: Wed, 11 Nov 2020 20:50:45 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: Dustin Widmann <dw2zq@virginia.edu>, usrp-users@lists.ettus.com
-References: <35ae5da8ab09a4c3bbb77d059d775a91b98d4c9b.camel@virginia.edu>		
- <5FAC37FA.1060605@gmail.com>	
- <4150ed6df83730bba2cbc5ef916af8064c284edf.camel@virginia.edu>	
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=+Csdj7t8Gb2WV/ny5Vmpk+cG7jYrOGYpF5LIbCNcVv0=;
+ b=WUOeb0kEl9mI6Pkj5DSy9ZFMSYeWl09dBjw3zCg+dlIK0sHHJSlKIDr951UIitXtUq
+ /OXGwEYLTNqpfwBjfg3fbi/PMaEFbfaTTx0taTid9zS/oUpr5WuXau743uixe32hyYIg
+ NTgFn3S9nDHpoVCWvQQOLKx74VNVBZt32mxdyg7FBHqf9FWBxZPwyHldFXFy2pU6NSk4
+ R0yswQpjMN/LoBN7edE6Lm8sgiQ60RfkdpbpY1EIoDxGnljUjcBWpOR3qCsAEcBzd8/L
+ 9tcEUHiiMZhLWyhpDTudioeAa3/HTs2veLQmH8f8/TJYlKexaakGvrlXk/Mamt6OreJl
+ wucg==
+X-Gm-Message-State: AOAM533Jqs3mAzm7LXWOvFdyMJa7Q2Q6skxYdFfb6qq6YgpQ7yyMBbnl
+ 55xq3A2arBW9JNRiDLeOhNoJkA==
+X-Google-Smtp-Source: ABdhPJwOcbyXBRXiq6khl2HP97ocvjJb5hb6/POscCeF91kdZDDV59tfD+p0CvwAAEMmHZMRn9cNKg==
+X-Received: by 2002:a05:622a:142:: with SMTP id
+ v2mr26311002qtw.169.1605154271492; 
+ Wed, 11 Nov 2020 20:11:11 -0800 (PST)
+Received: from [10.45.150.181] (c-73-40-68-102.hsd1.va.comcast.net.
+ [73.40.68.102])
+ by smtp.gmail.com with ESMTPSA id k64sm4278988qkc.97.2020.11.11.20.11.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 11 Nov 2020 20:11:10 -0800 (PST)
+Message-ID: <774356b186ed10a2ee114b00cbb480473e30f77d.camel@virginia.edu>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
+Date: Wed, 11 Nov 2020 23:11:04 -0500
+In-Reply-To: <5FAC94F5.6060909@gmail.com>
+References: <35ae5da8ab09a4c3bbb77d059d775a91b98d4c9b.camel@virginia.edu>
+ <5FAC37FA.1060605@gmail.com>
+ <4150ed6df83730bba2cbc5ef916af8064c284edf.camel@virginia.edu>
  <5FAC8763.1090904@gmail.com>
  <d66ce8deb5691b545bcdeb65fabf69b55306c692.camel@virginia.edu>
-In-Reply-To: <d66ce8deb5691b545bcdeb65fabf69b55306c692.camel@virginia.edu>
+ <5FAC94F5.6060909@gmail.com>
+User-Agent: Evolution 3.38.1 
+MIME-Version: 1.0
 Subject: Re: [USRP-users] twinrx consistent phase offset
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -70,10 +71,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Dustin Widmann via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Dustin Widmann <dw2zq@virginia.edu>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,134 +88,140 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 11/11/2020 08:34 PM, Dustin Widmann wrote:
-> Hey Marcus,
->
-> I'm using UHD 4.0.0;;
->
-> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_106700; UHD_4.0.0.0-1-
-> gcf570707
->
-> I had stumbled on the "tune twice" thing quite accidentally (I don't
-> think I ran into any documentation on it, I was just trying to test for
-> repeatability with a single frequency, and noticed the first time was
-> always wrong), but now that you mention it, I guess it kind of makes
-> sense. I don't know how deep the command queue depth is, but I expect a
-> tune on the twinrx would ostensibly need to e.g. set the preselector
-> filter, enable/disable the low frequency pre-amp, select high band/low
-> band, tune the first stage lo, tune the second stage lo, select high
-> band first stage oscillator, and maybe another few things that I'm
-> missing. The only bit about that which I'm not sure is what the minimum
-> acceptable delays should be to ensure stability in this double-tune
-> operation. As it stands presently I am taking about ~500ms to retune
-> the receiver, it would be great if I could get that down some, though I
-> have bigger fish to fry as of yet.
-10s of ms should be more than adequate.
-
-Given that you're using LO-sharing (I didn't realize this), then you may 
-be running up against
-   a regression in the code base.  The 90/180/270 offsets are suggestive 
-of a re-synch problem
-   not with the RF synthesizers, but with the quad-rate real-to-complex 
-converter that's in the
-   FPGA codebase.
-
-You could try this against UHD 3.15.X
-
-
-> Unless I'm mistaken and more is required, I'm already using LO sharing
-> between the channels (but that doesn't seem to be enough...). For
-> clarity, my initialization function does this: (modified for brevity,
-> but in order).
->
-> _usrp = uhd::usrp::multi_usrp::make(args);
-> _usrp->set_clock_source("internal",0);
-> _usrp->set_rx_subdev_spec("B:0 B:1",0);
-> _usrp->set_tx_subdev_spec("A:0",0);
-> _usrp->set_rx_antenna("RX1",0);
-> _usrp->set_rx_antenna("RX2",1);
-> _usrp->set_tx_antenna("TX/RX",0);
-> _usrp->set_rx_lo_source("internal", uhd::usrp::multi_usrp::ALL_LOS, 0);
-> _usrp->set_rx_lo_source("companion", uhd::usrp::multi_usrp::ALL_LOS,
-> 1);
-> _usrp->set_rx_rate(100e6, 0);
-> _usrp->set_rx_rate(100e6, 1);
-> _usrp->set_tx_rate(400e3, 0);
-> _usrp->set_tx_gain(0,0);
-> _usrp->set_rx_gain(65,0);
-> _usrp->set_rx_gain(65,1);
-> _usrp->set_rx_bandwidth(100e6,0);
-> _usrp->set_rx_bandwidth(100e6,1);
-> _usrp->set_tx_bandwidth(100e6,0);
-> _usrp->set_time_unknown_pps(uhd::time_spec_t(0.0));
->
-> I had thought all I needed to do was the "set_rx_lo_source" bit to
-> enable the LO sharing. Have I done that correctly or have I missed
-> something? If that is correct, do I need to change how I go about
-> tuning (detailed in the first email in the chain)?
->
-> Dustin
->
->
-> On Wed, 2020-11-11 at 19:52 -0500, Marcus D. Leech wrote:
->> On 11/11/2020 06:20 PM, Dustin Widmann wrote:
->>> Thanks for the quick response Marcus!
->>>
->>> It seems to be fairly frequency dependent. I'm attaching a link to
->>> a
->>> data file so y'all can take a look at what I mean. I ran a dense-
->>> ish
->>> sweep several times to try to get a feel for how reproducible
->>> things
->>> were /etc. The transmitter was retuned at each frequency, but the
->>> receiver was only retuned every 10MHz.
->>> https://u.pcloud.link/publink/show?code=XZviezXZGl5Ypkv46LSVf9l9n1YtOV05z92k
->>> in this file:
->>> * blue or green text = range of datapoints that seem to have
->>> reproducible phase offsets (I alternated between blue and green
->>> when I
->>> noticed a "jump" in the value ;; sometimes these jumps were
->>> 90/180/270
->>> degree, but often not, and were reproducible regardless)
->>> * orange text = phase offset is off in some consistent manner
->>> (90/180/270 degree jump) and/or reproducible aberrant value
->>> * red text = phase offset seems to be random/garbage
->>> * red background = invalid datapoint (either tone is at unexpected
->>> bin
->>> on channel 1, channel 2, or both ;; this is one of the other
->>> questions
->>> I was alluding to in my first email, I'm presuming its a separate
->>> issue, but maybe not. It's worth noting that when the tone is
->>> observed
->>> at the wrong frequency, the frequency where it is observed is often
->>> a
->>> multiple of the reference clock instead)
->>>
->>> Dustin
->>>
->> What version of UHD are you using?
->>
->> I spoke with the original developer of the TwinRX driver, and the
->> preferred approach to tuning if you want coherence
->>     is to tune it twice with timed commands.  The reason for this is
->> that
->> the number of transactions required to tune the
->>     TwinRx exceeds the size of the X310 command queue, but various
->> things
->> get cached, so the second attempt will have
->>     fewer commands in the queue, and will go through with all the
->> appropriate timing.
->>
->> Since this is on a single X310 platform, and it's TwinRX, you might
->> consider instead using LO sharing:
->>
->> https://kb.ettus.com/TwinRX#New_Multi_USRP_Functions
->>
->>
->
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+SGkgTWFyY3VzCgpJJ3ZlIGdpdmVuIHRoaXMgYSB0cnksIHVuZm9ydHVuYXRlbHkgSSdtIHJ1bm5p
+bmcgaW50byBhIHByb2JsZW0gd2l0aAp0aGF0LiBJJ3ZlIGFsd2F5cyBnb3R0ZW4gc3RyYW5nZSBj
+cmFzaGVzIHdpdGggVUhEIDMuMTUgd2l0aCB0aGlzCmNvZGViYXNlIChwcm9iYWJseSBteSBmYXVs
+dCwgYnV0IEknbSBub3Qgc3VyZSB3aHkgeWV0KS4KSSBjYW4gY29sbGVjdCBhcm91bmQgfjIwMCBk
+YXRhcG9pbnRzLWlzaCAoYWJvdXQgMjAtaXNoIHJldHVuZXMgb2YgdGhlCnJlY2VpdmVyKSwgYmVm
+b3JlIGl0IGNyYXNoZXMgd2l0aCBvbmUgb2YgdGhlc2UgZXJyb3JzOgoKKioqKioKdGVybWluYXRl
+IGNhbGxlZCBhZnRlciB0aHJvd2luZyBhbiBpbnN0YW5jZSBvZiAndWhkOjppb19lcnJvcicKICB3
+aGF0KCk6ICBFbnZpcm9ubWVudEVycm9yOiBJT0Vycm9yOiBbMC9ERENfMV0gc3Jfd3JpdGUoKSBm
+YWlsZWQ6CkVudmlyb25tZW50RXJyb3I6IElPRXJyb3I6IEJsb2NrIGN0cmwgKENFXzA0X1BvcnRf
+NzApIG5vIHJlc3BvbnNlCnBhY2tldCAtIEFzc2VydGlvbkVycm9yOiBib29sKGJ1ZmYpCiAgaW4g
+dWludDY0X3QgY3RybF9pZmFjZV9pbXBsPF9lbmRpYW5uZXNzPjo6d2FpdF9mb3JfYWNrKGJvb2ws
+IGRvdWJsZSkKW3dpdGggdWhkOjplbmRpYW5uZXNzX3QgX2VuZGlhbm5lc3MgPSB1aGQ6OkVORElB
+Tk5FU1NfQklHOyB1aW50NjRfdCA9CmxvbmcgdW5zaWduZWQgaW50XQogIGF0IC9ob21lL3NkcmRl
+di91aGQtMy4xNS9ob3N0L2xpYi9yZm5vYy9jdHJsX2lmYWNlLmNwcDoxNTEKClsxXSAgICAxOTM1
+MDQgYWJvcnQgKGNvcmUgZHVtcGVkKSAgTERfTElCUkFSWV9QQVRIPS9vcHQvcXQtCjUuMTUuMS9s
+aWI6L29wdC91aGQtMy4xNS9saWI6L29wdC9ib29zdC0xLjc0LjAvbGliIAoqKioqKgoKKioqKioK
+UmVjZWl2ZXIgZXJyb3I6ICAiRVJST1JfQ09ERV9USU1FT1VUIiAsIGNvbnRpbnVpbmcuLi4KMjE6
+NDU6MDguMTY2ICMjIGRlZmF1bHQuZmF0YWwgIyMgc3RhdGljIHZvaWQgVWhkU2RyVm5hOjp1aGRM
+b2dnZXIoKSwKdWhkc2Rydm5hLmNwcDo4NjYKW3gzMDBfZndfY3RybC5jcHA6NTNdIFtYMzAwXSAx
+OTIuMTY4LjQwLjI6IHgzMDAgZncgY29tbXVuaWNhdGlvbgpmYWlsdXJlICMxCkVudmlyb25tZW50
+RXJyb3I6IElPRXJyb3I6IHgzMDAgZncgcG9rZTMyIC0gcmVwbHkgdGltZWQgb3V0ClsxXSAgICAx
+OTM2MjIgYWJvcnQgKGNvcmUgZHVtcGVkKQoqKioqKgoKRWFjaCB0aW1lIGl0IGVycm9ycyBvdXQs
+IGEgaGFyZCByZXNldCBvZiB0aGUgZGV2aWNlIGlzIHJlcXVpcmVkLCBlbHNlCml0IHdpbGwgZXJy
+b3Igb3V0IGltbWVkaWF0ZWx5IGFmdGVyIHRoZSBhcHBsaWNhdGlvbiBpcyByZXN0YXJ0ZWQgd2l0
+aAp0aGUgc2Vjb25kIGVycm9yIGFib3ZlLiBUaGlzIG1ha2VzIGF1dG9tYXRpb24gZGlmZmljdWx0
+LiBOZXZlcnRoZWxlc3MsCkkndmUgcnVuIGl0IHNldmVyYWwgdGltZXMgZm9jdXNpbmcgb24gYXJl
+YXMgdGhhdCBsb29rZWQgcHJvYmxlbWF0aWMgaW4KdGhlIHByZXZpb3VzIGRhdGFzZXQuIE1hbnkg
+KG5vdCBhbGwpIG9mIHRob3NlIHByb2JsZW1hdGljIGFyZWFzIHNlZW1lZAp1bnByb2JsZW1hdGlj
+IGhlcmUsIHRob3VnaCB0aGV5IHdlcmUgb25seSB0cmllZCBvbmNlIHNvIGl0cyBkaWZmaWN1bHQK
+dG8gc2F5IGZvciBzdXJlLiBPbiB0aGUgb3RoZXIgaGFuZCwgZnJlcXVlbmNpZXMgdGhhdCB3ZXJl
+IGdpdmluZyBtZQppbnZhbGlkIHJlc3VsdHMgYmVmb3JlIChubyB0b25lIGF0IHRoZSBleHBlY3Rl
+ZCBJRiBmcmVxdWVuY3kgb24gb25lIG9yCmJvdGggb2YgdGhlIGNoYW5uZWxzLCBjZWxsIGJhY2tn
+cm91bmQgY29sb3IgaGlnaGxpZ2h0ZWQgcmVkIGluIHRoZQphdHRhY2hlZCBmaWxlcykgYXJlIHN0
+aWxsIHByb2JsZW1hdGljIGhlcmUgaG93ZXZlci4gCgpodHRwczovL3UucGNsb3VkLmxpbmsvcHVi
+bGluay9zaG93P2NvZGU9WFo3S256WFpncVlRRWxVYWdLUlJLU2Z1Z1FQSjR5eTY1VG9YCgpEdXN0
+aW4KCk9uIFdlZCwgMjAyMC0xMS0xMSBhdCAyMDo1MCAtMDUwMCwgTWFyY3VzIEQuIExlZWNoIHdy
+b3RlOgo+IE9uIDExLzExLzIwMjAgMDg6MzQgUE0sIER1c3RpbiBXaWRtYW5uIHdyb3RlOgo+ID4g
+SGV5IE1hcmN1cywKPiA+IAo+ID4gSSdtIHVzaW5nIFVIRCA0LjAuMDs7Cj4gPiAKPiA+IFtJTkZP
+XSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIDkuMy4wOyBCb29zdF8xMDY3MDA7Cj4gPiBV
+SERfNC4wLjAuMC0xLQo+ID4gZ2NmNTcwNzA3Cj4gPiAKPiA+IEkgaGFkIHN0dW1ibGVkIG9uIHRo
+ZSAidHVuZSB0d2ljZSIgdGhpbmcgcXVpdGUgYWNjaWRlbnRhbGx5IChJCj4gPiBkb24ndAo+ID4g
+dGhpbmsgSSByYW4gaW50byBhbnkgZG9jdW1lbnRhdGlvbiBvbiBpdCwgSSB3YXMganVzdCB0cnlp
+bmcgdG8gdGVzdAo+ID4gZm9yCj4gPiByZXBlYXRhYmlsaXR5IHdpdGggYSBzaW5nbGUgZnJlcXVl
+bmN5LCBhbmQgbm90aWNlZCB0aGUgZmlyc3QgdGltZQo+ID4gd2FzCj4gPiBhbHdheXMgd3Jvbmcp
+LCBidXQgbm93IHRoYXQgeW91IG1lbnRpb24gaXQsIEkgZ3Vlc3MgaXQga2luZCBvZgo+ID4gbWFr
+ZXMKPiA+IHNlbnNlLiBJIGRvbid0IGtub3cgaG93IGRlZXAgdGhlIGNvbW1hbmQgcXVldWUgZGVw
+dGggaXMsIGJ1dCBJCj4gPiBleHBlY3QgYQo+ID4gdHVuZSBvbiB0aGUgdHdpbnJ4IHdvdWxkIG9z
+dGVuc2libHkgbmVlZCB0byBlLmcuIHNldCB0aGUKPiA+IHByZXNlbGVjdG9yCj4gPiBmaWx0ZXIs
+IGVuYWJsZS9kaXNhYmxlIHRoZSBsb3cgZnJlcXVlbmN5IHByZS1hbXAsIHNlbGVjdCBoaWdoCj4g
+PiBiYW5kL2xvdwo+ID4gYmFuZCwgdHVuZSB0aGUgZmlyc3Qgc3RhZ2UgbG8sIHR1bmUgdGhlIHNl
+Y29uZCBzdGFnZSBsbywgc2VsZWN0Cj4gPiBoaWdoCj4gPiBiYW5kIGZpcnN0IHN0YWdlIG9zY2ls
+bGF0b3IsIGFuZCBtYXliZSBhbm90aGVyIGZldyB0aGluZ3MgdGhhdCBJJ20KPiA+IG1pc3Npbmcu
+IFRoZSBvbmx5IGJpdCBhYm91dCB0aGF0IHdoaWNoIEknbSBub3Qgc3VyZSBpcyB3aGF0IHRoZQo+
+ID4gbWluaW11bQo+ID4gYWNjZXB0YWJsZSBkZWxheXMgc2hvdWxkIGJlIHRvIGVuc3VyZSBzdGFi
+aWxpdHkgaW4gdGhpcyBkb3VibGUtdHVuZQo+ID4gb3BlcmF0aW9uLiBBcyBpdCBzdGFuZHMgcHJl
+c2VudGx5IEkgYW0gdGFraW5nIGFib3V0IH41MDBtcyB0bwo+ID4gcmV0dW5lCj4gPiB0aGUgcmVj
+ZWl2ZXIsIGl0IHdvdWxkIGJlIGdyZWF0IGlmIEkgY291bGQgZ2V0IHRoYXQgZG93biBzb21lLAo+
+ID4gdGhvdWdoIEkKPiA+IGhhdmUgYmlnZ2VyIGZpc2ggdG8gZnJ5IGFzIG9mIHlldC4KPiAxMHMg
+b2YgbXMgc2hvdWxkIGJlIG1vcmUgdGhhbiBhZGVxdWF0ZS4KPiAKPiBHaXZlbiB0aGF0IHlvdSdy
+ZSB1c2luZyBMTy1zaGFyaW5nIChJIGRpZG4ndCByZWFsaXplIHRoaXMpLCB0aGVuIHlvdQo+IG1h
+eSAKPiBiZSBydW5uaW5nIHVwIGFnYWluc3QKPiDCoMKgIGEgcmVncmVzc2lvbiBpbiB0aGUgY29k
+ZSBiYXNlLsKgIFRoZSA5MC8xODAvMjcwIG9mZnNldHMgYXJlCj4gc3VnZ2VzdGl2ZSAKPiBvZiBh
+IHJlLXN5bmNoIHByb2JsZW0KPiDCoMKgIG5vdCB3aXRoIHRoZSBSRiBzeW50aGVzaXplcnMsIGJ1
+dCB3aXRoIHRoZSBxdWFkLXJhdGUgcmVhbC10by0KPiBjb21wbGV4IAo+IGNvbnZlcnRlciB0aGF0
+J3MgaW4gdGhlCj4gwqDCoCBGUEdBIGNvZGViYXNlLgo+IAo+IFlvdSBjb3VsZCB0cnkgdGhpcyBh
+Z2FpbnN0IFVIRCAzLjE1LlgKPiAKPiAKPiA+IFVubGVzcyBJJ20gbWlzdGFrZW4gYW5kIG1vcmUg
+aXMgcmVxdWlyZWQsIEknbSBhbHJlYWR5IHVzaW5nIExPCj4gPiBzaGFyaW5nCj4gPiBiZXR3ZWVu
+IHRoZSBjaGFubmVscyAoYnV0IHRoYXQgZG9lc24ndCBzZWVtIHRvIGJlIGVub3VnaC4uLikuIEZv
+cgo+ID4gY2xhcml0eSwgbXkgaW5pdGlhbGl6YXRpb24gZnVuY3Rpb24gZG9lcyB0aGlzOiAobW9k
+aWZpZWQgZm9yCj4gPiBicmV2aXR5LAo+ID4gYnV0IGluIG9yZGVyKS4KPiA+IAo+ID4gX3VzcnAg
+PSB1aGQ6OnVzcnA6Om11bHRpX3VzcnA6Om1ha2UoYXJncyk7Cj4gPiBfdXNycC0+c2V0X2Nsb2Nr
+X3NvdXJjZSgiaW50ZXJuYWwiLDApOwo+ID4gX3VzcnAtPnNldF9yeF9zdWJkZXZfc3BlYygiQjow
+IEI6MSIsMCk7Cj4gPiBfdXNycC0+c2V0X3R4X3N1YmRldl9zcGVjKCJBOjAiLDApOwo+ID4gX3Vz
+cnAtPnNldF9yeF9hbnRlbm5hKCJSWDEiLDApOwo+ID4gX3VzcnAtPnNldF9yeF9hbnRlbm5hKCJS
+WDIiLDEpOwo+ID4gX3VzcnAtPnNldF90eF9hbnRlbm5hKCJUWC9SWCIsMCk7Cj4gPiBfdXNycC0+
+c2V0X3J4X2xvX3NvdXJjZSgiaW50ZXJuYWwiLCB1aGQ6OnVzcnA6Om11bHRpX3VzcnA6OkFMTF9M
+T1MsCj4gPiAwKTsKPiA+IF91c3JwLT5zZXRfcnhfbG9fc291cmNlKCJjb21wYW5pb24iLAo+ID4g
+dWhkOjp1c3JwOjptdWx0aV91c3JwOjpBTExfTE9TLAo+ID4gMSk7Cj4gPiBfdXNycC0+c2V0X3J4
+X3JhdGUoMTAwZTYsIDApOwo+ID4gX3VzcnAtPnNldF9yeF9yYXRlKDEwMGU2LCAxKTsKPiA+IF91
+c3JwLT5zZXRfdHhfcmF0ZSg0MDBlMywgMCk7Cj4gPiBfdXNycC0+c2V0X3R4X2dhaW4oMCwwKTsK
+PiA+IF91c3JwLT5zZXRfcnhfZ2Fpbig2NSwwKTsKPiA+IF91c3JwLT5zZXRfcnhfZ2Fpbig2NSwx
+KTsKPiA+IF91c3JwLT5zZXRfcnhfYmFuZHdpZHRoKDEwMGU2LDApOwo+ID4gX3VzcnAtPnNldF9y
+eF9iYW5kd2lkdGgoMTAwZTYsMSk7Cj4gPiBfdXNycC0+c2V0X3R4X2JhbmR3aWR0aCgxMDBlNiww
+KTsKPiA+IF91c3JwLT5zZXRfdGltZV91bmtub3duX3Bwcyh1aGQ6OnRpbWVfc3BlY190KDAuMCkp
+Owo+ID4gCj4gPiBJIGhhZCB0aG91Z2h0IGFsbCBJIG5lZWRlZCB0byBkbyB3YXMgdGhlICJzZXRf
+cnhfbG9fc291cmNlIiBiaXQgdG8KPiA+IGVuYWJsZSB0aGUgTE8gc2hhcmluZy4gSGF2ZSBJIGRv
+bmUgdGhhdCBjb3JyZWN0bHkgb3IgaGF2ZSBJIG1pc3NlZAo+ID4gc29tZXRoaW5nPyBJZiB0aGF0
+IGlzIGNvcnJlY3QsIGRvIEkgbmVlZCB0byBjaGFuZ2UgaG93IEkgZ28gYWJvdXQKPiA+IHR1bmlu
+ZyAoZGV0YWlsZWQgaW4gdGhlIGZpcnN0IGVtYWlsIGluIHRoZSBjaGFpbik/Cj4gPiAKPiA+IER1
+c3Rpbgo+ID4gCj4gPiAKPiA+IE9uIFdlZCwgMjAyMC0xMS0xMSBhdCAxOTo1MiAtMDUwMCwgTWFy
+Y3VzIEQuIExlZWNoIHdyb3RlOgo+ID4gPiBPbiAxMS8xMS8yMDIwIDA2OjIwIFBNLCBEdXN0aW4g
+V2lkbWFubiB3cm90ZToKPiA+ID4gPiBUaGFua3MgZm9yIHRoZSBxdWljayByZXNwb25zZSBNYXJj
+dXMhCj4gPiA+ID4gCj4gPiA+ID4gSXQgc2VlbXMgdG8gYmUgZmFpcmx5IGZyZXF1ZW5jeSBkZXBl
+bmRlbnQuIEknbSBhdHRhY2hpbmcgYSBsaW5rCj4gPiA+ID4gdG8KPiA+ID4gPiBhCj4gPiA+ID4g
+ZGF0YSBmaWxlIHNvIHknYWxsIGNhbiB0YWtlIGEgbG9vayBhdCB3aGF0IEkgbWVhbi4gSSByYW4g
+YQo+ID4gPiA+IGRlbnNlLQo+ID4gPiA+IGlzaAo+ID4gPiA+IHN3ZWVwIHNldmVyYWwgdGltZXMg
+dG8gdHJ5IHRvIGdldCBhIGZlZWwgZm9yIGhvdyByZXByb2R1Y2libGUKPiA+ID4gPiB0aGluZ3MK
+PiA+ID4gPiB3ZXJlIC9ldGMuIFRoZSB0cmFuc21pdHRlciB3YXMgcmV0dW5lZCBhdCBlYWNoIGZy
+ZXF1ZW5jeSwgYnV0Cj4gPiA+ID4gdGhlCj4gPiA+ID4gcmVjZWl2ZXIgd2FzIG9ubHkgcmV0dW5l
+ZCBldmVyeSAxME1Iei4KPiA+ID4gPiBodHRwczovL3UucGNsb3VkLmxpbmsvcHVibGluay9zaG93
+P2NvZGU9WFp2aWV6WFpHbDVZcGt2NDZMU1ZmOWw5bjFZdE9WMDV6OTJrCj4gPiA+ID4gaW4gdGhp
+cyBmaWxlOgo+ID4gPiA+ICogYmx1ZSBvciBncmVlbiB0ZXh0ID0gcmFuZ2Ugb2YgZGF0YXBvaW50
+cyB0aGF0IHNlZW0gdG8gaGF2ZQo+ID4gPiA+IHJlcHJvZHVjaWJsZSBwaGFzZSBvZmZzZXRzIChJ
+IGFsdGVybmF0ZWQgYmV0d2VlbiBibHVlIGFuZCBncmVlbgo+ID4gPiA+IHdoZW4gSQo+ID4gPiA+
+IG5vdGljZWQgYSAianVtcCIgaW4gdGhlIHZhbHVlIDs7IHNvbWV0aW1lcyB0aGVzZSBqdW1wcyB3
+ZXJlCj4gPiA+ID4gOTAvMTgwLzI3MAo+ID4gPiA+IGRlZ3JlZSwgYnV0IG9mdGVuIG5vdCwgYW5k
+IHdlcmUgcmVwcm9kdWNpYmxlIHJlZ2FyZGxlc3MpCj4gPiA+ID4gKiBvcmFuZ2UgdGV4dCA9IHBo
+YXNlIG9mZnNldCBpcyBvZmYgaW4gc29tZSBjb25zaXN0ZW50IG1hbm5lcgo+ID4gPiA+ICg5MC8x
+ODAvMjcwIGRlZ3JlZSBqdW1wKSBhbmQvb3IgcmVwcm9kdWNpYmxlIGFiZXJyYW50IHZhbHVlCj4g
+PiA+ID4gKiByZWQgdGV4dCA9IHBoYXNlIG9mZnNldCBzZWVtcyB0byBiZSByYW5kb20vZ2FyYmFn
+ZQo+ID4gPiA+ICogcmVkIGJhY2tncm91bmQgPSBpbnZhbGlkIGRhdGFwb2ludCAoZWl0aGVyIHRv
+bmUgaXMgYXQKPiA+ID4gPiB1bmV4cGVjdGVkCj4gPiA+ID4gYmluCj4gPiA+ID4gb24gY2hhbm5l
+bCAxLCBjaGFubmVsIDIsIG9yIGJvdGggOzsgdGhpcyBpcyBvbmUgb2YgdGhlIG90aGVyCj4gPiA+
+ID4gcXVlc3Rpb25zCj4gPiA+ID4gSSB3YXMgYWxsdWRpbmcgdG8gaW4gbXkgZmlyc3QgZW1haWws
+IEknbSBwcmVzdW1pbmcgaXRzIGEKPiA+ID4gPiBzZXBhcmF0ZQo+ID4gPiA+IGlzc3VlLCBidXQg
+bWF5YmUgbm90LiBJdCdzIHdvcnRoIG5vdGluZyB0aGF0IHdoZW4gdGhlIHRvbmUgaXMKPiA+ID4g
+PiBvYnNlcnZlZAo+ID4gPiA+IGF0IHRoZSB3cm9uZyBmcmVxdWVuY3ksIHRoZSBmcmVxdWVuY3kg
+d2hlcmUgaXQgaXMgb2JzZXJ2ZWQgaXMKPiA+ID4gPiBvZnRlbgo+ID4gPiA+IGEKPiA+ID4gPiBt
+dWx0aXBsZSBvZiB0aGUgcmVmZXJlbmNlIGNsb2NrIGluc3RlYWQpCj4gPiA+ID4gCj4gPiA+ID4g
+RHVzdGluCj4gPiA+ID4gCj4gPiA+IFdoYXQgdmVyc2lvbiBvZiBVSEQgYXJlIHlvdSB1c2luZz8K
+PiA+ID4gCj4gPiA+IEkgc3Bva2Ugd2l0aCB0aGUgb3JpZ2luYWwgZGV2ZWxvcGVyIG9mIHRoZSBU
+d2luUlggZHJpdmVyLCBhbmQgdGhlCj4gPiA+IHByZWZlcnJlZCBhcHByb2FjaCB0byB0dW5pbmcg
+aWYgeW91IHdhbnQgY29oZXJlbmNlCj4gPiA+IMKgwqDCoCBpcyB0byB0dW5lIGl0IHR3aWNlIHdp
+dGggdGltZWQgY29tbWFuZHMuwqAgVGhlIHJlYXNvbiBmb3IgdGhpcwo+ID4gPiBpcwo+ID4gPiB0
+aGF0Cj4gPiA+IHRoZSBudW1iZXIgb2YgdHJhbnNhY3Rpb25zIHJlcXVpcmVkIHRvIHR1bmUgdGhl
+Cj4gPiA+IMKgwqDCoCBUd2luUnggZXhjZWVkcyB0aGUgc2l6ZSBvZiB0aGUgWDMxMCBjb21tYW5k
+IHF1ZXVlLCBidXQKPiA+ID4gdmFyaW91cwo+ID4gPiB0aGluZ3MKPiA+ID4gZ2V0IGNhY2hlZCwg
+c28gdGhlIHNlY29uZCBhdHRlbXB0IHdpbGwgaGF2ZQo+ID4gPiDCoMKgwqAgZmV3ZXIgY29tbWFu
+ZHMgaW4gdGhlIHF1ZXVlLCBhbmQgd2lsbCBnbyB0aHJvdWdoIHdpdGggYWxsIHRoZQo+ID4gPiBh
+cHByb3ByaWF0ZSB0aW1pbmcuCj4gPiA+IAo+ID4gPiBTaW5jZSB0aGlzIGlzIG9uIGEgc2luZ2xl
+IFgzMTAgcGxhdGZvcm0sIGFuZCBpdCdzIFR3aW5SWCwgeW91Cj4gPiA+IG1pZ2h0Cj4gPiA+IGNv
+bnNpZGVyIGluc3RlYWQgdXNpbmcgTE8gc2hhcmluZzoKPiA+ID4gCj4gPiA+IGh0dHBzOi8va2Iu
+ZXR0dXMuY29tL1R3aW5SWCNOZXdfTXVsdGlfVVNSUF9GdW5jdGlvbnMKPiA+ID4gCj4gPiA+IAo+
+ID4gCj4gCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+ClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6
+Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVz
+LmNvbQo=
