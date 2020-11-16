@@ -2,39 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF842B5474
-	for <lists+usrp-users@lfdr.de>; Mon, 16 Nov 2020 23:39:32 +0100 (CET)
-Received: from [::1] (port=37452 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 086B52B54D0
+	for <lists+usrp-users@lfdr.de>; Tue, 17 Nov 2020 00:15:50 +0100 (CET)
+Received: from [::1] (port=37698 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ken9m-0007Ow-2o; Mon, 16 Nov 2020 17:39:30 -0500
-Received: from scalix.pari.edu ([68.235.248.163]:42334)
- by mm2.emwd.com with esmtp (Exim 4.93)
- (envelope-from <lowen@pari.edu>) id 1ken9h-0007HW-Ta
- for usrp-users@lists.ettus.com; Mon, 16 Nov 2020 17:39:25 -0500
-Received: from scalix.pari.edu (localhost [127.0.0.1])
- by scalix.pari.edu (Postfix) with ESMTP id 63EA264012B;
- Mon, 16 Nov 2020 17:38:45 -0500 (EST)
-Received: from localhost.localdomain (localhost [127.0.0.1])
- by scalix.pari.edu (Scalix SMTP Relay 12.6.0.14933)
- via ESMTP; Mon, 16 Nov 2020 17:38:45 -0500 (EST)
-Date: Mon, 16 Nov 2020 17:38:40 -0500
-To: Marcus D. Leech <patchvonbraun@gmail.com>,
-	usrp-users@lists.ettus.com
-Message-ID: <9b9979ba-bc4c-9939-fdc1-4fe9593439f8@pari.edu>
-In-Reply-To: <5FB2FC93.4020809@gmail.com>
-References: <5aef8e21-77a8-e3a0-1542-8f9075039eb9@pari.edu>
- <5FB2C107.60309@gmail.com>
- <7c355116-88f5-35b5-2ba8-2d851ed4af68@pari.edu>
- <7269bb32-af6f-1631-1c33-5b78e9b03ef9@pari.edu>
- <96cd5a7a-0f92-d15a-280c-375e0a002144@pari.edu>
- <5FB2FC93.4020809@gmail.com>
-x-scalix-Hops: 1
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+	id 1kenit-0001pw-Uw; Mon, 16 Nov 2020 18:15:47 -0500
+Received: from mail-io1-f49.google.com ([209.85.166.49]:43151)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <adray0001@gmail.com>) id 1kenip-0001iX-8h
+ for usrp-users@lists.ettus.com; Mon, 16 Nov 2020 18:15:43 -0500
+Received: by mail-io1-f49.google.com with SMTP id m9so19218957iox.10
+ for <usrp-users@lists.ettus.com>; Mon, 16 Nov 2020 15:15:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=ql5/dIPOfD75B75xUr1ZO/997C1goKKb4s11NnvPv+I=;
+ b=FkmKQPLxvOZ0IUpR+4bSPQmBj98grVkgNb471mYXgFy/AQqsnZyutbaDIdgunFYvih
+ ydpOaAWTdlmfykMV6bk2DymOEc/Haq8aZT2DCL2epXpZtIc2mKRs26Y5UTB/k4Ku6wNw
+ VQyFHW7MYwS6cwBJaB7e1/awCTXGttfkK9Ln0SX/4vPMKyfSopJnY4tNC19S9Js4ZdqH
+ lbAjgux/9LoqTHjMfVvenUE5689M7FIVY8JBGXULbzVGSBFP168ZNeG6KK2P/aHugNgh
+ 4CIXdiflZCawzDxycrgu6sQ83c4PVWyfPJU20PPPlklcahD8sd/vLq1+Hga2UE4raVQJ
+ URUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=ql5/dIPOfD75B75xUr1ZO/997C1goKKb4s11NnvPv+I=;
+ b=aDoc4Bpwp8AU8cA4g5ilGwFK9GkEx44JFiWcdsGJiLpsqfQf+NnrbFx4/tZcwtsBy/
+ NqMroWG3ScpExCcpfbuv7F2xWx3m+yDgPMaRQ6n4gngdr+rdb04bwAOJ2rtaUdBPkBp4
+ WfzpL7gD5HxJRwhU8gU956J9D1bmCemyZjob98QXcUHw7It3ReEbxE9WcR0lobkO5MHZ
+ Wu0riaVUo1Lb9hl/+JvWgMwWcpMEwpDXePNvAiPrQS/GA5qSSK1ItqfRlDEKQH6kFcOS
+ rY94QWOmH4EHE9Hx8MhU0W7EPN85BR5q00DQoF5+dRCTaDg2zDtF5Vy92mf8paY9Awc9
+ rNog==
+X-Gm-Message-State: AOAM532sQVKChfJ5HqTc463pdKfhuXhVbluromNCO6PNVIO9xr7eGhn0
+ Rfexc159G9UXrp/VeImo85pbmZ6ZkT/5Xfj/9wwR9V00rpc08g==
+X-Google-Smtp-Source: ABdhPJxLPYTGeL+AyKbbxzyMWCtjZCFwDwJvnyQrEiN2OZBhfecH2wpBas8srb5ZPOeLaX8MbShnxRz8lmfxaPqkTkc=
+X-Received: by 2002:a5d:9b8f:: with SMTP id r15mr9696014iom.35.1605568500994; 
+ Mon, 16 Nov 2020 15:15:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Language: en-US
-Subject: Re: [USRP-users] UHD version that supports older DBSRX on a USRP1.
+Date: Tue, 17 Nov 2020 01:14:48 +0200
+Message-ID: <CAPRRyxvjjBW1Z2htqVOO_OCLP2RXs=j6Q0B3y7L5YL0sLU4bCQ@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>,
+ discuss-gnuradio <discuss-gnuradio@gnu.org>
+Subject: [USRP-users] Direction finding based on USRP E310 board
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -46,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lamar Owen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lamar Owen <lowen@pari.edu>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7871260732120847556=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -63,45 +71,44 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 11/16/20 5:26 PM, Marcus D. Leech via USRP-users wrote:
-> On 11/16/2020 03:32 PM, Lamar Owen via USRP-users wrote:
->>
->>
->> [TRACE] [DBSRX] DBSRX: trying ref_clock 4000000.000000 and m_divider 4
->> [TRACE] [DBSRX] DBSRX R:2
->>
->> [ERROR] [DBMGR] The daughterboard manager encountered a recoverable =
+--===============7871260732120847556==
+Content-Type: multipart/alternative; boundary="0000000000002a165605b4418c6b"
 
->> error in init.
->> Loading the "unknown" daughterboard implementations to continue.
->> The daughterboard cannot operate until this error is resolved.
->> AssertionError: m and ref_clock/m >=3D 1e6 and ref_clock/m <=3D 2.5e6
->> =A0 in double dbsrx::set_lo_freq(double)
->> =A0 at =
+--0000000000002a165605b4418c6b
+Content-Type: text/plain; charset="UTF-8"
 
->> /home/conda/feedstock_root/build_artifacts/uhd_1602712704625/work/host/l=
-ib/usrp/dboard/db_dbsrx.cpp:306
-> If you look at the context of this assertion--it should never be =
+Hello. I am interested in the possibility of implementing a prototype
+direction finder based on the USRP E310 board. Since I have it in stock.
+Interested in basic questions such as is it possible to synchronize the
+phase on two channels and are there any examples of such attempts? Perhaps
+someone can give some instructions on this matter, since this is all at the
+level of an idea. PS Other USRPs I have no way to use at the moment.
 
-> asserted.=A0=A0 ref_clock is 4e6 and m is 4, so the test is satisfied, an=
-d =
+--0000000000002a165605b4418c6b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> therefore the
-> =A0 assertion shouldn't fail.=A0 I wonder if this is a compiler issue, or =
+<div dir=3D"ltr">Hello. I am interested in the possibility of implementing =
+a prototype direction finder based on the USRP E310 board. Since I have it =
+in stock. Interested in basic questions such as is it possible to synchroni=
+ze the phase on two channels and are there any examples of such attempts? P=
+erhaps someone can give some instructions on this matter, since this is all=
+ at the level of an idea.
+PS Other USRPs I have no way to use at the moment.</div>
 
-> an issue with the UHD_ASSERT logic?
+--0000000000002a165605b4418c6b--
 
-Yeah, I saw that; thanks for the pointer (to someone else's question) =
 
-about logging at trace level.=A0 So I've filed it as an issue in the UHD =
-
-github.=A0 Could be something similar to issue #304 at the UHD github.
-
-What it does tell me is that 3.15 SHOULD support USRP1 with DBSRX, just =
-
-need to fix the issue.
+--===============7871260732120847556==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7871260732120847556==--
+
