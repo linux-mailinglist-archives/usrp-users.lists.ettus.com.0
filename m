@@ -2,61 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DA5D2B54E2
-	for <lists+usrp-users@lfdr.de>; Tue, 17 Nov 2020 00:21:35 +0100 (CET)
-Received: from [::1] (port=37752 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDCB32B551E
+	for <lists+usrp-users@lfdr.de>; Tue, 17 Nov 2020 00:35:57 +0100 (CET)
+Received: from [::1] (port=37850 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kenoP-0002JY-Ir; Mon, 16 Nov 2020 18:21:29 -0500
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:35420)
+	id 1keo2O-00038u-2l; Mon, 16 Nov 2020 18:35:56 -0500
+Received: from mail-il1-f175.google.com ([209.85.166.175]:40527)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kenoL-000262-2O
- for usrp-users@lists.ettus.com; Mon, 16 Nov 2020 18:21:25 -0500
-Received: by mail-qk1-f173.google.com with SMTP id v143so18806504qkb.2
- for <usrp-users@lists.ettus.com>; Mon, 16 Nov 2020 15:21:04 -0800 (PST)
+ (Exim 4.93) (envelope-from <adray0001@gmail.com>) id 1keo2J-0002zp-UN
+ for usrp-users@lists.ettus.com; Mon, 16 Nov 2020 18:35:51 -0500
+Received: by mail-il1-f175.google.com with SMTP id n5so16922304ile.7
+ for <usrp-users@lists.ettus.com>; Mon, 16 Nov 2020 15:35:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=xE68vgLtquOdwIHI5HJ+ddmep7gyeC10obmNa0NyG5s=;
- b=bOgZzR9ee6vL/gw7VqA32/3xyJRzB1MihY61QxuA+9CkQW03KBAh+ifbJBN+z0CTV0
- 44vDn+hMsHKCWXvqwdXvrlb17zkz4Tdgf26MKdGCmPH3QeP5FRBN+qw/jVtVDIQDGasm
- 6aNULbefHcIKb8EtGnUwaDLrOHGi1bU+nLSd8G7zxl5Nygw5pXKxjo2pTC/u4UpYdGew
- 1zASQI7jacRzwx1RyRTVAHdY0IizGXEWFV8tXLaLYoXBEQknoHiB1jMKpvMhnzKGGpSi
- rkt8BFC9cZir2RIoMOtErAMIX69Ids4imyZArZtj9WqWj5kHrSbATXiC8ZFf51Ximk5Q
- 5ShQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=5By9URCZ5GKgJdolETLbw4lSF6xbsLAJ2S8ZkwFCNs4=;
+ b=eQ0CtaYPlFUcAQqpZc3XOOSl9OZk6t3L/2QYWnLzM2r1ANaRdcSblJxKPnAkvzmeCL
+ S9uStevfJm+OrDlCxoqpAhPsx4q1oXtYR1/pXrmmlOLugGzduluEa/Ia/Ud8csfn1SwY
+ OH+yFhkr0kSfFSM3qeifQsCorqRAa0YlvRSzyLI8XHSr/QHXYcuyh0QKaId2Gk/tgw1N
+ JoWB6C4f0wqtmydFTVOLkmtGodReeD/XxO6wfeavYldMm0qCO8npv5vytSwv0w3y/iOk
+ HTzCER0tPjiGIl6GLQiDo8Aw0yfArERtp9OtAFjhcKel1JhtoE+NP3S2UwKMlCVqsZkI
+ +GNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=xE68vgLtquOdwIHI5HJ+ddmep7gyeC10obmNa0NyG5s=;
- b=TP/HIOV75p9RKwvsZhhwHjc2PjnIKg2tiTSBdCBnSiDdmzmArXQn0cdaIHzztw12YX
- vZvNIu1A15QB/wGpJEzMZiaRu/tNGQNENXAymtJ4WdA2kWR1SBGbdtLDUp+mMxd4y2D6
- Pjn0DNchmKwbRlsZRwW03CupISlPDNxMHTNPxviW24f1/uK1HImh0KavPo1cF0Qcs6bs
- gWDjgRsczqb8+aiv3rXH1vPatATIilTsI0KIJPrnZJCFfuZqT8ay/Ca2cCs6q3nmJtMs
- +ELbThFyoDh5SJj7cdsfZNylETQysbuIL77//p25F1H0Wo8qcNiX6vmNURPBDTks8qFG
- caGg==
-X-Gm-Message-State: AOAM530Us4JzjHtdk1vkHoajFBru7xEYU/3TkBCqhY9T8iaj3FrKCPxb
- zQsG9vjPEEftetjZWXb+FzM=
-X-Google-Smtp-Source: ABdhPJzJ0w7+vkSqEsDIw+AIaf72e4Ou2epj724DiVOx8SghWwP5m1jZQXzJfsX1OqPXxRC+AiW+9g==
-X-Received: by 2002:a37:70c4:: with SMTP id
- l187mr10270225qkc.264.1605568844467; 
- Mon, 16 Nov 2020 15:20:44 -0800 (PST)
-Received: from [192.168.2.132]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.gmail.com with ESMTPSA id w192sm13273769qkb.17.2020.11.16.15.20.43
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 16 Nov 2020 15:20:44 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Mon, 16 Nov 2020 18:20:42 -0500
-Message-Id: <850F88F7-486D-4D42-9E66-E853B4ABE16E@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=5By9URCZ5GKgJdolETLbw4lSF6xbsLAJ2S8ZkwFCNs4=;
+ b=GvWfhVQ6y6dKxRMQ9DqMqhuxCAawa3tsV0e/f54UOSYsF0/otsUEYyQNRRH6+cf5UF
+ IHxfu30mCWZzJtIl4sHBX6Lwy9grJBUmEWPLRxiX6G5ZesuG1Hm/ru7ZLDDPtU3UQ94F
+ zZIiBCfGaiJSXnYjHDjIao2Of4qB0aeB40pPQxsW8liRbkJUGG1JZ4wYcGS+vMbomBe7
+ dbfel33WIRdNbCWwokS/1rV6kNSLkDKw7H1H5Gw0m7g9pNceimS1B2ANW3QILKbo3k4D
+ 5tDTRE0kc8cGbBRjZIsqYND9ncSTtpgBrN1jSfHsWisGXknbSJ8cocRxb9BGrNyjpLPi
+ 1dWw==
+X-Gm-Message-State: AOAM530c+kRac/mRGs4j2XXgKRCyqV/5Vl2KfdYuKDHW8l54wIUallJL
+ 0wJv6I8P20TpB3vz0ezkuR0+CMBOWteTiov9tsZc/zM6hwk=
+X-Google-Smtp-Source: ABdhPJxXOAt4gz0kaOY4QQQKUeRPokLvgXSPtcgiqRyHH/n2RheQ+yPpa34XJmTpTTQEKuz/BkbSmoDYh4XSoia0yA4=
+X-Received: by 2002:a92:c7ae:: with SMTP id f14mr10489761ilk.202.1605569710986; 
+ Mon, 16 Nov 2020 15:35:10 -0800 (PST)
+MIME-Version: 1.0
 References: <CAPRRyxvjjBW1Z2htqVOO_OCLP2RXs=j6Q0B3y7L5YL0sLU4bCQ@mail.gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>,
- discuss-gnuradio <Discuss-gnuradio@gnu.org>
-In-Reply-To: <CAPRRyxvjjBW1Z2htqVOO_OCLP2RXs=j6Q0B3y7L5YL0sLU4bCQ@mail.gmail.com>
-To: Ivan Zahartchuk <adray0001@gmail.com>
-X-Mailer: iPhone Mail (18A8395)
-Subject: Re: [USRP-users] Direction finding based on USRP E310 board
+ <850F88F7-486D-4D42-9E66-E853B4ABE16E@gmail.com>
+ <CAPRRyxtR3SgYWqnAaJM=LnTxYZF5iCzeVR_xB9dVDXAWVT0Wow@mail.gmail.com>
+In-Reply-To: <CAPRRyxtR3SgYWqnAaJM=LnTxYZF5iCzeVR_xB9dVDXAWVT0Wow@mail.gmail.com>
+Date: Tue, 17 Nov 2020 01:34:59 +0200
+Message-ID: <CAPRRyxt8qaJ-DbgKbDQbXYMt8=0PKC42JReqb=LrUxR0ZCEJqg@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>,
+ discuss-gnuradio <discuss-gnuradio@gnu.org>
+Subject: [USRP-users] Fwd:  Direction finding based on USRP E310 board
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5851914577836443029=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,22 +76,39 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-VGhlIHR3byBjaGFubmVscyBvbiBhbiBFMzEwIGFyZSBhbHJlYWR5IHRpbWUgc3luY2hyb25pemVk
-IGFuZCBwaGFzZSBjb2hlcmVudC4gCgpZb3XigJlkIG9ubHkgaGF2ZSB0byBjYWxsaWJyYXRlIGFu
-ZCByZW1vdmUgZXh0ZXJuYWwgcGhhc2UgZWZmZWN0cy4gCgpTZW50IGZyb20gbXkgaVBob25lCgo+
-IE9uIE5vdiAxNiwgMjAyMCwgYXQgNjoxNSBQTSwgSXZhbiBaYWhhcnRjaHVrIHZpYSBVU1JQLXVz
-ZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6Cj4gCj4g77u/Cj4gSGVsbG8u
-IEkgYW0gaW50ZXJlc3RlZCBpbiB0aGUgcG9zc2liaWxpdHkgb2YgaW1wbGVtZW50aW5nIGEgcHJv
-dG90eXBlIGRpcmVjdGlvbiBmaW5kZXIgYmFzZWQgb24gdGhlIFVTUlAgRTMxMCBib2FyZC4gU2lu
-Y2UgSSBoYXZlIGl0IGluIHN0b2NrLiBJbnRlcmVzdGVkIGluIGJhc2ljIHF1ZXN0aW9ucyBzdWNo
-IGFzIGlzIGl0IHBvc3NpYmxlIHRvIHN5bmNocm9uaXplIHRoZSBwaGFzZSBvbiB0d28gY2hhbm5l
-bHMgYW5kIGFyZSB0aGVyZSBhbnkgZXhhbXBsZXMgb2Ygc3VjaCBhdHRlbXB0cz8gUGVyaGFwcyBz
-b21lb25lIGNhbiBnaXZlIHNvbWUgaW5zdHJ1Y3Rpb25zIG9uIHRoaXMgbWF0dGVyLCBzaW5jZSB0
-aGlzIGlzIGFsbCBhdCB0aGUgbGV2ZWwgb2YgYW4gaWRlYS4gUFMgT3RoZXIgVVNSUHMgSSBoYXZl
-IG5vIHdheSB0byB1c2UgYXQgdGhlIG1vbWVudC4KPiBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
-dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5m
-by91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+--===============5851914577836443029==
+Content-Type: multipart/alternative; boundary="000000000000491bc805b441d4ef"
+
+--000000000000491bc805b441d4ef
+Content-Type: text/plain; charset="UTF-8"
+
+That is, in theory, I can simply start two streams from two channels and
+further process them using certain direction finding algorithms?
+
+--000000000000491bc805b441d4ef
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr"><br></div><br><br><div dir=3D"ltr">That is, in theory, I can simply =
+start two streams from two channels and further process them using certain =
+direction finding algorithms?</div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr"><br></div></div>
+</div></div>
+
+--000000000000491bc805b441d4ef--
+
+
+--===============5851914577836443029==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5851914577836443029==--
+
