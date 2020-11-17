@@ -2,52 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD2992B59BE
-	for <lists+usrp-users@lfdr.de>; Tue, 17 Nov 2020 07:26:55 +0100 (CET)
-Received: from [::1] (port=40234 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A7E42B5ACB
+	for <lists+usrp-users@lfdr.de>; Tue, 17 Nov 2020 09:13:05 +0100 (CET)
+Received: from [::1] (port=41708 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1keuS4-0004IW-GJ; Tue, 17 Nov 2020 01:26:52 -0500
-Received: from mout.gmx.net ([212.227.17.21]:41837)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <smithgeorge1492@gmx.com>)
- id 1keuS0-0004Dy-8p
- for usrp-users@lists.ettus.com; Tue, 17 Nov 2020 01:26:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1605594366;
- bh=Dm4+yZamLuiNHSJjrKH1vZ3GuxuBtHQe4Sp3aMQoN1A=;
- h=X-UI-Sender-Class:From:To:Subject:Date;
- b=bdTjwYozu5JOUBIqk0NpIR1e/4gGpqAclQVNmKM9oBBXr809rD0Ux3xfjZqTU2igL
- tsZHjjZPI08DV8QDA6uP4xvBw1ERDbTOy4KRoPicC5ZIGkIknUgUxU8hgWGPTgdhUM
- 78K6boW4kNMuQBqkCnJFDZoIhjVzWOgRFbUGMrQc=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [62.216.202.180] ([62.216.202.180]) by web-mail.gmx.net
- (3c-app-gmx-bap02.server.lan [172.19.172.72]) (via HTTP); Tue, 17 Nov 2020
- 07:26:06 +0100
+	id 1kew6n-0001I3-Sw; Tue, 17 Nov 2020 03:13:01 -0500
+Received: from mail-yb1-f200.google.com ([209.85.219.200]:34365)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <mikio@dolphinsystem.jp>)
+ id 1kew6j-0001CR-GW
+ for usrp-users@lists.ettus.com; Tue, 17 Nov 2020 03:12:57 -0500
+Received: by mail-yb1-f200.google.com with SMTP id w7so3354295ybk.1
+ for <usrp-users@lists.ettus.com>; Tue, 17 Nov 2020 00:12:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=dolphinsystem-jp.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=rLu4DvziYTYXxcrdHXgEFgsHZcE9C2eDT0LKKAKPtLI=;
+ b=z6j8lHvpk/9sRsI8wHkgq1dKtzfB3pL3PjphgugDg/9U6pdHPPpyQg5ruAEwpvzUGo
+ MzA/46rTVwS3D9K3PU5D+JvMuLI3JQtomPj+9i5aAcwY497FtCE92S4+9xUlpLYoWmWg
+ l/f+umStxiLWv0Q6RgQd3EktfQh2a2UkX8SM+hzVfyN8dz2hiCsN8r/PBo5dlf0gPq9c
+ 4fudm4CyTAaQIwHNDJi4cnBs6mpA1K2hNfDZAdZGTr7Uy0MllTyfXFWSLT22uU1TdnJB
+ scGgDeEahfm+RBBILIMYWL8/eP5GoY3xsj60VEpF7gDiOUWctM/A3YQhEsOVy2qBK+yk
+ MHKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=rLu4DvziYTYXxcrdHXgEFgsHZcE9C2eDT0LKKAKPtLI=;
+ b=jOU2ZgcS9uEATD/j4YbV3BveosfSXnNLxNMTQ4SscJI908+6XyXgOhI/pxh+0IG98Q
+ gFF+KUmu9ZavJXkW8qFth0+WFKc5vUbkkI7rOnEgbnfly2Gp1sE0tqi5RyozU6LXKvlW
+ hythjD6W4+VvDVkdm4XRmZC6FMre9Y0NRpJEHm0tQ52463FwdOrsadR3HrdF8v9woEDS
+ JcUO1yLAIJNf5obji+kiFc1I2HaDu+iuhJmT76N5S4aFuf/C3soSZccDwQGb2e4rhljY
+ l6QDdwWD2fuz6nsrPmtJuclqNSTruAa3WW1rTlhpI59439+NIlfQvvepHK34utOnnUGr
+ bZ2g==
+X-Gm-Message-State: AOAM531DPypNYvhLSHOit3s9nTjRrixv9uSbilV7dkN6h4QHQIAV040+
+ 87SbYy6bRtJ0BUD1eMl4gcFrFZzcU+JRxoBcwDm2oo+7OsNLLPRV
+X-Google-Smtp-Source: ABdhPJyYI1BKNTGZ6hj4mzodc7YA89x4MNK5a88n0SMH19h+t+X3JIoB7UPm8ptMOJwIcOFvUvt4gm9Wb8SKqH4mb74=
+X-Received: by 2002:a25:6dc6:: with SMTP id
+ i189mr30087893ybc.299.1605600736451; 
+ Tue, 17 Nov 2020 00:12:16 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <trinity-68061d4d-5ab3-4320-82b3-c9d0d0d56cf7-1605594366644@3c-app-gmx-bap02>
-To: usrp-users@lists.ettus.com
-Date: Tue, 17 Nov 2020 07:26:06 +0100
-Importance: normal
-Sensitivity: Normal
-X-Priority: 3
-X-Provags-ID: V03:K1:P/v0yhp7fEUqKXSXv0KUpHrBHw3g//aqQtx8a3x0DUqSFFYiVBqvpdR4vJ0Th/oAD6dJm
- 0KYvr5+h9jOp7VoqGVLWnsrDkptdOemwIuaM0Doz+G4YMerNmVunXVLZCNvP9x8uQN9zGv6zuLDO
- FJgxhgFSF8km6ywPQHQv1Nc3ecMS2gG8r8Nu8wh55rv2fFsKMuRMd5dbUaWLIdRBZV5VJmH38b/e
- WdE7nay4A52XSoQ9hEmzrcPfUQx5BluNDbTDEFJFn7Fa0XbA864G1HuSIPwivGuWs94JlkxwcvzT
- a0=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:wyOvUJWpFeM=:jW2wNTc6QWD6AZwS2i3hM7
- bJCH85DFqXK8WlpmIxSIXwaa+1LnxE/rSAn7s3bN8798Jg7FQL5AvjPkmfvj8jjmX6QrcMRSt
- 3wM2+85KBz6h/ABVTzr7BiuYLkHG594d72Sd5S5Ua8FSGml783eTKkYlxIRS8l7KUeSxy0Mlo
- +4soRho1giJEm+d+wNFeFKRHWXOudKNAElNw9N+gjnDnpYvXfcL04hSn9vJbVg4ZrzP/ChtgP
- h+z5tYnwYRyuAkTo6/ewXeHFjoyU7galpjoauWgn/XNLG5L8BHDrNZlgWrZZ5SY5eYzuExaVw
- V0/IsU1XeHmDOpYF32l57QFrxK6BmHcOOfruIcJCKwPeGhPkh//T1321z/P8dJJtnpuJs6ZEk
- 75cv9UIzjCYdpcCeoaIDg3a9Yjof1Nq7xyhgq7Qn2/R2lX8xYyaFSX+a+shczs2GEibzoeX4W
- dNz6OTOgc6sJ6pG0cJKLrElmr2U9Pt8Qqq+gfZkCzdm9nO/24tA6+1zn7h48ZpvYURnJ32Ctq
- hiZsS8fvC0/Kmp02Sx602prgHNbb5rnRfxNzQt/bS5mpKj4dPJ8xdnG9FTYOna3B0oZIigTvn
- ZWbI4CjizM7ho=
-Subject: [USRP-users] RFNoC: How can I use the GPS time?
+Date: Tue, 17 Nov 2020 17:11:41 +0900
+Message-ID: <CABfZwcf=W+i1ZO6LO+TrYh386cxy--GtKgggPO3__DQhf8pF0g@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: [USRP-users] How can I get an error by send method?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,9 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: George Smith via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: George Smith <smithgeorge1492@gmx.com>
-Content-Type: multipart/mixed; boundary="===============1812710050270308532=="
+From: Mikio Fukushima via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mikio Fukushima <mikio@dolphinsystem.jp>
+Content-Type: multipart/mixed; boundary="===============6056218008369462128=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,156 +73,35 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1812710050270308532==
-Content-Type: text/html; charset=UTF-8
+--===============6056218008369462128==
+Content-Type: multipart/alternative; boundary="0000000000008c3c6805b4490dd2"
 
-<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div style="font-family: Verdana;font-size: 12.0px;">
-<div style="font-family: Verdana;font-size: 12.0px;">
-<div>Dear community,</div>
+--0000000000008c3c6805b4490dd2
+Content-Type: text/plain; charset="UTF-8"
 
-<div>&nbsp;</div>
+Hi.
 
-<div>I use an RFNoC block and I would like to use it in combination with the GPS time functionallity on a N310.</div>
+rx_stream->recv method returns an error code. but tx_stream->send method
+doesn't return an error code.
+I want to detect an underflow. How can I get an error code by send method?
 
-<div>My aim is to create and write out a GPS precise timestamp - in the first step only once but maybe later more regularly.</div>
+Regards,
 
-<div>Until Inow I have a RFNoC block, where I put the controlling stuff (of the main task) inside <em>test1_block_ctrl_impl.cpp </em>which is called by <em>test1_impl.cc</em></div>
+Mikio Fukushima
 
-<div>My idea is to put the GPS time function inside <em>test1_block_ctrl_impl.cpp</em>&nbsp; / <em>test1_impl.cc </em>as well. In my opinion it is not necessary to create a completelty new self-written RFNoC block since it is a small function.</div>
+--0000000000008c3c6805b4490dd2
+Content-Type: text/html; charset="UTF-8"
 
-<div>&nbsp;</div>
+<div dir="ltr"><div>Hi.</div><div><br></div>rx_stream-&gt;recv method returns an error code. but tx_stream-&gt;send method doesn&#39;t return an error code.<br>
 
-<div>In the following I describe two different approaches how I try to achieve my goal, but I would like to use the easiest one.</div>
+I want to detect an underflow.
 
-<div>Mainly I try to use the integrated GPSDO function</div>
+How can I get an error code by send method?<br><div><br></div><div>Regards,</div><div><br></div><div>Mikio Fukushima<br><br></div></div>
 
-<div>So if you know a better solution, don&#39;t hesitate to post it. :)</div>
+--0000000000008c3c6805b4490dd2--
 
-<div>&nbsp;</div>
 
-<div>
-<div>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
-</div>
-
-<div>&nbsp;</div>
-
-<div><strong>(1)</strong></div>
-
-<div>&nbsp;</div>
-
-<div>Initially; I thought I could use code of the <em>sync_to_gps.cpp </em>in the examples folder of uhd, but I realized that therefore an instance of an <em>usrp</em> object is created.</div>
-
-<div>&nbsp;</div>
-
-<div><em>uhd::usrp::multi_usrp::sptr usrp = uhd::usrp::multi_usrp::make(args);</em></div>
-
-<div>&nbsp;</div>
-
-<div>Since I use a RFNoC block, previously a &quot;<em>rfnoc</em>&quot; object is constructed. (I dont know the exact name and where it is created). So, I have two instances which want to access at the same resource (board) at the same time. This is obviously not functioning.</div>
-
-<div>So when I run it in gnuradio I got the following error:</div>
-
-<div>&nbsp;</div>
-
-<div><em>[ERROR] [RPC] Someone tried to claim this device again</em></div>
-
-<div>&nbsp;</div>
-
-<div>In order to avoid this problem I would like to apply the needed methods for using the GPS time functionallity at the <em>rfnoc </em>object (so I do not need to create an object <em>usrp </em>).</div>
-
-<div>In the <em>sync_to_gps.cpp </em>example the following methods are used:</div>
-
-<div>&nbsp;</div>
-
-<div><em>set_clock_source</em></div>
-
-<div><em>set_time_source</em></div>
-
-<div><em>get_mboard_sensor_names</em></div>
-
-<div><em>get_mboard_sensor</em></div>
-
-<div><em>set_time_next_pps</em></div>
-
-<div><em>get_time_last_pps</em></div>
-
-<div>&nbsp;</div>
-
-<div>So my question is, where in the RFNoC framework is an instance of the <em>rfnoc </em>object created, so I can apply these methods to it.</div>
-
-<div>&nbsp;</div>
-
-<div><em>Another thing:</em></div>
-
-<div>If I start the built program <em>sync_to_gps</em>, I get after the initialization, a <em>seg fault </em>error. I think, it is because I use an RFNoC block.</div>
-
-<div>Is it true, and where is the core dump stored?</div>
-
-<div>&nbsp;</div>
-
-<div><strong>(2)</strong></div>
-
-<div>&nbsp;</div>
-
-<div>During my research, I noticed that there is an <em>RFNoC: Radio block. </em>Looking at the source code I see interesting methods in it:</div>
-
-<div>&nbsp;</div>
-
-<div>set_clock_source</div>
-
-<div>set_time_next_pps</div>
-
-<div>get_time_last_pps</div>
-
-<div>&nbsp;</div>
-
-<div>but not (<em>set_time_source, get_mboard_sensor_names, get_mboard_sensor </em>)</div>
-
-<div>&nbsp;</div>
-
-<div>So it seems to me that a GPS time function is not integrated in the <em>rfnoc_radio_impl&nbsp; </em>class<em>.</em></div>
-
-<div>This astonishes me, because I would assume that the RFNoC framework could perform at least the same tasks as an usual USRP (radio) one.</div>
-
-<div>I think about using (copying) the missing methods in the <em>rfnoc_radio_impl&nbsp; </em>class. Are there any problems doing this or why they have not been implemented so far?<br/>
-If I implement it, how can I recompile the block in order to get an updated <em>RFNoC: Radio</em> block.</div>
-
-<div>&nbsp;</div>
-
-<div>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
-
-<div>&nbsp;</div>
-
-<div>Used software:</div>
-
-<div>I use GNURadio 3.7.14.0, UHD 3.15 with Python 2.7.</div>
-
-<div>Hardware:&nbsp;</div>
-
-<div>N310</div>
-
-<div>&nbsp;</div>
-
-<div>Thanks for the help :)</div>
-
-<div>&nbsp;</div>
-
-<div>Kind regards</div>
-
-<div>&nbsp;</div>
-
-<div>George</div>
-
-<div>&nbsp;</div>
-
-<div>&nbsp;</div>
-
-<div class="signature">&nbsp;</div>
-</div>
-</div></div></body></html>
-
-
---===============1812710050270308532==
+--===============6056218008369462128==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -235,4 +112,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1812710050270308532==--
+--===============6056218008369462128==--
+
