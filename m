@@ -2,51 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 587802B6858
-	for <lists+usrp-users@lfdr.de>; Tue, 17 Nov 2020 16:12:09 +0100 (CET)
-Received: from [::1] (port=46230 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 509952B6ABC
+	for <lists+usrp-users@lfdr.de>; Tue, 17 Nov 2020 17:55:42 +0100 (CET)
+Received: from [::1] (port=46914 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kf2eL-0007Wq-Ti; Tue, 17 Nov 2020 10:12:05 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:35676)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kf2eI-0007S9-C8
- for usrp-users@lists.ettus.com; Tue, 17 Nov 2020 10:12:02 -0500
-Received: by mail-oi1-f181.google.com with SMTP id c80so22903772oib.2
- for <usrp-users@lists.ettus.com>; Tue, 17 Nov 2020 07:11:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LT3k8TNCAedrw/5tuewnrz/Hx5TZK9WlC1Bn9q+rC3M=;
- b=C+QXbB9yjopzil9p++weDlm0aMTpotigqTaWX9vLLKgf1LJSTYmBcpgi4V6gylXqm9
- 2AotEvSQtpTU4zQi2ewzbOehuzLpd/Cw4dIBp3cfOsBj4KR2fts6Y3/qKFYoqv65Njug
- JuKGb3+KMiZJ+A9JB7UKU/hBzk51Y9HDD80sblD62i2meF+R6LBDRfmhbK6Iyo86pZEU
- WYg/uayasiouf8N4JG1HIfTb4FvOkIkF66xx2VPfwapX/1UsLSh3QlN8wv0WqDVduLsB
- nymjznrPDteDcmNnnkVb0nOHeiAmD/UqWeu4uO/Pvx9sr9XFKcq+Q2B6KLrOtVzM6fjL
- FPTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=LT3k8TNCAedrw/5tuewnrz/Hx5TZK9WlC1Bn9q+rC3M=;
- b=J5b9H4T8E/JfO3ixH55kBsQWZcvEzHcJrrl29ML99jLBvZD7fN7WCV5KvFJnEFIuS7
- VyXVAq2FmPWnOufQUNypIvEk6PnsyUVTAriKx2OLsxftoIy8sG64GKLADdDHC14+UcjG
- WDwLUqz/G5O5VocP8rFGP4IprcenzR3gP9Fsz38i6o2MrzIxrMvOirEA64f1CoFoJjOY
- 1SAjT8LMJcsy2RB9nh77oxlaHmIl5B/jeU68DyyZ1tdt7Q0T0xgGZcDewSI1PzRDF8Vl
- zbvXi8+ackdl3MUwVsGQGXRr8TGbmQC8rc7XlkqYlHe0jylKEo9zHUkpcU3HTHtQ2pwY
- gBdA==
-X-Gm-Message-State: AOAM530dBU+eqxSQRm92fYIV5McLZKa8QQ2KimU2hv/bbvZgYYq26sP6
- Me6Fk80l0D88uUPgpI7JR2A4beKBAF/0reJlacPoVsSNt2F7tg==
-X-Google-Smtp-Source: ABdhPJzXbD67OjYGNLGiV5BeBHFcSrFd9dEknXzuH6OlAcaww0joThruayg5SrsplE+RFxzVRmu6/9DpNMdwjZtP2zI=
-X-Received: by 2002:aca:5c82:: with SMTP id q124mr2661845oib.33.1605625881198; 
- Tue, 17 Nov 2020 07:11:21 -0800 (PST)
+	id 1kf4GY-0005f3-PI; Tue, 17 Nov 2020 11:55:38 -0500
+Received: from mout.gmx.net ([212.227.17.22]:42217)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <smithgeorge1492@gmx.com>)
+ id 1kf4GU-0005Yn-Ak
+ for usrp-users@lists.ettus.com; Tue, 17 Nov 2020 11:55:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1605632093;
+ bh=SNj3jARgqJoue1ebZMpxyJBIhCZfyRieZTitoauBRhc=;
+ h=X-UI-Sender-Class:From:To:Subject:Date;
+ b=gypAFz/+TQR38SVNeLyq6aZ7RG8/KN6wyiMAZ8jYdU7oX9u6CCQKfFzQVyr68TmHg
+ YgzUUSDDiMsFRANsAouowSw8MhaiVW9w9vHRj16ayOt0H8nFF0vH92abmKnRtmmHbK
+ Q+0AbPoHAyUOFMFXkr5HlTYeyUkN/M5g7S9l5Zdc=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.187.65.127] ([80.187.65.127]) by web-mail.gmx.net
+ (3c-app-gmx-bap04.server.lan [172.19.172.74]) (via HTTP); Tue, 17 Nov 2020
+ 17:54:52 +0100
 MIME-Version: 1.0
-References: <CABfZwcf=W+i1ZO6LO+TrYh386cxy--GtKgggPO3__DQhf8pF0g@mail.gmail.com>
-In-Reply-To: <CABfZwcf=W+i1ZO6LO+TrYh386cxy--GtKgggPO3__DQhf8pF0g@mail.gmail.com>
-Date: Tue, 17 Nov 2020 09:11:10 -0600
-Message-ID: <CAB__hTRA5KEPj4t6uBRv_Wx=+LwpGadC65rfjvQU24sMFE=5sA@mail.gmail.com>
-To: Mikio Fukushima <mikio@dolphinsystem.jp>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] How can I get an error by send method?
+Message-ID: <trinity-5ccaf5ff-dd35-4ed9-9e7b-b731c90e6222-1605632092961@3c-app-gmx-bap04>
+To: usrp-users@lists.ettus.com
+Date: Tue, 17 Nov 2020 17:54:52 +0100
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:8uXIjX3keeqvQTrJBVSQQZtuupli2Q466RLj8RIrSDMbOBkAvbeNflG+Ex17EWXWwCBcy
+ mplNZ3/WWWuT9M1tmjxiZNwcA304Y7AqQC8oQxs8ap21U5TFHcuJtOZ5QQP0byMkj8uH33bbEBXe
+ OcfUTZHFjwkaxtYg+tR5CNx2t/vp/Mp+8IfTlQ0OUkgZL1+0CYgdzZXzRMZOmLIBIMsyVndWvJN8
+ lQ6ktn8hUEQmqUvF5XwMZw9QtXgPl63prWNbmUS7bcNrft9MQ4hib/fbpBfybHk/TqRlyFNJ1ycx
+ m0=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Yyy38YFpPwA=:GxbRC3jWB9X/WFR8oQrMy6
+ dMR5kT8/6Bal3mjTeejJc+lNpeoP4NkgGO66jYezoYk/HYdHy0sqj4WoRsZEv6R8uY/nJrXVU
+ 7ttDZFz1bUCm2nHhn9l5I7Iz37kHAS8JFlRl1mvRITuPKvpEAMVpd3BvJARrz8r6unIE7tN/7
+ xv4FrAb73n+AkyxKocDqoCZgN6qNW/PQxd8QWWNsUGl6Qy38TbeR5zN9GR7TAXs//byVqfu5G
+ O2RiMe8GFsigiMx2lcn1SpEY+x1MJ1HrMrWJ9rcQqltnEf43qV3Ny6CkvynabPOGQkinedNxT
+ aGxSOGsGjgOEfNuR7wyo1GJAQbU5JPkLsO/teQHCh+oB1912nLJrOi9/oi31Ne/4fpL2sPNTb
+ UgT2hMAm4+1/1hVtxeJh2oLQ7DylrJR/LsZBvNAm1c0tt9fyMEUe/LsiUFhVV4CnOwZSfxGNl
+ v/iYMBitl50ZZXg/FbQ4UdzrFbfVisxm2wl/1shki7jmTDuNGvH5ZkvArcE/4LC5jfmmUG6hB
+ F3v4Ht7/Lg+uPbHhWwMICK9dwpriOYZ8VJbXZSAM1svLn3FbrFMy/HeqTeyepyysxkwFurHFq
+ ql9Oyt7UUDFPY=
+Subject: [USRP-users] RFNoC: How can I use the GPS time?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -58,9 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============5543321726249120790=="
+From: George Smith via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: George Smith <smithgeorge1492@gmx.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,77 +76,67 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5543321726249120790==
-Content-Type: multipart/alternative; boundary="0000000000004accea05b44ee8ed"
-
---0000000000004accea05b44ee8ed
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Mikio,
-Look at the benchmark_rate.cpp example and in particular
-the benchmark_tx_rate_async_helper() function.
-Rob
-
-On Tue, Nov 17, 2020 at 2:12 AM Mikio Fukushima via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi.
->
-> rx_stream->recv method returns an error code. but tx_stream->send method
-> doesn't return an error code.
-> I want to detect an underflow. How can I get an error code by send method?
->
-> Regards,
->
-> Mikio Fukushima
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000004accea05b44ee8ed
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Mikio,<div>Look at the benchmark_rate.cpp example and i=
-n particular the=C2=A0benchmark_tx_rate_async_helper() function.</div><div>=
-Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
-il_attr">On Tue, Nov 17, 2020 at 2:12 AM Mikio Fukushima via USRP-users &lt=
-;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
-iv dir=3D"ltr"><div>Hi.</div><div><br></div>rx_stream-&gt;recv method retur=
-ns an error code. but tx_stream-&gt;send method doesn&#39;t return an error=
- code.<br>
-
-I want to detect an underflow.
-
-How can I get an error code by send method?<br><div><br></div><div>Regards,=
-</div><div><br></div><div>Mikio Fukushima<br><br></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000004accea05b44ee8ed--
-
-
---===============5543321726249120790==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5543321726249120790==--
-
+RGVhciBjb21tdW5pdHksCsKgCkkgdXNlIGFuIFJGTm9DIGJsb2NrIGFuZCBJIHdvdWxkIGxpa2Ug
+dG8gdXNlIGl0IGluIGNvbWJpbmF0aW9uIHdpdGggdGhlIEdQUyB0aW1lIGZ1bmN0aW9uYWxsaXR5
+IG9uIGEgTjMxMC4KTXkgYWltIGlzIHRvIGNyZWF0ZSBhbmQgd3JpdGUgb3V0IGEgR1BTIHByZWNp
+c2UgdGltZXN0YW1wIC0gaW4gdGhlIGZpcnN0IHN0ZXAgb25seSBvbmNlIGJ1dCBtYXliZSBsYXRl
+ciBtb3JlIHJlZ3VsYXJseS4KVW50aWwgSW5vdyBJIGhhdmUgYSBSRk5vQyBibG9jaywgd2hlcmUg
+SSBwdXQgdGhlIGNvbnRyb2xsaW5nIHN0dWZmIChvZiB0aGUgbWFpbiB0YXNrKSBpbnNpZGUgdGVz
+dDFfYmxvY2tfY3RybF9pbXBsLmNwcCB3aGljaCBpcyBjYWxsZWQgYnkgdGVzdDFfaW1wbC5jYwpN
+eSBpZGVhIGlzIHRvIHB1dCB0aGUgR1BTIHRpbWUgZnVuY3Rpb24gaW5zaWRlIHRlc3QxX2Jsb2Nr
+X2N0cmxfaW1wbC5jcHDCoCAvIHRlc3QxX2ltcGwuY2MgYXMgd2VsbC4gSW4gbXkgb3BpbmlvbiBp
+dCBpcyBub3QgbmVjZXNzYXJ5IHRvIGNyZWF0ZSBhIGNvbXBsZXRlbHR5IG5ldyBzZWxmLXdyaXR0
+ZW4gUkZOb0MgYmxvY2sgc2luY2UgaXQgaXMgYSBzbWFsbCBmdW5jdGlvbi4KwqAKSW4gdGhlIGZv
+bGxvd2luZyBJIGRlc2NyaWJlIHR3byBkaWZmZXJlbnQgYXBwcm9hY2hlcyBob3cgSSB0cnkgdG8g
+YWNoaWV2ZSBteSBnb2FsLCBidXQgSSB3b3VsZCBsaWtlIHRvIHVzZSB0aGUgZWFzaWVzdCBvbmUu
+Ck1haW5seSBJIHRyeSB0byB1c2UgdGhlIGludGVncmF0ZWQgR1BTRE8gZnVuY3Rpb24KU28gaWYg
+eW91IGtub3cgYSBiZXR0ZXIgc29sdXRpb24sIGRvbid0IGhlc2l0YXRlIHRvIHBvc3QgaXQuIDop
+CsKgCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLQrCoAooMSkKwqAKSW5pdGlhbGx5OyBJIHRob3VnaHQgSSBjb3VsZCB1c2UgY29k
+ZSBvZiB0aGUgc3luY190b19ncHMuY3BwIGluIHRoZSBleGFtcGxlcyBmb2xkZXIgb2YgdWhkLCBi
+dXQgSSByZWFsaXplZCB0aGF0IHRoZXJlZm9yZSBhbiBpbnN0YW5jZSBvZiBhbiB1c3JwIG9iamVj
+dCBpcyBjcmVhdGVkLgrCoAp1aGQ6OnVzcnA6Om11bHRpX3VzcnA6OnNwdHIgdXNycCA9IHVoZDo6
+dXNycDo6bXVsdGlfdXNycDo6bWFrZShhcmdzKTsKwqAKU2luY2UgSSB1c2UgYSBSRk5vQyBibG9j
+aywgcHJldmlvdXNseSBhICJyZm5vYyIgb2JqZWN0IGlzIGNvbnN0cnVjdGVkLiAoSSBkb250IGtu
+b3cgdGhlIGV4YWN0IG5hbWUgYW5kIHdoZXJlIGl0IGlzIGNyZWF0ZWQpLiBTbywgSSBoYXZlIHR3
+byBpbnN0YW5jZXMgd2hpY2ggd2FudCB0byBhY2Nlc3MgYXQgdGhlIHNhbWUgcmVzb3VyY2UgKGJv
+YXJkKSBhdCB0aGUgc2FtZSB0aW1lLiBUaGlzIGlzIG9idmlvdXNseSBub3QgZnVuY3Rpb25pbmcu
+ClNvIHdoZW4gSSBydW4gaXQgaW4gZ251cmFkaW8gSSBnb3QgdGhlIGZvbGxvd2luZyBlcnJvcjoK
+wqAKW0VSUk9SXSBbUlBDXSBTb21lb25lIHRyaWVkIHRvIGNsYWltIHRoaXMgZGV2aWNlIGFnYWlu
+CsKgCkluIG9yZGVyIHRvIGF2b2lkIHRoaXMgcHJvYmxlbSBJIHdvdWxkIGxpa2UgdG8gYXBwbHkg
+dGhlIG5lZWRlZCBtZXRob2RzIGZvciB1c2luZyB0aGUgR1BTIHRpbWUgZnVuY3Rpb25hbGxpdHkg
+YXQgdGhlIHJmbm9jIG9iamVjdCAoc28gSSBkbyBub3QgbmVlZCB0byBjcmVhdGUgYW4gb2JqZWN0
+IHVzcnAgKS4KSW4gdGhlIHN5bmNfdG9fZ3BzLmNwcCBleGFtcGxlIHRoZSBmb2xsb3dpbmcgbWV0
+aG9kcyBhcmUgdXNlZDoKwqAKc2V0X2Nsb2NrX3NvdXJjZQpzZXRfdGltZV9zb3VyY2UKZ2V0X21i
+b2FyZF9zZW5zb3JfbmFtZXMKZ2V0X21ib2FyZF9zZW5zb3IKc2V0X3RpbWVfbmV4dF9wcHMKZ2V0
+X3RpbWVfbGFzdF9wcHMKwqAKU28gbXkgcXVlc3Rpb24gaXMsIHdoZXJlIGluIHRoZSBSRk5vQyBm
+cmFtZXdvcmsgaXMgYW4gaW5zdGFuY2Ugb2YgdGhlIHJmbm9jIG9iamVjdCBjcmVhdGVkLCBzbyBJ
+IGNhbiBhcHBseSB0aGVzZSBtZXRob2RzIHRvIGl0LgrCoApBbm90aGVyIHRoaW5nOgpJZiBJIHN0
+YXJ0IHRoZSBidWlsdCBwcm9ncmFtIHN5bmNfdG9fZ3BzLCBJIGdldCBhZnRlciB0aGUgaW5pdGlh
+bGl6YXRpb24sIGEgc2VnIGZhdWx0IGVycm9yLiBJIHRoaW5rLCBpdCBpcyBiZWNhdXNlIEkgdXNl
+IGFuIFJGTm9DIGJsb2NrLgpJcyBpdCB0cnVlLCBhbmQgd2hlcmUgaXMgdGhlIGNvcmUgZHVtcCBz
+dG9yZWQ/CsKgCigyKQrCoApEdXJpbmcgbXkgcmVzZWFyY2gsIEkgbm90aWNlZCB0aGF0IHRoZXJl
+IGlzIGFuIFJGTm9DOiBSYWRpbyBibG9jay4gTG9va2luZyBhdCB0aGUgc291cmNlIGNvZGUgSSBz
+ZWUgaW50ZXJlc3RpbmcgbWV0aG9kcyBpbiBpdDoKwqAKc2V0X2Nsb2NrX3NvdXJjZQpzZXRfdGlt
+ZV9uZXh0X3BwcwpnZXRfdGltZV9sYXN0X3BwcwrCoApidXQgbm90IChzZXRfdGltZV9zb3VyY2Us
+IGdldF9tYm9hcmRfc2Vuc29yX25hbWVzLCBnZXRfbWJvYXJkX3NlbnNvciApCsKgClNvIGl0IHNl
+ZW1zIHRvIG1lIHRoYXQgYSBHUFMgdGltZSBmdW5jdGlvbiBpcyBub3QgaW50ZWdyYXRlZCBpbiB0
+aGUgcmZub2NfcmFkaW9faW1wbMKgIGNsYXNzLgpUaGlzIGFzdG9uaXNoZXMgbWUsIGJlY2F1c2Ug
+SSB3b3VsZCBhc3N1bWUgdGhhdCB0aGUgUkZOb0MgZnJhbWV3b3JrIGNvdWxkIHBlcmZvcm0gYXQg
+bGVhc3QgdGhlIHNhbWUgdGFza3MgYXMgYW4gdXN1YWwgVVNSUCAocmFkaW8pIG9uZS4KSSB0aGlu
+ayBhYm91dCB1c2luZyAoY29weWluZykgdGhlIG1pc3NpbmcgbWV0aG9kcyBpbiB0aGUgcmZub2Nf
+cmFkaW9faW1wbMKgIGNsYXNzLiBBcmUgdGhlcmUgYW55IHByb2JsZW1zIGRvaW5nIHRoaXMgb3Ig
+d2h5IHRoZXkgaGF2ZSBub3QgYmVlbiBpbXBsZW1lbnRlZCBzbyBmYXI/CklmIEkgaW1wbGVtZW50
+IGl0LCBob3cgY2FuIEkgcmVjb21waWxlIHRoZSBibG9jayBpbiBvcmRlciB0byBnZXQgYW4gdXBk
+YXRlZCBSRk5vQzogUmFkaW8gYmxvY2suCsKgCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCsKgClVzZWQgc29mdHdhcmU6CkkgdXNl
+IEdOVVJhZGlvIDMuNy4xNC4wLCBVSEQgMy4xNSB3aXRoIFB5dGhvbiAyLjcuCkhhcmR3YXJlOsKg
+Ck4zMTAKwqAKVGhhbmtzIGZvciB0aGUgaGVscCA6KQrCoApLaW5kIHJlZ2FyZHMKwqAKR2Vvcmdl
+CsKgCsKgCsKgCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRw
+Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
+cy5jb20K
