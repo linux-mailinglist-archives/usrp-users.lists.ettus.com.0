@@ -2,50 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 522872B5E73
-	for <lists+usrp-users@lfdr.de>; Tue, 17 Nov 2020 12:35:34 +0100 (CET)
-Received: from [::1] (port=43862 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 587802B6858
+	for <lists+usrp-users@lfdr.de>; Tue, 17 Nov 2020 16:12:09 +0100 (CET)
+Received: from [::1] (port=46230 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kezGj-0002bh-9b; Tue, 17 Nov 2020 06:35:29 -0500
-Received: from mail-il1-f176.google.com ([209.85.166.176]:40104)
+	id 1kf2eL-0007Wq-Ti; Tue, 17 Nov 2020 10:12:05 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:35676)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <superme991@gmail.com>)
- id 1kezGf-0002Up-Dd
- for usrp-users@lists.ettus.com; Tue, 17 Nov 2020 06:35:25 -0500
-Received: by mail-il1-f176.google.com with SMTP id n5so18253255ile.7
- for <usrp-users@lists.ettus.com>; Tue, 17 Nov 2020 03:35:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=3hhkgowDHGrfgLpcojec8M5pOrz5xQ0Y6JJtclyJlnU=;
- b=VM96QQnTeZkXxM0lQcawseEUuTnPKiIWFwC41DpKCzlSboBKdrHe3x/MCw/qIeBlrW
- v3ORk8aRYIrGg7z3aQcz4ncn97QD4JiAO9y+rnsu2TpOB85yeUThvysucLpapMHfgYT/
- Fo4OBk9Ocv/yTWjJBNhGRx1URKVfMPbR+Z88mYgmWCgO3COYP13F5NDYFVYlpgsgr+6G
- TsX9/5dW3NJjkk6k24gsh+aVFKqhypeDz6rM01L5VIX0sKXuW/Mk5+U8bSgSeWHHBdZU
- iAqAaIJQwM1mzQI7jJKPLihyhpIKv376Wtk8ADzntnEeQExgeqo6FY3kxILWekB/zzKS
- N8kQ==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kf2eI-0007S9-C8
+ for usrp-users@lists.ettus.com; Tue, 17 Nov 2020 10:12:02 -0500
+Received: by mail-oi1-f181.google.com with SMTP id c80so22903772oib.2
+ for <usrp-users@lists.ettus.com>; Tue, 17 Nov 2020 07:11:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=LT3k8TNCAedrw/5tuewnrz/Hx5TZK9WlC1Bn9q+rC3M=;
+ b=C+QXbB9yjopzil9p++weDlm0aMTpotigqTaWX9vLLKgf1LJSTYmBcpgi4V6gylXqm9
+ 2AotEvSQtpTU4zQi2ewzbOehuzLpd/Cw4dIBp3cfOsBj4KR2fts6Y3/qKFYoqv65Njug
+ JuKGb3+KMiZJ+A9JB7UKU/hBzk51Y9HDD80sblD62i2meF+R6LBDRfmhbK6Iyo86pZEU
+ WYg/uayasiouf8N4JG1HIfTb4FvOkIkF66xx2VPfwapX/1UsLSh3QlN8wv0WqDVduLsB
+ nymjznrPDteDcmNnnkVb0nOHeiAmD/UqWeu4uO/Pvx9sr9XFKcq+Q2B6KLrOtVzM6fjL
+ FPTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=3hhkgowDHGrfgLpcojec8M5pOrz5xQ0Y6JJtclyJlnU=;
- b=BhGu6/AMl/Dv8OSzZgz8jOxByYYDNTy9p7a9KCD9sDTI6Bj3YnF684w+mt/HMKkax5
- RDLLZlIX6ZWS6L+ITKxxb3ihglaWxM8g7TFLkKd8c4L8ycSP1Wzaz5S6PGn3OJcINuPk
- 3TLXQqBn4bdFRiRgbsDe6ejBTXYD4aDmBQnJZlCfNarqW9vsFIAv1203F5EgV0rM+w9A
- EF3/GbGPpQTwemXtvCiVPYDFq7dLTCHcv6mk73Bw3l7b7fGJHXsjlivV/NO5rTAnb0Os
- 9BZHzM3qHIqvefXnwnyvfDrvi6OsACjrQhfYYhnlRPgSAHTO0VwlARo+qo7u65br/npF
- 1VhA==
-X-Gm-Message-State: AOAM5313tk+mvpqoHf1ZzlUJiom8NNhc172WziN2IovIJjt+bLCrj5VQ
- ZXvwZGaqOKzv4JSfq9n8oNtTJBMZ1ZOPWvYEskLnnJjfaxjPKg==
-X-Google-Smtp-Source: ABdhPJw6mdsB69FyNwjzsngATM1/0/cvvpFrAe2Ky7hCZdHd09jzlfKICr2UaLL5KaASdfOxfMgdfhSWbV6AobvJDWM=
-X-Received: by 2002:a05:6e02:ead:: with SMTP id
- u13mr11772971ilj.152.1605612884233; 
- Tue, 17 Nov 2020 03:34:44 -0800 (PST)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=LT3k8TNCAedrw/5tuewnrz/Hx5TZK9WlC1Bn9q+rC3M=;
+ b=J5b9H4T8E/JfO3ixH55kBsQWZcvEzHcJrrl29ML99jLBvZD7fN7WCV5KvFJnEFIuS7
+ VyXVAq2FmPWnOufQUNypIvEk6PnsyUVTAriKx2OLsxftoIy8sG64GKLADdDHC14+UcjG
+ WDwLUqz/G5O5VocP8rFGP4IprcenzR3gP9Fsz38i6o2MrzIxrMvOirEA64f1CoFoJjOY
+ 1SAjT8LMJcsy2RB9nh77oxlaHmIl5B/jeU68DyyZ1tdt7Q0T0xgGZcDewSI1PzRDF8Vl
+ zbvXi8+ackdl3MUwVsGQGXRr8TGbmQC8rc7XlkqYlHe0jylKEo9zHUkpcU3HTHtQ2pwY
+ gBdA==
+X-Gm-Message-State: AOAM530dBU+eqxSQRm92fYIV5McLZKa8QQ2KimU2hv/bbvZgYYq26sP6
+ Me6Fk80l0D88uUPgpI7JR2A4beKBAF/0reJlacPoVsSNt2F7tg==
+X-Google-Smtp-Source: ABdhPJzXbD67OjYGNLGiV5BeBHFcSrFd9dEknXzuH6OlAcaww0joThruayg5SrsplE+RFxzVRmu6/9DpNMdwjZtP2zI=
+X-Received: by 2002:aca:5c82:: with SMTP id q124mr2661845oib.33.1605625881198; 
+ Tue, 17 Nov 2020 07:11:21 -0800 (PST)
 MIME-Version: 1.0
-Date: Tue, 17 Nov 2020 19:34:37 +0800
-Message-ID: <CALbO1t07fYWAnS+Y6WWEtT-ftoURyzFDPsLJGMQHzUCe6yyY2A@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Is it able to use RFNoC Replay Block on the receiver
- chain?
+References: <CABfZwcf=W+i1ZO6LO+TrYh386cxy--GtKgggPO3__DQhf8pF0g@mail.gmail.com>
+In-Reply-To: <CABfZwcf=W+i1ZO6LO+TrYh386cxy--GtKgggPO3__DQhf8pF0g@mail.gmail.com>
+Date: Tue, 17 Nov 2020 09:11:10 -0600
+Message-ID: <CAB__hTRA5KEPj4t6uBRv_Wx=+LwpGadC65rfjvQU24sMFE=5sA@mail.gmail.com>
+To: Mikio Fukushima <mikio@dolphinsystem.jp>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] How can I get an error by send method?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -57,9 +58,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jorge Chen via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jorge Chen <superme991@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7807145932617192863=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============5543321726249120790=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,54 +74,68 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7807145932617192863==
-Content-Type: multipart/alternative; boundary="0000000000009c954d05b44be14a"
+--===============5543321726249120790==
+Content-Type: multipart/alternative; boundary="0000000000004accea05b44ee8ed"
 
---0000000000009c954d05b44be14a
+--0000000000004accea05b44ee8ed
 Content-Type: text/plain; charset="UTF-8"
 
-Hi USRP users,
+Hi Mikio,
+Look at the benchmark_rate.cpp example and in particular
+the benchmark_tx_rate_async_helper() function.
+Rob
 
-In the example "rfnoc_replay_samples_from_file.cpp", we connect SEP and NoC
-blocks as follows: (Tx_streamer)=>[Replay#0:0]=>[DUC#0:0]=>[Radio#0:0].
-It first sends samples from host and records them to the on board memory,
-then replays them from the on board memory continuously.
+On Tue, Nov 17, 2020 at 2:12 AM Mikio Fukushima via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-We'd also like to offload the traffic and avoid overflow while
-receiving.Something like saving the samples outputs from DDC to the on
-board memory first,and then receive them from the on board memory to host.
+> Hi.
+>
+> rx_stream->recv method returns an error code. but tx_stream->send method
+> doesn't return an error code.
+> I want to detect an underflow. How can I get an error code by send method?
+>
+> Regards,
+>
+> Mikio Fukushima
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-I'm wondering if I can use the same concept on the receiver chain by the
-replay block?If so, how to do that?
-
-Thanks and regards!
-Jorge
-
---0000000000009c954d05b44be14a
+--0000000000004accea05b44ee8ed
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi USRP users,<div><br></div><div>In the example &quot;rfn=
-oc_replay_samples_from_file.cpp&quot;, we connect SEP and NoC blocks as fol=
-lows: (Tx_streamer)=3D&gt;[Replay#0:0]=3D&gt;[DUC#0:0]=3D&gt;[Radio#0:0].</=
-div><div><div>It first sends samples from host and records them to the on b=
-oard memory,</div><div>then replays them from the on board memory continuou=
-sly.</div><div><br></div><div>We&#39;d also like to=C2=A0offload=C2=A0the t=
-raffic and avoid overflow while receiving.Something like saving the samples=
- outputs from DDC to the on board memory first,and then receive them from t=
-he on board memory to host.</div><div><br></div><div>I&#39;m wondering if I=
- can use the same concept on the receiver chain by the replay block?If so, =
-how to do that?<br></div><div></div><div><br></div><div>Thanks and regards!=
-</div><div>Jorge</div><div><br></div><div dir=3D"ltr" class=3D"gmail_signat=
-ure" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"l=
-tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
-v dir=3D"ltr"></div></div></div></div></div></div></div></div></div></div><=
-/div>
+<div dir=3D"ltr">Hi Mikio,<div>Look at the benchmark_rate.cpp example and i=
+n particular the=C2=A0benchmark_tx_rate_async_helper() function.</div><div>=
+Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Tue, Nov 17, 2020 at 2:12 AM Mikio Fukushima via USRP-users &lt=
+;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
+iv dir=3D"ltr"><div>Hi.</div><div><br></div>rx_stream-&gt;recv method retur=
+ns an error code. but tx_stream-&gt;send method doesn&#39;t return an error=
+ code.<br>
 
---0000000000009c954d05b44be14a--
+I want to detect an underflow.
+
+How can I get an error code by send method?<br><div><br></div><div>Regards,=
+</div><div><br></div><div>Mikio Fukushima<br><br></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000004accea05b44ee8ed--
 
 
---===============7807145932617192863==
+--===============5543321726249120790==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -131,5 +146,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7807145932617192863==--
+--===============5543321726249120790==--
 
