@@ -2,52 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 509952B6ABC
-	for <lists+usrp-users@lfdr.de>; Tue, 17 Nov 2020 17:55:42 +0100 (CET)
-Received: from [::1] (port=46914 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EB3C2B6AFF
+	for <lists+usrp-users@lfdr.de>; Tue, 17 Nov 2020 18:04:01 +0100 (CET)
+Received: from [::1] (port=47154 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kf4GY-0005f3-PI; Tue, 17 Nov 2020 11:55:38 -0500
-Received: from mout.gmx.net ([212.227.17.22]:42217)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <smithgeorge1492@gmx.com>)
- id 1kf4GU-0005Yn-Ak
- for usrp-users@lists.ettus.com; Tue, 17 Nov 2020 11:55:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1605632093;
- bh=SNj3jARgqJoue1ebZMpxyJBIhCZfyRieZTitoauBRhc=;
- h=X-UI-Sender-Class:From:To:Subject:Date;
- b=gypAFz/+TQR38SVNeLyq6aZ7RG8/KN6wyiMAZ8jYdU7oX9u6CCQKfFzQVyr68TmHg
- YgzUUSDDiMsFRANsAouowSw8MhaiVW9w9vHRj16ayOt0H8nFF0vH92abmKnRtmmHbK
- Q+0AbPoHAyUOFMFXkr5HlTYeyUkN/M5g7S9l5Zdc=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.187.65.127] ([80.187.65.127]) by web-mail.gmx.net
- (3c-app-gmx-bap04.server.lan [172.19.172.74]) (via HTTP); Tue, 17 Nov 2020
- 17:54:52 +0100
+	id 1kf4Od-0000yh-9H; Tue, 17 Nov 2020 12:03:59 -0500
+Received: from mail-il1-f179.google.com ([209.85.166.179]:39855)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <bistromath@gmail.com>)
+ id 1kf4OZ-0000pA-C0
+ for usrp-users@lists.ettus.com; Tue, 17 Nov 2020 12:03:55 -0500
+Received: by mail-il1-f179.google.com with SMTP id q1so19224139ilt.6
+ for <usrp-users@lists.ettus.com>; Tue, 17 Nov 2020 09:03:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=j5Vi4IGibydm6IMOL5ErziFqCT3LoSMmuuSLbvxaayM=;
+ b=QvoHVR/+gWB9mWguNM+o943fOQEtEamw+uWJ/4nvmAGhL5J9DPKbuUa81W46BvHbaL
+ K+t2XaZLLqIhX/rpo5QZV+EKTcqwZEZL9PZqffYfXYN0RmOYfNzaFOgg0crGPktLj1Du
+ M+e+5Rfrmg+jMUwrw9aYgRiWoQNFVwSlfqbr1tAahvXSIpHnIGqxhQuBpAlFfMDlb80/
+ FT9XLdQzxOU6R/ySOhMgG3qD5booIxMuZpc8f/GbtFGPdEcIhQ+bz75yY5irWbpsY2wb
+ Ryl3DWWaO4Mud9MopBKl9Ev1cUONnHem/gWztZrORohBSf2uHf22kt+b9QHZ1nZRlBPt
+ fqcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=j5Vi4IGibydm6IMOL5ErziFqCT3LoSMmuuSLbvxaayM=;
+ b=dmn9XfAzwHzJqPrFqAKILPE9ogHTXcfvm7k8UTK3MxLjm7w3YE3hY5eNDxLAYyy+4F
+ C6DP2nD0+JyEiq4vnqxvg5ANvLRLG4ItL2eexv2jglP2d/RTZZSz8gLA6e4NH0r6FIz5
+ hNbs7C9OHaWRdR2rQ494pwvayySEMCyTUYbI3nOVZS1ISQDlMsVksAJHu0a6xDcj6/6l
+ lYaa3Gs21J0IJ8tkDbyeKBHr8v5SETVY2MD0p+N5SzSUzlU6AUk4CJNkMFIfrNSQ7+hw
+ bwx/nPgWfSbvAvgren4PvncsE+R8icemIpajCPsB2ShqVksEolsmJuVYwJON8C1A8iWH
+ N77g==
+X-Gm-Message-State: AOAM5333EZYbS6Zx8xkqjTwt3K3PIAAJeS3bsLysgkoodAjGyKg72C3F
+ gupzvmyX2U9ZCLGpgk4FGY6BsKqImB9kwS37Hr0=
+X-Google-Smtp-Source: ABdhPJzfCiXhFVAyNb+KpBRpkKi7N8Bq/jMek9gf5Zpnh98Z7xtSIlH+plzZwqdUggs2sv4s2HbvzNAlnJjJ/XCV/9E=
+X-Received: by 2002:a05:6e02:e06:: with SMTP id
+ a6mr13327167ilk.230.1605632594419; 
+ Tue, 17 Nov 2020 09:03:14 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <trinity-5ccaf5ff-dd35-4ed9-9e7b-b731c90e6222-1605632092961@3c-app-gmx-bap04>
-To: usrp-users@lists.ettus.com
-Date: Tue, 17 Nov 2020 17:54:52 +0100
-Importance: normal
-Sensitivity: Normal
-X-Priority: 3
-X-Provags-ID: V03:K1:8uXIjX3keeqvQTrJBVSQQZtuupli2Q466RLj8RIrSDMbOBkAvbeNflG+Ex17EWXWwCBcy
- mplNZ3/WWWuT9M1tmjxiZNwcA304Y7AqQC8oQxs8ap21U5TFHcuJtOZ5QQP0byMkj8uH33bbEBXe
- OcfUTZHFjwkaxtYg+tR5CNx2t/vp/Mp+8IfTlQ0OUkgZL1+0CYgdzZXzRMZOmLIBIMsyVndWvJN8
- lQ6ktn8hUEQmqUvF5XwMZw9QtXgPl63prWNbmUS7bcNrft9MQ4hib/fbpBfybHk/TqRlyFNJ1ycx
- m0=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Yyy38YFpPwA=:GxbRC3jWB9X/WFR8oQrMy6
- dMR5kT8/6Bal3mjTeejJc+lNpeoP4NkgGO66jYezoYk/HYdHy0sqj4WoRsZEv6R8uY/nJrXVU
- 7ttDZFz1bUCm2nHhn9l5I7Iz37kHAS8JFlRl1mvRITuPKvpEAMVpd3BvJARrz8r6unIE7tN/7
- xv4FrAb73n+AkyxKocDqoCZgN6qNW/PQxd8QWWNsUGl6Qy38TbeR5zN9GR7TAXs//byVqfu5G
- O2RiMe8GFsigiMx2lcn1SpEY+x1MJ1HrMrWJ9rcQqltnEf43qV3Ny6CkvynabPOGQkinedNxT
- aGxSOGsGjgOEfNuR7wyo1GJAQbU5JPkLsO/teQHCh+oB1912nLJrOi9/oi31Ne/4fpL2sPNTb
- UgT2hMAm4+1/1hVtxeJh2oLQ7DylrJR/LsZBvNAm1c0tt9fyMEUe/LsiUFhVV4CnOwZSfxGNl
- v/iYMBitl50ZZXg/FbQ4UdzrFbfVisxm2wl/1shki7jmTDuNGvH5ZkvArcE/4LC5jfmmUG6hB
- F3v4Ht7/Lg+uPbHhWwMICK9dwpriOYZ8VJbXZSAM1svLn3FbrFMy/HeqTeyepyysxkwFurHFq
- ql9Oyt7UUDFPY=
-Subject: [USRP-users] RFNoC: How can I use the GPS time?
+References: <trinity-68061d4d-5ab3-4320-82b3-c9d0d0d56cf7-1605594366644@3c-app-gmx-bap02>
+In-Reply-To: <trinity-68061d4d-5ab3-4320-82b3-c9d0d0d56cf7-1605594366644@3c-app-gmx-bap02>
+Date: Tue, 17 Nov 2020 09:03:03 -0800
+Message-ID: <CA+JMMq8VGHb10bqn=s6uvCXtA64JPwFXC=UH9KEcDnvq3WqdNQ@mail.gmail.com>
+To: George Smith <smithgeorge1492@gmx.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] RFNoC: How can I use the GPS time?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: George Smith via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: George Smith <smithgeorge1492@gmx.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Nick Foster via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nick Foster <bistromath@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0891157495600917525=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,67 +76,334 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-RGVhciBjb21tdW5pdHksCsKgCkkgdXNlIGFuIFJGTm9DIGJsb2NrIGFuZCBJIHdvdWxkIGxpa2Ug
-dG8gdXNlIGl0IGluIGNvbWJpbmF0aW9uIHdpdGggdGhlIEdQUyB0aW1lIGZ1bmN0aW9uYWxsaXR5
-IG9uIGEgTjMxMC4KTXkgYWltIGlzIHRvIGNyZWF0ZSBhbmQgd3JpdGUgb3V0IGEgR1BTIHByZWNp
-c2UgdGltZXN0YW1wIC0gaW4gdGhlIGZpcnN0IHN0ZXAgb25seSBvbmNlIGJ1dCBtYXliZSBsYXRl
-ciBtb3JlIHJlZ3VsYXJseS4KVW50aWwgSW5vdyBJIGhhdmUgYSBSRk5vQyBibG9jaywgd2hlcmUg
-SSBwdXQgdGhlIGNvbnRyb2xsaW5nIHN0dWZmIChvZiB0aGUgbWFpbiB0YXNrKSBpbnNpZGUgdGVz
-dDFfYmxvY2tfY3RybF9pbXBsLmNwcCB3aGljaCBpcyBjYWxsZWQgYnkgdGVzdDFfaW1wbC5jYwpN
-eSBpZGVhIGlzIHRvIHB1dCB0aGUgR1BTIHRpbWUgZnVuY3Rpb24gaW5zaWRlIHRlc3QxX2Jsb2Nr
-X2N0cmxfaW1wbC5jcHDCoCAvIHRlc3QxX2ltcGwuY2MgYXMgd2VsbC4gSW4gbXkgb3BpbmlvbiBp
-dCBpcyBub3QgbmVjZXNzYXJ5IHRvIGNyZWF0ZSBhIGNvbXBsZXRlbHR5IG5ldyBzZWxmLXdyaXR0
-ZW4gUkZOb0MgYmxvY2sgc2luY2UgaXQgaXMgYSBzbWFsbCBmdW5jdGlvbi4KwqAKSW4gdGhlIGZv
-bGxvd2luZyBJIGRlc2NyaWJlIHR3byBkaWZmZXJlbnQgYXBwcm9hY2hlcyBob3cgSSB0cnkgdG8g
-YWNoaWV2ZSBteSBnb2FsLCBidXQgSSB3b3VsZCBsaWtlIHRvIHVzZSB0aGUgZWFzaWVzdCBvbmUu
-Ck1haW5seSBJIHRyeSB0byB1c2UgdGhlIGludGVncmF0ZWQgR1BTRE8gZnVuY3Rpb24KU28gaWYg
-eW91IGtub3cgYSBiZXR0ZXIgc29sdXRpb24sIGRvbid0IGhlc2l0YXRlIHRvIHBvc3QgaXQuIDop
-CsKgCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQrCoAooMSkKwqAKSW5pdGlhbGx5OyBJIHRob3VnaHQgSSBjb3VsZCB1c2UgY29k
-ZSBvZiB0aGUgc3luY190b19ncHMuY3BwIGluIHRoZSBleGFtcGxlcyBmb2xkZXIgb2YgdWhkLCBi
-dXQgSSByZWFsaXplZCB0aGF0IHRoZXJlZm9yZSBhbiBpbnN0YW5jZSBvZiBhbiB1c3JwIG9iamVj
-dCBpcyBjcmVhdGVkLgrCoAp1aGQ6OnVzcnA6Om11bHRpX3VzcnA6OnNwdHIgdXNycCA9IHVoZDo6
-dXNycDo6bXVsdGlfdXNycDo6bWFrZShhcmdzKTsKwqAKU2luY2UgSSB1c2UgYSBSRk5vQyBibG9j
-aywgcHJldmlvdXNseSBhICJyZm5vYyIgb2JqZWN0IGlzIGNvbnN0cnVjdGVkLiAoSSBkb250IGtu
-b3cgdGhlIGV4YWN0IG5hbWUgYW5kIHdoZXJlIGl0IGlzIGNyZWF0ZWQpLiBTbywgSSBoYXZlIHR3
-byBpbnN0YW5jZXMgd2hpY2ggd2FudCB0byBhY2Nlc3MgYXQgdGhlIHNhbWUgcmVzb3VyY2UgKGJv
-YXJkKSBhdCB0aGUgc2FtZSB0aW1lLiBUaGlzIGlzIG9idmlvdXNseSBub3QgZnVuY3Rpb25pbmcu
-ClNvIHdoZW4gSSBydW4gaXQgaW4gZ251cmFkaW8gSSBnb3QgdGhlIGZvbGxvd2luZyBlcnJvcjoK
-wqAKW0VSUk9SXSBbUlBDXSBTb21lb25lIHRyaWVkIHRvIGNsYWltIHRoaXMgZGV2aWNlIGFnYWlu
-CsKgCkluIG9yZGVyIHRvIGF2b2lkIHRoaXMgcHJvYmxlbSBJIHdvdWxkIGxpa2UgdG8gYXBwbHkg
-dGhlIG5lZWRlZCBtZXRob2RzIGZvciB1c2luZyB0aGUgR1BTIHRpbWUgZnVuY3Rpb25hbGxpdHkg
-YXQgdGhlIHJmbm9jIG9iamVjdCAoc28gSSBkbyBub3QgbmVlZCB0byBjcmVhdGUgYW4gb2JqZWN0
-IHVzcnAgKS4KSW4gdGhlIHN5bmNfdG9fZ3BzLmNwcCBleGFtcGxlIHRoZSBmb2xsb3dpbmcgbWV0
-aG9kcyBhcmUgdXNlZDoKwqAKc2V0X2Nsb2NrX3NvdXJjZQpzZXRfdGltZV9zb3VyY2UKZ2V0X21i
-b2FyZF9zZW5zb3JfbmFtZXMKZ2V0X21ib2FyZF9zZW5zb3IKc2V0X3RpbWVfbmV4dF9wcHMKZ2V0
-X3RpbWVfbGFzdF9wcHMKwqAKU28gbXkgcXVlc3Rpb24gaXMsIHdoZXJlIGluIHRoZSBSRk5vQyBm
-cmFtZXdvcmsgaXMgYW4gaW5zdGFuY2Ugb2YgdGhlIHJmbm9jIG9iamVjdCBjcmVhdGVkLCBzbyBJ
-IGNhbiBhcHBseSB0aGVzZSBtZXRob2RzIHRvIGl0LgrCoApBbm90aGVyIHRoaW5nOgpJZiBJIHN0
-YXJ0IHRoZSBidWlsdCBwcm9ncmFtIHN5bmNfdG9fZ3BzLCBJIGdldCBhZnRlciB0aGUgaW5pdGlh
-bGl6YXRpb24sIGEgc2VnIGZhdWx0IGVycm9yLiBJIHRoaW5rLCBpdCBpcyBiZWNhdXNlIEkgdXNl
-IGFuIFJGTm9DIGJsb2NrLgpJcyBpdCB0cnVlLCBhbmQgd2hlcmUgaXMgdGhlIGNvcmUgZHVtcCBz
-dG9yZWQ/CsKgCigyKQrCoApEdXJpbmcgbXkgcmVzZWFyY2gsIEkgbm90aWNlZCB0aGF0IHRoZXJl
-IGlzIGFuIFJGTm9DOiBSYWRpbyBibG9jay4gTG9va2luZyBhdCB0aGUgc291cmNlIGNvZGUgSSBz
-ZWUgaW50ZXJlc3RpbmcgbWV0aG9kcyBpbiBpdDoKwqAKc2V0X2Nsb2NrX3NvdXJjZQpzZXRfdGlt
-ZV9uZXh0X3BwcwpnZXRfdGltZV9sYXN0X3BwcwrCoApidXQgbm90IChzZXRfdGltZV9zb3VyY2Us
-IGdldF9tYm9hcmRfc2Vuc29yX25hbWVzLCBnZXRfbWJvYXJkX3NlbnNvciApCsKgClNvIGl0IHNl
-ZW1zIHRvIG1lIHRoYXQgYSBHUFMgdGltZSBmdW5jdGlvbiBpcyBub3QgaW50ZWdyYXRlZCBpbiB0
-aGUgcmZub2NfcmFkaW9faW1wbMKgIGNsYXNzLgpUaGlzIGFzdG9uaXNoZXMgbWUsIGJlY2F1c2Ug
-SSB3b3VsZCBhc3N1bWUgdGhhdCB0aGUgUkZOb0MgZnJhbWV3b3JrIGNvdWxkIHBlcmZvcm0gYXQg
-bGVhc3QgdGhlIHNhbWUgdGFza3MgYXMgYW4gdXN1YWwgVVNSUCAocmFkaW8pIG9uZS4KSSB0aGlu
-ayBhYm91dCB1c2luZyAoY29weWluZykgdGhlIG1pc3NpbmcgbWV0aG9kcyBpbiB0aGUgcmZub2Nf
-cmFkaW9faW1wbMKgIGNsYXNzLiBBcmUgdGhlcmUgYW55IHByb2JsZW1zIGRvaW5nIHRoaXMgb3Ig
-d2h5IHRoZXkgaGF2ZSBub3QgYmVlbiBpbXBsZW1lbnRlZCBzbyBmYXI/CklmIEkgaW1wbGVtZW50
-IGl0LCBob3cgY2FuIEkgcmVjb21waWxlIHRoZSBibG9jayBpbiBvcmRlciB0byBnZXQgYW4gdXBk
-YXRlZCBSRk5vQzogUmFkaW8gYmxvY2suCsKgCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCsKgClVzZWQgc29mdHdhcmU6CkkgdXNl
-IEdOVVJhZGlvIDMuNy4xNC4wLCBVSEQgMy4xNSB3aXRoIFB5dGhvbiAyLjcuCkhhcmR3YXJlOsKg
-Ck4zMTAKwqAKVGhhbmtzIGZvciB0aGUgaGVscCA6KQrCoApLaW5kIHJlZ2FyZHMKwqAKR2Vvcmdl
-CsKgCsKgCsKgCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRw
-Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
-cy5jb20K
+--===============0891157495600917525==
+Content-Type: multipart/alternative; boundary="0000000000006e241c05b4507839"
+
+--0000000000006e241c05b4507839
+Content-Type: text/plain; charset="UTF-8"
+
+Maybe if you provide a more detailed description of what you're trying to
+accomplish, we can help direct you toward a path to get there. Do you just
+want to get a timestamp into your UHD application? Do you require a
+timestamp for the custom logic in your RFNoC block on the FPGA?
+
+On Mon, Nov 16, 2020 at 10:26 PM George Smith via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Dear community,
+>
+> I use an RFNoC block and I would like to use it in combination with the
+> GPS time functionallity on a N310.
+> My aim is to create and write out a GPS precise timestamp - in the first
+> step only once but maybe later more regularly.
+> Until Inow I have a RFNoC block, where I put the controlling stuff (of the
+> main task) inside *test1_block_ctrl_impl.cpp *which is called by
+> *test1_impl.cc*
+> My idea is to put the GPS time function inside *test1_block_ctrl_impl.cpp*
+> / *test1_impl.cc *as well. In my opinion it is not necessary to create a
+> completelty new self-written RFNoC block since it is a small function.
+>
+> In the following I describe two different approaches how I try to achieve
+> my goal, but I would like to use the easiest one.
+> Mainly I try to use the integrated GPSDO function
+> So if you know a better solution, don't hesitate to post it. :)
+>
+>
+> --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+>
+> *(1)*
+>
+> Initially; I thought I could use code of the *sync_to_gps.cpp *in the
+> examples folder of uhd, but I realized that therefore an instance of an
+> *usrp* object is created.
+>
+> *uhd::usrp::multi_usrp::sptr usrp = uhd::usrp::multi_usrp::make(args);*
+>
+> Since I use a RFNoC block, previously a "*rfnoc*" object is constructed.
+> (I dont know the exact name and where it is created). So, I have two
+> instances which want to access at the same resource (board) at the same
+> time. This is obviously not functioning.
+> So when I run it in gnuradio I got the following error:
+>
+> *[ERROR] [RPC] Someone tried to claim this device again*
+>
+> In order to avoid this problem I would like to apply the needed methods
+> for using the GPS time functionallity at the *rfnoc *object (so I do not
+> need to create an object *usrp *).
+> In the *sync_to_gps.cpp *example the following methods are used:
+>
+> *set_clock_source*
+> *set_time_source*
+> *get_mboard_sensor_names*
+> *get_mboard_sensor*
+> *set_time_next_pps*
+> *get_time_last_pps*
+>
+> So my question is, where in the RFNoC framework is an instance of the *rfnoc
+> *object created, so I can apply these methods to it.
+>
+> *Another thing:*
+> If I start the built program *sync_to_gps*, I get after the
+> initialization, a *seg fault *error. I think, it is because I use an
+> RFNoC block.
+> Is it true, and where is the core dump stored?
+>
+> *(2)*
+>
+> During my research, I noticed that there is an *RFNoC: Radio block. *Looking
+> at the source code I see interesting methods in it:
+>
+> set_clock_source
+> set_time_next_pps
+> get_time_last_pps
+>
+> but not (*set_time_source, get_mboard_sensor_names, get_mboard_sensor *)
+>
+> So it seems to me that a GPS time function is not integrated in the *rfnoc_radio_impl
+> *class*.*
+> This astonishes me, because I would assume that the RFNoC framework could
+> perform at least the same tasks as an usual USRP (radio) one.
+> I think about using (copying) the missing methods in the *rfnoc_radio_impl
+> *class. Are there any problems doing this or why they have not been
+> implemented so far?
+> If I implement it, how can I recompile the block in order to get an
+> updated *RFNoC: Radio* block.
+>
+>
+> --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+>
+> Used software:
+> I use GNURadio 3.7.14.0, UHD 3.15 with Python 2.7.
+> Hardware:
+> N310
+>
+> Thanks for the help :)
+>
+> Kind regards
+>
+> George
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000006e241c05b4507839
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Maybe if you provide a more detailed description of what y=
+ou&#39;re trying to accomplish, we can help direct you toward a path to get=
+ there. Do you just want to get a timestamp into your UHD application? Do y=
+ou require a timestamp for the custom logic in your RFNoC block on the FPGA=
+?<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Mon, Nov 16, 2020 at 10:26 PM George Smith via USRP-users &lt;<a hr=
+ef=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt;=
+ wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><di=
+v style=3D"font-family:Verdana;font-size:12px"><div style=3D"font-family:Ve=
+rdana;font-size:12px">
+<div style=3D"font-family:Verdana;font-size:12px">
+<div>Dear community,</div>
+
+<div>=C2=A0</div>
+
+<div>I use an RFNoC block and I would like to use it in combination with th=
+e GPS time functionallity on a N310.</div>
+
+<div>My aim is to create and write out a GPS precise timestamp - in the fir=
+st step only once but maybe later more regularly.</div>
+
+<div>Until Inow I have a RFNoC block, where I put the controlling stuff (of=
+ the main task) inside <em>test1_block_ctrl_impl.cpp </em>which is called b=
+y <em>test1_impl.cc</em></div>
+
+<div>My idea is to put the GPS time function inside <em>test1_block_ctrl_im=
+pl.cpp</em>=C2=A0 / <em>test1_impl.cc </em>as well. In my opinion it is not=
+ necessary to create a completelty new self-written RFNoC block since it is=
+ a small function.</div>
+
+<div>=C2=A0</div>
+
+<div>In the following I describe two different approaches how I try to achi=
+eve my goal, but I would like to use the easiest one.</div>
+
+<div>Mainly I try to use the integrated GPSDO function</div>
+
+<div>So if you know a better solution, don&#39;t hesitate to post it. :)</d=
+iv>
+
+<div>=C2=A0</div>
+
+<div>
+<div>----------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+-------------------------------</div>
+</div>
+
+<div>=C2=A0</div>
+
+<div><strong>(1)</strong></div>
+
+<div>=C2=A0</div>
+
+<div>Initially; I thought I could use code of the <em>sync_to_gps.cpp </em>=
+in the examples folder of uhd, but I realized that therefore an instance of=
+ an <em>usrp</em> object is created.</div>
+
+<div>=C2=A0</div>
+
+<div><em>uhd::usrp::multi_usrp::sptr usrp =3D uhd::usrp::multi_usrp::make(a=
+rgs);</em></div>
+
+<div>=C2=A0</div>
+
+<div>Since I use a RFNoC block, previously a &quot;<em>rfnoc</em>&quot; obj=
+ect is constructed. (I dont know the exact name and where it is created). S=
+o, I have two instances which want to access at the same resource (board) a=
+t the same time. This is obviously not functioning.</div>
+
+<div>So when I run it in gnuradio I got the following error:</div>
+
+<div>=C2=A0</div>
+
+<div><em>[ERROR] [RPC] Someone tried to claim this device again</em></div>
+
+<div>=C2=A0</div>
+
+<div>In order to avoid this problem I would like to apply the needed method=
+s for using the GPS time functionallity at the <em>rfnoc </em>object (so I =
+do not need to create an object <em>usrp </em>).</div>
+
+<div>In the <em>sync_to_gps.cpp </em>example the following methods are used=
+:</div>
+
+<div>=C2=A0</div>
+
+<div><em>set_clock_source</em></div>
+
+<div><em>set_time_source</em></div>
+
+<div><em>get_mboard_sensor_names</em></div>
+
+<div><em>get_mboard_sensor</em></div>
+
+<div><em>set_time_next_pps</em></div>
+
+<div><em>get_time_last_pps</em></div>
+
+<div>=C2=A0</div>
+
+<div>So my question is, where in the RFNoC framework is an instance of the =
+<em>rfnoc </em>object created, so I can apply these methods to it.</div>
+
+<div>=C2=A0</div>
+
+<div><em>Another thing:</em></div>
+
+<div>If I start the built program <em>sync_to_gps</em>, I get after the ini=
+tialization, a <em>seg fault </em>error. I think, it is because I use an RF=
+NoC block.</div>
+
+<div>Is it true, and where is the core dump stored?</div>
+
+<div>=C2=A0</div>
+
+<div><strong>(2)</strong></div>
+
+<div>=C2=A0</div>
+
+<div>During my research, I noticed that there is an <em>RFNoC: Radio block.=
+ </em>Looking at the source code I see interesting methods in it:</div>
+
+<div>=C2=A0</div>
+
+<div>set_clock_source</div>
+
+<div>set_time_next_pps</div>
+
+<div>get_time_last_pps</div>
+
+<div>=C2=A0</div>
+
+<div>but not (<em>set_time_source, get_mboard_sensor_names, get_mboard_sens=
+or </em>)</div>
+
+<div>=C2=A0</div>
+
+<div>So it seems to me that a GPS time function is not integrated in the <e=
+m>rfnoc_radio_impl=C2=A0 </em>class<em>.</em></div>
+
+<div>This astonishes me, because I would assume that the RFNoC framework co=
+uld perform at least the same tasks as an usual USRP (radio) one.</div>
+
+<div>I think about using (copying) the missing methods in the <em>rfnoc_rad=
+io_impl=C2=A0 </em>class. Are there any problems doing this or why they hav=
+e not been implemented so far?<br>
+If I implement it, how can I recompile the block in order to get an updated=
+ <em>RFNoC: Radio</em> block.</div>
+
+<div>=C2=A0</div>
+
+<div>----------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+-------------------------------</div>
+
+<div>=C2=A0</div>
+
+<div>Used software:</div>
+
+<div>I use GNURadio 3.7.14.0, UHD 3.15 with Python 2.7.</div>
+
+<div>Hardware:=C2=A0</div>
+
+<div>N310</div>
+
+<div>=C2=A0</div>
+
+<div>Thanks for the help :)</div>
+
+<div>=C2=A0</div>
+
+<div>Kind regards</div>
+
+<div>=C2=A0</div>
+
+<div>George</div>
+
+<div>=C2=A0</div>
+
+<div>=C2=A0</div>
+
+<div>=C2=A0</div>
+</div>
+</div></div></div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000006e241c05b4507839--
+
+
+--===============0891157495600917525==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0891157495600917525==--
+
