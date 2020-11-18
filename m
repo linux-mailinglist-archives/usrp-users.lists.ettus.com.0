@@ -2,47 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2BCB2B7D9B
-	for <lists+usrp-users@lfdr.de>; Wed, 18 Nov 2020 13:28:00 +0100 (CET)
-Received: from [::1] (port=54766 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7A492B7DEC
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Nov 2020 13:56:38 +0100 (CET)
+Received: from [::1] (port=54960 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kfMZ3-0007SB-9K; Wed, 18 Nov 2020 07:27:57 -0500
-Received: from mail-qk1-f182.google.com ([209.85.222.182]:41586)
+	id 1kfN0n-0000ll-Gh; Wed, 18 Nov 2020 07:56:37 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:36195)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jbmsdr@gmail.com>) id 1kfMYz-0007Lj-Mu
- for usrp-users@lists.ettus.com; Wed, 18 Nov 2020 07:27:53 -0500
-Received: by mail-qk1-f182.google.com with SMTP id d9so1505457qke.8
- for <usrp-users@lists.ettus.com>; Wed, 18 Nov 2020 04:27:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=U57blgIDnRbg2aCMvSOm5pv7OdS5irV2WHNih8PBNXo=;
- b=I9SINhag4Of4erAKyd3ttaU7zJJyNn2VSP0lwkgO/xyunMT9f9f0dZATTic361sD2R
- PI89v1t5Nf4lIJuxrQLYb2mj7ezqsSUJ10EB3NSymrov7Y5IiTjPDsfXMwwd9CWU8DWV
- wMPmGRFz/Z4b9fpXj6sQbz/i11tVDoubyz2H65DaLYXBUIAl9K7KG2tThc7G7hyedTOt
- zZ49fes2xRSKCKhUiyKsFJlXUPIh4V618q6g/HMF9uclKQVmu44YKIaKI/lgySealoNY
- PQ80G7/uzRU2fkdKhZXcnAqM9vTZyUExquXlUPEaCR7zqaYR+kJD2Etnj/rJ9PTEYiXe
- yTTQ==
+ (Exim 4.93) (envelope-from <jarroyo@gradiant.org>)
+ id 1kfN0k-0000f1-3i
+ for usrp-users@lists.ettus.com; Wed, 18 Nov 2020 07:56:34 -0500
+Received: by mail-ot1-f41.google.com with SMTP id n89so1616863otn.3
+ for <usrp-users@lists.ettus.com>; Wed, 18 Nov 2020 04:56:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gradiant-org.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=8zB11Idv6KXq8C21lLMZITSC2LqtBz/pcTgPjChzB2o=;
+ b=2JdSxJHHZj6MPuYxE/L3d3yn8a5zttQWBmwuQ4HvfXIyODQediiNHPsgtChCLFhpif
+ QeIuJb1BNgndNFmhhhmISThYMGmukZhZTxCVS/v4HAFeEGTdOv7xjIpmyMUM1cW8BsnY
+ 6GE3SslDrqF/gV96ECtngCBUvcji9kARVXvqSQkuRjbtgiWDdg3m0L+rLtR5Nqw7A5qw
+ 9agF46crplzcRGw7helhp2jCULAR44PHbB3L3GcTtQEe+wj1x9tX0QMPDIXn+AU2Cp0g
+ niU2IcUf0sNTZKCiHdIguD6tJ56vi7Ubv6woW31Ml9R7UYEkBCgYlf0AU7SJ29yTpMmK
+ dtbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=U57blgIDnRbg2aCMvSOm5pv7OdS5irV2WHNih8PBNXo=;
- b=QzOBNnV8HIAVlF6Joe+pZXbl5CKW8tw1I7S7Azia31aFJ7cgZcQE3KlQ8GDDTLLv4O
- wbZDbP0hwGxCf7dFFQhX03tlIdV5uqG0Z/ikN7oQ9ynCy7RqmbbG3+2AWWFgLBjT9OQp
- kVSrZY5ydBa1k10soS2a6d24nyy8WdBkIRRw3CGUQm/ltvy7icM5ubXsOiKO9zEg2cJy
- Fcllp2Mx4guFkY4bOJUL6g4HgDEOjNwZnh6nBlxvGi6Y9TeTtEJ6liRZROKB9dugbxNT
- Vy+RFhXQkXik1DaIj3UvGPuMwhtcFj2sPyU92qI0Ocb0u9eKmJPMcCUQBxxFjV7NyRim
- f99g==
-X-Gm-Message-State: AOAM533hrX5ajcJ8dJkWaHXHzlYt13ZLDMkM2DvpW0tp7S9M3eUa72Ex
- sUqMOJGFValK8BnNxJZIs905mZ8y3fw5Rz2yJ3ltSfH9
-X-Google-Smtp-Source: ABdhPJxyeVBnhga4woZT8BkGzfAxFIAk/xnC+5SsBMKzn5SXvMLY9mz7vAx5/k/ET8uI/lYLo1ME/fSWqWwF9k0sTPA=
-X-Received: by 2002:a37:aa93:: with SMTP id t141mr4364862qke.400.1605702432680; 
- Wed, 18 Nov 2020 04:27:12 -0800 (PST)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=8zB11Idv6KXq8C21lLMZITSC2LqtBz/pcTgPjChzB2o=;
+ b=K0NxM7FdfCuvo1dnQX43/SfY9Padne5kFJ1kV4RNOz+OvAIktvkwMoJSRjbpmYvNkZ
+ 1TyjzAafZd7d86gX4pGzpMYe9ghXxId29/FFMunYnn0hD9OMLDy/5+A31fq9Dk/kYukj
+ bwaWqAVpoSKoJHtSnB6AQdFHuaQsaVp8KPTHwXMQKrY3dJHpTtDwRe9f2kgvgDA4ry3U
+ JNMXq06Z8OO3xr60k5YzCvopcEzlKymUsrWgez4DnBKQm/+5I3ExEPM26WWvMhbfyw63
+ 93ZtFJY1aeSHqBtVqVVJork/mo/zyxbmCU0G8vzsIKJNKuU+sE+flftFwvewa4mh0TPr
+ k4XQ==
+X-Gm-Message-State: AOAM533Iev7ChatqsIVDtSzcFM4J2ajrtoNAFDpZuot4cOz1/xXUpWUr
+ 0ihUMGCho1WRW6HOzb0EII77gvcuh7+lBQ9rsH96pJkwnj2M07Xb
+X-Google-Smtp-Source: ABdhPJw70b8VWRQn9qerQu+9ZPXYfVsYEJo6c//r5nswgXO99kS31mE1gxbfYZZZGtwIUYBVt834J/HCuQ/Pjrsfpz8=
+X-Received: by 2002:a9d:7a8:: with SMTP id 37mr5949464oto.201.1605704153227;
+ Wed, 18 Nov 2020 04:55:53 -0800 (PST)
 MIME-Version: 1.0
-Date: Wed, 18 Nov 2020 07:27:01 -0500
-Message-ID: <CA+1FM8pa+r2V98HZver=btdMVxoNCmrm0O4FXftszhruHLaT2w@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Overflows at flowgraph start using gr-uhd
+References: <CAOx6OK0Mz1E1MRyi1LxBo4MuGjsye_J6g+w3Z3FSoeaZABTfAA@mail.gmail.com>
+ <CAB__hTTwqjd==Aj=S-w17t48vSMM3KdCWwMeCmnBHZV+qQhgAw@mail.gmail.com>
+ <CAOx6OK2XjgoCGoRydFs+AP30HdK33n-PHjMfv960L8QYhtk5TA@mail.gmail.com>
+ <CAB__hTR7rd9AChyU-9u4J_Kz6C4c_nLKoE5a+sWDT83T85qipA@mail.gmail.com>
+ <CAOx6OK37gLOmTt1EEb7FhZaJrizDfrRt7LiPxibpEq4wAMs6xw@mail.gmail.com>
+In-Reply-To: <CAOx6OK37gLOmTt1EEb7FhZaJrizDfrRt7LiPxibpEq4wAMs6xw@mail.gmail.com>
+Date: Wed, 18 Nov 2020 13:55:37 +0100
+Message-ID: <CAOx6OK3mm0-3LD399=1uOdeXwjPQ77hQDe_otq4M8cONpy98pQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] RFNoC loopback without radio cores in C++
+ (UHD-3.15.LTS)
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +64,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Josh via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Josh <jbmsdr@gmail.com>
-Content-Type: multipart/mixed; boundary="===============8762793873447655691=="
+From: Jorge Arroyo Giganto via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jorge Arroyo Giganto <jarroyo@gradiant.org>
+Content-Type: multipart/mixed; boundary="===============8476890599487691942=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,54 +80,44 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8762793873447655691==
-Content-Type: multipart/alternative; boundary="0000000000001d6f1005b460bb89"
+--===============8476890599487691942==
+Content-Type: multipart/alternative; boundary="000000000000aaf96d05b46121f6"
 
---0000000000001d6f1005b460bb89
+--000000000000aaf96d05b46121f6
 Content-Type: text/plain; charset="UTF-8"
 
-I'm seeing a difference in behavior between gr-uhd and plain uhd c++ api:
+Hi,
 
-Setup:
-B210, 2 channels, 5MSPS, master_clock_rate 20MSPS, PPS sync
-Receive only flowgraph
+In case anyone finds this unresolved entry, I think I found the error I was
+making, it probably had to do with thread handling. I would recommend
+always creating a thread group (boost::thread_group tg), and then calling
+two separate threads, one for RX
+(tg.create_thread(boost::bind(&receive_thread,...)) and the other for TX
+(tg.create_thread(boost::bind(&send_thread,...)). Still, I'm not sure if
+that was the real issue, but it's what's working for me.
 
-With gr-uhd, there is always a "OOD" when the flowgraph first starts
+Best regards,
 
-But, if I replicate the setup in a simple compiled program using the uhd
-API with all the same settings, this never occurs.
+Jorge
 
-So my question is - is the GR scheduler doing something at the beginning of
-the flowgraph that delays the work() calls and causes overflows, and are
-there settings I use to mitigate this?  My problem is that once these
-overflows occur, I can't trust my timing synchronization on the received
-samples (or have to do further calculations on the rx_time tags).
-
-Thanks,
-Josh
-
---0000000000001d6f1005b460bb89
+--000000000000aaf96d05b46121f6
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I&#39;m seeing a difference in behavior between gr-uh=
-d and plain uhd c++ api:</div><div><br></div><div>Setup:</div><div>B210, 2 =
-channels, 5MSPS, master_clock_rate 20MSPS, PPS sync<br></div><div>Receive o=
-nly flowgraph</div><div><br></div><div>With gr-uhd, there is always a &quot=
-;OOD&quot; when the flowgraph first starts</div><div><br></div><div>But, if=
- I replicate the setup in a simple compiled program using the uhd API with =
-all the same settings, this never occurs.</div><div><br></div><div>So my qu=
-estion is - is the GR scheduler doing something at the beginning of the flo=
-wgraph that delays the work() calls and causes overflows, and are there set=
-tings I use to mitigate this?=C2=A0 My problem is that once these overflows=
- occur, I can&#39;t trust my timing synchronization on the received samples=
- (or have to do further calculations on the rx_time tags).</div><div><br></=
-div><div>Thanks,</div><div>Josh<br></div></div>
+<div dir=3D"ltr"><div dir=3D"ltr">Hi,</div><br><div>In case anyone finds th=
+is unresolved entry, I think I found the error I was making, it probably ha=
+d to do with thread handling. I would recommend always creating a thread gr=
+oup (boost::thread_group tg), and then calling two separate threads, one fo=
+r RX (tg.create_thread(boost::bind(&amp;receive_thread,...)) and the other =
+for TX (tg.create_thread(boost::bind(&amp;send_thread,...)). Still, I&#39;m=
+ not sure if that was the real issue, but it&#39;s what&#39;s working for m=
+e.</div><div><br></div><div>Best regards,</div><div><br></div><div>Jorge<br=
+></div></div>
 
---0000000000001d6f1005b460bb89--
+--000000000000aaf96d05b46121f6--
 
 
---===============8762793873447655691==
+--===============8476890599487691942==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,5 +128,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8762793873447655691==--
+--===============8476890599487691942==--
 
