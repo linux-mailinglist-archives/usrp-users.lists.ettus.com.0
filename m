@@ -2,52 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 033872B8618
-	for <lists+usrp-users@lfdr.de>; Wed, 18 Nov 2020 22:00:19 +0100 (CET)
-Received: from [::1] (port=58676 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A9B2B86FB
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Nov 2020 22:46:40 +0100 (CET)
+Received: from [::1] (port=58942 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kfUYd-0003Hi-QM; Wed, 18 Nov 2020 16:00:03 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:35669)
+	id 1kfVHh-0005jF-Vu; Wed, 18 Nov 2020 16:46:37 -0500
+Received: from mail-qk1-f178.google.com ([209.85.222.178]:38147)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1kfUYa-0003DT-43
- for usrp-users@lists.ettus.com; Wed, 18 Nov 2020 16:00:00 -0500
-Received: by mail-ot1-f49.google.com with SMTP id n11so3198161ota.2
- for <usrp-users@lists.ettus.com>; Wed, 18 Nov 2020 12:59:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=OX3g8efA4xEqvzXreWFv0wU+4gB+RnKankzR7/WB1z4=;
- b=2J5I0DWXAvrPiyMK/NX6+GomxZTxY2NRHU2c1mNIlprWZJvRiT2NxQSokI/mFtgRWk
- jnOIyyJFd+UNhXl5DO0i40zcoC/ENocb1au7X28p3hutBziW581Bs0i7NzzbNgRK7pbK
- kNM7ydh4M6ALkeCG7symmluqiHS2aM1kMVZ0g0PFsNTNgqTtjRfiuSDFxdmMqwAllIl6
- IikQ2S5u5b4qFpGioWO1WpmsJIoRnzeSrC4i5ryY/TG/Kyr7/L7vw1e/GhmBYymVbTkD
- ZyJH5cFDDy63ADfe4ZwEVW4dxgTAvlanEuIep7E7muiLAoyYCEAqH/5CD/vHuCFHvv+F
- vFxg==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kfVHd-0005c9-R4
+ for usrp-users@lists.ettus.com; Wed, 18 Nov 2020 16:46:33 -0500
+Received: by mail-qk1-f178.google.com with SMTP id 11so3439499qkd.5
+ for <usrp-users@lists.ettus.com>; Wed, 18 Nov 2020 13:46:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=YYboHLDcVcZSxQxxNasAiN6uh7R7B+aQRXaR9+xnL7o=;
+ b=WsIQ8cASMmXc4GTqLyLNz4JGymEiJVcyHVa4vv5/5ApPdjj5mOGJdUoef6w0+D6Jmy
+ BZzb9C1Yzm8r/h5f9/ls1+fAqUbh/4VPGvmJ3MrdU88Q/pK+g0qtbKSSyPJt1FnUKjfs
+ IMEfXeIqI3/ExbSvdgQsKuoaztQL5dzfEsoOo04sNVocubzaQUtzppfDJGZpbSpKd9jk
+ Js9CMgyEt68nq3obYIGDy1Saoev9aTw5Ak45Xw1G31WCZ8O2XAWflJSm+BhIukTaKENQ
+ TaRGj5z8YBPXcCFAwxmi+xeSpCVxKP1kIIhRtRc/jIEcRP6mOW+NuwgccN84KSVza7xq
+ 25gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=OX3g8efA4xEqvzXreWFv0wU+4gB+RnKankzR7/WB1z4=;
- b=bxcACHeAZK07vwvnO34i3brgrqRqlvSmsH/Ztkq0hAUT9kx1OySAqrejaojjsS77oX
- eqRRxJneBqdW2hmvlgLII9zEAQcHzvzDmYRY9CacO/RCN3O2SKrkWctGxw4RxGN4pHke
- DbAKqiBlbK5Q+nm9RTZ8MIaPz9ICIwGvz0jREklTe1Q9DUGZDCXjUv12IHuuhikGxUh/
- UrE1EChEba+qe5vqWzJ06kaJ7DwqpxfyJxn7POHT/8gsn8H2iGPwA8Zs299qNMIK82On
- 3fJF8jRk/+6MXSucTquMCNOND6pabGk0KWaFwOlcHy5EPfMQzC2s9wRt3YAfbFQnbI+B
- sSGw==
-X-Gm-Message-State: AOAM531XlU/iJAvOs1Pqvhou6t4Ky5uk8dKdrLqxXJGKvEawX3jl+NYI
- C95yFJ1Ejc8NanhNpij1DI5AEtIlA8Xlpc3utHB/uyur
-X-Google-Smtp-Source: ABdhPJyVx1Hwmgfpr4sWClSDqR3pDfzbaL+Xf38uVcXGthFkCcdc3iMT1hZeILhZAWrnipmy+azfbkwls3Vl+6wQopw=
-X-Received: by 2002:a9d:470c:: with SMTP id a12mr8157306otf.161.1605733159352; 
- Wed, 18 Nov 2020 12:59:19 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=YYboHLDcVcZSxQxxNasAiN6uh7R7B+aQRXaR9+xnL7o=;
+ b=hDd/Llh8a/Hkky120T357uwlE0F3G4IoeBu8Bf6Auvjjx9zfETomu266jriJV78kcS
+ lsH5yfxrGllEJg0q86ddcQn07OjKMxwOLYTePjWoidSCqi6t/nGeYtBHR1hQmcC9RTuT
+ FHBdoCuAK2oTvQWfA6YiMVgh2qg92B/jTmEg3Zmkj49kn+EbHz9NSEZNC9f+JwV7qpwC
+ ddGVZg7N28f30TE4MHqqozoI23HKn/8Jn7ZV6PaJ88q50YKGiG6n4PVrhFqZs+On8ti6
+ V7D79ZX9cHip/ll0cl8/ldxghD9pNGPHsJXY39HzmXvHIw0NIvrCGz+j7vVgK+8ON3bg
+ enVw==
+X-Gm-Message-State: AOAM532liQGcZ5Bmqx4EiqXmJ/BMbScQc1eXJf2JV1bfvHoH4n35uRMv
+ 2QTGX4A+raOGPnd3HDiCj4S8iEl4Rss=
+X-Google-Smtp-Source: ABdhPJys80ie/i8chxMdOulVOL15M13TJFO6xo0WIX/05Ndlm8kLAom2K55W7EPLTTm0F2RMeIPsHw==
+X-Received: by 2002:a37:8143:: with SMTP id c64mr7079669qkd.485.1605735952996; 
+ Wed, 18 Nov 2020 13:45:52 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id
+ e10sm18255950qkn.126.2020.11.18.13.45.52
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 18 Nov 2020 13:45:52 -0800 (PST)
+Message-ID: <5FB59610.5020902@gmail.com>
+Date: Wed, 18 Nov 2020 16:45:52 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <CAB__hTTuHFM-TE=s2DvMzZ9MjUCG0b6qJntW3cdCACD1oBmCJQ@mail.gmail.com>
-In-Reply-To: <CAB__hTTuHFM-TE=s2DvMzZ9MjUCG0b6qJntW3cdCACD1oBmCJQ@mail.gmail.com>
-Date: Wed, 18 Nov 2020 14:59:08 -0600
-Message-ID: <CAFche=g7f0piVrd0cVZ0L8NEm9+WFDCj1ntFt-4aK8tSHoq+HA@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] rfnoc_image_builder with Ettus blocks
+To: usrp-users@lists.ettus.com
+References: <CA+1FM8pa+r2V98HZver=btdMVxoNCmrm0O4FXftszhruHLaT2w@mail.gmail.com>
+In-Reply-To: <CA+1FM8pa+r2V98HZver=btdMVxoNCmrm0O4FXftszhruHLaT2w@mail.gmail.com>
+Subject: Re: [USRP-users] Overflows at flowgraph start using gr-uhd
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,9 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Wade Fife <wade.fife@ettus.com>
-Content-Type: multipart/mixed; boundary="===============2169554226621952022=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0630916503288247585=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,124 +83,114 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2169554226621952022==
-Content-Type: multipart/alternative; boundary="00000000000091553905b467e28c"
+This is a multi-part message in MIME format.
+--===============0630916503288247585==
+Content-Type: multipart/alternative;
+ boundary="------------000002020801020807050109"
 
---00000000000091553905b467e28c
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------000002020801020807050109
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
- Rob,
-
-The -I option is meant for out-of-tree blocks, which are supposed to follow
-the same structure as the example. The switchboard.yml file is missing a
-line that indicates where its makefile.srcs is:
-
-makefile_srcs:
-"${fpga_lib_dir}/blocks/rfnoc_block_switchboard/Makefile.srcs"
-
-See one of the other in-tree RFNoC blocks for an example (e.g.,
-uhd/host/include/uhd/rfnoc/blocks/fir_filter.yml). Once you add that then
-you shouldn't need to specify it using -I. I'll see that switchboard.yml
-gets updated.
-
-Thanks,
-
-Wade
-
-On Wed, Nov 18, 2020 at 1:10 PM Rob Kossler via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi,
-> I'm wondering what is the intended procedure for building an FPGA image
-> using non-default Ettus RFNoC blocks in RFNoC 4.0.  I am referring to using
-> Ettus-developed blocks other than Radio, DDC, DUC, and Replay which by
-> default are included (see Makefile.n3xx.inc which mentions that only these
-> default blocks are included).
+On 11/18/2020 07:27 AM, Josh via USRP-users wrote:
+> I'm seeing a difference in behavior between gr-uhd and plain uhd c++ api:
 >
-> I am trying to include the Ettus switchboard block in my image and I get
-> an error that this block cannot be found.  If I add a command line option
-> "-I" to add an include folder to the build, this still does not work (see
-> error below).  This command line option seems to expect an "fpga" subfolder
-> which does not exist for the switchboard block.
+> Setup:
+> B210, 2 channels, 5MSPS, master_clock_rate 20MSPS, PPS sync
+> Receive only flowgraph
 >
-> However, if I directly modify Makefile.n3xx.inc to add the switchboard
-> block in the same way as DDC, it works.  But, this does not seem to me to
-> be the intended way of doing things. Is there a better way?
-> Rob
+> With gr-uhd, there is always a "OOD" when the flowgraph first starts
 >
-> ************ HERE is the command I issue
-> $ rfnoc_image_builder -y n310_pulse_det_6_rfnoc_image_core.yml -I ./ -F
-> /data/rkossler/uhd/UHD-4.0/uhd/fpga/ -d n310  -t N310_XG -I
-> /data/rkossler/uhd/UHD-4.0/uhd/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_switchboard/
+> But, if I replicate the setup in a simple compiled program using the 
+> uhd API with all the same settings, this never occurs.
 >
-> ************ HERE is the error message I get.
-> Makefile.n3xx.inc:53:
-> /data/rkossler/uhd/UHD-4.0/uhd/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_switchboard/fpga/Makefile.srcs:
-> No such file or directory
+> So my question is - is the GR scheduler doing something at the 
+> beginning of the flowgraph that delays the work() calls and causes 
+> overflows, and are there settings I use to mitigate this?  My problem 
+> is that once these overflows occur, I can't trust my timing 
+> synchronization on the received samples (or have to do further 
+> calculations on the rx_time tags).
+>
+> Thanks,
+> Josh
+>
+>
 > _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
+Try specifying "num_recv_frames=128" in your device arguments.
 
---00000000000091553905b467e28c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">
-<div>Rob,</div><div><br></div><div>The -I option is meant for=20
-out-of-tree blocks, which are supposed to follow the same structure as=20
-the example. The switchboard.yml file is missing a line that indicates=20
-where its makefile.srcs is:<br></div><div><br></div><div>makefile_srcs: &qu=
-ot;${fpga_lib_dir}/blocks/rfnoc_block_switchboard/Makefile.srcs&quot;</div>=
-<div><br></div><div>See one of the other in-tree RFNoC blocks for an exampl=
-e (e.g., uhd/host/include/uhd/rfnoc/blocks/fir_filter.yml).
- Once you add that then you shouldn&#39;t need to specify it using -I. I&#3=
-9;ll=20
-see that switchboard.yml gets updated.</div><div><br></div><div>Thanks,</di=
-v><div><br></div><div>Wade</div>
-
-</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Wed, Nov 18, 2020 at 1:10 PM Rob Kossler via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
-"><div>Hi,</div><div>I&#39;m wondering what is the intended procedure for b=
-uilding an FPGA image using non-default Ettus RFNoC blocks in RFNoC 4.0.=C2=
-=A0 I am referring to using Ettus-developed blocks other than Radio, DDC, D=
-UC, and Replay which by default are included (see Makefile.n3xx.inc which m=
-entions that only these default blocks are included).=C2=A0=C2=A0</div><div=
-><br></div><div>I am trying to include the Ettus switchboard block in my im=
-age and I get an error that this block cannot be found.=C2=A0 If I add a co=
-mmand line option &quot;-I&quot; to add an include folder to the build, thi=
-s still does not work (see error below).=C2=A0 This command line option see=
-ms to expect an &quot;fpga&quot; subfolder which does not exist for the swi=
-tchboard block.</div><div><br></div><div>However, if I directly modify Make=
-file.n3xx.inc to add the switchboard block in the same way as DDC, it works=
-.=C2=A0 But, this does not seem to me to be the intended way of doing thing=
-s. Is there a better way?=C2=A0</div><div>Rob=C2=A0</div><div><br></div><di=
-v>************ HERE is the command I issue<br></div><div>$ rfnoc_image_buil=
-der -y n310_pulse_det_6_rfnoc_image_core.yml -I ./ -F /data/rkossler/uhd/UH=
-D-4.0/uhd/fpga/ -d n310 =C2=A0-t N310_XG <span style=3D"background-color:rg=
-b(255,255,0)">-I /data/rkossler/uhd/UHD-4.0/uhd/fpga/usrp3/lib/rfnoc/blocks=
-/rfnoc_block_switchboard/</span><br></div><div><br></div><div>************ =
-HERE is the error message I get.</div>Makefile.n3xx.inc:53: <span style=3D"=
-background-color:rgb(255,153,0)">/data/rkossler/uhd/UHD-4.0/uhd/fpga/usrp3/=
-lib/rfnoc/blocks/rfnoc_block_switchboard/fpga/Makefile.srcs</span>: No such=
- file or directory<br></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000091553905b467e28c--
+Also, are you running this on naked hardware or through a VM?
 
 
---===============2169554226621952022==
+
+--------------000002020801020807050109
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 11/18/2020 07:27 AM, Josh via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CA+1FM8pa+r2V98HZver=btdMVxoNCmrm0O4FXftszhruHLaT2w@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>I'm seeing a difference in behavior between gr-uhd and
+          plain uhd c++ api:</div>
+        <div><br>
+        </div>
+        <div>Setup:</div>
+        <div>B210, 2 channels, 5MSPS, master_clock_rate 20MSPS, PPS sync<br>
+        </div>
+        <div>Receive only flowgraph</div>
+        <div><br>
+        </div>
+        <div>With gr-uhd, there is always a "OOD" when the flowgraph
+          first starts</div>
+        <div><br>
+        </div>
+        <div>But, if I replicate the setup in a simple compiled program
+          using the uhd API with all the same settings, this never
+          occurs.</div>
+        <div><br>
+        </div>
+        <div>So my question is - is the GR scheduler doing something at
+          the beginning of the flowgraph that delays the work() calls
+          and causes overflows, and are there settings I use to mitigate
+          this?  My problem is that once these overflows occur, I can't
+          trust my timing synchronization on the received samples (or
+          have to do further calculations on the rx_time tags).</div>
+        <div><br>
+        </div>
+        <div>Thanks,</div>
+        <div>Josh<br>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+
+</pre>
+    </blockquote>
+    Try specifying "num_recv_frames=128" in your device arguments.<br>
+    <br>
+    Also, are you running this on naked hardware or through a VM? <br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------000002020801020807050109--
+
+
+--===============0630916503288247585==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -203,5 +201,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2169554226621952022==--
+--===============0630916503288247585==--
 
