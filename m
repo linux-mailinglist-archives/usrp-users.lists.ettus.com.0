@@ -2,53 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8686A2B88DF
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Nov 2020 01:00:16 +0100 (CET)
-Received: from [::1] (port=60002 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4FC62B8912
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Nov 2020 01:35:29 +0100 (CET)
+Received: from [::1] (port=60312 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kfXN0-0005JC-GH; Wed, 18 Nov 2020 19:00:14 -0500
-Received: from mail-qv1-f49.google.com ([209.85.219.49]:43009)
+	id 1kfXv2-0000Rj-06; Wed, 18 Nov 2020 19:35:24 -0500
+Received: from mail-qk1-f180.google.com ([209.85.222.180]:32961)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <dw2zq@virginia.edu>) id 1kfXMw-0005CN-H6
- for usrp-users@lists.ettus.com; Wed, 18 Nov 2020 19:00:10 -0500
-Received: by mail-qv1-f49.google.com with SMTP id y11so1986417qvu.10
- for <usrp-users@lists.ettus.com>; Wed, 18 Nov 2020 15:59:50 -0800 (PST)
+ (Exim 4.93) (envelope-from <dw2zq@virginia.edu>) id 1kfXux-0000Lu-B3
+ for usrp-users@lists.ettus.com; Wed, 18 Nov 2020 19:35:19 -0500
+Received: by mail-qk1-f180.google.com with SMTP id l2so3883612qkf.0
+ for <usrp-users@lists.ettus.com>; Wed, 18 Nov 2020 16:34:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=virginia-edu.20150623.gappssmtp.com; s=20150623;
  h=message-id:subject:from:to:date:in-reply-to:references:user-agent
  :mime-version:content-transfer-encoding;
- bh=0wxmjLa8RdxegcMjdPLvOHqSDbvv1IOpCEJs0V7JtZs=;
- b=Om+Ne3aaDwpBU1XUyYCPASGQAhumO/Gkks2wGvyzG//6rLVh9DVtcjQesIZ4z/qM5T
- AHdNg7s1ql/JakM9kvx/PArQBlMxm8BxIk6E84Hq8WnjkXdW6u8ZB044Qd9KXqUbrRVg
- 8IMDZEVm3fw6fFTJCJOQWchwAidtCHXdG01gWGWAZI3oxAIPIVOCHMgs9KIR8mYc9u9l
- iS10VByTlRmatUT3KP2KldhRCK75lbqA6jwG/7rQF6JoiLt+9CPNIzx4Raj36raQu1T8
- 26wDvhS38JCEmpuRQVsiLuijG49dKNKLW8T1cRa0R0A0ve19nbGejQPE1yzrPftmUpNj
- 4uMA==
+ bh=AHwP3uJ9JZRTdIPZlwYvnf4JUWg3wzFyJUekoCEC/2w=;
+ b=n6EYjZRpi09C7yhuLfoxqatwztk6aPHD1KbjZWTJAkYcQm/TLNOWS5aXqHM57ZsRYO
+ RLrtJ7kvBhXAW4VW8V+cwhlvGY2FAOAPxSn/OPtSLWCeTwIEEDQZ5MLP9xcdmD8jAPXy
+ m4esX8NhsMstlTpqdyzLNRPJn/rqyNOWNoG+7evR0Eiuq4eOlLfnIaeyHgO7M62tRdnh
+ N+MSlZdBel5dxi3solw1P0i5rfRPobQF8WfOgYQSbOMJpDnhokSzFyE12ZVX/YCkEQ7Z
+ kERJTZ31I75Y8cQV3ehntQTQKsyPWWQ1V/5H0ChgAwXmcMP36mRf2TNpZMONzs0nNYKz
+ vrtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
  :references:user-agent:mime-version:content-transfer-encoding;
- bh=0wxmjLa8RdxegcMjdPLvOHqSDbvv1IOpCEJs0V7JtZs=;
- b=aVw5rC9aLPuJ1Ur4Uj7H8d6nr0Iv1R3IrYVJz0JykX7yW9a3G7XsNvl0vzYjODMw1H
- MVkRKdxK3lk6dAJv4qWTXIeZU5J4aRXO5meru35QNVazTmnSll+PPbHgqh3/Hep0cls6
- EdGVVRiJU6CsoLjAcixiRX+tYVWzNJvikTdNYmMTn5DNos+o4+U/c5A5mhqXJua4r4Ko
- CGHuTvNDeU98TiNrkkYmBBecZXObHtEI3Uj+48qN7Xdz5sPhaa31Mmio9GNQlELdPP7Y
- 84Jni/TSnCa8e71/N8UfY0sDcdT8QCAAeH/lWR5y1UlL9ePnxRVAOfBXhPSXydbXsCkg
- ll5g==
-X-Gm-Message-State: AOAM533PXZzxTJ5s72rtl6wvFOFdXNzQw8Q5XfAjAtPXw/t4ZTWKN6a9
- AmiGgevrILzfl8uqNJy/DW/7hA==
-X-Google-Smtp-Source: ABdhPJxL/hcjdI+jTlnwZQYanFjHoMoCh/u2C7WQ7Zul1NNKPJbZMC9Zh5F2MwXVB0Faf5rvY7W8Aw==
-X-Received: by 2002:ad4:4e0d:: with SMTP id dl13mr7757044qvb.54.1605743969740; 
- Wed, 18 Nov 2020 15:59:29 -0800 (PST)
+ bh=AHwP3uJ9JZRTdIPZlwYvnf4JUWg3wzFyJUekoCEC/2w=;
+ b=jcBfxA2qZo/1/2dYhaO7+8mutNH50t2Ru0N37/4lJ/FDplnDz+3ofxNXKKr2abRLDx
+ oZW6RpprQRDQQTWUwG89vf79wHKFQ8PWeSHC4Ifv61wkedhsJ/a009XWmVLL9lhHh7fZ
+ 0dpwDOKy5Xb3tju6+BekSxEoDZYa98PyugLmTm++Jzg4/vyXYksqspn/JEKMlQHT+HtD
+ PIgPJAD4uVw3Hx9Rwih4/gPLYTxcW0fXVy+VI3bcPVy1iTXIyze5PwrYVK6PTSZ5gE3p
+ PQqMc7pQCqOWn7jYxxcLLpNIZCjeP8tO9FwoBmFGGz1yKOFvPso/uqdHD5YnFFRYIs4D
+ S/7A==
+X-Gm-Message-State: AOAM530BdWePiYNqepdQnuuQG309ztpxk+UT1KgZIvZlhyp1vXRBNBNy
+ VvL6FnHVk6/fNfvV3TwTKEgknglFSzzsEw==
+X-Google-Smtp-Source: ABdhPJxJgOR0Cl+MOEf335ntrF63swbJ/JUKlDaoNZHQwql3neondDEQ3gonFyrAwz124tckm3u2rg==
+X-Received: by 2002:a37:6558:: with SMTP id z85mr8037969qkb.214.1605746078588; 
+ Wed, 18 Nov 2020 16:34:38 -0800 (PST)
 Received: from [10.32.128.226] (c-73-40-68-102.hsd1.va.comcast.net.
  [73.40.68.102])
- by smtp.gmail.com with ESMTPSA id b8sm15908539qtx.73.2020.11.18.15.59.28
+ by smtp.gmail.com with ESMTPSA id g9sm17151902qtq.21.2020.11.18.16.34.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 18 Nov 2020 15:59:29 -0800 (PST)
-Message-ID: <d8b840b3472a6f1aabce21a261877a7989b16d95.camel@virginia.edu>
+ Wed, 18 Nov 2020 16:34:37 -0800 (PST)
+Message-ID: <7f74f5e9fd21affec4856445c013b9dea6f58c2f.camel@virginia.edu>
 To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
-Date: Wed, 18 Nov 2020 18:59:32 -0500
+Date: Wed, 18 Nov 2020 19:34:41 -0500
 In-Reply-To: <5FB5ADDB.4030608@gmail.com>
 References: <389b50bdd4933609c1d2edf5aea66d272802475d.camel@virginia.edu>
  <5FB5ADDB.4030608@gmail.com>
@@ -157,11 +157,20 @@ Ulggc3ludGhlc2l6ZXJzIGFyZSAKPiBxdWl0ZSBkaWZmZXJlbnQuCj4gCj4gCj4gCj4gCj4gX19f
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBVU1JQLXVzZXJz
 IG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3Rz
 LmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgpN
-YXJjdXMsIAoKVGhlIGVycm9yIHdvdWxkIGJlIHdpdGhpbiAxIFBQTSwgYWZ0ZXIgYWNjb3VudGlu
-ZyBmb3IgdGhlIHByb2JsZW0gSSdtCnNlZWluZy4gSW5zdGVhZCwgd2hhdCBJIGFjdHVhbGx5IGhh
-dmUgaXMgZXJyb3JzIG9mIHVwIHRvIDZLSHogb3Igc28KKDEwMFBQTSwgaWYgeW91J3JlIHNvIGlu
-Y2xpbmVkKSA7IGFuZCB0aGlzIGVycm9yIHNlZW1zIHRvIGNvcnJlbGF0ZQpleGFjdGx5IHRvIHRo
-ZSBkc3AgdHVuZSB0aGF0IFVIRCBpcyByZXF1ZXN0aW5nLiAKCkR1c3RpbgoKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBs
-aXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFp
-bG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+YXJjdXMsCgpPaCwgc29ycnksIEkgbWlzc2VkIHRoZSBmaXJzdCBiaXQuIEknbSB1c2luZyB0aGUg
+b24tYm9hcmQgY2xvY2suIEFuZApwZXJoYXBzIEkgc2hvdWxkIGV4cGxhaW4gdGhlIHRhYmxlIHdp
+dGggYSBsaXR0bGUgYml0IG1vcmUgZGV0YWlsOgoqIDFzdCBjb2w6IFRoZSAqdGFyZ2V0KiBmcmVx
+dWVuY3kuIFRoZSBSWCB3YXMgdHVuZWQgdG8gdGhpcyBmcmVxdWVuY3kuClRoZSBUWCB3YXMgdHVu
+ZWQgdG8gdGhhdCBmcmVxdWVuY3kgKyBhbiBvZmZzZXQgKGluIHRoaXMgY2FzZSwgNTBLSHogZm9y
+CmFsbCBkYXRhcG9pbnRzKS4gCiogMm5kIGNvbDogV2hlcmUgdGhlIHRvbmUgaXMgZXhwZWN0ZWQg
+dG8gbGFuZCwgYm90aCBiaW4gYW5kIChiYXNlYmFuZCkKZnJlcXVlbmN5OyBpbiB0aGlzIGNhc2Us
+IGEgNTBLSHogb2Zmc2V0IGZvciBhbGwgZGF0YXBvaW50cywgd2hpY2gKY29ycmVzcG9uZGVkIHRv
+IGJpbiA1MjQgd2l0aCBhIDJeMjAgRkZULiAKKiAzcmQgY29sOiB3aGVyZSB0aGUgdG9uZSB3YXMg
+b2JzZXJ2ZWQgKGJvdGggYmluIGFuZCBmcmVxdWVuY3kpLgoqIDR0aCBjb2w6IGRpZmZlcmVuY2Ug
+YmV0d2VlbiB0aGUgdGFyZ2V0IGFuZCBleHBlY3RhdGlvbgoqIDV0aCBjb2w6IGRzcCBmcmVxIChm
+cm9tIHVoZDo6dHVuZV9yZXN1bHRfdC5hY3R1YWxfZHNwX2ZyZXEpCiogNnRoIGNvbDogd2hhdCB0
+aGUgZGlmZmVyZW5jZSB3b3VsZCBiZSBpZiBJIG9mZnNldCB0aGUgb2JzZXJ2ZWQKZnJlcXVlbmN5
+IGJ5IHRoZSBjbGFpbWVkIGRzcCBmcmVxdWVuY3kKCkR1c3RpbgoKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVT
+UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
