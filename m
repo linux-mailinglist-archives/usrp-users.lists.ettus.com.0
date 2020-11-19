@@ -2,61 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 217012B893C
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Nov 2020 02:06:23 +0100 (CET)
-Received: from [::1] (port=60558 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD7CC2B8950
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Nov 2020 02:13:03 +0100 (CET)
+Received: from [::1] (port=60616 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kfYOz-00030R-Fs; Wed, 18 Nov 2020 20:06:21 -0500
-Received: from mail-qk1-f170.google.com ([209.85.222.170]:43033)
+	id 1kfYVM-0003mj-00; Wed, 18 Nov 2020 20:12:56 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:35540)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kfYOw-0002tu-98
- for usrp-users@lists.ettus.com; Wed, 18 Nov 2020 20:06:18 -0500
-Received: by mail-qk1-f170.google.com with SMTP id u4so3871769qkk.10
- for <usrp-users@lists.ettus.com>; Wed, 18 Nov 2020 17:05:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=Cv0BGhUSMXj1/332hbqo4Aju69IzZbUeqOTT5GCnVO4=;
- b=WmIE+/KFpdBsYkUqAFd3qI0U5VS4pmHXzKWL5vtaTaBhSM4z3Jr5t/svM16uZyGFh7
- ii7EuyO88b3476v83KzjKpAKXZLOZGZpNBhXJI7nnZkTelj+SGJoOaVO2xX2OZFM4nXy
- DkEwsv/FzymISLEFSHwWuqOTMpj/wjzYUP+5dDQX537ZSXaymCIoc1gFY9u/oBxhbmw8
- XuCiWluEG4yC9nN4JVOmCQbWLWYGpYUzY0V+jsLSG/8CBswqhBv+3k3LEHJhnZ8hEnuq
- lzTVf3LNkQhcLg8hJxt+xNlT+DQmcsSGc3jyqpVjSSkvslBm7wxt6C3l4QiMZkb3k9vU
- TozA==
+ (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1kfYVH-0003fH-PG
+ for usrp-users@lists.ettus.com; Wed, 18 Nov 2020 20:12:51 -0500
+Received: by mail-ot1-f44.google.com with SMTP id n11so3781955ota.2
+ for <usrp-users@lists.ettus.com>; Wed, 18 Nov 2020 17:12:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=odreeHUF2lNd4+LVJs7NNDkKN+hKDdH6cKETgUYupOE=;
+ b=idoABetvTYPXPljdZyLAC5G/sI4D9ioxEZ+Q87IRKzWQvR94tMOmKoHNDyNacCDzIk
+ UbWDle4FlPHUrsD+qI6WjFWYHLFGlNcgjYIYReMR0JEA2o2KVk1X4GTzrsHsD989slHA
+ WSNEXX3O4Ad/n4mjVg6wSmjWkzJYx3xafHKUZY6VqHaGKudfL3v1ATlb9vQckku7FTiv
+ h5TO3SrIjq4yWvE5XzB4TwriBqdkfXCy1kn95GYtBJhQTyV2L8T/6ruL9r18nrVMFc8I
+ uQ0PvexAISdtMf7oXjkYVJCdC5beBN6OA7kFL9zbJRN0pWzveHHVt7H3OoyX3YMap/7S
+ W7fA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=Cv0BGhUSMXj1/332hbqo4Aju69IzZbUeqOTT5GCnVO4=;
- b=sWhv0yL7mU5Z3QtqIio55ZzmI0wxwpMGmh/KDU0QB2MIjINPXLXIH0LIZwNYELkFNm
- A9oJdtFApcnRmBGKyKnlIDkkBYWfNLCHPm2OaV5ixNOMoNQpzaIgLdhizi3oHMTtFu5E
- JUFvsZWfPz7A93pVjHrwoPeJJ9NiBTj+vyl/p6NolTBIksTB1hz1U1JgLKY2i5Um8fJ4
- kg89tfJFYwDcPFhdcFunRkdcUKnPk62iDCWhBHoeKy1eTPQs7flpRRZRcnT5yZmyAg3l
- g3Kxa154Y4TetkoEiYiBnCISfsKooX+1+C+mKoPwRNA2toCfUyRlTotNmcnGDwonoNN0
- 9lUw==
-X-Gm-Message-State: AOAM531v/u+skwuhnEFx2OorB2cbIZSds0EIuDTVXhjqqqscBvoVmPb5
- kNIk5wZZe9BH3ogoaTQYmY9osrYe2e4=
-X-Google-Smtp-Source: ABdhPJytlfWecjU/FoIKgrbnGPuGcnO7Qlsf/+69AOb5Pc4xarZMAYuJlCsJWci8ABru5KsVdiV0Ow==
-X-Received: by 2002:a37:7345:: with SMTP id o66mr8604897qkc.222.1605747937308; 
- Wed, 18 Nov 2020 17:05:37 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id g18sm1656149qtv.79.2020.11.18.17.05.36
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 18 Nov 2020 17:05:37 -0800 (PST)
-Message-ID: <5FB5C4E0.7060201@gmail.com>
-Date: Wed, 18 Nov 2020 20:05:36 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=odreeHUF2lNd4+LVJs7NNDkKN+hKDdH6cKETgUYupOE=;
+ b=L1XqkdaNcBxsuu1hUIIhtvXsUGATCKKfUupEWqp7qia3dwhg5TnU+EVzAlxxMwdBHl
+ 9rizjZkSc2M1/+Xp7sM70PLegmGhtE3HUx7ETvM/81xM5uW8F0V2UDyk57olXkQa6u8S
+ Y3BDK0wLmfsWfhq5KqCenfCNqOachfYwt0zVf/bjtTeG9ep/8637OCyyEbQ02Efa/Til
+ Ny15v80NGQqK4qDJp3Ey7m2p76tSLHl+2lIaziCrqDDADWZ4p+K+P1Vryd7fVZDJQ3qs
+ MW1T9rOQlTnYRfEXwexNagpkK4hfAneI5L5C5SWxk1B/Cz+2REVVBgrP2nWPDmFKS2aG
+ /8Og==
+X-Gm-Message-State: AOAM533QjQknmbVpqGq/COpKlEpNbevSG6UQUyHVU6BlRuO1jaDu+wzO
+ HyuYdPdtd5jjQ6RQCQkRBjLreoJO0yHClqAlXxereqA5
+X-Google-Smtp-Source: ABdhPJxdVjlC35T8umqEmpZ1UQ8r+WdkGa9YkzW4yblqNDuLvillaBLySrSU9uzh+Rd/CNJku0dRPUpbW0Dv1EZ/EPM=
+X-Received: by 2002:a9d:39b7:: with SMTP id y52mr8929861otb.28.1605748331108; 
+ Wed, 18 Nov 2020 17:12:11 -0800 (PST)
 MIME-Version: 1.0
-To: Dustin Widmann <dw2zq@virginia.edu>, usrp-users@lists.ettus.com
-References: <389b50bdd4933609c1d2edf5aea66d272802475d.camel@virginia.edu>	
- <5FB5ADDB.4030608@gmail.com>
- <7f74f5e9fd21affec4856445c013b9dea6f58c2f.camel@virginia.edu>
-In-Reply-To: <7f74f5e9fd21affec4856445c013b9dea6f58c2f.camel@virginia.edu>
-Subject: Re: [USRP-users] X310 UBX digital tune not occurring?
+References: <8b07db0bd61586f4d91a9b7b65e5f21b74c332df.camel@virginia.edu>
+In-Reply-To: <8b07db0bd61586f4d91a9b7b65e5f21b74c332df.camel@virginia.edu>
+Date: Wed, 18 Nov 2020 19:12:00 -0600
+Message-ID: <CAFche=jx=4hbt0Dao8h_k1OMCxHu2XOeFSX=bYvQANONp_p81Q@mail.gmail.com>
+To: Dustin Widmann <dw2zq@virginia.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] RfnocError: OpTimeout
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,10 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Wade Fife <wade.fife@ettus.com>
+Content-Type: multipart/mixed; boundary="===============1803559051574792275=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,40 +75,162 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 11/18/2020 07:34 PM, Dustin Widmann wrote:
-> On Wed, 2020-11-18 at 18:27 -0500, Marcus D. Leech via USRP-users
-> wrote:
->>
-> Marcus,
+--===============1803559051574792275==
+Content-Type: multipart/alternative; boundary="000000000000dfef8c05b46b6acc"
+
+--000000000000dfef8c05b46b6acc
+Content-Type: text/plain; charset="UTF-8"
+
+Dustin,
+
+It sounds like the software thinks the control port FIFO is filling up. Are
+you issuing a lot of timed commands, maybe far into the future? I wonder if
+issuing commands faster than they are being executed could cause the FIFO
+on the FPGA to fill up with commands.
+
+You could try increasing the timeout. Or, if you're comfortable with
+building the FPGA bitstream, you can try increasing the FIFO sizes on the
+FPGA. But either of these might just delay the inevitable. I'm not sure
+which block is causing the timeout, but these are the likely culprits if
+you want to try increasing the FIFO sizes:
+
+https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/noc_shell_radio.v#L147
+https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/noc_shell_radio.v#L194
+
+https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_duc/noc_shell_duc.v#L131
+https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_duc/noc_shell_duc.v#L178
+
+https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_ddc/noc_shell_ddc.v#L131
+https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_ddc/noc_shell_ddc.v#L178
+
+You might try doubling the number in each case then rebuild your FPGA
+image.
+
+Thanks,
+
+Wade
+
+
+On Wed, Nov 18, 2020 at 9:25 AM Dustin Widmann via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi usrp-users,
 >
-> Oh, sorry, I missed the first bit. I'm using the on-board clock. And
-> perhaps I should explain the table with a little bit more detail:
-> * 1st col: The *target* frequency. The RX was tuned to this frequency.
-> The TX was tuned to that frequency + an offset (in this case, 50KHz for
-> all datapoints).
-> * 2nd col: Where the tone is expected to land, both bin and (baseband)
-> frequency; in this case, a 50KHz offset for all datapoints, which
-> corresponded to bin 524 with a 2^20 FFT.
-> * 3rd col: where the tone was observed (both bin and frequency).
-> * 4th col: difference between the target and expectation
-> * 5th col: dsp freq (from uhd::tune_result_t.actual_dsp_freq)
-> * 6th col: what the difference would be if I offset the observed
-> frequency by the claimed dsp frequency
+> terminate called after throwing an instance of 'uhd::op_timeout'
+>   what():  RfnocError: OpTimeout: Control operation timed out waiting
+> for space in command buffer
+>
+> I've been getting the error above occasionally, usually after hours of
+> operation. I've got a few questions about it:
+> * The error seems self explanatory, but why might it happen sometimes
+> and not others?
+> * Are there any steps I can take to prevent the error from occurring?
+> * Alternately, what would be the best way to catch and recover from it?
+>
+> Relevant context:
+> * USRP X310
+> * * ubx (using for 1x transmit)
+> * * twinrx (using for 2x phase synchronous rx, with lo sharing)
+> * UHD 4.0 C++ API, multiusrp
 >
 > Dustin
 >
-Right, I understand the chart now.
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-So, this is rather odd.
+--000000000000dfef8c05b46b6acc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I assume this is under timed commands, yes?  What happens if you don't 
-use timed commands--just to check to see
-   if the DSP frequency change is getting skipped under timed commands?
+<div dir=3D"ltr"><div>Dustin,</div><div><br></div><div>It sounds like the s=
+oftware thinks the control port FIFO is filling up. Are you issuing a lot o=
+f timed commands, maybe far into the future? I wonder if issuing commands f=
+aster than they are being executed could cause the FIFO on the FPGA to fill=
+ up with commands.</div><div><br></div><div>You could try increasing the ti=
+meout. Or, if you&#39;re comfortable with building the FPGA bitstream, you =
+can try increasing the FIFO sizes on the FPGA. But either of these might ju=
+st delay the inevitable. I&#39;m not sure which block is causing the timeou=
+t, but these are the likely culprits if you want to try increasing the FIFO=
+ sizes:</div><div></div><div><br></div><div><a href=3D"https://github.com/E=
+ttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/=
+noc_shell_radio.v#L147">https://github.com/EttusResearch/uhd/blob/master/fp=
+ga/usrp3/lib/rfnoc/blocks/rfnoc_block_radio/noc_shell_radio.v#L147</a></div=
+><div><a href=3D"https://github.com/EttusResearch/uhd/blob/master/fpga/usrp=
+3/lib/rfnoc/blocks/rfnoc_block_radio/noc_shell_radio.v#L194">https://github=
+.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_=
+radio/noc_shell_radio.v#L194</a></div><div><br></div><div><a href=3D"https:=
+//github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfno=
+c_block_duc/noc_shell_duc.v#L131">https://github.com/EttusResearch/uhd/blob=
+/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_duc/noc_shell_duc.v#L131</a=
+></div><div><a href=3D"https://github.com/EttusResearch/uhd/blob/master/fpg=
+a/usrp3/lib/rfnoc/blocks/rfnoc_block_duc/noc_shell_duc.v#L178">https://gith=
+ub.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_bloc=
+k_duc/noc_shell_duc.v#L178</a></div><div><br></div><div><a href=3D"https://=
+github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_=
+block_ddc/noc_shell_ddc.v#L131">https://github.com/EttusResearch/uhd/blob/m=
+aster/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_ddc/noc_shell_ddc.v#L131</a><=
+/div><div><a href=3D"https://github.com/EttusResearch/uhd/blob/master/fpga/=
+usrp3/lib/rfnoc/blocks/rfnoc_block_ddc/noc_shell_ddc.v#L178">https://github=
+.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_=
+ddc/noc_shell_ddc.v#L178</a></div><div><br></div><div>You might try doublin=
+g the number in each case then rebuild your FPGA image. <br></div><div><br>=
+</div><div>Thanks,</div><div><br></div><div>Wade<br></div><div><br></div></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Wed, Nov 18, 2020 at 9:25 AM Dustin Widmann via USRP-users &lt;<a href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi usrp-users,=
+<br>
+<br>
+terminate called after throwing an instance of &#39;uhd::op_timeout&#39;<br=
+>
+=C2=A0 what():=C2=A0 RfnocError: OpTimeout: Control operation timed out wai=
+ting<br>
+for space in command buffer<br>
+<br>
+I&#39;ve been getting the error above occasionally, usually after hours of<=
+br>
+operation. I&#39;ve got a few questions about it:<br>
+* The error seems self explanatory, but why might it happen sometimes<br>
+and not others?<br>
+* Are there any steps I can take to prevent the error from occurring?<br>
+* Alternately, what would be the best way to catch and recover from it?<br>
+<br>
+Relevant context:<br>
+* USRP X310<br>
+* * ubx (using for 1x transmit)<br>
+* * twinrx (using for 2x phase synchronous rx, with lo sharing)<br>
+* UHD 4.0 C++ API, multiusrp<br>
+<br>
+Dustin<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000dfef8c05b46b6acc--
 
 
-
+--===============1803559051574792275==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============1803559051574792275==--
+
