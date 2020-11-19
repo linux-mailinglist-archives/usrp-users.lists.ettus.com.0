@@ -2,59 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B11572B91EC
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Nov 2020 13:00:24 +0100 (CET)
-Received: from [::1] (port=36690 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 191982B9215
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Nov 2020 13:10:27 +0100 (CET)
+Received: from [::1] (port=36786 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kfibu-0007Rd-RU; Thu, 19 Nov 2020 07:00:22 -0500
-Received: from mail-il1-f181.google.com ([209.85.166.181]:44468)
+	id 1kfild-00005k-Gj; Thu, 19 Nov 2020 07:10:25 -0500
+Received: from mail-qk1-f174.google.com ([209.85.222.174]:38566)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <adray0001@gmail.com>) id 1kfibq-0007IC-L6
- for usrp-users@lists.ettus.com; Thu, 19 Nov 2020 07:00:18 -0500
-Received: by mail-il1-f181.google.com with SMTP id z14so5078762ilp.11
- for <usrp-users@lists.ettus.com>; Thu, 19 Nov 2020 03:59:58 -0800 (PST)
+ (Exim 4.93) (envelope-from <jbmsdr@gmail.com>) id 1kfila-0008P6-4Z
+ for usrp-users@lists.ettus.com; Thu, 19 Nov 2020 07:10:22 -0500
+Received: by mail-qk1-f174.google.com with SMTP id 11so5022225qkd.5
+ for <usrp-users@lists.ettus.com>; Thu, 19 Nov 2020 04:10:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=u/JtXYcBTi6Cf25YSnvzSdJUbCuv4P3mndL3+xdGAAY=;
- b=B4Yp2cESfrsk5f417JTipgWo/uQV847VWQzmSd+sbPb0FqUv7YgwZf4Bcl4oUN5n88
- 2qGPa/nPpVUVAnAi9912NUGg7PT419yh61jjhUN1hVX0454jWvvWl5nOsUzv6CclyzWc
- cBY0Pi0eahJF2geAKc9rm3+VtV5P5m6LsKt/oEcnNVbJkYSrygPG5aRR+/3ZKECADB1P
- TNAUXTY/86yf9dsyQ5fiVJcosJw2dLtctYD4lpKvji0tzLWsFiUEEgStgEb9+gKYrO5G
- 7rhK3nOQ2sMu2yTL5ilzBEKauaPirhiTG5J7+GxLuuLiaFZoeKyKylUEKr5ZdE1bYnra
- 3caA==
+ :cc; bh=NTlOqZPHrL561gRq0IZ/RLlHdaNv/Ausb0B5LDxDkoE=;
+ b=ScZXe0XbqSCSSjncn9HP7G/ew3b72DEnyhNcTSbPb8UySX+Opm+7/ows9EV65TdATa
+ deZeSVLrQcsreIT7rp8WhCvvs9e/5VHVr+5vsN0J7SI5vSFVLs4i5SMA/UO2O7fm5P3e
+ sTapAIXAEy5cd3SZKhoGMvdyHTH9hBNYhzl9UqNEl5g2Qiggkh3WFSJe7MiVqg5YyaM7
+ /UcRzYsryxW1d2FyStqeqMZ4Gf1bZbokyM0kqIabs8+El97Lnnch9BKkUTOdZfbhBNmK
+ M4T99d+m1xTK/tm8M0OHQh6uwfTlrig0UEq0EwaQK4ec2f9uYj3ini5hpg2ajlQLPPS2
+ WfkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=u/JtXYcBTi6Cf25YSnvzSdJUbCuv4P3mndL3+xdGAAY=;
- b=Ljnfy/UYHBBBdxHBK70jM9l8xfAjEG5fOGsyLWOQQqtCv7Uc0r/qkpXTUxszxSgk7y
- 7WSPrIUo5DwxjHi95h7B0/66Pvt3SCiQW4CXYy0TL49GpB2y/Ul2a6FJh3l9oqDMlxO6
- PqEiZ/KYsnpoOwpeZtJ2Rv1TkUNZCmHrMwgC+Pi8uU4o90l/x/v3sSlYB+RIjqVDW2bY
- fnk6p46x9Lfuj+Ixbnkkyl4cD/H8JqoMfISchP30jEDN6XF7eciMDNxH0bjJZ9HQgDTH
- lvvAaYCao0EO20bHGlATlm+11w8G6iA1B4RNECUq68fksHSPWUNNlCq+LAZr7iQ17FbA
- EYYQ==
-X-Gm-Message-State: AOAM533uUPaO3EGh3emTubrdwCamJVx/TG+Mw9gNuvUHiAlcRkvMcssz
- q1PUwkoa0qKtbzYzXVtJ1SIH5MOpsvdaGpcPZMc=
-X-Google-Smtp-Source: ABdhPJwJ6/Mxfb6zQaRlXC0uqKj8DKzas4rzJ1GGEXeRQ27NrsPtYkzy+yRFqCCOcis73/iefuEzr78s0F80C3oi5ZE=
-X-Received: by 2002:a92:dd91:: with SMTP id g17mr18443035iln.12.1605787177919; 
- Thu, 19 Nov 2020 03:59:37 -0800 (PST)
+ bh=NTlOqZPHrL561gRq0IZ/RLlHdaNv/Ausb0B5LDxDkoE=;
+ b=EaoTDj7BTnl4GkrNzgSRnApOm1FPKVOatqR9HQowGQ37Dl7YqXtUsV2JNcurtt66OR
+ /kPrciFNvscrOxJra9cR10OlmY+LMS3K76yNNPqLaWf5t+c04Ed4jbjEMf5/x9HU9LOe
+ hqgDpdnfQVY8zjcTwAqBbrl+Ibfozl0TMrzQyEauI3QDJN7gOMFDtMr8EFl6jcCJtjI0
+ JdnIHH7jeOvqgDj7XFXy7kY5y4HkFiNy8SdP4elM+RO1yms3TjypXlfpLqrN2Ou3ULbu
+ rXK7OH/eR2KegLLfeeQXiPOPSFKwi7hTUkmne9SQC7QQt+rm2ndqKpzAjElM32dK4cMq
+ aovQ==
+X-Gm-Message-State: AOAM5335ovU5gAt2QR4rTR0Y/4TUaLtrzWBk7E2elrojtnY0bXPpvPhf
+ 62al2WEkSn9qs/AIUBciSeRctV339WV4UILC8PEIp8jUgpE=
+X-Google-Smtp-Source: ABdhPJyP1PThy27tW8QVXVOkDBJxzXQAxf/QR4ijur4V+2KQWK5I/FY3cMfBqMv8dfLp5rX0xzJQBFHixmqTec+/Ca0=
+X-Received: by 2002:a37:aa93:: with SMTP id
+ t141mr10265567qke.400.1605787781694; 
+ Thu, 19 Nov 2020 04:09:41 -0800 (PST)
 MIME-Version: 1.0
-References: <CAPRRyxt8qaJ-DbgKbDQbXYMt8=0PKC42JReqb=LrUxR0ZCEJqg@mail.gmail.com>
- <1B15B53D-E33A-4D5A-8CFB-B20AA0853B5D@tiscali.it>
- <CAPRRyxuHE=c3Kx2ywT=4kdk1LExzk-_Tbo_7Dxag1CpEbM6xdA@mail.gmail.com>
- <2e936e16-5b7c-404c-7393-e11bde32f437@elitecoding.org>
- <d8f6c823-b59f-3917-9b9f-96733db91f75@bitstovolts.com>
- <CAPRRyxthGC9vsfSDBwX2bj71frR9Hs=uLgYmFMBwHwCH0D+DJw@mail.gmail.com>
- <CAL7q81u7CzFZqTEyVp-kjzVOqVF4p4b-omUsT+pdu1ZBLVD__w@mail.gmail.com>
-In-Reply-To: <CAL7q81u7CzFZqTEyVp-kjzVOqVF4p4b-omUsT+pdu1ZBLVD__w@mail.gmail.com>
-Date: Thu, 19 Nov 2020 13:59:25 +0200
-Message-ID: <CAPRRyxsA5tZY9otEeQS4uLOL7UTZV2W8CCwdnpwqa=cAq_J_=w@mail.gmail.com>
-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Cc: Derek Kozel <derek@bitstovolts.com>,
- usrp-users <usrp-users@lists.ettus.com>, 
- discuss-gnuradio <discuss-gnuradio@gnu.org>, Ivan Iudice <krono86@tiscali.it>
-Subject: Re: [USRP-users] Direction finding based on USRP E310 board
+References: <CA+1FM8pa+r2V98HZver=btdMVxoNCmrm0O4FXftszhruHLaT2w@mail.gmail.com>
+ <5FB59610.5020902@gmail.com>
+ <CA+1FM8rYrQ2ukQ39HbzrWw8JbNqSo8a4mCd++J95rTLFWfBGpg@mail.gmail.com>
+ <d34d64b6-f36b-664a-93e7-b4a5cd9d1601@comcast.net>
+In-Reply-To: <d34d64b6-f36b-664a-93e7-b4a5cd9d1601@comcast.net>
+Date: Thu, 19 Nov 2020 07:09:30 -0500
+Message-ID: <CA+1FM8qKfWGRy9iRQeLQp4VzOUdsxq+nm6LHXt=_ei6aodgrMw@mail.gmail.com>
+To: Ron Economos <w6rz@comcast.net>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Overflows at flowgraph start using gr-uhd
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6231580188920039474=="
+From: Josh via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Josh <jbmsdr@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8346941040946923753=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,213 +78,227 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6231580188920039474==
-Content-Type: multipart/alternative; boundary="00000000000053283105b4747675"
+--===============8346941040946923753==
+Content-Type: multipart/alternative; boundary="00000000000050097005b4749acd"
 
---00000000000053283105b4747675
+--00000000000050097005b4749acd
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Thank you!
+Same deal - with "num_recv_frames=128,master_clock_rate=" +
+str(samp_rate*4) I still get "ODD", just about every time.
 
-=D1=87=D1=82, 19 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 06:54, Jonat=
-hon Pendlum <jonathon.pendlum@ettus.com>:
+On Thu, Nov 19, 2020 at 6:52 AM Ron Economos via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-> Hi Ivan,
+> The automatic setting of the master clock seems to be getting in the way
+> after the PPS transition. Try explicitly setting the master clock.
 >
-> Try building with the gr-ettus maint-3.7 branch.
+> "num_recv_frames=128,master_clock_rate=" + str(samp_rate*4)
 >
-> Jonathon
+> Ron
+> On 11/19/20 03:33, Josh via USRP-users wrote:
 >
-> On Wed, Nov 18, 2020 at 1:08 PM Ivan Zahartchuk via USRP-users <
+> Marcus,
+>
+> This is naked hardware - B210 usb into a pretty beefy laptop running
+> Ubuntu 20.04, GNU Radio latest master (3.9)
+> Even with num_recv_frames = 128, still getting "ODD" at startup of the
+> flowgraph
+>
+> Any other optimizations I should be tuning?  Getting no overruns in the
+> steady state, just at startup.
+>
+> Flowgraph is attached.
+>
+> Josh
+>
+> On Wed, Nov 18, 2020 at 4:46 PM Marcus D. Leech via USRP-users <
 > usrp-users@lists.ettus.com> wrote:
 >
+>> On 11/18/2020 07:27 AM, Josh via USRP-users wrote:
 >>
->> Hello I am trying to install RFNoC for uhd 3.15. As far as I understand,
->> this version supports RFNoC. And in order for me to have blocks in
->> gnuradio, as I understand it, I need to install gr-ettus. But when
->> installing, I get this error The found UHD version (3.15.0.0-3build2) is
->> not compatible with the version required (4.0). how can I be in such a
->> situation?
+>> I'm seeing a difference in behavior between gr-uhd and plain uhd c++ api:
 >>
->> =D1=81=D1=80, 18 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 16:24, De=
-rek Kozel <derek@bitstovolts.com>:
+>> Setup:
+>> B210, 2 channels, 5MSPS, master_clock_rate 20MSPS, PPS sync
+>> Receive only flowgraph
 >>
->>> Hi Ivan,
->>>
->>> The TX/RX and RX2 are ports on the same receiver channel. As Julian say=
-s
->>> there are two receivers, A and B. For a receive only application the RX=
-2
->>> ports are slightly better performing as they have one less switch that
->>> the signal passes through.
->>>
->>> Regards,
->>> Derek
->>>
->>> On 18/11/2020 14:01, Julian Arnold wrote:
->>> > Ivan,
->>> >
->>> > to the best of my knowledge, there should not be any RX1 port.
->>> > Instead, you should have two (coherent) channels "A" and "B" both
->>> > allowing you to select one out of two available antenna ports when
->>> > receiving ("TX/RX" or "RX2").
->>> >
->>> > Cheers,
->>> > Julian
->>> >
->>> > On 11/18/20 10:31 AM, Ivan Zahartchuk via USRP-users wrote:
->>> >>
->>> >> Another question of interest is which channels are coherent? Rx1 and
->>> >> RX2 or RX1 and RX / TX?
->>> >>
->>> >> =D0=B2=D1=82, 17 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 01:56=
-, Ivan Iudice <krono86@tiscali.it
->>> >> <mailto:krono86@tiscali.it>>:
->>> >>
->>> >>     Right!
->>> >>     Be careful, DOA estimation using only 2 antennas works but it=E2=
-=80=99s
->>> not
->>> >>     so accurate.
->>> >>     Enjoy!
->>> >>
->>> >>     Ivan
->>> >>
->>> >>      > Il giorno 17 nov 2020, alle ore 00:35, Ivan Zahartchuk
->>> >>     <adray0001@gmail.com <mailto:adray0001@gmail.com>> ha scritto:
->>> >>      >
->>> >>      > =EF=BB=BF
->>> >>      >
->>> >>      >
->>> >>      >
->>> >>      > That is, in theory, I can simply start two streams from two
->>> >>     channels and further process them using certain direction findin=
-g
->>> >>     algorithms?
->>> >>      >
->>> >>      >
->>> >>
->>> >>
->>> >> _______________________________________________
->>> >> USRP-users mailing list
->>> >> USRP-users@lists.ettus.com
->>> >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>> >>
->>> >
->>>
->>> _______________________________________________
+>> With gr-uhd, there is always a "OOD" when the flowgraph first starts
+>>
+>> But, if I replicate the setup in a simple compiled program using the uhd
+>> API with all the same settings, this never occurs.
+>>
+>> So my question is - is the GR scheduler doing something at the beginning
+>> of the flowgraph that delays the work() calls and causes overflows, and are
+>> there settings I use to mitigate this?  My problem is that once these
+>> overflows occur, I can't trust my timing synchronization on the received
+>> samples (or have to do further calculations on the rx_time tags).
+>>
+>> Thanks,
+>> Josh
+>>
+>>
+>> _______________________________________________
+>>
+>>
+>> Try specifying "num_recv_frames=128" in your device arguments.
+>>
+>> Also, are you running this on naked hardware or through a VM?
+>>
+>>
+>> _______________________________________________
 >> USRP-users mailing list
 >> USRP-users@lists.ettus.com
 >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >>
 >
+> _______________________________________________
+> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---00000000000053283105b4747675
+--00000000000050097005b4749acd
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thank you!=C2=A0<br></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">=D1=87=D1=82, 19 =D0=BD=D0=BE=D1=8F=D0=
-=B1. 2020 =D0=B3. =D0=B2 06:54, Jonathon Pendlum &lt;<a href=3D"mailto:jona=
-thon.pendlum@ettus.com">jonathon.pendlum@ettus.com</a>&gt;:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Ivan,<div><=
-br></div><div>Try building with the gr-ettus maint-3.7 branch.</div><div><b=
-r></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Wed, Nov 18, 2020 at 1:08 PM Ivan Zahartchuk =
-via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"=
-_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><br><span style=3D"color=
-:rgb(32,33,36);font-family:arial,sans-serif;font-size:28px;white-space:pre-=
-wrap;background-color:rgb(248,249,250)"></span>Hello I am trying to install=
- RFNoC for uhd 3.15. As far as I understand, this version supports RFNoC. A=
-nd in order for me to have blocks in gnuradio, as I understand it, I need t=
-o install gr-ettus. But when installing, I get this error The found UHD ver=
-sion (3.15.0.0-3build2) is not compatible with the version
-  required (4.0). how can I be in such a situation?<br></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=D1=81=D1=80, 18 =D0=
-=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 16:24, Derek Kozel &lt;<a href=
-=3D"mailto:derek@bitstovolts.com" target=3D"_blank">derek@bitstovolts.com</=
-a>&gt;:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Ivan,=
-<br>
-<br>
-The TX/RX and RX2 are ports on the same receiver channel. As Julian says <b=
-r>
-there are two receivers, A and B. For a receive only application the RX2 <b=
-r>
-ports are slightly better performing as they have one less switch that <br>
-the signal passes through.<br>
-<br>
-Regards,<br>
-Derek<br>
-<br>
-On 18/11/2020 14:01, Julian Arnold wrote:<br>
-&gt; Ivan,<br>
-&gt;<br>
-&gt; to the best of my knowledge, there should not be any RX1 port.<br>
-&gt; Instead, you should have two (coherent) channels &quot;A&quot; and &qu=
-ot;B&quot; both <br>
-&gt; allowing you to select one out of two available antenna ports when <br=
->
-&gt; receiving (&quot;TX/RX&quot; or &quot;RX2&quot;).<br>
-&gt;<br>
-&gt; Cheers,<br>
-&gt; Julian<br>
-&gt;<br>
-&gt; On 11/18/20 10:31 AM, Ivan Zahartchuk via USRP-users wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; Another question of interest is which channels are coherent? Rx1 a=
-nd <br>
-&gt;&gt; RX2 or RX1 and RX / TX?<br>
-&gt;&gt;<br>
-&gt;&gt; =D0=B2=D1=82, 17 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 01:=
-56, Ivan Iudice &lt;<a href=3D"mailto:krono86@tiscali.it" target=3D"_blank"=
->krono86@tiscali.it</a> <br>
-&gt;&gt; &lt;mailto:<a href=3D"mailto:krono86@tiscali.it" target=3D"_blank"=
->krono86@tiscali.it</a>&gt;&gt;:<br>
-&gt;&gt;<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0 Right!<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0 Be careful, DOA estimation using only 2 antenna=
-s works but it=E2=80=99s not<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0 so accurate.<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0 Enjoy!<br>
-&gt;&gt;<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0 Ivan<br>
-&gt;&gt;<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0 &gt; Il giorno 17 nov 2020, alle ore 00:3=
-5, Ivan Zahartchuk<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0 &lt;<a href=3D"mailto:adray0001@gmail.com" targ=
-et=3D"_blank">adray0001@gmail.com</a> &lt;mailto:<a href=3D"mailto:adray000=
-1@gmail.com" target=3D"_blank">adray0001@gmail.com</a>&gt;&gt; ha scritto:<=
-br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0 &gt;<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0 &gt; =EF=BB=BF<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0 &gt;<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0 &gt;<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0 &gt;<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0 &gt; That is, in theory, I can simply sta=
-rt two streams from two<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0 channels and further process them using certain=
- direction finding<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0 algorithms?<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0 &gt;<br>
-&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0 &gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; USRP-users mailing list<br>
-&gt;&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">US=
-RP-users@lists.ettus.com</a><br>
-&gt;&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_list=
-s.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/ma=
-ilman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;&gt;<br>
-&gt;<br>
-<br>
-</blockquote></div>
+<div dir=3D"ltr"><div>Same deal - with &quot;num_recv_frames=3D128,master_c=
+lock_rate=3D&quot; + str(samp_rate*4) I still get &quot;ODD&quot;, just abo=
+ut every time.=C2=A0 <br></div></div><br><div class=3D"gmail_quote"><div di=
+r=3D"ltr" class=3D"gmail_attr">On Thu, Nov 19, 2020 at 6:52 AM Ron Economos=
+ via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-user=
+s@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <p>The automatic setting of the master clock seems to be getting in
+      the way after the PPS transition. Try explicitly setting the
+      master clock.<br>
+    </p>
+    <p>&quot;num_recv_frames=3D128,master_clock_rate=3D&quot; + str(samp_ra=
+te*4)</p>
+    <p>Ron<br>
+    </p>
+    <div>On 11/19/20 03:33, Josh via USRP-users
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">
+        <div>Marcus,</div>
+        <div><br>
+        </div>
+        <div>This is naked hardware - B210 usb into a pretty beefy
+          laptop running Ubuntu 20.04, GNU Radio latest master (3.9)<br>
+        </div>
+        <div>Even with num_recv_frames =3D 128, still getting &quot;ODD&quo=
+t; at
+          startup of the flowgraph</div>
+        <div><br>
+        </div>
+        <div>Any other optimizations I should be tuning?=C2=A0 Getting no
+          overruns in the steady state, just at startup.</div>
+        <div><br>
+        </div>
+        <div>Flowgraph is attached.</div>
+        <div><br>
+        </div>
+        <div>Josh<br>
+        </div>
+      </div>
+      <br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Nov 18, 2020 at 4:46
+          PM Marcus D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-user=
+s@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div bgcolor=3D"#FFFFFF">
+            <div>On 11/18/2020 07:27 AM, Josh via USRP-users wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">
+                <div>I&#39;m seeing a difference in behavior between gr-uhd
+                  and plain uhd c++ api:</div>
+                <div><br>
+                </div>
+                <div>Setup:</div>
+                <div>B210, 2 channels, 5MSPS, master_clock_rate 20MSPS,
+                  PPS sync<br>
+                </div>
+                <div>Receive only flowgraph</div>
+                <div><br>
+                </div>
+                <div>With gr-uhd, there is always a &quot;OOD&quot; when th=
+e
+                  flowgraph first starts</div>
+                <div><br>
+                </div>
+                <div>But, if I replicate the setup in a simple compiled
+                  program using the uhd API with all the same settings,
+                  this never occurs.</div>
+                <div><br>
+                </div>
+                <div>So my question is - is the GR scheduler doing
+                  something at the beginning of the flowgraph that
+                  delays the work() calls and causes overflows, and are
+                  there settings I use to mitigate this?=C2=A0 My problem i=
+s
+                  that once these overflows occur, I can&#39;t trust my
+                  timing synchronization on the received samples (or
+                  have to do further calculations on the rx_time tags).</di=
+v>
+                <div><br>
+                </div>
+                <div>Thanks,</div>
+                <div>Josh<br>
+                </div>
+              </div>
+              <br>
+              <fieldset></fieldset>
+              <br>
+              <pre>_______________________________________________
+
+</pre>
+            </blockquote>
+            Try specifying &quot;num_recv_frames=3D128&quot; in your device
+            arguments.<br>
+            <br>
+            Also, are you running this on naked hardware or through a
+            VM? <br>
+            <br>
+            <br>
+          </div>
+          _______________________________________________<br>
+          USRP-users mailing list<br>
+          <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">U=
+SRP-users@lists.ettus.com</a><br>
+          <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lis=
+ts.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/m=
+ailman/listinfo/usrp-users_lists.ettus.com</a><br>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset></fieldset>
+      <pre>_______________________________________________
+USRP-users mailing list
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a>
+</pre>
+    </blockquote>
+  </div>
+
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -297,12 +307,11 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
-</blockquote></div>
 
---00000000000053283105b4747675--
+--00000000000050097005b4749acd--
 
 
---===============6231580188920039474==
+--===============8346941040946923753==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -313,5 +322,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6231580188920039474==--
+--===============8346941040946923753==--
 
