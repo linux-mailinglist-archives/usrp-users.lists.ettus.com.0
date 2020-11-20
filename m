@@ -2,52 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73F352BB0ED
-	for <lists+usrp-users@lfdr.de>; Fri, 20 Nov 2020 17:50:37 +0100 (CET)
-Received: from [::1] (port=48724 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 553A32BB18D
+	for <lists+usrp-users@lfdr.de>; Fri, 20 Nov 2020 18:38:54 +0100 (CET)
+Received: from [::1] (port=49370 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kg9cK-0006if-7A; Fri, 20 Nov 2020 11:50:36 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:33118)
+	id 1kgAN2-0004J8-Hq; Fri, 20 Nov 2020 12:38:52 -0500
+Received: from mail-qk1-f177.google.com ([209.85.222.177]:44972)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kg9cG-0006Zw-3f
- for usrp-users@lists.ettus.com; Fri, 20 Nov 2020 11:50:32 -0500
-Received: by mail-oi1-f175.google.com with SMTP id k26so11149049oiw.0
- for <usrp-users@lists.ettus.com>; Fri, 20 Nov 2020 08:50:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=pA74viZ8nQLlltF42TUvWFTM4aiNabqmKEjLkCVmAN0=;
- b=Jvl/Ya3XdzgoB/q3WMXrLAgw9UFHxI2AWnCGhzC7ZftxrIL/2IUSuPI0ZdV7C6ZKBe
- Rdsk6gk9k5WxO4XJS45P6sNRoNUSxeXsry0ywPr1Kghky7q4OBh7pMJuIZQMEI6ReK9h
- 1kULpole2INfd0q58Bwp3nA9jXGb+CZjE8kizNOHZJXKyoZ/fCoDwzypV3NkavBSslbR
- Z+ihVgCsDbuYq6d3CEs5owsQ2n2SfPqiHxpX2kmpcNz4rsrZ3YOi05+thVedd+6ZraIB
- KuMjhyRmAbNHRG35cTQ1zD8fqGpxy7erZJq7w9JqVlBCcrgV17zQXaM/HeGdgy7sy8n6
- kt1Q==
+ (Exim 4.93) (envelope-from <dw2zq@virginia.edu>) id 1kgAMx-00048C-QY
+ for usrp-users@lists.ettus.com; Fri, 20 Nov 2020 12:38:47 -0500
+Received: by mail-qk1-f177.google.com with SMTP id d28so9614306qka.11
+ for <usrp-users@lists.ettus.com>; Fri, 20 Nov 2020 09:38:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=virginia-edu.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=7YQerzi1j7rOMZWPHHbbxh7D3vJ+INQBEgAeFlf/k84=;
+ b=ehQaKIlRyQdJ2vumhzj/+0oitHN/aX0i+7rj8mKC+c0icWo4oSmlGaIOIW81cM4jlu
+ N2Z4NDeSGLlc55ArdzrCOxR8M+sIPkAjPQ8+0wkcRhz7i2IwSHgal/9hmyTDOd6S8i6z
+ 0Csmgk/C6WAQ7TGYRZMjOwknZjN2P556aOLBgKNiKCHkCJdztBbFnETOgc97dNvkhA+Y
+ LCi6C8p91/1FF/QPDSOvQ0JDipl8mnHSoNSLm8soQapkePeJzqB5983EOF/P9yY4n3rI
+ g0JgyD3vSVQCI50lJZRDc/Ki2sKlARuVC70L4pB8/DEggJvuiB4Xs5GvD5NXHM0g1WSF
+ IGBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=pA74viZ8nQLlltF42TUvWFTM4aiNabqmKEjLkCVmAN0=;
- b=f5aF8lQFwFhB8EH/TwNM8Ub3EuL/sZjyVDQRzu6OnGeCbhYj/N1pjPa3ob4RaS+0sc
- 7EA4mRBvyPrJQQkWtoBjaryqMTMzYFQZY/6wbsr7v8ll11oeGkQv2JWHIwbeGZXo9UWx
- 9VSXO7aTN4G35NJdBMoP7QHzKIILVQOZkhCWxPSYl3z3UWnNF3k+HLdMGwJRon1zAv6/
- tcPNSbrNzkitNEa188moGoI2yjRCiRltsj6X5T5XSQ886IB9FxZVrqbIr1EZKpNqHy28
- DdJ9xKb+9BJZmxAnXGbYA5jyfmP+UhO0MVimxzlHbvzWt0QfRqME2DRPFzftFK1Q/HTz
- 7Bmw==
-X-Gm-Message-State: AOAM533T1QqJ977Q3znSKGEtQfeY8dMCp4XgJcUVfkIP5q6iqzwz1IlE
- kuUtwILNbH4dJfvERN0RhTlp9krUi5UmlvI1LmPlqA==
-X-Google-Smtp-Source: ABdhPJw62/UKvfZNVwCZ3mKp3goX/xAI+sJDQdrKX8r+Ad9sgQ/4cr/4vK+U1bFAn2wfrvVWcfPGUAKsjCAEsWhQ1Mg=
-X-Received: by 2002:aca:5c82:: with SMTP id q124mr7037116oib.33.1605890991057; 
- Fri, 20 Nov 2020 08:49:51 -0800 (PST)
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=7YQerzi1j7rOMZWPHHbbxh7D3vJ+INQBEgAeFlf/k84=;
+ b=l6hoOBI/dsvMkKGtuS+s/UQaBfd5N8c3BTPgWG709dh/QRxxemFiiyWtI3d8iadZ2O
+ eYFoKPF8JdZWFtmHTJNnmrTALPsoOvPrk7Ezj+SrB18wGmSxfOiefnnAWJeBNMcOoR/8
+ bVoW9KWIhx5av1vcKZSDpLmUjDRK7M+lPDzxqj5Ama2rv1FuskhNdqhAvFPoDZhG6XIV
+ 8evvuXNGlSK3AuMoFaxFOaT3lXssz7lBotfxkn/zbab1pActEVgvtLd+37Ts01Mtwc2x
+ naK+H6nbZGbNCg+kcdburdX6W3wS7YSujSGOlu4G89xTv2mFEpfp8NsG+EfXiliZa+KY
+ +WiQ==
+X-Gm-Message-State: AOAM533vvXsPi86QolBRKxlBzMnZRR7tPTXLrz8SNo31pzF3Q50pPif6
+ tBHLMFXWdS0bGYXjajRQ8ZC+RpDj0znauQ==
+X-Google-Smtp-Source: ABdhPJwrvJfESECh1JL00QDTNg2jYtRFo7sEbCwQRonJomI2URUStoSoRIUMELY2Hkx3KYbB5h+kCg==
+X-Received: by 2002:a37:9b0b:: with SMTP id d11mr7509337qke.129.1605893887092; 
+ Fri, 20 Nov 2020 09:38:07 -0800 (PST)
+Received: from [10.8.198.130] (c-73-40-68-102.hsd1.va.comcast.net.
+ [73.40.68.102])
+ by smtp.gmail.com with ESMTPSA id f189sm2354104qkb.84.2020.11.20.09.38.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 20 Nov 2020 09:38:06 -0800 (PST)
+Message-ID: <6d4202c60c2fab68d67e9159675bf79beddbf11d.camel@virginia.edu>
+To: Wade Fife <wade.fife@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Date: Fri, 20 Nov 2020 12:38:08 -0500
+In-Reply-To: <CAFche=jx=4hbt0Dao8h_k1OMCxHu2XOeFSX=bYvQANONp_p81Q@mail.gmail.com>
+References: <8b07db0bd61586f4d91a9b7b65e5f21b74c332df.camel@virginia.edu>
+ <CAFche=jx=4hbt0Dao8h_k1OMCxHu2XOeFSX=bYvQANONp_p81Q@mail.gmail.com>
+User-Agent: Evolution 3.38.1 
 MIME-Version: 1.0
-References: <CAGLr63s4oPz6_P9zj2OAHduRB38YrG-+=rbXO1rjrAx1crQ-+w@mail.gmail.com>
-In-Reply-To: <CAGLr63s4oPz6_P9zj2OAHduRB38YrG-+=rbXO1rjrAx1crQ-+w@mail.gmail.com>
-Date: Fri, 20 Nov 2020 10:49:40 -0600
-Message-ID: <CAB__hTT1eeP2LhWv-j3Bc-1OTaBCVOsmrvVxC-2tD7XQmdA4ZA@mail.gmail.com>
-To: Cameron Matson <ncmatson95@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>, 
- GNURadio Discussion List <discuss-gnuradio@gnu.org>
-Subject: Re: [USRP-users] daughter board coherency on N310
+Subject: Re: [USRP-users] RfnocError: OpTimeout
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,9 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============2051437944068522384=="
+From: Dustin Widmann via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Dustin Widmann <dw2zq@virginia.edu>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,89 +84,58 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2051437944068522384==
-Content-Type: multipart/alternative; boundary="0000000000001229a805b48ca205"
-
---0000000000001229a805b48ca205
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Cameron,
-Yes, this is possible.  I'm not too familiar with gnuradio but in the end
-you need to use a "timed start" to the receive streams.
-Rob
-
-On Fri, Nov 20, 2020 at 7:34 AM Cameron Matson via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hello all,
->
-> I'm trying to implement a MIMO receiver using the 4 RF chains of the
-> N310.  To test the timing of the system, at the transmitter I'm simply
-> sending a short pulse from one transmit antenna of one USRP.  At the
-> receiver it looks like there is up to a ~20 ms delay/offset between the
-> pairs of antennas 0/1 and 2/3 and that this delay changes each time I
-> restart my GNURadio flowgraph.  I can see the delay both in GNURadio GUI
-> Time Sink and in actual samples that I write to file.  I've tried various
-> pulse widths and sampling rates at both the tx and rx, and it seems
-> invariant to these.
->
-> I'd really like to be able to synchronize the 4 RF chains in time
-> simultaneously.  Is that possible?
->
-> Thanks
-> Cameron Matson
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---0000000000001229a805b48ca205
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Cameron,<div>Yes, this is possible.=C2=A0 I&#39;m not t=
-oo familiar with gnuradio but in the end you need to use a &quot;timed star=
-t&quot; to the receive streams.=C2=A0=C2=A0</div><div>Rob</div></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Nov =
-20, 2020 at 7:34 AM Cameron Matson via USRP-users &lt;<a href=3D"mailto:usr=
-p-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hello a=
-ll,<div><br></div><div>I&#39;m trying to implement a MIMO receiver using th=
-e 4 RF chains of the N310.=C2=A0 To test the timing of the system, at the t=
-ransmitter I&#39;m simply sending a short pulse from one transmit antenna o=
-f one USRP.=C2=A0 At the receiver it looks like there is up to a ~20 ms del=
-ay/offset between the pairs of antennas 0/1 and 2/3 and that this delay cha=
-nges each time I restart my GNURadio flowgraph.=C2=A0 I can see the=C2=A0de=
-lay both in GNURadio GUI Time Sink and in actual samples that I write to fi=
-le.=C2=A0 I&#39;ve tried various pulse widths and sampling rates at both th=
-e tx and rx, and it seems invariant to these.</div><div><br></div><div>I&#3=
-9;d really like to be able to synchronize the 4 RF chains in time simultane=
-ously.=C2=A0 Is that possible?</div><div><br></div><div>Thanks</div><div>Ca=
-meron Matson</div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000001229a805b48ca205--
-
-
---===============2051437944068522384==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============2051437944068522384==--
-
+SGkgV2FkZSwKCkluY3JlYXNpbmcgdGhlIHNpemUgb2YgdGhlIHJlbGV2YW50IGJ1ZmZlcnMgZG9l
+cyBzb3VuZCBpbnRlcmVzdGluZy4KVW5mb3J0dW5hdGVseSBJJ20gbm90IHJlYWxseSBmYW1pbGlh
+ciB3aXRoIHRoZSB3b3JrZmxvdyBmb3IgYnVpbGRpbmcKdGhlIEZQR0EgYml0c3RyZWFtLiBJJ2Qg
+YmUgaW50ZXJlc3RlZCBpbiB0cnlpbmcgaXQgaWYgeW91IGNvdWxkIHBvaW50Cm1lIHRvd2FyZHMg
+dXAtdG8tZGF0ZSBkb2N1bWVudGF0aW9uIG9uIGRvaW5nIGl0LCBzbyBsb25nIGFzIHRoZXJlCndv
+dWxkbid0IGJlIGEgbWFqb3Igc29mdHdhcmUgcHVyY2hhc2UgaW52b2x2ZWQuIAoKRHVzdGluCgpP
+biBXZWQsIDIwMjAtMTEtMTggYXQgMTk6MTIgLTA2MDAsIFdhZGUgRmlmZSB3cm90ZToKPiBEdXN0
+aW4sCj4gCj4gSXQgc291bmRzIGxpa2UgdGhlIHNvZnR3YXJlIHRoaW5rcyB0aGUgY29udHJvbCBw
+b3J0IEZJRk8gaXMgZmlsbGluZwo+IHVwLiBBcmUgeW91IGlzc3VpbmcgYSBsb3Qgb2YgdGltZWQg
+Y29tbWFuZHMsIG1heWJlIGZhciBpbnRvIHRoZQo+IGZ1dHVyZT8gSSB3b25kZXIgaWYgaXNzdWlu
+ZyBjb21tYW5kcyBmYXN0ZXIgdGhhbiB0aGV5IGFyZSBiZWluZwo+IGV4ZWN1dGVkIGNvdWxkIGNh
+dXNlIHRoZSBGSUZPIG9uIHRoZSBGUEdBIHRvIGZpbGwgdXAgd2l0aCBjb21tYW5kcy4KPiAKPiBZ
+b3UgY291bGQgdHJ5IGluY3JlYXNpbmcgdGhlIHRpbWVvdXQuIE9yLCBpZiB5b3UncmUgY29tZm9y
+dGFibGUgd2l0aAo+IGJ1aWxkaW5nIHRoZSBGUEdBIGJpdHN0cmVhbSwgeW91IGNhbiB0cnkgaW5j
+cmVhc2luZyB0aGUgRklGTyBzaXplcyBvbgo+IHRoZSBGUEdBLiBCdXQgZWl0aGVyIG9mIHRoZXNl
+IG1pZ2h0IGp1c3QgZGVsYXkgdGhlIGluZXZpdGFibGUuIEknbQo+IG5vdCBzdXJlIHdoaWNoIGJs
+b2NrIGlzIGNhdXNpbmcgdGhlIHRpbWVvdXQsIGJ1dCB0aGVzZSBhcmUgdGhlIGxpa2VseQo+IGN1
+bHByaXRzIGlmIHlvdSB3YW50IHRvIHRyeSBpbmNyZWFzaW5nIHRoZSBGSUZPIHNpemVzOgo+IAo+
+IGh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9iL21hc3Rlci9mcGdhL3Vz
+cnAzL2xpYi9yZm5vYy9ibG9ja3MvcmZub2NfYmxvY2tfcmFkaW8vbm9jX3NoZWxsX3JhZGlvLnYj
+TDE0Nwo+IGh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9iL21hc3Rlci9m
+cGdhL3VzcnAzL2xpYi9yZm5vYy9ibG9ja3MvcmZub2NfYmxvY2tfcmFkaW8vbm9jX3NoZWxsX3Jh
+ZGlvLnYjTDE5NAo+IAo+IGh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9i
+L21hc3Rlci9mcGdhL3VzcnAzL2xpYi9yZm5vYy9ibG9ja3MvcmZub2NfYmxvY2tfZHVjL25vY19z
+aGVsbF9kdWMudiNMMTMxCj4gaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Js
+b2IvbWFzdGVyL2ZwZ2EvdXNycDMvbGliL3Jmbm9jL2Jsb2Nrcy9yZm5vY19ibG9ja19kdWMvbm9j
+X3NoZWxsX2R1Yy52I0wxNzgKPiAKPiBodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91
+aGQvYmxvYi9tYXN0ZXIvZnBnYS91c3JwMy9saWIvcmZub2MvYmxvY2tzL3Jmbm9jX2Jsb2NrX2Rk
+Yy9ub2Nfc2hlbGxfZGRjLnYjTDEzMQo+IGh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNo
+L3VoZC9ibG9iL21hc3Rlci9mcGdhL3VzcnAzL2xpYi9yZm5vYy9ibG9ja3MvcmZub2NfYmxvY2tf
+ZGRjL25vY19zaGVsbF9kZGMudiNMMTc4Cj4gCj4gWW91IG1pZ2h0IHRyeSBkb3VibGluZyB0aGUg
+bnVtYmVyIGluIGVhY2ggY2FzZSB0aGVuIHJlYnVpbGQgeW91ciBGUEdBCj4gaW1hZ2UuIAo+IAo+
+IFRoYW5rcywKPiAKPiBXYWRlCj4gCj4gCj4gT24gV2VkLCBOb3YgMTgsIDIwMjAgYXQgOToyNSBB
+TSBEdXN0aW4gV2lkbWFubiB2aWEgVVNSUC11c2Vycwo+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbT4gd3JvdGU6Cj4gPiBIaSB1c3JwLXVzZXJzLAo+ID4gCj4gPiB0ZXJtaW5hdGUgY2FsbGVk
+IGFmdGVyIHRocm93aW5nIGFuIGluc3RhbmNlIG9mICd1aGQ6Om9wX3RpbWVvdXQnCj4gPiDCoCB3
+aGF0KCk6wqAgUmZub2NFcnJvcjogT3BUaW1lb3V0OiBDb250cm9sIG9wZXJhdGlvbiB0aW1lZCBv
+dXQKPiA+IHdhaXRpbmcKPiA+IGZvciBzcGFjZSBpbiBjb21tYW5kIGJ1ZmZlcgo+ID4gCj4gPiBJ
+J3ZlIGJlZW4gZ2V0dGluZyB0aGUgZXJyb3IgYWJvdmUgb2NjYXNpb25hbGx5LCB1c3VhbGx5IGFm
+dGVyIGhvdXJzCj4gPiBvZgo+ID4gb3BlcmF0aW9uLiBJJ3ZlIGdvdCBhIGZldyBxdWVzdGlvbnMg
+YWJvdXQgaXQ6Cj4gPiAqIFRoZSBlcnJvciBzZWVtcyBzZWxmIGV4cGxhbmF0b3J5LCBidXQgd2h5
+IG1pZ2h0IGl0IGhhcHBlbgo+ID4gc29tZXRpbWVzCj4gPiBhbmQgbm90IG90aGVycz8KPiA+ICog
+QXJlIHRoZXJlIGFueSBzdGVwcyBJIGNhbiB0YWtlIHRvIHByZXZlbnQgdGhlIGVycm9yIGZyb20K
+PiA+IG9jY3VycmluZz8KPiA+ICogQWx0ZXJuYXRlbHksIHdoYXQgd291bGQgYmUgdGhlIGJlc3Qg
+d2F5IHRvIGNhdGNoIGFuZCByZWNvdmVyIGZyb20KPiA+IGl0Pwo+ID4gCj4gPiBSZWxldmFudCBj
+b250ZXh0Ogo+ID4gKiBVU1JQIFgzMTAKPiA+ICogKiB1YnggKHVzaW5nIGZvciAxeCB0cmFuc21p
+dCkKPiA+ICogKiB0d2lucnggKHVzaW5nIGZvciAyeCBwaGFzZSBzeW5jaHJvbm91cyByeCwgd2l0
+aCBsbyBzaGFyaW5nKQo+ID4gKiBVSEQgNC4wIEMrKyBBUEksIG11bHRpdXNycAo+ID4gCj4gPiBE
+dXN0aW4KPiA+IAo+ID4gCj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwo+ID4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiA+IFVTUlAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tCj4gPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8v
+dXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
+cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
