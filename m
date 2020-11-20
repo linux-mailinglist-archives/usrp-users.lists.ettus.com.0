@@ -2,62 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40BDF2B9DB1
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Nov 2020 23:34:01 +0100 (CET)
-Received: from [::1] (port=41390 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6D402B9EF9
+	for <lists+usrp-users@lfdr.de>; Fri, 20 Nov 2020 01:06:10 +0100 (CET)
+Received: from [::1] (port=42152 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kfsV0-0005UY-Cs; Thu, 19 Nov 2020 17:33:54 -0500
-Received: from mail-qt1-f177.google.com ([209.85.160.177]:41333)
+	id 1kftwC-0003kC-NE; Thu, 19 Nov 2020 19:06:04 -0500
+Received: from mail-lf1-f43.google.com ([209.85.167.43]:44273)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kfsUv-0005N8-U9
- for USRP-users@lists.ettus.com; Thu, 19 Nov 2020 17:33:49 -0500
-Received: by mail-qt1-f177.google.com with SMTP id j31so5706096qtb.8
- for <USRP-users@lists.ettus.com>; Thu, 19 Nov 2020 14:33:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=cJv4+V1HflcftV9QvlHFSAY+TlyX6hLqb8y3U3pRfbc=;
- b=EazBup7M7akr2wHwfYVo4c1LyUktdamrpMCpmjqIJBMG9pW+87eQik6U8pMVZTMqEC
- CfOUU6Fqqtxcb3zigTZ1CeU2YRmKvZ9grc8cDa5RZv/ZdyksxjMccWKaoogbKa4fYCB5
- FTgxZJQYHuBE03ZfzddY7Q6r9qAXwdDwKNseoAEBlYHuW7PJ0mKg1GLco6iNclhO2EBb
- 7rBIMRSnw864aP+rNUPJs3EaNh3DnIMRGNvRfde95d+fxTYx5Pc1mCRIvSWaAGs1Q0NI
- T6NOHAbncCJrEl8hzSD/t48w1k3xaPNPAIWmVD+03e47QOqMEnlzbqABUrDWiTx/BpUZ
- 7XDA==
+ (Exim 4.93) (envelope-from <chfl5156@colorado.edu>)
+ id 1kftw8-0003ev-D1
+ for USRP-users@lists.ettus.com; Thu, 19 Nov 2020 19:06:00 -0500
+Received: by mail-lf1-f43.google.com with SMTP id r9so10887275lfn.11
+ for <USRP-users@lists.ettus.com>; Thu, 19 Nov 2020 16:05:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=colorado.edu; s=google;
+ h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+ :subject:to:cc;
+ bh=4OA61L7+7+mPt4bHURdOSBOIeAkSyd8on8E4wGvbE/o=;
+ b=HTAG6k37nniMXFFf2wXKo5bKDCjHrOUhMfq+ELZhpm8n4ugDH8h02+6EfZs7azPIWf
+ Fof5KX7KD7fh+2XHnbJKCFLbkxOqQYKgaxQTPbuzErYQPIwxK9xCY5fxtciNIW64jO/X
+ HDpRUkgkORXRFnD+IVhJko8Oazd+jyKNoykDqRGUotw3iAswsVAlI8MPWTvob8yMfmsY
+ G/7yzD7+tzgYsPsyfN48iFGRXNsxDwmjubCfWoMKLtdsgpvagnNmDtuvw8Q2fpFWKwgT
+ +gZuEagleSb8ogW0EAJr8q4kh51O0lspWdU0rvKX/O8LsbCL0ugND7RCc3f35hEY7Gg4
+ Lxig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=cJv4+V1HflcftV9QvlHFSAY+TlyX6hLqb8y3U3pRfbc=;
- b=QB7P+9Vj+IoNHjmWSDdMUoe1nkTrV+As2LpGke0+ppmg853bQSGTslrqbUgUeDBwRz
- mkusRQwY+BNl8txEpdEuISwapaBIJcP6k8WclgSgZg+NnWQKn0xj0o5Hj57LUSxBIIgc
- 0p71H0BLlvIxnyf56lVnwLfLhYGK8qIiP83c5Z06aWLBm4bXOxCfQmA7xJ1onmymurdX
- RcKDYhw+BsyA/gsAIgntHlNHf71NmQk6XV9vbg8yefdB2kNFAeFeKhe9qL1bpidB038r
- Gu5ZzOw3DfLYJNNvRfjnIulu9BSSZ2G1vFva9IqMFwLOLrNqDqHyfrcloesKp9ZUeskj
- dmOw==
-X-Gm-Message-State: AOAM532iRzorMjC1KDhvfzQA5pqZbVlqI3FmXIy+4kmtOVfw0xAitsK3
- QCRjQlP1aMSQQByMedv5GEGjXSmmaNg=
-X-Google-Smtp-Source: ABdhPJw1Bf4vvfmU6KsqZ58/zeVrAofNrhWYVWkoKv7hqszhIvnYySdCalO3T0/4o02lXwOzeMd1Cg==
-X-Received: by 2002:ac8:58c7:: with SMTP id u7mr13390214qta.149.1605825189155; 
- Thu, 19 Nov 2020 14:33:09 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id n125sm921732qkd.85.2020.11.19.14.33.08
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 19 Nov 2020 14:33:08 -0800 (PST)
-Message-ID: <5FB6F2A4.1070603@gmail.com>
-Date: Thu, 19 Nov 2020 17:33:08 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+ :from:date:message-id:subject:to:cc;
+ bh=4OA61L7+7+mPt4bHURdOSBOIeAkSyd8on8E4wGvbE/o=;
+ b=nvoLO7htAl1heJf1IvJNiYgCJHI3CaMT9emBIVHlKlNVEZjJIdIzz/HXrdONuzxyOw
+ H/BUACh0apsH4bO101PLwcuqLCZw6uMGkZanD41hKWJizMdaHqfaYxci3DLv+vEeFKkw
+ yZbUnN8VEcfcnedf6SiP2QwS98M67KWKldUKkE1CbrbAYrzUG+Ybp7eEABgYsS29+ynP
+ sLvw0E0D7TRTiIdxDT9Q2GYRMN+yiCy0YIIERe5AiYrAUq1fXmU2dbomp04mcSI2ky4X
+ AcmKgQZMKHwccCgZMcAHYcWoX84QlVslAF+7QsUvR08QBhmcRhoFaDwmRpn4KO7TjL1a
+ x1Pg==
+X-Gm-Message-State: AOAM532CoSPk4Dm1AKdDSCTkdHDZ+yFQPzQeXjh7zbcFBB23/dIo85dY
+ x/pXrhr0j+zinOEEOrklNv8tpof5uIn/75aCoX5E0A==
+X-Google-Smtp-Source: ABdhPJx/vCKAKqiGCPdiZfH7BxccJX+c6XnLm6HBdUmKWLaUpxIpTsBMwv0BKKhdioHyh4mwrmS9M47zbHZTDazAw/w=
+X-Received: by 2002:ac2:48ac:: with SMTP id u12mr6122832lfg.211.1605830719012; 
+ Thu, 19 Nov 2020 16:05:19 -0800 (PST)
 MIME-Version: 1.0
-To: Christopher.Flood@colorado.edu
-CC: USRP-users@lists.ettus.com
 References: <CAM+cdhLHCCLtDbjih2U+fPidDXtuQjf0syty6YwuSeszQLNx+w@mail.gmail.com>
  <52524682-BA34-4392-9CCD-D7930C577AA8@gmail.com>
  <CAM+cdhKDOrpZ-Ghyv=NZgNSKaa1OTKNB+Xwd=G7aY4zyAMpu+w@mail.gmail.com>
  <CAM+cdh+w+TyyAxVhwc1ZV5fwYz0oXh418a=6vcLgLp6wdxsgUQ@mail.gmail.com>
-In-Reply-To: <CAM+cdh+w+TyyAxVhwc1ZV5fwYz0oXh418a=6vcLgLp6wdxsgUQ@mail.gmail.com>
+ <5FB6F2A4.1070603@gmail.com>
+In-Reply-To: <5FB6F2A4.1070603@gmail.com>
+Date: Thu, 19 Nov 2020 17:05:08 -0700
+Message-ID: <CAM+cdh+R8FC9-bkWCx-NV2f3KY+o1HuCxxLZeeXMiL5Ph48hnQ@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: USRP-users@lists.ettus.com
 Subject: Re: [USRP-users] Ettus N310 LO IN RX Synchronization
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -70,9 +64,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2592671462622026439=="
+From: Christopher Flood via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Christopher.Flood@colorado.edu
+Content-Type: multipart/mixed; boundary="===============5340639475152007124=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,244 +80,303 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============2592671462622026439==
-Content-Type: multipart/alternative;
- boundary="------------070405090909090602040707"
+--===============5340639475152007124==
+Content-Type: multipart/alternative; boundary="00000000000093963605b47e999e"
 
-This is a multi-part message in MIME format.
---------------070405090909090602040707
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--00000000000093963605b47e999e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/19/2020 04:03 PM, Christopher Flood wrote:
-> Just for my own edification, what is the exact role of the signal that 
-> is put into the LO IN RX port? And why does it need to be exactly 
-> twice the desired receive frequency? Wouldn't there be additional 
-> resolution for any frequency greater than twice the desired receive 
-> frequency?
-That signal substitutes for the LO signal generated internally by the 
-AD9371 RFFE chip.
+Marcus,
 
-It has to be at 2X the desired input frequency because the 
-phase-splitter in that chip uses a "2XLO" architecture, which requires 
-the signal
-   to be at twice the desired LO frequency.
+As always, I appreciate your detailed response. I was tossing that question
+out there just to make sure my interpretation of how the external LO RX
+input worked was correct. One of the recent tests we ran was comparing
+signals across daughterboards. We noticed that the residuals between
+signals on the same daughterboard were significantly less noisy than
+residuals between signals across daughterboards. We had guessed that was
+due to the difference in local oscillators used in the RX chain. I was
+hoping to provide the same reference signal to both external LO RX ports in
+order to synchronize both daughterboards, but the frequency we're working
+at is below the spec you mentioned.
 
-Further this functionality is only available for tuned frequencies 
-between 300MHz and 4GHz, (600Mhz to 8GHz LO input).   This is because
-   for frequencies below 300MHz, the device uses an up-conversion scheme.
-
-If you're not certain WHAT the external LO *does*, perhaps you don't 
-need it in your application?
-
-Normally for phase-coherent applications, the highest-quality (lowest 
-mutual phase noise) coherence is obtained when each mixer receives
-   exactly the same LO signal, which is why an external LO input is 
-provided in the N310.  The "second-best" implementation is to have
-   all the synthesizers share a common reference clock, which is the 
-scenario when you aren't using the external LO input.
-
-Now, somewhat orthogonal this is is "where does the device get its 
-reference from?"  If you're building a multi-device system where
-   some form of phase-coherence is desired, then they all have to share 
-their reference clock--which is where the external 10MHz
-   clock comes in.
+We've had a bit of discussion about using the external 10MHz input in the
+past and I believe the conclusion we came to was that the error I was
+seeing was characteristic of the expected error in the DDC / DUC.  Perhaps
+working at the lower end of the frequency specification of the N310 is
+starting to catch up to me....
 
 
 
+On Thu, Nov 19, 2020 at 3:33 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 11/19/2020 04:03 PM, Christopher Flood wrote:
 >
-> On Thu, Nov 19, 2020 at 1:11 PM Christopher Flood 
-> <Christopher.Flood@colorado.edu 
-> <mailto:Christopher.Flood@colorado.edu>> wrote:
+> Just for my own edification, what is the exact role of the signal that is
+> put into the LO IN RX port? And why does it need to be exactly twice the
+> desired receive frequency? Wouldn't there be additional resolution for an=
+y
+> frequency greater than twice the desired receive frequency?
 >
->     Yes, the signal should be at +3dBm, the Vrms is ~300mV into a 50
->     ohm load. The frequency of the signal is also twice the frequency
->     of the signal I'm trying to gather data on. However, due to the
->     way the documentation is phrased, I wasn't sure if 20MHz is too
->     low of a frequency for the LO RX IN.
+> That signal substitutes for the LO signal generated internally by the
+> AD9371 RFFE chip.
 >
->     I have not tried the init_cals=basic argument. I can give that a
->     shot and report back.
+> It has to be at 2X the desired input frequency because the phase-splitter
+> in that chip uses a "2XLO" architecture, which requires the signal
+>   to be at twice the desired LO frequency.
 >
->     -Chris
+> Further this functionality is only available for tuned frequencies betwee=
+n
+> 300MHz and 4GHz, (600Mhz to 8GHz LO input).   This is because
+>   for frequencies below 300MHz, the device uses an up-conversion scheme.
 >
->     On Thu, Nov 19, 2020, 12:32 PM Marcus D Leech
->     <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
+> If you're not certain WHAT the external LO *does*, perhaps you don't need
+> it in your application?
 >
->         Are you inputting an LO signal at twice the desired frequency
->         and at +3dBm?
+> Normally for phase-coherent applications, the highest-quality (lowest
+> mutual phase noise) coherence is obtained when each mixer receives
+>   exactly the same LO signal, which is why an external LO input is
+> provided in the N310.  The "second-best" implementation is to have
+>   all the synthesizers share a common reference clock, which is the
+> scenario when you aren't using the external LO input.
 >
->         Have you tried adding init_cals=BASIC to your device ages?
+> Now, somewhat orthogonal this is is "where does the device get its
+> reference from?"  If you're building a multi-device system where
+>   some form of phase-coherence is desired, then they all have to share
+> their reference clock--which is where the external 10MHz
+>   clock comes in.
 >
->         Sent from my iPhone
 >
->         > On Nov 19, 2020, at 2:26 PM, Christopher Flood via
->         USRP-users <usrp-users@lists.ettus.com
->         <mailto:usrp-users@lists.ettus.com>> wrote:
->         >
->         > ﻿
->         > Hi all,
->         >
->         > I've seen some discussion about this on the email lists, but
->         I'm still having a bit of trouble. I'm trying to use the LO IN
->         RX ports on the front of the N310 to synchronize the
->         oscillators on the two daughterboards. I was thinking I could
->         generate a signal on one of the TX/RX ports of the SDR and
->         feed that into the LO IN RX ports at the appropriate frequency
->         and power. However, when I test this setup in GNU Radio
->         Companion I don't get any meaningful data, so I must be doing
->         something wrong.
->         >
->         > The input signal that I want to sample is a 10MHz signal
->         that is going into an RX2 port on the front end of the SDR.
->         When I set the device argument "rx_lo_source=internal" and run
->         it, the data I get looks exactly how I would expect. When I
->         change the device argument to "rx_lo_source=external" and run
->         it, I don't get anything that makes sense.
->         >
->         > Am I using the LO IN RX ports correctly? The documentation
->         doesn't say much besides power and frequency ranges.
->         >
->         > Any help or advice would be much appreciated.
->         >
->         > -Chris
->         > _______________________________________________
->         > USRP-users mailing list
->         > USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->         >
->         http://secure-web.cisco.com/1rpFFtn1JZDE_g214Q-YS6vXmf7iX-GrSqz5_gIRlzT74BRG0LQVcDxlbCKOBLjxI7GcMNxycsBFMF-Lzacu4VXZpGTxpMgLHyxfkdQ2pzOtNNtecm_gMTYICiRaahesVZWF5a2dj7cjYzaLEjuC4PUBV2IKiJN9B3Z0EGCGPr6nbTyCm-I7dJfEsfYsSIFdFFSQP6iWj2NrE4xYBVKyPCxJT34HfnXS_KoENsd6WDKRct0TsItd4_dk4xBZEWrwNqes0pfV_RJzJFNSWC1tJjpFk1UVK8ySaM22YoapPkrKhJ7xvd9EiKc-aK5WHC2syeWL5YAO5QNCrMxT9JJ-i3tvC2sZAlgAyNSx78qV7M09bkZ1k2hn5qi3jbvK3xggz-HHgjahAsx6zRH86NZDIoSe5_4tc6c0UeE03mYMgALuwY1kwoZr7b8-EjaFkvZRoF8mCGzGXTKfyvJuFHID1yA/http%3A%2F%2Flists.ettus.com%2Fmailman%2Flistinfo%2Fusrp-users_lists.ettus.com
+>
+>
+> On Thu, Nov 19, 2020 at 1:11 PM Christopher Flood <
+> Christopher.Flood@colorado.edu> wrote:
+>
+>> Yes, the signal should be at +3dBm, the Vrms is ~300mV into a 50 ohm
+>> load. The frequency of the signal is also twice the frequency of the sig=
+nal
+>> I'm trying to gather data on. However, due to the way the documentation =
+is
+>> phrased, I wasn't sure if 20MHz is too low of a frequency for the LO RX =
+IN.
+>>
+>> I have not tried the init_cals=3Dbasic argument. I can give that a shot =
+and
+>> report back.
+>>
+>> -Chris
+>>
+>> On Thu, Nov 19, 2020, 12:32 PM Marcus D Leech <patchvonbraun@gmail.com>
+>> wrote:
+>>
+>>> Are you inputting an LO signal at twice the desired frequency and at
+>>> +3dBm?
+>>>
+>>> Have you tried adding init_cals=3DBASIC to your device ages?
+>>>
+>>> Sent from my iPhone
+>>>
+>>> > On Nov 19, 2020, at 2:26 PM, Christopher Flood via USRP-users <
+>>> usrp-users@lists.ettus.com> wrote:
+>>> >
+>>> > =EF=BB=BF
+>>> > Hi all,
+>>> >
+>>> > I've seen some discussion about this on the email lists, but I'm stil=
+l
+>>> having a bit of trouble. I'm trying to use the LO IN RX ports on the fr=
+ont
+>>> of the N310 to synchronize the oscillators on the two daughterboards. I=
+ was
+>>> thinking I could generate a signal on one of the TX/RX ports of the SDR=
+ and
+>>> feed that into the LO IN RX ports at the appropriate frequency and powe=
+r.
+>>> However, when I test this setup in GNU Radio Companion I don't get any
+>>> meaningful data, so I must be doing something wrong.
+>>> >
+>>> > The input signal that I want to sample is a 10MHz signal that is goin=
+g
+>>> into an RX2 port on the front end of the SDR. When I set the device
+>>> argument "rx_lo_source=3Dinternal" and run it, the data I get looks exa=
+ctly
+>>> how I would expect. When I change the device argument to
+>>> "rx_lo_source=3Dexternal" and run it, I don't get anything that makes s=
+ense.
+>>> >
+>>> > Am I using the LO IN RX ports correctly? The documentation doesn't sa=
+y
+>>> much besides power and frequency ranges.
+>>> >
+>>> > Any help or advice would be much appreciated.
+>>> >
+>>> > -Chris
+>>> > _______________________________________________
+>>> > USRP-users mailing list
+>>> > USRP-users@lists.ettus.com
+>>> >
+>>> http://secure-web.cisco.com/1rpFFtn1JZDE_g214Q-YS6vXmf7iX-GrSqz5_gIRlzT=
+74BRG0LQVcDxlbCKOBLjxI7GcMNxycsBFMF-Lzacu4VXZpGTxpMgLHyxfkdQ2pzOtNNtecm_gMT=
+YICiRaahesVZWF5a2dj7cjYzaLEjuC4PUBV2IKiJN9B3Z0EGCGPr6nbTyCm-I7dJfEsfYsSIFdF=
+FSQP6iWj2NrE4xYBVKyPCxJT34HfnXS_KoENsd6WDKRct0TsItd4_dk4xBZEWrwNqes0pfV_RJz=
+JFNSWC1tJjpFk1UVK8ySaM22YoapPkrKhJ7xvd9EiKc-aK5WHC2syeWL5YAO5QNCrMxT9JJ-i3t=
+vC2sZAlgAyNSx78qV7M09bkZ1k2hn5qi3jbvK3xggz-HHgjahAsx6zRH86NZDIoSe5_4tc6c0Ue=
+E03mYMgALuwY1kwoZr7b8-EjaFkvZRoF8mCGzGXTKfyvJuFHID1yA/http%3A%2F%2Flists.et=
+tus.com%2Fmailman%2Flistinfo%2Fusrp-users_lists.ettus.com
+>>>
+>>>
 >
 
+--00000000000093963605b47e999e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------070405090909090602040707
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 11/19/2020 04:03 PM, Christopher
+<div dir=3D"ltr">Marcus,<div><br></div><div>As always, I appreciate your de=
+tailed response. I was tossing that question out there just to make sure my=
+ interpretation of how the external LO RX input worked was correct. One of =
+the recent tests we ran was comparing signals across daughterboards. We not=
+iced that the residuals between signals on the same daughterboard were sign=
+ificantly less noisy than residuals between signals across daughterboards. =
+We had guessed that was due to the difference in local oscillators used in =
+the RX chain. I was hoping to provide the same reference signal to both ext=
+ernal LO RX ports in order to synchronize both daughterboards, but the freq=
+uency we&#39;re working at is below the spec you mentioned.=C2=A0</div><div=
+><br></div><div>We&#39;ve had a bit of discussion about using the external =
+10MHz input in the past and I believe the conclusion we came to was that th=
+e error I was seeing was characteristic of the expected error in the DDC / =
+DUC.=C2=A0 Perhaps working at the lower end of the frequency specification =
+of the N310 is starting to catch up to me....=C2=A0</div><div><br></div><di=
+v><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Thu, Nov 19, 2020 at 3:33 PM Marcus D. Leech &lt;<a href=3D"=
+mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 11/19/2020 04:03 PM, Christopher
       Flood wrote:<br>
     </div>
-    <blockquote
-cite="mid:CAM+cdh+w+TyyAxVhwc1ZV5fwYz0oXh418a=6vcLgLp6wdxsgUQ@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Just for my own edification, what is the exact role
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">Just for my own edification, what is the exact role
         of the signal that is put into the LO IN RX port? And why does
         it need to be exactly twice the desired receive frequency?
-        Wouldn't there be additional resolution for any frequency
+        Wouldn&#39;t there be additional resolution for any frequency
         greater than twice the desired receive frequency?</div>
     </blockquote>
     That signal substitutes for the LO signal generated internally by
     the AD9371 RFFE chip.<br>
     <br>
     It has to be at 2X the desired input frequency because the
-    phase-splitter in that chip uses a "2XLO" architecture, which
+    phase-splitter in that chip uses a &quot;2XLO&quot; architecture, which
     requires the signal <br>
-      to be at twice the desired LO frequency.<br>
+    =C2=A0 to be at twice the desired LO frequency.<br>
     <br>
     Further this functionality is only available for tuned frequencies
-    between 300MHz and 4GHz, (600Mhz to 8GHz LO input).   This is
+    between 300MHz and 4GHz, (600Mhz to 8GHz LO input).=C2=A0=C2=A0 This is
     because<br>
-      for frequencies below 300MHz, the device uses an up-conversion
+    =C2=A0 for frequencies below 300MHz, the device uses an up-conversion
     scheme.<br>
     <br>
-    If you're not certain WHAT the external LO *does*, perhaps you don't
+    If you&#39;re not certain WHAT the external LO *does*, perhaps you don&=
+#39;t
     need it in your application?<br>
     <br>
     Normally for phase-coherent applications, the highest-quality
     (lowest mutual phase noise) coherence is obtained when each mixer
     receives<br>
-      exactly the same LO signal, which is why an external LO input is
-    provided in the N310.  The "second-best" implementation is to have<br>
-      all the synthesizers share a common reference clock, which is the
-    scenario when you aren't using the external LO input.<br>
+    =C2=A0 exactly the same LO signal, which is why an external LO input is
+    provided in the N310.=C2=A0 The &quot;second-best&quot; implementation =
+is to have<br>
+    =C2=A0 all the synthesizers share a common reference clock, which is th=
+e
+    scenario when you aren&#39;t using the external LO input.<br>
     <br>
-    Now, somewhat orthogonal this is is "where does the device get its
-    reference from?"  If you're building a multi-device system where<br>
-      some form of phase-coherence is desired, then they all have to
+    Now, somewhat orthogonal this is is &quot;where does the device get its
+    reference from?&quot;=C2=A0 If you&#39;re building a multi-device syste=
+m where<br>
+    =C2=A0 some form of phase-coherence is desired, then they all have to
     share their reference clock--which is where the external 10MHz<br>
-      clock comes in.<br>
+    =C2=A0 clock comes in.<br>
     <br>
     <br>
     <br>
-    <blockquote
-cite="mid:CAM+cdh+w+TyyAxVhwc1ZV5fwYz0oXh418a=6vcLgLp6wdxsgUQ@mail.gmail.com"
-      type="cite"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Thu, Nov 19, 2020 at 1:11
-          PM Christopher Flood &lt;<a moz-do-not-send="true"
-            href="mailto:Christopher.Flood@colorado.edu">Christopher.Flood@colorado.edu</a>&gt;
+    <blockquote type=3D"cite"><br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 19, 2020 at 1:11
+          PM Christopher Flood &lt;<a href=3D"mailto:Christopher.Flood@colo=
+rado.edu" target=3D"_blank">Christopher.Flood@colorado.edu</a>&gt;
           wrote:<br>
         </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir="auto">
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div dir=3D"auto">
             <div>Yes, the signal should be at +3dBm, the Vrms is ~300mV
               into a 50 ohm load. The frequency of the signal is also
-              twice the frequency of the signal I'm trying to gather
+              twice the frequency of the signal I&#39;m trying to gather
               data on. However, due to the way the documentation is
-              phrased, I wasn't sure if 20MHz is too low of a frequency
-              for the LO RX IN. </div>
-            <div dir="auto"><br>
+              phrased, I wasn&#39;t sure if 20MHz is too low of a frequency
+              for the LO RX IN.=C2=A0</div>
+            <div dir=3D"auto"><br>
             </div>
-            <div dir="auto">I have not tried the init_cals=basic
-              argument. I can give that a shot and report back. </div>
-            <div dir="auto"><br>
+            <div dir=3D"auto">I have not tried the init_cals=3Dbasic
+              argument. I can give that a shot and report back.=C2=A0</div>
+            <div dir=3D"auto"><br>
             </div>
-            <div dir="auto">-Chris <br>
+            <div dir=3D"auto">-Chris=C2=A0<br>
               <br>
-              <div class="gmail_quote" dir="auto">
-                <div dir="ltr" class="gmail_attr">On Thu, Nov 19, 2020,
-                  12:32 PM Marcus D Leech &lt;<a moz-do-not-send="true"
-                    href="mailto:patchvonbraun@gmail.com"
-                    target="_blank">patchvonbraun@gmail.com</a>&gt;
+              <div class=3D"gmail_quote" dir=3D"auto">
+                <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 19, 2020,
+                  12:32 PM Marcus D Leech &lt;<a href=3D"mailto:patchvonbra=
+un@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
                   wrote:<br>
                 </div>
-                <blockquote class="gmail_quote" style="margin:0px 0px
-                  0px 0.8ex;border-left:1px solid
-                  rgb(204,204,204);padding-left:1ex">Are you inputting
+                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Are you i=
+nputting
                   an LO signal at twice the desired frequency and at
                   +3dBm?<br>
                   <br>
-                  Have you tried adding init_cals=BASIC to your device
+                  Have you tried adding init_cals=3DBASIC to your device
                   ages?<br>
                   <br>
                   Sent from my iPhone<br>
                   <br>
                   &gt; On Nov 19, 2020, at 2:26 PM, Christopher Flood
-                  via USRP-users &lt;<a moz-do-not-send="true"
-                    href="mailto:usrp-users@lists.ettus.com"
-                    rel="noreferrer" target="_blank">usrp-users@lists.ettus.com</a>&gt;
+                  via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ett=
+us.com" rel=3D"noreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a>=
+&gt;
                   wrote:<br>
                   &gt; <br>
-                  &gt; ﻿<br>
+                  &gt; =EF=BB=BF<br>
                   &gt; Hi all,<br>
                   &gt; <br>
-                  &gt; I've seen some discussion about this on the email
-                  lists, but I'm still having a bit of trouble. I'm
+                  &gt; I&#39;ve seen some discussion about this on the emai=
+l
+                  lists, but I&#39;m still having a bit of trouble. I&#39;m
                   trying to use the LO IN RX ports on the front of the
                   N310 to synchronize the oscillators on the two
                   daughterboards. I was thinking I could generate a
                   signal on one of the TX/RX ports of the SDR and feed
                   that into the LO IN RX ports at the appropriate
                   frequency and power. However, when I test this setup
-                  in GNU Radio Companion I don't get any meaningful
+                  in GNU Radio Companion I don&#39;t get any meaningful
                   data, so I must be doing something wrong. <br>
                   &gt; <br>
                   &gt; The input signal that I want to sample is a 10MHz
                   signal that is going into an RX2 port on the front end
                   of the SDR. When I set the device argument
-                  "rx_lo_source=internal" and run it, the data I get
+                  &quot;rx_lo_source=3Dinternal&quot; and run it, the data =
+I get
                   looks exactly how I would expect. When I change the
-                  device argument to "rx_lo_source=external" and run it,
-                  I don't get anything that makes sense. <br>
+                  device argument to &quot;rx_lo_source=3Dexternal&quot; an=
+d run it,
+                  I don&#39;t get anything that makes sense. <br>
                   &gt; <br>
                   &gt; Am I using the LO IN RX ports correctly? The
-                  documentation doesn't say much besides power and
+                  documentation doesn&#39;t say much besides power and
                   frequency ranges. <br>
                   &gt; <br>
                   &gt; Any help or advice would be much appreciated.<br>
@@ -331,12 +384,25 @@ cite="mid:CAM+cdh+w+TyyAxVhwc1ZV5fwYz0oXh418a=6vcLgLp6wdxsgUQ@mail.gmail.com"
                   &gt; -Chris<br>
                   &gt; _______________________________________________<br>
                   &gt; USRP-users mailing list<br>
-                  &gt; <a moz-do-not-send="true"
-                    href="mailto:USRP-users@lists.ettus.com"
-                    rel="noreferrer" target="_blank">USRP-users@lists.ettus.com</a><br>
-                  &gt; <a moz-do-not-send="true"
-href="http://secure-web.cisco.com/1rpFFtn1JZDE_g214Q-YS6vXmf7iX-GrSqz5_gIRlzT74BRG0LQVcDxlbCKOBLjxI7GcMNxycsBFMF-Lzacu4VXZpGTxpMgLHyxfkdQ2pzOtNNtecm_gMTYICiRaahesVZWF5a2dj7cjYzaLEjuC4PUBV2IKiJN9B3Z0EGCGPr6nbTyCm-I7dJfEsfYsSIFdFFSQP6iWj2NrE4xYBVKyPCxJT34HfnXS_KoENsd6WDKRct0TsItd4_dk4xBZEWrwNqes0pfV_RJzJFNSWC1tJjpFk1UVK8ySaM22YoapPkrKhJ7xvd9EiKc-aK5WHC2syeWL5YAO5QNCrMxT9JJ-i3tvC2sZAlgAyNSx78qV7M09bkZ1k2hn5qi3jbvK3xggz-HHgjahAsx6zRH86NZDIoSe5_4tc6c0UeE03mYMgALuwY1kwoZr7b8-EjaFkvZRoF8mCGzGXTKfyvJuFHID1yA/http%3A%2F%2Flists.ettus.com%2Fmailman%2Flistinfo%2Fusrp-users_lists.ettus.com"
-                    rel="noreferrer noreferrer" target="_blank">http://secure-web.cisco.com/1rpFFtn1JZDE_g214Q-YS6vXmf7iX-GrSqz5_gIRlzT74BRG0LQVcDxlbCKOBLjxI7GcMNxycsBFMF-Lzacu4VXZpGTxpMgLHyxfkdQ2pzOtNNtecm_gMTYICiRaahesVZWF5a2dj7cjYzaLEjuC4PUBV2IKiJN9B3Z0EGCGPr6nbTyCm-I7dJfEsfYsSIFdFFSQP6iWj2NrE4xYBVKyPCxJT34HfnXS_KoENsd6WDKRct0TsItd4_dk4xBZEWrwNqes0pfV_RJzJFNSWC1tJjpFk1UVK8ySaM22YoapPkrKhJ7xvd9EiKc-aK5WHC2syeWL5YAO5QNCrMxT9JJ-i3tvC2sZAlgAyNSx78qV7M09bkZ1k2hn5qi3jbvK3xggz-HHgjahAsx6zRH86NZDIoSe5_4tc6c0UeE03mYMgALuwY1kwoZr7b8-EjaFkvZRoF8mCGzGXTKfyvJuFHID1yA/http%3A%2F%2Flists.ettus.com%2Fmailman%2Flistinfo%2Fusrp-users_lists.ettus.com</a><br>
+                  &gt; <a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D=
+"noreferrer" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+                  &gt; <a href=3D"http://secure-web.cisco.com/1rpFFtn1JZDE_=
+g214Q-YS6vXmf7iX-GrSqz5_gIRlzT74BRG0LQVcDxlbCKOBLjxI7GcMNxycsBFMF-Lzacu4VXZ=
+pGTxpMgLHyxfkdQ2pzOtNNtecm_gMTYICiRaahesVZWF5a2dj7cjYzaLEjuC4PUBV2IKiJN9B3Z=
+0EGCGPr6nbTyCm-I7dJfEsfYsSIFdFFSQP6iWj2NrE4xYBVKyPCxJT34HfnXS_KoENsd6WDKRct=
+0TsItd4_dk4xBZEWrwNqes0pfV_RJzJFNSWC1tJjpFk1UVK8ySaM22YoapPkrKhJ7xvd9EiKc-a=
+K5WHC2syeWL5YAO5QNCrMxT9JJ-i3tvC2sZAlgAyNSx78qV7M09bkZ1k2hn5qi3jbvK3xggz-HH=
+gjahAsx6zRH86NZDIoSe5_4tc6c0UeE03mYMgALuwY1kwoZr7b8-EjaFkvZRoF8mCGzGXTKfyvJ=
+uFHID1yA/http%3A%2F%2Flists.ettus.com%2Fmailman%2Flistinfo%2Fusrp-users_lis=
+ts.ettus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">http://secure=
+-web.cisco.com/1rpFFtn1JZDE_g214Q-YS6vXmf7iX-GrSqz5_gIRlzT74BRG0LQVcDxlbCKO=
+BLjxI7GcMNxycsBFMF-Lzacu4VXZpGTxpMgLHyxfkdQ2pzOtNNtecm_gMTYICiRaahesVZWF5a2=
+dj7cjYzaLEjuC4PUBV2IKiJN9B3Z0EGCGPr6nbTyCm-I7dJfEsfYsSIFdFFSQP6iWj2NrE4xYBV=
+KyPCxJT34HfnXS_KoENsd6WDKRct0TsItd4_dk4xBZEWrwNqes0pfV_RJzJFNSWC1tJjpFk1UVK=
+8ySaM22YoapPkrKhJ7xvd9EiKc-aK5WHC2syeWL5YAO5QNCrMxT9JJ-i3tvC2sZAlgAyNSx78qV=
+7M09bkZ1k2hn5qi3jbvK3xggz-HHgjahAsx6zRH86NZDIoSe5_4tc6c0UeE03mYMgALuwY1kwoZ=
+r7b8-EjaFkvZRoF8mCGzGXTKfyvJuFHID1yA/http%3A%2F%2Flists.ettus.com%2Fmailman=
+%2Flistinfo%2Fusrp-users_lists.ettus.com</a><br>
                   <br>
                 </blockquote>
               </div>
@@ -346,13 +412,14 @@ href="http://secure-web.cisco.com/1rpFFtn1JZDE_g214Q-YS6vXmf7iX-GrSqz5_gIRlzT74B
       </div>
     </blockquote>
     <br>
-  </body>
-</html>
+  </div>
 
---------------070405090909090602040707--
+</blockquote></div>
+
+--00000000000093963605b47e999e--
 
 
---===============2592671462622026439==
+--===============5340639475152007124==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -363,5 +430,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2592671462622026439==--
+--===============5340639475152007124==--
 
