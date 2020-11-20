@@ -2,50 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0F0D2BAB48
-	for <lists+usrp-users@lfdr.de>; Fri, 20 Nov 2020 14:34:07 +0100 (CET)
-Received: from [::1] (port=47342 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ADA52BAB67
+	for <lists+usrp-users@lfdr.de>; Fri, 20 Nov 2020 14:39:47 +0100 (CET)
+Received: from [::1] (port=47392 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kg6Y7-0006dq-KJ; Fri, 20 Nov 2020 08:34:03 -0500
-Received: from mail-ej1-f42.google.com ([209.85.218.42]:41781)
+	id 1kg6dd-0006yf-VN; Fri, 20 Nov 2020 08:39:45 -0500
+Received: from mail-lf1-f48.google.com ([209.85.167.48]:43448)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <ncmatson95@gmail.com>)
- id 1kg6Y4-0006Xj-3d
- for usrp-users@lists.ettus.com; Fri, 20 Nov 2020 08:34:00 -0500
-Received: by mail-ej1-f42.google.com with SMTP id gj5so12893403ejb.8
- for <usrp-users@lists.ettus.com>; Fri, 20 Nov 2020 05:33:39 -0800 (PST)
+ (Exim 4.93) (envelope-from <cmdjbst@gmail.com>) id 1kg6dZ-0006rM-VZ
+ for usrp-users@lists.ettus.com; Fri, 20 Nov 2020 08:39:42 -0500
+Received: by mail-lf1-f48.google.com with SMTP id d17so13450458lfq.10
+ for <usrp-users@lists.ettus.com>; Fri, 20 Nov 2020 05:39:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:from:date:message-id:subject:to;
- bh=5LaK52m8lWB1YhaEUwfen9oGlhgR7gxH28SVrlbeD9Y=;
- b=PMmOtn6PtlIf/ZkV8e5JRNRqQtgvCH0+Nu4y4XqsuovydSiTT44Y86CJj1n821Aetr
- pZYALSdaAfEH822+f3MuVHGMqwJeaDPCX9hIphujjM4dRGQ0N6R1OoJ/K6S9rPM8MI54
- +CybGuxzqnIar/JTEn2UxKvZJ8ssmcFmBNbmPqQKZ4H0qfaOkLyU8dxBRXeznbsr8sIx
- ZAbFdUciwLUmtIi7QyS4/cKf5HqPXGJc935oSUs6gN5xuMMKut6FA7KLaE6H+4MYDj9e
- YaQn8U/IpgC/thvk5i4OaNG3VAMUid8Vja70KEr8sP051t/Lp73ja66YTlV3KxJx1WN9
- MmvA==
+ bh=KLb1ZNsUkt7ptYwMBZDpkz6I2WfV7l2wd7qbpRnGNJ0=;
+ b=arfvam8t3a/hR5rSmwBRl+oMtz6d0K3iHyWDSYkJYrEdyvH8eD47DWvQM+sSE3O+pt
+ /70nRKtzQModwi/JpflcqbNBZubNOOy+x4SvBRHo5rquxvqnOoT8H5sxXcwik8vNcHVQ
+ iVKupnw9xeo+Uj7aC3oYDt5L2zoKyq/BCfH8eXJSddqUY6LCqQOKPuthq4mxyS1KZ1ag
+ OLENoeu4/0d6D7wszlqy9sl0a5MdDiZ/BajirLaBMhHEs+AvBC3eg3JIof0QlNhXIlOM
+ GoimnuR8NqNWEybQoJ6sFAcgi2rAz6gi71PIgcr2Q3C/+9ncVltFwOCFddVf50vJAn2a
+ si/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=5LaK52m8lWB1YhaEUwfen9oGlhgR7gxH28SVrlbeD9Y=;
- b=s/dnEFPoojFEwlFsUx2AGsjxrW/7Jx+evt4/ytyrg2t7wLjTNMV2AFVKvpC/wSlLO0
- Pvi3BS6Je2DQ8WEW1MvdyG1xQG2YtdEaKeDdxnEFdAMCOd2GD5yMEhtYpA25sDq3hiDP
- wyYmG69Ohm4BcsCqPEMwQ43oCNZ38UAxPDS1rLbC2gHGhmbB17Jm6X1Wi3SDsz7gMRPC
- /mwHLw8aGXdspCX/T6+caEdmYVTM/wPXtnjT8lpAh1NKmD3OukcfNUYv41yWYfVw4YvD
- HZD4uiq3QCVadZ6yg/9g2d/ae9AvGugaaJiqRYszsYqbwOC2XRI3k7YKUm3a0IpRZQwk
- jfQQ==
-X-Gm-Message-State: AOAM532ynZwSdgkLjgWn+Ec5X/2V9QqoCV7HofLiUolqMIXMrTupACwm
- 8zkRhISnoR8BS9KWnB+RUTQXEqYF/sVpJjul0V7N03X9jKA=
-X-Google-Smtp-Source: ABdhPJw86rYufVJ0+q39auFo+v/dtxEE7Vere2TXyzEo6wdPnWDJCpSFmlgu9M1Ee4VqbQ+WgQJmfDkSKW0EtwjnkbM=
-X-Received: by 2002:a17:906:f744:: with SMTP id
- jp4mr33765393ejb.122.1605879198781; 
- Fri, 20 Nov 2020 05:33:18 -0800 (PST)
+ bh=KLb1ZNsUkt7ptYwMBZDpkz6I2WfV7l2wd7qbpRnGNJ0=;
+ b=fgtZmCwuoIN10nO2FLIzbclcsePi+igux6RFpd18rhmcgT7Ykju4AsLBQbGaPEGq6O
+ zYyAXOzXbnMYEHnee3bAfkMcRcGGqy3iDu7SoeL9TURjfL/2a/5bDpcjlm/2EyO1D1lx
+ ztBLryKoiS24Th1beagvxErVFEwXwTrP3aPT00bvPH2u3yFwmVCiqFI1qCsNCIkXG4EJ
+ FJtyJNpFMowHfjoMfn27Q6gjeuKz8IzMO7m/uW6hfG04A6MsgIXx9pWEOuyJAiBIn+VA
+ NvzenpsCjOeHnAeLDlATQKGtTi9kkTCS6oXI0HEqeQk5IBg4TrjzvmIO9sBxBc9JljmT
+ Ypdw==
+X-Gm-Message-State: AOAM531qzKkhrOXLjhcjF10xOO38LeMxyj6CfvoMFeKsV6X6RWzHkwaA
+ vPBKXxRtRGvn73UP44uDVFVyY7xMtZsmtxh+rAdY0iq6
+X-Google-Smtp-Source: ABdhPJxLvMGvIFwj8hgBV4n7pnVe5THfEvAVcEooToU650zyqquBUeZ0+pdCAwYnlrF4m9I604wqO+NKT0S2/OXKBLI=
+X-Received: by 2002:a19:ca19:: with SMTP id a25mr8775211lfg.89.1605879540058; 
+ Fri, 20 Nov 2020 05:39:00 -0800 (PST)
 MIME-Version: 1.0
-Date: Fri, 20 Nov 2020 07:33:08 -0600
-Message-ID: <CAGLr63s4oPz6_P9zj2OAHduRB38YrG-+=rbXO1rjrAx1crQ-+w@mail.gmail.com>
-To: usrp-users@lists.ettus.com, 
- GNURadio Discussion List <discuss-gnuradio@gnu.org>
-Subject: [USRP-users] daughter board coherency on N310
+Date: Fri, 20 Nov 2020 21:38:48 +0800
+Message-ID: <CACfkGzVeSYTphqtSXX=UU+Jk2qTJMUynTpphmxQRZN-ijH8OXw@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] B200 PPS signal question
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -57,9 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Cameron Matson via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Cameron Matson <ncmatson95@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1807443064606947554=="
+From: =?utf-8?b?57+B5YGJ5ZC+IHZpYSBVU1JQLXVzZXJz?= <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?57+B5YGJ5ZC+?= <cmdjbst@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8822568750104070190=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,50 +70,68 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1807443064606947554==
-Content-Type: multipart/alternative; boundary="00000000000032141505b489e325"
+--===============8822568750104070190==
+Content-Type: multipart/alternative; boundary="00000000000089952305b489f74f"
 
---00000000000032141505b489e325
+--00000000000089952305b489f74f
 Content-Type: text/plain; charset="UTF-8"
 
-Hello all,
+Hi,
 
-I'm trying to implement a MIMO receiver using the 4 RF chains of the N310.
-To test the timing of the system, at the transmitter I'm simply sending a
-short pulse from one transmit antenna of one USRP.  At the receiver it
-looks like there is up to a ~20 ms delay/offset between the pairs of
-antennas 0/1 and 2/3 and that this delay changes each time I restart my
-GNURadio flowgraph.  I can see the delay both in GNURadio GUI Time Sink and
-in actual samples that I write to file.  I've tried various pulse widths
-and sampling rates at both the tx and rx, and it seems invariant to these.
+I have a question about the PPS inputs on b200 and b200mini models.
 
-I'd really like to be able to synchronize the 4 RF chains in time
-simultaneously.  Is that possible?
+I want to synchronize time for two b200 units. I connected the PPS to a
+external GPS module. The Ref port was left open(Not used). Then I set the
+system time with set_time_next_pps command.  On another b200, the
+configuration was the same. The problem is, after both device time has been
+set to PPS with the same time spec. Their system time start to drift away
+after a while. In other words, the PPS signal seems not regulating the
+system time on a second basis.
 
-Thanks
-Cameron Matson
+BTW, I have measured the PPS timing between these gps devices and it was
+only 10ns off.
 
---00000000000032141505b489e325
+I've read somewhere in the usrp maling list that the b200mini with only PPS
+input can be used to regulate internal PLL clock. Does this mean for every
+PPS edge it is adjusting the internal clock and make the system time stable
+between two units? Can we achieve the same regulation effect on b200?
+
+I already knew that using a GPSDO with b200 is the way to go for the best
+synchronization result. But I didn't go that way because 1.GPSDO can break
+my budget and 2. I only require hardware time sync on every PPS edge.
+
+I'm grateful for any suggestions. Thanks.
+
+--00000000000089952305b489f74f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello all,<div><br></div><div>I&#39;m trying to implement =
-a MIMO receiver using the 4 RF chains of the N310.=C2=A0 To test the timing=
- of the system, at the transmitter I&#39;m simply sending a short pulse fro=
-m one transmit antenna of one USRP.=C2=A0 At the receiver it looks like the=
-re is up to a ~20 ms delay/offset between the pairs of antennas 0/1 and 2/3=
- and that this delay changes each time I restart my GNURadio flowgraph.=C2=
-=A0 I can see the=C2=A0delay both in GNURadio GUI Time Sink and in actual s=
-amples that I write to file.=C2=A0 I&#39;ve tried various pulse widths and =
-sampling rates at both the tx and rx, and it seems invariant to these.</div=
-><div><br></div><div>I&#39;d really like to be able to synchronize the 4 RF=
- chains in time simultaneously.=C2=A0 Is that possible?</div><div><br></div=
-><div>Thanks</div><div>Cameron Matson</div></div>
+<div dir=3D"auto">Hi,=C2=A0<div dir=3D"auto"><br><div dir=3D"auto">I have a=
+ question about the PPS inputs on b200 and b200mini models.=C2=A0</div><div=
+ dir=3D"auto"><br></div><div dir=3D"auto">I want to synchronize time for tw=
+o b200 units. I connected the PPS to a external GPS module. The Ref port wa=
+s left open(Not used). Then I set the system time with set_time_next_pps co=
+mmand.=C2=A0 On another b200, the configuration was the same. The problem i=
+s, after both device time has been set to PPS with the same time spec. Thei=
+r system time start to drift away after a while. In other words, the PPS si=
+gnal seems not regulating the system time on a second basis.</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">BTW, I have measured the PPS timing b=
+etween these gps devices and it was only 10ns off.</div><div dir=3D"auto"><=
+br></div><div dir=3D"auto">I&#39;ve read somewhere in the usrp maling list =
+that the b200mini with only PPS input can be used to regulate internal PLL =
+clock. Does this mean for every PPS edge it is adjusting the internal clock=
+ and make the system time stable between two units? Can we achieve the same=
+ regulation effect on b200?=C2=A0</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">I already knew that using a GPSDO with b200 is the way to go for =
+the best synchronization result. But I didn&#39;t go that way because 1.GPS=
+DO can break my budget and 2. I only require hardware time sync on every PP=
+S edge.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I&#39;m grateful=
+ for any suggestions. Thanks.</div></div></div>
 
---00000000000032141505b489e325--
+--00000000000089952305b489f74f--
 
 
---===============1807443064606947554==
+--===============8822568750104070190==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,5 +142,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1807443064606947554==--
+--===============8822568750104070190==--
 
