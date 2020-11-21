@@ -2,61 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EB3C2BC18D
-	for <lists+usrp-users@lfdr.de>; Sat, 21 Nov 2020 19:46:02 +0100 (CET)
-Received: from [::1] (port=59356 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E9E2BC1B3
+	for <lists+usrp-users@lfdr.de>; Sat, 21 Nov 2020 20:19:09 +0100 (CET)
+Received: from [::1] (port=59570 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kgXtY-0007gH-Os; Sat, 21 Nov 2020 13:46:00 -0500
-Received: from mail-qt1-f179.google.com ([209.85.160.179]:44966)
+	id 1kgYPV-00018e-Uo; Sat, 21 Nov 2020 14:19:01 -0500
+Received: from mail-ua1-f50.google.com ([209.85.222.50]:42081)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kgXtV-0007Zc-4a
- for usrp-users@lists.ettus.com; Sat, 21 Nov 2020 13:45:57 -0500
-Received: by mail-qt1-f179.google.com with SMTP id m65so9706819qte.11
- for <usrp-users@lists.ettus.com>; Sat, 21 Nov 2020 10:45:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=wIG9txPl94D6HT6jqveOWfl/r47ob6/cWom96Qz6O0M=;
- b=ok6KTwD7OCmruLj62IJY72Tfkv8we/3q7b7YrTuaw2bidWSmTMekn8YjwFu1iGmoyv
- Sc4Pt/a26UF/twesxmGwbvoBMNnAwmH2BA/XpPCPVA11VCnc9rPpYH9Bi6UiZ8daIFWa
- hDVvLQNb2MnhiBp1roFI4Vm27UZtWW2RGp12o32mYgAyP03onjwPeYJrecFrjOT97FGV
- GeYixcyen8OhVu42ha0vCcjuBShg7vQL5sC+3LmCMAwsoY/gTR8u8X177dwZg9avs6kR
- Oi+fpONS7k04/D99kcgkHOuq+A8U90OFeAvzq19j+Fu+bJ+tcNqkGBt1VkUfM9giCixQ
- oyNQ==
+ (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1kgYPR-000112-Fe
+ for usrp-users@lists.ettus.com; Sat, 21 Nov 2020 14:18:57 -0500
+Received: by mail-ua1-f50.google.com with SMTP id 103so999459uai.9
+ for <usrp-users@lists.ettus.com>; Sat, 21 Nov 2020 11:18:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Otpnfpo5h1hjHeI/Z+jOHkW/bOooQZZy1tiaNtJxhyg=;
+ b=H8Ic7sxxPD3eYp8zWfQNPpPcfZFnXVuFl3BitDoJWo86XhR5gCNAJP9dmTy5OY9SD8
+ 3CN4qZHhK3Qi1m/QZiZ0tdEdtogISbzr3GaDCz7ExFDnQB1c3NNy4lfinaXx8dQOpINS
+ Xx4kfwFrS7AEsLFmcJmiSfz4GsnUNmPplNxRWHTVSrgU3Siw9cr09QDOnww1YQa7Abtc
+ hRxZLPzpTYMdse3ZTkMlEKdtVTU3K+/Ux140GXTXdavQ9mPkN2JFbRWpmjXSBFOGtscv
+ oUdJ7zdHhf2XFynz2KuLdaUyna4hj/FI37VLos7khQa5CDifZDpF0DkHjJzoTvBU+Gx5
+ QSmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=wIG9txPl94D6HT6jqveOWfl/r47ob6/cWom96Qz6O0M=;
- b=ZEQ8xYZ5i2A8jqChoGidzCLZ73sC3T0daG2Q/RyDqBM+w2T1ORpGnwnw2N/AaqsQE4
- hVmKrSCsYpK3Yep13Bk4zq7kcpfNC1BHVu7gM2LouT2ArQNUzOQ4ZfhfDe+I5YCCNy+Z
- Ve9v+a/KJRgJ0zVMc6yKZ9OljY+1hTN9ZpxqwbJrCXIe7lWWVOn0MLTG5gH4z75XKco9
- OZXPsxRCchQnfuLRZLVtDNt/MCEEA8zIOY1S5Ck3mD051XITnPfnUKCJByrrxJKiuxn0
- ZrD5g3xdboVdQu2PizjOUb/aXLMgg6ui627KYt0MWNqirW6ndJdlHr6sHOQyVhPeIp7z
- IZKQ==
-X-Gm-Message-State: AOAM533uOQCHE25JmMJ1DERduttoS4tMVdPm4AqA9gNELgfe/17FOynA
- zQ3osVnszZ+RtgHFtMA4l12iqU/xIvg=
-X-Google-Smtp-Source: ABdhPJwl+BCQujDyt89FkIFGf/BAuh+qZ4AkOALusQCgq2M4ZQztckBOsj038R85GWPKvLncNy0uiw==
-X-Received: by 2002:ac8:5d53:: with SMTP id g19mr22774342qtx.354.1605984316488; 
- Sat, 21 Nov 2020 10:45:16 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id s68sm4572581qkc.43.2020.11.21.10.45.15
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 21 Nov 2020 10:45:16 -0800 (PST)
-Message-ID: <5FB9603B.9000408@gmail.com>
-Date: Sat, 21 Nov 2020 13:45:15 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Otpnfpo5h1hjHeI/Z+jOHkW/bOooQZZy1tiaNtJxhyg=;
+ b=E0lBdPdqtkrcgOTvBMV5j+UvsnnV9UPKc/m6CaehSdpfPdHjFzFNDwaY4qThc3CaXr
+ fz1gqSYExFc3fOjGzPhN/NF2Vni04Cieqznuzft+yJ+7zNCeV7nHPvIdGPJPC+GYS756
+ e5ZHCxcF/yfI8uuRchL7owBTJgRmcMS9+m2JpSgNn11pEwrh2VQsskkfmJIhV8MfkATp
+ 8QBIFVuZYhR15heBI7uvmQqun/TukWfnns9raax+DGqXGIyqP6YzagxQoVOcDE1sqG1p
+ 5Q25EP/LQ/e1HsV7qwKGh8E+3lkpbHsBRC9FcjgiEkme0EwvVBQRyosAciQVbEUAIR3E
+ DCyQ==
+X-Gm-Message-State: AOAM5318JmHO4GfZdnTqY5thxocsWgq/zANjUiebWXuea7MYEqJcm2Gs
+ Rs4AtWcbdvA3dLxTkPZW4zoGEh4MMQjZyzH0jFnyMO1Z
+X-Google-Smtp-Source: ABdhPJx6ScZeyBmMAfHmzuSO1wg7ojypEUKDGdIKksZKmww5h22WHEF7FKYKbCWpAkhrshVoxEXLfpOP5+dH6SDLlWE=
+X-Received: by 2002:ab0:7103:: with SMTP id x3mr18679390uan.100.1605986296871; 
+ Sat, 21 Nov 2020 11:18:16 -0800 (PST)
 MIME-Version: 1.0
-To: Ivan Zahartchuk <adray0001@gmail.com>, 
- discuss-gnuradio <discuss-gnuradio@gnu.org>,
- usrp-users <usrp-users@lists.ettus.com>
 References: <CAPRRyxtbQ1UWrUd=hhJxmUMyMRt8rLtvpLMGPoqZXVpai=a9Aw@mail.gmail.com>
  <3A42F7CE-97CC-4D96-9534-583EBF92FFE0@gmail.com>
  <CAPRRyxsS0sB7sf4NjehnKj8gAF5qeKb2Z5GLKazPkaQY1BybYw@mail.gmail.com>
 In-Reply-To: <CAPRRyxsS0sB7sf4NjehnKj8gAF5qeKb2Z5GLKazPkaQY1BybYw@mail.gmail.com>
+Date: Sat, 21 Nov 2020 14:17:40 -0500
+Message-ID: <CAL7q81s2mCZa118xoxjHT0n8wruRF3k3w4cUa86La-56rYcqDA@mail.gmail.com>
+To: Ivan Zahartchuk <adray0001@gmail.com>
 Subject: Re: [USRP-users] Overrun on chan error 0 USRP e310 RFNoC
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -69,9 +61,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5720279642078750808=="
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>,
+ discuss-gnuradio <discuss-gnuradio@gnu.org>
+Content-Type: multipart/mixed; boundary="===============3578536296554418981=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,137 +79,138 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============5720279642078750808==
-Content-Type: multipart/alternative;
- boundary="------------020701060909020907060308"
+--===============3578536296554418981==
+Content-Type: multipart/alternative; boundary="000000000000bd52e605b4a2d232"
 
-This is a multi-part message in MIME format.
---------------020701060909020907060308
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--000000000000bd52e605b4a2d232
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/21/2020 06:53 AM, Ivan Zahartchuk wrote:
-> I was setting samp_rate to 1 msps and observed the same situation. In addition, in the example fosphor samp_rate = 56 msps and no errors occur.
+Hi Ivan,
+
+The Fosphor block averages and then significantly decimates the FFT output.
+With the default settings, it has an output data rate comparable to a 500
+kSPS stream. The Fosphor example is also only one channel.
+
+I would suggest starting at a rate of 100 kSPS and increasing from there.
+The E310's ARM processor has very low performance compared to a desktop
+processor. It is mostly meant for overhead tasks and low rate DSP (100s
+kSPS range). High rate DSP should be implemented in the FPGA fabric.
+
+Jonathon
+
+On Sat, Nov 21, 2020 at 6:54 AM Ivan Zahartchuk via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> I was setting samp_rate to 1 msps and observed the same situation. In add=
+ition, in the example fosphor samp_rate =3D 56 msps and no errors occur.
 >
-If you replace the ZMQ blocks with NULL SINK blocks, do the overruns go 
-away?
-
-
 >
-> сб, 21 нояб. 2020 г. в 05:12, Marcus D Leech <patchvonbraun@gmail.com 
-> <mailto:patchvonbraun@gmail.com>>:
 >
->     There’s no way the fpga to ARM channel can support those data
->     rates.  Lower your sample rate to 5msps and try again.
+> =D1=81=D0=B1, 21 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 05:12, Mar=
+cus D Leech <patchvonbraun@gmail.com>:
 >
->     Sent from my iPhone
+>> There=E2=80=99s no way the fpga to ARM channel can support those data ra=
+tes.
+>> Lower your sample rate to 5msps and try again.
+>>
+>> Sent from my iPhone
+>>
+>> > On Nov 20, 2020, at 10:02 PM, Ivan Zahartchuk via USRP-users <
+>> usrp-users@lists.ettus.com> wrote:
+>> >
+>> > =EF=BB=BF
+>> > Hello, I want to launch two channels for receiving in parallel with
+>> usrp e310 rfnoc. But on startup, I get an overrun error. What I need is
+>> uninterrupted data transmission for phase analysis on both channels. How
+>> can I do this?
+>> > <=D0=A1=D0=BD=D0=B8=D0=BC=D0=BE=D0=BA =D1=8D=D0=BA=D1=80=D0=B0=D0=BD=
+=D0=B0 =D0=BE=D1=82 2020-11-21 04-50-17.png>
+>> >
+>> > <=D0=A1=D0=BD=D0=B8=D0=BC=D0=BE=D0=BA =D1=8D=D0=BA=D1=80=D0=B0=D0=BD=
+=D0=B0 =D0=BE=D1=82 2020-11-21 04-52-21.png>
+>> >
+>> > _______________________________________________
+>> > USRP-users mailing list
+>> > USRP-users@lists.ettus.com
+>> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
->     > On Nov 20, 2020, at 10:02 PM, Ivan Zahartchuk via USRP-users
->     <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>>
->     wrote:
->     >
->     > ﻿
->     > Hello, I want to launch two channels for receiving in parallel
->     with usrp e310 rfnoc. But on startup, I get an overrun error. What
->     I need is uninterrupted data transmission for phase analysis on
->     both channels. How can I do this?
->     > <Снимок экрана от 2020-11-21 04-50-17.png>
->     >
->     > <Снимок экрана от 2020-11-21 04-52-21.png>
->     >
->     > _______________________________________________
->     > USRP-users mailing list
->     > USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+
+--000000000000bd52e605b4a2d232
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Ivan,<div><br></div><div>The Fosphor block averages and=
+ then significantly decimates the FFT output. With the default settings, it=
+ has an output data rate comparable to a 500 kSPS stream. The Fosphor examp=
+le is also only one channel.</div><div><br></div><div>I would suggest start=
+ing at a rate of 100 kSPS and increasing from there. The E310&#39;s ARM pro=
+cessor has very low performance compared to a desktop processor. It is most=
+ly meant for overhead tasks and low rate DSP (100s kSPS range). High rate D=
+SP should be implemented in the FPGA fabric.</div><div><br></div><div>Jonat=
+hon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Sat, Nov 21, 2020 at 6:54 AM Ivan Zahartchuk via USRP-users &lt=
+;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
+iv dir=3D"ltr"><div><div id=3D"gmail-m_-1800510325560536534gmail-tw-target"=
+><div id=3D"gmail-m_-1800510325560536534gmail-kAz1tf"><div id=3D"gmail-m_-1=
+800510325560536534gmail-tw-target-text-container"><pre id=3D"gmail-m_-18005=
+10325560536534gmail-tw-target-text" style=3D"text-align:left" dir=3D"ltr"><=
+span lang=3D"en">I was setting samp_rate to 1 msps and observed the same si=
+tuation. In addition, in the example fosphor samp_rate =3D 56 msps and no e=
+rrors occur.</span></pre></div></div></div></div><br><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr" class=3D"gmail_attr">=D1=81=D0=B1, 21 =D0=BD=D0=
+=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 05:12, Marcus D Leech &lt;<a href=3D"m=
+ailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a=
+>&gt;:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">There=E2=
+=80=99s no way the fpga to ARM channel can support those data rates.=C2=A0 =
+Lower your sample rate to 5msps and try again. <br>
+<br>
+Sent from my iPhone<br>
+<br>
+&gt; On Nov 20, 2020, at 10:02 PM, Ivan Zahartchuk via USRP-users &lt;<a hr=
+ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists=
+.ettus.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; =EF=BB=BF<br>
+&gt; Hello, I want to launch two channels for receiving in parallel with us=
+rp e310 rfnoc. But on startup, I get an overrun error. What I need is unint=
+errupted data transmission for phase analysis on both channels. How can I d=
+o this?<br>
+&gt; &lt;=D0=A1=D0=BD=D0=B8=D0=BC=D0=BE=D0=BA =D1=8D=D0=BA=D1=80=D0=B0=D0=
+=BD=D0=B0 =D0=BE=D1=82 2020-11-21 04-50-17.png&gt;<br>
+&gt; <br>
+&gt; &lt;=D0=A1=D0=BD=D0=B8=D0=BC=D0=BE=D0=BA =D1=8D=D0=BA=D1=80=D0=B0=D0=
+=BD=D0=B0 =D0=BE=D1=82 2020-11-21 04-52-21.png&gt;<br>
+&gt; <br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
+sers@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
+n/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000bd52e605b4a2d232--
 
 
---------------020701060909020907060308
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 11/21/2020 06:53 AM, Ivan Zahartchuk
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAPRRyxsS0sB7sf4NjehnKj8gAF5qeKb2Z5GLKazPkaQY1BybYw@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail-oSioSc">
-          <div id="gmail-tw-target">
-            <div id="gmail-kAz1tf" class="gmail-g9WsWb">
-              <div class="gmail-tw-ta-container gmail-hide-focus-ring
-                gmail-tw-nfl" id="gmail-tw-target-text-container"
-                tabindex="0">
-                <pre class="gmail-tw-data-text gmail-tw-text-large gmail-XcVN5d gmail-tw-ta" id="gmail-tw-target-text" style="text-align:left" dir="ltr"><span lang="en">I was setting samp_rate to 1 msps and observed the same situation. In addition, in the example fosphor samp_rate = 56 msps and no errors occur.</span></pre>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
-      </div>
-    </blockquote>
-    If you replace the ZMQ blocks with NULL SINK blocks, do the overruns
-    go away?<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CAPRRyxsS0sB7sf4NjehnKj8gAF5qeKb2Z5GLKazPkaQY1BybYw@mail.gmail.com"
-      type="cite">
-      <div dir="ltr"><br>
-        <div class="gmail_quote">
-          <div dir="ltr" class="gmail_attr">сб, 21 нояб. 2020 г. в
-            05:12, Marcus D Leech &lt;<a moz-do-not-send="true"
-              href="mailto:patchvonbraun@gmail.com" target="_blank">patchvonbraun@gmail.com</a>&gt;:<br>
-          </div>
-          <blockquote class="gmail_quote" style="margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">There’s no way the fpga
-            to ARM channel can support those data rates.  Lower your
-            sample rate to 5msps and try again. <br>
-            <br>
-            Sent from my iPhone<br>
-            <br>
-            &gt; On Nov 20, 2020, at 10:02 PM, Ivan Zahartchuk via
-            USRP-users &lt;<a moz-do-not-send="true"
-              href="mailto:usrp-users@lists.ettus.com" target="_blank">usrp-users@lists.ettus.com</a>&gt;
-            wrote:<br>
-            &gt; <br>
-            &gt; ﻿<br>
-            &gt; Hello, I want to launch two channels for receiving in
-            parallel with usrp e310 rfnoc. But on startup, I get an
-            overrun error. What I need is uninterrupted data
-            transmission for phase analysis on both channels. How can I
-            do this?<br>
-            &gt; &lt;Снимок экрана от 2020-11-21 04-50-17.png&gt;<br>
-            &gt; <br>
-            &gt; &lt;Снимок экрана от 2020-11-21 04-52-21.png&gt;<br>
-            &gt; <br>
-            &gt; _______________________________________________<br>
-            &gt; USRP-users mailing list<br>
-            &gt; <a moz-do-not-send="true"
-              href="mailto:USRP-users@lists.ettus.com" target="_blank">USRP-users@lists.ettus.com</a><br>
-            &gt; <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-              rel="noreferrer" target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------020701060909020907060308--
-
-
---===============5720279642078750808==
+--===============3578536296554418981==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -226,5 +221,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5720279642078750808==--
+--===============3578536296554418981==--
 
