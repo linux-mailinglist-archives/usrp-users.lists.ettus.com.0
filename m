@@ -2,53 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABCE92BBECC
-	for <lists+usrp-users@lfdr.de>; Sat, 21 Nov 2020 12:54:07 +0100 (CET)
-Received: from [::1] (port=56760 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A68212BBF32
+	for <lists+usrp-users@lfdr.de>; Sat, 21 Nov 2020 14:29:06 +0100 (CET)
+Received: from [::1] (port=57388 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kgRSs-0006Qw-Bq; Sat, 21 Nov 2020 06:54:02 -0500
-Received: from mail-il1-f172.google.com ([209.85.166.172]:43109)
+	id 1kgSwp-0002J8-3v; Sat, 21 Nov 2020 08:29:03 -0500
+Received: from mail-qt1-f179.google.com ([209.85.160.179]:36578)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <adray0001@gmail.com>) id 1kgRSp-0006L8-9e
- for usrp-users@lists.ettus.com; Sat, 21 Nov 2020 06:53:59 -0500
-Received: by mail-il1-f172.google.com with SMTP id z14so9280118ilm.10
- for <usrp-users@lists.ettus.com>; Sat, 21 Nov 2020 03:53:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=tlYzHVmcb86FUALmVCMDq4qbrQzLjJTordpyZ/P/qN8=;
- b=NMgNLxRFP0YWcOjexdS3LEPbAIdUxHVYOAP4U3atpASzAvmorXoMwGnsdY8ulPfCZs
- TUlMwkkuIRF8E+v9l1smVcI0ThTtbFz8oAdKQ/GY4Cf6JHZMdHW7fGaSlfDnp7YBv4NS
- N3uG/Se9IwA29OXvuUr71aX+86C4QPBvjxCJYXuM48nq7X0ORpvRzNkRRD/9o7zIv+wl
- xN5QvIRQ3zqcG5eRBO+x7CDIFBU6NZkCnv933p2XdHmbJAM06lcfeWTX3QWAm3D9adoO
- vdELAQWqdpUic8qYR3/+Wb3T382ADCjzKW4xuQsPRal09/IJp8rv37EsdxdaL4jyQ/Nh
- pM3w==
+ (Exim 4.93) (envelope-from <dw2zq@virginia.edu>) id 1kgSwl-0002EV-Mt
+ for usrp-users@lists.ettus.com; Sat, 21 Nov 2020 08:28:59 -0500
+Received: by mail-qt1-f179.google.com with SMTP id e60so120676qtd.3
+ for <usrp-users@lists.ettus.com>; Sat, 21 Nov 2020 05:28:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=virginia-edu.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+ :mime-version:content-transfer-encoding;
+ bh=T01hPG1l/tjP0qcgeU6ZHYmLT0FY6voFgVIbJm9ZZ7Q=;
+ b=tQXRYguTEbqHEtmf2R6+G4HZdbdF08+zfZv5Wi948hO3o3rxAPPiwfeazmF+sfSoz8
+ NjqZz+NAQRBBtxnqSDb623bDqoUV8YUo2C6wddo82hhJWyJWKKd+jIzAj+vaiuYeCDT4
+ rT0tJbjJLFpsmAHPrTddJloaRcPzp+KgXFdkkBC1UadQmVn0AFO/Y+JMDHwrbKc078ZL
+ AFYjI3d/rPQSYu48q1eVz5lYgV0pbHSagp73GciSXcDKq/KGMnITro7qkktOTj2u73Ha
+ vtwFj1cfrD5l/dtqTOjbPKOGuf6z4P+EyAHVOduWgWNYlRC3gqu3R/OZ5gHhRpqgLzgK
+ HURg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=tlYzHVmcb86FUALmVCMDq4qbrQzLjJTordpyZ/P/qN8=;
- b=E645r+S1k+n6ygTr0NslKk+mwnejFVl3JudMexGI6rAn61gIFmbiRY0k8rBtx6DvZU
- z/K8ldjx78a9Zg9QkDRwA+ApQraH0/0u+ZykTMtHkWv2JcFRomMAPzrKpUdpmezds66u
- 5JmENQOG+TIR0e26yxBvwnmccdYkVrFTFqSDrTmjJlslZgglh9EzucQe2/pLVah43oGp
- Y69bOxNJADyRWMzu/kAAvH4CksZudY/HoFfGmV+xBlrokfyLvkJPXkRqys2KkDveKiUg
- MMa1uZhkLYRoeOJoEIXqdfBBE5o6CT6QokzFYUpT/QQ6/T/DZLpJAXltyDfZTdvOx2MV
- 4+bg==
-X-Gm-Message-State: AOAM530QMD4RtblstlvhJDZ/mO+bJ80FPZEzDDcIyTQkiOICmosixUHs
- 5wDsc+JvXB1JOZi6uTpl9RBiN/zgjI0MKs2aNCU=
-X-Google-Smtp-Source: ABdhPJy8HCa8cZzAkw8mJ3X7Mb8tpopbanFRed165TUFGR74/gXiLKkIlYMQ8aIbl2I+2qLivG1JoCCLmm1LJiGcJoM=
-X-Received: by 2002:a92:dd91:: with SMTP id g17mr25524260iln.12.1605959598501; 
- Sat, 21 Nov 2020 03:53:18 -0800 (PST)
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=T01hPG1l/tjP0qcgeU6ZHYmLT0FY6voFgVIbJm9ZZ7Q=;
+ b=ZQkshl6Bc7APkMzFUBeSJxgzUTPBsSVMn+CClYJY7LlLE10xp0PuozzvwAOy3S13N2
+ fu5tQexTIfkcQzb0SwL2kHRstsF4LcgfhRZPEPzcqxiT/xFATcGQiEUiwS+USo7d3Jlm
+ ci0eGDBZY8k+NA7cmyrSZCAomKhTjrB1JwmuoIl7XX+xjFaaUcy/9H7KJr2V4MrSypxW
+ ujbA7W+vqVSEm4jmlF+7FAyLuBzDhyirv3RALM71BerG8HnhQj+fRKemJ1BByxaMaXgJ
+ b0THv6zjyUkljMDs1q/EjmfSKjY5lAiMVBrmfViLLE345WaGGxi8AquSZJjR2tVsGlEh
+ pD/w==
+X-Gm-Message-State: AOAM530MvT319PRv6x4+sQGJhMyM5QzXgL9pz9HsIdvgoj6+qUhHIdG6
+ KR3kugquGUJlImSvENmxEjcO1g==
+X-Google-Smtp-Source: ABdhPJwZOsWKdnDq0TubuIzAWAVoc/XoCDzp+evTWveESuXg5WNq6EQ0QIc2gwLcvzZNL++oN4j6eA==
+X-Received: by 2002:a05:622a:14e:: with SMTP id
+ v14mr20154401qtw.298.1605965298967; 
+ Sat, 21 Nov 2020 05:28:18 -0800 (PST)
+Received: from [10.8.189.159] (c-73-40-68-102.hsd1.va.comcast.net.
+ [73.40.68.102])
+ by smtp.gmail.com with ESMTPSA id w54sm4277179qtb.0.2020.11.21.05.28.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 21 Nov 2020 05:28:18 -0800 (PST)
+Message-ID: <7580d45f2b0de0676988b77bdfdebab22866e1b7.camel@virginia.edu>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
+Date: Sat, 21 Nov 2020 08:28:15 -0500
+In-Reply-To: <5FB5C4E0.7060201@gmail.com>
+References: <389b50bdd4933609c1d2edf5aea66d272802475d.camel@virginia.edu>
+ <5FB5ADDB.4030608@gmail.com>
+ <7f74f5e9fd21affec4856445c013b9dea6f58c2f.camel@virginia.edu>
+ <5FB5C4E0.7060201@gmail.com>
+User-Agent: Evolution 3.38.2 
 MIME-Version: 1.0
-References: <CAPRRyxtbQ1UWrUd=hhJxmUMyMRt8rLtvpLMGPoqZXVpai=a9Aw@mail.gmail.com>
- <3A42F7CE-97CC-4D96-9534-583EBF92FFE0@gmail.com>
-In-Reply-To: <3A42F7CE-97CC-4D96-9534-583EBF92FFE0@gmail.com>
-Date: Sat, 21 Nov 2020 13:53:07 +0200
-Message-ID: <CAPRRyxsS0sB7sf4NjehnKj8gAF5qeKb2Z5GLKazPkaQY1BybYw@mail.gmail.com>
-To: discuss-gnuradio <discuss-gnuradio@gnu.org>,
- usrp-users <usrp-users@lists.ettus.com>, 
- "Marcus D. Leech" <patchvonbraun@gmail.com>
-Subject: Re: [USRP-users] Overrun on chan error 0 USRP e310 RFNoC
+Subject: Re: [USRP-users] X310 UBX digital tune not occurring?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -60,9 +69,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ivan Zahartchuk via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ivan Zahartchuk <adray0001@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3524492738235994023=="
+From: Dustin Widmann via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Dustin Widmann <dw2zq@virginia.edu>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,108 +86,33 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3524492738235994023==
-Content-Type: multipart/alternative; boundary="00000000000064747805b49c9bff"
-
---00000000000064747805b49c9bff
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-I was setting samp_rate to 1 msps and observed the same situation. In
-addition, in the example fosphor samp_rate =3D 56 msps and no errors
-occur.
-
-
-
-=D1=81=D0=B1, 21 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 05:12, Marcu=
-s D Leech <patchvonbraun@gmail.com>:
-
-> There=E2=80=99s no way the fpga to ARM channel can support those data rat=
-es.
-> Lower your sample rate to 5msps and try again.
->
-> Sent from my iPhone
->
-> > On Nov 20, 2020, at 10:02 PM, Ivan Zahartchuk via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
-> >
-> > =EF=BB=BF
-> > Hello, I want to launch two channels for receiving in parallel with usr=
-p
-> e310 rfnoc. But on startup, I get an overrun error. What I need is
-> uninterrupted data transmission for phase analysis on both channels. How
-> can I do this?
-> > <=D0=A1=D0=BD=D0=B8=D0=BC=D0=BE=D0=BA =D1=8D=D0=BA=D1=80=D0=B0=D0=BD=D0=
-=B0 =D0=BE=D1=82 2020-11-21 04-50-17.png>
-> >
-> > <=D0=A1=D0=BD=D0=B8=D0=BC=D0=BE=D0=BA =D1=8D=D0=BA=D1=80=D0=B0=D0=BD=D0=
-=B0 =D0=BE=D1=82 2020-11-21 04-52-21.png>
-> >
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---00000000000064747805b49c9bff
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail-oSioSc"><div id=3D"gmail-tw-target"><d=
-iv id=3D"gmail-kAz1tf" class=3D"gmail-g9WsWb"><div class=3D"gmail-tw-ta-con=
-tainer gmail-hide-focus-ring gmail-tw-nfl" id=3D"gmail-tw-target-text-conta=
-iner" tabindex=3D"0"><pre class=3D"gmail-tw-data-text gmail-tw-text-large g=
-mail-XcVN5d gmail-tw-ta" id=3D"gmail-tw-target-text" style=3D"text-align:le=
-ft" dir=3D"ltr"><span lang=3D"en">I was setting samp_rate to 1 msps and obs=
-erved the same situation. In addition, in the example fosphor samp_rate =3D=
- 56 msps and no errors occur.</span></pre></div></div></div></div><br><br><=
-div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=D1=81=D0=
-=B1, 21 =D0=BD=D0=BE=D1=8F=D0=B1. 2020 =D0=B3. =D0=B2 05:12, Marcus D Leech=
- &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonb=
-raun@gmail.com</a>&gt;:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex">There=E2=80=99s no way the fpga to ARM channel can support those da=
-ta rates.=C2=A0 Lower your sample rate to 5msps and try again. <br>
-<br>
-Sent from my iPhone<br>
-<br>
-&gt; On Nov 20, 2020, at 10:02 PM, Ivan Zahartchuk via USRP-users &lt;<a hr=
-ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists=
-.ettus.com</a>&gt; wrote:<br>
-&gt; <br>
-&gt; =EF=BB=BF<br>
-&gt; Hello, I want to launch two channels for receiving in parallel with us=
-rp e310 rfnoc. But on startup, I get an overrun error. What I need is unint=
-errupted data transmission for phase analysis on both channels. How can I d=
-o this?<br>
-&gt; &lt;=D0=A1=D0=BD=D0=B8=D0=BC=D0=BE=D0=BA =D1=8D=D0=BA=D1=80=D0=B0=D0=
-=BD=D0=B0 =D0=BE=D1=82 2020-11-21 04-50-17.png&gt;<br>
-&gt; <br>
-&gt; &lt;=D0=A1=D0=BD=D0=B8=D0=BC=D0=BE=D0=BA =D1=8D=D0=BA=D1=80=D0=B0=D0=
-=BD=D0=B0 =D0=BE=D1=82 2020-11-21 04-52-21.png&gt;<br>
-&gt; <br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-
---00000000000064747805b49c9bff--
-
-
---===============3524492738235994023==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3524492738235994023==--
-
+TWFyY3VzLAoKSSB0cmllZCBpdCB3aXRob3V0IHRpbWVkIGNvbW1hbmRzIGxhc3QgbmlnaHQuIEl0
+IHdhcyBsYW5kaW5nIG9uIHRoZQpzYW1lIGZyZXF1ZW5jaWVzIGFzIGl0IGRpZCB3aXRoIHRpbWVk
+IGNvbW1hbmRzIGkuZS4gZGlkbid0IGZpeCB0aGF0CnByb2JsZW0uIAoKRHVzdGluCgpPbiBXZWQs
+IDIwMjAtMTEtMTggYXQgMjA6MDUgLTA1MDAsIE1hcmN1cyBELiBMZWVjaCB3cm90ZToKPiBPbiAx
+MS8xOC8yMDIwIDA3OjM0IFBNLCBEdXN0aW4gV2lkbWFubiB3cm90ZToKPiA+IE9uIFdlZCwgMjAy
+MC0xMS0xOCBhdCAxODoyNyAtMDUwMCwgTWFyY3VzIEQuIExlZWNoIHZpYSBVU1JQLXVzZXJzCj4g
+PiB3cm90ZToKPiA+ID4gCj4gPiBNYXJjdXMsCj4gPiAKPiA+IE9oLCBzb3JyeSwgSSBtaXNzZWQg
+dGhlIGZpcnN0IGJpdC4gSSdtIHVzaW5nIHRoZSBvbi1ib2FyZCBjbG9jay4KPiA+IEFuZAo+ID4g
+cGVyaGFwcyBJIHNob3VsZCBleHBsYWluIHRoZSB0YWJsZSB3aXRoIGEgbGl0dGxlIGJpdCBtb3Jl
+IGRldGFpbDoKPiA+ICogMXN0IGNvbDogVGhlICp0YXJnZXQqIGZyZXF1ZW5jeS4gVGhlIFJYIHdh
+cyB0dW5lZCB0byB0aGlzCj4gPiBmcmVxdWVuY3kuCj4gPiBUaGUgVFggd2FzIHR1bmVkIHRvIHRo
+YXQgZnJlcXVlbmN5ICsgYW4gb2Zmc2V0IChpbiB0aGlzIGNhc2UsIDUwS0h6Cj4gPiBmb3IKPiA+
+IGFsbCBkYXRhcG9pbnRzKS4KPiA+ICogMm5kIGNvbDogV2hlcmUgdGhlIHRvbmUgaXMgZXhwZWN0
+ZWQgdG8gbGFuZCwgYm90aCBiaW4gYW5kCj4gPiAoYmFzZWJhbmQpCj4gPiBmcmVxdWVuY3k7IGlu
+IHRoaXMgY2FzZSwgYSA1MEtIeiBvZmZzZXQgZm9yIGFsbCBkYXRhcG9pbnRzLCB3aGljaAo+ID4g
+Y29ycmVzcG9uZGVkIHRvIGJpbiA1MjQgd2l0aCBhIDJeMjAgRkZULgo+ID4gKiAzcmQgY29sOiB3
+aGVyZSB0aGUgdG9uZSB3YXMgb2JzZXJ2ZWQgKGJvdGggYmluIGFuZCBmcmVxdWVuY3kpLgo+ID4g
+KiA0dGggY29sOiBkaWZmZXJlbmNlIGJldHdlZW4gdGhlIHRhcmdldCBhbmQgZXhwZWN0YXRpb24K
+PiA+ICogNXRoIGNvbDogZHNwIGZyZXEgKGZyb20gdWhkOjp0dW5lX3Jlc3VsdF90LmFjdHVhbF9k
+c3BfZnJlcSkKPiA+ICogNnRoIGNvbDogd2hhdCB0aGUgZGlmZmVyZW5jZSB3b3VsZCBiZSBpZiBJ
+IG9mZnNldCB0aGUgb2JzZXJ2ZWQKPiA+IGZyZXF1ZW5jeSBieSB0aGUgY2xhaW1lZCBkc3AgZnJl
+cXVlbmN5Cj4gPiAKPiA+IER1c3Rpbgo+ID4gCj4gUmlnaHQsIEkgdW5kZXJzdGFuZCB0aGUgY2hh
+cnQgbm93Lgo+IAo+IFNvLCB0aGlzIGlzIHJhdGhlciBvZGQuCj4gCj4gSSBhc3N1bWUgdGhpcyBp
+cyB1bmRlciB0aW1lZCBjb21tYW5kcywgeWVzP8KgIFdoYXQgaGFwcGVucyBpZiB5b3UKPiBkb24n
+dCAKPiB1c2UgdGltZWQgY29tbWFuZHMtLWp1c3QgdG8gY2hlY2sgdG8gc2VlCj4gwqDCoCBpZiB0
+aGUgRFNQIGZyZXF1ZW5jeSBjaGFuZ2UgaXMgZ2V0dGluZyBza2lwcGVkIHVuZGVyIHRpbWVkCj4g
+Y29tbWFuZHM/Cj4gCj4gCj4gCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJz
+X2xpc3RzLmV0dHVzLmNvbQo=
