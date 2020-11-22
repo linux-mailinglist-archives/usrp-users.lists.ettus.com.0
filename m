@@ -2,48 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 880CD2BC2D9
-	for <lists+usrp-users@lfdr.de>; Sun, 22 Nov 2020 01:22:01 +0100 (CET)
-Received: from [::1] (port=33102 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3AE22BC47F
+	for <lists+usrp-users@lfdr.de>; Sun, 22 Nov 2020 09:22:33 +0100 (CET)
+Received: from [::1] (port=36210 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kgd8e-0004tu-4I; Sat, 21 Nov 2020 19:21:56 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:35546)
+	id 1kgkde-0003Lh-6G; Sun, 22 Nov 2020 03:22:26 -0500
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:33594)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <dario@iptronix.com>) id 1kgd8b-0004pZ-A6
- for usrp-users@lists.ettus.com; Sat, 21 Nov 2020 19:21:53 -0500
-Received: by mail-wm1-f67.google.com with SMTP id w24so13915815wmi.0
- for <usrp-users@lists.ettus.com>; Sat, 21 Nov 2020 16:21:32 -0800 (PST)
+ (Exim 4.93) (envelope-from <dario@iptronix.com>) id 1kgkda-0003C2-RO
+ for usrp-users@lists.ettus.com; Sun, 22 Nov 2020 03:22:22 -0500
+Received: by mail-wm1-f66.google.com with SMTP id p19so11101343wmg.0
+ for <usrp-users@lists.ettus.com>; Sun, 22 Nov 2020 00:22:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=iptronix-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:from:date:message-id:subject:to;
- bh=W638phjj7qV758NPslb0rlw4bReZAyxAVN0B0oIWpQU=;
- b=E12Z4oEJp2Kv6tH6Hu1dv5YcivuON8kfunmH19SqJFXmoeSajuxatfrMi2d0VToM8+
- D2xBP4CySQrsAtsvdNNlbHGg8yU6CC1P7I8xV1dlTQQtxRYgsraUoKiUnY/kd1+PGXSL
- ynNU5EvJsy31/dotWleg1x6deU+zztiDuNHrD1jAifjt7sY0O7SZneBjMdLCc20CiqDR
- iOwugAZxHDVctiIxPcORweVfAZDL4UF7uC6FFYSP2wkoiRkC0j0gmrNQiGw0MZwLz/fI
- UIlFW/6lBW9LXRTh4zmDrmIzjcxpwloCnnyNfosKSgj3CQyNBT7jZnzmdbEAW9WySakn
- +rwg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=/23YP35+KF7zgLDBvqm59J2c/Ftdzp5l0BP1c08yEUQ=;
+ b=kxDFBG4clolJ7REqNlJ0l09ReEDI9R8dk0Ey/vz4mNG80C8bCpxlbdeNRxiRgzjFLI
+ UbAoxMvDIUMOTqqHucy+VnHB3hhvH+AoTXlHHeRxcM603svrk+rEQrwiFJNbKaKHNNPB
+ rzs4Y1bXQxsJz0q2M9aRnBOl7OPD3FExFlouKslzb8ysIqxxxc8QsASZrrfUEoR3RH0E
+ l8mfzTg/NvTtPTdnKWddkLK324S2obgtM4Ssb0gfC8x4ssezIOLVmEVZYhTD+mTaVIm3
+ S0jCaN5tOZHZyHdG09gJGlqWz2/hjQwLdNTnwRKjIlPl1iKZ9GNKKzE91aH2PTj+u6QK
+ swYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=W638phjj7qV758NPslb0rlw4bReZAyxAVN0B0oIWpQU=;
- b=I2eCWI/Jxx3szzBlg7fTariXMPTRZLayQU440iq325SsEzKQhqsClWUrJvXYy5M4+9
- oPXqcjk1SdBgwgyTUA59ZiDt3B030oSp9KTM/ScAsfeXuWTIVOco4bZ8vFim2TKL5ElR
- OOWjnp67tZNbUc900k90nCssHMLH4DGlg9W992MBJmvtzjh/LN8G4PWh0nZ29EZu8/+d
- WfxIK0h+WgEkI/ktKxBUx286L1cZ1wYgW5qrnhUQoPOmY8zHVtj98g/mCGedJefS1C6q
- 0nsmTK2nirdn36U+5UUDAxE8d3vsdZSCszynhyYiwDRYO1Wpg7ncahaeefdpbF5UOzLW
- IxBQ==
-X-Gm-Message-State: AOAM532ZXKl/osO/az0ZE2f7TvoNwMD1DSexgwe2e1GqQ7socnatxdWx
- booxIdsp8OvHQPHkmNAch0NisE3vGRrapSG3w5a1AXjBnRlVvvTB1wRs3A==
-X-Google-Smtp-Source: ABdhPJxEgKzBNny386Ed1/K0kss7C8/CUaYazUpxyqYxdtOD5DJAYSGei+riQJjumAm9QNhw7ECVATcBHgTwfIQ9XSk=
-X-Received: by 2002:a1c:3d44:: with SMTP id k65mr15912906wma.147.1606004471705; 
- Sat, 21 Nov 2020 16:21:11 -0800 (PST)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=/23YP35+KF7zgLDBvqm59J2c/Ftdzp5l0BP1c08yEUQ=;
+ b=RTTAuS5AbOQ2TGVKUqpHBUBgug4mUmo89YcSe9ZGbaGtMAYmwDyi8KDl7fIjTnNKlV
+ WZlXAjys90cRC4ECfnyAWoz6z6fW3IaulW71F566ktCKEflOABJ1ZMaN5X/rryDH/33M
+ SfKPmsGmd6eSg9OXNxCODw5rR/7FQico7u+xviGAfnMgAmkILOks4ITdufRCC+NPE3Bx
+ kUhypgCre5ECa1eHkmyFKd9hwNVzeF+SKr4br55y8zfkF0KwGoblHLmpCwbPBYpxLh+V
+ 9tvqlHW+NrI5OL8An1/bTFydqNrUT4kOLy696v9kyfirFLRv3tFkpUByfMkZthJDY9i5
+ hdxQ==
+X-Gm-Message-State: AOAM532aVrWflMymdXSNSYnJAfQXiGD0ywtsZmtcTbo8T9w0eGTPkm8m
+ bzzxxtLcoGK1935cS8e/XZSx+ejRym03KHz2kz+Mg9V90IRJvOh6VFg=
+X-Google-Smtp-Source: ABdhPJx5t/IAKOMDYnQgz69ttL1l+/QQn6eIGyqu5pD2I+qkj+SKQBzd1RiJLDlcgSOjtcVXLJ5q5Ya1JAqdfeVRQ4o=
+X-Received: by 2002:a05:600c:2287:: with SMTP id
+ 7mr16631790wmf.189.1606033301587; 
+ Sun, 22 Nov 2020 00:21:41 -0800 (PST)
 MIME-Version: 1.0
-Date: Sun, 22 Nov 2020 01:21:00 +0100
-Message-ID: <CAKHaR3kNBg2WXD2xe+LcQMh16-84d4sLFd_4rnVOZgcnM4j1RA@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] ILA in UHD 4
+References: <CAKHaR3=cWOn8QPbVSU=h040NaquMntJoMgs2j1zXexcQmLDNpA@mail.gmail.com>
+ <CAL7q81veqFNTKH46mdb-5Sf-KOGeJR0Y_dEphB1-BhsGcrmK6g@mail.gmail.com>
+In-Reply-To: <CAL7q81veqFNTKH46mdb-5Sf-KOGeJR0Y_dEphB1-BhsGcrmK6g@mail.gmail.com>
+Date: Sun, 22 Nov 2020 09:21:30 +0100
+Message-ID: <CAKHaR3=WC47CeBPpE_RrRbqUemqxoc_5kS9ar61SeUEtcEMYVA@mail.gmail.com>
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] simulation error with uhd 4.0
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -57,7 +63,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Dario Pennisi via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Dario Pennisi <dario@iptronix.com>
-Content-Type: multipart/mixed; boundary="===============7681411897048963671=="
+Content-Type: multipart/mixed; boundary="===============6975517856948073686=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,82 +77,175 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7681411897048963671==
-Content-Type: multipart/alternative; boundary="0000000000000b4a8005b4a70eb7"
+--===============6975517856948073686==
+Content-Type: multipart/alternative; boundary="000000000000705f6205b4adc42d"
 
---0000000000000b4a8005b4a70eb7
+--000000000000705f6205b4adc42d
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
-i am trying to debug my block and to do so i ran
+Hi Jonathon,
+thanks for your reply. unfortunately the issue seems to be with
+complex_multiplier ip generated by vivado. if i bypass that (my
+instantiating wires that connect input to output instead of the IP)
+everything works.  i noticed the IP generates a vhdl file and the aggregate
+association error seems related to this. everything else in my design is
+verilog so i doubt it may be my code.
 
-GUI=1 make n310_rfnoc_image_core
+On Sat, Nov 21, 2020 at 8:43 PM Jonathon Pendlum <jonathon.pendlum@ettus.com>
+wrote:
 
-this brings up vivado and allows me to synthesize the design and setup ILA.
-when i try fitting and generating bitstream i get the following error:
+> Hi Dario,
+>
+> Unfortunately, Vivado's xsim simulator sometimes crashes when it runs into
+> syntax and elaboration errors. Make sure you don't have issues like signals
+> with multiple drivers, undriven signals, missing reset logic, typos, etc.
+> Note that these issues may be in code that is/seems unrelated to the cmul
+> instantiation.
+>
+> Also, if you have access to ModelSim, I would highly suggest trying that
+> tool instead as it is far more robust than xsim. You can use the vsim make
+> target to use ModelSim.
+>
+> Jonathon
+>
+> On Sat, Nov 21, 2020 at 5:54 AM Dario Pennisi via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> Hi,
+>> i'm trying to simulate a block where i'm using cmul. in order to have
+>> that compiled in i am including the following in my Makefile under
+>> rfnoc/fpga in my OOT directory:
+>>
+>> include $(BASE_DIR)/../lib/ip/Makefile.inc
+>> SIM_SRCS = $(abspath rfnoc_block_demod_tb.sv)  \
+>> $(LIB_IP_COMPLEX_MULTIPLIER_OUTS) \
+>>
+>> i tried also adding this to DESIGN_SRCS but when running simulation with
+>> Vivado 2019.1 i see the following error:
+>>
+>> ERROR: [XSIM 43-3983] Internal Compiler error encountered while
+>> processing aggregate association.
+>> ERROR: [XSIM 43-3915] Encountered a fatal error. Cannot continue.
+>> Exiting...
+>>
+>> if i remove cmul instance from my design simulation works.
+>>
+>> can you please shed some light on how to fix this?
+>> thanks,
+>>
+>> Dario Pennisi
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
 
-[DRC PDRC-29] MMCM_adv_ClkFrequency_clkin1: The calculated frequency value,
-0.000 MHz, of the CLKIN1_PERIOD attribute on the MMCME2_ADV site
-MMCME2_ADV_X0Y0 (cell n3xx_clocking_i/misc_clock_gen_i/inst/mmcm_adv_inst)
-is outside the allowed range (10.000 - 933.000 MHz). Please change the
-CLKIN1_PERIOD attribute value in order to be within the allowed range for
-this device.
-[DRC PDRC-29] MMCM_adv_ClkFrequency_clkin1: The calculated frequency value,
-0.000 MHz, of the CLKIN1_PERIOD attribute on the MMCME2_ADV site
-MMCME2_ADV_X1Y5 (cell
-u_ddr3_32bit/u_ddr3_32bit_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i) is
-outside the allowed range (10.000 - 933.000 MHz). Please change the
-CLKIN1_PERIOD attribute value in order to be within the allowed range for
-this device.
-[DRC PDRC-38] PLL_adv_ClkFrequency_clkin1: The calculated frequency value,
-0.000 MHz, of the CLKIN1_PERIOD attribute on the PLLE2_ADV site
-PLLE2_ADV_X1Y5 (cell
-u_ddr3_32bit/u_ddr3_32bit_mig/u_ddr3_infrastructure/plle2_i) is outside the
-allowed range (19.000 - 933.000 MHz). Please change the CLKIN1_PERIOD
-attribute value in order to be within the allowed range for this device.
-
-strange enough i don't get these when running from console.
-any suggestions?
-
+-- 
 Dario Pennisi
+ipTronix S.r.l.
 
---0000000000000b4a8005b4a70eb7
+Tel     +39 06 66183814
+Fax     +39 06 66188420
+Mobile  +39 335 6878904
+Web     www.iptronix.com
+<https://urldefense.com/v3/__http:/www.iptronix.com__;!!KXGHL9MWuGc!s5Tn7AzcrRbHxw-tqBwTDmxvGjHnCEyM7Hgx2K_iBSRF5MT3mAq3Hf-oopBP-dAa$>
+
+The information contained in this message is confidential and may be
+legally privileged. The message is intended solely for the addressee(s), if
+you are not the intended recipient, you are hereby notified that any use,
+dissemination or reproduction is strictly prohibited and may be unlawful.
+If you are not the intended recipient please contact the sender by return
+e-mail and destroy all copies of the original message.
+
+--000000000000705f6205b4adc42d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi,</div><div>i am trying to debug my block and to do=
- so i ran <br></div><div><br></div><div>GUI=3D1 make n310_rfnoc_image_core<=
-/div><div><br></div><div>this brings up vivado and allows me to  synthesize=
- the design and setup ILA. when i try fitting and generating bitstream i ge=
-t the following error:</div><div><br></div><div>[DRC PDRC-29] MMCM_adv_ClkF=
-requency_clkin1: The calculated frequency value, 0.000 MHz, of the CLKIN1_P=
-ERIOD attribute on the MMCME2_ADV site MMCME2_ADV_X0Y0 (cell n3xx_clocking_=
-i/misc_clock_gen_i/inst/mmcm_adv_inst) is outside the allowed range (10.000=
- - 933.000 MHz). Please change the CLKIN1_PERIOD attribute value in order t=
-o be within the allowed range for this device.<br></div><div>[DRC PDRC-29] =
-MMCM_adv_ClkFrequency_clkin1: The calculated frequency value, 0.000 MHz, of=
- the CLKIN1_PERIOD attribute on the MMCME2_ADV site MMCME2_ADV_X1Y5 (cell u=
-_ddr3_32bit/u_ddr3_32bit_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i) is outs=
-ide the allowed range (10.000 - 933.000 MHz). Please change the CLKIN1_PERI=
-OD attribute value in order to be within the allowed range for this device.=
-<br>[DRC PDRC-38] PLL_adv_ClkFrequency_clkin1: The calculated frequency val=
-ue, 0.000 MHz, of the CLKIN1_PERIOD attribute on the PLLE2_ADV site PLLE2_A=
-DV_X1Y5 (cell u_ddr3_32bit/u_ddr3_32bit_mig/u_ddr3_infrastructure/plle2_i) =
-is outside the allowed range (19.000 - 933.000 MHz). Please change the CLKI=
-N1_PERIOD attribute value in order to be within the allowed range for this =
-device.<br></div><div><br></div><div>strange enough i don&#39;t get these w=
-hen running from console.</div><div>any suggestions?<br></div><div>=C2=A0<b=
-r><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signat=
-ure"><div dir=3D"ltr"><span style=3D"color:rgb(0,0,0);font-family:Calibri,s=
-ans-serif;font-size:13.3333px">Dario Pennisi</span><br style=3D"color:rgb(0=
-,0,0);font-family:Calibri,sans-serif;font-size:13.3333px"><span style=3D"co=
-lor:rgb(0,0,0);font-family:Calibri,sans-serif;font-size:13.3333px"></span><=
-br></div></div></div></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Jonathon,</div><div>thanks for yo=
+ur reply. unfortunately the issue seems to be with complex_multiplier ip ge=
+nerated by vivado. if i bypass that (my instantiating wires that connect in=
+put to output instead of the IP) everything works.=C2=A0 i noticed the IP g=
+enerates a vhdl file and the aggregate association error seems related to t=
+his. everything else in my design is verilog so i doubt it may be my code.<=
+br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Sat, Nov 21, 2020 at 8:43 PM Jonathon Pendlum &lt;<a href=3D"ma=
+ilto:jonathon.pendlum@ettus.com">jonathon.pendlum@ettus.com</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
+>Hi Dario,<div><br></div><div>Unfortunately, Vivado&#39;s xsim simulator so=
+metimes crashes when it runs into syntax and elaboration errors. Make sure =
+you don&#39;t have issues like signals with multiple drivers, undriven sign=
+als, missing reset logic, typos, etc. Note that these issues may be in code=
+ that is/seems unrelated to the cmul instantiation.</div><div><br></div><di=
+v>Also, if you have access to ModelSim, I would highly suggest trying that =
+tool instead as it is far more robust than xsim. You can use the vsim make =
+target to use ModelSim.<br></div><div><br></div><div>Jonathon</div><div></d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Sat, Nov 21, 2020 at 5:54 AM Dario Pennisi via USRP-users &lt;<a href=
+=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
+ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex"><div dir=3D"ltr"><div>Hi,</div><div>i&#39;m trying to simulate a bl=
+ock where i&#39;m using cmul. in order to have that compiled in i am includ=
+ing the following in my Makefile under rfnoc/fpga in my OOT directory:</div=
+><div><br></div><div>include $(BASE_DIR)/../lib/ip/Makefile.inc</div><div>S=
+IM_SRCS =3D $(abspath <a href=3D"http://rfnoc_block_demod_tb.sv" target=3D"=
+_blank">rfnoc_block_demod_tb.sv</a>) =C2=A0\<br>$(LIB_IP_COMPLEX_MULTIPLIER=
+_OUTS) \</div><div><br></div><div>i tried also adding this to DESIGN_SRCS b=
+ut when running simulation with Vivado 2019.1 i see the following error:</d=
+iv><div><br></div><div>ERROR: [XSIM 43-3983] Internal Compiler error encoun=
+tered while processing aggregate association.<br>ERROR: [XSIM 43-3915] Enco=
+untered a fatal error. Cannot continue. Exiting... <br></div><div><br></div=
+><div>if i remove cmul instance from my design simulation works.</div><div>=
+<br></div><div>can you please shed some light on how to fix this?</div><div=
+>thanks,</div><div><br></div><div>Dario Pennisi<br></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"g=
+mail_signature"><div dir=3D"ltr"><span style=3D"color:rgb(0,0,0);font-famil=
+y:Calibri,sans-serif;font-size:13.3333px">Dario Pennisi</span><br style=3D"=
+color:rgb(0,0,0);font-family:Calibri,sans-serif;font-size:13.3333px"><span =
+style=3D"color:rgb(0,0,0);font-family:Calibri,sans-serif;font-size:13.3333p=
+x">ipTronix S.r.l.</span><br style=3D"color:rgb(0,0,0);font-family:Calibri,=
+sans-serif;font-size:13.3333px"><span style=3D"color:rgb(0,0,0);font-family=
+:Calibri,sans-serif;font-size:13.3333px">=C2=A0</span><br style=3D"color:rg=
+b(0,0,0);font-family:Calibri,sans-serif;font-size:13.3333px"><span style=3D=
+"color:rgb(0,0,0);font-family:Calibri,sans-serif;font-size:13.3333px">Tel=
+=C2=A0=C2=A0=C2=A0=C2=A0 +39 06 66183814</span><br style=3D"color:rgb(0,0,0=
+);font-family:Calibri,sans-serif;font-size:13.3333px"><span style=3D"color:=
+rgb(0,0,0);font-family:Calibri,sans-serif;font-size:13.3333px">Fax=C2=A0=C2=
+=A0=C2=A0=C2=A0 +39 06 66188420</span><br style=3D"color:rgb(0,0,0);font-fa=
+mily:Calibri,sans-serif;font-size:13.3333px"><span style=3D"color:rgb(0,0,0=
+);font-family:Calibri,sans-serif;font-size:13.3333px">Mobile=C2=A0 +39 335 =
+6878904</span><br style=3D"color:rgb(0,0,0);font-family:Calibri,sans-serif;=
+font-size:13.3333px"><span style=3D"color:rgb(0,0,0);font-family:Calibri,sa=
+ns-serif;font-size:13.3333px">Web=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><a hr=
+ef=3D"https://urldefense.com/v3/__http:/www.iptronix.com__;!!KXGHL9MWuGc!s5=
+Tn7AzcrRbHxw-tqBwTDmxvGjHnCEyM7Hgx2K_iBSRF5MT3mAq3Hf-oopBP-dAa$" style=3D"f=
+ont-family:Calibri,sans-serif;font-size:13.3333px" target=3D"_blank">www.ip=
+tronix.com</a><br style=3D"color:rgb(0,0,0);font-family:Calibri,sans-serif;=
+font-size:13.3333px"><span style=3D"color:rgb(0,0,0);font-family:Calibri,sa=
+ns-serif;font-size:13.3333px">=C2=A0</span><br style=3D"color:rgb(0,0,0);fo=
+nt-family:Calibri,sans-serif;font-size:13.3333px"><span style=3D"color:rgb(=
+0,0,0);font-family:Calibri,sans-serif;font-size:13.3333px">The information =
+contained in this message is confidential and may be legally privileged. Th=
+e message is intended solely for the addressee(s), if you are not the inten=
+ded recipient, you are hereby notified that any use, dissemination or repro=
+duction is strictly prohibited and may be unlawful. If you are not the inte=
+nded recipient please contact the sender by return e-mail and destroy all c=
+opies of the original message.</span><br></div></div></div>
 
---0000000000000b4a8005b4a70eb7--
+--000000000000705f6205b4adc42d--
 
 
---===============7681411897048963671==
+--===============6975517856948073686==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -157,5 +256,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7681411897048963671==--
+--===============6975517856948073686==--
 
