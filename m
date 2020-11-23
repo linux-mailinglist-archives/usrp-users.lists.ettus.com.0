@@ -2,47 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81EEB2C17DD
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Nov 2020 22:44:11 +0100 (CET)
-Received: from [::1] (port=51252 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97DAD2C191B
+	for <lists+usrp-users@lfdr.de>; Tue, 24 Nov 2020 00:10:35 +0100 (CET)
+Received: from [::1] (port=51738 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1khJd1-0005Sx-UA; Mon, 23 Nov 2020 16:44:07 -0500
-Received: from mail-lf1-f53.google.com ([209.85.167.53]:46165)
+	id 1khKyc-00008t-9y; Mon, 23 Nov 2020 18:10:30 -0500
+Received: from mail-lj1-f181.google.com ([209.85.208.181]:36044)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <prkane92@gmail.com>) id 1khJcy-0005OD-3y
- for usrp-users@lists.ettus.com; Mon, 23 Nov 2020 16:44:04 -0500
-Received: by mail-lf1-f53.google.com with SMTP id t6so9765321lfl.13
- for <usrp-users@lists.ettus.com>; Mon, 23 Nov 2020 13:43:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=ccb3nsyFlh9sbEUCxRpGYf3M6NISLsCxc8Yq78u+e3Q=;
- b=AwIGSdb44+B7LL2BRR+UflHVQo89WVz2K9rRXg9tfVMF3GF5NjxSOAn6SnM5zPb4Cu
- NKPqlAsE0tGgeeyUUbtQFYjzml/ct0ORpKFM6rNQie5Wo8XsxgxDccxLxRLd6oUh+gWW
- w04/yrQB5oHXJbSOX76EQ085y5fMlwKfIqixENs6y+Mk51u/wgEL9pcOx63Af32k3NQw
- JgvK22VzrDg3OCqkgpIgrIavYXg0mes6/fepYi7YI6ClbS72F1LjFLLIoPmVgq6krUaZ
- I23BdAVlHjVUtjnF6l7EvcNCVrpsSmcACHB6DVq4qL+PrFFBkoRhd4OzG3Oy5A/G39Xm
- wjlQ==
+ (Exim 4.93) (envelope-from <coxe@close-haul.com>) id 1khKyY-0008UY-Qg
+ for usrp-users@lists.ettus.com; Mon, 23 Nov 2020 18:10:26 -0500
+Received: by mail-lj1-f181.google.com with SMTP id i17so19918065ljd.3
+ for <usrp-users@lists.ettus.com>; Mon, 23 Nov 2020 15:10:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quanttux-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=187dcNOQtLT70URUc6nBBn//Y7DqhLdfjkUothcc80c=;
+ b=dDAXuHaLsGbkLwRGj4Duy3WKVkh7Baxn5NZWDpp0vmT6iS8fzzTLLWYdl5vGWE9sdh
+ fxwj1VM1NpXDrlpxjz2VCs6icxGJg7Sx1A07igcT/zZnJLIFu+Ff5kXlFyMZT45AvPaU
+ 4CwLZU4rSCvx+EONHEOqQ+c5NDqAyvDBnPUgLJIH6KAacbXpGaqdOpjLUmW3sMhGy4iI
+ auxlJei7vnLyQMOcBvC6a6kRfy3b0uWLJ83WlTa0Kn+O0FgBIu25YJZ+pyxNqM9pO0zn
+ jD18niBTwVZs9R+EsuxVhDDv/QEzVu/RkBdYEdjIs7bWrVl8i+6SYXY4kU+Ahlje7hUX
+ xw8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=ccb3nsyFlh9sbEUCxRpGYf3M6NISLsCxc8Yq78u+e3Q=;
- b=GzTRr7zmRpZMQeAr2eYY/f5r7t+CXV+6bfa43YM1l4gXO4UDgpbXhG4de7XL++lzTZ
- 4gf8qM7ALVzvirJUkmDABksUollJP2X/aHTdmA5qEw0Q6n64bgj/CICw01MWnppQINJL
- tjohMZ9sp+cd/ItFtZPzGBs3UgnHvzYmnMA7lUywLdOTi7N8EZWRdBFhbCfhzS6FU1Se
- Zzi1/jSkwQUy96GWr6eMu6aQc+88KBEhLd9169bFCfjg2uRqjDDdekmQY6K3DGEV4bVx
- HNZcrikal5IJ4gTkofH2oOXuWixBLFEw41HgyfGiPZWo7plE0278P+5zie+PnY4pUARv
- P+5g==
-X-Gm-Message-State: AOAM5330z7FJ9ptcAZsueEQrcu4g7W72EkrU10Smf4E3mx3uoCR0I3lv
- epyRgvSEjXWmAxMR3J5o4Z5nYKONK23Kcl0Ws2rCsTgZCYyRLVP9
-X-Google-Smtp-Source: ABdhPJyUYDZfGl6egAXZZ3UZkjLaBSTvjAOwRsHEQUUAgYUKqMlxZE4L5uZb8JWHuAQcHGUpgdWeg0lBJmbCIFjBftA=
-X-Received: by 2002:ac2:44c8:: with SMTP id d8mr460410lfm.471.1606167802245;
- Mon, 23 Nov 2020 13:43:22 -0800 (PST)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=187dcNOQtLT70URUc6nBBn//Y7DqhLdfjkUothcc80c=;
+ b=RopWO9gBuHGerLhlrlZTHUzSihUMbwRGjdly0xgP6t2To+B4D5QzBp6BP8SQehBSVy
+ UQM0K5vi0K8Ls0xlul3utG++hO4WyW6HtxxbWvwgco/p8bzJdM9SxPWVvuaFuw9vePGL
+ t2VeC3UKQRpPg4QnCyD9GTHdjx/pGVgRCgBWr5ZNWHbISSoQi6/cQWy7+ns8BQeeHIvL
+ optJwivh9zEghiVKdMoCET4bvra4Kbf4SyGZMgduskLl7L4pDaVw7w/3s6ZoBPDyAvTJ
+ ko7FPqwX7cxGLD2PBCBmviebf8R1R1ZprQaM5k4ivH0I4l55HqUYsT9VzQhUCo4iB/VM
+ j+GA==
+X-Gm-Message-State: AOAM5315rBjeQnJWb2Nchz5f++mP1XGFCvKFjzcFiqicYt40hFFEi6SE
+ AJZV5pgu19jZxOgXxT4L4hR1vwPJvDTGRaBEZYmjHA==
+X-Google-Smtp-Source: ABdhPJzGqVV4xuEOoJ5wQ3ZTmHXNX2kn6YR3uykHvQ2PiW9S7qHJJCBPVW2ggbXN3eZHbuipOqliIMSsAdNLCSbEHWI=
+X-Received: by 2002:a2e:95d7:: with SMTP id y23mr643990ljh.461.1606172985293; 
+ Mon, 23 Nov 2020 15:09:45 -0800 (PST)
 MIME-Version: 1.0
-Date: Mon, 23 Nov 2020 16:43:09 -0500
-Message-ID: <CAOLzfSg88FT3Cm_-Dd0jL__BchiuGhR03jLW1nxCv5N3O-TQjg@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] N321 QSFP+ XQ image network connection
+References: <3d725267-832c-ea0f-ae74-8040f9d0504a@insa-toulouse.fr>
+ <b18a6a8d-57fe-8d67-eb21-3a4bb268c653@balister.org>
+ <01853c24-f428-2970-baee-5ad822fdbdb6@insa-toulouse.fr>
+In-Reply-To: <01853c24-f428-2970-baee-5ad822fdbdb6@insa-toulouse.fr>
+Date: Mon, 23 Nov 2020 15:09:34 -0800
+Message-ID: <CAKJyDkK_rL1vHpLgRwT5MNJU=UeFL2_yrVnqJZDZhJomDTTmXA@mail.gmail.com>
+To: =?UTF-8?Q?S=C3=A9bastien_DI_MERCURIO?= <dimercur@insa-toulouse.fr>
+Cc: Philip Balister <philip@balister.org>,
+ Ettus Mail List <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] USRP E100/E110 linux update
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +62,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Patrick Kane via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Patrick Kane <prkane92@gmail.com>
-Content-Type: multipart/mixed; boundary="===============2354302391708041227=="
+From: Robin Coxe via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Robin Coxe <coxe@quanttux.com>
+Content-Type: multipart/mixed; boundary="===============8445955960605622706=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,351 +78,363 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2354302391708041227==
-Content-Type: multipart/alternative; boundary="0000000000004d76eb05b4cd156a"
+--===============8445955960605622706==
+Content-Type: multipart/related; boundary="0000000000003d562205b4ce4a9f"
 
---0000000000004d76eb05b4cd156a
+--0000000000003d562205b4ce4a9f
+Content-Type: multipart/alternative; boundary="0000000000003d562105b4ce4a9e"
+
+--0000000000003d562105b4ce4a9e
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I have an N321 connected to serial console and QSFP+ through a XL710 Intel
-NIC. With the default HG image, I can connect through 1G and serial as
-expected. I updated the filesystem to UHD 4.0.0.0 using mender, and the
-build artifact reflects that this was successful. Then, after loading the
-XQ image (using 2x 10Gb lanes through QSFP+ port), I lose all ethernet
-connectivity through the 1G port SFP0 (expected), but I get the following
-output in the console window:
+There is a legacy Ettus E100 github repo that may or may not be useful:
+https://github.com/EttusResearch/ettus_oe
 
+This product has been EOL for >5 years, so as Philip points out, the
+institutional memory of it is basically non-existent.
 
-[  451.560674] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-flow control off
+On Mon, Nov 23, 2020 at 5:22 AM S=C3=A9bastien DI MERCURIO via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-[  453.800673] nixge 40000000.ethernet sfp0: Link is Down
+> Hi Philips,
+>
+> thank you for your answer. I will have a look to your git repository. I'm
+> not very good with linux kernel intrinsics but I will try to have driver
+> work with newer kernel.
+>
+> If I succed, i will post my results.
+>
+> Thank you !
+> Le 23/11/2020 =C3=A0 14:10, Philip Balister a =C3=A9crit :
+>
+> On 11/23/20 7:09 AM, S=C3=A9bastien DI MERCURIO via USRP-users wrote:
+>
+> Hi,
+>
+> I've got several USRP E100/E110 with outdated Linux and Gnuradio
+> software on it. So I decided to build a Yocto image, more up-to-date and
+> succeeded in after several tries.
+> The new image boots and run a reasonable updated version of Linux and
+> Gnuradio.
+>
+> But, because of Ettus proprietary kernel driver, I cannot connect to
+> FPGA and so the board is useless.
+>
+> It's an open driver, just non of us remember how it works. I did find
+> the code:
+> https://github.com/balister/linux-omap-philip
+>
+> The linux DMA architecture has likely changed, so the driver will need
+> work, but the code is out there. Let me know if you have questions, it
+> would be great to see these running. I'll answer as best I can. It has
+> been like 6-7 years since I last looked at it though.
+>
+> Using it like an N-series is likely not possible. The fpga is connected
+> to the Overo via the GPMC (General Purpose Memory Controller).
+>
+> Philip
+>
+>
+> My questions are:
+>
+> - Did someone achieve to get an updated Linux base and Gnuradio
+> software, with working FPGA communications (whatever the method)
+>       - Is it possible to get source code of Ettus kernel driver, as the
+> board is now End-of-life
+>       - Is it possible to enable Ethernet communication pass-throughto
+> FPGA, a bit like in N series, in order to use it over Ethernet(not
+> standalone)
+>
+> Regards!
+>
+> Sebastien
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> .
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing listUSRP-users@lists.ettus.comhttp://lists.ettus.com/m=
+ailman/listinfo/usrp-users_lists.ettus.com
+>
+> --
+> [image: INSA Toulouse]
+>
+> *S=C3=A9bastien DI MERCURIO*
+> *Ing=C3=A9nieur d'=C3=A9tude Syst=C3=A8mes embarqu=C3=A9s et IoT*
+> D=C3=A9partement GEI
+> T=C3=A9l. : 05 61 55 98 34
+> dimercur@insa-toulouse.fr
+>
+> INSA Toulouse
+> 135 avenue de Rangueil
+> 31077 Toulouse CEDEX 04
+>
+> *www.insa-toulouse.fr <http://www.insa-toulouse.fr> *
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-[  454.920676] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-flow control off
-
-[  458.280672] nixge 40000000.ethernet sfp0: Link is Down
-
-[  459.400677] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-flow control off
-
-[  462.760705] nixge 40000000.ethernet sfp0: Link is Down
-
-[  463.880678] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-flow control off
-
-[  466.120673] nixge 40000000.ethernet sfp0: Link is Down
-
-
-uhd_usrp_probe:
-
-  _____________________________________________________
-
- /
-
-|       Device: N300-Series Device
-
-|     _____________________________________________________
-
-|    /
-
-|   |       Mboard: ni-n3xx-31E00AC
-
-|   |   dboard_0_pid: 338
-
-|   |   dboard_0_serial: 31DB406
-
-|   |   dboard_1_pid: 338
-
-|   |   dboard_1_serial: 31DB407
-
-|   |   eeprom_version: 3
-
-|   |   fs_version: 20200914000806
-
-|   |   mender_artifact: v4.0.0.0_n3xx
-
-|   |   mpm_sw_version: 4.0.0.0-g90ce6062
-
-|   |   pid: 16962
-
-|   |   product: n320
-
-|   |   rev: 7
-
-|   |   rpc_connection: local
-
-|   |   serial: 31E00AC
-
-|   |   type: n3xx
-
-|   |   MPM Version: 3.0
-
-|   |   FPGA Version: 8.0
-
-|   |   FPGA git hash: be53058.clean
-
-|   |
-
-|   |   Time sources:  internal, external, gpsdo, sfp0
-
-|   |   Clock sources: external, internal, gpsdo
-
-|   |   Sensors: ref_locked, gps_locked, temp, fan, gps_gpgga, gps_sky,
-gps_time, gps_tpv
-
-
-Are there any configuration items needed to connect to the N321 through the
-QSFP+ port. Note that I only see eth0, sfp0, sfp1, and int0 in
-/etc/network/interfaces.
-
-
-Thanks,
-
-Pat
-
---0000000000004d76eb05b4cd156a
+--0000000000003d562105b4ce4a9e
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail-WordSection1" style=3D"page: WordSecti=
-on1;">
+<div dir=3D"ltr">There is a legacy Ettus E100 github repo that may or may n=
+ot be useful:=C2=A0<a href=3D"https://github.com/EttusResearch/ettus_oe">ht=
+tps://github.com/EttusResearch/ettus_oe</a><div><br></div><div>This product=
+ has been EOL for &gt;5 years, so as Philip points out, the institutional m=
+emory of it is basically non-existent.</div></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Nov 23, 2020 at 5:22 AM=
+ S=C3=A9bastien DI MERCURIO via USRP-users &lt;<a href=3D"mailto:usrp-users=
+@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <p><font size=3D"-1">Hi Philips,</font></p>
+    <p><font size=3D"-1">thank you for your answer. I will have a look to
+        your git repository. I&#39;m not very good with linux kernel
+        intrinsics but I will try to have driver work with newer kernel.</f=
+ont></p>
+    <p><font size=3D"-1">If I succed, i will post my results.</font></p>
+    <p><font size=3D"-1">Thank you !</font><br>
+    </p>
+    <div>Le 23/11/2020 =C3=A0 14:10, Philip Balister
+      a =C3=A9crit=C2=A0:<br>
+    </div>
+    <blockquote type=3D"cite">
+      <pre>On 11/23/20 7:09 AM, S=C3=A9bastien DI MERCURIO via USRP-users w=
+rote:
+</pre>
+      <blockquote type=3D"cite">
+        <pre>Hi,
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">I have an N321 connected =
-to serial console and QSFP+ through a XL710 Intel NIC. With the default HG =
-image, I can connect through 1G and serial as expected. I updated the files=
-ystem to UHD 4.0.0.0 using mender, and the build artifact reflects that thi=
-s was successful. Then, after loading the XQ image (using 2x 10Gb lanes thr=
-ough QSFP+ port), I lose all ethernet connectivity through the 1G port SFP0=
- (expected), but I get the following output in the console window:</span></=
-p><p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-si=
-ze:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-=
-family:&quot;Segoe UI&quot;,sans-serif;color:black"><br></span></p><p class=
-=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size:11pt;fo=
-nt-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&qu=
-ot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 451.560674] nixge
-40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control off</span><=
-/p>
+I&#39;ve got several USRP E100/E110 with outdated Linux and Gnuradio
+software on it. So I decided to build a Yocto image, more up-to-date and
+succeeded in after several tries.
+The new image boots and run a reasonable updated version of Linux and
+Gnuradio.
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 453.800673] nixge
-40000000.ethernet sfp0: Link is Down</span></p>
+But, because of Ettus proprietary kernel driver, I cannot connect to
+FPGA and so the board is useless.
+</pre>
+      </blockquote>
+      <pre>It&#39;s an open driver, just non of us remember how it works. I=
+ did find
+the code:
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 454.920676] nixge
-40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control off</span><=
-/p>
+<a href=3D"https://github.com/balister/linux-omap-philip" target=3D"_blank"=
+>https://github.com/balister/linux-omap-philip</a>
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 458.280672] nixge
-40000000.ethernet sfp0: Link is Down</span></p>
+The linux DMA architecture has likely changed, so the driver will need
+work, but the code is out there. Let me know if you have questions, it
+would be great to see these running. I&#39;ll answer as best I can. It has
+been like 6-7 years since I last looked at it though.
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 459.400677] nixge
-40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control off</span><=
-/p>
+Using it like an N-series is likely not possible. The fpga is connected
+to the Overo via the GPMC (General Purpose Memory Controller).
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 462.760705] nixge
-40000000.ethernet sfp0: Link is Down</span></p>
+Philip
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 463.880678] nixge
-40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control off</span><=
-/p>
+</pre>
+      <blockquote type=3D"cite">
+        <pre>My questions are:
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 466.120673] nixge
-40000000.ethernet sfp0: Link is Down</span><span style=3D"font-size:10pt;fo=
-nt-family:&quot;Segoe UI&quot;,sans-serif;color:black"> </span></p><p class=
-=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size:11pt;fo=
-nt-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&qu=
-ot;Segoe UI&quot;,sans-serif;color:black"><br></span></p><p class=3D"MsoNor=
-mal" style=3D"margin:2pt 0in;line-height:normal;font-size:11pt;font-family:=
-Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&quot;Segoe U=
-I&quot;,sans-serif;color:black">uhd_usrp_probe:</span></p><div class=3D"gma=
-il-WordSection1" style=3D"page: WordSection1;">
+- Did someone achieve to get an updated Linux base and Gnuradio
+software, with working FPGA communications (whatever the method)
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Is it possible to get source code of Ettus=
+ kernel driver, as the
+board is now End-of-life
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Is it possible to enable Ethernet communic=
+ation pass-throughto
+FPGA, a bit like in N series, in order to use it over Ethernet(not
+standalone)
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">=C2=A0 __________________=
-___________________________________</span></p>
+Regards!
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">=C2=A0/</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 Device:
-N300-Series Device</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0=C2=A0=C2=A0
-_____________________________________________________</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0=C2=A0 /</sp=
-an></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 Mboard:
-ni-n3xx-31E00AC</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 dboard_0_pid: 338</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 dboard_0_serial:
-31DB406</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 dboard_1_pid: 338</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 dboard_1_serial:
-31DB407</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 eeprom_version: 3</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 fs_version:
-20200914000806</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 mender_artifact:
-v4.0.0.0_n3xx</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 mpm_sw_version:
-4.0.0.0-g90ce6062</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 pid: 16962</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 product: n320</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 rev: 7</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 rpc_connection:
-local</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 serial: 31E00AC</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 type: n3xx</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 MPM Version: 3.0</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 FPGA Version: 8.0</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 FPGA git hash:
-be53058.clean</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |</span></p=
->
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 Time sources:=C2=A0
-internal, external, gpsdo, sfp0</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 Clock sources:
-external, internal, gpsdo</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 Sensors:
-ref_locked, gps_locked, temp, fan, gps_gpgga, gps_sky, gps_time, gps_tpv</s=
-pan></p><p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;f=
-ont-size:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt=
-;font-family:&quot;Segoe UI&quot;,sans-serif;color:black"><br></span></p><p=
- class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal"><font colo=
-r=3D"#000000" face=3D"Segoe UI, sans-serif"><span style=3D"font-size:13.333=
-3px">Are there any configuration items needed to connect to the N321 throug=
-h the QSFP+ port. Note that I only see eth0, sfp0, sfp1, and int0 in /etc/n=
-etwork/interfaces.</span></font></p><p class=3D"MsoNormal" style=3D"margin:=
-2pt 0in;line-height:normal"><font color=3D"#000000" face=3D"Segoe UI, sans-=
-serif"><span style=3D"font-size:13.3333px"><br></span></font></p><p class=
-=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal"><font color=3D"#=
-000000" face=3D"Segoe UI, sans-serif"><span style=3D"font-size:13.3333px">T=
-hanks,</span></font></p><p class=3D"MsoNormal" style=3D"margin:2pt 0in;line=
--height:normal"><font color=3D"#000000" face=3D"Segoe UI, sans-serif"><span=
- style=3D"font-size:13.3333px">Pat</span></font></p>
-
-</div><p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;fon=
-t-size:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;f=
-ont-family:&quot;Segoe UI&quot;,sans-serif;color:black"><br></span></p>
-
-</div></div>
-
---0000000000004d76eb05b4cd156a--
+Sebastien
 
 
---===============2354302391708041227==
+
+
+
+
+
+
+
+.
+
+
+
+_______________________________________________
+USRP-users mailing list
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_li=
+sts.ettus.com</a>
+
+</pre>
+      </blockquote>
+    </blockquote>
+    <div>-- <br>
+      <div>
+        <img src=3D"cid:175f75d6d4d35421bd31" alt=3D"INSA Toulouse" width=
+=3D"200">
+      </div>
+      <br>
+      <div style=3D"font-size:12px;color:rgb(94,94,93);font-family:arial,ve=
+rdana">
+        <b>S=C3=A9bastien DI MERCURIO</b> <br>
+        <b>Ing=C3=A9nieur d&#39;=C3=A9tude Syst=C3=A8mes embarqu=C3=A9s et =
+IoT</b> <br>
+        D=C3=A9partement GEI </div>
+      <div style=3D"font-size:12px;color:rgb(94,94,93);font-family:arial,ve=
+rdana">
+        T=C3=A9l. : 05 61 55 98 34 <br>
+        <a href=3D"mailto:dimercur@insa-toulouse.fr" style=3D"font-size:12p=
+x;color:rgb(94,94,93);font-family:arial,verdana;text-decoration:none" targe=
+t=3D"_blank">dimercur@insa-toulouse.fr</a><br>
+        <br>
+      </div>
+      <div>
+        INSA Toulouse <br>
+        135 avenue de Rangueil <br>
+        31077 Toulouse CEDEX 04<br>
+        <b><a href=3D"http://www.insa-toulouse.fr" style=3D"font-size:12px;=
+color:rgb(228,38,18);font-family:arial,verdana;text-decoration:none" target=
+=3D"_blank">www.insa-toulouse.fr</a><b><br>
+          </b></b></div>
+      <b><b> </b></b></div>
+  </div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000003d562105b4ce4a9e--
+--0000000000003d562205b4ce4a9f
+Content-Type: image/jpeg; name="bbkebdlbmdgbkdig."
+Content-Disposition: inline; filename="bbkebdlbmdgbkdig."
+Content-Transfer-Encoding: base64
+Content-ID: <175f75d6d4d35421bd31>
+X-Attachment-Id: 175f75d6d4d35421bd31
+
+iVBORw0KGgoAAAANSUhEUgAAAMgAAAAsCAMAAAAXUwc4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAwBQTFRF+dK9/f7/ent95kYs4wwZ+M21+vr6Wlpc4yAZ5TIj63NNYWJk
+SEhK8vLz/fXxUlJU4xsZ9bGRz9DS3N3e4QAa51Iy7X1V/fv69rqd4yoh4eLi5kUnm5ye/ObZ86WC
+5kks7YNd/fPs5CcY9K2NcnN15Dkk8qF9+Mat6WlE4hAZ2Nna7u7u8JNu9fX17oliamts+dXBzM3P
++t3N+tbD9beZ8PDx1dbX4x0Z98Cl4iQZubu8goOF/ezi9r2hnZ6gxMXGysvMwcLEuLm7/fHqhYaI
+yMnK8Zl1/OjdxcbIoqOlo6SmmZqckZKUpaao//j0p6mrwMHCh4iK3t/gjpCR0tPUsbO07oZg+uDR
+4hUZqquttLW3ra+w8Zx4k5WX0NHSvb/A6F064ycZy8zN4gYa6WE+np+h/fj0RERGiYqMrK2v/vv6
+tre5fX6A/fTu+trJ5kww/O3ljY+R4x8f8JZx98Wr/v79sLKzlZaYvL2/5T4o/Ovg75Bq86qJ9KmK
+6m5I4zAf+uHT5OTl4iIe63ZRgIGD5Cwc/vn24ykZZWZo+tfFbW5w9rWW+tzKTU1P741p6GNB9LKU
+++TW6Fg1VlZY4xkcdXZ451o6XV1f4y0h4yca/fn3++vi7X9Y4yQZ5CkY4ycg51k351Y04hUc7HpU
+7HdQ4yoc/v///v7+5CMZ9vb3/N7M+fn5+Pn5/f39/Pz84yUZ6+vs5+fo+/v86Ojp6urr9vb29/f3
+3+Dh29zd4+TlqKqr7+/w6Onqi4yO7O3t///+kJGT09TVg4SG8fLyw8TG5ufnnJ2flJaXf4CCt7i6
+6erqiImLX2Bizs/Q/v/++Pj4v8DCjI2P1tfYmJmbhIWH5ebn7e3u6+zs19jZr7Cy2tvc8/PzpKan
+x8jJ4uPkq6yun6Gi5OXl/f38Z2hql5iau7y+//7+s7S2b3By/f3+eHl6/v38/f7+98iv//v4//7/
+9KqH+MqxPz9B9fb3+9/P/O/n74pm++zj++3l9bCQ7XtS9KyL9K+P4gAa5CUY////gTBrbwAAESpJ
+REFUeNrEmglYU9e2gDkBGSukcFCLgILCNaGIaQnB0EJik8pYBIJGkNIYsVBiFVsZqtW+llK00taK
+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
+fwIMACC39QjwrpoeAAAAAElFTkSuQmCC
+--0000000000003d562205b4ce4a9f--
+
+
+--===============8445955960605622706==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -425,5 +445,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2354302391708041227==--
+--===============8445955960605622706==--
 
