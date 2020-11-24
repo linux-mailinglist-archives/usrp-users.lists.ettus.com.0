@@ -2,52 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C222C28FE
-	for <lists+usrp-users@lfdr.de>; Tue, 24 Nov 2020 15:07:36 +0100 (CET)
-Received: from [::1] (port=60565 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6F582C2A00
+	for <lists+usrp-users@lfdr.de>; Tue, 24 Nov 2020 15:46:56 +0100 (CET)
+Received: from [::1] (port=60850 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1khYyj-0002OY-VA; Tue, 24 Nov 2020 09:07:33 -0500
-Received: from mail-lj1-f170.google.com ([209.85.208.170]:33166)
+	id 1khZal-0005v9-Ir; Tue, 24 Nov 2020 09:46:51 -0500
+Received: from mail-ed1-f48.google.com ([209.85.208.48]:42317)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <prkane92@gmail.com>) id 1khYyg-0002Ig-LD
- for usrp-users@lists.ettus.com; Tue, 24 Nov 2020 09:07:30 -0500
-Received: by mail-lj1-f170.google.com with SMTP id t22so9765657ljk.0
- for <usrp-users@lists.ettus.com>; Tue, 24 Nov 2020 06:07:10 -0800 (PST)
+ (Exim 4.93) (envelope-from <mamuki92@gmail.com>) id 1khZah-0005op-PU
+ for usrp-users@lists.ettus.com; Tue, 24 Nov 2020 09:46:47 -0500
+Received: by mail-ed1-f48.google.com with SMTP id v22so21139377edt.9
+ for <usrp-users@lists.ettus.com>; Tue, 24 Nov 2020 06:46:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+wV2pK1v3iLgk/mSB9v8XDCxvFoyfDjapGBlvYX1R5A=;
- b=WGhouK9YX20ZHrvUKkFdMXhmLAbuRL+wFsh9p2Q/YIT1mjrojmZ9PtdhN/ArkSdlfa
- fk17Ji3RukDtjSvYRWeorNVqguKzmtT5bBlo4YMiZSV1jJqJobtGOG6xJZqxGkS4ajwK
- YgLRPyzLjA/vHS5QSh9430Ql3lhBS6pRYwcdfsBeoD2Oc5B1llrMG0rAzugKMxvslVYF
- aJu7CznbW5xmB6OrihSkUkuo3UxCbme61Hg0Uu3tQD50bd2CEMKVPRvbl/Ry8+dEI174
- Pvf10RscmojuGl4WDlowZJj3mwxz7t12bKhTMAwkjKA/PoVcsQXqVYmXUfk0688Ajr0R
- n4vQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=w8kZlpPuSfJZrSpfV0T5F6rmvhznvAlV7ClMENc3FIw=;
+ b=Uf/CRElgRK1LFp2aJJR69f++s47T+1Xcz+e7ANUBYGlfaUYV+LZpczQ60J9xU89p6F
+ QuilbO1/Z+ttZVSALAbqENe9Fo+BvMciOseSfFXBc96w4bf6sRx+lcuBsqyOH/hOuc9l
+ 88ccOR01OLAvQ2qfYf2VdlbeAljZPOFkLIeB4fj3dq1ZkivvdCnhwTnyH8IL7dWCV3dL
+ ZTnsoOtFn++/E7FHB3V5JI4oi7Q8FiruBYHemmD72WKsODrjaqW6UFcbr4uf1ypZIjV6
+ 8ZOqWI14h+yLYQMal59rWt5mQ8ct2IO3h8q/p7CAd+pMV1lmJUfr3ctV+fP+jMhA8Jx/
+ jgFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=+wV2pK1v3iLgk/mSB9v8XDCxvFoyfDjapGBlvYX1R5A=;
- b=AHrfd1RLVaULOtqqaBQYDB/wyph3TfCoF87KJbDY5osSHvarJ9nPuL268Lmx8Wmaej
- YuJmmI0KL23sj00pD5PLssJW8Dn5vyhtugtQ7mmUSv/I+JwQBXimTmz04e0leczGBBe+
- 7UUjs2CieqhlNnfLAx6H8f9AOA193DGNrZM7xLhH9k5CJ2+kF0o2T2myemSJvyWf63J0
- 8f8ap2QZ+NqoVFX0kgA7rpzqMckcQH5cZ4s4VbFJNMs2NXLEQfZ+JQSWdHbQN+gjaNbM
- cV9ZTG6hDqNBaHc/SCnpAYUxytdfq/w9Hn8WelUqS6eBoNuMG7331sUP+ww479cwXDG/
- vEyQ==
-X-Gm-Message-State: AOAM5318u/ngZw8Ps4wVvhMO8Qeom9MVU7RpeiXdcOP51C26J9yMiZIj
- 4QA30PjWpatDihgFddLY2xU+Je/SM6ohUKEgJh0=
-X-Google-Smtp-Source: ABdhPJzE8/tS63ZKryxue4FJ7j/gPK7MLMt6zYGWSndnFvbVGZ2IQAkgekxLLWJ12XH8fWNLOIz5Q7hnoeo9qADrnnI=
-X-Received: by 2002:a2e:5815:: with SMTP id m21mr724615ljb.361.1606226809114; 
- Tue, 24 Nov 2020 06:06:49 -0800 (PST)
+ :message-id:subject:to;
+ bh=w8kZlpPuSfJZrSpfV0T5F6rmvhznvAlV7ClMENc3FIw=;
+ b=JyLjU/fiKBkjKp3ePnanhr73L+T/voJyGZyijuH7Syuu533b1P68XfbKo5us0qr5/U
+ hYDow804Lf46QrVQQfh/gAupmJXna1wMyaViKVNx7PKeN9cHoy55V1n6bMS/8qGG/Fze
+ jHIW5Rlf+Ly4rgspBO9zoBDynVOr9HSUvRiq1JFYNe7dPDG8ojXcvAEWsEgg8vXp6XTO
+ MO3m7jvmuOqpBq18bV7pzIa1gEiYWN0NyEHP/ZTcpsz6a+pmgUj4b61iFowGuvAnuFlN
+ iotrfoUe+40VHN/b3gzFVPR62byz43QD0xMLwisgmRKJVP4sWW2lS2xLEj+Px4XVT9lk
+ AMqQ==
+X-Gm-Message-State: AOAM532m/nmFKdZg92dWp7eJ8F1CgpOUuLWpQsjIwtO5yUxmeEKOPLa5
+ 8Kdqyq0B3GKj8P9V7yqVxyfx66qkcfQa9E+1Y2nIwC/BqEk=
+X-Google-Smtp-Source: ABdhPJysE5fEGGgDUBFG03MhisRq0bWR+9dLKQ7+ZDP+Pz3+Ac9WGoqTYb9elsGG99xPztBKiDpcxw/gnyhsN+hp89I=
+X-Received: by 2002:a05:6402:150d:: with SMTP id
+ f13mr4169303edw.119.1606229165901; 
+ Tue, 24 Nov 2020 06:46:05 -0800 (PST)
 MIME-Version: 1.0
-References: <CAOLzfSg88FT3Cm_-Dd0jL__BchiuGhR03jLW1nxCv5N3O-TQjg@mail.gmail.com>
- <84B751A1-3137-41AA-91FF-AAAEB03C7927@ettus.com>
-In-Reply-To: <84B751A1-3137-41AA-91FF-AAAEB03C7927@ettus.com>
-Date: Tue, 24 Nov 2020 09:06:37 -0500
-Message-ID: <CAOLzfSjROwto1SRtXa=H1ce6pRZssLYKF5mjQQrTSHdqOBXgrA@mail.gmail.com>
-To: Michael Dickens <michael.dickens@ettus.com>
-Cc: usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] N321 QSFP+ XQ image network connection
+References: <CAG16vQV0xTxQxPmFpBO_5q8Og03MWVhieY2VnBhK9UTE5fVfZw@mail.gmail.com>
+ <CAFche=gpYoYXydtJkmVaGA9xA4e7u6a7R-FdQ894W0dj=2CaaA@mail.gmail.com>
+ <CAG16vQUW56L2-uJnaszSdB+xq+hfn2TkJ21xe-s3yLCb3j1pPA@mail.gmail.com>
+In-Reply-To: <CAG16vQUW56L2-uJnaszSdB+xq+hfn2TkJ21xe-s3yLCb3j1pPA@mail.gmail.com>
+Date: Tue, 24 Nov 2020 15:45:53 +0100
+Message-ID: <CAG16vQV9o_5WiD6BbDFOQn8EDYEeVoQ2c=RJa98MYeiMC4ysdg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Fwd:  FPGA RFNoC Radio block with only one channel
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,9 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Patrick Kane via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Patrick Kane <prkane92@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7664327081164749117=="
+From: =?utf-8?q?Maria_Mu=C3=B1oz_via_USRP-users?= <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0438121186531999974=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,424 +76,196 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7664327081164749117==
-Content-Type: multipart/alternative; boundary="00000000000062d45305b4dad26b"
+--===============0438121186531999974==
+Content-Type: multipart/alternative; boundary="000000000000dc89df05b4db5e67"
 
---00000000000062d45305b4dad26b
+--000000000000dc89df05b4db5e67
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Mike,
+---------- Forwarded message ---------
+De: Maria Mu=C3=B1oz <mamuki92@gmail.com>
+Date: lun, 23 nov 2020 a las 10:05
+Subject: Re: [USRP-users] FPGA RFNoC Radio block with only one channel
+To: Wade Fife <wade.fife@ettus.com>
 
-That seemed to do the trick, thanks for info! At some point, can we make
-these steps part of the N32x getting started docs?
 
-Also- the config utilty makes me choose 2x2x10 A, B, or LOM. Choosing A
-disables the second port on the QDA2, and B disables the first port. LOM
-disables both ports (expected because it's not a MB NIC). My ideal case is
-using 2x N321s over QSFP on the same XL710-QDA2 NIC. Have you had any luck
-in this configuration?
+Hi Wade,
 
-Thanks,
-Pat
+Thanks for your answer that helps me a lot.
 
-On Mon, Nov 23, 2020 at 9:23 PM Michael Dickens <michael.dickens@ettus.com>
-wrote:
+I have migrated to UHD 4.0 as you suggested so just a few questions to make
+sure I have understood how the YAML file and the tool work.
 
-> Hi Pat - I recently verified that the N321 QAFP+ interface works with UHD
-> 4.0 release. I am also using an Intel XL710 (QDA2, but that probably
-> doesn=E2=80=99t matter too much). The trick for me was using the Intel QS=
-FP+ NIC
-> configuration tool to set the NIC to 2x(2x10 Gb) mode. This is the settin=
-g
-> that the N321 requires, and one that the NIC provides. Once that was set
-> then you need to configures the host and USRP network interfaces as you
-> normally would. After all of that, the link worked very nicely! I hope th=
-is
-> is useful! - MLD
+I want to have a first image with radio, DUC, DDC and FIFO only using one
+channel of the radio. As I see on the e320_rfnoc_image_core YML file, the
+DDC, DUC, radio and a fifo block are instanced. And on the static
+connections part of the file are all the connections for each channel (I
+guess this is radio0(0) and radio0(1)). If I want to remove channel 1 for
+example, I must set  num ports to 1 on the instance of the DDC/DUC and then
+remove the connections associated with the in/out_1. Is that correct?
+Should I also change num_ports on the yml radio block file?
+Then, to build the image I must run rfnoc_image_builder with option -y and
+this modified yml file, that's all?
+
+Kind regards,
+
+Maria
+
+
+El vie., 20 nov. 2020 16:44, Wade Fife <wade.fife@ettus.com> escribi=C3=B3:
+
+> Hi Maria,
 >
-> On Nov 23, 2020, at 4:44 PM, Patrick Kane via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
+> I assume you're using UHD 3.15 or earlier, since you mentioned the "fpga
+> repository". I've never tried what you're suggesting, so I don't know wha=
+t
+> challenges you'll run into. I think changing NUM_CHANNELS_PER_RADIO will =
+do
+> what you want, but it will have some side effects, like removing the GPIO
+> for that channel. I think it might be safer to just change the NUM_CHANNE=
+LS
+> that gets passed to e320_core, since I think that will remove just the
+> radio and associated DDC/DUC while leaving all the other board signals
+> connected. Again, I haven't tried it, so I can't say for sure.
 >
-> =EF=BB=BF
+> In general, these kinds of changes need to be considered carefully, since
+> it leaves signals undriven, which usually means they will be driven to 0 =
+by
+> default. 0 is often the right value for something that's unused, but not
+> always. There may also be software implications.
 >
-> I have an N321 connected to serial console and QSFP+ through a XL710 Inte=
-l
-> NIC. With the default HG image, I can connect through 1G and serial as
-> expected. I updated the filesystem to UHD 4.0.0.0 using mender, and the
-> build artifact reflects that this was successful. Then, after loading the
-> XQ image (using 2x 10Gb lanes through QSFP+ port), I lose all ethernet
-> connectivity through the 1G port SFP0 (expected), but I get the following
-> output in the console window:
->
->
-> [  451.560674] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
->
-> [  453.800673] nixge 40000000.ethernet sfp0: Link is Down
->
-> [  454.920676] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
->
-> [  458.280672] nixge 40000000.ethernet sfp0: Link is Down
->
-> [  459.400677] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
->
-> [  462.760705] nixge 40000000.ethernet sfp0: Link is Down
->
-> [  463.880678] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full -
-> flow control off
->
-> [  466.120673] nixge 40000000.ethernet sfp0: Link is Down
->
->
-> uhd_usrp_probe:
->
->   _____________________________________________________
->
->  /
->
-> |       Device: N300-Series Device
->
-> |     _____________________________________________________
->
-> |    /
->
-> |   |       Mboard: ni-n3xx-31E00AC
->
-> |   |   dboard_0_pid: 338
->
-> |   |   dboard_0_serial: 31DB406
->
-> |   |   dboard_1_pid: 338
->
-> |   |   dboard_1_serial: 31DB407
->
-> |   |   eeprom_version: 3
->
-> |   |   fs_version: 20200914000806
->
-> |   |   mender_artifact: v4.0.0.0_n3xx
->
-> |   |   mpm_sw_version: 4.0.0.0-g90ce6062
->
-> |   |   pid: 16962
->
-> |   |   product: n320
->
-> |   |   rev: 7
->
-> |   |   rpc_connection: local
->
-> |   |   serial: 31E00AC
->
-> |   |   type: n3xx
->
-> |   |   MPM Version: 3.0
->
-> |   |   FPGA Version: 8.0
->
-> |   |   FPGA git hash: be53058.clean
->
-> |   |
->
-> |   |   Time sources:  internal, external, gpsdo, sfp0
->
-> |   |   Clock sources: external, internal, gpsdo
->
-> |   |   Sensors: ref_locked, gps_locked, temp, fan, gps_gpgga, gps_sky,
-> gps_time, gps_tpv
->
->
-> Are there any configuration items needed to connect to the N321 through
-> the QSFP+ port. Note that I only see eth0, sfp0, sfp1, and int0 in
-> /etc/network/interfaces.
->
+> By the way, these kinds of changes are easier to make in UHD 4.0 since
+> it's described by a YAML file. So it's easy to say you just want one radi=
+o
+> and to leave out the DDC/DUC, or DRAM FIFO, for example. The required
+> Verilog is then generated by rfnoc_image_builder.
 >
 > Thanks,
 >
-> Pat
+> Wade
 >
+> On Thu, Nov 19, 2020 at 8:52 AM Maria Mu=C3=B1oz via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
 >
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+>> Hi everyone,
+>>
+>> I'm using an USRP E320 using the RFNoC image to implement a code that
+>> requires too much FPGA resources. I only need to use one of the channels=
+ of
+>> the USRP so I was wondering if it could be possible to eliminate the log=
+ic
+>> associated with the other channel to save resources on the FPGA and if
+>> there is a 'safe' way to do that.
+>>  I mean I have seen on the verilog source code, that there is a paramete=
+r
+>> 'NUM_CHANNELS_PER_RADIO' (e320.v on fpga repository) which configures th=
+e
+>> channels of the radio, but what happens with the tx_i1, tx_q1, rx_i1 and
+>> rx_1q signals that goes to the LVDS interface with the ADC? Can they be
+>> left unconnected?  Is there another parameter that I must change to use
+>> only one channel and eliminate the 'extra' logic?
+>>
+>> Kind Regards,
+>>
+>> Maria
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 >
 
---00000000000062d45305b4dad26b
+--000000000000dc89df05b4db5e67
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Mike,=C2=A0<div><br></div><div>That seemed to do the tr=
-ick, thanks for info! At some point, can we make these steps part of the N3=
-2x getting started docs?=C2=A0</div><div><br></div><div>Also- the config ut=
-ilty makes me choose 2x2x10 A, B, or LOM. Choosing A disables the second po=
-rt on the QDA2, and B disables the first port. LOM disables both ports (exp=
-ected because it&#39;s not a MB NIC). My ideal case is using 2x N321s over =
-QSFP on the same XL710-QDA2 NIC. Have you had any luck in this configuratio=
-n?=C2=A0</div><div><br></div><div>Thanks,</div><div>Pat</div></div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Nov 23=
-, 2020 at 9:23 PM Michael Dickens &lt;<a href=3D"mailto:michael.dickens@ett=
-us.com">michael.dickens@ettus.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"auto"><div dir=3D"ltr">Hi Pat =
-- I recently verified that the N321 QAFP+ interface works with UHD 4.0 rele=
-ase. I am also using an Intel XL710 (QDA2, but that probably doesn=E2=80=99=
-t matter too much). The trick for me was using the Intel QSFP+ NIC configur=
-ation tool to set the NIC to 2x(2x10 Gb) mode. This is the setting that the=
- N321 requires, and one that the NIC provides. Once that was set then you n=
-eed to configures the host<span style=3D"color:rgb(0,0,0)">=C2=A0and USRP</=
-span>=C2=A0network interfaces as you normally would. After all of that, the=
- link worked very nicely! I hope this is useful! - MLD=C2=A0</div><div dir=
-=3D"ltr"><br><blockquote type=3D"cite">On Nov 23, 2020, at 4:44 PM, Patrick=
- Kane via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" targ=
-et=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br><br></blockquote=
-></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"=
-><div>
+<div dir=3D"ltr"><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">---------- Forwarded message ---------<br>De: <strong class=
+=3D"gmail_sendername" dir=3D"auto">Maria Mu=C3=B1oz</strong> <span dir=3D"a=
+uto">&lt;<a href=3D"mailto:mamuki92@gmail.com">mamuki92@gmail.com</a>&gt;</=
+span><br>Date: lun, 23 nov 2020 a las 10:05<br>Subject: Re: [USRP-users] FP=
+GA RFNoC Radio block with only one channel<br>To: Wade Fife &lt;<a href=3D"=
+mailto:wade.fife@ettus.com">wade.fife@ettus.com</a>&gt;<br></div><br><br><d=
+iv dir=3D"ltr"><div dir=3D"auto"><div>Hi Wade,</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">Thanks for your answer that=C2=A0helps me a lot.</di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto">I have migrated to UHD 4.0 =
+as you suggested so just a few questions to make sure I have understood how=
+ the YAML file and the tool work.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">I want to have a first image with radio, DUC, DDC and FIFO only u=
+sing one channel of the radio. As I see on the e320_rfnoc_image_core YML fi=
+le, the DDC, DUC, radio and a fifo block are instanced. And on the static c=
+onnections=C2=A0part=C2=A0of the file are all the connections for each chan=
+nel (I guess this is radio0(0) and radio0(1)). If I want to remove channel =
+1 for example, I must set=C2=A0 num ports to 1 on the instance of the DDC/D=
+UC and then remove the connections associated with the in/out_1. Is that co=
+rrect?</div><div dir=3D"auto">Should I also change num_ports on the yml rad=
+io block file?=C2=A0=C2=A0</div><div dir=3D"auto">Then, to build the image =
+I must run rfnoc_image_builder with option -y and this modified yml file, t=
+hat&#39;s all?</div><div dir=3D"auto"><br></div><div>Kind regards,</div><di=
+v><br></div><div>Maria</div><div dir=3D"auto"><br><br><div class=3D"gmail_q=
+uote" dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_attr">El vie., 20 nov. 2=
+020 16:44, Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_=
+blank">wade.fife@ettus.com</a>&gt; escribi=C3=B3:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
+ding-left:1ex"><div dir=3D"ltr"><div>Hi Maria,</div><div><br></div><div>
+I assume you&#39;re using UHD 3.15 or earlier, since you mentioned the &quo=
+t;fpga repository&quot;.
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">I have an N321 connected =
-to serial console and QSFP+ through a XL710 Intel NIC. With the default HG =
-image, I can connect through 1G and serial as expected. I updated the files=
-ystem to UHD 4.0.0.0 using mender, and the build artifact reflects that thi=
-s was successful. Then, after loading the XQ image (using 2x 10Gb lanes thr=
-ough QSFP+ port), I lose all ethernet connectivity through the 1G port SFP0=
- (expected), but I get the following output in the console window:</span></=
-p><p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-si=
-ze:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-=
-family:&quot;Segoe UI&quot;,sans-serif;color:black"><br></span></p><p class=
-=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size:11pt;fo=
-nt-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&qu=
-ot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 451.560674] nixge
-40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control off</span><=
-/p>
+I&#39;ve never tried what you&#39;re suggesting, so I don&#39;t know what c=
+hallenges you&#39;ll run into. I think changing NUM_CHANNELS_PER_RADIO will=
+ do what you want, but it will have some side effects, like removing the GP=
+IO for that channel. I think it might be safer to just change the NUM_CHANN=
+ELS that gets passed to e320_core, since I think that will remove just the =
+radio and associated DDC/DUC while leaving all the other board signals conn=
+ected. Again, I haven&#39;t tried it, so I can&#39;t say for sure.<br></div=
+><div><br></div><div>In general, these kinds of changes need to be consider=
+ed carefully, since it leaves signals undriven, which usually means they wi=
+ll be driven to 0 by default. 0 is often the right value for something that=
+&#39;s unused, but not always. There may also be software implications.<br>=
+</div><div><br></div>By the way, these kinds of changes are easier to make =
+in UHD 4.0 since it&#39;s described by a YAML file. So it&#39;s easy to say=
+ you just want one radio and to leave out the DDC/DUC, or DRAM FIFO, for ex=
+ample. The required Verilog is then generated by rfnoc_image_builder.<br><d=
+iv><br></div><div>Thanks,</div><div><br></div><div>Wade<br></div></div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, No=
+v 19, 2020 at 8:52 AM Maria Mu=C3=B1oz via USRP-users &lt;<a href=3D"mailto=
+:usrp-users@lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">usrp-user=
+s@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><div dir=3D"ltr">Hi everyone,<div><br></div><div>I&#39;m u=
+sing an USRP E320=20
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 453.800673] nixge
-40000000.ethernet sfp0: Link is Down</span></p>
+ using the RFNoC image
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 454.920676] nixge
-40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control off</span><=
-/p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 458.280672] nixge
-40000000.ethernet sfp0: Link is Down</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 459.400677] nixge
-40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control off</span><=
-/p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 462.760705] nixge
-40000000.ethernet sfp0: Link is Down</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 463.880678] nixge
-40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control off</span><=
-/p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 466.120673] nixge
-40000000.ethernet sfp0: Link is Down</span><span style=3D"font-size:10pt;fo=
-nt-family:&quot;Segoe UI&quot;,sans-serif;color:black"> </span></p><p class=
-=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size:11pt;fo=
-nt-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&qu=
-ot;Segoe UI&quot;,sans-serif;color:black"><br></span></p><p class=3D"MsoNor=
-mal" style=3D"margin:2pt 0in;line-height:normal;font-size:11pt;font-family:=
-Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&quot;Segoe U=
-I&quot;,sans-serif;color:black">uhd_usrp_probe:</span></p><div>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">=C2=A0 __________________=
-___________________________________</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">=C2=A0/</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 Device:
-N300-Series Device</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0=C2=A0=C2=A0
-_____________________________________________________</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0=C2=A0 /</sp=
-an></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 Mboard:
-ni-n3xx-31E00AC</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 dboard_0_pid: 338</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 dboard_0_serial:
-31DB406</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 dboard_1_pid: 338</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 dboard_1_serial:
-31DB407</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 eeprom_version: 3</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 fs_version:
-20200914000806</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 mender_artifact:
-v4.0.0.0_n3xx</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 mpm_sw_version:
-4.0.0.0-g90ce6062</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 pid: 16962</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 product: n320</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 rev: 7</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 rpc_connection:
-local</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 serial: 31E00AC</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 type: n3xx</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 MPM Version: 3.0</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 FPGA Version: 8.0</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 FPGA git hash:
-be53058.clean</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |</span></p=
->
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 Time sources:=C2=A0
-internal, external, gpsdo, sfp0</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 Clock sources:
-external, internal, gpsdo</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 Sensors:
-ref_locked, gps_locked, temp, fan, gps_gpgga, gps_sky, gps_time, gps_tpv</s=
-pan></p><p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;f=
-ont-size:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt=
-;font-family:&quot;Segoe UI&quot;,sans-serif;color:black"><br></span></p><p=
- class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal"><font colo=
-r=3D"#000000" face=3D"Segoe UI, sans-serif"><span style=3D"font-size:13.333=
-3px">Are there any configuration items needed to connect to the N321 throug=
-h the QSFP+ port. Note that I only see eth0, sfp0, sfp1, and int0 in /etc/n=
-etwork/interfaces.</span></font></p><p class=3D"MsoNormal" style=3D"margin:=
-2pt 0in;line-height:normal"><font color=3D"#000000" face=3D"Segoe UI, sans-=
-serif"><span style=3D"font-size:13.3333px"><br></span></font></p><p class=
-=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal"><font color=3D"#=
-000000" face=3D"Segoe UI, sans-serif"><span style=3D"font-size:13.3333px">T=
-hanks,</span></font></p><p class=3D"MsoNormal" style=3D"margin:2pt 0in;line=
--height:normal"><font color=3D"#000000" face=3D"Segoe UI, sans-serif"><span=
- style=3D"font-size:13.3333px">Pat</span></font></p>
-
-</div><p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;fon=
-t-size:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;f=
-ont-family:&quot;Segoe UI&quot;,sans-serif;color:black"><br></span></p>
-
+to implement a code that requires too much FPGA resources. I only need to u=
+se one of the channels of the USRP so I was wondering if it could be possib=
+le to eliminate the logic associated with the other channel=C2=A0to save re=
+sources on the FPGA and if there is a &#39;safe&#39; way to do that.</div><=
+div>=C2=A0I mean I have seen on the verilog source code, that there is a pa=
+rameter &#39;NUM_CHANNELS_PER_RADIO&#39; (e320.v on fpga repository) which =
+configures the channels of the radio, but what happens with the tx_i1, tx_q=
+1, rx_i1 and rx_1q signals that goes to the LVDS interface with the ADC? Ca=
+n they be left unconnected?=C2=A0 Is there another parameter that I must ch=
+ange to use only one channel and eliminate the &#39;extra&#39; logic?</div>=
+<div><br></div><div>Kind Regards,</div><div><br></div><div>Maria=C2=A0</div=
+></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer" target=3D"=
+_blank">USRP-users@lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
+mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div></div></div>
+</div>
 </div></div>
-<span>_______________________________________________</span><br><span>USRP-=
-users mailing list</span><br><span><a href=3D"mailto:USRP-users@lists.ettus=
-.com" target=3D"_blank">USRP-users@lists.ettus.com</a></span><br><span><a h=
-ref=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" =
-target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.=
-ettus.com</a></span><br></div></blockquote></div></blockquote></div>
 
---00000000000062d45305b4dad26b--
+--000000000000dc89df05b4db5e67--
 
 
---===============7664327081164749117==
+--===============0438121186531999974==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -503,5 +276,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7664327081164749117==--
+--===============0438121186531999974==--
 
