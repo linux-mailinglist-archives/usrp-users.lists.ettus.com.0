@@ -2,36 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C922C1950
-	for <lists+usrp-users@lfdr.de>; Tue, 24 Nov 2020 00:18:04 +0100 (CET)
-Received: from [::1] (port=51942 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C32F2C1AD3
+	for <lists+usrp-users@lfdr.de>; Tue, 24 Nov 2020 02:31:47 +0100 (CET)
+Received: from [::1] (port=52720 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1khL5r-0000Zb-Rc; Mon, 23 Nov 2020 18:17:59 -0500
-Received: from starfish.geekisp.com ([216.168.135.166]:2682)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <philip@balister.org>) id 1khL5n-0000RQ-5l
- for usrp-users@lists.ettus.com; Mon, 23 Nov 2020 18:17:55 -0500
-Received: (qmail 10128 invoked by uid 1003); 23 Nov 2020 23:11:10 -0000
-Received: from unknown (HELO ?192.168.11.139?)
- (philip@opensdr.com@73.251.10.143)
- by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
- 23 Nov 2020 23:11:10 -0000
-To: Robin Coxe <coxe@quanttux.com>,
- =?UTF-8?Q?S=c3=a9bastien_DI_MERCURIO?= <dimercur@insa-toulouse.fr>
-Cc: Ettus Mail List <usrp-users@lists.ettus.com>
-References: <3d725267-832c-ea0f-ae74-8040f9d0504a@insa-toulouse.fr>
- <b18a6a8d-57fe-8d67-eb21-3a4bb268c653@balister.org>
- <01853c24-f428-2970-baee-5ad822fdbdb6@insa-toulouse.fr>
- <CAKJyDkK_rL1vHpLgRwT5MNJU=UeFL2_yrVnqJZDZhJomDTTmXA@mail.gmail.com>
-Message-ID: <9cf0fc72-6698-99f8-7a4e-bbaf1b91fc8c@balister.org>
-Date: Mon, 23 Nov 2020 18:17:01 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+	id 1khNBI-0005Kh-Sw; Mon, 23 Nov 2020 20:31:44 -0500
+Received: from mail-il1-f181.google.com ([209.85.166.181]:45188)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <bistromath@gmail.com>)
+ id 1khNBE-0005Fs-Qa
+ for USRP-users@lists.ettus.com; Mon, 23 Nov 2020 20:31:40 -0500
+Received: by mail-il1-f181.google.com with SMTP id w8so17721371ilg.12
+ for <USRP-users@lists.ettus.com>; Mon, 23 Nov 2020 17:31:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=9teMb9rhVdD3sAD1b/kiQReKUVlyFFDJNuOROtQqT3I=;
+ b=XRQKRDSmWynmnK1iYOxSkxVChQ1f94Q8BEmE+Y8WtfpGC1KS+/HRgOyS0GM4htFlUh
+ 9wSBETAvW5ushvixL5GZuxZd+On2UvgazEXsXojlZotqsOxTkOguCBo4XTlmG/izmIbV
+ F1wHsK2S/ySzZpPwLq0zagou+H3/kA4Bnkf6iQH7WdUouz+cT7sMshas5A0aMTMq6Ipa
+ p5WaIX2dzT4CLrW9uecLfB70ZNaVy34SDzYpvPEXcRq0/QOwEQIAX8oy3v4tgnOy3hFa
+ ytIKzCCAqLi5KgDCMMYq6z6o62RQVE5QSBv90g4NwocbyjxGOhm4JX6ClFKzB0MFJuFI
+ BCUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=9teMb9rhVdD3sAD1b/kiQReKUVlyFFDJNuOROtQqT3I=;
+ b=eFJquboZFbLVrwVbrPjC66+pYD1FP+RAnGF5p2D/TrjAwTFMFcyFKaeOexa3iTAu3E
+ w/QnhHPyS7+4cam4Lx32viSjGI05XvTel/A03IKkXgKU25K/GwSClB+9OzMIcZRkwrHp
+ ICweM4eb5SgmEM2kQYisvlGcfmoccWTml4SKU8m59NJGBMazuprF8o0Duve4w89bukDm
+ 8FplguyNIovl+zjgU5+GP0BqDWssEW+Ll1N7VgDh9KQBNdWKC4YYm5SA4kxGGQhMmjp5
+ rCyh1FnciOgtG1oMKjSLVniS1KvCnxcxSa12EoEsoJ2U3nZVqQ6MgQW6Nh9iydwT6gsX
+ 4bUw==
+X-Gm-Message-State: AOAM532gq74gx5lqFJusPwqDNqTCxFRuRGPRGlK7YMpQOeNffW1iJsXJ
+ mBdrP2w6SJzGIvicmGcyYv0fBA0TDC69Psn1usQf4OBo+yc=
+X-Google-Smtp-Source: ABdhPJxj6h4BVa9eEF1KJaJ1fKT8hKCeESaq2bQ9oz+Ne9zwalUJFrf30R7eUNKjgxUheV+bPdkYPWb4fYq2pBj3Hf0=
+X-Received: by 2002:a92:a043:: with SMTP id b3mr2290612ilm.272.1606181459706; 
+ Mon, 23 Nov 2020 17:30:59 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAKJyDkK_rL1vHpLgRwT5MNJU=UeFL2_yrVnqJZDZhJomDTTmXA@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] USRP E100/E110 linux update
+Date: Mon, 23 Nov 2020 17:30:48 -0800
+Message-ID: <CA+JMMq-X7SQHT=rFx_x=hW4jOdjUG9wA1p=_LbqDt4G4eH=wFw@mail.gmail.com>
+To: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Subject: [USRP-users] UHD 4.0 RFNoC migration questions
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -43,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Philip Balister <philip@balister.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Nick Foster via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Nick Foster <bistromath@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4829362115628014724=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -60,64 +71,99 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMTEvMjMvMjAgNjowOSBQTSwgUm9iaW4gQ294ZSB2aWEgVVNSUC11c2VycyB3cm90ZToKPiBU
-aGVyZSBpcyBhIGxlZ2FjeSBFdHR1cyBFMTAwIGdpdGh1YiByZXBvIHRoYXQgbWF5IG9yIG1heSBu
-b3QgYmUgdXNlZnVsOgo+IGh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL2V0dHVzX29l
-CgpUaGlzIGRpcmVjdG9yeSBtaWdodCBoZWxwIHdpdGgga2VybmVsIGRyaXZlciBhcmNoZW9sb2d5
-OgoKaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvZXR0dXNfb2UvdHJlZS9tYXN0ZXIv
-cmVjaXBlcy9saW51eAoKUGhpbGlwCgo+IAo+IFRoaXMgcHJvZHVjdCBoYXMgYmVlbiBFT0wgZm9y
-ID41IHllYXJzLCBzbyBhcyBQaGlsaXAgcG9pbnRzIG91dCwgdGhlCj4gaW5zdGl0dXRpb25hbCBt
-ZW1vcnkgb2YgaXQgaXMgYmFzaWNhbGx5IG5vbi1leGlzdGVudC4KPiAKPiBPbiBNb24sIE5vdiAy
-MywgMjAyMCBhdCA1OjIyIEFNIFPDqWJhc3RpZW4gREkgTUVSQ1VSSU8gdmlhIFVTUlAtdXNlcnMg
-PAo+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiB3cm90ZToKPiAKPj4gSGkgUGhpbGlwcywK
-Pj4KPj4gdGhhbmsgeW91IGZvciB5b3VyIGFuc3dlci4gSSB3aWxsIGhhdmUgYSBsb29rIHRvIHlv
-dXIgZ2l0IHJlcG9zaXRvcnkuIEknbQo+PiBub3QgdmVyeSBnb29kIHdpdGggbGludXgga2VybmVs
-IGludHJpbnNpY3MgYnV0IEkgd2lsbCB0cnkgdG8gaGF2ZSBkcml2ZXIKPj4gd29yayB3aXRoIG5l
-d2VyIGtlcm5lbC4KPj4KPj4gSWYgSSBzdWNjZWQsIGkgd2lsbCBwb3N0IG15IHJlc3VsdHMuCj4+
-Cj4+IFRoYW5rIHlvdSAhCj4+IExlIDIzLzExLzIwMjAgw6AgMTQ6MTAsIFBoaWxpcCBCYWxpc3Rl
-ciBhIMOpY3JpdCA6Cj4+Cj4+IE9uIDExLzIzLzIwIDc6MDkgQU0sIFPDqWJhc3RpZW4gREkgTUVS
-Q1VSSU8gdmlhIFVTUlAtdXNlcnMgd3JvdGU6Cj4+Cj4+IEhpLAo+Pgo+PiBJJ3ZlIGdvdCBzZXZl
-cmFsIFVTUlAgRTEwMC9FMTEwIHdpdGggb3V0ZGF0ZWQgTGludXggYW5kIEdudXJhZGlvCj4+IHNv
-ZnR3YXJlIG9uIGl0LiBTbyBJIGRlY2lkZWQgdG8gYnVpbGQgYSBZb2N0byBpbWFnZSwgbW9yZSB1
-cC10by1kYXRlIGFuZAo+PiBzdWNjZWVkZWQgaW4gYWZ0ZXIgc2V2ZXJhbCB0cmllcy4KPj4gVGhl
-IG5ldyBpbWFnZSBib290cyBhbmQgcnVuIGEgcmVhc29uYWJsZSB1cGRhdGVkIHZlcnNpb24gb2Yg
-TGludXggYW5kCj4+IEdudXJhZGlvLgo+Pgo+PiBCdXQsIGJlY2F1c2Ugb2YgRXR0dXMgcHJvcHJp
-ZXRhcnkga2VybmVsIGRyaXZlciwgSSBjYW5ub3QgY29ubmVjdCB0bwo+PiBGUEdBIGFuZCBzbyB0
-aGUgYm9hcmQgaXMgdXNlbGVzcy4KPj4KPj4gSXQncyBhbiBvcGVuIGRyaXZlciwganVzdCBub24g
-b2YgdXMgcmVtZW1iZXIgaG93IGl0IHdvcmtzLiBJIGRpZCBmaW5kCj4+IHRoZSBjb2RlOgo+PiBo
-dHRwczovL2dpdGh1Yi5jb20vYmFsaXN0ZXIvbGludXgtb21hcC1waGlsaXAKPj4KPj4gVGhlIGxp
-bnV4IERNQSBhcmNoaXRlY3R1cmUgaGFzIGxpa2VseSBjaGFuZ2VkLCBzbyB0aGUgZHJpdmVyIHdp
-bGwgbmVlZAo+PiB3b3JrLCBidXQgdGhlIGNvZGUgaXMgb3V0IHRoZXJlLiBMZXQgbWUga25vdyBp
-ZiB5b3UgaGF2ZSBxdWVzdGlvbnMsIGl0Cj4+IHdvdWxkIGJlIGdyZWF0IHRvIHNlZSB0aGVzZSBy
-dW5uaW5nLiBJJ2xsIGFuc3dlciBhcyBiZXN0IEkgY2FuLiBJdCBoYXMKPj4gYmVlbiBsaWtlIDYt
-NyB5ZWFycyBzaW5jZSBJIGxhc3QgbG9va2VkIGF0IGl0IHRob3VnaC4KPj4KPj4gVXNpbmcgaXQg
-bGlrZSBhbiBOLXNlcmllcyBpcyBsaWtlbHkgbm90IHBvc3NpYmxlLiBUaGUgZnBnYSBpcyBjb25u
-ZWN0ZWQKPj4gdG8gdGhlIE92ZXJvIHZpYSB0aGUgR1BNQyAoR2VuZXJhbCBQdXJwb3NlIE1lbW9y
-eSBDb250cm9sbGVyKS4KPj4KPj4gUGhpbGlwCj4+Cj4+Cj4+IE15IHF1ZXN0aW9ucyBhcmU6Cj4+
-Cj4+IC0gRGlkIHNvbWVvbmUgYWNoaWV2ZSB0byBnZXQgYW4gdXBkYXRlZCBMaW51eCBiYXNlIGFu
-ZCBHbnVyYWRpbwo+PiBzb2Z0d2FyZSwgd2l0aCB3b3JraW5nIEZQR0EgY29tbXVuaWNhdGlvbnMg
-KHdoYXRldmVyIHRoZSBtZXRob2QpCj4+ICAgICAgIC0gSXMgaXQgcG9zc2libGUgdG8gZ2V0IHNv
-dXJjZSBjb2RlIG9mIEV0dHVzIGtlcm5lbCBkcml2ZXIsIGFzIHRoZQo+PiBib2FyZCBpcyBub3cg
-RW5kLW9mLWxpZmUKPj4gICAgICAgLSBJcyBpdCBwb3NzaWJsZSB0byBlbmFibGUgRXRoZXJuZXQg
-Y29tbXVuaWNhdGlvbiBwYXNzLXRocm91Z2h0bwo+PiBGUEdBLCBhIGJpdCBsaWtlIGluIE4gc2Vy
-aWVzLCBpbiBvcmRlciB0byB1c2UgaXQgb3ZlciBFdGhlcm5ldChub3QKPj4gc3RhbmRhbG9uZSkK
-Pj4KPj4gUmVnYXJkcyEKPj4KPj4gU2ViYXN0aWVuCj4+Cj4+Cj4+Cj4+Cj4+Cj4+Cj4+Cj4+Cj4+
-Cj4+IC4KPj4KPj4KPj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KPj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3RVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbWh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xp
-c3RzLmV0dHVzLmNvbQo+Pgo+PiAtLQo+PiBbaW1hZ2U6IElOU0EgVG91bG91c2VdCj4+Cj4+ICpT
-w6liYXN0aWVuIERJIE1FUkNVUklPKgo+PiAqSW5nw6luaWV1ciBkJ8OpdHVkZSBTeXN0w6htZXMg
-ZW1iYXJxdcOpcyBldCBJb1QqCj4+IETDqXBhcnRlbWVudCBHRUkKPj4gVMOpbC4gOiAwNSA2MSA1
-NSA5OCAzNAo+PiBkaW1lcmN1ckBpbnNhLXRvdWxvdXNlLmZyCj4+Cj4+IElOU0EgVG91bG91c2UK
-Pj4gMTM1IGF2ZW51ZSBkZSBSYW5ndWVpbAo+PiAzMTA3NyBUb3Vsb3VzZSBDRURFWCAwNAo+Pgo+
-PiAqd3d3Lmluc2EtdG91bG91c2UuZnIgPGh0dHA6Ly93d3cuaW5zYS10b3Vsb3VzZS5mcj4gKgo+
-PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBVU1JQ
-LXVzZXJzIG1haWxpbmcgbGlzdAo+PiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+PiBodHRw
-Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
-cy5jb20KPj4KPiAKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vy
-c19saXN0cy5ldHR1cy5jb20KPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJz
-X2xpc3RzLmV0dHVzLmNvbQo=
+--===============4829362115628014724==
+Content-Type: multipart/alternative; boundary="00000000000059c87c05b4d04314"
+
+--00000000000059c87c05b4d04314
+Content-Type: text/plain; charset="UTF-8"
+
+Just had a few q's regarding RFNoC in UHD 4.0 as I migrate my applications
+to it.
+
+
+   1. In the style of a tedious conference Q&A session, this is more of a
+   comment than a question: I noticed NoCScript is dead: great! But it sure
+   would be nice if there were something which filled the role of obviating
+   the need for explicit block controllers for simple blocks.
+   2. I noticed both the "registers" sections of the YAML definitions are
+   unused in stock UHD blocks and unlooked-for in rfnoc_blocktool's
+   templating process. I also noticed a lot of <block_name>_regs.vh
+   register definition files in the RFNoC Verilog blocks included in UHD,
+   which look suspiciously like autogenerated boilerplate. Seems like
+   something which would be reasonably straightforward (I say, having not done
+   it myself) to implement in rfnoc_blocktool. What am I missing?
+   3. I'm a little unclear on the difference between the rfnoc_chdr clock
+   and ce_clk. Some block definitions just use one, some use both. I'm
+   assuming the rfnoc_chdr clock is equivalent to the old bus_clk. Is the
+   lack of a ce_clk in the block definition just to avoid having to route
+   ce_clk to logic which doesn't require it? Is ce_clk decoupled entirely
+   from radio_clk now on X310?
+   4. Is there a plan to integrate rfnoc_modtool and rfnoc_blocktool? At
+   least within the same repository? The overlapping functionality between
+   them is confusing. It would be a huge reduction in boilerplate madness if a
+   single YAML block definition could result in both Verilog blocks and
+   coordinated C++ block controllers being generated.
+
+Thanks for all the work on this: UHD 4.0 looks like a major improvement.
+
+Nick
+
+--00000000000059c87c05b4d04314
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Just had a few q&#39;s regarding RFNoC in UHD 4.0 as =
+I migrate my applications to it.</div><div><br></div><div><ol><li>In the st=
+yle of a tedious conference Q&amp;A session, this is more of a comment than=
+ a question: I noticed NoCScript is dead: great! But it sure would be nice =
+if there were something which filled the role of obviating the need for exp=
+licit block controllers for simple blocks.<br></li><li>I noticed both the &=
+quot;<span style=3D"font-family:monospace">registers</span>&quot; sections =
+of the YAML definitions are unused in stock UHD blocks and unlooked-for in =
+<span style=3D"font-family:monospace">rfnoc_blocktool</span>&#39;s templati=
+ng process. I also noticed a lot of <font face=3D"monospace">&lt;block_name=
+&gt;_regs.vh<font face=3D"arial,sans-serif"> register definition files in t=
+he RFNoC Verilog blocks included in UHD, which look suspiciously like autog=
+enerated boilerplate. </font></font>Seems like something which would be rea=
+sonably straightforward (I say, having not done it myself) to implement in =
+<font face=3D"monospace">rfnoc_blocktool<font face=3D"arial,sans-serif">. W=
+hat am I missing?</font></font></li><li><font face=3D"monospace"><font face=
+=3D"arial,sans-serif">I&#39;m a little unclear on the difference between th=
+e <span style=3D"font-family:monospace">rfnoc_chdr</span> clock and <font f=
+ace=3D"monospace">ce_clk</font>. Some block definitions just use one, some =
+use both. I&#39;m assuming the <font face=3D"monospace">rfnoc_chdr</font> c=
+lock is equivalent to the old <font face=3D"monospace">bus_clk<font face=3D=
+"arial,sans-serif">. Is the lack of a ce_clk in the block definition just t=
+o avoid having to route <span style=3D"font-family:monospace">ce_clk</span>=
+ to logic which doesn&#39;t require it? Is <span style=3D"font-family:monos=
+pace">ce_clk</span> decoupled entirely from <span style=3D"font-family:mono=
+space">radio_clk</span> now on X310?</font></font></font></font></li><li><f=
+ont face=3D"monospace"><font face=3D"arial,sans-serif"><font face=3D"monosp=
+ace"><font face=3D"arial,sans-serif">Is there a plan to integrate <font fac=
+e=3D"monospace">rfnoc_modtool<font face=3D"arial,sans-serif"> and <font fac=
+e=3D"monospace">rfnoc_blocktool<font face=3D"arial,sans-serif">? At least w=
+ithin the same repository? The overlapping functionality between them is co=
+nfusing. It would be a huge reduction in boilerplate madness if a single YA=
+ML block definition could result in both Verilog blocks and coordinated C++=
+ block controllers being generated.<br></font></font></font></font></font><=
+/font></font></font></li></ol><div><font face=3D"arial,sans-serif">Thanks f=
+or all the work on this: UHD 4.0 looks like a major improvement.</font></di=
+v><div><font face=3D"arial,sans-serif"><br></font></div><div><font face=3D"=
+arial,sans-serif">Nick</font><br></div></div></div>
+
+--00000000000059c87c05b4d04314--
+
+
+--===============4829362115628014724==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============4829362115628014724==--
+
