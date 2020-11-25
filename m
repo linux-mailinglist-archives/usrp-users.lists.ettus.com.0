@@ -2,55 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3062C364D
-	for <lists+usrp-users@lfdr.de>; Wed, 25 Nov 2020 02:43:21 +0100 (CET)
-Received: from [::1] (port=37496 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17D6D2C366A
+	for <lists+usrp-users@lfdr.de>; Wed, 25 Nov 2020 03:04:04 +0100 (CET)
+Received: from [::1] (port=37630 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1khjq3-0003jB-Ev; Tue, 24 Nov 2020 20:43:19 -0500
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:36784)
+	id 1khkA4-0004Sj-Lh; Tue, 24 Nov 2020 21:04:00 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:44872)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1khjpz-0003d9-Rk
- for usrp-users@lists.ettus.com; Tue, 24 Nov 2020 20:43:15 -0500
-Received: by mail-ot1-f52.google.com with SMTP id y24so818373otk.3
- for <usrp-users@lists.ettus.com>; Tue, 24 Nov 2020 17:42:55 -0800 (PST)
+ (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1khkA0-0004Ml-Vw
+ for USRP-users@lists.ettus.com; Tue, 24 Nov 2020 21:03:57 -0500
+Received: by mail-ot1-f47.google.com with SMTP id f16so809834otl.11
+ for <USRP-users@lists.ettus.com>; Tue, 24 Nov 2020 18:03:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Q5HvfGItbZXAZPYJBZXWzxiqFxes4+uNf8zXgOAt5tE=;
- b=SMDCPxppSn3/WCUhwTMwBX639fGZ21SZT0Fnpfr9OuvTpxxX/jqc3m5dZJilV1OatB
- 89Qpu47oiE97kn5VXGTFAh3ngZUxlvwmo3MfDcf/1FStWUK6bP+GTafv55KblAkFZwAt
- VioTbkzWjapzrlvE73r/Pn7cRz/uPOGGP9KSoMVRIGov+XCpaj/t2XLGENBdXcr3uIdy
- MEitg+Bvk+kMOvtbC1ThSf1AJq7y+YIBFpylzNyaohIiyksZBj2Eoq04V96qLSVzN9bp
- XrmqAGJdEqvtaBplyioMG1pI6G1klhejDqTUaeZaEg6ZCas+FFUpVBwbdrC9suErhUkG
- L2wA==
+ :cc; bh=xtkR7cEd242VVLgKUHeQsy4gwd+PYC/uYQ7MxW7ZokA=;
+ b=OcG/eu6bu9uWL3tAXyeGoNEqpw0cazO5MUTEAVrFHOVvfPKDuQuQp968QhmweEZK6G
+ HgmJyCnBbeFYSBfUkTxf46BhnRmf0Rr7cbW0nXrW1Tarh48qPzW8r1GGQTMRl4wyo48t
+ SMUUsagKSYHCrVMid0eXomqxrU6nDgmX9JCHK9q82JdHK5go1yDKjUuAaSUPX3RKscvN
+ NyuUJEHKDGi6nFHbSQ+pYnn4pauoUOqLNBsKfPtFIbcQlk2AeuPz+uAlTke0/P8tBvYG
+ iiS5cciwmGS6rLuLY2kiX6/zRFL1ilV24dU77ohPOBTz/J7S7HK3SYIsXt8PuyPhc2dK
+ bzZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Q5HvfGItbZXAZPYJBZXWzxiqFxes4+uNf8zXgOAt5tE=;
- b=RW/tGXeFgUPph8hM/iwlCR5ae9h/imM4MB2ofhVb6DyPWwS0pak8mE7v6hmcQVosX4
- k7Hp1dqMCTDT/Nbf7IfaJz/qXzgIejdpR/0fKoXOEtTLfq7cJ1nJ+aHLYR2q6/53yI5Z
- yQB9ZWjbOU/UQ8I2R10GCpf/kQOCJH+gpH36UrNOm8xIjgBiCkgunGicEp/+RBPnzcf1
- QDrie8eaCdzD6l8q0g3y8Y9E30JdGUKpSIoPBz3tuWO2jAfOGWtQdsznkSaz5mN7SKMe
- vRaMa5NN44s98iGKWLe+UgdSHwrQsAzGbhACU4MY+2365Zs0TcE8l6y38xUcKdc5qPwG
- RocA==
-X-Gm-Message-State: AOAM531jyGUdI/GeIVyqXmD2WnVtvubAwmRfCI+KTxIQilQEpI0pvl7A
- AtF1Pr4smckDFOMyEqclnE6tWybVf9nABGsSyAL8oD7O
-X-Google-Smtp-Source: ABdhPJxtouZmwTX/cAaIubT1sfKAJLgEEbNKC4xvOTDE0xN1hyfL7Nhu/IEBLKY3eHukyd+ktwmI6Zl630LmsYVy274=
-X-Received: by 2002:a9d:39b7:: with SMTP id y52mr1228414otb.28.1606268555041; 
- Tue, 24 Nov 2020 17:42:35 -0800 (PST)
+ bh=xtkR7cEd242VVLgKUHeQsy4gwd+PYC/uYQ7MxW7ZokA=;
+ b=EyXd4nSR9oRfYH4PYwZ1J+ZIcOCHvUgXCLyj2Q5CVAYubWsZj61PLUoNSxddilKwpG
+ q6/SHplLuJNtxe1qSisHlUT1Qjyu+HojorXoUtgZ53zw9W3dmgj1ewFVSYwILLlw0prt
+ VnGWoInw3tvjlIT+JRrc35hGvu+POqzcfbrksGe0zI51KY/tglJucvDlIStqnVEVZOzo
+ hXlLRIz4/WWyt83H2nXpVZ0ZbM5UsPndZoF50YN05CHfePW7elb+IG4qF5R+vHCdrcI4
+ OkSpzWAna7K8nnH0o1y1bkYM/5+tismwxZGGw++wlhsQKlEHHIwvmk/xM6wVI1I+0KwF
+ z4tA==
+X-Gm-Message-State: AOAM5320UKtaPG7Ml6vekZ3JNeDnJ1yhuNQugHUNHr9AoFnzNxr+Wl9J
+ 71TD7Evv95Jht6OurXoGxVTqFVQYMgvUeWho4/3B3ZQb
+X-Google-Smtp-Source: ABdhPJyMS4I+z6q3pGlrRH/6pYzYF1gDjZT8woolL5qk35W6BgZUvPRFAdpm/F0ixGvspmXHtnzRgZQSRbCV7+6lWzY=
+X-Received: by 2002:a9d:39b7:: with SMTP id y52mr1274427otb.28.1606269796284; 
+ Tue, 24 Nov 2020 18:03:16 -0800 (PST)
 MIME-Version: 1.0
-References: <CAG16vQV0xTxQxPmFpBO_5q8Og03MWVhieY2VnBhK9UTE5fVfZw@mail.gmail.com>
- <CAFche=gpYoYXydtJkmVaGA9xA4e7u6a7R-FdQ894W0dj=2CaaA@mail.gmail.com>
- <CAG16vQUW56L2-uJnaszSdB+xq+hfn2TkJ21xe-s3yLCb3j1pPA@mail.gmail.com>
- <CAG16vQV9o_5WiD6BbDFOQn8EDYEeVoQ2c=RJa98MYeiMC4ysdg@mail.gmail.com>
-In-Reply-To: <CAG16vQV9o_5WiD6BbDFOQn8EDYEeVoQ2c=RJa98MYeiMC4ysdg@mail.gmail.com>
-Date: Tue, 24 Nov 2020 19:42:27 -0600
-Message-ID: <CAFche=jEF=s1uGmj_W=QeD-RVgg=eBaNmU7LPpQhjskZBWGzxg@mail.gmail.com>
-To: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Fwd: FPGA RFNoC Radio block with only one channel
+References: <CA+JMMq-X7SQHT=rFx_x=hW4jOdjUG9wA1p=_LbqDt4G4eH=wFw@mail.gmail.com>
+In-Reply-To: <CA+JMMq-X7SQHT=rFx_x=hW4jOdjUG9wA1p=_LbqDt4G4eH=wFw@mail.gmail.com>
+Date: Tue, 24 Nov 2020 20:03:08 -0600
+Message-ID: <CAFche=irF8Syyi1qmKGh9PoyHZRuj1_tnz=iU=WfZQko9nxEyQ@mail.gmail.com>
+To: Nick Foster <bistromath@gmail.com>
+Cc: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Subject: Re: [USRP-users] UHD 4.0 RFNoC migration questions
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -64,7 +61,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Wade Fife <wade.fife@ettus.com>
-Content-Type: multipart/mixed; boundary="===============3619331754105062666=="
+Content-Type: multipart/mixed; boundary="===============3915573665438421972=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,218 +75,137 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3619331754105062666==
-Content-Type: multipart/alternative; boundary="000000000000a3368e05b4e48a17"
+--===============3915573665438421972==
+Content-Type: multipart/alternative; boundary="0000000000009f088d05b4e4d4b2"
 
---000000000000a3368e05b4e48a17
+--0000000000009f088d05b4e4d4b2
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Yes, that's correct. There's a radio_1x64.yml you can use to get a single
-channel radio. You might consider removing the FIFO if you don't need it.
+Hi Nick,
+
+Maybe others will chime in but I'll share what I know. The intent was to
+have a new block tool that would generate Verilog and C++ templates for a
+complete block, but it wasn't completely finished for the UHD 4.0 release.
+It currently generates all the HDL, but register generation and the
+software template generation wasn't completed. That's why there's a
+"registers" section in the YAML. I'm not familiar with the plans regarding
+merging the modtool and block_tool.
+
+As for rfnoc_chdr_clk and ce_clk, you are correct. These are analogous to
+bus_clk and ce_clk in UHD 3.15 and earlier. In some cases, the clock used
+for DSP needs to be faster than rfnoc_chdr_clk, so some blocks allow you to
+use a different clock (ce_clk) for the internal DSP. In other blocks this
+isn't necessary, often because they can keep up with the full rate of
+rfnoc_chdr_clk. The name "ce_clk" in UHD 4.0 is arbitrary (you can rename
+it to whatever you want for a block) but the rfnoc_chdr_clk is required by
+each block.
+
+Thanks,
 
 Wade
 
-On Tue, Nov 24, 2020 at 8:46 AM Maria Mu=C3=B1oz via USRP-users <
+On Mon, Nov 23, 2020 at 7:31 PM Nick Foster via USRP-users <
 usrp-users@lists.ettus.com> wrote:
 
+> Just had a few q's regarding RFNoC in UHD 4.0 as I migrate my applications
+> to it.
 >
 >
-> ---------- Forwarded message ---------
-> De: Maria Mu=C3=B1oz <mamuki92@gmail.com>
-> Date: lun, 23 nov 2020 a las 10:05
-> Subject: Re: [USRP-users] FPGA RFNoC Radio block with only one channel
-> To: Wade Fife <wade.fife@ettus.com>
+>    1. In the style of a tedious conference Q&A session, this is more of a
+>    comment than a question: I noticed NoCScript is dead: great! But it sure
+>    would be nice if there were something which filled the role of obviating
+>    the need for explicit block controllers for simple blocks.
+>    2. I noticed both the "registers" sections of the YAML definitions are
+>    unused in stock UHD blocks and unlooked-for in rfnoc_blocktool's
+>    templating process. I also noticed a lot of <block_name>_regs.vh
+>    register definition files in the RFNoC Verilog blocks included in UHD,
+>    which look suspiciously like autogenerated boilerplate. Seems like
+>    something which would be reasonably straightforward (I say, having not done
+>    it myself) to implement in rfnoc_blocktool. What am I missing?
+>    3. I'm a little unclear on the difference between the rfnoc_chdr clock
+>    and ce_clk. Some block definitions just use one, some use both. I'm
+>    assuming the rfnoc_chdr clock is equivalent to the old bus_clk. Is the
+>    lack of a ce_clk in the block definition just to avoid having to route
+>    ce_clk to logic which doesn't require it? Is ce_clk decoupled entirely
+>    from radio_clk now on X310?
+>    4. Is there a plan to integrate rfnoc_modtool and rfnoc_blocktool? At
+>    least within the same repository? The overlapping functionality between
+>    them is confusing. It would be a huge reduction in boilerplate madness if a
+>    single YAML block definition could result in both Verilog blocks and
+>    coordinated C++ block controllers being generated.
 >
+> Thanks for all the work on this: UHD 4.0 looks like a major improvement.
 >
-> Hi Wade,
->
-> Thanks for your answer that helps me a lot.
->
-> I have migrated to UHD 4.0 as you suggested so just a few questions to
-> make sure I have understood how the YAML file and the tool work.
->
-> I want to have a first image with radio, DUC, DDC and FIFO only using one
-> channel of the radio. As I see on the e320_rfnoc_image_core YML file, the
-> DDC, DUC, radio and a fifo block are instanced. And on the static
-> connections part of the file are all the connections for each channel (I
-> guess this is radio0(0) and radio0(1)). If I want to remove channel 1 for
-> example, I must set  num ports to 1 on the instance of the DDC/DUC and th=
-en
-> remove the connections associated with the in/out_1. Is that correct?
-> Should I also change num_ports on the yml radio block file?
-> Then, to build the image I must run rfnoc_image_builder with option -y an=
-d
-> this modified yml file, that's all?
->
-> Kind regards,
->
-> Maria
->
->
-> El vie., 20 nov. 2020 16:44, Wade Fife <wade.fife@ettus.com> escribi=C3=
-=B3:
->
->> Hi Maria,
->>
->> I assume you're using UHD 3.15 or earlier, since you mentioned the "fpga
->> repository". I've never tried what you're suggesting, so I don't know wh=
-at
->> challenges you'll run into. I think changing NUM_CHANNELS_PER_RADIO will=
- do
->> what you want, but it will have some side effects, like removing the GPI=
-O
->> for that channel. I think it might be safer to just change the NUM_CHANN=
-ELS
->> that gets passed to e320_core, since I think that will remove just the
->> radio and associated DDC/DUC while leaving all the other board signals
->> connected. Again, I haven't tried it, so I can't say for sure.
->>
->> In general, these kinds of changes need to be considered carefully, sinc=
-e
->> it leaves signals undriven, which usually means they will be driven to 0=
- by
->> default. 0 is often the right value for something that's unused, but not
->> always. There may also be software implications.
->>
->> By the way, these kinds of changes are easier to make in UHD 4.0 since
->> it's described by a YAML file. So it's easy to say you just want one rad=
-io
->> and to leave out the DDC/DUC, or DRAM FIFO, for example. The required
->> Verilog is then generated by rfnoc_image_builder.
->>
->> Thanks,
->>
->> Wade
->>
->> On Thu, Nov 19, 2020 at 8:52 AM Maria Mu=C3=B1oz via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
->>
->>> Hi everyone,
->>>
->>> I'm using an USRP E320 using the RFNoC image to implement a code that
->>> requires too much FPGA resources. I only need to use one of the channel=
-s of
->>> the USRP so I was wondering if it could be possible to eliminate the lo=
-gic
->>> associated with the other channel to save resources on the FPGA and if
->>> there is a 'safe' way to do that.
->>>  I mean I have seen on the verilog source code, that there is a
->>> parameter 'NUM_CHANNELS_PER_RADIO' (e320.v on fpga repository) which
->>> configures the channels of the radio, but what happens with the tx_i1,
->>> tx_q1, rx_i1 and rx_1q signals that goes to the LVDS interface with the
->>> ADC? Can they be left unconnected?  Is there another parameter that I m=
-ust
->>> change to use only one channel and eliminate the 'extra' logic?
->>>
->>> Kind Regards,
->>>
->>> Maria
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->> _______________________________________________
+> Nick
+> _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
 
---000000000000a3368e05b4e48a17
+--0000000000009f088d05b4e4d4b2
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Yes, that&#39;s correct. There&#39;s a radio_1x64.yml=
- you can use to get a single channel radio. You might consider removing the=
- FIFO if you don&#39;t need it. <br></div><div><br></div><div>Wade<br></div=
-></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
->On Tue, Nov 24, 2020 at 8:46 AM Maria Mu=C3=B1oz via USRP-users &lt;<a hre=
-f=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr"><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">---------- Forwarded message ---------<br>De: <strong class=3D"gmail=
-_sendername" dir=3D"auto">Maria Mu=C3=B1oz</strong> <span dir=3D"auto">&lt;=
-<a href=3D"mailto:mamuki92@gmail.com" target=3D"_blank">mamuki92@gmail.com<=
-/a>&gt;</span><br>Date: lun, 23 nov 2020 a las 10:05<br>Subject: Re: [USRP-=
-users] FPGA RFNoC Radio block with only one channel<br>To: Wade Fife &lt;<a=
- href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com<=
-/a>&gt;<br></div><br><br><div dir=3D"ltr"><div dir=3D"auto"><div>Hi Wade,</=
-div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks for your answer th=
-at=C2=A0helps me a lot.</div><div dir=3D"auto"><br></div><div dir=3D"auto">=
-I have migrated to UHD 4.0 as you suggested so just a few questions to make=
- sure I have understood how the YAML file and the tool work.</div><div dir=
-=3D"auto"><br></div><div dir=3D"auto">I want to have a first image with rad=
-io, DUC, DDC and FIFO only using one channel of the radio. As I see on the =
-e320_rfnoc_image_core YML file, the DDC, DUC, radio and a fifo block are in=
-stanced. And on the static connections=C2=A0part=C2=A0of the file are all t=
-he connections for each channel (I guess this is radio0(0) and radio0(1)). =
-If I want to remove channel 1 for example, I must set=C2=A0 num ports to 1 =
-on the instance of the DDC/DUC and then remove the connections associated w=
-ith the in/out_1. Is that correct?</div><div dir=3D"auto">Should I also cha=
-nge num_ports on the yml radio block file?=C2=A0=C2=A0</div><div dir=3D"aut=
-o">Then, to build the image I must run rfnoc_image_builder with option -y a=
-nd this modified yml file, that&#39;s all?</div><div dir=3D"auto"><br></div=
-><div>Kind regards,</div><div><br></div><div>Maria</div><div dir=3D"auto"><=
-br><br><div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" class=3D"gm=
-ail_attr">El vie., 20 nov. 2020 16:44, Wade Fife &lt;<a href=3D"mailto:wade=
-.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; escribi=C3=
-=B3:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
-"ltr"><div>Hi Maria,</div><div><br></div><div>
-I assume you&#39;re using UHD 3.15 or earlier, since you mentioned the &quo=
-t;fpga repository&quot;.
-
-I&#39;ve never tried what you&#39;re suggesting, so I don&#39;t know what c=
-hallenges you&#39;ll run into. I think changing NUM_CHANNELS_PER_RADIO will=
- do what you want, but it will have some side effects, like removing the GP=
-IO for that channel. I think it might be safer to just change the NUM_CHANN=
-ELS that gets passed to e320_core, since I think that will remove just the =
-radio and associated DDC/DUC while leaving all the other board signals conn=
-ected. Again, I haven&#39;t tried it, so I can&#39;t say for sure.<br></div=
-><div><br></div><div>In general, these kinds of changes need to be consider=
-ed carefully, since it leaves signals undriven, which usually means they wi=
-ll be driven to 0 by default. 0 is often the right value for something that=
-&#39;s unused, but not always. There may also be software implications.<br>=
-</div><div><br></div>By the way, these kinds of changes are easier to make =
-in UHD 4.0 since it&#39;s described by a YAML file. So it&#39;s easy to say=
- you just want one radio and to leave out the DDC/DUC, or DRAM FIFO, for ex=
-ample. The required Verilog is then generated by rfnoc_image_builder.<br><d=
-iv><br></div><div>Thanks,</div><div><br></div><div>Wade<br></div></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, No=
-v 19, 2020 at 8:52 AM Maria Mu=C3=B1oz via USRP-users &lt;<a href=3D"mailto=
-:usrp-users@lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">usrp-user=
-s@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex"><div dir=3D"ltr">Hi everyone,<div><br></div><div>I&#39;m u=
-sing an USRP E320=20
-
- using the RFNoC image
-
-to implement a code that requires too much FPGA resources. I only need to u=
-se one of the channels of the USRP so I was wondering if it could be possib=
-le to eliminate the logic associated with the other channel=C2=A0to save re=
-sources on the FPGA and if there is a &#39;safe&#39; way to do that.</div><=
-div>=C2=A0I mean I have seen on the verilog source code, that there is a pa=
-rameter &#39;NUM_CHANNELS_PER_RADIO&#39; (e320.v on fpga repository) which =
-configures the channels of the radio, but what happens with the tx_i1, tx_q=
-1, rx_i1 and rx_1q signals that goes to the LVDS interface with the ADC? Ca=
-n they be left unconnected?=C2=A0 Is there another parameter that I must ch=
-ange to use only one channel and eliminate the &#39;extra&#39; logic?</div>=
-<div><br></div><div>Kind Regards,</div><div><br></div><div>Maria=C2=A0</div=
-></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer" target=3D"=
-_blank">USRP-users@lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div></div></div>
-</div>
-</div></div>
+<div dir=3D"ltr"><div>Hi Nick,</div><div><br></div><div>Maybe others will c=
+hime in but I&#39;ll share what I know. The intent was to have a new block =
+tool that would generate Verilog and C++ templates for a complete block, bu=
+t it wasn&#39;t completely finished for the UHD 4.0 release. It currently g=
+enerates all the HDL, but register generation and the software template gen=
+eration wasn&#39;t completed. That&#39;s why there&#39;s a &quot;registers&=
+quot; section in the YAML. I&#39;m not familiar with the plans regarding me=
+rging the modtool and block_tool.</div><div><br></div><div>As for rfnoc_chd=
+r_clk and ce_clk, you are correct. These are analogous to bus_clk and ce_cl=
+k in UHD 3.15 and earlier. In some cases, the clock used for DSP needs to b=
+e faster than rfnoc_chdr_clk, so some blocks allow you to use a different c=
+lock (ce_clk) for the internal DSP. In other blocks this isn&#39;t necessar=
+y, often because they can keep up with the full rate of rfnoc_chdr_clk. The=
+ name &quot;ce_clk&quot; in UHD 4.0 is arbitrary (you can rename it to what=
+ever you want for a block) but the rfnoc_chdr_clk is required by each block=
+.</div><div><br></div><div>Thanks,</div><div><br></div><div>Wade<br></div><=
+/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Mon, Nov 23, 2020 at 7:31 PM Nick Foster via USRP-users &lt;<a href=3D"ma=
+ilto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
+><div>Just had a few q&#39;s regarding RFNoC in UHD 4.0 as I migrate my app=
+lications to it.</div><div><br></div><div><ol><li>In the style of a tedious=
+ conference Q&amp;A session, this is more of a comment than a question: I n=
+oticed NoCScript is dead: great! But it sure would be nice if there were so=
+mething which filled the role of obviating the need for explicit block cont=
+rollers for simple blocks.<br></li><li>I noticed both the &quot;<span style=
+=3D"font-family:monospace">registers</span>&quot; sections of the YAML defi=
+nitions are unused in stock UHD blocks and unlooked-for in <span style=3D"f=
+ont-family:monospace">rfnoc_blocktool</span>&#39;s templating process. I al=
+so noticed a lot of <font face=3D"monospace">&lt;block_name&gt;_regs.vh<fon=
+t face=3D"arial,sans-serif"> register definition files in the RFNoC Verilog=
+ blocks included in UHD, which look suspiciously like autogenerated boilerp=
+late. </font></font>Seems like something which would be reasonably straight=
+forward (I say, having not done it myself) to implement in <font face=3D"mo=
+nospace">rfnoc_blocktool<font face=3D"arial,sans-serif">. What am I missing=
+?</font></font></li><li><font face=3D"monospace"><font face=3D"arial,sans-s=
+erif">I&#39;m a little unclear on the difference between the <span style=3D=
+"font-family:monospace">rfnoc_chdr</span> clock and <font face=3D"monospace=
+">ce_clk</font>. Some block definitions just use one, some use both. I&#39;=
+m assuming the <font face=3D"monospace">rfnoc_chdr</font> clock is equivale=
+nt to the old <font face=3D"monospace">bus_clk<font face=3D"arial,sans-seri=
+f">. Is the lack of a ce_clk in the block definition just to avoid having t=
+o route <span style=3D"font-family:monospace">ce_clk</span> to logic which =
+doesn&#39;t require it? Is <span style=3D"font-family:monospace">ce_clk</sp=
+an> decoupled entirely from <span style=3D"font-family:monospace">radio_clk=
+</span> now on X310?</font></font></font></font></li><li><font face=3D"mono=
+space"><font face=3D"arial,sans-serif"><font face=3D"monospace"><font face=
+=3D"arial,sans-serif">Is there a plan to integrate <font face=3D"monospace"=
+>rfnoc_modtool<font face=3D"arial,sans-serif"> and <font face=3D"monospace"=
+>rfnoc_blocktool<font face=3D"arial,sans-serif">? At least within the same =
+repository? The overlapping functionality between them is confusing. It wou=
+ld be a huge reduction in boilerplate madness if a single YAML block defini=
+tion could result in both Verilog blocks and coordinated C++ block controll=
+ers being generated.<br></font></font></font></font></font></font></font></=
+font></li></ol><div><font face=3D"arial,sans-serif">Thanks for all the work=
+ on this: UHD 4.0 looks like a major improvement.</font></div><div><font fa=
+ce=3D"arial,sans-serif"><br></font></div><div><font face=3D"arial,sans-seri=
+f">Nick</font><br></div></div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -299,10 +215,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000a3368e05b4e48a17--
+--0000000000009f088d05b4e4d4b2--
 
 
---===============3619331754105062666==
+--===============3915573665438421972==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -313,5 +229,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3619331754105062666==--
+--===============3915573665438421972==--
 
