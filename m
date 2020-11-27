@@ -2,74 +2,80 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 873872C6B9F
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Nov 2020 19:35:16 +0100 (CET)
-Received: from [::1] (port=34694 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 220E62C6BAD
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Nov 2020 19:40:44 +0100 (CET)
+Received: from [::1] (port=34762 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kiiaP-0003Hx-Cx; Fri, 27 Nov 2020 13:35:13 -0500
-Received: from sonic310-24.consmr.mail.ne1.yahoo.com ([66.163.186.205]:39594)
+	id 1kiifh-0003cJ-OJ; Fri, 27 Nov 2020 13:40:41 -0500
+Received: from sonic309-21.consmr.mail.ne1.yahoo.com ([66.163.184.147]:37230)
  by mm2.emwd.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
- (envelope-from <ampselectronics@yahoo.com>) id 1kiiaL-0003At-4g
- for usrp-users@lists.ettus.com; Fri, 27 Nov 2020 13:35:09 -0500
+ (envelope-from <ampselectronics@yahoo.com>) id 1kiifd-0003Td-R4
+ for usrp-users@lists.ettus.com; Fri, 27 Nov 2020 13:40:37 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1606502068; bh=C5hX5Ph4DJPYwcvQbpf/CwUyugbMzdR6j65idQY/4FM=;
+ t=1606502396; bh=jjLQ9VmjFOlZfgvE11xS38xDh6WvwGylbUQJ3vANdEc=;
  h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject;
- b=NBLu3PkhvoEl8/AznNK2nmjzGjZYf2mz12Hq63kOu4LhEu+e3uWetn2A5Mu97iyNFapyd44ZV8BbiVJJ1EKUbJlF0rUSN1UTu9UfZ4gBIyI8ft9iCB2wHcv/BPUg1E3+58sonWRIasMrECf4errBtdgOvHWtbVkN9dtsLRat7IZIzmhk24R891Y7nR2/lncwSgde3IYQSJgRVKCtjDjkGgWwSTshJChM6NiY7RJTq6Gt6z13Yd1T7zUOBGp3ygvEfUBFp+N+WgPQXpwlzLoV7Hba2487ViLteV0otHrpVMUVe2Q0NSuZWqX5E0YPPNkixjbnn9bzcVKRaqtkrHGytQ==
+ b=UwPSiWMcBwl4HF2RTb5DkJOAuViM6knTZHYypLsWhbtLWkYBxcUhqe9GC3u5Bb0s084kmixbqQ7irOQIG6BpgCUBiBm0TpQPYrGrmeWwsmN7VibRJbzFW8wL/J/vLfrS3NLAHCNhpFQmaHMlPvneGogBoj3zxFpVN0Oyq4u4UVwgq1R8kuPFm0RvVqVptUo71KAFJfe3y1Qygp1JMMssMOo4wFkzWPEjSBQqCYzCzJBCibyr7ruQQ3L7/v7TPsX7XNUPTJtHX4J8Bow7hQ5JoHgAnHY/O0sxWa9BIKmZagQkptZrgFJWzI+BIgodDLVxpqYbSGH1t8fzha+d5YS6mg==
 X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1606502068; bh=b53AgwZ14CBoXdqcoyK8hdiLQHStb20QiCwT42lsZtw=;
+ t=1606502396; bh=kZ2NsrMjMFFPOwunie2rUTp7Ru/pNe4TlVCb9tAKX96=;
  h=Date:From:To:Subject:From:Subject;
- b=th4voPKIV/fdsqzboC1tKBih8oP4cViILLN2DoL1kJb/CPmXTxngbE/1JtkfO4pg9ROljFE1htjSNg6sH0d6dru0IhJ2OIne2a7nFXg9vX1PE5ct5XKaTvQ8VeVsk1SRLjcTWguUwDVr0fTFv2zEhWQoZPyVuWEuctj7jD78Xb0H22FK7/IaDBkv3PdGh60gHaHePp669H7eJzPnz0B/BpNRfRvwqIvHLlvkDMl7v3CiC/+gPBWIc3P+J3TjgOywEYtNrbqXpR+mQXfMUNJeowH/olpo7+vkTu8ICps/APvHKCgJELKPFbTB1+wis3UIK3hctcIpSrIIsaTfC3G6sg==
-X-YMail-OSG: A2XU1U8VM1nMvx.wXtaAmn73PR6O7kLxtbtm91F5ApYZ2oLVtRoP2pthyhm_qqC
- i9IQOPs7EHwqo8cpPgnefx2DrSK0lmLepDjTb7pNMoY0gVH1q9ybIkuE8tl8oSWAJxoW481WjcKq
- vUeFdEecphcuxbSiA3yXADyje5Sn6rPlDQ.RGSvHH3Ti1zGJu4phrZ3k9qaa1ACqO0cPhiMpwZGW
- sZhip96mErR3Zt4NyD3ScN3LvHrHbrSXT9IECksCnizp_4L1eHbCtJlFhvvSooT70FEKR0ipkH7B
- oQxQeuj6yZCSE8pnGQs.MIdb5n3nOS4fDCpP1wYmKGjPkOGsP8jEQYWqoZItnGOZnrKuMSbKuoLF
- UaxqPnIJPCiApNzJ4nhMhXVUULtaP2VBatDPP0AYtWNofr_Bjq27nSXh3LnLqwupPAYZ54AgI2xI
- piJp47ePw6Zz15sRdMS4N77LmYxOzOUOW_cOypidGXi0porf_SUQyRO8RRHZXqVa.50Cq0LfcQNl
- UvRGEYza.aKe3l1tLlIz3JF1SAHyytngWzh9Wpcl1xxz4uPMy6hqJdp1GGqoL696aRr427yRxwxR
- OCxC5RwaDywtgXX_t3vOgIO7C.Eru0mDbyfF1VDcoZtoCyJMnkzk2lqAoockCx3lmcD7ttIfuldY
- 0ZR6YijKepmn6iWj1HLodant4HTBNoeL7SX2cE0y.H.Evl9YfaRcJinwn0wjy92NHcsZ1TKc_Q8V
- Wr4sAEieuqm0oWsLgrEgcRYaQD7vEIdH_89Q5505OCOsUvcbAVRpt_qDCjWzg8_UYRqz50rZZus0
- ZYpaTbP_YyWSbo7N.vczdyJetCyYdDzJt_jBYGN_Z18GgrNm804ZlELK87A0lQ6nqzPjxXjkZRpe
- bcO1JIp3ewtR7B8Tjw.viaSJOHGjv87Yo1t7vlyFj743HVngj.0GN9e902YKmN4muNC7qrK1r243
- VlLgQdmqfJa.FxhgZpMeWaWQnHkpywCuoeisWFsnFKjHrTCA5txCv_BguzOVRlHuUX3VceI7bRFP
- s8ONztdseV2E0wGn_HicyxgXK8OdbgLUFRS3A.QzC16XFk5VN16_6.Mq1TsAi_BbsfRq6KwCvv2n
- WiogpvenvX92MqLK9T1ROp7WLC2Pc_F5aHMIWmW5B93U5AFjts5Q3h2MU1z3eCaNeKPKCeVUrX6Y
- aWx6zj2sUxU5nWCJ8y7i0rQkRyEtCZ3sxuBwN3AKSfuC0mYm17Ea.a.PVIadGMC3EcxsDTvmsu1F
- bzsTBbLml94JTuB6XIOUrXuo3fbjqQxyrcObGOGP1qFZItuMn85ftElV3AK7rcVMQSOphPiuY5OG
- fDWgf_GlzwyWEeRblcX2sJXUc_xpmv8HYmh6naI_fNhKEY1jZ2cDlP4_NHIg5KtQ7xcr38lUDmlU
- TO1NSQaHBAEfUsnZyN.v46jhnmT_Z1OSzjFjB0rLgzWuTk7jAvrV.IkBPTgFFNkubiEi8iFY8GXF
- we6wJ15z0ITSDnQDDIUNhD5XY7woOjHobdZXT6KaC9xaj_LNIzWzQTZqYRq17U8z6qqmmRq85oww
- NbQUtcHhl9TIIDfPD73r6qQksdlR4XcNuIobNgf.Zbpdv0XXSqyUPu_5LiLSrCVcOaCupEjhavKH
- 2oC_HqZlQBxv1HkGfa_Gz58b9BZ0uHLFIW3hqBvPJFM5DeuQtI8uhhyk4zQjgEEoRt97G1lZe4tX
- 9kOaISaUgor0bZX6kzhcshSkCgpm8SGYoE7v3pxV6ptq44LA8gzk9JfmOb6AbZEX0DcqHMKaZPFh
- L3AH9N25ROXBZ17ppkHUeWvDkMjK58b3PRhNICbxWTg8HF72MFS70wMzMEJ1Js3JWLckNzXMU7Lj
- xWM83NKMFaQlVW1ip0P7zeVnQ5n0sNjTU5UQT_qHPp4YJzulBydYKGtl6tkDP244SpTvd37nIBPz
- NJXNpnrg_99CE_5nIL64iwvB232APgJi94jENw9svWaee2J2v40pCxzI7dewp1sdVB4gINEYxTm1
- .fgXdK0U904Ra3HIgQAn9wX5AUskjaf.SN4zZUnOAE7shXsjpX1w3Nrfoh69xYbBXoZhVY0q.dIx
- jLLXhSZ3gI0aGwemAkQ0ty0WUL1d6saJDz1qjwkIx9yp0zVgMNolqFVNJI7Rvdq9vYJ1nePNp0Dx
- bAw..h7ultOQusAxK3SW9WBuRMuH09p2zHlpwVj1oGdDBH3IYvRZgUSY_tZt1ml3qG92fNbKOWr4
- fuD83uCzPVmvMgUZpUi9t279nIvIhTJTml8TvxS5AaQmDRxzrPyaoV2PJefSKC3xukg.6yUZSwc9
- Hf9AI5f9pQaWOhM2bDiALZ63EJ.WeoEtT096zoHufiBJLGQMlShf0um3KPpJEH8cmySgBmy2OqWZ
- tLaj43jNhpaRS8JJcxciXO1SZeTKUUzWkItF.JBRXFH9_rbaQ8dgWsfF6IU9GjZKKK2ITULTFQ3N
- ElFmywdpkI8cnYQiAfzIAbRJ8rCe4ZuGCllsfzIxTXIYDHno4oOnzWbPj6dTMs3hq9inw2Ky9qMb
- aH7R_iKEMeuL1WaK8BtNXqEffATME.n7.Key390b7r9EK4icIeLHCT2H2i7HjBtFazfDZalSn8IM
- tOI1l.Pp3GEX2RvRhqVtwlFBTljpbXprV_oZAKSXjoZ.J55c9HCcnryZQ6.g-
+ b=bEb3AQjLqiKmDzzqZG0opHkCE2LOaDzG0I/5h1vDpAVBlBQmG18pWjRWjXetBnB8kRtUCHOFyA078ykm1g06fiECtntSIw0FKnYr+Pq1s/xQGOvteEVYYOIyS4rVV/zW4fz88Lhh9QtVA/6iSopiBmeZfDeqI/guEE9r6JcYA+2xVpZIZE58HEEG4pCutQz78kSjjCEckrfjAkC0INyJ0M7V4XjBwtIFCyNn7ojPGIYMad5QGmiunAApb08Mh7P5Tjsfa7iwSi4D+TAvwN/CWMRmSqha/bSZ6JH8alxoOTqj454qD17UKD2TzKtlRHpg64cRJyTufAXj4maRO2swZw==
+X-YMail-OSG: zArycGIVM1kLsCdOV10RGlfcEPPI.VF6AbeuGTSyFvaiG_41jlLpJEGBk1eLXab
+ 2UaV2ti8WuDpMLDpOj9WNxC6LznNwV4g3aKm_C7AnYI3DSymd4OMq02KAX8URv15YMjXsjkE5CiT
+ JtqJiRJaUDtKqOubp8k8XgUxQtVy_VNvst34Gf1vOxzjYjs..lWyZWkhCDNqlwpD2V_TMs56VX8x
+ Rsbj0OW_0ts75lSm9DXqagoJNA2ZEs6Tp6SseDMUNfhOBFv0MMzAc6Mjuwmruy4g0Mb4bRljY5Wm
+ rErFyZgFepSg9dGaeNA0suN3uL0iuVNULYLVRZPM9rROToznN9wPJLejC3Z05JgI_JDW.PUs9Jzr
+ AZ2YDoTuE9Nd6mnPMxKIYwwk38P0DiJfOSj3zOHpRZSzoqLZXaNr_qnPz_qu0muNbMZsuDZTBYhg
+ utkvFQ_rp8E1paMorEDvXHD_SINYjvRYSSmfXaJ8QnPDkWukltb2S584WZcL8tOlbHakf2Cf68zn
+ uJeRKXsqVyGfpG4xIOVoWHtsq4Js2L9Ptw4MVXAf7_2k8sSURNV57xuw5f6ZJzl.IkkbgGAxNdw1
+ hCvXe67Rpcq19g4a4fV_QOoCxWwWrAnuRp0ZvE7FWu08BGPUL4RMeU84EuL5vxvSQUuBUXVJCt0Z
+ sutgN8l8icmJ2uQa89v7lMBg5I9OMW3n8ALzA6RybKVNuLJ33Zfu37tgqA3KnIiaIWAkDEYuTYgi
+ WFoBHx.EuWC3SS.byIUd4U9NWMK.A6JgyTv87cvp5.XH7m6h3f3h9vxoSmYaIuUEWvIorjAKge4b
+ 7em4zP_pNNtb1Mnv2jPxXpzVumErJUdPsYozT5GBbmUg8Wlic3zlXYByh14dXraSLzZWwevbgHa1
+ qP51no9mnTzDfMymk4ahRJSTDmOp0wh1S3mvP_Uw8aZE8UBD47xz3z6ybqhtE1Zmad2JgoZqjQW4
+ IZaVGKEDFHeRFGCb095H4DOViq9kY6A5klA3to6a17iIHU6XAbKvRNlpR6NFCtpHU2mq0xzYl_KC
+ ikZ8hOjwbWT8uSzIb3mFAZSLQ701r6_An5AZd6hnQigS_tgKHFan1YDBF4j5MOSaa_zW8M_ECPwW
+ pm026exiHEeux6PUZHlUyUEhLft24EuTOXysoKxYl5n_PCzNl7dYNlAEVB0i0rOEP8kdAeBaWn97
+ KndS8gda1XmbO1Ru_PBYxtn2CkCfsNfkaYXaoTVZjwxs.9Ew451Ha9t.pEXy25jE.H7KbMg2pJVc
+ dtI1tEHzwcdBSsNYadMWR595SQ87OnkL.X9tqR9gumGggAhsPCwQrPfmndcmrYOuSNiKNe.UyKEy
+ CVzwWw6CJc686G40qiKhlfaT422I4XV_Z6toSYJ7vN.FoiygiSTrIryYmt_DRrQzTocBbuj1QMr8
+ 9AbWOrycmHXd4oWeNURNJtS6hNDq6UCZjpb7Clgf5uTq9.EjceB23yJEIcZoi2Ea4fWlWZztbVey
+ ZpizsviC6DHtc1JonufAORm575FyfHmLUAxGXfTXGbm3RlrBYFFlGKH7dOkyrwPOZmgYRWk8pLf5
+ RJl6WdrdVnrHhsWJkhf9bwW0l57jqadVej8Gz8xaMQIi.YOVrGq.5ziuVP7AJqBnQxq8IUUDbksZ
+ 2b9B2x9M2HgZPRDY9znjyhOy6vF8LxmamMdI60LDBgLOrm5EiEV8kr65SHd1sFSizMnBe6tQh8uq
+ oLb7OcGdxapofNr6o0K6XGFtMMncK9TWBvxIyTqtz_ib6odKjwf0NKOiWd0KblWmpe.zaxWQvTM_
+ C1wjXeUCsMM57S12_2UrmWcw1zDXJKtGhe1QSL78XdKtDCye6cNjXkTdrEsIRZLgfqEdg96ThKQR
+ E.unHsihGd6RY1FRPQxs6onKD6tMwxibqWfGa1fK5thrKxLrfIf.zj6Ap2.I9MQ01AQjXNCUJrGl
+ _H4F.KMPL.gYPE7T3fXo7Xmh2NEKJ3K.aCmlP38FfHxWZytEKP0vv_zozli4gU3XgCcvbYFXowZ6
+ FK_qOtlDxFUVlXCcFCyjUhWeSbaN2E8eucxkFv_4eckUCsQICGaw68bGFdy.LG5c7_YHlIufAoCs
+ .8BILoOnfppKLBJUxA5Ki9.WsHHAlucpdD_sHqfsZrUaUXYXcM89RPhyswdq12iWnMkKVwtBXFNc
+ pyTiNTFlglXQhlfud62vUNOPZ__BAN_uL7_CvCIxNnnq45Scz4.SatU8Hq94zvxfL5DyhufgBPvC
+ GLM0JKTn6TMvM0UUtlBCAb4XsCHaBcMe7nq8DkFHoATlDynBkhKdAnuGtNbA5wfEIIu3JiBvIV02
+ MGNJnaStOFB3dFjDIUc9EAjl7kiBj1O3jUSKeSAD5GUiqWos0Sp8ok9KQdHPhnXer8Ag2YLsCT_B
+ qkPFCG3UGFUqWgy0oY4CTdj16JAi_5WvP3qF2e7h_coIOAot_VvT6NmbT.YbGhKYp9LyQ7nLhnCx
+ 7m8qDalvpf2Rf62fDC_cq82bK8HogClQ1vKUyktZOs6ZxzJcYMaudD25L6YScZCBmoXblMqE4xOB
+ qsoM2HsGuz2AfvxiYmwLSlglHO8CsgySRudZWjXrdmxWj54eYYLn1PZniC49NBf5gjVCgIoEgB8b
+ a1oiTQU4OYEbDXzQgiqjcrbMjp8V2dx3RN1qDUko7GhIROkR1RC_Ao.ZZqxT62TIFT5GbLx2lnqL
+ GDAe0x0fgPJyEhbQHdZRDSm5SJ6HC63eVuHwI9luHn4Mnh20xf3HbzLGHmM.PjbPU_pGH6RCCmw0
+ lVKuxmGB18c9kAmrnrN1YzDCzoSIP_79HCuWbu_dX1AviWuYgKEJxXu6NKAkz6D2_05fIKPrG_X6
+ JyK3dzCPpIx4DB5eZpUI0kA4_D3IV6bPt8MUSOgJlHC9.q6ov_gqveUeKAAEt8VPIeKiTqNKWwcQ
+ 6OA--
 Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic310.consmr.mail.ne1.yahoo.com with HTTP; Fri, 27 Nov 2020 18:34:28 +0000
-Date: Fri, 27 Nov 2020 18:34:23 +0000 (UTC)
-To: Andrew Payne <wandrewp@gmail.com>, 
+ sonic309.consmr.mail.ne1.yahoo.com with HTTP; Fri, 27 Nov 2020 18:39:56 +0000
+Date: Fri, 27 Nov 2020 18:39:47 +0000 (UTC)
+To: aneesh patel via USRP-users <usrp-users@lists.ettus.com>, 
+ Andrew Payne <wandrewp@gmail.com>, 
  Andrew Payne via USRP-users <usrp-users@lists.ettus.com>, 
  usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <1129435812.2163671.1606502063242@mail.yahoo.com>
-In-Reply-To: <CAB50+dTqG7GiBOn=3vBMu=n5MNS-XvpJqsw_QryGkjeP=OWQkA@mail.gmail.com>
+Message-ID: <1354599131.2145920.1606502387534@mail.yahoo.com>
+In-Reply-To: <1129435812.2163671.1606502063242@mail.yahoo.com>
 References: <CAB50+dSat-OFqtA38AxNiftepxCP4d=LuxrVjbLMKOtu6q+krg@mail.gmail.com>
  <82C8BA12-2EC5-45E9-9446-1890860A8F30@gmail.com>
  <CAB50+dT2ah526Vw7gp7q0UYNw5iWA8zt0Gyx0hOhhSF5F1Lxag@mail.gmail.com>
  <CAB50+dSFc_DDhR=-dyN85vGG_utfRwhc1Dvjciv_q3K6U3_GcA@mail.gmail.com>
  <CAB50+dTqG7GiBOn=3vBMu=n5MNS-XvpJqsw_QryGkjeP=OWQkA@mail.gmail.com>
+ <1129435812.2163671.1606502063242@mail.yahoo.com>
 MIME-Version: 1.0
 X-Mailer: WebService/1.1.17111 YahooMailAndroidMobile YMobile/1.0
  (com.yahoo.mobile.client.android.mail/6.15.1; Android/11; RP1A.201105.002;
@@ -88,7 +94,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: aneesh patel via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: aneesh patel <ampselectronics@yahoo.com>
-Content-Type: multipart/mixed; boundary="===============6162139408309208774=="
+Content-Type: multipart/mixed; boundary="===============8838524826651855059=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -102,64 +108,62 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6162139408309208774==
+--===============8838524826651855059==
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_2163670_1327903896.1606502063241"
-Content-Length: 2905
+	boundary="----=_Part_2145919_521078273.1606502387532"
+Content-Length: 2564
 
-------=_Part_2163670_1327903896.1606502063241
+------=_Part_2145919_521078273.1606502387532
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-Hi Andrew,
-The MAC may be in the devicetree blobs in the boot area of the SD image.
-You will need dtcedit to decompile, edit, and recompile as needed.
+Correction as the last post was from memory/apologies.
+Package: device-tree-compiler
+executable: dtc
+Happy holidays.=C2=A0
 Amp
 
-Sent from Yahoo Mail on Android 
- 
-  On Fri, Nov 27, 2020 at 1:23 PM, Andrew Payne via USRP-users<usrp-users@lists.ettus.com> wrote:   _______________________________________________
+Sent from Yahoo Mail on Android=20
+=20
+  On Fri, Nov 27, 2020 at 1:35 PM, aneesh patel via USRP-users<usrp-users@l=
+ists.ettus.com> wrote:   _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-  
+ =20
 
-------=_Part_2163670_1327903896.1606502063241
+------=_Part_2145919_521078273.1606502387532
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div id=3D"yiv9324273831"><div id=3D"yMail_cursorElementTracker_16065019474=
-41">Hi Andrew,</div><div id=3D"yMail_cursorElementTracker_1606501961843"><b=
-r></div><div id=3D"yMail_cursorElementTracker_1606501961992">The MAC may be=
- in the devicetree blobs in the boot area of the SD image.</div><div id=3D"=
-yMail_cursorElementTracker_1606501977942"><br></div><div id=3D"yMail_cursor=
-ElementTracker_1606501978063">You will need dtcedit to decompile, edit, and=
- recompile as needed.</div><div id=3D"yMail_cursorElementTracker_1606502005=
-689"><br></div><div id=3D"yMail_cursorElementTracker_1606502005800">Amp<br =
-clear=3D"none"><br clear=3D"none"><div id=3D"yiv9324273831ymail_android_sig=
-nature"><a rel=3D"nofollow" shape=3D"rect" id=3D"yiv9324273831ymail_android=
-_signature_link" target=3D"_blank" href=3D"https://go.onelink.me/107872968?=
-pid=3DInProduct&amp;c=3DGlobal_Internal_YGrowth_AndroidEmailSig__AndroidUse=
-rs&amp;af_wl=3Dym&amp;af_sub1=3DInternal&amp;af_sub2=3DGlobal_YGrowth&amp;a=
-f_sub3=3DEmailSignature">Sent from Yahoo Mail on Android</a></div> <br clea=
-r=3D"none"> <blockquote style=3D"margin:0 0 20px 0;"> <div style=3D"font-fa=
-mily:Roboto, sans-serif;color:#6D00F6;"> <div>On Fri, Nov 27, 2020 at 1:23 =
-PM, Andrew Payne via USRP-users</div><div class=3D"yiv9324273831yqt97009721=
-09" id=3D"yiv9324273831yqtfd76309"><div>&lt;usrp-users@lists.ettus.com&gt; =
-wrote:</div> </div></div><div class=3D"yiv9324273831yqt9700972109" id=3D"yi=
-v9324273831yqtfd75655"> <div style=3D"padding:10px 0 0 20px;margin:10px 0 0=
- 0;border-left:1px solid #6D00F6;"> _______________________________________=
-________<br clear=3D"none">USRP-users mailing list<br clear=3D"none"><a rel=
-=3D"nofollow" shape=3D"rect" ymailto=3D"mailto:USRP-users@lists.ettus.com" =
-target=3D"_blank" href=3D"mailto:USRP-users@lists.ettus.com">USRP-users@lis=
-ts.ettus.com</a><br clear=3D"none"><a rel=3D"nofollow" shape=3D"rect" targe=
-t=3D"_blank" href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lis=
-ts.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettu=
-s.com</a><br clear=3D"none"> </div> </div></blockquote></div></div>
-------=_Part_2163670_1327903896.1606502063241--
+Correction as the last post was from memory/apologies.<div id=3D"yMail_curs=
+orElementTracker_1606502287017"><br></div><div id=3D"yMail_cursorElementTra=
+cker_1606502287137">Package: device-tree-compiler</div><div id=3D"yMail_cur=
+sorElementTracker_1606502325001"><br></div><div id=3D"yMail_cursorElementTr=
+acker_1606502326042">executable: dtc</div><div id=3D"yMail_cursorElementTra=
+cker_1606502342679"><br></div><div id=3D"yMail_cursorElementTracker_1606502=
+342799">Happy holidays.&nbsp;</div><div id=3D"yMail_cursorElementTracker_16=
+06502346457"><br></div><div id=3D"yMail_cursorElementTracker_1606502346596"=
+>Amp<br><br><div id=3D"ymail_android_signature"><a id=3D"ymail_android_sign=
+ature_link" href=3D"https://go.onelink.me/107872968?pid=3DInProduct&amp;c=
+=3DGlobal_Internal_YGrowth_AndroidEmailSig__AndroidUsers&amp;af_wl=3Dym&amp=
+;af_sub1=3DInternal&amp;af_sub2=3DGlobal_YGrowth&amp;af_sub3=3DEmailSignatu=
+re">Sent from Yahoo Mail on Android</a></div> <br> <blockquote style=3D"mar=
+gin: 0 0 20px 0;"> <div style=3D"font-family:Roboto, sans-serif; color:#6D0=
+0F6;"> <div>On Fri, Nov 27, 2020 at 1:35 PM, aneesh patel via USRP-users</d=
+iv><div>&lt;usrp-users@lists.ettus.com&gt; wrote:</div> </div> <div style=
+=3D"padding: 10px 0 0 20px; margin: 10px 0 0 0; border-left: 1px solid #6D0=
+0F6;"> _______________________________________________<br clear=3D"none">US=
+RP-users mailing list<br clear=3D"none"><a shape=3D"rect" ymailto=3D"mailto=
+:USRP-users@lists.ettus.com" href=3D"mailto:USRP-users@lists.ettus.com">USR=
+P-users@lists.ettus.com</a><br clear=3D"none"><a shape=3D"rect" href=3D"htt=
+p://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" target=3D"=
+_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com<=
+/a><br clear=3D"none"> </div> </blockquote></div>
+------=_Part_2145919_521078273.1606502387532--
 
 
---===============6162139408309208774==
+--===============8838524826651855059==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -170,5 +174,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6162139408309208774==--
+--===============8838524826651855059==--
 
