@@ -2,62 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10B0D2C90B4
-	for <lists+usrp-users@lfdr.de>; Mon, 30 Nov 2020 23:12:11 +0100 (CET)
-Received: from [::1] (port=41124 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E969B2C94E7
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Dec 2020 02:57:17 +0100 (CET)
+Received: from [::1] (port=42568 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kjrOx-0002er-Nh; Mon, 30 Nov 2020 17:12:07 -0500
-Received: from mail-qv1-f47.google.com ([209.85.219.47]:38761)
+	id 1kjuun-00045S-IG; Mon, 30 Nov 2020 20:57:13 -0500
+Received: from mail-yb1-f198.google.com ([209.85.219.198]:49058)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kjrOu-0002Xd-0x
- for usrp-users@lists.ettus.com; Mon, 30 Nov 2020 17:12:04 -0500
-Received: by mail-qv1-f47.google.com with SMTP id n9so6432697qvp.5
- for <usrp-users@lists.ettus.com>; Mon, 30 Nov 2020 14:11:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=RNoNJe8e+yG21uUEfuMa8qpDHFHNxxJ5zubKDueeqPQ=;
- b=mLDNme9eAWuJMnenWBtRnIp6VuAQ3ldNROVzuKxd6KI/D7sNgW4oLmSgi3Y+HPxHeQ
- yhaO44sFIhYCtfbLgYiCZtlxjgQ+dL0d7xvW2rWTQJFMsMX0gbwMIZ1MQLCvemiOWZiA
- Gtf6HN72s8mBSCUmXXbXwbWK4O4DQiAbeB+sH+Wa78aA7e49xgl+mn6k/2ypeLsQn4qN
- AuR7K1FCBCzXNR6LyD0txsvaCy7EL6dbg+xr9hFPGweh6nVRYkQT2S27HuCsFKzQeSwd
- kS61wmZGnDfjVBK4qKo+lCOF+cUwuJnZMTZW8zP20Z0RrqQX2UpaL31aBlacobADaxAr
- 0iMA==
+ (Exim 4.93) (envelope-from <mikio@dolphinsystem.jp>)
+ id 1kjuuj-00041i-6p
+ for usrp-users@lists.ettus.com; Mon, 30 Nov 2020 20:57:09 -0500
+Received: by mail-yb1-f198.google.com with SMTP id u37so519731ybi.15
+ for <usrp-users@lists.ettus.com>; Mon, 30 Nov 2020 17:56:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=dolphinsystem-jp.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=3CNebSe9QyDfYqxF39qvYMbrCn2pLdeq9yO09xuH2Zg=;
+ b=ragvrZ/fGp3rS5yxeX9RFKRzRNfPQZ0CjjOUjCFCl7/Hxwd2qdbNFuDdtvIJIKhTS/
+ 7ZpCd95z6e+qvv3jESiE0vGXg2q8I9uRRk8Hg2W0wMdlYTYgUBCa6AwrueLyPHJiAUJ6
+ UawAIexmms0xIhkKSjloYeXQsz+aEtBElWeqzTR6xgiuiXP8YoMYOUwXd3F0IHtsVRL6
+ 6ING5/HDWQ1nESGlcogOqBWHJFsaR6N5xb9qU+0MR0ZfhNBlzTA0Q1TWny7f86ly5MV2
+ S7k0tlVgml0BSbbbnNglHqpvUbJEBaCGE+of08F+rKFeuYZ2QNXaqCKhYauQEzQ8JrNb
+ +vvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=RNoNJe8e+yG21uUEfuMa8qpDHFHNxxJ5zubKDueeqPQ=;
- b=dySeI+ytc2zxJMODrRobqpx27cqWYAGt8wfoxvNjt2cBOnGNeSjX0xgVTkiVWCjjvW
- VkHG+MCkHTr5SBEjDcRqKz5qREfwN3i1U0nucNOGE83wDzNttGelTd3YAF2sCcYeNnhN
- OZHzzHlyyz1bs0KfqirJ9zQ5+Ll6tjE5FHS8ZQPrg2a2xiroVOg0r18x3Vr6wOdcuXne
- azXLX+hEOqkid2gEDMdECZUJHh51AOgj5e4O9o6k8M9ZPHfg827ouL3Ys7m2BBbx81AI
- pobmlcnzdCXu4OKTEMpXDgWcJ/7tuyY/oYw5da7f9G6vLL8S2xFJVXpUd9kHQtxPd1/M
- t2tg==
-X-Gm-Message-State: AOAM531jVRYJ69KwIsvPnx1F+slBKrNMcisbrkcdbqe3hnvUWCCukl4s
- Gh38l4QMQ9vA93Glqr7ScH9QxUwLuS0=
-X-Google-Smtp-Source: ABdhPJzvIyMkqPvHr5jMoMXzjm12VGyH/b2ChA0+w2W4+jCsamNpq3vCrdVMZtc9TqYQmeiN8vesMA==
-X-Received: by 2002:ad4:4661:: with SMTP id z1mr25164037qvv.19.1606774283199; 
- Mon, 30 Nov 2020 14:11:23 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id a13sm16134899qtj.69.2020.11.30.14.11.22
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 30 Nov 2020 14:11:22 -0800 (PST)
-Message-ID: <5FC56E0A.30506@gmail.com>
-Date: Mon, 30 Nov 2020 17:11:22 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=3CNebSe9QyDfYqxF39qvYMbrCn2pLdeq9yO09xuH2Zg=;
+ b=Vs4KMhDhL+KXXvaL6TxBY8jIh5xdo1G4stG8Owtg+kDGHl3Am1NqrCVWtWPfu22DUW
+ At8bREiOVjEski8WwGxc6kIDyd3ZB3T12Qx4+cluhySXzmDF+AWjSXbUMU8mU5Iqe8Kc
+ KojAZKQTHxHnIPg/fwxz82rJmB8hP4TQwFXzyg/OZLmvjNfR5qDUtUIJUll+i58uEcIS
+ u99tW9iOnERgjPl2jeLet0UXwxN92ZFcv2+PAQJmD7GbMCq2U2FV988ZBlBRDg8CSZ4e
+ GxssyAL4m0A5h9uaKldifSEbYS+BMF6zHb+Z6+i3FPhshIaFMqvnTZIcB56DUPvT9hJV
+ 3vKA==
+X-Gm-Message-State: AOAM531Rk0GZ22FgOz/rYpiPlzSP/Bl3ccFBBqaRWAqYEQQqRsLzI6Bv
+ S7pPELX9MYTvZdfICHpe1dFemGrSXfZ7dSRedi2P746QzLgBCQ==
+X-Google-Smtp-Source: ABdhPJyfQGRVjLZRnyh/Rdj8Qlk0PsbN6dJg2BtgbPDk31sC1OrOlL8epGAYJQ+0yXgP0P5lwKNpRW7AzSAPMEP1EIY=
+X-Received: by 2002:a25:cbd6:: with SMTP id b205mr550503ybg.141.1606787787973; 
+ Mon, 30 Nov 2020 17:56:27 -0800 (PST)
 MIME-Version: 1.0
-To: Jens Hoffmann <jens.hoffmann@mail.de>, 
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <60ffa266c935b350ffbe56c13b3df309@femto-st.fr>
- <38E03DD9-B06C-4C8B-AF7E-677D6F652915@gmail.com>
- <em7ecf7731-c223-4682-abbc-040656c0e077@dx-jh-t470p>
-In-Reply-To: <em7ecf7731-c223-4682-abbc-040656c0e077@dx-jh-t470p>
-Subject: Re: [USRP-users] GNURADIO doesn't find USRP B205
+Date: Tue, 1 Dec 2020 10:55:52 +0900
+Message-ID: <CABfZwcdtAKu7rtAu=6yLB4WJY1Amt2svXjF7zygULdLEhKZmCA@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Can I detect a wiretype of USB device?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -69,10 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Mikio Fukushima via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mikio Fukushima <mikio@dolphinsystem.jp>
+Content-Type: multipart/mixed; boundary="===============6963830912309039840=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -86,25 +72,42 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 11/30/2020 01:27 PM, Jens Hoffmann wrote:
-> uhd_images_downloader output:
->
->
-Again, you have TWO UHD library installations.    The version that Gnu 
-Radio is linked against is 3.13, whereas your
-   uhd tools, like uhd_usrp_probe are apparently 3.15.
+--===============6963830912309039840==
+Content-Type: multipart/alternative; boundary="00000000000054fac305b55d6f5a"
 
-My *guess* is that you installed Gnu Radio from the packages repository, 
-then did a UHD source install to give you UHD 3.15.
+--00000000000054fac305b55d6f5a
+Content-Type: text/plain; charset="UTF-8"
 
-Which cannot work properly.
+Hi,
 
-Unless you really need 3.15, you should uninstall it, and possibly 
-uninstall and re-install Gnu Radio and UHD from the packages repository.
+I use a B200 and B200mini.
+Often they are connected under USB 2.0 ports, it will cause some problems.
+Can I detect a wire type of USB device by UHD API?
+
+Mikio
+
+--00000000000054fac305b55d6f5a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,=C2=A0<div><br>I use a B200 and B200mini.<br>Often they=
+ are connected under USB 2.0 ports, it will cause some problems.<br>Can I d=
+etect a wire type of USB device by UHD API?<br></div><div><br></div><div>Mi=
+kio</div></div>
+
+--00000000000054fac305b55d6f5a--
 
 
+--===============6963830912309039840==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============6963830912309039840==--
+
