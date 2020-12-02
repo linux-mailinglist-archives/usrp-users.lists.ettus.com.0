@@ -2,50 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27BE62CC851
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Dec 2020 21:52:39 +0100 (CET)
-Received: from [::1] (port=47346 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1037A2CC856
+	for <lists+usrp-users@lfdr.de>; Wed,  2 Dec 2020 21:54:00 +0100 (CET)
+Received: from [::1] (port=47360 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kkZ76-00042a-Oe; Wed, 02 Dec 2020 15:52:36 -0500
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:39679)
+	id 1kkZ8N-0004JY-Od; Wed, 02 Dec 2020 15:53:55 -0500
+Received: from mail-qk1-f176.google.com ([209.85.222.176]:42695)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kkZ73-0003xN-8L
- for usrp-users@lists.ettus.com; Wed, 02 Dec 2020 15:52:33 -0500
-Received: by mail-oi1-f170.google.com with SMTP id f11so3063586oij.6
- for <usrp-users@lists.ettus.com>; Wed, 02 Dec 2020 12:52:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=EWDDcdSYSQutCG060bPRNhGlMl6JpHyqHL0GG/kpRsM=;
- b=ZfJEbPTTE4kVg0gMUiCoP8MNyWFLV8FZS1MfLvnxFTK8b1agsmPOTQEouw846zoJ2m
- JewFCLSD+6CVUs1XzRCDmEyacpm5d0rODSodgiqfVFS6pv59CRB9QXoq4d2jefcXG7Pz
- u+XYusZ267WRbvb+jKKXMXyVeNm4LlVB2EvUz2flVa/4qB+tpH4O9BHwpx127ep9guWR
- 6YXmTNHvm116vGMvGvMOwimzSKwyy2ECE3E6nA5619k4KV4uf6kxkGzxdtff4EvCXR7d
- /ZcxzJ15kj5aWnhbhAW7uFICfJyDdroxoIdZ/MWGl9KXaPoQXMfSJhP94WIt4xpwXQNQ
- wDAQ==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kkZ8J-0004Do-91
+ for USRP-users@lists.ettus.com; Wed, 02 Dec 2020 15:53:51 -0500
+Received: by mail-qk1-f176.google.com with SMTP id z188so65847qke.9
+ for <USRP-users@lists.ettus.com>; Wed, 02 Dec 2020 12:53:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=pLHTfqYm1GZqna5EBe0FklX3Y7EDabmg+O1h4ogqAik=;
+ b=qCEw+cEBKp8sPyeMU8U8ralmyEcmX+rDGhiUhaCcoUuHmaIC+T6KqwSTME/rr4izFA
+ 2vfkEJ27ZCnOnryuPyNK9Ip3T5/bfnN9rkoEI3YAgw+WoXtrlGxQckANjpEgjUCE9QOA
+ dUj8h1E5apZpw8gcxv1czvw/moYz/GSCb25rQIEgQtX3RBY6rqnZ49JBqNSjfcYYkmyo
+ kMRPkvFV+HNfaGoLXmCydt22Rb/j0oXu0rQIWrqyESyInhzxTlsqRft3QEMrhWBwg3+N
+ O9EaboDZFdqFcpA+KaCUqZmU9Sq2vjnQCaqInCEpfOAqJV+F4kyV2Ouz8/8Pv/3hacNU
+ wRlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=EWDDcdSYSQutCG060bPRNhGlMl6JpHyqHL0GG/kpRsM=;
- b=pPv6bRPTKaX3XkBUfnyXMz7m2BgxDy2GvnJuDXPLoODNTwRpSNxr1D9W3pjVRo3eAC
- ro+v9VjjS7g8sl/iED1IQWKTUQKNWjyyGdjx19iDF0NGoP+qKAjY+BhY2I7BCGhxRJZw
- krOCObJT6KtUppLbtmu4r1NXUsfPoj/bmIuJiPK5ttvgryJttshemgIgAPe3JzBjkE0h
- XSMFjoEzEfbmkABserANCgHjWPh93QuK2+Ba8o8xstxLzbYSYKs4Yudl+E+5Utf/4ICZ
- FreVoSecqLqr8YiqqpyiZ3Xhqa6omNVdNIs45DE8lyxq7qWjDweKHK7UtlQVtsx9ktnf
- 9Ajw==
-X-Gm-Message-State: AOAM530iE0zijt8ZVZBoBafRbQHFkVkvLFX7zLyHqV0c8+e4SpNuvs4u
- mFkk93PPNBUMq9F+gXkV7H0XT2ShBa1qnw+lt1cjQg==
-X-Google-Smtp-Source: ABdhPJxu+t3H079TIMX9piM+UHXy7M7uao8nZjrKni1ijtxxsa3RcfqBgXfVBDAYTCETAiokFTM7AP33FdKZTfMSjOc=
-X-Received: by 2002:a54:4d8f:: with SMTP id y15mr3028416oix.150.1606942312248; 
- Wed, 02 Dec 2020 12:51:52 -0800 (PST)
-MIME-Version: 1.0
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=pLHTfqYm1GZqna5EBe0FklX3Y7EDabmg+O1h4ogqAik=;
+ b=V7sFRAeGgmOHVnsHPckK+aBYHEfXsKWZbYbFD6+1numDBy+ZJq0MQ10kF1hB6cMNzz
+ y3P6iadoZCSdfgWyxCXa+8N9BUOIBsZKIq1WXjk3Fu6DjqJS/PBV/tZfNZPKnzwJL3jy
+ vMSwGj0F5vADvyokTp/hcUMeZiEJMPIxZmABOAi1Fu6By4ywLvHOq+3gEIxIo6jZVgoM
+ 0lVzrdapmY0E1VrIYpJgraqu8QnqT5cV9YPr0lwVv7x0jyKYWkcOFpCcyJ51OLPA1d4v
+ cNxYgd8fCFNGY15rcxlVPYxU6o46uQqawtdZlBHI6Wot6E3/hRi3hrU+JNu/DRhpui1W
+ zmXw==
+X-Gm-Message-State: AOAM532R1q9jJkqWHMRilru4uQ/PrZBilurGXpEygY8vwZ10jBnaFvOa
+ qLb7PuXlvfFKrb3VNToCSHGv40nnEP8=
+X-Google-Smtp-Source: ABdhPJydthIXvDlqsWf4+41d74SviHvOz9W7TClF66jQOkjzwLLeL3UP65/bBrEYN/PcgA9tZuKxkg==
+X-Received: by 2002:ae9:edcb:: with SMTP id c194mr4519682qkg.46.1606942390359; 
+ Wed, 02 Dec 2020 12:53:10 -0800 (PST)
+Received: from [192.168.2.130]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.gmail.com with ESMTPSA id b3sm2776928qte.85.2020.12.02.12.53.09
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 02 Dec 2020 12:53:09 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Wed, 2 Dec 2020 15:53:09 -0500
+Message-Id: <65F19A76-03A4-40A7-AC2F-F47293EBC3EF@gmail.com>
 References: <CAHRiTbmiFK9H9vF98TRJDbwXtzyk4f-rdUP3K+zNinAcq0k4mw@mail.gmail.com>
+Cc: USRP-users@lists.ettus.com
 In-Reply-To: <CAHRiTbmiFK9H9vF98TRJDbwXtzyk4f-rdUP3K+zNinAcq0k4mw@mail.gmail.com>
-Date: Wed, 2 Dec 2020 15:51:41 -0500
-Message-ID: <CAB__hTTNQOcx=RT3WFZ_Cr=LyqzNdaszKHdU_=Mr4P0Ogf9QFg@mail.gmail.com>
 To: Carlo Venier <venier.carlo@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
+X-Mailer: iPhone Mail (18B92)
 Subject: Re: [USRP-users] Questions regarding tx_waveforms
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -58,9 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============7904209060226582008=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,95 +83,26 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7904209060226582008==
-Content-Type: multipart/alternative; boundary="000000000000b29bfd05b5816915"
-
---000000000000b29bfd05b5816915
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Carlo,
-Your questions are about 2 calibrations: DC offset (affects DC component)
-and I/Q gain/phase calibration (affects mirrored spectra).  My
-understanding is that the B200 calibrations are handled automatically such
-that there is nothing to do from "tx_waveforms" or even from direct UHD API
-calls.  So, I can't think of anything you can do to reduce these
-artifacts.  Can you provide a picture of the spectrum you are seeing or
-perhaps comment on the dBc levels of the DC component and mirrored spectra?
-Rob
-
-On Wed, Dec 2, 2020 at 1:48 PM Carlo Venier via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi,
->
-> I have a few questions regarding tx_waveforms script.
-> I'm using an USRP B200mini.
->
-> How can I delete (or reduce) the DC component when using tx_waveform?
->
-> When I set --freq=f0, specifying --lo_offset=(df0), how do I remove (or
-> reduce) the mirrored replica at (f0+2*f0) that is generated? Do you have
-> any advice to suggest?
->
-> Thank you in advance,
->
-> Carlo
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000b29bfd05b5816915
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Carlo,<div>Your questions are about 2 =
-calibrations: DC offset (affects DC component) and I/Q gain/phase calibrati=
-on (affects mirrored spectra).=C2=A0 My understanding is that the B200 cali=
-brations are handled automatically such that there is nothing to do from &q=
-uot;tx_waveforms&quot; or even from direct UHD API calls.=C2=A0 So, I can&#=
-39;t think of anything you can do to reduce these artifacts.=C2=A0 Can you =
-provide a picture of the spectrum you are seeing or perhaps comment on the =
-dBc levels of the DC component and mirrored spectra?</div><div>Rob</div></d=
-iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Wed, Dec 2, 2020 at 1:48 PM Carlo Venier via USRP-users &lt;<a href=3D"mail=
-to:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">=
-Hi,<div dir=3D"auto"><br></div><div dir=3D"auto">I have a few questions reg=
-arding tx_waveforms script.=C2=A0</div><div dir=3D"auto">I&#39;m using an U=
-SRP B200mini.</div><div dir=3D"auto"><br></div><div dir=3D"auto">How can I =
-delete (or reduce) the DC component when using tx_waveform?</div><div dir=
-=3D"auto"><br></div><div dir=3D"auto">When I set --freq=3Df0, specifying --=
-lo_offset=3D(df0), how do I remove (or reduce) the mirrored replica at (f0+=
-2*f0) that is generated? Do you have any advice to suggest?=C2=A0</div><div=
- dir=3D"auto"><br></div><div dir=3D"auto">Thank you in advance,=C2=A0</div>=
-<div dir=3D"auto"><br></div><div dir=3D"auto">Carlo</div><div dir=3D"auto">=
-<br></div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-
---000000000000b29bfd05b5816915--
-
-
---===============7904209060226582008==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7904209060226582008==--
-
+VHJ5IHJlZHVjaW5nIHRoZSBiYXNlYmFuZCBzaWduYWwgbWFnbml0dWRlIGFuZCBSRiBnYWlu4oCU
+ZG9lcyB0aGF0IHJlZHVjZSB0aGUgdW53YW50ZWQgaGFybW9uaWMgY29udGVudD8KCldoYXQgb2Zm
+c2V0IHZhbHVlIGFyZSB5b3UgdXNpbmc/IEkgdHlwaWNhbGx5IHVzZSBhIHZhbHVlIHRoYXQgaXMg
+YSBiaXQgbW9yZSB0aGFuIGhhbGYgbXkgYXBwbGljYXRpb24gYmFuZHdpZHRoLgoKU29tZSBBbW91
+bnQgb2YgdW53YW50ZWQgbWl4aW5nIGFuZCBkaXN0b3J0aW9uIHByb2R1Y3RzIGFyZSAqaW5ldml0
+YWJsZSogd2l0aCBhbnkgZ2VuZXJhbCBwdXJwb3NlIHRyYW5zbWl0IGNoYWluLCBhbmQgdGhlIHVz
+dWFsIHN0cmF0ZWd5IGluIHB1cnBvc2UtYnVpbHQgcmFkaW9zIGlzIHRoZSB1c2Ugb2Ygb3V0cHV0
+IGZpbHRlcnMuIAoKU2VudCBmcm9tIG15IGlQaG9uZQoKPiBPbiBEZWMgMiwgMjAyMCwgYXQgMTo0
+OCBQTSwgQ2FybG8gVmVuaWVyIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbT4gd3JvdGU6Cj4gCj4g77u/Cj4gSGksCj4gCj4gSSBoYXZlIGEgZmV3IHF1ZXN0aW9ucyBy
+ZWdhcmRpbmcgdHhfd2F2ZWZvcm1zIHNjcmlwdC4gCj4gSSdtIHVzaW5nIGFuIFVTUlAgQjIwMG1p
+bmkuCj4gCj4gSG93IGNhbiBJIGRlbGV0ZSAob3IgcmVkdWNlKSB0aGUgREMgY29tcG9uZW50IHdo
+ZW4gdXNpbmcgdHhfd2F2ZWZvcm0/Cj4gCj4gV2hlbiBJIHNldCAtLWZyZXE9ZjAsIHNwZWNpZnlp
+bmcgLS1sb19vZmZzZXQ9KGRmMCksIGhvdyBkbyBJIHJlbW92ZSAob3IgcmVkdWNlKSB0aGUgbWly
+cm9yZWQgcmVwbGljYSBhdCAoZjArMipmMCkgdGhhdCBpcyBnZW5lcmF0ZWQ/IERvIHlvdSBoYXZl
+IGFueSBhZHZpY2UgdG8gc3VnZ2VzdD8gCj4gCj4gVGhhbmsgeW91IGluIGFkdmFuY2UsIAo+IAo+
+IENhcmxvCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+Cj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
+dHMuZXR0dXMuY29tCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpo
+dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
+dHR1cy5jb20K
