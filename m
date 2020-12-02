@@ -2,54 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 772822CB859
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Dec 2020 10:16:51 +0100 (CET)
-Received: from [::1] (port=42298 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B84B2CC5D2
+	for <lists+usrp-users@lfdr.de>; Wed,  2 Dec 2020 19:48:33 +0100 (CET)
+Received: from [::1] (port=46504 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kkOFk-0000US-MK; Wed, 02 Dec 2020 04:16:48 -0500
-Received: from mail-yb1-f200.google.com ([209.85.219.200]:33125)
+	id 1kkXAz-0003Zb-2W; Wed, 02 Dec 2020 13:48:29 -0500
+Received: from mail-ej1-f49.google.com ([209.85.218.49]:43775)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <mikio@dolphinsystem.jp>)
- id 1kkOFg-0000MS-KR
- for usrp-users@lists.ettus.com; Wed, 02 Dec 2020 04:16:44 -0500
-Received: by mail-yb1-f200.google.com with SMTP id z3so1068151ybc.0
- for <usrp-users@lists.ettus.com>; Wed, 02 Dec 2020 01:16:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=dolphinsystem-jp.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=IZ0/TxDFp0eJi3OpMSxdPSvf9MS8SAHdPvG1a3LOkVc=;
- b=NaBDgOmYiJ+HrEbzfCTTRFniPCfUbt1k4S3/Wiz6IxsTXGVBuBla6geHHHT8aOpYct
- 9hDFlNTivxXPwlzGWPohNfqjWT0G7QTdxz4HtZx76P8BUihaKhSArI1saJtMiVQFRJt7
- Z1TWn3Q3txYzmVRxeZlZEtDsLVQXMQPoVRIO4VR9Nx/PFXeR9lkYb6B/GyNiRpU75Kkg
- grAfAfjbuRMzy7gUFgEKSWwSmL/2SLnbmsdfGqDMoa3GmQ8eRu9N1B4GHz/hWaSvL2ir
- 6H24253MROYRIEkp+iNETOmoEodu3RWbyVC2XVXupdRdHyCPGJBBpcWQxn73jXQZaW5j
- DAfA==
+ (Exim 4.93) (envelope-from <venier.carlo@gmail.com>)
+ id 1kkXAu-0003Ul-Vl
+ for usrp-users@lists.ettus.com; Wed, 02 Dec 2020 13:48:25 -0500
+Received: by mail-ej1-f49.google.com with SMTP id jx16so5909942ejb.10
+ for <usrp-users@lists.ettus.com>; Wed, 02 Dec 2020 10:48:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=FOafUdBVdzqrHKupyR8Z3PTrlkdFQhrftlGeLOCLACE=;
+ b=HQOBpk9DzLw4sQbMnRGVv2Aqdgr3HVu1nTmdbgebYR9T6V720GG/yfEO94aT7ExWjf
+ tusRnK/jXWT/wBhSjA+kF1rmehpR5cBIexYWAnSdCEJ7wwo7SSu8wr+7quKYL53Ix3j1
+ 4oKyyO7tf0oj7ULsStRer7mGJAqw9Qyce/4waTv491jgX1hy4jkGz940zdmGog/qD/q+
+ u9dU0n6dyzzkYefQ6tm6oE3r3Vl9Ra2Hk+V6HFofccXk05ZmuOejc0Seau2BKzjX2kiK
+ Cb0209+wiXmqZ8HIh8ayOEmULxrz/dyxbsZ+g5t9MU6GiDK1qtwb6mZlCgV/xYEdKrQU
+ NtqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=IZ0/TxDFp0eJi3OpMSxdPSvf9MS8SAHdPvG1a3LOkVc=;
- b=KpIqMRkh9honnn8a691kXFPBLdH62iJC8rKyOJzZhHJN2WuDja6SBjXIT61NUMqY3N
- JHMJkZlgXJScOvPH7Zp6zzaTTQBjEiVdKbY16dRhet6egXPLyHVpnRlhbPy/M+w8PawH
- zgfR5Y9mvUWxOxDqMjxRP1vLLzm0uycHswk959/ZPFtqBNZ0MGMQ8UqtVAtl5KwFl+2v
- x4jkskIF0Wf/9dkVhmVyJU39EogvoaJ181znIRYKfzvW7sHFFCd7KrlOgyhCBVz3yzBZ
- o6+9Rxu7RymJpxp9dbMW3VrlsI+D4+IsrdtP3ZISZD5twRGCGLAN2uWaVKN3OCogWLng
- 8BrA==
-X-Gm-Message-State: AOAM5303yE129kQilvcz4PhPsgKnmOeGSo5ViEs19uqZoC6WDcEiSFKC
- 32q/YCnBajX1+pU81EX/FW0JKtniOpFJuIF+fnKlOQ==
-X-Google-Smtp-Source: ABdhPJzApqGRpBNckSWAtbO9DL4h1RU0T+dzh+gtoezql54BfWoaIwh+ch/pmWrc0eSHLCha4ksT37HOzkS965lBvi4=
-X-Received: by 2002:a25:cad7:: with SMTP id a206mr1828241ybg.418.1606900563965; 
- Wed, 02 Dec 2020 01:16:03 -0800 (PST)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=FOafUdBVdzqrHKupyR8Z3PTrlkdFQhrftlGeLOCLACE=;
+ b=PQkotY3VVamYzrmZafTDRT+HwMfI7vmOuAlA+jZolkvXCGsHGh5yho8B3FyGbsfotE
+ syED9GsRIEpTIUzvL1VvEa1qVdLQ+1nvU1G1omxYZeQ3OnkqDW+7VyqvrQi8fpvXza4c
+ cxAIUInqM5eq5ZN/B5E/nTJoROTZ87c+8qHmrhY4wYHt6orowYX8MaGrLVPzBDiCx+jf
+ N7XBoMrb/o1VVcebQBKTP53kNnYFVNrJQW+OuJGXPM7nqDJCOGh8ceQ/uoH358XmFMeQ
+ QoaAMXVLGqKEGBKjzabeQgD7dzIDfQvhK33v8l/p54Lkc53jv5fJhv400aN/ZntqtDdC
+ iq7w==
+X-Gm-Message-State: AOAM532EY0mA4ZVEnwirVVzmuZUly6/bH7wepzh+xzYxEs5Dk7tPxMnw
+ oWlglrqW8R2+B1woZH0zPo82FEdWkH9+xIrr5zJNKzqA
+X-Google-Smtp-Source: ABdhPJw3f1wv6hvTcyOfr2DBEL6Hx3aH7G7Q1BilxUzoFcYxupIfEKZeuMjwVpEmD4dLfVRSofS+Z5usaaxnidvimog=
+X-Received: by 2002:a17:906:12cf:: with SMTP id
+ l15mr1102994ejb.540.1606934863375; 
+ Wed, 02 Dec 2020 10:47:43 -0800 (PST)
 MIME-Version: 1.0
-References: <CABfZwcdtAKu7rtAu=6yLB4WJY1Amt2svXjF7zygULdLEhKZmCA@mail.gmail.com>
- <aba9b85d-e604-1fb0-b305-c3f5e7ec840b@ettus.com>
-In-Reply-To: <aba9b85d-e604-1fb0-b305-c3f5e7ec840b@ettus.com>
-Date: Wed, 2 Dec 2020 18:15:29 +0900
-Message-ID: <CABfZwcdR3+GS2ED95E6TGmn32UuLo+ZytgLQTaG1R109XEDszw@mail.gmail.com>
-To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Can I detect a wiretype of USB device?
+Date: Wed, 2 Dec 2020 19:47:30 +0100
+Message-ID: <CAHRiTbmiFK9H9vF98TRJDbwXtzyk4f-rdUP3K+zNinAcq0k4mw@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Questions regarding tx_waveforms
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,9 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mikio Fukushima via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mikio Fukushima <mikio@dolphinsystem.jp>
-Content-Type: multipart/mixed; boundary="===============6740359587137562651=="
+From: Carlo Venier via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Carlo Venier <venier.carlo@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7527653588933779473=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,56 +72,46 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6740359587137562651==
-Content-Type: multipart/alternative; boundary="0000000000004e127d05b577b113"
+--===============7527653588933779473==
+Content-Type: multipart/alternative; boundary="000000000000b5725a05b57fadb2"
 
---0000000000004e127d05b577b113
+--000000000000b5725a05b57fadb2
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Marcus,
-Thank you for your mail.
+Hi,
 
-I done based on your information as follows.
+I have a few questions regarding tx_waveforms script.
+I'm using an USRP B200mini.
 
->> code here <<
+How can I delete (or reduce) the DC component when using tx_waveform?
 
-uhd::usrp::multi_usrp::sptr usrp = uhd::usrp::multi_usrp::make(args);
+When I set --freq=f0, specifying --lo_offset=(df0), how do I remove (or
+reduce) the mirrored replica at (f0+2*f0) that is generated? Do you have
+any advice to suggest?
 
-string devicename =
-usrp->get_device()->get_tree()->access<string>("/mboards/0/name").get();
-double maxrate =
-usrp->get_device()->get_tree()->access<double>("/mboards/0/link_max_rate").get();
-if((devicename == "B200" or devicename == "B200mini") and maxrate <
-500000000)
-{
+Thank you in advance,
 
-}
+Carlo
 
->> code end <<
-
-Thank you.
-
---0000000000004e127d05b577b113
+--000000000000b5725a05b57fadb2
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Marcus,<div>Thank you for your mail.</=
-div><div><br></div><div>I done based on your information as follows.<br></d=
-iv><div><br></div><div>&gt;&gt; code here &lt;&lt;</div><div><br></div><div=
->uhd::usrp::multi_usrp::sptr usrp =3D uhd::usrp::multi_usrp::make(args);<br=
-></div><div><br></div><div>string devicename =3D usrp-&gt;get_device()-&gt;=
-get_tree()-&gt;access&lt;string&gt;(&quot;/mboards/0/name&quot;).get();<br>=
-double maxrate =3D usrp-&gt;get_device()-&gt;get_tree()-&gt;access&lt;doubl=
-e&gt;(&quot;/mboards/0/link_max_rate&quot;).get();<br>if((devicename =3D=3D=
- &quot;B200&quot; or devicename =3D=3D &quot;B200mini&quot;) and maxrate &l=
-t; 500000000)<br>{</div><div><br></div><div>}</div><div><div><br></div><div=
->&gt;&gt; code end &lt;&lt;</div></div><div><br></div><div>Thank you.</div>=
-<div><br></div></div></div>
+<div dir=3D"auto">Hi,<div dir=3D"auto"><br></div><div dir=3D"auto">I have a=
+ few questions regarding tx_waveforms script.=C2=A0</div><div dir=3D"auto">=
+I&#39;m using an USRP B200mini.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">How can I delete (or reduce) the DC component when using tx_wavef=
+orm?</div><div dir=3D"auto"><br></div><div dir=3D"auto">When I set --freq=
+=3Df0, specifying --lo_offset=3D(df0), how do I remove (or reduce) the mirr=
+ored replica at (f0+2*f0) that is generated? Do you have any advice to sugg=
+est?=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thank you in =
+advance,=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Carlo</di=
+v><div dir=3D"auto"><br></div></div>
 
---0000000000004e127d05b577b113--
+--000000000000b5725a05b57fadb2--
 
 
---===============6740359587137562651==
+--===============7527653588933779473==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -137,5 +122,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6740359587137562651==--
+--===============7527653588933779473==--
 
