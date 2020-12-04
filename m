@@ -2,36 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 667102CF4D6
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Dec 2020 20:35:19 +0100 (CET)
-Received: from [::1] (port=38124 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18D702CF5D0
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Dec 2020 21:47:53 +0100 (CET)
+Received: from [::1] (port=38588 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1klGrM-00072Z-Iv; Fri, 04 Dec 2020 14:35:16 -0500
-Received: from starfish.geekisp.com ([216.168.135.166]:40310)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <philip@balister.org>) id 1klGrI-0006vq-Ax
- for usrp-users@lists.ettus.com; Fri, 04 Dec 2020 14:35:12 -0500
-Received: (qmail 11936 invoked by uid 1003); 4 Dec 2020 19:28:21 -0000
-Received: from unknown (HELO ?192.168.11.139?)
- (philip@opensdr.com@73.251.10.143)
- by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
- 4 Dec 2020 19:28:21 -0000
-To: Ben Magistro <koncept1@gmail.com>
-Cc: USRP list <usrp-users@lists.ettus.com>
-References: <CAKx8PBiYjS+iH+ZnPKKm2yhGHe3qWmVXZW=aXzgLRqVHZSwg_w@mail.gmail.com>
- <258c1b45-3f6c-b278-a5f6-47f08e4e3d8c@balister.org>
- <CAKx8PBhdgm0VYZQfHDUTOJZUbZfR8CWSiKORw1DV0j2BLs+rRQ@mail.gmail.com>
- <34beec6d-a910-557e-c3fe-8e8589748f14@balister.org>
- <CAKx8PBgF0XH6V7ZfEjLQ++30wPer_tP1jQDdCQCvQx7uPigTHw@mail.gmail.com>
-Message-ID: <942341c7-6d0f-bd0c-1b9f-29fe0a5a6580@balister.org>
-Date: Fri, 4 Dec 2020 14:34:30 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+	id 1klHzZ-0002Qz-D8; Fri, 04 Dec 2020 15:47:49 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:40486)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1klHzV-0002Ky-3H
+ for usrp-users@lists.ettus.com; Fri, 04 Dec 2020 15:47:45 -0500
+Received: by mail-oi1-f169.google.com with SMTP id p126so7633123oif.7
+ for <usrp-users@lists.ettus.com>; Fri, 04 Dec 2020 12:47:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=r1ytMYCQHTmHws+BAvNKZ5si+RJfwqs/iIwhhZ4ikAg=;
+ b=LPI5YZJJcNdblaBB6Avz6xUsetfrv5CqNErd9nHjwpNdMV/LeGKqV9/qvMqo+Sozeu
+ VMFW9wv0jI1BhdT0VczyObfvZoKIW2xndUHwSstDmqXesaFBDQ3XQT/Ly/A4B6Eq0u4y
+ W+RIPvJ7vTS3S2OkoujYJln1QWecX5W4w0k4MnilIzF1tLoIMAS3wET+XJ6ccERPxgWo
+ EdCR90+eZvQDZgtxkkrLRxy6q6ygCqTl5gqgCKTVESFxE09sKgMJosc6sbgBJB39wys2
+ H/iGSsWVgIG4sdETbe31HRBPWQYIG9QN1bhMYhYzgNg3A2sLah7gzaRe9w8omeaJiDI9
+ ivTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=r1ytMYCQHTmHws+BAvNKZ5si+RJfwqs/iIwhhZ4ikAg=;
+ b=WO+xcgRJjGyfzGs5o+Jns8HWw3lW30+zifHKfk28xR77B1hkq2NhCTxzieZCE9/Wm/
+ kLTXsktxzX23xD/ZhnlweL8aFaRkul4UeH/OtNEiC5P51qGPzu7p1/Qg6KtAazXKd4+D
+ HAgxHplwrc8bQR1OHxACaafpwqzQSNDQqGuI8eGBxQKTtNhWLX58kVgtBWl8dd0UYdfm
+ Kx0K3+VLZLKg0LNe+Mb+lTKYIaduO9bTFqYAgzN2823pIQrnSpVOhXk7Aq3Okx1C8sTS
+ JvUG2h5WCdMGAUvMYbnh17hAkfz3vsUzrRNS2Caeqp1fdwMrC2lV+eIXtPqvGvKctIzJ
+ 7YCg==
+X-Gm-Message-State: AOAM531gkKizyywveJ8hpYA9FEVjbckTxDoZ285nwBSLLrCQsbKKLe9c
+ 4DbI3KWxeTJTJIABF/XXz3oj9IpgG+vOfxrIT0PQ3+mnXLc=
+X-Google-Smtp-Source: ABdhPJyCKYBAqjbIW+1eB5E1Nj8Zsb1w1rj6iCD0WxE/B0fQ9wcoUsWtsZMEGIJ0Q6nYLBCvcdnzt8ZwwUNpC4EWT2k=
+X-Received: by 2002:aca:5ec2:: with SMTP id s185mr4475704oib.33.1607114824223; 
+ Fri, 04 Dec 2020 12:47:04 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAKx8PBgF0XH6V7ZfEjLQ++30wPer_tP1jQDdCQCvQx7uPigTHw@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [USRP-users] Building Debug FS Image
+References: <CACDReSxO=0GoV5V07cjZt2N=BTGOifrs758xHS+snj7bQTXzGQ@mail.gmail.com>
+In-Reply-To: <CACDReSxO=0GoV5V07cjZt2N=BTGOifrs758xHS+snj7bQTXzGQ@mail.gmail.com>
+Date: Fri, 4 Dec 2020 15:46:53 -0500
+Message-ID: <CAB__hTSMYb6R7hQXg7Cju1ocFjMmkZ8EDGs24diez2Bndb-wBQ@mail.gmail.com>
+To: Ofer Saferman <ofer@navigicom.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Using GPS disciplining on E310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -43,10 +58,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Philip Balister <philip@balister.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============8434075988650869183=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -60,155 +74,116 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 12/4/20 10:52 AM, Ben Magistro via USRP-users wrote:
-> How do you handle uboot?  I've managed to get an ext4 rootfs (haven't tried
-> adding debug yet, just trying to get to a known point to start from) and
-> cheated by overwriting an existing partition on a drive (not a viable long
-> term solution in my mind).  Yes this is a zeus build, only thing I knew of
-> on the meta-sdr side that was using a gr3.8 release and I have seen your
-> additional question (
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-December/063288.html
-> ).
-> 
-> Below is what I'm using as a bblayers.
-> 
-> Appreciate your assistance and patience while I'm figuring this out.
+--===============8434075988650869183==
+Content-Type: multipart/alternative; boundary="000000000000365ca105b5a994f1"
 
-Try adding:
+--000000000000365ca105b5a994f1
+Content-Type: text/plain; charset="UTF-8"
 
-WKS_FILE="sdimage-8G.wks"
-IMAGE_FSTYPES += "wic.gz wic.bmap"
+Hi Ofer,
+Here is my understanding
+- The E310 can sync to a PPS signal (either external input or obtained from
+GPS).  From this PPS, the E310 derives the 10MHz ref signal and uses that
+as ref for LO signal.  So, there will be lots of phase variation between
+the LOs in all of your E310 devices even though they will all be trying to
+stay in sync with a 1 pulse-per-second signal.
+- Regarding your time synchronization question, there are examples of
+setting the E310 clock (using set_time_next_pps, I think) to match the GPS
+clock.  Thus, all of your E310s could have the same time.  But, how do you
+plan to control all of your E310s when you want the transmit to turn on?
+Will you have an SSH session to each of them?
+Rob
 
-to local.conf. This should get you files in tmp.../deploy/images/machine
-that end in wic.gz and wic.bmap. You can use bmaptool to write them
-directly to the SD card.
+On Fri, Dec 4, 2020 at 2:28 PM Ofer Saferman via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-Philip
-
-> 
-> 
-> # POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
-> # changes incompatibly
-> POKY_BBLAYERS_CONF_VERSION = "2"
-> 
-> BBPATH = "${TOPDIR}"
-> BBFILES ?= ""
-> 
-> #  alt for poky
-> #  /home/user/oe-zeus/sources/openembedded-core/meta
-> BBLAYERS ?= " \
->   /home/user/oe-zeus/sources/poky/meta \
->   /home/user/oe-zeus/sources/poky/meta-poky \
->   /home/user/oe-zeus/sources/meta-openembedded/meta-oe \
->   /home/user/oe-zeus/sources/meta-openembedded/meta-python \
->   /home/user/oe-zeus/sources/meta-openembedded/meta-filesystems \
->   /home/user/oe-zeus/sources/meta-openembedded/meta-networking \
->   /home/user/oe-zeus/sources/meta-security/meta-tpm \
->   /home/user/oe-zeus/sources/meta-ettus/meta-ettus-core \
->   /home/user/oe-zeus/sources/meta-ettus/meta-alchemy \
->   /home/user/oe-zeus/sources/meta-ettus/meta-e31x \
->   /home/user/oe-zeus/sources/meta-sdr \
->   /home/user/oe-zeus/sources/meta-qt5 \
->   "
-> 
-> On Fri, Nov 20, 2020 at 11:04 AM Philip Balister <philip@balister.org>
-> wrote:
-> 
->> The quick answer is switch the bsp layer from
->>
->> meta-e31x-mender
->>
->> to meta-e31x
->>
->> and see what happens. I find I ahve to fiddle a lot with the ettus
->> builds, so it does help to know OpenEmbedded/Yocto.
->>
->> Anyone know the status of the clock speed issue I reported a while back?
->> A quick scan of metta-ettus shows no updates since Sep 13.
->>
->> Philip
->>
->> On 11/20/20 10:44 AM, Ben Magistro via USRP-users wrote:
->>> I'm open to that idea but am not familiar with openembedded/yocto/mender
->> or
->>> what that process would look like (and the little bit of googling hasn't
->>> shed enough light yet) so I fall back to the tools that I have found and
->>> that is the ettus docker container with oe-build (
->>> https://github.com/EttusResearch/ettus-docker/tree/master/oe-build) and
->> the
->>> instructions there.  As far as I know I only need the sdimg, but this
->> goes
->>> back to not being familiar with the build process so I could be off base.
->>> Looking at the `setup_build_env.sh` script, mender seems to be tied in
->> both
->>> as a layer and what the image may inherit from.  I don't know if it is as
->>> simple as removing the references to mender in that file and calling
->> build
->>> or if that will break the resulting image (technically already broken
->> since
->>> it segfaults for me -- libfftw see
->>>
->> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-November/063062.html
->> )
->>> but I'd like to know I'm not introducing new problems at the same time I
->> am
->>> trying to resolve my first problem.
->>>
->>> Ben
->>>
->>> On Thu, Nov 19, 2020 at 5:22 PM Philip Balister <philip@balister.org>
->> wrote:
->>>
->>>> Build without mender?
->>>>
->>>> Philip
->>>>
->>>> On 11/19/20 4:51 PM, Ben Magistro via USRP-users wrote:
->>>>> I've been trying to rebuild meta-ettus (in this case -v4.0.0.0) with
->>>> debug
->>>>> enabled but am hitting an issue with image size being larger than an
->> 8GB
->>>> sd
->>>>> card and can't seem to get past that.  It says I should increase
->>>>> `MENDER_STORAGE_TOTAL_SIZE_MB` if the actual size is larger but
->>>> increasing
->>>>> this in `local.conf` this seems to have no effect.  I am using the
->> ettus
->>>>> docker image for oe-builder with the command
->>>>> `./meta-ettus/contrib/build_imgs_package.sh e310_sg3 v4.0.0.0`.  For
->> the
->>>>> debug portion I've added a few lines to `build/conf/local.conf` to add
->>>> the
->>>>> packages.  Anyone know how to increase the total storage size so that
->> it
->>>>> can build the image?
->>>>>
->>>>> Thanks in advance.
->>>>>
->>>>>
->>>>> _______________________________________________
->>>>> USRP-users mailing list
->>>>> USRP-users@lists.ettus.com
->>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>
->>>>
->>>
->>>
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>
-> 
-> 
-> _______________________________________________
+> Hello,
+> I would like to synchronize several E310 devices.
+> It is my understanding that the only way to do that is by connecting a GPS
+> antenna and performing disciplining to a derived 1-PPS signal.
+> I have a few questions to help me better understand how to make it work:
+> 1. Does GPS disciplining achieve frequency lock between devices or phase
+> lock?
+> 2. How to start transmitting at the exact moment on all synchronized
+> devices? Can the unit clock be synchronized to GPS clock? and then just
+> start the transmission with some delay from unit clock on all devices? Can
+> someone share the relevant C commands to perform the time synchronization
+> to GPS clock or point to a relevant code example?
+>
+> Thanks,
+> Ofer Saferman
+>
+>
+> --
+> This message has been scanned for viruses and
+> dangerous content by *MailScanner* <http://www.mailscanner.info/>, and is
+> believed to be clean. _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> 
+>
+
+--000000000000365ca105b5a994f1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hi Ofer,<div>Here is my understanding</di=
+v><div>- The E310 can sync to a PPS signal (either external input or obtain=
+ed from GPS).=C2=A0 From this PPS, the E310 derives the 10MHz ref signal an=
+d uses that as ref for LO signal.=C2=A0 So, there will be lots of phase var=
+iation between the LOs in all of your E310 devices even though they will al=
+l be trying to stay in sync with a 1 pulse-per-second signal.</div><div>- R=
+egarding your time synchronization question, there are examples of setting =
+the E310 clock (using set_time_next_pps, I think) to match the GPS clock.=
+=C2=A0 Thus, all of your E310s could have the same time.=C2=A0 But, how do =
+you plan to control all of your E310s when you want the transmit to turn on=
+?=C2=A0 Will you have an SSH session to each of them?=C2=A0</div><div>Rob</=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Fri, Dec 4, 2020 at 2:28 PM Ofer Saferman via USRP-users &lt;<a href=
+=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr"><div>Hello,</div><div>I would like to synchronize several E310 dev=
+ices.</div><div>It is my understanding that the only way to do that is by c=
+onnecting a GPS antenna and performing disciplining to a derived 1-PPS sign=
+al.</div><div>I have a few questions to help me better understand how to ma=
+ke it work:</div><div>1. Does GPS disciplining achieve frequency lock betwe=
+en devices or phase lock?</div><div>2. How to start transmitting at the exa=
+ct moment on all synchronized devices? Can the unit clock be synchronized t=
+o GPS clock? and then just start the transmission with some delay from unit=
+ clock on all devices? Can someone share the relevant C commands to perform=
+ the time synchronization to GPS clock or point to a relevant code example?=
+</div><div><br></div><div>Thanks,</div><div>Ofer Saferman<br></div><div><br=
+></div></div>
+<br>--=20
+<br>This message has been scanned for viruses and
+<br>dangerous content by
+<a href=3D"http://www.mailscanner.info/" target=3D"_blank"><b>MailScanner</=
+b></a>, and is
+<br>believed to be clean.
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+
+--000000000000365ca105b5a994f1--
+
+
+--===============8434075988650869183==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============8434075988650869183==--
+
