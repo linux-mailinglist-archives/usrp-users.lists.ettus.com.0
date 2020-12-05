@@ -2,59 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EDDB2CF6FE
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Dec 2020 23:42:22 +0100 (CET)
-Received: from [::1] (port=39426 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AA9B2CF8A9
+	for <lists+usrp-users@lfdr.de>; Sat,  5 Dec 2020 02:37:48 +0100 (CET)
+Received: from [::1] (port=40824 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1klJmO-0000qr-2R; Fri, 04 Dec 2020 17:42:20 -0500
-Received: from mail-qv1-f43.google.com ([209.85.219.43]:38551)
+	id 1klMW7-0004Dh-R6; Fri, 04 Dec 2020 20:37:43 -0500
+Received: from mail-il1-f180.google.com ([209.85.166.180]:34543)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) id 1klJmK-0000id-CJ
- for usrp-users@lists.ettus.com; Fri, 04 Dec 2020 17:42:16 -0500
-Received: by mail-qv1-f43.google.com with SMTP id n9so3610299qvp.5
- for <usrp-users@lists.ettus.com>; Fri, 04 Dec 2020 14:41:56 -0800 (PST)
+ (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
+ id 1klMW3-0003xu-1G
+ for usrp-users@lists.ettus.com; Fri, 04 Dec 2020 20:37:39 -0500
+Received: by mail-il1-f180.google.com with SMTP id x15so6945602ilq.1
+ for <usrp-users@lists.ettus.com>; Fri, 04 Dec 2020 17:37:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=virginia-edu.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:organization:in-reply-to
- :references:mime-version;
- bh=Wn0Ttogu1xCEhe5qR2mipAuoqgTsNl0UR0o/u2EgTyI=;
- b=NcQbfHYvMh05UmSlg4ScBqzefEgt/0Nxl/T9xcCdndfbB7l2NuNUGfnZrZOCbLKhu/
- zrb+n/SX6j92BMxrM5YXrW3Yj65V8Y/jW2B4OD99pyVt/EgsOyR0NhwKuORK4d+PHjbF
- Qb0F3j3PrvQGXSvQg3fxNhtxtmvufcNbtKBSKw3kJBSymkXZsRyUetcajwFPxHtgnaVn
- qOeAwUZwHML2GRyzFsy+krKxcbX/YtIqrzvXRtSckB73GioNfXY0nPbyE2pYGDHUCgLw
- R1gX8eU5MD6SqTmpBAnzQM4S0g8cdjNc3QTP2L81jC//4N5TG/ovfUHtPLCSP3xEEhxS
- K1mQ==
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=content-transfer-encoding:mime-version:subject:from:in-reply-to
+ :date:cc:message-id:references:to;
+ bh=FNQ6G5hZ1WnqpOu/gk6otejxLQSbH+TfyhLLWuGJSDs=;
+ b=o19hZEDKMKUNeuA2vpgyBiLndRUmlmN101Xcr9VPFljcF+UNJMPeaJUaGs9vGC1eB8
+ q/AIafvFngXnRew+AHYqf+j4X+QAUzHQbjKtltfOfBbtnTJ/M1C8VdHo7ZRY0NeDy0uR
+ UTc+2CZLUe8qbgctWoWayfBBPqMN6mzgGkn1TU2lCPTsnoMNJCDUezWH6MGxrCvnQw7+
+ TydhqUyA5tUSyehIdtxHP+ddC/whEJpETWMN/felpZSh0iZGh+052EDFsVvl/0uYqBC5
+ Ep3UrChddecpq52N6Hz6+CK60caE1WhdJMgtUv39szdzhHmPZl4VVNlxs7lYs62YQ4D4
+ XkMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:organization
- :in-reply-to:references:mime-version;
- bh=Wn0Ttogu1xCEhe5qR2mipAuoqgTsNl0UR0o/u2EgTyI=;
- b=OU/DIfehUBhyeVdNUUs6wCN/RmeHhzgAxxGb2l58/x3wCkVkQi/dONRtDtfFO4sta5
- ghv/Qtoua0Y0XgwegUcF4KlxDrrID40+SIXPYPoJHgpFmZ4EIXGmiao6oO+4S6PIj8iq
- LMjTBIkkoI8B3GFKRdX5LFGFmvJEEFSqFaJpu+B1ec0VYWUhkl4JazQq4nSk2jmrNT9S
- ZQAHUjwK+tqH1yuiUGTvKTOedVbHz5h/bZWh3hV8NaWkVCSzMNhNnf+yugZU93wcBWqw
- dl9AQLKCta2Qk5N1Jmr2/yGiD5OrtchhwBL8/moKZp8Oec2/mmhiFcduubCvkfiuKFRl
- bsCA==
-X-Gm-Message-State: AOAM531hGlJT077r0++N7q1UqeCbu0MVHrrBslVE/NQFWivDVSanjaIw
- yASnUjPucjr6+ueD87w2vybvpPY9/6VZ8A==
-X-Google-Smtp-Source: ABdhPJxRo9WNLL8jCQY6aa9oi0qXETcE+E10tQt0fV8trWk9UDXxR5aX8ntxmNgnIcIy5X09vGm+ww==
-X-Received: by 2002:a05:6214:54f:: with SMTP id
- ci15mr7998845qvb.49.1607121695519; 
- Fri, 04 Dec 2020 14:41:35 -0800 (PST)
-Received: from terra.localnet (c-73-40-68-102.hsd1.va.comcast.net.
- [73.40.68.102])
- by smtp.gmail.com with ESMTPSA id f8sm5968664qtp.91.2020.12.04.14.41.34
- for <usrp-users@lists.ettus.com>
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Dec 2020 14:41:34 -0800 (PST)
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Date: Fri, 04 Dec 2020 17:41:33 -0500
-Message-ID: <6188590.6ma6Ngl4jg@terra>
-Organization: University of Virginia
-In-Reply-To: <230168bd80dc452d94d4bcc0d781b940@gtri.gatech.edu>
-References: <230168bd80dc452d94d4bcc0d781b940@gtri.gatech.edu>
-MIME-Version: 1.0
+ h=x-gm-message-state:content-transfer-encoding:mime-version:subject
+ :from:in-reply-to:date:cc:message-id:references:to;
+ bh=FNQ6G5hZ1WnqpOu/gk6otejxLQSbH+TfyhLLWuGJSDs=;
+ b=JM9NV1/+d479NhidyZSRIcp/FNOPj3qkisWJe0bjATCyDf5DLeTsBL4d1T14kenF9n
+ Gg9f2DOTOdnAw1lLepq8CRDwYs3XbVu2I+W79rfDEU8kM2ohxfAw9pj3JnuJbawftHfW
+ lzSNDw1ApVDphYJ2em/L/kBw9QmH0TNOuH/E+KQojwAtulMvT4OrWn5Qae2S2i5IhuRU
+ 33KSJfVYq32OQbuORFe36mDf78Lv3ifgsE97N4c8deKqSVXRY9Byi6B5KdVfczxdXd/Y
+ +GfJtwRnxlqi+eACJVw7f8YPcXb9JVKVz5ybq32lELxGN0Mo4YEBnItA/j5pHCaXBoA/
+ E2kA==
+X-Gm-Message-State: AOAM532f9kekh/TCLum2cbcfvjBGXA7aCgNbqGkSE2HKCDbi2ZCQM0cO
+ ZXv8kPfTc2PtTQd9geFkyuphI2Iz
+X-Google-Smtp-Source: ABdhPJzrPT0UHEmXSHMZY1aDG4oFk2PKojpHrDZTk3ippCTOYbpnHK+GvFjnfhBeTHhofZgt7XycRg==
+X-Received: by 2002:a92:d8c3:: with SMTP id l3mr9663749ilo.295.1607132217430; 
+ Fri, 04 Dec 2020 17:36:57 -0800 (PST)
+Received: from [192.168.10.159] (c-73-247-35-187.hsd1.in.comcast.net.
+ [73.247.35.187])
+ by smtp.gmail.com with ESMTPSA id t21sm2637942ild.86.2020.12.04.17.36.56
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 04 Dec 2020 17:36:56 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+In-Reply-To: <6188590.6ma6Ngl4jg@terra>
+Date: Fri, 4 Dec 2020 20:36:55 -0500
+Cc: usrp-users@lists.ettus.com
+Message-Id: <796DFA46-11DB-40C8-B36F-785190E5B7B5@ettus.com>
+References: <6188590.6ma6Ngl4jg@terra>
+To: Dustin Widmann <dw2zq@virginia.edu>
+X-Mailer: iPhone Mail (18B92)
 Subject: Re: [USRP-users] power-cycle after remote reflash image
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -67,9 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Dustin Widmann via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Dustin Widmann <dw2zq@virginia.edu>
-Content-Type: multipart/mixed; boundary="===============1386558283341929867=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Content-Type: multipart/mixed; boundary="===============6854942497796289064=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,113 +83,125 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1386558283341929867==
-Content-Type: multipart/signed; boundary="nextPart3780316.rTliiFetWk"; micalg="pgp-sha256"; protocol="application/pgp-signature"
 
---nextPart3780316.rTliiFetWk
-Content-Type: multipart/alternative; boundary="nextPart2320695.zqD5CEItkf"; protected-headers="v1"
-Content-Transfer-Encoding: 7Bit
-From: Dustin Widmann <dw2zq@virginia.edu>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Cc: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
-Subject: Re: [USRP-users] power-cycle after remote reflash image
-Date: Fri, 04 Dec 2020 17:41:25 -0500
-Message-ID: <6188590.6ma6Ngl4jg@terra>
-Organization: University of Virginia
-In-Reply-To: <230168bd80dc452d94d4bcc0d781b940@gtri.gatech.edu>
-References: <230168bd80dc452d94d4bcc0d781b940@gtri.gatech.edu>
-
-This is a multi-part message in MIME format.
-
---nextPart2320695.zqD5CEItkf
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-
-Hi Jeff,
-
-I have been meaning to look into this as well, because I have some need of this myself. I 
-believe I've found something that might do the trick in the usrp-users archives, but I 
-haven't had a chance to test it yet. 
-
-http://ettus.80997.x6.nabble.com/USRP-users-X310-software-reset-revisted-td10183.html[1] 
-
-Dustin
-
-On Friday, December 4, 2020 5:19:04 PM EST Hodges, Jeff via USRP-users wrote:
+--===============6854942497796289064==
+Content-Type: multipart/alternative; boundary=Apple-Mail-0D0FE44C-F93F-478B-BB89-05E225099CE4
+Content-Transfer-Encoding: 7bit
 
 
-I have a lab set-up where I remotely run uhd_image_loader on my X310, but then I need to 
-power-cycle the device in order for the new image to be used.
+--Apple-Mail-0D0FE44C-F93F-478B-BB89-05E225099CE4
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+Try this UHD-provided utility: https://github.com/EttusResearch/uhd/blob/mas=
+ter/host/utils/x300_reset.py
 
-Does the uhd driver have a command that will do this? or can this be done by the aux IO or 
-JTAG? or do I need to buy a remote power switch?
+Guessing it ends up doing similarly to what Nate mentioned. Worth a try! - M=
+LD=20
 
+> On Dec 4, 2020, at 5:42 PM, Dustin Widmann via USRP-users <usrp-users@list=
+s.ettus.com> wrote:
+>=20
+> =EF=BB=BF
+> Hi Jeff,
+>=20
+> I have been meaning to look into this as well, because I have some need of=
+ this myself. I believe I've found something that might do the trick in the u=
+srp-users archives, but I haven't had a chance to test it yet.
+>=20
+> http://ettus.80997.x6.nabble.com/USRP-users-X310-software-reset-revisted-t=
+d10183.html=20
+>=20
+> Dustin
+>=20
+> On Friday, December 4, 2020 5:19:04 PM EST Hodges, Jeff via USRP-users wro=
+te:
+> =20
+>=20
+> I have a lab set-up where I remotely run uhd_image_loader on my X310, but t=
+hen I need to power-cycle the device in order for the new image to be used.
+>=20
+>=20
+>=20
+> Does the uhd driver have a command that will do this? or can this be done b=
+y the aux IO or JTAG? or do I need to buy a remote power switch?
+>=20
+> =20
+>=20
+>=20
+>=20
+> Jeff
+>=20
+> =20
+>=20
+>=20
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
+--Apple-Mail-0D0FE44C-F93F-478B-BB89-05E225099CE4
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div dir=3D"ltr">Try this UHD-provided util=
+ity:&nbsp;<a href=3D"https://github.com/EttusResearch/uhd/blob/master/host/u=
+tils/x300_reset.py">https://github.com/EttusResearch/uhd/blob/master/host/ut=
+ils/x300_reset.py</a></div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Guess=
+ing it ends up doing similarly to what Nate mentioned. Worth a try! - MLD&nb=
+sp;</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Dec 4, 2020, at 5=
+:42 PM, Dustin Widmann via USRP-users &lt;usrp-users@lists.ettus.com&gt; wro=
+te:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=
+=BB=BF
 
-Jeff
+<meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF-8">
 
-
-
-
-
---------
-[1] http://ettus.80997.x6.nabble.com/USRP-users-X310-software-reset-revisted-td10183.html
-
---nextPart2320695.zqD5CEItkf
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/html; charset="us-ascii"
-
-<html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-</head>
-<body><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Hi Jeff,</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">I have been meaning to look into this as well, because I have some need of this myself. I believe I've found something that might do the trick in the usrp-users archives, but I haven't had a chance to test it yet. </p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;"><a href="http://ettus.80997.x6.nabble.com/USRP-users-X310-software-reset-revisted-td10183.html">http://ettus.80997.x6.nabble.com/USRP-users-X310-software-reset-revisted-td10183.html</a>&nbsp;</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Dustin</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">On Friday, December 4, 2020 5:19:04 PM EST Hodges, Jeff via USRP-users wrote:</p>
+<p style=3D"margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Hi J=
+eff,</p>
+<br><p style=3D"margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">=
+I have been meaning to look into this as well, because I have some need of t=
+his myself. I believe I've found something that might do the trick in the us=
+rp-users archives, but I haven't had a chance to test it yet. </p>
+<br><p style=3D"margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">=
+<a href=3D"http://ettus.80997.x6.nabble.com/USRP-users-X310-software-reset-r=
+evisted-td10183.html">http://ettus.80997.x6.nabble.com/USRP-users-X310-softw=
+are-reset-revisted-td10183.html</a>&nbsp;</p>
+<br><p style=3D"margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">=
+Dustin</p>
+<br><p style=3D"margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">=
+On Friday, December 4, 2020 5:19:04 PM EST Hodges, Jeff via USRP-users wrote=
+:</p>
 <p>&nbsp;</p>
-<p style="margin-top:12;margin-bottom:12;margin-left:40;margin-right:40;">I have a lab set-up where I remotely run uhd_image_loader on my X310, but then I need to power-cycle the device in order for the new image to be used.</p>
-<p style="margin-top:12;margin-bottom:12;margin-left:40;margin-right:40;"><br /></p>
-<p style="margin-top:12;margin-bottom:12;margin-left:40;margin-right:40;">Does the uhd driver have a command that will do this? or can this be done by the aux IO or JTAG? or do I need to buy a remote power switch?</p>
+<p style=3D"margin-top:12;margin-bottom:12;margin-left:40;margin-right:40;">=
+I have a lab set-up where I remotely run uhd_image_loader on my X310, but th=
+en I need to power-cycle the device in order for the new image to be used.</=
+p>
+<p style=3D"margin-top:12;margin-bottom:12;margin-left:40;margin-right:40;">=
+<br></p>
+<p style=3D"margin-top:12;margin-bottom:12;margin-left:40;margin-right:40;">=
+Does the uhd driver have a command that will do this? or can this be done by=
+ the aux IO or JTAG? or do I need to buy a remote power switch?</p>
 <p>&nbsp;</p>
-<p style="margin-top:12;margin-bottom:12;margin-left:40;margin-right:40;"><br /></p>
-<p style="margin-top:12;margin-bottom:12;margin-left:40;margin-right:40;">Jeff</p>
+<p style=3D"margin-top:12;margin-bottom:12;margin-left:40;margin-right:40;">=
+<br></p>
+<p style=3D"margin-top:12;margin-bottom:12;margin-left:40;margin-right:40;">=
+Jeff</p>
 <p>&nbsp;</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;"><br /></p>
-</body>
-</html>
---nextPart2320695.zqD5CEItkf--
+<p style=3D"margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;"><br>=
+</p>
 
---nextPart3780316.rTliiFetWk
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
+>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
+r></div></blockquote></body></html>=
 
------BEGIN PGP SIGNATURE-----
-
-iQGzBAABCAAdFiEEDP6vCQH/R1JrFNrohXBr6kJTBrUFAl/KuxUACgkQhXBr6kJT
-BrVoxgv/TSL9ACBt/hYtsS1gbxJPKJAKn89SEtI36EWgKhhXJZKvL7pRpCkVVFq1
-Wh77DZ8OUN59fPQmxZ5Q8RztsEy93ZeACclPofPU9u1TA29NxQXTmbu1tz9TmGAZ
-ewYjsLlCBTe++hPvVrFHGDyJocQfpWIUPfx6yQAIx5tbKic0IU485RiwM+O0t5vA
-BAB6rUozfXroaqy1wbuRmAwb83/+Zq/cd7LgKxI2iSkaH8kAtj8aQQ+z8iyAyeLN
-Jf4xTrDK12MlOygvnKN8QN0hTRx13EoaOw98qyiPdgMsa78ZMuteueSoA1TyBS6S
-+wT1vIVqQpD0Ex8WE6RDmdQ8jLr1CnBHkBltYB2zsUwaai/n+R9LTI3y2lC12lkU
-6ySky1dynP0rHp8/qrQnGmW9RBYYsoqx9Prf7vqGArxcDSwaANqj/J5TZLcKG00S
-lXZyuW7m/6C1Hf8DzzZfYXe/QpqcI4AWykMJLabPjEo7SwXfzWEzBnqsPK3NpJJC
-KsaawBwa
-=TNlm
------END PGP SIGNATURE-----
-
---nextPart3780316.rTliiFetWk--
+--Apple-Mail-0D0FE44C-F93F-478B-BB89-05E225099CE4--
 
 
-
-
-
---===============1386558283341929867==
+--===============6854942497796289064==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -200,8 +212,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1386558283341929867==--
-
-
-
+--===============6854942497796289064==--
 
