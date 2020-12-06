@@ -2,56 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 202DF2D057F
-	for <lists+usrp-users@lfdr.de>; Sun,  6 Dec 2020 15:34:37 +0100 (CET)
-Received: from [::1] (port=54842 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 776FB2D0593
+	for <lists+usrp-users@lfdr.de>; Sun,  6 Dec 2020 16:04:36 +0100 (CET)
+Received: from [::1] (port=55002 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1klv7U-0000aF-4r; Sun, 06 Dec 2020 09:34:36 -0500
-Received: from mail-vs1-f47.google.com ([209.85.217.47]:38912)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <koncept1@gmail.com>) id 1klv7P-0000QQ-RE
- for usrp-users@lists.ettus.com; Sun, 06 Dec 2020 09:34:31 -0500
-Received: by mail-vs1-f47.google.com with SMTP id h6so6091139vsr.6
- for <usrp-users@lists.ettus.com>; Sun, 06 Dec 2020 06:34:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=u0F/zOn1OlA84HTTJgwWmr4e50hBgsOtMyv0MTS6w1k=;
- b=XTAdAZx/bmj0jSIRvoaH9/2S6Ss7EuEjzyvUFPh7uKnUdRoFEcwzJRYNhdQIWnNOma
- SZ0g7WSnU4DK75/ApuXRGffy7WwF88peXm7p96vwr73FDJhljGDR1JUv+pnilfXwWBDF
- 07+Nook4rEo9OioBMIPKDzDtTuAJ6aYICIS+kQKDdwDSmba6+j8efBFMeWaJpkwBfkWo
- lsZjypMmcP4k42nJYcFNP4IQ43e/0s5C5QQAp2tmjV5unhmvb+xCLKfXjTPe93U7pRrR
- QBqtXwYCXMVcrACqe6n0BywgbF0xl3VXXturayeImpwr1/a+wNorQhL8L4m6uucgFR+6
- WZTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=u0F/zOn1OlA84HTTJgwWmr4e50hBgsOtMyv0MTS6w1k=;
- b=uKVxZtiEjfJrTxcX92OTPPD0Mgt4mGtoBtgQnc7/K4eyTPkViJ/xBHV49hnd/9wt3C
- ShpjsvQ0ozcTlVgGJTAL6dJjahqCcn7tlHRXrS1DnsjRiPYwvdD2pXpnzG9Sp911XP1d
- nFcJBMXANOEay1GBNEUp/yK/M+nxCV0QXulwrNq+ml597cKIZW1gwClytOyonip7NOj/
- /ZDeyeGuhNIbBTSBxIyhxVXmpMOO2pw1mPg5Sqfh1n769BDW+MxWq6MJaAkusN3LVVje
- msGjhtsT3XofugYkZDfvSF5zjlcmwPKtGxgmVwDRXhFGUVSTFePpwnNgqmA1VgiI/52b
- 32HQ==
-X-Gm-Message-State: AOAM530i8CrW42/HLWyeucImfkr+A/2lZRP6DRLVRzJpD/TzVrCL98Us
- HvKUsAb78pRH9xpQgHeQNe3pTdpR/TyHWP9uOfulYd8VSySAaw==
-X-Google-Smtp-Source: ABdhPJy6xO6lBPzrSHP52ZAUMmwmUyREKkDsk12mLGAVrGM3f3AWcjs2/ZoF+A+q4hkbCFpn2ty3KlKipjCNMdcFTQg=
-X-Received: by 2002:a67:80d3:: with SMTP id b202mr10639214vsd.2.1607265231153; 
- Sun, 06 Dec 2020 06:33:51 -0800 (PST)
+	id 1klvaT-0001yD-UB; Sun, 06 Dec 2020 10:04:33 -0500
+Received: from resqmta-po-07v.sys.comcast.net ([96.114.154.166]:41221)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <w6rz@comcast.net>) id 1klvaQ-0001ky-92
+ for usrp-users@lists.ettus.com; Sun, 06 Dec 2020 10:04:30 -0500
+Received: from resomta-po-17v.sys.comcast.net ([96.114.154.241])
+ by resqmta-po-07v.sys.comcast.net with ESMTP
+ id lvIak8VqPQCknlvZlkrkuQ; Sun, 06 Dec 2020 15:03:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+ s=20190202a; t=1607267029;
+ bh=9ps6XZkTvuGXZVN0fwbjzD3d0e1JkaIEIv+HY+igGa0=;
+ h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
+ Content-Type;
+ b=bxDyFYh/UI4S2RZwiZb0mOQAZT6MCl6RUgtQjLQqMAsJNLQ5i+3aOgp6ibkk5dLv4
+ O5fBvAWvw0zhSvaEIq0zQN8mLf/ACE9zgByLwPI79NAABpN5YwtM/PefSNC6ltyWHj
+ XcnIFlNwdtRiGwiifooif3FXgQkSoy200n2k00RLbCEZ/k1Hp+UXsCmQirPjyp9+Av
+ rbFdFoe9Vw2pfNDCMduSI6Z73ePkIkx6TFMcw1bnLVTuKgHv9rqhq4nuPfrD53/CsY
+ B+4BiImPxctO6pSbEkbMJda+twK/qP1+9KU5IWwE2o+VYq8aauyL1SgvpzchP+/w4p
+ vxfbmyfKQoylg==
+Received: from [IPv6:2601:647:4200:ea30:2466:a5ce:3b7c:a3d4]
+ ([IPv6:2601:647:4200:ea30:2466:a5ce:3b7c:a3d4])
+ by resomta-po-17v.sys.comcast.net with ESMTPSA
+ id lvZkkzLKDr0cjlvZkkhROS; Sun, 06 Dec 2020 15:03:48 +0000
+X-Xfinity-VMeta: sc=0.00;st=legit
+To: usrp-users@lists.ettus.com
+References: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
+ <CAGNhwTMz2w-kD=a4m9EeLHqsXP9cKgXhok+jsW1Tu=einSvgyQ@mail.gmail.com>
+ <CAKx8PBgNoL6bAf8o-hXr0HnJnNaAj5XknPF5RPamY3Cs_hYCEg@mail.gmail.com>
+ <CAKx8PBjjDas_yuBxOgM6O8R1zqgZUiYavqFfidu87n1_qEsDrA@mail.gmail.com>
+Message-ID: <c53ab9dd-b83a-80e7-f3d9-c54dd639b201@comcast.net>
+Date: Sun, 6 Dec 2020 07:03:48 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <CAKx8PBiYjS+iH+ZnPKKm2yhGHe3qWmVXZW=aXzgLRqVHZSwg_w@mail.gmail.com>
- <258c1b45-3f6c-b278-a5f6-47f08e4e3d8c@balister.org>
- <CAKx8PBhdgm0VYZQfHDUTOJZUbZfR8CWSiKORw1DV0j2BLs+rRQ@mail.gmail.com>
- <34beec6d-a910-557e-c3fe-8e8589748f14@balister.org>
- <CAKx8PBgF0XH6V7ZfEjLQ++30wPer_tP1jQDdCQCvQx7uPigTHw@mail.gmail.com>
- <942341c7-6d0f-bd0c-1b9f-29fe0a5a6580@balister.org>
-In-Reply-To: <942341c7-6d0f-bd0c-1b9f-29fe0a5a6580@balister.org>
-Date: Sun, 6 Dec 2020 09:33:40 -0500
-Message-ID: <CAKx8PBgwqqW94wxz2cRt599QMnzjntUa11UBntg1e+uYEta0bQ@mail.gmail.com>
-To: Philip Balister <philip@balister.org>
-Cc: USRP list <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Building Debug FS Image
+In-Reply-To: <CAKx8PBjjDas_yuBxOgM6O8R1zqgZUiYavqFfidu87n1_qEsDrA@mail.gmail.com>
+Content-Language: en-US
+Subject: Re: [USRP-users] meta-ettus-v4.0.0.0 segfault
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -63,9 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ben Magistro via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ben Magistro <koncept1@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5895533049151117143=="
+From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ron Economos <w6rz@comcast.net>
+Content-Type: multipart/mixed; boundary="===============6449176372996217536=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,404 +71,295 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5895533049151117143==
-Content-Type: multipart/alternative; boundary="00000000000029acbc05b5cc99ba"
+This is a multi-part message in MIME format.
+--===============6449176372996217536==
+Content-Type: multipart/alternative;
+ boundary="------------3366631B6F860956AF0DE6F8"
+Content-Language: en-US
 
---00000000000029acbc05b5cc99ba
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------3366631B6F860956AF0DE6F8
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Just wanted to say thanks for the assistance, that worked great.
+Unfortunately, that FFTW bug has been around for a while. Issue 213 is a 
+duplicate of issue 182 from a year+ ago.
 
-As a heads up if you are building against zeus & dunfell and need fft
-support you are likely going to hit the same issue I did.  As a work around
-I just pulled gcc 8.3 back in zeus.
-https://github.com/FFTW/fftw3/issues/213
+https://github.com/FFTW/fftw3/issues/182
 
-On Fri, Dec 4, 2020 at 2:34 PM Philip Balister <philip@balister.org> wrote:
+On Ubuntu 20.04 armhf, they're just compiling the FFTW package without 
+NEON enabled.
 
-> On 12/4/20 10:52 AM, Ben Magistro via USRP-users wrote:
-> > How do you handle uboot?  I've managed to get an ext4 rootfs (haven't
-> tried
-> > adding debug yet, just trying to get to a known point to start from) and
-> > cheated by overwriting an existing partition on a drive (not a viable
-> long
-> > term solution in my mind).  Yes this is a zeus build, only thing I knew
-> of
-> > on the meta-sdr side that was using a gr3.8 release and I have seen your
-> > additional question (
-> >
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-December/063288.html
-> > ).
-> >
-> > Below is what I'm using as a bblayers.
-> >
-> > Appreciate your assistance and patience while I'm figuring this out.
+Ron
+
+On 12/6/20 06:27, Ben Magistro via USRP-users wrote:
+> Issue appears to be with the compiler that is included in Zeus (gcc 
+> 9.x vs 8.x) and an interaction with fftw. There is an open issue with 
+> fftw (https://github.com/FFTW/fftw3/issues/213) and a request to the 
+> yocto folks to request they consider adding back gcc-8.3 to zeus + 
+> dunfell (https://bugzilla.yoctoproject.org/show_bug.cgi?id=14144) 
+> until this can be better resolved.  I think data point 3 confirms this 
+> as I did not include options to enable neon when I compiled.
 >
-> Try adding:
+> On Wed, Nov 11, 2020 at 1:39 PM Ben Magistro <koncept1@gmail.com 
+> <mailto:koncept1@gmail.com>> wrote:
 >
-> WKS_FILE="sdimage-8G.wks"
-> IMAGE_FSTYPES += "wic.gz wic.bmap"
+>     Adding some more data points.
 >
-> to local.conf. This should get you files in tmp.../deploy/images/machine
-> that end in wic.gz and wic.bmap. You can use bmaptool to write them
-> directly to the SD card.
+>     1) I've been trying to rebuild meta-ettus-v4 with debug enabled
+>     but am hitting an issue with image size and can't seem to get past
+>     that.  It says I should increase `MENDER_STORAGE_TOTAL_SIZE_MB` if
+>     the actual size is larger but increasing this seems to have no
+>     effect.  I am using the ettus docker image for oe-builder with the
+>     command `./meta-ettus/contrib/build_imgs_package.sh e310_sg3
+>     v4.0.0.0`.  For the debug portion I've added a few lines to
+>     `build/conf/local.conf` to add the packages. I'm open to
+>     suggestions to build the image with debug symbols and provide
+>     additional feedback.
 >
-> Philip
+>     2) I put together a simple flowgraph, UHD source --> frequency
+>     xlating fft --> null sink.  This also segfaults, no guarantees
+>     that I got the parameters correct.
 >
-> >
-> >
-> > # POKY_BBLAYERS_CONF_VERSION is increased each time
-> build/conf/bblayers.conf
-> > # changes incompatibly
-> > POKY_BBLAYERS_CONF_VERSION = "2"
-> >
-> > BBPATH = "${TOPDIR}"
-> > BBFILES ?= ""
-> >
-> > #  alt for poky
-> > #  /home/user/oe-zeus/sources/openembedded-core/meta
-> > BBLAYERS ?= " \
-> >   /home/user/oe-zeus/sources/poky/meta \
-> >   /home/user/oe-zeus/sources/poky/meta-poky \
-> >   /home/user/oe-zeus/sources/meta-openembedded/meta-oe \
-> >   /home/user/oe-zeus/sources/meta-openembedded/meta-python \
-> >   /home/user/oe-zeus/sources/meta-openembedded/meta-filesystems \
-> >   /home/user/oe-zeus/sources/meta-openembedded/meta-networking \
-> >   /home/user/oe-zeus/sources/meta-security/meta-tpm \
-> >   /home/user/oe-zeus/sources/meta-ettus/meta-ettus-core \
-> >   /home/user/oe-zeus/sources/meta-ettus/meta-alchemy \
-> >   /home/user/oe-zeus/sources/meta-ettus/meta-e31x \
-> >   /home/user/oe-zeus/sources/meta-sdr \
-> >   /home/user/oe-zeus/sources/meta-qt5 \
-> >   "
-> >
-> > On Fri, Nov 20, 2020 at 11:04 AM Philip Balister <philip@balister.org>
-> > wrote:
-> >
-> >> The quick answer is switch the bsp layer from
-> >>
-> >> meta-e31x-mender
-> >>
-> >> to meta-e31x
-> >>
-> >> and see what happens. I find I ahve to fiddle a lot with the ettus
-> >> builds, so it does help to know OpenEmbedded/Yocto.
-> >>
-> >> Anyone know the status of the clock speed issue I reported a while back?
-> >> A quick scan of metta-ettus shows no updates since Sep 13.
-> >>
-> >> Philip
-> >>
-> >> On 11/20/20 10:44 AM, Ben Magistro via USRP-users wrote:
-> >>> I'm open to that idea but am not familiar with
-> openembedded/yocto/mender
-> >> or
-> >>> what that process would look like (and the little bit of googling
-> hasn't
-> >>> shed enough light yet) so I fall back to the tools that I have found
-> and
-> >>> that is the ettus docker container with oe-build (
-> >>> https://github.com/EttusResearch/ettus-docker/tree/master/oe-build)
-> and
-> >> the
-> >>> instructions there.  As far as I know I only need the sdimg, but this
-> >> goes
-> >>> back to not being familiar with the build process so I could be off
-> base.
-> >>> Looking at the `setup_build_env.sh` script, mender seems to be tied in
-> >> both
-> >>> as a layer and what the image may inherit from.  I don't know if it is
-> as
-> >>> simple as removing the references to mender in that file and calling
-> >> build
-> >>> or if that will break the resulting image (technically already broken
-> >> since
-> >>> it segfaults for me -- libfftw see
-> >>>
-> >>
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-November/063062.html
-> >> )
-> >>> but I'd like to know I'm not introducing new problems at the same time
-> I
-> >> am
-> >>> trying to resolve my first problem.
-> >>>
-> >>> Ben
-> >>>
-> >>> On Thu, Nov 19, 2020 at 5:22 PM Philip Balister <philip@balister.org>
-> >> wrote:
-> >>>
-> >>>> Build without mender?
-> >>>>
-> >>>> Philip
-> >>>>
-> >>>> On 11/19/20 4:51 PM, Ben Magistro via USRP-users wrote:
-> >>>>> I've been trying to rebuild meta-ettus (in this case -v4.0.0.0) with
-> >>>> debug
-> >>>>> enabled but am hitting an issue with image size being larger than an
-> >> 8GB
-> >>>> sd
-> >>>>> card and can't seem to get past that.  It says I should increase
-> >>>>> `MENDER_STORAGE_TOTAL_SIZE_MB` if the actual size is larger but
-> >>>> increasing
-> >>>>> this in `local.conf` this seems to have no effect.  I am using the
-> >> ettus
-> >>>>> docker image for oe-builder with the command
-> >>>>> `./meta-ettus/contrib/build_imgs_package.sh e310_sg3 v4.0.0.0`.  For
-> >> the
-> >>>>> debug portion I've added a few lines to `build/conf/local.conf` to
-> add
-> >>>> the
-> >>>>> packages.  Anyone know how to increase the total storage size so that
-> >> it
-> >>>>> can build the image?
-> >>>>>
-> >>>>> Thanks in advance.
-> >>>>>
-> >>>>>
-> >>>>> _______________________________________________
-> >>>>> USRP-users mailing list
-> >>>>> USRP-users@lists.ettus.com
-> >>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >>>>>
-> >>>>
-> >>>
-> >>>
-> >>> _______________________________________________
-> >>> USRP-users mailing list
-> >>> USRP-users@lists.ettus.com
-> >>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >>>
-> >>
-> >
-> >
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >
+>     3) Since the issues seem to be with fftw, I decided to try
+>     building my own copy of fftw mostly to get debug symbols and
+>     continue troubleshooting.  For this I used `./configure
+>     --enable-debug --enable-shared --enable-threads --enable-float`
+>     and `make CFLAGS="-ggdb"`.  These options are best guesses right
+>     now since I didn't look at the layers to see what parameters it is
+>     using (assuming it is in one of the layers).  Using this build
+>     with `export LD_LIBRARY_PATH=/usr/local/lib/` I do not get a
+>     segfault with gr-ais or the above flowgraph but I also don't get
+>     the expected output which makes me question the parameters I used
+>     to build it.  Output wise I get a string of "D" or "O" to the console.
 >
+>     Thanks
+>
+>     Ben
+>
+>     On Thu, Nov 5, 2020 at 9:22 AM Michael Dickens
+>     <michael.dickens@ettus.com <mailto:michael.dickens@ettus.com>> wrote:
+>
+>         Hi Ben - This issue has been reported to R&D internally. If
+>         you wish to create a public-facing UHD issue on our Github
+>         tracker please go ahead & do so, and tag me on it so that we
+>         can keep track of it internally. - MLD
+>
+>         On Wed, Nov 4, 2020 at 11:25 PM Ben Magistro via USRP-users
+>         <usrp-users@lists.ettus.com
+>         <mailto:usrp-users@lists.ettus.com>> wrote:
+>
+>             Is anyone else using meta-ettus-v4.0.0.0 yet?  if so, have
+>             you had any issues with libfftw?
+>
+>             Using the image on an E310, adding a single OOT module
+>             (gr-ais) and trying to run an app distributed with it, the
+>             app segfaults.  To further troubleshoot, I added gdb and
+>             it comes back with the following.  I have a separate
+>             development host that has gnuradio 3.8 setup using pybombs
+>             and do not experience this issue there.
+>
+>             Thread 1 "python3" received signal SIGSEGV, Segmentation
+>             fault.
+>             0xb6947836 in ?? () from /usr/lib/libfftw3f.so.3
+>
+>             To compile, I've needed to override PYTHON_EXECUTABLE as
+>             it points to a non-existent path in /home/oe-builder....
+>             in /usr/lib/cmake/gnuradio/GnuradioConfig.cmake. To run I
+>             also needed to define LD_EXPORT_PATH pointing to
+>             /usr/local/lib/.
+>
+>             Thanks in advance.
+>             _______________________________________________
+>             USRP-users mailing list
+>             USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
+>             http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---00000000000029acbc05b5cc99ba
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--------------3366631B6F860956AF0DE6F8
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-<div dir=3D"ltr">Just wanted to say thanks for the assistance, that worked =
-great.<div><br></div><div>As a heads up if you are building against zeus &a=
-mp; dunfell and need fft support you are likely going to hit the same issue=
- I did.=C2=A0 As a work around I just pulled gcc 8.3 back in zeus.=C2=A0=C2=
-=A0<a href=3D"https://github.com/FFTW/fftw3/issues/213">https://github.com/=
-FFTW/fftw3/issues/213</a></div></div><br><div class=3D"gmail_quote"><div di=
-r=3D"ltr" class=3D"gmail_attr">On Fri, Dec 4, 2020 at 2:34 PM Philip Balist=
-er &lt;<a href=3D"mailto:philip@balister.org">philip@balister.org</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 12/4/20=
- 10:52 AM, Ben Magistro via USRP-users wrote:<br>
-&gt; How do you handle uboot?=C2=A0 I&#39;ve managed to get an ext4 rootfs =
-(haven&#39;t tried<br>
-&gt; adding debug yet, just trying to get to a known point to start from) a=
-nd<br>
-&gt; cheated by overwriting an existing partition on a drive (not a viable =
-long<br>
-&gt; term solution in my mind).=C2=A0 Yes this is a zeus build, only thing =
-I knew of<br>
-&gt; on the meta-sdr side that was using a gr3.8 release and I have seen yo=
-ur<br>
-&gt; additional question (<br>
-&gt; <a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com=
-/2020-December/063288.html" rel=3D"noreferrer" target=3D"_blank">http://lis=
-ts.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-December/063288.html=
-</a><br>
-&gt; ).<br>
-&gt; <br>
-&gt; Below is what I&#39;m using as a bblayers.<br>
-&gt; <br>
-&gt; Appreciate your assistance and patience while I&#39;m figuring this ou=
-t.<br>
-<br>
-Try adding:<br>
-<br>
-WKS_FILE=3D&quot;sdimage-8G.wks&quot;<br>
-IMAGE_FSTYPES +=3D &quot;wic.gz wic.bmap&quot;<br>
-<br>
-to local.conf. This should get you files in tmp.../deploy/images/machine<br=
->
-that end in wic.gz and wic.bmap. You can use bmaptool to write them<br>
-directly to the SD card.<br>
-<br>
-Philip<br>
-<br>
-&gt; <br>
-&gt; <br>
-&gt; # POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayer=
-s.conf<br>
-&gt; # changes incompatibly<br>
-&gt; POKY_BBLAYERS_CONF_VERSION =3D &quot;2&quot;<br>
-&gt; <br>
-&gt; BBPATH =3D &quot;${TOPDIR}&quot;<br>
-&gt; BBFILES ?=3D &quot;&quot;<br>
-&gt; <br>
-&gt; #=C2=A0 alt for poky<br>
-&gt; #=C2=A0 /home/user/oe-zeus/sources/openembedded-core/meta<br>
-&gt; BBLAYERS ?=3D &quot; \<br>
-&gt;=C2=A0 =C2=A0/home/user/oe-zeus/sources/poky/meta \<br>
-&gt;=C2=A0 =C2=A0/home/user/oe-zeus/sources/poky/meta-poky \<br>
-&gt;=C2=A0 =C2=A0/home/user/oe-zeus/sources/meta-openembedded/meta-oe \<br>
-&gt;=C2=A0 =C2=A0/home/user/oe-zeus/sources/meta-openembedded/meta-python \=
-<br>
-&gt;=C2=A0 =C2=A0/home/user/oe-zeus/sources/meta-openembedded/meta-filesyst=
-ems \<br>
-&gt;=C2=A0 =C2=A0/home/user/oe-zeus/sources/meta-openembedded/meta-networki=
-ng \<br>
-&gt;=C2=A0 =C2=A0/home/user/oe-zeus/sources/meta-security/meta-tpm \<br>
-&gt;=C2=A0 =C2=A0/home/user/oe-zeus/sources/meta-ettus/meta-ettus-core \<br=
->
-&gt;=C2=A0 =C2=A0/home/user/oe-zeus/sources/meta-ettus/meta-alchemy \<br>
-&gt;=C2=A0 =C2=A0/home/user/oe-zeus/sources/meta-ettus/meta-e31x \<br>
-&gt;=C2=A0 =C2=A0/home/user/oe-zeus/sources/meta-sdr \<br>
-&gt;=C2=A0 =C2=A0/home/user/oe-zeus/sources/meta-qt5 \<br>
-&gt;=C2=A0 =C2=A0&quot;<br>
-&gt; <br>
-&gt; On Fri, Nov 20, 2020 at 11:04 AM Philip Balister &lt;<a href=3D"mailto=
-:philip@balister.org" target=3D"_blank">philip@balister.org</a>&gt;<br>
-&gt; wrote:<br>
-&gt; <br>
-&gt;&gt; The quick answer is switch the bsp layer from<br>
-&gt;&gt;<br>
-&gt;&gt; meta-e31x-mender<br>
-&gt;&gt;<br>
-&gt;&gt; to meta-e31x<br>
-&gt;&gt;<br>
-&gt;&gt; and see what happens. I find I ahve to fiddle a lot with the ettus=
-<br>
-&gt;&gt; builds, so it does help to know OpenEmbedded/Yocto.<br>
-&gt;&gt;<br>
-&gt;&gt; Anyone know the status of the clock speed issue I reported a while=
- back?<br>
-&gt;&gt; A quick scan of metta-ettus shows no updates since Sep 13.<br>
-&gt;&gt;<br>
-&gt;&gt; Philip<br>
-&gt;&gt;<br>
-&gt;&gt; On 11/20/20 10:44 AM, Ben Magistro via USRP-users wrote:<br>
-&gt;&gt;&gt; I&#39;m open to that idea but am not familiar with openembedde=
-d/yocto/mender<br>
-&gt;&gt; or<br>
-&gt;&gt;&gt; what that process would look like (and the little bit of googl=
-ing hasn&#39;t<br>
-&gt;&gt;&gt; shed enough light yet) so I fall back to the tools that I have=
- found and<br>
-&gt;&gt;&gt; that is the ettus docker container with oe-build (<br>
-&gt;&gt;&gt; <a href=3D"https://github.com/EttusResearch/ettus-docker/tree/=
-master/oe-build" rel=3D"noreferrer" target=3D"_blank">https://github.com/Et=
-tusResearch/ettus-docker/tree/master/oe-build</a>) and<br>
-&gt;&gt; the<br>
-&gt;&gt;&gt; instructions there.=C2=A0 As far as I know I only need the sdi=
-mg, but this<br>
-&gt;&gt; goes<br>
-&gt;&gt;&gt; back to not being familiar with the build process so I could b=
-e off base.<br>
-&gt;&gt;&gt; Looking at the `setup_build_env.sh` script, mender seems to be=
- tied in<br>
-&gt;&gt; both<br>
-&gt;&gt;&gt; as a layer and what the image may inherit from.=C2=A0 I don&#3=
-9;t know if it is as<br>
-&gt;&gt;&gt; simple as removing the references to mender in that file and c=
-alling<br>
-&gt;&gt; build<br>
-&gt;&gt;&gt; or if that will break the resulting image (technically already=
- broken<br>
-&gt;&gt; since<br>
-&gt;&gt;&gt; it segfaults for me -- libfftw see<br>
-&gt;&gt;&gt;<br>
-&gt;&gt; <a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.ettus=
-.com/2020-November/063062.html" rel=3D"noreferrer" target=3D"_blank">http:/=
-/lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2020-November/063062.=
-html</a><br>
-&gt;&gt; )<br>
-&gt;&gt;&gt; but I&#39;d like to know I&#39;m not introducing new problems =
-at the same time I<br>
-&gt;&gt; am<br>
-&gt;&gt;&gt; trying to resolve my first problem.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Ben<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; On Thu, Nov 19, 2020 at 5:22 PM Philip Balister &lt;<a href=3D=
-"mailto:philip@balister.org" target=3D"_blank">philip@balister.org</a>&gt;<=
-br>
-&gt;&gt; wrote:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Build without mender?<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Philip<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; On 11/19/20 4:51 PM, Ben Magistro via USRP-users wrote:<br=
->
-&gt;&gt;&gt;&gt;&gt; I&#39;ve been trying to rebuild meta-ettus (in this ca=
-se -v4.0.0.0) with<br>
-&gt;&gt;&gt;&gt; debug<br>
-&gt;&gt;&gt;&gt;&gt; enabled but am hitting an issue with image size being =
-larger than an<br>
-&gt;&gt; 8GB<br>
-&gt;&gt;&gt;&gt; sd<br>
-&gt;&gt;&gt;&gt;&gt; card and can&#39;t seem to get past that.=C2=A0 It say=
-s I should increase<br>
-&gt;&gt;&gt;&gt;&gt; `MENDER_STORAGE_TOTAL_SIZE_MB` if the actual size is l=
-arger but<br>
-&gt;&gt;&gt;&gt; increasing<br>
-&gt;&gt;&gt;&gt;&gt; this in `local.conf` this seems to have no effect.=C2=
-=A0 I am using the<br>
-&gt;&gt; ettus<br>
-&gt;&gt;&gt;&gt;&gt; docker image for oe-builder with the command<br>
-&gt;&gt;&gt;&gt;&gt; `./meta-ettus/contrib/build_imgs_package.sh e310_sg3 v=
-4.0.0.0`.=C2=A0 For<br>
-&gt;&gt; the<br>
-&gt;&gt;&gt;&gt;&gt; debug portion I&#39;ve added a few lines to `build/con=
-f/local.conf` to add<br>
-&gt;&gt;&gt;&gt; the<br>
-&gt;&gt;&gt;&gt;&gt; packages.=C2=A0 Anyone know how to increase the total =
-storage size so that<br>
-&gt;&gt; it<br>
-&gt;&gt;&gt;&gt;&gt; can build the image?<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; Thanks in advance.<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; _______________________________________________<br>
-&gt;&gt;&gt;&gt;&gt; USRP-users mailing list<br>
-&gt;&gt;&gt;&gt;&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=
-=3D"_blank">USRP-users@lists.ettus.com</a><br>
-&gt;&gt;&gt;&gt;&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usr=
-p-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.=
-ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; _______________________________________________<br>
-&gt;&gt;&gt; USRP-users mailing list<br>
-&gt;&gt;&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank=
-">USRP-users@lists.ettus.com</a><br>
-&gt;&gt;&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_=
-lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.co=
-m/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;&gt;&gt;<br>
-&gt;&gt;<br>
-&gt; <br>
-&gt; <br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt; <br>
-</blockquote></div>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Unfortunately, that FFTW bug has been around for a while. Issue
+      213 is a duplicate of issue 182 from a year+ ago.</p>
+    <p><a class="moz-txt-link-freetext" href="https://github.com/FFTW/fftw3/issues/182">https://github.com/FFTW/fftw3/issues/182</a></p>
+    <p>On Ubuntu 20.04 armhf, they're just compiling the FFTW package
+      without NEON enabled.</p>
+    <p>Ron<br>
+    </p>
+    <div class="moz-cite-prefix">On 12/6/20 06:27, Ben Magistro via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAKx8PBjjDas_yuBxOgM6O8R1zqgZUiYavqFfidu87n1_qEsDrA@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr">Issue appears to be with the compiler that is
+        included in Zeus (gcc 9.x vs 8.x) and an interaction with fftw. 
+        There is an open issue with fftw (<a
+          href="https://github.com/FFTW/fftw3/issues/213"
+          moz-do-not-send="true">https://github.com/FFTW/fftw3/issues/213</a>)
+        and a request to the yocto folks to request they consider adding
+        back gcc-8.3 to zeus + dunfell (<a
+          href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=14144"
+          moz-do-not-send="true">https://bugzilla.yoctoproject.org/show_bug.cgi?id=14144</a>)
+        until this can be better resolved.  I think data point 3
+        confirms this as I did not include options to enable neon when I
+        compiled.</div>
+      <br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Wed, Nov 11, 2020 at 1:39
+          PM Ben Magistro &lt;<a href="mailto:koncept1@gmail.com"
+            moz-do-not-send="true">koncept1@gmail.com</a>&gt; wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div dir="ltr">
+            <div>Adding some more data points.</div>
+            <div><br>
+            </div>
+            <div>1) I've been trying to rebuild meta-ettus-v4 with debug
+              enabled but am hitting an issue with image size and can't
+              seem to get past that.  It says I should increase
+              `MENDER_STORAGE_TOTAL_SIZE_MB` if the actual size is
+              larger but increasing this seems to have no effect.  I am
+              using the ettus docker image for oe-builder with the
+              command `./meta-ettus/contrib/build_imgs_package.sh
+              e310_sg3 v4.0.0.0`.  For the debug portion I've added a
+              few lines to `build/conf/local.conf` to add the packages. 
+              I'm open to suggestions to build the image with debug
+              symbols and provide additional feedback.</div>
+            <div><br>
+            </div>
+            <div>2) I put together a simple flowgraph, UHD source --&gt;
+              frequency xlating fft --&gt; null sink.  This also
+              segfaults, no guarantees that I got the parameters
+              correct.</div>
+            <div><br>
+            </div>
+            <div>3) Since the issues seem to be with fftw, I decided to
+              try building my own copy of fftw mostly to get debug
+              symbols and continue troubleshooting.  For this I used
+              `./configure --enable-debug --enable-shared
+              --enable-threads --enable-float` and `make
+              CFLAGS="-ggdb"`.  These options are best guesses right now
+              since I didn't look at the layers to see what parameters
+              it is using (assuming it is in one of the layers).  Using
+              this build with `export LD_LIBRARY_PATH=/usr/local/lib/` I
+              do not get a segfault with gr-ais or the above flowgraph
+              but I also don't get the expected output which makes me
+              question the parameters I used to build it.  Output wise I
+              get a string of "D" or "O" to the console.</div>
+            <div><br>
+            </div>
+            <div>Thanks</div>
+            <div><br>
+            </div>
+            <div>Ben<br>
+            </div>
+          </div>
+          <br>
+          <div class="gmail_quote">
+            <div dir="ltr" class="gmail_attr">On Thu, Nov 5, 2020 at
+              9:22 AM Michael Dickens &lt;<a
+                href="mailto:michael.dickens@ettus.com" target="_blank"
+                moz-do-not-send="true">michael.dickens@ettus.com</a>&gt;
+              wrote:<br>
+            </div>
+            <blockquote class="gmail_quote" style="margin:0px 0px 0px
+              0.8ex;border-left:1px solid
+              rgb(204,204,204);padding-left:1ex">
+              <div dir="ltr">
+                <div dir="ltr">Hi Ben - This issue has been reported to
+                  R&amp;D internally. If you wish to create a
+                  public-facing UHD issue on our Github tracker please
+                  go ahead &amp; do so, and tag me on it so that we can
+                  keep track of it internally. - MLD<br>
+                  <br>
+                </div>
+                <div class="gmail_quote">
+                  <div dir="ltr" class="gmail_attr">On Wed, Nov 4, 2020
+                    at 11:25 PM Ben Magistro via USRP-users &lt;<a
+                      href="mailto:usrp-users@lists.ettus.com"
+                      target="_blank" moz-do-not-send="true">usrp-users@lists.ettus.com</a>&gt;
+                    wrote:<br>
+                  </div>
+                  <blockquote class="gmail_quote" style="margin:0px 0px
+                    0px 0.8ex;border-left:1px solid
+                    rgb(204,204,204);padding-left:1ex">
+                    <div dir="ltr">
+                      <div>Is anyone else using meta-ettus-v4.0.0.0
+                        yet?  if so, have you had any issues with
+                        libfftw?<br>
+                      </div>
+                      <div><br>
+                      </div>
+                      <div>Using the image on an E310, adding a single
+                        OOT module (gr-ais) and trying to run an app
+                        distributed with it, the app segfaults.  To
+                        further troubleshoot, I added gdb and it comes
+                        back with the following.  I have a separate
+                        development host that has gnuradio 3.8 setup
+                        using pybombs and do not experience this issue
+                        there.<br>
+                      </div>
+                      <div><br>
+                      </div>
+                      <div>Thread 1 "python3" received signal SIGSEGV,
+                        Segmentation fault.<br>
+                        0xb6947836 in ?? () from /usr/lib/libfftw3f.so.3</div>
+                      <div><br>
+                      </div>
+                      <div>To compile, I've needed to override
+                        PYTHON_EXECUTABLE as it points to a non-existent
+                        path in /home/oe-builder.... in
+                        /usr/lib/cmake/gnuradio/GnuradioConfig.cmake. 
+                        To run I also needed to define LD_EXPORT_PATH
+                        pointing to /usr/local/lib/.</div>
+                      <div><br>
+                      </div>
+                      <div>Thanks in advance.<br>
+                      </div>
+                    </div>
+                    _______________________________________________<br>
+                    USRP-users mailing list<br>
+                    <a href="mailto:USRP-users@lists.ettus.com"
+                      target="_blank" moz-do-not-send="true">USRP-users@lists.ettus.com</a><br>
+                    <a
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                      rel="noreferrer" target="_blank"
+                      moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+                  </blockquote>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+  </body>
+</html>
 
---00000000000029acbc05b5cc99ba--
+--------------3366631B6F860956AF0DE6F8--
 
 
---===============5895533049151117143==
+--===============6449176372996217536==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -487,5 +370,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5895533049151117143==--
+--===============6449176372996217536==--
 
