@@ -2,46 +2,33 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 776FB2D0593
-	for <lists+usrp-users@lfdr.de>; Sun,  6 Dec 2020 16:04:36 +0100 (CET)
-Received: from [::1] (port=55002 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F3D2D0769
+	for <lists+usrp-users@lfdr.de>; Sun,  6 Dec 2020 22:36:08 +0100 (CET)
+Received: from [::1] (port=57666 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1klvaT-0001yD-UB; Sun, 06 Dec 2020 10:04:33 -0500
-Received: from resqmta-po-07v.sys.comcast.net ([96.114.154.166]:41221)
+	id 1km1hM-0005ti-8Z; Sun, 06 Dec 2020 16:36:04 -0500
+Received: from sanddollar.geekisp.com ([216.168.135.167]:23352)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <w6rz@comcast.net>) id 1klvaQ-0001ky-92
- for usrp-users@lists.ettus.com; Sun, 06 Dec 2020 10:04:30 -0500
-Received: from resomta-po-17v.sys.comcast.net ([96.114.154.241])
- by resqmta-po-07v.sys.comcast.net with ESMTP
- id lvIak8VqPQCknlvZlkrkuQ; Sun, 06 Dec 2020 15:03:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
- s=20190202a; t=1607267029;
- bh=9ps6XZkTvuGXZVN0fwbjzD3d0e1JkaIEIv+HY+igGa0=;
- h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
- Content-Type;
- b=bxDyFYh/UI4S2RZwiZb0mOQAZT6MCl6RUgtQjLQqMAsJNLQ5i+3aOgp6ibkk5dLv4
- O5fBvAWvw0zhSvaEIq0zQN8mLf/ACE9zgByLwPI79NAABpN5YwtM/PefSNC6ltyWHj
- XcnIFlNwdtRiGwiifooif3FXgQkSoy200n2k00RLbCEZ/k1Hp+UXsCmQirPjyp9+Av
- rbFdFoe9Vw2pfNDCMduSI6Z73ePkIkx6TFMcw1bnLVTuKgHv9rqhq4nuPfrD53/CsY
- B+4BiImPxctO6pSbEkbMJda+twK/qP1+9KU5IWwE2o+VYq8aauyL1SgvpzchP+/w4p
- vxfbmyfKQoylg==
-Received: from [IPv6:2601:647:4200:ea30:2466:a5ce:3b7c:a3d4]
- ([IPv6:2601:647:4200:ea30:2466:a5ce:3b7c:a3d4])
- by resomta-po-17v.sys.comcast.net with ESMTPSA
- id lvZkkzLKDr0cjlvZkkhROS; Sun, 06 Dec 2020 15:03:48 +0000
-X-Xfinity-VMeta: sc=0.00;st=legit
-To: usrp-users@lists.ettus.com
+ (Exim 4.93) (envelope-from <philip@balister.org>) id 1km1hI-0005pD-JN
+ for usrp-users@lists.ettus.com; Sun, 06 Dec 2020 16:36:00 -0500
+Received: (qmail 15956 invoked by uid 1003); 6 Dec 2020 21:35:22 -0000
+Received: from unknown (HELO ?192.168.11.139?)
+ (philip@opensdr.com@73.251.10.143)
+ by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
+ 6 Dec 2020 21:35:22 -0000
+To: Ron Economos <w6rz@comcast.net>, usrp-users@lists.ettus.com
 References: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
  <CAGNhwTMz2w-kD=a4m9EeLHqsXP9cKgXhok+jsW1Tu=einSvgyQ@mail.gmail.com>
  <CAKx8PBgNoL6bAf8o-hXr0HnJnNaAj5XknPF5RPamY3Cs_hYCEg@mail.gmail.com>
  <CAKx8PBjjDas_yuBxOgM6O8R1zqgZUiYavqFfidu87n1_qEsDrA@mail.gmail.com>
-Message-ID: <c53ab9dd-b83a-80e7-f3d9-c54dd639b201@comcast.net>
-Date: Sun, 6 Dec 2020 07:03:48 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ <c53ab9dd-b83a-80e7-f3d9-c54dd639b201@comcast.net>
+Message-ID: <bc257539-30af-02d2-c9e0-43a3b0c69553@balister.org>
+Date: Sun, 6 Dec 2020 16:35:17 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-In-Reply-To: <CAKx8PBjjDas_yuBxOgM6O8R1zqgZUiYavqFfidu87n1_qEsDrA@mail.gmail.com>
+In-Reply-To: <c53ab9dd-b83a-80e7-f3d9-c54dd639b201@comcast.net>
 Content-Language: en-US
 Subject: Re: [USRP-users] meta-ettus-v4.0.0.0 segfault
 X-BeenThere: usrp-users@lists.ettus.com
@@ -55,9 +42,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ron Economos via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ron Economos <w6rz@comcast.net>
-Content-Type: multipart/mixed; boundary="===============6449176372996217536=="
+From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Philip Balister <philip@balister.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,304 +59,102 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============6449176372996217536==
-Content-Type: multipart/alternative;
- boundary="------------3366631B6F860956AF0DE6F8"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------3366631B6F860956AF0DE6F8
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Unfortunately, that FFTW bug has been around for a while. Issue 213 is a 
-duplicate of issue 182 from a year+ ago.
-
-https://github.com/FFTW/fftw3/issues/182
-
-On Ubuntu 20.04 armhf, they're just compiling the FFTW package without 
-NEON enabled.
-
-Ron
-
-On 12/6/20 06:27, Ben Magistro via USRP-users wrote:
-> Issue appears to be with the compiler that is included in Zeus (gcc 
-> 9.x vs 8.x) and an interaction with fftw. There is an open issue with 
-> fftw (https://github.com/FFTW/fftw3/issues/213) and a request to the 
-> yocto folks to request they consider adding back gcc-8.3 to zeus + 
-> dunfell (https://bugzilla.yoctoproject.org/show_bug.cgi?id=14144) 
-> until this can be better resolved.  I think data point 3 confirms this 
-> as I did not include options to enable neon when I compiled.
->
-> On Wed, Nov 11, 2020 at 1:39 PM Ben Magistro <koncept1@gmail.com 
-> <mailto:koncept1@gmail.com>> wrote:
->
->     Adding some more data points.
->
->     1) I've been trying to rebuild meta-ettus-v4 with debug enabled
->     but am hitting an issue with image size and can't seem to get past
->     that.  It says I should increase `MENDER_STORAGE_TOTAL_SIZE_MB` if
->     the actual size is larger but increasing this seems to have no
->     effect.  I am using the ettus docker image for oe-builder with the
->     command `./meta-ettus/contrib/build_imgs_package.sh e310_sg3
->     v4.0.0.0`.  For the debug portion I've added a few lines to
->     `build/conf/local.conf` to add the packages. I'm open to
->     suggestions to build the image with debug symbols and provide
->     additional feedback.
->
->     2) I put together a simple flowgraph, UHD source --> frequency
->     xlating fft --> null sink.  This also segfaults, no guarantees
->     that I got the parameters correct.
->
->     3) Since the issues seem to be with fftw, I decided to try
->     building my own copy of fftw mostly to get debug symbols and
->     continue troubleshooting.  For this I used `./configure
->     --enable-debug --enable-shared --enable-threads --enable-float`
->     and `make CFLAGS="-ggdb"`.  These options are best guesses right
->     now since I didn't look at the layers to see what parameters it is
->     using (assuming it is in one of the layers).  Using this build
->     with `export LD_LIBRARY_PATH=/usr/local/lib/` I do not get a
->     segfault with gr-ais or the above flowgraph but I also don't get
->     the expected output which makes me question the parameters I used
->     to build it.  Output wise I get a string of "D" or "O" to the console.
->
->     Thanks
->
->     Ben
->
->     On Thu, Nov 5, 2020 at 9:22 AM Michael Dickens
->     <michael.dickens@ettus.com <mailto:michael.dickens@ettus.com>> wrote:
->
->         Hi Ben - This issue has been reported to R&D internally. If
->         you wish to create a public-facing UHD issue on our Github
->         tracker please go ahead & do so, and tag me on it so that we
->         can keep track of it internally. - MLD
->
->         On Wed, Nov 4, 2020 at 11:25 PM Ben Magistro via USRP-users
->         <usrp-users@lists.ettus.com
->         <mailto:usrp-users@lists.ettus.com>> wrote:
->
->             Is anyone else using meta-ettus-v4.0.0.0 yet?  if so, have
->             you had any issues with libfftw?
->
->             Using the image on an E310, adding a single OOT module
->             (gr-ais) and trying to run an app distributed with it, the
->             app segfaults.  To further troubleshoot, I added gdb and
->             it comes back with the following.  I have a separate
->             development host that has gnuradio 3.8 setup using pybombs
->             and do not experience this issue there.
->
->             Thread 1 "python3" received signal SIGSEGV, Segmentation
->             fault.
->             0xb6947836 in ?? () from /usr/lib/libfftw3f.so.3
->
->             To compile, I've needed to override PYTHON_EXECUTABLE as
->             it points to a non-existent path in /home/oe-builder....
->             in /usr/lib/cmake/gnuradio/GnuradioConfig.cmake. To run I
->             also needed to define LD_EXPORT_PATH pointing to
->             /usr/local/lib/.
->
->             Thanks in advance.
->             _______________________________________________
->             USRP-users mailing list
->             USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->             http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---------------3366631B6F860956AF0DE6F8
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Unfortunately, that FFTW bug has been around for a while. Issue
-      213 is a duplicate of issue 182 from a year+ ago.</p>
-    <p><a class="moz-txt-link-freetext" href="https://github.com/FFTW/fftw3/issues/182">https://github.com/FFTW/fftw3/issues/182</a></p>
-    <p>On Ubuntu 20.04 armhf, they're just compiling the FFTW package
-      without NEON enabled.</p>
-    <p>Ron<br>
-    </p>
-    <div class="moz-cite-prefix">On 12/6/20 06:27, Ben Magistro via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAKx8PBjjDas_yuBxOgM6O8R1zqgZUiYavqFfidu87n1_qEsDrA@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">Issue appears to be with the compiler that is
-        included in Zeus (gcc 9.x vs 8.x) and an interaction with fftw. 
-        There is an open issue with fftw (<a
-          href="https://github.com/FFTW/fftw3/issues/213"
-          moz-do-not-send="true">https://github.com/FFTW/fftw3/issues/213</a>)
-        and a request to the yocto folks to request they consider adding
-        back gcc-8.3 to zeus + dunfell (<a
-          href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=14144"
-          moz-do-not-send="true">https://bugzilla.yoctoproject.org/show_bug.cgi?id=14144</a>)
-        until this can be better resolved.  I think data point 3
-        confirms this as I did not include options to enable neon when I
-        compiled.</div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Wed, Nov 11, 2020 at 1:39
-          PM Ben Magistro &lt;<a href="mailto:koncept1@gmail.com"
-            moz-do-not-send="true">koncept1@gmail.com</a>&gt; wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir="ltr">
-            <div>Adding some more data points.</div>
-            <div><br>
-            </div>
-            <div>1) I've been trying to rebuild meta-ettus-v4 with debug
-              enabled but am hitting an issue with image size and can't
-              seem to get past that.  It says I should increase
-              `MENDER_STORAGE_TOTAL_SIZE_MB` if the actual size is
-              larger but increasing this seems to have no effect.  I am
-              using the ettus docker image for oe-builder with the
-              command `./meta-ettus/contrib/build_imgs_package.sh
-              e310_sg3 v4.0.0.0`.  For the debug portion I've added a
-              few lines to `build/conf/local.conf` to add the packages. 
-              I'm open to suggestions to build the image with debug
-              symbols and provide additional feedback.</div>
-            <div><br>
-            </div>
-            <div>2) I put together a simple flowgraph, UHD source --&gt;
-              frequency xlating fft --&gt; null sink.  This also
-              segfaults, no guarantees that I got the parameters
-              correct.</div>
-            <div><br>
-            </div>
-            <div>3) Since the issues seem to be with fftw, I decided to
-              try building my own copy of fftw mostly to get debug
-              symbols and continue troubleshooting.  For this I used
-              `./configure --enable-debug --enable-shared
-              --enable-threads --enable-float` and `make
-              CFLAGS="-ggdb"`.  These options are best guesses right now
-              since I didn't look at the layers to see what parameters
-              it is using (assuming it is in one of the layers).  Using
-              this build with `export LD_LIBRARY_PATH=/usr/local/lib/` I
-              do not get a segfault with gr-ais or the above flowgraph
-              but I also don't get the expected output which makes me
-              question the parameters I used to build it.  Output wise I
-              get a string of "D" or "O" to the console.</div>
-            <div><br>
-            </div>
-            <div>Thanks</div>
-            <div><br>
-            </div>
-            <div>Ben<br>
-            </div>
-          </div>
-          <br>
-          <div class="gmail_quote">
-            <div dir="ltr" class="gmail_attr">On Thu, Nov 5, 2020 at
-              9:22 AM Michael Dickens &lt;<a
-                href="mailto:michael.dickens@ettus.com" target="_blank"
-                moz-do-not-send="true">michael.dickens@ettus.com</a>&gt;
-              wrote:<br>
-            </div>
-            <blockquote class="gmail_quote" style="margin:0px 0px 0px
-              0.8ex;border-left:1px solid
-              rgb(204,204,204);padding-left:1ex">
-              <div dir="ltr">
-                <div dir="ltr">Hi Ben - This issue has been reported to
-                  R&amp;D internally. If you wish to create a
-                  public-facing UHD issue on our Github tracker please
-                  go ahead &amp; do so, and tag me on it so that we can
-                  keep track of it internally. - MLD<br>
-                  <br>
-                </div>
-                <div class="gmail_quote">
-                  <div dir="ltr" class="gmail_attr">On Wed, Nov 4, 2020
-                    at 11:25 PM Ben Magistro via USRP-users &lt;<a
-                      href="mailto:usrp-users@lists.ettus.com"
-                      target="_blank" moz-do-not-send="true">usrp-users@lists.ettus.com</a>&gt;
-                    wrote:<br>
-                  </div>
-                  <blockquote class="gmail_quote" style="margin:0px 0px
-                    0px 0.8ex;border-left:1px solid
-                    rgb(204,204,204);padding-left:1ex">
-                    <div dir="ltr">
-                      <div>Is anyone else using meta-ettus-v4.0.0.0
-                        yet?  if so, have you had any issues with
-                        libfftw?<br>
-                      </div>
-                      <div><br>
-                      </div>
-                      <div>Using the image on an E310, adding a single
-                        OOT module (gr-ais) and trying to run an app
-                        distributed with it, the app segfaults.  To
-                        further troubleshoot, I added gdb and it comes
-                        back with the following.  I have a separate
-                        development host that has gnuradio 3.8 setup
-                        using pybombs and do not experience this issue
-                        there.<br>
-                      </div>
-                      <div><br>
-                      </div>
-                      <div>Thread 1 "python3" received signal SIGSEGV,
-                        Segmentation fault.<br>
-                        0xb6947836 in ?? () from /usr/lib/libfftw3f.so.3</div>
-                      <div><br>
-                      </div>
-                      <div>To compile, I've needed to override
-                        PYTHON_EXECUTABLE as it points to a non-existent
-                        path in /home/oe-builder.... in
-                        /usr/lib/cmake/gnuradio/GnuradioConfig.cmake. 
-                        To run I also needed to define LD_EXPORT_PATH
-                        pointing to /usr/local/lib/.</div>
-                      <div><br>
-                      </div>
-                      <div>Thanks in advance.<br>
-                      </div>
-                    </div>
-                    _______________________________________________<br>
-                    USRP-users mailing list<br>
-                    <a href="mailto:USRP-users@lists.ettus.com"
-                      target="_blank" moz-do-not-send="true">USRP-users@lists.ettus.com</a><br>
-                    <a
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                      rel="noreferrer" target="_blank"
-                      moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-                  </blockquote>
-                </div>
-              </div>
-            </blockquote>
-          </div>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------3366631B6F860956AF0DE6F8--
-
-
---===============6449176372996217536==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6449176372996217536==--
-
+T24gMTIvNi8yMCAxMDowMyBBTSwgUm9uIEVjb25vbW9zIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+
+IFVuZm9ydHVuYXRlbHksIHRoYXQgRkZUVyBidWcgaGFzIGJlZW4gYXJvdW5kIGZvciBhIHdoaWxl
+LiBJc3N1ZSAyMTMgaXMgYQo+IGR1cGxpY2F0ZSBvZiBpc3N1ZSAxODIgZnJvbSBhIHllYXIrIGFn
+by4KCkkgd29uZGVyIGlmIHRoZSBmaXggaXMgc2ltaWxhciB0byB0aGUgcHJvYmxlbSBtZW50aW9u
+ZWQgZm9yIEFWWCBpbiB0aGUKMy4zLjggcmVsZWFzZSBub3RlczoKCmh0dHA6Ly93d3cuZmZ0dy5v
+cmcvcmVsZWFzZS1ub3Rlcy5odG1sCgpQaGlsaXAKCj4gCj4gaHR0cHM6Ly9naXRodWIuY29tL0ZG
+VFcvZmZ0dzMvaXNzdWVzLzE4Mgo+IAo+IE9uIFVidW50dSAyMC4wNCBhcm1oZiwgdGhleSdyZSBq
+dXN0IGNvbXBpbGluZyB0aGUgRkZUVyBwYWNrYWdlIHdpdGhvdXQKPiBORU9OIGVuYWJsZWQuCj4g
+Cj4gUm9uCj4gCj4gT24gMTIvNi8yMCAwNjoyNywgQmVuIE1hZ2lzdHJvIHZpYSBVU1JQLXVzZXJz
+IHdyb3RlOgo+PiBJc3N1ZSBhcHBlYXJzIHRvIGJlIHdpdGggdGhlIGNvbXBpbGVyIHRoYXQgaXMg
+aW5jbHVkZWQgaW4gWmV1cyAoZ2NjCj4+IDkueCB2cyA4LngpIGFuZCBhbiBpbnRlcmFjdGlvbiB3
+aXRoIGZmdHcuIFRoZXJlIGlzIGFuIG9wZW4gaXNzdWUgd2l0aAo+PiBmZnR3IChodHRwczovL2dp
+dGh1Yi5jb20vRkZUVy9mZnR3My9pc3N1ZXMvMjEzKSBhbmQgYSByZXF1ZXN0IHRvIHRoZQo+PiB5
+b2N0byBmb2xrcyB0byByZXF1ZXN0IHRoZXkgY29uc2lkZXIgYWRkaW5nIGJhY2sgZ2NjLTguMyB0
+byB6ZXVzwqArCj4+IGR1bmZlbGzCoChodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcv
+c2hvd19idWcuY2dpP2lkPTE0MTQ0KQo+PiB1bnRpbCB0aGlzIGNhbiBiZSBiZXR0ZXIgcmVzb2x2
+ZWQuwqAgSSB0aGluayBkYXRhIHBvaW50IDMgY29uZmlybXMgdGhpcwo+PiBhcyBJIGRpZCBub3Qg
+aW5jbHVkZSBvcHRpb25zIHRvIGVuYWJsZSBuZW9uIHdoZW4gSSBjb21waWxlZC4KPj4KPj4gT24g
+V2VkLCBOb3YgMTEsIDIwMjAgYXQgMTozOSBQTSBCZW4gTWFnaXN0cm8gPGtvbmNlcHQxQGdtYWls
+LmNvbQo+PiA8bWFpbHRvOmtvbmNlcHQxQGdtYWlsLmNvbT4+IHdyb3RlOgo+Pgo+PiDCoMKgwqAg
+QWRkaW5nIHNvbWUgbW9yZSBkYXRhIHBvaW50cy4KPj4KPj4gwqDCoMKgIDEpIEkndmUgYmVlbiB0
+cnlpbmcgdG8gcmVidWlsZCBtZXRhLWV0dHVzLXY0IHdpdGggZGVidWcgZW5hYmxlZAo+PiDCoMKg
+wqAgYnV0IGFtIGhpdHRpbmcgYW4gaXNzdWUgd2l0aCBpbWFnZSBzaXplIGFuZCBjYW4ndCBzZWVt
+IHRvIGdldCBwYXN0Cj4+IMKgwqDCoCB0aGF0LsKgIEl0IHNheXMgSSBzaG91bGQgaW5jcmVhc2Ug
+YE1FTkRFUl9TVE9SQUdFX1RPVEFMX1NJWkVfTUJgIGlmCj4+IMKgwqDCoCB0aGUgYWN0dWFsIHNp
+emUgaXMgbGFyZ2VyIGJ1dCBpbmNyZWFzaW5nIHRoaXMgc2VlbXMgdG8gaGF2ZSBubwo+PiDCoMKg
+wqAgZWZmZWN0LsKgIEkgYW0gdXNpbmcgdGhlIGV0dHVzIGRvY2tlciBpbWFnZSBmb3Igb2UtYnVp
+bGRlciB3aXRoIHRoZQo+PiDCoMKgwqAgY29tbWFuZCBgLi9tZXRhLWV0dHVzL2NvbnRyaWIvYnVp
+bGRfaW1nc19wYWNrYWdlLnNoIGUzMTBfc2czCj4+IMKgwqDCoCB2NC4wLjAuMGAuwqAgRm9yIHRo
+ZSBkZWJ1ZyBwb3J0aW9uIEkndmUgYWRkZWQgYSBmZXcgbGluZXMgdG8KPj4gwqDCoMKgIGBidWls
+ZC9jb25mL2xvY2FsLmNvbmZgIHRvIGFkZCB0aGUgcGFja2FnZXMuIEknbSBvcGVuIHRvCj4+IMKg
+wqDCoCBzdWdnZXN0aW9ucyB0byBidWlsZCB0aGUgaW1hZ2Ugd2l0aCBkZWJ1ZyBzeW1ib2xzIGFu
+ZCBwcm92aWRlCj4+IMKgwqDCoCBhZGRpdGlvbmFsIGZlZWRiYWNrLgo+Pgo+PiDCoMKgwqAgMikg
+SSBwdXQgdG9nZXRoZXIgYSBzaW1wbGUgZmxvd2dyYXBoLCBVSEQgc291cmNlIC0tPiBmcmVxdWVu
+Y3kKPj4gwqDCoMKgIHhsYXRpbmcgZmZ0IC0tPiBudWxsIHNpbmsuwqAgVGhpcyBhbHNvIHNlZ2Zh
+dWx0cywgbm8gZ3VhcmFudGVlcwo+PiDCoMKgwqAgdGhhdCBJIGdvdCB0aGUgcGFyYW1ldGVycyBj
+b3JyZWN0Lgo+Pgo+PiDCoMKgwqAgMykgU2luY2UgdGhlIGlzc3VlcyBzZWVtIHRvIGJlIHdpdGgg
+ZmZ0dywgSSBkZWNpZGVkIHRvIHRyeQo+PiDCoMKgwqAgYnVpbGRpbmcgbXkgb3duIGNvcHkgb2Yg
+ZmZ0dyBtb3N0bHkgdG8gZ2V0IGRlYnVnIHN5bWJvbHMgYW5kCj4+IMKgwqDCoCBjb250aW51ZSB0
+cm91Ymxlc2hvb3RpbmcuwqAgRm9yIHRoaXMgSSB1c2VkIGAuL2NvbmZpZ3VyZQo+PiDCoMKgwqAg
+LS1lbmFibGUtZGVidWcgLS1lbmFibGUtc2hhcmVkIC0tZW5hYmxlLXRocmVhZHMgLS1lbmFibGUt
+ZmxvYXRgCj4+IMKgwqDCoCBhbmQgYG1ha2UgQ0ZMQUdTPSItZ2dkYiJgLsKgIFRoZXNlIG9wdGlv
+bnMgYXJlIGJlc3QgZ3Vlc3NlcyByaWdodAo+PiDCoMKgwqAgbm93IHNpbmNlIEkgZGlkbid0IGxv
+b2sgYXQgdGhlIGxheWVycyB0byBzZWUgd2hhdCBwYXJhbWV0ZXJzIGl0IGlzCj4+IMKgwqDCoCB1
+c2luZyAoYXNzdW1pbmcgaXQgaXMgaW4gb25lIG9mIHRoZSBsYXllcnMpLsKgIFVzaW5nIHRoaXMg
+YnVpbGQKPj4gwqDCoMKgIHdpdGggYGV4cG9ydCBMRF9MSUJSQVJZX1BBVEg9L3Vzci9sb2NhbC9s
+aWIvYCBJIGRvIG5vdCBnZXQgYQo+PiDCoMKgwqAgc2VnZmF1bHQgd2l0aCBnci1haXMgb3IgdGhl
+IGFib3ZlIGZsb3dncmFwaCBidXQgSSBhbHNvIGRvbid0IGdldAo+PiDCoMKgwqAgdGhlIGV4cGVj
+dGVkIG91dHB1dCB3aGljaCBtYWtlcyBtZSBxdWVzdGlvbiB0aGUgcGFyYW1ldGVycyBJIHVzZWQK
+Pj4gwqDCoMKgIHRvIGJ1aWxkIGl0LsKgIE91dHB1dCB3aXNlIEkgZ2V0IGEgc3RyaW5nIG9mICJE
+IiBvciAiTyIgdG8gdGhlCj4+IGNvbnNvbGUuCj4+Cj4+IMKgwqDCoCBUaGFua3MKPj4KPj4gwqDC
+oMKgIEJlbgo+Pgo+PiDCoMKgwqAgT24gVGh1LCBOb3YgNSwgMjAyMCBhdCA5OjIyIEFNIE1pY2hh
+ZWwgRGlja2Vucwo+PiDCoMKgwqAgPG1pY2hhZWwuZGlja2Vuc0BldHR1cy5jb20gPG1haWx0bzpt
+aWNoYWVsLmRpY2tlbnNAZXR0dXMuY29tPj4gd3JvdGU6Cj4+Cj4+IMKgwqDCoMKgwqDCoMKgIEhp
+IEJlbiAtIFRoaXMgaXNzdWUgaGFzIGJlZW4gcmVwb3J0ZWQgdG8gUiZEIGludGVybmFsbHkuIElm
+Cj4+IMKgwqDCoMKgwqDCoMKgIHlvdSB3aXNoIHRvIGNyZWF0ZSBhIHB1YmxpYy1mYWNpbmcgVUhE
+IGlzc3VlIG9uIG91ciBHaXRodWIKPj4gwqDCoMKgwqDCoMKgwqAgdHJhY2tlciBwbGVhc2UgZ28g
+YWhlYWQgJiBkbyBzbywgYW5kIHRhZyBtZSBvbiBpdCBzbyB0aGF0IHdlCj4+IMKgwqDCoMKgwqDC
+oMKgIGNhbiBrZWVwIHRyYWNrIG9mIGl0IGludGVybmFsbHkuIC0gTUxECj4+Cj4+IMKgwqDCoMKg
+wqDCoMKgIE9uIFdlZCwgTm92IDQsIDIwMjAgYXQgMTE6MjUgUE0gQmVuIE1hZ2lzdHJvIHZpYSBV
+U1JQLXVzZXJzCj4+IMKgwqDCoMKgwqDCoMKgIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+
+PiDCoMKgwqDCoMKgwqDCoCA8bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4gd3Jv
+dGU6Cj4+Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgSXMgYW55b25lIGVsc2UgdXNpbmcgbWV0
+YS1ldHR1cy12NC4wLjAuMCB5ZXQ/wqAgaWYgc28sIGhhdmUKPj4gwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCB5b3UgaGFkIGFueSBpc3N1ZXMgd2l0aCBsaWJmZnR3Pwo+Pgo+PiDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIFVzaW5nIHRoZSBpbWFnZSBvbiBhbiBFMzEwLCBhZGRpbmcgYSBzaW5nbGUgT09U
+IG1vZHVsZQo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIChnci1haXMpIGFuZCB0cnlpbmcgdG8g
+cnVuIGFuIGFwcCBkaXN0cmlidXRlZCB3aXRoIGl0LCB0aGUKPj4gwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBhcHAgc2VnZmF1bHRzLsKgIFRvIGZ1cnRoZXIgdHJvdWJsZXNob290LCBJIGFkZGVkIGdk
+YiBhbmQKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpdCBjb21lcyBiYWNrIHdpdGggdGhlIGZv
+bGxvd2luZy7CoCBJIGhhdmUgYSBzZXBhcmF0ZQo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRl
+dmVsb3BtZW50IGhvc3QgdGhhdCBoYXMgZ251cmFkaW8gMy44IHNldHVwIHVzaW5nIHB5Ym9tYnMK
+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBhbmQgZG8gbm90IGV4cGVyaWVuY2UgdGhpcyBpc3N1
+ZSB0aGVyZS4KPj4KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBUaHJlYWQgMSAicHl0aG9uMyIg
+cmVjZWl2ZWQgc2lnbmFsIFNJR1NFR1YsIFNlZ21lbnRhdGlvbgo+PiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIGZhdWx0Lgo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4YjY5NDc4MzYgaW4gPz8g
+KCkgZnJvbSAvdXNyL2xpYi9saWJmZnR3M2Yuc28uMwo+Pgo+PiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIFRvIGNvbXBpbGUsIEkndmUgbmVlZGVkIHRvIG92ZXJyaWRlIFBZVEhPTl9FWEVDVVRBQkxF
+IGFzCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaXQgcG9pbnRzIHRvIGEgbm9uLWV4aXN0ZW50
+IHBhdGggaW4gL2hvbWUvb2UtYnVpbGRlci4uLi4KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBp
+biAvdXNyL2xpYi9jbWFrZS9nbnVyYWRpby9HbnVyYWRpb0NvbmZpZy5jbWFrZS4gVG8gcnVuIEkK
+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBhbHNvIG5lZWRlZCB0byBkZWZpbmUgTERfRVhQT1JU
+X1BBVEggcG9pbnRpbmcgdG8KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAvdXNyL2xvY2FsL2xp
+Yi8uCj4+Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVGhhbmtzIGluIGFkdmFuY2UuCj4+IMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBVU1JQLXVzZXJzIG1haWxpbmcg
+bGlzdAo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+Cj4+IDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Cj4+IMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAKPj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAt
+dXNlcnNfbGlzdHMuZXR0dXMuY29tCj4+Cj4+Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCj4+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4+IFVTUlAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+IAo+IAo+IF9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxp
+c3QKPiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20v
+bWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+IAoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5n
+IGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9t
+YWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
