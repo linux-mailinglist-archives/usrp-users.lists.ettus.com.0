@@ -2,58 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B41712D18FD
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Dec 2020 20:03:42 +0100 (CET)
-Received: from [::1] (port=38858 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 309262D1939
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Dec 2020 20:16:33 +0100 (CET)
+Received: from [::1] (port=38948 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kmLnQ-0004vu-K8; Mon, 07 Dec 2020 14:03:40 -0500
-Received: from mail-qt1-f178.google.com ([209.85.160.178]:34373)
+	id 1kmLzr-0005uw-K4; Mon, 07 Dec 2020 14:16:31 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:42040)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kmLnM-0004pf-0C
- for USRP-users@lists.ettus.com; Mon, 07 Dec 2020 14:03:36 -0500
-Received: by mail-qt1-f178.google.com with SMTP id 7so10212556qtp.1
- for <USRP-users@lists.ettus.com>; Mon, 07 Dec 2020 11:03:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=kz7uAF20m9/cprmRorc43mEfihhQgoALG4qpYJA2CbI=;
- b=b/LkAA+9QDyUzkuHAmjke4FxIe1bwjem5MnMXwwxlG/5vufHPQsSEk3V5LeRigABqq
- wW4DwWT7usd54B1oiMYAMHjJcuuVbAJbAcfbXXOsjgSTYtHHpSDqqnYYSfdl11lE0zXf
- tVPst46jkbKnBdg48ctXqUh0cem/uJbTZgviZTqMDRjWyEHluEuZg+zA8Ces5wnkox3g
- zk/0zPRsYQVQwKelJEfqK7dyy1m1hO9gRqq+h1vjRhJfoTbc3/ynwZwoycoY6T++dlXE
- rsAmuVohLX8eOx2869bztoqwsTy3dySpudkf5GEuzttkUmZH5A7jWWZeq3CzYFtM9OS+
- fX4w==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kmLzn-0005ib-F3
+ for usrp-users@lists.ettus.com; Mon, 07 Dec 2020 14:16:27 -0500
+Received: by mail-ot1-f47.google.com with SMTP id 11so13536612oty.9
+ for <usrp-users@lists.ettus.com>; Mon, 07 Dec 2020 11:16:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=+wKq8q1mpoMdIFWczBznmcBYdnty2Le55QMyvlQ0oyU=;
+ b=PbeebPGpDB5MJTHukbo45pUlsyOz6rO4EYjWqDzC4btNeqiwWuCj22dWyoVqEtNDUy
+ uxU6+I+DTJk5jLt0ezMknyJ3FIv5alFh+B2xkcvZs1cZYXQwgrS7DcdXmgRnrtz0KP3u
+ encKsvKw+vEBLjgvF/LUelO3ldgW1y7XQNp/cJmuf7F/AgM9rAopWt1o8sQTZVb1nVDQ
+ AMyVhKx+CRyxYfAKyZ8BcE1zNyYLMqhEB7Uz0bav3xWP8+GdL21xqndH3/bNoLYwk38H
+ 5ykqVFzZD37HkqF0UaqnteKo6WbF69P8MUO+4VyjQ2euu1RBhusG3sbXx2RpInMDCeKB
+ 6yEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=kz7uAF20m9/cprmRorc43mEfihhQgoALG4qpYJA2CbI=;
- b=hIh91wpAcsI2BvWgBm7ihhhwVSOeOeiEF+rxc73zp3KlisxnAiiE6T0bMpdniI8jri
- EoozMlpVIMcZXrEzTmilzUUvWVbTZ/S36G0angeARIh6LvPd6eamXHs6+ojZopSPoCL6
- 3deYdDOEpslY8I2RsaJjwWls5ZyGWCiE2AhzurK1QkPkS8GGKUQsRgoRHaOb07r/Ywlq
- OdLEG90AKbUPWu8762pHvyF/eUrBF0YCt7aSsuQQLkxuv29dWfif0DpKylgkArAICDVE
- ZXT19jQSVtVnnEO2+ReQIlksPmvt0zEH4dRsoHe7mx6jPaRjEtlJIb9ZC4WzpBlu5EBZ
- HnIw==
-X-Gm-Message-State: AOAM532dIPJGQGKMDbIksxcLDRpjJbEsYXvbkrjqWbqp7lO7dmv8IHrX
- mOuQ3569vw+w7QUdz2BknL8URvvyNRQ=
-X-Google-Smtp-Source: ABdhPJxFmwdhxouJBLmpxkVzdYe69pMFcLMqtLRXc0iIi3WgNhtmYCGAs5Iqraxg13INeQaWa/Lg+Q==
-X-Received: by 2002:aed:3462:: with SMTP id w89mr18126977qtd.265.1607367775418; 
- Mon, 07 Dec 2020 11:02:55 -0800 (PST)
-Received: from ?IPv6:2605:b100:d17:91c0:1d4b:43c5:48c2:37b2?
- ([2605:b100:d17:91c0:1d4b:43c5:48c2:37b2])
- by smtp.gmail.com with ESMTPSA id c14sm11514266qtc.90.2020.12.07.11.02.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 07 Dec 2020 11:02:54 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Mon, 7 Dec 2020 14:02:53 -0500
-Message-Id: <45383A44-5BC5-4340-8236-6D1E8D1E3EB9@gmail.com>
-References: <1711191034.4575835.1607367221112@mail.yahoo.com>
-Cc: USRP-users@lists.ettus.com
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=+wKq8q1mpoMdIFWczBznmcBYdnty2Le55QMyvlQ0oyU=;
+ b=UeslwqteV7I//XaporaEFuSNLFMcMnn7agr2qDT8jLMPIsT0a/9NgHGSfICNQke6Ae
+ XJ+wq1/RhB9I7OdH7ku2H4Eo62UkbuQ0N2ZXOfJfphbFQtIzhTGhIkwOjBdKPVMjii25
+ 5EURFIuYBaXLvHGAmrTCwIzIwCKPBlpY+r1/v9+oVm8AfC5cvthVKpiCf1SfmkJA52VD
+ JTYX5sn1BoeyvDPf82GQhQt5DYCr9ak/mMV20PrtFV74hFtE+UXfcPu5VgFFKT4xPTXU
+ LpIHiupyOZHQbz1jldv381lZGlL1cz4GdgA4+coCALDFWYYIHL3p9LzpLKw5xUGCgtMj
+ sv6Q==
+X-Gm-Message-State: AOAM5327a+JLy6/8l7Dgfwn98PDST8c7jRcMNea95/ZhzeoetFfnPlUT
+ ofLajv07yV9emqD20WgscfJMuOUqUEO7djFzfqZRMQ==
+X-Google-Smtp-Source: ABdhPJzI2LUBN0lwm7IbsFLXZUDkemqRFiz5tq2x/6xyahgnbfX/9hzeKx3Qv+2BRJhbSa9Ep1EG7QqQNiYf5GVLXk0=
+X-Received: by 2002:a9d:6b10:: with SMTP id g16mr14051617otp.301.1607368546477; 
+ Mon, 07 Dec 2020 11:15:46 -0800 (PST)
+MIME-Version: 1.0
+References: <1711191034.4575835.1607367221112.ref@mail.yahoo.com>
+ <1711191034.4575835.1607367221112@mail.yahoo.com>
 In-Reply-To: <1711191034.4575835.1607367221112@mail.yahoo.com>
+Date: Mon, 7 Dec 2020 14:15:35 -0500
+Message-ID: <CAB__hTTTrKsP7Qi636OHcuMb8GFW-wre9Yx+pXH==+NACaTaAA@mail.gmail.com>
 To: Mark McAllister <bassecho21@yahoo.com>
-X-Mailer: iPhone Mail (18B92)
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] USRP B200 Function Question
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -66,9 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3715857452696096270=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============7356910396967671861=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,84 +75,84 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============7356910396967671861==
+Content-Type: multipart/alternative; boundary="0000000000003caa7505b5e4a75e"
 
---===============3715857452696096270==
-Content-Type: multipart/alternative; boundary=Apple-Mail-CD7C62C7-B387-4EEB-A3D0-6BE77D7C9572
-Content-Transfer-Encoding: 7bit
+--0000000000003caa7505b5e4a75e
+Content-Type: text/plain; charset="UTF-8"
 
+Mark,
+Just this past Friday, I had success controlling a B200mini directly from
+an N310 using the USB2 port on the N310.  Such a use case limits you to
+USB2 streaming for the B2xx and it also hogs CPU cycles from the N310.  Let
+me know if this is of interest to you I can can provide more info.
+Rob
 
---Apple-Mail-CD7C62C7-B387-4EEB-A3D0-6BE77D7C9572
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+On Mon, Dec 7, 2020 at 1:56 PM Mark McAllister via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-I=E2=80=99ve never had much luck with USB over Ethernet devices with either U=
-SRP1 or B2xx
-
-
-
-Sent from my iPhone
-
-> On Dec 7, 2020, at 1:56 PM, Mark McAllister via USRP-users <usrp-users@lis=
-ts.ettus.com> wrote:
->=20
-> =EF=BB=BF
-> My senior design team at California State University Northridge is current=
- using a USRP N210 as a  local oscillator for a smart antenna array.=20
->=20
-> We're considering purchasing something from the B200 series in order to re=
-place it since we are current borrowing our N210.=20
->=20
-> Our concern is that the B200 specifies the use of USB 3.0 for connecting t=
-o a host computer, and we are currently connecting both an N210 and N310 to a=
- router which connects all signals to a host computer.
->=20
-> My main question is whether or not the B200 series will run properly using=
- a USB to Ethernet adapter or if the device MUST be connected directly to th=
-e host computer via USB.=20
->=20
-> Thank you for your time,=20
+> My senior design team at California State University Northridge is current
+> using a USRP N210 as a  local oscillator for a smart antenna array.
+>
+> We're considering purchasing something from the B200 series in order to
+> replace it since we are current borrowing our N210.
+>
+> Our concern is that the B200 specifies the use of USB 3.0 for connecting
+> to a host computer, and we are currently connecting both an N210 and N310
+> to a router which connects all signals to a host computer.
+>
+> My main question is whether or not the B200 series will run properly using
+> a USB to Ethernet adapter or if the device MUST be connected directly to
+> the host computer via USB.
+>
+> Thank you for your time,
 > Mark McAllister
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---Apple-Mail-CD7C62C7-B387-4EEB-A3D0-6BE77D7C9572
-Content-Type: text/html;
-	charset=utf-8
+--0000000000003caa7505b5e4a75e
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">I=E2=80=99ve never had much luck with USB o=
-ver Ethernet devices with either USRP1 or B2xx<div><br></div><div><br><br><d=
-iv dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote typ=
-e=3D"cite">On Dec 7, 2020, at 1:56 PM, Mark McAllister via USRP-users &lt;us=
-rp-users@lists.ettus.com&gt; wrote:<br><br></blockquote></div><blockquote ty=
-pe=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div class=3D"yahoo-style-wrap" style=3D=
-"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><=
-div dir=3D"ltr" data-setdir=3D"false">My senior design team at California St=
-ate University Northridge is current using a USRP N210 as a&nbsp; local osci=
-llator for a smart antenna array. <br><br><div>We're considering purchasing s=
-omething from the B200 series in order to replace it since we are current bo=
-rrowing our N210. <br></div><div><br></div><div dir=3D"ltr" data-setdir=3D"f=
-alse">Our concern is that the B200 specifies the use of USB 3.0 for connecti=
-ng to a host computer, and we are currently connecting both an N210 and N310=
- to a router which connects all signals to a host computer.<br></div><div di=
-r=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"fa=
-lse">My main question is whether or not the B200 series will run properly us=
-ing a USB to Ethernet adapter or if the device MUST be connected directly to=
- the host computer via USB. <br><br><div>Thank you for your time, <br></div>=
-<div dir=3D"ltr" data-setdir=3D"false">Mark McAllister<br></div></div></div>=
-</div><span>_______________________________________________</span><br><span>=
-USRP-users mailing list</span><br><span>USRP-users@lists.ettus.com</span><br=
-><span>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</s=
-pan><br></div></blockquote></div></body></html>=
+<div dir=3D"ltr">Mark,<div>Just this past Friday, I had success controlling=
+ a B200mini directly from an N310 using the USB2 port on the N310.=C2=A0 Su=
+ch a use case limits you to USB2 streaming for the B2xx and it also hogs CP=
+U cycles from the N310.=C2=A0 Let me know if this is of interest to you I c=
+an can provide more info.</div><div>Rob</div></div><br><div class=3D"gmail_=
+quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Dec 7, 2020 at 1:56 PM=
+ Mark McAllister via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettu=
+s.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div><div style=3D"font-family:&quot;Helve=
+tica Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px"><div dir=3D"ltr"=
+>My senior design team at California State University Northridge is current=
+ using a USRP N210 as a=C2=A0 local oscillator for a smart antenna array. <=
+br><br><div>We&#39;re considering purchasing something from the B200 series=
+ in order to replace it since we are current borrowing our N210. <br></div>=
+<div><br></div><div dir=3D"ltr">Our concern is that the B200 specifies the =
+use of USB 3.0 for connecting to a host computer, and we are currently conn=
+ecting both an N210 and N310 to a router which connects all signals to a ho=
+st computer.<br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr">My main q=
+uestion is whether or not the B200 series will run properly using a USB to =
+Ethernet adapter or if the device MUST be connected directly to the host co=
+mputer via USB. <br><br><div>Thank you for your time, <br></div><div dir=3D=
+"ltr">Mark McAllister<br></div></div></div></div></div>____________________=
+___________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---Apple-Mail-CD7C62C7-B387-4EEB-A3D0-6BE77D7C9572--
+--0000000000003caa7505b5e4a75e--
 
 
---===============3715857452696096270==
+--===============7356910396967671861==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -170,5 +163,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3715857452696096270==--
+--===============7356910396967671861==--
 
