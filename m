@@ -2,34 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D55C2D8148
-	for <lists+usrp-users@lfdr.de>; Fri, 11 Dec 2020 22:50:34 +0100 (CET)
-Received: from [::1] (port=55944 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 939072D82AE
+	for <lists+usrp-users@lfdr.de>; Sat, 12 Dec 2020 00:23:40 +0100 (CET)
+Received: from [::1] (port=56714 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1knqJ6-0001Ta-L1; Fri, 11 Dec 2020 16:50:32 -0500
-Received: from smtp6.emailarray.com ([65.39.216.46]:29327)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <philip@balister.org>) id 1knqJ2-0001K3-NS
- for usrp-users@lists.ettus.com; Fri, 11 Dec 2020 16:50:28 -0500
-Received: (qmail 47279 invoked by uid 89); 11 Dec 2020 21:49:47 -0000
-Received: from unknown (HELO ?192.168.11.139?)
- (cGhpbGlwQG9wZW5zZHIuY29tQDczLjI1MS4xMC4xNDM=) (POLARISLOCAL) 
- by smtp6.emailarray.com with SMTP; 11 Dec 2020 21:49:47 -0000
-To: Ron Economos <w6rz@comcast.net>, usrp-users@lists.ettus.com
-References: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
- <CAGNhwTMz2w-kD=a4m9EeLHqsXP9cKgXhok+jsW1Tu=einSvgyQ@mail.gmail.com>
- <CAKx8PBgNoL6bAf8o-hXr0HnJnNaAj5XknPF5RPamY3Cs_hYCEg@mail.gmail.com>
- <CAKx8PBjjDas_yuBxOgM6O8R1zqgZUiYavqFfidu87n1_qEsDrA@mail.gmail.com>
- <c53ab9dd-b83a-80e7-f3d9-c54dd639b201@comcast.net>
-Message-ID: <7dd171e1-ee65-358a-6ad0-3a76fc234957@balister.org>
-Date: Fri, 11 Dec 2020 16:49:45 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+	id 1knrlC-0005Oh-Af; Fri, 11 Dec 2020 18:23:38 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:44403)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1knrl8-0005LX-Ui
+ for usrp-users@lists.ettus.com; Fri, 11 Dec 2020 18:23:34 -0500
+Received: by mail-ot1-f46.google.com with SMTP id f16so9798125otl.11
+ for <usrp-users@lists.ettus.com>; Fri, 11 Dec 2020 15:23:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=YUk5IlF5X44xTq04FwTh1L3Yn2VEIk/NW5IBe8Ml3R8=;
+ b=TQEaZb7UjZav6G00wQy96d72oxJuPhJ5aDghsw/MCdwizPcyTISj+6scjnug01wI1K
+ qX+bLCe24ykGiaTUCSM9+/wJej9dyg32axjSo5d5/tktCSBDRqJVRaVbAN5DZ/P7H72r
+ VCwzlV5dF/BdswzkqkwaiXH51VsTTcpmjpjceirq42RUwo82TW6wkTD7XaZPc3StVr5D
+ A0ZiYqD33vqfoRDyKZtstdkbPyB261hxJP7vYZEXJASmZM/5ClYFHYeHhPZGep1Y4P/O
+ zDt5bm/RPdUpAnzJH6KI0B1GvR6xbSvb+XfNdei1egq1mhWXBt2AXY0qiJFs9bTNSDcW
+ v6ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=YUk5IlF5X44xTq04FwTh1L3Yn2VEIk/NW5IBe8Ml3R8=;
+ b=ltOiEGILnN2gBUcltH0fsF2QYg7XAPLAjv/aNN9BM7pyawca1u+Ie69NW3Uh+/JAok
+ T5JtxVBGJXwEL3T62n3GzFu/totCvYQBve/h8UEJToQeqM7fJZxgcyqO6N+McfjARYaf
+ u5zxG+3CIft6gi/9sKY6PBzyMOM8ng/8zaXqqcg2MN/XIwTUPsAEr27qTHfdUbBK0f2H
+ rH6jY/ij5spnujnkT7V0j7WMeZTUPbcEOzK9KTpvxXU/RPpe+C0D+MmcjIG6cSxj+n9A
+ UdXV8sYkkKDTfaL3oViem8xe0YsmlIcBJz0rLfGtNtf3Xxv5fA6scLxnBHlSQKP4hiMM
+ LHFA==
+X-Gm-Message-State: AOAM530Vupktt4HXBvjiqM5oY1HSl4vpYVkaZangjxJHOlPtWaBvqkZy
+ kLaH+Orgp/GhHgUAz2Fce21te7QefXaNQTs1Vi3t9Mra
+X-Google-Smtp-Source: ABdhPJxI/qJ/m3F8yMRTMxuObPp0vXJoNAuNPkLrt9zPeDVA4I9ZxNpeKxTIV+2Jg+VKfTUz7U3J7WAIGZ1/+CN/DEY=
+X-Received: by 2002:a9d:470c:: with SMTP id a12mr11483778otf.161.1607728974071; 
+ Fri, 11 Dec 2020 15:22:54 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <c53ab9dd-b83a-80e7-f3d9-c54dd639b201@comcast.net>
-Content-Language: en-US
-Subject: Re: [USRP-users] meta-ettus-v4.0.0.0 segfault
+References: <CAB__hTQa8v40-nQGCQMcK36317oWxue448NrMoMYvbf3oacmug@mail.gmail.com>
+In-Reply-To: <CAB__hTQa8v40-nQGCQMcK36317oWxue448NrMoMYvbf3oacmug@mail.gmail.com>
+Date: Fri, 11 Dec 2020 17:22:44 -0600
+Message-ID: <CAFche=htoRKHMituvggWa15UwoiVkdR6n=3EXYK6d5TR696SiQ@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] RFNoC 4.0 data swapping?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -41,10 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Philip Balister <philip@balister.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Wade Fife <wade.fife@ettus.com>
+Content-Type: multipart/mixed; boundary="===============3999168593865480139=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -58,109 +75,156 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMTIvNi8yMCAxMDowMyBBTSwgUm9uIEVjb25vbW9zIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+
-IFVuZm9ydHVuYXRlbHksIHRoYXQgRkZUVyBidWcgaGFzIGJlZW4gYXJvdW5kIGZvciBhIHdoaWxl
-LiBJc3N1ZSAyMTMgaXMgYQo+IGR1cGxpY2F0ZSBvZiBpc3N1ZSAxODIgZnJvbSBhIHllYXIrIGFn
-by4KPiAKPiBodHRwczovL2dpdGh1Yi5jb20vRkZUVy9mZnR3My9pc3N1ZXMvMTgyCj4gCj4gT24g
-VWJ1bnR1IDIwLjA0IGFybWhmLCB0aGV5J3JlIGp1c3QgY29tcGlsaW5nIHRoZSBGRlRXIHBhY2th
-Z2Ugd2l0aG91dAo+IE5FT04gZW5hYmxlZC4KCkkgcG9rZWQgYXQgdGhpcyB3YXkgbW9yZSB0aGFu
-IEkgc2hvdWxkIGhhdmUgYW5kIGFtIDk5JSBjZXJ0YWluIHRoZSBpc3N1ZQppbiBpbiBnY2MtOC4g
-QnVpbGRpbmcgd2l0aCAtTyBvZmYgbGVkIHRvIGFuIGZmdHcgdGhhdCB3b3VsZCBwYXNzIGl0cwpt
-YWtlIGNoZWNrLiBJIHRyaWVkIGEgYnVpbGQgb24gYSBxZW11YXJtIGZyb20gT0UvbWFzdGVyIGFu
-ZCB0aGF0IHdvcmtlZAooZ2NjLTEwKS4gZ2NjLTkgaXMgYSBxdWVzdGlvbiwgSSBmaXJlZCB1cCBh
-IGJ1aWxkIG9mIE9FL2R1bmZlbGwgKGdjYy05KQphbmQgd2lsbCBydW4gdGhlIHFlbXUgY2hlY2sg
-YW5kIHNlZSB3aGF0IGhhcHBlbnMuCgpJZiB5b3UgYXJlIHN0dWNrIG9uIHpldXMsIHlvdSdsbCBu
-ZWVkIHRvIHRyeSBhbmQgaWQgdGhlIHBhdGNoIHRoYXQgZml4ZXMKZ2NjIGFuZCBhcHBseSBpdCB0
-byB0aGUgZ2NjIGJ1aWxkLiBCdXQgZ2V0dGluZyBvZmYgemV1cyB3b3VsZCBiZSBhCnJlYWxseSBi
-b29kIG1vdmUgYXMgaXQgaXMgb3V0IG9mIHN1cHBvcnQgbm93LgoKUGhpbGlwCgo+IAo+IFJvbgo+
-IAo+IE9uIDEyLzYvMjAgMDY6MjcsIEJlbiBNYWdpc3RybyB2aWEgVVNSUC11c2VycyB3cm90ZToK
-Pj4gSXNzdWUgYXBwZWFycyB0byBiZSB3aXRoIHRoZSBjb21waWxlciB0aGF0IGlzIGluY2x1ZGVk
-IGluIFpldXMgKGdjYwo+PiA5LnggdnMgOC54KSBhbmQgYW4gaW50ZXJhY3Rpb24gd2l0aCBmZnR3
-LiBUaGVyZSBpcyBhbiBvcGVuIGlzc3VlIHdpdGgKPj4gZmZ0dyAoaHR0cHM6Ly9naXRodWIuY29t
-L0ZGVFcvZmZ0dzMvaXNzdWVzLzIxMykgYW5kIGEgcmVxdWVzdCB0byB0aGUKPj4geW9jdG8gZm9s
-a3MgdG8gcmVxdWVzdCB0aGV5IGNvbnNpZGVyIGFkZGluZyBiYWNrIGdjYy04LjMgdG8gemV1c8Kg
-Kwo+PiBkdW5mZWxswqAoaHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3JnL3Nob3dfYnVn
-LmNnaT9pZD0xNDE0NCkKPj4gdW50aWwgdGhpcyBjYW4gYmUgYmV0dGVyIHJlc29sdmVkLsKgIEkg
-dGhpbmsgZGF0YSBwb2ludCAzIGNvbmZpcm1zIHRoaXMKPj4gYXMgSSBkaWQgbm90IGluY2x1ZGUg
-b3B0aW9ucyB0byBlbmFibGUgbmVvbiB3aGVuIEkgY29tcGlsZWQuCj4+Cj4+IE9uIFdlZCwgTm92
-IDExLCAyMDIwIGF0IDE6MzkgUE0gQmVuIE1hZ2lzdHJvIDxrb25jZXB0MUBnbWFpbC5jb20KPj4g
-PG1haWx0bzprb25jZXB0MUBnbWFpbC5jb20+PiB3cm90ZToKPj4KPj4gwqDCoMKgIEFkZGluZyBz
-b21lIG1vcmUgZGF0YSBwb2ludHMuCj4+Cj4+IMKgwqDCoCAxKSBJJ3ZlIGJlZW4gdHJ5aW5nIHRv
-IHJlYnVpbGQgbWV0YS1ldHR1cy12NCB3aXRoIGRlYnVnIGVuYWJsZWQKPj4gwqDCoMKgIGJ1dCBh
-bSBoaXR0aW5nIGFuIGlzc3VlIHdpdGggaW1hZ2Ugc2l6ZSBhbmQgY2FuJ3Qgc2VlbSB0byBnZXQg
-cGFzdAo+PiDCoMKgwqAgdGhhdC7CoCBJdCBzYXlzIEkgc2hvdWxkIGluY3JlYXNlIGBNRU5ERVJf
-U1RPUkFHRV9UT1RBTF9TSVpFX01CYCBpZgo+PiDCoMKgwqAgdGhlIGFjdHVhbCBzaXplIGlzIGxh
-cmdlciBidXQgaW5jcmVhc2luZyB0aGlzIHNlZW1zIHRvIGhhdmUgbm8KPj4gwqDCoMKgIGVmZmVj
-dC7CoCBJIGFtIHVzaW5nIHRoZSBldHR1cyBkb2NrZXIgaW1hZ2UgZm9yIG9lLWJ1aWxkZXIgd2l0
-aCB0aGUKPj4gwqDCoMKgIGNvbW1hbmQgYC4vbWV0YS1ldHR1cy9jb250cmliL2J1aWxkX2ltZ3Nf
-cGFja2FnZS5zaCBlMzEwX3NnMwo+PiDCoMKgwqAgdjQuMC4wLjBgLsKgIEZvciB0aGUgZGVidWcg
-cG9ydGlvbiBJJ3ZlIGFkZGVkIGEgZmV3IGxpbmVzIHRvCj4+IMKgwqDCoCBgYnVpbGQvY29uZi9s
-b2NhbC5jb25mYCB0byBhZGQgdGhlIHBhY2thZ2VzLiBJJ20gb3BlbiB0bwo+PiDCoMKgwqAgc3Vn
-Z2VzdGlvbnMgdG8gYnVpbGQgdGhlIGltYWdlIHdpdGggZGVidWcgc3ltYm9scyBhbmQgcHJvdmlk
-ZQo+PiDCoMKgwqAgYWRkaXRpb25hbCBmZWVkYmFjay4KPj4KPj4gwqDCoMKgIDIpIEkgcHV0IHRv
-Z2V0aGVyIGEgc2ltcGxlIGZsb3dncmFwaCwgVUhEIHNvdXJjZSAtLT4gZnJlcXVlbmN5Cj4+IMKg
-wqDCoCB4bGF0aW5nIGZmdCAtLT4gbnVsbCBzaW5rLsKgIFRoaXMgYWxzbyBzZWdmYXVsdHMsIG5v
-IGd1YXJhbnRlZXMKPj4gwqDCoMKgIHRoYXQgSSBnb3QgdGhlIHBhcmFtZXRlcnMgY29ycmVjdC4K
-Pj4KPj4gwqDCoMKgIDMpIFNpbmNlIHRoZSBpc3N1ZXMgc2VlbSB0byBiZSB3aXRoIGZmdHcsIEkg
-ZGVjaWRlZCB0byB0cnkKPj4gwqDCoMKgIGJ1aWxkaW5nIG15IG93biBjb3B5IG9mIGZmdHcgbW9z
-dGx5IHRvIGdldCBkZWJ1ZyBzeW1ib2xzIGFuZAo+PiDCoMKgwqAgY29udGludWUgdHJvdWJsZXNo
-b290aW5nLsKgIEZvciB0aGlzIEkgdXNlZCBgLi9jb25maWd1cmUKPj4gwqDCoMKgIC0tZW5hYmxl
-LWRlYnVnIC0tZW5hYmxlLXNoYXJlZCAtLWVuYWJsZS10aHJlYWRzIC0tZW5hYmxlLWZsb2F0YAo+
-PiDCoMKgwqAgYW5kIGBtYWtlIENGTEFHUz0iLWdnZGIiYC7CoCBUaGVzZSBvcHRpb25zIGFyZSBi
-ZXN0IGd1ZXNzZXMgcmlnaHQKPj4gwqDCoMKgIG5vdyBzaW5jZSBJIGRpZG4ndCBsb29rIGF0IHRo
-ZSBsYXllcnMgdG8gc2VlIHdoYXQgcGFyYW1ldGVycyBpdCBpcwo+PiDCoMKgwqAgdXNpbmcgKGFz
-c3VtaW5nIGl0IGlzIGluIG9uZSBvZiB0aGUgbGF5ZXJzKS7CoCBVc2luZyB0aGlzIGJ1aWxkCj4+
-IMKgwqDCoCB3aXRoIGBleHBvcnQgTERfTElCUkFSWV9QQVRIPS91c3IvbG9jYWwvbGliL2AgSSBk
-byBub3QgZ2V0IGEKPj4gwqDCoMKgIHNlZ2ZhdWx0IHdpdGggZ3ItYWlzIG9yIHRoZSBhYm92ZSBm
-bG93Z3JhcGggYnV0IEkgYWxzbyBkb24ndCBnZXQKPj4gwqDCoMKgIHRoZSBleHBlY3RlZCBvdXRw
-dXQgd2hpY2ggbWFrZXMgbWUgcXVlc3Rpb24gdGhlIHBhcmFtZXRlcnMgSSB1c2VkCj4+IMKgwqDC
-oCB0byBidWlsZCBpdC7CoCBPdXRwdXQgd2lzZSBJIGdldCBhIHN0cmluZyBvZiAiRCIgb3IgIk8i
-IHRvIHRoZQo+PiBjb25zb2xlLgo+Pgo+PiDCoMKgwqAgVGhhbmtzCj4+Cj4+IMKgwqDCoCBCZW4K
-Pj4KPj4gwqDCoMKgIE9uIFRodSwgTm92IDUsIDIwMjAgYXQgOToyMiBBTSBNaWNoYWVsIERpY2tl
-bnMKPj4gwqDCoMKgIDxtaWNoYWVsLmRpY2tlbnNAZXR0dXMuY29tIDxtYWlsdG86bWljaGFlbC5k
-aWNrZW5zQGV0dHVzLmNvbT4+IHdyb3RlOgo+Pgo+PiDCoMKgwqDCoMKgwqDCoCBIaSBCZW4gLSBU
-aGlzIGlzc3VlIGhhcyBiZWVuIHJlcG9ydGVkIHRvIFImRCBpbnRlcm5hbGx5LiBJZgo+PiDCoMKg
-wqDCoMKgwqDCoCB5b3Ugd2lzaCB0byBjcmVhdGUgYSBwdWJsaWMtZmFjaW5nIFVIRCBpc3N1ZSBv
-biBvdXIgR2l0aHViCj4+IMKgwqDCoMKgwqDCoMKgIHRyYWNrZXIgcGxlYXNlIGdvIGFoZWFkICYg
-ZG8gc28sIGFuZCB0YWcgbWUgb24gaXQgc28gdGhhdCB3ZQo+PiDCoMKgwqDCoMKgwqDCoCBjYW4g
-a2VlcCB0cmFjayBvZiBpdCBpbnRlcm5hbGx5LiAtIE1MRAo+Pgo+PiDCoMKgwqDCoMKgwqDCoCBP
-biBXZWQsIE5vdiA0LCAyMDIwIGF0IDExOjI1IFBNIEJlbiBNYWdpc3RybyB2aWEgVVNSUC11c2Vy
-cwo+PiDCoMKgwqDCoMKgwqDCoCA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4gwqDCoMKg
-wqDCoMKgwqAgPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+IHdyb3RlOgo+Pgo+
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIElzIGFueW9uZSBlbHNlIHVzaW5nIG1ldGEtZXR0dXMt
-djQuMC4wLjAgeWV0P8KgIGlmIHNvLCBoYXZlCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgeW91
-IGhhZCBhbnkgaXNzdWVzIHdpdGggbGliZmZ0dz8KPj4KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBVc2luZyB0aGUgaW1hZ2Ugb24gYW4gRTMxMCwgYWRkaW5nIGEgc2luZ2xlIE9PVCBtb2R1bGUK
-Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAoZ3ItYWlzKSBhbmQgdHJ5aW5nIHRvIHJ1biBhbiBh
-cHAgZGlzdHJpYnV0ZWQgd2l0aCBpdCwgdGhlCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYXBw
-IHNlZ2ZhdWx0cy7CoCBUbyBmdXJ0aGVyIHRyb3VibGVzaG9vdCwgSSBhZGRlZCBnZGIgYW5kCj4+
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaXQgY29tZXMgYmFjayB3aXRoIHRoZSBmb2xsb3dpbmcu
-wqAgSSBoYXZlIGEgc2VwYXJhdGUKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkZXZlbG9wbWVu
-dCBob3N0IHRoYXQgaGFzIGdudXJhZGlvIDMuOCBzZXR1cCB1c2luZyBweWJvbWJzCj4+IMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgYW5kIGRvIG5vdCBleHBlcmllbmNlIHRoaXMgaXNzdWUgdGhlcmUu
-Cj4+Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVGhyZWFkIDEgInB5dGhvbjMiIHJlY2VpdmVk
-IHNpZ25hbCBTSUdTRUdWLCBTZWdtZW50YXRpb24KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBm
-YXVsdC4KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweGI2OTQ3ODM2IGluID8/ICgpIGZyb20g
-L3Vzci9saWIvbGliZmZ0dzNmLnNvLjMKPj4KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBUbyBj
-b21waWxlLCBJJ3ZlIG5lZWRlZCB0byBvdmVycmlkZSBQWVRIT05fRVhFQ1VUQUJMRSBhcwo+PiDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGl0IHBvaW50cyB0byBhIG5vbi1leGlzdGVudCBwYXRoIGlu
-IC9ob21lL29lLWJ1aWxkZXIuLi4uCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaW4gL3Vzci9s
-aWIvY21ha2UvZ251cmFkaW8vR251cmFkaW9Db25maWcuY21ha2UuIFRvIHJ1biBJCj4+IMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgYWxzbyBuZWVkZWQgdG8gZGVmaW5lIExEX0VYUE9SVF9QQVRIIHBv
-aW50aW5nIHRvCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgL3Vzci9sb2NhbC9saWIvLgo+Pgo+
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFRoYW5rcyBpbiBhZHZhbmNlLgo+PiDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+PiA8bWFp
-bHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-Cj4+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xp
-c3RzLmV0dHVzLmNvbQo+Pgo+Pgo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwo+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+PiBVU1JQLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbQo+PiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8v
-dXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAKPiAKPiBfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNS
-UC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4v
-bGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVT
-UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
-aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+--===============3999168593865480139==
+Content-Type: multipart/alternative; boundary="000000000000651eb605b6389219"
+
+--000000000000651eb605b6389219
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Rob,
+
+The SEPs do have the ability to swap I and Q. This is because on the host
+computer, I is usually in the lower bits and Q is in the upper bits of each
+32-bit word, but in RFNoC, for historical reasons, I goes in the upper bits
+and Q in the lower bits. The software programs the IQ swapping when it sets
+up the graph.
+
+I assume you're using dynamic connections (through the crossbar) to control
+the number of FFTs the data is passed through, and not static connections?
+If that's the case then I wonder if software configures IQ swapping
+incorrectly in some configurations. I'll see if I can do some testing next
+week to confirm if it's working correctly.
+
+As for negation, I'm not aware of anywhere we do that off the top of my
+head. Is that behavior block dependent? I'll see if I can find anywhere
+this happens.
+
+Thanks,
+
+Wade
+
+On Thu, Dec 10, 2020 at 3:54 PM Rob Kossler via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi,
+> I am encountering very strange behavior with a custom FPGA image (N310).
+> It appears that data streaming through SEPs can get swapped (I/Q) and/or
+> negated.  Is anyone at Ettus aware of anything that could cause this?  Of
+> course, the issue might be on my end, but I can't think of what it might be
+> given that all of my custom blocks work as expected in isolation (if the
+> block is the only block in graph).
+>
+> My custom image is the following:
+>
+>    - default blocks of Radios, DDCs, DUCs (each 2x2 and statically
+>    connected as in default image)
+>    - custom blocks of two 1x1 windowed-fft blocks, two 1x1 vector-avg
+>    blocks, and one 2x2 custom block. Note: each of these blocks is connected
+>    to its own SEP, so I can connect dynamically in any fashion.
+>
+> My test case is transmitting 8192 random samples from host to FFT block
+> and then optionally through a 2nd FFT block before back to host.  In the
+> test case, the radios/DDCs/DUCs are not used.
+>
+> Here is what I observed:
+>
+>    - If I only include 1 FFT block in my RFNoC graph, I get the expected
+>    results (the output from the FPGA matches what I calculate in Matlab for
+>    the FFT).  This is true for either of the two FFT blocks.
+>    - If I include both FFT blocks in series, I can only match the FPGA
+>    output if I swap the I/Q values in between my Matlab FFTs.
+>    - Note: that this issue is not FFT-related as I can also duplicate
+>    this issue with the other blocks.
+>    - If I use 3 blocks in series (each through SEP), I need to negate
+>    certain data in order to get it to match the FPGA output
+>
+> My next step is likely to build a new image with Ettus-developed FIFOs to
+> prove that the data is getting swapped/negated when 2 or more are used in
+> series through SEPs.
+>
+> Let me know if you have any suggestions for other things to try.
+>
+> Rob
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000651eb605b6389219
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Rob,</div><div><br></div><div>The SEPs do have the=
+ ability to swap I and Q. This is because on the host computer, I is usuall=
+y in the lower bits and Q is in the upper bits of each 32-bit word, but in =
+RFNoC, for historical reasons, I goes in the upper bits and Q in the lower =
+bits. The software programs the IQ swapping when it sets up the graph. </di=
+v><div><br></div><div>I assume you&#39;re using dynamic connections (throug=
+h the crossbar) to control the number of FFTs the data is passed through, a=
+nd not static connections? If that&#39;s the case then=20
+I wonder if software configures IQ swapping incorrectly in some configurati=
+ons.
+
+I&#39;ll see if I can do some testing next week to confirm if it&#39;s work=
+ing correctly.</div><div><br></div><div>As for negation, I&#39;m not aware =
+of anywhere we do that off the top of my head. Is that behavior block depen=
+dent? I&#39;ll see if I can find anywhere this happens.</div><div><br></div=
+><div>Thanks,</div><div><br></div><div>Wade=C2=A0 <br></div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Dec 10,=
+ 2020 at 3:54 PM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-user=
+s@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<br><div>I=
+ am encountering very strange behavior with a custom FPGA image (N310). It =
+appears that data streaming through SEPs can get swapped (I/Q) and/or negat=
+ed.=C2=A0=C2=A0Is anyone at Ettus aware of=C2=A0anything that could cause t=
+his?=C2=A0 Of course, the issue might be on my end, but I can&#39;t think o=
+f what it might be given that all of my custom blocks work as expected in i=
+solation (if the block is the only block in graph).</div><div><br></div><di=
+v>My custom image is the following:</div><div><ul><li>default blocks of Rad=
+ios, DDCs, DUCs (each 2x2 and statically connected as in default image)</li=
+><li>custom blocks of=C2=A0two 1x1 windowed-fft blocks, two 1x1 vector-avg =
+blocks, and one 2x2 custom block. Note: each of these blocks is connected t=
+o its own SEP, so I can connect dynamically in any fashion.</li></ul><div>M=
+y test case is transmitting 8192 random samples from host to FFT block and =
+then optionally through a 2nd FFT block before back to host.=C2=A0 In the t=
+est case, the radios/DDCs/DUCs are not used.</div><div><br></div>Here is wh=
+at I observed:<br><ul><li>If I only include 1 FFT block in my RFNoC graph, =
+I get the expected results (the output from the FPGA matches what I calcula=
+te in Matlab for the FFT).=C2=A0 This is true for either of the two FFT blo=
+cks.</li><li>If I include both FFT blocks in series, I can only match the F=
+PGA output if I swap the I/Q values in between my Matlab FFTs.</li><li>Note=
+: that this issue is not FFT-related as I can also duplicate this issue wit=
+h the other blocks.=C2=A0</li><li>If I use 3 blocks in series (each through=
+ SEP), I need to negate certain data in order to get it to match the FPGA o=
+utput</li></ul><div>My next step is likely to build a new image with Ettus-=
+developed FIFOs to prove that the data is getting swapped/negated when 2 or=
+ more are used in series through SEPs.</div></div><div><br></div><div>Let m=
+e know if you have any suggestions for other things to try.<br></div><div><=
+br></div><div>Rob</div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000651eb605b6389219--
+
+
+--===============3999168593865480139==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3999168593865480139==--
+
