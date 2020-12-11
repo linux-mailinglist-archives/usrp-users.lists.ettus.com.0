@@ -2,55 +2,34 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FAD92D8141
-	for <lists+usrp-users@lfdr.de>; Fri, 11 Dec 2020 22:49:21 +0100 (CET)
-Received: from [::1] (port=55928 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D55C2D8148
+	for <lists+usrp-users@lfdr.de>; Fri, 11 Dec 2020 22:50:34 +0100 (CET)
+Received: from [::1] (port=55944 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1knqHu-00016u-6S; Fri, 11 Dec 2020 16:49:18 -0500
-Received: from mail-vs1-f49.google.com ([209.85.217.49]:46363)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1knqHq-0000xn-C2
- for usrp-users@lists.ettus.com; Fri, 11 Dec 2020 16:49:14 -0500
-Received: by mail-vs1-f49.google.com with SMTP id q10so5582442vsr.13
- for <usrp-users@lists.ettus.com>; Fri, 11 Dec 2020 13:48:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=lvtBRhJ5Uj73op7ysTuXv7ElDoRcdpxdYwC8YreNlWQ=;
- b=aNJtDCvdvuAm5rI9vXClIjNxzZkWuLruU+BU54SCCDNmWiNEugdA02uEVgMiYsdhm0
- kU0Nk5xfFELw4qa3YSIkxzHeMVoIiTcJGDYrc4hAaSyeJU2SPnKgKR0H9405USNAoWIl
- jbUXv0ryDZX9tj5gxiAdJfVkvelaYo73HMXlDz01oEnvcY5uC25eOhmxenRmw1iYm2Zv
- +nsk23dZjlTzCQsDj+NXZsUsEpz+SdSn4tG4+jDMJcqD2+wTTeAjdAwhvDrkRO0AuQmI
- UU0VWUfpBCQrZAA1SsRyevH48ddPktYtTqsQQHFBEV9vfLOj9jG3GeTctn6yBYMSH37v
- c2Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=lvtBRhJ5Uj73op7ysTuXv7ElDoRcdpxdYwC8YreNlWQ=;
- b=QpM0VcwQEY3lg4g7jlbSsVHRdAooxZTR+3TdmVWDzo+arxqyl2//S48aw+LdKAbKny
- SsvAhIxoJWKnwndcvz+GfuBcr5sC4VFmxJauR3lVdxJgLuQcLsGvGhp6BfwRHYEXktER
- O+cw1eCi0++UN2fdnF/Y6SGXD8elBKGTX/rcLS1e4MBsIsGBkTnLG3pIPBsBz7xP370x
- aasVpNk8kWkLQghz42WSQGqvaceiMreF9izt7n57ThZ6e2O09uucwmR3a3EAZ4aEUH/p
- plfUj1omP9It/piNqFmzyAucvA/9WKbCE/RMCcOpaXlxEPIKssxAWMvCaYq3J/hLX9e1
- ht2g==
-X-Gm-Message-State: AOAM532rzsx2sWXxxt9RLqqFMZAkeByOaQs/fM0bDqGqZK7oFZURm+zK
- q+0VVOj8gwuZwNL0X2LyuTvIhryoSNitohhdkmoH2hhJ
-X-Google-Smtp-Source: ABdhPJzd5JIgbSYcHLsRcYav5x8SGHk2gqkUYf4BX6fDxE2ryHv5xGHycTP19jZOLwBw/qqKKLOOU2+ohvXC6oHWRx0=
-X-Received: by 2002:a05:6102:2da:: with SMTP id
- h26mr14781009vsh.27.1607723313561; 
- Fri, 11 Dec 2020 13:48:33 -0800 (PST)
+	id 1knqJ6-0001Ta-L1; Fri, 11 Dec 2020 16:50:32 -0500
+Received: from smtp6.emailarray.com ([65.39.216.46]:29327)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <philip@balister.org>) id 1knqJ2-0001K3-NS
+ for usrp-users@lists.ettus.com; Fri, 11 Dec 2020 16:50:28 -0500
+Received: (qmail 47279 invoked by uid 89); 11 Dec 2020 21:49:47 -0000
+Received: from unknown (HELO ?192.168.11.139?)
+ (cGhpbGlwQG9wZW5zZHIuY29tQDczLjI1MS4xMC4xNDM=) (POLARISLOCAL) 
+ by smtp6.emailarray.com with SMTP; 11 Dec 2020 21:49:47 -0000
+To: Ron Economos <w6rz@comcast.net>, usrp-users@lists.ettus.com
+References: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
+ <CAGNhwTMz2w-kD=a4m9EeLHqsXP9cKgXhok+jsW1Tu=einSvgyQ@mail.gmail.com>
+ <CAKx8PBgNoL6bAf8o-hXr0HnJnNaAj5XknPF5RPamY3Cs_hYCEg@mail.gmail.com>
+ <CAKx8PBjjDas_yuBxOgM6O8R1zqgZUiYavqFfidu87n1_qEsDrA@mail.gmail.com>
+ <c53ab9dd-b83a-80e7-f3d9-c54dd639b201@comcast.net>
+Message-ID: <7dd171e1-ee65-358a-6ad0-3a76fc234957@balister.org>
+Date: Fri, 11 Dec 2020 16:49:45 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-References: <0de28dac284d443f97212f5559446f66@gtri.gatech.edu>
- <72b3782485534f1c843149b5b70ef955@gtri.gatech.edu>
-In-Reply-To: <72b3782485534f1c843149b5b70ef955@gtri.gatech.edu>
-Date: Fri, 11 Dec 2020 16:47:57 -0500
-Message-ID: <CAL7q81uuY5BK8RGHk0M_Wgo_9gheOzWJ1t=RstwWFAn=zBbS_A@mail.gmail.com>
-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] RFNoC passing metadata on the dataplane
+In-Reply-To: <c53ab9dd-b83a-80e7-f3d9-c54dd639b201@comcast.net>
+Content-Language: en-US
+Subject: Re: [USRP-users] meta-ettus-v4.0.0.0 segfault
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -62,9 +41,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Content-Type: multipart/mixed; boundary="===============4949014632725611716=="
+From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Philip Balister <philip@balister.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,236 +58,109 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4949014632725611716==
-Content-Type: multipart/alternative; boundary="00000000000000bc5005b63741e0"
-
---00000000000000bc5005b63741e0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Jeff,
-
-RFNoC3 / UHD 3.15 does not support metadata. That is a new feature in
-RFNoC4 / UHD 4.0, so option 2 is not possible.
-
-If you want to send out metadata in RFNoC3, I would suggest prepending it
-to packets you send to AXI wrapper. You can still use SIMPLE_MODE as long
-as you are producing a packet for every packet consumed. The different
-input/output packet lengths do not matter as AXI wrapper internally
-calculates the output packet length and updates the header automatically.
-
-Jonathon
-
-On Fri, Dec 11, 2020 at 3:48 PM Hodges, Jeff via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> I meant rfnoc_create_verilog.py
->
->
->
-> https://github.com/EttusResearch/uhd/blob/master/host/utils/rfnoc_blockto=
-ol/rfnoc_create_verilog.py
->
->
-> jeff
-> ------------------------------
-> *From:* Hodges, Jeff
-> *Sent:* Friday, December 11, 2020 3:44:41 PM
-> *To:* usrp-users@lists.ettus.com
-> *Subject:* RFNoC passing metadata on the dataplane
->
->
-> I'd like to pass metadata over the dataplane using the available space in
-> the CHDR header.  However, I cannot find an easy way to do this using
-> UHD3.15.
->
->
-> I've identified two possible approaches but I'm not sure either will work=
-:
-> (1) Set AXI_Wrapper (Simple_Mode =3D0) to require user provided CHDR head=
-er.
-> It's unclear how to provide the header, and if this can be modified quick=
-ly.
->
-> (2) Expose the AXI-Stream CHDR interface the way UHD4.0 does it:
->
-> In UHD4.0 the verilog_image_builder.py includes the options to expose HDL
-> interface:
->
-> o Definition: Which HDL interface to expose
-> o Options: =E2=80=9CAXI-Stream CHDR=E2=80=9D (axis_chdr), =E2=80=9CAXI-St=
-ream Payload Context=E2=80=9D
-> (axis_pyld_ctxt), or =E2=80=9CAXI-Stream Data=E2=80=9D (axis_data)
->
-> If Option (2) is the recommended, can I just copy the code from
-> verilog_image_builder.py TEMPLATE such as below, or were other changes ma=
-de
-> to make it incompatible with 3.15?
->
->  %if config['data']['fpga_iface'] =3D=3D
-> "axis_pyld_ctxt":
-> assign axis_data_clk =3D
-> ${config['data']['clk_domain']}_clk;
-> assign axis_data_rst =3D
-> ${config['data']['clk_domain']}_rst;
->  <%include file=3D"/modules/axis_pyld_ctxt_modules_template.mako"/>
->
->
->
-> Thanks,
->
-> Jeff
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---00000000000000bc5005b63741e0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Jeff,<div><br></div><div>RFNoC3 / UHD 3.15 does not sup=
-port metadata. That is a new feature in RFNoC4 / UHD 4.0, so option 2 is no=
-t possible.</div><div><br></div><div>If you want to send out metadata in RF=
-NoC3, I would suggest prepending it to packets you send to AXI wrapper. You=
- can still use SIMPLE_MODE as long as you are producing a packet for every =
-packet consumed. The different input/output packet lengths do not matter as=
- AXI wrapper internally calculates the output packet length and updates the=
- header automatically.</div><div><br></div><div>Jonathon</div></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 1=
-1, 2020 at 3:48 PM Hodges, Jeff via USRP-users &lt;<a href=3D"mailto:usrp-u=
-sers@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-<div dir=3D"ltr">
-
-<div id=3D"gmail-m_-3086681405321088638gmail-m_2884275641335174869divtagdef=
-aultwrapper" style=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,H=
-elvetica,sans-serif" dir=3D"ltr">
-<p>I meant rfnoc_create_verilog.py<br>
-</p>
-<p><br>
-</p>
-<p><a href=3D"https://github.com/EttusResearch/uhd/blob/master/host/utils/r=
-fnoc_blocktool/rfnoc_create_verilog.py" id=3D"gmail-m_-3086681405321088638g=
-mail-m_2884275641335174869LPlnk889110" target=3D"_blank">https://github.com=
-/EttusResearch/uhd/blob/master/host/utils/rfnoc_blocktool/rfnoc_create_veri=
-log.py</a></p>
-<p><br>
-</p>
-<p>jeff<br>
-</p>
-</div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"gmail-m_-3086681405321088638gmail-m_2884275641335174869divRplyFw=
-dMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" style=3D"font-size:11p=
-t" color=3D"#000000"><b>From:</b> Hodges, Jeff<br>
-<b>Sent:</b> Friday, December 11, 2020 3:44:41 PM<br>
-<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a><br>
-<b>Subject:</b> RFNoC passing metadata on the dataplane</font>
-<div>=C2=A0</div>
-</div>
-<div>
-<div id=3D"gmail-m_-3086681405321088638gmail-m_2884275641335174869divtagdef=
-aultwrapper" style=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,H=
-elvetica,sans-serif" dir=3D"ltr">
-<p>I&#39;d like to pass metadata over the dataplane using the available spa=
-ce in the CHDR header.=C2=A0 However, I cannot find an easy way to do this =
-using UHD3.15.</p>
-<p><br>
-</p>
-<p>I&#39;ve identified two possible approaches but I&#39;m not sure either =
-will work:<br>
-(1) Set AXI_Wrapper (Simple_Mode =3D0) to require user provided CHDR header=
-. It&#39;s unclear how to provide the header, and if this can be modified q=
-uickly.</p>
-<p>(2) Expose the AXI-Stream CHDR interface the way UHD4.0 does it:<br>
-</p>
-<p>In UHD4.0 the verilog_image_builder.py includes the options to expose HD=
-L interface:</p>
-<p></p>
-<div>o Definition: Which HDL interface to expose<br>
-o Options: =E2=80=9CAXI-Stream CHDR=E2=80=9D (axis_chdr), =E2=80=9CAXI-Stre=
-am Payload Context=E2=80=9D (axis_pyld_ctxt), or =E2=80=9CAXI-Stream Data=
-=E2=80=9D (axis_data)</div>
-<div><br>
-</div>
-<div>If Option (2) is the recommended, can I just copy the code from verilo=
-g_image_builder.py TEMPLATE such as below, or were other changes made to ma=
-ke it incompatible with 3.15?</div>
-<div><br>
-</div>
-<div>
-<div>=C2=A0%if config[&#39;data&#39;][&#39;fpga_iface&#39;] =3D=3D &quot;ax=
-is_pyld_ctxt&quot;:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0
-<br>
-</div>
-<div>assign axis_data_clk =3D ${config[&#39;data&#39;][&#39;clk_domain&#39;=
-]}_clk;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0
-<br>
-</div>
-<div>assign axis_data_rst =3D ${config[&#39;data&#39;][&#39;clk_domain&#39;=
-]}_rst;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-<br>
-=C2=A0&lt;%include file=3D&quot;/modules/axis_pyld_ctxt_modules_template.ma=
-ko&quot;/&gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </div>
-<br>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>Thanks,</div>
-<div><br>
-</div>
-<div>Jeff<br>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<br>
-<p></p>
-</div>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000000bc5005b63741e0--
-
-
---===============4949014632725611716==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4949014632725611716==--
-
+T24gMTIvNi8yMCAxMDowMyBBTSwgUm9uIEVjb25vbW9zIHZpYSBVU1JQLXVzZXJzIHdyb3RlOgo+
+IFVuZm9ydHVuYXRlbHksIHRoYXQgRkZUVyBidWcgaGFzIGJlZW4gYXJvdW5kIGZvciBhIHdoaWxl
+LiBJc3N1ZSAyMTMgaXMgYQo+IGR1cGxpY2F0ZSBvZiBpc3N1ZSAxODIgZnJvbSBhIHllYXIrIGFn
+by4KPiAKPiBodHRwczovL2dpdGh1Yi5jb20vRkZUVy9mZnR3My9pc3N1ZXMvMTgyCj4gCj4gT24g
+VWJ1bnR1IDIwLjA0IGFybWhmLCB0aGV5J3JlIGp1c3QgY29tcGlsaW5nIHRoZSBGRlRXIHBhY2th
+Z2Ugd2l0aG91dAo+IE5FT04gZW5hYmxlZC4KCkkgcG9rZWQgYXQgdGhpcyB3YXkgbW9yZSB0aGFu
+IEkgc2hvdWxkIGhhdmUgYW5kIGFtIDk5JSBjZXJ0YWluIHRoZSBpc3N1ZQppbiBpbiBnY2MtOC4g
+QnVpbGRpbmcgd2l0aCAtTyBvZmYgbGVkIHRvIGFuIGZmdHcgdGhhdCB3b3VsZCBwYXNzIGl0cwpt
+YWtlIGNoZWNrLiBJIHRyaWVkIGEgYnVpbGQgb24gYSBxZW11YXJtIGZyb20gT0UvbWFzdGVyIGFu
+ZCB0aGF0IHdvcmtlZAooZ2NjLTEwKS4gZ2NjLTkgaXMgYSBxdWVzdGlvbiwgSSBmaXJlZCB1cCBh
+IGJ1aWxkIG9mIE9FL2R1bmZlbGwgKGdjYy05KQphbmQgd2lsbCBydW4gdGhlIHFlbXUgY2hlY2sg
+YW5kIHNlZSB3aGF0IGhhcHBlbnMuCgpJZiB5b3UgYXJlIHN0dWNrIG9uIHpldXMsIHlvdSdsbCBu
+ZWVkIHRvIHRyeSBhbmQgaWQgdGhlIHBhdGNoIHRoYXQgZml4ZXMKZ2NjIGFuZCBhcHBseSBpdCB0
+byB0aGUgZ2NjIGJ1aWxkLiBCdXQgZ2V0dGluZyBvZmYgemV1cyB3b3VsZCBiZSBhCnJlYWxseSBi
+b29kIG1vdmUgYXMgaXQgaXMgb3V0IG9mIHN1cHBvcnQgbm93LgoKUGhpbGlwCgo+IAo+IFJvbgo+
+IAo+IE9uIDEyLzYvMjAgMDY6MjcsIEJlbiBNYWdpc3RybyB2aWEgVVNSUC11c2VycyB3cm90ZToK
+Pj4gSXNzdWUgYXBwZWFycyB0byBiZSB3aXRoIHRoZSBjb21waWxlciB0aGF0IGlzIGluY2x1ZGVk
+IGluIFpldXMgKGdjYwo+PiA5LnggdnMgOC54KSBhbmQgYW4gaW50ZXJhY3Rpb24gd2l0aCBmZnR3
+LiBUaGVyZSBpcyBhbiBvcGVuIGlzc3VlIHdpdGgKPj4gZmZ0dyAoaHR0cHM6Ly9naXRodWIuY29t
+L0ZGVFcvZmZ0dzMvaXNzdWVzLzIxMykgYW5kIGEgcmVxdWVzdCB0byB0aGUKPj4geW9jdG8gZm9s
+a3MgdG8gcmVxdWVzdCB0aGV5IGNvbnNpZGVyIGFkZGluZyBiYWNrIGdjYy04LjMgdG8gemV1c8Kg
+Kwo+PiBkdW5mZWxswqAoaHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3JnL3Nob3dfYnVn
+LmNnaT9pZD0xNDE0NCkKPj4gdW50aWwgdGhpcyBjYW4gYmUgYmV0dGVyIHJlc29sdmVkLsKgIEkg
+dGhpbmsgZGF0YSBwb2ludCAzIGNvbmZpcm1zIHRoaXMKPj4gYXMgSSBkaWQgbm90IGluY2x1ZGUg
+b3B0aW9ucyB0byBlbmFibGUgbmVvbiB3aGVuIEkgY29tcGlsZWQuCj4+Cj4+IE9uIFdlZCwgTm92
+IDExLCAyMDIwIGF0IDE6MzkgUE0gQmVuIE1hZ2lzdHJvIDxrb25jZXB0MUBnbWFpbC5jb20KPj4g
+PG1haWx0bzprb25jZXB0MUBnbWFpbC5jb20+PiB3cm90ZToKPj4KPj4gwqDCoMKgIEFkZGluZyBz
+b21lIG1vcmUgZGF0YSBwb2ludHMuCj4+Cj4+IMKgwqDCoCAxKSBJJ3ZlIGJlZW4gdHJ5aW5nIHRv
+IHJlYnVpbGQgbWV0YS1ldHR1cy12NCB3aXRoIGRlYnVnIGVuYWJsZWQKPj4gwqDCoMKgIGJ1dCBh
+bSBoaXR0aW5nIGFuIGlzc3VlIHdpdGggaW1hZ2Ugc2l6ZSBhbmQgY2FuJ3Qgc2VlbSB0byBnZXQg
+cGFzdAo+PiDCoMKgwqAgdGhhdC7CoCBJdCBzYXlzIEkgc2hvdWxkIGluY3JlYXNlIGBNRU5ERVJf
+U1RPUkFHRV9UT1RBTF9TSVpFX01CYCBpZgo+PiDCoMKgwqAgdGhlIGFjdHVhbCBzaXplIGlzIGxh
+cmdlciBidXQgaW5jcmVhc2luZyB0aGlzIHNlZW1zIHRvIGhhdmUgbm8KPj4gwqDCoMKgIGVmZmVj
+dC7CoCBJIGFtIHVzaW5nIHRoZSBldHR1cyBkb2NrZXIgaW1hZ2UgZm9yIG9lLWJ1aWxkZXIgd2l0
+aCB0aGUKPj4gwqDCoMKgIGNvbW1hbmQgYC4vbWV0YS1ldHR1cy9jb250cmliL2J1aWxkX2ltZ3Nf
+cGFja2FnZS5zaCBlMzEwX3NnMwo+PiDCoMKgwqAgdjQuMC4wLjBgLsKgIEZvciB0aGUgZGVidWcg
+cG9ydGlvbiBJJ3ZlIGFkZGVkIGEgZmV3IGxpbmVzIHRvCj4+IMKgwqDCoCBgYnVpbGQvY29uZi9s
+b2NhbC5jb25mYCB0byBhZGQgdGhlIHBhY2thZ2VzLiBJJ20gb3BlbiB0bwo+PiDCoMKgwqAgc3Vn
+Z2VzdGlvbnMgdG8gYnVpbGQgdGhlIGltYWdlIHdpdGggZGVidWcgc3ltYm9scyBhbmQgcHJvdmlk
+ZQo+PiDCoMKgwqAgYWRkaXRpb25hbCBmZWVkYmFjay4KPj4KPj4gwqDCoMKgIDIpIEkgcHV0IHRv
+Z2V0aGVyIGEgc2ltcGxlIGZsb3dncmFwaCwgVUhEIHNvdXJjZSAtLT4gZnJlcXVlbmN5Cj4+IMKg
+wqDCoCB4bGF0aW5nIGZmdCAtLT4gbnVsbCBzaW5rLsKgIFRoaXMgYWxzbyBzZWdmYXVsdHMsIG5v
+IGd1YXJhbnRlZXMKPj4gwqDCoMKgIHRoYXQgSSBnb3QgdGhlIHBhcmFtZXRlcnMgY29ycmVjdC4K
+Pj4KPj4gwqDCoMKgIDMpIFNpbmNlIHRoZSBpc3N1ZXMgc2VlbSB0byBiZSB3aXRoIGZmdHcsIEkg
+ZGVjaWRlZCB0byB0cnkKPj4gwqDCoMKgIGJ1aWxkaW5nIG15IG93biBjb3B5IG9mIGZmdHcgbW9z
+dGx5IHRvIGdldCBkZWJ1ZyBzeW1ib2xzIGFuZAo+PiDCoMKgwqAgY29udGludWUgdHJvdWJsZXNo
+b290aW5nLsKgIEZvciB0aGlzIEkgdXNlZCBgLi9jb25maWd1cmUKPj4gwqDCoMKgIC0tZW5hYmxl
+LWRlYnVnIC0tZW5hYmxlLXNoYXJlZCAtLWVuYWJsZS10aHJlYWRzIC0tZW5hYmxlLWZsb2F0YAo+
+PiDCoMKgwqAgYW5kIGBtYWtlIENGTEFHUz0iLWdnZGIiYC7CoCBUaGVzZSBvcHRpb25zIGFyZSBi
+ZXN0IGd1ZXNzZXMgcmlnaHQKPj4gwqDCoMKgIG5vdyBzaW5jZSBJIGRpZG4ndCBsb29rIGF0IHRo
+ZSBsYXllcnMgdG8gc2VlIHdoYXQgcGFyYW1ldGVycyBpdCBpcwo+PiDCoMKgwqAgdXNpbmcgKGFz
+c3VtaW5nIGl0IGlzIGluIG9uZSBvZiB0aGUgbGF5ZXJzKS7CoCBVc2luZyB0aGlzIGJ1aWxkCj4+
+IMKgwqDCoCB3aXRoIGBleHBvcnQgTERfTElCUkFSWV9QQVRIPS91c3IvbG9jYWwvbGliL2AgSSBk
+byBub3QgZ2V0IGEKPj4gwqDCoMKgIHNlZ2ZhdWx0IHdpdGggZ3ItYWlzIG9yIHRoZSBhYm92ZSBm
+bG93Z3JhcGggYnV0IEkgYWxzbyBkb24ndCBnZXQKPj4gwqDCoMKgIHRoZSBleHBlY3RlZCBvdXRw
+dXQgd2hpY2ggbWFrZXMgbWUgcXVlc3Rpb24gdGhlIHBhcmFtZXRlcnMgSSB1c2VkCj4+IMKgwqDC
+oCB0byBidWlsZCBpdC7CoCBPdXRwdXQgd2lzZSBJIGdldCBhIHN0cmluZyBvZiAiRCIgb3IgIk8i
+IHRvIHRoZQo+PiBjb25zb2xlLgo+Pgo+PiDCoMKgwqAgVGhhbmtzCj4+Cj4+IMKgwqDCoCBCZW4K
+Pj4KPj4gwqDCoMKgIE9uIFRodSwgTm92IDUsIDIwMjAgYXQgOToyMiBBTSBNaWNoYWVsIERpY2tl
+bnMKPj4gwqDCoMKgIDxtaWNoYWVsLmRpY2tlbnNAZXR0dXMuY29tIDxtYWlsdG86bWljaGFlbC5k
+aWNrZW5zQGV0dHVzLmNvbT4+IHdyb3RlOgo+Pgo+PiDCoMKgwqDCoMKgwqDCoCBIaSBCZW4gLSBU
+aGlzIGlzc3VlIGhhcyBiZWVuIHJlcG9ydGVkIHRvIFImRCBpbnRlcm5hbGx5LiBJZgo+PiDCoMKg
+wqDCoMKgwqDCoCB5b3Ugd2lzaCB0byBjcmVhdGUgYSBwdWJsaWMtZmFjaW5nIFVIRCBpc3N1ZSBv
+biBvdXIgR2l0aHViCj4+IMKgwqDCoMKgwqDCoMKgIHRyYWNrZXIgcGxlYXNlIGdvIGFoZWFkICYg
+ZG8gc28sIGFuZCB0YWcgbWUgb24gaXQgc28gdGhhdCB3ZQo+PiDCoMKgwqDCoMKgwqDCoCBjYW4g
+a2VlcCB0cmFjayBvZiBpdCBpbnRlcm5hbGx5LiAtIE1MRAo+Pgo+PiDCoMKgwqDCoMKgwqDCoCBP
+biBXZWQsIE5vdiA0LCAyMDIwIGF0IDExOjI1IFBNIEJlbiBNYWdpc3RybyB2aWEgVVNSUC11c2Vy
+cwo+PiDCoMKgwqDCoMKgwqDCoCA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4gwqDCoMKg
+wqDCoMKgwqAgPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4+IHdyb3RlOgo+Pgo+
+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIElzIGFueW9uZSBlbHNlIHVzaW5nIG1ldGEtZXR0dXMt
+djQuMC4wLjAgeWV0P8KgIGlmIHNvLCBoYXZlCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgeW91
+IGhhZCBhbnkgaXNzdWVzIHdpdGggbGliZmZ0dz8KPj4KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBVc2luZyB0aGUgaW1hZ2Ugb24gYW4gRTMxMCwgYWRkaW5nIGEgc2luZ2xlIE9PVCBtb2R1bGUK
+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAoZ3ItYWlzKSBhbmQgdHJ5aW5nIHRvIHJ1biBhbiBh
+cHAgZGlzdHJpYnV0ZWQgd2l0aCBpdCwgdGhlCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYXBw
+IHNlZ2ZhdWx0cy7CoCBUbyBmdXJ0aGVyIHRyb3VibGVzaG9vdCwgSSBhZGRlZCBnZGIgYW5kCj4+
+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaXQgY29tZXMgYmFjayB3aXRoIHRoZSBmb2xsb3dpbmcu
+wqAgSSBoYXZlIGEgc2VwYXJhdGUKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkZXZlbG9wbWVu
+dCBob3N0IHRoYXQgaGFzIGdudXJhZGlvIDMuOCBzZXR1cCB1c2luZyBweWJvbWJzCj4+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgYW5kIGRvIG5vdCBleHBlcmllbmNlIHRoaXMgaXNzdWUgdGhlcmUu
+Cj4+Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVGhyZWFkIDEgInB5dGhvbjMiIHJlY2VpdmVk
+IHNpZ25hbCBTSUdTRUdWLCBTZWdtZW50YXRpb24KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBm
+YXVsdC4KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweGI2OTQ3ODM2IGluID8/ICgpIGZyb20g
+L3Vzci9saWIvbGliZmZ0dzNmLnNvLjMKPj4KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBUbyBj
+b21waWxlLCBJJ3ZlIG5lZWRlZCB0byBvdmVycmlkZSBQWVRIT05fRVhFQ1VUQUJMRSBhcwo+PiDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGl0IHBvaW50cyB0byBhIG5vbi1leGlzdGVudCBwYXRoIGlu
+IC9ob21lL29lLWJ1aWxkZXIuLi4uCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaW4gL3Vzci9s
+aWIvY21ha2UvZ251cmFkaW8vR251cmFkaW9Db25maWcuY21ha2UuIFRvIHJ1biBJCj4+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgYWxzbyBuZWVkZWQgdG8gZGVmaW5lIExEX0VYUE9SVF9QQVRIIHBv
+aW50aW5nIHRvCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgL3Vzci9sb2NhbC9saWIvLgo+Pgo+
+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFRoYW5rcyBpbiBhZHZhbmNlLgo+PiDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4g
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+PiA8bWFp
+bHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+Cj4+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xp
+c3RzLmV0dHVzLmNvbQo+Pgo+Pgo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwo+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+PiBVU1JQLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbQo+PiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8v
+dXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAKPiAKPiBfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNS
+UC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4v
+bGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVT
+UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
