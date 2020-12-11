@@ -2,47 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134EC2D6A66
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Dec 2020 22:54:06 +0100 (CET)
-Received: from [::1] (port=45112 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29F382D6FC9
+	for <lists+usrp-users@lfdr.de>; Fri, 11 Dec 2020 06:37:25 +0100 (CET)
+Received: from [::1] (port=48158 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1knTsv-0000nj-Tw; Thu, 10 Dec 2020 16:54:01 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:41996)
+	id 1knb6p-0004Dy-Nz; Fri, 11 Dec 2020 00:36:51 -0500
+Received: from mail-pl1-f170.google.com ([209.85.214.170]:37918)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1knTsr-0000kM-IS
- for usrp-users@lists.ettus.com; Thu, 10 Dec 2020 16:53:57 -0500
-Received: by mail-ot1-f46.google.com with SMTP id 11so6390066oty.9
- for <usrp-users@lists.ettus.com>; Thu, 10 Dec 2020 13:53:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:from:date:message-id:subject:to;
- bh=ClT9x6G7KasWCzwG4UKRSOubShaD6RbsYVnfx/QmqQA=;
- b=er9HFj6S9R9axmatYqw8q/Pc/ZxSf4bMKJAOFTyyvSSg8eZqX0GyWIVJ4G4HozxzSi
- Ag1s4pSYtw6jOGhfMQE+Xw4uTpeqErjVotXdd6d/tYn2NQoGu8WCY0vcMWTPmvg9/Fs2
- VJK4mjcp94TYmqCmYgn9PpfZL+iJQFe+JsvvokQmbk6p0DiB/kBk4nRFUfpDPbj3eCgP
- FR46mOdfbNKlVzSeeULNJpnM/UnvRtAZaFCNDFfabKEMBrsUwraGTTwfTAWis+cwbJ2p
- vBStj9/obkCx8ByZG2sTB8kqmMHsKxHwrzWVfkGkmzZQenmCnKgwRqqAvnASCkyFAJUb
- 3Fqw==
+ (Exim 4.93) (envelope-from <wuting25@gmail.com>) id 1knb6m-00045X-II
+ for usrp-users@lists.ettus.com; Fri, 11 Dec 2020 00:36:48 -0500
+Received: by mail-pl1-f170.google.com with SMTP id 4so4035527plk.5
+ for <usrp-users@lists.ettus.com>; Thu, 10 Dec 2020 21:36:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=to:from:subject:message-id:date:user-agent:mime-version
+ :content-transfer-encoding:content-language;
+ bh=0E6h6feZm4EvjBTl0ZKzfceRVtlRq0OyK7VE4SQBRjg=;
+ b=J15EoOr7oEI/RK6uQa/fn4+LkAk1c2NWnpG/K1hC74GyTJy5VVvmYxU2elouAtdP8v
+ /cZJ0nmlr2njvwgQmHzVaeLdMqKDbfTAvUUOvsc/e/HtPcwvDVNCzNALTfRMq7NR6IYc
+ Xj+3VMrFjSpu5voQknUOHXpe2xSUS7/auBbJ9UNyAZOnq74/20pEWgCtsQ+0rrXslkmJ
+ MezZQ/6+ju6nAeFP9yD2/U8yBd25QZtRNmb6KXRpByPMXMfD4mG2ry1+rN6dQM7G+Pr8
+ puc6Gjo/umGOZCkLJwQ7698sl6nc+XELSKSIFqZItdxR3SgtnIBwHCVn6bwqc5INB84x
+ t1eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=ClT9x6G7KasWCzwG4UKRSOubShaD6RbsYVnfx/QmqQA=;
- b=OUMRQ6MvpQMpo3CUT3ivFyGtmEWnixRFkqWSf+5XOwfTqkeEA24joYEZkrhAJ+1p/1
- hzChKdb7U6GtfgiLzi0i55mkdptUuGi6yOXSLM5T0wAJbnVQzCN3bm+adLwO2ckuTXQS
- gGcR0ba1yAk1p/CUIAY7qxvZaY9iLo4bwmVLcV/Tpok0RMiKWhju/FLmyf+f5yim/kpX
- nS/8pXnSiugcl4IEYgNzfFy02zrpd0jatyudL7iMAh6uBWLW6woPfugUU+R32ZTr40hz
- wjQ2S+kOUacmpQoDENyzCsWb76ixaEDA2eWkv6Iu/S05BSZtWQHQ4I//SI+hFGTaS5YL
- Rwyg==
-X-Gm-Message-State: AOAM532BSx1oC1upJVnIKDm4QY5UBxHFsuyzrOuk1bCC24/6xi0HIwsh
- BkJj7V9AfcR+rgdTYdMWTjcGCrqttMn7Rk3PNLLumq6cyohR9Q==
-X-Google-Smtp-Source: ABdhPJziKfK8lnv0P5UoEpXk7krEAWFUtHiU9AMy1xWwM/XXYn5xYrYILJ2QIt6SmbqAK7hgu9jqSL70toz4sAShlGs=
-X-Received: by 2002:a9d:7f84:: with SMTP id t4mr7305226otp.302.1607637196068; 
- Thu, 10 Dec 2020 13:53:16 -0800 (PST)
+ h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+ :mime-version:content-transfer-encoding:content-language;
+ bh=0E6h6feZm4EvjBTl0ZKzfceRVtlRq0OyK7VE4SQBRjg=;
+ b=eCVmc6MUHiTPwYvrvR63HlYoi25mvi1FBPXgBtrl4ggUa7ZvmGOfa6NDrOIq6agVT9
+ zGY2+NWhDm4CpWfINZ61chMgdnEPzLB7As7k0vPV5i39vji9KxyFM32phXSqnr+WhmPT
+ sSvVYQ96AWzzuAuyxy2tqYyfPPuEH747h93CcuFjL81uiSlejiJPTxR9yqheqE5qVWMD
+ 4HYhx6DU03hXkJkeOeodWpuXAmWMYZQ6H6ZjXwrFIKtUeImOpTD/D41h27dIIsHU8Zkl
+ jZnEpORvLYyDuvD9RXYa0qEbX/i5PePevPf2J4jLPHYoxwn1L9U/sHiBXaOPrXVHhF5q
+ ESdw==
+X-Gm-Message-State: AOAM530f9QgjBx8GKFsaoydY+507yg1t1tYPvFd8MYyYGmrUyc1mXmTv
+ W3y/aikxt1YUanGS3Xew93cf2oB1f0Y=
+X-Google-Smtp-Source: ABdhPJxodO1DoVLGa5aqEDIFhgtixaB80AI5RiwaIYhTxYENWQMN5END6MLiZnRYvp9ggiqKoOfkjA==
+X-Received: by 2002:a17:90a:9f44:: with SMTP id
+ q4mr11612446pjv.226.1607664965072; 
+ Thu, 10 Dec 2020 21:36:05 -0800 (PST)
+Received: from [10.226.82.239] (82.226.gunet.gifu-u.ac.jp. [133.66.226.82])
+ by smtp.gmail.com with ESMTPSA id t12sm4856765pgu.75.2020.12.10.21.36.04
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 10 Dec 2020 21:36:04 -0800 (PST)
+To: usrp-users@lists.ettus.com
+Message-ID: <e10f0586-4caf-d49e-56a0-a6787ff12aee@gmail.com>
+Date: Fri, 11 Dec 2020 14:36:00 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-Date: Thu, 10 Dec 2020 16:53:05 -0500
-Message-ID: <CAB__hTQa8v40-nQGCQMcK36317oWxue448NrMoMYvbf3oacmug@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] RFNoC 4.0 data swapping?
+Content-Language: en-US
+Subject: [USRP-users] PPS drifting problem with recently purchased GPSDO
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============5693170868290495914=="
+From: Ting Wu via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ting Wu <wuting25@gmail.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,97 +82,40 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5693170868290495914==
-Content-Type: multipart/alternative; boundary="0000000000000015f105b623348a"
-
---0000000000000015f105b623348a
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-I am encountering very strange behavior with a custom FPGA image (N310). It
-appears that data streaming through SEPs can get swapped (I/Q) and/or
-negated.  Is anyone at Ettus aware of anything that could cause this?  Of
-course, the issue might be on my end, but I can't think of what it might be
-given that all of my custom blocks work as expected in isolation (if the
-block is the only block in graph).
-
-My custom image is the following:
-
-   - default blocks of Radios, DDCs, DUCs (each 2x2 and statically
-   connected as in default image)
-   - custom blocks of two 1x1 windowed-fft blocks, two 1x1 vector-avg
-   blocks, and one 2x2 custom block. Note: each of these blocks is connected
-   to its own SEP, so I can connect dynamically in any fashion.
-
-My test case is transmitting 8192 random samples from host to FFT block and
-then optionally through a 2nd FFT block before back to host.  In the test
-case, the radios/DDCs/DUCs are not used.
-
-Here is what I observed:
-
-   - If I only include 1 FFT block in my RFNoC graph, I get the expected
-   results (the output from the FPGA matches what I calculate in Matlab for
-   the FFT).  This is true for either of the two FFT blocks.
-   - If I include both FFT blocks in series, I can only match the FPGA
-   output if I swap the I/Q values in between my Matlab FFTs.
-   - Note: that this issue is not FFT-related as I can also duplicate this
-   issue with the other blocks.
-   - If I use 3 blocks in series (each through SEP), I need to negate
-   certain data in order to get it to match the FPGA output
-
-My next step is likely to build a new image with Ettus-developed FIFOs to
-prove that the data is getting swapped/negated when 2 or more are used in
-series through SEPs.
-
-Let me know if you have any suggestions for other things to try.
-
-Rob
-
---0000000000000015f105b623348a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<br><div>I am encountering very strange behavior with a=
- custom FPGA image (N310). It appears that data streaming through SEPs can =
-get swapped (I/Q) and/or negated.=C2=A0=C2=A0Is anyone at Ettus aware of=C2=
-=A0anything that could cause this?=C2=A0 Of course, the issue might be on m=
-y end, but I can&#39;t think of what it might be given that all of my custo=
-m blocks work as expected in isolation (if the block is the only block in g=
-raph).</div><div><br></div><div>My custom image is the following:</div><div=
-><ul><li>default blocks of Radios, DDCs, DUCs (each 2x2 and statically conn=
-ected as in default image)</li><li>custom blocks of=C2=A0two 1x1 windowed-f=
-ft blocks, two 1x1 vector-avg blocks, and one 2x2 custom block. Note: each =
-of these blocks is connected to its own SEP, so I can connect dynamically i=
-n any fashion.</li></ul><div>My test case is transmitting 8192 random sampl=
-es from host to FFT block and then optionally through a 2nd FFT block befor=
-e back to host.=C2=A0 In the test case, the radios/DDCs/DUCs are not used.<=
-/div><div><br></div>Here is what I observed:<br><ul><li>If I only include 1=
- FFT block in my RFNoC graph, I get the expected results (the output from t=
-he FPGA matches what I calculate in Matlab for the FFT).=C2=A0 This is true=
- for either of the two FFT blocks.</li><li>If I include both FFT blocks in =
-series, I can only match the FPGA output if I swap the I/Q values in betwee=
-n my Matlab FFTs.</li><li>Note: that this issue is not FFT-related as I can=
- also duplicate this issue with the other blocks.=C2=A0</li><li>If I use 3 =
-blocks in series (each through SEP), I need to negate certain data in order=
- to get it to match the FPGA output</li></ul><div>My next step is likely to=
- build a new image with Ettus-developed FIFOs to prove that the data is get=
-ting swapped/negated when 2 or more are used in series through SEPs.</div><=
-/div><div><br></div><div>Let me know if you have any suggestions for other =
-things to try.<br></div><div><br></div><div>Rob</div></div>
-
---0000000000000015f105b623348a--
-
-
---===============5693170868290495914==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5693170868290495914==--
-
+SGkhCgpJIGhhdmUgYmVlbiB1c2luZyBVU1JQIE4yMDAgd2l0aCBHUFNETyBmb3Igc2V2ZXJhbCB5
+ZWFycy7CoCBJIGhhdmUgbW9yZSAKdGhhbiB0ZW4gc2V0cyBvZiBOMjAwIHdpdGggR1BTRE8gcHVy
+Y2hhc2VkIG1vcmUgdGhhbiB0d28geWVhcnMgYWdvIGFuZCAKdGhleSBoYXZlIGJlZW4gd29ya2lu
+ZyB2ZXJ5IHdlbGwuCgpIb3dldmVyLCBJIHJlY2VudGx5IHB1cmNoYXNlZCB0aHJlZSBuZXcgc2V0
+cyBvZiBOMjAwICh3aXRoIExGUlgpIGFuZCAKR1BTRE8gYW5kIGZvdW5kIHRoYXQgYWxsIG9mIHRo
+ZW0gaGF2ZSBzZXJpb3VzIFBQUyBkcmlmdGluZyBwcm9ibGVtIHdoaWNoIApJIGhhdmUgcmFyZWx5
+IHNlZW4gd2l0aCB0aGUgb2xkIHNldHMuCgpCZWNhdXNlIHRoZSBhY2N1cmF0ZSB0aW1pbmcgaXMg
+ZXNzZW50aWFsIGZvciBvdXIgYXBwbGljYXRpb24sIHdpdGggZXZlcnkgCnNldCBvZiBOMjAwIGFu
+ZCBHUFNETywgSSBhbHdheXMgZG8gYSBzaW1wbGUgdGVzdC4gSSByZWNvcmQgdGhlIFBQUyAKc2ln
+bmFsIGZyb20gdGhlIEdQU0RPIHVzaW5nIHRoZSBMRlJYIGJvYXJkIHdpdGggYSBzYW1wbGluZyBy
+YXRlIG9mIDEwTS4gCldpdGggdGhlIG9sZCBOMjAwcyBhbmQgR1BTRE9zLCBJIGNhbiBjb25maXJt
+IHRoYXQgc2FtcGxlcyBiZXR3ZWVuIHR3byAKUFBTcyBhcmUgYWx3YXlzIGV4YWN0bHkgMTBNLiBI
+b3dldmVyLCB3aXRoIHRoZSB0aHJlZSBuZXcgc2V0cywgSSBmb3VuZCAKdGhhdCBvbmNlIGV2ZXJ5
+IHNldmVyYWwgbWludXRlcywgdGhlIHNhbXBsZXMgYmV0d2VlbiB0d28gUFBTcyBhcmUgbm90IApl
+eGFjdGx5IDEwTSwgdHlwaWNhbGx5IHNldmVyYWwgcG9pbnRzIGZld2VyIG9yIG1vcmUgdGhhbiAx
+ME0uIEkgYWxzbyAKdHJpZWQgdG8gcmVjb3JkIFBQUyBzaWduYWxzIGZyb20gdHdvIEdQU0RPcyB3
+aXRoIHRoZSB0d28gY2hhbm5lbHMgb2YgdGhlIApzYW1lIExGUlggYm9hcmQuIFdpdGggdGhlIG9s
+ZCBzZXRzLCB0d28gUFBTIHNpZ25hbHMgdXN1YWxseSBhZ3JlZSAKZXhhY3RseSB3aXRoIGVhY2gg
+b3RoZXIsIGF0IG1vc3QgaGF2aW5nIG9uZSBwb2ludCBkaWZmZXJlbmNlLiBIb3dldmVyLCAKd2l0
+aCB0aGUgbmV3IHNldHMsIHR3byBQUFMgc2lnbmFscyBzb21ldGltZXMgaGF2ZSBzZXZlcmFsIHBv
+aW50cyAKZGlmZmVyZW5jZSwgYW5kIG9jY2FzaW9uYWxseSBtb3JlIHRoYW4gdGVuIHBvaW50cyBk
+aWZmZXJlbmNlLgoKSSBhbHNvIHRyaWVkIHRvIGluc3RhbGwgdGhlIG5ldyBHUFNETyBvbiB0aGUg
+b2xkIE4yMDAgd2l0aCBvbGQgTEZSWCBhbmQgCml0IGFsc28gaGFkIHRoZSBwcm9ibGVtLCBzbyBJ
+IGNhbiBjb25maXJtIHRoZSBwcm9ibGVtIGlzIGR1ZSB0byB0aGUgbmV3IApHUFNETy4KCkkgYW0g
+bm93IGhhdmluZyBib3RoIG9sZCBhbmQgbmV3IHNldHMgcGxhY2VkIGF0IHRoZSBzYW1lIGxvY2F0
+aW9uLCB3aXRoIApHUFMgYW50ZW5uYXMgYWxzbyBhdCB0aGUgc2FtZSBsb2NhdGlvbi4gVGhleSBh
+cmUgdXNpbmcgdGhlIHNhbWUgCnByb2dyYW1zLCBQQ3Mgd2l0aCB0aGUgc2FtZSBzcGVjcy4gVGhl
+IG9sZCBvbmUgc2VlbXMgdG8gaGF2ZSBwZXJmZWN0IAp0aW1pbmcgd2hpbGUgdGhlIG5ldyBvbmUg
+c2VlbXMgdG8gaGF2ZSBzZXJpb3VzIFBQUyBkcmlmdGluZyBwcm9ibGVtLiAKRG9lcyBhbnlvbmUg
+aGF2ZSBhbnkgaWRlYSB3aGF0IGlzIHRoZSBwb3NzaWJsZSByZWFzb24gZm9yIHRoaXMgcHJvYmxl
+bSAKYW5kIGhvdyBjYW4gSSBzb2x2ZSBpdD8gV2Ugd2VyZSBwbGFubmluZyB0byBwdXJjaGFzZSBt
+b3JlIHNldHMgb2YgVVNSUHMsIApidXQgd2l0aCBzdWNoIHByb2JsZW0gaXQgd2lsbCBiZSB2ZXJ5
+IGRpZmZpY3VsdCB0byB1c2UgVVNSUCBmb3Igb3VyIAphcHBsaWNhdGlvbi4KClRoYW5rcyBpbiBh
+ZHZhbmNlIQoKVGluZyBXdQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlz
+dHMuZXR0dXMuY29tCg==
