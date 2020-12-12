@@ -2,57 +2,35 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FF652D8725
-	for <lists+usrp-users@lfdr.de>; Sat, 12 Dec 2020 15:48:24 +0100 (CET)
-Received: from [::1] (port=35174 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 124BC2D8880
+	for <lists+usrp-users@lfdr.de>; Sat, 12 Dec 2020 18:03:42 +0100 (CET)
+Received: from [::1] (port=36382 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ko6C4-0002Gg-Tz; Sat, 12 Dec 2020 09:48:20 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:35467)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1ko6C1-0002BS-Fg
- for usrp-users@lists.ettus.com; Sat, 12 Dec 2020 09:48:17 -0500
-Received: by mail-oi1-f179.google.com with SMTP id s2so13588907oij.2
- for <usrp-users@lists.ettus.com>; Sat, 12 Dec 2020 06:47:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=YvFpqL5QudYJeROLVsUwJGrVRT32NvVsfkH0N4Ak5WU=;
- b=LyYLMVkC3j6mO5EzC16R2O+rAfvsey97pFRJjHm/y675lWevx+fBSpM7jMp3tJNt6L
- Lg9JULYa35NFkvgW9Mzj6/tJgeCxNUFDbkNllISlJIAKKOD/QVm4/9o+ltSn7Fk432kA
- kdajIx2T18LxWOQAD1IYuxO2kFmmHO02sZ2q3Q5nbhtc/PB3t93iz1P7M6LGcNRFK/Id
- zm2FbMkZOL9Bu6ewUNx0iBbT09Mhs3Q+EO202HS2infhLgSlRHXPzDNMogQVr6Tamq6e
- bOlNswebGqiMFfcWsQAoZjGe6LSstc+qyIw6v/YwXAABUqf1fMjqGCH3dvWpxHCyWZLu
- jNCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=YvFpqL5QudYJeROLVsUwJGrVRT32NvVsfkH0N4Ak5WU=;
- b=PF4Megswt4wyXwc6EQ3QJVYvkmsVH2DFZWN7xT9mEU2+Zmq/dxsqKb8kjBk/I8hUtP
- 4aewsFrrGMYiL5TBs3cfVRHzjTxCd33pvCcdcuVKTLPEXgNK0I18VppU62NLWFi1B+aw
- UlZ3JiSw8LicRs8XMJKkpwkuUUhq8D+9m/YWWrP7r5vnWCvO0tDGBtjYGYIRm6L5MxMw
- fcqk5SJYBtxf0Lij8jvciCTOXkHGbbGbUc16Q9wPgwaOLgrYKvK2aPbgj50hs5CXm+G8
- QjtVpkuBM2es4B9JZBH+yVkk3xF6uyznfsvnhoY/sFq4GIYWPzi2UCadbSt3T/AAoBh6
- IPPg==
-X-Gm-Message-State: AOAM533hlK6E8O6pNBBv4anU86mwBEk2rgWenSaGjPq9yM5H5AtN9GFA
- nj4W2r1IGFVdUQRwNXhK4MgGqitXXDJ8ZHKChZYfhh46
-X-Google-Smtp-Source: ABdhPJxhiHpAXUhuSX42NiK18Eu4IKk2CQiYtsHfyBCBC7+VkB8SPg+mIttXfKaOVxdPAdOkMcCOdZWu6Fb/AauNBDM=
-X-Received: by 2002:aca:2418:: with SMTP id n24mr12377830oic.62.1607784456686; 
- Sat, 12 Dec 2020 06:47:36 -0800 (PST)
+	id 1ko8J0-0006qU-1a; Sat, 12 Dec 2020 12:03:38 -0500
+Received: from smtp6.emailarray.com ([65.39.216.46]:56711)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <philip@balister.org>) id 1ko8Iv-0006kp-K6
+ for usrp-users@lists.ettus.com; Sat, 12 Dec 2020 12:03:33 -0500
+Received: (qmail 26839 invoked by uid 89); 12 Dec 2020 17:02:52 -0000
+Received: from unknown (HELO ?192.168.11.139?)
+ (cGhpbGlwQG9wZW5zZHIuY29tQDczLjI1MS4xMC4xNDM=) (POLARISLOCAL) 
+ by smtp6.emailarray.com with SMTP; 12 Dec 2020 17:02:52 -0000
+To: Ron Economos <w6rz@comcast.net>, usrp-users@lists.ettus.com
+References: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
+ <CAGNhwTMz2w-kD=a4m9EeLHqsXP9cKgXhok+jsW1Tu=einSvgyQ@mail.gmail.com>
+ <CAKx8PBgNoL6bAf8o-hXr0HnJnNaAj5XknPF5RPamY3Cs_hYCEg@mail.gmail.com>
+ <CAKx8PBjjDas_yuBxOgM6O8R1zqgZUiYavqFfidu87n1_qEsDrA@mail.gmail.com>
+ <c53ab9dd-b83a-80e7-f3d9-c54dd639b201@comcast.net>
+ <7dd171e1-ee65-358a-6ad0-3a76fc234957@balister.org>
+Message-ID: <4a0ab3d4-4650-b896-b856-08a53a3309b8@balister.org>
+Date: Sat, 12 Dec 2020 12:02:51 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-References: <CAB__hTQa8v40-nQGCQMcK36317oWxue448NrMoMYvbf3oacmug@mail.gmail.com>
- <CAFche=htoRKHMituvggWa15UwoiVkdR6n=3EXYK6d5TR696SiQ@mail.gmail.com>
- <CAB__hTTd6++q8K6xOtHhpJv905CW1wp4E5YpUR0mM5yULUf44Q@mail.gmail.com>
- <CAB__hTRBNRoGu+yYjGMawb1ongZ5u0G4HyafJUOuCA5637ysgA@mail.gmail.com>
- <CAB__hTQX+URNC-_qno0jStxo0qm8YtUWas0MffMebtd6TzfTNQ@mail.gmail.com>
- <CAB__hTSpKwx7JSoWCExtqThW+qGSi919KTTm1TNWN6KU4HkQig@mail.gmail.com>
-In-Reply-To: <CAB__hTSpKwx7JSoWCExtqThW+qGSi919KTTm1TNWN6KU4HkQig@mail.gmail.com>
-Date: Sat, 12 Dec 2020 08:47:27 -0600
-Message-ID: <CAFche=iE+RoE6Wi7vWHB73z48HF36SBeK0mqQQDeC=ujhX4d=w@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] RFNoC 4.0 data swapping?
+In-Reply-To: <7dd171e1-ee65-358a-6ad0-3a76fc234957@balister.org>
+Content-Language: en-US
+Subject: Re: [USRP-users] meta-ettus-v4.0.0.0 segfault
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -64,9 +42,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Wade Fife <wade.fife@ettus.com>
-Content-Type: multipart/mixed; boundary="===============5909247277183809480=="
+From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Philip Balister <philip@balister.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,325 +59,117 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5909247277183809480==
-Content-Type: multipart/alternative; boundary="0000000000006aa04e05b6457d25"
-
---0000000000006aa04e05b6457d25
-Content-Type: text/plain; charset="UTF-8"
-
-Thanks for the updates. If you just want to reload the FPGA, try running
-"overlay rm n310 && overlay add n310" on the N310. This should simply
-reload the FPGA using the bistream already in the flash.
-
-Wade
-
-On Fri, Dec 11, 2020 at 6:45 PM Rob Kossler <rkossler@nd.edu> wrote:
-
-> Wade,
-> The following also fails using just 2 blocks and 2 attempts:
->   host_tx => Switchboard#0 => Switchboard#1 => host_rx  // SUCCESS
->   host_tx => Switchboard#1 => Switchboard#0 => host_rx  // FAILURE (RX
-> samples equal swapped I/Q of TX samples)
->
-> In addition to wanting to get this issue fixed, I also have a question
-> about the best way to "reboot" the N310 which is what I need to do to fix
-> the issue after it occurs.  One way is to give the "reboot now" linux
-> command.  But, this takes a long time.  Another way is to reprogram the
-> FPGA image via uhd_image_loader. This is appreciably faster, but I'm
-> thinking that this is not a great idea if the flash memory has a limited
-> number of write cycles before failure.  Is there another way to achieve a
-> reboot other than these two?
-> Rob
->
-> On Fri, Dec 11, 2020 at 7:34 PM Rob Kossler <rkossler@nd.edu> wrote:
->
->> AHA!  I duplicated the issue with the Switchboard image.  The way to
->> duplicate the issue is the run the following series of graphs:
->>   host_tx => Switchboard#0 => Switchboard#1 => host_rx  // SUCCESS
->>   host_tx => Switchboard#2 => Switchboard#3 => host_rx  // SUCCESS
->>   host_tx => Switchboard#0 => Switchboard#2 => host_rx  // FAILURE (RX
->> samples equal swapped I/Q of TX samples)
->> Each of these 3 runs consists of running my application (similar to one
->> of the examples such as rfnoc_rx_to_file) such that the UHD object is
->> re-created each time.  My guess is that you could use gnuradio to do it
->> instead.
->>
->> My working theory is that the problem is caused by the fact that the
->> Switchboard#2 input port was changed from being connected to the host in
->> test case 2 to then be connected to another RFNoC block in test case 3.
->> Or, I suppose it could be the output port on this block (same logic).
->>
->> If you want me to send you my FPGA image with the 4 Switchboard blocks,
->> let me know.
->> Rob
->>
->>
->>
->> On Fri, Dec 11, 2020 at 7:09 PM Rob Kossler <rkossler@nd.edu> wrote:
->>
->>> Hi Wade,
->>> After thinking about it a bit, I would ignore the "negation" issue for
->>> now. This may be a byproduct of I/Q swapping related to my custom block.
->>> Rob
->>>
->>> On Fri, Dec 11, 2020 at 6:34 PM Rob Kossler <rkossler@nd.edu> wrote:
->>>
->>>> Hi Wade,
->>>> Thanks for the info.  I still do not know what's going on, but here are
->>>> a few updates:
->>>>
->>>>    - I built a new N310 image with 4 switchboards (1x1) and 1
->>>>    splitstream (1x2) blocks in addition to the default blocks.  All of the
->>>>    additional blocks are connected to SEPs for dynamic linking.  I tried my
->>>>    best to get bad behavior using a chain of 1 to 4 switchboards, but I could
->>>>    not duplicate any I/Q swapping or negation issues.
->>>>    - I went back to my custom image (that I described below) and found
->>>>    different behavior today (sometimes things worked OK).  So, this got me to
->>>>    thinking that I am somehow getting the FPGA in a bad state such that a
->>>>    reboot (or FPGA re-flashing) fixes things.  I have had some success with
->>>>    re-booting and things working properly.  But, I still do not have a true
->>>>    handle on things and cannot adequately predict when things are going to
->>>>    succeed or fail.
->>>>    - One thing that has been constant is that I have never seen bad
->>>>    behavior when I only have 1 block in my graph (no matter which block I
->>>>    choose).  Note that for all of my tests, the graph looks like this: host_tx
->>>>    => block_chain => host_rx, where block_chain is a sequential chain of 1 or
->>>>    more rfnoc blocks.
->>>>
->>>> I will send a follow up once I figure things out.
->>>> Rob
->>>>
->>>>
->>>> On Fri, Dec 11, 2020 at 6:22 PM Wade Fife <wade.fife@ettus.com> wrote:
->>>>
->>>>> Hi Rob,
->>>>>
->>>>> The SEPs do have the ability to swap I and Q. This is because on the
->>>>> host computer, I is usually in the lower bits and Q is in the upper bits of
->>>>> each 32-bit word, but in RFNoC, for historical reasons, I goes in the upper
->>>>> bits and Q in the lower bits. The software programs the IQ swapping when it
->>>>> sets up the graph.
->>>>>
->>>>> I assume you're using dynamic connections (through the crossbar) to
->>>>> control the number of FFTs the data is passed through, and not static
->>>>> connections? If that's the case then I wonder if software configures IQ
->>>>> swapping incorrectly in some configurations. I'll see if I can do some
->>>>> testing next week to confirm if it's working correctly.
->>>>>
->>>>> As for negation, I'm not aware of anywhere we do that off the top of
->>>>> my head. Is that behavior block dependent? I'll see if I can find anywhere
->>>>> this happens.
->>>>>
->>>>> Thanks,
->>>>>
->>>>> Wade
->>>>>
->>>>> On Thu, Dec 10, 2020 at 3:54 PM Rob Kossler via USRP-users <
->>>>> usrp-users@lists.ettus.com> wrote:
->>>>>
->>>>>> Hi,
->>>>>> I am encountering very strange behavior with a custom FPGA image
->>>>>> (N310). It appears that data streaming through SEPs can get swapped (I/Q)
->>>>>> and/or negated.  Is anyone at Ettus aware of anything that could cause
->>>>>> this?  Of course, the issue might be on my end, but I can't think of what
->>>>>> it might be given that all of my custom blocks work as expected in
->>>>>> isolation (if the block is the only block in graph).
->>>>>>
->>>>>> My custom image is the following:
->>>>>>
->>>>>>    - default blocks of Radios, DDCs, DUCs (each 2x2 and statically
->>>>>>    connected as in default image)
->>>>>>    - custom blocks of two 1x1 windowed-fft blocks, two 1x1
->>>>>>    vector-avg blocks, and one 2x2 custom block. Note: each of these blocks is
->>>>>>    connected to its own SEP, so I can connect dynamically in any fashion.
->>>>>>
->>>>>> My test case is transmitting 8192 random samples from host to FFT
->>>>>> block and then optionally through a 2nd FFT block before back to host.  In
->>>>>> the test case, the radios/DDCs/DUCs are not used.
->>>>>>
->>>>>> Here is what I observed:
->>>>>>
->>>>>>    - If I only include 1 FFT block in my RFNoC graph, I get the
->>>>>>    expected results (the output from the FPGA matches what I calculate in
->>>>>>    Matlab for the FFT).  This is true for either of the two FFT blocks.
->>>>>>    - If I include both FFT blocks in series, I can only match the
->>>>>>    FPGA output if I swap the I/Q values in between my Matlab FFTs.
->>>>>>    - Note: that this issue is not FFT-related as I can also
->>>>>>    duplicate this issue with the other blocks.
->>>>>>    - If I use 3 blocks in series (each through SEP), I need to
->>>>>>    negate certain data in order to get it to match the FPGA output
->>>>>>
->>>>>> My next step is likely to build a new image with Ettus-developed
->>>>>> FIFOs to prove that the data is getting swapped/negated when 2 or more are
->>>>>> used in series through SEPs.
->>>>>>
->>>>>> Let me know if you have any suggestions for other things to try.
->>>>>>
->>>>>> Rob
->>>>>> _______________________________________________
->>>>>> USRP-users mailing list
->>>>>> USRP-users@lists.ettus.com
->>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>>
->>>>>
-
---0000000000006aa04e05b6457d25
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Thanks for the updates. If you just want to reload th=
-e FPGA, try running &quot;overlay rm n310 &amp;&amp; overlay add n310&quot;=
- on the N310. This should simply reload the FPGA using the bistream already=
- in the flash. <br></div><div><br></div><div>Wade<br></div></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 11, =
-2020 at 6:45 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler=
-@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><div dir=3D"ltr"><div>Wade,</div><div>The following also fails using=
- just 2 blocks and 2 attempts:</div><div><div>=C2=A0 host_tx =3D&gt; Switch=
-board#0 =3D&gt; Switchboard#1 =3D&gt; host_rx=C2=A0 // SUCCESS</div><div></=
-div></div><div><div>=C2=A0 host_tx =3D&gt; Switchboard#1 =3D&gt; Switchboar=
-d#0 =3D&gt; host_rx=C2=A0 // FAILURE (RX samples equal swapped I/Q of TX sa=
-mples)</div><div><br></div><div>In addition to wanting to get this issue fi=
-xed, I also have a question about the best way to &quot;reboot&quot; the N3=
-10 which is what I need to do to fix the issue after it occurs.=C2=A0 One w=
-ay is to give the &quot;reboot now&quot; linux command.=C2=A0 But, this tak=
-es a long time.=C2=A0 Another way is to reprogram the FPGA image via uhd_im=
-age_loader. This is appreciably faster, but I&#39;m thinking that this is n=
-ot a great idea if the flash memory has a limited number of write cycles be=
-fore failure.=C2=A0 Is there another way to achieve a reboot other than the=
-se two?</div><div>Rob</div><div><br></div><div></div></div><div></div><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 11,=
- 2020 at 7:34 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=
-=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex"><div dir=3D"ltr">AHA!=C2=A0 I duplicated the iss=
-ue with the Switchboard image.=C2=A0 The way to duplicate the issue is the =
-run the following series of graphs:<div>=C2=A0 host_tx =3D&gt; Switchboard#=
-0 =3D&gt; Switchboard#1 =3D&gt; host_rx=C2=A0 // SUCCESS</div><div>=C2=A0 h=
-ost_tx =3D&gt; Switchboard#2 =3D&gt; Switchboard#3 =3D&gt; host_rx=C2=A0 //=
- SUCCESS</div><div></div><div>=C2=A0 host_tx =3D&gt; Switchboard#0 =3D&gt; =
-Switchboard#2 =3D&gt; host_rx=C2=A0 // FAILURE (RX samples equal swapped I/=
-Q of TX samples)</div><div>Each of these 3 runs consists of running my appl=
-ication (similar to one of the examples such as rfnoc_rx_to_file) such that=
- the UHD object is re-created each time.=C2=A0 My guess is that you could u=
-se gnuradio to do it instead.</div><div><br></div><div>My working theory is=
- that the problem is caused by the fact that the Switchboard#2 input port w=
-as changed from being connected to the host in test case 2 to then be conne=
-cted to another RFNoC block in test case 3.=C2=A0 Or, I suppose it could be=
- the output port on this block (same logic).</div><div><br></div><div>If yo=
-u want me to send you my FPGA image with the 4 Switchboard blocks, let me k=
-now.</div><div>Rob</div><div><br></div><div></div><div>=C2=A0=C2=A0</div></=
-div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Fri, Dec 11, 2020 at 7:09 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd=
-.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Wade,<div>After =
-thinking about it a bit, I would ignore the &quot;negation&quot; issue for =
-now. This may be a byproduct of I/Q swapping related to my custom block.</d=
-iv><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
-s=3D"gmail_attr">On Fri, Dec 11, 2020 at 6:34 PM Rob Kossler &lt;<a href=3D=
-"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
-Hi Wade,<div>Thanks for the info.=C2=A0 I still do not know what&#39;s goin=
-g on, but here are a few updates:</div><div><ul><li>I built a new N310 imag=
-e with 4 switchboards (1x1) and 1 splitstream=C2=A0(1x2) blocks in addition=
- to the default blocks.=C2=A0 All of the additional blocks are connected to=
- SEPs for dynamic linking.=C2=A0 I tried my best to get bad behavior using =
-a chain of 1 to 4 switchboards, but I could not duplicate any I/Q swapping =
-or negation issues.=C2=A0</li><li>I went back to my custom image (that I de=
-scribed below) and found different behavior today (sometimes things worked =
-OK).=C2=A0 So, this got me to thinking that I am somehow getting the FPGA i=
-n a bad state such that a reboot (or FPGA re-flashing) fixes things.=C2=A0 =
-I have had some success with re-booting and things working properly.=C2=A0 =
-But, I still do not have a true handle on things and cannot adequately pred=
-ict when things are going to succeed or fail.</li><li>One thing that has be=
-en constant is that I have never seen bad behavior when I only have 1 block=
- in my graph (no matter which block I choose).=C2=A0 Note that for all of m=
-y tests, the graph looks like this: host_tx =3D&gt; block_chain =3D&gt; hos=
-t_rx, where block_chain is a sequential chain of 1 or more rfnoc blocks.</l=
-i></ul><div>I will send a follow up once I figure things out.</div><div>Rob=
-</div></div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Fri, Dec 11, 2020 at 6:22 PM Wade Fife &lt;<a=
- href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div dir=3D"ltr"><div>Hi Rob,</div><div><br></div><div>The SEPs do have the =
-ability to swap I and Q. This is because on the host computer, I is usually=
- in the lower bits and Q is in the upper bits of each 32-bit word, but in R=
-FNoC, for historical reasons, I goes in the upper bits and Q in the lower b=
-its. The software programs the IQ swapping when it sets up the graph. </div=
-><div><br></div><div>I assume you&#39;re using dynamic connections (through=
- the crossbar) to control the number of FFTs the data is passed through, an=
-d not static connections? If that&#39;s the case then=20
-I wonder if software configures IQ swapping incorrectly in some configurati=
-ons.
-
-I&#39;ll see if I can do some testing next week to confirm if it&#39;s work=
-ing correctly.</div><div><br></div><div>As for negation, I&#39;m not aware =
-of anywhere we do that off the top of my head. Is that behavior block depen=
-dent? I&#39;ll see if I can find anywhere this happens.</div><div><br></div=
-><div>Thanks,</div><div><br></div><div>Wade=C2=A0 <br></div></div><br><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Dec 10,=
- 2020 at 3:54 PM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-user=
-s@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wro=
-te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
-ltr">Hi,<br><div>I am encountering very strange behavior with a custom FPGA=
- image (N310). It appears that data streaming through SEPs can get swapped =
-(I/Q) and/or negated.=C2=A0=C2=A0Is anyone at Ettus aware of=C2=A0anything =
-that could cause this?=C2=A0 Of course, the issue might be on my end, but I=
- can&#39;t think of what it might be given that all of my custom blocks wor=
-k as expected in isolation (if the block is the only block in graph).</div>=
-<div><br></div><div>My custom image is the following:</div><div><ul><li>def=
-ault blocks of Radios, DDCs, DUCs (each 2x2 and statically connected as in =
-default image)</li><li>custom blocks of=C2=A0two 1x1 windowed-fft blocks, t=
-wo 1x1 vector-avg blocks, and one 2x2 custom block. Note: each of these blo=
-cks is connected to its own SEP, so I can connect dynamically in any fashio=
-n.</li></ul><div>My test case is transmitting 8192 random samples from host=
- to FFT block and then optionally through a 2nd FFT block before back to ho=
-st.=C2=A0 In the test case, the radios/DDCs/DUCs are not used.</div><div><b=
-r></div>Here is what I observed:<br><ul><li>If I only include 1 FFT block i=
-n my RFNoC graph, I get the expected results (the output from the FPGA matc=
-hes what I calculate in Matlab for the FFT).=C2=A0 This is true for either =
-of the two FFT blocks.</li><li>If I include both FFT blocks in series, I ca=
-n only match the FPGA output if I swap the I/Q values in between my Matlab =
-FFTs.</li><li>Note: that this issue is not FFT-related as I can also duplic=
-ate this issue with the other blocks.=C2=A0</li><li>If I use 3 blocks in se=
-ries (each through SEP), I need to negate certain data in order to get it t=
-o match the FPGA output</li></ul><div>My next step is likely to build a new=
- image with Ettus-developed FIFOs to prove that the data is getting swapped=
-/negated when 2 or more are used in series through SEPs.</div></div><div><b=
-r></div><div>Let me know if you have any suggestions for other things to tr=
-y.<br></div><div><br></div><div>Rob</div></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
-
---0000000000006aa04e05b6457d25--
-
-
---===============5909247277183809480==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5909247277183809480==--
-
+T24gMTIvMTEvMjAgNDo0OSBQTSwgUGhpbGlwIEJhbGlzdGVyIHZpYSBVU1JQLXVzZXJzIHdyb3Rl
+Ogo+IE9uIDEyLzYvMjAgMTA6MDMgQU0sIFJvbiBFY29ub21vcyB2aWEgVVNSUC11c2VycyB3cm90
+ZToKPj4gVW5mb3J0dW5hdGVseSwgdGhhdCBGRlRXIGJ1ZyBoYXMgYmVlbiBhcm91bmQgZm9yIGEg
+d2hpbGUuIElzc3VlIDIxMyBpcyBhCj4+IGR1cGxpY2F0ZSBvZiBpc3N1ZSAxODIgZnJvbSBhIHll
+YXIrIGFnby4KPj4KPj4gaHR0cHM6Ly9naXRodWIuY29tL0ZGVFcvZmZ0dzMvaXNzdWVzLzE4Mgo+
+Pgo+PiBPbiBVYnVudHUgMjAuMDQgYXJtaGYsIHRoZXkncmUganVzdCBjb21waWxpbmcgdGhlIEZG
+VFcgcGFja2FnZSB3aXRob3V0Cj4+IE5FT04gZW5hYmxlZC4KPiAKPiBJIHBva2VkIGF0IHRoaXMg
+d2F5IG1vcmUgdGhhbiBJIHNob3VsZCBoYXZlIGFuZCBhbSA5OSUgY2VydGFpbiB0aGUgaXNzdWUK
+PiBpbiBpbiBnY2MtOC4gQnVpbGRpbmcgd2l0aCAtTyBvZmYgbGVkIHRvIGFuIGZmdHcgdGhhdCB3
+b3VsZCBwYXNzIGl0cwo+IG1ha2UgY2hlY2suIEkgdHJpZWQgYSBidWlsZCBvbiBhIHFlbXVhcm0g
+ZnJvbSBPRS9tYXN0ZXIgYW5kIHRoYXQgd29ya2VkCj4gKGdjYy0xMCkuIGdjYy05IGlzIGEgcXVl
+c3Rpb24sIEkgZmlyZWQgdXAgYSBidWlsZCBvZiBPRS9kdW5mZWxsIChnY2MtOSkKPiBhbmQgd2ls
+bCBydW4gdGhlIHFlbXUgY2hlY2sgYW5kIHNlZSB3aGF0IGhhcHBlbnMuCgpJbiB0aGUgYmFkIG5l
+d3MsIGZmdHcgcWEgdGVzdHMgZmFpbCBpbiBxZW11YXJtIHdpdGggZ2NjOS4KClBoaWxpcAoKPiAK
+PiBJZiB5b3UgYXJlIHN0dWNrIG9uIHpldXMsIHlvdSdsbCBuZWVkIHRvIHRyeSBhbmQgaWQgdGhl
+IHBhdGNoIHRoYXQgZml4ZXMKPiBnY2MgYW5kIGFwcGx5IGl0IHRvIHRoZSBnY2MgYnVpbGQuIEJ1
+dCBnZXR0aW5nIG9mZiB6ZXVzIHdvdWxkIGJlIGEKPiByZWFsbHkgYm9vZCBtb3ZlIGFzIGl0IGlz
+IG91dCBvZiBzdXBwb3J0IG5vdy4KPiAKPiBQaGlsaXAKPiAKPj4KPj4gUm9uCj4+Cj4+IE9uIDEy
+LzYvMjAgMDY6MjcsIEJlbiBNYWdpc3RybyB2aWEgVVNSUC11c2VycyB3cm90ZToKPj4+IElzc3Vl
+IGFwcGVhcnMgdG8gYmUgd2l0aCB0aGUgY29tcGlsZXIgdGhhdCBpcyBpbmNsdWRlZCBpbiBaZXVz
+IChnY2MKPj4+IDkueCB2cyA4LngpIGFuZCBhbiBpbnRlcmFjdGlvbiB3aXRoIGZmdHcuIFRoZXJl
+IGlzIGFuIG9wZW4gaXNzdWUgd2l0aAo+Pj4gZmZ0dyAoaHR0cHM6Ly9naXRodWIuY29tL0ZGVFcv
+ZmZ0dzMvaXNzdWVzLzIxMykgYW5kIGEgcmVxdWVzdCB0byB0aGUKPj4+IHlvY3RvIGZvbGtzIHRv
+IHJlcXVlc3QgdGhleSBjb25zaWRlciBhZGRpbmcgYmFjayBnY2MtOC4zIHRvIHpldXPCoCsKPj4+
+IGR1bmZlbGzCoChodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcvc2hvd19idWcuY2dp
+P2lkPTE0MTQ0KQo+Pj4gdW50aWwgdGhpcyBjYW4gYmUgYmV0dGVyIHJlc29sdmVkLsKgIEkgdGhp
+bmsgZGF0YSBwb2ludCAzIGNvbmZpcm1zIHRoaXMKPj4+IGFzIEkgZGlkIG5vdCBpbmNsdWRlIG9w
+dGlvbnMgdG8gZW5hYmxlIG5lb24gd2hlbiBJIGNvbXBpbGVkLgo+Pj4KPj4+IE9uIFdlZCwgTm92
+IDExLCAyMDIwIGF0IDE6MzkgUE0gQmVuIE1hZ2lzdHJvIDxrb25jZXB0MUBnbWFpbC5jb20KPj4+
+IDxtYWlsdG86a29uY2VwdDFAZ21haWwuY29tPj4gd3JvdGU6Cj4+Pgo+Pj4gwqDCoMKgIEFkZGlu
+ZyBzb21lIG1vcmUgZGF0YSBwb2ludHMuCj4+Pgo+Pj4gwqDCoMKgIDEpIEkndmUgYmVlbiB0cnlp
+bmcgdG8gcmVidWlsZCBtZXRhLWV0dHVzLXY0IHdpdGggZGVidWcgZW5hYmxlZAo+Pj4gwqDCoMKg
+IGJ1dCBhbSBoaXR0aW5nIGFuIGlzc3VlIHdpdGggaW1hZ2Ugc2l6ZSBhbmQgY2FuJ3Qgc2VlbSB0
+byBnZXQgcGFzdAo+Pj4gwqDCoMKgIHRoYXQuwqAgSXQgc2F5cyBJIHNob3VsZCBpbmNyZWFzZSBg
+TUVOREVSX1NUT1JBR0VfVE9UQUxfU0laRV9NQmAgaWYKPj4+IMKgwqDCoCB0aGUgYWN0dWFsIHNp
+emUgaXMgbGFyZ2VyIGJ1dCBpbmNyZWFzaW5nIHRoaXMgc2VlbXMgdG8gaGF2ZSBubwo+Pj4gwqDC
+oMKgIGVmZmVjdC7CoCBJIGFtIHVzaW5nIHRoZSBldHR1cyBkb2NrZXIgaW1hZ2UgZm9yIG9lLWJ1
+aWxkZXIgd2l0aCB0aGUKPj4+IMKgwqDCoCBjb21tYW5kIGAuL21ldGEtZXR0dXMvY29udHJpYi9i
+dWlsZF9pbWdzX3BhY2thZ2Uuc2ggZTMxMF9zZzMKPj4+IMKgwqDCoCB2NC4wLjAuMGAuwqAgRm9y
+IHRoZSBkZWJ1ZyBwb3J0aW9uIEkndmUgYWRkZWQgYSBmZXcgbGluZXMgdG8KPj4+IMKgwqDCoCBg
+YnVpbGQvY29uZi9sb2NhbC5jb25mYCB0byBhZGQgdGhlIHBhY2thZ2VzLiBJJ20gb3BlbiB0bwo+
+Pj4gwqDCoMKgIHN1Z2dlc3Rpb25zIHRvIGJ1aWxkIHRoZSBpbWFnZSB3aXRoIGRlYnVnIHN5bWJv
+bHMgYW5kIHByb3ZpZGUKPj4+IMKgwqDCoCBhZGRpdGlvbmFsIGZlZWRiYWNrLgo+Pj4KPj4+IMKg
+wqDCoCAyKSBJIHB1dCB0b2dldGhlciBhIHNpbXBsZSBmbG93Z3JhcGgsIFVIRCBzb3VyY2UgLS0+
+IGZyZXF1ZW5jeQo+Pj4gwqDCoMKgIHhsYXRpbmcgZmZ0IC0tPiBudWxsIHNpbmsuwqAgVGhpcyBh
+bHNvIHNlZ2ZhdWx0cywgbm8gZ3VhcmFudGVlcwo+Pj4gwqDCoMKgIHRoYXQgSSBnb3QgdGhlIHBh
+cmFtZXRlcnMgY29ycmVjdC4KPj4+Cj4+PiDCoMKgwqAgMykgU2luY2UgdGhlIGlzc3VlcyBzZWVt
+IHRvIGJlIHdpdGggZmZ0dywgSSBkZWNpZGVkIHRvIHRyeQo+Pj4gwqDCoMKgIGJ1aWxkaW5nIG15
+IG93biBjb3B5IG9mIGZmdHcgbW9zdGx5IHRvIGdldCBkZWJ1ZyBzeW1ib2xzIGFuZAo+Pj4gwqDC
+oMKgIGNvbnRpbnVlIHRyb3VibGVzaG9vdGluZy7CoCBGb3IgdGhpcyBJIHVzZWQgYC4vY29uZmln
+dXJlCj4+PiDCoMKgwqAgLS1lbmFibGUtZGVidWcgLS1lbmFibGUtc2hhcmVkIC0tZW5hYmxlLXRo
+cmVhZHMgLS1lbmFibGUtZmxvYXRgCj4+PiDCoMKgwqAgYW5kIGBtYWtlIENGTEFHUz0iLWdnZGIi
+YC7CoCBUaGVzZSBvcHRpb25zIGFyZSBiZXN0IGd1ZXNzZXMgcmlnaHQKPj4+IMKgwqDCoCBub3cg
+c2luY2UgSSBkaWRuJ3QgbG9vayBhdCB0aGUgbGF5ZXJzIHRvIHNlZSB3aGF0IHBhcmFtZXRlcnMg
+aXQgaXMKPj4+IMKgwqDCoCB1c2luZyAoYXNzdW1pbmcgaXQgaXMgaW4gb25lIG9mIHRoZSBsYXll
+cnMpLsKgIFVzaW5nIHRoaXMgYnVpbGQKPj4+IMKgwqDCoCB3aXRoIGBleHBvcnQgTERfTElCUkFS
+WV9QQVRIPS91c3IvbG9jYWwvbGliL2AgSSBkbyBub3QgZ2V0IGEKPj4+IMKgwqDCoCBzZWdmYXVs
+dCB3aXRoIGdyLWFpcyBvciB0aGUgYWJvdmUgZmxvd2dyYXBoIGJ1dCBJIGFsc28gZG9uJ3QgZ2V0
+Cj4+PiDCoMKgwqAgdGhlIGV4cGVjdGVkIG91dHB1dCB3aGljaCBtYWtlcyBtZSBxdWVzdGlvbiB0
+aGUgcGFyYW1ldGVycyBJIHVzZWQKPj4+IMKgwqDCoCB0byBidWlsZCBpdC7CoCBPdXRwdXQgd2lz
+ZSBJIGdldCBhIHN0cmluZyBvZiAiRCIgb3IgIk8iIHRvIHRoZQo+Pj4gY29uc29sZS4KPj4+Cj4+
+PiDCoMKgwqAgVGhhbmtzCj4+Pgo+Pj4gwqDCoMKgIEJlbgo+Pj4KPj4+IMKgwqDCoCBPbiBUaHUs
+IE5vdiA1LCAyMDIwIGF0IDk6MjIgQU0gTWljaGFlbCBEaWNrZW5zCj4+PiDCoMKgwqAgPG1pY2hh
+ZWwuZGlja2Vuc0BldHR1cy5jb20gPG1haWx0bzptaWNoYWVsLmRpY2tlbnNAZXR0dXMuY29tPj4g
+d3JvdGU6Cj4+Pgo+Pj4gwqDCoMKgwqDCoMKgwqAgSGkgQmVuIC0gVGhpcyBpc3N1ZSBoYXMgYmVl
+biByZXBvcnRlZCB0byBSJkQgaW50ZXJuYWxseS4gSWYKPj4+IMKgwqDCoMKgwqDCoMKgIHlvdSB3
+aXNoIHRvIGNyZWF0ZSBhIHB1YmxpYy1mYWNpbmcgVUhEIGlzc3VlIG9uIG91ciBHaXRodWIKPj4+
+IMKgwqDCoMKgwqDCoMKgIHRyYWNrZXIgcGxlYXNlIGdvIGFoZWFkICYgZG8gc28sIGFuZCB0YWcg
+bWUgb24gaXQgc28gdGhhdCB3ZQo+Pj4gwqDCoMKgwqDCoMKgwqAgY2FuIGtlZXAgdHJhY2sgb2Yg
+aXQgaW50ZXJuYWxseS4gLSBNTEQKPj4+Cj4+PiDCoMKgwqDCoMKgwqDCoCBPbiBXZWQsIE5vdiA0
+LCAyMDIwIGF0IDExOjI1IFBNIEJlbiBNYWdpc3RybyB2aWEgVVNSUC11c2Vycwo+Pj4gwqDCoMKg
+wqDCoMKgwqAgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+PiDCoMKgwqDCoMKgwqDCoCA8
+bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4gd3JvdGU6Cj4+Pgo+Pj4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCBJcyBhbnlvbmUgZWxzZSB1c2luZyBtZXRhLWV0dHVzLXY0LjAuMC4w
+IHlldD/CoCBpZiBzbywgaGF2ZQo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB5b3UgaGFkIGFu
+eSBpc3N1ZXMgd2l0aCBsaWJmZnR3Pwo+Pj4KPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVXNp
+bmcgdGhlIGltYWdlIG9uIGFuIEUzMTAsIGFkZGluZyBhIHNpbmdsZSBPT1QgbW9kdWxlCj4+PiDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIChnci1haXMpIGFuZCB0cnlpbmcgdG8gcnVuIGFuIGFwcCBk
+aXN0cmlidXRlZCB3aXRoIGl0LCB0aGUKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYXBwIHNl
+Z2ZhdWx0cy7CoCBUbyBmdXJ0aGVyIHRyb3VibGVzaG9vdCwgSSBhZGRlZCBnZGIgYW5kCj4+PiDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGl0IGNvbWVzIGJhY2sgd2l0aCB0aGUgZm9sbG93aW5nLsKg
+IEkgaGF2ZSBhIHNlcGFyYXRlCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldmVsb3BtZW50
+IGhvc3QgdGhhdCBoYXMgZ251cmFkaW8gMy44IHNldHVwIHVzaW5nIHB5Ym9tYnMKPj4+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgYW5kIGRvIG5vdCBleHBlcmllbmNlIHRoaXMgaXNzdWUgdGhlcmUu
+Cj4+Pgo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBUaHJlYWQgMSAicHl0aG9uMyIgcmVjZWl2
+ZWQgc2lnbmFsIFNJR1NFR1YsIFNlZ21lbnRhdGlvbgo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBmYXVsdC4KPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiNjk0NzgzNiBpbiA/PyAoKSBm
+cm9tIC91c3IvbGliL2xpYmZmdHczZi5zby4zCj4+Pgo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBUbyBjb21waWxlLCBJJ3ZlIG5lZWRlZCB0byBvdmVycmlkZSBQWVRIT05fRVhFQ1VUQUJMRSBh
+cwo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpdCBwb2ludHMgdG8gYSBub24tZXhpc3RlbnQg
+cGF0aCBpbiAvaG9tZS9vZS1idWlsZGVyLi4uLgo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBp
+biAvdXNyL2xpYi9jbWFrZS9nbnVyYWRpby9HbnVyYWRpb0NvbmZpZy5jbWFrZS4gVG8gcnVuIEkK
+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYWxzbyBuZWVkZWQgdG8gZGVmaW5lIExEX0VYUE9S
+VF9QQVRIIHBvaW50aW5nIHRvCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC91c3IvbG9jYWwv
+bGliLy4KPj4+Cj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFRoYW5rcyBpbiBhZHZhbmNlLgo+
+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBVU1JQLXVzZXJzIG1h
+aWxpbmcgbGlzdAo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBVU1JQLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbQo+Pj4gPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KPj4+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAKPj4+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0
+aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+Pj4KPj4+Cj4+PiBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4gVVNSUC11c2VycyBtYWlsaW5n
+IGxpc3QKPj4+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+PiBodHRwOi8vbGlzdHMuZXR0
+dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPj4KPj4K
+Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gVVNS
+UC11c2VycyBtYWlsaW5nIGxpc3QKPj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4gaHR0
+cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0
+dXMuY29tCj4+Cj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNf
+bGlzdHMuZXR0dXMuY29tCj4gCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
+aXN0cy5ldHR1cy5jb20K
