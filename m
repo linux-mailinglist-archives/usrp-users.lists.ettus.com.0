@@ -2,51 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAC4C2D8376
-	for <lists+usrp-users@lfdr.de>; Sat, 12 Dec 2020 01:35:52 +0100 (CET)
-Received: from [::1] (port=57274 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA7A72D838D
+	for <lists+usrp-users@lfdr.de>; Sat, 12 Dec 2020 01:45:49 +0100 (CET)
+Received: from [::1] (port=57324 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1knst4-0000Zf-Rq; Fri, 11 Dec 2020 19:35:50 -0500
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:46645)
+	id 1knt2i-0000zY-NE; Fri, 11 Dec 2020 19:45:48 -0500
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:44042)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1knssz-0000SN-Ot
- for usrp-users@lists.ettus.com; Fri, 11 Dec 2020 19:35:45 -0500
-Received: by mail-ot1-f47.google.com with SMTP id w3so9937780otp.13
- for <usrp-users@lists.ettus.com>; Fri, 11 Dec 2020 16:35:25 -0800 (PST)
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1knt2e-0000sq-GS
+ for usrp-users@lists.ettus.com; Fri, 11 Dec 2020 19:45:44 -0500
+Received: by mail-oi1-f174.google.com with SMTP id d189so11967774oig.11
+ for <usrp-users@lists.ettus.com>; Fri, 11 Dec 2020 16:45:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=2840lZvKWago/KIAox3G+8BhEIwPJ1RgBvTT0rXuuj0=;
- b=BM3tPIxNNV/hKMFnxGpQ2+p9qKbpCH2AEcbpp3Z6MZdjBxrNmeL229MQWWY4BeodR9
- MagxsC3RK5onV4fEwVWrOV6yt2b2XxLLwB3u9dUMJHpqizqGOlw+foWQ7j4MBhcddTWa
- VJAgpnuoCVsHnGXRF5hteWIB8YDzRlSCEDsM3hQnoNmzzJAvsARG0SntjDPz584OitmK
- vXZLQUkKHnkt552u3Yps+oLUNCIfzF0Rc3snURYmqzJfPgaqytNZTKdMhL02ECPwBEWM
- QTd2m8CQOPuabBksG1Z49srxxGsUFz9MgTfZZKSgOKuUQyU0nJ6e3eutqieLfdxXN9M7
- SMnw==
+ :cc; bh=7OlnMKZAG9Kq/nbt6zfAyz9xym13GzpEOaPtvHTEivo=;
+ b=OYIOVuDN35KYqk1CvmshdYglSwjYt6r8PyRaY6GLcJvy39PKCPGQZsH9BqJ7qHj5Zr
+ Q1gdvx+qfSJnqfBXFErOCZqUVe5PWstZO3blGdQjedGvVxxpl7bE9GRrlvdGr9iMFw8E
+ ZVTEymkR/Uvv+MQGy8AZM8UTKtA0vAQnIb3CT7Id7VOdic+G+rT5svwf60YlLnUOj/dD
+ OkqDIDxQJcGCw5Rj6BQuEIEaTnvjM8ZcWzWY2eI7DEc9hPyWjP0xl1FKpoe85Z/Wk+Zd
+ dr6dBwpifsyJOfftr+QTMsiyyiadvQ8TCVQhhhHUZ+dg896RUacxlCil+l7BdW7Gj8sH
+ zvHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=2840lZvKWago/KIAox3G+8BhEIwPJ1RgBvTT0rXuuj0=;
- b=aKL8CyKAFk4IRS+tj4nfSXYRPL7uf+Eo4pe2qGpfc4B/EPvX57jf4nWudILzBizUnR
- w04NkUcSwaExcwDjomTt6NBzn+ChoaKCQMJneLgzv0CL6dnOplCKqsp+BaLpPrdPJDPv
- 0vWgItpVsfvlB9tBetonH2192vx1zMncG/yvelKvIJASykpd+JFi9bkohws7J3QpHJSN
- uAoHoFrUghNsls0/kqXNt6HyHhk225a2U3qOxSAUfMPYkLLE8wKDBW1NvYEi1BOu4s/s
- HCJbRZ98xHJ1i/yN5jP1B7XGOP9Ey4WhxfVXwZ+gKsKt57YZaEFBz4lfsWrdTNVTfM/k
- 1ZXQ==
-X-Gm-Message-State: AOAM530wGcrPiaVsWuYS/k7EYfQ5gqc4LrCB3S7WRmvVtoUlDWbNCqQu
- oCbBAChW3+XDA7qr6lRMLWm4guuhk3rmUgy3zgvXnKqeB6TQPw==
-X-Google-Smtp-Source: ABdhPJyXboWwiCLvamXZYdkbfMC/0iZFdgw5ljs34XB6ozLrpiSk3867WyhP349tkUvgf9fkCLmZfycI9W9Vj9PXpYY=
-X-Received: by 2002:a9d:4e87:: with SMTP id v7mr2470164otk.302.1607733304812; 
- Fri, 11 Dec 2020 16:35:04 -0800 (PST)
+ bh=7OlnMKZAG9Kq/nbt6zfAyz9xym13GzpEOaPtvHTEivo=;
+ b=ineCUZIw/ru2UhKr0alRIeSkrvYT7jCyL3Inmr5ksFOEgPIOHziZ3bsKTtcMg9qUGh
+ O7f8HITP/3Q7QxUMOeUHByS80R+wGtUrCHZ0FRiJts4Zjf3gMAQ52c3jUPrBTb7A4BR2
+ HxtZ9tgV38BVk8RcDfZkQpXpKIsA4mHdYBjSzenghKyAFb5CjIyshVoJoDv7LD69bRSZ
+ E4+17Y1szVhYCz/NfAOCYUw0lCDGM+jxtjg9B2/rhL4wa/TdmfkZQPDG2b/4Dc0qldI1
+ VVOgFUU4162bNoZELdp8G7G/RMkzzUssAgUWza1mPROFjsmjN9rX48/jwGWms1YQE+eQ
+ pi/g==
+X-Gm-Message-State: AOAM533Vo687DSAiZD6RUa/yVv6+hFFM6OaDvDidjWWUWG4x0VnT0rXD
+ pnBsq2Xj5SniSkyZiBpkh7FSTFhxp0sW+05kKexvCg==
+X-Google-Smtp-Source: ABdhPJxvKjIjmOKS/+2iwXksDBKbEd6gYQuqNSkUEetCDEHJtuersY3muC0RT1ZQTPfG0XbELBZq5buFONFvxJD6ugU=
+X-Received: by 2002:a05:6808:9a:: with SMTP id
+ s26mr11333056oic.124.1607733903588; 
+ Fri, 11 Dec 2020 16:45:03 -0800 (PST)
 MIME-Version: 1.0
 References: <CAB__hTQa8v40-nQGCQMcK36317oWxue448NrMoMYvbf3oacmug@mail.gmail.com>
  <CAFche=htoRKHMituvggWa15UwoiVkdR6n=3EXYK6d5TR696SiQ@mail.gmail.com>
  <CAB__hTTd6++q8K6xOtHhpJv905CW1wp4E5YpUR0mM5yULUf44Q@mail.gmail.com>
  <CAB__hTRBNRoGu+yYjGMawb1ongZ5u0G4HyafJUOuCA5637ysgA@mail.gmail.com>
-In-Reply-To: <CAB__hTRBNRoGu+yYjGMawb1ongZ5u0G4HyafJUOuCA5637ysgA@mail.gmail.com>
-Date: Fri, 11 Dec 2020 19:34:54 -0500
-Message-ID: <CAB__hTQX+URNC-_qno0jStxo0qm8YtUWas0MffMebtd6TzfTNQ@mail.gmail.com>
+ <CAB__hTQX+URNC-_qno0jStxo0qm8YtUWas0MffMebtd6TzfTNQ@mail.gmail.com>
+In-Reply-To: <CAB__hTQX+URNC-_qno0jStxo0qm8YtUWas0MffMebtd6TzfTNQ@mail.gmail.com>
+Date: Fri, 11 Dec 2020 19:44:52 -0500
+Message-ID: <CAB__hTSpKwx7JSoWCExtqThW+qGSi919KTTm1TNWN6KU4HkQig@mail.gmail.com>
 To: Wade Fife <wade.fife@ettus.com>
 Cc: usrp-users <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] RFNoC 4.0 data swapping?
@@ -63,7 +65,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============4989855459555613442=="
+Content-Type: multipart/mixed; boundary="===============5579747994801274530=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,206 +79,242 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4989855459555613442==
-Content-Type: multipart/alternative; boundary="00000000000087378305b6399437"
+--===============5579747994801274530==
+Content-Type: multipart/alternative; boundary="00000000000037c47105b639b8c7"
 
---00000000000087378305b6399437
+--00000000000037c47105b639b8c7
 Content-Type: text/plain; charset="UTF-8"
 
-AHA!  I duplicated the issue with the Switchboard image.  The way to
-duplicate the issue is the run the following series of graphs:
+Wade,
+The following also fails using just 2 blocks and 2 attempts:
   host_tx => Switchboard#0 => Switchboard#1 => host_rx  // SUCCESS
-  host_tx => Switchboard#2 => Switchboard#3 => host_rx  // SUCCESS
-  host_tx => Switchboard#0 => Switchboard#2 => host_rx  // FAILURE (RX
+  host_tx => Switchboard#1 => Switchboard#0 => host_rx  // FAILURE (RX
 samples equal swapped I/Q of TX samples)
-Each of these 3 runs consists of running my application (similar to one of
-the examples such as rfnoc_rx_to_file) such that the UHD object is
-re-created each time.  My guess is that you could use gnuradio to do it
-instead.
 
-My working theory is that the problem is caused by the fact that the
-Switchboard#2 input port was changed from being connected to the host in
-test case 2 to then be connected to another RFNoC block in test case 3.
-Or, I suppose it could be the output port on this block (same logic).
-
-If you want me to send you my FPGA image with the 4 Switchboard blocks, let
-me know.
+In addition to wanting to get this issue fixed, I also have a question
+about the best way to "reboot" the N310 which is what I need to do to fix
+the issue after it occurs.  One way is to give the "reboot now" linux
+command.  But, this takes a long time.  Another way is to reprogram the
+FPGA image via uhd_image_loader. This is appreciably faster, but I'm
+thinking that this is not a great idea if the flash memory has a limited
+number of write cycles before failure.  Is there another way to achieve a
+reboot other than these two?
 Rob
 
+On Fri, Dec 11, 2020 at 7:34 PM Rob Kossler <rkossler@nd.edu> wrote:
 
-
-On Fri, Dec 11, 2020 at 7:09 PM Rob Kossler <rkossler@nd.edu> wrote:
-
-> Hi Wade,
-> After thinking about it a bit, I would ignore the "negation" issue for
-> now. This may be a byproduct of I/Q swapping related to my custom block.
+> AHA!  I duplicated the issue with the Switchboard image.  The way to
+> duplicate the issue is the run the following series of graphs:
+>   host_tx => Switchboard#0 => Switchboard#1 => host_rx  // SUCCESS
+>   host_tx => Switchboard#2 => Switchboard#3 => host_rx  // SUCCESS
+>   host_tx => Switchboard#0 => Switchboard#2 => host_rx  // FAILURE (RX
+> samples equal swapped I/Q of TX samples)
+> Each of these 3 runs consists of running my application (similar to one of
+> the examples such as rfnoc_rx_to_file) such that the UHD object is
+> re-created each time.  My guess is that you could use gnuradio to do it
+> instead.
+>
+> My working theory is that the problem is caused by the fact that the
+> Switchboard#2 input port was changed from being connected to the host in
+> test case 2 to then be connected to another RFNoC block in test case 3.
+> Or, I suppose it could be the output port on this block (same logic).
+>
+> If you want me to send you my FPGA image with the 4 Switchboard blocks,
+> let me know.
 > Rob
 >
-> On Fri, Dec 11, 2020 at 6:34 PM Rob Kossler <rkossler@nd.edu> wrote:
+>
+>
+> On Fri, Dec 11, 2020 at 7:09 PM Rob Kossler <rkossler@nd.edu> wrote:
 >
 >> Hi Wade,
->> Thanks for the info.  I still do not know what's going on, but here are a
->> few updates:
->>
->>    - I built a new N310 image with 4 switchboards (1x1) and 1
->>    splitstream (1x2) blocks in addition to the default blocks.  All of the
->>    additional blocks are connected to SEPs for dynamic linking.  I tried my
->>    best to get bad behavior using a chain of 1 to 4 switchboards, but I could
->>    not duplicate any I/Q swapping or negation issues.
->>    - I went back to my custom image (that I described below) and found
->>    different behavior today (sometimes things worked OK).  So, this got me to
->>    thinking that I am somehow getting the FPGA in a bad state such that a
->>    reboot (or FPGA re-flashing) fixes things.  I have had some success with
->>    re-booting and things working properly.  But, I still do not have a true
->>    handle on things and cannot adequately predict when things are going to
->>    succeed or fail.
->>    - One thing that has been constant is that I have never seen bad
->>    behavior when I only have 1 block in my graph (no matter which block I
->>    choose).  Note that for all of my tests, the graph looks like this: host_tx
->>    => block_chain => host_rx, where block_chain is a sequential chain of 1 or
->>    more rfnoc blocks.
->>
->> I will send a follow up once I figure things out.
+>> After thinking about it a bit, I would ignore the "negation" issue for
+>> now. This may be a byproduct of I/Q swapping related to my custom block.
 >> Rob
 >>
+>> On Fri, Dec 11, 2020 at 6:34 PM Rob Kossler <rkossler@nd.edu> wrote:
 >>
->> On Fri, Dec 11, 2020 at 6:22 PM Wade Fife <wade.fife@ettus.com> wrote:
->>
->>> Hi Rob,
+>>> Hi Wade,
+>>> Thanks for the info.  I still do not know what's going on, but here are
+>>> a few updates:
 >>>
->>> The SEPs do have the ability to swap I and Q. This is because on the
->>> host computer, I is usually in the lower bits and Q is in the upper bits of
->>> each 32-bit word, but in RFNoC, for historical reasons, I goes in the upper
->>> bits and Q in the lower bits. The software programs the IQ swapping when it
->>> sets up the graph.
+>>>    - I built a new N310 image with 4 switchboards (1x1) and 1
+>>>    splitstream (1x2) blocks in addition to the default blocks.  All of the
+>>>    additional blocks are connected to SEPs for dynamic linking.  I tried my
+>>>    best to get bad behavior using a chain of 1 to 4 switchboards, but I could
+>>>    not duplicate any I/Q swapping or negation issues.
+>>>    - I went back to my custom image (that I described below) and found
+>>>    different behavior today (sometimes things worked OK).  So, this got me to
+>>>    thinking that I am somehow getting the FPGA in a bad state such that a
+>>>    reboot (or FPGA re-flashing) fixes things.  I have had some success with
+>>>    re-booting and things working properly.  But, I still do not have a true
+>>>    handle on things and cannot adequately predict when things are going to
+>>>    succeed or fail.
+>>>    - One thing that has been constant is that I have never seen bad
+>>>    behavior when I only have 1 block in my graph (no matter which block I
+>>>    choose).  Note that for all of my tests, the graph looks like this: host_tx
+>>>    => block_chain => host_rx, where block_chain is a sequential chain of 1 or
+>>>    more rfnoc blocks.
 >>>
->>> I assume you're using dynamic connections (through the crossbar) to
->>> control the number of FFTs the data is passed through, and not static
->>> connections? If that's the case then I wonder if software configures IQ
->>> swapping incorrectly in some configurations. I'll see if I can do some
->>> testing next week to confirm if it's working correctly.
+>>> I will send a follow up once I figure things out.
+>>> Rob
 >>>
->>> As for negation, I'm not aware of anywhere we do that off the top of my
->>> head. Is that behavior block dependent? I'll see if I can find anywhere
->>> this happens.
 >>>
->>> Thanks,
+>>> On Fri, Dec 11, 2020 at 6:22 PM Wade Fife <wade.fife@ettus.com> wrote:
 >>>
->>> Wade
->>>
->>> On Thu, Dec 10, 2020 at 3:54 PM Rob Kossler via USRP-users <
->>> usrp-users@lists.ettus.com> wrote:
->>>
->>>> Hi,
->>>> I am encountering very strange behavior with a custom FPGA image
->>>> (N310). It appears that data streaming through SEPs can get swapped (I/Q)
->>>> and/or negated.  Is anyone at Ettus aware of anything that could cause
->>>> this?  Of course, the issue might be on my end, but I can't think of what
->>>> it might be given that all of my custom blocks work as expected in
->>>> isolation (if the block is the only block in graph).
+>>>> Hi Rob,
 >>>>
->>>> My custom image is the following:
+>>>> The SEPs do have the ability to swap I and Q. This is because on the
+>>>> host computer, I is usually in the lower bits and Q is in the upper bits of
+>>>> each 32-bit word, but in RFNoC, for historical reasons, I goes in the upper
+>>>> bits and Q in the lower bits. The software programs the IQ swapping when it
+>>>> sets up the graph.
 >>>>
->>>>    - default blocks of Radios, DDCs, DUCs (each 2x2 and statically
->>>>    connected as in default image)
->>>>    - custom blocks of two 1x1 windowed-fft blocks, two 1x1 vector-avg
->>>>    blocks, and one 2x2 custom block. Note: each of these blocks is connected
->>>>    to its own SEP, so I can connect dynamically in any fashion.
+>>>> I assume you're using dynamic connections (through the crossbar) to
+>>>> control the number of FFTs the data is passed through, and not static
+>>>> connections? If that's the case then I wonder if software configures IQ
+>>>> swapping incorrectly in some configurations. I'll see if I can do some
+>>>> testing next week to confirm if it's working correctly.
 >>>>
->>>> My test case is transmitting 8192 random samples from host to FFT block
->>>> and then optionally through a 2nd FFT block before back to host.  In the
->>>> test case, the radios/DDCs/DUCs are not used.
+>>>> As for negation, I'm not aware of anywhere we do that off the top of my
+>>>> head. Is that behavior block dependent? I'll see if I can find anywhere
+>>>> this happens.
 >>>>
->>>> Here is what I observed:
+>>>> Thanks,
 >>>>
->>>>    - If I only include 1 FFT block in my RFNoC graph, I get the
->>>>    expected results (the output from the FPGA matches what I calculate in
->>>>    Matlab for the FFT).  This is true for either of the two FFT blocks.
->>>>    - If I include both FFT blocks in series, I can only match the FPGA
->>>>    output if I swap the I/Q values in between my Matlab FFTs.
->>>>    - Note: that this issue is not FFT-related as I can also duplicate
->>>>    this issue with the other blocks.
->>>>    - If I use 3 blocks in series (each through SEP), I need to negate
->>>>    certain data in order to get it to match the FPGA output
+>>>> Wade
 >>>>
->>>> My next step is likely to build a new image with Ettus-developed FIFOs
->>>> to prove that the data is getting swapped/negated when 2 or more are used
->>>> in series through SEPs.
+>>>> On Thu, Dec 10, 2020 at 3:54 PM Rob Kossler via USRP-users <
+>>>> usrp-users@lists.ettus.com> wrote:
 >>>>
->>>> Let me know if you have any suggestions for other things to try.
+>>>>> Hi,
+>>>>> I am encountering very strange behavior with a custom FPGA image
+>>>>> (N310). It appears that data streaming through SEPs can get swapped (I/Q)
+>>>>> and/or negated.  Is anyone at Ettus aware of anything that could cause
+>>>>> this?  Of course, the issue might be on my end, but I can't think of what
+>>>>> it might be given that all of my custom blocks work as expected in
+>>>>> isolation (if the block is the only block in graph).
+>>>>>
+>>>>> My custom image is the following:
+>>>>>
+>>>>>    - default blocks of Radios, DDCs, DUCs (each 2x2 and statically
+>>>>>    connected as in default image)
+>>>>>    - custom blocks of two 1x1 windowed-fft blocks, two 1x1 vector-avg
+>>>>>    blocks, and one 2x2 custom block. Note: each of these blocks is connected
+>>>>>    to its own SEP, so I can connect dynamically in any fashion.
+>>>>>
+>>>>> My test case is transmitting 8192 random samples from host to FFT
+>>>>> block and then optionally through a 2nd FFT block before back to host.  In
+>>>>> the test case, the radios/DDCs/DUCs are not used.
+>>>>>
+>>>>> Here is what I observed:
+>>>>>
+>>>>>    - If I only include 1 FFT block in my RFNoC graph, I get the
+>>>>>    expected results (the output from the FPGA matches what I calculate in
+>>>>>    Matlab for the FFT).  This is true for either of the two FFT blocks.
+>>>>>    - If I include both FFT blocks in series, I can only match the
+>>>>>    FPGA output if I swap the I/Q values in between my Matlab FFTs.
+>>>>>    - Note: that this issue is not FFT-related as I can also duplicate
+>>>>>    this issue with the other blocks.
+>>>>>    - If I use 3 blocks in series (each through SEP), I need to negate
+>>>>>    certain data in order to get it to match the FPGA output
+>>>>>
+>>>>> My next step is likely to build a new image with Ettus-developed FIFOs
+>>>>> to prove that the data is getting swapped/negated when 2 or more are used
+>>>>> in series through SEPs.
+>>>>>
+>>>>> Let me know if you have any suggestions for other things to try.
+>>>>>
+>>>>> Rob
+>>>>> _______________________________________________
+>>>>> USRP-users mailing list
+>>>>> USRP-users@lists.ettus.com
+>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>
 >>>>
->>>> Rob
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>>
 
---00000000000087378305b6399437
+--00000000000037c47105b639b8c7
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">AHA!=C2=A0 I duplicated the issue with the Switchboard ima=
-ge.=C2=A0 The way to duplicate the issue is the run the following series of=
- graphs:<div>=C2=A0 host_tx =3D&gt; Switchboard#0 =3D&gt; Switchboard#1 =3D=
-&gt; host_rx=C2=A0 // SUCCESS</div><div>=C2=A0 host_tx =3D&gt; Switchboard#=
-2 =3D&gt; Switchboard#3 =3D&gt; host_rx=C2=A0 // SUCCESS</div><div></div><d=
-iv>=C2=A0 host_tx =3D&gt; Switchboard#0 =3D&gt; Switchboard#2 =3D&gt; host_=
-rx=C2=A0 // FAILURE (RX samples equal swapped I/Q of TX samples)</div><div>=
-Each of these 3 runs consists of running my application (similar to one of =
-the examples such as rfnoc_rx_to_file) such that the UHD object is re-creat=
-ed each time.=C2=A0 My guess is that you could use gnuradio to do it instea=
-d.</div><div><br></div><div>My working theory is that the problem is caused=
- by the fact that the Switchboard#2 input port was changed from being conne=
-cted to the host in test case 2 to then be connected to another RFNoC block=
- in test case 3.=C2=A0 Or, I suppose it could be the output port on this bl=
-ock (same logic).</div><div><br></div><div>If you want me to send you my FP=
-GA image with the 4 Switchboard blocks, let me know.</div><div>Rob</div><di=
-v><br></div><div></div><div>=C2=A0=C2=A0</div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 11, 2020 at 7:09 =
-PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
-ir=3D"ltr">Hi Wade,<div>After thinking about it a bit, I would ignore the &=
-quot;negation&quot; issue for now. This may be a byproduct of I/Q swapping =
-related to my custom block.</div><div>Rob</div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 11, 2020 at 6:34=
- PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rk=
-ossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex"><div dir=3D"ltr">Hi Wade,<div>Thanks for the info.=C2=A0 I sti=
-ll do not know what&#39;s going on, but here are a few updates:</div><div><=
-ul><li>I built a new N310 image with 4 switchboards (1x1) and 1 splitstream=
-=C2=A0(1x2) blocks in addition to the default blocks.=C2=A0 All of the addi=
-tional blocks are connected to SEPs for dynamic linking.=C2=A0 I tried my b=
-est to get bad behavior using a chain of 1 to 4 switchboards, but I could n=
-ot duplicate any I/Q swapping or negation issues.=C2=A0</li><li>I went back=
- to my custom image (that I described below) and found different behavior t=
-oday (sometimes things worked OK).=C2=A0 So, this got me to thinking that I=
- am somehow getting the FPGA in a bad state such that a reboot (or FPGA re-=
-flashing) fixes things.=C2=A0 I have had some success with re-booting and t=
-hings working properly.=C2=A0 But, I still do not have a true handle on thi=
-ngs and cannot adequately predict when things are going to succeed or fail.=
-</li><li>One thing that has been constant is that I have never seen bad beh=
-avior when I only have 1 block in my graph (no matter which block I choose)=
-.=C2=A0 Note that for all of my tests, the graph looks like this: host_tx =
-=3D&gt; block_chain =3D&gt; host_rx, where block_chain is a sequential chai=
-n of 1 or more rfnoc blocks.</li></ul><div>I will send a follow up once I f=
-igure things out.</div><div>Rob</div></div><div><br></div></div><br><div cl=
-ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 11, 2=
-020 at 6:22 PM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=
-=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Rob,</div><div><b=
-r></div><div>The SEPs do have the ability to swap I and Q. This is because =
-on the host computer, I is usually in the lower bits and Q is in the upper =
-bits of each 32-bit word, but in RFNoC, for historical reasons, I goes in t=
-he upper bits and Q in the lower bits. The software programs the IQ swappin=
-g when it sets up the graph. </div><div><br></div><div>I assume you&#39;re =
-using dynamic connections (through the crossbar) to control the number of F=
-FTs the data is passed through, and not static connections? If that&#39;s t=
-he case then=20
+<div dir=3D"ltr"><div>Wade,</div><div>The following also fails using just 2=
+ blocks and 2 attempts:</div><div><div>=C2=A0 host_tx =3D&gt; Switchboard#0=
+ =3D&gt; Switchboard#1 =3D&gt; host_rx=C2=A0 // SUCCESS</div><div></div></d=
+iv><div><div>=C2=A0 host_tx =3D&gt; Switchboard#1 =3D&gt; Switchboard#0 =3D=
+&gt; host_rx=C2=A0 // FAILURE (RX samples equal swapped I/Q of TX samples)<=
+/div><div><br></div><div>In addition to wanting to get this issue fixed, I =
+also have a question about the best way to &quot;reboot&quot; the N310 whic=
+h is what I need to do to fix the issue after it occurs.=C2=A0 One way is t=
+o give the &quot;reboot now&quot; linux command.=C2=A0 But, this takes a lo=
+ng time.=C2=A0 Another way is to reprogram the FPGA image via uhd_image_loa=
+der. This is appreciably faster, but I&#39;m thinking that this is not a gr=
+eat idea if the flash memory has a limited number of write cycles before fa=
+ilure.=C2=A0 Is there another way to achieve a reboot other than these two?=
+</div><div>Rob</div><div><br></div><div></div></div><div></div><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 11, 2020=
+ at 7:34 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.=
+edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div dir=3D"ltr">AHA!=C2=A0 I duplicated the issue with the Switchboard =
+image.=C2=A0 The way to duplicate the issue is the run the following series=
+ of graphs:<div>=C2=A0 host_tx =3D&gt; Switchboard#0 =3D&gt; Switchboard#1 =
+=3D&gt; host_rx=C2=A0 // SUCCESS</div><div>=C2=A0 host_tx =3D&gt; Switchboa=
+rd#2 =3D&gt; Switchboard#3 =3D&gt; host_rx=C2=A0 // SUCCESS</div><div></div=
+><div>=C2=A0 host_tx =3D&gt; Switchboard#0 =3D&gt; Switchboard#2 =3D&gt; ho=
+st_rx=C2=A0 // FAILURE (RX samples equal swapped I/Q of TX samples)</div><d=
+iv>Each of these 3 runs consists of running my application (similar to one =
+of the examples such as rfnoc_rx_to_file) such that the UHD object is re-cr=
+eated each time.=C2=A0 My guess is that you could use gnuradio to do it ins=
+tead.</div><div><br></div><div>My working theory is that the problem is cau=
+sed by the fact that the Switchboard#2 input port was changed from being co=
+nnected to the host in test case 2 to then be connected to another RFNoC bl=
+ock in test case 3.=C2=A0 Or, I suppose it could be the output port on this=
+ block (same logic).</div><div><br></div><div>If you want me to send you my=
+ FPGA image with the 4 Switchboard blocks, let me know.</div><div>Rob</div>=
+<div><br></div><div></div><div>=C2=A0=C2=A0</div></div><br><div class=3D"gm=
+ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 11, 2020 at 7:=
+09 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">=
+rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
+ding-left:1ex"><div dir=3D"ltr">Hi Wade,<div>After thinking about it a bit,=
+ I would ignore the &quot;negation&quot; issue for now. This may be a bypro=
+duct of I/Q swapping related to my custom block.</div><div>Rob</div></div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri,=
+ Dec 11, 2020 at 6:34 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu"=
+ target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Wade,<div>Thanks for =
+the info.=C2=A0 I still do not know what&#39;s going on, but here are a few=
+ updates:</div><div><ul><li>I built a new N310 image with 4 switchboards (1=
+x1) and 1 splitstream=C2=A0(1x2) blocks in addition to the default blocks.=
+=C2=A0 All of the additional blocks are connected to SEPs for dynamic linki=
+ng.=C2=A0 I tried my best to get bad behavior using a chain of 1 to 4 switc=
+hboards, but I could not duplicate any I/Q swapping or negation issues.=C2=
+=A0</li><li>I went back to my custom image (that I described below) and fou=
+nd different behavior today (sometimes things worked OK).=C2=A0 So, this go=
+t me to thinking that I am somehow getting the FPGA in a bad state such tha=
+t a reboot (or FPGA re-flashing) fixes things.=C2=A0 I have had some succes=
+s with re-booting and things working properly.=C2=A0 But, I still do not ha=
+ve a true handle on things and cannot adequately predict when things are go=
+ing to succeed or fail.</li><li>One thing that has been constant is that I =
+have never seen bad behavior when I only have 1 block in my graph (no matte=
+r which block I choose).=C2=A0 Note that for all of my tests, the graph loo=
+ks like this: host_tx =3D&gt; block_chain =3D&gt; host_rx, where block_chai=
+n is a sequential chain of 1 or more rfnoc blocks.</li></ul><div>I will sen=
+d a follow up once I figure things out.</div><div>Rob</div></div><div><br><=
+/div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Fri, Dec 11, 2020 at 6:22 PM Wade Fife &lt;<a href=3D"mailto:wade.f=
+ife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>H=
+i Rob,</div><div><br></div><div>The SEPs do have the ability to swap I and =
+Q. This is because on the host computer, I is usually in the lower bits and=
+ Q is in the upper bits of each 32-bit word, but in RFNoC, for historical r=
+easons, I goes in the upper bits and Q in the lower bits. The software prog=
+rams the IQ swapping when it sets up the graph. </div><div><br></div><div>I=
+ assume you&#39;re using dynamic connections (through the crossbar) to cont=
+rol the number of FFTs the data is passed through, and not static connectio=
+ns? If that&#39;s the case then=20
 I wonder if software configures IQ swapping incorrectly in some configurati=
 ons.
 
@@ -328,11 +366,12 @@ tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
 </blockquote></div>
+</blockquote></div></div>
 
---00000000000087378305b6399437--
+--00000000000037c47105b639b8c7--
 
 
---===============4989855459555613442==
+--===============5579747994801274530==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -343,5 +382,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4989855459555613442==--
+--===============5579747994801274530==--
 
