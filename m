@@ -2,35 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 124BC2D8880
-	for <lists+usrp-users@lfdr.de>; Sat, 12 Dec 2020 18:03:42 +0100 (CET)
-Received: from [::1] (port=36382 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AD512D8B41
+	for <lists+usrp-users@lfdr.de>; Sun, 13 Dec 2020 05:19:16 +0100 (CET)
+Received: from [::1] (port=40838 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ko8J0-0006qU-1a; Sat, 12 Dec 2020 12:03:38 -0500
-Received: from smtp6.emailarray.com ([65.39.216.46]:56711)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <philip@balister.org>) id 1ko8Iv-0006kp-K6
- for usrp-users@lists.ettus.com; Sat, 12 Dec 2020 12:03:33 -0500
-Received: (qmail 26839 invoked by uid 89); 12 Dec 2020 17:02:52 -0000
-Received: from unknown (HELO ?192.168.11.139?)
- (cGhpbGlwQG9wZW5zZHIuY29tQDczLjI1MS4xMC4xNDM=) (POLARISLOCAL) 
- by smtp6.emailarray.com with SMTP; 12 Dec 2020 17:02:52 -0000
-To: Ron Economos <w6rz@comcast.net>, usrp-users@lists.ettus.com
-References: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
- <CAGNhwTMz2w-kD=a4m9EeLHqsXP9cKgXhok+jsW1Tu=einSvgyQ@mail.gmail.com>
- <CAKx8PBgNoL6bAf8o-hXr0HnJnNaAj5XknPF5RPamY3Cs_hYCEg@mail.gmail.com>
- <CAKx8PBjjDas_yuBxOgM6O8R1zqgZUiYavqFfidu87n1_qEsDrA@mail.gmail.com>
- <c53ab9dd-b83a-80e7-f3d9-c54dd639b201@comcast.net>
- <7dd171e1-ee65-358a-6ad0-3a76fc234957@balister.org>
-Message-ID: <4a0ab3d4-4650-b896-b856-08a53a3309b8@balister.org>
-Date: Sat, 12 Dec 2020 12:02:51 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+	id 1koIqm-0004to-6d; Sat, 12 Dec 2020 23:19:12 -0500
+Received: from mail-lf1-f44.google.com ([209.85.167.44]:46601)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <b4ss3k@gmail.com>) id 1koIqi-0004oU-8r
+ for USRP-users@lists.ettus.com; Sat, 12 Dec 2020 23:19:08 -0500
+Received: by mail-lf1-f44.google.com with SMTP id y19so21663430lfa.13
+ for <USRP-users@lists.ettus.com>; Sat, 12 Dec 2020 20:18:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=BbvYCWXHypQH0XT+D8XiTT5VYc4Cpg8peAqaqAqnr+E=;
+ b=k1guRQgQvm5nXBU+nkihK9P+cP2SNHt/eYilkMJHueZuwkF6h0l3x6QedOsV5TYsPA
+ YzwJAWs+xjWJWQGYhxmrHYW4XaB5FcNa4UnEtwcMbvGfLfV9olUbAU1xWZyTPa2AFkE8
+ O7W7pfz4yiLfMeBku6g2Q3cL6aHt0V2RFo9yhDRzX7F6h5DE2emsnEa8SWUMinO4UC/j
+ J/jcMbeIyVl6Ii9Pe89TodVLFU9pexT/IUStdm0cnnLniuSV+0pCls2VySeCfpQUMPlI
+ ZbZ1mRN0rK6Thw+KCB6z0o1N2+PpfHlri0HxWAxM207ysWmKu58FzWb5nbraW6fWJZPH
+ P0ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=BbvYCWXHypQH0XT+D8XiTT5VYc4Cpg8peAqaqAqnr+E=;
+ b=ReL7H0q5CxxngVO6zoTL5jZpvxW3fSDlxAuKYL65avhwaaBBVOpCyKUuoUSxs4ZZmj
+ UNFS1P1SYWPpTCPYL9xMav6JRGuPljRORt9XbN9r95+bDY+sM+1X9lTeWIuvaGhnaVfQ
+ twfsSZgMZK/Kt1yx6lB8Kf+rFdgG/CZ2DJusau5xHAxpMM6cugDPCqBiqCWTB7TBwkq+
+ 2Pyyau/qL1GaWLTF4dNDnn6BhL3uf+rLg5+iMF6qgGAXbWKC44RdcVzfrwXiZh2ktcOb
+ tuxgwnptBaHFFYXoHUWjgGVTZbpErZZ3/iftcKScXNqCFqMCvX3AZFA0+a1w1Qjtg3xr
+ D6vw==
+X-Gm-Message-State: AOAM530BthagLaOVpLu4J2PvnOSvH3sxDE8ooojeFqkby3fW9LXA5kHD
+ 6eGzNZp50vugToaYlh+S/SG9hfEwjgDaK9dApfITbwjC
+X-Google-Smtp-Source: ABdhPJzCqX2shAuXKuzh/+rv5r9WwIJY4dM49zPlTpvC3IvO0R3onqVLmp8o86nhIs70tNBvRq5/Biw0OTPRnQCJ4wU=
+X-Received: by 2002:a05:6512:3212:: with SMTP id
+ d18mr4471015lfe.420.1607833106370; 
+ Sat, 12 Dec 2020 20:18:26 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <7dd171e1-ee65-358a-6ad0-3a76fc234957@balister.org>
-Content-Language: en-US
-Subject: Re: [USRP-users] meta-ettus-v4.0.0.0 segfault
+Date: Sun, 13 Dec 2020 11:18:15 +0700
+Message-ID: <CACcka+0y7vAALA+q9=giw0+WR0uTtwityQhS3Cn=+CPYfQg0Xw@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Subject: [USRP-users] Problem with x310 io error
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -42,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Philip Balister <philip@balister.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Basse Ang via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Basse Ang <b4ss3k@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7226363448652694095=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -59,117 +71,91 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMTIvMTEvMjAgNDo0OSBQTSwgUGhpbGlwIEJhbGlzdGVyIHZpYSBVU1JQLXVzZXJzIHdyb3Rl
-Ogo+IE9uIDEyLzYvMjAgMTA6MDMgQU0sIFJvbiBFY29ub21vcyB2aWEgVVNSUC11c2VycyB3cm90
-ZToKPj4gVW5mb3J0dW5hdGVseSwgdGhhdCBGRlRXIGJ1ZyBoYXMgYmVlbiBhcm91bmQgZm9yIGEg
-d2hpbGUuIElzc3VlIDIxMyBpcyBhCj4+IGR1cGxpY2F0ZSBvZiBpc3N1ZSAxODIgZnJvbSBhIHll
-YXIrIGFnby4KPj4KPj4gaHR0cHM6Ly9naXRodWIuY29tL0ZGVFcvZmZ0dzMvaXNzdWVzLzE4Mgo+
-Pgo+PiBPbiBVYnVudHUgMjAuMDQgYXJtaGYsIHRoZXkncmUganVzdCBjb21waWxpbmcgdGhlIEZG
-VFcgcGFja2FnZSB3aXRob3V0Cj4+IE5FT04gZW5hYmxlZC4KPiAKPiBJIHBva2VkIGF0IHRoaXMg
-d2F5IG1vcmUgdGhhbiBJIHNob3VsZCBoYXZlIGFuZCBhbSA5OSUgY2VydGFpbiB0aGUgaXNzdWUK
-PiBpbiBpbiBnY2MtOC4gQnVpbGRpbmcgd2l0aCAtTyBvZmYgbGVkIHRvIGFuIGZmdHcgdGhhdCB3
-b3VsZCBwYXNzIGl0cwo+IG1ha2UgY2hlY2suIEkgdHJpZWQgYSBidWlsZCBvbiBhIHFlbXVhcm0g
-ZnJvbSBPRS9tYXN0ZXIgYW5kIHRoYXQgd29ya2VkCj4gKGdjYy0xMCkuIGdjYy05IGlzIGEgcXVl
-c3Rpb24sIEkgZmlyZWQgdXAgYSBidWlsZCBvZiBPRS9kdW5mZWxsIChnY2MtOSkKPiBhbmQgd2ls
-bCBydW4gdGhlIHFlbXUgY2hlY2sgYW5kIHNlZSB3aGF0IGhhcHBlbnMuCgpJbiB0aGUgYmFkIG5l
-d3MsIGZmdHcgcWEgdGVzdHMgZmFpbCBpbiBxZW11YXJtIHdpdGggZ2NjOS4KClBoaWxpcAoKPiAK
-PiBJZiB5b3UgYXJlIHN0dWNrIG9uIHpldXMsIHlvdSdsbCBuZWVkIHRvIHRyeSBhbmQgaWQgdGhl
-IHBhdGNoIHRoYXQgZml4ZXMKPiBnY2MgYW5kIGFwcGx5IGl0IHRvIHRoZSBnY2MgYnVpbGQuIEJ1
-dCBnZXR0aW5nIG9mZiB6ZXVzIHdvdWxkIGJlIGEKPiByZWFsbHkgYm9vZCBtb3ZlIGFzIGl0IGlz
-IG91dCBvZiBzdXBwb3J0IG5vdy4KPiAKPiBQaGlsaXAKPiAKPj4KPj4gUm9uCj4+Cj4+IE9uIDEy
-LzYvMjAgMDY6MjcsIEJlbiBNYWdpc3RybyB2aWEgVVNSUC11c2VycyB3cm90ZToKPj4+IElzc3Vl
-IGFwcGVhcnMgdG8gYmUgd2l0aCB0aGUgY29tcGlsZXIgdGhhdCBpcyBpbmNsdWRlZCBpbiBaZXVz
-IChnY2MKPj4+IDkueCB2cyA4LngpIGFuZCBhbiBpbnRlcmFjdGlvbiB3aXRoIGZmdHcuIFRoZXJl
-IGlzIGFuIG9wZW4gaXNzdWUgd2l0aAo+Pj4gZmZ0dyAoaHR0cHM6Ly9naXRodWIuY29tL0ZGVFcv
-ZmZ0dzMvaXNzdWVzLzIxMykgYW5kIGEgcmVxdWVzdCB0byB0aGUKPj4+IHlvY3RvIGZvbGtzIHRv
-IHJlcXVlc3QgdGhleSBjb25zaWRlciBhZGRpbmcgYmFjayBnY2MtOC4zIHRvIHpldXPCoCsKPj4+
-IGR1bmZlbGzCoChodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcvc2hvd19idWcuY2dp
-P2lkPTE0MTQ0KQo+Pj4gdW50aWwgdGhpcyBjYW4gYmUgYmV0dGVyIHJlc29sdmVkLsKgIEkgdGhp
-bmsgZGF0YSBwb2ludCAzIGNvbmZpcm1zIHRoaXMKPj4+IGFzIEkgZGlkIG5vdCBpbmNsdWRlIG9w
-dGlvbnMgdG8gZW5hYmxlIG5lb24gd2hlbiBJIGNvbXBpbGVkLgo+Pj4KPj4+IE9uIFdlZCwgTm92
-IDExLCAyMDIwIGF0IDE6MzkgUE0gQmVuIE1hZ2lzdHJvIDxrb25jZXB0MUBnbWFpbC5jb20KPj4+
-IDxtYWlsdG86a29uY2VwdDFAZ21haWwuY29tPj4gd3JvdGU6Cj4+Pgo+Pj4gwqDCoMKgIEFkZGlu
-ZyBzb21lIG1vcmUgZGF0YSBwb2ludHMuCj4+Pgo+Pj4gwqDCoMKgIDEpIEkndmUgYmVlbiB0cnlp
-bmcgdG8gcmVidWlsZCBtZXRhLWV0dHVzLXY0IHdpdGggZGVidWcgZW5hYmxlZAo+Pj4gwqDCoMKg
-IGJ1dCBhbSBoaXR0aW5nIGFuIGlzc3VlIHdpdGggaW1hZ2Ugc2l6ZSBhbmQgY2FuJ3Qgc2VlbSB0
-byBnZXQgcGFzdAo+Pj4gwqDCoMKgIHRoYXQuwqAgSXQgc2F5cyBJIHNob3VsZCBpbmNyZWFzZSBg
-TUVOREVSX1NUT1JBR0VfVE9UQUxfU0laRV9NQmAgaWYKPj4+IMKgwqDCoCB0aGUgYWN0dWFsIHNp
-emUgaXMgbGFyZ2VyIGJ1dCBpbmNyZWFzaW5nIHRoaXMgc2VlbXMgdG8gaGF2ZSBubwo+Pj4gwqDC
-oMKgIGVmZmVjdC7CoCBJIGFtIHVzaW5nIHRoZSBldHR1cyBkb2NrZXIgaW1hZ2UgZm9yIG9lLWJ1
-aWxkZXIgd2l0aCB0aGUKPj4+IMKgwqDCoCBjb21tYW5kIGAuL21ldGEtZXR0dXMvY29udHJpYi9i
-dWlsZF9pbWdzX3BhY2thZ2Uuc2ggZTMxMF9zZzMKPj4+IMKgwqDCoCB2NC4wLjAuMGAuwqAgRm9y
-IHRoZSBkZWJ1ZyBwb3J0aW9uIEkndmUgYWRkZWQgYSBmZXcgbGluZXMgdG8KPj4+IMKgwqDCoCBg
-YnVpbGQvY29uZi9sb2NhbC5jb25mYCB0byBhZGQgdGhlIHBhY2thZ2VzLiBJJ20gb3BlbiB0bwo+
-Pj4gwqDCoMKgIHN1Z2dlc3Rpb25zIHRvIGJ1aWxkIHRoZSBpbWFnZSB3aXRoIGRlYnVnIHN5bWJv
-bHMgYW5kIHByb3ZpZGUKPj4+IMKgwqDCoCBhZGRpdGlvbmFsIGZlZWRiYWNrLgo+Pj4KPj4+IMKg
-wqDCoCAyKSBJIHB1dCB0b2dldGhlciBhIHNpbXBsZSBmbG93Z3JhcGgsIFVIRCBzb3VyY2UgLS0+
-IGZyZXF1ZW5jeQo+Pj4gwqDCoMKgIHhsYXRpbmcgZmZ0IC0tPiBudWxsIHNpbmsuwqAgVGhpcyBh
-bHNvIHNlZ2ZhdWx0cywgbm8gZ3VhcmFudGVlcwo+Pj4gwqDCoMKgIHRoYXQgSSBnb3QgdGhlIHBh
-cmFtZXRlcnMgY29ycmVjdC4KPj4+Cj4+PiDCoMKgwqAgMykgU2luY2UgdGhlIGlzc3VlcyBzZWVt
-IHRvIGJlIHdpdGggZmZ0dywgSSBkZWNpZGVkIHRvIHRyeQo+Pj4gwqDCoMKgIGJ1aWxkaW5nIG15
-IG93biBjb3B5IG9mIGZmdHcgbW9zdGx5IHRvIGdldCBkZWJ1ZyBzeW1ib2xzIGFuZAo+Pj4gwqDC
-oMKgIGNvbnRpbnVlIHRyb3VibGVzaG9vdGluZy7CoCBGb3IgdGhpcyBJIHVzZWQgYC4vY29uZmln
-dXJlCj4+PiDCoMKgwqAgLS1lbmFibGUtZGVidWcgLS1lbmFibGUtc2hhcmVkIC0tZW5hYmxlLXRo
-cmVhZHMgLS1lbmFibGUtZmxvYXRgCj4+PiDCoMKgwqAgYW5kIGBtYWtlIENGTEFHUz0iLWdnZGIi
-YC7CoCBUaGVzZSBvcHRpb25zIGFyZSBiZXN0IGd1ZXNzZXMgcmlnaHQKPj4+IMKgwqDCoCBub3cg
-c2luY2UgSSBkaWRuJ3QgbG9vayBhdCB0aGUgbGF5ZXJzIHRvIHNlZSB3aGF0IHBhcmFtZXRlcnMg
-aXQgaXMKPj4+IMKgwqDCoCB1c2luZyAoYXNzdW1pbmcgaXQgaXMgaW4gb25lIG9mIHRoZSBsYXll
-cnMpLsKgIFVzaW5nIHRoaXMgYnVpbGQKPj4+IMKgwqDCoCB3aXRoIGBleHBvcnQgTERfTElCUkFS
-WV9QQVRIPS91c3IvbG9jYWwvbGliL2AgSSBkbyBub3QgZ2V0IGEKPj4+IMKgwqDCoCBzZWdmYXVs
-dCB3aXRoIGdyLWFpcyBvciB0aGUgYWJvdmUgZmxvd2dyYXBoIGJ1dCBJIGFsc28gZG9uJ3QgZ2V0
-Cj4+PiDCoMKgwqAgdGhlIGV4cGVjdGVkIG91dHB1dCB3aGljaCBtYWtlcyBtZSBxdWVzdGlvbiB0
-aGUgcGFyYW1ldGVycyBJIHVzZWQKPj4+IMKgwqDCoCB0byBidWlsZCBpdC7CoCBPdXRwdXQgd2lz
-ZSBJIGdldCBhIHN0cmluZyBvZiAiRCIgb3IgIk8iIHRvIHRoZQo+Pj4gY29uc29sZS4KPj4+Cj4+
-PiDCoMKgwqAgVGhhbmtzCj4+Pgo+Pj4gwqDCoMKgIEJlbgo+Pj4KPj4+IMKgwqDCoCBPbiBUaHUs
-IE5vdiA1LCAyMDIwIGF0IDk6MjIgQU0gTWljaGFlbCBEaWNrZW5zCj4+PiDCoMKgwqAgPG1pY2hh
-ZWwuZGlja2Vuc0BldHR1cy5jb20gPG1haWx0bzptaWNoYWVsLmRpY2tlbnNAZXR0dXMuY29tPj4g
-d3JvdGU6Cj4+Pgo+Pj4gwqDCoMKgwqDCoMKgwqAgSGkgQmVuIC0gVGhpcyBpc3N1ZSBoYXMgYmVl
-biByZXBvcnRlZCB0byBSJkQgaW50ZXJuYWxseS4gSWYKPj4+IMKgwqDCoMKgwqDCoMKgIHlvdSB3
-aXNoIHRvIGNyZWF0ZSBhIHB1YmxpYy1mYWNpbmcgVUhEIGlzc3VlIG9uIG91ciBHaXRodWIKPj4+
-IMKgwqDCoMKgwqDCoMKgIHRyYWNrZXIgcGxlYXNlIGdvIGFoZWFkICYgZG8gc28sIGFuZCB0YWcg
-bWUgb24gaXQgc28gdGhhdCB3ZQo+Pj4gwqDCoMKgwqDCoMKgwqAgY2FuIGtlZXAgdHJhY2sgb2Yg
-aXQgaW50ZXJuYWxseS4gLSBNTEQKPj4+Cj4+PiDCoMKgwqDCoMKgwqDCoCBPbiBXZWQsIE5vdiA0
-LCAyMDIwIGF0IDExOjI1IFBNIEJlbiBNYWdpc3RybyB2aWEgVVNSUC11c2Vycwo+Pj4gwqDCoMKg
-wqDCoMKgwqAgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+PiDCoMKgwqDCoMKgwqDCoCA8
-bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4gd3JvdGU6Cj4+Pgo+Pj4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBJcyBhbnlvbmUgZWxzZSB1c2luZyBtZXRhLWV0dHVzLXY0LjAuMC4w
-IHlldD/CoCBpZiBzbywgaGF2ZQo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB5b3UgaGFkIGFu
-eSBpc3N1ZXMgd2l0aCBsaWJmZnR3Pwo+Pj4KPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVXNp
-bmcgdGhlIGltYWdlIG9uIGFuIEUzMTAsIGFkZGluZyBhIHNpbmdsZSBPT1QgbW9kdWxlCj4+PiDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIChnci1haXMpIGFuZCB0cnlpbmcgdG8gcnVuIGFuIGFwcCBk
-aXN0cmlidXRlZCB3aXRoIGl0LCB0aGUKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYXBwIHNl
-Z2ZhdWx0cy7CoCBUbyBmdXJ0aGVyIHRyb3VibGVzaG9vdCwgSSBhZGRlZCBnZGIgYW5kCj4+PiDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGl0IGNvbWVzIGJhY2sgd2l0aCB0aGUgZm9sbG93aW5nLsKg
-IEkgaGF2ZSBhIHNlcGFyYXRlCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldmVsb3BtZW50
-IGhvc3QgdGhhdCBoYXMgZ251cmFkaW8gMy44IHNldHVwIHVzaW5nIHB5Ym9tYnMKPj4+IMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgYW5kIGRvIG5vdCBleHBlcmllbmNlIHRoaXMgaXNzdWUgdGhlcmUu
-Cj4+Pgo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBUaHJlYWQgMSAicHl0aG9uMyIgcmVjZWl2
-ZWQgc2lnbmFsIFNJR1NFR1YsIFNlZ21lbnRhdGlvbgo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBmYXVsdC4KPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHhiNjk0NzgzNiBpbiA/PyAoKSBm
-cm9tIC91c3IvbGliL2xpYmZmdHczZi5zby4zCj4+Pgo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBUbyBjb21waWxlLCBJJ3ZlIG5lZWRlZCB0byBvdmVycmlkZSBQWVRIT05fRVhFQ1VUQUJMRSBh
-cwo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpdCBwb2ludHMgdG8gYSBub24tZXhpc3RlbnQg
-cGF0aCBpbiAvaG9tZS9vZS1idWlsZGVyLi4uLgo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBp
-biAvdXNyL2xpYi9jbWFrZS9nbnVyYWRpby9HbnVyYWRpb0NvbmZpZy5jbWFrZS4gVG8gcnVuIEkK
-Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYWxzbyBuZWVkZWQgdG8gZGVmaW5lIExEX0VYUE9S
-VF9QQVRIIHBvaW50aW5nIHRvCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC91c3IvbG9jYWwv
-bGliLy4KPj4+Cj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFRoYW5rcyBpbiBhZHZhbmNlLgo+
-Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBVU1JQLXVzZXJzIG1h
-aWxpbmcgbGlzdAo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBVU1JQLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbQo+Pj4gPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4KPj4+IMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAKPj4+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0
-aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo+Pj4KPj4+Cj4+PiBfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4gVVNSUC11c2VycyBtYWlsaW5n
-IGxpc3QKPj4+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCj4+PiBodHRwOi8vbGlzdHMuZXR0
-dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPj4KPj4K
-Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gVVNS
-UC11c2VycyBtYWlsaW5nIGxpc3QKPj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4gaHR0
-cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0
-dXMuY29tCj4+Cj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNf
-bGlzdHMuZXR0dXMuY29tCj4gCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
-aXN0cy5ldHR1cy5jb20K
+--===============7226363448652694095==
+Content-Type: multipart/alternative; boundary="00000000000029d6aa05b650d1ba"
+
+--00000000000029d6aa05b650d1ba
+Content-Type: text/plain; charset="UTF-8"
+
+Hi
+
+Just have an issue, my x310 always get this error:
+
+[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+UHD_3.15.0.0-release
+[INFO] [X300] X300 initialization sequence...
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [X300] Radio 1x clock: 200 MHz
+[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929b
+[ERROR] [UHD] Exception caught in safe-call.
+  in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with
+uhd::endianness_t _endianness = uhd::ENDIANNESS_BIG]
+  at /build/uhd-wjAkGd/uhd-3.15.0.0-1/host/lib/rfnoc/ctrl_iface.cpp:50
+this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block ctrl
+(CE_00_Port_30) no response packet - AssertionError: bool(buff)
+  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double)
+[with uhd::endianness_t _endianness = uhd::ENDIANNESS_BIG; uint64_t = long
+unsigned int]
+  at /build/uhd-wjAkGd/uhd-3.15.0.0-1/host/lib/rfnoc/ctrl_iface.cpp:151
+
+Error: EnvironmentError: IOError: Block ctrl (CE_00_Port_30) no response
+packet - AssertionError: bool(buff)
+  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double)
+[with uhd::endianness_t _endianness = uhd::ENDIANNESS_BIG; uint64_t = long
+unsigned int]
+  at /build/uhd-wjAkGd/uhd-3.15.0.0-1/host/lib/rfnoc/ctrl_iface.cpp:151
+
+
+Anyone has experienced it too? Could you help me please. thank you.
+
+Regards
+Bass
+
+--00000000000029d6aa05b650d1ba
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi<div dir=3D"auto"><br></div><div dir=3D"auto">Just have an issue, my x310=
+ always get this error:</div><div dir=3D"auto"><br></div><div dir=3D"auto">=
+<div dir=3D"auto">[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; =
+UHD_3.15.0.0-release</div><div dir=3D"auto">[INFO] [X300] X300 initializati=
+on sequence...</div><div dir=3D"auto">[INFO] [X300] Maximum frame size: 800=
+0 bytes.</div><div dir=3D"auto">[INFO] [X300] Radio 1x clock: 200 MHz</div>=
+<div dir=3D"auto">[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev=
+ 0.929b</div><div dir=3D"auto">[ERROR] [UHD] Exception caught in safe-call.=
+</div><div dir=3D"auto">=C2=A0 in ctrl_iface_impl&lt;_endianness&gt;::~ctrl=
+_iface_impl() [with uhd::endianness_t _endianness =3D uhd::ENDIANNESS_BIG]<=
+/div><div dir=3D"auto">=C2=A0 at /build/uhd-wjAkGd/uhd-3.15.0.0-1/host/lib/=
+rfnoc/ctrl_iface.cpp:50</div><div dir=3D"auto">this-&gt;send_cmd_pkt(0, 0, =
+true); -&gt; EnvironmentError: IOError: Block ctrl (CE_00_Port_30) no respo=
+nse packet - AssertionError: bool(buff)</div><div dir=3D"auto">=C2=A0 in ui=
+nt64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, double) [with=
+ uhd::endianness_t _endianness =3D uhd::ENDIANNESS_BIG; uint64_t =3D long u=
+nsigned int]</div><div dir=3D"auto">=C2=A0 at /build/uhd-wjAkGd/uhd-3.15.0.=
+0-1/host/lib/rfnoc/ctrl_iface.cpp:151</div><div dir=3D"auto"><br></div><div=
+ dir=3D"auto">Error: EnvironmentError: IOError: Block ctrl (CE_00_Port_30) =
+no response packet - AssertionError: bool(buff)</div><div dir=3D"auto">=C2=
+=A0 in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, doub=
+le) [with uhd::endianness_t _endianness =3D uhd::ENDIANNESS_BIG; uint64_t =
+=3D long unsigned int]</div><div dir=3D"auto">=C2=A0 at /build/uhd-wjAkGd/u=
+hd-3.15.0.0-1/host/lib/rfnoc/ctrl_iface.cpp:151</div><div dir=3D"auto"><br>=
+</div><div dir=3D"auto"><br></div><div dir=3D"auto">Anyone has experienced =
+it too? Could you help me please. thank you.</div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto">Regards</div><div dir=3D"auto">Bass</div></div>
+
+--00000000000029d6aa05b650d1ba--
+
+
+--===============7226363448652694095==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7226363448652694095==--
+
