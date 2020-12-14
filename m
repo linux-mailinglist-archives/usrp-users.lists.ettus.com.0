@@ -2,59 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 949802D9E0B
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Dec 2020 18:46:28 +0100 (CET)
-Received: from [::1] (port=57336 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A2A2D9E2B
+	for <lists+usrp-users@lfdr.de>; Mon, 14 Dec 2020 18:50:56 +0100 (CET)
+Received: from [::1] (port=57358 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1korvS-0007oE-ND; Mon, 14 Dec 2020 12:46:22 -0500
-Received: from mail-qt1-f175.google.com ([209.85.160.175]:45927)
+	id 1korzr-0008Cr-Cn; Mon, 14 Dec 2020 12:50:55 -0500
+Received: from mail-qk1-f172.google.com ([209.85.222.172]:39978)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1korvO-0007i5-Gz
- for usrp-users@lists.ettus.com; Mon, 14 Dec 2020 12:46:18 -0500
-Received: by mail-qt1-f175.google.com with SMTP id g24so57602qtq.12
- for <usrp-users@lists.ettus.com>; Mon, 14 Dec 2020 09:45:58 -0800 (PST)
+ id 1korzm-00086k-ID
+ for usrp-users@lists.ettus.com; Mon, 14 Dec 2020 12:50:50 -0500
+Received: by mail-qk1-f172.google.com with SMTP id z11so16396370qkj.7
+ for <usrp-users@lists.ettus.com>; Mon, 14 Dec 2020 09:50:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=2fcKPRUr3DfZkWbx1aUtAy1fzh/B/8eqhuRjtYxMNw4=;
- b=fS1xSmIJNWWY4pvT7jofPsQMMGTuH0X/DhwdxIYZXzQFcZL1BWZh1Y7yYpOdXL87aT
- 195dwuoj1ORUriK9bIYJzt6yDOJOzlfF4raHkYx2lR2qtuwTLVlSi22FH51juzarZB3Y
- 17KNN4rpb+xukv7gvwXALm93HJ5jCUeEAG6hh75RxvAOicjEtwEnl/8LtLPyQGN12IBS
- L6uUxghEN4eDygkdbziGu8WJg7aMdANaXkXsHV4Iv+gAxznTOXdTbxQ5Lbvag7o4HIZw
- J3ws2hHmiOhUSypBxTmIvlJp9CbeXrP0Lf9NulhhROziQjoVwHFJt+vIPG5uSQGusiEy
- HZ9A==
+ :in-reply-to; bh=1rUj8oU8c1axc0VjWxx30FgtGjL+JoyEuqhGHB3FHYA=;
+ b=RD8jsVxFfl46/mq3QuM7V2WUhqUt7zZcWrSHBySdLZx3//re6pWruIjxmRgN4wR0Fp
+ 81M0fqqOo3DlEX3mLe1G2xOfI7mtP3UeiqHt60Y4UeS63P+4vgUV/7vndgtFbxwd7ftI
+ 2OEq7YobnWWQCyFUSrh9WmcJ3SGIgI7YZNg/SxNr52zYEC96OAbWY21Xwu71LQXDJbvk
+ l9LFeqEyHAb45NxoNHBjFf7BuRihtn82mYR5Rcew3voPS7sTooc8JNp9ZEvixAFg72y0
+ kPxizUuqh5uvhvXB3+93nN3/lKFZcHiKU7Z59SHayVdu2Wo90iTqOJYR7CG1FFha+GFD
+ qZKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
  :subject:references:in-reply-to;
- bh=2fcKPRUr3DfZkWbx1aUtAy1fzh/B/8eqhuRjtYxMNw4=;
- b=MOwL7xidcrvHDNh+nJ5eXEztrjsXdlXUrGtKnzL+LmZ75Pz018WKUgF/JeFttn5/Tj
- +IQVx/hZwvBKgATY0WEUT8bUwRabsjgJgzoZvNAQpGwSJavo8Lb8rsByvUANwQzrhKUx
- bWbxREeXM34sRrOmD7n3vutWow8aQHg8ISI87hGDy96TSadRCyHyR2bV2tbya/utojBs
- 5MDl1B100kV/HpUuxVVnu4yH0PONuV8uD1gcktyPrnj/xX/86PwY+wt42iKBp5cmWgrz
- 5s3IHOANQXroE1i0G/dBlJZKXAb6h/wEYy2vERrj68hmdLCcLYtVWFbgYLLV89oOOmt3
- sZzg==
-X-Gm-Message-State: AOAM531D7pXChcRkssWQ/mk1ySgIft/Udt8XMbk6fD43+7+NeGYWvyYe
- NadhN03p1KPtIFXxAx1u74MuSoPBNgY=
-X-Google-Smtp-Source: ABdhPJyJ2yIlrKh0fdajhdq67FqzZ/FLJdPpPavinlWpttaGrKpJz6ahc4jsIPBpHENfsxS1jEmswQ==
-X-Received: by 2002:ac8:59c3:: with SMTP id f3mr32016543qtf.214.1607967937522; 
- Mon, 14 Dec 2020 09:45:37 -0800 (PST)
+ bh=1rUj8oU8c1axc0VjWxx30FgtGjL+JoyEuqhGHB3FHYA=;
+ b=ceJNthIT3tGa7pxwPmRACedCYRNR7c1HdJMWFizaAzg6tShB4386l+KuhjQTb+jzLV
+ tuMWOp/pckmgQq/c4s05DvzubG2K0V/sGWlhiMJ3opkeAWmveMBQBwL06g623faAlnqY
+ ua9+GJPlfOtoC2s9usg1VjMKihDAmkHN9nNqnRH6Thl2Ht3T3dYxqhK1T7yn//AN0qhJ
+ uabgfGGFVGBL/k+wXCov8SIg3iBvea2ou8/SOEhcXGWzi34XBTP80hJfVhHIvADem3rR
+ VemhwrkYUjxvN7wHb+1mAMIrhoUYJ5oq8ADU2KelT42ZSy/QcS0Aj7Nw36aDtljS+YHw
+ W4sw==
+X-Gm-Message-State: AOAM530ezf7LV3WFgh+5XLQdSUA3cFbaliOE7xBnM0pvmb9972o/wm35
+ 59QCvEuvfhxoVkIrCwP10cE+Dwi/9J8=
+X-Google-Smtp-Source: ABdhPJydVTqTQVPVVvwztJi51mf0A0tUAtvEuEw95IW5Nto/kZLwBG5BlnaH+PDTqia+xieQ6GoV/w==
+X-Received: by 2002:a05:620a:805:: with SMTP id
+ s5mr34352161qks.80.1607968209824; 
+ Mon, 14 Dec 2020 09:50:09 -0800 (PST)
 Received: from [192.168.2.12]
  (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id x49sm876844qtx.6.2020.12.14.09.45.36
+ by smtp.googlemail.com with ESMTPSA id
+ w127sm10453871qkb.133.2020.12.14.09.50.09
  for <usrp-users@lists.ettus.com>
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 14 Dec 2020 09:45:36 -0800 (PST)
-Message-ID: <5FD7A4BF.7040305@gmail.com>
-Date: Mon, 14 Dec 2020 12:45:35 -0500
+ Mon, 14 Dec 2020 09:50:09 -0800 (PST)
+Message-ID: <5FD7A5D0.4080409@gmail.com>
+Date: Mon, 14 Dec 2020 12:50:08 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
 To: usrp-users@lists.ettus.com
-References: <CAJRKpROu58UmkPMQ2xhBwiQgBRsNY9ONjRAkcbyZ-5FTz7xgpQ@mail.gmail.com>
-In-Reply-To: <CAJRKpROu58UmkPMQ2xhBwiQgBRsNY9ONjRAkcbyZ-5FTz7xgpQ@mail.gmail.com>
-Subject: Re: [USRP-users] LO phase alignment for multiple B200s
+References: <5d1326921305455b8405632fffdc7c2c@mail03.iis.fhg.de>
+In-Reply-To: <5d1326921305455b8405632fffdc7c2c@mail03.iis.fhg.de>
+Subject: Re: [USRP-users] B210 USRP TX Spectrum Channel Differences
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,7 +70,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5900983128492342846=="
+Content-Type: multipart/mixed; boundary="===============3623471241770420064=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,89 +85,57 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============5900983128492342846==
+--===============3623471241770420064==
 Content-Type: multipart/alternative;
- boundary="------------040609060409020105060704"
+ boundary="------------010502020107010508090308"
 
 This is a multi-part message in MIME format.
---------------040609060409020105060704
+--------------010502020107010508090308
 Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 12/14/2020 10:19 AM, Bach Nguyen via USRP-users wrote:
-> Hi all,
+On 12/14/2020 09:44 AM, Nieland, Michael via USRP-users wrote:
 >
-> I was using my 2 B200s to measure the magnitude and phase difference 
-> in voltage gain of two signal chains on-site and I notice that there 
-> is a random phase offset between the 2 inputs. I read the USRP Manual 
-> on Device Synchronization and realize that I was tuning the 2 B200 
-> asynchronously, even though I had them start streaming synchronously 
-> using the external PPS. There are several things that I would like to 
-> ask and clarify:
+> Dear all,
 >
->  1. Does the usrp->set_command_time(cmd_time) set all the subsequent
->     command (before clear_command_time()) to start after cmd_time
->     seconds or they will start at the exact cmd_time instant in the
->     time registers?
+> we are using two B210 USRP’s to generate and receive DQPSK Signals at 
+> 1.53 GHz (two TX and two  RX channels). The USRP’s use FW Version 8.0 
+> and FPGA Version 16.0 (Hardware Revision 4). We found that there are 
+> quite significant differences in spurious output between the two tx 
+> channels on the B210. I attached screenshots of my spectrum analyzer 
+> measurements demonstrating this behavior.
 >
-The timed commands trigger at the time instant in the on-board timestamp 
-registers.
+> A couple of more details about the setup:
 >
->  1. Once I retune the 2 B200s simultaneously to centre frequency f1,
->     then the device is closed or re-tuned to other frequency, f2, if I
->     re-tune it back to center frequency f1, would the phase offset
->     between the 2 B200 RX streams be the same as original, when I
->     firstly re-tuned it?
+> -              USRP connected and powered via USB3
 >
-No.  Since the B200 DO NOT SUPPORT timed-tuning, and since there's no 
-hardware support for the necessary re-synch feature, you can't
-   get a predictable phase-offset between two B200s, even with shared 
-10Mhz reference, 1PPS, and the use of timed commands.
+> -              No external reference used for the above measurements
 >
->  1. Does the phase offset, after re-tuning, varies with different
->     centre frequency (ie. offset at frequency f1 different from
->     frequency f2)?
+> -              The signals are generated using a GnuRadio flowgraph
 >
-Yes.  That's just a property of PLL synthesizers without phase re-synch.
+> The spurious signals are always present and independent of the TX Gain 
+> setting, the digital signal amplitude and the signal frequency. We 
+> observed the same behavior on another B210 USRP. We are assuming this 
+> is hardware related but are wondering if UHD settings also play a role 
+> here and if there is a way to possibly improve the performance of 
+> channel 2 in particular (~20 dB difference at 1.52 GHz spur between 
+> channel 1 and channel 2).
+>
+> Best regards
+>
+> Michael Nieland
+>
+>
+This is probably just a hardware quirk of the AD9361 chip that forms 
+nearly the entirety of the RF chain on the B2xx series USRPs.
 
->  1. My code was a modified version of the rx_samples_to_file.cpp, with
->     the synchronization principle mentioned below. Would it be enough
->     to make the 2 B200s synchronized with constant phase offset
->     between LOs? Besides, the program was started for a week, then
->     stopped completely, and re-started again after a few days (I
->     regard this as "device is closed", and re-initialized) , would the
->     phase offset between LO, in this case, remains constant as before
->     the stop?
->
-No.  See above.
-
-> The program I used has 2 threads, each for 1 B200. The threads' tasks 
-> (after adding the LO alignment part) are:
->
->   * 1st thread: Call set_time_unknown_pps() on the 1st B200,once done,
->     send sync_signal to 2nd B200. Then use the set_command_time(3.0),
->     set_rx_freq(fc,0) and clear_command_time() for LO phase offset.
->   * 2nd thread: Keep polling the sync_signal, once it receives, use
->     set_time_next_pps(1.0) to synchronize the 2 B200. Once done, I use
->     the set_command_time(3.0), set_rx_freq(fc,0) and
->     clear_command_time() for LO phase offset.
->   * After the above steps, both threads have a while loop to keep
->     polling the value of time register for the last PPS, if it is 5
->     seconds then the stream command is issued in both threads. After
->     that, I use the rx_stream->recv to record the samples from the 2
->     B200s.
->
-> Cheers,
-> Bach
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+The spur on the 2nd channel looks like it's still about -40dBc, which I 
+believe is "in spec" for the AD9361 chip.
 
 
---------------040609060409020105060704
+
+
+--------------010502020107010508090308
 Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
@@ -175,143 +145,117 @@ Content-Transfer-Encoding: 8bit
       http-equiv="Content-Type">
   </head>
   <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 12/14/2020 10:19 AM, Bach Nguyen via
-      USRP-users wrote:<br>
+    <div class="moz-cite-prefix">On 12/14/2020 09:44 AM, Nieland,
+      Michael via USRP-users wrote:<br>
     </div>
     <blockquote
-cite="mid:CAJRKpROu58UmkPMQ2xhBwiQgBRsNY9ONjRAkcbyZ-5FTz7xgpQ@mail.gmail.com"
+      cite="mid:5d1326921305455b8405632fffdc7c2c@mail03.iis.fhg.de"
       type="cite">
-      <div dir="ltr">
-        <div style="font-size:12pt">Hi all,</div>
-        <div style="font-size:12pt"><br>
-        </div>
-        <div style="font-size:12pt">I was using my 2 B200s to measure
-          the magnitude and phase difference in voltage gain of two
-          signal chains on-site and I notice that there is a random
-          phase offset between the 2 inputs. I read the USRP Manual on
-          Device Synchronization and realize that I was tuning the 2
-          B200 <span class="gmail-x_ILfuVd gmail-x_NA6bn"><span
-              class="gmail-x_hgKElc">asynchronously</span></span>, even
-          though I had them start streaming synchronously using the
-          external PPS. There are several things that I would like to
-          ask and clarify:</div>
-        <div style="font-size:12pt">
-          <ol>
-            <li>Does the usrp-&gt;set_command_time(cmd_time) set all the
-              subsequent command (before clear_command_time()) to start
-              after cmd_time seconds or they will start at the exact
-              cmd_time instant in the time registers?</li>
-          </ol>
-        </div>
-      </div>
-    </blockquote>
-    The timed commands trigger at the time instant in the on-board
-    timestamp registers.<br>
-    <blockquote
-cite="mid:CAJRKpROu58UmkPMQ2xhBwiQgBRsNY9ONjRAkcbyZ-5FTz7xgpQ@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div style="font-size:12pt">
-          <ol>
-            <li>Once I retune the 2 B200s simultaneously to centre
-              frequency f1, then the device is closed or re-tuned to
-              other frequency, f2, if I re-tune it back to center
-              frequency f1, would the phase offset between the 2 B200 RX
-              streams be the same as original, when I firstly re-tuned
-              it?</li>
-          </ol>
-        </div>
-      </div>
-    </blockquote>
-    No.  Since the B200 DO NOT SUPPORT timed-tuning, and since there's
-    no hardware support for the necessary re-synch feature, you can't<br>
-      get a predictable phase-offset between two B200s, even with shared
-    10Mhz reference, 1PPS, and the use of timed commands.<br>
-    <blockquote
-cite="mid:CAJRKpROu58UmkPMQ2xhBwiQgBRsNY9ONjRAkcbyZ-5FTz7xgpQ@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div style="font-size:12pt">
-          <ol>
-            <li>Does the phase offset, after re-tuning, varies with
-              different centre frequency (ie. offset at frequency f1
-              different from frequency f2)?</li>
-          </ol>
-        </div>
-      </div>
-    </blockquote>
-    Yes.  That's just a property of PLL synthesizers without phase
-    re-synch.<br>
-    <br>
-    <blockquote
-cite="mid:CAJRKpROu58UmkPMQ2xhBwiQgBRsNY9ONjRAkcbyZ-5FTz7xgpQ@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div style="font-size:12pt">
-          <ol>
-            <li>My code was a modified version of the
-              rx_samples_to_file.cpp, with the synchronization principle
-              mentioned below. Would it be enough to make the 2 B200s
-              synchronized with constant phase offset between LOs?
-              Besides, the program was started for a week, then stopped
-              completely, and re-started again after a few days (I
-              regard this as "device is closed", and re-initialized) ,
-              would the phase offset between LO, in this case, remains
-              constant as before the stop?<br>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </blockquote>
-    No.  See above.<br>
-    <br>
-    <blockquote
-cite="mid:CAJRKpROu58UmkPMQ2xhBwiQgBRsNY9ONjRAkcbyZ-5FTz7xgpQ@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div style="font-size:12pt">The program I used has 2 threads,
-          each for 1 B200. The threads' tasks (after adding the LO
-          alignment part) are:<br>
-        </div>
-        <div style="font-size:12pt">
-          <ul>
-            <li>1st thread: Call set_time_unknown_pps() on the 1st
-              B200,once done, send sync_signal to 2nd B200. Then use the
-              set_command_time(3.0), set_rx_freq(fc,0) and
-              clear_command_time() for LO phase offset.<br>
-            </li>
-            <li>2nd thread: Keep polling the sync_signal, once it
-              receives, use set_time_next_pps(1.0) to synchronize the 2
-              B200. Once done, I use the set_command_time(3.0),
-              set_rx_freq(fc,0) and clear_command_time() for LO phase
-              offset.</li>
-            <li>After the above steps, both threads have a while loop to
-              keep polling the value of time register for the last PPS,
-              if it is 5 seconds then the stream command is issued in
-              both threads. After that, I use the rx_stream-&gt;recv to
-              record the samples from the 2 B200s.</li>
-          </ul>
-          <div>Cheers,</div>
-          <div>Bach</div>
-        </div>
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal">Dear all, <br>
+          <br>
+          <o:p></o:p></p>
+        <p class="MsoNormal"><span lang="EN-US">we are using two B210
+            USRP’s to generate and receive DQPSK Signals at 1.53 GHz
+            (two TX and two  RX channels). The USRP’s use FW Version 8.0
+            and FPGA Version 16.0 (Hardware Revision 4). We found that
+            there are quite significant differences in spurious output
+            between the two tx channels on the B210. I attached
+            screenshots of my spectrum analyzer measurements
+            demonstrating this behavior.
+            <o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">A couple of more details
+            about the setup:
+            <o:p></o:p></span></p>
+        <p class="MsoNormal" style="text-indent:35.4pt"><span
+            lang="EN-US">-              USRP connected and powered via
+            USB3<o:p></o:p></span></p>
+        <p class="MsoNormal" style="text-indent:35.4pt"><span
+            lang="EN-US">-              No external reference used for
+            the above measurements<o:p></o:p></span></p>
+        <p class="MsoNormal" style="text-indent:35.4pt"><span
+            lang="EN-US">-              The signals are generated using
+            a GnuRadio flowgraph<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">The spurious signals are
+            always present and independent of the TX Gain setting, the
+            digital signal amplitude and the signal frequency. We
+            observed the same behavior on another B210 USRP. We are
+            assuming this is hardware related but are wondering if UHD
+            settings also play a role here and if there is a way to
+            possibly improve the performance of channel 2 in particular
+            (~20 dB difference at 1.52 GHz spur between channel 1 and
+            channel 2).
+            <br>
+            <br>
+            <o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">Best regards <o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">Michael Nieland<o:p></o:p></span></p>
       </div>
       <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-USRP-users mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
-<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
-</pre>
     </blockquote>
+    This is probably just a hardware quirk of the AD9361 chip that forms
+    nearly the entirety of the RF chain on the B2xx series USRPs.<br>
+    <br>
+    The spur on the 2nd channel looks like it's still about -40dBc,
+    which I believe is "in spec" for the AD9361 chip.<br>
+    <br>
+    <br>
     <br>
   </body>
 </html>
 
---------------040609060409020105060704--
+--------------010502020107010508090308--
 
 
---===============5900983128492342846==
+--===============3623471241770420064==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -322,5 +266,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5900983128492342846==--
+--===============3623471241770420064==--
 
