@@ -2,61 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66A2A2D9E2B
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Dec 2020 18:50:56 +0100 (CET)
-Received: from [::1] (port=57358 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF0702DA643
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Dec 2020 03:33:38 +0100 (CET)
+Received: from [::1] (port=60810 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1korzr-0008Cr-Cn; Mon, 14 Dec 2020 12:50:55 -0500
-Received: from mail-qk1-f172.google.com ([209.85.222.172]:39978)
+	id 1kp09f-0004u2-2L; Mon, 14 Dec 2020 21:33:35 -0500
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:40034)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1korzm-00086k-ID
- for usrp-users@lists.ettus.com; Mon, 14 Dec 2020 12:50:50 -0500
-Received: by mail-qk1-f172.google.com with SMTP id z11so16396370qkj.7
- for <usrp-users@lists.ettus.com>; Mon, 14 Dec 2020 09:50:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=1rUj8oU8c1axc0VjWxx30FgtGjL+JoyEuqhGHB3FHYA=;
- b=RD8jsVxFfl46/mq3QuM7V2WUhqUt7zZcWrSHBySdLZx3//re6pWruIjxmRgN4wR0Fp
- 81M0fqqOo3DlEX3mLe1G2xOfI7mtP3UeiqHt60Y4UeS63P+4vgUV/7vndgtFbxwd7ftI
- 2OEq7YobnWWQCyFUSrh9WmcJ3SGIgI7YZNg/SxNr52zYEC96OAbWY21Xwu71LQXDJbvk
- l9LFeqEyHAb45NxoNHBjFf7BuRihtn82mYR5Rcew3voPS7sTooc8JNp9ZEvixAFg72y0
- kPxizUuqh5uvhvXB3+93nN3/lKFZcHiKU7Z59SHayVdu2Wo90iTqOJYR7CG1FFha+GFD
- qZKA==
+ (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1kp09b-0004qA-8u
+ for usrp-users@lists.ettus.com; Mon, 14 Dec 2020 21:33:31 -0500
+Received: by mail-ot1-f43.google.com with SMTP id j12so17923630ota.7
+ for <usrp-users@lists.ettus.com>; Mon, 14 Dec 2020 18:33:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ADDnnhR2wUdnGIlaWvBvIdsgmlvJAWpELscZPmfiXGc=;
+ b=IWPtP4YEDqv4QUdU6Jbv7IS/LpSJaG8KSaB9QAejfhnKhwSsWvTFRTJ+OfqCJeqR2e
+ zt6EWAIuaiV/8J+EAiIHxBGCCAcz2Opk4i0oLLSBpUsjdEMNqeCvED2yQuEm7hWFJOAu
+ wzX8V/IA1hog0CYhwPy6Fq+6axRKeorJyj6Pd0cmUhvw3pDH0Y4IfnrqRRikxd3e002h
+ oiZ8XjgCXM7Kj6VCGzAU6y3/+u+Orb30DCg14929axbS/n4KaqZxNzoyRCydlonycwLz
+ 2IsxUveIcVsBGhucYL16hDZAJmgc5qKEaBynNrvASpcoxIorMrKMQ8UmerPP3ScA9wLK
+ qDxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=1rUj8oU8c1axc0VjWxx30FgtGjL+JoyEuqhGHB3FHYA=;
- b=ceJNthIT3tGa7pxwPmRACedCYRNR7c1HdJMWFizaAzg6tShB4386l+KuhjQTb+jzLV
- tuMWOp/pckmgQq/c4s05DvzubG2K0V/sGWlhiMJ3opkeAWmveMBQBwL06g623faAlnqY
- ua9+GJPlfOtoC2s9usg1VjMKihDAmkHN9nNqnRH6Thl2Ht3T3dYxqhK1T7yn//AN0qhJ
- uabgfGGFVGBL/k+wXCov8SIg3iBvea2ou8/SOEhcXGWzi34XBTP80hJfVhHIvADem3rR
- VemhwrkYUjxvN7wHb+1mAMIrhoUYJ5oq8ADU2KelT42ZSy/QcS0Aj7Nw36aDtljS+YHw
- W4sw==
-X-Gm-Message-State: AOAM530ezf7LV3WFgh+5XLQdSUA3cFbaliOE7xBnM0pvmb9972o/wm35
- 59QCvEuvfhxoVkIrCwP10cE+Dwi/9J8=
-X-Google-Smtp-Source: ABdhPJydVTqTQVPVVvwztJi51mf0A0tUAtvEuEw95IW5Nto/kZLwBG5BlnaH+PDTqia+xieQ6GoV/w==
-X-Received: by 2002:a05:620a:805:: with SMTP id
- s5mr34352161qks.80.1607968209824; 
- Mon, 14 Dec 2020 09:50:09 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id
- w127sm10453871qkb.133.2020.12.14.09.50.09
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 14 Dec 2020 09:50:09 -0800 (PST)
-Message-ID: <5FD7A5D0.4080409@gmail.com>
-Date: Mon, 14 Dec 2020 12:50:08 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ADDnnhR2wUdnGIlaWvBvIdsgmlvJAWpELscZPmfiXGc=;
+ b=ilKxb0AbA81gNypsJQ4bf2ECBdxumeICiPOPzHDEi65Tnwp516mb+bWETN5ejoru/2
+ 7JvZAVLssSAiUsgXjeg6bUwXFbs5onjJ+NvfyjoE9d5L1Wtd/xczVHXi03Meb7aBY6Ds
+ 9LCqyO1O6F+hMwPsq9brfl2p35Iyz6kDyXIFXwUWQkW1UvwAa2G4/RH4N7StbqPaZ2W+
+ F3wvfJFYJLqhDzqenje0Khx6+rUsu3Fm8Ni0jBOKlkIAWk2VurDN5RJIyYEHyBA98Oit
+ EzpvR9Tq8oIIo3w4pdGkhFfV0x4DbjmwxM4C0v4qdHFzhfX87/XxSxbfyQrJbQt6WZU5
+ M37Q==
+X-Gm-Message-State: AOAM532/E0Y2Q7QwH54I1BnKHboBNnz+smQAAemIXnH8wv39GOgELPdh
+ WUiM5LNxDdjR0IQb4nOVD0F7EcSPw2Z7BebjMN57LQ2g
+X-Google-Smtp-Source: ABdhPJyJLZeLZGVLanZ+yfTlvxtcN0omiabhfNUeJ1/ZWBUN/0S0kn1zzuaJ/s8HJCar4DT2E4mRucgWzg5kUwsUPe0=
+X-Received: by 2002:a9d:6414:: with SMTP id h20mr21493153otl.28.1607999570507; 
+ Mon, 14 Dec 2020 18:32:50 -0800 (PST)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <5d1326921305455b8405632fffdc7c2c@mail03.iis.fhg.de>
-In-Reply-To: <5d1326921305455b8405632fffdc7c2c@mail03.iis.fhg.de>
-Subject: Re: [USRP-users] B210 USRP TX Spectrum Channel Differences
+References: <CAB__hTQa8v40-nQGCQMcK36317oWxue448NrMoMYvbf3oacmug@mail.gmail.com>
+ <CAFche=htoRKHMituvggWa15UwoiVkdR6n=3EXYK6d5TR696SiQ@mail.gmail.com>
+ <CAB__hTTd6++q8K6xOtHhpJv905CW1wp4E5YpUR0mM5yULUf44Q@mail.gmail.com>
+ <CAB__hTRBNRoGu+yYjGMawb1ongZ5u0G4HyafJUOuCA5637ysgA@mail.gmail.com>
+ <CAB__hTQX+URNC-_qno0jStxo0qm8YtUWas0MffMebtd6TzfTNQ@mail.gmail.com>
+ <CAB__hTSpKwx7JSoWCExtqThW+qGSi919KTTm1TNWN6KU4HkQig@mail.gmail.com>
+ <CAFche=iE+RoE6Wi7vWHB73z48HF36SBeK0mqQQDeC=ujhX4d=w@mail.gmail.com>
+ <CAB__hTTRaGEnBDHrj3eJ3sHEqPPSbJ0G1aL7xQF2HLUS+z8Mvg@mail.gmail.com>
+In-Reply-To: <CAB__hTTRaGEnBDHrj3eJ3sHEqPPSbJ0G1aL7xQF2HLUS+z8Mvg@mail.gmail.com>
+Date: Mon, 14 Dec 2020 20:32:39 -0600
+Message-ID: <CAFche=hOXCneyetJHN6kBqJ9C44g3UWiKeqeCeW1wez2214NsQ@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] RFNoC 4.0 data swapping?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,9 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3623471241770420064=="
+From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Wade Fife <wade.fife@ettus.com>
+Content-Type: multipart/mixed; boundary="===============2580307832162760008=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,178 +82,371 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============3623471241770420064==
-Content-Type: multipart/alternative;
- boundary="------------010502020107010508090308"
+--===============2580307832162760008==
+Content-Type: multipart/alternative; boundary="000000000000331bd705b6779395"
 
-This is a multi-part message in MIME format.
---------------010502020107010508090308
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--000000000000331bd705b6779395
+Content-Type: text/plain; charset="UTF-8"
 
-On 12/14/2020 09:44 AM, Nieland, Michael via USRP-users wrote:
->
-> Dear all,
->
-> we are using two B210 USRP’s to generate and receive DQPSK Signals at 
-> 1.53 GHz (two TX and two  RX channels). The USRP’s use FW Version 8.0 
-> and FPGA Version 16.0 (Hardware Revision 4). We found that there are 
-> quite significant differences in spurious output between the two tx 
-> channels on the B210. I attached screenshots of my spectrum analyzer 
-> measurements demonstrating this behavior.
->
-> A couple of more details about the setup:
->
-> -              USRP connected and powered via USB3
->
-> -              No external reference used for the above measurements
->
-> -              The signals are generated using a GnuRadio flowgraph
->
-> The spurious signals are always present and independent of the TX Gain 
-> setting, the digital signal amplitude and the signal frequency. We 
-> observed the same behavior on another B210 USRP. We are assuming this 
-> is hardware related but are wondering if UHD settings also play a role 
-> here and if there is a way to possibly improve the performance of 
-> channel 2 in particular (~20 dB difference at 1.52 GHz spur between 
-> channel 1 and channel 2).
->
-> Best regards
->
-> Michael Nieland
->
->
-This is probably just a hardware quirk of the AD9361 chip that forms 
-nearly the entirety of the RF chain on the B2xx series USRPs.
+Hi Rob,
 
-The spur on the 2nd channel looks like it's still about -40dBc, which I 
-believe is "in spec" for the AD9361 chip.
+I was able to reproduce the issue, so I'll see if I can get to the bottom
+of it. I'm glad you're able to work around it for now. Thanks for letting
+us know about it!
+
+Wade
+
+On Mon, Dec 14, 2020 at 8:59 AM Rob Kossler <rkossler@nd.edu> wrote:
+
+> Hi Wade,
+> I tried the command to re-load the FPGA, but I couldn't communicate with
+> UHD nicely until I also added the command "systemctl restart ursp-uhd".  I
+> am now able to reset the N310 to proper behavior when it gets in this state.
+>
+> Regarding this issue of real/imag swapping, do you want me to create a
+> support request through support@ettus.com?  Also, do you need me to
+> provide any more info or an example program / FPGA image?  Note that now
+> that I know how to duplicate the issue, I believe I also know how to avoid
+> it. So, it is probably not a critical issue for me presently.
+>
+> Rob
+>
+> On Sat, Dec 12, 2020 at 9:47 AM Wade Fife <wade.fife@ettus.com> wrote:
+>
+>> Thanks for the updates. If you just want to reload the FPGA, try running
+>> "overlay rm n310 && overlay add n310" on the N310. This should simply
+>> reload the FPGA using the bistream already in the flash.
+>>
+>> Wade
+>>
+>> On Fri, Dec 11, 2020 at 6:45 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>
+>>> Wade,
+>>> The following also fails using just 2 blocks and 2 attempts:
+>>>   host_tx => Switchboard#0 => Switchboard#1 => host_rx  // SUCCESS
+>>>   host_tx => Switchboard#1 => Switchboard#0 => host_rx  // FAILURE (RX
+>>> samples equal swapped I/Q of TX samples)
+>>>
+>>> In addition to wanting to get this issue fixed, I also have a question
+>>> about the best way to "reboot" the N310 which is what I need to do to fix
+>>> the issue after it occurs.  One way is to give the "reboot now" linux
+>>> command.  But, this takes a long time.  Another way is to reprogram the
+>>> FPGA image via uhd_image_loader. This is appreciably faster, but I'm
+>>> thinking that this is not a great idea if the flash memory has a limited
+>>> number of write cycles before failure.  Is there another way to achieve a
+>>> reboot other than these two?
+>>> Rob
+>>>
+>>> On Fri, Dec 11, 2020 at 7:34 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>
+>>>> AHA!  I duplicated the issue with the Switchboard image.  The way to
+>>>> duplicate the issue is the run the following series of graphs:
+>>>>   host_tx => Switchboard#0 => Switchboard#1 => host_rx  // SUCCESS
+>>>>   host_tx => Switchboard#2 => Switchboard#3 => host_rx  // SUCCESS
+>>>>   host_tx => Switchboard#0 => Switchboard#2 => host_rx  // FAILURE (RX
+>>>> samples equal swapped I/Q of TX samples)
+>>>> Each of these 3 runs consists of running my application (similar to one
+>>>> of the examples such as rfnoc_rx_to_file) such that the UHD object is
+>>>> re-created each time.  My guess is that you could use gnuradio to do it
+>>>> instead.
+>>>>
+>>>> My working theory is that the problem is caused by the fact that the
+>>>> Switchboard#2 input port was changed from being connected to the host in
+>>>> test case 2 to then be connected to another RFNoC block in test case 3.
+>>>> Or, I suppose it could be the output port on this block (same logic).
+>>>>
+>>>> If you want me to send you my FPGA image with the 4 Switchboard blocks,
+>>>> let me know.
+>>>> Rob
+>>>>
+>>>>
+>>>>
+>>>> On Fri, Dec 11, 2020 at 7:09 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>>
+>>>>> Hi Wade,
+>>>>> After thinking about it a bit, I would ignore the "negation" issue for
+>>>>> now. This may be a byproduct of I/Q swapping related to my custom block.
+>>>>> Rob
+>>>>>
+>>>>> On Fri, Dec 11, 2020 at 6:34 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>>>
+>>>>>> Hi Wade,
+>>>>>> Thanks for the info.  I still do not know what's going on, but here
+>>>>>> are a few updates:
+>>>>>>
+>>>>>>    - I built a new N310 image with 4 switchboards (1x1) and 1
+>>>>>>    splitstream (1x2) blocks in addition to the default blocks.  All of the
+>>>>>>    additional blocks are connected to SEPs for dynamic linking.  I tried my
+>>>>>>    best to get bad behavior using a chain of 1 to 4 switchboards, but I could
+>>>>>>    not duplicate any I/Q swapping or negation issues.
+>>>>>>    - I went back to my custom image (that I described below) and
+>>>>>>    found different behavior today (sometimes things worked OK).  So, this got
+>>>>>>    me to thinking that I am somehow getting the FPGA in a bad state such that
+>>>>>>    a reboot (or FPGA re-flashing) fixes things.  I have had some success with
+>>>>>>    re-booting and things working properly.  But, I still do not have a true
+>>>>>>    handle on things and cannot adequately predict when things are going to
+>>>>>>    succeed or fail.
+>>>>>>    - One thing that has been constant is that I have never seen bad
+>>>>>>    behavior when I only have 1 block in my graph (no matter which block I
+>>>>>>    choose).  Note that for all of my tests, the graph looks like this: host_tx
+>>>>>>    => block_chain => host_rx, where block_chain is a sequential chain of 1 or
+>>>>>>    more rfnoc blocks.
+>>>>>>
+>>>>>> I will send a follow up once I figure things out.
+>>>>>> Rob
+>>>>>>
+>>>>>>
+>>>>>> On Fri, Dec 11, 2020 at 6:22 PM Wade Fife <wade.fife@ettus.com>
+>>>>>> wrote:
+>>>>>>
+>>>>>>> Hi Rob,
+>>>>>>>
+>>>>>>> The SEPs do have the ability to swap I and Q. This is because on the
+>>>>>>> host computer, I is usually in the lower bits and Q is in the upper bits of
+>>>>>>> each 32-bit word, but in RFNoC, for historical reasons, I goes in the upper
+>>>>>>> bits and Q in the lower bits. The software programs the IQ swapping when it
+>>>>>>> sets up the graph.
+>>>>>>>
+>>>>>>> I assume you're using dynamic connections (through the crossbar) to
+>>>>>>> control the number of FFTs the data is passed through, and not static
+>>>>>>> connections? If that's the case then I wonder if software configures IQ
+>>>>>>> swapping incorrectly in some configurations. I'll see if I can do some
+>>>>>>> testing next week to confirm if it's working correctly.
+>>>>>>>
+>>>>>>> As for negation, I'm not aware of anywhere we do that off the top of
+>>>>>>> my head. Is that behavior block dependent? I'll see if I can find anywhere
+>>>>>>> this happens.
+>>>>>>>
+>>>>>>> Thanks,
+>>>>>>>
+>>>>>>> Wade
+>>>>>>>
+>>>>>>> On Thu, Dec 10, 2020 at 3:54 PM Rob Kossler via USRP-users <
+>>>>>>> usrp-users@lists.ettus.com> wrote:
+>>>>>>>
+>>>>>>>> Hi,
+>>>>>>>> I am encountering very strange behavior with a custom FPGA image
+>>>>>>>> (N310). It appears that data streaming through SEPs can get swapped (I/Q)
+>>>>>>>> and/or negated.  Is anyone at Ettus aware of anything that could cause
+>>>>>>>> this?  Of course, the issue might be on my end, but I can't think of what
+>>>>>>>> it might be given that all of my custom blocks work as expected in
+>>>>>>>> isolation (if the block is the only block in graph).
+>>>>>>>>
+>>>>>>>> My custom image is the following:
+>>>>>>>>
+>>>>>>>>    - default blocks of Radios, DDCs, DUCs (each 2x2 and statically
+>>>>>>>>    connected as in default image)
+>>>>>>>>    - custom blocks of two 1x1 windowed-fft blocks, two 1x1
+>>>>>>>>    vector-avg blocks, and one 2x2 custom block. Note: each of these blocks is
+>>>>>>>>    connected to its own SEP, so I can connect dynamically in any fashion.
+>>>>>>>>
+>>>>>>>> My test case is transmitting 8192 random samples from host to FFT
+>>>>>>>> block and then optionally through a 2nd FFT block before back to host.  In
+>>>>>>>> the test case, the radios/DDCs/DUCs are not used.
+>>>>>>>>
+>>>>>>>> Here is what I observed:
+>>>>>>>>
+>>>>>>>>    - If I only include 1 FFT block in my RFNoC graph, I get the
+>>>>>>>>    expected results (the output from the FPGA matches what I calculate in
+>>>>>>>>    Matlab for the FFT).  This is true for either of the two FFT blocks.
+>>>>>>>>    - If I include both FFT blocks in series, I can only match the
+>>>>>>>>    FPGA output if I swap the I/Q values in between my Matlab FFTs.
+>>>>>>>>    - Note: that this issue is not FFT-related as I can also
+>>>>>>>>    duplicate this issue with the other blocks.
+>>>>>>>>    - If I use 3 blocks in series (each through SEP), I need to
+>>>>>>>>    negate certain data in order to get it to match the FPGA output
+>>>>>>>>
+>>>>>>>> My next step is likely to build a new image with Ettus-developed
+>>>>>>>> FIFOs to prove that the data is getting swapped/negated when 2 or more are
+>>>>>>>> used in series through SEPs.
+>>>>>>>>
+>>>>>>>> Let me know if you have any suggestions for other things to try.
+>>>>>>>>
+>>>>>>>> Rob
+>>>>>>>> _______________________________________________
+>>>>>>>> USRP-users mailing list
+>>>>>>>> USRP-users@lists.ettus.com
+>>>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>
+>>>>>>>
+
+--000000000000331bd705b6779395
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Rob,</div><div><br></div><div>I was able to reprod=
+uce the issue, so I&#39;ll see if I can get to the bottom of it. I&#39;m gl=
+ad you&#39;re able to work around it for now. Thanks for letting us know ab=
+out it!</div><div><br></div><div>Wade<br></div></div><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Dec 14, 2020 at 8:59=
+ AM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&=
+gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
+dir=3D"ltr">Hi Wade,<div>I tried the command=C2=A0to re-load the FPGA,=C2=
+=A0but I couldn&#39;t communicate with UHD nicely until I also added the co=
+mmand &quot;systemctl restart ursp-uhd&quot;.=C2=A0 I am now able to reset =
+the N310 to proper behavior when it gets in this state.<div><br></div><div>=
+Regarding this issue of real/imag swapping, do you want me to create a supp=
+ort request through <a href=3D"mailto:support@ettus.com" target=3D"_blank">=
+support@ettus.com</a>?=C2=A0 Also, do you need me to provide any more info =
+or an example program / FPGA image?=C2=A0
+
+Note that now that I know how to duplicate the issue, I believe I also know=
+ how to avoid it. So, it is probably not a critical=C2=A0issue for me prese=
+ntly.
+
+</div></div><div><br></div><div>Rob</div></div><br><div class=3D"gmail_quot=
+e"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Dec 12, 2020 at 9:47 AM Wa=
+de Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.f=
+ife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex"><div dir=3D"ltr"><div>Thanks for the updates. If you just want=
+ to reload the FPGA, try running &quot;overlay rm n310 &amp;&amp; overlay a=
+dd n310&quot; on the N310. This should simply reload the FPGA using the bis=
+tream already in the flash. <br></div><div><br></div><div>Wade<br></div></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Fri, Dec 11, 2020 at 6:45 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.=
+edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Wade,</div><div=
+>The following also fails using just 2 blocks and 2 attempts:</div><div><di=
+v>=C2=A0 host_tx =3D&gt; Switchboard#0 =3D&gt; Switchboard#1 =3D&gt; host_r=
+x=C2=A0 // SUCCESS</div><div></div></div><div><div>=C2=A0 host_tx =3D&gt; S=
+witchboard#1 =3D&gt; Switchboard#0 =3D&gt; host_rx=C2=A0 // FAILURE (RX sam=
+ples equal swapped I/Q of TX samples)</div><div><br></div><div>In addition =
+to wanting to get this issue fixed, I also have a question about the best w=
+ay to &quot;reboot&quot; the N310 which is what I need to do to fix the iss=
+ue after it occurs.=C2=A0 One way is to give the &quot;reboot now&quot; lin=
+ux command.=C2=A0 But, this takes a long time.=C2=A0 Another way is to repr=
+ogram the FPGA image via uhd_image_loader. This is appreciably faster, but =
+I&#39;m thinking that this is not a great idea if the flash memory has a li=
+mited number of write cycles before failure.=C2=A0 Is there another way to =
+achieve a reboot other than these two?</div><div>Rob</div><div><br></div><d=
+iv></div></div><div></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Fri, Dec 11, 2020 at 7:34 PM Rob Kossler &lt;<a href=3D"=
+mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">A=
+HA!=C2=A0 I duplicated the issue with the Switchboard image.=C2=A0 The way =
+to duplicate the issue is the run the following series of graphs:<div>=C2=
+=A0 host_tx =3D&gt; Switchboard#0 =3D&gt; Switchboard#1 =3D&gt; host_rx=C2=
+=A0 // SUCCESS</div><div>=C2=A0 host_tx =3D&gt; Switchboard#2 =3D&gt; Switc=
+hboard#3 =3D&gt; host_rx=C2=A0 // SUCCESS</div><div></div><div>=C2=A0 host_=
+tx =3D&gt; Switchboard#0 =3D&gt; Switchboard#2 =3D&gt; host_rx=C2=A0 // FAI=
+LURE (RX samples equal swapped I/Q of TX samples)</div><div>Each of these 3=
+ runs consists of running my application (similar to one of the examples su=
+ch as rfnoc_rx_to_file) such that the UHD object is re-created each time.=
+=C2=A0 My guess is that you could use gnuradio to do it instead.</div><div>=
+<br></div><div>My working theory is that the problem is caused by the fact =
+that the Switchboard#2 input port was changed from being connected to the h=
+ost in test case 2 to then be connected to another RFNoC block in test case=
+ 3.=C2=A0 Or, I suppose it could be the output port on this block (same log=
+ic).</div><div><br></div><div>If you want me to send you my FPGA image with=
+ the 4 Switchboard blocks, let me know.</div><div>Rob</div><div><br></div><=
+div></div><div>=C2=A0=C2=A0</div></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 11, 2020 at 7:09 PM Rob Kossle=
+r &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
+div dir=3D"ltr">Hi Wade,<div>After thinking about it a bit, I would ignore =
+the &quot;negation&quot; issue for now. This may be a byproduct of I/Q swap=
+ping related to my custom block.</div><div>Rob</div></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 11, 2020 at=
+ 6:34 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blan=
+k">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><div dir=3D"ltr">Hi Wade,<div>Thanks for the info.=C2=A0 =
+I still do not know what&#39;s going on, but here are a few updates:</div><=
+div><ul><li>I built a new N310 image with 4 switchboards (1x1) and 1 splits=
+tream=C2=A0(1x2) blocks in addition to the default blocks.=C2=A0 All of the=
+ additional blocks are connected to SEPs for dynamic linking.=C2=A0 I tried=
+ my best to get bad behavior using a chain of 1 to 4 switchboards, but I co=
+uld not duplicate any I/Q swapping or negation issues.=C2=A0</li><li>I went=
+ back to my custom image (that I described below) and found different behav=
+ior today (sometimes things worked OK).=C2=A0 So, this got me to thinking t=
+hat I am somehow getting the FPGA in a bad state such that a reboot (or FPG=
+A re-flashing) fixes things.=C2=A0 I have had some success with re-booting =
+and things working properly.=C2=A0 But, I still do not have a true handle o=
+n things and cannot adequately predict when things are going to succeed or =
+fail.</li><li>One thing that has been constant is that I have never seen ba=
+d behavior when I only have 1 block in my graph (no matter which block I ch=
+oose).=C2=A0 Note that for all of my tests, the graph looks like this: host=
+_tx =3D&gt; block_chain =3D&gt; host_rx, where block_chain is a sequential =
+chain of 1 or more rfnoc blocks.</li></ul><div>I will send a follow up once=
+ I figure things out.</div><div>Rob</div></div><div><br></div></div><br><di=
+v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 1=
+1, 2020 at 6:22 PM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" tar=
+get=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Rob,</div><div><=
+br></div><div>The SEPs do have the ability to swap I and Q. This is because=
+ on the host computer, I is usually in the lower bits and Q is in the upper=
+ bits of each 32-bit word, but in RFNoC, for historical reasons, I goes in =
+the upper bits and Q in the lower bits. The software programs the IQ swappi=
+ng when it sets up the graph. </div><div><br></div><div>I assume you&#39;re=
+ using dynamic connections (through the crossbar) to control the number of =
+FFTs the data is passed through, and not static connections? If that&#39;s =
+the case then=20
+I wonder if software configures IQ swapping incorrectly in some configurati=
+ons.
+
+I&#39;ll see if I can do some testing next week to confirm if it&#39;s work=
+ing correctly.</div><div><br></div><div>As for negation, I&#39;m not aware =
+of anywhere we do that off the top of my head. Is that behavior block depen=
+dent? I&#39;ll see if I can find anywhere this happens.</div><div><br></div=
+><div>Thanks,</div><div><br></div><div>Wade=C2=A0 <br></div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Dec 10,=
+ 2020 at 3:54 PM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-user=
+s@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
+ltr">Hi,<br><div>I am encountering very strange behavior with a custom FPGA=
+ image (N310). It appears that data streaming through SEPs can get swapped =
+(I/Q) and/or negated.=C2=A0=C2=A0Is anyone at Ettus aware of=C2=A0anything =
+that could cause this?=C2=A0 Of course, the issue might be on my end, but I=
+ can&#39;t think of what it might be given that all of my custom blocks wor=
+k as expected in isolation (if the block is the only block in graph).</div>=
+<div><br></div><div>My custom image is the following:</div><div><ul><li>def=
+ault blocks of Radios, DDCs, DUCs (each 2x2 and statically connected as in =
+default image)</li><li>custom blocks of=C2=A0two 1x1 windowed-fft blocks, t=
+wo 1x1 vector-avg blocks, and one 2x2 custom block. Note: each of these blo=
+cks is connected to its own SEP, so I can connect dynamically in any fashio=
+n.</li></ul><div>My test case is transmitting 8192 random samples from host=
+ to FFT block and then optionally through a 2nd FFT block before back to ho=
+st.=C2=A0 In the test case, the radios/DDCs/DUCs are not used.</div><div><b=
+r></div>Here is what I observed:<br><ul><li>If I only include 1 FFT block i=
+n my RFNoC graph, I get the expected results (the output from the FPGA matc=
+hes what I calculate in Matlab for the FFT).=C2=A0 This is true for either =
+of the two FFT blocks.</li><li>If I include both FFT blocks in series, I ca=
+n only match the FPGA output if I swap the I/Q values in between my Matlab =
+FFTs.</li><li>Note: that this issue is not FFT-related as I can also duplic=
+ate this issue with the other blocks.=C2=A0</li><li>If I use 3 blocks in se=
+ries (each through SEP), I need to negate certain data in order to get it t=
+o match the FPGA output</li></ul><div>My next step is likely to build a new=
+ image with Ettus-developed FIFOs to prove that the data is getting swapped=
+/negated when 2 or more are used in series through SEPs.</div></div><div><b=
+r></div><div>Let me know if you have any suggestions for other things to tr=
+y.<br></div><div><br></div><div>Rob</div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+
+--000000000000331bd705b6779395--
 
 
-
-
---------------010502020107010508090308
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 12/14/2020 09:44 AM, Nieland,
-      Michael via USRP-users wrote:<br>
-    </div>
-    <blockquote
-      cite="mid:5d1326921305455b8405632fffdc7c2c@mail03.iis.fhg.de"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">Dear all, <br>
-          <br>
-          <o:p></o:p></p>
-        <p class="MsoNormal"><span lang="EN-US">we are using two B210
-            USRP’s to generate and receive DQPSK Signals at 1.53 GHz
-            (two TX and two  RX channels). The USRP’s use FW Version 8.0
-            and FPGA Version 16.0 (Hardware Revision 4). We found that
-            there are quite significant differences in spurious output
-            between the two tx channels on the B210. I attached
-            screenshots of my spectrum analyzer measurements
-            demonstrating this behavior.
-            <o:p></o:p></span></p>
-        <p class="MsoNormal"><span lang="EN-US">A couple of more details
-            about the setup:
-            <o:p></o:p></span></p>
-        <p class="MsoNormal" style="text-indent:35.4pt"><span
-            lang="EN-US">-              USRP connected and powered via
-            USB3<o:p></o:p></span></p>
-        <p class="MsoNormal" style="text-indent:35.4pt"><span
-            lang="EN-US">-              No external reference used for
-            the above measurements<o:p></o:p></span></p>
-        <p class="MsoNormal" style="text-indent:35.4pt"><span
-            lang="EN-US">-              The signals are generated using
-            a GnuRadio flowgraph<o:p></o:p></span></p>
-        <p class="MsoNormal"><span lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span lang="EN-US">The spurious signals are
-            always present and independent of the TX Gain setting, the
-            digital signal amplitude and the signal frequency. We
-            observed the same behavior on another B210 USRP. We are
-            assuming this is hardware related but are wondering if UHD
-            settings also play a role here and if there is a way to
-            possibly improve the performance of channel 2 in particular
-            (~20 dB difference at 1.52 GHz spur between channel 1 and
-            channel 2).
-            <br>
-            <br>
-            <o:p></o:p></span></p>
-        <p class="MsoNormal"><span lang="EN-US">Best regards <o:p></o:p></span></p>
-        <p class="MsoNormal"><span lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span lang="EN-US">Michael Nieland<o:p></o:p></span></p>
-      </div>
-      <br>
-    </blockquote>
-    This is probably just a hardware quirk of the AD9361 chip that forms
-    nearly the entirety of the RF chain on the B2xx series USRPs.<br>
-    <br>
-    The spur on the 2nd channel looks like it's still about -40dBc,
-    which I believe is "in spec" for the AD9361 chip.<br>
-    <br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------010502020107010508090308--
-
-
---===============3623471241770420064==
+--===============2580307832162760008==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -266,5 +457,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3623471241770420064==--
+--===============2580307832162760008==--
 
