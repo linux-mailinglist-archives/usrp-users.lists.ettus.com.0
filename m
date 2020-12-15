@@ -2,49 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69CB32DB07D
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Dec 2020 16:52:01 +0100 (CET)
-Received: from [::1] (port=40246 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 531932DB59C
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Dec 2020 22:09:12 +0100 (CET)
+Received: from [::1] (port=42774 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kpCcH-00016u-65; Tue, 15 Dec 2020 10:51:57 -0500
-Received: from mail-qt1-f181.google.com ([209.85.160.181]:43303)
+	id 1kpHZD-0003yJ-UI; Tue, 15 Dec 2020 16:09:07 -0500
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:41489)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <andreas.hagstrom@testteknik.se>)
- id 1kpCcD-000145-EJ
- for usrp-users@lists.ettus.com; Tue, 15 Dec 2020 10:51:53 -0500
-Received: by mail-qt1-f181.google.com with SMTP id 2so5032806qtt.10
- for <usrp-users@lists.ettus.com>; Tue, 15 Dec 2020 07:51:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=testteknik-se.20150623.gappssmtp.com; s=20150623;
+ (Exim 4.93) (envelope-from <robertbenwilson0@gmail.com>)
+ id 1kpHZA-0003qS-2P
+ for usrp-users@lists.ettus.com; Tue, 15 Dec 2020 16:09:04 -0500
+Received: by mail-ot1-f43.google.com with SMTP id x13so20848643oto.8
+ for <usrp-users@lists.ettus.com>; Tue, 15 Dec 2020 13:08:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:from:date:message-id:subject:to;
- bh=0+GY5MHROn86ZUAkRlk2nzXByt4s7KTYySP8sw8YkIw=;
- b=QgAh51/xCUYSBcSZQZis7xqSdN86yk/71kfWSdIV5iqd9vJXbAs3uxqo+Uy63u4hZ8
- UD5U9rLp6L3MS6+hq6MRUJIevqeMZIKfF5hf0ObQdFZ5DePbNqymgjMDyIQ76IjnSN4S
- 1VuB2N2kFYl+kfxhBFOQaDZFQQyf4bTRszWk8x2c1EqJD843xz2XbGrQVY+iLNKSqkIz
- Y7b1ZbcZAaWpAE1cIm/QPZune+kfV9TpyFaBEvhLcWl2woePwEIphcIrNchNcs/loyCL
- AUdr7LoHfndOTe9i76XU2ZKWCLlJ3KdTBYMDdPxRxOzPtyghWbMcDe1WBgb79MaZgMDf
- h+Gg==
+ bh=n9vEZIP+N1gxU3f2zhGk2AThmUzDCo2bYSnDxpPO6q4=;
+ b=sAdtOpSwS0Mg+PIJj4MCMwqyHYIyf5oybJOhGKlaktefi4r3zhgLVSch6ggaHToRZG
+ OGP+RQ0im4oTyN04KgZ9V7ZHE8qnpuzPqG6I8V01g09uYnqZ1koYFTmPYOCc6nGhsqpR
+ CllCHBnVC03gB+3smigeWh10fdVHcxHCaRaTxv0sebs2P4fDJk8XPm1ROg4uKG+AShsA
+ qOcSLt57/sgODY9Yp0e7d5vSKwkBYNAo6UuwApy5JL5XKteFQ+kXhIej8hr4u2/foJ6D
+ AS+jUBhxSfYKlrBnOxdGfRohr/lC2oo1dyJ1AwdJ9sAwu4d5swlLHJzK+L3wVtRZFpEZ
+ JvVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=0+GY5MHROn86ZUAkRlk2nzXByt4s7KTYySP8sw8YkIw=;
- b=GMK0Irl6i+CqpB3ULhTQYiSqZG042zHTccxPTW/zkD9PdfbLU8o6+ySTPsA1LJeAFJ
- OHmATcXp9OYFhmv2fjxjy1kGG+ra+Hu+9x3PvX9DjeiKjMMouFUNssXFRrKXFmPVwekb
- eQzpRykn1+6lacfoDVxjr8n9iAoa7bIOHuWkqfIQS9HputyQ+sX9FqOGH2l2zTLKdHqR
- 02sXWoDVSHeTvJC7RSZ5zonKO2BMROljxIwdwPIo81NkA/vy6T5eOK7rA7YU3pYBLIp7
- lV4AJkcPJjuOg6D/gwPk//p4SyTiMC1NIlBaBX4bKnxusnTCBySBD0uPgYWuzTQFzQQ4
- UG8w==
-X-Gm-Message-State: AOAM533oYXNf0aHp93v5haQK6zQBwvJbofXWplV2oE9FPOriz3tuemK4
- h++7xSLfAGRtVjrGgLKiIVeT49/LWKXmf6PMfsogmH5bRLo=
-X-Google-Smtp-Source: ABdhPJzSlnu361eRSjLENbowhEcRGq6+kEHDlVVSHZXqDCvxAwlC/tiKHKPxKyPOLiLaI4SN8HyNgkNXwr+nebMW0z0=
-X-Received: by 2002:ac8:4648:: with SMTP id f8mr37366389qto.5.1608047472415;
- Tue, 15 Dec 2020 07:51:12 -0800 (PST)
+ bh=n9vEZIP+N1gxU3f2zhGk2AThmUzDCo2bYSnDxpPO6q4=;
+ b=ucvqstR7G9ufEC7yKdJMoz89dbZfmLM5OgAJp31KmBTA/y1tV1At19k+Ef+mZSun3W
+ w+KfH4oBpq8HbiCjNRnhergn0mAE4/c1abtdnW47sxfShCfCjlKhI0PGDZYYvKv9Ztw0
+ xsMk1+/qNFPURL/rdlwBipe0H5RxXL3lUj/hCC+Jc9ko82nPjlB7aDUkLK+iod6p6xDr
+ tTbTtvnAN3VvIna3hScW/cztjSpbnjk2eZL28iutpCH7Tu5HLF1Opj3GZHEqiA6PescC
+ AA0h8UcC7Cj4JohNh9UH6905dM6kyNeUSUN1T3aP9XnWbcfoflSea1gR1EmvdCnrpwOe
+ pCEg==
+X-Gm-Message-State: AOAM533qHfYEzLVn2M3u3DmllWyC4WlVaU/ElzUM2ytgZYN/MfgzYcqX
+ d+EYXzTMytuW13kiKRQQAs6MmFTgALJm22etUL+EjBR3
+X-Google-Smtp-Source: ABdhPJzvWHljh5xc74ddbRRUlXkvzsUOalci7yr3MdoO32C83BGNvCX9IfEWiYzEBPhugduUVScLnb5b6AyDpTJ5GQo=
+X-Received: by 2002:a9d:2607:: with SMTP id a7mr24441782otb.222.1608066502592; 
+ Tue, 15 Dec 2020 13:08:22 -0800 (PST)
 MIME-Version: 1.0
-Date: Tue, 15 Dec 2020 16:51:01 +0100
-Message-ID: <CAKo1dg-ebX_Ofu2fQ2AdnR0eg1WQg00K3uTDCH2iRK1nWaTF6Q@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Problems with UHD installation on Windows:
+Date: Tue, 15 Dec 2020 16:08:13 -0500
+Message-ID: <CAGJu-nZvZ4S41VGUBC5EkfU6tHKSeNEuZM-R=EaAFt9m9b98BA@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] RFNoC DUC arguments
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -56,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Andreas_Hagstr=C3=B6m_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?Q?Andreas_Hagstr=C3=B6m?= <andreas.hagstrom@testteknik.se>
-Content-Type: multipart/mixed; boundary="===============0945481926389391216=="
+From: Robert Wilson via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Robert Wilson <robertbenwilson0@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0996247891422227367=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,60 +71,45 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0945481926389391216==
-Content-Type: multipart/alternative; boundary="0000000000006030ac05b682ba7a"
+--===============0996247891422227367==
+Content-Type: multipart/alternative; boundary="000000000000a98c6905b6872888"
 
---0000000000006030ac05b682ba7a
+--000000000000a98c6905b6872888
 Content-Type: text/plain; charset="UTF-8"
 
-Hello, I had some issues with the communication with my B200 so I
-uninstalled UHD and tried to upgrade to the latest version of UHD (4.0).
-But the installation seem to fail to install uhd.dll to PATH. I tried to
-install it both to local user and globally, but I get the error "Path to
-long". I after that tried to go back to UHD 3.15 but I now seems to get the
-same error message. I also tried to do it manually but the path doesn't
-seems to work that way either.
+Hello All,
 
-That is the first problem, so i copied a version of uhd.dll to the working
-directory of the examples to see if I would be able to run those. But after
-trying that I seems to get the error that UHD can't access the start
-procedure of libusb_set_option in UHD.dll. If I understand correctly that
-is the library to access the USB streams to and from the USRP. The drivers
-I'm using is the official ones from NI for the USRP-2901 which i'm
-emulating a B200 from. This part I have not modified since the working
-installation so I'm not sure how this part would have gotten broken.
+uhd 4.0
+gnuradio 3.8
+ubuntu 20.04
 
-Is there some known issues with this kind of configurations that would
-cause these problems?
-I'm currenty on Windows 10 Pro Version 2004.
 
---0000000000006030ac05b682ba7a
+When in GnuRadio and attaching a RFNoC Digital Upconverter to the  RFNoC Tx
+Radio Block we are receiving an error message:
+
+TypeError: make() takes 4 positional arguments but 5 were given
+
+Is this a known issue? How do you correct this?
+
+Thanks,
+Ben
+
+--000000000000a98c6905b6872888
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello, I had some issues with the communication with =
-my B200 so I uninstalled UHD and tried to upgrade to the latest version of =
-UHD (4.0). But the installation seem to fail to install uhd.dll to PATH. I =
-tried to install it both to local user and globally, but I get the error &q=
-uot;Path to long&quot;. I after that tried to go back to UHD 3.15 but I now=
- seems to get the same error message. I also tried to do it manually but th=
-e path doesn&#39;t seems to work that way either. <br></div><div><br></div>=
-<div>That is the first problem, so i copied a version of uhd.dll to the wor=
-king directory of the examples to see if I would be able to run those. But =
-after trying that I seems to get the error that UHD can&#39;t access the st=
-art procedure of libusb_set_option in UHD.dll. If I understand correctly th=
-at is the library to access the USB streams to and from the USRP. The drive=
-rs I&#39;m using is the official ones from NI for the USRP-2901 which i&#39=
-;m emulating a B200 from. This part I have not modified since the working i=
-nstallation so I&#39;m not sure how this part would have gotten broken.=C2=
-=A0 <br></div><div><br></div><div>Is there some known issues with this kind=
- of configurations that would cause these problems?</div><div>I&#39;m curre=
-nty on Windows 10 Pro Version 2004.<br></div></div>
+<div dir=3D"ltr">Hello All,<div><br></div><div>uhd 4.0</div><div>gnuradio 3=
+.8</div><div>ubuntu 20.04</div><div><br></div><div><br>When in GnuRadio and=
+ attaching a RFNoC Digital Upconverter to the=C2=A0 RFNoC Tx Radio Block we=
+ are receiving an error message:</div><div><br></div><div>TypeError: make()=
+ takes 4 positional arguments but 5 were given</div><div><br></div><div>Is =
+this a known issue? How do you correct this?</div><div><br></div><div>Thank=
+s,</div><div>Ben</div><div><br></div><div><br></div><div><br></div></div>
 
---0000000000006030ac05b682ba7a--
+--000000000000a98c6905b6872888--
 
 
---===============0945481926389391216==
+--===============0996247891422227367==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -137,5 +120,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0945481926389391216==--
+--===============0996247891422227367==--
 
