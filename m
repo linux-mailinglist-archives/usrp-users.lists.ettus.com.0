@@ -2,58 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E73E92DDA77
-	for <lists+usrp-users@lfdr.de>; Thu, 17 Dec 2020 22:01:05 +0100 (CET)
-Received: from [::1] (port=35894 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87C032DDAEB
+	for <lists+usrp-users@lfdr.de>; Thu, 17 Dec 2020 22:39:33 +0100 (CET)
+Received: from [::1] (port=36114 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kq0OU-0007tW-Mh; Thu, 17 Dec 2020 16:01:02 -0500
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:40118)
+	id 1kq0zi-0001cR-6M; Thu, 17 Dec 2020 16:39:30 -0500
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:43351)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
- id 1kq0OR-0007oQ-HS
- for usrp-users@lists.ettus.com; Thu, 17 Dec 2020 16:00:59 -0500
-Received: by mail-ua1-f51.google.com with SMTP id y25so95476uaq.7
- for <usrp-users@lists.ettus.com>; Thu, 17 Dec 2020 13:00:39 -0800 (PST)
+ (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1kq0ze-0001OU-CE
+ for usrp-users@lists.ettus.com; Thu, 17 Dec 2020 16:39:26 -0500
+Received: by mail-oi1-f170.google.com with SMTP id q25so561856oij.10
+ for <usrp-users@lists.ettus.com>; Thu, 17 Dec 2020 13:39:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=NfS1vlQ27zqoBFcPni74ThJq7unlVh+7sa3JT0yXBfs=;
- b=l5yeQuEgzCnD+ju4ey6NOiFnMsgTIoqGzBo4kak6+m6dlkHbRCgPlJ51Qdxk7aGQxU
- 3M/FnchJt+LXsSa3TGbYpIzo/r8Gwtsu8TbNJGbzjyKkytz0y37QFVMpJ11L6oaL3ktM
- FLgpj8gjGAJ1BxC6gMSNigtOpTZNKMK8/eQopmngtK+qSkHuVoAyHY7LpYpVF0LUeNOb
- daEI4NL5goPh/JapeWJWX6Foo1ZhqAMeBHykRFeecjiFDQMJCoJt9W5kgftvRBDNVpBg
- 7TGl8TdosS3GXkEkIzVcdHZVV53jlwJqu1HClRoPr2FL5bn5MUZ5Ev5nxokt0ngoc008
- AURA==
+ :cc; bh=sqKSUbmSlAggx0raEbnwt+IaAmKER3+K4xfG3E9G8Mo=;
+ b=UmXrguL9SXWUPgoqzqf+9tuYQnOWrWRqQNBKVkdd44TakbHWxZvRs1ThWnLo32WLyP
+ r+NlIATSrwcjkTugrPix2DawVvil7DFJgnKo23Wt69Ru1ofOwB7V4HYBp89LDhn8eLeO
+ HI+theJhAwcNn2tBYdi2su8SGXRAdP4s9+NBzEQcX52fh1wRZrpEN1I19c7iM9Z37Wzk
+ qnJD38UNFfrGky/4CDN0KCUOtaNuqvU8Z4sW225vk+vJu4tuQfUbd3erk4O4svYDak6q
+ 2B3Chg8m2HKYerpjsaOl7zKxZWnzN+eJBEYPOwktFzx1ZXe4oq9xfXYI4hC8JBQ93qyb
+ AquA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=NfS1vlQ27zqoBFcPni74ThJq7unlVh+7sa3JT0yXBfs=;
- b=M/b+mPS2ee2lQxNaz7vBUBQxqNmIi318otN7128mX/K1L2QzyrLRgoK13AAySS1MxD
- SN23Pls6h78tVTKniLs96Y0fAYXlsyxilTR/kr+Nzls+p8mILBgE8JoTTYcK1UTrCsQL
- 4wg5hKix29n4X7uEpT8vCt5l+igunl+rtyj/HJBXPFVNPP5sCWirWrsUVbuPvNID+OmN
- uyM3Xkt89lnC4P/D4o8TaLIEW1Fw60pnrvr5Tw3qwzOxijNpue2S9KpoTVgLh4FNjqQF
- Ww+Rh0ZppB/yD3GouGa8/cJXxB7fOLYIyIGTnvV+IuzhAXU/SLmjbYz3C8Rl8AtM1Q38
- Kpqw==
-X-Gm-Message-State: AOAM532UTBfe9/C05GYasU5L2RzHynroB5R3ABlHzN7MnlGV3GJmQSJ7
- faReOqbJy5lCh08G8sMBnI7kGbrt58EwZN43grA25zVmPVHVew==
-X-Google-Smtp-Source: ABdhPJycvO5LWCgK7fMnIdy2Jmv7sQT+MOQ6Yw8gw+Wqos+2tGX3cEXjYR9I5P0p+K3bdpnxgxkE54t8pkbpkHr955c=
-X-Received: by 2002:a9f:24c7:: with SMTP id 65mr1016704uar.112.1608238818773; 
- Thu, 17 Dec 2020 13:00:18 -0800 (PST)
+ bh=sqKSUbmSlAggx0raEbnwt+IaAmKER3+K4xfG3E9G8Mo=;
+ b=jvTejadOviE4Y3ceufh4+8mzQQhKWjBn/O83uTEkPeWkso1ofTs2dmteIZMyb/thSK
+ Y+MYKOeiVQ6lLPY3G5QwYRrJ/1DnWBwXkLulBwLyynavnLyEVofYnyhk8WDSrVuDvbfp
+ GInuyeVjwPXN+H5bcHZdJRG6I71Mx+R3HQ/TcPiNgFQiO+XvTIkdMbaV2yvDk74BW390
+ RgWCBInaNQSeSFjkyUPnuv4xHVopF70mCCsMqkv6UAbjATTth82KMGVmRBshsJhbkemc
+ kunrirNKxslnTHYx9dnYWr5j08rnqBX6KU2UD1BAlJXK0wQphOdBXR2V0BLCaNFYug3b
+ 1Q1w==
+X-Gm-Message-State: AOAM5313h9+GkFc2GMi2Eo6kXM4vk5/WMiVWT4W8mG//CyZy+S2ami4Q
+ x/eEHti9ZhMRMN3yBmVJtzn7RGTyFByWz5nD85V99GpH
+X-Google-Smtp-Source: ABdhPJytEwZPFFsoxFMdrRlNb2CwBlMPqyw2jUh3+Oqo7+3unaCp8BoIkyVk6U9VsqqC1Hw/WSSHPsEya9yk0ZdbH/0=
+X-Received: by 2002:aca:5786:: with SMTP id l128mr829749oib.145.1608241125568; 
+ Thu, 17 Dec 2020 13:38:45 -0800 (PST)
 MIME-Version: 1.0
-References: <0de28dac284d443f97212f5559446f66@gtri.gatech.edu>
- <72b3782485534f1c843149b5b70ef955@gtri.gatech.edu>
- <CAL7q81uuY5BK8RGHk0M_Wgo_9gheOzWJ1t=RstwWFAn=zBbS_A@mail.gmail.com>
- <95cdc0110e3446408a8916ac27624629@gtri.gatech.edu>
- <CAL7q81vyqsK-Uryu05uRWg8WB_acv+CLaPmS3e2qhGSxpUDK=w@mail.gmail.com>
- <30b93ba3af734cf5b828bce0862b59c1@gtri.gatech.edu>
-In-Reply-To: <30b93ba3af734cf5b828bce0862b59c1@gtri.gatech.edu>
-Date: Thu, 17 Dec 2020 15:59:42 -0500
-Message-ID: <CAL7q81v0A0MxUJAKPhD9nenayaZU1RC5A2+XWRzq5Uuh0mdZCg@mail.gmail.com>
-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] RFNoC passing metadata on the dataplane
+References: <CAB__hTQa8v40-nQGCQMcK36317oWxue448NrMoMYvbf3oacmug@mail.gmail.com>
+ <CAFche=htoRKHMituvggWa15UwoiVkdR6n=3EXYK6d5TR696SiQ@mail.gmail.com>
+ <CAB__hTTd6++q8K6xOtHhpJv905CW1wp4E5YpUR0mM5yULUf44Q@mail.gmail.com>
+ <CAB__hTRBNRoGu+yYjGMawb1ongZ5u0G4HyafJUOuCA5637ysgA@mail.gmail.com>
+ <CAB__hTQX+URNC-_qno0jStxo0qm8YtUWas0MffMebtd6TzfTNQ@mail.gmail.com>
+ <CAB__hTSpKwx7JSoWCExtqThW+qGSi919KTTm1TNWN6KU4HkQig@mail.gmail.com>
+ <CAFche=iE+RoE6Wi7vWHB73z48HF36SBeK0mqQQDeC=ujhX4d=w@mail.gmail.com>
+ <CAB__hTTRaGEnBDHrj3eJ3sHEqPPSbJ0G1aL7xQF2HLUS+z8Mvg@mail.gmail.com>
+ <CAFche=hOXCneyetJHN6kBqJ9C44g3UWiKeqeCeW1wez2214NsQ@mail.gmail.com>
+ <CAFche=jfksHjme=MEtTou4cNWOzToudHqZH1TSWOr1xCWTfV3w@mail.gmail.com>
+ <CAB__hTRu24de7NWf_7RY4qS5tGVyGC_f-COmPYAVxxg0tYis+A@mail.gmail.com>
+In-Reply-To: <CAB__hTRu24de7NWf_7RY4qS5tGVyGC_f-COmPYAVxxg0tYis+A@mail.gmail.com>
+Date: Thu, 17 Dec 2020 15:38:35 -0600
+Message-ID: <CAFche=i_t8epYMTBiekCAbSssZWcLRf9whrpm=L2raEKs38s7A@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] RFNoC 4.0 data swapping?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -65,9 +69,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Content-Type: multipart/mixed; boundary="===============1101727379786804423=="
+From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Wade Fife <wade.fife@ettus.com>
+Content-Type: multipart/mixed; boundary="===============7154008627816795871=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -81,475 +85,464 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1101727379786804423==
-Content-Type: multipart/alternative; boundary="00000000000081dfeb05b6af47ee"
+--===============7154008627816795871==
+Content-Type: multipart/alternative; boundary="00000000000000c66405b6afd11c"
 
---00000000000081dfeb05b6af47ee
+--00000000000000c66405b6afd11c
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Jeff,
+It's not specific to N3xx. It can occur when you use the same bitstream and
+change the crossbar routing between runs.
 
-The m_axis_data_tdata and s_axis_data_tdata signals carry the CHDR packet's
-data (usually SC16 samples) only. The tuser signals are for the CHDR
-header. For instance, the incoming CHDR packet's header is output on
-m_axis_data_tuser (regardless of the state of SIMPLE_MODE). When
-SIMPLE_MODE=3D0, the header on s_axis_data_tuser will be used for the
-outgoing CHDR packet's header. When SIMPLE_MODE=3D1, the header is handled
-automatically by reusing the incoming packet's header. Technically,
-SIMPLE_MODE works by storing the incoming packet's header in a FIFO. That
-is why when using SIMPLE_MODE you must produce a packet for every packet
-consumed, otherwise the FIFO will either overflow or underflow.
+Wade
 
-Jonathon
 
-On Wed, Dec 16, 2020 at 6:50 PM Hodges, Jeff <Jeff.Hodges@gtri.gatech.edu>
-wrote:
+On Wed, Dec 16, 2020 at 4:42 PM Rob Kossler <rkossler@nd.edu> wrote:
 
-> When  SIMPLE_MODE=3D0 for AXI_WRAPPER, is the header provided as the firs=
-t
-> data  word (or two data words if the timestamp is used) on
-> m_axis_data_tdata?  It seemed redundant since it=E2=80=99s provided on
-> m_axis_data_tuser, but the  Header is shown in the waveform on Slide 22 o=
-f
-> the RFNOC Workshop (Part  2), so I wanted to clarify exactly what the dat=
-a
-> on m_axis_data_tdata  will be. Also, I assume that this same behavior
-> should be mimicked on  s_axis_data_tdata when sending a packet out, but
-> again, I wanted to  clarify.
+> Thanks Wade,
+> That fixes it for my test case with 2 switchboards in series.  I'll let
+> you know if I see anything strange when testing with my custom blocks.
 >
+> By the way, does this bug only affect N3xx devices or all RFNoC devices?
+> Rob
 >
-> Thanks,
+> On Wed, Dec 16, 2020 at 5:33 PM Wade Fife <wade.fife@ettus.com> wrote:
 >
->
-> Jeff
-> ------------------------------
-> *From:* Jonathon Pendlum <jonathon.pendlum@ettus.com>
-> *Sent:* Wednesday, December 16, 2020 12:05:58 AM
-> *To:* Hodges, Jeff
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] RFNoC passing metadata on the dataplane
->
-> Hi Jeff,
->
->  Is  there a document describing the CHDR header for 3.15? Looking at the
->> code, there are significant differences between the header format in  3.=
-15
->> and what=E2=80=99s in the 4.0 spec. I think I understand it from the cod=
-e, but if
->> there=E2=80=99s a doc with more detail or explanation, that would be use=
-ful.
->
->
-> The RFNoC3 CHDR header is described in the UHD 3.15 manual:
-> https://files.ettus.com/manual_archive/v3.15.0.0/html/page_rtp.html.
-> There is a bit more detail in these slides:
-> https://kb.ettus.com/images/f/f6/rfnoc3_workshop_slides_202008_part_2.pdf
->
->  Is there a maximum payload size for a CHDR data packet
->
->
-> Technically it is 64k bytes, but due to FIFO sizing in our devices, you
-> should not exceed 7992 bytes / 1998 SC16 samples.
->
-> Jonathon
->
-> On Tue, Dec 15, 2020 at 11:18 PM Hodges, Jeff <Jeff.Hodges@gtri.gatech.ed=
-u>
-> wrote:
->
->> Thanks, Jonathan, that is very helpful. Two questions using SIMPLE_MODE=
-=3D0
->> and AXI wrapper:
+>> Rob,
 >>
->> 1.       Is  there a document describing the CHDR header for 3.15?
->> Looking at the  code, there are significant differences between the head=
-er
->> format in  3.15 and what=E2=80=99s in the 4.0 spec. I think I understand=
- it from
->> the code, but if there=E2=80=99s a doc with more detail or explanation, =
-that would
->> be useful.
->> 2.       Is there a maximum payload size for a CHDR data packet
+>> I think I found the source of the IQ swap issue you observed. This fixes
+>> it for me:
 >>
->> Jeff
+>> diff --git a/host/lib/rfnoc/mgmt_portal.cpp
+>> b/host/lib/rfnoc/mgmt_portal.cpp
+>> index a54efaaf7..7b09c540b 100644
+>> --- a/host/lib/rfnoc/mgmt_portal.cpp
+>> +++ b/host/lib/rfnoc/mgmt_portal.cpp
+>> @@ -617,6 +617,24 @@ public:
+>>              _send_recv_mgmt_transaction(xport, cfg_xact);
+>>          }
 >>
->> ------------------------------
->> *From:* Jonathon Pendlum <jonathon.pendlum@ettus.com>
->> *Sent:* Friday, December 11, 2020 4:47:57 PM
->> *To:* Hodges, Jeff
->> *Cc:* usrp-users@lists.ettus.com
->> *Subject:* Re: [USRP-users] RFNoC passing metadata on the dataplane
+>> +        // Build a management transaction to configure the destination
+>> node
+>> +        {
+>> +            mgmt_payload cfg_xact;
+>> +            cfg_xact.set_header(my_epid, _protover, _chdr_w);
+>> +            _traverse_to_node(cfg_xact, dst_node_addr);
+>> +            mgmt_hop_t cfg_hop;
+>> +            // Configure buffer types
+>> +            cfg_hop.add_op(mgmt_op_t(mgmt_op_t::MGMT_OP_CFG_WR_REQ,
+>> +                mgmt_op_t::cfg_payload(REG_ISTRM_CTRL_STATUS,
+>> +                    BUILD_CTRL_STATUS_WORD(false, false, BUFF_U64,
+>> BUFF_U64, false))));
+>> +            // Return the packet back to us
+>> +            cfg_hop.add_op(mgmt_op_t(mgmt_op_t::MGMT_OP_RETURN));
+>> +            // Send the transaction and receive a response.
+>> +            // We don't care about the contents of the response.
+>> +            cfg_xact.add_hop(cfg_hop);
+>> +            _send_recv_mgmt_transaction(xport, cfg_xact);
+>> +        }
+>> +
+>>          // Wait for stream configuration to finish on the HW side
+>>          _validate_stream_setup(xport, src_node_addr, timeout);
 >>
->> Hi Jeff,
+>> Thanks,
 >>
->> RFNoC3 / UHD 3.15 does not support metadata. That is a new feature in
->> RFNoC4 / UHD 4.0, so option 2 is not possible.
+>> Wade
 >>
->> If you want to send out metadata in RFNoC3, I would suggest prepending i=
-t
->> to packets you send to AXI wrapper. You can still use SIMPLE_MODE as lon=
-g
->> as you are producing a packet for every packet consumed. The different
->> input/output packet lengths do not matter as AXI wrapper internally
->> calculates the output packet length and updates the header automatically=
-.
+>> On Mon, Dec 14, 2020 at 8:32 PM Wade Fife <wade.fife@ettus.com> wrote:
 >>
->> Jonathon
->>
->> On Fri, Dec 11, 2020 at 3:48 PM Hodges, Jeff via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
->>
->>> I meant rfnoc_create_verilog.py
+>>> Hi Rob,
 >>>
+>>> I was able to reproduce the issue, so I'll see if I can get to the
+>>> bottom of it. I'm glad you're able to work around it for now. Thanks for
+>>> letting us know about it!
 >>>
+>>> Wade
 >>>
->>> https://github.com/EttusResearch/uhd/blob/master/host/utils/rfnoc_block=
-tool/rfnoc_create_verilog.py
+>>> On Mon, Dec 14, 2020 at 8:59 AM Rob Kossler <rkossler@nd.edu> wrote:
 >>>
->>>
->>> jeff
->>> ------------------------------
->>> *From:* Hodges, Jeff
->>> *Sent:* Friday, December 11, 2020 3:44:41 PM
->>> *To:* usrp-users@lists.ettus.com
->>> *Subject:* RFNoC passing metadata on the dataplane
->>>
->>>
->>> I'd like to pass metadata over the dataplane using the available space
->>> in the CHDR header.  However, I cannot find an easy way to do this usin=
-g
->>> UHD3.15.
->>>
->>>
->>> I've identified two possible approaches but I'm not sure either will
->>> work:
->>> (1) Set AXI_Wrapper (Simple_Mode =3D0) to require user provided CHDR
->>> header. It's unclear how to provide the header, and if this can be modi=
-fied
->>> quickly.
->>>
->>> (2) Expose the AXI-Stream CHDR interface the way UHD4.0 does it:
->>>
->>> In UHD4.0 the verilog_image_builder.py includes the options to expose
->>> HDL interface:
->>>
->>> o Definition: Which HDL interface to expose
->>> o Options: =E2=80=9CAXI-Stream CHDR=E2=80=9D (axis_chdr), =E2=80=9CAXI-=
-Stream Payload Context=E2=80=9D
->>> (axis_pyld_ctxt), or =E2=80=9CAXI-Stream Data=E2=80=9D (axis_data)
->>>
->>> If Option (2) is the recommended, can I just copy the code from
->>> verilog_image_builder.py TEMPLATE such as below, or were other changes =
-made
->>> to make it incompatible with 3.15?
->>>
->>>  %if config['data']['fpga_iface'] =3D=3D
->>> "axis_pyld_ctxt":
->>> assign axis_data_clk =3D
->>> ${config['data']['clk_domain']}_clk;
->>> assign axis_data_rst =3D
->>> ${config['data']['clk_domain']}_rst;
->>>  <%include
->>> file=3D"/modules/axis_pyld_ctxt_modules_template.mako"/>
->>>
->>>
->>>
->>> Thanks,
->>>
->>> Jeff
->>>
->>>
->>>
->>> _______________________________________________
->>> USRP-users mailing list
->>> USRP-users@lists.ettus.com
->>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>
+>>>> Hi Wade,
+>>>> I tried the command to re-load the FPGA, but I couldn't communicate
+>>>> with UHD nicely until I also added the command "systemctl restart
+>>>> ursp-uhd".  I am now able to reset the N310 to proper behavior when it gets
+>>>> in this state.
+>>>>
+>>>> Regarding this issue of real/imag swapping, do you want me to create a
+>>>> support request through support@ettus.com?  Also, do you need me to
+>>>> provide any more info or an example program / FPGA image?  Note that now
+>>>> that I know how to duplicate the issue, I believe I also know how to avoid
+>>>> it. So, it is probably not a critical issue for me presently.
+>>>>
+>>>> Rob
+>>>>
+>>>> On Sat, Dec 12, 2020 at 9:47 AM Wade Fife <wade.fife@ettus.com> wrote:
+>>>>
+>>>>> Thanks for the updates. If you just want to reload the FPGA, try
+>>>>> running "overlay rm n310 && overlay add n310" on the N310. This should
+>>>>> simply reload the FPGA using the bistream already in the flash.
+>>>>>
+>>>>> Wade
+>>>>>
+>>>>> On Fri, Dec 11, 2020 at 6:45 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>>>
+>>>>>> Wade,
+>>>>>> The following also fails using just 2 blocks and 2 attempts:
+>>>>>>   host_tx => Switchboard#0 => Switchboard#1 => host_rx  // SUCCESS
+>>>>>>   host_tx => Switchboard#1 => Switchboard#0 => host_rx  // FAILURE
+>>>>>> (RX samples equal swapped I/Q of TX samples)
+>>>>>>
+>>>>>> In addition to wanting to get this issue fixed, I also have a
+>>>>>> question about the best way to "reboot" the N310 which is what I need to do
+>>>>>> to fix the issue after it occurs.  One way is to give the "reboot now"
+>>>>>> linux command.  But, this takes a long time.  Another way is to reprogram
+>>>>>> the FPGA image via uhd_image_loader. This is appreciably faster, but I'm
+>>>>>> thinking that this is not a great idea if the flash memory has a limited
+>>>>>> number of write cycles before failure.  Is there another way to achieve a
+>>>>>> reboot other than these two?
+>>>>>> Rob
+>>>>>>
+>>>>>> On Fri, Dec 11, 2020 at 7:34 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>>>>
+>>>>>>> AHA!  I duplicated the issue with the Switchboard image.  The way to
+>>>>>>> duplicate the issue is the run the following series of graphs:
+>>>>>>>   host_tx => Switchboard#0 => Switchboard#1 => host_rx  // SUCCESS
+>>>>>>>   host_tx => Switchboard#2 => Switchboard#3 => host_rx  // SUCCESS
+>>>>>>>   host_tx => Switchboard#0 => Switchboard#2 => host_rx  // FAILURE
+>>>>>>> (RX samples equal swapped I/Q of TX samples)
+>>>>>>> Each of these 3 runs consists of running my application (similar to
+>>>>>>> one of the examples such as rfnoc_rx_to_file) such that the UHD object is
+>>>>>>> re-created each time.  My guess is that you could use gnuradio to do it
+>>>>>>> instead.
+>>>>>>>
+>>>>>>> My working theory is that the problem is caused by the fact that the
+>>>>>>> Switchboard#2 input port was changed from being connected to the host in
+>>>>>>> test case 2 to then be connected to another RFNoC block in test case 3.
+>>>>>>> Or, I suppose it could be the output port on this block (same logic).
+>>>>>>>
+>>>>>>> If you want me to send you my FPGA image with the 4 Switchboard
+>>>>>>> blocks, let me know.
+>>>>>>> Rob
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>> On Fri, Dec 11, 2020 at 7:09 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>>>>>
+>>>>>>>> Hi Wade,
+>>>>>>>> After thinking about it a bit, I would ignore the "negation" issue
+>>>>>>>> for now. This may be a byproduct of I/Q swapping related to my custom block.
+>>>>>>>> Rob
+>>>>>>>>
+>>>>>>>> On Fri, Dec 11, 2020 at 6:34 PM Rob Kossler <rkossler@nd.edu>
+>>>>>>>> wrote:
+>>>>>>>>
+>>>>>>>>> Hi Wade,
+>>>>>>>>> Thanks for the info.  I still do not know what's going on, but
+>>>>>>>>> here are a few updates:
+>>>>>>>>>
+>>>>>>>>>    - I built a new N310 image with 4 switchboards (1x1) and 1
+>>>>>>>>>    splitstream (1x2) blocks in addition to the default blocks.  All of the
+>>>>>>>>>    additional blocks are connected to SEPs for dynamic linking.  I tried my
+>>>>>>>>>    best to get bad behavior using a chain of 1 to 4 switchboards, but I could
+>>>>>>>>>    not duplicate any I/Q swapping or negation issues.
+>>>>>>>>>    - I went back to my custom image (that I described below) and
+>>>>>>>>>    found different behavior today (sometimes things worked OK).  So, this got
+>>>>>>>>>    me to thinking that I am somehow getting the FPGA in a bad state such that
+>>>>>>>>>    a reboot (or FPGA re-flashing) fixes things.  I have had some success with
+>>>>>>>>>    re-booting and things working properly.  But, I still do not have a true
+>>>>>>>>>    handle on things and cannot adequately predict when things are going to
+>>>>>>>>>    succeed or fail.
+>>>>>>>>>    - One thing that has been constant is that I have never seen
+>>>>>>>>>    bad behavior when I only have 1 block in my graph (no matter which block I
+>>>>>>>>>    choose).  Note that for all of my tests, the graph looks like this: host_tx
+>>>>>>>>>    => block_chain => host_rx, where block_chain is a sequential chain of 1 or
+>>>>>>>>>    more rfnoc blocks.
+>>>>>>>>>
+>>>>>>>>> I will send a follow up once I figure things out.
+>>>>>>>>> Rob
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> On Fri, Dec 11, 2020 at 6:22 PM Wade Fife <wade.fife@ettus.com>
+>>>>>>>>> wrote:
+>>>>>>>>>
+>>>>>>>>>> Hi Rob,
+>>>>>>>>>>
+>>>>>>>>>> The SEPs do have the ability to swap I and Q. This is because on
+>>>>>>>>>> the host computer, I is usually in the lower bits and Q is in the upper
+>>>>>>>>>> bits of each 32-bit word, but in RFNoC, for historical reasons, I goes in
+>>>>>>>>>> the upper bits and Q in the lower bits. The software programs the IQ
+>>>>>>>>>> swapping when it sets up the graph.
+>>>>>>>>>>
+>>>>>>>>>> I assume you're using dynamic connections (through the crossbar)
+>>>>>>>>>> to control the number of FFTs the data is passed through, and not static
+>>>>>>>>>> connections? If that's the case then I wonder if software configures IQ
+>>>>>>>>>> swapping incorrectly in some configurations. I'll see if I can do some
+>>>>>>>>>> testing next week to confirm if it's working correctly.
+>>>>>>>>>>
+>>>>>>>>>> As for negation, I'm not aware of anywhere we do that off the top
+>>>>>>>>>> of my head. Is that behavior block dependent? I'll see if I can find
+>>>>>>>>>> anywhere this happens.
+>>>>>>>>>>
+>>>>>>>>>> Thanks,
+>>>>>>>>>>
+>>>>>>>>>> Wade
+>>>>>>>>>>
+>>>>>>>>>> On Thu, Dec 10, 2020 at 3:54 PM Rob Kossler via USRP-users <
+>>>>>>>>>> usrp-users@lists.ettus.com> wrote:
+>>>>>>>>>>
+>>>>>>>>>>> Hi,
+>>>>>>>>>>> I am encountering very strange behavior with a custom FPGA image
+>>>>>>>>>>> (N310). It appears that data streaming through SEPs can get swapped (I/Q)
+>>>>>>>>>>> and/or negated.  Is anyone at Ettus aware of anything that could cause
+>>>>>>>>>>> this?  Of course, the issue might be on my end, but I can't think of what
+>>>>>>>>>>> it might be given that all of my custom blocks work as expected in
+>>>>>>>>>>> isolation (if the block is the only block in graph).
+>>>>>>>>>>>
+>>>>>>>>>>> My custom image is the following:
+>>>>>>>>>>>
+>>>>>>>>>>>    - default blocks of Radios, DDCs, DUCs (each 2x2 and
+>>>>>>>>>>>    statically connected as in default image)
+>>>>>>>>>>>    - custom blocks of two 1x1 windowed-fft blocks, two 1x1
+>>>>>>>>>>>    vector-avg blocks, and one 2x2 custom block. Note: each of these blocks is
+>>>>>>>>>>>    connected to its own SEP, so I can connect dynamically in any fashion.
+>>>>>>>>>>>
+>>>>>>>>>>> My test case is transmitting 8192 random samples from host to
+>>>>>>>>>>> FFT block and then optionally through a 2nd FFT block before back to host.
+>>>>>>>>>>> In the test case, the radios/DDCs/DUCs are not used.
+>>>>>>>>>>>
+>>>>>>>>>>> Here is what I observed:
+>>>>>>>>>>>
+>>>>>>>>>>>    - If I only include 1 FFT block in my RFNoC graph, I get the
+>>>>>>>>>>>    expected results (the output from the FPGA matches what I calculate in
+>>>>>>>>>>>    Matlab for the FFT).  This is true for either of the two FFT blocks.
+>>>>>>>>>>>    - If I include both FFT blocks in series, I can only match
+>>>>>>>>>>>    the FPGA output if I swap the I/Q values in between my Matlab FFTs.
+>>>>>>>>>>>    - Note: that this issue is not FFT-related as I can also
+>>>>>>>>>>>    duplicate this issue with the other blocks.
+>>>>>>>>>>>    - If I use 3 blocks in series (each through SEP), I need to
+>>>>>>>>>>>    negate certain data in order to get it to match the FPGA output
+>>>>>>>>>>>
+>>>>>>>>>>> My next step is likely to build a new image with Ettus-developed
+>>>>>>>>>>> FIFOs to prove that the data is getting swapped/negated when 2 or more are
+>>>>>>>>>>> used in series through SEPs.
+>>>>>>>>>>>
+>>>>>>>>>>> Let me know if you have any suggestions for other things to try.
+>>>>>>>>>>>
+>>>>>>>>>>> Rob
+>>>>>>>>>>> _______________________________________________
+>>>>>>>>>>> USRP-users mailing list
+>>>>>>>>>>> USRP-users@lists.ettus.com
+>>>>>>>>>>>
+>>>>>>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>>>>>>
+>>>>>>>>>>
 
---00000000000081dfeb05b6af47ee
+--00000000000000c66405b6afd11c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Jeff,<div><br></div><div>The m_axis_data_tdata and s_ax=
-is_data_tdata signals carry the CHDR packet&#39;s data (usually SC16 sample=
-s) only. The tuser signals are for the CHDR header. For instance, the incom=
-ing CHDR packet&#39;s header is output on m_axis_data_tuser (regardless of =
-the state of SIMPLE_MODE). When SIMPLE_MODE=3D0, the header on s_axis_data_=
-tuser will be used for the outgoing CHDR packet&#39;s header. When SIMPLE_M=
-ODE=3D1, the header is handled automatically by reusing the incoming packet=
-&#39;s header. Technically, SIMPLE_MODE works by storing the incoming packe=
-t&#39;s=C2=A0header in a FIFO. That is why when using SIMPLE_MODE you must =
-produce a packet for every packet consumed, otherwise the FIFO will either =
-overflow or underflow.</div><div><br></div><div>Jonathon</div></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec 1=
-6, 2020 at 6:50 PM Hodges, Jeff &lt;<a href=3D"mailto:Jeff.Hodges@gtri.gate=
-ch.edu">Jeff.Hodges@gtri.gatech.edu</a>&gt; wrote:<br></div><blockquote cla=
+<div dir=3D"ltr"><div>It&#39;s not specific to N3xx. It can occur when you =
+use the same bitstream and change the crossbar routing between runs.</div><=
+div><br></div><div>Wade<br></div><br></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec 16, 2020 at 4:42 PM Rob Ko=
+ssler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
+">Thanks Wade,<div>That fixes it for my test case with 2 switchboards in se=
+ries.=C2=A0 I&#39;ll let you know if I see anything strange when testing wi=
+th my custom blocks.</div><div><br></div><div>By the way, does this bug onl=
+y affect N3xx devices or all RFNoC devices?</div><div>Rob</div></div><br><d=
+iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec =
+16, 2020 at 5:33 PM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" ta=
+rget=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote cla=
 ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex">
+rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Rob,</div><div><br=
+></div><div>I think I found the source of the IQ swap issue you observed. T=
+his fixes it for me:<br></div><div><br></div><div>diff --git a/host/lib/rfn=
+oc/mgmt_portal.cpp b/host/lib/rfnoc/mgmt_portal.cpp<br>index a54efaaf7..7b0=
+9c540b 100644<br>--- a/host/lib/rfnoc/mgmt_portal.cpp<br>+++ b/host/lib/rfn=
+oc/mgmt_portal.cpp<br>@@ -617,6 +617,24 @@ public:<br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0_send_recv_mgmt_transaction(xport, cfg_xact);<br=
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br><br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0//=
+ Build a management transaction to configure the destination node<br>+ =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0{<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0mgm=
+t_payload cfg_xact;<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0cfg_xact.=
+set_header(my_epid, _protover, _chdr_w);<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0_traverse_to_node(cfg_xact, dst_node_addr);<br>+ =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0mgmt_hop_t cfg_hop;<br>+ =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0// Configure buffer types<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0cfg_hop.add_op(mgmt_op_t(mgmt_op_t::MGMT_OP_CFG_WR_REQ,<br=
+>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0mgmt_op_t::cfg_pa=
+yload(REG_ISTRM_CTRL_STATUS,<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0BUILD_CTRL_STATUS_WORD(false, false, BUFF_U64, =
+BUFF_U64, false))));<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0// Retur=
+n the packet back to us<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0cfg_h=
+op.add_op(mgmt_op_t(mgmt_op_t::MGMT_OP_RETURN));<br>+ =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0// Send the transaction and receive a response.<br>+ =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0// We don&#39;t care about the con=
+tents of the response.<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0cfg_xa=
+ct.add_hop(cfg_hop);<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0_send_re=
+cv_mgmt_transaction(xport, cfg_xact);<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>=
++<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0// Wait for stream configuration to =
+finish on the HW side<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0_validate_stream=
+_setup(xport, src_node_addr, timeout);</div><div><br></div><div>Thanks,</di=
+v><div><br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Mon, Dec 14, 2020 at 8:32 PM Wade Fi=
+fe &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.fife@e=
+ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex"><div dir=3D"ltr"><div>Hi Rob,</div><div><br></div><div>I was able t=
+o reproduce the issue, so I&#39;ll see if I can get to the bottom of it. I&=
+#39;m glad you&#39;re able to work around it for now. Thanks for letting us=
+ know about it!</div><div><br></div><div>Wade<br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Dec 14, 2020=
+ at 8:59 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_b=
+lank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"><div dir=3D"ltr">Hi Wade,<div>I tried the command=C2=
+=A0to re-load the FPGA,=C2=A0but I couldn&#39;t communicate with UHD nicely=
+ until I also added the command &quot;systemctl restart ursp-uhd&quot;.=C2=
+=A0 I am now able to reset the N310 to proper behavior when it gets in this=
+ state.<div><br></div><div>Regarding this issue of real/imag swapping, do y=
+ou want me to create a support request through <a href=3D"mailto:support@et=
+tus.com" target=3D"_blank">support@ettus.com</a>?=C2=A0 Also, do you need m=
+e to provide any more info or an example program / FPGA image?=C2=A0
 
+Note that now that I know how to duplicate the issue, I believe I also know=
+ how to avoid it. So, it is probably not a critical=C2=A0issue for me prese=
+ntly.
 
+</div></div><div><br></div><div>Rob</div></div><br><div class=3D"gmail_quot=
+e"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Dec 12, 2020 at 9:47 AM Wa=
+de Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.f=
+ife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex"><div dir=3D"ltr"><div>Thanks for the updates. If you just want=
+ to reload the FPGA, try running &quot;overlay rm n310 &amp;&amp; overlay a=
+dd n310&quot; on the N310. This should simply reload the FPGA using the bis=
+tream already in the flash. <br></div><div><br></div><div>Wade<br></div></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Fri, Dec 11, 2020 at 6:45 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.=
+edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Wade,</div><div=
+>The following also fails using just 2 blocks and 2 attempts:</div><div><di=
+v>=C2=A0 host_tx =3D&gt; Switchboard#0 =3D&gt; Switchboard#1 =3D&gt; host_r=
+x=C2=A0 // SUCCESS</div><div></div></div><div><div>=C2=A0 host_tx =3D&gt; S=
+witchboard#1 =3D&gt; Switchboard#0 =3D&gt; host_rx=C2=A0 // FAILURE (RX sam=
+ples equal swapped I/Q of TX samples)</div><div><br></div><div>In addition =
+to wanting to get this issue fixed, I also have a question about the best w=
+ay to &quot;reboot&quot; the N310 which is what I need to do to fix the iss=
+ue after it occurs.=C2=A0 One way is to give the &quot;reboot now&quot; lin=
+ux command.=C2=A0 But, this takes a long time.=C2=A0 Another way is to repr=
+ogram the FPGA image via uhd_image_loader. This is appreciably faster, but =
+I&#39;m thinking that this is not a great idea if the flash memory has a li=
+mited number of write cycles before failure.=C2=A0 Is there another way to =
+achieve a reboot other than these two?</div><div>Rob</div><div><br></div><d=
+iv></div></div><div></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Fri, Dec 11, 2020 at 7:34 PM Rob Kossler &lt;<a href=3D"=
+mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">A=
+HA!=C2=A0 I duplicated the issue with the Switchboard image.=C2=A0 The way =
+to duplicate the issue is the run the following series of graphs:<div>=C2=
+=A0 host_tx =3D&gt; Switchboard#0 =3D&gt; Switchboard#1 =3D&gt; host_rx=C2=
+=A0 // SUCCESS</div><div>=C2=A0 host_tx =3D&gt; Switchboard#2 =3D&gt; Switc=
+hboard#3 =3D&gt; host_rx=C2=A0 // SUCCESS</div><div></div><div>=C2=A0 host_=
+tx =3D&gt; Switchboard#0 =3D&gt; Switchboard#2 =3D&gt; host_rx=C2=A0 // FAI=
+LURE (RX samples equal swapped I/Q of TX samples)</div><div>Each of these 3=
+ runs consists of running my application (similar to one of the examples su=
+ch as rfnoc_rx_to_file) such that the UHD object is re-created each time.=
+=C2=A0 My guess is that you could use gnuradio to do it instead.</div><div>=
+<br></div><div>My working theory is that the problem is caused by the fact =
+that the Switchboard#2 input port was changed from being connected to the h=
+ost in test case 2 to then be connected to another RFNoC block in test case=
+ 3.=C2=A0 Or, I suppose it could be the output port on this block (same log=
+ic).</div><div><br></div><div>If you want me to send you my FPGA image with=
+ the 4 Switchboard blocks, let me know.</div><div>Rob</div><div><br></div><=
+div></div><div>=C2=A0=C2=A0</div></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 11, 2020 at 7:09 PM Rob Kossle=
+r &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
+div dir=3D"ltr">Hi Wade,<div>After thinking about it a bit, I would ignore =
+the &quot;negation&quot; issue for now. This may be a byproduct of I/Q swap=
+ping related to my custom block.</div><div>Rob</div></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 11, 2020 at=
+ 6:34 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blan=
+k">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><div dir=3D"ltr">Hi Wade,<div>Thanks for the info.=C2=A0 =
+I still do not know what&#39;s going on, but here are a few updates:</div><=
+div><ul><li>I built a new N310 image with 4 switchboards (1x1) and 1 splits=
+tream=C2=A0(1x2) blocks in addition to the default blocks.=C2=A0 All of the=
+ additional blocks are connected to SEPs for dynamic linking.=C2=A0 I tried=
+ my best to get bad behavior using a chain of 1 to 4 switchboards, but I co=
+uld not duplicate any I/Q swapping or negation issues.=C2=A0</li><li>I went=
+ back to my custom image (that I described below) and found different behav=
+ior today (sometimes things worked OK).=C2=A0 So, this got me to thinking t=
+hat I am somehow getting the FPGA in a bad state such that a reboot (or FPG=
+A re-flashing) fixes things.=C2=A0 I have had some success with re-booting =
+and things working properly.=C2=A0 But, I still do not have a true handle o=
+n things and cannot adequately predict when things are going to succeed or =
+fail.</li><li>One thing that has been constant is that I have never seen ba=
+d behavior when I only have 1 block in my graph (no matter which block I ch=
+oose).=C2=A0 Note that for all of my tests, the graph looks like this: host=
+_tx =3D&gt; block_chain =3D&gt; host_rx, where block_chain is a sequential =
+chain of 1 or more rfnoc blocks.</li></ul><div>I will send a follow up once=
+ I figure things out.</div><div>Rob</div></div><div><br></div></div><br><di=
+v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 1=
+1, 2020 at 6:22 PM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" tar=
+get=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Rob,</div><div><=
+br></div><div>The SEPs do have the ability to swap I and Q. This is because=
+ on the host computer, I is usually in the lower bits and Q is in the upper=
+ bits of each 32-bit word, but in RFNoC, for historical reasons, I goes in =
+the upper bits and Q in the lower bits. The software programs the IQ swappi=
+ng when it sets up the graph. </div><div><br></div><div>I assume you&#39;re=
+ using dynamic connections (through the crossbar) to control the number of =
+FFTs the data is passed through, and not static connections? If that&#39;s =
+the case then=20
+I wonder if software configures IQ swapping incorrectly in some configurati=
+ons.
 
-
-<div dir=3D"ltr">
-<div id=3D"gmail-m_300434062891201361divtagdefaultwrapper" style=3D"font-si=
-ze:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D"l=
-tr">
-<div id=3D"gmail-m_300434062891201361divtagdefaultwrapper" dir=3D"ltr" styl=
-e=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-ser=
-if,EmojiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoC=
-olorEmoji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbol=
-s">
-<p><span id=3D"gmail-m_300434062891201361ms-rterangepaste-start"></span><sp=
-an>When=C2=A0 SIMPLE_MODE=3D0 for AXI_WRAPPER, is the header provided as th=
-e first data=C2=A0 word (or two data words if the timestamp is used) on m_a=
-xis_data_tdata?=C2=A0 It seemed redundant since it=E2=80=99s provided on m_=
-axis_data_tuser,
- but the=C2=A0 Header is shown in the waveform on Slide 22 of the RFNOC Wor=
-kshop (Part=C2=A0 2), so I wanted to clarify exactly what the data on m_axi=
-s_data_tdata=C2=A0 will be. Also, I assume that this same behavior should b=
-e mimicked on=C2=A0 s_axis_data_tdata when sending a
- packet out, but again, I wanted to=C2=A0 clarify.</span></p>
-<p><span><br>
-</span></p>
-<p><span>Thanks,</span></p>
-<p><span><br>
-</span></p>
-<p><span>Jeff</span><span id=3D"gmail-m_300434062891201361ms-rterangepaste-=
-end"></span><br>
-</p>
-</div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"gmail-m_300434062891201361divRplyFwdMsg" dir=3D"ltr"><font style=
-=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>From:=
-</b> Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.com" tar=
-get=3D"_blank">jonathon.pendlum@ettus.com</a>&gt;<br>
-<b>Sent:</b> Wednesday, December 16, 2020 12:05:58 AM<br>
-<b>To:</b> Hodges, Jeff<br>
-<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a><br>
-<b>Subject:</b> Re: [USRP-users] RFNoC passing metadata on the dataplane</f=
-ont>
-<div>=C2=A0</div>
-</div>
-<div>
-<div dir=3D"ltr">Hi Jeff,
-<div><br>
-</div>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex">
-<span style=3D"color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif;fo=
-nt-size:16px">=C2=A0Is=C2=A0 there a document describing the CHDR header fo=
-r 3.15? Looking at the=C2=A0 code, there are significant differences betwee=
-n the header format in=C2=A0 3.15 and what=E2=80=99s in the
- 4.0 spec. I think I understand it from the code, but if there=E2=80=99s a =
-doc with more detail or explanation, that would be useful.</span></blockquo=
-te>
-<div><br>
-</div>
-<div>The RFNoC3 CHDR header is described in the UHD 3.15 manual: <a href=3D=
-"https://files.ettus.com/manual_archive/v3.15.0.0/html/page_rtp.html" id=3D=
-"gmail-m_300434062891201361LPlnk166649" target=3D"_blank">
-https://files.ettus.com/manual_archive/v3.15.0.0/html/page_rtp.html</a>. Th=
-ere is a bit more detail in these slides:=C2=A0<a href=3D"https://kb.ettus.=
-com/images/f/f6/rfnoc3_workshop_slides_202008_part_2.pdf" id=3D"gmail-m_300=
-434062891201361LPlnk918472" target=3D"_blank">https://kb.ettus.com/images/f=
-/f6/rfnoc3_workshop_slides_202008_part_2.pdf</a></div>
-<div><br>
-</div>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex">
-<span style=3D"color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif;fo=
-nt-size:16px">=C2=A0Is there a maximum payload size for a CHDR data packet<=
-/span></blockquote>
-<div><br>
-</div>
-<div>Technically=C2=A0it is 64k bytes, but due to FIFO sizing in our device=
-s, you should not exceed 7992 bytes / 1998 SC16 samples.</div>
-<div><br>
-</div>
-<div>Jonathon</div>
-</div>
-<br>
-<div class=3D"gmail_quote">
-<div dir=3D"ltr" class=3D"gmail_attr">On Tue, Dec 15, 2020 at 11:18 PM Hodg=
-es, Jeff &lt;<a href=3D"mailto:Jeff.Hodges@gtri.gatech.edu" target=3D"_blan=
-k">Jeff.Hodges@gtri.gatech.edu</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex">
-<div>
-<div id=3D"gmail-m_300434062891201361gmail-m_4007353540409346430gmail-m_-76=
-85357467159058153divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt;=
-color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;A=
-pple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Sego=
-e UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols">
-<p></p>
-<div>Thanks, Jonathan, that is very helpful. Two questions using SIMPLE_MOD=
-E=3D0 and AXI wrapper:<br>
-=C2=A0<br>
-1.=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Is=C2=A0 there a document describing=
- the CHDR header for 3.15? Looking at the=C2=A0 code, there are significant=
- differences between the header format in=C2=A0 3.15 and what=E2=80=99s in =
-the 4.0 spec. I think I understand it from the code, but if there=E2=80=99s=
- a doc with more detail
- or explanation, that would be useful. <br>
-2.=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Is there a maximum payload size for =
-a CHDR data packet=C2=A0=C2=A0</div>
-<div><br>
-</div>
-<div>Jeff<br>
-</div>
-<br>
-<p></p>
-</div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"gmail-m_300434062891201361gmail-m_4007353540409346430gmail-m_-76=
-85357467159058153divRplyFwdMsg" dir=3D"ltr">
-<font style=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#00000=
-0"><b>From:</b> Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ett=
-us.com" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt;<br>
-<b>Sent:</b> Friday, December 11, 2020 4:47:57 PM<br>
-<b>To:</b> Hodges, Jeff<br>
-<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a><br>
-<b>Subject:</b> Re: [USRP-users] RFNoC passing metadata on the dataplane</f=
-ont>
-<div>=C2=A0</div>
-</div>
-<div>
-<div dir=3D"ltr">Hi Jeff,
-<div><br>
-</div>
-<div>RFNoC3 / UHD 3.15 does not support metadata. That is a new feature in =
-RFNoC4 / UHD 4.0, so option 2 is not possible.</div>
-<div><br>
-</div>
-<div>If you want to send out metadata in RFNoC3, I would suggest prepending=
- it to packets you send to AXI wrapper. You can still use SIMPLE_MODE as lo=
-ng as you are producing a packet for every packet consumed. The different i=
-nput/output packet lengths do not
- matter as AXI wrapper internally calculates the output packet length and u=
-pdates the header automatically.</div>
-<div><br>
-</div>
-<div>Jonathon</div>
-</div>
-<br>
-<div class=3D"gmail_quote">
-<div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 11, 2020 at 3:48 PM Hodge=
-s, Jeff via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex">
-<div dir=3D"ltr">
-<div id=3D"gmail-m_300434062891201361gmail-m_4007353540409346430gmail-m_-76=
-85357467159058153gmail-m_-3086681405321088638gmail-m_2884275641335174869div=
-tagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt;color:rgb(0,0,0);fon=
-t-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple Color Emoji&quo=
-t;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI Symbol&quot;,&q=
-uot;Android Emoji&quot;,EmojiSymbols">
-<p>I meant rfnoc_create_verilog.py<br>
-</p>
-<p><br>
-</p>
-<p><a href=3D"https://github.com/EttusResearch/uhd/blob/master/host/utils/r=
-fnoc_blocktool/rfnoc_create_verilog.py" id=3D"gmail-m_300434062891201361gma=
-il-m_4007353540409346430gmail-m_-7685357467159058153gmail-m_-30866814053210=
-88638gmail-m_2884275641335174869LPlnk889110" target=3D"_blank">https://gith=
-ub.com/EttusResearch/uhd/blob/master/host/utils/rfnoc_blocktool/rfnoc_creat=
-e_verilog.py</a></p>
-<p><br>
-</p>
-<p>jeff<br>
-</p>
-</div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"gmail-m_300434062891201361gmail-m_4007353540409346430gmail-m_-76=
-85357467159058153gmail-m_-3086681405321088638gmail-m_2884275641335174869div=
-RplyFwdMsg" dir=3D"ltr">
-<font style=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#00000=
-0"><b>From:</b> Hodges, Jeff<br>
-<b>Sent:</b> Friday, December 11, 2020 3:44:41 PM<br>
-<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a><br>
-<b>Subject:</b> RFNoC passing metadata on the dataplane</font>
-<div>=C2=A0</div>
-</div>
-<div>
-<div id=3D"gmail-m_300434062891201361gmail-m_4007353540409346430gmail-m_-76=
-85357467159058153gmail-m_-3086681405321088638gmail-m_2884275641335174869div=
-tagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt;color:rgb(0,0,0);fon=
-t-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple Color Emoji&quo=
-t;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI Symbol&quot;,&q=
-uot;Android Emoji&quot;,EmojiSymbols">
-<p>I&#39;d like to pass metadata over the dataplane using the available spa=
-ce in the CHDR header.=C2=A0 However, I cannot find an easy way to do this =
-using UHD3.15.</p>
-<p><br>
-</p>
-<p>I&#39;ve identified two possible approaches but I&#39;m not sure either =
-will work:<br>
-(1) Set AXI_Wrapper (Simple_Mode =3D0) to require user provided CHDR header=
-. It&#39;s unclear how to provide the header, and if this can be modified q=
-uickly.</p>
-<p>(2) Expose the AXI-Stream CHDR interface the way UHD4.0 does it:<br>
-</p>
-<p>In UHD4.0 the verilog_image_builder.py includes the options to expose HD=
-L interface:</p>
-<p></p>
-<div>o Definition: Which HDL interface to expose<br>
-o Options: =E2=80=9CAXI-Stream CHDR=E2=80=9D (axis_chdr), =E2=80=9CAXI-Stre=
-am Payload Context=E2=80=9D (axis_pyld_ctxt), or =E2=80=9CAXI-Stream Data=
-=E2=80=9D (axis_data)</div>
-<div><br>
-</div>
-<div>If Option (2) is the recommended, can I just copy the code from verilo=
-g_image_builder.py TEMPLATE such as below, or were other changes made to ma=
-ke it incompatible with 3.15?</div>
-<div><br>
-</div>
-<div>
-<div>=C2=A0%if config[&#39;data&#39;][&#39;fpga_iface&#39;] =3D=3D &quot;ax=
-is_pyld_ctxt&quot;:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0
-<br>
-</div>
-<div>assign axis_data_clk =3D ${config[&#39;data&#39;][&#39;clk_domain&#39;=
-]}_clk;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0
-<br>
-</div>
-<div>assign axis_data_rst =3D ${config[&#39;data&#39;][&#39;clk_domain&#39;=
-]}_rst;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-<br>
-=C2=A0&lt;%include file=3D&quot;/modules/axis_pyld_ctxt_modules_template.ma=
-ko&quot;/&gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </div>
-<br>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>Thanks,</div>
-<div><br>
-</div>
-<div>Jeff<br>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<br>
-<p></p>
-</div>
-</div>
-</div>
+I&#39;ll see if I can do some testing next week to confirm if it&#39;s work=
+ing correctly.</div><div><br></div><div>As for negation, I&#39;m not aware =
+of anywhere we do that off the top of my head. Is that behavior block depen=
+dent? I&#39;ll see if I can find anywhere this happens.</div><div><br></div=
+><div>Thanks,</div><div><br></div><div>Wade=C2=A0 <br></div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Dec 10,=
+ 2020 at 3:54 PM Rob Kossler via USRP-users &lt;<a href=3D"mailto:usrp-user=
+s@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
+ltr">Hi,<br><div>I am encountering very strange behavior with a custom FPGA=
+ image (N310). It appears that data streaming through SEPs can get swapped =
+(I/Q) and/or negated.=C2=A0=C2=A0Is anyone at Ettus aware of=C2=A0anything =
+that could cause this?=C2=A0 Of course, the issue might be on my end, but I=
+ can&#39;t think of what it might be given that all of my custom blocks wor=
+k as expected in isolation (if the block is the only block in graph).</div>=
+<div><br></div><div>My custom image is the following:</div><div><ul><li>def=
+ault blocks of Radios, DDCs, DUCs (each 2x2 and statically connected as in =
+default image)</li><li>custom blocks of=C2=A0two 1x1 windowed-fft blocks, t=
+wo 1x1 vector-avg blocks, and one 2x2 custom block. Note: each of these blo=
+cks is connected to its own SEP, so I can connect dynamically in any fashio=
+n.</li></ul><div>My test case is transmitting 8192 random samples from host=
+ to FFT block and then optionally through a 2nd FFT block before back to ho=
+st.=C2=A0 In the test case, the radios/DDCs/DUCs are not used.</div><div><b=
+r></div>Here is what I observed:<br><ul><li>If I only include 1 FFT block i=
+n my RFNoC graph, I get the expected results (the output from the FPGA matc=
+hes what I calculate in Matlab for the FFT).=C2=A0 This is true for either =
+of the two FFT blocks.</li><li>If I include both FFT blocks in series, I ca=
+n only match the FPGA output if I swap the I/Q values in between my Matlab =
+FFTs.</li><li>Note: that this issue is not FFT-related as I can also duplic=
+ate this issue with the other blocks.=C2=A0</li><li>If I use 3 blocks in se=
+ries (each through SEP), I need to negate certain data in order to get it t=
+o match the FPGA output</li></ul><div>My next step is likely to build a new=
+ image with Ettus-developed FIFOs to prove that the data is getting swapped=
+/negated when 2 or more are used in series through SEPs.</div></div><div><b=
+r></div><div>Let me know if you have any suggestions for other things to tr=
+y.<br></div><div><br></div><div>Rob</div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -557,22 +550,22 @@ lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
 </blockquote></div>
 
---00000000000081dfeb05b6af47ee--
+--00000000000000c66405b6afd11c--
 
 
---===============1101727379786804423==
+--===============7154008627816795871==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -583,5 +576,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1101727379786804423==--
+--===============7154008627816795871==--
 
