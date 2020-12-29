@@ -2,48 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA0B22E3547
-	for <lists+usrp-users@lfdr.de>; Mon, 28 Dec 2020 10:03:21 +0100 (CET)
-Received: from [::1] (port=39482 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3B642E6CBE
+	for <lists+usrp-users@lfdr.de>; Tue, 29 Dec 2020 01:12:20 +0100 (CET)
+Received: from [::1] (port=46380 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1ktoQw-00015Q-J3; Mon, 28 Dec 2020 04:03:18 -0500
-Received: from mail-pl1-f169.google.com ([209.85.214.169]:46690)
+	id 1ku2ca-0004qZ-V3; Mon, 28 Dec 2020 19:12:16 -0500
+Received: from mail-vk1-f180.google.com ([209.85.221.180]:33211)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <tuanmcx58@gmail.com>) id 1ktoQr-0000y8-KW
- for usrp-users@lists.ettus.com; Mon, 28 Dec 2020 04:03:13 -0500
-Received: by mail-pl1-f169.google.com with SMTP id v3so5322593plz.13
- for <usrp-users@lists.ettus.com>; Mon, 28 Dec 2020 01:02:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=7Ojk1lJkNuDk+Cv7P+imr2oPRz/rarGML/Q3FCWsT0U=;
- b=q3MsxHf99uYWihwi/mLsweilDrjMcnT5lBsxZHqz4ePMu0Y4qMUlTvS7uDQIclfFKK
- 5BCk+kKFlZshVYMvV6bZrm1Zv8FhXgTLMLkgqxut71pO3YPUflyOqhPTqHNX4Fmx4IkQ
- omz31kc7pb0MLQs+IdUc6J8L8LqHgmIzmdm/fk4mplo0H4QnbHhW2zXnsJW9Ut+Ki4IC
- ttyBjkpiwVKq/qoHTf3btkLIIgpFHbaWh+IyDFNCvmYbIcbnQswDZPU0vc2GGRkbnIPQ
- od9MHRG3pLyOSjfXKB7Dphq/0BD8hjSkqilYMS34bp0wdpkwf+PranxyPxKM3NQscDIk
- 9q1A==
+ (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1ku2cW-0004kJ-5X
+ for usrp-users@lists.ettus.com; Mon, 28 Dec 2020 19:12:12 -0500
+Received: by mail-vk1-f180.google.com with SMTP id q66so2660197vke.0
+ for <usrp-users@lists.ettus.com>; Mon, 28 Dec 2020 16:11:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=SvDIDASn7yoimHAXzYiihRFDvX8Ig2+qAsCsVg6MB+M=;
+ b=ryudgOJtWEOAJ6vuebPzYLrGg4SFQPuH4tKg+tXnJlIjHrD1R/iLSR11v1ctYH7ISQ
+ XZaGAG/wjFnQjnzswPG8KVzNCo27Shbi7Fb+XewmaRd290HStBT2CJTzPPNbMvfiFS9O
+ IYLvPdUkHRGhb9yNs0Aa0Tk/5NN1WbyUhkMAzPyo/y8JAj+h082DsVFv5bwx4ZZKP9xL
+ NlzpfzYDu+HZBwS0k4ihEnTn4lfa/qUEo8I0iiyGngtcJLWbr9NT2cgtheP1MfAqvbvC
+ IE2DsAAazG8aDEVr7Aa6hu8/mx5N68Ij4UjSKzs1SjwUTrPzzPx0YQNNqEiVPahsLqGF
+ qwBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=7Ojk1lJkNuDk+Cv7P+imr2oPRz/rarGML/Q3FCWsT0U=;
- b=QTRQjUpxoKQ39U3UP5qHgZYtADzP1I60F1V5jbZYOhm6DhjAvdw5ARpeN5JjAet4bF
- Q8qR+jDlVmPQXC78TbEp2gaSHEa3DM5h1++XZQuv/Gn0E/yJPkGMt5k4cKZKJkYp7oy3
- i7tN0lq6nrzf1ePJC93Ra88tGRUFCmPfPy4B6Odni5YJvlQssEaotD+4bWGqswCoAYSI
- Y3owOGZUdf7g1sC1/PoZpzJKbmnXRj75N1DkFKvMaLAMf9RWMrnSNNge0NaVvV2fAmCk
- X0VdG3jRz/H/aEOZbKIRQuToUT1384ydrw1fujpWKnh1BDuLBTWkjwzA/rl/PTrPj6fv
- Hfdw==
-X-Gm-Message-State: AOAM532IAIQWAHL+bst4ZwC6cgmpSniTKLNpXU4FTv3h8riCy8JzEcKv
- 65IMtCE/E3t1Fh7VCMn9n7f3slT1nXXPD33GuN3w3nfSMCJeVg==
-X-Google-Smtp-Source: ABdhPJynn58a+8fjxRu0OfL/zOjl6jYVuAk1/9M0xPyLmOq0uo9diK9NplbgxIbb+9wXJBEiqH2slPYvCZoKUrjPHmc=
-X-Received: by 2002:a17:902:7617:b029:dc:4825:e5f7 with SMTP id
- k23-20020a1709027617b02900dc4825e5f7mr23620220pll.11.1609146151661; Mon, 28
- Dec 2020 01:02:31 -0800 (PST)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=SvDIDASn7yoimHAXzYiihRFDvX8Ig2+qAsCsVg6MB+M=;
+ b=UXlLIe4AihNVrPXX9n2J+bmKUIe3P9HZw6YATmMo5mITvCULFD2wwZgzFDzhR8dGa4
+ DKkIKq67mP58FVaHlapWEyYhCaPj/5Dso7vq6qc5MZTeu4qtlKtee3WMRnxw7cQpADna
+ Th64fSDfIuJvH5ds6icJjsdMPm2HCG5hCfkzwCz4A7clD/t8kg5typJehzU8/4Muagtu
+ 2u/SIAGViM/sFannEacdiS+KmZL5Js1ESsGR5NGNT+W29pqBoZurwMhTEAWagDSayELt
+ +XhZaFOb+EUtzY63Eat6sMgenq3pyGRYhlqaGATGKLd/yagKPPDdTY3Z1Ms+6SSxbkiU
+ pusg==
+X-Gm-Message-State: AOAM530QNfki3mnZH5ZuSNBYjW8jiwtXUEn2y3Y+UcZ1hLihYUbLfkRm
+ OgmPz4zJ4FBqSEMqzeCMZQubLT0m7GTJszxkja4ZmCxzn0jHaPji
+X-Google-Smtp-Source: ABdhPJwwS79zx9h7q5QPrkQYACN+Q83nxaxzD84GSHaQGhmUqBny6afqj/QCZKeR+oBet2YVGB+1WhyZyrX5DumeyJM=
+X-Received: by 2002:a1f:9705:: with SMTP id z5mr30964507vkd.3.1609200690707;
+ Mon, 28 Dec 2020 16:11:30 -0800 (PST)
 MIME-Version: 1.0
-Date: Mon, 28 Dec 2020 18:02:20 +0900
-Message-ID: <CAJZBg9VYVf7HZ3_fukTv-Nf=_-KY1SvfzGaQnkTmDjJwqmOq1Q@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] [RFNOC::BLOCK_FACTORY] Could not find block with Noc-ID
+References: <CAJZBg9VYVf7HZ3_fukTv-Nf=_-KY1SvfzGaQnkTmDjJwqmOq1Q@mail.gmail.com>
+In-Reply-To: <CAJZBg9VYVf7HZ3_fukTv-Nf=_-KY1SvfzGaQnkTmDjJwqmOq1Q@mail.gmail.com>
+Date: Mon, 28 Dec 2020 19:10:54 -0500
+Message-ID: <CAL7q81sbfitunMPe8OOCOe9nO=0CAaitwM_UbF2oSNaWp9is3g@mail.gmail.com>
+To: =?UTF-8?B?xJDDrG5oIFR14bqlbiBIb8Ogbmc=?= <tuanmcx58@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] [RFNOC::BLOCK_FACTORY] Could not find block with
+ Noc-ID
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,10 +61,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?xJDDrG5oIFR14bqlbiBIb8OgbmcgdmlhIFVTUlAtdXNlcnM=?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?xJDDrG5oIFR14bqlbiBIb8Ogbmc=?= <tuanmcx58@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3510755574503248064=="
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Content-Type: multipart/mixed; boundary="===============0588296017018674483=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,64 +77,105 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3510755574503248064==
-Content-Type: multipart/related; boundary="000000000000c3650505b782888d"
+--===============0588296017018674483==
+Content-Type: multipart/related; boundary="0000000000008b012105b78f3bae"
 
---000000000000c3650505b782888d
-Content-Type: multipart/alternative; boundary="000000000000c3650405b782888c"
+--0000000000008b012105b78f3bae
+Content-Type: multipart/alternative; boundary="0000000000008b011f05b78f3bad"
 
---000000000000c3650405b782888c
+--0000000000008b011f05b78f3bad
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi everyone,
+Hi,
 
-I have started to learn RFNoC a couple of weeks ago, I'm following the
-guide of RFNoC 4 workshop to build RFNoC image with Gain Block. All steps
-had been done but a problem appeared after I loaded new image to USRP: *Could
-not find block with Noc-ID,*
-and I can not find new block on my device. I got the same error when
-implemented the GRC example.
-The detail as photos below. Could anyone help me with my problem? It took
-me one week but still happening.
-Thank you so much for your help!
-System: Ubuntu 18.04
-UHD version 4.0
-GRC version: 3.9
+The RFNoC block name not showing up in uhd_usrp_probe is a known issue that
+does not affect functionality. The block not being found when running a
+flowgraph in GNURadio could be due to several issues. I suggest watching
+the RFNoC 4 workshop, https://youtu.be/M9ntwQie9vs, and making sure you can
+reproduce the gain block example. Then you can build off that example with
+your own custom code.
 
-[image: image.png]
-[image: image.png]
-[image: image.png]
+Jonathon
 
---000000000000c3650405b782888c
+On Mon, Dec 28, 2020 at 4:03 AM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng via =
+USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi everyone,
+>
+> I have started to learn RFNoC a couple of weeks ago, I'm following the
+> guide of RFNoC 4 workshop to build RFNoC image with Gain Block. All steps
+> had been done but a problem appeared after I loaded new image to USRP: *C=
+ould
+> not find block with Noc-ID,*
+> and I can not find new block on my device. I got the same error when
+> implemented the GRC example.
+> The detail as photos below. Could anyone help me with my problem? It took
+> me one week but still happening.
+> Thank you so much for your help!
+> System: Ubuntu 18.04
+> UHD version 4.0
+> GRC version: 3.9
+>
+> [image: image.png]
+> [image: image.png]
+> [image: image.png]
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000008b011f05b78f3bad
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi everyone,<div><br></div><div>I have started to learn <s=
-pan class=3D"" id=3D":1dr.1" tabindex=3D"-1" style=3D"">RFNoC</span> a coup=
-le of weeks ago, I&#39;m following the guide of <span class=3D"" id=3D":1dr=
-.2" tabindex=3D"-1" style=3D"">RFNoC</span> 4 workshop to build <span class=
-=3D"" id=3D":1dr.3" tabindex=3D"-1" style=3D"">RFNoC</span> image with Gain=
- Block. All steps had been done but a problem appeared=C2=A0after I loaded =
-new image to <span class=3D"" id=3D":1dr.4" tabindex=3D"-1" style=3D"">USRP=
-</span>:=C2=A0<i style=3D"font-weight:bold">Could not find block with <span=
- class=3D"" id=3D":1dr.5" tabindex=3D"-1" style=3D"">Noc</span>-ID,</i></di=
-v><div>and I can not find new block on my device. I got the same error when=
- implemented the <span class=3D"" id=3D":1dr.6" tabindex=3D"-1" style=3D"">=
-GRC</span> example.</div><div>The detail as photos below. Could anyone help=
- me with my problem? It took me one week but still happening.</div><div>Tha=
-nk you so much for your help!</div><div>System: <span class=3D"" id=3D":1dr=
-.7" tabindex=3D"-1" style=3D"">Ubuntu</span> 18.04</div><div><span class=3D=
-"" id=3D":1dr.8" tabindex=3D"-1" style=3D"">UHD</span> version 4.0</div><di=
-v><span class=3D"" id=3D":1dr.9" tabindex=3D"-1" style=3D"">GRC</span> vers=
-ion: 3.9</div><div><br></div><div><img src=3D"cid:ii_kj8btx2f0" alt=3D"imag=
-e.png" width=3D"420" height=3D"154" style=3D"margin-right: 0px;"><br></div>=
-<div><img src=3D"cid:ii_kj8bvhxv1" alt=3D"image.png" width=3D"442" height=
-=3D"239" style=3D"margin-right: 0px;"><br></div><div><img src=3D"cid:ii_kj8=
-bzfsg2" alt=3D"image.png" width=3D"442" height=3D"221" style=3D"margin-righ=
-t: 0px;"><br></div></div>
+<div dir=3D"ltr">Hi,<div><br></div><div>The RFNoC block name not showing up=
+ in uhd_usrp_probe is a known issue that does not affect functionality. The=
+ block not being found when running a flowgraph in GNURadio could be due to=
+ several issues. I suggest watching the RFNoC 4 workshop, <a href=3D"https:=
+//youtu.be/M9ntwQie9vs">https://youtu.be/M9ntwQie9vs</a>, and making sure y=
+ou can reproduce the gain block example. Then you can build off that exampl=
+e with your own custom code.</div><div><br></div><div>Jonathon</div></div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon,=
+ Dec 28, 2020 at 4:03 AM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng via USRP-us=
+ers &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettu=
+s.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><div dir=3D"ltr">Hi everyone,<div><br></div><div>I have started to lea=
+rn <span id=3D"gmail-m_2337630032008233491:1dr.1">RFNoC</span> a couple of =
+weeks ago, I&#39;m following the guide of <span id=3D"gmail-m_2337630032008=
+233491:1dr.2">RFNoC</span> 4 workshop to build <span id=3D"gmail-m_23376300=
+32008233491:1dr.3">RFNoC</span> image with Gain Block. All steps had been d=
+one but a problem appeared=C2=A0after I loaded new image to <span id=3D"gma=
+il-m_2337630032008233491:1dr.4">USRP</span>:=C2=A0<i style=3D"font-weight:b=
+old">Could not find block with <span id=3D"gmail-m_2337630032008233491:1dr.=
+5">Noc</span>-ID,</i></div><div>and I can not find new block on my device. =
+I got the same error when implemented the <span id=3D"gmail-m_2337630032008=
+233491:1dr.6">GRC</span> example.</div><div>The detail as photos below. Cou=
+ld anyone help me with my problem? It took me one week but still happening.=
+</div><div>Thank you so much for your help!</div><div>System: <span id=3D"g=
+mail-m_2337630032008233491:1dr.7">Ubuntu</span> 18.04</div><div><span id=3D=
+"gmail-m_2337630032008233491:1dr.8">UHD</span> version 4.0</div><div><span =
+id=3D"gmail-m_2337630032008233491:1dr.9">GRC</span> version: 3.9</div><div>=
+<br></div><div><img src=3D"cid:ii_kj8btx2f0" alt=3D"image.png" width=3D"420=
+" height=3D"154" style=3D"margin-right: 0px;"><br></div><div><img src=3D"ci=
+d:ii_kj8bvhxv1" alt=3D"image.png" width=3D"442" height=3D"239" style=3D"mar=
+gin-right: 0px;"><br></div><div><img src=3D"cid:ii_kj8bzfsg2" alt=3D"image.=
+png" width=3D"442" height=3D"221" style=3D"margin-right: 0px;"><br></div></=
+div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---000000000000c3650405b782888c--
---000000000000c3650505b782888d
+--0000000000008b011f05b78f3bad--
+--0000000000008b012105b78f3bae
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -1067,7 +1113,7 @@ YajyGXmUYaNSQ7KiJHvs1Rqro76Fnq6aMWwkoRwuB5IeEhXIJE+H0jOEqJRRhwRUxEEPH4DkxoL7
 YIizIq4ohoQewVYytWSIaxiieSiCODKd0aJDyHCIK4ohoUcQCyErYn4pBvFYRyYNYo+SsZCi0kgk
 4qnFJJMAybYQKcdCMjAE5J4oEI8sBlGT88zpMoKhjxrioBhoAZGuprQFBEpLLFl3jszn6xZLBnmK
 HAwttKSBlbrQwuj/AYykgd6t4qmqAAAAAElFTkSuQmCC
---000000000000c3650505b782888d
+--0000000000008b012105b78f3bae
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -2070,7 +2116,7 @@ Q0YZmZyGjH4FaYzzEKPSlCFjjEtjpwwZO7U3yWXIWLr0xlgXZRo37Q2jkusb4/7QNH76G71Ibm+M
 q+0C49LCv9r2LS36q21PSbDorz2kCMbEWKajOi1jTg5RFGEIFumkEIbAuGQTwtBIoQybvqUwhk0v
 Ez+MwQ9j9j0tZvJ7Tib8xQZSuAm/b2mJCV+ZTPlLepMiTHm9S2a8/w+LNp0htg8/2QAAAABJRU5E
 rkJggg==
---000000000000c3650505b782888d
+--0000000000008b012105b78f3bae
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -5973,10 +6019,10 @@ j6MZGYT3cYwWQgACEIDAfhaQnbXjLwgIQAACEIAABCAAAQjstAAmojstjPIhsD8EEB/v50hif9yj
 6AUEIACB/S2AWfv+Hl/0DgIQgAAEIAABCMSsACaiMTs0aBgEYkoA8THiYwhAAAIQgEA0BTBrj6mJ
 ERoDAQhAAAIQgAAEDo4AJqIHZ6zRUwhsRwDxcTQjg+2MHF4LAQhAAAL7QwCz9v0xjugFBCAAAQhA
 AAIQ2HMCmIjuuSFDgyEQFYH/BwOFr51kLCeeAAAAAElFTkSuQmCC
---000000000000c3650505b782888d--
+--0000000000008b012105b78f3bae--
 
 
---===============3510755574503248064==
+--===============0588296017018674483==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -5987,5 +6033,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3510755574503248064==--
+--===============0588296017018674483==--
 
