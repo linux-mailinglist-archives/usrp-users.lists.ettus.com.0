@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 113AF2E7758
-	for <lists+usrp-users@lfdr.de>; Wed, 30 Dec 2020 10:15:25 +0100 (CET)
-Received: from [::1] (port=33866 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 065442E78B1
+	for <lists+usrp-users@lfdr.de>; Wed, 30 Dec 2020 13:55:16 +0100 (CET)
+Received: from [::1] (port=35046 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kuXZh-0001Jt-A3; Wed, 30 Dec 2020 04:15:21 -0500
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:45763)
+	id 1kub0S-0007xc-04; Wed, 30 Dec 2020 07:55:12 -0500
+Received: from mail-ej1-f47.google.com ([209.85.218.47]:37517)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <jarroyo@gradiant.org>)
- id 1kuXZd-0001EV-O0
- for usrp-users@lists.ettus.com; Wed, 30 Dec 2020 04:15:17 -0500
-Received: by mail-ot1-f54.google.com with SMTP id n42so14892784ota.12
- for <usrp-users@lists.ettus.com>; Wed, 30 Dec 2020 01:14:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gradiant-org.20150623.gappssmtp.com; s=20150623;
+ (Exim 4.93) (envelope-from <ejkreinar@gmail.com>) id 1kub0O-0007u8-ET
+ for usrp-users@lists.ettus.com; Wed, 30 Dec 2020 07:55:08 -0500
+Received: by mail-ej1-f47.google.com with SMTP id ga15so21795960ejb.4
+ for <usrp-users@lists.ettus.com>; Wed, 30 Dec 2020 04:54:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=uCD5DnIElw9ZTNNewcRTgVeYidRRczuAZ1pJChp7v4o=;
- b=qjIs1kjuW4zn9zciS7L/I3QOa9xj3lOj6xqshRu1FUeeIV8Mf440UnA5jMnzryvzFF
- EeabvPMkBJtaH9/5soR18JscuoG69Vz/WlWxB6qq5G02e9QaMS8t/UmWmgZdvMhy27m9
- 65KFsqV/Of29hxUjHc6mivkg5WTuY6m4Bv6uVoFGniiBvlTfr1b/UOUUAjjp+iFlvw21
- 9MtP6eKo92OQfKdXifCzmVppegFfv9XrLcmbwgSHp5IKmocyg0cSHQKcn1Qki94G1ZJz
- z4yZgRc+9HFppQMFiIMJxfWn083oXW6d203NYm6+eHdMFV6dinxYHJfFnWlWwMZxElP7
- tlQw==
+ :cc; bh=1gocF8Oc94/Icc9O2E1GllIBbwrg0t6YCNsqiqFU9sA=;
+ b=h75fQG6sRCqCGWyHDFPGlWzqYa5FZXXGLlxQjUgE3AS4QzC1DS0NZSDE2Iqx0Bj8MZ
+ +e07ooMASUC73Y0fCOn1q6+bveapHqx1DDIusR5w7gy/FNaFRQWvgLZ1TTIFegE3QouD
+ ywP/T5Ab+cTwGJKm6d0RKVyrHB80dPubfZEDLyW/qvDYWCpg+JtpQHWSPxb1x64uwzOW
+ M1QtmgzIEF5FjHE7GufBIaD6Og3244cBetjv/Yu7AFPQfj2Cr883GY8z6/U7oN0AkvOu
+ tt52vDnZ5WbBwfnyN5v+FgvFXZsRs+Ni5NHaTpVd9ba1YKkqjuhixj+Ni0oqQa4cgdAw
+ ASMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=uCD5DnIElw9ZTNNewcRTgVeYidRRczuAZ1pJChp7v4o=;
- b=rn1WBePHBA6V8G/pnk+Gr1yMdqlpEwh7eBSXfu2gHeICjTXZ8RhETMvGK9gD9JlMpa
- CmZwvDlaGsnd367Xc/0wx3pV/KdcIqg3G+eFyuXh3oPerWeJ8wezU+jpGTJzW0aG2rdN
- FElwoOx/zrjdvRPM+LrS8dTw8scj7EiF0mzRB0MOZ3mJb7KErmTzb0ZDYpz/mhqXy2Se
- 1lrUoZQwr+KMKE3o3I4yvlFS6K3iR6EV5ihQezJRGnsbyV0LY7m2I4dVzUoUMpdG0TiL
- FyuVovOsbttSKg+eO9vPma0ui7tqpQDsbtq5Q3dPqIqsAqNkzeMNuiHWAYJN/mdwTsRT
- LPMQ==
-X-Gm-Message-State: AOAM5333jyG3Kepqyx9oTt77uf1Xp2bDQ6da8dTiSxZwdpbtSdVZm4zK
- s3LqeQxWjXfL9uc3rXaI9WO+E0KPEhqgw5FHNG/WhA==
-X-Google-Smtp-Source: ABdhPJx5AuvMihHYyusOXKJ/J9bKtm8limD/xDhu56r3tqeMzC6OQXEKxtYfazF+HzK7nj3wLxlluqvmAI/GWpc9CyA=
-X-Received: by 2002:a9d:38e:: with SMTP id f14mr38433150otf.201.1609319676768; 
- Wed, 30 Dec 2020 01:14:36 -0800 (PST)
+ bh=1gocF8Oc94/Icc9O2E1GllIBbwrg0t6YCNsqiqFU9sA=;
+ b=j9ZwbLDvV9cac6xy3UWOxGwBWjsnH1ERPY8UZObc4HoZhRx7oZLHlrbbQnPKAJFhVv
+ tBC1OcHlwplGno/TGqyFcF9tVhgDWvtz4eRllDPtBLUEf28r5LjZknPwYEd8XYr3bzGI
+ ggBW2BBMroKjqljHZV/3T3CUeZa6W43eh6zl4asK4c1goDkwCOLSExwJTs1reewTwXn/
+ jhcSAgDN1mfZo9yv8kSdjkpUAMdelXiOqUdo1vILGkJzmylPWGijrcaae/y5C8VGxXba
+ FwFsf+1i+RR6s87lyDYU+GWH19k74mjCCF3yM4pmAmLAnGxxBkoSnNNBQ/xgAJZ0cAgs
+ 4S0Q==
+X-Gm-Message-State: AOAM5303OOyZQ6Kjmfxuk6yt+cGV9Zbi+HkEdJS/P0fjFY7bzwckZ9ET
+ EBRphS4eV1Xmo8hbgF7N5i0OEpLIRT1gp3E1oJo=
+X-Google-Smtp-Source: ABdhPJwJIB7AZ2sNCFlGek5GGX2UoTpf9rOWgjYynImYfTfWHWRI2z1fZvWo8oz848CqYixHkmIyzEjUYukBO/4Tf30=
+X-Received: by 2002:a17:906:a8f:: with SMTP id
+ y15mr29411917ejf.552.1609332867298; 
+ Wed, 30 Dec 2020 04:54:27 -0800 (PST)
 MIME-Version: 1.0
 References: <CAOx6OK2N87J_kyjYyY3MHY7ymO7Cy0LkeHUsAeB4gzTa4RUA4w@mail.gmail.com>
  <CA+JMMq-kEjipOzh793JnvWk-ri+JtGfgN4PRPyPADCMRwD5xSg@mail.gmail.com>
-In-Reply-To: <CA+JMMq-kEjipOzh793JnvWk-ri+JtGfgN4PRPyPADCMRwD5xSg@mail.gmail.com>
-Date: Wed, 30 Dec 2020 10:14:20 +0100
-Message-ID: <CAOx6OK0dbsXCmrbrJ8uNEUk2P5GAgoPrT5wqRnKeN-ZU4t7qzQ@mail.gmail.com>
-To: Nick Foster <bistromath@gmail.com>, usrp-users@lists.ettus.com
+ <CAOx6OK0dbsXCmrbrJ8uNEUk2P5GAgoPrT5wqRnKeN-ZU4t7qzQ@mail.gmail.com>
+In-Reply-To: <CAOx6OK0dbsXCmrbrJ8uNEUk2P5GAgoPrT5wqRnKeN-ZU4t7qzQ@mail.gmail.com>
+Date: Wed, 30 Dec 2020 07:54:14 -0500
+Message-ID: <CADRnH20e6NCMXx+gyqbxW8te8-0dfqOQeeua-X3R8HWbOr_dEA@mail.gmail.com>
+To: Jorge Arroyo Giganto <jarroyo@gradiant.org>
 Subject: Re: [USRP-users] DMA FIFO latency with X310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -60,9 +60,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jorge Arroyo Giganto via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jorge Arroyo Giganto <jarroyo@gradiant.org>
-Content-Type: multipart/mixed; boundary="===============3981346914810373142=="
+From: EJ Kreinar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: EJ Kreinar <ejkreinar@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8463524821015946659=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,47 +77,111 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3981346914810373142==
-Content-Type: multipart/alternative; boundary="000000000000aa08c505b7aaef6e"
+--===============8463524821015946659==
+Content-Type: multipart/alternative; boundary="000000000000e178e005b7ae01d1"
 
---000000000000aa08c505b7aaef6e
+--000000000000e178e005b7ae01d1
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Nick,
+Can you replace the DMA FIFO with a normal FIFO? The DMA FIFO is mostly
+used for continuous streaming-- it provides a data buffer using off-chip
+DRAM that smooths out any burstiness in the ethernet interface so there's
+no overflows/underruns-- but it should not be needed for your application.
 
-I am running the X310 interface at 1Gbit using the SFP Adapter that came
-with the X310.
+You might try the following rfnoc graph: Host -> FFT -> FIFO -> Host
 
-At first I fowollowed the advice from Ettus USRP Manual
-<https://files.ettus.com/manual/page_usrp_x3x0_config.html#x3x0cfg_hostpc_netcfg_mtu>
-of setting the MTU to 1500 and <send/recv>_frame_size=1472 when running at
-1Gbit, however I actually got better results in terms of latency setting
-the MTU to 9000 and <send/recv>_frame_size=8000. I also tried using other
-intermediate and smaller values but the results didn't get any better.
+With that graph you'll be able to directly observe the latency presented to
+the FFT block by the ethernet transport only. Using a 1G interface for a
+packet of 8192 bytes gives a theoretical best one way latency of 65 us...
+It is a long way from 200 us-- but already higher than the FFT compute
+time.
+
+Finally, I will add... in my opinion using rfnoc explicitly as a
+network-attached coprocessor is probably not an ideal use case. I will
+often set up loopback tests like you are doing here, but mostly this is to
+validate custom compute blocks and I don't care about latency. Afterwards I
+will embed the blocks into stream processing that's attached directly to a
+radio.
 
 Best regards,
+EJ
 
-Jorge
+On Wed, Dec 30, 2020, 4:15 AM Jorge Arroyo Giganto via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
---000000000000aa08c505b7aaef6e
+> Hi Nick,
+>
+> I am running the X310 interface at 1Gbit using the SFP Adapter that came
+> with the X310.
+>
+> At first I fowollowed the advice from Ettus USRP Manual
+> <https://files.ettus.com/manual/page_usrp_x3x0_config.html#x3x0cfg_hostpc_netcfg_mtu>
+> of setting the MTU to 1500 and <send/recv>_frame_size=1472 when running at
+> 1Gbit, however I actually got better results in terms of latency setting
+> the MTU to 9000 and <send/recv>_frame_size=8000. I also tried using other
+> intermediate and smaller values but the results didn't get any better.
+>
+> Best regards,
+>
+> Jorge
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000e178e005b7ae01d1
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Nick,</div><div><br></div><div>I am running the X3=
-10 interface at 1Gbit using the SFP Adapter that came with the X310. <br></=
-div><div><br></div><div>At first I fowollowed the advice from <a href=3D"ht=
-tps://files.ettus.com/manual/page_usrp_x3x0_config.html#x3x0cfg_hostpc_netc=
-fg_mtu">Ettus USRP Manual</a> of setting the MTU to 1500 and &lt;send/recv&=
-gt;_frame_size=3D1472 when running at 1Gbit, however I actually got better =
-results in terms of latency setting the MTU to 9000 and &lt;send/recv&gt;_f=
-rame_size=3D8000. I also tried using other intermediate and smaller values =
-but the results didn&#39;t get any better.</div><div><br></div><div>Best re=
-gards,</div><div><br></div><div>Jorge<br></div></div>
+<div dir=3D"auto"><div dir=3D"auto"><div dir=3D"auto">Can you replace the D=
+MA FIFO with a normal FIFO?=C2=A0<span style=3D"font-family:sans-serif">The=
+ DMA FIFO is mostly used for continuous streaming-- it provides a data buff=
+er using off-chip DRAM that smooths out any burstiness in the ethernet inte=
+rface so there&#39;s no overflows/underruns-- but it should not be needed f=
+or your application.</span><br></div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">You might try the following rfnoc graph: Host -&gt; FFT -&gt; FIF=
+O -&gt; Host<div dir=3D"auto"><br></div><div dir=3D"auto">With that graph y=
+ou&#39;ll be able to directly observe the latency presented to the FFT bloc=
+k by the ethernet transport only. Using a 1G interface for a packet of 8192=
+ bytes gives a theoretical best one way latency of 65 us... It is a long wa=
+y from 200 us-- but already higher than the FFT compute time.=C2=A0</div><d=
+iv dir=3D"auto"><br></div><div dir=3D"auto">Finally, I will add... in my op=
+inion using rfnoc explicitly as a network-attached coprocessor is probably =
+not an ideal use case. I will often set up loopback tests like you are doin=
+g here, but mostly this is to validate custom compute blocks and I don&#39;=
+t care about latency. Afterwards I will embed the blocks into stream proces=
+sing that&#39;s attached directly to a radio.=C2=A0</div></div></div><div d=
+ir=3D"auto"><br></div><div dir=3D"auto">Best regards,</div>EJ<div dir=3D"au=
+to"><br><div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Wed, Dec 30, 2020, 4:15 AM Jorge Arroyo Giganto via USRP-user=
+s &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" rel=
+=3D"noreferrer">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc s=
+olid;padding-left:1ex"><div dir=3D"ltr"><div>Hi Nick,</div><div><br></div><=
+div>I am running the X310 interface at 1Gbit using the SFP Adapter that cam=
+e with the X310. <br></div><div><br></div><div>At first I fowollowed the ad=
+vice from <a href=3D"https://files.ettus.com/manual/page_usrp_x3x0_config.h=
+tml#x3x0cfg_hostpc_netcfg_mtu" rel=3D"noreferrer noreferrer" target=3D"_bla=
+nk">Ettus USRP Manual</a> of setting the MTU to 1500 and &lt;send/recv&gt;_=
+frame_size=3D1472 when running at 1Gbit, however I actually got better resu=
+lts in terms of latency setting the MTU to 9000 and &lt;send/recv&gt;_frame=
+_size=3D8000. I also tried using other intermediate and smaller values but =
+the results didn&#39;t get any better.</div><div><br></div><div>Best regard=
+s,</div><div><br></div><div>Jorge<br></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" rel=3D"noreferrer noreferrer"=
+ target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">http://lists=
+.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div></div>
 
---000000000000aa08c505b7aaef6e--
+--000000000000e178e005b7ae01d1--
 
 
---===============3981346914810373142==
+--===============8463524821015946659==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,5 +192,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3981346914810373142==--
+--===============8463524821015946659==--
 
