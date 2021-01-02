@@ -2,49 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BB032E8802
-	for <lists+usrp-users@lfdr.de>; Sat,  2 Jan 2021 17:08:19 +0100 (CET)
-Received: from [::1] (port=48968 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2EB12E8872
+	for <lists+usrp-users@lfdr.de>; Sat,  2 Jan 2021 21:18:55 +0100 (CET)
+Received: from [::1] (port=50676 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kvjRu-0000kS-NE; Sat, 02 Jan 2021 11:08:14 -0500
-Received: from mail-pj1-f51.google.com ([209.85.216.51]:34921)
+	id 1kvnMS-0006gR-69; Sat, 02 Jan 2021 15:18:52 -0500
+Received: from mail-qk1-f172.google.com ([209.85.222.172]:34256)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <tuanmcx58@gmail.com>) id 1kvjRr-0000ft-78
- for usrp-users@lists.ettus.com; Sat, 02 Jan 2021 11:08:11 -0500
-Received: by mail-pj1-f51.google.com with SMTP id b5so7839204pjl.0
- for <usrp-users@lists.ettus.com>; Sat, 02 Jan 2021 08:07:51 -0800 (PST)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kvnMO-0006aM-1r
+ for usrp-users@lists.ettus.com; Sat, 02 Jan 2021 15:18:48 -0500
+Received: by mail-qk1-f172.google.com with SMTP id c7so20328794qke.1
+ for <usrp-users@lists.ettus.com>; Sat, 02 Jan 2021 12:18:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=2ib7iJZY2ZbQZw/mD4yjx7Zna7ybzsHtoCmkEB/C4GE=;
- b=rPQ8g9/MoFhhRUh0OccmHHemo6FGVI2nNk9bPL8OIcePQnr3qPekQfmIrCpLurRhVb
- 6Xx1XmXcLaMM0pU94LTzEkR+0w0+Zm7fC82e85KyU5FQxkd6bHGfTtl+3d51bF4KhUVR
- 1cUNYCmSEczZjTRwDQ4EmovvJR6CDfYIYEWY/KivzCy58Ai45O5ZPn84UrgmXM/x0F9N
- W49rg4qlTalwXT73hUYwgzOx2iQ9s6sMzJGBreSDIbNFtScuVfuSyy+GffLAILkEcINY
- Gf5H4zBxO4hmnwUPURSxbFzx0HoX3oJxJCA7+xBE5UaKiq7fJzHLPybsC0CMuvXxfwJD
- CVCQ==
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to:content-transfer-encoding;
+ bh=ZLgH309mSCN+unwYKpANuAhJfcNmfI6eM5k8i0L7u6g=;
+ b=sp/UE2aclodXfICn6Nkv/t3mXObs9Voqu9bRmw9RLUjitEokGc2tcr9qnAeqK0WEIL
+ 58ev/l7NWT9pag/5jRNGAycCuvWZITEauBJBGE/jKuisMBh4YdT6QYrZqnEAN3cpk6ro
+ gbH8BdGyCZp3vunYFGD/cZdeHv6VUCOdrNH6YgZLTVZa7BfLE38FQ5SF3yorOKWMELdt
+ ejDHGEfZNONBd+kM1qkv4/rc8BJWgwtuo8qIGss9JwZMrYuTrrVtiC6Nk4mhC18guR2m
+ bg2tA5+uuKur7W7gwAMj82UEetDOznZwRXYWhnz1HkcOHAbdTCTDegBTPFl25uHMW9Ld
+ aWmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=2ib7iJZY2ZbQZw/mD4yjx7Zna7ybzsHtoCmkEB/C4GE=;
- b=V4J6emUnWPz0RsDtjjtHjb3FZrg7GiKlFhR+4uYIgBW8IlmXddt8qLTm8BYob/t0vi
- cVkjI35RlMMZg8klmz2JVfSC70Mf+4PMcGVbk+VSvPv3MRHdueSXBJWwNTtB9T7fk47U
- hqh0a9k/L41scBLZx2yzPjYFg/pZT3c6FI70tIgQMqFTr7jcwrmcudpSAV8MEDqY88Fe
- H4a12uAQ3G0uO7b+99WbWTw8DzEHtv+VqpW4Ani7u0CpYXVpFXmPrmit41FJIUde4HIS
- moP9XY2SMKDA99G2UCNxvkRIDbnEKdsKtcO458j13GnM1Z9HcoxfYkkNHSsKweOLBr59
- YkFQ==
-X-Gm-Message-State: AOAM531ke3lf5y4IGiJvOmK1KRlL0kaNxfjQ+zCztxDbi91AnWb80XeN
- 5RoLcn+wMEuK3ol/T9ECfiHyRorr0giXLtepgKTPdc20LSK2Rg==
-X-Google-Smtp-Source: ABdhPJwRWZjMrUQy3Z/VQW9WBw7ajtUpoR5MmFExYLK+/3w/wPkt63mxcQAkjR51NpQ1//ZR0MaJQZtuM35ZDd+BKNc=
-X-Received: by 2002:a17:902:7617:b029:dc:4825:e5f7 with SMTP id
- k23-20020a1709027617b02900dc4825e5f7mr45382784pll.11.1609603649895; Sat, 02
- Jan 2021 08:07:29 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to:content-transfer-encoding;
+ bh=ZLgH309mSCN+unwYKpANuAhJfcNmfI6eM5k8i0L7u6g=;
+ b=tRBPE1uQQxjkrXgVZ8tnNvKV2b/SlcLZUKKtK1Q5CuHN1/AkTQcEEV4ks9IA8UqgPA
+ eB0yATrnYxo4df8A2Q2kHflN1bdZou9/fyXtoZBrt1gI5Sfu65dB1kY8g6rj85/v76sn
+ R2d4fuVHp0EUxQdOxyTk7JQ5VCSt/o2fGCa3prgz41iPaV0s5JleG0pMjovtNyeF1saM
+ xS9P4QhQGivKu6y9SBPI4x52u4aQY5CMt78JL+WRvBEwsslqXChEPIFs28XcduLsYtuP
+ 9kDfR7S59L0tu/WRkPGGEANbnCjSqRKd6XTfO0GdJSZUrew6LK6Wr10eoOo9pg1eud/R
+ vjOw==
+X-Gm-Message-State: AOAM53392XAJ+KvIZNTjwu0b4HZinZlGvPcahqO17OL91p49bAzejLc/
+ MEQGb2cXdQtiJxRFpc9SMb9ivWeZkg0=
+X-Google-Smtp-Source: ABdhPJwnH3QKsAtNUayaM+4qez82ydtFI8PWhsI9hGGE3KHXnurVilEWFXJjHUfqRJ9UOjoKNgz2fw==
+X-Received: by 2002:a05:620a:2047:: with SMTP id
+ d7mr64512269qka.255.1609618687234; 
+ Sat, 02 Jan 2021 12:18:07 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id 8sm35201550qkr.28.2021.01.02.12.18.06
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Sat, 02 Jan 2021 12:18:06 -0800 (PST)
+Message-ID: <5FF0D4FE.9030307@gmail.com>
+Date: Sat, 02 Jan 2021 15:18:06 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Date: Sun, 3 Jan 2021 01:07:18 +0900
-Message-ID: <CAJZBg9V6tMcxQgt59pjDgvRBromYXOY_Z063_MX9SdHQbHek9A@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] How to build RFNoC blocks in /lib/rfnoc/blocks
- directory?
+To: usrp-users@lists.ettus.com
+References: <CACDReSzhpEEKSn4hu-uwkrAFjQQ2Gu-17XZ+FFB7weFzH=nR4A@mail.gmail.com>
+In-Reply-To: <CACDReSzhpEEKSn4hu-uwkrAFjQQ2Gu-17XZ+FFB7weFzH=nR4A@mail.gmail.com>
+Subject: Re: [USRP-users] Hacking E310 units for synchronization
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -56,10 +68,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?xJDDrG5oIFR14bqlbiBIb8OgbmcgdmlhIFVTUlAtdXNlcnM=?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?xJDDrG5oIFR14bqlbiBIb8Ogbmc=?= <tuanmcx58@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6354055649172640798=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,66 +85,75 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6354055649172640798==
-Content-Type: multipart/alternative; boundary="000000000000c8014b05b7ed0db7"
+On 01/02/2021 02:44 AM, Ofer Saferman via USRP-users wrote:
+> Hello,
+>
+> I must say that I am a bit frustrated.
+> When I purchased multiple E310 units it was with the hope I will be 
+> able to synchronize them mainly based on: 
+> https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices, 
+> it shows the E310 as MIMO capable and having a reference clock input.
+> Of course, now I know that not to be true. At least the reference 
+> clock part. It seems that the MIMO part might be incorrect as well.
+>
+> If I hack the clock and patch an external clock connector to be used 
+> instead of the internal TCXO will I be able, using existing UHD 
+> software and firmware, to synchronize multiple E310 units?
+>
+> I will be able to provide a common clock to multiple units and I will 
+> be able to provide a 1-PPS signal through the SYNC pins of multiple 
+> units that is generated from the same common clock.
+> I need these E310 to transmit and have their base-band samples 
+> perfectly time aligned.
+>
+> How is multi-chip synchronization of the AD9361 devices being done by 
+> UHD? By using the SYNC pin and setting 
+> usrp->set_time_source("external")? Is it enough? Do I need to handle 
+> it on my own? How?
+>
+> I figured the internal TCXO frequency of E310 is 40 MHz. Can I provide 
+> an external clock of different frequency? Maybe 10 MHz? Or does it 
+> require a major change in software or firmware?
+>
+> Does anybody have a different idea how to get E310 units synchronized 
+> at sample level without voiding the warranty and hacking an external 
+> clock?
+>
+> Please help.
+>
+> Regards,
+> Ofer Saferman
+>
+>
+The E310 was never designed for multi-unit MIMO, although it does 2x2 
+MIMO just fine, and there are plenty of folks using it for that,
+   including stacks for various wireless protocols.  The AD9361 
+inherently supports 2x2 MIMO due to the shared LO architecture between
+   the two TX and two RX channels.
 
---000000000000c8014b05b7ed0db7
-Content-Type: text/plain; charset="UTF-8"
+The AD9361 SYNC_IN pin does get tied to the Zynq FPGA, but the UHD 
+code-base doesn't use it.    I'll note that for most telecom-type
+   MIMO implementations, zero-phase-offset is NOT a requirement, just 
+ongoing phase coherence.
 
-Hi everyone,
+Similarly the B2xx series does 2x2 MIMO just fine, but it was never 
+designed for multi-unit MIMO, although due to the clocking architecture,
+   the B2xx could likely (no guarantees) be made to do a multi-unit MIMO 
+implementation.
 
-I'm learning RFNoC with UHD 4.0 and GRC 3.8. I have a question about how to
-build RFNoC blocks in /lib/rfnoc/blocks directory?
+The SYNC input connector on the E310 is designed to:
 
-For example, with window block, by doing the following steps:
-+ Using rfnocmodtool to create test module with window block.
-+ Copy yml file and fpga files from window lib directory to test directory.
-+ Run cmake, testbench, make install command.
+   (A) Provide a higher longer-term quality than the on-board clock.
+   (B) Allow for TDM synchronization on system deployments where that is 
+important.
 
-although the window block has been built successfully, its GRC block
-appeared with only one user_register like gain example block.
-The gr_ettus has been installed but no GRC block for window block or some
-others.
-So how I can build the blocks in the lib directory with full register and
-parameters?
-I can not find any guiding document about that thing, hope that it will be
-supported in the near future.
-
-Thank you!
-Tuan
-
---000000000000c8014b05b7ed0db7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi everyone,<div><br></div><div>I&#39;m learning RFNoC wit=
-h UHD 4.0 and GRC 3.8. I have a question about how to build RFNoC blocks in=
-=C2=A0/lib/rfnoc/blocks directory?=C2=A0</div><div><br></div><div>For=C2=A0=
-example, with window block, by doing the following steps:</div><div>+ Using=
- rfnocmodtool to create test module with window block.<br></div><div>+ Copy=
- yml file and fpga files from window lib directory to test directory.<br></=
-div><div>+ Run cmake, testbench, make install command.<br></div><div><br></=
-div><div>although the window block has been built successfully, its GRC blo=
-ck appeared with only one user_register like gain example block.=C2=A0</div=
-><div>The gr_ettus has been installed but no GRC block for window block or =
-some others.</div><div>So how I can build=C2=A0the blocks in the lib direct=
-ory with full register and parameters?</div><div>I can not find any guiding=
- document about that thing, hope that it will be supported in the near futu=
-re.</div><div><br></div><div>Thank you!</div><div>Tuan</div></div>
-
---000000000000c8014b05b7ed0db7--
+Due to the high residual phase-noise of the DPLL implementation on the 
+SYNC input on the E310, it cannot be used to produce a working
+   multi-unit MIMO (or any other kind of phase-coherent) application.
 
 
---===============6354055649172640798==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6354055649172640798==--
-
