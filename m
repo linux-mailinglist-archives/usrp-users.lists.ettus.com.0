@@ -2,61 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2EB12E8872
-	for <lists+usrp-users@lfdr.de>; Sat,  2 Jan 2021 21:18:55 +0100 (CET)
-Received: from [::1] (port=50676 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 457DE2E89F1
+	for <lists+usrp-users@lfdr.de>; Sun,  3 Jan 2021 02:56:12 +0100 (CET)
+Received: from [::1] (port=52652 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kvnMS-0006gR-69; Sat, 02 Jan 2021 15:18:52 -0500
-Received: from mail-qk1-f172.google.com ([209.85.222.172]:34256)
+	id 1kvscq-0002uR-An; Sat, 02 Jan 2021 20:56:08 -0500
+Received: from mail-lf1-f50.google.com ([209.85.167.50]:36146)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kvnMO-0006aM-1r
- for usrp-users@lists.ettus.com; Sat, 02 Jan 2021 15:18:48 -0500
-Received: by mail-qk1-f172.google.com with SMTP id c7so20328794qke.1
- for <usrp-users@lists.ettus.com>; Sat, 02 Jan 2021 12:18:27 -0800 (PST)
+ (Exim 4.93) (envelope-from <linda20071@gmail.com>)
+ id 1kvscm-0002MS-KV
+ for usrp-users@lists.ettus.com; Sat, 02 Jan 2021 20:56:04 -0500
+Received: by mail-lf1-f50.google.com with SMTP id o13so56606564lfr.3
+ for <usrp-users@lists.ettus.com>; Sat, 02 Jan 2021 17:55:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=ZLgH309mSCN+unwYKpANuAhJfcNmfI6eM5k8i0L7u6g=;
- b=sp/UE2aclodXfICn6Nkv/t3mXObs9Voqu9bRmw9RLUjitEokGc2tcr9qnAeqK0WEIL
- 58ev/l7NWT9pag/5jRNGAycCuvWZITEauBJBGE/jKuisMBh4YdT6QYrZqnEAN3cpk6ro
- gbH8BdGyCZp3vunYFGD/cZdeHv6VUCOdrNH6YgZLTVZa7BfLE38FQ5SF3yorOKWMELdt
- ejDHGEfZNONBd+kM1qkv4/rc8BJWgwtuo8qIGss9JwZMrYuTrrVtiC6Nk4mhC18guR2m
- bg2tA5+uuKur7W7gwAMj82UEetDOznZwRXYWhnz1HkcOHAbdTCTDegBTPFl25uHMW9Ld
- aWmA==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=BBo7xE9HlkmWg66f2nYqdPJamDD/f5fAWcglovv5TWo=;
+ b=BKDIeowjkyTQ82B4aWAMOf4mCHKz81CVNmvMdzLjwtEp3wT0qwVjn8J9o5esgDXhsk
+ wF6w/BKsiP9F914b6KpD8sqQ/Ofa9dLTUnsBcJS8RGvcqLdCcFcVpYguQV0f/Rbqzc0K
+ R4w3g0HdK7dDxcsvmQfHFbsh14Dku00d0CmoPVFqW7SoA2aU0jSy7LqqXbN3qtF/0+sD
+ XmWAgUGiXacuv3kuDdQQIRqfN8uwFO9m25YuD5t+CnYFHuRGwm6xI2YzGDjV93Np8ax9
+ F+VNnVyliSFe/xDCNtt5FmANyEYCKb77cT0s5AB0WKaAlvYe1ok17ex8um08yWmmsaLw
+ 2Ppw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=ZLgH309mSCN+unwYKpANuAhJfcNmfI6eM5k8i0L7u6g=;
- b=tRBPE1uQQxjkrXgVZ8tnNvKV2b/SlcLZUKKtK1Q5CuHN1/AkTQcEEV4ks9IA8UqgPA
- eB0yATrnYxo4df8A2Q2kHflN1bdZou9/fyXtoZBrt1gI5Sfu65dB1kY8g6rj85/v76sn
- R2d4fuVHp0EUxQdOxyTk7JQ5VCSt/o2fGCa3prgz41iPaV0s5JleG0pMjovtNyeF1saM
- xS9P4QhQGivKu6y9SBPI4x52u4aQY5CMt78JL+WRvBEwsslqXChEPIFs28XcduLsYtuP
- 9kDfR7S59L0tu/WRkPGGEANbnCjSqRKd6XTfO0GdJSZUrew6LK6Wr10eoOo9pg1eud/R
- vjOw==
-X-Gm-Message-State: AOAM53392XAJ+KvIZNTjwu0b4HZinZlGvPcahqO17OL91p49bAzejLc/
- MEQGb2cXdQtiJxRFpc9SMb9ivWeZkg0=
-X-Google-Smtp-Source: ABdhPJwnH3QKsAtNUayaM+4qez82ydtFI8PWhsI9hGGE3KHXnurVilEWFXJjHUfqRJ9UOjoKNgz2fw==
-X-Received: by 2002:a05:620a:2047:: with SMTP id
- d7mr64512269qka.255.1609618687234; 
- Sat, 02 Jan 2021 12:18:07 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id 8sm35201550qkr.28.2021.01.02.12.18.06
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 02 Jan 2021 12:18:06 -0800 (PST)
-Message-ID: <5FF0D4FE.9030307@gmail.com>
-Date: Sat, 02 Jan 2021 15:18:06 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=BBo7xE9HlkmWg66f2nYqdPJamDD/f5fAWcglovv5TWo=;
+ b=p1og/DZ9RbsI2/wA3oZvvlgb1SeO24QqmVEJftapt+r33nYiJiPXbtIyXKsAjVifxd
+ tSNtbhk1Tun5N+NP+AgtggBYR4Ff86ubUMOx8zh35L33BElFZd+/VyQ1NXmXlV3T0hYn
+ 68Qo6oTBMK06H2FQ/Jlws+z7wSeBopSWHVywOOG7b/QGmRvZNIAbhMf8yqFl/b5OyF5s
+ bI6ya9gwEiMg7024hzGtUHSJUdZ96dcDk9QBUnBE+3RYhfVpDss//rcu7x9UmtQz1M5g
+ U/UYLxprUjNcKz3A7ershcOVA2IzSgJfj/pq67kkenQoC99oeYvD3gaWmLzFYIrs44Fe
+ skVA==
+X-Gm-Message-State: AOAM533F1z92DQjZKLErDEbPY4NGySzu9B4pmsvguhwVboA3yYSc9szV
+ KQyDrTop+zzwzOAsaG0oHMg3g3ksw9SnAtzm5fJLPwwDBUo=
+X-Google-Smtp-Source: ABdhPJyAKa+8PzOLVOcp+ij6wynrsm7W/XvOlX9uvZWJd2Wu49zqWcNZjoVjJHCwla93yOBWVp6Ei68RkRaeQ0rCL5Y=
+X-Received: by 2002:ac2:5199:: with SMTP id u25mr27913029lfi.438.1609638923079; 
+ Sat, 02 Jan 2021 17:55:23 -0800 (PST)
 MIME-Version: 1.0
+Date: Sat, 2 Jan 2021 20:55:12 -0500
+Message-ID: <CAG_Bp07GxnZHS7kQbBYgDU=y7PbEyihAm5u=hrYpzD1xMKd-Pg@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <CACDReSzhpEEKSn4hu-uwkrAFjQQ2Gu-17XZ+FFB7weFzH=nR4A@mail.gmail.com>
-In-Reply-To: <CACDReSzhpEEKSn4hu-uwkrAFjQQ2Gu-17XZ+FFB7weFzH=nR4A@mail.gmail.com>
-Subject: Re: [USRP-users] Hacking E310 units for synchronization
+Subject: [USRP-users] implementation of member functions in gnuradio blocks
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Linda20071 via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Linda20071 <linda20071@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0483803463752765340=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,75 +71,71 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 01/02/2021 02:44 AM, Ofer Saferman via USRP-users wrote:
-> Hello,
->
-> I must say that I am a bit frustrated.
-> When I purchased multiple E310 units it was with the hope I will be 
-> able to synchronize them mainly based on: 
-> https://kb.ettus.com/Synchronization_and_MIMO_Capability_with_USRP_Devices, 
-> it shows the E310 as MIMO capable and having a reference clock input.
-> Of course, now I know that not to be true. At least the reference 
-> clock part. It seems that the MIMO part might be incorrect as well.
->
-> If I hack the clock and patch an external clock connector to be used 
-> instead of the internal TCXO will I be able, using existing UHD 
-> software and firmware, to synchronize multiple E310 units?
->
-> I will be able to provide a common clock to multiple units and I will 
-> be able to provide a 1-PPS signal through the SYNC pins of multiple 
-> units that is generated from the same common clock.
-> I need these E310 to transmit and have their base-band samples 
-> perfectly time aligned.
->
-> How is multi-chip synchronization of the AD9361 devices being done by 
-> UHD? By using the SYNC pin and setting 
-> usrp->set_time_source("external")? Is it enough? Do I need to handle 
-> it on my own? How?
->
-> I figured the internal TCXO frequency of E310 is 40 MHz. Can I provide 
-> an external clock of different frequency? Maybe 10 MHz? Or does it 
-> require a major change in software or firmware?
->
-> Does anybody have a different idea how to get E310 units synchronized 
-> at sample level without voiding the warranty and hacking an external 
-> clock?
->
-> Please help.
->
-> Regards,
-> Ofer Saferman
->
->
-The E310 was never designed for multi-unit MIMO, although it does 2x2 
-MIMO just fine, and there are plenty of folks using it for that,
-   including stacks for various wireless protocols.  The AD9361 
-inherently supports 2x2 MIMO due to the shared LO architecture between
-   the two TX and two RX channels.
+--===============0483803463752765340==
+Content-Type: multipart/alternative; boundary="0000000000003a135205b7f54409"
 
-The AD9361 SYNC_IN pin does get tied to the Zynq FPGA, but the UHD 
-code-base doesn't use it.    I'll note that for most telecom-type
-   MIMO implementations, zero-phase-offset is NOT a requirement, just 
-ongoing phase coherence.
+--0000000000003a135205b7f54409
+Content-Type: text/plain; charset="UTF-8"
 
-Similarly the B2xx series does 2x2 MIMO just fine, but it was never 
-designed for multi-unit MIMO, although due to the clocking architecture,
-   the B2xx could likely (no guarantees) be made to do a multi-unit MIMO 
-implementation.
+I installed gnuradio from source via "git clone" command. Thus, I would
+assume all the source files should be in my computer. However, I am able to
+find mpsk_receiver_cc.h, but not its implementation: mpsk_receiver_cc.cc. I
+am interested in taking a look at the implementation of a member function
+mpsk_receiver_cc(...).
 
-The SYNC input connector on the E310 is designed to:
+Does this mean some function implementations are intentionally hidden by
+the software company? Is there a way to pull this .cc file out?
 
-   (A) Provide a higher longer-term quality than the on-board clock.
-   (B) Allow for TDM synchronization on system deployments where that is 
-important.
+MATLAB makes all its implementations accessible to its users, which is very
+convenient.
 
-Due to the high residual phase-noise of the DPLL implementation on the 
-SYNC input on the E310, it cannot be used to produce a working
-   multi-unit MIMO (or any other kind of phase-coherent) application.
+--0000000000003a135205b7f54409
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><h3 class=3D"gmail-iw" style=3D"overflow:hidden;white-spac=
+e:nowrap;font-size:0.75rem;font-weight:inherit;margin:inherit;text-overflow=
+:ellipsis;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;letter-=
+spacing:0.3px;color:rgb(95,99,104);line-height:20px">I installed gnuradio f=
+rom source via &quot;git<span style=3D"font-family:Arial,Helvetica,sans-ser=
+if;font-size:small;letter-spacing:normal;color:rgb(34,34,34)"> clone&quot; =
+command. Thus, I would assume all the source files=C2=A0</span></h3><h3 cla=
+ss=3D"gmail-iw" style=3D"overflow:hidden;white-space:nowrap;font-size:0.75r=
+em;font-weight:inherit;margin:inherit;text-overflow:ellipsis;font-family:Ro=
+boto,RobotoDraft,Helvetica,Arial,sans-serif;letter-spacing:0.3px;color:rgb(=
+95,99,104);line-height:20px"><span style=3D"font-family:Arial,Helvetica,san=
+s-serif;font-size:small;letter-spacing:normal;color:rgb(34,34,34)">should b=
+e in my computer. However, I am able to find mpsk_receiver_cc.h, but not it=
+s=C2=A0</span></h3><h3 class=3D"gmail-iw" style=3D"overflow:hidden;white-sp=
+ace:nowrap;font-size:0.75rem;font-weight:inherit;margin:inherit;text-overfl=
+ow:ellipsis;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;lette=
+r-spacing:0.3px;color:rgb(95,99,104);line-height:20px"><span style=3D"font-=
+family:Arial,Helvetica,sans-serif;font-size:small;letter-spacing:normal;col=
+or:rgb(34,34,34)">implementation: mpsk_receiver_cc.cc. I am interested in t=
+aking a look at the implementation=C2=A0</span></h3><h3 class=3D"gmail-iw" =
+style=3D"overflow:hidden;white-space:nowrap;font-size:0.75rem;font-weight:i=
+nherit;margin:inherit;text-overflow:ellipsis;font-family:Roboto,RobotoDraft=
+,Helvetica,Arial,sans-serif;letter-spacing:0.3px;color:rgb(95,99,104);line-=
+height:20px"><span style=3D"font-family:Arial,Helvetica,sans-serif;font-siz=
+e:small;letter-spacing:normal;color:rgb(34,34,34)">of a member function mps=
+k_receiver_cc(...).=C2=A0</span></h3><div><br>Does this mean some function =
+implementations are intentionally hidden by the software company? Is there =
+a way to pull this .cc file out?<br><br>MATLAB makes all its implementation=
+s accessible to its users, which is very convenient.<br></div></div>
+
+--0000000000003a135205b7f54409--
 
 
+--===============0483803463752765340==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0483803463752765340==--
+
