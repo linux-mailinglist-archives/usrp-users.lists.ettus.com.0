@@ -2,61 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CA0E2E8F5D
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Jan 2021 03:13:07 +0100 (CET)
-Received: from [::1] (port=33590 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B886F2E8FCB
+	for <lists+usrp-users@lfdr.de>; Mon,  4 Jan 2021 05:24:45 +0100 (CET)
+Received: from [::1] (port=34352 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kwFMl-0007bx-JH; Sun, 03 Jan 2021 21:13:03 -0500
-Received: from mail-qt1-f182.google.com ([209.85.160.182]:39189)
+	id 1kwHQ9-0004gl-Cl; Sun, 03 Jan 2021 23:24:41 -0500
+Received: from mail-pj1-f46.google.com ([209.85.216.46]:38666)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kwFMi-0007XA-52
- for usrp-users@lists.ettus.com; Sun, 03 Jan 2021 21:13:00 -0500
-Received: by mail-qt1-f182.google.com with SMTP id a6so17654706qtw.6
- for <usrp-users@lists.ettus.com>; Sun, 03 Jan 2021 18:12:39 -0800 (PST)
+ (Exim 4.93) (envelope-from <tuanmcx58@gmail.com>) id 1kwHQ5-0004br-8Z
+ for usrp-users@lists.ettus.com; Sun, 03 Jan 2021 23:24:37 -0500
+Received: by mail-pj1-f46.google.com with SMTP id j13so10006042pjz.3
+ for <usrp-users@lists.ettus.com>; Sun, 03 Jan 2021 20:24:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=6BS0Pgrvso7z2h9kxmk+Yy36mN7poDnFT111rwcgTg8=;
- b=SGrU9q1wGEz2BMIxr8xdYgt+IbaP5QygtNY+2mHvtgChwyWNgHRKibxINgt2xSiHlr
- UMyS4d6W2SAVI27SrNwhjv1vzytoHJV414j3M1KjeakQTypvHuDMjPZqazRfW8/nZdNP
- NWLxGysIsTqhJvsB5B0aTmImZxi3EZufJ1QMTz/ZN4/Ot+aMwp+OSHf61WGngBILmj1H
- rTJe+z2P4ooDvIXm1gwRnVdqjzMXIhH/r83CvlmGg8GXIsydrlZwT90m6sbm8DZ/KX5c
- XHN5wW67Wt6+ljP3a0/wqLU3Y49tpMmgABlwGjDN3bAlUbP67em4qkjijdqzr4nEuje9
- 1ZvA==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=A/hTG3lwoW0Uv5nXIR6yq6hQdtEnnQOI81fQi9AKkXc=;
+ b=dmWu2MEUIg1/jZcW7i5gde1qQorISA7MxkQYK8oir0d46HhNM+xAXQwbtE/sVGHVuc
+ BQVYSLz4QtRCvcBbWH3XQc2OLfI+Md1HqK+6Wm35StAuwV2tgDwdtAo8dRvnS6a1Y+t8
+ ngMbGYrDoXlz5lbIhSe5L8qS/70j2cIcquEaQoJF8moWox+1pGi8IBvU+xXzaJ9mQVRs
+ Vf2naIlZiz7Weavd/lSqLinPzvAlZb1jGgQKrjkLUMUXsGJTQLh10Vx7orZzhLjZE2GP
+ BUwAc+p1htikndR71ulP2fHbDE5DnMzfp9sxPdflc3+/c12EtA9FA+Bye/Gzzm9E586O
+ Rf+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=6BS0Pgrvso7z2h9kxmk+Yy36mN7poDnFT111rwcgTg8=;
- b=rqjp884BKidIGOC5ituJbOkOVPbdUIYuASExVYyLgghn41MbUa/Zsb6N+J0/x0FbGD
- uOjq6/gIcmFMrtEktpD+kFKO4EucvjJ/12Z8puRvwGietYNVLVUdARDxpdC9sfCaV1q9
- APHX62PiHqrw6+kvvDjtm56yoRO6k7nTgnPVwvqAgELDh5vYGg+7mifcXb8Tr/W3xnOr
- K3t6ckDlljVRI0Juhb7HuNNvO1MZeOQhVU2Q2hXoEY/tqAkhh2nGex1ZfYn8vaatxAJZ
- aMByBPt0WmDu2zApP4YA5TjeeW7ZOiSgvRu3LPMCEf3o4kso92PuFrvFTQyRe7mi9lA6
- 37VQ==
-X-Gm-Message-State: AOAM530bUMx6hCI4rMOX1xqoV0q53PdcgsJndfUKh8fAf+s7QqE2VdsF
- hq1JjiYCEReH2dzFT28cFTgZpx7DMbs=
-X-Google-Smtp-Source: ABdhPJyDNSE55rkcIuRsyeQOeK2M7DX7kLcee5mTDCqt1js1aXqpCaIIrtGLJIe1qAKYU6fB0+9i0w==
-X-Received: by 2002:ac8:7a82:: with SMTP id x2mr58640962qtr.20.1609726339210; 
- Sun, 03 Jan 2021 18:12:19 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id e38sm30550320qtb.30.2021.01.03.18.12.18
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 03 Jan 2021 18:12:18 -0800 (PST)
-Message-ID: <5FF27982.9050004@gmail.com>
-Date: Sun, 03 Jan 2021 21:12:18 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=A/hTG3lwoW0Uv5nXIR6yq6hQdtEnnQOI81fQi9AKkXc=;
+ b=mM/H7C6ucExpxuPibRfTL6w7hxnq+666stVCLyc9DzN+sTXmy6eXKmsZR9IwuHiPDc
+ KKR0IQVtavH6abqlCqjPtrtKLAWjsssFzXFfujF9LmpBIRkY3IarAwdAPY4yoRxLgbp1
+ yugizBaRPH4X8CS9SYwMIOk5FIjZCYjNMKGnuqs3+sNBL+x4ADJBYiT30ZIuEs7PQuKI
+ JBU5767UEUlj9j0+4gdnthVAx/UfZDWXAPpskIidNEIkPRiOxm8KX7hDQEOFxnpn5dq4
+ 5fPBahYYGiRdHbZ3DoBIARrdqcmYkW6G+PCZfadGAvozWcF7BhxTVoEQWgrdIyKasOvM
+ CrgQ==
+X-Gm-Message-State: AOAM533G/LTaG9JT+4P28yZGrUsqzFAGqhmIuOn5xR/finXJ7a028wnj
+ NmQV8dFe8MApWVwc30wtFoJ2lHiEYZ07G6XsnYoAMwt4j64rppqg
+X-Google-Smtp-Source: ABdhPJx2h8LXohFdbEb8XU7y6jAqCY7nbqBNbUg6O21XNn4Qbb8Fujv36Wl/KdqPL3M4NYBWmbJ8JSRlhQgGjOG3ydo=
+X-Received: by 2002:a17:902:7d8e:b029:da:cfcb:f4c4 with SMTP id
+ a14-20020a1709027d8eb02900dacfcbf4c4mr69599161plm.79.1609734235937; Sun, 03
+ Jan 2021 20:23:55 -0800 (PST)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <trinity-f3909e7e-1d49-4353-855a-5b25c802ab14-1609719454716@3c-app-gmx-bs66>
-In-Reply-To: <trinity-f3909e7e-1d49-4353-855a-5b25c802ab14-1609719454716@3c-app-gmx-bs66>
-Subject: Re: [USRP-users] X310/UBX as a monostatic transceiver (e.g. RFID
- reader)?
+Date: Mon, 4 Jan 2021 13:23:43 +0900
+Message-ID: <CAJZBg9WtrW=1Th-VfOWZs5r3p++2zGtZioCfuNzz7_v89f_Edw@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] How to build RFNoC blocks in /lib/rfnoc/blocks
+ directory?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,10 +56,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: =?utf-8?b?xJDDrG5oIFR14bqlbiBIb8OgbmcgdmlhIFVTUlAtdXNlcnM=?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?xJDDrG5oIFR14bqlbiBIb8Ogbmc=?= <tuanmcx58@gmail.com>
+Content-Type: multipart/mixed; boundary="===============3607508636946547491=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,49 +73,66 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 01/03/2021 07:17 PM, Lukas Haase via USRP-users wrote:
-> Hi,
->
-> I would like to use an X310 with UBX in a monostatic antenna configuration (same frequency range). This is for example common in RFID readers.
->
-> My transmit power is 30dBm (ZHL-25W-272+ after the USRP), fed into a 6dBi antenna.
->
-> Now if I use a circulator, I find isolation of around 15dB (e.g. https://www.everythingrf.com/products/rf-microwave-circulators/mesa-microwave/769-185-mmccc700a). This means my RX input sees 15dBm. Stupidly, the UBX datasheet wants a maximum input signal of -15dBm. So it's 30dB too strong!
->
-> Alternatively, I could use a directional coupler. However, the directivity is typically around 20dB (e.g. https://www.everythingrf.com/products/directional-couplers/rf-lambda/45-89-rfdc8m3g10d) which brings me to +10dBm at the RX input. If I assume directivity is not an issue, the signal at RX is limited by the S11 of the antenna (typically 15dB). With 10dB of coupling: 30dBm-15dB-10dB=5dBm. Still too high and a incurs a 10dB noise figure penalty.
->
-> As another option, I could add 30dB attenuator after the circulator. But this results in an unacceptable 30dB noise figure penalty.
->
-> Do I understand anything wrong or is a monostatic TRX just not possible with USRP?
->
->
-It's not even *slightly* "stupid".   An RX front-end that is sensitive 
-enough to connect directly to an antenna and be able to receive low signal
-   levels (typical of over-the-air work) CANNOT have excessive input 
-power.  If it does, the coupla-molecules-layer-thick gate layer in the
-   input amplifier transistor will simply cease to exist.  This is not 
-peculiar to USRPs--ALL over-the-air receivers designed to be sensitive in
-   the VHF bands and above have this problem.   You can put in limiter 
-diodes, but such diodes are usually "limited" to a lowest power level
-   of perhaps +5dBm, and will inherently add to the noise-figure of the 
-RX chain.
+--===============3607508636946547491==
+Content-Type: multipart/alternative; boundary="00000000000050e06405b80b75b6"
 
-If you're operating at frequencies below perhaps 100MHz, you can simply 
-put +10dB attenuation in-line with your RX chain, improving
-   the TX/RX isolation by that amount.  Ettus quotes -15dBm because 
-several of the USRP devices have front-ends that don't want more than
-   -15dBm at the input terminal--some of them are more robust, by about 
-10dB or so.  But it's just a "prudent" level for a receiver intended
-   for over-the-air work.  In normal situations, a signal of -15dBm at 
-the input terminals to the reciever is "barn burner" loud, and as I 
-indicated
-   for receive amplifiers, as you go much about -10dBm input power, 
-there's a risk of damaging the 1st-stage input amplifier.  That's just the
-   nature of VHF/UHF small-signal transistors.
+--00000000000050e06405b80b75b6
+Content-Type: text/plain; charset="UTF-8"
+
+Hi everyone,
+
+I'm learning RFNoC with UHD 4.0 and GRC 3.8. I have a question about how to
+build RFNoC blocks in /lib/rfnoc/blocks directory?
+
+For example, with window block, by doing the following steps:
++ Using rfnocmodtool to create test module with window block.
++ Copy yml file and fpga files from window lib directory to test directory.
++ Run cmake, testbench, make install command.
+
+although the window block has been built successfully, its GRC block
+appeared with only one user_register like gain example block.
+The gr_ettus has been installed but no GRC block for window block or some
+others.
+So how I can build the blocks in the lib directory with full registers and
+parameters?
+I can not find any guiding document about that thing, hope that it will be
+supported in the near future.
+
+Thank you!
+Tuan
+
+--00000000000050e06405b80b75b6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi everyone,<div><br></div><div>I&#39;m learning RFNoC wit=
+h UHD 4.0 and GRC 3.8. I have a question about how to build RFNoC blocks in=
+=C2=A0/lib/rfnoc/blocks directory?=C2=A0</div><div><br></div><div>For=C2=A0=
+example, with window block, by doing the following steps:</div><div>+ Using=
+ rfnocmodtool to create test module with window block.<br></div><div>+ Copy=
+ yml file and fpga files from window lib directory to test directory.<br></=
+div><div>+ Run cmake, testbench, make install command.<br></div><div><br></=
+div><div>although the window block has been built successfully, its GRC blo=
+ck appeared with only one user_register like gain example block.=C2=A0</div=
+><div>The gr_ettus has been installed but no GRC block for window block or =
+some others.</div><div>So how I can build=C2=A0the blocks in the lib direct=
+ory with full registers and parameters?</div><div>I can not find any guidin=
+g document about that thing, hope that it will be supported in the near fut=
+ure.</div><div><br></div><div>Thank you!</div><div>Tuan</div></div>
+
+--00000000000050e06405b80b75b6--
 
 
+--===============3607508636946547491==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3607508636946547491==--
+
