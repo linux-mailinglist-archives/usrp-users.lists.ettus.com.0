@@ -2,53 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7199E2EA93D
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Jan 2021 11:55:22 +0100 (CET)
-Received: from [::1] (port=48496 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D8A32EB03B
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Jan 2021 17:39:13 +0100 (CET)
+Received: from [::1] (port=51322 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kwjzh-0008Rc-EX; Tue, 05 Jan 2021 05:55:17 -0500
-Received: from mail-pf1-f170.google.com ([209.85.210.170]:46492)
+	id 1kwpMT-0000mG-Cd; Tue, 05 Jan 2021 11:39:09 -0500
+Received: from mail-vs1-f52.google.com ([209.85.217.52]:37988)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <tuanmcx58@gmail.com>) id 1kwjzb-0008Ev-J8
- for usrp-users@lists.ettus.com; Tue, 05 Jan 2021 05:55:11 -0500
-Received: by mail-pf1-f170.google.com with SMTP id s21so18135882pfu.13
- for <usrp-users@lists.ettus.com>; Tue, 05 Jan 2021 02:54:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1kwpMO-0000fR-Al
+ for usrp-users@lists.ettus.com; Tue, 05 Jan 2021 11:39:04 -0500
+Received: by mail-vs1-f52.google.com with SMTP id z16so239496vsp.5
+ for <usrp-users@lists.ettus.com>; Tue, 05 Jan 2021 08:38:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4tcjeuFhDtT19qVsAy+Uj6Hb6g8NODb/XgiXrJgVRRE=;
- b=LHxmC8CxuPqOcoeS5Dg3j/UGUsLDJLbJMUI3dMAjsIDzToLlMEAZHH6VqSZvfP02nL
- 7qAJeVZKBEXDhDWFFM8jGfdTpC+yDGTGJDeAqF1fi3UJ76GF+Q/ib2+JN5jRtZFE/oES
- kfsDvGNRcuD4bNBebXm6vNaIvb28I++FUUkfeCSibLHWC4ZZe91CK0AJ8bqCPqtoLoiq
- 7dTg/5dWq4PoN46ohg2BsR2YDaJFuvpcALuQ+4ghfGBwbuhZ3eYKgSI5HsYKhgltfxDT
- MPztL2Z1IbUYFeWG9vpyyYpNPgIAmPbitbkflIHakQx59ftzXuRTTRIBr1iuZa4+jom2
- xcsg==
+ :cc; bh=OoFeFwZ8spVw9fyzk1OHRtob7PeF48O/9hAkLP7syVM=;
+ b=M5nC5gGReelmnPnmxhq9cXFzcmBP4UzpAguOtZF1Hwvwpo4IGBPtAN1NzWcPjhrvKO
+ NB8Ps5H6m0uKYVnz2y9X+ffnfVfhYEOLRd3iIfmnwDLUzpEz4WBFbSnkJVBtEcx4P+T1
+ v97WVPyGfXZZUP8ez5f87+vOF5lMMnbytHXX8kh0E4uIJejK18fzVMX7YPzGq+pTXZit
+ Oy7/hs+u9zJwQn45KUm2+emhmgqh1bWPOgn+mZmuOF9GTL0T+hqtI5qov0v6hdOGI/IF
+ iTyLiHLR4RwwV0kgK449vPedrv/cHYPy95ZdSaMBDklJpWpa1EgVG/+HQMM/Q7D24KHW
+ ixIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=4tcjeuFhDtT19qVsAy+Uj6Hb6g8NODb/XgiXrJgVRRE=;
- b=WStKoxAmXnYpCKET0IMSasp54D3qE+WTZCsho5GvIMKby5F3Hmg6vvznK1ASDl7/Wy
- Y7fC2yNgbLhMXShUu4ARoOa1d2a/VAlCdkVnd3g2cEtAmL+sh2k0RV0aA4Sxp1gVUeaJ
- X4eXipUR4XV2zl/CRuURoo0CzbTuWqDjWGXjSPrhSR4oJkM5EXYmy/+Q9RiSvso8LtlB
- NhbSe9dBaucRC7Ce08QcRmIqZgdt6ADA46QbdcBDtRWqimhen+scOpRbLB2E/oYu2Cz4
- 8pCPQEKnyBqCn0cML3OxbbymqeCcbkaUo2UOcDyxah6z+teZ82YLctmXrMH3p4nqhpDX
- jOFA==
-X-Gm-Message-State: AOAM533fzWORjkftwM5VzXkCXOg2k3hIp+k1JH98y4WV1xnHIfN+A6Ci
- I2Tt5j+kOHtxz+SvS6vjWYauuS4xHaTxvRJRsTM+5U0fPjyjQw==
-X-Google-Smtp-Source: ABdhPJwK82MezO26TxxMW575DclE37KBhdYMBLWDDh8n1e3TZPTPqYSReDmEJYuDoa6EHkL59+c0dWUpvcEe9iqB/+Y=
-X-Received: by 2002:a63:1220:: with SMTP id h32mr74847967pgl.309.1609844068951; 
- Tue, 05 Jan 2021 02:54:28 -0800 (PST)
+ bh=OoFeFwZ8spVw9fyzk1OHRtob7PeF48O/9hAkLP7syVM=;
+ b=Uav3QeGyBpNy6AMbwnt4uO/p2Wf9KHAGgg5LcwGwg6vMQa6FzaWbTk9b8x5ZuKvm1e
+ dvx5mjknvWfT2lOQwh3AejB++T1Gz/jtxjaeSBvnEX94Gco0f/hkQScxesHbg/yWdAxO
+ 1G4AdQpZtX3awarwb1znP3DXvmVHTtOQtOEoR0cd4g2LtbhNf8t8/bM2D7KJwJmfFlIr
+ m8T7cgxDiTEJIRy5gknVNqp/f9/aA38wl8ZkvebA5ZoBjH9zn5RiINcxlxs8dqgdeo59
+ 5rLXTJthRw2FMnjWkGatAfErUAPd0bt7nAtLsn6BoDHkq8O+FiUJICGW8HLUxSXrQJJp
+ YEsQ==
+X-Gm-Message-State: AOAM533Jy9ob0CEYSrjBrPgEv8b5CmxWatqCa0FUNJMo9tjGk8NraPja
+ muB80Hmf4GOgwL+dMuTQZYCL3iNz/aS6rhTBnjEjiEq+xK/3Ba74
+X-Google-Smtp-Source: ABdhPJzplbrug5zQPIUk5qMW0zRCAT1tYnLoZ2xdn0hz9dAqOTHvZmVThzbi/SCZVs+zK+9WCT7H3K36baYPzojVCCc=
+X-Received: by 2002:a67:e286:: with SMTP id g6mr174847vsf.42.1609864702723;
+ Tue, 05 Jan 2021 08:38:22 -0800 (PST)
 MIME-Version: 1.0
 References: <CAJZBg9WtrW=1Th-VfOWZs5r3p++2zGtZioCfuNzz7_v89f_Edw@mail.gmail.com>
  <CAL7q81vf-G==8JJKmB-dPtpFtzW8gxRYj_7snHn5=BOrjT4YQw@mail.gmail.com>
  <CAJZBg9XjA9J_0HDCgndWrVP2fW1bNFChEjZPPPSu0ngLcOQ1eQ@mail.gmail.com>
  <CAL7q81u-4VrHtV=yKJff=TXv6kGc1iv+vs-vVZxYNLS1TVbA5Q@mail.gmail.com>
  <CAL7q81v5gVXY9RAMAg3NNBCHUr8UK8UMED-ud0pQ7=Fv+HsCCw@mail.gmail.com>
-In-Reply-To: <CAL7q81v5gVXY9RAMAg3NNBCHUr8UK8UMED-ud0pQ7=Fv+HsCCw@mail.gmail.com>
-Date: Tue, 5 Jan 2021 19:54:17 +0900
-Message-ID: <CAJZBg9U8AKJ9WZ=eKV+cQj9pRM2cctaA6AS6hUfJxz+v5OvYmQ@mail.gmail.com>
-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+ <CAJZBg9U8AKJ9WZ=eKV+cQj9pRM2cctaA6AS6hUfJxz+v5OvYmQ@mail.gmail.com>
+In-Reply-To: <CAJZBg9U8AKJ9WZ=eKV+cQj9pRM2cctaA6AS6hUfJxz+v5OvYmQ@mail.gmail.com>
+Date: Tue, 5 Jan 2021 11:37:46 -0500
+Message-ID: <CAL7q81v3OpnPa-dL7eNvPaMJyztgjC0Tpv3MSV=VDdxv-8CqJg@mail.gmail.com>
+To: =?UTF-8?B?xJDDrG5oIFR14bqlbiBIb8Ogbmc=?= <tuanmcx58@gmail.com>
 Cc: usrp-users <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] How to build RFNoC blocks in /lib/rfnoc/blocks
  directory?
@@ -63,10 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?xJDDrG5oIFR14bqlbiBIb8OgbmcgdmlhIFVTUlAtdXNlcnM=?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?xJDDrG5oIFR14bqlbiBIb8Ogbmc=?= <tuanmcx58@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7351833226778337114=="
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Content-Type: multipart/mixed; boundary="===============0246922353182045898=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,326 +82,351 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7351833226778337114==
-Content-Type: multipart/related; boundary="000000000000dfcc0b05b8250784"
+--===============0246922353182045898==
+Content-Type: multipart/related; boundary="000000000000bee49b05b829d5d0"
 
---000000000000dfcc0b05b8250784
-Content-Type: multipart/alternative; boundary="000000000000dfcc0a05b8250783"
+--000000000000bee49b05b829d5d0
+Content-Type: multipart/alternative; boundary="000000000000bee49a05b829d5cf"
 
---000000000000dfcc0a05b8250783
+--000000000000bee49a05b829d5cf
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Jonathon,
+Hi Tuan,
 
-I have just built image with your yml file and combined with your GRC
-flowgraph but some errors still happed:
+Are you using the following branches when building UHD and gr-ettus?
+UHD: UHD-4.0
+gr-ettus: maint-3.8-uhd4.0
 
+Jonathon
 
+On Tue, Jan 5, 2021 at 5:54 AM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng <tuan=
+mcx58@gmail.com> wrote:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*Executing: /usr/bin/python3.6 -u /home/pc/Downloads/rfnoc_fosphor.py[INFO]
-[UHD] linux; GNU C++ version 7.5.0; Boost_106501;
-UHD_4.0.0.0-0-unknown[INFO] [X300] X300 initialization sequence...[INFO]
-[X300] Maximum frame size: 8000 bytes.[INFO] [GPS] Found an internal GPSDO:
-GPSTCXO , Firmware Rev 0.929a[INFO] [X300] Radio 1x clock: 200 MHz[WARNING]
-[0/Radio#0] Setting RX IQ Balance is not possible on this device.Traceback
-(most recent call last):  File "/home/pc/Downloads/rfnoc_fosphor.py", line
-273, in <module>    main()  File "/home/pc/Downloads/rfnoc_fosphor.py",
-line 249, in main    tb =3D top_block_cls()  File
-"/home/pc/Downloads/rfnoc_fosphor.py", line 179, in __init__
-self.rfnoc_graph.connect(self.ettus_rfnoc_ddc_0.get_unique_id(), 0,
-self.ettus_rfnoc_fft_0.get_unique_id(), 0, False)  File
-"/usr/local/lib/python3/dist-packages/ettus/ettus_swig.py", line 2369, in
-connect    return _ettus_swig.rfnoc_graph_sptr_connect(self,
-*args)RuntimeError: RfnocError: OpTimeout: config_stream: Operation timed
-out>>> Done (return code 1)*
-
-I also rebuild gr-ettus with flags "-DCMAKE_BUILD_TYPE=3DDebug
--DENABLE_QT=3DTrue".
-Please help me.
-*System info:*
-
-*+ UHD 4.0*
-
-*+ GRC 3.8*
-*+ Ubuntu 18.04*
-
-Thank you!
-
-Best regards,
-Tuan
-
-[image: image.png]
-
-V=C3=A0o Th 3, 5 thg 1, 2021 va=CC=80o lu=CC=81c 16:03 Jonathon Pendlum <
-jonathon.pendlum@ettus.com> =C4=91=C3=A3 vi=E1=BA=BFt:
-
-> Hi Tuan,
+> Hi Jonathon,
 >
-> Here is a yaml file you can use to build your image. You'll also want to
-> build gr-ettus with these flags "-DCMAKE_BUILD_TYPE=3DDebug -DENABLE_QT=
-=3DTrue".
+> I have just built image with your yml file and combined with your GRC
+> flowgraph but some errors still happed:
 >
-> Jonathon
 >
-> On Tue, Jan 5, 2021 at 1:59 AM Jonathon Pendlum <
-> jonathon.pendlum@ettus.com> wrote:
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *Executing: /usr/bin/python3.6 -u
+> /home/pc/Downloads/rfnoc_fosphor.py[INFO] [UHD] linux; GNU C++ version
+> 7.5.0; Boost_106501; UHD_4.0.0.0-0-unknown[INFO] [X300] X300 initializati=
+on
+> sequence...[INFO] [X300] Maximum frame size: 8000 bytes.[INFO] [GPS] Foun=
+d
+> an internal GPSDO: GPSTCXO , Firmware Rev 0.929a[INFO] [X300] Radio 1x
+> clock: 200 MHz[WARNING] [0/Radio#0] Setting RX IQ Balance is not possible
+> on this device.Traceback (most recent call last):  File
+> "/home/pc/Downloads/rfnoc_fosphor.py", line 273, in <module>    main()
+> File "/home/pc/Downloads/rfnoc_fosphor.py", line 249, in main    tb =3D
+> top_block_cls()  File "/home/pc/Downloads/rfnoc_fosphor.py", line 179, in
+> __init__
+> self.rfnoc_graph.connect(self.ettus_rfnoc_ddc_0.get_unique_id(), 0,
+> self.ettus_rfnoc_fft_0.get_unique_id(), 0, False)  File
+> "/usr/local/lib/python3/dist-packages/ettus/ettus_swig.py", line 2369, in
+> connect    return _ettus_swig.rfnoc_graph_sptr_connect(self,
+> *args)RuntimeError: RfnocError: OpTimeout: config_stream: Operation timed
+> out>>> Done (return code 1)*
+>
+> I also rebuild gr-ettus with flags "-DCMAKE_BUILD_TYPE=3DDebug
+> -DENABLE_QT=3DTrue".
+> Please help me.
+> *System info:*
+>
+> *+ UHD 4.0*
+>
+> *+ GRC 3.8*
+> *+ Ubuntu 18.04*
+>
+> Thank you!
+>
+> Best regards,
+> Tuan
+>
+> [image: image.png]
+>
+> V=C3=A0o Th 3, 5 thg 1, 2021 va=CC=80o lu=CC=81c 16:03 Jonathon Pendlum <
+> jonathon.pendlum@ettus.com> =C4=91=C3=A3 vi=E1=BA=BFt:
 >
 >> Hi Tuan,
 >>
->> Try the attached flowgraph.
+>> Here is a yaml file you can use to build your image. You'll also want to
+>> build gr-ettus with these flags "-DCMAKE_BUILD_TYPE=3DDebug -DENABLE_QT=
+=3DTrue".
 >>
 >> Jonathon
 >>
->> On Tue, Jan 5, 2021 at 1:58 AM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng <t=
-uanmcx58@gmail.com>
->> wrote:
+>> On Tue, Jan 5, 2021 at 1:59 AM Jonathon Pendlum <
+>> jonathon.pendlum@ettus.com> wrote:
 >>
->>> Hi Jonathon,
+>>> Hi Tuan,
 >>>
->>> Thanks for spending time helping me.
+>>> Try the attached flowgraph.
 >>>
->>> The reason I asked about window block is I'm trying to run Fosphor
->>> block, the GRC diagram and yaml file to generate bitstream file attache=
-d
->>> below. It did not work and GRC reported:
+>>> Jonathon
 >>>
+>>> On Tue, Jan 5, 2021 at 1:58 AM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng <=
+tuanmcx58@gmail.com>
+>>> wrote:
 >>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>> *Generating:
->>> '/home/pc/image_build/Fosphor/phosphor_spectrum.py'Executing:
->>> /usr/bin/python3.6 -u
->>> /home/pc/image_build/Fosphor/phosphor_spectrum.py[INFO] [UHD] linux; GN=
-U
->>> C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-0-unknown[INFO] [X300] X30=
-0
->>> initialization sequence...[INFO] [X300] Maximum frame size: 8000
->>> bytes.[INFO] [GPS] Found an internal GPSDO: GPSTCXO , Firmware Rev
->>> 0.929a[INFO] [X300] Radio 1x clock: 200 MHz[ERROR] [RFNOC::GRAPH] IO Er=
-ror
->>> during GSM initialization. EnvironmentError: IOError: Timed out getting
->>> recv buff for management transaction[ERROR] [RFNOC::GRAPH] Caught excep=
-tion
->>> while initializing graph: EnvironmentError: IOError: Timed out getting =
-recv
->>> buff for management transactionTraceback (most recent call last):  File
->>> "/home/pc/image_build/Fosphor/phosphor_spectrum.py", line 254, in <modu=
-le>
->>>   main()  File "/home/pc/image_build/Fosphor/phosphor_spectrum.py", lin=
+>>>> Hi Jonathon,
+>>>>
+>>>> Thanks for spending time helping me.
+>>>>
+>>>> The reason I asked about window block is I'm trying to run Fosphor
+>>>> block, the GRC diagram and yaml file to generate bitstream file attach=
+ed
+>>>> below. It did not work and GRC reported:
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>> *Generating:
+>>>> '/home/pc/image_build/Fosphor/phosphor_spectrum.py'Executing:
+>>>> /usr/bin/python3.6 -u
+>>>> /home/pc/image_build/Fosphor/phosphor_spectrum.py[INFO] [UHD] linux; G=
+NU
+>>>> C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-0-unknown[INFO] [X300] X3=
+00
+>>>> initialization sequence...[INFO] [X300] Maximum frame size: 8000
+>>>> bytes.[INFO] [GPS] Found an internal GPSDO: GPSTCXO , Firmware Rev
+>>>> 0.929a[INFO] [X300] Radio 1x clock: 200 MHz[ERROR] [RFNOC::GRAPH] IO E=
+rror
+>>>> during GSM initialization. EnvironmentError: IOError: Timed out gettin=
+g
+>>>> recv buff for management transaction[ERROR] [RFNOC::GRAPH] Caught exce=
+ption
+>>>> while initializing graph: EnvironmentError: IOError: Timed out getting=
+ recv
+>>>> buff for management transactionTraceback (most recent call last):  Fil=
 e
->>> 230, in main    tb =3D top_block_cls()  File
->>> "/home/pc/image_build/Fosphor/phosphor_spectrum.py", line 78, in __init=
-__
->>>   self.rfnoc_graph =3D ettus_rfnoc_graph =3D
->>> ettus.rfnoc_graph(uhd.device_addr(",".join(('', 'type=3Dx300'))))  File
->>> "/usr/local/lib/python3/dist-packages/ettus/ettus_swig.py", line 1386, =
-in
->>> make    return _ettus_swig.rfnoc_graph_make(dev_addr)RuntimeError:
->>> RuntimeError: Failure to create rfnoc_graph.>>> Done (return code 1)*
->>>
->>> I have searched for examples from UHD 3.15 version and see that It
->>> should have a window block or stream to vector block before FFT block
->>> (Radio->DDC->Window->FFT->Fosphor->Rx_stream),
->>> I don't know exactly window block is necessary or not? I saw some one
->>> asked a question about Fosphor with the same diagram and he has done it
->>> Could you let me know about this issue? I'm very grateful for that.
->>>
->>> Best regards,
->>> Tuan
->>> [image: image.png]
->>>
->>>
->>> V=C3=A0o Th 3, 5 thg 1, 2021 va=CC=80o lu=CC=81c 15:34 Jonathon Pendlum=
- <
->>> jonathon.pendlum@ettus.com> =C4=91=C3=A3 vi=E1=BA=BFt:
->>>
->>>> Hi Tuan,
+>>>> "/home/pc/image_build/Fosphor/phosphor_spectrum.py", line 254, in <mod=
+ule>
+>>>>   main()  File "/home/pc/image_build/Fosphor/phosphor_spectrum.py", li=
+ne
+>>>> 230, in main    tb =3D top_block_cls()  File
+>>>> "/home/pc/image_build/Fosphor/phosphor_spectrum.py", line 78, in __ini=
+t__
+>>>>   self.rfnoc_graph =3D ettus_rfnoc_graph =3D
+>>>> ettus.rfnoc_graph(uhd.device_addr(",".join(('', 'type=3Dx300'))))  Fil=
+e
+>>>> "/usr/local/lib/python3/dist-packages/ettus/ettus_swig.py", line 1386,=
+ in
+>>>> make    return _ettus_swig.rfnoc_graph_make(dev_addr)RuntimeError:
+>>>> RuntimeError: Failure to create rfnoc_graph.>>> Done (return code 1)*
 >>>>
->>>> A few of the in-tree RFNoC blocks do not have GRC support yet. The
->>>> window block is one of them. That will come in a future update, althou=
-gh I
->>>> don't have an exact timeline.
+>>>> I have searched for examples from UHD 3.15 version and see that It
+>>>> should have a window block or stream to vector block before FFT block
+>>>> (Radio->DDC->Window->FFT->Fosphor->Rx_stream),
+>>>> I don't know exactly window block is necessary or not? I saw some one
+>>>> asked a question about Fosphor with the same diagram and he has done i=
+t
+>>>> Could you let me know about this issue? I'm very grateful for that.
 >>>>
->>>> Jonathon
+>>>> Best regards,
+>>>> Tuan
+>>>> [image: image.png]
 >>>>
->>>> On Sun, Jan 3, 2021 at 11:24 PM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng=
- via USRP-users <
->>>> usrp-users@lists.ettus.com> wrote:
 >>>>
->>>>> Hi everyone,
->>>>>
->>>>> I'm learning RFNoC with UHD 4.0 and GRC 3.8. I have a question about
->>>>> how to build RFNoC blocks in /lib/rfnoc/blocks directory?
->>>>>
->>>>> For example, with window block, by doing the following steps:
->>>>> + Using rfnocmodtool to create test module with window block.
->>>>> + Copy yml file and fpga files from window lib directory to test
->>>>> directory.
->>>>> + Run cmake, testbench, make install command.
->>>>>
->>>>> although the window block has been built successfully, its GRC block
->>>>> appeared with only one user_register like gain example block.
->>>>> The gr_ettus has been installed but no GRC block for window block or
->>>>> some others.
->>>>> So how I can build the blocks in the lib directory with full register=
-s
->>>>> and parameters?
->>>>> I can not find any guiding document about that thing, hope that it
->>>>> will be supported in the near future.
->>>>>
->>>>> Thank you!
->>>>> Tuan
->>>>> _______________________________________________
->>>>> USRP-users mailing list
->>>>> USRP-users@lists.ettus.com
->>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>
+>>>> V=C3=A0o Th 3, 5 thg 1, 2021 va=CC=80o lu=CC=81c 15:34 Jonathon Pendlu=
+m <
+>>>> jonathon.pendlum@ettus.com> =C4=91=C3=A3 vi=E1=BA=BFt:
 >>>>
+>>>>> Hi Tuan,
+>>>>>
+>>>>> A few of the in-tree RFNoC blocks do not have GRC support yet. The
+>>>>> window block is one of them. That will come in a future update, altho=
+ugh I
+>>>>> don't have an exact timeline.
+>>>>>
+>>>>> Jonathon
+>>>>>
+>>>>> On Sun, Jan 3, 2021 at 11:24 PM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0n=
+g via USRP-users <
+>>>>> usrp-users@lists.ettus.com> wrote:
+>>>>>
+>>>>>> Hi everyone,
+>>>>>>
+>>>>>> I'm learning RFNoC with UHD 4.0 and GRC 3.8. I have a question about
+>>>>>> how to build RFNoC blocks in /lib/rfnoc/blocks directory?
+>>>>>>
+>>>>>> For example, with window block, by doing the following steps:
+>>>>>> + Using rfnocmodtool to create test module with window block.
+>>>>>> + Copy yml file and fpga files from window lib directory to test
+>>>>>> directory.
+>>>>>> + Run cmake, testbench, make install command.
+>>>>>>
+>>>>>> although the window block has been built successfully, its GRC block
+>>>>>> appeared with only one user_register like gain example block.
+>>>>>> The gr_ettus has been installed but no GRC block for window block or
+>>>>>> some others.
+>>>>>> So how I can build the blocks in the lib directory with full
+>>>>>> registers and parameters?
+>>>>>> I can not find any guiding document about that thing, hope that it
+>>>>>> will be supported in the near future.
+>>>>>>
+>>>>>> Thank you!
+>>>>>> Tuan
+>>>>>> _______________________________________________
+>>>>>> USRP-users mailing list
+>>>>>> USRP-users@lists.ettus.com
+>>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>>
+>>>>>
 
---000000000000dfcc0a05b8250783
+--000000000000bee49a05b829d5cf
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Jonathon,<div><br></div><div>I have just built image wi=
-th your yml file and combined with your GRC flowgraph but some errors still=
- happed:</div><div><br></div><div><i>Executing: /usr/bin/python3.6 -u /home=
-/pc/Downloads/rfnoc_fosphor.py<br>[INFO] [UHD] linux; GNU C++ version 7.5.0=
-; Boost_106501; UHD_4.0.0.0-0-unknown<br>[INFO] [X300] X300 initialization =
-sequence...<br>[INFO] [X300] Maximum frame size: 8000 bytes.<br>[INFO] [GPS=
-] Found an internal GPSDO: GPSTCXO , Firmware Rev 0.929a<br>[INFO] [X300] R=
-adio 1x clock: 200 MHz<br>[WARNING] [0/Radio#0] Setting RX IQ Balance is no=
-t possible on this device.<br>Traceback (most recent call last):<br>=C2=A0 =
-File &quot;/home/pc/Downloads/rfnoc_fosphor.py&quot;, line 273, in &lt;modu=
-le&gt;<br>=C2=A0 =C2=A0 main()<br>=C2=A0 File &quot;/home/pc/Downloads/rfno=
-c_fosphor.py&quot;, line 249, in main<br>=C2=A0 =C2=A0 tb =3D top_block_cls=
-()<br>=C2=A0 File &quot;/home/pc/Downloads/rfnoc_fosphor.py&quot;, line 179=
-, in __init__<br>=C2=A0 =C2=A0 self.rfnoc_graph.connect(self.ettus_rfnoc_dd=
-c_0.get_unique_id(), 0, self.ettus_rfnoc_fft_0.get_unique_id(), 0, False)<b=
+<div dir=3D"ltr">Hi Tuan,<div><br></div><div>Are you using the following br=
+anches when building UHD and gr-ettus?</div><div>UHD: UHD-4.0</div><div>gr-=
+ettus:=C2=A0maint-3.8-uhd4.0</div><div><br></div><div>Jonathon</div></div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue,=
+ Jan 5, 2021 at 5:54 AM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng &lt;<a href=
+=3D"mailto:tuanmcx58@gmail.com">tuanmcx58@gmail.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Jona=
+thon,<div><br></div><div>I have just built image with your yml file and com=
+bined with your GRC flowgraph but some errors still happed:</div><div><br><=
+/div><div><i>Executing: /usr/bin/python3.6 -u /home/pc/Downloads/rfnoc_fosp=
+hor.py<br>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.=
+0.0-0-unknown<br>[INFO] [X300] X300 initialization sequence...<br>[INFO] [X=
+300] Maximum frame size: 8000 bytes.<br>[INFO] [GPS] Found an internal GPSD=
+O: GPSTCXO , Firmware Rev 0.929a<br>[INFO] [X300] Radio 1x clock: 200 MHz<b=
+r>[WARNING] [0/Radio#0] Setting RX IQ Balance is not possible on this devic=
+e.<br>Traceback (most recent call last):<br>=C2=A0 File &quot;/home/pc/Down=
+loads/rfnoc_fosphor.py&quot;, line 273, in &lt;module&gt;<br>=C2=A0 =C2=A0 =
+main()<br>=C2=A0 File &quot;/home/pc/Downloads/rfnoc_fosphor.py&quot;, line=
+ 249, in main<br>=C2=A0 =C2=A0 tb =3D top_block_cls()<br>=C2=A0 File &quot;=
+/home/pc/Downloads/rfnoc_fosphor.py&quot;, line 179, in __init__<br>=C2=A0 =
+=C2=A0 self.rfnoc_graph.connect(self.ettus_rfnoc_ddc_0.get_unique_id(), 0, =
+self.ettus_rfnoc_fft_0.get_unique_id(), 0, False)<br>=C2=A0 File &quot;/usr=
+/local/lib/python3/dist-packages/ettus/ettus_swig.py&quot;, line 2369, in c=
+onnect<br>=C2=A0 =C2=A0 return _ettus_swig.rfnoc_graph_sptr_connect(self, *=
+args)<br>RuntimeError: RfnocError: OpTimeout: config_stream: Operation time=
+d out<br>&gt;&gt;&gt; Done (return code 1)</i><br></div><div><br></div><div=
+>I also rebuild gr-ettus with flags &quot;-DCMAKE_BUILD_TYPE=3DDebug -DENAB=
+LE_QT=3DTrue&quot;.</div><div>Please help me.</div><div><i>System info:</i>=
+</div><div><i>+ UHD 4.0<br></i></div><div><i>+ GRC 3.8<br></i></div><div><i=
+>+ Ubuntu 18.04</i><br></div><div><br></div><div>Thank you!</div><div><br><=
+/div><div>Best regards,</div><div>Tuan</div><div><br></div><div><img src=3D=
+"cid:ii_kjjvl0f41" alt=3D"image.png" width=3D"562" height=3D"304"><br></div=
+></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>V=C3=A0o Th 3, 5 thg 1, 2021 va=CC=80o lu=CC=81c 16:03 Jonathon Pendlum &l=
+t;<a href=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_blank">jonathon.=
+pendlum@ettus.com</a>&gt; =C4=91=C3=A3 vi=E1=BA=BFt:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Tuan,<div><br></di=
+v><div>Here is a yaml file you can use to build your image. You&#39;ll also=
+ want to build gr-ettus with these flags &quot;-DCMAKE_BUILD_TYPE=3DDebug -=
+DENABLE_QT=3DTrue&quot;.</div><div><br></div><div>Jonathon</div></div><br><=
+div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jan=
+ 5, 2021 at 1:59 AM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum=
+@ettus.com" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi=
+ Tuan,<div><br></div><div>Try the attached flowgraph.</div><div><br></div><=
+div>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">On Tue, Jan 5, 2021 at 1:58 AM =C4=90=C3=ACnh Tu=E1=BA=A5=
+n Ho=C3=A0ng &lt;<a href=3D"mailto:tuanmcx58@gmail.com" target=3D"_blank">t=
+uanmcx58@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><div dir=3D"ltr">Hi Jonathon,<div><br></div><div>Thanks f=
+or spending time helping me.</div><div><br></div><div>The reason=C2=A0I ask=
+ed about window block is I&#39;m trying to run Fosphor block, the GRC diagr=
+am and yaml file to generate bitstream file attached below. It did not work=
+ and GRC reported:</div><div><br></div><div><i>Generating: &#39;/home/pc/im=
+age_build/Fosphor/phosphor_spectrum.py&#39;<br>Executing: /usr/bin/python3.=
+6 -u /home/pc/image_build/Fosphor/phosphor_spectrum.py<br>[INFO] [UHD] linu=
+x; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-0-unknown<br>[INFO] [X3=
+00] X300 initialization sequence...<br>[INFO] [X300] Maximum frame size: 80=
+00 bytes.<br>[INFO] [GPS] Found an internal GPSDO: GPSTCXO , Firmware Rev 0=
+.929a<br>[INFO] [X300] Radio 1x clock: 200 MHz<br>[ERROR] [RFNOC::GRAPH] IO=
+ Error during GSM initialization. EnvironmentError: IOError: Timed out gett=
+ing recv buff for management transaction<br>[ERROR] [RFNOC::GRAPH] Caught e=
+xception while initializing graph: EnvironmentError: IOError: Timed out get=
+ting recv buff for management transaction<br>Traceback (most recent call la=
+st):<br>=C2=A0 File &quot;/home/pc/image_build/Fosphor/phosphor_spectrum.py=
+&quot;, line 254, in &lt;module&gt;<br>=C2=A0 =C2=A0 main()<br>=C2=A0 File =
+&quot;/home/pc/image_build/Fosphor/phosphor_spectrum.py&quot;, line 230, in=
+ main<br>=C2=A0 =C2=A0 tb =3D top_block_cls()<br>=C2=A0 File &quot;/home/pc=
+/image_build/Fosphor/phosphor_spectrum.py&quot;, line 78, in __init__<br>=
+=C2=A0 =C2=A0 self.rfnoc_graph =3D ettus_rfnoc_graph =3D ettus.rfnoc_graph(=
+uhd.device_addr(&quot;,&quot;.join((&#39;&#39;, &#39;type=3Dx300&#39;))))<b=
 r>=C2=A0 File &quot;/usr/local/lib/python3/dist-packages/ettus/ettus_swig.p=
-y&quot;, line 2369, in connect<br>=C2=A0 =C2=A0 return _ettus_swig.rfnoc_gr=
-aph_sptr_connect(self, *args)<br>RuntimeError: RfnocError: OpTimeout: confi=
-g_stream: Operation timed out<br>&gt;&gt;&gt; Done (return code 1)</i><br><=
-/div><div><br></div><div>I also rebuild gr-ettus with flags &quot;-DCMAKE_B=
-UILD_TYPE=3DDebug -DENABLE_QT=3DTrue&quot;.</div><div>Please help me.</div>=
-<div><i>System info:</i></div><div><i>+ UHD 4.0<br></i></div><div><i>+ GRC =
-3.8<br></i></div><div><i>+ Ubuntu 18.04</i><br></div><div><br></div><div>Th=
-ank you!</div><div><br></div><div>Best regards,</div><div>Tuan</div><div><b=
-r></div><div><img src=3D"cid:ii_kjjvl0f41" alt=3D"image.png" width=3D"562" =
-height=3D"304"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"l=
-tr" class=3D"gmail_attr">V=C3=A0o Th 3, 5 thg 1, 2021 va=CC=80o lu=CC=81c 1=
-6:03 Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.com">jon=
-athon.pendlum@ettus.com</a>&gt; =C4=91=C3=A3 vi=E1=BA=BFt:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Tuan,<div><b=
-r></div><div>Here is a yaml file you can use to build your image. You&#39;l=
-l also want to build gr-ettus with these flags &quot;-DCMAKE_BUILD_TYPE=3DD=
-ebug -DENABLE_QT=3DTrue&quot;.</div><div><br></div><div>Jonathon</div></div=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tu=
-e, Jan 5, 2021 at 1:59 AM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.p=
-endlum@ettus.com" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"l=
-tr">Hi Tuan,<div><br></div><div>Try the attached flowgraph.</div><div><br><=
-/div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Tue, Jan 5, 2021 at 1:58 AM =C4=90=C3=ACnh Tu=E1=
-=BA=A5n Ho=C3=A0ng &lt;<a href=3D"mailto:tuanmcx58@gmail.com" target=3D"_bl=
-ank">tuanmcx58@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex"><div dir=3D"ltr">Hi Jonathon,<div><br></div><div>Th=
-anks for spending time helping me.</div><div><br></div><div>The reason=C2=
-=A0I asked about window block is I&#39;m trying to run Fosphor block, the G=
-RC diagram and yaml file to generate bitstream file attached below. It did =
-not work and GRC reported:</div><div><br></div><div><i>Generating: &#39;/ho=
-me/pc/image_build/Fosphor/phosphor_spectrum.py&#39;<br>Executing: /usr/bin/=
-python3.6 -u /home/pc/image_build/Fosphor/phosphor_spectrum.py<br>[INFO] [U=
-HD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-0-unknown<br>[I=
-NFO] [X300] X300 initialization sequence...<br>[INFO] [X300] Maximum frame =
-size: 8000 bytes.<br>[INFO] [GPS] Found an internal GPSDO: GPSTCXO , Firmwa=
-re Rev 0.929a<br>[INFO] [X300] Radio 1x clock: 200 MHz<br>[ERROR] [RFNOC::G=
-RAPH] IO Error during GSM initialization. EnvironmentError: IOError: Timed =
-out getting recv buff for management transaction<br>[ERROR] [RFNOC::GRAPH] =
-Caught exception while initializing graph: EnvironmentError: IOError: Timed=
- out getting recv buff for management transaction<br>Traceback (most recent=
- call last):<br>=C2=A0 File &quot;/home/pc/image_build/Fosphor/phosphor_spe=
-ctrum.py&quot;, line 254, in &lt;module&gt;<br>=C2=A0 =C2=A0 main()<br>=C2=
-=A0 File &quot;/home/pc/image_build/Fosphor/phosphor_spectrum.py&quot;, lin=
-e 230, in main<br>=C2=A0 =C2=A0 tb =3D top_block_cls()<br>=C2=A0 File &quot=
-;/home/pc/image_build/Fosphor/phosphor_spectrum.py&quot;, line 78, in __ini=
-t__<br>=C2=A0 =C2=A0 self.rfnoc_graph =3D ettus_rfnoc_graph =3D ettus.rfnoc=
-_graph(uhd.device_addr(&quot;,&quot;.join((&#39;&#39;, &#39;type=3Dx300&#39=
-;))))<br>=C2=A0 File &quot;/usr/local/lib/python3/dist-packages/ettus/ettus=
-_swig.py&quot;, line 1386, in make<br>=C2=A0 =C2=A0 return _ettus_swig.rfno=
-c_graph_make(dev_addr)<br>RuntimeError: RuntimeError: Failure to create rfn=
-oc_graph.<br>&gt;&gt;&gt; Done (return code 1)</i><br></div><div><br></div>=
-<div>I have searched for examples from UHD 3.15 version and see that It sho=
-uld have a window block or stream to vector block before FFT block (Radio-&=
-gt;DDC-&gt;Window-&gt;FFT-&gt;Fosphor-&gt;Rx_stream),</div><div>I don&#39;t=
- know exactly window block is necessary or not? I saw some one asked a ques=
-tion about Fosphor with the same diagram and he has done it</div><div>Could=
- you let me know about this issue? I&#39;m very grateful for that.</div><di=
-v><br></div><div>Best regards,</div><div>Tuan</div><div><img src=3D"cid:ii_=
-kjjn4yas1" alt=3D"image.png" width=3D"562" height=3D"239"><br></div><div><b=
-r></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">V=C3=A0o Th 3, 5 thg 1, 2021 va=CC=80o lu=CC=81c 15:34 Jonathon Pen=
-dlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_blank">jo=
-nathon.pendlum@ettus.com</a>&gt; =C4=91=C3=A3 vi=E1=BA=BFt:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Tuan,<div><=
-br></div><div>A few of the in-tree RFNoC blocks do not have GRC support yet=
-. The window block is one of them. That will come in a future update, altho=
-ugh I don&#39;t have an exact timeline.</div><div><br></div><div>Jonathon</=
-div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Sun, Jan 3, 2021 at 11:24 PM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng =
-via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"=
-_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi everyone,<div><br></d=
-iv><div>I&#39;m learning RFNoC with UHD 4.0 and GRC 3.8. I have a question =
-about how to build RFNoC blocks in=C2=A0/lib/rfnoc/blocks directory?=C2=A0<=
-/div><div><br></div><div>For=C2=A0example, with window block, by doing the =
-following steps:</div><div>+ Using rfnocmodtool to create test module with =
-window block.<br></div><div>+ Copy yml file and fpga files from window lib =
-directory to test directory.<br></div><div>+ Run cmake, testbench, make ins=
-tall command.<br></div><div><br></div><div>although the window block has be=
-en built successfully, its GRC block appeared with only one user_register l=
-ike gain example block.=C2=A0</div><div>The gr_ettus has been installed but=
- no GRC block for window block or some others.</div><div>So how I can build=
-=C2=A0the blocks in the lib directory with full registers and parameters?</=
-div><div>I can not find any guiding document about that thing, hope that it=
- will be supported in the near future.</div><div><br></div><div>Thank you!<=
-/div><div>Tuan</div></div>
+y&quot;, line 1386, in make<br>=C2=A0 =C2=A0 return _ettus_swig.rfnoc_graph=
+_make(dev_addr)<br>RuntimeError: RuntimeError: Failure to create rfnoc_grap=
+h.<br>&gt;&gt;&gt; Done (return code 1)</i><br></div><div><br></div><div>I =
+have searched for examples from UHD 3.15 version and see that It should hav=
+e a window block or stream to vector block before FFT block (Radio-&gt;DDC-=
+&gt;Window-&gt;FFT-&gt;Fosphor-&gt;Rx_stream),</div><div>I don&#39;t know e=
+xactly window block is necessary or not? I saw some one asked a question ab=
+out Fosphor with the same diagram and he has done it</div><div>Could you le=
+t me know about this issue? I&#39;m very grateful for that.</div><div><br><=
+/div><div>Best regards,</div><div>Tuan</div><div><img src=3D"cid:ii_kjjn4ya=
+s1" alt=3D"image.png" width=3D"562" height=3D"239"><br></div><div><br></div=
+></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>V=C3=A0o Th 3, 5 thg 1, 2021 va=CC=80o lu=CC=81c 15:34 Jonathon Pendlum &l=
+t;<a href=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_blank">jonathon.=
+pendlum@ettus.com</a>&gt; =C4=91=C3=A3 vi=E1=BA=BFt:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Tuan,<div><br></di=
+v><div>A few of the in-tree RFNoC blocks do not have GRC support yet. The w=
+indow block is one of them. That will come in a future update, although I d=
+on&#39;t have an exact timeline.</div><div><br></div><div>Jonathon</div></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Sun, Jan 3, 2021 at 11:24 PM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng via USR=
+P-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"=
+>usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex"><div dir=3D"ltr">Hi everyone,<div><br></div><div=
+>I&#39;m learning RFNoC with UHD 4.0 and GRC 3.8. I have a question about h=
+ow to build RFNoC blocks in=C2=A0/lib/rfnoc/blocks directory?=C2=A0</div><d=
+iv><br></div><div>For=C2=A0example, with window block, by doing the followi=
+ng steps:</div><div>+ Using rfnocmodtool to create test module with window =
+block.<br></div><div>+ Copy yml file and fpga files from window lib directo=
+ry to test directory.<br></div><div>+ Run cmake, testbench, make install co=
+mmand.<br></div><div><br></div><div>although the window block has been buil=
+t successfully, its GRC block appeared with only one user_register like gai=
+n example block.=C2=A0</div><div>The gr_ettus has been installed but no GRC=
+ block for window block or some others.</div><div>So how I can build=C2=A0t=
+he blocks in the lib directory with full registers and parameters?</div><di=
+v>I can not find any guiding document about that thing, hope that it will b=
+e supported in the near future.</div><div><br></div><div>Thank you!</div><d=
+iv>Tuan</div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -412,9 +439,10 @@ tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
 </blockquote></div>
+</blockquote></div>
 
---000000000000dfcc0a05b8250783--
---000000000000dfcc0b05b8250784
+--000000000000bee49a05b829d5cf--
+--000000000000bee49b05b829d5d0
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -2666,7 +2694,7 @@ gAAEIAABPgsgVeHz0ce+QwACEIAABCAAAQhAAAIQgAAEIMBdAKkKdzssCQEIQAACEIAABCAAAQhA
 AAIQgACfBZCq8PnoY98hAAEIQAACEIAABCAAAQhAAAIQ4C6AVIW7HZaEAAQgAAEIQAACEIAABCAA
 AQhAgM8CSFX4fPSx7xCAAAQgAAEIQAACEIAABCAAAQhwF0Cqwt0OS0IAAhCAAAQgAAEIQAACEIAA
 BCDAZwGkKnw++th3CEAAAhCAAAQgAAEIQAACEIAABLgL/D/dAtnROnkajQAAAABJRU5ErkJggg==
---000000000000dfcc0b05b8250784
+--000000000000bee49b05b829d5d0
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -7178,10 +7206,10 @@ Y2oVjSEBJIAEvicB3Ih/T/roGwkgASSABJAAEkACPzAB3Cj+wIuDoSGBH5fAz6nYAkB6fmEnp/DC
 j7sCv15k+ZfLmquv/Xp5Y8ZIAAn8zARwI/4zry7mhgSQABJAAkgACSCBbyCAG8VvgIdTkcCvS+Cn
 VWx/3SXFzJEAEkACSGDCCeBGfMKRo0MkgASQABJAAkgACUwOArhRnBzrhFEigR+MwP8D4pcy2ZQX
 BFEAAAAASUVORK5CYII=
---000000000000dfcc0b05b8250784--
+--000000000000bee49b05b829d5d0--
 
 
---===============7351833226778337114==
+--===============0246922353182045898==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -7192,5 +7220,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7351833226778337114==--
+--===============0246922353182045898==--
 
