@@ -2,61 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EDE02EA4FB
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Jan 2021 06:42:37 +0100 (CET)
-Received: from [::1] (port=44732 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C07A22EA578
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Jan 2021 07:35:30 +0100 (CET)
+Received: from [::1] (port=45122 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kwf74-0000aw-Lx; Tue, 05 Jan 2021 00:42:34 -0500
-Received: from mail-io1-f41.google.com ([209.85.166.41]:44181)
+	id 1kwfwH-0003EV-39; Tue, 05 Jan 2021 01:35:29 -0500
+Received: from mail-vs1-f47.google.com ([209.85.217.47]:37111)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kwf70-0000Tr-QG
- for USRP-users@lists.ettus.com; Tue, 05 Jan 2021 00:42:30 -0500
-Received: by mail-io1-f41.google.com with SMTP id z5so27189764iob.11
- for <USRP-users@lists.ettus.com>; Mon, 04 Jan 2021 21:42:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=ZwwGdc68EYIOKafuvAlht0R9A1JQfjDiupAJNkFrVsk=;
- b=dM2LFwMbilnxRjoafSZ1qLjkfBg2KQUFolGKJPiCk3O7DndhCpXMMl/sdBDbJoZEJI
- G6P7sH+028r64XFNOloccbXkWYtVW0QeRquDTvMHDX4WD+dpjJKBFZnAOihgma4Zww6v
- f1uebPY8KFDuspn0mneNa9wb9F/JTaW0GihrtHj390zu17onGuCzd6wXGLNxWmt6HEHG
- I1X8xb6XR0Gv/A1M/ssZhUhQWu6estwLABgGkctri/H/N/weKZq3WO8jwaw6hOF9l/Lv
- O6rSuDlrZkJn46J4SwXIk3CVayQLx9fVovm9fcUUbsDbxwq0mkHnvLERAZKNnsgR2uEG
- feLg==
+ (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1kwfwD-00031j-1K
+ for usrp-users@lists.ettus.com; Tue, 05 Jan 2021 01:35:25 -0500
+Received: by mail-vs1-f47.google.com with SMTP id j140so15828883vsd.4
+ for <usrp-users@lists.ettus.com>; Mon, 04 Jan 2021 22:35:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=q0cohQv7Phu9XCs//rJWpHJvMFPvB/vsCjleH0fekFc=;
+ b=bwnFwM2T7t9eS3FtDkkpM/mbSAdxj0ducgWtYAYpbVWXFYfsgPvElXuxGft9k1jLsi
+ 5JhB0ITSjB96m6GbS6m8b8/aAPuCvRh+LINKlLH9jhHC5TLJojzFf0MtwMsh7o0xkcI1
+ q+Nv0jYJB1eHjSuQ1mSf8RpDHN8qg4VPlERIoWmS+qgFyMp7Yf6bbEFsbAEWb9d+eFFr
+ l9MOpLKr/P9/9Z0ozXWUKWlPzhg4PyCYGzJK8Vz+wh6rU7advdnuEliKayLReQe5QYLa
+ +eA5F6Dplf8kvRYBtjmT4QzqGFfoVtgA28602+nAwVeEMLfTPU0Ab0p9+IPvtiaqbaYC
+ coPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=ZwwGdc68EYIOKafuvAlht0R9A1JQfjDiupAJNkFrVsk=;
- b=iDvzy07/5MEPVRhdt65kTr+1QqER0vpPLYUD6wZwLQANhuaRhVIsdFETj91G1Qq7kj
- Em+5NyKmv84kYudZIfy9m8xUhQ0n53Yy7SZ498x94J/69/NHcFpVmRqUsh2qAdXOEolO
- MOBXxHiMKqPoLtdmrZgdwMVMnFlzLgkSVIYG4UNWQAvW1QG2m/SX9xzPSgAtFfQJjIAb
- /4l0TAw+fB2q7HWXyk1iE2oiWl7Nw2Umi60dQX60g9bxGDxaQ3w2KYlMffwQzjgyRwIE
- VA6CVHOEAyNfwbuCQkVKjmFlLzGdiMrjlT4JRcs8XzQJH+EgxpMYl7fF5LHFW6oggOJb
- u+6g==
-X-Gm-Message-State: AOAM530criDb7zMXcsofOHW/n0uJhxC0N/IjmPLu0jv/R27BUU3rdyp+
- foezC+y+p96DBBQlvw82/2p/eTfaEP4=
-X-Google-Smtp-Source: ABdhPJz6J0YHrxWJHKNCfD52/u3t+NM4AsbVVb/e0JfSY91F3+MVvmfbbkYZhowcHsPNM5aDz4aSug==
-X-Received: by 2002:a05:6638:248a:: with SMTP id
- x10mr64134267jat.29.1609825309872; 
- Mon, 04 Jan 2021 21:41:49 -0800 (PST)
-Received: from [192.168.2.130]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.gmail.com with ESMTPSA id 64sm45163339iow.9.2021.01.04.21.41.49
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 04 Jan 2021 21:41:49 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Tue, 5 Jan 2021 00:41:48 -0500
-Message-Id: <AFA6E8C4-2EA1-4DEA-9261-4E83312B521F@gmail.com>
-References: <661E68F8-5513-4573-85A4-08F4F8721778@gmail.com>
-Cc: USRP-users@lists.ettus.com
-In-Reply-To: <661E68F8-5513-4573-85A4-08F4F8721778@gmail.com>
-To: Lukas Haase <lukashaase@gmx.at>
-X-Mailer: iPhone Mail (18B92)
-Subject: Re: [USRP-users] X310/UBX as a monostatic transceiver (e.g. RFID
- reader)?
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=q0cohQv7Phu9XCs//rJWpHJvMFPvB/vsCjleH0fekFc=;
+ b=om+BE5NtUZmoS/dVFtWIig0BdFG5r8DuDk9OtCGzWywXargsUffagHaKDHT4CckkoH
+ HyzGPJvbtdi3iS2Ec1jq0P1XMVQOwBS26FPMQFHkNXcYXjz+ecOBNOLfb9M9lr51cwO8
+ eSNcwikbIr9U/Oj3dnsamcPEfcvvg63nqDFvdMVOvKrQ4kYUFNu1hxxiZ0KCHgOYD3xu
+ cpYRVW3BB8t4OFiy1WZRSAiHaH6MeHjER6x6w20wkQU8+oPAc3xhCZtoNMSyqxckBz68
+ a8ulph5EqA7zhvl15DhGAg+WyU8yMSRVsG2sjX+7xNDUm4+QB6As0y6BbTSbWJhXtlv+
+ MQzA==
+X-Gm-Message-State: AOAM533uR3RgO1ynDCDItg6Xtir0JylznOauAjKk1IqmqMD9k7unNM92
+ YQ30BMW+BXMFG3usbL/0RTW8CoE/dmO9aGre3LhjhRto
+X-Google-Smtp-Source: ABdhPJzPz6HfExbER273wD9hpXS+Vyl0X01Ts2GizxfDgVh4iZ7qb/OHbitIij0t/ro9MpmKGpsbyFMpZF0sKHZrcN4=
+X-Received: by 2002:a67:e286:: with SMTP id g6mr47738373vsf.42.1609828484323; 
+ Mon, 04 Jan 2021 22:34:44 -0800 (PST)
+MIME-Version: 1.0
+References: <CAJZBg9WtrW=1Th-VfOWZs5r3p++2zGtZioCfuNzz7_v89f_Edw@mail.gmail.com>
+In-Reply-To: <CAJZBg9WtrW=1Th-VfOWZs5r3p++2zGtZioCfuNzz7_v89f_Edw@mail.gmail.com>
+Date: Tue, 5 Jan 2021 01:34:08 -0500
+Message-ID: <CAL7q81vf-G==8JJKmB-dPtpFtzW8gxRYj_7snHn5=BOrjT4YQw@mail.gmail.com>
+To: =?UTF-8?B?xJDDrG5oIFR14bqlbiBIb8Ogbmc=?= <tuanmcx58@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] How to build RFNoC blocks in /lib/rfnoc/blocks
+ directory?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,10 +61,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Content-Type: multipart/mixed; boundary="===============1978640634587692735=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,97 +77,104 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SW5kZWVkLCBhIDkwME1oeiBkdXBsZXhvciB3aXRoIGEgNDAwS2h6IHNwbGl0IGlzIGFuIGV4dHJl
-bWUgY2hhbGxlbmdlLiAKCklmIHRoZSBUWCBhbmQgUlggcmVhbGx5IGRvIG5lZWQgdG8gb3BlcmF0
-ZSBhdCB0aGUgc2FtZSB0aW1lIG9uIG1vcmUgb3IgbGVzcyB0aGUgc2FtZSBmcmVxdWVuY3ksIHRo
-ZW4geW91IGhhdmUgc29tZSBwbHVtYmluZyB0byBkbyBmb3Igc3VyZS4gCgpTZW50IGZyb20gbXkg
-aVBob25lCgo+IE9uIEphbiA1LCAyMDIxLCBhdCAxMjowNyBBTSwgTWFyY3VzIEQgTGVlY2ggPHBh
-dGNodm9uYnJhdW5AZ21haWwuY29tPiB3cm90ZToKPiAKPiDvu79UbyBkbyBhIGxpdHRsZSBleHBl
-Y3RhdGlvbi1zZXR0aW5nLCB0aGUgbmFycm93YmFuZCBNRFMgb2YgYSBtb2Rlcm4sIG5vdCB0aGF0
-IHNwZWN0YWN1bGFyLCBVSEYgUlggY2hhaW4gb2YgYmV0dGVyIHRoYW4gLTE0MGRCbSBpcyBub3Qg
-dGhhdCB1bnVzdWFsLiBTbyB3aGVuIEkgdGFsayBhYm91dCBhIHNlbnNpdGl2ZSBSWCBjaGFpbiwg
-SeKAmW0gdGFsa2luZyBhYm91dCB0aG9zZSBzb3J0cyBvZiBsZXZlbHMuCj4gCj4gSW4gdGhhdCBr
-aW5kIG9mIGNvbnRleHQsIC0yNGRCbSBzZWVtcyBkZWFmZW5pbmdseSBsb3VkLCBhbmQgLTgwZEJt
-IHNlZW1zIGtpbmQgb2Ygbm9ybWFsLiBPbmUgbXVzdCBvZiBjb3Vyc2UgbWFrZSBhZGp1c3RtZW50
-cyBmb3IgUFNEIGFuZCBkZWNpZGUgd2hhdCBjb25zdGl0dXRlcyDigJxuYXJyb3diYW5k4oCdLgo+
-IAo+IFNlbnQgZnJvbSBteSBpUGhvbmUKPiAKPj4gT24gSmFuIDQsIDIwMjEsIGF0IDExOjQ5IFBN
-LCBNYXJjdXMgRCBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+IHdyb3RlOgo+PiAKPj4g
-77u/SWYgdGhlIFRYIGFuZCBSWCBmcmVxdWVuY2llcyBhcmUgYSBmZXcgMTAwa0h6IGRpZmZlcmVu
-dCB0aGVuIHdoYXQgeW91IHdhbnQgaXMgYSBkdXBsZXhvciBhcnJhbmdlbWVudCB3aGVyZSB0aGUg
-VFggZnJlcXVlbmN5IGlzIHN0cm9uZ2x5IGF0dGVudWF0ZWQgYWhlYWQgb2YgdGhlIFJYLiAKPj4g
-Cj4+IFRoaXMgaXMgaG93IHJlcGVhdGVycyB3b3JrIHdoZW4gbXVsdGljb2lwbGVkIHRvIGEgc2lu
-Z2xlIGFudGVubmEuIFRoZSBUWCBmcmVxdWVuY3kgaXMgb2Z0ZW4gYXR0ZW51YXRlZCA5MGRCIGlu
-IHRoZSBSWCBwYXRoLiAKPj4gCj4+IAo+PiAKPj4gU2VudCBmcm9tIG15IGlQaG9uZQo+PiAKPj4+
-PiBPbiBKYW4gNCwgMjAyMSwgYXQgMTE6MzMgUE0sIEx1a2FzIEhhYXNlIDxsdWthc2hhYXNlQGdt
-eC5hdD4gd3JvdGU6Cj4+PiAKPj4+IO+7v0hpIE1hcmN1cywKPj4+IAo+Pj4+PiBPbiAwMS8wNC8y
-MDIxIDEyOjI1IFBNLCBMdWthcyBIYWFzZSB3cm90ZToKPj4+PiBJbiBhbiBSRklEIHN5c3RlbSwg
-dGhlIFJYIGlzICpkZXNpZ25lZCogdG8gYmUgdXAtY2xvc2UtYW5kLXNudWdseSB3aXRoCj4+Pj4g
-dGhlIG90aGVyIGVuZHMgVFguICBUaGVyZSdzIE5PIHJlYXNvbiB0byBoYXZlIGFuIGlucHV0Cj4+
-Pj4gc3RhZ2UgdGhhdCBpcyBzZW5zaXRpdmUgaW4gdGhlIHVzdWFsIFJGIHNlbnNlLiAgU28sIGNv
-bXBsZXRlbHkKPj4+PiBkaWZmZXJlbnQgZW5naW5lZXJpbmcgZ29hbHMgdGhhbiBpbiBhIHR5cGlj
-YWwgUkYgc3lzdGVtLgo+Pj4gCj4+PiBUaGF0J3Mgbm90IHF1aXRlIHRydWUuIFNlbnNpdGl2aXR5
-ICppcyogaW1wb3J0YW50IChpbiB0aGUgUkYgc2Vuc2UpIGJlY2F1c2UgaXQgZGVmaW5lcyBvcGVy
-YXRpbmcgZGlzdGFuY2UuCj4+PiBZZXMsIG1hbnkgcGVvcGxlIGNsYWltIFJGSUQgc3lzdGVtcyBh
-cmUgZm9yd2FyZCBsaW5rIGxpbWl0ZWQgKHdoaWNoIHdhcyB0cnVlKSBidXQgc3RhdGUtb2YtdGhl
-IGFydCB0YWdzIGNhbiBoYXZlIGEgc2Vuc2l2aXZpdHkgb2YgLTI0ZEJtIHdoaWNoIGNvcnJlc3Bv
-bmRzIHRvIG92ZXIgMjBtIGZyZWUgc3BhY2UsIDkwMCBNSHouCj4+PiBUaGUgcmVzcG9uc2UgZnJv
-bSB0aGUgdGFnIGF0IHRoZSByZWFkZXIgaXMgYXJvdW5kIC04MGRCbS4gVGhlIFIyMDAwIGNoaXAg
-dGhhdCBJIG1lbnRpb25lZCBoYXMgYSBzZW5zaXRpdml0eSBpbiBleGNlc3Mgb2YgdGhhdC4KPj4+
-IAo+Pj4gSW5kZWVkLCB0aGlzIGlzIHRoZSByZWFzb24gd2h5ICpzZW5zaXRpdml0eSogKGR1ZSB0
-byBzZWxmIGludGVyZmVyZW5jZSkgaXMgdGhlIGxpbWl0aW5nIGZhY3RvciBpbiBSRklELgo+Pj4g
-Cj4+Pj4+IEkgaGF2ZSB0aG91Z2h0IG9mIGEgbGltaXRlciBhbHJlYWR5LiBUaGlzIGNvdWxkIGJl
-IGFuIG9wdGlvbi4KPj4+Pj4gSXQncyB0cnVlLCBJIGhhdmVuJ3QgZm91bmQgbGltaXRlcnMgd2l0
-aCBsb3dlciBwb3dlciBsZXZlbHMuCj4+Pj4+IAo+Pj4+PiBUd28gcXVlc3Rpb25zIGhlcmU6Cj4+
-Pj4+IAo+Pj4+PiAtIEhvdy93aHkgd291bGQgdGhleSBhZGQgdG8gdGhlIG5vaXNlIGZpZ3VyZT8K
-Pj4+PiBBbnkgbGltaXRlciBkaW9kZSBoYXMgc2h1bnQgY2FwYWNpdGFuY2UuICBXaGljaCBtZWFu
-cyB0aGF0IHRoZSBkZWdyZWUgdG8KPj4+PiB3aGljaCBpbnB1dCBwb3dlciBpcyBzaHVudGVkIHRv
-IGdyb3VuZCBpcyBwcm9wb3J0aW9uYWwKPj4+PiB0byB0aGUgaW5wdXQgZnJlcXVlbmN5IGFuZCBz
-aHVudCBjYXBhY2l0YW5jZS4gICBBTlkgYXR0ZW51YXRpb24KPj4+PiAod2hldGhlciByZXNpc3Rp
-dmUgZGlzc2lwYXRpb24gb3Igc2h1bnQtdG8tZ3JvdW5kIHBhdGh3YXlzKSBpbgo+Pj4+IGZyb250
-IG9mIHRoZSBmaXJzdCBnYWluIHN0YWdlIGFkZHMgKkRJUkVDVExZKiB0byB0aGUgbm9pc2UgZmln
-dXJlIG9mCj4+Pj4gdGhhdCBzdGFnZS4gICBTbywgbGV0J3Mgc2F5IHlvdSBoYXZlIGEgbmljZSBz
-bWFsbC1zaWduYWwgTE5BIHdpdGgKPj4+PiBhIG5vdGlvbmFsIG5vaXNlIGZpZ3VyZSBvZiAwLjVk
-QiwgYW5kIHlvdSBwdXQgMTBkQiBvZiBsb3NzIGluIGZyb250Cj4+Pj4gb2YgaXQtLXRoZSBub2lz
-ZSBmaWd1cmUgbm93IGJlY29tZXMgMTAuNWRCLiAgRm9yIFJGSUQgdHlwZSBhcHBsaWNhdGlvbnMK
-Pj4+PiB0aGlzIGRvZXNuJ3QgbWF0dGVyIHRoYXQgbXVjaC0tc2VlIG15ICJ1cCBjbG9zZSBhbmQg
-c251Z2x5Igo+Pj4+IGNvbW1lbnRzLiAgICBCdXQgZm9yICJvcmRpbmFyeSIgUkYgcmVjZWl2ZSBj
-aGFpbnMsIHlvdSBnZW5lcmFsbHkgd2FudAo+Pj4+IHRvIG1pbmltaXplIG5vaXNlIGZpZ3VyZSB3
-aGlsZSBtYXhpbWl6aW5nIGdhaW4gYW5kIGxpbmVhcml0eS4KPj4+PiAKPj4+PiBUaGVyZSBhcmUg
-ZXhjZXB0aW9ucy0tZm9yIGV4YW1wbGUgYXQgSEYgKGJlbG93IDMwTUh6IG9yIHNvKSwgdGhlIGlu
-cHV0Cj4+Pj4gbm9pc2UgaXMgKnV0dGVybHkgZG9taW5hdGVkKiBieSBnYWxhY3RpYyBiYWNrZ3Jv
-dW5kIG5vaXNlIGFuZAo+Pj4+IGF0bW9zcGhlcmljcy0tdGhlcmUncyBubyBwb2ludCBpbiBoYXZp
-bmcgYW4gaW5wdXQgc3RhZ2Ugd2l0aCBhIG5vaXNlCj4+Pj4gZmlndXJlIGJlbG93IHBlcmhhcHMg
-NS0xMGRCLiAgU28gZm9yIEhGLCBpbnB1dCBzdGFnZXMgdGVuZCB0bwo+Pj4+IGJlIG9wdGltaXpl
-ZCBmb3IgbGluZWFyaXR5IGF0IGhpZ2hlciBpbnB1dCBsZXZlbHMtLWJlY2F1c2UgZXZlbgo+Pj4+
-IGRpc3RhbnQgc2lnbmFscyBjYW4gYmUgcXVpdGUgc3Ryb25nIGF0IEhGLS1wYXJ0aWN1bGFybHkg
-b24gdGhlIGxvd2VyIGVuZC4KPj4+PiAKPj4+Pj4gLSBUaGUgbGFyZ2Ugc2VsZi1pbnRlcmZlcmUg
-d291bGQgcmVzdWx0IGluIGNsaXBwaW5nIChoYXJkIG5vbmxpbmVhcml0aWVzKS4gSXMgdGhpcyBh
-bnkgcHJvYmxlbSBmb3IgdGhlIExOQSAoZ2FpbiBkZXNlbnNpdGl2aXNhdGlvbiBldGMuKQo+Pj4+
-IFdlbGwuICBZZWFoLiAgVGhhdCdzIHdoYXQgdGhlIFAxZEIgcGFyYW1ldGVyIGlzIGFsbCBhYm91
-dC0tdGhlIGlucHV0Cj4+Pj4gbGV2ZWwgYXQgd2hpY2ggZ2FpbiBpcyBjb21wcmVzc2VkIGJ5IDFk
-Qi4KPj4+PiAKPj4+PiBUaGUgb3ZlcmFsbCB0YWtlLWF3YXkgaGVyZSBpcyB0aGF0IGdlbmVyaWMg
-cmFkaW9zICh3aGV0aGVyIHRoZXkgYmUgU0RScwo+Pj4+IG9yIG90aGVycykgc2hvdWxkIGJlIHRo
-b3VnaHQgb2YgYXMgKmNvbXBvbmVudHMqIGluIGFuCj4+Pj4gb3ZlcmFsbCAqZW5naW5lZXJlZCBS
-RiBzeXN0ZW0qLiAgIFRoYXQgbWF5IG1lYW4gdGhpbmdzIGxpa2UgcmVsYXlzIHRvCj4+Pj4gc2h1
-bnQgdGhlIFJYIHBhdGh3YXkgZHVyaW5nIFRYLCBjaXJjdWxhdG9ycywgYXR0ZW51YXRvcnMsCj4+
-Pj4gZGlwbGV4b3JzLCBmaWx0ZXJzLCBSRi1wbHVtYmluZy1pbi1nZW5lcmFsLgo+Pj4gCj4+PiBZ
-ZXMuCj4+PiAKPj4+IFRvIGNsYXJpZnkgbGltaXRlciB2cyBub24tbGltaXRlci4KPj4+IE15IHNl
-bGYgaW50ZXJmZXJpbmcgc2lnbmFsIGZyb20gVFggY2FuIGJlIHVwIHRvIDIwLTI1ZEJtLiBUaGUg
-ZGVzaXJlZCBzaWduYWwgaXMgYSBtb2R1bGF0aW9uIGJhbmR3aWR0aCAoZmV3IDEwMCBrSHopIGF3
-YXkgYW5kIHRoZSByZWNlaXZlciBzaG91bGQgYmUgYXMgc2Vuc2l0aXZlIGFzIHBvc3NpYmxlIHRv
-IHRoYXQgc2lnbmFsLgo+Pj4gCj4+PiBOb3cgSSBoYXZlIHRoZSB0d28gb3B0aW9uczoKPj4+IAo+
-Pj4gMS4pIEFkZGluZyBhIG5vcm1hbCBhdHRlbnVhdG9yIG9mIDQwZEIuIFRoaXMgZW5zdXJlcyB0
-aGUgVVNSUCBpbnB1dCBpcyBhbHdheXMgbGVzcyB0aGFuIDI1LTQwPS0xNWRCbSBidXQgaXQgYWxz
-byByZWR1Y2VzIG15IGRlc2lyZWQgc2lnbmFsIGJ5IDQwZEIuIEluIG90aGVyIHdpcmRzLCBteSBu
-b2lzZSBmaWd1cmUgd29yc2VucyBieSA0MGRCLCBhcyB5b3UgbWVudGlvbmVkLgo+Pj4gCj4+PiAy
-LikgQWRkaW5nIGFuIFJGIGxpbWl0ZXIgd2l0aCBmbGF0IGxlYWthZ2UgKzVkQm0gKEkgZm91bmQg
-U0tZMTY2MDItNjMyTEYpLiBBZnRlcndhcmRzIEkgYWRkIGEgMjBkQiBhdHRlbnVhdG9yIHRvIGdl
-dCB0aGUgbWF4IHRvIDUtMjA9LTE1ZEJtLgo+Pj4gCj4+PiBJZiBJIHVuZGVyc3RhbmQgeW91ciBl
-eHBsYW5hdGlvbiBjb3JyZWN0bHksIHRoZXJlIGlzIG5vIHJlYWwgZGlmZmVyZW5jZSBiZXR3ZWVu
-IHRoZXNlIHR3byAoYmVjYXVzZSB0aGUgbGltaXRlciB3b3VsZCBzdGlsbCBjcnVzaGVzIHNpZ25h
-bCBhbmQgd2l0aCBpdCBkZXNlbnNpdGl6ZXMgdGhlIGRlc2lyZWQgc2lnbmFsIG9uIHRvcCkuCj4+
-PiBJcyB0aGlzIGNvcnJlY3Q/Cj4+PiAKPj4+IFdvdWxkIHlvdSBwcmVmZXIgb25lIG9wdGlvbiBv
-dmVyIHRoZSBvdGhlcj8KPj4+IAo+Pj4gVGhhbmtzIGFnYWluLAo+Pj4gTHVrYXMKPj4+IAo+Pj4g
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVz
-ZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMu
-ZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============1978640634587692735==
+Content-Type: multipart/alternative; boundary="000000000000f52e1205b82166b7"
+
+--000000000000f52e1205b82166b7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Tuan,
+
+A few of the in-tree RFNoC blocks do not have GRC support yet. The window
+block is one of them. That will come in a future update, although I don't
+have an exact timeline.
+
+Jonathon
+
+On Sun, Jan 3, 2021 at 11:24 PM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng via =
+USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi everyone,
+>
+> I'm learning RFNoC with UHD 4.0 and GRC 3.8. I have a question about how
+> to build RFNoC blocks in /lib/rfnoc/blocks directory?
+>
+> For example, with window block, by doing the following steps:
+> + Using rfnocmodtool to create test module with window block.
+> + Copy yml file and fpga files from window lib directory to test director=
+y.
+> + Run cmake, testbench, make install command.
+>
+> although the window block has been built successfully, its GRC block
+> appeared with only one user_register like gain example block.
+> The gr_ettus has been installed but no GRC block for window block or some
+> others.
+> So how I can build the blocks in the lib directory with full registers an=
+d
+> parameters?
+> I can not find any guiding document about that thing, hope that it will b=
+e
+> supported in the near future.
+>
+> Thank you!
+> Tuan
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000f52e1205b82166b7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Tuan,<div><br></div><div>A few of the in-tree RFNoC blo=
+cks do not have GRC support yet. The window block is one of them. That will=
+ come in a future update, although I don&#39;t have an exact timeline.</div=
+><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Sun, Jan 3, 2021 at 11:24 PM =C4=90=
+=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng via USRP-users &lt;<a href=3D"mailto:usrp-=
+users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi everyo=
+ne,<div><br></div><div>I&#39;m learning RFNoC with UHD 4.0 and GRC 3.8. I h=
+ave a question about how to build RFNoC blocks in=C2=A0/lib/rfnoc/blocks di=
+rectory?=C2=A0</div><div><br></div><div>For=C2=A0example, with window block=
+, by doing the following steps:</div><div>+ Using rfnocmodtool to create te=
+st module with window block.<br></div><div>+ Copy yml file and fpga files f=
+rom window lib directory to test directory.<br></div><div>+ Run cmake, test=
+bench, make install command.<br></div><div><br></div><div>although the wind=
+ow block has been built successfully, its GRC block appeared with only one =
+user_register like gain example block.=C2=A0</div><div>The gr_ettus has bee=
+n installed but no GRC block for window block or some others.</div><div>So =
+how I can build=C2=A0the blocks in the lib directory with full registers an=
+d parameters?</div><div>I can not find any guiding document about that thin=
+g, hope that it will be supported in the near future.</div><div><br></div><=
+div>Thank you!</div><div>Tuan</div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000f52e1205b82166b7--
+
+
+--===============1978640634587692735==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============1978640634587692735==--
+
