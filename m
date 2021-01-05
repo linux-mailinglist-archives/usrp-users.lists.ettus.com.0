@@ -2,56 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FE462EA476
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Jan 2021 05:33:46 +0100 (CET)
-Received: from [::1] (port=44190 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10B0B2EA487
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Jan 2021 05:50:08 +0100 (CET)
+Received: from [::1] (port=44274 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kwe2Q-0005Jm-5U; Mon, 04 Jan 2021 23:33:42 -0500
-Received: from mout.gmx.net ([212.227.17.21]:58687)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1kwe2M-0005FB-M9
- for usrp-users@lists.ettus.com; Mon, 04 Jan 2021 23:33:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1609821177;
- bh=IG5OegoiD8kBXWU8S4ReLoKdhr73kLJsRmwwkcN8c3w=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=hwYI5gVYkY0SzAs9Jao2tEOVJBJWaC6Elu8nZvlGiYriwZ7Hm/iX0zeN/5hrzmSW6
- kqFajJbdaN3jX+Oyfv3XcNTIST2+NtMMXw1l85OooNlW3pMeD11Nt/ArPXhaHtRwus
- ZM4tHm3EJKwhsDjA5ugnyFc5pIaQWs/Cn+kWqx60=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [107.173.69.236] ([107.173.69.236]) by web-mail.gmx.net
- (3c-app-gmx-bap76.server.lan [172.19.172.64]) (via HTTP); Tue, 5 Jan 2021
- 05:32:57 +0100
-MIME-Version: 1.0
-Message-ID: <trinity-b5da53c8-0ba0-46c1-89a3-6b706b96fa38-1609821177203@3c-app-gmx-bap76>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users@lists.ettus.com
-Date: Tue, 5 Jan 2021 05:32:57 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <5FF3644A.2050109@gmail.com>
-References: <mailman.37.1609779606.30850.usrp-users_lists.ettus.com@lists.ettus.com>
- <trinity-1751857b-dc18-4d8d-a18c-0ab947e52651-1609781110826@3c-app-gmx-bap76>
- <5FF3644A.2050109@gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:SRFu2KDt8BaiagP2LG8smXfQ+rwqi+qZY3VsrMrbrATU9yri8VegUs6Rp1q44f637RVxu
- fT0IgpVLsXg+g0kkWbTh+rOUkTi7OOFiMej+OjVlqF1qhoax3MYUYYDW3KTXgwMDRAoxSjcGm/a/
- tNQlUDVm9itwjlrO45sk5ItsYun+eShohNFVn3mLTD0Qcw0NCJRVZYSHUpxV0MAj9+sAKyh74L3L
- CtUI07i6dfhT2R1kaXKZ7AJX2Nqu1KgiXzUr98KqNegFWdu3lhIQcKb+8xbqXDMpC7wzvaKLrcXg
- ys=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:fqo0pZTjPvs=:PI0wTRE3SS2J0vcpfuBSmS
- uRVCwh+Q5E4so7uZME5FouXQ7jTFP41PxRjKuAanOSaARHqOIcnyRPoRzX7gykj1HbQOljHK2
- vH53y6HdV8UTCaArx07/gp4vI98QmetK0A+NAi4khMe8JVIPxpAwXpP+8pwkrzafAEIJWANle
- ngBswkjU31pJ0Xq0MGUB8i4OBZOhq2NiJ1nK1388mFSkPQm1htxCvLpSL1gYaLvcjI5YT8lJA
- aZGtK13nAHBNwgV21QiCWnaQwj3ho44+tH47Plv2yq8xF/x/C9uoEdnSgVh2yvpyCH710gQHC
- XZ5oNxeExgOTfrsYZ7w0gbHgdptKE8lJgpeWLcHIUiBSk/l7ob3Dxddyv4QiKXkCVQ5K0jEip
- x+REoEh2wMjlNht0zQLvcWnngVGZyf01nJhqqItasPrX6FmqpCGuZ9sT+38abIseLT/wxmZlb
- v3O1o0tyf1C3ZJKx4ciLRQJbZr7y249RCBriT5ksP1DaLzndjLYvOO3O1aVFF3f2TKOZwVSV2
- 84FF57U/k6/eJWvFlfLc2Elv2QB2LGIHbyWpExYUMuqVszljtnmJaQoP7jgYeDTNlW8lgaGZh
- La10Ynl79a0bw=
+	id 1kweIH-00067v-HX; Mon, 04 Jan 2021 23:50:05 -0500
+Received: from mail-qt1-f175.google.com ([209.85.160.175]:38782)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kweID-0005yZ-Ip
+ for USRP-users@lists.ettus.com; Mon, 04 Jan 2021 23:50:01 -0500
+Received: by mail-qt1-f175.google.com with SMTP id y15so20151872qtv.5
+ for <USRP-users@lists.ettus.com>; Mon, 04 Jan 2021 20:49:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=5eUvmV02molbFInb+XttNNg07/qDZVepdZJYNpSth0c=;
+ b=Wa5lnzE0so2o03t5ysaWHBgCVWVVnH5rrvyZraT2FFgdNoSCSje84/aohIhKYy+6qN
+ V9RDOKDxtlY8gp7hOHwHf2SGuHz++JEYAYsKzCz2OOS+HpFAFBJL/yP/SwTrdjhG6X3J
+ vjaD+sczAB3XUZVdvT4JanS3ey98igwK9HhaTzw3gFXNxIaakpQq1ZqhtuAzs4Napt7D
+ dCvq6+DJ5M57/+mKI/I3nwyRVotLk/75doyPymni8hDzKvjzIHv85OdU3FdIBTQbjam1
+ 8wSRch4umPNnulzWmSmxngHNRgXBaZaPEkRHXvzvzgoTJQ3HN5GRVTwJ7P2N/NgH9ze0
+ TKHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=5eUvmV02molbFInb+XttNNg07/qDZVepdZJYNpSth0c=;
+ b=dFuwDhFF4UIrtSbpkrtwkocN20/gIfgIZeesd4rXWBJzO44ju8fZVPC0tUdWvqUb6r
+ 5NvfZgTjnXBXG69CzUzOhrrASE3zldvIGpWt2xSJp6LI7D8gbWNS3v/ZRqEiEuwAUZbT
+ x+mLjx6zoXIVVbCN53ltlaZOobYpjMrzJua8KgpGnS/vQCTVnXMktRGfNUUT9XNOjvFs
+ 6BKug2f9Ba/9hc2wjrlBxCIofIw6lfBsJ6tLBjBOOS1J+wEh2Y2EvpahGVHni0coRtil
+ tcu1sf8jPmDsSCsUQbux7RwK+3e4x5gJ04wURnDOv5HwjbwYK0fnNEAuidi7fmUOX9Hy
+ Gg5A==
+X-Gm-Message-State: AOAM533a13KrM6ILKjogSQDNJBLcV5gZF2uvGLt9yM4J1/3KbrWd4Oz2
+ 7UeTpPkL3SIi+6WeWm/qJTQLjxyvU6Q=
+X-Google-Smtp-Source: ABdhPJyApU83q7UVWfyickMHS7Q+whOaBswJHn46Kp4ZnjyQX3mrHw/cpI7ZR3TJtqJ6qu9N2GqS/w==
+X-Received: by 2002:ac8:3ac5:: with SMTP id x63mr76211179qte.376.1609822160745; 
+ Mon, 04 Jan 2021 20:49:20 -0800 (PST)
+Received: from [192.168.2.130]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.gmail.com with ESMTPSA id p15sm38508370qke.11.2021.01.04.20.49.20
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 04 Jan 2021 20:49:20 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Mon, 4 Jan 2021 23:49:19 -0500
+Message-Id: <ACBF672A-AAC7-4931-9A8A-6643ABB9D3B1@gmail.com>
+References: <trinity-b5da53c8-0ba0-46c1-89a3-6b706b96fa38-1609821177203@3c-app-gmx-bap76>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <trinity-b5da53c8-0ba0-46c1-89a3-6b706b96fa38-1609821177203@3c-app-gmx-bap76>
+To: Lukas Haase <lukashaase@gmx.at>
+X-Mailer: iPhone Mail (18B92)
 Subject: Re: [USRP-users] X310/UBX as a monostatic transceiver (e.g. RFID
  reader)?
 X-BeenThere: usrp-users@lists.ettus.com
@@ -65,10 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Lukas Haase <lukashaase@gmx.at>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,77 +84,80 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Marcus,
-
-> On 01/04/2021 12:25 PM, Lukas Haase wrote:
-> In an RFID system, the RX is *designed* to be up-close-and-snugly with
-> the other ends TX.  There's NO reason to have an input
->    stage that is sensitive in the usual RF sense.  So, completely
-> different engineering goals than in a typical RF system.
-
-That's not quite true. Sensitivity *is* important (in the RF sense) because it defines operating distance.
-Yes, many people claim RFID systems are forward link limited (which was true) but state-of-the art tags can have a sensivivity of -24dBm which corresponds to over 20m free space, 900 MHz.
-The response from the tag at the reader is around -80dBm. The R2000 chip that I mentioned has a sensitivity in excess of that.
-
-Indeed, this is the reason why *sensitivity* (due to self interference) is the limiting factor in RFID.
-
-> > I have thought of a limiter already. This could be an option.
-> > It's true, I haven't found limiters with lower power levels.
-> >
-> > Two questions here:
-> >
-> > - How/why would they add to the noise figure?
-> Any limiter diode has shunt capacitance.  Which means that the degree to
-> which input power is shunted to ground is proportional
->    to the input frequency and shunt capacitance.   ANY attenuation
-> (whether resistive dissipation or shunt-to-ground pathways) in
->    front of the first gain stage adds *DIRECTLY* to the noise figure of
-> that stage.   So, let's say you have a nice small-signal LNA with
->    a notional noise figure of 0.5dB, and you put 10dB of loss in front
-> of it--the noise figure now becomes 10.5dB.  For RFID type applications
->    this doesn't matter that much--see my "up close and snugly"
-> comments.    But for "ordinary" RF receive chains, you generally want
->    to minimize noise figure while maximizing gain and linearity.
->
-> There are exceptions--for example at HF (below 30MHz or so), the input
-> noise is *utterly dominated* by galactic background noise and
->    atmospherics--there's no point in having an input stage with a noise
-> figure below perhaps 5-10dB.  So for HF, input stages tend to
->    be optimized for linearity at higher input levels--because even
-> distant signals can be quite strong at HF--particularly on the lower end.
->
-> > - The large self-interfere would result in clipping (hard nonlinearities). Is this any problem for the LNA (gain desensitivisation etc.)
-> Well.  Yeah.  That's what the P1dB parameter is all about--the input
-> level at which gain is compressed by 1dB.
->
-> The overall take-away here is that generic radios (whether they be SDRs
-> or others) should be thought of as *components* in an
->    overall *engineered RF system*.   That may mean things like relays to
-> shunt the RX pathway during TX, circulators, attenuators,
->    diplexors, filters, RF-plumbing-in-general.
-
-Yes.
-
-To clarify limiter vs non-limiter.
-My self interfering signal from TX can be up to 20-25dBm. The desired signal is a modulation bandwidth (few 100 kHz) away and the receiver should be as sensitive as possible to that signal.
-
-Now I have the two options:
-
-1.) Adding a normal attenuator of 40dB. This ensures the USRP input is always less than 25-40=-15dBm but it also reduces my desired signal by 40dB. In other wirds, my noise figure worsens by 40dB, as you mentioned.
-
-2.) Adding an RF limiter with flat leakage +5dBm (I found SKY16602-632LF). Afterwards I add a 20dB attenuator to get the max to 5-20=-15dBm.
-
-If I understand your explanation correctly, there is no real difference between these two (because the limiter would still crushes signal and with it desensitizes the desired signal on top).
-Is this correct?
-
-Would you prefer one option over the other?
-
-Thanks again,
-Lukas
-
-
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+SWYgdGhlIFRYIGFuZCBSWCBmcmVxdWVuY2llcyBhcmUgYSBmZXcgMTAwa0h6IGRpZmZlcmVudCB0
+aGVuIHdoYXQgeW91IHdhbnQgaXMgYSBkdXBsZXhvciBhcnJhbmdlbWVudCB3aGVyZSB0aGUgVFgg
+ZnJlcXVlbmN5IGlzIHN0cm9uZ2x5IGF0dGVudWF0ZWQgYWhlYWQgb2YgdGhlIFJYLiAKClRoaXMg
+aXMgaG93IHJlcGVhdGVycyB3b3JrIHdoZW4gbXVsdGljb2lwbGVkIHRvIGEgc2luZ2xlIGFudGVu
+bmEuIFRoZSBUWCBmcmVxdWVuY3kgaXMgb2Z0ZW4gYXR0ZW51YXRlZCA5MGRCIGluIHRoZSBSWCBw
+YXRoLiAKCgoKU2VudCBmcm9tIG15IGlQaG9uZQoKPiBPbiBKYW4gNCwgMjAyMSwgYXQgMTE6MzMg
+UE0sIEx1a2FzIEhhYXNlIDxsdWthc2hhYXNlQGdteC5hdD4gd3JvdGU6Cj4gCj4g77u/SGkgTWFy
+Y3VzLAo+IAo+PiBPbiAwMS8wNC8yMDIxIDEyOjI1IFBNLCBMdWthcyBIYWFzZSB3cm90ZToKPj4g
+SW4gYW4gUkZJRCBzeXN0ZW0sIHRoZSBSWCBpcyAqZGVzaWduZWQqIHRvIGJlIHVwLWNsb3NlLWFu
+ZC1zbnVnbHkgd2l0aAo+PiB0aGUgb3RoZXIgZW5kcyBUWC4gIFRoZXJlJ3MgTk8gcmVhc29uIHRv
+IGhhdmUgYW4gaW5wdXQKPj4gICBzdGFnZSB0aGF0IGlzIHNlbnNpdGl2ZSBpbiB0aGUgdXN1YWwg
+UkYgc2Vuc2UuICBTbywgY29tcGxldGVseQo+PiBkaWZmZXJlbnQgZW5naW5lZXJpbmcgZ29hbHMg
+dGhhbiBpbiBhIHR5cGljYWwgUkYgc3lzdGVtLgo+IAo+IFRoYXQncyBub3QgcXVpdGUgdHJ1ZS4g
+U2Vuc2l0aXZpdHkgKmlzKiBpbXBvcnRhbnQgKGluIHRoZSBSRiBzZW5zZSkgYmVjYXVzZSBpdCBk
+ZWZpbmVzIG9wZXJhdGluZyBkaXN0YW5jZS4KPiBZZXMsIG1hbnkgcGVvcGxlIGNsYWltIFJGSUQg
+c3lzdGVtcyBhcmUgZm9yd2FyZCBsaW5rIGxpbWl0ZWQgKHdoaWNoIHdhcyB0cnVlKSBidXQgc3Rh
+dGUtb2YtdGhlIGFydCB0YWdzIGNhbiBoYXZlIGEgc2Vuc2l2aXZpdHkgb2YgLTI0ZEJtIHdoaWNo
+IGNvcnJlc3BvbmRzIHRvIG92ZXIgMjBtIGZyZWUgc3BhY2UsIDkwMCBNSHouCj4gVGhlIHJlc3Bv
+bnNlIGZyb20gdGhlIHRhZyBhdCB0aGUgcmVhZGVyIGlzIGFyb3VuZCAtODBkQm0uIFRoZSBSMjAw
+MCBjaGlwIHRoYXQgSSBtZW50aW9uZWQgaGFzIGEgc2Vuc2l0aXZpdHkgaW4gZXhjZXNzIG9mIHRo
+YXQuCj4gCj4gSW5kZWVkLCB0aGlzIGlzIHRoZSByZWFzb24gd2h5ICpzZW5zaXRpdml0eSogKGR1
+ZSB0byBzZWxmIGludGVyZmVyZW5jZSkgaXMgdGhlIGxpbWl0aW5nIGZhY3RvciBpbiBSRklELgo+
+IAo+Pj4gSSBoYXZlIHRob3VnaHQgb2YgYSBsaW1pdGVyIGFscmVhZHkuIFRoaXMgY291bGQgYmUg
+YW4gb3B0aW9uLgo+Pj4gSXQncyB0cnVlLCBJIGhhdmVuJ3QgZm91bmQgbGltaXRlcnMgd2l0aCBs
+b3dlciBwb3dlciBsZXZlbHMuCj4+PiAKPj4+IFR3byBxdWVzdGlvbnMgaGVyZToKPj4+IAo+Pj4g
+LSBIb3cvd2h5IHdvdWxkIHRoZXkgYWRkIHRvIHRoZSBub2lzZSBmaWd1cmU/Cj4+IEFueSBsaW1p
+dGVyIGRpb2RlIGhhcyBzaHVudCBjYXBhY2l0YW5jZS4gIFdoaWNoIG1lYW5zIHRoYXQgdGhlIGRl
+Z3JlZSB0bwo+PiB3aGljaCBpbnB1dCBwb3dlciBpcyBzaHVudGVkIHRvIGdyb3VuZCBpcyBwcm9w
+b3J0aW9uYWwKPj4gICB0byB0aGUgaW5wdXQgZnJlcXVlbmN5IGFuZCBzaHVudCBjYXBhY2l0YW5j
+ZS4gICBBTlkgYXR0ZW51YXRpb24KPj4gKHdoZXRoZXIgcmVzaXN0aXZlIGRpc3NpcGF0aW9uIG9y
+IHNodW50LXRvLWdyb3VuZCBwYXRod2F5cykgaW4KPj4gICBmcm9udCBvZiB0aGUgZmlyc3QgZ2Fp
+biBzdGFnZSBhZGRzICpESVJFQ1RMWSogdG8gdGhlIG5vaXNlIGZpZ3VyZSBvZgo+PiB0aGF0IHN0
+YWdlLiAgIFNvLCBsZXQncyBzYXkgeW91IGhhdmUgYSBuaWNlIHNtYWxsLXNpZ25hbCBMTkEgd2l0
+aAo+PiAgIGEgbm90aW9uYWwgbm9pc2UgZmlndXJlIG9mIDAuNWRCLCBhbmQgeW91IHB1dCAxMGRC
+IG9mIGxvc3MgaW4gZnJvbnQKPj4gb2YgaXQtLXRoZSBub2lzZSBmaWd1cmUgbm93IGJlY29tZXMg
+MTAuNWRCLiAgRm9yIFJGSUQgdHlwZSBhcHBsaWNhdGlvbnMKPj4gICB0aGlzIGRvZXNuJ3QgbWF0
+dGVyIHRoYXQgbXVjaC0tc2VlIG15ICJ1cCBjbG9zZSBhbmQgc251Z2x5Igo+PiBjb21tZW50cy4g
+ICAgQnV0IGZvciAib3JkaW5hcnkiIFJGIHJlY2VpdmUgY2hhaW5zLCB5b3UgZ2VuZXJhbGx5IHdh
+bnQKPj4gICB0byBtaW5pbWl6ZSBub2lzZSBmaWd1cmUgd2hpbGUgbWF4aW1pemluZyBnYWluIGFu
+ZCBsaW5lYXJpdHkuCj4+IAo+PiBUaGVyZSBhcmUgZXhjZXB0aW9ucy0tZm9yIGV4YW1wbGUgYXQg
+SEYgKGJlbG93IDMwTUh6IG9yIHNvKSwgdGhlIGlucHV0Cj4+IG5vaXNlIGlzICp1dHRlcmx5IGRv
+bWluYXRlZCogYnkgZ2FsYWN0aWMgYmFja2dyb3VuZCBub2lzZSBhbmQKPj4gICBhdG1vc3BoZXJp
+Y3MtLXRoZXJlJ3Mgbm8gcG9pbnQgaW4gaGF2aW5nIGFuIGlucHV0IHN0YWdlIHdpdGggYSBub2lz
+ZQo+PiBmaWd1cmUgYmVsb3cgcGVyaGFwcyA1LTEwZEIuICBTbyBmb3IgSEYsIGlucHV0IHN0YWdl
+cyB0ZW5kIHRvCj4+ICAgYmUgb3B0aW1pemVkIGZvciBsaW5lYXJpdHkgYXQgaGlnaGVyIGlucHV0
+IGxldmVscy0tYmVjYXVzZSBldmVuCj4+IGRpc3RhbnQgc2lnbmFscyBjYW4gYmUgcXVpdGUgc3Ry
+b25nIGF0IEhGLS1wYXJ0aWN1bGFybHkgb24gdGhlIGxvd2VyIGVuZC4KPj4gCj4+PiAtIFRoZSBs
+YXJnZSBzZWxmLWludGVyZmVyZSB3b3VsZCByZXN1bHQgaW4gY2xpcHBpbmcgKGhhcmQgbm9ubGlu
+ZWFyaXRpZXMpLiBJcyB0aGlzIGFueSBwcm9ibGVtIGZvciB0aGUgTE5BIChnYWluIGRlc2Vuc2l0
+aXZpc2F0aW9uIGV0Yy4pCj4+IFdlbGwuICBZZWFoLiAgVGhhdCdzIHdoYXQgdGhlIFAxZEIgcGFy
+YW1ldGVyIGlzIGFsbCBhYm91dC0tdGhlIGlucHV0Cj4+IGxldmVsIGF0IHdoaWNoIGdhaW4gaXMg
+Y29tcHJlc3NlZCBieSAxZEIuCj4+IAo+PiBUaGUgb3ZlcmFsbCB0YWtlLWF3YXkgaGVyZSBpcyB0
+aGF0IGdlbmVyaWMgcmFkaW9zICh3aGV0aGVyIHRoZXkgYmUgU0RScwo+PiBvciBvdGhlcnMpIHNo
+b3VsZCBiZSB0aG91Z2h0IG9mIGFzICpjb21wb25lbnRzKiBpbiBhbgo+PiAgIG92ZXJhbGwgKmVu
+Z2luZWVyZWQgUkYgc3lzdGVtKi4gICBUaGF0IG1heSBtZWFuIHRoaW5ncyBsaWtlIHJlbGF5cyB0
+bwo+PiBzaHVudCB0aGUgUlggcGF0aHdheSBkdXJpbmcgVFgsIGNpcmN1bGF0b3JzLCBhdHRlbnVh
+dG9ycywKPj4gICBkaXBsZXhvcnMsIGZpbHRlcnMsIFJGLXBsdW1iaW5nLWluLWdlbmVyYWwuCj4g
+Cj4gWWVzLgo+IAo+IFRvIGNsYXJpZnkgbGltaXRlciB2cyBub24tbGltaXRlci4KPiBNeSBzZWxm
+IGludGVyZmVyaW5nIHNpZ25hbCBmcm9tIFRYIGNhbiBiZSB1cCB0byAyMC0yNWRCbS4gVGhlIGRl
+c2lyZWQgc2lnbmFsIGlzIGEgbW9kdWxhdGlvbiBiYW5kd2lkdGggKGZldyAxMDAga0h6KSBhd2F5
+IGFuZCB0aGUgcmVjZWl2ZXIgc2hvdWxkIGJlIGFzIHNlbnNpdGl2ZSBhcyBwb3NzaWJsZSB0byB0
+aGF0IHNpZ25hbC4KPiAKPiBOb3cgSSBoYXZlIHRoZSB0d28gb3B0aW9uczoKPiAKPiAxLikgQWRk
+aW5nIGEgbm9ybWFsIGF0dGVudWF0b3Igb2YgNDBkQi4gVGhpcyBlbnN1cmVzIHRoZSBVU1JQIGlu
+cHV0IGlzIGFsd2F5cyBsZXNzIHRoYW4gMjUtNDA9LTE1ZEJtIGJ1dCBpdCBhbHNvIHJlZHVjZXMg
+bXkgZGVzaXJlZCBzaWduYWwgYnkgNDBkQi4gSW4gb3RoZXIgd2lyZHMsIG15IG5vaXNlIGZpZ3Vy
+ZSB3b3JzZW5zIGJ5IDQwZEIsIGFzIHlvdSBtZW50aW9uZWQuCj4gCj4gMi4pIEFkZGluZyBhbiBS
+RiBsaW1pdGVyIHdpdGggZmxhdCBsZWFrYWdlICs1ZEJtIChJIGZvdW5kIFNLWTE2NjAyLTYzMkxG
+KS4gQWZ0ZXJ3YXJkcyBJIGFkZCBhIDIwZEIgYXR0ZW51YXRvciB0byBnZXQgdGhlIG1heCB0byA1
+LTIwPS0xNWRCbS4KPiAKPiBJZiBJIHVuZGVyc3RhbmQgeW91ciBleHBsYW5hdGlvbiBjb3JyZWN0
+bHksIHRoZXJlIGlzIG5vIHJlYWwgZGlmZmVyZW5jZSBiZXR3ZWVuIHRoZXNlIHR3byAoYmVjYXVz
+ZSB0aGUgbGltaXRlciB3b3VsZCBzdGlsbCBjcnVzaGVzIHNpZ25hbCBhbmQgd2l0aCBpdCBkZXNl
+bnNpdGl6ZXMgdGhlIGRlc2lyZWQgc2lnbmFsIG9uIHRvcCkuCj4gSXMgdGhpcyBjb3JyZWN0Pwo+
+IAo+IFdvdWxkIHlvdSBwcmVmZXIgb25lIG9wdGlvbiBvdmVyIHRoZSBvdGhlcj8KPiAKPiBUaGFu
+a3MgYWdhaW4sCj4gTHVrYXMKPiAKPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVz
+ZXJzX2xpc3RzLmV0dHVzLmNvbQo=
