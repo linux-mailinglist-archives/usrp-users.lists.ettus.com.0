@@ -2,52 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 359B92E9FD5
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Jan 2021 23:10:36 +0100 (CET)
-Received: from [::1] (port=41944 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE462EA476
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Jan 2021 05:33:46 +0100 (CET)
+Received: from [::1] (port=44190 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kwY3c-0007BF-Ex; Mon, 04 Jan 2021 17:10:32 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:44247)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1kwY3Y-00074o-Fi
- for usrp-users@lists.ettus.com; Mon, 04 Jan 2021 17:10:28 -0500
-Received: by mail-oi1-f173.google.com with SMTP id d189so33810343oig.11
- for <usrp-users@lists.ettus.com>; Mon, 04 Jan 2021 14:10:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=HrOrKS04/vqs/4l9ZM9grT9hq/yUz12u2i8gmS26QgY=;
- b=uHKitLaUFrHdTsuremqwIz+rS15CLf1DqNx/M9u2sExcf4t89bH2gxDMbdi0yJgjAF
- kghq4oSGfghBgxv06lQw45OrdzJG/DH3Tx8KEBMQAWeEioj/MLdv0T4gffT/iqyZGb1I
- X2/EFangS1m5LrRuNrZq8vU4ER9OemioFAbnvAY83LOXF9+ojRLznDP2EcRUJ2MuvZ2i
- TqPZrsmSU28RfNieBJfp7gPWer+bKv8s/i/Xfpepk9AAcupTZFLJU+p2qjt5UGfdR422
- VWRZLic2xYgZ7HD7GY7FBLbSYMlE6Xc3yAm843jkvoVLMT1WWhCVqpEqfAkto8Nfgn7/
- wOdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=HrOrKS04/vqs/4l9ZM9grT9hq/yUz12u2i8gmS26QgY=;
- b=l+76WPrE9237oB2s5xidYrLAqE/Mt3PfkOidQo+VQD+RQqFiOEJHpbKwUTl6AQi98o
- rriB7TjVeuXHtMIR1VwC9G+dK6G+gP8F8nIP//4zGJqayIQxtTsOlWhCry07gC7Z+mOl
- eBV/x/EN1oV/0Mez/D6Ez5BG0amj4ioRrXZZ6aMFQjmuUmK4rEJuXxDyuvDTlTcUI1VM
- RIjPF8hppvMZvju6w3t0+8tK7Wap5ZCH+/iik0L6CypuVghoGFUq7NVt7aQReZXLBirA
- xYxjPsTY36RIyal9ae4Ga01TKBEBxPCJ/U0fRoX1Vnk9tuwMhDAfAOyzxaAHruymKJbZ
- fzdQ==
-X-Gm-Message-State: AOAM5317n4N9tULL4YwncXwiePyhz1IYRI0HG1XBk+m1mlv9XlXQHs7F
- zHbom2v//afhBjJzUFkYr3uZmTfJXcgzYQuwUCZI4HVwjcLj9qG7
-X-Google-Smtp-Source: ABdhPJyVKnmQ841He7SU4ja9dCMopx7DMLxtwlnpKMZzD28371+ajRzIKdaFagIHzWdU65veQbbs+TRbSTlDaydSfUM=
-X-Received: by 2002:aca:5786:: with SMTP id l128mr701564oib.145.1609798187573; 
- Mon, 04 Jan 2021 14:09:47 -0800 (PST)
+	id 1kwe2Q-0005Jm-5U; Mon, 04 Jan 2021 23:33:42 -0500
+Received: from mout.gmx.net ([212.227.17.21]:58687)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <lukashaase@gmx.at>) id 1kwe2M-0005FB-M9
+ for usrp-users@lists.ettus.com; Mon, 04 Jan 2021 23:33:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1609821177;
+ bh=IG5OegoiD8kBXWU8S4ReLoKdhr73kLJsRmwwkcN8c3w=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=hwYI5gVYkY0SzAs9Jao2tEOVJBJWaC6Elu8nZvlGiYriwZ7Hm/iX0zeN/5hrzmSW6
+ kqFajJbdaN3jX+Oyfv3XcNTIST2+NtMMXw1l85OooNlW3pMeD11Nt/ArPXhaHtRwus
+ ZM4tHm3EJKwhsDjA5ugnyFc5pIaQWs/Cn+kWqx60=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [107.173.69.236] ([107.173.69.236]) by web-mail.gmx.net
+ (3c-app-gmx-bap76.server.lan [172.19.172.64]) (via HTTP); Tue, 5 Jan 2021
+ 05:32:57 +0100
 MIME-Version: 1.0
-References: <1A0C1E24-F805-4627-8830-F3F87525CFCD@ulb.be>
-In-Reply-To: <1A0C1E24-F805-4627-8830-F3F87525CFCD@ulb.be>
-Date: Mon, 4 Jan 2021 16:09:36 -0600
-Message-ID: <CAFche=gs-7qDfLzUW5tds5ihgdLbV2_-vD6+=VaSsNBknBrh-w@mail.gmail.com>
-To: =?UTF-8?Q?C=C3=A9dric_Hannotier?= <cedric.hannotier@ulb.be>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] RFNoC Specification Questions
+Message-ID: <trinity-b5da53c8-0ba0-46c1-89a3-6b706b96fa38-1609821177203@3c-app-gmx-bap76>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: usrp-users@lists.ettus.com
+Date: Tue, 5 Jan 2021 05:32:57 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <5FF3644A.2050109@gmail.com>
+References: <mailman.37.1609779606.30850.usrp-users_lists.ettus.com@lists.ettus.com>
+ <trinity-1751857b-dc18-4d8d-a18c-0ab947e52651-1609781110826@3c-app-gmx-bap76>
+ <5FF3644A.2050109@gmail.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:SRFu2KDt8BaiagP2LG8smXfQ+rwqi+qZY3VsrMrbrATU9yri8VegUs6Rp1q44f637RVxu
+ fT0IgpVLsXg+g0kkWbTh+rOUkTi7OOFiMej+OjVlqF1qhoax3MYUYYDW3KTXgwMDRAoxSjcGm/a/
+ tNQlUDVm9itwjlrO45sk5ItsYun+eShohNFVn3mLTD0Qcw0NCJRVZYSHUpxV0MAj9+sAKyh74L3L
+ CtUI07i6dfhT2R1kaXKZ7AJX2Nqu1KgiXzUr98KqNegFWdu3lhIQcKb+8xbqXDMpC7wzvaKLrcXg
+ ys=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:fqo0pZTjPvs=:PI0wTRE3SS2J0vcpfuBSmS
+ uRVCwh+Q5E4so7uZME5FouXQ7jTFP41PxRjKuAanOSaARHqOIcnyRPoRzX7gykj1HbQOljHK2
+ vH53y6HdV8UTCaArx07/gp4vI98QmetK0A+NAi4khMe8JVIPxpAwXpP+8pwkrzafAEIJWANle
+ ngBswkjU31pJ0Xq0MGUB8i4OBZOhq2NiJ1nK1388mFSkPQm1htxCvLpSL1gYaLvcjI5YT8lJA
+ aZGtK13nAHBNwgV21QiCWnaQwj3ho44+tH47Plv2yq8xF/x/C9uoEdnSgVh2yvpyCH710gQHC
+ XZ5oNxeExgOTfrsYZ7w0gbHgdptKE8lJgpeWLcHIUiBSk/l7ob3Dxddyv4QiKXkCVQ5K0jEip
+ x+REoEh2wMjlNht0zQLvcWnngVGZyf01nJhqqItasPrX6FmqpCGuZ9sT+38abIseLT/wxmZlb
+ v3O1o0tyf1C3ZJKx4ciLRQJbZr7y249RCBriT5ksP1DaLzndjLYvOO3O1aVFF3f2TKOZwVSV2
+ 84FF57U/k6/eJWvFlfLc2Elv2QB2LGIHbyWpExYUMuqVszljtnmJaQoP7jgYeDTNlW8lgaGZh
+ La10Ynl79a0bw=
+Subject: Re: [USRP-users] X310/UBX as a monostatic transceiver (e.g. RFID
+ reader)?
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,9 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Wade Fife <wade.fife@ettus.com>
-Content-Type: multipart/mixed; boundary="===============7627042010886996405=="
+From: Lukas Haase via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Lukas Haase <lukashaase@gmx.at>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,271 +82,77 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7627042010886996405==
-Content-Type: multipart/alternative; boundary="00000000000021778205b81a59c0"
+Hi Marcus,
 
---00000000000021778205b81a59c0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> On 01/04/2021 12:25 PM, Lukas Haase wrote:
+> In an RFID system, the RX is *designed* to be up-close-and-snugly with
+> the other ends TX.  There's NO reason to have an input
+>    stage that is sensitive in the usual RF sense.  So, completely
+> different engineering goals than in a typical RF system.
 
-Hi C=C3=A9dric,
+That's not quite true. Sensitivity *is* important (in the RF sense) because it defines operating distance.
+Yes, many people claim RFID systems are forward link limited (which was true) but state-of-the art tags can have a sensivivity of -24dBm which corresponds to over 20m free space, 900 MHz.
+The response from the tag at the reader is around -80dBm. The R2000 chip that I mentioned has a sensitivity in excess of that.
 
-I'll attempt to answer your questions. I'm more familiar with the
-hardware/HDL side of things.
+Indeed, this is the reason why *sensitivity* (due to self interference) is the limiting factor in RFID.
 
-1. The default clock for rfnoc blocks is rfnoc_chdr_clk and this clock is
-always present. You can use this clock for everything, unless you need a
-different clock (e.g., a faster clock to increase DSP throughput). I
-suggest not using different clocks unless you need to. I don't know why
-keep_one_in_n uses ce_clk, but any block can use it if the writer of that
-block wants to.
-
-2. When using AXI-Stream Data the length is automatically calculated,
-assuming SIDEBAND_AT_END is set to true (which is the default). If you drop
-all samples, then you don't put anything into the NoC Shell, so no packet
-would be generated.
-
-3. I'm not familiar with how keep_one_in_n works, but the timestamp is just
-a count of the samples. So if you wanted to generate a new timestamp, you
-would just keep a count of the samples. The timestamp for a packet should
-be the timestamp for the first sample of the packet.
-
-4. The info_fifo_depth effectively controls how many packets can be
-buffered in the NoC shell at a time. Normally there are only a couple of
-packets buffered at a time, so it doesn't need to be very big. This FIFO is
-often implemented using SRLs, so I often use 32, which is the maximum SRL
-size.
-
-5. Yes. In other words, NIPC sets the width of the tdata port. It's always
-NIPC items wide.
-
-6. I believe that sw_iface isn't implemented yet and I don't think this key
-is currently required. I think C++ refers to the RFNoC C++ API and nocsript
-refers to NoC-Script (a concept from UHD 3.x but not yet implemented in UDH
-4).
-
-7. This also isn't implemented yet, but I believe it's a way of identifying
-the type of metadata.
-
-8. Correct, the "registers" and "properties" sections aren't implemented
-yet. These sections will allow the tools to generate hardware registers and
-software properties automatically in the future, making new blocks easier
-to create.
-
-9. Parts of it are implemented. You can find rfnocmodtool in gr-ettus (see
-the recent RFNoC 4 Workshop <https://youtu.be/M9ntwQie9vs?t=3D2315> video f=
-or
-a demo). The rfnoc_create_verilog tool (in UHD) does the hardware
-generation part (generating the HDL and testbench templates; see the
-Getting Started document you referred to for an example of using that tool
-directly).
-
-I hope this helps!
-
-Thanks,
-
-Wade
-
-On Wed, Dec 23, 2020 at 12:37 AM C=C3=A9dric Hannotier via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Dear all,
+> > I have thought of a limiter already. This could be an option.
+> > It's true, I haven't found limiters with lower power levels.
+> >
+> > Two questions here:
+> >
+> > - How/why would they add to the noise figure?
+> Any limiter diode has shunt capacitance.  Which means that the degree to
+> which input power is shunted to ground is proportional
+>    to the input frequency and shunt capacitance.   ANY attenuation
+> (whether resistive dissipation or shunt-to-ground pathways) in
+>    front of the first gain stage adds *DIRECTLY* to the noise figure of
+> that stage.   So, let's say you have a nice small-signal LNA with
+>    a notional noise figure of 0.5dB, and you put 10dB of loss in front
+> of it--the noise figure now becomes 10.5dB.  For RFID type applications
+>    this doesn't matter that much--see my "up close and snugly"
+> comments.    But for "ordinary" RF receive chains, you generally want
+>    to minimize noise figure while maximizing gain and linearity.
 >
-> I am reading the RFNoC Specification PDF (version 0.7),
-> and I have several questions. Any help is appreciated.
+> There are exceptions--for example at HF (below 30MHz or so), the input
+> noise is *utterly dominated* by galactic background noise and
+>    atmospherics--there's no point in having an input stage with a noise
+> figure below perhaps 5-10dB.  So for HF, input stages tend to
+>    be optimized for linearity at higher input levels--because even
+> distant signals can be quite strong at HF--particularly on the lower end.
 >
->  1. In AXI-Stream Data (2.3.3.3), axis_data_clk is provided.
-> However, some blocks use ce_clk instead. Why?
-> In [1] it is stated:
-> "Many other blocks require the ce (Compute Engine) clock,
-> which is used for the block's internal DSP".
-> However, I cannot see any "internal DSP" in rfnoc_keep_one_in_n.v.
-> In which case should I prefer ce_clk?
+> > - The large self-interfere would result in clipping (hard nonlinearities). Is this any problem for the LNA (gain desensitivisation etc.)
+> Well.  Yeah.  That's what the P1dB parameter is all about--the input
+> level at which gain is compressed by 1dB.
 >
->  2. In AXI-Stream Data (2.3.3.3), I have no control over CHDR header.
-> What happens when the block drop samples (e.g. keep_one_in_n.v)?
-> Is the NoC Shell updating header field automatically (eg. length field)?
->  2bis. What happends if I drop all samples of a packet?
->
->  3.In rfnoc_keep_one_in_n.v, it seems that it drops the timestamp if
-> the sample to keep is not the first sample in the packet.
-> Is the timestamp recomputed afterwards?
-> If not, how could I compute the timestamp instead of dropping it?
->
->  4. In NoC Shell Generation Options (2.3.3.4),
-> there are some fifo parameters (e.g. info_fifo_depth).
-> What are their purposes?
-> How should I choose a depth value?
->
->  5. In AXI-Stream Payload Context (2.3.3.2), it is stated:
-> "NIPC: The number of items delivered per cycle.
-> NIPC must 1 or a larger power of 2, such that ITEM_W * NIPC =3D CHDR_W."
-> Does it also apply for AXI-Stream Data (2.3.3.3)?
-> If not, what is the rule for that Data-Plane ?
->
-> In Input Format (4.2), the following keys are not documented:
->  - sw_iface (nocscript, c++)
->  - mdata_sig (~, MD5 sum)
->
->  6. Is the nocscript meaning we have to rely on the UHD C++ RFNoC API to
-> interact with blocks and the c++ meaning we implement a custom C++ API?
->
->  7. What is mdata_sig?
->
->  8. Keys "registers" and "properties" seem unused, should I use them?
->
->  9. In Figure 16 (4.2), I was unable to find how to use RFNoC ModTool
-> with a YAML file. Is it not implemented yet?
->
-> [1]
-> https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0#Understanding_=
-the_RFNoC_Image_YAML_File
->
-> Kind regards
->
-> C=C3=A9dric Hannotier
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+> The overall take-away here is that generic radios (whether they be SDRs
+> or others) should be thought of as *components* in an
+>    overall *engineered RF system*.   That may mean things like relays to
+> shunt the RX pathway during TX, circulators, attenuators,
+>    diplexors, filters, RF-plumbing-in-general.
 
---00000000000021778205b81a59c0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Yes.
 
-<div dir=3D"ltr"><div>Hi C=C3=A9dric,</div><div><br></div><div>I&#39;ll att=
-empt to answer your questions. I&#39;m more familiar with the hardware/HDL =
-side of things.<br>
+To clarify limiter vs non-limiter.
+My self interfering signal from TX can be up to 20-25dBm. The desired signal is a modulation bandwidth (few 100 kHz) away and the receiver should be as sensitive as possible to that signal.
 
-</div><div><br></div><div>1. The default clock for rfnoc blocks is rfnoc_ch=
-dr_clk and this clock is always present. You can use this clock for everyth=
-ing, unless you need a different clock (e.g., a faster clock to increase DS=
-P throughput). I suggest not using different clocks unless you need to. I d=
-on&#39;t know why keep_one_in_n uses ce_clk, but any block can use it if th=
-e writer of that block wants to.<br></div><div><br></div><div>2. When using=
- AXI-Stream Data the length is automatically calculated, assuming SIDEBAND_=
-AT_END is set to true (which is the default). If you drop all samples, then=
- you don&#39;t put anything into the NoC Shell, so no packet would be gener=
-ated.</div><div><br></div><div>3. I&#39;m not familiar with how keep_one_in=
-_n works, but the timestamp is just a count of the samples. So if you wante=
-d to generate a new timestamp, you would just keep a count of the samples. =
-The timestamp for a packet should be the timestamp for the first sample of =
-the packet.<br></div><div><br></div><div>4. The info_fifo_depth effectively=
- controls how many packets can be buffered in the NoC shell at a time. Norm=
-ally there are only a couple of packets buffered at a time, so it doesn&#39=
-;t need to be very big. This FIFO is often implemented using SRLs, so I oft=
-en use 32, which is the maximum SRL size.<br></div><div><br></div><div>5. Y=
-es. In other words, NIPC sets the width of the tdata port. It&#39;s always =
-NIPC items wide.<br></div><div><br></div><div>6. I believe that sw_iface is=
-n&#39;t implemented yet and I don&#39;t think this key is currently require=
-d. I think C++ refers to the RFNoC C++ API and nocsript refers to NoC-Scrip=
-t (a concept from UHD 3.x but not yet implemented in UDH 4).<br></div><div>=
-<br></div><div>7. This also isn&#39;t implemented yet, but I believe it&#39=
-;s a way of identifying the type of metadata.</div><div><br></div><div>8. C=
-orrect, the &quot;registers&quot; and &quot;properties&quot; sections aren&=
-#39;t implemented yet. These sections will allow the tools to generate hard=
-ware registers and software properties automatically in the future, making =
-new blocks easier to create.</div><div><br></div><div>9. Parts of it are im=
-plemented. You can find rfnocmodtool in gr-ettus (see the recent <a href=3D=
-"https://youtu.be/M9ntwQie9vs?t=3D2315">RFNoC 4 Workshop</a> video for a de=
-mo). The rfnoc_create_verilog tool (in UHD) does the hardware generation pa=
-rt (generating the HDL and testbench templates; see the Getting Started doc=
-ument you referred to for an example of using that tool directly).</div><di=
-v><br></div><div>I hope this helps!</div><div><br></div><div>Thanks,</div><=
-div><br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div =
-dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec 23, 2020 at 12:37 AM C=C3=A9dr=
-ic Hannotier via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.co=
-m">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex">Dear all,<br>
-<br>
-I am reading the RFNoC Specification PDF (version 0.7),<br>
-and I have several questions. Any help is appreciated.<br>
-<br>
-=C2=A01. In AXI-Stream Data (2.3.3.3), axis_data_clk is provided.<br>
-However, some blocks use ce_clk instead. Why?<br>
-In [1] it is stated:<br>
-&quot;Many other blocks require the ce (Compute Engine) clock,<br>
-which is used for the block&#39;s internal DSP&quot;.<br>
-However, I cannot see any &quot;internal DSP&quot; in rfnoc_keep_one_in_n.v=
-.<br>
-In which case should I prefer ce_clk?<br>
-<br>
-=C2=A02. In AXI-Stream Data (2.3.3.3), I have no control over CHDR header.<=
-br>
-What happens when the block drop samples (e.g. keep_one_in_n.v)?<br>
-Is the NoC Shell updating header field automatically (eg. length field)?<br=
->
-=C2=A02bis. What happends if I drop all samples of a packet?<br>
-<br>
-=C2=A03.In rfnoc_keep_one_in_n.v, it seems that it drops the timestamp if<b=
-r>
-the sample to keep is not the first sample in the packet.<br>
-Is the timestamp recomputed afterwards?<br>
-If not, how could I compute the timestamp instead of dropping it?<br>
-<br>
-=C2=A04. In NoC Shell Generation Options (2.3.3.4),<br>
-there are some fifo parameters (e.g. info_fifo_depth).<br>
-What are their purposes?<br>
-How should I choose a depth value?<br>
-<br>
-=C2=A05. In AXI-Stream Payload Context (2.3.3.2), it is stated:<br>
-&quot;NIPC: The number of items delivered per cycle.<br>
-NIPC must 1 or a larger power of 2, such that ITEM_W * NIPC =3D CHDR_W.&quo=
-t;<br>
-Does it also apply for AXI-Stream Data (2.3.3.3)?<br>
-If not, what is the rule for that Data-Plane ?<br>
-<br>
-In Input Format (4.2), the following keys are not documented:<br>
-=C2=A0- sw_iface (nocscript, c++)<br>
-=C2=A0- mdata_sig (~, MD5 sum)<br>
-<br>
-=C2=A06. Is the nocscript meaning we have to rely on the UHD C++ RFNoC API =
-to<br>
-interact with blocks and the c++ meaning we implement a custom C++ API?<br>
-<br>
-=C2=A07. What is mdata_sig?<br>
-<br>
-=C2=A08. Keys &quot;registers&quot; and &quot;properties&quot; seem unused,=
- should I use them?<br>
-<br>
-=C2=A09. In Figure 16 (4.2), I was unable to find how to use RFNoC ModTool<=
-br>
-with a YAML file. Is it not implemented yet?<br>
-<br>
-[1] <a href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0#U=
-nderstanding_the_RFNoC_Image_YAML_File" rel=3D"noreferrer" target=3D"_blank=
-">https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0#Understanding_=
-the_RFNoC_Image_YAML_File</a><br>
-<br>
-Kind regards<br>
-<br>
-C=C3=A9dric Hannotier<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+Now I have the two options:
 
---00000000000021778205b81a59c0--
+1.) Adding a normal attenuator of 40dB. This ensures the USRP input is always less than 25-40=-15dBm but it also reduces my desired signal by 40dB. In other wirds, my noise figure worsens by 40dB, as you mentioned.
+
+2.) Adding an RF limiter with flat leakage +5dBm (I found SKY16602-632LF). Afterwards I add a 20dB attenuator to get the max to 5-20=-15dBm.
+
+If I understand your explanation correctly, there is no real difference between these two (because the limiter would still crushes signal and with it desensitizes the desired signal on top).
+Is this correct?
+
+Would you prefer one option over the other?
+
+Thanks again,
+Lukas
 
 
---===============7627042010886996405==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7627042010886996405==--
-
