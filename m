@@ -2,53 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5B7A2EB2BE
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Jan 2021 19:46:35 +0100 (CET)
-Received: from [::1] (port=52524 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64DC12EB5DC
+	for <lists+usrp-users@lfdr.de>; Wed,  6 Jan 2021 00:08:45 +0100 (CET)
+Received: from [::1] (port=54322 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kwrLk-0002rU-44; Tue, 05 Jan 2021 13:46:32 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:46722)
+	id 1kwvRR-0000Zj-Q0; Tue, 05 Jan 2021 18:08:41 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:34651)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kwrLg-0002m6-IL
- for usrp-users@lists.ettus.com; Tue, 05 Jan 2021 13:46:28 -0500
-Received: by mail-ot1-f42.google.com with SMTP id w3so605302otp.13
- for <usrp-users@lists.ettus.com>; Tue, 05 Jan 2021 10:46:08 -0800 (PST)
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kwvRO-0000ST-2Q
+ for usrp-users@lists.ettus.com; Tue, 05 Jan 2021 18:08:38 -0500
+Received: by mail-oi1-f169.google.com with SMTP id s75so1486452oih.1
+ for <usrp-users@lists.ettus.com>; Tue, 05 Jan 2021 15:08:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=8zhQA/o08jixUWSZqlYLw3odxuMesMJSSEpEb2VtK1g=;
- b=jyn4VnW3JkrraN+xqTrdpm4xK8Vc3x2vGzCO0dxnTOST8WwqkBOzRVGIxt4L5GXdbS
- WhZYlt486/qzvxvkVrMjA7doiAdvoQ/SWeaw/j7DQFOWiSlN4Sr9xJaDnBOBeqMPGj86
- GSyoBShsvHt2EUESd3oAln471l2CgwJW7jJa0yE6jkaAGI9fTw65ICL/c/QfQIynFvfO
- WSR57HR8pneUiD30eDUrVpdNc8WHnm2DYhJqeNhrd4O20Jed69EruVXsIXyTCoDd9ioJ
- 4H2GQlu5GYqAAn5fD5isSM0va30goWdvhn9nVi+KjiLsrkPstygRjzHlanP4GLrOJ2QY
- guZw==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=6YRv8JNIZOgbI4ym/WHi7IW34Dh0VZGRYJYt2UcJ9N4=;
+ b=EKazG5B2J0B+IbkDUL3IEMeJS0ub/1/eTcXXPkiSYvo/FL3kmV9DjRhefIArmN7Xe/
+ Gm0dHcpxLBOPgKLKNQXSYUPTa1sMq2tDmictSF1hq/C0EaeCA0uGxGhzLly5+tUTO1vU
+ HKM/cv+GRt9FzcjRroHWESofPHoqIptsXo461b0bRRMoLOvROrBX0UZozfYW/uaM0yMk
+ k8osvpBtt+eA98NXHv7wKBVAnjAjX3ZIUOVaFWw56hV8Q3Xq6L9rntVKrNspLRAargQ5
+ oy6dCRULqEiS1fR7UWymXGLve91wSuoKPYALb1o8wbHg3i+9MWStvkIa+5zcwF6GSKzY
+ 9Quw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=8zhQA/o08jixUWSZqlYLw3odxuMesMJSSEpEb2VtK1g=;
- b=VQBsWyRjWdxOXa0We4mZLsctFK21hg2fLgyyhpRl4LRPI4MJRmJigOsy1Gvxjy0rA6
- rkRHdbgc6jH84MmLFa6vOEBt9jlfWMCOls3NnIBKWHZLbc5MON5vbvZcMZHpsndo1WOe
- DAf4g3Y7Gs7PhaqK/n1fjiwuuQjc3xTddEaFlPRGW63GmusAUMrydkQSoHxKPtNbbqzd
- j6uMwQoBemkkLakjzrGkCjIw/rh7l94iZELV5VRUWrsRPcU1bu4EjM1wL0NRK+YP+2j8
- +Ub2Qebpiamm2aiFm7iDdkSCszzwqBwlGSfzEvKDTyuL0OS2AtBcI1WxoxsEYqmAAMhJ
- wYHw==
-X-Gm-Message-State: AOAM531uvNQ49lwG+W9TxnbXdzE/jYmE1agWdugS+u/pmKn8pwNkR76p
- zleK9CRQYPoyljbDcsAWothljIx7lBYWa7UZN4Ekog==
-X-Google-Smtp-Source: ABdhPJzsW26YgoUglg/usrXmJWlRgEELOGNDhcTBX8ejmmFJL5to00IjRv63S7tP0ronaR6H7vve75cGpkbWm03V3gk=
-X-Received: by 2002:a9d:6b10:: with SMTP id g16mr591265otp.301.1609872347524; 
- Tue, 05 Jan 2021 10:45:47 -0800 (PST)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=6YRv8JNIZOgbI4ym/WHi7IW34Dh0VZGRYJYt2UcJ9N4=;
+ b=CwDYlEXbd3t1u2WQfqYf+Pob5ZQ9fkMU37rFCAag309TK47id3yqy/Svr4NpMobZ2B
+ OWYmFREvPqpBXje9CtpVnvBp/yX8YYBmBrM65cjcctAM/1uZ6vI5buotel4ZIpnQlCXL
+ O4dYCaDvdQf+6Z3Gpg5yKBB35lA3/KLrZZN058yk9vJpdmjYaLqB5VJiVuMfNvytXYX4
+ d+Apz5RLgphId4w3y61JABgsGMOtTo9d5+/s7Xp6reb5sIEzzDJhv5F+H4ls7iyPEwVJ
+ AkVxNouBfiLnIoCt5CQViWrk8T7Cl74PnG2ojC7sqTztwPQWlO5MPnMTTgHQSOD2oz8M
+ 4/ew==
+X-Gm-Message-State: AOAM531nXFHrcqzeyJNV/jKUENru2++xxSzbU+1Xbzon3D+woYQ29TH9
+ wy9LrVQo+ZPHYnJMFNcm8JNiHqeoFE0L59xpJEIC+D1qlGbsoA==
+X-Google-Smtp-Source: ABdhPJz+xcUuNQorLbzgr3sBo97sG8wOdVu/ARm4fuZhY3OL8Yzm6Ze61RgzgUA7g5czd8WdzU/YpUwxKK74ry4hUTQ=
+X-Received: by 2002:a05:6808:9a:: with SMTP id
+ s26mr1427180oic.124.1609888076626; 
+ Tue, 05 Jan 2021 15:07:56 -0800 (PST)
 MIME-Version: 1.0
-References: <BN7PR04MB438735C2290ABC23244C5E3E8FD70@BN7PR04MB4387.namprd04.prod.outlook.com>
- <CAL7q81sktbdKdLBfE+3_NOCRbmwND1UUUGReKvvJK5SdTdyvvA@mail.gmail.com>
-In-Reply-To: <CAL7q81sktbdKdLBfE+3_NOCRbmwND1UUUGReKvvJK5SdTdyvvA@mail.gmail.com>
-Date: Tue, 5 Jan 2021 13:45:36 -0500
-Message-ID: <CAB__hTRAv-+TUXNV6DnO1ZUuFNM9OQXQecnudJ0E7nciMQMbFw@mail.gmail.com>
-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Cc: Dylan Baros <dylan.baros@ni.com>, 
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] rfNoc Replay Benchmark with N321
+Date: Tue, 5 Jan 2021 18:07:45 -0500
+Message-ID: <CAB__hTT6AyXGPERxgJQiDoyvhxPcLSZts2SmnrhE0kyMvr7fXw@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Testing single RFNoC block produces out-of-sequence
+ (S) errors
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -62,7 +58,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============1292228946815173970=="
+Content-Type: multipart/mixed; boundary="===============1038004951033712763=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,134 +72,74 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1292228946815173970==
-Content-Type: multipart/alternative; boundary="00000000000068b00d05b82b9df0"
+--===============1038004951033712763==
+Content-Type: multipart/alternative; boundary="000000000000efce4405b82f46d7"
 
---00000000000068b00d05b82b9df0
+--000000000000efce4405b82f46d7
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Dylan,
-Just to confirm that you are using UHD 4.0?  If so, then it should work.
-But, if you are using UHD3.x, I think that the replay block cannot provide
-250 MS/s on both channels.
+Hi,
+I created a custom pulse-detector block which attempts to pass/discard
+samples based upon an instantaneous power estimate. Each set of
+consecutively passed samples constitutes a "burst" (i.e. the EOB is set on
+the TLAST corresponding to the final passed sample of the burst).  A burst
+can have as few as 1 sample because my block does not prevent this.
+
+The block does what I expect in the testbench and even in the FPGA binary
+when using the same data as the testbench.  However, when using a long
+input stream (~250MSamps from previous recording that I have handy) to test
+this block running in the FPGA, I get out-of-sequence errors on receive. My
+graph is tx_streamer => pulse_detector => rx_streamer (actually, my
+pulse_detector is a 2x2 block so there are 2 tx_streamers and 2
+rx_streamers, all of which are run in separate threads).
+
+I am wondering if the Sequence errors have nothing to do with my block but
+rather are related to the way Ubuntu handles incoming Ethernet data such
+that perhaps it is running out of RX descriptors. I have tried slowing down
+my Transmit and seen some improvement but without eliminating the errors
+completely. So, I'm wondering what suggestions others might have.  My ideas
+are:
+* invest some time to get DPDK working.  With this, perhaps Sequence errors
+cannot occur??
+* try slowing down my Tx even further?
+* create artificial data sets (rather than real collected data) such that I
+can control the length of the output pulses
+
+Let me know if you have any suggestions.
 Rob
 
-On Tue, Jan 5, 2021 at 1:59 AM Jonathon Pendlum via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Hi Dylan,
->
-> Are you saying you want a flowgraph like this?
-> Replay Block -> Radio TX
-> Radio RX -> Host (2x 10GigE)
->
-> If so, yes that is possible. See
-> http://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Dual_10_Gb_Interface
-> for how to benchmark rx. Also, take note of the "second_addr" device arg in
-> that example as it will be needed when you write your UHD app for the above
-> flowgraph.
->
-> Jonathon
->
-> On Wed, Dec 30, 2020 at 10:52 AM Dylan Baros via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> Good morning,
->>
->> I am interested in using a rfnoc replay block to benchmark rx over both
->> 10 gb ports, is that possible? I would like to dedicate both ports to
->> receiving and the rfnoc replay block to transmit. I am using a N321.
->>
->> Thanks,
->> Dylan
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---00000000000068b00d05b82b9df0
+--000000000000efce4405b82f46d7
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Dylan,<div>Just to confirm that you ar=
-e using UHD 4.0?=C2=A0 If so, then it should work.=C2=A0 But, if you are us=
-ing UHD3.x, I think that the replay block cannot provide 250 MS/s on both c=
-hannels.</div><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Tue, Jan 5, 2021 at 1:59 AM Jonathon Pendl=
-um via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-us=
-ers@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex"><div dir=3D"ltr">Hi Dylan,<div><br></div><div>Are you sa=
-ying you want a flowgraph like this?</div><div>Replay Block -&gt; Radio TX<=
-/div><div>Radio RX -&gt; Host (2x 10GigE)</div><div><br></div><div>If so, y=
-es that is possible. See=C2=A0<a href=3D"http://kb.ettus.com/USRP_N300/N310=
-/N320/N321_Getting_Started_Guide#Dual_10_Gb_Interface" target=3D"_blank">ht=
-tp://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Dual_10_Gb=
-_Interface</a> for how to benchmark rx. Also, take note of the &quot;second=
-_addr&quot; device arg in that example as it will be needed when you write =
-your UHD app for the above flowgraph.</div><div><br></div><div>Jonathon</di=
-v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
-">On Wed, Dec 30, 2020 at 10:52 AM Dylan Baros via USRP-users &lt;<a href=
-=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.e=
-ttus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex">
+<div dir=3D"ltr">Hi,<div>I created a custom pulse-detector block which atte=
+mpts to pass/discard samples based upon an instantaneous power estimate. Ea=
+ch set of consecutively passed samples constitutes a &quot;burst&quot; (i.e=
+. the EOB is set on the TLAST corresponding to the final passed sample of t=
+he burst).=C2=A0 A burst can have as few as 1 sample because my block does =
+not prevent this.</div><div><br></div><div>The block does what I expect in =
+the testbench and even in the FPGA binary when using the same data as the t=
+estbench.=C2=A0 However, when using a long input stream (~250MSamps from pr=
+evious recording that I have handy) to test this block running in the FPGA,=
+ I get out-of-sequence errors on receive. My graph is tx_streamer =3D&gt; p=
+ulse_detector =3D&gt; rx_streamer (actually, my pulse_detector is a 2x2 blo=
+ck so there are 2 tx_streamers and 2 rx_streamers, all of which are run in =
+separate threads).</div><div><br></div><div>I am wondering if the Sequence =
+errors have nothing to do with my block but rather are related to the way U=
+buntu handles incoming Ethernet data such that perhaps it is running out of=
+ RX descriptors. I have tried slowing down my Transmit and seen some improv=
+ement but without eliminating the errors completely. So, I&#39;m wondering =
+what suggestions others might have.=C2=A0 My ideas are:</div><div>* invest =
+some time to get DPDK working.=C2=A0 With this, perhaps Sequence errors can=
+not occur??</div><div>* try=C2=A0slowing down my Tx even further?</div><div=
+>* create artificial data sets (rather than real collected data) such that =
+I can control the length of the output pulses</div><div><br></div><div>Let =
+me know if you have any suggestions.</div><div>Rob</div></div>
+
+--000000000000efce4405b82f46d7--
 
 
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-Good morning,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-I am interested in using a rfnoc replay block to benchmark rx over both 10 =
-gb ports, is that possible? I would like to dedicate both ports to receivin=
-g and the rfnoc replay block to transmit. I am using a N321.=C2=A0</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-Thanks,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-Dylan=C2=A0</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div></div>
-
---00000000000068b00d05b82b9df0--
-
-
---===============1292228946815173970==
+--===============1038004951033712763==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -214,5 +150,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1292228946815173970==--
+--===============1038004951033712763==--
 
