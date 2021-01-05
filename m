@@ -2,53 +2,55 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2CF2EA5A4
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Jan 2021 07:58:51 +0100 (CET)
-Received: from [::1] (port=45396 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 211D32EA5AA
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Jan 2021 08:01:14 +0100 (CET)
+Received: from [::1] (port=45442 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kwgIr-0004rj-JP; Tue, 05 Jan 2021 01:58:49 -0500
-Received: from mail-pg1-f174.google.com ([209.85.215.174]:39230)
+	id 1kwgLA-0005Um-MX; Tue, 05 Jan 2021 02:01:12 -0500
+Received: from mail-vk1-f169.google.com ([209.85.221.169]:35085)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <tuanmcx58@gmail.com>) id 1kwgIn-0004mV-JS
- for usrp-users@lists.ettus.com; Tue, 05 Jan 2021 01:58:45 -0500
-Received: by mail-pg1-f174.google.com with SMTP id 30so15988362pgr.6
- for <usrp-users@lists.ettus.com>; Mon, 04 Jan 2021 22:58:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1kwgL5-0005Kv-Ng
+ for usrp-users@lists.ettus.com; Tue, 05 Jan 2021 02:01:07 -0500
+Received: by mail-vk1-f169.google.com with SMTP id e27so6762029vkn.2
+ for <usrp-users@lists.ettus.com>; Mon, 04 Jan 2021 23:00:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=b5b/1ygpZ8uqzXGWzV3c/qKcDrNZPF+m4RkOGSlkZ+8=;
- b=Oqk7PahSmy0bSFv+X4FsCR5iIMSnANp++SyQjEZNeYl+7/XT5dKNNx2uWGcnEX5V3M
- 6BUGgj9j1LH9eErvAlGoAtFDGMWU3nCZ3fHrJKDqlZJj3ry0JXODpnMNkEE0XskROAWM
- B869aN9KW5TnG+4XH2LxTi2Q+oeuDERAkALPy66fEyarNQvaq+cQfNV6sqSYqaCkLT4x
- 7mSi8IzubL1RWmGzcrbI+VC/R+4jENZiUH7RzYk87lFknwOz2EzzBeO6LyVCVvQl28w2
- nBTVZg/lHEi3P4VBEPohrpRi8K2cUmy4ORQfnVpIK6+H204JYIpzKZHxMBzBzTLPdpKC
- AULA==
+ :cc; bh=T+LGMQ3rOSsJojVDI+dqJDdWXUlIPivQemo5AiKmE4M=;
+ b=lh1bqNkIEhTmfrX2trPpqkFJlYfc0vZTzw94ngh3cEMZqPnb2fEHaiVrWCwb8RWBo/
+ PieivfJO5U/wSpZbciBN7OkZVEwrNqahCp4QpfD43ZOy1xwG4SbjMoc++U1kzuRcOSSm
+ aFD4nn7t/Wq2xicKh+ZDw1RfG/0sGx4GYOkCORj0Xf4bkEKF2WaUPuA18PHG54Bk/RHn
+ 8A1khhKCiLKA8Bon8j46gUU8twu5dona1koq6YPIdHXFMSESFqvwJvI2ZLR94yuexqmg
+ SYyZ31vBqEmOf9zMBIVyoYo5a+5MWg5wdhOiF1MvFuBAAjTw/oz/Zuvm5lKSj0FB/g1Y
+ FHmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=b5b/1ygpZ8uqzXGWzV3c/qKcDrNZPF+m4RkOGSlkZ+8=;
- b=gbpYtrMGA0KfQflUObi/lZrTz9SfryQbOp4DHw7yNlzTpqXicUrFlUJxM0ID6Yhv/J
- e7mSkxiVXwdy0uarhdfiZJi2AiFlufF9pgKazFR4THmkEBba099VWho9Z+7oplLiY8Sl
- KaYNk9Ovr8/uH4VZwcYPJEy/Asfmxdaeao29cMhd0WWpkjq5S5SIzs/1m2W+g+ZvSHui
- XaqfkdYULGBeIvHqK7+EHg2X2mNjiNRH7p1NzeFkQiaBEn0vsPDVwnTfK+LpQNQ4y5X4
- DA0WDJCHzhcQFIJl+A4rf+Vfelx8HVMLBQF93+/pF870vi4/KIH81j8ykW6Tl5R72nGo
- tYNA==
-X-Gm-Message-State: AOAM533KaLMmIytyzVTPHKxcwdtcSauTJhwgTqd968JBKWX3PaZrxfMt
- y1NM3O/Dk00W+4T+UAQ1f9KJHwlZRYWG2SFGwqY=
-X-Google-Smtp-Source: ABdhPJzxLY8ForoZn1bA0vr+46umbabOFaSKF5x4OgG30nDGrvaCXOJmb+LG/8rdy0SfO0x+r4sumaznKkXgqY2qdoc=
-X-Received: by 2002:a62:e516:0:b029:156:3b35:9423 with SMTP id
- n22-20020a62e5160000b02901563b359423mr46766432pff.19.1609829883913; Mon, 04
- Jan 2021 22:58:03 -0800 (PST)
+ bh=T+LGMQ3rOSsJojVDI+dqJDdWXUlIPivQemo5AiKmE4M=;
+ b=UjnXXU5Q0xvEYYbAV9zh7YBZTjb7jw43Mogw2lwyxICb10YQIqV2bPV8wlfm5nNUex
+ YnFH3nZzXpCsXDF/K2R8UnYtjiaaRPeeeebn1Z0yNZ2DKaSVW3XoQzVgPBA2ISw0xLV0
+ /FXkW2kK8/ofGh1SiBfpWofhpNI4Q9JsggixY8KqbeCocUyXhSCKTjSEm3td+egwuaD0
+ kcijxq9445UDqz8VuMqtihX6lBlwakmnTUr+ihcpPRTP3F+6TV3fd2+TXS9PFC+75ZqV
+ t/uXJam2R0IF7f0gSfSPd/N1MnfZ1At9Z/sIt21TBvQNOM7Jc5YCADcLhHT9PW7LFNGh
+ c+Cw==
+X-Gm-Message-State: AOAM531folDPDv7bEoieYbi8q2Pw6sLMfZbcWhf1jOywGONRN/d76g/d
+ vMk6g4g6LiBJWL/d7KAy2wJWvgAG1AUuHxkoLmq6L8O953m7qw==
+X-Google-Smtp-Source: ABdhPJwuDQwsJF8L4czvA7kDDB1s1mcDZUxUJsPFl8oXQ0lWUPVTT5ATZD2udj/moxlhiGESnPn/yZgoBtSrYc3AcM0=
+X-Received: by 2002:a1f:a796:: with SMTP id q144mr39330631vke.19.1609830026671; 
+ Mon, 04 Jan 2021 23:00:26 -0800 (PST)
 MIME-Version: 1.0
 References: <CAJZBg9WtrW=1Th-VfOWZs5r3p++2zGtZioCfuNzz7_v89f_Edw@mail.gmail.com>
  <CAL7q81vf-G==8JJKmB-dPtpFtzW8gxRYj_7snHn5=BOrjT4YQw@mail.gmail.com>
-In-Reply-To: <CAL7q81vf-G==8JJKmB-dPtpFtzW8gxRYj_7snHn5=BOrjT4YQw@mail.gmail.com>
-Date: Tue, 5 Jan 2021 15:57:52 +0900
-Message-ID: <CAJZBg9XjA9J_0HDCgndWrVP2fW1bNFChEjZPPPSu0ngLcOQ1eQ@mail.gmail.com>
-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+ <CAJZBg9XjA9J_0HDCgndWrVP2fW1bNFChEjZPPPSu0ngLcOQ1eQ@mail.gmail.com>
+In-Reply-To: <CAJZBg9XjA9J_0HDCgndWrVP2fW1bNFChEjZPPPSu0ngLcOQ1eQ@mail.gmail.com>
+Date: Tue, 5 Jan 2021 01:59:50 -0500
+Message-ID: <CAL7q81u-4VrHtV=yKJff=TXv6kGc1iv+vs-vVZxYNLS1TVbA5Q@mail.gmail.com>
+To: =?UTF-8?B?xJDDrG5oIFR14bqlbiBIb8Ogbmc=?= <tuanmcx58@gmail.com>
 Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="0000000000006174eb05b821bafe"
+Content-Type: multipart/mixed; boundary="000000000000e3abc605b821c236"
 Subject: Re: [USRP-users] How to build RFNoC blocks in /lib/rfnoc/blocks
  directory?
 X-BeenThere: usrp-users@lists.ettus.com
@@ -62,9 +64,8 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?xJDDrG5oIFR14bqlbiBIb8OgbmcgdmlhIFVTUlAtdXNlcnM=?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?xJDDrG5oIFR14bqlbiBIb8Ogbmc=?= <tuanmcx58@gmail.com>
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,187 +79,211 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---0000000000006174eb05b821bafe
-Content-Type: multipart/related; boundary="0000000000006174ea05b821bafd"
+--000000000000e3abc605b821c236
+Content-Type: multipart/related; boundary="000000000000e3abc505b821c235"
 
---0000000000006174ea05b821bafd
-Content-Type: multipart/alternative; boundary="0000000000006174e905b821bafc"
+--000000000000e3abc505b821c235
+Content-Type: multipart/alternative; boundary="000000000000e3abc405b821c234"
 
---0000000000006174e905b821bafc
+--000000000000e3abc405b821c234
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Jonathon,
+Hi Tuan,
 
-Thanks for spending time helping me.
+Try the attached flowgraph.
 
-The reason I asked about window block is I'm trying to run Fosphor block,
-the GRC diagram and yaml file to generate bitstream file attached below. It
-did not work and GRC reported:
+Jonathon
 
+On Tue, Jan 5, 2021 at 1:58 AM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng <tuan=
+mcx58@gmail.com> wrote:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*Generating: '/home/pc/image_build/Fosphor/phosphor_spectrum.py'Executing:
-/usr/bin/python3.6 -u
-/home/pc/image_build/Fosphor/phosphor_spectrum.py[INFO] [UHD] linux; GNU
-C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-0-unknown[INFO] [X300] X300
-initialization sequence...[INFO] [X300] Maximum frame size: 8000
-bytes.[INFO] [GPS] Found an internal GPSDO: GPSTCXO , Firmware Rev
-0.929a[INFO] [X300] Radio 1x clock: 200 MHz[ERROR] [RFNOC::GRAPH] IO Error
-during GSM initialization. EnvironmentError: IOError: Timed out getting
-recv buff for management transaction[ERROR] [RFNOC::GRAPH] Caught exception
-while initializing graph: EnvironmentError: IOError: Timed out getting recv
-buff for management transactionTraceback (most recent call last):  File
-"/home/pc/image_build/Fosphor/phosphor_spectrum.py", line 254, in <module>
-  main()  File "/home/pc/image_build/Fosphor/phosphor_spectrum.py", line
-230, in main    tb =3D top_block_cls()  File
-"/home/pc/image_build/Fosphor/phosphor_spectrum.py", line 78, in __init__
-  self.rfnoc_graph =3D ettus_rfnoc_graph =3D
-ettus.rfnoc_graph(uhd.device_addr(",".join(('', 'type=3Dx300'))))  File
-"/usr/local/lib/python3/dist-packages/ettus/ettus_swig.py", line 1386, in
-make    return _ettus_swig.rfnoc_graph_make(dev_addr)RuntimeError:
-RuntimeError: Failure to create rfnoc_graph.>>> Done (return code 1)*
-
-I have searched for examples from UHD 3.15 version and see that It should
-have a window block or stream to vector block before FFT block
-(Radio->DDC->Window->FFT->Fosphor->Rx_stream),
-I don't know exactly window block is necessary or not? I saw some one asked
-a question about Fosphor with the same diagram and he has done it
-Could you let me know about this issue? I'm very grateful for that.
-
-Best regards,
-Tuan
-[image: image.png]
-
-
-V=C3=A0o Th 3, 5 thg 1, 2021 va=CC=80o lu=CC=81c 15:34 Jonathon Pendlum <
-jonathon.pendlum@ettus.com> =C4=91=C3=A3 vi=E1=BA=BFt:
-
-> Hi Tuan,
+> Hi Jonathon,
 >
-> A few of the in-tree RFNoC blocks do not have GRC support yet. The window
-> block is one of them. That will come in a future update, although I don't
-> have an exact timeline.
+> Thanks for spending time helping me.
 >
-> Jonathon
+> The reason I asked about window block is I'm trying to run Fosphor block,
+> the GRC diagram and yaml file to generate bitstream file attached below. =
+It
+> did not work and GRC reported:
 >
-> On Sun, Jan 3, 2021 at 11:24 PM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng vi=
-a USRP-users <
-> usrp-users@lists.ettus.com> wrote:
 >
->> Hi everyone,
->>
->> I'm learning RFNoC with UHD 4.0 and GRC 3.8. I have a question about how
->> to build RFNoC blocks in /lib/rfnoc/blocks directory?
->>
->> For example, with window block, by doing the following steps:
->> + Using rfnocmodtool to create test module with window block.
->> + Copy yml file and fpga files from window lib directory to test
->> directory.
->> + Run cmake, testbench, make install command.
->>
->> although the window block has been built successfully, its GRC block
->> appeared with only one user_register like gain example block.
->> The gr_ettus has been installed but no GRC block for window block or som=
-e
->> others.
->> So how I can build the blocks in the lib directory with full registers
->> and parameters?
->> I can not find any guiding document about that thing, hope that it will
->> be supported in the near future.
->>
->> Thank you!
->> Tuan
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
 >
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *Generating: '/home/pc/image_build/Fosphor/phosphor_spectrum.py'Executing=
+:
+> /usr/bin/python3.6 -u
+> /home/pc/image_build/Fosphor/phosphor_spectrum.py[INFO] [UHD] linux; GNU
+> C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-0-unknown[INFO] [X300] X300
+> initialization sequence...[INFO] [X300] Maximum frame size: 8000
+> bytes.[INFO] [GPS] Found an internal GPSDO: GPSTCXO , Firmware Rev
+> 0.929a[INFO] [X300] Radio 1x clock: 200 MHz[ERROR] [RFNOC::GRAPH] IO Erro=
+r
+> during GSM initialization. EnvironmentError: IOError: Timed out getting
+> recv buff for management transaction[ERROR] [RFNOC::GRAPH] Caught excepti=
+on
+> while initializing graph: EnvironmentError: IOError: Timed out getting re=
+cv
+> buff for management transactionTraceback (most recent call last):  File
+> "/home/pc/image_build/Fosphor/phosphor_spectrum.py", line 254, in <module=
+>
+>   main()  File "/home/pc/image_build/Fosphor/phosphor_spectrum.py", line
+> 230, in main    tb =3D top_block_cls()  File
+> "/home/pc/image_build/Fosphor/phosphor_spectrum.py", line 78, in __init__
+>   self.rfnoc_graph =3D ettus_rfnoc_graph =3D
+> ettus.rfnoc_graph(uhd.device_addr(",".join(('', 'type=3Dx300'))))  File
+> "/usr/local/lib/python3/dist-packages/ettus/ettus_swig.py", line 1386, in
+> make    return _ettus_swig.rfnoc_graph_make(dev_addr)RuntimeError:
+> RuntimeError: Failure to create rfnoc_graph.>>> Done (return code 1)*
+>
+> I have searched for examples from UHD 3.15 version and see that It should
+> have a window block or stream to vector block before FFT block
+> (Radio->DDC->Window->FFT->Fosphor->Rx_stream),
+> I don't know exactly window block is necessary or not? I saw some one
+> asked a question about Fosphor with the same diagram and he has done it
+> Could you let me know about this issue? I'm very grateful for that.
+>
+> Best regards,
+> Tuan
+> [image: image.png]
+>
+>
+> V=C3=A0o Th 3, 5 thg 1, 2021 va=CC=80o lu=CC=81c 15:34 Jonathon Pendlum <
+> jonathon.pendlum@ettus.com> =C4=91=C3=A3 vi=E1=BA=BFt:
+>
+>> Hi Tuan,
+>>
+>> A few of the in-tree RFNoC blocks do not have GRC support yet. The windo=
+w
+>> block is one of them. That will come in a future update, although I don'=
+t
+>> have an exact timeline.
+>>
+>> Jonathon
+>>
+>> On Sun, Jan 3, 2021 at 11:24 PM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng v=
+ia USRP-users <
+>> usrp-users@lists.ettus.com> wrote:
+>>
+>>> Hi everyone,
+>>>
+>>> I'm learning RFNoC with UHD 4.0 and GRC 3.8. I have a question about ho=
+w
+>>> to build RFNoC blocks in /lib/rfnoc/blocks directory?
+>>>
+>>> For example, with window block, by doing the following steps:
+>>> + Using rfnocmodtool to create test module with window block.
+>>> + Copy yml file and fpga files from window lib directory to test
+>>> directory.
+>>> + Run cmake, testbench, make install command.
+>>>
+>>> although the window block has been built successfully, its GRC block
+>>> appeared with only one user_register like gain example block.
+>>> The gr_ettus has been installed but no GRC block for window block or
+>>> some others.
+>>> So how I can build the blocks in the lib directory with full registers
+>>> and parameters?
+>>> I can not find any guiding document about that thing, hope that it will
+>>> be supported in the near future.
+>>>
+>>> Thank you!
+>>> Tuan
+>>> _______________________________________________
+>>> USRP-users mailing list
+>>> USRP-users@lists.ettus.com
+>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>
+>>
 
---0000000000006174e905b821bafc
+--000000000000e3abc405b821c234
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Jonathon,<div><br></div><div>Thanks for spending time h=
-elping me.</div><div><br></div><div>The reason=C2=A0I asked about window bl=
-ock is I&#39;m trying to run Fosphor block, the GRC diagram and yaml file t=
-o generate bitstream file attached below. It did not work and GRC reported:=
-</div><div><br></div><div><i>Generating: &#39;/home/pc/image_build/Fosphor/=
-phosphor_spectrum.py&#39;<br>Executing: /usr/bin/python3.6 -u /home/pc/imag=
-e_build/Fosphor/phosphor_spectrum.py<br>[INFO] [UHD] linux; GNU C++ version=
- 7.5.0; Boost_106501; UHD_4.0.0.0-0-unknown<br>[INFO] [X300] X300 initializ=
-ation sequence...<br>[INFO] [X300] Maximum frame size: 8000 bytes.<br>[INFO=
-] [GPS] Found an internal GPSDO: GPSTCXO , Firmware Rev 0.929a<br>[INFO] [X=
-300] Radio 1x clock: 200 MHz<br>[ERROR] [RFNOC::GRAPH] IO Error during GSM =
-initialization. EnvironmentError: IOError: Timed out getting recv buff for =
-management transaction<br>[ERROR] [RFNOC::GRAPH] Caught exception while ini=
-tializing graph: EnvironmentError: IOError: Timed out getting recv buff for=
- management transaction<br>Traceback (most recent call last):<br>=C2=A0 Fil=
-e &quot;/home/pc/image_build/Fosphor/phosphor_spectrum.py&quot;, line 254, =
-in &lt;module&gt;<br>=C2=A0 =C2=A0 main()<br>=C2=A0 File &quot;/home/pc/ima=
-ge_build/Fosphor/phosphor_spectrum.py&quot;, line 230, in main<br>=C2=A0 =
-=C2=A0 tb =3D top_block_cls()<br>=C2=A0 File &quot;/home/pc/image_build/Fos=
-phor/phosphor_spectrum.py&quot;, line 78, in __init__<br>=C2=A0 =C2=A0 self=
-.rfnoc_graph =3D ettus_rfnoc_graph =3D ettus.rfnoc_graph(uhd.device_addr(&q=
-uot;,&quot;.join((&#39;&#39;, &#39;type=3Dx300&#39;))))<br>=C2=A0 File &quo=
-t;/usr/local/lib/python3/dist-packages/ettus/ettus_swig.py&quot;, line 1386=
-, in make<br>=C2=A0 =C2=A0 return _ettus_swig.rfnoc_graph_make(dev_addr)<br=
->RuntimeError: RuntimeError: Failure to create rfnoc_graph.<br>&gt;&gt;&gt;=
- Done (return code 1)</i><br></div><div><br></div><div>I have searched for =
-examples from UHD 3.15 version and see that It should have a window block o=
-r stream to vector block before FFT block (Radio-&gt;DDC-&gt;Window-&gt;FFT=
--&gt;Fosphor-&gt;Rx_stream),</div><div>I don&#39;t know exactly window bloc=
-k is necessary or not? I saw some one asked a question about Fosphor with t=
-he same diagram and he has done it</div><div>Could you let me know about th=
-is issue? I&#39;m very grateful for that.</div><div><br></div><div>Best reg=
-ards,</div><div>Tuan</div><div><img src=3D"cid:ii_kjjn4yas1" alt=3D"image.p=
-ng" width=3D"562" height=3D"239"><br></div><div><br></div></div><br><div cl=
-ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">V=C3=A0o Th 3, 5 =
-thg 1, 2021 va=CC=80o lu=CC=81c 15:34 Jonathon Pendlum &lt;<a href=3D"mailt=
-o:jonathon.pendlum@ettus.com">jonathon.pendlum@ettus.com</a>&gt; =C4=91=C3=
-=A3 vi=E1=BA=BFt:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-"><div dir=3D"ltr">Hi Tuan,<div><br></div><div>A few of the in-tree RFNoC b=
-locks do not have GRC support yet. The window block is one of them. That wi=
-ll come in a future update, although I don&#39;t have an exact timeline.</d=
+<div dir=3D"ltr">Hi Tuan,<div><br></div><div>Try the attached flowgraph.</d=
 iv><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Sun, Jan 3, 2021 at 11:24 PM =C4=90=
-=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng via USRP-users &lt;<a href=3D"mailto:usrp-=
-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr">Hi everyone,<div><br></div><div>I&#39;m learning RFNoC with UHD 4.=
-0 and GRC 3.8. I have a question about how to build RFNoC blocks in=C2=A0/l=
-ib/rfnoc/blocks directory?=C2=A0</div><div><br></div><div>For=C2=A0example,=
- with window block, by doing the following steps:</div><div>+ Using rfnocmo=
-dtool to create test module with window block.<br></div><div>+ Copy yml fil=
-e and fpga files from window lib directory to test directory.<br></div><div=
->+ Run cmake, testbench, make install command.<br></div><div><br></div><div=
->although the window block has been built successfully, its GRC block appea=
-red with only one user_register like gain example block.=C2=A0</div><div>Th=
-e gr_ettus has been installed but no GRC block for window block or some oth=
-ers.</div><div>So how I can build=C2=A0the blocks in the lib directory with=
- full registers and parameters?</div><div>I can not find any guiding docume=
-nt about that thing, hope that it will be supported in the near future.</di=
-v><div><br></div><div>Thank you!</div><div>Tuan</div></div>
+div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jan 5, 2021 at 1:58 AM =C4=90=
+=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng &lt;<a href=3D"mailto:tuanmcx58@gmail.com"=
+>tuanmcx58@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex"><div dir=3D"ltr">Hi Jonathon,<div><br></div><div>Thanks=
+ for spending time helping me.</div><div><br></div><div>The reason=C2=A0I a=
+sked about window block is I&#39;m trying to run Fosphor block, the GRC dia=
+gram and yaml file to generate bitstream file attached below. It did not wo=
+rk and GRC reported:</div><div><br></div><div><i>Generating: &#39;/home/pc/=
+image_build/Fosphor/phosphor_spectrum.py&#39;<br>Executing: /usr/bin/python=
+3.6 -u /home/pc/image_build/Fosphor/phosphor_spectrum.py<br>[INFO] [UHD] li=
+nux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-0-unknown<br>[INFO] [=
+X300] X300 initialization sequence...<br>[INFO] [X300] Maximum frame size: =
+8000 bytes.<br>[INFO] [GPS] Found an internal GPSDO: GPSTCXO , Firmware Rev=
+ 0.929a<br>[INFO] [X300] Radio 1x clock: 200 MHz<br>[ERROR] [RFNOC::GRAPH] =
+IO Error during GSM initialization. EnvironmentError: IOError: Timed out ge=
+tting recv buff for management transaction<br>[ERROR] [RFNOC::GRAPH] Caught=
+ exception while initializing graph: EnvironmentError: IOError: Timed out g=
+etting recv buff for management transaction<br>Traceback (most recent call =
+last):<br>=C2=A0 File &quot;/home/pc/image_build/Fosphor/phosphor_spectrum.=
+py&quot;, line 254, in &lt;module&gt;<br>=C2=A0 =C2=A0 main()<br>=C2=A0 Fil=
+e &quot;/home/pc/image_build/Fosphor/phosphor_spectrum.py&quot;, line 230, =
+in main<br>=C2=A0 =C2=A0 tb =3D top_block_cls()<br>=C2=A0 File &quot;/home/=
+pc/image_build/Fosphor/phosphor_spectrum.py&quot;, line 78, in __init__<br>=
+=C2=A0 =C2=A0 self.rfnoc_graph =3D ettus_rfnoc_graph =3D ettus.rfnoc_graph(=
+uhd.device_addr(&quot;,&quot;.join((&#39;&#39;, &#39;type=3Dx300&#39;))))<b=
+r>=C2=A0 File &quot;/usr/local/lib/python3/dist-packages/ettus/ettus_swig.p=
+y&quot;, line 1386, in make<br>=C2=A0 =C2=A0 return _ettus_swig.rfnoc_graph=
+_make(dev_addr)<br>RuntimeError: RuntimeError: Failure to create rfnoc_grap=
+h.<br>&gt;&gt;&gt; Done (return code 1)</i><br></div><div><br></div><div>I =
+have searched for examples from UHD 3.15 version and see that It should hav=
+e a window block or stream to vector block before FFT block (Radio-&gt;DDC-=
+&gt;Window-&gt;FFT-&gt;Fosphor-&gt;Rx_stream),</div><div>I don&#39;t know e=
+xactly window block is necessary or not? I saw some one asked a question ab=
+out Fosphor with the same diagram and he has done it</div><div>Could you le=
+t me know about this issue? I&#39;m very grateful for that.</div><div><br><=
+/div><div>Best regards,</div><div>Tuan</div><div><img src=3D"cid:ii_kjjn4ya=
+s1" alt=3D"image.png" width=3D"562" height=3D"239"><br></div><div><br></div=
+></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>V=C3=A0o Th 3, 5 thg 1, 2021 va=CC=80o lu=CC=81c 15:34 Jonathon Pendlum &l=
+t;<a href=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_blank">jonathon.=
+pendlum@ettus.com</a>&gt; =C4=91=C3=A3 vi=E1=BA=BFt:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Tuan,<div><br></di=
+v><div>A few of the in-tree RFNoC blocks do not have GRC support yet. The w=
+indow block is one of them. That will come in a future update, although I d=
+on&#39;t have an exact timeline.</div><div><br></div><div>Jonathon</div></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Sun, Jan 3, 2021 at 11:24 PM =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng via USR=
+P-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"=
+>usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex"><div dir=3D"ltr">Hi everyone,<div><br></div><div=
+>I&#39;m learning RFNoC with UHD 4.0 and GRC 3.8. I have a question about h=
+ow to build RFNoC blocks in=C2=A0/lib/rfnoc/blocks directory?=C2=A0</div><d=
+iv><br></div><div>For=C2=A0example, with window block, by doing the followi=
+ng steps:</div><div>+ Using rfnocmodtool to create test module with window =
+block.<br></div><div>+ Copy yml file and fpga files from window lib directo=
+ry to test directory.<br></div><div>+ Run cmake, testbench, make install co=
+mmand.<br></div><div><br></div><div>although the window block has been buil=
+t successfully, its GRC block appeared with only one user_register like gai=
+n example block.=C2=A0</div><div>The gr_ettus has been installed but no GRC=
+ block for window block or some others.</div><div>So how I can build=C2=A0t=
+he blocks in the lib directory with full registers and parameters?</div><di=
+v>I can not find any guiding document about that thing, hope that it will b=
+e supported in the near future.</div><div><br></div><div>Thank you!</div><d=
+iv>Tuan</div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -268,9 +293,10 @@ om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
+</blockquote></div>
 
---0000000000006174e905b821bafc--
---0000000000006174ea05b821bafd
+--000000000000e3abc405b821c234--
+--000000000000e3abc505b821c235
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -2522,146 +2548,133 @@ gAAEIAABPgsgVeHz0ce+QwACEIAABCAAAQhAAAIQgAAEIMBdAKkKdzssCQEIQAACEIAABCAAAQhA
 AAIQgACfBZCq8PnoY98hAAEIQAACEIAABCAAAQhAAAIQ4C6AVIW7HZaEAAQgAAEIQAACEIAABCAA
 AQhAgM8CSFX4fPSx7xCAAAQgAAEIQAACEIAABCAAAQhwF0Cqwt0OS0IAAhCAAAQgAAEIQAACEIAA
 BCDAZwGkKnw++th3CEAAAhCAAAQgAAEIQAACEIAABLgL/D/dAtnROnkajQAAAABJRU5ErkJggg==
---0000000000006174ea05b821bafd--
---0000000000006174eb05b821bafe
-Content-Type: application/x-yaml; name="x310_with_fft_fosphor.yml"
-Content-Disposition: attachment; filename="x310_with_fft_fosphor.yml"
+--000000000000e3abc505b821c235--
+--000000000000e3abc605b821c236
+Content-Type: application/octet-stream; name="rfnoc_fosphor.grc"
+Content-Disposition: attachment; filename="rfnoc_fosphor.grc"
 Content-Transfer-Encoding: base64
-Content-ID: <f_kjjmxnzm0>
-X-Attachment-Id: f_kjjmxnzm0
+Content-ID: <f_kjjn75k11>
+X-Attachment-Id: f_kjjn75k11
 
-IyBHZW5lcmFsIHBhcmFtZXRlcnMKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLQpzY2hlbWE6IHJmbm9jX2ltYWdlYnVpbGRlcl9hcmdzICAgICAgICAgIyBJZGVudGlm
-aWVyIGZvciB0aGUgc2NoZW1hIHVzZWQgdG8gdmFsaWRhdGUgdGhpcyBmaWxlCmNvcHlyaWdodDog
-J0V0dHVzIFJlc2VhcmNoLCBBIE5hdGlvbmFsIEluc3RydW1lbnRzIEJyYW5kJyAjIENvcHlyaWdo
-dCBpbmZvcm1hdGlvbiB1c2VkIGluIGZpbGUgaGVhZGVycwpsaWNlbnNlOiAnU1BEWC1MaWNlbnNl
-LUlkZW50aWZpZXI6IExHUEwtMy4wLW9yLWxhdGVyJyAjIExpY2Vuc2UgaW5mb3JtYXRpb24gdXNl
-ZCBpbiBmaWxlIGhlYWRlcnMKdmVyc2lvbjogMS4wICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICMgRmlsZSB2ZXJzaW9uCnJmbm9jX3ZlcnNpb246IDEuMCAgICAgICAgICAgICAgICAgICAgICAj
-IFJGTm9DIHByb3RvY29sIHZlcnNpb24KY2hkcl93aWR0aDogNjQgICAgICAgICAgICAgICAgICAg
-ICAgICAgICMgQml0IHdpZHRoIG9mIHRoZSBDSERSIGJ1cyBmb3IgdGhpcyBpbWFnZQpkZXZpY2U6
-ICd4MzEwJwpkZWZhdWx0X3RhcmdldDogJ1gzMTBfSEcnCgojIEEgbGlzdCBvZiBhbGwgc3RyZWFt
-IGVuZHBvaW50cyBpbiBkZXNpZ24KIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tCnN0cmVhbV9lbmRwb2ludHM6CiAgZXAwOiAgICAgICAgICAgICAgICAgICAgICAgIyBT
-dHJlYW0gZW5kcG9pbnQgbmFtZQogICAgY3RybDogVHJ1ZSAgICAgICAgICAgICAgICAgICAgICAj
-IEVuZHBvaW50IHBhc3NlcyBjb250cm9sIHRyYWZmaWMKICAgIGRhdGE6IFRydWUgICAgICAgICAg
-ICAgICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMgZGF0YSB0cmFmZmljCiAgICBidWZmX3NpemU6
-IDE2Mzg0ICAgICAgICAgICAgICAgICMgSW5ncmVzcyBidWZmZXIgc2l6ZSBmb3IgZGF0YQogIGVw
-MTogICAgICAgICAgICAgICAgICAgICAgICMgU3RyZWFtIGVuZHBvaW50IG5hbWUKICAgIGN0cmw6
-IEZhbHNlICAgICAgICAgICAgICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFm
-ZmljCiAgICBkYXRhOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2Vz
-IGRhdGEgdHJhZmZpYwogICAgYnVmZl9zaXplOiAwICAgICAgICAgICAgICAgICAgICAjIEluZ3Jl
-c3MgYnVmZmVyIHNpemUgZm9yIGRhdGEKICBlcDI6ICAgICAgICAgICAgICAgICAgICAgICAjIFN0
-cmVhbSBlbmRwb2ludCBuYW1lCiAgICBjdHJsOiBUcnVlICAgICAgICAgICAgICAgICAgICAgIyBF
-bmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFmZmljCiAgICBkYXRhOiBUcnVlICAgICAgICAgICAg
-ICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGRhdGEgdHJhZmZpYwogICAgYnVmZl9zaXplOiAx
-NjM4NCAgICAgICAgICAgICAgICAjIEluZ3Jlc3MgYnVmZmVyIHNpemUgZm9yIGRhdGEKICBlcDM6
-ICAgICAgICAgICAgICAgICAgICAgICAjIFN0cmVhbSBlbmRwb2ludCBuYW1lCiAgICBjdHJsOiBG
-YWxzZSAgICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGNvbnRyb2wgdHJhZmZp
-YwogICAgZGF0YTogVHJ1ZSAgICAgICAgICAgICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBk
-YXRhIHRyYWZmaWMKICAgIGJ1ZmZfc2l6ZTogMCAgICAgICAgICAgICAgICAgICAgIyBJbmdyZXNz
-IGJ1ZmZlciBzaXplIGZvciBkYXRhCiAgZXA0OiAgICAgICAgICAgICAgICAgICAgICAgIyBTdHJl
-YW0gZW5kcG9pbnQgbmFtZQogICAgY3RybDogRmFsc2UgICAgICAgICAgICAgICAgICAgICAjIEVu
-ZHBvaW50IHBhc3NlcyBjb250cm9sIHRyYWZmaWMKICAgIGRhdGE6IFRydWUgICAgICAgICAgICAg
-ICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMgZGF0YSB0cmFmZmljCiAgICBidWZmX3NpemU6IDQw
-OTYgICAgICAgICAgICAgICAgICMgSW5ncmVzcyBidWZmZXIgc2l6ZSBmb3IgZGF0YQogIGVwNTog
-ICAgICAgICAgICAgICAgICAgICAgICMgU3RyZWFtIGVuZHBvaW50IG5hbWUKICAgIGN0cmw6IEZh
-bHNlICAgICAgICAgICAgICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFmZmlj
-CiAgICBkYXRhOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGRh
-dGEgdHJhZmZpYwogICAgYnVmZl9zaXplOiA0MDk2ICAgICAgICAgICAgICAgICAjIEluZ3Jlc3Mg
-YnVmZmVyIHNpemUgZm9yIGRhdGEKICBlcDY6CiAgICBjdHJsOiBUcnVlCiAgICBkYXRhOiBUcnVl
-CiAgICBidWZmX3NpemU6IDE2Mzg0CiAgZXA3OgogICAgY3RybDogVHJ1ZQogICAgZGF0YTogVHJ1
-ZQogICAgYnVmZl9zaXplOiAxNjM4NAojIEEgbGlzdCBvZiBhbGwgTm9DIGJsb2NrcyBpbiBkZXNp
-Z24KIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCm5vY19ibG9ja3M6CiAgZHVj
-MDogICAgICAgICAgICAgICAgICAgICAgIyBOb0MgYmxvY2sgbmFtZQogICAgYmxvY2tfZGVzYzog
-J2R1Yy55bWwnICAgICMgQmxvY2sgZGV2aWNlIGRlc2NyaXB0b3IgZmlsZQogICAgcGFyYW1ldGVy
-czoKICAgICAgTlVNX1BPUlRTOiAxCiAgZGRjMDoKICAgIGJsb2NrX2Rlc2M6ICdkZGMueW1sJwog
-ICAgcGFyYW1ldGVyczoKICAgICAgTlVNX1BPUlRTOiAyCiAgcmFkaW8wOgogICAgYmxvY2tfZGVz
-YzogJ3JhZGlvXzJ4NjQueW1sJwogIGR1YzE6CiAgICBibG9ja19kZXNjOiAnZHVjLnltbCcKICAg
-IHBhcmFtZXRlcnM6CiAgICAgIE5VTV9QT1JUUzogMQogIGRkYzE6CiAgICBibG9ja19kZXNjOiAn
-ZGRjLnltbCcKICAgIHBhcmFtZXRlcnM6CiAgICAgIE5VTV9QT1JUUzogMgogIHJhZGlvMToKICAg
-IGJsb2NrX2Rlc2M6ICdyYWRpb18yeDY0LnltbCcKICByZXBsYXkwOgogICAgYmxvY2tfZGVzYzog
-J3JlcGxheS55bWwnCiAgICBwYXJhbWV0ZXJzOgogICAgICBOVU1fUE9SVFM6IDIKICAgICAgTUVN
-X0FERFJfVzogMzAKICBmZnQwOgogICAgYmxvY2tfZGVzYzogJ2ZmdF8xeDY0LnltbCcKICAgIHBh
-cmFtZXRlcnM6CiAgICAgIEVOX0ZGVF9TSElGVDogMQogIGZvc3Bob3IwOgogICAgYmxvY2tfZGVz
-YzogJ2Zvc3Bob3IueW1sJwojICBrZWVwX29uZV9pbl9OMDoKIyAgICBibG9ja19kZXNjOiAna2Vl
-cF9vbmVfaW5fbi55bWwnCiMgICAgcGFyYW1ldGVyczoKIyAgICAgIE5VTV9QT1JUUzogMQojICBn
-YWluMDoKIyAgICBibG9ja19kZXNjOiAnZ2Fpbi55bWwnCgoKIyBBIGxpc3Qgb2YgYWxsIHN0YXRp
-YyBjb25uZWN0aW9ucyBpbiBkZXNpZ24KIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0KIyBGb3JtYXQ6IEEgbGlzdCBvZiBjb25uZWN0aW9uIG1hcHMgKGxpc3Qgb2Yg
-a2V5LXZhbHVlIHBhaXJzKSB3aXRoIHRoZSBmb2xsb3dpbmcga2V5cwojICAgICAgICAgLSBzcmNi
-bGsgID0gU291cmNlIGJsb2NrIHRvIGNvbm5lY3QKIyAgICAgICAgIC0gc3JjcG9ydCA9IFBvcnQg
-b24gdGhlIHNvdXJjZSBibG9jayB0byBjb25uZWN0CiMgICAgICAgICAtIGRzdGJsayAgPSBEZXN0
-aW5hdGlvbiBibG9jayB0byBjb25uZWN0CiMgICAgICAgICAtIGRzdHBvcnQgPSBQb3J0IG9uIHRo
-ZSBkZXN0aW5hdGlvbiBibG9jayB0byBjb25uZWN0CmNvbm5lY3Rpb25zOgogICAgIyBlcDYgdG8g
-ZmZ0MCAKICAtIHsgc3JjYmxrOiBlcDYsICAgIHNyY3BvcnQ6IG91dDAsICBkc3RibGs6IGZmdDAs
-ICAgICAgICBkc3Rwb3J0OiBpbl8wIH0KICAjLSB7IHNyY2JsazogZmZ0MCwgICBzcmNwb3J0OiBv
-dXRfMCwgZHN0YmxrOiBmb3NwaG9yMCwgICAgZHN0cG9ydDogaW4wICB9CgogICMgZXA2IHRvIGZm
-dDAgCiAgLSB7IHNyY2JsazogZmZ0MCwgICAgICAgc3JjcG9ydDogb3V0XzAsICBkc3RibGs6IGZv
-c3Bob3IwLCAgIGRzdHBvcnQ6IGZmdF9pbiAgIH0KICAtIHsgc3JjYmxrOiBmb3NwaG9yMCwgICBz
-cmNwb3J0OiBoaXN0LCAgIGRzdGJsazogZXA2LCAgICAgICAgZHN0cG9ydDogaW4wICAgICAgfQog
-IC0geyBzcmNibGs6IGZvc3Bob3IwLCAgIHNyY3BvcnQ6IHdmLCAgICAgZHN0YmxrOiBlcDcsICAg
-ICAgICBkc3Rwb3J0OiBpbjAgICAgICB9CgogICMgZXAwIHRvIHJhZGlvMCgwKSAtIFJGQSBUWAog
-IC0geyBzcmNibGs6IGVwMCwgICAgc3JjcG9ydDogb3V0MCwgIGRzdGJsazogZHVjMCwgICBkc3Rw
-b3J0OiBpbl8wIH0KICAtIHsgc3JjYmxrOiBkdWMwLCAgIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6
-IHJhZGlvMCwgZHN0cG9ydDogaW5fMCB9CiAgIyByYWRpbzAoMCkgdG8gZXAwIC0gUkZBIFJYCiAg
-LSB7IHNyY2JsazogcmFkaW8wLCBzcmNwb3J0OiBvdXRfMCwgZHN0YmxrOiBkZGMwLCAgIGRzdHBv
-cnQ6IGluXzAgfQogIC0geyBzcmNibGs6IGRkYzAsICAgc3JjcG9ydDogb3V0XzAsIGRzdGJsazog
-ZXAwLCAgICBkc3Rwb3J0OiBpbjAgIH0KICAjIHJhZGlvMCgxKSB0byBlcDEgLSBSRkEgUlgKICAt
-IHsgc3JjYmxrOiByYWRpbzAsIHNyY3BvcnQ6IG91dF8xLCBkc3RibGs6IGRkYzAsICAgZHN0cG9y
-dDogaW5fMSB9CiAgLSB7IHNyY2JsazogZGRjMCwgICBzcmNwb3J0OiBvdXRfMSwgZHN0YmxrOiBl
-cDEsICAgIGRzdHBvcnQ6IGluMCAgfQogICMgZXAyIHRvIHJhZGlvMSgwKSAtIFJGQiBUWAogIC0g
-eyBzcmNibGs6IGVwMiwgICAgc3JjcG9ydDogb3V0MCwgIGRzdGJsazogZHVjMSwgICBkc3Rwb3J0
-OiBpbl8wIH0KICAtIHsgc3JjYmxrOiBkdWMxLCAgIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6IHJh
-ZGlvMSwgZHN0cG9ydDogaW5fMCB9CiAgIyByYWRpbzEoMCkgdG8gZXAyIC0gUkZCIFJYCiAgLSB7
-IHNyY2JsazogcmFkaW8xLCBzcmNwb3J0OiBvdXRfMCwgZHN0YmxrOiBkZGMxLCAgIGRzdHBvcnQ6
-IGluXzAgfQogIC0geyBzcmNibGs6IGRkYzEsICAgc3JjcG9ydDogb3V0XzAsIGRzdGJsazogZXAy
-LCAgICBkc3Rwb3J0OiBpbjAgIH0KICAjIHJhZGlvMSgxKSB0byBlcDMgLSBSRkIgUlgKICAtIHsg
-c3JjYmxrOiByYWRpbzEsIHNyY3BvcnQ6IG91dF8xLCBkc3RibGs6IGRkYzEsICAgZHN0cG9ydDog
-aW5fMSB9CiAgLSB7IHNyY2JsazogZGRjMSwgICBzcmNwb3J0OiBvdXRfMSwgZHN0YmxrOiBlcDMs
-ICAgIGRzdHBvcnQ6IGluMCAgfQogICMgZXA0IHRvIHJlcGxheTAoMCkKICAtIHsgc3JjYmxrOiBl
-cDQsICAgICBzcmNwb3J0OiBvdXQwLCAgZHN0YmxrOiByZXBsYXkwLCBkc3Rwb3J0OiBpbl8wIH0K
-ICAjIHJlcGxheTAoMCkgdG8gZXA0CiAgLSB7IHNyY2JsazogcmVwbGF5MCwgc3JjcG9ydDogb3V0
-XzAsIGRzdGJsazogZXA0LCAgICAgZHN0cG9ydDogaW4wICB9CiAgIyBlcDUgdG8gcmVwbGF5MCgx
-KQogIC0geyBzcmNibGs6IGVwNSwgICAgIHNyY3BvcnQ6IG91dDAsICBkc3RibGs6IHJlcGxheTAs
-IGRzdHBvcnQ6IGluXzEgfQogICMgcmVwbGF5MCgxKSB0byBlcDUKICAtIHsgc3JjYmxrOiByZXBs
-YXkwLCBzcmNwb3J0OiBvdXRfMSwgZHN0YmxrOiBlcDUsICAgICBkc3Rwb3J0OiBpbjAgIH0KICAj
-IEJTUCBDb25uZWN0aW9ucwogIC0geyBzcmNibGs6IHJhZGlvMCwgc3JjcG9ydDogY3RybF9wb3J0
-LCBkc3RibGs6IF9kZXZpY2VfLCBkc3Rwb3J0OiBjdHJscG9ydF9yYWRpbzAgfQogIC0geyBzcmNi
-bGs6IHJhZGlvMSwgc3JjcG9ydDogY3RybF9wb3J0LCBkc3RibGs6IF9kZXZpY2VfLCBkc3Rwb3J0
-OiBjdHJscG9ydF9yYWRpbzEgfQogIC0geyBzcmNibGs6IHJlcGxheTAsIHNyY3BvcnQ6IGF4aV9y
-YW0sIGRzdGJsazogX2RldmljZV8sIGRzdHBvcnQ6IGRyYW0gfQogIC0geyBzcmNibGs6IF9kZXZp
-Y2VfLCBzcmNwb3J0OiB4MzAwX3JhZGlvMCwgZHN0YmxrOiByYWRpbzAsIGRzdHBvcnQ6IHgzMDBf
-cmFkaW8gfQogIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiB4MzAwX3JhZGlvMSwgZHN0
-YmxrOiByYWRpbzEsIGRzdHBvcnQ6IHgzMDBfcmFkaW8gfQogIC0geyBzcmNibGs6IF9kZXZpY2Vf
-LCBzcmNwb3J0OiB0aW1lX2tlZXBlciwgZHN0YmxrOiByYWRpbzAsIGRzdHBvcnQ6IHRpbWVfa2Vl
-cGVyIH0KICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogdGltZV9rZWVwZXIsIGRzdGJs
-azogcmFkaW8xLCBkc3Rwb3J0OiB0aW1lX2tlZXBlciB9CgojIEEgbGlzdCBvZiBhbGwgY2xvY2sg
-ZG9tYWluIGNvbm5lY3Rpb25zIGluIGRlc2lnbgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLQojIEZvcm1hdDogQSBsaXN0IG9mIGNvbm5lY3Rpb24gbWFwcyAobGlz
-dCBvZiBrZXktdmFsdWUgcGFpcnMpIHdpdGggdGhlIGZvbGxvd2luZyBrZXlzCiMgICAgICAgICAt
-IHNyY2JsayAgPSBTb3VyY2UgYmxvY2sgdG8gY29ubmVjdCAoQWx3YXlzICJfZGV2aWNlIl8pCiMg
-ICAgICAgICAtIHNyY3BvcnQgPSBDbG9jayBkb21haW4gb24gdGhlIHNvdXJjZSBibG9jayB0byBj
-b25uZWN0CiMgICAgICAgICAtIGRzdGJsayAgPSBEZXN0aW5hdGlvbiBibG9jayB0byBjb25uZWN0
-CiMgICAgICAgICAtIGRzdHBvcnQgPSBDbG9jayBkb21haW4gb24gdGhlIGRlc3RpbmF0aW9uIGJs
-b2NrIHRvIGNvbm5lY3QKIyAgQmVuIGVkaXRlZCB0aGUgbGFzdCBjbGtfZG9tYWluIGxpbmUKY2xr
-X2RvbWFpbnM6CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFkaW8sIGRzdGJs
-azogcmFkaW8wLCBkc3Rwb3J0OiByYWRpbyB9CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3Jj
-cG9ydDogY2UsICAgIGRzdGJsazogZGRjMCwgICBkc3Rwb3J0OiBjZSAgICB9CiAgICAtIHsgc3Jj
-YmxrOiBfZGV2aWNlXywgc3JjcG9ydDogY2UsICAgIGRzdGJsazogZHVjMCwgICBkc3Rwb3J0OiBj
-ZSAgICB9CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFkaW8sIGRzdGJsazog
-cmFkaW8xLCBkc3Rwb3J0OiByYWRpbyB9CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9y
-dDogY2UsICAgIGRzdGJsazogZGRjMSwgICBkc3Rwb3J0OiBjZSAgICB9CiAgICAtIHsgc3JjYmxr
-OiBfZGV2aWNlXywgc3JjcG9ydDogY2UsICAgIGRzdGJsazogZHVjMSwgICBkc3Rwb3J0OiBjZSAg
-ICB9CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogZHJhbSwgIGRzdGJsazogcmVw
-bGF5MCwgZHN0cG9ydDogbWVtICB9CiMgICAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6
-IGNlLCAgICBkc3RibGs6IGdhaW4wLCAgIGRzdHBvcnQ6IGNlICAgIH0gCiMgICAgLSB7IHNyY2Js
-azogX2RldmljZV8sIHNyY3BvcnQ6IGNlLCAgICBkc3RibGs6IGtlZXBfb25lX2luX04wLCAgIGRz
-dHBvcnQ6IGNlICAgIH0gCiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogY2UsICAg
-IGRzdGJsazogZm9zcGhvcjAsICAgZHN0cG9ydDogY2UgICAgfSAKICAgIC0geyBzcmNibGs6IF9k
-ZXZpY2VfLCBzcmNwb3J0OiBjZSwgICAgZHN0YmxrOiBmZnQwLCAgIGRzdHBvcnQ6IGNlICAgIH0g
-Cgo=
---0000000000006174eb05b821bafe
+b3B0aW9uczoKICBwYXJhbWV0ZXJzOgogICAgYXV0aG9yOiAnJwogICAgY2F0ZWdvcnk6ICdbR1JD
+IEhpZXIgQmxvY2tzXScKICAgIGNtYWtlX29wdDogJycKICAgIGNvbW1lbnQ6ICcnCiAgICBjb3B5
+cmlnaHQ6ICcnCiAgICBkZXNjcmlwdGlvbjogJycKICAgIGdlbl9jbWFrZTogJ09uJwogICAgZ2Vu
+X2xpbmtpbmc6IGR5bmFtaWMKICAgIGdlbmVyYXRlX29wdGlvbnM6IHF0X2d1aQogICAgaGllcl9i
+bG9ja19zcmNfcGF0aDogJy46JwogICAgaWQ6IHJmbm9jX2Zvc3Bob3IKICAgIG1heF9ub3V0czog
+JzAnCiAgICBvdXRwdXRfbGFuZ3VhZ2U6IHB5dGhvbgogICAgcGxhY2VtZW50OiAoMCwwKQogICAg
+cXRfcXNzX3RoZW1lOiAnJwogICAgcmVhbHRpbWVfc2NoZWR1bGluZzogJycKICAgIHJ1bjogJ1Ry
+dWUnCiAgICBydW5fY29tbWFuZDogJ3tweXRob259IC11IHtmaWxlbmFtZX0nCiAgICBydW5fb3B0
+aW9uczogcHJvbXB0CiAgICBzaXppbmdfbW9kZTogZml4ZWQKICAgIHRocmVhZF9zYWZlX3NldHRl
+cnM6ICcnCiAgICB0aXRsZTogJ1JGTm9DOiBGb3NwaG9yIEV4YW1wbGUnCiAgICB3aW5kb3dfc2l6
+ZTogJycKICBzdGF0ZXM6CiAgICBidXNfc2luazogZmFsc2UKICAgIGJ1c19zb3VyY2U6IGZhbHNl
+CiAgICBidXNfc3RydWN0dXJlOiBudWxsCiAgICBjb29yZGluYXRlOiBbOCwgOF0KICAgIHJvdGF0
+aW9uOiAwCiAgICBzdGF0ZTogZW5hYmxlZAoKYmxvY2tzOgotIG5hbWU6IGV0dHVzX3Jmbm9jX2dy
+YXBoCiAgaWQ6IGV0dHVzX3Jmbm9jX2dyYXBoCiAgcGFyYW1ldGVyczoKICAgIGFsaWFzOiAnJwog
+ICAgY2xvY2tfc291cmNlXzA6ICcnCiAgICBjbG9ja19zb3VyY2VfMTogJycKICAgIGNsb2NrX3Nv
+dXJjZV8yOiAnJwogICAgY2xvY2tfc291cmNlXzM6ICcnCiAgICBjbG9ja19zb3VyY2VfNDogJycK
+ICAgIGNsb2NrX3NvdXJjZV81OiAnJwogICAgY2xvY2tfc291cmNlXzY6ICcnCiAgICBjbG9ja19z
+b3VyY2VfNzogJycKICAgIGNvbW1lbnQ6ICcnCiAgICBkZXZfYWRkcjogJycKICAgIGRldl9hcmdz
+OiB0eXBlPXgzMDAKICAgIG51bV9tYm9hcmRzOiAnMScKICAgIHRpbWVfc291cmNlXzA6ICcnCiAg
+ICB0aW1lX3NvdXJjZV8xOiAnJwogICAgdGltZV9zb3VyY2VfMjogJycKICAgIHRpbWVfc291cmNl
+XzM6ICcnCiAgICB0aW1lX3NvdXJjZV80OiAnJwogICAgdGltZV9zb3VyY2VfNTogJycKICAgIHRp
+bWVfc291cmNlXzY6ICcnCiAgICB0aW1lX3NvdXJjZV83OiAnJwogIHN0YXRlczoKICAgIGJ1c19z
+aW5rOiBmYWxzZQogICAgYnVzX3NvdXJjZTogZmFsc2UKICAgIGJ1c19zdHJ1Y3R1cmU6IG51bGwK
+ICAgIGNvb3JkaW5hdGU6IFsyMzIsIDguMF0KICAgIHJvdGF0aW9uOiAwCiAgICBzdGF0ZTogdHJ1
+ZQotIG5hbWU6IGZmdF9sZW4KICBpZDogdmFyaWFibGUKICBwYXJhbWV0ZXJzOgogICAgY29tbWVu
+dDogJycKICAgIHZhbHVlOiAnMTAyNCcKICBzdGF0ZXM6CiAgICBidXNfc2luazogZmFsc2UKICAg
+IGJ1c19zb3VyY2U6IGZhbHNlCiAgICBidXNfc3RydWN0dXJlOiBudWxsCiAgICBjb29yZGluYXRl
+OiBbNDI0LCA4LjBdCiAgICByb3RhdGlvbjogMAogICAgc3RhdGU6IHRydWUKLSBuYW1lOiBmcmVx
+CiAgaWQ6IHZhcmlhYmxlX3F0Z3VpX3JhbmdlCiAgcGFyYW1ldGVyczoKICAgIGNvbW1lbnQ6ICcn
+CiAgICBndWlfaGludDogJycKICAgIGxhYmVsOiBSWCBGcmVxdWVuY3kgKEh6KQogICAgbWluX2xl
+bjogJzIwMCcKICAgIG9yaWVudDogUXQuSG9yaXpvbnRhbAogICAgcmFuZ2VUeXBlOiBmbG9hdAog
+ICAgc3RhcnQ6IDEwZTYKICAgIHN0ZXA6IDFlNgogICAgc3RvcDogNmU5CiAgICB2YWx1ZTogMi40
+NWU5CiAgICB3aWRnZXQ6IGNvdW50ZXJfc2xpZGVyCiAgc3RhdGVzOgogICAgYnVzX3Npbms6IGZh
+bHNlCiAgICBidXNfc291cmNlOiBmYWxzZQogICAgYnVzX3N0cnVjdHVyZTogbnVsbAogICAgY29v
+cmRpbmF0ZTogWzgyNCwgMTIuMF0KICAgIHJvdGF0aW9uOiAwCiAgICBzdGF0ZTogdHJ1ZQotIG5h
+bWU6IGdhaW4KICBpZDogdmFyaWFibGVfcXRndWlfcmFuZ2UKICBwYXJhbWV0ZXJzOgogICAgY29t
+bWVudDogJycKICAgIGd1aV9oaW50OiAnJwogICAgbGFiZWw6IEdhaW4gKGRCKQogICAgbWluX2xl
+bjogJzIwMCcKICAgIG9yaWVudDogUXQuSG9yaXpvbnRhbAogICAgcmFuZ2VUeXBlOiBmbG9hdAog
+ICAgc3RhcnQ6ICcwJwogICAgc3RlcDogJzEnCiAgICBzdG9wOiAnMzInCiAgICB2YWx1ZTogJzAn
+CiAgICB3aWRnZXQ6IGNvdW50ZXJfc2xpZGVyCiAgc3RhdGVzOgogICAgYnVzX3Npbms6IGZhbHNl
+CiAgICBidXNfc291cmNlOiBmYWxzZQogICAgYnVzX3N0cnVjdHVyZTogbnVsbAogICAgY29vcmRp
+bmF0ZTogWzY5NiwgMTIuMF0KICAgIHJvdGF0aW9uOiAwCiAgICBzdGF0ZTogdHJ1ZQotIG5hbWU6
+IHNhbXBfcmF0ZQogIGlkOiB2YXJpYWJsZQogIHBhcmFtZXRlcnM6CiAgICBjb21tZW50OiAnJwog
+ICAgdmFsdWU6IDEwMGU2CiAgc3RhdGVzOgogICAgYnVzX3Npbms6IGZhbHNlCiAgICBidXNfc291
+cmNlOiBmYWxzZQogICAgYnVzX3N0cnVjdHVyZTogbnVsbAogICAgY29vcmRpbmF0ZTogWzQyNCwg
+ODAuMF0KICAgIHJvdGF0aW9uOiAwCiAgICBzdGF0ZTogdHJ1ZQotIG5hbWU6IHNwcAogIGlkOiB2
+YXJpYWJsZQogIHBhcmFtZXRlcnM6CiAgICBjb21tZW50OiAnJwogICAgdmFsdWU6ICcic3BwPXsw
+fSIuZm9ybWF0KGZmdF9sZW4pJwogIHN0YXRlczoKICAgIGJ1c19zaW5rOiBmYWxzZQogICAgYnVz
+X3NvdXJjZTogZmFsc2UKICAgIGJ1c19zdHJ1Y3R1cmU6IG51bGwKICAgIGNvb3JkaW5hdGU6IFs1
+MzYsIDguMF0KICAgIHJvdGF0aW9uOiAwCiAgICBzdGF0ZTogdHJ1ZQotIG5hbWU6IGV0dHVzX2Zv
+c3Bob3JfZGlzcGxheV8wCiAgaWQ6IGV0dHVzX2Zvc3Bob3JfZGlzcGxheQogIHBhcmFtZXRlcnM6
+CiAgICBhZmZpbml0eTogJycKICAgIGFsaWFzOiAnJwogICAgY2VudGVyX2ZyZXE6IGZyZXEKICAg
+IGNvbW1lbnQ6ICcnCiAgICBmZnRfYmluczogZmZ0X2xlbgogICAgZnJhbWVfcmF0ZTogJzE1Jwog
+ICAgZ3JpZF9lbmFibGVkOiAnVHJ1ZScKICAgIGd1aV9oaW50OiAnJwogICAgbWF4b3V0YnVmOiAn
+MCcKICAgIG1pbm91dGJ1ZjogJzAnCiAgICBwYWxldHRlOiBpcm9uCiAgICBwd3JfYmluczogJzY0
+JwogICAgc2FtcF9yYXRlOiBzYW1wX3JhdGUKICAgIHdmX2VuYWJsZWQ6ICdUcnVlJwogICAgd2Zf
+bGluZXM6ICc1MTInCiAgc3RhdGVzOgogICAgYnVzX3Npbms6IGZhbHNlCiAgICBidXNfc291cmNl
+OiBmYWxzZQogICAgYnVzX3N0cnVjdHVyZTogbnVsbAogICAgY29vcmRpbmF0ZTogWzE3MzYsIDI3
+Mi4wXQogICAgcm90YXRpb246IDAKICAgIHN0YXRlOiBlbmFibGVkCi0gbmFtZTogZXR0dXNfcmZu
+b2NfZGRjXzAKICBpZDogZXR0dXNfcmZub2NfZGRjCiAgcGFyYW1ldGVyczoKICAgIGFmZmluaXR5
+OiAnJwogICAgYWxpYXM6ICcnCiAgICBibG9ja19hcmdzOiAnJwogICAgY29tbWVudDogJycKICAg
+IGRldmljZV9zZWxlY3Q6ICctMScKICAgIGZyZXE6ICcwJwogICAgaW5zdGFuY2VfaW5kZXg6ICct
+MScKICAgIG1heG91dGJ1ZjogJzAnCiAgICBtaW5vdXRidWY6ICcwJwogICAgbnVtX2NoYW5zOiAn
+MScKICAgIG91dHB1dF9yYXRlOiBzYW1wX3JhdGUKICBzdGF0ZXM6CiAgICBidXNfc2luazogZmFs
+c2UKICAgIGJ1c19zb3VyY2U6IGZhbHNlCiAgICBidXNfc3RydWN0dXJlOiBudWxsCiAgICBjb29y
+ZGluYXRlOiBbMzYwLCAzMDguMF0KICAgIHJvdGF0aW9uOiAwCiAgICBzdGF0ZTogZW5hYmxlZAot
+IG5hbWU6IGV0dHVzX3Jmbm9jX2ZmdF8wCiAgaWQ6IGV0dHVzX3Jmbm9jX2ZmdAogIHBhcmFtZXRl
+cnM6CiAgICBhZmZpbml0eTogJycKICAgIGFsaWFzOiAnJwogICAgYmxvY2tfYXJnczogJycKICAg
+IGNvbW1lbnQ6ICcnCiAgICBkZXZpY2Vfc2VsZWN0OiAnLTEnCiAgICBmZnRfZGlyZWN0aW9uOiBG
+T1JXQVJECiAgICBmZnRfbGVuZ3RoOiBmZnRfbGVuCiAgICBmZnRfbWFnbml0dWRlOiBDT01QTEVY
+CiAgICBmZnRfc2NhbGluZzogJzE3MDYnCiAgICBmZnRfc2hpZnRfY29uZmlnOiBOT1JNQUwKICAg
+IGluc3RhbmNlX2luZGV4OiAnLTEnCiAgICBtYXhvdXRidWY6ICcwJwogICAgbWlub3V0YnVmOiAn
+MCcKICAgIG51bV9jaGFuczogJzEnCiAgc3RhdGVzOgogICAgYnVzX3Npbms6IGZhbHNlCiAgICBi
+dXNfc291cmNlOiBmYWxzZQogICAgYnVzX3N0cnVjdHVyZTogbnVsbAogICAgY29vcmRpbmF0ZTog
+WzcyMCwgMjgwLjBdCiAgICByb3RhdGlvbjogMAogICAgc3RhdGU6IGVuYWJsZWQKLSBuYW1lOiBl
+dHR1c19yZm5vY19mb3NwaG9yXzAKICBpZDogZXR0dXNfcmZub2NfZm9zcGhvcgogIHBhcmFtZXRl
+cnM6CiAgICBhZmZpbml0eTogJycKICAgIGFsaWFzOiAnJwogICAgYWxwaGE6ICc2MzAwMCcKICAg
+IGJsb2NrX2FyZ3M6ICcnCiAgICBjb21tZW50OiAnJwogICAgZGV2aWNlX3NlbGVjdDogJy0xJwog
+ICAgZW5hYmxlOiAnVHJ1ZScKICAgIGVuYWJsZV9kaXRoZXI6ICdUcnVlJwogICAgZW5hYmxlX25v
+aXNlOiAnVHJ1ZScKICAgIGVwc2lsb246ICc0JwogICAgaGlzdF9kZWNpbTogbWF4KDIsIGludChz
+YW1wX3JhdGUgLyAoMTUgKiAxMjggKiBmZnRfbGVuKSkpCiAgICBpbnN0YW5jZV9pbmRleDogJy0x
+JwogICAgbWF4b3V0YnVmOiAnMCcKICAgIG1pbm91dGJ1ZjogJzAnCiAgICBvZmZzZXQ6ICcwJwog
+ICAgc2NhbGU6ICcyNTYnCiAgICB0ZGVjYXk6ICcyNTYnCiAgICB0cmlzZTogJzY0JwogICAgd2Zf
+ZGVjaW06ICczMicKICAgIHdmX21vZGU6IE1PREVfTUFYX0hPTEQKICAgIHdmX3ByZWRpdjogUkFU
+SU9fMV8xCiAgc3RhdGVzOgogICAgYnVzX3Npbms6IGZhbHNlCiAgICBidXNfc291cmNlOiBmYWxz
+ZQogICAgYnVzX3N0cnVjdHVyZTogbnVsbAogICAgY29vcmRpbmF0ZTogWzEwODAsIDI4MC4wXQog
+ICAgcm90YXRpb246IDAKICAgIHN0YXRlOiBlbmFibGVkCi0gbmFtZTogZXR0dXNfcmZub2Nfcnhf
+cmFkaW9fMAogIGlkOiBldHR1c19yZm5vY19yeF9yYWRpbwogIHBhcmFtZXRlcnM6CiAgICBhZmZp
+bml0eTogJycKICAgIGFnYzogRGVmYXVsdAogICAgYWxpYXM6ICcnCiAgICBhbnRlbm5hOiBSWDIK
+ICAgIGJhbmR3aWR0aDogJzAnCiAgICBibG9ja19hcmdzOiBzcHAKICAgIGNvbW1lbnQ6ICcnCiAg
+ICBkY19vZmZzZXQ6ICdUcnVlJwogICAgZGV2aWNlX3NlbGVjdDogJy0xJwogICAgZnJlcXVlbmN5
+OiBmcmVxCiAgICBnYWluOiBnYWluCiAgICBpbnN0YW5jZV9pbmRleDogJy0xJwogICAgaXFfYmFs
+YW5jZTogJ1RydWUnCiAgICBtYXhvdXRidWY6ICcwJwogICAgbWlub3V0YnVmOiAnMCcKICAgIG51
+bV9jaGFuczogJzEnCiAgICByYXRlOiAyMDBlNgogIHN0YXRlczoKICAgIGJ1c19zaW5rOiBmYWxz
+ZQogICAgYnVzX3NvdXJjZTogZmFsc2UKICAgIGJ1c19zdHJ1Y3R1cmU6IG51bGwKICAgIGNvb3Jk
+aW5hdGU6IFs0OCwgMjUyLjBdCiAgICByb3RhdGlvbjogMAogICAgc3RhdGU6IHRydWUKLSBuYW1l
+OiBldHR1c19yZm5vY19yeF9zdHJlYW1lcl8xCiAgaWQ6IGV0dHVzX3Jmbm9jX3J4X3N0cmVhbWVy
+CiAgcGFyYW1ldGVyczoKICAgIGFmZmluaXR5OiAnJwogICAgYWxpYXM6ICcnCiAgICBhcmdzOiAn
+JwogICAgY29tbWVudDogJycKICAgIG1heG91dGJ1ZjogJzAnCiAgICBtaW5vdXRidWY6ICcwJwog
+ICAgbnVtX2NoYW5zOiAnMScKICAgIG90dzogczgKICAgIG91dHB1dF90eXBlOiBzOAogICAgdmxl
+bjogZmZ0X2xlbgogIHN0YXRlczoKICAgIGJ1c19zaW5rOiBmYWxzZQogICAgYnVzX3NvdXJjZTog
+ZmFsc2UKICAgIGJ1c19zdHJ1Y3R1cmU6IG51bGwKICAgIGNvb3JkaW5hdGU6IFsxNDQ4LCAzMTIu
+MF0KICAgIHJvdGF0aW9uOiAwCiAgICBzdGF0ZTogZW5hYmxlZAotIG5hbWU6IGV0dHVzX3Jmbm9j
+X3J4X3N0cmVhbWVyXzFfMAogIGlkOiBldHR1c19yZm5vY19yeF9zdHJlYW1lcgogIHBhcmFtZXRl
+cnM6CiAgICBhZmZpbml0eTogJycKICAgIGFsaWFzOiAnJwogICAgYXJnczogJycKICAgIGNvbW1l
+bnQ6ICcnCiAgICBtYXhvdXRidWY6ICcwJwogICAgbWlub3V0YnVmOiAnMCcKICAgIG51bV9jaGFu
+czogJzEnCiAgICBvdHc6IHM4CiAgICBvdXRwdXRfdHlwZTogczgKICAgIHZsZW46IGZmdF9sZW4K
+ICBzdGF0ZXM6CiAgICBidXNfc2luazogZmFsc2UKICAgIGJ1c19zb3VyY2U6IGZhbHNlCiAgICBi
+dXNfc3RydWN0dXJlOiBudWxsCiAgICBjb29yZGluYXRlOiBbMTQ0OCwgNDE2LjBdCiAgICByb3Rh
+dGlvbjogMAogICAgc3RhdGU6IGVuYWJsZWQKCmNvbm5lY3Rpb25zOgotIFtldHR1c19yZm5vY19k
+ZGNfMCwgJzAnLCBldHR1c19yZm5vY19mZnRfMCwgJzAnXQotIFtldHR1c19yZm5vY19mZnRfMCwg
+JzAnLCBldHR1c19yZm5vY19mb3NwaG9yXzAsICcwJ10KLSBbZXR0dXNfcmZub2NfZm9zcGhvcl8w
+LCAnMCcsIGV0dHVzX3Jmbm9jX3J4X3N0cmVhbWVyXzEsICcwJ10KLSBbZXR0dXNfcmZub2NfZm9z
+cGhvcl8wLCAnMScsIGV0dHVzX3Jmbm9jX3J4X3N0cmVhbWVyXzFfMCwgJzAnXQotIFtldHR1c19y
+Zm5vY19yeF9yYWRpb18wLCAnMCcsIGV0dHVzX3Jmbm9jX2RkY18wLCAnMCddCi0gW2V0dHVzX3Jm
+bm9jX3J4X3N0cmVhbWVyXzEsICcwJywgZXR0dXNfZm9zcGhvcl9kaXNwbGF5XzAsICcwJ10KLSBb
+ZXR0dXNfcmZub2Nfcnhfc3RyZWFtZXJfMV8wLCAnMCcsIGV0dHVzX2Zvc3Bob3JfZGlzcGxheV8w
+LCAnMSddCgptZXRhZGF0YToKICBmaWxlX2Zvcm1hdDogMQo=
+--000000000000e3abc605b821c236
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2672,5 +2685,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---0000000000006174eb05b821bafe--
+--000000000000e3abc605b821c236--
 
