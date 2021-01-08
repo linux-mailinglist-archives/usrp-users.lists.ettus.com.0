@@ -2,48 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC3642EED70
-	for <lists+usrp-users@lfdr.de>; Fri,  8 Jan 2021 07:24:30 +0100 (CET)
-Received: from [::1] (port=49796 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D9EB2EF3CA
+	for <lists+usrp-users@lfdr.de>; Fri,  8 Jan 2021 15:15:13 +0100 (CET)
+Received: from [::1] (port=53292 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kxlCD-0004US-AC; Fri, 08 Jan 2021 01:24:25 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:41992)
+	id 1kxsXl-0000j0-Ea; Fri, 08 Jan 2021 09:15:09 -0500
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:35781)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <zh.heng96@gmail.com>) id 1kxlC9-0004PI-D4
- for usrp-users@lists.ettus.com; Fri, 08 Jan 2021 01:24:21 -0500
-Received: by mail-oi1-f181.google.com with SMTP id l200so10243451oig.9
- for <usrp-users@lists.ettus.com>; Thu, 07 Jan 2021 22:24:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=qoIVt78a1n9oyTQ5ppXOr+1pLtV3ZyMW8NqQX8FxMBI=;
- b=N5gRQaru5m+GmZ4UlAIfUB9a+AEbFfHrawQoQCCpnY6JNr51rmn+RJ5RF0uTaSJzAd
- 5lUSZswyEBla3CX7TiGT5ammw2wtcgGGa3FqhLj480Mzn8H+28NGbSoiYzIbs9bZPE0P
- zck27hv8Ft1UKSp1pRo5/IrtW3IfWtz9eihQdbRgs1ruiSN5q4VZf06GXJzLpELUJu1H
- j3ODHG6QaN3aILxfC4E7zZgXDqIJzDqZX4L3f01S4lWJTiEEKkWajOvNpcmfehb6bkvD
- KkwCQubmxpoBgql+cWJaDgJBwdG1p1dFqfxYcTovdHwqlmIITYASY7pJRvD2iTKLXptT
- +YKw==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kxsXi-0000fF-38
+ for usrp-users@lists.ettus.com; Fri, 08 Jan 2021 09:15:06 -0500
+Received: by mail-ot1-f48.google.com with SMTP id i6so9774812otr.2
+ for <usrp-users@lists.ettus.com>; Fri, 08 Jan 2021 06:14:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=9GR9SapzK3W9EQu5UpnD9vPk1HGBwfkX7ayIScOzMhI=;
+ b=F1uW4KlPKq5FDWIgI4Sisjzsc1j/DsbWw3mZMpwfgLDShIjMq8aeBnd9DfXjSs8t3g
+ qRRU7cvb/qHybyWX1shZshelJsLd3XJk9DmBX3h9pzJWrcxhVKCQch1hYk34rcKR3E0I
+ nZvTIgziy3bIgjbtr1oxd29+u0wt0bkSq8Nphb9MJPFGitJnbmuk49J+5AhhdkhmWv9l
+ iZZsnqfk+HDDjthOd5XcYm+2Szgq2yTEHhfaQJnolyncDjXi0Sf2P3u0bxEkld35iD/M
+ ZfNqZr724NKkC8+WWJA1jiJ7CGzyKtVEWhNGciJc1WiR9NDSmwVL8/iNCcOMDdKxW0BL
+ VKvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=qoIVt78a1n9oyTQ5ppXOr+1pLtV3ZyMW8NqQX8FxMBI=;
- b=t3I22it7Ro3+9Tf+Yxcg8bhEryugC6VhzAYEbTjxIS/Pd7ZJD+r+PkTZPM/04DSAjo
- oeoL5hRnqtFmrC45VoSiAxmF8JqMfPkzw0IgCH2xSVxuybWdyv/FdeeBTd5T5OoeBiog
- Xj+CJtZdw0J8r+SHRxHYBtNPlQGPyXqRyjbrZRPuHkNVp/xbXGz60m6IGMNmqe2Zxkp4
- jPCtILYSAKBzsZSr320kMO3cejYoBFs16yZp2GnMj5m2R2OOjmf7O0x4r5dBa8mAkd5R
- qW/b6meYBhl5QN8qWAp+mvR8pUS3KMDhpM7NbD2xrxfV3wQ8g1E8OWpG0JPhSC5gSAPe
- TZEA==
-X-Gm-Message-State: AOAM530HTrnSpe+Vl+MU2F3PcDNXeHwiRzP5cOOpC1mraftJtnSPqEIS
- 7XgXESOdAm1tDl5nWRJo7UGHZM68ZmYAOE5dSruneKpaduT94Q==
-X-Google-Smtp-Source: ABdhPJyYg9VbT9lCdJGV9005PKTwGCpxVYjJE3DLFO7EiXT++x2/BkaVD34BjZozZgxR6QV1zNj3u+ZpmGCLSnfiM3k=
-X-Received: by 2002:aca:4303:: with SMTP id q3mr1428930oia.133.1610087020226; 
- Thu, 07 Jan 2021 22:23:40 -0800 (PST)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=9GR9SapzK3W9EQu5UpnD9vPk1HGBwfkX7ayIScOzMhI=;
+ b=HIf6FIGqPOQHbyu746nJE3BKaxE68nkevxT4IBSJ4gR/vVJ4Qcnjc4nAJDGDQfawkv
+ i7Rmyy0K4Lrrb3K6v3wJGzNVmjWaH0BwEvZGjdSpTBmoPBZow/zKx5aw6I0iOJqLAwI0
+ DfspmNcu+OTWaYccYnQkAjEBbw+jkESOkwS4bCW8i/qdUASh9sVs3SSYmYDANgde4pbf
+ 6qcUe64y2GCrxmlQiV1KRQrJeMyGDn8W9v8qTn1L2uTeZtX8uaSEmBNtFr7UoVeyfbHf
+ VeykPX+O78u5Y7gnuxzgnG49qO7lF4ZrA7zEipYZmGpSVeQOutR223GE5C/j09ryM++F
+ TFDg==
+X-Gm-Message-State: AOAM5320a+nuEbIarYiZV7/Q+Tte7Aw8RJ+YAAvW79o6Pw4al4PZb2Dc
+ Nk7JuZy5RwCSKY7Q8QPFiOnXI1hCbLsd95VeYYL34Q==
+X-Google-Smtp-Source: ABdhPJzNk65dcIMBMqpqNAICzmaIyVWjEogSLOo5Wfmwjzdb22oAuaTN1YpQzfFyMX3deyUJF43hWkSRUR+8bxcEsS8=
+X-Received: by 2002:a9d:6a97:: with SMTP id l23mr2694379otq.58.1610115265073; 
+ Fri, 08 Jan 2021 06:14:25 -0800 (PST)
 MIME-Version: 1.0
-Date: Fri, 8 Jan 2021 14:23:29 +0800
-Message-ID: <CAAM_mTSojJ9OCdMqLqp+q_wp5Dy7J+b4hK59aj=ct=63cP0hmQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] USRP N310 cannot start after reboot when updating the
- Linux File System
+References: <CAAM_mTSojJ9OCdMqLqp+q_wp5Dy7J+b4hK59aj=ct=63cP0hmQ@mail.gmail.com>
+In-Reply-To: <CAAM_mTSojJ9OCdMqLqp+q_wp5Dy7J+b4hK59aj=ct=63cP0hmQ@mail.gmail.com>
+Date: Fri, 8 Jan 2021 09:14:14 -0500
+Message-ID: <CAB__hTSQ+eD+kggCCbXQSpreQN51QX5vSbViXCtwDKPHCD7nOQ@mail.gmail.com>
+To: Heng Zhang <zh.heng96@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] USRP N310 cannot start after reboot when updating
+ the Linux File System
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Heng Zhang via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Heng Zhang <zh.heng96@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6240173498355902334=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============8069537972561172643=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,49 +75,78 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6240173498355902334==
-Content-Type: multipart/alternative; boundary="000000000000e5ebab05b85d9822"
+--===============8069537972561172643==
+Content-Type: multipart/alternative; boundary="0000000000006c5e0705b8642cc0"
 
---000000000000e5ebab05b85d9822
+--0000000000006c5e0705b8642cc0
 Content-Type: text/plain; charset="UTF-8"
 
-Dear community,
-I try to update the Linux File System of USRP N310 with mender following
-http://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide.
-Everything seems ok when updating the file system with "mender -rootfs
-/home/root/usrp_n3xx_fs.mender".
-However, I reboot the USRP after mender command was successful and I found
-the USRP cannot start. After a few hours, I try to manually start it and
-also failed. Does anyone know why the problem happens?  I wondered if there
-was something wrong with my USRP. Is there any place to provide testing and
-repair services? I am in Shanghai, China.
+Perhaps you can write the SD card directly as described here
+<https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card>.
+I suggest using bmaptool.
+Rob
 
+On Fri, Jan 8, 2021 at 1:24 AM Heng Zhang via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
+> Dear community,
+> I try to update the Linux File System of USRP N310 with mender following
+> http://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide.
+> Everything seems ok when updating the file system with "mender -rootfs
+> /home/root/usrp_n3xx_fs.mender".
+> However, I reboot the USRP after mender command was successful and I found
+> the USRP cannot start. After a few hours, I try to manually start it and
+> also failed. Does anyone know why the problem happens?  I wondered if there
+> was something wrong with my USRP. Is there any place to provide testing and
+> repair services? I am in Shanghai, China.
+>
+>
+>
+> Regards,
+> Heng
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-Regards,
-Heng
-
---000000000000e5ebab05b85d9822
+--0000000000006c5e0705b8642cc0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Dear community,<div>I try to update the Linux File System =
-of USRP N310 with mender following <a href=3D"http://kb.ettus.com/USRP_N300=
-/N310/N320/N321_Getting_Started_Guide">http://kb.ettus.com/USRP_N300/N310/N=
-320/N321_Getting_Started_Guide</a>.=C2=A0 Everything seems ok when updating=
- the file system with &quot;mender -rootfs /home/root/usrp_n3xx_fs.mender&q=
-uot;.=C2=A0=C2=A0</div><div>However, I reboot the USRP after mender command=
- was successful and I found the USRP cannot start. After a few hours, I try=
- to manually start it and also failed. Does anyone know why the problem hap=
-pens?=C2=A0=C2=A0I wondered if there was something wrong with my USRP.=C2=
-=A0Is there any place to provide testing and repair services? I am in Shang=
-hai, China.</div><div><br></div><div><br></div><div><br></div><div>Regards,=
-</div><div>Heng</div></div>
+<div dir=3D"ltr">Perhaps you can write the SD card directly as described <a=
+ href=3D"https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_=
+SD_Card">here</a>.=C2=A0 I suggest using bmaptool.<div>Rob</div></div><br><=
+div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jan=
+ 8, 2021 at 1:24 AM Heng Zhang via USRP-users &lt;<a href=3D"mailto:usrp-us=
+ers@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Dear commun=
+ity,<div>I try to update the Linux File System of USRP N310 with mender fol=
+lowing <a href=3D"http://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Star=
+ted_Guide" target=3D"_blank">http://kb.ettus.com/USRP_N300/N310/N320/N321_G=
+etting_Started_Guide</a>.=C2=A0 Everything seems ok when updating the file =
+system with &quot;mender -rootfs /home/root/usrp_n3xx_fs.mender&quot;.=C2=
+=A0=C2=A0</div><div>However, I reboot the USRP after mender command was suc=
+cessful and I found the USRP cannot start. After a few hours, I try to manu=
+ally start it and also failed. Does anyone know why the problem happens?=C2=
+=A0=C2=A0I wondered if there was something wrong with my USRP.=C2=A0Is ther=
+e any place to provide testing and repair services? I am in Shanghai, China=
+.</div><div><br></div><div><br></div><div><br></div><div>Regards,</div><div=
+>Heng</div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---000000000000e5ebab05b85d9822--
+--0000000000006c5e0705b8642cc0--
 
 
---===============6240173498355902334==
+--===============8069537972561172643==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,5 +157,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6240173498355902334==--
+--===============8069537972561172643==--
 
