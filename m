@@ -2,56 +2,44 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0D8D2F0370
-	for <lists+usrp-users@lfdr.de>; Sat,  9 Jan 2021 21:30:43 +0100 (CET)
-Received: from [::1] (port=38082 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02DFB2F0395
+	for <lists+usrp-users@lfdr.de>; Sat,  9 Jan 2021 21:51:37 +0100 (CET)
+Received: from [::1] (port=38212 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kyKsh-0008P2-S0; Sat, 09 Jan 2021 15:30:39 -0500
-Received: from mail-ua1-f47.google.com ([209.85.222.47]:42073)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <koncept1@gmail.com>) id 1kyKse-0008K6-NK
- for usrp-users@lists.ettus.com; Sat, 09 Jan 2021 15:30:36 -0500
-Received: by mail-ua1-f47.google.com with SMTP id n18so4645180ual.9
- for <usrp-users@lists.ettus.com>; Sat, 09 Jan 2021 12:30:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=egdJWJXpJjuheB5hjjJWkp6VFVdYZnD6eOhTdU98+00=;
- b=kp67eb2o4x5FB+8/Gp9Sq8g28my3Cr4QrlyFqD59xYBncKKR5wT6EcgF1crcrP/kVd
- uCYcNsMZUCPA4ZgrQdGuLLejzOdSrM7Z2QMfn+dQ0YhoqNGPG3fNG1hjlvEcuwdsgxUy
- 2v43pysdZhCGaRDsqZiqW8hqSVm8lleCe9F03xqtLzKp6+Im4w31uHy1FH/K80MPx+c6
- ZqFPyBvvGjQ6WQKM0DgK9BwkC5vHGnCIJ/ktd6T+krA4bOuNFrHICoj/3Y22m7Lr6wsf
- 0jnDrowJFoOeN0aJ9wwnWH6wcXZILmW2Mq7/kAwFG2GgXO/bKPPTxnx3dQrjDONObSBk
- V07A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=egdJWJXpJjuheB5hjjJWkp6VFVdYZnD6eOhTdU98+00=;
- b=pcTpdIKEjhiWu1BHKmDN4KlG4bSVwHntRL95Wnl47DtK/wx4msxr5T002C7Z37FVrq
- IsYbytY5YXGDXhiVUSz75URcpT4oFET6dEdwF1/tAvKgUsceXcyZpxYvd1yHnFFr+TiI
- yj+8MjUfuRlZ+NgnJfOuV2FBzKmdIMdOB01IpTITxedwhF0W1dvVUcyVOiIKJbQRHHZS
- TT0PQHVNyGieIzozmYnbpmQt3Q26er4luEHvEfj9YzIeT5eENZ5EARjSZoEzzZsdpdQf
- n3QYCUWRTwJBQx+I05x8r1AG45nac5wpxLZytyI+Awrs/yrV2y5d71/rBjH3ygyiL5D3
- ODkw==
-X-Gm-Message-State: AOAM533VRJ4vbKQ72mlTvwWurUJ7v0J07qYxIZwwSdm3Lc1dP8nKDx/Z
- X+j1p6XhiwBKMscSZyDSE5+JNXR6BbLiJMqpHNo=
-X-Google-Smtp-Source: ABdhPJzsuZnAdFqVdF0gZNQ2QtTMmjamZfjdE6FwmeUS05PyZXnZEIKYmKxhpjvshF7drw4pxiKWFLYUV5iV+UF+JAw=
-X-Received: by 2002:ab0:6785:: with SMTP id v5mr7745419uar.72.1610224196112;
- Sat, 09 Jan 2021 12:29:56 -0800 (PST)
+	id 1kyLCw-0000mw-Tb; Sat, 09 Jan 2021 15:51:34 -0500
+Received: from web170.dnchosting.com ([199.7.105.170]:49362)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <barry@dcsmail.net>) id 1kyLCs-0000fs-MO
+ for usrp-users@lists.ettus.com; Sat, 09 Jan 2021 15:51:30 -0500
+Received: from [24.42.137.213] (port=59244 helo=[192.168.1.194])
+ by web170.dnchosting.com with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
+ (envelope-from <barry@dcsmail.net>)
+ id 1kyLC6-00029w-Un; Sat, 09 Jan 2021 20:50:49 +0000
+To: Ron Economos <w6rz@comcast.net>
+Cc: usrp-users@lists.ettus.com
+Message-ID: <eef4a776-3763-09a2-ebb3-f506fad2a899@dcsmail.net>
+Date: Sat, 9 Jan 2021 14:50:41 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-References: <CAKx8PBi=-d5=yfyPf_=AVJYrvQq1-eshS5EW=jLzogS9uO6nRw@mail.gmail.com>
- <CAGNhwTMz2w-kD=a4m9EeLHqsXP9cKgXhok+jsW1Tu=einSvgyQ@mail.gmail.com>
- <CAKx8PBgNoL6bAf8o-hXr0HnJnNaAj5XknPF5RPamY3Cs_hYCEg@mail.gmail.com>
- <CAKx8PBjjDas_yuBxOgM6O8R1zqgZUiYavqFfidu87n1_qEsDrA@mail.gmail.com>
- <c53ab9dd-b83a-80e7-f3d9-c54dd639b201@comcast.net>
- <7dd171e1-ee65-358a-6ad0-3a76fc234957@balister.org>
- <4a0ab3d4-4650-b896-b856-08a53a3309b8@balister.org>
-In-Reply-To: <4a0ab3d4-4650-b896-b856-08a53a3309b8@balister.org>
-Date: Sat, 9 Jan 2021 15:29:44 -0500
-Message-ID: <CAKx8PBhYvNhRKkHfPft1o_=LfYy15QECbaOGyr8B5xM4j9p+iA@mail.gmail.com>
-To: Philip Balister <philip@balister.org>
-Subject: Re: [USRP-users] meta-ettus-v4.0.0.0 segfault
+Content-Language: en-US
+X-OutGoing-Spam-Status: No, score=1.9
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - web170.dnchosting.com
+X-AntiAbuse: Original Domain - lists.ettus.com
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - dcsmail.net
+X-Get-Message-Sender-Via: web170.dnchosting.com: authenticated_id:
+ barry@dcsmail.net
+X-Authenticated-Sender: web170.dnchosting.com: barry@dcsmail.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-From-Rewrite: unmodified, already matched
+Subject: Re: [USRP-users] Transmit underruns
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -63,10 +51,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ben Magistro via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ben Magistro <koncept1@gmail.com>
-Cc: USRP list <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0220828030805207541=="
+From: Barry Duggan via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Barry Duggan <barry@dcsmail.net>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,45 +68,57 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0220828030805207541==
-Content-Type: multipart/alternative; boundary="00000000000037d36205b87d89a9"
+Hi Ron,
 
---00000000000037d36205b87d89a9
-Content-Type: text/plain; charset="UTF-8"
+Thank you for your test flowgraph. It works fine when using the wav 
+file, BUT when I change to an Audio Source block (mic) I get the 
+underruns. So I still have the problem. I've experimented with various 
+sizes of 'send_buff_size' and I even put in a Fractional Resampler to 
+raise the interpolation factor above the theoretical value.
 
-Finally getting a chance to circle back to this and I would rather be on
-dunfell but the bsp for the E310 doesn't appear to have been ported yet.  I
-made an attempt but cannot build an image successfully and need to do a
-better set of diffs on the kernel patches.
+I am now running on Ubuntu 20.04 and GRC 3.8.2.0
 
-Has anyone else started on a dunfell port?
+Any further suggestions?
 
-Ben
+Thanks,
+Barry Duggan KV4FV
 
---00000000000037d36205b87d89a9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+---
 
-<div dir=3D"ltr"><div dir=3D"ltr">Finally getting a chance to circle back t=
-o this and I would rather be on dunfell but the bsp for the E310 doesn&#39;=
-t appear to have been ported yet.=C2=A0 I made an attempt but cannot build =
-an image successfully and need to do a better set of diffs on the kernel pa=
-tches.<div><br></div><div>Has anyone else started on a dunfell port?</div><=
-div><br></div><div>Ben</div></div></div>
+On Tue Jan 5 20:33:24 EST 2021, Ron Economos wrote:
 
---00000000000037d36205b87d89a9--
+Here's an ssb flow graph that's known to work. You can select the
+sideband with the default option of the QT GUI Chooser block before you
+start the flow graph (you can't change filter taps on the fly).
 
+The test file is here.
 
---===============0220828030805207541==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+http://www.w6rz.net/ssbaudio.wav
+
+Ron
+
+On 1/5/21 15:29, Barry Duggan via USRP-users wrote:
+ > Ubuntu 20.10
+ > GRC 3.9.0.RC0
+ > UHD 4.0
+ > B200mini
+ > USRP_ssb_xmt.grc - https://pastebin.com/ypyERUGE
+ >
+ > I have experimented with various combinations of send_buff_size and
+ > send_frame_size but continue to get underruns while transmitting. I've
+ > also tried setting the Audio Source 'OK to Block' to 'Yes' and to
+ > 'No'. What is the right combination of parameters to minimize or
+ > eliminate the underruns?
+ >
+ > Thanks for your help!
+ >
+ > 73,
+ > ---
+ > Barry Duggan KV4FV
+ > https://github.com/duggabe
+ >
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============0220828030805207541==--
-
