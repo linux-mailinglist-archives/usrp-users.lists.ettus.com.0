@@ -2,60 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 679CC2F21E3
-	for <lists+usrp-users@lfdr.de>; Mon, 11 Jan 2021 22:37:34 +0100 (CET)
-Received: from [::1] (port=58126 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54B662F2247
+	for <lists+usrp-users@lfdr.de>; Mon, 11 Jan 2021 22:56:05 +0100 (CET)
+Received: from [::1] (port=58268 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kz4sU-0001lW-Lw; Mon, 11 Jan 2021 16:37:30 -0500
-Received: from mail-qt1-f180.google.com ([209.85.160.180]:44159)
+	id 1kz5AQ-0002Ob-O9; Mon, 11 Jan 2021 16:56:02 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:33496)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kz4sQ-0001h5-Qb
- for usrp-users@lists.ettus.com; Mon, 11 Jan 2021 16:37:26 -0500
-Received: by mail-qt1-f180.google.com with SMTP id r9so316576qtp.11
- for <usrp-users@lists.ettus.com>; Mon, 11 Jan 2021 13:37:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=PAr1DAAFKq7/2tBGz+EE2Eg2xGy2xilZYrVxrJdsfS4=;
- b=IyD3j9gzX1hlF/QpnCbnteXJvmi6yyaf+ZUF5uIxUTbk5cxTrSgMaKDwyWEDl0FWeo
- OaoMiTOxuLyA9aoBr8aA7EnO/qTJAETHAA3Gt9RIFY2O285NoZE0AIxEOMsdH6G5LXHj
- R7B2Rxq7NTeOWgR/nWSc6CNfWoFYP3YM69AuExEqdj2NKDvx2ZczXtKD7JECWNG5zf5B
- KdeInU28a4nvtQ01rs1+plzG983wm2V5N5VLYQdXSVFj6ZEZfOaZ9dEEcbqQZ2QUs1oc
- 8taCQS6352Zxg039m9cgC5RxQKhia0+cSGJ7R2Do0l4xBNNJlpsXVgtnML/ro1CXR0Yx
- 1F5g==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kz5AM-0002Hp-7P
+ for usrp-users@lists.ettus.com; Mon, 11 Jan 2021 16:55:58 -0500
+Received: by mail-ot1-f42.google.com with SMTP id b24so381269otj.0
+ for <usrp-users@lists.ettus.com>; Mon, 11 Jan 2021 13:55:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=A57W4Lie2eiANsBQIdgWxawLymXHJ5SmbNV/B+Aemls=;
+ b=NVhi/vOwn432zPTxxOY2nmtZnp+umeXseyh+QC7JP+I0oAsN84zhkhjlYs+lKV8Pqt
+ l5eI1eG/e+RtoKgsbYmcVTaEBK1aUEZarwQpIrVIjVC1lTg4RLCkhsr/5aSsv03APh3U
+ zYSBNW141r2Tn2RMMTJcKJ21qXg8UQPVLUUtFUD80qkUA+0zHtjywzWsEmblV7rT12O2
+ PfTRzRiv0XB0U0uiUyki/4bcP/Ig4J3/9MwUhnjdGVme4ozqo/Usqrnmzu5bOTtyw7mm
+ Roeo5kD9uCizxk+21yRJp3vnClmxG4dFPuw3eP+H2wr8Or7nm3fUv01ogUHy6CXzDWXi
+ lpAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=PAr1DAAFKq7/2tBGz+EE2Eg2xGy2xilZYrVxrJdsfS4=;
- b=sAsM2HEhLvdBYjg28AwJjO6fsAMswFAb39QeVa7NJN3/pE6EGTEcMoAwqmdYTXfO15
- jfiqRBaKcCQa2ooEHP77+Z1jwNb5uMs2y3zJmqJ2TD17vBhY0sBXaoTpEP2HFiaWLQcf
- mIF46XIluKZGPojmF1AVhV7evP3dAP0J0V7hyqj6U4nKGcKdhUJ7ShlEg4ExfOrJXwGG
- vvZhyalxpSPx8PAdxMuyTCD59MOKhz3OUQ5u34QEBtllQYjGr+NexFhUnQAaSPepo4bx
- z+J7BSpGMJbvtrPDFnxbjSUHKndQrxBc0emr826rKVAVHN8ETeUVyvLRo7bWFkZb8aT2
- 2lNA==
-X-Gm-Message-State: AOAM533C+5rHaYQt+5rsVXqYXXAJFFk945HE81Xps62WDPhcnP7oaz3O
- l4Mehk0+1BasEZeexJWRaWrOMZzYJhY=
-X-Google-Smtp-Source: ABdhPJwAFYk02SRtPTtVS9Hyzr9X8XQ/Kzvcj7YKaRFiP113QNFbBAoujK1TP9HAH1UGLEDjf+QZgA==
-X-Received: by 2002:ac8:4818:: with SMTP id g24mr1686804qtq.252.1610401006056; 
- Mon, 11 Jan 2021 13:36:46 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id c17sm560939qkb.13.2021.01.11.13.36.45
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 11 Jan 2021 13:36:45 -0800 (PST)
-Message-ID: <5FFCC4ED.30300@gmail.com>
-Date: Mon, 11 Jan 2021 16:36:45 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=A57W4Lie2eiANsBQIdgWxawLymXHJ5SmbNV/B+Aemls=;
+ b=XPOTyDD2j8Ww/MrI+GqvMcWVydMHpGFfi5uDK6X9o4ihXPUsykU6eyAeYdO0Abus9Q
+ 7D6kqELXa/170gjntdlXMOOrmSbbz7964Kx5S6/eymy5kFPEh6I+vqtCdgtAViAWmx90
+ s9Qu7hQA+Ev0WJlw2AxeprCJgYW14vx46CMv5XHFY/Kb4rbe8pG5lS51Wu3V78M9YtED
+ 49ba17BWCDAFbMJlUnYMzdzDHiIW7ka6URh9lfCxxjepi1S2JxcdRE385CyjCpnyBtyA
+ eXovR79gi/QZSpvMzeBA3iV9H6zeDPvKcqKhMGTgRCufuD3WrIjTzcQjeaTt5PXDLbru
+ 4jFA==
+X-Gm-Message-State: AOAM5322tvdXKdT90OrvCbJY/D3BGITp4DyPdvEl20D+I7rpM2CC5bVY
+ euq2zAIwidb8MP3AyTtGQLMkInMcWsT5wIqgue62MQ==
+X-Google-Smtp-Source: ABdhPJxMe69Vsj2My050FLfZY0tH0H2F6SoeRI5wXvq1G0GAFt4aKZdyPkew8y/KDrco9aT/yVYCzLzLC7PaNFsP5Fs=
+X-Received: by 2002:a9d:6b10:: with SMTP id g16mr746202otp.301.1610402117301; 
+ Mon, 11 Jan 2021 13:55:17 -0800 (PST)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <1610377863.427298.21618.18137@mail.rambler.ru>
-In-Reply-To: <1610377863.427298.21618.18137@mail.rambler.ru>
-Subject: Re: [USRP-users] UHD_STREAM_MODE_NUM_SAMPS_AND_DONE
+References: <MWHPR04MB09584442BD5C6AA7CF56BC7193AB0@MWHPR04MB0958.namprd04.prod.outlook.com>
+In-Reply-To: <MWHPR04MB09584442BD5C6AA7CF56BC7193AB0@MWHPR04MB0958.namprd04.prod.outlook.com>
+Date: Mon, 11 Jan 2021 16:55:06 -0500
+Message-ID: <CAB__hTSVh=N11SJkh+RvooiH_NjN3gngw0kUDGWp=inhdFV_Rw@mail.gmail.com>
+To: Yechiel PELED <yechiel.peled@ni.com>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] X310 and Fiber Optics Network and F.O cabling
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,10 +58,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============6933631717623375679=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,11 +74,105 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gMDEvMTEvMjAyMSAxMDoxMSBBTSwg0JDQvdC00YDQtdC5INCQIHZpYSBVU1JQLXVzZXJzIHdy
-b3RlOgo+IEhlbGxvCj4KPiBJcyB0aHJlcmUgbmVlZCBzZXQgbnVtX3NhbXBzIGZpZWxkIGluIHVo
-ZF9zdHJlYW1fY21kX3Qgd2hlbgo+IHN0cmVhbV9tb2RlID0gVUhEX1NUUkVBTV9NT0RFX05VTV9T
-QU1QU19BTkRfRE9ORQo+IGFuZAo+IHN0cmVhbV9ub3cgPSB0cnVlPwo+Cj4gVGhhbmsgeW91Lgo+
-Cj4KWWVzLCBJIGJlbGlldmUgc28uCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNl
-cnNfbGlzdHMuZXR0dXMuY29tCg==
+--===============6933631717623375679==
+Content-Type: multipart/alternative; boundary="00000000000025fcec05b8a6f6be"
+
+--00000000000025fcec05b8a6f6be
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Yechiel,
+The X310 works fine with 10Gbe optical transceivers over a direct fiber
+link (direct fiber between USRP and host PC with 10Gbe NIC).  I see no
+reason why it wouldn't work with a 1Gbe optical transceiver (GBIC) if you
+use the correct HG FPGA image for the X310.  If you are using it over a
+network, keep in mind that the X310 supports only static IP.
+Rob
+
+On Mon, Jan 11, 2021 at 1:12 PM Yechiel PELED via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi
+>
+>
+>
+> Do you have experience with using the X310 , connected to a Fiber Optic
+> network module through a Fiber Optic cable ?
+>
+> Does the X310 able to accept/Work with Optic GBIC and it works OK ?
+>
+> If OK, what is the suitable GBIC to for working with X310 ?
+>
+> Pls recommend with model/types.
+>
+>
+>
+> Yechiel
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--00000000000025fcec05b8a6f6be
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Yechiel,</div><div>The X310 works fine with 10Gbe =
+optical transceivers over a direct fiber link (direct fiber between USRP an=
+d host PC with 10Gbe NIC).=C2=A0 I see no reason why it wouldn&#39;t work w=
+ith a 1Gbe optical transceiver (GBIC) if you use the correct HG FPGA image =
+for the X310.=C2=A0 If you are using it over a network, keep in mind that t=
+he X310 supports only static IP.</div><div>Rob</div><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jan 11, 2021 at 1:12 =
+PM Yechiel PELED via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettu=
+s.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_6706017336973635874WordSection1">
+<p class=3D"MsoNormal">Hi<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Do you have experience with using the X310 , connect=
+ed to a Fiber Optic network module through a Fiber Optic cable ?<u></u><u><=
+/u></p>
+<p class=3D"MsoNormal">Does the X310 able to accept/Work with Optic GBIC an=
+d it works OK ?<u></u><u></u></p>
+<p class=3D"MsoNormal">If OK, what is the suitable GBIC to for working with=
+ X310 ?<u></u><u></u></p>
+<p class=3D"MsoNormal">Pls recommend with model/types.<span style=3D"font-f=
+amily:Arial,sans-serif"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Yechiel<u></u><u></u></p>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+
+--00000000000025fcec05b8a6f6be--
+
+
+--===============6933631717623375679==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============6933631717623375679==--
+
