@@ -2,60 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 282DF2F3BC2
-	for <lists+usrp-users@lfdr.de>; Tue, 12 Jan 2021 22:14:34 +0100 (CET)
-Received: from [::1] (port=42916 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B0E12F3BE7
+	for <lists+usrp-users@lfdr.de>; Tue, 12 Jan 2021 22:47:48 +0100 (CET)
+Received: from [::1] (port=43150 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kzQzm-0008V1-O5; Tue, 12 Jan 2021 16:14:30 -0500
-Received: from mail-qk1-f181.google.com ([209.85.222.181]:37610)
+	id 1kzRVx-0001IV-Ks; Tue, 12 Jan 2021 16:47:45 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:34481)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kzQzj-0008PC-8s
- for USRP-users@lists.ettus.com; Tue, 12 Jan 2021 16:14:27 -0500
-Received: by mail-qk1-f181.google.com with SMTP id h4so3267914qkk.4
- for <USRP-users@lists.ettus.com>; Tue, 12 Jan 2021 13:14:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=fkjpog5gTm9atTmYHAPRTRBiBZA0wbjZWLA8Gv/rtBo=;
- b=KwakeOm/OhCO2wHa2HGFOBYu1IsIMNfgwcvTZuNCZn64X+A/sk7x3Bnlp/d31e2B31
- dKX3lDLHeTPkcmsIFVIds5gpcJ+G6PntDN1JQRGRfseT6ER/Q0RQGzYGKPRPnr90PGjo
- hO9UURA/WYY3U32auZWtvmAUa1z9S18Re6oFCVwsUD5ys5dEFYEaobA9CA4AX0dEIJj4
- mnlY0I8lqpr7lAQ9WfD4Od68thsja0uIM47z0P/lOT2vqxyz9mON/qN+SdYOnT7ipsFy
- oe8F4IJ92TXFL8i65G6jytJBbocTwjGz27wHTpPtlmqoDxl2A23oZatgvSGElS470ER6
- KmFA==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1kzRVt-0001CM-8A
+ for usrp-users@lists.ettus.com; Tue, 12 Jan 2021 16:47:41 -0500
+Received: by mail-oi1-f177.google.com with SMTP id s75so3994920oih.1
+ for <usrp-users@lists.ettus.com>; Tue, 12 Jan 2021 13:47:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=BL6cUZPcMOUll3pA9DxWLq+ReYl1lqiGhQUqPxGelyY=;
+ b=I+RI+OiyAKmGtV06jRg/sx6iKd6J8PZGsZ7t9AkIb+DzhtostXHh9Lzy5UKUfmyWcw
+ jGxyO1/gPYragwW1Oq7+7aKd5t56DrqVR4UH5+7qBVoAQ88qEO6sW9jiGeg84DZUW/8J
+ KueX8dkQiOMQNLIAq2oGFEZBlGGD6v8HDkOsgfsMSEjqJiwu3BZtv07xqC7XeGzx9QVE
+ P26XCZChGdrzxqqVWx6b1WQEbpASO9DGcokXX46vXg+fb8yHQsI7DDEtpL6hVs23tSnc
+ NNB0TtRM+TpOMVMHYofgISBKCoqWhNJNXTiTipvxz963DZwHxhlg2HR5hmYG7wUmbL6K
+ AbpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=fkjpog5gTm9atTmYHAPRTRBiBZA0wbjZWLA8Gv/rtBo=;
- b=mkwJ06LiYpIQURg+EAZ2lbZjQ2Rm4c3pYqbKH9rNZrLo5MD+vVGeDSMqKVmyavTC+w
- P3NcpDxgLXmFyH+b7WSoabVxPsM7h8hsK4MEHEw66bp+mYlj41U0XlZi6qzRHWxvNNfM
- p+sN8e7Z6FqNBCyqSHSGj/pcSQ7TYfv3tkntdvVxZNSZtKlO9tO5HEN1NIxR7uuTcal8
- rgn3iUDhx8AT+p5p0/Rz9LyyXOE56/kVAuAc4CwGzi7wJsRzejqkJfRryG4fKJdeO0d7
- +l61tADczu7unirvFXWLPeA7vpApNWel1FEm58IyxFIws7DaLvjT8Ma8ZYD1bi9L+ZV4
- mx8w==
-X-Gm-Message-State: AOAM530NFujH53EJnuD102pDTa3+uyipzhuDgJANU0zXCVz8GwMz9DMR
- 6VYXF79SbB/J5m48oe5WOgFYRgK583c=
-X-Google-Smtp-Source: ABdhPJySNQBHL2sDmopbT2AWwMV5besJTsaEIG7cFwvBtL45lKO9ryrX7zdhHcoGvt3qYPa0cYhi5g==
-X-Received: by 2002:a37:7641:: with SMTP id r62mr1464761qkc.227.1610486026657; 
- Tue, 12 Jan 2021 13:13:46 -0800 (PST)
-Received: from [192.168.2.130]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.gmail.com with ESMTPSA id r190sm16484qka.54.2021.01.12.13.13.46
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 12 Jan 2021 13:13:46 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Tue, 12 Jan 2021 16:13:45 -0500
-Message-Id: <FFB1A05F-13A3-43D9-89E3-9FC9AF4FDDB3@gmail.com>
-References: <CAD-eGGr24xvkBAMovWcMj=ususKufZ4sF7eRs1FA3qjRpAzCHw@mail.gmail.com>
-Cc: USRP-users@lists.ettus.com
-In-Reply-To: <CAD-eGGr24xvkBAMovWcMj=ususKufZ4sF7eRs1FA3qjRpAzCHw@mail.gmail.com>
-To: AKINYELE ITAMAKINDE <aitamakinde@abuad.edu.ng>
-X-Mailer: iPhone Mail (18B92)
-Subject: Re: [USRP-users] Spectrum analyzer not picking received signal from
- USRP-GNU Radio
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=BL6cUZPcMOUll3pA9DxWLq+ReYl1lqiGhQUqPxGelyY=;
+ b=eBlvxSjb9WcKemX9KD+RJwcwneaXIkm/RfiqU/B8F1XMzoLzpJA8srpA0jeM8W1PMt
+ BgBX2yQv++izXMqSb1xOF1qAQz92FgmN/6ZI5jmmQnDaY8WcNdTLtj3vtvJvbIcu4XFy
+ pIrz49VEsY8OQdzOn4+C+Bp/sA5xRlBr7C/5pBG+jpqrEnUkT2y90B5afu7DgO/MMX1K
+ tvwD+v2jwgvkoVH1oRFjD95ZlxjdcdfkqE6XoY/2S3GkPA6TOxAgIO4qMXHXLG+kXGMJ
+ Dk6R9z/9phSrWIOJzzpFz9oR2dSRc4AoNWxPm2gmjoYIQssc45kZC3QgtDh5qBdqdttp
+ tpGQ==
+X-Gm-Message-State: AOAM533mQwxhK1NCX3Qcmw9ZFg0bkZqFF3fs4ZFvf7sB9jLAuk65gJuz
+ rAJ1W10zsMpI3vibZacVLwiT93lHZRysk8eJ3PZoJiBsHUuUrQ==
+X-Google-Smtp-Source: ABdhPJwWm8WkbIoIDzQ02OFEim3MeyopDsap5Ys41d8YFgqzCrI634I6ha3gIRcDsb4k6TE/APTK8EJQP1e6v/qbJjs=
+X-Received: by 2002:a05:6808:9a:: with SMTP id
+ s26mr753001oic.124.1610488019884; 
+ Tue, 12 Jan 2021 13:46:59 -0800 (PST)
+MIME-Version: 1.0
+Date: Tue, 12 Jan 2021 16:46:49 -0500
+Message-ID: <CAB__hTT7xrij++hgMQj_RYCa3GMAjj8znAmSg68Yhj=miM=jkg@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Packet length control in rx_streamer
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,10 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============3728805743657158850=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,24 +71,67 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-WW91ciBkZXNjcmlwdGlvbiBpcyBpbnN1ZmZpY2llbnQgaW4gZGV0YWlsIGZvciBhbnlvbmUgdG8g
-Z2l2ZSB5b3UgYW55IGFkdmljZSBhdCBhbGwuICAKClRoZSBVU1JQIGRvZXMgbm90IHRyYW5zbWl0
-IGZyb20KSXTigJlzIFJYMiBpbnB1dCwgc28gSeKAmW0gbm90IHN1cmUgd2hhdCB5b3UgZXhwZWN0
-IHRvIHNlZSBvbiB5b3VyIHNwZWN0cnVtIGFuYWx5emVyLiAKCllvdSBoYXZlbuKAmXQgc2FpZCBl
-eGFjdGx5IGhvdyBhbmQgd2hhdCB5b3XigJlyZSB0cmFuc21pdHRpbmfigJR3aGF0IHRvb2xzIGFu
-ZCBhcHBsaWNhdGlvbnMsIG5vciBob3cgdGhleeKAmXJlIGNvbmZpZ3VyZWQuIAoKU2VudCBmcm9t
-IG15IGlQaG9uZQoKPiBPbiBKYW4gMTIsIDIwMjEsIGF0IDE6MjUgUE0sIEFLSU5ZRUxFIElUQU1B
-S0lOREUgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiB3cm90ZToK
-PiAKPiDvu78KPiBIZWxsbywKPiBJIGNvbGxlY3RlZCAgc3BlY3RydW0gYW5hbHl6ZXIgUkYgaW5w
-dXQgdG8gUngyIG9mIHRoZSBVU1JQLCBJIHdhcyBhYmxlIHRvIG9idGFpbiB0aGUgVHggcG93ZXIg
-YW5kIEJhbmR3aWR0aCBvZiBUeCBzaWduYWwuIEF0IHRoZSBSeCBlbmQsIEkgYWxzbyBjb25uZWN0
-ZWQgdGhlIGFudGVubmEgdG8gdGhlIFJ4MS9UeDEsIGFuZCBSeDIgdG8gdGhlIFJGIGlucHV0IG9m
-IHRoZSBzcGVjdHJ1bSBhbmFseXplciwgYnV0IFNwZWN0cnVtIGFuYWx5emVyIHdhcyBub3QgcGlj
-a2luZyB0aGUgcmVjZWl2ZWQgc2lnbmFsLiBXaGF0IGNvdWxkIGJlIHRoZSBwcm9ibGVtPwo+IFRo
-YW5rcy4KPiBBa2lueWVsZQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVz
-ZXJzX2xpc3RzLmV0dHVzLmNvbQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNf
-bGlzdHMuZXR0dXMuY29tCg==
+--===============3728805743657158850==
+Content-Type: multipart/alternative; boundary="00000000000057701405b8baf69f"
+
+--00000000000057701405b8baf69f
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+I have a custom rfnoc block that I am trying to test with the graph "host
+=> myblock => host".  "myblock" is supposed to output packets of a given
+size (256) and I am trying to verify that it is doing so.  However, in my
+simple application to test this graph, I get the following behavior:
+
+   - if I don't set "spp" in my rx_streamer args, I get packet length =
+   1989.
+   - if I set "spp" in my rx_streamer args, I get the packet length that I
+   set.
+   - But, what I really want is to get packets of the same size as the
+   block output.
+
+Is this something that needs to get configured in my block controller?
+Perhaps there is some packet forwarding policy.  It's a bit confusing to
+me.  How can I keep the rx_streamer from changing the packet size that is
+output from my block?
+
+Note: all sizes above are in "samples", not "bytes".
+
+Rob
+
+--00000000000057701405b8baf69f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<br><div>I have a custom rfnoc block that I am trying t=
+o test with the graph &quot;host =3D&gt; myblock =3D&gt; host&quot;.=C2=A0 =
+&quot;myblock&quot; is supposed to output packets of a given size (256) and=
+ I am trying to verify that it is doing so.=C2=A0 However, in my simple app=
+lication to test this graph, I get the following behavior:</div><div><ul><l=
+i>if I don&#39;t set &quot;spp&quot; in my rx_streamer args, I get packet l=
+ength =3D 1989.</li><li>if I set &quot;spp&quot; in my rx_streamer args, I =
+get the packet length that I set.=C2=A0</li><li>But, what I really want is =
+to get packets of the same size as the block output.</li></ul><div>Is this =
+something that needs to get configured in my block controller?=C2=A0 Perhap=
+s there is some packet forwarding policy.=C2=A0 It&#39;s a bit confusing to=
+ me.=C2=A0 How can I keep the rx_streamer from changing=C2=A0the packet siz=
+e that is output from my block?</div></div><div><br></div><div>Note: all si=
+zes above are in &quot;samples&quot;, not &quot;bytes&quot;.</div><div><br>=
+</div><div>Rob</div></div>
+
+--00000000000057701405b8baf69f--
+
+
+--===============3728805743657158850==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3728805743657158850==--
+
