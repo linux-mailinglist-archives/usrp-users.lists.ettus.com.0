@@ -2,107 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C852F4915
-	for <lists+usrp-users@lfdr.de>; Wed, 13 Jan 2021 11:58:53 +0100 (CET)
-Received: from [::1] (port=48874 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 503AC2F4D75
+	for <lists+usrp-users@lfdr.de>; Wed, 13 Jan 2021 15:46:19 +0100 (CET)
+Received: from [::1] (port=50736 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kzdrV-0001m3-6z; Wed, 13 Jan 2021 05:58:49 -0500
-Received: from mail-eopbgr70134.outbound.protection.outlook.com
- ([40.107.7.134]:36102 helo=EUR04-HE1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Cedric.Hannotier@ulb.be>)
- id 1kzdrR-0001dg-54
- for usrp-users@lists.ettus.com; Wed, 13 Jan 2021 05:58:45 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DlhundJ43m6mFNpKBalia9ghptj9DH4gwLd5sy8J8j+lkYxPCrEOVoYz6DUKMEIMp5y2XgtGko+ZwbXJVVLoGrM93aLStXwgvnVx5M+TYL38FNTW2FbnFk4HzRgbYjBr7+Sq6nv/0YfENtfQ6nyPlOxlMxZ/lGAeHJvfMK5GyNa0zD1OIRggiofj2eO6r8xpwjtxsG0TDPQP+8sOSls7xHLvCKdv/CQoq4UZjmsv7+z/whRC8CrFcW0C9FeRBL1IYAz8P++FDn/FBZf/rwE9vcoEPTJy8nadNd6m+U51x70UGN4UTP3Q6Pu5L8bNi2qgactloh5rb4DF1zyVkrDeLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sLtIQChuA6lQtVW84f59Afmx9V7AKGX8u9W2UYxYO+I=;
- b=XYbB19vFAxEXwRFcWAoqkl2BCveaHFvBXw5Ty7LyTxDYpYsqn0JfQ0OxqqRZYvjqIJMZR8vxydMRcFlUJHEyqYGmS6uIphhkMKmgA3VyLZu9GEw4vcA/hAqTa0A85k+MIoYRNmywAr50tazgqJU6z4h/vf/BoC792y1UefOirvoekmPdsafEZomPbOrv9XcWYb8uLJ8MR6zI6DS8i1QkdUQa65OQKl4/cMWeh96ElXveYB1g+91FuW2kri328/gLWZw/KTDfca39ENv3ul/i8fAOECSuLdJiy50b5D1AUSyCN4zGE98TEdjDtruLDayjPXWvD/2UFR4sS2X1ru9K7Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sLtIQChuA6lQtVW84f59Afmx9V7AKGX8u9W2UYxYO+I=;
- b=TxcPqBXpV8CtPpjvcL9Bh+6aHMRoIjCFhfgOGEWN7mszsLEUtayk4HXf9VkJnuXvJ6tzwkyWc7tALU60csHtqr9gK7XnTqoBTScbHmsmjBVprzBFOjpo1VExbdds/gfUne6XtG3uHjtt0E9Jv+bglsbHPfXXjfMH3KAYDsFI9Gk=
-Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none header.from=ulb.be;
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
- by AM5P190MB0561.EURP190.PROD.OUTLOOK.COM (2603:10a6:206:20::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6; Wed, 13 Jan
- 2021 10:58:02 +0000
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb%9]) with mapi id 15.20.3742.006; Wed, 13 Jan 2021
- 10:58:02 +0000
-Date: Wed, 13 Jan 2021 11:58:01 +0100
-To: usrp-users@lists.ettus.com
-Message-ID: <20210113105801.efaoc4ulzfhd4niq@barbe>
-Mail-Followup-To: usrp-users@lists.ettus.com
-References: <20210107174911.gjgjjt5rff43rrp2@barbe>
- <CAL7q81u_+UhNY=KJpR6rkmoHVNVovpm8EB_f1DsyT+bF5BBH-Q@mail.gmail.com>
- <20210112060455.n3qol2fr5w7nbuob@barbe>
- <CAL7q81uKXjDC=YcZ-2KXrhxN-zL6BU71P83+7KW=q9MEMBgaXQ@mail.gmail.com>
-Content-Disposition: inline
-In-Reply-To: <CAL7q81uKXjDC=YcZ-2KXrhxN-zL6BU71P83+7KW=q9MEMBgaXQ@mail.gmail.com>
-X-Originating-IP: [2a02:1811:371b:2300:f833:5c0:9ea4:cf3b]
-X-ClientProxiedBy: AM0PR02CA0129.eurprd02.prod.outlook.com
- (2603:10a6:20b:28c::26) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:11e::20)
+	id 1kzhPb-0004D8-Le; Wed, 13 Jan 2021 09:46:15 -0500
+Received: from mail-io1-f41.google.com ([209.85.166.41]:41550)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1kzhPX-000486-KB
+ for usrp-users@lists.ettus.com; Wed, 13 Jan 2021 09:46:11 -0500
+Received: by mail-io1-f41.google.com with SMTP id q1so4542785ion.8
+ for <usrp-users@lists.ettus.com>; Wed, 13 Jan 2021 06:45:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=X/D4Uzbk9NmPBfFKSMVFFSHdqmkKULG9drGimDxCRFA=;
+ b=TSUpzYnzI2ud6R9is4cOq3y4IrObF7lIaSSYRMIYQa6YuPG5K8OuKzQMiXvIJk0nHS
+ +jlL2c0kJQyLH3uvXx1Ci1JQVAc2A+n8n8Ryv4hd3QEKE2p5elgkriZP255z0G+eOCqL
+ IvseFNUOrQ/k1aHn2GC3m8TtKNp7tOlnD8gbCYXfXX3Ga0eeI1Tk1zlhZBOLQjLy4aab
+ foYleROAAKeecyyK6Xt2BNYVhLndSvAxyzl4wofPvgyI/x33oWfKtd8tukwlZH+5bMLw
+ hq4QNELLQjF6HTczdaKA4SyXF9EcMcyE17DPChhC2e7YEuP26m1O32yvmxzhRb/mdglD
+ kLHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=X/D4Uzbk9NmPBfFKSMVFFSHdqmkKULG9drGimDxCRFA=;
+ b=D9Zif6ajHWLa8wlbGRZU/fInrJmQb04Atu7pjUUC1L6SObNjGuZFrNGtGg6a2TISek
+ 4xQSYsJck7F7FO53t3lm0vRXV3PlNHadDE7KW8HoPDxcqLt/7l/00DA6/UwjpV9ydia/
+ h0ntnV9rMkBLzB/3ErgsSO+4l2yWICCxOlLLVBOES2YQbQCncBlfdQVLezpDuTsD6S4o
+ EWOEld4ILU1pZoQLT2lDn2gQD5BrcgLFQ7krWHuKmWEf1VLDlfuA+4EBpIo8Z2XEqeRp
+ RA8dMOXRUKp4qn7Qiqq2mitMtyZ5mSSM1+IoosHsKYWyZihJ7NpVZ/csxuXyMVEPCP19
+ +hTA==
+X-Gm-Message-State: AOAM5303p77eSDbIEu0EvSvM/3cTC3UTrAO6q19SnsTfLjnY0081IN15
+ jPl/w2Hw9EY7lBEQhst8CwoJ2GOYvT8=
+X-Google-Smtp-Source: ABdhPJwNQR/STNNN/F7JZv9soytfyB33NkNLIM+s5cRH77ajViqWs+UeIXNXtRzQSdYsHAY92mrHJg==
+X-Received: by 2002:a05:6e02:20ee:: with SMTP id
+ q14mr2527160ilv.259.1610549130544; 
+ Wed, 13 Jan 2021 06:45:30 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id g5sm1595602ild.25.2021.01.13.06.45.29
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 13 Jan 2021 06:45:30 -0800 (PST)
+Message-ID: <5FFF077E.9040704@gmail.com>
+Date: Wed, 13 Jan 2021 09:45:18 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost (2a02:1811:371b:2300:f833:5c0:9ea4:cf3b) by
- AM0PR02CA0129.eurprd02.prod.outlook.com (2603:10a6:20b:28c::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.10 via Frontend
- Transport; Wed, 13 Jan 2021 10:58:02 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: aaa66b56-9580-476f-ff87-08d8b7b2193c
-X-MS-TrafficTypeDiagnostic: AM5P190MB0561:
-X-Microsoft-Antispam-PRVS: <AM5P190MB0561572C9668B3FE0367F8A7F0A90@AM5P190MB0561.EURP190.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0FzBC+ya7xxm1ZdG4xX8tV4PKGN4tTULyAhlXIwbAXXc8D2YSdxX28tpmhJHxtl3H6xW1Y5mK/WZaUU3K3P/Jm94O02UunACuKjaHJypUFb6VAGqtxKfXVtNqYuzdGTbwjbWv2ivj7xLR0ArR6bxHychZp+7lVsCcbrKr7OmUwVARgh8jnNflgXJCjaJebkyFn7p16e6q9q4pVJG677EOg1nHD1OEquwr6q4xxpakszPuRh4d69ZyymjTJuRUaVQzeX12DfIbzwpnyiRaGAOQWM0FaF/VYMyV4HudwUsgTpyrG7JLYU+BsmSGM6ppQOh0sqwu7UAvL74HqTXTkWEGRyiMYVQpiRkch+FanmYFAb6kyNpZerskUWcjfr2OlIHDevP98/QUPEsPn3BVEUIQw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(4636009)(7916004)(136003)(376002)(39860400002)(396003)(346002)(366004)(83380400001)(316002)(6486002)(4744005)(1076003)(8676002)(786003)(2906002)(52116002)(86362001)(6496006)(16526019)(186003)(9686003)(6916009)(5660300002)(66946007)(8936002)(478600001)(66476007)(33716001)(53546011)(66556008);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?YdDiPenIuq+edxCXFCTUKD28Ki/8YV9FpEh/FGDFrxik+1tCOaGyhUDHvq?=
- =?iso-8859-1?Q?SNP28fVxWMTk5WCK3G79ZjnEkX6sLd01WREXZrRceqjuxBqqphyTFGaNSG?=
- =?iso-8859-1?Q?la0TWJ3lK/JGWhImgUAR2m6vOWui5IjtYffadQWPu28g80p4YuSZG3hYG7?=
- =?iso-8859-1?Q?rsV63bIvUaP4W9Ts/4ImPHmFtJYn26Rdwq66CFmf+3HYfJa69wY5L6W5O6?=
- =?iso-8859-1?Q?l6LHuA0Okk97n6gHAQwoZQuZaHMeJKMlMpMQH9Lu84SC4VQyrm7jXL/CKB?=
- =?iso-8859-1?Q?GjI+ud4PnVSs4+qXZuQaOK5vjsPzGKHKy4wv7AI8l42D9dK84SULI2xnXz?=
- =?iso-8859-1?Q?5ZjMfTLxJjeCH+dH7x3Kue1aw77qFNBVLB5812iymCBVzowrR0ureN75hn?=
- =?iso-8859-1?Q?cFy07Yo7NASKC2n16+syHCrg4+AVg0tSbOcaFuW4E7QZO52S7nJle3wzKW?=
- =?iso-8859-1?Q?8AQwnF7MrxIwMZZPd06bLibx9Vntok6TLZ/CS3iyRl/Kw5GFlKUFk6qr3S?=
- =?iso-8859-1?Q?NEMKp7FON42o9C3JM5CNPPOxPFkJCWVg0ApTDZDv290LpgXAT+exFZlkYZ?=
- =?iso-8859-1?Q?RPqqo/zRXXL/W3BkGia3hkDOEbYdRpNmXM7upv5cZPeujE/b2mcTNeyNio?=
- =?iso-8859-1?Q?VMYP+PKjyppvSWA+GhnOcFDO/X6+HvcTJhCX+Go0ZV7P1YStqvfHXZNG1z?=
- =?iso-8859-1?Q?B3uk+8qrWYSW7s+4piOkCYq/4SnAXPfwgqtuqqvUMd63sxZZHRZnsxPBa3?=
- =?iso-8859-1?Q?Izd+V8/z9xHy4sjJx88yDQ9rX/nqJrJ6UpWdnDVaMzfvIU82QpgV/Fu4Ka?=
- =?iso-8859-1?Q?hxTuyle6JDvGfa9ptwrJo5YghpqHqUyjR90+NQqhFgABhjPb7P9xYwdJL/?=
- =?iso-8859-1?Q?pJdEXxRhoFBUxFp88kgliHUKtlGCCtYMjBgVJDFo2WmwuncDf91YT6hH8O?=
- =?iso-8859-1?Q?r8/yv9m7+Yb6UAUYZlZTRm8EBSzzrMoeHKXoxf6bMHd7+OnmfvXn9dkaPD?=
- =?iso-8859-1?Q?Y98PmLIIj6WCSXzSMiR3ds0AceJDs0jaXenzkK6c6uG0dY39iwSPHd+wa8?=
- =?iso-8859-1?Q?sJlgaAn3uIqkkc8ioO+uw3FJVrdKCzjoHmhNS1lT2cCz?=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2021 10:58:02.7847 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-Network-Message-Id: aaa66b56-9580-476f-ff87-08d8b7b2193c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: b4CrF6whbScN/Eg4e7hLExEFz3ljv117Xi3pk2ijeoHGzyMxTEd3/xCLFhupskv+6AYkWXWIB7ZRqBLYrRpwvw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5P190MB0561
-Subject: Re: [USRP-users] UHD 4.0 RFNoC testbench throws fatal error with
- GUI xsim
+To: usrp-users@lists.ettus.com
+References: <MA1PR01MB2588D349CDCE2F00C0B209C090A90@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <MA1PR01MB2588D349CDCE2F00C0B209C090A90@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM>
+Subject: Re: [USRP-users] USRP sample rate and bandwidth
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -114,11 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5965571257306869915=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -132,55 +83,151 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 12/01/21 13:42, Jonathon Pendlum via USRP-users wrote:
-> Hi Cedric,
+This is a multi-part message in MIME format.
+--===============5965571257306869915==
+Content-Type: multipart/alternative;
+ boundary="------------010102030707080607040406"
 
-Hi Jonathon,
+This is a multi-part message in MIME format.
+--------------010102030707080607040406
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-> "Fatal: The connected block has an incompatible backend interface".
-> =
+On 01/13/2021 01:08 AM, Koyel Das (Vehere) via USRP-users wrote:
+> Hi,
+>
+> The USRP sample rate and bandwidth are two different parameters in 
+> gnuradio so if I want 20 MHz bandwidth and 100 MSps sample rate then 
+> will setting bandwidth = 20 MHz and sample rate = 100 MHz serve my 
+> purpose? Normally sample rate (100 MHz in this case) is the bandwidth 
+> unless filter is used so does that mean USRP is filtering out 20 MHz 
+> keeping sample rate at 100 MHz by itself?
+>
+> Regards,
+>
+> Koyel Das
+> Senior – Product Engineer
+>
+> Vehere | Proactive Communications Intelligence & Cyber Defence
+> M: +919051132173 | T: +91 33 40545454 | F: +91 33 40545455 | W: 
+> www.vehere.com <http://www.vehere.com/>//
+Indeed, FOR HARDWARE WITH VARIABLE BANDWIDTH, this parameter sets the 
+analog filter bandwidth ahead of the ADC.
 
-> =
+Many hardware configurations, however, have fixed analog bandwidth ahead 
+of the ADC, and this parameter setting will do
+   nothing in those situations.
 
-> Try adding a short delay, such as #1 or @posedge( at the start of the
-> testbench to get past this.
-
-Thanks for the workaround, it works!
-However, it has some side effects.
-
-Doing
-
-//test.start_tb
-#1
-...
-//test.end_tb
-
-or
-
-test.start_tb
-...
-//test.end_tb
-
-give the same result.
-Indeed, the issue is with test.end_tb finishing the simulation.
-It is fine in cli, but not in GUI, since Vivado is generating waves.
-
-Commenting out test.end_tb solves the issue with GUI mode,
-but then the simulation does not stop in cli mode after
-all tests are completed (it only stops after 10ms).
-Furthermore, I loose the summary at the end (time elapsed,
-#passed/failed tests, etc.)
-
-Is there a way to reconcile both modes (cli & GUI) without editing
-my testbench every time I need to switch between these two modes?
-
-Regards
--- =
+Hardware based on the AD9361 or AD9371 (USRP B2xx, USRP N3xx, USRP E31x) 
+has this control, as do some of the older
+   daughtercards--DBSRX2, TVRX2.
 
 
-C=E9dric Hannotier
+
+--------------010102030707080607040406
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 01/13/2021 01:08 AM, Koyel Das
+      (Vehere) via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:MA1PR01MB2588D349CDCE2F00C0B209C090A90@MA1PR01MB2588.INDPRD01.PROD.OUTLOOK.COM"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        Hi,</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        The USRP sample rate and bandwidth are two different parameters
+        in gnuradio so if I want 20 MHz bandwidth and 100 MSps sample
+        rate then will setting bandwidth = 20 MHz and sample rate = 100
+        MHz serve my purpose? Normally sample rate (100 MHz in this
+        case) is the bandwidth unless filter is used so does that mean
+        USRP is filtering out 20 MHz keeping sample rate at 100 MHz by
+        itself?</div>
+      <div>
+        <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+          font-size: 12pt; color: rgb(0, 0, 0);">
+          <br>
+        </div>
+        <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+          font-size: 12pt; color: rgb(0, 0, 0);">
+          Regards,</div>
+        <div id="Signature">
+          <div>
+            <meta content="text/html; charset=UTF-8">
+            <div id="divtagdefaultwrapper" dir="ltr"
+              style="font-size:12pt; color:#000000;
+              font-family:Calibri,Helvetica,sans-serif">
+              <p style="margin-top: 0px; margin-bottom:
+                0px;font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple
+                Color Emoji&quot;,&quot;Segoe UI
+                Emoji&quot;,NotoColorEmoji,&quot;Segoe UI
+                Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols;
+                font-size:16px; line-height:16px">
+                <font face="Tahoma,serif"><font style="font-size:9pt">Koyel
+                    Das                                     <br>
+                    Senior – Product Engineer</font></font></p>
+              <font style="font-size:16px" face="Tahoma,serif"><font
+                  style="font-size:9pt">Vehere | Proactive
+                  Communications Intelligence &amp; Cyber Defence</font></font><font
+                style="font-size:16px" face="Tahoma,serif"><font
+                  style="font-size:9pt"><br>
+                  M: +919051132173 | </font></font><font
+                style="font-size:16px" face="Tahoma,serif"><font
+                  style="font-size:9pt">T: +91 33 40545454 | F: +91 33
+                  40545455 | W: <a moz-do-not-send="true"
+                    href="http://www.vehere.com/" target="_blank"
+                    rel="noopener noreferrer" id="LPNoLP">www.vehere.com</a></font></font><font
+                style="font-size:16px" face="Tahoma,serif"><font
+                  style="font-size:9pt"><i></i></font></font><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    Indeed, FOR HARDWARE WITH VARIABLE BANDWIDTH, this parameter sets
+    the analog filter bandwidth ahead of the ADC.<br>
+    <br>
+    Many hardware configurations, however, have fixed analog bandwidth
+    ahead of the ADC, and this parameter setting will do<br>
+      nothing in those situations.<br>
+    <br>
+    Hardware based on the AD9361 or AD9371 (USRP B2xx, USRP N3xx, USRP
+    E31x) has this control, as do some of the older<br>
+      daughtercards--DBSRX2, TVRX2.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------010102030707080607040406--
+
+
+--===============5965571257306869915==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============5965571257306869915==--
+
