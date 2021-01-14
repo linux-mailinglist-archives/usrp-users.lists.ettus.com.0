@@ -2,59 +2,100 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A051A2F67DC
-	for <lists+usrp-users@lfdr.de>; Thu, 14 Jan 2021 18:37:07 +0100 (CET)
-Received: from [::1] (port=36216 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 475422F6F03
+	for <lists+usrp-users@lfdr.de>; Fri, 15 Jan 2021 00:37:48 +0100 (CET)
+Received: from [::1] (port=38912 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l06YT-0007Nu-RR; Thu, 14 Jan 2021 12:37:05 -0500
-Received: from mail-qv1-f43.google.com ([209.85.219.43]:45930)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1l06YP-0007G2-UQ
- for USRP-users@lists.ettus.com; Thu, 14 Jan 2021 12:37:01 -0500
-Received: by mail-qv1-f43.google.com with SMTP id h1so2647913qvy.12
- for <USRP-users@lists.ettus.com>; Thu, 14 Jan 2021 09:36:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=1QHY0O/laKEZQJemLO34OV7IEVnOaUQP7R59sU3iNf0=;
- b=sjs9wha3DjpFq0479Ywf2XG0HipSd4ualOeqiO8/VOR/4YdCEYuZvKlhAgiCh5HVSx
- 6Pxs5U9c7ToJ7z/ROBwHng3tkA/3V50frICthgR90Q6ExEd+vVV9RNrDncvGyC6RRVzM
- N7/Y1MRlKRRXVdToAyzSPGGsDMSt5/fuSksPFXa2N0vw/JBWXCKI2X1ZrqlBkbFQ9+Pg
- UwTdHGGjvliTVUhAmXn+blnSKI0rhQiUXUF/XuFgeFV+hz2rIPnVGNbc/QqrJGzi8e1r
- j0zAXZAXo7+zqV1SDFpbr6J6zDXs+vucMb4CUKtUJAWBn35eeyWP6gbPjOme273DwlQY
- BDmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=1QHY0O/laKEZQJemLO34OV7IEVnOaUQP7R59sU3iNf0=;
- b=C/h//xUBxR9/CHa/WTiwIXRrqRSDZllMp1YaQIQnhOj/voYJ4Wh9rhgkzw2x2SYj0I
- hPhJnW+WmjMDHKOHrhlSkp1HRl4rnyPng375XIkFKDBCh7EINcYYCtTG5jR7plyGwPTw
- 0nGodVlG8PuR5Ed6a4AI9mj+M+xi1zOmzmE/foIH+au7hfj1OWtFap1iT7Qe5w0tFO4P
- QRSOjiC5BdGx8EW2L5p61wytPlE1x8vWYNff1wu/3UJeHTDv3LVMRpRmIE+EqPtWl+Wf
- 3lhS9UVxbN3lqn3KCicmc5DZBgpmIoLGC6ZBwdq9HaZUgWLtwGpEvLNX50UHMUlFWadp
- 3NlA==
-X-Gm-Message-State: AOAM532LaEsbgB75CpnzgH612GpQ3A6JZkdMebtpiPx/AVUOsK2L+Kk3
- ZMzGxlDGcR/wf2wSzciOgg2NAWTLZa0=
-X-Google-Smtp-Source: ABdhPJxT5kTtLSQ1zR8f+SV2xhyxfXUTIQ5bKZSb1fJjCrgVKzVF8fme/e1aYxNu7pNpb9W4qzFAuA==
-X-Received: by 2002:ad4:568a:: with SMTP id bc10mr8158001qvb.29.1610645781313; 
- Thu, 14 Jan 2021 09:36:21 -0800 (PST)
-Received: from [192.168.2.130]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.gmail.com with ESMTPSA id j30sm3259282qtl.43.2021.01.14.09.36.20
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 14 Jan 2021 09:36:20 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Thu, 14 Jan 2021 12:36:19 -0500
-Message-Id: <3F67426B-85AE-4149-8605-1D1F581D539F@gmail.com>
-References: <1303d2bb25fb4ea3bb1a38188056cf4a@gmvnsl.com>
-Cc: USRP-users@lists.ettus.com
-In-Reply-To: <1303d2bb25fb4ea3bb1a38188056cf4a@gmvnsl.com>
-To: David Scott <david.scott@gmvnsl.com>
-X-Mailer: iPhone Mail (18B92)
-Subject: Re: [USRP-users] E312 Battery Question
+	id 1l0CBV-0000eC-3K; Thu, 14 Jan 2021 18:37:45 -0500
+Received: from mail-db8eur05on2093.outbound.protection.outlook.com
+ ([40.107.20.93]:46084 helo=EUR05-DB8-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <Cedric.Hannotier@ulb.be>)
+ id 1l0CBQ-0000YI-Nc
+ for usrp-users@lists.ettus.com; Thu, 14 Jan 2021 18:37:40 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XV2yDWQKMlj2g6Y14NFnfsccMgPsYuYRj8jFiiCn/vxz6dwy0eu2//exLacElNkv8OlFmFKa5khpzSfJRfJCqQr3NTQuW8ZwAHQT4FIWOOiGmRY1KIaOxSZP7fD4udVCIZpXSOdyf12+kSAkS+/y0p4l5RAZWhj999DTr/5aA4b+S4FsVHsbYldgfdjGuLY7NfaEoyLqEtbI/vvnZE/Odcb/PwSQ1NRbi7oK8umOgy3qrgSh4amjsuF1/z3//mwfRUFG40hQNfmVijY22epAjOpRUViywC1/NZzlwjxUahMDNtXl05RRbG5TW5j9r1bFfQjaa1w3g3cPiRoEKwjJuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qs552K3SePmPfFfvFY+VZEIvtZJuVM8EeYOCqunppxY=;
+ b=nUgkeZ4WLAMcnaDZAkLlvsc/sTuvBjcERXWxamhjbTO+S8j4ye2zqLUDX/X91ThJ8RGhQAFxH1REKmjkOZx48kOOT8RR9rFUQKpvPyj8lB3Ub5LWm620tOOe04CEwfmUGoFyJYo1WPri74wEOulSfVM08ZJDzhDcpvvtB4/ZEjDOQb7vL/5i9aJx1Up89BDIjpegHdsiAkLaOibAA7VFVTvwoZgMqhGE51vgPg4FQhct8fv2rYV2dqjD4Yzwbyk/ktSqBCOWIVFmlcbpLZi1u2z1JA5nV2kxkPyW30aOpIpc6PKhOcjPqA7pjf1PdoWewcMz3VSRDS+KniRpclP++A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
+ header.d=ulb.be; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qs552K3SePmPfFfvFY+VZEIvtZJuVM8EeYOCqunppxY=;
+ b=REqHSzIGRgHsXJfP/ChU561/PlD19kmGVTyUoI/+nQGd3p/pO9IGfc6S920+1MupdiQ8Z4Z4tB2rQkSsS1Jo+nx+/kNmClFscQ2BKZ7e+S7BzQ6WqHL6n9mLfTFeil/LvMswaw7w9GTRuZFGzoXMNU6npjaYlBPmo9fN2rzHq0k=
+Authentication-Results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none header.from=ulb.be;
+Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
+ by AS8P190MB1061.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:2e7::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.10; Thu, 14 Jan
+ 2021 23:36:59 +0000
+Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ ([fe80::8fd:f689:885a:6afb]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ ([fe80::8fd:f689:885a:6afb%9]) with mapi id 15.20.3742.006; Thu, 14 Jan 2021
+ 23:36:59 +0000
+Date: Fri, 15 Jan 2021 00:36:57 +0100
+To: usrp-users@lists.ettus.com
+Message-ID: <20210114233657.pjmcmwburnh3gja3@barbe>
+Mail-Followup-To: usrp-users@lists.ettus.com
+Content-Disposition: inline
+X-Originating-IP: [2a02:1811:371b:2300:58fb:3bff:2e0d:f23d]
+X-ClientProxiedBy: PR3P189CA0099.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:102:b5::14) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:11e::20)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost (2a02:1811:371b:2300:58fb:3bff:2e0d:f23d) by
+ PR3P189CA0099.EURP189.PROD.OUTLOOK.COM (2603:10a6:102:b5::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3763.9 via Frontend Transport; Thu, 14 Jan 2021 23:36:58 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7e87e84f-8556-408f-e521-08d8b8e54963
+X-MS-TrafficTypeDiagnostic: AS8P190MB1061:
+X-Microsoft-Antispam-PRVS: <AS8P190MB106190F5ECE6BA241C22B886F0A80@AS8P190MB1061.EURP190.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gZMH6EEzV5rXtCS9cTU6Ou+kovS5NzdTv2lCSdMbrmjlzAfZJUkwk+V59RPxA38pTivFc5mv3lbACC8r2z+UpZgH3u9ox6qFERJCenN/DtUOPnBUnVCWyGqdeNIKRFTcbibuiMHbNrrdnQh+R6D5gGHwdDvsiHYM8u/KtnzQxrqTerJ731pKUfF5mBKo8JJsa0Dz1RNrQZUqrSdscAiQI82RPD5aun2GNzuFjpl0CNDiYTMeabfrx63pMSSdbQSXUAkzdwNPDEeysxsPGLvdt7cC/srd05ZZeL2L6RokkfTfodTyGBaVbhUd3f3wvb6lPxEnA2sF0AmctOGo2VnE06LTLTpuHUDUrXidpVPKw+m1SpTAgAbn+jjMsGESga4Gy0W0OOv50sWwC283SEKxrn6BKjQH0B33woXIbzMDIIPoFkHSjhG7VZvjFA5iPW8K0xASpwh4YAzAD2nPcSO3Gw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(7916004)(4636009)(366004)(39860400002)(376002)(396003)(136003)(346002)(2906002)(66574015)(66476007)(66946007)(66556008)(9686003)(16526019)(6486002)(6496006)(966005)(6916009)(186003)(4744005)(5660300002)(52116002)(1076003)(478600001)(86362001)(786003)(33716001)(316002)(8676002)(8936002)(83380400001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?/qonpcKeCSeWfVlEnnFPSDEIQCyO1azmvCD5yCFsUiRU2slJwUQoRxHe7q?=
+ =?iso-8859-1?Q?ceiptWLCYwKHwtw8cYCARV+e5YKZ+NJejlZ2MmvwLWjMs2JFv7po4K9d/B?=
+ =?iso-8859-1?Q?WqtyWvaWJ0oIYTvnWcop9go6Jkl0y7IVWQfoMeCwaM82el/JVDJDeI3jzZ?=
+ =?iso-8859-1?Q?i0uEpYh//RIe69E9k2N2kIxOjwyFEHVdddaMzzas8UrE/5zVTmHJQCjm4q?=
+ =?iso-8859-1?Q?x3ojSxEJMuUOaiSeNv9RzQbt8xo9Szmn/Hc1KKAN/45ajd1de3Vo9/U3kX?=
+ =?iso-8859-1?Q?AC4OLDQeQPEsakS/x/qxAM8H/q2c1XC0CpDqtNZwTt/nc7K3PgE231J/9F?=
+ =?iso-8859-1?Q?ticAzOCOPGKQ1GRf50W+43SlCrE6J80tM6DCbEW9dX+n+AlZ8GSNFQzxcq?=
+ =?iso-8859-1?Q?5MimQMNcu6HIA+1wmQXmfQmmbx5xIIqmi1/4S6vzzSVIQW0nh540nFnHjh?=
+ =?iso-8859-1?Q?+wUoFuPuRk86k8+g+/qoiqZhBJQa9BVepMTh5TfOWw7bqrekqUHr1Uy5DU?=
+ =?iso-8859-1?Q?FJra48Vn7G2f/TEAYMfPi5o02M2RGp9mtV43wV1NJ3Kp+LveAJlPXeyDY7?=
+ =?iso-8859-1?Q?wHPrRko5+AIJhOkljuqS3KZSrYBjwnHCmj2YqBnupAhhpe6cMHI9RmcJ4B?=
+ =?iso-8859-1?Q?3XK8sN7VjBj8FhuJUjBnMQfGJHZeOiodIQWW0bdDpZtV2CQKhj/IzHmz1J?=
+ =?iso-8859-1?Q?k96F54r4ARosG+apIOwbgX9dbvHUlizoWvWwWfDUHyxy+RETkvXknmPIzl?=
+ =?iso-8859-1?Q?9ZjVisXJzGQjzi0X4g1pa0crg9iSCsbL6imGco8VdY76eca7GZUn3trY8O?=
+ =?iso-8859-1?Q?L7N1D2JugQ5qguX+WqKgSPXW+mx/B6TSVm9tPGe3B7YvqWYxTM6lFsHYKE?=
+ =?iso-8859-1?Q?LdIvCDD/9iaE+i00sKqVVLZ8ibTorDIx9jHLChxpr30BHGqy6CZi1uM7cO?=
+ =?iso-8859-1?Q?pRPuYl2Nd7u2E6v90l97Pa4a8jN3jUtdU4koSaNEVpmDgzxbX8xjNcSUUz?=
+ =?iso-8859-1?Q?lnfHZzi0l2N9O8AQAfJubX+viJj1UIB7JXzpyo+r9xI25WRyAujPA50lPS?=
+ =?iso-8859-1?Q?y/0LimWeSdQhOLh7HOgHf60SpACEmkGtM9i7T/R7ndKG?=
+X-OriginatorOrg: ulb.be
+X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2021 23:36:58.9955 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e87e84f-8556-408f-e521-08d8b8e54963
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: er0gThLGzZwy0A+IeUq05Wg/BF0o49BeV+GvhLS+zpzLjZFIF/jedKLEPXwy87ZJwqn2eTs2Z0JIPuT3KQ674Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P190MB1061
+Subject: [USRP-users] UHD4.0 rfnoc-example gain block not recognized
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -66,9 +107,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5153058354376792045=="
+From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,136 +125,47 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+Dear all,
 
---===============5153058354376792045==
-Content-Type: multipart/alternative; boundary=Apple-Mail-5536BD37-C0D6-4DA5-A7FB-B7DAF2426A5F
-Content-Transfer-Encoding: 7bit
+After following [1] (testing OOT gain block from example code),
+uhd_usrp_probe outputs:
 
+[...]
+[WARNING] [RFNOC::BLOCK_FACTORY] Could not find block with Noc-ID 0xb16, 0x=
+ffff
+[...]
+|   |   * 0/Block#0
+|   |   * 0/DDC#0
+[...]
 
---Apple-Mail-5536BD37-C0D6-4DA5-A7FB-B7DAF2426A5F
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+and in C++:
 
-As long as it had power it will run fine without the battery as far as I kno=
-w.=20
+auto gain_blocks =3D
+graph->find_blocks<rfnoc::example::gain_block_control>("");
 
-Sent from my iPhone
+is empty, while:
 
-> On Jan 14, 2021, at 12:20 PM, David Scott via USRP-users <usrp-users@lists=
-.ettus.com> wrote:
->=20
-> =EF=BB=BF
-> Hi all,
->=20
->=20
->=20
-> I need to carry out some development and testing with the USRP E312 for wo=
-rk in the lab. However, due to the lockdown in the UK I am not able to physi=
-cally get to the device except for some initial setting up (network etc.).
->=20
->=20
->=20
-> I know that the device should not be plugged in for more than 24 hours so I=
- am wondering if it is possible to run the device with the battery disconnec=
-ted?=20
->=20
-> Will the E312 function without the battery connected internally? And are t=
-heir any snags I should be aware of?
->=20
->=20
->=20
-> Many Thanks,
->=20
-> David
->=20
->=20
->=20
-> P Please consider the environment before printing this e-mail. ___________=
-____________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+rfnoc::example::gain_block_control::sptr gain_ctrl =3D
+graph->get_block<rfnoc::example::gain_block_control>("0/Block#0");
 
---Apple-Mail-5536BD37-C0D6-4DA5-A7FB-B7DAF2426A5F
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+failed with:
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">As long as it had power it will run fine wi=
-thout the battery as far as I know.&nbsp;<br><br><div dir=3D"ltr">Sent from m=
-y iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Jan 14, 2021=
-, at 12:20 PM, David Scott via USRP-users &lt;usrp-users@lists.ettus.com&gt;=
- wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr"=
->=EF=BB=BF
+"Error: LookupError:
+This device does not have a block of type
+rfnoc::example::gain_block_control with ID: 0/Block#0"
 
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-1=
-">
+Does anyone know what am I missing?
+
+[1] https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0#Out-of-tree_=
+Modules
+
+Regards
+-- =
 
 
-
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font-=
-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p></p>
-<div>
-<div>
-<div dir=3D"ltr">
-<div id=3D"x_x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; co=
-lor:rgb(0,0,0); font-family:Calibri,Helvetica,sans-serif,serif,&quot;EmojiFo=
-nt&quot;">
-<p>Hi all,</p>
-<p><br>
-</p>
-<p>I need to carry out some development and testing with the USRP E312 for w=
-ork in the lab. However, due to the lockdown in the UK I am not able to phys=
-ically get to the device except for some initial setting up (network etc.).<=
-/p>
-<p><br>
-</p>
-<p>I know that the device should not be plugged in for more than 24 hours so=
- I am wondering if it is possible to run the device with the battery disconn=
-ected?&nbsp;</p>
-<p>Will the E312 function without the battery connected internally? And are t=
-heir any snags I should be aware of?</p>
-<p><br>
-</p>
-<p>Many Thanks,</p>
-<p>David</p>
-</div>
-</div>
-</div>
-</div>
-<br>
-<p></p>
-</div>
-<span style=3D""><br>
-</span><span style=3D"font-size:18.0pt; line-height:125%; font-family:Webdin=
-gs; color:green">P<span style=3D""></span>
-<span style=3D"font-size:7.0pt; line-height:125%; font-family:&quot;Arial&qu=
-ot;,&quot;sans-serif&quot;; color:green">
-Please consider the environment before printing this e-mail.</span></span><s=
-pan style=3D""></span>
-
-
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
->http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
-r></div></blockquote></body></html>=
-
---Apple-Mail-5536BD37-C0D6-4DA5-A7FB-B7DAF2426A5F--
-
-
---===============5153058354376792045==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+C=E9dric Hannotier
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============5153058354376792045==--
-
