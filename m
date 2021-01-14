@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9DB92F664E
-	for <lists+usrp-users@lfdr.de>; Thu, 14 Jan 2021 17:52:27 +0100 (CET)
-Received: from [::1] (port=35566 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35CA92F674C
+	for <lists+usrp-users@lfdr.de>; Thu, 14 Jan 2021 18:20:42 +0100 (CET)
+Received: from [::1] (port=36056 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l05rD-0001O7-Nw; Thu, 14 Jan 2021 11:52:23 -0500
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:38397)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1l05r9-0001JE-BW
- for USRP-users@lists.ettus.com; Thu, 14 Jan 2021 11:52:19 -0500
-Received: by mail-oi1-f171.google.com with SMTP id x13so6561615oic.5
- for <USRP-users@lists.ettus.com>; Thu, 14 Jan 2021 08:51:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=APeYzF564+u3mACvjzTyJErjITno145Tq9MtyTALd5c=;
- b=1aGfUruAB56zJ93fpfkXx5AUm/9lbiB4k2QLa4proy33LV8kR43R7lh+6TjZ0sr5Gl
- hktKNXg05fjJSjiiMqDkxoR4Isue1ZpTEG9lWxJwDsFznHIRwPJtLv5cJ+eYQar4CIfy
- BaLKKzhxCCV1xN+oFHwbZ8jBpiWT32a4ghEkEmrLEzmjTe0auRVFpocjH0wMcEilR2Bu
- 9mMgVUeh3Bzl6WwmcQxcqWcKwuaHp6EaPhMh4/VrXF8Hw+yK1YUzqZVCdTzIEnbaVr+l
- 5buEzgb1D+teFT/dzVhu8AihgHswk0yHs1hy9Y6KmSDQ9kpj11rxGE3vh60LDNB3mGA+
- MUeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=APeYzF564+u3mACvjzTyJErjITno145Tq9MtyTALd5c=;
- b=AbUKVOOUPAuftctAfE9xOU04ewfNelkNyiwFSmzPn0wTg/YVAsjCvz1R7IrLy7NxM3
- 2nz4zUwCPnogd/y+cK70uBOhXJzWuLx2KmngSupolD1l6ixyOSlU2fMDejh1w66GHJI/
- y0cG3LjO8nna8l9gJTHUFfoReQZ2bS0t+kBm8THkUIoct0F3OcNTyNa6nGyUPsv1C5bA
- 81T5IRI+Gzh+DwNc54OhTjSlSCw/aWYIkfeOcXayr3XbplzL2FNP9l/U6weEEEmbfRww
- Q4NEsQKhqiy6TYgUQ02b0q5CaGH1i7RIIrsO/xBTteJBBdSUwYZgQcNsh8jRB6pOQMgj
- 3QSA==
-X-Gm-Message-State: AOAM531nZb7JzZFs8UXq1Q3mRUIeFvPGlxSTS3V42xrpJJ1i3cy0rAzI
- bN7PHlcHCz3WXcDn0+81flBh6Rtl68xHZsY7/u8RDOvM
-X-Google-Smtp-Source: ABdhPJxdsZEU6cbDhXmPBeDvH0luqu6zj6ZjTCMNouugfiqwhSzuFe9fb5YB+t/yeQblxFRSK+qHGzAkFhc30X5VUV8=
-X-Received: by 2002:aca:5786:: with SMTP id l128mr3113740oib.145.1610643098635; 
- Thu, 14 Jan 2021 08:51:38 -0800 (PST)
+	id 1l06Ia-0005zd-Bq; Thu, 14 Jan 2021 12:20:40 -0500
+Received: from mx08-002baa02.pphosted.com ([185.183.30.205]:19114)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <david.scott@gmvnsl.com>)
+ id 1l06IW-0005sB-QQ
+ for usrp-users@lists.ettus.com; Thu, 14 Jan 2021 12:20:37 -0500
+Received: from pps.filterd (m0205083.ppops.net [127.0.0.1])
+ by mx08-002baa02.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
+ 10EHDWI5020614
+ for <usrp-users@lists.ettus.com>; Thu, 14 Jan 2021 18:19:55 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmv.com;
+ h=from : to : subject :
+ date : message-id : content-type : mime-version; s=gmvcom;
+ bh=TMfUjXoeWmRymWX+sTnEvuFdTt+ro4kWWlaQhhU3bLY=;
+ b=b31vFairZMvNSU+K9jx/T40ww0UllzOIdPnIqyIJk1p2qoB8HZyr/+sQE4/Rm8sNvo4z
+ DvE4qCWXi1sHgCXUs3yRVO7GyHIpMFSjCv+XrmmbdgvzTbEh4+5QhouSMdC7e0jwT8bl
+ VLfz5u8LVw8eYQMHMU/FmfzNHnYpOKwJeb0AyZuK4EBUsqWaP0+2g3FPqvvet6xgNkPG
+ QuXfOK/lkBbXWIMtLEB/I8SIytE7pBFe90P14qZDlWeR4u/i6LL0pIGNTILwVhZKRuuO
+ 882HO69VglMC4O2j+OYW2pX1IOzVQS1yedNXcsBFy7hpPscK6Gj2jx+MWb1VumfqN5DT qw== 
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: E312 Battery Question
+Thread-Index: AQHW6pl4+yMmOP+pY0m/RlszEIWd8g==
+Date: Thu, 14 Jan 2021 17:19:53 +0000
+Message-ID: <1303d2bb25fb4ea3bb1a38188056cf4a@gmvnsl.com>
+Accept-Language: en-GB, es-ES, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-kse-serverinfo: PTMEXCH6.gmv.es, 9
+x-kse-attachmentfiltering-interceptor-info: protection disabled
+x-kse-antivirus-interceptor-info: scan successful
+x-kse-antivirus-info: Clean, bases: 1/14/2021 2:00:00 PM
 MIME-Version: 1.0
-References: <CANwgjNoJ_DbMRLQqPu7aF2ETi4Ym2pbn9wFo4iRtyt7mH_8Uug@mail.gmail.com>
- <536D41AB-C41E-40C1-B87C-45E66F6246AE@gmail.com>
-In-Reply-To: <536D41AB-C41E-40C1-B87C-45E66F6246AE@gmail.com>
-Date: Thu, 14 Jan 2021 10:51:27 -0600
-Message-ID: <CAFche=jad33=Lag2m+wwBEo2UOc05kWJX4W2UA7yiCVMVKpckQ@mail.gmail.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Subject: Re: [USRP-users] Changing the transmitted samples per packet
+X-KSE-ServerInfo: ptmexch4.gmv.es, 9
+X-KSE-AttachmentFiltering-Interceptor-Info: protection disabled
+X-Proofpoint-Action: Received-Header-Sanitized
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343, 18.0.737
+ definitions=2021-01-14_06:2021-01-14,
+ 2021-01-14 signatures=0
+X-Proofpoint-Spam-Reason: orgsafe
+Subject: [USRP-users] E312 Battery Question
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -59,10 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Wade Fife <wade.fife@ettus.com>
-Cc: usrp-users <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9119584612753716624=="
+From: David Scott via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: David Scott <david.scott@gmvnsl.com>
+Content-Type: multipart/mixed; boundary="===============1502262957983347224=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,98 +75,98 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9119584612753716624==
-Content-Type: multipart/alternative; boundary="000000000000c1266405b8df111b"
+--===============1502262957983347224==
+Content-Language: en-GB
+Content-Type: multipart/alternative;
+	boundary="_000_1303d2bb25fb4ea3bb1a38188056cf4agmvnslcom_"
 
---000000000000c1266405b8df111b
-Content-Type: text/plain; charset="UTF-8"
+--_000_1303d2bb25fb4ea3bb1a38188056cf4agmvnslcom_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-See also
-https://files.ettus.com/manual/page_configuration.html#config_stream_args_a=
-rgs
+Hi all,
 
-You might also refer to the benchmark_rate example, which takes arguments
-to set the SPP for RX and TX separately.
 
-Wade
+I need to carry out some development and testing with the USRP E312 for wor=
+k in the lab. However, due to the lockdown in the UK I am not able to physi=
+cally get to the device except for some initial setting up (network etc.).
 
-On Wed, Jan 13, 2021 at 11:21 AM Marcus D Leech via USRP-users <
-usrp-users@lists.ettus.com> wrote:
 
-> https://files.ettus.com/manual/structuhd_1_1stream__args__t.html
->
->
-> Sent from my iPhone
->
-> On Jan 13, 2021, at 11:51 AM, Ephraim Moges via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
-> =EF=BB=BF
-> Good morning,
->
-> Is their a simple command like tx_streamer.get_max_num_samps that sets th=
-e
-> maximum number samples per packet?
->
-> Thank you,
->
-> Moges
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+I know that the device should not be plugged in for more than 24 hours so I=
+ am wondering if it is possible to run the device with the battery disconne=
+cted?
 
---000000000000c1266405b8df111b
-Content-Type: text/html; charset="UTF-8"
+Will the E312 function without the battery connected internally? And are th=
+eir any snags I should be aware of?
+
+
+Many Thanks,
+
+David
+
+
+P Please consider the environment before printing this e-mail.
+
+--_000_1303d2bb25fb4ea3bb1a38188056cf4agmvnslcom_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>See also <a href=3D"https://files.ettus.com/manual/pa=
-ge_configuration.html#config_stream_args_args">https://files.ettus.com/manu=
-al/page_configuration.html#config_stream_args_args</a></div><div><br></div>=
-<div>You might also refer to the benchmark_rate example, which takes argume=
-nts to set the SPP for RX and TX separately.</div><div><br></div><div>Wade<=
-br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
-il_attr">On Wed, Jan 13, 2021 at 11:21 AM Marcus D Leech via USRP-users &lt=
-;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
-iv dir=3D"auto"><a href=3D"https://files.ettus.com/manual/structuhd_1_1stre=
-am__args__t.html" target=3D"_blank">https://files.ettus.com/manual/structuh=
-d_1_1stream__args__t.html</a><div><br><br><div dir=3D"ltr">Sent from my iPh=
-one</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Jan 13, 2021, at=
- 11:51 AM, Ephraim Moges via USRP-users &lt;<a href=3D"mailto:usrp-users@li=
-sts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<=
-br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=
-=BF<div dir=3D"auto">Good morning,<div dir=3D"auto"><br></div><div dir=3D"a=
-uto">Is their a simple command like tx_streamer.get_max_num_samps that sets=
- the maximum number samples per packet?<br><br><div dir=3D"auto">Thank you,=
-<br><br>Moges</div></div></div>
-<span>_______________________________________________</span><br><span>USRP-=
-users mailing list</span><br><span><a href=3D"mailto:USRP-users@lists.ettus=
-.com" target=3D"_blank">USRP-users@lists.ettus.com</a></span><br><span><a h=
-ref=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" =
-target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.=
-ettus.com</a></span><br></div></blockquote></div></div>____________________=
-___________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p></p>
+<div>
+<div>
+<div dir=3D"ltr">
+<div id=3D"x_x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; c=
+olor:rgb(0,0,0); font-family:Calibri,Helvetica,sans-serif,serif,&quot;Emoji=
+Font&quot;">
+<p>Hi all,</p>
+<p><br>
+</p>
+<p>I need to carry out some development and testing with the USRP E312 for =
+work in the lab. However, due to the lockdown in the UK I am not able to ph=
+ysically get to the device except for some initial setting up (network etc.=
+).</p>
+<p><br>
+</p>
+<p>I know that the device should not be plugged in for more than 24 hours s=
+o I am wondering if it is possible to run the device with the battery disco=
+nnected?&nbsp;</p>
+<p>Will the E312 function without the battery connected internally? And are=
+ their any snags I should be aware of?</p>
+<p><br>
+</p>
+<p>Many Thanks,</p>
+<p>David</p>
+</div>
+</div>
+</div>
+</div>
+<br>
+<p></p>
+</div>
+<span style=3D""><br>
+</span><span style=3D"font-size:18.0pt; line-height:125%; font-family:Webdi=
+ngs; color:green">P<span style=3D""></span>
+<span style=3D"font-size:7.0pt; line-height:125%; font-family:&quot;Arial&q=
+uot;,&quot;sans-serif&quot;; color:green">
+Please consider the environment before printing this e-mail.</span></span><=
+span style=3D""></span>
+</body>
+</html>
 
---000000000000c1266405b8df111b--
+--_000_1303d2bb25fb4ea3bb1a38188056cf4agmvnslcom_--
 
 
---===============9119584612753716624==
+--===============1502262957983347224==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -178,5 +177,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9119584612753716624==--
+--===============1502262957983347224==--
 
