@@ -2,58 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A06252F50EC
-	for <lists+usrp-users@lfdr.de>; Wed, 13 Jan 2021 18:21:10 +0100 (CET)
-Received: from [::1] (port=52240 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9DB92F664E
+	for <lists+usrp-users@lfdr.de>; Thu, 14 Jan 2021 17:52:27 +0100 (CET)
+Received: from [::1] (port=35566 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1kzjpU-0000I1-Ot; Wed, 13 Jan 2021 12:21:08 -0500
-Received: from mail-qk1-f182.google.com ([209.85.222.182]:45269)
+	id 1l05rD-0001O7-Nw; Thu, 14 Jan 2021 11:52:23 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:38397)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1kzjpR-0000B6-64
- for USRP-users@lists.ettus.com; Wed, 13 Jan 2021 12:21:05 -0500
-Received: by mail-qk1-f182.google.com with SMTP id b64so2737133qkc.12
- for <USRP-users@lists.ettus.com>; Wed, 13 Jan 2021 09:20:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=6KXFP4eBL2QrgVSm3win9Xzg1oeGD1paaMZXk4dGjgU=;
- b=UPNXCZR/Epm11RF0oaMklvunJ4T5fo2e4d2jw5adWOgleCI+4zywXT7gBhXLveUYOH
- 2pLuWB3TXMQtpoh1oxvtEdBXk9W35pyrvYGPSRDUPfSJac6cWVrXpa86rByYaOp28JGK
- T+eI2Rqsujakobjs6bNtcm3zh8OvONX+dJ/jXvdTx81Tn3LTFhZWVNrHh3Ahf18lu9hL
- 1G0/gvxFCV+/iEvTbIJF7mC4QKJvwsJA4gN4WgG9pbqJ5a3j8sBOtkLWi2fEfC1ojyEr
- pFfQEvybXyZck/70fsRo7hHRTaeh7O0SQ94M9gZsdCCzajO48h6xrZNTR9w46uXO/S1S
- 8Icg==
+ (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1l05r9-0001JE-BW
+ for USRP-users@lists.ettus.com; Thu, 14 Jan 2021 11:52:19 -0500
+Received: by mail-oi1-f171.google.com with SMTP id x13so6561615oic.5
+ for <USRP-users@lists.ettus.com>; Thu, 14 Jan 2021 08:51:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=APeYzF564+u3mACvjzTyJErjITno145Tq9MtyTALd5c=;
+ b=1aGfUruAB56zJ93fpfkXx5AUm/9lbiB4k2QLa4proy33LV8kR43R7lh+6TjZ0sr5Gl
+ hktKNXg05fjJSjiiMqDkxoR4Isue1ZpTEG9lWxJwDsFznHIRwPJtLv5cJ+eYQar4CIfy
+ BaLKKzhxCCV1xN+oFHwbZ8jBpiWT32a4ghEkEmrLEzmjTe0auRVFpocjH0wMcEilR2Bu
+ 9mMgVUeh3Bzl6WwmcQxcqWcKwuaHp6EaPhMh4/VrXF8Hw+yK1YUzqZVCdTzIEnbaVr+l
+ 5buEzgb1D+teFT/dzVhu8AihgHswk0yHs1hy9Y6KmSDQ9kpj11rxGE3vh60LDNB3mGA+
+ MUeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=6KXFP4eBL2QrgVSm3win9Xzg1oeGD1paaMZXk4dGjgU=;
- b=NbEx61oXgBYLukXi0muTSI5BU0UR2htqXj1+h6iIni5nE6D5MQ3jLtYL+MR2j2m6Jh
- XvD9N+uwFcXIxwAflGm2w4IbR2I95c0Y/pBZOaybkP6+TAuXCK72HdiMj84zlhnWONhQ
- nyHDfmAY2dDJg7Rh5ExarEf4MA0/5i773XUxt6YddGSj2LtfBgm1RT7OqyPhGigr0Uf4
- zV3W4K378cQpRGGnlu6QwBYk8f2BI21ZWzXEPft0R60Ci90JlW6z6Esn/bciVxN3Vici
- dPwSTHSWrxiWyv3RKRAryIqORAskzZTtq0Ys4KLF2lr6k6nbfJtb00SsYoqtl8JB49eY
- ro9w==
-X-Gm-Message-State: AOAM531tmHiV9BMGrn00KieOwbm/oxTYaMA+/qATMIatqgAeVGwzaYis
- KyuCBRKhCwaudGX67C17g58=
-X-Google-Smtp-Source: ABdhPJxRmpJEj1rJfIoD/X5sRv6CnrKNGwLe96R/G4lZ7InGckk1vRr8t9u2DxGzi7QlX4U4wRnmZw==
-X-Received: by 2002:a37:4d8e:: with SMTP id a136mr2917949qkb.317.1610558424560; 
- Wed, 13 Jan 2021 09:20:24 -0800 (PST)
-Received: from [192.168.2.130]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.gmail.com with ESMTPSA id b12sm1308404qtt.74.2021.01.13.09.20.24
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 13 Jan 2021 09:20:24 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Wed, 13 Jan 2021 12:20:23 -0500
-Message-Id: <536D41AB-C41E-40C1-B87C-45E66F6246AE@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=APeYzF564+u3mACvjzTyJErjITno145Tq9MtyTALd5c=;
+ b=AbUKVOOUPAuftctAfE9xOU04ewfNelkNyiwFSmzPn0wTg/YVAsjCvz1R7IrLy7NxM3
+ 2nz4zUwCPnogd/y+cK70uBOhXJzWuLx2KmngSupolD1l6ixyOSlU2fMDejh1w66GHJI/
+ y0cG3LjO8nna8l9gJTHUFfoReQZ2bS0t+kBm8THkUIoct0F3OcNTyNa6nGyUPsv1C5bA
+ 81T5IRI+Gzh+DwNc54OhTjSlSCw/aWYIkfeOcXayr3XbplzL2FNP9l/U6weEEEmbfRww
+ Q4NEsQKhqiy6TYgUQ02b0q5CaGH1i7RIIrsO/xBTteJBBdSUwYZgQcNsh8jRB6pOQMgj
+ 3QSA==
+X-Gm-Message-State: AOAM531nZb7JzZFs8UXq1Q3mRUIeFvPGlxSTS3V42xrpJJ1i3cy0rAzI
+ bN7PHlcHCz3WXcDn0+81flBh6Rtl68xHZsY7/u8RDOvM
+X-Google-Smtp-Source: ABdhPJxdsZEU6cbDhXmPBeDvH0luqu6zj6ZjTCMNouugfiqwhSzuFe9fb5YB+t/yeQblxFRSK+qHGzAkFhc30X5VUV8=
+X-Received: by 2002:aca:5786:: with SMTP id l128mr3113740oib.145.1610643098635; 
+ Thu, 14 Jan 2021 08:51:38 -0800 (PST)
+MIME-Version: 1.0
 References: <CANwgjNoJ_DbMRLQqPu7aF2ETi4Ym2pbn9wFo4iRtyt7mH_8Uug@mail.gmail.com>
-Cc: USRP-users@lists.ettus.com
-In-Reply-To: <CANwgjNoJ_DbMRLQqPu7aF2ETi4Ym2pbn9wFo4iRtyt7mH_8Uug@mail.gmail.com>
-To: Ephraim Moges <emoges@uncc.edu>
-X-Mailer: iPhone Mail (18B92)
+ <536D41AB-C41E-40C1-B87C-45E66F6246AE@gmail.com>
+In-Reply-To: <536D41AB-C41E-40C1-B87C-45E66F6246AE@gmail.com>
+Date: Thu, 14 Jan 2021 10:51:27 -0600
+Message-ID: <CAFche=jad33=Lag2m+wwBEo2UOc05kWJX4W2UA7yiCVMVKpckQ@mail.gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
 Subject: Re: [USRP-users] Changing the transmitted samples per packet
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -66,9 +59,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6953668457487509317=="
+From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Wade Fife <wade.fife@ettus.com>
+Cc: usrp-users <USRP-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============9119584612753716624=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,64 +76,98 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============9119584612753716624==
+Content-Type: multipart/alternative; boundary="000000000000c1266405b8df111b"
 
---===============6953668457487509317==
-Content-Type: multipart/alternative; boundary=Apple-Mail-ED1FBD0E-6694-4F91-939B-D6D6870A1B4B
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-ED1FBD0E-6694-4F91-939B-D6D6870A1B4B
-Content-Type: text/plain;
-	charset=utf-8
+--000000000000c1266405b8df111b
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-https://files.ettus.com/manual/structuhd_1_1stream__args__t.html
+See also
+https://files.ettus.com/manual/page_configuration.html#config_stream_args_a=
+rgs
 
+You might also refer to the benchmark_rate example, which takes arguments
+to set the SPP for RX and TX separately.
 
-Sent from my iPhone
+Wade
 
-> On Jan 13, 2021, at 11:51 AM, Ephraim Moges via USRP-users <usrp-users@lis=
-ts.ettus.com> wrote:
->=20
+On Wed, Jan 13, 2021 at 11:21 AM Marcus D Leech via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> https://files.ettus.com/manual/structuhd_1_1stream__args__t.html
+>
+>
+> Sent from my iPhone
+>
+> On Jan 13, 2021, at 11:51 AM, Ephraim Moges via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
 > =EF=BB=BF
 > Good morning,
->=20
-> Is their a simple command like tx_streamer.get_max_num_samps that sets the=
- maximum number samples per packet?
->=20
+>
+> Is their a simple command like tx_streamer.get_max_num_samps that sets th=
+e
+> maximum number samples per packet?
+>
 > Thank you,
->=20
+>
 > Moges
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
---Apple-Mail-ED1FBD0E-6694-4F91-939B-D6D6870A1B4B
-Content-Type: text/html;
-	charset=utf-8
+--000000000000c1266405b8df111b
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto"><a href=3D"https://files.ettus.com/manual/s=
-tructuhd_1_1stream__args__t.html">https://files.ettus.com/manual/structuhd_1=
-_1stream__args__t.html</a><div><br><br><div dir=3D"ltr">Sent from my iPhone<=
-/div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Jan 13, 2021, at 11:5=
-1 AM, Ephraim Moges via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:=
-<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=
-=BF<div dir=3D"auto">Good morning,<div dir=3D"auto"><br></div><div dir=3D"au=
-to">Is their a simple command like tx_streamer.get_max_num_samps that sets t=
-he maximum number samples per packet?<br><br><div data-smartmail=3D"gmail_si=
-gnature" dir=3D"auto">Thank you,<br><br>Moges</div></div></div>
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
->http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
-r></div></blockquote></div></body></html>=
+<div dir=3D"ltr"><div>See also <a href=3D"https://files.ettus.com/manual/pa=
+ge_configuration.html#config_stream_args_args">https://files.ettus.com/manu=
+al/page_configuration.html#config_stream_args_args</a></div><div><br></div>=
+<div>You might also refer to the benchmark_rate example, which takes argume=
+nts to set the SPP for RX and TX separately.</div><div><br></div><div>Wade<=
+br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Wed, Jan 13, 2021 at 11:21 AM Marcus D Leech via USRP-users &lt=
+;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
+iv dir=3D"auto"><a href=3D"https://files.ettus.com/manual/structuhd_1_1stre=
+am__args__t.html" target=3D"_blank">https://files.ettus.com/manual/structuh=
+d_1_1stream__args__t.html</a><div><br><br><div dir=3D"ltr">Sent from my iPh=
+one</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Jan 13, 2021, at=
+ 11:51 AM, Ephraim Moges via USRP-users &lt;<a href=3D"mailto:usrp-users@li=
+sts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<=
+br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=
+=BF<div dir=3D"auto">Good morning,<div dir=3D"auto"><br></div><div dir=3D"a=
+uto">Is their a simple command like tx_streamer.get_max_num_samps that sets=
+ the maximum number samples per packet?<br><br><div dir=3D"auto">Thank you,=
+<br><br>Moges</div></div></div>
+<span>_______________________________________________</span><br><span>USRP-=
+users mailing list</span><br><span><a href=3D"mailto:USRP-users@lists.ettus=
+.com" target=3D"_blank">USRP-users@lists.ettus.com</a></span><br><span><a h=
+ref=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" =
+target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.=
+ettus.com</a></span><br></div></blockquote></div></div>____________________=
+___________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---Apple-Mail-ED1FBD0E-6694-4F91-939B-D6D6870A1B4B--
+--000000000000c1266405b8df111b--
 
 
---===============6953668457487509317==
+--===============9119584612753716624==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -150,5 +178,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6953668457487509317==--
+--===============9119584612753716624==--
 
