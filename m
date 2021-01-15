@@ -2,50 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB4E52F7DB2
-	for <lists+usrp-users@lfdr.de>; Fri, 15 Jan 2021 15:07:43 +0100 (CET)
-Received: from [::1] (port=45106 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21DFE2F804C
+	for <lists+usrp-users@lfdr.de>; Fri, 15 Jan 2021 17:10:58 +0100 (CET)
+Received: from [::1] (port=46106 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l0PlO-00006u-MS; Fri, 15 Jan 2021 09:07:42 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:45899)
+	id 1l0Rgd-0002va-1B; Fri, 15 Jan 2021 11:10:55 -0500
+Received: from mail-ej1-f49.google.com ([209.85.218.49]:35827)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <emoges@uncc.edu>) id 1l0PlK-0008Na-6w
- for USRP-users@lists.ettus.com; Fri, 15 Jan 2021 09:07:38 -0500
-Received: by mail-ot1-f50.google.com with SMTP id n42so8564086ota.12
- for <USRP-users@lists.ettus.com>; Fri, 15 Jan 2021 06:07:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uncc.edu; s=google;
+ (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
+ id 1l0RgY-0002lj-Tr
+ for usrp-users@lists.ettus.com; Fri, 15 Jan 2021 11:10:51 -0500
+Received: by mail-ej1-f49.google.com with SMTP id q22so14057474eja.2
+ for <usrp-users@lists.ettus.com>; Fri, 15 Jan 2021 08:10:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1c0YbgQs26BtrE0F89WX/sJtTRwNv6N6/UDKKYJMYcQ=;
- b=EH3oZ3Z/ez4iAf8qFrQzb5iBPxkYmuF+5EDZOgn63VDT77zgU6N1YbyBmQFaZYS44d
- eWEfiMJVF2WOd3g0JKgJxhZuy/kMuI2q03jARuQPWibaF+D91MBt3WVh6BBHUK4cfbso
- gYzxeU06mElCyJK9mcfEJPMQvV1YtmIx/ghBU=
+ :cc; bh=/glv3iNylzvQ1PI+BYENJPCXwm7SyNfiuJ5KMj7sGt8=;
+ b=mfDhjPSvseRSsqZvYFIdxAe7quK3cKAWT47CGMlqKsUgrj7ZdI/UeHR53ysKewrYTs
+ 5G+AFPj33b/YpQGRIOfLsafFQNx4EDvBrjI8vgBVqYX0rVluYAex/tO+Dwsd/NTdVCqt
+ FV4b49jiYwsHLlKEYC0ybDKXId7Xq54a7a5wxD3uY8T5m020Nxwu4RN//5tPSmc+NrbQ
+ syG+p0xb8WPE9cdwM6rDzGxox5nCkeowUZub6uvJFtNekinQZcusy3oX8FvzWESMXYIu
+ 1frwI0pDcGky57aRidj/Ug8kGdlWTMbYe43N/B7a4smq4lqytLCxnznisirP1KGdc1DE
+ Pk8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=1c0YbgQs26BtrE0F89WX/sJtTRwNv6N6/UDKKYJMYcQ=;
- b=LlBx6/sOu97QeeRWvNAvTVAMsYz+c8cZS8qR+FIbaGHR2DViQ2dyKgopAa+xwv7YLn
- DIUi3eUGV7rdiQG14/8WaLUNB6BrXI0sKjsuXclLvz2GN9D+RIT0c8Mwc0Aye9er8W7y
- IAfHv6LWCf9OphVKqJ6Mx/Jfo7Fo6lMBRm+gz6oH14d26nOVcnAIMmUJoxMXS7/6/So8
- QzePgCjDeQ/U5XvJfD4plFGqeB4iAQORLPiOM3yUQ6YJEaznbyE/H8ONlWksj0ufgFX6
- yhH6VFelQJmrtzG8DKcBlckbJvhrFCFWnnRr8gPIrQNC4rvvJAFnpW4hGmZMq0kMer+8
- th8Q==
-X-Gm-Message-State: AOAM533OQfIYkcurW3uAoyukeEodVrMTFp5PV00O5zCaoLfd1Z52SP0O
- t8S4724ukX/c7a425gclbGN4KiFlRFhH9VjDENtaDw==
-X-Google-Smtp-Source: ABdhPJyIDZ7sHm7GjLA8+1tW9nsJ6BIx74BTYJmWmHtIgts8avYtIHFbKA6ZzEoH8yOC1SChVkMhnvYnxcc+m524vyo=
-X-Received: by 2002:a9d:430:: with SMTP id 45mr8298912otc.32.1610719617302;
- Fri, 15 Jan 2021 06:06:57 -0800 (PST)
+ bh=/glv3iNylzvQ1PI+BYENJPCXwm7SyNfiuJ5KMj7sGt8=;
+ b=JZEmD/AyjrvB3RI0+rqSc0NOE/DOqelfVnZiSlJT6+GjCmLagwNYkQmb4+vKHkq/4k
+ ZloaioB8K+anHcKEDrFaCZ3icJcOyjercid6/Oj8UTabiWAdPg4QXK52Rb7j+/i6YT4d
+ PLaOHuphF53MmRM5RP2CfHc6LvAxJUUV7aT2B9t6kbJQu+crc/9yEbZtQSkipYwdlRkT
+ alNnM2RAMsYhBYwOqgKo8afvwwyE/b8hGA+Xc/+hsPpecwY0A7lYjjCJPUqrLmN+JDoz
+ 1hHH7GdfgnJzBeo/SHtJ4xBDePxURpOzC4C+spA/LncOdksl0t/TYYlnMOipJr9m2kso
+ j60w==
+X-Gm-Message-State: AOAM5332nHutjPBlAk6CSDf7Rs8c4MZNjMEB1XDlr/hYX4iUbPJEfPB8
+ aUOa/FLuUcgEM+yN9Xxw0eoLa8xdediY5kk2Da1psgvu
+X-Google-Smtp-Source: ABdhPJx/g71fCVfDLnry226t3htcPihNDYoLUUDJh5cVdc4YOENdDOxK9OE7QRtxHpNtWok1DfGlpqUEK+dYsHghEg4=
+X-Received: by 2002:a17:906:d0c1:: with SMTP id
+ bq1mr9129150ejb.202.1610727009794; 
+ Fri, 15 Jan 2021 08:10:09 -0800 (PST)
 MIME-Version: 1.0
-References: <CANwgjNoJ_DbMRLQqPu7aF2ETi4Ym2pbn9wFo4iRtyt7mH_8Uug@mail.gmail.com>
- <536D41AB-C41E-40C1-B87C-45E66F6246AE@gmail.com>
- <CAFche=jad33=Lag2m+wwBEo2UOc05kWJX4W2UA7yiCVMVKpckQ@mail.gmail.com>
-In-Reply-To: <CAFche=jad33=Lag2m+wwBEo2UOc05kWJX4W2UA7yiCVMVKpckQ@mail.gmail.com>
-Date: Fri, 15 Jan 2021 09:06:46 -0500
-Message-ID: <CANwgjNqfzUXSye9MCcYg+AxTt3LaBNo0fWBdBRN-Esed7OH2iQ@mail.gmail.com>
-To: Wade Fife <wade.fife@ettus.com>
-Subject: Re: [USRP-users] [EXTERNAL] Re: Changing the transmitted samples
- per packet
+References: <LNXP123MB372474BC72EC550495B41F29CAA70@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+ <20210115131822.7s3trwfd3f7dbi5p@barbe>
+ <LNXP123MB3724ED3EFA804051E6C72F20CAA70@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+In-Reply-To: <LNXP123MB3724ED3EFA804051E6C72F20CAA70@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+Date: Fri, 15 Jan 2021 11:09:58 -0500
+Message-ID: <CAGNhwTPShfnYbK6tr4DxZJcHrLb5u4tvQpUOVdZXW91=YbnhdQ@mail.gmail.com>
+To: Mark D <md964@hmgcc.gov.uk>
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Setting E320 to use fixed IP Address on RJ45 eth0
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -57,10 +63,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ephraim Moges via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ephraim Moges <emoges@uncc.edu>
-Cc: usrp-users <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7854887992621287317=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Content-Type: multipart/mixed; boundary="===============7747015741365240910=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,129 +79,188 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7854887992621287317==
-Content-Type: multipart/alternative; boundary="0000000000009f6a3a05b8f0e2c5"
+--===============7747015741365240910==
+Content-Type: multipart/alternative; boundary="00000000000040001905b8f29ba1"
 
---0000000000009f6a3a05b8f0e2c5
+--00000000000040001905b8f29ba1
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
- Good Morning  Mr. Fife,
+What version of UHD are you using? Different UHD versions provide different
+filesystems, which configure networking differently. - MLD
 
-Based on the documentation the SPP is commendable for the RX portion only.
-For the TX portion I have been creating an array, with a size less
-than tx_streamer.get_max_num_samps(). Is the method I use to control the tx
-packet size incorrect?
+On Fri, Jan 15, 2021 at 9:01 AM Mark D via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-Sincerely,
+> Thanks C=C3=A9dric,
+>
+> I used the networkctl status eth0 command that pointed me to the file at
+> /lib/system/network/40-eth0.network
+>
+> I then edited this file to remove the DHCP sections and set the address a=
+t
+> 192.168.1.60/24.
+>
+> Looks to be working great,
+>
+> Mark
+>
+> -----Original Message-----
+> From: USRP-users <usrp-users-bounces@lists.ettus.com> On Behalf Of C=C3=
+=A9dric
+> Hannotier via USRP-users
+> Sent: 15 January 2021 13:18
+> To: usrp-users@lists.ettus.com
+> Subject: Re: [USRP-users] Setting E320 to use fixed IP Address on RJ45 et=
+h0
+>
+> On 15/01/21 09:06, Mark D via USRP-users wrote:
+> > My E320 doesn't have that folder,
+> > there is one "/etc/systemd/network/"
+> > but no "/etc/systemd/networkd/" (i.e. no d after network).
+> > I think maybe is a typing error in the manual and the folder name shoul=
+d
+> be network.
+> >
+> > The folder at this location is empty, so doesn't contain the SFP+
+> setting file.
+>
+> Are you sure it is managed/configured by systemd-networkd?
+> You can check its status by running "networkctl status eth0".
+>
+> > I have created in this folder a file eth0.network with the following
+> content:
+> >
+> > ---------------------------
+> > [Match]
+> > Name=3Deth0
+> >
+> > [Network]
+> > Address=3D192.168.1.60
+>
+> From systemd.network(5), I think you have to specify the netmask, eg:
+> Address=3D192.168.1.60/24
+>
+> Do not forget to reload, either using 'networkctl reload' or 'systemctl
+> restart systemd-networkd'.
+>
+> --
+>
+> C=C3=A9dric Hannotier
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> ________________________________
+>  This email and any files transmitted with it are confidential and
+> intended solely for the use of the individual or entity to whom they are
+> addressed. If you have received this email in error please notify the
+> system manager.
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-Moges
-
-On Thu, Jan 14, 2021 at 11:51 AM Wade Fife <wade.fife@ettus.com> wrote:
-
-> [*Caution*: Email from External Sender. Do not click or open links or
-> attachments unless you know this sender.]
->
-> See also
-> https://files.ettus.com/manual/page_configuration.html#config_stream_args=
-_args
->
-> You might also refer to the benchmark_rate example, which takes arguments
-> to set the SPP for RX and TX separately.
->
-> Wade
->
-> On Wed, Jan 13, 2021 at 11:21 AM Marcus D Leech via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
->
->> https://files.ettus.com/manual/structuhd_1_1stream__args__t.html
->>
->>
->> Sent from my iPhone
->>
->> On Jan 13, 2021, at 11:51 AM, Ephraim Moges via USRP-users <
->> usrp-users@lists.ettus.com> wrote:
->>
->> =EF=BB=BF
->> Good morning,
->>
->> Is their a simple command like tx_streamer.get_max_num_samps that sets
->> the maximum number samples per packet?
->>
->> Thank you,
->>
->> Moges
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
->
-
---0000000000009f6a3a05b8f0e2c5
+--00000000000040001905b8f29ba1
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">=C2=A0Good Morning=C2=A0 Mr. Fife,<div><br></div><div>Base=
-d on the documentation the SPP is commendable=C2=A0for the RX portion only.=
- For the TX portion I have been creating=C2=A0an array, with a size less th=
-an=C2=A0tx_streamer.get_max_num_samps(). Is the method I use to control the=
- tx packet size incorrect?<br clear=3D"all"><div><div dir=3D"ltr" class=3D"=
-gmail_signature"><div dir=3D"ltr"><div><br></div><div>Sincerely,<br><br></d=
-iv>Moges</div></div></div></div></div><br><div class=3D"gmail_quote"><div d=
-ir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 14, 2021 at 11:51 AM Wade Fife =
-&lt;<a href=3D"mailto:wade.fife@ettus.com">wade.fife@ettus.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">[<strong><fon=
-t color=3D"red">Caution</font></strong>: Email from External Sender. Do not=
- click or open links or attachments unless you know this sender.]<br><span>=
-=C2=A0</span><div dir=3D"ltr"><div>See also <a href=3D"https://files.ettus.=
-com/manual/page_configuration.html#config_stream_args_args" target=3D"_blan=
-k">https://files.ettus.com/manual/page_configuration.html#config_stream_arg=
-s_args</a></div><div><br></div><div>You might also refer to the benchmark_r=
-ate example, which takes arguments to set the SPP for RX and TX separately.=
-</div><div><br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jan 13, 2021 at 11:21 AM Ma=
-rcus D Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto"><a href=3D=
-"https://files.ettus.com/manual/structuhd_1_1stream__args__t.html" target=
-=3D"_blank">https://files.ettus.com/manual/structuhd_1_1stream__args__t.htm=
-l</a><div><br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr=
-"><br><blockquote type=3D"cite">On Jan 13, 2021, at 11:51 AM, Ephraim Moges=
- via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D=
-"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br><br></blockquote></di=
-v><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"auto">Goo=
-d morning,<div dir=3D"auto"><br></div><div dir=3D"auto">Is their a simple c=
-ommand like tx_streamer.get_max_num_samps that sets the maximum number samp=
-les per packet?<br><br><div dir=3D"auto">Thank you,<br><br>Moges</div></div=
-></div>
-<span>_______________________________________________</span><br><span>USRP-=
-users mailing list</span><br><span><a href=3D"mailto:USRP-users@lists.ettus=
-.com" target=3D"_blank">USRP-users@lists.ettus.com</a></span><br><span><a h=
-ref=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" =
-target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.=
-ettus.com</a></span><br></div></blockquote></div></div>____________________=
-___________________________<br>
+<div dir=3D"ltr"><div dir=3D"ltr">What version of UHD are you using? Differ=
+ent UHD versions provide different filesystems, which configure networking =
+differently. - MLD<div><div><div dir=3D"ltr" class=3D"gmail_signature" data=
+-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><br></div>=
+</div></div></div></div></div><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Fri, Jan 15, 2021 at 9:01 AM Mark D via USRP-users &=
+lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com=
+</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
+Thanks C=C3=A9dric,<br>
+<br>
+I used the networkctl status eth0 command that pointed me to the file at /l=
+ib/system/network/40-eth0.network<br>
+<br>
+I then edited this file to remove the DHCP sections and set the address at =
+<a href=3D"http://192.168.1.60/24" rel=3D"noreferrer" target=3D"_blank">192=
+.168.1.60/24</a>.<br>
+<br>
+Looks to be working great,<br>
+<br>
+Mark<br>
+<br>
+-----Original Message-----<br>
+From: USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists.ettus.com" =
+target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&gt; On Behalf Of C=
+=C3=A9dric Hannotier via USRP-users<br>
+Sent: 15 January 2021 13:18<br>
+To: <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
+ers@lists.ettus.com</a><br>
+Subject: Re: [USRP-users] Setting E320 to use fixed IP Address on RJ45 eth0=
+<br>
+<br>
+On 15/01/21 09:06, Mark D via USRP-users wrote:<br>
+&gt; My E320 doesn&#39;t have that folder,<br>
+&gt; there is one &quot;/etc/systemd/network/&quot;<br>
+&gt; but no &quot;/etc/systemd/networkd/&quot; (i.e. no d after network).<b=
+r>
+&gt; I think maybe is a typing error in the manual and the folder name shou=
+ld be network.<br>
+&gt;<br>
+&gt; The folder at this location is empty, so doesn&#39;t contain the SFP+ =
+setting file.<br>
+<br>
+Are you sure it is managed/configured by systemd-networkd?<br>
+You can check its status by running &quot;networkctl status eth0&quot;.<br>
+<br>
+&gt; I have created in this folder a file eth0.network with the following c=
+ontent:<br>
+&gt;<br>
+&gt; ---------------------------<br>
+&gt; [Match]<br>
+&gt; Name=3Deth0<br>
+&gt;<br>
+&gt; [Network]<br>
+&gt; Address=3D192.168.1.60<br>
+<br>
+From systemd.network(5), I think you have to specify the netmask, eg:<br>
+Address=3D<a href=3D"http://192.168.1.60/24" rel=3D"noreferrer" target=3D"_=
+blank">192.168.1.60/24</a><br>
+<br>
+Do not forget to reload, either using &#39;networkctl reload&#39; or &#39;s=
+ystemctl restart systemd-networkd&#39;.<br>
+<br>
+--<br>
+<br>
+C=C3=A9dric Hannotier<br>
+<br>
+_______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
 lists.ettus.com</a><br>
 <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
+________________________________<br>
+=C2=A0This email and any files transmitted with it are confidential and int=
+ended solely for the use of the individual or entity to whom they are addre=
+ssed. If you have received this email in error please notify the system man=
+ager.<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
 
---0000000000009f6a3a05b8f0e2c5--
+--00000000000040001905b8f29ba1--
 
 
---===============7854887992621287317==
+--===============7747015741365240910==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -207,5 +271,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7854887992621287317==--
+--===============7747015741365240910==--
 
