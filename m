@@ -2,107 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 159A82F9C06
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Jan 2021 10:50:31 +0100 (CET)
-Received: from [::1] (port=42794 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A1AC2FB62D
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Jan 2021 14:02:59 +0100 (CET)
+Received: from [::1] (port=55276 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l1RB3-0007DL-BD; Mon, 18 Jan 2021 04:50:25 -0500
-Received: from mail-eopbgr100130.outbound.protection.outlook.com
- ([40.107.10.130]:29233 helo=GBR01-LO2-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <md964@hmgcc.gov.uk>) id 1l1RAz-00076p-Uj
- for usrp-users@lists.ettus.com; Mon, 18 Jan 2021 04:50:22 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c9uMK4mYHcCiBbqmM5jLWjuRmZ2XmM39F84JowcykSKchix3FRGlFgwTaFqyAzYaiYbhu6PcC8TBe8LRVddQPaFPEGfYqxSIk7IHMkj67RXSc733nbMEvl2FUVR6Cwfk0q3ByLwpJlhUpjulvSH0cbyYjOYLitzWN6g3F1ENKfSzR/hCFKpZsp31FOnL/p9iSZCAaZcPffr3AAZRE5IOOiofQP/EZJAmsDywMl30EqH3iQ6sGakFbLuizmnlmvOB29+D+lK3mDH+B02l1ledVHLSC/8Hp23As7MDu8j9L1F+wV3mTtpFNHo5diWymjxbukVfBGRZvJfe1s/MbhVzUQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vMlEDiCFe9NLGHYxA6uR9mqMcPytgga18aDnfLyiAmc=;
- b=UFdiFyKYm0A/msBrlcXc2cI+SbUIxQX4edbcJ6FHb0Tjj6z6T2wfiDwk7bJ2dAh28khLUEMMRvpw3rPCYeTjbuO1IzvidJaMk0EOqWR1LapzjySNqprZM44I3/+jUTY5vHUC9ajbDpdKRDpp/UkvLLXIW8+mURIdk8r+S1eKQDL/CAzdrb4Yoq+4VzjZFsmFOtWuZ/Ns/psXRtl58raxjeaiQvjFkezNBEwKtsXNEI4kDk+kkdEQjfJ2Q76oYWF3akF3LSK/1EQg4DSWCJ+OhF0g9ek6TnrMnV0NSelhIAosJpmI13hfKver8abEoYIITEkiRc3hiapvJJ0yf/Ai/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hmgcc.gov.uk; dmarc=pass action=none header.from=hmgcc.gov.uk;
- dkim=pass header.d=hmgcc.gov.uk; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hmgcc.gov.uk;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vMlEDiCFe9NLGHYxA6uR9mqMcPytgga18aDnfLyiAmc=;
- b=rszZcjsNkSvj46uPYP5v1kgbltndH3mRkhJbJPwsRMhKIdrhlD+qK71P1AAMVTzcwL1CkHt/1iij0s3yBNLUm8y+dtpTyvIrpW/WKSRqtlfmjS0QesjS2EH77nPc4KRmOeA6+sBFDBCDPQa8yQoGOW9wG74MwOtCfVe2FKHKnDE=
-Received: from LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:132::7)
- by LOYP123MB2912.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:e8::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.10; Mon, 18 Jan
- 2021 09:49:39 +0000
-Received: from LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
- ([fe80::75b7:742f:26de:975f]) by LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
- ([fe80::75b7:742f:26de:975f%6]) with mapi id 15.20.3763.014; Mon, 18 Jan 2021
- 09:49:39 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Setting E320 to use fixed IP Address on RJ45 eth0
-Thread-Index: AdbrHZJNCfia6oeARmetIkq7Vg4jugAI1OAAAAFjTQAABJrsAACJf9MQ
-Date: Mon, 18 Jan 2021 09:49:39 +0000
-Message-ID: <LNXP123MB3724CAA4081236ADFEC4AE8ECAA40@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
-References: <LNXP123MB372474BC72EC550495B41F29CAA70@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
- <20210115131822.7s3trwfd3f7dbi5p@barbe>
- <LNXP123MB3724ED3EFA804051E6C72F20CAA70@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
- <CAGNhwTPShfnYbK6tr4DxZJcHrLb5u4tvQpUOVdZXW91=YbnhdQ@mail.gmail.com>
-In-Reply-To: <CAGNhwTPShfnYbK6tr4DxZJcHrLb5u4tvQpUOVdZXW91=YbnhdQ@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=hmgcc.gov.uk;
-x-originating-ip: [62.189.143.233]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e170aeed-9873-44f7-656c-08d8bb965f6d
-x-ms-traffictypediagnostic: LOYP123MB2912:
-x-microsoft-antispam-prvs: <LOYP123MB2912A70F5068EA732A6E9201CAA40@LOYP123MB2912.GBRP123.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: FpIpuTVZcodrUBlnisH3NbaUcTwn82qbvp27b4ODmS0ydGTollAugc1QsprVh9sqqimn3F+ZvNoA2rgHCus+w4O0RApkwkjsN84oV5XbL5XisPdw1i00B0cZrGStlt9zZW5JVcgDntx1DXekBru4TuW2iKEyLzqzhask7NDTZa2+E+inTTzjHeRiX6X+L1w1+qUUxa/6eAuEXAuZxoVsXmHwi/Qi+H76EguI/Tgw2nsO5sS9WPbCBKO7KNGW9B3mTjTblQJib+MNatoIrmXfbXMuzO3GUDDctrF/FUj7eDq3oyR1N6+qJt5Bpr0GYcOBqM1rfxFSXsJKTZChPAB0PiT3d8eaw6Cyrp/IiKrx+YvupGf0KQXiSwrLm8P/SnQMgK6lSFVnycLZb7+V6nAkOn9K2RExQNFoOCZTVUMmLtl200oDBqAquJmo4K252/joGosN3JkMPhyhe4M9gd4ttxLEIORQfzMAHw1SQgzri5pwanM3gBqcoveWksB8V+uRkbtwm2DhTIfEAimAe/3wnQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(6019001)(4636009)(346002)(376002)(39840400004)(396003)(136003)(366004)(269900001)(26005)(186003)(55016002)(966005)(8676002)(66476007)(71200400001)(83380400001)(7696005)(5660300002)(53546011)(9686003)(66556008)(76116006)(64756008)(6506007)(66946007)(52536014)(478600001)(33656002)(316002)(6916009)(2906002)(166002)(86362001)(8936002)(66446008)(16193025007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?utf-8?B?QlNTenFZeC9uTmczZWR2K2pxYk9RTE9sSFlYODVoZEx2QXZZVkQ2Tk1WbStR?=
- =?utf-8?B?Q0NKT09uZGNPMVdzZy9lTHhLcW04T05NSXpMczN1TWtrU1pDSjlmU3VlNzFE?=
- =?utf-8?B?SXMyQSszMzJrd0x6ckR3WUEwNTA3dEY1WDQ2K203dmVXK3lZd2dPK1FPUG04?=
- =?utf-8?B?WENTalhpenowNnBkWS9aUDhvTkZhUlRiSGk1OHZmcmdZa3ZHd3FlY0IwY003?=
- =?utf-8?B?d3FBL2dRMGk1RUpuQ1pOYTFReXVtV2o3TXF0WWh6UWNaQ0l1aEpKN0xZamp3?=
- =?utf-8?B?dS9ITTVWR1hSbDZDTTJYMzdXZkkwZjB2Y2NMUFhmWW1VczR2VTZPQ1Z1Rmlz?=
- =?utf-8?B?WmY1Z0FOMlR1a3o5NndmeS9Lelg0TExEYXlSWXJJeWJramlocjk4OTE5aC9M?=
- =?utf-8?B?a3owUGgxYm1qLzhXRHN2TGYyaGxOWkxtYWZvN2thU1RsOWJqSzNGR3VwNXZt?=
- =?utf-8?B?UUdWd1IrcFhUZldtamM1NXg5eFdNWFAwUC9MRXBjVTFjWFFDeXQrT3pxS08w?=
- =?utf-8?B?Z2tqTHRGb3EwR2t6cVJvck1oZjdDS0lIOXViSW1sWHd3UDR6YzRobjU2UThK?=
- =?utf-8?B?cEVKb3VQS3hhOGg3cHlqTVAyS3VJYW9VS1l5eHpZQnVnRWR6bHZUbUFGZFAw?=
- =?utf-8?B?dTVEQU1Ra1RpRXgrWVFxWEhZVFdlRXZMblZUaFZEYko5K3ROcjBNdE1nK2R0?=
- =?utf-8?B?Z1lWeHIra3cxWlUzWXo3V3lCem5ianVSd0cxQUgvV3BBK0dJTmhCcnFTcytM?=
- =?utf-8?B?ZFJIaVVacERVaitnc1lOb1BycEN6UEhNWjg5VFVQS29ZME8wL0RnZk4xZ1Vu?=
- =?utf-8?B?UEFYamdrMG5YMDRaOWN0bk9acElnZmZ4U3l2QnFRdTNJMUU0TnJ3Nit3ZzFt?=
- =?utf-8?B?NStCUkRhZ0d4QlNrZStOeVVBYmxCU0RDMHROOWcxSy9ic2cvTFNQQXdhaW55?=
- =?utf-8?B?VW9iWmh5bWxxLzBGeU85b3pCYmM5Y1oyTWx1RFlNUU5aT05YcHVSd2lNcG1r?=
- =?utf-8?B?bmEvK0h6dWxLblRaMmxhdnNTRjBSaGY3aE55Y3lhVkxVeVUzR1lPL2QwemM1?=
- =?utf-8?B?ZjdKdHcwc1VLSkQ3KzlxcWFaa3V2YTExNUE0bENycGFNc0N1UVRBQmlvY0Zw?=
- =?utf-8?B?WWkrVTlTeUJTcFQzQTA2emxoQzVHMVRkSkphdWRJZmtkQmkxazYrUXR6bTFL?=
- =?utf-8?B?RjEvR1BBclErUk1obnQyL3U5akd1bTVrMkhyMnpNMGsxZldLVTk4Q2pnYUg3?=
- =?utf-8?B?clp5NTFsZFkyK0pXd0RrbGEzbjE5dXp4RVpLZG1PVXBwVS8wNnQ5c2hDQnpF?=
- =?utf-8?Q?EIqcEMMFwW8LQ=3D?=
-x-ms-exchange-transport-forked: True
+	id 1l1qet-0004oy-ME; Tue, 19 Jan 2021 08:02:55 -0500
+Received: from mail-ed1-f42.google.com ([209.85.208.42]:46000)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <mamuki92@gmail.com>) id 1l1qeq-0004jk-1k
+ for usrp-users@lists.ettus.com; Tue, 19 Jan 2021 08:02:52 -0500
+Received: by mail-ed1-f42.google.com with SMTP id f1so7278647edr.12
+ for <usrp-users@lists.ettus.com>; Tue, 19 Jan 2021 05:02:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=bdDfJ4e+bZaSqIXln7neNH1kUY3LWVxh4qj+ECmy5DQ=;
+ b=SvtaUQKhdE+gqEzV8XKvBNh347E5kHK4xR5R1XVfyKJnDy9QQ0UfJ17EZ1Cv6zjQDf
+ +2A/8igTJaszexUF7SmgFJ5o4tT0uOz8pP8wlfzLcy03RXaulyVrzco1dMcni/+j5yOo
+ XgZa1vCICvy5GFfMtZ6B+mDAOvKfJFPu5tNFberSaKOzWMGSXe8CqXmiZmMbCIR2BIIx
+ iqRD8HyS6cXl/9hsz33QZBHsZeNdak9uIWdwo6tnZkvL2OsqADd9Rm15gifPdCSz+8J0
+ kl1bkvd2JUcJtXHdGkff3kVVux0VcNGVmXu0S1x5BE5QcXDKTgCqXwnwOdgVtfF2pu5q
+ LTDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=bdDfJ4e+bZaSqIXln7neNH1kUY3LWVxh4qj+ECmy5DQ=;
+ b=GyPOZkpEuolfTVo7kQoQgRNqxwpdM2apwt2oQ1qbidLr8ookHrl6LnYPGKm1zJwJ5Q
+ 2v3pqjPYr/5Rzskv3V/Hppgj0wOw5x2kjYROE4sWF0Imre3ORNmTPo7Q3CAIYgqbPZ+1
+ xHgpBX/XSuAZ5qrReZ4KaMgZqVwltqvMUzcgxGaWoJ9xZEZjdirR5IPhvo40tZY6n0Th
+ ysdm4L2Djd0ukAPuPIF1b4hcKjyNQZ6penZ67TNN3HCA9FKZv+4qevJUlJ3HrwORzpB0
+ cHmsWByBFgtAwIGnY3N5QSEEkq7vYNSRkRceVOTfXoqMovua1StPGde+Zi4lZ0erAhuZ
+ /MKA==
+X-Gm-Message-State: AOAM533FP5gpp9XPXm0U3YG0zVcE/ArBWMlkDh+iU3x959HKSipLkv6D
+ DH/1g+aNKpALjrKapmNw/D5fpqX8vNmIrgbid4+63GL2nzjXWQ==
+X-Google-Smtp-Source: ABdhPJwv/EXvsb6TmdziuFWF+Mfq/QMMeRyHnWauaSbVIvY0RAA+SZA07D7/9mIzpS6aOb6GFxKTd1sKKv/n2KkuuPw=
+X-Received: by 2002:aa7:cac2:: with SMTP id l2mr3310411edt.141.1611061330402; 
+ Tue, 19 Jan 2021 05:02:10 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: hmgcc.gov.uk
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: e170aeed-9873-44f7-656c-08d8bb965f6d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jan 2021 09:49:39.2432 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c724c4ae-2756-49fe-b1cd-3a725b29341a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jsQM1IrkvIhMKTV3zq5puod+YYZ8Dcnl2nqmvWXHZWJItpK4p0ca97F7NVxymdLt5+QgjBbVETkfbc9U9f6lwQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP123MB2912
-Subject: Re: [USRP-users] Setting E320 to use fixed IP Address on RJ45 eth0
+Date: Tue, 19 Jan 2021 14:01:58 +0100
+Message-ID: <CAG16vQVvvC7NpD7nEqL5ZML1bg_f5oE2JRBFrRGPt0nJkLi9MQ@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Wrong name of files found when instaling OOT RFNoC
+ block
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -114,9 +55,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mark D via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mark D <md964@hmgcc.gov.uk>
-Content-Type: multipart/mixed; boundary="===============4674544835287607542=="
+From: =?utf-8?q?Maria_Mu=C3=B1oz_via_USRP-users?= <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4807809107299631101=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -130,188 +71,188 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4674544835287607542==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_LNXP123MB3724CAA4081236ADFEC4AE8ECAA40LNXP123MB3724GBRP_"
+--===============4807809107299631101==
+Content-Type: multipart/alternative; boundary="0000000000004f61e405b9407254"
 
---_000_LNXP123MB3724CAA4081236ADFEC4AE8ECAA40LNXP123MB3724GBRP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000004f61e405b9407254
+Content-Type: text/plain; charset="UTF-8"
 
-SeKAmW0gcnVubmluZyBVSEQgNC4wLjAuMC4wDQpUaGUgc29sdXRpb24gSSBoYXZlIHdpdGggdGhl
-IG1vZGlmaWVkIGZpbGUgYXQgL2xpYi9zeXN0ZW0vbmV0d29yay80MC1ldGgwLm5ldHdvcmsgc2Vl
-bXMgdG8gYmUgd29ya2luZyBPay4gTWF5YmUgdGhlcmXigJlzIHNvbWV3aGVyZSBlbHNlIEkgY291
-bGQgcGxhY2UgYSBjb25maWd1cmF0aW9uIGZpbGUgdGhhdCBkb2VzbuKAmXQgcmVxdWlyZSB0aGUg
-c3lzdGVtIGRlZmF1bHQgdG8gYmUgbW9kaWZpZWQuDQpNYXJrDQoNCkZyb206IE1pY2hhZWwgRGlj
-a2VucyA8bWljaGFlbC5kaWNrZW5zQGV0dHVzLmNvbT4NClNlbnQ6IDE1IEphbnVhcnkgMjAyMSAx
-NjoxMA0KVG86IE1hcmsgRCA8bWQ5NjRAaG1nY2MuZ292LnVrPg0KQ2M6IHVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tDQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIFNldHRpbmcgRTMyMCB0byB1
-c2UgZml4ZWQgSVAgQWRkcmVzcyBvbiBSSjQ1IGV0aDANCg0KV2hhdCB2ZXJzaW9uIG9mIFVIRCBh
-cmUgeW91IHVzaW5nPyBEaWZmZXJlbnQgVUhEIHZlcnNpb25zIHByb3ZpZGUgZGlmZmVyZW50IGZp
-bGVzeXN0ZW1zLCB3aGljaCBjb25maWd1cmUgbmV0d29ya2luZyBkaWZmZXJlbnRseS4gLSBNTEQN
-Cg0KT24gRnJpLCBKYW4gMTUsIDIwMjEgYXQgOTowMSBBTSBNYXJrIEQgdmlhIFVTUlAtdXNlcnMg
-PHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbT4+IHdyb3RlOg0KVGhhbmtzIEPDqWRyaWMsDQoNCkkgdXNlZCB0aGUgbmV0d29ya2N0bCBz
-dGF0dXMgZXRoMCBjb21tYW5kIHRoYXQgcG9pbnRlZCBtZSB0byB0aGUgZmlsZSBhdCAvbGliL3N5
-c3RlbS9uZXR3b3JrLzQwLWV0aDAubmV0d29yaw0KDQpJIHRoZW4gZWRpdGVkIHRoaXMgZmlsZSB0
-byByZW1vdmUgdGhlIERIQ1Agc2VjdGlvbnMgYW5kIHNldCB0aGUgYWRkcmVzcyBhdCAxOTIuMTY4
-LjEuNjAvMjQ8aHR0cDovLzE5Mi4xNjguMS42MC8yND4uDQoNCkxvb2tzIHRvIGJlIHdvcmtpbmcg
-Z3JlYXQsDQoNCk1hcmsNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IFVTUlAt
-dXNlcnMgPHVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNl
-cnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb20+PiBPbiBCZWhhbGYgT2YgQ8OpZHJpYyBIYW5ub3Rp
-ZXIgdmlhIFVTUlAtdXNlcnMNClNlbnQ6IDE1IEphbnVhcnkgMjAyMSAxMzoxOA0KVG86IHVzcnAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4N
-ClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gU2V0dGluZyBFMzIwIHRvIHVzZSBmaXhlZCBJUCBB
-ZGRyZXNzIG9uIFJKNDUgZXRoMA0KDQpPbiAxNS8wMS8yMSAwOTowNiwgTWFyayBEIHZpYSBVU1JQ
-LXVzZXJzIHdyb3RlOg0KPiBNeSBFMzIwIGRvZXNuJ3QgaGF2ZSB0aGF0IGZvbGRlciwNCj4gdGhl
-cmUgaXMgb25lICIvZXRjL3N5c3RlbWQvbmV0d29yay8iDQo+IGJ1dCBubyAiL2V0Yy9zeXN0ZW1k
-L25ldHdvcmtkLyIgKGkuZS4gbm8gZCBhZnRlciBuZXR3b3JrKS4NCj4gSSB0aGluayBtYXliZSBp
-cyBhIHR5cGluZyBlcnJvciBpbiB0aGUgbWFudWFsIGFuZCB0aGUgZm9sZGVyIG5hbWUgc2hvdWxk
-IGJlIG5ldHdvcmsuDQo+DQo+IFRoZSBmb2xkZXIgYXQgdGhpcyBsb2NhdGlvbiBpcyBlbXB0eSwg
-c28gZG9lc24ndCBjb250YWluIHRoZSBTRlArIHNldHRpbmcgZmlsZS4NCg0KQXJlIHlvdSBzdXJl
-IGl0IGlzIG1hbmFnZWQvY29uZmlndXJlZCBieSBzeXN0ZW1kLW5ldHdvcmtkPw0KWW91IGNhbiBj
-aGVjayBpdHMgc3RhdHVzIGJ5IHJ1bm5pbmcgIm5ldHdvcmtjdGwgc3RhdHVzIGV0aDAiLg0KDQo+
-IEkgaGF2ZSBjcmVhdGVkIGluIHRoaXMgZm9sZGVyIGEgZmlsZSBldGgwLm5ldHdvcmsgd2l0aCB0
-aGUgZm9sbG93aW5nIGNvbnRlbnQ6DQo+DQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K
-PiBbTWF0Y2hdDQo+IE5hbWU9ZXRoMA0KPg0KPiBbTmV0d29ya10NCj4gQWRkcmVzcz0xOTIuMTY4
-LjEuNjANCg0KRnJvbSBzeXN0ZW1kLm5ldHdvcmsoNSksIEkgdGhpbmsgeW91IGhhdmUgdG8gc3Bl
-Y2lmeSB0aGUgbmV0bWFzaywgZWc6DQpBZGRyZXNzPTE5Mi4xNjguMS42MC8yNDxodHRwOi8vMTky
-LjE2OC4xLjYwLzI0Pg0KDQpEbyBub3QgZm9yZ2V0IHRvIHJlbG9hZCwgZWl0aGVyIHVzaW5nICdu
-ZXR3b3JrY3RsIHJlbG9hZCcgb3IgJ3N5c3RlbWN0bCByZXN0YXJ0IHN5c3RlbWQtbmV0d29ya2Qn
-Lg0KDQotLQ0KDQpDw6lkcmljIEhhbm5vdGllcg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QNClVTUlAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCmh0
-dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0
-dHVzLmNvbQ0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCiBUaGlzIGVtYWlsIGFu
-ZCBhbnkgZmlsZXMgdHJhbnNtaXR0ZWQgd2l0aCBpdCBhcmUgY29uZmlkZW50aWFsIGFuZCBpbnRl
-bmRlZCBzb2xlbHkgZm9yIHRoZSB1c2Ugb2YgdGhlIGluZGl2aWR1YWwgb3IgZW50aXR5IHRvIHdo
-b20gdGhleSBhcmUgYWRkcmVzc2VkLiBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIGVtYWlsIGlu
-IGVycm9yIHBsZWFzZSBub3RpZnkgdGhlIHN5c3RlbSBtYW5hZ2VyLg0KDQpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxp
-c3QNClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbT4NCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVz
-ZXJzX2xpc3RzLmV0dHVzLmNvbQ0K
+Hi all,
 
---_000_LNXP123MB3724CAA4081236ADFEC4AE8ECAA40LNXP123MB3724GBRP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I have tried to install a custom OOT RFNoC block created using the
+rfnocmodtool.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
-Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
-OnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25h
-bC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5k
-b3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0K
-CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdl
-OkVOLVVTO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCglt
-YXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7
-cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
-CjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48
-IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0
-PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5
-b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tR0IiIGxpbms9
-ImJsdWUiIHZsaW5rPSJwdXJwbGUiIHN0eWxlPSJ3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8ZGl2
-IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5J4oCZbSBydW5uaW5nIFVIRCA0LjAuMC4wLjA8
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPlRoZSBzb2x1dGlvbiBJIGhhdmUgd2l0aCB0aGUg
-bW9kaWZpZWQgZmlsZSBhdA0KPC9zcGFuPi9saWIvc3lzdGVtL25ldHdvcmsvNDAtZXRoMC5uZXR3
-b3JrIHNlZW1zIHRvIGJlIHdvcmtpbmcgT2suIE1heWJlIHRoZXJl4oCZcyBzb21ld2hlcmUgZWxz
-ZSBJIGNvdWxkIHBsYWNlIGEgY29uZmlndXJhdGlvbiBmaWxlIHRoYXQgZG9lc27igJl0IHJlcXVp
-cmUgdGhlIHN5c3RlbSBkZWZhdWx0IHRvIGJlIG1vZGlmaWVkLjxvOnA+PC9vOnA+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+TWFyazxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpF
-Ti1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEg
-MS4wcHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-Yj48c3BhbiBsYW5nPSJFTi1VUyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIj4g
-TWljaGFlbCBEaWNrZW5zICZsdDttaWNoYWVsLmRpY2tlbnNAZXR0dXMuY29tJmd0Ow0KPGJyPg0K
-PGI+U2VudDo8L2I+IDE1IEphbnVhcnkgMjAyMSAxNjoxMDxicj4NCjxiPlRvOjwvYj4gTWFyayBE
-ICZsdDttZDk2NEBobWdjYy5nb3YudWsmZ3Q7PGJyPg0KPGI+Q2M6PC9iPiB1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbTxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIFNldHRp
-bmcgRTMyMCB0byB1c2UgZml4ZWQgSVAgQWRkcmVzcyBvbiBSSjQ1IGV0aDA8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5XaGF0IHZlcnNpb24gb2Yg
-VUhEIGFyZSB5b3UgdXNpbmc/IERpZmZlcmVudCBVSEQgdmVyc2lvbnMgcHJvdmlkZSBkaWZmZXJl
-bnQgZmlsZXN5c3RlbXMsIHdoaWNoIGNvbmZpZ3VyZSBuZXR3b3JraW5nIGRpZmZlcmVudGx5LiAt
-IE1MRDxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+
-DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+T24gRnJpLCBKYW4gMTUsIDIwMjEgYXQgOTowMSBBTSBNYXJrIEQgdmlhIFVT
-UlAtdXNlcnMgJmx0OzxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4N
-CjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlk
-ICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowY20gMGNtIDBjbSA2LjBwdDttYXJnaW4tbGVmdDo0Ljhw
-dDttYXJnaW4tcmlnaHQ6MGNtIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyBDw6lkcmlj
-LDxicj4NCjxicj4NCkkgdXNlZCB0aGUgbmV0d29ya2N0bCBzdGF0dXMgZXRoMCBjb21tYW5kIHRo
-YXQgcG9pbnRlZCBtZSB0byB0aGUgZmlsZSBhdCAvbGliL3N5c3RlbS9uZXR3b3JrLzQwLWV0aDAu
-bmV0d29yazxicj4NCjxicj4NCkkgdGhlbiBlZGl0ZWQgdGhpcyBmaWxlIHRvIHJlbW92ZSB0aGUg
-REhDUCBzZWN0aW9ucyBhbmQgc2V0IHRoZSBhZGRyZXNzIGF0IDxhIGhyZWY9Imh0dHA6Ly8xOTIu
-MTY4LjEuNjAvMjQiIHRhcmdldD0iX2JsYW5rIj4NCjE5Mi4xNjguMS42MC8yNDwvYT4uPGJyPg0K
-PGJyPg0KTG9va3MgdG8gYmUgd29ya2luZyBncmVhdCw8YnI+DQo8YnI+DQpNYXJrPGJyPg0KPGJy
-Pg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS08YnI+DQpGcm9tOiBVU1JQLXVzZXJzICZsdDs8
-YSBocmVmPSJtYWlsdG86dXNycC11c2Vycy1ib3VuY2VzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0
-PSJfYmxhbmsiPnVzcnAtdXNlcnMtYm91bmNlc0BsaXN0cy5ldHR1cy5jb208L2E+Jmd0OyBPbiBC
-ZWhhbGYgT2YgQ8OpZHJpYyBIYW5ub3RpZXIgdmlhIFVTUlAtdXNlcnM8YnI+DQpTZW50OiAxNSBK
-YW51YXJ5IDIwMjEgMTM6MTg8YnI+DQpUbzogPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
-L2E+PGJyPg0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBTZXR0aW5nIEUzMjAgdG8gdXNlIGZp
-eGVkIElQIEFkZHJlc3Mgb24gUko0NSBldGgwPGJyPg0KPGJyPg0KT24gMTUvMDEvMjEgMDk6MDYs
-IE1hcmsgRCB2aWEgVVNSUC11c2VycyB3cm90ZTo8YnI+DQomZ3Q7IE15IEUzMjAgZG9lc24ndCBo
-YXZlIHRoYXQgZm9sZGVyLDxicj4NCiZndDsgdGhlcmUgaXMgb25lICZxdW90Oy9ldGMvc3lzdGVt
-ZC9uZXR3b3JrLyZxdW90Ozxicj4NCiZndDsgYnV0IG5vICZxdW90Oy9ldGMvc3lzdGVtZC9uZXR3
-b3JrZC8mcXVvdDsgKGkuZS4gbm8gZCBhZnRlciBuZXR3b3JrKS48YnI+DQomZ3Q7IEkgdGhpbmsg
-bWF5YmUgaXMgYSB0eXBpbmcgZXJyb3IgaW4gdGhlIG1hbnVhbCBhbmQgdGhlIGZvbGRlciBuYW1l
-IHNob3VsZCBiZSBuZXR3b3JrLjxicj4NCiZndDs8YnI+DQomZ3Q7IFRoZSBmb2xkZXIgYXQgdGhp
-cyBsb2NhdGlvbiBpcyBlbXB0eSwgc28gZG9lc24ndCBjb250YWluIHRoZSBTRlArIHNldHRpbmcg
-ZmlsZS48YnI+DQo8YnI+DQpBcmUgeW91IHN1cmUgaXQgaXMgbWFuYWdlZC9jb25maWd1cmVkIGJ5
-IHN5c3RlbWQtbmV0d29ya2Q/PGJyPg0KWW91IGNhbiBjaGVjayBpdHMgc3RhdHVzIGJ5IHJ1bm5p
-bmcgJnF1b3Q7bmV0d29ya2N0bCBzdGF0dXMgZXRoMCZxdW90Oy48YnI+DQo8YnI+DQomZ3Q7IEkg
-aGF2ZSBjcmVhdGVkIGluIHRoaXMgZm9sZGVyIGEgZmlsZSBldGgwLm5ldHdvcmsgd2l0aCB0aGUg
-Zm9sbG93aW5nIGNvbnRlbnQ6PGJyPg0KJmd0Ozxicj4NCiZndDsgLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tPGJyPg0KJmd0OyBbTWF0Y2hdPGJyPg0KJmd0OyBOYW1lPWV0aDA8YnI+DQomZ3Q7
-PGJyPg0KJmd0OyBbTmV0d29ya108YnI+DQomZ3Q7IEFkZHJlc3M9MTkyLjE2OC4xLjYwPGJyPg0K
-PGJyPg0KRnJvbSBzeXN0ZW1kLm5ldHdvcmsoNSksIEkgdGhpbmsgeW91IGhhdmUgdG8gc3BlY2lm
-eSB0aGUgbmV0bWFzaywgZWc6PGJyPg0KQWRkcmVzcz08YSBocmVmPSJodHRwOi8vMTkyLjE2OC4x
-LjYwLzI0IiB0YXJnZXQ9Il9ibGFuayI+MTkyLjE2OC4xLjYwLzI0PC9hPjxicj4NCjxicj4NCkRv
-IG5vdCBmb3JnZXQgdG8gcmVsb2FkLCBlaXRoZXIgdXNpbmcgJ25ldHdvcmtjdGwgcmVsb2FkJyBv
-ciAnc3lzdGVtY3RsIHJlc3RhcnQgc3lzdGVtZC1uZXR3b3JrZCcuPGJyPg0KPGJyPg0KLS08YnI+
-DQo8YnI+DQpDw6lkcmljIEhhbm5vdGllcjxicj4NCjxicj4NCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3Q8
-YnI+DQo8YSBocmVmPSJtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0i
-X2JsYW5rIj5VU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8YSBocmVmPSJodHRw
-Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
-cy5jb20iIHRhcmdldD0iX2JsYW5rIj5odHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
-dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb208L2E+PGJyPg0KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX188YnI+DQombmJzcDtUaGlzIGVtYWlsIGFuZCBhbnkgZmlsZXMgdHJh
-bnNtaXR0ZWQgd2l0aCBpdCBhcmUgY29uZmlkZW50aWFsIGFuZCBpbnRlbmRlZCBzb2xlbHkgZm9y
-IHRoZSB1c2Ugb2YgdGhlIGluZGl2aWR1YWwgb3IgZW50aXR5IHRvIHdob20gdGhleSBhcmUgYWRk
-cmVzc2VkLiBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIGVtYWlsIGluIGVycm9yIHBsZWFzZSBu
-b3RpZnkgdGhlIHN5c3RlbSBtYW5hZ2VyLjxicj4NCjxicj4NCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3Q8
-YnI+DQo8YSBocmVmPSJtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0i
-X2JsYW5rIj5VU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8YSBocmVmPSJodHRw
-Oi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1
-cy5jb20iIHRhcmdldD0iX2JsYW5rIj5odHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlz
-dGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb208L2E+PG86cD48L286cD48L3A+DQo8L2Js
-b2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
-
---_000_LNXP123MB3724CAA4081236ADFEC4AE8ECAA40LNXP123MB3724GBRP_--
+I've successfully created a module with my custom block, modifying the
+verilog file created by the tool (
+*rfnoc-test/rfnoc/fpga/rfnoc_block_myblock/rfnoc_block_myblock.v*) to
+include the top level of my code.
+My code is written in VHDL and has some other VHDL modules instanced in the
+top level, so I must include these VHDL files (top level and dependencies)
+in the Makefile.srcs included in
+*rfnoc-test/rfnoc/fpga/rfnoc_block_myblock/*
+I have included these sources files in the same folder as the noc_shell and
+block verilog files, so my Makefile.srcs is like this:
 
 
---===============4674544835287607542==
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*# RFNoC Block Sources# Here, list all the files that are necessary to
+synthesize this block. Don't# include testbenches!# Make sure that the
+source files are nicely detectable by a regex. Best to put# one on each
+line.# The first argument to addprefix is the current path to this
+Makefile, so the# path list is always absolute, regardless of from where
+we're including or# calling this file. RFNOC_OOT_SRCS needs to be a simply
+expanded variable# (not a recursively expanded variable), and we take care
+of that in the build# infrastructure.RFNOC_OOT_SRCS += $(addprefix $(dir
+$(abspath $(lastword $(MAKEFILE_LIST)))), \rfnoc_block_myblock.v
+\noc_shell_myblock.v \top_level.vhd \file_1.vhd \file_2.vhd \file_3.vhd \)*
+
+To install my block I did the following steps:
+1. Create a "build" directory in the rfnoc-test folder
+2. cd build
+3. cmake -DUHD_FPGA_DIR=~/rfnoc/src/uhd/fpga/ ../
+4. make
+5. sudo make install
+
+In this last step, make said that there were no "top_level.v" found. It
+took the wrong extension of the file, so I looked at the
+/rfnoc-test/build/rfnoc/fpga/rfnoc_block_myblock/cmake_install.cmake and
+saw that at the end of this file the included sources were named wrong. For
+example, the extensions were .v instead of .vhd and some names of files
+that have numbers or uppercase letters were incomplete.
+
+I have looked at the CMakelists.txt in the rfnoc-test folder and, in line
+212 there is a regular expression to include the sources files, which I
+think doesn't include ".vhd" possible extensions or names containing
+numbers or uppercases:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*Helper macro to register an RFNoC block directory.# Such a directory must
+always have a Makefiles.srcs containing all the# required HDL files for
+synthesis, and optionally a Makefile file for running# the testbench.# The
+NOTESTBENCH argument can be used to skip the testbench target
+generation.macro(RFNOC_REGISTER_BLOCK_DIR)
+cmake_parse_arguments(_rfnoc_block "NOTESTBENCH" "" "" ${ARGN})
+get_filename_component(_blk_name "${CMAKE_CURRENT_SOURCE_DIR}" NAME)
+message(STATUS "Registering RFNoC block: ${_blk_name}")    file(READ
+${CMAKE_CURRENT_SOURCE_DIR}/Makefile.srcs _makefile_srcs)    list(APPEND
+_block_src_files "Makefile.srcs")    string(REGEX MATCHALL "[a-z_]+\\.v"
+_src_files ${_makefile_srcs})    foreach(_src_file ${_src_files})
+string(STRIP "${_src_file}" _src_file})        list(APPEND _block_src_files
+"${_src_file}")    endforeach()    install(FILES ${_block_src_files}
+DESTINATION ${PROJECT_DATA_DIR}/fpga/${_blk_name}        COMPONENT fpga)
+RFNOC_ADD_TB_DIR()endmacro()*
+
+If I change this regex by *"**[a-z_A-Z0-9]+\\.[vhd]+"  *it works, and the
+module is installed.
+
+Is this a known bug or maybe I have included my sources in a wrong location?
+
+Kind Regards,
+
+Maria
+
+--0000000000004f61e405b9407254
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I have tried to inst=
+all a custom OOT RFNoC block created using the rfnocmodtool.</div><div><br>=
+</div><div>I&#39;ve successfully created a module with my custom block, mod=
+ifying the verilog file created by the tool (<i>rfnoc-test/rfnoc/fpga/rfnoc=
+_block_myblock/rfnoc_block_myblock.v</i>) to include the top level of my co=
+de.</div><div>My code is written in VHDL and has some other VHDL modules in=
+stanced in the top level, so I must include these VHDL files (top level and=
+ dependencies) in the Makefile.srcs included in <i>rfnoc-test/rfnoc/fpga/rf=
+noc_block_myblock/</i></div><div>I have included these sources files in the=
+ same folder as the noc_shell and block verilog files, so my Makefile.srcs =
+is like this:</div><div><br></div><div><i># RFNoC Block Sources<br># Here, =
+list all the files that are necessary to synthesize this block. Don&#39;t<b=
+r># include testbenches!<br># Make sure that the source files are nicely de=
+tectable by a regex. Best to put<br># one on each line.<br># The first argu=
+ment to addprefix is the current path to this Makefile, so the<br># path li=
+st is always absolute, regardless of from where we&#39;re including or<br>#=
+ calling this file. RFNOC_OOT_SRCS needs to be a simply expanded variable<b=
+r># (not a recursively expanded variable), and we take care of that in the =
+build<br># infrastructure.<br>RFNOC_OOT_SRCS +=3D $(addprefix $(dir $(abspa=
+th $(lastword $(MAKEFILE_LIST)))), \<br>rfnoc_block_myblock.v \<br>noc_shel=
+l_myblock.v \<br>top_level.vhd \<br>file_1.vhd \<br>file_2.vhd \<br>file_3.=
+vhd \<br>)</i></div><div><i><br></i></div><div>To install my block I did th=
+e following steps:</div><div>1. Create a &quot;build&quot; directory in the=
+ rfnoc-test folder</div><div>2. cd build<br></div><div>3. cmake -DUHD_FPGA_=
+DIR=3D~/rfnoc/src/uhd/fpga/ ../</div><div>4. make</div><div>5. sudo make in=
+stall</div><div><br></div><div>In this last step, make said that there were=
+ no &quot;top_level.v&quot; found. It took the wrong extension of the file,=
+ so I looked at the /rfnoc-test/build/rfnoc/fpga/rfnoc_block_myblock/cmake_=
+install.cmake and saw that at the end of this file the included sources wer=
+e named wrong. For example, the extensions were .v instead of .vhd and some=
+ names of files that have numbers or uppercase letters were incomplete.</di=
+v><br><div>I have looked at the CMakelists.txt in the rfnoc-test folder and=
+, in line 212 there is a regular expression to include the sources files, w=
+hich I think doesn&#39;t include &quot;.vhd&quot; possible extensions or na=
+mes containing numbers or uppercases:</div><div><br></div><div>=C2=A0 <i>He=
+lper macro to register an RFNoC block directory.<br># Such a directory must=
+ always have a Makefiles.srcs containing all the<br># required HDL files fo=
+r synthesis, and optionally a Makefile file for running<br># the testbench.=
+<br># The NOTESTBENCH argument can be used to skip the testbench target gen=
+eration.<br>macro(RFNOC_REGISTER_BLOCK_DIR)<br>=C2=A0 =C2=A0 cmake_parse_ar=
+guments(_rfnoc_block &quot;NOTESTBENCH&quot; &quot;&quot; &quot;&quot; ${AR=
+GN})<br>=C2=A0 =C2=A0 get_filename_component(_blk_name &quot;${CMAKE_CURREN=
+T_SOURCE_DIR}&quot; NAME)<br>=C2=A0 =C2=A0 message(STATUS &quot;Registering=
+ RFNoC block: ${_blk_name}&quot;)<br>=C2=A0 =C2=A0 file(READ ${CMAKE_CURREN=
+T_SOURCE_DIR}/Makefile.srcs _makefile_srcs)<br>=C2=A0 =C2=A0 list(APPEND _b=
+lock_src_files &quot;Makefile.srcs&quot;)<br>=C2=A0 =C2=A0<b> string(REGEX =
+MATCHALL &quot;[a-z_]+\\.v&quot; _src_files ${_makefile_srcs})</b><br>=C2=
+=A0 =C2=A0 foreach(_src_file ${_src_files})<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+string(STRIP &quot;${_src_file}&quot; _src_file})<br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 list(APPEND _block_src_files &quot;${_src_file}&quot;)<br>=C2=A0 =C2=
+=A0 endforeach()<br>=C2=A0 =C2=A0 install(FILES ${_block_src_files}<br>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 DESTINATION ${PROJECT_DATA_DIR}/fpga/${_blk_name}<=
+br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 COMPONENT fpga)<br>=C2=A0 =C2=A0 RFNOC_ADD_T=
+B_DIR()<br>endmacro()</i></div><div><i><br></i></div><div>If I change this =
+regex by <b>&quot;</b><i><b>[a-z_A-Z0-9]+\\.[vhd]+&quot;=C2=A0 </b></i>it w=
+orks, and the module is installed. <br></div><div><br></div><div>Is this a =
+known bug or maybe I have included my sources in a wrong location?</div><di=
+v><br></div><div>Kind Regards,</div><div><br></div><div>Maria<br></div><div=
+><br></div><div><br><i><b></b></i></div><div><i></i></div></div>
+
+--0000000000004f61e405b9407254--
+
+
+--===============4807809107299631101==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -322,5 +263,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4674544835287607542==--
+--===============4807809107299631101==--
 
