@@ -2,48 +2,75 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A1AC2FB62D
-	for <lists+usrp-users@lfdr.de>; Tue, 19 Jan 2021 14:02:59 +0100 (CET)
-Received: from [::1] (port=55276 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB7632FBDB7
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Jan 2021 18:32:56 +0100 (CET)
+Received: from [::1] (port=57704 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l1qet-0004oy-ME; Tue, 19 Jan 2021 08:02:55 -0500
-Received: from mail-ed1-f42.google.com ([209.85.208.42]:46000)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <mamuki92@gmail.com>) id 1l1qeq-0004jk-1k
- for usrp-users@lists.ettus.com; Tue, 19 Jan 2021 08:02:52 -0500
-Received: by mail-ed1-f42.google.com with SMTP id f1so7278647edr.12
- for <usrp-users@lists.ettus.com>; Tue, 19 Jan 2021 05:02:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=bdDfJ4e+bZaSqIXln7neNH1kUY3LWVxh4qj+ECmy5DQ=;
- b=SvtaUQKhdE+gqEzV8XKvBNh347E5kHK4xR5R1XVfyKJnDy9QQ0UfJ17EZ1Cv6zjQDf
- +2A/8igTJaszexUF7SmgFJ5o4tT0uOz8pP8wlfzLcy03RXaulyVrzco1dMcni/+j5yOo
- XgZa1vCICvy5GFfMtZ6B+mDAOvKfJFPu5tNFberSaKOzWMGSXe8CqXmiZmMbCIR2BIIx
- iqRD8HyS6cXl/9hsz33QZBHsZeNdak9uIWdwo6tnZkvL2OsqADd9Rm15gifPdCSz+8J0
- kl1bkvd2JUcJtXHdGkff3kVVux0VcNGVmXu0S1x5BE5QcXDKTgCqXwnwOdgVtfF2pu5q
- LTDA==
+	id 1l1usA-0004ac-BD; Tue, 19 Jan 2021 12:32:54 -0500
+Received: from mx0a-00364e01.pphosted.com ([148.163.135.74]:30618)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <mpk2138@columbia.edu>)
+ id 1l1us5-0004Tk-Uh
+ for usrp-users@lists.ettus.com; Tue, 19 Jan 2021 12:32:50 -0500
+Received: from pps.filterd (m0167068.ppops.net [127.0.0.1])
+ by mx0a-00364e01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 10JHBh18017072
+ for <usrp-users@lists.ettus.com>; Tue, 19 Jan 2021 12:32:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=columbia.edu;
+ h=mime-version : from
+ : date : message-id : subject : to : content-type; s=pps01;
+ bh=lOslx7Bj5BC8MzjSzsBLwagOIhSGvaZTjiGVhT9/DvU=;
+ b=tpdenH6bm2QtVpTEnl+q2OLW92B+WqP0EOg6WiHLtUB9fRiqi4HUK2D6aVHeCyYdSXBq
+ GfTmNzWLKOLi27jwCpjNhJQQ8OnMMXIyWmY3NlbYb7b3epfctG07BBAjF67OOE+zK0YQ
+ nab+L9eExZJx+MqxQxLk7X12/FoNd5Ase47bsZAG4GGpFyDw3Gbi1uRUmtcHCbFkWJkP
+ Wa6ksQ03M9xwGiPxsVbodIq3YwxnbR0x1xFT/idoesaoMs5pL85HLVnzkGYtvHyXGrhe
+ SpsRp1ZMHrZSOP/WjWxgH9l/6d4jNb9pU1plg986rLSh7mzin0b8X5gOFpdD5ls7g9Ik 5A== 
+Received: from sendprodmail10.cc.columbia.edu (sendprodmail10.cc.columbia.edu
+ [128.59.72.18])
+ by mx0a-00364e01.pphosted.com with ESMTP id 363ua1y756-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <usrp-users@lists.ettus.com>; Tue, 19 Jan 2021 12:32:08 -0500
+Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
+ [209.85.166.71])
+ by sendprodmail10.cc.columbia.edu (8.14.4/8.14.4) with ESMTP id 10JHW7LU064498
+ (version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <usrp-users@lists.ettus.com>; Tue, 19 Jan 2021 12:32:07 -0500
+Received: by mail-io1-f71.google.com with SMTP id m14so7110345ioc.13
+ for <usrp-users@lists.ettus.com>; Tue, 19 Jan 2021 09:32:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=bdDfJ4e+bZaSqIXln7neNH1kUY3LWVxh4qj+ECmy5DQ=;
- b=GyPOZkpEuolfTVo7kQoQgRNqxwpdM2apwt2oQ1qbidLr8ookHrl6LnYPGKm1zJwJ5Q
- 2v3pqjPYr/5Rzskv3V/Hppgj0wOw5x2kjYROE4sWF0Imre3ORNmTPo7Q3CAIYgqbPZ+1
- xHgpBX/XSuAZ5qrReZ4KaMgZqVwltqvMUzcgxGaWoJ9xZEZjdirR5IPhvo40tZY6n0Th
- ysdm4L2Djd0ukAPuPIF1b4hcKjyNQZ6penZ67TNN3HCA9FKZv+4qevJUlJ3HrwORzpB0
- cHmsWByBFgtAwIGnY3N5QSEEkq7vYNSRkRceVOTfXoqMovua1StPGde+Zi4lZ0erAhuZ
- /MKA==
-X-Gm-Message-State: AOAM533FP5gpp9XPXm0U3YG0zVcE/ArBWMlkDh+iU3x959HKSipLkv6D
- DH/1g+aNKpALjrKapmNw/D5fpqX8vNmIrgbid4+63GL2nzjXWQ==
-X-Google-Smtp-Source: ABdhPJwv/EXvsb6TmdziuFWF+Mfq/QMMeRyHnWauaSbVIvY0RAA+SZA07D7/9mIzpS6aOb6GFxKTd1sKKv/n2KkuuPw=
-X-Received: by 2002:aa7:cac2:: with SMTP id l2mr3310411edt.141.1611061330402; 
- Tue, 19 Jan 2021 05:02:10 -0800 (PST)
+ bh=lOslx7Bj5BC8MzjSzsBLwagOIhSGvaZTjiGVhT9/DvU=;
+ b=GVSXoOR08zzWkLv3rykCYOSd8UlLsyDiR70hVeux62JwG27OEgKTP490CxxMLzR9IR
+ yEjYx3F9ZwBRNBrtJXSqgzRm46G2tn3Rd7uc+uVYsp1RYHhEXxsmClw9VQqcI5kzHWm7
+ 1y1JMB5P0EMwmF33ZSs7gK8G8nftQkbbO7gKP92bypzLtfogpKcbQjTMRWNiuHohMurX
+ YEOtVIry91+rneI2Wota9T9/h6W2rif3zWxi/I4lUWBOpd1avtthZW3gUGGmiZw5+CGM
+ 27ZZ9OwV8d3Bfjl1knf36ZoAVY3JSj6cZ04KWlcU2iRSavmTfH3xnJReNo/e2ToqwYSH
+ G0pw==
+X-Gm-Message-State: AOAM532+GD2/bHQawChSZWhx6sCtDyrBHSbmyULErXrYXDcXg5jmGbOJ
+ v+g22l6tXs25wz69AUptnpV6HpVZ6421+1KLkiMuJsKTLqrNMfnQO6czYs96d+vcuWRsBf2Mk5g
+ 7nlOO9micOVGgMtYuOfTV6Gapj6EgXciWQj50JgoM3Yz+
+X-Received: by 2002:a92:b6dd:: with SMTP id m90mr3651197ill.97.1611077526972; 
+ Tue, 19 Jan 2021 09:32:06 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyJRWnlWQEfZC9mEl94/5hEU9guWqdYlktIAT1zIiUAkYHUs2RivNURC4wDIUmABOaTYi2qOFYRqDiGeXtkfWQ=
+X-Received: by 2002:a92:b6dd:: with SMTP id m90mr3651162ill.97.1611077526509; 
+ Tue, 19 Jan 2021 09:32:06 -0800 (PST)
 MIME-Version: 1.0
-Date: Tue, 19 Jan 2021 14:01:58 +0100
-Message-ID: <CAG16vQVvvC7NpD7nEqL5ZML1bg_f5oE2JRBFrRGPt0nJkLi9MQ@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Wrong name of files found when instaling OOT RFNoC
- block
+Date: Tue, 19 Jan 2021 17:31:31 +0000
+Message-ID: <CAGsYvih5a3A7LR0NCV53tmyZSEeodajjGEgngVSFUfA8=9WPqw@mail.gmail.com>
+To: "usrp-users (usrp-users@lists.ettus.com)" <usrp-users@lists.ettus.com>
+X-CU-OB: Yes
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343, 18.0.737
+ definitions=2021-01-19_07:2021-01-18,
+ 2021-01-19 signatures=0
+X-Proofpoint-Spam-Details: rule=inbound_notspam policy=inbound score=0
+ mlxscore=0 priorityscore=1501
+ lowpriorityscore=10 suspectscore=0 clxscore=1015 bulkscore=10 spamscore=0
+ adultscore=0 mlxlogscore=691 phishscore=0 impostorscore=10 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2101190097
+Subject: [USRP-users] Guaranteeing synchronous startup of X310 and N210
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +82,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Maria_Mu=C3=B1oz_via_USRP-users?= <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4807809107299631101=="
+From: Manav Kohli via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Manav Kohli <mpk2138@columbia.edu>
+Content-Type: multipart/mixed; boundary="===============0936665638361884695=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,188 +98,53 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4807809107299631101==
-Content-Type: multipart/alternative; boundary="0000000000004f61e405b9407254"
+--===============0936665638361884695==
+Content-Type: multipart/alternative; boundary="000000000000ac6cd505b94437fc"
 
---0000000000004f61e405b9407254
+--000000000000ac6cd505b94437fc
 Content-Type: text/plain; charset="UTF-8"
 
-Hi all,
+Dear USRP mailing list,
 
-I have tried to install a custom OOT RFNoC block created using the
-rfnocmodtool.
+Hope everyone is well. I have a GNU radio flowgraph with a USRP N210 and
+USRP X310 synchronized with the Octoclock. When starting the flowgraph, I
+can see a random sample offset between the N210 and X310. As the two radios
+are synchronized, the sample offset does not change for the duration of
+running the flowgraph, but it is random every time the flowgraph is
+started. This is not amenable to the time slotted system I am trying to
+work on.
 
-I've successfully created a module with my custom block, modifying the
-verilog file created by the tool (
-*rfnoc-test/rfnoc/fpga/rfnoc_block_myblock/rfnoc_block_myblock.v*) to
-include the top level of my code.
-My code is written in VHDL and has some other VHDL modules instanced in the
-top level, so I must include these VHDL files (top level and dependencies)
-in the Makefile.srcs included in
-*rfnoc-test/rfnoc/fpga/rfnoc_block_myblock/*
-I have included these sources files in the same folder as the noc_shell and
-block verilog files, so my Makefile.srcs is like this:
+I am aware that the X310 and N210 may not be simultaneously used in a USRP
+Sink or USRP Source block (or in UHD, in a multi_usrp object). With this in
+mind, is it even possible to guarantee that the X310 and N210 have the same
+startup time, namely that they begin transmitting and receiving at exactly
+the same time?
 
+Thank you very much!
+Manav
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*# RFNoC Block Sources# Here, list all the files that are necessary to
-synthesize this block. Don't# include testbenches!# Make sure that the
-source files are nicely detectable by a regex. Best to put# one on each
-line.# The first argument to addprefix is the current path to this
-Makefile, so the# path list is always absolute, regardless of from where
-we're including or# calling this file. RFNOC_OOT_SRCS needs to be a simply
-expanded variable# (not a recursively expanded variable), and we take care
-of that in the build# infrastructure.RFNOC_OOT_SRCS += $(addprefix $(dir
-$(abspath $(lastword $(MAKEFILE_LIST)))), \rfnoc_block_myblock.v
-\noc_shell_myblock.v \top_level.vhd \file_1.vhd \file_2.vhd \file_3.vhd \)*
-
-To install my block I did the following steps:
-1. Create a "build" directory in the rfnoc-test folder
-2. cd build
-3. cmake -DUHD_FPGA_DIR=~/rfnoc/src/uhd/fpga/ ../
-4. make
-5. sudo make install
-
-In this last step, make said that there were no "top_level.v" found. It
-took the wrong extension of the file, so I looked at the
-/rfnoc-test/build/rfnoc/fpga/rfnoc_block_myblock/cmake_install.cmake and
-saw that at the end of this file the included sources were named wrong. For
-example, the extensions were .v instead of .vhd and some names of files
-that have numbers or uppercase letters were incomplete.
-
-I have looked at the CMakelists.txt in the rfnoc-test folder and, in line
-212 there is a regular expression to include the sources files, which I
-think doesn't include ".vhd" possible extensions or names containing
-numbers or uppercases:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*Helper macro to register an RFNoC block directory.# Such a directory must
-always have a Makefiles.srcs containing all the# required HDL files for
-synthesis, and optionally a Makefile file for running# the testbench.# The
-NOTESTBENCH argument can be used to skip the testbench target
-generation.macro(RFNOC_REGISTER_BLOCK_DIR)
-cmake_parse_arguments(_rfnoc_block "NOTESTBENCH" "" "" ${ARGN})
-get_filename_component(_blk_name "${CMAKE_CURRENT_SOURCE_DIR}" NAME)
-message(STATUS "Registering RFNoC block: ${_blk_name}")    file(READ
-${CMAKE_CURRENT_SOURCE_DIR}/Makefile.srcs _makefile_srcs)    list(APPEND
-_block_src_files "Makefile.srcs")    string(REGEX MATCHALL "[a-z_]+\\.v"
-_src_files ${_makefile_srcs})    foreach(_src_file ${_src_files})
-string(STRIP "${_src_file}" _src_file})        list(APPEND _block_src_files
-"${_src_file}")    endforeach()    install(FILES ${_block_src_files}
-DESTINATION ${PROJECT_DATA_DIR}/fpga/${_blk_name}        COMPONENT fpga)
-RFNOC_ADD_TB_DIR()endmacro()*
-
-If I change this regex by *"**[a-z_A-Z0-9]+\\.[vhd]+"  *it works, and the
-module is installed.
-
-Is this a known bug or maybe I have included my sources in a wrong location?
-
-Kind Regards,
-
-Maria
-
---0000000000004f61e405b9407254
+--000000000000ac6cd505b94437fc
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I have tried to inst=
-all a custom OOT RFNoC block created using the rfnocmodtool.</div><div><br>=
-</div><div>I&#39;ve successfully created a module with my custom block, mod=
-ifying the verilog file created by the tool (<i>rfnoc-test/rfnoc/fpga/rfnoc=
-_block_myblock/rfnoc_block_myblock.v</i>) to include the top level of my co=
-de.</div><div>My code is written in VHDL and has some other VHDL modules in=
-stanced in the top level, so I must include these VHDL files (top level and=
- dependencies) in the Makefile.srcs included in <i>rfnoc-test/rfnoc/fpga/rf=
-noc_block_myblock/</i></div><div>I have included these sources files in the=
- same folder as the noc_shell and block verilog files, so my Makefile.srcs =
-is like this:</div><div><br></div><div><i># RFNoC Block Sources<br># Here, =
-list all the files that are necessary to synthesize this block. Don&#39;t<b=
-r># include testbenches!<br># Make sure that the source files are nicely de=
-tectable by a regex. Best to put<br># one on each line.<br># The first argu=
-ment to addprefix is the current path to this Makefile, so the<br># path li=
-st is always absolute, regardless of from where we&#39;re including or<br>#=
- calling this file. RFNOC_OOT_SRCS needs to be a simply expanded variable<b=
-r># (not a recursively expanded variable), and we take care of that in the =
-build<br># infrastructure.<br>RFNOC_OOT_SRCS +=3D $(addprefix $(dir $(abspa=
-th $(lastword $(MAKEFILE_LIST)))), \<br>rfnoc_block_myblock.v \<br>noc_shel=
-l_myblock.v \<br>top_level.vhd \<br>file_1.vhd \<br>file_2.vhd \<br>file_3.=
-vhd \<br>)</i></div><div><i><br></i></div><div>To install my block I did th=
-e following steps:</div><div>1. Create a &quot;build&quot; directory in the=
- rfnoc-test folder</div><div>2. cd build<br></div><div>3. cmake -DUHD_FPGA_=
-DIR=3D~/rfnoc/src/uhd/fpga/ ../</div><div>4. make</div><div>5. sudo make in=
-stall</div><div><br></div><div>In this last step, make said that there were=
- no &quot;top_level.v&quot; found. It took the wrong extension of the file,=
- so I looked at the /rfnoc-test/build/rfnoc/fpga/rfnoc_block_myblock/cmake_=
-install.cmake and saw that at the end of this file the included sources wer=
-e named wrong. For example, the extensions were .v instead of .vhd and some=
- names of files that have numbers or uppercase letters were incomplete.</di=
-v><br><div>I have looked at the CMakelists.txt in the rfnoc-test folder and=
-, in line 212 there is a regular expression to include the sources files, w=
-hich I think doesn&#39;t include &quot;.vhd&quot; possible extensions or na=
-mes containing numbers or uppercases:</div><div><br></div><div>=C2=A0 <i>He=
-lper macro to register an RFNoC block directory.<br># Such a directory must=
- always have a Makefiles.srcs containing all the<br># required HDL files fo=
-r synthesis, and optionally a Makefile file for running<br># the testbench.=
-<br># The NOTESTBENCH argument can be used to skip the testbench target gen=
-eration.<br>macro(RFNOC_REGISTER_BLOCK_DIR)<br>=C2=A0 =C2=A0 cmake_parse_ar=
-guments(_rfnoc_block &quot;NOTESTBENCH&quot; &quot;&quot; &quot;&quot; ${AR=
-GN})<br>=C2=A0 =C2=A0 get_filename_component(_blk_name &quot;${CMAKE_CURREN=
-T_SOURCE_DIR}&quot; NAME)<br>=C2=A0 =C2=A0 message(STATUS &quot;Registering=
- RFNoC block: ${_blk_name}&quot;)<br>=C2=A0 =C2=A0 file(READ ${CMAKE_CURREN=
-T_SOURCE_DIR}/Makefile.srcs _makefile_srcs)<br>=C2=A0 =C2=A0 list(APPEND _b=
-lock_src_files &quot;Makefile.srcs&quot;)<br>=C2=A0 =C2=A0<b> string(REGEX =
-MATCHALL &quot;[a-z_]+\\.v&quot; _src_files ${_makefile_srcs})</b><br>=C2=
-=A0 =C2=A0 foreach(_src_file ${_src_files})<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-string(STRIP &quot;${_src_file}&quot; _src_file})<br>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 list(APPEND _block_src_files &quot;${_src_file}&quot;)<br>=C2=A0 =C2=
-=A0 endforeach()<br>=C2=A0 =C2=A0 install(FILES ${_block_src_files}<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 DESTINATION ${PROJECT_DATA_DIR}/fpga/${_blk_name}<=
-br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 COMPONENT fpga)<br>=C2=A0 =C2=A0 RFNOC_ADD_T=
-B_DIR()<br>endmacro()</i></div><div><i><br></i></div><div>If I change this =
-regex by <b>&quot;</b><i><b>[a-z_A-Z0-9]+\\.[vhd]+&quot;=C2=A0 </b></i>it w=
-orks, and the module is installed. <br></div><div><br></div><div>Is this a =
-known bug or maybe I have included my sources in a wrong location?</div><di=
-v><br></div><div>Kind Regards,</div><div><br></div><div>Maria<br></div><div=
-><br></div><div><br><i><b></b></i></div><div><i></i></div></div>
+<div dir=3D"ltr">Dear USRP mailing list,<div><br></div><div>Hope everyone i=
+s well. I have a GNU radio flowgraph with a USRP N210 and USRP X310 synchro=
+nized with the Octoclock. When starting the flowgraph, I can see a random s=
+ample offset between the N210 and X310. As the two radios are synchronized,=
+ the sample offset does not change for the duration of running the flowgrap=
+h, but it is random every time the flowgraph is started. This is not amenab=
+le to the time slotted system I am trying to work on.</div><div><br></div><=
+div>I am aware that the X310 and N210 may not be simultaneously used in a U=
+SRP Sink or USRP Source block (or in UHD, in a multi_usrp object). With thi=
+s in mind, is it even possible=C2=A0to guarantee that the X310 and N210 hav=
+e the same startup time, namely that they begin transmitting and receiving =
+at exactly the same time?</div><div><br></div><div>Thank you very much!</di=
+v><div>Manav</div></div>
 
---0000000000004f61e405b9407254--
+--000000000000ac6cd505b94437fc--
 
 
---===============4807809107299631101==
+--===============0936665638361884695==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -263,5 +155,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4807809107299631101==--
+--===============0936665638361884695==--
 
