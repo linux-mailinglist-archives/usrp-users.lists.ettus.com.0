@@ -2,54 +2,50 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCC752FEC64
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Jan 2021 14:58:11 +0100 (CET)
-Received: from [::1] (port=47838 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCE862FEC7F
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Jan 2021 14:59:38 +0100 (CET)
+Received: from [::1] (port=47868 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l2aTQ-0005ch-BJ; Thu, 21 Jan 2021 08:58:08 -0500
-Received: from mail-io1-f49.google.com ([209.85.166.49]:44878)
+	id 1l2aUr-00064A-TP; Thu, 21 Jan 2021 08:59:37 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:44021)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <neel.pandeya@ettus.com>)
- id 1l2aTN-0005O4-39
- for usrp-users@lists.ettus.com; Thu, 21 Jan 2021 08:58:05 -0500
-Received: by mail-io1-f49.google.com with SMTP id h11so4025627ioh.11
- for <usrp-users@lists.ettus.com>; Thu, 21 Jan 2021 05:57:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=xNaC+fRBNptMji580PVnXU5qlHdTsXGW39Rc/nVfef8=;
- b=LMbCffw7K/grD001T8UQp42BJiq3q4AWMCAjU69+RPm7diurS6MnH7yMMkidm+VBbh
- oms0SMbIm+VUfEvNjD1T1GcaH+PmiIwwEQ/xKzA66fw8pesTAx+MGN/ctQ1B8EzQQUyB
- LYGBlRoNR6KLyGOYN6w8rk2ONBjn4oi49pfC2x28ma0t2KlyTWZTKCkBf+dYQxPXKBzD
- w2hagwpER9iVaWIiu/rfYVw5zDanmbvcp6hhm2MZHKoZI4lMcfKi9INi2BT5QCdOyBjh
- ABs0/FjTz+40CnctFoP/4wXAv7Bnj8nRR/k9gMe6dJOuaMq/iZoQdAhZwTqyGYsjT8wP
- Fc6g==
+ (Exim 4.93) (envelope-from <ashutoshsingh7589@gmail.com>)
+ id 1l2aUo-0005rH-9e
+ for usrp-users@lists.ettus.com; Thu, 21 Jan 2021 08:59:34 -0500
+Received: by mail-oi1-f178.google.com with SMTP id q25so2163892oij.10
+ for <usrp-users@lists.ettus.com>; Thu, 21 Jan 2021 05:59:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=BKDfZ3mRoDoG9q5atDZ8hALiV3S9F6Hwr/I26KXvtyw=;
+ b=m7OZOU4Rbq6oVc5gRa4IWpxPg6/t5yXosQtdrY70WrWSqPxUUY27whoLoNZesPqiVu
+ p2dEN7REoCNIqaziniqt+O9w5rZRahIM5t0TLnl56ljFyFhA7BPPZLDO8e9iSmw9Navp
+ ZAjP5O86q8Kw0RTJZm+32oyIAgfm6WBVIWIt9dRY3grYxYj/OROyWQNzM+9JcWlNQJnI
+ lstwD1gj8b5lQniDgXyQZ7DwYFSrptDL1cIRY41UyimzA70xA4cRO1b9w8JXTxb/QT+H
+ kSf4gYfOvPl4UdmRAzgiJ2x49j7rao+Rmv8WOKZRO7h224HPjPKL0ktO0H5+qOKx/cnE
+ 8dkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=xNaC+fRBNptMji580PVnXU5qlHdTsXGW39Rc/nVfef8=;
- b=SLj1XR9dCs/o49BVPqGpAJhz9mCSG/Nj0uRP3u+ZKfAN/8ntxXG3KqpyQS2kU3L8Yo
- n2JIqEZpThRr8Zc9MXGE4WfQRqt3czrMcGh/Mxx6Q5B1BuQ+9RbUMlVu9DFIdQsplyJp
- QgMwckADXNFcQutmZvKHB74ywNd+IFMFjOrWCHVVVm9cddDHjru2qlqkdYi2D9W+2N8Y
- Awuh3pm8Mz68byhE3gUoUez1S8BWAKDm5Qgauc8mbMXA3PluVToDE3f5R5ocxRCw89pk
- tSEWlHS69jYdBGUcq7DHSS1Ld9452tiHbqfBRE7ZeExG586ebKRuRfAzl0OFmuWJfmsb
- bQjA==
-X-Gm-Message-State: AOAM531ZJcomA8MAQoRoa5OYIrnLMemddirclUrF9oYgWPI3lrQUKrH8
- 4ASl7lQVkxO+lbOAC6472Nb4fpkSwYhKTeT8J6qOlG5gr0XYHIKW
-X-Google-Smtp-Source: ABdhPJwejqMxjBjnsigGKEvaSjHoJvUqDgE6yPPk888rvWt5qR8JZzHtLvw6ZkKGNrntVBWBv2cLJsy3ZRExf3MaTsk=
-X-Received: by 2002:a05:6e02:1566:: with SMTP id
- k6mr12069211ilu.19.1611237444210; 
- Thu, 21 Jan 2021 05:57:24 -0800 (PST)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=BKDfZ3mRoDoG9q5atDZ8hALiV3S9F6Hwr/I26KXvtyw=;
+ b=iGQ10lUsJU1Bg6ex380wDXeajyJmVcNawv6640jIHL3ouKrJC4C/n+3GO1iygRoOkr
+ JoUO2mNgzA9/aytCjOi9FZMZsi5dhK0cj6h0IjGnkPENeb5jRSlcKP7wmbgAfJnfh1A6
+ laWjREqNlzCigdTMfVkkt1ETgM4voVkugjCU8YX6dQwAvOSmW/ttIPmnQJim9ub7Role
+ SdTpI1ddy9nnOktCldt8XGt2rjebSRQkTggJwn7PlHC188RkiJBGD0eGGX3pYobkT66O
+ WEOthMjQlshtgxWe3vkKdRQBsmiAq9gKfAlbxDVX2FeNxfZVAdQRjdBQfX0UKlUNfWgT
+ kELQ==
+X-Gm-Message-State: AOAM5311VpbZgvPlPlQyBE0Riu1XFkpNgTXKHjJ6rqrP3UJNGwhDdRIQ
+ t6lXR5k5fM9dgeXKcUYZXUbNKqJ4ZJBwS9s1/3A3SIX8Xnw/fgJT
+X-Google-Smtp-Source: ABdhPJzTSidmgHgrO8I4rrD/r0IXGtuMLJg6CMiWaYen3k8uOjN0tMconfbluF5kOz/YIP5/evLgU71LX0MwNizdcjk=
+X-Received: by 2002:a54:4e87:: with SMTP id c7mr5165838oiy.94.1611237533450;
+ Thu, 21 Jan 2021 05:58:53 -0800 (PST)
 MIME-Version: 1.0
-References: <8fa5f879-0438-325e-f003-53bde14464f0@discreteintegration.ca>
-In-Reply-To: <8fa5f879-0438-325e-f003-53bde14464f0@discreteintegration.ca>
-Date: Thu, 21 Jan 2021 07:56:48 -0600
-Message-ID: <CACaXmv9P8DDtcz6xBxPLmuBTyA+oRnxLXg2Q9goMTR1CinuC_w@mail.gmail.com>
-To: Dominic Schaub <dominic.schaub@discreteintegration.ca>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] RFNoC/GNURadio with USRP-2974
+Date: Thu, 21 Jan 2021 14:58:42 +0100
+Message-ID: <CAO38sJ5uK-QsVKtOEbK=9rwqNR6rooyymMOWOeFmo9o=J8id=Q@mail.gmail.com>
+To: openair5g-user <openair5g-user@lists.eurecom.fr>, 
+ "openair5g-nr@lists.eurecom.fr OAI" <openair5g-nr@lists.eurecom.fr>, 
+ openaircn-user <openaircn-user@lists.eurecom.fr>, usrp-users@lists.ettus.com
+Subject: [USRP-users] RF based OAI ue not connecting with OAI enb
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,9 +57,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Neel Pandeya via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Neel Pandeya <neel.pandeya@ettus.com>
-Content-Type: multipart/mixed; boundary="===============6148032311482017380=="
+From: Ashutosh Singh via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Ashutosh Singh <ashutoshsingh7589@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6349934214847921587=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,100 +73,74 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6148032311482017380==
-Content-Type: multipart/alternative; boundary="00000000000082e7fa05b9697329"
+--===============6349934214847921587==
+Content-Type: multipart/alternative; boundary="000000000000d484a605b9697843"
 
---00000000000082e7fa05b9697329
+--000000000000d484a605b9697843
 Content-Type: text/plain; charset="UTF-8"
 
-Hello Dominic:
+Hi all,
+I am trying to setup OAI UE with OAI enb . I am not able to connect my UE
+to eNB . I feel its a problem of power calibrations . Can any know what all
+power parameters i should use ?
 
-The USRP 2974 is basically a USRP X310 with two UBX daughterboards and a
-GPSDO module, with an internal Intel SoM.  You can install Linux, UHD, GNU
-Radio, RFNoC directly onto the SoM, as you would with a laptop computer.
-There is a KB page for the USRP 2974.  Please let me know if you have any
-further questions.
+I am using B210 USRP for both UE and eNB.
 
-https://kb.ettus.com/USRP-2974
+Command to run UE : ./lte-uesoftmodem.Rel14 -U 1 -C 2685000000 -r 50
+--ue-scan-carrier --ue-txgain 70 --ue-rxgain 80
 
---Neel Pandeya
-
+Command to run eNB: sudo -E targets/bin/lte-softmodem.Rel14 -O
+targets/PROJECTS/GENERIC-LTE-EPC/CONF/enb.band7.tm1.50PRB.usrpb210.conf
+2>&1 | tee FDD-enb.log
 
 
-On Wed, 20 Jan 2021 at 15:16, Dominic Schaub via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Parameters I want to know:
 
-> Hi,
->
-> We just received a USRP-2974 and would like to start working with
-> RFNoC/GNURadio (rather than LabView).  I was hoping that somebody could
-> direct me to a reference for configuring this SDR for RFNoC/GNURadio.
-> There's a lot of material that covers non-embedded USRPs, but my
-> understanding is that there are some additional configuration steps
-> required for this model.
->
-> Any help would be greatly appreciated.
->
-> Dominic
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+*eNB:*
 
---00000000000082e7fa05b9697329
+pdsch_referenceSignalPower
+tx_gain
+rx_gain
+
+Or any other parameter that you think can be helpful?
+
+*UE:*
+
+ue-txgain
+ue-rxgain
+
+
+Thanks
+Ashutosh
+
+--000000000000d484a605b9697843
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
-sans-serif">Hello=C2=A0Dominic:</div><div class=3D"gmail_default" style=3D"=
-font-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" styl=
-e=3D"font-family:verdana,sans-serif">The USRP 2974 is basically a USRP X310=
- with two UBX daughterboards and a GPSDO module,=C2=A0with an internal Inte=
-l SoM.=C2=A0 You can install Linux, UHD, GNU Radio, RFNoC directly onto the=
- SoM, as you would with a laptop computer.=C2=A0 There is a KB page for the=
- USRP 2974.=C2=A0 Please let me know if you have any further questions.</di=
-v><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><br=
-></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif=
-"><a href=3D"https://kb.ettus.com/USRP-2974">https://kb.ettus.com/USRP-2974=
-</a><br></div><div class=3D"gmail_default" style=3D"font-family:verdana,san=
-s-serif"><br></div><div><div dir=3D"ltr" class=3D"gmail_signature" data-sma=
-rtmail=3D"gmail_signature"><div dir=3D"ltr"><font face=3D"verdana, sans-ser=
-if">--Neel Pandeya</font><div><br></div></div></div></div><br></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 20 Ja=
-n 2021 at 15:16, Dominic Schaub via USRP-users &lt;<a href=3D"mailto:usrp-u=
-sers@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex">Hi,<br>
-<br>
-We just received a USRP-2974 and would like to start working with <br>
-RFNoC/GNURadio (rather than LabView).=C2=A0 I was hoping that somebody coul=
-d <br>
-direct me to a reference for configuring this SDR for RFNoC/GNURadio. <br>
-There&#39;s a lot of material that covers non-embedded USRPs, but my <br>
-understanding is that there are some additional configuration steps <br>
-required for this model.<br>
-<br>
-Any help would be greatly appreciated.<br>
-<br>
-Dominic<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Hi all,<div>I =
+am trying to setup OAI UE with OAI enb . I am not able to connect my UE to =
+eNB . I feel its a problem of power calibrations . Can any know what all po=
+wer parameters i should use ?</div><div><br></div><div>I am using B210 USRP=
+ for both UE and eNB.</div><div><br></div><div>Command to run UE :=C2=A0<sp=
+an style=3D"color:rgb(0,0,255)">./lte-uesoftmodem.Rel14 -U 1 -C 2685000000 =
+-r 50 --ue-scan-carrier --ue-txgain 70 --ue-rxgain 80</span></div><div><spa=
+n style=3D"color:rgb(0,0,255)"><br></span></div><div>Command to run eNB: <f=
+ont color=3D"#0000ff">sudo -E targets/bin/lte-softmodem.Rel14 -O targets/PR=
+OJECTS/GENERIC-LTE-EPC/CONF/enb.band7.tm1.50PRB.usrpb210.conf 2&gt;&amp;1 |=
+ tee FDD-enb.log</font></div><div><br></div><div><br></div><div>Parameters =
+I want to know:</div><div><br></div><div><b>eNB:</b></div><div><br></div><d=
+iv>pdsch_referenceSignalPower<br></div><div>tx_gain<br></div><div>rx_gain<b=
+r></div><div><br></div><div>Or any other parameter=C2=A0that you think can =
+be helpful?</div><div><br></div><div><b>UE:</b></div><div><br></div><div>ue=
+-txgain</div><div>ue-rxgain<br></div><div><br></div><div><br></div><div>Tha=
+nks</div><div>Ashutosh</div><div><br></div></div></div></div></div></div></=
+div></div></div>
 
---00000000000082e7fa05b9697329--
+--000000000000d484a605b9697843--
 
 
---===============6148032311482017380==
+--===============6349934214847921587==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -181,5 +151,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6148032311482017380==--
+--===============6349934214847921587==--
 
