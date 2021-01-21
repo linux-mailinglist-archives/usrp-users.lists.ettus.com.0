@@ -2,104 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6BFC2FE91F
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Jan 2021 12:46:27 +0100 (CET)
-Received: from [::1] (port=46930 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C28B62FEB2D
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Jan 2021 14:10:34 +0100 (CET)
+Received: from [::1] (port=47546 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l2YPv-0000EL-Td; Thu, 21 Jan 2021 06:46:23 -0500
-Received: from mail-eopbgr20139.outbound.protection.outlook.com
- ([40.107.2.139]:35077 helo=EUR02-VE1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Cedric.Hannotier@ulb.be>)
- id 1l2YPs-00008M-8A
- for usrp-users@lists.ettus.com; Thu, 21 Jan 2021 06:46:20 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dU8Lei1oev6y2CKPR9PnlaWplfB1GNnpnPk4H6Sz31AKlDA2f6J3+8jTdYpvaTuV5egBnfmBKh03WT/SdO0XIXxWwhW/qSruxqESO95JTTjMvlaq3mdz+oSbjNlrf8St8MjWnKISzTCc/RtgSl0dfCSJ3eVi8EDBMkSlO3OiVMhsL3pjMcuQ4kGjKTDTyLhQXMraX7dq+zpE0pxEs9aN0YcX6lGA3zbIMR6tWdDp3IjvxqNDSa1sxaCjrYV2JwqZnxGyKdgWc6Gs0H/X0FRGMHzDUL3KCRUK5Qpnkl0LRQXoalY3ERDyQ1KMi8gCSbSXvmjac8MKW3W/gYdq2KagCA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iJILFwDNb3XhRy/OszXTyRZKJ2EQ0ROH4PYhDbH5FIg=;
- b=KygpW6QW/h8t8f/LQApj7Me6IJs+bpy0SxM4RTBVCcgCqN9XR2siuL7+YeqS431qlRWTPiSU3K0eHd+Z62fnCjd7F9/04IgpRq9rCGjbVy+W5e5J9MDGpseQrj8ZUTdkYIg/u6RZoqzbI1D4rul7HPTwmVS4BZhFL/rrL1Ziv6YfAh0F+etxdpga01yt3d14OUXRFt1TbHSP01ZcbpNJh/8k2HBy2j1ieEh27E8GfXKsMM4+tlewDWZepdVFLgDh0UqCRZOkepby1H4pmfWsCI++Dw/wfKT+3BaQdiCZtFY3kriNsRDiwEcLnAW/1b8WJAh0WSMaTwvXz4RIfwbLwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iJILFwDNb3XhRy/OszXTyRZKJ2EQ0ROH4PYhDbH5FIg=;
- b=Dww0OT4ufLKHrDmFnQ2g22Z0R571UFQwDQ1kYhnSyb/SWDRYr9I+ASdFvjSScWH2wg/bXKaZl5cBXrEGkRqe4+mQ+KWrmC1IuXh8m3F7m5OIwnu37f7vWMSlHR05RzsWMFtOFFsbzVQueXMfCOd7Q3MoQm+OtYlPQrCvBpwyGSc=
-Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none header.from=ulb.be;
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
- by AS8P190MB1112.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:2e0::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.13; Thu, 21 Jan
- 2021 11:45:38 +0000
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb%9]) with mapi id 15.20.3784.013; Thu, 21 Jan 2021
- 11:45:38 +0000
-Date: Thu, 21 Jan 2021 12:45:37 +0100
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <20210121114537.wlcmuh2f34f5mowc@barbe>
-Mail-Followup-To: usrp-users <usrp-users@lists.ettus.com>
-References: <20210114233657.pjmcmwburnh3gja3@barbe>
- <CAL7q81sucmAEUzLSD1P8xp3xta3Lj=Y-hVF_cjh8kXoMU7tbrg@mail.gmail.com>
-Content-Disposition: inline
-In-Reply-To: <CAL7q81sucmAEUzLSD1P8xp3xta3Lj=Y-hVF_cjh8kXoMU7tbrg@mail.gmail.com>
-X-Originating-IP: [2a02:1811:371b:2300:ecfc:3d22:1f91:100b]
-X-ClientProxiedBy: AM4PR0302CA0004.eurprd03.prod.outlook.com
- (2603:10a6:205:2::17) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:11e::20)
+	id 1l2ZjL-00034b-4Z; Thu, 21 Jan 2021 08:10:31 -0500
+Received: from mail-ej1-f52.google.com ([209.85.218.52]:37367)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <mamuki92@gmail.com>) id 1l2ZjG-00030T-Um
+ for usrp-users@lists.ettus.com; Thu, 21 Jan 2021 08:10:27 -0500
+Received: by mail-ej1-f52.google.com with SMTP id kg20so2025172ejc.4
+ for <usrp-users@lists.ettus.com>; Thu, 21 Jan 2021 05:10:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=BE6lz4eVYu+16DmJaI9EfZ8tKpXP+u1SD1cUq9GSS1U=;
+ b=QgXcoyx2XuiIRF2V9cFMwx4zRjbF+27BmczyWRMXl7PKYVk1/eaqER7Yjb1QI+LNZk
+ BfuTlDXlR6HJd3/gOrCzjW4JF12gd+InDtdP938c6UVELxZGFjxma0KoQtbdjbLQzdSQ
+ Tp6wAZQk4NnP6w8lLNOvl/3oWNaJxKGnoQQw6JwB0o41WfQF0qu7ydhNO+bk8gRMNaib
+ 66Clgu3kgtqQ0duLpcWqqMuSNeiX2zfurMQu0H8pyeUNbUqkUTYtoe+/hFHUJxRRXwsU
+ UJ7i4PNnfKFbGY6cIqQp1LKZV2FbPW1jW0Jkd6nX++FB18hAFXwgjgFhi09wbOlNraue
+ BaEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=BE6lz4eVYu+16DmJaI9EfZ8tKpXP+u1SD1cUq9GSS1U=;
+ b=MKBnx5cy5s8sLX1EjbO9uPesWd19zyvrFuW9uEPe6Zlws7QA0RzguloVou7HVnhJlM
+ X/4jretZLIo4lATHE0LhemheppI6SFy3pFSmoE29wU9f4lXMs/14kgGGcCTKdfNwTVew
+ 2yB5RcXfPb8mzfIykWbuCc9rCEelwFbUQmMqVLmfsUqqIKTgqPKmuaWX7EU4XCVQyRfG
+ pzjem4myGz0jWr4gyvVXjD4TTBlZRjIyHjfcxg/GY9GNmoQJihzjogLjJ5wFyzS7MbYN
+ oxQCRnXE/jtf343/XF9UY8GQFyUkFzCXMruFIsSyZB4qx23ZMxvUAHvUIK/te0O/Y9nU
+ II3g==
+X-Gm-Message-State: AOAM530fjzBPOJU/oe9hh0U8f5K8pahRjP2kxdgO9M1pGi80g2eqB7XL
+ WorGBspNlwd3E5QZfunN5oxy27hJ4Z9oH9sZ6Ic=
+X-Google-Smtp-Source: ABdhPJzeujPb6ptQ+WUqeHDvVUPL2lpEd9dottMnATYygQGOEowsIIIqq0zqeKDnDXLAzHiZOQkG1mryF84hKzGJdCI=
+X-Received: by 2002:a17:907:20b9:: with SMTP id
+ pw25mr8920764ejb.262.1611234585835; 
+ Thu, 21 Jan 2021 05:09:45 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost (2a02:1811:371b:2300:ecfc:3d22:1f91:100b) by
- AM4PR0302CA0004.eurprd03.prod.outlook.com (2603:10a6:205:2::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11 via Frontend
- Transport; Thu, 21 Jan 2021 11:45:37 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 941b3b0d-f420-4eb4-7e37-08d8be021260
-X-MS-TrafficTypeDiagnostic: AS8P190MB1112:
-X-Microsoft-Antispam-PRVS: <AS8P190MB11122564758A9B8748A2D102F0A10@AS8P190MB1112.EURP190.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9wjNy9kWgqK/Hjk/H1ZO/lYVcBYwaJtI1U1lCHjpmKfwlpFbtI+sQ37wxgENEGThx1fbQd3dKrwaH+JRbFDVYmx3oHpQu4ygd++XVxZCsBRjnwMFDr/rIz0EpK+HzkF34QUESWTpbVXlmUXkqF9+28cXWZAY0VU8befzTPrwsauEGLZ5SYz/DA40bO/bYSx4CLZTrAW9Hw2zUk5MgcdD6Fw6eLuiP4e7zRX82rYUlF97lcCj8dSObCMAeZgtzGJ+6O5v0hEE6VVS+EmUTaQDeJBc7S5tmn/JOyNLwz3EnUDTk5tHNy6RU6BBJwz7IMJXSNlpC+pnFFlMHpXn683kmiow1CV/479UCQJmHWzkOkq5VDvZ8zOMiCqcmmG4+F4Cm0bMsXY68X2B8l1adx4eWye78NfVfi+xtGJKFPoRlKIucld0ivoQuOMbpR+CkeEyvvRKo5T0W0aE/XfnLYGGgJ16u/IaNu+F1dQQoc1QoexoQutwzRYD3FITpzKP7owZTsYxgE9aqPftgFv4fiyVqw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(7916004)(4636009)(366004)(376002)(346002)(136003)(396003)(39840400004)(4744005)(478600001)(86362001)(1076003)(9686003)(6486002)(2906002)(83380400001)(16526019)(786003)(316002)(8936002)(53546011)(66946007)(66556008)(186003)(6916009)(66476007)(8676002)(5660300002)(52116002)(33716001)(6496006);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?4cM3qWWfoKe4O8mGdDLwylGFpIVYL4KceBmIaBaragzXSdOflycSXSISv8?=
- =?iso-8859-1?Q?qOsHo43E+we8KFziFAbg/9VMU9dUOfEYQFTSopuxnia3L0UN+A/v+j2Xkj?=
- =?iso-8859-1?Q?LU4M0DxNdZx7SECmFSFMJz1DZCYCTVSNo8NCF58J5HmOCunKlRJDubNeF3?=
- =?iso-8859-1?Q?94jCuMxvnYhZKlc+wM2zpi89DI53Det5KEtpV/Kum38DG+G1oDDYQBOU9n?=
- =?iso-8859-1?Q?TGwd91etEZWDJjgmbBaGGa8qP3jiu6345Rso1aKnyQO+VBsISti2OcxECQ?=
- =?iso-8859-1?Q?bshTVUEx5SLPNbbILxsEM8NjIPfuDC/InuDUzsavmxV1JZq8aUzTnzKFQC?=
- =?iso-8859-1?Q?x4Mx76mMW2W1SnjgrEwSChlWPxjLQLeB5wwBLjRdsgIipfjkD1EdQvryZx?=
- =?iso-8859-1?Q?BGObTr0ABwSPYX2yNW9EcKniLAdZfLnjT1ELxJqZD+d7Vx+wAPuGQfG+c2?=
- =?iso-8859-1?Q?volhfqDatGo0WSr8TDWPaIq1PpEKQQRrKe9TpgsQwfsTJXoemNoxaG29aX?=
- =?iso-8859-1?Q?3ywGs3Bfl+Y/9plrfr2O5paRWrlx9UT82257AFDTdvprbK1nvdzZcQswRV?=
- =?iso-8859-1?Q?nIISkhmIJPTFTdupcXYTYufVRTKS+48Im1rutu5Bvq7WwNvLl32X3LL21W?=
- =?iso-8859-1?Q?168eLypyIjPAc8DKLrjRU1y4rWh/PiSKeqLkoGbTCYPEUzevEHb2hfjAni?=
- =?iso-8859-1?Q?qESoXSov9B+wOCdz3J+3wB6wUka9VNdRxLSCMZmG5YCkHyuUEVb1obTozV?=
- =?iso-8859-1?Q?pA01GziKE5VPOjcNqo5LGp6HJhcVOm/qq+6xcpzTeM0AHgYASof8lAXtfH?=
- =?iso-8859-1?Q?XPZUOxUX1GFm29Wz0IwJCFmLLE0tQ6t0hFvRetVFv+MAKqKQVKHkh0OUdr?=
- =?iso-8859-1?Q?QAi84Fd16IyOnDzvs+ckAwsbVghsNYEtCJ284xBpuHj5/T3MjnkVM17X+J?=
- =?iso-8859-1?Q?GeVsbiqEp8BYGVxbDBam2ByCOUnwwNkTI2kAkO7HXYIDOzdHjF7qOwbAwN?=
- =?iso-8859-1?Q?8/063Cmlv7KoD5sEBPPLxpJsS1cIO+By0OlC8oR3hljOktDrzh0m7yzxVJ?=
- =?iso-8859-1?Q?GxRwOORG2x9B1EokeLUzC6peUtGn6ISsSkwpwhaOtX6Z?=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 941b3b0d-f420-4eb4-7e37-08d8be021260
-X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2021 11:45:38.1994 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gkhZXjuuWRr0OYsEOPDk6UPVDAF8I2OPfKYcUvZpwfAFdAxSBAd7yaHwqqDtwGxVC4T20DFEQ1YcZzBjb8oHdA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P190MB1112
-Subject: Re: [USRP-users] UHD4.0 rfnoc-example gain block not recognized
+References: <CAG16vQU0uzpAoCGHB=0hwGj4qAeVSG=Hy64=nk5rhOt51ikDxg@mail.gmail.com>
+ <CAL7q81u=EYRkpXBQWv57SpdN0Hjm-MLX_rfBqJCTvycxXrmWfw@mail.gmail.com>
+In-Reply-To: <CAL7q81u=EYRkpXBQWv57SpdN0Hjm-MLX_rfBqJCTvycxXrmWfw@mail.gmail.com>
+Date: Thu, 21 Jan 2021 14:09:33 +0100
+Message-ID: <CAG16vQVR2FuskkV=OrkSOZ5yMx1oig_GPaUmYXOV=YiqL1uBTQ@mail.gmail.com>
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Generate blocks with more than 1 input/output
+ using rfnocmodtool
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -111,11 +61,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: =?utf-8?q?Maria_Mu=C3=B1oz_via_USRP-users?= <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8914414760240440248=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -129,36 +77,234 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
+--===============8914414760240440248==
+Content-Type: multipart/alternative; boundary="000000000000237d4f05b968c9c8"
+
+--000000000000237d4f05b968c9c8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
 Hi Jonathon,
 
-Thanks for the reply!
+Thanks for your reply.
+Ok, I make "rfnocmodtool newmod test" and "rfnocmodtool add multinout" to
+create module and block folders and then modify the block.yml file and make
+"python3 ~/rfnoc/src/uhd/host/utils/rfnoc_blocktool/rfnoc_create_verilog.py
+-c ~/rfnoc/src/gr-ettus/rfnoc-test/rfnoc/blocks/multinout.yml -d
+~/rfnoc/src/gr-ettus/rfnoc-test/rfnoc/fpga/rfnoc_block_multinout" and that
+seems to work.
 
-On 19/01/21 13:18, Jonathon Pendlum wrote:
-> [...]. You can use "auto
-> gain_blocks =3D graph->find_blocks<rfnoc::example::gain_block_control>(""=
-);"
-> to get your gain block.
+Kind Regards,
 
-As stated in my original mail:
-> On Thu, Jan 14, 2021 at 6:37 PM C=E9dric Hannotier via USRP-users <
+Maria.
+
+El jue, 21 ene 2021 a las 6:36, Jonathon Pendlum (<
+jonathon.pendlum@ettus.com>) escribi=C3=B3:
+
+> HI Maria,
+>
+> Rfnocmodtool does not support multiple inputs / outputs. You'll need to
+> edit the generated yaml file and use it with the utility
+> rfnoc_create_verilog to generate the block and noc shell. See
+> https://kb.ettus.com/RFNoC_4_Migration_Guide#Generating_a_Custom_Noc_Shel=
+l.
+> To edit the yaml file, you can refer to the RFNoC specification (
+> https://files.ettus.com/app_notes/RFNoC_Specification.pdf) or look at an
+> existing RFNoC block's yaml file that supports multiple ports such as the
+> FIR filter block (uhd/host/include/uhd/rfnoc/blocks/fir_filter.yml).
+>
+> Also, as you've noticed, the generated yaml file has the wrong interface,
+> "fpga_iface: axis_data" should be "fpga_iface: axis_pyld_ctxt". That is a
+> known issue that is in the pipeline to be fixed.
+>
+> Jonathon
+>
+> On Wed, Jan 20, 2021 at 8:18 AM Maria Mu=C3=B1oz via USRP-users <
 > usrp-users@lists.ettus.com> wrote:
-> > [...]
-> > auto gain_blocks =3D
-> > graph->find_blocks<rfnoc::example::gain_block_control>("");
-> >
-> > is empty, [...]
+>
+>> Hi all,
+>>
+>> Is it possible to automatically create an rfnoc_block schema with, for
+>> example, 2 inputs and 2 outputs payload stream packets as in the addsub
+>> blockdata using rfnocmodtool?
+>> I can generate it using rfnoc_create_verilog.py through a block.yml file
+>> following the steps in :
+>> https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0#Generating_Yo=
+ur_Block_Using_the_ModTool
+>> But I don't know the steps to do that using rfnocmodtool, it always
+>> generates a 1 input, 1 output block with axis_pyload_ctxt interface even
+>> though the block.yml generated in block folder has axis_data interface:
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> *schema: rfnoc_modtool_argsmodule_name: multinoutversion:
+>> 1.0rfnoc_version: 1.0chdr_width: 64noc_id: 0x4321makefile_srcs:
+>> "/home/usr/rfnoc/src/gr-ettus/rfnoc-prueba/rfnoc/fpga/rfnoc_block_multin=
+out/Makefile.srcs"*
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> *clocks:  - name: rfnoc_chdr    freq: "[]"  - name: rfnoc_ctrl    freq:
+>> "[]"  - name: ce    freq: "[]"control:  sw_iface: nocscript  fpga_iface:
+>> ctrlport  interface_direction: slave  fifo_depth: 32  clk_domain: ce
+>> ctrlport:    byte_mode: False    timed: False    has_status: Falsedata:
+>> fpga_iface: axis_data  clk_domain: ce  inputs:    in:      item_width: 3=
+2
+>>     nipc: 1      info_fifo_depth: 32      payload_fifo_depth: 32
+>> format: int32      mdata_sig: ~  outputs:    out:      item_width: 32
+>> nipc: 1      info_fifo_depth: 32      payload_fifo_depth: 32      format=
+:
+>> int32*
+>> *      mdata_sig: ~*
+>>
+>> Can I modify this file and somehow reload the files generated in the
+>> first attempt or is there other way to do what I want?
+>>
+>> Kind Regards,
+>>
+>> Maria
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
 
-meaning:
-"auto gain_blocks =3D graph->find_blocks<rfnoc::example::gain_block_control=
->("");"
-returns a vector of length 0.
+--000000000000237d4f05b968c9c8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
--- =
+<div dir=3D"ltr"><div>Hi Jonathon,</div><div><br></div><div>Thanks for your=
+ reply.</div><div>Ok, I make &quot;rfnocmodtool newmod test&quot; and &quot=
+;rfnocmodtool add multinout&quot; to create module and block folders and th=
+en modify the block.yml file and make &quot;python3 ~/rfnoc/src/uhd/host/ut=
+ils/rfnoc_blocktool/rfnoc_create_verilog.py -c ~/rfnoc/src/gr-ettus/rfnoc-t=
+est/rfnoc/blocks/multinout.yml -d ~/rfnoc/src/gr-ettus/rfnoc-test/rfnoc/fpg=
+a/rfnoc_block_multinout&quot; and that seems to work.</div><div><br></div><=
+div>Kind Regards,</div><div><br></div><div>Maria.<br></div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El jue, 21 ene 2=
+021 a las 6:36, Jonathon Pendlum (&lt;<a href=3D"mailto:jonathon.pendlum@et=
+tus.com">jonathon.pendlum@ettus.com</a>&gt;) escribi=C3=B3:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">HI Maria,<div>=
+<br></div><div>Rfnocmodtool=C2=A0does not support multiple inputs / outputs=
+. You&#39;ll need to edit the generated yaml file and use it with the utili=
+ty rfnoc_create_verilog to generate the block and noc shell. See=C2=A0<a hr=
+ef=3D"https://kb.ettus.com/RFNoC_4_Migration_Guide#Generating_a_Custom_Noc_=
+Shell" target=3D"_blank">https://kb.ettus.com/RFNoC_4_Migration_Guide#Gener=
+ating_a_Custom_Noc_Shell</a>. To edit the yaml file, you can refer to the R=
+FNoC specification (<a href=3D"https://files.ettus.com/app_notes/RFNoC_Spec=
+ification.pdf" target=3D"_blank">https://files.ettus.com/app_notes/RFNoC_Sp=
+ecification.pdf</a>) or look at an existing RFNoC block&#39;s yaml file tha=
+t supports multiple ports such as the FIR filter block (uhd/host/include/uh=
+d/rfnoc/blocks/fir_filter.yml).</div><div><br></div><div>Also, as you&#39;v=
+e noticed, the generated yaml file has the wrong interface, &quot;fpga_ifac=
+e: axis_data&quot; should be &quot;fpga_iface:=C2=A0axis_pyld_ctxt&quot;. T=
+hat is a known issue that is in the pipeline to be fixed.</div><div><br></d=
+iv><div>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Wed, Jan 20, 2021 at 8:18 AM Maria Mu=C3=B1oz via =
+USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
+nk">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi all,</div><div><br><=
+/div><div>Is it possible to automatically create an rfnoc_block schema with=
+, for example, 2 inputs and 2 outputs payload stream packets as in the adds=
+ub blockdata using rfnocmodtool?</div><div>I can generate it using rfnoc_cr=
+eate_verilog.py through a block.yml file following the steps in : <a href=
+=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0#Generating_Y=
+our_Block_Using_the_ModTool" target=3D"_blank">https://kb.ettus.com/Getting=
+_Started_with_RFNoC_in_UHD_4.0#Generating_Your_Block_Using_the_ModTool</a> =
+<br></div><div>But I don&#39;t know the steps to do that using rfnocmodtool=
+, it always generates a 1 input, 1 output block with axis_pyload_ctxt inter=
+face even though the block.yml generated in block folder has axis_data inte=
+rface:</div><div><br></div><div><div style=3D"margin-left:40px"><i>schema: =
+rfnoc_modtool_args<br>module_name: multinout<br>version: 1.0<br>rfnoc_versi=
+on: 1.0<br>chdr_width: 64<br>noc_id: 0x4321<br>makefile_srcs: &quot;/home/u=
+sr/rfnoc/src/gr-ettus/rfnoc-prueba/rfnoc/fpga/rfnoc_block_multinout/Makefil=
+e.srcs&quot;<br></i></div><i><br></i><div style=3D"margin-left:40px"><i>clo=
+cks:<br>=C2=A0 - name: rfnoc_chdr<br>=C2=A0 =C2=A0 freq: &quot;[]&quot;<br>=
+=C2=A0 - name: rfnoc_ctrl<br>=C2=A0 =C2=A0 freq: &quot;[]&quot;<br>=C2=A0 -=
+ name: ce<br>=C2=A0 =C2=A0 freq: &quot;[]&quot;<br><br>control:<br>=C2=A0 s=
+w_iface: nocscript<br>=C2=A0 fpga_iface: ctrlport<br>=C2=A0 interface_direc=
+tion: slave<br>=C2=A0 fifo_depth: 32<br>=C2=A0 clk_domain: ce<br>=C2=A0 ctr=
+lport:<br>=C2=A0 =C2=A0 byte_mode: False<br>=C2=A0 =C2=A0 timed: False<br>=
+=C2=A0 =C2=A0 has_status: False<br><br>data:<br>=C2=A0<b> fpga_iface: axis_=
+data</b><br>=C2=A0 clk_domain: ce<br>=C2=A0 inputs:<br>=C2=A0 =C2=A0 in:<br=
+>=C2=A0 =C2=A0 =C2=A0 item_width: 32<br>=C2=A0 =C2=A0 =C2=A0 nipc: 1<br>=C2=
+=A0 =C2=A0 =C2=A0 info_fifo_depth: 32<br>=C2=A0 =C2=A0 =C2=A0 payload_fifo_=
+depth: 32<br>=C2=A0 =C2=A0 =C2=A0 format: int32<br>=C2=A0 =C2=A0 =C2=A0 mda=
+ta_sig: ~<br><br>=C2=A0 outputs:<br>=C2=A0 =C2=A0 out:<br>=C2=A0 =C2=A0 =C2=
+=A0 item_width: 32<br>=C2=A0 =C2=A0 =C2=A0 nipc: 1<br>=C2=A0 =C2=A0 =C2=A0 =
+info_fifo_depth: 32<br>=C2=A0 =C2=A0 =C2=A0 payload_fifo_depth: 32<br>=C2=
+=A0 =C2=A0 =C2=A0 format: int32</i></div></div><div style=3D"margin-left:40=
+px"><i>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mdata_sig: ~</i></div><div style=3D"m=
+argin-left:40px"><i><br></i></div><div>Can I modify this file and somehow r=
+eload the files generated in the first attempt or is there other way to do =
+what I want?</div><div><br></div><div>Kind Regards,</div><div><br></div><di=
+v>Maria<br></div><div><i></i></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+
+--000000000000237d4f05b968c9c8--
 
 
-C=E9dric Hannotier
+--===============8914414760240440248==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============8914414760240440248==--
+
