@@ -2,53 +2,102 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED1C82FF836
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Jan 2021 23:54:12 +0100 (CET)
-Received: from [::1] (port=52138 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CC722FF858
+	for <lists+usrp-users@lfdr.de>; Fri, 22 Jan 2021 00:01:47 +0100 (CET)
+Received: from [::1] (port=52200 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l2iqA-00009K-5m; Thu, 21 Jan 2021 17:54:10 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:46483)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1l2iq6-0008U6-3w
- for usrp-users@lists.ettus.com; Thu, 21 Jan 2021 17:54:06 -0500
-Received: by mail-oi1-f181.google.com with SMTP id q205so3951448oig.13
- for <usrp-users@lists.ettus.com>; Thu, 21 Jan 2021 14:53:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=UFNqxmU31QlHvUAX9zv+/rQnp/h5vWWrFp6hmugwHcM=;
- b=ezjwQgCN68/Rg0Bm6tj7cNLnvC3P2Z++sXm+TgFEjTxefcJ19pDxanvCcCLco6pbux
- cDr+6G3OA2prRoGjceFYDy/pKTJtyhEQ+L5oKv/lqaBjofXwNbFI+vS+KkFNGDbhRHvw
- 8ACfNg1NBsokiKBQQJ2k3t0ZxORjV0a//WOrmSeWYw5yItYsIjaTlkiauiJJJ8BJeEcw
- 84h+qvKGgXyN2uH7uUAptzY3daF/A0RtiYhDin1p8NRXsdVOZ/4bDkm3wjb0VMIhyeZ7
- 8l6VQI3RM4IL6oi6hhCQztKpx6S0UgE3jEfNaNDTUYs2h6I/8M3gvR+aOV48Bro/qXfQ
- ea0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=UFNqxmU31QlHvUAX9zv+/rQnp/h5vWWrFp6hmugwHcM=;
- b=VxlUNLQJ8EH9zeGTtGgMfibgTjUJD85NcPKxkFvM2lC5Bh2cp0DWHLH8h3MHyW3W5F
- AucKvr3M8dWF2Lrj9jrkyRXN8YFf1TXGxmvlbIWfPtBO6l5B7/IXbHJB3Zn34spKqttj
- MUtkKDfOA1mzLbOf8nLMNkYR1WTX24oiJcUQwnr5rCA2rP6/Vb8VMEYfcLgPu0zSFqGZ
- QhIUJPZAUA/RBYdJEDzgt7Uoe6jhfIBnfkXFsIjxx60AWbOfqpGfYoDgpGZ5Xz+ioyaN
- HFjCoSZUylbmfPpNOB0EiE2xZrTPLd4xS0J1qPT09UwobgQWWlkyy9raqb/9Wztuin5O
- 1l/A==
-X-Gm-Message-State: AOAM531ALcujPUYyHsfNiOAffcKnmF+OstuP3NFj7S93UTYifqe+zJnv
- XC/nSIrUf/2xSGfQ8v6XHilCXReJ9oXpFP1SUATecw==
-X-Google-Smtp-Source: ABdhPJz++zmTkc5yvXOFDzR/mybi/qut419uVejsS2FcLmIhJs+uPbgVINqjWsSKanzdJ7Xp1uUi0aD8Imw1b2tTZXk=
-X-Received: by 2002:a05:6808:9a:: with SMTP id
- s26mr1321410oic.124.1611269605171; 
- Thu, 21 Jan 2021 14:53:25 -0800 (PST)
+	id 1l2ixU-0000ch-RP; Thu, 21 Jan 2021 18:01:44 -0500
+Received: from mail-eopbgr80115.outbound.protection.outlook.com
+ ([40.107.8.115]:21766 helo=EUR04-VI1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <Cedric.Hannotier@ulb.be>)
+ id 1l2ixQ-0000Vf-Lt
+ for usrp-users@lists.ettus.com; Thu, 21 Jan 2021 18:01:40 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F1+ngIOeDynXphQYTbFKzPPMrsUXIJR9cABu5YNVyza8GlGfdkBHPEICe8UbIU3pun1RKdJu4BrrVFXv7hccjHnrVmf1fiNoVVgycyXswbIpUv+JQNPO9QlaHFkEVyq8BgOtBuGC2EGngrTEMcLUfRJSpPKZMDTp10BTlNxT/geT3Vj/1UFM/CbgEjlP68J+uDCqXYvZr8DIAXPoHSX0gSs/C7MSiCenwG4+acde4QuOdPCFYdfFdfxvF5K6+g9jkgpuJrAa2ePpOM1OD9hmoXIFr/bkCCxMd0+FMhs7xQ+CGWgom5K2F+oDIDOthzzfTmAkiTfnMYgbbZLuilKNQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9pFlpq+yHiB6ZUj3fpaA37TJEte2eJqV15VFIVQVFrY=;
+ b=iFrcSlCZQZNhRxD78YsiOMfTqGhewbH2AN9Du/mrWcoFT5xJviBbmGnqxPGORDHCqKUaO6/b7bFqJwnZaorrPyM+TWFtQff5IXSGYf/GN4M2X1Xwd3OtOjAH3I3AiNiTGl11FOYN4Bk0myKhY4/BOZJAFx3oAkBXjheoPTz/kLI/YcTeEBN/hL8XAg/1cDF3Lp+0D3mg0Heb3FuNXiY9XZBs7gI86mz6bPBBUV7kg1tRv4C/hZ31tzv7clMjCrvs8aXEkP/H5th41Q1c/mXVdQgraHqdPFaezK7noBFzGzaMGBsd51KbzdWyVlJHmOJJ0eemE7ogXOZhBxsuGjJKlg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
+ header.d=ulb.be; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9pFlpq+yHiB6ZUj3fpaA37TJEte2eJqV15VFIVQVFrY=;
+ b=RLhRj3J1w+IQDkIVn84iP22Gdm47aOKL997nsdFeSMnnBe3IEpxnRcwITPNcp5kqous7CwmrRyY7If4yT11dpqchZ1mg1G+wR2Bhr24qbmQRJyw0BRQiN6KODuJa5W9dpxK/JTwxBYPV9j7plKzwQBvqAbE/civKWpFxeflUZx8=
+Authentication-Results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none header.from=ulb.be;
+Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
+ by AS8P190MB1160.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:2ed::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11; Thu, 21 Jan
+ 2021 23:00:58 +0000
+Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ ([fe80::8fd:f689:885a:6afb]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ ([fe80::8fd:f689:885a:6afb%9]) with mapi id 15.20.3784.013; Thu, 21 Jan 2021
+ 23:00:58 +0000
+Date: Fri, 22 Jan 2021 00:00:57 +0100
+To: usrp-users@lists.ettus.com
+Message-ID: <20210121230057.aswz7r7zngpxbthy@barbe>
+Mail-Followup-To: usrp-users@lists.ettus.com
+References: <20210108175838.vxaqctdxyaahty72@barbe>
+Content-Disposition: inline
+In-Reply-To: <20210108175838.vxaqctdxyaahty72@barbe>
+X-Originating-IP: [2a02:1811:371b:2300:191a:95a4:11e8:fcdd]
+X-ClientProxiedBy: PR3P192CA0043.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:102:57::18) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:11e::20)
 MIME-Version: 1.0
-References: <CABD0DOsMsDopeeSyOGkZmC2UuFgt=Abf3yO_fw2hXfva6V3hgA@mail.gmail.com>
- <6009EB66.4060404@gmail.com>
-In-Reply-To: <6009EB66.4060404@gmail.com>
-Date: Thu, 21 Jan 2021 17:53:14 -0500
-Message-ID: <CAB__hTSRibWj7_U+wtuKYo-hcVoaDYgKH1gqm1wx9zM+dHKB3Q@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] N310 Tuning Two Channels with Two Threads
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost (2a02:1811:371b:2300:191a:95a4:11e8:fcdd) by
+ PR3P192CA0043.EURP192.PROD.OUTLOOK.COM (2603:10a6:102:57::18) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3784.12 via Frontend Transport; Thu, 21 Jan 2021 23:00:58 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 08c0ae0c-8127-49a3-9d55-08d8be606a87
+X-MS-TrafficTypeDiagnostic: AS8P190MB1160:
+X-Microsoft-Antispam-PRVS: <AS8P190MB1160AF11B3785D38167FC207F0A10@AS8P190MB1160.EURP190.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: In/dV1DYDft8DJ2Yrf8yzXTHyD1zyZfi9Bh4ronCouVyrChw1nSx2sIZ0Xs/9xZq5fvrBKVK8cOI9MxH/x2oXEeudqTkH0ocsLnbrbcCY5mxLgbVTz84MrVUIG/gb57ExWJLEyLNbAmOosPkPX05AxfYOfOm59aiVLUYnyH5NK2NtdJaIfPA6cUM+Gt1nfPY+ATrkEQKiSj4bahZCjGudoQhuUiAF2clAvraHs6LOmF3NyFTknfL9HBdJfGG9Bff377raRKQhX+v3rrebfJOW2A61XDguRtBEU5WQiuBVT8/A+TB7EViLij32TKXUOfDSeFlX4OqI5JkI8tB7t3gNtWTsh1VUoBxoVXgZwkFkw0e9KOsyJtDrmDHEJALTFmHXrEaw2RLL0R6fGK+9vB14reB7F3QK89ip3CLEOObIUqgR7mzAe/FSwOmMEHKVhMNa//xD+dq0i7dw7+12PlHKQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(7916004)(4636009)(136003)(366004)(39860400002)(346002)(396003)(376002)(2906002)(6916009)(33716001)(786003)(16526019)(966005)(52116002)(5660300002)(83380400001)(9686003)(316002)(478600001)(6496006)(8936002)(186003)(53546011)(1076003)(66556008)(86362001)(8676002)(66476007)(66946007)(6486002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?VlH3mvVv2Igma9Dg82/rTA7JRbnO8lhy956/pxgeJNtqoXHbTw42FSP7tb?=
+ =?iso-8859-1?Q?yrAzyvvrtcX5ZlQlFLQ22yrFKgM3zUlS1D0/7N03FIMqb1qYCwhAE+3XbV?=
+ =?iso-8859-1?Q?dPeI9cAM0EiAWTVS/ulqPpzFMjUJ3NBRh6oV290g135l70+Y9e0GEWrsFX?=
+ =?iso-8859-1?Q?5zFMEZwmueLj9LeIONdi93jEPOw51lAoYNS8nOWg9DVI2a76mCLeMM6QtO?=
+ =?iso-8859-1?Q?CDkyc/aAnB3DU1BkO9TP7otBcXZiCpyRhZIBcUVj4tv/XIdVP9ojIqhxwR?=
+ =?iso-8859-1?Q?7N5lVoTEEgTsBUuZPkl/rUvY2+DQmH4QH6Y6NgVivo/a9/mMkIXtPAoJgV?=
+ =?iso-8859-1?Q?EzKgKv9r0zxNOeSIrE88/Eg3/tQLGbldG0AFmOMFyW+qDW7pydYZvbqJWE?=
+ =?iso-8859-1?Q?1kd2PQ1ni3ymt5fYyxCjQVM1P+mKEjgdJ/PH3Eji2kj4jKCfOvecRW61HG?=
+ =?iso-8859-1?Q?zp/ZVskfOZyWESNaMmKdRYO8n/ca/VhIpuik/c+jgt/Cqq+i6bdxKexA1h?=
+ =?iso-8859-1?Q?4YGfyYZmBrWkM/uklLItfOudijjaX3gCF0Kb7lnqwqOEPjuV4J0HNPQcMk?=
+ =?iso-8859-1?Q?3qNoZn/ZJY9nbanwjiMO09WEsYk9BTP1sboX9R8spd5Ayuyr+GX4l1E1C+?=
+ =?iso-8859-1?Q?8CwVi2u4T9pNhUQctqLgpQWk20AYI0NkAOX+/7L/Y3bYN3VaG5NSd2HyGS?=
+ =?iso-8859-1?Q?e3h6pYosyJnoBQydb5ZATArR2k1TvboqZTc2IjTQsS5ENblbe33ACpd7El?=
+ =?iso-8859-1?Q?zyuKm9ctDRkjp7PxXYlPVfok8q0b0wJqtKFMpPPwgQkyqoNW1jB8hopnJr?=
+ =?iso-8859-1?Q?FO7MZmhdehrZ87JDdFOzDgcfI73QscEt8Lra/vpSfGOMryw2B4f1bc4jk2?=
+ =?iso-8859-1?Q?5fzzQsJFA9fX/pSrVpkgD84+vRAbggYFwrQ2VpNG4VcUHKruIQugg6CfG6?=
+ =?iso-8859-1?Q?0f9Vu7IBA6Vte7El8Rp+walu3ZT+UjMSw+j1q2YbJzL9UTdgfCzc35wmXg?=
+ =?iso-8859-1?Q?+bUXX5Z9qPc7rMVBjr+8B+k25GoLAaW8JwVNODzG9TQKjE7gCU4oXCvlpe?=
+ =?iso-8859-1?Q?QlwSjf9atflyflufhmoWuWvLt3pBCZWxP2/GxO+sAbcx?=
+X-OriginatorOrg: ulb.be
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08c0ae0c-8127-49a3-9d55-08d8be606a87
+X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2021 23:00:58.7619 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lSbAPWWBOi4TInRQa3plL4B6PXqkmTweG078I7C9nD0ve6FrCtdJNA4gr2eba3qP+QOiiJ5MCOVf+F+xzKem6w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P190MB1160
+Subject: Re: [USRP-users] Add Xilinx IP in OOT RFNoC UHD4.0
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -60,9 +109,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============3347674386143333293=="
+From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,200 +127,44 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3347674386143333293==
-Content-Type: multipart/alternative; boundary="000000000000747d5a05b970f0da"
+Dear all,
 
---000000000000747d5a05b970f0da
-Content-Type: text/plain; charset="UTF-8"
+On 08/01/21 18:58, C=E9dric Hannotier via USRP-users wrote:
+> Dear all,
+> =
 
-After reading Marcus' reply, it occurred to me that you really might not
-need multiple threads to achieve the factor of 2 improvement you are
-looking for.  I think if you call set_rx_freq() it is a non-blocking call
-so you should be able to set the 2 freqs, wait for them both to settle,
-then get the results simultaneously.  I think you can do it from 1 thread.
-Rob
+> I am following the RFNoC on UHD4.0 wiki [1],
+> but there is no mention on how to add Xilinx IPs in the OOT.
+> =
 
-On Thu, Jan 21, 2021 at 4:01 PM Marcus D. Leech via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+> When following [2],
+> after copy-pasting from "host/example/rfnoc-example",
+> and following [3] to setup basic shell env/script,
+> how can I add for example IP "xilinx.com:ip:mult_gen:12.0"?
+> =
 
-> On 01/21/2021 02:56 PM, Glenn Hazelwood via USRP-users wrote:
->
-> I have an N310 and I wish to scan from 10 MHz to 5910 MHz with two
-> channels. The frontend bandwidth is 100 MHz. So I do 60 tunings overall. I
-> am directly using the UHD 3.15.0.0 C++ API
->
-> The retune time is typically ~120 ms. My sample rate is 125 Msps.
-> Therefore, the time to receive samples is relatively small. For example,
-> receiving time for 32768 samples is ~1.3 ms. WIth one thread and one
-> channel, my overall tune and receive time for the 60 tunings is ~7200 ms.
->
-> I wanted to try to reduce the overall runtime by using two threads and two
-> channels. One thread would do half the tunings and the other thread would
-> do the other half at the same time.
->
-> I see that I can make separate rx_streamers in separate threads, each with
-> its own channel to receive samples. I think rx_streamers[chan].recv()
-> should work for two threads. I'm not so confident about
-> 'usrp->set_rx_frequency()' for two threads.
->
-> Is it possible to have two separate threads each tune to different
-> frequencies at the same time with the N310?
->
-> Also: Is there a way to search the Archives to see if someone has already
-> asked this question. Google doesn't always seem to help.
->
-> -
-> Diftor heh smusma
-> -Famous Vulcan Phrase ;)
->
-> Tuning time is an artifact of the hardware (AD9371 in this case)--which
-> isn't really fast on re-tuning.  It has nothing to do with thread
->   architecture/layout.
->
-> Further, channels 0 and 1 will always be tuned to the same RF frequency,
-> due to the LO architecture of the AD9371, similarly 2 and 3 will
->   always use the same LO frequency.
->
->
-> You can certainly spread sample-handling across multiple threads, and use
-> the two available RF tunings (across the two RF chips) to speed
->   things up a bit (cut the effective latency in half by interleaving).
-> But you're not going to get more than a factor of two.
->
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+> Furthermore, how do I add that IP "module wise" or "block wise",
+> i.e. inside rfnoc-example or inside rfnoc-example/fpga/rfnoc_block_gain?
+> =
 
---000000000000747d5a05b970f0da
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> There is viv_create_ip [3], but it just creates the tree,
+> it does not link that new IP with the current OOT tree.
+> =
 
-<div dir=3D"ltr">After reading Marcus&#39; reply, it occurred=C2=A0to me th=
-at you really might not need multiple threads to achieve the factor of 2 im=
-provement you are looking for.=C2=A0 I think if you call set_rx_freq() it i=
-s a non-blocking call so you should be able to set the 2 freqs, wait for th=
-em both to settle, then get the results simultaneously.=C2=A0 I think you c=
-an do it from 1 thread.<div>Rob</div></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 21, 2021 at 4:01 PM Marcus=
- D. Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">=
-usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <div>On 01/21/2021 02:56 PM, Glenn Hazelwood
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">I have an N310 and I wish to scan from 10=C2=A0MHz t=
-o
-        5910 MHz with two channels. The frontend bandwidth is 100 MHz.
-        So I do 60 tunings overall. I am directly using the UHD 3.15.0.0
-        C++ API
-        <div><br clear=3D"all">
-          <div>The retune time is typically ~120 ms. My sample rate is
-            125 Msps. Therefore, the time to receive samples is
-            relatively small. For example, receiving time for 32768
-            samples is ~1.3 ms. WIth one thread and one channel, my
-            overall tune and receive time for the 60 tunings is ~7200
-            ms.=C2=A0</div>
-          <div><br>
-          </div>
-          <div>I wanted to try to reduce the overall runtime by using
-            two threads and two channels. One thread would do half the
-            tunings and the other thread would do the other half at the
-            same time.=C2=A0</div>
-          <div><br>
-          </div>
-          <div>I see that I can make separate=C2=A0rx_streamers in separate
-            threads, each with its own channel to receive samples. I
-            think rx_streamers[chan].recv() should work for two threads.
-            I&#39;m not so confident about &#39;usrp-&gt;set_rx_frequency()=
-&#39; for
-            two threads.</div>
-          <div><br>
-          </div>
-          <div>Is it possible to have two separate threads each tune to
-            different frequencies at the same time with the N310?</div>
-          <div><br>
-          </div>
-          <div>Also: Is there a way to search the Archives to see if
-            someone has already asked this question. Google doesn&#39;t
-            always seem to help.<br>
-          </div>
-          <div><br>
-          </div>
-          <div>-=C2=A0</div>
-          <div dir=3D"ltr">
-            <div dir=3D"ltr">
-              <div>
-                <div dir=3D"ltr"><span style=3D"line-height:19.0469px;backg=
-round-color:rgb(255,255,255)"><font color=3D"#000000" face=3D"trebuchet ms,=
- sans-serif">Diftor
-                      heh smusma<br>
-                    </font></span></div>
-                <div><span style=3D"line-height:19.0469px;background-color:=
-rgb(255,255,255)"><font color=3D"#000000" face=3D"trebuchet ms, sans-serif"=
->-Famous
-                      Vulcan Phrase ;)<br>
-                    </font></span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-    </blockquote>
-    Tuning time is an artifact of the hardware (AD9371 in this
-    case)--which isn&#39;t really fast on re-tuning.=C2=A0 It has nothing t=
-o do
-    with thread<br>
-    =C2=A0 architecture/layout.<br>
-    <br>
-    Further, channels 0 and 1 will always be tuned to the same RF
-    frequency, due to the LO architecture of the AD9371, similarly 2 and
-    3 will<br>
-    =C2=A0 always use the same LO frequency.<br>
-    <br>
-    <br>
-    You can certainly spread sample-handling across multiple threads,
-    and use the two available RF tunings (across the two RF chips) to
-    speed<br>
-    =C2=A0 things up a bit (cut the effective latency in half by
-    interleaving).=C2=A0 But you&#39;re not going to get more than a factor=
- of
-    two.<br>
-    <br>
-    <br>
-  </div>
+> [1] https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0
+> [2] https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0#Creating_Y=
+our_Own_OOT_Module
+> [3] https://files.ettus.com/manual/md_usrp3_vivado_env_utils.html
 
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+Unfortunatly, I am still facing that issue.
+Has anyone managed to add a Xilinx IP into an OOT RFNoC block?
 
---000000000000747d5a05b970f0da--
+-- =
 
 
---===============3347674386143333293==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+C=E9dric Hannotier
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3347674386143333293==--
-
