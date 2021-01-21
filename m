@@ -2,85 +2,119 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B101F2FEEEF
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Jan 2021 16:35:37 +0100 (CET)
-Received: from [::1] (port=48828 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 132382FEF0A
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Jan 2021 16:38:49 +0100 (CET)
+Received: from [::1] (port=48854 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l2bzh-0006lh-Oi; Thu, 21 Jan 2021 10:35:33 -0500
-Received: from mail-mw2nam10olkn2036.outbound.protection.outlook.com
- ([40.92.42.36]:30272 helo=NAM10-MW2-obe.outbound.protection.outlook.com)
+	id 1l2c2q-00077g-4C; Thu, 21 Jan 2021 10:38:48 -0500
+Received: from mx0b-00272701.pphosted.com ([208.86.201.61]:10640)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <e070832@hotmail.com>) id 1l2bze-0006h1-5o
- for usrp-users@lists.ettus.com; Thu, 21 Jan 2021 10:35:30 -0500
+ (Exim 4.93) (envelope-from <prvs=86551c2823=rmattingly@ou.edu>)
+ id 1l2c2l-0006yp-LI
+ for usrp-users@lists.ettus.com; Thu, 21 Jan 2021 10:38:43 -0500
+Received: from pps.filterd (m0107986.ppops.net [127.0.0.1])
+ by mx0b-00272701.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
+ 10LFV7aH008957
+ for <usrp-users@lists.ettus.com>; Thu, 21 Jan 2021 09:38:02 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ou.edu;
+ h=from : to : subject :
+ date : message-id : content-type : mime-version; s=domainkey;
+ bh=XwRxdARAa+eFbrZOktXQf4xtYqag63kRKdRP+JrVzys=;
+ b=IJh45G9lXH4H3IGlvQCHavJp2rQz3VU/HsReoAOYjDSKb3ZoSgvgfAYL2nfFbzrNmAX2
+ PRzdD+qqHRfVegB0Pl9rKNQ5PFRQL/6oE7OVFDg8pcOM8sj6wXGTxt4SgVJQFQPACbIB
+ 5eEfkmpMnSgtC16Z0uyAqVlqL4+SR/68J87aa5xASWGkHRe0vI6/1/z4Jp+9pcj8ASho
+ WjXQvj7+DEjTb9e21xdF32SZBZyxemmf/nIE25v9YhNepTmEb9VT9D/WGyrNNT5CBHhV
+ HTW5L+Y8jeJkHFhDOv9Rr8ySQFak7ao/Dd9ypvsTWIP03A8WsAwKbopO29D2c3U4hDjH 1g== 
+Received: from nam12-bn8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12lp2171.outbound.protection.outlook.com [104.47.55.171])
+ by mx0b-00272701.pphosted.com with ESMTP id 3668p8mt6v-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+ for <usrp-users@lists.ettus.com>; Thu, 21 Jan 2021 09:38:02 -0600
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Xj+atY+Usf8BzUqQZEgxIpylXLOY5ZohS0nt4HFkwYpAR47kUpXU0aSZAeAxeNokOxPq+83nDv+7OSvCv44BllP0x8S3WUtd1zi/KvX7GwASaoNcQKdOQP9KHxjgXsBLDfFLa8Ecneb+AW/uK+CPVsvM2zF/5dOd2DJ54z94MGfF/oB+QLo8KGQ/kKv3pBqSX/Dl/96i6xjhq1HJn8dcDBKqFIWeEfVdnFOSoOGAnd7y8QQpmLJElnSD9NqmjtSbDKfpwiI1xEh5qcsw1oDxxiTf72602d6bAsHbOgmKIzGrsKnoYgUtwmYYuIlazRdz/5xcGedAd8rwoYoPMpZ3Ig==
+ b=F0BuKSdj5+7e4ytvkcGAvbGRrz1dcH/dRO8XuTESQkycOdSzZHxQej1Tpqyss9FmXSaPMVKsH9LRPh7p2bfdYZ9PS43rvnHaHEaZQXO/B/PKojqDtRLUtLYl9Wa63a3YzJbWZAijFXE/9gEmTv02+MdgpjgaWi6c7o6D9rCarPWHsMTKKanvIWeof1R8wvg/0kFcsSH9/6NuRZbRKUOjKNeAdIUCVBnCXQZ/9w6vGNCKwc2fiowAD172n1tuOFkUXY5/rfF76K3gLBmUV4h0qLcmugJhGMiwHIGuJtGQaognR94664vdSQfTXnkWj6lkKeU+7B8CfoGoRgwn6E/gWQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0vkGV/cBjVh3GsNZd60/Qg9WO8NUDHmhfgKPyo1zplw=;
- b=QfZueCBV8SYm19NpbfiHMT6cI6aUwgBw1V6jhGn2lQ3BBhhUaeI9zA6iOKgiDdbzQcJ9YyTvh+yv7rXxNewIOjSevhu5Z7my1Mg9bPGVT/TZVxrjR1VsHvN5g9clFm3MpS3U71eI+Gawf4hsF4E1DyJdPfMpBhJ1otSHaxBSycYM9PW41kpey7QoFkrbKoFUkL21q8POxMNVyYW0LWoRI58nVLi/bTfdkLUPl8gFZIDUKBo0HX5Oi8K6O50R4CW8YmPkNIL4IPieX/NNt99BqvF9ol91Ux3JPphEE5YDZHLp2ZomqmBzP6SYlieoBAGQyJmOW9VkSibff4nFR/NlOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0vkGV/cBjVh3GsNZd60/Qg9WO8NUDHmhfgKPyo1zplw=;
- b=uimb0g+3jxjw2XJjBoPViW1Vvs1dXj8f68a6oOorji/tuHUDmkoR0c3AkYvKyD4fs9Tt73nwNeeL0z94esLGhOs3NS3MLKMRLFngMixm9rHzdhoKknETGAOMiYgsED4vKNhxTNEtz+PlCO25vXWHbZalodP2ACas237IG8yVEXZkvzLyMKIlNOaj84r8LkYntAHGYdZl1mR8tpKG73N35PDyXNG0DWcIkxZH8BMvHuQCVDUoeyNVfuAOOkqZ08BDRLMmuijj6XxQuJvrfis7l8BHDCg0vGiLMP2/xUv4HXA5F5QL+DYMcavxS1VYXvn1gw/XwXfpOrhkvQcrGBZIoA==
-Received: from MW2NAM10FT004.eop-nam10.prod.protection.outlook.com
- (2a01:111:e400:7e87::44) by
- MW2NAM10HT049.eop-nam10.prod.protection.outlook.com (2a01:111:e400:7e87::143)
+ bh=XwRxdARAa+eFbrZOktXQf4xtYqag63kRKdRP+JrVzys=;
+ b=Md9SpdaB5v56i7H76AC6km8klL1VZ8qVl0OCiS5ujxaosnyxwvJFm/ZBHqN046Bz1StS1mB/kNsgJkG5rhVyfdYuv5JkY4SS2uL8fI2NpHBw45JbifUFmELxKbTidwu6oSm9kabXMuO2nkndN0hcelRrhg8/UL3EE4I0LGCBjkdRoQ2I6GYmoCXtA1CtyGQ+QmCmSvxl1JxaCS1AXqhchKJ8JQPGUXOQll0ubR6Nt5HdM/AcgJ6VRmFGipBZ79hRGjFz11uX9a27SEs2yNIU59me1/3mY2STT+0zK8QqVr/w0N6iYvgnSo9WDujo0NSKvcvgT5PbYhDeeVuKVSSvgg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ou.edu; dmarc=pass action=none header.from=ou.edu; dkim=pass
+ header.d=ou.edu; arc=none
+Received: from SN6PR03MB4160.namprd03.prod.outlook.com (2603:10b6:805:bd::20)
+ by SA0PR03MB5642.namprd03.prod.outlook.com (2603:10b6:806:bd::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11; Thu, 21 Jan
- 2021 15:34:48 +0000
-Received: from SN6PR1901MB4688.namprd19.prod.outlook.com
- (2a01:111:e400:7e87::51) by MW2NAM10FT004.mail.protection.outlook.com
- (2a01:111:e400:7e87::428) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11 via Frontend
- Transport; Thu, 21 Jan 2021 15:34:48 +0000
-Received: from SN6PR1901MB4688.namprd19.prod.outlook.com
- ([fe80::8961:3c2a:dd3a:3910]) by SN6PR1901MB4688.namprd19.prod.outlook.com
- ([fe80::8961:3c2a:dd3a:3910%6]) with mapi id 15.20.3763.014; Thu, 21 Jan 2021
- 15:34:48 +0000
-To: =?iso-8859-1?Q?Marcus_M=FCller?= <marcus.mueller@ettus.com>, usrp-users
- <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] SOB/EOB Burst Mode on X310 Splitting Signal
-Thread-Index: AQHW8ALyB/1PoI1sxU22uloXxNssy6oyLdiAgAABoxU=
-Date: Thu, 21 Jan 2021 15:34:48 +0000
-Message-ID: <SN6PR1901MB468884AC8FAC5C9476CC6678A4A10@SN6PR1901MB4688.namprd19.prod.outlook.com>
-References: <SN6PR1901MB46884B4D0EBC22B0D4F7CF08A4A10@SN6PR1901MB4688.namprd19.prod.outlook.com>,
- <6c457450-6f9e-892b-ac53-5ea7956b7f0b@ettus.com>
-In-Reply-To: <6c457450-6f9e-892b-ac53-5ea7956b7f0b@ettus.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.9; Thu, 21 Jan
+ 2021 15:38:00 +0000
+Received: from SN6PR03MB4160.namprd03.prod.outlook.com
+ ([fe80::8421:f343:7269:50cd]) by SN6PR03MB4160.namprd03.prod.outlook.com
+ ([fe80::8421:f343:7269:50cd%4]) with mapi id 15.20.3784.013; Thu, 21 Jan 2021
+ 15:38:00 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: RFNoC 4 FFT with GNURadio
+Thread-Index: AQHW8AqSK0SAar/A0USi7wUPpRNdpQ==
+Date: Thu, 21 Jan 2021 15:38:00 +0000
+Message-ID: <SN6PR03MB41607B048DE4C7AF40F1F7F0B1A19@SN6PR03MB4160.namprd03.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:C700CC829A94418E1BCA5893A1A0057205950F7A017E21E11DAF9EFAAFC958FC;
- UpperCasedChecksum:AA85CBBD275196C10206FC6A40F8351D9FBE2D54DB7C5FEAF29577AF22E011DD;
- SizeAsReceived:6996; Count:44
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [K0wPtenvUs19EA4xPiALiWlfSVce6Bll]
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none header.from=ou.edu;
+x-originating-ip: [129.15.133.239]
 x-ms-publictraffictype: Email
-x-incomingheadercount: 44
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: 630c85f4-7712-4208-4399-08d8be22166a
-x-ms-traffictypediagnostic: MW2NAM10HT049:
+x-ms-office365-filtering-correlation-id: f0e05578-0c95-4f71-32e3-08d8be2288b2
+x-ms-traffictypediagnostic: SA0PR03MB5642:
+x-microsoft-antispam-prvs: <SA0PR03MB564242ED8AE1E6D2CCA2ADDFB1A10@SA0PR03MB5642.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yppLKJO7lSaC7D5s8qxdC3qdr/GXGx9UlKlL45rygxKUeo1Jp32Hx29Y7xi4SXspkoQtgI7/ppXKynLuwGf0odOtqmEQ6/AlzE9sRd7nhkI2QaUIILX4oq+onZIHDAZbJqNqbQdWWVArOh1XS7nBOe25tEghA5sJNeUEKFXyFkrBC4PdDOZ8rUbrUNIv2QS7lFiBB6vv1X2pgvfU87T8SpOSLlvx3/G8CJf5VxGDTrH2Y/MFFYMGCSOoy19bx9dIQax7bg3Zdb2rFBRjWvPCjWQgKrJYdVxU9PyT1r415CI=
-x-ms-exchange-antispam-messagedata: hhVzThJm+pXrhw3vtm/YIS4IZfYPEj5hRMw+oxKvmcKlmOvf01oHfuKLJFsRQwk9xxVxL9jCJO5M0NDq4lwDdo0UIGyYX7UOg4k6yXAz6b9EGD6B0D5Phjbk0WKYsJ0EH0Ork7sWfOFr/fywggYTAQ==
+x-microsoft-antispam-message-info: jqVaYiTLSXpn3MAgtXTovuPk7eRinFOAp/TWH4Uzvr0A+W5+dv/IhhuVXEZNT4Vfr/ZcHwHpNxgeCWvQ1KjhJelBWf59xmEf/4bKm4y8lMMShyAOyNhBg9j0dTtvzKSTZVLko8bGby1MCKsp4Kr3nv4Y9oHA23+cwt2vfYwsj7smyZh8dTLH4AxGbvNFYJ/uVhJ5urgVMcz5A7bNoh0+W47a9GsSgptD6LFdAojBHPcqDsHWsbuG9SYHOnQUsN3TbR1rCvXfTpH/u97ixNZB/dcY/XiqAaM0SGVzWL0Yi2O++UcWch+Sig08UTJYIWuNtHc5QL3M8JPsrjAHPu16cl0vLrSgiAGURNcxLGy+BylJ8GriZ6kRoPknniXdGNSQbZX2OQOk1FblNsx6FDvan+aqB5JQkYPujlMYOxumuI57rgxPrRvygjlIFoRtg24Qe/wQ92m8SahzCL02slJncTQA9HBNH2RR8++/otYK8jP3teSweVEen0dOYhLFcbgiO0kmCrVred41Tep2hjHsllr/f73YvDgjERrECEJrakZR5Ycyl/dVmoImycrYWnu48pCgn3bqZ/UtnOBQFaikzC1JBKxAxX2+o5c/BQY5ZFs5oojkqRm+vQG+5H2/fVLIVNlBmaG4T2qa8kjZm3RHdtMtlagihdCoYPT/74XkKwI=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN6PR03MB4160.namprd03.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(75432002)(6506007)(19627405001)(71200400001)(52536014)(86362001)(76116006)(83380400001)(5660300002)(6916009)(9686003)(2906002)(8936002)(55016002)(966005)(64756008)(66476007)(66946007)(498600001)(26005)(33656002)(8676002)(186003)(7696005)(66556008)(66446008)(10126625002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?YTtSJf7i7aYcnTKcf1bhAuVVLOlCpbe69TzH1OC0HGuUkUs5eFaeihvbwx?=
+ =?iso-8859-1?Q?YeKok5FrhFXRnzRVApN/TTwkvlPgA7gexsYiYvZlViJgvVmAfR8tcVRZwa?=
+ =?iso-8859-1?Q?PXLf3W7QneAsLFhE5y7NCYQYgEsmTy55FW23pMmLiOdoNTUjL+eTaw+WJV?=
+ =?iso-8859-1?Q?bHgwd3i9xYCpOppT3fqcoeYWeAE6T+MWxTzxDS0VPaRrQAJwubpDo+kmVJ?=
+ =?iso-8859-1?Q?ec4mWRjL6bjwUrdz1xmsFtzcJNQFpsuFMEKtkHjrD6mFuTiqeNBYy2mAKE?=
+ =?iso-8859-1?Q?q/7NXa+rxDSXrjPybcoF+HkntJs16/rFQFxH4oy5XG39nDGQ2c/HIzBEvA?=
+ =?iso-8859-1?Q?5gnLjX6Sdci9cxqaPILp4/LE1vh2oO5VpDsGva3VEQ4CvuhQrhau/jRyeR?=
+ =?iso-8859-1?Q?wOde6agKvD7THf6Whvb5+ol/oayCyxTKwHAwAeZ3miMCQkLUwnHjfxCweX?=
+ =?iso-8859-1?Q?kAK4QfmtRLI8iFvSvsSWwDQMP8C0HtkOXsErAoS8xZJ0ALHiy68KUan/Rh?=
+ =?iso-8859-1?Q?iXOwXE4W3SDq4g92ykAtIAVTrWBhz8Fa2nbcCqKqomLPD4tdFbyjn3Juoi?=
+ =?iso-8859-1?Q?3wscNvVhpDjwkTqVxrjXN/HqNS7iH4PJTaXehWvmA8GPetdn1wo3akYeKY?=
+ =?iso-8859-1?Q?tFHBLzQoh6/iqHGpU50iHMN8Hwj4lTf/FoV55pKRihkxY34YPyp51AJPyg?=
+ =?iso-8859-1?Q?/Wf0GCDjSlmqtb0uxbEaIjymWDTlBe/yLeVphqVXlA/Us4z07bwS3kly83?=
+ =?iso-8859-1?Q?03wrdb6hffsRS2X8Cm10yQ3isMoQhy8K0IsiPAoUHQKemyZ+gePP4MQHZm?=
+ =?iso-8859-1?Q?sn+fPovZGe/ziokLNz/QMC+zQgcbbbcUo1A6W4gwibdIpxSGDe4lRCfhs2?=
+ =?iso-8859-1?Q?UGdxF7kb1NDTHAdPDt6GTbZQ5lC5FPJsSh0BSAlvHa6a1ExAWYJS5gygnw?=
+ =?iso-8859-1?Q?KMw13rdA+5VP35O/bxPwWS/xEMX38gKR7KLf3ylCzbRVs5NVwCtisJHqqx?=
+ =?iso-8859-1?Q?gNEaCvQr4aixZkD5cxeh4ihUw5TRobtP6WUQ5is3eKMtt+7EwRrx0pWlWn?=
+ =?iso-8859-1?Q?KVi6WuWrVSt0wdygrK/VUUfLaIaNdfsc6F3Hw36aXBLq?=
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: MW2NAM10FT004.eop-nam10.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 630c85f4-7712-4208-4399-08d8be22166a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jan 2021 15:34:48.6923 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2NAM10HT049
-Subject: Re: [USRP-users] SOB/EOB Burst Mode on X310 Splitting Signal
+X-OriginatorOrg: ou.edu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR03MB4160.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0e05578-0c95-4f71-32e3-08d8be2288b2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jan 2021 15:38:00.3111 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 9c7de09d-9034-44c1-b462-c464fece204a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: IQeey97Wp7B//64HkXA/f8q4aZHpE39np5T9yWqHts9XQmYcGKM9jSuDuan4cKzSNII6IBY+Xeo93plSvxYZCQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR03MB5642
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343, 18.0.737
+ definitions=2021-01-21_08:2021-01-21,
+ 2021-01-21 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 mlxscore=0
+ lowpriorityscore=0 adultscore=0 impostorscore=0 spamscore=0 phishscore=0
+ priorityscore=1501 mlxlogscore=999 suspectscore=0 bulkscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2101210087
+Subject: [USRP-users] RFNoC 4 FFT with GNURadio
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -92,9 +126,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jeff S <e070832@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============7484993685825601573=="
+From: "Mattingly, Rylee via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Mattingly, Rylee" <rmattingly@ou.edu>
+Content-Type: multipart/mixed; boundary="===============4614816056421650601=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -108,124 +142,55 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7484993685825601573==
+--===============4614816056421650601==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_SN6PR1901MB468884AC8FAC5C9476CC6678A4A10SN6PR1901MB4688_"
+	boundary="_000_SN6PR03MB41607B048DE4C7AF40F1F7F0B1A19SN6PR03MB4160namp_"
 
---_000_SN6PR1901MB468884AC8FAC5C9476CC6678A4A10SN6PR1901MB4688_
+--_000_SN6PR03MB41607B048DE4C7AF40F1F7F0B1A19SN6PR03MB4160namp_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks, Marcus.
+Hi all,
 
-Of course, I forgot the important version information.  I'm currently using=
- v3.7.13.5.  We are also doing some RFNoC work, which we had some issues up=
-grading a while back, so we were holding off until it matured more.  I'll a=
-sk our team if they want to try and upgrade to 3.8 again.
+I am trying (and failing) to get an RFNoC image with the provided FFT worki=
+ng with GNURadio. I am using an X310 connected with a 1Gig ethernet and bui=
+lding images in the HG configuration.
+I used the knowledge base article: "Getting Started with RFNoC in UHD 4.0" =
+(linked here: https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0) t=
+o add the FFT to the default image.
+The resulting image core with FFT can be found here: https://pastebin.com/x=
+Lqyx7qS
 
-I'm sure my description wasn't clear, so I'll try and clarify a little bett=
-er based on your feedback.
+The uhd probe shows the fft correctly connected to through its own SEP. How=
+ever, when I attempt to run a flowgraph containing the FFT I get a recv() t=
+imeout error and then blocks will not flush unitl the USRP is reset. One of=
+ the many flow graphs I have tried, and the consistent error are shown in t=
+he screenshots here: https://pasteboard.co/JKFUlrH.png and here: https://pa=
+steboard.co/JKFTHji.png
 
-I created the Random Source, and it is sending approximately 10,000 samples=
- to the UHD USRP Sink as one message, with a tx_sob at the start and a tx_e=
-ob at the end.  My thought was that the sink would not transmit anything un=
-til the EOB was received.  The way GNURadio seems to be running, I'm gettin=
-g [noutput_items =3D=3D 4096], so it takes three calls to the work function=
- to deliver all 10K samples of one message to the Sink.  I only want one bu=
-rst from the sink of those 10K samples.  What I am receiving seems to be th=
-ree transmissions that make up the one sample.  The length of the three tra=
-nsmissions seem to correspond to the value of noutput_items I was seeing.
+I then tried using the UHD Python API deriving from the example shown in th=
+e GRCon20 session "Exploring RFNoC with the UHD Python API" by Aaron Rosset=
+to. Here I find that a static loopback example like Aaron presented with th=
+e FFT worked with one length of samples but trying to extend that for strea=
+ming from the radio creates the same behavior that is exhibited with GNURad=
+io. The only way that I can get the FFT to execute correctly is if I stream=
+ exactly one FFT length of samples. Any larger number of samples from the r=
+adio (even length multiple) will crash the block and requires a power cycle=
+ to be able to flush again.
 
-The mention of 100 ms between bursts was only indicating how fast the modul=
-ator was being requested to transmit a single message.  So if I only reques=
-ted one message, there would have been one group of three signals seen in t=
-he Rx signal.
+Loopback example code: https://pastebin.com/03dScZvB
+Streaming test code: https://pastebin.com/WQRn7UhH
 
-Hope that clarified what I was trying to convey a little better.
+I have been able to build and use custom RFNoC blocks sucessfully with GNUR=
+adio on this installation of UHD 4.0, GNURadio 3.8 and gr-ettus.
 
-Regards,
-Jeff
+Thank you,
 
-
-________________________________
-From: Marcus M=FCller <marcus.mueller@ettus.com>
-Sent: Thursday, January 21, 2021 9:06 AM
-To: Jeff S <e070832@hotmail.com>; usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] SOB/EOB Burst Mode on X310 Splitting Signal
-
-Hi Jeff,
-
-which version of GNU Radio are you using? Judging by the looks of your flow=
- graph it's the
-(now legacy) 3.7, but *if* I remember correctly (it's really been a while),=
- the SOB/EOB
-functionality appeared *somewhen* in 3.7.x; it might be worth trying your e=
-xact same
-application in GNU Radio 3.8 (or 3.9).
-
-Conceptually, it's important to note that after tx_sob you need to supply t=
-he full burst
-of samples: I think you're doing that, but then again, you say you get thre=
-e data bursts
-100 ms apart, so I'm not sure about that, to be honest. The USRP sink can't=
- guess that you
-want three bursts of samples to be sent as one; it starts streaming as fast=
- as you supply
-it data after the SOB, and will tell you you're late or too slow at supplyi=
-ng data (tG/U
-printed to your console) if you don't give it 10 million samples a second, =
-until it gets
-an SOB.
-
-Best regards,
-Marcus
+Rylee
 
 
-On 21.01.21 15:53, Jeff S via USRP-users wrote:
-> I am attempting to use burst mode on an X310.  I'm generating a random si=
-gnal from one
-> X310 and receiving it on another.  My simple flowgraph is:
->
-> I can see the tx_sob and tx_eob tags, set to true, from the time sink:
->
->
-> where I verify that I can see the EOB, followed by a new SOB in the next =
-message (both set
-> to true, according to
-> https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__sink.html
-> <https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__sink.html>)=
-.  But when I am
-> receiving the signal, the message seems to be broken up into three differ=
-ent transmissions
-> instead of one burst:
->
->
->
-> I'm transmitting a message every 100 ms, which seems to correspond to the=
- start of the
-> three messages.
->
-> Analyzing the modulator in a debugger indicates that there are three time=
-s that the work
-> function is called to build the message, which may correspond to the thre=
-e messages seen
-> in the signal, but I'm not sure why the tx_sob and tx_eob tags are not be=
-ing followed.
-> Maybe I may just have a major misunderstanding of how burst mode works.
->
-> Any ideas on what I may be doing wrong?
->
-> Thanks,
-> Jeff
->
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---_000_SN6PR1901MB468884AC8FAC5C9476CC6678A4A10SN6PR1901MB4688_
+--_000_SN6PR03MB41607B048DE4C7AF40F1F7F0B1A19SN6PR03MB4160namp_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -237,187 +202,65 @@ Content-Transfer-Encoding: quoted-printable
 ttom:0;} </style>
 </head>
 <body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Thanks, Marcus.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+Hi all, </div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<div><br>
 </div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Of course, I forgot the important version information.&nbsp; I'm currently =
-using v3.7.13.5.&nbsp; We are also doing some RFNoC work, which we had some=
- issues upgrading a while back, so we were holding off until it matured mor=
-e.&nbsp; I'll ask our team if they want to try
- and upgrade to 3.8 again.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
+<div>I am trying (and failing) to get an RFNoC image with the provided FFT =
+working with GNURadio. I am using an X310 connected with a 1Gig ethernet an=
+d building images in the HG configuration.</div>
+<div>I used the knowledge base article: &quot;Getting Started with RFNoC in=
+ UHD 4.0&quot; (linked here: https://kb.ettus.com/Getting_Started_with_RFNo=
+C_in_UHD_4.0) to add the FFT to the default image.</div>
+<div>The resulting image core with FFT can be found here: https://pastebin.=
+com/xLqyx7qS</div>
+<div><br>
 </div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-I'm sure my description wasn't clear, so I'll try and clarify a little bett=
-er based on your feedback.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-I created the Random Source, and it is sending approximately 10,000 samples=
- to the UHD USRP Sink as one message, with a tx_sob at the start and a tx_e=
-ob at the end.&nbsp; My thought was that the sink would not transmit anythi=
-ng until the EOB was received.&nbsp; The way
- GNURadio seems to be running, I'm getting [noutput_items =3D=3D 4096], so =
-it takes three calls to the work function to deliver all 10K samples of one=
- message to the Sink.&nbsp; I only want one burst from the sink of those 10=
-K samples.&nbsp; What I am receiving seems to
- be three transmissions that make up the one sample.&nbsp; The length of th=
-e three transmissions seem to correspond to the value of noutput_items I wa=
-s seeing.<br>
-</div>
-<div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-The mention of 100 ms between bursts was only indicating how fast the modul=
-ator was being requested to transmit a single message.&nbsp; So if I only r=
-equested one message, there would have been one group of three signals seen=
- in the Rx signal.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Hope that clarified what I was trying to convey a little better.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Regards,<br>
-Jeff<br>
-</div>
-<div id=3D"Signature">
-<div>
-<p><br>
-</p>
-</div>
-</div>
-</div>
-<div>
-<div id=3D"appendonsend"></div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
-=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Marcus M=FCller &lt=
-;marcus.mueller@ettus.com&gt;<br>
-<b>Sent:</b> Thursday, January 21, 2021 9:06 AM<br>
-<b>To:</b> Jeff S &lt;e070832@hotmail.com&gt;; usrp-users &lt;usrp-users@li=
-sts.ettus.com&gt;<br>
-<b>Subject:</b> Re: [USRP-users] SOB/EOB Burst Mode on X310 Splitting Signa=
-l</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
+<div>The uhd probe shows the fft correctly connected to through its own SEP=
+. However, when I attempt to run a flowgraph containing the FFT I get a rec=
+v() timeout error and then blocks will not flush unitl the USRP is reset. O=
+ne of the many flow graphs I have
+ tried, and the consistent error are shown in the screenshots here: https:/=
+/pasteboard.co/JKFUlrH.png and here: https://pasteboard.co/JKFTHji.png</div=
 >
-<div class=3D"PlainText">Hi Jeff,<br>
-<br>
-which version of GNU Radio are you using? Judging by the looks of your flow=
- graph it's the<br>
-(now legacy) 3.7, but *if* I remember correctly (it's really been a while),=
- the SOB/EOB<br>
-functionality appeared *somewhen* in 3.7.x; it might be worth trying your e=
-xact same<br>
-application in GNU Radio 3.8 (or 3.9).<br>
-<br>
-Conceptually, it's important to note that after tx_sob you need to supply t=
-he full burst<br>
-of samples: I think you're doing that, but then again, you say you get thre=
-e data bursts<br>
-100 ms apart, so I'm not sure about that, to be honest. The USRP sink can't=
- guess that you<br>
-want three bursts of samples to be sent as one; it starts streaming as fast=
- as you supply<br>
-it data after the SOB, and will tell you you're late or too slow at supplyi=
-ng data (tG/U<br>
-printed to your console) if you don't give it 10 million samples a second, =
-until it gets<br>
-an SOB.<br>
-<br>
-Best regards,<br>
-Marcus<br>
-<br>
-<br>
-On 21.01.21 15:53, Jeff S via USRP-users wrote:<br>
-&gt; I am attempting to use burst mode on an X310.&nbsp; I'm generating a r=
-andom signal from one<br>
-&gt; X310 and receiving it on another.&nbsp; My simple flowgraph is:<br>
-&gt; <br>
-&gt; I can see the tx_sob and tx_eob tags, set to true, from the time sink:=
-<br>
-&gt; <br>
-&gt; <br>
-&gt; where I verify that I can see the EOB, followed by a new SOB in the ne=
-xt message (both set<br>
-&gt; to true, according to<br>
-&gt; <a href=3D"https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp=
-__sink.html">
-https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usrp__sink.html</a><=
-br>
-&gt; &lt;<a href=3D"https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1=
-usrp__sink.html">https://www.gnuradio.org/doc/doxygen/classgr_1_1uhd_1_1usr=
-p__sink.html</a>&gt;).&nbsp; But when I am<br>
-&gt; receiving the signal, the message seems to be broken up into three dif=
-ferent transmissions<br>
-&gt; instead of one burst:<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; I'm transmitting a message every 100 ms, which seems to correspond to =
-the start of the<br>
-&gt; three messages.<br>
-&gt; <br>
-&gt; Analyzing the modulator in a debugger indicates that there are three t=
-imes that the work<br>
-&gt; function is called to build the message, which may correspond to the t=
-hree messages seen<br>
-&gt; in the signal, but I'm not sure why the tx_sob and tx_eob tags are not=
- being followed.&nbsp;<br>
-&gt; Maybe I may just have a major misunderstanding of how burst mode works=
-.<br>
-&gt; <br>
-&gt; Any ideas on what I may be doing wrong?<br>
-&gt; <br>
-&gt; Thanks,<br>
-&gt; Jeff<br>
-&gt; <br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; USRP-users@lists.ettus.com<br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-</a><br>
-&gt; <br>
+<div><br>
 </div>
-</span></font></div>
+<div>I then tried using the UHD Python API deriving from the example shown =
+in the GRCon20 session &quot;Exploring RFNoC with the UHD Python API&quot; =
+by Aaron Rossetto. Here I find that a static loopback example like Aaron pr=
+esented with the FFT worked with one length
+ of samples but trying to extend that for streaming from the radio creates =
+the same behavior that is exhibited with GNURadio. The only way that I can =
+get the FFT to execute correctly is if I stream exactly one FFT length of s=
+amples. Any larger number of samples
+ from the radio (even length multiple) will crash the block and requires a =
+power cycle to be able to flush again.</div>
+<div><br>
+</div>
+<div>Loopback example code: https://pastebin.com/03dScZvB</div>
+<div>Streaming test code: https://pastebin.com/WQRn7UhH</div>
+<div><br>
+</div>
+<div>I have been able to build and use custom RFNoC blocks sucessfully with=
+ GNURadio on this installation of UHD 4.0, GNURadio 3.8 and gr-ettus.</div>
+<div><br>
+</div>
+<div>Thank you,</div>
+<div><br>
+</div>
+<div>Rylee</div>
+<br>
 </div>
 </body>
 </html>
 
---_000_SN6PR1901MB468884AC8FAC5C9476CC6678A4A10SN6PR1901MB4688_--
+--_000_SN6PR03MB41607B048DE4C7AF40F1F7F0B1A19SN6PR03MB4160namp_--
 
 
---===============7484993685825601573==
+--===============4614816056421650601==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -428,5 +271,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7484993685825601573==--
+--===============4614816056421650601==--
 
