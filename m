@@ -2,55 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1807E3008BC
-	for <lists+usrp-users@lfdr.de>; Fri, 22 Jan 2021 17:33:30 +0100 (CET)
-Received: from [::1] (port=33900 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6945C300969
+	for <lists+usrp-users@lfdr.de>; Fri, 22 Jan 2021 18:22:18 +0100 (CET)
+Received: from [::1] (port=34538 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l2zNG-0001dO-3b; Fri, 22 Jan 2021 11:33:26 -0500
-Received: from mail-ed1-f54.google.com ([209.85.208.54]:33222)
+	id 1l308U-0006eC-LH; Fri, 22 Jan 2021 12:22:14 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:40643)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <aaron.rossetto@ettus.com>)
- id 1l2zNC-0001Rg-BI
- for usrp-users@lists.ettus.com; Fri, 22 Jan 2021 11:33:22 -0500
-Received: by mail-ed1-f54.google.com with SMTP id c6so7275756ede.0
- for <usrp-users@lists.ettus.com>; Fri, 22 Jan 2021 08:33:02 -0800 (PST)
+ (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1l308Q-0006Ul-TZ
+ for usrp-users@lists.ettus.com; Fri, 22 Jan 2021 12:22:10 -0500
+Received: by mail-oi1-f180.google.com with SMTP id p5so6737328oif.7
+ for <usrp-users@lists.ettus.com>; Fri, 22 Jan 2021 09:21:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :content-transfer-encoding;
- bh=vo4v9EcA/M5qm2lNqB6CJq6+67E0dm3VSTOx9PxuI8M=;
- b=adllIsoktgySSE7xC58b4xIgROm4Bra12PPmimj0Z38dUYZdnCiN+s/gczQeF5Ft54
- V+Gg8zlXdHXYQESQRZzWx4EbPrsEAyGNSDOAzjIBQu7+EYi76ghj7g+Youwour12JCqG
- F4/9e2gtLjmlGh5ujMr01llAkWsJ5fQ1VLB4T9Hce0hLSRZIKQyaqPYFKfV8/jtj0tux
- /eGbERnFqUgiS2+UBxY96Fkme+ii0bufYUAwDD0hSupbKCULDW5RHskjDAHjDl+EfFsA
- 0bC2mu3KYxXV+uywITL6EtRW0MgYLXLLiWYDMFQbevsTnT6tlmoi78cQduniPEwonY+f
- ySdQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=ZdjfOORnvU0LqqG5YAgvkUSfx/R+3tSSnDkGpH8PD7E=;
+ b=t41zPfaqs6yQesHrfA45TRHCf6aizmFR3mKl6TU9r+raO8Usjq3oUgwD1IeNMCmWoV
+ ydxMQLk4XhT95KEyyYR8xPRR2eaKPouUXCwLQtf3lM+xzPJA3ktBIFAuXkE9SPny9yYr
+ FxTrZEU8jTCE3rVzAxoKH2FFTf7H6VcnzEvGf66jp5Hd/WAljkYUr/jaB8+Rxfz3NT4+
+ 8gB2pM/YopkmHPsb8si2kgPSGPQTNQfLP6UhpHUiTiH4FeMXdfiEObapL+xPfphoMRIG
+ tzO5gYt0HWpN5oGl0IWLZloSCcJNZPCLbbrJcbMByDZPnYSlmcu5T2JvPs/RFPfpuREi
+ uXxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:content-transfer-encoding;
- bh=vo4v9EcA/M5qm2lNqB6CJq6+67E0dm3VSTOx9PxuI8M=;
- b=IchrobKHjuJXIfDECul7D+naVQNgPqAOYIJ6vp9m9rqpAWNycuJ7dM1/EPxOcDsg9c
- WrzJhXorVE8gn8J58peOeypaWNysnrZnzO9DnGUB3zB4zUDppDpDH8sGt/6gUb+zs38d
- +sxkcOAeigIWT5fBye5HPFb6+2icUQEy5tnj6AAepLknJVpPNuyOBAje7S5mSDMZXJfT
- zrJfN6xvfontXv3surfLYIY1YZ+k0G7LBHdoj0FGnK+h7xkFArTY9aZSdsR29eVBcIFD
- 9ijew6+xAbqtYsmqbjezLrE5gh1OSVMpKksYJGwwc0SUbjJpgQbxp+bnEN+o/rzEq8SF
- G6tg==
-X-Gm-Message-State: AOAM53035sSed5DkX50wS6Zv28fXBYw2FBUEKIjsXds5ovIBoMpER49e
- buxwj8K2QoDqzIon3GbiYdAg2yQwrXt8efsq+/KzNF+sIilPlTih
-X-Google-Smtp-Source: ABdhPJyGlmcb8Aikz6lxyYxIdLaSJAnKPn9Nctyx2myWejqVvxE3KvhDeM3T9lxKq+/i1WolanaLWL8y9rq+xrA+Qng=
-X-Received: by 2002:aa7:d386:: with SMTP id x6mr3989469edq.194.1611333161086; 
- Fri, 22 Jan 2021 08:32:41 -0800 (PST)
+ :message-id:subject:to;
+ bh=ZdjfOORnvU0LqqG5YAgvkUSfx/R+3tSSnDkGpH8PD7E=;
+ b=nbnckHERI/DOt/jwS5bVja0zL2nt69fLc82zlWwdCvhqyw5v64dEJNNtDE0tsJIOP3
+ 4D2GtFlT3Rmp+TLHKQzX9Y9xnv9s+8vBh1OT59QHIhb9Y+DkE+Nm2lBOpywxo3XmZBh/
+ aTqZuyxx+1T9/rWpBjxHd2UNkbpjrUBfGaAQ3lGsjhk4qafAvqCMo2isrhtRJCAtwuLR
+ YCpZTaWtB6y/Eq8TqL/hyJE4L95WisLP9lsOD3wgzZoo0WIWLEJzdtc5OK9Leba1ktgz
+ F67eeF5zMExMkWAloF1GurBoYg9TkPVrkRHbM1GR1FT7rwZSUSnyzlqdMMU2mtXnkL27
+ 8pYA==
+X-Gm-Message-State: AOAM530m2MwHzNRuBs5hniO8lDD2WFzfaP3i/ZafqFKlJ3cuzAYH94SH
+ p6E/CNDcgBT9N+nze2X3z9SOv4mGwR14RntsHUgOq6FK
+X-Google-Smtp-Source: ABdhPJwCUBC5Gys4ASI12PDZXTqihS06YA9ZJbI6bjSOScDsDJY2xwSDbgZX/Mzxo9Qfwy3qQoE9d2TsKnyjTd9XazQ=
+X-Received: by 2002:aca:aac9:: with SMTP id t192mr3508327oie.62.1611336085768; 
+ Fri, 22 Jan 2021 09:21:25 -0800 (PST)
 MIME-Version: 1.0
-References: <CAB__hTT+gaOgFF2_ME+=bY9S21e_D-+XfCv7dH_qRmAZ-6h6oQ@mail.gmail.com>
- <CAB__hTTKkyz0fx9fGa_ePM9xZXHLcvYnbhsSCH3vYLA5z2G5Og@mail.gmail.com>
- <20210121224824.uajvcmmust7bgzfc@barbe>
-In-Reply-To: <20210121224824.uajvcmmust7bgzfc@barbe>
-Date: Fri, 22 Jan 2021 10:32:29 -0600
-Message-ID: <CAAg5+MyoX=oAQKZ5T1siAfUt1=D2HM=-3eTQYVA_V=xC2F_b1w@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] No streaming using OOT RFNoC Block in UHD4
+References: <20210108175838.vxaqctdxyaahty72@barbe>
+ <20210121230057.aswz7r7zngpxbthy@barbe>
+In-Reply-To: <20210121230057.aswz7r7zngpxbthy@barbe>
+Date: Fri, 22 Jan 2021 11:21:15 -0600
+Message-ID: <CAFche=jrmKeaRq0L70y85N=OWj9-BY=NXtVqNawCgD6mPkccMw@mail.gmail.com>
+To: =?UTF-8?Q?C=C3=A9dric_Hannotier?= <cedric.hannotier@ulb.be>, 
+ usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Add Xilinx IP in OOT RFNoC UHD4.0
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -62,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Aaron Rossetto via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Aaron Rossetto <aaron.rossetto@ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Wade Fife <wade.fife@ettus.com>
+Content-Type: multipart/mixed; boundary="===============6850665489807992651=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,45 +76,135 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T24gVGh1LCBKYW4gMjEsIDIwMjEgYXQgNDo0OSBQTSBDw6lkcmljIEhhbm5vdGllciB2aWEgVVNS
-UC11c2Vycwo8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgoKPiBPbiBhIHNpZGUg
-bm90ZToKPiBBcmUgd2UgZm9yY2VkIHRvIGltcGxlbWVudCBhIGN1c3RvbSBjb250cm9sbGVyIGZv
-ciBlYWNoIFJGTm9DIGJsb2NrPwo+IEkgd2FzIGV4cGVjdGluZyB0aGF0IEkgY291bGQganVzdCB3
-cml0ZSB0aGUgdmVyaWxvZyBwYXJ0Cj4gYW5kIHVzZSB0aGUgYmFzaWMgbm9jX2Jsb2NrX2Jhc2Ug
-Y29udHJvbGxlciB0byBtYW5hZ2UgbXkgYmxvY2tzIGluIEMrKywKPiB1c2luZyByZWdzKCktPnBl
-ZWszMi9wb2tlMzIgdG8gc2V0IG15IHJlZ2lzdGVycyBldGMuCj4gQnV0IGZyb20gYWJvdmUsIGl0
-IHNlZW1zIHRoYXQgaXQgZG9lcyBub3QgZm9yd2FyZCB0aGUgaXNzdWVfc3RyZWFtX2NtZAo+IGJ5
-IGRlZmF1bHQ/IElzIHRoYXQgY29ycmVjdD8KCkZvciB2ZXJ5IGJhc2ljIFJGTm9DIGJsb2NrIHBy
-b3RvdHlwaW5nLCB5b3Ugc2hvdWxkIGJlIGFibGUgdG8gdXNlIHRoZQpkZWZhdWx0IG5vY19ibG9j
-a19iYXNlIGltcGxlbWVudGF0aW9uIGlmIHlvdSBhcmUgd2lsbGluZyB0byBhY2Nlc3MKeW91ciBO
-b0MgYmxvY2sncyBmdW5jdGlvbmFsaXR5IHZpYSByZWdpc3RlciByZWFkcyBhbmQgd3JpdGVzIGFu
-ZCBkZWFsCndpdGggc29tZSBhZGRpdGlvbmFsIGNvbXBsaWNhdGlvbnMgd2hlbiBkZWFsaW5nIHdp
-dGggbXVsdGlwbGUgY3VzdG9tClJGTm9DIGJsb2Nrcy4gWW91IHNob3VsZCBiZSBhYmxlIHRvIGdl
-dCBhIHJlZmVyZW5jZSB0byB0aGUgYmxvY2sgYnkKY2FsbGluZyBnZXRfYmxvY2soKSBvbiB5b3Vy
-IHJmbm9jX2Jsb2NrIG9iamVjdC0tdGhpcyBtZXRob2QgcmV0dXJucyBhCm5vY19ibG9ja19iYXNl
-OjpzcHRyLgoKVGhlIGJpdCB0aGF0J3MgY29tcGxpY2F0ZWQgaXMgdGhhdCBnZXRfYmxvY2soKSB0
-YWtlcyBhIGJsb2NrX2lkX3QsCndoaWNoIGNvbnNpc3RzIG9mIHRoZSBkZXZpY2UgbnVtYmVyLCBi
-bG9jayBuYW1lLCBhbmQgaW5zdGFuY2UgKGUuZy4sCicwL015QmxvY2sjMCcgd2hlbiByZXByZXNl
-bnRlZCBhcyBhIHN0cmluZykuIEdlbmVyYWxseSwgdGhlIG5hbWUgaXMKYXNzaWduZWQgdG8gdGhl
-IGJsb2NrIGluIHRoZSBjdXN0b20gYmxvY2sgY29udHJvbGxlciB2aWEgdGhlClVIRF9SRk5PQ19C
-TE9DS19SRUdJU1RFUl9ESVJFQ1QoKSBtYWNyby4gSWYgdGhlIGJsb2NrIGlzIG5vdApyZWdpc3Rl
-cmVkIHZpYSB0aGlzIG1hY3JvLCBhcyBpcyB0aGUgY2FzZSB3aGVuIHVzaW5nIG5vY19ibG9ja19i
-YXNlCmRpcmVjdGx5LCB0aGUgYmxvY2sgd2lsbCBiZSBhc3NpZ25lZCB0aGUgdW5pbWFnaW5hdGl2
-ZSBidXQgdGVjaG5pY2FsbHkKY29ycmVjdCBuYW1lIG9mICdCbG9jaycuIFRodXMsIGlmIHlvdSB3
-YW50IHRvIHVzZSBtdWx0aXBsZSBkaWZmZXJlbnQKY3VzdG9tIFJGTm9DIGJsb2NrcyB3aXRob3V0
-IGN1c3RvbSBibG9jayBjb250cm9sbGVycyBpbiB0aGlzIG1hbm5lciwKeW91IHdpbGwgbmVlZCB0
-byB2ZXJpZnkgdGhhdCB3aGVuIHlvdSBjYWxsIGdldF9ibG9jaygiMC9CbG9jayNuIiksIGl0Cmlz
-IHRoZSBibG9jayB0aGF0IHlvdSBleHBlY3QuIFlvdSBjYW4gY2FsbCBnZXRfbm9jX2lkKCkgb24g
-dGhlCm5vY19ibG9ja19iYXNlIHRoYXQgaXMgcmV0dXJuZWQgYW5kIGVuc3VyZSB0aGF0IHRoZSAz
-Mi1iaXQgSUQgaW5kZWVkCnJlcHJlc2VudHMgdGhlIGJsb2NrIHRoYXQgeW91IHdpc2ggdG8gY29u
-dHJvbC4KClVubGVzcyBzcGVjaWZpY2FsbHkgb3ZlcnJpZGRlbiwgdGhlIGRlZmF1bHQgYmVoYXZp
-b3Igb2YgYQpub2NfYmxvY2tfYmFzZS1kZXJpdmVkIG9iamVjdCwgSSBiZWxpZXZlLCBpcyB0byBm
-b3J3YXJkIGFjdGlvbnMKKHN0cmVhbSBjb21tYW5kcykgdXNpbmcgdGhlIE9ORV9UT19PTkUgZm9y
-d2FyZGluZyBwb2xpY3ksIHdoaWNoIG1lYW5zCnRvIGZvcndhcmQgdGhlIGFjdGlvbiB0byB0aGUg
-c2FtZSBwb3J0IG9uIHRoZSBvcHBvc2l0ZSBlZGdlIChzbyB0bwpvdXRwdXQgcG9ydCAjTiBpZiB0
-aGUgYWN0aW9uIGlzIHJlY2VpdmVkIG9uIGlucHV0IHBvcnQgI04sIGFuZCB2aWNlCnZlcnNhKS4g
-Q29uc3VsdCB0aGUgZG9jdW1lbnRhdGlvbiBvZiB1aGQ6OnJmbm9jOjpub2RlX3QgYW5kCmZvcndh
-cmRpbmdfcG9saWN5X3QgZm9yIG1vcmUgZGV0YWlscy4KCkJlc3QgcmVnYXJkcywKQWFyb24KCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMg
-bWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1
-cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+--===============6850665489807992651==
+Content-Type: multipart/alternative; boundary="00000000000009d5c505b9806bc9"
+
+--00000000000009d5c505b9806bc9
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Yes, I have done it. I'll share an example with you. Putting your IP
+in-tree is also an option.
+
+Thanks,
+
+Wade
+
+On Thu, Jan 21, 2021 at 5:01 PM C=C3=A9dric Hannotier via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Dear all,
+>
+> On 08/01/21 18:58, C=C3=A9dric Hannotier via USRP-users wrote:
+> > Dear all,
+> >
+> > I am following the RFNoC on UHD4.0 wiki [1],
+> > but there is no mention on how to add Xilinx IPs in the OOT.
+> >
+> > When following [2],
+> > after copy-pasting from "host/example/rfnoc-example",
+> > and following [3] to setup basic shell env/script,
+> > how can I add for example IP "xilinx.com:ip:mult_gen:12.0"?
+> >
+> > Furthermore, how do I add that IP "module wise" or "block wise",
+> > i.e. inside rfnoc-example or inside rfnoc-example/fpga/rfnoc_block_gain=
+?
+> >
+> > There is viv_create_ip [3], but it just creates the tree,
+> > it does not link that new IP with the current OOT tree.
+> >
+> > [1] https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0
+> > [2]
+> https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0#Creating_Your_=
+Own_OOT_Module
+> > [3] https://files.ettus.com/manual/md_usrp3_vivado_env_utils.html
+>
+> Unfortunatly, I am still facing that issue.
+> Has anyone managed to add a Xilinx IP into an OOT RFNoC block?
+>
+> --
+>
+> C=C3=A9dric Hannotier
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--00000000000009d5c505b9806bc9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Yes, I have done it. I&#39;ll share an example with y=
+ou. Putting your IP in-tree is also an option.<br></div><div><br></div><div=
+>Thanks,</div><div><br></div><div>Wade<br></div></div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 21, 2021 at 5:0=
+1 PM C=C3=A9dric Hannotier via USRP-users &lt;<a href=3D"mailto:usrp-users@=
+lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex">Dear all,<br>
+<br>
+On 08/01/21 18:58, C=C3=A9dric Hannotier via USRP-users wrote:<br>
+&gt; Dear all,<br>
+&gt; <br>
+&gt; I am following the RFNoC on UHD4.0 wiki [1],<br>
+&gt; but there is no mention on how to add Xilinx IPs in the OOT.<br>
+&gt; <br>
+&gt; When following [2],<br>
+&gt; after copy-pasting from &quot;host/example/rfnoc-example&quot;,<br>
+&gt; and following [3] to setup basic shell env/script,<br>
+&gt; how can I add for example IP &quot;xilinx.com:ip:mult_gen:12.0&quot;?<=
+br>
+&gt; <br>
+&gt; Furthermore, how do I add that IP &quot;module wise&quot; or &quot;blo=
+ck wise&quot;,<br>
+&gt; i.e. inside rfnoc-example or inside rfnoc-example/fpga/rfnoc_block_gai=
+n?<br>
+&gt; <br>
+&gt; There is viv_create_ip [3], but it just creates the tree,<br>
+&gt; it does not link that new IP with the current OOT tree.<br>
+&gt; <br>
+&gt; [1] <a href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_=
+4.0" rel=3D"noreferrer" target=3D"_blank">https://kb.ettus.com/Getting_Star=
+ted_with_RFNoC_in_UHD_4.0</a><br>
+&gt; [2] <a href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_=
+4.0#Creating_Your_Own_OOT_Module" rel=3D"noreferrer" target=3D"_blank">http=
+s://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0#Creating_Your_Own_OO=
+T_Module</a><br>
+&gt; [3] <a href=3D"https://files.ettus.com/manual/md_usrp3_vivado_env_util=
+s.html" rel=3D"noreferrer" target=3D"_blank">https://files.ettus.com/manual=
+/md_usrp3_vivado_env_utils.html</a><br>
+<br>
+Unfortunatly, I am still facing that issue.<br>
+Has anyone managed to add a Xilinx IP into an OOT RFNoC block?<br>
+<br>
+-- <br>
+<br>
+C=C3=A9dric Hannotier<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--00000000000009d5c505b9806bc9--
+
+
+--===============6850665489807992651==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============6850665489807992651==--
+
