@@ -2,105 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B191300674
-	for <lists+usrp-users@lfdr.de>; Fri, 22 Jan 2021 16:03:10 +0100 (CET)
-Received: from [::1] (port=33294 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1807E3008BC
+	for <lists+usrp-users@lfdr.de>; Fri, 22 Jan 2021 17:33:30 +0100 (CET)
+Received: from [::1] (port=33900 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l2xxr-0003tv-6i; Fri, 22 Jan 2021 10:03:07 -0500
-Received: from mail-eopbgr140138.outbound.protection.outlook.com
- ([40.107.14.138]:12259 helo=EUR01-VE1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Cedric.Hannotier@ulb.be>)
- id 1l2xxn-0003pV-7x
- for usrp-users@lists.ettus.com; Fri, 22 Jan 2021 10:03:03 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FDDXd90KpHvioCyUsQzocxldTVpLtGMgpq6anUbRbPgTv3P/dRJHEYQqJPG9zpDRvUuGC4zds+JFhZFFGbEFREXUUZnadK1dp30f+91FOHyX6hCY+FO1Y5xnLGlDL0ezahecHazIzEB0bSadIThaGddyU+PnJAT3Cg7VrEbNY6NlezaRtl+LTTcqZPVHwzzKcoS52hsD59DMsygUxKjY92fM/rCZeH/Jj9H4M9anLLbG+JPZvcAqcXG0akEh9RSFMbmaEyuy1mT1HDnFQAbDEooEnp6g4Vwm07EbB6ngTjmhWAWnf4XffW58ckoGbPC9aV6nEf478hI+w4hyyR5abw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mfyHToi9CMZIPPdA2vQPSB/Bv+DccUgcYVE6Vd4cSGg=;
- b=IeYRVROifokiFdKFJ09dRM7DZLHUBwSV4bU1MTgdxo30i78vVrkG3SYJ+JHKHTe+n+68Lm6VNrimId7B4zNKmTu531wwLcCsesnq/93APzUu12lwk3Do3m0iCOLZ5hhSHzUByJqB14IV+kkJkW4VbghI16d1tG/mIklurkx0BdXS978LPzyLmppnknSwAC6c1re69cfLk3f/Ghjm29ZY8Lk6faWTEcrEyAQFd0QO7Tmc3PKSmfAMOYLakgaS2S20L15U/g0HVeJHiRt4VFS+8licEsRccm9d11rx6SrNqZqM1EJGtbeOCIOETQPINK9YbfpzlzUtpcDwx6US3P/BRw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mfyHToi9CMZIPPdA2vQPSB/Bv+DccUgcYVE6Vd4cSGg=;
- b=xUueY3yHSQr+6cQYSD1uiWMDE4WuTCQv4pXnqhu3Z9v3lfVZa0MlbdfwvfHwABxC2SRpQVNf7fPTcju3pgk3gxqgJOUOG5NGvcUda0KFFtb+PmWqDYxFu43qKN38u2Cx9YiU0lLeeu16Wz1tLC+jNkyxADzDPHherfIXKL4DmyY=
-Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none header.from=ulb.be;
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
- by AM7P190MB0693.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:118::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.13; Fri, 22 Jan
- 2021 15:02:21 +0000
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb%9]) with mapi id 15.20.3784.013; Fri, 22 Jan 2021
- 15:02:21 +0000
-Date: Fri, 22 Jan 2021 16:02:20 +0100
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <20210122150220.ooerbxb22ndwefh6@barbe>
-Mail-Followup-To: usrp-users <usrp-users@lists.ettus.com>
+	id 1l2zNG-0001dO-3b; Fri, 22 Jan 2021 11:33:26 -0500
+Received: from mail-ed1-f54.google.com ([209.85.208.54]:33222)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <aaron.rossetto@ettus.com>)
+ id 1l2zNC-0001Rg-BI
+ for usrp-users@lists.ettus.com; Fri, 22 Jan 2021 11:33:22 -0500
+Received: by mail-ed1-f54.google.com with SMTP id c6so7275756ede.0
+ for <usrp-users@lists.ettus.com>; Fri, 22 Jan 2021 08:33:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :content-transfer-encoding;
+ bh=vo4v9EcA/M5qm2lNqB6CJq6+67E0dm3VSTOx9PxuI8M=;
+ b=adllIsoktgySSE7xC58b4xIgROm4Bra12PPmimj0Z38dUYZdnCiN+s/gczQeF5Ft54
+ V+Gg8zlXdHXYQESQRZzWx4EbPrsEAyGNSDOAzjIBQu7+EYi76ghj7g+Youwour12JCqG
+ F4/9e2gtLjmlGh5ujMr01llAkWsJ5fQ1VLB4T9Hce0hLSRZIKQyaqPYFKfV8/jtj0tux
+ /eGbERnFqUgiS2+UBxY96Fkme+ii0bufYUAwDD0hSupbKCULDW5RHskjDAHjDl+EfFsA
+ 0bC2mu3KYxXV+uywITL6EtRW0MgYLXLLiWYDMFQbevsTnT6tlmoi78cQduniPEwonY+f
+ ySdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:content-transfer-encoding;
+ bh=vo4v9EcA/M5qm2lNqB6CJq6+67E0dm3VSTOx9PxuI8M=;
+ b=IchrobKHjuJXIfDECul7D+naVQNgPqAOYIJ6vp9m9rqpAWNycuJ7dM1/EPxOcDsg9c
+ WrzJhXorVE8gn8J58peOeypaWNysnrZnzO9DnGUB3zB4zUDppDpDH8sGt/6gUb+zs38d
+ +sxkcOAeigIWT5fBye5HPFb6+2icUQEy5tnj6AAepLknJVpPNuyOBAje7S5mSDMZXJfT
+ zrJfN6xvfontXv3surfLYIY1YZ+k0G7LBHdoj0FGnK+h7xkFArTY9aZSdsR29eVBcIFD
+ 9ijew6+xAbqtYsmqbjezLrE5gh1OSVMpKksYJGwwc0SUbjJpgQbxp+bnEN+o/rzEq8SF
+ G6tg==
+X-Gm-Message-State: AOAM53035sSed5DkX50wS6Zv28fXBYw2FBUEKIjsXds5ovIBoMpER49e
+ buxwj8K2QoDqzIon3GbiYdAg2yQwrXt8efsq+/KzNF+sIilPlTih
+X-Google-Smtp-Source: ABdhPJyGlmcb8Aikz6lxyYxIdLaSJAnKPn9Nctyx2myWejqVvxE3KvhDeM3T9lxKq+/i1WolanaLWL8y9rq+xrA+Qng=
+X-Received: by 2002:aa7:d386:: with SMTP id x6mr3989469edq.194.1611333161086; 
+ Fri, 22 Jan 2021 08:32:41 -0800 (PST)
+MIME-Version: 1.0
 References: <CAB__hTT+gaOgFF2_ME+=bY9S21e_D-+XfCv7dH_qRmAZ-6h6oQ@mail.gmail.com>
  <CAB__hTTKkyz0fx9fGa_ePM9xZXHLcvYnbhsSCH3vYLA5z2G5Og@mail.gmail.com>
  <20210121224824.uajvcmmust7bgzfc@barbe>
- <CAB__hTSRar-TPwEH-bSDPoKoowPkjHVQngJwSHu+DiZvybhGaQ@mail.gmail.com>
-Content-Disposition: inline
-In-Reply-To: <CAB__hTSRar-TPwEH-bSDPoKoowPkjHVQngJwSHu+DiZvybhGaQ@mail.gmail.com>
-X-Originating-IP: [2a02:1811:371b:2300:d35:f3bc:c81e:cf64]
-X-ClientProxiedBy: AM0PR03CA0100.eurprd03.prod.outlook.com
- (2603:10a6:208:69::41) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:11e::20)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost (2a02:1811:371b:2300:d35:f3bc:c81e:cf64) by
- AM0PR03CA0100.eurprd03.prod.outlook.com (2603:10a6:208:69::41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3784.12 via Frontend Transport; Fri, 22 Jan 2021 15:02:20 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: fcfd5a64-1d4a-43d5-ece5-08d8bee6b7cd
-X-MS-TrafficTypeDiagnostic: AM7P190MB0693:
-X-Microsoft-Antispam-PRVS: <AM7P190MB0693CFC9FCC9EA94BB7CA178F0A00@AM7P190MB0693.EURP190.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0I08wQ6XPkgTEV3yRL0hpaRYE+A3oQ69/DMi+0KVbMLpuBIxc6CRromO8h0mwGXyoSfZlYgkJPMk3ewr9G57VruVQlDboI/QUC8tDbfp9U4d1XeqX2MOJFX7IP1kMTsPK3DPtiVeb9JYgN7EpdPV3bbZyHs6OCSdU0slflJZ6+6V1FM0MnXQ39plfbUAJAtSHjyYCZnT5lGc1g+h29fqkqZ9as/RI93JqAw7BvAtu8EVZMIZsIUPnmVE6pulux12Fh2UvPNFiP93pMyeGTVHOp8vzAi3cC+9OWV0VC6C+SJegLKPglDJVGAdAGH9hUzoHrJK9lZ7RPW34LN6BcZh+VVxffcTRgWV/aF4dTviOIfkYyebQhbBdbc0tOdXVXVHlfwTf7JRmZZwzMuGoCSXOg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(7916004)(4636009)(396003)(366004)(39860400002)(376002)(346002)(136003)(9686003)(6486002)(6916009)(186003)(8676002)(86362001)(33716001)(8936002)(53546011)(6496006)(83380400001)(52116002)(2906002)(16526019)(66574015)(66556008)(66476007)(66946007)(786003)(316002)(478600001)(5660300002)(4744005)(1076003);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?z+o8M+Bml2Ky/ccEZamMOWP6hDupQ2uifnInkXv40RXji42J1t0fA44kB7?=
- =?iso-8859-1?Q?16fQ2EmD3fLpV9xMbwPcR+YyjtM8uWhB0aBcguYYNdpn+o2US6xxPwCCIk?=
- =?iso-8859-1?Q?iCl4EZPUIp1z/B68Bce1aUSKA1Cv7/NW1Ghi9sa0grdUZE7PyRaLmcX2D6?=
- =?iso-8859-1?Q?DAklOewOMzU8kQqLRiZRs7wOAlro93ItWNODnT8y5o+NAs9zc/ObLHYsRN?=
- =?iso-8859-1?Q?v/+IIBkwkF9fKvnDbuDRYd59tV/1gp0jWPqe4r3fwbugqPl5uY57rL7YAb?=
- =?iso-8859-1?Q?jPQI1AY+QOJsl63uuNr3CUPLp8HkvuJseT2vf0xH5w7JB5LU26P/plb0gE?=
- =?iso-8859-1?Q?XpZDshfJObmZKZUlcJ3aRZaVmWeUnyRMIKTVOHql39YlcbiRSkBAZqvTSb?=
- =?iso-8859-1?Q?jYBHXCN0qOomEHrue8XploSM+Nerexx8grPYUyHfRLkLq9GSWgSWmsBemt?=
- =?iso-8859-1?Q?hrqZ6mRLCnYFi9iqw8sN2Ek5h20kXgvkkN/OReTBl5x38x7Fq+ZOL+yvoN?=
- =?iso-8859-1?Q?Gdzyt56JfmrnhN6+qzTngzzFRYCXec5bYW0FEtjnhsXxWv9rh5+BHwbSj4?=
- =?iso-8859-1?Q?XmQn4bMo8ztrA3ywavq3aoPan5RHLrdHYW4NLOYYF4CRijFSRQG+qyBZsE?=
- =?iso-8859-1?Q?herTjKFJ1mWiYTP6Hr+iU1s5ewNuC/L+Vx2Sity9w60EXf62fI6MXoJkkx?=
- =?iso-8859-1?Q?6v2SmUbUfzzMtOo2R11l9587W3u1PqKtStyKy6cnFv3L64Tx8rR9RYxa9K?=
- =?iso-8859-1?Q?uCbu0ZIP5dLUxcDMcaITN4/NpLFJ/3JwcxvVHfQsxvUrYnv70sQzgopQB+?=
- =?iso-8859-1?Q?FCs5s3u70mIYyC6AgKA3A02r/SL0MTCSqJUSa7bL0lm8GjBQ2xsrP33981?=
- =?iso-8859-1?Q?8eEP3+Rpy9wRQEonUifeunBzBL8mKDC3xzXfNTomdCBA+8A2t+1eDtAmYc?=
- =?iso-8859-1?Q?2mSfI7IgtP0RzaVBEsIfY96wmmIlEb6lQDr+dof+QXEQxWWp45JTVE8bXh?=
- =?iso-8859-1?Q?i203fSQ+ID5GiNAY5cwqwyQmJZu6IA5o3/j7BzzLiBqgcHjt9J4KXn5G0B?=
- =?iso-8859-1?Q?4cLE6/og9sQgUhkxrWDyvu2H2shaUsCgfYsdmGgOqCG8FgAgEHIerdzJeB?=
- =?iso-8859-1?Q?64iiE0G6qzuqjxsB7sRY9xPnpxLTxA6CUJEJWzl/RQQPhXC5A0?=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: fcfd5a64-1d4a-43d5-ece5-08d8bee6b7cd
-X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2021 15:02:21.0636 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ylbvl/22JCQ3Ia3N3B9QEUuZt6kXlSeH40IuJcIbZYlSwmahAvfjC5P/YanvqG3o6mh5aa0xVObdWdS42UcFTQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7P190MB0693
+In-Reply-To: <20210121224824.uajvcmmust7bgzfc@barbe>
+Date: Fri, 22 Jan 2021 10:32:29 -0600
+Message-ID: <CAAg5+MyoX=oAQKZ5T1siAfUt1=D2HM=-3eTQYVA_V=xC2F_b1w@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] No streaming using OOT RFNoC Block in UHD4
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -113,11 +62,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Aaron Rossetto via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Aaron Rossetto <aaron.rossetto@ettus.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -131,32 +79,45 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Rob,
-
-Thanks for your assistance.
-
-On 21/01/21 22:49, Rob Kossler wrote:
-> Also, regarding building in-tree, are you opposed to building in-tree as =
-even
-> a temporary test case?  It's not too difficult to do.  I am not
-> talking about the
-> FPGA code - just the block controller HPP / CPP.
-
-I am not, especially as a temporary solution.
-I just fear the possible implicated burden in the long run
-compared to OOT when propagating those blocks to multiple hosts.
-Do you have documentation on how to properly build
-the block controller cpp/hpp in-tree?
-
-I guess I'll have to rebuild the whole UHD?
-I was just pulling binaries provided by my distribution.
-
--- =
-
-
-C=E9dric Hannotier
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+T24gVGh1LCBKYW4gMjEsIDIwMjEgYXQgNDo0OSBQTSBDw6lkcmljIEhhbm5vdGllciB2aWEgVVNS
+UC11c2Vycwo8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgoKPiBPbiBhIHNpZGUg
+bm90ZToKPiBBcmUgd2UgZm9yY2VkIHRvIGltcGxlbWVudCBhIGN1c3RvbSBjb250cm9sbGVyIGZv
+ciBlYWNoIFJGTm9DIGJsb2NrPwo+IEkgd2FzIGV4cGVjdGluZyB0aGF0IEkgY291bGQganVzdCB3
+cml0ZSB0aGUgdmVyaWxvZyBwYXJ0Cj4gYW5kIHVzZSB0aGUgYmFzaWMgbm9jX2Jsb2NrX2Jhc2Ug
+Y29udHJvbGxlciB0byBtYW5hZ2UgbXkgYmxvY2tzIGluIEMrKywKPiB1c2luZyByZWdzKCktPnBl
+ZWszMi9wb2tlMzIgdG8gc2V0IG15IHJlZ2lzdGVycyBldGMuCj4gQnV0IGZyb20gYWJvdmUsIGl0
+IHNlZW1zIHRoYXQgaXQgZG9lcyBub3QgZm9yd2FyZCB0aGUgaXNzdWVfc3RyZWFtX2NtZAo+IGJ5
+IGRlZmF1bHQ/IElzIHRoYXQgY29ycmVjdD8KCkZvciB2ZXJ5IGJhc2ljIFJGTm9DIGJsb2NrIHBy
+b3RvdHlwaW5nLCB5b3Ugc2hvdWxkIGJlIGFibGUgdG8gdXNlIHRoZQpkZWZhdWx0IG5vY19ibG9j
+a19iYXNlIGltcGxlbWVudGF0aW9uIGlmIHlvdSBhcmUgd2lsbGluZyB0byBhY2Nlc3MKeW91ciBO
+b0MgYmxvY2sncyBmdW5jdGlvbmFsaXR5IHZpYSByZWdpc3RlciByZWFkcyBhbmQgd3JpdGVzIGFu
+ZCBkZWFsCndpdGggc29tZSBhZGRpdGlvbmFsIGNvbXBsaWNhdGlvbnMgd2hlbiBkZWFsaW5nIHdp
+dGggbXVsdGlwbGUgY3VzdG9tClJGTm9DIGJsb2Nrcy4gWW91IHNob3VsZCBiZSBhYmxlIHRvIGdl
+dCBhIHJlZmVyZW5jZSB0byB0aGUgYmxvY2sgYnkKY2FsbGluZyBnZXRfYmxvY2soKSBvbiB5b3Vy
+IHJmbm9jX2Jsb2NrIG9iamVjdC0tdGhpcyBtZXRob2QgcmV0dXJucyBhCm5vY19ibG9ja19iYXNl
+OjpzcHRyLgoKVGhlIGJpdCB0aGF0J3MgY29tcGxpY2F0ZWQgaXMgdGhhdCBnZXRfYmxvY2soKSB0
+YWtlcyBhIGJsb2NrX2lkX3QsCndoaWNoIGNvbnNpc3RzIG9mIHRoZSBkZXZpY2UgbnVtYmVyLCBi
+bG9jayBuYW1lLCBhbmQgaW5zdGFuY2UgKGUuZy4sCicwL015QmxvY2sjMCcgd2hlbiByZXByZXNl
+bnRlZCBhcyBhIHN0cmluZykuIEdlbmVyYWxseSwgdGhlIG5hbWUgaXMKYXNzaWduZWQgdG8gdGhl
+IGJsb2NrIGluIHRoZSBjdXN0b20gYmxvY2sgY29udHJvbGxlciB2aWEgdGhlClVIRF9SRk5PQ19C
+TE9DS19SRUdJU1RFUl9ESVJFQ1QoKSBtYWNyby4gSWYgdGhlIGJsb2NrIGlzIG5vdApyZWdpc3Rl
+cmVkIHZpYSB0aGlzIG1hY3JvLCBhcyBpcyB0aGUgY2FzZSB3aGVuIHVzaW5nIG5vY19ibG9ja19i
+YXNlCmRpcmVjdGx5LCB0aGUgYmxvY2sgd2lsbCBiZSBhc3NpZ25lZCB0aGUgdW5pbWFnaW5hdGl2
+ZSBidXQgdGVjaG5pY2FsbHkKY29ycmVjdCBuYW1lIG9mICdCbG9jaycuIFRodXMsIGlmIHlvdSB3
+YW50IHRvIHVzZSBtdWx0aXBsZSBkaWZmZXJlbnQKY3VzdG9tIFJGTm9DIGJsb2NrcyB3aXRob3V0
+IGN1c3RvbSBibG9jayBjb250cm9sbGVycyBpbiB0aGlzIG1hbm5lciwKeW91IHdpbGwgbmVlZCB0
+byB2ZXJpZnkgdGhhdCB3aGVuIHlvdSBjYWxsIGdldF9ibG9jaygiMC9CbG9jayNuIiksIGl0Cmlz
+IHRoZSBibG9jayB0aGF0IHlvdSBleHBlY3QuIFlvdSBjYW4gY2FsbCBnZXRfbm9jX2lkKCkgb24g
+dGhlCm5vY19ibG9ja19iYXNlIHRoYXQgaXMgcmV0dXJuZWQgYW5kIGVuc3VyZSB0aGF0IHRoZSAz
+Mi1iaXQgSUQgaW5kZWVkCnJlcHJlc2VudHMgdGhlIGJsb2NrIHRoYXQgeW91IHdpc2ggdG8gY29u
+dHJvbC4KClVubGVzcyBzcGVjaWZpY2FsbHkgb3ZlcnJpZGRlbiwgdGhlIGRlZmF1bHQgYmVoYXZp
+b3Igb2YgYQpub2NfYmxvY2tfYmFzZS1kZXJpdmVkIG9iamVjdCwgSSBiZWxpZXZlLCBpcyB0byBm
+b3J3YXJkIGFjdGlvbnMKKHN0cmVhbSBjb21tYW5kcykgdXNpbmcgdGhlIE9ORV9UT19PTkUgZm9y
+d2FyZGluZyBwb2xpY3ksIHdoaWNoIG1lYW5zCnRvIGZvcndhcmQgdGhlIGFjdGlvbiB0byB0aGUg
+c2FtZSBwb3J0IG9uIHRoZSBvcHBvc2l0ZSBlZGdlIChzbyB0bwpvdXRwdXQgcG9ydCAjTiBpZiB0
+aGUgYWN0aW9uIGlzIHJlY2VpdmVkIG9uIGlucHV0IHBvcnQgI04sIGFuZCB2aWNlCnZlcnNhKS4g
+Q29uc3VsdCB0aGUgZG9jdW1lbnRhdGlvbiBvZiB1aGQ6OnJmbm9jOjpub2RlX3QgYW5kCmZvcndh
+cmRpbmdfcG9saWN5X3QgZm9yIG1vcmUgZGV0YWlscy4KCkJlc3QgcmVnYXJkcywKQWFyb24KCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMg
+bWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1
+cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
