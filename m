@@ -2,102 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CC722FF858
-	for <lists+usrp-users@lfdr.de>; Fri, 22 Jan 2021 00:01:47 +0100 (CET)
-Received: from [::1] (port=52200 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55A202FFB6D
+	for <lists+usrp-users@lfdr.de>; Fri, 22 Jan 2021 04:50:54 +0100 (CET)
+Received: from [::1] (port=54306 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l2ixU-0000ch-RP; Thu, 21 Jan 2021 18:01:44 -0500
-Received: from mail-eopbgr80115.outbound.protection.outlook.com
- ([40.107.8.115]:21766 helo=EUR04-VI1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Cedric.Hannotier@ulb.be>)
- id 1l2ixQ-0000Vf-Lt
- for usrp-users@lists.ettus.com; Thu, 21 Jan 2021 18:01:40 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F1+ngIOeDynXphQYTbFKzPPMrsUXIJR9cABu5YNVyza8GlGfdkBHPEICe8UbIU3pun1RKdJu4BrrVFXv7hccjHnrVmf1fiNoVVgycyXswbIpUv+JQNPO9QlaHFkEVyq8BgOtBuGC2EGngrTEMcLUfRJSpPKZMDTp10BTlNxT/geT3Vj/1UFM/CbgEjlP68J+uDCqXYvZr8DIAXPoHSX0gSs/C7MSiCenwG4+acde4QuOdPCFYdfFdfxvF5K6+g9jkgpuJrAa2ePpOM1OD9hmoXIFr/bkCCxMd0+FMhs7xQ+CGWgom5K2F+oDIDOthzzfTmAkiTfnMYgbbZLuilKNQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9pFlpq+yHiB6ZUj3fpaA37TJEte2eJqV15VFIVQVFrY=;
- b=iFrcSlCZQZNhRxD78YsiOMfTqGhewbH2AN9Du/mrWcoFT5xJviBbmGnqxPGORDHCqKUaO6/b7bFqJwnZaorrPyM+TWFtQff5IXSGYf/GN4M2X1Xwd3OtOjAH3I3AiNiTGl11FOYN4Bk0myKhY4/BOZJAFx3oAkBXjheoPTz/kLI/YcTeEBN/hL8XAg/1cDF3Lp+0D3mg0Heb3FuNXiY9XZBs7gI86mz6bPBBUV7kg1tRv4C/hZ31tzv7clMjCrvs8aXEkP/H5th41Q1c/mXVdQgraHqdPFaezK7noBFzGzaMGBsd51KbzdWyVlJHmOJJ0eemE7ogXOZhBxsuGjJKlg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9pFlpq+yHiB6ZUj3fpaA37TJEte2eJqV15VFIVQVFrY=;
- b=RLhRj3J1w+IQDkIVn84iP22Gdm47aOKL997nsdFeSMnnBe3IEpxnRcwITPNcp5kqous7CwmrRyY7If4yT11dpqchZ1mg1G+wR2Bhr24qbmQRJyw0BRQiN6KODuJa5W9dpxK/JTwxBYPV9j7plKzwQBvqAbE/civKWpFxeflUZx8=
-Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none header.from=ulb.be;
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
- by AS8P190MB1160.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:2ed::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11; Thu, 21 Jan
- 2021 23:00:58 +0000
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb%9]) with mapi id 15.20.3784.013; Thu, 21 Jan 2021
- 23:00:58 +0000
-Date: Fri, 22 Jan 2021 00:00:57 +0100
-To: usrp-users@lists.ettus.com
-Message-ID: <20210121230057.aswz7r7zngpxbthy@barbe>
-Mail-Followup-To: usrp-users@lists.ettus.com
-References: <20210108175838.vxaqctdxyaahty72@barbe>
-Content-Disposition: inline
-In-Reply-To: <20210108175838.vxaqctdxyaahty72@barbe>
-X-Originating-IP: [2a02:1811:371b:2300:191a:95a4:11e8:fcdd]
-X-ClientProxiedBy: PR3P192CA0043.EURP192.PROD.OUTLOOK.COM
- (2603:10a6:102:57::18) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:11e::20)
+	id 1l2nTG-0004Tl-RX; Thu, 21 Jan 2021 22:50:50 -0500
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:38785)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1l2nTD-0004OS-KR
+ for usrp-users@lists.ettus.com; Thu, 21 Jan 2021 22:50:47 -0500
+Received: by mail-oi1-f170.google.com with SMTP id h6so3287135oie.5
+ for <usrp-users@lists.ettus.com>; Thu, 21 Jan 2021 19:50:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=xAkQcj1LTChcUhKiY6JxKSTFVPbf4uf10JKcP1L1KDk=;
+ b=LeOWR6xtLMQ5AT5cF4L4MWb+Ofqabhy1exYLUhmUlGclCc0wLsM5j1vUuQ4L0v6YGe
+ hAOktuRwSYZoz45Lv1+WlJpBGxb3+OTiTXbYK5mkYk8TS1ttprnVbdEUZi2nDg22eEjO
+ 92IM99SsYfoYVEifpbZIvxVSPIQ6y7CG+dA3XeVYwWxp2QuGcN6Vi8SATyzHxOjP1mor
+ fzh0jdvhDJkJyq7eepMTUZMY/0Zc1EyQa0dnqrRHMXZo68pQegeu5BGMHysB93eijWG4
+ ReO5BP8ke3J9lBZdDznbdXiPx0CQp7+cjGPTx/p1FgSDUOBpkFx6vgdVFCWKPUebn5nh
+ V+Vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=xAkQcj1LTChcUhKiY6JxKSTFVPbf4uf10JKcP1L1KDk=;
+ b=pCp/RVAlXZoZx8EuiG3a59AeKALvfcDJ1vOO7g0hgiRs/gUWt2VZeq4TJ0ZXtXqsCT
+ BgalEiyqUD/OcZOAh4SPLJ4MK7tIa3JvfDRyfYmE4Xvw/HNJGw/7t0OsY5fNx/zGj9z2
+ 4cvoCzUs4br3aH2UmRhHVbCcNQvEbuM3dhqy7QwS62MGADrfs8Y7mO9dZrczfYvCaTQz
+ EUXqB8yPrsE0hVCF4V3xOQqMDJsee6kyxdqPsK4253fjyILDwHPUrNdgkbmuz9eZ9jn+
+ CMvo9/BQ1bG2w9r/SVQlBYzalYOMasiBqpAfzH5dWmQg2FhJCxgp1zvrof9T457Cecf3
+ PovA==
+X-Gm-Message-State: AOAM533WnnYD9wW72sZ5jsGFkhPndaxx7BljFX3yznEjJsP7X4wWOteV
+ SAZR0ucT0UQhHzqFlroFmhzan9yzb8LPy1WRx2/8hWCOdJo=
+X-Google-Smtp-Source: ABdhPJyzXPgelZLdFBrf2KfUGzh4Gixz72LAWXdzIXxghtEi/yRZQo5ugb1XPAzKC4LAYQrP0aXpHuEy43QOlTNwATQ=
+X-Received: by 2002:a05:6808:9a:: with SMTP id
+ s26mr2029325oic.124.1611287406567; 
+ Thu, 21 Jan 2021 19:50:06 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost (2a02:1811:371b:2300:191a:95a4:11e8:fcdd) by
- PR3P192CA0043.EURP192.PROD.OUTLOOK.COM (2603:10a6:102:57::18) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3784.12 via Frontend Transport; Thu, 21 Jan 2021 23:00:58 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 08c0ae0c-8127-49a3-9d55-08d8be606a87
-X-MS-TrafficTypeDiagnostic: AS8P190MB1160:
-X-Microsoft-Antispam-PRVS: <AS8P190MB1160AF11B3785D38167FC207F0A10@AS8P190MB1160.EURP190.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: In/dV1DYDft8DJ2Yrf8yzXTHyD1zyZfi9Bh4ronCouVyrChw1nSx2sIZ0Xs/9xZq5fvrBKVK8cOI9MxH/x2oXEeudqTkH0ocsLnbrbcCY5mxLgbVTz84MrVUIG/gb57ExWJLEyLNbAmOosPkPX05AxfYOfOm59aiVLUYnyH5NK2NtdJaIfPA6cUM+Gt1nfPY+ATrkEQKiSj4bahZCjGudoQhuUiAF2clAvraHs6LOmF3NyFTknfL9HBdJfGG9Bff377raRKQhX+v3rrebfJOW2A61XDguRtBEU5WQiuBVT8/A+TB7EViLij32TKXUOfDSeFlX4OqI5JkI8tB7t3gNtWTsh1VUoBxoVXgZwkFkw0e9KOsyJtDrmDHEJALTFmHXrEaw2RLL0R6fGK+9vB14reB7F3QK89ip3CLEOObIUqgR7mzAe/FSwOmMEHKVhMNa//xD+dq0i7dw7+12PlHKQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(7916004)(4636009)(136003)(366004)(39860400002)(346002)(396003)(376002)(2906002)(6916009)(33716001)(786003)(16526019)(966005)(52116002)(5660300002)(83380400001)(9686003)(316002)(478600001)(6496006)(8936002)(186003)(53546011)(1076003)(66556008)(86362001)(8676002)(66476007)(66946007)(6486002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?VlH3mvVv2Igma9Dg82/rTA7JRbnO8lhy956/pxgeJNtqoXHbTw42FSP7tb?=
- =?iso-8859-1?Q?yrAzyvvrtcX5ZlQlFLQ22yrFKgM3zUlS1D0/7N03FIMqb1qYCwhAE+3XbV?=
- =?iso-8859-1?Q?dPeI9cAM0EiAWTVS/ulqPpzFMjUJ3NBRh6oV290g135l70+Y9e0GEWrsFX?=
- =?iso-8859-1?Q?5zFMEZwmueLj9LeIONdi93jEPOw51lAoYNS8nOWg9DVI2a76mCLeMM6QtO?=
- =?iso-8859-1?Q?CDkyc/aAnB3DU1BkO9TP7otBcXZiCpyRhZIBcUVj4tv/XIdVP9ojIqhxwR?=
- =?iso-8859-1?Q?7N5lVoTEEgTsBUuZPkl/rUvY2+DQmH4QH6Y6NgVivo/a9/mMkIXtPAoJgV?=
- =?iso-8859-1?Q?EzKgKv9r0zxNOeSIrE88/Eg3/tQLGbldG0AFmOMFyW+qDW7pydYZvbqJWE?=
- =?iso-8859-1?Q?1kd2PQ1ni3ymt5fYyxCjQVM1P+mKEjgdJ/PH3Eji2kj4jKCfOvecRW61HG?=
- =?iso-8859-1?Q?zp/ZVskfOZyWESNaMmKdRYO8n/ca/VhIpuik/c+jgt/Cqq+i6bdxKexA1h?=
- =?iso-8859-1?Q?4YGfyYZmBrWkM/uklLItfOudijjaX3gCF0Kb7lnqwqOEPjuV4J0HNPQcMk?=
- =?iso-8859-1?Q?3qNoZn/ZJY9nbanwjiMO09WEsYk9BTP1sboX9R8spd5Ayuyr+GX4l1E1C+?=
- =?iso-8859-1?Q?8CwVi2u4T9pNhUQctqLgpQWk20AYI0NkAOX+/7L/Y3bYN3VaG5NSd2HyGS?=
- =?iso-8859-1?Q?e3h6pYosyJnoBQydb5ZATArR2k1TvboqZTc2IjTQsS5ENblbe33ACpd7El?=
- =?iso-8859-1?Q?zyuKm9ctDRkjp7PxXYlPVfok8q0b0wJqtKFMpPPwgQkyqoNW1jB8hopnJr?=
- =?iso-8859-1?Q?FO7MZmhdehrZ87JDdFOzDgcfI73QscEt8Lra/vpSfGOMryw2B4f1bc4jk2?=
- =?iso-8859-1?Q?5fzzQsJFA9fX/pSrVpkgD84+vRAbggYFwrQ2VpNG4VcUHKruIQugg6CfG6?=
- =?iso-8859-1?Q?0f9Vu7IBA6Vte7El8Rp+walu3ZT+UjMSw+j1q2YbJzL9UTdgfCzc35wmXg?=
- =?iso-8859-1?Q?+bUXX5Z9qPc7rMVBjr+8B+k25GoLAaW8JwVNODzG9TQKjE7gCU4oXCvlpe?=
- =?iso-8859-1?Q?QlwSjf9atflyflufhmoWuWvLt3pBCZWxP2/GxO+sAbcx?=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08c0ae0c-8127-49a3-9d55-08d8be606a87
-X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2021 23:00:58.7619 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lSbAPWWBOi4TInRQa3plL4B6PXqkmTweG078I7C9nD0ve6FrCtdJNA4gr2eba3qP+QOiiJ5MCOVf+F+xzKem6w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P190MB1160
-Subject: Re: [USRP-users] Add Xilinx IP in OOT RFNoC UHD4.0
+References: <CAB__hTT+gaOgFF2_ME+=bY9S21e_D-+XfCv7dH_qRmAZ-6h6oQ@mail.gmail.com>
+ <CAB__hTTKkyz0fx9fGa_ePM9xZXHLcvYnbhsSCH3vYLA5z2G5Og@mail.gmail.com>
+ <20210121224824.uajvcmmust7bgzfc@barbe>
+In-Reply-To: <20210121224824.uajvcmmust7bgzfc@barbe>
+Date: Thu, 21 Jan 2021 22:49:55 -0500
+Message-ID: <CAB__hTSRar-TPwEH-bSDPoKoowPkjHVQngJwSHu+DiZvybhGaQ@mail.gmail.com>
+To: =?UTF-8?Q?C=C3=A9dric_Hannotier?= <cedric.hannotier@ulb.be>, 
+ usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] No streaming using OOT RFNoC Block in UHD4
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -109,11 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -127,42 +78,108 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Dear all,
+> > In the rfnoc_rx_to_file program,
+> > streaming is started by the function rx_stream->issue_stream_cmd().  Note
+> > that this is a command to the streamer which then must be forwarded to the
+> > gain controller and then the ddc controller and then the radio controller
+> > which will then turn on the radio.
+>
+> I have a question regarding that statement.
+> Since the gain block and the radio+ddc are on different EP,
+> wouldn't the rx_streamer able to transfer that command to the radio
+> without forwarding it to the gain block?
+> I do not know the type of issue_stream_cmd.
+> From the RFNoC Specification, it is stated that it is an "Action",
+> "calling into API provided by the graph".
+> It is also stated that it "propagates". But it does not specify
+> in which case it does or not and how it does it.
 
-On 08/01/21 18:58, C=E9dric Hannotier via USRP-users wrote:
-> Dear all,
-> =
+I don't think it matters about the different EP.  Once the "graph" is
+constructed, the
+propagation goes from node to node. But, I don't really understand it
+well, so I can't
+comment on it.
 
-> I am following the RFNoC on UHD4.0 wiki [1],
-> but there is no mention on how to add Xilinx IPs in the OOT.
-> =
+> > So, one question I have is: does the command make it to the radio?  I think
+> > that you can tell by looking at the LED - does it turn on?
+> >
+> >    - If so, then I am on the wrong path.
+> >    - If not, then
+> >       - Maybe there is some setting in the gain block controller that is
+> >       not forwarding the command.
+> >       - Or, more likely, maybe the gain block controller is not being used
+> >       at all because of the block finding issue "block#0" vs "gain#0".  In this
+> >       case, perhaps building the gain block controller in-tree would help
+>
+> You are right!
+> The LED does not turn on when putting the gain block
+> (Radio -> DDC -> Gain -> rx_streamer).
+> So it seems that the stream_cmd is not forwarded... But why?
+>
+> You said that I could try to build the controller in-tree.
+> I would like to avoid that.
+> Could I issue_stream_cmd on the radio_ctrl instead of rx_streamer?
+> How would it work with multiple radios (like in the X310)?
 
-> When following [2],
-> after copy-pasting from "host/example/rfnoc-example",
-> and following [3] to setup basic shell env/script,
-> how can I add for example IP "xilinx.com:ip:mult_gen:12.0"?
-> =
+I think you could issue the stream command on either the DDCs or the Radios
+and it should work.  I would suggest the DDCs which will then forward the
+commands to the radio.  It should work fine with multiple radios.  If you need
+them to start synchronously, then it will still work so long as you
+have a common
+start time for all radios which will each hold off the start of streaming until
+the specified time.
 
-> Furthermore, how do I add that IP "module wise" or "block wise",
-> i.e. inside rfnoc-example or inside rfnoc-example/fpga/rfnoc_block_gain?
-> =
-
-> There is viv_create_ip [3], but it just creates the tree,
-> it does not link that new IP with the current OOT tree.
-> =
-
-> [1] https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0
-> [2] https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0#Creating_Y=
-our_Own_OOT_Module
-> [3] https://files.ettus.com/manual/md_usrp3_vivado_env_utils.html
-
-Unfortunatly, I am still facing that issue.
-Has anyone managed to add a Xilinx IP into an OOT RFNoC block?
-
--- =
+Also, regarding building in-tree, are you opposed to building in-tree as even
+a temporary test case?  It's not too difficult to do.  I am not
+talking about the
+FPGA code - just the block controller HPP / CPP.
 
 
-C=E9dric Hannotier
+> On a side note:
+> Are we forced to implement a custom controller for each RFNoC block?
+> I was expecting that I could just write the verilog part
+> and use the basic noc_block_base controller to manage my blocks in C++,
+> using regs()->peek32/poke32 to set my registers etc.
+> But from above, it seems that it does not forward the issue_stream_cmd
+> by default? Is that correct?
+
+As far as I understand, we presently need a custom controller for each RFNoC
+block.  But, I'm not positive. This has been one area where the
+rollout for RFNoC
+4.0 has not been smooth.  You should be able to do just as you intended, but
+I'm not sure that UHD 4.0 is ready for that such that in the meantime, you might
+be better off building custom controllers.
+
+That said, I don't think that the command forwarding is disabled by default.
+Honestly, I don't know what is the issue and I am just guessing. But,
+I didn't need
+to do anything special with my blocks and I am not seeing the issue.
+On the other
+hand, I did build a custom block controller for each and so maybe that
+is related
+to the problem....
+
+
+>
+> > Also, it might help if you turn on "debug" logging (export
+> > UHD_LOG_LEVEL=debug; export UHD_LOG_CONSOLE_LEVEL=debug) and run the
+> > rfnoc_rx_to_file example.  First try with a working block such as FFT and
+> > then with the gain block and see if there are any clues.
+> > Rob
+>
+> I attached 3 logs:
+>  - normal.log is (Radio -> DDC -> rx_streamer)
+>  - fft.log is (Radio -> DDC -> fft -> rx_streamer)
+>  - gain.log is (Radio -> DDC -> gain -> rx_streamer)
+>
+> I just had to specify "--spp 256" to match the default FFT size
+> (otherwise I get overrun).
+
+I looked at the log files but nothing there.  It is possible that we
+would need "trace" level
+logging to see anything useful.  But, that may require a re-build of
+UHD with the
+appropriate command to enable trace debugging.
 
 _______________________________________________
 USRP-users mailing list
