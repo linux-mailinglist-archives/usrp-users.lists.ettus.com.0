@@ -2,53 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27ED130235C
-	for <lists+usrp-users@lfdr.de>; Mon, 25 Jan 2021 10:46:48 +0100 (CET)
-Received: from [::1] (port=58824 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCEBD302749
+	for <lists+usrp-users@lfdr.de>; Mon, 25 Jan 2021 16:56:39 +0100 (CET)
+Received: from [::1] (port=33024 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l3ySK-0007Gy-Kv; Mon, 25 Jan 2021 04:46:44 -0500
-Received: from mail-ej1-f42.google.com ([209.85.218.42]:37874)
+	id 1l44EG-0002Pj-8w; Mon, 25 Jan 2021 10:56:36 -0500
+Received: from mail-qk1-f181.google.com ([209.85.222.181]:40231)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <martin.braun@ettus.com>)
- id 1l3ySG-0007AY-C4
- for usrp-users@lists.ettus.com; Mon, 25 Jan 2021 04:46:40 -0500
-Received: by mail-ej1-f42.google.com with SMTP id kg20so16591089ejc.4
- for <usrp-users@lists.ettus.com>; Mon, 25 Jan 2021 01:46:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:cc;
- bh=+2596QveTL44HESyxMXkiXc4ubdqR5sE/wXuaHUn/vo=;
- b=YJrzqcVah1STd6Ez34ziSKRVvTusPIC7eX0BvS8ZnRsr45KMKUsYCwgpNyylPHTgdE
- lmDwICC2v06604W2Gn+gFERVutK6vRyCb7pB6fmPPTolryVAJC4XAfgO+d0KQazCgmuf
- y/aJ/r4Y7UJg+fqFeWRhsm1tIgFizmPSEGHZpS1ABndVpJFzgx/pyEBJW/TqVlpmRWOV
- c8iXLvk2pR0ZWCJI2o4Jm7spT+5+0mDnrb3d/+RAdDsxp7WSCT2PfKv5eZx1wQpLXmub
- HtGSJtmGA57LNKFsMoJs81mzidLFLBlOfvDIHvsAMDbkryhQqb30OynDu0JFAm4NYlxb
- dsJQ==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1l44EC-0002LP-Ev
+ for usrp-users@lists.ettus.com; Mon, 25 Jan 2021 10:56:32 -0500
+Received: by mail-qk1-f181.google.com with SMTP id u20so4279843qku.7
+ for <usrp-users@lists.ettus.com>; Mon, 25 Jan 2021 07:56:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=lpcmBWkwf1MQmN43L4I2N1YrqeOZfL4zzfVKz4pnBPY=;
+ b=VwzRf0rGPaZVeovKLVPpnyHUrmyigxi8Owbc/KTQRCRgMVyb8XN1R5gUIh6ZiX7HIu
+ dicSml0h8gt/XS5EtmSO/J89dGQhXRV76UoTFmolKkRYXTHLEqItVRNNX+m/Q7OByjb+
+ tAGGnk7YkFQKwGUUYO4t6UfDxvIRBIoSvnqOsQoVNxHCoPYbdtEDW3k4RexFp8Q5T8hV
+ 6m59o4FZc+bBJATieT1GI+gYWgKZ4WCV+ltngEJTYGtKPz+qgzZTTPsJYQ+O2UHue8Ma
+ lAqLdOU2b+KPAQ+8Eijx3GkpXfPXQSEx9n9i4jV9cbysXso6bk76Y1RqQ/oyqw45ZXMJ
+ S1QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:cc;
- bh=+2596QveTL44HESyxMXkiXc4ubdqR5sE/wXuaHUn/vo=;
- b=jlWW8OwbEJ8aHIcFp/j6A9tVGa6jJAUC7EvkC3QyEvnIIWNvayoD+5k0qMH0Z+1EBD
- jGSrPlOvjF0JlFStILl36rkrihSAJtQeYqK+EivdeMXN7kTOxmkSVI6DZjZq6jKxDpha
- LC0A6Za7vel3mefctOVvAeeQjJbifMda1wqz6RxXxvYYnbQMV4Q/JedFLs8q8B8Rhwss
- VtZKORde9slA9YOgDXwwKlCpg5FuyBZWubILvDsLtgfDTmP3aVunaH7aGPbRycTAvBNQ
- xy3rWwGSLie+e/jBZr4CAIV9OtjSF0lZKDFnAL4CEVrpnmN7cDQ0bhcUuDBcxHoX8sGV
- EwPg==
-X-Gm-Message-State: AOAM533qXj53i6m0zMIsWm+iBCQIftQqdGXIZ1DK96LNgC25UiFkp9Ow
- XvubFKezlet1G4u9KK6JM6ZQQp5UarFrh/iyi8m2OGmdm8gdLKAJBtE=
-X-Received: by 2002:a17:906:af41:: with SMTP id
- ly1mt103607ejb.491.1611567959173; 
- Mon, 25 Jan 2021 01:45:59 -0800 (PST)
-MIME-Version: 1.0
-References: <600e5efe.1c69fb81.dd754.3b61SMTPIN_ADDED_BROKEN@mx.google.com>
-In-Reply-To: <600e5efe.1c69fb81.dd754.3b61SMTPIN_ADDED_BROKEN@mx.google.com>
-Date: Mon, 25 Jan 2021 10:45:48 +0100
-Message-ID: <CAFOi1A6rO-k=2ZLGdf_fW6Hikvy+E72HVLTMfO4-+A86HU2MtQ@mail.gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>,
- discuss-gnuradio <discuss-gnuradio@gnu.org>
-Subject: Re: [USRP-users] Cross compile gnuradio in E312 error
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=lpcmBWkwf1MQmN43L4I2N1YrqeOZfL4zzfVKz4pnBPY=;
+ b=B62UqQAW83gSnQ3QMYEv7z97zX06dlOepzt7CoaulDWPlgcCvhwiND+6FUMeZ9AJTk
+ A6MV4vJHA7ihdvI357WxjdBgw5E+FQOmjyGv9oNyEPpek0OjebZzF8WpRHSovmqNTUD6
+ D+cRhBt8mZNNRTCJV9bh0CA0vA0z92YfvftZ+sEnAXl0h/DyMZHc+BMBytnLKoVAgpwo
+ JkAIL44fbMs7R8QWxcxib0aNjtNO2CPLk/fignF/9P0MdlHw62LO9rtq7OqyWUmRJ0Wy
+ sesM3NB8qX1SzussMagrGMmvAB0/ixxw52oeBXEouS4QHrmUdurMOMmCF9GG30Prfxlu
+ v6Gg==
+X-Gm-Message-State: AOAM530J+HOZdDNndkkgCRBPTesNM0ajz+MtQcKMYGm6fLn2LAz8MmuQ
+ ILtPyE45vnj4QjDXeHZxqBp+JFiP/tY=
+X-Google-Smtp-Source: ABdhPJxKlt3a8yaCknI24eZovVa9vyoOpHIMbw6tA70UsdBcCPsgaSTwogCIBlO2pCvCN3JZCxL/Ng==
+X-Received: by 2002:ae9:f50a:: with SMTP id o10mr1421139qkg.160.1611590151580; 
+ Mon, 25 Jan 2021 07:55:51 -0800 (PST)
+Received: from [192.168.2.130]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.gmail.com with ESMTPSA id m190sm12126024qkb.42.2021.01.25.07.55.50
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 25 Jan 2021 07:55:51 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Mon, 25 Jan 2021 10:55:50 -0500
+Message-Id: <5AAF761B-03A0-444A-BC30-B751A4AF91CB@gmail.com>
+References: <3389b036-080d-630d-6c83-42fa92db64f5@126.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+In-Reply-To: <3389b036-080d-630d-6c83-42fa92db64f5@126.com>
+To: =?utf-8?B?5byg5b+g5bGx?= <zzs213@126.com>
+X-Mailer: iPhone Mail (18C66)
+Subject: Re: [USRP-users] x3xx schematics incomplete
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -60,9 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Martin Braun via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Martin Braun <martin.braun@ettus.com>
-Content-Type: multipart/mixed; boundary="===============8550269718047820685=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,89 +83,17 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8550269718047820685==
-Content-Type: multipart/alternative; boundary="000000000000be59c705b9b667ae"
-
---000000000000be59c705b9b667ae
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-you didn't paste an error message.
-
---M
-
-On Mon, Jan 25, 2021 at 7:02 AM --- via GNU Radio, the Free & Open-Source
-Toolkit for Software Radio <discuss-gnuradio@gnu.org> wrote:
-
-> Dear friends:
->      I'm installing rfnoc on E312, when I cross compile gnu radio, I
-> execute this command=EF=BC=9Acmake -Wno-dev
-> -DCMAKE_TOOLCHAIN_FILE=3D~/rfnoc/src/gnuradio/cmake/Toolchains/oe-sdk_cro=
-ss.cmake
-> -DENABLE_GR_WXGUI=3DOFF -DENABLE_GR_VOCODER=3DOFF -DENABLE_GR_DTV=3DOFF
-> -DENABLE_GR_ATSC=3DOFF -DENABLE_DOXYGEN=3DOFF -DCMAKE_INSTALL_PREFIX=3D/u=
-sr ../
->
->  It prompts the following error=EF=BC=9A
-> zcm@zcm-XPS-8500:~/rfnoc/src/gnuradio/build-arm$ cmake -Wno-dev
-> -DCMAKE_TOOLCHAIN_FILE=3D~/rfnoc/src/gnuradio/cmake/Toolchains/oe-sdk_cro=
-ss.cmake
-> -DENABLE_GR_WXGUI=3DOFF -DENABLE_GR_VOCODER=3DOFF -DENABLE_GR_DTV=3DOFF
-> -DENABLE_GR_ATSC=3DOFF -DENABLE_DOXYGEN=3DOFF -DCMAKE_INSTALL_PREFIX=3D/u=
-sr ../
-> -- Build type not specified: defaulting to release.
-> -- Build type set to Release.
-> -- Extracting version information from git describe...
-> -- Compiler Version: arm-oe-linux-gnueabi-gcc (GCC) 4.9.2
-> Copyright (C) 2014 Free Software Foundation, Inc.
-> This is free software; see the source for copying conditions. There is NO
-> warranty; not even for
->
-
---000000000000be59c705b9b667ae
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>you didn&#39;t paste an =
-error message.</div><div><br></div><div>--M<br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jan 25, 2021=
- at 7:02 AM --- via GNU Radio, the Free &amp; Open-Source Toolkit for Softw=
-are Radio &lt;<a href=3D"mailto:discuss-gnuradio@gnu.org">discuss-gnuradio@=
-gnu.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><div>Dear friends:</div><div>=C2=A0 =C2=A0 =C2=A0I&#39;m installing =
-rfnoc on E312, when I cross compile gnu radio,  I execute this command=EF=
-=BC=9Acmake -Wno-dev -DCMAKE_TOOLCHAIN_FILE=3D~/rfnoc/src/gnuradio/cmake/To=
-olchains/oe-sdk_cross.cmake -DENABLE_GR_WXGUI=3DOFF -DENABLE_GR_VOCODER=3DO=
-FF -DENABLE_GR_DTV=3DOFF -DENABLE_GR_ATSC=3DOFF -DENABLE_DOXYGEN=3DOFF -DCM=
-AKE_INSTALL_PREFIX=3D/usr ../</div><div><br></div><div>=C2=A0It prompts the=
- following error=EF=BC=9A</div><div>zcm@zcm-XPS-8500:~/rfnoc/src/gnuradio/b=
-uild-arm$ cmake -Wno-dev -DCMAKE_TOOLCHAIN_FILE=3D~/rfnoc/src/gnuradio/cmak=
-e/Toolchains/oe-sdk_cross.cmake -DENABLE_GR_WXGUI=3DOFF -DENABLE_GR_VOCODER=
-=3DOFF -DENABLE_GR_DTV=3DOFF -DENABLE_GR_ATSC=3DOFF -DENABLE_DOXYGEN=3DOFF =
--DCMAKE_INSTALL_PREFIX=3D/usr ../</div><div>-- Build type not specified: de=
-faulting to release.</div><div>-- Build type set to Release.</div><div>-- E=
-xtracting version information from git describe...</div><div>-- Compiler Ve=
-rsion: arm-oe-linux-gnueabi-gcc (GCC) 4.9.2</div><div>Copyright (C) 2014 Fr=
-ee Software Foundation, Inc.</div><div>This is free software; see the sourc=
-e for copying conditions.  There is NO</div><div>warranty; not even for</di=
-v><div></div></blockquote></div>
-
---000000000000be59c705b9b667ae--
-
-
---===============8550269718047820685==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============8550269718047820685==--
-
+SSBiZWxpZXZlIHRob3NlIHBhZ2VzIGNvdmVyIHRoZSBwcm9wcmlldGFyeSBQQ0lFIGNoaXAgbWFk
+ZSBieSBOSSBhbmQgYXJlIG9taXR0ZWQgZGVsaWJlcmF0ZWx5LiAKClNlbnQgZnJvbSBteSBpUGhv
+bmUKCj4gT24gSmFuIDI1LCAyMDIxLCBhdCAxOjI5IEFNLCDlvKDlv6DlsbEgdmlhIFVTUlAtdXNl
+cnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiB3cm90ZToKPiAKPiDvu794M3h4LnBkZiBz
+aG91bGQgaGF2ZSAyOCBzaGVldHMsIGJ1dCBvbmx5IDIzIGlzIHRoZXJlLgo+IAo+IHNoZWV0IDEz
+LCAxNCAxNSwgMTYsIDE3IG1pc3NpbmcKPiAKPiBXaGVyZSBjYW4gSSBmaW5kIHRoZW0/Cj4gT3Ig
+bm90IHByb3ZpZGUgdGhlc2Ugc2hlZXQ/IAo+IAo+IC0tIAo+IEJlc3QgUmVnYXJkcywKPiB6enMK
+PiAKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+
+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBo
+dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
+dHR1cy5jb20KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+ClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6
+Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVz
+LmNvbQo=
