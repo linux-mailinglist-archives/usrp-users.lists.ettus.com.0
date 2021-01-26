@@ -2,55 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F3343034FF
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Jan 2021 06:34:14 +0100 (CET)
-Received: from [::1] (port=38484 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B63CE30352E
+	for <lists+usrp-users@lfdr.de>; Tue, 26 Jan 2021 06:37:37 +0100 (CET)
+Received: from [::1] (port=38518 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l4GzR-0005bV-NB; Tue, 26 Jan 2021 00:34:09 -0500
-Received: from mail-wr1-f52.google.com ([209.85.221.52]:44857)
+	id 1l4H2l-0006RM-UG; Tue, 26 Jan 2021 00:37:35 -0500
+Received: from mail-qk1-f179.google.com ([209.85.222.179]:41148)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <dario@iptronix.com>) id 1l4GzO-0005XD-KG
- for USRP-users@lists.ettus.com; Tue, 26 Jan 2021 00:34:06 -0500
-Received: by mail-wr1-f52.google.com with SMTP id d16so14476526wro.11
- for <USRP-users@lists.ettus.com>; Mon, 25 Jan 2021 21:33:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iptronix.com; s=google;
- h=message-id:savedfromemail:date:subject:in-reply-to:importance:from
- :to:mime-version;
- bh=VnC5wx7TNAxCvbSSoJqICDRR4+O72ZroJ9+F0Z6mwW4=;
- b=oVEPFlggcveO8n2ZFuSIiqIKBmVlpAC0YhdcdfV0QuDY8EgyntEdYxlPEKZI26dtCL
- sbifg3JPxTLKEfFncigw53dG07/Ejyv754rTfmx5KraO8uHiScylrEM3mdsN6dXKgUcR
- SRsfCpbY6ifJz//hty8uAt8qFdxEQfZ3CZUuqnCNSEh1itGzfvc/eiHmYY4Z9zaPmu7Z
- f9FsJSBbTjxT4/CtbG1fNktA4XfnJQM0kF2e+pZ7EfAVlVO3V8MtolU/ILiTA3/PMoT/
- fb9a16L3RK+wZ9eUbduoyPvOfM0WMXalEqBV56Cn0lkWg29Os4LHGBYeMjwQQY+cz611
- pHPQ==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1l4H2h-00068a-BM
+ for usrp-users@lists.ettus.com; Tue, 26 Jan 2021 00:37:31 -0500
+Received: by mail-qk1-f179.google.com with SMTP id n15so10278520qkh.8
+ for <usrp-users@lists.ettus.com>; Mon, 25 Jan 2021 21:37:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=PBOv0phRCpIUShzrbxNU/ohMJP6dOPU4jo8A/JrPfOc=;
+ b=ZBJoP5bIUfzLR9E3XkKvoI7hD93IblhhFZTn/TwdCU0K1+veeI49h+e6JYdbjK6Nwc
+ DDTSEgsqhEYNAX3hmTJek+KlQ0fHKLjiHc2qCD2q0ATwSfnkTlVm7qe7PxTqzpQNFT3i
+ 6fr5A9VRU7WlP0RbFi3zOiLIScwe8qCgWUsTymHTWoW+GKHKOW2bwDKPcwjiXJXvWhAb
+ oA3KA6YB4BWQ92gfKNt3Kj2ujTmYALZPxCRmY8U/fOu3wUTAr7kn7O71XvJdG70cAKqr
+ Z3nSYLBk4EIY3+q8KmjAtETEIBFHeJKfN6LkeNltqm1fjwS/MUKbQ+GsvizBEeW6aI/d
+ gCrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:savedfromemail:date:subject
- :in-reply-to:importance:from:to:mime-version;
- bh=VnC5wx7TNAxCvbSSoJqICDRR4+O72ZroJ9+F0Z6mwW4=;
- b=j9wlYSEBHIsexz2eLfHtk3ZqcZFW0IvktTjDl0ZkQhW9OWPsqPCimFR+pJ9blPTmBL
- xamqEsr+1KMrxeI1MOMBsbBrJlpUw42M97V8aOfGaCG+e9o0q3u4NCo2HUlD2I3uwPjJ
- ESp3EngmUv+PXnqhglbPxnmSIRlxkbhVsFBrHwxVXzOhvdFkXp1j2+dRtCfxzl/im4Pn
- qedsMJgDU6USMcAkqwFv167AusoP0ojuI2ucKPAr2iHF/cWRw4oNRzv+eeT9FUVMlhZT
- lJmmEsebOH26yvsIer06gUAJptZwA2+z/M8j/5jalm8kAfVAWHojGafgfyS4PXsCMVtU
- fINg==
-X-Gm-Message-State: AOAM533efE1mxwsc9Vp/uLwPpsV5CHO63FtsC5Iku9vjJOjI0gk+5X09
- vy+MgfuQP+ikYZpO+FhdAfdz9Q==
-X-Google-Smtp-Source: ABdhPJy7ISEi9TYJN4ZpSS/48Gmf6CFBEUCWvDprcsq8mdY57CThYO2CMV6h1RnK9/qKRHK1rujA7w==
-X-Received: by 2002:adf:eed0:: with SMTP id a16mr4037377wrp.107.1611639205396; 
- Mon, 25 Jan 2021 21:33:25 -0800 (PST)
-Received: from [192.168.0.28] ([151.37.4.162])
- by smtp.gmail.com with ESMTPSA id n6sm1552551wmi.23.2021.01.25.21.33.24
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 25 Jan 2021 21:33:24 -0800 (PST)
-Message-ID: <600fa9a4.1c69fb81.7bd7b.4ec7@mx.google.com>
-SavedFromEmail: dario@iptronix.com
-Date: Tue, 26 Jan 2021 06:33:18 +0100
-In-Reply-To: <CAAg5+MwVpWeHdJafLvkkWz=WS=SdXK9_ZJ9TqXQpEfnMXoKBiA@mail.gmail.com>
-Importance: normal
-To: Aaron Rossetto <aaron.rossetto@ettus.com>, USRP-users@lists.ettus.com
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=PBOv0phRCpIUShzrbxNU/ohMJP6dOPU4jo8A/JrPfOc=;
+ b=b4QLE2IOlBBdk44XZnqcBGFNvUtpzV+9nGRaa6ZJXzZQjXRluOh18vMP3GqbZwZgnd
+ tKUWPffR1Pj+uboNbUlOS0/XB2I/MecMYE1wlptftwuBwymLnK63fV3subnEP29hF55T
+ Blb74P2vESh4I66q/zczyTUEvIS8DZ8rG+2qplew7Toyk48zw6PJQfDeoHW3o+FVIC9i
+ 9HmcTZmk142RGp+212BeJCpEyagTOO6bcriVfqZb2uP8VAPV3qJftsxhh6quovxmKNrV
+ c2iWX/CDm07CSlwOcvFzZpg4DNAQUDPwcknACWuHICiQdWD4xfMJZv6V8tTqIfAWjSXr
+ bnRQ==
+X-Gm-Message-State: AOAM532NXm9bk344NWfeS2+dIRq2QDs+MYBNrEJQz6qnTrS3fvhO2a52
+ m7MIIpxBGvVdqZp5TQCcSGHqzoLuheU=
+X-Google-Smtp-Source: ABdhPJxBtfG8nFPmR6q77Y6GULXTyX4PQTgLgcvEWb4qdvYqYlkTr3n9t8MGqYL2NAo7KeMZuWAOeA==
+X-Received: by 2002:a37:a04d:: with SMTP id j74mr4283570qke.378.1611639410508; 
+ Mon, 25 Jan 2021 21:36:50 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id b203sm5943040qkg.26.2021.01.25.21.36.49
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 25 Jan 2021 21:36:50 -0800 (PST)
+Message-ID: <600FAA71.1010806@gmail.com>
+Date: Tue, 26 Jan 2021 00:36:49 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
+References: <600fa9a4.1c69fb81.7bd7b.4ec7@mx.google.com>
+In-Reply-To: <600fa9a4.1c69fb81.7bd7b.4ec7@mx.google.com>
 Subject: Re: [USRP-users] uhd4.0 and blocks with multiple ports
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -63,9 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: dario via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: dario <dario@iptronix.com>
-Content-Type: multipart/mixed; boundary="===============3186684585445451724=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8809803360374845811=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,140 +82,240 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3186684585445451724==
-Content-Type: multipart/alternative; boundary="--_com.samsung.android.email_720633424170330"
+This is a multi-part message in MIME format.
+--===============8809803360374845811==
+Content-Type: multipart/alternative;
+ boundary="------------040004000201050908060201"
 
-----_com.samsung.android.email_720633424170330
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------040004000201050908060201
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-VGhhbmtzIGZvciBhbnN3ZXJpbmcgc28gcXVpY2tseS4gVGhlIHJlYXNvbiBpIHBvc3RlZCBoZXJl
-IGlzIHRoYXQgaXQncyBhY3R1YWxseSB1aGQgd2hpY2ggaXMgY29tcGxhaW5pbmcgdGhlIHRvcG9s
-b2d5IGlzIG5vdCBjb21wYXRpYmxlLCBub3QgZ251cmFkaW8uIEkgY2FuIHNlZSB0aGF0IHRoZXJl
-IGFyZSBzZXZlcmFsIGJsb2NrcyB0aGF0IGhhdmUgbXVsdGlwbGUgaW4vb3V0IGFuZCBpIGRpZG4n
-dCByZWFsaXplIHBob3NwaG9yIG5vdyBoYXMgZGlmZmVyZW50IHBvcnRzIGJ1dCBpIHN0aWxsIGRv
-bid0IHVuZGVyc3RhbmQgd2hhdCBpIGNvdWxkIGhhdmUgZG9uZSB3cm9uZyB0byBoYXZlIHN1Y2gg
-ZXJyb3IuIEFzIGkgd2FzIG1lbnRpb25pbmcgdGhlIGZyYW1ld29yayBzdGFydHMsIHdyaXRlcyBy
-ZWdpc3RlcnMgb2YgbXkgYmxvY2sgYW5kIHRoZW4gd2hlbiBjb21taXR0aW5nIHRvcG9sb2d5IGl0
-IGZhaWxzIHNheWluZyByZm5vYzo6Z3JhcGg6OmRldGFpbCBub2RlIC4uLiBjYW5ub3QgaGFuZGxl
-IGl0cyBjdXJyZW50IHRvcG9sb2d5IVRoYW5rcyxEYXJpbwotLS0tLS0tLSBNZXNzYWdnaW8gb3Jp
-Z2luYWxlIC0tLS0tLS0tRGE6IEFhcm9uIFJvc3NldHRvIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbT4gRGF0YTogMjUvMDEvMjEgIDIzOjI4ICAoR01UKzAxOjAwKSBB
-OiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSBPZ2dldHRvOiBSZTogW1VTUlAtdXNlcnNdIHVo
-ZDQuMCBhbmQgYmxvY2tzIHdpdGggbXVsdGlwbGUgcG9ydHMgSSBhZ3JlZSB0aGF0IHRoaXMgcXVl
-c3Rpb24gaXMgbW9yZSBpbiB0aGUgZG9tYWluIG9mIEdOVVJhZGlvLCBidXQgSSBkb3dhbnQgdG8g
-cG9pbnQgb3V0IHRoYXQgUkZOb0MgNC4wIGJsb2NrcyBtb3N0IGNlcnRhaW5seSBjYW4gaGF2ZWRp
-ZmZlcmVudCBudW1iZXJzIG9mIGlucHV0cyBhbmQgb3V0cHV0cy4gQSBnb29kIGV4YW1wbGUgaXMg
-dGhlIFJGTm9DRm9zcGhvciBibG9jazpodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91
-aGQvdHJlZS9tYXN0ZXIvZnBnYS91c3JwMy9saWIvcmZub2MvZm9zcGhvcmh0dHBzOi8vZ2l0aHVi
-LmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9iL21hc3Rlci9ob3N0L2luY2x1ZGUvdWhkL3Jmbm9j
-L2Jsb2Nrcy9mb3NwaG9yLnltbFRoZSBHUiAzLjggc3VwcG9ydCBmb3IgdGhpcyBibG9jayAoYW5k
-IG90aGVyIFVIRCA0LjAgUkZOb0MgYmxvY2tzKSBpc2luIGdyLWV0dHVzOmh0dHBzOi8vZ2l0aHVi
-LmNvbS9FdHR1c1Jlc2VhcmNoL2dyLWV0dHVzL2Jsb2IvbWFzdGVyL2dyYy9ldHR1c19yZm5vY19m
-b3NwaG9yLmJsb2NrLnltbEJlc3QgcmVnYXJkcyxBYXJvbk9uIE1vbiwgSmFuIDI1LCAyMDIxIGF0
-IDM6MjUgUE0gTWFyY3VzIEQgTGVlY2ggdmlhIFVTUlAtdXNlcnM8dXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20+IHdyb3RlOj4+IFRoaXMgaXMgY2xlYXJseSBhIHF1ZXN0aW9uIGZvciB0aGUgZGlz
-Y3Vzcy1nbnVyYWRpbyBtYWlsaW5nIGxpc3QuPj4gU2VudCBmcm9tIG15IGlQaG9uZT4+ID4gT24g
-SmFuIDI1LCAyMDIxLCBhdCAyOjQzIFBNLCBkYXJpbyB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOj4gPj4gPiDvu78+ID4gSGksPiA+IEkgY3JlYXRlZCBh
-IGJsb2NrIHdpdGggdHdvIG91dHB1dCBwb3J0cyBhbmQgb25lIGlucHV0IHBvcnQgaG93ZXZlciB3
-aGVuIGkgdHJ5IHRvIGNvbm5lY3QgaXQgdmlhIHN0cmVhbSBlbmRwb2ludHMgZ251cmFkaW8gY29t
-cGFuaW9uIGNsYWltcyBpdCBkb2Vzbid0IGtub3cgaG93IHRvIGhhbmRsZSB0aGlzLiBJIHRoZW4g
-YWRkZWQgYSBzZXhvbmQgaW5vdXQgYXMgaSByZWNhbGwgdGhhdCBvbiB1aGQgMy4xNSBpdCBpcyBu
-ZWNlc3NhcnkgdG8gaGF2ZSBhcyBtYW55IGlucHV0cyBhcyBvdXRwdXRzIGJ1dCBpdCBnYXZlIGJh
-Y2sgdGhlIHNhbWUgZXJyb3Igbm93IHNheWluZyBpdCBkb2Vzbid0IGtub3cgaG93IHRvIGNvbm5l
-Y3QgYmxvY2tzIHdpdGggdHdvIGlucHV0cyBhbmQgdHdvIG91dHB1dHMuPiA+IEknbSBhIGJpdCBj
-b25mdXNlIGJlY2F1c2UgaXQgc2VlbXMgcmFkaW8gZm9yIGV4YW1wbGUgaGFzIHR3byBvdXRwdXRz
-IGhvd2V2ZXIgaXQgaXMgc3RhdGljYWxseSBjb25uZWN0ZWQuIElzIGl0IGF0IGFsbCBwb3NzaWJs
-ZSB0byBoYXZlIGEgZHluYW1pYyBjb25uZWN0aW9uIG9mIGEgYmxvY2sgd2l0aCBtdWx0aXBsZSBv
-dXRwdXRzPyBXaGF0IGlzIHRoZSBwb3NzaWJsZSByZWFzb24gd2h5IG5vZGUgbWFuYWdlciByZXBv
-cnRzIGl0IGRvZXNuJ3Qgc3VwcG9ydCB0aGlzIGNvbm5lY3Rpb24/PiA+PiA+IFRoYW5rcyw+ID4+
-ID4gRGFyaW8+ID4+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18+ID4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3Q+ID4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20+ID4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNl
-cnNfbGlzdHMuZXR0dXMuY29tPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0PiBVU1JQLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbT4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNl
-cnNfbGlzdHMuZXR0dXMuY29tX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19VU1JQLXVzZXJzIG1haWxpbmcgbGlzdFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMu
-ZXR0dXMuY29t
-
-----_com.samsung.android.email_720633424170330
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
-
-PGh0bWw+PGhlYWQ+PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0
-L2h0bWw7IGNoYXJzZXQ9VVRGLTgiPjwvaGVhZD48Ym9keSBkaXI9ImF1dG8iPjxkaXYgZGlyPSJh
-dXRvIj5UaGFua3MgZm9yIGFuc3dlcmluZyBzbyBxdWlja2x5LiBUaGUgcmVhc29uIGkgcG9zdGVk
-IGhlcmUgaXMgdGhhdCBpdCdzIGFjdHVhbGx5IHVoZCB3aGljaCBpcyBjb21wbGFpbmluZyB0aGUg
-dG9wb2xvZ3kgaXMgbm90IGNvbXBhdGlibGUsIG5vdCBnbnVyYWRpby4gSSBjYW4gc2VlIHRoYXQg
-dGhlcmUgYXJlIHNldmVyYWwgYmxvY2tzIHRoYXQgaGF2ZSBtdWx0aXBsZSBpbi9vdXQgYW5kIGkg
-ZGlkbid0IHJlYWxpemUgcGhvc3Bob3Igbm93IGhhcyBkaWZmZXJlbnQgcG9ydHMgYnV0IGkgc3Rp
-bGwgZG9uJ3QgdW5kZXJzdGFuZCB3aGF0IGkgY291bGQgaGF2ZSBkb25lIHdyb25nIHRvIGhhdmUg
-c3VjaCBlcnJvci4gQXMgaSB3YXMgbWVudGlvbmluZyB0aGUgZnJhbWV3b3JrIHN0YXJ0cywgd3Jp
-dGVzIHJlZ2lzdGVycyBvZiBteSBibG9jayBhbmQgdGhlbiB3aGVuIGNvbW1pdHRpbmcgdG9wb2xv
-Z3kgaXQgZmFpbHMgc2F5aW5nIHJmbm9jOjpncmFwaDo6ZGV0YWlsIG5vZGUgLi4uIGNhbm5vdCBo
-YW5kbGUgaXRzIGN1cnJlbnQgdG9wb2xvZ3khPC9kaXY+PGRpdiBkaXI9ImF1dG8iPjxicj48L2Rp
-dj48ZGl2IGRpcj0iYXV0byI+VGhhbmtzLDwvZGl2PjxkaXYgZGlyPSJhdXRvIj48YnI+PC9kaXY+
-PGRpdiBkaXI9ImF1dG8iPkRhcmlvPC9kaXY+PGRpdiBkaXI9ImF1dG8iPjxicj48L2Rpdj48ZGl2
-Pjxicj48L2Rpdj48ZGl2IGRpcj0iYXV0byIgc3R5bGU9ImZvbnQtc2l6ZToxMDAlO2NvbG9yOiMw
-MDAwMDAiPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMDAlO2NvbG9yOiMwMDAwMDAiIGRp
-cj0iYXV0byIgYWxpZ249ImxlZnQiPjxkaXY+LS0tLS0tLS0gTWVzc2FnZ2lvIG9yaWdpbmFsZSAt
-LS0tLS0tLTwvZGl2PjxkaXY+RGE6IEFhcm9uIFJvc3NldHRvIHZpYSBVU1JQLXVzZXJzICZsdDt1
-c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDsgPC9kaXY+PGRpdj5EYXRhOiAyNS8wMS8yMSAg
-MjM6MjggIChHTVQrMDE6MDApIDwvZGl2PjxkaXY+QTogVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20gPC9kaXY+PGRpdj5PZ2dldHRvOiBSZTogW1VTUlAtdXNlcnNdIHVoZDQuMCBhbmQgYmxvY2tz
-IHdpdGggbXVsdGlwbGUgcG9ydHMgPC9kaXY+PGRpdj48YnI+PC9kaXY+PC9kaXY+SSBhZ3JlZSB0
-aGF0IHRoaXMgcXVlc3Rpb24gaXMgbW9yZSBpbiB0aGUgZG9tYWluIG9mIEdOVVJhZGlvLCBidXQg
-SSBkbzxicj53YW50IHRvIHBvaW50IG91dCB0aGF0IFJGTm9DIDQuMCBibG9ja3MgbW9zdCBjZXJ0
-YWlubHkgY2FuIGhhdmU8YnI+ZGlmZmVyZW50IG51bWJlcnMgb2YgaW5wdXRzIGFuZCBvdXRwdXRz
-LiBBIGdvb2QgZXhhbXBsZSBpcyB0aGUgUkZOb0M8YnI+Rm9zcGhvciBibG9jazo8YnI+PGJyPmh0
-dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC90cmVlL21hc3Rlci9mcGdhL3VzcnAz
-L2xpYi9yZm5vYy9mb3NwaG9yPGJyPmh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3Vo
-ZC9ibG9iL21hc3Rlci9ob3N0L2luY2x1ZGUvdWhkL3Jmbm9jL2Jsb2Nrcy9mb3NwaG9yLnltbDxi
-cj48YnI+VGhlIEdSIDMuOCBzdXBwb3J0IGZvciB0aGlzIGJsb2NrIChhbmQgb3RoZXIgVUhEIDQu
-MCBSRk5vQyBibG9ja3MpIGlzPGJyPmluIGdyLWV0dHVzOjxicj48YnI+aHR0cHM6Ly9naXRodWIu
-Y29tL0V0dHVzUmVzZWFyY2gvZ3ItZXR0dXMvYmxvYi9tYXN0ZXIvZ3JjL2V0dHVzX3Jmbm9jX2Zv
-c3Bob3IuYmxvY2sueW1sPGJyPjxicj5CZXN0IHJlZ2FyZHMsPGJyPkFhcm9uPGJyPjxicj5PbiBN
-b24sIEphbiAyNSwgMjAyMSBhdCAzOjI1IFBNIE1hcmN1cyBEIExlZWNoIHZpYSBVU1JQLXVzZXJz
-PGJyPiZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDsgd3JvdGU6PGJyPiZndDs8YnI+
-Jmd0OyBUaGlzIGlzIGNsZWFybHkgYSBxdWVzdGlvbiBmb3IgdGhlIGRpc2N1c3MtZ251cmFkaW8g
-bWFpbGluZyBsaXN0Ljxicj4mZ3Q7PGJyPiZndDsgU2VudCBmcm9tIG15IGlQaG9uZTxicj4mZ3Q7
-PGJyPiZndDsgJmd0OyBPbiBKYW4gMjUsIDIwMjEsIGF0IDI6NDMgUE0sIGRhcmlvIHZpYSBVU1JQ
-LXVzZXJzICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDsgd3JvdGU6PGJyPiZndDsg
-Jmd0Ozxicj4mZ3Q7ICZndDsg77u/PGJyPiZndDsgJmd0OyBIaSw8YnI+Jmd0OyAmZ3Q7IEkgY3Jl
-YXRlZCBhIGJsb2NrIHdpdGggdHdvIG91dHB1dCBwb3J0cyBhbmQgb25lIGlucHV0IHBvcnQgaG93
-ZXZlciB3aGVuIGkgdHJ5IHRvIGNvbm5lY3QgaXQgdmlhIHN0cmVhbSBlbmRwb2ludHMgZ251cmFk
-aW8gY29tcGFuaW9uIGNsYWltcyBpdCBkb2Vzbid0IGtub3cgaG93IHRvIGhhbmRsZSB0aGlzLiBJ
-IHRoZW4gYWRkZWQgYSBzZXhvbmQgaW5vdXQgYXMgaSByZWNhbGwgdGhhdCBvbiB1aGQgMy4xNSBp
-dCBpcyBuZWNlc3NhcnkgdG8gaGF2ZSBhcyBtYW55IGlucHV0cyBhcyBvdXRwdXRzIGJ1dCBpdCBn
-YXZlIGJhY2sgdGhlIHNhbWUgZXJyb3Igbm93IHNheWluZyBpdCBkb2Vzbid0IGtub3cgaG93IHRv
-IGNvbm5lY3QgYmxvY2tzIHdpdGggdHdvIGlucHV0cyBhbmQgdHdvIG91dHB1dHMuPGJyPiZndDsg
-Jmd0OyBJJ20gYSBiaXQgY29uZnVzZSBiZWNhdXNlIGl0IHNlZW1zIHJhZGlvIGZvciBleGFtcGxl
-IGhhcyB0d28gb3V0cHV0cyBob3dldmVyIGl0IGlzIHN0YXRpY2FsbHkgY29ubmVjdGVkLiBJcyBp
-dCBhdCBhbGwgcG9zc2libGUgdG8gaGF2ZSBhIGR5bmFtaWMgY29ubmVjdGlvbiBvZiBhIGJsb2Nr
-IHdpdGggbXVsdGlwbGUgb3V0cHV0cz8gV2hhdCBpcyB0aGUgcG9zc2libGUgcmVhc29uIHdoeSBu
-b2RlIG1hbmFnZXIgcmVwb3J0cyBpdCBkb2Vzbid0IHN1cHBvcnQgdGhpcyBjb25uZWN0aW9uPzxi
-cj4mZ3Q7ICZndDs8YnI+Jmd0OyAmZ3Q7IFRoYW5rcyw8YnI+Jmd0OyAmZ3Q7PGJyPiZndDsgJmd0
-OyBEYXJpbzxicj4mZ3Q7ICZndDs8YnI+Jmd0OyAmZ3Q7IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fPGJyPiZndDsgJmd0OyBVU1JQLXVzZXJzIG1haWxpbmcg
-bGlzdDxicj4mZ3Q7ICZndDsgVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+Jmd0OyAmZ3Q7
-IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3Rz
-LmV0dHVzLmNvbTxicj4mZ3Q7PGJyPiZndDsgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX188YnI+Jmd0OyBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdDxicj4mZ3Q7
-IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPiZndDsgaHR0cDovL2xpc3RzLmV0dHVzLmNv
-bS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPGJyPjxicj5fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj5VU1JQLXVzZXJz
-IG1haWxpbmcgbGlzdDxicj5VU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxicj5odHRwOi8vbGlz
-dHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb208
-YnI+PC9ib2R5PjwvaHRtbD4=
-
-----_com.samsung.android.email_720633424170330--
+On 01/26/2021 12:33 AM, dario via USRP-users wrote:
+> Thanks for answering so quickly. The reason i posted here is that it's 
+> actually uhd which is complaining the topology is not compatible, not 
+> gnuradio. I can see that there are several blocks that have multiple 
+> in/out and i didn't realize phosphor now has different ports but i 
+> still don't understand what i could have done wrong to have such 
+> error. As i was mentioning the framework starts, writes registers of 
+> my block and then when committing topology it fails saying 
+> rfnoc::graph::detail node ... cannot handle its current topology!
+>
+> Thanks,
+>
+> Dario
+Sorry, I missed that this was RFNOC.
 
 
+>
+>
+> -------- Messaggio originale --------
+> Da: Aaron Rossetto via USRP-users <usrp-users@lists.ettus.com>
+> Data: 25/01/21 23:28 (GMT+01:00)
+> A: USRP-users@lists.ettus.com
+> Oggetto: Re: [USRP-users] uhd4.0 and blocks with multiple ports
+>
+> I agree that this question is more in the domain of GNURadio, but I do
+> want to point out that RFNoC 4.0 blocks most certainly can have
+> different numbers of inputs and outputs. A good example is the RFNoC
+> Fosphor block:
+>
+> https://github.com/EttusResearch/uhd/tree/master/fpga/usrp3/lib/rfnoc/fosphor
+> https://github.com/EttusResearch/uhd/blob/master/host/include/uhd/rfnoc/blocks/fosphor.yml
+>
+> The GR 3.8 support for this block (and other UHD 4.0 RFNoC blocks) is
+> in gr-ettus:
+>
+> https://github.com/EttusResearch/gr-ettus/blob/master/grc/ettus_rfnoc_fosphor.block.yml
+>
+> Best regards,
+> Aaron
+>
+> On Mon, Jan 25, 2021 at 3:25 PM Marcus D Leech via USRP-users
+> <usrp-users@lists.ettus.com> wrote:
+> >
+> > This is clearly a question for the discuss-gnuradio mailing list.
+> >
+> > Sent from my iPhone
+> >
+> > > On Jan 25, 2021, at 2:43 PM, dario via USRP-users 
+> <usrp-users@lists.ettus.com> wrote:
+> > >
+> > > ﻿
+> > > Hi,
+> > > I created a block with two output ports and one input port however 
+> when i try to connect it via stream endpoints gnuradio companion 
+> claims it doesn't know how to handle this. I then added a sexond inout 
+> as i recall that on uhd 3.15 it is necessary to have as many inputs as 
+> outputs but it gave back the same error now saying it doesn't know how 
+> to connect blocks with two inputs and two outputs.
+> > > I'm a bit confuse because it seems radio for example has two 
+> outputs however it is statically connected. Is it at all possible to 
+> have a dynamic connection of a block with multiple outputs? What is 
+> the possible reason why node manager reports it doesn't support this 
+> connection?
+> > >
+> > > Thanks,
+> > >
+> > > Dario
+> > >
+> > > _______________________________________________
+> > > USRP-users mailing list
+> > > USRP-users@lists.ettus.com
+> > > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> >
+> > _______________________________________________
+> > USRP-users mailing list
+> > USRP-users@lists.ettus.com
+> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3186684585445451724==
+
+--------------040004000201050908060201
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 01/26/2021 12:33 AM, dario via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote cite="mid:600fa9a4.1c69fb81.7bd7b.4ec7@mx.google.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <div dir="auto">Thanks for answering so quickly. The reason i
+        posted here is that it's actually uhd which is complaining the
+        topology is not compatible, not gnuradio. I can see that there
+        are several blocks that have multiple in/out and i didn't
+        realize phosphor now has different ports but i still don't
+        understand what i could have done wrong to have such error. As i
+        was mentioning the framework starts, writes registers of my
+        block and then when committing topology it fails saying
+        rfnoc::graph::detail node ... cannot handle its current
+        topology!</div>
+      <div dir="auto"><br>
+      </div>
+      <div dir="auto">Thanks,</div>
+      <div dir="auto"><br>
+      </div>
+      <div dir="auto">Dario</div>
+    </blockquote>
+    Sorry, I missed that this was RFNOC.<br>
+    <br>
+    <br>
+    <blockquote cite="mid:600fa9a4.1c69fb81.7bd7b.4ec7@mx.google.com"
+      type="cite">
+      <div dir="auto"><br>
+      </div>
+      <div><br>
+      </div>
+      <div style="font-size:100%;color:#000000" dir="auto" align="left">
+        <div>-------- Messaggio originale --------</div>
+        <div>Da: Aaron Rossetto via USRP-users
+          <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a> </div>
+        <div>Data: 25/01/21 23:28 (GMT+01:00) </div>
+        <div>A: <a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a> </div>
+        <div>Oggetto: Re: [USRP-users] uhd4.0 and blocks with multiple
+          ports </div>
+        <div><br>
+        </div>
+      </div>
+      I agree that this question is more in the domain of GNURadio, but
+      I do<br>
+      want to point out that RFNoC 4.0 blocks most certainly can have<br>
+      different numbers of inputs and outputs. A good example is the
+      RFNoC<br>
+      Fosphor block:<br>
+      <br>
+<a class="moz-txt-link-freetext" href="https://github.com/EttusResearch/uhd/tree/master/fpga/usrp3/lib/rfnoc/fosphor">https://github.com/EttusResearch/uhd/tree/master/fpga/usrp3/lib/rfnoc/fosphor</a><br>
+<a class="moz-txt-link-freetext" href="https://github.com/EttusResearch/uhd/blob/master/host/include/uhd/rfnoc/blocks/fosphor.yml">https://github.com/EttusResearch/uhd/blob/master/host/include/uhd/rfnoc/blocks/fosphor.yml</a><br>
+      <br>
+      The GR 3.8 support for this block (and other UHD 4.0 RFNoC blocks)
+      is<br>
+      in gr-ettus:<br>
+      <br>
+<a class="moz-txt-link-freetext" href="https://github.com/EttusResearch/gr-ettus/blob/master/grc/ettus_rfnoc_fosphor.block.yml">https://github.com/EttusResearch/gr-ettus/blob/master/grc/ettus_rfnoc_fosphor.block.yml</a><br>
+      <br>
+      Best regards,<br>
+      Aaron<br>
+      <br>
+      On Mon, Jan 25, 2021 at 3:25 PM Marcus D Leech via USRP-users<br>
+      <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a> wrote:<br>
+      &gt;<br>
+      &gt; This is clearly a question for the discuss-gnuradio mailing
+      list.<br>
+      &gt;<br>
+      &gt; Sent from my iPhone<br>
+      &gt;<br>
+      &gt; &gt; On Jan 25, 2021, at 2:43 PM, dario via USRP-users
+      <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a> wrote:<br>
+      &gt; &gt;<br>
+      &gt; &gt; ﻿<br>
+      &gt; &gt; Hi,<br>
+      &gt; &gt; I created a block with two output ports and one input
+      port however when i try to connect it via stream endpoints
+      gnuradio companion claims it doesn't know how to handle this. I
+      then added a sexond inout as i recall that on uhd 3.15 it is
+      necessary to have as many inputs as outputs but it gave back the
+      same error now saying it doesn't know how to connect blocks with
+      two inputs and two outputs.<br>
+      &gt; &gt; I'm a bit confuse because it seems radio for example has
+      two outputs however it is statically connected. Is it at all
+      possible to have a dynamic connection of a block with multiple
+      outputs? What is the possible reason why node manager reports it
+      doesn't support this connection?<br>
+      &gt; &gt;<br>
+      &gt; &gt; Thanks,<br>
+      &gt; &gt;<br>
+      &gt; &gt; Dario<br>
+      &gt; &gt;<br>
+      &gt; &gt; _______________________________________________<br>
+      &gt; &gt; USRP-users mailing list<br>
+      &gt; &gt; <a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
+      &gt; &gt;
+      <a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+      &gt;<br>
+      &gt; _______________________________________________<br>
+      &gt; USRP-users mailing list<br>
+      &gt; <a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
+      &gt;
+      <a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+      <br>
+      _______________________________________________<br>
+      USRP-users mailing list<br>
+      <a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
+      <a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------040004000201050908060201--
+
+
+--===============8809803360374845811==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -223,6 +326,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3186684585445451724==--
-
+--===============8809803360374845811==--
 
