@@ -2,47 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 750B630312C
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Jan 2021 02:28:11 +0100 (CET)
-Received: from [::1] (port=37060 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F3343034FF
+	for <lists+usrp-users@lfdr.de>; Tue, 26 Jan 2021 06:34:14 +0100 (CET)
+Received: from [::1] (port=38484 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l4D9L-0005jy-IU; Mon, 25 Jan 2021 20:28:07 -0500
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:46228)
+	id 1l4GzR-0005bV-NB; Tue, 26 Jan 2021 00:34:09 -0500
+Received: from mail-wr1-f52.google.com ([209.85.221.52]:44857)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1l4D9I-0005fq-5j
- for usrp-users@lists.ettus.com; Mon, 25 Jan 2021 20:28:04 -0500
-Received: by mail-oi1-f170.google.com with SMTP id k25so2788459oik.13
- for <usrp-users@lists.ettus.com>; Mon, 25 Jan 2021 17:27:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:from:date:message-id:subject:to;
- bh=1eRZUE6RsXOW6xn04hYgOgDLOJ+Z+w7OyhnCQO/osU4=;
- b=BR41tX5Ecf5nXAELYZ8fCbtaoJ17pi96RVeBDfT/RHMV/cK6OtOIXVvehYa4B/6uCA
- zm2pP2davfqIL/UKm95a4I/9cRq+1GNsr2GfeTH/iuHnb9M4u192qEkCKnwXuSDd2Hfl
- Ffh8N3f9nF117n44RncL+2FxL/pxxVRQED4AMWQ39A4iWjlzjolT46ijD1oKTDsdytHa
- O+zZ4qbewhmfwv5DxxWtCGV02QQu/AS7aSWOSYaRcX/GOF2nJcpoSB9H0ODFB97WBU1R
- ff6xox5Um8vC//PHwunskG4OkO1Judw1C5/fTHDx5T46u09eckmUTrx6UmaVS3v4/E9M
- 80+A==
+ (Exim 4.93) (envelope-from <dario@iptronix.com>) id 1l4GzO-0005XD-KG
+ for USRP-users@lists.ettus.com; Tue, 26 Jan 2021 00:34:06 -0500
+Received: by mail-wr1-f52.google.com with SMTP id d16so14476526wro.11
+ for <USRP-users@lists.ettus.com>; Mon, 25 Jan 2021 21:33:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iptronix.com; s=google;
+ h=message-id:savedfromemail:date:subject:in-reply-to:importance:from
+ :to:mime-version;
+ bh=VnC5wx7TNAxCvbSSoJqICDRR4+O72ZroJ9+F0Z6mwW4=;
+ b=oVEPFlggcveO8n2ZFuSIiqIKBmVlpAC0YhdcdfV0QuDY8EgyntEdYxlPEKZI26dtCL
+ sbifg3JPxTLKEfFncigw53dG07/Ejyv754rTfmx5KraO8uHiScylrEM3mdsN6dXKgUcR
+ SRsfCpbY6ifJz//hty8uAt8qFdxEQfZ3CZUuqnCNSEh1itGzfvc/eiHmYY4Z9zaPmu7Z
+ f9FsJSBbTjxT4/CtbG1fNktA4XfnJQM0kF2e+pZ7EfAVlVO3V8MtolU/ILiTA3/PMoT/
+ fb9a16L3RK+wZ9eUbduoyPvOfM0WMXalEqBV56Cn0lkWg29Os4LHGBYeMjwQQY+cz611
+ pHPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=1eRZUE6RsXOW6xn04hYgOgDLOJ+Z+w7OyhnCQO/osU4=;
- b=Ze9Rzu01XFNPq6fL2aQRL/54St15wwUOz/CfSwCOrkBeagUxoewbhQUFNqALR9A7Uo
- 9ltnpjf7+k5OUQaiBHDpDP+A0LYcfG/f306jK1wFiIYsdX66bu1y8j3PSu3wO3Wwq1Q7
- G1jqQPlMeSyxXKcUJXoXubJ3EnGKtwCdxoDaZCLgTeRDmTD/iPfXbrJJanfOEIJBoZww
- NSYjy5BRoYSy30zjWZYFjMwdV3BotxR6fQI6nqXhs1Tsr1H87OFSA25qI96G3sYJHlch
- n93MuD2mY/G+wo/eXWzrhvkjctdfnzhzdGUYV0DP9Ihrqn7yh0y0AxzEHRNHEIdPCQY9
- ffGQ==
-X-Gm-Message-State: AOAM532qjvl+R8cSsIKjsiCMfb4ZZ3IDmbUKtr1azRWdz1y6AWSQItow
- Atpn0yvfWI+CjegjO3mYB8NdBPMxXJ5q1Tf5odUaLW2smu/XYA==
-X-Google-Smtp-Source: ABdhPJyZ3d1P6awCwaky5J94afA3gIJFdg7P2FomMMxsrm/fIBxcIZchwn3Vwx1ljKS6f3Qm6pm6kgOp4BQnP7cQURE=
-X-Received: by 2002:aca:ea08:: with SMTP id i8mr1768850oih.150.1611624443092; 
- Mon, 25 Jan 2021 17:27:23 -0800 (PST)
+ h=x-gm-message-state:message-id:savedfromemail:date:subject
+ :in-reply-to:importance:from:to:mime-version;
+ bh=VnC5wx7TNAxCvbSSoJqICDRR4+O72ZroJ9+F0Z6mwW4=;
+ b=j9wlYSEBHIsexz2eLfHtk3ZqcZFW0IvktTjDl0ZkQhW9OWPsqPCimFR+pJ9blPTmBL
+ xamqEsr+1KMrxeI1MOMBsbBrJlpUw42M97V8aOfGaCG+e9o0q3u4NCo2HUlD2I3uwPjJ
+ ESp3EngmUv+PXnqhglbPxnmSIRlxkbhVsFBrHwxVXzOhvdFkXp1j2+dRtCfxzl/im4Pn
+ qedsMJgDU6USMcAkqwFv167AusoP0ojuI2ucKPAr2iHF/cWRw4oNRzv+eeT9FUVMlhZT
+ lJmmEsebOH26yvsIer06gUAJptZwA2+z/M8j/5jalm8kAfVAWHojGafgfyS4PXsCMVtU
+ fINg==
+X-Gm-Message-State: AOAM533efE1mxwsc9Vp/uLwPpsV5CHO63FtsC5Iku9vjJOjI0gk+5X09
+ vy+MgfuQP+ikYZpO+FhdAfdz9Q==
+X-Google-Smtp-Source: ABdhPJy7ISEi9TYJN4ZpSS/48Gmf6CFBEUCWvDprcsq8mdY57CThYO2CMV6h1RnK9/qKRHK1rujA7w==
+X-Received: by 2002:adf:eed0:: with SMTP id a16mr4037377wrp.107.1611639205396; 
+ Mon, 25 Jan 2021 21:33:25 -0800 (PST)
+Received: from [192.168.0.28] ([151.37.4.162])
+ by smtp.gmail.com with ESMTPSA id n6sm1552551wmi.23.2021.01.25.21.33.24
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 25 Jan 2021 21:33:24 -0800 (PST)
+Message-ID: <600fa9a4.1c69fb81.7bd7b.4ec7@mx.google.com>
+SavedFromEmail: dario@iptronix.com
+Date: Tue, 26 Jan 2021 06:33:18 +0100
+In-Reply-To: <CAAg5+MwVpWeHdJafLvkkWz=WS=SdXK9_ZJ9TqXQpEfnMXoKBiA@mail.gmail.com>
+Importance: normal
+To: Aaron Rossetto <aaron.rossetto@ettus.com>, USRP-users@lists.ettus.com
 MIME-Version: 1.0
-Date: Mon, 25 Jan 2021 20:27:12 -0500
-Message-ID: <CAB__hTRTpgT6++Hdo1a27jhdgenO6su0NkrXRTWkHkaJMcEUkQ@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] One or more blocks timed out during flush
+Subject: Re: [USRP-users] uhd4.0 and blocks with multiple ports
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +63,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============5537569161469974654=="
+From: dario via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: dario <dario@iptronix.com>
+Content-Type: multipart/mixed; boundary="===============3186684585445451724=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,40 +79,140 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5537569161469974654==
-Content-Type: multipart/alternative; boundary="000000000000719c8005b9c38e61"
+--===============3186684585445451724==
+Content-Type: multipart/alternative; boundary="--_com.samsung.android.email_720633424170330"
 
---000000000000719c8005b9c38e61
-Content-Type: text/plain; charset="UTF-8"
+----_com.samsung.android.email_720633424170330
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Hi,
-Using RFNOC 4.0 with a few of my custom blocks, I get the following warning
-at UHD startup (after having run it at least once before):
+VGhhbmtzIGZvciBhbnN3ZXJpbmcgc28gcXVpY2tseS4gVGhlIHJlYXNvbiBpIHBvc3RlZCBoZXJl
+IGlzIHRoYXQgaXQncyBhY3R1YWxseSB1aGQgd2hpY2ggaXMgY29tcGxhaW5pbmcgdGhlIHRvcG9s
+b2d5IGlzIG5vdCBjb21wYXRpYmxlLCBub3QgZ251cmFkaW8uIEkgY2FuIHNlZSB0aGF0IHRoZXJl
+IGFyZSBzZXZlcmFsIGJsb2NrcyB0aGF0IGhhdmUgbXVsdGlwbGUgaW4vb3V0IGFuZCBpIGRpZG4n
+dCByZWFsaXplIHBob3NwaG9yIG5vdyBoYXMgZGlmZmVyZW50IHBvcnRzIGJ1dCBpIHN0aWxsIGRv
+bid0IHVuZGVyc3RhbmQgd2hhdCBpIGNvdWxkIGhhdmUgZG9uZSB3cm9uZyB0byBoYXZlIHN1Y2gg
+ZXJyb3IuIEFzIGkgd2FzIG1lbnRpb25pbmcgdGhlIGZyYW1ld29yayBzdGFydHMsIHdyaXRlcyBy
+ZWdpc3RlcnMgb2YgbXkgYmxvY2sgYW5kIHRoZW4gd2hlbiBjb21taXR0aW5nIHRvcG9sb2d5IGl0
+IGZhaWxzIHNheWluZyByZm5vYzo6Z3JhcGg6OmRldGFpbCBub2RlIC4uLiBjYW5ub3QgaGFuZGxl
+IGl0cyBjdXJyZW50IHRvcG9sb2d5IVRoYW5rcyxEYXJpbwotLS0tLS0tLSBNZXNzYWdnaW8gb3Jp
+Z2luYWxlIC0tLS0tLS0tRGE6IEFhcm9uIFJvc3NldHRvIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbT4gRGF0YTogMjUvMDEvMjEgIDIzOjI4ICAoR01UKzAxOjAwKSBB
+OiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSBPZ2dldHRvOiBSZTogW1VTUlAtdXNlcnNdIHVo
+ZDQuMCBhbmQgYmxvY2tzIHdpdGggbXVsdGlwbGUgcG9ydHMgSSBhZ3JlZSB0aGF0IHRoaXMgcXVl
+c3Rpb24gaXMgbW9yZSBpbiB0aGUgZG9tYWluIG9mIEdOVVJhZGlvLCBidXQgSSBkb3dhbnQgdG8g
+cG9pbnQgb3V0IHRoYXQgUkZOb0MgNC4wIGJsb2NrcyBtb3N0IGNlcnRhaW5seSBjYW4gaGF2ZWRp
+ZmZlcmVudCBudW1iZXJzIG9mIGlucHV0cyBhbmQgb3V0cHV0cy4gQSBnb29kIGV4YW1wbGUgaXMg
+dGhlIFJGTm9DRm9zcGhvciBibG9jazpodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91
+aGQvdHJlZS9tYXN0ZXIvZnBnYS91c3JwMy9saWIvcmZub2MvZm9zcGhvcmh0dHBzOi8vZ2l0aHVi
+LmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC9ibG9iL21hc3Rlci9ob3N0L2luY2x1ZGUvdWhkL3Jmbm9j
+L2Jsb2Nrcy9mb3NwaG9yLnltbFRoZSBHUiAzLjggc3VwcG9ydCBmb3IgdGhpcyBibG9jayAoYW5k
+IG90aGVyIFVIRCA0LjAgUkZOb0MgYmxvY2tzKSBpc2luIGdyLWV0dHVzOmh0dHBzOi8vZ2l0aHVi
+LmNvbS9FdHR1c1Jlc2VhcmNoL2dyLWV0dHVzL2Jsb2IvbWFzdGVyL2dyYy9ldHR1c19yZm5vY19m
+b3NwaG9yLmJsb2NrLnltbEJlc3QgcmVnYXJkcyxBYXJvbk9uIE1vbiwgSmFuIDI1LCAyMDIxIGF0
+IDM6MjUgUE0gTWFyY3VzIEQgTGVlY2ggdmlhIFVTUlAtdXNlcnM8dXNycC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb20+IHdyb3RlOj4+IFRoaXMgaXMgY2xlYXJseSBhIHF1ZXN0aW9uIGZvciB0aGUgZGlz
+Y3Vzcy1nbnVyYWRpbyBtYWlsaW5nIGxpc3QuPj4gU2VudCBmcm9tIG15IGlQaG9uZT4+ID4gT24g
+SmFuIDI1LCAyMDIxLCBhdCAyOjQzIFBNLCBkYXJpbyB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOj4gPj4gPiDvu78+ID4gSGksPiA+IEkgY3JlYXRlZCBh
+IGJsb2NrIHdpdGggdHdvIG91dHB1dCBwb3J0cyBhbmQgb25lIGlucHV0IHBvcnQgaG93ZXZlciB3
+aGVuIGkgdHJ5IHRvIGNvbm5lY3QgaXQgdmlhIHN0cmVhbSBlbmRwb2ludHMgZ251cmFkaW8gY29t
+cGFuaW9uIGNsYWltcyBpdCBkb2Vzbid0IGtub3cgaG93IHRvIGhhbmRsZSB0aGlzLiBJIHRoZW4g
+YWRkZWQgYSBzZXhvbmQgaW5vdXQgYXMgaSByZWNhbGwgdGhhdCBvbiB1aGQgMy4xNSBpdCBpcyBu
+ZWNlc3NhcnkgdG8gaGF2ZSBhcyBtYW55IGlucHV0cyBhcyBvdXRwdXRzIGJ1dCBpdCBnYXZlIGJh
+Y2sgdGhlIHNhbWUgZXJyb3Igbm93IHNheWluZyBpdCBkb2Vzbid0IGtub3cgaG93IHRvIGNvbm5l
+Y3QgYmxvY2tzIHdpdGggdHdvIGlucHV0cyBhbmQgdHdvIG91dHB1dHMuPiA+IEknbSBhIGJpdCBj
+b25mdXNlIGJlY2F1c2UgaXQgc2VlbXMgcmFkaW8gZm9yIGV4YW1wbGUgaGFzIHR3byBvdXRwdXRz
+IGhvd2V2ZXIgaXQgaXMgc3RhdGljYWxseSBjb25uZWN0ZWQuIElzIGl0IGF0IGFsbCBwb3NzaWJs
+ZSB0byBoYXZlIGEgZHluYW1pYyBjb25uZWN0aW9uIG9mIGEgYmxvY2sgd2l0aCBtdWx0aXBsZSBv
+dXRwdXRzPyBXaGF0IGlzIHRoZSBwb3NzaWJsZSByZWFzb24gd2h5IG5vZGUgbWFuYWdlciByZXBv
+cnRzIGl0IGRvZXNuJ3Qgc3VwcG9ydCB0aGlzIGNvbm5lY3Rpb24/PiA+PiA+IFRoYW5rcyw+ID4+
+ID4gRGFyaW8+ID4+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18+ID4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3Q+ID4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20+ID4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNl
+cnNfbGlzdHMuZXR0dXMuY29tPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0PiBVU1JQLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbT4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNl
+cnNfbGlzdHMuZXR0dXMuY29tX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19VU1JQLXVzZXJzIG1haWxpbmcgbGlzdFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+aHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMu
+ZXR0dXMuY29t
 
-[WARNING] [RFNOC::GRAPH] One or more blocks timed out during flush!
+----_com.samsung.android.email_720633424170330
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-I'm confident it is something that I'm doing incorrectly with my block, but
-I'm wondering if anyone can comment on what causes this and / or what my
-block should be doing to avoid it.
+PGh0bWw+PGhlYWQ+PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0
+L2h0bWw7IGNoYXJzZXQ9VVRGLTgiPjwvaGVhZD48Ym9keSBkaXI9ImF1dG8iPjxkaXYgZGlyPSJh
+dXRvIj5UaGFua3MgZm9yIGFuc3dlcmluZyBzbyBxdWlja2x5LiBUaGUgcmVhc29uIGkgcG9zdGVk
+IGhlcmUgaXMgdGhhdCBpdCdzIGFjdHVhbGx5IHVoZCB3aGljaCBpcyBjb21wbGFpbmluZyB0aGUg
+dG9wb2xvZ3kgaXMgbm90IGNvbXBhdGlibGUsIG5vdCBnbnVyYWRpby4gSSBjYW4gc2VlIHRoYXQg
+dGhlcmUgYXJlIHNldmVyYWwgYmxvY2tzIHRoYXQgaGF2ZSBtdWx0aXBsZSBpbi9vdXQgYW5kIGkg
+ZGlkbid0IHJlYWxpemUgcGhvc3Bob3Igbm93IGhhcyBkaWZmZXJlbnQgcG9ydHMgYnV0IGkgc3Rp
+bGwgZG9uJ3QgdW5kZXJzdGFuZCB3aGF0IGkgY291bGQgaGF2ZSBkb25lIHdyb25nIHRvIGhhdmUg
+c3VjaCBlcnJvci4gQXMgaSB3YXMgbWVudGlvbmluZyB0aGUgZnJhbWV3b3JrIHN0YXJ0cywgd3Jp
+dGVzIHJlZ2lzdGVycyBvZiBteSBibG9jayBhbmQgdGhlbiB3aGVuIGNvbW1pdHRpbmcgdG9wb2xv
+Z3kgaXQgZmFpbHMgc2F5aW5nIHJmbm9jOjpncmFwaDo6ZGV0YWlsIG5vZGUgLi4uIGNhbm5vdCBo
+YW5kbGUgaXRzIGN1cnJlbnQgdG9wb2xvZ3khPC9kaXY+PGRpdiBkaXI9ImF1dG8iPjxicj48L2Rp
+dj48ZGl2IGRpcj0iYXV0byI+VGhhbmtzLDwvZGl2PjxkaXYgZGlyPSJhdXRvIj48YnI+PC9kaXY+
+PGRpdiBkaXI9ImF1dG8iPkRhcmlvPC9kaXY+PGRpdiBkaXI9ImF1dG8iPjxicj48L2Rpdj48ZGl2
+Pjxicj48L2Rpdj48ZGl2IGRpcj0iYXV0byIgc3R5bGU9ImZvbnQtc2l6ZToxMDAlO2NvbG9yOiMw
+MDAwMDAiPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMDAlO2NvbG9yOiMwMDAwMDAiIGRp
+cj0iYXV0byIgYWxpZ249ImxlZnQiPjxkaXY+LS0tLS0tLS0gTWVzc2FnZ2lvIG9yaWdpbmFsZSAt
+LS0tLS0tLTwvZGl2PjxkaXY+RGE6IEFhcm9uIFJvc3NldHRvIHZpYSBVU1JQLXVzZXJzICZsdDt1
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDsgPC9kaXY+PGRpdj5EYXRhOiAyNS8wMS8yMSAg
+MjM6MjggIChHTVQrMDE6MDApIDwvZGl2PjxkaXY+QTogVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20gPC9kaXY+PGRpdj5PZ2dldHRvOiBSZTogW1VTUlAtdXNlcnNdIHVoZDQuMCBhbmQgYmxvY2tz
+IHdpdGggbXVsdGlwbGUgcG9ydHMgPC9kaXY+PGRpdj48YnI+PC9kaXY+PC9kaXY+SSBhZ3JlZSB0
+aGF0IHRoaXMgcXVlc3Rpb24gaXMgbW9yZSBpbiB0aGUgZG9tYWluIG9mIEdOVVJhZGlvLCBidXQg
+SSBkbzxicj53YW50IHRvIHBvaW50IG91dCB0aGF0IFJGTm9DIDQuMCBibG9ja3MgbW9zdCBjZXJ0
+YWlubHkgY2FuIGhhdmU8YnI+ZGlmZmVyZW50IG51bWJlcnMgb2YgaW5wdXRzIGFuZCBvdXRwdXRz
+LiBBIGdvb2QgZXhhbXBsZSBpcyB0aGUgUkZOb0M8YnI+Rm9zcGhvciBibG9jazo8YnI+PGJyPmh0
+dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC90cmVlL21hc3Rlci9mcGdhL3VzcnAz
+L2xpYi9yZm5vYy9mb3NwaG9yPGJyPmh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3Vo
+ZC9ibG9iL21hc3Rlci9ob3N0L2luY2x1ZGUvdWhkL3Jmbm9jL2Jsb2Nrcy9mb3NwaG9yLnltbDxi
+cj48YnI+VGhlIEdSIDMuOCBzdXBwb3J0IGZvciB0aGlzIGJsb2NrIChhbmQgb3RoZXIgVUhEIDQu
+MCBSRk5vQyBibG9ja3MpIGlzPGJyPmluIGdyLWV0dHVzOjxicj48YnI+aHR0cHM6Ly9naXRodWIu
+Y29tL0V0dHVzUmVzZWFyY2gvZ3ItZXR0dXMvYmxvYi9tYXN0ZXIvZ3JjL2V0dHVzX3Jmbm9jX2Zv
+c3Bob3IuYmxvY2sueW1sPGJyPjxicj5CZXN0IHJlZ2FyZHMsPGJyPkFhcm9uPGJyPjxicj5PbiBN
+b24sIEphbiAyNSwgMjAyMSBhdCAzOjI1IFBNIE1hcmN1cyBEIExlZWNoIHZpYSBVU1JQLXVzZXJz
+PGJyPiZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDsgd3JvdGU6PGJyPiZndDs8YnI+
+Jmd0OyBUaGlzIGlzIGNsZWFybHkgYSBxdWVzdGlvbiBmb3IgdGhlIGRpc2N1c3MtZ251cmFkaW8g
+bWFpbGluZyBsaXN0Ljxicj4mZ3Q7PGJyPiZndDsgU2VudCBmcm9tIG15IGlQaG9uZTxicj4mZ3Q7
+PGJyPiZndDsgJmd0OyBPbiBKYW4gMjUsIDIwMjEsIGF0IDI6NDMgUE0sIGRhcmlvIHZpYSBVU1JQ
+LXVzZXJzICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDsgd3JvdGU6PGJyPiZndDsg
+Jmd0Ozxicj4mZ3Q7ICZndDsg77u/PGJyPiZndDsgJmd0OyBIaSw8YnI+Jmd0OyAmZ3Q7IEkgY3Jl
+YXRlZCBhIGJsb2NrIHdpdGggdHdvIG91dHB1dCBwb3J0cyBhbmQgb25lIGlucHV0IHBvcnQgaG93
+ZXZlciB3aGVuIGkgdHJ5IHRvIGNvbm5lY3QgaXQgdmlhIHN0cmVhbSBlbmRwb2ludHMgZ251cmFk
+aW8gY29tcGFuaW9uIGNsYWltcyBpdCBkb2Vzbid0IGtub3cgaG93IHRvIGhhbmRsZSB0aGlzLiBJ
+IHRoZW4gYWRkZWQgYSBzZXhvbmQgaW5vdXQgYXMgaSByZWNhbGwgdGhhdCBvbiB1aGQgMy4xNSBp
+dCBpcyBuZWNlc3NhcnkgdG8gaGF2ZSBhcyBtYW55IGlucHV0cyBhcyBvdXRwdXRzIGJ1dCBpdCBn
+YXZlIGJhY2sgdGhlIHNhbWUgZXJyb3Igbm93IHNheWluZyBpdCBkb2Vzbid0IGtub3cgaG93IHRv
+IGNvbm5lY3QgYmxvY2tzIHdpdGggdHdvIGlucHV0cyBhbmQgdHdvIG91dHB1dHMuPGJyPiZndDsg
+Jmd0OyBJJ20gYSBiaXQgY29uZnVzZSBiZWNhdXNlIGl0IHNlZW1zIHJhZGlvIGZvciBleGFtcGxl
+IGhhcyB0d28gb3V0cHV0cyBob3dldmVyIGl0IGlzIHN0YXRpY2FsbHkgY29ubmVjdGVkLiBJcyBp
+dCBhdCBhbGwgcG9zc2libGUgdG8gaGF2ZSBhIGR5bmFtaWMgY29ubmVjdGlvbiBvZiBhIGJsb2Nr
+IHdpdGggbXVsdGlwbGUgb3V0cHV0cz8gV2hhdCBpcyB0aGUgcG9zc2libGUgcmVhc29uIHdoeSBu
+b2RlIG1hbmFnZXIgcmVwb3J0cyBpdCBkb2Vzbid0IHN1cHBvcnQgdGhpcyBjb25uZWN0aW9uPzxi
+cj4mZ3Q7ICZndDs8YnI+Jmd0OyAmZ3Q7IFRoYW5rcyw8YnI+Jmd0OyAmZ3Q7PGJyPiZndDsgJmd0
+OyBEYXJpbzxicj4mZ3Q7ICZndDs8YnI+Jmd0OyAmZ3Q7IF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fPGJyPiZndDsgJmd0OyBVU1JQLXVzZXJzIG1haWxpbmcg
+bGlzdDxicj4mZ3Q7ICZndDsgVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+Jmd0OyAmZ3Q7
+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3Rz
+LmV0dHVzLmNvbTxicj4mZ3Q7PGJyPiZndDsgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX188YnI+Jmd0OyBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdDxicj4mZ3Q7
+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPiZndDsgaHR0cDovL2xpc3RzLmV0dHVzLmNv
+bS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tPGJyPjxicj5fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj5VU1JQLXVzZXJz
+IG1haWxpbmcgbGlzdDxicj5VU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxicj5odHRwOi8vbGlz
+dHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb208
+YnI+PC9ib2R5PjwvaHRtbD4=
 
-Rob
-
---000000000000719c8005b9c38e61
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<br><div>Using RFNOC 4.0 with a few of my custom blocks=
-, I get the following warning at UHD startup (after having run it at least =
-once before):</div><div><br></div><div>[WARNING] [RFNOC::GRAPH] One or more=
- blocks timed out during flush!<br></div><div><br></div><div>I&#39;m confid=
-ent it is something that I&#39;m doing incorrectly with my block, but I&#39=
-;m wondering if anyone can comment on what causes this and / or what my blo=
-ck should be doing to avoid it.</div><div><br></div><div>Rob</div></div>
-
---000000000000719c8005b9c38e61--
+----_com.samsung.android.email_720633424170330--
 
 
---===============5537569161469974654==
+
+--===============3186684585445451724==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -114,5 +223,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5537569161469974654==--
+--===============3186684585445451724==--
+
 
