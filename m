@@ -2,111 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6895730472E
-	for <lists+usrp-users@lfdr.de>; Tue, 26 Jan 2021 19:56:19 +0100 (CET)
-Received: from [::1] (port=46878 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C720304880
+	for <lists+usrp-users@lfdr.de>; Tue, 26 Jan 2021 20:26:28 +0100 (CET)
+Received: from [::1] (port=47072 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l4TVa-0005hd-IE; Tue, 26 Jan 2021 13:56:10 -0500
-Received: from newton.apeiron.net ([208.79.95.38]:54256)
- by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
- (Exim 4.93) (envelope-from <mainland@apeiron.net>)
- id 1l4TVW-0005e0-4S
- for USRP-users@lists.ettus.com; Tue, 26 Jan 2021 13:56:06 -0500
-Received: from [10.246.149.9] (unknown [144.118.76.213])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: mainland)
- by newton.apeiron.net (Postfix) with ESMTPSA id B8AAE17C8C
- for <USRP-users@lists.ettus.com>; Tue, 26 Jan 2021 10:54:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=apeiron.net;
- s=newton; t=1611687313;
- bh=rR2tD2Z/T2CRa+803ir/y4vo2rZu2SYcTKCQnvoOKs8=;
- h=To:From:Subject:Date;
- b=aGhCYPHfWZr3ZJCQIyrBcBThb8F66MQsLUNS8HS146k0qokvzbxuv4ImpO/LEgbKm
- dZ3G6XqiRxuetA3fX6lDzJlCrQHNhPTmVEq/cyrohPXY8gIsHYnBVbTQfmx5CalXjL
- 5BReT1rZXOh+Vr2oQYhzh5VnwrCpIoTqJMNoI3u4=
-To: USRP-users@lists.ettus.com
-Autocrypt: addr=mainland@apeiron.net; prefer-encrypt=mutual; keydata=
- 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
- 24/d4p4JiCGRbyJuVyi1YyHb1Bw=
-Message-ID: <becd5987-82b5-51c6-0f7d-539ec8d104d4@apeiron.net>
-Date: Tue, 26 Jan 2021 13:54:44 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	id 1l4Tyt-0006p3-23; Tue, 26 Jan 2021 14:26:27 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:41722)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1l4Typ-0006ce-27
+ for usrp-users@lists.ettus.com; Tue, 26 Jan 2021 14:26:23 -0500
+Received: by mail-oi1-f179.google.com with SMTP id m13so11752796oig.8
+ for <usrp-users@lists.ettus.com>; Tue, 26 Jan 2021 11:26:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=2tSVkEuodeZtghtn10lUMoV7kqUsIUMMVg9KxDfN/CU=;
+ b=DIlSbLbvAsusVvNts2cRjOIfU/3tfIXy0fTUN6B/SFmjBUvE3wASGIop+aZD7P932Z
+ MVQ8iC9OABB4fB1aYMH+7UNJPpBQQmSa3ZtlExemf7bWbrnVxB4RvW2n3jkZ1U7Vdz6b
+ +/pMERETiC8oeqNrbd5EFcV7o3CTDP/eZzj8fMg0nNLKaw2v1Ij92iM68eUbnvSS2tEg
+ ECrX9ukz6gTQJPl2ifLkMW1f7l2ACQlP8A4SfEHufjCpmjpvE6ASrNKghMjqFi55MLoB
+ IlrbM6bSxYKPr+jIclgHThsxP4Zj2F4tYQV7xEdzN4UmPyQpiBNZBqYYkoaWJBsIWAOj
+ ixiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=2tSVkEuodeZtghtn10lUMoV7kqUsIUMMVg9KxDfN/CU=;
+ b=r9vPY5DtL64a99e2hNretGdrw+PYOXzwbWcZkfZckm1FXqfA1HdJqZigxJxxx2zalu
+ XAJJI1vOYW2p5/gcddEREAXY5fUNCSd6qN3553nTtbdYasyRqvaO1ujGIuxsmVeppM67
+ 7DdnjJu3bahuYnTUFgQ+WgtyGFqd+/Fi2bY44+LKlCjlplIWGYlBy73X94Io7VYhPnDO
+ jLWZAUovOgPTmKCKolrgqhQ78fknz9u7wrYUYbRi4ecyccgd6c7dbPQNoalNqFvs5QOw
+ L7Qqh2YHd+dXJWTwYhAEyqyfeCDhEk2yCdrJ9izbiBh+iOZiFPdi8F2Xxs487B9uQkYY
+ G04A==
+X-Gm-Message-State: AOAM533IQuXl17te1Uzq70eri9XSUsp4XkWz+6VKM0xLV+VSty5b//bh
+ p2aSjEn7mpYLw96eeueg0bMEfOgKmoqMOTihBlqgPQ==
+X-Google-Smtp-Source: ABdhPJyi9YhuUto+zrQ1ao8JvjEtsDw8QdnF/LSxzU+T0ywb4PeVcox3VzW9V25mDVHDnNTxBfBY5g5hs/lUuDO1tRw=
+X-Received: by 2002:aca:d98a:: with SMTP id q132mr781721oig.33.1611689140796; 
+ Tue, 26 Jan 2021 11:25:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Language: en-US
-Subject: [USRP-users] Burst transmissions consistently lead to hard lock up
- on X310
+References: <CAB__hTRTpgT6++Hdo1a27jhdgenO6su0NkrXRTWkHkaJMcEUkQ@mail.gmail.com>
+ <CAFche=jX2L+FL-Wz-XmFWkr5RkxKUyzWcN9hdXJhivbUnVEpVg@mail.gmail.com>
+ <CAB__hTSNPW0NuTRX+qNOQZ3nMN+kVqCOXUFLGsV_jovnXpr-hw@mail.gmail.com>
+ <CAFche=ir9tQku1WAXVGUA=2biWU_mH+v0i6EGUtE0D5q0mtvzg@mail.gmail.com>
+In-Reply-To: <CAFche=ir9tQku1WAXVGUA=2biWU_mH+v0i6EGUtE0D5q0mtvzg@mail.gmail.com>
+Date: Tue, 26 Jan 2021 14:25:29 -0500
+Message-ID: <CAB__hTRK9D_5gmEjtibSjLWZPR=kPgR_PG5Zw1Z5jLBM8Egg9Q@mail.gmail.com>
+To: Wade Fife <wade.fife@ettus.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] One or more blocks timed out during flush
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -118,9 +61,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Geoffrey Mainland via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Geoffrey Mainland <mainland@apeiron.net>
-Content-Type: multipart/mixed; boundary="===============1732762475524520961=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============3399651785190536604=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -134,141 +77,240 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============1732762475524520961==
-Content-Type: multipart/alternative;
- boundary="------------DFB6F59782A4D234E79F7FAF"
-Content-Language: en-US
+--===============3399651785190536604==
+Content-Type: multipart/alternative; boundary="000000000000ba0a5505b9d29ed2"
 
-This is a multi-part message in MIME format.
---------------DFB6F59782A4D234E79F7FAF
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+--000000000000ba0a5505b9d29ed2
+Content-Type: text/plain; charset="UTF-8"
 
-I’m encountering a consistently reproducible problem on the X310
-platform that causes the radio to lock up to the point where I have to
-power cycle it or flash it over JTAG to return it to a working state.
+My new logic appears to have solved the issue of cleaning up the unequal
+length streams coming from the radios.  So, my block is not getting into
+this bad state anymore.
 
-My application is DragonRadio
-<https://github.com/drexelwireless/dragonradio>, Drexel’s DARPA SC2
-competition radio. This radio can use either a TDMA MAC, which uses
-timed TX bursts with a time spec, or an FDMA MAC, which uses TX bursts
-without a time spec (|has_time_spec| is false). The problem occurs in
-both cases, so it doesn’t seem to be related to the use of timed bursts.
+However, just to finish up this discussion, I don't think that the warning
+is solely related to the output ports (which is how I understood your last
+reply).  I think that data is trapped at the input and not clearing. For
+example, consider the Add/Sub rfnoc block which expects synchronous data at
+the input. My theory (not proven) is that if you connected 2 radio blocks
+to the inputs and monitored the outputs, you would determine that it worked
+fine the initial burst from the radio, but on subsequent bursts, the data
+would be misaligned because there would still be samples in one of the two
+noc_shell input fifos (due to the non-synchronous stop of the radios). And,
+I think you may get the WARNING I mentioned upon subsequent UHD startup
+using this Add/Sub block.
 
-After several minutes of data transfer, one of the X310 radios will
-produce the following error and lock up:
-
-EnvironmentError: IOError: Block ctrl (CE_01_Port_40) no response packet - AssertionError: bool(buff)
-  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) [with uhd::endianness_t _endianness = uhd::ENDIANNESS_BIG; uint64_t = long unsigned int]
-  at /root/dragonradio/dependencies/uhd/host/lib/rfnoc/ctrl_iface.cpp:151
-
-At this point, I have to power cycle the radio or flash it over JTAG to
-use it again.
-
-I am currently using UHD 3.15, but I have tried every UHD release since
-3.9 (except 3.12), and the same problem occurs. UHD 4 fails too, but the
-error is slightly different:
-
-[ERROR] [X300] 192.168.40.2: x300 fw communication failure #1
-EnvironmentError: IOError: x300 fw peek32 - reply timed out
-terminate called after throwing an instance of 'uhd::assertion_error'
-  what():  AssertionError: reply.sequence == request.sequence
-  in virtual uint32_t x300_ctrl_iface_enet::__peek32(uhd::wb_iface::wb_addr_type)
-  at /root/dragonradio/dependencies/uhd/host/lib/usrp/x300/x300_fw_ctrl.cpp:165
-
-The problem *does not* occur with UHD 3.9.
-
-Both MACs only end a burst when they run out of data to send
-continuously, and keeping them fed prevents the hang.
-
-My problem seems to be the same that is described in the closed GitHub
-UHD issue 203 <https://github.com/EttusResearch/uhd/issues/203>. As
-Brian Padalino suggests in that issue, resizing the DRAM FIFO so latency
-is reasonable and then zero stuffing the TX pipeline also prevents the
-radio from locking up. I have not tried |skip_dram=1|. I also haven’t
-figured out how to resize the DRAM FIFO with UHD 4, so I don’t know if
-the work-around applies to that version.
-
-This problem is 100% reproducible with a few minutes (1–20) of run time.
-Constructing a minimal failing example would be a lot of work, but the
-radio I’m using is open source, so anyone should be able to reproduce
-the problem (I’d be happy to provide additional instructions for doing so).
-
-Has anyone else seen this kind of behavior? There definitely seems to be
-a bug in the DRAM FIFO.
-
-Thanks,
-Geoff
+If I have time, I will try to prove this, but for now my block is working
+and I have other fish to fry.
+Rob
 
 
---------------DFB6F59782A4D234E79F7FAF
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+On Tue, Jan 26, 2021 at 1:26 PM Wade Fife <wade.fife@ettus.com> wrote:
 
-<html>
-  <head>
+> I like your first idea. To get rid of the warning, I think your block just
+> needs to finish the last packet cleanly on each output port (i.e., TLAST
+> needs to be asserted on the last word written to the NoC shell). The second
+> idea will probably work too, but it won't necessarily get rid of the
+> warning.
+>
+> Wade
+>
+> On Tue, Jan 26, 2021 at 11:39 AM Rob Kossler <rkossler@nd.edu> wrote:
+>
+>> Thanks Wade,
+>> So, I get what you are saying in general but I'm still not clear on
+>> specifics.
+>>
+>> My custom block is a multi-port pulse detector with an equal number of
+>> input and output ports. The idea is that the radios stream Rx samples on
+>> multiple ports to my block in a single continuous burst.  My block then
+>> uses multi-port logic to decide when energy is present such that it can
+>> discard samples (on all ports identically) that occur in between pulses.
+>>
+>> The problem I'm having is that the Rx radios don't all stop at the same
+>> time.  They all start synchronously, but stop asynchronously (in previous
+>> UHD versions, it was not possible to stop them using a time spec - I'm not
+>> sure if this is still the case in UHD 4).  So, since my block wants to
+>> process samples from all streams simultaneously (using an "axi_join" of all
+>> streams at the input), it has a problem when one stream stops before the
+>> rest.
+>>
+>> So, with that in mind, what should my block do to properly clear data?
+>> Here are my ideas but I'm hoping you can comment.
+>>
+>>    - Implement "flushing logic" at my block input such that once I
+>>    receive EOB on any stream, I discard data on the other streams until I
+>>    receive EOB for all streams.  I am presently building a version with this
+>>    logic which I just implemented a few minutes ago.
+>>    - Implement a "clear" register that will allow me to clear data pipes
+>>    using register writes.  I have already implemented this and it works to
+>>    some degree but not perfectly.  I'm still getting the UHD WARNING at
+>>    startup even though my block controller constructor asserts & then
+>>    de-asserts this clear which is wired to all of the FIFOs and other logic
+>>    that need cleared.  If I start UHD 2 or 3 times, eventually it starts up
+>>    without the WARNING but I don't understand why it takes 2 or 3 times and
+>>    would like to fix this.  And, I have confirmed that every time it starts up
+>>    with the WARNING, the output of my block is sample mis-aligned such that I
+>>    know there is still data in some pipe.
+>>
+>> Is there something my block should be doing during the UHD "flushing"
+>> step to make sure that the flush succeeds? I'm looking for any ideas,
+>> best-practices, etc., on how to make my custom block robust.
+>> Thanks.
+>> Rob
+>>
+>>
+>>
+>>
+>> On Tue, Jan 26, 2021 at 11:37 AM Wade Fife <wade.fife@ettus.com> wrote:
+>>
+>>> I believe RFNoC tries to flush any partially transmitted packets out of
+>>> blocks during initialization before resetting them. The idea is to get rid
+>>> of any leftover data that might still be in the data pipes. I think a
+>>> timeout means the noc_shell never saw the end of the last packet before the
+>>> timeout. I usually see this warning if I stopped the previous session
+>>> abruptly without properly stopping the data transfer.
+>>>
+>>> I think you'll see this warning if your block stops data transfer
+>>> mid-packet. Then, on the next session, it can't finish the packet it
+>>> started on the previous session. Or something like that. It's probably OK
+>>> to ignore if your block uses the resets coming out of the noc_shell to
+>>> reset everything.
+>>>
+>>> Wade
+>>>
+>>> On Mon, Jan 25, 2021 at 7:28 PM Rob Kossler via USRP-users <
+>>> usrp-users@lists.ettus.com> wrote:
+>>>
+>>>> Hi,
+>>>> Using RFNOC 4.0 with a few of my custom blocks, I get the following
+>>>> warning at UHD startup (after having run it at least once before):
+>>>>
+>>>> [WARNING] [RFNOC::GRAPH] One or more blocks timed out during flush!
+>>>>
+>>>> I'm confident it is something that I'm doing incorrectly with my block,
+>>>> but I'm wondering if anyone can comment on what causes this and / or what
+>>>> my block should be doing to avoid it.
+>>>>
+>>>> Rob
+>>>> _______________________________________________
+>>>> USRP-users mailing list
+>>>> USRP-users@lists.ettus.com
+>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>
+>>>
 
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-text-html" lang="x-unicode">
-      <p>I’m encountering a consistently reproducible problem on the
-        X310 platform that causes the radio to lock up to the point
-        where I have to power cycle it or flash it over JTAG to return
-        it to a working state.</p>
-      <p>My application is <a
-          href="https://github.com/drexelwireless/dragonradio">DragonRadio</a>,
-        Drexel’s DARPA SC2 competition radio. This radio can use either
-        a TDMA MAC, which uses timed TX bursts with a time spec, or an
-        FDMA MAC, which uses TX bursts without a time spec (<code>has_time_spec</code>
-        is false). The problem occurs in both cases, so it doesn’t seem
-        to be related to the use of timed bursts.</p>
-      <p>After several minutes of data transfer, one of the X310 radios
-        will produce the following error and lock up:</p>
-      <pre>EnvironmentError: IOError: Block ctrl (CE_01_Port_40) no response packet - AssertionError: bool(buff)
-  in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, double) [with uhd::endianness_t _endianness = uhd::ENDIANNESS_BIG; uint64_t = long unsigned int]
-  at /root/dragonradio/dependencies/uhd/host/lib/rfnoc/ctrl_iface.cpp:151</pre>
-      <p>At this point, I have to power cycle the radio or flash it over
-        JTAG to use it again.</p>
-      <p>I am currently using UHD 3.15, but I have tried every UHD
-        release since 3.9 (except 3.12), and the same problem occurs.
-        UHD 4 fails too, but the error is slightly different:</p>
-      <pre>[ERROR] [X300] 192.168.40.2: x300 fw communication failure #1
-EnvironmentError: IOError: x300 fw peek32 - reply timed out
-terminate called after throwing an instance of 'uhd::assertion_error'
-  what():  AssertionError: reply.sequence == request.sequence
-  in virtual uint32_t x300_ctrl_iface_enet::__peek32(uhd::wb_iface::wb_addr_type)
-  at /root/dragonradio/dependencies/uhd/host/lib/usrp/x300/x300_fw_ctrl.cpp:165</pre>
-      <p>The problem <strong>does not</strong> occur with UHD 3.9.</p>
-      <p>Both MACs only end a burst when they run out of data to send
-        continuously, and keeping them fed prevents the hang.</p>
-      <p>My problem seems to be the same that is described in the closed
-        GitHub UHD <a
-          href="https://github.com/EttusResearch/uhd/issues/203">issue
-          203</a>. As Brian Padalino suggests in that issue, resizing
-        the DRAM FIFO so latency is reasonable and then zero stuffing
-        the TX pipeline also prevents the radio from locking up. I have
-        not tried <code>skip_dram=1</code>. I also haven’t figured out
-        how to resize the DRAM FIFO with UHD 4, so I don’t know if the
-        work-around applies to that version.</p>
-      <p>This problem is 100% reproducible with a few minutes (1–20) of
-        run time. Constructing a minimal failing example would be a lot
-        of work, but the radio I’m using is open source, so anyone
-        should be able to reproduce the problem (I’d be happy to provide
-        additional instructions for doing so).</p>
-      <p>Has anyone else seen this kind of behavior? There definitely
-        seems to be a bug in the DRAM FIFO.</p>
-      <p>Thanks,<br>
-        Geoff</p>
-    </div>
-  </body>
-</html>
+--000000000000ba0a5505b9d29ed2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------DFB6F59782A4D234E79F7FAF--
+<div dir=3D"ltr"><div dir=3D"ltr">My new logic appears to have solved the i=
+ssue of cleaning up the unequal length streams coming from the radios.=C2=
+=A0 So, my block is not getting into this bad state anymore.=C2=A0=C2=A0<di=
+v><br></div><div>However, just to finish up this discussion, I don&#39;t th=
+ink that the warning is solely related to the output ports (which is how I =
+understood your last reply).=C2=A0 I think that data is trapped at the inpu=
+t and not clearing. For example, consider the Add/Sub rfnoc block which exp=
+ects synchronous data at the input. My theory (not proven) is that if you c=
+onnected 2 radio blocks to the inputs and monitored the outputs, you would =
+determine that it worked fine the initial burst from the radio, but on subs=
+equent bursts, the data would be misaligned because there would still be sa=
+mples in one of the two noc_shell input fifos (due to the non-synchronous s=
+top of the radios). And, I think you may get the WARNING I mentioned upon s=
+ubsequent UHD startup using this Add/Sub block.<div><br></div><div>If I hav=
+e time, I will try to prove this, but for now my block is working and I hav=
+e other fish to fry.</div><div>Rob</div><div><br></div></div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jan 26=
+, 2021 at 1:26 PM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com">wade=
+.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
+ding-left:1ex"><div dir=3D"ltr"><div>I like your first idea. To get rid of =
+the warning, I think your block just needs to finish the last packet cleanl=
+y on each output port (i.e., TLAST needs to be asserted on the last word wr=
+itten to the NoC shell). The second idea will probably work too, but it won=
+&#39;t necessarily get rid of the warning.<br></div><div><br></div><div>Wad=
+e<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Tue, Jan 26, 2021 at 11:39 AM Rob Kossler &lt;<a href=3D"mail=
+to:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div =
+dir=3D"ltr">Thanks Wade,<div>So, I get what you are saying in general but I=
+&#39;m still not clear on specifics.=C2=A0=C2=A0</div><div><br></div><div>M=
+y custom block is a multi-port pulse detector with an equal number of input=
+=C2=A0and output ports. The idea is that the radios stream Rx samples on mu=
+ltiple ports to my block in a single continuous burst.=C2=A0 My block then =
+uses multi-port logic to decide when energy is present such that it can dis=
+card=C2=A0samples (on all ports identically) that occur in between pulses.=
+=C2=A0</div><div><br></div><div>The problem I&#39;m having is that the Rx r=
+adios don&#39;t all stop at the same time.=C2=A0 They all start synchronous=
+ly, but stop asynchronously (in previous UHD versions, it was not possible =
+to stop them using a time spec - I&#39;m not sure if this is still the case=
+ in UHD 4).=C2=A0 So, since my block wants to process samples from all stre=
+ams simultaneously (using an &quot;axi_join&quot; of all streams at the inp=
+ut), it has a problem when one stream stops before the rest.=C2=A0</div><di=
+v><br></div><div>So, with that in mind, what should my block do to properly=
+ clear data? Here are my ideas but I&#39;m hoping you can comment.</div><di=
+v><ul><li>Implement &quot;flushing logic&quot; at my block input such that =
+once I receive EOB on any stream, I discard data on the other streams until=
+ I receive EOB for all streams.=C2=A0 I am presently building a version wit=
+h this logic which I just implemented a=C2=A0few minutes ago.</li><li>Imple=
+ment a &quot;clear&quot; register that will allow me to clear data pipes us=
+ing register writes.=C2=A0 I have already implemented this and it works to =
+some degree but not perfectly.=C2=A0 I&#39;m still getting the UHD WARNING =
+at startup even though my block controller constructor asserts &amp; then d=
+e-asserts this clear which is wired to all of the FIFOs and other=C2=A0logi=
+c that need cleared.=C2=A0 If I start UHD 2 or 3 times, eventually it start=
+s up without the WARNING but I don&#39;t understand why it=C2=A0takes 2 or =
+3 times and would like to fix this.=C2=A0 And, I have confirmed that every =
+time it starts up with the WARNING, the output of my block is sample mis-al=
+igned such that I know there is still data in some pipe.=C2=A0=C2=A0</li></=
+ul>Is there something my block should be doing during the UHD &quot;flushin=
+g&quot; step to make sure that the flush succeeds? I&#39;m looking for any =
+ideas, best-practices, etc., on how to make my custom block robust.</div><d=
+iv>Thanks.</div><div>Rob</div><div><br></div><div><br></div><div><br></div>=
+</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Tue, Jan 26, 2021 at 11:37 AM Wade Fife &lt;<a href=3D"mailto:wade.fife@=
+ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>I bel=
+ieve RFNoC tries to flush any partially transmitted packets out of blocks d=
+uring initialization before resetting them. The idea is to get rid of any l=
+eftover data that might still be in the data pipes. I think a timeout means=
+ the noc_shell never saw the end of the last packet before the timeout. I u=
+sually see this warning if I stopped the previous session abruptly without =
+properly stopping the data transfer.</div><div><br></div><div>I think you&#=
+39;ll see this warning if your block stops data transfer mid-packet. Then, =
+on the next session, it can&#39;t finish the packet it started on the previ=
+ous session. Or something like that. It&#39;s probably OK to ignore if your=
+ block uses the resets coming out of the noc_shell to reset everything.<br>=
+</div><div><br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jan 25, 2021 at 7:28 PM Rob=
+ Kossler via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" t=
+arget=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<br><div>Usi=
+ng RFNOC 4.0 with a few of my custom blocks, I get the following warning at=
+ UHD startup (after having run it at least once before):</div><div><br></di=
+v><div>[WARNING] [RFNOC::GRAPH] One or more blocks timed out during flush!<=
+br></div><div><br></div><div>I&#39;m confident it is something that I&#39;m=
+ doing incorrectly with my block, but I&#39;m wondering if anyone can comme=
+nt on what causes this and / or what my block should be doing to avoid it.<=
+/div><div><br></div><div>Rob</div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div></div>
+</blockquote></div>
+</blockquote></div></div>
+
+--000000000000ba0a5505b9d29ed2--
 
 
---===============1732762475524520961==
+--===============3399651785190536604==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -279,5 +321,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1732762475524520961==--
+--===============3399651785190536604==--
 
