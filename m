@@ -2,60 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2270308AB2
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Jan 2021 17:57:53 +0100 (CET)
-Received: from [::1] (port=48776 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6814F308CD1
+	for <lists+usrp-users@lfdr.de>; Fri, 29 Jan 2021 19:56:30 +0100 (CET)
+Received: from [::1] (port=50520 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l5X5k-0003ju-J1; Fri, 29 Jan 2021 11:57:52 -0500
-Received: from mail-qt1-f182.google.com ([209.85.160.182]:42568)
+	id 1l5YwU-0008IB-N9; Fri, 29 Jan 2021 13:56:26 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:40871)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1l5X5g-0003bU-5I
- for usrp-users@lists.ettus.com; Fri, 29 Jan 2021 11:57:48 -0500
-Received: by mail-qt1-f182.google.com with SMTP id e15so7109070qte.9
- for <usrp-users@lists.ettus.com>; Fri, 29 Jan 2021 08:57:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=uR5VwC4yGiYP+mvCYmBGpxfHA16z5qEj9ldDe478N2Q=;
- b=IjKvUFfaj2hJ8pladna6x0PV4VygZHilklPggcMhMBVwTkPcmOEXfyKaI1Pa4e/oqV
- TcjZYjUQV6WUi2w9qIrEC735bkCdPn/UxS/KLXSlzrGsu8LHir43dDHoeVpaccuMguPu
- xF5MDYXX4ZYvil2Kbe5hAwT3AWEWEXLA8HuwK6rYh/EWiaB96GUMQNYKMkjGep3xA/Ad
- 1xSKnj4S6EmHuJm+Sk7GiVw0w+fVqTcOLdGNnPknddKNyIDPzr7JuqH5TEmohB5sLHDv
- XB7+oWiFNkKm7bNcCDLFJGu2OD+cl6FCx2gEOMMNYWMETvAnO23R8jl1lud74LgKcM9i
- DMHQ==
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1l5YwR-0008E6-9b
+ for usrp-users@lists.ettus.com; Fri, 29 Jan 2021 13:56:23 -0500
+Received: by mail-oi1-f175.google.com with SMTP id p5so10969129oif.7
+ for <usrp-users@lists.ettus.com>; Fri, 29 Jan 2021 10:56:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=806Q1Dvb8SY+QPM5vW955re+XwSXh5mQN4Dm57kbq9o=;
+ b=LUOORDIfsHoj1eRZFqGrdzLMmg/DTsXqbkEoL+ws5j3wxMfv8XZbvOF8+m87jGw7yF
+ k5PyXkwVETyxUuqztJvWbMEa7IrUd6sSSHLDYyF2A/LvckP+xJiNlo+ifRz+vydajFJn
+ 3BqVjNQfqTZ2hnLWR6nW2xeW/ZCQ7yFjUL/rIYIttypwIPrTvwY5oGNLfEHM54ZPVokf
+ jHCPpM6HgURJ9ZtRdpNV1q9EZhrOlSCwTIIRV4oN3emzvw6asDGCHNfSXY1uqhODJoMR
+ GXRpXX0hSkZzLwBQtAhr+x0rgRecjxW9ajOOXr72L8yCgQ22v9Pca+p9pxxPznWat1K+
+ nR1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=uR5VwC4yGiYP+mvCYmBGpxfHA16z5qEj9ldDe478N2Q=;
- b=aO3izd1pj/27Ib4j6NXbZyWb8EbQ8jE42CPKzIMyVbf8SG0IaBC6F4EyllZFKDV5Aa
- nVcqBqQs13NbN/COinyJY0ut1PlyrSSOhOJRXkxQhdokmg7//chZntuwO100bKYQAhic
- 5SF0Mjc0ZieebqdcoDZgM0df7tfmDSVTBFTdbNYT62bvZ/7KYq0rVWAUp2nlGXXBgLGd
- 5bDO2i4+jz0Zg5Ffb/kKyYIsxUWg4Bw8ButnnX1/UCOKU+RCzVwgsDgZtBoO/XRKaaRn
- WPCQ1o12H2m+4haK7pDiC27ANMmw0JzJSDz2eO3PHjp04Y9Une6gD5tj3+K3QVZzw5i5
- +RLA==
-X-Gm-Message-State: AOAM531hLcLPqGjvqt5EqEVKyIVD72XHEd/vm0E5bW41yFutBXGjuQLX
- vYPVCaB0r+oVc/9N3era+5qCqgLD6i0=
-X-Google-Smtp-Source: ABdhPJxCNw90VBvzm30+p9DyOF2mnif7kNYjPoCeJciJn99Cj53pl2bV02/enrdwF7VtBiLkg7wvMQ==
-X-Received: by 2002:ac8:4a82:: with SMTP id l2mr5248518qtq.298.1611939427247; 
- Fri, 29 Jan 2021 08:57:07 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id z11sm3296326qto.71.2021.01.29.08.57.06
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 29 Jan 2021 08:57:06 -0800 (PST)
-Message-ID: <60143E62.9070206@gmail.com>
-Date: Fri, 29 Jan 2021 11:57:06 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=806Q1Dvb8SY+QPM5vW955re+XwSXh5mQN4Dm57kbq9o=;
+ b=XMaIms/0NDdG2Et98o0XA2D5Wq9UJ7+hEfHMa3l97i5pWPuzdbpohuMq2RjZdHyNck
+ p46V0G2ytDeIfz5s7D5NhYCixlAsW7PUZvJIIXgpiVtrTQD8B7nkHAxBBqboFhuiPfNZ
+ QqkdVZmEz5EnDUVQwNzl9RfwM4Ybdz+wQRGVw2PcpQ2VhkH+HuuszgLzzSrInHBTn/p9
+ LKSPZg71eaFfFpilaWbN/F36lbbu2dmwblNLV6+EU4Mc3CEVFWhrJ3uaxYLYSUYvJV9z
+ ols3tzBwIZz3NqLrR84Z6N0732l9dKRzxGsIme2Ffoa6L0k42kPJgq2zJ7F7/b9DUEld
+ 0NJw==
+X-Gm-Message-State: AOAM532IKcnUjAUcoLrdw9ZesucXrjxi0mvrIbsvZxXLPFe8RxjiosPa
+ 56m6ner6p6ukEAWF8kfqPDzC7xgeIDnFidBWbvkE0sG/N2YVHg==
+X-Google-Smtp-Source: ABdhPJzzXbjTqWlhBfvywyQDVVBo/CeJvJy8v34CB2O461BMDsjf5m7fMQnUMMpLKOkBoudH8Bgp4KaF4GwnViDgM7I=
+X-Received: by 2002:aca:5504:: with SMTP id j4mr3436553oib.150.1611946542047; 
+ Fri, 29 Jan 2021 10:55:42 -0800 (PST)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <CAErymBhJT8CAYUbR_3+=jr1VrfKohhgyX3OWb51=4sNwaNgs=w@mail.gmail.com>
-In-Reply-To: <CAErymBhJT8CAYUbR_3+=jr1VrfKohhgyX3OWb51=4sNwaNgs=w@mail.gmail.com>
-Subject: Re: [USRP-users] check if GPSDO is locked
+Date: Fri, 29 Jan 2021 13:55:31 -0500
+Message-ID: <CAB__hTSriXCNe4UbEADtZiwnpuzuremzC2f4rs7E8Du0joRsEg@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: [USRP-users] Error Late Command on Receive
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,10 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============3157088176038593066=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -84,26 +70,78 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 01/29/2021 11:26 AM, Achilleas Anastasopoulos via USRP-users wrote:
-> HI all,
->
-> I am looking at an old N210 with a GPSDO and a GPS antenna connected.
->
-> Is there a uhd script or snippet of code (python) that I can use to 
-> probe the USRP and check if it has acquired lock from the GSP?
->
-> Any help would be appreciated.
-> thanks
-> Achilleas
->
->
-If you look at the sync_to_gps example code, it probes the "gps_locked" 
-sensor.
+--===============3157088176038593066==
+Content-Type: multipart/alternative; boundary="0000000000000957c905ba0e8d4b"
+
+--0000000000000957c905ba0e8d4b
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+I am receiving ERROR_CODE_LATE_COMMAND on occasion in my Rx-only
+application and I'm wondering what could be the possible cause. It doesn't
+happen often, and seems to occur in the middle of continuous streaming (not
+at the start), often after having also received several Overflows.
+
+Normally I associate Late errors with Tx (where the cause is often that a
+timed sample arrived at the Tx radio after the time was already passed).
+But, I suppose it could happen on Rx if I sent a command to start streaming
+at some time in the past.  However, such an error would occur right away at
+the start of streaming - not after several seconds of successful streaming
+and possibly a few Overflows.  I can't think of a reason the radio would
+issue a Late during the course of continuous streaming. No other commands
+(such as gain changes) are being sent by my application during the
+streaming.
+
+Here's a little info about my Rx-only application in case it's relevant. I
+have a custom FPGA build for a receive-only application where my RFNoC
+graph looks like:
+    Radio=>DDC=>my_blocks=>host
+There are actually 4 channels (and 4 host rx_streamers) and "my_blocks"
+does some joint channel processing (similar to AddSub block).  None of
+my_blocks generate this Late error so it must be happening in the Radio,
+DDC, or perhaps the rx_streamer.
+
+Rob
+
+--0000000000000957c905ba0e8d4b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div>I am receiving ERROR_CODE_LATE_COMMAND on occasion=
+ in my Rx-only application and I&#39;m wondering what could be the possible=
+ cause.=C2=A0It doesn&#39;t happen often, and seems to occur in the middle =
+of continuous streaming (not at the start), often after having also receive=
+d several Overflows.=C2=A0</div><div><br></div><div>Normally I associate La=
+te errors with Tx (where the cause is often that a timed sample arrived at =
+the Tx radio after the time was already passed). But, I suppose it could ha=
+ppen on Rx if I sent a command to start streaming at some time in the past.=
+=C2=A0 However, such an error would occur right away at the start of stream=
+ing - not after several seconds of successful streaming and possibly a few =
+Overflows.=C2=A0 I can&#39;t think of a reason the radio would issue a Late=
+ during the course of continuous streaming. No other commands (such as gain=
+ changes) are being sent by my application during the streaming.</div><div>=
+<br></div><div>Here&#39;s a little info about my Rx-only application in cas=
+e it&#39;s relevant. I have a custom FPGA build for a receive-only applicat=
+ion where my RFNoC graph looks like:</div><div><div>=C2=A0 =C2=A0 Radio=3D&=
+gt;DDC=3D&gt;my_blocks=3D&gt;host</div><div>There are actually 4 channels (=
+and 4 host rx_streamers) and &quot;my_blocks&quot; does some joint channel =
+processing (similar to AddSub block).=C2=A0 None of my_blocks generate this=
+ Late error so it must be happening in the Radio, DDC, or perhaps the rx_st=
+reamer.</div></div><div><br></div><div>Rob</div></div>
+
+--0000000000000957c905ba0e8d4b--
 
 
-
+--===============3157088176038593066==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3157088176038593066==--
+
