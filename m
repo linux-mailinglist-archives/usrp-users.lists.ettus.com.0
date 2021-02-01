@@ -2,55 +2,37 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEB7630AFD7
-	for <lists+usrp-users@lfdr.de>; Mon,  1 Feb 2021 19:56:26 +0100 (CET)
-Received: from [::1] (port=37486 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B1830B1D6
+	for <lists+usrp-users@lfdr.de>; Mon,  1 Feb 2021 22:02:48 +0100 (CET)
+Received: from [::1] (port=38364 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l6eN5-00008M-5l; Mon, 01 Feb 2021 13:56:23 -0500
-Received: from mail-ed1-f52.google.com ([209.85.208.52]:42936)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <aaron.rossetto@ettus.com>)
- id 1l6eN1-0008UJ-Cq
- for usrp-users@lists.ettus.com; Mon, 01 Feb 2021 13:56:19 -0500
-Received: by mail-ed1-f52.google.com with SMTP id z22so20108764edb.9
- for <usrp-users@lists.ettus.com>; Mon, 01 Feb 2021 10:55:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :content-transfer-encoding;
- bh=iEOhrJoglqjHv5JCLf+r1hAKFykWoz17Q8G+YZhq4vY=;
- b=pqYaMfIAzgexw6EY7vJPNK2mQg1v0LaGPj2t/nrWGwroFvLx8+LzaGk73IA/1snv67
- vIIptw0hOPufyBEyn4sQOk18BxRY0XZa4LjGV14oNV4lFsIOMIFOuwkujXHO48+Dd/S6
- X2E5DfVOX6KJ4a3eRHgNsJER01HY7CASEB2mKXbhE/5E/ZOUSyJ07xoF2P0scaijDlf0
- wIA4qbm3absJ2Ka+gOH0KGtNikBTenfngllq19d8pUdEO166pjfpl6N9nP4r8K300o9K
- L3H9Z0155qSYUIqW0C1tWrZQwMUy8PC1ZPgncDqazIl727mBSf3GynupGDsl5HjepBxZ
- lbbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:content-transfer-encoding;
- bh=iEOhrJoglqjHv5JCLf+r1hAKFykWoz17Q8G+YZhq4vY=;
- b=rHrESE6HagGCcDPodX1MtGU3gCAUssy+3Z+/tgWhUIF94bi6+jb6fRQ9qWnfULgM+p
- tlJIrx015Y2esPAywhdCWwkdslCVTRT2LNEeSkxAQBR4yUR647xJKqEOhA+w/DO7x8mF
- 3M+PYgo6h7ia8+8RP0KbGGtFwFVrcwIt9xguig0Dk8mWJmCUzLaAjzn59gjLwoXqj3ML
- oULSO5YjULx1wpUwV4IcnvrlyweSos9RviIeVdDXS4x2z/IWGfqV5kfPoqlox22Nnl7a
- vR0EOV4p+NvfARmwLWBXqRPgeCJTqT+cThywaa7dVH4TYE23NXAPBz1S4OlAacZ+da0p
- npFA==
-X-Gm-Message-State: AOAM532GD/qIOUzfRH29x6oMfVPibtw8JutR/Xio349Sj1zvwbS2JUzs
- ScMRDUguF47BsrXkU7vlmEnuDmiytXI5CWX+A7q2E10YPPgF7C+F
-X-Google-Smtp-Source: ABdhPJyfdVxmCsxX87CUGvcdt9e5ljP8IkLZ5NSoRsQmcf2SaPAJgY/jx4a2qyKsR6W24+OILY624qyV4ys+3Lt9HQA=
-X-Received: by 2002:a05:6402:149:: with SMTP id
- s9mr20341869edu.247.1612205738103; 
- Mon, 01 Feb 2021 10:55:38 -0800 (PST)
+	id 1l6gLN-0007Xb-1R; Mon, 01 Feb 2021 16:02:45 -0500
+Received: from p-impout006aa.msg.pkvw.co.charter.net ([47.43.26.137]:37209
+ helo=p-impout006.msg.pkvw.co.charter.net)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <dtrask1@tampabay.rr.com>)
+ id 1l6gLI-0007QY-NE
+ for usrp-users@lists.ettus.com; Mon, 01 Feb 2021 16:02:40 -0500
+Received: from localhost ([34.233.51.36]) by cmsmtp with ESMTP
+ id 6gKdlG6LEFiZV6gKdlHuUg; Mon, 01 Feb 2021 21:01:59 +0000
+X-Authority-Analysis: v=2.3 cv=XINOtjpE c=1 sm=1 tr=0
+ a=TrnfHZhGi+cGSPqA0dbxTQ==:117 a=TrnfHZhGi+cGSPqA0dbxTQ==:17
+ a=bpm26yrvxXUA:10 a=etiEgX_XAAAA:8 a=9jyNItP6TKRWr8llQ5MA:9 a=QEXdDO2ut3YA:10
+ a=gma0OZqR69CIVHokX4IA:9 a=paHEeFEPHaj80ZHJ:21 a=_W_S_7VecoQA:10
+ a=MLbIUA-Bjd6y1alW9qBG:22
+Message-Id: <8f457819e23ef15e1ee1e60b4ebd9104d2271e62@webmail>
+To: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+X-Mailer: Atmail 
+X-Originating-IP: [204.115.183.4]
+X-Priority: 3
+Importance: Normal
+X-MSMail-Priority: Normal
+Date: Mon, 01 Feb 2021 21:01:59 +0000
 MIME-Version: 1.0
-References: <CAOx6OK2_yPR6MY8YVfe8_P4TWRaouqmjLRZm=XXX3gPa-dF=Lw@mail.gmail.com>
-In-Reply-To: <CAOx6OK2_yPR6MY8YVfe8_P4TWRaouqmjLRZm=XXX3gPa-dF=Lw@mail.gmail.com>
-Date: Mon, 1 Feb 2021 12:55:27 -0600
-Message-ID: <CAAg5+MwyMhHttUdR4jiCUx+5QBQkQUtFZ3LrLz5ePn5hkBkgGg@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] Issues getting UHD and DPDK working with Mellanox
- ConnectX-5
+X-CMAE-Envelope: MS4wfKRDe4h3vd41wf5xgiGvPDT+tOaX7GrZsm8s0iBN4vTQBbgn5z1oWmEsFlmwPBgVI3E1VDWsb5qMs6dpfvpaIChkVuF3rhJ6SzdkYlz9jBWINKne+ztx
+ 3enJw4U7jF7l8xiqgZKyS7AShUUfyScfprn6+YI1N8e95ugzHYOZTp6ooEHdwpxGQJ3W7ikmZvnjFA==
+Subject: [USRP-users] Error Testing UHD Build on E310 with uhd_usrp_probe
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -62,10 +44,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Aaron Rossetto via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Aaron Rossetto <aaron.rossetto@ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Dennis Trask via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: dtrask1@tampabay.rr.com
+Content-Type: multipart/mixed; boundary="===============9130491984304230132=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,78 +60,80 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Jorge,
+--===============9130491984304230132==
+Content-Type: multipart/alternative;
+ boundary="=_c08316d07cd5463821980668a2f1c79b"
 
-The '[WARNING] [DPDK] Detected use_dpdk argument, but DPDK support not
-built in' message means that the version of UHD you are using (in this
-case, the 3.15.LTS version you installed via PyBOMBS) was not compiled
-with DPDK support. For DPDK to be available and usable, the UHD driver
-has to be built against the appropriate version of the DPDK libraries
-for UHD. If you build the UHD 3.15.LTS branch from source and have the
-appropriate DPDK libraries installed, the cmake step prior to
-compilation will indicate support for DPDK in the output:
+--=_c08316d07cd5463821980668a2f1c79b
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
--- Found DPDK: /usr/local/include/dpdk (found version "18.11")  (note:
-this is the output for building UHD-4.0, hence the more recent
-version)
-:
-:
--- ######################################################
--- # UHD enabled components
--- ######################################################
-:
---   * DPDK
-:
+=0A=0A=09I am attempting to set up a development environment to write so=
+ftware=0Afor the E310 by cross-compiling on Ubuntu 18.04. I am using the=
+=0Ainstructions here:=0Ahttps://kb.ettus.com/Software_Development_on_the=
+_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source=0A[1]=
+ =0A=0A=09I have followed all the instructions to build UHD and am now i=
+n the=0Asection "Mount and test the UHD build". When I run uhd_usrp_prob=
+e on=0Athe E310, I get the following ouput: =0A=0A=09root@ni-e31x-319969=
+3:~/newinstall# uhd_usrp_probe  =0A=0A=09-sh: /home/root/newinstall/usr/=
+bin/uhd_usrp_probe: No such file or=0Adirectory =0A=0A=09I'm not sure wh=
+ere to look for the source of this issue. Has anyone=0Aelse seen this or=
+ have an idea of what to look for? =0A=0A=09Thanks, =0A=0A=09Dennis=0A=
+=0ALinks:=0A------=0A[1]=0Ahttps://kb.ettus.com/Software_Development_on_=
+the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source=0A
 
-Then you should be able to proceed.
+--=_c08316d07cd5463821980668a2f1c79b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Aaron
+<html><body><p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif=
+;color:black">I am attempting=0Ato set up a development environment to w=
+rite software for the E310 by=0Across-compiling on Ubuntu 18.04. I am us=
+ing the instructions here:&nbsp;<a href=3D"https://kb.ettus.com/Software=
+_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettu=
+s_from_Source" id=3D"LPlnk336136">https://kb.ettus.com/Software_Developm=
+ent_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_So=
+urce</a><o:p></o:p></span></p>=0A=0A<p><span style=3D"font-family:&quot;=
+Calibri&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></p>=0A=0A=
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black=
+">I have followed=0Aall the instructions to build UHD and am now in the=
+ section&nbsp;"Mount=0Aand test the UHD build". When I run uhd_usrp_prob=
+e on the E310, I get the=0Afollowing ouput:<o:p></o:p></span></p>=0A=0A<=
+p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black"=
+><o:p>&nbsp;</o:p></span></p>=0A=0A<p class=3D"MsoNormal"><span style=3D=
+"font-family:&quot;Calibri&quot;,sans-serif;color:black">root@ni-e31x-31=
+99693:~/newinstall#=0Auhd_usrp_probe&nbsp;<o:p></o:p></span></p>=0A=0A<p=
+ class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans=
+-serif;color:black">-sh:=0A/home/root/newinstall/usr/bin/uhd_usrp_probe:=
+ No such file or directory<o:p></o:p></span></p>=0A=0A<p class=3D"MsoNor=
+mal"><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:bla=
+ck"><o:p>&nbsp;</o:p></span></p>=0A=0A<p class=3D"MsoNormal"><span style=
+=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black"><o:p>&nbsp;<=
+/o:p></span></p>=0A=0A<p><span style=3D"font-family:&quot;Calibri&quot;,=
+sans-serif;color:black">I'm not sure=0Awhere to look for the source of t=
+his issue. Has anyone else seen this or have=0Aan idea of what to look f=
+or?<o:p></o:p></span></p>=0A=0A<p><span style=3D"font-family:&quot;Calib=
+ri&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></p>=0A=0A<p><s=
+pan style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black">Tha=
+nks,<o:p></o:p></span></p>=0A=0A<p><span style=3D"font-family:&quot;Cali=
+bri&quot;,sans-serif;color:black">Dennis<o:p></o:p></span></p></body></h=
+tml>
 
-On Thu, Jan 28, 2021 at 6:48 AM Jorge Arroyo Giganto via USRP-users
-<usrp-users@lists.ettus.com> wrote:
->
-> Hi,
->
-> I am trying to get DPDK and UHD working with a Mellanox ConnectX-5 NIC.
->
-> I am using UHD-3.15.LTS (the installation was done with PyBOMBS in order to have RFNoC support, I did it following the RFNoC Getting Started guide), with an X310 and running Ubuntu 16.04 on the Host.
->
-> I have followed the guides Getting Started with DPDK and UHD and UHD's manual DPDK page with no luck.
->
-> For DPDK, as I am using Ubuntu 16.04, I downloaded from DPDK's download page the recommended DPDK 17.11.10 (LTS) version.
->
-> About the ConnectX-5, I installed its drivers (the LTS version of MLNX_OFED) with "./mlnxofedinstall --upstream-libs --dpdk". The drivers seem to work fine as I am able to run UHD applications using the X310 at 10Gb/s, however when setting "use_dpdk=1" I always get the "[WARNING] [DPDK] Detected use_dpdk argument, but DPDK support not built in." message.
->
-> My uhd.conf file looks like this:
->
-> [use_dpdk=1]
-> dpdk-mtu=9000
-> dpdk-driver=~/dpdk-stable-17.11.10/build/build/drivers   ; (not sure about this line as I don't have the /usr/lib/x86_64-linux-gnu/dpdk-17.11-drivers/ directory, maybe this is a clue?)
-> dpdk-corelist=0,1
-> dpdk-num-mbufs=4095
-> dpdk-mbufs-cache-size=315
->
-> [dpdk-mac=04:3f:72:c3:70:fd]
-> dpdk-io-cpu=1
-> dpdk-ipv4=192.168.40.1/24
->
-> [dpdk-mac=04:3f:72:c3:70:fc]
-> dpdk-io-cpu=1
-> dpdk-ipv4=192.168.10.1/24
->
->
-> If anyone with this setup has gotten DPDK to work I would appreciate the help very much.
->
-> Best regards,
->
-> Jorge
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+--=_c08316d07cd5463821980668a2f1c79b--
+
+
+
+--===============9130491984304230132==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============9130491984304230132==--
+
+
