@@ -2,119 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F1D30AA62
-	for <lists+usrp-users@lfdr.de>; Mon,  1 Feb 2021 16:04:15 +0100 (CET)
-Received: from [::1] (port=35308 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11A5A30AB87
+	for <lists+usrp-users@lfdr.de>; Mon,  1 Feb 2021 16:35:35 +0100 (CET)
+Received: from [::1] (port=35594 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l6akN-0000k3-I9; Mon, 01 Feb 2021 10:04:11 -0500
-Received: from mx0b-00272701.pphosted.com ([208.86.201.61]:49029)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <prvs=966646fc09=rmattingly@ou.edu>)
- id 1l6akK-0000d9-EY
- for usrp-users@lists.ettus.com; Mon, 01 Feb 2021 10:04:08 -0500
-Received: from pps.filterd (m0107987.ppops.net [127.0.0.1])
- by mx0b-00272701.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
- 111EvfBb024277
- for <usrp-users@lists.ettus.com>; Mon, 1 Feb 2021 09:03:26 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ou.edu;
- h=from : to : subject :
- date : message-id : content-type : mime-version; s=domainkey;
- bh=gfNWEJpCxbxIGaqw6Sd0xf2PoZm3WUZGiLpbDKKHmL0=;
- b=OAsMPUKc4PUhfAjD6J0D9hJxrcLLHRzX/DfBZgGDFdwyKC+HMrRtCiVa7WRfjnF9OqaB
- z7xqmoP/4S5e9l5CNuR5J2rDymQ9rx+EY/RiZPrizPSpRCR3pCRI3AYH+R9LJNkZqDR+
- exF+sRCG0JgFHjrJ6F3dFulCkWQ0zmLP2x6MlXu7qyhZKoOEw3aYOi8RTs9QWdffTO3H
- oxNPgVoAMeHcJ8IoNVzPVfBnQ9DiweuLm26CD9r9rzOI6iz0b/5rqo7tt7Yw8Mu01qz2
- CAzBi6oJyjhlPp8Sv3PFe3YF7U0N2S350Su/j+IKwhghnqtxhrHj7HYwj/eisUPGuj3N rA== 
-Received: from nam11-co1-obe.outbound.protection.outlook.com
- (mail-co1nam11lp2177.outbound.protection.outlook.com [104.47.56.177])
- by mx0b-00272701.pphosted.com with ESMTP id 36dpgyc03r-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
- for <usrp-users@lists.ettus.com>; Mon, 01 Feb 2021 09:03:26 -0600
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SxHCgrkAJ3jna6ax7aFkLoVkrPdREAtgqUGSrsZqD8lczL7x5VdYe/0FnC3Kpb72xKoo8JpM/erRDDdwn/VfT5ck58kH+qTcjtX2TKR4GbeJlj+5fIChrxiGsnPzbfF2XMsLa+E2Pt+o0M8N2hWot7XsdW+CoEowjJGHWcU0HNDgeODwUMbY2CDVKMgGGwAsWrstYKNeIabHoJlzzIfl1K8jpC2Rid5wRG+LkGLIVTX0V9Wp3uCwv9kfvg/TxB4hUbTBBYFTpINovyL+jH57ZI/SEUhc0Ls6Rs/ByR0qKdaic05z8YXn2oD07huFKckyPcR1nVSdSItDwfYXdDDQdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gfNWEJpCxbxIGaqw6Sd0xf2PoZm3WUZGiLpbDKKHmL0=;
- b=cfEQdHFIWjfOlghJgMYUlhlSd6204WGy5iMBQiq+yfVdXcWognpBwyGTnfg4Hi72YX09oOlCea6cEOnIAiBaF/NO3XsumJk4qLjr2+tWHr3TDgU4e6Veh8IaPlHxUB+8IYfuV9Nhuqv628xKhLtQQxzxIwkG37FdwMFm/916Bo58GwuFmSlsHXYM99wOKbw77PVJzY3s7fbaSOhD96ouKqVLKcSH0zvnQuqUrZX7N65clV+pm2KVYgbD/ovb0dyOfUtDAFjYNtN+UVRu5AW0dsrdR3nZKPnFgKKp82ZAZeeOpG9AVNk4Z/ObWNFCtFutcXnjKodAtr/wptduYdcpSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ou.edu; dmarc=pass action=none header.from=ou.edu; dkim=pass
- header.d=ou.edu; arc=none
-Received: from SN6PR03MB4160.namprd03.prod.outlook.com (2603:10b6:805:bd::20)
- by SA0PR03MB5595.namprd03.prod.outlook.com (2603:10b6:806:c0::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.20; Mon, 1 Feb
- 2021 15:03:24 +0000
-Received: from SN6PR03MB4160.namprd03.prod.outlook.com
- ([fe80::8421:f343:7269:50cd]) by SN6PR03MB4160.namprd03.prod.outlook.com
- ([fe80::8421:f343:7269:50cd%4]) with mapi id 15.20.3805.024; Mon, 1 Feb 2021
- 15:03:24 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: RFNoC FFT  >512 Samples
-Thread-Index: AQHW+Kl6QZ5LUG4p2kyCx0oDPcs3IQ==
-Date: Mon, 1 Feb 2021 15:03:24 +0000
-Message-ID: <SN6PR03MB4160FCA73A455E3B91825E6BB1B69@SN6PR03MB4160.namprd03.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none header.from=ou.edu;
-x-originating-ip: [129.15.133.239]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8aae8c4e-25c0-49cc-7c02-08d8c6c285c4
-x-ms-traffictypediagnostic: SA0PR03MB5595:
-x-microsoft-antispam-prvs: <SA0PR03MB5595419CB6F0C2119D05CCB7B1B69@SA0PR03MB5595.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Ij2Y1EHbV6EnuMFcciWKOUI/j55//hdBYKGBPRGqGy8OZFG6Y2Ts/azcroE0Qra7JrCLrq9wo3bw8VPFqUXhV7Np8wq+SdGPiISO2VTTCFmUgnGqVy0QhzJ94BiRN7DAOn32/cCIsELxavvhkAwEaHSOGXxjmUD8mhlmGzgVC3HBI7nZEniC0Vl3u+seANjanAx7qgKDOKQbCQbjShK17cYb/8br+OdoHeaXvDbWrZYzmlhL4MfPjVoboB2hRS0tzKjNm3kiwdqJaEpAur4t70FvPAXPDNz/xAUHfl1SFIgU/M9VYZ1LHg/LdrRoaSdnehwQPXs+XHrZScGpENfbnvL6PYQZdbGvbeo+60MoarLXwAQUA14sudhYTMU86/7YW7RXi2oC7T/YPYLmPecSoZ6ewDzQ1oKaTXYwo4V9Cq10nuG/tiS9uCw7lERSntDLOgUQaNDCDSTGaSfE9dGkN9/JTQ936lT13I4txG5+pOfJ2kw4JWzcHm6yl9vMxdag7/iix2p2JKnT84nz4a7kCQLvO7p29TXypv3y0bb7AOS3CuHb2tfa1tnpmIZ9D7vrNV3P4pUBVCb/MPSTY3R/KB5VXLOmkcA/XNTML4iQNUoidn10Fp05CWqBm93o8hOGMMfoEX0fiLx6mRRg3GNEXFznP+HZzrwrceIaAtMBPIUZ1upDxNlYq3sAwGHCXLon2dv9PSLZr3Bajn00ql9MC92A9fkvu0EjzM8LnHwfoXw=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN6PR03MB4160.namprd03.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(136003)(39860400002)(396003)(346002)(376002)(76116006)(83380400001)(66556008)(66446008)(66476007)(6916009)(64756008)(66946007)(52536014)(8676002)(8936002)(2906002)(33656002)(966005)(71200400001)(316002)(19627405001)(786003)(7696005)(26005)(186003)(75432002)(55016002)(66574015)(6506007)(166002)(5660300002)(9686003)(478600001)(7116003)(86362001)(15519875007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?kfJyukXg+9Htpz3mOccUQ9bROc6f9hAixBy09vSV3xA8tW32iWzvQ+cugR?=
- =?iso-8859-1?Q?wLVSiLEbL+n5nBnhzhxlEg1ZYLGlxGFNPPNNtQx4C1mdRDT8UX4x8J2m47?=
- =?iso-8859-1?Q?F3Wpl5p6ctz/zygbGsuSgx90RmGDvAKqk4oTQC/KFquB6eU+cQ4pCxCrS5?=
- =?iso-8859-1?Q?SAiWL8znFZJyUgoCG+lb+s4M5gjEE6F7UkRXM1ipDlMo2iUiywWWcxzgzp?=
- =?iso-8859-1?Q?35NEwjtARp5YamNWP9felz/FBGXqKKvCWimjKYTuHHfldpxrwyA9Jbuk0X?=
- =?iso-8859-1?Q?wHFkIPsYPcr23mnHpZpUnPDJ9l5NH4NPax4IGZaEmNXEgl7ENk67QRh+6W?=
- =?iso-8859-1?Q?m3BL6vl7zUCVkJ4WFq1/vtkKQbkod6+s4jPW6Thb1/C4pF9LIQ6zmyEcTk?=
- =?iso-8859-1?Q?cBfhYerWfsNsm6Tuwy1TrWmB8OnPFXWGD8C1mtZL2L9eyPVqIY9ZBpEKe2?=
- =?iso-8859-1?Q?s2sTQCXv8Ejq34IXMDzRC0VntnSM8JRnYcj+was/f9Mcvn9B+M2gNq+kvR?=
- =?iso-8859-1?Q?R7SLMJqePgG2tJs63ZrnEfLAzcdyuWo3MlymZZG8DX9ORD8L0WRf9Od/cR?=
- =?iso-8859-1?Q?X4cy+io2mUhkeGeIMoqNlYpJRBae51efLsbGRDfVL++mcxkj9EIsYQWz4g?=
- =?iso-8859-1?Q?r4VlSCEejqFwHoHFfOEnUI2WXXgYCKT685c7DgpJGHX+UknxOW2TAZ8zkO?=
- =?iso-8859-1?Q?joRhEk8YAO0Lt7zL/NCdq9Ln2r6bTOebO9MMckBEzlB3KmUWr+g4ERFhjy?=
- =?iso-8859-1?Q?kj8C7XVuMB8AmQz42NY9gwyyRFL9+5NFMf8AuWR6LUU3rNW7OceE57yZB+?=
- =?iso-8859-1?Q?RXIiT9CPYunO+6Iezeu7nGMR27TKBdQMMYfPJEncAEbz9i3t+pSoV9A5cm?=
- =?iso-8859-1?Q?yATPFWZw/bgfz4rMwoVIgwtTq4/whXOubQkU1PRVO8osGA0TWox2KuMJhN?=
- =?iso-8859-1?Q?c6itw5ELDVFic8CEcJ1efoi4ae+/3GYSbcsKrkLVLqJW0zpx3ScY6YtU86?=
- =?iso-8859-1?Q?eOFRuBa8+h8Zeo7JxbFenoc3Ng682oFGjqyiH46W8SAXaPZZ2MzhL15nDs?=
- =?iso-8859-1?Q?Hg8m263COhpEJ1a46Gs7AoVDBSI4vORzGUGPfU4Hs0uP?=
-x-ms-exchange-transport-forked: True
+	id 1l6bEf-0002LC-7y; Mon, 01 Feb 2021 10:35:29 -0500
+Received: from mail-ed1-f41.google.com ([209.85.208.41]:33237)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
+ id 1l6bEb-0002DD-V1
+ for usrp-users@lists.ettus.com; Mon, 01 Feb 2021 10:35:26 -0500
+Received: by mail-ed1-f41.google.com with SMTP id c6so19375694ede.0
+ for <usrp-users@lists.ettus.com>; Mon, 01 Feb 2021 07:35:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=EeYX74O2w0nsAUVzyo3GYoikpGp8DFq/m0Wzz62i3NI=;
+ b=rPyvdYJgE3dcQM8bfc7T/W+mOdJopQgO0BTOPhF/DTZvQbPw1mlhXZCX8v/ykfELPD
+ pn310jDV+/x/in8O22iBzmN948MQtGbKTybPHtk/y0vBZX1If37LqxhCRr2E/WxgiUXB
+ V/oAvG/7Gk9gxZBRh7Bu/i2/h4AZCIyCKaaRoM2nN8EfS5SveOfn1E6xBIYi2esvdUKq
+ q96+Ve4ez0PMd7FD18kSA4aGK8my5eSAW49++/I4JX/mICQJHH4XYUSzj4NABBTasRSX
+ NDAviE7FnuiBuath1RF2C3YvzHOkDxBBU2BeFcsEMdMCFEY0ZA6Oo0dE2xk7RBuOaN3k
+ oOmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=EeYX74O2w0nsAUVzyo3GYoikpGp8DFq/m0Wzz62i3NI=;
+ b=jBdfugLEeX3zHZ8fddX6tprGJG9ihJkezC7sBYb14jkZtmeFGeaweXwPg7Jmm3bkqe
+ hAJAyffTIiEhwWlQuuG/SxYRYvoMo97BIEVEY47gwdMlRihIdrLJB9QEHPTxm/+odHeY
+ yz3aGympJnCpBOuhziMG9iCSEHonr5fDoeKWgdED9RML+0i4FbwPJCFyCjQA7kn2n9vh
+ wosnBQs5fLDOmtuYhwnaBfOnSr3XNKN56/YKnhUhZSljNdmaCSLXusMK7ZSmXNkaFA0c
+ d+D20Qctv9Cx7Z/Z7jX2cTuq7j2Wh0sOPOUqFwyA6kYvcM5aSI3zHVAkbyg9pO0YGGxd
+ pucA==
+X-Gm-Message-State: AOAM530BSHpGEDBF3hkZWDdX7u0LqtsYXbsS/BnU4LQDQ/DgP4qtQrNP
+ YS1iX90GPksu5YCpSYwC3XTGNHTlsfzJ5kEi4792FSug
+X-Google-Smtp-Source: ABdhPJy+eWtDzHL3zR8vv+scgM3RK6lGzwUemBfUYgF3VfUyitOAvPY+AOq2sXFexD8tbfluNXbSVTm6v5RpWkjJORw=
+X-Received: by 2002:aa7:ce05:: with SMTP id d5mr19398063edv.63.1612193684774; 
+ Mon, 01 Feb 2021 07:34:44 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: ou.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR03MB4160.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8aae8c4e-25c0-49cc-7c02-08d8c6c285c4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Feb 2021 15:03:24.1577 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9c7de09d-9034-44c1-b462-c464fece204a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Y6pJyHsObYLzC89XL53qtFaO6q7AztOqPsUS5RwYpMS5k+00tuQxFf33IP3FUFsa6Oub9TdXwo7VHn5+0DCdOQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR03MB5595
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369, 18.0.737
- definitions=2021-02-01_06:2021-01-29,
- 2021-02-01 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015
- lowpriorityscore=0 mlxscore=0 malwarescore=0 impostorscore=0
- suspectscore=0 priorityscore=1501 spamscore=0 adultscore=0 phishscore=0
- mlxlogscore=676 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2009150000 definitions=main-2102010081
-Subject: [USRP-users] RFNoC FFT  >512 Samples
+References: <CAJ28uHHT3GC_Bx65vRUSQ7vCR42u-kF86GyTTaQZc4i+w_0emg@mail.gmail.com>
+In-Reply-To: <CAJ28uHHT3GC_Bx65vRUSQ7vCR42u-kF86GyTTaQZc4i+w_0emg@mail.gmail.com>
+Date: Mon, 1 Feb 2021 10:34:34 -0500
+Message-ID: <CAGNhwTPML0-knfpaC9WRNF4fUg-SwUJUpCRMQYJ8dJAYrFPuRg@mail.gmail.com>
+To: gokul sani <cnsgokul@gmail.com>
+Cc: USRP list <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] UHD version mismatch
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -126,9 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Mattingly, Rylee via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Mattingly, Rylee" <rmattingly@ou.edu>
-Content-Type: multipart/mixed; boundary="===============7241632827915365302=="
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
+Content-Type: multipart/mixed; boundary="===============1600741777477582439=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -142,137 +76,265 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7241632827915365302==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_SN6PR03MB4160FCA73A455E3B91825E6BB1B69SN6PR03MB4160namp_"
+--===============1600741777477582439==
+Content-Type: multipart/alternative; boundary="000000000000e3f8d005ba48176b"
 
---_000_SN6PR03MB4160FCA73A455E3B91825E6BB1B69SN6PR03MB4160namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--000000000000e3f8d005ba48176b
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Gokul - Did you update UHD to the same version on both the host computer
+running OAI as well as the USRP (via the filesystem on the SDcard)? It
+looks from the GIT commands like you're trying to use UHD 4.0-beta on this
+new host & you note UHD 3.15 on the USRP ... which won't work. You have to
+have the same version on both devices. - MLD
+
+
+On Mon, Feb 1, 2021 at 6:50 AM gokul sani via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Dear USRP Community,
+>
+> I am working on OAI project, and trying to run enb using USRP n310. My uhd
+> version was 3.15 LTS. But as part of the installation for OAI, I used this
+> command in a different workstation:
+>
+>
+>
+>
+> *git clone git://github.com/EttusResearch/uhd.git <http://github.com/EttusResearch/uhd.git>
+> cd uhd; mkdir host/build; cd host/build
+> cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+> make -j4
+> sudo make install
+> sudo ldconfigsudo /usr/lib/uhd/utils/uhd_images_downloader.py*
+>
+> But, now I am getting an error in the enb trace as follows:
+>
+> ***************************----trace---*****************
+> ---
+> -----
+> ------
+> wait_eNBs()
+> Waiting for eNB L1 instances to all get configured ... sleeping 50ms (nb_L1_inst 1)
+> RC.nb_L1_CC[0]:1
+> eNB L1 are configured
+> About to Init RU threads RC.nb_RU:1
+> Initializing RU threads
+> [PHY]   DJP - delete code above this /home/ubuntu18/openairinterface5g/targets/RT/USER/lte-ru.c:2704
+> [PHY]   Copying frame parms from eNB 0 to ru 0
+> [PHY]   Initializing RRU descriptor 0 : (local RF,synch_to_ext_device,0)
+> [PHY]   NFGI_RRU_IF4p5: configuring ru_id 0 (start_rf 0x56469465fc30)
+> [PHY]   channel 0, Setting tx_gain offset 0.000000, rx_gain offset 110.000000, tx_freq 2630000000.000000, rx_freq 2510000000.000000
+> [PHY]   Initializing frame parms for N_RB_DL 50, Ncp 0, osf 1
+> [PHY]   lte_parms.c: Setting N_RB_DL to 50, ofdm_symbol_size 1024
+> [PHY]   Starting ru_thread 0, is_slave 0, send_dmrs 0
+> [PHY]   Initializing RU proc 0 (eNodeB_3GPP,synch_to_ext_device),
+> [PHY]   init_RU_proc() DJP - added creation of pthread_prach
+> [HW]   thread_top_init() called with affinity>0, but overruled by #ifndef CPU_AFFINITY.
+> [HW]   [SCHED][eNB] ru_thread started on CPU 3, sched_policy = SCHED_FIFO , priority = 99, CPU Affinity= CPU_0 CPU_1 CPU_2 CPU_3
+> wait RUs
+> [ENB_APP]   Waiting for RUs to be configured ... RC.ru_mask:01
+> [HW]   thread_top_init() called with affinity>0, but overruled by #ifndef CPU_AFFINITY.
+> [HW]   [SCHED][eNB] ru_thread_prach started on CPU 0, sched_policy = SCHED_FIFO , priority = 99, CPU Affinity= CPU_0 CPU_1 CPU_2 CPU_3
+> [PHY]   thread ru created id=15286
+> [PHY]   Starting RU 0 (eNodeB_3GPP,synch_to_ext_device),
+> [PHY]   RU 0 has no OAI ctrl port
+> [PHY]   channel 0, Setting tx_gain offset 0.000000, rx_gain offset 110.000000, tx_freq 2630000000.000000, rx_freq 2510000000.000000
+> [PHY]   Initializing frame parms for N_RB_DL 50, Ncp 0, osf 1
+> [PHY]   lte_parms.c: Setting N_RB_DL to 50, ofdm_symbol_size 1024
+> [PHY]   ru_thread_prach() RU configured - RACH processing thread running
+> [LIBCONFIG] device.recplay: 7/7 parameters successfully set, (7 to default value)
+> [LIBCONFIG] device: 1/1 parameters successfully set, (1 to default value)
+> [LIBCONFIG] loader.oai_device: 2/2 parameters successfully set, (1 to default value)
+> [LOADER] library liboai_device.so successfully loaded
+> [HW]   UHD version 4.0.0.0-93-g3b9ced8f (4.0.0)
+> [HW]   Checking for USRP with args type=n3xx,addr=192.168.10.2
+> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-93-g3b9ced8f
+> [HW]   Found USRP n3xx
+> Found USRP n300
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=192.168.10.2,type=n3xx,product=n310,serial=318F049,claimed=False,addr=192.168.10.2,master_clock_rate=122880000.000000
+> [WARNING] [MPM.RPCServer] A timeout event occured!
+> terminate called after throwing an instance of 'rpc::timeout'
+>   what():  rpc::timeout: Timeout of 2000ms while calling RPC function 'set_device_id'
+> Linux signal Aborted...
+> /home/ubuntu18/openairinterface5g/executables/softmodem-common.c:187 signal_handler() Exiting OAI softmodem: softmodem starting exit procedure
+>
+> ***********************************trace ***********************************************
+>
+> The following is the trace for the *uhd_usrp_probe*:
+> ************************************************
+>
+> uhd_usrp_probe
+> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-93-g3b9ced8f
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=192.168.170.20,type=n3xx,product=n310,serial=318F049,claimed=False,addr=192.168.170.20
+> [WARNING] [MPM.PeriphManager] Cannot run deinit(), device was never fully initialized!
+> Error: rpc::timeout: Timeout of 2000ms while calling RPC function 'set_device_id'
+>
+> **************************************************
+>
+> And when I try to update the default FPGA variant, using the command
+>
+>
+>
+> *uhd_image_loader --args type=n3xx,addr=192.168.170.20*
+>
+> I get the following trace,
+>
+> ************************************************************************
+>
+> uhd_image_loader --args type=n3xx,addr=192.168.170.20
+> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-93-g3b9ced8f
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=192.168.170.20,type=n3xx,product=n310,serial=318F049,claimed=False,skip_init=1
+> [WARNING] [MPM.PeriphManager] Cannot run deinit(), device was never fully initialized!
+> [INFO] [MPMD] Claimed device without full initialization.
+> [INFO] [MPMD IMAGE LOADER] Starting update. This may take a while.
+> [INFO] [MPM.PeriphManager] Updating component `fpga'
+> [INFO] [MPM.PeriphManager] Updating component `dts'
+> [INFO] [MPM.RPCServer] Resetting peripheral manager.
+> [INFO] [MPM.PeriphManager] Device serial number: 318F049
+> [INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).
+> [INFO] [MPMD IMAGE LOADER] Update component function succeeded.
+> [ERROR] [MPM.PeriphManager] Major compat number mismatch for component `FPGA': Expected: 5.3 Actual: 8.0
+> [ERROR] [MPM.PeriphManager] Failed to initialize motherboard: Major compat number mismatch for component `FPGA': Expected: 5.3 Actual: 8.0
+> [ERROR] [MPM.PeriphManager] Cannot run init(), device was never fully initialized!
+>
+>
+> *******************************************************************************
+>
+> Please let me know what am I missing ..?
+>
+> Thank you for your help in advance.!
+>
+> WR,
+> Gokul
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000e3f8d005ba48176b
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+<div dir=3D"ltr">Hi=C2=A0Gokul - Did you update UHD to the same version on =
+both=C2=A0the host computer running OAI as well as the USRP (via the filesy=
+stem on the SDcard)? It looks from the GIT commands like you&#39;re trying =
+to use UHD 4.0-beta on this new host &amp; you note UHD 3.15 on the USRP ..=
+. which won&#39;t work. You have to have the same version on both=C2=A0devi=
+ces. - MLD<br><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">On Mon, Feb 1, 2021 at 6:50 AM gokul sani via USRP-users =
+&lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.co=
+m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div dir=3D"ltr"><div>Dear USRP Community,</div><div><br></div><div>I am w=
+orking on OAI project, and trying to run enb using USRP n310. My uhd versio=
+n was 3.15 LTS. But as part of the installation for OAI, I used this comman=
+d in a different workstation:</div><div><br></div><div><pre><b>git clone gi=
+t://<a href=3D"http://github.com/EttusResearch/uhd.git" target=3D"_blank">g=
+ithub.com/EttusResearch/uhd.git</a>
+cd uhd; mkdir host/build; cd host/build
+cmake -DCMAKE_INSTALL_PREFIX=3D/usr ..
+make -j4
+sudo make install
+sudo ldconfig<br>sudo /usr/lib/uhd/utils/uhd_images_downloader.py<br><br></=
+b></pre><pre>But, now I am getting an error in the enb trace as follows:<br=
+><br></pre><pre>***************************----trace---*****************<br=
+>---<br>-----<br>------<br>wait_eNBs()<br>Waiting for eNB L1 instances to a=
+ll get configured ... sleeping 50ms (nb_L1_inst 1)<br>RC.nb_L1_CC[0]:1<br>e=
+NB L1 are configured<br>About to Init RU threads RC.nb_RU:1<br>Initializing=
+ RU threads<br>[PHY] =C2=A0 DJP - delete code above this /home/ubuntu18/ope=
+nairinterface5g/targets/RT/USER/lte-ru.c:2704<br>[PHY] =C2=A0 Copying frame=
+ parms from eNB 0 to ru 0<br>[PHY] =C2=A0 Initializing RRU descriptor 0 : (=
+local RF,synch_to_ext_device,0)<br>[PHY] =C2=A0 NFGI_RRU_IF4p5: configuring=
+ ru_id 0 (start_rf 0x56469465fc30)<br>[PHY] =C2=A0 channel 0, Setting tx_ga=
+in offset 0.000000, rx_gain offset 110.000000, tx_freq 2630000000.000000, r=
+x_freq 2510000000.000000<br>[PHY] =C2=A0 Initializing frame parms for N_RB_=
+DL 50, Ncp 0, osf 1<br>[PHY] =C2=A0 lte_parms.c: Setting N_RB_DL to 50, ofd=
+m_symbol_size 1024<br>[PHY] =C2=A0 Starting ru_thread 0, is_slave 0, send_d=
+mrs 0<br>[PHY] =C2=A0 Initializing RU proc 0 (eNodeB_3GPP,synch_to_ext_devi=
+ce),<br>[PHY] =C2=A0 init_RU_proc() DJP - added creation of pthread_prach<b=
+r>[HW] =C2=A0 thread_top_init() called with affinity&gt;0, but overruled by=
+ #ifndef CPU_AFFINITY.<br>[HW] =C2=A0 [SCHED][eNB] ru_thread started on CPU=
+ 3, sched_policy =3D SCHED_FIFO , priority =3D 99, CPU Affinity=3D CPU_0 CP=
+U_1 CPU_2 CPU_3 <br>wait RUs<br>[ENB_APP] =C2=A0 Waiting for RUs to be conf=
+igured ... RC.ru_mask:01<br>[HW] =C2=A0 thread_top_init() called with affin=
+ity&gt;0, but overruled by #ifndef CPU_AFFINITY.<br>[HW] =C2=A0 [SCHED][eNB=
+] ru_thread_prach started on CPU 0, sched_policy =3D SCHED_FIFO , priority =
+=3D 99, CPU Affinity=3D CPU_0 CPU_1 CPU_2 CPU_3 <br>[PHY] =C2=A0 thread ru =
+created id=3D15286<br>[PHY] =C2=A0 Starting RU 0 (eNodeB_3GPP,synch_to_ext_=
+device),<br>[PHY] =C2=A0 RU 0 has no OAI ctrl port<br>[PHY] =C2=A0 channel =
+0, Setting tx_gain offset 0.000000, rx_gain offset 110.000000, tx_freq 2630=
+000000.000000, rx_freq 2510000000.000000<br>[PHY] =C2=A0 Initializing frame=
+ parms for N_RB_DL 50, Ncp 0, osf 1<br>[PHY] =C2=A0 lte_parms.c: Setting N_=
+RB_DL to 50, ofdm_symbol_size 1024<br>[PHY] =C2=A0 ru_thread_prach() RU con=
+figured - RACH processing thread running<br>[LIBCONFIG] device.recplay: 7/7=
+ parameters successfully set, (7 to default value)<br>[LIBCONFIG] device: 1=
+/1 parameters successfully set, (1 to default value)<br>[LIBCONFIG] loader.=
+oai_device: 2/2 parameters successfully set, (1 to default value)<br>[LOADE=
+R] library liboai_device.so successfully loaded<br>[HW] =C2=A0 UHD version =
+4.0.0.0-93-g3b9ced8f (4.0.0)<br>[HW] =C2=A0 Checking for USRP with args typ=
+e=3Dn3xx,addr=3D192.168.10.2<br>[INFO] [UHD] linux; GNU C++ version 7.5.0; =
+Boost_106501; UHD_4.0.0.0-93-g3b9ced8f<br>[HW] =C2=A0 Found USRP n3xx<br>Fo=
+und USRP n300<br>[INFO] [MPMD] Initializing 1 device(s) in parallel with ar=
+gs: mgmt_addr=3D192.168.10.2,type=3Dn3xx,product=3Dn310,serial=3D318F049,cl=
+aimed=3DFalse,addr=3D192.168.10.2,master_clock_rate=3D122880000.000000<br>[=
+WARNING] [MPM.RPCServer] A timeout event occured!<br>terminate called after=
+ throwing an instance of &#39;rpc::timeout&#39;<br>=C2=A0 what(): =C2=A0rpc=
+::timeout: Timeout of 2000ms while calling RPC function &#39;set_device_id&=
+#39;<br>Linux signal Aborted...<br>/home/ubuntu18/openairinterface5g/execut=
+ables/softmodem-common.c:187 signal_handler() Exiting OAI softmodem: softmo=
+dem starting exit procedure<br><br></pre><pre>*****************************=
+******trace ***********************************************<br><br></pre><p=
+re>The following is the trace for the <b>uhd_usrp_probe</b>:<br>***********=
+*************************************<br><br>uhd_usrp_probe <br>[INFO] [UHD=
+] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-93-g3b9ced8f<br>[=
+INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D19=
+2.168.170.20,type=3Dn3xx,product=3Dn310,serial=3D318F049,claimed=3DFalse,ad=
+dr=3D192.168.170.20<br>[WARNING] [MPM.PeriphManager] Cannot run deinit(), d=
+evice was never fully initialized!<br>Error: rpc::timeout: Timeout of 2000m=
+s while calling RPC function &#39;set_device_id&#39;<br><br>***************=
+***********************************<br><br></pre><pre>And when I try to upd=
+ate the default FPGA variant, using the command <br><br><b>uhd_image_loader=
+ --args type=3Dn3xx,addr=3D192.168.170.20<br><br></b></pre><pre>I get the f=
+ollowing trace,<br><br>****************************************************=
+********************<br><br></pre><pre>uhd_image_loader --args type=3Dn3xx,=
+addr=3D192.168.170.20<br>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_1=
+06501; UHD_4.0.0.0-93-g3b9ced8f<br>[INFO] [MPMD] Initializing 1 device(s) i=
+n parallel with args: mgmt_addr=3D192.168.170.20,type=3Dn3xx,product=3Dn310=
+,serial=3D318F049,claimed=3DFalse,skip_init=3D1<br>[WARNING] [MPM.PeriphMan=
+ager] Cannot run deinit(), device was never fully initialized!<br>[INFO] [M=
+PMD] Claimed device without full initialization.<br>[INFO] [MPMD IMAGE LOAD=
+ER] Starting update. This may take a while.<br>[INFO] [MPM.PeriphManager] U=
+pdating component `fpga&#39;<br>[INFO] [MPM.PeriphManager] Updating compone=
+nt `dts&#39;<br>[INFO] [MPM.RPCServer] Resetting peripheral manager.<br>[IN=
+FO] [MPM.PeriphManager] Device serial number: 318F049<br>[INFO] [MPM.Periph=
+Manager] Initialized 2 daughterboard(s).<br>[INFO] [MPMD IMAGE LOADER] Upda=
+te component function succeeded.<br>[ERROR] [MPM.PeriphManager] Major compa=
+t number mismatch for component `FPGA&#39;: Expected: 5.3 Actual: 8.0<br>[E=
+RROR] [MPM.PeriphManager] Failed to initialize motherboard: Major compat nu=
+mber mismatch for component `FPGA&#39;: Expected: 5.3 Actual: 8.0<br>[ERROR=
+] [MPM.PeriphManager] Cannot run init(), device was never fully initialized=
+!<br><br><br>**************************************************************=
+*****************<br><br></pre><pre>Please let me know what am I missing ..=
+?<br><br></pre><pre>Thank you for your help in advance.!<br><br></pre><pre>=
+WR,<br>Gokul<br></pre><pre><br><br></pre><pre><b></b></pre></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
-I am having trouble with the RFNoC FFT. When using an FFT length of 256 or =
-less everything works smoothly but when I use a 512 or 1024 length FFT I be=
-gin to receive a flood of repeating packet errors like: ERROR_CODE_BAD_PACK=
-ET (Code: 0xf).  I haven't been able to find any information on this type o=
-f error and I am sure that I am missing something o.
-I am using the configuration from the "getting started with RFNoC 4" docume=
-nt from the knowledgebase. It is my understanding that the default RFNoC FF=
-T should be able to go up to an FFT Length of 1024.
-
-
-
-Full packet error is shown below:
-
-[ERROR] [STREAMER] The receive transport caught a value exception.
-ValueError: Bad CHDR header or invalid packet length.
-gr::log :WARN: rfnoc_rx_streamer0 - RFNoC Streamer block received error ERR=
-OR_CODE_BAD_PACKET (Code: 0xf)
-[ERROR] [STREAMER] The receive transport caught a value exception.
-ValueError: Bad CHDR header or invalid packet length.
-
-Here is a screenshot of the generic flowgraph I am using for troubleshootin=
-g: https://imgur.com/a/HLnPrXj
-
-
-I am working with UHD 4 and GNURadio 3.8 and I am running on an X310.
-
-
-Thank you in advance,
-
-
-Rylee Mattingly
-
---_000_SN6PR03MB4160FCA73A455E3B91825E6BB1B69SN6PR03MB4160namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Hi all,
-<div><br>
-</div>
-<div>I am having trouble with the RFNoC FFT. When using an FFT length of 25=
-6 or less everything works smoothly but when I use a 512 or 1024 length FFT=
- I begin to receive a flood of repeating packet errors like: ERROR_CODE_BAD=
-_PACKET (Code: 0xf).&nbsp; I haven't
- been able to find any information on this type of error and I am sure that=
- I am missing something o.</div>
-<div>I am using the configuration from the &quot;getting started with RFNoC=
- 4&quot; document from the knowledgebase. It is my understanding that the d=
-efault RFNoC FFT should be able to go up to an FFT Length of 1024.</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>Full packet error is shown below: </div>
-<div><br>
-</div>
-<div>[ERROR] [STREAMER] The receive transport caught a value exception.</di=
-v>
-<div>ValueError: Bad CHDR header or invalid packet length.</div>
-<div>gr::log :WARN: rfnoc_rx_streamer0 - RFNoC Streamer block received erro=
-r ERROR_CODE_BAD_PACKET (Code: 0xf)</div>
-<div>[ERROR] [STREAMER] The receive transport caught a value exception.</di=
-v>
-<div>ValueError: Bad CHDR header or invalid packet length.</div>
-<div><br>
-</div>
-<div>Here is a screenshot of the generic flowgraph I am using for troublesh=
-ooting:
-<a href=3D"https://imgur.com/a/HLnPrXj" id=3D"LPlnk">https://imgur.com/a/HL=
-nPrXj</a><br>
-</div>
-<div class=3D"_Entity _EType_OWALinkPreview _EId_OWALinkPreview _EReadonly_=
-1"></div>
-<br>
-<div><br>
-</div>
-<div>I am working with UHD 4 and GNURadio 3.8 and I am running on an X310.<=
-/div>
-<div><br>
-</div>
-<div><br>
-</div>
-Thank you in advance,<br>
-</div>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div id=3D"Signature">
-<div>
-<div></div>
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
-r: rgb(0, 0, 0); font-family: Calibri, Arial, Helvetica, sans-serif;">
-<p style=3D"margin-top:0px; margin-bottom:0px; font-family:Calibri,Arial,He=
-lvetica,sans-serif,EmojiFont,'Apple Color Emoji','Segoe UI Emoji',NotoColor=
-Emoji,'Segoe UI Symbol','Android Emoji',EmojiSymbols">
-Rylee Mattingly</p>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_SN6PR03MB4160FCA73A455E3B91825E6BB1B69SN6PR03MB4160namp_--
+--000000000000e3f8d005ba48176b--
 
 
---===============7241632827915365302==
+--===============1600741777477582439==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -283,5 +345,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7241632827915365302==--
+--===============1600741777477582439==--
 
