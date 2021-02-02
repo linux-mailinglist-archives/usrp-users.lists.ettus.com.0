@@ -2,46 +2,48 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6092130BC88
-	for <lists+usrp-users@lfdr.de>; Tue,  2 Feb 2021 12:06:21 +0100 (CET)
-Received: from [::1] (port=45784 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6568330C312
+	for <lists+usrp-users@lfdr.de>; Tue,  2 Feb 2021 16:10:25 +0100 (CET)
+Received: from [::1] (port=47832 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l6tVd-0004Ff-BQ; Tue, 02 Feb 2021 06:06:13 -0500
-Received: from mail-eopbgr110137.outbound.protection.outlook.com
- ([40.107.11.137]:7635 helo=GBR01-CWL-obe.outbound.protection.outlook.com)
+	id 1l6xJt-0004NB-JC; Tue, 02 Feb 2021 10:10:21 -0500
+Received: from mail-eopbgr100124.outbound.protection.outlook.com
+ ([40.107.10.124]:32544 helo=GBR01-LO2-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <md964@hmgcc.gov.uk>) id 1l6tVZ-0004AD-98
- for usrp-users@lists.ettus.com; Tue, 02 Feb 2021 06:06:09 -0500
+ (Exim 4.93) (envelope-from <md964@hmgcc.gov.uk>) id 1l6xJp-0004HO-LN
+ for usrp-users@lists.ettus.com; Tue, 02 Feb 2021 10:10:17 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IOqus8yofdmkRYljD/sfCXFu3jVmi/EjNkwQnkjGnJrLoz579pnwcKh7qCdSCDztJA4UJ3eVrKcMXFIj2vCYWUYUHLVk27FSmcKYbycMlbWatN8ypEeEBOoLyAzPT1SGGfLO5FXY1ptnGSXzl5mtqlm9kOxEld+mC7EZHLwKjP3wnRvbzfbRiTSLRQAW6WPw/e0+j73hqVXgI4hEsP9a0dX+zImwt+Ln0h4rDswmsu1OQXNx8JoArLmomFQuMrIlJUyhT65/sIfWaKCgTla7MdvoDxbgNjofohU3NReifWsKLbl1vZMk7mWhnMZSdWcqt/PLpO6pVlwkv0rEXLmwRQ==
+ b=duPI+xb5ki76qkT1gDPnWfkdWdF8Vu+nCtBokIupwbK8VqbAvdw68FmGLHDFHKIIo1g5IzgJCPjw+28I1yq8hIboyL/fKOxMtty5Az7TJM9p9pql/kiJjvGqTu7pc6JklLHluq8mq+F9Bsa5CHDhWZtSr2Oy9ya3M4MHNoINIRjHOHiWtPYKlUwq0tZw2DMq0ttNuwmBzFojFaZ7EvEe17GWemoXRbTqoAIsZ4OQY3cQTYv8jVHstURy3tPKcDbHPY3pMRHCUE4NF9M3JWnwmgb+/2ZstjTQNKapjta1U96uiH4lY/1B3npn+AqzrnjPYVQfrS+OcSUaRVQVILNT7g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZOA4u7PcGXISo3PtAfREhmPLGHSWQOueDX3in7BeEnM=;
- b=Xk4H1Br8SRfawY9Pr0+l8YWYzTJChye5mPXVXqDsFfgRm90CreMg5SSsuNIkj/6jS8eUOtQIeDo/HBQpEz+MEnrl75VaTMY/BdV3fsrXARnus1IThYbxEZJg5iHGQrNt2Di7qMEljxOvUyL6EuEOl+89FE/uSv+lu5VGt2jl70TbiJzATebfjp17R+pO9MAuwRhx4zbWmzio0a7oapB8MhigM6RkrpJfonfdtD2qLNyUtKjgo/YuR62CjhMaBI+HW4kiYpTn0Zs0jEJpN9UTZ9BFhwbcPjNaQ63DPue448Cx+eDCKDmA3ODmhow1aoQVRUWv3ka3coGP34XdozbL8A==
+ bh=gueDT2VMkOlFJjj/QsB3Qh4h/tcgoMI9453CVfsTses=;
+ b=iRPshgMeu0YaFIv8YH2+a/69pqAwEz7SWZOwZ0kfa0nKkDdgeHwKscfmBs1/nuqch8k75jFJfqXpASVFXq/e2CxwVtcSxUlzXlTeLP39P1G+xWKbcd931Yx3Z4s1HmEerz7TPrQfoABwJ1+VNVv02UpxTKhBDWBJ8sfNvb4l+KUJjoLa4osdTf1SVJY1/ndnIbTJqBGD9YXV2gb7Ar4/98XQki4IvldE7OGQ8VCtxDc5AvnHlEd89ZEwJeFahwYj7HzmtE0Jt1idxmYucBJku5+h/j/GCf0steP/poAB1KzoskyQiCfSxxyCPXlflUVIRLk/D9bl2CKBr73V21XwoA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=hmgcc.gov.uk; dmarc=pass action=none header.from=hmgcc.gov.uk;
  dkim=pass header.d=hmgcc.gov.uk; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hmgcc.gov.uk;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZOA4u7PcGXISo3PtAfREhmPLGHSWQOueDX3in7BeEnM=;
- b=Df48S0NV3vhlFkR22Q7xct5ez3w4xF5YTEuShE8Ir/3WtlEsPijYthO5i5e67lWjqLeuqhsjzI9WnmBu6n4RleSZ7+gaeAqjn9PTQMkUe9ZLPtFZupIIva1YmpuO5gqNy0CKTYMpvRKJ9cBmtMGDyZb8t+0uJnXAOYkC7HZ4rwk=
+ bh=gueDT2VMkOlFJjj/QsB3Qh4h/tcgoMI9453CVfsTses=;
+ b=HAsXkMue5RLsSKEQNeU1MmFLXOi6rB/CP9OrLTBv4WDGX1cLRagmWcZBp8odzpHJBBTOobQG9QJm6dOUQ8hJeUfGlHoq9c3d2xe127hdnGGfsHEUPl4pCyfYqBr/TGFNW64IO4J5qGZ+5hO0ojjxILW7YTlWf/zltNGBmLKWeHA=
 Received: from LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:132::7)
- by LOYP123MB2893.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:ed::8) with
+ by LO2P123MB4320.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:19e::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.19; Tue, 2 Feb
- 2021 11:05:26 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.23; Tue, 2 Feb
+ 2021 15:09:29 +0000
 Received: from LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
  ([fe80::58a6:243c:81ac:b96b]) by LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
  ([fe80::58a6:243c:81ac:b96b%4]) with mapi id 15.20.3805.025; Tue, 2 Feb 2021
- 11:05:26 +0000
+ 15:09:29 +0000
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 Thread-Topic: Opening Vivado GUI during FPGA image build
-Thread-Index: Adb5UifNbGHjaHXZQZaCPPt8iNPFaA==
-Date: Tue, 2 Feb 2021 11:05:26 +0000
-Message-ID: <LNXP123MB372437DE53B4243C99065495CAB59@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+Thread-Index: Adb5UifNbGHjaHXZQZaCPPt8iNPFaAAIwHVw
+Date: Tue, 2 Feb 2021 15:09:29 +0000
+Message-ID: <LNXP123MB37243B9CFF15D54ADF43B60BCAB59@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+References: <LNXP123MB372437DE53B4243C99065495CAB59@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+In-Reply-To: <LNXP123MB372437DE53B4243C99065495CAB59@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
 Accept-Language: en-GB, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -51,49 +53,49 @@ authentication-results: lists.ettus.com; dkim=none (message not signed)
  header.from=hmgcc.gov.uk;
 x-originating-ip: [62.189.143.233]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9917818c-d0dd-44fe-8125-08d8c76a71e0
-x-ms-traffictypediagnostic: LOYP123MB2893:
-x-microsoft-antispam-prvs: <LOYP123MB289372FB80BDEC2156C3602CCAB59@LOYP123MB2893.GBRP123.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-office365-filtering-correlation-id: e2823ff8-8772-4baa-8b30-08d8c78c89c6
+x-ms-traffictypediagnostic: LO2P123MB4320:
+x-microsoft-antispam-prvs: <LO2P123MB4320AA163E6F54B764A17F0FCAB59@LO2P123MB4320.GBRP123.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: G+uGOJZaIF4QmmRQ2NjIwaoyIZjpipRMx7MIc5i7VVNXy6/3qdIywKBHokydI0QjGQezOs2btRP71ztEIeiWZ+SeGW3er/yqE4s0vZgNRAq9QH10TniaKLHG6omAatvh0fd+d2fJwVqelBqG5TfbiCf6p0K4jE1xvMA+PGXVSoy3ouC5FxU6Hpy6k/FZM8MWNCCljp9ScJ/pMfLP99ZxHOwtpinUJhdPX93/viSFutj6zUo8bXbeERAsyD4yeyx/7u1JIIGWdP5N7iZ4RwrK6XqjzU+SLOK2rgzRDKUGaMVzzj5/hPo6sMBThJvfx2zBxcEjT1NOdvtoI+RJR3OV3HBPZi+6NvNbAywFpCawnqUZCWHQnQH5C7w4mt3mas+4f76OqKCbEbHwLhmEi1lk+dS45HhwZGz92Yu+76A1iVJPGrJG/leYKT3YjI5HyQcAjlsyysnuWRiHg1Lmw1CZasRUZ6yQsZCiFivooRJ1yoW5KxfaEgdB2HL2MDM1pSpr9Fg0xX67POV2EEOOD80OOw==
+x-microsoft-antispam-message-info: UCWaChceBLtkpEjDnoxvL4YAOMOA9cDB/deCq/Fa3UuzTAdkEZL40MGE5X2b971AL70XrSWfxVte6ozLsNVqv+eNBUlgjmHAeiCT8Vvl+7zh/rw/Y5xyWaGmHROwXHZUZJuXMtlpvQQlbPDKbu0vwBvE/evbX9x1P8mx0LBVU8BLq5pBoyqT2BiCPoc2Pb2Js/gOfikfIQhUTVf3QwJOJhy4e/VnjQmRuDrSZ+sNSXvqy5dQix1jnJz8oOrID8n8JQ122mAifb6+g4fCV4eU3EmTImfRupTaxlF1+EJPtulhbDpBbg6TUwnI3bYgEz+vZq/0Q/bs3CuQupnQDGLhZTYMJCqbyGXeeyOzx4y5wL27cF7TuEQGB8AiJs5W8zc1RLDzx7RIpQbX6NMcMcOseVw5CGOjleA01u8YGo3bPbNvRF7l1cyq0ESwml/4MPX553Y352W7z8asZYz4w6j1ok90hAFjif8DETI+6p/9lQuU4k9z8f40z102ct5yUWZm/Bvl+GzwkYwGphYBc4p3CA==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(376002)(346002)(396003)(39840400004)(366004)(316002)(83380400001)(7696005)(64756008)(76116006)(8676002)(52536014)(26005)(71200400001)(86362001)(33656002)(66556008)(8936002)(66476007)(66946007)(9686003)(4744005)(55016002)(2906002)(6916009)(5660300002)(66446008)(478600001)(6506007)(186003);
+ SFS:(4636009)(136003)(39840400004)(396003)(376002)(346002)(366004)(7696005)(9686003)(52536014)(33656002)(66946007)(66476007)(66556008)(64756008)(66446008)(2940100002)(6916009)(8676002)(6506007)(86362001)(55016002)(5660300002)(478600001)(316002)(186003)(76116006)(53546011)(83380400001)(26005)(2906002)(8936002)(71200400001);
  DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?lZXXkJyxC0Nu2dC4RweTXaN8n4YTttrWrUBEGbc613qUM5CvG7PkhQYOOuec?=
- =?us-ascii?Q?4aliAULkz8rwR2fdTlTr/XqGpmgeWOBFpbAHTlqTi/UlG+trpgB/ysBiZrE8?=
- =?us-ascii?Q?bOsMP+10JP3gyREpGQ6z2qgQTdkYB7IHfCQPYDK7VMNiuGvy5t/lwcO/Qk/R?=
- =?us-ascii?Q?S1ds6P31NaX4n+/GeqNi83mcSUPjqykkWdM/5eEBnZExacnxvx2g+bpnTG+8?=
- =?us-ascii?Q?dWvMEB8v2r7Lbe9MG+1zHttrlr0wy4ROEduZkuQViTmXjNoqAM4juc1Uzj07?=
- =?us-ascii?Q?b7yCQD/db2Ym3y5ToE6dBqeTkvqb5PvNmhzYXk/uQrJUiBjN4qcBRyKRXjiF?=
- =?us-ascii?Q?xwdyDaOW9mzvQvrbAOHVD4bc/l4t3Azbzqo6d+B6cZi5CtT0kbXKzQ5/cDGI?=
- =?us-ascii?Q?acJW+07qh4AMNJBMIErPnEY2ltiQ6GEKPfUHauzK2tS9KTnWqhkMiU4eM8Ya?=
- =?us-ascii?Q?Y7EIQdWlToqo2J4p/nKapYIYRjFrIV2e24UwK2I0kn/uaeFnZ0bpbRLV1K9g?=
- =?us-ascii?Q?YnspHBhgpRTLaDT6II/GcD2MUwaQwEB10SWAOsqrOBQHCDeJ5hzWuTfjER7F?=
- =?us-ascii?Q?6wt0HHqnQBvTgQA8Hhqo4jciad3vu2/RnGPhADDpDMcPR8QZSchbGiUX/O9i?=
- =?us-ascii?Q?hp+NSz4rzM6hZV4dF0WjedUL551vxVFVhgB6+blu97Bo8IjRFxMucNDoYUIi?=
- =?us-ascii?Q?VIElqF0xfSXSoY0S0pKmUspjElmHaPVVWQBtUAGl67ZEOznEGjn9KCwyZCpN?=
- =?us-ascii?Q?4e2UWSFlWXNJuR2vleFWiM7Omz6Y0LAYekpGrapllUUygF04xMOu9oiwcLib?=
- =?us-ascii?Q?A2fehvGRJPmfOeyvkVy7aYuDzhlPFmuMjXY3OS8PJM+ytlGw2jZ2Z19uK29l?=
- =?us-ascii?Q?lnYJNBJAENmUvUO8NtLVIfMMLrHflNc4YsN7QEFWVJoNc7shdslqANRZ7SZH?=
- =?us-ascii?Q?nz1bGVg3c0XEzxwMRo1IHgYaLVBGhm8VCFXl2joGPZYWTfGb5iOK2nY+WS/Q?=
- =?us-ascii?Q?Yljo854/AeBas5nrE/ikYbfUS1+sBkCVS66ZBvH8MT8DV1VdazJVBjcBOshp?=
- =?us-ascii?Q?2+TIhgJn?=
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?7O/ybRv3kwkSrczlzl75mt1pZAdvbZYL7mHH+ldErLxAXFfFEAc+0/5HNnYQ?=
+ =?us-ascii?Q?MCoPWDRovqAueBf/1vALyGePXO8TqvQjLXWdYuupt7kzjpyPNuQF4kie1jZu?=
+ =?us-ascii?Q?KlINMuWj51ApnBlV69m1AeOLNKzeqInEH/xlcoMW4Kj+OkGSOnHk2bdOrq9+?=
+ =?us-ascii?Q?sRjf7h/h2BOMaPLer7LLp9b9w4xvWQF28Lu19iP46nKv5pDR5NtT3sHQn0hv?=
+ =?us-ascii?Q?9ymAsC0ZW1B7bXGM5rKB/VJHyoMHq4L3K45A2LpdlTuHLR6bAHsU7ekWCHRH?=
+ =?us-ascii?Q?jEViQPe1ZMwwwrqomrFcr40L63NyTWftBPDxo6WAItjKfKUo5Psl99CJE2SC?=
+ =?us-ascii?Q?6jnmydwTw0Pi1L8Yj5Jb+MsBsJ40ZPqLGPIA5LhT4o5/cGnBjjxSuzsRZWIg?=
+ =?us-ascii?Q?OrMhxUnuiYjrnO0KmedNsyq3dl+eUu61p0KsYPBAAzVAoqRioICKvaEIq0fk?=
+ =?us-ascii?Q?Fg7/2On8cc4ZzQN6ZifHldautouDVe6YVP3792JfBxQ196DdGH2mYm6n0vEd?=
+ =?us-ascii?Q?wsCin1nfHHqRgyaNSfLtWGRw8EpcO3wHuBKqXtaZqlRsVBr394pWeCsXXR1n?=
+ =?us-ascii?Q?pIwb1xI6PdkNCxfbw5KJ8beKCcslu+3a/qUDYXfCLCvGWt9EsRwgKrwM+ULJ?=
+ =?us-ascii?Q?CEMxl+yz2SFVt7U6j2YS9RsAPWDwad6I9oesSAok6kHmsmbgF7vM8iJsZRf1?=
+ =?us-ascii?Q?0Ynb7oLX/nagduE7RIOa1IrS3hW5WKiDggBo1Wlgf60I82zxMRyo2FM6aQKO?=
+ =?us-ascii?Q?8lFE6XYTZdiCR39FA7JegFGIlWS2lfWcnC0XU0YS1oMAmTOnXnWk5bD9uycn?=
+ =?us-ascii?Q?AkcFFYp0E8SO8Fvmt1hKiIAhQtBj1NsD9FO0PQBDRySaojhw/HwZWKDEKeJ6?=
+ =?us-ascii?Q?34QUefB3gYU1Q5pnvJGuIzj5M+MowKFE5YPgpg6MrHSI4edLtD795rkdLlrz?=
+ =?us-ascii?Q?R0+iuntZVbYcoA/TgfiCfCJrE/qaOON8moSi81HiVlwqbMsw5ZnZmjAOdkm6?=
+ =?us-ascii?Q?rZ2qQaziJr8S2KjaBVnYQsl4GCMY5S6hn3+WHMcarJKuikykJ++Xk883vZUe?=
+ =?us-ascii?Q?aOjsMKtA?=
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
 X-OriginatorOrg: hmgcc.gov.uk
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9917818c-d0dd-44fe-8125-08d8c76a71e0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2021 11:05:26.3297 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2823ff8-8772-4baa-8b30-08d8c78c89c6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2021 15:09:29.2589 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: c724c4ae-2756-49fe-b1cd-3a725b29341a
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8+C1ZSKUPo0l2TY2w29znA47ggykhgXPl8rRRw9zPWm15+Dclb+95fRPSuKt44PRTx05U5lJr5ybNTzVtfSvzw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP123MB2893
-Subject: [USRP-users] Opening Vivado GUI during FPGA image build
+X-MS-Exchange-CrossTenant-userprincipalname: 3oFOLxiof5SB7PmoYXL9lp5zcbGBlImfNwFvCtLcojy7pEE0mq1l+eDro4gmGPzdmbUTgo/oLg7XmR8Q/5Y1qw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO2P123MB4320
+Subject: Re: [USRP-users] Opening Vivado GUI during FPGA image build
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -107,7 +109,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Mark D via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Mark D <md964@hmgcc.gov.uk>
-Content-Type: multipart/mixed; boundary="===============4501992922422817064=="
+Content-Type: multipart/mixed; boundary="===============6794572576696536063=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -121,14 +123,25 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4501992922422817064==
+--===============6794572576696536063==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_LNXP123MB372437DE53B4243C99065495CAB59LNXP123MB3724GBRP_"
+	boundary="_000_LNXP123MB37243B9CFF15D54ADF43B60BCAB59LNXP123MB3724GBRP_"
 
---_000_LNXP123MB372437DE53B4243C99065495CAB59LNXP123MB3724GBRP_
+--_000_LNXP123MB37243B9CFF15D54ADF43B60BCAB59LNXP123MB3724GBRP_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Just noticed that I'd put uhd_image_builder, I did of course mean rfnoc_ima=
+ge_builder.
+
+Still not having any luck with this, seems to just ignore the -g option.
+
+From: USRP-users <usrp-users-bounces@lists.ettus.com> On Behalf Of Mark D v=
+ia USRP-users
+Sent: 02 February 2021 11:05
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Opening Vivado GUI during FPGA image build
 
 I'm using UHD 4.0 and building an FPGA for the E320 USRP.
 
@@ -156,7 +169,7 @@ This email and any files transmitted with it are confidential and intended =
 solely for the use of the individual or entity to whom they are addressed. =
 If you have received this email in error please notify the system manager.
 
---_000_LNXP123MB372437DE53B4243C99065495CAB59LNXP123MB3724GBRP_
+--_000_LNXP123MB37243B9CFF15D54ADF43B60BCAB59LNXP123MB3724GBRP_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -168,7 +181,11 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
 <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
 /* Font Definitions */
 @font-face
 	{font-family:"Cambria Math";
@@ -182,14 +199,13 @@ p.MsoNormal, li.MsoNormal, div.MsoNormal
 	font-size:11.0pt;
 	font-family:"Calibri",sans-serif;
 	mso-fareast-language:EN-US;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
+span.EmailStyle19
+	{mso-style-type:personal-reply;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
+	font-size:10.0pt;}
 @page WordSection1
 	{size:612.0pt 792.0pt;
 	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
@@ -205,6 +221,26 @@ div.WordSection1
 <body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
 break-word">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal">Just noticed that I&#8217;d put uhd_image_builder, I=
+ did of course mean rfnoc_image_builder.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Still not having any luck with this, seems to just i=
+gnore the -g option.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"mso-fareast-languag=
+e:EN-GB">From:</span></b><span lang=3D"EN-US" style=3D"mso-fareast-language=
+:EN-GB"> USRP-users &lt;usrp-users-bounces@lists.ettus.com&gt;
+<b>On Behalf Of </b>Mark D via USRP-users<br>
+<b>Sent:</b> 02 February 2021 11:05<br>
+<b>To:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> [USRP-users] Opening Vivado GUI during FPGA image build<o:p=
+></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">I&#8217;m using UHD 4.0 and building an FPGA for the=
  E320 USRP.<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
@@ -229,18 +265,23 @@ on still supported by uhd_image_builder?<o:p></o:p></p>
 <p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Mark<o:p></o:p></p>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span=
+ style=3D"mso-fareast-language:EN-GB">
+<hr size=3D"2" width=3D"100%" align=3D"center">
+</span></div>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-GB">This emai=
+l and any files transmitted with it are confidential and intended solely fo=
+r the use of the individual or entity to whom they are addressed. If you ha=
+ve received this email in error please
+ notify the system manager. <o:p></o:p></span></p>
 </div>
-<hr>
-This email and any files transmitted with it are confidential and intended =
-solely for the use of the individual or entity to whom they are addressed. =
-If you have received this email in error please notify the system manager.
 </body>
 </html>
 
---_000_LNXP123MB372437DE53B4243C99065495CAB59LNXP123MB3724GBRP_--
+--_000_LNXP123MB37243B9CFF15D54ADF43B60BCAB59LNXP123MB3724GBRP_--
 
 
---===============4501992922422817064==
+--===============6794572576696536063==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -251,5 +292,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4501992922422817064==--
+--===============6794572576696536063==--
 
