@@ -2,53 +2,38 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B741930C834
-	for <lists+usrp-users@lfdr.de>; Tue,  2 Feb 2021 18:46:10 +0100 (CET)
-Received: from [::1] (port=49240 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2080A30C87F
+	for <lists+usrp-users@lfdr.de>; Tue,  2 Feb 2021 18:54:07 +0100 (CET)
+Received: from [::1] (port=49318 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l6zkZ-00010W-GK; Tue, 02 Feb 2021 12:46:03 -0500
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:45125)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <wade.fife@ettus.com>) id 1l6zkW-0000vj-6U
- for usrp-users@lists.ettus.com; Tue, 02 Feb 2021 12:46:00 -0500
-Received: by mail-ot1-f54.google.com with SMTP id n42so20626766ota.12
- for <usrp-users@lists.ettus.com>; Tue, 02 Feb 2021 09:45:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=9EpEUn33M/D0pk7oz19uhOaXb33YuuIKWKVab0y5lPU=;
- b=uoP8ZJGLqtjvJqtA519iMgTkxlpoczI4RDdJACRqdjeHkbCf1g6ry+3ou9fgfzdwgf
- onOMJxtQ5e3heIPnyIkcBq/R6NnuHbb4ylqo7VD06LRwSzo+R1IlkLyIut8VjCF84Mu1
- GypO9Lackh0xirdwOJ7C2P9h00C7mlJLyBtZcNDwP2VkXoHG0MF1Ss32u4ACT3veuTmX
- r3lZZkcA6PH9pqkkz0mDY5ttzIbs+/pfYu+ukQPFogVyNrELQsbrJAc0juebCJXk5C79
- x0l+PQVO6wzPX4L4B312EveWVHqfbsEQDExeMdCXYs1fhrwjEjEAsial9jNKvvBx9Tcs
- 4+ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=9EpEUn33M/D0pk7oz19uhOaXb33YuuIKWKVab0y5lPU=;
- b=F138UKEmm8a2sc/DyxIO8Ef7IttOIZE33WnZD0JgTHCGr5uclEGRjO3q+GaiNTl/qw
- nbtAxKo7bhvJH23mkYiL5OQAZgYBEIXVwbzMNC4TD9ziKaOKMTi0E725sPxuUI2MRUWS
- 4OmEM7JBNf3cO3KK7g/95bibBp6CXcuPja11Jea9UCs1jomY4wo18RRzqVuPkQmao9Ae
- ltk6ZGGpw9StS7qYQAgsVwfx1wv87b7vIErQK+ygb18MWs7ry7YuP/vFAGgvK1EZG58G
- n0VQF8EJq8StUP4q1MkXGjclfMXJ1nE3wcgW7SMO5DGg96ROcpLftijKqYIE988Pruzw
- +ZYw==
-X-Gm-Message-State: AOAM530aYL4vsEBhWut2ENQvTuUhIV1xFS1mveQdRZoAA9wHFtt2DijS
- Tlg2wMz2uIn2Ync1LKO9rdsch36KsKAyEJP68LlvN4SuR8BPah5J
-X-Google-Smtp-Source: ABdhPJxlf5Vwqzt4OQqjWGtl37EJWC2jo1MI98bM/JlAcA/FBWY8VsSTTrPLI528JpmWBHJiAZpF4VSiYPHjwfJr+30=
-X-Received: by 2002:a9d:19aa:: with SMTP id k39mr16132746otk.28.1612287919279; 
- Tue, 02 Feb 2021 09:45:19 -0800 (PST)
+	id 1l6zsM-0001gs-1u; Tue, 02 Feb 2021 12:54:06 -0500
+Received: from p-impout005aa.msg.pkvw.co.charter.net ([47.43.26.136]:35617
+ helo=p-impout005.msg.pkvw.co.charter.net)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <dtrask1@tampabay.rr.com>)
+ id 1l6zsH-0001Z6-Ae
+ for usrp-users@lists.ettus.com; Tue, 02 Feb 2021 12:54:01 -0500
+Received: from localhost ([34.233.51.36]) by cmsmtp with ESMTP
+ id 6zrbli7CSbGHJ6zrclVDWf; Tue, 02 Feb 2021 17:53:20 +0000
+X-Authority-Analysis: v=2.3 cv=A5oSwJeG c=1 sm=1 tr=0
+ a=TrnfHZhGi+cGSPqA0dbxTQ==:117 a=TrnfHZhGi+cGSPqA0dbxTQ==:17
+ a=Jp7JS-XeckIA:10 a=etiEgX_XAAAA:8 a=H71bEZ-wH2c9sU5widsA:9 a=QEXdDO2ut3YA:10
+ a=-9mhMHmBwZnwXGGSq7QA:9 a=qSEYX5wgvnAk5m1f:21 a=_W_S_7VecoQA:10
+ a=MLbIUA-Bjd6y1alW9qBG:22
+Message-Id: <d8853f6d78b7e4609b6485cc4867a749296a8898@webmail>
+To: "'Marcus D. Leech'" <patchvonbraun@gmail.com>
+Cc: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+X-Mailer: Atmail 
+X-Originating-IP: [65.35.179.59]
+X-Priority: 3
+Importance: Normal
+X-MSMail-Priority: Normal
+Date: Tue, 02 Feb 2021 17:53:19 +0000
 MIME-Version: 1.0
-References: <LNXP123MB372437DE53B4243C99065495CAB59@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
- <LNXP123MB37243B9CFF15D54ADF43B60BCAB59@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
-In-Reply-To: <LNXP123MB37243B9CFF15D54ADF43B60BCAB59@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
-Date: Tue, 2 Feb 2021 11:45:08 -0600
-Message-ID: <CAFche=ho_+V79hQNdL7BoyQCF8x4SJtuo303QwifKJ-urtdTgg@mail.gmail.com>
-To: Mark D <md964@hmgcc.gov.uk>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Opening Vivado GUI during FPGA image build
+X-CMAE-Envelope: MS4wfPol9PrieOAa8bahCRAUE2s8ADdPck4IE17O67o8t/zUi2OP6Bf8ExoZCmU70iPsKDhTPNrs2J3s2RUnIXuEuOWMuLS359sXfrLx9xJLtErTuccQfISP
+ YvlR2//ZiVlXmswo2fSIf1mNwBNAPc7GV0R+T0HrJ/2UowEBQH782hhEQnZFNZBSiik1z5YciNDU5ME1RZtDnBvW6YaMbij7AGc=
+Subject: Re: [USRP-users] Error Testing UHD Build on E310 with uhd_usrp_probe
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -60,9 +45,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Wade Fife via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Wade Fife <wade.fife@ettus.com>
-Content-Type: multipart/mixed; boundary="===============7074617135667389933=="
+From: Dennis Trask via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: dtrask1@tampabay.rr.com
+Content-Type: multipart/mixed; boundary="===============2055833537165546895=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,200 +61,116 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7074617135667389933==
-Content-Type: multipart/alternative; boundary="000000000000b466c505ba5e08d5"
+--===============2055833537165546895==
+Content-Type: multipart/alternative;
+ boundary="=_bc7a7a3a928ab81bb012a1449c6e7c24"
 
---000000000000b466c505ba5e08d5
-Content-Type: text/plain; charset="UTF-8"
+--=_bc7a7a3a928ab81bb012a1449c6e7c24
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Mark,
+Here is the output, Marcus:=0Aroot@ni-e31x-3199693:~/newinstall# file=0A=
+/home/root/newinstall/usr/bin/uhd_usrp_probe/home/root/newinstall/usr/bi=
+n/uhd_usrp_probe:=0AELF 32-bit LSB executable, ARM, EABI5 version 1 (SYS=
+V), dynamically=0Alinked, interpreter /lib/ld-linux-armhf.so.3, for GNU/=
+Linux 2.6.32,=0ABuildID[sha1]=3D5c924895fbe10218be809ba29f88d7993fb117d7=
+, with=0Adebug_info, not stripped=0Aroot@ni-e31x-3199693:~/newinstall# w=
+hich=0Auhd_usrp_probe/home/root/newinstall/usr/bin/uhd_usrp_probe=0AAppr=
+eciate the help.=0ADennis=0A=0A=09--------------------------------------=
+---From: "Marcus D. Leech via=0AUSRP-users" =0ATo: usrp-users@lists.ettu=
+s.com=0ACc: =0ASent: Monday February 1 2021 4:06:23PM=0ASubject: Re: [US=
+RP-users] Error Testing UHD Build on E310 with=0Auhd_usrp_probe=0A=0A On=
+ 02/01/2021 04:01 PM, Dennis Trask via USRP-users wrote:=0A=0A=09I am at=
+tempting to set up a development environment to write software=0Afor the=
+ E310 by cross-compiling on Ubuntu 18.04. I am using the=0Ainstructions=
+ here: =0A[1]https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_=
+-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source=0A[2] =0A=0A=09I=
+ have followed all the instructions to build UHD and am now in the=0Asec=
+tion "Mount and test the UHD build". When I run uhd_usrp_probe on=0Athe=
+ E310, I get the following ouput: =0A=0A=09root@ni-e31x-3199693:~/newins=
+tall# uhd_usrp_probe  =0A=0A=09-sh: /home/root/newinstall/usr/bin/uhd_us=
+rp_probe: No such file or=0Adirectory =0A=0A=09   If you do:=0A=0A file=
+ /home/root/newinstall/usr/bin/uhd_usrp_probe=0A=0A What do you get?=0A=
+=0A If you do:=0A=0A which uhd_usrp_probe=0A=0A What do you get?=0A=0A=
+=09I'm not sure where to look for the source of this issue. Has anyone=
+=0Aelse seen this or have an idea of what to look for? =0A=0A=09Thanks,=
+ =0A=0A=09Dennis =0A=0A _______________________________________________=
+=0A USRP-users mailing list=0A "mailto:USRP-users@lists.ettus.com">USRP-=
+users@lists.ettus.com=0A "http://lists.ettus.com/mailman/listinfo/usrp-u=
+sers_lists.ettus.com">=0A[3] target=3D=0A "_blank">http://lists.ettus.co=
+m/mailman/listinfo/usrp-users_lists.ettus.com=0A=0A=0A=0ALinks:=0A------=
+=0A[1]=0Ahttps://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Bu=
+ilding_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source=0A[2]=0Ahttps://kb.e=
+ttus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GN=
+U_Radio_/_gr-ettus_from_Source=0A[3] http://lists.ettus.com/mailman/list=
+info/usrp-users_lists.ettus.com=0A
 
-This is curious. If I recall, someone else was having trouble with -g, but
-it worked for me last time I tried it. I will try it again to see if I can
-reproduce anything. In the meantime, you can run rfnoc_image_builder and
-make in separate steps. See if this works:
-
-# Generate the build files only; don't build the image
-rfnoc_image_builder -y e320_my_fpga.yml -t E320_1G --generate-only
-# Build the image with the GUI
-make E320_1G GUI=3D1
-
-Thanks,
-
-Wade
-
-On Tue, Feb 2, 2021 at 9:10 AM Mark D via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Just noticed that I=E2=80=99d put uhd_image_builder, I did of course mean
-> rfnoc_image_builder.
->
->
->
-> Still not having any luck with this, seems to just ignore the -g option.
->
->
->
-> *From:* USRP-users <usrp-users-bounces@lists.ettus.com> *On Behalf Of *Ma=
-rk
-> D via USRP-users
-> *Sent:* 02 February 2021 11:05
-> *To:* usrp-users@lists.ettus.com
-> *Subject:* [USRP-users] Opening Vivado GUI during FPGA image build
->
->
->
-> I=E2=80=99m using UHD 4.0 and building an FPGA for the E320 USRP.
->
->
->
-> I=E2=80=99m trying to follow the guide for debugging FPGA images on the E=
-ttus
-> website AN-121.
->
->
->
-> I=E2=80=99m using the rfnoc_image_builder command to build the image, and=
- have
-> added the -g option to open the GUI during the build process:
-> udd_image_builder -7 e320_my_fpga.yml -t E320_1G -g
->
->
->
-> However the build runs to completion without stopping to open up Vivado.
->
->
->
-> uhd_image_builder -h shows that the option of -g or =E2=80=93GUI is liste=
-d as
-> opening the Vivado GUI during the build. I=E2=80=99ve tried both -g and =
-=E2=80=93GUI and
-> neither had any effect.
->
->
->
-> Any ideas? AN-121 is a few years old, is the -g option still supported by
-> uhd_image_builder?
->
->
->
-> Thanks,
->
->
->
-> Mark
-> ------------------------------
->
-> This email and any files transmitted with it are confidential and intende=
-d
-> solely for the use of the individual or entity to whom they are addressed=
-.
-> If you have received this email in error please notify the system manager=
-.
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000b466c505ba5e08d5
-Content-Type: text/html; charset="UTF-8"
+--=_bc7a7a3a928ab81bb012a1449c6e7c24
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Mark,</div><div><br></div><div>This is curious. If=
- I recall, someone else was having trouble with -g, but it worked for me la=
-st time I tried it. I will try it again to see if I can reproduce anything.=
- In the meantime, you can run rfnoc_image_builder and make in separate step=
-s. See if this works:<br></div><div><br></div><div># Generate the build fil=
-es only; don&#39;t build the image<br></div><div>rfnoc_image_builder -y e32=
-0_my_fpga.yml -t E320_1G --generate-only</div><div># Build the image with t=
-he GUI<br></div><div>make E320_1G GUI=3D1</div><div><br></div><div>Thanks,<=
-/div><div><br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote"=
-><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Feb 2, 2021 at 9:10 AM Mark =
-D via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-use=
-rs@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">
+<html><body><div>Here is the output, Marcus:</div><div><br></div><div>ro=
+ot@ni-e31x-3199693:~/newinstall# file /home/root/newinstall/usr/bin/uhd_=
+usrp_probe</div><div>/home/root/newinstall/usr/bin/uhd_usrp_probe: ELF 3=
+2-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically linked, i=
+nterpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 2.6.32, BuildID[sha1]=
+=3D5c924895fbe10218be809ba29f88d7993fb117d7, with debug_info, not stripp=
+ed</div><div><br></div><div>root@ni-e31x-3199693:~/newinstall# which uhd=
+_usrp_probe</div><div>/home/root/newinstall/usr/bin/uhd_usrp_probe</div>=
+<div><br></div>Appreciate the help.<div><br></div><div>Dennis</div><div>=
+<br><div class=3D"reply-new-signature"></div><p>------------------------=
+-----------------</p>From: "Marcus D. Leech via USRP-users" <usrp-users@=
+lists.ettus.com><br>To: usrp-users@lists.ettus.com<br>Cc: <br>Sent: Mond=
+ay February 1 2021 4:06:23PM<br>Subject: Re: [USRP-users] Error Testing=
+ UHD Build on E310 with uhd_usrp_probe<br><br>=0A<div class=3D"moz-cite-=
+prefix">On 02/01/2021 04:01 PM, Dennis Trask=0Avia USRP-users wrote:<br>=
+</div>=0A<blockquote>=0A<p><span style=3D"font-family:Calibri, sans-seri=
+f;color:#000000;">I am=0Aattempting to set up a development environment=
+ to write software=0Afor the E310 by cross-compiling on Ubuntu 18.04. I=
+ am using the=0Ainstructions here:&nbsp;<a href=3D"https://kb.ettus.com/=
+Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/=
+_gr-ettus_from_Source"></a><a href=3D"https://kb.ettus.com/Software_Deve=
+lopment_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_fro=
+m_Source">https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_B=
+uilding_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a></span></p>=0A<p=
+><span style=3D"font-family:Calibri, sans-serif;color:#000000;">&nbsp;</=
+span></p>=0A<p><span style=3D"font-family:Calibri, sans-serif;color:#000=
+000;">I have=0Afollowed all the instructions to build UHD and am now in=
+ the=0Asection&nbsp;"Mount and test the UHD build". When I run=0Auhd_usr=
+p_probe on the E310, I get the following ouput:</span></p>=0A<p><span st=
+yle=3D"font-family:Calibri, sans-serif;color:#000000;">&nbsp;</span></p>=
+=0A<p class=3D"MsoNormal"><span style=3D"font-family:Calibri, sans-serif=
+;color:#000000;">root@ni-e31x-3199693:~/newinstall#=0Auhd_usrp_probe&nbs=
+p;</span></p>=0A<p class=3D"MsoNormal"><span style=3D"font-family:Calibr=
+i, sans-serif;color:#000000;">-sh:=0A/home/root/newinstall/usr/bin/uhd_u=
+srp_probe: No such file or=0Adirectory</span></p>=0A<p class=3D"MsoNorma=
+l"><span style=3D"font-family:Calibri, sans-serif;color:#000000;">&nbsp;=
+</span></p>=0A<p class=3D"MsoNormal"><span style=3D"font-family:Calibri,=
+ sans-serif;color:#000000;">&nbsp;</span></p>=0A</blockquote>=0AIf you d=
+o:<br><br>=0Afile /home/root/newinstall/usr/bin/uhd_usrp_probe<br><br>=
+=0AWhat do you get?<br><br>=0AIf you do:<br><br>=0Awhich uhd_usrp_probe<=
+br><br>=0AWhat do you get?<br><br><br><blockquote>=0A<p><span style=3D"f=
+ont-family:Calibri, sans-serif;color:#000000;">I'm not=0Asure where to l=
+ook for the source of this issue. Has anyone else=0Aseen this or have an=
+ idea of what to look for?</span></p>=0A<p><span style=3D"font-family:Ca=
+libri, sans-serif;color:#000000;">&nbsp;</span></p>=0A<p><span style=3D"=
+font-family:Calibri, sans-serif;color:#000000;">Thanks,</span></p>=0A<p>=
+<span style=3D"font-family:Calibri, sans-serif;color:#000000;">Dennis</s=
+pan></p>=0A<br><br>=0A_______________________________________________<br=
+>=0AUSRP-users mailing list<br><a class=3D"moz-txt-link-abbreviated" hre=
+f=3D""></a>=0A"mailto:USRP-users@lists.ettus.com"&gt;USRP-users@lists.et=
+tus.com<br><a class=3D"moz-txt-link-freetext" href=3D""></a>=0A"http://l=
+ists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"&gt;<a href=
+=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">=
+</a>=0Atarget=3D<br>=0A"_blank"&gt;http://lists.ettus.com/mailman/listin=
+fo/usrp-users_lists.ettus.com<br></blockquote>=0A<br></usrp-users@lists.=
+ettus.com></div></body></html>
+
+--=_bc7a7a3a928ab81bb012a1449c6e7c24--
 
 
 
-
-
-<div style=3D"overflow-wrap: break-word;" lang=3D"EN-GB">
-<div class=3D"gmail-m_4744435335075909835WordSection1">
-<p class=3D"MsoNormal">Just noticed that I=E2=80=99d put uhd_image_builder,=
- I did of course mean rfnoc_image_builder.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Still not having any luck with this, seems to just i=
-gnore the -g option.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div style=3D"border-color:rgb(225,225,225) currentcolor currentcolor;borde=
-r-style:solid none none;border-width:1pt medium medium;padding:3pt 0cm 0cm"=
->
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
-=3D"EN-US"> USRP-users &lt;<a href=3D"mailto:usrp-users-bounces@lists.ettus=
-.com" target=3D"_blank">usrp-users-bounces@lists.ettus.com</a>&gt;
-<b>On Behalf Of </b>Mark D via USRP-users<br>
-<b>Sent:</b> 02 February 2021 11:05<br>
-<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a><br>
-<b>Subject:</b> [USRP-users] Opening Vivado GUI during FPGA image build<u><=
-/u><u></u></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I=E2=80=99m using UHD 4.0 and building an FPGA for t=
-he E320 USRP.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I=E2=80=99m trying to follow the guide for debugging=
- FPGA images on the Ettus website AN-121.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I=E2=80=99m using the rfnoc_image_builder command to=
- build the image, and have added the -g option to open the GUI during the b=
-uild process: udd_image_builder -7 e320_my_fpga.yml -t E320_1G -g<u></u><u>=
-</u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">However the build runs to completion without stoppin=
-g to open up Vivado.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">uhd_image_builder -h shows that the option of -g or =
-=E2=80=93GUI is listed as opening the Vivado GUI during the build. I=E2=80=
-=99ve tried both -g and =E2=80=93GUI and neither had any effect.<u></u><u><=
-/u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Any ideas? AN-121 is a few years old, is the -g opti=
-on still supported by uhd_image_builder?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Mark<u></u><u></u></p>
-<div class=3D"MsoNormal" style=3D"text-align:center" align=3D"center"><span=
->
-<hr width=3D"100%" size=3D"2" align=3D"center">
-</span></div>
-<p class=3D"MsoNormal"><span>This email and any files transmitted with it a=
-re confidential and intended solely for the use of the individual or entity=
- to whom they are addressed. If you have received this email in error pleas=
-e
- notify the system manager. <u></u><u></u></span></p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000b466c505ba5e08d5--
-
-
---===============7074617135667389933==
+--===============2055833537165546895==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -280,5 +181,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7074617135667389933==--
+--===============2055833537165546895==--
+
 
