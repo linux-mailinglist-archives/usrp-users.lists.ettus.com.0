@@ -2,37 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2080A30C87F
-	for <lists+usrp-users@lfdr.de>; Tue,  2 Feb 2021 18:54:07 +0100 (CET)
-Received: from [::1] (port=49318 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99A4430C93A
+	for <lists+usrp-users@lfdr.de>; Tue,  2 Feb 2021 19:14:57 +0100 (CET)
+Received: from [::1] (port=49466 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l6zsM-0001gs-1u; Tue, 02 Feb 2021 12:54:06 -0500
-Received: from p-impout005aa.msg.pkvw.co.charter.net ([47.43.26.136]:35617
- helo=p-impout005.msg.pkvw.co.charter.net)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <dtrask1@tampabay.rr.com>)
- id 1l6zsH-0001Z6-Ae
- for usrp-users@lists.ettus.com; Tue, 02 Feb 2021 12:54:01 -0500
-Received: from localhost ([34.233.51.36]) by cmsmtp with ESMTP
- id 6zrbli7CSbGHJ6zrclVDWf; Tue, 02 Feb 2021 17:53:20 +0000
-X-Authority-Analysis: v=2.3 cv=A5oSwJeG c=1 sm=1 tr=0
- a=TrnfHZhGi+cGSPqA0dbxTQ==:117 a=TrnfHZhGi+cGSPqA0dbxTQ==:17
- a=Jp7JS-XeckIA:10 a=etiEgX_XAAAA:8 a=H71bEZ-wH2c9sU5widsA:9 a=QEXdDO2ut3YA:10
- a=-9mhMHmBwZnwXGGSq7QA:9 a=qSEYX5wgvnAk5m1f:21 a=_W_S_7VecoQA:10
- a=MLbIUA-Bjd6y1alW9qBG:22
-Message-Id: <d8853f6d78b7e4609b6485cc4867a749296a8898@webmail>
-To: "'Marcus D. Leech'" <patchvonbraun@gmail.com>
-Cc: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
-X-Mailer: Atmail 
-X-Originating-IP: [65.35.179.59]
-X-Priority: 3
-Importance: Normal
-X-MSMail-Priority: Normal
-Date: Tue, 02 Feb 2021 17:53:19 +0000
+	id 1l70CV-0003My-WB; Tue, 02 Feb 2021 13:14:56 -0500
+Received: from mail-qt1-f174.google.com ([209.85.160.174]:36301)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1l70CS-0003Fq-1O
+ for usrp-users@lists.ettus.com; Tue, 02 Feb 2021 13:14:52 -0500
+Received: by mail-qt1-f174.google.com with SMTP id r20so12059322qtm.3
+ for <usrp-users@lists.ettus.com>; Tue, 02 Feb 2021 10:14:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=srisStRNwaFhuV8ltKkvN4F4W3ir9kRI6HBUchPfWAU=;
+ b=Qqg4Dl2GqACK7xgF9h7YHpkqD4SRlkgxFY0nVL+25YZKw250BluCqg0+JYR6Drbo9M
+ YNIlh3KnQtNj3swqjrFtWitIZUkMlBbZm6y/2KqTJZyCRklajJDwhogEAJ86cra01gDL
+ gMKQVrgOB2aoToUAj3cyeRLhoHAyRM2bzsdPwLdc58wLm/Zhvwu+SWp1EgDVWottT89T
+ 3fIzusA4CSAlqmmegwcCYoD3izh4AYLdllJ9iqylLLV0kZNaPu2ErbcCzVk+tbeAn3pG
+ ZS8ypmMU56MEa+CJwV7fLqbjd8XFcA9E4zJGp6F7m24imsZlw3U98aMfKtrwrPgE6Ghv
+ BG7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=srisStRNwaFhuV8ltKkvN4F4W3ir9kRI6HBUchPfWAU=;
+ b=dhcE22Q3Z0VjQzrk1V9l45UYYRBiUDhrqlwkH1+2y7sb6zPffzyqzLboUifbu10jzi
+ gc3vQ5KyMB3wp9ypKQ04OWGUWWYEWt3TZ/YvmU2HdEiQC6BdolHFGMK160222oIOy4pG
+ ZvYkxvWPgcUrY6cxf+C8K+5fQFGZA7mDqeRrGZhrFdyH+0YAjIjgWmNK85YWmFruJFck
+ EKKCv1S6HOkdBpxpbagC8oeYSnqtpo6zVMNWqkCGUbdk1VccqqGq+fwyXWxEb36o/kME
+ E2LWL458wyeOh0/alP1huRh5p/BJLbOLroHQ5EjM8mS1pRyzv19nwCnqMQ2y+bB8YNNW
+ fmmg==
+X-Gm-Message-State: AOAM532WfVV/prh6lwwcj8U2vPCAx5By30XxsrnDm28xwtW10iZ5pdcL
+ Q+2w+qLajGUsg3hmp8IY46jIX77OBns=
+X-Google-Smtp-Source: ABdhPJxK9oQmHUgnU94qcWeCQeKK6UmzedL4p1SCKKMnD+P8QvyLM6nWLgQiJTkeVSQfiPbGiQvyEw==
+X-Received: by 2002:a05:622a:506:: with SMTP id
+ l6mr20874394qtx.134.1612289651254; 
+ Tue, 02 Feb 2021 10:14:11 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id 17sm19673796qtu.23.2021.02.02.10.14.10
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 02 Feb 2021 10:14:10 -0800 (PST)
+Message-ID: <60199672.1040307@gmail.com>
+Date: Tue, 02 Feb 2021 13:14:10 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-X-CMAE-Envelope: MS4wfPol9PrieOAa8bahCRAUE2s8ADdPck4IE17O67o8t/zUi2OP6Bf8ExoZCmU70iPsKDhTPNrs2J3s2RUnIXuEuOWMuLS359sXfrLx9xJLtErTuccQfISP
- YvlR2//ZiVlXmswo2fSIf1mNwBNAPc7GV0R+T0HrJ/2UowEBQH782hhEQnZFNZBSiik1z5YciNDU5ME1RZtDnBvW6YaMbij7AGc=
+To: dtrask1@tampabay.rr.com
+CC: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+References: <d8853f6d78b7e4609b6485cc4867a749296a8898@webmail>
+In-Reply-To: <d8853f6d78b7e4609b6485cc4867a749296a8898@webmail>
 Subject: Re: [USRP-users] Error Testing UHD Build on E310 with uhd_usrp_probe
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -45,9 +68,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Dennis Trask via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: dtrask1@tampabay.rr.com
-Content-Type: multipart/mixed; boundary="===============2055833537165546895=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============3459698222454069872=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -61,116 +84,240 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2055833537165546895==
+This is a multi-part message in MIME format.
+--===============3459698222454069872==
 Content-Type: multipart/alternative;
- boundary="=_bc7a7a3a928ab81bb012a1449c6e7c24"
+ boundary="------------050907030501020303060002"
 
---=_bc7a7a3a928ab81bb012a1449c6e7c24
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------050907030501020303060002
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Here is the output, Marcus:=0Aroot@ni-e31x-3199693:~/newinstall# file=0A=
-/home/root/newinstall/usr/bin/uhd_usrp_probe/home/root/newinstall/usr/bi=
-n/uhd_usrp_probe:=0AELF 32-bit LSB executable, ARM, EABI5 version 1 (SYS=
-V), dynamically=0Alinked, interpreter /lib/ld-linux-armhf.so.3, for GNU/=
-Linux 2.6.32,=0ABuildID[sha1]=3D5c924895fbe10218be809ba29f88d7993fb117d7=
-, with=0Adebug_info, not stripped=0Aroot@ni-e31x-3199693:~/newinstall# w=
-hich=0Auhd_usrp_probe/home/root/newinstall/usr/bin/uhd_usrp_probe=0AAppr=
-eciate the help.=0ADennis=0A=0A=09--------------------------------------=
----From: "Marcus D. Leech via=0AUSRP-users" =0ATo: usrp-users@lists.ettu=
-s.com=0ACc: =0ASent: Monday February 1 2021 4:06:23PM=0ASubject: Re: [US=
-RP-users] Error Testing UHD Build on E310 with=0Auhd_usrp_probe=0A=0A On=
- 02/01/2021 04:01 PM, Dennis Trask via USRP-users wrote:=0A=0A=09I am at=
-tempting to set up a development environment to write software=0Afor the=
- E310 by cross-compiling on Ubuntu 18.04. I am using the=0Ainstructions=
- here: =0A[1]https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_=
--_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source=0A[2] =0A=0A=09I=
- have followed all the instructions to build UHD and am now in the=0Asec=
-tion "Mount and test the UHD build". When I run uhd_usrp_probe on=0Athe=
- E310, I get the following ouput: =0A=0A=09root@ni-e31x-3199693:~/newins=
-tall# uhd_usrp_probe  =0A=0A=09-sh: /home/root/newinstall/usr/bin/uhd_us=
-rp_probe: No such file or=0Adirectory =0A=0A=09   If you do:=0A=0A file=
- /home/root/newinstall/usr/bin/uhd_usrp_probe=0A=0A What do you get?=0A=
-=0A If you do:=0A=0A which uhd_usrp_probe=0A=0A What do you get?=0A=0A=
-=09I'm not sure where to look for the source of this issue. Has anyone=
-=0Aelse seen this or have an idea of what to look for? =0A=0A=09Thanks,=
- =0A=0A=09Dennis =0A=0A _______________________________________________=
-=0A USRP-users mailing list=0A "mailto:USRP-users@lists.ettus.com">USRP-=
-users@lists.ettus.com=0A "http://lists.ettus.com/mailman/listinfo/usrp-u=
-sers_lists.ettus.com">=0A[3] target=3D=0A "_blank">http://lists.ettus.co=
-m/mailman/listinfo/usrp-users_lists.ettus.com=0A=0A=0A=0ALinks:=0A------=
-=0A[1]=0Ahttps://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Bu=
-ilding_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source=0A[2]=0Ahttps://kb.e=
-ttus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GN=
-U_Radio_/_gr-ettus_from_Source=0A[3] http://lists.ettus.com/mailman/list=
-info/usrp-users_lists.ettus.com=0A
+On 02/02/2021 12:53 PM, dtrask1@tampabay.rr.com wrote:
+> Here is the output, Marcus:
+>
+> root@ni-e31x-3199693:~/newinstall# file 
+> /home/root/newinstall/usr/bin/uhd_usrp_probe
+> /home/root/newinstall/usr/bin/uhd_usrp_probe: ELF 32-bit LSB 
+> executable, ARM, EABI5 version 1 (SYSV), dynamically linked, 
+> interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 2.6.32, 
+> BuildID[sha1]=5c924895fbe10218be809ba29f88d7993fb117d7, with 
+> debug_info, not stripped
+>
+> root@ni-e31x-3199693:~/newinstall# which uhd_usrp_probe
+> /home/root/newinstall/usr/bin/uhd_usrp_probe
+>
+> Appreciate the help.
+>
+> Dennis
+>
 
---=_bc7a7a3a928ab81bb012a1449c6e7c24
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Hmm, see if:
 
-<html><body><div>Here is the output, Marcus:</div><div><br></div><div>ro=
-ot@ni-e31x-3199693:~/newinstall# file /home/root/newinstall/usr/bin/uhd_=
-usrp_probe</div><div>/home/root/newinstall/usr/bin/uhd_usrp_probe: ELF 3=
-2-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically linked, i=
-nterpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 2.6.32, BuildID[sha1]=
-=3D5c924895fbe10218be809ba29f88d7993fb117d7, with debug_info, not stripp=
-ed</div><div><br></div><div>root@ni-e31x-3199693:~/newinstall# which uhd=
-_usrp_probe</div><div>/home/root/newinstall/usr/bin/uhd_usrp_probe</div>=
-<div><br></div>Appreciate the help.<div><br></div><div>Dennis</div><div>=
-<br><div class=3D"reply-new-signature"></div><p>------------------------=
------------------</p>From: "Marcus D. Leech via USRP-users" <usrp-users@=
-lists.ettus.com><br>To: usrp-users@lists.ettus.com<br>Cc: <br>Sent: Mond=
-ay February 1 2021 4:06:23PM<br>Subject: Re: [USRP-users] Error Testing=
- UHD Build on E310 with uhd_usrp_probe<br><br>=0A<div class=3D"moz-cite-=
-prefix">On 02/01/2021 04:01 PM, Dennis Trask=0Avia USRP-users wrote:<br>=
-</div>=0A<blockquote>=0A<p><span style=3D"font-family:Calibri, sans-seri=
-f;color:#000000;">I am=0Aattempting to set up a development environment=
- to write software=0Afor the E310 by cross-compiling on Ubuntu 18.04. I=
- am using the=0Ainstructions here:&nbsp;<a href=3D"https://kb.ettus.com/=
-Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/=
-_gr-ettus_from_Source"></a><a href=3D"https://kb.ettus.com/Software_Deve=
-lopment_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_fro=
-m_Source">https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_B=
-uilding_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a></span></p>=0A<p=
-><span style=3D"font-family:Calibri, sans-serif;color:#000000;">&nbsp;</=
-span></p>=0A<p><span style=3D"font-family:Calibri, sans-serif;color:#000=
-000;">I have=0Afollowed all the instructions to build UHD and am now in=
- the=0Asection&nbsp;"Mount and test the UHD build". When I run=0Auhd_usr=
-p_probe on the E310, I get the following ouput:</span></p>=0A<p><span st=
-yle=3D"font-family:Calibri, sans-serif;color:#000000;">&nbsp;</span></p>=
-=0A<p class=3D"MsoNormal"><span style=3D"font-family:Calibri, sans-serif=
-;color:#000000;">root@ni-e31x-3199693:~/newinstall#=0Auhd_usrp_probe&nbs=
-p;</span></p>=0A<p class=3D"MsoNormal"><span style=3D"font-family:Calibr=
-i, sans-serif;color:#000000;">-sh:=0A/home/root/newinstall/usr/bin/uhd_u=
-srp_probe: No such file or=0Adirectory</span></p>=0A<p class=3D"MsoNorma=
-l"><span style=3D"font-family:Calibri, sans-serif;color:#000000;">&nbsp;=
-</span></p>=0A<p class=3D"MsoNormal"><span style=3D"font-family:Calibri,=
- sans-serif;color:#000000;">&nbsp;</span></p>=0A</blockquote>=0AIf you d=
-o:<br><br>=0Afile /home/root/newinstall/usr/bin/uhd_usrp_probe<br><br>=
-=0AWhat do you get?<br><br>=0AIf you do:<br><br>=0Awhich uhd_usrp_probe<=
-br><br>=0AWhat do you get?<br><br><br><blockquote>=0A<p><span style=3D"f=
-ont-family:Calibri, sans-serif;color:#000000;">I'm not=0Asure where to l=
-ook for the source of this issue. Has anyone else=0Aseen this or have an=
- idea of what to look for?</span></p>=0A<p><span style=3D"font-family:Ca=
-libri, sans-serif;color:#000000;">&nbsp;</span></p>=0A<p><span style=3D"=
-font-family:Calibri, sans-serif;color:#000000;">Thanks,</span></p>=0A<p>=
-<span style=3D"font-family:Calibri, sans-serif;color:#000000;">Dennis</s=
-pan></p>=0A<br><br>=0A_______________________________________________<br=
->=0AUSRP-users mailing list<br><a class=3D"moz-txt-link-abbreviated" hre=
-f=3D""></a>=0A"mailto:USRP-users@lists.ettus.com"&gt;USRP-users@lists.et=
-tus.com<br><a class=3D"moz-txt-link-freetext" href=3D""></a>=0A"http://l=
-ists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"&gt;<a href=
-=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">=
-</a>=0Atarget=3D<br>=0A"_blank"&gt;http://lists.ettus.com/mailman/listin=
-fo/usrp-users_lists.ettus.com<br></blockquote>=0A<br></usrp-users@lists.=
-ettus.com></div></body></html>
-
---=_bc7a7a3a928ab81bb012a1449c6e7c24--
+/lib/ld-linux-armhf.so.3
 
 
+Is actually there and executable
 
---===============2055833537165546895==
+
+> -----------------------------------------
+>
+> From: "Marcus D. Leech via USRP-users"
+> To: usrp-users@lists.ettus.com
+> Cc:
+> Sent: Monday February 1 2021 4:06:23PM
+> Subject: Re: [USRP-users] Error Testing UHD Build on E310 with 
+> uhd_usrp_probe
+>
+> On 02/01/2021 04:01 PM, Dennis Trask via USRP-users wrote:
+>
+>     I am attempting to set up a development environment to write
+>     software for the E310 by cross-compiling on Ubuntu 18.04. I am
+>     using the instructions here:
+>     https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source
+>
+>     I have followed all the instructions to build UHD and am now in
+>     the section "Mount and test the UHD build". When I run
+>     uhd_usrp_probe on the E310, I get the following ouput:
+>
+>     root@ni-e31x-3199693:~/newinstall# uhd_usrp_probe
+>
+>     -sh: /home/root/newinstall/usr/bin/uhd_usrp_probe: No such file or
+>     directory
+>
+> If you do:
+>
+> file /home/root/newinstall/usr/bin/uhd_usrp_probe
+>
+> What do you get?
+>
+> If you do:
+>
+> which uhd_usrp_probe
+>
+> What do you get?
+>
+>
+>     I'm not sure where to look for the source of this issue. Has
+>     anyone else seen this or have an idea of what to look for?
+>
+>     Thanks,
+>
+>     Dennis
+>
+>
+>
+>     _______________________________________________
+>     USRP-users mailing list
+>     "mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com
+>     "http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">
+>     target=
+>     "_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+>
+
+
+--------------050907030501020303060002
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 02/02/2021 12:53 PM,
+      <a class="moz-txt-link-abbreviated" href="mailto:dtrask1@tampabay.rr.com">dtrask1@tampabay.rr.com</a> wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:d8853f6d78b7e4609b6485cc4867a749296a8898@webmail"
+      type="cite">
+      <div>Here is the output, Marcus:</div>
+      <div><br>
+      </div>
+      <div>root@ni-e31x-3199693:~/newinstall# file
+        /home/root/newinstall/usr/bin/uhd_usrp_probe</div>
+      <div>/home/root/newinstall/usr/bin/uhd_usrp_probe: ELF 32-bit LSB
+        executable, ARM, EABI5 version 1 (SYSV), dynamically linked,
+        interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 2.6.32,
+        BuildID[sha1]=5c924895fbe10218be809ba29f88d7993fb117d7, with
+        debug_info, not stripped</div>
+      <div><br>
+      </div>
+      <div>root@ni-e31x-3199693:~/newinstall# which uhd_usrp_probe</div>
+      <div>/home/root/newinstall/usr/bin/uhd_usrp_probe</div>
+      <div><br>
+      </div>
+      Appreciate the help.
+      <div><br>
+      </div>
+      <div>Dennis</div>
+      <div><br>
+      </div>
+    </blockquote>
+    <br>
+    Hmm, see if:<br>
+    <br>
+    /lib/ld-linux-armhf.so.3<br>
+    <br>
+    <br>
+    Is actually there and executable<br>
+    <br>
+    <br>
+    <blockquote
+      cite="mid:d8853f6d78b7e4609b6485cc4867a749296a8898@webmail"
+      type="cite">
+      <div>
+        <p>-----------------------------------------</p>
+        From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com><br>
+          To: <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+          Cc: <br>
+          Sent: Monday February 1 2021 4:06:23PM<br>
+          Subject: Re: [USRP-users] Error Testing UHD Build on E310 with
+          uhd_usrp_probe<br>
+          <br>
+          <div class="moz-cite-prefix">On 02/01/2021 04:01 PM, Dennis
+            Trask
+            via USRP-users wrote:<br>
+          </div>
+          <blockquote>
+            <p><span style="font-family:Calibri,
+                sans-serif;color:#000000;">I am
+                attempting to set up a development environment to write
+                software
+                for the E310 by cross-compiling on Ubuntu 18.04. I am
+                using the
+                instructions here: <a moz-do-not-send="true"
+href="https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source">https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a></span></p>
+            <p><span style="font-family:Calibri,
+                sans-serif;color:#000000;"> </span></p>
+            <p><span style="font-family:Calibri,
+                sans-serif;color:#000000;">I have
+                followed all the instructions to build UHD and am now in
+                the
+                section "Mount and test the UHD build". When I run
+                uhd_usrp_probe on the E310, I get the following ouput:</span></p>
+            <p><span style="font-family:Calibri,
+                sans-serif;color:#000000;"> </span></p>
+            <p class="MsoNormal"><span style="font-family:Calibri,
+                sans-serif;color:#000000;">root@ni-e31x-3199693:~/newinstall#
+                uhd_usrp_probe </span></p>
+            <p class="MsoNormal"><span style="font-family:Calibri,
+                sans-serif;color:#000000;">-sh:
+                /home/root/newinstall/usr/bin/uhd_usrp_probe: No such
+                file or
+                directory</span></p>
+            <p class="MsoNormal"><span style="font-family:Calibri,
+                sans-serif;color:#000000;"> </span></p>
+            <p class="MsoNormal"><span style="font-family:Calibri,
+                sans-serif;color:#000000;"> </span></p>
+          </blockquote>
+          If you do:<br>
+          <br>
+          file /home/root/newinstall/usr/bin/uhd_usrp_probe<br>
+          <br>
+          What do you get?<br>
+          <br>
+          If you do:<br>
+          <br>
+          which uhd_usrp_probe<br>
+          <br>
+          What do you get?<br>
+          <br>
+          <br>
+          <blockquote>
+            <p><span style="font-family:Calibri,
+                sans-serif;color:#000000;">I'm not
+                sure where to look for the source of this issue. Has
+                anyone else
+                seen this or have an idea of what to look for?</span></p>
+            <p><span style="font-family:Calibri,
+                sans-serif;color:#000000;"> </span></p>
+            <p><span style="font-family:Calibri,
+                sans-serif;color:#000000;">Thanks,</span></p>
+            <p><span style="font-family:Calibri,
+                sans-serif;color:#000000;">Dennis</span></p>
+            <br>
+            <br>
+            _______________________________________________<br>
+            USRP-users mailing list<br>
+<a class="moz-txt-link-rfc2396E" href="mailto:USRP-users@lists.ettus.com">"mailto:USRP-users@lists.ettus.com"</a>&gt;<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
+<a class="moz-txt-link-rfc2396E" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"</a>&gt;
+            target=<br>
+"_blank"&gt;<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+          </blockquote>
+          <br>
+        </usrp-users@lists.ettus.com></div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------050907030501020303060002--
+
+
+--===============3459698222454069872==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -181,6 +328,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2055833537165546895==--
-
+--===============3459698222454069872==--
 
