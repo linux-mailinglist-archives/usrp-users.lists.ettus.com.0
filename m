@@ -2,54 +2,98 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3826030B58C
-	for <lists+usrp-users@lfdr.de>; Tue,  2 Feb 2021 04:02:24 +0100 (CET)
-Received: from [::1] (port=40502 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6092130BC88
+	for <lists+usrp-users@lfdr.de>; Tue,  2 Feb 2021 12:06:21 +0100 (CET)
+Received: from [::1] (port=45784 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l6lxK-00053w-1C; Mon, 01 Feb 2021 22:02:18 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:36484)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1l6lxG-0004zh-JZ
- for usrp-users@lists.ettus.com; Mon, 01 Feb 2021 22:02:14 -0500
-Received: by mail-ot1-f46.google.com with SMTP id d7so18500747otf.3
- for <usrp-users@lists.ettus.com>; Mon, 01 Feb 2021 19:01:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=jKXmHmuCaSCpitEVorZQJAJHim/ec94BNnJtnYe4k28=;
- b=jWpKca06Dh8GJQqkCRVr+88PsEalxk0OKaxWPW28X1O8Oz9TsG6cI95OF/kvaci3ba
- QhH7c2N/GRYg68Z/Dir8Tbd0GOkXYQy/p7yVkgOGVnrtC7SeB6FfqdputX8F3c4sncwv
- ueQ/8QBqRCvvz4/1GgLuo4OIpAF7HYnLCdpCgwRcHohiEa79+0Y6dvt1kd2TM8FFB+aj
- ZZ4ME90eI2Li0euCLRzZRJOLDe1b8KNaw2U5YINabxyZPyEC1uml+YitnIzhm5BJaa1K
- xv5lD7QWF8LlmG25dk4jWcg90X8qyoSDvlisSVJaOp+reWQTwmleUw2yFSeeud0NVmDK
- gjYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=jKXmHmuCaSCpitEVorZQJAJHim/ec94BNnJtnYe4k28=;
- b=k/M9sk4kmS93loRO8hf4k+4ZphC/rThguT+NL2CrqM22y3VLHGeclnTNH0uvHwKNLi
- 06XcOFAtSVnUTXdIpmfDjH80upX395sBYDQHaGYTHaSS9mXF8IuXhwyXY8itmrPcPomQ
- f0joHqBsFiuM0r+VmBFRjHM9g3PZsGzMAKSl7FilLJoZAaA6oGBRAIPYb64Egdgh2FmP
- aj7wY/hneNHjMjol4hFxwN6dyghr5fCjtA9dTyn6wkXV3FsLrvVnZM2NzsokY/KSX5GE
- RbcAdrzdjLQjaJj71oBZvbdoq8eRRaIpcVBrS2/Op6fSlOerSZJGFQk3SL5vIdOgyuP9
- syhg==
-X-Gm-Message-State: AOAM532AlWTKvInU7zSr9ScTsc0DM//VRQoyZJ4aXArwLDI78l6X5PCF
- /uZIbZ8zDY9ud8IjtRmuZq+xF28iGIf5Mc/x52MyZ1xJg1U=
-X-Google-Smtp-Source: ABdhPJxCO2HALqr/xXK0iwmp5spu8xuku1Icc9yt5LIZJ7BMQojCKkL2yIbtQFhUgyRxOr61gG5bXPomCToq9bF4zKI=
-X-Received: by 2002:a9d:7486:: with SMTP id t6mr13807602otk.58.1612234893371; 
- Mon, 01 Feb 2021 19:01:33 -0800 (PST)
+	id 1l6tVd-0004Ff-BQ; Tue, 02 Feb 2021 06:06:13 -0500
+Received: from mail-eopbgr110137.outbound.protection.outlook.com
+ ([40.107.11.137]:7635 helo=GBR01-CWL-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <md964@hmgcc.gov.uk>) id 1l6tVZ-0004AD-98
+ for usrp-users@lists.ettus.com; Tue, 02 Feb 2021 06:06:09 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IOqus8yofdmkRYljD/sfCXFu3jVmi/EjNkwQnkjGnJrLoz579pnwcKh7qCdSCDztJA4UJ3eVrKcMXFIj2vCYWUYUHLVk27FSmcKYbycMlbWatN8ypEeEBOoLyAzPT1SGGfLO5FXY1ptnGSXzl5mtqlm9kOxEld+mC7EZHLwKjP3wnRvbzfbRiTSLRQAW6WPw/e0+j73hqVXgI4hEsP9a0dX+zImwt+Ln0h4rDswmsu1OQXNx8JoArLmomFQuMrIlJUyhT65/sIfWaKCgTla7MdvoDxbgNjofohU3NReifWsKLbl1vZMk7mWhnMZSdWcqt/PLpO6pVlwkv0rEXLmwRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZOA4u7PcGXISo3PtAfREhmPLGHSWQOueDX3in7BeEnM=;
+ b=Xk4H1Br8SRfawY9Pr0+l8YWYzTJChye5mPXVXqDsFfgRm90CreMg5SSsuNIkj/6jS8eUOtQIeDo/HBQpEz+MEnrl75VaTMY/BdV3fsrXARnus1IThYbxEZJg5iHGQrNt2Di7qMEljxOvUyL6EuEOl+89FE/uSv+lu5VGt2jl70TbiJzATebfjp17R+pO9MAuwRhx4zbWmzio0a7oapB8MhigM6RkrpJfonfdtD2qLNyUtKjgo/YuR62CjhMaBI+HW4kiYpTn0Zs0jEJpN9UTZ9BFhwbcPjNaQ63DPue448Cx+eDCKDmA3ODmhow1aoQVRUWv3ka3coGP34XdozbL8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=hmgcc.gov.uk; dmarc=pass action=none header.from=hmgcc.gov.uk;
+ dkim=pass header.d=hmgcc.gov.uk; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hmgcc.gov.uk;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZOA4u7PcGXISo3PtAfREhmPLGHSWQOueDX3in7BeEnM=;
+ b=Df48S0NV3vhlFkR22Q7xct5ez3w4xF5YTEuShE8Ir/3WtlEsPijYthO5i5e67lWjqLeuqhsjzI9WnmBu6n4RleSZ7+gaeAqjn9PTQMkUe9ZLPtFZupIIva1YmpuO5gqNy0CKTYMpvRKJ9cBmtMGDyZb8t+0uJnXAOYkC7HZ4rwk=
+Received: from LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:132::7)
+ by LOYP123MB2893.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:ed::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.19; Tue, 2 Feb
+ 2021 11:05:26 +0000
+Received: from LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::58a6:243c:81ac:b96b]) by LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::58a6:243c:81ac:b96b%4]) with mapi id 15.20.3805.025; Tue, 2 Feb 2021
+ 11:05:26 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Opening Vivado GUI during FPGA image build
+Thread-Index: Adb5UifNbGHjaHXZQZaCPPt8iNPFaA==
+Date: Tue, 2 Feb 2021 11:05:26 +0000
+Message-ID: <LNXP123MB372437DE53B4243C99065495CAB59@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=hmgcc.gov.uk;
+x-originating-ip: [62.189.143.233]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9917818c-d0dd-44fe-8125-08d8c76a71e0
+x-ms-traffictypediagnostic: LOYP123MB2893:
+x-microsoft-antispam-prvs: <LOYP123MB289372FB80BDEC2156C3602CCAB59@LOYP123MB2893.GBRP123.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: G+uGOJZaIF4QmmRQ2NjIwaoyIZjpipRMx7MIc5i7VVNXy6/3qdIywKBHokydI0QjGQezOs2btRP71ztEIeiWZ+SeGW3er/yqE4s0vZgNRAq9QH10TniaKLHG6omAatvh0fd+d2fJwVqelBqG5TfbiCf6p0K4jE1xvMA+PGXVSoy3ouC5FxU6Hpy6k/FZM8MWNCCljp9ScJ/pMfLP99ZxHOwtpinUJhdPX93/viSFutj6zUo8bXbeERAsyD4yeyx/7u1JIIGWdP5N7iZ4RwrK6XqjzU+SLOK2rgzRDKUGaMVzzj5/hPo6sMBThJvfx2zBxcEjT1NOdvtoI+RJR3OV3HBPZi+6NvNbAywFpCawnqUZCWHQnQH5C7w4mt3mas+4f76OqKCbEbHwLhmEi1lk+dS45HhwZGz92Yu+76A1iVJPGrJG/leYKT3YjI5HyQcAjlsyysnuWRiHg1Lmw1CZasRUZ6yQsZCiFivooRJ1yoW5KxfaEgdB2HL2MDM1pSpr9Fg0xX67POV2EEOOD80OOw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(376002)(346002)(396003)(39840400004)(366004)(316002)(83380400001)(7696005)(64756008)(76116006)(8676002)(52536014)(26005)(71200400001)(86362001)(33656002)(66556008)(8936002)(66476007)(66946007)(9686003)(4744005)(55016002)(2906002)(6916009)(5660300002)(66446008)(478600001)(6506007)(186003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?lZXXkJyxC0Nu2dC4RweTXaN8n4YTttrWrUBEGbc613qUM5CvG7PkhQYOOuec?=
+ =?us-ascii?Q?4aliAULkz8rwR2fdTlTr/XqGpmgeWOBFpbAHTlqTi/UlG+trpgB/ysBiZrE8?=
+ =?us-ascii?Q?bOsMP+10JP3gyREpGQ6z2qgQTdkYB7IHfCQPYDK7VMNiuGvy5t/lwcO/Qk/R?=
+ =?us-ascii?Q?S1ds6P31NaX4n+/GeqNi83mcSUPjqykkWdM/5eEBnZExacnxvx2g+bpnTG+8?=
+ =?us-ascii?Q?dWvMEB8v2r7Lbe9MG+1zHttrlr0wy4ROEduZkuQViTmXjNoqAM4juc1Uzj07?=
+ =?us-ascii?Q?b7yCQD/db2Ym3y5ToE6dBqeTkvqb5PvNmhzYXk/uQrJUiBjN4qcBRyKRXjiF?=
+ =?us-ascii?Q?xwdyDaOW9mzvQvrbAOHVD4bc/l4t3Azbzqo6d+B6cZi5CtT0kbXKzQ5/cDGI?=
+ =?us-ascii?Q?acJW+07qh4AMNJBMIErPnEY2ltiQ6GEKPfUHauzK2tS9KTnWqhkMiU4eM8Ya?=
+ =?us-ascii?Q?Y7EIQdWlToqo2J4p/nKapYIYRjFrIV2e24UwK2I0kn/uaeFnZ0bpbRLV1K9g?=
+ =?us-ascii?Q?YnspHBhgpRTLaDT6II/GcD2MUwaQwEB10SWAOsqrOBQHCDeJ5hzWuTfjER7F?=
+ =?us-ascii?Q?6wt0HHqnQBvTgQA8Hhqo4jciad3vu2/RnGPhADDpDMcPR8QZSchbGiUX/O9i?=
+ =?us-ascii?Q?hp+NSz4rzM6hZV4dF0WjedUL551vxVFVhgB6+blu97Bo8IjRFxMucNDoYUIi?=
+ =?us-ascii?Q?VIElqF0xfSXSoY0S0pKmUspjElmHaPVVWQBtUAGl67ZEOznEGjn9KCwyZCpN?=
+ =?us-ascii?Q?4e2UWSFlWXNJuR2vleFWiM7Omz6Y0LAYekpGrapllUUygF04xMOu9oiwcLib?=
+ =?us-ascii?Q?A2fehvGRJPmfOeyvkVy7aYuDzhlPFmuMjXY3OS8PJM+ytlGw2jZ2Z19uK29l?=
+ =?us-ascii?Q?lnYJNBJAENmUvUO8NtLVIfMMLrHflNc4YsN7QEFWVJoNc7shdslqANRZ7SZH?=
+ =?us-ascii?Q?nz1bGVg3c0XEzxwMRo1IHgYaLVBGhm8VCFXl2joGPZYWTfGb5iOK2nY+WS/Q?=
+ =?us-ascii?Q?Yljo854/AeBas5nrE/ikYbfUS1+sBkCVS66ZBvH8MT8DV1VdazJVBjcBOshp?=
+ =?us-ascii?Q?2+TIhgJn?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CAB__hTQStkhRY1nLDuRrd51AGFabiCgzrJka8ky50F=bbp=pbQ@mail.gmail.com>
- <24D1670E-9007-41CF-99CF-5F90B0A96D5A@gmail.com>
- <CAB__hTR3mok9BOmgjA2B3PsSGDhVryMYX3wqzv_EqOyk8nYQXg@mail.gmail.com>
- <CAB__hTT69FnSPdLO9X+D=qbnV-mKnJt-n5QNV103_0G_6Lh55Q@mail.gmail.com>
-In-Reply-To: <CAB__hTT69FnSPdLO9X+D=qbnV-mKnJt-n5QNV103_0G_6Lh55Q@mail.gmail.com>
-Date: Mon, 1 Feb 2021 22:01:22 -0500
-Message-ID: <CAB__hTTYidO4ewEURTMV-4LLdZ8XcknwwCZ7+vBrKEMH3SXgSA@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] DPDK troubles (invalid ELF header loading dpdk
- library)
+X-OriginatorOrg: hmgcc.gov.uk
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9917818c-d0dd-44fe-8125-08d8c76a71e0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2021 11:05:26.3297 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c724c4ae-2756-49fe-b1cd-3a725b29341a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8+C1ZSKUPo0l2TY2w29znA47ggykhgXPl8rRRw9zPWm15+Dclb+95fRPSuKt44PRTx05U5lJr5ybNTzVtfSvzw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP123MB2893
+Subject: [USRP-users] Opening Vivado GUI during FPGA image build
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -61,9 +105,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============8868108712573455962=="
+From: Mark D via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mark D <md964@hmgcc.gov.uk>
+Content-Type: multipart/mixed; boundary="===============4501992922422817064=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,327 +121,126 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8868108712573455962==
-Content-Type: multipart/alternative; boundary="0000000000001d714705ba51b01d"
+--===============4501992922422817064==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_LNXP123MB372437DE53B4243C99065495CAB59LNXP123MB3724GBRP_"
 
---0000000000001d714705ba51b01d
-Content-Type: text/plain; charset="UTF-8"
+--_000_LNXP123MB372437DE53B4243C99065495CAB59LNXP123MB3724GBRP_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Has anyone successfully used DPDK with Ubuntu 20.04, UHD 4.0, Intel XL710
-NIC, and N310 (or X310)?
+I'm using UHD 4.0 and building an FPGA for the E320 USRP.
 
-On Mon, Feb 1, 2021 at 7:54 PM Rob Kossler <rkossler@nd.edu> wrote:
+I'm trying to follow the guide for debugging FPGA images on the Ettus websi=
+te AN-121.
 
-> BTW, here is the output of the dpdk-devbind status. It all looks good to
-> me.
->
-> root@irisheyes9-Z240-SFF:~# dpdk-devbind -s
->
-> Network devices using DPDK-compatible driver
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> 0000:03:00.0 'Ethernet Controller XL710 for 40GbE QSFP+ 1584' drv=3Dvfio-=
-pci
-> unused=3Di40e
-> 0000:03:00.1 'Ethernet Controller XL710 for 40GbE QSFP+ 1584' drv=3Dvfio-=
-pci
-> unused=3Di40e
->
-> Network devices using kernel driver
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> 0000:00:1f.6 'Ethernet Connection (2) I219-LM 15b7' if=3Deno1 drv=3De1000=
-e
-> unused=3Dvfio-pci *Active*
-> 0000:03:00.2 'Ethernet Controller XL710 for 40GbE QSFP+ 1584' if=3Dens4f2
-> drv=3Di40e unused=3Dvfio-pci *Active*
-> 0000:03:00.3 'Ethernet Controller XL710 for 40GbE QSFP+ 1584' if=3Dens4f3
-> drv=3Di40e unused=3Dvfio-pci *Active*
->
->
-> On Mon, Feb 1, 2021 at 7:51 PM Rob Kossler <rkossler@nd.edu> wrote:
->
->> I'm running as root.  Here is the full command I'm using with my N310 an=
-d
->> the first part of the resulting output. Note that the ERROR is now a UHD
->> generated error message rather than an error message from the DPDK libs.
->>
->> One thing I'm looking into is the "vfio-pci" module.  The instructions
->> say to load this via "modprobe vfio-pci" prior to binding the NIC.  But,=
- I
->> didn't have to do this and it seems that this module might now be built-=
-in
->> such that it is not necessary. In any case, the "dpdk-devbind" seems to
->> work fine so maybe I am barking up the wrong tree.
->>
->> root@irisheyes9-Z240-SFF:~# benchmark_rate --rx_rate 62.5e6 --tx_rate
->> 62.5e6 --channels=3D"0,1,2,3"
->> --args=3D"mgmt_addr=3D192.168.1.74,addr=3D192.168.61.2,use_dpdk=3D1"
->>
->> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
->> UHD_4.0.0.0-50-ge520e3ff
->> EAL: Detected 8 lcore(s)
->> EAL: Detected 1 NUMA nodes
->> EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
->> EAL: No free hugepages reported in hugepages-1048576kB
->> EAL: Probing VFIO support...
->> EAL: VFIO support initialized
->> [ERROR] [DPDK] No available DPDK devices (ports) found!
->> EAL: FATAL: already called initialization.
->> EAL: already called initialization.
->>
->>
->> On Mon, Feb 1, 2021 at 7:44 PM Marcus D Leech <patchvonbraun@gmail.com>
->> wrote:
->>
->>> Unfortunately that=E2=80=99s one I can=E2=80=99t help with. I don=E2=80=
-=99t have any DPDK
->>> capable machines at my disposal.
->>>
->>> I vaguely recall that you have to be root for DPDK to work. Perhaps
->>> that=E2=80=99s the issue?
->>>
->>> Sent from my iPhone
->>>
->>> On Feb 1, 2021, at 7:11 PM, Rob Kossler <rkossler@nd.edu> wrote:
->>>
->>> =EF=BB=BF
->>> I'm not convinced anything went wrong in the build of DPDK.  The build
->>> didn't indicate any problems.  But I wouldn't be surprised to find out =
-that
->>> things aren't being installed where they are expected.
->>>
->>> In any case, I realized a mistake in my original post which accounts fo=
-r
->>> the discrepancy in the location of the library file mentioned in the
->>> error.  I had been fooling with the uhd.conf setting for "dkdk_driver"
->>> which I had changed on one system but not the other.
->>>
->>> And most recently, I accidentally commented out this setting completely
->>> and things seem to be better.  The new error is the following.  Not sur=
-e
->>> why I'm getting this error message.  Suggestions welcome.
->>>
->>> EAL: Detected 8 lcore(s)
->>> EAL: Detected 1 NUMA nodes
->>> EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
->>> EAL: No free hugepages reported in hugepages-1048576kB
->>> EAL: Probing VFIO support...
->>> EAL: VFIO support initialized
->>> [ERROR] [DPDK] No available DPDK devices (ports) found!
->>> EAL: FATAL: already called initialization.
->>> EAL: already called initialization.
->>>
->>>
->>> On Mon, Feb 1, 2021 at 6:23 PM Marcus D. Leech via USRP-users <
->>> usrp-users@lists.ettus.com> wrote:
->>>
->>>> On 02/01/2021 06:15 PM, Rob Kossler via USRP-users wrote:
->>>>
->>>> Hi,
->>>> I have 2 systems (each with host PC and N310) for which I'm having
->>>> similar issues in trying to get DPDK up and running.  After going thro=
-ugh
->>>> the UHD Manual DPDK instructions and DPDK app note, I am past the poin=
-t at
->>>> which the "dpdk-devbind" seems to work fine, but I get the following e=
-rror
->>>> when I run benchmark_rate.
->>>>
->>>> I am running Ubuntu 20.04.LTS and installed DPDK 18.11.11 by
->>>> downloading/building from source. I built UHD (latest 4.0) from source=
- and
->>>> it seemed happy finding DPDK and building with DPDK support. It seems =
-like
->>>> a compatibility issue, but I can't figure it out. Any suggestions?
->>>> Rob
->>>>
->>>> // *** this is the error on System 1
->>>> EAL: /usr/local/lib/libdpdk.so: invalid ELF header
->>>> EAL: FATAL: Cannot init plugins
->>>> EAL: Cannot init plugins
->>>>
->>>> // this is the error on System 2 (nearly the same but different librar=
-y)
->>>> EAL:
->>>> /usr/local/share/dpdk/x86_64-native-linuxapp-gcc/lib//librte_pmd_ark.a=
-:
->>>> invalid ELF header
->>>> EAL: FATAL: Cannot init plugins
->>>> EAL: Cannot init plugins
->>>>
->>>>
->>>> This would seem to indicate that something very horrible went wrong in
->>>> the build or DPDK--creating ELF headers that aren't correct for the
->>>>  type of hardware they're being used on.
->>>>
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>>
+I'm using the rfnoc_image_builder command to build the image, and have adde=
+d the -g option to open the GUI during the build process: udd_image_builder=
+ -7 e320_my_fpga.yml -t E320_1G -g
 
---0000000000001d714705ba51b01d
-Content-Type: text/html; charset="UTF-8"
+However the build runs to completion without stopping to open up Vivado.
+
+uhd_image_builder -h shows that the option of -g or -GUI is listed as openi=
+ng the Vivado GUI during the build. I've tried both -g and -GUI and neither=
+ had any effect.
+
+Any ideas? AN-121 is a few years old, is the -g option still supported by u=
+hd_image_builder?
+
+Thanks,
+
+Mark
+________________________________
+This email and any files transmitted with it are confidential and intended =
+solely for the use of the individual or entity to whom they are addressed. =
+If you have received this email in error please notify the system manager.
+
+--_000_LNXP123MB372437DE53B4243C99065495CAB59LNXP123MB3724GBRP_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Has anyone successfully used DPDK with Ubuntu 20.04, UHD 4=
-.0, Intel XL710 NIC, and N310 (or X310)?<br></div><br><div class=3D"gmail_q=
-uote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 1, 2021 at 7:54 PM =
-Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr">BTW, here is the output of the dpdk-devbind status. It all looks g=
-ood to me.<div><br><div><font face=3D"monospace">root@irisheyes9-Z240-SFF:~=
-# dpdk-devbind -s<br><br>Network devices using DPDK-compatible driver<br>=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>0000:03:00.0 &=
-#39;Ethernet Controller XL710 for 40GbE QSFP+ 1584&#39; drv=3Dvfio-pci unus=
-ed=3Di40e<br>0000:03:00.1 &#39;Ethernet Controller XL710 for 40GbE QSFP+ 15=
-84&#39; drv=3Dvfio-pci unused=3Di40e<br><br>Network devices using kernel dr=
-iver<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>0000:00:1f.6 &#39;Ethernet Conne=
-ction (2) I219-LM 15b7&#39; if=3Deno1 drv=3De1000e unused=3Dvfio-pci *Activ=
-e*<br>0000:03:00.2 &#39;Ethernet Controller XL710 for 40GbE QSFP+ 1584&#39;=
- if=3Dens4f2 drv=3Di40e unused=3Dvfio-pci *Active*<br>0000:03:00.3 &#39;Eth=
-ernet Controller XL710 for 40GbE QSFP+ 1584&#39; if=3Dens4f3 drv=3Di40e unu=
-sed=3Dvfio-pci *Active*<br></font></div><div><br></div></div></div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 1,=
- 2021 at 7:51 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=
-=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex"><div dir=3D"ltr">I&#39;m running as root.=C2=A0 =
-Here is the full command I&#39;m using with my N310 and the first part of t=
-he resulting output. Note that the ERROR is now a UHD generated error messa=
-ge rather than an error message from the DPDK libs.=C2=A0<div><br></div><di=
-v>One thing I&#39;m looking into is the &quot;vfio-pci&quot; module.=C2=A0 =
-The instructions say to load this via &quot;modprobe vfio-pci&quot; prior t=
-o binding the NIC.=C2=A0 But, I didn&#39;t have to do this and it seems tha=
-t this module might now be built-in such that it is not necessary. In any c=
-ase, the &quot;dpdk-devbind&quot; seems to work fine so maybe I am barking =
-up the wrong tree.<br><div><br></div><div><font face=3D"monospace">root@iri=
-sheyes9-Z240-SFF:~# benchmark_rate --rx_rate 62.5e6 --tx_rate 62.5e6 --chan=
-nels=3D&quot;0,1,2,3&quot; --args=3D&quot;mgmt_addr=3D192.168.1.74,addr=3D1=
-92.168.61.2,use_dpdk=3D1&quot;<br><br>[INFO] [UHD] linux; GNU C++ version 9=
-.3.0; Boost_107100; UHD_4.0.0.0-50-ge520e3ff<br>EAL: Detected 8 lcore(s)<br=
->EAL: Detected 1 NUMA nodes<br>EAL: Multi-process socket /var/run/dpdk/rte/=
-mp_socket<br>EAL: No free hugepages reported in hugepages-1048576kB<br>EAL:=
- Probing VFIO support...<br>EAL: VFIO support initialized<br><font color=3D=
-"#ff0000">[ERROR] [DPDK] No available DPDK devices (ports) found!</font><br=
->EAL: FATAL: already called initialization.<br>EAL: already called initiali=
-zation.<br></font></div><div><br></div></div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 1, 2021 at 7:44 PM=
- Marcus D Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_b=
-lank">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div dir=3D"auto">Unfortunately that=E2=80=99s=
- one I can=E2=80=99t help with. I don=E2=80=99t have any DPDK capable machi=
-nes at my disposal.=C2=A0<div><br></div><div>I vaguely recall that you have=
- to be root for DPDK to work. Perhaps that=E2=80=99s the issue?<br><br><div=
- dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=
-=3D"cite">On Feb 1, 2021, at 7:11 PM, Rob Kossler &lt;<a href=3D"mailto:rko=
-ssler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br><br></blo=
-ckquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=
-=3D"ltr">I&#39;m not convinced anything went wrong in the build of DPDK.=C2=
-=A0 The build didn&#39;t indicate any problems.=C2=A0 But I wouldn&#39;t be=
- surprised to find out that things aren&#39;t being installed where they ar=
-e expected.=C2=A0=C2=A0<div><br></div><div>In any case, I realized a mistak=
-e in my original post which accounts for the discrepancy in the location of=
- the library file mentioned in the error.=C2=A0 I had been fooling with the=
- uhd.conf setting for &quot;dkdk_driver&quot; which I had changed on one sy=
-stem but not the other.=C2=A0</div><div><br></div><div>And most recently, I=
- accidentally commented out this setting completely and things seem to be b=
-etter.=C2=A0 The new error is the following.=C2=A0 Not sure why I&#39;m get=
-ting this error message.=C2=A0 Suggestions welcome.</div><div><br></div><di=
-v><font face=3D"monospace">EAL: Detected 8 lcore(s)<br>EAL: Detected 1 NUMA=
- nodes<br>EAL: Multi-process socket /var/run/dpdk/rte/mp_socket<br>EAL: No =
-free hugepages reported in hugepages-1048576kB<br>EAL: Probing VFIO support=
-...<br>EAL: VFIO support initialized<br><font color=3D"#ff0000">[ERROR] [DP=
-DK] No available DPDK devices (ports) found!</font><br>EAL: FATAL: already =
-called initialization.<br>EAL: already called initialization.<br></font></d=
-iv><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Mon, Feb 1, 2021 at 6:23 PM Marcus D. Leech via USRP-u=
-sers &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">us=
-rp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <div>On 02/01/2021 06:15 PM, Rob Kossler via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">Hi,<br>
-        <div>I have 2 systems (each with host PC and N310) for which I&#39;=
-m
-          having similar issues in trying to get DPDK up and running.=C2=A0
-          After going through the UHD Manual DPDK instructions and DPDK
-          app note, I am past the point at which the &quot;dpdk-devbind&quo=
-t;
-          seems to work fine, but I get the following error when I run
-          benchmark_rate.</div>
-        <div><br>
-        </div>
-        <div>I am=C2=A0running=C2=A0Ubuntu 20.04.LTS and installed DPDK 18.=
-11.11
-          by downloading/building from source. I built UHD (latest 4.0)
-          from source and it seemed happy finding DPDK and building with
-          DPDK support. It seems like a compatibility issue, but I can&#39;=
-t
-          figure it out. Any suggestions?</div>
-        <div>Rob</div>
-        <div><br>
-        </div>
-        <div><font face=3D"monospace">// *** this is the error on System 1<=
-/font></div>
-        <div><font face=3D"monospace">EAL: /usr/local/lib/libdpdk.so:
-            invalid ELF header<br>
-            EAL: FATAL: Cannot init plugins<br>
-            EAL: Cannot init plugins<br>
-          </font></div>
-        <div><font face=3D"monospace"><br>
-          </font></div>
-        <div><font face=3D"monospace">// this is the error on System 2
-            (nearly the same but different library)</font></div>
-        <div><font face=3D"monospace">EAL:
-            /usr/local/share/dpdk/x86_64-native-linuxapp-gcc/lib//librte_pm=
-d_ark.a:
-            invalid ELF header<br>
-            EAL: FATAL: Cannot init plugins<br>
-            EAL: Cannot init plugins<br>
-          </font></div>
-        <div><br>
-        </div>
-      </div>
-      <br>
-    </blockquote>
-    This would seem to indicate that something very horrible went wrong
-    in the build or DPDK--creating ELF headers that aren&#39;t correct for
-    the<br>
-    =C2=A0type of hardware they&#39;re being used on.<br>
-    <br>
-  </div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I&#8217;m using UHD 4.0 and building an FPGA for the=
+ E320 USRP.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m trying to follow the guide for debugging F=
+PGA images on the Ettus website AN-121.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m using the rfnoc_image_builder command to b=
+uild the image, and have added the -g option to open the GUI during the bui=
+ld process: udd_image_builder -7 e320_my_fpga.yml -t E320_1G -g<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">However the build runs to completion without stoppin=
+g to open up Vivado.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">uhd_image_builder -h shows that the option of -g or =
+&#8211;GUI is listed as opening the Vivado GUI during the build. I&#8217;ve=
+ tried both -g and &#8211;GUI and neither had any effect.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any ideas? AN-121 is a few years old, is the -g opti=
+on still supported by uhd_image_builder?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Mark<o:p></o:p></p>
+</div>
+<hr>
+This email and any files transmitted with it are confidential and intended =
+solely for the use of the individual or entity to whom they are addressed. =
+If you have received this email in error please notify the system manager.
+</body>
+</html>
 
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</div></blockquote></div></div></blockquote></div>
-</blockquote></div>
-</blockquote></div>
-
---0000000000001d714705ba51b01d--
+--_000_LNXP123MB372437DE53B4243C99065495CAB59LNXP123MB3724GBRP_--
 
 
---===============8868108712573455962==
+--===============4501992922422817064==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -408,5 +251,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============8868108712573455962==--
+--===============4501992922422817064==--
 
