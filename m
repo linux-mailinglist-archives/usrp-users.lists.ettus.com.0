@@ -2,39 +2,91 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF02130CDDB
-	for <lists+usrp-users@lfdr.de>; Tue,  2 Feb 2021 22:21:47 +0100 (CET)
-Received: from [::1] (port=50716 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A40B30D40C
+	for <lists+usrp-users@lfdr.de>; Wed,  3 Feb 2021 08:32:41 +0100 (CET)
+Received: from [::1] (port=54774 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l737J-0004HF-4d; Tue, 02 Feb 2021 16:21:45 -0500
-Received: from p-impout009aa.msg.pkvw.co.charter.net ([47.43.26.140]:38733
- helo=p-impout009.msg.pkvw.co.charter.net)
+	id 1l7CeT-00027L-C2; Wed, 03 Feb 2021 02:32:37 -0500
+Received: from mail-eopbgr60124.outbound.protection.outlook.com
+ ([40.107.6.124]:57506 helo=EUR04-DB3-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <dtrask1@tampabay.rr.com>)
- id 1l737E-0003yL-1H
- for usrp-users@lists.ettus.com; Tue, 02 Feb 2021 16:21:40 -0500
-Received: from localhost ([34.233.51.36]) by cmsmtp with ESMTP
- id 736YlrOtEgxBo736Ylz4xW; Tue, 02 Feb 2021 21:20:59 +0000
-X-Authority-Analysis: v=2.3 cv=eddDgIMH c=1 sm=1 tr=0
- a=TrnfHZhGi+cGSPqA0dbxTQ==:117 a=TrnfHZhGi+cGSPqA0dbxTQ==:17
- a=bpm26yrvxXUA:10 a=etiEgX_XAAAA:8 a=ayC55rCoAAAA:8 a=uORZ869ar7nJb_jMKm4A:9
- a=QEXdDO2ut3YA:10 a=pGLkceISAAAA:8 a=Gut1CNn68MLDmUXr_DIA:9
- a=OSCzxePNnae9ob6xQ8NeqTRz0K8=:19 a=-sNTUPEDM9WgjyuA:21 a=_W_S_7VecoQA:10
- a=MLbIUA-Bjd6y1alW9qBG:22 a=B_RyunTPg8udlmYm5Cu2:22
-Message-Id: <66920e5dda43f3e1e31ba45f5973ed611931c3d4@webmail>
-To: "'Marcus D. Leech'" <patchvonbraun@gmail.com>
-Cc: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
-X-Mailer: Atmail 
-X-Originating-IP: [204.115.183.4]
-X-Priority: 3
-Importance: Normal
-X-MSMail-Priority: Normal
-Date: Tue, 02 Feb 2021 21:20:58 +0000
+ (Exim 4.93) (envelope-from <rpblanco@indra.es>) id 1l7CeO-00023v-Nb
+ for usrp-users@lists.ettus.com; Wed, 03 Feb 2021 02:32:32 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hrpdu8pu9XS6o71g8EWuSDi42DqRd7fq+AhjKUKKuRs6NNRj4gUXDFVgYrVuA/uYYOGodLyst+eCuilVsd7oM7Em69bzrgDd27YR6g1dvbSKCbjWtWLd0WnQdCnXfEiTSogytcJZkAiyuZSeLFaigo35YJneRzUwUsy/y3mjzeAAGW7oJIK2SEURnpwJU4yXXYxsmBBk0at+TKI6rHMK07TO1174RR7dtg18aLBp08DMGm8Jrr8U98riYw210K7YgaeOWpdys71ZImiU8BVSC/AJv0+n4YKaM5Lf+DgQqnFaSd2SrP9SKcHm0gEUexKWgB8MMgI129hVpJx/r342iQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=szwRKnzjd7+xPwbCCqaus5+7NMPj/bWGZqlaUzfnQns=;
+ b=M6AsAofHAzl8annhl8hkbWoS2v4vKLQ/bffI/JwFfFVvO+AiYSsMrFmOAVuG17PNxzL5s9b7yl2bf5w9eqHxlr8hJXsnrBIaAX1IOdTZ2bnGqGoZ+zIjWlp1hUkghrQ761LqihTYTX4KYC4NNjfSEJhMRhRBF2p/5RANJnbbteHLPhF3PofG3H5iH1dqnjEby2lcchhW5AfjBegyDKuhBSmnxTQjj3hQfyza/px5xzhlnYCLclRn/Jot31lrgDmNr62ox3zZax0EUABPhBHS9g6PKjsKgcVUBVm0UAAF31RKkMSEDMStq1mECg92lI/yPnA93PpwWCSgJUPpYMC/rg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=indra.es; dmarc=pass action=none header.from=indra.es;
+ dkim=pass header.d=indra.es; arc=none
+Received: from AM0P193MB0308.EURP193.PROD.OUTLOOK.COM (2603:10a6:208:60::13)
+ by AM0P193MB0404.EURP193.PROD.OUTLOOK.COM (2603:10a6:208:66::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.17; Wed, 3 Feb
+ 2021 07:31:50 +0000
+Received: from AM0P193MB0308.EURP193.PROD.OUTLOOK.COM
+ ([fe80::2947:4292:a75d:c9fd]) by AM0P193MB0308.EURP193.PROD.OUTLOOK.COM
+ ([fe80::2947:4292:a75d:c9fd%6]) with mapi id 15.20.3805.026; Wed, 3 Feb 2021
+ 07:31:50 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: GPSDO and PPS on USRP N300
+Thread-Index: Adb5/OCCgBeh4rELQU+D2WzeOk7pTA==
+Date: Wed, 3 Feb 2021 07:31:50 +0000
+Message-ID: <AM0P193MB030882ECBD91A33E06D06D28BDB49@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM>
+Accept-Language: es-ES, en-US
+Content-Language: es-ES
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none header.from=indra.es;
+x-originating-ip: [94.126.240.2]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 094e72cf-c5d4-4dc1-f79a-08d8c815c56e
+x-ms-traffictypediagnostic: AM0P193MB0404:
+x-microsoft-antispam-prvs: <AM0P193MB040427DC5233E9B5C949E592BDB49@AM0P193MB0404.EURP193.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: l1CyrNAMnHpxCNb+w5y3H6MkXkqwxqr3T4gA/VuU+jt87N+V9HgxGvbP97o6fmfiUt37hXK8K7xShhWHrwEWFL7CRvPTVNs6nz+hv9IsnWabZJpBuL9ss1KDttTiBA3xlAbhIgrH9uzJbyvmReNQepcCKgS6lUgr4XDc2PwURDNqAzdNwUA20J3KuHUCrRjbyCA+J7oTNFaEAgz75TAypU8oquhPtL36LlFOciWWbP9h6T2XXhUOIligESRIm8rrE9TF/cnHx6sxTzSXwdme3IG5CpNRCm0rIoeGKcnVXwFfh0pu0y3AjhikErReEkB3YpeCsqMSgXiDz4Yfcw8xVdlNpMN1s9MintU4XuZkK/+7TnFyMb5Q0X4RvsnwA2G9PV51L8XkmRGfRmAnvyeDArwmUQKh6hLCZqtHkn2ZUW0QWSwWWlFQpxgD9asZhVtP781d9xGKWzkDhLEQX7UhxoD4JBoPlKKXhIprdoYeL+YSHYix7FGXyaA47JJfRMwwR1xOqq9JORF3K1vqzd4WDw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:AM0P193MB0308.EURP193.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(136003)(376002)(396003)(39860400002)(346002)(71200400001)(316002)(9686003)(19627235002)(5660300002)(55016002)(66556008)(76116006)(7696005)(33656002)(83380400001)(26005)(186003)(6916009)(86362001)(6506007)(478600001)(66476007)(2906002)(66946007)(52536014)(8936002)(8676002)(64756008)(66446008);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?T+NsOJrPpg9L6fSCFKCfrvcJxPx9ba3VyMpVFWi1saVeqJZbHuD8XBM16WjP?=
+ =?us-ascii?Q?B0IEwtuWMQW37DAE9G5UzJaKzvbVMj4AtDmGZqCFQWJwZwKd3i2ZXdxjJUkh?=
+ =?us-ascii?Q?k06W9qGpjMv/lgLGJ3zOLAzbdHepEh6pepA83UzuMOy2+16+qO7nigBhqeTE?=
+ =?us-ascii?Q?X2R1/rj6WlZvgA/TKW73pnj58R34ibH7X/Z9I5rznTNlz4VF1FpXx4rv34E6?=
+ =?us-ascii?Q?sTgH5PEfuW2cKZcvwIWzmrKJJRWh1V+YAeuSR2OO1nvOZlOz3C9sqfYEWbIe?=
+ =?us-ascii?Q?w2OZ64aYmqVHfaEijij0eNbkNrVJskZVFEXmhojrgBOj7y8UfLhihL9cQoRk?=
+ =?us-ascii?Q?Hv9VTCGIFbSUAcCjQ1olhNCtNcEo7zMLVQdtIaZr1EUKMKr7W7HJ2zfFzwMY?=
+ =?us-ascii?Q?BY6NTlhV8TPsRPxkN8VSWRF74syCrJNThlqlMiTWYqc5zr9qzewqELmpmTGP?=
+ =?us-ascii?Q?Mv/vMbKNqKmyHSrzv1qzXxnJibeIGWXE3Y+nSqhesW8Zb0Cn6+bjhLz+gWIK?=
+ =?us-ascii?Q?2E/ulUx1697T94rofOTRnhVpxStioELwaXZR9H6SjNwDs/oFnW02PQEMuO3k?=
+ =?us-ascii?Q?QFpCVMxCAJXFAPJwFEECt1yGu8N6/+eTWb/RXpyNOuYZIwYOK4KRTzoKipDO?=
+ =?us-ascii?Q?Sc/h7axlcgLe625rjna96Hwqy/Q4lrXn91vtg6E28hrkVLMJVsEgl6WWDSa7?=
+ =?us-ascii?Q?UKF9rL+lq4g9JGovhJ4ChE8xaBFahCOPWCVbt9gq0ko/LqYHkCu/Jgl+IN9Y?=
+ =?us-ascii?Q?eFwV0yUIxzU0v42Jtvs59kdELb2/UARcvCwedHOWVWDMebDbuqRTzeGvxdpd?=
+ =?us-ascii?Q?Tc8mIIFFPLI7xyLILRTL7X6HtkN/2wsounps7FwJv47bBmMc0wVWskKrSC8n?=
+ =?us-ascii?Q?BHKDukSOXGlR8vAgOccp6WvzQ10yjTHqYCjpvlwWxoknRlNkROBQABidJtN+?=
+ =?us-ascii?Q?RpyL523UvExzp/8DF90pByN50WzpkKwqWFRS/4/vuqswIpgAUJP86d4KEAw7?=
+ =?us-ascii?Q?efhWOBA6M95coUm+A1u/xidOMtY+tLDoAFSaXW6Anst7FwA=3D?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-CMAE-Envelope: MS4wfJr+GH6a25pmS84/+Q/fBMA7l1GfdUD0qgjBVVCZf4YbGA5C/YFkfRKCZwK0weSmD2u9Bup74maXyBntt+zbd7KPCGzutC3Mr93ukNDtYnoJNUbodvCt
- 7i6oa5LkbCGPQ/beVKZ5aQnd7kcNebb55Ag16qyRyxCxvwYm7HK8jtdbrgKkR6d+7jggsiojNmTVZwsGaYJi09bj81LPDO7NxjQ=
-Subject: Re: [USRP-users] Error Testing UHD Build on E310 with uhd_usrp_probe
+X-OriginatorOrg: indra.es
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM0P193MB0308.EURP193.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 094e72cf-c5d4-4dc1-f79a-08d8c815c56e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2021 07:31:50.4357 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 7808e005-1489-4374-954b-d3b08f193920
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: IqWs4nebtA2jk67Koajmc/PDuVCpBa+kXz83hzyLKVz9bgssXAjxNYhTH9ZofZ+PxaQ7+SfE2H9K9x7Ze8JiLQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0P193MB0404
+Subject: [USRP-users] GPSDO and PPS on USRP N300
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -46,9 +98,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Dennis Trask via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: dtrask1@tampabay.rr.com
-Content-Type: multipart/mixed; boundary="===============4071703950871551260=="
+From: "Puertas Blanco, Roberto via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Puertas Blanco, Roberto" <rpblanco@indra.es>
+Content-Type: multipart/mixed; boundary="===============9043854254724247036=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -62,185 +114,143 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4071703950871551260==
+--===============9043854254724247036==
+Content-Language: es-ES
 Content-Type: multipart/alternative;
- boundary="=_46174b28f76cafc60f4f1d7afc90fcdc"
+	boundary="_000_AM0P193MB030882ECBD91A33E06D06D28BDB49AM0P193MB0308EURP_"
 
---=_46174b28f76cafc60f4f1d7afc90fcdc
-Content-Type: text/plain; charset=UTF-8
+--_000_AM0P193MB030882ECBD91A33E06D06D28BDB49AM0P193MB0308EURP_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-From the root directory of the radio, I did: find . -name "ld-linux*"=0A=
-That command produced no results, either. =0AIf I am following the instr=
-uctions at=0Ahttps://kb.ettus.com/Software_Development_on_the_E3xx_USRP_=
--_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source,=0Ashould I expe=
-ct to find this library under=0A/home/root/newinstall/usr/lib? Or should=
- it be on the image installed=0Aon the SD card under /lib?=0AI have foll=
-owed the above instructions to the letter, except for one=0Achange. Afte=
-r I cloned gr-ettus, I made sure to checkout the maint-3.7=0Abranch, to=
- match the gnuradio version. However, I don't believe this=0Ashould have=
- any affect on the UHD cross-compile, should it?=0A=0A=09---------------=
---------------------------From: "Marcus D. Leech" =0A=0ATo: dtrask1@tamp=
-abay.rr.com=0ACc: "usrp-users@lists.ettus.com"=0ASent: Tuesday February=
- 2 2021 1:36:52PM=0ASubject: Re: [USRP-users] Error Testing UHD Build on=
- E310 with=0Auhd_usrp_probe=0A=0A On 02/02/2021 01:25 PM, dtrask1@tampab=
-ay.rr.com wrote:=0A  Actually, it is not there. I did a find on the enti=
-re root file=0Asystem and that file does not exist on the E310 device.=
- =0A=0A So, do a find on "ld-linux*"=0A=0A Either the compile built for=
- the wrong architecture, or your=0Afilesystem is missing the correct dyn=
-amic linker--although if that's=0Athe=0A case, most things on your syste=
-m wouldn't work.=0A=0A=09----------------------------------------- From:=
- "Marcus D. Leech"=0A To: dtrask1@tampabay.rr.com=0A Cc: "usrp-users@lis=
-ts.ettus.com"=0A Sent: Tuesday February 2 2021 1:14:12PM=0A Subject: Re:=
- [USRP-users] Error Testing UHD Build on E310 with=0Auhd_usrp_probe=0A=
-=0AOn 02/02/2021 12:53 PM, dtrask1@tampabay.rr.com wrote:=0A  Here is th=
-e output, Marcus: =0A root@ni-e31x-3199693:~/newinstall# file=0A/home/ro=
-ot/newinstall/usr/bin/uhd_usrp_probe=0A/home/root/newinstall/usr/bin/uhd=
-_usrp_probe: ELF 32-bit LSB=0Aexecutable, ARM, EABI5 version 1 (SYSV), d=
-ynamically linked,=0Ainterpreter /lib/ld-linux-armhf.so.3, for GNU/Linux=
- 2.6.32,=0ABuildID[sha1]=3D5c924895fbe10218be809ba29f88d7993fb117d7, wit=
-h=0Adebug_info, not stripped =0A root@ni-e31x-3199693:~/newinstall# whic=
-h uhd_usrp_probe=0A/home/root/newinstall/usr/bin/uhd_usrp_probe =0A Appr=
-eciate the help. =0A Dennis =0A=0A Hmm, see if:=0A=0A /lib/ld-linux-armh=
-f.so.3=0A=0A Is actually there and executable=0A=0A=09------------------=
------------------------ From: "Marcus D. Leech via=0AUSRP-users"=0A To:=
- usrp-users@lists.ettus.com=0A Cc:=0A Sent: Monday February 1 2021 4:06:=
-23PM=0A Subject: Re: [USRP-users] Error Testing UHD Build on E310 with=
-=0Auhd_usrp_probe=0A=0AOn 02/01/2021 04:01 PM, Dennis Trask via USRP-use=
-rs wrote:=0A=0A=09I am attempting to set up a development environment to=
- write software=0Afor the E310 by cross-compiling on Ubuntu 18.04. I am=
- using the=0Ainstructions here: =0A[1]https://kb.ettus.com/Software_Deve=
-lopment_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_fro=
-m_Source=0A[2] =0A=0A=09I have followed all the instructions to build UH=
-D and am now in the=0Asection "Mount and test the UHD build". When I run=
- uhd_usrp_probe on=0Athe E310, I get the following ouput: =0A=0A=09root@=
-ni-e31x-3199693:~/newinstall# uhd_usrp_probe  =0A=0A=09-sh: /home/root/n=
-ewinstall/usr/bin/uhd_usrp_probe: No such file or=0Adirectory =0A=0A=09=
-   If you do:=0A=0A file /home/root/newinstall/usr/bin/uhd_usrp_probe=0A=
-=0A What do you get?=0A=0A If you do:=0A=0A which uhd_usrp_probe=0A=0A W=
-hat do you get?=0A=0A=09I'm not sure where to look for the source of thi=
-s issue. Has anyone=0Aelse seen this or have an idea of what to look for=
-? =0A=0A=09Thanks, =0A=0A=09Dennis =0A=0A ______________________________=
-_________________=0A USRP-users mailing list=0A"mailto:USRP-users@lists.=
-ettus.com">USRP-users@lists.ettus.com=0A " [3]=0A[4]http://lists.ettus.c=
-om/mailman/listinfo/usrp-users_lists.ettus.com"=0A[5]> target=3D=0A "_bl=
-ank">=0A[6]http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettu=
-s.com=0A[7]=0A=0A=0A=0ALinks:=0A------=0A[1]=0Ahttps://kb.ettus.com/Soft=
-ware_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-=
-ettus_from_Source=0A[2]=0Ahttps://kb.ettus.com/Software_Development_on_t=
-he_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source=0A[=
-3] http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=0A=
-[4] http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-=0A[5] http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
-m=0A[6] http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om=0A[7] http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.=
-com=0A
+Hello,
 
---=_46174b28f76cafc60f4f1d7afc90fcdc
-Content-Type: text/html; charset=UTF-8
+Is there any way to get the PPS pulse from PS side  (ARM) in the USRP N300?=
+ I would like to know if the PPS is mapped through the /dev/pps or if it is=
+ embedded into GPSDO module.
+
+Thanks,
+Roberto
+
+________________________________
+
+Este correo electr?nico y, en su caso, cualquier fichero anexo al mismo, co=
+ntiene informaci?n de car?cter confidencial exclusivamente dirigida a su de=
+stinatario o destinatarios. Si no es vd. el destinatario indicado, queda no=
+tificado que la lectura, utilizaci?n, divulgaci?n y/o copia sin autorizaci?=
+n est? prohibida en virtud de la legislaci?n vigente. En el caso de haber r=
+ecibido este correo electr?nico por error, se ruega notificar inmediatament=
+e esta circunstancia mediante reenv?o a la direcci?n electr?nica del remite=
+nte.
+Evite imprimir este mensaje si no es estrictamente necesario.
+
+This email and any file attached to it (when applicable) contain(s) confide=
+ntial information that is exclusively addressed to its recipient(s). If you=
+ are not the indicated recipient, you are informed that reading, using, dis=
+seminating and/or copying it without authorisation is forbidden in accordan=
+ce with the legislation in effect. If you have received this email by mista=
+ke, please immediately notify the sender of the situation by resending it t=
+o their email address.
+Avoid printing this message if it is not absolutely necessary.
+
+--_000_AM0P193MB030882ECBD91A33E06D06D28BDB49AM0P193MB0308EURP_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html><body><div>From the root directory of the radio, I did: find . -na=
-me "ld-linux*"</div><div><br></div>That command produced no results, eit=
-her.&nbsp;<div><br></div><div>If I am following the instructions at&nbsp=
-;https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_R=
-FNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source, should I expect to find thi=
-s library under /home/root/newinstall/usr/lib? Or should it be on the im=
-age installed on the SD card under /lib?<div><br></div><div>I have follo=
-wed the above instructions to the letter, except for one change. After I=
- cloned gr-ettus, I made sure to checkout the maint-3.7 branch, to match=
- the gnuradio version. However, I don't believe this should have any aff=
-ect on the UHD cross-compile, should it?</div><div><br></div><div><br><b=
-r><div class=3D"reply-new-signature"></div><p>--------------------------=
----------------</p>From: "Marcus D. Leech" <patchvonbraun@gmail.com><br>=
-To: dtrask1@tampabay.rr.com<br>Cc: "usrp-users@lists.ettus.com"<br>Sent:=
- Tuesday February 2 2021 1:36:52PM<br>Subject: Re: [USRP-users] Error Te=
-sting UHD Build on E310 with uhd_usrp_probe<br><br>=0A<div class=3D"moz-=
-cite-prefix">On 02/02/2021 01:25 PM, <a class=3D"moz-txt-link-abbreviate=
-d">dtrask1@tampabay.rr.com</a>=0Awrote:<br></div>=0A<blockquote>=0AActua=
-lly, it is not there. I did a find on the entire root file=0Asystem and=
- that file does not exist on the E310 device.&nbsp;<br><br></blockquote>=
-=0ASo, do a find on "ld-linux*"<br><br>=0AEither the compile built for t=
-he wrong architecture, or your=0Afilesystem is missing the correct dynam=
-ic linker--although if=0Athat's the<br>=0A&nbsp; case, most things on yo=
-ur system wouldn't work.<br><br><br><blockquote>=0A<p>------------------=
------------------------</p>=0AFrom: "Marcus D. Leech"<br>=0ATo: <a class=
-=3D"moz-txt-link-abbreviated">dtrask1@tampabay.rr.com</a><br>=0ACc: <a c=
-lass=3D"moz-txt-link-rfc2396E">"usrp-users@lists.ettus.com"</a><br>=0A=
-=0ASent: Tuesday February 2 2021 1:14:12PM<br>=0ASubject: Re: [USRP-user=
-s] Error Testing UHD Build on E310 with=0Auhd_usrp_probe<br><br><div cla=
-ss=3D"moz-cite-prefix">On 02/02/2021 12:53 PM,=0A<a class=3D"moz-txt-lin=
-k-abbreviated">dtrask1@tampabay.rr.com</a>=0Awrote:<br></div>=0A<blockqu=
-ote>=0A<div>Here is the output, Marcus:</div>=0A<div><br></div>=0A<div>r=
-oot@ni-e31x-3199693:~/newinstall# file=0A/home/root/newinstall/usr/bin/u=
-hd_usrp_probe</div>=0A<div>/home/root/newinstall/usr/bin/uhd_usrp_probe:=
- ELF 32-bit LSB=0Aexecutable, ARM, EABI5 version 1 (SYSV), dynamically l=
-inked,=0Ainterpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 2.6.32,=0AB=
-uildID[sha1]=3D5c924895fbe10218be809ba29f88d7993fb117d7, with=0Adebug_in=
-fo, not stripped</div>=0A<div><br></div>=0A<div>root@ni-e31x-3199693:~/n=
-ewinstall# which uhd_usrp_probe</div>=0A<div>/home/root/newinstall/usr/b=
-in/uhd_usrp_probe</div>=0A<div><br></div>=0AAppreciate the help.=0A<div>=
-<br></div>=0A<div>Dennis</div>=0A<div><br></div>=0A</blockquote>=0A<br>=
-=0AHmm, see if:<br><br>=0A/lib/ld-linux-armhf.so.3<br><br><br>=0AIs actu=
-ally there and executable<br><br><br><blockquote>=0A<div>=0A<p>---------=
---------------------------------</p>=0AFrom: "Marcus D. Leech via USRP-u=
-sers"<br>=0ATo: <a class=3D"moz-txt-link-abbreviated">usrp-users@lists.e=
-ttus.com</a><br>=0ACc:<br>=0ASent: Monday February 1 2021 4:06:23PM<br>=
-=0ASubject: Re: [USRP-users] Error Testing UHD Build on E310 with=0Auhd_=
-usrp_probe<br><br><div class=3D"moz-cite-prefix">On 02/01/2021 04:01 PM,=
- Dennis Trask=0Avia USRP-users wrote:<br></div>=0A<blockquote>=0A<p><spa=
-n style=3D"font-family:Calibri, sans-serif;color:#000000;">I=0Aam attemp=
-ting to set up a development environment to write software=0Afor the E31=
-0 by cross-compiling on Ubuntu 18.04. I am using the=0Ainstructions here=
-:&nbsp;<a href=3D"https://kb.ettus.com/Software_Development_on_the_E3xx_=
-USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source"></a><a hre=
-f=3D"https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Buildi=
-ng_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source">https://kb.ettus.com/So=
-ftware_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_g=
-r-ettus_from_Source</a></span></p>=0A<p><span style=3D"font-family:Calib=
-ri, sans-serif;color:#000000;">&nbsp;</span></p>=0A<p><span style=3D"fon=
-t-family:Calibri, sans-serif;color:#000000;">I=0Ahave followed all the i=
-nstructions to build UHD and am now in the=0Asection&nbsp;"Mount and tes=
-t the UHD build". When I run=0Auhd_usrp_probe on the E310, I get the fol=
-lowing ouput:</span></p>=0A<p><span style=3D"font-family:Calibri, sans-s=
-erif;color:#000000;">&nbsp;</span></p>=0A<p class=3D"MsoNormal"><span st=
-yle=3D"font-family:Calibri, sans-serif;color:#000000;">root@ni-e31x-3199=
-693:~/newinstall#=0Auhd_usrp_probe&nbsp;</span></p>=0A<p class=3D"MsoNor=
-mal"><span style=3D"font-family:Calibri, sans-serif;color:#000000;">-sh:=
-=0A/home/root/newinstall/usr/bin/uhd_usrp_probe: No such file or=0Adirec=
-tory</span></p>=0A<p class=3D"MsoNormal"><span style=3D"font-family:Cali=
-bri, sans-serif;color:#000000;">&nbsp;</span></p>=0A<p class=3D"MsoNorma=
-l"><span style=3D"font-family:Calibri, sans-serif;color:#000000;">&nbsp;=
-</span></p>=0A</blockquote>=0AIf you do:<br><br>=0Afile /home/root/newin=
-stall/usr/bin/uhd_usrp_probe<br><br>=0AWhat do you get?<br><br>=0AIf you=
- do:<br><br>=0Awhich uhd_usrp_probe<br><br>=0AWhat do you get?<br><br><b=
-r><blockquote>=0A<p><span style=3D"font-family:Calibri, sans-serif;color=
-:#000000;">I'm=0Anot sure where to look for the source of this issue. Ha=
-s anyone=0Aelse seen this or have an idea of what to look for?</span></p=
->=0A<p><span style=3D"font-family:Calibri, sans-serif;color:#000000;">&n=
-bsp;</span></p>=0A<p><span style=3D"font-family:Calibri, sans-serif;colo=
-r:#000000;">Thanks,</span></p>=0A<p><span style=3D"font-family:Calibri,=
- sans-serif;color:#000000;">Dennis</span></p>=0A<br><br>=0A_____________=
-__________________________________<br>=0AUSRP-users mailing list<br><a c=
-lass=3D"moz-txt-link-rfc2396E">"mailto:USRP-users@lists.ettus.com"</a>&g=
-t;<a class=3D"moz-txt-link-abbreviated">USRP-users@lists.ettus.com</a><b=
-r><a class=3D"moz-txt-link-rfc2396E" href=3D"http://lists.ettus.com/mail=
-man/listinfo/usrp-users_lists.ettus.com">=0A"</a><a href=3D"http://lists=
-.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"></a><a href=3D"h=
-ttp://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http:=
-//lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"</a>&gt;=
-=0Atarget=3D<br>=0A"_blank"&gt;<a href=3D"http://lists.ettus.com/mailman=
-/listinfo/usrp-users_lists.ettus.com"></a><a href=3D"http://lists.ettus.=
-com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/=
-mailman/listinfo/usrp-users_lists.ettus.com</a><br></blockquote>=0A<br><=
-/div>=0A</blockquote>=0A<br></blockquote>=0A<br></patchvonbraun@gmail.co=
-m></div></div></body></html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EstiloCorreo17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"ES" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello, <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Is there any way to get the PPS=
+ pulse from PS side &nbsp;(ARM) in the USRP N300? I would like to know if t=
+he PPS is mapped through the /dev/pps or if it is embedded into GPSDO modul=
+e. &nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Roberto<o:p></o:p></span></p>
+</div>
+<br>
+<hr>
+<font face=3D"Arial" color=3D"Gray" size=3D"1"><br>
+Este correo electr&oacute;nico y, en su caso, cualquier fichero anexo al mi=
+smo, contiene informaci&oacute;n de car&aacute;cter confidencial exclusivam=
+ente dirigida a su destinatario o destinatarios. Si no es vd. el destinatar=
+io indicado, queda notificado que la lectura, utilizaci&oacute;n,
+ divulgaci&oacute;n y/o copia sin autorizaci&oacute;n est&aacute; prohibida=
+ en virtud de la legislaci&oacute;n vigente. En el caso de haber recibido e=
+ste correo electr&oacute;nico por error, se ruega notificar inmediatamente =
+esta circunstancia mediante reenv&iacute;o a la direcci&oacute;n electr&oac=
+ute;nica del
+ remitente.<br>
+Evite imprimir este mensaje si no es estrictamente necesario.<br>
+<br>
+This email and any file attached to it (when applicable) contain(s) confide=
+ntial information that is exclusively addressed to its recipient(s). If you=
+ are not the indicated recipient, you are informed that reading, using, dis=
+seminating and/or copying it without
+ authorisation is forbidden in accordance with the legislation in effect. I=
+f you have received this email by mistake, please immediately notify the se=
+nder of the situation by resending it to their email address.<br>
+Avoid printing this message if it is not absolutely necessary.<br>
+</font>
+</body>
+</html>
 
---=_46174b28f76cafc60f4f1d7afc90fcdc--
+--_000_AM0P193MB030882ECBD91A33E06D06D28BDB49AM0P193MB0308EURP_--
 
 
-
---===============4071703950871551260==
+--===============9043854254724247036==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -251,6 +261,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4071703950871551260==--
-
+--===============9043854254724247036==--
 
