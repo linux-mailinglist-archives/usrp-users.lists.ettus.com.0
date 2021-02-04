@@ -2,51 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A8D030FBF0
-	for <lists+usrp-users@lfdr.de>; Thu,  4 Feb 2021 19:52:51 +0100 (CET)
-Received: from [::1] (port=42082 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BF1630FD3F
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Feb 2021 20:50:12 +0100 (CET)
+Received: from [::1] (port=42480 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l7jkF-0003Oo-S7; Thu, 04 Feb 2021 13:52:47 -0500
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:32833)
+	id 1l7kdk-00077S-Lt; Thu, 04 Feb 2021 14:50:08 -0500
+Received: from mail-qk1-f172.google.com ([209.85.222.172]:40414)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <bpadalino@gmail.com>) id 1l7jkC-0003L0-Fz
- for usrp-users@lists.ettus.com; Thu, 04 Feb 2021 13:52:44 -0500
-Received: by mail-ot1-f53.google.com with SMTP id 63so4480515oty.0
- for <usrp-users@lists.ettus.com>; Thu, 04 Feb 2021 10:52:24 -0800 (PST)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1l7kdh-00073M-Gw
+ for usrp-users@lists.ettus.com; Thu, 04 Feb 2021 14:50:05 -0500
+Received: by mail-qk1-f172.google.com with SMTP id u20so4571888qku.7
+ for <usrp-users@lists.ettus.com>; Thu, 04 Feb 2021 11:49:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=c5H5Sav0eM5jct9BQLAnGBAFGO3EPP6PqgMLcKwmOu0=;
- b=GwmEUtm0Wm4UumYhNS/Q8yELrrNlsIN8CziXxqoezsT+BG3LGlMzAT7R79iWYrITP+
- /vPeVOoDnIRhZBnypGNYPjlfy+SZm97qj6E3xxtbwC2BWi/z8M9HPvfVwywedITdwNlQ
- LfcJf1pcSTCcATW6o5ODplyLoeQxkSW/zWlHK/vP5ZYAuTK5+WiT3M+kOhqwaewd+UuL
- WMtUksKOH2GMJHfqvQ57H3N3w+Xm8+7+zCvphxNIeyDNwj1Ffs+S7p2jkVsZUEmjjf8T
- L30ynZ4y3dXXNh2/+H9OuPX+wT9ekG6KGbVFS0VOR9ZJJP/3vHJHmlja6iDSlnRtq7uy
- 7Ipw==
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=euMl9rXLDvV5AdviDT+bQrbswQwQqJnWRKIwLRheiDM=;
+ b=GR1R6H3X80ryUt3pr2WcxQwRiDKJkoRXh+pvd9wT4UD/5wdeYEeC/YhW74ZLI+1yMu
+ qc/BA7gNU0IciVEGvOHMrMV0aQdhQMOxLOjsXqtghj5RBwyVkJol+P/WMC3EygmqebNX
+ TBJRR/Hx0DTqs4Yu1u5LxTzxC3Og4hoxY4lWoBXxj5twJFem6WYI/2i5oloOBOQ86vDv
+ gtP4jxKqvATZlFC67qEPYUo9IIJhoJFNlgbq/zQ5BsRGgOLC1CBXsFy3MuqerxaWUu3+
+ qwxM9p0IKAZvijDioiNoa8kVMnLByIaUSqWMxkaSLVUnJiTASwxUB6h0RK+XAYSIrk2j
+ J+JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=c5H5Sav0eM5jct9BQLAnGBAFGO3EPP6PqgMLcKwmOu0=;
- b=VkSvBSnbma2L51/JTeE2Yv9BgU5+ujXPJX1aQIBxvv8UTNX5uS9+DqFQS3TdXtmhnv
- ScGiAvA7h4PkAsB/7zqTo28QR/C3rz6CasDA3MXeka36U8ndS3THzB7+lzXst7f8xios
- bcpX/2UTiZ328m1ZoB3+GbhyOwL75eRr38jlFsJdaficwJuAgZORVKjfKbuKTMxyRWGF
- 3FYqWV1gP9jqC89fdF1Yd+FaH+mRULEU/vASU6F53Ba8+6FCShjrn0fRy5hkOsSYmBaD
- bFNYjmICIPf9CwlauWa71LQn9m0ycrxhWChpBkiMq+023u2Wl4RiS9iDCxwku8hOuj0D
- PYgA==
-X-Gm-Message-State: AOAM532n3Spg67OL5P0DFXupH6tbGchukhFsBn+bDvhTTk+ZYHH2HUtp
- O/s9I4FLEKAJKC+QTLJO5iDHSlExOQ2BtI7KLb8=
-X-Google-Smtp-Source: ABdhPJwmTS+VJfmATzTsi0sKOcZUyIbuL/C+plw28tlM7cIikYU9jJSTujbKQtmiti0gaAn9IZwnoSArCnpP/Oofcqw=
-X-Received: by 2002:a9d:3d36:: with SMTP id a51mr596580otc.131.1612464723697; 
- Thu, 04 Feb 2021 10:52:03 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=euMl9rXLDvV5AdviDT+bQrbswQwQqJnWRKIwLRheiDM=;
+ b=eb0iNWTk7/dmSPChv/F5Sp/JmaFAif9Jfa8yn+SLPhbtjh8LpNg0Za6wWs1RXiyOhy
+ tsFNi2YyhkNFWYJT9M1wt/RHpQwfcYVA1eZbRLdMFOFm8khPxsLLhuaCk8IwiK2L9M8t
+ qxj7IlJEimXFpYxtvcEHf57hBODWagpDvSXPYB21xIfeFiBUQJ89rYzeRKDH45cN2ju4
+ FWUP2EhqMl+vNDW1NK3Oh7XrwonyspDzngOCXDeIF0weREBT/FPbu/MBBHHAB1afqDVx
+ FjrrCXyZHig8+vCGX2qtREJAtUzsUgcJTiUTDgHC2P+CmSs6CW+ZZg9xl+1arqGo8zs3
+ JFjA==
+X-Gm-Message-State: AOAM530avu20d6FRTRKwUEQBoIHt+SkS0K9EsXowvoRzzaqKbsqMAdV4
+ yyQjbF2ZuoFfp1ArKsSQMBIN61V/ps8=
+X-Google-Smtp-Source: ABdhPJzM+bdEnt7RZ55+zx9uSadEpBVO9Kl8hypUhekvGeZhqSdDeqmuj4cR7rOmVu5A3tGJzt9A5Q==
+X-Received: by 2002:a37:9a14:: with SMTP id c20mr806587qke.11.1612468164790;
+ Thu, 04 Feb 2021 11:49:24 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id i17sm5553218qtg.77.2021.02.04.11.49.24
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 04 Feb 2021 11:49:24 -0800 (PST)
+Message-ID: <601C4FC3.1090501@gmail.com>
+Date: Thu, 04 Feb 2021 14:49:23 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <580D94C5-BA72-4A10-8CFA-274AF428B90D@contoso.com>
-In-Reply-To: <580D94C5-BA72-4A10-8CFA-274AF428B90D@contoso.com>
-Date: Thu, 4 Feb 2021 13:51:52 -0500
-Message-ID: <CAEXYVK6Ohh=7u1Xmq-=XGzFdj3tV0NXocjkqrdP3ruUZfdnhWw@mail.gmail.com>
-To: "Askar, Ramez" <ramez.askar@hhi.fraunhofer.de>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] RFNoC 4 rfnocmodtool
+To: dtrask1@tampabay.rr.com
+CC: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+References: <c8e4246ff9817392e080758fedf65d9d342dff3a@webmail>
+In-Reply-To: <c8e4246ff9817392e080758fedf65d9d342dff3a@webmail>
+Subject: Re: [USRP-users] Error Testing UHD Build on E310 with uhd_usrp_probe
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -58,9 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6449225938907364115=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8623510829676766170=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,80 +83,157 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6449225938907364115==
-Content-Type: multipart/alternative; boundary="00000000000011a1f805ba8733bb"
+This is a multi-part message in MIME format.
+--===============8623510829676766170==
+Content-Type: multipart/alternative;
+ boundary="------------060503010406080402040903"
 
---00000000000011a1f805ba8733bb
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------060503010406080402040903
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 4, 2021 at 1:15 PM Askar, Ramez via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Dear Sir or Madam,
+On 02/04/2021 12:12 PM, dtrask1@tampabay.rr.com wrote:
+> Good info. Thanks. I am attempting to burn a new image to the SD card. 
+> I 
+> downloaded https://files.ettus.com/binaries/cache/e3xx/meta-ettus-v3.14.1.1/e3xx_e320_sdimg_default-v3.14.1.1.zip 
+> which contains usrp_e320_fs.sdimg. Will this work to boot my e310?
 >
+> Dennis
 >
+I'm going to say "almost certainly YES".  I haven't had a chance to try 
+that image, and my lab is currently in a state of flux--we're moving
+   to a new location and everything is in turmoil, so I can't burn that 
+image myself right now.
+
+
+> -----------------------------------------
 >
-> I would like to use one of the available FPGA blocks from Ettus =E2=80=93=
- such as
-> FIR filter -- to customize my FPGA image, and add the corresponding contr=
-ol
-> driver for C++ application and Gnuradio. However, after creating newmod
-> with rfnocmodtool, I have tried to add fir filter block, the tool is not
-> aware about the existing blocks. Instead, the rfnocmodtool has created a
-> module from scratch called FIR. In other words, it did not import the FIR
-> module that is offered by Ettus team. Is there any other way of doing thi=
-s?
-> How can add a OOT RFNoC FIR control module to gnuradio?
+> From: "Marcus D. Leech"
+> To: dtrask1@tampabay.rr.com
+> Cc: "usrp-users@lists.ettus.com"
+> Sent: Wednesday February 3 2021 9:25:58PM
+> Subject: Re: [USRP-users] Error Testing UHD Build on E310 with 
+> uhd_usrp_probe
+>
+> On 02/02/2021 04:20 PM, dtrask1@tampabay.rr.com wrote:
+> > From the root directory of the radio, I did: find . -name "ld-linux*"
+> >
+> > That command produced no results, either.
+> >
+> > If I am following the instructions
+> > at 
+> https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source,
+> > should I expect to find this library under
+> > /home/root/newinstall/usr/lib? Or should it be on the image installed
+> > on the SD card under /lib?
+> >
+> > I have followed the above instructions to the letter, except for one
+> > change. After I cloned gr-ettus, I made sure to checkout the maint-3.7
+> > branch, to match the gnuradio version. However, I don't believe this
+> > should have any affect on the UHD cross-compile, should it?
+> >
+> >
+> So, here is what I have on my E310:
+>
+> root@plood:~# find /lib -name *ld-*
+> /lib/ld-2.21.so
+> /lib/.debug/ld-2.21.so
+> /lib/ld-linux-armhf.so.3
+>
+> I think your E310 filesystem may not be quite correct.
 >
 
-Your request is a little confusing.  Do you mind clarifying?
 
-Do you want to build a new FPGA image with the RFNoC FIR that Ettus already
-made, or do you want to create your own custom module which uses a Xilinx
-FIR filter from their FIR compiler?
+--------------060503010406080402040903
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-Brian
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 02/04/2021 12:12 PM,
+      <a class="moz-txt-link-abbreviated" href="mailto:dtrask1@tampabay.rr.com">dtrask1@tampabay.rr.com</a> wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:c8e4246ff9817392e080758fedf65d9d342dff3a@webmail"
+      type="cite">Good info. Thanks. I am attempting to burn a new image
+      to the SD card. I
+      downloaded <a class="moz-txt-link-freetext" href="https://files.ettus.com/binaries/cache/e3xx/meta-ettus-v3.14.1.1/e3xx_e320_sdimg_default-v3.14.1.1.zip">https://files.ettus.com/binaries/cache/e3xx/meta-ettus-v3.14.1.1/e3xx_e320_sdimg_default-v3.14.1.1.zip</a>
+      which contains usrp_e320_fs.sdimg. Will this work to boot my e310?
+      <div><br>
+      </div>
+      <div>Dennis</div>
+      <div><br>
+      </div>
+    </blockquote>
+    I'm going to say "almost certainly YES".  I haven't had a chance to
+    try that image, and my lab is currently in a state of flux--we're
+    moving<br>
+      to a new location and everything is in turmoil, so I can't burn
+    that image myself right now.<br>
+    <br>
+    <br>
+    <blockquote
+      cite="mid:c8e4246ff9817392e080758fedf65d9d342dff3a@webmail"
+      type="cite">
+      <div>
+        <p>-----------------------------------------</p>
+        From: "Marcus D. Leech" <patchvonbraun@gmail.com><br>
+          To: <a class="moz-txt-link-abbreviated" href="mailto:dtrask1@tampabay.rr.com">dtrask1@tampabay.rr.com</a><br>
+          Cc: <a class="moz-txt-link-rfc2396E" href="mailto:usrp-users@lists.ettus.com">"usrp-users@lists.ettus.com"</a><br>
+          Sent: Wednesday February 3 2021 9:25:58PM<br>
+          Subject: Re: [USRP-users] Error Testing UHD Build on E310 with
+          uhd_usrp_probe<br>
+          <br>
+          On 02/02/2021 04:20 PM, <a class="moz-txt-link-abbreviated" href="mailto:dtrask1@tampabay.rr.com">dtrask1@tampabay.rr.com</a> wrote:<br>
+          &gt; From the root directory of the radio, I did: find . -name
+          "ld-linux*"<br>
+          &gt;<br>
+          &gt; That command produced no results, either.<br>
+          &gt;<br>
+          &gt; If I am following the instructions<br>
+          &gt; at <a moz-do-not-send="true"
+href="https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source,">https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source,</a><br>
+          &gt; should I expect to find this library under<br>
+          &gt; /home/root/newinstall/usr/lib? Or should it be on the
+          image
+          installed<br>
+          &gt; on the SD card under /lib?<br>
+          &gt;<br>
+          &gt; I have followed the above instructions to the letter,
+          except
+          for one<br>
+          &gt; change. After I cloned gr-ettus, I made sure to checkout
+          the
+          maint-3.7<br>
+          &gt; branch, to match the gnuradio version. However, I don't
+          believe this<br>
+          &gt; should have any affect on the UHD cross-compile, should
+          it?<br>
+          &gt;<br>
+          &gt;<br>
+          So, here is what I have on my E310:<br>
+          <br>
+          root@plood:~# find /lib -name *ld-*<br>
+          /lib/ld-2.21.so<br>
+          /lib/.debug/ld-2.21.so<br>
+          /lib/ld-linux-armhf.so.3<br>
+          <br>
+          I think your E310 filesystem may not be quite correct.<br>
+          <br>
+        </patchvonbraun@gmail.com></div>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
---00000000000011a1f805ba8733bb
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Feb 4, 2021 at 1:15 PM Askar, Ram=
-ez via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-us=
-ers@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex">
+--------------060503010406080402040903--
 
 
-
-
-
-<div lang=3D"en-DE" style=3D"overflow-wrap: break-word;">
-<div class=3D"gmail-m_8399973875273614662WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"DE">Dear Sir or Madam,<u></u><u></u></=
-span></p>
-<p class=3D"MsoNormal"><span lang=3D"DE"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I would like to use one of the =
-available FPGA blocks from Ettus =E2=80=93 such as FIR filter -- to customi=
-ze my FPGA image, and add the corresponding control driver for C++ applicat=
-ion and Gnuradio. However, after creating newmod
- with rfnocmodtool, I have tried to add fir filter block, the tool is not a=
-ware about the existing blocks. Instead, the rfnocmodtool has created a mod=
-ule from scratch called FIR. In other words, it did not import the FIR modu=
-le that is offered by Ettus team.
- Is there any other way of doing this? How can add a OOT RFNoC FIR control =
-module to gnuradio?</span></p></div></div></blockquote><div><br></div><div>=
-Your request is a little confusing.=C2=A0 Do you mind clarifying?</div><div=
-><br></div><div>Do you want to build a new FPGA image with the RFNoC FIR th=
-at Ettus already made, or do you want to create your own custom module whic=
-h uses a Xilinx FIR filter from their FIR compiler?</div><div><br></div><di=
-v>Brian</div></div></div>
-
---00000000000011a1f805ba8733bb--
-
-
---===============6449225938907364115==
+--===============8623510829676766170==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -158,5 +244,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6449225938907364115==--
+--===============8623510829676766170==--
 
