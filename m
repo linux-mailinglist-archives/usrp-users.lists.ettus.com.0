@@ -2,52 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3547730F506
-	for <lists+usrp-users@lfdr.de>; Thu,  4 Feb 2021 15:33:58 +0100 (CET)
-Received: from [::1] (port=39810 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9A7730F528
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Feb 2021 15:40:23 +0100 (CET)
+Received: from [::1] (port=39866 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l7fhh-0004gw-VU; Thu, 04 Feb 2021 09:33:53 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:45317)
+	id 1l7fny-0005JZ-Bf; Thu, 04 Feb 2021 09:40:22 -0500
+Received: from mail-oo1-f47.google.com ([209.85.161.47]:39242)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1l7fhd-0004bb-AT
- for usrp-users@lists.ettus.com; Thu, 04 Feb 2021 09:33:49 -0500
-Received: by mail-oi1-f176.google.com with SMTP id m7so3837769oiw.12
- for <usrp-users@lists.ettus.com>; Thu, 04 Feb 2021 06:33:29 -0800 (PST)
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1l7fnu-00059P-Dc
+ for usrp-users@lists.ettus.com; Thu, 04 Feb 2021 09:40:18 -0500
+Received: by mail-oo1-f47.google.com with SMTP id z36so804725ooi.6
+ for <usrp-users@lists.ettus.com>; Thu, 04 Feb 2021 06:39:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=yC9yYIdFrInWeCd2qQTTDQ7PkCn3YAbyKe34xkLFU2g=;
- b=WauOaytLdgFQmw4NOl5mUFrTDcHjvxo/mbJUiiHi9e7+QIspCp6eDlKKnuSThtnuRw
- P/vxPWEG2jjEHFdMsLA3CKYt03oZYO5tvEuNAb/2DezE3aiiY8ULo1uMqKQOoxzt1UpL
- qV21d3z+6aP3PEkQfNvAVrql86Sg/dtjOn0z2bj7Xp7r/bhE/T46te6Ek8gtE94tnBbd
- 7CBauUzJA0fQL/o+R0FfR1xugNRC4752eHDw31CVvWqH+NTKFlYvjZWY2Uk3rmWrIybf
- BxUPhtgrNtdUAayKCPtxvTI82spF34ROQin5WVYdltPcv9qsMxPbp4K11pK09bLM1yhm
- wvaw==
+ :cc; bh=8bDFUb/+e40ah1nOYeol8Uv3r8P1KAmAz2qVBJvKXTc=;
+ b=FUknD7kf0bCPV70kWfIev0Kj36r8TExCYQNNinW3XjzHDv7SBdhDOVKdqEmXdK/MOT
+ Ao5oBZ7pot2UFhG1y98hE6699K/NdDA6XQJrgskO8GMEpYvUmiiR8LcaH5yDl5R6h6fy
+ Cw3rU0W/i4IoCgnBMZPAZQQsPPLHclJBzJ5R6gDDZTlG2QV0zl7wV6dT3HxeN6kh1Ih0
+ iqMpcMOAdooXU0DiRAQRxxfjrnauSLnaLnSdgX0FoMGrzdhu3yV4jO1gASPZnWQtvN7f
+ 99XH2kxUvjIctHr6DoK/V6Q+DF7kfBPMRhzDAUW8LSttD3SVPzdXt2/R4+IpbTfBgflO
+ Hf2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=yC9yYIdFrInWeCd2qQTTDQ7PkCn3YAbyKe34xkLFU2g=;
- b=iIPVQ3dj2D4lxEidIyGAyRg5h3VFoPQue7yu3s8xHgNF/3lYZixptQWxlMPkDVMQt2
- 6u2WMPJ+oKTiO2Okd1e2JGnVWU1MqcMwo8Ozeh7w1WR1EpnkPJG2Mhy/Namz2TOTxkUt
- LmWXsWPV3RkYsHht/ErKmzIxHD7mew8XMMHSXhHp75OGV1Pmzi9QbkbuwC9bZLB69vvv
- MNJ8zLS/ngECcPkHI2FQbzP9eLh/MnbOPQ8GDY8POw+8riuYdMan0QFilfFEy1O6PTL3
- 3GLcB0DLjU9d+YL+uey8LhgKMJ3i8awLtkehgkI+6pXtxhhRbG5kwUc3MjxGdiXjfFay
- CNqA==
-X-Gm-Message-State: AOAM53082pUPRvQjdXqvM9pIltsIbPjVodjkkCxv9e6XYita46NuspZx
- SrXVoV+cy2UCm5l+2rPLt3ogYkyWzHwooqMwYfMRrA==
-X-Google-Smtp-Source: ABdhPJwdc3LeIpZTsyVTB1GZHPwGFMHH57VpW4MGyqoRiTCSmEhJ1sn5WXZ/ai6/LMIKUkGtpi/+iItPiTN1RZM5xBI=
-X-Received: by 2002:aca:6089:: with SMTP id u131mr1739616oib.150.1612449188378; 
- Thu, 04 Feb 2021 06:33:08 -0800 (PST)
+ bh=8bDFUb/+e40ah1nOYeol8Uv3r8P1KAmAz2qVBJvKXTc=;
+ b=Xxf3V7gzXXxAeroRQ61GSEsXLGVrSQyoZvT8neo8JijsWwuf4N5hywkDtbzDq16c29
+ nOU+Ipj9RHmnMxF0PdtTjJBboH7fqnzQMyYvbifPEhmiq8dqPyUssAlGlpwBKzDn7Vhi
+ t5s3mWDYZs7nR4pzfkhUnl+ScRULo0i5uMM+nzBpNKIxAV4XobtgacmPaLYOXbWZ7usV
+ 6/6g9yUNwrsCIP4vqeXSdoWlN5/2k3rTkkVTA5jbnbtRQRjhPYVjpVz+s8VcvSdUgBBl
+ BUiFgwBLkSc4TyW/PVpACpC19xPMF0rWxx4eyNDG0H2FzsUI01ktcioSrjT6z+kyfORp
+ PgvA==
+X-Gm-Message-State: AOAM531s1CVHlusp6r1TcLuqzSgUN+uVPx1b4ogjrI0V7EGPP8pu+BZA
+ 7limdmL4nOxvaJlihFQNi6xniI6TfXG+mqXGZgIFmw==
+X-Google-Smtp-Source: ABdhPJyaOskhJ+zb+QKvgY4fBCZo2AN/0rV+Yo8r+iUk3uhLYhtnmPOaEbh2pLlOKD4CRSLxzpWYU4BZDlbLBsmfy1M=
+X-Received: by 2002:a05:6820:283:: with SMTP id
+ q3mr5873007ood.13.1612449577444; 
+ Thu, 04 Feb 2021 06:39:37 -0800 (PST)
 MIME-Version: 1.0
 References: <CAOLzfSg88FT3Cm_-Dd0jL__BchiuGhR03jLW1nxCv5N3O-TQjg@mail.gmail.com>
  <84B751A1-3137-41AA-91FF-AAAEB03C7927@ettus.com>
  <CAOLzfSjROwto1SRtXa=H1ce6pRZssLYKF5mjQQrTSHdqOBXgrA@mail.gmail.com>
  <CAGNhwTMoUyL2jpAY-GXYBY43+h9Y2QyU8BX5Pe-Vn2bMMy+vpg@mail.gmail.com>
  <CAOLzfSj2Qa5K4NLwJx44Q=x9Vr-0iwV5EHz-k50Ag1=m6UP3SQ@mail.gmail.com>
-In-Reply-To: <CAOLzfSj2Qa5K4NLwJx44Q=x9Vr-0iwV5EHz-k50Ag1=m6UP3SQ@mail.gmail.com>
-Date: Thu, 4 Feb 2021 09:32:57 -0500
-Message-ID: <CAB__hTQq4iP1yJWVE1iqVj0oxn_2pmLUt=tRrLQrfUkMX+7J6g@mail.gmail.com>
+ <CAB__hTQq4iP1yJWVE1iqVj0oxn_2pmLUt=tRrLQrfUkMX+7J6g@mail.gmail.com>
+In-Reply-To: <CAB__hTQq4iP1yJWVE1iqVj0oxn_2pmLUt=tRrLQrfUkMX+7J6g@mail.gmail.com>
+Date: Thu, 4 Feb 2021 09:39:26 -0500
+Message-ID: <CAB__hTRm82m7pLmffmiNFoz3zbPZW1WAVdV2011hNzqCzuqNyA@mail.gmail.com>
 To: Patrick Kane <prkane92@gmail.com>
 Subject: Re: [USRP-users] N321 QSFP+ XQ image network connection
 X-BeenThere: usrp-users@lists.ettus.com
@@ -64,7 +66,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
 From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Rob Kossler <rkossler@nd.edu>
 Cc: USRP list <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4573795925864495075=="
+Content-Type: multipart/mixed; boundary="===============7819787150907928130=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,314 +80,339 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4573795925864495075==
-Content-Type: multipart/alternative; boundary="00000000000017d1fc05ba8395b6"
+--===============7819787150907928130==
+Content-Type: multipart/alternative; boundary="0000000000004882b405ba83ac23"
 
---00000000000017d1fc05ba8395b6
+--0000000000004882b405ba83ac23
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Pat,
-Are you using fiber or copper to connect?  If you are using fiber, it seems
-to me it could work with a three QSFP optical transceivers and three MTP/LC
-breakout fibers that you would connect via couplers such that Host Lanes 0
-and 1 go to the first N321 Lanes 0 and 1 while the Host Lanes 2 and 3 go to
-the second N321 Lanes 0 and 1.  The host NIC would be configured 1x4.  Note
-that I have not done this, but I am planning to purchase N321s soon and so
-I am interested in this topic.
+I should add that when I said "I have not done this", I meant with N321s in
+this proposed configuration.  However, I am presently using an XL710 (QDA1)
+with a QSFP+ optical transceiver and MTP/LC breakout fiber to connect to
+two N310s (using SFP+ optical transceivers).  I have done this both with
+single-mode and multimode fiber.
 Rob
 
-On Wed, Feb 3, 2021 at 5:34 PM Patrick Kane via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+On Thu, Feb 4, 2021 at 9:32 AM Rob Kossler <rkossler@nd.edu> wrote:
 
-> I still cannot use a single 2-port QSFP+ NIC to connect to 2x  N321s.
-> Using the Intel tools to set the NIC to 2x2x10, the NIC doesn't recognize
-> the second physical port as a valid connection to a USRP, but works as a
-> loopback or a connection to another NIC. I asked Intel regarding the issu=
-es
-> to see if we were configuring the NIC incorrectly, and this is the respon=
-se
-> we got:
->
-> *Response from Intel on XL710-QDA2*
->
-> =E2=80=9CWhen configured for 2x2x10 the lanes are split between the ports=
-. The A
-> configuration utilizes lanes 1 and 2 on the top port and lanes 3 and 4 on
-> the bottom port. These correlate to the physical connections on the QSFP+
-> module. If you are able to configure the port of the other device to
-> utilize lanes 3 and 4, then it should be able to connect to the bottom po=
-rt
-> in the A configuration.=E2=80=9D
->
->
->
-> *Problem:* XQ FPGA image doesn=E2=80=99t accept connections from lanes 2 =
-and 3,
-> just 0 and 1. This prevents the bottom port on the Intel NIC from working
-> in the 2x2x10 configuration:
->
->
-> InterfaceHGXGWXXQAQ
-> SFP+ 0 1 GbE 10 GbE White Rabbit White Rabbit 10 GbE
-> SFP+ 1 10 GbE 10 GbE 10 GbE Unused 10 GbE
-> QSFP+ lane 0 Unused Unused Unused 10 GbE Aurora
-> QSFP+ lane 1 Unused Unused Unused 10 GbE Aurora
-> QSFP+ lane 2 Unused Unused Unused *Unused* Aurora
-> QSFP+ lane 3 Unused Unused Unused *Unused* Aurora
-> In the 2 N321 configuration, lane 2 and 3 are valid, but point to a
-> different USRP. I'm hoping theres a UHD or FW change that can prevent the
-> QSFP->2x10G breakout cable because that defeats the purpose of using a
-> QSFP+ NIC instead of a 4-port 10G NIC (Intel X710-DA4)
->
-> Thanks,
-> Pat
->
-> On Tue, Nov 24, 2020 at 1:01 PM Michael Dickens <michael.dickens@ettus.co=
-m>
-> wrote:
->
->> Hi Pat - I'm glad that info helped!
->>
->> Yes, I plan on adding this information into the N32x Getting Started
->> Guide, once I have a better handle on it. Right now I have just a few da=
-ta
->> points & those are not consistent! and I don't know why! Thus ...
->>
->> Which Intel QSFP+ utility did you end up using? There are 2 that I can
->> find:
->>
->> 1) EPCT:
->> https://downloadcenter.intel.com/download/28933/Intel-Ethernet-Port-Conf=
-iguration-Tool-Linux-
->>
->> This is the newer version that seems to work.
->>
->> 2) QCU :
->> https://downloadcenter.intel.com/download/25851/Intel-QSFP-Configuration=
--Utility-Linux-Final-Release?product=3D46828
->>
->> This one is deprecated, though it still works to some extent.
->>
->> =3D=3D=3D
->>
->> When I execute (A), I get the following options: "4x10" and "2x2x10". I
->> do not get an "A" or "B" or "LOM" or whatever. Just literally those 2
->> options.
->>
->> I think the first one means "1x(4x10)", meaning that just port0 is activ=
+> Hi Pat,
+> Are you using fiber or copper to connect?  If you are using fiber, it
+> seems to me it could work with a three QSFP optical transceivers and thre=
 e
->> & provides 4 data lates. I was hoping this option would work with a 1:4
->> SFP+ breakout cable from FS.com, but to the best of my testing I can get
->> just 1 of those 4 SFP+ links to work. Supposedly if one uses the Intel 1=
-:4
->> breakout cable this will work ... but that's paying $350 for an otherwis=
+> MTP/LC breakout fibers that you would connect via couplers such that Host
+> Lanes 0 and 1 go to the first N321 Lanes 0 and 1 while the Host Lanes 2 a=
+nd
+> 3 go to the second N321 Lanes 0 and 1.  The host NIC would be configured
+> 1x4.  Note that I have not done this, but I am planning to purchase N321s
+> soon and so I am interested in this topic.
+> Rob
+>
+> On Wed, Feb 3, 2021 at 5:34 PM Patrick Kane via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+>
+>> I still cannot use a single 2-port QSFP+ NIC to connect to 2x  N321s.
+>> Using the Intel tools to set the NIC to 2x2x10, the NIC doesn't recogniz=
 e
->> $50 cable! I'm still investigating here. Ideally this NIC would provide
->> "2x(4x10)" with 2 1:4 breakout cables, to get double the SFP+ density of
->> current NICs (e.g., the X710-DA4 ort X722-DA4).
+>> the second physical port as a valid connection to a USRP, but works as a
+>> loopback or a connection to another NIC. I asked Intel regarding the iss=
+ues
+>> to see if we were configuring the NIC incorrectly, and this is the respo=
+nse
+>> we got:
 >>
->> The second one implies to me that both ports are available & providing 2
->> data lanes each. The best I've been able to do is use "2x2x10" with port=
-0;
->> port1 doesn't seem to be working in this setting.
+>> *Response from Intel on XL710-QDA2*
 >>
->> Admittedly, I might need to update to the current Intel Linux drivers fo=
-r
->> the XL710 NIC. I usually let the OS handle this for me -- in this case,
->> Ubuntu 20.04 latest. There are new Intel drivers from early November 202=
-0,
->> but I don't think the XL710 had any updates from the prior version.
+>> =E2=80=9CWhen configured for 2x2x10 the lanes are split between the port=
+s. The A
+>> configuration utilizes lanes 1 and 2 on the top port and lanes 3 and 4 o=
+n
+>> the bottom port. These correlate to the physical connections on the QSFP=
++
+>> module. If you are able to configure the port of the other device to
+>> utilize lanes 3 and 4, then it should be able to connect to the bottom p=
+ort
+>> in the A configuration.=E2=80=9D
 >>
->> I'm curious what driver version & OS / version you're using ... maybe
->> let's catch up off-list for a bit & see what we can figure out here.
->> Cheers! - MLD
 >>
->> On Tue, Nov 24, 2020 at 9:06 AM Patrick Kane <prkane92@gmail.com> wrote:
 >>
->>> Hi Mike,
->>>
->>> That seemed to do the trick, thanks for info! At some point, can we mak=
+>> *Problem:* XQ FPGA image doesn=E2=80=99t accept connections from lanes 2=
+ and 3,
+>> just 0 and 1. This prevents the bottom port on the Intel NIC from workin=
+g
+>> in the 2x2x10 configuration:
+>>
+>>
+>> InterfaceHGXGWXXQAQ
+>> SFP+ 0 1 GbE 10 GbE White Rabbit White Rabbit 10 GbE
+>> SFP+ 1 10 GbE 10 GbE 10 GbE Unused 10 GbE
+>> QSFP+ lane 0 Unused Unused Unused 10 GbE Aurora
+>> QSFP+ lane 1 Unused Unused Unused 10 GbE Aurora
+>> QSFP+ lane 2 Unused Unused Unused *Unused* Aurora
+>> QSFP+ lane 3 Unused Unused Unused *Unused* Aurora
+>> In the 2 N321 configuration, lane 2 and 3 are valid, but point to a
+>> different USRP. I'm hoping theres a UHD or FW change that can prevent th=
 e
->>> these steps part of the N32x getting started docs?
+>> QSFP->2x10G breakout cable because that defeats the purpose of using a
+>> QSFP+ NIC instead of a 4-port 10G NIC (Intel X710-DA4)
+>>
+>> Thanks,
+>> Pat
+>>
+>> On Tue, Nov 24, 2020 at 1:01 PM Michael Dickens <
+>> michael.dickens@ettus.com> wrote:
+>>
+>>> Hi Pat - I'm glad that info helped!
 >>>
->>> Also- the config utilty makes me choose 2x2x10 A, B, or LOM. Choosing A
->>> disables the second port on the QDA2, and B disables the first port. LO=
-M
->>> disables both ports (expected because it's not a MB NIC). My ideal case=
- is
->>> using 2x N321s over QSFP on the same XL710-QDA2 NIC. Have you had any l=
-uck
->>> in this configuration?
+>>> Yes, I plan on adding this information into the N32x Getting Started
+>>> Guide, once I have a better handle on it. Right now I have just a few d=
+ata
+>>> points & those are not consistent! and I don't know why! Thus ...
 >>>
->>> Thanks,
->>> Pat
+>>> Which Intel QSFP+ utility did you end up using? There are 2 that I can
+>>> find:
 >>>
->>> On Mon, Nov 23, 2020 at 9:23 PM Michael Dickens <
->>> michael.dickens@ettus.com> wrote:
+>>> 1) EPCT:
+>>> https://downloadcenter.intel.com/download/28933/Intel-Ethernet-Port-Con=
+figuration-Tool-Linux-
 >>>
->>>> Hi Pat - I recently verified that the N321 QAFP+ interface works with
->>>> UHD 4.0 release. I am also using an Intel XL710 (QDA2, but that probab=
-ly
->>>> doesn=E2=80=99t matter too much). The trick for me was using the Intel=
- QSFP+ NIC
->>>> configuration tool to set the NIC to 2x(2x10 Gb) mode. This is the set=
-ting
->>>> that the N321 requires, and one that the NIC provides. Once that was s=
-et
->>>> then you need to configures the host and USRP network interfaces as
->>>> you normally would. After all of that, the link worked very nicely! I =
-hope
->>>> this is useful! - MLD
+>>> This is the newer version that seems to work.
+>>>
+>>> 2) QCU :
+>>> https://downloadcenter.intel.com/download/25851/Intel-QSFP-Configuratio=
+n-Utility-Linux-Final-Release?product=3D46828
+>>>
+>>> This one is deprecated, though it still works to some extent.
+>>>
+>>> =3D=3D=3D
+>>>
+>>> When I execute (A), I get the following options: "4x10" and "2x2x10". I
+>>> do not get an "A" or "B" or "LOM" or whatever. Just literally those 2
+>>> options.
+>>>
+>>> I think the first one means "1x(4x10)", meaning that just port0 is
+>>> active & provides 4 data lates. I was hoping this option would work wit=
+h a
+>>> 1:4 SFP+ breakout cable from FS.com, but to the best of my testing I ca=
+n
+>>> get just 1 of those 4 SFP+ links to work. Supposedly if one uses the In=
+tel
+>>> 1:4 breakout cable this will work ... but that's paying $350 for an
+>>> otherwise $50 cable! I'm still investigating here. Ideally this NIC wou=
+ld
+>>> provide "2x(4x10)" with 2 1:4 breakout cables, to get double the SFP+
+>>> density of current NICs (e.g., the X710-DA4 ort X722-DA4).
+>>>
+>>> The second one implies to me that both ports are available & providing =
+2
+>>> data lanes each. The best I've been able to do is use "2x2x10" with por=
+t0;
+>>> port1 doesn't seem to be working in this setting.
+>>>
+>>> Admittedly, I might need to update to the current Intel Linux drivers
+>>> for the XL710 NIC. I usually let the OS handle this for me -- in this c=
+ase,
+>>> Ubuntu 20.04 latest. There are new Intel drivers from early November 20=
+20,
+>>> but I don't think the XL710 had any updates from the prior version.
+>>>
+>>> I'm curious what driver version & OS / version you're using ... maybe
+>>> let's catch up off-list for a bit & see what we can figure out here.
+>>> Cheers! - MLD
+>>>
+>>> On Tue, Nov 24, 2020 at 9:06 AM Patrick Kane <prkane92@gmail.com> wrote=
+:
+>>>
+>>>> Hi Mike,
 >>>>
->>>> On Nov 23, 2020, at 4:44 PM, Patrick Kane via USRP-users <
->>>> usrp-users@lists.ettus.com> wrote:
+>>>> That seemed to do the trick, thanks for info! At some point, can we
+>>>> make these steps part of the N32x getting started docs?
 >>>>
->>>> =EF=BB=BF
->>>>
->>>> I have an N321 connected to serial console and QSFP+ through a XL710
->>>> Intel NIC. With the default HG image, I can connect through 1G and ser=
-ial
->>>> as expected. I updated the filesystem to UHD 4.0.0.0 using mender, and=
- the
->>>> build artifact reflects that this was successful. Then, after loading =
-the
->>>> XQ image (using 2x 10Gb lanes through QSFP+ port), I lose all ethernet
->>>> connectivity through the 1G port SFP0 (expected), but I get the follow=
-ing
->>>> output in the console window:
->>>>
->>>>
->>>> [  451.560674] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full =
--
->>>> flow control off
->>>>
->>>> [  453.800673] nixge 40000000.ethernet sfp0: Link is Down
->>>>
->>>> [  454.920676] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full =
--
->>>> flow control off
->>>>
->>>> [  458.280672] nixge 40000000.ethernet sfp0: Link is Down
->>>>
->>>> [  459.400677] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full =
--
->>>> flow control off
->>>>
->>>> [  462.760705] nixge 40000000.ethernet sfp0: Link is Down
->>>>
->>>> [  463.880678] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full =
--
->>>> flow control off
->>>>
->>>> [  466.120673] nixge 40000000.ethernet sfp0: Link is Down
->>>>
->>>>
->>>> uhd_usrp_probe:
->>>>
->>>>   _____________________________________________________
->>>>
->>>>  /
->>>>
->>>> |       Device: N300-Series Device
->>>>
->>>> |     _____________________________________________________
->>>>
->>>> |    /
->>>>
->>>> |   |       Mboard: ni-n3xx-31E00AC
->>>>
->>>> |   |   dboard_0_pid: 338
->>>>
->>>> |   |   dboard_0_serial: 31DB406
->>>>
->>>> |   |   dboard_1_pid: 338
->>>>
->>>> |   |   dboard_1_serial: 31DB407
->>>>
->>>> |   |   eeprom_version: 3
->>>>
->>>> |   |   fs_version: 20200914000806
->>>>
->>>> |   |   mender_artifact: v4.0.0.0_n3xx
->>>>
->>>> |   |   mpm_sw_version: 4.0.0.0-g90ce6062
->>>>
->>>> |   |   pid: 16962
->>>>
->>>> |   |   product: n320
->>>>
->>>> |   |   rev: 7
->>>>
->>>> |   |   rpc_connection: local
->>>>
->>>> |   |   serial: 31E00AC
->>>>
->>>> |   |   type: n3xx
->>>>
->>>> |   |   MPM Version: 3.0
->>>>
->>>> |   |   FPGA Version: 8.0
->>>>
->>>> |   |   FPGA git hash: be53058.clean
->>>>
->>>> |   |
->>>>
->>>> |   |   Time sources:  internal, external, gpsdo, sfp0
->>>>
->>>> |   |   Clock sources: external, internal, gpsdo
->>>>
->>>> |   |   Sensors: ref_locked, gps_locked, temp, fan, gps_gpgga, gps_sky=
-,
->>>> gps_time, gps_tpv
->>>>
->>>>
->>>> Are there any configuration items needed to connect to the N321 throug=
-h
->>>> the QSFP+ port. Note that I only see eth0, sfp0, sfp1, and int0 in
->>>> /etc/network/interfaces.
->>>>
+>>>> Also- the config utilty makes me choose 2x2x10 A, B, or LOM. Choosing =
+A
+>>>> disables the second port on the QDA2, and B disables the first port. L=
+OM
+>>>> disables both ports (expected because it's not a MB NIC). My ideal cas=
+e is
+>>>> using 2x N321s over QSFP on the same XL710-QDA2 NIC. Have you had any =
+luck
+>>>> in this configuration?
 >>>>
 >>>> Thanks,
->>>>
 >>>> Pat
 >>>>
+>>>> On Mon, Nov 23, 2020 at 9:23 PM Michael Dickens <
+>>>> michael.dickens@ettus.com> wrote:
 >>>>
->>>> _______________________________________________
->>>> USRP-users mailing list
->>>> USRP-users@lists.ettus.com
->>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>
->>>> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>> Hi Pat - I recently verified that the N321 QAFP+ interface works with
+>>>>> UHD 4.0 release. I am also using an Intel XL710 (QDA2, but that proba=
+bly
+>>>>> doesn=E2=80=99t matter too much). The trick for me was using the Inte=
+l QSFP+ NIC
+>>>>> configuration tool to set the NIC to 2x(2x10 Gb) mode. This is the se=
+tting
+>>>>> that the N321 requires, and one that the NIC provides. Once that was =
+set
+>>>>> then you need to configures the host and USRP network interfaces as
+>>>>> you normally would. After all of that, the link worked very nicely! I=
+ hope
+>>>>> this is useful! - MLD
+>>>>>
+>>>>> On Nov 23, 2020, at 4:44 PM, Patrick Kane via USRP-users <
+>>>>> usrp-users@lists.ettus.com> wrote:
+>>>>>
+>>>>> =EF=BB=BF
+>>>>>
+>>>>> I have an N321 connected to serial console and QSFP+ through a XL710
+>>>>> Intel NIC. With the default HG image, I can connect through 1G and se=
+rial
+>>>>> as expected. I updated the filesystem to UHD 4.0.0.0 using mender, an=
+d the
+>>>>> build artifact reflects that this was successful. Then, after loading=
+ the
+>>>>> XQ image (using 2x 10Gb lanes through QSFP+ port), I lose all etherne=
+t
+>>>>> connectivity through the 1G port SFP0 (expected), but I get the follo=
+wing
+>>>>> output in the console window:
+>>>>>
+>>>>>
+>>>>> [  451.560674] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full
+>>>>> - flow control off
+>>>>>
+>>>>> [  453.800673] nixge 40000000.ethernet sfp0: Link is Down
+>>>>>
+>>>>> [  454.920676] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full
+>>>>> - flow control off
+>>>>>
+>>>>> [  458.280672] nixge 40000000.ethernet sfp0: Link is Down
+>>>>>
+>>>>> [  459.400677] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full
+>>>>> - flow control off
+>>>>>
+>>>>> [  462.760705] nixge 40000000.ethernet sfp0: Link is Down
+>>>>>
+>>>>> [  463.880678] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full
+>>>>> - flow control off
+>>>>>
+>>>>> [  466.120673] nixge 40000000.ethernet sfp0: Link is Down
+>>>>>
+>>>>>
+>>>>> uhd_usrp_probe:
+>>>>>
+>>>>>   _____________________________________________________
+>>>>>
+>>>>>  /
+>>>>>
+>>>>> |       Device: N300-Series Device
+>>>>>
+>>>>> |     _____________________________________________________
+>>>>>
+>>>>> |    /
+>>>>>
+>>>>> |   |       Mboard: ni-n3xx-31E00AC
+>>>>>
+>>>>> |   |   dboard_0_pid: 338
+>>>>>
+>>>>> |   |   dboard_0_serial: 31DB406
+>>>>>
+>>>>> |   |   dboard_1_pid: 338
+>>>>>
+>>>>> |   |   dboard_1_serial: 31DB407
+>>>>>
+>>>>> |   |   eeprom_version: 3
+>>>>>
+>>>>> |   |   fs_version: 20200914000806
+>>>>>
+>>>>> |   |   mender_artifact: v4.0.0.0_n3xx
+>>>>>
+>>>>> |   |   mpm_sw_version: 4.0.0.0-g90ce6062
+>>>>>
+>>>>> |   |   pid: 16962
+>>>>>
+>>>>> |   |   product: n320
+>>>>>
+>>>>> |   |   rev: 7
+>>>>>
+>>>>> |   |   rpc_connection: local
+>>>>>
+>>>>> |   |   serial: 31E00AC
+>>>>>
+>>>>> |   |   type: n3xx
+>>>>>
+>>>>> |   |   MPM Version: 3.0
+>>>>>
+>>>>> |   |   FPGA Version: 8.0
+>>>>>
+>>>>> |   |   FPGA git hash: be53058.clean
+>>>>>
+>>>>> |   |
+>>>>>
+>>>>> |   |   Time sources:  internal, external, gpsdo, sfp0
+>>>>>
+>>>>> |   |   Clock sources: external, internal, gpsdo
+>>>>>
+>>>>> |   |   Sensors: ref_locked, gps_locked, temp, fan, gps_gpgga,
+>>>>> gps_sky, gps_time, gps_tpv
+>>>>>
+>>>>>
+>>>>> Are there any configuration items needed to connect to the N321
+>>>>> through the QSFP+ port. Note that I only see eth0, sfp0, sfp1, and in=
+t0 in
+>>>>> /etc/network/interfaces.
+>>>>>
+>>>>>
+>>>>> Thanks,
+>>>>>
+>>>>> Pat
+>>>>>
+>>>>>
+>>>>> _______________________________________________
+>>>>> USRP-users mailing list
+>>>>> USRP-users@lists.ettus.com
+>>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>>
+>>>>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
 >
 
---00000000000017d1fc05ba8395b6
+--0000000000004882b405ba83ac23
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Pat,<div>Are you using fiber or copper to connect?=C2=
-=A0 If you are using fiber, it seems to me it could work with a three QSFP =
-optical transceivers and three MTP/LC breakout fibers that you would connec=
-t via couplers such that Host Lanes 0 and 1 go to the first N321 Lanes 0 an=
-d 1 while the Host Lanes 2 and 3 go to the second N321 Lanes 0 and 1.=C2=A0=
- The host NIC would be configured 1x4.=C2=A0 Note that I have not done this=
-, but I am planning to purchase N321s soon and so I am interested in this t=
-opic.</div><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"l=
-tr" class=3D"gmail_attr">On Wed, Feb 3, 2021 at 5:34 PM Patrick Kane via US=
-RP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists=
-.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr"><div>I still cannot use a single 2-port QSFP+ N=
-IC to connect to 2x=C2=A0 N321s. Using the Intel tools to set the NIC to 2x=
-2x10, the NIC doesn&#39;t recognize the second physical port as a valid con=
-nection to a USRP, but works as a loopback or a connection to another NIC. =
-I asked Intel regarding the issues to see if we were configuring the NIC in=
-correctly, and this is the response we got:=C2=A0</div><div><br></div><div>=
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><b>Response from Intel on XL710-QDA2</b></p>
+<div dir=3D"ltr">I should add that when I said &quot;I have not done this&q=
+uot;, I meant with N321s in this proposed configuration.=C2=A0 However, I a=
+m presently using an XL710 (QDA1) with a QSFP+ optical transceiver=C2=A0and=
+ MTP/LC breakout fiber to connect to two N310s (using SFP+ optical transcei=
+vers).=C2=A0 I have done this both with single-mode and multimode fiber.<di=
+v>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Thu, Feb 4, 2021 at 9:32 AM Rob Kossler &lt;<a href=3D"mailto=
+:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Pat,<div>Are you using=
+ fiber or copper to connect?=C2=A0 If you are using fiber, it seems to me i=
+t could work with a three QSFP optical transceivers and three MTP/LC breako=
+ut fibers that you would connect via couplers such that Host Lanes 0 and 1 =
+go to the first N321 Lanes 0 and 1 while the Host Lanes 2 and 3 go to the s=
+econd N321 Lanes 0 and 1.=C2=A0 The host NIC would be configured 1x4.=C2=A0=
+ Note that I have not done this, but I am planning to purchase N321s soon a=
+nd so I am interested in this topic.</div><div>Rob</div></div><br><div clas=
+s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 3, 2021=
+ at 5:34 PM Patrick Kane via USRP-users &lt;<a href=3D"mailto:usrp-users@li=
+sts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
+><div>I still cannot use a single 2-port QSFP+ NIC to connect to 2x=C2=A0 N=
+321s. Using the Intel tools to set the NIC to 2x2x10, the NIC doesn&#39;t r=
+ecognize the second physical port as a valid connection to a USRP, but work=
+s as a loopback or a connection to another NIC. I asked Intel regarding the=
+ issues to see if we were configuring the NIC incorrectly, and this is the =
+response we got:=C2=A0</div><div><br></div><div><p class=3D"MsoNormal" styl=
+e=3D"margin:0in 0in 0.0001pt;font-size:11pt;font-family:Calibri,sans-serif"=
+><b>Response from Intel on XL710-QDA2</b></p>
 
 <p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
 -family:Calibri,sans-serif">=E2=80=9CWhen configured for 2x2x10 the lanes a=
@@ -789,11 +816,12 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div>
 
---00000000000017d1fc05ba8395b6--
+--0000000000004882b405ba83ac23--
 
 
---===============4573795925864495075==
+--===============7819787150907928130==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -804,5 +832,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4573795925864495075==--
+--===============7819787150907928130==--
 
