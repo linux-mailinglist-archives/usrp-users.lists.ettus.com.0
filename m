@@ -2,62 +2,39 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3697630F767
-	for <lists+usrp-users@lfdr.de>; Thu,  4 Feb 2021 17:17:10 +0100 (CET)
-Received: from [::1] (port=40636 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33CB730F93C
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Feb 2021 18:13:23 +0100 (CET)
+Received: from [::1] (port=41364 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l7hJb-00069q-4t; Thu, 04 Feb 2021 11:17:07 -0500
-Received: from mail-qv1-f43.google.com ([209.85.219.43]:41512)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1l7hJX-00065r-DI
- for usrp-users@lists.ettus.com; Thu, 04 Feb 2021 11:17:03 -0500
-Received: by mail-qv1-f43.google.com with SMTP id h21so1952490qvb.8
- for <usrp-users@lists.ettus.com>; Thu, 04 Feb 2021 08:16:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to; bh=D+85NH8OKDErQF8+69ntRcMCaK049yHxjFk+clNscO4=;
- b=a48z2OufZ6ht+ZpqMwpSV6F00YhGdHiTsexF5lbv9BLwGAdjvORjx10mJ0oeRQa3F+
- WQt4+rnCKEv5aj6gagEDnpVuwLnecuH15h+ABofEbUbsUEc4sIUouBmw/sAMaoxSB3dV
- SpVQGO1PyzS2Leje0K/x6RbvRjqVprAS6eOt3RUkQWqvX/r08M1jYOXKtAsfg9zSD3ap
- Qi4chGSavrjDeDJ1tbrLdswGzwuOzN+rzR3L9xVluiNL9VEgJ6C0EN/5aevMQ7H2AT0P
- AoV9a5blyM8HsL0tm2qP0XT301eLcKKGnoPbVvDcOb7nMdnihAJSjG8SajbZLUVX1HYn
- T7gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to;
- bh=D+85NH8OKDErQF8+69ntRcMCaK049yHxjFk+clNscO4=;
- b=q0ymaf+2xMbAUOye4wOyo5LgA1nMNjDhxWhxZJpMWLvqQ5kMNVKa8gq0wHSJEK7HBC
- C9Ugc4BIBbB0g8UBUEYtdMwvpz5hOVcIrrmPXUy5dFmX3lcM8z+GB88AVjt2Oep59XBA
- rT46UsDvGtik/+u4xqeWOtpaVP+Y246+Zz45+KYtPgmWRxih1jgso5sF1lEth6+cOxzB
- j8yvwEH3S14kUDlFu9sAMab/AukDaaLgr8OvEiHoIe/ekxiFohkblemde5tab0zqw2zO
- 0Qcb1NWqdtPjUGCHKeD4YGyT30gCoRZMeHf2AXPxxMlHklpUH27GUdJttS+vemZDi2Ur
- Jv7Q==
-X-Gm-Message-State: AOAM531hvi+KfR/OQLhJ6soU0xe+X1L0EZ/sDMYmijHuscc2ReGMlLwt
- 9ZXHxPAsGw0aeGc7D5KpsWD/LXVX9+c=
-X-Google-Smtp-Source: ABdhPJzO50vtiHlsu6MPObJrkJnyXPQX7HG9Q7l9i6AawbotbZv6GVAz76wq0DUtq+YGPiMeAXkvqA==
-X-Received: by 2002:a0c:9ac2:: with SMTP id k2mr8330172qvf.3.1612455382601;
- Thu, 04 Feb 2021 08:16:22 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id r44sm4347105qtb.28.2021.02.04.08.16.22
- for <usrp-users@lists.ettus.com>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 04 Feb 2021 08:16:22 -0800 (PST)
-Message-ID: <601C1DD5.2030801@gmail.com>
-Date: Thu, 04 Feb 2021 11:16:21 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1l7iBx-0004eH-15; Thu, 04 Feb 2021 12:13:17 -0500
+Received: from p-impout003aa.msg.pkvw.co.charter.net ([47.43.26.134]:56378
+ helo=p-impout003.msg.pkvw.co.charter.net)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <dtrask1@tampabay.rr.com>)
+ id 1l7iBs-0004V0-AI
+ for usrp-users@lists.ettus.com; Thu, 04 Feb 2021 12:13:12 -0500
+Received: from localhost ([34.233.51.36]) by cmsmtp with ESMTP
+ id 7iBClNcZV5iY27iBDlUqaC; Thu, 04 Feb 2021 17:12:31 +0000
+X-Authority-Analysis: v=2.3 cv=Tr6Yewfh c=1 sm=1 tr=0
+ a=TrnfHZhGi+cGSPqA0dbxTQ==:117 a=TrnfHZhGi+cGSPqA0dbxTQ==:17
+ a=bpm26yrvxXUA:10 a=etiEgX_XAAAA:8 a=ayC55rCoAAAA:8 a=TLaYecCx2tqwX8Y-vN4A:9
+ a=QEXdDO2ut3YA:10 a=pGLkceISAAAA:8 a=mr7xOIcHwEndssnmRPEA:9
+ a=QKf3Jb_yvfdXrL7w:21 a=_W_S_7VecoQA:10 a=MLbIUA-Bjd6y1alW9qBG:22
+ a=B_RyunTPg8udlmYm5Cu2:22
+Message-Id: <c8e4246ff9817392e080758fedf65d9d342dff3a@webmail>
+To: "'Marcus D. Leech'" <patchvonbraun@gmail.com>
+Cc: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+X-Mailer: Atmail 
+X-Originating-IP: [204.115.183.4]
+X-Priority: 3
+Importance: Normal
+X-MSMail-Priority: Normal
+Date: Thu, 04 Feb 2021 17:12:30 +0000
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <AM0P193MB030882ECBD91A33E06D06D28BDB49@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM>
- <601ACAC4.3050407@gmail.com>
- <AM0P193MB030854D432F79CEC7F687598BDB39@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM>
- <AM0P193MB03082904B54E9522CBC57115BDB39@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM>
-In-Reply-To: <AM0P193MB03082904B54E9522CBC57115BDB39@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM>
-Subject: Re: [USRP-users] GPSDO and PPS on USRP N300
+X-CMAE-Envelope: MS4wfM73y/P/g97cGHCkwqynLc0ZM5kEIWj8QKLCM99ApIM7lJL4Bjuz5vRV8YI+hYrt/mMesP2/K/XdOp80ogulyBKyyeO8F2IbDopoKx4Qfu+u9Ov/lMgY
+ ghAaR9WnQx/WQ+d4izloFeFTOGTmprcLOTn99Qk4I3B58hBTeKJtvYXFlPYijCy7DKMueiYWoK9OJdXeVJ+zvH3u5ehKxqRXELo=
+Subject: Re: [USRP-users] Error Testing UHD Build on E310 with uhd_usrp_probe
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -69,9 +46,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6156660651767574349=="
+From: Dennis Trask via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: dtrask1@tampabay.rr.com
+Content-Type: multipart/mixed; boundary="===============7596535235958641505=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,197 +62,78 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============6156660651767574349==
+--===============7596535235958641505==
 Content-Type: multipart/alternative;
- boundary="------------020602090600070302010601"
+ boundary="=_8d3aa71e7309574d0a314c4d6713bdf0"
 
-This is a multi-part message in MIME format.
---------------020602090600070302010601
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--=_8d3aa71e7309574d0a314c4d6713bdf0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 02/04/2021 03:30 AM, Puertas Blanco, Roberto via USRP-users wrote:
->
-> Hi Marcus,
->
-> My goal is to get NTP daemon running on N300 synced with GPSDO and 
-> PPS. Could it be that the GPSDO time is internally latched with the 
-> PPS line? If this is the case then I guess that it would not be 
-> necessary to read the PPS.
->
-> I have seen the “Device Synchronization” section  and “sync_to_gps”  
-> example in the USRP HW Driver and USRP Manual but  I am not sure if I 
-> have to do this if I just want to synchronize the NTP and system time 
-> on just one USRP N300.
->
-> Thanks,
->
-> Roberto
->
->
-Indeed, it depends on *why* you want NTPD/GSPD on the *HOST* to "see" a 
-1PPS signal.
+Good info. Thanks. I am attempting to burn a new image to the SD card.=
+=0AI downloaded=0Ahttps://files.ettus.com/binaries/cache/e3xx/meta-ettus=
+-v3.14.1.1/e3xx_e320_sdimg_default-v3.14.1.1.zip=0Awhich contains usrp_e=
+320_fs.sdimg. Will this work to boot my e310?=0ADennis=0A=0A=09---------=
+--------------------------------From: "Marcus D. Leech" =0A=0ATo: dtrask=
+1@tampabay.rr.com=0ACc: "usrp-users@lists.ettus.com"=0ASent: Wednesday F=
+ebruary 3 2021 9:25:58PM=0ASubject: Re: [USRP-users] Error Testing UHD B=
+uild on E310 with=0Auhd_usrp_probe=0A=0A On 02/02/2021 04:20 PM, dtrask1=
+@tampabay.rr.com wrote:=0A > From the root directory of the radio, I did=
+: find . -name=0A"ld-linux*"=0A >=0A > That command produced no results,=
+ either.=0A >=0A > If I am following the instructions=0A > at=0Ahttps://=
+kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_=
+/_GNU_Radio_/_gr-ettus_from_Source,=0A[1]=0A > should I expect to find t=
+his library under=0A > /home/root/newinstall/usr/lib? Or should it be on=
+ the image=0Ainstalled=0A > on the SD card under /lib?=0A >=0A > I have=
+ followed the above instructions to the letter, except for=0Aone=0A > ch=
+ange. After I cloned gr-ettus, I made sure to checkout the=0Amaint-3.7=
+=0A > branch, to match the gnuradio version. However, I don't believe=0A=
+this=0A > should have any affect on the UHD cross-compile, should it?=0A=
+ >=0A >=0A So, here is what I have on my E310:=0A=0A root@plood:~# find=
+ /lib -name *ld-*=0A /lib/ld-2.21.so=0A /lib/.debug/ld-2.21.so=0A /lib/l=
+d-linux-armhf.so.3=0A=0A I think your E310 filesystem may not be quite c=
+orrect.=0A=0A=0A=0ALinks:=0A------=0A[1]=0Ahttps://kb.ettus.com/Software=
+_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettu=
+s_from_Source,=0A
 
-If you want precise radio syncrhonization, that's already accomplished 
-with the procedure used in sync_to_gps.**Using that procedure in
-   your applications will guarantee that the timestamp-clock on your 
-radio is precisely aligned to GPS time.  Placing the LInux host
-   "in the loop" will not contribute to precise time-stamps.
+--=_8d3aa71e7309574d0a314c4d6713bdf0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-*
-*In USRPs, the GPSDO module exists for the benefit of the radio, and 
-only secondarily for the benefit of the embedded Linux host--
-   if it has one.
+<html><body>Good info. Thanks. I am attempting to burn a new image to th=
+e SD card. I downloaded&nbsp;https://files.ettus.com/binaries/cache/e3xx=
+/meta-ettus-v3.14.1.1/e3xx_e320_sdimg_default-v3.14.1.1.zip which contai=
+ns&nbsp;usrp_e320_fs.sdimg. Will this work to boot my e310?<div><br></di=
+v><div>Dennis</div><div><br><div class=3D"reply-new-signature"></div><p>=
+-----------------------------------------</p>From: "Marcus D. Leech" <pa=
+tchvonbraun@gmail.com><br>To: dtrask1@tampabay.rr.com<br>Cc: "usrp-users=
+@lists.ettus.com"<br>Sent: Wednesday February 3 2021 9:25:58PM<br>Subjec=
+t: Re: [USRP-users] Error Testing UHD Build on E310 with uhd_usrp_probe<=
+br><br>=0AOn 02/02/2021 04:20 PM, dtrask1@tampabay.rr.com wrote:<br>=0A&=
+gt; From the root directory of the radio, I did: find . -name=0A"ld-linu=
+x*"<br>=0A&gt;<br>=0A&gt; That command produced no results, either.<br>=
+=0A&gt;<br>=0A&gt; If I am following the instructions<br>=0A&gt; at <a h=
+ref=3D"https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Buil=
+ding_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source,">https://kb.ettus.com=
+/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_=
+/_gr-ettus_from_Source,</a><br>=0A=0A&gt; should I expect to find this l=
+ibrary under<br>=0A&gt; /home/root/newinstall/usr/lib? Or should it be o=
+n the image=0Ainstalled<br>=0A&gt; on the SD card under /lib?<br>=0A&gt;=
+<br>=0A&gt; I have followed the above instructions to the letter, except=
+=0Afor one<br>=0A&gt; change. After I cloned gr-ettus, I made sure to ch=
+eckout the=0Amaint-3.7<br>=0A&gt; branch, to match the gnuradio version.=
+ However, I don't=0Abelieve this<br>=0A&gt; should have any affect on th=
+e UHD cross-compile, should=0Ait?<br>=0A&gt;<br>=0A&gt;<br>=0ASo, here i=
+s what I have on my E310:<br><br>=0Aroot@plood:~# find /lib -name *ld-*<=
+br>=0A/lib/ld-2.21.so<br>=0A/lib/.debug/ld-2.21.so<br>=0A/lib/ld-linux-a=
+rmhf.so.3<br><br>=0AI think your E310 filesystem may not be quite correc=
+t.<br><br></patchvonbraun@gmail.com></div></body></html>
 
---------------020602090600070302010601
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 02/04/2021 03:30 AM, Puertas Blanco,
-      Roberto via USRP-users wrote:<br>
-    </div>
-    <blockquote
-cite="mid:AM0P193MB03082904B54E9522CBC57115BDB39@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]-->
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	color:black;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-code
-	{mso-style-priority:99;
-	font-family:"Courier New";}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML con formato previo Car";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";
-	color:black;}
-span.HTMLconformatoprevioCar
-	{mso-style-name:"HTML con formato previo Car";
-	mso-style-priority:99;
-	mso-style-link:"HTML con formato previo";
-	font-family:Consolas;
-	color:black;
-	mso-fareast-language:EN-US;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	color:black;}
-span.EstiloCorreo21
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EstiloCorreo22
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EstiloCorreo23
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">Hi
-            Marcus, <o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">My
-            goal is to get NTP daemon running on N300 synced with GPSDO
-            and PPS. Could it be that the GPSDO time is internally
-            latched with the PPS line? If this is the case then I guess
-            that it would not be necessary to read the PPS.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">I
-            have seen the “Device Synchronization” section  and
-            “sync_to_gps”  example in the USRP HW Driver and USRP Manual
-            but  I am not sure if I have to do this if I just want to
-            synchronize the NTP and system time on just one USRP N300.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">Thanks,<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">Roberto<o:p></o:p></span></p>
-        <p class="MsoNormal"><span lang="EN-US"><o:p> </o:p></span></p>
-        <br>
-      </div>
-    </blockquote>
-    Indeed, it depends on *why* you want NTPD/GSPD on the *HOST* to
-    "see" a 1PPS signal.<br>
-    <br>
-    If you want precise radio syncrhonization, that's already
-    accomplished with the procedure used in sync_to_gps.<b>  </b>Using
-    that procedure in<br>
-      your applications will guarantee that the timestamp-clock on your
-    radio is precisely aligned to GPS time.  Placing the LInux host<br>
-      "in the loop" will not contribute to precise time-stamps.<br>
-    <br>
-    <b><br>
-    </b>In USRPs, the GPSDO module exists for the benefit of the radio,
-    and only secondarily for the benefit of the embedded Linux host--<br>
-      if it has one.  <br>
-  </body>
-</html>
-
---------------020602090600070302010601--
+--=_8d3aa71e7309574d0a314c4d6713bdf0--
 
 
---===============6156660651767574349==
+
+--===============7596535235958641505==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -286,5 +144,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6156660651767574349==--
+--===============7596535235958641505==--
+
 
