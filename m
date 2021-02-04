@@ -2,44 +2,46 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A7730F528
-	for <lists+usrp-users@lfdr.de>; Thu,  4 Feb 2021 15:40:23 +0100 (CET)
-Received: from [::1] (port=39866 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF5530F52A
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Feb 2021 15:41:48 +0100 (CET)
+Received: from [::1] (port=39878 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l7fny-0005JZ-Bf; Thu, 04 Feb 2021 09:40:22 -0500
-Received: from mail-oo1-f47.google.com ([209.85.161.47]:39242)
+	id 1l7fpL-0005ZD-AT; Thu, 04 Feb 2021 09:41:47 -0500
+Received: from mail-ej1-f42.google.com ([209.85.218.42]:42686)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1l7fnu-00059P-Dc
- for usrp-users@lists.ettus.com; Thu, 04 Feb 2021 09:40:18 -0500
-Received: by mail-oo1-f47.google.com with SMTP id z36so804725ooi.6
- for <usrp-users@lists.ettus.com>; Thu, 04 Feb 2021 06:39:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
+ id 1l7fpH-0005SI-AA
+ for usrp-users@lists.ettus.com; Thu, 04 Feb 2021 09:41:43 -0500
+Received: by mail-ej1-f42.google.com with SMTP id r12so5660359ejb.9
+ for <usrp-users@lists.ettus.com>; Thu, 04 Feb 2021 06:41:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=8bDFUb/+e40ah1nOYeol8Uv3r8P1KAmAz2qVBJvKXTc=;
- b=FUknD7kf0bCPV70kWfIev0Kj36r8TExCYQNNinW3XjzHDv7SBdhDOVKdqEmXdK/MOT
- Ao5oBZ7pot2UFhG1y98hE6699K/NdDA6XQJrgskO8GMEpYvUmiiR8LcaH5yDl5R6h6fy
- Cw3rU0W/i4IoCgnBMZPAZQQsPPLHclJBzJ5R6gDDZTlG2QV0zl7wV6dT3HxeN6kh1Ih0
- iqMpcMOAdooXU0DiRAQRxxfjrnauSLnaLnSdgX0FoMGrzdhu3yV4jO1gASPZnWQtvN7f
- 99XH2kxUvjIctHr6DoK/V6Q+DF7kfBPMRhzDAUW8LSttD3SVPzdXt2/R4+IpbTfBgflO
- Hf2A==
+ :cc; bh=1jmYnnBjisBzjkA53i1O1o8fr+pW+iehP0dd06kf4/Y=;
+ b=t7ccqVgvnvxyamEVJj5eQ5d2Jvg0ZeD3G1CWKTXBAjRDs/NrG7Qpd7wksHbetRZDBJ
+ Ff6pw28A/1MbYrRj88UA7D7QQozy4HUQGSsOPCBRINNZMXYFPPIIN5GpIXBZbFS9coRH
+ fPCa+lOahm6moRoDGGur2F/0QlOoh0uxO/eHCFCYphMoERJmHQkR0EQGrW12AXQv7v8N
+ aK72lDvKPVoU2gKZXsE44ar1ER2cTvQLSWWmT6A6+wIKaXDRXcXtLfNQITW9UHQEaZxq
+ iOMp1d0R7UHHD/0AWuc5cTiqaXJ5jp42h4V+37gAZTFqAhGd/3X0IU5A41DeUNqP6q+3
+ eP2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=8bDFUb/+e40ah1nOYeol8Uv3r8P1KAmAz2qVBJvKXTc=;
- b=Xxf3V7gzXXxAeroRQ61GSEsXLGVrSQyoZvT8neo8JijsWwuf4N5hywkDtbzDq16c29
- nOU+Ipj9RHmnMxF0PdtTjJBboH7fqnzQMyYvbifPEhmiq8dqPyUssAlGlpwBKzDn7Vhi
- t5s3mWDYZs7nR4pzfkhUnl+ScRULo0i5uMM+nzBpNKIxAV4XobtgacmPaLYOXbWZ7usV
- 6/6g9yUNwrsCIP4vqeXSdoWlN5/2k3rTkkVTA5jbnbtRQRjhPYVjpVz+s8VcvSdUgBBl
- BUiFgwBLkSc4TyW/PVpACpC19xPMF0rWxx4eyNDG0H2FzsUI01ktcioSrjT6z+kyfORp
- PgvA==
-X-Gm-Message-State: AOAM531s1CVHlusp6r1TcLuqzSgUN+uVPx1b4ogjrI0V7EGPP8pu+BZA
- 7limdmL4nOxvaJlihFQNi6xniI6TfXG+mqXGZgIFmw==
-X-Google-Smtp-Source: ABdhPJyaOskhJ+zb+QKvgY4fBCZo2AN/0rV+Yo8r+iUk3uhLYhtnmPOaEbh2pLlOKD4CRSLxzpWYU4BZDlbLBsmfy1M=
-X-Received: by 2002:a05:6820:283:: with SMTP id
- q3mr5873007ood.13.1612449577444; 
- Thu, 04 Feb 2021 06:39:37 -0800 (PST)
+ bh=1jmYnnBjisBzjkA53i1O1o8fr+pW+iehP0dd06kf4/Y=;
+ b=oYd7VYrJZDCF8ohRGJDN+9YeAJduJ4BnyroG5nY8dcVZcuZfGbWHCm+PDu1neFRYP/
+ RrjT+SDyDeJ2xmwOeIVYnwe0i7RNysWUzsxqg35QOU2TYFtMKRkLolco5ijOwnsamNvO
+ EKKt1biRKET95E6EOWRUtnSvwGDn1Tm4FEmQaeu0Fi+B8k4cE4Efcj2LgY5o1JqbgtRO
+ jXPLyGsuuyLZwra7oM6WxMu2v6PI2uqC62uldEEDXj92So6M+u1U5GGu9jLQ7UVE6OXL
+ BKg8KsWJjx2z2/PQbRMVnmRlqkCA0mp/3a8/U7HJ3hE/vtgVp0stIFZWNGKBnqS/KPfk
+ rAUA==
+X-Gm-Message-State: AOAM5332TzHN4GwfTl9emQdgeyT0+1cg6LDsysCu+b7fsKswI6CU5hge
+ 5pIgrQK9gD/jm/wVder1fw0pC4/eJz9dY9R0M5M47NOG
+X-Google-Smtp-Source: ABdhPJw6tgnLp6/ozd76nTbzvU1LSNEIYSXat77+KosLwmc7ENNJzh84JJm8FdJH5WRtrbOOw4P44qVjf8Tve+cxpWM=
+X-Received: by 2002:a17:906:a1c2:: with SMTP id
+ bx2mr8473159ejb.138.1612449662171; 
+ Thu, 04 Feb 2021 06:41:02 -0800 (PST)
 MIME-Version: 1.0
 References: <CAOLzfSg88FT3Cm_-Dd0jL__BchiuGhR03jLW1nxCv5N3O-TQjg@mail.gmail.com>
  <84B751A1-3137-41AA-91FF-AAAEB03C7927@ettus.com>
@@ -48,9 +50,9 @@ References: <CAOLzfSg88FT3Cm_-Dd0jL__BchiuGhR03jLW1nxCv5N3O-TQjg@mail.gmail.com>
  <CAOLzfSj2Qa5K4NLwJx44Q=x9Vr-0iwV5EHz-k50Ag1=m6UP3SQ@mail.gmail.com>
  <CAB__hTQq4iP1yJWVE1iqVj0oxn_2pmLUt=tRrLQrfUkMX+7J6g@mail.gmail.com>
 In-Reply-To: <CAB__hTQq4iP1yJWVE1iqVj0oxn_2pmLUt=tRrLQrfUkMX+7J6g@mail.gmail.com>
-Date: Thu, 4 Feb 2021 09:39:26 -0500
-Message-ID: <CAB__hTRm82m7pLmffmiNFoz3zbPZW1WAVdV2011hNzqCzuqNyA@mail.gmail.com>
-To: Patrick Kane <prkane92@gmail.com>
+Date: Thu, 4 Feb 2021 09:40:50 -0500
+Message-ID: <CAGNhwTOHRkZwg0+bqzTk5Hme3LMF18aXNee91z9KOG08idEAJg@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
 Subject: Re: [USRP-users] N321 QSFP+ XQ image network connection
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -63,10 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
+From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Michael Dickens <michael.dickens@ettus.com>
 Cc: USRP list <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7819787150907928130=="
+Content-Type: multipart/mixed; boundary="===============6231631229385788403=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -80,21 +82,27 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7819787150907928130==
-Content-Type: multipart/alternative; boundary="0000000000004882b405ba83ac23"
+--===============6231631229385788403==
+Content-Type: multipart/alternative; boundary="0000000000005515e305ba83b145"
 
---0000000000004882b405ba83ac23
+--0000000000005515e305ba83b145
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I should add that when I said "I have not done this", I meant with N321s in
-this proposed configuration.  However, I am presently using an XL710 (QDA1)
-with a QSFP+ optical transceiver and MTP/LC breakout fiber to connect to
-two N310s (using SFP+ optical transceivers).  I have done this both with
-single-mode and multimode fiber.
-Rob
+Hi Pat - Thanks for your sleuthing and info from Intel on how the XL710
+Intel NIC allocates lanes when in 2x2x10 mode. This is certainly an issue
+with what the N321 expects. It would be desirable if the Intel NIC
+configuration utility allowed one to select which lanes to use, and/or if
+we could provide an FPGA image for different lane usage. I see no "fault"
+here on either side; we can all do better though! I'll bring this up with
+relevant Ettus folks to see what we can do from our end; obviously we can't
+control what Intel does. I like Rob's suggestion of using fiber & couplers
+(etc) ... I've never tried that either, but sounds like a possibility for
+overcoming this issue. I will look into acquiring the right parts to try
+out this suggestion. - MLD
 
-On Thu, Feb 4, 2021 at 9:32 AM Rob Kossler <rkossler@nd.edu> wrote:
+
+On Thu, Feb 4, 2021 at 9:33 AM Rob Kossler <rkossler@nd.edu> wrote:
 
 > Hi Pat,
 > Are you using fiber or copper to connect?  If you are using fiber, it
@@ -379,40 +387,46 @@ t0 in
 >>
 >
 
---0000000000004882b405ba83ac23
+--0000000000005515e305ba83b145
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I should add that when I said &quot;I have not done this&q=
-uot;, I meant with N321s in this proposed configuration.=C2=A0 However, I a=
-m presently using an XL710 (QDA1) with a QSFP+ optical transceiver=C2=A0and=
- MTP/LC breakout fiber to connect to two N310s (using SFP+ optical transcei=
-vers).=C2=A0 I have done this both with single-mode and multimode fiber.<di=
-v>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Thu, Feb 4, 2021 at 9:32 AM Rob Kossler &lt;<a href=3D"mailto=
-:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Pat,<div>Are you using=
- fiber or copper to connect?=C2=A0 If you are using fiber, it seems to me i=
-t could work with a three QSFP optical transceivers and three MTP/LC breako=
-ut fibers that you would connect via couplers such that Host Lanes 0 and 1 =
-go to the first N321 Lanes 0 and 1 while the Host Lanes 2 and 3 go to the s=
-econd N321 Lanes 0 and 1.=C2=A0 The host NIC would be configured 1x4.=C2=A0=
- Note that I have not done this, but I am planning to purchase N321s soon a=
-nd so I am interested in this topic.</div><div>Rob</div></div><br><div clas=
-s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 3, 2021=
- at 5:34 PM Patrick Kane via USRP-users &lt;<a href=3D"mailto:usrp-users@li=
-sts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
-><div>I still cannot use a single 2-port QSFP+ NIC to connect to 2x=C2=A0 N=
-321s. Using the Intel tools to set the NIC to 2x2x10, the NIC doesn&#39;t r=
-ecognize the second physical port as a valid connection to a USRP, but work=
-s as a loopback or a connection to another NIC. I asked Intel regarding the=
- issues to see if we were configuring the NIC incorrectly, and this is the =
-response we got:=C2=A0</div><div><br></div><div><p class=3D"MsoNormal" styl=
-e=3D"margin:0in 0in 0.0001pt;font-size:11pt;font-family:Calibri,sans-serif"=
-><b>Response from Intel on XL710-QDA2</b></p>
+<div dir=3D"ltr">Hi Pat - Thanks for your sleuthing and info from Intel on =
+how the=C2=A0XL710 Intel NIC allocates lanes when in 2x2x10 mode. This is c=
+ertainly an issue with what the N321 expects. It would be desirable if the =
+Intel NIC configuration utility=C2=A0allowed one to select which lanes to u=
+se, and/or if we could provide an FPGA image for different lane usage. I se=
+e no &quot;fault&quot; here on either side; we can all do better though! I&=
+#39;ll bring this up with relevant Ettus folks to see what we can do from o=
+ur end; obviously we can&#39;t control what Intel does. I like Rob&#39;s su=
+ggestion of using fiber &amp; couplers (etc) ... I&#39;ve never tried that =
+either, but sounds like a possibility for overcoming this issue. I will loo=
+k into acquiring the right parts to try out this suggestion. - MLD<div><br>=
+</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
+attr">On Thu, Feb 4, 2021 at 9:33 AM Rob Kossler &lt;<a href=3D"mailto:rkos=
+sler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Pat,<div>Are you using fibe=
+r or copper to connect?=C2=A0 If you are using fiber, it seems to me it cou=
+ld work with a three QSFP optical transceivers and three MTP/LC breakout fi=
+bers that you would connect via couplers such that Host Lanes 0 and 1 go to=
+ the first N321 Lanes 0 and 1 while the Host Lanes 2 and 3 go to the second=
+ N321 Lanes 0 and 1.=C2=A0 The host NIC would be configured 1x4.=C2=A0 Note=
+ that I have not done this, but I am planning to purchase N321s soon and so=
+ I am interested in this topic.</div><div>Rob</div></div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 3, 2021 at 5=
+:34 PM Patrick Kane via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.e=
+ttus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div=
+>I still cannot use a single 2-port QSFP+ NIC to connect to 2x=C2=A0 N321s.=
+ Using the Intel tools to set the NIC to 2x2x10, the NIC doesn&#39;t recogn=
+ize the second physical port as a valid connection to a USRP, but works as =
+a loopback or a connection to another NIC. I asked Intel regarding the issu=
+es to see if we were configuring the NIC incorrectly, and this is the respo=
+nse we got:=C2=A0</div><div><br></div><div><p class=3D"MsoNormal" style=3D"=
+margin:0in 0in 0.0001pt;font-size:11pt;font-family:Calibri,sans-serif"><b>R=
+esponse from Intel on XL710-QDA2</b></p>
 
 <p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
 -family:Calibri,sans-serif">=E2=80=9CWhen configured for 2x2x10 the lanes a=
@@ -818,10 +832,10 @@ tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
 
---0000000000004882b405ba83ac23--
+--0000000000005515e305ba83b145--
 
 
---===============7819787150907928130==
+--===============6231631229385788403==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -832,5 +846,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7819787150907928130==--
+--===============6231631229385788403==--
 
