@@ -2,58 +2,62 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EF5530F52A
-	for <lists+usrp-users@lfdr.de>; Thu,  4 Feb 2021 15:41:48 +0100 (CET)
-Received: from [::1] (port=39878 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3697630F767
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Feb 2021 17:17:10 +0100 (CET)
+Received: from [::1] (port=40636 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l7fpL-0005ZD-AT; Thu, 04 Feb 2021 09:41:47 -0500
-Received: from mail-ej1-f42.google.com ([209.85.218.42]:42686)
+	id 1l7hJb-00069q-4t; Thu, 04 Feb 2021 11:17:07 -0500
+Received: from mail-qv1-f43.google.com ([209.85.219.43]:41512)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <michael.dickens@ettus.com>)
- id 1l7fpH-0005SI-AA
- for usrp-users@lists.ettus.com; Thu, 04 Feb 2021 09:41:43 -0500
-Received: by mail-ej1-f42.google.com with SMTP id r12so5660359ejb.9
- for <usrp-users@lists.ettus.com>; Thu, 04 Feb 2021 06:41:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1jmYnnBjisBzjkA53i1O1o8fr+pW+iehP0dd06kf4/Y=;
- b=t7ccqVgvnvxyamEVJj5eQ5d2Jvg0ZeD3G1CWKTXBAjRDs/NrG7Qpd7wksHbetRZDBJ
- Ff6pw28A/1MbYrRj88UA7D7QQozy4HUQGSsOPCBRINNZMXYFPPIIN5GpIXBZbFS9coRH
- fPCa+lOahm6moRoDGGur2F/0QlOoh0uxO/eHCFCYphMoERJmHQkR0EQGrW12AXQv7v8N
- aK72lDvKPVoU2gKZXsE44ar1ER2cTvQLSWWmT6A6+wIKaXDRXcXtLfNQITW9UHQEaZxq
- iOMp1d0R7UHHD/0AWuc5cTiqaXJ5jp42h4V+37gAZTFqAhGd/3X0IU5A41DeUNqP6q+3
- eP2g==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1l7hJX-00065r-DI
+ for usrp-users@lists.ettus.com; Thu, 04 Feb 2021 11:17:03 -0500
+Received: by mail-qv1-f43.google.com with SMTP id h21so1952490qvb.8
+ for <usrp-users@lists.ettus.com>; Thu, 04 Feb 2021 08:16:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=D+85NH8OKDErQF8+69ntRcMCaK049yHxjFk+clNscO4=;
+ b=a48z2OufZ6ht+ZpqMwpSV6F00YhGdHiTsexF5lbv9BLwGAdjvORjx10mJ0oeRQa3F+
+ WQt4+rnCKEv5aj6gagEDnpVuwLnecuH15h+ABofEbUbsUEc4sIUouBmw/sAMaoxSB3dV
+ SpVQGO1PyzS2Leje0K/x6RbvRjqVprAS6eOt3RUkQWqvX/r08M1jYOXKtAsfg9zSD3ap
+ Qi4chGSavrjDeDJ1tbrLdswGzwuOzN+rzR3L9xVluiNL9VEgJ6C0EN/5aevMQ7H2AT0P
+ AoV9a5blyM8HsL0tm2qP0XT301eLcKKGnoPbVvDcOb7nMdnihAJSjG8SajbZLUVX1HYn
+ T7gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=1jmYnnBjisBzjkA53i1O1o8fr+pW+iehP0dd06kf4/Y=;
- b=oYd7VYrJZDCF8ohRGJDN+9YeAJduJ4BnyroG5nY8dcVZcuZfGbWHCm+PDu1neFRYP/
- RrjT+SDyDeJ2xmwOeIVYnwe0i7RNysWUzsxqg35QOU2TYFtMKRkLolco5ijOwnsamNvO
- EKKt1biRKET95E6EOWRUtnSvwGDn1Tm4FEmQaeu0Fi+B8k4cE4Efcj2LgY5o1JqbgtRO
- jXPLyGsuuyLZwra7oM6WxMu2v6PI2uqC62uldEEDXj92So6M+u1U5GGu9jLQ7UVE6OXL
- BKg8KsWJjx2z2/PQbRMVnmRlqkCA0mp/3a8/U7HJ3hE/vtgVp0stIFZWNGKBnqS/KPfk
- rAUA==
-X-Gm-Message-State: AOAM5332TzHN4GwfTl9emQdgeyT0+1cg6LDsysCu+b7fsKswI6CU5hge
- 5pIgrQK9gD/jm/wVder1fw0pC4/eJz9dY9R0M5M47NOG
-X-Google-Smtp-Source: ABdhPJw6tgnLp6/ozd76nTbzvU1LSNEIYSXat77+KosLwmc7ENNJzh84JJm8FdJH5WRtrbOOw4P44qVjf8Tve+cxpWM=
-X-Received: by 2002:a17:906:a1c2:: with SMTP id
- bx2mr8473159ejb.138.1612449662171; 
- Thu, 04 Feb 2021 06:41:02 -0800 (PST)
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=D+85NH8OKDErQF8+69ntRcMCaK049yHxjFk+clNscO4=;
+ b=q0ymaf+2xMbAUOye4wOyo5LgA1nMNjDhxWhxZJpMWLvqQ5kMNVKa8gq0wHSJEK7HBC
+ C9Ugc4BIBbB0g8UBUEYtdMwvpz5hOVcIrrmPXUy5dFmX3lcM8z+GB88AVjt2Oep59XBA
+ rT46UsDvGtik/+u4xqeWOtpaVP+Y246+Zz45+KYtPgmWRxih1jgso5sF1lEth6+cOxzB
+ j8yvwEH3S14kUDlFu9sAMab/AukDaaLgr8OvEiHoIe/ekxiFohkblemde5tab0zqw2zO
+ 0Qcb1NWqdtPjUGCHKeD4YGyT30gCoRZMeHf2AXPxxMlHklpUH27GUdJttS+vemZDi2Ur
+ Jv7Q==
+X-Gm-Message-State: AOAM531hvi+KfR/OQLhJ6soU0xe+X1L0EZ/sDMYmijHuscc2ReGMlLwt
+ 9ZXHxPAsGw0aeGc7D5KpsWD/LXVX9+c=
+X-Google-Smtp-Source: ABdhPJzO50vtiHlsu6MPObJrkJnyXPQX7HG9Q7l9i6AawbotbZv6GVAz76wq0DUtq+YGPiMeAXkvqA==
+X-Received: by 2002:a0c:9ac2:: with SMTP id k2mr8330172qvf.3.1612455382601;
+ Thu, 04 Feb 2021 08:16:22 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id r44sm4347105qtb.28.2021.02.04.08.16.22
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 04 Feb 2021 08:16:22 -0800 (PST)
+Message-ID: <601C1DD5.2030801@gmail.com>
+Date: Thu, 04 Feb 2021 11:16:21 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-References: <CAOLzfSg88FT3Cm_-Dd0jL__BchiuGhR03jLW1nxCv5N3O-TQjg@mail.gmail.com>
- <84B751A1-3137-41AA-91FF-AAAEB03C7927@ettus.com>
- <CAOLzfSjROwto1SRtXa=H1ce6pRZssLYKF5mjQQrTSHdqOBXgrA@mail.gmail.com>
- <CAGNhwTMoUyL2jpAY-GXYBY43+h9Y2QyU8BX5Pe-Vn2bMMy+vpg@mail.gmail.com>
- <CAOLzfSj2Qa5K4NLwJx44Q=x9Vr-0iwV5EHz-k50Ag1=m6UP3SQ@mail.gmail.com>
- <CAB__hTQq4iP1yJWVE1iqVj0oxn_2pmLUt=tRrLQrfUkMX+7J6g@mail.gmail.com>
-In-Reply-To: <CAB__hTQq4iP1yJWVE1iqVj0oxn_2pmLUt=tRrLQrfUkMX+7J6g@mail.gmail.com>
-Date: Thu, 4 Feb 2021 09:40:50 -0500
-Message-ID: <CAGNhwTOHRkZwg0+bqzTk5Hme3LMF18aXNee91z9KOG08idEAJg@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Subject: Re: [USRP-users] N321 QSFP+ XQ image network connection
+To: usrp-users@lists.ettus.com
+References: <AM0P193MB030882ECBD91A33E06D06D28BDB49@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM>
+ <601ACAC4.3050407@gmail.com>
+ <AM0P193MB030854D432F79CEC7F687598BDB39@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM>
+ <AM0P193MB03082904B54E9522CBC57115BDB39@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM>
+In-Reply-To: <AM0P193MB03082904B54E9522CBC57115BDB39@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM>
+Subject: Re: [USRP-users] GPSDO and PPS on USRP N300
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -65,10 +69,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Michael Dickens via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Michael Dickens <michael.dickens@ettus.com>
-Cc: USRP list <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6231631229385788403=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6156660651767574349=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -82,760 +85,197 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6231631229385788403==
-Content-Type: multipart/alternative; boundary="0000000000005515e305ba83b145"
+This is a multi-part message in MIME format.
+--===============6156660651767574349==
+Content-Type: multipart/alternative;
+ boundary="------------020602090600070302010601"
 
---0000000000005515e305ba83b145
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------020602090600070302010601
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Pat - Thanks for your sleuthing and info from Intel on how the XL710
-Intel NIC allocates lanes when in 2x2x10 mode. This is certainly an issue
-with what the N321 expects. It would be desirable if the Intel NIC
-configuration utility allowed one to select which lanes to use, and/or if
-we could provide an FPGA image for different lane usage. I see no "fault"
-here on either side; we can all do better though! I'll bring this up with
-relevant Ettus folks to see what we can do from our end; obviously we can't
-control what Intel does. I like Rob's suggestion of using fiber & couplers
-(etc) ... I've never tried that either, but sounds like a possibility for
-overcoming this issue. I will look into acquiring the right parts to try
-out this suggestion. - MLD
-
-
-On Thu, Feb 4, 2021 at 9:33 AM Rob Kossler <rkossler@nd.edu> wrote:
-
-> Hi Pat,
-> Are you using fiber or copper to connect?  If you are using fiber, it
-> seems to me it could work with a three QSFP optical transceivers and thre=
-e
-> MTP/LC breakout fibers that you would connect via couplers such that Host
-> Lanes 0 and 1 go to the first N321 Lanes 0 and 1 while the Host Lanes 2 a=
-nd
-> 3 go to the second N321 Lanes 0 and 1.  The host NIC would be configured
-> 1x4.  Note that I have not done this, but I am planning to purchase N321s
-> soon and so I am interested in this topic.
-> Rob
+On 02/04/2021 03:30 AM, Puertas Blanco, Roberto via USRP-users wrote:
 >
-> On Wed, Feb 3, 2021 at 5:34 PM Patrick Kane via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
+> Hi Marcus,
 >
->> I still cannot use a single 2-port QSFP+ NIC to connect to 2x  N321s.
->> Using the Intel tools to set the NIC to 2x2x10, the NIC doesn't recogniz=
-e
->> the second physical port as a valid connection to a USRP, but works as a
->> loopback or a connection to another NIC. I asked Intel regarding the iss=
-ues
->> to see if we were configuring the NIC incorrectly, and this is the respo=
-nse
->> we got:
->>
->> *Response from Intel on XL710-QDA2*
->>
->> =E2=80=9CWhen configured for 2x2x10 the lanes are split between the port=
-s. The A
->> configuration utilizes lanes 1 and 2 on the top port and lanes 3 and 4 o=
-n
->> the bottom port. These correlate to the physical connections on the QSFP=
-+
->> module. If you are able to configure the port of the other device to
->> utilize lanes 3 and 4, then it should be able to connect to the bottom p=
-ort
->> in the A configuration.=E2=80=9D
->>
->>
->>
->> *Problem:* XQ FPGA image doesn=E2=80=99t accept connections from lanes 2=
- and 3,
->> just 0 and 1. This prevents the bottom port on the Intel NIC from workin=
-g
->> in the 2x2x10 configuration:
->>
->>
->> InterfaceHGXGWXXQAQ
->> SFP+ 0 1 GbE 10 GbE White Rabbit White Rabbit 10 GbE
->> SFP+ 1 10 GbE 10 GbE 10 GbE Unused 10 GbE
->> QSFP+ lane 0 Unused Unused Unused 10 GbE Aurora
->> QSFP+ lane 1 Unused Unused Unused 10 GbE Aurora
->> QSFP+ lane 2 Unused Unused Unused *Unused* Aurora
->> QSFP+ lane 3 Unused Unused Unused *Unused* Aurora
->> In the 2 N321 configuration, lane 2 and 3 are valid, but point to a
->> different USRP. I'm hoping theres a UHD or FW change that can prevent th=
-e
->> QSFP->2x10G breakout cable because that defeats the purpose of using a
->> QSFP+ NIC instead of a 4-port 10G NIC (Intel X710-DA4)
->>
->> Thanks,
->> Pat
->>
->> On Tue, Nov 24, 2020 at 1:01 PM Michael Dickens <
->> michael.dickens@ettus.com> wrote:
->>
->>> Hi Pat - I'm glad that info helped!
->>>
->>> Yes, I plan on adding this information into the N32x Getting Started
->>> Guide, once I have a better handle on it. Right now I have just a few d=
-ata
->>> points & those are not consistent! and I don't know why! Thus ...
->>>
->>> Which Intel QSFP+ utility did you end up using? There are 2 that I can
->>> find:
->>>
->>> 1) EPCT:
->>> https://downloadcenter.intel.com/download/28933/Intel-Ethernet-Port-Con=
-figuration-Tool-Linux-
->>>
->>> This is the newer version that seems to work.
->>>
->>> 2) QCU :
->>> https://downloadcenter.intel.com/download/25851/Intel-QSFP-Configuratio=
-n-Utility-Linux-Final-Release?product=3D46828
->>>
->>> This one is deprecated, though it still works to some extent.
->>>
->>> =3D=3D=3D
->>>
->>> When I execute (A), I get the following options: "4x10" and "2x2x10". I
->>> do not get an "A" or "B" or "LOM" or whatever. Just literally those 2
->>> options.
->>>
->>> I think the first one means "1x(4x10)", meaning that just port0 is
->>> active & provides 4 data lates. I was hoping this option would work wit=
-h a
->>> 1:4 SFP+ breakout cable from FS.com, but to the best of my testing I ca=
-n
->>> get just 1 of those 4 SFP+ links to work. Supposedly if one uses the In=
-tel
->>> 1:4 breakout cable this will work ... but that's paying $350 for an
->>> otherwise $50 cable! I'm still investigating here. Ideally this NIC wou=
-ld
->>> provide "2x(4x10)" with 2 1:4 breakout cables, to get double the SFP+
->>> density of current NICs (e.g., the X710-DA4 ort X722-DA4).
->>>
->>> The second one implies to me that both ports are available & providing =
-2
->>> data lanes each. The best I've been able to do is use "2x2x10" with por=
-t0;
->>> port1 doesn't seem to be working in this setting.
->>>
->>> Admittedly, I might need to update to the current Intel Linux drivers
->>> for the XL710 NIC. I usually let the OS handle this for me -- in this c=
-ase,
->>> Ubuntu 20.04 latest. There are new Intel drivers from early November 20=
-20,
->>> but I don't think the XL710 had any updates from the prior version.
->>>
->>> I'm curious what driver version & OS / version you're using ... maybe
->>> let's catch up off-list for a bit & see what we can figure out here.
->>> Cheers! - MLD
->>>
->>> On Tue, Nov 24, 2020 at 9:06 AM Patrick Kane <prkane92@gmail.com> wrote=
-:
->>>
->>>> Hi Mike,
->>>>
->>>> That seemed to do the trick, thanks for info! At some point, can we
->>>> make these steps part of the N32x getting started docs?
->>>>
->>>> Also- the config utilty makes me choose 2x2x10 A, B, or LOM. Choosing =
-A
->>>> disables the second port on the QDA2, and B disables the first port. L=
-OM
->>>> disables both ports (expected because it's not a MB NIC). My ideal cas=
-e is
->>>> using 2x N321s over QSFP on the same XL710-QDA2 NIC. Have you had any =
-luck
->>>> in this configuration?
->>>>
->>>> Thanks,
->>>> Pat
->>>>
->>>> On Mon, Nov 23, 2020 at 9:23 PM Michael Dickens <
->>>> michael.dickens@ettus.com> wrote:
->>>>
->>>>> Hi Pat - I recently verified that the N321 QAFP+ interface works with
->>>>> UHD 4.0 release. I am also using an Intel XL710 (QDA2, but that proba=
-bly
->>>>> doesn=E2=80=99t matter too much). The trick for me was using the Inte=
-l QSFP+ NIC
->>>>> configuration tool to set the NIC to 2x(2x10 Gb) mode. This is the se=
-tting
->>>>> that the N321 requires, and one that the NIC provides. Once that was =
-set
->>>>> then you need to configures the host and USRP network interfaces as
->>>>> you normally would. After all of that, the link worked very nicely! I=
- hope
->>>>> this is useful! - MLD
->>>>>
->>>>> On Nov 23, 2020, at 4:44 PM, Patrick Kane via USRP-users <
->>>>> usrp-users@lists.ettus.com> wrote:
->>>>>
->>>>> =EF=BB=BF
->>>>>
->>>>> I have an N321 connected to serial console and QSFP+ through a XL710
->>>>> Intel NIC. With the default HG image, I can connect through 1G and se=
-rial
->>>>> as expected. I updated the filesystem to UHD 4.0.0.0 using mender, an=
-d the
->>>>> build artifact reflects that this was successful. Then, after loading=
- the
->>>>> XQ image (using 2x 10Gb lanes through QSFP+ port), I lose all etherne=
-t
->>>>> connectivity through the 1G port SFP0 (expected), but I get the follo=
-wing
->>>>> output in the console window:
->>>>>
->>>>>
->>>>> [  451.560674] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full
->>>>> - flow control off
->>>>>
->>>>> [  453.800673] nixge 40000000.ethernet sfp0: Link is Down
->>>>>
->>>>> [  454.920676] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full
->>>>> - flow control off
->>>>>
->>>>> [  458.280672] nixge 40000000.ethernet sfp0: Link is Down
->>>>>
->>>>> [  459.400677] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full
->>>>> - flow control off
->>>>>
->>>>> [  462.760705] nixge 40000000.ethernet sfp0: Link is Down
->>>>>
->>>>> [  463.880678] nixge 40000000.ethernet sfp0: Link is Up - 10Gbps/Full
->>>>> - flow control off
->>>>>
->>>>> [  466.120673] nixge 40000000.ethernet sfp0: Link is Down
->>>>>
->>>>>
->>>>> uhd_usrp_probe:
->>>>>
->>>>>   _____________________________________________________
->>>>>
->>>>>  /
->>>>>
->>>>> |       Device: N300-Series Device
->>>>>
->>>>> |     _____________________________________________________
->>>>>
->>>>> |    /
->>>>>
->>>>> |   |       Mboard: ni-n3xx-31E00AC
->>>>>
->>>>> |   |   dboard_0_pid: 338
->>>>>
->>>>> |   |   dboard_0_serial: 31DB406
->>>>>
->>>>> |   |   dboard_1_pid: 338
->>>>>
->>>>> |   |   dboard_1_serial: 31DB407
->>>>>
->>>>> |   |   eeprom_version: 3
->>>>>
->>>>> |   |   fs_version: 20200914000806
->>>>>
->>>>> |   |   mender_artifact: v4.0.0.0_n3xx
->>>>>
->>>>> |   |   mpm_sw_version: 4.0.0.0-g90ce6062
->>>>>
->>>>> |   |   pid: 16962
->>>>>
->>>>> |   |   product: n320
->>>>>
->>>>> |   |   rev: 7
->>>>>
->>>>> |   |   rpc_connection: local
->>>>>
->>>>> |   |   serial: 31E00AC
->>>>>
->>>>> |   |   type: n3xx
->>>>>
->>>>> |   |   MPM Version: 3.0
->>>>>
->>>>> |   |   FPGA Version: 8.0
->>>>>
->>>>> |   |   FPGA git hash: be53058.clean
->>>>>
->>>>> |   |
->>>>>
->>>>> |   |   Time sources:  internal, external, gpsdo, sfp0
->>>>>
->>>>> |   |   Clock sources: external, internal, gpsdo
->>>>>
->>>>> |   |   Sensors: ref_locked, gps_locked, temp, fan, gps_gpgga,
->>>>> gps_sky, gps_time, gps_tpv
->>>>>
->>>>>
->>>>> Are there any configuration items needed to connect to the N321
->>>>> through the QSFP+ port. Note that I only see eth0, sfp0, sfp1, and in=
-t0 in
->>>>> /etc/network/interfaces.
->>>>>
->>>>>
->>>>> Thanks,
->>>>>
->>>>> Pat
->>>>>
->>>>>
->>>>> _______________________________________________
->>>>> USRP-users mailing list
->>>>> USRP-users@lists.ettus.com
->>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>>>
->>>>> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
+> My goal is to get NTP daemon running on N300 synced with GPSDO and 
+> PPS. Could it be that the GPSDO time is internally latched with the 
+> PPS line? If this is the case then I guess that it would not be 
+> necessary to read the PPS.
 >
-
---0000000000005515e305ba83b145
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Pat - Thanks for your sleuthing and info from Intel on =
-how the=C2=A0XL710 Intel NIC allocates lanes when in 2x2x10 mode. This is c=
-ertainly an issue with what the N321 expects. It would be desirable if the =
-Intel NIC configuration utility=C2=A0allowed one to select which lanes to u=
-se, and/or if we could provide an FPGA image for different lane usage. I se=
-e no &quot;fault&quot; here on either side; we can all do better though! I&=
-#39;ll bring this up with relevant Ettus folks to see what we can do from o=
-ur end; obviously we can&#39;t control what Intel does. I like Rob&#39;s su=
-ggestion of using fiber &amp; couplers (etc) ... I&#39;ve never tried that =
-either, but sounds like a possibility for overcoming this issue. I will loo=
-k into acquiring the right parts to try out this suggestion. - MLD<div><br>=
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Thu, Feb 4, 2021 at 9:33 AM Rob Kossler &lt;<a href=3D"mailto:rkos=
-sler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Pat,<div>Are you using fibe=
-r or copper to connect?=C2=A0 If you are using fiber, it seems to me it cou=
-ld work with a three QSFP optical transceivers and three MTP/LC breakout fi=
-bers that you would connect via couplers such that Host Lanes 0 and 1 go to=
- the first N321 Lanes 0 and 1 while the Host Lanes 2 and 3 go to the second=
- N321 Lanes 0 and 1.=C2=A0 The host NIC would be configured 1x4.=C2=A0 Note=
- that I have not done this, but I am planning to purchase N321s soon and so=
- I am interested in this topic.</div><div>Rob</div></div><br><div class=3D"=
-gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 3, 2021 at 5=
-:34 PM Patrick Kane via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.e=
-ttus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div=
->I still cannot use a single 2-port QSFP+ NIC to connect to 2x=C2=A0 N321s.=
- Using the Intel tools to set the NIC to 2x2x10, the NIC doesn&#39;t recogn=
-ize the second physical port as a valid connection to a USRP, but works as =
-a loopback or a connection to another NIC. I asked Intel regarding the issu=
-es to see if we were configuring the NIC incorrectly, and this is the respo=
-nse we got:=C2=A0</div><div><br></div><div><p class=3D"MsoNormal" style=3D"=
-margin:0in 0in 0.0001pt;font-size:11pt;font-family:Calibri,sans-serif"><b>R=
-esponse from Intel on XL710-QDA2</b></p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif">=E2=80=9CWhen configured for 2x2x10 the lanes a=
-re split between the
-ports. The A configuration utilizes lanes 1 and 2 on the top port and lanes=
- 3
-and 4 on the bottom port. These correlate to the physical connections on th=
-e
-QSFP+ module. If you are able to configure the port of the other device to
-utilize lanes 3 and 4, then it should be able to connect to the bottom port=
- in
-the A configuration.=E2=80=9D</p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif">=C2=A0</p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><b>Problem:</b> XQ FPGA image doesn=E2=80=99t a=
-ccept connections
-from lanes 2 and 3, just 0 and 1. This prevents the bottom port on the Inte=
-l
-NIC from working in the 2x2x10 configuration:</p>
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
--family:Calibri,sans-serif"><span style=3D"font-size:11pt">=C2=A0 =C2=A0</s=
-pan></p><table style=3D"font-variant-numeric:normal;font-variant-east-asian=
-:normal;font-stretch:normal;font-size:14px;line-height:22px;font-family:Rob=
-oto,sans-serif;border-collapse:collapse;margin-top:4px;margin-bottom:4px;co=
-lor:rgb(0,0,0)"><tbody><tr><th style=3D"border:1px solid rgb(93,105,82);pad=
-ding:5px 7px 4px;background-color:rgb(110,124,97);color:rgb(255,255,255);fo=
-nt-size:15.4px">Interface</th><th style=3D"border:1px solid rgb(93,105,82);=
-padding:5px 7px 4px;background-color:rgb(110,124,97);color:rgb(255,255,255)=
-;font-size:15.4px">HG</th><th style=3D"border:1px solid rgb(93,105,82);padd=
-ing:5px 7px 4px;background-color:rgb(110,124,97);color:rgb(255,255,255);fon=
-t-size:15.4px">XG</th><th style=3D"border:1px solid rgb(93,105,82);padding:=
-5px 7px 4px;background-color:rgb(110,124,97);color:rgb(255,255,255);font-si=
-ze:15.4px">WX</th><th style=3D"border:1px solid rgb(93,105,82);padding:5px =
-7px 4px;background-color:rgb(110,124,97);color:rgb(255,255,255);font-size:1=
-5.4px">XQ</th><th style=3D"border:1px solid rgb(93,105,82);padding:5px 7px =
-4px;background-color:rgb(110,124,97);color:rgb(255,255,255);font-size:15.4p=
-x">AQ</th></tr><tr><td style=3D"border:1px solid rgb(93,105,82);padding:3px=
- 7px 2px">SFP+ 0</td><td style=3D"border:1px solid rgb(93,105,82);padding:3=
-px 7px 2px">1 GbE</td><td style=3D"border:1px solid rgb(93,105,82);padding:=
-3px 7px 2px">10 GbE</td><td style=3D"border:1px solid rgb(93,105,82);paddin=
-g:3px 7px 2px">White Rabbit</td><td style=3D"border:1px solid rgb(93,105,82=
-);padding:3px 7px 2px">White Rabbit</td><td style=3D"border:1px solid rgb(9=
-3,105,82);padding:3px 7px 2px">10 GbE</td></tr><tr><td style=3D"border:1px =
-solid rgb(93,105,82);padding:3px 7px 2px">SFP+ 1</td><td style=3D"border:1p=
-x solid rgb(93,105,82);padding:3px 7px 2px">10 GbE</td><td style=3D"border:=
-1px solid rgb(93,105,82);padding:3px 7px 2px">10 GbE</td><td style=3D"borde=
-r:1px solid rgb(93,105,82);padding:3px 7px 2px">10 GbE</td><td style=3D"bor=
-der:1px solid rgb(93,105,82);padding:3px 7px 2px">Unused</td><td style=3D"b=
-order:1px solid rgb(93,105,82);padding:3px 7px 2px">10 GbE</td></tr><tr><td=
- style=3D"border:1px solid rgb(93,105,82);padding:3px 7px 2px">QSFP+ lane 0=
-</td><td style=3D"border:1px solid rgb(93,105,82);padding:3px 7px 2px">Unus=
-ed</td><td style=3D"border:1px solid rgb(93,105,82);padding:3px 7px 2px">Un=
-used</td><td style=3D"border:1px solid rgb(93,105,82);padding:3px 7px 2px">=
-Unused</td><td style=3D"border:1px solid rgb(93,105,82);padding:3px 7px 2px=
-">10 GbE</td><td style=3D"border:1px solid rgb(93,105,82);padding:3px 7px 2=
-px">Aurora</td></tr><tr><td style=3D"border:1px solid rgb(93,105,82);paddin=
-g:3px 7px 2px">QSFP+ lane 1</td><td style=3D"border:1px solid rgb(93,105,82=
-);padding:3px 7px 2px">Unused</td><td style=3D"border:1px solid rgb(93,105,=
-82);padding:3px 7px 2px">Unused</td><td style=3D"border:1px solid rgb(93,10=
-5,82);padding:3px 7px 2px">Unused</td><td style=3D"border:1px solid rgb(93,=
-105,82);padding:3px 7px 2px">10 GbE</td><td style=3D"border:1px solid rgb(9=
-3,105,82);padding:3px 7px 2px">Aurora</td></tr><tr><td style=3D"border:1px =
-solid rgb(93,105,82);padding:3px 7px 2px">QSFP+ lane 2</td><td style=3D"bor=
-der:1px solid rgb(93,105,82);padding:3px 7px 2px">Unused</td><td style=3D"b=
-order:1px solid rgb(93,105,82);padding:3px 7px 2px">Unused</td><td style=3D=
-"border:1px solid rgb(93,105,82);padding:3px 7px 2px">Unused</td><td style=
-=3D"border:1px solid rgb(93,105,82);padding:3px 7px 2px"><b><font color=3D"=
-#ff0000">Unused</font></b></td><td style=3D"border:1px solid rgb(93,105,82)=
-;padding:3px 7px 2px">Aurora</td></tr><tr><td style=3D"border:1px solid rgb=
-(93,105,82);padding:3px 7px 2px">QSFP+ lane 3</td><td style=3D"border:1px s=
-olid rgb(93,105,82);padding:3px 7px 2px">Unused</td><td style=3D"border:1px=
- solid rgb(93,105,82);padding:3px 7px 2px">Unused</td><td style=3D"border:1=
-px solid rgb(93,105,82);padding:3px 7px 2px">Unused</td><td style=3D"border=
-:1px solid rgb(93,105,82);padding:3px 7px 2px"><font color=3D"#ff0000"><b>U=
-nused</b></font></td><td style=3D"border:1px solid rgb(93,105,82);padding:3=
-px 7px 2px">Aurora</td></tr></tbody></table><br>In the 2 N321 configuration=
-, lane 2 and 3 are valid, but point to a different USRP. I&#39;m hoping the=
-res a UHD or FW change that can prevent the QSFP-&gt;2x10G breakout cable b=
-ecause that defeats the purpose of using a QSFP+ NIC instead of a 4-port 10=
-G NIC (Intel X710-DA4)=C2=A0</div><div><br></div><div>Thanks,</div><div><sp=
-an style=3D"font-family:Calibri,sans-serif;font-size:11pt">Pat=C2=A0</span>=
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Tue, Nov 24, 2020 at 1:01 PM Michael Dickens &lt;<a href=3D"mailto=
-:michael.dickens@ettus.com" target=3D"_blank">michael.dickens@ettus.com</a>=
-&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
- dir=3D"ltr">Hi Pat - I&#39;m glad that info helped!<div><br></div><div>Yes=
-, I plan on adding this information into the N32x Getting Started Guide, on=
-ce I have a better handle on it. Right now I have just a few data points &a=
-mp; those are not consistent! and I don&#39;t know why! Thus ...<div><br></=
-div><div>Which Intel QSFP+ utility did you end up=C2=A0using? There are 2 t=
-hat I can find:</div><div><br></div><div>1) EPCT: <a href=3D"https://downlo=
-adcenter.intel.com/download/28933/Intel-Ethernet-Port-Configuration-Tool-Li=
-nux-" target=3D"_blank">https://downloadcenter.intel.com/download/28933/Int=
-el-Ethernet-Port-Configuration-Tool-Linux-</a></div><div><br></div><div>Thi=
-s is the newer version that seems to work.</div><div><br></div><div>2) QCU =
-:=C2=A0<a href=3D"https://downloadcenter.intel.com/download/25851/Intel-QSF=
-P-Configuration-Utility-Linux-Final-Release?product=3D46828" target=3D"_bla=
-nk">https://downloadcenter.intel.com/download/25851/Intel-QSFP-Configuratio=
-n-Utility-Linux-Final-Release?product=3D46828</a></div><div><br></div><div>=
-This one is deprecated, though it still works to some=C2=A0extent.</div><di=
-v><br></div><div>=3D=3D=3D</div><div><br></div><div>When I execute (A), I g=
-et the following options: &quot;4x10&quot; and &quot;2x2x10&quot;. I do not=
- get an &quot;A&quot; or &quot;B&quot; or &quot;LOM&quot; or whatever. Just=
- literally those 2 options.<br><br></div><div>I think the first one means &=
-quot;1x(4x10)&quot;, meaning that just port0 is active &amp; provides 4 dat=
-a lates. I was hoping this option would work with a 1:4 SFP+ breakout cable=
- from FS.com, but to the best of my testing I can get just 1 of those 4 SFP=
-+ links to work. Supposedly if one uses the Intel 1:4 breakout cable this w=
-ill work ... but that&#39;s paying $350 for an otherwise $50 cable! I&#39;m=
- still investigating here. Ideally this NIC would provide &quot;2x(4x10)&qu=
-ot; with 2 1:4 breakout cables, to get double the SFP+ density of current N=
-ICs (e.g., the X710-DA4 ort X722-DA4).</div><div><br></div><div>The second =
-one implies to me that both ports are available &amp; providing 2 data lane=
-s each. The best I&#39;ve been able to do is use &quot;2x2x10&quot; with po=
-rt0; port1 doesn&#39;t seem to be working in this setting.</div><div><br></=
-div><div>Admittedly, I might need to update to the current Intel Linux driv=
-ers for the XL710 NIC. I usually let the OS handle this for me -- in this c=
-ase, Ubuntu 20.04 latest. There are new Intel drivers from early November 2=
-020, but I don&#39;t think the XL710 had any updates from the prior version=
-.</div><div><br></div><div>I&#39;m curious what driver version &amp; OS / v=
-ersion you&#39;re using ... maybe let&#39;s catch up off-list for a bit &am=
-p; see what we can figure out here. Cheers! - MLD</div></div></div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Nov 24=
-, 2020 at 9:06 AM Patrick Kane &lt;<a href=3D"mailto:prkane92@gmail.com" ta=
-rget=3D"_blank">prkane92@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Mike,=C2=A0<div><br><=
-/div><div>That seemed to do the trick, thanks for info! At some point, can =
-we make these steps part of the N32x getting started docs?=C2=A0</div><div>=
-<br></div><div>Also- the config utilty makes me choose 2x2x10 A, B, or LOM.=
- Choosing A disables the second port on the QDA2, and B disables the first =
-port. LOM disables both ports (expected because it&#39;s not a MB NIC). My =
-ideal case is using 2x N321s over QSFP on the same XL710-QDA2 NIC. Have you=
- had any luck in this configuration?=C2=A0</div><div><br></div><div>Thanks,=
-</div><div>Pat</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
-lass=3D"gmail_attr">On Mon, Nov 23, 2020 at 9:23 PM Michael Dickens &lt;<a =
-href=3D"mailto:michael.dickens@ettus.com" target=3D"_blank">michael.dickens=
-@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"auto"><div dir=3D"ltr">Hi Pat - I recently verified =
-that the N321 QAFP+ interface works with UHD 4.0 release. I am also using a=
-n Intel XL710 (QDA2, but that probably doesn=E2=80=99t matter too much). Th=
-e trick for me was using the Intel QSFP+ NIC configuration tool to set the =
-NIC to 2x(2x10 Gb) mode. This is the setting that the N321 requires, and on=
-e that the NIC provides. Once that was set then you need to configures the =
-host<span style=3D"color:rgb(0,0,0)">=C2=A0and USRP</span>=C2=A0network int=
-erfaces as you normally would. After all of that, the link worked very nice=
-ly! I hope this is useful! - MLD=C2=A0</div><div dir=3D"ltr"><br><blockquot=
-e type=3D"cite">On Nov 23, 2020, at 4:44 PM, Patrick Kane via USRP-users &l=
-t;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-user=
-s@lists.ettus.com</a>&gt; wrote:<br><br></blockquote></div><blockquote type=
-=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">I have an N321 connected =
-to serial console and QSFP+ through a XL710 Intel NIC. With the default HG =
-image, I can connect through 1G and serial as expected. I updated the files=
-ystem to UHD 4.0.0.0 using mender, and the build artifact reflects that thi=
-s was successful. Then, after loading the XQ image (using 2x 10Gb lanes thr=
-ough QSFP+ port), I lose all ethernet connectivity through the 1G port SFP0=
- (expected), but I get the following output in the console window:</span></=
-p><p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-si=
-ze:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-=
-family:&quot;Segoe UI&quot;,sans-serif;color:black"><br></span></p><p class=
-=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size:11pt;fo=
-nt-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&qu=
-ot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 451.560674] nixge
-40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control off</span><=
-/p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 453.800673] nixge
-40000000.ethernet sfp0: Link is Down</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 454.920676] nixge
-40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control off</span><=
-/p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 458.280672] nixge
-40000000.ethernet sfp0: Link is Down</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 459.400677] nixge
-40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control off</span><=
-/p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 462.760705] nixge
-40000000.ethernet sfp0: Link is Down</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 463.880678] nixge
-40000000.ethernet sfp0: Link is Up - 10Gbps/Full - flow control off</span><=
-/p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">[=C2=A0 466.120673] nixge
-40000000.ethernet sfp0: Link is Down</span><span style=3D"font-size:10pt;fo=
-nt-family:&quot;Segoe UI&quot;,sans-serif;color:black"> </span></p><p class=
-=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size:11pt;fo=
-nt-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&qu=
-ot;Segoe UI&quot;,sans-serif;color:black"><br></span></p><p class=3D"MsoNor=
-mal" style=3D"margin:2pt 0in;line-height:normal;font-size:11pt;font-family:=
-Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:&quot;Segoe U=
-I&quot;,sans-serif;color:black">uhd_usrp_probe:</span></p><div>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">=C2=A0 __________________=
-___________________________________</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">=C2=A0/</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 Device:
-N300-Series Device</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0=C2=A0=C2=A0
-_____________________________________________________</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0=C2=A0 /</sp=
-an></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 Mboard:
-ni-n3xx-31E00AC</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 dboard_0_pid: 338</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 dboard_0_serial:
-31DB406</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 dboard_1_pid: 338</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 dboard_1_serial:
-31DB407</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 eeprom_version: 3</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 fs_version:
-20200914000806</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 mender_artifact:
-v4.0.0.0_n3xx</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 mpm_sw_version:
-4.0.0.0-g90ce6062</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 pid: 16962</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 product: n320</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 rev: 7</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 rpc_connection:
-local</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 serial: 31E00AC</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 type: n3xx</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 MPM Version: 3.0</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 FPGA Version: 8.0</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 FPGA git hash:
-be53058.clean</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |</span></p=
+> I have seen the “Device Synchronization” section  and “sync_to_gps”  
+> example in the USRP HW Driver and USRP Manual but  I am not sure if I 
+> have to do this if I just want to synchronize the NTP and system time 
+> on just one USRP N300.
 >
+> Thanks,
+>
+> Roberto
+>
+>
+Indeed, it depends on *why* you want NTPD/GSPD on the *HOST* to "see" a 
+1PPS signal.
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 Time sources:=C2=A0
-internal, external, gpsdo, sfp0</span></p>
+If you want precise radio syncrhonization, that's already accomplished 
+with the procedure used in sync_to_gps.**Using that procedure in
+   your applications will guarantee that the timestamp-clock on your 
+radio is precisely aligned to GPS time.  Placing the LInux host
+   "in the loop" will not contribute to precise time-stamps.
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 Clock sources:
-external, internal, gpsdo</span></p>
+*
+*In USRPs, the GPSDO module exists for the benefit of the radio, and 
+only secondarily for the benefit of the embedded Linux host--
+   if it has one.
 
-<p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;font-size=
-:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
-mily:&quot;Segoe UI&quot;,sans-serif;color:black">|=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 Sensors:
-ref_locked, gps_locked, temp, fan, gps_gpgga, gps_sky, gps_time, gps_tpv</s=
-pan></p><p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;f=
-ont-size:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt=
-;font-family:&quot;Segoe UI&quot;,sans-serif;color:black"><br></span></p><p=
- class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal"><font colo=
-r=3D"#000000" face=3D"Segoe UI, sans-serif"><span style=3D"font-size:13.333=
-3px">Are there any configuration items needed to connect to the N321 throug=
-h the QSFP+ port. Note that I only see eth0, sfp0, sfp1, and int0 in /etc/n=
-etwork/interfaces.</span></font></p><p class=3D"MsoNormal" style=3D"margin:=
-2pt 0in;line-height:normal"><font color=3D"#000000" face=3D"Segoe UI, sans-=
-serif"><span style=3D"font-size:13.3333px"><br></span></font></p><p class=
-=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal"><font color=3D"#=
-000000" face=3D"Segoe UI, sans-serif"><span style=3D"font-size:13.3333px">T=
-hanks,</span></font></p><p class=3D"MsoNormal" style=3D"margin:2pt 0in;line=
--height:normal"><font color=3D"#000000" face=3D"Segoe UI, sans-serif"><span=
- style=3D"font-size:13.3333px">Pat</span></font></p>
+--------------020602090600070302010601
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-</div><p class=3D"MsoNormal" style=3D"margin:2pt 0in;line-height:normal;fon=
-t-size:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;f=
-ont-family:&quot;Segoe UI&quot;,sans-serif;color:black"><br></span></p>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 02/04/2021 03:30 AM, Puertas Blanco,
+      Roberto via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:AM0P193MB03082904B54E9522CBC57115BDB39@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]-->
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+code
+	{mso-style-priority:99;
+	font-family:"Courier New";}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML con formato previo Car";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	color:black;}
+span.HTMLconformatoprevioCar
+	{mso-style-name:"HTML con formato previo Car";
+	mso-style-priority:99;
+	mso-style-link:"HTML con formato previo";
+	font-family:Consolas;
+	color:black;
+	mso-fareast-language:EN-US;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;}
+span.EstiloCorreo21
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EstiloCorreo22
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EstiloCorreo23
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">Hi
+            Marcus, <o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">My
+            goal is to get NTP daemon running on N300 synced with GPSDO
+            and PPS. Could it be that the GPSDO time is internally
+            latched with the PPS line? If this is the case then I guess
+            that it would not be necessary to read the PPS.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">I
+            have seen the “Device Synchronization” section  and
+            “sync_to_gps”  example in the USRP HW Driver and USRP Manual
+            but  I am not sure if I have to do this if I just want to
+            synchronize the NTP and system time on just one USRP N300.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">Thanks,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">Roberto<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US"><o:p> </o:p></span></p>
+        <br>
+      </div>
+    </blockquote>
+    Indeed, it depends on *why* you want NTPD/GSPD on the *HOST* to
+    "see" a 1PPS signal.<br>
+    <br>
+    If you want precise radio syncrhonization, that's already
+    accomplished with the procedure used in sync_to_gps.<b>  </b>Using
+    that procedure in<br>
+      your applications will guarantee that the timestamp-clock on your
+    radio is precisely aligned to GPS time.  Placing the LInux host<br>
+      "in the loop" will not contribute to precise time-stamps.<br>
+    <br>
+    <b><br>
+    </b>In USRPs, the GPSDO module exists for the benefit of the radio,
+    and only secondarily for the benefit of the embedded Linux host--<br>
+      if it has one.  <br>
+  </body>
+</html>
 
-</div></div>
-<span>_______________________________________________</span><br><span>USRP-=
-users mailing list</span><br><span><a href=3D"mailto:USRP-users@lists.ettus=
-.com" target=3D"_blank">USRP-users@lists.ettus.com</a></span><br><span><a h=
-ref=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com" =
-target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.=
-ettus.com</a></span><br></div></blockquote></div></blockquote></div>
-</blockquote></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-
---0000000000005515e305ba83b145--
+--------------020602090600070302010601--
 
 
---===============6231631229385788403==
+--===============6156660651767574349==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -846,5 +286,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6231631229385788403==--
+--===============6156660651767574349==--
 
