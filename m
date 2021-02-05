@@ -2,51 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A48B3107E7
-	for <lists+usrp-users@lfdr.de>; Fri,  5 Feb 2021 10:34:14 +0100 (CET)
-Received: from [::1] (port=48030 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0899D310867
+	for <lists+usrp-users@lfdr.de>; Fri,  5 Feb 2021 10:54:54 +0100 (CET)
+Received: from [::1] (port=48148 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l7xVC-00042t-3V; Fri, 05 Feb 2021 04:34:10 -0500
-Received: from mail-lf1-f53.google.com ([209.85.167.53]:34996)
+	id 1l7xpE-0004oN-HL; Fri, 05 Feb 2021 04:54:52 -0500
+Received: from mail-pl1-f171.google.com ([209.85.214.171]:41507)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <vapham.inria@gmail.com>)
- id 1l7xV7-0003wm-J3
- for usrp-users@lists.ettus.com; Fri, 05 Feb 2021 04:34:06 -0500
-Received: by mail-lf1-f53.google.com with SMTP id u25so8967003lfc.2
- for <usrp-users@lists.ettus.com>; Fri, 05 Feb 2021 01:33:45 -0800 (PST)
+ (Exim 4.93) (envelope-from <tuanmcx58@gmail.com>) id 1l7xpA-0004hu-NF
+ for usrp-users@lists.ettus.com; Fri, 05 Feb 2021 04:54:48 -0500
+Received: by mail-pl1-f171.google.com with SMTP id a16so3290684plh.8
+ for <usrp-users@lists.ettus.com>; Fri, 05 Feb 2021 01:54:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=WCX5pTAfHpJNCey3+ex2Q2hCV5UyIjRvLR1uDmfhGGc=;
- b=LL4ntuN5pZ9p3PLnEN1NHzG8/RAje8vbpRebIE1cmPncJRmx7RZFY/lUrHvfzzt6zA
- ISptjn6SZoUn+/gn/nx8QWa9pdXPo3fj2TRfusR9QktpJ84/09108oc3T7wAJhY5vL0E
- 07EEDCesdmEcATGcfRRtikVDs7kwN7cmQNltW6oUyoPcFMdDKuDz1OTUTh0QErb9+Wxd
- Xf7qezNtcpADpJhy7YlOsE7ux6ZKJnKRVymNmkSXRuIiOFnE4qXTxdyQoqnQa2sTRbbb
- mECrVCcHEhK0R9kqdjMC5FJMvLPpL7nigVqOzRnyVYWW72nd9WjlsmbTrI1UM4Hzozxd
- q4DA==
+ :cc; bh=8GMF9kIx7a64ijdi5pi6X97lUA11bRZOVRqznQ2OBq8=;
+ b=NLL+FNMQIBWq9U2sNizShURCs1pomsPbkVWMUHqT23x8osavU218mzBBRDSGHL0U3W
+ 4XUSBd5Euf808j3sjoQ+M881lRGmJbG+ptLvIvdcc9Adafm0A/fs6yaflAAortX5pjaq
+ 5mRJkCnbisMO9VxAqYu+TLYgMneGTC5NW2u1nJbrFFbWDMH/M/DPz+gZi8kAqh9IJL1W
+ jcgGcZ5NwNdPhuuDw7bkRWFg7QdqzTW5iS/qYu7iG+EIomL/QQVxDaNA7XCA+NYHvjQX
+ fc8iN4YHpHvj6T9T82u1ZiCLpg2nRhuGsjTuFAF11ktPxM8lyxwzJZnieu0Vk7E0AOHa
+ HbDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=WCX5pTAfHpJNCey3+ex2Q2hCV5UyIjRvLR1uDmfhGGc=;
- b=sZkhkmQ3EgfOabPEEirr1YqlmVeFmuTN3OLNcqsGKgt4PRHb3rjdpaFlK4MoqpcKNS
- 3x4gLe+yq6j0LuGZ+N9IixoQxOOQvcQookXfcd9jOyQph3HkRlRsP6F2LE3ArKprn7+R
- 9NuhVZarkHJoFTLlG7iRF1h1k57Je7CZY9mmw/qLhigp2OrQtFyPgXRdDnXQ6KP0CZtQ
- c76Pd3jEMcz/5Sba3kjVti05VEz9Xk74SHwvu19GqNfPUABoklxSrDX5e6zTeWszSQTd
- YXr1ICUT0TULbGL7RUibiqSdvr4IYw95qBOcsCIXVdAdkIdxfOEtyUyljblesrROPYJG
- DRQA==
-X-Gm-Message-State: AOAM533rdWJRSrZDvE28tc4AcZFDuXu3fwcuXKPn21Bbu/D97ZLXImq/
- rHlSeMwhMj70J0a40r/CdOSz2USXzjJWTTZ9Ft1MoG0ZAKmXZg==
-X-Google-Smtp-Source: ABdhPJyNbSZcwbgHo7ZcjtumzWfj8mn7XbXI/80t3dYo5CLZrUQ+qTyCWyfl1ap3K3M2HAdbIPgJeqof/5BSHjzV+P0=
-X-Received: by 2002:a05:6512:3185:: with SMTP id
- i5mr1993191lfe.653.1612517603627; 
- Fri, 05 Feb 2021 01:33:23 -0800 (PST)
+ bh=8GMF9kIx7a64ijdi5pi6X97lUA11bRZOVRqznQ2OBq8=;
+ b=QkCCrQmWSOPsshgp9LlPhMhVz0A5ej120sd5UELoKeCGNfoqwW5o8fCuaSkA/rb1oY
+ UT2IcJ4ivZS9Uk+0yU6MFwO4rcEO37oodj+tHDFrWOpt+8gdIlhYq2rc65GDCW05hwyL
+ 95l+x3zlQCW7QkbtIymfMFT7QZD3KklG6imiUkWkWQvKHz4WPK1wORrp0+5bxsiCdI/8
+ VaVOP+mK1f/cPyWvRbMfIc/6sJ0RBV5joiVcAjpYJ463s2rytSX7UElfuE6MLL0LDxN5
+ L11Hv4C8lBy4Z53/6G7XM6ttjM8iempsBsl3EPEZ83rbouJ/0Et3pkXzLmd2p29bBDU8
+ Qlrw==
+X-Gm-Message-State: AOAM531mr2RfIXq7bMgnRnb/xdeIl5jb+LkRDpFqjZcTRo7pg3BFgGrO
+ wcOByMUmBHOYupISNmspB+vwk7cs4mvpT37pPZE=
+X-Google-Smtp-Source: ABdhPJwUZuR7sJCsPSqowRA3XQCydTXR57TXWMXO3ws5NL4zRhvqNs+vxOQ8+N49LaTx8uj2VnaLNp9MJDcmpSyUjaY=
+X-Received: by 2002:a17:90a:d09:: with SMTP id
+ t9mr3583447pja.139.1612518847639; 
+ Fri, 05 Feb 2021 01:54:07 -0800 (PST)
 MIME-Version: 1.0
 References: <CAJZBg9VWph-hch-Utt_F_1JLJcQe=zdDbM=70SfhCDPpT5j0Xg@mail.gmail.com>
-In-Reply-To: <CAJZBg9VWph-hch-Utt_F_1JLJcQe=zdDbM=70SfhCDPpT5j0Xg@mail.gmail.com>
-Date: Fri, 5 Feb 2021 10:33:12 +0100
-Message-ID: <CAGLe3RnA1_b5npyi8nLvxEDg-o7saqH8GR0g=VNJbFnunNOA5g@mail.gmail.com>
-To: =?UTF-8?B?xJDDrG5oIFR14bqlbiBIb8Ogbmc=?= <tuanmcx58@gmail.com>
+ <CAGLe3RnA1_b5npyi8nLvxEDg-o7saqH8GR0g=VNJbFnunNOA5g@mail.gmail.com>
+In-Reply-To: <CAGLe3RnA1_b5npyi8nLvxEDg-o7saqH8GR0g=VNJbFnunNOA5g@mail.gmail.com>
+Date: Fri, 5 Feb 2021 18:53:56 +0900
+Message-ID: <CAJZBg9WhWJ3Lc=eMDeG5=QM6GWXYfpWohBP5rkR9MU5+guGkgg@mail.gmail.com>
+To: Van-Dung PHAM <vapham.inria@gmail.com>
 Cc: usrp-users <usrp-users@lists.ettus.com>
 Subject: Re: [USRP-users] Sample rate of processing block
 X-BeenThere: usrp-users@lists.ettus.com
@@ -60,9 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Van-Dung PHAM via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Van-Dung PHAM <vapham.inria@gmail.com>
-Content-Type: multipart/mixed; boundary="===============0433195877178843695=="
+From: Tuan Hoang Dinh via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Tuan Hoang Dinh <tuanmcx58@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7023765398426459504=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -76,129 +76,167 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0433195877178843695==
-Content-Type: multipart/related; boundary="000000000000f578d305ba938250"
+--===============7023765398426459504==
+Content-Type: multipart/related; boundary="0000000000001ba48705ba93cd05"
 
---000000000000f578d305ba938250
-Content-Type: multipart/alternative; boundary="000000000000f578d005ba93824f"
+--0000000000001ba48705ba93cd05
+Content-Type: multipart/alternative; boundary="0000000000001ba48405ba93cd04"
 
---000000000000f578d005ba93824f
+--0000000000001ba48405ba93cd04
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Hoang,
+Hi Van Dung,
 
-You must distingue the clock of the hardware and the input sample rate. In
-your simulation result, you can see that the clk =3D 100 MHz, and the input
-sample rate is 30.72 Msps (Mega sample per second).
+I know that the sample rate is different from clock rate.
+By original source from Matlab, they create a file contains a list of
+sample and read the file to the simulation, they hold each sample by 2
+cycles clock and the simulation's result is right.
+When I change the setting parameter on Matlab to generate the VHDL
+simulation code in different clock rate (for example, 200Mhz), each sample
+still takes 2 cycles clock.
+I think that in the common way, 1 sample will be sent every 1 cycle clock,
+that makes me a bit confused, could you help me understand this problem?
+Did I get something wrong about clock rate and sample rate?
 
-How did you know it just takes only one cycle clock to get this result?
+Thank you,
+Tuan
 
-Best,
+V=C3=A0o Th 6, 5 thg 2, 2021 va=CC=80o lu=CC=81c 18:33 Van-Dung PHAM <
+vapham.inria@gmail.com> =C4=91=C3=A3 vi=E1=BA=BFt:
 
-V=C3=A0o Th 6, 5 thg 2, 2021 va=CC=80o lu=CC=81c 08:54 =C4=90=C3=ACnh Tu=E1=
-=BA=A5n Ho=C3=A0ng via USRP-users <
-usrp-users@lists.ettus.com> =C4=91=C3=A3 vi=E1=BA=BFt:
+> Hello Hoang,
+>
+> You must distingue the clock of the hardware and the input sample rate. I=
+n
+> your simulation result, you can see that the clk =3D 100 MHz, and the inp=
+ut
+> sample rate is 30.72 Msps (Mega sample per second).
+>
+> How did you know it just takes only one cycle clock to get this result?
+>
+> Best,
+>
+> V=C3=A0o Th 6, 5 thg 2, 2021 va=CC=80o lu=CC=81c 08:54 =C4=90=C3=ACnh Tu=
+=E1=BA=A5n Ho=C3=A0ng via USRP-users <
+> usrp-users@lists.ettus.com> =C4=91=C3=A3 vi=E1=BA=BFt:
+>
+>> Hi everyone,
+>>
+>> I know that my question is a bit inappropriate when writing here, but I
+>> submitted on the Mathlab Community but no one helped.
+>>
+>> I'm working with LTE HDL Cell Search example of Matlab to generate VHDL
+>> code. (LTE HDL Cell Search
+>> <https://www.mathworks.com/help/wireless-hdl/ug/lte-hdl-cell-search.html=
+>),
+>> and then wrap the VHDL code to RFNoC Block and connect them following
+>> diagram: Radio -> DDC -> Cell Search Block -> GNU Radio
+>>
+>> After generating the VHDL code from Matlab (including simulation code),
+>> when running the simulation on Vivado, I see that every sample at the
+>> input takes 2 cycles of clock like the image below. When I change each
+>> sample by 1 cycle clock, the block did not work.
+>>
+>> The document said that the input sample rate is 30.72 Msps, I understand
+>> that 30.72 Msps is the sample rate of ADC and different with clock rate,=
+ it
+>> makes me a little bit confused about why the sample takes 2 cycles clock
+>> here because in the actual case, it takes only 1 cycle clock?
+>>
+>> Please someone help me with my problem?
+>> Thank you so much!
+>>
+>> [image: image.png]
+>> [image: image.png]
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>
+>
 
-> Hi everyone,
->
-> I know that my question is a bit inappropriate when writing here, but I
-> submitted on the Mathlab Community but no one helped.
->
-> I'm working with LTE HDL Cell Search example of Matlab to generate VHDL
-> code. (LTE HDL Cell Search
-> <https://www.mathworks.com/help/wireless-hdl/ug/lte-hdl-cell-search.html>=
-),
-> and then wrap the VHDL code to RFNoC Block and connect them following
-> diagram: Radio -> DDC -> Cell Search Block -> GNU Radio
->
-> After generating the VHDL code from Matlab (including simulation code),
-> when running the simulation on Vivado, I see that every sample at the
-> input takes 2 cycles of clock like the image below. When I change each
-> sample by 1 cycle clock, the block did not work.
->
-> The document said that the input sample rate is 30.72 Msps, I understand
-> that 30.72 Msps is the sample rate of ADC and different with clock rate, =
-it
-> makes me a little bit confused about why the sample takes 2 cycles clock
-> here because in the actual case, it takes only 1 cycle clock?
->
-> Please someone help me with my problem?
-> Thank you so much!
->
-> [image: image.png]
-> [image: image.png]
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---000000000000f578d005ba93824f
+--0000000000001ba48405ba93cd04
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello Hoang,<div><br></div><div>You must distingue the clo=
-ck of the hardware and the input sample rate. In your simulation result, yo=
-u can see that the clk =3D 100 MHz, and the=C2=A0input sample rate is 30.72=
- Msps (Mega sample per second).</div><div><br></div><div>How did you know i=
-t just takes only one cycle clock to get this result?</div><div><br></div><=
-div>Best,</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">V=C3=A0o Th 6, 5 thg 2, 2021 va=CC=80o lu=CC=81c 08:54 =C4=
-=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng via USRP-users &lt;<a href=3D"mailto:us=
-rp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; =C4=91=C3=A3 v=
-i=E1=BA=BFt:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
-v dir=3D"ltr"><font face=3D"tahoma, sans-serif" color=3D"#000000" style=3D"=
-background-color:rgb(255,255,255)">Hi everyone,</font><div><font face=3D"ta=
-homa, sans-serif" color=3D"#000000" style=3D"background-color:rgb(255,255,2=
-55)"><br></font></div><div><font face=3D"tahoma, sans-serif" color=3D"#0000=
-00" style=3D"background-color:rgb(255,255,255)">I know that my question is =
-a bit inappropriate when writing here, but I submitted=C2=A0on the Mathlab =
-Community but no one helped.</font></div><div><font face=3D"tahoma, sans-se=
-rif" color=3D"#000000" style=3D"background-color:rgb(255,255,255)"><br></fo=
-nt></div><div><font face=3D"tahoma, sans-serif" color=3D"#000000" style=3D"=
-background-color:rgb(255,255,255)"><span style=3D"box-sizing:border-box;whi=
-te-space:pre-wrap"><span style=3D"box-sizing:border-box">I&#39;m working wi=
-th LTE HDL Cell Search example of Matlab to generate VHDL code. (</span></s=
-pan><a rel=3D"nofollow noopener noreferrer" href=3D"https://www.mathworks.c=
-om/help/wireless-hdl/ug/lte-hdl-cell-search.html" style=3D"box-sizing:borde=
-r-box;text-decoration-line:none;white-space:pre-wrap" target=3D"_blank"><sp=
-an style=3D"box-sizing:border-box"><span style=3D"box-sizing:border-box">LT=
-E HDL Cell Search</span></span></a><span style=3D"box-sizing:border-box;whi=
-te-space:pre-wrap"><span style=3D"box-sizing:border-box">), and then wrap t=
-he VHDL code to RFNoC Block and connect them following diagram: Radio -&gt;=
- DDC -&gt; Cell Search Block -&gt; GNU Radio</span></span><br></font></div>=
-<div><span style=3D"box-sizing:border-box;white-space:pre-wrap"><span style=
-=3D"box-sizing:border-box;background-color:rgb(255,255,255)"><font face=3D"=
-tahoma, sans-serif" color=3D"#000000"><br></font></span></span></div><div><=
-font face=3D"tahoma, sans-serif" color=3D"#000000" style=3D"background-colo=
-r:rgb(255,255,255)">After generating the VHDL code from Matlab (including s=
-imulation code), when running the simulation on Vivado,=C2=A0<span style=3D=
-"white-space:pre-wrap">I see that every sample at the input takes 2 cycles =
-of clock like the image below. When I change each sample by 1 cycle clock, =
-the block did not work.</span></font></div><div><span style=3D"white-space:=
-pre-wrap;background-color:rgb(255,255,255)"><font face=3D"tahoma, sans-seri=
-f" color=3D"#000000"><br></font></span></div><div><font face=3D"tahoma, san=
-s-serif" color=3D"#000000" style=3D"background-color:rgb(255,255,255)"><spa=
-n style=3D"white-space:pre-wrap">The document said that the input sample ra=
-te is 30.72 Msps, I understand that 30.72 Msps is the sample rate of ADC an=
-d different with clock rate, it makes me a little bit confused about why th=
-e sample takes 2 cycles clock here because in the actual case, it takes onl=
-y 1 cycle clock? </span><span style=3D"white-space:pre-wrap"><br></span></f=
-ont></div><div><font face=3D"tahoma, sans-serif" color=3D"#000000" style=3D=
-"background-color:rgb(255,255,255)"><span style=3D"white-space:pre-wrap"><b=
-r></span></font></div><div><font color=3D"#000000" face=3D"tahoma, sans-ser=
-if"><span style=3D"white-space:pre-wrap;background-color:rgb(255,255,255)">=
-Please someone help me with my problem?</span></font></div><div><font color=
-=3D"#000000"><span style=3D"white-space:pre-wrap"><font face=3D"tahoma, san=
-s-serif" style=3D"background-color:rgb(255,255,255)">Thank you so much!</fo=
-nt></span></font></div><div><font color=3D"#000000" face=3D"Helvetica, Aria=
-l, sans-serif"><span style=3D"font-size:14px;white-space:pre-wrap"><br></sp=
-an></font></div><div><img src=3D"cid:ii_kkrzp1w61" alt=3D"image.png" width=
-=3D"752" height=3D"240" style=3D"margin-right: 0px;"><br></div><div><img sr=
-c=3D"cid:ii_kkrzm1130" alt=3D"image.png" width=3D"758" height=3D"348" style=
-=3D"margin-right: 0px;"><br></div></div>
+<div dir=3D"ltr">Hi Van Dung,<div><br></div><div>I know that the sample rat=
+e is different from clock rate.</div><div>By original source from Matlab, t=
+hey create a file contains=C2=A0a=C2=A0list of sample and read the file to =
+the simulation, they hold each sample by 2 cycles clock and the simulation&=
+#39;s result is right.</div><div>When I change the setting parameter on Mat=
+lab to generate the VHDL simulation code in different clock rate (for examp=
+le, 200Mhz), each sample still takes 2 cycles clock.</div><div>I think that=
+ in the common way, 1 sample will be sent every 1 cycle clock, that makes m=
+e a bit confused, could you help me understand this problem? Did I get some=
+thing wrong about clock rate and sample rate?</div><div><br></div><div>Than=
+k you,</div><div>Tuan</div></div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">V=C3=A0o Th 6, 5 thg 2, 2021 va=CC=80o lu=CC=81c=
+ 18:33 Van-Dung PHAM &lt;<a href=3D"mailto:vapham.inria@gmail.com">vapham.i=
+nria@gmail.com</a>&gt; =C4=91=C3=A3 vi=E1=BA=BFt:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hello Hoang,<div><br></d=
+iv><div>You must distingue the clock of the hardware and the input sample r=
+ate. In your simulation result, you can see that the clk =3D 100 MHz, and t=
+he=C2=A0input sample rate is 30.72 Msps (Mega sample per second).</div><div=
+><br></div><div>How did you know it just takes only one cycle clock to get =
+this result?</div><div><br></div><div>Best,</div></div><br><div class=3D"gm=
+ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">V=C3=A0o Th 6, 5 thg 2, 20=
+21 va=CC=80o lu=CC=81c 08:54 =C4=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng via USR=
+P-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"=
+>usrp-users@lists.ettus.com</a>&gt; =C4=91=C3=A3 vi=E1=BA=BFt:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><font face=
+=3D"tahoma, sans-serif" color=3D"#000000" style=3D"background-color:rgb(255=
+,255,255)">Hi everyone,</font><div><font face=3D"tahoma, sans-serif" color=
+=3D"#000000" style=3D"background-color:rgb(255,255,255)"><br></font></div><=
+div><font face=3D"tahoma, sans-serif" color=3D"#000000" style=3D"background=
+-color:rgb(255,255,255)">I know that my question is a bit inappropriate whe=
+n writing here, but I submitted=C2=A0on the Mathlab Community but no one he=
+lped.</font></div><div><font face=3D"tahoma, sans-serif" color=3D"#000000" =
+style=3D"background-color:rgb(255,255,255)"><br></font></div><div><font fac=
+e=3D"tahoma, sans-serif" color=3D"#000000" style=3D"background-color:rgb(25=
+5,255,255)"><span style=3D"box-sizing:border-box;white-space:pre-wrap"><spa=
+n style=3D"box-sizing:border-box">I&#39;m working with LTE HDL Cell Search =
+example of Matlab to generate VHDL code. (</span></span><a rel=3D"nofollow =
+noopener noreferrer" href=3D"https://www.mathworks.com/help/wireless-hdl/ug=
+/lte-hdl-cell-search.html" style=3D"box-sizing:border-box;text-decoration-l=
+ine:none;white-space:pre-wrap" target=3D"_blank"><span style=3D"box-sizing:=
+border-box"><span style=3D"box-sizing:border-box">LTE HDL Cell Search</span=
+></span></a><span style=3D"box-sizing:border-box;white-space:pre-wrap"><spa=
+n style=3D"box-sizing:border-box">), and then wrap the VHDL code to RFNoC B=
+lock and connect them following diagram: Radio -&gt; DDC -&gt; Cell Search =
+Block -&gt; GNU Radio</span></span><br></font></div><div><span style=3D"box=
+-sizing:border-box;white-space:pre-wrap"><span style=3D"box-sizing:border-b=
+ox;background-color:rgb(255,255,255)"><font face=3D"tahoma, sans-serif" col=
+or=3D"#000000"><br></font></span></span></div><div><font face=3D"tahoma, sa=
+ns-serif" color=3D"#000000" style=3D"background-color:rgb(255,255,255)">Aft=
+er generating the VHDL code from Matlab (including simulation code), when r=
+unning the simulation on Vivado,=C2=A0<span style=3D"white-space:pre-wrap">=
+I see that every sample at the input takes 2 cycles of clock like the image=
+ below. When I change each sample by 1 cycle clock, the block did not work.=
+</span></font></div><div><span style=3D"white-space:pre-wrap;background-col=
+or:rgb(255,255,255)"><font face=3D"tahoma, sans-serif" color=3D"#000000"><b=
+r></font></span></div><div><font face=3D"tahoma, sans-serif" color=3D"#0000=
+00" style=3D"background-color:rgb(255,255,255)"><span style=3D"white-space:=
+pre-wrap">The document said that the input sample rate is 30.72 Msps, I und=
+erstand that 30.72 Msps is the sample rate of ADC and different with clock =
+rate, it makes me a little bit confused about why the sample takes 2 cycles=
+ clock here because in the actual case, it takes only 1 cycle clock? </span=
+><span style=3D"white-space:pre-wrap"><br></span></font></div><div><font fa=
+ce=3D"tahoma, sans-serif" color=3D"#000000" style=3D"background-color:rgb(2=
+55,255,255)"><span style=3D"white-space:pre-wrap"><br></span></font></div><=
+div><font color=3D"#000000" face=3D"tahoma, sans-serif"><span style=3D"whit=
+e-space:pre-wrap;background-color:rgb(255,255,255)">Please someone help me =
+with my problem?</span></font></div><div><font color=3D"#000000"><span styl=
+e=3D"white-space:pre-wrap"><font face=3D"tahoma, sans-serif" style=3D"backg=
+round-color:rgb(255,255,255)">Thank you so much!</font></span></font></div>=
+<div><font color=3D"#000000" face=3D"Helvetica, Arial, sans-serif"><span st=
+yle=3D"font-size:14px;white-space:pre-wrap"><br></span></font></div><div><i=
+mg src=3D"cid:ii_kkrzp1w61" alt=3D"image.png" width=3D"752" height=3D"240" =
+style=3D"margin-right: 0px;"><br></div><div><img src=3D"cid:ii_kkrzm1130" a=
+lt=3D"image.png" width=3D"758" height=3D"348" style=3D"margin-right: 0px;">=
+<br></div></div>
 _______________________________________________<br>
 USRP-users mailing list<br>
 <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
@@ -207,9 +245,10 @@ lists.ettus.com</a><br>
 om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
 tinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div>
 
---000000000000f578d005ba93824f--
---000000000000f578d305ba938250
+--0000000000001ba48405ba93cd04--
+--0000000000001ba48705ba93cd05
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -1627,7 +1666,7 @@ AQUUuB0CNhTOfZ1dwXNfQeevgAIKKKCAAgoooIACCiigwAkEbCicAH3WS7qCs3I6mAIKKKCAAgoo
 oIACCiiggAK3Q8CGwrmvsyt47ivo/BVQQAEFFFBAAQUUUEABBRQ4gYANhROgz3pJV3BWTgdTQAEF
 FFBAAQUUUEABBRRQ4HYI2FA493V2Bc99BZ2/AgoooIACCiiggAIK3FqB/wf3zVg2GmbVFwAAAABJ
 RU5ErkJggg==
---000000000000f578d305ba938250
+--0000000000001ba48705ba93cd05
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -2151,10 +2190,10 @@ xIWEASGAAAIIIIAAAgggEK0A9Um0oWfiCCCAAAIIIIAAAgiIE6A+ERcSBoQAAggggAACCCCAQLQC
 OAHqE3EhYUAIIIAAAggggAACCEQrQH0SbeiZOAIIIIAAAggggAAC4gSoT8SFhAEhgAACCCCAAAII
 IBCtAPVJtKFn4ggggAACCCCAAAIIiBOgPhEXEgaEAAIIIIAAAggggEC0AtQn0YaeiSOAAAIIIIAA
 AgggIE6A+kRcSBgQAggggAACCCCAAALRCvwHPL05vYGlMasAAAAASUVORK5CYII=
---000000000000f578d305ba938250--
+--0000000000001ba48705ba93cd05--
 
 
---===============0433195877178843695==
+--===============7023765398426459504==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2165,5 +2204,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0433195877178843695==--
+--===============7023765398426459504==--
 
