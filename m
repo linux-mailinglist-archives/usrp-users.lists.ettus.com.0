@@ -2,48 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7729310615
-	for <lists+usrp-users@lfdr.de>; Fri,  5 Feb 2021 08:54:49 +0100 (CET)
-Received: from [::1] (port=47354 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A48B3107E7
+	for <lists+usrp-users@lfdr.de>; Fri,  5 Feb 2021 10:34:14 +0100 (CET)
+Received: from [::1] (port=48030 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l7vwz-0000uh-9e; Fri, 05 Feb 2021 02:54:45 -0500
-Received: from mail-pg1-f179.google.com ([209.85.215.179]:43013)
+	id 1l7xVC-00042t-3V; Fri, 05 Feb 2021 04:34:10 -0500
+Received: from mail-lf1-f53.google.com ([209.85.167.53]:34996)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <tuanmcx58@gmail.com>) id 1l7vwu-0000pA-Qk
- for usrp-users@lists.ettus.com; Fri, 05 Feb 2021 02:54:41 -0500
-Received: by mail-pg1-f179.google.com with SMTP id n10so3961325pgl.10
- for <usrp-users@lists.ettus.com>; Thu, 04 Feb 2021 23:54:20 -0800 (PST)
+ (Exim 4.93) (envelope-from <vapham.inria@gmail.com>)
+ id 1l7xV7-0003wm-J3
+ for usrp-users@lists.ettus.com; Fri, 05 Feb 2021 04:34:06 -0500
+Received: by mail-lf1-f53.google.com with SMTP id u25so8967003lfc.2
+ for <usrp-users@lists.ettus.com>; Fri, 05 Feb 2021 01:33:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=5LIcLX015rwNpM0xEhneHik3Kz7VuEj8RaaQXEML34Q=;
- b=hmIH+AS2I2qh4rp9Ni06lnlvuIDLzzlgVi9INpUWJNkHafDpeSp+JMtoqqYOHVOCdq
- 68Gpx6imu1NXSHSawibCLbOVMbc64FN3IA1aOagTpwACaGI2ADuzVqEeWUeeUIAPvfA/
- FrN3dCd4ElflI2KarcTajMTuoPyci+arKX2sofGxY38ai0d6A2/2ZmROoO9c0U5t7Dzg
- oSRj9cLFipsxiFPW6i41OmyUoJAZZXCCIOzFr+6KZ3x1Pdzqgh5FoIiIT0NKyxAZX/o3
- 8BIohs9YF8cV7CbymFXnOZDfo4LWKsK4x+UGu3rMNQOqTPkFBELkA3RxceddqW1MRWNe
- Rp8w==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=WCX5pTAfHpJNCey3+ex2Q2hCV5UyIjRvLR1uDmfhGGc=;
+ b=LL4ntuN5pZ9p3PLnEN1NHzG8/RAje8vbpRebIE1cmPncJRmx7RZFY/lUrHvfzzt6zA
+ ISptjn6SZoUn+/gn/nx8QWa9pdXPo3fj2TRfusR9QktpJ84/09108oc3T7wAJhY5vL0E
+ 07EEDCesdmEcATGcfRRtikVDs7kwN7cmQNltW6oUyoPcFMdDKuDz1OTUTh0QErb9+Wxd
+ Xf7qezNtcpADpJhy7YlOsE7ux6ZKJnKRVymNmkSXRuIiOFnE4qXTxdyQoqnQa2sTRbbb
+ mECrVCcHEhK0R9kqdjMC5FJMvLPpL7nigVqOzRnyVYWW72nd9WjlsmbTrI1UM4Hzozxd
+ q4DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=5LIcLX015rwNpM0xEhneHik3Kz7VuEj8RaaQXEML34Q=;
- b=KwSnCOJWgE/MARfMAa9wJC56XA1Jc/JElh91RhyE2OjgVrK7yEci6gDeRDUN3Ib1Ld
- V/Nkqavn17I1ZB2qEWqTdrXnf6EZh0gRIQxSfQxcR1La42LghvN0j+JvIEbmLMztWSG8
- 19vlsBCzL10yIbl5PPKaqBNRnOfa2WbpuafKFxucaQJKEeIbxM90wTfn+/mjGyuxwTyA
- WVVJtAhVRUQ3sAqvV4DL47KcXZjqlCYyAe6quGRhr4skJbCiXV3tuWUGAG2DGN1p0PZC
- 6R1Bs78sQPeHrMyGIPk6XrfvqYm3pB89iwvkLGJB/KKtG17Nr/mEDTxoySxl+/CqWuxE
- 4GQg==
-X-Gm-Message-State: AOAM530ztp0bFRWXrkqFDayzgNmcdgubgcI8W62VSxeAYc+tleVFBbIW
- vIDtLEPiGysmA9ckcIIf99OSxvAf/zQkQKWBmXUnbVYseJgqZlI/
-X-Google-Smtp-Source: ABdhPJyuVjXasODNsIcAYWcTRiOHd965ShZm4HIRTHZnCJkW0oO2XUJpGrOG+hvAEYibWLW1NaYmskMyWZ3668ZQhzk=
-X-Received: by 2002:a62:7c86:0:b029:1b7:cf7b:7d79 with SMTP id
- x128-20020a627c860000b02901b7cf7b7d79mr3594590pfc.48.1612511638664; Thu, 04
- Feb 2021 23:53:58 -0800 (PST)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=WCX5pTAfHpJNCey3+ex2Q2hCV5UyIjRvLR1uDmfhGGc=;
+ b=sZkhkmQ3EgfOabPEEirr1YqlmVeFmuTN3OLNcqsGKgt4PRHb3rjdpaFlK4MoqpcKNS
+ 3x4gLe+yq6j0LuGZ+N9IixoQxOOQvcQookXfcd9jOyQph3HkRlRsP6F2LE3ArKprn7+R
+ 9NuhVZarkHJoFTLlG7iRF1h1k57Je7CZY9mmw/qLhigp2OrQtFyPgXRdDnXQ6KP0CZtQ
+ c76Pd3jEMcz/5Sba3kjVti05VEz9Xk74SHwvu19GqNfPUABoklxSrDX5e6zTeWszSQTd
+ YXr1ICUT0TULbGL7RUibiqSdvr4IYw95qBOcsCIXVdAdkIdxfOEtyUyljblesrROPYJG
+ DRQA==
+X-Gm-Message-State: AOAM533rdWJRSrZDvE28tc4AcZFDuXu3fwcuXKPn21Bbu/D97ZLXImq/
+ rHlSeMwhMj70J0a40r/CdOSz2USXzjJWTTZ9Ft1MoG0ZAKmXZg==
+X-Google-Smtp-Source: ABdhPJyNbSZcwbgHo7ZcjtumzWfj8mn7XbXI/80t3dYo5CLZrUQ+qTyCWyfl1ap3K3M2HAdbIPgJeqof/5BSHjzV+P0=
+X-Received: by 2002:a05:6512:3185:: with SMTP id
+ i5mr1993191lfe.653.1612517603627; 
+ Fri, 05 Feb 2021 01:33:23 -0800 (PST)
 MIME-Version: 1.0
-Date: Fri, 5 Feb 2021 16:53:47 +0900
-Message-ID: <CAJZBg9VWph-hch-Utt_F_1JLJcQe=zdDbM=70SfhCDPpT5j0Xg@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Sample rate of processing block
+References: <CAJZBg9VWph-hch-Utt_F_1JLJcQe=zdDbM=70SfhCDPpT5j0Xg@mail.gmail.com>
+In-Reply-To: <CAJZBg9VWph-hch-Utt_F_1JLJcQe=zdDbM=70SfhCDPpT5j0Xg@mail.gmail.com>
+Date: Fri, 5 Feb 2021 10:33:12 +0100
+Message-ID: <CAGLe3RnA1_b5npyi8nLvxEDg-o7saqH8GR0g=VNJbFnunNOA5g@mail.gmail.com>
+To: =?UTF-8?B?xJDDrG5oIFR14bqlbiBIb8Ogbmc=?= <tuanmcx58@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Sample rate of processing block
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?b?xJDDrG5oIFR14bqlbiBIb8OgbmcgdmlhIFVTUlAtdXNlcnM=?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?xJDDrG5oIFR14bqlbiBIb8Ogbmc=?= <tuanmcx58@gmail.com>
-Content-Type: multipart/mixed; boundary="===============5816376772942376700=="
+From: Van-Dung PHAM via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Van-Dung PHAM <vapham.inria@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0433195877178843695=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -72,102 +76,140 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5816376772942376700==
-Content-Type: multipart/related; boundary="0000000000006b949005ba921fc7"
+--===============0433195877178843695==
+Content-Type: multipart/related; boundary="000000000000f578d305ba938250"
 
---0000000000006b949005ba921fc7
-Content-Type: multipart/alternative; boundary="0000000000006b948e05ba921fc6"
+--000000000000f578d305ba938250
+Content-Type: multipart/alternative; boundary="000000000000f578d005ba93824f"
 
---0000000000006b948e05ba921fc6
+--000000000000f578d005ba93824f
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi everyone,
+Hello Hoang,
 
-I know that my question is a bit inappropriate when writing here, but I
-submitted on the Mathlab Community but no one helped.
+You must distingue the clock of the hardware and the input sample rate. In
+your simulation result, you can see that the clk =3D 100 MHz, and the input
+sample rate is 30.72 Msps (Mega sample per second).
 
-I'm working with LTE HDL Cell Search example of Matlab to generate VHDL
-code. (LTE HDL Cell Search
-<https://www.mathworks.com/help/wireless-hdl/ug/lte-hdl-cell-search.html>),
-and then wrap the VHDL code to RFNoC Block and connect them following
-diagram: Radio -> DDC -> Cell Search Block -> GNU Radio
+How did you know it just takes only one cycle clock to get this result?
 
-After generating the VHDL code from Matlab (including simulation code),
-when running the simulation on Vivado, I see that every sample at the input
-takes 2 cycles of clock like the image below. When I change each sample by
-1 cycle clock, the block did not work.
+Best,
 
-The document said that the input sample rate is 30.72 Msps, I understand
-that 30.72 Msps is the sample rate of ADC and different with clock rate, it
-makes me a little bit confused about why the sample takes 2 cycles clock
-here because in the actual case, it takes only 1 cycle clock?
+V=C3=A0o Th 6, 5 thg 2, 2021 va=CC=80o lu=CC=81c 08:54 =C4=90=C3=ACnh Tu=E1=
+=BA=A5n Ho=C3=A0ng via USRP-users <
+usrp-users@lists.ettus.com> =C4=91=C3=A3 vi=E1=BA=BFt:
 
-Please someone help me with my problem?
-Thank you so much!
+> Hi everyone,
+>
+> I know that my question is a bit inappropriate when writing here, but I
+> submitted on the Mathlab Community but no one helped.
+>
+> I'm working with LTE HDL Cell Search example of Matlab to generate VHDL
+> code. (LTE HDL Cell Search
+> <https://www.mathworks.com/help/wireless-hdl/ug/lte-hdl-cell-search.html>=
+),
+> and then wrap the VHDL code to RFNoC Block and connect them following
+> diagram: Radio -> DDC -> Cell Search Block -> GNU Radio
+>
+> After generating the VHDL code from Matlab (including simulation code),
+> when running the simulation on Vivado, I see that every sample at the
+> input takes 2 cycles of clock like the image below. When I change each
+> sample by 1 cycle clock, the block did not work.
+>
+> The document said that the input sample rate is 30.72 Msps, I understand
+> that 30.72 Msps is the sample rate of ADC and different with clock rate, =
+it
+> makes me a little bit confused about why the sample takes 2 cycles clock
+> here because in the actual case, it takes only 1 cycle clock?
+>
+> Please someone help me with my problem?
+> Thank you so much!
+>
+> [image: image.png]
+> [image: image.png]
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-[image: image.png]
-[image: image.png]
-
---0000000000006b948e05ba921fc6
+--000000000000f578d005ba93824f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><font face=3D"tahoma, sans-serif" color=3D"#000000" style=
-=3D"background-color:rgb(255,255,255)">Hi everyone,</font><div><font face=
-=3D"tahoma, sans-serif" color=3D"#000000" style=3D"background-color:rgb(255=
-,255,255)"><br></font></div><div><font face=3D"tahoma, sans-serif" color=3D=
-"#000000" style=3D"background-color:rgb(255,255,255)">I know that my questi=
-on is a bit inappropriate when writing here, but I submitted=C2=A0on the Ma=
-thlab Community but no one helped.</font></div><div><font face=3D"tahoma, s=
-ans-serif" color=3D"#000000" style=3D"background-color:rgb(255,255,255)"><b=
-r></font></div><div><font face=3D"tahoma, sans-serif" color=3D"#000000" sty=
-le=3D"background-color:rgb(255,255,255)"><span class=3D"gmail-textBox" styl=
-e=3D"box-sizing:border-box;white-space:pre-wrap"><span class=3D"gmail-textW=
-rapper" style=3D"box-sizing:border-box">I&#39;m working with LTE HDL Cell S=
-earch example of Matlab to generate VHDL code. (</span></span><a target=3D"=
-_blank" rel=3D"nofollow noopener noreferrer" href=3D"https://www.mathworks.=
-com/help/wireless-hdl/ug/lte-hdl-cell-search.html" style=3D"box-sizing:bord=
-er-box;text-decoration-line:none;white-space:pre-wrap"><span class=3D"gmail=
--textBox" style=3D"box-sizing:border-box"><span class=3D"gmail-textWrapper"=
- style=3D"box-sizing:border-box">LTE HDL Cell Search</span></span></a><span=
- class=3D"gmail-textBox" style=3D"box-sizing:border-box;white-space:pre-wra=
-p"><span class=3D"gmail-textWrapper" style=3D"box-sizing:border-box">), and=
- then wrap the VHDL code to RFNoC Block and connect them following diagram:=
- Radio -&gt; DDC -&gt; Cell Search Block -&gt; GNU Radio</span></span><br><=
-/font></div><div><span class=3D"gmail-textBox" style=3D"box-sizing:border-b=
-ox;white-space:pre-wrap"><span class=3D"gmail-textWrapper" style=3D"box-siz=
-ing:border-box;background-color:rgb(255,255,255)"><font face=3D"tahoma, san=
-s-serif" color=3D"#000000"><br></font></span></span></div><div><font face=
-=3D"tahoma, sans-serif" color=3D"#000000" style=3D"background-color:rgb(255=
-,255,255)">After generating the VHDL code from Matlab (including simulation=
- code), when running the simulation on Vivado,=C2=A0<span style=3D"white-sp=
-ace:pre-wrap">I see that every sample at the input takes 2 cycles of clock =
-like the image below. When I change each sample by 1 cycle clock, the block=
- did not work.</span></font></div><div><span style=3D"white-space:pre-wrap;=
-background-color:rgb(255,255,255)"><font face=3D"tahoma, sans-serif" color=
-=3D"#000000"><br></font></span></div><div><font face=3D"tahoma, sans-serif"=
- color=3D"#000000" style=3D"background-color:rgb(255,255,255)"><span style=
-=3D"white-space:pre-wrap">The document said that the input sample rate is 3=
-0.72 Msps, I understand that 30.72 Msps is the sample rate of ADC and diffe=
-rent with clock rate, it makes me a little bit confused about why the sampl=
-e takes 2 cycles clock here because in the actual case, it takes only 1 cyc=
-le clock? </span><span style=3D"white-space:pre-wrap"><br></span></font></d=
-iv><div><font face=3D"tahoma, sans-serif" color=3D"#000000" style=3D"backgr=
-ound-color:rgb(255,255,255)"><span style=3D"white-space:pre-wrap"><br></spa=
-n></font></div><div><font color=3D"#000000" face=3D"tahoma, sans-serif"><sp=
-an style=3D"white-space:pre-wrap;background-color:rgb(255,255,255)">Please =
-someone help me with my problem?</span></font></div><div><font color=3D"#00=
-0000"><span style=3D"white-space:pre-wrap"><font face=3D"tahoma, sans-serif=
-" style=3D"background-color:rgb(255,255,255)">Thank you so much!</font></sp=
-an></font></div><div><font color=3D"#000000" face=3D"Helvetica, Arial, sans=
--serif"><span style=3D"font-size:14px;white-space:pre-wrap"><br></span></fo=
-nt></div><div><img src=3D"cid:ii_kkrzp1w61" alt=3D"image.png" width=3D"752"=
- height=3D"240" style=3D"margin-right: 0px;"><br></div><div><img src=3D"cid=
-:ii_kkrzm1130" alt=3D"image.png" width=3D"758" height=3D"348" style=3D"marg=
-in-right: 0px;"><br></div></div>
+<div dir=3D"ltr">Hello Hoang,<div><br></div><div>You must distingue the clo=
+ck of the hardware and the input sample rate. In your simulation result, yo=
+u can see that the clk =3D 100 MHz, and the=C2=A0input sample rate is 30.72=
+ Msps (Mega sample per second).</div><div><br></div><div>How did you know i=
+t just takes only one cycle clock to get this result?</div><div><br></div><=
+div>Best,</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">V=C3=A0o Th 6, 5 thg 2, 2021 va=CC=80o lu=CC=81c 08:54 =C4=
+=90=C3=ACnh Tu=E1=BA=A5n Ho=C3=A0ng via USRP-users &lt;<a href=3D"mailto:us=
+rp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; =C4=91=C3=A3 v=
+i=E1=BA=BFt:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
+v dir=3D"ltr"><font face=3D"tahoma, sans-serif" color=3D"#000000" style=3D"=
+background-color:rgb(255,255,255)">Hi everyone,</font><div><font face=3D"ta=
+homa, sans-serif" color=3D"#000000" style=3D"background-color:rgb(255,255,2=
+55)"><br></font></div><div><font face=3D"tahoma, sans-serif" color=3D"#0000=
+00" style=3D"background-color:rgb(255,255,255)">I know that my question is =
+a bit inappropriate when writing here, but I submitted=C2=A0on the Mathlab =
+Community but no one helped.</font></div><div><font face=3D"tahoma, sans-se=
+rif" color=3D"#000000" style=3D"background-color:rgb(255,255,255)"><br></fo=
+nt></div><div><font face=3D"tahoma, sans-serif" color=3D"#000000" style=3D"=
+background-color:rgb(255,255,255)"><span style=3D"box-sizing:border-box;whi=
+te-space:pre-wrap"><span style=3D"box-sizing:border-box">I&#39;m working wi=
+th LTE HDL Cell Search example of Matlab to generate VHDL code. (</span></s=
+pan><a rel=3D"nofollow noopener noreferrer" href=3D"https://www.mathworks.c=
+om/help/wireless-hdl/ug/lte-hdl-cell-search.html" style=3D"box-sizing:borde=
+r-box;text-decoration-line:none;white-space:pre-wrap" target=3D"_blank"><sp=
+an style=3D"box-sizing:border-box"><span style=3D"box-sizing:border-box">LT=
+E HDL Cell Search</span></span></a><span style=3D"box-sizing:border-box;whi=
+te-space:pre-wrap"><span style=3D"box-sizing:border-box">), and then wrap t=
+he VHDL code to RFNoC Block and connect them following diagram: Radio -&gt;=
+ DDC -&gt; Cell Search Block -&gt; GNU Radio</span></span><br></font></div>=
+<div><span style=3D"box-sizing:border-box;white-space:pre-wrap"><span style=
+=3D"box-sizing:border-box;background-color:rgb(255,255,255)"><font face=3D"=
+tahoma, sans-serif" color=3D"#000000"><br></font></span></span></div><div><=
+font face=3D"tahoma, sans-serif" color=3D"#000000" style=3D"background-colo=
+r:rgb(255,255,255)">After generating the VHDL code from Matlab (including s=
+imulation code), when running the simulation on Vivado,=C2=A0<span style=3D=
+"white-space:pre-wrap">I see that every sample at the input takes 2 cycles =
+of clock like the image below. When I change each sample by 1 cycle clock, =
+the block did not work.</span></font></div><div><span style=3D"white-space:=
+pre-wrap;background-color:rgb(255,255,255)"><font face=3D"tahoma, sans-seri=
+f" color=3D"#000000"><br></font></span></div><div><font face=3D"tahoma, san=
+s-serif" color=3D"#000000" style=3D"background-color:rgb(255,255,255)"><spa=
+n style=3D"white-space:pre-wrap">The document said that the input sample ra=
+te is 30.72 Msps, I understand that 30.72 Msps is the sample rate of ADC an=
+d different with clock rate, it makes me a little bit confused about why th=
+e sample takes 2 cycles clock here because in the actual case, it takes onl=
+y 1 cycle clock? </span><span style=3D"white-space:pre-wrap"><br></span></f=
+ont></div><div><font face=3D"tahoma, sans-serif" color=3D"#000000" style=3D=
+"background-color:rgb(255,255,255)"><span style=3D"white-space:pre-wrap"><b=
+r></span></font></div><div><font color=3D"#000000" face=3D"tahoma, sans-ser=
+if"><span style=3D"white-space:pre-wrap;background-color:rgb(255,255,255)">=
+Please someone help me with my problem?</span></font></div><div><font color=
+=3D"#000000"><span style=3D"white-space:pre-wrap"><font face=3D"tahoma, san=
+s-serif" style=3D"background-color:rgb(255,255,255)">Thank you so much!</fo=
+nt></span></font></div><div><font color=3D"#000000" face=3D"Helvetica, Aria=
+l, sans-serif"><span style=3D"font-size:14px;white-space:pre-wrap"><br></sp=
+an></font></div><div><img src=3D"cid:ii_kkrzp1w61" alt=3D"image.png" width=
+=3D"752" height=3D"240" style=3D"margin-right: 0px;"><br></div><div><img sr=
+c=3D"cid:ii_kkrzm1130" alt=3D"image.png" width=3D"758" height=3D"348" style=
+=3D"margin-right: 0px;"><br></div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---0000000000006b948e05ba921fc6--
---0000000000006b949005ba921fc7
+--000000000000f578d005ba93824f--
+--000000000000f578d305ba938250
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -1585,7 +1627,7 @@ AQUUuB0CNhTOfZ1dwXNfQeevgAIKKKCAAgoooIACCiigwAkEbCicAH3WS7qCs3I6mAIKKKCAAgoo
 oIACCiiggAK3Q8CGwrmvsyt47ivo/BVQQAEFFFBAAQUUUEABBRQ4gYANhROgz3pJV3BWTgdTQAEF
 FFBAAQUUUEABBRRQ4HYI2FA493V2Bc99BZ2/AgoooIACCiiggAIK3FqB/wf3zVg2GmbVFwAAAABJ
 RU5ErkJggg==
---0000000000006b949005ba921fc7
+--000000000000f578d305ba938250
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -2109,10 +2151,10 @@ xIWEASGAAAIIIIAAAgggEK0A9Um0oWfiCCCAAAIIIIAAAgiIE6A+ERcSBoQAAggggAACCCCAQLQC
 OAHqE3EhYUAIIIAAAggggAACCEQrQH0SbeiZOAIIIIAAAggggAAC4gSoT8SFhAEhgAACCCCAAAII
 IBCtAPVJtKFn4ggggAACCCCAAAIIiBOgPhEXEgaEAAIIIIAAAggggEC0AtQn0YaeiSOAAAIIIIAA
 AgggIE6A+kRcSBgQAggggAACCCCAAALRCvwHPL05vYGlMasAAAAASUVORK5CYII=
---0000000000006b949005ba921fc7--
+--000000000000f578d305ba938250--
 
 
---===============5816376772942376700==
+--===============0433195877178843695==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2123,5 +2165,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5816376772942376700==--
+--===============0433195877178843695==--
 
