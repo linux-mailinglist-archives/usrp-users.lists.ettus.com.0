@@ -2,113 +2,129 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89C1E3150BF
-	for <lists+usrp-users@lfdr.de>; Tue,  9 Feb 2021 14:49:03 +0100 (CET)
-Received: from [::1] (port=35214 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F88C315126
+	for <lists+usrp-users@lfdr.de>; Tue,  9 Feb 2021 15:02:53 +0100 (CET)
+Received: from [::1] (port=35364 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l9TO1-0003Ui-U6; Tue, 09 Feb 2021 08:49:01 -0500
-Received: from mail-eopbgr100107.outbound.protection.outlook.com
- ([40.107.10.107]:28928 helo=GBR01-LO2-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <md964@hmgcc.gov.uk>) id 1l9TNw-0003Nl-UR
- for usrp-users@lists.ettus.com; Tue, 09 Feb 2021 08:48:57 -0500
+	id 1l9TbP-0004Re-IF; Tue, 09 Feb 2021 09:02:51 -0500
+Received: from dispatch1-us1.ppe-hosted.com ([148.163.129.52]:35426)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <jim@gardettoengineering.com>)
+ id 1l9TbL-0004Ko-GJ
+ for usrp-users@lists.ettus.com; Tue, 09 Feb 2021 09:02:47 -0500
+Received: from dispatch1-us1.ppe-hosted.com (localhost.localdomain [127.0.0.1])
+ by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
+ D140CCBC9F
+ for <usrp-users@lists.ettus.com>; Tue,  9 Feb 2021 14:02:06 +0000 (UTC)
+Received: from mx1-us1.ppe-hosted.com (unknown [10.7.66.117])
+ by dispatch1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTP id
+ B8B758007B; Tue,  9 Feb 2021 14:01:56 +0000 (UTC)
+X-Virus-Scanned: Proofpoint Essentials engine
+Received: from mx1-us1.ppe-hosted.com (unknown [10.7.65.92])
+ by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 7651EE0072; 
+ Tue,  9 Feb 2021 14:01:51 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10lp2106.outbound.protection.outlook.com [104.47.58.106])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 0A843800072;
+ Tue,  9 Feb 2021 14:01:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d/WLBAyqbhyWSo9qEA+VGRTBwe+41OADla+KcDjAUNbbtok4SjuTcLz6k/OyBXw7fjWkKNkJpcWpeDMMzFXm2zI0lXN320+5ARWI2ZfAXCdjN3saGFegbU5vRwBLwiMyK5HogaJAR79zP/swkwiILsi1nmxbfwiH8IXmCcP5aptDG1GfJLbuIGZJdPBrLHuQkExHYAD2+4f2hTIY+04YEcmVk0mc6mSm7sSVcidrllRDhdfLghU0CYqW6sYuIXQQbB5slCmXsypXmEVFXk+9qcsyMsnsvpInalFjOmGfRpN4+hYmobvnZt6jXQ+YcfG9Dl/ux4TPEOqDIZeSkNEiHA==
+ b=du/uCaYjiDSYUtKd34Cb5/jzRkW9sFupwGGi1ZxDCo0EEL99EE1Rm8WvXofSGYKo3L9ChZ6/tizTFv37ac51VQZVb4Oz5maUmafNQmqpSEOHoEqhZ3kQ2BseJE6o1ocA55SOI0ck2Tx7GQ/2XH9KDvYC4t8cABXmb0CdFA0URo99W2tiEbBdTrRqMQVlX++ZudGey6Kg6fjJ3i8AfVhks96ubBpvQLUUx+jffas71w2zs2cyxokrzXmtvTogTT/J1nvDeUECVqyPx3lHPa5pzvgHHIL3BOg8WgSht2dwdwUb3Z+ayus81uZeMcgxSRpA7Zn7GRBrZioMIQvlVlTgvw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GR1RH5qm/rWiWnjtQGmp2OSp0Iya0rZSzkVPrqs05BA=;
- b=GpVgvwD1G9vclfsLes8WuzD83C7VtFtpAKrMbArsQl81ZKqy8KgnymVU25cnhyTfXxj9G8bBHR/q2nmYuMzHsV36GfPupnX3rrq7h9pTwScD+VwQ6Kd1BQVSFaDhJsv8AgK4xAi6ztGyRQkHS2vEjaqCjzTqTqBJiuh++pGHwUsYvvU/uA33L30Z/OcJBsmSRIN5vGEG7ujDVHIHOKy4IB2mvdUKcUIUb7hJIxiHSPKtvznDfah40gxKbXWGBZFNzdf422IrsPAzQNuTf94c8dO6JOtAFVkL7XX/7ZcVzQ1B1aWNrwXfRLSxfH3DDJdAvrMxV+P/0yntexlo/M3b+A==
+ bh=C5WgQEqw56yFF3tTXDFnBul65kK7TP0/H5Z2di1Qop8=;
+ b=BN3evhRmxEHY21c/Y9ca+Y937alPPy7eeUFj0IfjlijzrZA/+5WFa8HSCxz87FZhtOVwnL3eP0+VcAtH2ghBz0pT+QXjzDdM6qS41GMnBWRNThPxkSdAdoIBBJEUQAl+bw2+mmL5iaXKWr3BD46Y9g/F0O65amm6iJhmz8W+DdKmnZg1iSx2kTthpyV6WGprba5VGcyx11hFkhJhlRa4Az15O+7XmJ1Kst6QSXAMv0M4j/UmsyNZBesGtRGW2LZP1zRqckO1cKuPyloqAqrC3wJLfLh01auwUvnDG2yBE4AsP6vHPhKeq3d+CrUnjM/UN76r1kZiUALxJ8rA2UNQ9A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hmgcc.gov.uk; dmarc=pass action=none header.from=hmgcc.gov.uk;
- dkim=pass header.d=hmgcc.gov.uk; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hmgcc.gov.uk;
- s=selector1;
+ smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
+ header.from=gardettoengineering.com; dkim=pass
+ header.d=gardettoengineering.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gardettoengineering.onmicrosoft.com;
+ s=selector2-gardettoengineering-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GR1RH5qm/rWiWnjtQGmp2OSp0Iya0rZSzkVPrqs05BA=;
- b=aYKKIEb5ZK6uz6GGPIsucRHW1JqArksRDOeNYJbQhivd7r7faqwEpkEwklp68b4mDneVTwkcAuLmL45ReUDpTz0av2lL4W/z60ARBrWZwYsdG4UYBsPrGaYsgkzsEjtCD3d42QCOeMtHJq8ez1fxcQ2aK5eB/SEuWjc30AJLfEk=
-Received: from LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:132::7)
- by LO0P123MB3883.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:13f::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.17; Tue, 9 Feb
- 2021 13:48:15 +0000
-Received: from LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
- ([fe80::58a6:243c:81ac:b96b]) by LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
- ([fe80::58a6:243c:81ac:b96b%4]) with mapi id 15.20.3825.030; Tue, 9 Feb 2021
- 13:48:15 +0000
-To: 'Wade Fife' <wade.fife@ettus.com>
+ bh=C5WgQEqw56yFF3tTXDFnBul65kK7TP0/H5Z2di1Qop8=;
+ b=DxSWNHZW/JNzIU4OUFjQWGj1ZIKhM9rxYsEbF/tctoAsjZjfYEoFkrh6pE7+7emcEMk5DaGSRA4W/t+t5hVkxXx40UnkLGZFjboTa5ruVjYRpBWq3OD+einsGRLh63TqpDzFyAiQap6JJW0dugw8XGFbWzFl4xqqy6o15zp1Zfk=
+Received: from MN2PR12MB3312.namprd12.prod.outlook.com (2603:10b6:208:ab::23)
+ by MN2PR12MB3631.namprd12.prod.outlook.com (2603:10b6:208:c2::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.23; Tue, 9 Feb
+ 2021 14:01:45 +0000
+Received: from MN2PR12MB3312.namprd12.prod.outlook.com
+ ([fe80::4df9:1a8c:aa50:d57f]) by MN2PR12MB3312.namprd12.prod.outlook.com
+ ([fe80::4df9:1a8c:aa50:d57f%5]) with mapi id 15.20.3805.033; Tue, 9 Feb 2021
+ 14:01:45 +0000
+To: 'Wade Fife' <wade.fife@ettus.com>, Mark D <md964@hmgcc.gov.uk>
 CC: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
 Thread-Topic: [USRP-users] Opening Vivado GUI during FPGA image build
-Thread-Index: Adb5UifNbGHjaHXZQZaCPPt8iNPFaAAIwHVwAAV++wAAIHzm8AE2/hDg
-Date: Tue, 9 Feb 2021 13:48:14 +0000
-Message-ID: <LNXP123MB37245B3319A1D21299289075CA8E9@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+Thread-Index: Adb5UifNbGHjaHXZQZaCPPt8iNPFaAAIwHVwAAV++wAAIHzm8AE2/hDgAACPo10=
+Date: Tue, 9 Feb 2021 14:01:44 +0000
+Message-ID: <MN2PR12MB3312959399C75B6CF2F7517DB88E9@MN2PR12MB3312.namprd12.prod.outlook.com>
 References: <LNXP123MB372437DE53B4243C99065495CAB59@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
  <LNXP123MB37243B9CFF15D54ADF43B60BCAB59@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
  <CAFche=ho_+V79hQNdL7BoyQCF8x4SJtuo303QwifKJ-urtdTgg@mail.gmail.com>
- <LNXP123MB37245962447F0F1E05DFAD6FCAB49@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
-In-Reply-To: <LNXP123MB37245962447F0F1E05DFAD6FCAB49@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
-Accept-Language: en-GB, en-US
+ <LNXP123MB37245962447F0F1E05DFAD6FCAB49@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>,
+ <LNXP123MB37245B3319A1D21299289075CA8E9@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+In-Reply-To: <LNXP123MB37245B3319A1D21299289075CA8E9@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: ettus.com; dkim=none (message not signed)
- header.d=none;ettus.com; dmarc=none action=none header.from=hmgcc.gov.uk;
-x-originating-ip: [62.189.143.233]
+ header.d=none;ettus.com; dmarc=none action=none
+ header.from=gardettoengineering.com;
+x-originating-ip: [65.127.220.137]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0e86bbd9-04e7-414f-9c94-08d8cd01595b
-x-ms-traffictypediagnostic: LO0P123MB3883:
-x-microsoft-antispam-prvs: <LO0P123MB3883F8711DE43B1BA907308BCA8E9@LO0P123MB3883.GBRP123.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-office365-filtering-correlation-id: e889eec6-e77e-493d-1c57-08d8cd033c32
+x-ms-traffictypediagnostic: MN2PR12MB3631:
+x-microsoft-antispam-prvs: <MN2PR12MB3631D47135B0F8A368AF283DB88E9@MN2PR12MB3631.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6NTCePNjBFLSD0iRh11pxZ3KAo4gufgbjQ6ntYI63yZdy5bB5msBz19SOuDdt30twggy2hHDrUbt6NoBzDruDvQQeTg+Rv5k/FrowdGV8cevKBy9tjv3lSaPKsFr0Jyagc+1OCf3yRP1aMKKNnz89jrTBuJ56qiT5z4crQYj5mZ10Lfz9IzACZNNNXfHYB9cbyv2bvPG11oNTPlXjymNs56f4TgOdtU6huk+/OY7DgM/9zS6qjvsY0teKQuQ/csAH1IOkg4Dq+zDoZRR52SEDpr3GJqY3WmgFWg1KJBmIGWVeB7uJlEplxCMyyQlbmiylpN5HyNDiPx+o9anivGtzU/yYKMqwEqhsPum2Cssx1Mh05rKNCZ5YnETM4MaPlDFbFWg77d44hquSQX505JmKcxAeUaI8uF7cr3MkduvLgMlYh9s7TdUg+Kr0kIqXCxc7++pArkCtBwSiFUs7g5NL9LsQ6Vk9zQf4bKNXhYd5TCX93LLO68pSZcvwjQo4JUFTP/cnT22ciHuc89yURtmCg==
+x-microsoft-antispam-message-info: OJd8q2f6M9BlRjrYvVevhtGbXuND7I8kqCm0MOvhG04Y7tFEq0deQEQ7DjxZcYzA8y2XxMfNI41ANwDI5MMCxtFa5tSkqBDl6ahtGPwpB6iLwy3KtpGbD5PMB/SNDXJV8QkjNAiokLsoP/KnraB3sGvSM5lGSg9KptHX7wDy04mKSdbZVh3w6JL6LH5vh7sihtRb354qLfoS5pPNc2jMKZDGPa0mZzZ0m5Gd1REb+SYUhns+WysN3aQ5uYIJypgFj33m6hZJ0fbLvIYPriV+iHxqrsoheMRqtA5LT3PKisgFAh9Agaab8eofMPLqVQqqqjA2gCcTTsWt65HV/yK1AdcgPJCzoxuHvBQd5TOwDf0D/z6c+bp+RDZmpI7Zo8qVxd2QcmwXNEjKi100WPwX6IWI3V5kHtdEfZ8yQnNnr/wehvTyZLOrgu2x+PLXtLCRJGWWQNbB+me/jOmY1TlE0E7XoSYWynJyC9e/OmM5cbr4LRz7D2mVp0BQV+pGlNJIXtAHrfYs90UsXsq6Xv7rqQ==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(366004)(39840400004)(396003)(376002)(346002)(5660300002)(8936002)(83380400001)(9686003)(66946007)(6916009)(26005)(52536014)(55016002)(6506007)(71200400001)(76116006)(66446008)(64756008)(186003)(7696005)(66556008)(8676002)(316002)(66476007)(86362001)(53546011)(33656002)(478600001)(2906002)(4326008);
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3312.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(346002)(376002)(366004)(39830400003)(396003)(136003)(6506007)(8936002)(53546011)(7696005)(8676002)(76116006)(4326008)(26005)(19627235002)(186003)(71200400001)(478600001)(9686003)(2906002)(19627405001)(86362001)(66446008)(66476007)(316002)(110136005)(66556008)(5660300002)(52536014)(33656002)(83380400001)(55016002)(64756008)(66946007);
  DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?utf-8?B?eWtuRXFpZmloRW4raVpnMWdOMmM3ZEw4WFRIWnFyMWZyNTE4NDJTM2tWMjVK?=
- =?utf-8?B?V2U2Tm1EWEVucEpHWDExQmJ5VzhVQ1pKZDNlVGxSUXloVEg2LzA3dDd4TVIz?=
- =?utf-8?B?cDlpcGlJbldzbVFEblNrV1F0QmpPZk1vbStKcnJ3QnJVWEp3MG82cG5LbElu?=
- =?utf-8?B?bThmYkpvVERXNWsyamNMbldnbDFLOWZibjN3ZWN0VjJJVm9lNEFaVHVsdTB6?=
- =?utf-8?B?bDBNZ0kzMjJDU3NGTGJsMUlySk5tTmRaM3RYb3hzbkhJdHZSRWZTdGx1NU9V?=
- =?utf-8?B?SCs3MWVvbzJMaHJ0bGdhelNONFhySE04a3ZLK3dGdVBDRzloaUY1Vjd1L3Bl?=
- =?utf-8?B?SDNjZFZPdnBzNzdaTHQybTZXUi81bG16eXJTODhLTHlkemFFVDRBYUppWXly?=
- =?utf-8?B?dk4yekZheThkK3JuUXA2VlBFNDc1V1dJaHhzelE0a0pOS08yb2RHdGt3bE84?=
- =?utf-8?B?OUVvZzRpdHV3K0RkSjZMclR5R2NWRkljcTNPRHd3S0p4QWNqcVZERzdMam9v?=
- =?utf-8?B?WGRBYlFqeE1OVmUxeUZVeUtnTXV6RzdQYUE3WWJLTm5HL0FpalphZXNOTHN5?=
- =?utf-8?B?eVNoYzYreFpmdDFMZ1MrZHFNV0dmM3d0ditwYnJZemN1MU40WFZXUndEZEFB?=
- =?utf-8?B?bCtRSDdSTnJIM2VDT0I3YTh0NSt0M0xPaEJkRjB4ZFBxUm5oQ3dZa2YwbmJa?=
- =?utf-8?B?MEdHb1RaL0xWencxbTRPMTZLdWxXeHNlRHZ3S1VKYkNWK1hJMFQ0RXowWThs?=
- =?utf-8?B?MFA3MTl3aW1CUEpLL1doNERjbHlDck1xUlFTeWhIY0Y5S3NEblNvRWxXVFcz?=
- =?utf-8?B?eVdEVWcrdkU5aDZVVmhwWDF1dytwdURCa1YyS1c3S1VDK3NOVVRZQVBKYVk1?=
- =?utf-8?B?eHlIQTBLZHZhUk55QXJVdmkrRWxtOU5wSVpJK29xWGcybVErYW9obVA3c2NP?=
- =?utf-8?B?Qmw5a2R4RUhCTk5RUFE1c0l2V05iRkZYNG5DUjhJdzVlRjZPSm1DS0lvVVZN?=
- =?utf-8?B?Q25KNXRwS1lRQkdiU0pWUGI2V2RDZC8yZ0hiRlRxb2psMkt0cU5lYUFvdDhD?=
- =?utf-8?B?S0hGVXMwam56SldxOXlCd0ZjMnNtNkkrdDZiQS9KcHZ4K1Z4cG1udzJhVm9R?=
- =?utf-8?B?cE9wbUJyREpJbjk0NVZvNVErRUFac0ZQM0V0V25MWGZESC9yOGM2UnZ6cnZU?=
- =?utf-8?B?SmUwRWUxbnQ4aDQ5SDFjY3J5NWhQSHY3RElTbGZOTE9kb0VRbFh6d0VnOHlP?=
- =?utf-8?B?MFVtR2UrMlhqZHZSR0RJelNEMzBPOE9lUk8xNDUzclU1dFV3eEVFc0F1RzhG?=
- =?utf-8?B?RGV0d0doeEhXay83ZVVjNmw4TFAzRy82dlM0MTJxZjJRRjdkcVFjQ0pzYVNz?=
- =?utf-8?B?U3dualB5RTk1QzFRVW5TUnpacU10c3hRdEovQ2tiNXNXQkRYNG1mNmlYRXFU?=
- =?utf-8?B?WFJGRlFmb01oanUzalA3dmExNC9oUUVBNWVCdS83L01YWXFFZ3JkbDVoSXZr?=
- =?utf-8?B?TUg4bndjdUI3d1l1TmZFVzlLTWkrbjF1V0FER1JCSkNocVdHWUw3NkdlakVi?=
- =?utf-8?B?K2gwbXlmb05rU1ZqOC9RY2VZaDdTNHBpa1h4a1BMRmt3TXpoQXRPNXh0UTl1?=
- =?utf-8?B?aWFUZ3BsamZMc3ZLR21mYTlmVmJoNHhEa1NOb2R3RHJlTFdLeTI1TCtsdjdV?=
- =?utf-8?B?NncrdEQ4alNyTzAzVGN0NkNYWG43OXNsekVpK3RuNk41dEJaY3dHMUlmOFNI?=
- =?utf-8?Q?7XoM/uAAVF4d+L1JjbC3G/3KmF45v9PTe3Tm7MK?=
+x-ms-exchange-antispam-messagedata: =?Windows-1252?Q?j7VRcS30byZ29dVQk1a6V117Sc0ZE3Z1tvovuZsWIsNlDS4kh2V7nStn?=
+ =?Windows-1252?Q?rIEeRGrdX+AGMQkP3sMyQiXs0T46Z2LRp/EFrfVX2juNpi3mwRWZygHy?=
+ =?Windows-1252?Q?fGnwbUkrF4F9ng8ABvSkUuWAsAkD61aNTjIdJ9+Fzgc5DZc+7iT5p+pr?=
+ =?Windows-1252?Q?qBtsr9kayu3i7aOxXcERM+l8wPyKhCeYgf+ru4QYEYQq/Ol/q/0/TcNP?=
+ =?Windows-1252?Q?Jucof80OgjSQndUwopcAtoa8P+rR8DKvK6lJ5YfMkMKVlIgC1n/YKaBm?=
+ =?Windows-1252?Q?w/NSlsJ5tOkfGZ7kS/VKh5+lwspPyeq/Z2ofmiwdfOKoWpjiNHWDPZFE?=
+ =?Windows-1252?Q?G8tsWpLyEGYSQ0d3iaUszYN7AteTy+iwTmdKT8hka3+JzAiFfVNC641/?=
+ =?Windows-1252?Q?+t6pGACOZ7JvcMF7viTD+dURJIiLuO21u1JYWy9XMrYjloWh6weFc+bm?=
+ =?Windows-1252?Q?Yf2wYGiSj0PCZG1YhkHIsR+FRsgoj+nNQmSmhbxmK6qVDP148sQTGlVa?=
+ =?Windows-1252?Q?SU9r/m3H5CNG+Ac2zOh3rpHm3OTMyMQxjBK8GuI7SNK9ezL6pB6gTxht?=
+ =?Windows-1252?Q?tffuWNxYli6MonMAkY8+CMWaNxtkByqxjAfQho5nZNUKapjNzLak8bwz?=
+ =?Windows-1252?Q?6mBQyeZ1dTSSPne779CEikAmwtpMb+V0KwJ0xuyhUe7jvJQwxG26thi7?=
+ =?Windows-1252?Q?SL60PyhWAzYohksq0UDfI6VkjifN85CsXf5Fb0i3vOmhHH7N/rK7JhH9?=
+ =?Windows-1252?Q?981NJoMUvYVkbyMQx7y1kCkaRXvMhpUovn7rsfG+4h8VsSXsk3lklhxh?=
+ =?Windows-1252?Q?841EFhdpY35RzrxsoFqMbYiXqL5XXp8/KLSAmmhqnTH1u2Rp0zSvvS9V?=
+ =?Windows-1252?Q?Zn0Yosk5luIjwALWnUmccVvjFgIrqa6MIZiHPiGJNY7GgKbTOE7JAcxl?=
+ =?Windows-1252?Q?+52hplDo2IzWZ5dK4M1fAsipzINBLcJ7SHhpVstPnwWnNryCoWlGMog1?=
+ =?Windows-1252?Q?vq/ojn7C0TkoZ/2hMlc7MGSLqpsL7nffyZY/F71bkRiiwb0B3FWEWaBa?=
+ =?Windows-1252?Q?b4pBuBOa9WDeY5ktV6RrFdJQJAKHOxi3z2WvDdevQz7KXDT0vToxjsXg?=
+ =?Windows-1252?Q?vpH4OF5Zc8b5GllNIBHxmEnJ92MwsyIVDJyJAJtH9zG6JHtEbKGkFk38?=
+ =?Windows-1252?Q?wfJpVK0rElT+FZxrBPrQ+lOjOW4ppHGy3rBL1C8iOQa7ZgHgE1Za2ETE?=
+ =?Windows-1252?Q?h2M7WDse1biMi4yLXFCGPSEsIH6F9WQ8oUWaVSqUo8Y59gIwZkbcceJQ?=
+ =?Windows-1252?Q?d5jG6X23JI2cA3IOf8h8zotCNXDyCg1P1oEnjXKzRjNafZuw5IClh/rJ?=
+ =?Windows-1252?Q?bY1BahukiWlc8gyP0Dp6IeTP9ko0bKvg9VY=3D?=
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-OriginatorOrg: hmgcc.gov.uk
+X-OriginatorOrg: gardettoengineering.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e86bbd9-04e7-414f-9c94-08d8cd01595b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Feb 2021 13:48:14.9438 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3312.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e889eec6-e77e-493d-1c57-08d8cd033c32
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Feb 2021 14:01:44.9249 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c724c4ae-2756-49fe-b1cd-3a725b29341a
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bqnAyQfT1G+djCswkPoybqB8qA0ME4yR8zMNrNEVoOjYgbW2DIHEAwvQ7BWk/8TU4xyAjCssHiuYAFOoPvI9jQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO0P123MB3883
+X-MS-Exchange-CrossTenant-userprincipalname: S61Qg61xYRG2rdOjik0W1Poa4+okBY7Q88fUFoWOuLekZMftBpmn+s7QOMRRrq/Y9vD1sBvqFVqv6/S0Ky78F9t8xxo7oefYyTCwdz9WjAI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3631
+X-MDID: 1612879311-4ZpJXsiMNdOZ
 Subject: Re: [USRP-users] Opening Vivado GUI during FPGA image build
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -121,9 +137,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mark D via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mark D <md964@hmgcc.gov.uk>
-Content-Type: multipart/mixed; boundary="===============4135988955005506413=="
+From: Jim Palladino via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jim Palladino <jim@gardettoengineering.com>
+Content-Type: multipart/mixed; boundary="===============7003150847973010822=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -137,191 +153,372 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4135988955005506413==
+--===============7003150847973010822==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_LNXP123MB37245B3319A1D21299289075CA8E9LNXP123MB3724GBRP_"
+	boundary="_000_MN2PR12MB3312959399C75B6CF2F7517DB88E9MN2PR12MB3312namp_"
 
---_000_LNXP123MB37245B3319A1D21299289075CA8E9LNXP123MB3724GBRP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_MN2PR12MB3312959399C75B6CF2F7517DB88E9MN2PR12MB3312namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-V2FkZSwgdXNycC11c2VycywNCg0KSeKAmW0gbm93IHRyeWluZyB0byBidWlsZCBzb21lIGNvZGUg
-aW4gYW4gT09UIGRpcmVjdG9yeS4NCg0KSSBjYW4gYnVpbGQgdGhlIGRlc2lnbiB3aXRoIHRoZSBy
-Zm5vY19pbWFnZV9idWlsZGVyIE9rLCBob3dldmVyIEkgY2FuIHVzZSB0aGUgdHdvIHN0ZXAgd29y
-a2Fyb3VuZCB0byBnZXQgdGhlIFZpdmFkbyBHVUkgdG8gb3Blbi4gV2hlbiBJIHRyeSBhbmQgcnVu
-IOKAnG1ha2UgRTMyMF8xRyBHVUk9MeKAnSBJIGp1c3QgZ2V0IGFuIGVycm9yIHNheWluZyB0aGF0
-IHRoZXJlIGlzIG5vIHJ1bGUgdG8gbWFrZSB0YXJnZXQg4oCYRTMyMF8xR+KAmS4NCg0KQW55IGlk
-ZWEgaG93IEkgY2FuIHVzZSB0aGUgdHdvIHN0ZXAgd29ya2Fyb3VuZCBmcm9tIGFuIE9PVCBkaXJl
-Y3RvcnksIG9yIGhvdyBJIG1pZ2h0IGJlIGFibGUgdG8gZ2V0IHJmbm9jX2ltYWdlX2J1aWxkZXIg
-dG8gYnJpbmcgdXAgdGhlIEdVST8NCg0KVGhhbmtzLA0KDQpNYXJrDQoNCkZyb206IE1hcmsgRA0K
-U2VudDogMDMgRmVicnVhcnkgMjAyMSAwOTo0OQ0KVG86ICdXYWRlIEZpZmUnIDx3YWRlLmZpZmVA
-ZXR0dXMuY29tPg0KQ2M6IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBSRTog
-W1VTUlAtdXNlcnNdIE9wZW5pbmcgVml2YWRvIEdVSSBkdXJpbmcgRlBHQSBpbWFnZSBidWlsZA0K
-DQpUaGFua3MgV2FkZSwNCg0KSSBoYWQgdHJpZWQgdGhpcyBqdXN0IGJlZm9yZSB5b3VyIGVtYWls
-LiBUaGUgZmlyc3QgdGltZSBJIGRpZCB0aGlzIEkgZ290IGFuIGVycm9yIGZyb20gbWFrZSBzYXlp
-bmcgdGhhdCBWaXZhZG8gd2FzbuKAmXQgZm91bmQgaW4gdGhlIGVudmlyb25tZW50IGFuZCB0aGF0
-IEkgc2hvdWxkIHJ1biBzZXR1cGVudi5zaC4NCg0KUnVubmluZyDigJxzb3VyY2Ugc2V0dXBlbnYu
-c2jigJ0gZml4ZWQgdGhpcyBpc3N1ZSBhbmQg4oCcbWFrZSBFMzIwXzFH4oCdIEdVST0xIGRpZCBv
-cGVuIHRoZSBkZXNpZ24gdXAgaW4gVml2YWRvLg0KDQpPbmUgdGhpbmcgdGhhdCBtaWdodCBiZSBh
-IGNhdXNlIG9mIHRoZSBpc3N1ZSBpcyB0aGF0IEkgZG9u4oCZdCBoYXZlIHZpdmFkbyBpbnN0YWxs
-ZWQgYXQgdGhlIOKAnHN0YW5kYXJk4oCdIGxvY2F0aW9uLiBJdCBzZWVtcyBzdHJhbmdlIHRoYXQg
-cmZub2NfaW1hZ2VfYnVpbGRlciBmaW5kcyBpdCBPay4gTWF5YmUgaWYgSSB0cnkgdGhlIC1nIG9w
-dGlvbiBhZnRlciBydW5uaW5nIHRoZSBzZXR1cGVudi5zaCBpdCBtaWdodCB3b3JrLg0KDQpUaGFu
-a3MgYWdhaW4gZm9yIHlvdXIgaGVscCwNCg0KTWFyaw0KRnJvbTogV2FkZSBGaWZlIDx3YWRlLmZp
-ZmVAZXR0dXMuY29tPG1haWx0bzp3YWRlLmZpZmVAZXR0dXMuY29tPj4NClNlbnQ6IDAyIEZlYnJ1
-YXJ5IDIwMjEgMTc6NDUNClRvOiBNYXJrIEQgPG1kOTY0QGhtZ2NjLmdvdi51azxtYWlsdG86bWQ5
-NjRAaG1nY2MuZ292LnVrPj4NCkNjOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIE9w
-ZW5pbmcgVml2YWRvIEdVSSBkdXJpbmcgRlBHQSBpbWFnZSBidWlsZA0KDQpIaSBNYXJrLA0KDQpU
-aGlzIGlzIGN1cmlvdXMuIElmIEkgcmVjYWxsLCBzb21lb25lIGVsc2Ugd2FzIGhhdmluZyB0cm91
-YmxlIHdpdGggLWcsIGJ1dCBpdCB3b3JrZWQgZm9yIG1lIGxhc3QgdGltZSBJIHRyaWVkIGl0LiBJ
-IHdpbGwgdHJ5IGl0IGFnYWluIHRvIHNlZSBpZiBJIGNhbiByZXByb2R1Y2UgYW55dGhpbmcuIElu
-IHRoZSBtZWFudGltZSwgeW91IGNhbiBydW4gcmZub2NfaW1hZ2VfYnVpbGRlciBhbmQgbWFrZSBp
-biBzZXBhcmF0ZSBzdGVwcy4gU2VlIGlmIHRoaXMgd29ya3M6DQoNCiMgR2VuZXJhdGUgdGhlIGJ1
-aWxkIGZpbGVzIG9ubHk7IGRvbid0IGJ1aWxkIHRoZSBpbWFnZQ0KcmZub2NfaW1hZ2VfYnVpbGRl
-ciAteSBlMzIwX215X2ZwZ2EueW1sIC10IEUzMjBfMUcgLS1nZW5lcmF0ZS1vbmx5DQojIEJ1aWxk
-IHRoZSBpbWFnZSB3aXRoIHRoZSBHVUkNCm1ha2UgRTMyMF8xRyBHVUk9MQ0KDQpUaGFua3MsDQoN
-CldhZGUNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClRoaXMgZW1haWwgYW5k
-IGFueSBmaWxlcyB0cmFuc21pdHRlZCB3aXRoIGl0IGFyZSBjb25maWRlbnRpYWwgYW5kIGludGVu
-ZGVkIHNvbGVseSBmb3IgdGhlIHVzZSBvZiB0aGUgaW5kaXZpZHVhbCBvciBlbnRpdHkgdG8gd2hv
-bSB0aGV5IGFyZSBhZGRyZXNzZWQuIElmIHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgZW1haWwgaW4g
-ZXJyb3IgcGxlYXNlIG5vdGlmeSB0aGUgc3lzdGVtIG1hbmFnZXIuDQo=
-
---_000_LNXP123MB37245B3319A1D21299289075CA8E9LNXP123MB3724GBRP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
-
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
-Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
-OnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUyMA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25h
-bC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5k
-b3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0K
-CWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3
-OTIuMHB0Ow0KCW1hcmdpbjo3Mi4wcHQgNzIuMHB0IDcyLjBwdCA3Mi4wcHQ7fQ0KZGl2LldvcmRT
-ZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1z
-byA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIg
-Lz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVs
-YXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8
-L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJF
-Ti1HQiIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSIgc3R5bGU9IndvcmQtd3JhcDpicmVhay13
-b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPldhZGUsIHVzcnAtdXNlcnMs
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6
-RU4tVVMiPknigJltIG5vdyB0cnlpbmcgdG8gYnVpbGQgc29tZSBjb2RlIGluIGFuIE9PVCBkaXJl
-Y3RvcnkuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFu
-Z3VhZ2U6RU4tVVMiPkkgY2FuIGJ1aWxkIHRoZSBkZXNpZ24gd2l0aCB0aGUgcmZub2NfaW1hZ2Vf
-YnVpbGRlciBPaywgaG93ZXZlciBJIGNhbiB1c2UgdGhlIHR3byBzdGVwIHdvcmthcm91bmQgdG8g
-Z2V0IHRoZSBWaXZhZG8gR1VJIHRvIG9wZW4uIFdoZW4gSSB0cnkgYW5kIHJ1biDigJxtYWtlIEUz
-MjBfMUcgR1VJPTHigJ0gSSBqdXN0IGdldCBhbiBlcnJvciBzYXlpbmcNCiB0aGF0IHRoZXJlIGlz
-IG5vIHJ1bGUgdG8gbWFrZSB0YXJnZXQg4oCYRTMyMF8xR+KAmS48bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3Vh
-Z2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+QW55IGlkZWEgaG93
-IEkgY2FuIHVzZSB0aGUgdHdvIHN0ZXAgd29ya2Fyb3VuZCBmcm9tIGFuIE9PVCBkaXJlY3Rvcnks
-IG9yIGhvdyBJIG1pZ2h0IGJlIGFibGUgdG8gZ2V0IHJmbm9jX2ltYWdlX2J1aWxkZXIgdG8gYnJp
-bmcgdXAgdGhlIEdVST88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFy
-ZWFzdC1sYW5ndWFnZTpFTi1VUyI+VGhhbmtzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+
-PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5NYXJrPG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1
-YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHls
-ZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4w
-cHQgMGNtIDBjbSAwY20iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4t
-VVMiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyI+IE1hcmsgRA0KPGJyPg0KPGI+
-U2VudDo8L2I+IDAzIEZlYnJ1YXJ5IDIwMjEgMDk6NDk8YnI+DQo8Yj5Ubzo8L2I+ICdXYWRlIEZp
-ZmUnICZsdDt3YWRlLmZpZmVAZXR0dXMuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gdXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUkU6IFtVU1JQLXVzZXJzXSBP
-cGVuaW5nIFZpdmFkbyBHVUkgZHVyaW5nIEZQR0EgaW1hZ2UgYnVpbGQ8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3Qt
-bGFuZ3VhZ2U6RU4tVVMiPlRoYW5rcyBXYWRlLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+
-PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5JIGhhZCB0cmllZCB0aGlzIGp1c3Qg
-YmVmb3JlIHlvdXIgZW1haWwuIFRoZSBmaXJzdCB0aW1lIEkgZGlkIHRoaXMgSSBnb3QgYW4gZXJy
-b3IgZnJvbSBtYWtlIHNheWluZyB0aGF0IFZpdmFkbyB3YXNu4oCZdCBmb3VuZCBpbiB0aGUgZW52
-aXJvbm1lbnQgYW5kIHRoYXQgSSBzaG91bGQgcnVuIHNldHVwZW52LnNoLjxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1s
-YW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5SdW5uaW5n
-IOKAnHNvdXJjZSBzZXR1cGVudi5zaOKAnSBmaXhlZCB0aGlzIGlzc3VlIGFuZCDigJxtYWtlIEUz
-MjBfMUfigJ0gR1VJPTEgZGlkIG9wZW4gdGhlIGRlc2lnbiB1cCBpbiBWaXZhZG8uPG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJl
-YXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPk9u
-ZSB0aGluZyB0aGF0IG1pZ2h0IGJlIGEgY2F1c2Ugb2YgdGhlIGlzc3VlIGlzIHRoYXQgSSBkb27i
-gJl0IGhhdmUgdml2YWRvIGluc3RhbGxlZCBhdCB0aGUg4oCcc3RhbmRhcmTigJ0gbG9jYXRpb24u
-IEl0IHNlZW1zIHN0cmFuZ2UgdGhhdCByZm5vY19pbWFnZV9idWlsZGVyIGZpbmRzIGl0IE9rLiBN
-YXliZSBpZiBJIHRyeSB0aGUgLWcgb3B0aW9uDQogYWZ0ZXIgcnVubmluZyB0aGUgc2V0dXBlbnYu
-c2ggaXQgbWlnaHQgd29yay48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28t
-ZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+VGhhbmtzIGFnYWluIGZvciB5b3VyIGhlbHAsPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1m
-YXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMi
-Pk1hcms8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3Jk
-ZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+RnJvbTo8L3NwYW4+PC9i
-PjxzcGFuIGxhbmc9IkVOLVVTIj4gV2FkZSBGaWZlICZsdDs8YSBocmVmPSJtYWlsdG86d2FkZS5m
-aWZlQGV0dHVzLmNvbSI+d2FkZS5maWZlQGV0dHVzLmNvbTwvYT4mZ3Q7DQo8YnI+DQo8Yj5TZW50
-OjwvYj4gMDIgRmVicnVhcnkgMjAyMSAxNzo0NTxicj4NCjxiPlRvOjwvYj4gTWFyayBEICZsdDs8
-YSBocmVmPSJtYWlsdG86bWQ5NjRAaG1nY2MuZ292LnVrIj5tZDk2NEBobWdjYy5nb3YudWs8L2E+
-Jmd0Ozxicj4NCjxiPkNjOjwvYj4gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8Yj5TdWJqZWN0Ojwv
-Yj4gUmU6IFtVU1JQLXVzZXJzXSBPcGVuaW5nIFZpdmFkbyBHVUkgZHVyaW5nIEZQR0EgaW1hZ2Ug
-YnVpbGQ8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij5IaSBNYXJrLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5UaGlzIGlzIGN1cmlvdXMuIElmIEkgcmVjYWxsLCBzb21lb25lIGVsc2Ugd2FzIGhh
-dmluZyB0cm91YmxlIHdpdGggLWcsIGJ1dCBpdCB3b3JrZWQgZm9yIG1lIGxhc3QgdGltZSBJIHRy
-aWVkIGl0LiBJIHdpbGwgdHJ5IGl0IGFnYWluIHRvIHNlZSBpZiBJIGNhbiByZXByb2R1Y2UgYW55
-dGhpbmcuIEluIHRoZSBtZWFudGltZSwgeW91IGNhbiBydW4gcmZub2NfaW1hZ2VfYnVpbGRlciBh
-bmQgbWFrZSBpbiBzZXBhcmF0ZQ0KIHN0ZXBzLiBTZWUgaWYgdGhpcyB3b3Jrczo8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+IyBHZW5lcmF0ZSB0
-aGUgYnVpbGQgZmlsZXMgb25seTsgZG9uJ3QgYnVpbGQgdGhlIGltYWdlPG86cD48L286cD48L3A+
-DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5yZm5vY19pbWFnZV9idWlsZGVy
-IC15IGUzMjBfbXlfZnBnYS55bWwgLXQgRTMyMF8xRyAtLWdlbmVyYXRlLW9ubHk8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiMgQnVpbGQgdGhlIGlt
-YWdlIHdpdGggdGhlIEdVSTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+bWFrZSBFMzIwXzFHIEdVST0xPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2
-Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9k
-aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V2FkZTxvOnA+PC9vOnA+PC9wPg0KPC9k
-aXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
-PC9kaXY+DQo8aHI+DQpUaGlzIGVtYWlsIGFuZCBhbnkgZmlsZXMgdHJhbnNtaXR0ZWQgd2l0aCBp
-dCBhcmUgY29uZmlkZW50aWFsIGFuZCBpbnRlbmRlZCBzb2xlbHkgZm9yIHRoZSB1c2Ugb2YgdGhl
-IGluZGl2aWR1YWwgb3IgZW50aXR5IHRvIHdob20gdGhleSBhcmUgYWRkcmVzc2VkLiBJZiB5b3Ug
-aGF2ZSByZWNlaXZlZCB0aGlzIGVtYWlsIGluIGVycm9yIHBsZWFzZSBub3RpZnkgdGhlIHN5c3Rl
-bSBtYW5hZ2VyLg0KPC9ib2R5Pg0KPC9odG1sPg0K
-
---_000_LNXP123MB37245B3319A1D21299289075CA8E9LNXP123MB3724GBRP_--
+It's been a while since I did this, but I had issues bringing up the gui as=
+ well. Here is a copy/paste of some notes I wrote for myself:
 
 
---===============4135988955005506413==
+  *   Edit the file "$PREFIX/bin/rfnoc_image_builder".
+  *   Find the line "gui=3Dargs.GUI" and change it to "GUI=3Dargs.GUI" and =
+save it.
+  *   Next, edit "$PREFIX/../src/uhd/fpga/usrp3/tools/script/setupenv_base.=
+sh" to make sure it properly reflects your Vivado installation path.
+
+Once I replaced "gui" with "GUI", the -g option worked fine with rfnoc_imag=
+e_builder. The last note was something I had to change so my Vivado path wa=
+s set correctly.
+
+Hope this helps,
+Jim
+
+________________________________
+From: USRP-users <usrp-users-bounces@lists.ettus.com> on behalf of Mark D v=
+ia USRP-users <usrp-users@lists.ettus.com>
+Sent: Tuesday, February 9, 2021 8:48 AM
+To: 'Wade Fife' <wade.fife@ettus.com>
+Cc: 'usrp-users@lists.ettus.com' <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Opening Vivado GUI during FPGA image build
+
+
+Wade, usrp-users,
+
+
+
+I=92m now trying to build some code in an OOT directory.
+
+
+
+I can build the design with the rfnoc_image_builder Ok, however I can use t=
+he two step workaround to get the Vivado GUI to open. When I try and run =
+=93make E320_1G GUI=3D1=94 I just get an error saying that there is no rule=
+ to make target =91E320_1G=92.
+
+
+
+Any idea how I can use the two step workaround from an OOT directory, or ho=
+w I might be able to get rfnoc_image_builder to bring up the GUI?
+
+
+
+Thanks,
+
+
+
+Mark
+
+
+
+From: Mark D
+Sent: 03 February 2021 09:49
+To: 'Wade Fife' <wade.fife@ettus.com>
+Cc: usrp-users@lists.ettus.com
+Subject: RE: [USRP-users] Opening Vivado GUI during FPGA image build
+
+
+
+Thanks Wade,
+
+
+
+I had tried this just before your email. The first time I did this I got an=
+ error from make saying that Vivado wasn=92t found in the environment and t=
+hat I should run setupenv.sh.
+
+
+
+Running =93source setupenv.sh=94 fixed this issue and =93make E320_1G=94 GU=
+I=3D1 did open the design up in Vivado.
+
+
+
+One thing that might be a cause of the issue is that I don=92t have vivado =
+installed at the =93standard=94 location. It seems strange that rfnoc_image=
+_builder finds it Ok. Maybe if I try the -g option after running the setupe=
+nv.sh it might work.
+
+
+
+Thanks again for your help,
+
+
+
+Mark
+
+From: Wade Fife <wade.fife@ettus.com<mailto:wade.fife@ettus.com>>
+Sent: 02 February 2021 17:45
+To: Mark D <md964@hmgcc.gov.uk<mailto:md964@hmgcc.gov.uk>>
+Cc: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Opening Vivado GUI during FPGA image build
+
+
+
+Hi Mark,
+
+
+
+This is curious. If I recall, someone else was having trouble with -g, but =
+it worked for me last time I tried it. I will try it again to see if I can =
+reproduce anything. In the meantime, you can run rfnoc_image_builder and ma=
+ke in separate steps. See if this works:
+
+
+
+# Generate the build files only; don't build the image
+
+rfnoc_image_builder -y e320_my_fpga.yml -t E320_1G --generate-only
+
+# Build the image with the GUI
+
+make E320_1G GUI=3D1
+
+
+
+Thanks,
+
+
+
+Wade
+
+
+
+________________________________
+This email and any files transmitted with it are confidential and intended =
+solely for the use of the individual or entity to whom they are addressed. =
+If you have received this email in error please notify the system manager.
+
+--_000_MN2PR12MB3312959399C75B6CF2F7517DB88E9MN2PR12MB3312namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+It's been a while since I did this, but I had issues bringing up the gui as=
+ well. Here is a copy/paste of some notes I wrote for myself:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<ul style=3D"margin:10px 0px 0px;color:rgb(23, 43, 77);font-family:-apple-s=
+ystem, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, &q=
+uot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sa=
+ns-serif;font-size:14px;background-color:rgb(255, 255, 255)">
+<li>Edit the file &quot;$PREFIX/bin/rfnoc_image_builder&quot;.&nbsp;</li><l=
+i>Find the line &quot;gui=3Dargs.GUI&quot; and change it to &quot;GUI=3Darg=
+s.GUI&quot; and save it.</li><li><span style=3D"color: rgb(23, 43, 77); fon=
+t-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, =
+Oxygen, Ubuntu, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvet=
+ica Neue&quot;, sans-serif; font-size: 14px;">Next, edit &quot;$PREFIX/../s=
+rc/uhd/fpga/usrp3/tools/script/setupenv_base.sh&quot;
+ to make sure it properly reflects your Vivado installation path.</span><br=
+>
+</li></ul>
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Once I replaced &quot;gui&quot; with &quot;GUI&quot;, the -g option worked =
+fine with rfnoc_image_builder. The last note was something I had to change =
+so my Vivado path was set correctly.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hope this helps,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Jim</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> USRP-users &lt;usrp-u=
+sers-bounces@lists.ettus.com&gt; on behalf of Mark D via USRP-users &lt;usr=
+p-users@lists.ettus.com&gt;<br>
+<b>Sent:</b> Tuesday, February 9, 2021 8:48 AM<br>
+<b>To:</b> 'Wade Fife' &lt;wade.fife@ettus.com&gt;<br>
+<b>Cc:</b> 'usrp-users@lists.ettus.com' &lt;usrp-users@lists.ettus.com&gt;<=
+br>
+<b>Subject:</b> Re: [USRP-users] Opening Vivado GUI during FPGA image build=
+</font>
+<div>&nbsp;</div>
+</div>
+<style>
+<!--
+@font-face
+	{font-family:"Cambria Math"}
+@font-face
+	{font-family:Calibri}
+p.x_MsoNormal, li.x_MsoNormal, div.x_MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif}
+a:link, span.x_MsoHyperlink
+	{color:blue;
+	text-decoration:underline}
+span.x_EmailStyle20
+	{font-family:"Calibri",sans-serif;
+	color:windowtext}
+.x_MsoChpDefault
+	{font-size:10.0pt}
+@page WordSection1
+	{margin:72.0pt 72.0pt 72.0pt 72.0pt}
+div.x_WordSection1
+	{}
+-->
+</style>
+<div lang=3D"EN-GB" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:break=
+-word">
+<div class=3D"x_WordSection1">
+<p class=3D"x_MsoNormal"><span style=3D"">Wade, usrp-users,</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">&nbsp;</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">I=92m now trying to build some co=
+de in an OOT directory.</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">&nbsp;</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">I can build the design with the r=
+fnoc_image_builder Ok, however I can use the two step workaround to get the=
+ Vivado GUI to open. When I try and run =93make E320_1G GUI=3D1=94 I just g=
+et an error saying that there is no rule to
+ make target =91E320_1G=92.</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">&nbsp;</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">Any idea how I can use the two st=
+ep workaround from an OOT directory, or how I might be able to get rfnoc_im=
+age_builder to bring up the GUI?</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">&nbsp;</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">Thanks,</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">&nbsp;</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">Mark</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">&nbsp;</span></p>
+<div>
+<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0c=
+m 0cm 0cm">
+<p class=3D"x_MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> Mark D
+<br>
+<b>Sent:</b> 03 February 2021 09:49<br>
+<b>To:</b> 'Wade Fife' &lt;wade.fife@ettus.com&gt;<br>
+<b>Cc:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> RE: [USRP-users] Opening Vivado GUI during FPGA image build=
+</span></p>
+</div>
+</div>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<p class=3D"x_MsoNormal"><span style=3D"">Thanks Wade,</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">&nbsp;</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">I had tried this just before your=
+ email. The first time I did this I got an error from make saying that Viva=
+do wasn=92t found in the environment and that I should run setupenv.sh.</sp=
+an></p>
+<p class=3D"x_MsoNormal"><span style=3D"">&nbsp;</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">Running =93source setupenv.sh=94 =
+fixed this issue and =93make E320_1G=94 GUI=3D1 did open the design up in V=
+ivado.</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">&nbsp;</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">One thing that might be a cause o=
+f the issue is that I don=92t have vivado installed at the =93standard=94 l=
+ocation. It seems strange that rfnoc_image_builder finds it Ok. Maybe if I =
+try the -g option after running the setupenv.sh
+ it might work.</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">&nbsp;</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">Thanks again for your help,</span=
+></p>
+<p class=3D"x_MsoNormal"><span style=3D"">&nbsp;</span></p>
+<p class=3D"x_MsoNormal"><span style=3D"">Mark</span></p>
+<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0c=
+m 0cm 0cm">
+<p class=3D"x_MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com">wade.fife@=
+ettus.com</a>&gt;
+<br>
+<b>Sent:</b> 02 February 2021 17:45<br>
+<b>To:</b> Mark D &lt;<a href=3D"mailto:md964@hmgcc.gov.uk">md964@hmgcc.gov=
+.uk</a>&gt;<br>
+<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.e=
+ttus.com</a><br>
+<b>Subject:</b> Re: [USRP-users] Opening Vivado GUI during FPGA image build=
+</span></p>
+</div>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<div>
+<div>
+<p class=3D"x_MsoNormal">Hi Mark,</p>
+</div>
+<div>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+</div>
+<div>
+<p class=3D"x_MsoNormal">This is curious. If I recall, someone else was hav=
+ing trouble with -g, but it worked for me last time I tried it. I will try =
+it again to see if I can reproduce anything. In the meantime, you can run r=
+fnoc_image_builder and make in separate
+ steps. See if this works:</p>
+</div>
+<div>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"># Generate the build files only; don't build the i=
+mage</p>
+</div>
+<div>
+<p class=3D"x_MsoNormal">rfnoc_image_builder -y e320_my_fpga.yml -t E320_1G=
+ --generate-only</p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"># Build the image with the GUI</p>
+</div>
+<div>
+<p class=3D"x_MsoNormal">make E320_1G GUI=3D1</p>
+</div>
+<div>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+</div>
+<div>
+<p class=3D"x_MsoNormal">Thanks,</p>
+</div>
+<div>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+</div>
+<div>
+<p class=3D"x_MsoNormal">Wade</p>
+</div>
+</div>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+</div>
+<hr>
+This email and any files transmitted with it are confidential and intended =
+solely for the use of the individual or entity to whom they are addressed. =
+If you have received this email in error please notify the system manager.
+</div>
+</body>
+</html>
+
+--_000_MN2PR12MB3312959399C75B6CF2F7517DB88E9MN2PR12MB3312namp_--
+
+
+--===============7003150847973010822==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -332,5 +529,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4135988955005506413==--
+--===============7003150847973010822==--
 
