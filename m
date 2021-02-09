@@ -2,114 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68AB23157F9
-	for <lists+usrp-users@lfdr.de>; Tue,  9 Feb 2021 21:49:26 +0100 (CET)
-Received: from [::1] (port=38486 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DE1F315870
+	for <lists+usrp-users@lfdr.de>; Tue,  9 Feb 2021 22:17:04 +0100 (CET)
+Received: from [::1] (port=38662 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l9Zwo-0003Sa-TF; Tue, 09 Feb 2021 15:49:22 -0500
-Received: from eu-smtp-delivery-178.mimecast.com ([207.82.80.178]:59953)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
- (Exim 4.93) (envelope-from <luca.lodigiani@inmarsat.com>)
- id 1l9Zwk-0003MQ-KS
- for usrp-users@lists.ettus.com; Tue, 09 Feb 2021 15:49:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inmarsat.com;
- s=mimecast20191126; t=1612903717;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type;
- bh=QCUa8jcKJqlo0FxUD2VfF9Z2pNKpb4dU3trxl0V1DYE=;
- b=E351L6yWDMmkOF1uH9Q7tLLG9LiL9OxP08tLFNKpozeRov35gFs0PZLtqRU+Z/97j6wdPW
- qK8eBNpatecEgXZEqD2y+hFFVbEfWoqrS/wKeASl5ir4dXdqVd4eFVyJannZjlO08f+DOm
- JquWNVuC6W1cRIpfz2ZxGQszuMJPIZo=
-Received: from GBR01-CWL-obe.outbound.protection.outlook.com
- (mail-cwlgbr01lp2053.outbound.protection.outlook.com [104.47.20.53]) (Using
- TLS) by relay.mimecast.com with ESMTP id
- uk-mta-234-5p1QUkTTPYGip1YABdQBQA-1; Tue, 09 Feb 2021 20:48:35 +0000
-X-MC-Unique: 5p1QUkTTPYGip1YABdQBQA-1
-Received: from CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:53::10)
- by CWXP123MB4200.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:b0::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.20; Tue, 9 Feb
- 2021 20:48:33 +0000
-Received: from CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM
- ([fe80::ccf5:a701:2cac:1319]) by CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM
- ([fe80::ccf5:a701:2cac:1319%9]) with mapi id 15.20.3825.030; Tue, 9 Feb 2021
- 20:48:33 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: B210 NB-IoT frontend issues
-Thread-Index: AQHW/x2E34c3bGVFyke7BKAUj3nVAw==
-Date: Tue, 9 Feb 2021 20:48:33 +0000
-Message-ID: <CWLP123MB2900D9BA3AABDE0989EBCD04F98E9@CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_67f73250-91c3-4058-a7be-ac7b98891567_Enabled=True;
- MSIP_Label_67f73250-91c3-4058-a7be-ac7b98891567_SiteId=43eba056-5ca4-4871-89ac-bdd09160ce7e;
- MSIP_Label_67f73250-91c3-4058-a7be-ac7b98891567_SetDate=2021-02-09T20:48:33.136Z;
- MSIP_Label_67f73250-91c3-4058-a7be-ac7b98891567_Name=Internal;
- MSIP_Label_67f73250-91c3-4058-a7be-ac7b98891567_ContentBits=0;
- MSIP_Label_67f73250-91c3-4058-a7be-ac7b98891567_Method=Standard
-x-originating-ip: [81.98.160.168]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4def12ef-54ee-42a4-7742-08d8cd3c10d3
-x-ms-traffictypediagnostic: CWXP123MB4200:
-x-microsoft-antispam-prvs: <CWXP123MB4200A87CF889FD6E83C5C7F5F98E9@CWXP123MB4200.GBRP123.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:8273
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0
-x-microsoft-antispam-message-info: pOJYwEwxq+i1z+MPrU6vfkupLWm+M/6JEAdhK/gS4ybjs5NKWHq8v4q9t+VLwJrJChUovMHPzdH753NKwb6QrY7KXYExBQJOIIZnzsXfWeQV17NeaqIJMvRuc59zIhYf4DemKP9hyR4o87P+DvaaaZn8tBxt3XqJyvfaybuA7chH2JrLlARGpux5WdLsB9R128hdIN//fU1bhHk/yLZesrZsChDoGIWwo8QsJIZs2iovh/xlieBmGzIfcVK0OeUfVv8nkHEvVvOYtca5Sqq+2j8GZ3sZUC2j2U7Hm+KZAYqJSw5fXInNFHgilGkvK/7m6wjRA8qpksxXisH3iXeuL0lTBkJ1R6LdkQMX+i5d0ooG2h3NEWosPEZK9K61Ro2IUax3If/fatTwosDLGf8rL4p0pkZKElEAGOS4lIsmeD0h9srSR/bd2G2r3gP3u2Po91TD7ZGd38X9unwBM5eRWidZPrxt/vtVVWCtizCTvIZC1e3sPwaEpbrsdsPSmSTx/Kqg/AjS+LGydR7QFO3v2Asi0aVibVFtnJm34TMI1MlRE224fKhhn/S/9HtwHDFTwgWEgIpLfSSZLLpX4QA41t4t+QeIJGGCgMVcvk5b520=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(4636009)(39850400004)(366004)(396003)(376002)(136003)(346002)(478600001)(5660300002)(21615005)(8676002)(2906002)(966005)(19627405001)(9686003)(66946007)(6506007)(33656002)(66446008)(71200400001)(83380400001)(6916009)(66556008)(316002)(186003)(66476007)(26005)(166002)(76116006)(91956017)(8936002)(64756008)(86362001)(7696005)(55016002)(52536014);
- DIR:OUT; SFP:1102
-x-ms-exchange-antispam-messagedata: =?utf-8?B?My9tL0pkUWpHTnh0SDVSbTNDaTRsQ1FWT0FtN2dOVWc1RGM5SWVGc2FjODNZ?=
- =?utf-8?B?N1p4TGtiZW04UVp6eUhESlNwTHB1WG9sSWFhRlpSN0hCMldGekg4NVlXemdr?=
- =?utf-8?B?Q1VJK1RISmhGL3YwbXNYMVJIY29tRE1sTXlRb290am5DblJGZHRnMFplQ1dU?=
- =?utf-8?B?L0hocG54OUhiZXVMTytVTGg4aEhDL25KL2xSRS9rdGJOTDZ5aEdWNUVYM3dJ?=
- =?utf-8?B?T3U4amhLbEV5M0o5MG9IbkZKeFVPUlFMUDFoZDByNUczZ1dLQXNyMVg1QmtT?=
- =?utf-8?B?b01NVGpjVW5SQ3JUNUdDRm95UWZ5dU9WenJNTDR5b3BlYVpEQTVQQXFNMmtS?=
- =?utf-8?B?N0JieTMxODdGZ25SU20xTWVBVXZPMGZTbUlnQUdnUXpSalZ4dm5kQ0s4Y3lJ?=
- =?utf-8?B?djFnekdoTDcvRzJNVm1QaVVZTFJZczlQYkV4N0lYRzVZNk1WdjJXNDlYRVRQ?=
- =?utf-8?B?TkVBNHFMVFg5S2N3cFBac0w4VFJyZmJrVlFrT3pPR096dXpLcW16TjMramxX?=
- =?utf-8?B?QVdIbE45eDIvek9iM0tmek1MMHg5WkhnbDJKYmY0bUxRNHV0eDIvVzVKTU9M?=
- =?utf-8?B?QUtyZ1JMQjJUSmRNemtMLzFma2JRRWs2dlJZOURsUW93dDJnb2JjWFBHdWhW?=
- =?utf-8?B?ZUl5NXNKbTdZcUpWSXlKL1NEUWN2TldSM2hCRW9pZ3FVNnRxQlpPNHRyU0dw?=
- =?utf-8?B?OEJNVk1ycVlOTmhwcW5JRzJPRGZYRTVLR0ZHc1ZPdmVRWEF3QXYxUGpJRzVo?=
- =?utf-8?B?RENURnlsb2J1SmRxbVJuMXhsNXdEQTdmL0lyWVRZdEcvYVN3QVB3UVY1V2xx?=
- =?utf-8?B?b1RoYXNzbFdTUkR0V3dXVFVRZTZNd2JOYTFPMk1GMm5KMjFwMGVYbDFDRHQv?=
- =?utf-8?B?RnF1aFBBV2xJOWVidjE2SHdyZ2pyTVl4ZDZxYngvVXB2QUY2OFdMbnJSKysy?=
- =?utf-8?B?THhQc1IySTE2SUQ1bTJ0R0ltbEs3MHZsRVhWV2NDVW5rQ0VwUCtaSTUyWGNQ?=
- =?utf-8?B?aHRHYVU3dzhFSCtEV3paS1V5VzNndWpEZHd6MUF1aFU3V1lERWdYVkp3aEd6?=
- =?utf-8?B?bVZoWFFhb3kzT1hYY3d2ckdQUGI0VExiNjQ1bXhkeWw0UEZqK2xLMER4SklL?=
- =?utf-8?B?QVE1UjR2Mk5GUHhlN3V5c244ak50Smt5eWVDOXlWcTRBV2FhajdJZ0RwWWFK?=
- =?utf-8?B?aDVQbk1kK0IwUEdwaENsTjZKNFFoZlVQZmduUGo3Sjd3OGZkRVUrbWN4QmxC?=
- =?utf-8?B?d2U3Vk1RQVpHejBGSXlnVWJhM0Q5OCtnajBKZ1R1UkxSTWQ1ZzNFSjNYQk5N?=
- =?utf-8?B?aEhZNys4NXo3aVBRb24zK09lM2podGF4aHE0dnpWZWlxbDVrU1Bld1NKZlhl?=
- =?utf-8?B?N1RjYlRGcXRLaThER05YZlpxdllPODNrVGU0ZlZFSnUyOVJ2NGJPMnBTTFlo?=
- =?utf-8?B?bVJSYjhVZ09pNmdlQmVzTXIzNHNJVDQ5bjBTK0dHRWd4RGNJQk56aEd6RVJ1?=
- =?utf-8?B?VjkzTkJ3VWo2WWw4YlpTbXBoUTdHb2lJOExyVlNvQzVDNUhydElTeThHQ3p6?=
- =?utf-8?B?dHF5WStIYVUwMDAvd1JyaVY0dHkxZGp0bStnWlV5MGdoU2lIWFIybE9FT0lT?=
- =?utf-8?B?UnVOQUtpa3VVODh6RTdNNFZjcmRRV1Y0QlVNV3RmcU1EdDNDdHVZZTZ1MUdk?=
- =?utf-8?B?elQ3dHlIMDB6SURobFpVNDh6Z1VRQWRJcXBlTUlNOVhkanR0OUJPcVFKWlJF?=
- =?utf-8?Q?7BCORgE57sFXM9aj3+FTwBjjYeNFRYzBozYzNlB?=
-x-ms-exchange-transport-forked: True
+	id 1l9aNZ-0004hc-IP; Tue, 09 Feb 2021 16:17:01 -0500
+Received: from mail-qk1-f177.google.com ([209.85.222.177]:33684)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1l9aNW-0004cN-Hf
+ for usrp-users@lists.ettus.com; Tue, 09 Feb 2021 16:16:58 -0500
+Received: by mail-qk1-f177.google.com with SMTP id b14so5999925qkk.0
+ for <usrp-users@lists.ettus.com>; Tue, 09 Feb 2021 13:16:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=XRorGpdnNZz2ONRmRckb3Y9VodPjZHrHYBqUkG0RVoc=;
+ b=fDIyySMhM4MAedVFo8AnTAYASfj68AjpIG088gXuozyAB0+ZDaPoxZuBY56GSRZgX3
+ 8aePzzjXItaVwmyEiGiRRxOgb92xS4Kpw84fv5AeeVJexuPwZO1D4JeqHK4r9nRQ25S4
+ sA3QQxDnUOvCAqjFKO4OTth4HkS78tgoRbnBNH4KayzLE1Y1Hm51CQ4rB9qHc2OUcC13
+ OSftqSPhu+GOTEJpkHcAqbwhGzkpLZ7SdqEtZFdvJRXibdtVHB2iVaSHb92vyaU9iebc
+ 2X2ENVqc+52qYKvs3XQ1DoSgzz3RSMAlqCCgudkE3wEVFBeSL3MFUqCSSflbSNyhGyPv
+ QMWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=XRorGpdnNZz2ONRmRckb3Y9VodPjZHrHYBqUkG0RVoc=;
+ b=mNm4SwHxy21GUgCHORltfm7BqPJp5bLmlCcMlMHgd6MzrVRIpTmmLgykO7sFIsufuT
+ mKO39Vo/k4/i+rQCVWZ9xuND+JQHUq6NUzgeQLdAp/nUnMVf8w0TW65LWyuobcHe1BoZ
+ ipaAizqH75/IEQHsmWUdfIj4/m9kv8iD92umfZcJqrrugsvkdubKeV1SesDYq/81U1YB
+ UUqqZaelh3OpcS3ecthGaTEBKn64RYiLkBtlg32ly8WixwGfwEw9x/NDFBgLuqTHOfT1
+ 1IrHGvjwHKqtHcD1Wh5LiVfOVb/tgCwGeCJ2/go9f7JWcWRE9ZNv9toKEqcK3J1AEHew
+ qkdg==
+X-Gm-Message-State: AOAM533FS5Aqhzz13/p9Q1Qr47STi7h5pfQdfXVMcpm4CFw6gbJy7ys5
+ tXceqhZMdkL7F4PZu/o0WgxYN5zudVs=
+X-Google-Smtp-Source: ABdhPJy7i2ci6Dpl+16iS/0vsBb2kdvJsCMc+GWx7DylrVRiOLpvV5XB+kyJn54r+h1UlvaJY3gKlg==
+X-Received: by 2002:a37:8647:: with SMTP id i68mr65514qkd.165.1612905376912;
+ Tue, 09 Feb 2021 13:16:16 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id 199sm2937105qkj.9.2021.02.09.13.16.16
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 09 Feb 2021 13:16:16 -0800 (PST)
+Message-ID: <6022FB9F.30103@gmail.com>
+Date: Tue, 09 Feb 2021 16:16:15 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-X-OriginatorOrg: inmarsat.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4def12ef-54ee-42a4-7742-08d8cd3c10d3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Feb 2021 20:48:33.4621 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43eba056-5ca4-4871-89ac-bdd09160ce7e
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: FGcRtgrkGaZF4XPAv8ZgDQofex5D0yAzRPqIBAdOyDsiq/99KGE4A1z50KxDlUp+zq4n2NPrnqqccQdS913Ma0hjuqXRw9A3eGK+eqgLIs0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP123MB4200
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=C78A291 smtp.mailfrom=luca.lodigiani@inmarsat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: inmarsat.com
-Content-Language: en-US
-Subject: [USRP-users] B210 NB-IoT frontend issues
+To: usrp-users@lists.ettus.com
+References: <CWLP123MB2900D9BA3AABDE0989EBCD04F98E9@CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM>
+In-Reply-To: <CWLP123MB2900D9BA3AABDE0989EBCD04F98E9@CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM>
+Subject: Re: [USRP-users] B210 NB-IoT frontend issues
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -121,9 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Luca Lodigiani via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Luca Lodigiani <Luca.Lodigiani@inmarsat.com>
-Content-Type: multipart/mixed; boundary="===============7375944606256325639=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============3525872636157691816=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -137,170 +82,404 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7375944606256325639==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============3525872636157691816==
 Content-Type: multipart/alternative;
-	boundary="_000_CWLP123MB2900D9BA3AABDE0989EBCD04F98E9CWLP123MB2900GBRP_"
+ boundary="------------000302080108070103070600"
 
---_000_CWLP123MB2900D9BA3AABDE0989EBCD04F98E9CWLP123MB2900GBRP_
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------000302080108070103070600
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-SGVsbG8sDQoNCk15IHRlYW0gYW5kIEkgYXJlIGRvaW5nIHNvbWUgZXhwZXJpbWVudHMgd2l0aCB0
-aGUgVVNSUCBCMjEwIGFuZCBOQi1Jb1Qgd2F2ZWZvcm1zLg0KRHVyaW5nIHRlc3RzIHdlIGhhdmUg
-b2JzZXJ2ZWQgYSBmZXcgaXNzdWVzIHdpdGggdGhlIFJGIG91dHB1dCwgdGhhdCB3ZSB3b3VsZCBs
-aWtlIHRvIHVuZGVyc3RhbmQgYmV0dGVyLCBhbmQgaG9wZWZ1bGx54oCLIGZpeCBvciBtaXRpZ2F0
-ZS4gICBJIG11c3QgYWRtaXQgdGhhdCB3ZSBhcmUgbm90IHlldCB2ZXJ5IGZhbWlsaWFyIHdpdGgg
-VVNSUCBTRFJzLCBzbyBJIGFwb2xvZ2l6ZSBpbiBhZHZhbmNlIGZvciBhbnkgc3R1cGlkIHF1ZXN0
-aW9uISAgVGhlcmUgYXJlIHNvIG1hbnkgb3B0aW9ucyB0byB0d2VhayB0aGUgVVNSUCA6LSkgIQ0K
-DQpUaGlzIGlzIHdoYXQgd2UgaGF2ZSBvYnNlcnZlZDoNCg0KICAxLiAgQXBwYXJlbnQgUkYgbGVh
-a2FnZSBmcm9tIFJYIHRvIFRYIHdoZW4gaWRsZSAoaS5lLiBub3QgdHJhbnNtaXR0aW5nIHRoZSAx
-ODAga0h6IE5CLUlvVCBjYXJyaWVyKS4gIE91ciBCMjEwIHdhcyBjb25uZWN0ZWQgdG8gYW4gUkYg
-bWF0cml4IHdoZXJlIG90aGVyIHNpZ25hbHMgaW4gb3RoZXIgY2hhbm5lbHMgbm90IGltbWVkaWF0
-ZWx5IGFkamFjZW50IHRvIG91ciBjZW50ZXIgZnJlcXVlbmN5IGFsc28gZXhpc3QsIGFuZCwgZXZl
-cnkgdGltZSB3ZSB3ZXJlIG5vdCB0cmFuc21pdHRpbmcsIHNvbWUgb2YgdGhvc2Ugc2lnbmFscyAo
-YSBNSHogYXdheSkgd2VyZSBwaWNrZWQgdXAgZnJvbSB0aGUgUlggYW5kIOKAnGxlYWtlZOKAnSBp
-bnRvIHRoZSBUWCDigJMgdGhpcyBjb3VsZCBiZSBvYnNlcnZlZCBmcm9tIGEgc3BlY3RydW0gYW5h
-bHl6ZXIgY29ubmVjdGVkIHRvIHRoZSBCMjEwIFRYIGFuZCBpdCBhcHBlYXJzIHRvIGJlIHBpY2tp
-bmcgdXAgcXVpdGUgYSB3aWRlIGJhbmR3aWR0aCAobW9yZSB0aGFuIDUtMTAgTUh6KS4NCiAgICAg
-KiAgIElzIHRoaXMgYSBrbm93biBpc3N1ZSB3aXRoIHRoZSBCMjEwIFJGIGZyb250ZW5kPw0KICAg
-ICAqICAgRG9lcyBhbnlvbmUgaGF2ZSBhbnkgc3VnZ2VzdGlvbnMgb24gaG93IHRvIG1pdGlnYXRl
-IGl0IChpZiBldmVuIHBvc3NpYmxlKT8NCiAgICAgKiAgIFdlIHRyaWVkIGxpbWl0aW5nIFJYIGJh
-bmR3aWR0aCBhcyBkZXNjcmliZWQgaGVyZSBodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwv
-cGFnZV91c3JwX2IyMDAuaHRtbCNiMjAwX2ZlX2J3ICwgYnV0IGl0IHNlZW1zIG5vdCBjaGFuZ2Ug
-YW55dGhpbmcgYXQgbGVhc3Qgd2hlbiBpZGxlLiAgQW55IGlkZWFzPw0KDQogIDIuICBPdXQtb2Yt
-YmFuZCBlbWlzc2lvbnMgYW5kIHNwZWN0cmFsIHJlZ3Jvd3RoOiAgVGhlIG91dHB1dCBOQi1Jb1Qg
-Y2FycmllciBzaG93cyBxdWl0ZSBsYXJnZSBvdXQtb2YtYmFuZCBlbWlzc2lvbnMgKH4tMzAgZEJj
-IEAyMDAga0h6IGZyb20gY2VudGVyIGZyZXF1ZW5jeSwgLTUwIGRCYyBANDAwIGtIeikuDQogICAg
-ICogICBDb3VsZCB0aGlzIGJlIGR1ZSB0byBub24tbGluZWFyIGRpc3RvcnRpb24gY2F1c2VkIGJ5
-IHRoZSBCMjEwIGZyb250ZW5kIChBRDkzNjEpID8NCiAgICAgKiAgIFdvdWxkIGxpbWl0aW5nIFRY
-IGFuYWxvZyBiYW5kd2lkdGggd2l0aCBzZXRfdHhfYmFuZHdpZHRoKGJ3KSBoZWxwIGhlcmU/DQog
-ICAgICogICBBbnkgb3RoZXIgc3VnZ2VzdGlvbnM/DQoNCkkgYWxzbyBoYXZlIHNvbWUgb3RoZXIg
-Z2VuZXJhbCBxdWVzdGlvbnMuLi46DQoNCiAgMS4gIEV2ZW4gYWZ0ZXIgcmVhZGluZyB0aGlzICho
-dHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvcGFnZV9wb3dlci5odG1sICkgSSBhbSBzdGls
-bCBub3Qgc3VwZXIgY2xlYXIgYWJvdXQgaWYgYW5kIGhvdyB0aGUgc2V0X3R4X3Bvd2VyX3JlZmVy
-ZW5jZSgpIChhbmQgcngpICBhZmZlY3QgdGhlIGdhaW4gbGV2ZWwuICBJIHRoaW5rIHVuZGVyc3Rh
-bmQgVFggZ2FpbiBzZXR0aW5nIHdpbGwgb2J2aW91c2x5IGFmZmVjdCB0aGUgb3V0cHV0IHBvd2Vy
-IHRob3VnaC4NCiAgMi4gIFdoZW4gdGFsa2luZyBhYm91dCBtdWx0aXBsZSAiZ2FpbiBzdGFnZXMi
-LCBob3cgZG9lcyB0aGlzIHRyYW5zbGF0ZSB0byB0aGUgQjIxMD8gIERpZmZlcmVudCBzdGFnZXMg
-b2YgdGhlIEFEOTM2MSA/DQogIDMuICBIb3cgYXJlIHNldF90eF9iYW5kd2lkdGggYW5kIHNldF9y
-eF9iYW5kd2lkdGggaW1wbGVtZW50ZWQgaW4gcHJhY3RpY2UgaW4gdGhlIEIyMTA/DQoNCk1hbnkg
-dGhhbmtzDQpMdWNhDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQoNClRoaXMg
-Y29tbXVuaWNhdGlvbiBpcyBwcml2YXRlIGFuZCBjb25maWRlbnRpYWwgYW5kIG1heSBjb250YWlu
-IGluZm9ybWF0aW9uIHRoYXQgaXMgcHJvcHJpZXRhcnksIHByaXZpbGVnZWQgb3Igb3RoZXJ3aXNl
-IGxlZ2FsbHkgZXhlbXB0IGZyb20gZGlzY2xvc3VyZS4gSWYgeW91IGhhdmUgcmVjZWl2ZWQgdGhp
-cyBtZXNzYWdlIGluIGVycm9yLCBwbGVhc2Ugbm90aWZ5IHRoZSBzZW5kZXIgaW1tZWRpYXRlbHkg
-YnkgZS1tYWlsIGFuZCBkZWxldGUgYWxsIGNvcGllcyBvZiB0aGUgbWVzc2FnZS4gSW4gYWNjb3Jk
-YW5jZSB3aXRoIG91ciBndWlkZWxpbmVzLCBlbWFpbHMgc2VudCBvciByZWNlaXZlZCBtYXkgYmUg
-bW9uaXRvcmVkLiBJbm1hcnNhdCBHbG9iYWwgTGltaXRlZCwgUmVnaXN0ZXJlZCBOby4gMzY3NTg4
-NS4gUmVnaXN0ZXJlZCBpbiBFbmdsYW5kIGFuZCBXYWxlcyB3aXRoIFJlZ2lzdGVyZWQgT2ZmaWNl
-IGF0IDk5IENpdHkgUm9hZCwgTG9uZG9uIEVDMVkgMUFYDQoNCg0KSU5URVJOQUwgfCDCqSBJTk1B
-UlNBVA0K
---_000_CWLP123MB2900D9BA3AABDE0989EBCD04F98E9CWLP123MB2900GBRP_
+On 02/09/2021 03:48 PM, Luca Lodigiani via USRP-users wrote:
+> Hello,
+>
+> My team and I are doing some experiments with the USRP B210 and NB-IoT 
+> waveforms.
+> During tests we have observed a few issues with the RF output, that we 
+> would like to understand better, and /hopefully/​ fix or mitigate.   I 
+> must admit that we are not yet very familiar with USRP SDRs, so I 
+> apologize in advance for any stupid question!  There are so many 
+> options to tweak the USRP :-) !
+>
+> This is what we have observed:
+>
+>  1. Apparent RF leakage from RX to TX when idle (i.e. not transmitting
+>     the 180 kHz NB-IoT carrier).  Our B210 was connected to an RF
+>     matrix where other signals in other channels not immediately
+>     adjacent to our center frequency also exist, and, every time we
+>     were not transmitting, some of those signals (a MHz away) were
+>     picked up from the RX and “leaked” into the TX – this could be
+>     observed from a spectrum analyzer connected to the B210 TX and it
+>     appears to be picking up quite a wide bandwidth (more than 5-10 MHz).
+>      1. Is this a known issue with the B210 RF frontend?
+>      2. Does anyone have any suggestions on how to mitigate it (if
+>         even possible)?
+>      3. We tried limiting RX bandwidth as described here
+>         https://files.ettus.com/manual/page_usrp_b200.html#b200_fe_bw , but
+>         it seems not change anything at least when idle. Any ideas?
+>
+Given that the leakage path that you're (I think) talking about would be 
+VERY VERY early in the RF chain inside the AD9361 chip, setting
+   analog bandwidth would have ZERO effect, since that sets the *IF* 
+bandwidth--well after the bits and pieces you're likely dealing with.
+   I haven't looked at the TX/RX isolation spec in the AD9361 
+data-sheet, but it would surprise me very much if it were better than 50dB.
+   It's pretty hard inside such a tiny tiny piece of silicon to isolate 
+RF signal pathways more than that.   What power levels is the RX2 port
+   seeing in your application--your "RF matrix" really needs to not be 
+presenting more than about -15dBm to the RX2 port(s), or there's
+   potential for damage.
+
+Also, when you talk about 180kHz carrier, you're talking *bandwidth* or 
+center frequency?  The center frequency on the B210 cannot go
+  below about 50MHz.
+
+
+>     1.
+>
+>
+>
+>  1. Out-of-band emissions and spectral regrowth:  The output NB-IoT
+>     carrier shows quite large out-of-band emissions (~-30 dBc @200 kHz
+>     from center frequency, -50 dBc @400 kHz).
+>      1. Could this be due to non-linear distortion caused by the B210
+>         frontend (AD9361) ?
+>      2. Would limiting TX analog bandwidth with set_tx_bandwidth(bw)
+>         help here?
+>
+It might  Help to lower TX analog bandwidth, but UHD automatically sets 
+it based on your sample rate.  Also try reducing baseband magnitude
+   a little bit, as well as reducing TX gain a little bit.
+
+>      1. Any other suggestions?
+>
+> I also have some other general questions...:
+>
+>  1. Even after reading this
+>     (https://files.ettus.com/manual/page_power.html ) I am still not
+>     super clear about if and how the set_tx_power_reference() (and
+>     rx)  affect the gain level.  I think understand TX gain setting
+>     will obviously affect the output power though.
+>
+The tx_power_reference() API is new, so I cannot comment on how it works 
+out in practice. The B2xx have about 80dB of TX gain setting
+   range, but with peak power output of about +7dBm over most of its 
+frequency range, I'd say only the top 30dB is really useful.
+>
+>  1. When talking about multiple "gain stages", how does this translate
+>     to the B210?  Different stages of the AD9361 ?
+>
+Yes, different stages within the AD9361 in the case of B2xx.
+
+>  1. How are set_tx_bandwidth and set_rx_bandwidth implemented in
+>     practice in the B210?
+>
+By using features inside the AD9361 to set the effective analog 
+bandwidth in front of/behind the ADCs/DACs.  I'm not sure whether
+   the implementation inside the AD9361 is purely-analog (like 
+switched-capacitor filters, and changing clocks), or a hybrid approach
+   that uses the DSP logic inside the AD9361.  The ADCs and DACs in the 
+AD936x family operate at very high sample rates internally,
+   and use DSP logic to provide the actual 
+delivered-to-digital-interface sample rates, so there's room to do both 
+a digital and analog
+   approach in providing the necessary effective analog bandwidth. But 
+UHD normally picks an analog bandwidth setting that is
+   appropriate to the desired sample rate.  The only time this may not 
+be appropriate is if your actual signal is very much narrower than
+   is implied by the selected sample rate.
+
+>
+> Many thanks
+> Luca
+>
+> ------------------------------------------------------------------------
+>
+> This communication is private and confidential and may contain 
+> information that is proprietary, privileged or otherwise legally 
+> exempt from disclosure. If you have received this message in error, 
+> please notify the sender immediately by e-mail and delete all copies 
+> of the message. In accordance with our guidelines, emails sent or 
+> received may be monitored. Inmarsat Global Limited, Registered No. 
+> 3675885. Registered in England and Wales with Registered Office at 99 
+> City Road, London EC1Y 1AX
+>
+> INTERNAL | © INMARSAT
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+
+--------------000302080108070103070600
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
-YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
-bG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkhlbGxvLDwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1p
-bHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJw
-dDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250
-LWZhbWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXpl
-OiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpNeSB0ZWFtIGFuZCBJIGFyZSBkb2luZyBz
-b21lIGV4cGVyaW1lbnRzIHdpdGggdGhlIFVTUlAgQjIxMCBhbmQgTkItSW9UIHdhdmVmb3Jtcy48
-L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNh
-LCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkR1
-cmluZyB0ZXN0cyB3ZSBoYXZlIG9ic2VydmVkIGEgZmV3IGlzc3VlcyB3aXRoIHRoZSBSRiBvdXRw
-dXQsIHRoYXQgd2Ugd291bGQgbGlrZSB0byB1bmRlcnN0YW5kIGJldHRlciwgYW5kDQo8aT5ob3Bl
-ZnVsbHk8L2k+4oCLIGZpeCBvciBtaXRpZ2F0ZS4mbmJzcDsgJm5ic3A7SSBtdXN0IGFkbWl0IHRo
-YXQgd2UgYXJlIG5vdCB5ZXQgdmVyeSBmYW1pbGlhciB3aXRoIFVTUlAgU0RScywgc28gSSBhcG9s
-b2dpemUgaW4gYWR2YW5jZSBmb3IgYW55IHN0dXBpZCBxdWVzdGlvbiEmbmJzcDsgVGhlcmUgYXJl
-IHNvIG1hbnkgb3B0aW9ucyB0byB0d2VhayB0aGUgVVNSUCA6LSkgITwvZGl2Pg0KPGRpdiBzdHls
-ZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZv
-bnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2
-IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJp
-ZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpUaGlzIGlzIHdoYXQg
-d2UgaGF2ZSBvYnNlcnZlZDo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJp
-LCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiBy
-Z2IoMCwgMCwgMCk7Ij4NCjxvbD4NCjxsaT48c3Bhbj5BcHBhcmVudCBSRiBsZWFrYWdlIGZyb20g
-UlggdG8gVFggd2hlbiBpZGxlIChpLmUuIG5vdCB0cmFuc21pdHRpbmcgdGhlIDE4MCBrSHogTkIt
-SW9UIGNhcnJpZXIpLiZuYnNwOyBPdXIgQjIxMCB3YXMgY29ubmVjdGVkIHRvIGFuIFJGIG1hdHJp
-eCB3aGVyZSBvdGhlciBzaWduYWxzIGluIG90aGVyIGNoYW5uZWxzIG5vdCBpbW1lZGlhdGVseSBh
-ZGphY2VudCB0byBvdXIgY2VudGVyIGZyZXF1ZW5jeSBhbHNvIGV4aXN0LCBhbmQsIGV2ZXJ5IHRp
-bWUNCiB3ZSB3ZXJlIG5vdCB0cmFuc21pdHRpbmcsIHNvbWUgb2YgdGhvc2Ugc2lnbmFscyAoYSBN
-SHogYXdheSkgd2VyZSBwaWNrZWQgdXAgZnJvbSB0aGUgUlggYW5kIOKAnGxlYWtlZOKAnSBpbnRv
-IHRoZSBUWCDigJMgdGhpcyBjb3VsZCBiZSBvYnNlcnZlZCBmcm9tIGEgc3BlY3RydW0gYW5hbHl6
-ZXIgY29ubmVjdGVkIHRvIHRoZSBCMjEwIFRYIGFuZCBpdCBhcHBlYXJzIHRvIGJlIHBpY2tpbmcg
-dXAgcXVpdGUgYSB3aWRlIGJhbmR3aWR0aCAobW9yZSB0aGFuIDUtMTANCiBNSHopLiZuYnNwOyZu
-YnNwOyZuYnNwOzxicj4NCjwvc3Bhbj48L2xpPjxvbCBzdHlsZT0ibGlzdC1zdHlsZS10eXBlOiBs
-b3dlci1hbHBoYTsiPg0KPGxpPjxzcGFuPjxzcGFuIHN0eWxlPSJ0ZXh0LWFsaWduOnN0YXJ0O2Jh
-Y2tncm91bmQtY29sb3I6cmdiKDI1NSwgMjU1LCAyNTUpO2Rpc3BsYXk6aW5saW5lICFpbXBvcnRh
-bnQiPklzIHRoaXMgYSBrbm93biBpc3N1ZSB3aXRoIHRoZSBCMjEwIFJGIGZyb250ZW5kPyZuYnNw
-OyZuYnNwOzwvc3Bhbj48L3NwYW4+PC9saT48bGk+PHNwYW4+PHNwYW4gc3R5bGU9InRleHQtYWxp
-Z246c3RhcnQ7YmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LCAyNTUsIDI1NSk7ZGlzcGxheTppbmxp
-bmUgIWltcG9ydGFudCI+RG9lcyBhbnlvbmUgaGF2ZSBhbnkgc3VnZ2VzdGlvbnMgb24gaG93IHRv
-IG1pdGlnYXRlIGl0IChpZiBldmVuIHBvc3NpYmxlKT88L3NwYW4+PGJyPg0KPC9zcGFuPjwvbGk+
-PGxpPjxzcGFuPjxzcGFuIHN0eWxlPSJ0ZXh0LWFsaWduOnN0YXJ0O2JhY2tncm91bmQtY29sb3I6
-cmdiKDI1NSwgMjU1LCAyNTUpO2Rpc3BsYXk6aW5saW5lICFpbXBvcnRhbnQiPldlIHRyaWVkIGxp
-bWl0aW5nIFJYIGJhbmR3aWR0aCBhcyBkZXNjcmliZWQgaGVyZSZuYnNwOzxhIGhyZWY9Imh0dHBz
-Oi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX3VzcnBfYjIwMC5odG1sI2IyMDBfZmVfYnci
-IGlkPSJMUGxuazQyNjEwOSI+aHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3BhZ2VfdXNy
-cF9iMjAwLmh0bWwjYjIwMF9mZV9idzwvYT4mbmJzcDssDQogYnV0IGl0IHNlZW1zIG5vdCBjaGFu
-Z2UgYW55dGhpbmcgYXQgbGVhc3Qgd2hlbiBpZGxlLiZuYnNwOyBBbnkgaWRlYXM/Jm5ic3A7PGJy
-Pg0KPGJyPg0KPC9zcGFuPjwvc3Bhbj48L2xpPjwvb2w+DQo8bGk+PHNwYW4+T3V0LW9mLWJhbmQg
-ZW1pc3Npb25zIGFuZCBzcGVjdHJhbCByZWdyb3d0aDombmJzcDsgVGhlIG91dHB1dCBOQi1Jb1Qg
-Y2FycmllciBzaG93cyBxdWl0ZSBsYXJnZSBvdXQtb2YtYmFuZCBlbWlzc2lvbnMgKH4tMzAgZEJj
-IEAyMDAga0h6IGZyb20gY2VudGVyIGZyZXF1ZW5jeSwgLTUwIGRCYyBANDAwIGtIeikuJm5ic3A7
-Jm5ic3A7PC9zcGFuPjwvbGk+PG9sIHN0eWxlPSJsaXN0LXN0eWxlLXR5cGU6IGxvd2VyLWFscGhh
-OyI+DQo8bGk+PHNwYW4+Q291bGQgdGhpcyBiZSBkdWUgdG8gbm9uLWxpbmVhciBkaXN0b3J0aW9u
-IGNhdXNlZCBieSB0aGUgQjIxMCBmcm9udGVuZCAoQUQ5MzYxKSA/Jm5ic3A7Jm5ic3A7PGJyPg0K
-PC9zcGFuPjwvbGk+PGxpPjxzcGFuPldvdWxkIGxpbWl0aW5nIFRYIGFuYWxvZyBiYW5kd2lkdGgg
-d2l0aCZuYnNwOzxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpSb2JvdG8sIHNhbnMtc2VyaWY7Zm9u
-dC1zaXplOjE0cHg7dGV4dC1hbGlnbjpzdGFydDtiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsIDI1
-NSwgMjU1KTtkaXNwbGF5OmlubGluZSAhaW1wb3J0YW50Ij5zZXRfdHhfYmFuZHdpZHRoKGJ3KSZu
-YnNwOzwvc3Bhbj5oZWxwIGhlcmU/PC9zcGFuPjwvbGk+PGxpPjxzcGFuPkFueSBvdGhlciBzdWdn
-ZXN0aW9ucz88L3NwYW4+PC9saT48L29sPg0KPC9vbD4NCjxkaXY+PHNwYW4+SSBhbHNvIGhhdmUg
-c29tZSBvdGhlciBnZW5lcmFsIHF1ZXN0aW9ucy4uLjo8L3NwYW4+PC9kaXY+DQo8ZGl2Pg0KPG9s
-Pg0KPGxpPkV2ZW4gYWZ0ZXIgcmVhZGluZyB0aGlzICg8YSBocmVmPSJodHRwczovL2ZpbGVzLmV0
-dHVzLmNvbS9tYW51YWwvcGFnZV9wb3dlci5odG1sIiBpZD0iTFBsbmszMjQzODEiPmh0dHBzOi8v
-ZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX3Bvd2VyLmh0bWw8L2E+Jm5ic3A7KSBJIGFtIHN0
-aWxsIG5vdCBzdXBlciBjbGVhciBhYm91dCBpZiBhbmQgaG93IHRoZSZuYnNwO3NldF90eF9wb3dl
-cl9yZWZlcmVuY2UoKSAoYW5kIHJ4KSZuYnNwOyBhZmZlY3QgdGhlIGdhaW4gbGV2ZWwuJm5ic3A7
-DQogSSB0aGluayB1bmRlcnN0YW5kIFRYIGdhaW4gc2V0dGluZyB3aWxsIG9idmlvdXNseSBhZmZl
-Y3QgdGhlIG91dHB1dCBwb3dlciB0aG91Z2guJm5ic3A7Jm5ic3A7PC9saT48bGk+V2hlbiB0YWxr
-aW5nIGFib3V0IG11bHRpcGxlICZxdW90O2dhaW4gc3RhZ2VzJnF1b3Q7LCBob3cgZG9lcyB0aGlz
-IHRyYW5zbGF0ZSB0byB0aGUgQjIxMD8mbmJzcDsgRGlmZmVyZW50IHN0YWdlcyBvZiB0aGUgQUQ5
-MzYxID88L2xpPjxsaT5Ib3cgYXJlJm5ic3A7PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OlJvYm90
-bywgc2Fucy1zZXJpZjtmb250LXNpemU6MTRweDt0ZXh0LWFsaWduOnN0YXJ0O2JhY2tncm91bmQt
-Y29sb3I6cmdiKDI1NSwgMjU1LCAyNTUpO2Rpc3BsYXk6aW5saW5lICFpbXBvcnRhbnQiPnNldF90
-eF9iYW5kd2lkdGggYW5kJm5ic3A7PHNwYW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6cmdiKDI1
-NSwgMjU1LCAyNTUpO2Rpc3BsYXk6aW5saW5lICFpbXBvcnRhbnQiPnNldF9yeF9iYW5kd2lkdGgN
-CiBpbXBsZW1lbnRlZCBpbiBwcmFjdGljZSBpbiB0aGUgQjIxMD8mbmJzcDs8L3NwYW4+PC9zcGFu
-PjwvbGk+PC9vbD4NCjwvZGl2Pg0KPGRpdj48c3Bhbj48YnI+DQo8L3NwYW4+PC9kaXY+DQo8ZGl2
-PjxzcGFuPk1hbnkgdGhhbmtzPC9zcGFuPjwvZGl2Pg0KPGRpdj48c3Bhbj5MdWNhPC9zcGFuPjwv
-ZGl2Pg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgQXJpYWwsIEhl
-bHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDAp
-OyI+DQo8L2Rpdj4NCjxicj4NCjxocj4NCjxmb250IGZhY2U9IkFyaWFsIiBjb2xvcj0iR3JheSIg
-c2l6ZT0iMSI+PGJyPg0KVGhpcyBjb21tdW5pY2F0aW9uIGlzIHByaXZhdGUgYW5kIGNvbmZpZGVu
-dGlhbCBhbmQgbWF5IGNvbnRhaW4gaW5mb3JtYXRpb24gdGhhdCBpcyBwcm9wcmlldGFyeSwgcHJp
-dmlsZWdlZCBvciBvdGhlcndpc2UgbGVnYWxseSBleGVtcHQgZnJvbSBkaXNjbG9zdXJlLiBJZiB5
-b3UgaGF2ZSByZWNlaXZlZCB0aGlzIG1lc3NhZ2UgaW4gZXJyb3IsIHBsZWFzZSBub3RpZnkgdGhl
-IHNlbmRlciBpbW1lZGlhdGVseSBieSBlLW1haWwgYW5kIGRlbGV0ZSBhbGwNCiBjb3BpZXMgb2Yg
-dGhlIG1lc3NhZ2UuIEluIGFjY29yZGFuY2Ugd2l0aCBvdXIgZ3VpZGVsaW5lcywgZW1haWxzIHNl
-bnQgb3IgcmVjZWl2ZWQgbWF5IGJlIG1vbml0b3JlZC4gSW5tYXJzYXQgR2xvYmFsIExpbWl0ZWQs
-IFJlZ2lzdGVyZWQgTm8uIDM2NzU4ODUuIFJlZ2lzdGVyZWQgaW4gRW5nbGFuZCBhbmQgV2FsZXMg
-d2l0aCBSZWdpc3RlcmVkIE9mZmljZSBhdCA5OSBDaXR5IFJvYWQsIExvbmRvbiBFQzFZIDFBWDxi
-cj4NCjwvZm9udD48YnI+DQo8cCBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaTtmb250LXNpemU6
-N3B0O2NvbG9yOiMwMDAwMDA7bWFyZ2luOjVwdDsiIGFsaWduPSJMZWZ0Ij4NCklOVEVSTkFMIHwg
-wqkgSU5NQVJTQVQ8YnI+DQo8L3A+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
---_000_CWLP123MB2900D9BA3AABDE0989EBCD04F98E9CWLP123MB2900GBRP_--
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 02/09/2021 03:48 PM, Luca Lodigiani
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CWLP123MB2900D9BA3AABDE0989EBCD04F98E9@CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        Hello,</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        My team and I are doing some experiments with the USRP B210 and
+        NB-IoT waveforms.</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        During tests we have observed a few issues with the RF output,
+        that we would like to understand better, and
+        <i>hopefully</i>​ fix or mitigate.   I must admit that we are
+        not yet very familiar with USRP SDRs, so I apologize in advance
+        for any stupid question!  There are so many options to tweak the
+        USRP :-) !</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        This is what we have observed:</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <ol>
+          <li><span>Apparent RF leakage from RX to TX when idle (i.e.
+              not transmitting the 180 kHz NB-IoT carrier).  Our B210
+              was connected to an RF matrix where other signals in other
+              channels not immediately adjacent to our center frequency
+              also exist, and, every time we were not transmitting, some
+              of those signals (a MHz away) were picked up from the RX
+              and “leaked” into the TX – this could be observed from a
+              spectrum analyzer connected to the B210 TX and it appears
+              to be picking up quite a wide bandwidth (more than 5-10
+              MHz).   <br>
+            </span></li>
+          <ol style="list-style-type: lower-alpha;">
+            <li><span><span
+                  style="text-align:start;background-color:rgb(255, 255,
+                  255);display:inline !important">Is this a known issue
+                  with the B210 RF frontend?  </span></span></li>
+            <li><span><span
+                  style="text-align:start;background-color:rgb(255, 255,
+                  255);display:inline !important">Does anyone have any
+                  suggestions on how to mitigate it (if even possible)?</span><br>
+              </span></li>
+            <li><span><span
+                  style="text-align:start;background-color:rgb(255, 255,
+                  255);display:inline !important">We tried limiting RX
+                  bandwidth as described here <a moz-do-not-send="true"
+href="https://files.ettus.com/manual/page_usrp_b200.html#b200_fe_bw"
+                    id="LPlnk426109">https://files.ettus.com/manual/page_usrp_b200.html#b200_fe_bw</a> ,
+
+                  but it seems not change anything at least when idle. 
+                  Any ideas? <br>
+                </span></span></li>
+          </ol>
+        </ol>
+      </div>
+    </blockquote>
+    Given that the leakage path that you're (I think) talking about
+    would be VERY VERY early in the RF chain inside the AD9361 chip,
+    setting<br>
+      analog bandwidth would have ZERO effect, since that sets the *IF*
+    bandwidth--well after the bits and pieces you're likely dealing with.<br>
+      I haven't looked at the TX/RX isolation spec in the AD9361
+    data-sheet, but it would surprise me very much if it were better
+    than 50dB.<br>
+      It's pretty hard inside such a tiny tiny piece of silicon to
+    isolate RF signal pathways more than that.   What power levels is
+    the RX2 port<br>
+      seeing in your application--your "RF matrix" really needs to not
+    be presenting more than about -15dBm to the RX2 port(s), or there's<br>
+      potential for damage.<br>
+    <br>
+    Also, when you talk about 180kHz carrier, you're talking *bandwidth*
+    or center frequency?  The center frequency on the B210 cannot go<br>
+     below about 50MHz.<br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:CWLP123MB2900D9BA3AABDE0989EBCD04F98E9@CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM"
+      type="cite">
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <ol>
+          <ol style="list-style-type: lower-alpha;">
+            <li><span><span
+                  style="text-align:start;background-color:rgb(255, 255,
+                  255);display:inline !important">
+                  <br>
+                </span></span></li>
+          </ol>
+          <li><span>Out-of-band emissions and spectral regrowth:  The
+              output NB-IoT carrier shows quite large out-of-band
+              emissions (~-30 dBc @200 kHz from center frequency, -50
+              dBc @400 kHz).  </span></li>
+          <ol style="list-style-type: lower-alpha;">
+            <li><span>Could this be due to non-linear distortion caused
+                by the B210 frontend (AD9361) ?  <br>
+              </span></li>
+            <li><span>Would limiting TX analog bandwidth with <span
+                  style="font-family:Roboto,
+                  sans-serif;font-size:14px;text-align:start;background-color:rgb(255,
+                  255, 255);display:inline !important">set_tx_bandwidth(bw) </span>help
+                here?</span></li>
+          </ol>
+        </ol>
+      </div>
+    </blockquote>
+    It might  Help to lower TX analog bandwidth, but UHD automatically
+    sets it based on your sample rate.  Also try reducing baseband
+    magnitude<br>
+      a little bit, as well as reducing TX gain a little bit.<br>
+    <br>
+    <blockquote
+cite="mid:CWLP123MB2900D9BA3AABDE0989EBCD04F98E9@CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM"
+      type="cite">
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <ol>
+          <ol style="list-style-type: lower-alpha;">
+            <li><span>Any other suggestions?</span></li>
+          </ol>
+        </ol>
+        <div><span>I also have some other general questions...:</span></div>
+        <div>
+          <ol>
+            <li>Even after reading this (<a moz-do-not-send="true"
+                href="https://files.ettus.com/manual/page_power.html"
+                id="LPlnk324381">https://files.ettus.com/manual/page_power.html</a> )
+              I am still not super clear about if and how
+              the set_tx_power_reference() (and rx)  affect the gain
+              level.  I think understand TX gain setting will obviously
+              affect the output power though.  <br>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </blockquote>
+    The tx_power_reference() API is new, so I cannot comment on how it
+    works out in practice. The B2xx have about 80dB of TX gain setting<br>
+      range, but with peak power output of about +7dBm over most of its
+    frequency range, I'd say only the top 30dB is really useful.<br>
+    <blockquote
+cite="mid:CWLP123MB2900D9BA3AABDE0989EBCD04F98E9@CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM"
+      type="cite">
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <div>
+          <ol>
+            <li>When talking about multiple "gain stages", how does this
+              translate to the B210?  Different stages of the AD9361 ?</li>
+          </ol>
+        </div>
+      </div>
+    </blockquote>
+    Yes, different stages within the AD9361 in the case of B2xx.<br>
+    <br>
+    <blockquote
+cite="mid:CWLP123MB2900D9BA3AABDE0989EBCD04F98E9@CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM"
+      type="cite">
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <div>
+          <ol>
+            <li>How are <span style="font-family:Roboto,
+                sans-serif;font-size:14px;text-align:start;background-color:rgb(255,
+                255, 255);display:inline !important">set_tx_bandwidth
+                and <span style="background-color:rgb(255, 255,
+                  255);display:inline !important">set_rx_bandwidth
+                  implemented in practice in the B210? <br>
+                </span></span></li>
+          </ol>
+        </div>
+      </div>
+    </blockquote>
+    By using features inside the AD9361 to set the effective analog
+    bandwidth in front of/behind the ADCs/DACs.  I'm not sure whether<br>
+      the implementation inside the AD9361 is purely-analog (like
+    switched-capacitor filters, and changing clocks), or a hybrid
+    approach<br>
+      that uses the DSP logic inside the AD9361.  The ADCs and DACs in
+    the AD936x family operate at very high sample rates internally,<br>
+      and use DSP logic to provide the actual
+    delivered-to-digital-interface sample rates, so there's room to do
+    both a digital and analog<br>
+      approach in providing the necessary effective analog bandwidth.  
+    But UHD normally picks an analog bandwidth setting that is<br>
+      appropriate to the desired sample rate.  The only time this may
+    not be appropriate is if your actual signal is very much narrower
+    than<br>
+      is implied by the selected sample rate.<br>
+    <br>
+    <blockquote
+cite="mid:CWLP123MB2900D9BA3AABDE0989EBCD04F98E9@CWLP123MB2900.GBRP123.PROD.OUTLOOK.COM"
+      type="cite">
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <div>
+        </div>
+        <div><span><br>
+          </span></div>
+        <div><span>Many thanks</span></div>
+        <div><span>Luca</span></div>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+      </div>
+      <br>
+      <hr>
+      <font color="Gray" face="Arial" size="1"><br>
+        This communication is private and confidential and may contain
+        information that is proprietary, privileged or otherwise legally
+        exempt from disclosure. If you have received this message in
+        error, please notify the sender immediately by e-mail and delete
+        all copies of the message. In accordance with our guidelines,
+        emails sent or received may be monitored. Inmarsat Global
+        Limited, Registered No. 3675885. Registered in England and Wales
+        with Registered Office at 99 City Road, London EC1Y 1AX<br>
+      </font><br>
+      <p
+        style="font-family:Calibri;font-size:7pt;color:#000000;margin:5pt;"
+        align="Left">
+        INTERNAL | © INMARSAT<br>
+      </p>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+USRP-users mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------000302080108070103070600--
 
 
-
---===============7375944606256325639==
+--===============3525872636157691816==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -311,6 +490,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7375944606256325639==--
-
+--===============3525872636157691816==--
 
