@@ -2,50 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A5F4315939
-	for <lists+usrp-users@lfdr.de>; Tue,  9 Feb 2021 23:17:15 +0100 (CET)
-Received: from [::1] (port=39110 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F58315948
+	for <lists+usrp-users@lfdr.de>; Tue,  9 Feb 2021 23:21:51 +0100 (CET)
+Received: from [::1] (port=39155 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l9bJo-0008HE-SV; Tue, 09 Feb 2021 17:17:12 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:46179)
+	id 1l9bOG-0000m6-95; Tue, 09 Feb 2021 17:21:48 -0500
+Received: from mail-qt1-f175.google.com ([209.85.160.175]:41122)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <ashutoshsingh7589@gmail.com>)
- id 1l9bJk-0008AI-Pf
- for usrp-users@lists.ettus.com; Tue, 09 Feb 2021 17:17:08 -0500
-Received: by mail-oi1-f176.google.com with SMTP id k25so21146074oik.13
- for <usrp-users@lists.ettus.com>; Tue, 09 Feb 2021 14:16:48 -0800 (PST)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1l9bOB-0000dO-Up
+ for USRP-users@lists.ettus.com; Tue, 09 Feb 2021 17:21:43 -0500
+Received: by mail-qt1-f175.google.com with SMTP id z32so201370qtd.8
+ for <USRP-users@lists.ettus.com>; Tue, 09 Feb 2021 14:21:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=1vm1Cukdq9WC6nXny8QOxkikIifL6DX0MRQJ9SE7oD0=;
- b=ptGbc+izOnq6ugVAfBkzMXN8lHyts1Fa1ZvK1zijsv3LIQoMV6mVkZXtDTkhgW8kq5
- WhMUf5m63G41EKXxTqGx4Vs0D2+tq19L7EgDaiihoNCZyOjtI8+2YRxgSqKn5QzSEXjo
- YtCZAPBcLdio3SZB7rXU8CyCcw4qBepcBMvPnmP0fZaJfUWzkxufICBuupJhZj6XZHgG
- YvVPY2sv395NGK1tj+yf6r7pcA44/NboP1hg6u1CgAnSX64Uh6ArUocXkVlL6V6NnCqi
- kFjXhse7EF5PArv9V+9omvecTWrcBDMsO+aPwFKtMIrpZiJ44CRfl2NRHzncDwzvJJxK
- VMeg==
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=mZDJ5rSnFrx9qkvVERO/lwe8QzvuQS5+FlDzKQ0yZFI=;
+ b=mzgxEkGQEHIciuVjVdeaW3Zpw9ILtzq3MViC9fByqts4IqJyTsV9lGQ71+5T6Zl36v
+ hiMSu8d//JIsHeCFbNXoxKBw8dKfCHiWzMzJhzck94N1MrelOeVCea8kCPZ2cCTU8e2n
+ jxyPXURvNtcIBoGJvhlIDMsoXDWJXDh/pRLGEAyYWf9rXnDe0Ybp5zRkDzAGZVhh2ni9
+ 77LbBAbCgoI3LidVZWQzuvDqAmn0JcASPkpqSUWWiIlB99jSzxgQ6bZFNOMT9UQVqerA
+ BPRmjMM6EJ49ZvmfFYApq5i/Dhx29adQw8E272VrVXTLJJEnfmhgsoT76L/bCCjQBSyW
+ LX1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=1vm1Cukdq9WC6nXny8QOxkikIifL6DX0MRQJ9SE7oD0=;
- b=ZIdT8PL+2D6eHoqtbfdBWLaLgH5QUSArvifItyPIDVUzrajdCg+58uURigJ0RisTQc
- ED3P8DK/eDMI2gE8EhMFAv7uMEgUvkaxheLT4R8DcOV0u5jCCisUF6dBH5vCLHiV8VDN
- IOx/UN09/uYOj8GBXKHl5vRTMZQqSXHzrEfCoboIqHrioCCkoCm7xmyVxjxFhmEfM4Nx
- InHlFu3CJ+VGmjL+bD2rpiAxJcgIrHwDzKWxCIWVxjj/Pf02Qsex8DxNbmFAjQU+gAj8
- ksKbUOYXEo4OTnhWP2z6m74uR3LQQZaL8oTNM0RsSXcB8OSSydDMDLVF8DIMA9vXwmTS
- M9Fg==
-X-Gm-Message-State: AOAM530j8X2BYZTI7BgW/tVbiTr+depolvwTtTEAkLpBaoOmng+nXqXF
- DUJK2QEexY5SP0CgJ6AAf0CseTPnUqmdWLdMrxsUHEnxHTgrNg==
-X-Google-Smtp-Source: ABdhPJww8Y2+jTk48wMhYucR0OX5mSz5D8rAQGyfbo8L/e4GQcyDiTaJM4rKjd9s6MxIWyO38Qgozu72SdMCZcpuhnc=
-X-Received: by 2002:a05:6808:147:: with SMTP id
- h7mr3974395oie.142.1612908988031; 
- Tue, 09 Feb 2021 14:16:28 -0800 (PST)
-MIME-Version: 1.0
-Date: Tue, 9 Feb 2021 23:16:17 +0100
-Message-ID: <CAO38sJ4HGZE3auk_j-tkREhG+h2-Me_5XwJnQB+Z2PBCL_Zx=Q@mail.gmail.com>
-To: openair5g-user <openair5g-user@lists.eurecom.fr>, 
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Usrp b210 without duplexer
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=mZDJ5rSnFrx9qkvVERO/lwe8QzvuQS5+FlDzKQ0yZFI=;
+ b=Uo9dMZeiR+y9/xd8WAh3UjRxKNLWcml0+EqNz4i1kUMUUAMUfYSFUOtHZ62OqgzYH5
+ Ml4jHOsmf59i3ptZrSBfSgw0o5AYkAxE/mfmbP34miDH/AEevw6qSRXThMZGs52HMHqF
+ WJrI4Pz49GueENV+re40v2C7vbg9iqUoYEFEBNlw3EIn3/VaZs2FLO41yKhAmKWAF3Q0
+ rjaL1pvpvcAa+9IaNxIREujGeXJJunPrj+VHev5uhgD4/+0VcGR8rgCdfWi/l3Fo7CF+
+ DbVJ9iXfM0AsVxFZhdxCnVoFhNsCH1dMXhTM2oGSXczDlsa390w7117/ne8I8Lb2fMWb
+ s1qw==
+X-Gm-Message-State: AOAM531RhCot/KwQsISLYizi6TrVu8pTSkFSrskcyAOkR4Tj9wscdiwu
+ Ygq0LED0slEYal9WT7uWEsI=
+X-Google-Smtp-Source: ABdhPJxOkICEUPJHWAR6ctIklNxxF8nXB2/eUzE3dGZnAaPPMcz8EfTfUzHjcFXSsdWo5CyESlKX/g==
+X-Received: by 2002:ac8:5d44:: with SMTP id g4mr202269qtx.93.1612909263428;
+ Tue, 09 Feb 2021 14:21:03 -0800 (PST)
+Received: from [192.168.2.130]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.gmail.com with ESMTPSA id c17sm122698qtn.71.2021.02.09.14.21.03
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 09 Feb 2021 14:21:03 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Tue, 9 Feb 2021 17:21:02 -0500
+Message-Id: <D64F3ED9-1AD4-41B1-8AFF-84171A216C35@gmail.com>
+References: <CAO38sJ4HGZE3auk_j-tkREhG+h2-Me_5XwJnQB+Z2PBCL_Zx=Q@mail.gmail.com>
+Cc: openair5g-user <openair5g-user@lists.eurecom.fr>,
+ USRP-users@lists.ettus.com
+In-Reply-To: <CAO38sJ4HGZE3auk_j-tkREhG+h2-Me_5XwJnQB+Z2PBCL_Zx=Q@mail.gmail.com>
+To: Ashutosh Singh <ashutoshsingh7589@gmail.com>
+X-Mailer: iPhone Mail (18D52)
+Subject: Re: [USRP-users] Usrp b210 without duplexer
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -57,9 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Ashutosh Singh via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Ashutosh Singh <ashutoshsingh7589@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6875015923432354956=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -73,39 +84,19 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6875015923432354956==
-Content-Type: multipart/alternative; boundary="00000000000049676905baeea39c"
-
---00000000000049676905baeea39c
-Content-Type: text/plain; charset="UTF-8"
-
-Hi all ,
-If I use my USRP b210 without duplexer to transmit and receive  the signals
-from other USRP , will it not damage my USRP ?
-
-Thanks
-
---00000000000049676905baeea39c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi all ,<div dir=3D"auto">If I use my USRP b210 without duplexer to transmi=
-t and receive =C2=A0the signals from other USRP , will it not damage my USR=
-P ?</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks=C2=A0</div>
-
---00000000000049676905baeea39c--
-
-
---===============6875015923432354956==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6875015923432354956==--
-
+VGhlIG1heGltdW0gcG93ZXIgYXQgYW55IHJlY2VpdmUgcG9ydCBzaG91bGQgbm90IGV4Y2VlZCAt
+MTVkQm0uIAoKSWYgeW914oCZcmUgZG9pbmcgZnVsbCBkdXBsZXggaW50byBhIHNoYXJlZCBhbnRl
+bm5hIHRoZW4geWVzIHlvdSBuZWVkIHRvIHVzZSBhIGR1cGxleG9yLiAKClRoaXMgaXNu4oCZdCBz
+dHJpY3RseSBhIFVTUlAgaXNzdWXigJRpdOKAmXMgYSBnZW5lcmljIFJGIGVuZ2luZWVyaW5nIHBy
+YWN0aWNlIHRoYXQgaXMgb2xkZXIgdGhhbiBtb3N0IG9mIHVzIGhlcmUuIAoKU2VudCBmcm9tIG15
+IGlQaG9uZQoKPiBPbiBGZWIgOSwgMjAyMSwgYXQgNToxNyBQTSwgQXNodXRvc2ggU2luZ2ggdmlh
+IFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiB3cm90ZToKPiAKPiDvu79I
+aSBhbGwgLAo+IElmIEkgdXNlIG15IFVTUlAgYjIxMCB3aXRob3V0IGR1cGxleGVyIHRvIHRyYW5z
+bWl0IGFuZCByZWNlaXZlICB0aGUgc2lnbmFscyBmcm9tIG90aGVyIFVTUlAgLCB3aWxsIGl0IG5v
+dCBkYW1hZ2UgbXkgVVNSUCA/Cj4gCj4gVGhhbmtzIAo+IF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQ
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3Rp
+bmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
