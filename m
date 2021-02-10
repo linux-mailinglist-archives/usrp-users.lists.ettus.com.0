@@ -2,50 +2,58 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A133169A8
-	for <lists+usrp-users@lfdr.de>; Wed, 10 Feb 2021 16:02:48 +0100 (CET)
-Received: from [::1] (port=46224 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5CC316A1E
+	for <lists+usrp-users@lfdr.de>; Wed, 10 Feb 2021 16:27:45 +0100 (CET)
+Received: from [::1] (port=46399 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l9r0w-0003sl-Tm; Wed, 10 Feb 2021 10:02:46 -0500
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:40231)
+	id 1l9rP6-0005NL-9Q; Wed, 10 Feb 2021 10:27:44 -0500
+Received: from mail-qv1-f47.google.com ([209.85.219.47]:46284)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1l9r0s-0003ma-Rg
- for usrp-users@lists.ettus.com; Wed, 10 Feb 2021 10:02:42 -0500
-Received: by mail-ot1-f47.google.com with SMTP id i20so2037200otl.7
- for <usrp-users@lists.ettus.com>; Wed, 10 Feb 2021 07:02:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ahCKxmxr8+Z9+8phl6eufeLmKVUdFBmq4PP8UxnzVcQ=;
- b=J/UFQCh0f5GIQjWt1xuwv4H1HUxW9atRVGrw4GKjFS9klKMKDxY/jAgYi1re63pjEV
- /prPy4j2PT4jT/x7br+6zg1MxIF8oX/HHJAYVHwNAkOKCjHGN2sGkviuxJxOChV69Tyc
- x1Ib7/ZHHrD2v3U2vKNpeHg5U2jIg97cgzPEh6jH8LSJDIe+5HzHzggms45sBqfBlcp6
- nu3wUfansjTNRr1vhp5O62PKCmqReQQcYoca/v5NaMFteb5XYFe68pyzffGW7g9xUZ0s
- w+5aNVro2iORV9MSohea5bAXvqfhCvhEqcsnIpHJxbqk4RqTrQCZk3QLs3WHSCPH/NuS
- n4lw==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1l9rP2-0005GY-QB
+ for USRP-users@lists.ettus.com; Wed, 10 Feb 2021 10:27:40 -0500
+Received: by mail-qv1-f47.google.com with SMTP id a1so971400qvd.13
+ for <USRP-users@lists.ettus.com>; Wed, 10 Feb 2021 07:27:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=EXLasc7XjmT8phvXKCuOcsqOYsENMWsh+1CFLaMY+B4=;
+ b=sOj5OepXT+JE4YS3l1zTwLICAoftvvI910cog4UbLmTkUNXsjoeI62lrhAk5k6HQrc
+ FM/0sgdluddm2bRUxjtfp7i3Vt/m4/jYXroFVPVOnZwSm2P/XTN/hyaGuENp+J/SAQcB
+ W2X8eGX3D7rExmwj7BTB7eIDWcj+oeT6cTUk9E4Xn2vL6JobayRjG0/+X8fYwKGPN6DU
+ wMs36qPfUi6Fe1VYTEjzXqmY90JohcD7GhQ0bge2TG9ADDvYO/FspJsGytwUyMV0t80I
+ cU1IDfuvvg0zFpa5Z/608bCOJBpxgz795lnKE3pkW5KktUsgKGocinJ05yToLJEgbb+d
+ ShYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ahCKxmxr8+Z9+8phl6eufeLmKVUdFBmq4PP8UxnzVcQ=;
- b=OQbbSZu5C1I67h93XtMKoN914AqA4N7jejvL3t8Pg8NeAAGgJrp2WgxML9IsE2HbVf
- V8o2Y+y0Sh/SPQw6GuT0D3VMlxHyt9U9UjO2IJbjGOVor4izJu1MY9c+nKH/kzGpBYW6
- iHWIXgkVFk58RNOADsQFGHvFE4OkZKTa6yMsyhsaZ86uzVDJ4y94GypUThmnc8hHgSra
- va2bSDwn2npZ714LMkQbElOZIxqBPgXmL7AFWxlsoaZ9xzH/BzGspDCiXsyAyd5Rb7ci
- xukB9v6rcdfP9kz76+FuVhH+vMQ6tOaiPNokWk4pQ+tj947xM9Qm/yQWFtAHmmDx8ON4
- 8TcA==
-X-Gm-Message-State: AOAM530irX1Zg0RyDNtz9Nv1AFx2tBwn4dT4f8msdiDcmGOW3wG9dTDq
- h8DC7RkM/VxuTfGWTjyC8dQAz2MxcX8liF4j8vsjdA==
-X-Google-Smtp-Source: ABdhPJzqfK/GYnoz1+S3pSJWrLoamORTyFOCu3vZgdTVnidf41+TulnNUZnVbcZcCXj4+6b+2KTW17AwG4osQ4uMSTk=
-X-Received: by 2002:a9d:5503:: with SMTP id l3mr2350099oth.302.1612969321928; 
- Wed, 10 Feb 2021 07:02:01 -0800 (PST)
-MIME-Version: 1.0
-References: <dc7956e4d464ca7111db615edccaeb34506348a5@webmail>
-In-Reply-To: <dc7956e4d464ca7111db615edccaeb34506348a5@webmail>
-Date: Wed, 10 Feb 2021 10:01:51 -0500
-Message-ID: <CAB__hTQLPXG0EBWHoLOJnbUC0vBoHouHPsrbLSx190i6Mm=Tdg@mail.gmail.com>
-To: dtrask1@tampabay.rr.com
-Subject: Re: [USRP-users] E310 with v4.0.0.0 Image: Configure Static IP
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=EXLasc7XjmT8phvXKCuOcsqOYsENMWsh+1CFLaMY+B4=;
+ b=qIPoRUiO6E/jdsedDk9LVxcJDgpIvBFYphL9FbOddVbI7rlwMVOaNq21tZ32iNtiue
+ ubLW+0hKKOxKx2xUwXHQHoJLTDYrW4g+OHd25wxrTJy7Bs9BzTy/JCvfAY/28jyMpzPD
+ O5Ovt2DRneH2YI6fX+V4hYJ/UdXaFaV/WCs8xCa4tSJ70bmCQ0RQ3rQdBQgTZ+OyeSZM
+ KlrTUAUBHCF+RNhR+Mi9oDejUframL+O24qkw8hftBUnebqKJlXw70WvrMSHPEK+GjiS
+ genZ62eriUxotIwUI0UHe8oImNFCE+n9Dq1mJb7Pyik7e4XdHROHSwuGyQimj7PDUAoA
+ bcsg==
+X-Gm-Message-State: AOAM530mqN6irs/MlXB6fiiG6PBAOVZgZ+Peo9TR0LaxS/hFP3dKsl2g
+ wvi71AFw5jZIJTsEeKVrvtPxzFVHfV8=
+X-Google-Smtp-Source: ABdhPJybSpo3JVg79rDQNbde2WorqEtQIvGA7JINFK6vTl0i+7+2hrHYUg4ibztNyuqzoYa0sW7AgQ==
+X-Received: by 2002:a0c:eb49:: with SMTP id c9mr3247854qvq.37.1612970820008;
+ Wed, 10 Feb 2021 07:27:00 -0800 (PST)
+Received: from [192.168.2.130]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.gmail.com with ESMTPSA id u126sm1623930qkc.107.2021.02.10.07.26.59
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 10 Feb 2021 07:26:59 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Wed, 10 Feb 2021 10:26:58 -0500
+Message-Id: <0CBAEE15-9F28-4753-B4C1-5BBFA1D44DBF@gmail.com>
+References: <CAB__hTRL=N1ZiAnO4TH=tH_fd=YuY5dtn+cvV+NXzwXuyDSz0A@mail.gmail.com>
+In-Reply-To: <CAB__hTRL=N1ZiAnO4TH=tH_fd=YuY5dtn+cvV+NXzwXuyDSz0A@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+X-Mailer: iPhone Mail (18D52)
+Subject: Re: [USRP-users] Ettus USRP B200 mini - FPGA compatibility number
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -57,10 +65,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0045760644610349987=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: USRP-users@lists.ettus.com
+Content-Type: multipart/mixed; boundary="===============4773875343676937314=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,314 +82,303 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0045760644610349987==
-Content-Type: multipart/alternative; boundary="00000000000077f35d05bafcafd9"
 
---00000000000077f35d05bafcafd9
-Content-Type: text/plain; charset="UTF-8"
+--===============4773875343676937314==
+Content-Type: multipart/alternative; boundary=Apple-Mail-927B9647-EF31-443C-A6B7-54FED12E94C1
+Content-Transfer-Encoding: 7bit
 
-I don't know about the E310, but on the N310, I found files in
-/data/network which is where I needed to make changes such as these.
-Rob
 
-On Wed, Feb 10, 2021 at 9:48 AM Dennis Trask via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+--Apple-Mail-927B9647-EF31-443C-A6B7-54FED12E94C1
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-> Here are the results....
->
-> root@ni-e31x-3199693:~# systemctl | grep -i net
-> sys-devices-soc0-amba-e000b000.ethernet-net-eth0.device
->                loaded active plugged
->  /sys/devices/soc0/amba/e000b000.ethernet/net/eth0
-> sys-subsystem-net-devices-eth0.device
->                loaded active plugged   /sys/subsystem/net/devices/eth0
-> systemd-networkd.service
->                 loaded active running   Network Service
-> systemd-resolved.service
->                 loaded active running   Network Name Resolution
-> systemd-timesyncd.service
->                loaded active running   Network Time Synchronization
-> systemd-networkd.socket
->                loaded active running   Network Service Netlink Socket
-> network-pre.target
->                 loaded active active    Network (Pre)
-> network.target
->                 loaded active active    Network
-> nss-lookup.target
->                loaded active active    Host and Network Name Lookups
-> root@ni-e31x-3199693:~# ip link
-> 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
->     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-> 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen
-> 1000
->     link/ether 00:80:2f:26:50:06 brd ff:ff:ff:ff:ff:ff
->
->
-> -----------------------------------------
-> From: "Marcus D. Leech"
-> To: dtrask1@tampabay.rr.com
-> Cc: "usrp-users@lists.ettus.com"
-> Sent: Tuesday February 9 2021 5:40:32PM
-> Subject: Re: [USRP-users] E310 with v4.0.0.0 Image: Configure Static IP
->
-> On 02/09/2021 05:04 PM, dtrask1@tampabay.rr.com wrote:
->
-> Thanks, Marcus.
->
-> That was actually what I attempted first. As described in the man page (
-> <https://www.freedesktop.org/software/systemd/man/systemd.network.html>
-> https://www.freedesktop.org/software/systemd/man/systemd.network.html) I
-> created eth0.network under /etc/systemd/network/, with these contents:
->
-> [Match]
-> Name=eth0
->
-> [Network]
-> Address=192.168.200.2/24
->
-> The system seemed to ignore this configuration, however.
->
->
->
-> OK, what does:
->
-> systemctl |grep -i net
->
-> Yield?
->
-> What does:
->
-> ip link
->
-> Return?
->
->
->
-> -----------------------------------------
-> From: "Marcus D. Leech via USRP-users"
-> To: usrp-users@lists.ettus.com
-> Cc:
-> Sent: Tuesday February 9 2021 4:42:34PM
-> Subject: Re: [USRP-users] E310 with v4.0.0.0 Image: Configure Static IP
->
-> On 02/09/2021 04:35 PM, Dennis Trask via USRP-users wrote:
->
-> I have re-imaged the SD card for my E310 with the v4.0.0.0 image. I cannot
-> figure out how to set a static IP address on eth0 at boot-up. I created an
-> /etc/network/interfaces file that looks like this:
->
-> auto eth0
-> iface eth0 inet static
-> address 192.168.200.2
-> netmask 255.255.255.0
->
-> I can run the command "ifup eth0" and bring up the interface with the
-> desired configuration, but it does not initialize when I reboot.
->
-> The SD image I am using was obtained with the command:
-> uhd_images_downloader -t e310 -t sg3
->
-> I built the uhd_images_downloder from source, and it's version
-> is 4.0.0.HEAD-0-g90ce6062.
->
-> Dennis
->
->
->
-> _______________________________________________
-> USRP-users mailing list
-> "mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com
-> " <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-> <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>>
-> target=
-> "_blank">
-> <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-> It almost certainly is running systemd/networkd
->
-> So look under /etc/systemd/networkd
->
-> In Linux, there have historically been many different ways to configure
-> network devices, and even under systemd, there are a couple of
->   different schemes "out there".  I believe that in a UHD 4 system image
-> on E310, it is based on Networkd.
->
->
->
+To amplify on a point Rob made. You have to power cycle the B2xx to load a n=
+ew image into it. =20
+
+
+Sent from my iPhone
+
+> On Feb 10, 2021, at 9:53 AM, Rob Kossler via USRP-users <usrp-users@lists.=
+ettus.com> wrote:
+>=20
+> =EF=BB=BF
+> When you run uhd_images_downloader, which version of UHD is shown in the c=
+onsole?  I can see in the console pictures below that UHD version 3.010.003 i=
+s running (which is pretty old).  My guess is that you have multiple copies o=
+f UHD on your system.
+>=20
+> The way it works is the following: when you run uhd_images_downloader, the=
+ script automatically downloads the FPGA image that is associated with that s=
+pecific version of UHD and installs it in <prefix>/share/uhd/images/.  Later=
+, when you run any application that uses UHD and the B200mini, UHD will tran=
+sfer that image (from that same folder) over USB to the device to load the FP=
+GA (at least the first time you run UHD after plugging the device).
+> Rob
+>=20
+>> On Wed, Feb 10, 2021 at 4:54 AM Elise Breivik Smebye via USRP-users <usrp=
+-users@lists.ettus.com> wrote:
+>> Hi, I am new to UHD, USRP and FPGA.
+>> I am trying to use a Ettus USRP B200 mini to monitor the network traffic b=
+etween two android phones with GNU radio with this guide https://github.com/=
+bastibl/gr-ieee802-11.
+>> When running the example file "wifi_tx_grc" I get a FPGA compatibility nu=
+mber error.
+>> =20
+>>=20
+>> GNU Radio test
+>> =20
+>> I have also tried to follow this guide https://github.com/srsLTE/srsLTE
+>> and get the same error. I have run "uhd_images_donwloader" and get that a=
+ll images are up to.
+>> =20
+>>=20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>> =20
+>>=20
+>>=20
+>>=20
+>>=20
+>>=20
+>>=20
+>>=20
+>>=20
+>> Hope anyone can help.
+>>=20
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
 
---00000000000077f35d05bafcafd9
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail-927B9647-EF31-443C-A6B7-54FED12E94C1
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I don&#39;t know about the E310, but on the N310, I found =
-files in /data/network which is where I needed to make changes such as thes=
-e.<div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Wed, Feb 10, 2021 at 9:48 AM Dennis Trask via USRP-users=
- &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.c=
-om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-"><div>Here are the results....<div><br></div><div><div>root@ni-e31x-319969=
-3:~# systemctl | grep -i net</div><div>sys-devices-soc0-amba-e000b000.ether=
-net-net-eth0.device=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0loaded=
- active plugged=C2=A0 =C2=A0/sys/devices/soc0/amba/e000b000.ethernet/net/et=
-h0</div><div>sys-subsystem-net-devices-eth0.device=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0loaded active plugged=C2=A0 =C2=A0/sys/subsystem/net/devic=
-es/eth0</div><div>systemd-networkd.service=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 loaded active running=
-=C2=A0 =C2=A0Network Service</div><div>systemd-resolved.service=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 l=
-oaded active running=C2=A0 =C2=A0Network Name Resolution</div><div>systemd-=
-timesyncd.service=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0loaded active running=C2=A0 =C2=A0Network Time S=
-ynchronization</div><div>systemd-networkd.socket=C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0loaded active=
- running=C2=A0 =C2=A0Network Service Netlink Socket</div><div>network-pre.t=
-arget=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 loaded active active=C2=A0 =C2=A0 Networ=
-k (Pre)</div><div>network.target=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 loaded active active=C2=A0 =C2=A0 Network</div><div>nss-lookup.target=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0loaded active active=C2=A0 =C2=A0 Hos=
-t and Network Name Lookups</div><div>root@ni-e31x-3199693:~# ip link</div><=
-div>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue qlen 1000</=
-div><div>=C2=A0 =C2=A0 link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:0=
-0</div><div>2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc=
- pfifo_fast qlen 1000</div><div>=C2=A0 =C2=A0 link/ether 00:80:2f:26:50:06 =
-brd ff:ff:ff:ff:ff:ff</div><div><br></div><br><div></div><p>---------------=
---------------------------</p>From: &quot;Marcus D. Leech&quot; <u></u><br>=
-To: <a href=3D"mailto:dtrask1@tampabay.rr.com" target=3D"_blank">dtrask1@ta=
-mpabay.rr.com</a><br>Cc: &quot;<a href=3D"mailto:usrp-users@lists.ettus.com=
-" target=3D"_blank">usrp-users@lists.ettus.com</a>&quot;<br>Sent: Tuesday F=
-ebruary 9 2021 5:40:32PM<br>Subject: Re: [USRP-users] E310 with v4.0.0.0 Im=
-age: Configure Static IP<br><br>
-<div>On 02/09/2021 05:04 PM, <a>dtrask1@tampabay.rr.com</a>
-wrote:<br></div>
-<blockquote>
-Thanks, Marcus.
-<div><br></div>
-<div>That was actually what I attempted first. As described in the
-man page (<a href=3D"https://www.freedesktop.org/software/systemd/man/syste=
-md.network.html" target=3D"_blank"></a><a href=3D"https://www.freedesktop.o=
-rg/software/systemd/man/systemd.network.html" target=3D"_blank">https://www=
-.freedesktop.org/software/systemd/man/systemd.network.html</a>)
-I created eth0.network under /etc/systemd/network/, with these
-contents:</div>
-<div><br></div>
-<div>
-<div>[Match]</div>
-<div>Name=3Deth0</div>
-<div><br></div>
-<div>[Network]</div>
-<div>Address=3D<a href=3D"http://192.168.200.2/24" target=3D"_blank">192.16=
-8.200.2/24</a></div>
-<div><br></div>
-<div>The system seemed to ignore this configuration, however.</div>
-<div><br></div>
-<div><br></div>
-<br></div>
-</blockquote>
-OK, what does:<br><br>
-systemctl |grep -i net<br><br>
-Yield?<br><br>
-What does:<br><br>
-ip link<br><br>
-Return?<br><br><br><br><blockquote>
-<div>
-<p>-----------------------------------------</p>
-From: &quot;Marcus D. Leech via USRP-users&quot;<br>
-To: <a>usrp-users@lists.ettus.com</a><br>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">To amplify on a point Rob made. You have to=
+ power cycle the B2xx to load a new image into it. &nbsp;<div><br><div><br><=
+div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote ty=
+pe=3D"cite">On Feb 10, 2021, at 9:53 AM, Rob Kossler via USRP-users &lt;usrp=
+-users@lists.ettus.com&gt; wrote:<br><br></blockquote></div><blockquote type=
+=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div dir=3D"ltr">When y=
+ou run uhd_images_downloader, which version of UHD is shown in the console?&=
+nbsp; I can see in the console pictures below that UHD version 3.010.003 is r=
+unning (which is pretty old).&nbsp; My guess is that you have multiple copie=
+s of UHD on your system.</div><div dir=3D"ltr"><br></div><div>The way it wor=
+ks is the following: when you run uhd_images_downloader, the script automati=
+cally downloads the FPGA image that is associated with that specific version=
+ of UHD and installs it in &lt;prefix&gt;/share/uhd/images/.&nbsp; Later, wh=
+en you run any application that uses UHD and the B200mini, UHD will transfer=
+ that image (from that same folder) over USB to the device to&nbsp;load the&=
+nbsp;FPGA (at least the first time you run UHD after plugging the device).</=
+div><div>Rob</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Wed, Feb 10, 2021 at 4:54 AM Elise Breivik Smebye via USRP-use=
+rs &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.=
+com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+>
 
-Cc:<br>
-Sent: Tuesday February 9 2021 4:42:34PM<br>
-Subject: Re: [USRP-users] E310 with v4.0.0.0 Image: Configure
-Static IP<br><br><div>On 02/09/2021 04:35 PM, Dennis Trask
-via USRP-users wrote:<br></div>
-<blockquote>I have re-imaged the SD card for my E310 with the
-v4.0.0.0 image. I cannot figure out how to set a static IP address
-on eth0 at boot-up. I created an /etc/network/interfaces file that
-looks like this:
-<div><br></div>
-<div>
-<div>auto eth0</div>
-<div>iface eth0 inet static</div>
-<div>address 192.168.200.2</div>
-<div>netmask 255.255.255.0</div>
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;=
+color:rgb(0,0,0)">
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+Hi, I am new to UHD, USRP and FPGA.</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+I am trying to use a Ettus USRP B200 mini to monitor the network traffic bet=
+ween two android phones with GNU radio with this guide<span>&nbsp;</span><a h=
+ref=3D"https://github.com/bastibl/gr-ieee802-11" rel=3D"nofollow noopener no=
+referrer" style=3D"box-sizing:border-box;color:rgb(4,65,35);text-decoration:=
+underline" target=3D"_blank">https://github.com/bastibl/gr-ieee802-11.</a></=
+p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+When running the example file "wifi_tx_grc" I get a FPGA compatibility numbe=
+r error.</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+<span style=3D"box-sizing:border-box;display:inline-block;max-width:100%;wid=
+th:958px"><span style=3D"box-sizing:border-box;display:inline-block"><span s=
+tyle=3D"box-sizing:border-box"></span><img title=3D"Screenshot from 2021-02-=
+10 09-55-57.png" alt=3D"Screenshot from 2021-02-10 09-55-57.png" style=3D"bo=
+x-sizing: border-box; vertical-align: middle; display: block; max-width: 100=
+%; height: auto;" src=3D"https://ni.i.lithium.com/t5/image/serverpage/image-=
+id/281803i304FC834DE46FE09/image-size/large?v=3D1.0&amp;px=3D999" data-uniqu=
+e-identifier=3D""></span><span style=3D"box-sizing:border-box;color:rgb(102,=
+102,102);display:block;font-size:13px;font-style:italic;height:auto;margin:1=
+0px 0px 20px">GNU
+ Radio test</span></span></p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+I have also tried to follow this guide<span>&nbsp;</span><a href=3D"https://=
+github.com/srsLTE/srsLTE" rel=3D"nofollow noopener noreferrer" style=3D"box-=
+sizing:border-box;color:rgb(4,65,35);text-decoration:underline" target=3D"_b=
+lank">https://github.com/srsLTE/srsLTE</a></p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+and get the same error. I have run "uhd_images_donwloader" and get that all i=
+mages are up to.</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+<span style=3D"box-sizing:border-box;display:inline-block;max-width:100%;flo=
+at:left;margin-right:10px;width:999px"><span style=3D"box-sizing:border-box;=
+display:inline-block"><span style=3D"box-sizing:border-box"></span><img titl=
+e=3D"Screenshot from 2021-02-10 09-29-25.png" alt=3D"Screenshot from 2021-02=
+-10 09-29-25.png" style=3D"box-sizing: border-box; vertical-align: middle; d=
+isplay: block; max-width: 100%; height: auto;" src=3D"https://ni.i.lithium.c=
+om/t5/image/serverpage/image-id/281797iEAD9FCD6816778AF/image-size/large?v=3D=
+1.0&amp;px=3D999" data-unique-identifier=3D""></span></span></p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,5=
+1,51);font-family:Helvetica,Arial,sans-serif;text-align:left;background-colo=
+r:rgb(255,255,255)">
+Hope anyone can help.</p>
+<br>
 </div>
-<div><br></div>
-<div>I can run the command &quot;ifup eth0&quot; and bring up the interface
-with the desired configuration, but it does not initialize when I
-reboot.</div>
-<div><br></div>
-<div>The SD image I am using was obtained with the command:
-uhd_images_downloader -t e310 -t sg3</div>
-<div><br></div>
-<div>I built the uhd_images_downloder from source, and it&#39;s version
-is=C2=A04.0.0.HEAD-0-g90ce6062.</div>
-<div><br></div>
-<div>Dennis</div>
-<div><br></div>
-<br><br>
-_______________________________________________<br>
-USRP-users mailing list<br><a>&quot;mailto:USRP-users@lists.ettus.com&quot;=
-</a>&gt;<a>USRP-users@lists.ettus.com</a><br><a href=3D"http://lists.ettus.=
-com/mailman/listinfo/usrp-users_lists.ettus.com" target=3D"_blank">
-&quot;</a><a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lis=
-ts.ettus.com" target=3D"_blank">http://lists.ettus.com/mailman/listinfo/usr=
-p-users_lists.ettus.com&quot;</a>&gt;
-target=3D<br>
-&quot;_blank&quot;&gt;<a href=3D"http://lists.ettus.com/mailman/listinfo/us=
-rp-users_lists.ettus.com" target=3D"_blank"></a><a href=3D"http://lists.ett=
-us.com/mailman/listinfo/usrp-users_lists.ettus.com" target=3D"_blank">http:=
-//lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br></bloc=
-kquote>
-It almost certainly is running systemd/networkd<br><br>
-So look under /etc/systemd/networkd<br><br>
-In Linux, there have historically been many different ways to
-configure network devices, and even under systemd, there are a
-couple of<br>
-=C2=A0 different schemes &quot;out there&quot;.=C2=A0 I believe that in a U=
-HD
-4 system image on E310, it is based on Networkd.<br><br><br></div>
-</blockquote>
-<br><u></u></div></div>
+</div>
+
 _______________________________________________<br>
 USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@l=
+ists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.co=
+m" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/listi=
+nfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
+>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
+r></div></blockquote></div></div></body></html>=
 
---00000000000077f35d05bafcafd9--
+--Apple-Mail-927B9647-EF31-443C-A6B7-54FED12E94C1--
 
 
---===============0045760644610349987==
+--===============4773875343676937314==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -392,5 +389,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0045760644610349987==--
+--===============4773875343676937314==--
 
