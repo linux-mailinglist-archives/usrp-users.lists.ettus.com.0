@@ -2,78 +2,117 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 638B3315D8A
-	for <lists+usrp-users@lfdr.de>; Wed, 10 Feb 2021 03:52:39 +0100 (CET)
-Received: from [::1] (port=40934 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2372C3162CF
+	for <lists+usrp-users@lfdr.de>; Wed, 10 Feb 2021 10:55:03 +0100 (CET)
+Received: from [::1] (port=43956 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l9fcI-0006R7-Pp; Tue, 09 Feb 2021 21:52:34 -0500
-Received: from sonic305-22.consmr.mail.ne1.yahoo.com ([66.163.185.148]:45686)
- by mm2.emwd.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
- (envelope-from <mikerd1@verizon.net>) id 1l9fcF-0006Mg-Am
- for usrp-users@lists.ettus.com; Tue, 09 Feb 2021 21:52:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verizon.net; s=a2048;
- t=1612925510; bh=MbRsyOQppkhvG5nUHcSo5XKC4Oe7MR00xADOirdtZ5Q=;
- h=Subject:To:References:From:Date:In-Reply-To:From:Subject:Reply-To;
- b=VRJR28x0etPdiP/Bh+GCnFojgpUNElZcVvUB5cgbpBJlFReQbfXPFOgsVc1jumEOdTdt60ZhkPBeAU9QT96bQqYtucmLp3CRHMiDRa0FAnpz+J4SizZgrycmpJfaRixB57VqXN61U3JtT8H/6fi4mQpOdf6Q7WGH8/cHRxuvjef/WVEYJOKmknhRblwzFkZhfK15nwbtPttSxkrot2V/HGxT2Kx9TlM6hb8dmjMlnpXrbHylicLGOhxC2DHOefPfZHkXH1R++AVQfxB2i4TN30xprHJmnxg2CsUjQ2vN0H+nJ9ibLOPLZrIZszd5cts1yztLvI8+3jBpZRql/B0yAw==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1612925510; bh=eL+fgCTddXxXlOpQz+KcLb7LU0i2eFzuIGqokLIWs25=;
- h=X-Sonic-MF:Subject:To:From:Date:From:Subject;
- b=iNF2kqHqgIwv7oGdegH0Sfdrm5LW5EcCc5R6193GCaR/zT2hgTpLLrlPcfDhvgVYRG5eHHIsLxesLIrl1HzFLBYUfszjuAw3w5I9PoxcvI5KqmJNbvtd8MmOlyhy5N8cc5oLgdu8A06Mg9rC/pLq6T45nTfFkybjO2GcMSpUKaDgKcxgL5FtGqkN9LLMNkwIumdJqTwwkHR60p2kl2aySeGGknVQW9Zmkx/CfuKYOSZ9dZrBggTYUPKN6GS4I78e3eQ5rHlc7vC5LfHE5WhitZuDKOnB/dr51vhk4NEqlC5TZ024krKBchcQfUTuS4J7MPnYcdD0bZhgtybi0VAi8Q==
-X-YMail-OSG: ePDZq3UVM1m0823Gdi_t9s0DqNOCC0OgGKBznEOSFXC4xEU0LhOIs2A0aR9Rf0W
- th.147LVBPvGQW6f0N4dGo._DE9_wC_6TmeZ.O6UL6WePZKDdh0jcR_gW021Z9an4h7ZBecLfNLt
- jP2nn320cXcVFCcyISS6koUqYagFvhQihZ4bmL_ZczadT9qwlL8wJZWACdb_dEVB8IOce5ISMACB
- 9eR_X7LpxsPAiupn8srAWvSYT2oUW_eOIyoUyIMFtQiO8V0rTVqEkzwLQqb5EtGKC5IkbiOG84_Z
- ErLts01_lfAPHyWJPr8NuIltDIs4GaJ7eCC9S2EbkOyYe6tE04RbKilkGOAAQHbuLwjzunAImDE0
- yYJxxV4kC625AkeGvXBOjAX585B7wIh6PoMemQq2PqhCm_GzK2vcfwfRGdYRA6TQoGFxdfU8tojJ
- b3mCgTZHUg7V7hWvBUtcgjtaTHhfYvbFW_BO64WDFC_rrCmFPg6eYNrVlT.WFhZpLleNi5DbZSA3
- A22j49FxNCWcAA3YBtAB8p6yYlrTrLdsLPanw19qJ0fJDh.bzLgQPyXJUeKmj0_GT7mdBtIEXFK5
- 0petCUEksT7Ta1PM0NYRtJnlNecPw567TzGsubX6L3ZXo7NqqIp8Y_8hNOj.HUvUkdCAz2ELGioh
- wYqBhNFdlH6nz.MX7A40EsrtK7T3S4PphrsDpvdPF_4R5SupQ2FZp.YgkBTqqdNycdSsjNiFo2ed
- .5VqKYqjSsbU373rE4tdsvUv3hd0wWbwmkQ.noqF683lViBhGOuXpZKdZnE25MMbv7so_Q6Y_A_9
- 10qqjq2hvZGpLReRFXsrCR4PyAQU3JbcXdWl9CdO56niyJ39997PllDMGz48qE17BFql9I7mHVHY
- YMKbGkTm5cyArZ9OXtis8B3zmdy0feCsSviFnmg_9VIMufSVe3SLUK7ASc9CoSnpvPc2AI.FUi0M
- VHEw_dfNwThAL8i79CXUZSz78P..BdXR5Bo3KZtD8hIZ8fMDO3EEVtMeFhF._A1I0NMu48f5UhsR
- HSIg9boDcu6WrjSiKzBXq1.k6s03on_S_IuSnaRqK_GGIhzUxrj7ND6ercvvUV37Nly__70q.KBb
- VA79XpLkMWvVD1qnjoSymcODRyNrCZRDKs5wVH67Dl6.EZhmc0et88TZk7iUjxnRzhTaE_a2bGRx
- qV6_k7mNHpFxEsv3lY1QgKZYo0ifd_T.uOOYwQrNknvqfscuI6RCXzkKYCNTDp8cMvomu5IOQd.j
- yzgHYGAHBxw3ARI4po9K4CNSsm1VIB4Tpk92MNwkt0AC0utujdVkoTXbJLW6LbJQyiQa23HOBXyu
- RaiOmWztRBV9xeWRgQkTAiMS9OaVP5jpkMytAdLYsHfG.ejZshKCOC_s18XIxfc621dD5.quWnRW
- cl9VnASkgILGFmLyyhB9eq5KJWpq6Xz5adDsMm1h9UVbhR8C5M_e.QU8w0n59sgcGWPp.o4_wlXL
- gbL6s0FgE715sf_LtLq4zS_TfAFX3iNIkrquojgySqYUKgC5fXVZZ0x_1I_LUfMigwICcQVFiY89
- fig7D_ljlKdPhiIsqRaXdH77OEgWK9DZIt7FIIR1OfcXwZHKqcwO2Lfz8548uBsh0VTPVD36oZp7
- 9oNR_C5SZzwfZb5Cjz4taSCfO9_f1zhylnIhLh79UO4z6PWv0FVxNgwHKWO44URhj_LCDL55J_rD
- _2F56Vy2Fq9Ptpp4A6NYz5s1voEdYtrNxumM7_A5sCV9ESHzjZ8btMgx5vosJhizgMDRdDFggXKT
- pFy8u4khMDWSgh3fPNx2aqFpjVfiI25IPjva8LPU3tYQPPh6Eia2YEYM.mQKnsRQ8NkMOFmTxmYw
- d0ou0ypprwGv_AdBabEerhOnYuWLEA6EAMCqPVZZI1v0c24W1__iuDF4DL2hP73CEDsGyGs1_zNo
- 272DZaTQQ_KABRSn7x6f7OyVgGCaIMndQOEjhPy1FXp14ADrs_eWK514F.72N4Y1uZ1uH9d69DPl
- V3R9fUS9LF0NMkJdbhRm.YQ00e0vv5mpv_msnCZ7DIk5XY7v9v_.ItvhR.DqfXjA0ZGQSj7urXYx
- pvmIeFsW3bcSp5QELkuCpImLljU8ki2YEw.ZO3AaUVMExDtBZm3M1os7MFrIdjys2NGHqe.CSyDe
- 3CTUV30e07k9Vqf7EQhFOOk7sfafMM3JwdSSJdassLAnpdKhV3Ab6h7JHZ9205gR6XRw66AcqY_e
- xBPfYpdws2pHgT5nvduc9vezQaPLKW89CyUcUpv2426urb.NlaRzIn8NFrrgxrdkK3wiKVBb0Xo5
- hQftkjYR2TwzJXvYvxnwg_xQr.Rt9J9yGHIVJzj4zVQxYe.53UbplXqVqeJ4i2mrdFYCOfeiP4sc
- NbAXLsiNfxluznwW9I4PFwbi.OZsB9yIm9M.iSyNy32M-
-X-Sonic-MF: <mikerd1@verizon.net>
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic305.consmr.mail.ne1.yahoo.com with HTTP; Wed, 10 Feb 2021 02:51:50 +0000
-Received: by smtp420.mail.bf1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA
- ID b9c1db8329d197eba156e2eb5931615b; 
- Wed, 10 Feb 2021 02:51:46 +0000 (UTC)
-To: usrp-users <usrp-users@lists.ettus.com>
-References: <4f689791-2302-7230-9931-6bcf890fbce8.ref@verizon.net>
- <4f689791-2302-7230-9931-6bcf890fbce8@verizon.net>
-Message-ID: <fb168c17-61ed-36d9-e970-61d6cf9a08ff@verizon.net>
-Date: Tue, 9 Feb 2021 21:51:44 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	id 1l9mD4-00057g-Ef; Wed, 10 Feb 2021 04:54:58 -0500
+Received: from mailgw04.it.ntnu.no ([129.241.56.34]:57304)
+ by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
+ (Exim 4.93) (envelope-from <elisebsm@stud.ntnu.no>)
+ id 1l9mCz-00053Z-97
+ for usrp-users@lists.ettus.com; Wed, 10 Feb 2021 04:54:53 -0500
+Received: from localhost (localhost [127.0.0.1])
+ by mailgw04.it.ntnu.no (Postfix) with ESMTP id 567D91382433
+ for <usrp-users@lists.ettus.com>; Wed, 10 Feb 2021 10:54:11 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at mailgw04.it.ntnu.no
+Received: from mailgw04.it.ntnu.no ([127.0.0.1])
+ by localhost (mailgw04.it.ntnu.no [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id rXFGFEp-FX_2 for <usrp-users@lists.ettus.com>;
+ Wed, 10 Feb 2021 10:54:10 +0100 (CET)
+Received: from NOR01-SV0-obe.outbound.protection.outlook.com
+ (mail-sv0nor01lp2041.outbound.protection.outlook.com [104.47.30.41])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mailgw04.it.ntnu.no (Postfix) with ESMTPS id A458B138215F
+ for <usrp-users@lists.ettus.com>; Wed, 10 Feb 2021 10:54:10 +0100 (CET)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KevBb9mHMfKR/TyCUR92ouPdxtb7/9X3VykkeCrU+ji2o/msSqOs3B5Tlnutveojr7p3jsUE+J8opQFOuaZn+ftLD1GEKMniJxxvnaOr2AT3eLIzJ5SsmgVu+vACQcAf/tcomAZ7Mq2tHs0vWlo0/0y1yQwqtZ13Q4gyUpnl1V9Z0YTI1Two5Smk8QPrsILXsvVs1X2yVRylRFvGUqBs5PBTsjNgmukfI+F32szu2vcTt+N07vZkgCZZdRCgmtEBSJUc2CneQ2gqlAI7KLA6tIAdSTeXFUE0cpzYcA0dCbhimIMjl4LA1b2yFIJLjh2uBjb8tCm/MGaWxk9Z4Zvg1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+23K9skEcdchEeeciT74KFnd6WCaALrr8KwWGQl0TZA=;
+ b=CCRCfZpltJl24bLMQgNnckg6D0KPYiWB18wHhUkckB5mUEOgIwIP+rDAtYpkALiKHX2E7w7F5tCgTaGVAEmyUzKI+a4vm3B8rBcx5Otjhhomm+R92Dc9q8RBPQLWE71gMpzA0L38z4d8pQ8sZY5ZequCO3OfkYk+Fmg0yiLhmXCSNTd4SKJmmEuHSFslqYpBL8Y37Ivi65L2kfkHrTRHOWpFE45ZdPtHvftXjKiPirPBtI8A2+mhlFTIt1FELAKV0IZqaKDxVevyVKFZzFF7exlDVAN6ZFThqiHIiFnizyKfBoIrNXUdBvEuI7LfBAPW+3Tei5mJmuMSJktLiT3OUA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=stud.ntnu.no; dmarc=pass action=none header.from=stud.ntnu.no;
+ dkim=pass header.d=stud.ntnu.no; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=studntnu.onmicrosoft.com; s=selector2-studntnu-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+23K9skEcdchEeeciT74KFnd6WCaALrr8KwWGQl0TZA=;
+ b=NI3FSSXjDOxl2z6vjGeOGYMoQfYPtXFCe5ZWNlrNgyqd3a8PXDkZDuZeRLmGA+pmJDxSB9bJkYRmxDZ9395QzbEs275AGNABCF/OuE4gTpZaHk2iAkZZR/tMFSk6APyK1XROTcuL/HwkiIBcX3BN4DPjA4vIezToxFStVo3jPVk=
+Received: from OLAP279MB0104.NORP279.PROD.OUTLOOK.COM (2603:10a6:e10:5::12) by
+ OL1P279MB0274.NORP279.PROD.OUTLOOK.COM (2603:10a6:e10:11::13) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3846.25; Wed, 10 Feb 2021 09:54:09 +0000
+Received: from OLAP279MB0104.NORP279.PROD.OUTLOOK.COM
+ ([fe80::fdda:e26b:b399:96c1]) by OLAP279MB0104.NORP279.PROD.OUTLOOK.COM
+ ([fe80::fdda:e26b:b399:96c1%3]) with mapi id 15.20.3846.026; Wed, 10 Feb 2021
+ 09:54:09 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Ettus USRP B200 mini - FPGA compatibility number
+Thread-Index: AQHW/5JUn+40NQGfXUmipz7M06IHCw==
+Date: Wed, 10 Feb 2021 09:54:09 +0000
+Message-ID: <OLAP279MB0104011D702BCCAC5BB528F6E68D9@OLAP279MB0104.NORP279.PROD.OUTLOOK.COM>
+Accept-Language: nb-NO, en-US
+Content-Language: nb-NO
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=stud.ntnu.no;
+X-Ntnu-xOriginatingIp: [2001:700:300:4109:69ff:4c03:2cfb:77a6]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a905f343-0d05-4a32-514d-08d8cda9d01c
+x-ms-traffictypediagnostic: OL1P279MB0274:
+x-microsoft-antispam-prvs: <OL1P279MB0274129439C7BF39D8B03B7BE68D9@OL1P279MB0274.NORP279.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: zDK0p2p9ubI0aJta0bIT8FKzvOTTYJ+ER06cwGk+H7TYV8K6okO8XUfwqq/IAWEEqgr5Gjnp8uyrX0NH1HuyjgW4jYtNTvnYPJcQ8nwK9Z5sMphQFnAu+tNyBjES1npSeaKmhmfdOyRupVsMNFQBejNtAuA0rwI/YoEe0XOw50To2lRxkFUR9FJ6DpaGM4Bmvi39SDDK2DEDUn+hs5FADFufRasVxshhfQqdfUMPAtEFDaosvKpS1a+FCJplRhUfEsrcJkknoftuKJ64shOtCu5Uj07fUp4mWSxAxKBDL5ApJl18OZVVoC3siZI2bMEhHDt8UXIpjdU2z9eWiUoQeg4BWaqR7RgRG/2snEYkKUJ3WpH5dzQOt9q6ZDiQjI0ZTkQk8UUt72RY8gkWlRWABoTLwVk+GTV3TF+fHQ+tBKNfSTyG+q6I5s+OUrmLaZhws5wZXLhzZutRqQ8jOJDCNN1wah5pChgQSPecrswQD3+3O6r17HfOxmyBx0AuoAqmzQKP+xkgUOnRnlIZWMBlfIGd1PrKMbKdQH3fgY03s8yxVNxXjcN20N5mDVyRBgNRZAe6O94YufxHOTQvzexf8aNX1jtHXF05QIcE8jQdpiI=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:OLAP279MB0104.NORP279.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(376002)(366004)(396003)(39850400004)(136003)(66946007)(8936002)(66476007)(166002)(8676002)(5660300002)(966005)(66446008)(64756008)(66556008)(76116006)(33656002)(71200400001)(86362001)(7696005)(186003)(4744005)(19627405001)(316002)(2906002)(9686003)(6506007)(786003)(6916009)(55016002)(52536014)(478600001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?2gt94VFOxLZ09DjPTAclVSkjhAPYJRJPesp5JtaPmEawJnl7cVkE/Z5Ifl?=
+ =?iso-8859-1?Q?TvzguWmdAQcAIxdZWYdXaa/MzYI1bpTTEdKXYpvpTUkKBNGsXv5Yes29RZ?=
+ =?iso-8859-1?Q?YHqXdk7XAEUbd70dbvg8cFMRsuzGu3Ipey1YltEstqMpscr7oECWRHM2Bd?=
+ =?iso-8859-1?Q?cwz1vQQLOdY55zoYiHbgJR8xkDOEkQlvqVOj2UC9hBq1xReq5usBfEAuPj?=
+ =?iso-8859-1?Q?CQMNMhHcjzjz7AxV3tbqzBQI95qOaQeTtITy1hxaqEgGD/eonb/9cnMX1z?=
+ =?iso-8859-1?Q?BRcURHdkiF6MnJQ+yKW5rCqouarybNNksGHMmQGcKsgvAnccpIQl9ONz+J?=
+ =?iso-8859-1?Q?NS5dg6Hhjqv2nLMWS9NpXj4QoQaeYQFa5l9F1ehKLb2COWKt2u2JWW+YGC?=
+ =?iso-8859-1?Q?OHt+KCtHEvXZpx2L+y3iyFDq1cfSCI3YtvD9ivunJ9cloY4p1O8sq582Fg?=
+ =?iso-8859-1?Q?XIA2lI2j+N8EK+Fjq0l3IFLrnTOs460cPLkWGsrNSW1SVOORRp7uZituqi?=
+ =?iso-8859-1?Q?1h6aajJZ/lRGGzvt+nhH6SzrgWtQ3alZS8p6fKIzjK3uHJn6vd6miDcq0L?=
+ =?iso-8859-1?Q?vCKlSI0Nv6V0ZjS0qK8fXhllLWT4JtTFBKKMWqeoBgQJfsfeYiLv2GVzfE?=
+ =?iso-8859-1?Q?1pdKQZItQ0LdPMXC3SqVasUB4P19CpeSFeGDdPR9xa8Et3I3XFAe88jAkB?=
+ =?iso-8859-1?Q?zZxe7kRCiZYatFmsgLuFRuL5EQWybuDO+xr2GL3/eyceo/lqy/7GngtQwp?=
+ =?iso-8859-1?Q?+D9XnO5nmgVcBIiHDulLyJRr22lkn5hV/hJML42x7g+5M6+QnXGPf+uoEe?=
+ =?iso-8859-1?Q?3y36rffz6FbQKW7Sn3mICmSsxRICxlFwOgGW+zBzavvnkE+WVPxLcC2vpk?=
+ =?iso-8859-1?Q?N4Fj5ajOBrJjJtJQmT4pSY+46frMLdjEKkvQLy8HfqBK7FhWjssFHQsYy3?=
+ =?iso-8859-1?Q?pum6yKsNLCSJ8B6HTKrotO5vebWajcPAy1nbcfuPUX3W28ZBlrR/nU+rh7?=
+ =?iso-8859-1?Q?uMi1QJQJphnMom6gsnyFqqTZluPmaZGI4yl9nGmGqjRyXyVR8THaW+4RMG?=
+ =?iso-8859-1?Q?2SsdIdBDI1vm8yCcgGjytm0pkKouvGTqB3SzndUUFeyxnQOpvb4fRITqPm?=
+ =?iso-8859-1?Q?OqMDnNsu1rm6NavluL4+vVsAKa7CaxRzMWzwnQACWeVctodrusVuF/AW7W?=
+ =?iso-8859-1?Q?45kzuzFvPchCZB6Yrztww5T7M0OiYHw/V2uXf9ACR7Q8IHq0HT6vJmC6T7?=
+ =?iso-8859-1?Q?Zd6Mieqpnf/vls7vkCQy6N98LGfQFAWn3nd+A/XeTN62kgvEl9Z/O4sCh+?=
+ =?iso-8859-1?Q?ZNrNo23K0hds6WAWUrLcLu+xkz/1emg8NG8kvUELAnkyqMbb8eqBbfGDg2?=
+ =?iso-8859-1?Q?pg+EEIt3USqSFoRZPVy4trk8Q3N7KWmJ5IdTBVUE+ZFuG1UaYKah8=3D?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-In-Reply-To: <4f689791-2302-7230-9931-6bcf890fbce8@verizon.net>
-Content-Language: en-US
-X-Mailer: WebService/1.1.17712
- mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.aol
- Apache-HttpAsyncClient/4.1.4 (Java/11.0.9.1)
-Subject: Re: [USRP-users] E310 and RFNoC
+X-OriginatorOrg: stud.ntnu.no
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OLAP279MB0104.NORP279.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: a905f343-0d05-4a32-514d-08d8cda9d01c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Feb 2021 09:54:09.6882 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 09a10672-822f-4467-a5ba-5bb375967c05
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: aEJ62RUpBl5GYSwM4szw7yMT2LxA5PI+7Gc9AJelHab14VTYzeU4ki0CgZd5RAtdgGFvhcMXuajKm+cTm+lINg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OL1P279MB0274
+Subject: [USRP-users] Ettus USRP B200 mini - FPGA compatibility number
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -85,10 +124,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mike via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mike <mikerd1@verizon.net>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: Elise Breivik Smebye via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Elise Breivik Smebye <elisebsm@stud.ntnu.no>
+Content-Type: multipart/mixed; boundary="===============3996760975477360194=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -102,118 +140,275 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-QWxsLMKgIEkgd2FudGVkIHRvIHJlc3VycmVjdCBhIHByb2JsZW0gdGhhdCBJIGhhZCBjb3VwbGUg
-bW9udGhzIGFnbyB0aGF0IApJIHB1dCBhc2lkZSBhbmQgd291bGQgbm93IGxpa2UgdG8gZml4LsKg
-IFRoZSBpc3N1ZSBpcyB0aGF0IEkgZ2V0IGEgcHl0aG9uIAplcnJvciB3aGVuIGV4ZWN1dGluZyBh
-IGZsb3cgZ3JhcGggb24gYW4gRTMxMCB0aGF0IHdhcyBnZW5lcmF0ZWQgZnJvbSBHUkMuCgpUaGUg
-ZXJyb3IgaXMgcG9zdGVkIGJlbG93LsKgIEZvciBiYWNrZ3JvdW5kIEknbSB1c2luZyBVSEQgMy4x
-NSB3aXRoIEdOVSAKUmFkaW8gMy43LsKgIEkndmUgc3VjY2Vzc2Z1bGx5IGNyZWF0ZWQgYSBiaXQg
-ZmlsZSBmb3IgdGhlIEZQR0Egd2l0aCBhIApjdXN0b20gYmxvY2sgKHNpbXBsZSBnYWluIGJsb2Nr
-KS7CoCBJJ3ZlIHVwZGF0ZWQgdGhlIFVIRCB4bWwgZmlsZSBzdWNoIAp0aGF0IHVoZF91c3JwX3By
-b2JlIGNvcnJlY3RseSBpZGVudGlmaWVzIHRoZSBuZXcgYmxvY2suwqAgQWxzbywgdXNpbmcgYSAK
-cHl0aG9uIGNvbW1hbmQgbGluZSB0b29sLCBJJ3ZlIGJlZW4gYWJsZSB0byBpbXBvcnQgbXkgbW9k
-dWxlIGFuZCBlbm91Z2ggCm9mIG90aGVyIG1vZHVsZXMgbGlrZSBldHR1cyBhbmQgY3JlYXRlIGEg
-ZGV2aWNlMyB2YXJpYWJsZSB0byBzZWUgdGhhdCBJIApjYW4gaW5zdGFudGlhdGUgbXkgbWlrZXMu
-ZGlnaXRhbGdhaW4gYmxvY2suwqAgUHJldmlvdXNseSBJJ3ZlIApzdWNjZXNzZnVsbHkgZ2VuZXJh
-dGVkIG5vbi1SRk5vQyBPT1QgbW9kdWxlcyBhbmQgcnVuIHRoZW0gb24gdGhlIEUzMTAuwqAgClNv
-LCBJJ20gYSBsaXR0bGUgc3R1bXBlZCBob3cgdG8gZ2V0IHBhc3QgdGhpcyBlcnJvci7CoCBJcyB0
-aGVyZSBhbiAKYWRkaXRpb25hbCBzdGVwIHRoYXQgSSdtIG1pc3NpbmcgdG8gY29tcGlsZSB0aGUg
-UkZOb0MgbW9kdWxlIHNvIHRoYXQgdGhlIApFMzEwIHZlcnNpb24gb2YgR05VIFJhZGlvIGNhbiBz
-dWNjZXNzZnVsbHkgaW1wb3J0IHRoZSBtb2R1bGUgYW5kIGNvbm5lY3QgCnRvIGl0IGluIHRoZSB0
-b3AgYmxvY2suwqAgSXMgdGhlIHdhcm5pbmcgYWJvdXQgdXNpbmcgdGhlIGRlZmF1bHQgYmxvY2sg
-CmNvbnRyb2xsZXIgcmVsZXZhbnQ/wqAgSSB0aG91Z2h0IHRoYXQgc2ltcGxlIGJsb2NrcyBjb3Vs
-ZCBiZSBjb250cm9sbGVkIAp0aHJvdWdoIHRoZSBYTUwgZmlsZXMgdXNpbmcgdGhlIGRlZmF1bHQg
-Y29udHJvbGxlci7CoCBBbnkgaGVscCB3b3VsZCBiZSAKZ3JlYXRseSBhcHByZWNpYXRlZC4uLgoK
-cm9vdEBuaS1lMzF4On4jIC4vZTMxMF9yeF9zcGVjdHJ1bS5weQpbSU5GT10gW1VIRF0gbGludXg7
-IEdOVSBDKysgdmVyc2lvbiA4LjIuMDsgQm9vc3RfMTA2ODAwOyAKVUhEXzMuMTUuMC4wLTYyLWc3
-YTNmMTUxNgpbSU5GT10gW01QTURdIEluaXRpYWxpemluZyAxIGRldmljZShzKSBpbiBwYXJhbGxl
-bCB3aXRoIGFyZ3M6IAptZ210X2FkZHI9MTI3LjAuMC4xLHR5cGU9ZTN4eCxwcm9kdWN0PWUzMTBf
-c2cxLHNlcmlhbD0zMDkyRTNBLGNsYWltZWQ9RmFsc2UKW1dBUk5JTkddIFtNUE0uUlBDU2VydmVy
-XSBBIHRpbWVvdXQgZXZlbnQgb2NjdXJlZCEKW0lORk9dIFtNUE0uUGVyaXBoTWFuYWdlcl0gRm91
-bmQgMSBkYXVnaHRlcmJvYXJkKHMpLgpbSU5GT10gWzAvUmFkaW9fMF0gSW5pdGlhbGl6aW5nIGJs
-b2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAwMDAzMzEwKQpbV0FSTklOR10gW1JGTk9D
-XSBDYW4ndCBmaW5kIGEgYmxvY2sgY29udHJvbGxlciBmb3Iga2V5IGRpZ2l0YWxnYWluLCAKdXNp
-bmcgZGVmYXVsdCBibG9jayBjb250cm9sbGVyIQpbSU5GT10gWzAvZGlnaXRhbGdhaW5fMF0gSW5p
-dGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogCjB4MTIzNDEyMzQxMjM0MTIzNCkKW0lO
-Rk9dIFtNUE0uUGVyaXBoTWFuYWdlcl0gaW5pdCgpIGNhbGxlZCB3aXRoIGRldmljZSBhcmdzIApg
-cHJvZHVjdD1lMzEwX3NnMSxtZ210X2FkZHI9MTI3LjAuMC4xJy4KW1dBUk5JTkddIFtSRk5PQ10g
-Q2FuJ3QgZmluZCBhIGJsb2NrIGNvbnRyb2xsZXIgZm9yIGtleSBGRlQsIHVzaW5nIApkZWZhdWx0
-IGJsb2NrIGNvbnRyb2xsZXIhCltJTkZPXSBbMC9GRlRfMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNv
-bnRyb2wgKE5PQyBJRDogMHhGRjcwMDAwMDAwMDAwMDAwKQpbSU5GT10gWzAvRklGT18wXSBJbml0
-aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEYxRjAwMDAwMDAwMDAwMDApCltJTkZP
-XSBbMC9GSUZPXzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RjFGMDAw
-MDAwMDAwMDAwMCkKW0lORk9dIFswL0ZJRk9fMl0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wg
-KE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAwKQpbSU5GT10gWzAvUmFkaW9fMF0gUGVyZm9ybWlu
-ZyBDT0RFQyBsb29wYmFjayB0ZXN0Li4uCltJTkZPXSBbMC9SYWRpb18wXSBDT0RFQyBsb29wYmFj
-ayB0ZXN0IHBhc3NlZApbSU5GT10gWzAvUmFkaW9fMF0gUGVyZm9ybWluZyBDT0RFQyBsb29wYmFj
-ayB0ZXN0Li4uCltJTkZPXSBbMC9SYWRpb18wXSBDT0RFQyBsb29wYmFjayB0ZXN0IHBhc3NlZApU
-cmFjZWJhY2sgKG1vc3QgcmVjZW50IGNhbGwgbGFzdCk6CiDCoCBGaWxlICIuL2UzMTBfcnhfc3Bl
-Y3RydW0ucHkiLCBsaW5lIDE5MSwgaW4gPG1vZHVsZT4KIMKgwqDCoCBtYWluKCkKIMKgIEZpbGUg
-Ii4vZTMxMF9yeF9zcGVjdHJ1bS5weSIsIGxpbmUgMTgwLCBpbiBtYWluCiDCoMKgwqAgdGIgPSB0
-b3BfYmxvY2tfY2xzKGZyZXE9b3B0aW9ucy5mcmVxLCAKcmZub2NfZ2Fpbj1vcHRpb25zLnJmbm9j
-X2dhaW4sIHJ4X2dhaW49b3B0aW9ucy5yeF9nYWluKQogwqAgRmlsZSAiLi9lMzEwX3J4X3NwZWN0
-cnVtLnB5IiwgbGluZSA4MCwgaW4gX19pbml0X18KIMKgwqDCoCBzZWxmLm1pa2VzX2RpZ2l0YWxn
-YWluXzAgPSBtaWtlcy5kaWdpdGFsZ2FpbigKQXR0cmlidXRlRXJyb3I6ICdtb2R1bGUnIG9iamVj
-dCBoYXMgbm8gYXR0cmlidXRlICdkaWdpdGFsZ2FpbicKcm9vdEBuaS1lMzF4On4jIF5DCgoKT24g
-MTEvMTYvMjAgMzo1MyBQTSwgTWlrZSB2aWEgVVNSUC11c2VycyB3cm90ZToKPiBBbGwsCj4KPiBJ
-J20gd29ya2luZyB3aXRoIHRoZSBFMzEwIHVuaXQgYW5kIGhhdmUgcnVuIHVwIGFnYWluc3QgYSBy
-b2FkIGJsb2NrLsKgIAo+IEkndmUgY29tcGxldGVkIGFsbW9zdCB0aGUgZW50aXJlIGFwcGxpY2F0
-aW9uIG5vdGUsIEFOLTgyMyAoR2V0dGluZyAKPiBzdGFydGVkIHdpdGggUkZOb0MgRGV2ZWxvcG1l
-bnQpLgo+Cj4gSSdtIHVzaW5nIFVIRCAzLjE1IHdpdGggR05VIFJhZGlvIDMuNy7CoCBJJ3ZlIHN1
-Y2Nlc3NmdWxseSBidWlsdCBhIAo+IGN1c3RvbSBGUEdBIHdpdGggdGhlIHR1dG9yaWFsJ3MgImdh
-aW4iIGJsb2NrLsKgIEkgY2FuIHNlZSB0aGUgbmV3IGJsb2NrIAo+IHdpdGggdGhlIHByb3BlciBu
-YW1lIHdpdGggdWhkX3VzcnBfcHJvYmUuCj4KPiBJIHVwZGF0ZWQgdGhlIFhNTCBmaWxlcyB0byBh
-bGxvdyBHUkMgdG8gaW1wbGVtZW50IHRoZSBSRk5vQyBibG9jay4KPgo+IEhlcmUgaXMgd2hlcmUg
-SSBydW4gaW50byBwcm9ibGVtcy7CoCBXaGVuIEkgY29weSB0aGUgZ251cmFkaW8gcHl0aG9uIAo+
-IGZpbGUgb3ZlciB0byB0aGUgRTMxMCBJIGtlZXAgZ2V0dGluZyBhbiBlcnJvciB0aGF0IHN0YXRl
-cyB0aGF0IHRoZSAKPiAnbW9kdWxlJyBvYmplY3QgaGFzIG5vIGF0dHJpYnV0ZSAnZ2FpbicuCj4K
-PiByb290QG5pLWUzMXg6fiMgcHl0aG9uIGUzMTBfcnhfc3BlY3RydW0ucHkKPiBbSU5GT10gW1VI
-RF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA4LjIuMDsgQm9vc3RfMTA2ODAwOyAKPiBVSERfMy4x
-NS4wLjAtNjItZzdhM2YxNTE2Cj4gW0lORk9dIFtNUE1EXSBJbml0aWFsaXppbmcgMSBkZXZpY2Uo
-cykgaW4gcGFyYWxsZWwgd2l0aCBhcmdzOiAKPiBtZ210X2FkZHI9MTI3LjAuMC4xLHR5cGU9ZTN4
-eCxwcm9kdWN0PWUzMTBfc2cxLHNlcmlhbD0zMDkyRTNBLGNsYWltZWQ9RmFsc2UKPiBbV0FSTklO
-R10gW01QTS5SUENTZXJ2ZXJdIEEgdGltZW91dCBldmVudCBvY2N1cmVkIQo+IFtJTkZPXSBbTVBN
-LlBlcmlwaE1hbmFnZXJdIEZvdW5kIDEgZGF1Z2h0ZXJib2FyZChzKS4KPiBbSU5GT10gWzAvUmFk
-aW9fMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogCj4gMHgxMkFEMTAwMDAw
-MDAzMzEwKQo+IFtXQVJOSU5HXSBbUkZOT0NdIENhbid0IGZpbmQgYSBibG9jayBjb250cm9sbGVy
-IGZvciBrZXkgZ2FpbiwgdXNpbmcgCj4gZGVmYXVsdCBibG9jayBjb250cm9sbGVyIQo+IFtJTkZP
-XSBbMC9nYWluXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4MTExMTIy
-MjIzMzMzNDQ0NCkKPiBbSU5GT10gW01QTS5QZXJpcGhNYW5hZ2VyXSBpbml0KCkgY2FsbGVkIHdp
-dGggZGV2aWNlIGFyZ3MgCj4gYG1nbXRfYWRkcj0xMjcuMC4wLjEscHJvZHVjdD1lMzEwX3NnMScu
-Cj4gW0lORk9dIFswL0REQ18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAw
-eEREQzAwMDAwMDAwMDAwMDApCj4gW1dBUk5JTkddIFtSRk5PQ10gQ2FuJ3QgZmluZCBhIGJsb2Nr
-IGNvbnRyb2xsZXIgZm9yIGtleSBGRlQsIHVzaW5nIAo+IGRlZmF1bHQgYmxvY2sgY29udHJvbGxl
-ciEKPiBbSU5GT10gWzAvRkZUXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6
-IDB4RkY3MDAwMDAwMDAwMDAwMCkKPiBbSU5GT10gWzAvUmFkaW9fMF0gUGVyZm9ybWluZyBDT0RF
-QyBsb29wYmFjayB0ZXN0Li4uCj4gW0lORk9dIFswL1JhZGlvXzBdIENPREVDIGxvb3BiYWNrIHRl
-c3QgcGFzc2VkCj4gW0lORk9dIFswL1JhZGlvXzBdIFBlcmZvcm1pbmcgQ09ERUMgbG9vcGJhY2sg
-dGVzdC4uLgo+IFtJTkZPXSBbMC9SYWRpb18wXSBDT0RFQyBsb29wYmFjayB0ZXN0IHBhc3NlZAo+
-IFRyYWNlYmFjayAobW9zdCByZWNlbnQgY2FsbCBsYXN0KToKPiDCoCBGaWxlICJlMzEwX3J4X3Nw
-ZWN0cnVtLnB5IiwgbGluZSAyMTYsIGluIDxtb2R1bGU+Cj4gwqDCoMKgIG1haW4oKQo+IMKgIEZp
-bGUgImUzMTBfcnhfc3BlY3RydW0ucHkiLCBsaW5lIDIwNSwgaW4gbWFpbgo+IMKgwqDCoCB0YiA9
-IHRvcF9ibG9ja19jbHMoZnJlcT1vcHRpb25zLmZyZXEsIAo+IHJmbm9jX2dhaW49b3B0aW9ucy5y
-Zm5vY19nYWluLCByeF9nYWluPW9wdGlvbnMucnhfZ2FpbikKPiDCoCBGaWxlICJlMzEwX3J4X3Nw
-ZWN0cnVtLnB5IiwgbGluZSAxMDEsIGluIF9faW5pdF9fCj4gwqDCoMKgIHNlbGYudHV0b3JpYWxf
-Z2Fpbl8wID0gdHV0b3JpYWwuZ2FpbigKPiBBdHRyaWJ1dGVFcnJvcjogJ21vZHVsZScgb2JqZWN0
-IGhhcyBubyBhdHRyaWJ1dGUgJ2dhaW4nCj4KPiBOb3csIEkndmUgc2VlbiBtYW55IHN1Z2dlc3Rp
-b25zIG9uIGhvdyB0byBhZGRyZXNzIHRoaXMuwqAgSXQgbW9zdGx5IAo+IGRlc2NyaWJlcyB0aGlz
-IGFzIGEgcHJvYmxlbSBpbXBvcnRpbmcgdGhlIG1vZHVsZSAndHV0b3JpYWwnLsKgIEkndmUgCj4g
-c2VlbiBkZXNjcmlwdGlvbnMgb2YgdXNpbmcgdGhlICJubSIgY29tbWFuZCB0byBzZWUgaWYgdGhl
-IGNhbGxiYWNrIAo+IGZ1bmN0aW9uIGlzIHVuZGVmaW5lZC7CoCBCdXQgSSBzdGlsbCBoYXZlbid0
-IGJlZW4gYWJsZSB0byBmaXggdGhlIGlzc3VlLgo+Cj4gQnV0IG1vc3RseSB3aGF0IEknbSBhZnRl
-ciBpcyBhIHdvcmtpbmcgZXhhbXBsZSBvZiBhbiBSRk5vQyBtb2R1bGUgZm9yIAo+IHRoZSBFMzEw
-LiBPbmUgdGhhdCBpbmNsdWRlcyB0aGUgR1JDIGludGVyZmFjZSBzbyB0aGF0IHRoZSBzb2Z0d2Fy
-ZSAKPiBpbnRlcmZhY2UgY2FuIHByb2dyYW0gdGhlIEZQR0EgcmVnaXN0ZXJzLsKgIEkgdGhpbmsg
-dGhhdCBhIGxvdCBvZiB0aGUgCj4gdHV0b3JpYWxzIGFyZSB3cml0dGVuIGZvciBob3N0IGFwcGxp
-Y2F0aW9ucyB3aGVyZWFzIHRoZSBFMzEwIGhhcyBhIAo+IGNyb3NzLWNvbXBpbGluZyBhc3BlY3Qg
-dG8gaXQuCj4KPiBTbywgaWYgc29tZWJvZHkgaGFzIGEgd29ya2luZyBleGFtcGxlLCBJJ2QgZ3Jl
-YXRseSBhcHByZWNpYXRlIGl0LiBPciAKPiBtYXliZSBhIGJldHRlciBkZXNjcmlwdGlvbiBvciB0
-dXRvcmlhbCBmb3IgRTMxMCBzcGVjaWZpYyBpc3N1ZXMgbGlrZSAKPiBjcm9zcy1jb21waWxpbmcg
-T09UIFJGTm9DIGJsb2Nrcy4KPgo+IE1hbnkgdGhhbmtzIGZvciBhbGwgdGhlIGhlbHAgdGhhdCBo
-YXMgYWxyZWFkeSBiZWVuIGdpdmVuIG1lLgo+Cj4gTWlrZQo+Cj4KPiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
-Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21h
-aWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
-ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1h
-bi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+--===============3996760975477360194==
+Content-Language: nb-NO
+Content-Type: multipart/alternative;
+	boundary="_000_OLAP279MB0104011D702BCCAC5BB528F6E68D9OLAP279MB0104NORP_"
+
+--_000_OLAP279MB0104011D702BCCAC5BB528F6E68D9OLAP279MB0104NORP_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hi, I am new to UHD, USRP and FPGA.
+
+I am trying to use a Ettus USRP B200 mini to monitor the network traffic be=
+tween two android phones with GNU radio with this guide https://github.com/=
+bastibl/gr-ieee802-11.<https://github.com/bastibl/gr-ieee802-11>
+
+When running the example file "wifi_tx_grc" I get a FPGA compatibility numb=
+er error.
+
+
+
+[Screenshot from 2021-02-10 09-55-57.png]GNU Radio test
+
+
+
+I have also tried to follow this guide https://github.com/srsLTE/srsLTE
+
+and get the same error. I have run "uhd_images_donwloader" and get that all=
+ images are up to.
+
+
+
+[Screenshot from 2021-02-10 09-29-25.png]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hope anyone can help.
+
+
+--_000_OLAP279MB0104011D702BCCAC5BB528F6E68D9OLAP279MB0104NORP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+Hi, I am new to UHD, USRP and FPGA.</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+I am trying to use a Ettus USRP B200 mini to monitor the network traffic be=
+tween two android phones with GNU radio with this guide<span>&nbsp;</span><=
+a href=3D"https://github.com/bastibl/gr-ieee802-11" target=3D"_blank" rel=
+=3D"nofollow noopener noreferrer" style=3D"box-sizing:border-box;color:rgb(=
+4, 65, 35);text-decoration:underline">https://github.com/bastibl/gr-ieee802=
+-11.</a></p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+When running the example file &quot;wifi_tx_grc&quot; I get a FPGA compatib=
+ility number error.</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+<span class=3D"lia-inline-image-display-wrapper lia-image-align-inline" sty=
+le=3D"box-sizing:border-box;display:inline-block;max-width:100%;width:958px=
+"><span class=3D"lia-message-image-wrapper lia-message-image-actions-narrow=
+ lia-message-image-actions-below" style=3D"box-sizing:border-box;display:in=
+line-block"><span class=3D"custom-image-new-tab" data-link=3D"https://ni.i.=
+lithium.com/t5/image/serverpage/image-id/281803i304FC834DE46FE09?v=3D1.0" s=
+tyle=3D"box-sizing:border-box"></span><img title=3D"Screenshot from 2021-02=
+-10 09-55-57.png" alt=3D"Screenshot from 2021-02-10 09-55-57.png" class=3D"=
+lia-media-image" tabindex=3D"0" style=3D"box-sizing:border-box;vertical-ali=
+gn:middle;cursor:zoom-in;display:block;max-width:100%;height:auto" src=3D"h=
+ttps://ni.i.lithium.com/t5/image/serverpage/image-id/281803i304FC834DE46FE0=
+9/image-size/large?v=3D1.0&amp;px=3D999"></span><span class=3D"lia-inline-i=
+mage-caption" style=3D"box-sizing:border-box;color:rgb(102, 102, 102);curso=
+r:text;display:block;font-size:13px;font-style:italic;height:auto;margin:10=
+px 0px 20px">GNU
+ Radio test</span></span></p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+I have also tried to follow this guide<span>&nbsp;</span><a href=3D"https:/=
+/github.com/srsLTE/srsLTE" target=3D"_blank" rel=3D"nofollow noopener noref=
+errer" style=3D"box-sizing:border-box;color:rgb(4, 65, 35);text-decoration:=
+underline">https://github.com/srsLTE/srsLTE</a></p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+and get the same error. I have run &quot;uhd_images_donwloader&quot; and ge=
+t that all images are up to.</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+<span class=3D"lia-inline-image-display-wrapper lia-image-align-left" style=
+=3D"box-sizing:border-box;display:inline-block;max-width:100%;float:left;ma=
+rgin-right:10px;width:999px"><span class=3D"lia-message-image-wrapper lia-m=
+essage-image-actions-narrow lia-message-image-actions-below" style=3D"box-s=
+izing:border-box;display:inline-block"><span class=3D"custom-image-new-tab"=
+ data-link=3D"https://ni.i.lithium.com/t5/image/serverpage/image-id/281797i=
+EAD9FCD6816778AF?v=3D1.0" style=3D"box-sizing:border-box"></span><img title=
+=3D"Screenshot from 2021-02-10 09-29-25.png" alt=3D"Screenshot from 2021-02=
+-10 09-29-25.png" class=3D"lia-media-image" tabindex=3D"0" style=3D"box-siz=
+ing:border-box;vertical-align:middle;cursor:zoom-in;display:block;max-width=
+:100%;height:auto" src=3D"https://ni.i.lithium.com/t5/image/serverpage/imag=
+e-id/281797iEAD9FCD6816778AF/image-size/large?v=3D1.0&amp;px=3D999"></span>=
+</span></p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+&nbsp;</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin:0px;line-height:1.42;color:rgb(51,=
+ 51, 51);font-family:Helvetica, Arial, sans-serif;text-align:left;backgroun=
+d-color:rgb(255, 255, 255)">
+Hope anyone can help.</p>
+<br>
+</div>
+</body>
+</html>
+
+--_000_OLAP279MB0104011D702BCCAC5BB528F6E68D9OLAP279MB0104NORP_--
+
+
+--===============3996760975477360194==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3996760975477360194==--
+
