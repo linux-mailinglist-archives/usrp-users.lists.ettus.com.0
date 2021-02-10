@@ -2,60 +2,78 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C521B315994
-	for <lists+usrp-users@lfdr.de>; Tue,  9 Feb 2021 23:41:19 +0100 (CET)
-Received: from [::1] (port=39296 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 638B3315D8A
+	for <lists+usrp-users@lfdr.de>; Wed, 10 Feb 2021 03:52:39 +0100 (CET)
+Received: from [::1] (port=40934 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1l9bh6-0002Er-3M; Tue, 09 Feb 2021 17:41:16 -0500
-Received: from mail-qk1-f180.google.com ([209.85.222.180]:33587)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1l9bh2-00026f-17
- for usrp-users@lists.ettus.com; Tue, 09 Feb 2021 17:41:12 -0500
-Received: by mail-qk1-f180.google.com with SMTP id b14so6247494qkk.0
- for <usrp-users@lists.ettus.com>; Tue, 09 Feb 2021 14:40:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=CGhnDqTxlVb44Ev2dolmFrVXF1Y93Aht45ccZLvAMQA=;
- b=U02sITnCf/1rf0T+K8CbdPw6hRXxi092ngOdeCUVQC+Z8qbcXgNkDjAGHIvNUmsGD6
- OAC1QOR4yWxK4gNPXxTfiBqEueGAmuIraTbAnZhVq8OFJYGtGPDp1vIskEsdW+QVBTwq
- jROs9DyMjAv/Cfxg4LEXP2omeZ4aY/uPcGhe98TvZ+eIcheBnjLfnu2PcXtsVGJOUmbM
- 0HtiCshr5pBB/TZaxqfslLrp7K88Gw7cnp0Ek2/bbxEt8QXouNpaO+J9VMRiQbf8YDkX
- RRWeClvKyfmlz/cQ12qj//HDTqsPxYFNnB/L5bDA+CRTYTY3iBs/fTzbvhDmziAWsw01
- /W0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=CGhnDqTxlVb44Ev2dolmFrVXF1Y93Aht45ccZLvAMQA=;
- b=C0SDEPKbe3lCxIK3RX0qpGzqrVaj+XCzqzlyeozcbjIZuIenqw4TXUeBoJqLAwZMD8
- EW6q0T33XHoHK56oeGV3tfk7EUuRyt1kV1jxK+PNiTKUiidQDsw5fpEVWaiGBkZda02S
- N8/TQDg71xjaAfIYcttRSU9V2TKp0t6MziWnav3/BgfFagi9BdoJoEq4gsSSm3HKghES
- EIxEZzo8CYj95qDk9n9ymg7vLaAw3b8XWYrWXs13XLb9Mc5HKzYz0zA+bg5ZqcA20Jes
- uiFUanPFRy533e9u8owFEkslFrPZvzKpxWKflA/bqjrSJm8GyStQeURXmUKoQ90JAPKc
- MAwQ==
-X-Gm-Message-State: AOAM533aMDLidv3v4kFURAwoRAMaIEw8/RyN0uU1S1ZHPcuqt22wOPpy
- ZyeSw65i+j7Sg44ilJBCA9ldSGrj0IE=
-X-Google-Smtp-Source: ABdhPJwOaNAN4PSui30eZSuqUylUvFjBbQY+Iob54dYBvH0FqZlOPdxNKxWcZOZwzVI+B0GAGEAS1A==
-X-Received: by 2002:a37:48cc:: with SMTP id v195mr509789qka.14.1612910431288; 
- Tue, 09 Feb 2021 14:40:31 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id z139sm137906qkb.0.2021.02.09.14.40.30
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 09 Feb 2021 14:40:31 -0800 (PST)
-Message-ID: <60230F5E.40905@gmail.com>
-Date: Tue, 09 Feb 2021 17:40:30 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1l9fcI-0006R7-Pp; Tue, 09 Feb 2021 21:52:34 -0500
+Received: from sonic305-22.consmr.mail.ne1.yahoo.com ([66.163.185.148]:45686)
+ by mm2.emwd.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
+ (envelope-from <mikerd1@verizon.net>) id 1l9fcF-0006Mg-Am
+ for usrp-users@lists.ettus.com; Tue, 09 Feb 2021 21:52:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verizon.net; s=a2048;
+ t=1612925510; bh=MbRsyOQppkhvG5nUHcSo5XKC4Oe7MR00xADOirdtZ5Q=;
+ h=Subject:To:References:From:Date:In-Reply-To:From:Subject:Reply-To;
+ b=VRJR28x0etPdiP/Bh+GCnFojgpUNElZcVvUB5cgbpBJlFReQbfXPFOgsVc1jumEOdTdt60ZhkPBeAU9QT96bQqYtucmLp3CRHMiDRa0FAnpz+J4SizZgrycmpJfaRixB57VqXN61U3JtT8H/6fi4mQpOdf6Q7WGH8/cHRxuvjef/WVEYJOKmknhRblwzFkZhfK15nwbtPttSxkrot2V/HGxT2Kx9TlM6hb8dmjMlnpXrbHylicLGOhxC2DHOefPfZHkXH1R++AVQfxB2i4TN30xprHJmnxg2CsUjQ2vN0H+nJ9ibLOPLZrIZszd5cts1yztLvI8+3jBpZRql/B0yAw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1612925510; bh=eL+fgCTddXxXlOpQz+KcLb7LU0i2eFzuIGqokLIWs25=;
+ h=X-Sonic-MF:Subject:To:From:Date:From:Subject;
+ b=iNF2kqHqgIwv7oGdegH0Sfdrm5LW5EcCc5R6193GCaR/zT2hgTpLLrlPcfDhvgVYRG5eHHIsLxesLIrl1HzFLBYUfszjuAw3w5I9PoxcvI5KqmJNbvtd8MmOlyhy5N8cc5oLgdu8A06Mg9rC/pLq6T45nTfFkybjO2GcMSpUKaDgKcxgL5FtGqkN9LLMNkwIumdJqTwwkHR60p2kl2aySeGGknVQW9Zmkx/CfuKYOSZ9dZrBggTYUPKN6GS4I78e3eQ5rHlc7vC5LfHE5WhitZuDKOnB/dr51vhk4NEqlC5TZ024krKBchcQfUTuS4J7MPnYcdD0bZhgtybi0VAi8Q==
+X-YMail-OSG: ePDZq3UVM1m0823Gdi_t9s0DqNOCC0OgGKBznEOSFXC4xEU0LhOIs2A0aR9Rf0W
+ th.147LVBPvGQW6f0N4dGo._DE9_wC_6TmeZ.O6UL6WePZKDdh0jcR_gW021Z9an4h7ZBecLfNLt
+ jP2nn320cXcVFCcyISS6koUqYagFvhQihZ4bmL_ZczadT9qwlL8wJZWACdb_dEVB8IOce5ISMACB
+ 9eR_X7LpxsPAiupn8srAWvSYT2oUW_eOIyoUyIMFtQiO8V0rTVqEkzwLQqb5EtGKC5IkbiOG84_Z
+ ErLts01_lfAPHyWJPr8NuIltDIs4GaJ7eCC9S2EbkOyYe6tE04RbKilkGOAAQHbuLwjzunAImDE0
+ yYJxxV4kC625AkeGvXBOjAX585B7wIh6PoMemQq2PqhCm_GzK2vcfwfRGdYRA6TQoGFxdfU8tojJ
+ b3mCgTZHUg7V7hWvBUtcgjtaTHhfYvbFW_BO64WDFC_rrCmFPg6eYNrVlT.WFhZpLleNi5DbZSA3
+ A22j49FxNCWcAA3YBtAB8p6yYlrTrLdsLPanw19qJ0fJDh.bzLgQPyXJUeKmj0_GT7mdBtIEXFK5
+ 0petCUEksT7Ta1PM0NYRtJnlNecPw567TzGsubX6L3ZXo7NqqIp8Y_8hNOj.HUvUkdCAz2ELGioh
+ wYqBhNFdlH6nz.MX7A40EsrtK7T3S4PphrsDpvdPF_4R5SupQ2FZp.YgkBTqqdNycdSsjNiFo2ed
+ .5VqKYqjSsbU373rE4tdsvUv3hd0wWbwmkQ.noqF683lViBhGOuXpZKdZnE25MMbv7so_Q6Y_A_9
+ 10qqjq2hvZGpLReRFXsrCR4PyAQU3JbcXdWl9CdO56niyJ39997PllDMGz48qE17BFql9I7mHVHY
+ YMKbGkTm5cyArZ9OXtis8B3zmdy0feCsSviFnmg_9VIMufSVe3SLUK7ASc9CoSnpvPc2AI.FUi0M
+ VHEw_dfNwThAL8i79CXUZSz78P..BdXR5Bo3KZtD8hIZ8fMDO3EEVtMeFhF._A1I0NMu48f5UhsR
+ HSIg9boDcu6WrjSiKzBXq1.k6s03on_S_IuSnaRqK_GGIhzUxrj7ND6ercvvUV37Nly__70q.KBb
+ VA79XpLkMWvVD1qnjoSymcODRyNrCZRDKs5wVH67Dl6.EZhmc0et88TZk7iUjxnRzhTaE_a2bGRx
+ qV6_k7mNHpFxEsv3lY1QgKZYo0ifd_T.uOOYwQrNknvqfscuI6RCXzkKYCNTDp8cMvomu5IOQd.j
+ yzgHYGAHBxw3ARI4po9K4CNSsm1VIB4Tpk92MNwkt0AC0utujdVkoTXbJLW6LbJQyiQa23HOBXyu
+ RaiOmWztRBV9xeWRgQkTAiMS9OaVP5jpkMytAdLYsHfG.ejZshKCOC_s18XIxfc621dD5.quWnRW
+ cl9VnASkgILGFmLyyhB9eq5KJWpq6Xz5adDsMm1h9UVbhR8C5M_e.QU8w0n59sgcGWPp.o4_wlXL
+ gbL6s0FgE715sf_LtLq4zS_TfAFX3iNIkrquojgySqYUKgC5fXVZZ0x_1I_LUfMigwICcQVFiY89
+ fig7D_ljlKdPhiIsqRaXdH77OEgWK9DZIt7FIIR1OfcXwZHKqcwO2Lfz8548uBsh0VTPVD36oZp7
+ 9oNR_C5SZzwfZb5Cjz4taSCfO9_f1zhylnIhLh79UO4z6PWv0FVxNgwHKWO44URhj_LCDL55J_rD
+ _2F56Vy2Fq9Ptpp4A6NYz5s1voEdYtrNxumM7_A5sCV9ESHzjZ8btMgx5vosJhizgMDRdDFggXKT
+ pFy8u4khMDWSgh3fPNx2aqFpjVfiI25IPjva8LPU3tYQPPh6Eia2YEYM.mQKnsRQ8NkMOFmTxmYw
+ d0ou0ypprwGv_AdBabEerhOnYuWLEA6EAMCqPVZZI1v0c24W1__iuDF4DL2hP73CEDsGyGs1_zNo
+ 272DZaTQQ_KABRSn7x6f7OyVgGCaIMndQOEjhPy1FXp14ADrs_eWK514F.72N4Y1uZ1uH9d69DPl
+ V3R9fUS9LF0NMkJdbhRm.YQ00e0vv5mpv_msnCZ7DIk5XY7v9v_.ItvhR.DqfXjA0ZGQSj7urXYx
+ pvmIeFsW3bcSp5QELkuCpImLljU8ki2YEw.ZO3AaUVMExDtBZm3M1os7MFrIdjys2NGHqe.CSyDe
+ 3CTUV30e07k9Vqf7EQhFOOk7sfafMM3JwdSSJdassLAnpdKhV3Ab6h7JHZ9205gR6XRw66AcqY_e
+ xBPfYpdws2pHgT5nvduc9vezQaPLKW89CyUcUpv2426urb.NlaRzIn8NFrrgxrdkK3wiKVBb0Xo5
+ hQftkjYR2TwzJXvYvxnwg_xQr.Rt9J9yGHIVJzj4zVQxYe.53UbplXqVqeJ4i2mrdFYCOfeiP4sc
+ NbAXLsiNfxluznwW9I4PFwbi.OZsB9yIm9M.iSyNy32M-
+X-Sonic-MF: <mikerd1@verizon.net>
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic305.consmr.mail.ne1.yahoo.com with HTTP; Wed, 10 Feb 2021 02:51:50 +0000
+Received: by smtp420.mail.bf1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA
+ ID b9c1db8329d197eba156e2eb5931615b; 
+ Wed, 10 Feb 2021 02:51:46 +0000 (UTC)
+To: usrp-users <usrp-users@lists.ettus.com>
+References: <4f689791-2302-7230-9931-6bcf890fbce8.ref@verizon.net>
+ <4f689791-2302-7230-9931-6bcf890fbce8@verizon.net>
+Message-ID: <fb168c17-61ed-36d9-e970-61d6cf9a08ff@verizon.net>
+Date: Tue, 9 Feb 2021 21:51:44 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-To: dtrask1@tampabay.rr.com
-CC: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
-References: <c8adce8fc66a02147695ffdfc9ee380542a5bca1@webmail>
-In-Reply-To: <c8adce8fc66a02147695ffdfc9ee380542a5bca1@webmail>
-Subject: Re: [USRP-users] E310 with v4.0.0.0 Image: Configure Static IP
+In-Reply-To: <4f689791-2302-7230-9931-6bcf890fbce8@verizon.net>
+Content-Language: en-US
+X-Mailer: WebService/1.1.17712
+ mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.aol
+ Apache-HttpAsyncClient/4.1.4 (Java/11.0.9.1)
+Subject: Re: [USRP-users] E310 and RFNoC
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -67,9 +85,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4323804593633694483=="
+From: Mike via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mike <mikerd1@verizon.net>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -83,245 +102,118 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============4323804593633694483==
-Content-Type: multipart/alternative;
- boundary="------------090907030300060807050101"
-
-This is a multi-part message in MIME format.
---------------090907030300060807050101
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 02/09/2021 05:04 PM, dtrask1@tampabay.rr.com wrote:
-> Thanks, Marcus.
->
-> That was actually what I attempted first. As described in the man page 
-> (https://www.freedesktop.org/software/systemd/man/systemd.network.html) I 
-> created eth0.network under /etc/systemd/network/, with these contents:
->
-> [Match]
-> Name=eth0
->
-> [Network]
-> Address=192.168.200.2/24
->
-> The system seemed to ignore this configuration, however.
->
->
->
-OK, what does:
-
-systemctl |grep -i net
-
-Yield?
-
-What does:
-
-ip link
-
-Return?
-
-
-
-> -----------------------------------------
->
-> From: "Marcus D. Leech via USRP-users"
-> To: usrp-users@lists.ettus.com
-> Cc:
-> Sent: Tuesday February 9 2021 4:42:34PM
-> Subject: Re: [USRP-users] E310 with v4.0.0.0 Image: Configure Static IP
->
-> On 02/09/2021 04:35 PM, Dennis Trask via USRP-users wrote:
->
->     I have re-imaged the SD card for my E310 with the v4.0.0.0 image.
->     I cannot figure out how to set a static IP address on eth0 at
->     boot-up. I created an /etc/network/interfaces file that looks like
->     this:
->
->     auto eth0
->     iface eth0 inet static
->     address 192.168.200.2
->     netmask 255.255.255.0
->
->     I can run the command "ifup eth0" and bring up the interface with
->     the desired configuration, but it does not initialize when I reboot.
->
->     The SD image I am using was obtained with the command:
->     uhd_images_downloader -t e310 -t sg3
->
->     I built the uhd_images_downloder from source, and it's version
->     is 4.0.0.HEAD-0-g90ce6062.
->
->     Dennis
->
->
->
->     _______________________________________________
->     USRP-users mailing list
->     "mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com
->     "http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">
->     target=
->     "_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-> It almost certainly is running systemd/networkd
->
-> So look under /etc/systemd/networkd
->
-> In Linux, there have historically been many different ways to 
-> configure network devices, and even under systemd, there are a couple of
->   different schemes "out there".  I believe that in a UHD 4 system 
-> image on E310, it is based on Networkd.
->
->
-
-
---------------090907030300060807050101
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 02/09/2021 05:04 PM,
-      <a class="moz-txt-link-abbreviated" href="mailto:dtrask1@tampabay.rr.com">dtrask1@tampabay.rr.com</a> wrote:<br>
-    </div>
-    <blockquote
-      cite="mid:c8adce8fc66a02147695ffdfc9ee380542a5bca1@webmail"
-      type="cite">Thanks, Marcus.
-      <div><br>
-      </div>
-      <div>That was actually what I attempted first. As described in the
-        man page
-        (<a class="moz-txt-link-freetext" href="https://www.freedesktop.org/software/systemd/man/systemd.network.html">https://www.freedesktop.org/software/systemd/man/systemd.network.html</a>)
-        I created eth0.network under /etc/systemd/network/, with these
-        contents:</div>
-      <div><br>
-      </div>
-      <div>
-        <div>[Match]</div>
-        <div>Name=eth0</div>
-        <div><br>
-        </div>
-        <div>[Network]</div>
-        <div>Address=192.168.200.2/24</div>
-        <div><br>
-        </div>
-        <div>The system seemed to ignore this configuration, however.</div>
-        <div><br>
-        </div>
-        <div><br>
-        </div>
-        <br>
-      </div>
-    </blockquote>
-    OK, what does:<br>
-    <br>
-    systemctl |grep -i net<br>
-    <br>
-    Yield?<br>
-    <br>
-    What does:<br>
-    <br>
-    ip link<br>
-    <br>
-    Return?<br>
-    <br>
-    <br>
-    <br>
-    <blockquote
-      cite="mid:c8adce8fc66a02147695ffdfc9ee380542a5bca1@webmail"
-      type="cite">
-      <div>
-        <p>-----------------------------------------</p>
-        From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com><br>
-          To: <a class="moz-txt-link-abbreviated" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
-          Cc: <br>
-          Sent: Tuesday February 9 2021 4:42:34PM<br>
-          Subject: Re: [USRP-users] E310 with v4.0.0.0 Image: Configure
-          Static IP<br>
-          <br>
-          <div class="moz-cite-prefix">On 02/09/2021 04:35 PM, Dennis
-            Trask
-            via USRP-users wrote:<br>
-          </div>
-          <blockquote>
-            I have re-imaged the SD card for my E310 with the v4.0.0.0
-            image. I
-            cannot figure out how to set a static IP address on eth0 at
-            boot-up. I created an /etc/network/interfaces file that
-            looks like
-            this:
-            <div><br>
-            </div>
-            <div>
-              <div>auto eth0</div>
-              <div>iface eth0 inet static</div>
-              <div>address 192.168.200.2</div>
-              <div>netmask 255.255.255.0</div>
-            </div>
-            <div><br>
-            </div>
-            <div>I can run the command "ifup eth0" and bring up the
-              interface
-              with the desired configuration, but it does not initialize
-              when I
-              reboot.</div>
-            <div><br>
-            </div>
-            <div>The SD image I am using was obtained with the command:
-              uhd_images_downloader -t e310 -t sg3</div>
-            <div><br>
-            </div>
-            <div>I built the uhd_images_downloder from source, and it's
-              version
-              is 4.0.0.HEAD-0-g90ce6062.</div>
-            <div><br>
-            </div>
-            <div>Dennis</div>
-            <div><br>
-            </div>
-            <br>
-            <br>
-            _______________________________________________<br>
-            USRP-users mailing list<br>
-<a class="moz-txt-link-rfc2396E" href="mailto:USRP-users@lists.ettus.com">"mailto:USRP-users@lists.ettus.com"</a>&gt;<a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
-<a class="moz-txt-link-rfc2396E" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"</a>&gt;
-            target=<br>
-"_blank"&gt;<a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-          </blockquote>
-          It almost certainly is running systemd/networkd<br>
-          <br>
-          So look under /etc/systemd/networkd<br>
-          <br>
-          In Linux, there have historically been many different ways to
-          configure network devices, and even under systemd, there are a
-          couple of<br>
-            different schemes "out there".  I believe that in a UHD
-          4 system image on E310, it is based on Networkd.<br>
-          <br>
-          <br>
-        </usrp-users@lists.ettus.com></div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------090907030300060807050101--
-
-
---===============4323804593633694483==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============4323804593633694483==--
-
+QWxsLMKgIEkgd2FudGVkIHRvIHJlc3VycmVjdCBhIHByb2JsZW0gdGhhdCBJIGhhZCBjb3VwbGUg
+bW9udGhzIGFnbyB0aGF0IApJIHB1dCBhc2lkZSBhbmQgd291bGQgbm93IGxpa2UgdG8gZml4LsKg
+IFRoZSBpc3N1ZSBpcyB0aGF0IEkgZ2V0IGEgcHl0aG9uIAplcnJvciB3aGVuIGV4ZWN1dGluZyBh
+IGZsb3cgZ3JhcGggb24gYW4gRTMxMCB0aGF0IHdhcyBnZW5lcmF0ZWQgZnJvbSBHUkMuCgpUaGUg
+ZXJyb3IgaXMgcG9zdGVkIGJlbG93LsKgIEZvciBiYWNrZ3JvdW5kIEknbSB1c2luZyBVSEQgMy4x
+NSB3aXRoIEdOVSAKUmFkaW8gMy43LsKgIEkndmUgc3VjY2Vzc2Z1bGx5IGNyZWF0ZWQgYSBiaXQg
+ZmlsZSBmb3IgdGhlIEZQR0Egd2l0aCBhIApjdXN0b20gYmxvY2sgKHNpbXBsZSBnYWluIGJsb2Nr
+KS7CoCBJJ3ZlIHVwZGF0ZWQgdGhlIFVIRCB4bWwgZmlsZSBzdWNoIAp0aGF0IHVoZF91c3JwX3By
+b2JlIGNvcnJlY3RseSBpZGVudGlmaWVzIHRoZSBuZXcgYmxvY2suwqAgQWxzbywgdXNpbmcgYSAK
+cHl0aG9uIGNvbW1hbmQgbGluZSB0b29sLCBJJ3ZlIGJlZW4gYWJsZSB0byBpbXBvcnQgbXkgbW9k
+dWxlIGFuZCBlbm91Z2ggCm9mIG90aGVyIG1vZHVsZXMgbGlrZSBldHR1cyBhbmQgY3JlYXRlIGEg
+ZGV2aWNlMyB2YXJpYWJsZSB0byBzZWUgdGhhdCBJIApjYW4gaW5zdGFudGlhdGUgbXkgbWlrZXMu
+ZGlnaXRhbGdhaW4gYmxvY2suwqAgUHJldmlvdXNseSBJJ3ZlIApzdWNjZXNzZnVsbHkgZ2VuZXJh
+dGVkIG5vbi1SRk5vQyBPT1QgbW9kdWxlcyBhbmQgcnVuIHRoZW0gb24gdGhlIEUzMTAuwqAgClNv
+LCBJJ20gYSBsaXR0bGUgc3R1bXBlZCBob3cgdG8gZ2V0IHBhc3QgdGhpcyBlcnJvci7CoCBJcyB0
+aGVyZSBhbiAKYWRkaXRpb25hbCBzdGVwIHRoYXQgSSdtIG1pc3NpbmcgdG8gY29tcGlsZSB0aGUg
+UkZOb0MgbW9kdWxlIHNvIHRoYXQgdGhlIApFMzEwIHZlcnNpb24gb2YgR05VIFJhZGlvIGNhbiBz
+dWNjZXNzZnVsbHkgaW1wb3J0IHRoZSBtb2R1bGUgYW5kIGNvbm5lY3QgCnRvIGl0IGluIHRoZSB0
+b3AgYmxvY2suwqAgSXMgdGhlIHdhcm5pbmcgYWJvdXQgdXNpbmcgdGhlIGRlZmF1bHQgYmxvY2sg
+CmNvbnRyb2xsZXIgcmVsZXZhbnQ/wqAgSSB0aG91Z2h0IHRoYXQgc2ltcGxlIGJsb2NrcyBjb3Vs
+ZCBiZSBjb250cm9sbGVkIAp0aHJvdWdoIHRoZSBYTUwgZmlsZXMgdXNpbmcgdGhlIGRlZmF1bHQg
+Y29udHJvbGxlci7CoCBBbnkgaGVscCB3b3VsZCBiZSAKZ3JlYXRseSBhcHByZWNpYXRlZC4uLgoK
+cm9vdEBuaS1lMzF4On4jIC4vZTMxMF9yeF9zcGVjdHJ1bS5weQpbSU5GT10gW1VIRF0gbGludXg7
+IEdOVSBDKysgdmVyc2lvbiA4LjIuMDsgQm9vc3RfMTA2ODAwOyAKVUhEXzMuMTUuMC4wLTYyLWc3
+YTNmMTUxNgpbSU5GT10gW01QTURdIEluaXRpYWxpemluZyAxIGRldmljZShzKSBpbiBwYXJhbGxl
+bCB3aXRoIGFyZ3M6IAptZ210X2FkZHI9MTI3LjAuMC4xLHR5cGU9ZTN4eCxwcm9kdWN0PWUzMTBf
+c2cxLHNlcmlhbD0zMDkyRTNBLGNsYWltZWQ9RmFsc2UKW1dBUk5JTkddIFtNUE0uUlBDU2VydmVy
+XSBBIHRpbWVvdXQgZXZlbnQgb2NjdXJlZCEKW0lORk9dIFtNUE0uUGVyaXBoTWFuYWdlcl0gRm91
+bmQgMSBkYXVnaHRlcmJvYXJkKHMpLgpbSU5GT10gWzAvUmFkaW9fMF0gSW5pdGlhbGl6aW5nIGJs
+b2NrIGNvbnRyb2wgKE5PQyBJRDogMHgxMkFEMTAwMDAwMDAzMzEwKQpbV0FSTklOR10gW1JGTk9D
+XSBDYW4ndCBmaW5kIGEgYmxvY2sgY29udHJvbGxlciBmb3Iga2V5IGRpZ2l0YWxnYWluLCAKdXNp
+bmcgZGVmYXVsdCBibG9jayBjb250cm9sbGVyIQpbSU5GT10gWzAvZGlnaXRhbGdhaW5fMF0gSW5p
+dGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogCjB4MTIzNDEyMzQxMjM0MTIzNCkKW0lO
+Rk9dIFtNUE0uUGVyaXBoTWFuYWdlcl0gaW5pdCgpIGNhbGxlZCB3aXRoIGRldmljZSBhcmdzIApg
+cHJvZHVjdD1lMzEwX3NnMSxtZ210X2FkZHI9MTI3LjAuMC4xJy4KW1dBUk5JTkddIFtSRk5PQ10g
+Q2FuJ3QgZmluZCBhIGJsb2NrIGNvbnRyb2xsZXIgZm9yIGtleSBGRlQsIHVzaW5nIApkZWZhdWx0
+IGJsb2NrIGNvbnRyb2xsZXIhCltJTkZPXSBbMC9GRlRfMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNv
+bnRyb2wgKE5PQyBJRDogMHhGRjcwMDAwMDAwMDAwMDAwKQpbSU5GT10gWzAvRklGT18wXSBJbml0
+aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEYxRjAwMDAwMDAwMDAwMDApCltJTkZP
+XSBbMC9GSUZPXzFdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4RjFGMDAw
+MDAwMDAwMDAwMCkKW0lORk9dIFswL0ZJRk9fMl0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wg
+KE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAwKQpbSU5GT10gWzAvUmFkaW9fMF0gUGVyZm9ybWlu
+ZyBDT0RFQyBsb29wYmFjayB0ZXN0Li4uCltJTkZPXSBbMC9SYWRpb18wXSBDT0RFQyBsb29wYmFj
+ayB0ZXN0IHBhc3NlZApbSU5GT10gWzAvUmFkaW9fMF0gUGVyZm9ybWluZyBDT0RFQyBsb29wYmFj
+ayB0ZXN0Li4uCltJTkZPXSBbMC9SYWRpb18wXSBDT0RFQyBsb29wYmFjayB0ZXN0IHBhc3NlZApU
+cmFjZWJhY2sgKG1vc3QgcmVjZW50IGNhbGwgbGFzdCk6CiDCoCBGaWxlICIuL2UzMTBfcnhfc3Bl
+Y3RydW0ucHkiLCBsaW5lIDE5MSwgaW4gPG1vZHVsZT4KIMKgwqDCoCBtYWluKCkKIMKgIEZpbGUg
+Ii4vZTMxMF9yeF9zcGVjdHJ1bS5weSIsIGxpbmUgMTgwLCBpbiBtYWluCiDCoMKgwqAgdGIgPSB0
+b3BfYmxvY2tfY2xzKGZyZXE9b3B0aW9ucy5mcmVxLCAKcmZub2NfZ2Fpbj1vcHRpb25zLnJmbm9j
+X2dhaW4sIHJ4X2dhaW49b3B0aW9ucy5yeF9nYWluKQogwqAgRmlsZSAiLi9lMzEwX3J4X3NwZWN0
+cnVtLnB5IiwgbGluZSA4MCwgaW4gX19pbml0X18KIMKgwqDCoCBzZWxmLm1pa2VzX2RpZ2l0YWxn
+YWluXzAgPSBtaWtlcy5kaWdpdGFsZ2FpbigKQXR0cmlidXRlRXJyb3I6ICdtb2R1bGUnIG9iamVj
+dCBoYXMgbm8gYXR0cmlidXRlICdkaWdpdGFsZ2FpbicKcm9vdEBuaS1lMzF4On4jIF5DCgoKT24g
+MTEvMTYvMjAgMzo1MyBQTSwgTWlrZSB2aWEgVVNSUC11c2VycyB3cm90ZToKPiBBbGwsCj4KPiBJ
+J20gd29ya2luZyB3aXRoIHRoZSBFMzEwIHVuaXQgYW5kIGhhdmUgcnVuIHVwIGFnYWluc3QgYSBy
+b2FkIGJsb2NrLsKgIAo+IEkndmUgY29tcGxldGVkIGFsbW9zdCB0aGUgZW50aXJlIGFwcGxpY2F0
+aW9uIG5vdGUsIEFOLTgyMyAoR2V0dGluZyAKPiBzdGFydGVkIHdpdGggUkZOb0MgRGV2ZWxvcG1l
+bnQpLgo+Cj4gSSdtIHVzaW5nIFVIRCAzLjE1IHdpdGggR05VIFJhZGlvIDMuNy7CoCBJJ3ZlIHN1
+Y2Nlc3NmdWxseSBidWlsdCBhIAo+IGN1c3RvbSBGUEdBIHdpdGggdGhlIHR1dG9yaWFsJ3MgImdh
+aW4iIGJsb2NrLsKgIEkgY2FuIHNlZSB0aGUgbmV3IGJsb2NrIAo+IHdpdGggdGhlIHByb3BlciBu
+YW1lIHdpdGggdWhkX3VzcnBfcHJvYmUuCj4KPiBJIHVwZGF0ZWQgdGhlIFhNTCBmaWxlcyB0byBh
+bGxvdyBHUkMgdG8gaW1wbGVtZW50IHRoZSBSRk5vQyBibG9jay4KPgo+IEhlcmUgaXMgd2hlcmUg
+SSBydW4gaW50byBwcm9ibGVtcy7CoCBXaGVuIEkgY29weSB0aGUgZ251cmFkaW8gcHl0aG9uIAo+
+IGZpbGUgb3ZlciB0byB0aGUgRTMxMCBJIGtlZXAgZ2V0dGluZyBhbiBlcnJvciB0aGF0IHN0YXRl
+cyB0aGF0IHRoZSAKPiAnbW9kdWxlJyBvYmplY3QgaGFzIG5vIGF0dHJpYnV0ZSAnZ2FpbicuCj4K
+PiByb290QG5pLWUzMXg6fiMgcHl0aG9uIGUzMTBfcnhfc3BlY3RydW0ucHkKPiBbSU5GT10gW1VI
+RF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA4LjIuMDsgQm9vc3RfMTA2ODAwOyAKPiBVSERfMy4x
+NS4wLjAtNjItZzdhM2YxNTE2Cj4gW0lORk9dIFtNUE1EXSBJbml0aWFsaXppbmcgMSBkZXZpY2Uo
+cykgaW4gcGFyYWxsZWwgd2l0aCBhcmdzOiAKPiBtZ210X2FkZHI9MTI3LjAuMC4xLHR5cGU9ZTN4
+eCxwcm9kdWN0PWUzMTBfc2cxLHNlcmlhbD0zMDkyRTNBLGNsYWltZWQ9RmFsc2UKPiBbV0FSTklO
+R10gW01QTS5SUENTZXJ2ZXJdIEEgdGltZW91dCBldmVudCBvY2N1cmVkIQo+IFtJTkZPXSBbTVBN
+LlBlcmlwaE1hbmFnZXJdIEZvdW5kIDEgZGF1Z2h0ZXJib2FyZChzKS4KPiBbSU5GT10gWzAvUmFk
+aW9fMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogCj4gMHgxMkFEMTAwMDAw
+MDAzMzEwKQo+IFtXQVJOSU5HXSBbUkZOT0NdIENhbid0IGZpbmQgYSBibG9jayBjb250cm9sbGVy
+IGZvciBrZXkgZ2FpbiwgdXNpbmcgCj4gZGVmYXVsdCBibG9jayBjb250cm9sbGVyIQo+IFtJTkZP
+XSBbMC9nYWluXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6IDB4MTExMTIy
+MjIzMzMzNDQ0NCkKPiBbSU5GT10gW01QTS5QZXJpcGhNYW5hZ2VyXSBpbml0KCkgY2FsbGVkIHdp
+dGggZGV2aWNlIGFyZ3MgCj4gYG1nbXRfYWRkcj0xMjcuMC4wLjEscHJvZHVjdD1lMzEwX3NnMScu
+Cj4gW0lORk9dIFswL0REQ18wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAw
+eEREQzAwMDAwMDAwMDAwMDApCj4gW1dBUk5JTkddIFtSRk5PQ10gQ2FuJ3QgZmluZCBhIGJsb2Nr
+IGNvbnRyb2xsZXIgZm9yIGtleSBGRlQsIHVzaW5nIAo+IGRlZmF1bHQgYmxvY2sgY29udHJvbGxl
+ciEKPiBbSU5GT10gWzAvRkZUXzBdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6
+IDB4RkY3MDAwMDAwMDAwMDAwMCkKPiBbSU5GT10gWzAvUmFkaW9fMF0gUGVyZm9ybWluZyBDT0RF
+QyBsb29wYmFjayB0ZXN0Li4uCj4gW0lORk9dIFswL1JhZGlvXzBdIENPREVDIGxvb3BiYWNrIHRl
+c3QgcGFzc2VkCj4gW0lORk9dIFswL1JhZGlvXzBdIFBlcmZvcm1pbmcgQ09ERUMgbG9vcGJhY2sg
+dGVzdC4uLgo+IFtJTkZPXSBbMC9SYWRpb18wXSBDT0RFQyBsb29wYmFjayB0ZXN0IHBhc3NlZAo+
+IFRyYWNlYmFjayAobW9zdCByZWNlbnQgY2FsbCBsYXN0KToKPiDCoCBGaWxlICJlMzEwX3J4X3Nw
+ZWN0cnVtLnB5IiwgbGluZSAyMTYsIGluIDxtb2R1bGU+Cj4gwqDCoMKgIG1haW4oKQo+IMKgIEZp
+bGUgImUzMTBfcnhfc3BlY3RydW0ucHkiLCBsaW5lIDIwNSwgaW4gbWFpbgo+IMKgwqDCoCB0YiA9
+IHRvcF9ibG9ja19jbHMoZnJlcT1vcHRpb25zLmZyZXEsIAo+IHJmbm9jX2dhaW49b3B0aW9ucy5y
+Zm5vY19nYWluLCByeF9nYWluPW9wdGlvbnMucnhfZ2FpbikKPiDCoCBGaWxlICJlMzEwX3J4X3Nw
+ZWN0cnVtLnB5IiwgbGluZSAxMDEsIGluIF9faW5pdF9fCj4gwqDCoMKgIHNlbGYudHV0b3JpYWxf
+Z2Fpbl8wID0gdHV0b3JpYWwuZ2FpbigKPiBBdHRyaWJ1dGVFcnJvcjogJ21vZHVsZScgb2JqZWN0
+IGhhcyBubyBhdHRyaWJ1dGUgJ2dhaW4nCj4KPiBOb3csIEkndmUgc2VlbiBtYW55IHN1Z2dlc3Rp
+b25zIG9uIGhvdyB0byBhZGRyZXNzIHRoaXMuwqAgSXQgbW9zdGx5IAo+IGRlc2NyaWJlcyB0aGlz
+IGFzIGEgcHJvYmxlbSBpbXBvcnRpbmcgdGhlIG1vZHVsZSAndHV0b3JpYWwnLsKgIEkndmUgCj4g
+c2VlbiBkZXNjcmlwdGlvbnMgb2YgdXNpbmcgdGhlICJubSIgY29tbWFuZCB0byBzZWUgaWYgdGhl
+IGNhbGxiYWNrIAo+IGZ1bmN0aW9uIGlzIHVuZGVmaW5lZC7CoCBCdXQgSSBzdGlsbCBoYXZlbid0
+IGJlZW4gYWJsZSB0byBmaXggdGhlIGlzc3VlLgo+Cj4gQnV0IG1vc3RseSB3aGF0IEknbSBhZnRl
+ciBpcyBhIHdvcmtpbmcgZXhhbXBsZSBvZiBhbiBSRk5vQyBtb2R1bGUgZm9yIAo+IHRoZSBFMzEw
+LiBPbmUgdGhhdCBpbmNsdWRlcyB0aGUgR1JDIGludGVyZmFjZSBzbyB0aGF0IHRoZSBzb2Z0d2Fy
+ZSAKPiBpbnRlcmZhY2UgY2FuIHByb2dyYW0gdGhlIEZQR0EgcmVnaXN0ZXJzLsKgIEkgdGhpbmsg
+dGhhdCBhIGxvdCBvZiB0aGUgCj4gdHV0b3JpYWxzIGFyZSB3cml0dGVuIGZvciBob3N0IGFwcGxp
+Y2F0aW9ucyB3aGVyZWFzIHRoZSBFMzEwIGhhcyBhIAo+IGNyb3NzLWNvbXBpbGluZyBhc3BlY3Qg
+dG8gaXQuCj4KPiBTbywgaWYgc29tZWJvZHkgaGFzIGEgd29ya2luZyBleGFtcGxlLCBJJ2QgZ3Jl
+YXRseSBhcHByZWNpYXRlIGl0LiBPciAKPiBtYXliZSBhIGJldHRlciBkZXNjcmlwdGlvbiBvciB0
+dXRvcmlhbCBmb3IgRTMxMCBzcGVjaWZpYyBpc3N1ZXMgbGlrZSAKPiBjcm9zcy1jb21waWxpbmcg
+T09UIFJGTm9DIGJsb2Nrcy4KPgo+IE1hbnkgdGhhbmtzIGZvciBhbGwgdGhlIGhlbHAgdGhhdCBo
+YXMgYWxyZWFkeSBiZWVuIGdpdmVuIG1lLgo+Cj4gTWlrZQo+Cj4KPiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
+Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21h
+aWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
+ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1h
+bi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
