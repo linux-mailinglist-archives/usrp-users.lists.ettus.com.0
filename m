@@ -2,61 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97E253183D3
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Feb 2021 04:08:14 +0100 (CET)
-Received: from [::1] (port=51426 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B66318C06
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Feb 2021 14:30:17 +0100 (CET)
+Received: from [::1] (port=56100 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lA2Kw-0003nS-4q; Wed, 10 Feb 2021 22:08:10 -0500
-Received: from mail-qk1-f180.google.com ([209.85.222.180]:45757)
+	id 1lAC2v-00078i-AL; Thu, 11 Feb 2021 08:30:13 -0500
+Received: from mail-io1-f48.google.com ([209.85.166.48]:41769)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1lA2Kt-0003b5-LV
- for usrp-users@lists.ettus.com; Wed, 10 Feb 2021 22:08:07 -0500
-Received: by mail-qk1-f180.google.com with SMTP id r77so3949257qka.12
- for <usrp-users@lists.ettus.com>; Wed, 10 Feb 2021 19:07:47 -0800 (PST)
+ (Exim 4.93) (envelope-from <cwolsief@gmail.com>) id 1lAC2s-00074a-6N
+ for usrp-users@lists.ettus.com; Thu, 11 Feb 2021 08:30:10 -0500
+Received: by mail-io1-f48.google.com with SMTP id e133so5625634iof.8
+ for <usrp-users@lists.ettus.com>; Thu, 11 Feb 2021 05:29:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=wxNO6uOX/3splSrmQpARjTgT2B5h8fV4xflbYghxufc=;
- b=LvGDU+Q0RtMB9aYOMpPz/4xfdAwV9UFRYD+c9la4TzVQzWQ7Lqs7KFVlCNSWKt1bqo
- 1BIB0bOIHnKRjV2VoGgW23SOr4ri5ksL6kRph4OJs/gz4KQMxyZwgzI1X6L8PwTXdDhq
- 5fxa83K/RnicEb82RFCU0tElNKvLpQi2cS6peyCLJPUeYGI7JOylROFXRS49oVkUHlRU
- wgq75StzXVxXJA/84RnBvJa4zXj2PpLBQoPvtIuguXeKCYG+hrOTAga0ZmgI/m3RBmBy
- KKRjpNLRpoFUSb0YTxWyGZCp++dI3unaM0nVbHAtqt+AP7NBfkR9C3TNgmUqYaxBCLcE
- /8FA==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=cgKtgIB0cJutG5VlqCAgNoHVCQTtxudjeBaQAYt7oLw=;
+ b=PcZWLy9o7/g1xndrOICMtcMA8ATbbP9rG4OyrOBjVurxxZdDbhpWMqNoi/0R7apVtH
+ SqEm6ieyHkvPNFQcG8LwacVOyFr8/2jLCAupH2WEjRRzWtmh9OSUaawH645BFKZcJYWg
+ FSlTPwGiEqTyqCH2hiyFzffeYnMr6HUVm9cpUPoWfpab+fSJZ8kELZ+kpuR/YXaKjEZ+
+ 5e0Uo4lxC0PdNdTdANfvTkjJDRakWI5iUnx5lL+Q+A4eW5WQkV3valgBC/xkxb3SP5gK
+ OvUypd2skPJFcBxfQPpkmRLELacfACKK9k0AjYS7BF9OLqeW8Z5uSmIyMFPF76I1vJiC
+ uQzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=wxNO6uOX/3splSrmQpARjTgT2B5h8fV4xflbYghxufc=;
- b=Z4UChrRLEiNu/LIq0MANSpuAkItEvLxKSYhKp+Fr9M4V4LWL5CMZvLylyqHQUethAM
- DoNvoEkqalZUfbxjki2eK+mrqU19RYOckFA02aJnE/Q5+CyMk1QY/oqtY0fZoW9UJ9yE
- VNYd7rd08XWHMLUjLUJO9BfCf1KKs1HJRE4+7swWJFksqLliOxQSJdvH0R5C0h5OrE7q
- QCMmmooW7RY5NxyLTLvlzeLXEcjp3AsS29Bv4cDvnlVcfdswHqRNj8JUmmiiV0+xhkxl
- f46RMazsuUsdolMIBjopZhtiDf0gjHT7jmVUo1D1/fbijMyBjn1dOD9cAN+LgzawTo3H
- PqEg==
-X-Gm-Message-State: AOAM53063nNDpsEzsdYArQzshpLogcsiAcptwN0+ZCI+PG1xOnyb+CYo
- k5XYoA8o+g6hWHY4i9smTP3PBeWs8i0=
-X-Google-Smtp-Source: ABdhPJwrtMd/v0hoh0l9zPBMNEsEhdNFR7V/89t1wwOdjE6OqgA3Ic90aYHDL5Mfu+S0JBrCZozgmg==
-X-Received: by 2002:a37:a346:: with SMTP id m67mr6828770qke.301.1613012846891; 
- Wed, 10 Feb 2021 19:07:26 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id x15sm105379qka.53.2021.02.10.19.07.26
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 10 Feb 2021 19:07:26 -0800 (PST)
-Message-ID: <60249F6D.8050902@gmail.com>
-Date: Wed, 10 Feb 2021 22:07:25 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=cgKtgIB0cJutG5VlqCAgNoHVCQTtxudjeBaQAYt7oLw=;
+ b=YjY+2y1zWOT1qKMbcW8KMvORW96qnJ5QKhXyIwgHfwet+zxu1vzWESWpuhtPU1Oqrj
+ VzviaMJi6KfMZLj55wtUMmmxv+SlfG0AJoQUZtVLcTK1nW2O5xx8SkHGja7a+QBeYkHf
+ ZluqJ5rdzUyg24umN3AJV9idzC519U84uAfYIX0fbMSqm98hbtocdpWONa+P0JenkL+/
+ i2x3Y4pbvJ9Uv8fObrXuhXYng86pfy4SZpH+kGDlx0FDyDQ03OHSKSAJPK6Xks8yaNqb
+ C685UIrovBg8Y/hINQyCuuOuA++AO9F1FMmVLH4cq66QVZsyoDtMwNPJAe4EuuvZPZaE
+ 8keg==
+X-Gm-Message-State: AOAM532WYZLpKLLzAS9mK892XCGs1/6loFtU95jqxfAdKxDsO/Oyp2Mk
+ nva963vN23c6aFGv5DmOOfg/m30rGfl0sKVUT3QBEX0r9HHCjw==
+X-Google-Smtp-Source: ABdhPJye1ZVxDcycfhXTNx5gnhNPhvC9oM5eTPDluWO9w9rRrRlX4ibFOYefKJUkc2phYvgbN5kbDMDxw6qvBBVGtWY=
+X-Received: by 2002:a02:cba5:: with SMTP id v5mr8775640jap.72.1613050169176;
+ Thu, 11 Feb 2021 05:29:29 -0800 (PST)
 MIME-Version: 1.0
-To: Rob Kossler <rkossler@nd.edu>, dtrask1@tampabay.rr.com
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <dc7956e4d464ca7111db615edccaeb34506348a5@webmail>
- <CAB__hTQLPXG0EBWHoLOJnbUC0vBoHouHPsrbLSx190i6Mm=Tdg@mail.gmail.com>
-In-Reply-To: <CAB__hTQLPXG0EBWHoLOJnbUC0vBoHouHPsrbLSx190i6Mm=Tdg@mail.gmail.com>
-Subject: Re: [USRP-users] E310 with v4.0.0.0 Image: Configure Static IP
+Date: Thu, 11 Feb 2021 08:29:18 -0500
+Message-ID: <CAM06ataJCyM_x3o24-H59EXnB9go=LuxFuEyUiWZebP8ktGShQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Python API install help - Ubuntu 20.04
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -68,10 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: Casey Wolsieffer via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Casey Wolsieffer <cwolsief@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7595225740664330842=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,20 +70,145 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-On 02/10/2021 10:01 AM, Rob Kossler wrote:
-> I don't know about the E310, but on the N310, I found files in 
-> /data/network which is where I needed to make changes such as these.
-> Rob
-Indeed, just programmed a V4.0.0.0 SG1 image onto my E310, and the 
-eth0.network file is in /data/network.  This probably has to do with
-   the fact that it's a mender-based system.
+--===============7595225740664330842==
+Content-Type: multipart/alternative; boundary="00000000000056b90605bb0f8209"
 
-Changed the eth0.network file under /data/network, rebooted, and the 
-address is statically configured as desired.
+--00000000000056b90605bb0f8209
+Content-Type: text/plain; charset="UTF-8"
+
+Hello, I have tried several times to install Python3 uhd on my system but
+when I attempt >>>import uhd in python3 environment I always receive
+ModuleNotFoundError: no module named 'uhd'
+
+As far as I can see there are no hang ups on install and after $make, I run
+$make test and get 0 out of 82 fails. Below is my enabled components after
+I run
+
+$cmake ../
+
+I've also put a uhd.conf file in my ld.so.conf file and ran $sudo ldconfig.
+Although I'm not certain I'm putting in correct path, right now it's
+[my_directory]/uhd/host/build/lib/
+
+I'm on Ubuntu 20.04, any help is greatly appreciated!
+
+-- ######################################################
+-- # UHD enabled components
+-- ######################################################
+--   * LibUHD
+--   * LibUHD - C API
+--   * LibUHD - Python API
+--   * Examples
+--   * Utils
+--   * Tests
+--   * USB
+--   * B100
+--   * B200
+--   * USRP1
+--   * USRP2
+--   * X300
+--   * MPMD
+--   * SIM
+--   * N300
+--   * N320
+--   * E320
+--   * E300
+--   * OctoClock
+--   * Manual
+--   * API/Doxygen
+--   * Man Pages
+--
+-- ######################################################
+-- # UHD disabled components
+-- ######################################################
+--   * DPDK
+--
+-- ******************************************************
+-- * You are building the UHD development master branch.
+-- * For production code, we recommend our stable,
+-- * releases or using the release branch (maint).
+-- ******************************************************
+-- Building version: 4.0.0.0-93-g3b9ced8f
+-- Using install prefix: /usr/local
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/casey/Projects/UHD/uhd/host/build
+
+--00000000000056b90605bb0f8209
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello, I have tried several times to install Python3 =
+uhd on my system but when I attempt &gt;&gt;&gt;import uhd in python3 envir=
+onment I always receive ModuleNotFoundError: no module named &#39;uhd&#39;<=
+/div><div><br></div><div>As far as I can see there are no hang ups on insta=
+ll and after $make, I run $make test and get 0 out of 82 fails. Below is my=
+ enabled components after I run</div><div><br></div><div>$cmake ../</div><d=
+iv><br></div><div>I&#39;ve also put a uhd.conf file in my ld.so.conf file a=
+nd ran $sudo ldconfig. Although I&#39;m not certain I&#39;m putting in corr=
+ect path, right now it&#39;s [my_directory]/uhd/host/build/lib/<br></div><d=
+iv><br></div><div>I&#39;m on Ubuntu 20.04, any help is greatly appreciated!=
+<br></div><div><br></div><div><span style=3D"font-family:monospace"><span s=
+tyle=3D"color:rgb(0,0,0);background-color:rgb(255,255,255)">-- ############=
+##########################################
+</span><br>-- # UHD enabled components =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<br>--=
+ ######################################################
+<br>-- =C2=A0=C2=A0* LibUHD
+<br>-- =C2=A0=C2=A0* LibUHD - C API
+<br>-- =C2=A0=C2=A0* LibUHD - Python API
+<br>-- =C2=A0=C2=A0* Examples
+<br>-- =C2=A0=C2=A0* Utils
+<br>-- =C2=A0=C2=A0* Tests
+<br>-- =C2=A0=C2=A0* USB
+<br>-- =C2=A0=C2=A0* B100
+<br>-- =C2=A0=C2=A0* B200
+<br>-- =C2=A0=C2=A0* USRP1
+<br>-- =C2=A0=C2=A0* USRP2
+<br>-- =C2=A0=C2=A0* X300
+<br>-- =C2=A0=C2=A0* MPMD
+<br>-- =C2=A0=C2=A0* SIM
+<br>-- =C2=A0=C2=A0* N300
+<br>-- =C2=A0=C2=A0* N320
+<br>-- =C2=A0=C2=A0* E320
+<br>-- =C2=A0=C2=A0* E300
+<br>-- =C2=A0=C2=A0* OctoClock
+<br>-- =C2=A0=C2=A0* Manual
+<br>-- =C2=A0=C2=A0* API/Doxygen
+<br>-- =C2=A0=C2=A0* Man Pages
+<br>-- =C2=A0<br>-- ######################################################
+<br>-- # UHD disabled components =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<br>-- ###########=
+###########################################
+<br>-- =C2=A0=C2=A0* DPDK
+<br>-- =C2=A0<br>-- ******************************************************
+<br>-- * You are building the UHD development master branch.
+<br>-- * For production code, we recommend our stable,
+<br>-- * releases or using the release branch (maint).
+<br>-- ******************************************************
+<br>-- Building version: 4.0.0.0-93-g3b9ced8f
+<br>-- Using install prefix: /usr/local
+<br>-- Configuring done
+<br>-- Generating done
+<br>-- Build files have been written to: /home/casey/Projects/UHD/uhd/host/=
+build<br>
+<br><br></span></div></div>
+
+--00000000000056b90605bb0f8209--
 
 
+--===============7595225740664330842==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7595225740664330842==--
+
