@@ -2,50 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4F13318D88
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Feb 2021 15:41:30 +0100 (CET)
-Received: from [::1] (port=56686 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C374C318D91
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Feb 2021 15:45:23 +0100 (CET)
+Received: from [::1] (port=56722 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lAD9q-0004Qg-SF; Thu, 11 Feb 2021 09:41:26 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:38819)
+	id 1lADDd-0004lH-Dg; Thu, 11 Feb 2021 09:45:21 -0500
+Received: from mail-io1-f47.google.com ([209.85.166.47]:36971)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1lAD9n-0004KE-Ae
- for USRP-users@lists.ettus.com; Thu, 11 Feb 2021 09:41:23 -0500
-Received: by mail-oi1-f176.google.com with SMTP id h6so6296912oie.5
- for <USRP-users@lists.ettus.com>; Thu, 11 Feb 2021 06:41:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ (Exim 4.93) (envelope-from <cwolsief@gmail.com>) id 1lADDY-0004dk-Rt
+ for USRP-users@lists.ettus.com; Thu, 11 Feb 2021 09:45:16 -0500
+Received: by mail-io1-f47.google.com with SMTP id m17so5895807ioy.4
+ for <USRP-users@lists.ettus.com>; Thu, 11 Feb 2021 06:44:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=dM5aUuwEaPL4pqeGYg3G96h5bcGxRJ06VCWXzxRMJNQ=;
- b=LuW8PmK8gVqEQwWgr5lNYGQoSEsLyd2eOisGPLlpTjIdG9dNoKXH5bZ2t/Q5wivITC
- r/sNaenz6EWCovYGDkYPoa1czHYYhbk3ufRABzE2JBu+XnpAKR3TOA8sQ0rpNztAXffu
- J2nmP3+z1afwOLv+3n3WuszR7k5WOaBCqB60ZA80cnKvkIc5ot0lTHejzPQMo4qwGHDb
- lAwTQApf4ABo4TdpEPCOkI6VYiJg1raNmOtOciDH6U7HMpAoFZIKpz0GiSwOki5t3Mr7
- Y5HOy+toUFQ8YqR5vXaWFKxSVjN9hL/31/v5//PWzK4lU/wQNPwWLqld+h9Ob4dGy9b5
- CHBA==
+ :cc; bh=HEGbmoNXWLH9c/zj5PJsu9vfYngjYZCh6R7rO6n/jZ8=;
+ b=GIKPqmjBokmJKOz+eJBfm0HGofPS+nSzsvgnJcmq4yXk64YGx3u3dP3eit6GlxD69q
+ yVbOW66vc/PYQwlTrhvAIJYnbKVMIY6gt4ze02tsmqaePQ+WJxi2ZvlJmktCdtHJJH56
+ EGpE0HSwJpDgIdkIZOp4+mt4qczglK4ciNQ0KBGVlE22X6iZublS23iDsAPFO1FTqVFV
+ xwO8QMhldsSjmYcYq33uZ/Q0SQs92rDkRO+JYVQBVWn6gkyQbe9rFb6fkZHBVRW7krPR
+ kLlhPzuKU9Xnfh+nPjM4s/P11LKMwR9A+mJp6sMlTAvy8ZZeItUmQC4V3jRoRPzDUnF/
+ dQHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=dM5aUuwEaPL4pqeGYg3G96h5bcGxRJ06VCWXzxRMJNQ=;
- b=VYJzrst4u6fqA14NwPDIf+qAnVBIYswaLTsZXm92F1kAV87MKD/D9XuV9eNBQWtc8+
- tgjRk06+h8ChdYkUxC6I/dd4WeFK0D5KniIRmShCO4RAp5W3uvhcY8cmjneFbgkdRIao
- S0U4psnfG09hFjYXQXDP3sPBjlBBti0ksE96bvVUU2g7eKZ6UQbtGQbi++BMHbz3jOgz
- yGF+mQP7G8b5Dn7UWBP7ywdhjX1h7IrRiLJrn2qfLwKuKfd0eiTWYwXGfft783xiK9tH
- C0FN6tKS6Atj0HgIDaoTxNkcW4780Ct3MMb/4k7jItaKyBzaqtYg1kMugcyeGNfZ43sz
- bdvA==
-X-Gm-Message-State: AOAM531puKzfwjZWftmuhnAM7KmxKfnbTY1Wa3cNVGfy3Ss0GdKGKW8Z
- nEEKmPIAq1KF3WbUrlXyMrN9qUx0v2pVObBbl6t6dw==
-X-Google-Smtp-Source: ABdhPJwZ+3s5WC4UrXsJQqw6qZVR9qxyG5SVYhntqy3e0jkxt3Dn9gctXReUy/5bGZ5vEXMPRCpzdqNy4pZ0tMpN9og=
-X-Received: by 2002:aca:6089:: with SMTP id u131mr2912034oib.150.1613054442226; 
- Thu, 11 Feb 2021 06:40:42 -0800 (PST)
+ bh=HEGbmoNXWLH9c/zj5PJsu9vfYngjYZCh6R7rO6n/jZ8=;
+ b=OGTDxQ3z6Nd77gl6isBx3gYUlOs5OyqyxzN0baih7FBQdq4bzaaYEYNgzqDx1tmjhr
+ ZnXGcfo+T74bPOIYi1wFr3JiP28VaBqKK5ojfX0sfILhR8eUanb4zhss2LOD/mbAzCO1
+ 5pdTfXMwfFwQrXnWLI60Y2e6LHT+n4oaOvOJIUOYlHMt9bZGTsfr3LJRKW+Z/NseuQxa
+ el6UptSaEwzrXh2JVvKdecA4zoQiG9MjBszZ1aI335arket30mnkW9ouwiKb1BSEnzkO
+ Y54xNrglBtlcdcmRmVw0kvJbgaT8oXR9fPxKs/a6+B5vC2362+woHFMrU9SRR0PjskSX
+ GPfQ==
+X-Gm-Message-State: AOAM5326f1tS6NAsIQwx1lC7Tn5rlC1ZO8LGKTWlBc9t/ZaDdyflzXvu
+ dT93X4Wb8zyAyAuTZ1Yzvg8VWO+zYNganRpagEw=
+X-Google-Smtp-Source: ABdhPJzro6+aHNjGMP+LWV8fkU5fl6cLDPzfWl13nVZxnxeATxY5rttsAlqSpwJAY3Y8S6cFroZR+zjKeIx5nkjfnX4=
+X-Received: by 2002:a05:6638:3f7:: with SMTP id
+ s23mr9134333jaq.80.1613054676044; 
+ Thu, 11 Feb 2021 06:44:36 -0800 (PST)
 MIME-Version: 1.0
 References: <CAM06ataJCyM_x3o24-H59EXnB9go=LuxFuEyUiWZebP8ktGShQ@mail.gmail.com>
  <CA5120D6-2F5E-4CCD-8390-728A2810CA11@gmail.com>
 In-Reply-To: <CA5120D6-2F5E-4CCD-8390-728A2810CA11@gmail.com>
-Date: Thu, 11 Feb 2021 09:40:31 -0500
-Message-ID: <CAB__hTQ=tTLZYO65zgDDpLBphvR1sfbR26qp_A55sQ9bMcsaFg@mail.gmail.com>
+Date: Thu, 11 Feb 2021 09:44:25 -0500
+Message-ID: <CAM06atZG1mrZyx+4qFLyvjCi0BmN8PhxDgX1WN72=cUrzeJ2vA@mail.gmail.com>
 To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: USRP-users@lists.ettus.com
 Subject: Re: [USRP-users] Python API install help - Ubuntu 20.04
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -58,10 +60,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Cc: usrp-users <USRP-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1201844808455954667=="
+From: Casey Wolsieffer via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Casey Wolsieffer <cwolsief@gmail.com>
+Content-Type: multipart/mixed; boundary="===============6327726971759510228=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -75,18 +76,22 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============1201844808455954667==
-Content-Type: multipart/alternative; boundary="0000000000000877d705bb108101"
+--===============6327726971759510228==
+Content-Type: multipart/alternative; boundary="000000000000f8165205bb108e8b"
 
---0000000000000877d705bb108101
+--000000000000f8165205bb108e8b
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Perhaps set PYTHONPATH such as:
-export PYTHONPATH=3D/usr/local/lib/python3.8/site-packages/
+I did sudo make install yes,
 
-On Thu, Feb 11, 2021 at 8:57 AM Marcus D Leech via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+
+I'm assuming you mean /usr/local, I tried that in .conf file but that
+doesn't seem to work either
+
+
+On Thu, Feb 11, 2021, 8:57 AM Marcus D Leech <patchvonbraun@gmail.com>
+wrote:
 
 > Your install prefix is /use/local
 >
@@ -165,23 +170,20 @@ usrp-users@lists.ettus.com> wrote:
 > > USRP-users@lists.ettus.com
 > > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 >
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
 
---0000000000000877d705bb108101
+--000000000000f8165205bb108e8b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Perhaps set PYTHONPATH such as:<div>export PYTHONPATH=3D/u=
-sr/local/lib/python3.8/site-packages/<br></div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 11, 2021 at 8:57=
- AM Marcus D Leech via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.et=
-tus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex">Your install prefix is /use/local<br>
+<div dir=3D"auto">I did sudo make install yes,<div dir=3D"auto"><br></div><=
+div dir=3D"auto"><br></div><div dir=3D"auto">I&#39;m assuming you mean /usr=
+/local, I tried that in .conf file but that doesn&#39;t seem to work either=
+</div><br><br><div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Thu, Feb 11, 2021, 8:57 AM Marcus D Leech &lt;<a href=
+=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex">Your install prefix is /use/local<b=
+r>
 <br>
 Did you sudo make install?<br>
 <br>
@@ -190,8 +192,8 @@ Did you sudo make install?<br>
 Sent from my iPhone<br>
 <br>
 &gt; On Feb 11, 2021, at 8:30 AM, Casey Wolsieffer via USRP-users &lt;<a hr=
-ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists=
-.ettus.com</a>&gt; wrote:<br>
+ef=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" rel=3D"noreferre=
+r">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
 &gt; <br>
 &gt; =EF=BB=BF<br>
 &gt; Hello, I have tried several times to install Python3 uhd on my system =
@@ -258,25 +260,17 @@ ht now it&#39;s [my_directory]/uhd/host/build/lib/<br>
 &gt; <br>
 &gt; _______________________________________________<br>
 &gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D=
+"noreferrer">USRP-users@lists.ettus.com</a><br>
 &gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailma=
-n/listinfo/usrp-users_lists.ettus.com</a><br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
+tus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus=
+.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div></div>
 
---0000000000000877d705bb108101--
+--000000000000f8165205bb108e8b--
 
 
---===============1201844808455954667==
+--===============6327726971759510228==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -287,5 +281,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============1201844808455954667==--
+--===============6327726971759510228==--
 
