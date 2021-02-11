@@ -2,47 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8B66318C06
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Feb 2021 14:30:17 +0100 (CET)
-Received: from [::1] (port=56100 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61813318CC3
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Feb 2021 14:57:53 +0100 (CET)
+Received: from [::1] (port=56318 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lAC2v-00078i-AL; Thu, 11 Feb 2021 08:30:13 -0500
-Received: from mail-io1-f48.google.com ([209.85.166.48]:41769)
+	id 1lACTf-0000qY-Jp; Thu, 11 Feb 2021 08:57:51 -0500
+Received: from mail-qk1-f175.google.com ([209.85.222.175]:43628)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <cwolsief@gmail.com>) id 1lAC2s-00074a-6N
- for usrp-users@lists.ettus.com; Thu, 11 Feb 2021 08:30:10 -0500
-Received: by mail-io1-f48.google.com with SMTP id e133so5625634iof.8
- for <usrp-users@lists.ettus.com>; Thu, 11 Feb 2021 05:29:49 -0800 (PST)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1lACTb-0000dT-Fb
+ for USRP-users@lists.ettus.com; Thu, 11 Feb 2021 08:57:47 -0500
+Received: by mail-qk1-f175.google.com with SMTP id m144so5141374qke.10
+ for <USRP-users@lists.ettus.com>; Thu, 11 Feb 2021 05:57:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=cgKtgIB0cJutG5VlqCAgNoHVCQTtxudjeBaQAYt7oLw=;
- b=PcZWLy9o7/g1xndrOICMtcMA8ATbbP9rG4OyrOBjVurxxZdDbhpWMqNoi/0R7apVtH
- SqEm6ieyHkvPNFQcG8LwacVOyFr8/2jLCAupH2WEjRRzWtmh9OSUaawH645BFKZcJYWg
- FSlTPwGiEqTyqCH2hiyFzffeYnMr6HUVm9cpUPoWfpab+fSJZ8kELZ+kpuR/YXaKjEZ+
- 5e0Uo4lxC0PdNdTdANfvTkjJDRakWI5iUnx5lL+Q+A4eW5WQkV3valgBC/xkxb3SP5gK
- OvUypd2skPJFcBxfQPpkmRLELacfACKK9k0AjYS7BF9OLqeW8Z5uSmIyMFPF76I1vJiC
- uQzA==
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=WapUgWwp3NC1C+sL2IJnWu8G33Uf0gbwzqQadKNOkmg=;
+ b=N3GE13yMlOlVMFOtl4QYyNqLZ3gsZj0bSiAAUn47EdG5rkupocqdbNExmiVMZsq2TI
+ DExzB0rGyZYz0LhY3boXC++ZpMr+70OaQeGyb1I4G3M9jEnTAEDmcdFQx/RPGHR1NygM
+ FNazgVix5Chq8gT/WZEOfwAbhI7ClrFasor631hSxFogM1axMdmyLfNcvRzXyZyVMTIs
+ AIMZ+SDd1KoOBpw/z+HTwFE1AJ23Sux9D07mqNWG1sVLH9W+aUJzuq7u2qNeMcmcziEp
+ NZZdzgst7Z6Ho0qd5y+qLRWhX7EXuP5+A0sMxt+R3pmi/Ml4IXZmU4FKD1yPtguzPD9Q
+ bYWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=cgKtgIB0cJutG5VlqCAgNoHVCQTtxudjeBaQAYt7oLw=;
- b=YjY+2y1zWOT1qKMbcW8KMvORW96qnJ5QKhXyIwgHfwet+zxu1vzWESWpuhtPU1Oqrj
- VzviaMJi6KfMZLj55wtUMmmxv+SlfG0AJoQUZtVLcTK1nW2O5xx8SkHGja7a+QBeYkHf
- ZluqJ5rdzUyg24umN3AJV9idzC519U84uAfYIX0fbMSqm98hbtocdpWONa+P0JenkL+/
- i2x3Y4pbvJ9Uv8fObrXuhXYng86pfy4SZpH+kGDlx0FDyDQ03OHSKSAJPK6Xks8yaNqb
- C685UIrovBg8Y/hINQyCuuOuA++AO9F1FMmVLH4cq66QVZsyoDtMwNPJAe4EuuvZPZaE
- 8keg==
-X-Gm-Message-State: AOAM532WYZLpKLLzAS9mK892XCGs1/6loFtU95jqxfAdKxDsO/Oyp2Mk
- nva963vN23c6aFGv5DmOOfg/m30rGfl0sKVUT3QBEX0r9HHCjw==
-X-Google-Smtp-Source: ABdhPJye1ZVxDcycfhXTNx5gnhNPhvC9oM5eTPDluWO9w9rRrRlX4ibFOYefKJUkc2phYvgbN5kbDMDxw6qvBBVGtWY=
-X-Received: by 2002:a02:cba5:: with SMTP id v5mr8775640jap.72.1613050169176;
- Thu, 11 Feb 2021 05:29:29 -0800 (PST)
-MIME-Version: 1.0
-Date: Thu, 11 Feb 2021 08:29:18 -0500
-Message-ID: <CAM06ataJCyM_x3o24-H59EXnB9go=LuxFuEyUiWZebP8ktGShQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Python API install help - Ubuntu 20.04
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=WapUgWwp3NC1C+sL2IJnWu8G33Uf0gbwzqQadKNOkmg=;
+ b=FMTAuIT5F2UG0S6BK4hEQ1VTj2V3IwSwBCiYLZNpzQT+0opUa/5S2TwvgfQxCx7MdC
+ 3tJcF8p89fqBvcR88oJ4Bzvh/GeNxHSQUw45z4NJACQ1uwN4YivznwNQqfq642a/XpoX
+ VJ827q2ZvRxWK541FYRQQNv3iGjVmLV98D/cszTIkLTpyqNA6m1mvhpI+0Wcjkvu4cUq
+ LuLU1sI1m/PeitjG0BOa/UgZ3tDk7w62UDFLL507LbEh/tNShiAu0thffFtn1QC22FDn
+ TO2wqnspWcJ5fFf3smLRnIg8H5rabDsrq+cpKaj5T9pbE3ArMrjvGN78jEPRIxRckkej
+ KMcA==
+X-Gm-Message-State: AOAM532Qswc39B42O0FyJPSCTUmtvLObTkM//FGNrkLYoO9FohRVXS/e
+ EjA06DON4nR45D653rfXbQs=
+X-Google-Smtp-Source: ABdhPJzTUlaK85Z5VEGQwmvHdOHh25+VBwiNNmj9PlBse+NSxurqJT+TybBQeyi+L7PyNoyNnBooSQ==
+X-Received: by 2002:a05:620a:1466:: with SMTP id
+ j6mr8683211qkl.164.1613051826753; 
+ Thu, 11 Feb 2021 05:57:06 -0800 (PST)
+Received: from [192.168.2.130]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.gmail.com with ESMTPSA id v12sm3899690qkg.63.2021.02.11.05.57.06
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 11 Feb 2021 05:57:06 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Thu, 11 Feb 2021 08:57:05 -0500
+Message-Id: <CA5120D6-2F5E-4CCD-8390-728A2810CA11@gmail.com>
+References: <CAM06ataJCyM_x3o24-H59EXnB9go=LuxFuEyUiWZebP8ktGShQ@mail.gmail.com>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <CAM06ataJCyM_x3o24-H59EXnB9go=LuxFuEyUiWZebP8ktGShQ@mail.gmail.com>
+To: Casey Wolsieffer <cwolsief@gmail.com>
+X-Mailer: iPhone Mail (18D52)
+Subject: Re: [USRP-users] Python API install help - Ubuntu 20.04
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Casey Wolsieffer via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Casey Wolsieffer <cwolsief@gmail.com>
-Content-Type: multipart/mixed; boundary="===============7595225740664330842=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,145 +84,46 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7595225740664330842==
-Content-Type: multipart/alternative; boundary="00000000000056b90605bb0f8209"
-
---00000000000056b90605bb0f8209
-Content-Type: text/plain; charset="UTF-8"
-
-Hello, I have tried several times to install Python3 uhd on my system but
-when I attempt >>>import uhd in python3 environment I always receive
-ModuleNotFoundError: no module named 'uhd'
-
-As far as I can see there are no hang ups on install and after $make, I run
-$make test and get 0 out of 82 fails. Below is my enabled components after
-I run
-
-$cmake ../
-
-I've also put a uhd.conf file in my ld.so.conf file and ran $sudo ldconfig.
-Although I'm not certain I'm putting in correct path, right now it's
-[my_directory]/uhd/host/build/lib/
-
-I'm on Ubuntu 20.04, any help is greatly appreciated!
-
--- ######################################################
--- # UHD enabled components
--- ######################################################
---   * LibUHD
---   * LibUHD - C API
---   * LibUHD - Python API
---   * Examples
---   * Utils
---   * Tests
---   * USB
---   * B100
---   * B200
---   * USRP1
---   * USRP2
---   * X300
---   * MPMD
---   * SIM
---   * N300
---   * N320
---   * E320
---   * E300
---   * OctoClock
---   * Manual
---   * API/Doxygen
---   * Man Pages
---
--- ######################################################
--- # UHD disabled components
--- ######################################################
---   * DPDK
---
--- ******************************************************
--- * You are building the UHD development master branch.
--- * For production code, we recommend our stable,
--- * releases or using the release branch (maint).
--- ******************************************************
--- Building version: 4.0.0.0-93-g3b9ced8f
--- Using install prefix: /usr/local
--- Configuring done
--- Generating done
--- Build files have been written to: /home/casey/Projects/UHD/uhd/host/build
-
---00000000000056b90605bb0f8209
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello, I have tried several times to install Python3 =
-uhd on my system but when I attempt &gt;&gt;&gt;import uhd in python3 envir=
-onment I always receive ModuleNotFoundError: no module named &#39;uhd&#39;<=
-/div><div><br></div><div>As far as I can see there are no hang ups on insta=
-ll and after $make, I run $make test and get 0 out of 82 fails. Below is my=
- enabled components after I run</div><div><br></div><div>$cmake ../</div><d=
-iv><br></div><div>I&#39;ve also put a uhd.conf file in my ld.so.conf file a=
-nd ran $sudo ldconfig. Although I&#39;m not certain I&#39;m putting in corr=
-ect path, right now it&#39;s [my_directory]/uhd/host/build/lib/<br></div><d=
-iv><br></div><div>I&#39;m on Ubuntu 20.04, any help is greatly appreciated!=
-<br></div><div><br></div><div><span style=3D"font-family:monospace"><span s=
-tyle=3D"color:rgb(0,0,0);background-color:rgb(255,255,255)">-- ############=
-##########################################
-</span><br>-- # UHD enabled components =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<br>--=
- ######################################################
-<br>-- =C2=A0=C2=A0* LibUHD
-<br>-- =C2=A0=C2=A0* LibUHD - C API
-<br>-- =C2=A0=C2=A0* LibUHD - Python API
-<br>-- =C2=A0=C2=A0* Examples
-<br>-- =C2=A0=C2=A0* Utils
-<br>-- =C2=A0=C2=A0* Tests
-<br>-- =C2=A0=C2=A0* USB
-<br>-- =C2=A0=C2=A0* B100
-<br>-- =C2=A0=C2=A0* B200
-<br>-- =C2=A0=C2=A0* USRP1
-<br>-- =C2=A0=C2=A0* USRP2
-<br>-- =C2=A0=C2=A0* X300
-<br>-- =C2=A0=C2=A0* MPMD
-<br>-- =C2=A0=C2=A0* SIM
-<br>-- =C2=A0=C2=A0* N300
-<br>-- =C2=A0=C2=A0* N320
-<br>-- =C2=A0=C2=A0* E320
-<br>-- =C2=A0=C2=A0* E300
-<br>-- =C2=A0=C2=A0* OctoClock
-<br>-- =C2=A0=C2=A0* Manual
-<br>-- =C2=A0=C2=A0* API/Doxygen
-<br>-- =C2=A0=C2=A0* Man Pages
-<br>-- =C2=A0<br>-- ######################################################
-<br>-- # UHD disabled components =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<br>-- ###########=
-###########################################
-<br>-- =C2=A0=C2=A0* DPDK
-<br>-- =C2=A0<br>-- ******************************************************
-<br>-- * You are building the UHD development master branch.
-<br>-- * For production code, we recommend our stable,
-<br>-- * releases or using the release branch (maint).
-<br>-- ******************************************************
-<br>-- Building version: 4.0.0.0-93-g3b9ced8f
-<br>-- Using install prefix: /usr/local
-<br>-- Configuring done
-<br>-- Generating done
-<br>-- Build files have been written to: /home/casey/Projects/UHD/uhd/host/=
-build<br>
-<br><br></span></div></div>
-
---00000000000056b90605bb0f8209--
-
-
---===============7595225740664330842==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============7595225740664330842==--
-
+WW91ciBpbnN0YWxsIHByZWZpeCBpcyAvdXNlL2xvY2FsCgpEaWQgeW91IHN1ZG8gbWFrZSBpbnN0
+YWxsPwoKCgpTZW50IGZyb20gbXkgaVBob25lCgo+IE9uIEZlYiAxMSwgMjAyMSwgYXQgODozMCBB
+TSwgQ2FzZXkgV29sc2llZmZlciB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20+IHdyb3RlOgo+IAo+IO+7vwo+IEhlbGxvLCBJIGhhdmUgdHJpZWQgc2V2ZXJhbCB0aW1l
+cyB0byBpbnN0YWxsIFB5dGhvbjMgdWhkIG9uIG15IHN5c3RlbSBidXQgd2hlbiBJIGF0dGVtcHQg
+Pj4+aW1wb3J0IHVoZCBpbiBweXRob24zIGVudmlyb25tZW50IEkgYWx3YXlzIHJlY2VpdmUgTW9k
+dWxlTm90Rm91bmRFcnJvcjogbm8gbW9kdWxlIG5hbWVkICd1aGQnCj4gCj4gQXMgZmFyIGFzIEkg
+Y2FuIHNlZSB0aGVyZSBhcmUgbm8gaGFuZyB1cHMgb24gaW5zdGFsbCBhbmQgYWZ0ZXIgJG1ha2Us
+IEkgcnVuICRtYWtlIHRlc3QgYW5kIGdldCAwIG91dCBvZiA4MiBmYWlscy4gQmVsb3cgaXMgbXkg
+ZW5hYmxlZCBjb21wb25lbnRzIGFmdGVyIEkgcnVuCj4gCj4gJGNtYWtlIC4uLwo+IAo+IEkndmUg
+YWxzbyBwdXQgYSB1aGQuY29uZiBmaWxlIGluIG15IGxkLnNvLmNvbmYgZmlsZSBhbmQgcmFuICRz
+dWRvIGxkY29uZmlnLiBBbHRob3VnaCBJJ20gbm90IGNlcnRhaW4gSSdtIHB1dHRpbmcgaW4gY29y
+cmVjdCBwYXRoLCByaWdodCBub3cgaXQncyBbbXlfZGlyZWN0b3J5XS91aGQvaG9zdC9idWlsZC9s
+aWIvCj4gCj4gSSdtIG9uIFVidW50dSAyMC4wNCwgYW55IGhlbHAgaXMgZ3JlYXRseSBhcHByZWNp
+YXRlZCEKPiAKPiAtLSAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMgCj4gLS0gIyBVSEQgZW5hYmxlZCBjb21wb25lbnRzICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIAo+IC0tICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyAKPiAtLSAgICogTGliVUhEIAo+IC0tICAgKiBMaWJVSEQgLSBD
+IEFQSSAKPiAtLSAgICogTGliVUhEIC0gUHl0aG9uIEFQSSAKPiAtLSAgICogRXhhbXBsZXMgCj4g
+LS0gICAqIFV0aWxzIAo+IC0tICAgKiBUZXN0cyAKPiAtLSAgICogVVNCIAo+IC0tICAgKiBCMTAw
+IAo+IC0tICAgKiBCMjAwIAo+IC0tICAgKiBVU1JQMSAKPiAtLSAgICogVVNSUDIgCj4gLS0gICAq
+IFgzMDAgCj4gLS0gICAqIE1QTUQgCj4gLS0gICAqIFNJTSAKPiAtLSAgICogTjMwMCAKPiAtLSAg
+ICogTjMyMCAKPiAtLSAgICogRTMyMCAKPiAtLSAgICogRTMwMCAKPiAtLSAgICogT2N0b0Nsb2Nr
+IAo+IC0tICAgKiBNYW51YWwgCj4gLS0gICAqIEFQSS9Eb3h5Z2VuIAo+IC0tICAgKiBNYW4gUGFn
+ZXMgCj4gLS0gIAo+IC0tICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyAKPiAtLSAjIFVIRCBkaXNhYmxlZCBjb21wb25lbnRzICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgCj4gLS0gIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIAo+IC0tICAgKiBEUERLIAo+IC0tICAKPiAtLSAqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKiogCj4gLS0gKiBZ
+b3UgYXJlIGJ1aWxkaW5nIHRoZSBVSEQgZGV2ZWxvcG1lbnQgbWFzdGVyIGJyYW5jaC4gCj4gLS0g
+KiBGb3IgcHJvZHVjdGlvbiBjb2RlLCB3ZSByZWNvbW1lbmQgb3VyIHN0YWJsZSwgCj4gLS0gKiBy
+ZWxlYXNlcyBvciB1c2luZyB0aGUgcmVsZWFzZSBicmFuY2ggKG1haW50KS4gCj4gLS0gKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqIAo+IC0tIEJ1
+aWxkaW5nIHZlcnNpb246IDQuMC4wLjAtOTMtZzNiOWNlZDhmIAo+IC0tIFVzaW5nIGluc3RhbGwg
+cHJlZml4OiAvdXNyL2xvY2FsIAo+IC0tIENvbmZpZ3VyaW5nIGRvbmUgCj4gLS0gR2VuZXJhdGlu
+ZyBkb25lIAo+IC0tIEJ1aWxkIGZpbGVzIGhhdmUgYmVlbiB3cml0dGVuIHRvOiAvaG9tZS9jYXNl
+eS9Qcm9qZWN0cy9VSEQvdWhkL2hvc3QvYnVpbGQKPiAKPiAKPiBfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4g
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxt
+YW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVT
+UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
