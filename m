@@ -2,64 +2,61 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71690319314
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Feb 2021 20:28:35 +0100 (CET)
-Received: from [::1] (port=59110 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40DFC319339
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Feb 2021 20:38:39 +0100 (CET)
+Received: from [::1] (port=59188 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lAHde-0001iH-J7; Thu, 11 Feb 2021 14:28:30 -0500
-Received: from mail-qt1-f179.google.com ([209.85.160.179]:36945)
+	id 1lAHnP-0002o1-0U; Thu, 11 Feb 2021 14:38:35 -0500
+Received: from mail-qv1-f43.google.com ([209.85.219.43]:36367)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1lAHdb-0001Uv-5n
- for USRP-users@lists.ettus.com; Thu, 11 Feb 2021 14:28:27 -0500
-Received: by mail-qt1-f179.google.com with SMTP id v3so5023423qtw.4
- for <USRP-users@lists.ettus.com>; Thu, 11 Feb 2021 11:28:07 -0800 (PST)
+ id 1lAHnL-0002Y5-Fh
+ for usrp-users@lists.ettus.com; Thu, 11 Feb 2021 14:38:31 -0500
+Received: by mail-qv1-f43.google.com with SMTP id e9so2569320qvy.3
+ for <usrp-users@lists.ettus.com>; Thu, 11 Feb 2021 11:38:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=GakbO3+shvIsmyKv1QWTvxb5ph/pubFv8VPDFRE1IAI=;
- b=VCiCPe/7y3pcUJHDuyQbBUlPW3cxj4n0gVb2TN4LxI2wFklJHF8UmyoepJRbBqR9Mb
- 4SCszSv7YRXJDxwSku8xYMivXLOHd5fcAmybkhu+1DBXSpcsb3oKH7od3Vw7Ge9/bn6s
- TqPSUeOu9AGsPb545f2Lxn5yaVRcw7zD5gq/A2e3eVFHMe+HEmw7ZpAwSrJ8WYwQCD+j
- XC925QzVAnsdmwWeFgxD5W4JBLRaxuAp8ucVLg/QUyq/qjkOBlpFUDmXZ3NA5Lj6UNOg
- bkr9clghXVowmCqSyGxnKwZQ+9xz/U3TQwAVtHBaJocMbRpN6LTdGxvwkhNIA4QHqbKI
- V4SA==
+ :references:in-reply-to:content-transfer-encoding;
+ bh=wWEUc0cZJrFVicP1zc6DJTEo4piWKP0s673zS5aCkW8=;
+ b=DB0iwMM/IrAw5rVTpV+R4NHVcxTqC/EK6QnqvaIix8B26iY+LK1Vf3Md7e1MPCz8rM
+ Vnh+5yHVEoR5VYJ4vl2jIKSvpc3Gq/Jm6qUcgLgUZt0fvWd+wRtFvouc0Vprql/7LaIg
+ MV4CYVZb36xMyn+v+2KSNd6nL1G/jxcbQAB3tVtiB6dnnAniRUDbV9w5vlwvc4EfUlSJ
+ 6DTJJVuKVeS145+RsrWEnAoqMXv9QMGdso2gTsAI8q+hI/k4od3D9ObjBLOqIfRcpueI
+ UtPbD0J21Vrev7ERGdH3nmSpS/S7l2rkTCImQwxLUoEPZAM/FmHE0Rp0Sh/GogIdi2F+
+ 11Tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=GakbO3+shvIsmyKv1QWTvxb5ph/pubFv8VPDFRE1IAI=;
- b=Wi1O8tC8jq0YjFiJYIoiPft3Ld5C9JeCIm04wgYK9ityudeKsAym4CDOQrnHpcEtep
- to6gwRuADremqkpSlGk/a0hkbq1qCJA55tDKXS3eCZktxFXTbCbN2bVC5O/kC2uXlimC
- Nq4lLnFCxmab0mG2+BztquU7ewTXF+362edf4RcnWFGg8j5tU/ujHlcWpYcYbneWnRgy
- 8jhZlNOiLXEdGyGCjH1U/NanTacWx6OGrF/KiyqGVWDQTXpVmtG4xJb9zZoR10QYSpS1
- SbdqGiAP8OTQcGslXElmy77bvvB+TwQchEZ+Pz9nhG5BVYaEuU0G5bTi+Jib5UlHoTOo
- TxjA==
-X-Gm-Message-State: AOAM533ZFCmxJ6G/5jU86BbePh5A5o8RDXrTtxvvMb4GGEGHG1Ws+mbz
- ONubDVJbhJoLBTqllWAHc+tQmLZpmZE=
-X-Google-Smtp-Source: ABdhPJzHRfcEDLvUMC/xM6nT8VLUtUr0fjr7YfEpcJB9iQYqfFV5zJTXYCnHSCx9gJTQ8fb7oUlIJA==
-X-Received: by 2002:ac8:1208:: with SMTP id x8mr4777532qti.14.1613071666427;
- Thu, 11 Feb 2021 11:27:46 -0800 (PST)
+ :cc:subject:references:in-reply-to:content-transfer-encoding;
+ bh=wWEUc0cZJrFVicP1zc6DJTEo4piWKP0s673zS5aCkW8=;
+ b=q35DsoFZjsaV2ZMZFywxQQOTMs9BWL3YJEws0uc3bxT2BXdcIPgJxB/w7P9VFJyueb
+ cMXrtF/jDBMAXZlvQstFUskAfoLQw+0tH/x+pTKDhkX5ATKV25ubwa/59oE8LKirC7gV
+ z58uFUY/aXbKkWwRteYQ5RK6Gf8rhIR/+b/Jcp60VH7bY97oMnqcPZWU6lmDATyj1kJm
+ BMhz5rZjTyhVwdbP927CzhlV80bUnpZonUrYAve9DQGsQg1l+vERk6ME6FAxSCz4Kptv
+ Ujw2bw9Ote3AH0yyT7u9jLgLT0igCQzoL9rlSx1LfGJB7eO8heC55TEuRWph+o1JAias
+ Vf6g==
+X-Gm-Message-State: AOAM530gunJkBuFmImMF+YVXBYoFL4gwZAlpA9MeUAJhE3u66OPgyTFR
+ gd/2GJsAXl7J2oBKEo2HgxZvDSLU22c=
+X-Google-Smtp-Source: ABdhPJy4PqI3ZeqaYnhWknWsRMnkDRw8PluERkxvot06B/MLUiAG9N4Xv6iCfOUwKt7kLEAtqfTqhQ==
+X-Received: by 2002:ad4:55aa:: with SMTP id f10mr9515459qvx.46.1613072270588; 
+ Thu, 11 Feb 2021 11:37:50 -0800 (PST)
 Received: from [192.168.2.12]
  (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id f14sm4528810qkl.76.2021.02.11.11.27.45
+ by smtp.googlemail.com with ESMTPSA id 11sm4792642qkm.25.2021.02.11.11.37.50
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 11 Feb 2021 11:27:46 -0800 (PST)
-Message-ID: <60258531.5020405@gmail.com>
-Date: Thu, 11 Feb 2021 14:27:45 -0500
+ Thu, 11 Feb 2021 11:37:50 -0800 (PST)
+Message-ID: <6025878D.6070404@gmail.com>
+Date: Thu, 11 Feb 2021 14:37:49 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
  rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-To: Casey Wolsieffer <cwolsief@gmail.com>
-CC: USRP-users@lists.ettus.com
-References: <CAM06ataJCyM_x3o24-H59EXnB9go=LuxFuEyUiWZebP8ktGShQ@mail.gmail.com>
- <CA5120D6-2F5E-4CCD-8390-728A2810CA11@gmail.com>
- <CAM06atZG1mrZyx+4qFLyvjCi0BmN8PhxDgX1WN72=cUrzeJ2vA@mail.gmail.com>
- <CAM06atZ59QrYg+uW_gUuNRHrqr+c4vuF_0WbTTzR9kcLEU9tVA@mail.gmail.com>
- <CAM06atajjWy7y0tXX+Dh6S1q5vMb0A1AiWdxFpK4Vhfyqu+0kA@mail.gmail.com>
-In-Reply-To: <CAM06atajjWy7y0tXX+Dh6S1q5vMb0A1AiWdxFpK4Vhfyqu+0kA@mail.gmail.com>
-Subject: Re: [USRP-users] Python API install help - Ubuntu 20.04
+To: Johannes Demel <demel@ant.uni-bremen.de>
+References: <0ffc349b-bf7c-6bef-6b74-505926796c40@ant.uni-bremen.de>
+ <EC78AD9C-8584-49F6-98FA-A7BF09D4E62B@gmail.com>
+ <57b7d3d1-cd2e-0d6c-2487-e7eb3de6e73d@ant.uni-bremen.de>
+In-Reply-To: <57b7d3d1-cd2e-0d6c-2487-e7eb3de6e73d@ant.uni-bremen.de>
+Subject: Re: [USRP-users] How to use 2 N310 for TX and RX
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -73,7 +70,9 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3849368425230027427=="
+Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,348 +86,98 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============3849368425230027427==
-Content-Type: multipart/alternative;
- boundary="------------000704020204080104030208"
+On 02/11/2021 05:04 AM, Johannes Demel wrote:
+> Hi,
+>
+> yes, I just attach a grc file for GR 3.9 that I use to test things.
+>
+> It works if I specify `addr=...` or `addr0=...` with one device. If I 
+> switch to 2 devices `addr=....,addr1=...` it fails.
+>
+> It seems like UHD tries to initialize the devices twice.
+>
+> ----
+> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; 
+> UHD_3.15.0.0-62-g7a3f1516
+> [INFO] [MPMD] Initializing 2 device(s) in parallel with args: 
+> mgmt_addr0=192.168.20.213,type0=n3xx,product0=n310,serial0=319841B,claimed0=False,mgmt_addr1=192.168.21.218,type1=n3xx,product1=n310,serial1=3180AF3,claimed1=False,addr0=192.168.20.213,addr1=192.168.21.218,master_clock_rate=122.88e6,clock_source=external,time_source=external
+> [INFO] [MPM.PeriphManager] init() called with device args 
+> `time_source=external,clock_source=external,master_clock_rate=122.88e6,product=n310,mgmt_addr=192.168.20.213'.
+> [INFO] [0/Replay_0] Initializing block control (NOC ID: 
+> 0x4E91A00000000004)
+> [INFO] [MPM.PeriphManager] init() called with device args 
+> `time_source=external,product=n310,master_clock_rate=122.88e6,clock_source=external,mgmt_addr=192.168.21.218'.
+> [INFO] [0/Radio_0] Initializing block control (NOC ID: 
+> 0x12AD100000011312)
+>
+> [...]
+>
+> [INFO] [1/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)
+> [INFO] [MULTI_USRP]     1) catch time transition at pps edge
+> [INFO] [MULTI_USRP]     2) set times next pps (synchronously)
+> [INFO] [MPMD] Initializing 2 device(s) in parallel with args: 
+> mgmt_addr0=192.168.20.213,type0=n3xx,product0=n310,serial0=319841B,claimed0=True,mgmt_addr1=192.168.21.218,type1=n3xx,product1=n310,serial1=3180AF3,claimed1=True,addr0=192.168.20.213,addr1=192.168.21.218,master_clock_rate=122.88e6,clock_source=external,time_source=external
+> [ERROR] [RPC] Someone tried to claim this device again (From: 
+> 192.168.20.34)
+> ----
+>
+> If I use only one device, it looks like this:
+>
+> ----
+> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; 
+> UHD_3.15.0.0-62-g7a3f1516
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args: 
+> mgmt_addr=192.168.20.213,type=n3xx,product=n310,serial=319841B,claimed=False,addr0=192.168.20.213,master_clock_rate=122.88e6,clock_source=external,time_source=external
+> [INFO] [MPM.PeriphManager] init() called with device args 
+> `time_source=external,clock_source=external,master_clock_rate=122.88e6,product=n310,mgmt_addr=192.168.20.213'.
+> [INFO] [0/Replay_0] Initializing block control (NOC ID: 
+> 0x4E91A00000000004)
+>
+> [...]
+>
+> [INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)
+> [INFO] [MULTI_USRP]     1) catch time transition at pps edge
+> [INFO] [MULTI_USRP]     2) set times next pps (synchronously)
+> [INFO] [MULTI_USRP]     1) catch time transition at pps edge
+> [INFO] [MULTI_USRP]     2) set times next pps (synchronously)
+> ----
+>
+> The last 4 lines are suspicious because they indicate that 
+> synchronization is performed twice. Also, most of the time during 
+> start up is spend there.
+>
+> Anyways, I attached my MWE flowgraph. I'd be happy if you could tell 
+> me how to fix my issue.
+>
+> Cheers
+> Johannes
+>
+Johannes:
 
-This is a multi-part message in MIME format.
---------------000704020204080104030208
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+I'm copying Michael Dickens from Ettus Engineering on this, and also, 
+continuing this thread on the usrp-users mailing list would be
+   more useful than on the discuss-gnuradio list, as there are folks on 
+the usrp-users list who have done multi-N310 configurations
+   successfully.
 
-On 02/11/2021 09:53 AM, Casey Wolsieffer wrote:
-> Actually i got it, for my case it was in
->
-> export PYTHONPATH="/usr/local/lib/python3/dist-packages/"
->
-> Semi-new to this so still figuring out some of the stuff that is 
-> probably obvious. Will throw this line in ~/.bash_profile
->
-> Thank you!
-Some Linux distributions put locally-installed Python packages in 
-"dist-packages" and some in "site-packages".  I simply mention
-   all potential places in my PYTHONPATH, and then don't have to worry 
-about it--except when some distro decides to be even more
-   creative about where such packages are installed...
+In particular, Ali Dormiani (sdormian@eng.ucsd.edu) has at least 6 N310 
+operating in their lab with a single host:
 
+Hello fellow N310 users. My lab has 6 N310's all operating and streaming 
+to a single data server (10 Gbe links).
 
->
-> On Thu, Feb 11, 2021, 9:46 AM Casey Wolsieffer <cwolsief@gmail.com 
-> <mailto:cwolsief@gmail.com>> wrote:
->
->     I tried your suggestion as well Rob to no avail. Also, thank you
->     both for your responses
->
->     On Thu, Feb 11, 2021, 9:44 AM Casey Wolsieffer <cwolsief@gmail.com
->     <mailto:cwolsief@gmail.com>> wrote:
->
->         I did sudo make install yes,
->
->
->         I'm assuming you mean /usr/local, I tried that in .conf file
->         but that doesn't seem to work either
->
->
->         On Thu, Feb 11, 2021, 8:57 AM Marcus D Leech
->         <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
->
->             Your install prefix is /use/local
->
->             Did you sudo make install?
->
->
->
->             Sent from my iPhone
->
->             > On Feb 11, 2021, at 8:30 AM, Casey Wolsieffer via
->             USRP-users <usrp-users@lists.ettus.com
->             <mailto:usrp-users@lists.ettus.com>> wrote:
->             >
->             > ﻿
->             > Hello, I have tried several times to install Python3 uhd
->             on my system but when I attempt >>>import uhd in python3
->             environment I always receive ModuleNotFoundError: no
->             module named 'uhd'
->             >
->             > As far as I can see there are no hang ups on install and
->             after $make, I run $make test and get 0 out of 82 fails.
->             Below is my enabled components after I run
->             >
->             > $cmake ../
->             >
->             > I've also put a uhd.conf file in my ld.so.conf file and
->             ran $sudo ldconfig. Although I'm not certain I'm putting
->             in correct path, right now it's
->             [my_directory]/uhd/host/build/lib/
->             >
->             > I'm on Ubuntu 20.04, any help is greatly appreciated!
->             >
->             > -- ######################################################
->             > -- # UHD enabled components
->             > -- ######################################################
->             > --   * LibUHD
->             > --   * LibUHD - C API
->             > --   * LibUHD - Python API
->             > --   * Examples
->             > --   * Utils
->             > --   * Tests
->             > --   * USB
->             > --   * B100
->             > --   * B200
->             > --   * USRP1
->             > --   * USRP2
->             > --   * X300
->             > --   * MPMD
->             > --   * SIM
->             > --   * N300
->             > --   * N320
->             > --   * E320
->             > --   * E300
->             > --   * OctoClock
->             > --   * Manual
->             > --   * API/Doxygen
->             > --   * Man Pages
->             > --
->             > -- ######################################################
->             > -- # UHD disabled components
->             > -- ######################################################
->             > --   * DPDK
->             > --
->             > -- ******************************************************
->             > -- * You are building the UHD development master branch.
->             > -- * For production code, we recommend our stable,
->             > -- * releases or using the release branch (maint).
->             > -- ******************************************************
->             > -- Building version: 4.0.0.0-93-g3b9ced8f
->             > -- Using install prefix: /usr/local
->             > -- Configuring done
->             > -- Generating done
->             > -- Build files have been written to:
->             /home/casey/Projects/UHD/uhd/host/build
->             >
->             >
->             > _______________________________________________
->             > USRP-users mailing list
->             > USRP-users@lists.ettus.com
->             <mailto:USRP-users@lists.ettus.com>
->             >
->             http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+We use GNU Radio for everything. The software is great for controlling 
+multiple devices with many antennas easily (highly recommended). My 
+experience with native C++ UHD driver commands is rather limited.
+
+I'm personally hampered by only having a single N310 at my disposal, so 
+I can't reproduce your issue.
 
 
---------------000704020204080104030208
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 02/11/2021 09:53 AM, Casey
-      Wolsieffer wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAM06atajjWy7y0tXX+Dh6S1q5vMb0A1AiWdxFpK4Vhfyqu+0kA@mail.gmail.com"
-      type="cite">
-      <div dir="auto">Actually i got it, for my case it was in
-        <div dir="auto"><br>
-        </div>
-        <div dir="auto">export
-          PYTHONPATH="/usr/local/lib/python3/dist-packages/"</div>
-        <div dir="auto"><br>
-        </div>
-        <div dir="auto">Semi-new to this so still figuring out some of
-          the stuff that is probably obvious. Will throw this line in
-          ~/.bash_profile</div>
-        <div dir="auto"><br>
-        </div>
-        <div dir="auto">Thank you!</div>
-      </div>
-    </blockquote>
-    Some Linux distributions put locally-installed Python packages in
-    "dist-packages" and some in "site-packages".  I simply mention<br>
-      all potential places in my PYTHONPATH, and then don't have to
-    worry about it--except when some distro decides to be even more<br>
-      creative about where such packages are installed...<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CAM06atajjWy7y0tXX+Dh6S1q5vMb0A1AiWdxFpK4Vhfyqu+0kA@mail.gmail.com"
-      type="cite"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Thu, Feb 11, 2021, 9:46 AM
-          Casey Wolsieffer &lt;<a moz-do-not-send="true"
-            href="mailto:cwolsief@gmail.com">cwolsief@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0 0 0
-          .8ex;border-left:1px #ccc solid;padding-left:1ex">
-          <div dir="auto">I tried your suggestion as well Rob to no
-            avail. Also, thank you both for your responses</div>
-          <br>
-          <div class="gmail_quote">
-            <div dir="ltr" class="gmail_attr">On Thu, Feb 11, 2021, 9:44
-              AM Casey Wolsieffer &lt;<a moz-do-not-send="true"
-                href="mailto:cwolsief@gmail.com" target="_blank"
-                rel="noreferrer">cwolsief@gmail.com</a>&gt; wrote:<br>
-            </div>
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">
-              <div dir="auto">I did sudo make install yes,
-                <div dir="auto"><br>
-                </div>
-                <div dir="auto"><br>
-                </div>
-                <div dir="auto">I'm assuming you mean /usr/local, I
-                  tried that in .conf file but that doesn't seem to work
-                  either</div>
-                <br>
-                <br>
-                <div class="gmail_quote" dir="auto">
-                  <div dir="ltr" class="gmail_attr">On Thu, Feb 11,
-                    2021, 8:57 AM Marcus D Leech &lt;<a
-                      moz-do-not-send="true"
-                      href="mailto:patchvonbraun@gmail.com"
-                      rel="noreferrer noreferrer" target="_blank">patchvonbraun@gmail.com</a>&gt;
-                    wrote:<br>
-                  </div>
-                  <blockquote class="gmail_quote" style="margin:0 0 0
-                    .8ex;border-left:1px #ccc solid;padding-left:1ex">Your
-                    install prefix is /use/local<br>
-                    <br>
-                    Did you sudo make install?<br>
-                    <br>
-                    <br>
-                    <br>
-                    Sent from my iPhone<br>
-                    <br>
-                    &gt; On Feb 11, 2021, at 8:30 AM, Casey Wolsieffer
-                    via USRP-users &lt;<a moz-do-not-send="true"
-                      href="mailto:usrp-users@lists.ettus.com"
-                      rel="noreferrer noreferrer noreferrer"
-                      target="_blank">usrp-users@lists.ettus.com</a>&gt;
-                    wrote:<br>
-                    &gt; <br>
-                    &gt; ﻿<br>
-                    &gt; Hello, I have tried several times to install
-                    Python3 uhd on my system but when I attempt
-                    &gt;&gt;&gt;import uhd in python3 environment I
-                    always receive ModuleNotFoundError: no module named
-                    'uhd'<br>
-                    &gt; <br>
-                    &gt; As far as I can see there are no hang ups on
-                    install and after $make, I run $make test and get 0
-                    out of 82 fails. Below is my enabled components
-                    after I run<br>
-                    &gt; <br>
-                    &gt; $cmake ../<br>
-                    &gt; <br>
-                    &gt; I've also put a uhd.conf file in my ld.so.conf
-                    file and ran $sudo ldconfig. Although I'm not
-                    certain I'm putting in correct path, right now it's
-                    [my_directory]/uhd/host/build/lib/<br>
-                    &gt; <br>
-                    &gt; I'm on Ubuntu 20.04, any help is greatly
-                    appreciated!<br>
-                    &gt; <br>
-                    &gt; --
-                    ######################################################
-                    <br>
-                    &gt; -- # UHD enabled components                   
-                               <br>
-                    &gt; --
-                    ######################################################
-                    <br>
-                    &gt; --   * LibUHD <br>
-                    &gt; --   * LibUHD - C API <br>
-                    &gt; --   * LibUHD - Python API <br>
-                    &gt; --   * Examples <br>
-                    &gt; --   * Utils <br>
-                    &gt; --   * Tests <br>
-                    &gt; --   * USB <br>
-                    &gt; --   * B100 <br>
-                    &gt; --   * B200 <br>
-                    &gt; --   * USRP1 <br>
-                    &gt; --   * USRP2 <br>
-                    &gt; --   * X300 <br>
-                    &gt; --   * MPMD <br>
-                    &gt; --   * SIM <br>
-                    &gt; --   * N300 <br>
-                    &gt; --   * N320 <br>
-                    &gt; --   * E320 <br>
-                    &gt; --   * E300 <br>
-                    &gt; --   * OctoClock <br>
-                    &gt; --   * Manual <br>
-                    &gt; --   * API/Doxygen <br>
-                    &gt; --   * Man Pages <br>
-                    &gt; --  <br>
-                    &gt; --
-                    ######################################################
-                    <br>
-                    &gt; -- # UHD disabled components                   
-                              <br>
-                    &gt; --
-                    ######################################################
-                    <br>
-                    &gt; --   * DPDK <br>
-                    &gt; --  <br>
-                    &gt; --
-                    ******************************************************
-                    <br>
-                    &gt; -- * You are building the UHD development
-                    master branch. <br>
-                    &gt; -- * For production code, we recommend our
-                    stable, <br>
-                    &gt; -- * releases or using the release branch
-                    (maint). <br>
-                    &gt; --
-                    ******************************************************
-                    <br>
-                    &gt; -- Building version: 4.0.0.0-93-g3b9ced8f <br>
-                    &gt; -- Using install prefix: /usr/local <br>
-                    &gt; -- Configuring done <br>
-                    &gt; -- Generating done <br>
-                    &gt; -- Build files have been written to:
-                    /home/casey/Projects/UHD/uhd/host/build<br>
-                    &gt; <br>
-                    &gt; <br>
-                    &gt; _______________________________________________<br>
-                    &gt; USRP-users mailing list<br>
-                    &gt; <a moz-do-not-send="true"
-                      href="mailto:USRP-users@lists.ettus.com"
-                      rel="noreferrer noreferrer noreferrer"
-                      target="_blank">USRP-users@lists.ettus.com</a><br>
-                    &gt; <a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                      rel="noreferrer noreferrer noreferrer noreferrer"
-                      target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-                  </blockquote>
-                </div>
-              </div>
-            </blockquote>
-          </div>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------000704020204080104030208--
 
 
---===============3849368425230027427==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============3849368425230027427==--
-
