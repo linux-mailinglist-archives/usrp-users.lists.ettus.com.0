@@ -2,37 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CF4431923C
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Feb 2021 19:30:11 +0100 (CET)
-Received: from [::1] (port=58722 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71690319314
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Feb 2021 20:28:35 +0100 (CET)
+Received: from [::1] (port=59110 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lAGjA-000787-8V; Thu, 11 Feb 2021 13:30:08 -0500
-Received: from p-impout003aa.msg.pkvw.co.charter.net ([47.43.26.134]:46224
- helo=p-impout003.msg.pkvw.co.charter.net)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <dtrask1@tampabay.rr.com>)
- id 1lAGj5-00072X-PL
- for usrp-users@lists.ettus.com; Thu, 11 Feb 2021 13:30:03 -0500
-Received: from localhost ([34.233.51.36]) by cmsmtp with ESMTP
- id AGiQlcH0n5iY2AGiQlpXer; Thu, 11 Feb 2021 18:29:22 +0000
-X-Authority-Analysis: v=2.3 cv=Tr6Yewfh c=1 sm=1 tr=0
- a=TrnfHZhGi+cGSPqA0dbxTQ==:117 a=TrnfHZhGi+cGSPqA0dbxTQ==:17
- a=Jp7JS-XeckIA:10 a=kMekCo5aZDoA:10 a=QPn51b99NEKW6LTPJ7UA:9
- a=QEXdDO2ut3YA:10 a=lawkwmP8F99VxoOkiUYA:9 a=Sypht4nciLdqMSRk:21
- a=_W_S_7VecoQA:10
-Message-Id: <2261a9568f445a8385c11b8eb0af02e64aacb840@webmail>
-To: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
-X-Mailer: Atmail 
-X-Originating-IP: [65.35.179.59]
-X-Priority: 3
-Importance: Normal
-X-MSMail-Priority: Normal
-Date: Thu, 11 Feb 2021 18:29:21 +0000
+	id 1lAHde-0001iH-J7; Thu, 11 Feb 2021 14:28:30 -0500
+Received: from mail-qt1-f179.google.com ([209.85.160.179]:36945)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1lAHdb-0001Uv-5n
+ for USRP-users@lists.ettus.com; Thu, 11 Feb 2021 14:28:27 -0500
+Received: by mail-qt1-f179.google.com with SMTP id v3so5023423qtw.4
+ for <USRP-users@lists.ettus.com>; Thu, 11 Feb 2021 11:28:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to;
+ bh=GakbO3+shvIsmyKv1QWTvxb5ph/pubFv8VPDFRE1IAI=;
+ b=VCiCPe/7y3pcUJHDuyQbBUlPW3cxj4n0gVb2TN4LxI2wFklJHF8UmyoepJRbBqR9Mb
+ 4SCszSv7YRXJDxwSku8xYMivXLOHd5fcAmybkhu+1DBXSpcsb3oKH7od3Vw7Ge9/bn6s
+ TqPSUeOu9AGsPb545f2Lxn5yaVRcw7zD5gq/A2e3eVFHMe+HEmw7ZpAwSrJ8WYwQCD+j
+ XC925QzVAnsdmwWeFgxD5W4JBLRaxuAp8ucVLg/QUyq/qjkOBlpFUDmXZ3NA5Lj6UNOg
+ bkr9clghXVowmCqSyGxnKwZQ+9xz/U3TQwAVtHBaJocMbRpN6LTdGxvwkhNIA4QHqbKI
+ V4SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to;
+ bh=GakbO3+shvIsmyKv1QWTvxb5ph/pubFv8VPDFRE1IAI=;
+ b=Wi1O8tC8jq0YjFiJYIoiPft3Ld5C9JeCIm04wgYK9ityudeKsAym4CDOQrnHpcEtep
+ to6gwRuADremqkpSlGk/a0hkbq1qCJA55tDKXS3eCZktxFXTbCbN2bVC5O/kC2uXlimC
+ Nq4lLnFCxmab0mG2+BztquU7ewTXF+362edf4RcnWFGg8j5tU/ujHlcWpYcYbneWnRgy
+ 8jhZlNOiLXEdGyGCjH1U/NanTacWx6OGrF/KiyqGVWDQTXpVmtG4xJb9zZoR10QYSpS1
+ SbdqGiAP8OTQcGslXElmy77bvvB+TwQchEZ+Pz9nhG5BVYaEuU0G5bTi+Jib5UlHoTOo
+ TxjA==
+X-Gm-Message-State: AOAM533ZFCmxJ6G/5jU86BbePh5A5o8RDXrTtxvvMb4GGEGHG1Ws+mbz
+ ONubDVJbhJoLBTqllWAHc+tQmLZpmZE=
+X-Google-Smtp-Source: ABdhPJzHRfcEDLvUMC/xM6nT8VLUtUr0fjr7YfEpcJB9iQYqfFV5zJTXYCnHSCx9gJTQ8fb7oUlIJA==
+X-Received: by 2002:ac8:1208:: with SMTP id x8mr4777532qti.14.1613071666427;
+ Thu, 11 Feb 2021 11:27:46 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.googlemail.com with ESMTPSA id f14sm4528810qkl.76.2021.02.11.11.27.45
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 11 Feb 2021 11:27:46 -0800 (PST)
+Message-ID: <60258531.5020405@gmail.com>
+Date: Thu, 11 Feb 2021 14:27:45 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-X-CMAE-Envelope: MS4wfDw5Qpj9KHBWwswFREBmMyEjtVGk5Ba91fJSIfwdSyMebXvjVcyIDKivQKmpPjJNxnczLdYK3cGmrxeciGyzbVexuzorYuHnlK9mt2eFBv2LXSVTGONc
- F/L73xOePws1s8rjTVrmxPtah3R7l3OWNHKkZEFOq/7DKZrwvL/n9IFfg4YNZXW3roGfkIFl6Te0gQ==
-Subject: [USRP-users] SWIG Error Cross-compiling gr-ettus
+To: Casey Wolsieffer <cwolsief@gmail.com>
+CC: USRP-users@lists.ettus.com
+References: <CAM06ataJCyM_x3o24-H59EXnB9go=LuxFuEyUiWZebP8ktGShQ@mail.gmail.com>
+ <CA5120D6-2F5E-4CCD-8390-728A2810CA11@gmail.com>
+ <CAM06atZG1mrZyx+4qFLyvjCi0BmN8PhxDgX1WN72=cUrzeJ2vA@mail.gmail.com>
+ <CAM06atZ59QrYg+uW_gUuNRHrqr+c4vuF_0WbTTzR9kcLEU9tVA@mail.gmail.com>
+ <CAM06atajjWy7y0tXX+Dh6S1q5vMb0A1AiWdxFpK4Vhfyqu+0kA@mail.gmail.com>
+In-Reply-To: <CAM06atajjWy7y0tXX+Dh6S1q5vMb0A1AiWdxFpK4Vhfyqu+0kA@mail.gmail.com>
+Subject: Re: [USRP-users] Python API install help - Ubuntu 20.04
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -44,9 +71,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Dennis Trask via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: dtrask1@tampabay.rr.com
-Content-Type: multipart/mixed; boundary="===============4061200182336665432=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============3849368425230027427=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -60,319 +87,339 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4061200182336665432==
+This is a multi-part message in MIME format.
+--===============3849368425230027427==
 Content-Type: multipart/alternative;
- boundary="=_2bc7c136b17aee1fbb5a113082436ae6"
+ boundary="------------000704020204080104030208"
 
---=_2bc7c136b17aee1fbb5a113082436ae6
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------000704020204080104030208
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-I have cross-compiled UHD v3.15.0.0 and gnuradio maint-3.8 for the=0AE31=
-0. When I try to setup the cross-compile of gr-ettus maint-3.8, I=0Aget=
- a series of errors related to SWIG. Any idea how to work around=0Athis?=
-=0AMy cmake command is:=0Acmake=0A-DCMAKE_TOOLCHAIN_FILE=3D~/rfnoc/src/g=
-nuradio/cmake/Toolchains/oe-sdk_cross.cmake=0A-DCMAKE_INSTALL_PREFIX=3D/=
-usr ..=0AAnd here are the errors:=0A=0ACMake Error at=0A/home/labuser/rf=
-noc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnurad=
-io/UseSWIG.cmake:418=0A(add_custom_command): Error evaluating generator=
- expression:=0A $=0A Target "gnuradio::runtime_swig" not found.Call Stac=
-k (most recent=0Acall first):=0A/home/labuser/rfnoc/oe/sysroots/cortexa9=
-t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(=
-SWIG_ADD_SOURCE_TO_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2h=
-f-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=0A(swig=
-_add_library) swig/CMakeLists.txt:54 (GR_SWIG_MAKE)=0A=0ACMake Error at=
-=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/u=
-sr/lib/cmake/gnuradio/UseSWIG.cmake:418=0A(add_custom_command): Error ev=
-aluating generator expression:=0A $=0A Target "gnuradio::runtime_swig" n=
-ot found.Call Stack (most recent=0Acall first):=0A/home/labuser/rfnoc/oe=
-/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/Use=
-SWIG.cmake:559=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A/home/labuser/rfnoc/oe/sy=
-sroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig=
-.cmake:137=0A(swig_add_library) swig/CMakeLists.txt:54 (GR_SWIG_MAKE)=0A=
-=0ACMake Error at=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe=
--linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418=0A(add_custom_c=
-ommand): Error evaluating generator expression:=0A $=0A Target "gnuradio=
-::runtime_swig" not found.Call Stack (most recent=0Acall first):=0A/home=
-/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/c=
-make/gnuradio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A/home/la=
-buser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmak=
-e/gnuradio/GrSwig.cmake:137=0A(swig_add_library) swig/CMakeLists.txt:54=
- (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/oe/sysroots/co=
-rtexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:4=
-18=0A(add_custom_command): Error evaluating generator expression:=0A $=
-=0A Target "gnuradio::runtime_swig" not found.Call Stack (most recent=0A=
-call first):=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linu=
-x-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE_T=
-O_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-m=
-usleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=0A(swig_add_library) swi=
-g/CMakeLists.txt:54 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labuser/r=
-fnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnura=
-dio/GrMiscUtils.cmake:127=0A(add_dependencies): The dependency target "g=
-nuradio::runtime_swig" of=0Atarget "_ettus_swig_doc_tag" does not exist.=
-Call Stack (most recent=0Acall first):=0A/home/labuser/rfnoc/oe/sysroots=
-/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake=
-:65=0A(GR_GEN_TARGET_DEPS)=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2h=
-f-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:112=0A(GR_S=
-WIG_MAKE_DOCS) swig/CMakeLists.txt:54 (GR_SWIG_MAKE)=0A=0ACMake Error at=
-=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/u=
-sr/lib/cmake/gnuradio/GrSwig.cmake:144=0A(target_include_directories): E=
-rror evaluating generator expression:=0A $=0A Target "gnuradio::runtime_=
-swig" not found.Call Stack (most recent=0Acall first): swig/CMakeLists.t=
-xt:54 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/oe/sysroo=
-ts/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cma=
-ke:144=0A(target_include_directories): Error evaluating generator expres=
-sion:=0A $=0A Target "gnuradio::runtime_swig" not found.Call Stack (most=
- recent=0Acall first): swig/CMakeLists.txt:54 (GR_SWIG_MAKE)=0A=0ACMake=
- Error at=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-m=
-usleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418=0A(add_custom_command):=
- Error evaluating generator expression:=0A $=0A Target "gnuradio::runtim=
-e_swig" not found.Call Stack (most recent=0Acall first):=0A/home/labuser=
-/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnu=
-radio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A/home/labuser/rf=
-noc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnurad=
-io/GrSwig.cmake:137=0A(swig_add_library) swig/CMakeLists.txt:54 (GR_SWIG=
-_MAKE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2h=
-f-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418=0A(add=
-_custom_command): Error evaluating generator expression:=0A $=0A Target=
- "gnuradio::runtime_swig" not found.Call Stack (most recent=0Acall first=
-):=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi=
-/usr/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE_TO_MODULE)=
-=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/u=
-sr/lib/cmake/gnuradio/GrSwig.cmake:137=0A(swig_add_library) swig/CMakeLi=
-sts.txt:54 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/oe/s=
-ysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSW=
-IG.cmake:418=0A(add_custom_command): Error evaluating generator expressi=
-on:=0A $=0A Target "gnuradio::runtime_swig" not found.Call Stack (most r=
-ecent=0Acall first):=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon=
--oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(SWIG_ADD_=
-SOURCE_TO_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe=
--linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=0A(swig_add_libr=
-ary) swig/CMakeLists.txt:54 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/l=
-abuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cma=
-ke/gnuradio/UseSWIG.cmake:418=0A(add_custom_command): Error evaluating g=
-enerator expression:=0A $=0A Target "gnuradio::runtime_swig" not found.C=
-all Stack (most recent=0Acall first):=0A/home/labuser/rfnoc/oe/sysroots/=
-cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake=
-:559=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/cor=
-texa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=
-=0A(swig_add_library) swig/CMakeLists.txt:54 (GR_SWIG_MAKE)=0A=0ACMake E=
-rror at=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-mus=
-leabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418=0A(add_custom_command): E=
-rror evaluating generator expression:=0A $=0A Target "gnuradio::runtime_=
-swig" not found.Call Stack (most recent=0Acall first):=0A/home/labuser/r=
-fnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnura=
-dio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A/home/labuser/rfno=
-c/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio=
-/GrSwig.cmake:137=0A(swig_add_library) swig/CMakeLists.txt:54 (GR_SWIG_M=
-AKE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-=
-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418=0A(add_c=
-ustom_command): Error evaluating generator expression:=0A $=0A Target "g=
-nuradio::runtime_swig" not found.Call Stack (most recent=0Acall first):=
-=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/u=
-sr/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A=
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/=
-lib/cmake/gnuradio/GrSwig.cmake:137=0A(swig_add_library) swig/CMakeLists=
-.txt:54 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/oe/sysr=
-oots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.=
-cmake:418=0A(add_custom_command): Error evaluating generator expression:=
-=0A $=0A Target "gnuradio::runtime_swig" not found.Call Stack (most rece=
-nt=0Acall first):=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe=
--linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(SWIG_ADD_SOU=
-RCE_TO_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-li=
-nux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=0A(swig_add_library=
-) swig/CMakeLists.txt:54 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labu=
-ser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/=
-gnuradio/UseSWIG.cmake:418=0A(add_custom_command): Error evaluating gene=
-rator expression:=0A $=0A Target "gnuradio::runtime_swig" not found.Call=
- Stack (most recent=0Acall first):=0A/home/labuser/rfnoc/oe/sysroots/cor=
-texa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:55=
-9=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/cortex=
-a9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=0A=
-(swig_add_library) swig/CMakeLists.txt:54 (GR_SWIG_MAKE)=0A=0A
+On 02/11/2021 09:53 AM, Casey Wolsieffer wrote:
+> Actually i got it, for my case it was in
+>
+> export PYTHONPATH="/usr/local/lib/python3/dist-packages/"
+>
+> Semi-new to this so still figuring out some of the stuff that is 
+> probably obvious. Will throw this line in ~/.bash_profile
+>
+> Thank you!
+Some Linux distributions put locally-installed Python packages in 
+"dist-packages" and some in "site-packages".  I simply mention
+   all potential places in my PYTHONPATH, and then don't have to worry 
+about it--except when some distro decides to be even more
+   creative about where such packages are installed...
 
---=_2bc7c136b17aee1fbb5a113082436ae6
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-<html><body>I have cross-compiled UHD v3.15.0.0 and gnuradio maint-3.8 f=
-or the E310. When I try to setup the cross-compile of gr-ettus maint-3.8=
-, I get a series of errors related to SWIG. Any idea how to work around=
- this?<div><br></div><div>My cmake command is:<div><br></div><div>cmake=
- -DCMAKE_TOOLCHAIN_FILE=3D~/rfnoc/src/gnuradio/cmake/Toolchains/oe-sdk_c=
-ross.cmake -DCMAKE_INSTALL_PREFIX=3D/usr ..</div><div><br></div><div>And=
- here are the errors:<br><div><br></div><div><div>CMake Error at /home/l=
-abuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cma=
-ke/gnuradio/UseSWIG.cmake:418 (add_custom_command):</div><div>&nbsp; Err=
-or evaluating generator expression:</div><div><br></div><div>&nbsp; &nbs=
-p; $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTO=
-RIES&gt;</div><div><br></div><div>&nbsp; Target "gnuradio::runtime_swig"=
- not found.</div><div>Call Stack (most recent call first):</div><div>&nb=
-sp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/=
-usr/lib/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)</di=
-v><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux=
--musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 (swig_add_library)</di=
-v><div>&nbsp; swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div><div><br></div>=
-<div><br></div><div>CMake Error at /home/labuser/rfnoc/oe/sysroots/corte=
-xa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418=
- (add_custom_command):</div><div>&nbsp; Error evaluating generator expre=
-ssion:</div><div><br></div><div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnura=
-dio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div><div><br></div>=
-<div>&nbsp; Target "gnuradio::runtime_swig" not found.</div><div>Call St=
-ack (most recent call first):</div><div>&nbsp; /home/labuser/rfnoc/oe/sy=
-sroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWI=
-G.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)</div><div>&nbsp; /home/labuser/r=
-fnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnura=
-dio/GrSwig.cmake:137 (swig_add_library)</div><div>&nbsp; swig/CMakeLists=
-.txt:54 (GR_SWIG_MAKE)</div><div><br></div><div><br></div><div>CMake Err=
-or at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleab=
-i/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 (add_custom_command):</div><d=
-iv>&nbsp; Error evaluating generator expression:</div><div><br></div><di=
-v>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_IN=
-CLUDE_DIRECTORIES&gt;</div><div><br></div><div>&nbsp; Target "gnuradio::=
-runtime_swig" not found.</div><div>Call Stack (most recent call first):<=
-/div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-li=
-nux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_T=
-O_MODULE)</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-=
-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 (swig_add=
-_library)</div><div>&nbsp; swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div><d=
-iv><br></div><div><br></div><div>CMake Error at /home/labuser/rfnoc/oe/s=
-ysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSW=
-IG.cmake:418 (add_custom_command):</div><div>&nbsp; Error evaluating gen=
-erator expression:</div><div><br></div><div>&nbsp; &nbsp; $&lt;TARGET_PR=
-OPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div><di=
-v><br></div><div>&nbsp; Target "gnuradio::runtime_swig" not found.</div>=
-<div>Call Stack (most recent call first):</div><div>&nbsp; /home/labuser=
-/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnu=
-radio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)</div><div>&nbsp; /ho=
-me/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib=
-/cmake/gnuradio/GrSwig.cmake:137 (swig_add_library)</div><div>&nbsp; swi=
-g/CMakeLists.txt:54 (GR_SWIG_MAKE)</div><div><br></div><div><br></div><d=
-iv>CMake Error at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-l=
-inux-musleabi/usr/lib/cmake/gnuradio/GrMiscUtils.cmake:127 (add_dependen=
-cies):</div><div>&nbsp; The dependency target "gnuradio::runtime_swig" o=
-f target</div><div>&nbsp; "_ettus_swig_doc_tag" does not exist.</div><di=
-v>Call Stack (most recent call first):</div><div>&nbsp; /home/labuser/rf=
-noc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnurad=
-io/GrSwig.cmake:65 (GR_GEN_TARGET_DEPS)</div><div>&nbsp; /home/labuser/r=
-fnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnura=
-dio/GrSwig.cmake:112 (GR_SWIG_MAKE_DOCS)</div><div>&nbsp; swig/CMakeList=
-s.txt:54 (GR_SWIG_MAKE)</div><div><br></div><div><br></div><div>CMake Er=
-ror at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-muslea=
-bi/usr/lib/cmake/gnuradio/GrSwig.cmake:144 (target_include_directories):=
-</div><div>&nbsp; Error evaluating generator expression:</div><div><br><=
-/div><div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTE=
-RFACE_INCLUDE_DIRECTORIES&gt;</div><div><br></div><div>&nbsp; Target "gn=
-uradio::runtime_swig" not found.</div><div>Call Stack (most recent call=
- first):</div><div>&nbsp; swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div><di=
-v><br></div><div><br></div><div>CMake Error at /home/labuser/rfnoc/oe/sy=
-sroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig=
-.cmake:144 (target_include_directories):</div><div>&nbsp; Error evaluati=
-ng generator expression:</div><div><br></div><div>&nbsp; &nbsp; $&lt;TAR=
-GET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</d=
-iv><div><br></div><div>&nbsp; Target "gnuradio::runtime_swig" not found.=
-</div><div>Call Stack (most recent call first):</div><div>&nbsp; swig/CM=
-akeLists.txt:54 (GR_SWIG_MAKE)</div><div><br></div><div><br></div><div>C=
-Make Error at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux=
--musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 (add_custom_command):=
-</div><div>&nbsp; Error evaluating generator expression:</div><div><br><=
-/div><div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTE=
-RFACE_INCLUDE_DIRECTORIES&gt;</div><div><br></div><div>&nbsp; Target "gn=
-uradio::runtime_swig" not found.</div><div>Call Stack (most recent call=
- first):</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-n=
-eon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD=
-_SOURCE_TO_MODULE)</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cort=
-exa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=
- (swig_add_library)</div><div>&nbsp; swig/CMakeLists.txt:54 (GR_SWIG_MAK=
-E)</div><div><br></div><div><br></div><div>CMake Error at /home/labuser/=
-rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnur=
-adio/UseSWIG.cmake:418 (add_custom_command):</div><div>&nbsp; Error eval=
-uating generator expression:</div><div><br></div><div>&nbsp; &nbsp; $&lt=
-;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt=
-;</div><div><br></div><div>&nbsp; Target "gnuradio::runtime_swig" not fo=
-und.</div><div>Call Stack (most recent call first):</div><div>&nbsp; /ho=
-me/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib=
-/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)</div><div>=
-&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-muslea=
-bi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 (swig_add_library)</div><div>=
-&nbsp; swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div><div><br></div><div><b=
-r></div><div>CMake Error at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf=
--neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 (add_cu=
-stom_command):</div><div>&nbsp; Error evaluating generator expression:</=
-div><div><br></div><div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::run=
-time_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div><div><br></div><div>&nb=
-sp; Target "gnuradio::runtime_swig" not found.</div><div>Call Stack (mos=
-t recent call first):</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/c=
-ortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:=
-559 (SWIG_ADD_SOURCE_TO_MODULE)</div><div>&nbsp; /home/labuser/rfnoc/oe/=
-sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSw=
-ig.cmake:137 (swig_add_library)</div><div>&nbsp; swig/CMakeLists.txt:54=
- (GR_SWIG_MAKE)</div><div><br></div><div><br></div><div>CMake Error at /=
-home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/l=
-ib/cmake/gnuradio/UseSWIG.cmake:418 (add_custom_command):</div><div>&nbs=
-p; Error evaluating generator expression:</div><div><br></div><div>&nbsp=
-; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_D=
-IRECTORIES&gt;</div><div><br></div><div>&nbsp; Target "gnuradio::runtime=
-_swig" not found.</div><div>Call Stack (most recent call first):</div><d=
-iv>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-mus=
-leabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODUL=
-E)</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe=
--linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 (swig_add_librar=
-y)</div><div>&nbsp; swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div><div><br>=
-</div><div><br></div><div>CMake Error at /home/labuser/rfnoc/oe/sysroots=
-/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmak=
-e:418 (add_custom_command):</div><div>&nbsp; Error evaluating generator=
- expression:</div><div><br></div><div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY=
-:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div><div><br>=
-</div><div>&nbsp; Target "gnuradio::runtime_swig" not found.</div><div>C=
-all Stack (most recent call first):</div><div>&nbsp; /home/labuser/rfnoc=
-/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/=
-UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)</div><div>&nbsp; /home/lab=
-user/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake=
-/gnuradio/GrSwig.cmake:137 (swig_add_library)</div><div>&nbsp; swig/CMak=
-eLists.txt:54 (GR_SWIG_MAKE)</div><div><br></div><div><br></div><div>CMa=
-ke Error at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-m=
-usleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 (add_custom_command):</=
-div><div>&nbsp; Error evaluating generator expression:</div><div><br></d=
-iv><div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERF=
-ACE_INCLUDE_DIRECTORIES&gt;</div><div><br></div><div>&nbsp; Target "gnur=
-adio::runtime_swig" not found.</div><div>Call Stack (most recent call fi=
-rst):</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon=
--oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SO=
-URCE_TO_MODULE)</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa=
-9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 (sw=
-ig_add_library)</div><div>&nbsp; swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</=
-div><div><br></div><div><br></div><div>CMake Error at /home/labuser/rfno=
-c/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio=
-/UseSWIG.cmake:418 (add_custom_command):</div><div>&nbsp; Error evaluati=
-ng generator expression:</div><div><br></div><div>&nbsp; &nbsp; $&lt;TAR=
-GET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</d=
-iv><div><br></div><div>&nbsp; Target "gnuradio::runtime_swig" not found.=
-</div><div>Call Stack (most recent call first):</div><div>&nbsp; /home/l=
-abuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cma=
-ke/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)</div><div>&nbs=
-p; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/u=
-sr/lib/cmake/gnuradio/GrSwig.cmake:137 (swig_add_library)</div><div>&nbs=
-p; swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div><div><br></div><div><br></=
-div><div>CMake Error at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neo=
-n-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 (add_custom=
-_command):</div><div>&nbsp; Error evaluating generator expression:</div>=
-<div><br></div><div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime=
-_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div><div><br></div><div>&nbsp;=
- Target "gnuradio::runtime_swig" not found.</div><div>Call Stack (most r=
-ecent call first):</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cort=
-exa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559=
- (SWIG_ADD_SOURCE_TO_MODULE)</div><div>&nbsp; /home/labuser/rfnoc/oe/sys=
-roots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.=
-cmake:137 (swig_add_library)</div><div>&nbsp; swig/CMakeLists.txt:54 (GR=
-_SWIG_MAKE)</div><div><br></div><div><br></div></div></div></div></body>=
+>
+> On Thu, Feb 11, 2021, 9:46 AM Casey Wolsieffer <cwolsief@gmail.com 
+> <mailto:cwolsief@gmail.com>> wrote:
+>
+>     I tried your suggestion as well Rob to no avail. Also, thank you
+>     both for your responses
+>
+>     On Thu, Feb 11, 2021, 9:44 AM Casey Wolsieffer <cwolsief@gmail.com
+>     <mailto:cwolsief@gmail.com>> wrote:
+>
+>         I did sudo make install yes,
+>
+>
+>         I'm assuming you mean /usr/local, I tried that in .conf file
+>         but that doesn't seem to work either
+>
+>
+>         On Thu, Feb 11, 2021, 8:57 AM Marcus D Leech
+>         <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
+>
+>             Your install prefix is /use/local
+>
+>             Did you sudo make install?
+>
+>
+>
+>             Sent from my iPhone
+>
+>             > On Feb 11, 2021, at 8:30 AM, Casey Wolsieffer via
+>             USRP-users <usrp-users@lists.ettus.com
+>             <mailto:usrp-users@lists.ettus.com>> wrote:
+>             >
+>             > ﻿
+>             > Hello, I have tried several times to install Python3 uhd
+>             on my system but when I attempt >>>import uhd in python3
+>             environment I always receive ModuleNotFoundError: no
+>             module named 'uhd'
+>             >
+>             > As far as I can see there are no hang ups on install and
+>             after $make, I run $make test and get 0 out of 82 fails.
+>             Below is my enabled components after I run
+>             >
+>             > $cmake ../
+>             >
+>             > I've also put a uhd.conf file in my ld.so.conf file and
+>             ran $sudo ldconfig. Although I'm not certain I'm putting
+>             in correct path, right now it's
+>             [my_directory]/uhd/host/build/lib/
+>             >
+>             > I'm on Ubuntu 20.04, any help is greatly appreciated!
+>             >
+>             > -- ######################################################
+>             > -- # UHD enabled components
+>             > -- ######################################################
+>             > --   * LibUHD
+>             > --   * LibUHD - C API
+>             > --   * LibUHD - Python API
+>             > --   * Examples
+>             > --   * Utils
+>             > --   * Tests
+>             > --   * USB
+>             > --   * B100
+>             > --   * B200
+>             > --   * USRP1
+>             > --   * USRP2
+>             > --   * X300
+>             > --   * MPMD
+>             > --   * SIM
+>             > --   * N300
+>             > --   * N320
+>             > --   * E320
+>             > --   * E300
+>             > --   * OctoClock
+>             > --   * Manual
+>             > --   * API/Doxygen
+>             > --   * Man Pages
+>             > --
+>             > -- ######################################################
+>             > -- # UHD disabled components
+>             > -- ######################################################
+>             > --   * DPDK
+>             > --
+>             > -- ******************************************************
+>             > -- * You are building the UHD development master branch.
+>             > -- * For production code, we recommend our stable,
+>             > -- * releases or using the release branch (maint).
+>             > -- ******************************************************
+>             > -- Building version: 4.0.0.0-93-g3b9ced8f
+>             > -- Using install prefix: /usr/local
+>             > -- Configuring done
+>             > -- Generating done
+>             > -- Build files have been written to:
+>             /home/casey/Projects/UHD/uhd/host/build
+>             >
+>             >
+>             > _______________________________________________
+>             > USRP-users mailing list
+>             > USRP-users@lists.ettus.com
+>             <mailto:USRP-users@lists.ettus.com>
+>             >
+>             http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+
+--------------000704020204080104030208
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 02/11/2021 09:53 AM, Casey
+      Wolsieffer wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAM06atajjWy7y0tXX+Dh6S1q5vMb0A1AiWdxFpK4Vhfyqu+0kA@mail.gmail.com"
+      type="cite">
+      <div dir="auto">Actually i got it, for my case it was in
+        <div dir="auto"><br>
+        </div>
+        <div dir="auto">export
+          PYTHONPATH="/usr/local/lib/python3/dist-packages/"</div>
+        <div dir="auto"><br>
+        </div>
+        <div dir="auto">Semi-new to this so still figuring out some of
+          the stuff that is probably obvious. Will throw this line in
+          ~/.bash_profile</div>
+        <div dir="auto"><br>
+        </div>
+        <div dir="auto">Thank you!</div>
+      </div>
+    </blockquote>
+    Some Linux distributions put locally-installed Python packages in
+    "dist-packages" and some in "site-packages".  I simply mention<br>
+      all potential places in my PYTHONPATH, and then don't have to
+    worry about it--except when some distro decides to be even more<br>
+      creative about where such packages are installed...<br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:CAM06atajjWy7y0tXX+Dh6S1q5vMb0A1AiWdxFpK4Vhfyqu+0kA@mail.gmail.com"
+      type="cite"><br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Thu, Feb 11, 2021, 9:46 AM
+          Casey Wolsieffer &lt;<a moz-do-not-send="true"
+            href="mailto:cwolsief@gmail.com">cwolsief@gmail.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0 0 0
+          .8ex;border-left:1px #ccc solid;padding-left:1ex">
+          <div dir="auto">I tried your suggestion as well Rob to no
+            avail. Also, thank you both for your responses</div>
+          <br>
+          <div class="gmail_quote">
+            <div dir="ltr" class="gmail_attr">On Thu, Feb 11, 2021, 9:44
+              AM Casey Wolsieffer &lt;<a moz-do-not-send="true"
+                href="mailto:cwolsief@gmail.com" target="_blank"
+                rel="noreferrer">cwolsief@gmail.com</a>&gt; wrote:<br>
+            </div>
+            <blockquote class="gmail_quote" style="margin:0 0 0
+              .8ex;border-left:1px #ccc solid;padding-left:1ex">
+              <div dir="auto">I did sudo make install yes,
+                <div dir="auto"><br>
+                </div>
+                <div dir="auto"><br>
+                </div>
+                <div dir="auto">I'm assuming you mean /usr/local, I
+                  tried that in .conf file but that doesn't seem to work
+                  either</div>
+                <br>
+                <br>
+                <div class="gmail_quote" dir="auto">
+                  <div dir="ltr" class="gmail_attr">On Thu, Feb 11,
+                    2021, 8:57 AM Marcus D Leech &lt;<a
+                      moz-do-not-send="true"
+                      href="mailto:patchvonbraun@gmail.com"
+                      rel="noreferrer noreferrer" target="_blank">patchvonbraun@gmail.com</a>&gt;
+                    wrote:<br>
+                  </div>
+                  <blockquote class="gmail_quote" style="margin:0 0 0
+                    .8ex;border-left:1px #ccc solid;padding-left:1ex">Your
+                    install prefix is /use/local<br>
+                    <br>
+                    Did you sudo make install?<br>
+                    <br>
+                    <br>
+                    <br>
+                    Sent from my iPhone<br>
+                    <br>
+                    &gt; On Feb 11, 2021, at 8:30 AM, Casey Wolsieffer
+                    via USRP-users &lt;<a moz-do-not-send="true"
+                      href="mailto:usrp-users@lists.ettus.com"
+                      rel="noreferrer noreferrer noreferrer"
+                      target="_blank">usrp-users@lists.ettus.com</a>&gt;
+                    wrote:<br>
+                    &gt; <br>
+                    &gt; ﻿<br>
+                    &gt; Hello, I have tried several times to install
+                    Python3 uhd on my system but when I attempt
+                    &gt;&gt;&gt;import uhd in python3 environment I
+                    always receive ModuleNotFoundError: no module named
+                    'uhd'<br>
+                    &gt; <br>
+                    &gt; As far as I can see there are no hang ups on
+                    install and after $make, I run $make test and get 0
+                    out of 82 fails. Below is my enabled components
+                    after I run<br>
+                    &gt; <br>
+                    &gt; $cmake ../<br>
+                    &gt; <br>
+                    &gt; I've also put a uhd.conf file in my ld.so.conf
+                    file and ran $sudo ldconfig. Although I'm not
+                    certain I'm putting in correct path, right now it's
+                    [my_directory]/uhd/host/build/lib/<br>
+                    &gt; <br>
+                    &gt; I'm on Ubuntu 20.04, any help is greatly
+                    appreciated!<br>
+                    &gt; <br>
+                    &gt; --
+                    ######################################################
+                    <br>
+                    &gt; -- # UHD enabled components                   
+                               <br>
+                    &gt; --
+                    ######################################################
+                    <br>
+                    &gt; --   * LibUHD <br>
+                    &gt; --   * LibUHD - C API <br>
+                    &gt; --   * LibUHD - Python API <br>
+                    &gt; --   * Examples <br>
+                    &gt; --   * Utils <br>
+                    &gt; --   * Tests <br>
+                    &gt; --   * USB <br>
+                    &gt; --   * B100 <br>
+                    &gt; --   * B200 <br>
+                    &gt; --   * USRP1 <br>
+                    &gt; --   * USRP2 <br>
+                    &gt; --   * X300 <br>
+                    &gt; --   * MPMD <br>
+                    &gt; --   * SIM <br>
+                    &gt; --   * N300 <br>
+                    &gt; --   * N320 <br>
+                    &gt; --   * E320 <br>
+                    &gt; --   * E300 <br>
+                    &gt; --   * OctoClock <br>
+                    &gt; --   * Manual <br>
+                    &gt; --   * API/Doxygen <br>
+                    &gt; --   * Man Pages <br>
+                    &gt; --  <br>
+                    &gt; --
+                    ######################################################
+                    <br>
+                    &gt; -- # UHD disabled components                   
+                              <br>
+                    &gt; --
+                    ######################################################
+                    <br>
+                    &gt; --   * DPDK <br>
+                    &gt; --  <br>
+                    &gt; --
+                    ******************************************************
+                    <br>
+                    &gt; -- * You are building the UHD development
+                    master branch. <br>
+                    &gt; -- * For production code, we recommend our
+                    stable, <br>
+                    &gt; -- * releases or using the release branch
+                    (maint). <br>
+                    &gt; --
+                    ******************************************************
+                    <br>
+                    &gt; -- Building version: 4.0.0.0-93-g3b9ced8f <br>
+                    &gt; -- Using install prefix: /usr/local <br>
+                    &gt; -- Configuring done <br>
+                    &gt; -- Generating done <br>
+                    &gt; -- Build files have been written to:
+                    /home/casey/Projects/UHD/uhd/host/build<br>
+                    &gt; <br>
+                    &gt; <br>
+                    &gt; _______________________________________________<br>
+                    &gt; USRP-users mailing list<br>
+                    &gt; <a moz-do-not-send="true"
+                      href="mailto:USRP-users@lists.ettus.com"
+                      rel="noreferrer noreferrer noreferrer"
+                      target="_blank">USRP-users@lists.ettus.com</a><br>
+                    &gt; <a moz-do-not-send="true"
+href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
+                      rel="noreferrer noreferrer noreferrer noreferrer"
+                      target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+                  </blockquote>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </body>
 </html>
 
---=_2bc7c136b17aee1fbb5a113082436ae6--
+--------------000704020204080104030208--
 
 
-
---===============4061200182336665432==
+--===============3849368425230027427==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -383,6 +430,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4061200182336665432==--
-
+--===============3849368425230027427==--
 
