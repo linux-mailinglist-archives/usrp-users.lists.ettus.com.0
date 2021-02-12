@@ -2,82 +2,102 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7D00319771
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Feb 2021 01:28:52 +0100 (CET)
-Received: from [::1] (port=32978 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69B82319D98
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Feb 2021 12:53:19 +0100 (CET)
+Received: from [::1] (port=37604 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lAMKI-0004Sd-Sr; Thu, 11 Feb 2021 19:28:50 -0500
-Received: from sonic304-22.consmr.mail.ne1.yahoo.com ([66.163.191.148]:46466)
- by mm2.emwd.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
- (envelope-from <mikerd1@verizon.net>) id 1lAMKF-0004Gk-0A
- for usrp-users@lists.ettus.com; Thu, 11 Feb 2021 19:28:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verizon.net; s=a2048;
- t=1613089686; bh=W2nTNN9wEJNnJD71+WUhkNBpEOi7AKyMAt5dZZtYCpg=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From:Subject:Reply-To;
- b=tntmpCURoW5o1Lnx3ANwg/mbBSje0lot0Mhns7t2Mpu8lJP0AgjGgl3FgD2Aa8T1+LB8ieCsUT+7wCixPTtFT+/40x2dUC+BtoHAdEDjBxz3+8QBzVwplUf6LGz2oTx9nYpo9RACBVGQapQXSRDwU1kejQuMedx+ekUlH11HdcLZN8KmC9NxJEviHmcm7sCG8xvAuEaOm1xY0BZZqHDWgr9quGjdjZzepwV1R1JUn0kgr6F5PiAv1ZqrVoIcVl7SXlLOKM6x4o86DypdlF+1GLkAHCMsCJISAWl5bHiV3pz/LNuXBntylP70o+INolzjVVZwKFuKJGEhW8R4/9gf7A==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1613089686; bh=36fLg9RELZIsrZvopKwnv4swY+GaOT4pI4wvMMarQ7m=;
- h=X-Sonic-MF:Subject:To:From:Date:From:Subject;
- b=kar+seHkZL/qJUQv//RixqETxPIqRIBZTk0CW6dffrxxGXWn124IZ7DGoetV7RsLmUezjADc6iQc/Cn+SQ7dq9EqvdDTkfwKYVed0gZG/OF1yrCUdMP29SLsb25Bk0Gle1u7Squ9d48RtfRul8IKQZ0gE0M66amfiF7YQgrF8uYywMSM6M9NsQBET7IJBANhIkhPAzxRqKuQyoIe+fusfaawSZYQUwBSk8pmtbgVCTx9pfLulWqvPqqizrvJwOWPltCnR52IgbRAU3dsNOyK1TfmUxS5SKgQJ2379ztl5dvzHpfeK4+1JhGC3n3a9nOFAeNf46wUMgBAeTmAyZJUXw==
-X-YMail-OSG: J6qw1N4VM1nvleCc9hmV6d2KPpgFV3a94bnE_mFB.N6_Va3_q481Mx.NnkPbK9B
- zy03WD3Y_QFW6my6NFLfa6tRuuqG0bpgByVcBdsjlUKKWmoKMg04Xf2aLAH_mz4FfNX3pJdVtI8v
- g_K0ajx9oR0TznoSH7ISl9OmZdanzQpSvrGdHzSFRWdArMwiK4Lc1jClAnP4gK_PC.EK.CJG4RED
- hqmtMIayU1P241qYwh8atxyuTsxAwQFm15xNqXBgtkXG2jX0vnDlMJk2SZVJ1_cBUJM5D_TivFV3
- wuZf4bj3agEpGyLSvFAxe2XGuidO8fo76wI.CQkyQR3lWKrxYqqlFOnNdZk4A4_FPJGBb2FeouyI
- RpRWhBpUrfSyprqYXpcO2snpRNaBoUCqZBZaZIc.msJEf3vjylEp6_4sYJDi_ZTmn6M.BR_.TlQT
- hLny051g9gJhDEzFcWInAR2W3p7atX6FFQqvHGVjUtG2AT0HC_uu04dACfFHBw59U9VMys26vSc1
- HYS_waxesD9AbCyHY3fNnKWwIQcQIqPC2K31BirNs_lV9jZ73oo61CeSY0hvK0Ba8pdE6955CUa3
- yQ2z0CroJF3_uvdzXWa3uouGbPwo6HdxbzDBcNcuCjE49EjUOmSenkP9QADhSubcfhSAq9yI.z15
- 9mu5wQcN.SzGTfZfniOwq2nhpDboQ0d1AuhD8kewZECWyaH38shyufWL2D0nZSE4gAYfJq7N1prc
- p6C8Mt.fGCNCpqyBz5fHQ7uYHgITT9q1zGuf943tYskbhidCzIZynmgN0Y_4sQ6zjxwnfCqZ7alH
- lGh4adKHFNBw3.juQMHXqPQ3hbFAmGwH5Kc8XDGsqyFftZ1lipFGTVFzul5S8Sn4k6_WXo60nfbn
- MeNyMT4cbkis14_rIKmltKlvjT6rlhjf0zDGaSyahA4UHJQzUnZ_Ju.2WMIUoIyOhxaDh6i9liUd
- 3zg7.Ji37YssaNoNNNQT_DFRrFELB6bzUd9LudX3Lw6gynYBLGA8iuuYIzJUOPcd0gfBYgFe_DTN
- NEeL7BavBmed5WBQo.FjmHJGiEQUQrMl7zu0XFYC36FCweJW_XQOrOT7q7wvcYvrrYqM5XbiGrDl
- JoMpNBxyMTW4zlkejCdkrHW0Dz9UlqBjFpVVExOZUy1O_HI1V82YaUiwTcOBgRRk9IsQB0NkEdbZ
- loVKxd7zxB_0eL0ER0AhhiIz8FPnQDymDJfOouHx9gnkXd5KkE6ZuPlFpZR3Cc2Bx3nMg6.TsDNR
- rUfDPmJc73rok_iXaguS8JO12DNJZaOSpYh2SAn2dkIHfsr8UBb8KQ55Hyr80v7kReM7ucLKwbj0
- Y8tpUBrYNeiD4QDck0ErpxoaavuGb_vTmdp5lqGhLF1jsE0woXDos.lqmDB13X4kD8Bx.tgY5ZDa
- t33RUroXYXDpBThknMoPHWxPETV_yxMjlOqLy0ip8JkqS_Xz.iI4KIBxqUKF9IlMQJagO18T7456
- qFVFB1_3Ui2I330pQM2Jk3MSefXiKlMB6lF5ezBX2UM_mjN0DmxCEAjGZLmeY3Z0VqFxcgp19QYL
- 13c5RCQaM2i5kSDwP65VRuCS9bTAhYoiGrhaT3gVl5xhIL.mgjeV5G9jdxP3WLXbiZQiIzsd43aE
- Ki8g8uxIDp6po8BbkOoSltpUIgnHekDhlHz3RJGNDG9EEVumccAsl0hbeoplSY8KGLiu6irS1TsB
- MV5dFW2O1IWupnxS21EXJBshUO_AHPjUiHEA9fr_eiHaUHXVjh8AmkSPh0SlVPshLPzwgXuwnivU
- D3KYn6QEJG8ajzd58GGuLSby2FHrEsvQrcnBMGCppWXbiuQ544m77U1Y88NvxQzqKXVzqQMU87wO
- DwyGNsSlrXSqAzVZ1Obe2c5V39PCsn2cax_.eXbAQGTMZX3IfF_tLRhbhPeFT7A6hm80G97C4hAz
- VS8g4p4jqkDlOUcFwWirMQsM3N2.IEP3TsuhtVIfpn3y5RlC5X8BX9Jvn0GdoMEwcXIS7Rw5Se27
- 1pHFxwhsAKEfoKsjhdTuCfpz89a8cFgAwRCVRXhYsfZOO2tLaYiLVl_JPQkIMM_8KBUb6GAXiL8X
- b3LWxszinvuId9WX4dW5LrHmWhOIIQbzvPC7tbJnbKgBUfBcVTJ7DelAHg9BhVFyBn7aui.qhtzl
- GVdcr7TSJtPxLIsxkjCUGq9gDKL8Hi1yw2XuyFGf.qUmTymCqoFEM9AkCYCLDUBz98taZzB3n3zX
- w5qf2Yr_cmsBb1pJcNhCvGep1zqGDLdx8ebDQOLs_3cNHCVEMgGdPHxQL1gkRpA_XY40vDDbKed2
- y8hdaGOD_a62M8TTomjzrNGc2NoAnWGQd5qq8ZGqwhcvMW6cnXPsHizdrWOELpj0lvUuuSfLEesP
- q40xzIb0AffCK0qk6sXT69PhoraldZTgT_EcjBzU_DmKBRYnvoQgAIOJ.w9V.EDBhKdwdAz_6sqo
- CmO78hxIWcMuRyPqiFS58ug--
-X-Sonic-MF: <mikerd1@verizon.net>
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic304.consmr.mail.ne1.yahoo.com with HTTP; Fri, 12 Feb 2021 00:28:06 +0000
-Received: by smtp412.mail.bf1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA
- ID 4da1039700d26c85af0407d31b03cb28; 
- Fri, 12 Feb 2021 00:28:01 +0000 (UTC)
-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-References: <4f689791-2302-7230-9931-6bcf890fbce8.ref@verizon.net>
- <4f689791-2302-7230-9931-6bcf890fbce8@verizon.net>
- <fb168c17-61ed-36d9-e970-61d6cf9a08ff@verizon.net>
- <CAL7q81vq1OncbkNU-HyPrRjp4M28Z2feB4VK1iah9JOav2JkBA@mail.gmail.com>
-Message-ID: <4092d0af-5324-7a1a-fd10-e3bca31920b4@verizon.net>
-Date: Thu, 11 Feb 2021 19:28:00 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <CAL7q81vq1OncbkNU-HyPrRjp4M28Z2feB4VK1iah9JOav2JkBA@mail.gmail.com>
+	id 1lAX0d-0005Xt-HF; Fri, 12 Feb 2021 06:53:15 -0500
+Received: from mail-eopbgr100125.outbound.protection.outlook.com
+ ([40.107.10.125]:31872 helo=GBR01-LO2-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <md964@hmgcc.gov.uk>) id 1lAX0Z-0005TT-Tp
+ for usrp-users@lists.ettus.com; Fri, 12 Feb 2021 06:53:12 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OUWz4HuYaJXh2EnxlCb8FP1IbQuAxqDWJGFhjlbQev4vagiU96kmVu1VL0wtMuQ8CibXbq3Ra1Q2VecZke0ECluQslLCjAPfnva7faG7VGcZMIgh9IX5eoScLHkTcWuDiaA42kya8bXMhWvxh8a7xIRXD41dy5f7CW3Gcn3M409WxsKKQSP60QhA/wW/11Q9ZbklqSMt2uyWzz78TCoqAUJ5RLxy7rlN5OvccETgeQ1pm+TWFvB+Huv7xVfUd3Rl8wnSIz5Pl+6ZxmhBEYPguzEtDb6CBIVoBb8LshMqQ1jf9AjCTsivThZ3d1q+P+T3C35AVb5TtE6kIcTNwv7ljA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AQCuox8SIybJVTCj67a/EK5rIR3yZDgaOS0x/Vj5YAk=;
+ b=gx/8bXwjf7jOTPMYDwXupoUqjN4ogiFvIraI4JnXi06hfVQhPVHA+av1tgMZarADXogrXJj+FLBczkwQB1EIUlDj7KklcVak5gXmSoep2adr9Qxki4hOp0YwXxuImYzNNS3LV6AWr7x64KeUSr/AooGdkqKFQ8h3DIUFB7f1BmJGwSJFu02kvPW+y/EWFu04bA36nWIRVFQz/7UNqLbN0QGsy+05qLeb58bmeGcHotJqA3g2UyiZIVjU8hoUFQwwewRaSCqqvZiY0UANRroxxZcgvsU/HUXBKj8oSWU5r8p0JOF1JwawvF0mcoY0ex5Rwy5+k3cG7o6inJfO4k/DDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=hmgcc.gov.uk; dmarc=pass action=none header.from=hmgcc.gov.uk;
+ dkim=pass header.d=hmgcc.gov.uk; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hmgcc.gov.uk;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AQCuox8SIybJVTCj67a/EK5rIR3yZDgaOS0x/Vj5YAk=;
+ b=CozodPCR3/Fvh9XQ6xKtvAs4ytzoA/vi0SnKaVjE1NwHs8Qc/OoINeqKVNe/vvEiiH/rzO3/U57WhE30h0QT/y5JkM35B4fZCIgkAQt0ddMTDBSg7dOwv0FsCf3wexc05qmoysRl6/UGzKKHpeUzf6yd40p7wRqFBb9X9dKirck=
+Received: from LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:132::7)
+ by LOYP123MB2815.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:f3::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.19; Fri, 12 Feb
+ 2021 11:52:29 +0000
+Received: from LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::58a6:243c:81ac:b96b]) by LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::58a6:243c:81ac:b96b%4]) with mapi id 15.20.3825.030; Fri, 12 Feb 2021
+ 11:52:29 +0000
+To: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+Thread-Topic: RFNoC OTT Block on E320
+Thread-Index: AdcBMbPeiYyrqr/eQbmPfmK6sMotug==
+Date: Fri, 12 Feb 2021 11:52:28 +0000
+Message-ID: <LNXP123MB37245E820A2A005C90462024CA8B9@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-X-Mailer: WebService/1.1.17712
- mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.aol
- Apache-HttpAsyncClient/4.1.4 (Java/11.0.9.1)
-Subject: Re: [USRP-users] E310 and RFNoC
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=hmgcc.gov.uk;
+x-originating-ip: [62.189.143.233]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b7c9a403-bb68-450f-45fd-08d8cf4cac6e
+x-ms-traffictypediagnostic: LOYP123MB2815:
+x-microsoft-antispam-prvs: <LOYP123MB2815CB798771702454375B48CA8B9@LOYP123MB2815.GBRP123.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: iT71iA57dgQkH9E26GAYbh1gu1cchUQxNyFnoi+rAjzIvZM49h7opbVZHH2zlCX8fqqeDrKNdsp5BAWaT26KCu5E3SyHk8HOeDuEZHL1Rn34h5OD/GY1CxdJNY91rMtTE2BHeGisrmAs4rrPT+OJcKYm+2wEbUjCvcvfY1G5dZsU6/GfGG138TVZT1dc4A8ORyUrMJhT3swe+40hEFqJv0RkQaoXYAavvlWfdxvpfIAvuBCS3m1SryRIgB9ZTHc0xMOksmTBL0BTs4QfidEhXPa7wgn5F3r8Gezt69Rwjsnl+K0xY70SsL4Tv/nfhtn14i3ipKGAqc0h65UJVO+o/vUiizTKWNmBveoZ1Anjm5cj1p4EJBOjI7ZkG+g4u17px4Krp1T/mZ9LvIFrlTmIbJQ31cVMdawTE3+1W0TCRLHxpkeqLzVcv8rP7w8fKxGvW6IJHql4sHXwX9qP6uYwl0kXn0jKTOFH3mqFODaJljbLjaFzumq1fVgPUIfYBZm+RjugoTgqEbv9xdQm/hxbuuETLHR+IE2PWdZL+WqtNpNIk+4yONgP9AJL/DrcM1sS
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(376002)(136003)(366004)(39840400004)(396003)(71200400001)(6506007)(64756008)(8676002)(2906002)(186003)(52536014)(66556008)(33656002)(83380400001)(66446008)(76116006)(66476007)(26005)(478600001)(5660300002)(86362001)(7696005)(8936002)(6916009)(316002)(66946007)(9686003)(55016002)(9326002)(491001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?1XtozfDRJjSP6bqSlUUhV+lKdSlG4iA8NXcIEyXvxcrDsXQG55fEWMZOhFCW?=
+ =?us-ascii?Q?J8p02Opn5qL32UYEfC5tZMfP7Ycmi/MsJvQP4SN/eg19TtBHRCRTG2N9+bkM?=
+ =?us-ascii?Q?hB5kEqpkHhmbJCsj2cIelhaqHqaOJP/YAgL8M663GbrqFHFCB5OeanCpnk+f?=
+ =?us-ascii?Q?c6epfd3hOhR1gV2Q6WcngVjpMlv5MJaMAFfmTVbtnv/Z/j+29e5PX39rGqjx?=
+ =?us-ascii?Q?vCnFKVn24Rs1aA1Oq0XZcxYIxY6BfBrRUTyOvVHQcATqE/8Ufz38xojfIcc5?=
+ =?us-ascii?Q?tJ7U7VXCht9d74sXXmFv7mTo0lEzMi5h8kjBM7sfBCtpcJqbQIRojptqRZ5D?=
+ =?us-ascii?Q?gQVM4ABi2ysLiEWr0qwzE2CcWgPzJ0BzpAv31XcvUIMm8+hnzuK3wjYj1MwW?=
+ =?us-ascii?Q?EGTaiebBttmbedgptxTrwd+LyMWdidAPvYRKZMq3hD6cpIewJOTb8JebffNh?=
+ =?us-ascii?Q?37UuQ0IM6SvO0v9+dacwCzFK4CVmILoTuNK46Xw8VsCtQwHJxdCkrTrb3NMk?=
+ =?us-ascii?Q?suCCGGplOv4+jRnQofYUsr/VK3xB/CFsgA0lkSgSGP0LyQwNS2/CkWLGZ7YJ?=
+ =?us-ascii?Q?pSdrd3Wx6+sS440IXHYUkjwq/nCkR86NEh248Drl46TpNsCDCL9N/8DU5/Zq?=
+ =?us-ascii?Q?jTwcOuOKzqKw6asUnzqy9hqv3xjDIDW9PVR2GJA6FwT8LkQ2n7DR6AzWt4t8?=
+ =?us-ascii?Q?fhtlS/v8W+xFj1ffycw84QLVC61yaJrITeDYFLDUn5g4DA3tsLEhNqytLPsH?=
+ =?us-ascii?Q?L1rLDLBf1mzKbDUkq+HE5SWSNTVeXC/b9i0nYfxy/nblD+YHDiTSfQmbCGbn?=
+ =?us-ascii?Q?o9I5okjh/0NluFJZOxamJIaGiylFWnvBsmIdBmFkP0AgS6BpTYURtiTkQXcF?=
+ =?us-ascii?Q?YSEo4JIv4Z14IWoL9u8L/LE/e3pRryYQ82qxg0oFhpaUjgsvwVhiervlYWKM?=
+ =?us-ascii?Q?Tif3cw71FOx/HCN08VoOYvbzkN1RAv2TvrraZ/p+veN7kb9s2V/1Gf4VO5PD?=
+ =?us-ascii?Q?+SGOFz0+/9ONnE5D8fdsgtVm1xBUpcpRRlUOZ9JN7yjcXr9v5tXQ3Wjx1lb+?=
+ =?us-ascii?Q?Dpty2K+MZTF/Qnme+ypW9BAPdUOPnFHKYwRPdXsNFRpP5CPwGx+ySRrvA2uv?=
+ =?us-ascii?Q?qEbz0rDWRFyOC/g2zuDt4e0e8Zqsyg/jrk/tEnDDtI+aQ+/Z2DRr7FPi0Cyk?=
+ =?us-ascii?Q?zn6FEQ537R+43okh1Sq80XhMaXXb8JpqhfyrU+2+wonTRay2eW9DnAvhsA9T?=
+ =?us-ascii?Q?BBXcnmbI1D69GXv+RFaV3BBnXP9okbwrzckzJEgVc+wwayvmd1SisJgzhUPv?=
+ =?us-ascii?Q?pBxTblSFFeskNzEwwLO02jzs?=
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: hmgcc.gov.uk
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: b7c9a403-bb68-450f-45fd-08d8cf4cac6e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Feb 2021 11:52:28.8893 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c724c4ae-2756-49fe-b1cd-3a725b29341a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8E8SijcCWx+igeD5cKM7xw+O/iStSWmYMuBLWrsSIEB60sSma5lWyRX/HWTc2VXIGJqBJ2r3SPXb8oqNanQZWQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP123MB2815
+Subject: [USRP-users] RFNoC OTT Block on E320
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -89,9 +109,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mike via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mike <mikerd1@verizon.net>
-Content-Type: multipart/mixed; boundary="===============5052140778932969060=="
+From: Mark D via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mark D <md964@hmgcc.gov.uk>
+Content-Type: multipart/mixed; boundary="===============7909174235646075150=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -105,493 +125,154 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============5052140778932969060==
-Content-Type: multipart/alternative;
- boundary="------------7624C64DEA56F4BB74107260"
+--===============7909174235646075150==
 Content-Language: en-US
-Content-Length: 21859
+Content-Type: multipart/alternative;
+	boundary="_000_LNXP123MB37245E820A2A005C90462024CA8B9LNXP123MB3724GBRP_"
 
-This is a multi-part message in MIME format.
---------------7624C64DEA56F4BB74107260
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_LNXP123MB37245E820A2A005C90462024CA8B9LNXP123MB3724GBRP_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Jonathon,
+Hi,
 
-Yes, I believe I have cross compiled it correctly.  These are the steps 
-I performed:
+I'm trying to add an OTT block into the FPGA for an E320. I'm using version=
+ 4.0.0 of the UHD.
 
-# now compile for e310 (updating XML files)
-mkdir /rfnoc-mikes/build-arm && cd build-arm
-# from new terminal (just to be sure) source the environment variables
-source 
-~/prefix/rfnoc2/oe/environment-setup-cortexa9t2hf-neon-oe-linux-musleabi
-cmake 
--DCMAKE_TOOLCHAIN_FILE=~/prefix/rfnoc2/src/gnuradio/cmake/Toolchains/oe-sdk_cross.cmake 
--DCMAKE_INSTALL_PREFIX=/usr -DENABLE_QT=OFF ..
-make -j3
-make install DESTDIR=~/prefix/rfnoc2/e300/
-make install 
-DESTDIR=~/prefix/rfnoc2/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/
+So far I've used rfnocmodtool to create the OOT folder structure and add my=
+ new block. My initial plan was to add this block as per the default code g=
+enerated that just passes data through. I wanted see that this was instanti=
+ated into the FPGA and the system still worked before starting to add my ow=
+n code.
 
-I am using sshfs to make the e300 directory visible to the e310 device.  
-I'm not sure why it needs to be installed in two locations but I'm just 
-trying to follow instructions that I have seen from various sources.
+I've been following the "Getting Started with RFNoC in UHD 4.0" page on the=
+ Ettus website and also the Youtube video "RFNoC 4 Workshop - GRCon 2020". =
+The .yml file I've created connects the OTT block between the radio Rx and =
+stream endpoint (I've removed the DDC / DUC and already had the FPGA workin=
+g without these).
 
-When I ran rfnocmodtool I used the default settings to create the block 
-control files but I left them untouched.  I only modified the xml for 
-UHD and the xml for GRC located in ./rfnoc-mikes/grc/ and 
-rfnoc-mikes/rfnoc/blocks/
+So far I've got the FPGA built and uploaded to the FPGA. Uhd_usrp_probe sho=
+ws that the RFNoC routing as expected, but the name of OTT block has been r=
+eplaced with Block#0. The OOT project appears as a folder in GNU radio with=
+ the new block available to be dragged into the project.
 
-Thanks for looking into this,
+I think the issues I'm now having are similar to those reported recently by=
+ Mike with the E310. Trying to run a GNU radio project results in the error=
+ " AttributeError: module 'Dilbert' object has no attribute 'dogbert'"
 
-Mike
+The examples I'm following are all based around the X310, is there an extra=
+ step required for the E3xx USRPs to update the firmware running on the dev=
+ice so that it's aware of the new block type? If so I've no idea how I woul=
+d go about this.
 
-On 2/11/21 6:15 PM, Jonathon Pendlum wrote:
-> Hi Mike,
+Any help on this would be much appreciated,
+
+Mark
+________________________________
+This email and any files transmitted with it are confidential and intended =
+solely for the use of the individual or entity to whom they are addressed. =
+If you have received this email in error please notify the system manager.
+
+--_000_LNXP123MB37245E820A2A005C90462024CA8B9LNXP123MB3724GBRP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> Did you cross-compile your RFNoC OOT module and install it to the E310?
->
-> Jonathon
->
-> On Tue, Feb 9, 2021 at 9:52 PM Mike via USRP-users 
-> <usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>> wrote:
->
->     All,  I wanted to resurrect a problem that I had couple months ago
->     that
->     I put aside and would now like to fix.  The issue is that I get a
->     python
->     error when executing a flow graph on an E310 that was generated
->     from GRC.
->
->     The error is posted below.  For background I'm using UHD 3.15 with
->     GNU
->     Radio 3.7.  I've successfully created a bit file for the FPGA with a
->     custom block (simple gain block).  I've updated the UHD xml file such
->     that uhd_usrp_probe correctly identifies the new block. Also, using a
->     python command line tool, I've been able to import my module and
->     enough
->     of other modules like ettus and create a device3 variable to see
->     that I
->     can instantiate my mikes.digitalgain block.  Previously I've
->     successfully generated non-RFNoC OOT modules and run them on the
->     E310.
->     So, I'm a little stumped how to get past this error.  Is there an
->     additional step that I'm missing to compile the RFNoC module so
->     that the
->     E310 version of GNU Radio can successfully import the module and
->     connect
->     to it in the top block.  Is the warning about using the default block
->     controller relevant?  I thought that simple blocks could be
->     controlled
->     through the XML files using the default controller.  Any help
->     would be
->     greatly appreciated...
->
->     root@ni-e31x:~# ./e310_rx_spectrum.py
->     [INFO] [UHD] linux; GNU C++ version 8.2.0; Boost_106800;
->     UHD_3.15.0.0-62-g7a3f1516
->     [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
->     mgmt_addr=127.0.0.1,type=e3xx,product=e310_sg1,serial=3092E3A,claimed=False
->     [WARNING] [MPM.RPCServer] A timeout event occured!
->     [INFO] [MPM.PeriphManager] Found 1 daughterboard(s).
->     [INFO] [0/Radio_0] Initializing block control (NOC ID:
->     0x12AD100000003310)
->     [WARNING] [RFNOC] Can't find a block controller for key digitalgain,
->     using default block controller!
->     [INFO] [0/digitalgain_0] Initializing block control (NOC ID:
->     0x1234123412341234)
->     [INFO] [MPM.PeriphManager] init() called with device args
->     `product=e310_sg1,mgmt_addr=127.0.0.1'.
->     [WARNING] [RFNOC] Can't find a block controller for key FFT, using
->     default block controller!
->     [INFO] [0/FFT_0] Initializing block control (NOC ID:
->     0xFF70000000000000)
->     [INFO] [0/FIFO_0] Initializing block control (NOC ID:
->     0xF1F0000000000000)
->     [INFO] [0/FIFO_1] Initializing block control (NOC ID:
->     0xF1F0000000000000)
->     [INFO] [0/FIFO_2] Initializing block control (NOC ID:
->     0xF1F0000000000000)
->     [INFO] [0/Radio_0] Performing CODEC loopback test...
->     [INFO] [0/Radio_0] CODEC loopback test passed
->     [INFO] [0/Radio_0] Performing CODEC loopback test...
->     [INFO] [0/Radio_0] CODEC loopback test passed
->     Traceback (most recent call last):
->        File "./e310_rx_spectrum.py", line 191, in <module>
->          main()
->        File "./e310_rx_spectrum.py", line 180, in main
->          tb = top_block_cls(freq=options.freq,
->     rfnoc_gain=options.rfnoc_gain, rx_gain=options.rx_gain)
->        File "./e310_rx_spectrum.py", line 80, in __init__
->          self.mikes_digitalgain_0 = mikes.digitalgain(
->     AttributeError: 'module' object has no attribute 'digitalgain'
->     root@ni-e31x:~# ^C
->
->
->     On 11/16/20 3:53 PM, Mike via USRP-users wrote:
->     > All,
->     >
->     > I'm working with the E310 unit and have run up against a road
->     block.
->     > I've completed almost the entire application note, AN-823 (Getting
->     > started with RFNoC Development).
->     >
->     > I'm using UHD 3.15 with GNU Radio 3.7.  I've successfully built a
->     > custom FPGA with the tutorial's "gain" block.  I can see the new
->     block
->     > with the proper name with uhd_usrp_probe.
->     >
->     > I updated the XML files to allow GRC to implement the RFNoC block.
->     >
->     > Here is where I run into problems.  When I copy the gnuradio python
->     > file over to the E310 I keep getting an error that states that the
->     > 'module' object has no attribute 'gain'.
->     >
->     > root@ni-e31x:~# python e310_rx_spectrum.py
->     > [INFO] [UHD] linux; GNU C++ version 8.2.0; Boost_106800;
->     > UHD_3.15.0.0-62-g7a3f1516
->     > [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
->     >
->     mgmt_addr=127.0.0.1,type=e3xx,product=e310_sg1,serial=3092E3A,claimed=False
->     > [WARNING] [MPM.RPCServer] A timeout event occured!
->     > [INFO] [MPM.PeriphManager] Found 1 daughterboard(s).
->     > [INFO] [0/Radio_0] Initializing block control (NOC ID:
->     > 0x12AD100000003310)
->     > [WARNING] [RFNOC] Can't find a block controller for key gain, using
->     > default block controller!
->     > [INFO] [0/gain_0] Initializing block control (NOC ID:
->     0x1111222233334444)
->     > [INFO] [MPM.PeriphManager] init() called with device args
->     > `mgmt_addr=127.0.0.1,product=e310_sg1'.
->     > [INFO] [0/DDC_0] Initializing block control (NOC ID:
->     0xDDC0000000000000)
->     > [WARNING] [RFNOC] Can't find a block controller for key FFT, using
->     > default block controller!
->     > [INFO] [0/FFT_0] Initializing block control (NOC ID:
->     0xFF70000000000000)
->     > [INFO] [0/Radio_0] Performing CODEC loopback test...
->     > [INFO] [0/Radio_0] CODEC loopback test passed
->     > [INFO] [0/Radio_0] Performing CODEC loopback test...
->     > [INFO] [0/Radio_0] CODEC loopback test passed
->     > Traceback (most recent call last):
->     >   File "e310_rx_spectrum.py", line 216, in <module>
->     >     main()
->     >   File "e310_rx_spectrum.py", line 205, in main
->     >     tb = top_block_cls(freq=options.freq,
->     > rfnoc_gain=options.rfnoc_gain, rx_gain=options.rx_gain)
->     >   File "e310_rx_spectrum.py", line 101, in __init__
->     >     self.tutorial_gain_0 = tutorial.gain(
->     > AttributeError: 'module' object has no attribute 'gain'
->     >
->     > Now, I've seen many suggestions on how to address this.  It mostly
->     > describes this as a problem importing the module 'tutorial'.  I've
->     > seen descriptions of using the "nm" command to see if the callback
->     > function is undefined.  But I still haven't been able to fix the
->     issue.
->     >
->     > But mostly what I'm after is a working example of an RFNoC
->     module for
->     > the E310. One that includes the GRC interface so that the software
->     > interface can program the FPGA registers.  I think that a lot of
->     the
->     > tutorials are written for host applications whereas the E310 has a
->     > cross-compiling aspect to it.
->     >
->     > So, if somebody has a working example, I'd greatly appreciate
->     it. Or
->     > maybe a better description or tutorial for E310 specific issues
->     like
->     > cross-compiling OOT RFNoC blocks.
->     >
->     > Many thanks for all the help that has already been given me.
->     >
->     > Mike
->     >
->     >
->     > _______________________________________________
->     > USRP-users mailing list
->     > USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
->     _______________________________________________
->     USRP-users mailing list
->     USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
->     http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---------------7624C64DEA56F4BB74107260
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Jonathon,</p>
-    <p>Yes, I believe I have cross compiled it correctly.  These are the
-      steps I performed:</p>
-    <p># now compile for e310 (updating XML files)<br>
-      mkdir /rfnoc-mikes/build-arm &amp;&amp; cd build-arm<br>
-      # from new terminal (just to be sure) source the environment
-      variables<br>
-      source
-      ~/prefix/rfnoc2/oe/environment-setup-cortexa9t2hf-neon-oe-linux-musleabi<br>
-      cmake
--DCMAKE_TOOLCHAIN_FILE=~/prefix/rfnoc2/src/gnuradio/cmake/Toolchains/oe-sdk_cross.cmake
-      -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_QT=OFF ..<br>
-      make -j3<br>
-      make install DESTDIR=~/prefix/rfnoc2/e300/<br>
-      make install
-      DESTDIR=~/prefix/rfnoc2/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/</p>
-    <p>I am using sshfs to make the e300 directory visible to the e310
-      device.  I'm not sure why it needs to be installed in two
-      locations but I'm just trying to follow instructions that I have
-      seen from various sources.</p>
-    <p>When I ran rfnocmodtool I used the default settings to create the
-      block control files but I left them untouched.  I only modified
-      the xml for UHD and the xml for GRC located in ./rfnoc-mikes/grc/
-      and rfnoc-mikes/rfnoc/blocks/<br>
-    </p>
-    <p>Thanks for looking into this,</p>
-    <p>Mike<br>
-    </p>
-    <div class="moz-cite-prefix">On 2/11/21 6:15 PM, Jonathon Pendlum
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAL7q81vq1OncbkNU-HyPrRjp4M28Z2feB4VK1iah9JOav2JkBA@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">
-        <div dir="ltr">
-          <div>Hi Mike,</div>
-          <div><br>
-          </div>
-          <div>Did you cross-compile your RFNoC OOT module and install
-            it to the E310?</div>
-          <div><br>
-          </div>
-          <div>Jonathon</div>
-        </div>
-        <br>
-        <div class="gmail_quote">
-          <div dir="ltr" class="gmail_attr">On Tue, Feb 9, 2021 at 9:52
-            PM Mike via USRP-users &lt;<a
-              href="mailto:usrp-users@lists.ettus.com"
-              moz-do-not-send="true">usrp-users@lists.ettus.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class="gmail_quote" style="margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">All,  I wanted to
-            resurrect a problem that I had couple months ago that <br>
-            I put aside and would now like to fix.  The issue is that I
-            get a python <br>
-            error when executing a flow graph on an E310 that was
-            generated from GRC.<br>
-            <br>
-            The error is posted below.  For background I'm using UHD
-            3.15 with GNU <br>
-            Radio 3.7.  I've successfully created a bit file for the
-            FPGA with a <br>
-            custom block (simple gain block).  I've updated the UHD xml
-            file such <br>
-            that uhd_usrp_probe correctly identifies the new block. 
-            Also, using a <br>
-            python command line tool, I've been able to import my module
-            and enough <br>
-            of other modules like ettus and create a device3 variable to
-            see that I <br>
-            can instantiate my mikes.digitalgain block.  Previously I've
-            <br>
-            successfully generated non-RFNoC OOT modules and run them on
-            the E310.  <br>
-            So, I'm a little stumped how to get past this error.  Is
-            there an <br>
-            additional step that I'm missing to compile the RFNoC module
-            so that the <br>
-            E310 version of GNU Radio can successfully import the module
-            and connect <br>
-            to it in the top block.  Is the warning about using the
-            default block <br>
-            controller relevant?  I thought that simple blocks could be
-            controlled <br>
-            through the XML files using the default controller.  Any
-            help would be <br>
-            greatly appreciated...<br>
-            <br>
-            root@ni-e31x:~# ./e310_rx_spectrum.py<br>
-            [INFO] [UHD] linux; GNU C++ version 8.2.0; Boost_106800; <br>
-            UHD_3.15.0.0-62-g7a3f1516<br>
-            [INFO] [MPMD] Initializing 1 device(s) in parallel with
-            args: <br>
-mgmt_addr=127.0.0.1,type=e3xx,product=e310_sg1,serial=3092E3A,claimed=False<br>
-            [WARNING] [MPM.RPCServer] A timeout event occured!<br>
-            [INFO] [MPM.PeriphManager] Found 1 daughterboard(s).<br>
-            [INFO] [0/Radio_0] Initializing block control (NOC ID:
-            0x12AD100000003310)<br>
-            [WARNING] [RFNOC] Can't find a block controller for key
-            digitalgain, <br>
-            using default block controller!<br>
-            [INFO] [0/digitalgain_0] Initializing block control (NOC ID:
-            <br>
-            0x1234123412341234)<br>
-            [INFO] [MPM.PeriphManager] init() called with device args <br>
-            `product=e310_sg1,mgmt_addr=127.0.0.1'.<br>
-            [WARNING] [RFNOC] Can't find a block controller for key FFT,
-            using <br>
-            default block controller!<br>
-            [INFO] [0/FFT_0] Initializing block control (NOC ID:
-            0xFF70000000000000)<br>
-            [INFO] [0/FIFO_0] Initializing block control (NOC ID:
-            0xF1F0000000000000)<br>
-            [INFO] [0/FIFO_1] Initializing block control (NOC ID:
-            0xF1F0000000000000)<br>
-            [INFO] [0/FIFO_2] Initializing block control (NOC ID:
-            0xF1F0000000000000)<br>
-            [INFO] [0/Radio_0] Performing CODEC loopback test...<br>
-            [INFO] [0/Radio_0] CODEC loopback test passed<br>
-            [INFO] [0/Radio_0] Performing CODEC loopback test...<br>
-            [INFO] [0/Radio_0] CODEC loopback test passed<br>
-            Traceback (most recent call last):<br>
-               File "./e310_rx_spectrum.py", line 191, in &lt;module&gt;<br>
-                 main()<br>
-               File "./e310_rx_spectrum.py", line 180, in main<br>
-                 tb = top_block_cls(freq=options.freq, <br>
-            rfnoc_gain=options.rfnoc_gain, rx_gain=options.rx_gain)<br>
-               File "./e310_rx_spectrum.py", line 80, in __init__<br>
-                 self.mikes_digitalgain_0 = mikes.digitalgain(<br>
-            AttributeError: 'module' object has no attribute
-            'digitalgain'<br>
-            root@ni-e31x:~# ^C<br>
-            <br>
-            <br>
-            On 11/16/20 3:53 PM, Mike via USRP-users wrote:<br>
-            &gt; All,<br>
-            &gt;<br>
-            &gt; I'm working with the E310 unit and have run up against
-            a road block.  <br>
-            &gt; I've completed almost the entire application note,
-            AN-823 (Getting <br>
-            &gt; started with RFNoC Development).<br>
-            &gt;<br>
-            &gt; I'm using UHD 3.15 with GNU Radio 3.7.  I've
-            successfully built a <br>
-            &gt; custom FPGA with the tutorial's "gain" block.  I can
-            see the new block <br>
-            &gt; with the proper name with uhd_usrp_probe.<br>
-            &gt;<br>
-            &gt; I updated the XML files to allow GRC to implement the
-            RFNoC block.<br>
-            &gt;<br>
-            &gt; Here is where I run into problems.  When I copy the
-            gnuradio python <br>
-            &gt; file over to the E310 I keep getting an error that
-            states that the <br>
-            &gt; 'module' object has no attribute 'gain'.<br>
-            &gt;<br>
-            &gt; root@ni-e31x:~# python e310_rx_spectrum.py<br>
-            &gt; [INFO] [UHD] linux; GNU C++ version 8.2.0;
-            Boost_106800; <br>
-            &gt; UHD_3.15.0.0-62-g7a3f1516<br>
-            &gt; [INFO] [MPMD] Initializing 1 device(s) in parallel with
-            args: <br>
-            &gt;
-mgmt_addr=127.0.0.1,type=e3xx,product=e310_sg1,serial=3092E3A,claimed=False<br>
-            &gt; [WARNING] [MPM.RPCServer] A timeout event occured!<br>
-            &gt; [INFO] [MPM.PeriphManager] Found 1 daughterboard(s).<br>
-            &gt; [INFO] [0/Radio_0] Initializing block control (NOC ID:
-            <br>
-            &gt; 0x12AD100000003310)<br>
-            &gt; [WARNING] [RFNOC] Can't find a block controller for key
-            gain, using <br>
-            &gt; default block controller!<br>
-            &gt; [INFO] [0/gain_0] Initializing block control (NOC ID:
-            0x1111222233334444)<br>
-            &gt; [INFO] [MPM.PeriphManager] init() called with device
-            args <br>
-            &gt; `mgmt_addr=127.0.0.1,product=e310_sg1'.<br>
-            &gt; [INFO] [0/DDC_0] Initializing block control (NOC ID:
-            0xDDC0000000000000)<br>
-            &gt; [WARNING] [RFNOC] Can't find a block controller for key
-            FFT, using <br>
-            &gt; default block controller!<br>
-            &gt; [INFO] [0/FFT_0] Initializing block control (NOC ID:
-            0xFF70000000000000)<br>
-            &gt; [INFO] [0/Radio_0] Performing CODEC loopback test...<br>
-            &gt; [INFO] [0/Radio_0] CODEC loopback test passed<br>
-            &gt; [INFO] [0/Radio_0] Performing CODEC loopback test...<br>
-            &gt; [INFO] [0/Radio_0] CODEC loopback test passed<br>
-            &gt; Traceback (most recent call last):<br>
-            &gt;   File "e310_rx_spectrum.py", line 216, in
-            &lt;module&gt;<br>
-            &gt;     main()<br>
-            &gt;   File "e310_rx_spectrum.py", line 205, in main<br>
-            &gt;     tb = top_block_cls(freq=options.freq, <br>
-            &gt; rfnoc_gain=options.rfnoc_gain, rx_gain=options.rx_gain)<br>
-            &gt;   File "e310_rx_spectrum.py", line 101, in __init__<br>
-            &gt;     self.tutorial_gain_0 = tutorial.gain(<br>
-            &gt; AttributeError: 'module' object has no attribute 'gain'<br>
-            &gt;<br>
-            &gt; Now, I've seen many suggestions on how to address
-            this.  It mostly <br>
-            &gt; describes this as a problem importing the module
-            'tutorial'.  I've <br>
-            &gt; seen descriptions of using the "nm" command to see if
-            the callback <br>
-            &gt; function is undefined.  But I still haven't been able
-            to fix the issue.<br>
-            &gt;<br>
-            &gt; But mostly what I'm after is a working example of an
-            RFNoC module for <br>
-            &gt; the E310. One that includes the GRC interface so that
-            the software <br>
-            &gt; interface can program the FPGA registers.  I think that
-            a lot of the <br>
-            &gt; tutorials are written for host applications whereas the
-            E310 has a <br>
-            &gt; cross-compiling aspect to it.<br>
-            &gt;<br>
-            &gt; So, if somebody has a working example, I'd greatly
-            appreciate it. Or <br>
-            &gt; maybe a better description or tutorial for E310
-            specific issues like <br>
-            &gt; cross-compiling OOT RFNoC blocks.<br>
-            &gt;<br>
-            &gt; Many thanks for all the help that has already been
-            given me.<br>
-            &gt;<br>
-            &gt; Mike<br>
-            &gt;<br>
-            &gt;<br>
-            &gt; _______________________________________________<br>
-            &gt; USRP-users mailing list<br>
-            &gt; <a href="mailto:USRP-users@lists.ettus.com"
-              target="_blank" moz-do-not-send="true">USRP-users@lists.ettus.com</a><br>
-            &gt; <a
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-              rel="noreferrer" target="_blank" moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-            <br>
-            _______________________________________________<br>
-            USRP-users mailing list<br>
-            <a href="mailto:USRP-users@lists.ettus.com" target="_blank"
-              moz-do-not-send="true">USRP-users@lists.ettus.com</a><br>
-            <a
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-              rel="noreferrer" target="_blank" moz-do-not-send="true">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-  </body>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m trying to add an OTT block into the FPGA f=
+or an E320. I&#8217;m using version 4.0.0 of the UHD.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">So far I&#8217;ve used rfnocmodtool to create the OO=
+T folder structure and add my new block. My initial plan was to add this bl=
+ock as per the default code generated that just passes data through. I want=
+ed see that this was instantiated into the
+ FPGA and the system still worked before starting to add my own code.<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;ve been following the &#8220;Getting Started=
+ with RFNoC in UHD 4.0&#8221; page on the Ettus website and also the Youtub=
+e video &#8220;RFNoC 4 Workshop - GRCon 2020&#8221;. The .yml file I&#8217;=
+ve created connects the OTT block between the radio Rx and stream endpoint
+ (I&#8217;ve removed the DDC / DUC and already had the FPGA working without=
+ these).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">So far I&#8217;ve got the FPGA built and uploaded to=
+ the FPGA. Uhd_usrp_probe shows that the RFNoC routing as expected, but the=
+ name of OTT block has been replaced with Block#0. The OOT project appears =
+as a folder in GNU radio with the new block
+ available to be dragged into the project.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I think the issues I&#8217;m now having are similar =
+to those reported recently by Mike with the E310. Trying to run a GNU radio=
+ project results in the error &#8220; AttributeError: module &#8216;Dilbert=
+&#8217; object has no attribute 'dogbert'&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The examples I&#8217;m following are all based aroun=
+d the X310, is there an extra step required for the E3xx USRPs to update th=
+e firmware running on the device so that it&#8217;s aware of the new block =
+type? If so I&#8217;ve no idea how I would go about
+ this.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any help on this would be much appreciated,<o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Mark<o:p></o:p></p>
+</div>
+<hr>
+This email and any files transmitted with it are confidential and intended =
+solely for the use of the individual or entity to whom they are addressed. =
+If you have received this email in error please notify the system manager.
+</body>
 </html>
 
---------------7624C64DEA56F4BB74107260--
+--_000_LNXP123MB37245E820A2A005C90462024CA8B9LNXP123MB3724GBRP_--
 
 
---===============5052140778932969060==
+--===============7909174235646075150==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -602,5 +283,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5052140778932969060==--
+--===============7909174235646075150==--
 
