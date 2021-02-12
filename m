@@ -2,78 +2,77 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CB6F319F73
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Feb 2021 14:10:28 +0100 (CET)
-Received: from [::1] (port=38262 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id C85F4319FF9
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Feb 2021 14:40:58 +0100 (CET)
+Received: from [::1] (port=38484 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lAYDI-0000z9-E3; Fri, 12 Feb 2021 08:10:24 -0500
-Received: from sonic304-21.consmr.mail.ne1.yahoo.com ([66.163.191.147]:43330)
+	id 1lAYgp-0004GV-Jd; Fri, 12 Feb 2021 08:40:55 -0500
+Received: from sonic309-20.consmr.mail.ne1.yahoo.com ([66.163.184.146]:38745)
  by mm2.emwd.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
- (envelope-from <mikerd1@verizon.net>) id 1lAYDE-0000rM-Ao
- for usrp-users@lists.ettus.com; Fri, 12 Feb 2021 08:10:20 -0500
+ (envelope-from <mikerd1@verizon.net>) id 1lAYgl-0004A9-ER
+ for usrp-users@lists.ettus.com; Fri, 12 Feb 2021 08:40:51 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verizon.net; s=a2048;
- t=1613135378; bh=bngfImBAePleRdJW542R74kGTi9xnjQqcz4MFEjiuQ0=;
+ t=1613137209; bh=8FG5W7APb0E/duFMRBiirOrKHev+7qA4VjfK4KXL4/A=;
  h=Subject:To:References:From:Date:In-Reply-To:From:Subject:Reply-To;
- b=cnsXag1qalXR+6Da4VzhdEEDqtZRIaffhtXOJL0UK3b2C4rYyU5dZ5TVH8tP85xnzTFcMNm3Spi/RFdMl3eCWM+TnQMdA64NjDvMRzsl8dUiuEbCFu5tXwJft/jCspSFTyqhexC9w2ullEB971NEHTztV3vO3eyZE7rwWDHQpg4uMTK16fZyBIu5EvieEYAXGnYzcdNrFNWS5lK3p3Xk0JHgH2X4Ct7XEbZnjuKIQTW1lsY7xLhCYfEnxBoFCvcAKtcpE+7Id2DzWLtJYc+JX2TnY0eG6JfJyoP/XwIX+HgH6LaZNtNHIHEgtBV50Wng+voLgAB1To+01TkDhs1NiA==
+ b=WJHOsc+7zkMs47Xagyh9fgeAybue/gCpGPmvBgtEIf8f+Sn10gLilSmfwXPn7c+np0nCWo/WtbP5FIVlTl6bj4IXVOPCkvz0aLz3FQiI3pGwnnopABRmPnJRQJkvqUt7aR3m39Cxhr720oi9bzDhyaB394bRxa1lRILXJ2Z/XXUcNQnUbfWRDz4dCf1i3AtE7jSju9gFGxHkGNRr3dUmv5UQVeNIaS+Nni9aPYwJsVBGrgPcHMgn8Dt57aNWy9GZ5ilcIApnbaQvwqN5ksYTLmhNW3GI1I15VLlp354MBKebLCBBD5HoPnhoYpCRE1yWfp77QIYHeJeH8i9PdhtCPQ==
 X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1613135378; bh=vJ7NuqqRTt2kjI5UECPBQhAPP8rhGU1uG02ZsLOFY78=;
+ t=1613137209; bh=U2gGjCi+0zKQps6qGQVEk27VAI7sHQJ3wQA8O9uUABC=;
  h=X-Sonic-MF:Subject:To:From:Date:From:Subject;
- b=ZC5IgNlI1WVv3poxh8AecgjeDGP+1GI333y2kRQ6bauSAYNuvZrV/ZO6jh7HR2zMIZ8d+G0WMU4dzuaMlcv8vZNOmytImcfKpokKgF66KKgn+WeOmtiOmM1XO9usEY5JEsysmE2hmpC2EVw2nXruF7zJwqMqgZ4Nt7DjU6/GrpEEYX8sZxT0/5FCYNxaHFGHyxUhAn56kvl2llYYgrldSNYF/K0kvsahshoJwzBk18nZo4c55zGRP6HldmJARfUpSbmzW5EoCWh0pTZO92/eXh0epkSClOoi4I1uHjLJVbEZ3l4F+C96NQYb5c+SgAyU3QbcFcC+2kLnr3D1Jp3NPw==
-X-YMail-OSG: pEa4ihYVM1nSxiSY1j4buXupv1AB90gFLYGZyuGJ26nirjtDNLpE6Onc9aDEEYK
- 0XuuMmFX5fw3s1CJPnu9ZnXRLSYMdwQe9c7MBCTynm1in12mhgsLB1yzadZC.LCgmonEB3Q6SS_u
- Md9zV.N_q00hfsSm71LiIluvw1HXXITxAQXl1nbK8J1GffWTHTf5XvqiWBpACRmZxqdvFnh4gcaW
- yHdbOLo607dOaSd.Rmbg2SNUbNh8FGC3hSbYeRYv97rnKAJCp95f57lTDy88uZsfFhZ4BqqkmMtt
- lEXMm9NYdgwhMjmJHKcmkXghfHlML9P07mKutx.JMLSLtVdFUffKLCb0DAcGalcjhRzFVvUuiVvt
- zhkzl.veeaJ8RLifcfHpVsnc1vQpGm.ctcxnwT4FqlRbqEhy0ppRSckVT67wzZzcMbfHjqBGBRtC
- gKgd7.rEd5ct4JA.IbNppZNOTmIssHuxVgk0PjjdMQaahNHgTkD8gqAuBgsLqt.nGU2pt0j6tCgS
- 5mfmutyHzY0h9BI79Cbrj3SIe1SAaVI6P5dRN9L55gQtOg8dCAayX56oNUDZaqrK1LPl3.Ov9Yg.
- FijQJyeeLc1PMfwmPeMASQPj_DDokjRcPeWHPH3U.LJ_QRSn2YvIa9c1SDVCaLdXrWqZHToXJH9T
- zwIYy1.CJ825k3JgnGm15t2hjtZ.WCt6BzsSZBFEJEwQq8kj5QYDaek89bPQTgrdxh3nTn.b4qf6
- z5JbhBCgYYu_e2OAx6Q5oSg0hj2flJ7JjtSPp98xdK7krnR7K4hRDA9WzBbRKAJT8sTmx5d511Ia
- b7JLSLke8KohPFRT8FRSrpCyANnfVDLXQk_jLSfiEJKZRzq7CzZX3BA_md7myti2t6iU6ktmEqfR
- WC1ed8A9h8AtkG7Yk9OdzxA94gwZG3oYD7Irl2njEjgMnTrBj8M0QJQQ0FY8uALYq_nsfMCnnSZX
- N_9.m2d0pf48PcR_0H3WtxjfVl6L2e1R4ULKHfwjbz1UXKEYK4r_2WWj5LMkYadfY3DYXi2eaLev
- a58SBAeP2blwNJBYMDjqj1aa342E2TTQUCbTuHrK_JoWUhynwdtizss2oPOMyamDR8hipNcGJxKo
- 6EKnINhUP_mv0e8SL5EInwzAR0rspdfFduVHGeneHNLjwrXFHdBE_eEdDG_SGTouPSTNBWPzHsZr
- nIocqHpGqUtHD86aB47aMe_nxoYSYEeBN7PB3hWRfgifjTpBWZjx0Pf906y4cNFf97ABol2xYNcK
- 6JE4QSguTEOkZj79i.DuLiwku4rA5UWqhzXKXgoxkF_L0OhiAhHVu0YsBJET5.5cdOyziVKq0JHT
- KM1wqUVKg4UGJM8_JaglTCgWvFSJ.wrflPR5EBTpnFBgeLuRYqUwCdVL81l8i_n0da5uVBEvSp9Z
- pkP.W0_Wa7K9_.D5dybbXCXmuNr8VSXlWJc84EPZWIaTNDxbKeOx8oy5HcpZE.5GU3kVsvMcAar_
- _9AFbHrQj6Und50KNNZdJz8wevSmkRdde9.BsEW9aw1mMpOvaOVdVUfrXlLgTjEWe_tARxIBrbfH
- kErzfYZQnZbVkaoRhm.nMUEIAm.RV1TaRcJzbwVT.8QGTG.2BrTXJ6J_zj0_eqnNQeI0H0UEPa.j
- PiSD0iDG_He3MsVpYhn_FlMwWaZ3C28Ec2YV2yD5o30WvBBgt45mtQmzcP7eKKPZZg3e47vRsN6k
- DVLwuhzSlqflQW8_1GPP7gHjpyXiO98SVse.wgm9hAsT.GilwlP1s1Npm.avB_1f1ekQh1mgEma3
- PorZZTnPCfZ.yYILkWmN1IC_x0QCawBV99Z3PMzDb55sY9JT3Inhd5LaIfbnRu5NGHrurPlq0ePB
- qpislqjWEe6B.c5XyNsnCAARqi25MC0YiMRJ8quc7l6OQXDHMKJjg4sVxUSYJiyrrV9NsE29MHMX
- gfEx6zj_s8AexGpOWf7tFC.wbIEUHA1TjOnVXgZ6sTq9iRxwMikERVmx9UJHLwWDH6fQ2QjEiPZ.
- ZO8wqFenDFH_vx3_aX0SxAiD2DE6YgM98alncKGLVtvD5LRbBhO0QaylX0piV..3SkBa.KsPf9Gn
- QTlZqwbUxYu00tTdhxjrLDipGWBtk6YuuallwsDedrZMD0a3I4NwiquC6.FuFDnPQhdwhsiiyuga
- Luz0S2LI2wn5P7Yiovtq8Nf5fIO.v.txwAUHBlp7hyL01kljJNmFg6PZCBMF028BV42mQuJnmR5Y
- _SoiKcLsgWirnlOcp7DgNMCQVGBzrsQGs9zyzGID6bpLTzsRjDpribBMH5p_7aBj_IaBZF6EdETA
- zBiXGJ2ou2TkMNTZt6qtBeQKhuSgt4KaJlAkkRch616ezzu6eC5bNYr.lrq3eYY4mkQAOZ5AjHmt
- LuI.vQuU9ZjTjhp9g5GMX86NCH1xrDc1HCUGd8UH7zHRGTLTdnH_7xuHxLM0cPxHAUFJT0iGmQl9
- j
+ b=odHT2RrimRrPGAqWUV74Z4AdPbNeQtaAahKRoMMiAvwTFxscVEW9MrpNiBnx7AwNo2kXRfI9k2iABLDyCcckKmxSCZLv+OG3cmzom5sXaEGuyeLzqwqFV8hOPZbkVRLYWt6DTpxU6sIounVqhOFf/XHGCRa8jiy5lfu3WmfcOXCx0tqK39mvKDn+uqB1shwe6XQEDjDQndRspL4gN5vJxbZ34s13pdLeJgPTeYvYpWKSsV5LeUi88phXj4HxWzvxEjI3JQzIdfTlEnk+/RqFtRavxRV6jr3lUX8h+IDh/Z7v1OQbMBYpC6g4xElQ//43os3QIF93EgFoABIVWm/Jjw==
+X-YMail-OSG: Aoks59AVM1mXXrmDIu0bs2GExNRjfiy7Wa3QU45_tP4fpgBr8F7nZi6U0LcEZbd
+ 9AeoSSnR0fF3xNzJpvIkyImXPbZkUozAmMVEC8Mp1PRARLaw6Djm6tgECwtUISInJ0uyrZAYBQKi
+ 5YnaKVupc9t6XZR2vCcfPJzP8VWM1Qk9I02OOlnUGJJ1s3mhETqIXBAaA6O5lJXlUSUIVgsq40go
+ 4VPSHnloJWJu_EPO2Mq1_nhel72Ww3d5QTpqgu.URNE2wWLElhO13zVX5N8zYSBMg2ynubfD75pw
+ FLStvQDeYtZUoTpoPctvaM7PLgHosPf23IiTpPXXxHKHDm1LgK7SQx2fR2TIffnDdKVHejYLw3Dh
+ ueEoNzkIBu2Mh9HjZpLHrxzwDFm6mbDwfismEpw9huFJUtNNl74eUYdv1O7BywULN.nZfdn9jYpE
+ yTpdAtFW44dxf.IevmjOQ_oPSq0xHdPMF8mGDYW84Epc7LDxLHqS57YjPc.v26FsyHjUpu0weBuz
+ ooPH2ZC2cksatWCLXPEWUJw_ulWwOgQsd3qChDMFh.TBGr5ZSms.KFFX09U5e6GZV_gkUzSGWkmM
+ 53wGtQy_HarcfAPKmMfQNN5THnNmUm_q9.DhMSte9eAT8oRb1cxA3eOqHbskT56ZnDDL0wWqrNzW
+ WZ8JKBKC8LcWYCSWL3zOMY1HI5eFBF2NrvCajKLx_zn7sL8SrjxhZUCfvkMETK8YZO97vCWO8w7r
+ QT9H58xBG7JQBnpBEVNVulGONhvacyg1YW3kdrrwiz.EnNHc77gyHVw9gcugfxsrqUibhGj_m1tO
+ Kcr2HmCMB16Z3Qa2GrgvDZ3oSuDpLQOBaPoRy6eFBBikB0gX6ZJzREkmFVSuW5X8bHdVKIt2_WBp
+ SBTc7juBcdD_.BNEPfYByoX3Q_uWujsSb5JFldOp_TIuBz4vUbPl96sqjx85LHH_qtaeLKeWqNGB
+ DpwaB9EJwdTH3WqALLExZucIpsk0WH6fonjbnwYwrfAahBUuHY8h1zo87RQV3HJD30YiHf2EUCGQ
+ Nf02.B0LQHtFKs.6kau4agjSEV9VWi_UAmw77nyTkWEfJo2Zd1Pqb.cmc0DCNtIGh_zmDudlDIxq
+ NUSJYa4BI4uddQSBI.bLhB7_B7k7778ZmVaRYfapo_hvrhzMxLSgzvhxN8g3S1awGHaaczSRl5mz
+ dSgeEPOmkWDU8b0jcirXqySXlEBhmfx8es_jQV2AZtBofnmQNptlwBWlnzc5E2sIRTtK1anLJg9_
+ mnJz3nEQ_A_cLsQaIMtvHPVUeSRpLd4e5cQmEK9wozb9NluF1nX6qy4fWPMtzLycxpsIEcOjGhlW
+ Ai8u5iqurqJXLnYI8EFA1ls77UTfVLr1PN5BJOVNmkZN7iDDpLOW1QAtNIPDMMxGaKeIs1NcuwdI
+ UTFfVaToA1aSelPl_mF2YSgAD2d2YWA8IEWiG.1950n67egNNZcl58nNb8aY13cqVauNllp1BoTD
+ B62T0GDOYQteIgq1RQnC_TsHGLjmPyeIEY09OWqQWZLOa6v2CkiBRhHGfS_fWaqqdDuBYWS.OfXT
+ pvqpeS6houXcMDBcEDiXo_G_GHTT6ilRKam0VPuac9KAxvcdgsk5LdwzI1AkHIc19CCGof1ltY9J
+ WTieSeH7yodLgIPMK.8F5UurxJF4wXpodRZXkpUeU1nI0gdBqsBudQCZKXxhwq9.7zxc_M79oGyv
+ ZBHNT05qnzzX38ci7forISI77mhdqO.6aEl224MLRwjYU3AtI8QwqAlwobv05QKARbB29iCquIM3
+ JR4s6g8ZiWrrVX7k2hQn0uohiiVD3xKPYPCMny95FeCXPmN7hO0W9vEaQsNlKh9Pnr7GpsjbppNI
+ VUSjRXs_TatozF59EOK_7WcjS7vIBT0bGQsjt4.Vye_p19jrvxSJmai61lcSqWPSIlE5.OhqINCp
+ LKPoZtoPRVPAWUYYcXOry_OmdqGU_foNTvRPLnxdW6GxokafvR8ONYUp2nLBcapy9mNSigLfMV4i
+ HtKCiFmhzL1KG5.mjGyZFzWfl3HmUAaaE2DMwgyLSdSr3oGFm8kFz7z_6n8t3CCxxGsmkSD_ohBd
+ N9omeQy8ZyiDFDoLKgIW6OKMExidLY6loZ1zFriIlVSFGH83XKfNTFwopgkrAHOG7nMNCOqfLfuy
+ LblSL_Ksvs_e_ATT.m5tUi4.qcp609LsH5CnugnzwNh1hx6tui9Rdk5bZmV.jZw9LvwLmFowfvgv
+ FfElvyDBtiMrx1hZvyT1pyrCHO6M4euGF0Wrp4Yah8VGU4t.WeOjwEjyRhMeyjOL0UjPaBusuZjC
+ IDRn8adGN.cHDwAPR7B3LjkIrc9tuqcefCx7X13giQJlJGTqfhpI1WTze7ZJP4OnKQEKpSRzGU95
+ 4tS1WQG4-
 X-Sonic-MF: <mikerd1@verizon.net>
 Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic304.consmr.mail.ne1.yahoo.com with HTTP; Fri, 12 Feb 2021 13:09:38 +0000
-Received: by smtp404.mail.bf1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA
- ID 050280bea4d701ab52194fce7b8e8864; 
- Fri, 12 Feb 2021 13:09:36 +0000 (UTC)
+ sonic309.consmr.mail.ne1.yahoo.com with HTTP; Fri, 12 Feb 2021 13:40:09 +0000
+Received: by smtp419.mail.bf1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA
+ ID f697e4cf3005834b0575cd0b8b1bbdde; 
+ Fri, 12 Feb 2021 13:40:07 +0000 (UTC)
 To: usrp-users@lists.ettus.com
-References: <2261a9568f445a8385c11b8eb0af02e64aacb840@webmail>
-Message-ID: <e55f3d2e-6a22-444e-bba6-9eaa7fefe1f6@verizon.net>
-Date: Fri, 12 Feb 2021 08:09:35 -0500
+References: <LNXP123MB37245E820A2A005C90462024CA8B9@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+Message-ID: <ac290695-1961-6291-50ea-76862addd90b@verizon.net>
+Date: Fri, 12 Feb 2021 08:40:06 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <2261a9568f445a8385c11b8eb0af02e64aacb840@webmail>
+In-Reply-To: <LNXP123MB37245E820A2A005C90462024CA8B9@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
 Content-Language: en-US
 X-Mailer: WebService/1.1.17712
  mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.aol
  Apache-HttpAsyncClient/4.1.4 (Java/11.0.9.1)
-Subject: Re: [USRP-users] SWIG Error Cross-compiling gr-ettus
+Subject: Re: [USRP-users] RFNoC OTT Block on E320
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -87,7 +86,7 @@ List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
 From: Mike via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: Mike <mikerd1@verizon.net>
-Content-Type: multipart/mixed; boundary="===============0822754774268131127=="
+Content-Type: multipart/mixed; boundary="===============7043231005022881478=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -102,653 +101,198 @@ X-Source-Args:
 X-Source-Dir: 
 
 This is a multi-part message in MIME format.
---===============0822754774268131127==
+--===============7043231005022881478==
 Content-Type: multipart/alternative;
- boundary="------------46C54838F00491EBE0D8561B"
+ boundary="------------AD659EB494CF1F00E6B0C953"
 Content-Language: en-US
-Content-Length: 28105
+Content-Length: 8702
 
 This is a multi-part message in MIME format.
---------------46C54838F00491EBE0D8561B
-Content-Type: text/plain; charset=utf-8; format=flowed
+--------------AD659EB494CF1F00E6B0C953
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Dennis,
+Mark,
 
-I'm certainly not the expert on this but I think that UHD 3.15 is for 
-gnuradio  3.7 and UHD 4.x is for gnuradio 3.8.  Also, it seems like you 
-want to upgrade from Ubuntu 18.04LTS to Ubuntu 20 when moving to gr 3.8 
-because of the migration to python3.  For now, that's why I'm still at 
-UHD 3.15 and gr 3.7 (still running Ubuntu 18.04).
+For uhd_usrp_probe to correctly read your fpga block module you need to 
+update the XML file in your RFNOC-module/rfnoc/blocks directory.� Then 
+you need to cross-compile your module like you would with gr-ettus and 
+install it on the E320.� I use sshfs to cross-compile on the host and 
+make it immediately available on my E310.
 
-That might be over simplifying it but I think that is the general idea.
+It may be that the process on UHD4 is slightly different but that is 
+what I do to make the correct name of my new block show up in 
+uhd_usrp_probe.
+
+I still have the python "attribute error" so hopefully now that two 
+people are seeing this on both UHD3.15 and UHD4.0 we can get to the 
+bottom of it.
 
 Mike
 
-On 2/11/21 1:29 PM, Dennis Trask via USRP-users wrote:
-> I have cross-compiled UHD v3.15.0.0 and gnuradio maint-3.8 for the 
-> E310. When I try to setup the cross-compile of gr-ettus maint-3.8, I 
-> get a series of errors related to SWIG. Any idea how to work around this?
+On 2/12/21 6:52 AM, Mark D via USRP-users wrote:
 >
-> My cmake command is:
+> Hi,
 >
-> cmake 
-> -DCMAKE_TOOLCHAIN_FILE=~/rfnoc/src/gnuradio/cmake/Toolchains/oe-sdk_cross.cmake 
-> -DCMAKE_INSTALL_PREFIX=/usr ..
+> I�m trying to add an OTT block into the FPGA for an E320. I�m using 
+> version 4.0.0 of the UHD.
 >
-> And here are the errors:
+> So far I�ve used rfnocmodtool to create the OOT folder structure and 
+> add my new block. My initial plan was to add this block as per the 
+> default code generated that just passes data through. I wanted see 
+> that this was instantiated into the FPGA and the system still worked 
+> before starting to add my own code.
 >
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
-> (add_custom_command):
->   Error evaluating generator expression:
+> I�ve been following the �Getting Started with RFNoC in UHD 4.0� page 
+> on the Ettus website and also the Youtube video �RFNoC 4 Workshop - 
+> GRCon 2020�. The .yml file I�ve created connects the OTT block between 
+> the radio Rx and stream endpoint (I�ve removed the DDC / DUC and 
+> already had the FPGA working without these).
 >
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
+> So far I�ve got the FPGA built and uploaded to the FPGA. 
+> Uhd_usrp_probe shows that the RFNoC routing as expected, but the name 
+> of OTT block has been replaced with Block#0. The OOT project appears 
+> as a folder in GNU radio with the new block available to be dragged 
+> into the project.
 >
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
-> (SWIG_ADD_SOURCE_TO_MODULE)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
-> (swig_add_library)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
+> I think the issues I�m now having are similar to those reported 
+> recently by Mike with the E310. Trying to run a GNU radio project 
+> results in the error � AttributeError: module �Dilbert� object has no 
+> attribute 'dogbert'�
 >
+> The examples I�m following are all based around the X310, is there an 
+> extra step required for the E3xx USRPs to update the firmware running 
+> on the device so that it�s aware of the new block type? If so I�ve no 
+> idea how I would go about this.
 >
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
-> (add_custom_command):
->   Error evaluating generator expression:
+> Any help on this would be much appreciated,
 >
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
+> Mark
 >
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
-> (SWIG_ADD_SOURCE_TO_MODULE)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
-> (swig_add_library)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
-> (add_custom_command):
->   Error evaluating generator expression:
->
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
->
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
-> (SWIG_ADD_SOURCE_TO_MODULE)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
-> (swig_add_library)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
-> (add_custom_command):
->   Error evaluating generator expression:
->
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
->
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
-> (SWIG_ADD_SOURCE_TO_MODULE)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
-> (swig_add_library)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrMiscUtils.cmake:127 
-> (add_dependencies):
->   The dependency target "gnuradio::runtime_swig" of target
->   "_ettus_swig_doc_tag" does not exist.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:65 
-> (GR_GEN_TARGET_DEPS)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:112 
-> (GR_SWIG_MAKE_DOCS)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:144 
-> (target_include_directories):
->   Error evaluating generator expression:
->
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
->
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:144 
-> (target_include_directories):
->   Error evaluating generator expression:
->
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
->
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
-> (add_custom_command):
->   Error evaluating generator expression:
->
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
->
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
-> (SWIG_ADD_SOURCE_TO_MODULE)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
-> (swig_add_library)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
-> (add_custom_command):
->   Error evaluating generator expression:
->
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
->
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
-> (SWIG_ADD_SOURCE_TO_MODULE)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
-> (swig_add_library)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
-> (add_custom_command):
->   Error evaluating generator expression:
->
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
->
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
-> (SWIG_ADD_SOURCE_TO_MODULE)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
-> (swig_add_library)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
-> (add_custom_command):
->   Error evaluating generator expression:
->
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
->
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
-> (SWIG_ADD_SOURCE_TO_MODULE)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
-> (swig_add_library)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
-> (add_custom_command):
->   Error evaluating generator expression:
->
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
->
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
-> (SWIG_ADD_SOURCE_TO_MODULE)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
-> (swig_add_library)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
-> (add_custom_command):
->   Error evaluating generator expression:
->
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
->
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
-> (SWIG_ADD_SOURCE_TO_MODULE)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
-> (swig_add_library)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
-> (add_custom_command):
->   Error evaluating generator expression:
->
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
->
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
-> (SWIG_ADD_SOURCE_TO_MODULE)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
-> (swig_add_library)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
-> CMake Error at 
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
-> (add_custom_command):
->   Error evaluating generator expression:
->
-> $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>
->
->   Target "gnuradio::runtime_swig" not found.
-> Call Stack (most recent call first):
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
-> (SWIG_ADD_SOURCE_TO_MODULE)
-> /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
-> (swig_add_library)
->   swig/CMakeLists.txt:54 (GR_SWIG_MAKE)
->
->
+> ------------------------------------------------------------------------
+> This email and any files transmitted with it are confidential and 
+> intended solely for the use of the individual or entity to whom they 
+> are addressed. If you have received this email in error please notify 
+> the system manager.
 >
 > _______________________________________________
 > USRP-users mailing list
 > USRP-users@lists.ettus.com
 > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---------------46C54838F00491EBE0D8561B
-Content-Type: text/html; charset=utf-8
+--------------AD659EB494CF1F00E6B0C953
+Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
   </head>
   <body>
-    <p>Dennis,</p>
-    <p>I'm certainly not the expert on this but I think that UHD 3.15 is
-      for gnuradio  3.7 and UHD 4.x is for gnuradio 3.8.  Also, it seems
-      like you want to upgrade from Ubuntu 18.04LTS to Ubuntu 20 when
-      moving to gr 3.8 because of the migration to python3.  For now,
-      that's why I'm still at UHD 3.15 and gr 3.7 (still running Ubuntu
-      18.04).<br>
-    </p>
-    <p>That might be over simplifying it but I think that is the general
-      idea.</p>
+    <p>Mark,</p>
+    <p>For uhd_usrp_probe to correctly read your fpga block module you
+      need to update the XML file in your RFNOC-module/rfnoc/blocks
+      directory.� Then you need to cross-compile your module like you
+      would with gr-ettus and install it on the E320.� I use sshfs to
+      cross-compile on the host and make it immediately available on my
+      E310.</p>
+    <p>It may be that the process on UHD4 is slightly different but that
+      is what I do to make the correct name of my new block show up in
+      uhd_usrp_probe.</p>
+    <p>I still have the python "attribute error" so hopefully now that
+      two people are seeing this on both UHD3.15 and UHD4.0 we can get
+      to the bottom of it.</p>
     <p>Mike<br>
     </p>
-    <div class="moz-cite-prefix">On 2/11/21 1:29 PM, Dennis Trask via
+    <div class="moz-cite-prefix">On 2/12/21 6:52 AM, Mark D via
       USRP-users wrote:<br>
     </div>
     <blockquote type="cite"
-      cite="mid:2261a9568f445a8385c11b8eb0af02e64aacb840@webmail">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      I have cross-compiled UHD v3.15.0.0 and gnuradio maint-3.8 for the
-      E310. When I try to setup the cross-compile of gr-ettus maint-3.8,
-      I get a series of errors related to SWIG. Any idea how to work
-      around this?
-      <div><br>
+cite="mid:LNXP123MB37245E820A2A005C90462024CA8B9@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal">Hi,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+        <p class="MsoNormal">I�m trying to add an OTT block into the
+          FPGA for an E320. I�m using version 4.0.0 of the UHD.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+        <p class="MsoNormal">So far I�ve used rfnocmodtool to create the
+          OOT folder structure and add my new block. My initial plan was
+          to add this block as per the default code generated that just
+          passes data through. I wanted see that this was instantiated
+          into the FPGA and the system still worked before starting to
+          add my own code.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+        <p class="MsoNormal">I�ve been following the �Getting Started
+          with RFNoC in UHD 4.0� page on the Ettus website and also the
+          Youtube video �RFNoC 4 Workshop - GRCon 2020�. The .yml file
+          I�ve created connects the OTT block between the radio Rx and
+          stream endpoint (I�ve removed the DDC / DUC and already had
+          the FPGA working without these).<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+        <p class="MsoNormal">So far I�ve got the FPGA built and uploaded
+          to the FPGA. Uhd_usrp_probe shows that the RFNoC routing as
+          expected, but the name of OTT block has been replaced with
+          Block#0. The OOT project appears as a folder in GNU radio with
+          the new block available to be dragged into the project.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+        <p class="MsoNormal">I think the issues I�m now having are
+          similar to those reported recently by Mike with the E310.
+          Trying to run a GNU radio project results in the error �
+          AttributeError: module �Dilbert� object has no attribute
+          'dogbert'�<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+        <p class="MsoNormal">The examples I�m following are all based
+          around the X310, is there an extra step required for the E3xx
+          USRPs to update the firmware running on the device so that
+          it�s aware of the new block type? If so I�ve no idea how I
+          would go about this.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+        <p class="MsoNormal">Any help on this would be much appreciated,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+        <p class="MsoNormal">Mark<o:p></o:p></p>
       </div>
-      <div>My cmake command is:
-        <div><br>
-        </div>
-        <div>cmake
--DCMAKE_TOOLCHAIN_FILE=~/rfnoc/src/gnuradio/cmake/Toolchains/oe-sdk_cross.cmake
-          -DCMAKE_INSTALL_PREFIX=/usr ..</div>
-        <div><br>
-        </div>
-        <div>And here are the errors:<br>
-          <div><br>
-          </div>
-          <div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418
-              (add_custom_command):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559
-              (SWIG_ADD_SOURCE_TO_MODULE)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137
-              (swig_add_library)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418
-              (add_custom_command):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559
-              (SWIG_ADD_SOURCE_TO_MODULE)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137
-              (swig_add_library)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418
-              (add_custom_command):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559
-              (SWIG_ADD_SOURCE_TO_MODULE)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137
-              (swig_add_library)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418
-              (add_custom_command):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559
-              (SWIG_ADD_SOURCE_TO_MODULE)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137
-              (swig_add_library)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrMiscUtils.cmake:127
-              (add_dependencies):</div>
-            <div>  The dependency target "gnuradio::runtime_swig" of
-              target</div>
-            <div>  "_ettus_swig_doc_tag" does not exist.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:65
-              (GR_GEN_TARGET_DEPS)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:112
-              (GR_SWIG_MAKE_DOCS)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:144
-              (target_include_directories):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:144
-              (target_include_directories):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418
-              (add_custom_command):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559
-              (SWIG_ADD_SOURCE_TO_MODULE)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137
-              (swig_add_library)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418
-              (add_custom_command):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559
-              (SWIG_ADD_SOURCE_TO_MODULE)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137
-              (swig_add_library)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418
-              (add_custom_command):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559
-              (SWIG_ADD_SOURCE_TO_MODULE)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137
-              (swig_add_library)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418
-              (add_custom_command):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559
-              (SWIG_ADD_SOURCE_TO_MODULE)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137
-              (swig_add_library)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418
-              (add_custom_command):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559
-              (SWIG_ADD_SOURCE_TO_MODULE)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137
-              (swig_add_library)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418
-              (add_custom_command):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559
-              (SWIG_ADD_SOURCE_TO_MODULE)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137
-              (swig_add_library)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418
-              (add_custom_command):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559
-              (SWIG_ADD_SOURCE_TO_MODULE)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137
-              (swig_add_library)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-            <div>CMake Error at
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418
-              (add_custom_command):</div>
-            <div>  Error evaluating generator expression:</div>
-            <div><br>
-            </div>
-            <div>   
-$&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div>
-            <div><br>
-            </div>
-            <div>  Target "gnuradio::runtime_swig" not found.</div>
-            <div>Call Stack (most recent call first):</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559
-              (SWIG_ADD_SOURCE_TO_MODULE)</div>
-            <div> 
-/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-musleabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137
-              (swig_add_library)</div>
-            <div>  swig/CMakeLists.txt:54 (GR_SWIG_MAKE)</div>
-            <div><br>
-            </div>
-            <div><br>
-            </div>
-          </div>
-        </div>
-      </div>
+      <hr>
+      This email and any files transmitted with it are confidential and
+      intended solely for the use of the individual or entity to whom
+      they are addressed. If you have received this email in error
+      please notify the system manager.
       <br>
       <fieldset class="mimeAttachmentHeader"></fieldset>
       <pre class="moz-quote-pre" wrap="">_______________________________________________
@@ -760,10 +304,10 @@ USRP-users mailing list
   </body>
 </html>
 
---------------46C54838F00491EBE0D8561B--
+--------------AD659EB494CF1F00E6B0C953--
 
 
---===============0822754774268131127==
+--===============7043231005022881478==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -774,5 +318,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0822754774268131127==--
+--===============7043231005022881478==--
 
