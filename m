@@ -2,121 +2,53 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1B9731A07B
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Feb 2021 15:20:35 +0100 (CET)
-Received: from [::1] (port=38752 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6998A31A0BB
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Feb 2021 15:38:04 +0100 (CET)
+Received: from [::1] (port=38884 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lAZJA-00068q-Qc; Fri, 12 Feb 2021 09:20:32 -0500
-Received: from mail-eopbgr70115.outbound.protection.outlook.com
- ([40.107.7.115]:54754 helo=EUR04-HE1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <demel@ant.uni-bremen.de>)
- id 1lAZJ6-00062B-8q
- for usrp-users@lists.ettus.com; Fri, 12 Feb 2021 09:20:28 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JCQVkR46ACfkNQpj3WZO/n7JUXTdwEPVr69xfpZMGPZBUK5CnrvSfi2haNnJ71BfNZbAhPivoZ8BeGeOeQbTk5pNAIvt5wsJaJIqBxy8PVfa1s3nisJQwWOnd/01yx6P2ccGYBYzdnvdzmmIHGzfhc91hLvH3WufHC7QxweMUb2L7qgSh0tMnlLVm2JuXBoXZ/UBoziNp2jeHVub0GkbTpDc4v8ytgUIVR0behdaatCC+DtVz6VOElFHeKcrScZwM6JQgT9w+SqkjSLiL2s+G1dY7UZu7/1QUh8+Wunw2VoB4lgkkgDLXdnyf8RreYZW5yzVZrl2tCtoyWZPhhlGOA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6i7VL5ScpAnA9CgIPNroACZsvpR3iV4xe3hU40/bRYI=;
- b=BY/CSra/nNwt+GHViwEMBwKewnPinq8eBnDJhaZzQIdr161VK38KK73mHFpPVDaJqGnRadwBFzPItoLaEvCOvDJsy/n2y/ALSyk8Kg+2rLLbUVUfar7H3+R/HYoGnGeGBvdq+k3q4xdFA+VyMlew0pkPG3OstMGDpQvGgTirxedoIwYQAG8RWbP5Wy1vUTbbjH8vA7T27u0sCQk609laJVACY7+TRhPS/btxygtL8oUtpyuHuqMMClupwYa4/yTPGUPjNyx8fkpWZsqgA5L+TedPu+YT5QZCRpS5oqTdkI841p34NrKxI2fFWhTC/732hP6KamUSglDiqOIw5Bo+iw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
- header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6i7VL5ScpAnA9CgIPNroACZsvpR3iV4xe3hU40/bRYI=;
- b=IDR8Bz7AHaW0fiJnRhV8TarGBZKa0Lt8v0c/+wKOFFdt7beHaN0F1MXVWHqWH1uFiwwVdMsky7W8euE9wndo5C+kldEeqSTnLjHrkCBjmMX+fSFjUp/lySA7yFdNGXZ+wiPEDebEvULXS01bIlYMW0uBsKRG2F6Dp8Dj11NAQ0k=
-Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=ant.uni-bremen.de;
-Received: from AM0PR04MB6673.eurprd04.prod.outlook.com (2603:10a6:208:16a::29)
- by AM8PR04MB7905.eurprd04.prod.outlook.com (2603:10a6:20b:235::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.26; Fri, 12 Feb
- 2021 14:19:36 +0000
-Received: from AM0PR04MB6673.eurprd04.prod.outlook.com
- ([fe80::71c0:f10d:9e66:dfe2]) by AM0PR04MB6673.eurprd04.prod.outlook.com
- ([fe80::71c0:f10d:9e66:dfe2%5]) with mapi id 15.20.3846.034; Fri, 12 Feb 2021
- 14:19:36 +0000
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+	id 1lAZa5-0007kM-P6; Fri, 12 Feb 2021 09:38:01 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:46282)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1lAZa1-0007cA-CU
+ for usrp-users@lists.ettus.com; Fri, 12 Feb 2021 09:37:57 -0500
+Received: by mail-ot1-f52.google.com with SMTP id r21so8504007otk.13
+ for <usrp-users@lists.ettus.com>; Fri, 12 Feb 2021 06:37:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=4+NvUuXsNtyQoz7HR/6zLuqnhnSx14RfouM1FaPzldg=;
+ b=ge4nTnGlrFqaRFlfGvrRu5xxWw3tpIeJgbTdWOTq9rvxN3QiNxfsykgvxnWwCMMOsl
+ JhrhfjMO86aAkdJWNwjiX8gU8PqaGzOBtPdQHOTgy2JSgDgRnoQPrMrMlGBm7Bq/Tu5J
+ 5eY00z80i6AYNtnsGcjTqgnNjQReQ+0eMPeAHhJgPaM8I5quQPKx6ZCXZ9HSzt2oBWOu
+ MAH2ncni7Xnqm4mevZdfTgdFX0Wmvi6vXNfhYJaXGVeDrKJUDRAl7nGpUtrsvNmVsJaa
+ zLOrTVvuFzGDFVo23HM0bEdyvrIwCAS/VBn1zLPEnqKXut/BueGEFM045bsNuzGLIK7n
+ nzbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=4+NvUuXsNtyQoz7HR/6zLuqnhnSx14RfouM1FaPzldg=;
+ b=ttJv5Jvm3rveYnYIfKM5vG5SyHfa9sVpczA+YVEAvhheh5jqDJOOKyD0hOP0F8j6Ny
+ g6ee2lPDH7m3nowTvbrEMPIdqyLtOFDDvJi5v9zFohH5u59tyBocedqRMKfEnzFPrETM
+ ir61G/Z1BbErRdqM5o/Nu9KDN/2Yxd69J+HvYJD+oTRPVBlm6+/9tjOO9cb1oiLEOjvB
+ 65gd6z5p+e/03uF2vP9Fdu1oIahJZ0iZxqLe1aVA9zFXFkJWF8aZyUvS1f4EsS98W3Ot
+ Tbbg5TGdb8C4EBmbWdlNCp5epk6Fc2NgDCSLsRrSGOjYLVzUk7VjpifrsleqpJG/3Z6V
+ Z1KQ==
+X-Gm-Message-State: AOAM532PVdTrQ4XWyGGD92SQrd2VwsS4HZgQlwD9CJEoBGU8uYV6PEGM
+ yg7sU4gh5FrojF4b0a+Bw64Hq9yLhvWFPe8tCc+ygA==
+X-Google-Smtp-Source: ABdhPJzTSZqtscObJrFj1K0qK5fnmwEsgi4AzbQ4Z7kXWL+6ubhBz5BJ5ouU3oivCDWfSZ+h7JcTH26RPGHkRNDubvg=
+X-Received: by 2002:a9d:5503:: with SMTP id l3mr2189189oth.302.1613140636483; 
+ Fri, 12 Feb 2021 06:37:16 -0800 (PST)
+MIME-Version: 1.0
 References: <0ffc349b-bf7c-6bef-6b74-505926796c40@ant.uni-bremen.de>
  <EC78AD9C-8584-49F6-98FA-A7BF09D4E62B@gmail.com>
  <57b7d3d1-cd2e-0d6c-2487-e7eb3de6e73d@ant.uni-bremen.de>
  <6025878D.6070404@gmail.com>
-Message-ID: <fe861977-d453-e578-8c78-590897d3fe52@ant.uni-bremen.de>
-Date: Fri, 12 Feb 2021 15:19:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <6025878D.6070404@gmail.com>
-Content-Language: en-US
-X-Originating-IP: [2003:ca:7f16:f00:aeff:820b:bc65:2e6f]
-X-ClientProxiedBy: AM3PR03CA0064.eurprd03.prod.outlook.com
- (2603:10a6:207:5::22) To AM0PR04MB6673.eurprd04.prod.outlook.com
- (2603:10a6:208:16a::29)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2003:ca:7f16:f00:aeff:820b:bc65:2e6f]
- (2003:ca:7f16:f00:aeff:820b:bc65:2e6f) by
- AM3PR03CA0064.eurprd03.prod.outlook.com (2603:10a6:207:5::22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3846.25 via Frontend Transport; Fri, 12 Feb 2021 14:19:36 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: bdedcb13-ee5d-47f3-6a67-08d8cf6139d1
-X-MS-TrafficTypeDiagnostic: AM8PR04MB7905:
-X-Microsoft-Antispam-PRVS: <AM8PR04MB7905F790388BFF7A09EB5BB4A98B9@AM8PR04MB7905.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Mu/AepSgMU4sJkuZN+qlD4OEAdCjZppsrOhKmXZoF4pDph9PxXD8Lb+l28VhviU+ysbVdzoso3gWLSyZX7PShoscrM610ZwmgHx3ziP4EKvtHw2yoJWbUdYfetsV4N1BNaA4b18Y5Hew7Mqq/jZJlHdkS7mCWz/E1E7YSadUECq3SdaAoiY6xYJoK3II1C4bU5s4EXE4e5GDxIj/JExhBHr+TY+abDPulKd8Jwt2fJKQvpf4H4GLVkeQ+n47E5OcuHuRUzbpGKXHyqkaYGydc694U0BOZ/6nQbJHs8X3RITxtRewUgtq4dHd0/MqO4Xue1ruFBB801ULldBwn2P43HFAO6Ke1DzADfFx5d5N6FTbLmYNbr3F+rGuumAZTNJLjWeDlVMOT1U9OBANskAm0DUjcLtNXfp58Ly37jwvGxZkDO5ZYSYtWGivbAgEzf5oCFv58Urid3SDNvs3WACu2JO1RUG9FReE6rlHg6EEVXmalv75WGWI6QGdoE9ryWFcQSWKEFL3IXkSWkvpUfgnbRq9b/sm+3SzDmm9QeNQtH0Orytx9BSChO7t/s/r+q1OeL8jaExTCr2bY216vpSN31GWz5qN8TImoB2if1064U5QGx7+s0zpS8knPWbpx7S4t1bNPISnMyo6HGLefOIo9d5ITRDFD8Q1i3WBcUyE17qIVgXaOjLZUsf9/wTbAyaOhyt28gDNKkcZlPO4syjOIg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM0PR04MB6673.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(376002)(136003)(396003)(39830400003)(346002)(366004)(66476007)(66556008)(2906002)(6486002)(54906003)(5660300002)(86362001)(52116002)(66946007)(186003)(8936002)(16526019)(6916009)(966005)(4326008)(8676002)(31686004)(53546011)(478600001)(83380400001)(31696002)(316002)(786003)(2616005)(83323001)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?dnV3em9WQjY1aEZibUl1cUtLQ1ZheEdaL1dlalY0djFieXpOSnMzY2JJQytK?=
- =?utf-8?B?VHppcUtNTVViSlVuM1RlS0RPL29OMjlXVkQrbm9wd3F1dk8yVVo1SHl0SExO?=
- =?utf-8?B?bHZ5NjFiQkZ6UXM5SlZlUS9TS1NaMGVIaHcvcXRuTFp6VVp6Y3BYb3d0VHJ2?=
- =?utf-8?B?YVlqYmg1ZkFhQVM1SnFhdU5URk4vYjR5ZzRYN3FOdElEMzJ2ZHN2ek53aG04?=
- =?utf-8?B?M05wWm9IOGF4TEZaTS80OUs2Rklxa2J6NTRnVzhtMS9TQk1DQWZQdEFGWWdZ?=
- =?utf-8?B?MHl2QXB3QnJqeDN3VThBVDUvcEZPdFo1RVo4dkl1OXltSTZzTTY5aGZ0cG5l?=
- =?utf-8?B?Nm9uM1MxckdIeXpUZnlXUFJuWDVnNTRPSS9nakdXcHhmQ214L1ZUU2tBb3JG?=
- =?utf-8?B?QndnN0l0QmFxa0U0dGF6Q0FXYzZiaDA5K0ZFcTRTUWZmbHJqQ09mU2VydmtM?=
- =?utf-8?B?aVJJalMrNzJYWWp5OVdqdWtJVEdEaGhzTHpUUEU3d0VDeFNCKzBYYjlPdEFv?=
- =?utf-8?B?R1FYeEg4a1B4cTd1d2lJamZ2YkIrMTRQYUVFMUJYV0s5REVBZWs3TWFmN3NY?=
- =?utf-8?B?dU1uZUh1Sm9GenUraE5BZW5RV3QrdDZOQ3NtWlZqeHo3a0J2Wlh5cjlVN2Rr?=
- =?utf-8?B?aFdSWTJIVjNVU0diOFE0MDlpMC83ZCswMHB0Qzh1MVQrWEdvc0prZmM3Sk8v?=
- =?utf-8?B?SHJUZkZmbXFueFF2MkN2VEd0dHc3bVg4a0plZG9TT3ZGN21yckZIbXNoRzl3?=
- =?utf-8?B?aWo2dng1VTJTK2NYNlZnaGRMbkh6VFhESk91enN0THF3d1JDT1ZiMVBZMUYz?=
- =?utf-8?B?eVZBeENjN3ZFWEZmam52bjNhTERRNFMrUTlCaGxzM3NJVWVLL245U1BRY0FS?=
- =?utf-8?B?MlhxS2Fsb1BrZkhwdjMwbmgzVitNSVljdkJHdDJ6Tm9KWDQ4ZFdXSjZDOGF3?=
- =?utf-8?B?WldrSG02aEUxRWtGbDdVRlBoYi90ZXNmMC9FbzRmUUtMbXQwOGVTa01BdFFq?=
- =?utf-8?B?dHV5RjlLaUN1ZlkrRG00SU9yYlVWRWovdTFDZ1lRM1BYeEMvTXFWTkUvcHBx?=
- =?utf-8?B?eTNXVUtjT3Z0QkxTNnNRMzlSMmxFdWhPdmNSd3MyMTRYYXpCczZkVjltYU80?=
- =?utf-8?B?alBvVnhGbGZNY3VVSzkxVzBiUHFoeTdEU1BKY2dpNmNGSkJsN3NVWGRVYjBL?=
- =?utf-8?B?ZG9tVkprT2xtQnJDdzlRaUwxSDM2ZWprVGQxSkhpSDBlRXcwWkVneGdHMzRi?=
- =?utf-8?B?bUNBMUhsbEU3UTlBUGxRVDBJYkpTbHB0UFNsZGNPUGJyWWo5WWdRTkJ1VGxs?=
- =?utf-8?B?U2ZKZ2ttcEplbnhOdUh6Ylg2ME1KYjhybFZCU1g3V2ZDQkZrenNoRG9pSWNw?=
- =?utf-8?B?aldvbUF3Wm5zZklvUHVGdGo0UUFVekh6NVVTRVlZdkY5WWxRVzIwUndqc1J3?=
- =?utf-8?B?Rmt6MjRGaGdWeHNMa3dBMHVmcEprSzV5emVRM3BERnFHeko5dzNlNHBuZVc0?=
- =?utf-8?B?SGllcFdUTnRJRDlBRmVmSFE1RlRNWEg5dGlINnUrdjBzREpDMHZwdml6MFNm?=
- =?utf-8?B?UmxBK0ErZjhOZytzQXAzWlhLY09aYjNEUFo0bnZwS1JDS2NsWDBORlBTVVFk?=
- =?utf-8?B?eE5ic3lPam1CWEFKN25PNnFNcEh1d2JRV3FiTWFlaFRpWTdkaFVhUm13Qks1?=
- =?utf-8?B?NThybkJINVZVZWVyQVZSU3ZYN01QZDNuV21nOTRKblFlajl0endIZTRRMDRR?=
- =?utf-8?B?MURKQTRSMUJNTjF5cjdKd0RQTmlzTEVKZng0WEdVYjQ0K25ZVGh2WWN0dDFP?=
- =?utf-8?B?eWtIekxkUFFBbFlqaU1aUXFKckVGR2dBVFlTNk02YVVreXJ3em5lenNxcG95?=
- =?utf-8?Q?oqxQGVIrhtzQf?=
-X-OriginatorOrg: ant.uni-bremen.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: bdedcb13-ee5d-47f3-6a67-08d8cf6139d1
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6673.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2021 14:19:36.3657 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f018440b-2792-4fa0-b2bd-233acaf88ad2
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tukuXzOqWCmikdGalQIoMMZOcmlFG0qspQiFMkckalFGbP7JXhGPrFzUNF2dciNn1PanbqyB2P6j/cabQdFO7g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7905
+ <fe861977-d453-e578-8c78-590897d3fe52@ant.uni-bremen.de>
+In-Reply-To: <fe861977-d453-e578-8c78-590897d3fe52@ant.uni-bremen.de>
+Date: Fri, 12 Feb 2021 09:37:05 -0500
+Message-ID: <CAB__hTTEDDw4_-_Ozg_Bf57aEqi=_Juo+2BU0Rdtqe+qgy3rLQ@mail.gmail.com>
+To: Johannes Demel <demel@ant.uni-bremen.de>
 Subject: Re: [USRP-users] How to use 2 N310 for TX and RX
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -129,11 +61,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
 Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============7089179347465571230=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -147,165 +78,597 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGksCgpJJ2QgbGlrZSB0byBjb250aW51ZSB0aGlzIGRpc2N1c3Npb24gaGVyZS4gU29tZWhvdyBV
-SEQgc2VlbXMgdG8gaWdub3JlIApteSBgZXhwb3J0IGBVSERfTE9HX0xFVkVMPXRyYWNlYCAoYW5k
-IGBVSERfQ09OU09MRV9MT0dfTEVWRUw9dHJhY2VgKSAKc2V0dGluZy4gVGh1cywgSSBhZG9wdGVk
-IHRoZSBmb2xsb3dpbmcgbGluZToKaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhk
-L2Jsb2IvN2EzZjE1MTY0Zjc4YTdhM2I3MDVhMGQwOTllYjVkYzMzNWNjZDlmNi9ob3N0L2xpYi9k
-ZXZpY2UuY3BwI0wxNTEKSSBjaGFuZ2VkIGl0IGZyb20gIl9UUkFDRSIgdG8gIl9XQVJOSU5HIi4K
-Ck5vdywgSSBydW4gdGhlIGZvbGxvd2luZyBzY3JpcHQgd2l0aCBVSEQzLjE1IGFuZCBHUjMuOQpg
-YGAKZnJvbSBnbnVyYWRpbyBpbXBvcnQgdWhkCgpzYSA9IHVoZC5zdHJlYW1fYXJncyhjcHVfZm9y
-bWF0PSJmYzMyIiwgY2hhbm5lbHM9WzAsM10pCmRhID0gdWhkLmRldmljZV9hZGRyKCJhZGRyMD0x
-OTIuMTY4LjIwLjIxMyxtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNiIpCnNyYyA9IHVoZC51c3Jw
-X3NvdXJjZShkYSwgc2EpCnNuayA9IHVoZC51c3JwX3NpbmsoZGEsIHNhKQpgYGAKCk91dHB1dDoK
-YGBgCltJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIDkuMy4wOyBCb29zdF8xMDcx
-MDA7IApVSERfMy4xNS4wLjAtNjItZzdhM2YxNTE2CltXQVJOSU5HXSBbVUhEXSBEZXZpY2UgaGFz
-aDogMTUyMDkwNDQ4OTgyMTE2ODY4MjMKW0lORk9dIFtNUE1EXSBJbml0aWFsaXppbmcgMSBkZXZp
-Y2UocykgaW4gcGFyYWxsZWwgd2l0aCBhcmdzOiAKbWdtdF9hZGRyPTE5Mi4xNjguMjAuMjEzLHR5
-cGU9bjN4eCxwcm9kdWN0PW4zMTAsc2VyaWFsPTMxOTg0MUIsY2xhaW1lZD1GYWxzZSxhZGRyMD0x
-OTIuMTY4LjIwLjIxMyxtYXN0ZXJfY2xvY2tfcmF0ZT0xMjIuODhlNgpbSU5GT10gW01QTS5QZXJp
-cGhNYW5hZ2VyXSBpbml0KCkgY2FsbGVkIHdpdGggZGV2aWNlIGFyZ3MgCmB0aW1lX3NvdXJjZT1l
-eHRlcm5hbCxjbG9ja19zb3VyY2U9ZXh0ZXJuYWwsbWFzdGVyX2Nsb2NrX3JhdGU9MTIyLjg4ZTYs
-cHJvZHVjdD1uMzEwLG1nbXRfYWRkcj0xOTIuMTY4LjIwLjIxMycuCltJTkZPXSBbMC9SZXBsYXlf
-MF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDoKWy4uLl0KW0lORk9dIFswL0ZJ
-Rk9fM10gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAw
-MDAwKQpbV0FSTklOR10gW1VIRF0gRGV2aWNlIGhhc2g6IDE1MjA5MDQ0ODk4MjExNjg2ODIzCmBg
-YApCYXNpY2FsbHksIEdSIHNpbmsgYW5kIHNvdXJjZSBmaW5kIHRoZSBzYW1lIG9iamVjdCBhbmQg
-ZXZlcnl0aGluZyB3b3JrcyAKYXMgZXhwZWN0ZWQuCk5vdGUgdGhlIGBbV0FSTklOR10gW1VIRF0g
-RGV2aWNlIGhhc2g6IDE1MjA5MDQ0ODk4MjExNjg2ODIzYCBsaW5lIAphcHBlYXJzIHR3aWNlIHdp
-dGggdGhlIHNhbWUgaGFzaC4KCk5vdywgSSBjaGFuZ2UgbXkgc2NyaXB0IHNsaWdodGx5LgpgYGAK
-ZnJvbSBnbnVyYWRpbyBpbXBvcnQgdWhkCgpzYSA9IHVoZC5zdHJlYW1fYXJncyhjcHVfZm9ybWF0
-PSJmYzMyIiwgY2hhbm5lbHM9WzAsM10pCmRhID0gCnVoZC5kZXZpY2VfYWRkcigiYWRkcjA9MTky
-LjE2OC4yMC4yMTMsYWRkcjE9MTkyLjE2OC4yMS4yMTgsbWFzdGVyX2Nsb2NrX3JhdGU9MTIyLjg4
-ZTYiKQpzcmMgPSB1aGQudXNycF9zb3VyY2UoZGEsIHNhKQpzbmsgPSB1aGQudXNycF9zaW5rKGRh
-LCBzYSkKYGBgCk5vdGUsIHRoZSBkaWZmZXJlbmNlIGlzIGBhZGRyMT0xOTIuMTY4LjIxLjIxOGAg
-aW4gdGhlIGRldmljZSBhZGRyZXNzIGxpbmUuCgpUaGUgb3V0cHV0IGlzCmBgYApbSU5GT10gW1VI
-RF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA5LjMuMDsgQm9vc3RfMTA3MTAwOyAKVUhEXzMuMTUu
-MC4wLTYyLWc3YTNmMTUxNgpbV0FSTklOR10gW1VIRF0gRGV2aWNlIGhhc2g6IDUwNTc3MDI1OTI2
-NjQyNDM1MjUKW0lORk9dIFtNUE1EXSBJbml0aWFsaXppbmcgMiBkZXZpY2UocykgaW4gcGFyYWxs
-ZWwgd2l0aCBhcmdzOiAKbWdtdF9hZGRyMD0xOTIuMTY4LjIwLjIxMyx0eXBlMD1uM3h4LHByb2R1
-Y3QwPW4zMTAsc2VyaWFsMD0zMTk4NDFCLGNsYWltZWQwPUZhbHNlLG1nbXRfYWRkcjE9MTkyLjE2
-OC4yMS4yMTgsdHlwZTE9bjN4eCxwcm9kdWN0MT1uMzEwLHNlcmlhbDE9MzE4MEFGMyxjbGFpbWVk
-MT1GYWxzZSxhZGRyMD0xOTIuMTY4LjIwLjIxMyxhZGRyMT0xOTIuMTY4LjIxLjIxOCxtYXN0ZXJf
-Y2xvY2tfcmF0ZT0xMjIuODhlNgpbSU5GT10gW01QTS5QZXJpcGhNYW5hZ2VyXSBpbml0KCkgY2Fs
-bGVkIHdpdGggZGV2aWNlIGFyZ3MgCmB0aW1lX3NvdXJjZT1leHRlcm5hbCxjbG9ja19zb3VyY2U9
-ZXh0ZXJuYWwsbWFzdGVyX2Nsb2NrX3JhdGU9MTIyLjg4ZTYscHJvZHVjdD1uMzEwLG1nbXRfYWRk
-cj0xOTIuMTY4LjIwLjIxMycuCltJTkZPXSBbMC9SZXBsYXlfMF0gSW5pdGlhbGl6aW5nIGJsb2Nr
-IGNvbnRyb2wgKE5PQyBJRDogMHg0RTkxQTAwMDAwMDAwMDA0KQpbSU5GT10gW01QTS5QZXJpcGhN
-YW5hZ2VyXSBpbml0KCkgY2FsbGVkIHdpdGggZGV2aWNlIGFyZ3MgCmBwcm9kdWN0PW4zMTAsdGlt
-ZV9zb3VyY2U9ZXh0ZXJuYWwsbWFzdGVyX2Nsb2NrX3JhdGU9MTIyLjg4ZTYsY2xvY2tfc291cmNl
-PWV4dGVybmFsLG1nbXRfYWRkcj0xOTIuMTY4LjIxLjIxOCcuCltJTkZPXSBbMC9SYWRpb18wXSBJ
-bml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweDEyQUQxMDAwMDAwMTEzMTIpClsu
-Li5dCltJTkZPXSBbMS9GSUZPXzNdIEluaXRpYWxpemluZyBibG9jayBjb250cm9sIChOT0MgSUQ6
-IDB4RjFGMDAwMDAwMDAwMDAwMCkKW1dBUk5JTkddIFtVSERdIERldmljZSBoYXNoOiAyNzA4OTIx
-NTI5MTU3OTYxOTI1CltJTkZPXSBbTVBNRF0gSW5pdGlhbGl6aW5nIDIgZGV2aWNlKHMpIGluIHBh
-cmFsbGVsIHdpdGggYXJnczogCm1nbXRfYWRkcjA9MTkyLjE2OC4yMC4yMTMsdHlwZTA9bjN4eCxw
-cm9kdWN0MD1uMzEwLHNlcmlhbDA9MzE5ODQxQixjbGFpbWVkMD1UcnVlLG1nbXRfYWRkcjE9MTky
-LjE2OC4yMS4yMTgsdHlwZTE9bjN4eCxwcm9kdWN0MT1uMzEwLHNlcmlhbDE9MzE4MEFGMyxjbGFp
-bWVkMT1UcnVlLGFkZHIwPTE5Mi4xNjguMjAuMjEzLGFkZHIxPTE5Mi4xNjguMjEuMjE4LG1hc3Rl
-cl9jbG9ja19yYXRlPTEyMi44OGU2CltFUlJPUl0gW1JQQ10gU29tZW9uZSB0cmllZCB0byBjbGFp
-bSB0aGlzIGRldmljZSBhZ2FpbiAoRnJvbTogMTkyLjE2OC4yMC4zNCkKVHJhY2ViYWNrIChtb3N0
-IHJlY2VudCBjYWxsIGxhc3QpOgogICBGaWxlICJtdWx0aV91c3JwLnB5IiwgbGluZSAxMiwgaW4g
-PG1vZHVsZT4KICAgICBzbmsgPSB1aGQudXNycF9zaW5rKGRhLCBzYSkKUnVudGltZUVycm9yOiBS
-dW50aW1lRXJyb3I6IEVycm9yIGR1cmluZyBSUEMgY2FsbCB0byBgY2xhaW0nLiBFcnJvciAKbWVz
-c2FnZTogU29tZW9uZSB0cmllZCB0byBjbGFpbSB0aGlzIGRldmljZSBhZ2FpbiAoRnJvbTogMTky
-LjE2OC4yMC4zNCkKW1dBUk5JTkddIFtNUE0uUlBDU2VydmVyXSBTb21lb25lIHRyaWVkIHRvIGNs
-YWltIHRoaXMgZGV2aWNlIGFnYWluIAooRnJvbTogMTkyLjE2OC4yMC4zNCkKYGBgCkhlcmUsIFVI
-RCBlbmRzIHVwIHdpdGggMiBkaWZmZXJlbnQgZGV2aWNlcyBoYXNoZXMuCmBbV0FSTklOR10gW1VI
-RF0gRGV2aWNlIGhhc2g6IDUwNTc3MDI1OTI2NjQyNDM1MjVgCmBbV0FSTklOR10gW1VIRF0gRGV2
-aWNlIGhhc2g6IDI3MDg5MjE1MjkxNTc5NjE5MjVgCgpJIGFzc3VtZSBib3RoIGNhbGxzIHNob3Vs
-ZCB5aWVsZCB0aGUgc2FtZSBkZXZpY2UgaGFzaC4gSSBqdXN0IGNvbXBhcmVkIAp0aGUgYnJhbmNo
-ZXMgVUhELTMuMTUuTFRTIGFuZCBtYXN0ZXIuIEkgY291bGRuJ3Qgc3BvdCBhbnkgY2hhbmdlcyBp
-biB0aGUgCmNvZGUgYXBhcnQgZnJvbSBkaWZmZXJlbnQgZm9ybWF0dGluZy4KCkkgY2hhbmdlZCBg
-aG9zdC9saWIvZGV2aWNlLmNwcDpMNTBgCgpodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJj
-aC91aGQvYmxvYi83YTNmMTUxNjRmNzhhN2EzYjcwNWEwZDA5OWViNWRjMzM1Y2NkOWY2L2hvc3Qv
-bGliL2RldmljZS5jcHAjTDUwCkZyb20KYGBgCmlmIChzdGQ6OmZpbmQoaGFzaF9rZXlfYmxhY2ts
-aXN0LmJlZ2luKCksIGhhc2hfa2V5X2JsYWNrbGlzdC5lbmQoKSwga2V5KQpgYGAKdG8KYGBgCmlm
-IChzdGQ6OmZpbmRfaWYoaGFzaF9rZXlfYmxhY2tsaXN0LmJlZ2luKCksCiAgICAgICAgICAgICAg
-ICAgIGhhc2hfa2V5X2JsYWNrbGlzdC5lbmQoKSwKICAgICAgICAgICAgICAgICAgW2tleV0oc3Rk
-OjpzdHJpbmcgaSkgeyByZXR1cm4ga2V5LmZpbmQoaSkgIT0KICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgc3RkOjpzdHJpbmc6Om5wb3M7IH0pCmBgYAphbmQgdGhl
-biBpdCB3b3Jrcy4gSGVyZSBrZXlzIGxpa2UgYGNsYWltZWRgIGFyZSBkaWZmZXJlbnQgaWYgbW9y
-ZSB0aGFuIApvbmUgZGV2aWNlIGlzIHVzZWQuIGUuZy4gaW5zdGVhZCBvZiBgY2xhaW1lZGAgdGhl
-IGtleXMgYXJlIGBjbGFpbWVkMGAsIApgY2xhaW1lZDFgLgoKQ2hlZXJzCkpvaGFubmVzCgpQUzog
-aWYgdGhlIDIgVVNSUCBjb25maWd1cmF0aW9uIGVuY291bnRlcnMgYW4gdW5kZXJydW4gKFUgcHJp
-bnQpIGFsbCAKZm9sbG93aW5nIHBhY2tldHMgc2VlbSB0byBzcGFtIGBMYC4gVGhlIHN5c3RlbSBz
-ZWVtcyBsaWtlIGl0IHdvbid0IGV2ZXIgCnJlY292ZXIgZnJvbSB0aGF0IHN0YXRlLiBCdXQgdGhh
-dCdzIGEgZGlmZmVyZW50IGlzc3VlLgoKT24gMTEuMDIuMjEgMjA6MzcsIE1hcmN1cyBELiBMZWVj
-aCB3cm90ZToKPiBPbiAwMi8xMS8yMDIxIDA1OjA0IEFNLCBKb2hhbm5lcyBEZW1lbCB3cm90ZToK
-Pj4gSGksCj4+Cj4+IHllcywgSSBqdXN0IGF0dGFjaCBhIGdyYyBmaWxlIGZvciBHUiAzLjkgdGhh
-dCBJIHVzZSB0byB0ZXN0IHRoaW5ncy4KPj4KPj4gSXQgd29ya3MgaWYgSSBzcGVjaWZ5IGBhZGRy
-PS4uLmAgb3IgYGFkZHIwPS4uLmAgd2l0aCBvbmUgZGV2aWNlLiBJZiBJIAo+PiBzd2l0Y2ggdG8g
-MiBkZXZpY2VzIGBhZGRyPS4uLi4sYWRkcjE9Li4uYCBpdCBmYWlscy4KPj4KPj4gSXQgc2VlbXMg
-bGlrZSBVSEQgdHJpZXMgdG8gaW5pdGlhbGl6ZSB0aGUgZGV2aWNlcyB0d2ljZS4KPj4KPj4gLS0t
-LQo+PiBbSU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA5LjMuMDsgQm9vc3RfMTA3
-MTAwOyAKPj4gVUhEXzMuMTUuMC4wLTYyLWc3YTNmMTUxNgo+PiBbSU5GT10gW01QTURdIEluaXRp
-YWxpemluZyAyIGRldmljZShzKSBpbiBwYXJhbGxlbCB3aXRoIGFyZ3M6IAo+PiBtZ210X2FkZHIw
-PTE5Mi4xNjguMjAuMjEzLHR5cGUwPW4zeHgscHJvZHVjdDA9bjMxMCxzZXJpYWwwPTMxOTg0MUIs
-Y2xhaW1lZDA9RmFsc2UsbWdtdF9hZGRyMT0xOTIuMTY4LjIxLjIxOCx0eXBlMT1uM3h4LHByb2R1
-Y3QxPW4zMTAsc2VyaWFsMT0zMTgwQUYzLGNsYWltZWQxPUZhbHNlLGFkZHIwPTE5Mi4xNjguMjAu
-MjEzLGFkZHIxPTE5Mi4xNjguMjEuMjE4LG1hc3Rlcl9jbG9ja19yYXRlPTEyMi44OGU2LGNsb2Nr
-X3NvdXJjZT1leHRlcm5hbCx0aW1lX3NvdXJjZT1leHRlcm5hbCAKPj4KPj4gW0lORk9dIFtNUE0u
-UGVyaXBoTWFuYWdlcl0gaW5pdCgpIGNhbGxlZCB3aXRoIGRldmljZSBhcmdzIAo+PiBgdGltZV9z
-b3VyY2U9ZXh0ZXJuYWwsY2xvY2tfc291cmNlPWV4dGVybmFsLG1hc3Rlcl9jbG9ja19yYXRlPTEy
-Mi44OGU2LHByb2R1Y3Q9bjMxMCxtZ210X2FkZHI9MTkyLjE2OC4yMC4yMTMnLiAKPj4KPj4gW0lO
-Rk9dIFswL1JlcGxheV8wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAKPj4g
-MHg0RTkxQTAwMDAwMDAwMDA0KQo+PiBbSU5GT10gW01QTS5QZXJpcGhNYW5hZ2VyXSBpbml0KCkg
-Y2FsbGVkIHdpdGggZGV2aWNlIGFyZ3MgCj4+IGB0aW1lX3NvdXJjZT1leHRlcm5hbCxwcm9kdWN0
-PW4zMTAsbWFzdGVyX2Nsb2NrX3JhdGU9MTIyLjg4ZTYsY2xvY2tfc291cmNlPWV4dGVybmFsLG1n
-bXRfYWRkcj0xOTIuMTY4LjIxLjIxOCcuIAo+Pgo+PiBbSU5GT10gWzAvUmFkaW9fMF0gSW5pdGlh
-bGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogCj4+IDB4MTJBRDEwMDAwMDAxMTMxMikKPj4K
-Pj4gWy4uLl0KPj4KPj4gW0lORk9dIFsxL0ZJRk9fM10gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRy
-b2wgKE5PQyBJRDogMHhGMUYwMDAwMDAwMDAwMDAwKQo+PiBbSU5GT10gW01VTFRJX1VTUlBdwqDC
-oMKgwqAgMSkgY2F0Y2ggdGltZSB0cmFuc2l0aW9uIGF0IHBwcyBlZGdlCj4+IFtJTkZPXSBbTVVM
-VElfVVNSUF3CoMKgwqDCoCAyKSBzZXQgdGltZXMgbmV4dCBwcHMgKHN5bmNocm9ub3VzbHkpCj4+
-IFtJTkZPXSBbTVBNRF0gSW5pdGlhbGl6aW5nIDIgZGV2aWNlKHMpIGluIHBhcmFsbGVsIHdpdGgg
-YXJnczogCj4+IG1nbXRfYWRkcjA9MTkyLjE2OC4yMC4yMTMsdHlwZTA9bjN4eCxwcm9kdWN0MD1u
-MzEwLHNlcmlhbDA9MzE5ODQxQixjbGFpbWVkMD1UcnVlLG1nbXRfYWRkcjE9MTkyLjE2OC4yMS4y
-MTgsdHlwZTE9bjN4eCxwcm9kdWN0MT1uMzEwLHNlcmlhbDE9MzE4MEFGMyxjbGFpbWVkMT1UcnVl
-LGFkZHIwPTE5Mi4xNjguMjAuMjEzLGFkZHIxPTE5Mi4xNjguMjEuMjE4LG1hc3Rlcl9jbG9ja19y
-YXRlPTEyMi44OGU2LGNsb2NrX3NvdXJjZT1leHRlcm5hbCx0aW1lX3NvdXJjZT1leHRlcm5hbCAK
-Pj4KPj4gW0VSUk9SXSBbUlBDXSBTb21lb25lIHRyaWVkIHRvIGNsYWltIHRoaXMgZGV2aWNlIGFn
-YWluIChGcm9tOiAKPj4gMTkyLjE2OC4yMC4zNCkKPj4gLS0tLQo+Pgo+PiBJZiBJIHVzZSBvbmx5
-IG9uZSBkZXZpY2UsIGl0IGxvb2tzIGxpa2UgdGhpczoKPj4KPj4gLS0tLQo+PiBbSU5GT10gW1VI
-RF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA5LjMuMDsgQm9vc3RfMTA3MTAwOyAKPj4gVUhEXzMu
-MTUuMC4wLTYyLWc3YTNmMTUxNgo+PiBbSU5GT10gW01QTURdIEluaXRpYWxpemluZyAxIGRldmlj
-ZShzKSBpbiBwYXJhbGxlbCB3aXRoIGFyZ3M6IAo+PiBtZ210X2FkZHI9MTkyLjE2OC4yMC4yMTMs
-dHlwZT1uM3h4LHByb2R1Y3Q9bjMxMCxzZXJpYWw9MzE5ODQxQixjbGFpbWVkPUZhbHNlLGFkZHIw
-PTE5Mi4xNjguMjAuMjEzLG1hc3Rlcl9jbG9ja19yYXRlPTEyMi44OGU2LGNsb2NrX3NvdXJjZT1l
-eHRlcm5hbCx0aW1lX3NvdXJjZT1leHRlcm5hbCAKPj4KPj4gW0lORk9dIFtNUE0uUGVyaXBoTWFu
-YWdlcl0gaW5pdCgpIGNhbGxlZCB3aXRoIGRldmljZSBhcmdzIAo+PiBgdGltZV9zb3VyY2U9ZXh0
-ZXJuYWwsY2xvY2tfc291cmNlPWV4dGVybmFsLG1hc3Rlcl9jbG9ja19yYXRlPTEyMi44OGU2LHBy
-b2R1Y3Q9bjMxMCxtZ210X2FkZHI9MTkyLjE2OC4yMC4yMTMnLiAKPj4KPj4gW0lORk9dIFswL1Jl
-cGxheV8wXSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAKPj4gMHg0RTkxQTAw
-MDAwMDAwMDA0KQo+Pgo+PiBbLi4uXQo+Pgo+PiBbSU5GT10gWzAvRklGT18zXSBJbml0aWFsaXpp
-bmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEYxRjAwMDAwMDAwMDAwMDApCj4+IFtJTkZPXSBb
-TVVMVElfVVNSUF3CoMKgwqDCoCAxKSBjYXRjaCB0aW1lIHRyYW5zaXRpb24gYXQgcHBzIGVkZ2UK
-Pj4gW0lORk9dIFtNVUxUSV9VU1JQXcKgwqDCoMKgIDIpIHNldCB0aW1lcyBuZXh0IHBwcyAoc3lu
-Y2hyb25vdXNseSkKPj4gW0lORk9dIFtNVUxUSV9VU1JQXcKgwqDCoMKgIDEpIGNhdGNoIHRpbWUg
-dHJhbnNpdGlvbiBhdCBwcHMgZWRnZQo+PiBbSU5GT10gW01VTFRJX1VTUlBdwqDCoMKgwqAgMikg
-c2V0IHRpbWVzIG5leHQgcHBzIChzeW5jaHJvbm91c2x5KQo+PiAtLS0tCj4+Cj4+IFRoZSBsYXN0
-IDQgbGluZXMgYXJlIHN1c3BpY2lvdXMgYmVjYXVzZSB0aGV5IGluZGljYXRlIHRoYXQgCj4+IHN5
-bmNocm9uaXphdGlvbiBpcyBwZXJmb3JtZWQgdHdpY2UuIEFsc28sIG1vc3Qgb2YgdGhlIHRpbWUg
-ZHVyaW5nIAo+PiBzdGFydCB1cCBpcyBzcGVuZCB0aGVyZS4KPj4KPj4gQW55d2F5cywgSSBhdHRh
-Y2hlZCBteSBNV0UgZmxvd2dyYXBoLiBJJ2QgYmUgaGFwcHkgaWYgeW91IGNvdWxkIHRlbGwgCj4+
-IG1lIGhvdyB0byBmaXggbXkgaXNzdWUuCj4+Cj4+IENoZWVycwo+PiBKb2hhbm5lcwo+Pgo+IEpv
-aGFubmVzOgo+IAo+IEknbSBjb3B5aW5nIE1pY2hhZWwgRGlja2VucyBmcm9tIEV0dHVzIEVuZ2lu
-ZWVyaW5nIG9uIHRoaXMsIGFuZCBhbHNvLCAKPiBjb250aW51aW5nIHRoaXMgdGhyZWFkIG9uIHRo
-ZSB1c3JwLXVzZXJzIG1haWxpbmcgbGlzdCB3b3VsZCBiZQo+ICDCoCBtb3JlIHVzZWZ1bCB0aGFu
-IG9uIHRoZSBkaXNjdXNzLWdudXJhZGlvIGxpc3QsIGFzIHRoZXJlIGFyZSBmb2xrcyBvbiAKPiB0
-aGUgdXNycC11c2VycyBsaXN0IHdobyBoYXZlIGRvbmUgbXVsdGktTjMxMCBjb25maWd1cmF0aW9u
-cwo+ICDCoCBzdWNjZXNzZnVsbHkuCj4gCj4gSW4gcGFydGljdWxhciwgQWxpIERvcm1pYW5pIChz
-ZG9ybWlhbkBlbmcudWNzZC5lZHUpIGhhcyBhdCBsZWFzdCA2IE4zMTAgCj4gb3BlcmF0aW5nIGlu
-IHRoZWlyIGxhYiB3aXRoIGEgc2luZ2xlIGhvc3Q6Cj4gCj4gSGVsbG8gZmVsbG93IE4zMTAgdXNl
-cnMuIE15IGxhYiBoYXMgNiBOMzEwJ3MgYWxsIG9wZXJhdGluZyBhbmQgc3RyZWFtaW5nIAo+IHRv
-IGEgc2luZ2xlIGRhdGEgc2VydmVyICgxMCBHYmUgbGlua3MpLgo+IAo+IFdlIHVzZSBHTlUgUmFk
-aW8gZm9yIGV2ZXJ5dGhpbmcuIFRoZSBzb2Z0d2FyZSBpcyBncmVhdCBmb3IgY29udHJvbGxpbmcg
-Cj4gbXVsdGlwbGUgZGV2aWNlcyB3aXRoIG1hbnkgYW50ZW5uYXMgZWFzaWx5IChoaWdobHkgcmVj
-b21tZW5kZWQpLiBNeSAKPiBleHBlcmllbmNlIHdpdGggbmF0aXZlIEMrKyBVSEQgZHJpdmVyIGNv
-bW1hbmRzIGlzIHJhdGhlciBsaW1pdGVkLgo+IAo+IEknbSBwZXJzb25hbGx5IGhhbXBlcmVkIGJ5
-IG9ubHkgaGF2aW5nIGEgc2luZ2xlIE4zMTAgYXQgbXkgZGlzcG9zYWwsIHNvIAo+IEkgY2FuJ3Qg
-cmVwcm9kdWNlIHlvdXIgaXNzdWUuCj4gCj4gCj4gCj4gCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGlu
-Zm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20K
+--===============7089179347465571230==
+Content-Type: multipart/alternative; boundary="0000000000009c7a9605bb249251"
+
+--0000000000009c7a9605bb249251
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Johannes,
+Regarding the logging you described, perhaps you need to use the cmake
+option "-DUHD_LOG_MIN_LEVEL=3Dtrace" prior to the UHD build.
+Rob
+
+On Fri, Feb 12, 2021 at 9:20 AM Johannes Demel via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hi,
+>
+> I'd like to continue this discussion here. Somehow UHD seems to ignore
+> my `export `UHD_LOG_LEVEL=3Dtrace` (and `UHD_CONSOLE_LOG_LEVEL=3Dtrace`)
+> setting. Thus, I adopted the following line:
+>
+> https://github.com/EttusResearch/uhd/blob/7a3f15164f78a7a3b705a0d099eb5dc=
+335ccd9f6/host/lib/device.cpp#L151
+> I changed it from "_TRACE" to "_WARNING".
+>
+> Now, I run the following script with UHD3.15 and GR3.9
+> ```
+> from gnuradio import uhd
+>
+> sa =3D uhd.stream_args(cpu_format=3D"fc32", channels=3D[0,3])
+> da =3D uhd.device_addr("addr0=3D192.168.20.213,master_clock_rate=3D122.88=
+e6")
+> src =3D uhd.usrp_source(da, sa)
+> snk =3D uhd.usrp_sink(da, sa)
+> ```
+>
+> Output:
+> ```
+> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+> UHD_3.15.0.0-62-g7a3f1516
+> [WARNING] [UHD] Device hash: 15209044898211686823
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+>
+> mgmt_addr=3D192.168.20.213,type=3Dn3xx,product=3Dn310,serial=3D319841B,cl=
+aimed=3DFalse,addr0=3D192.168.20.213,master_clock_rate=3D122.88e6
+> [INFO] [MPM.PeriphManager] init() called with device args
+>
+> `time_source=3Dexternal,clock_source=3Dexternal,master_clock_rate=3D122.8=
+8e6,product=3Dn310,mgmt_addr=3D192.168.20.213'.
+> [INFO] [0/Replay_0] Initializing block control (NOC ID:
+> [...]
+> [INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)
+> [WARNING] [UHD] Device hash: 15209044898211686823
+> ```
+> Basically, GR sink and source find the same object and everything works
+> as expected.
+> Note the `[WARNING] [UHD] Device hash: 15209044898211686823` line
+> appears twice with the same hash.
+>
+> Now, I change my script slightly.
+> ```
+> from gnuradio import uhd
+>
+> sa =3D uhd.stream_args(cpu_format=3D"fc32", channels=3D[0,3])
+> da =3D
+>
+> uhd.device_addr("addr0=3D192.168.20.213,addr1=3D192.168.21.218,master_clo=
+ck_rate=3D122.88e6")
+> src =3D uhd.usrp_source(da, sa)
+> snk =3D uhd.usrp_sink(da, sa)
+> ```
+> Note, the difference is `addr1=3D192.168.21.218` in the device address li=
+ne.
+>
+> The output is
+> ```
+> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+> UHD_3.15.0.0-62-g7a3f1516
+> [WARNING] [UHD] Device hash: 5057702592664243525
+> [INFO] [MPMD] Initializing 2 device(s) in parallel with args:
+>
+> mgmt_addr0=3D192.168.20.213,type0=3Dn3xx,product0=3Dn310,serial0=3D319841=
+B,claimed0=3DFalse,mgmt_addr1=3D192.168.21.218,type1=3Dn3xx,product1=3Dn310=
+,serial1=3D3180AF3,claimed1=3DFalse,addr0=3D192.168.20.213,addr1=3D192.168.=
+21.218,master_clock_rate=3D122.88e6
+> [INFO] [MPM.PeriphManager] init() called with device args
+>
+> `time_source=3Dexternal,clock_source=3Dexternal,master_clock_rate=3D122.8=
+8e6,product=3Dn310,mgmt_addr=3D192.168.20.213'.
+> [INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A0000000000=
+4)
+> [INFO] [MPM.PeriphManager] init() called with device args
+>
+> `product=3Dn310,time_source=3Dexternal,master_clock_rate=3D122.88e6,clock=
+_source=3Dexternal,mgmt_addr=3D192.168.21.218'.
+> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000011312=
+)
+> [...]
+> [INFO] [1/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)
+> [WARNING] [UHD] Device hash: 2708921529157961925
+> [INFO] [MPMD] Initializing 2 device(s) in parallel with args:
+>
+> mgmt_addr0=3D192.168.20.213,type0=3Dn3xx,product0=3Dn310,serial0=3D319841=
+B,claimed0=3DTrue,mgmt_addr1=3D192.168.21.218,type1=3Dn3xx,product1=3Dn310,=
+serial1=3D3180AF3,claimed1=3DTrue,addr0=3D192.168.20.213,addr1=3D192.168.21=
+.218,master_clock_rate=3D122.88e6
+> [ERROR] [RPC] Someone tried to claim this device again (From:
+> 192.168.20.34)
+> Traceback (most recent call last):
+>    File "multi_usrp.py", line 12, in <module>
+>      snk =3D uhd.usrp_sink(da, sa)
+> RuntimeError: RuntimeError: Error during RPC call to `claim'. Error
+> message: Someone tried to claim this device again (From: 192.168.20.34)
+> [WARNING] [MPM.RPCServer] Someone tried to claim this device again
+> (From: 192.168.20.34)
+> ```
+> Here, UHD ends up with 2 different devices hashes.
+> `[WARNING] [UHD] Device hash: 5057702592664243525`
+> `[WARNING] [UHD] Device hash: 2708921529157961925`
+>
+> I assume both calls should yield the same device hash. I just compared
+> the branches UHD-3.15.LTS and master. I couldn't spot any changes in the
+> code apart from different formatting.
+>
+> I changed `host/lib/device.cpp:L50`
+>
+>
+> https://github.com/EttusResearch/uhd/blob/7a3f15164f78a7a3b705a0d099eb5dc=
+335ccd9f6/host/lib/device.cpp#L50
+> From
+> ```
+> if (std::find(hash_key_blacklist.begin(), hash_key_blacklist.end(), key)
+> ```
+> to
+> ```
+> if (std::find_if(hash_key_blacklist.begin(),
+>                   hash_key_blacklist.end(),
+>                   [key](std::string i) { return key.find(i) !=3D
+>                                              std::string::npos; })
+> ```
+> and then it works. Here keys like `claimed` are different if more than
+> one device is used. e.g. instead of `claimed` the keys are `claimed0`,
+> `claimed1`.
+>
+> Cheers
+> Johannes
+>
+> PS: if the 2 USRP configuration encounters an underrun (U print) all
+> following packets seem to spam `L`. The system seems like it won't ever
+> recover from that state. But that's a different issue.
+>
+> On 11.02.21 20:37, Marcus D. Leech wrote:
+> > On 02/11/2021 05:04 AM, Johannes Demel wrote:
+> >> Hi,
+> >>
+> >> yes, I just attach a grc file for GR 3.9 that I use to test things.
+> >>
+> >> It works if I specify `addr=3D...` or `addr0=3D...` with one device. I=
+f I
+> >> switch to 2 devices `addr=3D....,addr1=3D...` it fails.
+> >>
+> >> It seems like UHD tries to initialize the devices twice.
+> >>
+> >> ----
+> >> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+> >> UHD_3.15.0.0-62-g7a3f1516
+> >> [INFO] [MPMD] Initializing 2 device(s) in parallel with args:
+> >>
+> mgmt_addr0=3D192.168.20.213,type0=3Dn3xx,product0=3Dn310,serial0=3D319841=
+B,claimed0=3DFalse,mgmt_addr1=3D192.168.21.218,type1=3Dn3xx,product1=3Dn310=
+,serial1=3D3180AF3,claimed1=3DFalse,addr0=3D192.168.20.213,addr1=3D192.168.=
+21.218,master_clock_rate=3D122.88e6,clock_source=3Dexternal,time_source=3De=
+xternal
+>
+> >>
+> >> [INFO] [MPM.PeriphManager] init() called with device args
+> >>
+> `time_source=3Dexternal,clock_source=3Dexternal,master_clock_rate=3D122.8=
+8e6,product=3Dn310,mgmt_addr=3D192.168.20.213'.
+>
+> >>
+> >> [INFO] [0/Replay_0] Initializing block control (NOC ID:
+> >> 0x4E91A00000000004)
+> >> [INFO] [MPM.PeriphManager] init() called with device args
+> >>
+> `time_source=3Dexternal,product=3Dn310,master_clock_rate=3D122.88e6,clock=
+_source=3Dexternal,mgmt_addr=3D192.168.21.218'.
+>
+> >>
+> >> [INFO] [0/Radio_0] Initializing block control (NOC ID:
+> >> 0x12AD100000011312)
+> >>
+> >> [...]
+> >>
+> >> [INFO] [1/FIFO_3] Initializing block control (NOC ID:
+> 0xF1F0000000000000)
+> >> [INFO] [MULTI_USRP]     1) catch time transition at pps edge
+> >> [INFO] [MULTI_USRP]     2) set times next pps (synchronously)
+> >> [INFO] [MPMD] Initializing 2 device(s) in parallel with args:
+> >>
+> mgmt_addr0=3D192.168.20.213,type0=3Dn3xx,product0=3Dn310,serial0=3D319841=
+B,claimed0=3DTrue,mgmt_addr1=3D192.168.21.218,type1=3Dn3xx,product1=3Dn310,=
+serial1=3D3180AF3,claimed1=3DTrue,addr0=3D192.168.20.213,addr1=3D192.168.21=
+.218,master_clock_rate=3D122.88e6,clock_source=3Dexternal,time_source=3Dext=
+ernal
+>
+> >>
+> >> [ERROR] [RPC] Someone tried to claim this device again (From:
+> >> 192.168.20.34)
+> >> ----
+> >>
+> >> If I use only one device, it looks like this:
+> >>
+> >> ----
+> >> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+> >> UHD_3.15.0.0-62-g7a3f1516
+> >> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+> >>
+> mgmt_addr=3D192.168.20.213,type=3Dn3xx,product=3Dn310,serial=3D319841B,cl=
+aimed=3DFalse,addr0=3D192.168.20.213,master_clock_rate=3D122.88e6,clock_sou=
+rce=3Dexternal,time_source=3Dexternal
+>
+> >>
+> >> [INFO] [MPM.PeriphManager] init() called with device args
+> >>
+> `time_source=3Dexternal,clock_source=3Dexternal,master_clock_rate=3D122.8=
+8e6,product=3Dn310,mgmt_addr=3D192.168.20.213'.
+>
+> >>
+> >> [INFO] [0/Replay_0] Initializing block control (NOC ID:
+> >> 0x4E91A00000000004)
+> >>
+> >> [...]
+> >>
+> >> [INFO] [0/FIFO_3] Initializing block control (NOC ID:
+> 0xF1F0000000000000)
+> >> [INFO] [MULTI_USRP]     1) catch time transition at pps edge
+> >> [INFO] [MULTI_USRP]     2) set times next pps (synchronously)
+> >> [INFO] [MULTI_USRP]     1) catch time transition at pps edge
+> >> [INFO] [MULTI_USRP]     2) set times next pps (synchronously)
+> >> ----
+> >>
+> >> The last 4 lines are suspicious because they indicate that
+> >> synchronization is performed twice. Also, most of the time during
+> >> start up is spend there.
+> >>
+> >> Anyways, I attached my MWE flowgraph. I'd be happy if you could tell
+> >> me how to fix my issue.
+> >>
+> >> Cheers
+> >> Johannes
+> >>
+> > Johannes:
+> >
+> > I'm copying Michael Dickens from Ettus Engineering on this, and also,
+> > continuing this thread on the usrp-users mailing list would be
+> >    more useful than on the discuss-gnuradio list, as there are folks on
+> > the usrp-users list who have done multi-N310 configurations
+> >    successfully.
+> >
+> > In particular, Ali Dormiani (sdormian@eng.ucsd.edu) has at least 6 N310
+> > operating in their lab with a single host:
+> >
+> > Hello fellow N310 users. My lab has 6 N310's all operating and streamin=
+g
+> > to a single data server (10 Gbe links).
+> >
+> > We use GNU Radio for everything. The software is great for controlling
+> > multiple devices with many antennas easily (highly recommended). My
+> > experience with native C++ UHD driver commands is rather limited.
+> >
+> > I'm personally hampered by only having a single N310 at my disposal, so
+> > I can't reproduce your issue.
+> >
+> >
+> >
+> >
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--0000000000009c7a9605bb249251
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Johannes,<div>Regarding the logging you described, perh=
+aps you need to use the cmake option &quot;-DUHD_LOG_MIN_LEVEL=3Dtrace&quot=
+; prior to the UHD build.=C2=A0</div><div>Rob</div></div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Feb 12, 2021 at =
+9:20 AM Johannes Demel via USRP-users &lt;<a href=3D"mailto:usrp-users@list=
+s.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi,<br>
+<br>
+I&#39;d like to continue this discussion here. Somehow UHD seems to ignore =
+<br>
+my `export `UHD_LOG_LEVEL=3Dtrace` (and `UHD_CONSOLE_LOG_LEVEL=3Dtrace`) <b=
+r>
+setting. Thus, I adopted the following line:<br>
+<a href=3D"https://github.com/EttusResearch/uhd/blob/7a3f15164f78a7a3b705a0=
+d099eb5dc335ccd9f6/host/lib/device.cpp#L151" rel=3D"noreferrer" target=3D"_=
+blank">https://github.com/EttusResearch/uhd/blob/7a3f15164f78a7a3b705a0d099=
+eb5dc335ccd9f6/host/lib/device.cpp#L151</a><br>
+I changed it from &quot;_TRACE&quot; to &quot;_WARNING&quot;.<br>
+<br>
+Now, I run the following script with UHD3.15 and GR3.9<br>
+```<br>
+from gnuradio import uhd<br>
+<br>
+sa =3D uhd.stream_args(cpu_format=3D&quot;fc32&quot;, channels=3D[0,3])<br>
+da =3D uhd.device_addr(&quot;addr0=3D192.168.20.213,master_clock_rate=3D122=
+.88e6&quot;)<br>
+src =3D uhd.usrp_source(da, sa)<br>
+snk =3D uhd.usrp_sink(da, sa)<br>
+```<br>
+<br>
+Output:<br>
+```<br>
+[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; <br>
+UHD_3.15.0.0-62-g7a3f1516<br>
+[WARNING] [UHD] Device hash: 15209044898211686823<br>
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: <br>
+mgmt_addr=3D192.168.20.213,type=3Dn3xx,product=3Dn310,serial=3D319841B,clai=
+med=3DFalse,addr0=3D192.168.20.213,master_clock_rate=3D122.88e6<br>
+[INFO] [MPM.PeriphManager] init() called with device args <br>
+`time_source=3Dexternal,clock_source=3Dexternal,master_clock_rate=3D122.88e=
+6,product=3Dn310,mgmt_addr=3D192.168.20.213&#39;.<br>
+[INFO] [0/Replay_0] Initializing block control (NOC ID:<br>
+[...]<br>
+[INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)<b=
+r>
+[WARNING] [UHD] Device hash: 15209044898211686823<br>
+```<br>
+Basically, GR sink and source find the same object and everything works <br=
+>
+as expected.<br>
+Note the `[WARNING] [UHD] Device hash: 15209044898211686823` line <br>
+appears twice with the same hash.<br>
+<br>
+Now, I change my script slightly.<br>
+```<br>
+from gnuradio import uhd<br>
+<br>
+sa =3D uhd.stream_args(cpu_format=3D&quot;fc32&quot;, channels=3D[0,3])<br>
+da =3D <br>
+uhd.device_addr(&quot;addr0=3D192.168.20.213,addr1=3D192.168.21.218,master_=
+clock_rate=3D122.88e6&quot;)<br>
+src =3D uhd.usrp_source(da, sa)<br>
+snk =3D uhd.usrp_sink(da, sa)<br>
+```<br>
+Note, the difference is `addr1=3D192.168.21.218` in the device address line=
+.<br>
+<br>
+The output is<br>
+```<br>
+[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; <br>
+UHD_3.15.0.0-62-g7a3f1516<br>
+[WARNING] [UHD] Device hash: 5057702592664243525<br>
+[INFO] [MPMD] Initializing 2 device(s) in parallel with args: <br>
+mgmt_addr0=3D192.168.20.213,type0=3Dn3xx,product0=3Dn310,serial0=3D319841B,=
+claimed0=3DFalse,mgmt_addr1=3D192.168.21.218,type1=3Dn3xx,product1=3Dn310,s=
+erial1=3D3180AF3,claimed1=3DFalse,addr0=3D192.168.20.213,addr1=3D192.168.21=
+.218,master_clock_rate=3D122.88e6<br>
+[INFO] [MPM.PeriphManager] init() called with device args <br>
+`time_source=3Dexternal,clock_source=3Dexternal,master_clock_rate=3D122.88e=
+6,product=3Dn310,mgmt_addr=3D192.168.20.213&#39;.<br>
+[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000004)=
+<br>
+[INFO] [MPM.PeriphManager] init() called with device args <br>
+`product=3Dn310,time_source=3Dexternal,master_clock_rate=3D122.88e6,clock_s=
+ource=3Dexternal,mgmt_addr=3D192.168.21.218&#39;.<br>
+[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000011312)<=
+br>
+[...]<br>
+[INFO] [1/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)<b=
+r>
+[WARNING] [UHD] Device hash: 2708921529157961925<br>
+[INFO] [MPMD] Initializing 2 device(s) in parallel with args: <br>
+mgmt_addr0=3D192.168.20.213,type0=3Dn3xx,product0=3Dn310,serial0=3D319841B,=
+claimed0=3DTrue,mgmt_addr1=3D192.168.21.218,type1=3Dn3xx,product1=3Dn310,se=
+rial1=3D3180AF3,claimed1=3DTrue,addr0=3D192.168.20.213,addr1=3D192.168.21.2=
+18,master_clock_rate=3D122.88e6<br>
+[ERROR] [RPC] Someone tried to claim this device again (From: 192.168.20.34=
+)<br>
+Traceback (most recent call last):<br>
+=C2=A0 =C2=A0File &quot;multi_usrp.py&quot;, line 12, in &lt;module&gt;<br>
+=C2=A0 =C2=A0 =C2=A0snk =3D uhd.usrp_sink(da, sa)<br>
+RuntimeError: RuntimeError: Error during RPC call to `claim&#39;. Error <br=
+>
+message: Someone tried to claim this device again (From: 192.168.20.34)<br>
+[WARNING] [MPM.RPCServer] Someone tried to claim this device again <br>
+(From: 192.168.20.34)<br>
+```<br>
+Here, UHD ends up with 2 different devices hashes.<br>
+`[WARNING] [UHD] Device hash: 5057702592664243525`<br>
+`[WARNING] [UHD] Device hash: 2708921529157961925`<br>
+<br>
+I assume both calls should yield the same device hash. I just compared <br>
+the branches UHD-3.15.LTS and master. I couldn&#39;t spot any changes in th=
+e <br>
+code apart from different formatting.<br>
+<br>
+I changed `host/lib/device.cpp:L50`<br>
+<br>
+<a href=3D"https://github.com/EttusResearch/uhd/blob/7a3f15164f78a7a3b705a0=
+d099eb5dc335ccd9f6/host/lib/device.cpp#L50" rel=3D"noreferrer" target=3D"_b=
+lank">https://github.com/EttusResearch/uhd/blob/7a3f15164f78a7a3b705a0d099e=
+b5dc335ccd9f6/host/lib/device.cpp#L50</a><br>
+From<br>
+```<br>
+if (std::find(hash_key_blacklist.begin(), hash_key_blacklist.end(), key)<br=
+>
+```<br>
+to<br>
+```<br>
+if (std::find_if(hash_key_blacklist.begin(),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 hash_key_bla=
+cklist.end(),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 [key](std::s=
+tring i) { return key.find(i) !=3D<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0std::string::npos; })<br>
+```<br>
+and then it works. Here keys like `claimed` are different if more than <br>
+one device is used. e.g. instead of `claimed` the keys are `claimed0`, <br>
+`claimed1`.<br>
+<br>
+Cheers<br>
+Johannes<br>
+<br>
+PS: if the 2 USRP configuration encounters an underrun (U print) all <br>
+following packets seem to spam `L`. The system seems like it won&#39;t ever=
+ <br>
+recover from that state. But that&#39;s a different issue.<br>
+<br>
+On 11.02.21 20:37, Marcus D. Leech wrote:<br>
+&gt; On 02/11/2021 05:04 AM, Johannes Demel wrote:<br>
+&gt;&gt; Hi,<br>
+&gt;&gt;<br>
+&gt;&gt; yes, I just attach a grc file for GR 3.9 that I use to test things=
+.<br>
+&gt;&gt;<br>
+&gt;&gt; It works if I specify `addr=3D...` or `addr0=3D...` with one devic=
+e. If I <br>
+&gt;&gt; switch to 2 devices `addr=3D....,addr1=3D...` it fails.<br>
+&gt;&gt;<br>
+&gt;&gt; It seems like UHD tries to initialize the devices twice.<br>
+&gt;&gt;<br>
+&gt;&gt; ----<br>
+&gt;&gt; [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; <br>
+&gt;&gt; UHD_3.15.0.0-62-g7a3f1516<br>
+&gt;&gt; [INFO] [MPMD] Initializing 2 device(s) in parallel with args: <br>
+&gt;&gt; mgmt_addr0=3D192.168.20.213,type0=3Dn3xx,product0=3Dn310,serial0=
+=3D319841B,claimed0=3DFalse,mgmt_addr1=3D192.168.21.218,type1=3Dn3xx,produc=
+t1=3Dn310,serial1=3D3180AF3,claimed1=3DFalse,addr0=3D192.168.20.213,addr1=
+=3D192.168.21.218,master_clock_rate=3D122.88e6,clock_source=3Dexternal,time=
+_source=3Dexternal <br>
+&gt;&gt;<br>
+&gt;&gt; [INFO] [MPM.PeriphManager] init() called with device args <br>
+&gt;&gt; `time_source=3Dexternal,clock_source=3Dexternal,master_clock_rate=
+=3D122.88e6,product=3Dn310,mgmt_addr=3D192.168.20.213&#39;. <br>
+&gt;&gt;<br>
+&gt;&gt; [INFO] [0/Replay_0] Initializing block control (NOC ID: <br>
+&gt;&gt; 0x4E91A00000000004)<br>
+&gt;&gt; [INFO] [MPM.PeriphManager] init() called with device args <br>
+&gt;&gt; `time_source=3Dexternal,product=3Dn310,master_clock_rate=3D122.88e=
+6,clock_source=3Dexternal,mgmt_addr=3D192.168.21.218&#39;. <br>
+&gt;&gt;<br>
+&gt;&gt; [INFO] [0/Radio_0] Initializing block control (NOC ID: <br>
+&gt;&gt; 0x12AD100000011312)<br>
+&gt;&gt;<br>
+&gt;&gt; [...]<br>
+&gt;&gt;<br>
+&gt;&gt; [INFO] [1/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000=
+000000)<br>
+&gt;&gt; [INFO] [MULTI_USRP]=C2=A0=C2=A0=C2=A0=C2=A0 1) catch time transiti=
+on at pps edge<br>
+&gt;&gt; [INFO] [MULTI_USRP]=C2=A0=C2=A0=C2=A0=C2=A0 2) set times next pps =
+(synchronously)<br>
+&gt;&gt; [INFO] [MPMD] Initializing 2 device(s) in parallel with args: <br>
+&gt;&gt; mgmt_addr0=3D192.168.20.213,type0=3Dn3xx,product0=3Dn310,serial0=
+=3D319841B,claimed0=3DTrue,mgmt_addr1=3D192.168.21.218,type1=3Dn3xx,product=
+1=3Dn310,serial1=3D3180AF3,claimed1=3DTrue,addr0=3D192.168.20.213,addr1=3D1=
+92.168.21.218,master_clock_rate=3D122.88e6,clock_source=3Dexternal,time_sou=
+rce=3Dexternal <br>
+&gt;&gt;<br>
+&gt;&gt; [ERROR] [RPC] Someone tried to claim this device again (From: <br>
+&gt;&gt; 192.168.20.34)<br>
+&gt;&gt; ----<br>
+&gt;&gt;<br>
+&gt;&gt; If I use only one device, it looks like this:<br>
+&gt;&gt;<br>
+&gt;&gt; ----<br>
+&gt;&gt; [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; <br>
+&gt;&gt; UHD_3.15.0.0-62-g7a3f1516<br>
+&gt;&gt; [INFO] [MPMD] Initializing 1 device(s) in parallel with args: <br>
+&gt;&gt; mgmt_addr=3D192.168.20.213,type=3Dn3xx,product=3Dn310,serial=3D319=
+841B,claimed=3DFalse,addr0=3D192.168.20.213,master_clock_rate=3D122.88e6,cl=
+ock_source=3Dexternal,time_source=3Dexternal <br>
+&gt;&gt;<br>
+&gt;&gt; [INFO] [MPM.PeriphManager] init() called with device args <br>
+&gt;&gt; `time_source=3Dexternal,clock_source=3Dexternal,master_clock_rate=
+=3D122.88e6,product=3Dn310,mgmt_addr=3D192.168.20.213&#39;. <br>
+&gt;&gt;<br>
+&gt;&gt; [INFO] [0/Replay_0] Initializing block control (NOC ID: <br>
+&gt;&gt; 0x4E91A00000000004)<br>
+&gt;&gt;<br>
+&gt;&gt; [...]<br>
+&gt;&gt;<br>
+&gt;&gt; [INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000=
+000000)<br>
+&gt;&gt; [INFO] [MULTI_USRP]=C2=A0=C2=A0=C2=A0=C2=A0 1) catch time transiti=
+on at pps edge<br>
+&gt;&gt; [INFO] [MULTI_USRP]=C2=A0=C2=A0=C2=A0=C2=A0 2) set times next pps =
+(synchronously)<br>
+&gt;&gt; [INFO] [MULTI_USRP]=C2=A0=C2=A0=C2=A0=C2=A0 1) catch time transiti=
+on at pps edge<br>
+&gt;&gt; [INFO] [MULTI_USRP]=C2=A0=C2=A0=C2=A0=C2=A0 2) set times next pps =
+(synchronously)<br>
+&gt;&gt; ----<br>
+&gt;&gt;<br>
+&gt;&gt; The last 4 lines are suspicious because they indicate that <br>
+&gt;&gt; synchronization is performed twice. Also, most of the time during =
+<br>
+&gt;&gt; start up is spend there.<br>
+&gt;&gt;<br>
+&gt;&gt; Anyways, I attached my MWE flowgraph. I&#39;d be happy if you coul=
+d tell <br>
+&gt;&gt; me how to fix my issue.<br>
+&gt;&gt;<br>
+&gt;&gt; Cheers<br>
+&gt;&gt; Johannes<br>
+&gt;&gt;<br>
+&gt; Johannes:<br>
+&gt; <br>
+&gt; I&#39;m copying Michael Dickens from Ettus Engineering on this, and al=
+so, <br>
+&gt; continuing this thread on the usrp-users mailing list would be<br>
+&gt;=C2=A0 =C2=A0 more useful than on the discuss-gnuradio list, as there a=
+re folks on <br>
+&gt; the usrp-users list who have done multi-N310 configurations<br>
+&gt;=C2=A0 =C2=A0 successfully.<br>
+&gt; <br>
+&gt; In particular, Ali Dormiani (<a href=3D"mailto:sdormian@eng.ucsd.edu" =
+target=3D"_blank">sdormian@eng.ucsd.edu</a>) has at least 6 N310 <br>
+&gt; operating in their lab with a single host:<br>
+&gt; <br>
+&gt; Hello fellow N310 users. My lab has 6 N310&#39;s all operating and str=
+eaming <br>
+&gt; to a single data server (10 Gbe links).<br>
+&gt; <br>
+&gt; We use GNU Radio for everything. The software is great for controlling=
+ <br>
+&gt; multiple devices with many antennas easily (highly recommended). My <b=
+r>
+&gt; experience with native C++ UHD driver commands is rather limited.<br>
+&gt; <br>
+&gt; I&#39;m personally hampered by only having a single N310 at my disposa=
+l, so <br>
+&gt; I can&#39;t reproduce your issue.<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000009c7a9605bb249251--
+
+
+--===============7089179347465571230==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============7089179347465571230==--
+
