@@ -2,103 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7142F31BDE7
-	for <lists+usrp-users@lfdr.de>; Mon, 15 Feb 2021 17:00:43 +0100 (CET)
-Received: from [::1] (port=40460 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF49331BFB6
+	for <lists+usrp-users@lfdr.de>; Mon, 15 Feb 2021 17:49:41 +0100 (CET)
+Received: from [::1] (port=40794 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lBgIk-0005VH-Fp; Mon, 15 Feb 2021 11:00:42 -0500
-Received: from mail-eopbgr110101.outbound.protection.outlook.com
- ([40.107.11.101]:6133 helo=GBR01-CWL-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <md964@hmgcc.gov.uk>) id 1lBgIg-0005LN-0t
- for usrp-users@lists.ettus.com; Mon, 15 Feb 2021 11:00:38 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e/AXhI1XUqEm6duk7Bo98u8NPjli89qJpmwE0dtm3vkv4NFQHuESP2PWBFtRvaLnJ4UHJJbpkGCoplINeZ0tuWIj7fmDtTX6RSxd+Ck/bqMOkBwpTxyxXU6utqkxRIIoX8ZsfK5vR6qm2p26Hl9eKhCTk97V+bTdbLirub6TjrxPmyCW9vXIbcQDTprY08/+1Fbh9arbEqCB7WQtieMrn3nmYXILL9/6/Z/YawDCezBqbaswUmblx1hwgUKOLh0krqRvq3JzrwFnNZqbFiMRhIGW0fp88iBpHQxICR7jKLD+mIGlYyOeN9vvlFHteGq0d6DtwZ1G1ZwO3t0r4lQUUQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1Bno9MQ/e2WN+OgsQb1zpHWo8UUdDVDqpIfFaaLOXio=;
- b=GKmHqIehw256yoPB+ve0qNDw8ZVb6TV7oLGG6IxQvXYrGGsTli070lZuQ3al/UKJWiikIB3PbdyRu2Cd0+vIJvNdLXcZbsSn/Z4ewrs7IQmYf1VgMyzhkJwLXpayHvgwMjSgLFvHJ+VYCSIteKRNRDPnbqXDcoOeutY/a1u2xuTGmAyzuGu5SkMyBinE1Ln/g0TGPY0M9ioN50sgMf3v82Jpi3mVAucs2tQn1hopBI0Hcf8zV8yqEzq9e2EDojMwj/M2vR8XYZXGX+hWdoUxq+Gb/viM/LOkOVdFtzQTDjkaC6cAr/10Y1gf5+aoqDrpNQ9JPFTrZehiRpyLDI488g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hmgcc.gov.uk; dmarc=pass action=none header.from=hmgcc.gov.uk;
- dkim=pass header.d=hmgcc.gov.uk; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hmgcc.gov.uk;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1Bno9MQ/e2WN+OgsQb1zpHWo8UUdDVDqpIfFaaLOXio=;
- b=YGGp3tXwrQFiNJAPIWHvON0fuQKbeZ/fJiC35nNWch+cw6T993tnjFhaih2DvYiIR44MLedOd9xYnmT3V+2pQjh+TJGVtHBYtBVQL3L6MRUrxC0PtkFz9AkumAeejcnaypC12Pkotfq5R1uE93eaMosGTuT6fVBaAVd/n9AdCNc=
-Received: from LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:132::7)
- by LO2P123MB1871.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:a7::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.30; Mon, 15 Feb
- 2021 15:59:55 +0000
-Received: from LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
- ([fe80::58a6:243c:81ac:b96b]) by LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
- ([fe80::58a6:243c:81ac:b96b%4]) with mapi id 15.20.3846.041; Mon, 15 Feb 2021
- 15:59:55 +0000
-To: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] RFNoC OTT Block on E320 - FIXED
-Thread-Index: AdcDs1KslJGgjZuiQECsOr80n+LlIA==
-Date: Mon, 15 Feb 2021 15:59:55 +0000
-Message-ID: <LNXP123MB3724355C749D06794F9CC0E8CA889@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
-Accept-Language: en-GB, en-US
+	id 1lBh45-0007rT-AK; Mon, 15 Feb 2021 11:49:37 -0500
+Received: from mail.hhi.fraunhofer.de ([193.174.67.45]:58162)
+ by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
+ (Exim 4.93) (envelope-from <ramez.askar@hhi.fraunhofer.de>)
+ id 1lBh41-0007mk-3u
+ for usrp-users@lists.ettus.com; Mon, 15 Feb 2021 11:49:33 -0500
+Received: from mail.hhi.fraunhofer.de (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 7D3C17C081
+ for <usrp-users@lists.ettus.com>; Mon, 15 Feb 2021 17:48:44 +0100 (CET)
+X-IMSS-DKIM-Authentication-Result: mail.hhi.fraunhofer.de; sigcount=0
+Received: from mail.hhi.fraunhofer.de (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 7115E7C079
+ for <usrp-users@lists.ettus.com>; Mon, 15 Feb 2021 17:48:44 +0100 (CET)
+Received: from mx.fe.hhi.de (unknown [172.16.0.102])
+ by mail.hhi.fraunhofer.de (Postfix) with ESMTPS
+ for <usrp-users@lists.ettus.com>; Mon, 15 Feb 2021 17:48:44 +0100 (CET)
+Received: from mxsrv5.fe.hhi.de (172.16.0.103) by mxsrv4.fe.hhi.de
+ (172.16.0.102) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Mon, 15 Feb
+ 2021 17:48:50 +0100
+Received: from mxsrv5.fe.hhi.de ([fe80::7d4f:49e9:b062:84d9]) by
+ mxsrv5.fe.hhi.de ([fe80::7d4f:49e9:b062:84d9%15]) with mapi id
+ 15.01.2106.003; Mon, 15 Feb 2021 17:48:50 +0100
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Get and set CBX-120 ads62p48 gain
+Thread-Index: AQHXA7pvdKU14kVki0CJNlBIvlTbCw==
+Date: Mon, 15 Feb 2021 16:48:50 +0000
+Message-ID: <14566F56-D30D-43E0-B467-6E3541A1AB2F@hhi.fraunhofer.de>
+Accept-Language: en-US, de-DE
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=hmgcc.gov.uk;
-x-originating-ip: [62.189.143.233]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6167c1e7-dab0-439d-663e-08d8d1cabcdb
-x-ms-traffictypediagnostic: LO2P123MB1871:
-x-microsoft-antispam-prvs: <LO2P123MB187187F30E0E59A3E7A215B1CA889@LO2P123MB1871.GBRP123.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:5236;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: fITZTrdsnVf3Iy2zaZq6JHbcgxR/1dv3axnKgSY4pcFCwqOqmPyXTlQEjG+s+qErO4xIwZmgTQOrZ2AwgicGRv+LNNEGskRJpJzwfF7TwjkQVToc5rZXKyLLhYAr/zXO2jA2/7/HIRAZFdBZmv7dDZyyYJBS5Ldw9UpLUiEcaUP/bsvrBFCyeyZwZCP1PUBDeVt8WV9Thl9vhbOqrxPzECoGqr4nXn8gLyt/avXdQ6I7iKGQeIE/TKlq89QS4dWWOFVg3SiIvh6fB+xHmb3xi3GlLVpFFMejbNG2johuIGxQs5388WR5m6Kp9S8QSHwWNMasx3p3ZBGyXd213Z2o9zCMmqnirtq+1kOR/JtNy8dGbx/7bbCE7pNnYlWS3H4q0qEYSD2gtXhJ2DBYwbxTXu7eef+YGe1NUb7TWyAYbT73Fhbbc8KGZVhRemBU3wfRfdG+sla845eS9nLVWRyGYnS0m3OydkbYkxHsz3B9ymXX66hHPBtIJYdJkBkEV0wAso9eMuSrp4kIwW4JOswOzdfjeaw5ghk5O8LGCfA2XPKTfX/mNbURq77lyajXfW+2qGo0kkXNAv8TAAH6B1GpaaywHGugnSm/AspN36cdgYvgQkPI+ko5GYwwhNbzynLjNkbhhAs8xQzSlNwqjxWXoA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(376002)(39840400004)(136003)(396003)(366004)(53546011)(2906002)(71200400001)(8676002)(64756008)(52536014)(66946007)(76116006)(66556008)(33656002)(66476007)(5660300002)(166002)(30864003)(966005)(9686003)(478600001)(26005)(186003)(86362001)(7696005)(83380400001)(8936002)(66446008)(316002)(6506007)(66574015)(6916009)(55016002)(491001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?bar+GibsRj3ELjTZzYaudpprLYGJZVx+6/CN3MdJV1LyOnEb5SYxwTjPzf?=
- =?iso-8859-1?Q?lW8KWXLfsNfzHRofb2H9JB++zluV4jmY5WZ2n8tPk5PcNDS79yahRpTRcF?=
- =?iso-8859-1?Q?Ktw6SvQkoU57ikK1BmX9i1eFOUU5NcjEPVL1jh9teErLb/NNzS1cMNVbvX?=
- =?iso-8859-1?Q?NsCJhfLzRdlVOxm9YClV9NRChHHwJrUy2qJdqubtOXumOqvXSAYei3lhav?=
- =?iso-8859-1?Q?y/qrzNktvlBSjo6M8DjeUnf62coexab4mQsxkCAcMIO95mOmAWuKMq1hd/?=
- =?iso-8859-1?Q?VS/Zu5Tk4Eush4nsHUPf3exnmk01k7j7wgvnoJEqwNlCcLXoJQMunpBWgb?=
- =?iso-8859-1?Q?QUfcQkg3iW7iC4gFRu1nt9fLTwxbBB8cbIr3NoZIdniJImfVMm9v/tYbaD?=
- =?iso-8859-1?Q?ATN4P/Jy1Yjgo8fUdiEV2TX3wpdPtRpxX3k11hw1MFgpEbEj4sDHGjgWpi?=
- =?iso-8859-1?Q?Xl1k+NABoiUUHWz0Jh+ZyqNhbTMbWbMaDWznmXWdJKgqb1gJqnYpchMvLF?=
- =?iso-8859-1?Q?e/IVASQQUdLB4e8FXM7SXmRh0hnESsR0ftuElGOOVGF7nAezDkjqsbIPWl?=
- =?iso-8859-1?Q?GTTJ4K7qaORnyFXKcPMQEdfnomN+AcoivFEXhXjM3lPJI6vOh5QqD0pkCd?=
- =?iso-8859-1?Q?TkMuURROcM3H/KOJstsqtRHFE4qgdVprF1zyxmlJuX/cgGhit6qBer8+mN?=
- =?iso-8859-1?Q?Z1D7qRqx3v8KKdxRQ7B9Zhpikvbmtnmxw+CZ/v3rHPBXAYh3zSG6nXq01U?=
- =?iso-8859-1?Q?7WCpvq+OSIkPyl3c17pHBzjpa6DVozDkB0R9nXK2LYIbAT+TjeC7guTslq?=
- =?iso-8859-1?Q?BnFhBPLvAbD8LvGTGHjXDk6kVDlBIRPMeSDdJJQHeLZ7B+wzj2hBEBRHK+?=
- =?iso-8859-1?Q?4K0SBOqWM3MPjWX/Pp/WvEOJDTViAfz+mdpSsLrJ54mtNisvi0wEtNusKW?=
- =?iso-8859-1?Q?c5iW1OICOa0Aq0kcBu1IlLuSUY8oSHloj6OJYmqcmnwEq77H3p1wxKoM+7?=
- =?iso-8859-1?Q?RfapWk9aphcC9bQBwGjtRimVHJxmqRoBvot5J5h6jRz7BpFPgzdTyZZcdC?=
- =?iso-8859-1?Q?sE2SUvOI9Le0lAdbjR/CQ6wuQzJzCJlk6h2ug2A9FR7rUjNohzU2NrTKnS?=
- =?iso-8859-1?Q?un0r0OMCYxfZGYb3D54Jq/8YpzU4ESVmEGyT4lI684HFiikrfcDTLOUifX?=
- =?iso-8859-1?Q?Ggt5wKj/DztZPqoQhdp487NDZ/t/l0MHCjoRgU7tAat5NAFMSkZq+Q6LVe?=
- =?iso-8859-1?Q?meEbYwZ37lTwMvesHpO2Oqof5P9B0fn9AW5uDLudVYxeBdfKXghaMVv8sl?=
- =?iso-8859-1?Q?5zgIv+EzXu3ZOeHVHZWtsh1ONHV75KKOklFVGvCiXeJDQXS+a6gSMvfQwb?=
- =?iso-8859-1?Q?Uf/HjENaYA?=
-x-ms-exchange-transport-forked: True
+x-originating-ip: [192.168.22.100]
 MIME-Version: 1.0
-X-OriginatorOrg: hmgcc.gov.uk
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6167c1e7-dab0-439d-663e-08d8d1cabcdb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Feb 2021 15:59:55.4272 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c724c4ae-2756-49fe-b1cd-3a725b29341a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YYE7AukFInDz4thIjNjf6GRGucYc+b79AtLIalwJQhgxkFTC73VYK5J+RIgeZMEbes57sJcTYTc6lapZoYvx4Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO2P123MB1871
-Subject: Re: [USRP-users] RFNoC OTT Block on E320 - FIXED
+X-TM-AS-GCONF: 00
+Subject: [USRP-users] Get and set CBX-120 ads62p48 gain
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -110,9 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mark D via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mark D <md964@hmgcc.gov.uk>
-Content-Type: multipart/mixed; boundary="===============2217383407812142299=="
+From: "Askar, Ramez via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Askar, Ramez" <ramez.askar@hhi.fraunhofer.de>
+Content-Type: multipart/mixed; boundary="===============8029741777889960754=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -126,790 +70,90 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============2217383407812142299==
+--===============8029741777889960754==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_LNXP123MB3724355C749D06794F9CC0E8CA889LNXP123MB3724GBRP_"
+	boundary="_000_14566F56D30D43E0B4676E3541A1AB2Fhhifraunhoferde_"
 
---_000_LNXP123MB3724355C749D06794F9CC0E8CA889LNXP123MB3724GBRP_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--_000_14566F56D30D43E0B4676E3541A1AB2Fhhifraunhoferde_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I've finally found the solution to this.
+RGVhciBTaXIgb3IgTWFkYW0sDQoNCldlIGFyZSB1c2luZyB0aGUgIFgzMTAgd2l0aCBDQlgtMTIw
+IGRhdWdodGVyIGNhcmRzLiBIb3cgY2FuIHdlIGdldCBhbmQgc2V0IHRoZSBkaWdpdGFsIFJYIGdh
+aW4gKGFkczYycDQ4IGdhaW4pIGZyb20gQysrIGFwcGxpY2F0aW9uPw0KDQoNCkJlc3QgcmVnYXJk
+cyAvIE1pdCBmcmV1bmRsaWNoZW4gR3LDvMOfZW4NCi0tDQpBc2thciwgUmFtZXosIE0uU2MuDQpS
+ZXNlYXJjaCBBc3NvY2lhdGUgLyBQcm9qZWN0IE1hbmFnZXIgLyBEZWxlZ2F0ZQ0KV2lyZWxlc3Mg
+Q29tbXVuaWNhdGlvbnMgYW5kIE5ldHdvcmtzDQpGcmF1bmhvZmVyIEluc3RpdHV0ZSBmb3IgVGVs
+ZWNvbW11bmljYXRpb25zLCBIZWlucmljaCBIZXJ0eiBJbnN0aXR1dGUsIEhISQ0KRWluc3RlaW51
+ZmVyIDM3LCAxMDU4NyBCZXJsaW4sIEdlcm1hbnkNCis0OSAoMCkzMCAzMTAwMi02MjgNCnJhbWV6
+LmFza2FyQGhoaS5mcmF1bmhvZmVyLmRlPG1haWx0bzpyYW1lei5hc2thckBoaGkuZnJhdW5ob2Zl
+ci5kZT4NCnd3dy5oaGkuZnJhdW5ob2Zlci5kZTxodHRwOi8vd3d3LmhoaS5mcmF1bmhvZmVyLmRl
+Lz4NCg0K
 
-Searching the internet for libgnuradio-tutorial.so issues showed that sever=
-al people have hit the same error.
+--_000_14566F56D30D43E0B4676E3541A1AB2Fhhifraunhoferde_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <060C0CC541C108439A36BCD2DA7CADFF@hhi.fraunhofer.de>
+Content-Transfer-Encoding: base64
 
-The solution was "sudo ldconfig"
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczpkdD0i
+dXVpZDpDMkY0MTAxMC02NUIzLTExZDEtQTI5Ri0wMEFBMDBDMTQ4ODIiIHhtbG5zOm09Imh0dHA6
+Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vb2ZmaWNlLzIwMDQvMTIvb21tbCIgeG1sbnM9Imh0dHA6
+Ly93d3cudzMub3JnL1RSL1JFQy1odG1sNDAiPg0KPGhlYWQ+DQo8bWV0YSBodHRwLWVxdWl2PSJD
+b250ZW50LVR5cGUiIGNvbnRlbnQ9InRleHQvaHRtbDsgY2hhcnNldD11dGYtOCI+DQo8bWV0YSBu
+YW1lPSJHZW5lcmF0b3IiIGNvbnRlbnQ9Ik1pY3Jvc29mdCBXb3JkIDE1IChmaWx0ZXJlZCBtZWRp
+dW0pIj4NCjxzdHlsZT48IS0tDQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUg
+NSAyIDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwg
+bGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowY207DQoJZm9udC1zaXplOjEx
+LjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpzcGFuLkVtYWlsU3R5
+bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQtZmFtaWx5OiJD
+YWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQN
+Cgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNh
+bnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0K
+CW1hcmdpbjo3Mi4wcHQgNzIuMHB0IDcyLjBwdCA3Mi4wcHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0K
+CXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0i
+ZW4tREUiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIiBzdHlsZT0id29yZC13cmFwOmJy
+ZWFrLXdvcmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5EZWFyIFNpciBvciBNYWRhbSw8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJz
+cDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
+VVMiPldlIGFyZSB1c2luZyB0aGUgJm5ic3A7WDMxMCB3aXRoIENCWC0xMjAgZGF1Z2h0ZXIgY2Fy
+ZHMuIEhvdyBjYW4gd2UgZ2V0IGFuZCBzZXQgdGhlIGRpZ2l0YWwgUlggZ2FpbiAoYWRzNjJwNDgg
+Z2FpbikgZnJvbSBDJiM0MzsmIzQzOyBhcHBsaWNhdGlvbj8NCjxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gbGFuZz0iREUiIHN0eWxlPSJjb2xvcjpibGFjayI+QmVzdCByZWdhcmRzIC8g
+TWl0IGZyZXVuZGxpY2hlbiBHcsO8w59lbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLUdCIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtj
+b2xvcjojN0Y3RjdGIj4tLTxicj4NCkFza2FyLCBSYW1leiwgTS5TYy48YnI+DQpSZXNlYXJjaCBB
+c3NvY2lhdGUmbmJzcDsvIFByb2plY3QgTWFuYWdlciAvIERlbGVnYXRlPC9zcGFuPjxzcGFuIHN0
+eWxlPSJjb2xvcjpibGFjayI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Y29sb3I6IzdGN0Y3RiI+V2lyZWxl
+c3MgQ29tbXVuaWNhdGlvbnMgYW5kIE5ldHdvcmtzPGJyPg0KRnJhdW5ob2ZlciBJbnN0aXR1dGUg
+Zm9yIFRlbGVjb21tdW5pY2F0aW9ucywgSGVpbnJpY2ggSGVydHogSW5zdGl0dXRlLCBISEk8YnI+
+DQpFaW5zdGVpbnVmZXIgMzcsIDEwNTg3IEJlcmxpbiwgR2VybWFueTxicj4NCiYjNDM7NDkgKDAp
+MzAgMzEwMDItNjI4PGJyPg0KPC9zcGFuPjxzcGFuIGxhbmc9IkVOLUdCIiBzdHlsZT0iZm9udC1z
+aXplOjEwLjBwdDtjb2xvcjojN0Y3RjdGIj48YSBocmVmPSJtYWlsdG86cmFtZXouYXNrYXJAaGhp
+LmZyYXVuaG9mZXIuZGUiIHRpdGxlPSJtYWlsdG86cmFtZXouYXNrYXJAaGhpLmZyYXVuaG9mZXIu
+ZGUiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6IzdGN0Y3RiI+PHNwYW4gbGFuZz0i
+RU4tVVMiPnJhbWV6LmFza2FyQGhoaS5mcmF1bmhvZmVyLjxzcGFuIGxhbmc9IkVOLVVTIj5kZTwv
+c3Bhbj48L3NwYW4+PC9zcGFuPjwvYT48L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4w
+cHQ7Y29sb3I6IzdGN0Y3RiI+PGJyPg0KPC9zcGFuPjxzcGFuIGxhbmc9IkVOLUdCIiBzdHlsZT0i
+Zm9udC1zaXplOjEwLjBwdDtjb2xvcjojN0Y3RjdGIj48YSBocmVmPSJodHRwOi8vd3d3LmhoaS5m
+cmF1bmhvZmVyLmRlLyI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjojN0Y3RjdGIj48
+c3BhbiBsYW5nPSJFTi1VUyI+d3d3LmhoaS5mcmF1bmhvZmVyLmRlPC9zcGFuPjwvc3Bhbj48L2E+
+PC9zcGFuPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjayI+PG86cD48L286cD48L3NwYW4+PC9wPg0K
+PC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2
+Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-From: USRP-users <usrp-users-bounces@lists.ettus.com> On Behalf Of Mark D v=
-ia USRP-users
-Sent: 15 February 2021 15:02
-To: 'Mike' <mikerd1@verizon.net>
-Cc: 'usrp-users@lists.ettus.com' <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] RFNoC OTT Block on E320
-
-Thanks Mike,
-
-Good idea, but I'd already got the Python path pointing correctly to the /u=
-sr/lib/python3/dist-packages.
-
-I've been doing a bit more digging and trying to see what actually happens =
-as the code loads up.
-
-The "import dilbert" that's near the top of the python code generated from =
-GNU Radio goes off and pulls in __init__.py from the  dilbert directory und=
-er the folder in the Python path above.
-
-This __init__.py file tries to import from dilbert_swig, and this failing. =
-There's a comment that's been added stating "This might fail in the module =
-is Python-only". I've added a bit of code into __init__.py to debug this, a=
-nd the root cause seems to be that importing dilbert_swig fails due to not =
-being able to access the libgnuradio-dilbert.so . The error message goes on=
- to say that cannot open the shared object file, No such file or directory =
-exists.
-
-So it looks like this shared object file is missing. I'm assuming that it s=
-hould be built from C++ code for the module.
-
-I've sent an email off to Ettus support to see if they have any ideas what =
-the issue may be.
-
-Mark
-
-
-From: Mike <mikerd1@verizon.net<mailto:mikerd1@verizon.net>>
-Sent: 15 February 2021 13:00
-To: Mark D <md964@hmgcc.gov.uk<mailto:md964@hmgcc.gov.uk>>
-Cc: 'usrp-users@lists.ettus.com' <usrp-users@lists.ettus.com<mailto:usrp-us=
-ers@lists.ettus.com>>
-Subject: Re: [USRP-users] RFNoC OTT Block on E320
-
-
-Mark,
-
-I had a similar problem earlier.=EF=BF=BD Jonathon Pendlum responded to me =
-as follows:
-
-> The might be due to the PYTHONPATH env variable not including the
-
-> directory where your OOT module is installed. Try looking for a
-
-> directory like /usr/lib/python2/dist-packages or similar and adding
-
-> that to PYTHONPATH.
-
-
-
-What I had to do was add a search path to the location where my OOT module =
-was added to.=EF=BF=BD In my case the issue was solved by adding the follow=
-ing:
-
-$LOCALPREFIX/lib/python2.7/dist-packages:$PYTHONPATH
-
-to my python path that is configured when you source the environment variab=
-les.=EF=BF=BD Also, this was done on my E310 but that was because that was =
-where I was trying to execute the program (on ARM).=EF=BF=BD You may need t=
-o add the search path on your host machine so it knows where to find your n=
-ew OOT module there as well.
-
-Mike
-On 2/15/21 5:40 AM, Mark D wrote:
-Mike,
-=EF=BF=BD
-Thanks for your input into this, it=EF=BF=BDs really useful being able to t=
-alk over this issue.
-=EF=BF=BD
-My system will be placing all the signal conditioning within the FPGA. The =
-output from this is a relatively low data rate which I was hoping to stream=
- via the Ethernet connected to the ARM. There should be no need for us to u=
-se the SFP+ interface. The ARM will not be doing any processing of the data=
-, just passing it back to the host PC. I have just out of interest tried co=
-nnecting via the SFP+ and get the same issue.
-=EF=BF=BD
-I am able to build the FPGA image with my block in, and upload this to the =
-E320. My initial understanding of how a system as described above would wor=
-k is the software on the Host PC would issue commands to the USRP to read a=
-nd write registers in blocks as required to configure the device, for examp=
-le the gain setting in the examples. The ARM wouldn=EF=BF=BDt require any k=
-nowledge of how the blocks worked, it just writes and reads to the address =
-within the blocks as instructed. This was what I thought Network Mode (as o=
-pposed to Embedded Mode) meant, it was acting more or less like the USRPs w=
-ithout the ARM.
-=EF=BF=BD
-As we=EF=BF=BDre both seeing the same error then I=EF=BF=BDm not 100% sure =
-that cross-compiling the OOT code for the E320 will resolve the problem. =
-=EF=BF=BDMy GNU radio code is running entirely on the host PC. I=EF=BF=BDll=
- probably look more into the cross-compiling today as I=EF=BF=BDm running o=
-ut of any other ideas to try.
-=EF=BF=BD
-The error I=EF=BF=BDm currently hitting is that when running the GNU radio =
-flow graph with my new block I get the error
-=EF=BF=BDLine 98, in __init__
-=EF=BF=BD=EF=BF=BDself.dilbert_dogbert_0=3Ddilbert.dogbert(
-AttributeErroe:module =EF=BF=BDdilbert=EF=BF=BD has no attribute=EF=BF=BDdo=
-gbert=EF=BF=BD=EF=BF=BD
-=EF=BF=BD
-What I have found that is if I enter Python on the command line and enter =
-=EF=BF=BDimport dilbert=EF=BF=BD followed by =EF=BF=BDdir(dilbert)=EF=BF=BD=
- then it appears that there=EF=BF=BDs nothing in this module other that the=
- things like __builtins__ , __cached__,__doc__ =EF=BF=BD.. . There is no do=
-gbert class within module, and this I think is the source of the issue.
-=EF=BF=BD
-Like you say, we could really do with a response from Ettus to throw some l=
-ight on this. An update to Gain Block tutorials aimed at the E3xx devices w=
-ould be really useful.
-=EF=BF=BD
-Mark
-=EF=BF=BD
-From: USRP-users <usrp-users-bounces@lists.ettus.com><mailto:usrp-users-bou=
-nces@lists.ettus.com> On Behalf Of Mike via USRP-users
-Sent: 12 February 2021 21:37
-To: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] RFNoC OTT Block on E320
-=EF=BF=BD
-
-Mark,
-
-I looked at the capabilities of the E320 compared to the E310 and I underst=
-and your comment about "embedded mode" now.=EF=BF=BD My experience is stric=
-tly with the E310.=EF=BF=BD I didn't realize the E320 had an SFP+ interface=
- that allows you to stream sample data back to the host at a much higher ra=
-te than the embedded ARM core can process.=EF=BF=BD So, it seems like you s=
-hould be able to update the FPGA on the E320 and stream the data into your =
-host machine bypassing the internal ARM processor.=EF=BF=BD Still, it seems=
- that you need to install the the new RFNoC module onto the E320 so that it=
- knows what each block in the FPGA is when you run uhd_usrp_probe (you were=
- seeing the block named simply Block #0).
-
-And if you can stream data directly to the host then you shouldn't be seein=
-g the same error I'm having (running on the embedded ARM).=EF=BF=BD You sho=
-uld be able to run directly on the host.=EF=BF=BD If you are trying to run =
-on the embedded ARM then you will have to follow the steps I outlined below=
- for cross-compiling.
-
-Meanwhile, I'd like to hear a response from one of the Ettus guys because I=
-'m sure I'm off base in a couple areas.=EF=BF=BD Like, my RFNoC stuff is no=
-t working so clearly I'm doing something wrong.=EF=BF=BD But, I'm hoping ju=
-st talking it out will reveal where the errors are.
-
-Mike
-On 2/12/21 11:46 AM, Mike via USRP-users wrote:
-
-Mark,
-
-I'm not sure I understand what you mean by "embedded mode".=EF=BF=BD That m=
-ay be a term used for other Ettus devices like X310 or N310.=EF=BF=BD Let m=
-e describe what I think the E3xx GNU Radio universe looks like.
-
-In addition to the Ettus E310, I have a Lime Mini device that connects dire=
-ctly to the host computer via USB3.0.=EF=BF=BD Any GNU Radio program that I=
- make (usually gnuradio-companion) runs directly on the host computer (my l=
-aptop with Ubuntu 18.04LTS) and directly processes the raw samples from the=
- radio. Ettus X310 and N310 type devices would transfer raw samples from th=
-e radio via 10GigE type interfaces for similar processing on the host compu=
-ter.=EF=BF=BD Note, no local software processing on the USRP device.=EF=BF=
-=BD FPGA processing, yes; but software processing, no.
-
-In contrast to that, the E310 has an embedded ARM processor that executes a=
- python script (usually output from GRC).=EF=BF=BD Obviously, this needs to=
- run in non-gui mode which is controlled by the "Options" block in your GRC=
- flow graph (set to No GUI).=EF=BF=BD Similar to the host computer running =
-with the Lime Mini (for example), the ARM processor can process the raw sam=
-ples from the radio.=EF=BF=BD However, since the ARM processor is relativel=
-y low powered it cannot process "raw" samples at a very high rate.=EF=BF=BD=
- Therefore it requires the FPGA (RFNoC) to handle as much of the raw data p=
-rocessing as possible.=EF=BF=BD So, the host computer is used to generate t=
-he FPGA bit file (using Xilinx, Vivado) as well as any software modules (OO=
-T) that need to be run on the ARM.=EF=BF=BD This is where the cross-compili=
-ng comes in.=EF=BF=BD The host computer has to compile the code that is goi=
-ng to eventually execute on the ARM.=EF=BF=BD After the cross-compilation i=
-s complete you need to move your newly compiled module over to the E3xx.=EF=
-=BF=BD This is where I use sshfs so that I can "make install DESTDIR=3D..."=
- into a location that is temporarily visible within the E3xx device.=EF=BF=
-=BD Eventually you will copy this data to the flash card on your E3xx devic=
-e so that your application can be available at any time (running totally di=
-sconnected from any host computer).
-
-So, using the E3xx devices are a little more complex because you have to na=
-vigate the cross-compiling aspect and rely on the FPGA to handle the higher=
- bandwidth data processing.=EF=BF=BD Thus the reason why I'm anxious to fix=
- an issue with the ARM executing a GRC flow-graph that contains an OOT RFNo=
-C module.=EF=BF=BD It's hard to make the E3xx do anything reasonable withou=
-t the FPGA performing as much work as possible.
-
-Anyway, hope that helped clear things up a little,
-
-Mike
-On 2/12/21 10:32 AM, Mark D wrote:
-Thanks Mike,
-=EF=BF=BD
-I don=EF=BF=BDt have a much experience of Linux, I=EF=BF=BDve just had to l=
-ook up what sshfs is, so as you can imagine this is becoming a very steep l=
-earning curve for me.
-=EF=BF=BD
-After reading your reply and doing a bit of research I=EF=BF=BDve found AN-=
-315 =EF=BF=BDSoftware Development on the E3xx USRP=EF=BF=BD which goes thro=
-ugh the cross-compiling process. Unfortunately it looks like this was writt=
-en for UHD 3.14.1. so there may be some differences for 4.0.
-=EF=BF=BD
-I did initially think that as I wasn=EF=BF=BDt using the USRP in =EF=BF=BDe=
-mbedded mode=EF=BF=BD then the firmware on the unit wouldn=EF=BF=BDt need t=
-o be updated, and the RFNoC would be more or less configured via the host c=
-omputer. Seems that this isn=EF=BF=BDt the case.
-=EF=BF=BD
-Mark
-=EF=BF=BD
-From: USRP-users <usrp-users-bounces@lists.ettus.com><mailto:usrp-users-bou=
-nces@lists.ettus.com> On Behalf Of Mike via USRP-users
-Sent: 12 February 2021 13:40
-To: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] RFNoC OTT Block on E320
-=EF=BF=BD
-
-Mark,
-
-For uhd_usrp_probe to correctly read your fpga block module you need to upd=
-ate the XML file in your RFNOC-module/rfnoc/blocks directory.=EF=BF=BD Then=
- you need to cross-compile your module like you would with gr-ettus and ins=
-tall it on the E320.=EF=BF=BD I use sshfs to cross-compile on the host and =
-make it immediately available on my E310.
-
-It may be that the process on UHD4 is slightly different but that is what I=
- do to make the correct name of my new block show up in uhd_usrp_probe.
-
-I still have the python "attribute error" so hopefully now that two people =
-are seeing this on both UHD3.15 and UHD4.0 we can get to the bottom of it.
-
-Mike
-On 2/12/21 6:52 AM, Mark D via USRP-users wrote:
-Hi,
-=EF=BF=BD
-I=EF=BF=BDm trying to add an OTT block into the FPGA for an E320. I=EF=BF=
-=BDm using version 4.0.0 of the UHD.
-=EF=BF=BD
-So far I=EF=BF=BDve used rfnocmodtool to create the OOT folder structure an=
-d add my new block. My initial plan was to add this block as per the defaul=
-t code generated that just passes data through. I wanted see that this was =
-instantiated into the FPGA and the system still worked before starting to a=
-dd my own code.
-=EF=BF=BD
-I=EF=BF=BDve been following the =EF=BF=BDGetting Started with RFNoC in UHD =
-4.0=EF=BF=BD page on the Ettus website and also the Youtube video =EF=BF=BD=
-RFNoC 4 Workshop - GRCon 2020=EF=BF=BD. The .yml file I=EF=BF=BDve created =
-connects the OTT block between the radio Rx and stream endpoint (I=EF=BF=BD=
-ve removed the DDC / DUC and already had the FPGA working without these).
-=EF=BF=BD
-So far I=EF=BF=BDve got the FPGA built and uploaded to the FPGA. Uhd_usrp_p=
-robe shows that the RFNoC routing as expected, but the name of OTT block ha=
-s been replaced with Block#0. The OOT project appears as a folder in GNU ra=
-dio with the new block available to be dragged into the project.
-=EF=BF=BD
-I think the issues I=EF=BF=BDm now having are similar to those reported rec=
-ently by Mike with the E310. Trying to run a GNU radio project results in t=
-he error =EF=BF=BD AttributeError: module =EF=BF=BDDilbert=EF=BF=BD object =
-has no attribute 'dogbert'=EF=BF=BD
-=EF=BF=BD
-The examples I=EF=BF=BDm following are all based around the X310, is there =
-an extra step required for the E3xx USRPs to update the firmware running on=
- the device so that it=EF=BF=BDs aware of the new block type? If so I=EF=BF=
-=BDve no idea how I would go about this.
-=EF=BF=BD
-Any help on this would be much appreciated,
-=EF=BF=BD
-Mark
-________________________________
-This email and any files transmitted with it are confidential and intended =
-solely for the use of the individual or entity to whom they are addressed. =
-If you have received this email in error please notify the system manager.
+--_000_14566F56D30D43E0B4676E3541A1AB2Fhhifraunhoferde_--
 
 
 
-_______________________________________________
-
-USRP-users mailing list
-
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
-
-
-_______________________________________________
-
-USRP-users mailing list
-
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---_000_LNXP123MB3724355C749D06794F9CC0E8CA889LNXP123MB3724GBRP_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0cm;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-span.EmailStyle23
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-GB" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:brea=
-k-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">I&#8217;ve finally found the solution to this.<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Searching the internet for libgnuradio-tutorial.so i=
-ssues showed that several people have hit the same error.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The solution was &#8220;sudo ldconfig&#8221;<o:p></o=
-:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"mso-fareast-languag=
-e:EN-GB">From:</span></b><span lang=3D"EN-US" style=3D"mso-fareast-language=
-:EN-GB"> USRP-users &lt;usrp-users-bounces@lists.ettus.com&gt;
-<b>On Behalf Of </b>Mark D via USRP-users<br>
-<b>Sent:</b> 15 February 2021 15:02<br>
-<b>To:</b> 'Mike' &lt;mikerd1@verizon.net&gt;<br>
-<b>Cc:</b> 'usrp-users@lists.ettus.com' &lt;usrp-users@lists.ettus.com&gt;<=
-br>
-<b>Subject:</b> Re: [USRP-users] RFNoC OTT Block on E320<o:p></o:p></span><=
-/p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks Mike,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Good idea, but I&#8217;d already got the Python path=
- pointing correctly to the /usr/lib/python3/dist-packages.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I&#8217;ve been doing a bit more digging and trying =
-to see what actually happens as the code loads up.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The &#8220;import dilbert&#8221; that&#8217;s near t=
-he top of the python code generated from GNU Radio goes off and pulls in __=
-init__.py from the&nbsp; dilbert directory under the folder in the Python p=
-ath above.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">This __init__.py file tries to import from dilbert_s=
-wig, and this failing. There&#8217;s a comment that&#8217;s been added stat=
-ing &#8220;This might fail in the module is Python-only&#8221;. I&#8217;ve =
-added a bit of code into __init__.py to debug this, and the root
- cause seems to be that importing dilbert_swig fails due to not being able =
-to access the libgnuradio-dilbert.so . The error message goes on to say tha=
-t cannot open the shared object file, No such file or directory exists.<o:p=
-></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">So it looks like this shared object file is missing.=
- I&#8217;m assuming that it should be built from C++ code for the module.<o=
-:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I&#8217;ve sent an email off to Ettus support to see=
- if they have any ideas what the issue may be.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Mark<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"mso-fareast-languag=
-e:EN-GB">From:</span></b><span lang=3D"EN-US" style=3D"mso-fareast-language=
-:EN-GB"> Mike &lt;<a href=3D"mailto:mikerd1@verizon.net">mikerd1@verizon.ne=
-t</a>&gt;
-<br>
-<b>Sent:</b> 15 February 2021 13:00<br>
-<b>To:</b> Mark D &lt;<a href=3D"mailto:md964@hmgcc.gov.uk">md964@hmgcc.gov=
-.uk</a>&gt;<br>
-<b>Cc:</b> 'usrp-users@lists.ettus.com' &lt;<a href=3D"mailto:usrp-users@li=
-sts.ettus.com">usrp-users@lists.ettus.com</a>&gt;<br>
-<b>Subject:</b> Re: [USRP-users] RFNoC OTT Block on E320<o:p></o:p></span><=
-/p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p>Mark,<o:p></o:p></p>
-<p>I had a similar problem earlier.=EF=BF=BD Jonathon Pendlum responded to =
-me as follows:<o:p></o:p></p>
-<pre>&gt;<i> The might be due to the PYTHONPATH env variable not including =
-the <o:p></o:p></i></pre>
-<pre>&gt;<i> directory where your OOT module is installed. Try looking for =
-a <o:p></o:p></i></pre>
-<pre>&gt;<i> directory like /usr/lib/python2/dist-packages or similar and a=
-dding <o:p></o:p></i></pre>
-<pre>&gt;<i> that to PYTHONPATH.<o:p></o:p></i></pre>
-<pre><i><o:p>&nbsp;</o:p></i></pre>
-<p><i>What I had to do was add a search path to the location where my OOT m=
-odule was added to.=EF=BF=BD In my case the issue was solved by adding the =
-following:</i><o:p></o:p></p>
-<p>$LOCALPREFIX/lib/python2.7/dist-packages:$PYTHONPATH<o:p></o:p></p>
-<p>to my python path that is configured when you source the environment var=
-iables.=EF=BF=BD Also, this was done on my E310 but that was because that w=
-as where I was trying to execute the program (on ARM).=EF=BF=BD You may nee=
-d to add the search path on your host machine
- so it knows where to find your new OOT module there as well.<o:p></o:p></p=
->
-<p>Mike<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal">On 2/15/21 5:40 AM, Mark D wrote:<o:p></o:p></p>
-</div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<p class=3D"MsoNormal">Mike,<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">Thanks for your input into this, it=EF=BF=BDs really=
- useful being able to talk over this issue.<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">My system will be placing all the signal conditionin=
-g within the FPGA. The output from this is a relatively low data rate which=
- I was hoping to stream via the Ethernet connected to the ARM. There should=
- be no need for us to use the SFP+
- interface. The ARM will not be doing any processing of the data, just pass=
-ing it back to the host PC. I have just out of interest tried connecting vi=
-a the SFP+ and get the same issue.<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">I am able to build the FPGA image with my block in, =
-and upload this to the E320. My initial understanding of how a system as de=
-scribed above would work is the software on the Host PC would issue command=
-s to the USRP to read and write registers
- in blocks as required to configure the device, for example the gain settin=
-g in the examples. The ARM wouldn=EF=BF=BDt require any knowledge of how th=
-e blocks worked, it just writes and reads to the address within the blocks =
-as instructed. This was what I thought
- Network Mode (as opposed to Embedded Mode) meant, it was acting more or le=
-ss like the USRPs without the ARM.
-<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">As we=EF=BF=BDre both seeing the same error then I=
-=EF=BF=BDm not 100% sure that cross-compiling the OOT code for the E320 wil=
-l resolve the problem. =EF=BF=BDMy GNU radio code is running entirely on th=
-e host PC. I=EF=BF=BDll probably look more into the cross-compiling
- today as I=EF=BF=BDm running out of any other ideas to try.<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">The error I=EF=BF=BDm currently hitting is that when=
- running the GNU radio flow graph with my new block I get the error
-<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BDLine 98, in __init__ <o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD=EF=BF=BDself.dilbert_dogbert_0=3Ddilbert.d=
-ogbert( <o:p></o:p></p>
-<p class=3D"MsoNormal">AttributeErroe:module =EF=BF=BDdilbert=EF=BF=BD has =
-no attribute=EF=BF=BDdogbert=EF=BF=BD=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">What I have found that is if I enter Python on the c=
-ommand line and enter =EF=BF=BDimport dilbert=EF=BF=BD followed by =EF=BF=
-=BDdir(dilbert)=EF=BF=BD then it appears that there=EF=BF=BDs nothing in th=
-is module other that the things like __builtins__ , __cached__,__doc__
- =EF=BF=BD.. . There is no dogbert class within module, and this I think is=
- the source of the issue.<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">Like you say, we could really do with a response fro=
-m Ettus to throw some light on this. An update to Gain Block tutorials aime=
-d at the E3xx devices would be really useful.<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">Mark<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"mso-fareast-languag=
-e:EN-GB">From:</span></b><span lang=3D"EN-US" style=3D"mso-fareast-language=
-:EN-GB"> USRP-users
-</span><a href=3D"mailto:usrp-users-bounces@lists.ettus.com"><span lang=3D"=
-EN-US" style=3D"mso-fareast-language:EN-GB">&lt;usrp-users-bounces@lists.et=
-tus.com&gt;</span></a><span style=3D"mso-fareast-language:EN-GB">
-</span><b><span lang=3D"EN-US" style=3D"mso-fareast-language:EN-GB">On Beha=
-lf Of </span>
-</b><span lang=3D"EN-US" style=3D"mso-fareast-language:EN-GB">Mike via USRP=
--users<br>
-<b>Sent:</b> 12 February 2021 21:37<br>
-<b>To:</b> </span><a href=3D"mailto:usrp-users@lists.ettus.com"><span lang=
-=3D"EN-US" style=3D"mso-fareast-language:EN-GB">usrp-users@lists.ettus.com<=
-/span></a><span lang=3D"EN-US" style=3D"mso-fareast-language:EN-GB"><br>
-<b>Subject:</b> Re: [USRP-users] RFNoC OTT Block on E320</span><o:p></o:p><=
-/p>
-</div>
-</div>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p>Mark,<o:p></o:p></p>
-<p>I looked at the capabilities of the E320 compared to the E310 and I unde=
-rstand your comment about &quot;embedded mode&quot; now.=EF=BF=BD My experi=
-ence is strictly with the E310.=EF=BF=BD I didn't realize the E320 had an S=
-FP+ interface that allows you to stream sample data back
- to the host at a much higher rate than the embedded ARM core can process.=
-=EF=BF=BD So, it seems like you should be able to update the FPGA on the E3=
-20 and stream the data into your host machine bypassing the internal ARM pr=
-ocessor.=EF=BF=BD Still, it seems that you need
- to install the the new RFNoC module onto the E320 so that it knows what ea=
-ch block in the FPGA is when you run uhd_usrp_probe (you were seeing the bl=
-ock named simply Block #0).<o:p></o:p></p>
-<p>And if you can stream data directly to the host then you shouldn't be se=
-eing the same error I'm having (running on the embedded ARM).=EF=BF=BD You =
-should be able to run directly on the host.=EF=BF=BD If you are trying to r=
-un on the embedded ARM then you will have to
- follow the steps I outlined below for cross-compiling.<o:p></o:p></p>
-<p>Meanwhile, I'd like to hear a response from one of the Ettus guys becaus=
-e I'm sure I'm off base in a couple areas.=EF=BF=BD Like, my RFNoC stuff is=
- not working so clearly I'm doing something wrong.=EF=BF=BD But, I'm hoping=
- just talking it out will reveal where the errors
- are.<o:p></o:p></p>
-<p>Mike<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal">On 2/12/21 11:46 AM, Mike via USRP-users wrote:<o:p>=
-</o:p></p>
-</div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<p>Mark,<o:p></o:p></p>
-<p>I'm not sure I understand what you mean by &quot;embedded mode&quot;.=EF=
-=BF=BD That may be a term used for other Ettus devices like X310 or N310.=
-=EF=BF=BD Let me describe what I think the E3xx GNU Radio universe looks li=
-ke.<o:p></o:p></p>
-<p>In addition to the Ettus E310, I have a Lime Mini device that connects d=
-irectly to the host computer via USB3.0.=EF=BF=BD Any GNU Radio program tha=
-t I make (usually gnuradio-companion) runs directly on the host computer (m=
-y laptop with Ubuntu 18.04LTS) and directly
- processes the raw samples from the radio. Ettus X310 and N310 type devices=
- would transfer raw samples from the radio via 10GigE type interfaces for s=
-imilar processing on the host computer.=EF=BF=BD Note, no local software pr=
-ocessing on the USRP device.=EF=BF=BD FPGA processing,
- yes; but software processing, no.<o:p></o:p></p>
-<p>In contrast to that, the E310 has an embedded ARM processor that execute=
-s a python script (usually output from GRC).=EF=BF=BD Obviously, this needs=
- to run in non-gui mode which is controlled by the &quot;Options&quot; bloc=
-k in your GRC flow graph (set to No GUI).=EF=BF=BD Similar
- to the host computer running with the Lime Mini (for example), the ARM pro=
-cessor can process the raw samples from the radio.=EF=BF=BD However, since =
-the ARM processor is relatively low powered it cannot process &quot;raw&quo=
-t; samples at a very high rate.=EF=BF=BD Therefore it
- requires the FPGA (RFNoC) to handle as much of the raw data processing as =
-possible.=EF=BF=BD So, the host computer is used to generate the FPGA bit f=
-ile (using Xilinx, Vivado) as well as any software modules (OOT) that need =
-to be run on the ARM.=EF=BF=BD This is where
- the cross-compiling comes in.=EF=BF=BD The host computer has to compile th=
-e code that is going to eventually execute on the ARM.=EF=BF=BD After the c=
-ross-compilation is complete you need to move your newly compiled module ov=
-er to the E3xx.=EF=BF=BD This is where I use sshfs
- so that I can &quot;make install DESTDIR=3D...&quot; into a location that =
-is temporarily visible within the E3xx device.=EF=BF=BD Eventually you will=
- copy this data to the flash card on your E3xx device so that your applicat=
-ion can be available at any time (running totally
- disconnected from any host computer).<o:p></o:p></p>
-<p>So, using the E3xx devices are a little more complex because you have to=
- navigate the cross-compiling aspect and rely on the FPGA to handle the hig=
-her bandwidth data processing.=EF=BF=BD Thus the reason why I'm anxious to =
-fix an issue with the ARM executing a
- GRC flow-graph that contains an OOT RFNoC module.=EF=BF=BD It's hard to ma=
-ke the E3xx do anything reasonable without the FPGA performing as much work=
- as possible.<o:p></o:p></p>
-<p>Anyway, hope that helped clear things up a little,<o:p></o:p></p>
-<p>Mike<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal">On 2/12/21 10:32 AM, Mark D wrote:<o:p></o:p></p>
-</div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<p class=3D"MsoNormal">Thanks Mike,<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">I don=EF=BF=BDt have a much experience of Linux, I=
-=EF=BF=BDve just had to look up what sshfs is, so as you can imagine this i=
-s becoming a very steep learning curve for me.
-<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">After reading your reply and doing a bit of research=
- I=EF=BF=BDve found AN-315 =EF=BF=BDSoftware Development on the E3xx USRP=
-=EF=BF=BD which goes through the cross-compiling process. Unfortunately it =
-looks like this was written for UHD 3.14.1. so there may
- be some differences for 4.0.<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">I did initially think that as I wasn=EF=BF=BDt using=
- the USRP in =EF=BF=BDembedded mode=EF=BF=BD then the firmware on the unit =
-wouldn=EF=BF=BDt need to be updated, and the RFNoC would be more or less co=
-nfigured via the host computer. Seems that this isn=EF=BF=BDt the
- case.<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">Mark<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"mso-fareast-languag=
-e:EN-GB">From:</span></b><span lang=3D"EN-US" style=3D"mso-fareast-language=
-:EN-GB"> USRP-users
-</span><a href=3D"mailto:usrp-users-bounces@lists.ettus.com"><span lang=3D"=
-EN-US" style=3D"mso-fareast-language:EN-GB">&lt;usrp-users-bounces@lists.et=
-tus.com&gt;</span></a><span style=3D"mso-fareast-language:EN-GB">
-</span><b><span lang=3D"EN-US" style=3D"mso-fareast-language:EN-GB">On Beha=
-lf Of </span>
-</b><span lang=3D"EN-US" style=3D"mso-fareast-language:EN-GB">Mike via USRP=
--users<br>
-<b>Sent:</b> 12 February 2021 13:40<br>
-<b>To:</b> </span><a href=3D"mailto:usrp-users@lists.ettus.com"><span lang=
-=3D"EN-US" style=3D"mso-fareast-language:EN-GB">usrp-users@lists.ettus.com<=
-/span></a><span lang=3D"EN-US" style=3D"mso-fareast-language:EN-GB"><br>
-<b>Subject:</b> Re: [USRP-users] RFNoC OTT Block on E320</span><o:p></o:p><=
-/p>
-</div>
-</div>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p>Mark,<o:p></o:p></p>
-<p>For uhd_usrp_probe to correctly read your fpga block module you need to =
-update the XML file in your RFNOC-module/rfnoc/blocks directory.=EF=BF=BD T=
-hen you need to cross-compile your module like you would with gr-ettus and =
-install it on the E320.=EF=BF=BD I use sshfs
- to cross-compile on the host and make it immediately available on my E310.=
-<o:p></o:p></p>
-<p>It may be that the process on UHD4 is slightly different but that is wha=
-t I do to make the correct name of my new block show up in uhd_usrp_probe.<=
-o:p></o:p></p>
-<p>I still have the python &quot;attribute error&quot; so hopefully now tha=
-t two people are seeing this on both UHD3.15 and UHD4.0 we can get to the b=
-ottom of it.<o:p></o:p></p>
-<p>Mike<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal">On 2/12/21 6:52 AM, Mark D via USRP-users wrote:<o:p=
-></o:p></p>
-</div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">I=EF=BF=BDm trying to add an OTT block into the FPGA=
- for an E320. I=EF=BF=BDm using version 4.0.0 of the UHD.<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">So far I=EF=BF=BDve used rfnocmodtool to create the =
-OOT folder structure and add my new block. My initial plan was to add this =
-block as per the default code generated that just passes data through. I wa=
-nted see that this was instantiated into
- the FPGA and the system still worked before starting to add my own code.<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">I=EF=BF=BDve been following the =EF=BF=BDGetting Sta=
-rted with RFNoC in UHD 4.0=EF=BF=BD page on the Ettus website and also the =
-Youtube video =EF=BF=BDRFNoC 4 Workshop - GRCon 2020=EF=BF=BD. The .yml fil=
-e I=EF=BF=BDve created connects the OTT block between the radio Rx and
- stream endpoint (I=EF=BF=BDve removed the DDC / DUC and already had the FP=
-GA working without these).<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">So far I=EF=BF=BDve got the FPGA built and uploaded =
-to the FPGA. Uhd_usrp_probe shows that the RFNoC routing as expected, but t=
-he name of OTT block has been replaced with Block#0. The OOT project appear=
-s as a folder in GNU radio with the new
- block available to be dragged into the project.<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">I think the issues I=EF=BF=BDm now having are simila=
-r to those reported recently by Mike with the E310. Trying to run a GNU rad=
-io project results in the error =EF=BF=BD AttributeError: module =EF=BF=BDD=
-ilbert=EF=BF=BD object has no attribute 'dogbert'=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">The examples I=EF=BF=BDm following are all based aro=
-und the X310, is there an extra step required for the E3xx USRPs to update =
-the firmware running on the device so that it=EF=BF=BDs aware of the new bl=
-ock type? If so I=EF=BF=BDve no idea how I would go
- about this.<o:p></o:p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">Any help on this would be much appreciated,<o:p></o:=
-p></p>
-<p class=3D"MsoNormal">=EF=BF=BD<o:p></o:p></p>
-<p class=3D"MsoNormal">Mark<o:p></o:p></p>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span=
- style=3D"mso-fareast-language:EN-GB">
-<hr size=3D"2" width=3D"100%" align=3D"center">
-</span></div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"mso-fa=
-reast-language:EN-GB">This email and any files transmitted with it are conf=
-idential and intended solely for the use of the individual or entity to who=
-m they are addressed. If you have received
- this email in error please notify the system manager. <br>
-<br>
-<br>
-</span><o:p></o:p></p>
-<pre>_______________________________________________<o:p></o:p></pre>
-<pre>USRP-users mailing list<o:p></o:p></pre>
-<pre><a href=3D"mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.c=
-om</a><o:p></o:p></pre>
-<pre><a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-</a><o:p></o:p></pre>
-</blockquote>
-</blockquote>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"mso-fa=
-reast-language:EN-GB"><br>
-<br>
-</span><o:p></o:p></p>
-<pre>_______________________________________________<o:p></o:p></pre>
-<pre>USRP-users mailing list<o:p></o:p></pre>
-<pre><a href=3D"mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.c=
-om</a><o:p></o:p></pre>
-<pre><a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com=
-</a><o:p></o:p></pre>
-</blockquote>
-</blockquote>
-</div>
-</body>
-</html>
-
---_000_LNXP123MB3724355C749D06794F9CC0E8CA889LNXP123MB3724GBRP_--
-
-
---===============2217383407812142299==
+--===============8029741777889960754==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -920,5 +164,6 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============2217383407812142299==--
+--===============8029741777889960754==--
+
 
