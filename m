@@ -2,55 +2,72 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D92E231CBDD
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Feb 2021 15:28:59 +0100 (CET)
-Received: from [::1] (port=52136 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EC4031CDCC
+	for <lists+usrp-users@lfdr.de>; Tue, 16 Feb 2021 17:16:21 +0100 (CET)
+Received: from [::1] (port=52996 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lC1LR-0002Qk-Vr; Tue, 16 Feb 2021 09:28:53 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:43963)
+	id 1lC315-0005lR-Ag; Tue, 16 Feb 2021 11:15:59 -0500
+Received: from sonic314-19.consmr.mail.gq1.yahoo.com ([98.137.69.82]:40386)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <bpadalino@gmail.com>) id 1lC1LN-0002Mk-Ea
- for usrp-users@lists.ettus.com; Tue, 16 Feb 2021 09:28:49 -0500
-Received: by mail-oi1-f175.google.com with SMTP id d20so11348578oiw.10
- for <usrp-users@lists.ettus.com>; Tue, 16 Feb 2021 06:28:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LFMTs10oAFmT0pCFHafCEFH9tsoNHu7WOSYyZvG/KdA=;
- b=A7u1yN7VpX4b0sjxP3UTg/XaQEo8i90622G4X5ne1H6C/+NgGEzesk7VY6cfxW+S5e
- TZD3hxwImx/mYLqY347zHu7nlB7G52SO8qB1U8k3QEPvHfvgaG5pehnMHvrV3HXxcOJJ
- j3IPJK+lcrjcuj2wH9mVbXjZdoOMkmDgDLPDpq1/2IcPdsJJLl2j3JdBaM1X5PB2RDir
- /8dC+0OP4vbHdTfR0kFaHyDWiXMndC0GiZDFteLZ/zN+zFixRQAdF56BNsA3Be2hJwPJ
- Y7F5IZFin+xTEyG7bryeN0darWn8iv1pcdXS/4atxb6vYhdqePTqi2XrVcMw0meXsDiZ
- NnHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=LFMTs10oAFmT0pCFHafCEFH9tsoNHu7WOSYyZvG/KdA=;
- b=cpzk65zxWDT/oRldkj4lYxN//2gyz3OFf6IJ5ye+I/f9vw1r0x9LS0iRJKqAH705Dh
- JaZzcgKSxaOTxQ+ZqlkB6+Sd2EM9jeUFhcwEEgH0AJz8MAUYKVO9sM8Xe6sk47gu0v+U
- omCmN0iNKWsPEyG67lgqCpS/GkytckI91KqS90t6OoT6Td4Nemb8KfyckeIrKIgjimOi
- uBrC0muZ/+E2/wHwT1N71tUA1+CULRh16Xkkk8DkyYiP8QkEPOY2Cfx+4t7daXsWOHLi
- XiANsYOKiuO5NJKrz6lotpfC64NMFw8YEa8kT8Xsuk6jiXQ4kKE9moFPRT2OAhPXp/4i
- Ccrg==
-X-Gm-Message-State: AOAM5323cDSHndzGsRDE9EuLFbEsKPnnPxa9eDZGAIAwEO26KTFq8f4z
- NymqkwZ/PuUO7yM1UtztIKxF3ESICLCNC3ipYvA=
-X-Google-Smtp-Source: ABdhPJyll5JpkA9UEWltY1y9eCg0n5mQmVWUE8ITZ+dU64IKLL0TaHbh90qd8HQUlKGkIW30F8VTJRwbT8E/u8Ozmms=
-X-Received: by 2002:aca:cfd0:: with SMTP id f199mr2821951oig.64.1613485688671; 
- Tue, 16 Feb 2021 06:28:08 -0800 (PST)
+ (Exim 4.93) (envelope-from <mikerd1@verizon.net>) id 1lC311-0005hC-SB
+ for usrp-users@lists.ettus.com; Tue, 16 Feb 2021 11:15:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verizon.net; s=a2048;
+ t=1613492114; bh=EflXiEFdFs1wJcCvw3cfj7uEZ6BaMkAb5g0G2/yBFDc=;
+ h=To:From:Subject:Date:References:From:Subject:Reply-To;
+ b=LDU+lQf3nubUp/M1J5yXNM4oGgE9QievipmXGkRuz5kYbuwkxDUTxTRsuD498TwZbcuEgSrCuQpLhOa00+UqsiEwhI7t0kdEZHOp7gYekv8z92q8RPIDH+n0oQLYSryDu5UGECDuldcAV52wCUDzm7CGeIUeS4CBtDX0qSIwNx1XzCnusjPcO0MEfHaSLqNbfb/nPTx8vnbmIpSojsx6KUnCG5Eb63UCrMDRu1uCBXo7oU5UuYVkpGQ2JCEaYN8bWhyQ+3s2Xa0p4yjSBpjufZD1aT1Vp/zQhmI36CibIsp000CQJEGTjeYKRoA4x1ITyk7Fjrw9F3bE3huJuxc46w==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1613492114; bh=cEJuNSiL0TQmUY9uqphriUyZzMEo4U0oK+MtnGjnjAi=;
+ h=X-Sonic-MF:To:From:Subject:Date:From:Subject;
+ b=By2DxK9E7M2NBAXKpJhQ6EKLESQy0ZRMFaY2BuD7rm1G2e2XvZt9J6BcHYjRy1dwW5iFnv77wYUYn014JFiDzzKv11aKywlvbGlEjhpA3A/fnSWWfOOkqNozDg/GAvWGcJdr7pCDZe3iI9sjWyrak9Ex0XSj/uutlFp9lFReVS4+tVOQjEDSr/ag7j5ZDR0OEnX3GbHJqSYiH78eWVMNaH+c7m4mHxiTicyPtb9Tvbv7cTJbf01CoWI6SzbO6dOjXNNwS/KvytrzxTuk4/QdQq2xpITeLqAAt0cKyHCQIJg8KQybp+IEU7gUZ5CQF8oFUkw2lljGXyPo+lKTeD0WUg==
+X-YMail-OSG: VS.3YjcVM1l65ZrbNkghV1oasjUDspbsQb02XvnsmKOSPwxdJxhkHo6RjhxPihs
+ .mxIVVgdSVYEHb074LIHfPP.oxz3NGvTHVvExqDecRb0TIB610Mx0Y4XhwQwxwPgWOQrCrieNFku
+ RtO3_CBip0Dky2UYtqiKpFYdpcS61QoIrwsrNsx7VyDi35USN89mNMk3A7ESea2k5gYjwEvMKcKm
+ MdQpcr5IVkEB1oIQVPNoB9JdbGupS8sbbnR1NBnfu1JZh.DFt50dl1r442piJKkcXd2BUUMVY8zM
+ 3DZXjLDxwJ7sReyp1cw6ur1YLFV_Glv0Mu.eXo5ECGJJd_L5jZZcxDcUo6SVY6fn0nvUvX2wuuP8
+ 6cfvOqlfT4ExEWBYvPNVq58snd.gzA2lKPFviqiWKvItnhfJ1k579EdX.zPt2eBxkaAszL29zl9C
+ Gzuj0bnBrEXh7l8bVHHNv0PTDud2gSMTCq5HkCf4PcCpb6uI_.IWXeGPmr_nnXAN2yGY9fcC.O0i
+ iYklb4DaaYn.VwcQqJERGR_pOymWt_LbjEJRJGqB4D48aQr4TBv4xd6pMEd2gucnIXOCi0vRrxe2
+ rZfH0a2DSHz.devhaf3.aGMQNez25CnEM572stk2xy.r28jdu4nDEpzUdvBlGp4k0eJWmUDB60Rp
+ oD3HQ0TwChppvfg4UAfDAxwoHk0nwyDnxNAAoFP0A_DgOS.vKmsDjKHHhV5uyEh.w4cSkr7v.EIQ
+ 8TBsK7CCOJypor_xEEnufDV.2Uxk.9DVYc3Fp0c18GRCDw6bv1H3Q_qR7LPHX7q9cBdH.DMYzTJ_
+ 3wpnj4jgv_UFk_msW.TclxB.UCb1bT9saQkZNNkYAPSs87S5o2f16SvHYbb_YtwmmLFjb.I9Akss
+ 3s0dJDYRsLbUPfoL2EZzGI2auO6KJYgaawO.Wn2M_imiaRReyXu8eTK1VmfHLLuKgmxvt48JjagR
+ HBlO0BRvetZPY5_RuSU.48cMB0tdhret19N2E9LEcpP_skpsBsz9T9UPXEBXJXvo44lYLMKUVhMm
+ yZ9FvjnlAAHlNUoUob_loh0snEW0AuS0AUbofXTn18bostqnZALsizzjbY8.4BL2ywlqPnhY205U
+ ml5Qrh1YSrzS1F8WIuUf7r6SB3cHbDa3NgBgr8KRKdQsSkkROYp0wofdFuk1YWKnnLOtk4.Ujxsc
+ QuhXIl5JQh2B0Wu.hcYNGTZuxA1SZb4brrIege0875QfsBSFBe0w5Xt2pez8VxAPWO4hosto7aTy
+ yvMwUuRady5QD_Dyl1ftdFWzStOp4AUTDSAhxEgimbwc.x11LMtbMzVsxmnqKAUCiSAUazXIg9wB
+ 6VFV_HjfSjfMO35.FyviZVh9.dnyX8eTOf_Q9Y11f_XFUBGFC3cd6_e7q53Uk2GpeqrdE2klCrqH
+ Y5uvK8isrUjsLkxJKsTkE5hiCJFDz3XxwQMBRzcCWNM5PUFpSBPhe19Z2iMgr8jVHzDGO2GgZgUs
+ 51Crw78krEviRj8zmnwkxaGS1b4EDDBvA6k.20YpT9m5baSsqfkmHEo3djDev3myBXMnmX7j_4Eg
+ FssWwn3We.bXCXgMF2ZP3mWn9OdkJ3UZpSbKfyTFBJ4d1Cl2hmi8tinTTm0URgFbvSiyxisenOLr
+ tMcBZDoxUa9YzGGoZMCbFrooTOaXBI4fqTBBtXlGXhqqnhzHGKmCyNT09Iyjriwr9OUujS1XIYh4
+ WoANMzmi5ZwiBXV4Z5E45EumRa3zxOT_p86KbySj3elw82s6xcMySx3iRGCoqAoTllzQ7bQXb44u
+ TG2N_Q91oQw7.a8nfAYxmK1Qveg2chddmJQdw1w6FkPePNqlScDARESnTFst0KW.Yi1msBm3ieSX
+ N37N0FdjcVIltQEFcz2iViDKQSoRD8qPpBC1HjMJKgqQUDCrDM0y3BSoRwKmQ4g9wkOWeY_rXRAE
+ ighJyNCyvNQOU1yGf4uqlk8jg7ViuzSnIStFgw7zkLr6rb4FYpu0R0STCTml0i3YxtRhaC9pDY04
+ yWjcLsH_IwNwCdHXIcAvL5GxPWTRK1WEKCH5ZhzkKhuVG7kYbs_lDbyvz8p70RiYvkT04rM.f8uB
+ 8HIo1w7YMLw2yaBnbp1BHC6xs9AHH36iZ3VLNlV07hQTIWTrdeYS2VQ0Ky7022RqrJk0frdhW1Jc
+ 2TMWZsIm3
+X-Sonic-MF: <mikerd1@verizon.net>
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic314.consmr.mail.gq1.yahoo.com with HTTP; Tue, 16 Feb 2021 16:15:14 +0000
+Received: by smtp401.mail.bf1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA
+ ID 74dffca638cb23d4bc3cdcb07d62e252; 
+ Tue, 16 Feb 2021 16:15:10 +0000 (UTC)
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID: <1addbb88-269a-0928-1fd3-415daa295a61@verizon.net>
+Date: Tue, 16 Feb 2021 11:15:09 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210108175838.vxaqctdxyaahty72@barbe>
- <20210121230057.aswz7r7zngpxbthy@barbe>
- <CAFche=jrmKeaRq0L70y85N=OWj9-BY=NXtVqNawCgD6mPkccMw@mail.gmail.com>
- <CAJZBg9UE2GzKH5HjjBq60k0XvQ_Lk0ex10aHba0G13mtaR0vpw@mail.gmail.com>
- <20210216091941.yaclsgbeh7spm4tt@barbe>
- <CAJZBg9WpiJ4rq-vLq1RCpfoi+rGBQM=kEE3Mkz98VzAyZccZOA@mail.gmail.com>
-In-Reply-To: <CAJZBg9WpiJ4rq-vLq1RCpfoi+rGBQM=kEE3Mkz98VzAyZccZOA@mail.gmail.com>
-Date: Tue, 16 Feb 2021 09:27:57 -0500
-Message-ID: <CAEXYVK5beXcuyjj1tD31ptiyecSM+4izRvcYrNpOAzk4oG-LVw@mail.gmail.com>
-To: Tuan Hoang Dinh <tuanmcx58@gmail.com>
-Subject: Re: [USRP-users] Add Xilinx IP in OOT RFNoC UHD4.0
+Content-Language: en-US
+References: <1addbb88-269a-0928-1fd3-415daa295a61.ref@verizon.net>
+X-Mailer: WebService/1.1.17712
+ mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.aol
+ Apache-HttpAsyncClient/4.1.4 (Java/11.0.9.1)
+Subject: [USRP-users] rfnoc_image_builder error with clock domain
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -62,10 +79,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Brian Padalino via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Brian Padalino <bpadalino@gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8468723296827719067=="
+From: Mike via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mike <mikerd1@verizon.net>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,132 +96,18 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============8468723296827719067==
-Content-Type: multipart/alternative; boundary="00000000000052d16a05bb74e9cd"
-
---00000000000052d16a05bb74e9cd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-For the sake of the mailing list, can someone post the example to a
-repository somewhere and link to it, so we aren't passing around secret
-helpful documents?
-
-Thanks,
-Brian
-
-On Tue, Feb 16, 2021 at 8:29 AM Tuan Hoang Dinh via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-> Dear C=C3=A9dric Hannotier,
->
-> Thanks a lot for your forwarded email from Wade, it is so helpful for me
-> at the starting step.
-> Thank you too, Wade.
->
-> Best regards,
-> Tuan
->
-> V=C3=A0o Th 3, 16 thg 2, 2021 va=CC=80o lu=CC=81c 18:20 C=C3=A9dric Hanno=
-tier via USRP-users <
-> usrp-users@lists.ettus.com> =C4=91=C3=A3 vi=E1=BA=BFt:
->
->> Dear Tuan,
->>
->> On 16/02/21 14:03, Tuan Hoang Dinh wrote:
->> > I would like to add Xilinx IP to RFNoC module and still have no idea t=
-o
->> do
->> > that.
->> > Could you share your example to help me get started?
->>
->> I forwarded Wade's example to you.
->>
->> Regards
->> --
->>
->> C=C3=A9dric Hannotier
->>
->> _______________________________________________
->> USRP-users mailing list
->> USRP-users@lists.ettus.com
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
-
---00000000000052d16a05bb74e9cd
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">For the sake of the mailing list, can someone post the exa=
-mple to a repository somewhere and link to it, so we aren&#39;t passing aro=
-und secret helpful documents?<div><br></div><div>Thanks,<br>Brian</div></di=
-v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On T=
-ue, Feb 16, 2021 at 8:29 AM Tuan Hoang Dinh via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
-">Dear=C2=A0<font color=3D"#000000">C=C3=A9dric Hannotier,</font><div><font=
- color=3D"#000000"><br></font></div><div><font color=3D"#000000">Thanks a l=
-ot for your forwarded email from Wade, it is so helpful for me at the start=
-ing step.</font></div><div><font color=3D"#000000">Thank you too, Wade.</fo=
-nt></div><div><font color=3D"#000000"><br></font></div><div><font color=3D"=
-#000000">Best regards,</font></div><div><font color=3D"#000000">Tuan</font>=
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">V=C3=A0o Th 3, 16 thg 2, 2021 va=CC=80o lu=CC=81c 18:20 C=C3=A9dric H=
-annotier via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" t=
-arget=3D"_blank">usrp-users@lists.ettus.com</a>&gt; =C4=91=C3=A3 vi=E1=BA=
-=BFt:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Dear Tuan,=
-<br>
-<br>
-On 16/02/21 14:03, Tuan Hoang Dinh wrote:<br>
-&gt; I would like to add Xilinx IP to RFNoC module and still have no idea t=
-o do<br>
-&gt; that.<br>
-&gt; Could you share your example to help me get started?<br>
-<br>
-I forwarded Wade&#39;s example to you.<br>
-<br>
-Regards<br>
--- <br>
-<br>
-C=C3=A9dric Hannotier<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000052d16a05bb74e9cd--
-
-
---===============8468723296827719067==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============8468723296827719067==--
-
+SGksCgpJJ20gYnVpbGRpbmcgYSBuZXcgRlBHQSBpbWFnZSBmb3IgRTMxMCBiYXNlZCBvbiB0aGUg
+eWFtbCBmaWxlIAoiZTMxMF9yZm5vY19pbWFnZV9jb3JlLnltbCIuwqAgSSdtIGFkZGluZyBhIEZG
+VCBibG9jayBwZXIgdGhlIAppbnN0cnVjdGlvbnMgaW4gIkdldHRpbmdfU3RhcnRlZF93aXRoX1JG
+Tm9DX2luX1VIRF80LjAiLgoKSG93ZXZlciwgd2hlbiBJIHJ1bjoKCnJmbm9jX2ltYWdlX2J1aWxk
+ZXIgLXkgLi9lMzEwX3dpdGhfZmZ0LnltbCAtdCBFMzEwCgpJIGdldCB0aGUgZXJyb3I6CgpbRVJS
+XSAxIHVucmVzb2x2ZWQgY2xrIGRvbWFpbihzKQpbRVJSXcKgwqDCoMKgIGZmdDA6Y2UKW0VSUl0g
+UGxlYXNlIHNwZWNpZnkgdGhlIGNsb2NrKHMpIHRvIGNvbm5lY3QKCkV2ZW4gdGhvdWdoIHRoZSBj
+bGtfZG9tYWlucyBpcyBjb25maWd1cmVkIGFzOgoKY2xrX2RvbWFpbnM6CiDCoC0geyBzcmNibGs6
+IF9kZXZpY2VfLCBzcmNwb3J0OiByYWRpbywgZHN0YmxrOiByYWRpbzAsIGRzdHBvcnQ6IHJhZGlv
+IH0KIMKgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGNlLMKgwqDCoCBkc3RibGs6IGZm
+dDAswqDCoCBkc3Rwb3J0OmNlIH0KCklmIEkgcmVtb3ZlIHRoZSBGRlQgYmxvY2sgdGhlIGNvbXBp
+bGUgcHJvY2VzcyBiZWdpbnMgcHJvcGVybHkuCgpBbnkgaWRlYXM/CgpNaWtlCgoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5n
+IGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9t
+YWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
