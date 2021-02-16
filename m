@@ -2,72 +2,63 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EC4031CDCC
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Feb 2021 17:16:21 +0100 (CET)
-Received: from [::1] (port=52996 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65FF331D169
+	for <lists+usrp-users@lfdr.de>; Tue, 16 Feb 2021 21:16:11 +0100 (CET)
+Received: from [::1] (port=55018 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lC315-0005lR-Ag; Tue, 16 Feb 2021 11:15:59 -0500
-Received: from sonic314-19.consmr.mail.gq1.yahoo.com ([98.137.69.82]:40386)
+	id 1lC6lT-00037Z-Gv; Tue, 16 Feb 2021 15:16:07 -0500
+Received: from mail-wr1-f46.google.com ([209.85.221.46]:38046)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <mikerd1@verizon.net>) id 1lC311-0005hC-SB
- for usrp-users@lists.ettus.com; Tue, 16 Feb 2021 11:15:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verizon.net; s=a2048;
- t=1613492114; bh=EflXiEFdFs1wJcCvw3cfj7uEZ6BaMkAb5g0G2/yBFDc=;
- h=To:From:Subject:Date:References:From:Subject:Reply-To;
- b=LDU+lQf3nubUp/M1J5yXNM4oGgE9QievipmXGkRuz5kYbuwkxDUTxTRsuD498TwZbcuEgSrCuQpLhOa00+UqsiEwhI7t0kdEZHOp7gYekv8z92q8RPIDH+n0oQLYSryDu5UGECDuldcAV52wCUDzm7CGeIUeS4CBtDX0qSIwNx1XzCnusjPcO0MEfHaSLqNbfb/nPTx8vnbmIpSojsx6KUnCG5Eb63UCrMDRu1uCBXo7oU5UuYVkpGQ2JCEaYN8bWhyQ+3s2Xa0p4yjSBpjufZD1aT1Vp/zQhmI36CibIsp000CQJEGTjeYKRoA4x1ITyk7Fjrw9F3bE3huJuxc46w==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1613492114; bh=cEJuNSiL0TQmUY9uqphriUyZzMEo4U0oK+MtnGjnjAi=;
- h=X-Sonic-MF:To:From:Subject:Date:From:Subject;
- b=By2DxK9E7M2NBAXKpJhQ6EKLESQy0ZRMFaY2BuD7rm1G2e2XvZt9J6BcHYjRy1dwW5iFnv77wYUYn014JFiDzzKv11aKywlvbGlEjhpA3A/fnSWWfOOkqNozDg/GAvWGcJdr7pCDZe3iI9sjWyrak9Ex0XSj/uutlFp9lFReVS4+tVOQjEDSr/ag7j5ZDR0OEnX3GbHJqSYiH78eWVMNaH+c7m4mHxiTicyPtb9Tvbv7cTJbf01CoWI6SzbO6dOjXNNwS/KvytrzxTuk4/QdQq2xpITeLqAAt0cKyHCQIJg8KQybp+IEU7gUZ5CQF8oFUkw2lljGXyPo+lKTeD0WUg==
-X-YMail-OSG: VS.3YjcVM1l65ZrbNkghV1oasjUDspbsQb02XvnsmKOSPwxdJxhkHo6RjhxPihs
- .mxIVVgdSVYEHb074LIHfPP.oxz3NGvTHVvExqDecRb0TIB610Mx0Y4XhwQwxwPgWOQrCrieNFku
- RtO3_CBip0Dky2UYtqiKpFYdpcS61QoIrwsrNsx7VyDi35USN89mNMk3A7ESea2k5gYjwEvMKcKm
- MdQpcr5IVkEB1oIQVPNoB9JdbGupS8sbbnR1NBnfu1JZh.DFt50dl1r442piJKkcXd2BUUMVY8zM
- 3DZXjLDxwJ7sReyp1cw6ur1YLFV_Glv0Mu.eXo5ECGJJd_L5jZZcxDcUo6SVY6fn0nvUvX2wuuP8
- 6cfvOqlfT4ExEWBYvPNVq58snd.gzA2lKPFviqiWKvItnhfJ1k579EdX.zPt2eBxkaAszL29zl9C
- Gzuj0bnBrEXh7l8bVHHNv0PTDud2gSMTCq5HkCf4PcCpb6uI_.IWXeGPmr_nnXAN2yGY9fcC.O0i
- iYklb4DaaYn.VwcQqJERGR_pOymWt_LbjEJRJGqB4D48aQr4TBv4xd6pMEd2gucnIXOCi0vRrxe2
- rZfH0a2DSHz.devhaf3.aGMQNez25CnEM572stk2xy.r28jdu4nDEpzUdvBlGp4k0eJWmUDB60Rp
- oD3HQ0TwChppvfg4UAfDAxwoHk0nwyDnxNAAoFP0A_DgOS.vKmsDjKHHhV5uyEh.w4cSkr7v.EIQ
- 8TBsK7CCOJypor_xEEnufDV.2Uxk.9DVYc3Fp0c18GRCDw6bv1H3Q_qR7LPHX7q9cBdH.DMYzTJ_
- 3wpnj4jgv_UFk_msW.TclxB.UCb1bT9saQkZNNkYAPSs87S5o2f16SvHYbb_YtwmmLFjb.I9Akss
- 3s0dJDYRsLbUPfoL2EZzGI2auO6KJYgaawO.Wn2M_imiaRReyXu8eTK1VmfHLLuKgmxvt48JjagR
- HBlO0BRvetZPY5_RuSU.48cMB0tdhret19N2E9LEcpP_skpsBsz9T9UPXEBXJXvo44lYLMKUVhMm
- yZ9FvjnlAAHlNUoUob_loh0snEW0AuS0AUbofXTn18bostqnZALsizzjbY8.4BL2ywlqPnhY205U
- ml5Qrh1YSrzS1F8WIuUf7r6SB3cHbDa3NgBgr8KRKdQsSkkROYp0wofdFuk1YWKnnLOtk4.Ujxsc
- QuhXIl5JQh2B0Wu.hcYNGTZuxA1SZb4brrIege0875QfsBSFBe0w5Xt2pez8VxAPWO4hosto7aTy
- yvMwUuRady5QD_Dyl1ftdFWzStOp4AUTDSAhxEgimbwc.x11LMtbMzVsxmnqKAUCiSAUazXIg9wB
- 6VFV_HjfSjfMO35.FyviZVh9.dnyX8eTOf_Q9Y11f_XFUBGFC3cd6_e7q53Uk2GpeqrdE2klCrqH
- Y5uvK8isrUjsLkxJKsTkE5hiCJFDz3XxwQMBRzcCWNM5PUFpSBPhe19Z2iMgr8jVHzDGO2GgZgUs
- 51Crw78krEviRj8zmnwkxaGS1b4EDDBvA6k.20YpT9m5baSsqfkmHEo3djDev3myBXMnmX7j_4Eg
- FssWwn3We.bXCXgMF2ZP3mWn9OdkJ3UZpSbKfyTFBJ4d1Cl2hmi8tinTTm0URgFbvSiyxisenOLr
- tMcBZDoxUa9YzGGoZMCbFrooTOaXBI4fqTBBtXlGXhqqnhzHGKmCyNT09Iyjriwr9OUujS1XIYh4
- WoANMzmi5ZwiBXV4Z5E45EumRa3zxOT_p86KbySj3elw82s6xcMySx3iRGCoqAoTllzQ7bQXb44u
- TG2N_Q91oQw7.a8nfAYxmK1Qveg2chddmJQdw1w6FkPePNqlScDARESnTFst0KW.Yi1msBm3ieSX
- N37N0FdjcVIltQEFcz2iViDKQSoRD8qPpBC1HjMJKgqQUDCrDM0y3BSoRwKmQ4g9wkOWeY_rXRAE
- ighJyNCyvNQOU1yGf4uqlk8jg7ViuzSnIStFgw7zkLr6rb4FYpu0R0STCTml0i3YxtRhaC9pDY04
- yWjcLsH_IwNwCdHXIcAvL5GxPWTRK1WEKCH5ZhzkKhuVG7kYbs_lDbyvz8p70RiYvkT04rM.f8uB
- 8HIo1w7YMLw2yaBnbp1BHC6xs9AHH36iZ3VLNlV07hQTIWTrdeYS2VQ0Ky7022RqrJk0frdhW1Jc
- 2TMWZsIm3
-X-Sonic-MF: <mikerd1@verizon.net>
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic314.consmr.mail.gq1.yahoo.com with HTTP; Tue, 16 Feb 2021 16:15:14 +0000
-Received: by smtp401.mail.bf1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA
- ID 74dffca638cb23d4bc3cdcb07d62e252; 
- Tue, 16 Feb 2021 16:15:10 +0000 (UTC)
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <1addbb88-269a-0928-1fd3-415daa295a61@verizon.net>
-Date: Tue, 16 Feb 2021 11:15:09 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
+ id 1lC6lP-00033L-Qc
+ for usrp-users@lists.ettus.com; Tue, 16 Feb 2021 15:16:03 -0500
+Received: by mail-wr1-f46.google.com with SMTP id b3so14852469wrj.5
+ for <usrp-users@lists.ettus.com>; Tue, 16 Feb 2021 12:15:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=h2B2mmVM0BlAVmoIuNXH2YD+8RWThZ1yBlgRPQpPF8A=;
+ b=pJ2InbubkRafM7nILkTzpCYUi0Tx5ZU4GdF/XQyzqyV9zfAugME2qxhzAgaGshSP/C
+ UtwTv3UfWCWNeUletqqiiT0B7e0ZsmMH0iJrCGCpg/E28IQsGRgP+uvtDOEBQY70oOms
+ ys2xNnzJDStXNv0BoYueStehs2ivbggH0dwlxH39NHo1LD/9waSUvQVWorH4/dxs9y/u
+ u4ekWCIN2lk3cuuiQKLCHCCUGf0ZASwDZChx+Ynam9AhhChSRXkHkXZOenWUqm3oiRzw
+ 21uR29HtdhFfek3Yx0v3zWBgNcOiY/pYYGXFjxfO+jg3o5dzjKpdC5CgkkjWEykZjlSz
+ 1KpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=h2B2mmVM0BlAVmoIuNXH2YD+8RWThZ1yBlgRPQpPF8A=;
+ b=eT4GBblGOMJlyhe1pnmYEkUoHRiyA6e2+pkFDCuVq8rl6Gyhfzm5HJwEr15jFxxBJJ
+ fMNQ+4hpEVh0MLTHqMTV2CH2tHdY3VbOvB1NKGrqdbMOcw8FA7gGXXGblGT/3SyWp9Pr
+ oU50zojZ0rrbKrZlYqBq5ZU7dro0Jr6gnvOe/YddB74j//7KzYb3yF0XWh/JDV2vWrrr
+ SMsHvQbQMMs6u1K26lQQwg01slncZOmEiyvGqBa0AddBL1nMOOKcuN64gL9rKr9RIebh
+ vJ1N8umxt7V3kLXW3uwkONarDcDqj13mZYeU9ewpml+xtCufWHuA3zaVTjtWLJOmuBs1
+ vMKQ==
+X-Gm-Message-State: AOAM533Q5MFIeRtpeuSvSgeb2/+Uecj4u0hywNtFhNmLx80C00ficj4V
+ 9VkvIIs149KOS3dodeYbIEsFkQ2yCv7LIUaLugM=
+X-Google-Smtp-Source: ABdhPJwi+gKdAHwjQQfpXnV4xsy5+iNHyt5tQ78r+aoHH5zxeJRSSsYuDb6WJZ9alLaUA1Pkt8XQFQ==
+X-Received: by 2002:adf:e40e:: with SMTP id g14mr24859731wrm.426.1613506522631; 
+ Tue, 16 Feb 2021 12:15:22 -0800 (PST)
+Received: from [192.168.128.8]
+ (HSI-KBW-46-223-162-176.hsi.kabel-badenwuerttemberg.de. [46.223.162.176])
+ by smtp.gmail.com with ESMTPSA id m23sm1269805wmc.31.2021.02.16.12.15.22
+ for <usrp-users@lists.ettus.com>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 16 Feb 2021 12:15:22 -0800 (PST)
+To: usrp-users@lists.ettus.com
+References: <CACDReSwOo22jYHsz3fu38yqH+GP1MJjnRt1cUFsFPheyd3c=Hw@mail.gmail.com>
+Message-ID: <cd08ceef-9281-2523-cf1b-cb890b6cfb34@ettus.com>
+Date: Tue, 16 Feb 2021 21:15:21 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
+In-Reply-To: <CACDReSwOo22jYHsz3fu38yqH+GP1MJjnRt1cUFsFPheyd3c=Hw@mail.gmail.com>
 Content-Language: en-US
-References: <1addbb88-269a-0928-1fd3-415daa295a61.ref@verizon.net>
-X-Mailer: WebService/1.1.17712
- mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.aol
- Apache-HttpAsyncClient/4.1.4 (Java/11.0.9.1)
-Subject: [USRP-users] rfnoc_image_builder error with clock domain
+Subject: Re: [USRP-users] Getting sensor data using device3 usrp on E310
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -79,10 +70,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mike via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mike <mikerd1@verizon.net>
+From: =?utf-8?q?Marcus_M=C3=BCller_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -96,18 +88,51 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SGksCgpJJ20gYnVpbGRpbmcgYSBuZXcgRlBHQSBpbWFnZSBmb3IgRTMxMCBiYXNlZCBvbiB0aGUg
-eWFtbCBmaWxlIAoiZTMxMF9yZm5vY19pbWFnZV9jb3JlLnltbCIuwqAgSSdtIGFkZGluZyBhIEZG
-VCBibG9jayBwZXIgdGhlIAppbnN0cnVjdGlvbnMgaW4gIkdldHRpbmdfU3RhcnRlZF93aXRoX1JG
-Tm9DX2luX1VIRF80LjAiLgoKSG93ZXZlciwgd2hlbiBJIHJ1bjoKCnJmbm9jX2ltYWdlX2J1aWxk
-ZXIgLXkgLi9lMzEwX3dpdGhfZmZ0LnltbCAtdCBFMzEwCgpJIGdldCB0aGUgZXJyb3I6CgpbRVJS
-XSAxIHVucmVzb2x2ZWQgY2xrIGRvbWFpbihzKQpbRVJSXcKgwqDCoMKgIGZmdDA6Y2UKW0VSUl0g
-UGxlYXNlIHNwZWNpZnkgdGhlIGNsb2NrKHMpIHRvIGNvbm5lY3QKCkV2ZW4gdGhvdWdoIHRoZSBj
-bGtfZG9tYWlucyBpcyBjb25maWd1cmVkIGFzOgoKY2xrX2RvbWFpbnM6CiDCoC0geyBzcmNibGs6
-IF9kZXZpY2VfLCBzcmNwb3J0OiByYWRpbywgZHN0YmxrOiByYWRpbzAsIGRzdHBvcnQ6IHJhZGlv
-IH0KIMKgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGNlLMKgwqDCoCBkc3RibGs6IGZm
-dDAswqDCoCBkc3Rwb3J0OmNlIH0KCklmIEkgcmVtb3ZlIHRoZSBGRlQgYmxvY2sgdGhlIGNvbXBp
-bGUgcHJvY2VzcyBiZWdpbnMgcHJvcGVybHkuCgpBbnkgaWRlYXM/CgpNaWtlCgoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5n
-IGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9t
-YWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+RGVhciBPZmVyLAoKWW91J3JlIHJpZ2h0LCB0aGUgZ2V0X21ib2FyZF9zZW5zb3IgaXMgYSBwcm9w
+ZXJ0eSBvZiB0aGUgbXVsdGlfdXNycCBjbGFzcyBhbmQgbG9naWNhbGx5CmRvZXNuJ3QgIm1hcCIg
+dG8gdGhlIGRldmljZTMgY2xhc3MuCgpJIGRvbid0IGhhdmUgYW4gdWx0aW1hdGVseSBnb29kIHNv
+bHV0aW9uLCBoZXJlLCB0byBiZSBob25lc3QuIEFzIGEgdWdseSB5ZXQgZnVuY3Rpb25hbAp3b3Jr
+YXJvdW5kOgoKwqDCoMKgIGF1dG8gc2Vuc29yX3ZhbHVlcyA9IG15X2RldmljZTNfc3B0ci0+Z2V0
+X3RyZWUoKS0+YWNjZXNzPHVoZDo6c2Vuc29yX3ZhbHVlX3Q+KHBhdGgpLmdldCgpOwoKd2hlcmUg
+InBhdGgiIGlzIHRoZSBwYXRoIHRvIHlvdXIgc2Vuc29yIHZhbHVlLiBUbyBmaW5kIHRoYXQsIHRy
+eSBgdWhkX3VzcnBfcHJvYmUgLS10cmVlIHwKZ3JlcCBzZW5zb3JzYC4KCkJlc3QgcmVnYXJkcywK
+Ck1hcmN1cwoKRElTQ0xBSU1FUjogQW55IGF0dGFjaGVkIENvZGUgaXMgcHJvdmlkZWQgQXMgSXMu
+IEl0IGhhcyBub3QgYmVlbiB0ZXN0ZWQgb3IgdmFsaWRhdGVkIGFzIGEgcHJvZHVjdCwgZm9yIHVz
+ZSBpbiBhIGRlcGxveWVkIGFwcGxpY2F0aW9uIG9yIHN5c3RlbSwgb3IgZm9yIHVzZSBpbiBoYXph
+cmRvdXMgZW52aXJvbm1lbnRzLiBZb3UgYXNzdW1lIGFsbCByaXNrcyBmb3IgdXNlIG9mIHRoZSBD
+b2RlLiBVc2Ugb2YgdGhlIENvZGUgaXMgc3ViamVjdCB0byB0ZXJtcyBvZiB0aGUgbGljZW5zZXMg
+dG8gdGhlIFVIRCBvciBSRk5vQyBjb2RlIHdpdGggd2hpY2ggdGhlIENvZGUgaXMgdXNlZC4gU3Rh
+bmRhcmQgbGljZW5zZXMgdG8gVUhEIGFuZCBSRk5vQyBjYW4gYmUgZm91bmQgYXQgaHR0cHM6Ly93
+d3cuZXR0dXMuY29tL3Nkci1zb2Z0d2FyZS9saWNlbnNlcy8uCgpOSSB3aWxsIG9ubHkgcGVyZm9y
+bSBzZXJ2aWNlcyBiYXNlZCBvbiBpdHMgdW5kZXJzdGFuZGluZyBhbmQgY29uZGl0aW9uIHRoYXQg
+dGhlIGdvb2RzIG9yIHNlcnZpY2VzIChpKSBhcmUgbm90IGZvciB0aGUgdXNlIGluIHRoZSBwcm9k
+dWN0aW9uIG9yIGRldmVsb3BtZW50IG9mIGFueSBpdGVtIHByb2R1Y2VkLCBwdXJjaGFzZWQsIG9y
+IG9yZGVyZWQgYnkgYW55IGVudGl0eSB3aXRoIGEgZm9vdG5vdGUgMSBkZXNpZ25hdGlvbiBpbiB0
+aGUgbGljZW5zZSByZXF1aXJlbWVudCBjb2x1bW4gb2YgU3VwcGxlbWVudCBOby4gNCB0byBQYXJ0
+IDc0NCwgVS5TLiBFeHBvcnQgQWRtaW5pc3RyYXRpb24gUmVndWxhdGlvbnMgYW5kIChpaSkgc3Vj
+aCBhIGNvbXBhbnkgaXMgbm90IGEgcGFydHkgdG8gdGhlIHRyYW5zYWN0aW9uLiAgSWYgb3VyIHVu
+ZGVyc3RhbmRpbmcgaXMgaW5jb3JyZWN0LCBwbGVhc2Ugbm90aWZ5IHVzIGltbWVkaWF0ZWx5IGJl
+Y2F1c2UgYSBzcGVjaWZpYyBhdXRob3JpemF0aW9uIG1heSBiZSByZXF1aXJlZCBmcm9tIHRoZSBV
+LlMuIENvbW1lcmNlIERlcGFydG1lbnQgYmVmb3JlIHRoZSB0cmFuc2FjdGlvbiBtYXkgcHJvY2Vl
+ZCBmdXJ0aGVyLgoKT24gMTYuMDIuMjEgMDg6MzMsIE9mZXIgU2FmZXJtYW4gdmlhIFVTUlAtdXNl
+cnMgd3JvdGU6Cj4gSGVsbG8sCj4KPiBJIHdvdWxkIGxpa2UgdG8gYWNjZXNzIHNlbnNvciBkYXRh
+IGxpa2UgImdwc190aW1lIiwgInJlZl9sb2NrZWQiLCJncHNfbG9ja2VkIiB1c2luZyBhCj4gVVNS
+UCBkZXZpY2UgZGVmaW5lZCBhcyAidWhkOjpkZXZpY2UzOjpzcHRyIHVzcnAiIG9uIGEgRTMxMCB1
+bml0Lgo+IEFsbCB0aGUgZXhhbXBsZXMgYXJlIGZvciBVU1JQIGRldmljZXMgZGVmaW5lZCBhcyAi
+dWhkOjp1c3JwOjptdWx0aV91c3JwOjpzcHRyIHVzcnAiLgo+Cj4gSSBzZWFyY2hlZCB0aGUgZG9j
+dW1lbnRhdGlvbiBhbmQgdHJpZWQgYWxsIHBvc3NpYmxlIGNvbWJpbmF0aW9ucyBhbHNvIHVzaW5n
+IHRoZQo+ICJ1aGQ6OnJmbm9jOjpyYWRpb19jdHJsOjpzcHRyIiBvYmplY3Qgd2l0aG91dCBhbnkg
+c3VjY2Vzcy4KPiBJIGNhbiBzZWUgdGhlIG1ldGhvZCBleGlzdHMgZm9yIG11bHRpX3VzcnAgYW5k
+IG1iX2NvbnRyb2xsZXIgb2JqZWN0cy4gSSBrbm93IHRoYXQgdGhlCj4gbWJfY29udHJvbGxlciBp
+cyBzb21ld2hlcmUgYWNjZXNzaWJsZSBlaXRoZXIgdGhyb3VnaCByYWRpb19jdHJsIG9iamVjdCBv
+ciB0aGUgZGV2aWNlMwo+IG9iamVjdCBidXQgSSBkb24ndCBrbm93IGhvdyB0byBnZXQgdG8gaXQu
+Cj4KPiBSZWdhcmRzLAo+IE9mZXIgU2FmZXJtYW4KPgo+IC0tIAo+IFRoaXMgbWVzc2FnZSBoYXMg
+YmVlbiBzY2FubmVkIGZvciB2aXJ1c2VzIGFuZAo+IGRhbmdlcm91cyBjb250ZW50IGJ5ICpNYWls
+U2Nhbm5lciogPGh0dHA6Ly93d3cubWFpbHNjYW5uZXIuaW5mby8+LCBhbmQgaXMKPiBiZWxpZXZl
+ZCB0byBiZSBjbGVhbi4KPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVz
+ZXJzX2xpc3RzLmV0dHVzLmNvbQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNlcnNf
+bGlzdHMuZXR0dXMuY29tCg==
