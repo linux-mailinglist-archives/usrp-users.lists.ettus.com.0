@@ -2,37 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48CA231DF9C
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Feb 2021 20:26:51 +0100 (CET)
-Received: from [::1] (port=36412 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25F1031DFB3
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Feb 2021 20:36:10 +0100 (CET)
+Received: from [::1] (port=36472 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lCSTH-0007r8-PS; Wed, 17 Feb 2021 14:26:47 -0500
-Received: from p-impout003aa.msg.pkvw.co.charter.net ([47.43.26.134]:60269
- helo=p-impout003.msg.pkvw.co.charter.net)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <dtrask1@tampabay.rr.com>)
- id 1lCSTD-0007lS-0A
- for usrp-users@lists.ettus.com; Wed, 17 Feb 2021 14:26:43 -0500
-Received: from localhost ([54.243.7.172]) by cmsmtp with ESMTP
- id CSSWl81ZhGLZxCSSXlvpIu; Wed, 17 Feb 2021 19:26:01 +0000
-X-Authority-Analysis: v=2.3 cv=FpV7AFjq c=1 sm=1 tr=0
- a=ZhHbwgLlxfPm5G22ibXkng==:117 a=ZhHbwgLlxfPm5G22ibXkng==:17
- a=bpm26yrvxXUA:10 a=SKcGWsc0eaYA:10 a=N5j5zEGYdL7ZpdGOZzsA:9
- a=7Zwj6sZBwVKJAoWSPKxL6X1jA+E=:19 a=QEXdDO2ut3YA:10 a=ZrsZR95k2a-Jjnxz58AA:9
- a=rhMk0Wa1nBLH4Eb_:21 a=_W_S_7VecoQA:10
-Message-Id: <272f28c4b6c10aec670858261b8d3928c551e70e@webmail>
-To: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
-X-Mailer: Atmail 
-X-Originating-IP: [204.115.183.4]
-X-Priority: 3
-Importance: Normal
-X-MSMail-Priority: Normal
-Date: Wed, 17 Feb 2021 19:26:00 +0000
-MIME-Version: 1.0
-X-CMAE-Envelope: MS4wfHUGSRtadiJF2I804O/F6uywnhl/g03uL95GMYKfuGuIFaYxa4FpDvttIK7hXTiGcBNIU60ggtjPeQxnM3aCjT0sR9q8UmGJvvZ2d/DdL+nRKW2A+afk
- 6RFaYEJc9ljVPETJDP7mjMJvyd5/zOczY78Y5Eo7lqEJKnibnGhiBvmGBZN87UJQgcAfKXL0uvsOkQ==
-Subject: [USRP-users] shared_ptr does not name a template type in
+	id 1lCScK-00006T-Gs; Wed, 17 Feb 2021 14:36:08 -0500
+Received: from mail-qt1-f170.google.com ([209.85.160.170]:41448)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1lCScG-0008RS-Nc
+ for USRP-users@lists.ettus.com; Wed, 17 Feb 2021 14:36:04 -0500
+Received: by mail-qt1-f170.google.com with SMTP id z32so10407438qtd.8
+ for <USRP-users@lists.ettus.com>; Wed, 17 Feb 2021 11:35:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=+6Ai0y98zlQKe5P1SF9BaA+ysVv8OXUGHTadLtHUvwI=;
+ b=CfMeZyyzgP3qWFKZ3OkRcL+ztzzihta7oMLXIUewaQ/Vl/FGgzNM7ZWkPbNZg0LrYr
+ vsvfW5WTMe14g1O1Av+oRoxtSrrHp997zxMFaLaS455VzXIeCDG4iqy93K88OcQ4ZFEX
+ hhza5lf4fjXpALJCa4WW8ROnGLtRWC4Ylrcrx/uLGBTMpo4R78VlVG2n3Ti69OjUyyBK
+ AqgdyyT+PQT+6WYWP97qjc+MAxW5bKmo7gxx1ElYyal8qMiVBlFe7RGp4fC3e8gutyyg
+ 94SDGrw+rsc9HaivwVpDLSmyFFr/UtPi5/qEwYg8hFpQMakE/VHT4cBsAt3qsSfMwiIE
+ gw6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=+6Ai0y98zlQKe5P1SF9BaA+ysVv8OXUGHTadLtHUvwI=;
+ b=JLNs4w+W7BOYinElPY21CZWoeWDuq6Svr6piFiu6vvkwxzLQeSPH4L5uu0YJKQnCht
+ 2/cWWO3Dsev+Qsbdnpem1UtrGdqGAwW7F6RdWKqVOgNoawgZksD96UMwl0nUSqY/Whvf
+ cc886MF9ydknHUCNz3WmN+EDAvdS7Qx95Zem57lCTHIeCJvzV2X8kDA4EHq/9OlckVsY
+ uGpnCQQAglBHUwoPgY/0+jflDOfl8qeoh3GGOgNXOiSx+xMOKlaMVpzfT4u5V9K0qDXG
+ YpFHWM9eUS/zGcV5+rkS63Qs7TM0yw0MQxMYJ59LFtOhN7uhW62vO7x/LcOKAPVaFzn3
+ lQhw==
+X-Gm-Message-State: AOAM533t51xsEpkpET97DA+Dn/PembueYrifDQK9oMGW54XdVVRUbqgY
+ jI9y6q3Mdtd/DBdE8d+L55h081RvB/w=
+X-Google-Smtp-Source: ABdhPJyxgABE2z0UfQ55Oqj/ayX/5XLcQ1SQBmpFw7elSLDpFp/SZzQgJV9M+R2Nzr5PcP8nUxE3JQ==
+X-Received: by 2002:ac8:7108:: with SMTP id z8mr849272qto.34.1613590523895;
+ Wed, 17 Feb 2021 11:35:23 -0800 (PST)
+Received: from [192.168.2.130]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.gmail.com with ESMTPSA id b7sm2305176qkj.115.2021.02.17.11.35.23
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 17 Feb 2021 11:35:23 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Wed, 17 Feb 2021 14:35:22 -0500
+Message-Id: <EA58E29A-C0A5-48A0-ACE5-7C239BEA997C@gmail.com>
+References: <272f28c4b6c10aec670858261b8d3928c551e70e@webmail>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <272f28c4b6c10aec670858261b8d3928c551e70e@webmail>
+To: dtrask1@tampabay.rr.com
+X-Mailer: iPhone Mail (18D52)
+Subject: Re: [USRP-users] shared_ptr does not name a template type in
  Cross-compile of GR 3.7 with UHD 3.15 SDK
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -45,9 +67,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Dennis Trask via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: dtrask1@tampabay.rr.com
-Content-Type: multipart/mixed; boundary="===============6161668167968943281=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -61,850 +84,472 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6161668167968943281==
-Content-Type: multipart/alternative;
- boundary="=_89ebc2752c32aea589334cfdf780fa8b"
-
---=_89ebc2752c32aea589334cfdf780fa8b
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-I have UHD 3.15 successfully cross-compiled for E310 on Ubuntu 18.04=0Ah=
-ost. Now trying to cross-compile GnuRadio 3.7. My cmake is:=0Acmake=0A-D=
-CMAKE_TOOLCHAIN_FILE=3D~/rfnoc/src/gnuradio/cmake/Toolchains/oe-sdk_cros=
-s.cmake=0A-DENABLE_DOXYGEN=3DOFF -DCMAKE_INSTALL_PREFIX=3D/usr=0A-DCMAKE=
-_ASM_COMPILER_ARG1:STRING=3D"-mcpu=3Dcortex-a9" ../=0AIt looks like the=
- build is erroneously looking for shared_ptr in=0Anamespace std instead=
- of namespace boost, but I'm not sure how to set=0Athis up for success.=
- Does anyone see where I have gone wrong?=0AI'm getting the following er=
-ror stream:=0A[ 34%] Building CXX object=0Agnuradio-runtime/lib/CMakeFil=
-es/gnuradio-runtime.dir/block_gateway_impl.cc.oIn=0Afile included from=
-=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rp=
-cmanager_base.h:26,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-r=
-untime/include/gnuradio/rpcmanager.h:27,=0Afrom=0A/home/labuser/rfnoc/sr=
-c/gnuradio/gnuradio-runtime/include/gnuradio/rpcregisterhelpers.h:26,=0A=
-from=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradi=
-o/basic_block.h:42,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-r=
-untime/lib/basic_block.cc:27:/home/labuser/rfnoc/src/gnuradio/gnuradio-r=
-untime/include/gnuradio/rpc_shared_ptr_selection.h:34:32:=0Aerror: 'shar=
-ed_ptr' in namespace 'std' does not name a template type=0A#define GR_RP=
-C_SHARED_PTR std::shared_ptr=0A^~~~~~~~~~/home/labuser/rfnoc/src/gnuradi=
-o/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:34:13:=0Anote: in=
- expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_SHARED_PTR rpcs=
-erver_booter_base_sptr;=0A^~~~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:27:=
-=0Anote: 'std::shared_ptr' is only available from C++11 onwards #define=
-=0AGR_RPC_SHARED_PTR std::shared_ptr=0A^~~/home/labuser/rfnoc/src/gnurad=
-io/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:34:13:=0Anote: in=
- expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_SHARED_PTR rpcs=
-erver_booter_base_sptr;=0A^~~~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:32:=
-=0Aerror: 'shared_ptr' in namespace 'std' does not name a template type=
-=0A#define GR_RPC_SHARED_PTR std::shared_ptr=0A^~~~~~~~~~/home/labuser/r=
-fnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_base.h:49:=
-13:=0Anote: in expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_S=
-HARED_PTR rpcserver_base_sptr;=0A^~~~~~~~~~~~~~~~~/home/labuser/rfnoc/sr=
-c/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:=
-34:27:=0Anote: 'std::shared_ptr' is only available from C++11 onwards #d=
-efine=0AGR_RPC_SHARED_PTR std::shared_ptr=0A^~~/home/labuser/rfnoc/src/g=
-nuradio/gnuradio-runtime/include/gnuradio/rpcserver_base.h:49:13:=0Anote=
-: in expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_SHARED_PTR=
- rpcserver_base_sptr; ^~~~~~~~~~~~~~~~~In file=0Aincluded from=0A/home/l=
-abuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_bo=
-oter_aggregator.h:28,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio=
--runtime/include/gnuradio/rpcmanager.h:28,=0Afrom=0A/home/labuser/rfnoc/=
-src/gnuradio/gnuradio-runtime/include/gnuradio/rpcregisterhelpers.h:26,=
-=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnur=
-adio/basic_block.h:42,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradi=
-o-runtime/lib/basic_block.cc:27:/home/labuser/rfnoc/src/gnuradio/gnuradi=
-o-runtime/include/gnuradio/rpcserver_aggregator.h:47:42:=0Aerror: 'rpcma=
-nager_base::rpcserver_booter_base_sptr' has not been=0Adeclared void=0Ar=
-egisterServer(rpcmanager_base::rpcserver_booter_base_sptr server);=0A^~~=
-~~~~~~~~~~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime=
-/include/gnuradio/rpcserver_aggregator.h:120:42:=0Aerror: 'rpcserver_boo=
-ter_base_sptr' is not a member of=0A'rpcmanager_base' typedef std::vecto=
-r rpcServerMap_t;=0A^~~~~~~~~~~~~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gn=
-uradio/gnuradio-runtime/include/gnuradio/rpcserver_aggregator.h:120:42:=
-=0Aerror: 'rpcserver_booter_base_sptr' is not a member of=0A'rpcmanager_=
-base'/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/=
-rpcserver_aggregator.h:120:68:=0Aerror: template argument 1 is invalid t=
-ypedef std::vector=0ArpcServerMap_t;=0A^/home/labuser/rfnoc/src/gnuradio=
-/gnuradio-runtime/include/gnuradio/rpcserver_aggregator.h:120:68:=0Aerro=
-r: template argument 2 is invalidIn file included from=0A/home/labuser/r=
-fnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:26=
-,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnu=
-radio/rpcmanager.h:27,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradi=
-o-runtime/include/gnuradio/rpcregisterhelpers.h:26,=0Afrom=0A/home/labus=
-er/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/basic_block.h:42=
-,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib/basic_b=
-lock.cc:27:/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnu=
-radio/rpc_shared_ptr_selection.h:34:32:=0Aerror: 'shared_ptr' in namespa=
-ce 'std' does not name a template type=0A#define GR_RPC_SHARED_PTR std::=
-shared_ptr=0A^~~~~~~~~~/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime=
-/include/gnuradio/rpcserver_booter_aggregator.h:52:5:=0Anote: in expansi=
-on of macro 'GR_RPC_SHARED_PTR' GR_RPC_SHARED_PTR=0Aserver;=0A^~~~~~~~~~=
-~~~~~~~/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradi=
-o/rpc_shared_ptr_selection.h:34:27:=0Anote: 'std::shared_ptr' is only av=
-ailable from C++11 onwards #define=0AGR_RPC_SHARED_PTR std::shared_ptr=
-=0A^~~/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio=
-/rpcserver_booter_aggregator.h:52:5:=0Anote: in expansion of macro 'GR_R=
-PC_SHARED_PTR' GR_RPC_SHARED_PTR=0Aserver; ^~~~~~~~~~~~~~~~~In file incl=
-uded from=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gn=
-uradio/rpcmanager_base.h:26,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/g=
-nuradio-runtime/include/gnuradio/rpcmanager.h:27,=0Afrom=0A/home/labuser=
-/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcregisterhelpers=
-.h:26,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/includ=
-e/gnuradio/basic_block.h:42,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/g=
-nuradio-runtime/include/gnuradio/block.h:27,=0Afrom=0A/home/labuser/rfno=
-c/src/gnuradio/gnuradio-runtime/include/gnuradio/block_gateway.h:27,=0Af=
-rom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib/block_gatewa=
-y_impl.h:26,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/=
-lib/block_gateway_impl.cc:22:/home/labuser/rfnoc/src/gnuradio/gnuradio-r=
-untime/include/gnuradio/rpc_shared_ptr_selection.h:34:32:=0Aerror: 'shar=
-ed_ptr' in namespace 'std' does not name a template type=0A#define GR_RP=
-C_SHARED_PTR std::shared_ptr=0A^~~~~~~~~~/home/labuser/rfnoc/src/gnuradi=
-o/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:34:13:=0Anote: in=
- expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_SHARED_PTR rpcs=
-erver_booter_base_sptr;=0A^~~~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:27:=
-=0Anote: 'std::shared_ptr' is only available from C++11 onwards #define=
-=0AGR_RPC_SHARED_PTR std::shared_ptr=0A^~~/home/labuser/rfnoc/src/gnurad=
-io/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:34:13:=0Anote: in=
- expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_SHARED_PTR rpcs=
-erver_booter_base_sptr;=0A^~~~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:32:=
-=0Aerror: 'shared_ptr' in namespace 'std' does not name a template type=
-=0A#define GR_RPC_SHARED_PTR std::shared_ptr=0A^~~~~~~~~~/home/labuser/r=
-fnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_base.h:49:=
-13:=0Anote: in expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_S=
-HARED_PTR rpcserver_base_sptr;=0A^~~~~~~~~~~~~~~~~/home/labuser/rfnoc/sr=
-c/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:=
-34:27:=0Anote: 'std::shared_ptr' is only available from C++11 onwards #d=
-efine=0AGR_RPC_SHARED_PTR std::shared_ptr=0A^~~/home/labuser/rfnoc/src/g=
-nuradio/gnuradio-runtime/include/gnuradio/rpcserver_base.h:49:13:=0Anote=
-: in expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_SHARED_PTR=
- rpcserver_base_sptr; ^~~~~~~~~~~~~~~~~In file=0Aincluded from=0A/home/l=
-abuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_bo=
-oter_aggregator.h:28,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio=
--runtime/include/gnuradio/rpcmanager.h:28,=0Afrom=0A/home/labuser/rfnoc/=
-src/gnuradio/gnuradio-runtime/include/gnuradio/rpcregisterhelpers.h:26,=
-=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnur=
-adio/basic_block.h:42,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradi=
-o-runtime/include/gnuradio/block.h:27,=0Afrom=0A/home/labuser/rfnoc/src/=
-gnuradio/gnuradio-runtime/include/gnuradio/block_gateway.h:27,=0Afrom=0A=
-/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib/block_gateway_impl=
-.h:26,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib/bl=
-ock_gateway_impl.cc:22:/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime=
-/include/gnuradio/rpcserver_aggregator.h:47:42:=0Aerror: 'rpcmanager_bas=
-e::rpcserver_booter_base_sptr' has not been=0Adeclared void=0AregisterSe=
-rver(rpcmanager_base::rpcserver_booter_base_sptr server);=0A^~~~~~~~~~~~=
-~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/=
-gnuradio/rpcserver_aggregator.h:120:42:=0Aerror: 'rpcserver_booter_base_=
-sptr' is not a member of=0A'rpcmanager_base' typedef std::vector rpcServ=
-erMap_t;=0A^~~~~~~~~~~~~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gnuradio/gn=
-uradio-runtime/include/gnuradio/rpcserver_aggregator.h:120:42:=0Aerror:=
- 'rpcserver_booter_base_sptr' is not a member of=0A'rpcmanager_base'/hom=
-e/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver=
-_aggregator.h:120:68:=0Aerror: template argument 1 is invalid typedef st=
-d::vector=0ArpcServerMap_t;=0A^/home/labuser/rfnoc/src/gnuradio/gnuradio=
--runtime/include/gnuradio/rpcserver_aggregator.h:120:68:=0Aerror: templa=
-te argument 2 is invalidIn file included from=0A/home/labuser/rfnoc/src/=
-gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:26,=0Afrom=
-=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rp=
-cmanager.h:27,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtim=
-e/include/gnuradio/rpcregisterhelpers.h:26,=0Afrom=0A/home/labuser/rfnoc=
-/src/gnuradio/gnuradio-runtime/include/gnuradio/basic_block.h:42,=0Afrom=
-=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/bl=
-ock.h:27,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/inc=
-lude/gnuradio/block_gateway.h:27,=0Afrom=0A/home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/lib/block_gateway_impl.h:26,=0Afrom=0A/home/labuser=
-/rfnoc/src/gnuradio/gnuradio-runtime/lib/block_gateway_impl.cc:22:/home/=
-labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_=
-ptr_selection.h:34:32:=0Aerror: 'shared_ptr' in namespace 'std' does not=
- name a template type=0A#define GR_RPC_SHARED_PTR std::shared_ptr=0A^~~~=
-~~~~~~/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio=
-/rpcserver_booter_aggregator.h:52:5:=0Anote: in expansion of macro 'GR_R=
-PC_SHARED_PTR' GR_RPC_SHARED_PTR=0Aserver;=0A^~~~~~~~~~~~~~~~~/home/labu=
-ser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_=
-selection.h:34:27:=0Anote: 'std::shared_ptr' is only available from C++1=
-1 onwards #define=0AGR_RPC_SHARED_PTR std::shared_ptr=0A^~~/home/labuser=
-/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_booter_a=
-ggregator.h:52:5:=0Anote: in expansion of macro 'GR_RPC_SHARED_PTR' GR_R=
-PC_SHARED_PTR=0Aserver; ^~~~~~~~~~~~~~~~~In file included from=0A/home/l=
-abuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager_b=
-ase.h:26,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/inc=
-lude/gnuradio/rpcmanager.h:27,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio=
-/gnuradio-runtime/include/gnuradio/rpcregisterhelpers.h:26,=0Afrom=0A/ho=
-me/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/basic_bl=
-ock.h:42,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/inc=
-lude/gnuradio/block.h:27,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnur=
-adio-runtime/lib/block.cc:27:/home/labuser/rfnoc/src/gnuradio/gnuradio-r=
-untime/include/gnuradio/rpc_shared_ptr_selection.h:34:32:=0Aerror: 'shar=
-ed_ptr' in namespace 'std' does not name a template type=0A#define GR_RP=
-C_SHARED_PTR std::shared_ptr=0A^~~~~~~~~~/home/labuser/rfnoc/src/gnuradi=
-o/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:34:13:=0Anote: in=
- expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_SHARED_PTR rpcs=
-erver_booter_base_sptr;=0A^~~~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:27:=
-=0Anote: 'std::shared_ptr' is only available from C++11 onwards #define=
-=0AGR_RPC_SHARED_PTR std::shared_ptr=0A^~~/home/labuser/rfnoc/src/gnurad=
-io/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:34:13:=0Anote: in=
- expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_SHARED_PTR rpcs=
-erver_booter_base_sptr;=0A^~~~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:32:=
-=0Aerror: 'shared_ptr' in namespace 'std' does not name a template type=
-=0A#define GR_RPC_SHARED_PTR std::shared_ptr=0A^~~~~~~~~~/home/labuser/r=
-fnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_base.h:49:=
-13:=0Anote: in expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_S=
-HARED_PTR rpcserver_base_sptr; ^~~~~~~~~~~~~~~~~In file=0Aincluded from=
-=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rp=
-cmanager_base.h:26,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-r=
-untime/include/gnuradio/rpcmanager.h:27,=0Afrom=0A/home/labuser/rfnoc/sr=
-c/gnuradio/gnuradio-runtime/include/gnuradio/rpcregisterhelpers.h:26,=0A=
-from=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradi=
-o/basic_block.h:42,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-r=
-untime/include/gnuradio/block.h:27,=0Afrom=0A/home/labuser/rfnoc/src/gnu=
-radio/gnuradio-runtime/lib/block_executor.cc:27:/home/labuser/rfnoc/src/=
-gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34=
-:32:=0Aerror: 'shared_ptr' in namespace 'std' does not name a template t=
-ype=0A#define GR_RPC_SHARED_PTR std::shared_ptr=0A^~~~~~~~~~/home/labuse=
-r/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager_base.h=
-:34:13:=0Anote: in expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_R=
-PC_SHARED_PTR rpcserver_booter_base_sptr;=0A^~~~~~~~~~~~~~~~~/home/labus=
-er/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_s=
-election.h:34:27:=0Anote: 'std::shared_ptr' is only available from C++11=
- onwards #define=0AGR_RPC_SHARED_PTR std::shared_ptr=0A^~~/home/labuser/=
-rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_base.h:49=
-:13:=0Anote: in expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_=
-SHARED_PTR rpcserver_base_sptr;=0A^~~~~~~~~~~~~~~~~/home/labuser/rfnoc/s=
-rc/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h=
-:34:27:=0Anote: 'std::shared_ptr' is only available from C++11 onwards #=
-define=0AGR_RPC_SHARED_PTR std::shared_ptr=0A^~~/home/labuser/rfnoc/src/=
-gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:34:13:=0Ano=
-te: in expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_SHARED_PT=
-R rpcserver_booter_base_sptr; ^~~~~~~~~~~~~~~~~In file=0Aincluded from=
-=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rp=
-cserver_booter_aggregator.h:28,=0Afrom=0A/home/labuser/rfnoc/src/gnuradi=
-o/gnuradio-runtime/include/gnuradio/rpcmanager.h:28,=0Afrom=0A/home/labu=
-ser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcregisterhelp=
-ers.h:26,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/inc=
-lude/gnuradio/basic_block.h:42,=0Afrom=0A/home/labuser/rfnoc/src/gnuradi=
-o/gnuradio-runtime/include/gnuradio/block.h:27,=0Afrom=0A/home/labuser/r=
-fnoc/src/gnuradio/gnuradio-runtime/lib/block.cc:27:/home/labuser/rfnoc/s=
-rc/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_aggregator.h:47:=
-42:=0Aerror: 'rpcmanager_base::rpcserver_booter_base_sptr' has not been=
-=0Adeclared void=0AregisterServer(rpcmanager_base::rpcserver_booter_base=
-_sptr server);=0A^~~~~~~~~~~~~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/include/gnuradio/rpcserver_aggregator.h:120:42:=0Ae=
-rror: 'rpcserver_booter_base_sptr' is not a member of=0A'rpcmanager_base=
-' typedef std::vector rpcServerMap_t;=0A^~~~~~~~~~~~~~~~~~~~~~~~~~/home/=
-labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_a=
-ggregator.h:120:42:=0Aerror: 'rpcserver_booter_base_sptr' is not a membe=
-r of=0A'rpcmanager_base'/home/labuser/rfnoc/src/gnuradio/gnuradio-runtim=
-e/include/gnuradio/rpcserver_aggregator.h:120:68:=0Aerror: template argu=
-ment 1 is invalid typedef std::vector=0ArpcServerMap_t;=0A^/home/labuser=
-/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_aggregat=
-or.h:120:68:=0Aerror: template argument 2 is=0Ainvalid/home/labuser/rfno=
-c/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selectio=
-n.h:34:32:=0Aerror: 'shared_ptr' in namespace 'std' does not name a temp=
-late type=0A#define GR_RPC_SHARED_PTR std::shared_ptr=0A^~~~~~~~~~/home/=
-labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_b=
-ase.h:49:13:=0Anote: in expansion of macro 'GR_RPC_SHARED_PTR' typedef=
-=0AGR_RPC_SHARED_PTR rpcserver_base_sptr;=0A^~~~~~~~~~~~~~~~~/home/labus=
-er/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_s=
-election.h:34:27:=0Anote: 'std::shared_ptr' is only available from C++11=
- onwards #define=0AGR_RPC_SHARED_PTR std::shared_ptr=0A^~~/home/labuser/=
-rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_base.h:49=
-:13:=0Anote: in expansion of macro 'GR_RPC_SHARED_PTR' typedef=0AGR_RPC_=
-SHARED_PTR rpcserver_base_sptr; ^~~~~~~~~~~~~~~~~In file=0Aincluded from=
-=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rp=
-cserver_booter_aggregator.h:28,=0Afrom=0A/home/labuser/rfnoc/src/gnuradi=
-o/gnuradio-runtime/include/gnuradio/rpcmanager.h:28,=0Afrom=0A/home/labu=
-ser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcregisterhelp=
-ers.h:26,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/inc=
-lude/gnuradio/basic_block.h:42,=0Afrom=0A/home/labuser/rfnoc/src/gnuradi=
-o/gnuradio-runtime/include/gnuradio/block.h:27,=0Afrom=0A/home/labuser/r=
-fnoc/src/gnuradio/gnuradio-runtime/lib/block_executor.cc:27:/home/labuse=
-r/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_aggrega=
-tor.h:47:42:=0Aerror: 'rpcmanager_base::rpcserver_booter_base_sptr' has=
- not been=0Adeclared void=0AregisterServer(rpcmanager_base::rpcserver_bo=
-oter_base_sptr server);=0A^~~~~~~~~~~~~~~~~~~~~~~~~~/home/labuser/rfnoc/=
-src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_aggregator.h:12=
-0:42:=0Aerror: 'rpcserver_booter_base_sptr' is not a member of=0A'rpcman=
-ager_base' typedef std::vector rpcServerMap_t;=0A^~~~~~~~~~~~~~~~~~~~~~~=
-~~~/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rp=
-cserver_aggregator.h:120:42:=0Aerror: 'rpcserver_booter_base_sptr' is no=
-t a member of=0A'rpcmanager_base'/home/labuser/rfnoc/src/gnuradio/gnurad=
-io-runtime/include/gnuradio/rpcserver_aggregator.h:120:68:=0Aerror: temp=
-late argument 1 is invalid typedef std::vector=0ArpcServerMap_t;=0A^/hom=
-e/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver=
-_aggregator.h:120:68:=0Aerror: template argument 2 is invalidIn file inc=
-luded from=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/g=
-nuradio/rpcmanager_base.h:26,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/=
-gnuradio-runtime/include/gnuradio/rpcmanager.h:27,=0Afrom=0A/home/labuse=
-r/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcregisterhelper=
-s.h:26,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/inclu=
-de/gnuradio/basic_block.h:42,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/=
-gnuradio-runtime/include/gnuradio/block.h:27,=0Afrom=0A/home/labuser/rfn=
-oc/src/gnuradio/gnuradio-runtime/lib/block.cc:27:/home/labuser/rfnoc/src=
-/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:3=
-4:32:=0Aerror: 'shared_ptr' in namespace 'std' does not name a template=
- type=0A#define GR_RPC_SHARED_PTR std::shared_ptr=0A^~~~~~~~~~/home/labu=
-ser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_boote=
-r_aggregator.h:52:5:=0Anote: in expansion of macro 'GR_RPC_SHARED_PTR' G=
-R_RPC_SHARED_PTR=0Aserver;=0A^~~~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gn=
-uradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:2=
-7:=0Anote: 'std::shared_ptr' is only available from C++11 onwards #defin=
-e=0AGR_RPC_SHARED_PTR std::shared_ptr=0A^~~/home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/include/gnuradio/rpcserver_booter_aggregator.h:52:5=
-:=0Anote: in expansion of macro 'GR_RPC_SHARED_PTR' GR_RPC_SHARED_PTR=0A=
-server; ^~~~~~~~~~~~~~~~~In file included from=0A/home/labuser/rfnoc/src=
-/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:26,=0Afrom=
-=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rp=
-cmanager.h:27,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtim=
-e/include/gnuradio/rpcregisterhelpers.h:26,=0Afrom=0A/home/labuser/rfnoc=
-/src/gnuradio/gnuradio-runtime/include/gnuradio/basic_block.h:42,=0Afrom=
-=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/bl=
-ock.h:27,=0Afrom=0A/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib=
-/block_executor.cc:27:/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/=
-include/gnuradio/rpc_shared_ptr_selection.h:34:32:=0Aerror: 'shared_ptr'=
- in namespace 'std' does not name a template type=0A#define GR_RPC_SHARE=
-D_PTR std::shared_ptr=0A^~~~~~~~~~/home/labuser/rfnoc/src/gnuradio/gnura=
-dio-runtime/include/gnuradio/rpcserver_booter_aggregator.h:52:5:=0Anote:=
- in expansion of macro 'GR_RPC_SHARED_PTR' GR_RPC_SHARED_PTR=0Aserver;=
-=0A^~~~~~~~~~~~~~~~~/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/in=
-clude/gnuradio/rpc_shared_ptr_selection.h:34:27:=0Anote: 'std::shared_pt=
-r' is only available from C++11 onwards #define=0AGR_RPC_SHARED_PTR std:=
-:shared_ptr=0A^~~/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/inclu=
-de/gnuradio/rpcserver_booter_aggregator.h:52:5:=0Anote: in expansion of=
- macro 'GR_RPC_SHARED_PTR' GR_RPC_SHARED_PTR=0Aserver;=0A^~~~~~~~~~~~~~~=
-~~gnuradio-runtime/lib/CMakeFiles/gnuradio-runtime.dir/build.make:218:=
-=0Arecipe for target=0A'gnuradio-runtime/lib/CMakeFiles/gnuradio-runtime=
-.dir/basic_block.cc.o'=0Afailedmake[2]: ***=0A[gnuradio-runtime/lib/CMak=
-eFiles/gnuradio-runtime.dir/basic_block.cc.o]=0AError 1=0A=0A
-
---=_89ebc2752c32aea589334cfdf780fa8b
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><body>I have UHD 3.15 successfully cross-compiled for E310 on Ubun=
-tu 18.04 host. Now trying to cross-compile GnuRadio 3.7. My cmake is:<di=
-v><br></div><div>cmake -DCMAKE_TOOLCHAIN_FILE=3D~/rfnoc/src/gnuradio/cma=
-ke/Toolchains/oe-sdk_cross.cmake -DENABLE_DOXYGEN=3DOFF -DCMAKE_INSTALL_=
-PREFIX=3D/usr -DCMAKE_ASM_COMPILER_ARG1:STRING=3D"-mcpu=3Dcortex-a9" ../=
-</div><div><br></div><div>It looks like the build is erroneously looking=
- for shared_ptr in namespace std instead of namespace boost, but I'm not=
- sure how to set this up for success. Does anyone see where I have gone=
- wrong?</div><div><br></div><div>I'm getting the following error stream:=
-</div><div><br></div><div><div>[ 34%] Building CXX object gnuradio-runti=
-me/lib/CMakeFiles/gnuradio-runtime.dir/block_gateway_impl.cc.o</div><div=
->In file included from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime=
-/include/gnuradio/rpcmanager_base.h:26,</div><div>&nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnu=
-radio/gnuradio-runtime/include/gnuradio/rpcmanager.h:27,</div><div>&nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labu=
-ser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcregisterhelp=
-ers.h:26,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include=
-/gnuradio/basic_block.h:42,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnurad=
-io-runtime/lib/basic_block.cc:27:</div><div>/home/labuser/rfnoc/src/gnur=
-adio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:32:=
- error: 'shared_ptr' in namespace 'std' does not name a template type</d=
-iv><div>&nbsp;#define GR_RPC_SHARED_PTR std::shared_ptr</div><div>&nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~~~</div><div>/home/labuser/rfn=
-oc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:34:1=
-3: note: in expansion of macro 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nbs=
-p; &nbsp;typedef GR_RPC_SHARED_PTR&lt;rpcserver_booter_base&gt; rpcserve=
-r_booter_base_sptr;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp;^~~~~~~~~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnur=
-adio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:27: note: 's=
-td::shared_ptr' is only available from C++11 onwards</div><div>&nbsp;#de=
-fine GR_RPC_SHARED_PTR std::shared_ptr</div><div>&nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p;^~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/includ=
-e/gnuradio/rpcmanager_base.h:34:13: note: in expansion of macro 'GR_RPC_=
-SHARED_PTR'</div><div>&nbsp; &nbsp; &nbsp;typedef GR_RPC_SHARED_PTR&lt;r=
-pcserver_booter_base&gt; rpcserver_booter_base_sptr;</div><div>&nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>/home=
-/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared=
-_ptr_selection.h:34:32: error: 'shared_ptr' in namespace 'std' does not=
- name a template type</div><div>&nbsp;#define GR_RPC_SHARED_PTR std::sha=
-red_ptr</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~~~</di=
-v><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradi=
-o/rpcserver_base.h:49:13: note: in expansion of macro 'GR_RPC_SHARED_PTR=
-'</div><div>&nbsp; &nbsp; &nbsp;typedef GR_RPC_SHARED_PTR&lt;rpcserver_b=
-ase&gt; rpcserver_base_sptr;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:27:=
- note: 'std::shared_ptr' is only available from C++11 onwards</div><div>=
-&nbsp;#define GR_RPC_SHARED_PTR std::shared_ptr</div><div>&nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp;^~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runt=
-ime/include/gnuradio/rpcserver_base.h:49:13: note: in expansion of macro=
- 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nbsp; &nbsp;typedef GR_RPC_SHARED=
-_PTR&lt;rpcserver_base&gt; rpcserver_base_sptr;</div><div>&nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>In file i=
-ncluded from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/g=
-nuradio/rpcserver_booter_aggregator.h:28,</div><div>&nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/g=
-nuradio/gnuradio-runtime/include/gnuradio/rpcmanager.h:28,</div><div>&nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/la=
-buser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcregisterhe=
-lpers.h:26,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/inclu=
-de/gnuradio/basic_block.h:42,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnur=
-adio-runtime/lib/basic_block.cc:27:</div><div>/home/labuser/rfnoc/src/gn=
-uradio/gnuradio-runtime/include/gnuradio/rpcserver_aggregator.h:47:42: e=
-rror: 'rpcmanager_base::rpcserver_booter_base_sptr' has not been declare=
-d</div><div>&nbsp; &nbsp; &nbsp;void registerServer(rpcmanager_base::rpc=
-server_booter_base_sptr server);</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~~~~~~~~~~~~~~~~~~~=
-</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnu=
-radio/rpcserver_aggregator.h:120:42: error: 'rpcserver_booter_base_sptr'=
- is not a member of 'rpcmanager_base'</div><div>&nbsp; &nbsp; &nbsp;type=
-def std::vector&lt;rpcmanager_base::rpcserver_booter_base_sptr&gt; rpcSe=
-rverMap_t;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; ^~~~~~~~~~~~~~~~~~~~~~~~~~</div><div>/home/labus=
-er/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_aggreg=
-ator.h:120:42: error: 'rpcserver_booter_base_sptr' is not a member of 'r=
-pcmanager_base'</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runt=
-ime/include/gnuradio/rpcserver_aggregator.h:120:68: error: template argu=
-ment 1 is invalid</div><div>&nbsp; &nbsp; &nbsp;typedef std::vector&lt;r=
-pcmanager_base::rpcserver_booter_base_sptr&gt; rpcServerMap_t;</div><div=
->&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; ^</div><div>/home/labuser/rfnoc/src/gnuradio/gnur=
-adio-runtime/include/gnuradio/rpcserver_aggregator.h:120:68: error: temp=
-late argument 2 is invalid</div><div>In file included from /home/labuser=
-/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:=
-26,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnura=
-dio/rpcmanager.h:27,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runt=
-ime/include/gnuradio/rpcregisterhelpers.h:26,</div><div>&nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/s=
-rc/gnuradio/gnuradio-runtime/include/gnuradio/basic_block.h:42,</div><di=
-v>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /ho=
-me/labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib/basic_block.cc:27:</d=
-iv><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnurad=
-io/rpc_shared_ptr_selection.h:34:32: error: 'shared_ptr' in namespace 's=
-td' does not name a template type</div><div>&nbsp;#define GR_RPC_SHARED_=
-PTR std::shared_ptr</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^=
-~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/in=
-clude/gnuradio/rpcserver_booter_aggregator.h:52:5: note: in expansion of=
- macro 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nbsp; &nbsp;GR_RPC_SHARED_P=
-TR&lt;rpcserver_aggregator&gt; server;</div><div>&nbsp; &nbsp; &nbsp;^~~=
-~~~~~~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runti=
-me/include/gnuradio/rpc_shared_ptr_selection.h:34:27: note: 'std::shared=
-_ptr' is only available from C++11 onwards</div><div>&nbsp;#define GR_RP=
-C_SHARED_PTR std::shared_ptr</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~</div=
-><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio=
-/rpcserver_booter_aggregator.h:52:5: note: in expansion of macro 'GR_RPC=
-_SHARED_PTR'</div><div>&nbsp; &nbsp; &nbsp;GR_RPC_SHARED_PTR&lt;rpcserve=
-r_aggregator&gt; server;</div><div>&nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~=
-</div><div>In file included from /home/labuser/rfnoc/src/gnuradio/gnurad=
-io-runtime/include/gnuradio/rpcmanager_base.h:26,</div><div>&nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfn=
-oc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager.h:27,</div>=
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from=
- /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcr=
-egisterhelpers.h:26,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runt=
-ime/include/gnuradio/basic_block.h:42,</div><div>&nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnur=
-adio/gnuradio-runtime/include/gnuradio/block.h:27,</div><div>&nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rf=
-noc/src/gnuradio/gnuradio-runtime/include/gnuradio/block_gateway.h:27,</=
-div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;f=
-rom /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib/block_gateway_=
-impl.h:26,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib/bl=
-ock_gateway_impl.cc:22:</div><div>/home/labuser/rfnoc/src/gnuradio/gnura=
-dio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:32: error: 's=
-hared_ptr' in namespace 'std' does not name a template type</div><div>&n=
-bsp;#define GR_RPC_SHARED_PTR std::shared_ptr</div><div>&nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; ^~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnu=
-radio/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:34:13: note: i=
-n expansion of macro 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nbsp; &nbsp;t=
-ypedef GR_RPC_SHARED_PTR&lt;rpcserver_booter_base&gt; rpcserver_booter_b=
-ase_sptr;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~~=
-~~~~~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtim=
-e/include/gnuradio/rpc_shared_ptr_selection.h:34:27: note: 'std::shared_=
-ptr' is only available from C++11 onwards</div><div>&nbsp;#define GR_RPC=
-_SHARED_PTR std::shared_ptr</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~</div>=
-<div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/=
-rpcmanager_base.h:34:13: note: in expansion of macro 'GR_RPC_SHARED_PTR'=
-</div><div>&nbsp; &nbsp; &nbsp;typedef GR_RPC_SHARED_PTR&lt;rpcserver_bo=
-oter_base&gt; rpcserver_booter_base_sptr;</div><div>&nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>/home/labuser/rf=
-noc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_select=
-ion.h:34:32: error: 'shared_ptr' in namespace 'std' does not name a temp=
-late type</div><div>&nbsp;#define GR_RPC_SHARED_PTR std::shared_ptr</div=
-><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~~~</div><div>/home=
-/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_=
-base.h:49:13: note: in expansion of macro 'GR_RPC_SHARED_PTR'</div><div>=
-&nbsp; &nbsp; &nbsp;typedef GR_RPC_SHARED_PTR&lt;rpcserver_base&gt; rpcs=
-erver_base_sptr;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp;^~~~~~~~~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio=
--runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:27: note: 'std::=
-shared_ptr' is only available from C++11 onwards</div><div>&nbsp;#define=
- GR_RPC_SHARED_PTR std::shared_ptr</div><div>&nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~=
-~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gn=
-uradio/rpcserver_base.h:49:13: note: in expansion of macro 'GR_RPC_SHARE=
-D_PTR'</div><div>&nbsp; &nbsp; &nbsp;typedef GR_RPC_SHARED_PTR&lt;rpcser=
-ver_base&gt; rpcserver_base_sptr;</div><div>&nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>In file included from /=
-home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcser=
-ver_booter_aggregator.h:28,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnurad=
-io-runtime/include/gnuradio/rpcmanager.h:28,</div><div>&nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/sr=
-c/gnuradio/gnuradio-runtime/include/gnuradio/rpcregisterhelpers.h:26,</d=
-iv><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;fr=
-om /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/ba=
-sic_block.h:42,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/i=
-nclude/gnuradio/block.h:27,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnurad=
-io-runtime/include/gnuradio/block_gateway.h:27,</div><div>&nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfno=
-c/src/gnuradio/gnuradio-runtime/lib/block_gateway_impl.h:26,</div><div>&=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/=
-labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib/block_gateway_impl.cc:22=
-:</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gn=
-uradio/rpcserver_aggregator.h:47:42: error: 'rpcmanager_base::rpcserver_=
-booter_base_sptr' has not been declared</div><div>&nbsp; &nbsp; &nbsp;vo=
-id registerServer(rpcmanager_base::rpcserver_booter_base_sptr server);</=
-div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; ^~~~~~~~~~~~~~~~~~~~~~~~~~</div><div>/home/labuser/rfnoc/sr=
-c/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_aggregator.h:120:=
-42: error: 'rpcserver_booter_base_sptr' is not a member of 'rpcmanager_b=
-ase'</div><div>&nbsp; &nbsp; &nbsp;typedef std::vector&lt;rpcmanager_bas=
-e::rpcserver_booter_base_sptr&gt; rpcServerMap_t;</div><div>&nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~=
-~~~~~~~~~~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-r=
-untime/include/gnuradio/rpcserver_aggregator.h:120:42: error: 'rpcserver=
-_booter_base_sptr' is not a member of 'rpcmanager_base'</div><div>/home/=
-labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_a=
-ggregator.h:120:68: error: template argument 1 is invalid</div><div>&nbs=
-p; &nbsp; &nbsp;typedef std::vector&lt;rpcmanager_base::rpcserver_booter=
-_base_sptr&gt; rpcServerMap_t;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^</div><=
-div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/r=
-pcserver_aggregator.h:120:68: error: template argument 2 is invalid</div=
-><div>In file included from /home/labuser/rfnoc/src/gnuradio/gnuradio-ru=
-ntime/include/gnuradio/rpcmanager_base.h:26,</div><div>&nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/sr=
-c/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager.h:27,</div><div>=
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home=
-/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcregiste=
-rhelpers.h:26,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/in=
-clude/gnuradio/basic_block.h:42,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/g=
-nuradio-runtime/include/gnuradio/block.h:27,</div><div>&nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/sr=
-c/gnuradio/gnuradio-runtime/include/gnuradio/block_gateway.h:27,</div><d=
-iv>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /h=
-ome/labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib/block_gateway_impl.h=
-:26,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib/block_ga=
-teway_impl.cc:22:</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-ru=
-ntime/include/gnuradio/rpc_shared_ptr_selection.h:34:32: error: 'shared_=
-ptr' in namespace 'std' does not name a template type</div><div>&nbsp;#d=
-efine GR_RPC_SHARED_PTR std::shared_ptr</div><div>&nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; ^~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnuradio/=
-gnuradio-runtime/include/gnuradio/rpcserver_booter_aggregator.h:52:5: no=
-te: in expansion of macro 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nbsp; &n=
-bsp;GR_RPC_SHARED_PTR&lt;rpcserver_aggregator&gt; server;</div><div>&nbs=
-p; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnur=
-adio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:27:=
- note: 'std::shared_ptr' is only available from C++11 onwards</div><div>=
-&nbsp;#define GR_RPC_SHARED_PTR std::shared_ptr</div><div>&nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp;^~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runt=
-ime/include/gnuradio/rpcserver_booter_aggregator.h:52:5: note: in expans=
-ion of macro 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nbsp; &nbsp;GR_RPC_SH=
-ARED_PTR&lt;rpcserver_aggregator&gt; server;</div><div>&nbsp; &nbsp; &nb=
-sp;^~~~~~~~~~~~~~~~~</div><div>In file included from /home/labuser/rfnoc=
-/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:26,</d=
-iv><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;fr=
-om /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rp=
-cmanager.h:27,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/in=
-clude/gnuradio/rpcregisterhelpers.h:26,</div><div>&nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnu=
-radio/gnuradio-runtime/include/gnuradio/basic_block.h:42,</div><div>&nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/lab=
-user/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/block.h:27,</d=
-iv><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;fr=
-om /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib/block.cc:27:</d=
-iv><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnurad=
-io/rpc_shared_ptr_selection.h:34:32: error: 'shared_ptr' in namespace 's=
-td' does not name a template type</div><div>&nbsp;#define GR_RPC_SHARED_=
-PTR std::shared_ptr</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^=
-~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/in=
-clude/gnuradio/rpcmanager_base.h:34:13: note: in expansion of macro 'GR_=
-RPC_SHARED_PTR'</div><div>&nbsp; &nbsp; &nbsp;typedef GR_RPC_SHARED_PTR&=
-lt;rpcserver_booter_base&gt; rpcserver_booter_base_sptr;</div><div>&nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>/=
-home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_sh=
-ared_ptr_selection.h:34:27: note: 'std::shared_ptr' is only available fr=
-om C++11 onwards</div><div>&nbsp;#define GR_RPC_SHARED_PTR std::shared_p=
-tr</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~</div><div>/home/labuser/rfnoc/=
-src/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:34:13:=
- note: in expansion of macro 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nbsp;=
- &nbsp;typedef GR_RPC_SHARED_PTR&lt;rpcserver_booter_base&gt; rpcserver_=
-booter_base_sptr;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp;^~~~~~~~~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradi=
-o-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:32: error: 'sha=
-red_ptr' in namespace 'std' does not name a template type</div><div>&nbs=
-p;#define GR_RPC_SHARED_PTR std::shared_ptr</div><div>&nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; ^~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/include/gnuradio/rpcserver_base.h:49:13: note: in e=
-xpansion of macro 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nbsp; &nbsp;type=
-def GR_RPC_SHARED_PTR&lt;rpcserver_base&gt; rpcserver_base_sptr;</div><d=
-iv>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</di=
-v><div>In file included from /home/labuser/rfnoc/src/gnuradio/gnuradio-r=
-untime/include/gnuradio/rpcmanager_base.h:26,</div><div>&nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/s=
-rc/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager.h:27,</div><div=
->&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /hom=
-e/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcregist=
-erhelpers.h:26,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/i=
-nclude/gnuradio/basic_block.h:42,</div><div>&nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio=
-/gnuradio-runtime/include/gnuradio/block.h:27,</div><div>&nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/=
-src/gnuradio/gnuradio-runtime/lib/block_executor.cc:27:</div><div>/home/=
-labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_=
-ptr_selection.h:34:32: error: 'shared_ptr' in namespace 'std' does not n=
-ame a template type</div><div>&nbsp;#define GR_RPC_SHARED_PTR std::share=
-d_ptr</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~~~</div=
-><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio=
-/rpcmanager_base.h:34:13: note: in expansion of macro 'GR_RPC_SHARED_PTR=
-'</div><div>&nbsp; &nbsp; &nbsp;typedef GR_RPC_SHARED_PTR&lt;rpcserver_b=
-ooter_base&gt; rpcserver_booter_base_sptr;</div><div>&nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>/home/labuser/r=
-fnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selec=
-tion.h:34:27: note: 'std::shared_ptr' is only available from C++11 onwar=
-ds</div><div>&nbsp;#define GR_RPC_SHARED_PTR std::shared_ptr</div><div>&=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp;^~~</div><div>/home/labuser/rfnoc/src/gnuradio/g=
-nuradio-runtime/include/gnuradio/rpcserver_base.h:49:13: note: in expans=
-ion of macro 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nbsp; &nbsp;typedef G=
-R_RPC_SHARED_PTR&lt;rpcserver_base&gt; rpcserver_base_sptr;</div><div>&n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><di=
-v>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc=
-_shared_ptr_selection.h:34:27: note: 'std::shared_ptr' is only available=
- from C++11 onwards</div><div>&nbsp;#define GR_RPC_SHARED_PTR std::share=
-d_ptr</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~</div><div>/home/labuser/rf=
-noc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager_base.h:34:=
-13: note: in expansion of macro 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nb=
-sp; &nbsp;typedef GR_RPC_SHARED_PTR&lt;rpcserver_booter_base&gt; rpcserv=
-er_booter_base_sptr;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp;^~~~~~~~~~~~~~~~~</div><div>In file included from /home/labuser/r=
-fnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_booter_agg=
-regator.h:28,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/inc=
-lude/gnuradio/rpcmanager.h:28,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnu=
-radio-runtime/include/gnuradio/rpcregisterhelpers.h:26,</div><div>&nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labus=
-er/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/basic_block.h:42=
-,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradi=
-o/block.h:27,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib=
-/block.cc:27:</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtim=
-e/include/gnuradio/rpcserver_aggregator.h:47:42: error: 'rpcmanager_base=
-::rpcserver_booter_base_sptr' has not been declared</div><div>&nbsp; &nb=
-sp; &nbsp;void registerServer(rpcmanager_base::rpcserver_booter_base_spt=
-r server);</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; ^~~~~~~~~~~~~~~~~~~~~~~~~~</div><div>/home/labus=
-er/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_aggreg=
-ator.h:120:42: error: 'rpcserver_booter_base_sptr' is not a member of 'r=
-pcmanager_base'</div><div>&nbsp; &nbsp; &nbsp;typedef std::vector&lt;rpc=
-manager_base::rpcserver_booter_base_sptr&gt; rpcServerMap_t;</div><div>&=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; ^~~~~~~~~~~~~~~~~~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnuradio/=
-gnuradio-runtime/include/gnuradio/rpcserver_aggregator.h:120:42: error:=
- 'rpcserver_booter_base_sptr' is not a member of 'rpcmanager_base'</div>=
-<div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/=
-rpcserver_aggregator.h:120:68: error: template argument 1 is invalid</di=
-v><div>&nbsp; &nbsp; &nbsp;typedef std::vector&lt;rpcmanager_base::rpcse=
-rver_booter_base_sptr&gt; rpcServerMap_t;</div><div>&nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; ^</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/=
-gnuradio/rpcserver_aggregator.h:120:68: error: template argument 2 is in=
-valid</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/includ=
-e/gnuradio/rpc_shared_ptr_selection.h:34:32: error: 'shared_ptr' in name=
-space 'std' does not name a template type</div><div>&nbsp;#define GR_RPC=
-_SHARED_PTR std::shared_ptr</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; ^~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-run=
-time/include/gnuradio/rpcserver_base.h:49:13: note: in expansion of macr=
-o 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nbsp; &nbsp;typedef GR_RPC_SHARE=
-D_PTR&lt;rpcserver_base&gt; rpcserver_base_sptr;</div><div>&nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>/home/lab=
-user/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr=
-_selection.h:34:27: note: 'std::shared_ptr' is only available from C++11=
- onwards</div><div>&nbsp;#define GR_RPC_SHARED_PTR std::shared_ptr</div>=
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp;^~~</div><div>/home/labuser/rfnoc/src/gnur=
-adio/gnuradio-runtime/include/gnuradio/rpcserver_base.h:49:13: note: in=
- expansion of macro 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nbsp; &nbsp;ty=
-pedef GR_RPC_SHARED_PTR&lt;rpcserver_base&gt; rpcserver_base_sptr;</div>=
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</=
-div><div>In file included from /home/labuser/rfnoc/src/gnuradio/gnuradio=
--runtime/include/gnuradio/rpcserver_booter_aggregator.h:28,</div><div>&n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/l=
-abuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcmanager.h=
-:28,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnur=
-adio/rpcregisterhelpers.h:26,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnur=
-adio-runtime/include/gnuradio/basic_block.h:42,</div><div>&nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfno=
-c/src/gnuradio/gnuradio-runtime/include/gnuradio/block.h:27,</div><div>&=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/=
-labuser/rfnoc/src/gnuradio/gnuradio-runtime/lib/block_executor.cc:27:</d=
-iv><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnurad=
-io/rpcserver_aggregator.h:47:42: error: 'rpcmanager_base::rpcserver_boot=
-er_base_sptr' has not been declared</div><div>&nbsp; &nbsp; &nbsp;void r=
-egisterServer(rpcmanager_base::rpcserver_booter_base_sptr server);</div>=
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; ^~~~~~~~~~~~~~~~~~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnu=
-radio/gnuradio-runtime/include/gnuradio/rpcserver_aggregator.h:120:42: e=
-rror: 'rpcserver_booter_base_sptr' is not a member of 'rpcmanager_base'<=
-/div><div>&nbsp; &nbsp; &nbsp;typedef std::vector&lt;rpcmanager_base::rp=
-cserver_booter_base_sptr&gt; rpcServerMap_t;</div><div>&nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~~~~~~~=
-~~~~~~~~~~~~</div><div>/home/labuser/rfnoc/src/gnuradio/gnuradio-runtime=
-/include/gnuradio/rpcserver_aggregator.h:120:42: error: 'rpcserver_boote=
-r_base_sptr' is not a member of 'rpcmanager_base'</div><div>/home/labuse=
-r/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_aggrega=
-tor.h:120:68: error: template argument 1 is invalid</div><div>&nbsp; &nb=
-sp; &nbsp;typedef std::vector&lt;rpcmanager_base::rpcserver_booter_base_=
-sptr&gt; rpcServerMap_t;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^</div><div>/ho=
-me/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserve=
-r_aggregator.h:120:68: error: template argument 2 is invalid</div><div>I=
-n file included from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/i=
-nclude/gnuradio/rpcmanager_base.h:26,</div><div>&nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/include/gnuradio/rpcmanager.h:27,</div><div>&nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labus=
-er/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcregisterhelpe=
-rs.h:26,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/=
-gnuradio/basic_block.h:42,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnurad=
-io-runtime/include/gnuradio/block.h:27,</div><div>&nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnu=
-radio/gnuradio-runtime/lib/block.cc:27:</div><div>/home/labuser/rfnoc/sr=
-c/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:=
-34:32: error: 'shared_ptr' in namespace 'std' does not name a template t=
-ype</div><div>&nbsp;#define GR_RPC_SHARED_PTR std::shared_ptr</div><div>=
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~~~</div><div>/home/labus=
-er/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_booter=
-_aggregator.h:52:5: note: in expansion of macro 'GR_RPC_SHARED_PTR'</div=
-><div>&nbsp; &nbsp; &nbsp;GR_RPC_SHARED_PTR&lt;rpcserver_aggregator&gt;=
- server;</div><div>&nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>/home=
-/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared=
-_ptr_selection.h:34:27: note: 'std::shared_ptr' is only available from C=
-++11 onwards</div><div>&nbsp;#define GR_RPC_SHARED_PTR std::shared_ptr</=
-div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~</div><div>/home/labuser/rfnoc/src=
-/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_booter_aggregator.=
-h:52:5: note: in expansion of macro 'GR_RPC_SHARED_PTR'</div><div>&nbsp;=
- &nbsp; &nbsp;GR_RPC_SHARED_PTR&lt;rpcserver_aggregator&gt; server;</div=
-><div>&nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>In file included f=
-rom /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/r=
-pcmanager_base.h:26,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runt=
-ime/include/gnuradio/rpcmanager.h:27,</div><div>&nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnura=
-dio/gnuradio-runtime/include/gnuradio/rpcregisterhelpers.h:26,</div><div=
->&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from /hom=
-e/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/gnuradio/basic_blo=
-ck.h:42,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runtime/include/=
-gnuradio/block.h:27,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp;from /home/labuser/rfnoc/src/gnuradio/gnuradio-runt=
-ime/lib/block_executor.cc:27:</div><div>/home/labuser/rfnoc/src/gnuradio=
-/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_selection.h:34:32: err=
-or: 'shared_ptr' in namespace 'std' does not name a template type</div><=
-div>&nbsp;#define GR_RPC_SHARED_PTR std::shared_ptr</div><div>&nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~~~</div><div>/home/labuser/rfnoc/s=
-rc/gnuradio/gnuradio-runtime/include/gnuradio/rpcserver_booter_aggregato=
-r.h:52:5: note: in expansion of macro 'GR_RPC_SHARED_PTR'</div><div>&nbs=
-p; &nbsp; &nbsp;GR_RPC_SHARED_PTR&lt;rpcserver_aggregator&gt; server;</d=
-iv><div>&nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>/home/labuser/rf=
-noc/src/gnuradio/gnuradio-runtime/include/gnuradio/rpc_shared_ptr_select=
-ion.h:34:27: note: 'std::shared_ptr' is only available from C++11 onward=
-s</div><div>&nbsp;#define GR_RPC_SHARED_PTR std::shared_ptr</div><div>&n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;^~~</div><div>/home/labuser/rfnoc/src/gnuradio/gn=
-uradio-runtime/include/gnuradio/rpcserver_booter_aggregator.h:52:5: note=
-: in expansion of macro 'GR_RPC_SHARED_PTR'</div><div>&nbsp; &nbsp; &nbs=
-p;GR_RPC_SHARED_PTR&lt;rpcserver_aggregator&gt; server;</div><div>&nbsp;=
- &nbsp; &nbsp;^~~~~~~~~~~~~~~~~</div><div>gnuradio-runtime/lib/CMakeFile=
-s/gnuradio-runtime.dir/build.make:218: recipe for target 'gnuradio-runti=
-me/lib/CMakeFiles/gnuradio-runtime.dir/basic_block.cc.o' failed</div><di=
-v>make[2]: *** [gnuradio-runtime/lib/CMakeFiles/gnuradio-runtime.dir/bas=
-ic_block.cc.o] Error 1</div></div><div><br></div><div><br></div><div><br=
-><div><br></div><div><br></div></div></body></html>
-
---=_89ebc2752c32aea589334cfdf780fa8b--
-
-
-
---===============6161668167968943281==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6161668167968943281==--
-
-
+VGhpcyBzaG91bGQgcHJvYmFibHkgYmUgY3Jvc3MgcG9zdGVkIHRvIHRoZSBkaXNjdXNzLWdudXJh
+ZGlvIG1haWxpbmcgbGlzdCBqdXN0IHRvIGdldCBzb21lIG1vcmUgZ251cmFkaW8tc3BlY2lmaWMg
+ZXllcyBvbiBpdC4gCgpTZW50IGZyb20gbXkgaVBob25lCgo+IE9uIEZlYiAxNywgMjAyMSwgYXQg
+MjoyNiBQTSwgRGVubmlzIFRyYXNrIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbT4gd3JvdGU6Cj4gCj4g77u/SSBoYXZlIFVIRCAzLjE1IHN1Y2Nlc3NmdWxseSBjcm9z
+cy1jb21waWxlZCBmb3IgRTMxMCBvbiBVYnVudHUgMTguMDQgaG9zdC4gTm93IHRyeWluZyB0byBj
+cm9zcy1jb21waWxlIEdudVJhZGlvIDMuNy4gTXkgY21ha2UgaXM6Cj4gCj4gY21ha2UgLURDTUFL
+RV9UT09MQ0hBSU5fRklMRT1+L3Jmbm9jL3NyYy9nbnVyYWRpby9jbWFrZS9Ub29sY2hhaW5zL29l
+LXNka19jcm9zcy5jbWFrZSAtREVOQUJMRV9ET1hZR0VOPU9GRiAtRENNQUtFX0lOU1RBTExfUFJF
+RklYPS91c3IgLURDTUFLRV9BU01fQ09NUElMRVJfQVJHMTpTVFJJTkc9Ii1tY3B1PWNvcnRleC1h
+OSIgLi4vCj4gCj4gSXQgbG9va3MgbGlrZSB0aGUgYnVpbGQgaXMgZXJyb25lb3VzbHkgbG9va2lu
+ZyBmb3Igc2hhcmVkX3B0ciBpbiBuYW1lc3BhY2Ugc3RkIGluc3RlYWQgb2YgbmFtZXNwYWNlIGJv
+b3N0LCBidXQgSSdtIG5vdCBzdXJlIGhvdyB0byBzZXQgdGhpcyB1cCBmb3Igc3VjY2Vzcy4gRG9l
+cyBhbnlvbmUgc2VlIHdoZXJlIEkgaGF2ZSBnb25lIHdyb25nPwo+IAo+IEknbSBnZXR0aW5nIHRo
+ZSBmb2xsb3dpbmcgZXJyb3Igc3RyZWFtOgo+IAo+IFsgMzQlXSBCdWlsZGluZyBDWFggb2JqZWN0
+IGdudXJhZGlvLXJ1bnRpbWUvbGliL0NNYWtlRmlsZXMvZ251cmFkaW8tcnVudGltZS5kaXIvYmxv
+Y2tfZ2F0ZXdheV9pbXBsLmNjLm8KPiBJbiBmaWxlIGluY2x1ZGVkIGZyb20gL2hvbWUvbGFidXNl
+ci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3Jw
+Y21hbmFnZXJfYmFzZS5oOjI2LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2Vy
+L3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBj
+bWFuYWdlci5oOjI3LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9j
+L3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjcmVnaXN0
+ZXJoZWxwZXJzLmg6MjYsCj4gICAgICAgICAgICAgICAgICBmcm9tIC9ob21lL2xhYnVzZXIvcmZu
+b2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9iYXNpY19i
+bG9jay5oOjQyLAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3Ny
+Yy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2xpYi9iYXNpY19ibG9jay5jYzoyNzoKPiAvaG9t
+ZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251
+cmFkaW8vcnBjX3NoYXJlZF9wdHJfc2VsZWN0aW9uLmg6MzQ6MzI6IGVycm9yOiAnc2hhcmVkX3B0
+cicgaW4gbmFtZXNwYWNlICdzdGQnIGRvZXMgbm90IG5hbWUgYSB0ZW1wbGF0ZSB0eXBlCj4gICNk
+ZWZpbmUgR1JfUlBDX1NIQVJFRF9QVFIgc3RkOjpzaGFyZWRfcHRyCj4gICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBefn5+fn5+fn5+Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251
+cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY21hbmFnZXJfYmFzZS5o
+OjM0OjEzOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8gJ0dSX1JQQ19TSEFSRURfUFRSJwo+
+ICAgICAgdHlwZWRlZiBHUl9SUENfU0hBUkVEX1BUUjxycGNzZXJ2ZXJfYm9vdGVyX2Jhc2U+IHJw
+Y3NlcnZlcl9ib290ZXJfYmFzZV9zcHRyOwo+ICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+
+fgo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5j
+bHVkZS9nbnVyYWRpby9ycGNfc2hhcmVkX3B0cl9zZWxlY3Rpb24uaDozNDoyNzogbm90ZTogJ3N0
+ZDo6c2hhcmVkX3B0cicgaXMgb25seSBhdmFpbGFibGUgZnJvbSBDKysxMSBvbndhcmRzCj4gICNk
+ZWZpbmUgR1JfUlBDX1NIQVJFRF9QVFIgc3RkOjpzaGFyZWRfcHRyCj4gICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgXn5+Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFk
+aW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY21hbmFnZXJfYmFzZS5oOjM0OjEzOiBub3Rl
+OiBpbiBleHBhbnNpb24gb2YgbWFjcm8gJ0dSX1JQQ19TSEFSRURfUFRSJwo+ICAgICAgdHlwZWRl
+ZiBHUl9SUENfU0hBUkVEX1BUUjxycGNzZXJ2ZXJfYm9vdGVyX2Jhc2U+IHJwY3NlcnZlcl9ib290
+ZXJfYmFzZV9zcHRyOwo+ICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fgo+IC9ob21lL2xh
+YnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRp
+by9ycGNfc2hhcmVkX3B0cl9zZWxlY3Rpb24uaDozNDozMjogZXJyb3I6ICdzaGFyZWRfcHRyJyBp
+biBuYW1lc3BhY2UgJ3N0ZCcgZG9lcyBub3QgbmFtZSBhIHRlbXBsYXRlIHR5cGUKPiAgI2RlZmlu
+ZSBHUl9SUENfU0hBUkVEX1BUUiBzdGQ6OnNoYXJlZF9wdHIKPiAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIF5+fn5+fn5+fn4KPiAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRp
+by9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjc2VydmVyX2Jhc2UuaDo0OTox
+Mzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvICdHUl9SUENfU0hBUkVEX1BUUicKPiAgICAg
+IHR5cGVkZWYgR1JfUlBDX1NIQVJFRF9QVFI8cnBjc2VydmVyX2Jhc2U+IHJwY3NlcnZlcl9iYXNl
+X3NwdHI7Cj4gICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+Cj4gL2hvbWUvbGFidXNlci9y
+Zm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY19z
+aGFyZWRfcHRyX3NlbGVjdGlvbi5oOjM0OjI3OiBub3RlOiAnc3RkOjpzaGFyZWRfcHRyJyBpcyBv
+bmx5IGF2YWlsYWJsZSBmcm9tIEMrKzExIG9ud2FyZHMKPiAgI2RlZmluZSBHUl9SUENfU0hBUkVE
+X1BUUiBzdGQ6OnNoYXJlZF9wdHIKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn4KPiAv
+aG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUv
+Z251cmFkaW8vcnBjc2VydmVyX2Jhc2UuaDo0OToxMzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1h
+Y3JvICdHUl9SUENfU0hBUkVEX1BUUicKPiAgICAgIHR5cGVkZWYgR1JfUlBDX1NIQVJFRF9QVFI8
+cnBjc2VydmVyX2Jhc2U+IHJwY3NlcnZlcl9iYXNlX3NwdHI7Cj4gICAgICAgICAgICAgIF5+fn5+
+fn5+fn5+fn5+fn5+Cj4gSW4gZmlsZSBpbmNsdWRlZCBmcm9tIC9ob21lL2xhYnVzZXIvcmZub2Mv
+c3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9ycGNzZXJ2ZXJf
+Ym9vdGVyX2FnZ3JlZ2F0b3IuaDoyOCwKPiAgICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFi
+dXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlv
+L3JwY21hbmFnZXIuaDoyOCwKPiAgICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9y
+Zm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3Jl
+Z2lzdGVyaGVscGVycy5oOjI2LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2Vy
+L3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vYmFz
+aWNfYmxvY2suaDo0MiwKPiAgICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5v
+Yy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9saWIvYmFzaWNfYmxvY2suY2M6Mjc6Cj4g
+L2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRl
+L2dudXJhZGlvL3JwY3NlcnZlcl9hZ2dyZWdhdG9yLmg6NDc6NDI6IGVycm9yOiAncnBjbWFuYWdl
+cl9iYXNlOjpycGNzZXJ2ZXJfYm9vdGVyX2Jhc2Vfc3B0cicgaGFzIG5vdCBiZWVuIGRlY2xhcmVk
+Cj4gICAgICB2b2lkIHJlZ2lzdGVyU2VydmVyKHJwY21hbmFnZXJfYmFzZTo6cnBjc2VydmVyX2Jv
+b3Rlcl9iYXNlX3NwdHIgc2VydmVyKTsKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fgo+IC9ob21lL2xhYnVzZXIvcmZu
+b2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9ycGNzZXJ2
+ZXJfYWdncmVnYXRvci5oOjEyMDo0MjogZXJyb3I6ICdycGNzZXJ2ZXJfYm9vdGVyX2Jhc2Vfc3B0
+cicgaXMgbm90IGEgbWVtYmVyIG9mICdycGNtYW5hZ2VyX2Jhc2UnCj4gICAgICB0eXBlZGVmIHN0
+ZDo6dmVjdG9yPHJwY21hbmFnZXJfYmFzZTo6cnBjc2VydmVyX2Jvb3Rlcl9iYXNlX3NwdHI+IHJw
+Y1NlcnZlck1hcF90Owo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IF5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251
+cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3NlcnZlcl9hZ2dyZWdh
+dG9yLmg6MTIwOjQyOiBlcnJvcjogJ3JwY3NlcnZlcl9ib290ZXJfYmFzZV9zcHRyJyBpcyBub3Qg
+YSBtZW1iZXIgb2YgJ3JwY21hbmFnZXJfYmFzZScKPiAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9n
+bnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjc2VydmVyX2FnZ3Jl
+Z2F0b3IuaDoxMjA6Njg6IGVycm9yOiB0ZW1wbGF0ZSBhcmd1bWVudCAxIGlzIGludmFsaWQKPiAg
+ICAgIHR5cGVkZWYgc3RkOjp2ZWN0b3I8cnBjbWFuYWdlcl9iYXNlOjpycGNzZXJ2ZXJfYm9vdGVy
+X2Jhc2Vfc3B0cj4gcnBjU2VydmVyTWFwX3Q7Cj4gICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBeCj4gL2hvbWUvbGFidXNl
+ci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3Jw
+Y3NlcnZlcl9hZ2dyZWdhdG9yLmg6MTIwOjY4OiBlcnJvcjogdGVtcGxhdGUgYXJndW1lbnQgMiBp
+cyBpbnZhbGlkCj4gSW4gZmlsZSBpbmNsdWRlZCBmcm9tIC9ob21lL2xhYnVzZXIvcmZub2Mvc3Jj
+L2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9ycGNtYW5hZ2VyX2Jh
+c2UuaDoyNiwKPiAgICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMv
+Z251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY21hbmFnZXIuaDoy
+NywKPiAgICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFk
+aW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3JlZ2lzdGVyaGVscGVycy5o
+OjI2LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVy
+YWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vYmFzaWNfYmxvY2suaDo0MiwK
+PiAgICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8v
+Z251cmFkaW8tcnVudGltZS9saWIvYmFzaWNfYmxvY2suY2M6Mjc6Cj4gL2hvbWUvbGFidXNlci9y
+Zm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY19z
+aGFyZWRfcHRyX3NlbGVjdGlvbi5oOjM0OjMyOiBlcnJvcjogJ3NoYXJlZF9wdHInIGluIG5hbWVz
+cGFjZSAnc3RkJyBkb2VzIG5vdCBuYW1lIGEgdGVtcGxhdGUgdHlwZQo+ICAjZGVmaW5lIEdSX1JQ
+Q19TSEFSRURfUFRSIHN0ZDo6c2hhcmVkX3B0cgo+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgXn5+fn5+fn5+fgo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJh
+ZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9ycGNzZXJ2ZXJfYm9vdGVyX2FnZ3JlZ2F0b3Iu
+aDo1Mjo1OiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8gJ0dSX1JQQ19TSEFSRURfUFRSJwo+
+ICAgICAgR1JfUlBDX1NIQVJFRF9QVFI8cnBjc2VydmVyX2FnZ3JlZ2F0b3I+IHNlcnZlcjsKPiAg
+ICAgIF5+fn5+fn5+fn5+fn5+fn5+Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8v
+Z251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY19zaGFyZWRfcHRyX3NlbGVjdGlv
+bi5oOjM0OjI3OiBub3RlOiAnc3RkOjpzaGFyZWRfcHRyJyBpcyBvbmx5IGF2YWlsYWJsZSBmcm9t
+IEMrKzExIG9ud2FyZHMKPiAgI2RlZmluZSBHUl9SUENfU0hBUkVEX1BUUiBzdGQ6OnNoYXJlZF9w
+dHIKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn4KPiAvaG9tZS9sYWJ1c2VyL3Jmbm9j
+L3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjc2VydmVy
+X2Jvb3Rlcl9hZ2dyZWdhdG9yLmg6NTI6NTogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvICdH
+Ul9SUENfU0hBUkVEX1BUUicKPiAgICAgIEdSX1JQQ19TSEFSRURfUFRSPHJwY3NlcnZlcl9hZ2dy
+ZWdhdG9yPiBzZXJ2ZXI7Cj4gICAgICBefn5+fn5+fn5+fn5+fn5+fgo+IEluIGZpbGUgaW5jbHVk
+ZWQgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1l
+L2luY2x1ZGUvZ251cmFkaW8vcnBjbWFuYWdlcl9iYXNlLmg6MjYsCj4gICAgICAgICAgICAgICAg
+ICBmcm9tIC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUv
+aW5jbHVkZS9nbnVyYWRpby9ycGNtYW5hZ2VyLmg6MjcsCj4gICAgICAgICAgICAgICAgICBmcm9t
+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVk
+ZS9nbnVyYWRpby9ycGNyZWdpc3RlcmhlbHBlcnMuaDoyNiwKPiAgICAgICAgICAgICAgICAgIGZy
+b20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNs
+dWRlL2dudXJhZGlvL2Jhc2ljX2Jsb2NrLmg6NDIsCj4gICAgICAgICAgICAgICAgICBmcm9tIC9o
+b21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9n
+bnVyYWRpby9ibG9jay5oOjI3LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2Vy
+L3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vYmxv
+Y2tfZ2F0ZXdheS5oOjI3LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jm
+bm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2xpYi9ibG9ja19nYXRld2F5X2ltcGwu
+aDoyNiwKPiAgICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251
+cmFkaW8vZ251cmFkaW8tcnVudGltZS9saWIvYmxvY2tfZ2F0ZXdheV9pbXBsLmNjOjIyOgo+IC9o
+b21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9n
+bnVyYWRpby9ycGNfc2hhcmVkX3B0cl9zZWxlY3Rpb24uaDozNDozMjogZXJyb3I6ICdzaGFyZWRf
+cHRyJyBpbiBuYW1lc3BhY2UgJ3N0ZCcgZG9lcyBub3QgbmFtZSBhIHRlbXBsYXRlIHR5cGUKPiAg
+I2RlZmluZSBHUl9SUENfU0hBUkVEX1BUUiBzdGQ6OnNoYXJlZF9wdHIKPiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn4KPiAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9n
+bnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjbWFuYWdlcl9iYXNl
+Lmg6MzQ6MTM6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyAnR1JfUlBDX1NIQVJFRF9QVFIn
+Cj4gICAgICB0eXBlZGVmIEdSX1JQQ19TSEFSRURfUFRSPHJwY3NlcnZlcl9ib290ZXJfYmFzZT4g
+cnBjc2VydmVyX2Jvb3Rlcl9iYXNlX3NwdHI7Cj4gICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+
+fn5+Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9p
+bmNsdWRlL2dudXJhZGlvL3JwY19zaGFyZWRfcHRyX3NlbGVjdGlvbi5oOjM0OjI3OiBub3RlOiAn
+c3RkOjpzaGFyZWRfcHRyJyBpcyBvbmx5IGF2YWlsYWJsZSBmcm9tIEMrKzExIG9ud2FyZHMKPiAg
+I2RlZmluZSBHUl9SUENfU0hBUkVEX1BUUiBzdGQ6OnNoYXJlZF9wdHIKPiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICBefn4KPiAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVy
+YWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjbWFuYWdlcl9iYXNlLmg6MzQ6MTM6IG5v
+dGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyAnR1JfUlBDX1NIQVJFRF9QVFInCj4gICAgICB0eXBl
+ZGVmIEdSX1JQQ19TSEFSRURfUFRSPHJwY3NlcnZlcl9ib290ZXJfYmFzZT4gcnBjc2VydmVyX2Jv
+b3Rlcl9iYXNlX3NwdHI7Cj4gICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+Cj4gL2hvbWUv
+bGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJh
+ZGlvL3JwY19zaGFyZWRfcHRyX3NlbGVjdGlvbi5oOjM0OjMyOiBlcnJvcjogJ3NoYXJlZF9wdHIn
+IGluIG5hbWVzcGFjZSAnc3RkJyBkb2VzIG5vdCBuYW1lIGEgdGVtcGxhdGUgdHlwZQo+ICAjZGVm
+aW5lIEdSX1JQQ19TSEFSRURfUFRSIHN0ZDo6c2hhcmVkX3B0cgo+ICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgXn5+fn5+fn5+fgo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJh
+ZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9ycGNzZXJ2ZXJfYmFzZS5oOjQ5
+OjEzOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8gJ0dSX1JQQ19TSEFSRURfUFRSJwo+ICAg
+ICAgdHlwZWRlZiBHUl9SUENfU0hBUkVEX1BUUjxycGNzZXJ2ZXJfYmFzZT4gcnBjc2VydmVyX2Jh
+c2Vfc3B0cjsKPiAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn4KPiAvaG9tZS9sYWJ1c2Vy
+L3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBj
+X3NoYXJlZF9wdHJfc2VsZWN0aW9uLmg6MzQ6Mjc6IG5vdGU6ICdzdGQ6OnNoYXJlZF9wdHInIGlz
+IG9ubHkgYXZhaWxhYmxlIGZyb20gQysrMTEgb253YXJkcwo+ICAjZGVmaW5lIEdSX1JQQ19TSEFS
+RURfUFRSIHN0ZDo6c2hhcmVkX3B0cgo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fgo+
+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVk
+ZS9nbnVyYWRpby9ycGNzZXJ2ZXJfYmFzZS5oOjQ5OjEzOiBub3RlOiBpbiBleHBhbnNpb24gb2Yg
+bWFjcm8gJ0dSX1JQQ19TSEFSRURfUFRSJwo+ICAgICAgdHlwZWRlZiBHUl9SUENfU0hBUkVEX1BU
+UjxycGNzZXJ2ZXJfYmFzZT4gcnBjc2VydmVyX2Jhc2Vfc3B0cjsKPiAgICAgICAgICAgICAgXn5+
+fn5+fn5+fn5+fn5+fn4KPiBJbiBmaWxlIGluY2x1ZGVkIGZyb20gL2hvbWUvbGFidXNlci9yZm5v
+Yy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3NlcnZl
+cl9ib290ZXJfYWdncmVnYXRvci5oOjI4LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9s
+YWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFk
+aW8vcnBjbWFuYWdlci5oOjI4LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2Vy
+L3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBj
+cmVnaXN0ZXJoZWxwZXJzLmg6MjYsCj4gICAgICAgICAgICAgICAgICBmcm9tIC9ob21lL2xhYnVz
+ZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9i
+YXNpY19ibG9jay5oOjQyLAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jm
+bm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vYmxvY2su
+aDoyNywKPiAgICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251
+cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL2Jsb2NrX2dhdGV3YXkuaDoy
+NywKPiAgICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFk
+aW8vZ251cmFkaW8tcnVudGltZS9saWIvYmxvY2tfZ2F0ZXdheV9pbXBsLmg6MjYsCj4gICAgICAg
+ICAgICAgICAgICBmcm9tIC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlv
+LXJ1bnRpbWUvbGliL2Jsb2NrX2dhdGV3YXlfaW1wbC5jYzoyMjoKPiAvaG9tZS9sYWJ1c2VyL3Jm
+bm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjc2Vy
+dmVyX2FnZ3JlZ2F0b3IuaDo0Nzo0MjogZXJyb3I6ICdycGNtYW5hZ2VyX2Jhc2U6OnJwY3NlcnZl
+cl9ib290ZXJfYmFzZV9zcHRyJyBoYXMgbm90IGJlZW4gZGVjbGFyZWQKPiAgICAgIHZvaWQgcmVn
+aXN0ZXJTZXJ2ZXIocnBjbWFuYWdlcl9iYXNlOjpycGNzZXJ2ZXJfYm9vdGVyX2Jhc2Vfc3B0ciBz
+ZXJ2ZXIpOwo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+
+fn5+fn5+fn5+fn5+fn5+fn5+fn5+Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8v
+Z251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3NlcnZlcl9hZ2dyZWdhdG9yLmg6
+MTIwOjQyOiBlcnJvcjogJ3JwY3NlcnZlcl9ib290ZXJfYmFzZV9zcHRyJyBpcyBub3QgYSBtZW1i
+ZXIgb2YgJ3JwY21hbmFnZXJfYmFzZScKPiAgICAgIHR5cGVkZWYgc3RkOjp2ZWN0b3I8cnBjbWFu
+YWdlcl9iYXNlOjpycGNzZXJ2ZXJfYm9vdGVyX2Jhc2Vfc3B0cj4gcnBjU2VydmVyTWFwX3Q7Cj4g
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+
+fn5+fn5+fn5+fn4KPiAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1y
+dW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjc2VydmVyX2FnZ3JlZ2F0b3IuaDoxMjA6NDI6IGVy
+cm9yOiAncnBjc2VydmVyX2Jvb3Rlcl9iYXNlX3NwdHInIGlzIG5vdCBhIG1lbWJlciBvZiAncnBj
+bWFuYWdlcl9iYXNlJwo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlv
+LXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9ycGNzZXJ2ZXJfYWdncmVnYXRvci5oOjEyMDo2ODog
+ZXJyb3I6IHRlbXBsYXRlIGFyZ3VtZW50IDEgaXMgaW52YWxpZAo+ICAgICAgdHlwZWRlZiBzdGQ6
+OnZlY3RvcjxycGNtYW5hZ2VyX2Jhc2U6OnJwY3NlcnZlcl9ib290ZXJfYmFzZV9zcHRyPiBycGNT
+ZXJ2ZXJNYXBfdDsKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIF4KPiAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVy
+YWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjc2VydmVyX2FnZ3JlZ2F0
+b3IuaDoxMjA6Njg6IGVycm9yOiB0ZW1wbGF0ZSBhcmd1bWVudCAyIGlzIGludmFsaWQKPiBJbiBm
+aWxlIGluY2x1ZGVkIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFk
+aW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY21hbmFnZXJfYmFzZS5oOjI2LAo+ICAgICAg
+ICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRp
+by1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjbWFuYWdlci5oOjI3LAo+ICAgICAgICAgICAg
+ICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50
+aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjcmVnaXN0ZXJoZWxwZXJzLmg6MjYsCj4gICAgICAgICAg
+ICAgICAgICBmcm9tIC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1
+bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9iYXNpY19ibG9jay5oOjQyLAo+ICAgICAgICAgICAgICAg
+ICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1l
+L2luY2x1ZGUvZ251cmFkaW8vYmxvY2suaDoyNywKPiAgICAgICAgICAgICAgICAgIGZyb20gL2hv
+bWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2du
+dXJhZGlvL2Jsb2NrX2dhdGV3YXkuaDoyNywKPiAgICAgICAgICAgICAgICAgIGZyb20gL2hvbWUv
+bGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9saWIvYmxvY2tfZ2F0
+ZXdheV9pbXBsLmg6MjYsCj4gICAgICAgICAgICAgICAgICBmcm9tIC9ob21lL2xhYnVzZXIvcmZu
+b2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvbGliL2Jsb2NrX2dhdGV3YXlfaW1wbC5j
+YzoyMjoKPiAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1l
+L2luY2x1ZGUvZ251cmFkaW8vcnBjX3NoYXJlZF9wdHJfc2VsZWN0aW9uLmg6MzQ6MzI6IGVycm9y
+OiAnc2hhcmVkX3B0cicgaW4gbmFtZXNwYWNlICdzdGQnIGRvZXMgbm90IG5hbWUgYSB0ZW1wbGF0
+ZSB0eXBlCj4gICNkZWZpbmUgR1JfUlBDX1NIQVJFRF9QVFIgc3RkOjpzaGFyZWRfcHRyCj4gICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+Cj4gL2hvbWUvbGFidXNlci9y
+Zm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3Nl
+cnZlcl9ib290ZXJfYWdncmVnYXRvci5oOjUyOjU6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNy
+byAnR1JfUlBDX1NIQVJFRF9QVFInCj4gICAgICBHUl9SUENfU0hBUkVEX1BUUjxycGNzZXJ2ZXJf
+YWdncmVnYXRvcj4gc2VydmVyOwo+ICAgICAgXn5+fn5+fn5+fn5+fn5+fn4KPiAvaG9tZS9sYWJ1
+c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8v
+cnBjX3NoYXJlZF9wdHJfc2VsZWN0aW9uLmg6MzQ6Mjc6IG5vdGU6ICdzdGQ6OnNoYXJlZF9wdHIn
+IGlzIG9ubHkgYXZhaWxhYmxlIGZyb20gQysrMTEgb253YXJkcwo+ICAjZGVmaW5lIEdSX1JQQ19T
+SEFSRURfUFRSIHN0ZDo6c2hhcmVkX3B0cgo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+
+fgo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5j
+bHVkZS9nbnVyYWRpby9ycGNzZXJ2ZXJfYm9vdGVyX2FnZ3JlZ2F0b3IuaDo1Mjo1OiBub3RlOiBp
+biBleHBhbnNpb24gb2YgbWFjcm8gJ0dSX1JQQ19TSEFSRURfUFRSJwo+ICAgICAgR1JfUlBDX1NI
+QVJFRF9QVFI8cnBjc2VydmVyX2FnZ3JlZ2F0b3I+IHNlcnZlcjsKPiAgICAgIF5+fn5+fn5+fn5+
+fn5+fn5+Cj4gSW4gZmlsZSBpbmNsdWRlZCBmcm9tIC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2du
+dXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9ycGNtYW5hZ2VyX2Jhc2Uu
+aDoyNiwKPiAgICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251
+cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY21hbmFnZXIuaDoyNywK
+PiAgICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8v
+Z251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3JlZ2lzdGVyaGVscGVycy5oOjI2
+LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRp
+by9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vYmFzaWNfYmxvY2suaDo0MiwKPiAg
+ICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251
+cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL2Jsb2NrLmg6MjcsCj4gICAgICAgICAgICAg
+ICAgICBmcm9tIC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRp
+bWUvbGliL2Jsb2NrLmNjOjI3Ogo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2du
+dXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9ycGNfc2hhcmVkX3B0cl9zZWxlY3Rpb24u
+aDozNDozMjogZXJyb3I6ICdzaGFyZWRfcHRyJyBpbiBuYW1lc3BhY2UgJ3N0ZCcgZG9lcyBub3Qg
+bmFtZSBhIHRlbXBsYXRlIHR5cGUKPiAgI2RlZmluZSBHUl9SUENfU0hBUkVEX1BUUiBzdGQ6OnNo
+YXJlZF9wdHIKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn4KPiAv
+aG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUv
+Z251cmFkaW8vcnBjbWFuYWdlcl9iYXNlLmg6MzQ6MTM6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBt
+YWNybyAnR1JfUlBDX1NIQVJFRF9QVFInCj4gICAgICB0eXBlZGVmIEdSX1JQQ19TSEFSRURfUFRS
+PHJwY3NlcnZlcl9ib290ZXJfYmFzZT4gcnBjc2VydmVyX2Jvb3Rlcl9iYXNlX3NwdHI7Cj4gICAg
+ICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251
+cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY19zaGFyZWRfcHRyX3Nl
+bGVjdGlvbi5oOjM0OjI3OiBub3RlOiAnc3RkOjpzaGFyZWRfcHRyJyBpcyBvbmx5IGF2YWlsYWJs
+ZSBmcm9tIEMrKzExIG9ud2FyZHMKPiAgI2RlZmluZSBHUl9SUENfU0hBUkVEX1BUUiBzdGQ6OnNo
+YXJlZF9wdHIKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn4KPiAvaG9tZS9sYWJ1c2Vy
+L3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBj
+bWFuYWdlcl9iYXNlLmg6MzQ6MTM6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyAnR1JfUlBD
+X1NIQVJFRF9QVFInCj4gICAgICB0eXBlZGVmIEdSX1JQQ19TSEFSRURfUFRSPHJwY3NlcnZlcl9i
+b290ZXJfYmFzZT4gcnBjc2VydmVyX2Jvb3Rlcl9iYXNlX3NwdHI7Cj4gICAgICAgICAgICAgIF5+
+fn5+fn5+fn5+fn5+fn5+Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFk
+aW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY19zaGFyZWRfcHRyX3NlbGVjdGlvbi5oOjM0
+OjMyOiBlcnJvcjogJ3NoYXJlZF9wdHInIGluIG5hbWVzcGFjZSAnc3RkJyBkb2VzIG5vdCBuYW1l
+IGEgdGVtcGxhdGUgdHlwZQo+ICAjZGVmaW5lIEdSX1JQQ19TSEFSRURfUFRSIHN0ZDo6c2hhcmVk
+X3B0cgo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fgo+IC9ob21l
+L2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVy
+YWRpby9ycGNzZXJ2ZXJfYmFzZS5oOjQ5OjEzOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g
+J0dSX1JQQ19TSEFSRURfUFRSJwo+ICAgICAgdHlwZWRlZiBHUl9SUENfU0hBUkVEX1BUUjxycGNz
+ZXJ2ZXJfYmFzZT4gcnBjc2VydmVyX2Jhc2Vfc3B0cjsKPiAgICAgICAgICAgICAgXn5+fn5+fn5+
+fn5+fn5+fn4KPiBJbiBmaWxlIGluY2x1ZGVkIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMv
+Z251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY21hbmFnZXJfYmFz
+ZS5oOjI2LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9n
+bnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjbWFuYWdlci5oOjI3
+LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRp
+by9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjcmVnaXN0ZXJoZWxwZXJzLmg6
+MjYsCj4gICAgICAgICAgICAgICAgICBmcm9tIC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJh
+ZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9iYXNpY19ibG9jay5oOjQyLAo+
+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9n
+bnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vYmxvY2suaDoyNywKPiAgICAgICAgICAg
+ICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVu
+dGltZS9saWIvYmxvY2tfZXhlY3V0b3IuY2M6Mjc6Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMv
+Z251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY19zaGFyZWRfcHRy
+X3NlbGVjdGlvbi5oOjM0OjMyOiBlcnJvcjogJ3NoYXJlZF9wdHInIGluIG5hbWVzcGFjZSAnc3Rk
+JyBkb2VzIG5vdCBuYW1lIGEgdGVtcGxhdGUgdHlwZQo+ICAjZGVmaW5lIEdSX1JQQ19TSEFSRURf
+UFRSIHN0ZDo6c2hhcmVkX3B0cgo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+
+fn5+fn5+fgo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRp
+bWUvaW5jbHVkZS9nbnVyYWRpby9ycGNtYW5hZ2VyX2Jhc2UuaDozNDoxMzogbm90ZTogaW4gZXhw
+YW5zaW9uIG9mIG1hY3JvICdHUl9SUENfU0hBUkVEX1BUUicKPiAgICAgIHR5cGVkZWYgR1JfUlBD
+X1NIQVJFRF9QVFI8cnBjc2VydmVyX2Jvb3Rlcl9iYXNlPiBycGNzZXJ2ZXJfYm9vdGVyX2Jhc2Vf
+c3B0cjsKPiAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn4KPiAvaG9tZS9sYWJ1c2VyL3Jm
+bm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjX3No
+YXJlZF9wdHJfc2VsZWN0aW9uLmg6MzQ6Mjc6IG5vdGU6ICdzdGQ6OnNoYXJlZF9wdHInIGlzIG9u
+bHkgYXZhaWxhYmxlIGZyb20gQysrMTEgb253YXJkcwo+ICAjZGVmaW5lIEdSX1JQQ19TSEFSRURf
+UFRSIHN0ZDo6c2hhcmVkX3B0cgo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fgo+IC9o
+b21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9n
+bnVyYWRpby9ycGNzZXJ2ZXJfYmFzZS5oOjQ5OjEzOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFj
+cm8gJ0dSX1JQQ19TSEFSRURfUFRSJwo+ICAgICAgdHlwZWRlZiBHUl9SUENfU0hBUkVEX1BUUjxy
+cGNzZXJ2ZXJfYmFzZT4gcnBjc2VydmVyX2Jhc2Vfc3B0cjsKPiAgICAgICAgICAgICAgXn5+fn5+
+fn5+fn5+fn5+fn4KPiAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1y
+dW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjX3NoYXJlZF9wdHJfc2VsZWN0aW9uLmg6MzQ6Mjc6
+IG5vdGU6ICdzdGQ6OnNoYXJlZF9wdHInIGlzIG9ubHkgYXZhaWxhYmxlIGZyb20gQysrMTEgb253
+YXJkcwo+ICAjZGVmaW5lIEdSX1JQQ19TSEFSRURfUFRSIHN0ZDo6c2hhcmVkX3B0cgo+ICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIF5+fgo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJh
+ZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9ycGNtYW5hZ2VyX2Jhc2UuaDoz
+NDoxMzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvICdHUl9SUENfU0hBUkVEX1BUUicKPiAg
+ICAgIHR5cGVkZWYgR1JfUlBDX1NIQVJFRF9QVFI8cnBjc2VydmVyX2Jvb3Rlcl9iYXNlPiBycGNz
+ZXJ2ZXJfYm9vdGVyX2Jhc2Vfc3B0cjsKPiAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn4K
+PiBJbiBmaWxlIGluY2x1ZGVkIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8v
+Z251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3NlcnZlcl9ib290ZXJfYWdncmVn
+YXRvci5oOjI4LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3Ny
+Yy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjbWFuYWdlci5o
+OjI4LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVy
+YWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjcmVnaXN0ZXJoZWxwZXJz
+Lmg6MjYsCj4gICAgICAgICAgICAgICAgICBmcm9tIC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2du
+dXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9iYXNpY19ibG9jay5oOjQy
+LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRp
+by9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vYmxvY2suaDoyNywKPiAgICAgICAg
+ICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8t
+cnVudGltZS9saWIvYmxvY2suY2M6Mjc6Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFk
+aW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3NlcnZlcl9hZ2dyZWdhdG9y
+Lmg6NDc6NDI6IGVycm9yOiAncnBjbWFuYWdlcl9iYXNlOjpycGNzZXJ2ZXJfYm9vdGVyX2Jhc2Vf
+c3B0cicgaGFzIG5vdCBiZWVuIGRlY2xhcmVkCj4gICAgICB2b2lkIHJlZ2lzdGVyU2VydmVyKHJw
+Y21hbmFnZXJfYmFzZTo6cnBjc2VydmVyX2Jvb3Rlcl9iYXNlX3NwdHIgc2VydmVyKTsKPiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn5+
+fn5+fn5+fgo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRp
+bWUvaW5jbHVkZS9nbnVyYWRpby9ycGNzZXJ2ZXJfYWdncmVnYXRvci5oOjEyMDo0MjogZXJyb3I6
+ICdycGNzZXJ2ZXJfYm9vdGVyX2Jhc2Vfc3B0cicgaXMgbm90IGEgbWVtYmVyIG9mICdycGNtYW5h
+Z2VyX2Jhc2UnCj4gICAgICB0eXBlZGVmIHN0ZDo6dmVjdG9yPHJwY21hbmFnZXJfYmFzZTo6cnBj
+c2VydmVyX2Jvb3Rlcl9iYXNlX3NwdHI+IHJwY1NlcnZlck1hcF90Owo+ICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+Cj4g
+L2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRl
+L2dudXJhZGlvL3JwY3NlcnZlcl9hZ2dyZWdhdG9yLmg6MTIwOjQyOiBlcnJvcjogJ3JwY3NlcnZl
+cl9ib290ZXJfYmFzZV9zcHRyJyBpcyBub3QgYSBtZW1iZXIgb2YgJ3JwY21hbmFnZXJfYmFzZScK
+PiAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1
+ZGUvZ251cmFkaW8vcnBjc2VydmVyX2FnZ3JlZ2F0b3IuaDoxMjA6Njg6IGVycm9yOiB0ZW1wbGF0
+ZSBhcmd1bWVudCAxIGlzIGludmFsaWQKPiAgICAgIHR5cGVkZWYgc3RkOjp2ZWN0b3I8cnBjbWFu
+YWdlcl9iYXNlOjpycGNzZXJ2ZXJfYm9vdGVyX2Jhc2Vfc3B0cj4gcnBjU2VydmVyTWFwX3Q7Cj4g
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBeCj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8t
+cnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3NlcnZlcl9hZ2dyZWdhdG9yLmg6MTIwOjY4OiBl
+cnJvcjogdGVtcGxhdGUgYXJndW1lbnQgMiBpcyBpbnZhbGlkCj4gL2hvbWUvbGFidXNlci9yZm5v
+Yy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY19zaGFy
+ZWRfcHRyX3NlbGVjdGlvbi5oOjM0OjMyOiBlcnJvcjogJ3NoYXJlZF9wdHInIGluIG5hbWVzcGFj
+ZSAnc3RkJyBkb2VzIG5vdCBuYW1lIGEgdGVtcGxhdGUgdHlwZQo+ICAjZGVmaW5lIEdSX1JQQ19T
+SEFSRURfUFRSIHN0ZDo6c2hhcmVkX3B0cgo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgXn5+fn5+fn5+fgo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlv
+LXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9ycGNzZXJ2ZXJfYmFzZS5oOjQ5OjEzOiBub3RlOiBp
+biBleHBhbnNpb24gb2YgbWFjcm8gJ0dSX1JQQ19TSEFSRURfUFRSJwo+ICAgICAgdHlwZWRlZiBH
+Ul9SUENfU0hBUkVEX1BUUjxycGNzZXJ2ZXJfYmFzZT4gcnBjc2VydmVyX2Jhc2Vfc3B0cjsKPiAg
+ICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn4KPiAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9n
+bnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjX3NoYXJlZF9wdHJf
+c2VsZWN0aW9uLmg6MzQ6Mjc6IG5vdGU6ICdzdGQ6OnNoYXJlZF9wdHInIGlzIG9ubHkgYXZhaWxh
+YmxlIGZyb20gQysrMTEgb253YXJkcwo+ICAjZGVmaW5lIEdSX1JQQ19TSEFSRURfUFRSIHN0ZDo6
+c2hhcmVkX3B0cgo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fgo+IC9ob21lL2xhYnVz
+ZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9y
+cGNzZXJ2ZXJfYmFzZS5oOjQ5OjEzOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8gJ0dSX1JQ
+Q19TSEFSRURfUFRSJwo+ICAgICAgdHlwZWRlZiBHUl9SUENfU0hBUkVEX1BUUjxycGNzZXJ2ZXJf
+YmFzZT4gcnBjc2VydmVyX2Jhc2Vfc3B0cjsKPiAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+
+fn4KPiBJbiBmaWxlIGluY2x1ZGVkIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFk
+aW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3NlcnZlcl9ib290ZXJfYWdn
+cmVnYXRvci5oOjI4LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9j
+L3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjbWFuYWdl
+ci5oOjI4LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9n
+bnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjcmVnaXN0ZXJoZWxw
+ZXJzLmg6MjYsCj4gICAgICAgICAgICAgICAgICBmcm9tIC9ob21lL2xhYnVzZXIvcmZub2Mvc3Jj
+L2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9iYXNpY19ibG9jay5o
+OjQyLAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVy
+YWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vYmxvY2suaDoyNywKPiAgICAg
+ICAgICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFk
+aW8tcnVudGltZS9saWIvYmxvY2tfZXhlY3V0b3IuY2M6Mjc6Cj4gL2hvbWUvbGFidXNlci9yZm5v
+Yy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3NlcnZl
+cl9hZ2dyZWdhdG9yLmg6NDc6NDI6IGVycm9yOiAncnBjbWFuYWdlcl9iYXNlOjpycGNzZXJ2ZXJf
+Ym9vdGVyX2Jhc2Vfc3B0cicgaGFzIG5vdCBiZWVuIGRlY2xhcmVkCj4gICAgICB2b2lkIHJlZ2lz
+dGVyU2VydmVyKHJwY21hbmFnZXJfYmFzZTo6cnBjc2VydmVyX2Jvb3Rlcl9iYXNlX3NwdHIgc2Vy
+dmVyKTsKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+
+fn5+fn5+fn5+fn5+fn5+fn5+fgo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2du
+dXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9ycGNzZXJ2ZXJfYWdncmVnYXRvci5oOjEy
+MDo0MjogZXJyb3I6ICdycGNzZXJ2ZXJfYm9vdGVyX2Jhc2Vfc3B0cicgaXMgbm90IGEgbWVtYmVy
+IG9mICdycGNtYW5hZ2VyX2Jhc2UnCj4gICAgICB0eXBlZGVmIHN0ZDo6dmVjdG9yPHJwY21hbmFn
+ZXJfYmFzZTo6cnBjc2VydmVyX2Jvb3Rlcl9iYXNlX3NwdHI+IHJwY1NlcnZlck1hcF90Owo+ICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+
+fn5+fn5+fn5+Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVu
+dGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3NlcnZlcl9hZ2dyZWdhdG9yLmg6MTIwOjQyOiBlcnJv
+cjogJ3JwY3NlcnZlcl9ib290ZXJfYmFzZV9zcHRyJyBpcyBub3QgYSBtZW1iZXIgb2YgJ3JwY21h
+bmFnZXJfYmFzZScKPiAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1y
+dW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjc2VydmVyX2FnZ3JlZ2F0b3IuaDoxMjA6Njg6IGVy
+cm9yOiB0ZW1wbGF0ZSBhcmd1bWVudCAxIGlzIGludmFsaWQKPiAgICAgIHR5cGVkZWYgc3RkOjp2
+ZWN0b3I8cnBjbWFuYWdlcl9iYXNlOjpycGNzZXJ2ZXJfYm9vdGVyX2Jhc2Vfc3B0cj4gcnBjU2Vy
+dmVyTWFwX3Q7Cj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICBeCj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFk
+aW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY3NlcnZlcl9hZ2dyZWdhdG9y
+Lmg6MTIwOjY4OiBlcnJvcjogdGVtcGxhdGUgYXJndW1lbnQgMiBpcyBpbnZhbGlkCj4gSW4gZmls
+ZSBpbmNsdWRlZCBmcm9tIC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlv
+LXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9ycGNtYW5hZ2VyX2Jhc2UuaDoyNiwKPiAgICAgICAg
+ICAgICAgICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8t
+cnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY21hbmFnZXIuaDoyNywKPiAgICAgICAgICAgICAg
+ICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGlt
+ZS9pbmNsdWRlL2dudXJhZGlvL3JwY3JlZ2lzdGVyaGVscGVycy5oOjI2LAo+ICAgICAgICAgICAg
+ICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50
+aW1lL2luY2x1ZGUvZ251cmFkaW8vYmFzaWNfYmxvY2suaDo0MiwKPiAgICAgICAgICAgICAgICAg
+IGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9p
+bmNsdWRlL2dudXJhZGlvL2Jsb2NrLmg6MjcsCj4gICAgICAgICAgICAgICAgICBmcm9tIC9ob21l
+L2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvbGliL2Jsb2NrLmNj
+OjI3Ogo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUv
+aW5jbHVkZS9nbnVyYWRpby9ycGNfc2hhcmVkX3B0cl9zZWxlY3Rpb24uaDozNDozMjogZXJyb3I6
+ICdzaGFyZWRfcHRyJyBpbiBuYW1lc3BhY2UgJ3N0ZCcgZG9lcyBub3QgbmFtZSBhIHRlbXBsYXRl
+IHR5cGUKPiAgI2RlZmluZSBHUl9SUENfU0hBUkVEX1BUUiBzdGQ6OnNoYXJlZF9wdHIKPiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn4KPiAvaG9tZS9sYWJ1c2VyL3Jm
+bm9jL3NyYy9nbnVyYWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjc2Vy
+dmVyX2Jvb3Rlcl9hZ2dyZWdhdG9yLmg6NTI6NTogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3Jv
+ICdHUl9SUENfU0hBUkVEX1BUUicKPiAgICAgIEdSX1JQQ19TSEFSRURfUFRSPHJwY3NlcnZlcl9h
+Z2dyZWdhdG9yPiBzZXJ2ZXI7Cj4gICAgICBefn5+fn5+fn5+fn5+fn5+fgo+IC9ob21lL2xhYnVz
+ZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9y
+cGNfc2hhcmVkX3B0cl9zZWxlY3Rpb24uaDozNDoyNzogbm90ZTogJ3N0ZDo6c2hhcmVkX3B0cicg
+aXMgb25seSBhdmFpbGFibGUgZnJvbSBDKysxMSBvbndhcmRzCj4gICNkZWZpbmUgR1JfUlBDX1NI
+QVJFRF9QVFIgc3RkOjpzaGFyZWRfcHRyCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+
+Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNs
+dWRlL2dudXJhZGlvL3JwY3NlcnZlcl9ib290ZXJfYWdncmVnYXRvci5oOjUyOjU6IG5vdGU6IGlu
+IGV4cGFuc2lvbiBvZiBtYWNybyAnR1JfUlBDX1NIQVJFRF9QVFInCj4gICAgICBHUl9SUENfU0hB
+UkVEX1BUUjxycGNzZXJ2ZXJfYWdncmVnYXRvcj4gc2VydmVyOwo+ICAgICAgXn5+fn5+fn5+fn5+
+fn5+fn4KPiBJbiBmaWxlIGluY2x1ZGVkIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251
+cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY21hbmFnZXJfYmFzZS5o
+OjI2LAo+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVy
+YWRpby9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjbWFuYWdlci5oOjI3LAo+
+ICAgICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9n
+bnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjcmVnaXN0ZXJoZWxwZXJzLmg6MjYs
+Cj4gICAgICAgICAgICAgICAgICBmcm9tIC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlv
+L2dudXJhZGlvLXJ1bnRpbWUvaW5jbHVkZS9nbnVyYWRpby9iYXNpY19ibG9jay5oOjQyLAo+ICAg
+ICAgICAgICAgICAgICAgZnJvbSAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRpby9nbnVy
+YWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vYmxvY2suaDoyNywKPiAgICAgICAgICAgICAg
+ICAgIGZyb20gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVudGlt
+ZS9saWIvYmxvY2tfZXhlY3V0b3IuY2M6Mjc6Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251
+cmFkaW8vZ251cmFkaW8tcnVudGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY19zaGFyZWRfcHRyX3Nl
+bGVjdGlvbi5oOjM0OjMyOiBlcnJvcjogJ3NoYXJlZF9wdHInIGluIG5hbWVzcGFjZSAnc3RkJyBk
+b2VzIG5vdCBuYW1lIGEgdGVtcGxhdGUgdHlwZQo+ICAjZGVmaW5lIEdSX1JQQ19TSEFSRURfUFRS
+IHN0ZDo6c2hhcmVkX3B0cgo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+
+fn5+fgo+IC9ob21lL2xhYnVzZXIvcmZub2Mvc3JjL2dudXJhZGlvL2dudXJhZGlvLXJ1bnRpbWUv
+aW5jbHVkZS9nbnVyYWRpby9ycGNzZXJ2ZXJfYm9vdGVyX2FnZ3JlZ2F0b3IuaDo1Mjo1OiBub3Rl
+OiBpbiBleHBhbnNpb24gb2YgbWFjcm8gJ0dSX1JQQ19TSEFSRURfUFRSJwo+ICAgICAgR1JfUlBD
+X1NIQVJFRF9QVFI8cnBjc2VydmVyX2FnZ3JlZ2F0b3I+IHNlcnZlcjsKPiAgICAgIF5+fn5+fn5+
+fn5+fn5+fn5+Cj4gL2hvbWUvbGFidXNlci9yZm5vYy9zcmMvZ251cmFkaW8vZ251cmFkaW8tcnVu
+dGltZS9pbmNsdWRlL2dudXJhZGlvL3JwY19zaGFyZWRfcHRyX3NlbGVjdGlvbi5oOjM0OjI3OiBu
+b3RlOiAnc3RkOjpzaGFyZWRfcHRyJyBpcyBvbmx5IGF2YWlsYWJsZSBmcm9tIEMrKzExIG9ud2Fy
+ZHMKPiAgI2RlZmluZSBHUl9SUENfU0hBUkVEX1BUUiBzdGQ6OnNoYXJlZF9wdHIKPiAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBefn4KPiAvaG9tZS9sYWJ1c2VyL3Jmbm9jL3NyYy9nbnVyYWRp
+by9nbnVyYWRpby1ydW50aW1lL2luY2x1ZGUvZ251cmFkaW8vcnBjc2VydmVyX2Jvb3Rlcl9hZ2dy
+ZWdhdG9yLmg6NTI6NTogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvICdHUl9SUENfU0hBUkVE
+X1BUUicKPiAgICAgIEdSX1JQQ19TSEFSRURfUFRSPHJwY3NlcnZlcl9hZ2dyZWdhdG9yPiBzZXJ2
+ZXI7Cj4gICAgICBefn5+fn5+fn5+fn5+fn5+fgo+IGdudXJhZGlvLXJ1bnRpbWUvbGliL0NNYWtl
+RmlsZXMvZ251cmFkaW8tcnVudGltZS5kaXIvYnVpbGQubWFrZToyMTg6IHJlY2lwZSBmb3IgdGFy
+Z2V0ICdnbnVyYWRpby1ydW50aW1lL2xpYi9DTWFrZUZpbGVzL2dudXJhZGlvLXJ1bnRpbWUuZGly
+L2Jhc2ljX2Jsb2NrLmNjLm8nIGZhaWxlZAo+IG1ha2VbMl06ICoqKiBbZ251cmFkaW8tcnVudGlt
+ZS9saWIvQ01ha2VGaWxlcy9nbnVyYWRpby1ydW50aW1lLmRpci9iYXNpY19ibG9jay5jYy5vXSBF
+cnJvciAxCj4gCj4gCj4gCj4gCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
+cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
+c2Vyc19saXN0cy5ldHR1cy5jb20K
