@@ -2,56 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF89231EA9B
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Feb 2021 14:54:45 +0100 (CET)
-Received: from [::1] (port=43714 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFFD331EAB3
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Feb 2021 15:06:02 +0100 (CET)
+Received: from [::1] (port=43802 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lCjlT-00066k-Mc; Thu, 18 Feb 2021 08:54:43 -0500
-Received: from mail-ej1-f54.google.com ([209.85.218.54]:46794)
+	id 1lCjwP-0006fY-3C; Thu, 18 Feb 2021 09:06:01 -0500
+Received: from mail-qt1-f178.google.com ([209.85.160.178]:43939)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <aaron.rossetto@ettus.com>)
- id 1lCjlP-0005xm-Qy
- for usrp-users@lists.ettus.com; Thu, 18 Feb 2021 08:54:39 -0500
-Received: by mail-ej1-f54.google.com with SMTP id ly28so5554253ejb.13
- for <usrp-users@lists.ettus.com>; Thu, 18 Feb 2021 05:54:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ettus-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=VTSaxE4wD8WpP1w5N1YZzfAWt9/mTkL+Bjs+1MDCkY0=;
- b=yu8b4ECTqTFrv6oXSn0Mz5E1JxVNWrAJNYZiEVRjS4klimZdIShCYzrD2n0wwVY9ui
- xETy/xuwVW2Ohh0F+uPSSzGlXFGtb6MjANAgtX1rHnugnp2JarQrCvGFTHExn/KvKhIP
- FSQYp8ZJ61hXt8N556uaUhoFfkXq1DpvMX/NHdZ6a6x+JnRRCNoniejWdgXA5pXLHCnk
- kIASWWwedRnrFacD07sTlicFwsY2WV1vk3st2w4cNhfJbvQ16BzhP1BhmatMFO650exY
- mcNbm72Qqb5kOOPu0qcOnWpc1w6VX2xju8i+dzw+QE/IfelUKkBi817oCGOeApzLnM5r
- rvaw==
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1lCjwL-0006Zb-8u
+ for USRP-users@lists.ettus.com; Thu, 18 Feb 2021 09:05:57 -0500
+Received: by mail-qt1-f178.google.com with SMTP id d3so1384731qtr.10
+ for <USRP-users@lists.ettus.com>; Thu, 18 Feb 2021 06:05:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=iRLW1K63+kUTxOGRMX0iHDydPbzb4htQo0n1m04ARMg=;
+ b=TnZSABxflKOMh3a6PfqywL61+WlcqK7T98XDIXwR1LLOOg9+9T87J4JumTO028oKSJ
+ 5hO+vg5N3jxHblNAlapYBHA5U6uf5Zy66c3ShcTh4KQTltor0D6fI6wyM+y4/bacK8QC
+ hBCEDP3i2G7xXI1beMX2cgomn9dkGWIfNFUnMmA8+B4leGqLLbAHmj77m0nyXWxbeTlo
+ HPBZrmsnqqMuMpEN7mFmFJHgBbBkQ44DDaMe9onDQ6dN/xWOcP6UPHGxQB1GlWwVzKbI
+ WX++F3J8Yl8CV/cPqCWTZ95cBeDMo4fhFulp7+2tnUSBkNSPrOs3IR/T/D5jIuw2+YcD
+ ssJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=VTSaxE4wD8WpP1w5N1YZzfAWt9/mTkL+Bjs+1MDCkY0=;
- b=MqFBi8gSbO4y3YCK9A+vnZBE9zEMy4dl1Me9Uv9SBQARexr1/WcR080gqkbpBxT8cU
- 6fSWIi7uu8/oi96/Ujpvr97HvqjH82fnNElM2osr6Ay3xBUYfz+3GWaJRr43EEkpe8UD
- CH4zXgI05D5LrfxwylWiml92k6GfxTOhxc9GyarnrB4kGZwHXGCG6WXwxAvVDS9jRgP6
- 5hk0zvK+9NiGvPWjGQwq15XBnEaLXLh940/KZIDdixQE5VSPRWYNROj49yKVm8t6xfuq
- qK3HMGyfoD2Uz9AHjBZ0NhfpXXd2FxiD11hEdc6kgYlOJbo8OHze3xbnjVvSY+LjahSw
- YVWA==
-X-Gm-Message-State: AOAM532f7zT9jrFDoKyHTMB+Vjd4j8FdkR4NldkmnMIgzSnZlPOQDFF/
- Ih13GSwnKjaxv9k6EMTFU/wsfsTRrq7IwbtgjfMSK40Xn5IjKLS5
-X-Google-Smtp-Source: ABdhPJyHLd8XnoKMyWrJuRHq0JzO5s1bMZRKO9niKKgX4XE2BK1JDwFIjTeWsqAwWp/YzhFTUQV/TZYiQ9yDvrHNkXg=
-X-Received: by 2002:a17:906:d19b:: with SMTP id
- c27mr4141807ejz.234.1613656438739; 
- Thu, 18 Feb 2021 05:53:58 -0800 (PST)
-MIME-Version: 1.0
-References: <1addbb88-269a-0928-1fd3-415daa295a61.ref@verizon.net>
- <1addbb88-269a-0928-1fd3-415daa295a61@verizon.net>
- <CAAg5+MxyvT7GF_=bXpkMeAcRaQ7tLhPeU1aDrAuGFLZGwwuHdQ@mail.gmail.com>
- <1e3d0463-06ae-12cd-a603-7ba21f79fe36@verizon.net>
-In-Reply-To: <1e3d0463-06ae-12cd-a603-7ba21f79fe36@verizon.net>
-Date: Thu, 18 Feb 2021 07:53:47 -0600
-Message-ID: <CAAg5+MyHqcPAnW50TBx3xSrvT6Lv=7dD87KghV0_tGFGbqu1_w@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] rfnoc_image_builder error with clock domain
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=iRLW1K63+kUTxOGRMX0iHDydPbzb4htQo0n1m04ARMg=;
+ b=U1ayc7Mq1eOhS5N3T75hdxYhIB6iUwzSht9TyoxdYmYDIZAj9MroF2KTbxL9sYEwuB
+ SQxKw/s3kG2LRDl0S1xn/VfGUwRBcOWLZImzNrB3OXJqge4M2NVv5Xn1EM83lCYv3kxV
+ eJQPUwF7faX4UjwlyI6z1Ti11ejjgKQobNClJlRZVuntIl/mF5hknt5o3sPijFWl2YgE
+ k6bUfZXyJterxeAY3k5CYJJaKq9IKLXhA0QOjGoP0kALYZ5wTLzhjGFWDbTr+M2n6yM7
+ o/x5jLnQ+JaTrZXJi27OtP1yG8HU10NUYM99KBU7xhSKaBlmlVif4Z+f+tdSXqA/Cei1
+ vGBQ==
+X-Gm-Message-State: AOAM530HRwlNGRNa6vsxQ7Iymh6uehvWIck2/KHoaKegJ7KqKgr0spDD
+ m0+lFi6uMqHswi5R89as+odJ9U3WWWg=
+X-Google-Smtp-Source: ABdhPJyzByBUT6HfcBT+FtDaw2pWwHF+V0xGzuogDoe9Z2SwKlzoKYrOIe1L8jXtKRKL5KN4mNym5w==
+X-Received: by 2002:ac8:1190:: with SMTP id d16mr4188432qtj.125.1613657114748; 
+ Thu, 18 Feb 2021 06:05:14 -0800 (PST)
+Received: from [192.168.2.130]
+ (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
+ by smtp.gmail.com with ESMTPSA id k90sm3433922qtd.0.2021.02.18.06.05.14
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 18 Feb 2021 06:05:14 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Thu, 18 Feb 2021 09:05:13 -0500
+Message-Id: <5B9A3BD5-2235-434A-B205-4D62F543B9A3@gmail.com>
+References: <9bb07e02-0567-9d12-299d-26daf430015d@ant.uni-bremen.de>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <9bb07e02-0567-9d12-299d-26daf430015d@ant.uni-bremen.de>
+To: Johannes Demel <demel@ant.uni-bremen.de>
+X-Mailer: iPhone Mail (18D52)
+Subject: Re: [USRP-users] GPSDO fails to lock
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -63,9 +66,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Aaron Rossetto via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Aaron Rossetto <aaron.rossetto@ettus.com>
-Content-Type: multipart/mixed; boundary="===============6654831346463625107=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -79,77 +83,32 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6654831346463625107==
-Content-Type: multipart/alternative; boundary="000000000000d228d905bb9caa3e"
-
---000000000000d228d905bb9caa3e
-Content-Type: text/plain; charset="UTF-8"
-
-On Thu, Feb 18, 2021 at 7:28 AM Mike via USRP-users <
-usrp-users@lists.ettus.com> wrote:
-
-That is a typo in AN-400 that should probably be fixed.
->
-
-Indeed it is! Good catch, and my apologies for the inconvenience. Glad you
-found the resolution.
-
-I've filed an issue on GitHub to update the application note to fix the
-typo: https://github.com/EttusResearch/uhd/issues/416
-
-It's obvious now but first time through it tripped me up.
->
-
-Even now, I'd hesitate to call it obvious. :)
-
-Best regards,
-Aaron
-
---000000000000d228d905bb9caa3e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Thu, Feb 18, 2021 at 7:28 AM Mike via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:=
-</div><div dir=3D"ltr" class=3D"gmail_attr"><br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div>That is a typo in AN-400 that
-      should probably be fixed.<br></div></blockquote><div><br></div><div s=
-tyle=3D"font-family:arial,sans-serif" class=3D"gmail_default">Indeed it is!=
- Good catch, and my apologies for the inconvenience. Glad you found the res=
-olution.</div><div style=3D"font-family:arial,sans-serif" class=3D"gmail_de=
-fault"><br></div><div style=3D"font-family:arial,sans-serif" class=3D"gmail=
-_default"> I&#39;ve filed an issue on GitHub to update the application note=
- to fix the typo: <a href=3D"https://github.com/EttusResearch/uhd/issues/41=
-6">https://github.com/EttusResearch/uhd/issues/416</a><br><br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex"><div><div>It&#39;s obvious now b=
-ut first time through
-      it tripped me up.</div></div></blockquote><div><br></div><div style=
-=3D"font-family:arial,sans-serif" class=3D"gmail_default">Even now, I&#39;d=
- hesitate to call it obvious. :)</div><div style=3D"font-family:arial,sans-=
-serif" class=3D"gmail_default"><br></div><div style=3D"font-family:arial,sa=
-ns-serif" class=3D"gmail_default">Best regards,<br></div><div style=3D"font=
--family:arial,sans-serif" class=3D"gmail_default">Aaron</div></div></div>
-
---000000000000d228d905bb9caa3e--
-
-
---===============6654831346463625107==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============6654831346463625107==--
-
+SG93IGFyZSB5b3UgZGVsaXZlcmluZyB0aGUgR1BTIGFudGVubmEgc2lnbmFsIHRvIHRoZSBVU1JQ
+cz8gIFZpYSBhIHNwbGl0dGVyPyBEb2VzIHRoYXQgc3BsaXR0ZXIgcHJvdmlkZSBEQyBwYXNzLXRo
+cm91Z2g/CgpTZW50IGZyb20gbXkgaVBob25lCgo+IE9uIEZlYiAxOCwgMjAyMSwgYXQgNzowNyBB
+TSwgSm9oYW5uZXMgRGVtZWwgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tPiB3cm90ZToKPiAKPiDvu79KdXN0IGEgcXVpY2sgZm9sbG93LXVwLiBUaGUgQjIxMCBmaW5h
+bGx5IGdvdCBhIEdQUyBsb2NrLiAoSSBoYWQgdG8gd2FpdCBmb3IgfjJoKS4gVGhvdWdoLCBhbGwg
+TjMxMHMgc3RpbGwgZG9uJ3QuCj4gCj4+IE9uIDE4LjAyLjIxIDEwOjEyLCBKb2hhbm5lcyBEZW1l
+bCB2aWEgVVNSUC11c2VycyB3cm90ZToKPj4gSGkgYWxsLAo+PiBJIGhhdmUgc29tZSBOMzEwcyBh
+bmQgYSBCMjEwIHRoYXQgSSB0cnkgdG8gc3luYyB3aXRoIGEgR1BTRE8uIEFsbCBvZiB0aGVtIHJl
+Y29nbml6ZSB0aGVpciBHUFNET3MgYnV0IGZhaWwgdG8gbG9jay4KPj4gTXkgcGhvbmUgY2FuIHNl
+ZSB+NyBTYXRlbGxpdGVzLiBXZSBoYXZlIGEgUlBpIHdpdGggYSBHUFMgbW9kdWxlIHRoYXQgbG9j
+a3MgdG8gR1BTIGluIHRoZSBzYW1lIGhhbGwuIFdlIHN3aXRjaGVkIGFudGVubmFzIGJ1dCBzdGls
+bCwgd2UgY2FuJ3Qgc3luYyBhbnkgb2YgdGhlIFVTUlBzIHRvIEdQUy4KPj4gSSB0cmllZDoKPj4g
+YGBgCj4+IGxpYi91aGQvdXRpbHMvcXVlcnlfZ3BzZG9fc2Vuc29ycwo+PiBgYGAKPj4gYW5kCj4+
+IGBgYAo+PiBsaWIvdWhkL2V4YW1wbGVzL3N5bmNfdG9fZ3BzCj4+IGBgYAo+PiBidXQgZXZlbiBh
+ZnRlciBhIGRheSwgdGhleSBhbHdheXMgcmV0dXJuICJHUFMgZG9lcyBub3QgaGF2ZSBsb2NrIiBh
+bmQgIldBUk5JTkc6ICBHUFMgbm90IGxvY2tlZCAtIHRpbWUgd2lsbCBub3QgYmUgYWNjdXJhdGUg
+dW50aWwgbG9ja2VkIi4KPj4gYGdwc21vbmAgb24gdGhlIE4zMTBzIHJlcG9ydHMgMCBTYXRlbGxp
+dGVzLiBCdXQgaXQgaGFzIGEgbGlzdCBvZiBzYXRlbGxpdGVzLgo+PiBTaW5jZSB3ZSBoYXZlIHNl
+dmVyYWwgZGV2aWNlcyBpbiB0aGF0IHJvb20gdGhhdCBhcmUgYWJsZSB0byBhY3F1aXJlIGEgbG9j
+ayBidXQgbm9uZSBvZiBvdXIgVVNSUHMgd2l0aCB0aGVpciBHUFNET3MsIEkgd29uZGVyIHdoYXQg
+aXMgZ29pbmcgb24uIERvIHRoZXkgbmVlZCBhIHZlcnkgc3Ryb25nIHNpZ25hbD8KPj4gQ2hlZXJz
+Cj4+IEpvaGFubmVzCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+IFVTUlAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tCj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNl
+cnNfbGlzdHMuZXR0dXMuY29tCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
+aXN0cy5ldHR1cy5jb20K
