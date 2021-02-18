@@ -2,114 +2,109 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D74031E7C6
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Feb 2021 10:13:21 +0100 (CET)
-Received: from [::1] (port=41850 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 083FA31E7FF
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Feb 2021 10:27:59 +0100 (CET)
+Received: from [::1] (port=41936 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lCfN9-0001gC-4t; Thu, 18 Feb 2021 04:13:19 -0500
-Received: from mail-am6eur05on2105.outbound.protection.outlook.com
- ([40.107.22.105]:29313 helo=EUR05-AM6-obe.outbound.protection.outlook.com)
+	id 1lCfbJ-0002O9-IO; Thu, 18 Feb 2021 04:27:57 -0500
+Received: from mail-eopbgr70112.outbound.protection.outlook.com
+ ([40.107.7.112]:52910 helo=EUR04-HE1-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <demel@ant.uni-bremen.de>)
- id 1lCfN5-0001Yp-AZ
- for usrp-users@lists.ettus.com; Thu, 18 Feb 2021 04:13:15 -0500
+ (Exim 4.93) (envelope-from <Cedric.Hannotier@ulb.be>)
+ id 1lCfbF-0002Hm-Cg
+ for usrp-users@lists.ettus.com; Thu, 18 Feb 2021 04:27:53 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gFe5YBqxW3RRkf/6L9LYBrmohPpW6pZy0LS/31P/5ytC49S4gmVrRZNlnwjxJaBisz2SCUk3umK8x4Ba94aLjoVho3gi12j0oO/naDAb2IWsVYAq129S7gmGlu8xnmjmHUunZK2ogT9k+XhaQAfw2zxlM775bkEphN/94msPvasBBjzo5fMKq0iSO1v7wIDOqap/zfd0m6FIgVuGQJVknoNewxednChQ/IvqAL2k38CW4rSnL24vs9UTIK3zUs0Z0IxHGn4HVQSY3i/Jprg0sYybaoV8xw3XRtKRbcsZudEoD8JMbQms4TUTN2CmN2d/vKEw4AsL1jPa11vRE1SxsQ==
+ b=V9ILGOAhM9XcBlMM5BCgzJdw1As++a3evzvjzdeRY+zXkXDmo0C3YNpdQeFBcfhUH1HlM5TLWiSaGD3+NLszCNCXLKVopbeeCYNVLLvM6fuLG92Nmo/nh/byzzg2jHVzoBdwshpo1mWFo3xCpvJEj3UeOchkHBaUxzhrlgnO1U+GMFgYfURItZwi77AjACnbAj9fHgCsJf4ry85amTf/JYvVlrP94xOKfgUyDRiap+1suz4m0qYERzAclev8LlNhlzMJnrLXysAB0s6bRD4lIEFT10tzF66UFp1cEF7ImDk62+0D3suGBCA5qiHr/XsOM47wM7i612Jv3TdkFY+NuQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3PfZGqIzobVCCyTDAmKc6tg+Xxk2wlkayJAkqv0bxj4=;
- b=UwxrR/MHvSZbeT8e4Y1GUsQhx6Ma/P9WGQQ4KR6MlQaNVS79Y3snbTt+B2iq5BINGhHLRG2TdbTVzz3Dbh2BPtAZ53CN0BNxiTwkXF2jw7HHB1dOBkEi9pxASi4lRZxEtGaM9dwZauz9Q/B5D8yecj8PndKxkptYEUgCPo0VjQu2/MvjYxMqSWFAqtSrjRjPY+wn2qvNv0jqIWzSYlIi3OGX5VEUuB0Hgxn4Gd69LtzFiBucnkgpsQIbIxMcGSUB3NI+1RS3q0vtp+EIhNJUX4o+aYBPB/K3TSp38lsAaqxaY3DPe4dgMJk/bAyH7uqSLtHoty1g1XoLMUj0YXWHvA==
+ bh=vUTQjjUrm4TDU3o7AlyEVyGKl8Ens0/r/RyKfwFHu10=;
+ b=KppLRLQZ93iLLEhaJmiFX+soXBkhDTNyx91zjzWoPsX7Py+Nj66vXjedzW8lzEDXdP7SQIrSQ0I2bFR2Dyk5SqMj2Csuz97FQsQ92hvxmGA8A8MnZNvgK/xpY8BAUHdB4PY3Kwr2rovWtEfcw3Pi8CDaIhHJ3iEw7tVuDE/+IFqxR+R1MNgDMp02KDhU92gqgfC7YnwmL2Mxs4ZD3ykj+9xRvx10+izuDGJ6vEnMl5B8d24Pbu25IdqjcMinaEuLzc91i3KlEEJZCBae3b+Gi0wWkmZ3cxFmjVOsOhXq/rOIMy5UFncG/7PX4rkrwdl5xhkQ49bk3xHjFWBcX3BwNA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
- header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
+ smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
+ header.d=ulb.be; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3PfZGqIzobVCCyTDAmKc6tg+Xxk2wlkayJAkqv0bxj4=;
- b=DQoTrRTLwl9OyFMhO0PLiHi58X4g0u046VtRuyB8wV95jBg+mWJ7uP3bNo6FlTpjaddL7SGm5Qg3KaFiu14IoFZ7B7rwB1gNBrEE49NkN7r55mTRmNklpjRWHFlNHJ5vUTEnYBD9cJePZvLSO5YidQCnnWZrRyMj/8VYn2yzQWA=
+ bh=vUTQjjUrm4TDU3o7AlyEVyGKl8Ens0/r/RyKfwFHu10=;
+ b=1c2ZsMh8f2GOum/spdByKQujLFNY1o7ai4tighvO1yJHneXl4SMPc0dZz47ksxqaZ/DYtCDVrqRCLXpxaLqLRlBLh6oNsYD/kXvdpScHwDii2kXOZqJIJMX4lxYBkY/361vC/MT/dxs15LfgNwKeBP+yJ4ddrtcOKYbbWpoDkW0=
 Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=ant.uni-bremen.de;
-Received: from AM6PR04MB6680.eurprd04.prod.outlook.com (2603:10a6:20b:f8::12)
- by AM6PR0402MB3318.eurprd04.prod.outlook.com (2603:10a6:209:9::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.30; Thu, 18 Feb
- 2021 09:12:33 +0000
-Received: from AM6PR04MB6680.eurprd04.prod.outlook.com
- ([fe80::a1ba:a7bf:5bb0:5adb]) by AM6PR04MB6680.eurprd04.prod.outlook.com
- ([fe80::a1ba:a7bf:5bb0:5adb%4]) with mapi id 15.20.3846.038; Thu, 18 Feb 2021
- 09:12:33 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID: <9e13de43-c871-8622-c3b6-d4143fbe7ad6@ant.uni-bremen.de>
-Date: Thu, 18 Feb 2021 10:12:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-Content-Language: en-US
-X-Originating-IP: [77.21.223.96]
-X-ClientProxiedBy: AM0P190CA0013.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:208:190::23) To AM6PR04MB6680.eurprd04.prod.outlook.com
- (2603:10a6:20b:f8::12)
+ header.d=none;lists.ettus.com; dmarc=none action=none header.from=ulb.be;
+Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
+ by AM5P190MB0386.EURP190.PROD.OUTLOOK.COM (2603:10a6:206:1f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.25; Thu, 18 Feb
+ 2021 09:27:02 +0000
+Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ ([fe80::8fd:f689:885a:6afb]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ ([fe80::8fd:f689:885a:6afb%9]) with mapi id 15.20.3846.043; Thu, 18 Feb 2021
+ 09:27:02 +0000
+Date: Thu, 18 Feb 2021 10:27:02 +0100
+To: usrp-users@lists.ettus.com
+Message-ID: <20210218092702.n43u6zpuagkgrazz@barbe>
+Mail-Followup-To: usrp-users@lists.ettus.com
+References: <20210217110602.esxs2qcwdtyzegtn@barbe>
+ <648438d4-77c5-4177-f498-9356c435988f@ettus.com>
+Content-Disposition: inline
+In-Reply-To: <648438d4-77c5-4177-f498-9356c435988f@ettus.com>
+X-Originating-IP: [164.15.78.67]
+X-ClientProxiedBy: AM0PR01CA0175.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:aa::44) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:11e::20)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.24.142.155] (77.21.223.96) by
- AM0P190CA0013.EURP190.PROD.OUTLOOK.COM (2603:10a6:208:190::23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3868.27 via Frontend Transport; Thu, 18 Feb 2021 09:12:33 +0000
+Received: from localhost (164.15.78.67) by
+ AM0PR01CA0175.eurprd01.prod.exchangelabs.com (2603:10a6:208:aa::44) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.27 via Frontend
+ Transport; Thu, 18 Feb 2021 09:27:02 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: dd460bc3-2cbd-4acb-392f-08d8d3ed5362
-X-MS-TrafficTypeDiagnostic: AM6PR0402MB3318:
-X-Microsoft-Antispam-PRVS: <AM6PR0402MB3318562AA4840A298B71D02CA9859@AM6PR0402MB3318.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Office365-Filtering-Correlation-Id: 9fc4f1b7-ef4c-47e2-eb75-08d8d3ef598f
+X-MS-TrafficTypeDiagnostic: AM5P190MB0386:
+X-Microsoft-Antispam-PRVS: <AM5P190MB03861D3B6420452503D317F7F0859@AM5P190MB0386.EURP190.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i6CTbN9IDy0wMkXK1YzwNG9FEQVtRFKntBAO9DIYnCbHZb9WFHU5t+Z/hXVuPdHb0XjU0BNH72DVV1hAkqNnuZBkQ3T6LElEHjbldN8R/YTJrwE2vM1KbLVLLP9ZFS6frc122beVBmMGXegZD4Z1ZRSDgbHn3O0+mupbr95zdf9cHpdEonGOgJCmpMeACAPlIlqnPlZEYWbAjOno0QQ8rlrzJ/6wE1b8m0R4iwtx500lJtUyap7xg4LNvN4Z+D/7QxKmxPC9SOmZe1R78warV3ihKU2PfwFSUQ3RtYfe+1vkS2B14xrnbMEjE/kqUYAp+TWw181vpmfxQiyxUhVfLZbvgeISbLK/fytAkZ+S3gftwHPATQbNRjaIIEjv9b4M9aKKiNWdkOmLmkY3V0c8FlSKe1ywZd7QYJ9d5C0htHni/Te8yF4PNXfVyzLdBptiwHdQO9Q/37LHrLtoRefGPte8Yo4DkZMhO3V/eTtpCmiRWri0AAsIStqQf9bGasELahPkn82bbcC/0oM9HjVNX1GVESopp28DQoj+j0IyDRcwG2d8fxShuHlOuKgAXmIC6If9rIPw9qI/oV1KeJ53n6dHgaEDZi5Hg/10bzFi+8crIgwUuJtJrun9HO5+HbAuoOM9iZ5Lz4Q6GyrrK21ydXGxlbRxdQcdYxru6Upd/Cu+1wchlKidB7EfSdULcYxg4RGmGrhodyTgssmY8RidQ0o9Z7B62tRgPpT0xL4DujE=
+X-Microsoft-Antispam-Message-Info: 3Jy+3a2axDrQQ0qXXbiOqgAQfnvbQL83CUaY7U86SBxZfZrZlF6nJtHreOA2pER3R3pU3ouswJ2+tO/4Y+N1zMasEjSw7yXuXPBKK1Uf6yxlnBE2COaPcuMzDf8tkrb6GTJ9D/H2Y68vC9nRK9USNbfqwuJBYOVchAW3RG4c7e6Dwe7O/qO5uEF0FKmYr3SW0us6mf0/ArIEXyPjaChsfrnrZzeHndiT0GziYyS9RDKOY+foBd+OzaHYI3EqtIDh077fK47Hpw9qlkQhkDSmeMLgHCLvcyz8V/QJH55DGWilGfvcDhvGvXqW4hJi7GptHY/ZfKfDtagT5U0kYNQSW5hwd9L1rSCRL2YNxF9sU3aNF4K3dHPIsv1ASdsrsXKxaszgWI29smWDGzbrbG0cYDdlcyE1s19djgqE2ypDU+112Z0EHVvhEgsOA0sgbj8O+8hqlXB6pmBRx/jlLrHb03/4K/ypEeErRor013Iu39ItWVTY5yCmXvFlK7u5txkLl3TWcRyhwNrrq/LxYfxn+w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM6PR04MB6680.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(346002)(366004)(376002)(396003)(136003)(39830400003)(83380400001)(316002)(16576012)(786003)(66476007)(6916009)(86362001)(26005)(478600001)(8936002)(66946007)(66556008)(2616005)(83080400002)(15974865002)(3480700007)(6486002)(31686004)(8676002)(52116002)(5660300002)(16526019)(956004)(186003)(2906002)(31696002)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(4636009)(7916004)(396003)(366004)(39860400002)(376002)(346002)(136003)(26005)(316002)(6496006)(8936002)(5660300002)(86362001)(53546011)(6916009)(786003)(9686003)(186003)(66946007)(33716001)(6486002)(83380400001)(52116002)(1076003)(956004)(478600001)(8676002)(2906002)(66556008)(66574015)(16526019)(66476007);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?NzRLdDdZelkyRXB6dWRVR2w4STljb1FmcHM3NGYzVm5NdWMvc2NJNGV1bnJ4?=
- =?utf-8?B?ZjA3TDVETjZuRE5jQ0psUzVDSE80Ly9SUXNZN1RDR3BRZ1NzNEY5QjhqL0sw?=
- =?utf-8?B?UGtPcVNCNHY5eWhaREp3YjF0SmdVSGN2aVNDQnFGV3k3d1BRUG0rT3luY1or?=
- =?utf-8?B?T1lOM3pZeFdMUmRqYkFxeHh1UjVKSzVjQklveWkxYldRTFE0WDAxUUU5Q0hi?=
- =?utf-8?B?d0x4TUk3Q25sL3lwZnY2TUFBMW9qQ0dVcDh0OXdjenhIR1VmMm83SFhPZG12?=
- =?utf-8?B?akI1QlBZZVRPNjkrS242WjZpK28zdSs2eXpTSlVQS3NXM3EwaHpWNzMwZXpz?=
- =?utf-8?B?MGFIeE55WlJqY1lINVFtbmV4SEt2UDk5WU9xc1VGSUl5R3VLRWZrYlhZRS9P?=
- =?utf-8?B?dG50c1drOStDRHIzbGZFenJGSnV6VmVkTjZKb2JQWlJBeHhIbjJBV2NEeFZZ?=
- =?utf-8?B?QnBQY1Q3alRreXI4cDJUMTNoaW1mRVAwYUFvRjZnaFdqRjVudDZGR2tYTlhx?=
- =?utf-8?B?aTdIV0hjU3hpc3hIUTZhUE1rbjVoSmUzN3F2UHlocmxMZE0zeHJkcDNGcUow?=
- =?utf-8?B?bEY3aEMvbi9FZ1h1VTM0ZEpRQmtQWG9Dc0hvZldFZDJrWk45M2NpdTc3NEE2?=
- =?utf-8?B?UVQ4dHJveGRHdktGcEZFMGZQMTdlWHNjeDhYVFEzd0lYMjBSWGVGcnNpeWc1?=
- =?utf-8?B?SmM4U29VSEVZdXNIcG5sNUxYQ0d6cmc2cmg2VE56Q1lqa3FMdmpaY0Q5Q1hO?=
- =?utf-8?B?TjFLdEhqbUdxM013S1hMazBqUGF2bllEVjBLc0YvZ21GeFN6SFpNMVpIcEpR?=
- =?utf-8?B?RloxeEJQYlhUNHZFNFMrTm9OSnJ1WUhGNFNBNDNEejlDYW1JR09PelFSRGU0?=
- =?utf-8?B?aUo3cjNFbTNWcG04bHdaWVhvcm52cENqZm1RbHBLdE5aM0dUUGpUQS84V2Uy?=
- =?utf-8?B?eDJzUmtYTjN3a2ZRL1hEODgveDVWM09jWlJVUCtwVjducUc4SHN3VXdXWE1h?=
- =?utf-8?B?d3FTVG5BbXVId2cxT1VCbll0QVJNb0ZMN1p3aXVSbWFZNUtvWmErNUkzdXZ4?=
- =?utf-8?B?UFA0NXhDYnB1S0dnaXRJWWNjVXVlWU5pTm5TeUY2eHpBSElrekNMOGh2ZDRN?=
- =?utf-8?B?SEpiZjdVaUVvM1hiVnRiMVgrWVVxVDRXZ3orNnpGQlgxRGJUS056ZWNBdDdY?=
- =?utf-8?B?ZXNIbXh2anR2Z0FCcEwzZ2xlMmt2ZzUvcjBsaFJUbCtzQUh3VEQ2MWpVQTVk?=
- =?utf-8?B?VzR4MnZuVk80YXMvc2lYVmhqWW1ZN2dlNm1OekltZ3RxOTc0aDBMTWxUL3Na?=
- =?utf-8?B?Mk9oOVNMRVZaWkJrNldWZG9BV1NIc3EwRC85WGl4VGxEQncxVTZTMGk4Z3Qx?=
- =?utf-8?B?ZnplUEEyVlBqcS93ZVM4U0JhdGE1YmRJQnFzbUJvRTAySjF5V20veldVTWZE?=
- =?utf-8?B?RGlqV0Z6NXE0OW5Md2wyT2hGQ3N0UjBXNkJaam1UbkxscXdUakpVK2UrLzRt?=
- =?utf-8?B?VXovbitxcHc5YlpUT1RKa05yWXpWK2QyeHBNN25SUTR3T1V1c3RTdnl3U1Fq?=
- =?utf-8?B?MGJtcHJDSW5nS0RURTZ3akFzVHNqMjUrb0tpNkVFZUdSNUwwa3g5S2t2OUxl?=
- =?utf-8?B?UUlCU2tDQm9qUlptNlRpbEl1Vmk5WnQrdFQ5UHo4azByeEpCUEVGSGZveDBy?=
- =?utf-8?B?VXdEamt3RFJhU3FYVmR4VTVlcjhEempPOWd4KzQ0OTVLVnNHUm1yK0swVVcz?=
- =?utf-8?Q?GBwG9MLDto0lheVfcqEB+eZ2PFzqfHfLwljVors?=
-X-OriginatorOrg: ant.uni-bremen.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd460bc3-2cbd-4acb-392f-08d8d3ed5362
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6680.eurprd04.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?9sRQjHrJyQ6z0WB/9LYkjDDCKpeqUo1zYt9um4pL9I17H4rkFKfCvlqrGT?=
+ =?iso-8859-1?Q?UVAHUJcDg/rOvBWSPUGCenNlHIryN+X6hYpZ7YvB3gF1kpqcKRz1ixuUay?=
+ =?iso-8859-1?Q?X047j1phE2HrlRj2fg4aIyRH5fWaI6zyV7bKYn+7JiUbxzmd9DqyYSzSDv?=
+ =?iso-8859-1?Q?r6zdK57cNdD41zRxNrGfZtCs8SGKRjw+qmayT0IXXInKYbMl9GfQSOkzBC?=
+ =?iso-8859-1?Q?KeQExBV0MEZKnBGeljF46BZFL0G7r1OewXbq2WShS9mQYQv1TFRyqlk6uB?=
+ =?iso-8859-1?Q?hF7uISvE2k+2WdD9u2IZosSdMoHCrq4xuVzoAUa2Dd4OR8DT2ctXJbcaie?=
+ =?iso-8859-1?Q?YAQKDBOhyBy6+jLbbRkLmnz84vd1Esjz/XCM/z4Qm08P8IDhwF997tR4Lc?=
+ =?iso-8859-1?Q?pj0BOFP0d7XCItivdo1Q4DzAS46tCiCyMswfzhx/ATZDMjXMuKnwKYfbfI?=
+ =?iso-8859-1?Q?ZSg6hnLc1uuxTdGoPV958+6fwXmaLpnMdIpry8DhxYJrhYUd6PGYCe0PZd?=
+ =?iso-8859-1?Q?EW/ReMd0iSL1aXHFPjnd6QQQMoktX6VUhW9UcUnY5joU60SguoHdZaXB4X?=
+ =?iso-8859-1?Q?rm6f+64yrrJcydkPags1CeoNyx2ODgTsESWTv44batzmDRqo06NDndKwTv?=
+ =?iso-8859-1?Q?/kB94Zrb2Q50sXoOM2VHw3qC4xUJJZaOpAZML8R/Z+46E13fZSftiuwwg8?=
+ =?iso-8859-1?Q?BapAk9i4HNzvyYXiJa7vb7A6UQcJJhKj1TBdBT+IhElAwfuRbvo+OD4N65?=
+ =?iso-8859-1?Q?hqUH5c5C4LnsDaEARXJAOVC5mn2YFYehDc/Y0KzA3hlGwmX2P12O4fwNgQ?=
+ =?iso-8859-1?Q?BqndG3DyXRh2Ct34oFQf1bICjEKAlxu+RxC67BKV5c64nfLoD2TofkdcJD?=
+ =?iso-8859-1?Q?G3ROWkBK45T2YQ5nPMU5LP4wWsi7u8gw/nhp3Dw6QHfHWqtiZ+ztA8hybm?=
+ =?iso-8859-1?Q?vUY+tF+L4+wdROp0OL/bCWZUO1gDYkjBOzBULFdD6IBDQJULtmHmJvVDrd?=
+ =?iso-8859-1?Q?mvGXhre6G8IgrvhQS1tBEGkKdOVJc+Wkl9IkKQWhHAoRV0rrJ1ToLG4I9p?=
+ =?iso-8859-1?Q?7DHFr7z28CM7eu549Bph2qnYU5nY4Wn6VvMygoF7XfU8l7PmN6kXJMoQj9?=
+ =?iso-8859-1?Q?NyjY4HWVCjFGByUrl7JhErreJkZKl7hyv1Ya/Ycoh51bN2JW7Xh9nSJf5s?=
+ =?iso-8859-1?Q?qi1Xw8lV5jbem33t0TbNumGsTPZotz3zo2zwABjCkU5EmJol6yxtzFuLO8?=
+ =?iso-8859-1?Q?E1g5eF2ynPRPIpiK2/lySLpa463zUnVCQVzIguzqIF4BYVQ3irkULe519e?=
+ =?iso-8859-1?Q?1ydBOFCqT5SrAd6SNt2A+C7RYclcpKzhn2rrmFpKjf7NKIlPQ44YQECc8d?=
+ =?iso-8859-1?Q?c4oAYBJa53?=
+X-OriginatorOrg: ulb.be
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9fc4f1b7-ef4c-47e2-eb75-08d8d3ef598f
+X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2021 09:12:33.3920 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2021 09:27:02.8911 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f018440b-2792-4fa0-b2bd-233acaf88ad2
+X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mahaMUOcnKE/kMQxfTv5EALcjqI+AJugl+bR3EhGs4EPxo4LFgl5F1+me9c4rBmQLt1nZxPHQ5uz1N9p8JGDvg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR0402MB3318
-Subject: [USRP-users] GPSDO fails to lock
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5vy3/0vmIPyQ5mBAYowDonJTqu0oZDjwEmIuoCrXvTdUbbsjDFvCFRea5tT1RHcVwvMBzTcPD0JvlKipouhjLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5P190MB0386
+Subject: Re: [USRP-users] User register on X300 UHD 3.9
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -121,10 +116,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -138,46 +134,52 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi all,
+Hi Marcus,
 
-I have some N310s and a B210 that I try to sync with a GPSDO. All of 
-them recognize their GPSDOs but fail to lock.
+On 17/02/21 18:39, Marcus M=FCller via USRP-users wrote:
+> not that hard: you need an instance of settings_register, which you conne=
+ct to the
+> appropriate settings bus.
 
-My phone can see ~7 Satellites. We have a RPi with a GPS module that 
-locks to GPS in the same hall. We switched antennas but still, we can't 
-sync any of the USRPs to GPS.
+Would you mean 'setting_reg' instead?
+There is no instance of 'settings_register' in the fpga-src/usrp3 tree.
 
-I tried:
+> It's probably easiest if you look through the FPGA code matching your ver=
+sion of UHD
+> (check out the UHD source repository, `git checkout` the tag that corresp=
+onds to the UHD
+> release you're using, and `git submodule update --init` to get the fpga-s=
+rc submodule at
+> the correct state!). Look for existing instances of settings_registers, f=
+or example in the
+> radio cores. Add yours there, picking an unoccupied address, and connect =
+it appropriately.
 
-```
-lib/uhd/utils/query_gpsdo_sensors
-```
-and
-```
-lib/uhd/examples/sync_to_gps
-```
-but even after a day, they always return "GPS does not have lock" and 
-"WARNING:  GPS not locked - time will not be accurate until locked".
-`gpsmon` on the N310s reports 0 Satellites. But it has a list of satellites.
+Yes, that is what I did. I instantiated a setting_reg in my logic and
+attached inputs (set_stb, set_data, etc.) with the ones from the radio.
 
-Since we have several devices in that room that are able to acquire a 
-lock but none of our USRPs with their GPSDOs, I wonder what is going on. 
-Do they need a very strong signal?
+> Then, you'll have to add a setter / getter in C++ UHD. That boils down to=
+ adding a coercer
+> and getter to the property_tree. Copy existing code and modify the read/w=
+rite address
+> appropriately to address your settings_register!
 
-Cheers
-Johannes
+Ok, that is the part that I did not get.
+I tried out with set_user_register but it failed.
+Do you know where I can find documentation
+for adding setter/getter to the "property_tree"?
 
--- 
-Johannes Demel M.Sc.
-Research Engineer
+> Generally, what you want to do sounds ... medium-sensible. What's the pur=
+pose of all this?
+> If it's just to read/write GPIO, there's an API for that :)
 
-University of Bremen
-Department of Communications Engineering
-Faculty 1 - Physics / Electrical Engineering
+The purpose is to be able to change a threshold value in my FPGA logic.
 
-www.uni-bremen.de/en
+Regards
+-- =
 
-University of Bremen - Established 1971
+
+C=E9dric Hannotier
 
 _______________________________________________
 USRP-users mailing list
