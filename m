@@ -2,113 +2,78 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A220431ED34
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Feb 2021 18:24:39 +0100 (CET)
-Received: from [::1] (port=45608 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12B8D31F1EA
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Feb 2021 22:59:42 +0100 (CET)
+Received: from [::1] (port=47642 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lCn2Z-0007Cg-RM; Thu, 18 Feb 2021 12:24:35 -0500
-Received: from mail-eopbgr70124.outbound.protection.outlook.com
- ([40.107.7.124]:56442 helo=EUR04-HE1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Cedric.Hannotier@ulb.be>)
- id 1lCn2V-000784-Ka
- for usrp-users@lists.ettus.com; Thu, 18 Feb 2021 12:24:31 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mg2+wiaclBw7srI05l0/jjl9GsclYz7OpztEKyiFMeJLK7zcdzCAlMmHJ4SJKCXzs6Hrm2Zbcw3Ri482LIcoF7hkjTteuHTinizrRkqIW4QWdH2N2svnWMV10SFv3eW58SN5oFaRZtfF6ee/5cvryIREC3AiTYF5XTI785KwabCWkw5k/RRvH4rkPr4e6EFRxaUHFpkH5Yt4i6TVXAxV5e6nlTSL4GyHF1XMuK4wV+NcEUf6OqgrUNCgWf3iN7nPBWVvP5pWAdCKZR69T6K8AawsU6qwv0vWEPyDTo+EPsUV0sJLsxE348USFpU97lUMQhe4ZzEUtdFhLXXvFvmElA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uH2vdnG7oHGdHVFC4ZaOojJ8FqygWSf19KkcQMuf8EQ=;
- b=CJl6EsKSckUFuxLiNAy6xYBZD/sRKEIsS8tv1QfE1PQP2Wi67cts7VrNkW6nkY7nFV2t+kaZEY+dhAnlkoaI6XLCER7/jYhc989BJGzZKleTvJg7OrRuPl0MSrYBivTWljD4xL+enHpn0ZltexSzS/C2UuL4YjJfRQwSCvC0kTXfYW24r6c7LePWIn9j473+gmYmuTnBkPa6E4awGOedgS2hh9JIuK0mTifX8+WN75dvXmxJmvEZ6dsK0cvlp6z3U4B3VNUdsqgwUmnr8SUDCx6JOMfILqgomIEkCI6FGODbujwPYJy3EUBSWwv61T93EibzbJMoS0z4H793pAa+Eg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uH2vdnG7oHGdHVFC4ZaOojJ8FqygWSf19KkcQMuf8EQ=;
- b=wFlB+RhP+Stt/8Z+badhPzis/CRSpLJpKFVZ2AcC2QZpeaf+NpLd4Ppivx1jfki6S91gd40hbwdefVJ7f06zCGkkj7zhkbnCfRP2tduO5OgaLrLwjUXVLl3jHZkWlpC47JtKt0rJM1FVEmrta+Tp8iOvfRHpe1Dfo5dJ1sFm6B4=
-Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none header.from=ulb.be;
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
- by AM5P190MB0259.EURP190.PROD.OUTLOOK.COM (2603:10a6:206:22::33) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.27; Thu, 18 Feb
- 2021 17:23:49 +0000
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb%9]) with mapi id 15.20.3846.043; Thu, 18 Feb 2021
- 17:23:49 +0000
-Date: Thu, 18 Feb 2021 18:23:48 +0100
+	id 1lCrKk-0007WS-9E; Thu, 18 Feb 2021 16:59:38 -0500
+Received: from sonic309-21.consmr.mail.ne1.yahoo.com ([66.163.184.147]:41815)
+ by mm2.emwd.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
+ (envelope-from <mikerd1@verizon.net>) id 1lCrKg-0007PB-4B
+ for usrp-users@lists.ettus.com; Thu, 18 Feb 2021 16:59:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verizon.net; s=a2048;
+ t=1613685532; bh=RTR77y8iYDC5lMWoyh2colBeBMEZUYepCqZMDyERGb4=;
+ h=Subject:To:References:From:Date:In-Reply-To:From:Subject:Reply-To;
+ b=pDBq+ivd6m4xRWJakdJcR9KGAtikyxbvIzcoayAqzJ7e6umPemdmRQg01O3eUWfzitDieADzVoH+/BzomounGNBIlSEydAx8ovAFzyaUuvwVcfe+wGktLGIVP0Ckowr4MIkpDb2bm9NG1gwTcOtRh8z06sYxi/SGBueH/jQgIdrXRChVOkwjZVdyuJM8z9W4CvZe9ch7kei295FexdG/65+7f5/BVTTzAQhb8SFX11X34UVZTXzG4En4QPprNLTVp9XJYshSr8DChokLBy1Jitc4siCWrip711kI+sQjBlYLu3PXW/6S3VUThEMZNqFzuRkrpiOzzjKt/0Dd60lyMg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1613685532; bh=Iv1BjgfnC6vAWwDmlErXx5lhocGTHc6PVlR8RmvwhNj=;
+ h=X-Sonic-MF:Subject:To:From:Date:From:Subject;
+ b=G+JMl6AZoVI1mXQ8SAZuwZoGObnl1NNWqvK1oLnQA8sbumCv5mLpZqSAR5xxmfvoUqP2QzJ+LQQjGwSUxFldSu/hjgzhUh/NXY0TtYVZb0T+ioW8e0hPdiIM6qP53mK93k3wzY+I9RsUv3GzETfXnr4XG9B2xmsdzPQpg5ej5QU6EcaBRLXWHptFaEl25Lkygg2eRvugYf5ucqGSoFiQuolY+k1RtwilIEfV63d+gwsZqjitpA9niYnvMSnmeRTkOXAIrpJ6xRN/OSntuNdwHz4pz2xVe31SYor7e4UXdZn862HS1JzgBYdn8pkKOBXokCCds8BLmoHhULVArFQ9/Q==
+X-YMail-OSG: KC3pO6cVM1mO4.vflUkjWnorwCazuDfn7KaE9525ePkrInkCTpq5Kp39pXMommv
+ 6WngihxpAUO9g6GEQj79GlqBFdykTl0Kti1eT3QaA15YQbcZWJYcZt6f.OW1z.84.7lk3NdEHE87
+ AWtwY7wkIWNB2TzBj0hSFOCBDrOytWcLrFEAO51N4aqQvrCk2ry4fdW.TPMOomEFjeCO7RRDkBmg
+ SHKi2qvNLaxIBKonzDgR3jFF8e5iB_ncpVyJhIa8Log51GHfHwd1Kj6nsQChNU8obrhp.faptGqa
+ XkyiPg2m1S36GF_6_Def7T9sf3z1k1VN81n.CDnLUYz60vpjYtFqm_Qt1XMyxmS5h4ILHEEgngrP
+ cAyagzqcTxOb0kSfCInrC.7Dcp0beIKjEwv3guSliluHdVQMA0sEDmf8ArT3wx796OJT1L5tld09
+ bl7bXY5yj.Us2D.s7vAyn2qr0.LUogRuQEwqIt1xKUhsZorKtIqCx9CNLgXqBdYuUBB8VuCMl3ql
+ wboyxqa59Z7Sn2Oj1oNQKPQyyUfAhV1Sp1VbSm2ST7gimjwTHhy0Fd4rj0ASmARrpo0wONg0DGvk
+ pC8TOUjbdDwNpSXxZZD1DoFC5k9vXSslYUlKA.nq3Zh_.4hqnkX00dv4JTyQYt7NlA_zFfL_k6Dg
+ SEHaI1YRAhy0c7N35eBlUuGsCwiw68iy2kZ.oEA.xcTd0TAz5CXf2w3ZpdAotuJTeRvaAGognmTL
+ IbyIz19uazIapEtOP8OyRmB1s6p4SwrZSmeCfgnsxwPe_h7CLf6pvVQmWtC3FpZyQEnQVegRJqb7
+ ccHQKjJmr0EiGK1D.CCpSzpcWq8uufGuqJHoTp3GKDoDlud00hmIDaubWZ.cUoSDmAeDcY2Kq.vx
+ OyCWOwaBrEnDtE1Ll_X8n.Q75IZ3vEKaVtw7uZOnZxZXAyrNWxpSBvj.xiJJqlc7RedOf7jUrq09
+ MgDaeylpezyu4eOQMU32Zeut3YWGaUVxSPpTYitB1CLaitYSGB6ZFd.5IxpwEvTJ3YBEzjGskr9_
+ 2rYLFuB17CNyDWWBDGsaOpb9oqUq5BsMKTRcRo9Jzn_5uUhSQlSnkgel7uvI8QBK9XrebXha1mrs
+ quCWy4s19RAWPIZSAwPCcegLe5ZjparZn1yV7Co2NgEj2uo8L9lVbUQzpRdIwOj7bECR79wkqzFM
+ vmS_rI0CgJOxtjzKUbwA1ZOefmVEGCWQdQwP61Qbn3n0c_ctObTTU9lzr4gdK1TtPRKYehIJS7pk
+ 2ujs6dCWPntFH5Za5H25UXa5EwfRUsCBbN6MZLFA1WbDAnkFvQQm4VqZhik5DBB9lMD5O1hO0PBz
+ LrfpddSDnpVTF6M4WTCJ_dDMpMaJWnf9CJJtAgxEWLdU13U2r1aSUcGat.N2_RZvny8_DVr.yfHH
+ GeZo3aqxIffUlpmKeOMk6ux0o3xWQmL_kQutuw6WRDogTEHFr0s9f_xHAAOuAR6MA2WvMYjkxWCO
+ 1mRZiqtViZGTv8Q2mbZSs30Jd53LvbWQuioJmXzH.a2dR1CMKDO8bLaOMViyYqXVOP81VlUStb8O
+ 6_VD2SHYUet8KN6.HXg9zk_V.4uI0miW0oAai27KXbVnSmMbCVGWs86fWs5NBFM.7jHP36YOa4i8
+ KvOfqBLME7tA5FQq5wOkgaGSRumlUP_POI32ql0Bo.S4aUSBviMcBZAz6kJCbCBrcXgfpZfYv.Gt
+ o_5D0ZYT0KifEGNhpIHghAHdbGZ0yxNLhRZhb8dHfI5K9DvaAXFHUhH4xkzPkU5oQn4BENEijf1q
+ WyxRP9nhPXOspVxcV7SZMcH7IbSTM_SeaPPBiUyPnsXYDQPxjqaNZlWJoz4RVKHPqUywdBxTJAY9
+ W0vVXBAsuA1KM4nbheCSERoRjJbC5gaf9jxaMy76.0dEe834ddmsK_svfqawSyUXJnEn.rgK3.YS
+ m3ucCqE2pjDcq_EgqQDusrApKuUnpphql3xfqOJ7bvFyB_JZoIWh5dMEpeVmKA4PcSUI4a8JhJ0q
+ MTWrjEArIJhthrAx3Oo9tvEew8UP2LVRm7ZJBLzRqt5YFuA.qj2I2GBCs1A9vbK2tF2pQNmrMVNz
+ Fyx9yHF7OXkarYpvG2mPIYNBOYm8cTbfFZUJqmLZoKQzPIQl9piGrNuWQkFPdpMfIGhvNHR4Eooy
+ py6eEQ_VcsCl.b9KX2ujfCiPrBxs9rhnNYJWC5wFIza8Hm38xuUqtcQ9FX5DCjl9qW6aokEMp1jq
+ dl9Td6_0Ld0htZ8fHhbtNt89eb7lDvtNVDOuwb1GofWKnZvEE8PDCdL.UYpnkJ6qfqjrjatTyZig
+ CKZrPHP86PO_VDJcvfc5lzwdIp5ffCUbHXBmFoPoKRoELFops8bSWrwn.JkdhE5EZLFl_LY5beNH
+ l8X9rIxbAzhl5yzXwV6kKlUVR9rllXCm.NmneCMJX4592xwLwBVAXneJb2w--
+X-Sonic-MF: <mikerd1@verizon.net>
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic309.consmr.mail.ne1.yahoo.com with HTTP; Thu, 18 Feb 2021 21:58:52 +0000
+Received: by smtp411.mail.bf1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA
+ ID fdbe6cd7e751375365fae6e89dfc7293; 
+ Thu, 18 Feb 2021 21:58:51 +0000 (UTC)
 To: usrp-users@lists.ettus.com
-Message-ID: <20210218172348.5xjhxl3b3g5ptjnd@barbe>
-Mail-Followup-To: usrp-users@lists.ettus.com
-References: <LNXP123MB3724BAB625FE639AF1D8FEBCCA869@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
- <20210217172935.joprwj3f6rwdu3jo@barbe>
- <CAB__hTSncBC=XS1YvCoE1jip2kY607aWC2hrFUOYcPCq4V6+iA@mail.gmail.com>
- <20210218090858.serfuy4u67rmor6c@barbe>
- <CAB__hTRwpakb-Vu+Q98vp9MGUW9NgggV=-AmK+4OWc0rw6zTNg@mail.gmail.com>
-Content-Disposition: inline
-In-Reply-To: <CAB__hTRwpakb-Vu+Q98vp9MGUW9NgggV=-AmK+4OWc0rw6zTNg@mail.gmail.com>
-X-Originating-IP: [164.15.78.67]
-X-ClientProxiedBy: AM0PR01CA0115.eurprd01.prod.exchangelabs.com
- (2603:10a6:208:168::20) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:11e::20)
+References: <898c6ebd-9212-2fb7-af2d-862abdf2a41e.ref@verizon.net>
+ <898c6ebd-9212-2fb7-af2d-862abdf2a41e@verizon.net>
+Message-ID: <87ed1807-3b4e-e4da-4ff0-25294913889a@verizon.net>
+Date: Thu, 18 Feb 2021 16:58:50 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost (164.15.78.67) by
- AM0PR01CA0115.eurprd01.prod.exchangelabs.com (2603:10a6:208:168::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.27 via Frontend
- Transport; Thu, 18 Feb 2021 17:23:48 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c29a1d24-7420-4fe3-23ea-08d8d431f438
-X-MS-TrafficTypeDiagnostic: AM5P190MB0259:
-X-Microsoft-Antispam-PRVS: <AM5P190MB02599FC3817A0A9E97236EB5F0859@AM5P190MB0259.EURP190.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: F7ZVSNXSY1ugu3NJ/3yyRP1wCXmJl95fteh7CDY/geXKhkyj1w/DWzHmVHN4RZRUrpG060dnAO7PzjdjEQY8If+CWIbmQ5TYVl+r3+nYZqg+tdV5JQyKNbLWdMMp5N8wrjcaSSdL0zZ1BlNDtMwAVVka5WLk/qgP4U0qDYC2ahnlEREPlulrXdylzzrw+OprBuZh9KatEQN0IkgVuFpW16BXPabiUa9c5M6ppRk+SgOgKJCtLy40GJB7AM/ysfG9gXyIRdbKNrr8TDtBHPrvglB/L/YtjCa5nde9h9G0L/T2kzd54OjxHlh7WGiE0RCZGxae0Wrg00TLgF+z8W81Brm34beso6Umy1Sq0AS6R/pUhxOfZ/mf02+RSfVW3bP7P65+aKykMHiwPQUGfoaZaAYKFo660nu9qlHVkryOHCFKOO8GwcKYBSLQqUlbtGUW7f2y40GrZXd7nDRcuSlt8Lig3WrVdQwCJWAwY2JOy8qVkKSJvGZKQ0331S65HhJQnHblrt7Pkxq+J+b+D7L/+g==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(7916004)(4636009)(396003)(376002)(346002)(366004)(39860400002)(136003)(8936002)(66946007)(4744005)(6916009)(6486002)(53546011)(26005)(86362001)(33716001)(66476007)(52116002)(6496006)(5660300002)(8676002)(186003)(66556008)(16526019)(83380400001)(1076003)(316002)(786003)(956004)(9686003)(2906002)(478600001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?I+p/SPdyQ27t7mmaB6HO1rCUUxfxnEpnUoJ+vBu0h1wClYTOWLqlFuvJdw?=
- =?iso-8859-1?Q?PRwPtTYK1ep/m990tw4LWTSBtq38Nv+k1ayygVHzlWeA8SWZNsRO8dIYAR?=
- =?iso-8859-1?Q?J8VPSl6cdSAL+dVSqskGM+alD0l7OZeFUr/gV3oEOnbAP8mY93DL3BfY1+?=
- =?iso-8859-1?Q?PxIv1H/eTfzQfwmrInieaHNF9L6bSxGno8ecCg/xDhkx9anumpTN37FDhW?=
- =?iso-8859-1?Q?aC58BFZH+Kcbjx40Mgl8cphX1VdmiXzyWH8qYctrUKSacb7HQXzfN2FExz?=
- =?iso-8859-1?Q?Dl1Ss5S1JZqXQ435CU6YZtjqlq+Y4lUnlUgbt8t0SzCF+wqSn3S8BnuPee?=
- =?iso-8859-1?Q?HF9eWY2v85QcDuQEK7GF2xflloB5BL+bpnOW13fkNaflibp+VlkIkfqYje?=
- =?iso-8859-1?Q?XcQEfonF6k6P/vO5wUghWSBkLxpoJvYwKClpf22YKH8reecCbfEj/U+pw1?=
- =?iso-8859-1?Q?kTprWgVWrslUUtnMJXvRvp+/P8hVsZ5NJaeJ8G2ov6IXS33dbcl1g4Pg6W?=
- =?iso-8859-1?Q?MMd/zKYaYOXIxyxPrTiWh7O4rWgQVZTjufJhwJ2ZKO/We4gi8YUzt3UIkH?=
- =?iso-8859-1?Q?GGC72EqH42+8IbqZ51yyy2ftchvQAP8WI9UopH/KjQBcMj4uG9KgRbOoTw?=
- =?iso-8859-1?Q?zKmgZgu+11gX6u95UgvR0S6al9hn4SazERbpQMkWTf+vhIop4nK58e1dun?=
- =?iso-8859-1?Q?yXhalXwA0EVF2MUrxPQSLvl3k51dmnBGNuudQoRBp/e/L7t6Kl+KTJwfvc?=
- =?iso-8859-1?Q?ntzxqtJ4t43nWHoD6kFAcDQmm1rDyzxuBcBUqLF8HLq4bR2kct9lhE3Bj/?=
- =?iso-8859-1?Q?aGlGknp04MJxLHVLO9kbmp1rBORfFPKwABSwibWWlb+WFLlwGsmflbpfKh?=
- =?iso-8859-1?Q?rWxyQUj1a5hPzGSQ5LVgMiQszXceHx7Gnut2ERrEPdo0HBsiTlurmAO7bL?=
- =?iso-8859-1?Q?7faqGWcCJgTMqH6/POke0S45yyus749+Jtt4nfMkQ5XjY7Hrc++Vbg+OVg?=
- =?iso-8859-1?Q?zGGTcomQU96D2sAD9MjyDe27W3iTJgxmLydDVvvhlNmH/g3cIwJElne8Mm?=
- =?iso-8859-1?Q?mJxlAu9jU4yymx/AecmzjhI9InHpV/yaYcorESFOSz9owq3WLX2ytuUlWP?=
- =?iso-8859-1?Q?wk2pAFy+Ryj+DlOQXxJ5xzqQ9wBLKCEgASVVjhdw+JAF2mW8dkwXvk2qN8?=
- =?iso-8859-1?Q?3tQLHNxlf87pvURDsUfyPB7LFWpHSsUao0y8ohzlMYE0j7VazjdSPIrkWS?=
- =?iso-8859-1?Q?Jt9cN0HGQsJa+j4WueUhfy9D5R+Eqqwf6foVNznAj6xutCwaLSvk/ku/vz?=
- =?iso-8859-1?Q?NsXm82U2W+zQ+5iGcDy3alCyGsAumJ5SHP9tiqecEenO/bKVI5vo0wPXTO?=
- =?iso-8859-1?Q?xRJiXl2rSG?=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: c29a1d24-7420-4fe3-23ea-08d8d431f438
-X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2021 17:23:49.4774 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AeHCIp8sMvAFs+JnWfQcMufZKkCi99F2QQ8/3TETTDXNtHoDSvjd0hTzQkQMjrLt1rhJ5x4LTE5IJaREjXdKDQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5P190MB0259
-Subject: Re: [USRP-users] OTT Gain Block stopping samples flowing from RFNoC
- Digital Down Converter
+In-Reply-To: <898c6ebd-9212-2fb7-af2d-862abdf2a41e@verizon.net>
+Content-Language: en-US
+X-Mailer: WebService/1.1.17712
+ mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.aol
+ Apache-HttpAsyncClient/4.1.4 (Java/11.0.9.1)
+Subject: Re: [USRP-users] gr-ettus cmake fail
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -120,11 +85,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Mike via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mike <mikerd1@verizon.net>
+Content-Type: multipart/mixed; boundary="===============0638202472324316992=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -138,24 +101,219 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Rob,
+This is a multi-part message in MIME format.
+--===============0638202472324316992==
+Content-Type: multipart/alternative;
+ boundary="------------446FBD9E8009175664DD6BB7"
+Content-Language: en-US
+Content-Length: 8770
 
-On 18/02/21 10:57, Rob Kossler via USRP-users wrote:
-> Following our previous discussion on the topic of building the controllers
-> in-tree or out-of-tree, I was able to successfully build my controllers
-> out-of-tree and they seem to work fine (with my custom application).
+This is a multi-part message in MIME format.
+--------------446FBD9E8009175664DD6BB7
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-OOT blocks with OOT controllers were able to forward issue_stream_command a=
-ction?
-Do you know what you have done differently from our previous discussion?
+Here is some additional information on this problem. Bottom line: Has 
+anyone cross-compiled gr-ettus for E310 using UHD4.0 and gnuradio 3.8 on 
+either Ubuntu 18.04 or 20.04?
 
-Regards
--- =
+This cmake error occurs with both Ubuntu 20.04 and 18.04.  It appears to 
+be an issue with UHD4.0 configurations.  I've been able to cross-compile 
+gr-ettus when using UHD3.15.
+
+The CMake error is as follows:
+
+CMake Error at 
+/home/mike/prefix/gr38/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 
+(add_custom_command): Error evaluating generator expression: 
+$<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES> 
+Target "gnuradio::runtime_swig" not found. Call Stack (most recent call 
+first): 
+/home/mike/prefix/gr38/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 
+(SWIG_ADD_SOURCE_TO_MODULE) 
+/home/mike/prefix/gr38/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 
+(swig_add_library) swig/CMakeLists.txt:58 (GR_SWIG_MAKE)
+
+I've added export 
+PYTHONPATH=/home/mike/prefix/gr38/oe/sysroots/x86_64-oesdk-linux/usr/lib/python3.7/site-packages/ 
+to the environment sourcing file for the cross compiler. But I wonder if 
+there is still some issue between python2 and python3 for building these 
+files. UHD4.0 and gnuradio3.8 cross-compiles just fine. It's just 
+gr-ettus that is having problems.
+
+Any help would be appreciated.
+
+Thanks,
+
+Mike
+
+On 2/14/21 9:56 PM, Mike via USRP-users wrote:
+> All,
+> I recently upgraded to Ubuntu 20.04 and am having a problem with cross 
+> compiling gr-ettus.
+> I have successfully done the following:
+> 1. Install UHD on  host (using both gitbranch master and UHD-4.0)
+> 2. Install GNU Radio on host (gitbranch maint-3.8)
+> 3.  Install gr-ettus on host (gitbranch master)
+> 4. Downloaded SDK for UHD4.0.0 (and associated SD image for E310)
+> 5.  Cross compiled UHD
+> 6.  Cross compiled GNU Radio
+> Attempting to cross compile gr-ettus is the point where cmake of 
+> gr-ettus failed.
+> I executed the following command:  (similar to other cross compile 
+> commands)
+> cmake 
+> -DCMAKE_TOOLCHAIN_FILE=~/prefix/gr38/src/gnuradio/cmake/Toolchains/oe-sdk_cross.cmake 
+> -DCMAKE_INSTALL_PREFIX=/usr ..
+> The CMakeError.log first line is this:
+> Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the 
+> following output:
+> And then seems to indicate that it can't compile a test program that 
+> uses pthread_create().  This seems something like test for pthread and 
+> pthreads.  I think pthread passed and pthreads failed.
+> The log file showed that the last test was for pthread (as indicated 
+> by -lpthread on the gcc command)
+> The error file had -lpthreads on the gcc command
+> Is this something that needs to be disabled or is there something else 
+> wrong with my configuration.  The host installation appears to be 
+> working nominally.
+> Thank you for your assistance and if this has already been discussed 
+> somewhere please accept my apologies and point me to the prior 
+> discussion.
+>
+> Thanks,
+>
+> Mike
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--------------446FBD9E8009175664DD6BB7
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Here is some additional information on this problem.  Bottom line:  Has anyone cross-compiled gr-ettus for E310 using UHD4.0 and gnuradio 3.8 on either Ubuntu 18.04 or 20.04?
+</p>
+    <p>This cmake error occurs with both Ubuntu 20.04 and 18.04.  It appears to be an issue with UHD4.0 configurations.  I've been able to cross-compile gr-ettus when using UHD3.15.  
+</p>
+    <p>The CMake error is as follows:
+</p>
+    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">CMake Error at /home/mike/prefix/gr38/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 (add_custom_command):
+  Error evaluating generator expression:
+
+    $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;
+
+  Target "gnuradio::runtime_swig" not found.
+Call Stack (most recent call first):
+  /home/mike/prefix/gr38/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)
+  /home/mike/prefix/gr38/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 (swig_add_library)
+  swig/CMakeLists.txt:58 (GR_SWIG_MAKE)</p>
+    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
+</p>
+    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">I've added export PYTHONPATH=/home/mike/prefix/gr38/oe/sysroots/x86_64-oesdk-linux/usr/lib/python3.7/site-packages/
+to the environment sourcing file for the cross compiler.  But I wonder if there is still some issue between python2 and python3 for building these files.  UHD4.0 and gnuradio3.8 cross-compiles just fine.  It's just gr-ettus that is having problems.</p>
+    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
+</p>
+    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Any help would be appreciated.</p>
+    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Thanks,</p>
+    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Mike
+</p>
+    <p><style type="text/css">
+p, li { white-space: pre-wrap; }</style></p>
+    <div class="moz-cite-prefix">On 2/14/21 9:56 PM, Mike via USRP-users
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:898c6ebd-9212-2fb7-af2d-862abdf2a41e@verizon.net">All,
+      <br>
+      I recently upgraded to Ubuntu 20.04 and am having a problem with
+      cross compiling gr-ettus.
+      <br>
+      I have successfully done the following:
+      <br>
+      1. Install UHD on  host (using both gitbranch master and UHD-4.0)
+      <br>
+      2. Install GNU Radio on host (gitbranch maint-3.8)
+      <br>
+      3.  Install gr-ettus on host (gitbranch master)
+      <br>
+      4. Downloaded SDK for UHD4.0.0 (and associated SD image for E310)
+      <br>
+      5.  Cross compiled UHD
+      <br>
+      6.  Cross compiled GNU Radio
+      <br>
+      Attempting to cross compile gr-ettus is the point where cmake of
+      gr-ettus failed.
+      <br>
+      I executed the following command:  (similar to other cross compile
+      commands)
+      <br>
+      cmake
+-DCMAKE_TOOLCHAIN_FILE=~/prefix/gr38/src/gnuradio/cmake/Toolchains/oe-sdk_cross.cmake
+      -DCMAKE_INSTALL_PREFIX=/usr ..
+      <br>
+      The CMakeError.log first line is this:
+      <br>
+      Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with
+      the following output:
+      <br>
+      And then seems to indicate that it can't compile a test program
+      that uses pthread_create().  This seems something like test for
+      pthread and pthreads.  I think pthread passed and pthreads failed.
+      <br>
+      The log file showed that the last test was for pthread (as
+      indicated by -lpthread on the gcc command)
+      <br>
+      The error file had -lpthreads on the gcc command
+      <br>
+      Is this something that needs to be disabled or is there something
+      else wrong with my configuration.  The host installation appears
+      to be working nominally.
+      <br>
+      Thank you for your assistance and if this has already been
+      discussed somewhere please accept my apologies and point me to the
+      prior discussion.
+      <br>
+      <br>
+      Thanks,
+      <br>
+      <br>
+      Mike
+      <br>
+      <br>
+      _______________________________________________
+      <br>
+      USRP-users mailing list
+      <br>
+      <a class="moz-txt-link-abbreviated" href="mailto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a>
+      <br>
+      <a class="moz-txt-link-freetext" href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a>
+      <br>
+    </blockquote>
+  </body>
+</html>
+
+--------------446FBD9E8009175664DD6BB7--
 
 
-C=E9dric Hannotier
+--===============0638202472324316992==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0638202472324316992==--
+
