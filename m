@@ -2,111 +2,114 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCCDD31E7C3
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Feb 2021 10:09:58 +0100 (CET)
-Received: from [::1] (port=41818 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D74031E7C6
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Feb 2021 10:13:21 +0100 (CET)
+Received: from [::1] (port=41850 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lCfJj-0001LL-3q; Thu, 18 Feb 2021 04:09:47 -0500
-Received: from mail-am6eur05on2102.outbound.protection.outlook.com
- ([40.107.22.102]:60128 helo=EUR05-AM6-obe.outbound.protection.outlook.com)
+	id 1lCfN9-0001gC-4t; Thu, 18 Feb 2021 04:13:19 -0500
+Received: from mail-am6eur05on2105.outbound.protection.outlook.com
+ ([40.107.22.105]:29313 helo=EUR05-AM6-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Cedric.Hannotier@ulb.be>)
- id 1lCfJe-0001GO-UP
- for usrp-users@lists.ettus.com; Thu, 18 Feb 2021 04:09:43 -0500
+ (Exim 4.93) (envelope-from <demel@ant.uni-bremen.de>)
+ id 1lCfN5-0001Yp-AZ
+ for usrp-users@lists.ettus.com; Thu, 18 Feb 2021 04:13:15 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ozie9+LUfaJDVREf0Is+ykiuLhMaBwOdAfw7LNFRUSMQFDjS0SdHOt5KeOkJhxmGH/0p4Lg1kTTmGCj0wJ+2G+YWXTfLjHPh9Nh4rjd/jMzBQkwUXPFUvvDsw93zRdPDl01YO7z7gzI1PgdCTxtUkLLFJxN63Jg6jUPx2O6i8by5yoWEy5gb95OvA0nVKljnEiuY5id8lVNr3Dl/9HqEdw+xNUUxislbSIaZ0tpzxYDMgT81hqKQk8lxuEVdDGalOIzMXFL/BqO8JKxuR8lkxB2GocGbgUXpRTggtyvVjY9uOtdx1N1Qzm2Avp4+dUslNDfCjAnxKbq3+akthZ556w==
+ b=gFe5YBqxW3RRkf/6L9LYBrmohPpW6pZy0LS/31P/5ytC49S4gmVrRZNlnwjxJaBisz2SCUk3umK8x4Ba94aLjoVho3gi12j0oO/naDAb2IWsVYAq129S7gmGlu8xnmjmHUunZK2ogT9k+XhaQAfw2zxlM775bkEphN/94msPvasBBjzo5fMKq0iSO1v7wIDOqap/zfd0m6FIgVuGQJVknoNewxednChQ/IvqAL2k38CW4rSnL24vs9UTIK3zUs0Z0IxHGn4HVQSY3i/Jprg0sYybaoV8xw3XRtKRbcsZudEoD8JMbQms4TUTN2CmN2d/vKEw4AsL1jPa11vRE1SxsQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y9tgesiIBOBUhokxgAIoPU3pbdk1SFY3hemyFT8y214=;
- b=JMEdrl5HVxTrHfX+07okHywihN47ndJv7Py2/53bBf/yVotanVETAg9YkuVYuyvUfBoXf3rBUYv47BItvNcjKlF16gIoNsK0NZ3mR/xWYGlDqdchnKsHlym8b8czIqQZN0iHX94HaFyeP0FHX0NtURohmQlZkz4e8I7IkESycw+bh10Ljm/VFmHMsaqaLBskiXYY9D1ulFjkiPFKMu2POkaeDywve3BjqQhNi9M1eVsL+UaMZESJAxWUDMh/3/MCEcyFyqe30XKxCeXt4Zhj5o3d3TB6GgCiBJbYuWg2XBlL69Ay2sRziPNemPpew4cT5RnlaXCYcqvR7/3cmVDm0g==
+ bh=3PfZGqIzobVCCyTDAmKc6tg+Xxk2wlkayJAkqv0bxj4=;
+ b=UwxrR/MHvSZbeT8e4Y1GUsQhx6Ma/P9WGQQ4KR6MlQaNVS79Y3snbTt+B2iq5BINGhHLRG2TdbTVzz3Dbh2BPtAZ53CN0BNxiTwkXF2jw7HHB1dOBkEi9pxASi4lRZxEtGaM9dwZauz9Q/B5D8yecj8PndKxkptYEUgCPo0VjQu2/MvjYxMqSWFAqtSrjRjPY+wn2qvNv0jqIWzSYlIi3OGX5VEUuB0Hgxn4Gd69LtzFiBucnkgpsQIbIxMcGSUB3NI+1RS3q0vtp+EIhNJUX4o+aYBPB/K3TSp38lsAaqxaY3DPe4dgMJk/bAyH7uqSLtHoty1g1XoLMUj0YXWHvA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
+ smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
+ header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y9tgesiIBOBUhokxgAIoPU3pbdk1SFY3hemyFT8y214=;
- b=w1d1Qa7Pr7A7MtdJ9TosJ4SYck45anSP3Rj56YIYrpaGPTrPiQRiCCO59cqj7BzZaJg17HhNlOxFrcX1ecbHMvwVOjTdAJ4UYBcAc91mNC5MCVyliX1qVZy1U42gHktqKrhU6/ibNNfcgx/8hWP43uKzq7b92yob0MdzVH9IRiI=
+ bh=3PfZGqIzobVCCyTDAmKc6tg+Xxk2wlkayJAkqv0bxj4=;
+ b=DQoTrRTLwl9OyFMhO0PLiHi58X4g0u046VtRuyB8wV95jBg+mWJ7uP3bNo6FlTpjaddL7SGm5Qg3KaFiu14IoFZ7B7rwB1gNBrEE49NkN7r55mTRmNklpjRWHFlNHJ5vUTEnYBD9cJePZvLSO5YidQCnnWZrRyMj/8VYn2yzQWA=
 Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none header.from=ulb.be;
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
- by AM7P190MB0696.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:114::22)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=ant.uni-bremen.de;
+Received: from AM6PR04MB6680.eurprd04.prod.outlook.com (2603:10a6:20b:f8::12)
+ by AM6PR0402MB3318.eurprd04.prod.outlook.com (2603:10a6:209:9::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.27; Thu, 18 Feb
- 2021 09:09:00 +0000
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb%9]) with mapi id 15.20.3846.043; Thu, 18 Feb 2021
- 09:09:00 +0000
-Date: Thu, 18 Feb 2021 10:08:58 +0100
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <20210218090858.serfuy4u67rmor6c@barbe>
-Mail-Followup-To: usrp-users <usrp-users@lists.ettus.com>
-References: <LNXP123MB3724BAB625FE639AF1D8FEBCCA869@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
- <20210217172935.joprwj3f6rwdu3jo@barbe>
- <CAB__hTSncBC=XS1YvCoE1jip2kY607aWC2hrFUOYcPCq4V6+iA@mail.gmail.com>
-Content-Disposition: inline
-In-Reply-To: <CAB__hTSncBC=XS1YvCoE1jip2kY607aWC2hrFUOYcPCq4V6+iA@mail.gmail.com>
-X-Originating-IP: [164.15.78.67]
-X-ClientProxiedBy: AM0PR01CA0081.eurprd01.prod.exchangelabs.com
- (2603:10a6:208:10e::22) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:11e::20)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.30; Thu, 18 Feb
+ 2021 09:12:33 +0000
+Received: from AM6PR04MB6680.eurprd04.prod.outlook.com
+ ([fe80::a1ba:a7bf:5bb0:5adb]) by AM6PR04MB6680.eurprd04.prod.outlook.com
+ ([fe80::a1ba:a7bf:5bb0:5adb%4]) with mapi id 15.20.3846.038; Thu, 18 Feb 2021
+ 09:12:33 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <9e13de43-c871-8622-c3b6-d4143fbe7ad6@ant.uni-bremen.de>
+Date: Thu, 18 Feb 2021 10:12:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+Content-Language: en-US
+X-Originating-IP: [77.21.223.96]
+X-ClientProxiedBy: AM0P190CA0013.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:208:190::23) To AM6PR04MB6680.eurprd04.prod.outlook.com
+ (2603:10a6:20b:f8::12)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost (164.15.78.67) by
- AM0PR01CA0081.eurprd01.prod.exchangelabs.com (2603:10a6:208:10e::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.27 via Frontend
- Transport; Thu, 18 Feb 2021 09:09:00 +0000
+Received: from [172.24.142.155] (77.21.223.96) by
+ AM0P190CA0013.EURP190.PROD.OUTLOOK.COM (2603:10a6:208:190::23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3868.27 via Frontend Transport; Thu, 18 Feb 2021 09:12:33 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4ff4a573-131e-41c9-ca16-08d8d3ecd458
-X-MS-TrafficTypeDiagnostic: AM7P190MB0696:
-X-Microsoft-Antispam-PRVS: <AM7P190MB069646A40972BDE8F6C98FDAF0859@AM7P190MB0696.EURP190.PROD.OUTLOOK.COM>
+X-MS-Office365-Filtering-Correlation-Id: dd460bc3-2cbd-4acb-392f-08d8d3ed5362
+X-MS-TrafficTypeDiagnostic: AM6PR0402MB3318:
+X-Microsoft-Antispam-PRVS: <AM6PR0402MB3318562AA4840A298B71D02CA9859@AM6PR0402MB3318.eurprd04.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8ClLMlbWyGzoZDyN/uDMk4QJXLByyInqsc+kOFByEK07kDt23fEU5zaaLGnMBclgwNIUK4MXX0WWKY+LRV3js7czUlv8mGf9MG7SmGJJJ5m9A8M2LkCdduh5Fk29Iz4upiNSg1ZbNInZjsVXqjhmo7vermDTVpy5pBc4XyZtE05mrx4npvVWcmsU0dd3LgYz36/ErsPi9jnG3pf6kyDPLMvHvcnO4xy4EY9SdsBDyhyV1L3pHoOHHPVcAGjPAkN0NZSatQVhCnXrKO9IimkXLFa0ErCUBYMVJ5EIhMWp4wQMR2Ei7HxbHEqDM1+an6kxIZVlc5SVBrCh9uKLrUHsFvJslPV8Jfi7yOeXxsxvqY9XkeJeLr8DxLBeo2aE0TGcNJ2t5zqPKPFPyW/vCXQT+M/9vmbFl1Y0A7wUFYjOtKK4IDLH8/tycB2sJs7DqrADUuWtNxEmVY4FMdWqLr0RSM1qFXJrC4imCVSUCe6oH+qD4p/5mMfAUUQiWCr+lxuTWTV5RGrd8VGtZgpFFZ0nMiRwHl6DAMym6hKa5zQpdX8I4bww0mq1cfUHs/swQCNlAXRhHpmMA7HrCvWyj4P+QlP3tUC/U/i+epBw1+HLT44=
+X-Microsoft-Antispam-Message-Info: i6CTbN9IDy0wMkXK1YzwNG9FEQVtRFKntBAO9DIYnCbHZb9WFHU5t+Z/hXVuPdHb0XjU0BNH72DVV1hAkqNnuZBkQ3T6LElEHjbldN8R/YTJrwE2vM1KbLVLLP9ZFS6frc122beVBmMGXegZD4Z1ZRSDgbHn3O0+mupbr95zdf9cHpdEonGOgJCmpMeACAPlIlqnPlZEYWbAjOno0QQ8rlrzJ/6wE1b8m0R4iwtx500lJtUyap7xg4LNvN4Z+D/7QxKmxPC9SOmZe1R78warV3ihKU2PfwFSUQ3RtYfe+1vkS2B14xrnbMEjE/kqUYAp+TWw181vpmfxQiyxUhVfLZbvgeISbLK/fytAkZ+S3gftwHPATQbNRjaIIEjv9b4M9aKKiNWdkOmLmkY3V0c8FlSKe1ywZd7QYJ9d5C0htHni/Te8yF4PNXfVyzLdBptiwHdQO9Q/37LHrLtoRefGPte8Yo4DkZMhO3V/eTtpCmiRWri0AAsIStqQf9bGasELahPkn82bbcC/0oM9HjVNX1GVESopp28DQoj+j0IyDRcwG2d8fxShuHlOuKgAXmIC6If9rIPw9qI/oV1KeJ53n6dHgaEDZi5Hg/10bzFi+8crIgwUuJtJrun9HO5+HbAuoOM9iZ5Lz4Q6GyrrK21ydXGxlbRxdQcdYxru6Upd/Cu+1wchlKidB7EfSdULcYxg4RGmGrhodyTgssmY8RidQ0o9Z7B62tRgPpT0xL4DujE=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(7916004)(4636009)(346002)(366004)(376002)(396003)(136003)(39860400002)(4744005)(956004)(6496006)(1076003)(786003)(52116002)(5660300002)(316002)(53546011)(6486002)(66946007)(66556008)(26005)(16526019)(966005)(186003)(66476007)(33716001)(2906002)(9686003)(6916009)(86362001)(478600001)(83380400001)(8936002)(8676002);
+ IPV:NLI; SFV:NSPM; H:AM6PR04MB6680.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(346002)(366004)(376002)(396003)(136003)(39830400003)(83380400001)(316002)(16576012)(786003)(66476007)(6916009)(86362001)(26005)(478600001)(8936002)(66946007)(66556008)(2616005)(83080400002)(15974865002)(3480700007)(6486002)(31686004)(8676002)(52116002)(5660300002)(16526019)(956004)(186003)(2906002)(31696002)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?79GSDa670i4tMW0NBqf9EUrLfkQXI+nW537pWYrJoXN68mjZmLP8pS6QwL?=
- =?iso-8859-1?Q?n38aub4rZAIC/n7OfIhtmKq0zyZOg3p90ZqJfjC9kSmiHX2s7LdnYym65T?=
- =?iso-8859-1?Q?u36dntV+tpKZCqEiX3cYq+dTOTAuC/bKQGYzBDx5kq2h0Rx2nhfBt9nkE2?=
- =?iso-8859-1?Q?Nxpuk7uVTYBQBfe3qB3GXKRyzZE4Pp8hBFSz/HbjU09NUub+TA8tXjYe7j?=
- =?iso-8859-1?Q?LIBumTzGEbLVOF1tRsMcs5zXYkZQX+EzLaOUBOx0MnBTyuMOD2C/GooWxS?=
- =?iso-8859-1?Q?OhUOez49PCI53pWBmFyGiQLpWymy5SZt27sgG6LKM9YN+Lqmyj6rFzv+4h?=
- =?iso-8859-1?Q?E9z/imwiN5eBTLqMeeoM+1GOK8Sq2saXo8md8kuZ3YmESpGUhhT5309a1Y?=
- =?iso-8859-1?Q?tWuCBIlKneBvd6pWtmlHb47oSPAs0A9tftzuvXSgNZun9k7DWJgn+wx7nu?=
- =?iso-8859-1?Q?6+oc1jMnbzRYngY17+da+khMOhLOTwDV5CGyTQjDfTc5NVo49PjEEVy8eD?=
- =?iso-8859-1?Q?mYKyTC8N7ntoQf9iA+tFACt3xHQVEbKoPTOoktU7vM2n1tDxjtI6S7OspS?=
- =?iso-8859-1?Q?RTrVj7LQ6MzhXOH2CzlupGlHMnfTfXtK18XlCuJZk0EaCQqSnW605nOYJ7?=
- =?iso-8859-1?Q?G5OOed4/76vdfP/2F+Mwv5PapMybpMzvfFBZdmPM+EZaUDsc3Dp32M8QL9?=
- =?iso-8859-1?Q?mu/0+dRXaZoA05AGue5n+aVsWvw4ODJp8P61V/JHMowSJskUjGUe9UV9eD?=
- =?iso-8859-1?Q?mIq1QYcYwdIVwdcRuUb82xccyHSBY4clgQdmY4MfG3T3F8E9YkSm8EMyyw?=
- =?iso-8859-1?Q?D1mlV5WVYcXeabvA20B2/YlmGiMLJCYENFN6xtbwPuX3bIEV1akti6LjyE?=
- =?iso-8859-1?Q?t0AjYO1LJgAPm01eg8APAn0ud+Nc64MCgkni59HbDeUpc7w0Pvs+dZgPee?=
- =?iso-8859-1?Q?7YXCHS7Tqs9sQtF4E7hoD6SDGqeE19hLIwIDnTsSB6yB6Awb6KDiKKX8Vk?=
- =?iso-8859-1?Q?hEJ9soI+IZAllTqIoWayZw/tMT906nBtTRS9os/5pRJpT6TA35B4dwDMtd?=
- =?iso-8859-1?Q?QSAnpwSGnUxnZIFKOL/1Bt6j84T/u68dnqbkjYa+7VF3xyhf1vLFGMAir1?=
- =?iso-8859-1?Q?NzbmGEYV3VHGsB8dhjsTF1/0RtfKn1jPOBmmYGkn9/wUYGBtTAbuHQ7Tl/?=
- =?iso-8859-1?Q?6wQk6lG21mDasdTEEoCONRiEZZ8cAxKf55H0MX1+ci1PnYGKtWLQ7q751H?=
- =?iso-8859-1?Q?fV51Svkmz84LpmybCI1UQf2nzJDW3nmk7RhQ+7nDgo4aQVb0FWJYz691ov?=
- =?iso-8859-1?Q?QgCeiUUE84z6IXYmVTBy82RBvmwfGOGI/lWPUbJ6XxmjtdeR8CdmoBEw7K?=
- =?iso-8859-1?Q?9HGm/IpYYB?=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ff4a573-131e-41c9-ca16-08d8d3ecd458
-X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?NzRLdDdZelkyRXB6dWRVR2w4STljb1FmcHM3NGYzVm5NdWMvc2NJNGV1bnJ4?=
+ =?utf-8?B?ZjA3TDVETjZuRE5jQ0psUzVDSE80Ly9SUXNZN1RDR3BRZ1NzNEY5QjhqL0sw?=
+ =?utf-8?B?UGtPcVNCNHY5eWhaREp3YjF0SmdVSGN2aVNDQnFGV3k3d1BRUG0rT3luY1or?=
+ =?utf-8?B?T1lOM3pZeFdMUmRqYkFxeHh1UjVKSzVjQklveWkxYldRTFE0WDAxUUU5Q0hi?=
+ =?utf-8?B?d0x4TUk3Q25sL3lwZnY2TUFBMW9qQ0dVcDh0OXdjenhIR1VmMm83SFhPZG12?=
+ =?utf-8?B?akI1QlBZZVRPNjkrS242WjZpK28zdSs2eXpTSlVQS3NXM3EwaHpWNzMwZXpz?=
+ =?utf-8?B?MGFIeE55WlJqY1lINVFtbmV4SEt2UDk5WU9xc1VGSUl5R3VLRWZrYlhZRS9P?=
+ =?utf-8?B?dG50c1drOStDRHIzbGZFenJGSnV6VmVkTjZKb2JQWlJBeHhIbjJBV2NEeFZZ?=
+ =?utf-8?B?QnBQY1Q3alRreXI4cDJUMTNoaW1mRVAwYUFvRjZnaFdqRjVudDZGR2tYTlhx?=
+ =?utf-8?B?aTdIV0hjU3hpc3hIUTZhUE1rbjVoSmUzN3F2UHlocmxMZE0zeHJkcDNGcUow?=
+ =?utf-8?B?bEY3aEMvbi9FZ1h1VTM0ZEpRQmtQWG9Dc0hvZldFZDJrWk45M2NpdTc3NEE2?=
+ =?utf-8?B?UVQ4dHJveGRHdktGcEZFMGZQMTdlWHNjeDhYVFEzd0lYMjBSWGVGcnNpeWc1?=
+ =?utf-8?B?SmM4U29VSEVZdXNIcG5sNUxYQ0d6cmc2cmg2VE56Q1lqa3FMdmpaY0Q5Q1hO?=
+ =?utf-8?B?TjFLdEhqbUdxM013S1hMazBqUGF2bllEVjBLc0YvZ21GeFN6SFpNMVpIcEpR?=
+ =?utf-8?B?RloxeEJQYlhUNHZFNFMrTm9OSnJ1WUhGNFNBNDNEejlDYW1JR09PelFSRGU0?=
+ =?utf-8?B?aUo3cjNFbTNWcG04bHdaWVhvcm52cENqZm1RbHBLdE5aM0dUUGpUQS84V2Uy?=
+ =?utf-8?B?eDJzUmtYTjN3a2ZRL1hEODgveDVWM09jWlJVUCtwVjducUc4SHN3VXdXWE1h?=
+ =?utf-8?B?d3FTVG5BbXVId2cxT1VCbll0QVJNb0ZMN1p3aXVSbWFZNUtvWmErNUkzdXZ4?=
+ =?utf-8?B?UFA0NXhDYnB1S0dnaXRJWWNjVXVlWU5pTm5TeUY2eHpBSElrekNMOGh2ZDRN?=
+ =?utf-8?B?SEpiZjdVaUVvM1hiVnRiMVgrWVVxVDRXZ3orNnpGQlgxRGJUS056ZWNBdDdY?=
+ =?utf-8?B?ZXNIbXh2anR2Z0FCcEwzZ2xlMmt2ZzUvcjBsaFJUbCtzQUh3VEQ2MWpVQTVk?=
+ =?utf-8?B?VzR4MnZuVk80YXMvc2lYVmhqWW1ZN2dlNm1OekltZ3RxOTc0aDBMTWxUL3Na?=
+ =?utf-8?B?Mk9oOVNMRVZaWkJrNldWZG9BV1NIc3EwRC85WGl4VGxEQncxVTZTMGk4Z3Qx?=
+ =?utf-8?B?ZnplUEEyVlBqcS93ZVM4U0JhdGE1YmRJQnFzbUJvRTAySjF5V20veldVTWZE?=
+ =?utf-8?B?RGlqV0Z6NXE0OW5Md2wyT2hGQ3N0UjBXNkJaam1UbkxscXdUakpVK2UrLzRt?=
+ =?utf-8?B?VXovbitxcHc5YlpUT1RKa05yWXpWK2QyeHBNN25SUTR3T1V1c3RTdnl3U1Fq?=
+ =?utf-8?B?MGJtcHJDSW5nS0RURTZ3akFzVHNqMjUrb0tpNkVFZUdSNUwwa3g5S2t2OUxl?=
+ =?utf-8?B?UUlCU2tDQm9qUlptNlRpbEl1Vmk5WnQrdFQ5UHo4azByeEpCUEVGSGZveDBy?=
+ =?utf-8?B?VXdEamt3RFJhU3FYVmR4VTVlcjhEempPOWd4KzQ0OTVLVnNHUm1yK0swVVcz?=
+ =?utf-8?Q?GBwG9MLDto0lheVfcqEB+eZ2PFzqfHfLwljVors?=
+X-OriginatorOrg: ant.uni-bremen.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: dd460bc3-2cbd-4acb-392f-08d8d3ed5362
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6680.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2021 09:09:00.3456 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2021 09:12:33.3920 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
+X-MS-Exchange-CrossTenant-Id: f018440b-2792-4fa0-b2bd-233acaf88ad2
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xWqwbhkL0CmcmRP+ckDgyiv0xv2HbRa+CF1hOhirO4YBcTYSnLhhHwFpevJFd85r48gJcJbN5FPKqNQR6cu3Yw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7P190MB0696
-Subject: Re: [USRP-users] OTT Gain Block stopping samples flowing from RFNoC
- Digital Down Converter
+X-MS-Exchange-CrossTenant-UserPrincipalName: mahaMUOcnKE/kMQxfTv5EALcjqI+AJugl+bR3EhGs4EPxo4LFgl5F1+me9c4rBmQLt1nZxPHQ5uz1N9p8JGDvg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR0402MB3318
+Subject: [USRP-users] GPSDO fails to lock
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -118,11 +121,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -136,32 +138,46 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Rob,
+Hi all,
 
-On 17/02/21 13:38, Rob Kossler wrote:
-> Could this be another case of the "issue_stream_cmd" never making it from
-> the streamer to the Rx radio?  C=E9dric, didn't we find that if you don't
-> have a custom block controller, the stream cmd does not propagate as expe=
-ct
-> to the Radio and thus you get a recv() timeout?
+I have some N310s and a B210 that I try to sync with a GPSDO. All of 
+them recognize their GPSDOs but fail to lock.
 
-Yes, that my thought as well.
+My phone can see ~7 Satellites. We have a RPi with a GPS module that 
+locks to GPS in the same hall. We switched antennas but still, we can't 
+sync any of the USRPs to GPS.
 
-Information about the bug and known workarounds can be found there:
-https://github.com/EttusResearch/uhd/issues/406
+I tried:
 
-and the mail thread is here:
-http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2021-January/06=
-3522.html
+```
+lib/uhd/utils/query_gpsdo_sensors
+```
+and
+```
+lib/uhd/examples/sync_to_gps
+```
+but even after a day, they always return "GPS does not have lock" and 
+"WARNING:  GPS not locked - time will not be accurate until locked".
+`gpsmon` on the N310s reports 0 Satellites. But it has a list of satellites.
 
-TLDR, your custom controller (cpp|hpp) must be compiled in-tree with UHD, n=
-ot OOT.
+Since we have several devices in that room that are able to acquire a 
+lock but none of our USRPs with their GPSDOs, I wonder what is going on. 
+Do they need a very strong signal?
 
-Regards
--- =
+Cheers
+Johannes
 
+-- 
+Johannes Demel M.Sc.
+Research Engineer
 
-C=E9dric Hannotier
+University of Bremen
+Department of Communications Engineering
+Faculty 1 - Physics / Electrical Engineering
+
+www.uni-bremen.de/en
+
+University of Bremen - Established 1971
 
 _______________________________________________
 USRP-users mailing list
