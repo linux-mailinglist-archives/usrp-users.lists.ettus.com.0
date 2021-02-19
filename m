@@ -2,58 +2,31 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71ED131FD3E
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Feb 2021 17:39:59 +0100 (CET)
-Received: from [::1] (port=55338 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id E03F731FD55
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Feb 2021 17:45:07 +0100 (CET)
+Received: from [::1] (port=55378 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lD8ov-00089h-Dp; Fri, 19 Feb 2021 11:39:57 -0500
-Received: from mail-qv1-f54.google.com ([209.85.219.54]:38380)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1lD8or-00080q-JP
- for USRP-users@lists.ettus.com; Fri, 19 Feb 2021 11:39:53 -0500
-Received: by mail-qv1-f54.google.com with SMTP id p12so2860630qvv.5
- for <USRP-users@lists.ettus.com>; Fri, 19 Feb 2021 08:39:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=fFEeM53qfcAkVFBH5C1aOTtzZBVPNLndpHQce+htWu0=;
- b=SGFQfpcER4N+ukST/IxMhuQdjWDBbTDBKuiTliqDgv+0A2wKS0rA/yEudx0Swkbg30
- QhrjwKjBg76ngv9Tlyv2cXnfVrqK+x4bN2EV4jh0BXm06nbftYwzppYy0NDHrEBO24Z8
- C9z2eXv0V0mls0xJhUxJ5nzowRML6nOlKM4Qh00q5a8LfeLqBLhqA6oEH2yBphJZrHVm
- UrkVNz85IE/pTTIBs2bKKlRFh/tr4tdhR0ANxyq/EwWL1XsjCzvk32ub00qJo3XYWkoF
- s45r9FrtzKlgE6URIL1RSfEeLkCNdNkScGiU1Ao8LLUrbIloSlvU3nXxP5aAQu7tqm4b
- ayng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=fFEeM53qfcAkVFBH5C1aOTtzZBVPNLndpHQce+htWu0=;
- b=hPHWAWuklrvFI2kCjr5VI6q8QtQU3ofxK6/P1J/gOiisXIrXiJAXY+8oc0LvAypcdS
- JR77sPbLRfY7xpTkNutYnMcFBDF1gm5bvtyrU6pElPUi6AiCmDQ3vBsQ+9Jh7ax8JT/H
- VmnVTq78JcmFEic3k/u1BqPYW/YZbCn+myFQM++fe24gj3aRLtQAXRbzw2iGIiKwE+Cr
- 3Q4auta0syXnLdhCzx/by4MUPrllbZ0vTAHzioqjzTc6ISi1fv93mfrfTkfkKmVJ+PUF
- iWOfFSyU0grDNzCjYcOq/36S5owzmnbUwZmdrwZEn4kaf6sYmDTiNMV07o2K4DTwTWir
- DGeQ==
-X-Gm-Message-State: AOAM530ZBjaPpV3m0ID5+/1AvLevmMBTIgxxm6NvZa05/JEmzelVwf8R
- qtdAE/UuVe+htbxyRQFass4=
-X-Google-Smtp-Source: ABdhPJz6Sbe2IOjyXTB1g3ATUpBZx1CW4Dhln0DU2R5JDhLb6ssSgMiNc4l7aKWYBDkmd3pfBRmz9Q==
-X-Received: by 2002:ad4:55c5:: with SMTP id bt5mr9658155qvb.58.1613752752983; 
- Fri, 19 Feb 2021 08:39:12 -0800 (PST)
-Received: from [192.168.2.130]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.gmail.com with ESMTPSA id w145sm6603715qkb.52.2021.02.19.08.39.12
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 19 Feb 2021 08:39:12 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Fri, 19 Feb 2021 11:39:12 -0500
-Message-Id: <5ED8C2FD-260E-40C5-B6DE-47CC2D2ED671@gmail.com>
-References: <f953f930207d2f490b062ec1f2b16ea00a3694fe@webmail>
+	id 1lD8tu-00007D-2u; Fri, 19 Feb 2021 11:45:06 -0500
+Received: from smtp8.emailarray.com ([65.39.216.67]:61067)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <philip@balister.org>) id 1lD8tq-0008R0-5A
+ for USRP-users@lists.ettus.com; Fri, 19 Feb 2021 11:45:02 -0500
+Received: (qmail 52200 invoked by uid 89); 19 Feb 2021 16:44:20 -0000
+Received: from unknown (HELO ?192.168.11.139?)
+ (cGhpbGlwQG9wZW5zZHIuY29tQDczLjI1MS4xMC4xNDM=) (POLARISLOCAL) 
+ by smtp8.emailarray.com with SMTP; 19 Feb 2021 16:44:20 -0000
+To: Marcus D Leech <patchvonbraun@gmail.com>, dtrask1@tampabay.rr.com
 Cc: USRP-users@lists.ettus.com
-In-Reply-To: <f953f930207d2f490b062ec1f2b16ea00a3694fe@webmail>
-To: dtrask1@tampabay.rr.com
-X-Mailer: iPhone Mail (18D52)
+References: <f953f930207d2f490b062ec1f2b16ea00a3694fe@webmail>
+ <5ED8C2FD-260E-40C5-B6DE-47CC2D2ED671@gmail.com>
+Message-ID: <1d923534-01dd-120d-ce14-cce461f8e5d7@balister.org>
+Date: Fri, 19 Feb 2021 11:44:20 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
+MIME-Version: 1.0
+In-Reply-To: <5ED8C2FD-260E-40C5-B6DE-47CC2D2ED671@gmail.com>
+Content-Language: en-US
 Subject: Re: [USRP-users] microSD Size Limit
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
@@ -66,8 +39,8 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+From: Philip Balister via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Philip Balister <philip@balister.org>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: usrp-users-bounces@lists.ettus.com
@@ -83,16 +56,22 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-SeKAmXZlIHVzZWQgMzJHIHdpdGhvdXQgYW55IGlzc3Vlcy4gCgpTZW50IGZyb20gbXkgaVBob25l
-Cgo+IE9uIEZlYiAxOSwgMjAyMSwgYXQgMTE6MjcgQU0sIERlbm5pcyBUcmFzayB2aWEgVVNSUC11
-c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+IAo+IO+7v1doYXQgaXMg
-dGhlIGxhcmdlc3QgbWljcm9TRCBjYXJkIHN1cHBvcnRlZCBieSB0aGUgRTMxMD8gSSB3YW50IHRv
-IGdldCBsYXJnZXIgY2FyZHMgZm9yIGRldmVsb3BtZW50IHB1cnBvc2VzLCBidXQgZG9uJ3Qgd2Fu
-dCB0byBidXkgYSBzaXplIHRoYXQgaXNuJ3Qgc3VwcG9ydGVkLgo+IAo+IFRoYW5rcywKPiBEZW5u
-aXMKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+
-IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBo
-dHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5l
-dHR1cy5jb20KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-ClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6
-Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVz
-LmNvbQo=
+SSdtIHByZXR0eSBzdXJlIEkndmUgdXNlZCBiaWdnZXIgdGhhbiB0aGF0LCBwbGVhc2UgYW55b25l
+IHRoYXQgZmluZHMgb3V0CndoYXQgaXMgdG9vIGJpZywgbGV0IHRoZSBsaXN0IGtub3chCgpQaGls
+aXAKCk9uIDIvMTkvMjEgMTE6MzkgQU0sIE1hcmN1cyBEIExlZWNoIHZpYSBVU1JQLXVzZXJzIHdy
+b3RlOgo+IEnigJl2ZSB1c2VkIDMyRyB3aXRob3V0IGFueSBpc3N1ZXMuIAo+IAo+IFNlbnQgZnJv
+bSBteSBpUGhvbmUKPiAKPj4gT24gRmViIDE5LCAyMDIxLCBhdCAxMToyNyBBTSwgRGVubmlzIFRy
+YXNrIHZpYSBVU1JQLXVzZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6Cj4+
+Cj4+IO+7v1doYXQgaXMgdGhlIGxhcmdlc3QgbWljcm9TRCBjYXJkIHN1cHBvcnRlZCBieSB0aGUg
+RTMxMD8gSSB3YW50IHRvIGdldCBsYXJnZXIgY2FyZHMgZm9yIGRldmVsb3BtZW50IHB1cnBvc2Vz
+LCBidXQgZG9uJ3Qgd2FudCB0byBidXkgYSBzaXplIHRoYXQgaXNuJ3Qgc3VwcG9ydGVkLgo+Pgo+
+PiBUaGFua3MsCj4+IERlbm5pcwo+Pgo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdAo+PiBVU1JQLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbQo+PiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGlu
+Zm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAKPiBfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNS
+UC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4v
+bGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KPiAKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVT
+UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9s
+aXN0aW5mby91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
