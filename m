@@ -2,115 +2,38 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 850C531F835
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Feb 2021 12:20:53 +0100 (CET)
-Received: from [::1] (port=53000 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA5C31FA34
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Feb 2021 15:00:19 +0100 (CET)
+Received: from [::1] (port=54090 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lD3q6-00012I-MU; Fri, 19 Feb 2021 06:20:50 -0500
-Received: from mail-db8eur05on2098.outbound.protection.outlook.com
- ([40.107.20.98]:12129 helo=EUR05-DB8-obe.outbound.protection.outlook.com)
+	id 1lD6KO-0008Bm-Pn; Fri, 19 Feb 2021 09:00:16 -0500
+Received: from p-impout005aa.msg.pkvw.co.charter.net ([47.43.26.136]:51568
+ helo=p-impout005.msg.pkvw.co.charter.net)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <Cedric.Hannotier@ulb.be>)
- id 1lD3q2-0000xh-IJ
- for usrp-users@lists.ettus.com; Fri, 19 Feb 2021 06:20:46 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VFzzUQHY9FGtNuVWe0mC+yi1VmKxJl2WxH7E2aFE16ueOZxzrNZeUecfLLTYA0tFSYCa/kay1U7J2kRmh8dOAlkXlxrYqTfPY62LxotNJez6GTN8fxbl8meKajG+czCyfcivDRbnzroyyncRyrxh9k/NQcgyCnDNc70HRbxf3xDLnd4ll5SawBboenW1Yebb4YLTHIR1Jp1t30om+MS3HZO/5MovNyv4Dk8hRsRdjgU6Us+Y5D8okpDV6/4yTx4ZcMPvVovu20YhpbjuvBO9mP5WZ/1pppWNF3WV9TGA4sgdttoDNNryjy+sdnN1FKPphVczKemxpbcAWHGWC9AZng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qWrHrX2CAGsyrgQiu85/CVzKfqkF/Ivy5Gsepa1bI8A=;
- b=fL+cr73ZbtjbCbMaNcC1Tb5yLmJLlRQuDOBafT72Nuv/nTxjUM3Bipd2YPg5OwtnAwAW4WdN9F3TuEsRkFP5xSRURWCdXZj8zkpzF0GFku/ZkDMOXF02dxWvoYFVAYW8KJKTvHkugIkw/WmEKrZrZ54248cfQuRp6Hwh7q7+uY0xiLdapsxTpisdjY4D4DNZx+1Fs+JThnMWcraRT4hVCyk/JNL0z7LOPwfs8MD3gMZpvhCeN+TBrMWQ86U7hgM20nW+wyprgRrvlSkvmtNyeqSpoyQqL1xCxAPD0wRDAxRVoGlHLweK5aXBTwHZUcqoTABfWuKXBOZ6rldiZyItJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qWrHrX2CAGsyrgQiu85/CVzKfqkF/Ivy5Gsepa1bI8A=;
- b=udE11WJ6fJ74v9ABS3GiMQNaFPm8lgDVv/+svTINJ/G6Uhte79EVxQM/8eVKrUaMuM02D/9KAU/rFeLAQI25T0UQDcd4ybDjcWCgjsXyKgunH7BMNM0d0721InYbZVm7yY/8LnDxqm/hBTqZhzo5SEtWpTSLfynfnxLoXeSteKY=
-Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none header.from=ulb.be;
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
- by AM7P190MB0760.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:114::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.29; Fri, 19 Feb
- 2021 11:20:04 +0000
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::8fd:f689:885a:6afb%9]) with mapi id 15.20.3846.043; Fri, 19 Feb 2021
- 11:20:04 +0000
-Date: Fri, 19 Feb 2021 12:20:03 +0100
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID: <20210219112003.z2mthwtk3xjkrmdl@barbe>
-Mail-Followup-To: usrp-users <usrp-users@lists.ettus.com>
-References: <LNXP123MB3724BAB625FE639AF1D8FEBCCA869@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
- <20210217172935.joprwj3f6rwdu3jo@barbe>
- <CAB__hTSncBC=XS1YvCoE1jip2kY607aWC2hrFUOYcPCq4V6+iA@mail.gmail.com>
- <20210218090858.serfuy4u67rmor6c@barbe>
- <CAB__hTRwpakb-Vu+Q98vp9MGUW9NgggV=-AmK+4OWc0rw6zTNg@mail.gmail.com>
- <20210218172348.5xjhxl3b3g5ptjnd@barbe>
- <CAB__hTQEGfMFSm8L1jV41d_WSradNM_RJdODcEkGYH27x29q3g@mail.gmail.com>
-Content-Disposition: inline
-In-Reply-To: <CAB__hTQEGfMFSm8L1jV41d_WSradNM_RJdODcEkGYH27x29q3g@mail.gmail.com>
-X-Originating-IP: [2a02:1811:371b:2300:6e16:c032:6d2d:86da]
-X-ClientProxiedBy: AM0PR08CA0004.eurprd08.prod.outlook.com
- (2603:10a6:208:d2::17) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:11e::20)
+ (Exim 4.93) (envelope-from <dtrask1@tampabay.rr.com>)
+ id 1lD6KL-000837-7l
+ for usrp-users@lists.ettus.com; Fri, 19 Feb 2021 09:00:13 -0500
+Received: from localhost ([54.243.7.172]) by cmsmtp with ESMTP
+ id D6Jfl0r1KeKjED6Jflr1x7; Fri, 19 Feb 2021 13:59:32 +0000
+X-Authority-Analysis: v=2.3 cv=ALzgjvLx c=1 sm=1 tr=0
+ a=ZhHbwgLlxfPm5G22ibXkng==:117 a=ZhHbwgLlxfPm5G22ibXkng==:17
+ a=Jp7JS-XeckIA:10 a=kMekCo5aZDoA:10 a=keNB5WY0uQqM_y6wh9AA:9
+ a=QEXdDO2ut3YA:10 a=zQC54vRUmSvzHyxm_YYA:9 a=qjz7aPLteeT0iTVd:21
+ a=_W_S_7VecoQA:10
+Message-Id: <1d1dadb54b24b1d1c27f58b0b1ce4af99128dfdd@webmail>
+To: "'usrp-users@lists.ettus.com'" <usrp-users@lists.ettus.com>
+X-Mailer: Atmail 
+X-Originating-IP: [65.35.179.59]
+X-Priority: 3
+Importance: Normal
+X-MSMail-Priority: Normal
+Date: Fri, 19 Feb 2021 13:59:31 +0000
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost (2a02:1811:371b:2300:6e16:c032:6d2d:86da) by
- AM0PR08CA0004.eurprd08.prod.outlook.com (2603:10a6:208:d2::17) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3868.27 via Frontend Transport; Fri, 19 Feb 2021 11:20:03 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d71e7f09-5e85-478d-8732-08d8d4c84e06
-X-MS-TrafficTypeDiagnostic: AM7P190MB0760:
-X-Microsoft-Antispam-PRVS: <AM7P190MB076009FDD9AAC41BAC54FA0DF0849@AM7P190MB0760.EURP190.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: EiC4y/+AV4WhstuaLPO+j/Rn/PrksZbOu9+A43U+TghZuIJLWs0oU1+afkqxPokIecIyG5WJXrb9rJHqEcc/ZRBcePg797ctjWB0vpK4HfsXjvh02EeSD/HC0E54ExX/fL8fdMgnYXtXwDBlEv8OBrgLkh18yY3acHMJZyVTtTnZXx6u+M7kRas65g5n8V5+9ttYlWcr+TigFsvVSwOuFcOF3Spr5ewcPAvOvrAkttz8LMIL81n21CLUwy6+zLvQKgfeshEYw5VLt8O35sk0qc93Iux8HfuXNRTJc1zcLPD9t+9wo6dDEvutWvZ5IJAJVulK01krRo/N5F8O9JFuyEILj58rFV0Opw2mxDv8pezN3F5OdXshq/G2o8ASVNBxBWFk78ZWHRNkwbnyjGS3Dqv6oBS22w9Z/m6WY1BNaPb6+9IVVGuJh2/3KE/y+JvLN1ewCrJ2tSr4n1Ko2SwxFzV2xFNP91ZZkKlbyRE9YFJi+htXDk7t5q91fg+dk/L4on9UrzKM+N1K8BJUN0PIDA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(7916004)(4636009)(346002)(136003)(39860400002)(366004)(376002)(396003)(8676002)(6486002)(16526019)(53546011)(66946007)(1076003)(45080400002)(186003)(478600001)(66476007)(786003)(316002)(66556008)(4744005)(33716001)(9686003)(2906002)(8936002)(6916009)(83380400001)(6496006)(86362001)(52116002)(5660300002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?FBeyaO3ek4+MVCHEPKzYo5XP64O8LlyCMu3Pg8r6E/dc0d3bb09k/vmWLC?=
- =?iso-8859-1?Q?QQFfYR70BrOhNisShZmXe3bb7gYSQL9wJMoJSviXiTHhc3h01QBzroL1aI?=
- =?iso-8859-1?Q?ERiyWQ3OIpJrEQACCaJT05i0Qs57YS7WrDo1q5npg1vpz3zHJalNeM4fYy?=
- =?iso-8859-1?Q?+5NnvHJM2Y1dkNhU0IGb8qXafOLtw4UThuU0vBsCjUemsFLne3ShVqOSVI?=
- =?iso-8859-1?Q?qnjj5yigEpGqJC44L9bYXAufh7S0Y9Q66TI1MwRxIX5n/Tm+acYEMDDNkA?=
- =?iso-8859-1?Q?c0Ff/2GDLZMl1F0ebU7snFOZA5RaOmGZtnrrIQp0uR0Ywku+i1Z3pOKuNn?=
- =?iso-8859-1?Q?KHmTDyGq511xRy5BJ8RwK2LSp8Aue5AbGvFaOGx0ic8gXDoquCcGF7QD3l?=
- =?iso-8859-1?Q?CNt6SU2d+pZyU2WixyB+ZfFJkzJTxWgr23883ZizzNpahat7iYCxKJrf45?=
- =?iso-8859-1?Q?E9r7qpU9bI6BvRlAFfjZyiV1RE/7UZ34EJICKfPF1Nzw7d2KFtkOtihuFo?=
- =?iso-8859-1?Q?1zz2hYZcmqqGXzrFf8RgL9y+zzOo9tfrjGc8UCHtc4prAF/zkO1L7Mj2nf?=
- =?iso-8859-1?Q?a07zcqcECIv6HFEV/G+7dUvzGy3I6hkklSHN8Rm/j40ne30Y3xQvz3uDEm?=
- =?iso-8859-1?Q?gwuphsPPHVv69xJE/7e2thsiJVGOXz1OiPAgBKaEpbouFPJDwKaiDAkrcp?=
- =?iso-8859-1?Q?I+r90bvfdQjLvE9YoBK3S++vyw1YPNkhUzftg25HXGFkgiGGp8L2M+k0Ez?=
- =?iso-8859-1?Q?gitInFlvKueRqJHGEoAcmPjs2GFJQzmRPShcE/vxht6XWUBUN6Q6wOeMOp?=
- =?iso-8859-1?Q?LSsnnGhd6HpmTTxoKVOnLYg9jDQlzv/OGhoR9hCx2E8iXbfIkIkzFXVo17?=
- =?iso-8859-1?Q?b/+SmS3LPl1pUrHQCNxUibGvChr6lgRBKo+dlRhKQ3l2AFQ/Qv9Bd3J2aS?=
- =?iso-8859-1?Q?VIkjKBWqQK6U9bnopfxFMu/sCg4D5iIabNYoj60jpFru5rECmny01n4Jio?=
- =?iso-8859-1?Q?0rN7kfyy0zTKR62X63rz/8VePlX99a9K6r1ajI1uGLw/QYYHfeLJX5hWS/?=
- =?iso-8859-1?Q?KNq0cCbMt4aqqGaAC9AUp+Y+T3St8X86DhLZRUS/mKspfZqv5vy6ymNmAH?=
- =?iso-8859-1?Q?HybCQltE11NQKJdFr7JTQ4lzYt9YHhgnkMX6G0H4RPYUDwG02h6FgLZesS?=
- =?iso-8859-1?Q?MSfBVHcGEfl6UR5oqT4Sc+YI2VDniHPBsZnCdT0QbjlAjtIYxoZ+PoyTjs?=
- =?iso-8859-1?Q?cqxTgX3UcBY4lWNA0veNDfauh+OZscLq0gA+IB5yGK5T7A+iYkwEf/OD2w?=
- =?iso-8859-1?Q?sKHh/eG1IUbhYrhB7kI7tAsah+CbanJL6fOcmTXdtoBosH1eAoK8HqA9LL?=
- =?iso-8859-1?Q?JVrbM45GM3FCksG/uLNbdm3u907ch3o3USyOnPreyNfgaye5mbp3Xlg+r2?=
- =?iso-8859-1?Q?ZiU5U7qwk1n5m3f2?=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: d71e7f09-5e85-478d-8732-08d8d4c84e06
-X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2021 11:20:04.2883 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lzt1GOhqeWyh+WxHjmWJZW+vjlHHqML+Si5YlwbLjb0myauT/uLlxQyFY8m74Aaozc9cA4EcT16Kq6y+ERQUbA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7P190MB0760
-Subject: Re: [USRP-users] OTT Gain Block stopping samples flowing from RFNoC
- Digital Down Converter
+X-CMAE-Envelope: MS4wfMN1R2zRI5b22AmuVHLkMajVEwSHARnNkyqsjgO8vbrhsNZRyhzen8VLPrb6WOyzJoTVEzXNGUYdUx7YRDHJYtNNXyg/Vy0XgoR2G/EQCG3ky1iGwfBw
+ XprcdD1Sb3za/Q1cQXulGuH59l0DhsA4rdbo9Iy+JVDaDvY5oT06aaRGkIEJmDeTpboeuacbX/foBQ==
+Subject: [USRP-users] gr-ettus Cross-Compile "Target
+ 'gnuradio::runtime_swig' not found."
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -122,11 +45,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?=
- <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Dennis Trask via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: dtrask1@tampabay.rr.com
+Content-Type: multipart/mixed; boundary="===============0679950595427637213=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -140,31 +61,440 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Rob,
+--===============0679950595427637213==
+Content-Type: multipart/alternative;
+ boundary="=_51eb822bf43f1f024e13ae8a9f5e48a4"
 
-On 18/02/21 17:32, Rob Kossler wrote:
-> I previously did not have the link options correct for building OOT.  If
-> you look in the CMakeLists.txt file in the Ettus rfnoc example apps folde=
-r,
-> you will see a link option "-Wl,--no-as-needed".  I didn't look into it
-> thoroughly, but without that option, the OOT blocks do not get linked in
-> (or at least their code to register themselves at startup never executes).
-> Once I added this linker option to my custom app, the OOT blocks register
-> fine and behave normally.
+--=_51eb822bf43f1f024e13ae8a9f5e48a4
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-But #406 uses the Ettus rfnoc example block, which provides this link optio=
-n,
-and Ettus rfnoc example block was not forwarding the action.
-Could you check that the OOT Ettus example block is able to forward the act=
-ion on your side?
+I have UHD 4.0 and GnuRadio maint-3.8 built for Ubuntu 18.04 host and=0A=
+cross-compiled for E310. I have also built gr-ettus maint-3.8-uhd4.0=0Af=
+or the host, but when I try to run cmake to setup the cross-compile I=0A=
+get the error in the subject line.=0AHere's the cmake command-line and o=
+utput:=0Alabuser@EttusDevel4:~/rfnoc/src/gr-ettus/build-arm$ cmake=0A-DC=
+MAKE_TOOLCHAIN_FILE=3D~/rfnoc/src/gnuradio/cmake/Toolchains/oe-sdk_cross=
+.cmake=0A-DCMAKE_INSTALL_PREFIX=3D/usr ..-- The CXX compiler identificat=
+ion is=0AGNU 9.2.0-- The C compiler identification is GNU 9.2.0-- Check=
+ for=0Aworking CXX compiler:=0A/home/labuser/rfnoc/oe/sysroots/x86_64-oe=
+sdk-linux/usr/bin/arm-oe-linux-gnueabi/arm-oe-linux-gnueabi-g++--=0AChec=
+k for working CXX compiler:=0A/home/labuser/rfnoc/oe/sysroots/x86_64-oes=
+dk-linux/usr/bin/arm-oe-linux-gnueabi/arm-oe-linux-gnueabi-g++=0A-- work=
+s-- Detecting CXX compiler ABI info-- Detecting CXX compiler=0AABI info=
+ - done-- Detecting CXX compile features-- Detecting CXX=0Acompile featu=
+res - done-- Check for working C compiler:=0A/home/labuser/rfnoc/oe/sysr=
+oots/x86_64-oesdk-linux/usr/bin/arm-oe-linux-gnueabi/arm-oe-linux-gnueab=
+i-gcc--=0ACheck for working C compiler:=0A/home/labuser/rfnoc/oe/sysroot=
+s/x86_64-oesdk-linux/usr/bin/arm-oe-linux-gnueabi/arm-oe-linux-gnueabi-g=
+cc=0A-- works-- Detecting C compiler ABI info-- Detecting C compiler ABI=
+=0Ainfo - done-- Detecting C compile features-- Detecting C compile=0Afe=
+atures - done-- Build type not specified: defaulting to release.--=0AFou=
+nd LOG4CPP:=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux=
+-gnueabi/usr/lib/liblog4cpp.so--=0AFound PkgConfig:=0A/home/labuser/rfno=
+c/oe/sysroots/x86_64-oesdk-linux/usr/bin/pkg-config=0A(found version "0.=
+29.2") -- Checking for module 'gmp'-- No package=0A'gmp' found-- Found G=
+MP:=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi=
+/usr/lib/libgmpxx.so=0A-- Checking for module 'mpir >=3D 3.0'-- No packa=
+ge 'mpir' found-- Could=0ANOT find MPIR (missing: MPIRXX_LIBRARY MPIR_LI=
+BRARY MPIR_INCLUDE_DIR)=0A-- Found MPLIB:=0A/home/labuser/rfnoc/oe/sysro=
+ots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/libgmpxx.so=0A-- Found Bo=
+ost:=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueab=
+i/usr/lib/cmake/Boost-1.71.0/BoostConfig.cmake=0A(found suitable version=
+ "1.71.0", minimum required is "1.71.0") found=0Acomponents: date_time p=
+rogram_options filesystem system regex thread=0Aunit_test_framework -- F=
+ound VOLK: Volk::volk -- Found Git:=0A/usr/bin/git -- Extracting version=
+ information from git describe...--=0AFound UHD:=0A/home/labuser/rfnoc/o=
+e/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/libuhd.so=0A(Requi=
+red is at least version "4.0") -- Found PythonLibs:=0A/home/labuser/rfno=
+c/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/libpython2.7.so=
+=0A(found suitable version "2.7.17", minimum required is "2") -- Found=
+=0ADoxygen: /usr/bin/doxygen (found version "1.8.13") found components:=
+=0Adoxygen missing components: dot-- PYTHON_EXECUTABLE not set - using=
+=0Adefault python3-- Use -DPYTHON_EXECUTABLE=3D/path/to/python2 to build=
+=0Afor python2.-- Found PythonInterp: /usr/bin/python2.7 (found version=
+=0A"2.7.17") -- Found PythonLibs:=0A/home/labuser/rfnoc/oe/sysroots/cort=
+exa9t2hf-neon-oe-linux-gnueabi/usr/lib/libpython2.7.so=0A(found suitable=
+ exact version "2.7.17") -- Using install prefix:=0A/usr-- Building for=
+ version: 3.8.0.0 / 3.8.0-- No C++ unit tests...=0Askipping-- User set p=
+ython executable /usr/bin/python2.7-- -- Checking=0Afor module SWIG-- Fo=
+und SWIG version 3.0.12.-- Found SWIG:=0A/usr/bin/swig3.0 -- Found Pytho=
+nLibs:=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnue=
+abi/usr/lib/libpython2.7.so=0A(found suitable version "2.7.17", minimum=
+ required is "2") -- User set=0Apython executable /usr/bin/python2.7-- F=
+ound PythonLibs:=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-=
+linux-gnueabi/usr/lib/libpython2.7.so=0A(found suitable exact version "2=
+.7.17") -- User set python executable=0A/usr/bin/python2.7-- Configuring=
+ doneCMake Error at=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-=
+oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418=0A(add_custom_=
+command): Error evaluating generator expression:=0A $=0A Target "gnuradi=
+o::runtime_swig" not found.Call Stack (most recent=0Acall first):=0A/hom=
+e/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/c=
+make/gnuradio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A/home/la=
+buser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake=
+/gnuradio/GrSwig.cmake:137=0A(swig_add_library) swig/CMakeLists.txt:58 (=
+GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/oe/sysroots/cort=
+exa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418=
+=0A(add_custom_command): Error evaluating generator expression:=0A $=0A=
+ Target "gnuradio::runtime_swig" not found.Call Stack (most recent=0Acal=
+l first):=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-g=
+nueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE_TO_MO=
+DULE)=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnuea=
+bi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=0A(swig_add_library) swig/CMa=
+keLists.txt:58 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/=
+oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/Us=
+eSWIG.cmake:418=0A(add_custom_command): Error evaluating generator expre=
+ssion:=0A $=0A Target "gnuradio::runtime_swig" not found.Call Stack (mos=
+t recent=0Acall first):=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-n=
+eon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(SWIG_AD=
+D_SOURCE_TO_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-=
+oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=0A(swig_add_lib=
+rary) swig/CMakeLists.txt:58 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/=
+labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cma=
+ke/gnuradio/UseSWIG.cmake:418=0A(add_custom_command): Error evaluating g=
+enerator expression:=0A $=0A Target "gnuradio::runtime_swig" not found.C=
+all Stack (most recent=0Acall first):=0A/home/labuser/rfnoc/oe/sysroots/=
+cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:=
+559=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/cort=
+exa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=
+=0A(swig_add_library) swig/CMakeLists.txt:58 (GR_SWIG_MAKE)=0A=0ACMake E=
+rror at=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnu=
+eabi/usr/lib/cmake/gnuradio/GrMiscUtils.cmake:127=0A(add_dependencies):=
+ The dependency target "gnuradio::runtime_swig" of=0Atarget "_ettus_swig=
+_doc_tag" does not exist.Call Stack (most recent=0Acall first):=0A/home/=
+labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cma=
+ke/gnuradio/GrSwig.cmake:65=0A(GR_GEN_TARGET_DEPS)=0A/home/labuser/rfnoc=
+/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/G=
+rSwig.cmake:112=0A(GR_SWIG_MAKE_DOCS) swig/CMakeLists.txt:58 (GR_SWIG_MA=
+KE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-n=
+eon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418=0A(add_cus=
+tom_command): Error evaluating generator expression:=0A $=0A Target "gnu=
+radio::runtime_swig" not found.Call Stack (most recent=0Acall first):=0A=
+/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/l=
+ib/cmake/gnuradio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A/hom=
+e/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/c=
+make/gnuradio/GrSwig.cmake:137=0A(swig_add_library) swig/CMakeLists.txt:=
+58 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/oe/sysroots/=
+cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:=
+418=0A(add_custom_command): Error evaluating generator expression:=0A $=
+=0A Target "gnuradio::runtime_swig" not found.Call Stack (most recent=0A=
+call first):=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linu=
+x-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE_TO=
+_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gn=
+ueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=0A(swig_add_library) swig/=
+CMakeLists.txt:58 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labuser/rfn=
+oc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio=
+/UseSWIG.cmake:418=0A(add_custom_command): Error evaluating generator ex=
+pression:=0A $=0A Target "gnuradio::runtime_swig" not found.Call Stack (=
+most recent=0Acall first):=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2h=
+f-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(SWIG=
+_ADD_SOURCE_TO_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-ne=
+on-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=0A(swig_add_=
+library) swig/CMakeLists.txt:58 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/ho=
+me/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/=
+cmake/gnuradio/UseSWIG.cmake:418=0A(add_custom_command): Error evaluatin=
+g generator expression:=0A $=0A Target "gnuradio::runtime_swig" not foun=
+d.Call Stack (most recent=0Acall first):=0A/home/labuser/rfnoc/oe/sysroo=
+ts/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cma=
+ke:559=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/c=
+ortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:13=
+7=0A(swig_add_library) swig/CMakeLists.txt:58 (GR_SWIG_MAKE)=0A=0ACMake=
+ Error at=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-g=
+nueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418=0A(add_custom_command):=
+ Error evaluating generator expression:=0A $=0A Target "gnuradio::runtim=
+e_swig" not found.Call Stack (most recent=0Acall first):=0A/home/labuser=
+/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnur=
+adio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A/home/labuser/rfn=
+oc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio=
+/GrSwig.cmake:137=0A(swig_add_library) swig/CMakeLists.txt:58 (GR_SWIG_M=
+AKE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-=
+neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418=0A(add_cu=
+stom_command): Error evaluating generator expression:=0A $=0A Target "gn=
+uradio::runtime_swig" not found.Call Stack (most recent=0Acall first):=
+=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/us=
+r/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE_TO_MODULE)=0A/=
+home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/li=
+b/cmake/gnuradio/GrSwig.cmake:137=0A(swig_add_library) swig/CMakeLists.t=
+xt:58 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/oe/sysroo=
+ts/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cma=
+ke:418=0A(add_custom_command): Error evaluating generator expression:=0A=
+ $=0A Target "gnuradio::runtime_swig" not found.Call Stack (most recent=
+=0Acall first):=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-l=
+inux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(SWIG_ADD_SOURCE=
+_TO_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux=
+-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=0A(swig_add_library) sw=
+ig/CMakeLists.txt:58 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labuser/=
+rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnura=
+dio/UseSWIG.cmake:418=0A(add_custom_command): Error evaluating generator=
+ expression:=0A $=0A Target "gnuradio::runtime_swig" not found.Call Stac=
+k (most recent=0Acall first):=0A/home/labuser/rfnoc/oe/sysroots/cortexa9=
+t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559=0A(S=
+WIG_ADD_SOURCE_TO_MODULE)=0A/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf=
+-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137=0A(swig_a=
+dd_library) swig/CMakeLists.txt:58 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A=
+/home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/l=
+ib/cmake/gnuradio/GrSwig.cmake:144=0A(target_include_directories): Error=
+ evaluating generator expression:=0A $=0A Target "gnuradio::runtime_swig=
+" not found.Call Stack (most recent=0Acall first): swig/CMakeLists.txt:5=
+8 (GR_SWIG_MAKE)=0A=0ACMake Error at=0A/home/labuser/rfnoc/oe/sysroots/c=
+ortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:14=
+4=0A(target_include_directories): Error evaluating generator expression:=
+=0A $=0A Target "gnuradio::runtime_swig" not found.Call Stack (most rece=
+nt=0Acall first): swig/CMakeLists.txt:58 (GR_SWIG_MAKE)=0A=0A-- Generati=
+ng doneCMake Generate step failed. Build files cannot be=0Aregenerated c=
+orrectly.=0A=0A
 
-Regards
--- =
+--=_51eb822bf43f1f024e13ae8a9f5e48a4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body>I have UHD 4.0 and GnuRadio maint-3.8 built for Ubuntu 18.04=
+ host and cross-compiled for E310. I have also built gr-ettus maint-3.8-=
+uhd4.0 for the host, but when I try to run cmake to setup the cross-comp=
+ile I get the error in the subject line.<div><br></div><div>Here's the c=
+make command-line and output:</div><div><br></div><div><div><div><div>la=
+buser@EttusDevel4:~/rfnoc/src/gr-ettus/build-arm$ cmake -DCMAKE_TOOLCHAI=
+N_FILE=3D~/rfnoc/src/gnuradio/cmake/Toolchains/oe-sdk_cross.cmake -DCMAK=
+E_INSTALL_PREFIX=3D/usr ..</div><div>-- The CXX compiler identification=
+ is GNU 9.2.0</div><div>-- The C compiler identification is GNU 9.2.0</d=
+iv><div>-- Check for working CXX compiler: /home/labuser/rfnoc/oe/sysroo=
+ts/x86_64-oesdk-linux/usr/bin/arm-oe-linux-gnueabi/arm-oe-linux-gnueabi-=
+g++</div><div>-- Check for working CXX compiler: /home/labuser/rfnoc/oe/=
+sysroots/x86_64-oesdk-linux/usr/bin/arm-oe-linux-gnueabi/arm-oe-linux-gn=
+ueabi-g++ -- works</div><div>-- Detecting CXX compiler ABI info</div><di=
+v>-- Detecting CXX compiler ABI info - done</div><div>-- Detecting CXX c=
+ompile features</div><div>-- Detecting CXX compile features - done</div>=
+<div>-- Check for working C compiler: /home/labuser/rfnoc/oe/sysroots/x8=
+6_64-oesdk-linux/usr/bin/arm-oe-linux-gnueabi/arm-oe-linux-gnueabi-gcc</=
+div><div>-- Check for working C compiler: /home/labuser/rfnoc/oe/sysroot=
+s/x86_64-oesdk-linux/usr/bin/arm-oe-linux-gnueabi/arm-oe-linux-gnueabi-g=
+cc -- works</div><div>-- Detecting C compiler ABI info</div><div>-- Dete=
+cting C compiler ABI info - done</div><div>-- Detecting C compile featur=
+es</div><div>-- Detecting C compile features - done</div><div>-- Build t=
+ype not specified: defaulting to release.</div><div>-- Found LOG4CPP: /h=
+ome/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib=
+/liblog4cpp.so</div><div>-- Found PkgConfig: /home/labuser/rfnoc/oe/sysr=
+oots/x86_64-oesdk-linux/usr/bin/pkg-config (found version "0.29.2")&nbsp=
+;</div><div>-- Checking for module 'gmp'</div><div>--&nbsp; &nbsp;No pac=
+kage 'gmp' found</div><div>-- Found GMP: /home/labuser/rfnoc/oe/sysroots=
+/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/libgmpxx.so&nbsp;&nbsp;</div=
+><div>-- Checking for module 'mpir &gt;=3D 3.0'</div><div>--&nbsp; &nbsp=
+;No package 'mpir' found</div><div>-- Could NOT find MPIR (missing: MPIR=
+XX_LIBRARY MPIR_LIBRARY MPIR_INCLUDE_DIR)&nbsp;</div><div>-- Found MPLIB=
+: /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr=
+/lib/libgmpxx.so&nbsp;&nbsp;</div><div>-- Found Boost: /home/labuser/rfn=
+oc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/Boost-1.=
+71.0/BoostConfig.cmake (found suitable version "1.71.0", minimum require=
+d is "1.71.0") found components:&nbsp; date_time program_options filesys=
+tem system regex thread unit_test_framework&nbsp;</div><div>-- Found VOL=
+K: Volk::volk&nbsp;&nbsp;</div><div>-- Found Git: /usr/bin/git&nbsp;&nbs=
+p;</div><div>-- Extracting version information from git describe...</div=
+><div>-- Found UHD: /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe=
+-linux-gnueabi/usr/lib/libuhd.so (Required is at least version "4.0")&nb=
+sp;</div><div>-- Found PythonLibs: /home/labuser/rfnoc/oe/sysroots/corte=
+xa9t2hf-neon-oe-linux-gnueabi/usr/lib/libpython2.7.so (found suitable ve=
+rsion "2.7.17", minimum required is "2")&nbsp;</div><div>-- Found Doxyge=
+n: /usr/bin/doxygen (found version "1.8.13") found components:&nbsp; dox=
+ygen missing components:&nbsp; dot</div><div>-- PYTHON_EXECUTABLE not se=
+t - using default python3</div><div>-- Use -DPYTHON_EXECUTABLE=3D/path/t=
+o/python2 to build for python2.</div><div>-- Found PythonInterp: /usr/bi=
+n/python2.7 (found version "2.7.17")&nbsp;</div><div>-- Found PythonLibs=
+: /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr=
+/lib/libpython2.7.so (found suitable exact version "2.7.17")&nbsp;</div>=
+<div>-- Using install prefix: /usr</div><div>-- Building for version: 3.=
+8.0.0 / 3.8.0</div><div>-- No C++ unit tests... skipping</div><div>-- Us=
+er set python executable /usr/bin/python2.7</div><div>--&nbsp;</div><div=
+>-- Checking for module SWIG</div><div>-- Found SWIG version 3.0.12.</di=
+v><div>-- Found SWIG: /usr/bin/swig3.0&nbsp;&nbsp;</div><div>-- Found Py=
+thonLibs: /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnu=
+eabi/usr/lib/libpython2.7.so (found suitable version "2.7.17", minimum r=
+equired is "2")&nbsp;</div><div>-- User set python executable /usr/bin/p=
+ython2.7</div><div>-- Found PythonLibs: /home/labuser/rfnoc/oe/sysroots/=
+cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/libpython2.7.so (found suitab=
+le exact version "2.7.17")&nbsp;</div><div>-- User set python executable=
+ /usr/bin/python2.7</div><div>-- Configuring done</div><div>CMake Error=
+ at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/u=
+sr/lib/cmake/gnuradio/UseSWIG.cmake:418 (add_custom_command):</div><div>=
+&nbsp; Error evaluating generator expression:</div><div><br></div><div>&=
+nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLU=
+DE_DIRECTORIES&gt;</div><div><br></div><div>&nbsp; Target "gnuradio::run=
+time_swig" not found.</div><div>Call Stack (most recent call first):</di=
+v><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux=
+-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MO=
+DULE)</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon=
+-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 (swig_add_libr=
+ary)</div><div>&nbsp; swig/CMakeLists.txt:58 (GR_SWIG_MAKE)</div><div><b=
+r></div><div><br></div><div>CMake Error at /home/labuser/rfnoc/oe/sysroo=
+ts/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cma=
+ke:418 (add_custom_command):</div><div>&nbsp; Error evaluating generator=
+ expression:</div><div><br></div><div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY=
+:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div><div><br>=
+</div><div>&nbsp; Target "gnuradio::runtime_swig" not found.</div><div>C=
+all Stack (most recent call first):</div><div>&nbsp; /home/labuser/rfnoc=
+/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/U=
+seSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)</div><div>&nbsp; /home/labu=
+ser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/g=
+nuradio/GrSwig.cmake:137 (swig_add_library)</div><div>&nbsp; swig/CMakeL=
+ists.txt:58 (GR_SWIG_MAKE)</div><div><br></div><div><br></div><div>CMake=
+ Error at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnu=
+eabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 (add_custom_command):</div=
+><div>&nbsp; Error evaluating generator expression:</div><div><br></div>=
+<div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE=
+_INCLUDE_DIRECTORIES&gt;</div><div><br></div><div>&nbsp; Target "gnuradi=
+o::runtime_swig" not found.</div><div>Call Stack (most recent call first=
+):</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe=
+-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE=
+_TO_MODULE)</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2h=
+f-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 (swig_ad=
+d_library)</div><div>&nbsp; swig/CMakeLists.txt:58 (GR_SWIG_MAKE)</div><=
+div><br></div><div><br></div><div>CMake Error at /home/labuser/rfnoc/oe/=
+sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSW=
+IG.cmake:418 (add_custom_command):</div><div>&nbsp; Error evaluating gen=
+erator expression:</div><div><br></div><div>&nbsp; &nbsp; $&lt;TARGET_PR=
+OPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div><di=
+v><br></div><div>&nbsp; Target "gnuradio::runtime_swig" not found.</div>=
+<div>Call Stack (most recent call first):</div><div>&nbsp; /home/labuser=
+/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnur=
+adio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)</div><div>&nbsp; /hom=
+e/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/c=
+make/gnuradio/GrSwig.cmake:137 (swig_add_library)</div><div>&nbsp; swig/=
+CMakeLists.txt:58 (GR_SWIG_MAKE)</div><div><br></div><div><br></div><div=
+>CMake Error at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-lin=
+ux-gnueabi/usr/lib/cmake/gnuradio/GrMiscUtils.cmake:127 (add_dependencie=
+s):</div><div>&nbsp; The dependency target "gnuradio::runtime_swig" of t=
+arget</div><div>&nbsp; "_ettus_swig_doc_tag" does not exist.</div><div>C=
+all Stack (most recent call first):</div><div>&nbsp; /home/labuser/rfnoc=
+/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/G=
+rSwig.cmake:65 (GR_GEN_TARGET_DEPS)</div><div>&nbsp; /home/labuser/rfnoc=
+/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/G=
+rSwig.cmake:112 (GR_SWIG_MAKE_DOCS)</div><div>&nbsp; swig/CMakeLists.txt=
+:58 (GR_SWIG_MAKE)</div><div><br></div><div><br></div><div>CMake Error a=
+t /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr=
+/lib/cmake/gnuradio/UseSWIG.cmake:418 (add_custom_command):</div><div>&n=
+bsp; Error evaluating generator expression:</div><div><br></div><div>&nb=
+sp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE=
+_DIRECTORIES&gt;</div><div><br></div><div>&nbsp; Target "gnuradio::runti=
+me_swig" not found.</div><div>Call Stack (most recent call first):</div>=
+<div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-g=
+nueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODU=
+LE)</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-o=
+e-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 (swig_add_librar=
+y)</div><div>&nbsp; swig/CMakeLists.txt:58 (GR_SWIG_MAKE)</div><div><br>=
+</div><div><br></div><div>CMake Error at /home/labuser/rfnoc/oe/sysroots=
+/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake=
+:418 (add_custom_command):</div><div>&nbsp; Error evaluating generator e=
+xpression:</div><div><br></div><div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:g=
+nuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div><div><br></=
+div><div>&nbsp; Target "gnuradio::runtime_swig" not found.</div><div>Cal=
+l Stack (most recent call first):</div><div>&nbsp; /home/labuser/rfnoc/o=
+e/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/Use=
+SWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)</div><div>&nbsp; /home/labuse=
+r/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnu=
+radio/GrSwig.cmake:137 (swig_add_library)</div><div>&nbsp; swig/CMakeLis=
+ts.txt:58 (GR_SWIG_MAKE)</div><div><br></div><div><br></div><div>CMake E=
+rror at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnuea=
+bi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 (add_custom_command):</div><=
+div>&nbsp; Error evaluating generator expression:</div><div><br></div><d=
+iv>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_I=
+NCLUDE_DIRECTORIES&gt;</div><div><br></div><div>&nbsp; Target "gnuradio:=
+:runtime_swig" not found.</div><div>Call Stack (most recent call first):=
+</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-l=
+inux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_T=
+O_MODULE)</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-=
+neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 (swig_add_=
+library)</div><div>&nbsp; swig/CMakeLists.txt:58 (GR_SWIG_MAKE)</div><di=
+v><br></div><div><br></div><div>CMake Error at /home/labuser/rfnoc/oe/sy=
+sroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG=
+.cmake:418 (add_custom_command):</div><div>&nbsp; Error evaluating gener=
+ator expression:</div><div><br></div><div>&nbsp; &nbsp; $&lt;TARGET_PROP=
+ERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div><div>=
+<br></div><div>&nbsp; Target "gnuradio::runtime_swig" not found.</div><d=
+iv>Call Stack (most recent call first):</div><div>&nbsp; /home/labuser/r=
+fnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnurad=
+io/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)</div><div>&nbsp; /home/=
+labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cma=
+ke/gnuradio/GrSwig.cmake:137 (swig_add_library)</div><div>&nbsp; swig/CM=
+akeLists.txt:58 (GR_SWIG_MAKE)</div><div><br></div><div><br></div><div>C=
+Make Error at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux=
+-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 (add_custom_command):<=
+/div><div>&nbsp; Error evaluating generator expression:</div><div><br></=
+div><div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTER=
+FACE_INCLUDE_DIRECTORIES&gt;</div><div><br></div><div>&nbsp; Target "gnu=
+radio::runtime_swig" not found.</div><div>Call Stack (most recent call f=
+irst):</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neo=
+n-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SO=
+URCE_TO_MODULE)</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa=
+9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 (swi=
+g_add_library)</div><div>&nbsp; swig/CMakeLists.txt:58 (GR_SWIG_MAKE)</d=
+iv><div><br></div><div><br></div><div>CMake Error at /home/labuser/rfnoc=
+/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/U=
+seSWIG.cmake:418 (add_custom_command):</div><div>&nbsp; Error evaluating=
+ generator expression:</div><div><br></div><div>&nbsp; &nbsp; $&lt;TARGE=
+T_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div=
+><div><br></div><div>&nbsp; Target "gnuradio::runtime_swig" not found.</=
+div><div>Call Stack (most recent call first):</div><div>&nbsp; /home/lab=
+user/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/=
+gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)</div><div>&nbsp;=
+ /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/=
+lib/cmake/gnuradio/GrSwig.cmake:137 (swig_add_library)</div><div>&nbsp;=
+ swig/CMakeLists.txt:58 (GR_SWIG_MAKE)</div><div><br></div><div><br></di=
+v><div>CMake Error at /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-=
+oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:418 (add_custom_co=
+mmand):</div><div>&nbsp; Error evaluating generator expression:</div><di=
+v><br></div><div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime_sw=
+ig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div><div><br></div><div>&nbsp; Tar=
+get "gnuradio::runtime_swig" not found.</div><div>Call Stack (most recen=
+t call first):</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9=
+t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/UseSWIG.cmake:559 (SWI=
+G_ADD_SOURCE_TO_MODULE)</div><div>&nbsp; /home/labuser/rfnoc/oe/sysroots=
+/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:=
+137 (swig_add_library)</div><div>&nbsp; swig/CMakeLists.txt:58 (GR_SWIG_=
+MAKE)</div><div><br></div><div><br></div><div>CMake Error at /home/labus=
+er/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/cmake/gn=
+uradio/UseSWIG.cmake:418 (add_custom_command):</div><div>&nbsp; Error ev=
+aluating generator expression:</div><div><br></div><div>&nbsp; &nbsp; $&=
+lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&=
+gt;</div><div><br></div><div>&nbsp; Target "gnuradio::runtime_swig" not=
+ found.</div><div>Call Stack (most recent call first):</div><div>&nbsp;=
+ /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/=
+lib/cmake/gnuradio/UseSWIG.cmake:559 (SWIG_ADD_SOURCE_TO_MODULE)</div><d=
+iv>&nbsp; /home/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnu=
+eabi/usr/lib/cmake/gnuradio/GrSwig.cmake:137 (swig_add_library)</div><di=
+v>&nbsp; swig/CMakeLists.txt:58 (GR_SWIG_MAKE)</div><div><br></div><div>=
+<br></div><div>CMake Error at /home/labuser/rfnoc/oe/sysroots/cortexa9t2=
+hf-neon-oe-linux-gnueabi/usr/lib/cmake/gnuradio/GrSwig.cmake:144 (target=
+_include_directories):</div><div>&nbsp; Error evaluating generator expre=
+ssion:</div><div><br></div><div>&nbsp; &nbsp; $&lt;TARGET_PROPERTY:gnura=
+dio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES&gt;</div><div><br></div>=
+<div>&nbsp; Target "gnuradio::runtime_swig" not found.</div><div>Call St=
+ack (most recent call first):</div><div>&nbsp; swig/CMakeLists.txt:58 (G=
+R_SWIG_MAKE)</div><div><br></div><div><br></div><div>CMake Error at /hom=
+e/labuser/rfnoc/oe/sysroots/cortexa9t2hf-neon-oe-linux-gnueabi/usr/lib/c=
+make/gnuradio/GrSwig.cmake:144 (target_include_directories):</div><div>&=
+nbsp; Error evaluating generator expression:</div><div><br></div><div>&n=
+bsp; &nbsp; $&lt;TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUD=
+E_DIRECTORIES&gt;</div><div><br></div><div>&nbsp; Target "gnuradio::runt=
+ime_swig" not found.</div><div>Call Stack (most recent call first):</div=
+><div>&nbsp; swig/CMakeLists.txt:58 (GR_SWIG_MAKE)</div><div><br></div><=
+div><br></div><div>-- Generating done</div><div>CMake Generate step fail=
+ed.&nbsp; Build files cannot be regenerated correctly.</div></div></div>=
+</div><div><br></div><div><br></div></body></html>
+
+--=_51eb822bf43f1f024e13ae8a9f5e48a4--
 
 
-C=E9dric Hannotier
+
+--===============0679950595427637213==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============0679950595427637213==--
+
+
