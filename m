@@ -2,121 +2,115 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B22731F660
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Feb 2021 10:15:35 +0100 (CET)
-Received: from [::1] (port=52268 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 850C531F835
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Feb 2021 12:20:53 +0100 (CET)
+Received: from [::1] (port=53000 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lD1sq-0006EW-8h; Fri, 19 Feb 2021 04:15:32 -0500
-Received: from mail-eopbgr50125.outbound.protection.outlook.com
- ([40.107.5.125]:56324 helo=EUR03-VE1-obe.outbound.protection.outlook.com)
+	id 1lD3q6-00012I-MU; Fri, 19 Feb 2021 06:20:50 -0500
+Received: from mail-db8eur05on2098.outbound.protection.outlook.com
+ ([40.107.20.98]:12129 helo=EUR05-DB8-obe.outbound.protection.outlook.com)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <demel@ant.uni-bremen.de>)
- id 1lD1sl-00068n-Vd
- for USRP-users@lists.ettus.com; Fri, 19 Feb 2021 04:15:28 -0500
+ (Exim 4.93) (envelope-from <Cedric.Hannotier@ulb.be>)
+ id 1lD3q2-0000xh-IJ
+ for usrp-users@lists.ettus.com; Fri, 19 Feb 2021 06:20:46 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E7jS8FBdcg32wDsM2T6bI7W0EB1xrsicbAnRLmLnxLuyiWXki8hoihlP5K2mZcf3Wa/VktPRIkHsuvYwqAw1yilpLqOodQHJ32CJ8NH4/1Sv7oY2uK8x3rI7F1OSFMem4jU6iXIMwhl4a3lzRlt/63GhV30BU2eOQjUKrFyjFq+RqgbZvSETo6f8oIzeQ1asnAuKL6T4pehS2k75r1oOPw2/P9f8Qcn10RM5O+SnWvXYzkQbqukczapZmN1KHzQCSbuMo9/ZlsiKug9c4gTsxz7t+Y/rQoizN4dsDaCOn7k8zMsltf9opjHzIRC1BDLPofNtjd82TDS+ugT20jbchQ==
+ b=VFzzUQHY9FGtNuVWe0mC+yi1VmKxJl2WxH7E2aFE16ueOZxzrNZeUecfLLTYA0tFSYCa/kay1U7J2kRmh8dOAlkXlxrYqTfPY62LxotNJez6GTN8fxbl8meKajG+czCyfcivDRbnzroyyncRyrxh9k/NQcgyCnDNc70HRbxf3xDLnd4ll5SawBboenW1Yebb4YLTHIR1Jp1t30om+MS3HZO/5MovNyv4Dk8hRsRdjgU6Us+Y5D8okpDV6/4yTx4ZcMPvVovu20YhpbjuvBO9mP5WZ/1pppWNF3WV9TGA4sgdttoDNNryjy+sdnN1FKPphVczKemxpbcAWHGWC9AZng==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xXfm3pMctrEgL0+PY+x0r2N9N1dNRkBrzApuil11Pqs=;
- b=ciSclKA47oI2objxHWwXafiyYNtaXjMDa3K/q+nX2mZxT+oY5kZHy+rE+n0z/0mVZtritBsFQeAIrVPuvgsBda5XVESi9wV2dKY05uUTy47HleyT5WyWBR8e6WvTjkEajLU6bnSoTKFFh3QpoegZILVTIBZuhi2H0WOiAg3FJ/oqZEAX5Byr0PmAQYUHr+5lv8ZrKsUH+Xh9bYqx1TQCA8xpOM0ljiJUYU2QMdStL/+zpePwkDjpI4x8plNID/t1Fs0IicXNFsL7J23LmhjtXMDjHG6VSe6ilzHmGyb1cGC9Pk2VkEgxbiIRHwhJRfMCQimTitWUd60Ja4cNdQKrDQ==
+ bh=qWrHrX2CAGsyrgQiu85/CVzKfqkF/Ivy5Gsepa1bI8A=;
+ b=fL+cr73ZbtjbCbMaNcC1Tb5yLmJLlRQuDOBafT72Nuv/nTxjUM3Bipd2YPg5OwtnAwAW4WdN9F3TuEsRkFP5xSRURWCdXZj8zkpzF0GFku/ZkDMOXF02dxWvoYFVAYW8KJKTvHkugIkw/WmEKrZrZ54248cfQuRp6Hwh7q7+uY0xiLdapsxTpisdjY4D4DNZx+1Fs+JThnMWcraRT4hVCyk/JNL0z7LOPwfs8MD3gMZpvhCeN+TBrMWQ86U7hgM20nW+wyprgRrvlSkvmtNyeqSpoyQqL1xCxAPD0wRDAxRVoGlHLweK5aXBTwHZUcqoTABfWuKXBOZ6rldiZyItJg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
- header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
+ smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
+ header.d=ulb.be; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xXfm3pMctrEgL0+PY+x0r2N9N1dNRkBrzApuil11Pqs=;
- b=1kdpWP/5gd2Uc9+akmm14U/2k7od00j6Ou5XCTuMTnL/tpdqrQ7Der3DhGUZD2CjS8F+pjkZnL5qXdhxiDMmRi+atRuUxnhZas+g2XtnU1bXFdaAT+cUHoDTckE05QiZtDXrLybklZp62Q/bHaeoHg5Mq0kUgwDj918Zp29SubI=
+ bh=qWrHrX2CAGsyrgQiu85/CVzKfqkF/Ivy5Gsepa1bI8A=;
+ b=udE11WJ6fJ74v9ABS3GiMQNaFPm8lgDVv/+svTINJ/G6Uhte79EVxQM/8eVKrUaMuM02D/9KAU/rFeLAQI25T0UQDcd4ybDjcWCgjsXyKgunH7BMNM0d0721InYbZVm7yY/8LnDxqm/hBTqZhzo5SEtWpTSLfynfnxLoXeSteKY=
 Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=ant.uni-bremen.de;
-Received: from AM0PR04MB6673.eurprd04.prod.outlook.com (2603:10a6:208:16a::29)
- by AM0PR04MB4386.eurprd04.prod.outlook.com (2603:10a6:208:7b::23)
+ header.d=none;lists.ettus.com; dmarc=none action=none header.from=ulb.be;
+Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
+ by AM7P190MB0760.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:114::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.31; Fri, 19 Feb
- 2021 09:14:42 +0000
-Received: from AM0PR04MB6673.eurprd04.prod.outlook.com
- ([fe80::8812:c180:6bd5:464f]) by AM0PR04MB6673.eurprd04.prod.outlook.com
- ([fe80::8812:c180:6bd5:464f%7]) with mapi id 15.20.3868.029; Fri, 19 Feb 2021
- 09:14:42 +0000
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Cc: USRP-users@lists.ettus.com
-References: <9bb07e02-0567-9d12-299d-26daf430015d@ant.uni-bremen.de>
- <5B9A3BD5-2235-434A-B205-4D62F543B9A3@gmail.com>
-Message-ID: <b56049a5-917f-6a54-a03b-fd90347c55c8@ant.uni-bremen.de>
-Date: Fri, 19 Feb 2021 10:14:40 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <5B9A3BD5-2235-434A-B205-4D62F543B9A3@gmail.com>
-Content-Language: en-US
-X-Originating-IP: [2003:ca:7f16:f00:fcb1:6f2d:7df5:b0b4]
-X-ClientProxiedBy: AM0PR02CA0035.eurprd02.prod.outlook.com
- (2603:10a6:208:3e::48) To AM0PR04MB6673.eurprd04.prod.outlook.com
- (2603:10a6:208:16a::29)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.29; Fri, 19 Feb
+ 2021 11:20:04 +0000
+Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ ([fe80::8fd:f689:885a:6afb]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ ([fe80::8fd:f689:885a:6afb%9]) with mapi id 15.20.3846.043; Fri, 19 Feb 2021
+ 11:20:04 +0000
+Date: Fri, 19 Feb 2021 12:20:03 +0100
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID: <20210219112003.z2mthwtk3xjkrmdl@barbe>
+Mail-Followup-To: usrp-users <usrp-users@lists.ettus.com>
+References: <LNXP123MB3724BAB625FE639AF1D8FEBCCA869@LNXP123MB3724.GBRP123.PROD.OUTLOOK.COM>
+ <20210217172935.joprwj3f6rwdu3jo@barbe>
+ <CAB__hTSncBC=XS1YvCoE1jip2kY607aWC2hrFUOYcPCq4V6+iA@mail.gmail.com>
+ <20210218090858.serfuy4u67rmor6c@barbe>
+ <CAB__hTRwpakb-Vu+Q98vp9MGUW9NgggV=-AmK+4OWc0rw6zTNg@mail.gmail.com>
+ <20210218172348.5xjhxl3b3g5ptjnd@barbe>
+ <CAB__hTQEGfMFSm8L1jV41d_WSradNM_RJdODcEkGYH27x29q3g@mail.gmail.com>
+Content-Disposition: inline
+In-Reply-To: <CAB__hTQEGfMFSm8L1jV41d_WSradNM_RJdODcEkGYH27x29q3g@mail.gmail.com>
+X-Originating-IP: [2a02:1811:371b:2300:6e16:c032:6d2d:86da]
+X-ClientProxiedBy: AM0PR08CA0004.eurprd08.prod.outlook.com
+ (2603:10a6:208:d2::17) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:11e::20)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2003:ca:7f16:f00:fcb1:6f2d:7df5:b0b4]
- (2003:ca:7f16:f00:fcb1:6f2d:7df5:b0b4) by
- AM0PR02CA0035.eurprd02.prod.outlook.com (2603:10a6:208:3e::48) with Microsoft
+Received: from localhost (2a02:1811:371b:2300:6e16:c032:6d2d:86da) by
+ AM0PR08CA0004.eurprd08.prod.outlook.com (2603:10a6:208:d2::17) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3868.27 via Frontend Transport; Fri, 19 Feb 2021 09:14:41 +0000
+ 15.20.3868.27 via Frontend Transport; Fri, 19 Feb 2021 11:20:03 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 865433e1-d277-4575-39b0-08d8d4b6ca5e
-X-MS-TrafficTypeDiagnostic: AM0PR04MB4386:
-X-Microsoft-Antispam-PRVS: <AM0PR04MB43869B587C1A1E859627B6A1A9849@AM0PR04MB4386.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Office365-Filtering-Correlation-Id: d71e7f09-5e85-478d-8732-08d8d4c84e06
+X-MS-TrafficTypeDiagnostic: AM7P190MB0760:
+X-Microsoft-Antispam-PRVS: <AM7P190MB076009FDD9AAC41BAC54FA0DF0849@AM7P190MB0760.EURP190.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mwP8RnTpEogyfrAPql0JEdh5ad2tg1nzFGdsUN+Wpiju+xDNmt/VnW5gIWPitwb8CQNB7PItRWxYe4maL6Rs+i3F+AGrjxKJ7HD3P/xgRSlKBd45OVHceuotpfLBmcWIRJqG92Cylwpr8ji3NMJvsIXbn/aznKY8nuBTaSHLYHclliq1Et7af21pW6d2Z2cmDJiMu0lbXoa99BeWxzGC4xzLGM9GAHmX+Wy4n7RxV0C2Vby8vHr6DBiB/7No0qn3INJCMs2UhwFGjRckux6bYGMwmjYIGcWucMWZgxSeILlV+R2zGoVjiHissu0gqZBFYWhx3g5c77XBlztF4mTT65mePiZ5GcA3ihgF30jW60HlXCJU551e/STf5Iwd8y7MR2WM8kIY4H3ZcPOxvDZbejt3p4e7kO4CKbmfDTuLbzN2sFKEsmnupAlWSXdtMC9eLTCOt/ZvCoDMjBpSnj57MJVJfmPCSslrUGLVdC0sqYU689xAp23fsZiDIjlHGyVDIF8fAjq+cDxW0qimPi4mYL7pocPb/UVbN6FDhTdPWtNcopfJpwvmb/TH5ZdyMP6849Vt1Ozw6Dy9anQ46udwOJ8DCtgbgGEOUghY4ddK9q6zYdm2QavWjpqV3tckKVl9mI2RKESIskNW420O9fC9aUA+Y3yjXSSrh5q9U5tcLjA0AV8FS1MsK+l+15Pax5hX
+X-Microsoft-Antispam-Message-Info: EiC4y/+AV4WhstuaLPO+j/Rn/PrksZbOu9+A43U+TghZuIJLWs0oU1+afkqxPokIecIyG5WJXrb9rJHqEcc/ZRBcePg797ctjWB0vpK4HfsXjvh02EeSD/HC0E54ExX/fL8fdMgnYXtXwDBlEv8OBrgLkh18yY3acHMJZyVTtTnZXx6u+M7kRas65g5n8V5+9ttYlWcr+TigFsvVSwOuFcOF3Spr5ewcPAvOvrAkttz8LMIL81n21CLUwy6+zLvQKgfeshEYw5VLt8O35sk0qc93Iux8HfuXNRTJc1zcLPD9t+9wo6dDEvutWvZ5IJAJVulK01krRo/N5F8O9JFuyEILj58rFV0Opw2mxDv8pezN3F5OdXshq/G2o8ASVNBxBWFk78ZWHRNkwbnyjGS3Dqv6oBS22w9Z/m6WY1BNaPb6+9IVVGuJh2/3KE/y+JvLN1ewCrJ2tSr4n1Ko2SwxFzV2xFNP91ZZkKlbyRE9YFJi+htXDk7t5q91fg+dk/L4on9UrzKM+N1K8BJUN0PIDA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM0PR04MB6673.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(376002)(366004)(346002)(39830400003)(136003)(396003)(6916009)(53546011)(2616005)(4326008)(2906002)(786003)(66946007)(66556008)(8936002)(66476007)(6486002)(31686004)(5660300002)(52116002)(86362001)(316002)(8676002)(83380400001)(478600001)(31696002)(966005)(16526019)(186003)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(7916004)(4636009)(346002)(136003)(39860400002)(366004)(376002)(396003)(8676002)(6486002)(16526019)(53546011)(66946007)(1076003)(45080400002)(186003)(478600001)(66476007)(786003)(316002)(66556008)(4744005)(33716001)(9686003)(2906002)(8936002)(6916009)(83380400001)(6496006)(86362001)(52116002)(5660300002);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?Y0Z1MHBKTTA1dEdZZmk2bktSTUwxdFVIWUNtaTJ6eXNDdjY0YVYvRUEvQ0ZP?=
- =?utf-8?B?WWZZYXIxaUxRTTZxQUFISllVK2ZSYVFpZ29tUTRTck15eTVxOGt3STRhTU5R?=
- =?utf-8?B?TnkxUSttemlvU21zbkJjN3NwMDFIdDVHbEVGZm12QTVKZ09sSkZCZHBRY1ZW?=
- =?utf-8?B?K1ZiWkpZUklscWdJZ0t4NC9JRGoxWWlKUjRyaVlxMS9LSlRNUzM0VmRXbS9P?=
- =?utf-8?B?ZERJM0VRdDBpdjRDSnpUQnVpblVmRHNRcEQxSThGVTFEWmNycENabHRUTDVi?=
- =?utf-8?B?b21DOEwzYjhPYUdMUDlLMEExNzZ1QzM3MXdvL3NKc2p1SXhjRVFWajROZmVj?=
- =?utf-8?B?Vy80Y3FUU25OVTBsK1h4UmJOaThmaEtxZ3pRVTIvdVN0cnpmYlhzTlRFUnFV?=
- =?utf-8?B?NzlPVE5zVWNzTGpIZ3RhcDVPQTRPVkowc09nUWMwNDhQNUxJd0tzTXRDYS8y?=
- =?utf-8?B?WDNYYjFGY29IeTFmTkdJQ3NNZnF1NnRDZVpWT2Z2aC9UQ1N1V0RQMmhOZEhO?=
- =?utf-8?B?SG1lcjM3VGxnVDlFQXppTlBQcFRxZ2ZuUjNvd1lIU0UxVjhLUnpBQzBGbi82?=
- =?utf-8?B?S243WHpQZko1N1IrUUJjR3Q1U0NrQ3JiK0s3d1F2bnV1ZHBOdlFZVENVYm5D?=
- =?utf-8?B?T1VpSVdwWE4wOU1nLzRCWnBJdDMyaTN5QW42cjBwUmhOd0FnYTZWM24xa3pZ?=
- =?utf-8?B?b01nSWZ0TzVEUzA0TW1hKzA4Qm5KaUJVRlFRREhyL1B2TDcvNGpHUUR0aDZs?=
- =?utf-8?B?MjNqMFdCQUNJYVlyeWUyaitHTFNHYTRHUDlHMUY5TVBKR0x3NUtnemo2RUxs?=
- =?utf-8?B?YVErL3N2YW5vbEJwZXpUUjZ3b2lHM1RRTExNTlFnRng2dWNlbnFzRmk5b1JX?=
- =?utf-8?B?dGxsb2RpQVpJY2tHZ0I3dFhZNlpBNHJEMnU1ckF5SVVIemNieUNRZmpETEhD?=
- =?utf-8?B?MGxPM3h1anhMbUlDNGtZK3ZCblZ3K2JVTjNsTWk3bzVhd1FrMmhJcGI5ckRx?=
- =?utf-8?B?YWQwM0RuUTdBOEdOaTlqektIc3FVemkwYUl0TmUzb3hlbUtCaU4wVm5FUS9l?=
- =?utf-8?B?U0l6UWUrSGFJOStFV3RtLy9URDRJS0dFc0VUWUFlbWZ4MjlqRkp2TmNEbE5E?=
- =?utf-8?B?S0g5ZjNNek9vekNKNTZNdnNESkJjaHFPZzNDK2hlZ0dCV1lzYm53VW1vNU9M?=
- =?utf-8?B?angwc0tQSlJBMUI5d3lHWXBLQzFSTk1KUEVuUlAzcmFjeUVrQ3Fwbk1uMEY2?=
- =?utf-8?B?SHVzNTFoTXZwQlVtbmJ4Q2J1UzVZRXJkcWxaVnhnNlE4ZnF6MSs0eUdYMU5o?=
- =?utf-8?B?NXFFMU9QZjMvdW1ZbnkwbGxXT21iREVjc2dQcWgvcUV4VW1uS0llQUk0OFlD?=
- =?utf-8?B?QndFaTlHKzF6Rmwyc1pNakpLK3JqbENNQzVaemxQSkpVajRybXFNZ01VaHBr?=
- =?utf-8?B?OUVZMHZ1NlhOZDJiVGFaQUo4bHdYK3FBR25Jb3V3Ym11d3dTSDNFak12OXVW?=
- =?utf-8?B?QzlNS0hzTjk4SmpIMkhFOFFJa0dzWHRmakFudjZmbmJoNmlHT3dsNWtVSXhI?=
- =?utf-8?B?MFRKSkdWNndBdWNyVEhCbnNqMkQxc3RhVFBPU1hTbUZxeWhmNFZYWnlWb0Jx?=
- =?utf-8?B?N1JxT0J3ekx4bnMycGd0dS9tcnhJeU8xSTJsQlFMM2pKbnNrODFtOU1iSVZP?=
- =?utf-8?B?V2svdUFiakxMQmpoQUM4c1YzSGtHSHNldk9Wb1MzRTdkUDJzdmtvcHRxYXR1?=
- =?utf-8?B?RGJLTTBEWndxZ1IyYm04ektoc1dWdFhvTTJZYmVieXZzT1c1MzR1RDFQYlgy?=
- =?utf-8?B?V21FMngzbnVTQkNBWG4zTG55VUlrVzc0MGx4aC82dmh4TTRTTWl3TzllaXJK?=
- =?utf-8?Q?+EfV9qQ3B7SpB?=
-X-OriginatorOrg: ant.uni-bremen.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 865433e1-d277-4575-39b0-08d8d4b6ca5e
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6673.eurprd04.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?FBeyaO3ek4+MVCHEPKzYo5XP64O8LlyCMu3Pg8r6E/dc0d3bb09k/vmWLC?=
+ =?iso-8859-1?Q?QQFfYR70BrOhNisShZmXe3bb7gYSQL9wJMoJSviXiTHhc3h01QBzroL1aI?=
+ =?iso-8859-1?Q?ERiyWQ3OIpJrEQACCaJT05i0Qs57YS7WrDo1q5npg1vpz3zHJalNeM4fYy?=
+ =?iso-8859-1?Q?+5NnvHJM2Y1dkNhU0IGb8qXafOLtw4UThuU0vBsCjUemsFLne3ShVqOSVI?=
+ =?iso-8859-1?Q?qnjj5yigEpGqJC44L9bYXAufh7S0Y9Q66TI1MwRxIX5n/Tm+acYEMDDNkA?=
+ =?iso-8859-1?Q?c0Ff/2GDLZMl1F0ebU7snFOZA5RaOmGZtnrrIQp0uR0Ywku+i1Z3pOKuNn?=
+ =?iso-8859-1?Q?KHmTDyGq511xRy5BJ8RwK2LSp8Aue5AbGvFaOGx0ic8gXDoquCcGF7QD3l?=
+ =?iso-8859-1?Q?CNt6SU2d+pZyU2WixyB+ZfFJkzJTxWgr23883ZizzNpahat7iYCxKJrf45?=
+ =?iso-8859-1?Q?E9r7qpU9bI6BvRlAFfjZyiV1RE/7UZ34EJICKfPF1Nzw7d2KFtkOtihuFo?=
+ =?iso-8859-1?Q?1zz2hYZcmqqGXzrFf8RgL9y+zzOo9tfrjGc8UCHtc4prAF/zkO1L7Mj2nf?=
+ =?iso-8859-1?Q?a07zcqcECIv6HFEV/G+7dUvzGy3I6hkklSHN8Rm/j40ne30Y3xQvz3uDEm?=
+ =?iso-8859-1?Q?gwuphsPPHVv69xJE/7e2thsiJVGOXz1OiPAgBKaEpbouFPJDwKaiDAkrcp?=
+ =?iso-8859-1?Q?I+r90bvfdQjLvE9YoBK3S++vyw1YPNkhUzftg25HXGFkgiGGp8L2M+k0Ez?=
+ =?iso-8859-1?Q?gitInFlvKueRqJHGEoAcmPjs2GFJQzmRPShcE/vxht6XWUBUN6Q6wOeMOp?=
+ =?iso-8859-1?Q?LSsnnGhd6HpmTTxoKVOnLYg9jDQlzv/OGhoR9hCx2E8iXbfIkIkzFXVo17?=
+ =?iso-8859-1?Q?b/+SmS3LPl1pUrHQCNxUibGvChr6lgRBKo+dlRhKQ3l2AFQ/Qv9Bd3J2aS?=
+ =?iso-8859-1?Q?VIkjKBWqQK6U9bnopfxFMu/sCg4D5iIabNYoj60jpFru5rECmny01n4Jio?=
+ =?iso-8859-1?Q?0rN7kfyy0zTKR62X63rz/8VePlX99a9K6r1ajI1uGLw/QYYHfeLJX5hWS/?=
+ =?iso-8859-1?Q?KNq0cCbMt4aqqGaAC9AUp+Y+T3St8X86DhLZRUS/mKspfZqv5vy6ymNmAH?=
+ =?iso-8859-1?Q?HybCQltE11NQKJdFr7JTQ4lzYt9YHhgnkMX6G0H4RPYUDwG02h6FgLZesS?=
+ =?iso-8859-1?Q?MSfBVHcGEfl6UR5oqT4Sc+YI2VDniHPBsZnCdT0QbjlAjtIYxoZ+PoyTjs?=
+ =?iso-8859-1?Q?cqxTgX3UcBY4lWNA0veNDfauh+OZscLq0gA+IB5yGK5T7A+iYkwEf/OD2w?=
+ =?iso-8859-1?Q?sKHh/eG1IUbhYrhB7kI7tAsah+CbanJL6fOcmTXdtoBosH1eAoK8HqA9LL?=
+ =?iso-8859-1?Q?JVrbM45GM3FCksG/uLNbdm3u907ch3o3USyOnPreyNfgaye5mbp3Xlg+r2?=
+ =?iso-8859-1?Q?ZiU5U7qwk1n5m3f2?=
+X-OriginatorOrg: ulb.be
+X-MS-Exchange-CrossTenant-Network-Message-Id: d71e7f09-5e85-478d-8732-08d8d4c84e06
+X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2021 09:14:42.2291 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2021 11:20:04.2883 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f018440b-2792-4fa0-b2bd-233acaf88ad2
+X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: v824hW5M3JIXVzLbvcQGsm8KnOGVdqPpzQLH99XW+w3ebKc7LRZKe3Ab7eqPC173DsbdJYkiL54i0NGlb0vS/Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4386
-Subject: Re: [USRP-users] GPSDO fails to lock
+X-MS-Exchange-CrossTenant-UserPrincipalName: lzt1GOhqeWyh+WxHjmWJZW+vjlHHqML+Si5YlwbLjb0myauT/uLlxQyFY8m74Aaozc9cA4EcT16Kq6y+ERQUbA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7P190MB0760
+Subject: Re: [USRP-users] OTT Gain Block stopping samples flowing from RFNoC
+ Digital Down Converter
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -128,10 +122,11 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?=
+ <usrp-users@lists.ettus.com>
+Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -145,35 +140,31 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-RWFjaCBVU1JQIGhhcyBpdHMgb3duIEdQUyBhbnRlbm5hLiBPbmUgb2YgdGhvc2UgeW91IGJ1eSBh
-dCBldHR1cy5jb20gYXMgCmEgcmVjb21tZW5kZWQgYWNjZXNzb3J5LgoKT24gMTguMDIuMjEgMTU6
-MDUsIE1hcmN1cyBEIExlZWNoIHdyb3RlOgo+IEhvdyBhcmUgeW91IGRlbGl2ZXJpbmcgdGhlIEdQ
-UyBhbnRlbm5hIHNpZ25hbCB0byB0aGUgVVNSUHM/ICBWaWEgYSBzcGxpdHRlcj8gRG9lcyB0aGF0
-IHNwbGl0dGVyIHByb3ZpZGUgREMgcGFzcy10aHJvdWdoPwo+IAo+IFNlbnQgZnJvbSBteSBpUGhv
-bmUKPiAKPj4gT24gRmViIDE4LCAyMDIxLCBhdCA3OjA3IEFNLCBKb2hhbm5lcyBEZW1lbCB2aWEg
-VVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+Pgo+PiDvu79K
-dXN0IGEgcXVpY2sgZm9sbG93LXVwLiBUaGUgQjIxMCBmaW5hbGx5IGdvdCBhIEdQUyBsb2NrLiAo
-SSBoYWQgdG8gd2FpdCBmb3IgfjJoKS4gVGhvdWdoLCBhbGwgTjMxMHMgc3RpbGwgZG9uJ3QuCj4+
-Cj4+PiBPbiAxOC4wMi4yMSAxMDoxMiwgSm9oYW5uZXMgRGVtZWwgdmlhIFVTUlAtdXNlcnMgd3Jv
-dGU6Cj4+PiBIaSBhbGwsCj4+PiBJIGhhdmUgc29tZSBOMzEwcyBhbmQgYSBCMjEwIHRoYXQgSSB0
-cnkgdG8gc3luYyB3aXRoIGEgR1BTRE8uIEFsbCBvZiB0aGVtIHJlY29nbml6ZSB0aGVpciBHUFNE
-T3MgYnV0IGZhaWwgdG8gbG9jay4KPj4+IE15IHBob25lIGNhbiBzZWUgfjcgU2F0ZWxsaXRlcy4g
-V2UgaGF2ZSBhIFJQaSB3aXRoIGEgR1BTIG1vZHVsZSB0aGF0IGxvY2tzIHRvIEdQUyBpbiB0aGUg
-c2FtZSBoYWxsLiBXZSBzd2l0Y2hlZCBhbnRlbm5hcyBidXQgc3RpbGwsIHdlIGNhbid0IHN5bmMg
-YW55IG9mIHRoZSBVU1JQcyB0byBHUFMuCj4+PiBJIHRyaWVkOgo+Pj4gYGBgCj4+PiBsaWIvdWhk
-L3V0aWxzL3F1ZXJ5X2dwc2RvX3NlbnNvcnMKPj4+IGBgYAo+Pj4gYW5kCj4+PiBgYGAKPj4+IGxp
-Yi91aGQvZXhhbXBsZXMvc3luY190b19ncHMKPj4+IGBgYAo+Pj4gYnV0IGV2ZW4gYWZ0ZXIgYSBk
-YXksIHRoZXkgYWx3YXlzIHJldHVybiAiR1BTIGRvZXMgbm90IGhhdmUgbG9jayIgYW5kICJXQVJO
-SU5HOiAgR1BTIG5vdCBsb2NrZWQgLSB0aW1lIHdpbGwgbm90IGJlIGFjY3VyYXRlIHVudGlsIGxv
-Y2tlZCIuCj4+PiBgZ3BzbW9uYCBvbiB0aGUgTjMxMHMgcmVwb3J0cyAwIFNhdGVsbGl0ZXMuIEJ1
-dCBpdCBoYXMgYSBsaXN0IG9mIHNhdGVsbGl0ZXMuCj4+PiBTaW5jZSB3ZSBoYXZlIHNldmVyYWwg
-ZGV2aWNlcyBpbiB0aGF0IHJvb20gdGhhdCBhcmUgYWJsZSB0byBhY3F1aXJlIGEgbG9jayBidXQg
-bm9uZSBvZiBvdXIgVVNSUHMgd2l0aCB0aGVpciBHUFNET3MsIEkgd29uZGVyIHdoYXQgaXMgZ29p
-bmcgb24uIERvIHRoZXkgbmVlZCBhIHZlcnkgc3Ryb25nIHNpZ25hbD8KPj4+IENoZWVycwo+Pj4g
-Sm9oYW5uZXMKPj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KPj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20KPj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNl
-cnNfbGlzdHMuZXR0dXMuY29tCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
-aXN0cy5ldHR1cy5jb20K
+Hi Rob,
+
+On 18/02/21 17:32, Rob Kossler wrote:
+> I previously did not have the link options correct for building OOT.  If
+> you look in the CMakeLists.txt file in the Ettus rfnoc example apps folde=
+r,
+> you will see a link option "-Wl,--no-as-needed".  I didn't look into it
+> thoroughly, but without that option, the OOT blocks do not get linked in
+> (or at least their code to register themselves at startup never executes).
+> Once I added this linker option to my custom app, the OOT blocks register
+> fine and behave normally.
+
+But #406 uses the Ettus rfnoc example block, which provides this link optio=
+n,
+and Ettus rfnoc example block was not forwarding the action.
+Could you check that the OOT Ettus example block is able to forward the act=
+ion on your side?
+
+Regards
+-- =
+
+
+C=E9dric Hannotier
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
