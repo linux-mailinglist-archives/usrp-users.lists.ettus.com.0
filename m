@@ -2,64 +2,121 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A1731F493
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Feb 2021 06:10:21 +0100 (CET)
-Received: from [::1] (port=50214 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B22731F660
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Feb 2021 10:15:35 +0100 (CET)
+Received: from [::1] (port=52268 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lCy3W-0000JJ-IB; Fri, 19 Feb 2021 00:10:18 -0500
-Received: from mail-qv1-f54.google.com ([209.85.219.54]:43864)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1lCy3S-0000CX-Iw
- for usrp-users@lists.ettus.com; Fri, 19 Feb 2021 00:10:14 -0500
-Received: by mail-qv1-f54.google.com with SMTP id gi9so2090318qvb.10
- for <usrp-users@lists.ettus.com>; Thu, 18 Feb 2021 21:09:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to;
- bh=9fD2rDvJs2F4Bh1OstUnd/S6I9+4P+KS1fJYrG+Mpl4=;
- b=F8zpaRSNrZx8oaOXtOoXtkSNhs6mI2pGnev/Ijm6JLH0KiFmelnW4v9wsAnBhgt4fw
- u5/P3CAexqASbioGU3tTpjSCTXtPYpFXmKPD6rlaxABiO8dO0y+4iQ5jZcjM/OVpBFSG
- /WutMeKrgdD3RdaVI5SzC+RGJKvofdd9eETH7d9ETkg19QGjHtHwOTy3s4Wm2X7U4dWH
- 0p0rYknAy1IPHFsCjRRQdClX2XKCpkIADZDpsLpqy056DsS2for8aSaXLmjp6YsHut8b
- 7o5jy7BWNyiWZR3oYy5MHnq1h0fo6QA4Ubs/JMlkR3Qqgpe060zurRao/SYWlKwAQLbi
- sQxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to;
- bh=9fD2rDvJs2F4Bh1OstUnd/S6I9+4P+KS1fJYrG+Mpl4=;
- b=AmermsF0IyLueP7zqWlcBBcBl2xPixm5fuSV8NIEcX0oELIkegYIQ3AKikgF0703Rz
- SBdxNM9ckTO9xtoH0RnSkAT+WQ4DogR23/+j+Rf4AGmiwKn2XoBzWsDXN+bgTsxUpvHJ
- IxLTbm77/UuV4K9Z7QFs5D915H9ZvMrhG8UGEyulX2eX7m9qYacw5rYvrbgrr0PEtLjT
- xpFv0aHMpSgVsy3eJK85TiRVIRy3QSe7y24upgU3LV+ru0oZcu4gkt1YLRNakZLGJoQr
- 1cbaI9amEkDpOt66SZcm1QEM6iEfcrzoyVi9I0lr3iY6zfSOq/cHIVvXNGzP1CZq/l/8
- c22w==
-X-Gm-Message-State: AOAM533ySWtV6TBt7pBbk127rqIZ90N2KJX3aeVZw56No0301snf9xQx
- 6f8yoBz/xXO/9qGgsteuetMDmV0vJcA=
-X-Google-Smtp-Source: ABdhPJwwrMAf7VroujVq51Lvtj/C8x6brDWTtNmMhvn8Pa05zY+WdvIxOJr1GBTwMOHbseo6OOs7mQ==
-X-Received: by 2002:a0c:ac43:: with SMTP id m3mr7808745qvb.37.1613711373771;
- Thu, 18 Feb 2021 21:09:33 -0800 (PST)
-Received: from [192.168.2.12]
- (bras-base-smflon1825w-grc-05-174-88-53-7.dsl.bell.ca. [174.88.53.7])
- by smtp.googlemail.com with ESMTPSA id 197sm5479013qkf.33.2021.02.18.21.09.33
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 18 Feb 2021 21:09:33 -0800 (PST)
-Message-ID: <602F480C.9020200@gmail.com>
-Date: Fri, 19 Feb 2021 00:09:32 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	id 1lD1sq-0006EW-8h; Fri, 19 Feb 2021 04:15:32 -0500
+Received: from mail-eopbgr50125.outbound.protection.outlook.com
+ ([40.107.5.125]:56324 helo=EUR03-VE1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <demel@ant.uni-bremen.de>)
+ id 1lD1sl-00068n-Vd
+ for USRP-users@lists.ettus.com; Fri, 19 Feb 2021 04:15:28 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=E7jS8FBdcg32wDsM2T6bI7W0EB1xrsicbAnRLmLnxLuyiWXki8hoihlP5K2mZcf3Wa/VktPRIkHsuvYwqAw1yilpLqOodQHJ32CJ8NH4/1Sv7oY2uK8x3rI7F1OSFMem4jU6iXIMwhl4a3lzRlt/63GhV30BU2eOQjUKrFyjFq+RqgbZvSETo6f8oIzeQ1asnAuKL6T4pehS2k75r1oOPw2/P9f8Qcn10RM5O+SnWvXYzkQbqukczapZmN1KHzQCSbuMo9/ZlsiKug9c4gTsxz7t+Y/rQoizN4dsDaCOn7k8zMsltf9opjHzIRC1BDLPofNtjd82TDS+ugT20jbchQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xXfm3pMctrEgL0+PY+x0r2N9N1dNRkBrzApuil11Pqs=;
+ b=ciSclKA47oI2objxHWwXafiyYNtaXjMDa3K/q+nX2mZxT+oY5kZHy+rE+n0z/0mVZtritBsFQeAIrVPuvgsBda5XVESi9wV2dKY05uUTy47HleyT5WyWBR8e6WvTjkEajLU6bnSoTKFFh3QpoegZILVTIBZuhi2H0WOiAg3FJ/oqZEAX5Byr0PmAQYUHr+5lv8ZrKsUH+Xh9bYqx1TQCA8xpOM0ljiJUYU2QMdStL/+zpePwkDjpI4x8plNID/t1Fs0IicXNFsL7J23LmhjtXMDjHG6VSe6ilzHmGyb1cGC9Pk2VkEgxbiIRHwhJRfMCQimTitWUd60Ja4cNdQKrDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
+ header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xXfm3pMctrEgL0+PY+x0r2N9N1dNRkBrzApuil11Pqs=;
+ b=1kdpWP/5gd2Uc9+akmm14U/2k7od00j6Ou5XCTuMTnL/tpdqrQ7Der3DhGUZD2CjS8F+pjkZnL5qXdhxiDMmRi+atRuUxnhZas+g2XtnU1bXFdaAT+cUHoDTckE05QiZtDXrLybklZp62Q/bHaeoHg5Mq0kUgwDj918Zp29SubI=
+Authentication-Results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=ant.uni-bremen.de;
+Received: from AM0PR04MB6673.eurprd04.prod.outlook.com (2603:10a6:208:16a::29)
+ by AM0PR04MB4386.eurprd04.prod.outlook.com (2603:10a6:208:7b::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.31; Fri, 19 Feb
+ 2021 09:14:42 +0000
+Received: from AM0PR04MB6673.eurprd04.prod.outlook.com
+ ([fe80::8812:c180:6bd5:464f]) by AM0PR04MB6673.eurprd04.prod.outlook.com
+ ([fe80::8812:c180:6bd5:464f%7]) with mapi id 15.20.3868.029; Fri, 19 Feb 2021
+ 09:14:42 +0000
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Cc: USRP-users@lists.ettus.com
+References: <9bb07e02-0567-9d12-299d-26daf430015d@ant.uni-bremen.de>
+ <5B9A3BD5-2235-434A-B205-4D62F543B9A3@gmail.com>
+Message-ID: <b56049a5-917f-6a54-a03b-fd90347c55c8@ant.uni-bremen.de>
+Date: Fri, 19 Feb 2021 10:14:40 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <5B9A3BD5-2235-434A-B205-4D62F543B9A3@gmail.com>
+Content-Language: en-US
+X-Originating-IP: [2003:ca:7f16:f00:fcb1:6f2d:7df5:b0b4]
+X-ClientProxiedBy: AM0PR02CA0035.eurprd02.prod.outlook.com
+ (2603:10a6:208:3e::48) To AM0PR04MB6673.eurprd04.prod.outlook.com
+ (2603:10a6:208:16a::29)
 MIME-Version: 1.0
-To: Xiang Ma <marxwolfs@gmail.com>
-CC: usrp-users <usrp-users@lists.ettus.com>
-References: <CACryqrEA9jJWATSCon3Drp-ngO0QraK7goABm0U0gTFqR_hCdg@mail.gmail.com>
- <023DC74F-683D-4FEF-AAF3-D39619E4791F@gmail.com>
- <CACryqrHMw6jKS4dAF25mhAbbdWH-tLiQ5EBJ1vjc72ac96X_7g@mail.gmail.com>
- <602F3C2B.3040405@gmail.com>
- <CACryqrHPxsMSiXmM3Er-WTJ+vxgroAdRY0A0btfpiBvr0F-JRg@mail.gmail.com>
-In-Reply-To: <CACryqrHPxsMSiXmM3Er-WTJ+vxgroAdRY0A0btfpiBvr0F-JRg@mail.gmail.com>
-Subject: Re: [USRP-users] x310 two UBX daughterboard receiver
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2003:ca:7f16:f00:fcb1:6f2d:7df5:b0b4]
+ (2003:ca:7f16:f00:fcb1:6f2d:7df5:b0b4) by
+ AM0PR02CA0035.eurprd02.prod.outlook.com (2603:10a6:208:3e::48) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3868.27 via Frontend Transport; Fri, 19 Feb 2021 09:14:41 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 865433e1-d277-4575-39b0-08d8d4b6ca5e
+X-MS-TrafficTypeDiagnostic: AM0PR04MB4386:
+X-Microsoft-Antispam-PRVS: <AM0PR04MB43869B587C1A1E859627B6A1A9849@AM0PR04MB4386.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mwP8RnTpEogyfrAPql0JEdh5ad2tg1nzFGdsUN+Wpiju+xDNmt/VnW5gIWPitwb8CQNB7PItRWxYe4maL6Rs+i3F+AGrjxKJ7HD3P/xgRSlKBd45OVHceuotpfLBmcWIRJqG92Cylwpr8ji3NMJvsIXbn/aznKY8nuBTaSHLYHclliq1Et7af21pW6d2Z2cmDJiMu0lbXoa99BeWxzGC4xzLGM9GAHmX+Wy4n7RxV0C2Vby8vHr6DBiB/7No0qn3INJCMs2UhwFGjRckux6bYGMwmjYIGcWucMWZgxSeILlV+R2zGoVjiHissu0gqZBFYWhx3g5c77XBlztF4mTT65mePiZ5GcA3ihgF30jW60HlXCJU551e/STf5Iwd8y7MR2WM8kIY4H3ZcPOxvDZbejt3p4e7kO4CKbmfDTuLbzN2sFKEsmnupAlWSXdtMC9eLTCOt/ZvCoDMjBpSnj57MJVJfmPCSslrUGLVdC0sqYU689xAp23fsZiDIjlHGyVDIF8fAjq+cDxW0qimPi4mYL7pocPb/UVbN6FDhTdPWtNcopfJpwvmb/TH5ZdyMP6849Vt1Ozw6Dy9anQ46udwOJ8DCtgbgGEOUghY4ddK9q6zYdm2QavWjpqV3tckKVl9mI2RKESIskNW420O9fC9aUA+Y3yjXSSrh5q9U5tcLjA0AV8FS1MsK+l+15Pax5hX
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:AM0PR04MB6673.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(376002)(366004)(346002)(39830400003)(136003)(396003)(6916009)(53546011)(2616005)(4326008)(2906002)(786003)(66946007)(66556008)(8936002)(66476007)(6486002)(31686004)(5660300002)(52116002)(86362001)(316002)(8676002)(83380400001)(478600001)(31696002)(966005)(16526019)(186003)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?Y0Z1MHBKTTA1dEdZZmk2bktSTUwxdFVIWUNtaTJ6eXNDdjY0YVYvRUEvQ0ZP?=
+ =?utf-8?B?WWZZYXIxaUxRTTZxQUFISllVK2ZSYVFpZ29tUTRTck15eTVxOGt3STRhTU5R?=
+ =?utf-8?B?TnkxUSttemlvU21zbkJjN3NwMDFIdDVHbEVGZm12QTVKZ09sSkZCZHBRY1ZW?=
+ =?utf-8?B?K1ZiWkpZUklscWdJZ0t4NC9JRGoxWWlKUjRyaVlxMS9LSlRNUzM0VmRXbS9P?=
+ =?utf-8?B?ZERJM0VRdDBpdjRDSnpUQnVpblVmRHNRcEQxSThGVTFEWmNycENabHRUTDVi?=
+ =?utf-8?B?b21DOEwzYjhPYUdMUDlLMEExNzZ1QzM3MXdvL3NKc2p1SXhjRVFWajROZmVj?=
+ =?utf-8?B?Vy80Y3FUU25OVTBsK1h4UmJOaThmaEtxZ3pRVTIvdVN0cnpmYlhzTlRFUnFV?=
+ =?utf-8?B?NzlPVE5zVWNzTGpIZ3RhcDVPQTRPVkowc09nUWMwNDhQNUxJd0tzTXRDYS8y?=
+ =?utf-8?B?WDNYYjFGY29IeTFmTkdJQ3NNZnF1NnRDZVpWT2Z2aC9UQ1N1V0RQMmhOZEhO?=
+ =?utf-8?B?SG1lcjM3VGxnVDlFQXppTlBQcFRxZ2ZuUjNvd1lIU0UxVjhLUnpBQzBGbi82?=
+ =?utf-8?B?S243WHpQZko1N1IrUUJjR3Q1U0NrQ3JiK0s3d1F2bnV1ZHBOdlFZVENVYm5D?=
+ =?utf-8?B?T1VpSVdwWE4wOU1nLzRCWnBJdDMyaTN5QW42cjBwUmhOd0FnYTZWM24xa3pZ?=
+ =?utf-8?B?b01nSWZ0TzVEUzA0TW1hKzA4Qm5KaUJVRlFRREhyL1B2TDcvNGpHUUR0aDZs?=
+ =?utf-8?B?MjNqMFdCQUNJYVlyeWUyaitHTFNHYTRHUDlHMUY5TVBKR0x3NUtnemo2RUxs?=
+ =?utf-8?B?YVErL3N2YW5vbEJwZXpUUjZ3b2lHM1RRTExNTlFnRng2dWNlbnFzRmk5b1JX?=
+ =?utf-8?B?dGxsb2RpQVpJY2tHZ0I3dFhZNlpBNHJEMnU1ckF5SVVIemNieUNRZmpETEhD?=
+ =?utf-8?B?MGxPM3h1anhMbUlDNGtZK3ZCblZ3K2JVTjNsTWk3bzVhd1FrMmhJcGI5ckRx?=
+ =?utf-8?B?YWQwM0RuUTdBOEdOaTlqektIc3FVemkwYUl0TmUzb3hlbUtCaU4wVm5FUS9l?=
+ =?utf-8?B?U0l6UWUrSGFJOStFV3RtLy9URDRJS0dFc0VUWUFlbWZ4MjlqRkp2TmNEbE5E?=
+ =?utf-8?B?S0g5ZjNNek9vekNKNTZNdnNESkJjaHFPZzNDK2hlZ0dCV1lzYm53VW1vNU9M?=
+ =?utf-8?B?angwc0tQSlJBMUI5d3lHWXBLQzFSTk1KUEVuUlAzcmFjeUVrQ3Fwbk1uMEY2?=
+ =?utf-8?B?SHVzNTFoTXZwQlVtbmJ4Q2J1UzVZRXJkcWxaVnhnNlE4ZnF6MSs0eUdYMU5o?=
+ =?utf-8?B?NXFFMU9QZjMvdW1ZbnkwbGxXT21iREVjc2dQcWgvcUV4VW1uS0llQUk0OFlD?=
+ =?utf-8?B?QndFaTlHKzF6Rmwyc1pNakpLK3JqbENNQzVaemxQSkpVajRybXFNZ01VaHBr?=
+ =?utf-8?B?OUVZMHZ1NlhOZDJiVGFaQUo4bHdYK3FBR25Jb3V3Ym11d3dTSDNFak12OXVW?=
+ =?utf-8?B?QzlNS0hzTjk4SmpIMkhFOFFJa0dzWHRmakFudjZmbmJoNmlHT3dsNWtVSXhI?=
+ =?utf-8?B?MFRKSkdWNndBdWNyVEhCbnNqMkQxc3RhVFBPU1hTbUZxeWhmNFZYWnlWb0Jx?=
+ =?utf-8?B?N1JxT0J3ekx4bnMycGd0dS9tcnhJeU8xSTJsQlFMM2pKbnNrODFtOU1iSVZP?=
+ =?utf-8?B?V2svdUFiakxMQmpoQUM4c1YzSGtHSHNldk9Wb1MzRTdkUDJzdmtvcHRxYXR1?=
+ =?utf-8?B?RGJLTTBEWndxZ1IyYm04ektoc1dWdFhvTTJZYmVieXZzT1c1MzR1RDFQYlgy?=
+ =?utf-8?B?V21FMngzbnVTQkNBWG4zTG55VUlrVzc0MGx4aC82dmh4TTRTTWl3TzllaXJK?=
+ =?utf-8?Q?+EfV9qQ3B7SpB?=
+X-OriginatorOrg: ant.uni-bremen.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 865433e1-d277-4575-39b0-08d8d4b6ca5e
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6673.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2021 09:14:42.2291 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f018440b-2792-4fa0-b2bd-233acaf88ad2
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: v824hW5M3JIXVzLbvcQGsm8KnOGVdqPpzQLH99XW+w3ebKc7LRZKe3Ab7eqPC173DsbdJYkiL54i0NGlb0vS/Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4386
+Subject: Re: [USRP-users] GPSDO fails to lock
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -71,9 +128,10 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Content-Type: multipart/mixed; boundary="===============8485535481469099041=="
+From: Johannes Demel via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Johannes Demel <demel@ant.uni-bremen.de>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -87,452 +145,35 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-This is a multi-part message in MIME format.
---===============8485535481469099041==
-Content-Type: multipart/alternative;
- boundary="------------020807040409040707080604"
-
-This is a multi-part message in MIME format.
---------------020807040409040707080604
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-On 02/18/2021 11:47 PM, Xiang Ma wrote:
-> If I want to use slot A as transmitter, slot B as receiver, can I do 
-> like this:
-> self.source.set_antenna("RX2", 1)
-> self.sink.set_antenna("TX/RX", 0)
-You'd need to set the antenna for the receive side in both slots to "RX2":
-
-self.source.set_antenna("RX2", 0)
-self.source.set_antenna("RX2", 1)
-
-The default (and only, really) antenna for TX for the UBX is already 
-"TX/RX".
-
-
-The Python API isn't that well documented at this point, so there's a 
-lot of "infer from the C++ API".
-
-But, to be honest, a lot of this "mucking about" can be more easily 
-accomplished using Gnu Radio as your experimental
-   environment (at least initially), rather than just using the UHD 
-API.  Things like "how do I create a multi-channel streamer and
-   manage the data from it", are already handled in Gnu Radio.
-
-
->
-> In this page, it said /The default subdev spec is "A:0 B:0", which 
-> means slot A is mapped to channel 0, and slot B is mapped to channel 1./
-> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-June/056965.html
->
-> On Thu, Feb 18, 2021 at 9:18 PM Marcus D. Leech 
-> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
->
->     On 02/18/2021 10:16 PM, Xiang Ma wrote:
->>     Are there any python code for this? I am using the python interface.
->     You'll have to kind of infer what to do from the C++
->     example--there is no Python version of that example.
->
->
->>
->>     On Thu, Feb 18, 2021 at 7:44 PM Marcus D Leech
->>     <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
->>
->>         Well there’s the rx_multi_samples example that is part of the
->>         UHD source tree.
->>
->>         Sent from my iPhone
->>
->>>         On Feb 18, 2021, at 9:32 PM, Xiang Ma <marxwolfs@gmail.com
->>>         <mailto:marxwolfs@gmail.com>> wrote:
->>>
->>>         ﻿
->>>           Do you have any example code? I am still confused.
->>>
->>>         Thank you.
->>>
->>>         On Thu, Feb 18, 2021 at 5:50 PM Marcus D Leech
->>>         <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>>
->>>         wrote:
->>>
->>>             Just create a 2-channel USRP source and specify a subdev
->>>             of “A:0 B:0”.
->>>
->>>
->>>
->>>             Sent from my iPhone
->>>
->>>>             On Feb 18, 2021, at 7:38 PM, Xiang Ma via USRP-users
->>>>             <usrp-users@lists.ettus.com
->>>>             <mailto:usrp-users@lists.ettus.com>> wrote:
->>>>
->>>>             ﻿
->>>>             Hi,
->>>>
->>>>                 I am using a x310 USRP with two UBX daughterboards.
->>>>             Now I can transmit and receive the signal in RF A
->>>>             daughterboard with command
->>>>               self.source.set_antenna("RX2", 0)
->>>>             self.sink.set_antenna("TX/RX", 0).
->>>>
->>>>                 Now, I want to transmit the signal in RF A, and
->>>>             receive the signal in both RF A and RF B. It is
->>>>             actually 1 transmitter and 2 receivers. How can I
->>>>             implement this? I checked the set_subdev_subdev("B",
->>>>             1), but it doesn't work.
->>>>
->>>>             Thank you,
->>>>
->>>>
->>>>
->>>>
->>>>             -- 
->>>>             /*Xiang Ma, */Ph.D. Student
->>>>             College of Engineering
->>>>             Utah State University
->>>>             E-mail:marxwolfs@gmail.com <mailto:marxwolfs@gmail.com>
->>>>             _______________________________________________
->>>>             USRP-users mailing list
->>>>             USRP-users@lists.ettus.com
->>>>             <mailto:USRP-users@lists.ettus.com>
->>>>             http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->>>
->>>
->>>
->>>         -- 
->>>         /*Xiang Ma, */Ph.D. Student
->>>         College of Engineering
->>>         Utah State University
->>>         E-mail:marxwolfs@gmail.com <mailto:marxwolfs@gmail.com>
->>
->>
->>
->>     -- 
->>     /*Xiang Ma, */Ph.D. Student
->>     College of Engineering
->>     Utah State University
->>     E-mail:marxwolfs@gmail.com <mailto:marxwolfs@gmail.com>
->
->
->
-> -- 
-> /*Xiang Ma, */Ph.D. Student
-> College of Engineering
-> Utah State University
-> E-mail:marxwolfs@gmail.com <mailto:marxwolfs@gmail.com>
-
-
---------------020807040409040707080604
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 02/18/2021 11:47 PM, Xiang Ma wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CACryqrHPxsMSiXmM3Er-WTJ+vxgroAdRY0A0btfpiBvr0F-JRg@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">If I want to use slot A as transmitter, slot B as
-        receiver, can I do like this:
-        <div>
-          <div>self.source.set_antenna("RX2", 1)</div>
-          <div>self.sink.set_antenna("TX/RX", 0)</div>
-        </div>
-      </div>
-    </blockquote>
-    You'd need to set the antenna for the receive side in both slots to
-    "RX2":<br>
-    <br>
-    self.source.set_antenna("RX2", 0)<br>
-    self.source.set_antenna("RX2", 1)<br>
-    <br>
-    The default (and only, really) antenna for TX for the UBX is already
-    "TX/RX".<br>
-    <br>
-    <br>
-    The Python API isn't that well documented at this point, so there's
-    a lot of "infer from the C++ API".<br>
-    <br>
-    But, to be honest, a lot of this "mucking about" can be more easily
-    accomplished using Gnu Radio as your experimental<br>
-      environment (at least initially), rather than just using the UHD
-    API.  Things like "how do I create a multi-channel streamer and<br>
-      manage the data from it", are already handled in Gnu Radio.<br>
-    <br>
-    <br>
-    <blockquote
-cite="mid:CACryqrHPxsMSiXmM3Er-WTJ+vxgroAdRY0A0btfpiBvr0F-JRg@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div><br>
-        </div>
-        <div>In this page, it said <i>The default subdev spec is "A:0
-            B:0", which means slot A is mapped to channel 0, and slot B
-            is mapped to channel 1.</i></div>
-        <div><a moz-do-not-send="true"
-href="http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-June/056965.html">http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-June/056965.html</a><br>
-        </div>
-      </div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Thu, Feb 18, 2021 at 9:18
-          PM Marcus D. Leech &lt;<a moz-do-not-send="true"
-            href="mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div bgcolor="#FFFFFF">
-            <div>On 02/18/2021 10:16 PM, Xiang Ma wrote:<br>
-            </div>
-            <blockquote type="cite">
-              <div dir="ltr">Are there any python code for this? I am
-                using the python interface.</div>
-            </blockquote>
-            You'll have to kind of infer what to do from the C++
-            example--there is no Python version of that example.<br>
-            <br>
-            <br>
-            <blockquote type="cite"><br>
-              <div class="gmail_quote">
-                <div dir="ltr" class="gmail_attr">On Thu, Feb 18, 2021
-                  at 7:44 PM Marcus D Leech &lt;<a
-                    moz-do-not-send="true"
-                    href="mailto:patchvonbraun@gmail.com"
-                    target="_blank">patchvonbraun@gmail.com</a>&gt;
-                  wrote:<br>
-                </div>
-                <blockquote class="gmail_quote" style="margin:0px 0px
-                  0px 0.8ex;border-left:1px solid
-                  rgb(204,204,204);padding-left:1ex">
-                  <div dir="auto">Well there’s the rx_multi_samples
-                    example that is part of the UHD source tree. <br>
-                    <br>
-                    <div dir="ltr">Sent from my iPhone</div>
-                    <div dir="ltr"><br>
-                      <blockquote type="cite">On Feb 18, 2021, at 9:32
-                        PM, Xiang Ma &lt;<a moz-do-not-send="true"
-                          href="mailto:marxwolfs@gmail.com"
-                          target="_blank">marxwolfs@gmail.com</a>&gt;
-                        wrote:<br>
-                        <br>
-                      </blockquote>
-                    </div>
-                    <blockquote type="cite">
-                      <div dir="ltr">﻿
-                        <div dir="ltr">  Do you have any example code? I
-                          am still confused.
-                          <div><br>
-                          </div>
-                          <div>Thank you.</div>
-                        </div>
-                        <br>
-                        <div class="gmail_quote">
-                          <div dir="ltr" class="gmail_attr">On Thu, Feb
-                            18, 2021 at 5:50 PM Marcus D Leech &lt;<a
-                              moz-do-not-send="true"
-                              href="mailto:patchvonbraun@gmail.com"
-                              target="_blank">patchvonbraun@gmail.com</a>&gt;
-
-                            wrote:<br>
-                          </div>
-                          <blockquote class="gmail_quote"
-                            style="margin:0px 0px 0px
-                            0.8ex;border-left:1px solid
-                            rgb(204,204,204);padding-left:1ex">
-                            <div dir="auto">Just create a 2-channel USRP
-                              source and specify a subdev of “A:0 B:0”. 
-                              <div><br>
-                              </div>
-                              <div><br>
-                                <br>
-                                <div dir="ltr">Sent from my iPhone</div>
-                                <div dir="ltr"><br>
-                                  <blockquote type="cite">On Feb 18,
-                                    2021, at 7:38 PM, Xiang Ma via
-                                    USRP-users &lt;<a
-                                      moz-do-not-send="true"
-                                      href="mailto:usrp-users@lists.ettus.com"
-                                      target="_blank">usrp-users@lists.ettus.com</a>&gt;
-
-                                    wrote:<br>
-                                    <br>
-                                  </blockquote>
-                                </div>
-                                <blockquote type="cite">
-                                  <div dir="ltr">﻿
-                                    <div dir="ltr">Hi,
-                                      <div><br>
-                                      </div>
-                                      <div>    I am using a x310 USRP
-                                        with two UBX daughterboards. Now
-                                        I can transmit and receive the
-                                        signal in RF A daughterboard
-                                        with command</div>
-                                      <div> 
-                                          self.source.set_antenna("RX2",
-                                        0)</div>
-                                      <div>   
-                                        self.sink.set_antenna("TX/RX",
-                                        0).</div>
-                                      <div><br>
-                                      </div>
-                                      <div>    Now, I want to transmit
-                                        the signal in RF A, and receive
-                                        the signal in both RF A and RF
-                                        B. It is actually 1 transmitter
-                                        and 2 receivers. How can I
-                                        implement this? I checked the
-                                        set_subdev_subdev("B", 1), but
-                                        it doesn't work.</div>
-                                      <div><br>
-                                      </div>
-                                      <div>Thank you,</div>
-                                      <div><br>
-                                      </div>
-                                      <div><br>
-                                      </div>
-                                      <div><br clear="all">
-                                        <div><br>
-                                        </div>
-                                        -- <br>
-                                        <div dir="ltr">
-                                          <div dir="ltr"><font
-                                              style="color:rgb(136,136,136)"
-                                              face="times new roman,
-                                              serif" size="4"><i><b>Xiang
-                                                  Ma, </b></i></font><span
-style="color:rgb(136,136,136)">Ph.D. Student</span>
-                                            <div>
-                                              <div
-                                                style="color:rgb(136,136,136)"><font
-                                                  color="#444444">College
-                                                  of Engineering</font></div>
-                                              <div><font color="#444444">Utah
-
-                                                  State University</font></div>
-                                              <div
-                                                style="color:rgb(136,136,136)"><font
-                                                  color="#444444">E-mail:<a
-moz-do-not-send="true" href="mailto:marxwolfs@gmail.com"
-                                                    style="color:rgb(17,85,204)"
-                                                    target="_blank">marxwolfs@gmail.com</a></font></div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <span>_______________________________________________</span><br>
-                                    <span>USRP-users mailing list</span><br>
-                                    <span><a moz-do-not-send="true"
-                                        href="mailto:USRP-users@lists.ettus.com"
-                                        target="_blank">USRP-users@lists.ettus.com</a></span><br>
-                                    <span><a moz-do-not-send="true"
-href="http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com"
-                                        target="_blank">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></span><br>
-                                  </div>
-                                </blockquote>
-                              </div>
-                            </div>
-                          </blockquote>
-                        </div>
-                        <br clear="all">
-                        <div><br>
-                        </div>
-                        -- <br>
-                        <div dir="ltr">
-                          <div dir="ltr"><font
-                              style="color:rgb(136,136,136)" face="times
-                              new roman, serif" size="4"><i><b>Xiang
-                                  Ma, </b></i></font><span
-                              style="color:rgb(136,136,136)">Ph.D.
-                              Student</span>
-                            <div>
-                              <div style="color:rgb(136,136,136)"><font
-                                  color="#444444">College of Engineering</font></div>
-                              <div><font color="#444444">Utah State
-                                  University</font></div>
-                              <div style="color:rgb(136,136,136)"><font
-                                  color="#444444">E-mail:<a
-                                    moz-do-not-send="true"
-                                    href="mailto:marxwolfs@gmail.com"
-                                    style="color:rgb(17,85,204)"
-                                    target="_blank">marxwolfs@gmail.com</a></font></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </blockquote>
-                  </div>
-                </blockquote>
-              </div>
-              <br clear="all">
-              <div><br>
-              </div>
-              -- <br>
-              <div dir="ltr">
-                <div dir="ltr"><font style="color:rgb(136,136,136)"
-                    face="times new roman, serif" size="4"><i><b>Xiang
-                        Ma, </b></i></font><span
-                    style="color:rgb(136,136,136)">Ph.D. Student</span>
-                  <div>
-                    <div style="color:rgb(136,136,136)"><font
-                        color="#444444">College of Engineering</font></div>
-                    <div><font color="#444444">Utah State University</font></div>
-                    <div style="color:rgb(136,136,136)"><font
-                        color="#444444">E-mail:<a moz-do-not-send="true"
-                          href="mailto:marxwolfs@gmail.com"
-                          style="color:rgb(17,85,204)" target="_blank">marxwolfs@gmail.com</a></font></div>
-                  </div>
-                </div>
-              </div>
-            </blockquote>
-            <br>
-          </div>
-        </blockquote>
-      </div>
-      <br clear="all">
-      <div><br>
-      </div>
-      -- <br>
-      <div dir="ltr" class="gmail_signature">
-        <div dir="ltr"><font style="color:rgb(136,136,136)" face="times
-            new roman, serif" size="4"><i><b>Xiang Ma, </b></i></font><span
-            style="color:rgb(136,136,136)">Ph.D. Student</span>
-          <div>
-            <div style="color:rgb(136,136,136)"><font color="#444444">College
-                of Engineering</font></div>
-            <div><font color="#444444">Utah State University</font></div>
-            <div style="color:rgb(136,136,136)"><font color="#444444">E-mail:<a
-                  moz-do-not-send="true"
-                  href="mailto:marxwolfs@gmail.com"
-                  style="color:rgb(17,85,204)" target="_blank">marxwolfs@gmail.com</a></font></div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------020807040409040707080604--
-
-
---===============8485535481469099041==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-
---===============8485535481469099041==--
-
+RWFjaCBVU1JQIGhhcyBpdHMgb3duIEdQUyBhbnRlbm5hLiBPbmUgb2YgdGhvc2UgeW91IGJ1eSBh
+dCBldHR1cy5jb20gYXMgCmEgcmVjb21tZW5kZWQgYWNjZXNzb3J5LgoKT24gMTguMDIuMjEgMTU6
+MDUsIE1hcmN1cyBEIExlZWNoIHdyb3RlOgo+IEhvdyBhcmUgeW91IGRlbGl2ZXJpbmcgdGhlIEdQ
+UyBhbnRlbm5hIHNpZ25hbCB0byB0aGUgVVNSUHM/ICBWaWEgYSBzcGxpdHRlcj8gRG9lcyB0aGF0
+IHNwbGl0dGVyIHByb3ZpZGUgREMgcGFzcy10aHJvdWdoPwo+IAo+IFNlbnQgZnJvbSBteSBpUGhv
+bmUKPiAKPj4gT24gRmViIDE4LCAyMDIxLCBhdCA3OjA3IEFNLCBKb2hhbm5lcyBEZW1lbCB2aWEg
+VVNSUC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOgo+Pgo+PiDvu79K
+dXN0IGEgcXVpY2sgZm9sbG93LXVwLiBUaGUgQjIxMCBmaW5hbGx5IGdvdCBhIEdQUyBsb2NrLiAo
+SSBoYWQgdG8gd2FpdCBmb3IgfjJoKS4gVGhvdWdoLCBhbGwgTjMxMHMgc3RpbGwgZG9uJ3QuCj4+
+Cj4+PiBPbiAxOC4wMi4yMSAxMDoxMiwgSm9oYW5uZXMgRGVtZWwgdmlhIFVTUlAtdXNlcnMgd3Jv
+dGU6Cj4+PiBIaSBhbGwsCj4+PiBJIGhhdmUgc29tZSBOMzEwcyBhbmQgYSBCMjEwIHRoYXQgSSB0
+cnkgdG8gc3luYyB3aXRoIGEgR1BTRE8uIEFsbCBvZiB0aGVtIHJlY29nbml6ZSB0aGVpciBHUFNE
+T3MgYnV0IGZhaWwgdG8gbG9jay4KPj4+IE15IHBob25lIGNhbiBzZWUgfjcgU2F0ZWxsaXRlcy4g
+V2UgaGF2ZSBhIFJQaSB3aXRoIGEgR1BTIG1vZHVsZSB0aGF0IGxvY2tzIHRvIEdQUyBpbiB0aGUg
+c2FtZSBoYWxsLiBXZSBzd2l0Y2hlZCBhbnRlbm5hcyBidXQgc3RpbGwsIHdlIGNhbid0IHN5bmMg
+YW55IG9mIHRoZSBVU1JQcyB0byBHUFMuCj4+PiBJIHRyaWVkOgo+Pj4gYGBgCj4+PiBsaWIvdWhk
+L3V0aWxzL3F1ZXJ5X2dwc2RvX3NlbnNvcnMKPj4+IGBgYAo+Pj4gYW5kCj4+PiBgYGAKPj4+IGxp
+Yi91aGQvZXhhbXBsZXMvc3luY190b19ncHMKPj4+IGBgYAo+Pj4gYnV0IGV2ZW4gYWZ0ZXIgYSBk
+YXksIHRoZXkgYWx3YXlzIHJldHVybiAiR1BTIGRvZXMgbm90IGhhdmUgbG9jayIgYW5kICJXQVJO
+SU5HOiAgR1BTIG5vdCBsb2NrZWQgLSB0aW1lIHdpbGwgbm90IGJlIGFjY3VyYXRlIHVudGlsIGxv
+Y2tlZCIuCj4+PiBgZ3BzbW9uYCBvbiB0aGUgTjMxMHMgcmVwb3J0cyAwIFNhdGVsbGl0ZXMuIEJ1
+dCBpdCBoYXMgYSBsaXN0IG9mIHNhdGVsbGl0ZXMuCj4+PiBTaW5jZSB3ZSBoYXZlIHNldmVyYWwg
+ZGV2aWNlcyBpbiB0aGF0IHJvb20gdGhhdCBhcmUgYWJsZSB0byBhY3F1aXJlIGEgbG9jayBidXQg
+bm9uZSBvZiBvdXIgVVNSUHMgd2l0aCB0aGVpciBHUFNET3MsIEkgd29uZGVyIHdoYXQgaXMgZ29p
+bmcgb24uIERvIHRoZXkgbmVlZCBhIHZlcnkgc3Ryb25nIHNpZ25hbD8KPj4+IENoZWVycwo+Pj4g
+Sm9oYW5uZXMKPj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KPj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20KPj4gaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3VzcnAtdXNl
+cnNfbGlzdHMuZXR0dXMuY29tCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdApVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbQpodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19s
+aXN0cy5ldHR1cy5jb20K
