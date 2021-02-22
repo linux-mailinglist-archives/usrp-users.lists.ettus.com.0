@@ -2,43 +2,60 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA7B6321B02
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Feb 2021 16:15:48 +0100 (CET)
-Received: from [::1] (port=57128 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC4BE321B9A
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Feb 2021 16:36:45 +0100 (CET)
+Received: from [::1] (port=57284 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lECw5-0006Ct-HP; Mon, 22 Feb 2021 10:15:45 -0500
-Received: from thsbbfxrt01p.thalesgroup.com ([192.54.144.131]:49222)
- by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
- (Exim 4.93)
- (envelope-from <frederique.courant@external.thalesgroup.com>)
- id 1lECw1-00068f-ET
- for usrp-users@lists.ettus.com; Mon, 22 Feb 2021 10:15:41 -0500
-Received: from thsbbfxrt01p.thalesgroup.com (localhost [127.0.0.1])
- by localhost (Postfix) with SMTP id 4Dkm2D2NP3z45ZB
- for <usrp-users@lists.ettus.com>; Mon, 22 Feb 2021 16:15:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=external.thalesgroup.com; s=xrt20181201; t=1614006900;
- bh=uxoYCdbw5pJg1mSI01ij7nQ14xs9zLopvGoFE50Xwa8=;
- h=From:To:Subject:Date:Message-ID:MIME-Version:From;
- b=SU2XubTUoChTOQWPkZowsHDII8dM374eErpZ6zEmNwkVJ+EXgIuuQnQ5hKiRUuXfv
- 2BWC3Otfk/CmhgSN+4PhZoei6K76jQaZ3Q3Lq8ZDEPihZKx0eue6rsliluAmnJ4BMU
- 5D0SgCjfYU8biL4uDcj9CsC+afsCoJ0U42mKTyVaOH/+NReI48rp9telpGfKxFd/gg
- YMIDDF7Jyuct6e39N6+G7k4yk0ajgISnC6PcPAwr9ko5JlNUlMLLcKCK0RgH7MG4nH
- UxtbHgq4SMq3j+/trB0yjKHo2sglsnCQbhbHf9PKXJBapOvbF4QwNLa1LQvyZ8fOc4
- j4yavZMCsK+uA==
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Read a register
-Thread-Index: AdcJLSuGJu1BtRJkTFG4lv26GDzK6Q==
-Date: Mon, 22 Feb 2021 15:14:59 +0000
-Message-ID: <db0907f754a240cd886021bb02ec1f37@external.thalesgroup.com>
-Accept-Language: fr-FR, en-US
-Content-Language: fr-FR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-pmwin-version: 4.0.3, Antivirus-Engine: 3.80.1, Antivirus-Data: 5.82
-MIME-Version: 1.0
-Subject: [USRP-users] Read a register
+	id 1lEDGN-00072O-7t; Mon, 22 Feb 2021 10:36:43 -0500
+Received: from mail-qk1-f172.google.com ([209.85.222.172]:45520)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1lEDGJ-0006uo-Lm
+ for USRP-users@lists.ettus.com; Mon, 22 Feb 2021 10:36:39 -0500
+Received: by mail-qk1-f172.google.com with SMTP id z128so8409332qkc.12
+ for <USRP-users@lists.ettus.com>; Mon, 22 Feb 2021 07:36:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=q9lCikE2yY9g71z8Ug54wcxVditEsagKEIDLqjHuDXQ=;
+ b=SvcbFeGfBbpLj0kNbBbj/+Bs/MFcarkSjJSP3y7dov6VZI+N2UK9HkWsBUnQI/+ngn
+ G+mZvZViIuyDbbLFD8mVLKdlmPVUTVBnUBrA9z5TB+gAON/68Lgg0LAL+0fNPhjErkr4
+ kJk9KBVAgrCKRZzuRugLkBt5uh6u8R+92Ls94bri2MI+QfZL8WZ2zcS29QixVlEaLSAs
+ DoydXdv6XzvauT1wlHIkJMJO+u24QO33V1XCMebU0JO6PZ9dq51MTXA1Wjwk2nDnpsKc
+ 1Q1wttJQloV5xOwDdDzlmtJLDQm5CWNJM6UtuNbBIsPkIQYRpMGsyj2Wj7URzXQ/6bGx
+ Uggg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=q9lCikE2yY9g71z8Ug54wcxVditEsagKEIDLqjHuDXQ=;
+ b=SwfUMClPZrLvfujLrXx61PiPBGntrkjiNDxxK5n/SzxsGQOOefaXbZFNHJ7U3/qbtd
+ GGkQB0UeJViHeS+GX3hhM0V0rvYCz/hOJQ2Psq3yRA63RVV8ESQn6Snl6nEsM3jejO0+
+ 8YAV9uHxHeoRXlWl1BS0P14JfZ9rN+T3w2Jx5lUwlC/P0uc3DKj6R4wMloqERxbQAmhv
+ Mg3ZOB223Wjcw3R3sneocvWGb/o7UnLYT4h2HNiB47ZdbkXrXkXL/2ZJVviHxPv+lRHJ
+ QiL0cKrO3Z7hXfIFZEGILGWCDxjtj99+JVQGb8DTzlwigP94WAWPbpkQjkKyCFSo8xCj
+ gJcA==
+X-Gm-Message-State: AOAM532DdLnQZHNOvCPM19ZSvotGvOkDm6teKOSOI3AK6fjEDJtiz0Xk
+ wbG5FC1ax5ehmZq7e3LzK5QGae8cxHk=
+X-Google-Smtp-Source: ABdhPJxbv6Gs1ZD4J1icgWnGz9P0oOlk46XFRzRsMMwmtBSXmIW1aHEyU+MD7ncMmlxjujVpjpomnw==
+X-Received: by 2002:a37:8446:: with SMTP id g67mr21392234qkd.110.1614008158943; 
+ Mon, 22 Feb 2021 07:35:58 -0800 (PST)
+Received: from [192.168.2.130]
+ (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+ by smtp.gmail.com with ESMTPSA id p66sm2716258qkd.57.2021.02.22.07.35.57
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 22 Feb 2021 07:35:57 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Mon, 22 Feb 2021 10:35:56 -0500
+Message-Id: <BC592952-C170-4682-BD2E-92C93A4B0C5F@gmail.com>
+References: <db0907f754a240cd886021bb02ec1f37@external.thalesgroup.com>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <db0907f754a240cd886021bb02ec1f37@external.thalesgroup.com>
+To: COURANT Frederique - Contractor
+ <frederique.courant@external.thalesgroup.com>
+X-Mailer: iPhone Mail (18D52)
+Subject: Re: [USRP-users] Read a register
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -50,11 +67,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: COURANT Frederique - Contractor via USRP-users
- <usrp-users@lists.ettus.com>
-Reply-To: COURANT Frederique - Contractor
- <frederique.courant@external.thalesgroup.com>
-Content-Type: multipart/mixed; boundary="===============5534301016295203763=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5571015061036929786=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -68,35 +83,57 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============5534301016295203763==
-Content-Language: fr-FR
-Content-Type: multipart/alternative;
-	boundary="_000_db0907f754a240cd886021bb02ec1f37externalthalesgroupcom_"
 
---_000_db0907f754a240cd886021bb02ec1f37externalthalesgroupcom_
-Content-Type: text/plain; charset="us-ascii"
+--===============5571015061036929786==
+Content-Type: multipart/alternative; boundary=Apple-Mail-15C1C2AD-CCC8-4D5E-9B43-7DDE5A5731A5
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-15C1C2AD-CCC8-4D5E-9B43-7DDE5A5731A5
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Context here is really important.=20
 
-Could you give me some examples of how can I read a value at the register 1=
+What USrP platform? Are you talking about a user register or an internal con=
+trol register in the FPGA implementation?
+
+Sent from my iPhone
+
+> On Feb 22, 2021, at 10:15 AM, COURANT Frederique - Contractor via USRP-use=
+rs <usrp-users@lists.ettus.com> wrote:
+>=20
+> =EF=BB=BF
+> Hello,
+> =20
+> Could you give me some examples of how can I read a value at the register 1=
 34 please ?
-This register is only a readable data.
+> This register is only a readable data.
+> =20
+> Best regards.
+> =20
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
-Best regards.
-
-
---_000_db0907f754a240cd886021bb02ec1f37externalthalesgroupcom_
-Content-Type: text/html; charset="us-ascii"
+--Apple-Mail-15C1C2AD-CCC8-4D5E-9B43-7DDE5A5731A5
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Context here is really important.&nbsp;<div=
+><br></div><div>What USrP platform? Are you talking about a user register or=
+ an internal control register in the FPGA implementation?</div><div><br><div=
+ dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D=
+"cite">On Feb 22, 2021, at 10:15 AM, COURANT Frederique - Contractor via USR=
+P-users &lt;usrp-users@lists.ettus.com&gt; wrote:<br><br></blockquote></div>=
+<blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
+
 <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
 <style><!--
 /* Font Definitions */
@@ -140,28 +177,31 @@ div.WordSection1
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"FR" link=3D"#0563C1" vlink=3D"#954F72">
+
+
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Hello,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Could you give me some examples=
- of how can I read a value at the register 134 please ?<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">This register is only a readabl=
-e data.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Could you give me some examples o=
+f how can I read a value at the register 134 please ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">This register is only a readable=
+ data.<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards.<o:p></o:p></span>=
-</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards.<o:p></o:p></span><=
+/p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
 </div>
-</body>
-</html>
-
---_000_db0907f754a240cd886021bb02ec1f37externalthalesgroupcom_--
 
 
---===============5534301016295203763==
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
+>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
+r></div></blockquote></div></body></html>=
+
+--Apple-Mail-15C1C2AD-CCC8-4D5E-9B43-7DDE5A5731A5--
+
+
+--===============5571015061036929786==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -172,5 +212,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============5534301016295203763==--
+--===============5571015061036929786==--
 
