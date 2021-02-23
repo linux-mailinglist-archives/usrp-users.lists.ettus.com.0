@@ -2,47 +2,64 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDDDA322CDF
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Feb 2021 15:53:23 +0100 (CET)
-Received: from [::1] (port=42138 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9AF1322D48
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Feb 2021 16:18:13 +0100 (CET)
+Received: from [::1] (port=42324 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lEZ3w-0002pN-0C; Tue, 23 Feb 2021 09:53:20 -0500
-Received: from mail.hhi.fraunhofer.de ([193.174.67.45]:60910)
- by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
- (Exim 4.93) (envelope-from <julian.daube@hhi.fraunhofer.de>)
- id 1lEZ3r-0002k3-Sm
- for usrp-users@lists.ettus.com; Tue, 23 Feb 2021 09:53:16 -0500
-Received: from mail.hhi.fraunhofer.de (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id DBD047C177
- for <usrp-users@lists.ettus.com>; Tue, 23 Feb 2021 15:52:28 +0100 (CET)
-X-IMSS-DKIM-Authentication-Result: mail.hhi.fraunhofer.de; sigcount=0
-Received: from mail.hhi.fraunhofer.de (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id CF8D37C176
- for <usrp-users@lists.ettus.com>; Tue, 23 Feb 2021 15:52:28 +0100 (CET)
-Received: from mx.fe.hhi.de (unknown [172.16.0.103])
- by mail.hhi.fraunhofer.de (Postfix) with ESMTPS
- for <usrp-users@lists.ettus.com>; Tue, 23 Feb 2021 15:52:28 +0100 (CET)
-Received: from mxsrv5.fe.hhi.de (172.16.0.103) by mxsrv5.fe.hhi.de
- (172.16.0.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Tue, 23 Feb
- 2021 15:52:32 +0100
-Received: from mxsrv5.fe.hhi.de ([fe80::7d4f:49e9:b062:84d9]) by
- mxsrv5.fe.hhi.de ([fe80::7d4f:49e9:b062:84d9%6]) with mapi id 15.01.2106.003; 
- Tue, 23 Feb 2021 15:52:32 +0100
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Interface AXI4-Lite to UHD 4.0 RFNoC Shell CtrlPort
-Thread-Index: AQHXCfNz8KY0RC0UAUWnX0FZQyY4sw==
-Date: Tue, 23 Feb 2021 14:52:32 +0000
-Message-ID: <c1dbae1c7f4d42baa74dbf70030937cc@hhi.fraunhofer.de>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.22.100]
+	id 1lEZRy-0005Zq-G8; Tue, 23 Feb 2021 10:18:10 -0500
+Received: from mail-qv1-f42.google.com ([209.85.219.42]:32940)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1lEZRv-0005Rd-AH
+ for usrp-users@lists.ettus.com; Tue, 23 Feb 2021 10:18:07 -0500
+Received: by mail-qv1-f42.google.com with SMTP id 2so7928028qvd.0
+ for <usrp-users@lists.ettus.com>; Tue, 23 Feb 2021 07:17:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:date:from:user-agent:mime-version:to:subject:references
+ :in-reply-to; bh=akEuQeHv0UXYf8E0xjxXaZ4vBVfpJjtqz0+Cphv7BxY=;
+ b=cMq239Rc5z6PQhoG+l/E0pgwqAgcoM4ZJe+wko0oH/jWt/5Ob/2qtR3PWChXWs4DMO
+ HDafnafacmKT3RZAZt8f1z0JmRqx9btT/B5z9ZuE2brS018fg5H/uorsHY1lXgIwpzzq
+ 9ERxQ7JKbFVuVQjkAOFpoCTq4CVE00DITWvQCnSCbi31bBQsi4LAjLdxOR5kX8p89Q8p
+ y0Fh9Dkg5ligDVpKE8A2h/WkBP3Wy86npVEQTJ+5d/ZLyB5yUBF47YElgcOc5QTcRfJ2
+ GvIUww4YK5b3jI+9uoZon3fGx+gNdEuaDH1zOmYwIShZWVECFsJaP/Muudy97zGomQ4r
+ zP2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :subject:references:in-reply-to;
+ bh=akEuQeHv0UXYf8E0xjxXaZ4vBVfpJjtqz0+Cphv7BxY=;
+ b=oWxMEuQn2WgagwRo/WNnKJ1gm1PkE8zSdbyu9N9fNI+SgqKZQdFiCKR/5EMwxgmhzT
+ fcf4wooXWt7LKKRkqOjqvOXZZ21UuenOxRrtOPsBLQw4fQ+9llcVK/FkYZMZQO2bZNdW
+ GIv5BqEjKA6HxNNc/t7XrhUPsEXQ2VhOLVht7EFoPgAE2pbQkpIKFCPv6gFVO11He4yQ
+ CYaUUbg5yfP1AJw1dtsxEKbX/sKI59gp/9rRzg110P2w4n9IrVpA58rQ251sJymz8N5S
+ jeS0ebbvfoiQc9qNWSZkgKq8BFePiqrMDpUJxhtkgela3Z7p24g4LsVjoWKuPDlWqopZ
+ PGSQ==
+X-Gm-Message-State: AOAM5312zn3MRzZ1cyzaxQ4QWCAx2+DdKx0qHmc3X5yl+sa2yWRnKNzp
+ ozNDDY3kRbHoUxzo+MdGdnZGpVF4JFY=
+X-Google-Smtp-Source: ABdhPJz2a4FLsFL60HAEkVZV4ao8H1gv7pwWF8rulX3PHKIiUkj7uSoHhsm7iqzjHUmutjJZiIpaeA==
+X-Received: by 2002:a05:6214:1a4a:: with SMTP id
+ fi10mr2291214qvb.5.1614093446454; 
+ Tue, 23 Feb 2021 07:17:26 -0800 (PST)
+Received: from [192.168.2.12]
+ (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+ by smtp.googlemail.com with ESMTPSA id
+ c127sm15156691qkd.87.2021.02.23.07.17.25
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 23 Feb 2021 07:17:26 -0800 (PST)
+Message-ID: <60351C85.2010908@gmail.com>
+Date: Tue, 23 Feb 2021 10:17:25 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+ rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-X-TM-AS-GCONF: 00
-Subject: [USRP-users] Interface AXI4-Lite to UHD 4.0 RFNoC Shell CtrlPort
+To: COURANT Frederique - Contractor
+ <frederique.courant@external.thalesgroup.com>, 
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <db0907f754a240cd886021bb02ec1f37@external.thalesgroup.com>
+ <BC592952-C170-4682-BD2E-92C93A4B0C5F@gmail.com>
+ <f1ff286839b44462ad21c0eb5edf9804@external.thalesgroup.com>
+In-Reply-To: <f1ff286839b44462ad21c0eb5edf9804@external.thalesgroup.com>
+Subject: Re: [USRP-users] Read a register
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +71,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Daube, Julian via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Daube, Julian" <julian.daube@hhi.fraunhofer.de>
-Content-Type: multipart/mixed; boundary="===============7491142239450281492=="
+From: "Marcus D. Leech via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4101091313219307989=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,105 +87,163 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============7491142239450281492==
-Content-Language: de-DE
+This is a multi-part message in MIME format.
+--===============4101091313219307989==
 Content-Type: multipart/alternative;
-	boundary="_000_c1dbae1c7f4d42baa74dbf70030937cchhifraunhoferde_"
+ boundary="------------080200030206000304040900"
 
---_000_c1dbae1c7f4d42baa74dbf70030937cchhifraunhoferde_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------080200030206000304040900
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
+On 02/23/2021 03:45 AM, COURANT Frederique - Contractor wrote:
+>
+> I’m working in python.
+>
+> *De :*COURANT Frederique - Contractor
+> *Envoyé :* mardi 23 février 2021 09:13
+> *À :* 'Marcus D Leech' <patchvonbraun@gmail.com>
+> *Objet :* RE: [USRP-users] Read a register
+>
+> My USRP platform is the X310.
+>
+> I would like to read an internal control register at the address 133. 
+> I had ever allocated in the xml file with the name status.
+>
+>
+ From the fact that you've mentioned XML, I'm going to *guess* that 
+you're working with RFNOC, and thus the "radio3" API.
 
-I was searching for a way to interface the control interface of a Simulink =
-HDL Coder IP Core to the RFNoC Shell.
+I'm pretty sure that in the regular multi_usrp API, the python interface 
+doesn't expose low-level register I/O, but the story may be
+   different in RFNOC--so at this point I'm hoping an RFNOC person can 
+jump in, but a lot more context will be needed.
 
 
-Normally i would expose all control registers over an AXI4-Lite interface. =
-I took a look at the rfnoc_core_addsub, since it uses Xilinx HLS, but that =
-example does not expose control registers at all, thereby avoiding this pro=
-blem.
 
-I guess the question is, how i would i tackle this connection from the Ctrl=
-Port of the NoC Shell to AXI4-Lite?
-A nudge in the right direction would be highly appreciated!
-
-Regards,
-
-Julian Daube
-
-PS: I would like to integrated said core into the UHD 4.0 framework and bui=
-ld images for the X310, if this of relevance. Since it will be a FIR Filter=
- similar to the axi_filter block, i would like to avoid using a parallel co=
-nfiguration bus.
-
-
---_000_c1dbae1c7f4d42baa74dbf70030937cchhifraunhoferde_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--------------080200030206000304040900
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p>Hi, <br>
-<br>
-I was searching for a way to interface the control interface of a Simulink =
-HDL Coder IP Core to the RFNoC Shell.
-<br>
-</p>
-<p><br>
-</p>
-<p>Normally i would expose all control registers over an AXI4-Lite interfac=
-e. I took a look at the rfnoc_core_addsub, since it uses Xilinx HLS, but th=
-at example does not expose control registers at all, thereby avoiding this =
-problem.
-<br>
-<br>
-I guess the question is, how i would i tackle this connection from the Ctrl=
-Port of the NoC Shell to AXI4-Lite?
-<br>
-A nudge in the right direction would be highly appreciated! <br>
-<br>
-Regards,<br>
-</p>
-<p><br>
-</p>
-<div id=3D"Signature">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
-r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &quot;EmojiFo=
-nt&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoCo=
-lorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymb=
-ols;">
-<p><span id=3D"ms-rterangepaste-start"></span></p>
-<p class=3D"MsoNormal" style=3D"line-height:11.25pt; background:white"><spa=
-n style=3D"" lang=3D"DE">Julian Daube<br>
-<br>
-PS: I would like to integrated said core into the UHD 4.0 framework and bui=
-ld images for the X310, if this of relevance. Since it will be a FIR Filter=
- similar to the axi_filter block, i would like to avoid using a parallel co=
-nfiguration bus.</span><br>
-</p>
-<br>
-<p></p>
-</div>
-</div>
-</div>
-</body>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 02/23/2021 03:45 AM, COURANT
+      Frederique - Contractor wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:f1ff286839b44462ad21c0eb5edf9804@external.thalesgroup.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal"><span style="color:#1F497D">I’m working in
+            python.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
+        <div>
+          <div style="border:none;border-top:solid #E1E1E1
+            1.0pt;padding:3.0pt 0cm 0cm 0cm">
+            <p class="MsoNormal"><b><span
+                  style="mso-fareast-language:FR">De :</span></b><span
+                style="mso-fareast-language:FR"> COURANT Frederique -
+                Contractor
+                <br>
+                <b>Envoyé :</b> mardi 23 février 2021 09:13<br>
+                <b>À :</b> 'Marcus D Leech'
+                <a class="moz-txt-link-rfc2396E" href="mailto:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a><br>
+                <b>Objet :</b> RE: [USRP-users] Read a register<o:p></o:p></span></p>
+          </div>
+        </div>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">My
+            USRP platform is the X310.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">I
+            would like to read an internal control register at the
+            address 133. I had ever allocated in the xml file with the
+            name status.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
+        <br>
+      </div>
+    </blockquote>
+    From the fact that you've mentioned XML, I'm going to *guess* that
+    you're working with RFNOC, and thus the "radio3" API.<br>
+    <br>
+    I'm pretty sure that in the regular multi_usrp API, the python
+    interface doesn't expose low-level register I/O, but the story may
+    be<br>
+      different in RFNOC--so at this point I'm hoping an RFNOC person
+    can jump in, but a lot more context will be needed.<br>
+    <br>
+    <br>
+  </body>
 </html>
 
---_000_c1dbae1c7f4d42baa74dbf70030937cchhifraunhoferde_--
+--------------080200030206000304040900--
 
 
-
---===============7491142239450281492==
+--===============4101091313219307989==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -179,6 +254,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============7491142239450281492==--
-
+--===============4101091313219307989==--
 
