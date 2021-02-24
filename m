@@ -2,48 +2,54 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFBA832459F
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Feb 2021 22:14:09 +0100 (CET)
-Received: from [::1] (port=54840 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E3083245E3
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Feb 2021 22:43:10 +0100 (CET)
+Received: from [::1] (port=55068 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lF1Tx-000456-1z; Wed, 24 Feb 2021 16:14:05 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:41952)
+	id 1lF1w1-0006BG-7V; Wed, 24 Feb 2021 16:43:05 -0500
+Received: from mail-ua1-f48.google.com ([209.85.222.48]:41397)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <robertbenwilson0@gmail.com>)
- id 1lF1Tu-0003yn-2q
- for usrp-users@lists.ettus.com; Wed, 24 Feb 2021 16:14:02 -0500
-Received: by mail-oi1-f179.google.com with SMTP id o3so3887020oic.8
- for <usrp-users@lists.ettus.com>; Wed, 24 Feb 2021 13:13:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=UPvLqy792x7KlpqZFLJ5b+gO3NiLqQfdFtp3CKcnYIo=;
- b=SrmYr0Q5odLfsiCBGaz2mwVrqZhxuRfJtFruIBPTi+Yw87D2I592ljL8r5gLv1PZMq
- l8FrdSoIti6ndHNgqv+H6ZmG+s7Nj7gzONzARgjxAhCiVyf60JhsKiiLrA8CyLPRNbsQ
- IlYAlbQfyyMf1vrVtzHf1k0dOPAFxSTaFbu3MffY3ocY+3k2RBxCH/B/4brIpbYjNVi7
- I4tAdfVQZrUG12sy56rUiuiuqiTrpf+UfjCDzPUWc2V07p40+kdN6qpO+te9SGyZDue2
- /k0VXU1eNHtPW/1AWO0+h86ly33z89SAwrF+5HdeKGg0LlEosNCE4/sctV19DSDXEB5f
- cpbw==
+ (Exim 4.93) (envelope-from <jonathon.pendlum@ettus.com>)
+ id 1lF1vx-00065s-FB
+ for usrp-users@lists.ettus.com; Wed, 24 Feb 2021 16:43:01 -0500
+Received: by mail-ua1-f48.google.com with SMTP id w24so1229606uau.8
+ for <usrp-users@lists.ettus.com>; Wed, 24 Feb 2021 13:42:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ettus-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=1XoXQwJuJaPUPlWj2bbPjBDShVoIDRqnO31grxg/430=;
+ b=yy3gjcOi87Z7jII2w8KFgH/gSr/bXl8DyUzE4YWfcM/UyYN3utObed0llsnJVgfcOr
+ 0OpERdGGajogAJJL6Ni+9NHG5C48YHIY68vWkkLBgohZ77jOjtnTt62zl0D7XQZzRiaB
+ zQRR3qV1zMwYPohOCUIWu2EwSbBN+Kk0BA/+Q0KsYbjZ1f4yv/rYeY1iZZTxrpi0kHli
+ tetgp+okhoz84P1diVPSy3jWNvXM8UTkLUUd11Dlj94RbCY3eUwSjlPZz4EZ2SbrQBQt
+ LJj/cEhXnQdisXdrRjqGj+49daoQAZhpKvg4oSZONBV3sJXk36Qmh9UKyMEz5F9nUgQV
+ uBKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=UPvLqy792x7KlpqZFLJ5b+gO3NiLqQfdFtp3CKcnYIo=;
- b=W7fpobIyVT1nBxMnlot0BnGtgboljcrLB/tgex6M30t1Yexql1oYOnpg7pb62NaM8C
- SNwmZYoptuiN7mO1Ta3UJlcr4QHsu/qsqzjonpFJBCWZ1+6rlslPLQBeIoUNBl4WQ6iy
- 6Zxowbc1eurgbzwS2cKGx+7gombXTHyM1k5sK7kyGSXe7S86f+hxa1TXLNdNQKA13HMS
- KcQv7d2YLyxflHqqG7Vwr1Zav7Vj+k67OhEO2C8mh+sOwN5fC8dxhxRPNDPfNBbSY5Wy
- s1FXHUQRtW0U6tQCxTfgyNBakhlUwlBRjUTfpU0c5fQMbNsExGJ2woXdGk7XlslAZLpi
- o62g==
-X-Gm-Message-State: AOAM531HGL6lzsRKiUE00tluDVDS5o213N2XgYJlRFveu3tXFTGQkARd
- o5CPZlRKcRvVPWb8Kk3WLWVj3qQdFMbxfqYsD+vmg9IjHoM=
-X-Google-Smtp-Source: ABdhPJyz7Paiq5BKXWe6ovJCiH0RL/cQhUh8EgdkJdxselP88tpdIOqvVKz0FfOJLlbCazjqqB6ivap24Zbx5O5aZ8o=
-X-Received: by 2002:aca:4508:: with SMTP id s8mr4091374oia.118.1614201200944; 
- Wed, 24 Feb 2021 13:13:20 -0800 (PST)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=1XoXQwJuJaPUPlWj2bbPjBDShVoIDRqnO31grxg/430=;
+ b=Tw4jSWbMojomSo681X81HmbSf7nfV5V4piojF1sYtc6Yd4B0Rl79KE49z+6u5jCkVX
+ 2QpZsIxQDlUB9DB9wFJYx5zLeAVEuXThalZWz/v1ISzz7N2JSGkjA8DDNZwDcu0eoBnv
+ BqG6pwyRNArOZYMwskMnLWEV35cd0qnW+CdDTWeZUu6JQe7Ll1ge4/wKdfYH1l7HkVZj
+ ApqXw+XhYWP4Ns47JFP4cThu4yXZyJZa+IPuTtnOfK/quV4UaYtvND4QMNva0xoE1EJE
+ +8liKbGmx68mf7kC8hQZ+AkU7DZgbtG0Lfpawx2hBn9vIxQKc8hMUhBA4hHu8zI8FZxE
+ TWOQ==
+X-Gm-Message-State: AOAM5305y8r1WcNu9YejKKdcKPMN6CAG+hRXNr/1OgbSjzq1Y56sLRbL
+ Q08giOYwCt32AxBZY0dGMYQabh1yDCS15IdXd/hw56f8
+X-Google-Smtp-Source: ABdhPJzHIpGppwOQY3SjsXgAGKH8yDnV9eq2My5Li6YenHbqmSQSnhSAzohGu44ggnDgREGCvFpO6yI7kXJNg23r+50=
+X-Received: by 2002:ab0:5a09:: with SMTP id l9mr44974uad.112.1614202940731;
+ Wed, 24 Feb 2021 13:42:20 -0800 (PST)
 MIME-Version: 1.0
-Date: Wed, 24 Feb 2021 16:13:11 -0500
-Message-ID: <CAGJu-nYEyAcMQYwZUzp5Tr58UNyj4+=oHV=c_17EQj6UUWP3Rw@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Software Loopback RFNoC TX/RX same flowgraph
+References: <CAGJu-nYEyAcMQYwZUzp5Tr58UNyj4+=oHV=c_17EQj6UUWP3Rw@mail.gmail.com>
+In-Reply-To: <CAGJu-nYEyAcMQYwZUzp5Tr58UNyj4+=oHV=c_17EQj6UUWP3Rw@mail.gmail.com>
+Date: Wed, 24 Feb 2021 16:41:44 -0500
+Message-ID: <CAL7q81vQ3eLO5MsWQ8Kyk+5KMrOicBjQXAcw=XRUeZtoTtzqwA@mail.gmail.com>
+To: Robert Wilson <robertbenwilson0@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="000000000000e1591f05bc1be81d"
+Subject: Re: [USRP-users] Software Loopback RFNoC TX/RX same flowgraph
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +61,8 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Robert Wilson via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Robert Wilson <robertbenwilson0@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3385669093394426875=="
+From: Jonathon Pendlum via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,59 +76,88 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3385669093394426875==
-Content-Type: multipart/alternative; boundary="0000000000002daa8505bc1b81ff"
+--000000000000e1591f05bc1be81d
+Content-Type: multipart/alternative; boundary="000000000000e1591b05bc1be81b"
 
---0000000000002daa8505bc1b81ff
+--000000000000e1591b05bc1be81b
 Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+Hi Robert,
 
-OS: Linux Ubuntu 20.04
-GRC: 3.8
-UHD: 4.0
-USRP: X310 with two UBX-160 daughterboards
+Here is a patch to gr-ettus that adds loopback support and an example
+flowgraph. You can apply it using "git am". This may not be what the final
+result will look like when merged into gr-ettus, so consider this a
+temporary solution.
 
-Attempting to receive and repeat a spectrum with low latency without using
-RX/TX streamers with RFNoC in GnuRadio.
-Currently using the default x310 image core.
-Steps I have taken to do this:
-Shown that I can receive correct signal with a RX-Radio RFNoC Block ->DDC
-RFNoC->Rx Streamer.
-Also shown that I can transmit correct signal via TX Streamer-.>DUC
-RFNoC->TX-Radio RFNoC Block.
-However, when attempting  RX-Radio RFNoC Block ->DDC RFNoC-> DUC
-RFNoC->TX-Radio RFNoC Block, there is no signal output and no TX/RX RX2
-link lights.
-Changing the Block Instances to match the existing default x310 image core
-Static connections made the flow graph run, but again with no lights or
-output.
+Jonathon
 
-I found (through this mailing list) relevant material on this, the "Stupid
-RFNoC Tricks: Loopback"  in removing timestamps on received signals.
-https://corvid.io/2017/04/22/stupid-rfnoc-tricks-loopback/
+On Wed, Feb 24, 2021 at 4:14 PM Robert Wilson via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-But, the current UHD build does not have the same filesystem or files (from
-what I can tell).
+> Hello,
+>
+> OS: Linux Ubuntu 20.04
+> GRC: 3.8
+> UHD: 4.0
+> USRP: X310 with two UBX-160 daughterboards
+>
+> Attempting to receive and repeat a spectrum with low latency without using
+> RX/TX streamers with RFNoC in GnuRadio.
+> Currently using the default x310 image core.
+> Steps I have taken to do this:
+> Shown that I can receive correct signal with a RX-Radio RFNoC Block ->DDC
+> RFNoC->Rx Streamer.
+> Also shown that I can transmit correct signal via TX Streamer-.>DUC
+> RFNoC->TX-Radio RFNoC Block.
+> However, when attempting  RX-Radio RFNoC Block ->DDC RFNoC-> DUC
+> RFNoC->TX-Radio RFNoC Block, there is no signal output and no TX/RX RX2
+> link lights.
+> Changing the Block Instances to match the existing default x310 image core
+> Static connections made the flow graph run, but again with no lights or
+> output.
+>
+> I found (through this mailing list) relevant material on this, the "Stupid
+> RFNoC Tricks: Loopback"  in removing timestamps on received signals.
+> https://corvid.io/2017/04/22/stupid-rfnoc-tricks-loopback/
+>
+> But, the current UHD build does not have the same filesystem or files
+> (from what I can tell).
+>
+> Looking for guidance or reference in order to build this repeater.
+>
+> Robert
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
 
-Looking for guidance or reference in order to build this repeater.
-
-Robert
-
---0000000000002daa8505bc1b81ff
+--000000000000e1591b05bc1be81b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>OS: Linux Ubuntu 20.0=
-4<br></div><div>GRC: 3.8</div><div>UHD: 4.0</div><div>USRP: X310 with two U=
-BX-160 daughterboards</div><div><br></div><div>Attempting to receive and re=
-peat a spectrum with low latency without using RX/TX streamers with RFNoC i=
-n GnuRadio.</div><div>Currently using the default x310 image core.=C2=A0=C2=
-=A0<br></div><div>Steps I have taken to do this:</div><div></div><div>Shown=
- that I can receive correct signal with a RX-Radio RFNoC Block -&gt;DDC RFN=
-oC-&gt;Rx Streamer.</div><div>Also shown that I can transmit correct signal=
- via TX Streamer-.&gt;DUC RFNoC-&gt;TX-Radio RFNoC Block.</div><div>However=
-, when attempting=C2=A0
+<div dir=3D"ltr">Hi Robert,<div><br></div><div>Here is a patch to gr-ettus =
+that adds loopback support and an example flowgraph. You can apply it using=
+ &quot;git am&quot;. This may not be what the final result will look like w=
+hen merged into gr-ettus, so consider this a temporary solution.</div><div>=
+<br></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Wed, Feb 24, 2021 at 4:14 PM Robert Wilson=
+ via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-user=
+s@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><div dir=3D"ltr"><div>Hello,</div><div><br></div><div>OS: =
+Linux Ubuntu 20.04<br></div><div>GRC: 3.8</div><div>UHD: 4.0</div><div>USRP=
+: X310 with two UBX-160 daughterboards</div><div><br></div><div>Attempting =
+to receive and repeat a spectrum with low latency without using RX/TX strea=
+mers with RFNoC in GnuRadio.</div><div>Currently using the default x310 ima=
+ge core.=C2=A0=C2=A0<br></div><div>Steps I have taken to do this:</div><div=
+></div><div>Shown that I can receive correct signal with a RX-Radio RFNoC B=
+lock -&gt;DDC RFNoC-&gt;Rx Streamer.</div><div>Also shown that I can transm=
+it correct signal via TX Streamer-.&gt;DUC RFNoC-&gt;TX-Radio RFNoC Block.<=
+/div><div>However, when attempting=C2=A0
 
 RX-Radio RFNoC Block -&gt;DDC RFNoC-&gt;
 
@@ -134,17 +168,247 @@ again with no lights or output.=C2=A0=C2=A0</div><div><br></div><div>I foun=
 d (through this mailing list) relevant material on this, the &quot;Stupid R=
 FNoC Tricks: Loopback&quot;=C2=A0 in removing timestamps on received signal=
 s.=C2=A0</div><div><a href=3D"https://corvid.io/2017/04/22/stupid-rfnoc-tri=
-cks-loopback/">https://corvid.io/2017/04/22/stupid-rfnoc-tricks-loopback/</=
-a><br></div><div><br></div><div>But, the current UHD build does not have th=
-e same filesystem or files (from what I can tell).=C2=A0</div><div><br></di=
-v><div>Looking for guidance or reference in order to build this repeater.</=
-div><div><br></div><div>Robert</div><div><br></div><div><br></div><div>=C2=
-=A0</div></div>
+cks-loopback/" target=3D"_blank">https://corvid.io/2017/04/22/stupid-rfnoc-=
+tricks-loopback/</a><br></div><div><br></div><div>But, the current UHD buil=
+d does not have the same filesystem or files (from what I can tell).=C2=A0<=
+/div><div><br></div><div>Looking for guidance or reference in order to buil=
+d this repeater.</div><div><br></div><div>Robert</div><div><br></div><div><=
+br></div><div>=C2=A0</div></div>
+_______________________________________________<br>
+USRP-users mailing list<br>
+<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
+lists.ettus.com</a><br>
+<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
+om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
+tinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
 
---0000000000002daa8505bc1b81ff--
+--000000000000e1591b05bc1be81b--
+--000000000000e1591f05bc1be81d
+Content-Type: text/x-patch; charset="US-ASCII"; name="rfnoc_loopback.patch"
+Content-Disposition: attachment; filename="rfnoc_loopback.patch"
+Content-Transfer-Encoding: base64
+Content-ID: <f_kljyolfq0>
+X-Attachment-Id: f_kljyolfq0
 
-
---===============3385669093394426875==
+RnJvbSA0NzdlN2RkYWYxZDRjZWY4NmY3MDdiZWFhNzZjMWFlMTNkZGY5ZmZlIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBKb25hdGhvbiBQZW5kbHVtIDxqb25hdGhvbi5wZW5kbHVtQGV0
+dHVzLmNvbT4KRGF0ZTogU3VuLCAxOCBPY3QgMjAyMCAyMTo1Njo1MCAtMDQwMApTdWJqZWN0OiBb
+UEFUQ0ggMS8yXSBncmM6IEZpeCBEVUMgcGFyYW1ldGVycwoKLS0tCiBncmMvZXR0dXNfcmZub2Nf
+ZHVjLmJsb2NrLnltbCB8IDEgLQogMSBmaWxlIGNoYW5nZWQsIDEgZGVsZXRpb24oLSkKCmRpZmYg
+LS1naXQgYS9ncmMvZXR0dXNfcmZub2NfZHVjLmJsb2NrLnltbCBiL2dyYy9ldHR1c19yZm5vY19k
+dWMuYmxvY2sueW1sCmluZGV4IDUzODM5MDIuLmJmOTZhNWIgMTAwNjQ0Ci0tLSBhL2dyYy9ldHR1
+c19yZm5vY19kdWMuYmxvY2sueW1sCisrKyBiL2dyYy9ldHR1c19yZm5vY19kdWMuYmxvY2sueW1s
+CkBAIC04LDcgKzgsNiBAQCB0ZW1wbGF0ZXM6CiAgIG1ha2U6IHwtCiAgICAgZXR0dXMucmZub2Nf
+ZHVjKAogICAgICAgICBzZWxmLnJmbm9jX2dyYXBoLAotICAgICAgICAke251bV9jaGFuc30sCiAg
+ICAgICAgIHVoZC5kZXZpY2VfYWRkcigke2Jsb2NrX2FyZ3N9KSwKICAgICAgICAgJHtkZXZpY2Vf
+c2VsZWN0fSwKICAgICAgICAgJHtpbnN0YW5jZV9pbmRleH0pCi0tIAoyLjI1LjEKCgpGcm9tIGIw
+MDExZGY2ODY4MzVjNmJlNjA4NzQyYTgyZmQ5OWU1OWU4ZTI1YjUgTW9uIFNlcCAxNyAwMDowMDow
+MCAyMDAxCkZyb206IEpvbmF0aG9uIFBlbmRsdW0gPGpvbmF0aG9uLnBlbmRsdW1AZXR0dXMuY29t
+PgpEYXRlOiBTdW4sIDE4IE9jdCAyMDIwIDIyOjA1OjI4IC0wNDAwClN1YmplY3Q6IFtQQVRDSCAy
+LzJdIHJmbm9jOiBBZGQgUlgtPlRYIGxvb3BiYWNrIHN1cHBvcnQgYW5kIGV4YW1wbGUgZmxvd2dy
+YXBoCgotLS0KIGV4YW1wbGVzL3Jmbm9jL3Jmbm9jX3J4dHhfbG9vcGJhY2suZ3JjIHwgMzAxICsr
+KysrKysrKysrKysrKysrKysrKysrKysKIGdyYy9ldHR1c19yZm5vY19ncmFwaC5ibG9jay55bWwg
+ICAgICAgIHwgICA2ICsKIGdyYy9yZm5vYy5kb21haW4ueW1sICAgICAgICAgICAgICAgICAgIHwg
+ICAyICstCiBpbmNsdWRlL2V0dHVzL3Jmbm9jX3J4X3JhZGlvLmggICAgICAgICB8ICAgNiArCiBs
+aWIvcmZub2NfZ3JhcGhfaW1wbC5jYyAgICAgICAgICAgICAgICB8ICAgMyArLQogbGliL3Jmbm9j
+X3J4X3JhZGlvX2ltcGwuY2MgICAgICAgICAgICAgfCAgMTUgKysKIGxpYi9yZm5vY19yeF9yYWRp
+b19pbXBsLmggICAgICAgICAgICAgIHwgICAzICsKIDcgZmlsZXMgY2hhbmdlZCwgMzM0IGluc2Vy
+dGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgZXhhbXBsZXMvcmZu
+b2MvcmZub2Nfcnh0eF9sb29wYmFjay5ncmMKCmRpZmYgLS1naXQgYS9leGFtcGxlcy9yZm5vYy9y
+Zm5vY19yeHR4X2xvb3BiYWNrLmdyYyBiL2V4YW1wbGVzL3Jmbm9jL3Jmbm9jX3J4dHhfbG9vcGJh
+Y2suZ3JjCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAuLjVmNjA3NDYKLS0tIC9k
+ZXYvbnVsbAorKysgYi9leGFtcGxlcy9yZm5vYy9yZm5vY19yeHR4X2xvb3BiYWNrLmdyYwpAQCAt
+MCwwICsxLDMwMSBAQAorb3B0aW9uczoKKyAgcGFyYW1ldGVyczoKKyAgICBhdXRob3I6ICcnCisg
+ICAgY2F0ZWdvcnk6ICdbR1JDIEhpZXIgQmxvY2tzXScKKyAgICBjbWFrZV9vcHQ6ICcnCisgICAg
+Y29tbWVudDogJycKKyAgICBjb3B5cmlnaHQ6ICcnCisgICAgZGVzY3JpcHRpb246ICcnCisgICAg
+Z2VuX2NtYWtlOiAnT24nCisgICAgZ2VuX2xpbmtpbmc6IGR5bmFtaWMKKyAgICBnZW5lcmF0ZV9v
+cHRpb25zOiBxdF9ndWkKKyAgICBoaWVyX2Jsb2NrX3NyY19wYXRoOiAnLjonCisgICAgaWQ6IHJm
+bm9jX3J4dHhfbG9vcGJhY2sKKyAgICBtYXhfbm91dHM6ICcwJworICAgIG91dHB1dF9sYW5ndWFn
+ZTogcHl0aG9uCisgICAgcGxhY2VtZW50OiAoMCwwKQorICAgIHF0X3Fzc190aGVtZTogJycKKyAg
+ICByZWFsdGltZV9zY2hlZHVsaW5nOiAnJworICAgIHJ1bjogJ1RydWUnCisgICAgcnVuX2NvbW1h
+bmQ6ICd7cHl0aG9ufSAtdSB7ZmlsZW5hbWV9JworICAgIHJ1bl9vcHRpb25zOiBwcm9tcHQKKyAg
+ICBzaXppbmdfbW9kZTogZml4ZWQKKyAgICB0aHJlYWRfc2FmZV9zZXR0ZXJzOiAnJworICAgIHRp
+dGxlOiBSRk5vQyBSWC0+VFggTG9vcGJhY2sKKyAgICB3aW5kb3dfc2l6ZTogJycKKyAgc3RhdGVz
+OgorICAgIGJ1c19zaW5rOiBmYWxzZQorICAgIGJ1c19zb3VyY2U6IGZhbHNlCisgICAgYnVzX3N0
+cnVjdHVyZTogbnVsbAorICAgIGNvb3JkaW5hdGU6IFs4LCA4XQorICAgIHJvdGF0aW9uOiAwCisg
+ICAgc3RhdGU6IGVuYWJsZWQKKworYmxvY2tzOgorLSBuYW1lOiBldHR1c19yZm5vY19ncmFwaAor
+ICBpZDogZXR0dXNfcmZub2NfZ3JhcGgKKyAgcGFyYW1ldGVyczoKKyAgICBhbGlhczogJycKKyAg
+ICBjbG9ja19zb3VyY2VfMDogJycKKyAgICBjbG9ja19zb3VyY2VfMTogJycKKyAgICBjbG9ja19z
+b3VyY2VfMjogJycKKyAgICBjbG9ja19zb3VyY2VfMzogJycKKyAgICBjbG9ja19zb3VyY2VfNDog
+JycKKyAgICBjbG9ja19zb3VyY2VfNTogJycKKyAgICBjbG9ja19zb3VyY2VfNjogJycKKyAgICBj
+bG9ja19zb3VyY2VfNzogJycKKyAgICBjb21tZW50OiAnRm9yIGxvb3BiYWNrLCBza2lwIHByb3Bh
+Z2F0aW9uCisKKyAgICAgIG11c3QgYmUgc2V0IHRvIFRydWUnCisgICAgZGV2X2FkZHI6ICcnCisg
+ICAgZGV2X2FyZ3M6ICcnCisgICAgbnVtX21ib2FyZHM6ICcxJworICAgIHNraXBfcHJvcGFnYXRp
+b246ICdUcnVlJworICAgIHRpbWVfc291cmNlXzA6ICcnCisgICAgdGltZV9zb3VyY2VfMTogJycK
+KyAgICB0aW1lX3NvdXJjZV8yOiAnJworICAgIHRpbWVfc291cmNlXzM6ICcnCisgICAgdGltZV9z
+b3VyY2VfNDogJycKKyAgICB0aW1lX3NvdXJjZV81OiAnJworICAgIHRpbWVfc291cmNlXzY6ICcn
+CisgICAgdGltZV9zb3VyY2VfNzogJycKKyAgc3RhdGVzOgorICAgIGJ1c19zaW5rOiBmYWxzZQor
+ICAgIGJ1c19zb3VyY2U6IGZhbHNlCisgICAgYnVzX3N0cnVjdHVyZTogbnVsbAorICAgIGNvb3Jk
+aW5hdGU6IFsyNDIsIDhdCisgICAgcm90YXRpb246IDAKKyAgICBzdGF0ZTogdHJ1ZQorLSBuYW1l
+OiByeF9mcmVxCisgIGlkOiB2YXJpYWJsZV9xdGd1aV9yYW5nZQorICBwYXJhbWV0ZXJzOgorICAg
+IGNvbW1lbnQ6ICcnCisgICAgZ3VpX2hpbnQ6ICcnCisgICAgbGFiZWw6IFJYIEZyZXF1ZW5jeSAo
+SHopCisgICAgbWluX2xlbjogJzIwMCcKKyAgICBvcmllbnQ6IFF0Lkhvcml6b250YWwKKyAgICBy
+YW5nZVR5cGU6IGZsb2F0CisgICAgc3RhcnQ6IDEwZTYKKyAgICBzdGVwOiAxZTYKKyAgICBzdG9w
+OiA2ZTkKKyAgICB2YWx1ZTogMi40NWU5CisgICAgd2lkZ2V0OiBjb3VudGVyX3NsaWRlcgorICBz
+dGF0ZXM6CisgICAgYnVzX3Npbms6IGZhbHNlCisgICAgYnVzX3NvdXJjZTogZmFsc2UKKyAgICBi
+dXNfc3RydWN0dXJlOiBudWxsCisgICAgY29vcmRpbmF0ZTogWzc3MywgOV0KKyAgICByb3RhdGlv
+bjogMAorICAgIHN0YXRlOiB0cnVlCistIG5hbWU6IHJ4X2dhaW4KKyAgaWQ6IHZhcmlhYmxlX3F0
+Z3VpX3JhbmdlCisgIHBhcmFtZXRlcnM6CisgICAgY29tbWVudDogJycKKyAgICBndWlfaGludDog
+JycKKyAgICBsYWJlbDogUlggR2FpbiAoZEIpCisgICAgbWluX2xlbjogJzIwMCcKKyAgICBvcmll
+bnQ6IFF0Lkhvcml6b250YWwKKyAgICByYW5nZVR5cGU6IGZsb2F0CisgICAgc3RhcnQ6ICcwJwor
+ICAgIHN0ZXA6ICcxJworICAgIHN0b3A6ICczMicKKyAgICB2YWx1ZTogJzAnCisgICAgd2lkZ2V0
+OiBjb3VudGVyX3NsaWRlcgorICBzdGF0ZXM6CisgICAgYnVzX3Npbms6IGZhbHNlCisgICAgYnVz
+X3NvdXJjZTogZmFsc2UKKyAgICBidXNfc3RydWN0dXJlOiBudWxsCisgICAgY29vcmRpbmF0ZTog
+WzQ3MywgOV0KKyAgICByb3RhdGlvbjogMAorICAgIHN0YXRlOiB0cnVlCistIG5hbWU6IHNhbXBf
+cmF0ZQorICBpZDogdmFyaWFibGVfcXRndWlfZW50cnkKKyAgcGFyYW1ldGVyczoKKyAgICBjb21t
+ZW50OiAnJworICAgIGd1aV9oaW50OiAnJworICAgIGxhYmVsOiBTYW1wbGluZyBSYXRlIChIeikK
+KyAgICB0eXBlOiByZWFsCisgICAgdmFsdWU6IDFlNgorICBzdGF0ZXM6CisgICAgYnVzX3Npbms6
+IGZhbHNlCisgICAgYnVzX3NvdXJjZTogZmFsc2UKKyAgICBidXNfc3RydWN0dXJlOiBudWxsCisg
+ICAgY29vcmRpbmF0ZTogWzIzOSwgMTM5XQorICAgIHJvdGF0aW9uOiAwCisgICAgc3RhdGU6IHRy
+dWUKKy0gbmFtZTogdHhfZnJlcQorICBpZDogdmFyaWFibGVfcXRndWlfcmFuZ2UKKyAgcGFyYW1l
+dGVyczoKKyAgICBjb21tZW50OiAnJworICAgIGd1aV9oaW50OiAnJworICAgIGxhYmVsOiBUWCBG
+cmVxdWVuY3kgKEh6KQorICAgIG1pbl9sZW46ICcyMDAnCisgICAgb3JpZW50OiBRdC5Ib3Jpem9u
+dGFsCisgICAgcmFuZ2VUeXBlOiBmbG9hdAorICAgIHN0YXJ0OiAxMGU2CisgICAgc3RlcDogMWU2
+CisgICAgc3RvcDogNmU5CisgICAgdmFsdWU6IDIuNDVlOQorICAgIHdpZGdldDogY291bnRlcl9z
+bGlkZXIKKyAgc3RhdGVzOgorICAgIGJ1c19zaW5rOiBmYWxzZQorICAgIGJ1c19zb3VyY2U6IGZh
+bHNlCisgICAgYnVzX3N0cnVjdHVyZTogbnVsbAorICAgIGNvb3JkaW5hdGU6IFs5NTYsIDEwXQor
+ICAgIHJvdGF0aW9uOiAwCisgICAgc3RhdGU6IHRydWUKKy0gbmFtZTogdHhfZ2FpbgorICBpZDog
+dmFyaWFibGVfcXRndWlfcmFuZ2UKKyAgcGFyYW1ldGVyczoKKyAgICBjb21tZW50OiAnJworICAg
+IGd1aV9oaW50OiAnJworICAgIGxhYmVsOiBUWCBHYWluIChkQikKKyAgICBtaW5fbGVuOiAnMjAw
+JworICAgIG9yaWVudDogUXQuSG9yaXpvbnRhbAorICAgIHJhbmdlVHlwZTogZmxvYXQKKyAgICBz
+dGFydDogJzAnCisgICAgc3RlcDogJzEnCisgICAgc3RvcDogJzMyJworICAgIHZhbHVlOiAnMCcK
+KyAgICB3aWRnZXQ6IGNvdW50ZXJfc2xpZGVyCisgIHN0YXRlczoKKyAgICBidXNfc2luazogZmFs
+c2UKKyAgICBidXNfc291cmNlOiBmYWxzZQorICAgIGJ1c19zdHJ1Y3R1cmU6IG51bGwKKyAgICBj
+b29yZGluYXRlOiBbNjI0LCA5XQorICAgIHJvdGF0aW9uOiAwCisgICAgc3RhdGU6IHRydWUKKy0g
+bmFtZTogZXR0dXNfcmZub2NfZGRjXzAKKyAgaWQ6IGV0dHVzX3Jmbm9jX2RkYworICBwYXJhbWV0
+ZXJzOgorICAgIGFmZmluaXR5OiAnJworICAgIGFsaWFzOiAnJworICAgIGJsb2NrX2FyZ3M6ICcn
+CisgICAgY29tbWVudDogJycKKyAgICBkZXZpY2Vfc2VsZWN0OiAnLTEnCisgICAgZnJlcTogJzAn
+CisgICAgaW5zdGFuY2VfaW5kZXg6ICcwJworICAgIG1heG91dGJ1ZjogJzAnCisgICAgbWlub3V0
+YnVmOiAnMCcKKyAgICBudW1fY2hhbnM6ICcxJworICAgIG91dHB1dF9yYXRlOiBzYW1wX3JhdGUK
+KyAgc3RhdGVzOgorICAgIGJ1c19zaW5rOiBmYWxzZQorICAgIGJ1c19zb3VyY2U6IGZhbHNlCisg
+ICAgYnVzX3N0cnVjdHVyZTogbnVsbAorICAgIGNvb3JkaW5hdGU6IFszNTcsIDM2Ml0KKyAgICBy
+b3RhdGlvbjogMAorICAgIHN0YXRlOiBlbmFibGVkCistIG5hbWU6IGV0dHVzX3Jmbm9jX2R1Y18w
+CisgIGlkOiBldHR1c19yZm5vY19kdWMKKyAgcGFyYW1ldGVyczoKKyAgICBhZmZpbml0eTogJycK
+KyAgICBhbGlhczogJycKKyAgICBibG9ja19hcmdzOiAnJworICAgIGNvbW1lbnQ6ICcnCisgICAg
+ZGV2aWNlX3NlbGVjdDogJy0xJworICAgIGZyZXE6ICcwJworICAgIGlucHV0X3JhdGU6IHNhbXBf
+cmF0ZQorICAgIGluc3RhbmNlX2luZGV4OiAnMCcKKyAgICBtYXhvdXRidWY6ICcwJworICAgIG1p
+bm91dGJ1ZjogJzAnCisgICAgbnVtX2NoYW5zOiAnMScKKyAgc3RhdGVzOgorICAgIGJ1c19zaW5r
+OiBmYWxzZQorICAgIGJ1c19zb3VyY2U6IGZhbHNlCisgICAgYnVzX3N0cnVjdHVyZTogbnVsbAor
+ICAgIGNvb3JkaW5hdGU6IFs3NDUsIDM2Ml0KKyAgICByb3RhdGlvbjogMAorICAgIHN0YXRlOiBl
+bmFibGVkCistIG5hbWU6IGV0dHVzX3Jmbm9jX3J4X3JhZGlvXzAKKyAgaWQ6IGV0dHVzX3Jmbm9j
+X3J4X3JhZGlvCisgIHBhcmFtZXRlcnM6CisgICAgYWZmaW5pdHk6ICcnCisgICAgYWdjOiBEZWZh
+dWx0CisgICAgYWxpYXM6ICcnCisgICAgYW50ZW5uYTogUlgyCisgICAgYmFuZHdpZHRoOiAnMCcK
+KyAgICBibG9ja19hcmdzOiAnJworICAgIGNvbW1lbnQ6ICcnCisgICAgZGNfb2Zmc2V0OiAnRmFs
+c2UnCisgICAgZGV2aWNlX3NlbGVjdDogJy0xJworICAgIGZyZXF1ZW5jeTogcnhfZnJlcQorICAg
+IGdhaW46IHJ4X2dhaW4KKyAgICBpbnN0YW5jZV9pbmRleDogJzAnCisgICAgaXFfYmFsYW5jZTog
+J0ZhbHNlJworICAgIG1heG91dGJ1ZjogJzAnCisgICAgbWlub3V0YnVmOiAnMCcKKyAgICBudW1f
+Y2hhbnM6ICcxJworICAgIHJhdGU6IHNhbXBfcmF0ZQorICBzdGF0ZXM6CisgICAgYnVzX3Npbms6
+IGZhbHNlCisgICAgYnVzX3NvdXJjZTogZmFsc2UKKyAgICBidXNfc3RydWN0dXJlOiBudWxsCisg
+ICAgY29vcmRpbmF0ZTogWzEzLCAzMDZdCisgICAgcm90YXRpb246IDAKKyAgICBzdGF0ZTogdHJ1
+ZQorLSBuYW1lOiBldHR1c19yZm5vY190eF9yYWRpb18wCisgIGlkOiBldHR1c19yZm5vY190eF9y
+YWRpbworICBwYXJhbWV0ZXJzOgorICAgIGFmZmluaXR5OiAnJworICAgIGFnYzogRGVmYXVsdAor
+ICAgIGFsaWFzOiAnJworICAgIGFudGVubmE6IFRYL1JYCisgICAgYmFuZHdpZHRoOiAnMCcKKyAg
+ICBibG9ja19hcmdzOiAnJworICAgIGNvbW1lbnQ6ICcnCisgICAgZGV2aWNlX3NlbGVjdDogJy0x
+JworICAgIGZyZXF1ZW5jeTogdHhfZnJlcQorICAgIGdhaW46IHR4X2dhaW4KKyAgICBpbnN0YW5j
+ZV9pbmRleDogJzAnCisgICAgbnVtX2NoYW5zOiAnMScKKyAgICByYXRlOiBzYW1wX3JhdGUKKyAg
+c3RhdGVzOgorICAgIGJ1c19zaW5rOiBmYWxzZQorICAgIGJ1c19zb3VyY2U6IGZhbHNlCisgICAg
+YnVzX3N0cnVjdHVyZTogbnVsbAorICAgIGNvb3JkaW5hdGU6IFsxMTUzLCAzMjZdCisgICAgcm90
+YXRpb246IDAKKyAgICBzdGF0ZTogdHJ1ZQorLSBuYW1lOiBzbmlwcGV0XzAKKyAgaWQ6IHNuaXBw
+ZXQKKyAgcGFyYW1ldGVyczoKKyAgICBhbGlhczogJycKKyAgICBjb2RlOiAnc2VsZi5ldHR1c19y
+Zm5vY19yeF9yYWRpb18wLmVuYWJsZV9yeF90aW1lc3RhbXBzKEZhbHNlLCAwKQorCisgICAgICBz
+ZWxmLmV0dHVzX3Jmbm9jX3J4X3JhZGlvXzAuc3RhcnRfc3RyZWFtKDApJworICAgIGNvbW1lbnQ6
+IERpc2FibGUgdGltZXN0YW1wcyBhbmQgc3RhcnQgc3RyZWFtaW5nIGFmdGVyIGZsb3dncmFwaCBp
+bml0aWFsaXphdGlvbgorICAgIHByaW9yaXR5OiAnJworICAgIHNlY3Rpb246IG1haW5fYWZ0ZXJf
+aW5pdAorICBzdGF0ZXM6CisgICAgYnVzX3Npbms6IGZhbHNlCisgICAgYnVzX3NvdXJjZTogZmFs
+c2UKKyAgICBidXNfc3RydWN0dXJlOiBudWxsCisgICAgY29vcmRpbmF0ZTogWzExNzYsIDEzXQor
+ICAgIHJvdGF0aW9uOiAwCisgICAgc3RhdGU6IHRydWUKKy0gbmFtZTogc25pcHBldF8xCisgIGlk
+OiBzbmlwcGV0CisgIHBhcmFtZXRlcnM6CisgICAgYWxpYXM6ICcnCisgICAgY29kZTogJ3NlbGYu
+ZXR0dXNfcmZub2NfcnhfcmFkaW9fMC5zdG9wX3N0cmVhbSgwKQorCisgICAgICBzZWxmLmV0dHVz
+X3Jmbm9jX3J4X3JhZGlvXzAuZW5hYmxlX3J4X3RpbWVzdGFtcHMoVHJ1ZSwgMCknCisgICAgY29t
+bWVudDogU3RvcCBzdHJlYW1pbmcgYW5kIHJlLWVuYWJsZSB0aW1lc3RhbXBzIHdoZW4gZmxvd2dy
+YXBoIGlzIHN0b3BwZWQKKyAgICBwcmlvcml0eTogJycKKyAgICBzZWN0aW9uOiBtYWluX2FmdGVy
+X3N0b3AKKyAgc3RhdGVzOgorICAgIGJ1c19zaW5rOiBmYWxzZQorICAgIGJ1c19zb3VyY2U6IGZh
+bHNlCisgICAgYnVzX3N0cnVjdHVyZTogbnVsbAorICAgIGNvb3JkaW5hdGU6IFsxMTc4LCAxMTFd
+CisgICAgcm90YXRpb246IDAKKyAgICBzdGF0ZTogdHJ1ZQorCitjb25uZWN0aW9uczoKKy0gW2V0
+dHVzX3Jmbm9jX2RkY18wLCAnMCcsIGV0dHVzX3Jmbm9jX2R1Y18wLCAnMCddCistIFtldHR1c19y
+Zm5vY19kdWNfMCwgJzAnLCBldHR1c19yZm5vY190eF9yYWRpb18wLCAnMCddCistIFtldHR1c19y
+Zm5vY19yeF9yYWRpb18wLCAnMCcsIGV0dHVzX3Jmbm9jX2RkY18wLCAnMCddCisKK21ldGFkYXRh
+OgorICBmaWxlX2Zvcm1hdDogMQpkaWZmIC0tZ2l0IGEvZ3JjL2V0dHVzX3Jmbm9jX2dyYXBoLmJs
+b2NrLnltbCBiL2dyYy9ldHR1c19yZm5vY19ncmFwaC5ibG9jay55bWwKaW5kZXggM2MwYjFhNi4u
+Y2E1ODIyZiAxMDA2NDQKLS0tIGEvZ3JjL2V0dHVzX3Jmbm9jX2dyYXBoLmJsb2NrLnltbAorKysg
+Yi9ncmMvZXR0dXNfcmZub2NfZ3JhcGguYmxvY2sueW1sCkBAIC04LDYgKzgsNyBAQCB0ZW1wbGF0
+ZXM6CiAgICAgICBmcm9tIGdudXJhZGlvIGltcG9ydCB1aGQKICAgdmFyX21ha2U6IHwKICAgICAg
+IHNlbGYucmZub2NfZ3JhcGggPSAke2lkfSA9IGV0dHVzLnJmbm9jX2dyYXBoKHVoZC5kZXZpY2Vf
+YWRkcigiLCIuam9pbigoJHtkZXZfYWRkcn0sICR7ZGV2X2FyZ3N9KSkpKQorICAgICAgc2VsZi5y
+Zm5vY19ncmFwaC5za2lwX3Byb3BhZ2F0aW9uID0gJHtza2lwX3Byb3BhZ2F0aW9ufQogCiB2YWx1
+ZTogJHsgJ1JGTm9DIEdyYXBoJyB9CiAKQEAgLTI4LDYgKzI5LDExIEBAIHBhcmFtZXRlcnM6CiAg
+IGRlZmF1bHQ6IDEKICAgb3B0aW9uczogWzEsIDIsIDMsIDQsIDUsIDYsIDcsIDhdCiAgIGhpZGU6
+IHBhcnQKKy0gaWQ6IHNraXBfcHJvcGFnYXRpb24KKyAgbGFiZWw6IFNraXAgUHJvcGFnYXRpb24K
+KyAgZHR5cGU6IGJvb2wKKyAgZGVmYXVsdDogRmFsc2UKKyAgb3B0aW9uczogW1RydWUsIEZhbHNl
+XQogLSBpZDogY2xvY2tfc291cmNlXzAKICAgbGFiZWw6ICdNYjA6IENsb2NrIFNvdXJjZScKICAg
+ZHR5cGU6IHN0cmluZwpkaWZmIC0tZ2l0IGEvZ3JjL3Jmbm9jLmRvbWFpbi55bWwgYi9ncmMvcmZu
+b2MuZG9tYWluLnltbAppbmRleCA1NzYwODY0Li42OGRjYmZmIDEwMDY0NAotLS0gYS9ncmMvcmZu
+b2MuZG9tYWluLnltbAorKysgYi9ncmMvcmZub2MuZG9tYWluLnltbApAQCAtNyw0ICs3LDQgQEAg
+bXVsdGlwbGVfY29ubmVjdGlvbnNfcGVyX291dHB1dDogZmFsc2UKIAogdGVtcGxhdGVzOgogLSAg
+IHR5cGU6IFtyZm5vYywgcmZub2NdCi0gICAgY29ubmVjdDogc2VsZi5yZm5vY19ncmFwaC5jb25u
+ZWN0KHNlbGYuJHsgc291cmNlLnBhcmVudF9ibG9jay5uYW1lIH0uZ2V0X3VuaXF1ZV9pZCgpLCAk
+eyBzb3VyY2Uua2V5IH0sIHNlbGYuJHsgc2luay5wYXJlbnRfYmxvY2submFtZSB9LmdldF91bmlx
+dWVfaWQoKSwgJHsgc2luay5rZXkgfSwgRmFsc2UpCisgICAgY29ubmVjdDogc2VsZi5yZm5vY19n
+cmFwaC5jb25uZWN0KHNlbGYuJHsgc291cmNlLnBhcmVudF9ibG9jay5uYW1lIH0uZ2V0X3VuaXF1
+ZV9pZCgpLCAkeyBzb3VyY2Uua2V5IH0sIHNlbGYuJHsgc2luay5wYXJlbnRfYmxvY2submFtZSB9
+LmdldF91bmlxdWVfaWQoKSwgJHsgc2luay5rZXkgfSwgc2VsZi5yZm5vY19ncmFwaC5za2lwX3By
+b3BhZ2F0aW9uKQpcIE5vIG5ld2xpbmUgYXQgZW5kIG9mIGZpbGUKZGlmZiAtLWdpdCBhL2luY2x1
+ZGUvZXR0dXMvcmZub2NfcnhfcmFkaW8uaCBiL2luY2x1ZGUvZXR0dXMvcmZub2NfcnhfcmFkaW8u
+aAppbmRleCBlYjk2NDVlLi45MzQ2YjFkIDEwMDY0NAotLS0gYS9pbmNsdWRlL2V0dHVzL3Jmbm9j
+X3J4X3JhZGlvLmgKKysrIGIvaW5jbHVkZS9ldHR1cy9yZm5vY19yeF9yYWRpby5oCkBAIC01Myw2
+ICs1MywxMiBAQCBwdWJsaWM6CiAgICAgICAgICAgICAgICAgICAgICBjb25zdCBpbnQgZGV2aWNl
+X3NlbGVjdCwKICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IGludCBpbnN0YW5jZSk7CiAKKyAg
+ICB2aXJ0dWFsIHZvaWQgc3RhcnRfc3RyZWFtKGNvbnN0IHNpemVfdCBjaGFuKSA9IDA7CisKKyAg
+ICB2aXJ0dWFsIHZvaWQgc3RvcF9zdHJlYW0oY29uc3Qgc2l6ZV90IGNoYW4pID0gMDsKKworICAg
+IHZpcnR1YWwgdm9pZCBlbmFibGVfcnhfdGltZXN0YW1wcyhjb25zdCBib29sIGVuYWJsZSwgY29u
+c3Qgc2l6ZV90IGNoYW4pID0gMDsKKwogICAgIC8vISBTZXQgdGhlIG91dHB1dCBzYW1wbGluZyBy
+YXRlIG9mIHRoZSByYWRpbyBibG9jawogICAgIC8vCiAgICAgLy8gTm90ZTogVGhlIGFjdHVhbCBy
+YXRlIG9mIHRoZSByYWRpbyB3aWxsIGJlIGNvZXJjZWQgdG8gd2hhdGV2ZXIgaXQgaXMKZGlmZiAt
+LWdpdCBhL2xpYi9yZm5vY19ncmFwaF9pbXBsLmNjIGIvbGliL3Jmbm9jX2dyYXBoX2ltcGwuY2MK
+aW5kZXggYzYzOGJhMi4uMTkyZTUyYyAxMDA2NDQKLS0tIGEvbGliL3Jmbm9jX2dyYXBoX2ltcGwu
+Y2MKKysrIGIvbGliL3Jmbm9jX2dyYXBoX2ltcGwuY2MKQEAgLTc0LDcgKzc0LDggQEAgcHVibGlj
+OgogICAgICAgICBfZ3JhcGgtPmNvbm5lY3QoYmxvY2tfaWRfdChzcmNfYmxvY2tfaWQpLAogICAg
+ICAgICAgICAgICAgICAgICAgICAgc3JjX2Jsb2NrX3BvcnQsCiAgICAgICAgICAgICAgICAgICAg
+ICAgICBibG9ja19pZF90KGRzdF9ibG9ja19pZCksCi0gICAgICAgICAgICAgICAgICAgICAgICBk
+c3RfYmxvY2tfcG9ydCk7CisgICAgICAgICAgICAgICAgICAgICAgICBkc3RfYmxvY2tfcG9ydCwK
+KyAgICAgICAgICAgICAgICAgICAgICAgIHNraXBfcHJvcGVydHlfcHJvcGFnYXRpb24pOwogICAg
+IH0KIAogICAgIHZvaWQgY29ubmVjdChjb25zdCBzdGQ6OnN0cmluZyYgYmxvY2sxLApkaWZmIC0t
+Z2l0IGEvbGliL3Jmbm9jX3J4X3JhZGlvX2ltcGwuY2MgYi9saWIvcmZub2NfcnhfcmFkaW9faW1w
+bC5jYwppbmRleCAxYzNlNDYzLi4yMTEyODFiIDEwMDY0NAotLS0gYS9saWIvcmZub2NfcnhfcmFk
+aW9faW1wbC5jYworKysgYi9saWIvcmZub2NfcnhfcmFkaW9faW1wbC5jYwpAQCAtNTEsNiArNTEs
+MjEgQEAgcmZub2NfcnhfcmFkaW9faW1wbDo6fnJmbm9jX3J4X3JhZGlvX2ltcGwoKSB7fQogLyoq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKgogICogcmZub2NfcnhfcmFkaW8gQVBJCiAgKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKiovCit2b2lkIHJmbm9jX3J4X3JhZGlvX2ltcGw6OnN0YXJ0X3N0cmVhbShjb25zdCBz
+aXplX3QgY2hhbikKK3sKKyAgICByZXR1cm4gZF9yYWRpb19yZWYtPmlzc3VlX3N0cmVhbV9jbWQo
+dWhkOjpzdHJlYW1fY21kX3Q6OlNUUkVBTV9NT0RFX1NUQVJUX0NPTlRJTlVPVVMsIGNoYW4pOwor
+fQorCit2b2lkIHJmbm9jX3J4X3JhZGlvX2ltcGw6OnN0b3Bfc3RyZWFtKGNvbnN0IHNpemVfdCBj
+aGFuKQoreworICAgIHJldHVybiBkX3JhZGlvX3JlZi0+aXNzdWVfc3RyZWFtX2NtZCh1aGQ6OnN0
+cmVhbV9jbWRfdDo6U1RSRUFNX01PREVfU1RPUF9DT05USU5VT1VTLCBjaGFuKTsKK30KKwordm9p
+ZCByZm5vY19yeF9yYWRpb19pbXBsOjplbmFibGVfcnhfdGltZXN0YW1wcyhjb25zdCBib29sIGVu
+YWJsZSwgY29uc3Qgc2l6ZV90IGNoYW4pCit7CisgICAgcmV0dXJuIGRfcmFkaW9fcmVmLT5lbmFi
+bGVfcnhfdGltZXN0YW1wcyhlbmFibGUsIGNoYW4pOworfQorCiBkb3VibGUgcmZub2NfcnhfcmFk
+aW9faW1wbDo6c2V0X3JhdGUoY29uc3QgZG91YmxlIHJhdGUpCiB7CiAgICAgcmV0dXJuIGRfcmFk
+aW9fcmVmLT5zZXRfcmF0ZShyYXRlKTsKZGlmZiAtLWdpdCBhL2xpYi9yZm5vY19yeF9yYWRpb19p
+bXBsLmggYi9saWIvcmZub2NfcnhfcmFkaW9faW1wbC5oCmluZGV4IDQxN2E5NTMuLmNmNTNlYzIg
+MTAwNjQ0Ci0tLSBhL2xpYi9yZm5vY19yeF9yYWRpb19pbXBsLmgKKysrIGIvbGliL3Jmbm9jX3J4
+X3JhZGlvX2ltcGwuaApAQCAtMzUsNiArMzUsOSBAQCBwdWJsaWM6CiAgICAgfnJmbm9jX3J4X3Jh
+ZGlvX2ltcGwoKTsKIAogICAgIC8qKiogQVBJICoqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqLworICAgIHZvaWQgc3RhcnRfc3Ry
+ZWFtKGNvbnN0IHNpemVfdCBjaGFuKTsKKyAgICB2b2lkIHN0b3Bfc3RyZWFtKGNvbnN0IHNpemVf
+dCBjaGFuKTsKKyAgICB2b2lkIGVuYWJsZV9yeF90aW1lc3RhbXBzKGNvbnN0IGJvb2wgZW5hYmxl
+LCBjb25zdCBzaXplX3QgY2hhbik7CiAgICAgZG91YmxlIHNldF9yYXRlKGNvbnN0IGRvdWJsZSBy
+YXRlKTsKICAgICB2b2lkIHNldF9hbnRlbm5hKGNvbnN0IHN0ZDo6c3RyaW5nJiBhbnRlbm5hLCBj
+b25zdCBzaXplX3QgY2hhbik7CiAgICAgZG91YmxlIHNldF9mcmVxdWVuY3koY29uc3QgZG91Ymxl
+IGZyZXF1ZW5jeSwgY29uc3Qgc2l6ZV90IGNoYW4pOwotLSAKMi4yNS4xCgo=
+--000000000000e1591f05bc1be81d
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -155,5 +419,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3385669093394426875==--
+--000000000000e1591f05bc1be81d--
 
