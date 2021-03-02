@@ -2,79 +2,47 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3830D327405
-	for <lists+usrp-users@lfdr.de>; Sun, 28 Feb 2021 20:14:33 +0100 (CET)
-Received: from [::1] (port=38536 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB13F32A9BD
+	for <lists+usrp-users@lfdr.de>; Tue,  2 Mar 2021 19:53:40 +0100 (CET)
+Received: from [::1] (port=45034 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lGRWO-0007u3-8D; Sun, 28 Feb 2021 14:14:28 -0500
-Received: from sonic302-22.consmr.mail.ne1.yahoo.com ([66.163.186.148]:45820)
- by mm2.emwd.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
- (envelope-from <mikerd1@verizon.net>) id 1lGRWK-0007mr-F5
- for usrp-users@lists.ettus.com; Sun, 28 Feb 2021 14:14:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verizon.net; s=a2048;
- t=1614539623; bh=8+mnaGBaneGP/Jx3sf6unZseCeJ0O6BDQVjyYySzFyM=;
- h=Subject:To:References:From:Date:In-Reply-To:From:Subject:Reply-To;
- b=mJKM0H3cG+LQGa04EElM09Fd42QRv4vDSLVOOpnitAjgiskhSu9z8Ognvz4/nRyZVfu0sDFntEvJMLt77Ze1XKK6fWd4uM+2bHaJC2W41lptiniXsLvnGnxnhwLaWrsYiuG7JEuFLgaLR5nSUcuyCa+qSCaW9g3dgzfCZl+PgRipTUuC0/gTTY3uInXfWkYJBmJtDfQYlFnCSzCkakuGo9XjkBqevyzU+I1j+25S9tHfBmZ177iwXVdWhQnfpU2NgFsnqrs+s11CfHgKoxccL+UlGOOBXd4sGJyeos4AZIGOXIrgOpUUrsCxe1s3G6t0bH1eCmtDEi7RUKfxyCI/lg==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1614539623; bh=y3Nqwhjj1Xg6oMHq4tODnjXKjKuqFMFjNRq7dyW7dG3=;
- h=X-Sonic-MF:Subject:To:From:Date:From:Subject;
- b=dgubi1Uf5EyWPey+KypaSQuEpcErXjMIP+BgXTKzJH7NrdjUsSdvju82x92XlY6y/USn4Qry8LWQ7w3OIYBkfCzSihZnALwms89k6YVKMPOfJi/kChIblz3POpUnq165OysnsILkiOULdyyuVLmzrXGaUcwNMXPeYOzf7Kv8k2jk3sXgBdJzcbOVDxPBvnuKQFdQJRovxqDRdSU9mU4pZoXl/BSDk/yv4yGGh07okCWXN920K91f8uHJCROoVBzx5vsGYvxOwMhLOLoSu6a34IcEIXtzaeaB0YO+ShjoXS76Weh7gx2vxk/cRYOGn7YIoLr/F+Toc81yaSFwnk/+yA==
-X-YMail-OSG: mc8.gjYVM1k6ePEtu2dgRoLVUNbm9REQHJjfuWODoOfK5YsFqRT3RhTGF6pb1pk
- b2pY4Gv6IsarHEDTlfpoC7gxJKMv6a9cllgIhSwg576ND.j9IXIVQZmtg5mu2psYxIG4hykd8Xk5
- D6pBcn_6W7sNmo3.UVT3fdgbdhJl05JOHl_ye_1deCJL_TVADRakrEAqAiAXyjsYSEyJby16vFv8
- WkG2UyOMNKlgxND5sLg36n_I6hDw_vHRC7wpFgwktTLy5usytk1Jtfs2mOk7jHFps5XBVIzljpqf
- G41d_xkyMjMsZHTsqe9Wf04NS5h_HnXW5Qd_3eA64zgVE2lCT4YQnSTNBq0wa.thQqZcD5272WBy
- oPOufJ5jhcWL0CPBAfkg3z5vo6xvXrPKkxbWasRLwQMkg6FpqtnHCnA_LNTW_EjuSqC.6QpF0REt
- XllkviMriudJ6A5Lc5DL8HutzfB8aZKjXctSfLKYunZahjiFRw97LnqwN_U_pRfgebsm4v3RMClK
- tiQFUOUjV6DwilOe5BAlrR7TzctKltaTJvINxebRc8xj0eOBR6V10cIj3xPg6LUEwGJb9N550KxR
- lKnpSWy3MkubfQ9zFu4P7AyJIf2dempJ72XX3K7FdVSMpzfXPp7kyjrFLNkm6XEx0W.SGhRwB92n
- q3k3Mk_8ztVlCjEsaLUSk11LWAJ8uhgkeikoJbFLcSzDsrNV4LrDC2zFhDi0moLPybn13Gj8qPuE
- TqpXcloORa9hVCcgsaBKmE7najOgC37Vvv2cGFAGDunsyb9isd7nd8NVgkvni804M1bHWez.OJmy
- mnUYzPqW3dKqgESR8xoI04Tl4JxuNRrebpvNOkVz.79Is4hII5BuA5Gro_OrTCyS2Do9xD3ZVRGm
- Qn2euKTPsVUFBUwdbny9JDjsEk68EEkU3QojOhv9fCqVnFgLLixP4nUulL0HM3kiBfHvi8KG_unG
- PfG.J.Tmf.35z6sdVcVijT8Gf.R7dv_v0.disKMYnpScIz1q2xRdUUip1QIOVeMmMWB8ZFkpUxi_
- a.LCNazVZv.CMoIo6mmhNJNCf08NJQMMRLbx1OoBpcKxtajrMWsdwTf1F32yDuYi9NfRcnnV8qBZ
- WlIlh7b9VT6pXaZhZjj730KnzBM2QGh_BcAIWrfhK_k3EGakxgd_ZQs6SAm.5bavcMPJR.rw7ic.
- yvV294yLin.M0f3468fKjucjQGHHdER3koSxm.Sr15KJ0cm_yN39Fi9f1lpMijga_cttmE4ZmSFW
- unAbb0PR0phIfIp1j7F8Oz55umKn9woVF7QtuZrPuNHcyw1gM3aZbfcFq5okjonrCIQeFxJGEDjg
- ezPOfzcIpR89WzTZnS7kZgbOq40vGT5GivvorP3ha9dUEOVmcz_YRviFjqmdji.vMekC21YZ8pbX
- jKpA6V.Uh.U0f69bgzbVWIFJy29Ni.ffaYgJVg3JgMffOGm_6obaoQqKYM0eJnrhcSeJawDze1kz
- u89oY39YG2zNGa_M10iFnisTKskHDPtiOGZng_sDzcvthneX2dPGD7XRyiP9sftY2f_zQQG3Es6d
- V3Q7J1u79__UXcFN3Yvw5svy4rR3vqJHZ_YOXmwzz8BPQP0etxlVyMgsYAGgib.AmXUhNz1pKNls
- 4NeLLnF47VY1nho62zADc8i898iuOYR4a8ZS53SrGGvixZvO6EYHnO2NrpGLEhBjN3x5.Gu3BZhn
- oJiYMmSJKJb5dcBCmbtdD3SDIKYPA9uaijXOdiOG4nfYN_UBx_ZmMC91K.qEGUwg_4nhTlXvcv1r
- qJ4vrnwHJq7AblcR_RFAEjRb8ItRvZsEMxReO7l0fviOW.Y5EWMHAiizYTlNIoP4KU0uMOoNa3gb
- zUKGARqi7fzt0cVxWY6_1U86mBCYSPo8XJQ1wg_4mettu2FrhK9C7OsPqFhbhi5AbOp9yLwTFUM3
- rwrv4DD98sDAjy_bLZayFjW48dDkhVQ83defqOoIkkzXGIoYl9J.MPHtlXR.n6jMiSLkrfvtUEWZ
- YqKLssFvJ3ueG0Nl0xPd8LLVXtn_1MaKBp8UzO_NgCx51SlPGey9yMznHTD1oB0IUB1SBxfPiLX8
- 7Ivuvz5X.GoWFo67bJeIue7rHSuq7sh2wHMBEgwHbZsrks_UPbVXSNGm976HqIPdIvNF7Dm9G4k4
- BfgbP3e5xD3a_.4eGWyHbluVYVlObMXkldMFsv7fSHmZ0Opp5R7eyN7NulU.I2DGtf.x_q0JAoDQ
- yRTxjBQAVZ3je1F0r_yRnPgUyZAsuL0SgO5OQMLzfbIN0EaRilu.ywX_HaAOw9u3XFBtumtjBymz
- 4wQhfCnnY7JX7IHuqpSXR9wBlF2gEjC4wVO4TkccbGsCm_vP7Fo2o1MIKUG7jN_gTdzQ1BYIw9jd
- is.sQnD.yxfOOjvtiq4_TY_ZUOnsST6W30sLKuso7TrSiKtBuQbyCtFbKVEaW7DFJJv7uwgiShUI
- -
-X-Sonic-MF: <mikerd1@verizon.net>
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic302.consmr.mail.ne1.yahoo.com with HTTP; Sun, 28 Feb 2021 19:13:43 +0000
-Received: by smtp422.mail.bf1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA
- ID eef28c0606bc39e430ee4327166c8ee4; 
- Sun, 28 Feb 2021 19:13:41 +0000 (UTC)
-To: usrp-users@lists.ettus.com
-References: <2bcfbfb1-c852-83a3-dba7-6595a5d4504d.ref@verizon.net>
- <2bcfbfb1-c852-83a3-dba7-6595a5d4504d@verizon.net>
-Message-ID: <d9e8e0ec-54da-e3c9-3d3c-fa9e92bdb07c@verizon.net>
-Date: Sun, 28 Feb 2021 14:13:40 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	id 1lHA9J-0002dN-Nz; Tue, 02 Mar 2021 13:53:37 -0500
+Received: from mail.hhi.fraunhofer.de ([193.174.67.45]:42750)
+ by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
+ (Exim 4.93) (envelope-from <matthias.mehlhose@hhi.fraunhofer.de>)
+ id 1lHA9E-0002Zf-Kn
+ for usrp-users@lists.ettus.com; Tue, 02 Mar 2021 13:53:32 -0500
+Received: from mail.hhi.fraunhofer.de (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id C491C7C1C9
+ for <usrp-users@lists.ettus.com>; Tue,  2 Mar 2021 19:52:46 +0100 (CET)
+X-IMSS-DKIM-Authentication-Result: mail.hhi.fraunhofer.de; sigcount=0
+Received: from mail.hhi.fraunhofer.de (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id AED827C12D
+ for <usrp-users@lists.ettus.com>; Tue,  2 Mar 2021 19:52:46 +0100 (CET)
+Received: from mx.fe.hhi.de (unknown [172.16.0.103])
+ by mail.hhi.fraunhofer.de (Postfix) with ESMTPS
+ for <usrp-users@lists.ettus.com>; Tue,  2 Mar 2021 19:52:46 +0100 (CET)
+Received: from mxsrv5.fe.hhi.de (172.16.0.103) by mxsrv5.fe.hhi.de
+ (172.16.0.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Tue, 2 Mar 2021
+ 19:52:50 +0100
+Received: from mxsrv5.fe.hhi.de ([fe80::7d4f:49e9:b062:84d9]) by
+ mxsrv5.fe.hhi.de ([fe80::7d4f:49e9:b062:84d9%6]) with mapi id 15.01.2106.003; 
+ Tue, 2 Mar 2021 19:52:50 +0100
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: VMXNET3 DPDK error on discover MTU
+Thread-Index: AQHXD5U+lyuwLQ8xGUauybN6tbpVHQ==
+Date: Tue, 2 Mar 2021 18:52:50 +0000
+Message-ID: <2dfd658d21b74e20a7d0fa32f6319202@hhi.fraunhofer.de>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.22.100]
 MIME-Version: 1.0
-In-Reply-To: <2bcfbfb1-c852-83a3-dba7-6595a5d4504d@verizon.net>
-Content-Language: en-US
-X-Mailer: WebService/1.1.17828
- mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.aol
- Apache-HttpAsyncClient/4.1.4 (Java/11.0.9.1)
-Subject: Re: [USRP-users] FPGA Simulations with waveforms
+X-TM-AS-GCONF: 00
+Subject: [USRP-users] VMXNET3 DPDK error on discover MTU
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -86,10 +54,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Mike via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Mike <mikerd1@verizon.net>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+From: "Mehlhose, Matthias via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Mehlhose, Matthias" <matthias.mehlhose@hhi.fraunhofer.de>
+Content-Type: multipart/mixed; boundary="===============9094786091535823881=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -103,56 +70,220 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-T2theSwgSSB0aGluayBJIGFuc3dlcmVkIG15IG93biBxdWVzdGlvbi7CoCBBbHNvLCB0aGFua3Mg
-dG8gdGhlIHdvcmsgdGhhdCAKQ8OpZHJpYyBhbmQgV2FkZSBkaWQgdG8gcmVzb2x2ZSBhIHNpbXVs
-YXRpb24gaXNzdWUgZHVyaW5nIEdVSSBtb2RlIGJhY2sgCmluIEphbnVhcnkuCgpodHRwOi8vbGlz
-dHMuZXR0dXMuY29tL3BpcGVybWFpbC91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbS8yMDIxLUph
-bnVhcnkvMDYzNTAyLmh0bWwKCkZpcnN0LCBhcyBDw6lkcmljIGFuZCBXYWRlIHJlc29sdmVkLCBt
-b2RpZnkgdGhlIGVuZCBvZiB0aGUgdGVzdGJlbmNoIHRvIApyZXBsYWNlOgoKdGVzdC5lbmRfdGIo
-KTsgd2l0aAoKdGVzdC5lbmRfdGIoMCk7CiRmaW5pc2goKTsKCgpUaGVuLCBpbiBSRk5vQyBidWls
-ZCBkaXJlY3RvcnkgcnVuICJtYWtlIHJmbm9jX2Jsb2NrXzx5b3VyX2Jsb2NrPl90YiBHVUk9MQoK
-VGhpcyBvcGVucyB1cCBWaXZhZG8gc28geW91IGNhbiBydW4gaW50ZXJhY3RpdmVseSAoaS5lLiBz
-ZWxlY3Qgd2hpY2ggCnNpZ25hbHMgeW91IHdhbnQgdG8gbW9uaXRvcikuCgpBbHNvLCBvbWl0dGlu
-ZyBHVUk9MSB3aWxsIHJ1biBpbiBDTEkgbW9kZSBhbmQgc3RpbGwgb3V0cHV0IHRoZSB0ZXN0YmVu
-Y2ggCnJlc3VsdHMgY29ycmVjdGx5LgoKQXMgYSBzZWNvbmRhcnkgcGF0aCBmb3Igdmlld2luZyBz
-aW11bGF0aW9uIHJlc3VsdHMgSSB3YXMgYWJsZSB0byBleGVjdXRlIAp0aGUgZm9sbG93aW5nIHRv
-IHZpZXcgdGhlIHJlc3VsdHMgb2YgYSBwcmV2aW91cyBzaW11bGF0aW9uLgoKIyBnbyB0byB0aGUg
-bG9jYXRpb24gaW4geW91ciByZm5vYyBmb2xkZXIgd2hlcmUgdGhlIHNpbXVsYXRpb24gb2NjdXJl
-ZApjZCAKfi9ncl9kZXYvZ3IzOC9yZm5vYy9yZm5vYy10dXRvcmlhbC9yZm5vYy9mcGdhL3Jmbm9j
-X2Jsb2NrX2dhaW4veHNpbV9wcm9qL3hzaW1fcHJvai5zaW0vc2ltXzEvYmVoYXYveHNpbQojIHNv
-dXJjZSB0aGUgdml2YWRvIGVudmlyb25tZW50IHZhcmlhYmxlcwpzb3VyY2Ugfi9wcmVmaXgvZ3Iz
-OC9zcmMvdWhkL2ZwZ2EvdXNycDMvdG9wL2UzMXgvc2V0dXBlbnYuc2gKIyBydW4geHNpbSB3aXRo
-IHRoZSBzbmFwc2hvdCB0aGF0IHdhcyBjcmVhdGVkIGR1cmluZyB0aGUgb3JpZ2luYWwgIm1ha2Ug
-CnJmbm9jX2Jsb2NrX3h4eF90YiIKeHNpbSByZm5vY19ibG9ja19nYWluX3RiX2JlaGF2IC1ndWkg
-LXdkYiByZm5vY19ibG9ja19nYWluX3RiX2JlaGF2LndkYiAKLXZpZXcgcmZub2NfYmxvY2tfZ2Fp
-bl90Yl9iZWhhdi53Y2ZnCgpUaGFua3MgYWxsIGZvciBwb3N0aW5nIHlvdXIgcHJvYmxlbXMgYW5k
-IHNvbHV0aW9ucy7CoCBTb21ldGltZXMgaXQgdGFrZXMgCmEgd2hpbGUgdG8gbG9jYXRlIHRoZSBj
-b3JyZWN0IGFuc3dlciBidXQgdGhlcmUgaXMgYSBsb3Qgb2YgZ29vZCAKaW5mb3JtYXRpb24gb24g
-dGhpcyBsaXN0LgoKTWlrZQoKT24gMi8yNy8yMSA2OjIxIFBNLCBNaWtlIHZpYSBVU1JQLXVzZXJz
-IHdyb3RlOgo+IEhpLAo+Cj4gSSdkIGxpa2UgdG8gdmlldyB0aGUgc2lnbmFscyBpbiBteSB0ZXN0
-YmVuY2ggd2l0aCBhIHdhdmVmb3JtIHZpZXdlciB0byAKPiBzZWUgdGhpbmdzIGxpa2UgbGF0ZW5j
-eSBvZiBjb250cm9sIHNpZ25hbHMgdnMuIGRhdGEgdGhyb3VnaCB2YXJpb3VzIAo+IGNvbXBvbmVu
-dHMuwqAgRm9yIGluc3RhbmNlLCBpZiBJIHVzZSBhIGhhcmR3YXJlIG11bHRpcGxpZXIgKERTUDQ4
-KSB3aXRoIAo+IHJlZ2lzdGVycyBJIG5lZWQgdG8gYWxzbyBkZWxheSB0aGUgY29udHJvbCBzaWdu
-YWxzIHRvIG1hdGNoIHRoZSBkZWxheSAKPiBpbiB0aGUgcHJvY2Vzc2luZy7CoCBGb3Igc2ltcGxl
-IHRoaW5ncyBJIGNhbiBwcmVkaWN0IHRoZSBsYXRlbmN5IGFuZMKgIAo+IHVzZSB0aGUgdG9wIGxl
-dmVsIHRlc3QgcmVzdWx0cyB0byBzZWUgaWYgdGhpbmdzIGNhbGN1bGF0ZWQgY29ycmVjdGx5LsKg
-IAo+IEJ1dCwgaXQgcXVpY2tseSBnZXRzIHRvIHRoZSBwb2ludCB3aGVyZSB5b3UgbmVlZCB0byBz
-ZWUgd2hhdCB5b3VyIAo+IHNpZ25hbHMgYXJlIGRvaW5nLgo+Cj4gSSBzZWUgdGhhdCB0aGUgc2lt
-dWxhdGlvbiByZXN1bHRzIHByb2R1Y2VzIGEgKi53ZGIgZmlsZSBhbmQgbWF5YmUgSSAKPiBjYW4g
-dXNlIHRoYXQgdG8gcmV2aWV3IHRoZSByZXN1bHRzIG9mIHRoZSBzaW11bGF0aW9uLsKgIEJ1dCBJ
-IGRpZG4ndCAKPiBrbm93IGlmIHRoZXJlIHdhcyBhbm90aGVyIHdheSB0byBnZW5lcmF0ZSB0aGUg
-d2F2ZWZvcm1zIGFuZCBydW4gdGhlIAo+IHNpbXVsYXRpb24gaW4gR1VJIG1vZGUgd2hlcmUgeW91
-IGNhbiBhZGQgc2lnbmFscywgcmVzdGFydCwgZXRjLgo+Cj4gVGhlcmUgaXMgYSB3YXJuaW5nIHRo
-YXQgaXMgcHJpbnRlZCBpbiB0aGUgc2ltdWxhdGlvbiBydW4gdGhhdCBzdGF0ZXM6Cj4KPiBXQVJO
-SU5HOiBTaW11bGF0aW9uIG9iamVjdCAvcmZub2NfYmxvY2tfZ2Fpbl90Yi9ibGtfY3RybCB3YXMg
-bm90IAo+IHRyYWNlYWJsZSBpbiB0aGUgZGVzaWduIGZvciB0aGUgZm9sbG93aW5nIHJlYXNvbjoK
-PiBWaXZhZG8gU2ltdWxhdG9yIGRvZXMgbm90IHN1cHBvcnQgdHJhY2luZyBvZiBTeXN0ZW0gVmVy
-aWxvZyBEeW5hbWljIAo+IFR5cGUgb2JqZWN0Lgo+Cj4gQW55d2F5LCBhbnkgaGVscCBpcyBtdWNo
-IGFwcHJlY2lhdGVkLgo+Cj4gTWlrZQo+Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0Cj4gVVNSUC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20KPiBodHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGlu
-Zm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20KCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0ClVTUlAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tCmh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91
-c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQo=
+--===============9094786091535823881==
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_2dfd658d21b74e20a7d0fa32f6319202hhifraunhoferde_"
+
+--_000_2dfd658d21b74e20a7d0fa32f6319202hhifraunhoferde_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+I'm looking for help with my setup
+Im using UHD-3.15.LTS + DPDK 17.10 within my ESXI VM.
+I think, the UHD driver can not read the MTU size from VMXNET3 device.
+What can I do?
+
+Thanks
+
+
+---- command line start ---
+./run_benchmark_usrp.sh
+
+[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_3.15.0.0-62-g7=
+a3f1516
+EAL: Detected 8 lcore(s)
+EAL: Probing VFIO support...
+EAL: VFIO support initialized
+EAL: PCI device 0000:03:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 15ad:7b0 net_vmxnet3
+EAL:   using IOMMU type 8 (No-IOMMU)
+EAL: Ignore mapping IO port bar(3)
+EAL: PCI device 0000:05:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 15ad:7b0 net_vmxnet3
+EAL: PCI device 0000:0b:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 15ad:7b0 net_vmxnet3
+EAL: Ignore mapping IO port bar(3)
+EAL: PCI device 0000:0d:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 15ad:7b0 net_vmxnet3
+EAL: PCI device 0000:13:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 15ad:7b0 net_vmxnet3
+EAL: Ignore mapping IO port bar(3)
+EAL: PCI device 0000:14:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 15ad:7b0 net_vmxnet3
+EAL: PCI device 0000:1b:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 15ad:7b0 net_vmxnet3
+EAL: Ignore mapping IO port bar(3)
+EAL: PCI device 0000:1c:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 15ad:7b0 net_vmxnet3
+EAL: Waiting for links to come up...
+EAL: Init DONE!
+EAL: Starting I/O threads!
+[00:00:00.000002] Creating the usrp device with: type=3Dn3xx,master_clock_r=
+ate=3D122.88e6,time_source=3Dexternal,clock_source=3Dexternal,mgmt_addr0=3D=
+192.168.110.3,addr0=3D192.168.111.3,second_addr0=3D192.168.112.3,use_dpdk=
+=3D1...
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+92.168.110.3,type=3Dn3xx,product=3Dn310,serial=3D316A5B5,claimed=3DFalse,ma=
+ster_clock_rate=3D122.88e6,time_source=3Dexternal,clock_source=3Dexternal,m=
+gmt_addr0=3D192.168.110.3,addr0=3D192.168.111.3,second_addr0=3D192.168.112.=
+3,use_dpdk=3D1
+[ERROR] [MPMD] Failure during block enumeration: AssertionError: port_id >=
+=3D 0
+  in size_t {anonymous}::discover_mtu(const string&, const string&, size_t,=
+ size_t, double)
+  at /home/demo/install/uhd/host/lib/usrp/mpmd/mpmd_xport_ctrl_dpdk_udp.cpp=
+:79
+
+[INFO] [MPM.PeriphManager] init() called with device args `clock_source=3De=
+xternal,use_dpdk=3D1,product=3Dn310,time_source=3Dexternal,master_clock_rat=
+e=3D122.88e6,second_addr=3D192.168.112.3,mgmt_addr=3D192.168.110.3'.
+Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
+---- command line end ----
+
+
+--_000_2dfd658d21b74e20a7d0fa32f6319202hhifraunhoferde_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
+r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &quot;EmojiFo=
+nt&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoCo=
+lorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymb=
+ols;">
+<p></p>
+<span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2"><sp=
+an style=3D"font-size:10pt;">Hi,</span></font></span></font></span><br>
+<span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2"><sp=
+an style=3D"font-size:10pt;"></span></font></span></font></span>
+<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2=
+"><span style=3D"font-size:10pt;"><br>
+I'm looking for help with my setup<br>
+</span></font></span></font></span></div>
+<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2=
+"><span style=3D"font-size:10pt;"><span><font size=3D"2"><span style=3D"fon=
+t-size:10pt;"><font size=3D"2"><span style=3D"font-size:10pt;">Im using UHD=
+-3.15.LTS &#43; DPDK 17.10 within my ESXI VM.</span></font></span></font></=
+span><br>
+</span></font></span></font></span></div>
+<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2=
+"><span style=3D"font-size:10pt;">I think, the UHD driver can not read the =
+MTU size from VMXNET3 device.</span></font></span></font></span></div>
+<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2=
+"><span style=3D"font-size:10pt;">What can I do?</span></font></span></font=
+></span></div>
+<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2=
+"><span style=3D"font-size:10pt;"><br>
+Thanks</span></font><br>
+</span></font></span></div>
+<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><br>
+</span></font></span></div>
+<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><br>
+</span></font></span></div>
+<div><span><font size=3D"2"><span style=3D"font-size:10pt;">---- command li=
+ne start ---</span></font></span><br>
+</div>
+<div>./run_benchmark_usrp.sh<br>
+<br>
+[INFO] [UHD] linux; GNU C&#43;&#43; version 9.3.0; Boost_107100; UHD_3.15.0=
+.0-62-g7a3f1516<br>
+EAL: Detected 8 lcore(s)<br>
+EAL: Probing VFIO support...<br>
+EAL: VFIO support initialized<br>
+EAL: PCI device 0000:03:00.0 on NUMA socket -1<br>
+EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
+EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
+EAL:&nbsp;&nbsp; using IOMMU type 8 (No-IOMMU)<br>
+EAL: Ignore mapping IO port bar(3)<br>
+EAL: PCI device 0000:05:00.0 on NUMA socket -1<br>
+EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
+EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
+EAL: PCI device 0000:0b:00.0 on NUMA socket -1<br>
+EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
+EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
+EAL: Ignore mapping IO port bar(3)<br>
+EAL: PCI device 0000:0d:00.0 on NUMA socket -1<br>
+EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
+EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
+EAL: PCI device 0000:13:00.0 on NUMA socket -1<br>
+EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
+EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
+EAL: Ignore mapping IO port bar(3)<br>
+EAL: PCI device 0000:14:00.0 on NUMA socket -1<br>
+EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
+EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
+EAL: PCI device 0000:1b:00.0 on NUMA socket -1<br>
+EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
+EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
+EAL: Ignore mapping IO port bar(3)<br>
+EAL: PCI device 0000:1c:00.0 on NUMA socket -1<br>
+EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
+EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
+EAL: Waiting for links to come up...<br>
+EAL: Init DONE!<br>
+EAL: Starting I/O threads!<br>
+[00:00:00.000002] Creating the usrp device with: type=3Dn3xx,master_clock_r=
+ate=3D122.88e6,time_source=3Dexternal,clock_source=3Dexternal,mgmt_addr0=3D=
+192.168.110.3,addr0=3D192.168.111.3,second_addr0=3D192.168.112.3,use_dpdk=
+=3D1...<br>
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+92.168.110.3,type=3Dn3xx,product=3Dn310,serial=3D316A5B5,claimed=3DFalse,ma=
+ster_clock_rate=3D122.88e6,time_source=3Dexternal,clock_source=3Dexternal,m=
+gmt_addr0=3D192.168.110.3,addr0=3D192.168.111.3,second_addr0=3D192.168.112.=
+3,use_dpdk=3D1<br>
+[ERROR] [MPMD] Failure during block enumeration: AssertionError: port_id &g=
+t;=3D 0<br>
+&nbsp; in size_t {anonymous}::discover_mtu(const string&amp;, const string&=
+amp;, size_t, size_t, double)<br>
+&nbsp; at /home/demo/install/uhd/host/lib/usrp/mpmd/mpmd_xport_ctrl_dpdk_ud=
+p.cpp:79<br>
+<br>
+[INFO] [MPM.PeriphManager] init() called with device args `clock_source=3De=
+xternal,use_dpdk=3D1,product=3Dn310,time_source=3Dexternal,master_clock_rat=
+e=3D122.88e6,second_addr=3D192.168.112.3,mgmt_addr=3D192.168.110.3'.<br>
+Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()<br>
+<font size=3D"2"><span style=3D"font-size:10pt;">---- command line end ----=
+</span></font><br>
+</div>
+<br>
+<p></p>
+</div>
+</body>
+</html>
+
+--_000_2dfd658d21b74e20a7d0fa32f6319202hhifraunhoferde_--
+
+
+
+--===============9094786091535823881==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============9094786091535823881==--
+
+
