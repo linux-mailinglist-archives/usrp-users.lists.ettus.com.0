@@ -2,47 +2,49 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB13F32A9BD
-	for <lists+usrp-users@lfdr.de>; Tue,  2 Mar 2021 19:53:40 +0100 (CET)
-Received: from [::1] (port=45034 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43C2C32B5FB
+	for <lists+usrp-users@lfdr.de>; Wed,  3 Mar 2021 09:42:40 +0100 (CET)
+Received: from [::1] (port=51500 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lHA9J-0002dN-Nz; Tue, 02 Mar 2021 13:53:37 -0500
-Received: from mail.hhi.fraunhofer.de ([193.174.67.45]:42750)
- by mm2.emwd.com with esmtps  (TLS1.2) tls TLS_ECDH_anon_WITH_AES_256_CBC_SHA
- (Exim 4.93) (envelope-from <matthias.mehlhose@hhi.fraunhofer.de>)
- id 1lHA9E-0002Zf-Kn
- for usrp-users@lists.ettus.com; Tue, 02 Mar 2021 13:53:32 -0500
-Received: from mail.hhi.fraunhofer.de (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id C491C7C1C9
- for <usrp-users@lists.ettus.com>; Tue,  2 Mar 2021 19:52:46 +0100 (CET)
-X-IMSS-DKIM-Authentication-Result: mail.hhi.fraunhofer.de; sigcount=0
-Received: from mail.hhi.fraunhofer.de (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id AED827C12D
- for <usrp-users@lists.ettus.com>; Tue,  2 Mar 2021 19:52:46 +0100 (CET)
-Received: from mx.fe.hhi.de (unknown [172.16.0.103])
- by mail.hhi.fraunhofer.de (Postfix) with ESMTPS
- for <usrp-users@lists.ettus.com>; Tue,  2 Mar 2021 19:52:46 +0100 (CET)
-Received: from mxsrv5.fe.hhi.de (172.16.0.103) by mxsrv5.fe.hhi.de
- (172.16.0.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Tue, 2 Mar 2021
- 19:52:50 +0100
-Received: from mxsrv5.fe.hhi.de ([fe80::7d4f:49e9:b062:84d9]) by
- mxsrv5.fe.hhi.de ([fe80::7d4f:49e9:b062:84d9%6]) with mapi id 15.01.2106.003; 
- Tue, 2 Mar 2021 19:52:50 +0100
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: VMXNET3 DPDK error on discover MTU
-Thread-Index: AQHXD5U+lyuwLQ8xGUauybN6tbpVHQ==
-Date: Tue, 2 Mar 2021 18:52:50 +0000
-Message-ID: <2dfd658d21b74e20a7d0fa32f6319202@hhi.fraunhofer.de>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.22.100]
+	id 1lHN5U-0001hA-7j; Wed, 03 Mar 2021 03:42:32 -0500
+Received: from mail-yb1-f181.google.com ([209.85.219.181]:44888)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <kelvin.lok266@gmail.com>)
+ id 1lHN5Q-0001di-3n
+ for usrp-users@lists.ettus.com; Wed, 03 Mar 2021 03:42:28 -0500
+Received: by mail-yb1-f181.google.com with SMTP id f4so23678983ybk.11
+ for <usrp-users@lists.ettus.com>; Wed, 03 Mar 2021 00:42:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=y14+RnxyYUKxbBB3pdRpPGyk8Pci5MyYpnLGrchhk00=;
+ b=oJv3GJYypNdglRayre+aI0Lr+9ke7TWB/O5Rz2GTro1h+YNsIKo9PIPfv1rpYi4AfB
+ JuS+27DBrVg521QqFcaQW284DNp7W8JHMeGTtoHFSoy5p3nzAu9+SlzC3kMCQhQhNkIO
+ RR8BEFAeoaaspgwBl3Lz5qbO8FRVd0YmbEhB7RZxaQ9vPpjkPWoHxRVZxgrzjfScR5Ws
+ 6OfOXPP6JtANk7b5hO1nOSsJoc6ctG4RIyRcpa6coi44NNtRrD9YtRYZ6cxsXkrY5pAm
+ 9NUnE6WMWJUVHuDwgyXketOTcznzX+l++lAeMsYhPsjsUf8vtS8suJ6pzYB5XYEkkJYY
+ svrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=y14+RnxyYUKxbBB3pdRpPGyk8Pci5MyYpnLGrchhk00=;
+ b=Q8dTX6/GKEXBpRJX7VITmu3IWXaCpePiu0LXuGcn2J5c1pjUyppOveQAj5J8j2vZ5+
+ ojeMr6i8yKolXRcK/WRq91SPBuxAiK3uuWAqt11yHNCpimMGg9DUkOYrDDpl4DJcMLoE
+ 8vea7KYlyrk0j3Gz3MFoicqTn58rUBVBnHIHCst8uBss/kIGCq/3seK6cgWoC5tBYwrI
+ MSGkK5tmjlnJ1va1s6SXhPtO+diZ/rPbGaFeKKmxG/ukFZw2jNjhJ2USjo0VZYSNTbQP
+ j8Tt5k56quW9qPz58giVx55nNoewleRC7BNSl9hdlCpXEDjGsVpsXOHs2O3QqwGQ0Sk7
+ NKjQ==
+X-Gm-Message-State: AOAM533b2YUIDt19LzgHSsEosezmuFIh/hU0SM93wz8j3JAZ0OYT227F
+ rh99qKt06ocD5DM1y4Rt73KCoJ+OPR/o86Nv/rxo9gIMLjM=
+X-Google-Smtp-Source: ABdhPJxVQnQHIUOExbAgtf1M1p+m7kXqUa7Fp5uSNV4HN8x9+tA28yf2FxYt2+dwGikj136fYvL0gC6Ae2dWYFsDsBE=
+X-Received: by 2002:a25:3491:: with SMTP id b139mr37285280yba.18.1614760907197; 
+ Wed, 03 Mar 2021 00:41:47 -0800 (PST)
 MIME-Version: 1.0
-X-TM-AS-GCONF: 00
-Subject: [USRP-users] VMXNET3 DPDK error on discover MTU
+Date: Wed, 3 Mar 2021 16:41:36 +0800
+Message-ID: <CACSyVY3cKqHzRRrP459Jd-S2=kGZ05HWmYYH8AnFmdhkbDEseA@mail.gmail.com>
+To: "usrp-users (usrp-users@lists.ettus.com)" <usrp-users@lists.ettus.com>
+Subject: [USRP-users] B205mini continously transmitting a carrier tone even
+ though UHD crashed
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -54,9 +56,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: "Mehlhose, Matthias via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Mehlhose, Matthias" <matthias.mehlhose@hhi.fraunhofer.de>
-Content-Type: multipart/mixed; boundary="===============9094786091535823881=="
+From: Kelvin Lok via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Kelvin Lok <kelvin.lok266@gmail.com>
+Content-Type: multipart/mixed; boundary="===============8887671723664918253=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -70,210 +72,42 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============9094786091535823881==
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_2dfd658d21b74e20a7d0fa32f6319202hhifraunhoferde_"
+--===============8887671723664918253==
+Content-Type: multipart/alternative; boundary="000000000000454e9905bc9dd2fd"
 
---_000_2dfd658d21b74e20a7d0fa32f6319202hhifraunhoferde_
-Content-Type: text/plain; charset="iso-8859-1"
+--000000000000454e9905bc9dd2fd
+Content-Type: text/plain; charset="UTF-8"
+
+Hi everyone, I am facing an unexpected problem where my B205mini USRP is
+continuously transmitting a tone (that I set initialised as the tx freq),
+even when my parent program has crashed. My parent program is a C++ program
+that calls uhd, but when the main program catches an exception and
+terminates, the B205mini is still transmitting a tone. I observed this
+behaviour by monitoring the TX output with a spectrum analyser.
+
+Does anyone have any ideas what could be the problem? Do I need to call a
+UHD usrp destructor? I noticed that the example UHD programs don't need to
+release or delete the uhd object. Hence I am stumped.
+
+--000000000000454e9905bc9dd2fd
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<div dir=3D"ltr">Hi everyone, I am facing an unexpected problem where my B2=
+05mini USRP is continuously transmitting a tone (that I set initialised as =
+the tx freq), even when my parent program has crashed. My parent program is=
+ a C++ program that calls uhd, but when the main program catches an excepti=
+on and terminates, the B205mini is still transmitting a tone. I observed th=
+is behaviour by monitoring the TX output with a spectrum analyser.<div><br>=
+</div><div>Does anyone have any ideas what could be the problem? Do I need =
+to call a UHD usrp destructor? I noticed that the example UHD programs don&=
+#39;t need to release or delete the uhd object. Hence I am stumped.</div><d=
+iv><br></div><div><br></div></div>
 
-I'm looking for help with my setup
-Im using UHD-3.15.LTS + DPDK 17.10 within my ESXI VM.
-I think, the UHD driver can not read the MTU size from VMXNET3 device.
-What can I do?
-
-Thanks
-
-
----- command line start ---
-./run_benchmark_usrp.sh
-
-[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_3.15.0.0-62-g7=
-a3f1516
-EAL: Detected 8 lcore(s)
-EAL: Probing VFIO support...
-EAL: VFIO support initialized
-EAL: PCI device 0000:03:00.0 on NUMA socket -1
-EAL:   Invalid NUMA socket, default to 0
-EAL:   probe driver: 15ad:7b0 net_vmxnet3
-EAL:   using IOMMU type 8 (No-IOMMU)
-EAL: Ignore mapping IO port bar(3)
-EAL: PCI device 0000:05:00.0 on NUMA socket -1
-EAL:   Invalid NUMA socket, default to 0
-EAL:   probe driver: 15ad:7b0 net_vmxnet3
-EAL: PCI device 0000:0b:00.0 on NUMA socket -1
-EAL:   Invalid NUMA socket, default to 0
-EAL:   probe driver: 15ad:7b0 net_vmxnet3
-EAL: Ignore mapping IO port bar(3)
-EAL: PCI device 0000:0d:00.0 on NUMA socket -1
-EAL:   Invalid NUMA socket, default to 0
-EAL:   probe driver: 15ad:7b0 net_vmxnet3
-EAL: PCI device 0000:13:00.0 on NUMA socket -1
-EAL:   Invalid NUMA socket, default to 0
-EAL:   probe driver: 15ad:7b0 net_vmxnet3
-EAL: Ignore mapping IO port bar(3)
-EAL: PCI device 0000:14:00.0 on NUMA socket -1
-EAL:   Invalid NUMA socket, default to 0
-EAL:   probe driver: 15ad:7b0 net_vmxnet3
-EAL: PCI device 0000:1b:00.0 on NUMA socket -1
-EAL:   Invalid NUMA socket, default to 0
-EAL:   probe driver: 15ad:7b0 net_vmxnet3
-EAL: Ignore mapping IO port bar(3)
-EAL: PCI device 0000:1c:00.0 on NUMA socket -1
-EAL:   Invalid NUMA socket, default to 0
-EAL:   probe driver: 15ad:7b0 net_vmxnet3
-EAL: Waiting for links to come up...
-EAL: Init DONE!
-EAL: Starting I/O threads!
-[00:00:00.000002] Creating the usrp device with: type=3Dn3xx,master_clock_r=
-ate=3D122.88e6,time_source=3Dexternal,clock_source=3Dexternal,mgmt_addr0=3D=
-192.168.110.3,addr0=3D192.168.111.3,second_addr0=3D192.168.112.3,use_dpdk=
-=3D1...
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
-92.168.110.3,type=3Dn3xx,product=3Dn310,serial=3D316A5B5,claimed=3DFalse,ma=
-ster_clock_rate=3D122.88e6,time_source=3Dexternal,clock_source=3Dexternal,m=
-gmt_addr0=3D192.168.110.3,addr0=3D192.168.111.3,second_addr0=3D192.168.112.=
-3,use_dpdk=3D1
-[ERROR] [MPMD] Failure during block enumeration: AssertionError: port_id >=
-=3D 0
-  in size_t {anonymous}::discover_mtu(const string&, const string&, size_t,=
- size_t, double)
-  at /home/demo/install/uhd/host/lib/usrp/mpmd/mpmd_xport_ctrl_dpdk_udp.cpp=
-:79
-
-[INFO] [MPM.PeriphManager] init() called with device args `clock_source=3De=
-xternal,use_dpdk=3D1,product=3Dn310,time_source=3Dexternal,master_clock_rat=
-e=3D122.88e6,second_addr=3D192.168.112.3,mgmt_addr=3D192.168.110.3'.
-Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()
----- command line end ----
+--000000000000454e9905bc9dd2fd--
 
 
---_000_2dfd658d21b74e20a7d0fa32f6319202hhifraunhoferde_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
-r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &quot;EmojiFo=
-nt&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoCo=
-lorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymb=
-ols;">
-<p></p>
-<span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2"><sp=
-an style=3D"font-size:10pt;">Hi,</span></font></span></font></span><br>
-<span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2"><sp=
-an style=3D"font-size:10pt;"></span></font></span></font></span>
-<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2=
-"><span style=3D"font-size:10pt;"><br>
-I'm looking for help with my setup<br>
-</span></font></span></font></span></div>
-<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2=
-"><span style=3D"font-size:10pt;"><span><font size=3D"2"><span style=3D"fon=
-t-size:10pt;"><font size=3D"2"><span style=3D"font-size:10pt;">Im using UHD=
--3.15.LTS &#43; DPDK 17.10 within my ESXI VM.</span></font></span></font></=
-span><br>
-</span></font></span></font></span></div>
-<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2=
-"><span style=3D"font-size:10pt;">I think, the UHD driver can not read the =
-MTU size from VMXNET3 device.</span></font></span></font></span></div>
-<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2=
-"><span style=3D"font-size:10pt;">What can I do?</span></font></span></font=
-></span></div>
-<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><font size=3D"2=
-"><span style=3D"font-size:10pt;"><br>
-Thanks</span></font><br>
-</span></font></span></div>
-<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><br>
-</span></font></span></div>
-<div><span><font size=3D"2"><span style=3D"font-size:10pt;"><br>
-</span></font></span></div>
-<div><span><font size=3D"2"><span style=3D"font-size:10pt;">---- command li=
-ne start ---</span></font></span><br>
-</div>
-<div>./run_benchmark_usrp.sh<br>
-<br>
-[INFO] [UHD] linux; GNU C&#43;&#43; version 9.3.0; Boost_107100; UHD_3.15.0=
-.0-62-g7a3f1516<br>
-EAL: Detected 8 lcore(s)<br>
-EAL: Probing VFIO support...<br>
-EAL: VFIO support initialized<br>
-EAL: PCI device 0000:03:00.0 on NUMA socket -1<br>
-EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
-EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
-EAL:&nbsp;&nbsp; using IOMMU type 8 (No-IOMMU)<br>
-EAL: Ignore mapping IO port bar(3)<br>
-EAL: PCI device 0000:05:00.0 on NUMA socket -1<br>
-EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
-EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
-EAL: PCI device 0000:0b:00.0 on NUMA socket -1<br>
-EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
-EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
-EAL: Ignore mapping IO port bar(3)<br>
-EAL: PCI device 0000:0d:00.0 on NUMA socket -1<br>
-EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
-EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
-EAL: PCI device 0000:13:00.0 on NUMA socket -1<br>
-EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
-EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
-EAL: Ignore mapping IO port bar(3)<br>
-EAL: PCI device 0000:14:00.0 on NUMA socket -1<br>
-EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
-EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
-EAL: PCI device 0000:1b:00.0 on NUMA socket -1<br>
-EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
-EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
-EAL: Ignore mapping IO port bar(3)<br>
-EAL: PCI device 0000:1c:00.0 on NUMA socket -1<br>
-EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
-EAL:&nbsp;&nbsp; probe driver: 15ad:7b0 net_vmxnet3<br>
-EAL: Waiting for links to come up...<br>
-EAL: Init DONE!<br>
-EAL: Starting I/O threads!<br>
-[00:00:00.000002] Creating the usrp device with: type=3Dn3xx,master_clock_r=
-ate=3D122.88e6,time_source=3Dexternal,clock_source=3Dexternal,mgmt_addr0=3D=
-192.168.110.3,addr0=3D192.168.111.3,second_addr0=3D192.168.112.3,use_dpdk=
-=3D1...<br>
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
-92.168.110.3,type=3Dn3xx,product=3Dn310,serial=3D316A5B5,claimed=3DFalse,ma=
-ster_clock_rate=3D122.88e6,time_source=3Dexternal,clock_source=3Dexternal,m=
-gmt_addr0=3D192.168.110.3,addr0=3D192.168.111.3,second_addr0=3D192.168.112.=
-3,use_dpdk=3D1<br>
-[ERROR] [MPMD] Failure during block enumeration: AssertionError: port_id &g=
-t;=3D 0<br>
-&nbsp; in size_t {anonymous}::discover_mtu(const string&amp;, const string&=
-amp;, size_t, size_t, double)<br>
-&nbsp; at /home/demo/install/uhd/host/lib/usrp/mpmd/mpmd_xport_ctrl_dpdk_ud=
-p.cpp:79<br>
-<br>
-[INFO] [MPM.PeriphManager] init() called with device args `clock_source=3De=
-xternal,use_dpdk=3D1,product=3Dn310,time_source=3Dexternal,master_clock_rat=
-e=3D122.88e6,second_addr=3D192.168.112.3,mgmt_addr=3D192.168.110.3'.<br>
-Error: RuntimeError: Failed to run enumerate_rfnoc_blocks()<br>
-<font size=3D"2"><span style=3D"font-size:10pt;">---- command line end ----=
-</span></font><br>
-</div>
-<br>
-<p></p>
-</div>
-</body>
-</html>
-
---_000_2dfd658d21b74e20a7d0fa32f6319202hhifraunhoferde_--
-
-
-
---===============9094786091535823881==
+--===============8887671723664918253==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -284,6 +118,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============9094786091535823881==--
-
+--===============8887671723664918253==--
 
