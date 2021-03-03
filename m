@@ -2,52 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E58532B89E
-	for <lists+usrp-users@lfdr.de>; Wed,  3 Mar 2021 15:33:39 +0100 (CET)
-Received: from [::1] (port=53792 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A9B632B8B6
+	for <lists+usrp-users@lfdr.de>; Wed,  3 Mar 2021 15:48:32 +0100 (CET)
+Received: from [::1] (port=53962 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lHSZB-0002YJ-Oi; Wed, 03 Mar 2021 09:33:33 -0500
-Received: from mail-yb1-f176.google.com ([209.85.219.176]:37416)
+	id 1lHSnc-0004qx-8c; Wed, 03 Mar 2021 09:48:28 -0500
+Received: from mail-qk1-f181.google.com ([209.85.222.181]:40489)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <kelvin.lok266@gmail.com>)
- id 1lHSZ8-0002U8-8l
- for usrp-users@lists.ettus.com; Wed, 03 Mar 2021 09:33:30 -0500
-Received: by mail-yb1-f176.google.com with SMTP id p193so24751992yba.4
- for <usrp-users@lists.ettus.com>; Wed, 03 Mar 2021 06:33:10 -0800 (PST)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1lHSnY-0004hf-0j
+ for usrp-users@lists.ettus.com; Wed, 03 Mar 2021 09:48:24 -0500
+Received: by mail-qk1-f181.google.com with SMTP id l132so22954359qke.7
+ for <usrp-users@lists.ettus.com>; Wed, 03 Mar 2021 06:48:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=fO6MmtUl3uDa7KHKXINtd+XqYeUpBF1Zzfqzs1p9Gxc=;
- b=KXUSQ0YKf8W0FM9bzCz/d58pilYjL4Ul8ktCc0VJNzEW5oyHKJ/Jse2vdXYmyg6wjb
- 8kcfmtZ6ebwzIMK6vy4OEQ5+QhpU8FBScaR+MPDeKG6gAawnZ+egVLxkl58U1RgBhBX9
- Sep2RKpV7ckdcbGLc8C2Wtj6n3W7/trsYwbUPePFu8+PvResUIDQ50EmK9Xq0jdUmGFC
- BKcumAvQ+6bEYjOBett0pgj4YzwBLr3Sm/2cZHIxmjEEXd9qcEHY0agxBnBeKK6cHcAM
- I98BabwOa/iOAU3J0dJDpZ+Ru0fa47LacJMuKAUNLBL/7eJ4aEVHqCdK1L4KR2+ZPnh4
- g3MQ==
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=1PAbLQvf3I2KeCNuNeBV0x9LV8XdBqOjVdqPVQ26hBE=;
+ b=OezGirguqBWZtbildmRo4JVTvUSzOyzV0dOnxPg+QUUraYdVd4E+PJNTml+NN0A4XG
+ uXmMNB0BsWC1A2RkgmmTRNOPyCCSzT6VZul2L1vXcmfs7v8vK83bEk9UdpTCQYkRgctZ
+ uoWI7arglKa5g625J/U6MWJ+bknjoWZObF6956Lk3uCtVJufAfN4EE3Sflm+Tb9RgGqm
+ zRzIekbmXCMR+ByXgrYIuBEpFGXDWOb49W+qJAX0/synVQdNmh1+mX7RfU4PF2C37Usl
+ nBJwL/1Bpi4ehlqHqDwW4lIEfFEUgO8u+hVzVHoOsQuepWesg/Lxug3mwpFnwXehYvsS
+ KTvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=fO6MmtUl3uDa7KHKXINtd+XqYeUpBF1Zzfqzs1p9Gxc=;
- b=EwD4yLu+xu7ZqhABHhVKOQ3LUP7oWvouPLBGGqLUd4IrIy+R06jBnz0ouzR+JbVp1O
- 2DiibPh27PmFojRsH3tHtGYemEn2GdxFAyCarfFAG0cTwvwP+4p9iJjgVoJHgH1lfacS
- yMvLhWOv9KJmi7gm/HPJEymRJhqC7S3AOavHXfKtqv4kJzzQpdE+wcjDa1y3rb5M+whC
- hxpeAZs6t06vBsj9N7IC2ojqg6QTKHR1x85Euq7WDM6sL8mpXYuVYAVPq5vctQaa63ec
- oBdzh1bZhsrRQMBmCoLboEzUJ1AjERpsX8Ef1XgIwu4wvMDcaMGEn9h7H0ZS/VaukdKr
- 7S+w==
-X-Gm-Message-State: AOAM533Wy+2bIeaGd0E2ao2XzwmGbxFlNgOmJSTKCZjuYYjfPNELdslo
- mYZvAwHKEIddD2sHQZ3mHuYA01CoMOoII/IAz/c=
-X-Google-Smtp-Source: ABdhPJz5FEdyCddZr25reBUEWUzYovWQT6jHxbakOO1oTi/iL3oWm7+QIUOzXxFxiKfgrJSlhKbXyBR0En6EE7/0JXw=
-X-Received: by 2002:a25:ad26:: with SMTP id y38mr37256790ybi.391.1614781969584; 
- Wed, 03 Mar 2021 06:32:49 -0800 (PST)
-MIME-Version: 1.0
-References: <CACSyVY3cKqHzRRrP459Jd-S2=kGZ05HWmYYH8AnFmdhkbDEseA@mail.gmail.com>
- <CF62320E-D32B-42F1-8D8A-EB0B1592C67F@gmail.com>
-In-Reply-To: <CF62320E-D32B-42F1-8D8A-EB0B1592C67F@gmail.com>
-Date: Wed, 3 Mar 2021 22:32:39 +0800
-Message-ID: <CACSyVY0AxAsNpVrnmQRExTcdANCKqaKhrSj-_G5Q7tFZXeRgOg@mail.gmail.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=1PAbLQvf3I2KeCNuNeBV0x9LV8XdBqOjVdqPVQ26hBE=;
+ b=Hj/MynZJDgZPb/BG80UouPPa2/NFqiAN+59xa0h+hmKUk79HRW3Aabnj2AJ6OV+07j
+ Q8KNp/nXOVTm7vbGlhW7c20de3fkq96LMIEbU4xODVvZWWuih5Ak4ynzPVDmtADBeaJk
+ vfwHfUpT02YSB8rJI8k/wz/wDd1eodYLTOG6yS212+ktDlysBuioNym0XhDM8wKn8UQ7
+ xtM0m/nM0RfTShI9T9qC5KOYFdsslcF4qGZdKh6BVg9B+MqEst3GH19rm3g4EBM+izxg
+ pZTN7F30VqIjBNILJ/j5ZO0H2HcEJk5VcQA8k3VkzbguzwqAOR4Hw0RIWUbX26hD6Mjm
+ RKKQ==
+X-Gm-Message-State: AOAM533KPu3K6Qtokkd7AEUk70YVYuLufN3BMNo6XJhuLWgU1z++XjdY
+ q7eg1fVkgIpNHTw3elbTzf57csM2p30=
+X-Google-Smtp-Source: ABdhPJzFcB29o8vA9P3TPX3stDUniZz9oCUiP5h/Epf2zEKDh/shth9fFCt6YDqjNNidbs2Boj8hIQ==
+X-Received: by 2002:a05:620a:1593:: with SMTP id
+ d19mr13782570qkk.83.1614782863253; 
+ Wed, 03 Mar 2021 06:47:43 -0800 (PST)
+Received: from [192.168.2.130]
+ (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+ by smtp.gmail.com with ESMTPSA id e96sm852279qtb.60.2021.03.03.06.47.42
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 03 Mar 2021 06:47:43 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Wed, 3 Mar 2021 09:47:42 -0500
+Message-Id: <3AF881A0-725E-4878-8B9B-89B729FECBA6@gmail.com>
+References: <CACSyVY0AxAsNpVrnmQRExTcdANCKqaKhrSj-_G5Q7tFZXeRgOg@mail.gmail.com>
 Cc: "usrp-users (usrp-users@lists.ettus.com)" <usrp-users@lists.ettus.com>
+In-Reply-To: <CACSyVY0AxAsNpVrnmQRExTcdANCKqaKhrSj-_G5Q7tFZXeRgOg@mail.gmail.com>
+To: Kelvin Lok <kelvin.lok266@gmail.com>
+X-Mailer: iPhone Mail (18D52)
 Subject: Re: [USRP-users] B205mini continously transmitting a carrier tone
  even though UHD crashed
 X-BeenThere: usrp-users@lists.ettus.com
@@ -61,9 +68,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Kelvin Lok via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Kelvin Lok <kelvin.lok266@gmail.com>
-Content-Type: multipart/mixed; boundary="===============3694874085637663464=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============5109338076201666256=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -77,101 +84,117 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3694874085637663464==
-Content-Type: multipart/alternative; boundary="000000000000afd84505bca2b9cb"
 
---000000000000afd84505bca2b9cb
-Content-Type: text/plain; charset="UTF-8"
+--===============5109338076201666256==
+Content-Type: multipart/alternative; boundary=Apple-Mail-DE06C8A6-46C6-4E6E-9B34-EA51A22EE647
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-DE06C8A6-46C6-4E6E-9B34-EA51A22EE647
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Thanks Marcus, I realised it might just have been the lo offset. Is there a
-way to "turn off" the lo linkage to the front-end output whenever I'm done
-with the usrp? Ideally, I would like to avoid power cycling the radio
-whenever I'm done.
+Well assuming it doesn=E2=80=99t crash you can turn down the RF gain and tun=
+e it to an out of band frequency.=20
 
-On Wed, 3 Mar 2021, 10:18 pm Marcus D Leech, <patchvonbraun@gmail.com>
-wrote:
+Sent from my iPhone
 
-> That=E2=80=99s likely just the TX Lo leakage.
->
-> I=E2=80=99m guessing it a a lot weaker than when you=E2=80=99re actually =
-transmitting?
->
-> Sent from my iPhone
->
-> > On Mar 3, 2021, at 3:42 AM, Kelvin Lok via USRP-users <
-> usrp-users@lists.ettus.com> wrote:
-> >
-> > =EF=BB=BF
-> > Hi everyone, I am facing an unexpected problem where my B205mini USRP i=
-s
-> continuously transmitting a tone (that I set initialised as the tx freq),
-> even when my parent program has crashed. My parent program is a C++ progr=
-am
-> that calls uhd, but when the main program catches an exception and
-> terminates, the B205mini is still transmitting a tone. I observed this
-> behaviour by monitoring the TX output with a spectrum analyser.
-> >
-> > Does anyone have any ideas what could be the problem? Do I need to call
-> a UHD usrp destructor? I noticed that the example UHD programs don't need
-> to release or delete the uhd object. Hence I am stumped.
-> >
-> >
-> > _______________________________________________
-> > USRP-users mailing list
-> > USRP-users@lists.ettus.com
-> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->
+> On Mar 3, 2021, at 9:32 AM, Kelvin Lok <kelvin.lok266@gmail.com> wrote:
+>=20
+> =EF=BB=BF
+> Thanks Marcus, I realised it might just have been the lo offset. Is there a=
+ way to "turn off" the lo linkage to the front-end output whenever I'm done w=
+ith the usrp? Ideally, I would like to avoid power cycling the radio wheneve=
+r I'm done.
+>=20
+>> On Wed, 3 Mar 2021, 10:18 pm Marcus D Leech, <patchvonbraun@gmail.com> wr=
+ote:
+>> That=E2=80=99s likely just the TX Lo leakage.=20
+>>=20
+>> I=E2=80=99m guessing it a a lot weaker than when you=E2=80=99re actually t=
+ransmitting?
+>>=20
+>> Sent from my iPhone
+>>=20
+>> > On Mar 3, 2021, at 3:42 AM, Kelvin Lok via USRP-users <usrp-users@lists=
+.ettus.com> wrote:
+>> >=20
+>> > =EF=BB=BF
+>> > Hi everyone, I am facing an unexpected problem where my B205mini USRP i=
+s continuously transmitting a tone (that I set initialised as the tx freq), e=
+ven when my parent program has crashed. My parent program is a C++ program t=
+hat calls uhd, but when the main program catches an exception and terminates=
+, the B205mini is still transmitting a tone. I observed this behaviour by mo=
+nitoring the TX output with a spectrum analyser.
+>> >=20
+>> > Does anyone have any ideas what could be the problem? Do I need to call=
+ a UHD usrp destructor? I noticed that the example UHD programs don't need t=
+o release or delete the uhd object. Hence I am stumped.
+>> >=20
+>> >=20
+>> > _______________________________________________
+>> > USRP-users mailing list
+>> > USRP-users@lists.ettus.com
+>> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---000000000000afd84505bca2b9cb
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail-DE06C8A6-46C6-4E6E-9B34-EA51A22EE647
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Thanks Marcus, I realised it might just have been the lo =
-offset. Is there a way to &quot;turn off&quot; the lo linkage to the front-=
-end output whenever I&#39;m done with the usrp? Ideally, I would like to av=
-oid power cycling the radio whenever I&#39;m done.</div><br><div class=3D"g=
-mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 3 Mar 2021, 10:18=
- pm Marcus D Leech, &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvon=
-braun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">That=
-=E2=80=99s likely just the TX Lo leakage. <br>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Well assuming it doesn=E2=80=99t crash you c=
+an turn down the RF gain and tune it to an out of band frequency.&nbsp;<br><=
+br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquot=
+e type=3D"cite">On Mar 3, 2021, at 9:32 AM, Kelvin Lok &lt;kelvin.lok266@gma=
+il.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div d=
+ir=3D"ltr">=EF=BB=BF<div dir=3D"auto">Thanks Marcus, I realised it might jus=
+t have been the lo offset. Is there a way to "turn off" the lo linkage to th=
+e front-end output whenever I'm done with the usrp? Ideally, I would like to=
+ avoid power cycling the radio whenever I'm done.</div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 3 Mar 2021, 10:18 pm=
+ Marcus D Leech, &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbrau=
+n@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">That=E2=80=99=
+s likely just the TX Lo leakage. <br>
 <br>
-I=E2=80=99m guessing it a a lot weaker than when you=E2=80=99re actually tr=
-ansmitting?<br>
+I=E2=80=99m guessing it a a lot weaker than when you=E2=80=99re actually tra=
+nsmitting?<br>
 <br>
 Sent from my iPhone<br>
 <br>
-&gt; On Mar 3, 2021, at 3:42 AM, Kelvin Lok via USRP-users &lt;<a href=3D"m=
-ailto:usrp-users@lists.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp=
--users@lists.ettus.com</a>&gt; wrote:<br>
+&gt; On Mar 3, 2021, at 3:42 AM, Kelvin Lok via USRP-users &lt;<a href=3D"ma=
+ilto:usrp-users@lists.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp-u=
+sers@lists.ettus.com</a>&gt; wrote:<br>
 &gt; <br>
 &gt; =EF=BB=BF<br>
-&gt; Hi everyone, I am facing an unexpected problem where my B205mini USRP =
-is continuously transmitting a tone (that I set initialised as the tx freq)=
-, even when my parent program has crashed. My parent program is a C++ progr=
-am that calls uhd, but when the main program catches an exception and termi=
-nates, the B205mini is still transmitting a tone. I observed this behaviour=
- by monitoring the TX output with a spectrum analyser.<br>
+&gt; Hi everyone, I am facing an unexpected problem where my B205mini USRP i=
+s continuously transmitting a tone (that I set initialised as the tx freq), e=
+ven when my parent program has crashed. My parent program is a C++ program t=
+hat calls uhd, but when the main program catches an exception and terminates=
+, the B205mini is still transmitting a tone. I observed this behaviour by mo=
+nitoring the TX output with a spectrum analyser.<br>
 &gt; <br>
-&gt; Does anyone have any ideas what could be the problem? Do I need to cal=
-l a UHD usrp destructor? I noticed that the example UHD programs don&#39;t =
-need to release or delete the uhd object. Hence I am stumped.<br>
+&gt; Does anyone have any ideas what could be the problem? Do I need to call=
+ a UHD usrp destructor? I noticed that the example UHD programs don't need t=
+o release or delete the uhd object. Hence I am stumped.<br>
 &gt; <br>
 &gt; <br>
 &gt; _______________________________________________<br>
 &gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D=
-"noreferrer">USRP-users@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus=
-.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D"=
+noreferrer">USRP-users@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ett=
+us.com" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus.c=
+om/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
 </blockquote></div>
+</div></blockquote></body></html>=
 
---000000000000afd84505bca2b9cb--
+--Apple-Mail-DE06C8A6-46C6-4E6E-9B34-EA51A22EE647--
 
 
---===============3694874085637663464==
+--===============5109338076201666256==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -182,5 +205,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3694874085637663464==--
+--===============5109338076201666256==--
 
