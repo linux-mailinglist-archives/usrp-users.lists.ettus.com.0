@@ -2,59 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6E6132B88E
-	for <lists+usrp-users@lfdr.de>; Wed,  3 Mar 2021 15:18:52 +0100 (CET)
-Received: from [::1] (port=53668 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E58532B89E
+	for <lists+usrp-users@lfdr.de>; Wed,  3 Mar 2021 15:33:39 +0100 (CET)
+Received: from [::1] (port=53792 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lHSKv-0000cv-P4; Wed, 03 Mar 2021 09:18:49 -0500
-Received: from mail-qk1-f176.google.com ([209.85.222.176]:41918)
+	id 1lHSZB-0002YJ-Oi; Wed, 03 Mar 2021 09:33:33 -0500
+Received: from mail-yb1-f176.google.com ([209.85.219.176]:37416)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
- id 1lHSKr-0000ZU-Ne
- for usrp-users@lists.ettus.com; Wed, 03 Mar 2021 09:18:45 -0500
-Received: by mail-qk1-f176.google.com with SMTP id q85so24039081qke.8
- for <usrp-users@lists.ettus.com>; Wed, 03 Mar 2021 06:18:25 -0800 (PST)
+ (Exim 4.93) (envelope-from <kelvin.lok266@gmail.com>)
+ id 1lHSZ8-0002U8-8l
+ for usrp-users@lists.ettus.com; Wed, 03 Mar 2021 09:33:30 -0500
+Received: by mail-yb1-f176.google.com with SMTP id p193so24751992yba.4
+ for <usrp-users@lists.ettus.com>; Wed, 03 Mar 2021 06:33:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=content-transfer-encoding:from:mime-version:subject:date:message-id
- :references:cc:in-reply-to:to;
- bh=8cwZvhmwKBZPMvcVh5++qiSg4Cxg17R6mFAjCqPD3ww=;
- b=XX/9Sxt3IahlZAIchN8RN69J3PqaGs5CcvTyc3rah+JVWpgl6hoaA+KfCNu3Vqc6v7
- hGNrEbgTGC67RKNFvMq0v9Iups8DV50mJ+62eeRq3nfYI7okrAzsMoWYb7RbAb3jN9xj
- cOnVteNP0oSCBN+f9JWjmQgnAgf/JJHKEStYa3x++fhELVW9uqMG4OuVAHJ3pXtRmyEz
- admseNglKDYVythcE+EyHVM/BqDLqgcC43/4fpMEMcvdUuEbw6ltkuW5eEuvwbAMguke
- rLdhEI6fJ+pCqoF3vkTR38EpgRIB0wQJP7eCkwP9OmbU27lgQo90/VM8I3Dwnlc96J8d
- 2ktA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=fO6MmtUl3uDa7KHKXINtd+XqYeUpBF1Zzfqzs1p9Gxc=;
+ b=KXUSQ0YKf8W0FM9bzCz/d58pilYjL4Ul8ktCc0VJNzEW5oyHKJ/Jse2vdXYmyg6wjb
+ 8kcfmtZ6ebwzIMK6vy4OEQ5+QhpU8FBScaR+MPDeKG6gAawnZ+egVLxkl58U1RgBhBX9
+ Sep2RKpV7ckdcbGLc8C2Wtj6n3W7/trsYwbUPePFu8+PvResUIDQ50EmK9Xq0jdUmGFC
+ BKcumAvQ+6bEYjOBett0pgj4YzwBLr3Sm/2cZHIxmjEEXd9qcEHY0agxBnBeKK6cHcAM
+ I98BabwOa/iOAU3J0dJDpZ+Ru0fa47LacJMuKAUNLBL/7eJ4aEVHqCdK1L4KR2+ZPnh4
+ g3MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:content-transfer-encoding:from:mime-version
- :subject:date:message-id:references:cc:in-reply-to:to;
- bh=8cwZvhmwKBZPMvcVh5++qiSg4Cxg17R6mFAjCqPD3ww=;
- b=ln/CeTuw3bAvR+ZJSkdDgUOUnMaR4yHJYFpuKs8RDdWMIeaZWPb+3+9OTzYbkT0siC
- lKCHzRWzJJvuQcuk9FRC65G95WT05q5N54yyuGJtICd8GuL8syUpuvuUFMU2/IVjAeRC
- dP1moz9P4JODylRUUXhjn/bkI7ZqbeVo5iCKHrx886rZiK/7FWwKjwuHkt+rLQW5oM34
- mmCxD8rsYwcKsfst8sFc7ctcxMMt04cl7m0NwKONxOTi3weISVNUhTTCjTj6lW/i2Nxk
- +jru+y/V3o3LqQ9aSyREzow1nQ4u3Hyw0AiVb1k9VFLc2ED4KpXRmhEFIJ8h5W9/xIwu
- X6KQ==
-X-Gm-Message-State: AOAM531OJ4vcXYplxivowmGyPLY1z1TZnWD5TfwGM0JgyuCx6A2p7vbZ
- TOFhyYTT3OTjaPp+d8s2T5VOrMCmoYU=
-X-Google-Smtp-Source: ABdhPJwfAkTwM+O1p5AoY3Dcr5onfUrpXjx3I21CyfhrYQVP7zK+9ClNRsYcoUzg8NDy3n1YfBmKdw==
-X-Received: by 2002:a05:620a:248e:: with SMTP id
- i14mr24796585qkn.245.1614781084814; 
- Wed, 03 Mar 2021 06:18:04 -0800 (PST)
-Received: from [192.168.2.130]
- (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
- by smtp.gmail.com with ESMTPSA id 77sm3504530qko.48.2021.03.03.06.18.04
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 03 Mar 2021 06:18:04 -0800 (PST)
-Mime-Version: 1.0 (1.0)
-Date: Wed, 3 Mar 2021 09:18:03 -0500
-Message-Id: <CF62320E-D32B-42F1-8D8A-EB0B1592C67F@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=fO6MmtUl3uDa7KHKXINtd+XqYeUpBF1Zzfqzs1p9Gxc=;
+ b=EwD4yLu+xu7ZqhABHhVKOQ3LUP7oWvouPLBGGqLUd4IrIy+R06jBnz0ouzR+JbVp1O
+ 2DiibPh27PmFojRsH3tHtGYemEn2GdxFAyCarfFAG0cTwvwP+4p9iJjgVoJHgH1lfacS
+ yMvLhWOv9KJmi7gm/HPJEymRJhqC7S3AOavHXfKtqv4kJzzQpdE+wcjDa1y3rb5M+whC
+ hxpeAZs6t06vBsj9N7IC2ojqg6QTKHR1x85Euq7WDM6sL8mpXYuVYAVPq5vctQaa63ec
+ oBdzh1bZhsrRQMBmCoLboEzUJ1AjERpsX8Ef1XgIwu4wvMDcaMGEn9h7H0ZS/VaukdKr
+ 7S+w==
+X-Gm-Message-State: AOAM533Wy+2bIeaGd0E2ao2XzwmGbxFlNgOmJSTKCZjuYYjfPNELdslo
+ mYZvAwHKEIddD2sHQZ3mHuYA01CoMOoII/IAz/c=
+X-Google-Smtp-Source: ABdhPJz5FEdyCddZr25reBUEWUzYovWQT6jHxbakOO1oTi/iL3oWm7+QIUOzXxFxiKfgrJSlhKbXyBR0En6EE7/0JXw=
+X-Received: by 2002:a25:ad26:: with SMTP id y38mr37256790ybi.391.1614781969584; 
+ Wed, 03 Mar 2021 06:32:49 -0800 (PST)
+MIME-Version: 1.0
 References: <CACSyVY3cKqHzRRrP459Jd-S2=kGZ05HWmYYH8AnFmdhkbDEseA@mail.gmail.com>
+ <CF62320E-D32B-42F1-8D8A-EB0B1592C67F@gmail.com>
+In-Reply-To: <CF62320E-D32B-42F1-8D8A-EB0B1592C67F@gmail.com>
+Date: Wed, 3 Mar 2021 22:32:39 +0800
+Message-ID: <CACSyVY0AxAsNpVrnmQRExTcdANCKqaKhrSj-_G5Q7tFZXeRgOg@mail.gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
 Cc: "usrp-users (usrp-users@lists.ettus.com)" <usrp-users@lists.ettus.com>
-In-Reply-To: <CACSyVY3cKqHzRRrP459Jd-S2=kGZ05HWmYYH8AnFmdhkbDEseA@mail.gmail.com>
-To: Kelvin Lok <kelvin.lok266@gmail.com>
-X-Mailer: iPhone Mail (18D52)
 Subject: Re: [USRP-users] B205mini continously transmitting a carrier tone
  even though UHD crashed
 X-BeenThere: usrp-users@lists.ettus.com
@@ -68,10 +61,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Kelvin Lok via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Kelvin Lok <kelvin.lok266@gmail.com>
+Content-Type: multipart/mixed; boundary="===============3694874085637663464=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -85,25 +77,110 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-VGhhdOKAmXMgbGlrZWx5IGp1c3QgdGhlIFRYIExvIGxlYWthZ2UuIAoKSeKAmW0gZ3Vlc3Npbmcg
-aXQgYSBhIGxvdCB3ZWFrZXIgdGhhbiB3aGVuIHlvdeKAmXJlIGFjdHVhbGx5IHRyYW5zbWl0dGlu
-Zz8KClNlbnQgZnJvbSBteSBpUGhvbmUKCj4gT24gTWFyIDMsIDIwMjEsIGF0IDM6NDIgQU0sIEtl
-bHZpbiBMb2sgdmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiB3cm90
-ZToKPiAKPiDvu78KPiBIaSBldmVyeW9uZSwgSSBhbSBmYWNpbmcgYW4gdW5leHBlY3RlZCBwcm9i
-bGVtIHdoZXJlIG15IEIyMDVtaW5pIFVTUlAgaXMgY29udGludW91c2x5IHRyYW5zbWl0dGluZyBh
-IHRvbmUgKHRoYXQgSSBzZXQgaW5pdGlhbGlzZWQgYXMgdGhlIHR4IGZyZXEpLCBldmVuIHdoZW4g
-bXkgcGFyZW50IHByb2dyYW0gaGFzIGNyYXNoZWQuIE15IHBhcmVudCBwcm9ncmFtIGlzIGEgQysr
-IHByb2dyYW0gdGhhdCBjYWxscyB1aGQsIGJ1dCB3aGVuIHRoZSBtYWluIHByb2dyYW0gY2F0Y2hl
-cyBhbiBleGNlcHRpb24gYW5kIHRlcm1pbmF0ZXMsIHRoZSBCMjA1bWluaSBpcyBzdGlsbCB0cmFu
-c21pdHRpbmcgYSB0b25lLiBJIG9ic2VydmVkIHRoaXMgYmVoYXZpb3VyIGJ5IG1vbml0b3Jpbmcg
-dGhlIFRYIG91dHB1dCB3aXRoIGEgc3BlY3RydW0gYW5hbHlzZXIuCj4gCj4gRG9lcyBhbnlvbmUg
-aGF2ZSBhbnkgaWRlYXMgd2hhdCBjb3VsZCBiZSB0aGUgcHJvYmxlbT8gRG8gSSBuZWVkIHRvIGNh
-bGwgYSBVSEQgdXNycCBkZXN0cnVjdG9yPyBJIG5vdGljZWQgdGhhdCB0aGUgZXhhbXBsZSBVSEQg
-cHJvZ3JhbXMgZG9uJ3QgbmVlZCB0byByZWxlYXNlIG9yIGRlbGV0ZSB0aGUgdWhkIG9iamVjdC4g
-SGVuY2UgSSBhbSBzdHVtcGVkLgo+IAo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKPiBVU1JQLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbQo+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5m
-by91c3JwLXVzZXJzX2xpc3RzLmV0dHVzLmNvbQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QKVVNSUC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb20KaHR0cDovL2xpc3RzLmV0dHVzLmNvbS9tYWlsbWFuL2xpc3RpbmZvL3Vz
-cnAtdXNlcnNfbGlzdHMuZXR0dXMuY29tCg==
+--===============3694874085637663464==
+Content-Type: multipart/alternative; boundary="000000000000afd84505bca2b9cb"
+
+--000000000000afd84505bca2b9cb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks Marcus, I realised it might just have been the lo offset. Is there a
+way to "turn off" the lo linkage to the front-end output whenever I'm done
+with the usrp? Ideally, I would like to avoid power cycling the radio
+whenever I'm done.
+
+On Wed, 3 Mar 2021, 10:18 pm Marcus D Leech, <patchvonbraun@gmail.com>
+wrote:
+
+> That=E2=80=99s likely just the TX Lo leakage.
+>
+> I=E2=80=99m guessing it a a lot weaker than when you=E2=80=99re actually =
+transmitting?
+>
+> Sent from my iPhone
+>
+> > On Mar 3, 2021, at 3:42 AM, Kelvin Lok via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+> >
+> > =EF=BB=BF
+> > Hi everyone, I am facing an unexpected problem where my B205mini USRP i=
+s
+> continuously transmitting a tone (that I set initialised as the tx freq),
+> even when my parent program has crashed. My parent program is a C++ progr=
+am
+> that calls uhd, but when the main program catches an exception and
+> terminates, the B205mini is still transmitting a tone. I observed this
+> behaviour by monitoring the TX output with a spectrum analyser.
+> >
+> > Does anyone have any ideas what could be the problem? Do I need to call
+> a UHD usrp destructor? I noticed that the example UHD programs don't need
+> to release or delete the uhd object. Hence I am stumped.
+> >
+> >
+> > _______________________________________________
+> > USRP-users mailing list
+> > USRP-users@lists.ettus.com
+> > http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>
+
+--000000000000afd84505bca2b9cb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Thanks Marcus, I realised it might just have been the lo =
+offset. Is there a way to &quot;turn off&quot; the lo linkage to the front-=
+end output whenever I&#39;m done with the usrp? Ideally, I would like to av=
+oid power cycling the radio whenever I&#39;m done.</div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 3 Mar 2021, 10:18=
+ pm Marcus D Leech, &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvon=
+braun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">That=
+=E2=80=99s likely just the TX Lo leakage. <br>
+<br>
+I=E2=80=99m guessing it a a lot weaker than when you=E2=80=99re actually tr=
+ansmitting?<br>
+<br>
+Sent from my iPhone<br>
+<br>
+&gt; On Mar 3, 2021, at 3:42 AM, Kelvin Lok via USRP-users &lt;<a href=3D"m=
+ailto:usrp-users@lists.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp=
+-users@lists.ettus.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; =EF=BB=BF<br>
+&gt; Hi everyone, I am facing an unexpected problem where my B205mini USRP =
+is continuously transmitting a tone (that I set initialised as the tx freq)=
+, even when my parent program has crashed. My parent program is a C++ progr=
+am that calls uhd, but when the main program catches an exception and termi=
+nates, the B205mini is still transmitting a tone. I observed this behaviour=
+ by monitoring the TX output with a spectrum analyser.<br>
+&gt; <br>
+&gt; Does anyone have any ideas what could be the problem? Do I need to cal=
+l a UHD usrp destructor? I noticed that the example UHD programs don&#39;t =
+need to release or delete the uhd object. Hence I am stumped.<br>
+&gt; <br>
+&gt; <br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list<br>
+&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank" rel=3D=
+"noreferrer">USRP-users@lists.ettus.com</a><br>
+&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
+tus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.ettus=
+.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000afd84505bca2b9cb--
+
+
+--===============3694874085637663464==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list
+USRP-users@lists.ettus.com
+http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--===============3694874085637663464==--
+
