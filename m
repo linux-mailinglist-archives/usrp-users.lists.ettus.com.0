@@ -2,80 +2,51 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA5E532DB8E
-	for <lists+usrp-users@lfdr.de>; Thu,  4 Mar 2021 22:09:30 +0100 (CET)
-Received: from [::1] (port=39468 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBC8732F02F
+	for <lists+usrp-users@lfdr.de>; Fri,  5 Mar 2021 17:37:42 +0100 (CET)
+Received: from [::1] (port=48030 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lHvDq-0001oW-Vp; Thu, 04 Mar 2021 16:09:26 -0500
-Received: from mail-co1nam11olkn2025.outbound.protection.outlook.com
- ([40.92.18.25]:2401 helo=NAM11-CO1-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <e070832@hotmail.com>) id 1lHvDn-0001hd-Ml
- for usrp-users@lists.ettus.com; Thu, 04 Mar 2021 16:09:23 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ODbRQe06ff/lF3FYK03vsIXn0HcWi16PKTVAZSAJ5dAjXtnOuC8OjX7fcGLN7ife+9o8dj2tQwlPTMPcSx4l0bw0mA87QhdgN7FszogpG7JV4A+JV/i646coupz32Uusq4S1Xsxkp7e8MWiZB3ZGcm5/kOqpGmzxTfELRP4Zo7RSAqz0ZB6e5mRMVYpV/IhzLsC6/Qz6GdUJaIxeMy9FeBAOqGPLXyhp8aTmO4909p/c6Lenc1dIBaLGkdAfWF/kZ8Cv32c8RfDwxnQz9hJBseH7SeNj4c8UkRnJNhSmS/CVN/TwCM3XRtxXIRs9WRTIXlv26/rkZ9qyv4JLauOudA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UI8d04wBr43WosbfBJbBU8gk4lF4Hg9k3bxfMn4KocM=;
- b=GEMj79052uj4M/3KpMf0yMefEO779/8JzOPTjCpSUS1e8We6+rc04dcaHsdKUdeqAhYElGeCqzoTPJDF3fR6mrk0/GKfxU+O482N21P7/rXZKxDeuqjgUPwxsFwtzndm1BayiKX1L4PRhbmlXRqe+jwDWEN8TRKIfSneQHbKTCKADu4qcSvwxMuoWDf0/ygUh/YOQgdXLwDUt337PeaJF1dunKrvbbEqvxfHjMc/bST1ovUdjgMeFc2fDRDclFk3voT5kzG6KczP6oByj1xatRSOJkMlTOt9+60Az0lOQ8ka5OIawkhF3MYwhaG1+Z/0BCplo7z7sf1sNcGKz/UyeA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UI8d04wBr43WosbfBJbBU8gk4lF4Hg9k3bxfMn4KocM=;
- b=ndcYp3zMT4NGFuYCp5cIdhKkVUhZmu6OUq4fq2etmmOSIMPp4FVBoMW6tNXhlA64whVycIgVmb7fYjTaQfY+evF5JBnRb3mSLxeQFBEYlJ5FU93gRCVjcxp/pN0UvcxzqXWpBdR5YwgI26OQaZCQRd04qbU5DLD7P46iG/gEfT/YaXtQkdm36eHrG5ph7Vu8XfaE27fdKzT+qbcReONK/N15VjQwD3X3IF2OGBjbegGYPzSDqNzXRa/WY9I1q8sSnlTIZ5qyPvLTyid/EpOdtuVN6RLv8gx1V32oMN0s4D8gBbDJd3US42kTcQ+1OnTMQNgfwQqM6L0m7GV1kJnRAA==
-Received: from DM6NAM11FT049.eop-nam11.prod.protection.outlook.com
- (2a01:111:e400:fc4d::47) by
- DM6NAM11HT004.eop-nam11.prod.protection.outlook.com (2a01:111:e400:fc4d::415)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19; Thu, 4 Mar
- 2021 21:08:42 +0000
-Received: from SN6PR1901MB4688.namprd19.prod.outlook.com
- (2a01:111:e400:fc4d::4b) by DM6NAM11FT049.mail.protection.outlook.com
- (2a01:111:e400:fc4d::188) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17 via Frontend
- Transport; Thu, 4 Mar 2021 21:08:42 +0000
-Received: from SN6PR1901MB4688.namprd19.prod.outlook.com
- ([fe80::2da4:eb7e:cc30:8f3f]) by SN6PR1901MB4688.namprd19.prod.outlook.com
- ([fe80::2da4:eb7e:cc30:8f3f%6]) with mapi id 15.20.3890.029; Thu, 4 Mar 2021
- 21:08:41 +0000
-To: "usrp-users (usrp-users@lists.ettus.com)" <usrp-users@lists.ettus.com>
-Thread-Topic: Current Recommended UHD RFNoC Versions?
-Thread-Index: AQHXETlhxzHljkG1xEq4YYuaEkdWBg==
-Date: Thu, 4 Mar 2021 21:08:41 +0000
-Message-ID: <SN6PR1901MB4688DACB2A5FEFC8E433A70BA4979@SN6PR1901MB4688.namprd19.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:F3BA6CDD82BD8CC604BE488FA082D844A4D118FF44DD29B2FC46D1611C58820B;
- UpperCasedChecksum:BA6587485CC6480E234B91507305BD9D2C8BE8F8A5D853206427223A07ADC209;
- SizeAsReceived:6655; Count:41
-x-tmn: [DUPTyhJlodFoQusnF/tj9oCqKePHZ7g9]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 41
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: b5c8d2fe-3bb9-40ed-ac02-08d8df51b085
-x-ms-traffictypediagnostic: DM6NAM11HT004:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +REm/PZazMEQprAjDzy+uzVAJovbm5Bnu79sI60oMbW0U5uYxSLBJ7FooXaNxKteo6m99moGihEFOZ6pe1q3sS0yrTLX3zI39AB87Frr0JyzQ9FhjKzuAknOTnH6c26kZL+qtuZgUIFGsZhEe+OAlvycJQzV9nyqFDblsyr+4EK+SsXuABXKQkm/Ih8QEI2deN0GvSLEHyztfWjlRhQjkDgGP1YooGrj6g3ujVZXSYZx64S3KNAC2QAChr2hAETSNt7WErbVVFst+fJ09xf71WhTd6ebJ4rAW5Sr3Z3fZLIUtVl75xK+2UuM4KvAK86S62hEl9r5iNJbz3qWXbP4sIVEj/+4pqB64QHKjJ//0m8kRY2ioHxAORPKb54dlVKY15QZgFa5E85SvUtGyj0iGQ==
-x-ms-exchange-antispam-messagedata: khXZfSZNMNaiXcc1rUQPbY39Tn1eDCbC7GCK/EcbgD1jqGuzG9ZbeSXipPfcRqaFo5di2KPQQra/AvCtDQJzq5CZVga2juZ/bptEVQ64iBR4u//+7w7rElEeEw/2Ovc5c9AeY+LWMMPXpX85pN08rA==
-x-ms-exchange-transport-forked: True
+	id 1lIDSM-0001ZM-V6; Fri, 05 Mar 2021 11:37:38 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:42639)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1lIDSJ-0001Vr-7Q
+ for usrp-users@lists.ettus.com; Fri, 05 Mar 2021 11:37:35 -0500
+Received: by mail-oi1-f180.google.com with SMTP id l64so3118735oig.9
+ for <usrp-users@lists.ettus.com>; Fri, 05 Mar 2021 08:37:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=U/GppDt7/r7CjBv2GIpAV1dux5zqoGksW75WJCivQJ4=;
+ b=g1l7JD05ghWXTpTopeIfm/K+jBKHxay70g4GcWH3PoTBbO2u9XjWReer97rkk9CvQ6
+ lwmmVGki7Qy9lxJEVP6xtdRBN8XceKbCeR+ti74H4Zsn58iC737wQwwPLJk1ud33Qd3h
+ hxSOAqAO0YFZlkcxXtZmfglR6aUWXo6QadSiMs0GIWL++qpv9k8UFBokWO9lRoMusHBN
+ mZscQCQy5SjqRRuvokInwdnqamQdfbmZnWvFf+1DpneCzpe41swFk6naZo1wN0cqrcdq
+ s62dTvSQbHuM30aj8NOvzM6jUhkW9YyM73YGoOkIGrl4fABTCNV4EltKr7wSYEIridny
+ /LVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=U/GppDt7/r7CjBv2GIpAV1dux5zqoGksW75WJCivQJ4=;
+ b=XnSLGyiilrLWGaPaCgMER9h79htIXcs0OFkBf/G8y4aMo+7+cSFutIY1ilDgBIgCvB
+ mMDBoeU9+QvANlpU9PW86BibirKxBzeZ7wGdimW/nL8J9GqXnoTdL0W1Qp4qK6hZcvK9
+ XdTl4H+6uwm8OTp2K9XFATURZL7YcXXNW45PODPmRdqeM11aKq7Msd5vYsNsxkqZXqh+
+ DxvZUD2QzmkdYwdAT9IygYnRSQHVAp2U7o29bWm/TX7U5zKha3xwrBtUlB51eLGaFel3
+ 7ls8ydz9FRmcIcfDb2iPTnBtvmlg3mJJqaC98+TcpLGj5ZOHNqs9jES9o515Lrhb03tF
+ wBQg==
+X-Gm-Message-State: AOAM530WooXOdPVoWlNrvqnssZWHg8PAya3h/m0Z99pIb3rVcFKzdSCA
+ 1VxjTrML7LODBteLVU0u66P4XCLjgyK3J6aCUKUtaGyGsdA=
+X-Google-Smtp-Source: ABdhPJyGR5kCq9qVig99OPw+n/QJ5S6B6WDzhvnTJbQ7waWTNzCKADun840tHpaxn449xjrZp277it40QyBpAsYrwzg=
+X-Received: by 2002:a05:6808:d47:: with SMTP id
+ w7mr7684115oik.150.1614962214050; 
+ Fri, 05 Mar 2021 08:36:54 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT049.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5c8d2fe-3bb9-40ed-ac02-08d8df51b085
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Mar 2021 21:08:41.8771 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6NAM11HT004
-Subject: [USRP-users] Current Recommended UHD RFNoC Versions?
+References: <CAB__hTTpgdLBBRBMFT7HrPdctcofvtw0VeLbCH4Z_4o+qdquDQ@mail.gmail.com>
+In-Reply-To: <CAB__hTTpgdLBBRBMFT7HrPdctcofvtw0VeLbCH4Z_4o+qdquDQ@mail.gmail.com>
+Date: Fri, 5 Mar 2021 11:36:43 -0500
+Message-ID: <CAB__hTSPrE27F7kjz+LxOUXP2-aByPVt_53047BOMAbwKKpZLA@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] UHD 4 "properties"
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -87,9 +58,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jeff S <e070832@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============6647188841231557354=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============3802998613802426097=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -103,82 +74,148 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6647188841231557354==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_SN6PR1901MB4688DACB2A5FEFC8E433A70BA4979SN6PR1901MB4688_"
+--===============3802998613802426097==
+Content-Type: multipart/alternative; boundary="00000000000018573c05bcccb10a"
 
---_000_SN6PR1901MB4688DACB2A5FEFC8E433A70BA4979SN6PR1901MB4688_
-Content-Type: text/plain; charset="iso-8859-1"
+--00000000000018573c05bcccb10a
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+I wanted to revisit a couple of issues with UHD 4.0 properties and ask
+whether Ettus is planning any changes to the property architecture that
+would address these issues.  The 2 issues are the following:
+
+   - There is presently not a good way to use a property with a read-only
+   register (where the register values are dynamic).  As seen in the exchange
+   below, Martin suggests the ALWAYS_DIRTY setting, but it seems that is
+   impractical because of the unnecessary register I/O that occurs.  I
+   inserted some LOG messages in my code which showed that the register was
+   being read at numerous times, not just in response to a user-initiated
+   query of the given property (as would be the case if there was a "get"
+   callback function in a similar way to UHD 3.15 args).
+   - If the user "sets" the value of a property such that the value does
+   not change, the "set" callback does not execute. This again differs from
+   behavior of 3.15 args.  In 3.15, I used an "arg" that was a string which
+   identified a window coefficient file.  Whenever I set the arg, the callback
+   read the file and downloaded the coefficients to the FPGA.  I could
+   externally update the coefficients inside the file and then set the arg
+   again and the coefficients would be reloaded even though the filename
+   itself did not change. With UHD 4 properties, this does not happen.  If the
+   property string does not change (i.e., the filename does not change), the
+   "set" callback does not execute.
+
+Rob
+
+
+On Wed, Oct 7, 2020 at 6:40 PM Rob Kossler <rkossler@nd.edu> wrote:
+
+> Hi,
+> I have 2 issues related to properties in UHD 4.0.
+>
+> The first is regarding the concept of a read-only property where the
+> property is monitoring some HW status. This was discussed in another thread
+> (which I copied  below) but I decided to move it here to a new thread. The
+> proposed solution doesn't seem practical if ALWAYS_DIRTY causes numerous
+> register reads as it appears to.
+>
+> The second issue is related to setting a property to a value that does not
+> change. This may seem stupid but in the past (UHD 3.15), I could use a
+> block arg as representing a string filename (e.g., a file containing Window
+> coefficients).  If I registered a function as a publisher for this arg,
+> then my function would run whenever this property was set (whether or not
+> it changed) so that I could read my file and load the coefficients.  But,
+> with UHD4 properties, my function is not getting called when the property
+> is set to the same filename as it was before the set.  So, even though the
+> coefficients in the file are changed, they are never loaded because the
+> filename itself did not change.
+>
+> Let me know if you have any suggestions on either issue.
+> Rob
+>
+>
+> > Rob, you might want to check out host/tests/rfnoc_graph_mock_nodes.hpp,
+> > and look at the RSSI property. It's supposed to mock a property that
+> > only represents a value that is read back from the radio (none of our
+> > RFNoC radios actually have that property, but we provisioned for it in
+> > the specification, and this is an example of that).
+> >
+> > Instead of updating a counter (which we only do because this is a mock
+> > for unit testing), you would peek a register.
+>
+> Hi Martin,
+> I looked at this and implemented a property using the ALWAYS_DIRTY
+> dependency shown in the mock case. This does work, but it causes my
+> actual register peek to occur quite a lot - not just when a user calls
+> get_property for that property.
+>
+
+--00000000000018573c05bcccb10a
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I'm getting ready to help someone install code and I'm seeing conflicting t=
-hings regarding GNURadio v3.7/v3.8 with respect to wanting to do RFNoC deve=
-lopment.  They are going to use an N310 and I've been using maint-3.7 for q=
-uite a while.
+<div dir=3D"ltr"><div dir=3D"ltr">Hi,</div><div dir=3D"ltr">I wanted to rev=
+isit a couple of issues with UHD 4.0 properties and ask whether Ettus is pl=
+anning any changes to the property architecture that would address these is=
+sues.=C2=A0 The 2 issues are the following:</div><div dir=3D"ltr"><ul><li>T=
+here is presently not a good way to use a property with a read-only registe=
+r (where the register values are dynamic).=C2=A0 As seen in the exchange be=
+low, Martin suggests the ALWAYS_DIRTY setting, but it seems that is impract=
+ical because of the unnecessary register I/O that occurs.=C2=A0 I inserted =
+some LOG messages in my code which showed that the register was being read =
+at numerous times, not just in response to a user-initiated query of the gi=
+ven property (as would be the case if there was a &quot;get&quot; callback =
+function in a similar way to UHD 3.15 args).=C2=A0</li><li>If the user &quo=
+t;sets&quot; the value of a property such that the value does not change, t=
+he &quot;set&quot; callback does not execute. This again differs from behav=
+ior of 3.15 args.=C2=A0 In 3.15, I used an &quot;arg&quot; that was a strin=
+g which identified a window coefficient file.=C2=A0 Whenever I set the arg,=
+ the callback read the file and downloaded the coefficients to the FPGA.=C2=
+=A0 I could externally update the coefficients inside the file and then set=
+ the arg again and the coefficients would be reloaded even though the filen=
+ame itself did not change. With UHD 4 properties, this does not happen.=C2=
+=A0 If the property string does not change (i.e., the filename does not cha=
+nge), the &quot;set&quot; callback does not execute.</li></ul><div>Rob</div=
+><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Wed, Oct 7, 2020 at 6:40 PM Rob Kossler &lt;<a href=3D"m=
+ailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<br><div>I have 2=
+ issues related to properties in UHD 4.0.=C2=A0</div><div><br></div><div>Th=
+e first is regarding the concept of a read-only property where the property=
+ is monitoring some HW status. This was discussed in another thread (which =
+I copied=C2=A0 below) but I decided to move it here to a new thread. The pr=
+oposed solution doesn&#39;t seem practical if ALWAYS_DIRTY causes numerous =
+register reads as it appears to.</div><div><br></div><div>The second issue =
+is related to setting a property to a value that does not change. This may =
+seem stupid but in the past (UHD 3.15), I could use a block arg as represen=
+ting a string filename (e.g., a file containing Window coefficients).=C2=A0=
+ If I registered a function as a publisher for this arg, then my function w=
+ould run whenever this property was set (whether or not it changed) so that=
+ I could read my file and load the coefficients.=C2=A0 But, with UHD4 prope=
+rties, my function is not getting called when the property is set to the sa=
+me filename as it was before the set.=C2=A0 So, even though the coefficient=
+s in the file are changed, they are never loaded because the filename itsel=
+f did not change.</div><div><br></div><div>Let me know if you have any sugg=
+estions on either issue.</div><div>Rob</div><div><br></div><div><br></div><=
+div><span style=3D"color:rgb(80,0,80)">&gt; Rob, you might want to check ou=
+t host/tests/rfnoc_graph_mock_nodes.hpp,<br>&gt; and look at the RSSI=C2=A0=
+<span>property</span>. It&#39;s supposed to mock a=C2=A0<span>property</spa=
+n>=C2=A0that<br>&gt; only represents a value that is read back from the rad=
+io (none of our<br>&gt; RFNoC radios actually have that=C2=A0<span>property=
+</span>, but we provisioned for it in<br>&gt; the specification, and this i=
+s an example of that).<br>&gt;<br>&gt; Instead of updating a counter (which=
+ we only do because this is a mock<br>&gt; for unit testing), you would pee=
+k a register.<br><br></span>Hi Martin,<br>I looked at this and implemented =
+a=C2=A0<span>property</span>=C2=A0using the ALWAYS_DIRTY<br>dependency show=
+n in the mock case. This does work, but it causes my<br>actual register pee=
+k to occur quite a lot - not just when a user calls<br>get_property for tha=
+t=C2=A0<span>property</span>.<br></div></div>
+</blockquote></div></div>
 
-Are we still using the rfnoc-devel branches of UHD and FPGA, maint-3.7 of G=
-NURadio, and master for gr-ettus?  Or is there some later, stable recommend=
-ations?
-
-Sorry if there was any recent related posts, but I didn't find any.
-
-Thanks,
-Jeff
-
---_000_SN6PR1901MB4688DACB2A5FEFC8E433A70BA4979SN6PR1901MB4688_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-I'm getting ready to help someone install code and I'm seeing conflicting t=
-hings regarding GNURadio v3.7/v3.8 with respect to wanting to do RFNoC deve=
-lopment.&nbsp; They are going to use an N310 and I've been using maint-3.7 =
-for quite a while.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Are we still using the rfnoc-devel branches of UHD and FPGA, maint-3.7 of G=
-NURadio, and master for gr-ettus?&nbsp; Or is there some later, stable reco=
-mmendations?<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Sorry if there was any recent related posts, but I didn't find any.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Thanks,</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Jeff<br>
-</div>
-</body>
-</html>
-
---_000_SN6PR1901MB4688DACB2A5FEFC8E433A70BA4979SN6PR1901MB4688_--
+--00000000000018573c05bcccb10a--
 
 
---===============6647188841231557354==
+--===============3802998613802426097==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -189,5 +226,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6647188841231557354==--
+--===============3802998613802426097==--
 
