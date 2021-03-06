@@ -2,57 +2,57 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6185232FC8E
-	for <lists+usrp-users@lfdr.de>; Sat,  6 Mar 2021 20:11:06 +0100 (CET)
-Received: from [::1] (port=59172 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71AFB32FC90
+	for <lists+usrp-users@lfdr.de>; Sat,  6 Mar 2021 20:12:30 +0100 (CET)
+Received: from [::1] (port=59182 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lIcKI-0004fW-Ac; Sat, 06 Mar 2021 14:10:58 -0500
-Received: from mail-wm1-f51.google.com ([209.85.128.51]:55419)
+	id 1lIcLl-00053o-Da; Sat, 06 Mar 2021 14:12:29 -0500
+Received: from mail-wr1-f48.google.com ([209.85.221.48]:39728)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
  (Exim 4.93) (envelope-from <marcus.mueller@ettus.com>)
- id 1lIcKF-0004WJ-5h
- for usrp-users@lists.ettus.com; Sat, 06 Mar 2021 14:10:55 -0500
-Received: by mail-wm1-f51.google.com with SMTP id w7so3679614wmb.5
- for <usrp-users@lists.ettus.com>; Sat, 06 Mar 2021 11:10:34 -0800 (PST)
+ id 1lIcLh-0004xD-Sg
+ for usrp-users@lists.ettus.com; Sat, 06 Mar 2021 14:12:25 -0500
+Received: by mail-wr1-f48.google.com with SMTP id b18so6530955wrn.6
+ for <usrp-users@lists.ettus.com>; Sat, 06 Mar 2021 11:12:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ettus-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:references:from:message-id:date:user-agent:mime-version
  :in-reply-to:content-transfer-encoding:content-language;
- bh=lL2uS7nxBRRrWv5ZlZL3KaVhRVKl6sPvPNKSjIs7PmU=;
- b=iCn3J0d/COg/Ox73BXlhIbmCBFtN7qIGCHjX7FZ+TMxAlmCQHU98djju0DWJI7XRIF
- 18q02RZPBlZVu50yyU3xm8CweXljmeULEzNULJ843z/fqpSqkp5RgpmUIpaLXx3lO1/J
- 4ETyYTtDXuBdbl1l9dwfqLXZb3BCjL8hw+0LFdpwNG/o4Xd1b1ENBTYAN4fpi27Fs/Fz
- nw8NWSO6MBVc9OG2EfX2fshX6a6pXAloDA/izyr3EZ9MJoz0be0BsbWWa46Sxll9Nzkd
- KkCV00GoFNXGwmHb44NCjeQd2dF1+MkvSrSQajJgF23o/6kmgCoTtaFfHfdOB9Jht3+z
- eVoQ==
+ bh=zH5i76JbWUaz+ICesO06rIvmtdOdaIiVzW7DKiR0cek=;
+ b=ZQxlgLTszIY0GI8okPq0H/TPiD8f3yv93HDquTYhNMtC/tqLEaNiY20IHPo7Y/wc7Q
+ HYSzcNd47eO4hdvV5oBIOWQPkFJfdlYYUiAAVJP641GG8Fbc9iacYjVtfXUBahIE7Kum
+ i4K1arD79/oTnucXBW4OOZuzEb8QifHIEjXWI6RjCBBfV9osKS8wLa2B0Ltc2jgrstgo
+ Zb4E3cANhD4cOuR6WGQOnugXS8tdfV0JjJ0g/6imT3hCX00HoehwfSdZRzN1hW4m0BzB
+ 2CHJeBhK3GYGKPcPQti/9hRjrMfSV0RcDS0farKpGknXSf6NAq0DHZol3VYjO6U8gzVp
+ rheQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-transfer-encoding
  :content-language;
- bh=lL2uS7nxBRRrWv5ZlZL3KaVhRVKl6sPvPNKSjIs7PmU=;
- b=DvZMVtZerqbNZ0txay9CLAMxoPmcog1qzKUldGRF5J97MiwO25vUZr02Rfwhy6oMgX
- bjbbY4TKaVmQRgO92pnjAjdAz2nbVvdphnvHxsuFxL0HtHbeX0kkDJOLoW+E2dYuWJZW
- DvsWsxCbMAyjnzulnuXPfsQkOgzpCg2MfoFkmc0sPJbxzA/M7P124g59qt0kqaygenJk
- cndTXW3r0xu+fKlyvXLjmNA4lSpGhQi8hQzAPY+EhLeAQREVTvA7SxssMNdbqj5OgoMG
- x1r9jki51rk8nCl3s9iCxJBH5cmRETakE8Xsx2Hv+z5qIhrMsFOo5E/t1FLTxY4xynbP
- wn7Q==
-X-Gm-Message-State: AOAM5305sG7gJQoyzLGr2GLXe6mOSJtG2CSDlHsziqffSrP+Vg3J81PU
- m6ktPhuYtsM+4DfBMjfKTvEJqEtFRcSyxuKLovg=
-X-Google-Smtp-Source: ABdhPJxt7CY1O88kJlKnai+E9+wIxuqF1FP+KVzlIY6Bh2P9XhxQ0zEw1OuhGa95NkbtoT5eZiPRqA==
-X-Received: by 2002:a1c:7c14:: with SMTP id x20mr13953663wmc.17.1615057813976; 
- Sat, 06 Mar 2021 11:10:13 -0800 (PST)
+ bh=zH5i76JbWUaz+ICesO06rIvmtdOdaIiVzW7DKiR0cek=;
+ b=ndmCnIJVGClflIUjmlKZE3zgtk3zjoGRxykL2xsP4xtQpQpA2L/C5e80S6LHev9YIj
+ WvGtt+Tl7yhGZh5uSESKeXAivyCpfSFl5Nol0Yrqh8c6U/cWC27NBJTc15UpQzagFqN8
+ KBBFQDu4eRNP1tzoA7X+pYqKC73zzPwzH7ZhkT2gaTwg2eeTF6v7CvckrbQbS3E7CAnE
+ z9AzpvaQ5pMKo9vpSx+/iazx3yVLZrxAJOxRcpu71walYhfhjZEt+Nm4lt0mXdE7i5uZ
+ rIoEye8PwGRAvfC+E1i0wEp1UJ1/r7MQAMmbJ/USUdUXahBQt8j3Il+MxXaw59SjtenR
+ 9cnQ==
+X-Gm-Message-State: AOAM533T3PJ6pdK04n1vvFLigh0Rb9ALyLlwE3p08dTuGpr/jq+qSBAD
+ 2ZZbLYzinzHVLZ6cUAiAxlmyllzGwtBDg+JpBEk=
+X-Google-Smtp-Source: ABdhPJyyCWrvvFeqS8nPwUYuEz0cxFqDJjdnfDZ/5VTisNTC/xEOMMOSZDEIig7mPhi3ytulmQTdLQ==
+X-Received: by 2002:adf:c752:: with SMTP id b18mr15006585wrh.233.1615057904568; 
+ Sat, 06 Mar 2021 11:11:44 -0800 (PST)
 Received: from [192.168.128.8]
  (HSI-KBW-46-223-162-176.hsi.kabel-badenwuerttemberg.de. [46.223.162.176])
- by smtp.gmail.com with ESMTPSA id k4sm12272151wrd.9.2021.03.06.11.10.13
+ by smtp.gmail.com with ESMTPSA id b15sm9936759wrr.47.2021.03.06.11.11.44
  for <usrp-users@lists.ettus.com>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 06 Mar 2021 11:10:13 -0800 (PST)
+ Sat, 06 Mar 2021 11:11:44 -0800 (PST)
 To: usrp-users@lists.ettus.com
 References: <SN6PR1901MB4688DACB2A5FEFC8E433A70BA4979@SN6PR1901MB4688.namprd19.prod.outlook.com>
-Message-ID: <dc67f99e-d640-9acf-07dc-e0a6a1684862@ettus.com>
-Date: Sat, 6 Mar 2021 20:10:12 +0100
+Message-ID: <54732d0c-9515-3b01-6221-b8b177e52e6d@ettus.com>
+Date: Sat, 6 Mar 2021 20:11:43 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.0
 MIME-Version: 1.0
@@ -88,30 +88,13 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
-Hi Jeff,
-
-
-GNU Radio 3.7 is legacy; you want to use GNU Radio 3.8 or 3.9.
-
-gr-ettus is only fully compatible with GNU Radio 3.8, and much better suppo=
-rted under
-that. That settles that. Use GNU Radio 3.8! (GNU Radio 3.7 really slows you=
- down at this
-point: Python2, all kinds of legacy Qt problems,...)
-
-
-Regarding UHD: a recent 3.something or LTS is probably what you'd want to u=
-se if the RFNoC
-you're used to is your current time investment.
-
-
-Best regards,
-
-Marcus
-
+By the way, if RFNoC 4 is what you're interested in, the current master bra=
+nch of
+gr-ettus, GNU Radio 3.8 and UHD 4.x are what you're aiming for!
 
 
 On 04.03.21 22:08, Jeff S via USRP-users wrote:
+
 > I'm getting ready to help someone install code and I'm seeing conflicting=
  things
 > regarding GNURadio v3.7/v3.8 with respect to wanting to do RFNoC developm=
