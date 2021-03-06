@@ -2,51 +2,81 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBC8732F02F
-	for <lists+usrp-users@lfdr.de>; Fri,  5 Mar 2021 17:37:42 +0100 (CET)
-Received: from [::1] (port=48030 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id D59A732FBF5
+	for <lists+usrp-users@lfdr.de>; Sat,  6 Mar 2021 17:32:14 +0100 (CET)
+Received: from [::1] (port=58022 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lIDSM-0001ZM-V6; Fri, 05 Mar 2021 11:37:38 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:42639)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <rkossler@nd.edu>) id 1lIDSJ-0001Vr-7Q
- for usrp-users@lists.ettus.com; Fri, 05 Mar 2021 11:37:35 -0500
-Received: by mail-oi1-f180.google.com with SMTP id l64so3118735oig.9
- for <usrp-users@lists.ettus.com>; Fri, 05 Mar 2021 08:37:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nd.edu; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=U/GppDt7/r7CjBv2GIpAV1dux5zqoGksW75WJCivQJ4=;
- b=g1l7JD05ghWXTpTopeIfm/K+jBKHxay70g4GcWH3PoTBbO2u9XjWReer97rkk9CvQ6
- lwmmVGki7Qy9lxJEVP6xtdRBN8XceKbCeR+ti74H4Zsn58iC737wQwwPLJk1ud33Qd3h
- hxSOAqAO0YFZlkcxXtZmfglR6aUWXo6QadSiMs0GIWL++qpv9k8UFBokWO9lRoMusHBN
- mZscQCQy5SjqRRuvokInwdnqamQdfbmZnWvFf+1DpneCzpe41swFk6naZo1wN0cqrcdq
- s62dTvSQbHuM30aj8NOvzM6jUhkW9YyM73YGoOkIGrl4fABTCNV4EltKr7wSYEIridny
- /LVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=U/GppDt7/r7CjBv2GIpAV1dux5zqoGksW75WJCivQJ4=;
- b=XnSLGyiilrLWGaPaCgMER9h79htIXcs0OFkBf/G8y4aMo+7+cSFutIY1ilDgBIgCvB
- mMDBoeU9+QvANlpU9PW86BibirKxBzeZ7wGdimW/nL8J9GqXnoTdL0W1Qp4qK6hZcvK9
- XdTl4H+6uwm8OTp2K9XFATURZL7YcXXNW45PODPmRdqeM11aKq7Msd5vYsNsxkqZXqh+
- DxvZUD2QzmkdYwdAT9IygYnRSQHVAp2U7o29bWm/TX7U5zKha3xwrBtUlB51eLGaFel3
- 7ls8ydz9FRmcIcfDb2iPTnBtvmlg3mJJqaC98+TcpLGj5ZOHNqs9jES9o515Lrhb03tF
- wBQg==
-X-Gm-Message-State: AOAM530WooXOdPVoWlNrvqnssZWHg8PAya3h/m0Z99pIb3rVcFKzdSCA
- 1VxjTrML7LODBteLVU0u66P4XCLjgyK3J6aCUKUtaGyGsdA=
-X-Google-Smtp-Source: ABdhPJyGR5kCq9qVig99OPw+n/QJ5S6B6WDzhvnTJbQ7waWTNzCKADun840tHpaxn449xjrZp277it40QyBpAsYrwzg=
-X-Received: by 2002:a05:6808:d47:: with SMTP id
- w7mr7684115oik.150.1614962214050; 
- Fri, 05 Mar 2021 08:36:54 -0800 (PST)
+	id 1lIZqZ-0002JK-HE; Sat, 06 Mar 2021 11:32:07 -0500
+Received: from mail-oln040092254078.outbound.protection.outlook.com
+ ([40.92.254.78]:30240 helo=APC01-PU1-obe.outbound.protection.outlook.com)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.93) (envelope-from <snehasish.cse@LIVE.COM>)
+ id 1lIZqV-0002Fm-Dr
+ for usrp-users@lists.ettus.com; Sat, 06 Mar 2021 11:32:03 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZXNvq6ahasN2cRPmVHEqb6W/XQVHtli2N5N2K/cesse1sxT3N5Jhuf8QWa1gUg05Np3J4feQI/3M4sviMbkEWZmFO59Zs7N7yR5ViyZRZI4ykLsDgnoM3jY+HN5O+VrqoYD7b5fmBEDtBHHpuAMQHr+quyulTYzEg7LFMvsOWiYlP/xXMPVIEumCFcntc/fMOIn2Ihrlqm4GjbC3Tj/1hDkrf7EyiaibXIP/NGxPnrTCcaVyo84Sb0muTK4W0RHQQmHCRLHJcrrRt/I+S0WArHemK4Bu7nIApQyug6XuO78KfFa8xSlHR0qUZJrqW1vXYbgjAhQMcOEl6wNW5ss/+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Vr7hJLaPsekf+GCHWbYBpGYLeQBBgPOMs0rTc7445U0=;
+ b=Qqcq4bHaNSIP6eg2S+W0CMolm8ef5zoGp3s0nJv0P9ve2GmrUAwZKTu4OzydNl0z7pQAVy5ip305tKvGbUJ0ahQoMVMNp6pU2TduSTyzSyQgdYHmmGiJt2YPnClUVltkUUTBfOJeBu93qgLP5QwElBjA82b6gsAdOsI0D/bPOx66saox8z8FRAFmF3eMtP15fCKhiUY+//gWgFGk0AWmoJiydknw3zDhdeqFeqkh26Qnsel6VldxuxdPTTa1l7t0IHiwnv4lBwdY9jSha4mQv2i7kGd3HfV5TuMEHd9xmobNqeJ+NWwyLinGo79iQXh916wLnCKMXVekOvJ/k1Ua0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Vr7hJLaPsekf+GCHWbYBpGYLeQBBgPOMs0rTc7445U0=;
+ b=sSjh8eyRnuao3YxbfPPKiOMk8uW3PeWtF51KfeMW744FctiCxws12CpKNh1SxH0iu0kib11nAHSSDIJ7cuUSZhqtLbeg7MUX64qiJ4CZ7nQVXS5iSVxXMZ958w+wIVQt1T9oRykLXFzleYeCXasEuPkyRMBVG6BarEuPbYzrq0N/tAaOh3d/qHMsyp/LnnHhJXikZ5rfXMxVaLBNhEe6vTgU/u0DFUkpZzvcaGYe9jriZ6JGlXX5qGH/vc+iJDFIe8zOAWFwYji+pf/XeXTblaTM0YqCz8G1hDaXBECkKPm2tJS9a5jl7EnfTmyaMYKiQr/c4tmQBIUoyOzvxtpw6w==
+Received: from HK2APC01FT012.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebc::4d) by
+ HK2APC01HT210.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebc::385)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19; Sat, 6 Mar
+ 2021 16:31:20 +0000
+Received: from MAXPR01MB2480.INDPRD01.PROD.OUTLOOK.COM
+ (2a01:111:e400:7ebc::44) by HK2APC01FT012.mail.protection.outlook.com
+ (2a01:111:e400:7ebc::165) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.19 via Frontend
+ Transport; Sat, 6 Mar 2021 16:31:20 +0000
+Received: from MAXPR01MB2480.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::2c78:4d46:238e:5399]) by MAXPR01MB2480.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::2c78:4d46:238e:5399%7]) with mapi id 15.20.3912.024; Sat, 6 Mar 2021
+ 16:31:19 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+CC: "puja70631@gmail.com" <puja70631@gmail.com>
+Thread-Topic: Phase synchronization after hopping
+Thread-Index: AQHXEqQ/dO/i6bjBBUmTn4uoX+KncQ==
+Date: Sat, 6 Mar 2021 16:31:18 +0000
+Message-ID: <MAXPR01MB2480C1EE782A502D425F89A988959@MAXPR01MB2480.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-IN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:951212DCB7715B3937FBA0D0CC3E6C39FB7361DB40F41A8127BD12B23E21E249;
+ UpperCasedChecksum:C67BA0C208274D3C165A55CA4A9611636861446B23F9FEFE4D78A99653ADCA72;
+ SizeAsReceived:6684; Count:42
+x-tmn: [FCgx7MPXd79KbXhyhnEnzBmsEiPp5yb5]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 42
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 027cc207-9781-46ce-3631-08d8e0bd4582
+x-ms-traffictypediagnostic: HK2APC01HT210:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: gmNSln7reGsOhGpLNw/k7hYyCOXkPXMzpPmcqjdLCxtFMgUVyeNjHYmfyGn5zcsN0dwwRXVYEeJGaQMx20004vlnJ4VpdjuHzqKv1BQIlH+YUGVaeOgmfEw02R9Ebfhlpx2qCNobtU3GL1iLI9Yhvh2TMYo1l/Tl9tV6Vn/y03qgB4Cm+7HQDrldWIbs6Xez5hEdEkEJSyKru6FNr9rh8p0C76/FMZZrFVJ8/Q9UF0N6tcSZMm+xh8B/cX4XXyb/geS6ZiFgFKXTaWknBsMinbYgQV5h61VRF0qcr93fLfqw4ULXePKwinPbwuccsnY294p7/HIjz2PmkKTyPdUWTN/XjXek7Is3zNMjJsPnxsiUmrSNxrmfGgF6CdGMo5jcfmHvsBek+9K4ljqHMmtCJFeOc7ILDh8PuH7TlffcuDXwEOZnkZG+zpdhK7UuCLk/
+x-ms-exchange-antispam-messagedata: WuXAG/qt7J+cVaunwwS5miThFJymiBD3dVzG6ONFX9CBh1KqsK6di5erUdGnHZRQ0cU72w1qc7vN4nzcOmvm62vTZA8/G+rXkZ9BML9EHcHx5O6T6Ys+9w+1esSVKNV9gs6KM3xavWD/lXuAsEQGlg==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CAB__hTTpgdLBBRBMFT7HrPdctcofvtw0VeLbCH4Z_4o+qdquDQ@mail.gmail.com>
-In-Reply-To: <CAB__hTTpgdLBBRBMFT7HrPdctcofvtw0VeLbCH4Z_4o+qdquDQ@mail.gmail.com>
-Date: Fri, 5 Mar 2021 11:36:43 -0500
-Message-ID: <CAB__hTSPrE27F7kjz+LxOUXP2-aByPVt_53047BOMAbwKKpZLA@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] UHD 4 "properties"
+X-OriginatorOrg: live.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: HK2APC01FT012.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 027cc207-9781-46ce-3631-08d8e0bd4582
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2021 16:31:18.9019 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2APC01HT210
+Subject: [USRP-users] Phase synchronization after hopping
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -58,9 +88,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============3802998613802426097=="
+From: Snehasish Kar via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Snehasish Kar <snehasish.cse@LIVE.COM>
+Content-Type: multipart/mixed; boundary="===============4693867455663472187=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -74,148 +104,276 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============3802998613802426097==
-Content-Type: multipart/alternative; boundary="00000000000018573c05bcccb10a"
+--===============4693867455663472187==
+Content-Language: en-IN
+Content-Type: multipart/alternative;
+	boundary="_000_MAXPR01MB2480C1EE782A502D425F89A988959MAXPR01MB2480INDP_"
 
---00000000000018573c05bcccb10a
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-I wanted to revisit a couple of issues with UHD 4.0 properties and ask
-whether Ettus is planning any changes to the property architecture that
-would address these issues.  The 2 issues are the following:
-
-   - There is presently not a good way to use a property with a read-only
-   register (where the register values are dynamic).  As seen in the exchange
-   below, Martin suggests the ALWAYS_DIRTY setting, but it seems that is
-   impractical because of the unnecessary register I/O that occurs.  I
-   inserted some LOG messages in my code which showed that the register was
-   being read at numerous times, not just in response to a user-initiated
-   query of the given property (as would be the case if there was a "get"
-   callback function in a similar way to UHD 3.15 args).
-   - If the user "sets" the value of a property such that the value does
-   not change, the "set" callback does not execute. This again differs from
-   behavior of 3.15 args.  In 3.15, I used an "arg" that was a string which
-   identified a window coefficient file.  Whenever I set the arg, the callback
-   read the file and downloaded the coefficients to the FPGA.  I could
-   externally update the coefficients inside the file and then set the arg
-   again and the coefficients would be reloaded even though the filename
-   itself did not change. With UHD 4 properties, this does not happen.  If the
-   property string does not change (i.e., the filename does not change), the
-   "set" callback does not execute.
-
-Rob
-
-
-On Wed, Oct 7, 2020 at 6:40 PM Rob Kossler <rkossler@nd.edu> wrote:
-
-> Hi,
-> I have 2 issues related to properties in UHD 4.0.
->
-> The first is regarding the concept of a read-only property where the
-> property is monitoring some HW status. This was discussed in another thread
-> (which I copied  below) but I decided to move it here to a new thread. The
-> proposed solution doesn't seem practical if ALWAYS_DIRTY causes numerous
-> register reads as it appears to.
->
-> The second issue is related to setting a property to a value that does not
-> change. This may seem stupid but in the past (UHD 3.15), I could use a
-> block arg as representing a string filename (e.g., a file containing Window
-> coefficients).  If I registered a function as a publisher for this arg,
-> then my function would run whenever this property was set (whether or not
-> it changed) so that I could read my file and load the coefficients.  But,
-> with UHD4 properties, my function is not getting called when the property
-> is set to the same filename as it was before the set.  So, even though the
-> coefficients in the file are changed, they are never loaded because the
-> filename itself did not change.
->
-> Let me know if you have any suggestions on either issue.
-> Rob
->
->
-> > Rob, you might want to check out host/tests/rfnoc_graph_mock_nodes.hpp,
-> > and look at the RSSI property. It's supposed to mock a property that
-> > only represents a value that is read back from the radio (none of our
-> > RFNoC radios actually have that property, but we provisioned for it in
-> > the specification, and this is an example of that).
-> >
-> > Instead of updating a counter (which we only do because this is a mock
-> > for unit testing), you would peek a register.
->
-> Hi Martin,
-> I looked at this and implemented a property using the ALWAYS_DIRTY
-> dependency shown in the mock case. This does work, but it causes my
-> actual register peek to occur quite a lot - not just when a user calls
-> get_property for that property.
->
-
---00000000000018573c05bcccb10a
-Content-Type: text/html; charset="UTF-8"
+--_000_MAXPR01MB2480C1EE782A502D425F89A988959MAXPR01MB2480INDP_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi,</div><div dir=3D"ltr">I wanted to rev=
-isit a couple of issues with UHD 4.0 properties and ask whether Ettus is pl=
-anning any changes to the property architecture that would address these is=
-sues.=C2=A0 The 2 issues are the following:</div><div dir=3D"ltr"><ul><li>T=
-here is presently not a good way to use a property with a read-only registe=
-r (where the register values are dynamic).=C2=A0 As seen in the exchange be=
-low, Martin suggests the ALWAYS_DIRTY setting, but it seems that is impract=
-ical because of the unnecessary register I/O that occurs.=C2=A0 I inserted =
-some LOG messages in my code which showed that the register was being read =
-at numerous times, not just in response to a user-initiated query of the gi=
-ven property (as would be the case if there was a &quot;get&quot; callback =
-function in a similar way to UHD 3.15 args).=C2=A0</li><li>If the user &quo=
-t;sets&quot; the value of a property such that the value does not change, t=
-he &quot;set&quot; callback does not execute. This again differs from behav=
-ior of 3.15 args.=C2=A0 In 3.15, I used an &quot;arg&quot; that was a strin=
-g which identified a window coefficient file.=C2=A0 Whenever I set the arg,=
- the callback read the file and downloaded the coefficients to the FPGA.=C2=
-=A0 I could externally update the coefficients inside the file and then set=
- the arg again and the coefficients would be reloaded even though the filen=
-ame itself did not change. With UHD 4 properties, this does not happen.=C2=
-=A0 If the property string does not change (i.e., the filename does not cha=
-nge), the &quot;set&quot; callback does not execute.</li></ul><div>Rob</div=
-><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Wed, Oct 7, 2020 at 6:40 PM Rob Kossler &lt;<a href=3D"m=
-ailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<br><div>I have 2=
- issues related to properties in UHD 4.0.=C2=A0</div><div><br></div><div>Th=
-e first is regarding the concept of a read-only property where the property=
- is monitoring some HW status. This was discussed in another thread (which =
-I copied=C2=A0 below) but I decided to move it here to a new thread. The pr=
-oposed solution doesn&#39;t seem practical if ALWAYS_DIRTY causes numerous =
-register reads as it appears to.</div><div><br></div><div>The second issue =
-is related to setting a property to a value that does not change. This may =
-seem stupid but in the past (UHD 3.15), I could use a block arg as represen=
-ting a string filename (e.g., a file containing Window coefficients).=C2=A0=
- If I registered a function as a publisher for this arg, then my function w=
-ould run whenever this property was set (whether or not it changed) so that=
- I could read my file and load the coefficients.=C2=A0 But, with UHD4 prope=
-rties, my function is not getting called when the property is set to the sa=
-me filename as it was before the set.=C2=A0 So, even though the coefficient=
-s in the file are changed, they are never loaded because the filename itsel=
-f did not change.</div><div><br></div><div>Let me know if you have any sugg=
-estions on either issue.</div><div>Rob</div><div><br></div><div><br></div><=
-div><span style=3D"color:rgb(80,0,80)">&gt; Rob, you might want to check ou=
-t host/tests/rfnoc_graph_mock_nodes.hpp,<br>&gt; and look at the RSSI=C2=A0=
-<span>property</span>. It&#39;s supposed to mock a=C2=A0<span>property</spa=
-n>=C2=A0that<br>&gt; only represents a value that is read back from the rad=
-io (none of our<br>&gt; RFNoC radios actually have that=C2=A0<span>property=
-</span>, but we provisioned for it in<br>&gt; the specification, and this i=
-s an example of that).<br>&gt;<br>&gt; Instead of updating a counter (which=
- we only do because this is a mock<br>&gt; for unit testing), you would pee=
-k a register.<br><br></span>Hi Martin,<br>I looked at this and implemented =
-a=C2=A0<span>property</span>=C2=A0using the ALWAYS_DIRTY<br>dependency show=
-n in the mock case. This does work, but it causes my<br>actual register pee=
-k to occur quite a lot - not just when a user calls<br>get_property for tha=
-t=C2=A0<span>property</span>.<br></div></div>
-</blockquote></div></div>
+Hello everyone
 
---00000000000018573c05bcccb10a--
+I am trying to achieve frequency hopping in GSM using twinrx with usrp x310=
+. Here I am using timed command for tuning a single port across a given fre=
+quency list. During hopping it stays in each frequency for 4msecs and till =
+the time frequency hopping continues, I am able to identify FCCH using phas=
+e difference. But as soon as the hopping is over and it tunes back to the a=
+ctual frequency containing the broadcast channel, I am not getting phase di=
+fference greater than 0 and thus not able to demodulate the GSM burst. Can =
+anyone please help where I am going wrong below is the snippet of the code,=
+ responsible for  hopping.
+
+Function handling hopping:
+
+              uhd::tune_request_t tune_request(rf_freq);
+              tune_request.rf_freq_policy =3D uhd::tune_request_t::POLICY_M=
+ANUAL;
+              tune_request.dsp_freq_policy =3D uhd::tune_request_t::POLICY_=
+MANUAL;
+              tune_request.rf_freq =3D rf_freq;
+              tune_request.dsp_freq =3D dsp_freq;
+              uhd_src->set_rx_freq(tune_request, chan_num);
+              {
+                           If(verbose_lvl=3D=3D3){
+                                         char msg[100]=3D{0x00};
+                                         sprintf(msg,"info: DSP freq: chang=
+ed to channel %d: %fMHz offset %fMHz", chan_num, uhd_src->get_rx_freq(chan_=
+num)/1e6, dsp_freq);
+                                         vipl_printf(msg,error_lvl, __FILE_=
+_, __LINE__);
+                           }
+              }
+              //uhd_src->clear_command_time();
+              usleep(110000); // allow LOs to lock
 
 
---===============3802998613802426097==
+
+Module for setting back to original frequency with broadcast:
+
+               uhd_src->clear_command_time();
+              uhd::tune_request_t tune_request(rf_freq, 0x00); //considerin=
+g LO-Offset to be zero
+              tune_request.rf_freq_policy =3D uhd::tune_request_t::POLICY_A=
+UTO;
+              tune_request.dsp_freq_policy =3D uhd::tune_request_t::POLICY_=
+AUTO;
+              tune_request.rf_freq =3D rf_freq;
+              //tune_request.dsp_freq =3D -dsp_freq;
+              uhd_src->set_rx_freq(tune_request, channel);
+              {
+                           char msg[100]=3D{0x00};
+                           sprintf(msg,"info: freq: set to channel %d: %fMH=
+z requested freq %fMHz", channel, uhd_src->get_rx_freq(channel)/1e6, rf_fre=
+q/1e6);
+                           vipl_printf(msg,error_lvl, __FILE__, __LINE__);
+              }
+              usleep(110000);
+
+My UHD version is 3.14.0.0
+USRP: X310
+Daughter board: 2 sets of Twinrx
+OS: Debian 10
+Interface: 10gig sfp+ ethernet
+
+Thanks!!
+
+
+Regards
+Snehasish Kar
+
+Sent from Mail<https://go.microsoft.com/fwlink/?LinkId=3D550986> for Window=
+s 10
+
+
+--_000_MAXPR01MB2480C1EE782A502D425F89A988959MAXPR01MB2480INDP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
+</head>
+<body lang=3D"EN-IN" link=3D"blue" vlink=3D"#954F72" style=3D"word-wrap:bre=
+ak-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello everyone <o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I am trying to achieve frequenc=
+y hopping in GSM using twinrx with usrp x310. Here I am using timed command=
+ for tuning a single port across a given frequency list. During hopping it =
+stays in each frequency for 4msecs and
+ till the time frequency hopping continues, I am able to identify FCCH usin=
+g phase difference. But as soon as the hopping is over and it tunes back to=
+ the actual frequency containing the broadcast channel, I am not getting ph=
+ase difference greater than 0 and
+ thus not able to demodulate the GSM burst. Can anyone please help where I =
+am going wrong below is the snippet of the code, responsible for&nbsp; hopp=
+ing.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Function handling hopping:<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uhd::tune_request_t tune_re=
+quest(rf_freq);<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_request.rf_freq_policy=
+ =3D uhd::tune_request_t::POLICY_MANUAL;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_request.dsp_freq_polic=
+y =3D uhd::tune_request_t::POLICY_MANUAL;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_request.rf_freq =3D rf=
+_freq;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_request.dsp_freq =3D d=
+sp_freq;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uhd_src-&gt;set_rx_freq(tun=
+e_request, chan_num);<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If(verbose_lvl=3D=3D3){<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char msg[100]=
+=3D{0x00};<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sprintf(msg,&qu=
+ot;info: DSP freq: changed to channel %d: %fMHz offset %fMHz&quot;, chan_nu=
+m, uhd_src-&gt;get_rx_freq(chan_num)/1e6, dsp_freq);<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vipl_printf(msg=
+,error_lvl, __FILE__, __LINE__);<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //uhd_src-&gt;clear_command=
+_time();<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usleep(110000); // allow LO=
+s to lock<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Module for setting back to orig=
+inal frequency with broadcast:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uhd_src-&gt;clear_com=
+mand_time();<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uhd::tune_request_t tune_re=
+quest(rf_freq, 0x00); //considering LO-Offset to be zero<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_request.rf_freq_policy=
+ =3D uhd::tune_request_t::POLICY_AUTO;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_request.dsp_freq_polic=
+y =3D uhd::tune_request_t::POLICY_AUTO;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tune_request.rf_freq =3D rf=
+_freq;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //tune_request.dsp_freq =3D=
+ -dsp_freq;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uhd_src-&gt;set_rx_freq(tun=
+e_request, channel);<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char msg[100]=3D{0x00};<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sprintf(msg,&quot;info: =
+freq: set to channel %d: %fMHz requested freq %fMHz&quot;, channel, uhd_src=
+-&gt;get_rx_freq(channel)/1e6, rf_freq/1e6);<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vipl_printf(msg,error_lv=
+l, __FILE__, __LINE__);<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usleep(110000);<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">My UHD version is 3.14.0.0<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">USRP: X310<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Daughter board: 2 sets of Twinr=
+x<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">OS: Debian 10<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Interface: 10gig sfp+ ethernet =
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks!!<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Regards<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Snehasish Kar</span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Sent from <a href=3D"https://go.microsoft.com/fwlink=
+/?LinkId=3D550986">
+Mail</a> for Windows 10</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_MAXPR01MB2480C1EE782A502D425F89A988959MAXPR01MB2480INDP_--
+
+
+--===============4693867455663472187==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -226,5 +384,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============3802998613802426097==--
+--===============4693867455663472187==--
 
