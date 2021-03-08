@@ -2,85 +2,56 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A0D533107D
-	for <lists+usrp-users@lfdr.de>; Mon,  8 Mar 2021 15:12:49 +0100 (CET)
-Received: from [::1] (port=47894 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 024A93315D8
+	for <lists+usrp-users@lfdr.de>; Mon,  8 Mar 2021 19:23:27 +0100 (CET)
+Received: from [::1] (port=49978 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lJGch-00083p-Dr; Mon, 08 Mar 2021 09:12:39 -0500
-Received: from mail-oln040092009107.outbound.protection.outlook.com
- ([40.92.9.107]:1186 helo=NAM04-BN3-obe.outbound.protection.outlook.com)
- by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.93) (envelope-from <e070832@hotmail.com>) id 1lJGcd-0007uH-RF
- for usrp-users@lists.ettus.com; Mon, 08 Mar 2021 09:12:35 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DLFtAsbIeCMO/BKOvuWq6PJSVzlNcTeYjsTA8P11kqZWFwo6uRsh4H5Ow/4p1ePX493gdZd8JoF093tJ+sIdr1AIJ34ZNRmRr/PMn/gFP6l+OYLg3gmtnh9wAns2mRo2Y/MyNESBQjFsKdmZwa5KyLXW1ndB5sYs1Wr5C+wtvJdGbw/3hs8edaen6+2OW19VJHzJJvCMRBTXTm9Hql03ZIC9uiSZy9nduaVxAp5vRf31GtJMydDr6N2m633wXJyPvmSbOJb3y0sxj3+AzMdDXo/m0fcvFmAYNsmFuk2wFunZdJpitJMxEati/5lMTkpiz02W+eYcqzjnMT7Oar6wJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mCxuiBLWOEoSoU2vxx4QjkpwBT9sBDcwSPTiqBc/TpI=;
- b=fqbS6NuWT0xF3PshmaEMCh5+NbLKS+dFEUrp127C4Sjhvg+miMmv/Njt5Xt2ZAQdWSD6rRcvggw3dGl2MedG89wjMqtiArwm545aKX8unKbT5rwntgT4HQO3px94JcsZk4HusqZsKIz+HahuiXXZviC+yu75tWUKAK3L0olq4Nv4GkSSr7PBwUl0Iu9YJ8wCJYEDMiiPcJq79KZOT+6c2H/tLoYLAspGvaIjLSxif4dprC09eIDXBzSmoKtCzMRhnqpLnAUmgxb2X1hM1DYx28nVeqB2v1A+pGnGg8grJjB3Xz1ZcTl0GdBD9MeGqqJ9SapyAfYE5RtcUI9tTskhKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mCxuiBLWOEoSoU2vxx4QjkpwBT9sBDcwSPTiqBc/TpI=;
- b=CnDFmqWk8nkQYDV61p8LMR/cUzZ6gsWtAbPc8tkvxj94TUTKPwyZ3ZEGYw8hMNToLHn097Dm3W70Y7VxRAy30LH6tZ3N7+AK97O9jHwe5EC9t8gd2/EE9dVbqv9hqY668iIrhkGxbDKvnvGUSApj1UdpSkW0UvE93bwBCwrKq8YEkvz3VrmpA60bwooukp2nv1QppFeNktGSXATgOizLoVYnbNxi76aOuRFfaEasbqpnT6lAql75zOEZT/9j90i0pMt8ZDZBH9VjAiJyjtjOws4aD55vU0kj4TnMnKOYzWHUr9t+StU8Ujr9lr4g51lsCkKO2Nn5A2LBXsyfT6aeSw==
-Received: from DM6NAM04FT029.eop-NAM04.prod.protection.outlook.com
- (2a01:111:e400:7ea3::49) by
- DM6NAM04HT092.eop-NAM04.prod.protection.outlook.com (2a01:111:e400:7ea3::143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.20; Mon, 8 Mar
- 2021 14:11:54 +0000
-Received: from SN6PR1901MB4688.namprd19.prod.outlook.com
- (2a01:111:e400:7ea3::51) by DM6NAM04FT029.mail.protection.outlook.com
- (2a01:111:e400:7ea3::247) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.25 via Frontend
- Transport; Mon, 8 Mar 2021 14:11:54 +0000
-Received: from SN6PR1901MB4688.namprd19.prod.outlook.com
- ([fe80::2da4:eb7e:cc30:8f3f]) by SN6PR1901MB4688.namprd19.prod.outlook.com
- ([fe80::2da4:eb7e:cc30:8f3f%6]) with mapi id 15.20.3890.037; Mon, 8 Mar 2021
- 14:11:54 +0000
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Current Recommended UHD RFNoC Versions?
-Thread-Index: AQHXETlhxzHljkG1xEq4YYuaEkdWBqp3VqOAgACER4CAAkv/Bw==
-Date: Mon, 8 Mar 2021 14:11:54 +0000
-Message-ID: <SN6PR1901MB468802554777BDBA10E79AB3A4939@SN6PR1901MB4688.namprd19.prod.outlook.com>
-References: <SN6PR1901MB4688DACB2A5FEFC8E433A70BA4979@SN6PR1901MB4688.namprd19.prod.outlook.com>
- <54732d0c-9515-3b01-6221-b8b177e52e6d@ettus.com>,
- <CAL7q81ss9P3tEKd-9djzCT0+F3DreSzcUGermgEvS=yDWdd2-g@mail.gmail.com>
-In-Reply-To: <CAL7q81ss9P3tEKd-9djzCT0+F3DreSzcUGermgEvS=yDWdd2-g@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:822F6EDBD3801A805333B12DB6ECAF3E7046C9D385535C7940DA67D9B41A3ABF;
- UpperCasedChecksum:A8290C52D02E941570FBCDB8029BDBE9A68BD09A2D8041F73648F50C88D4A221;
- SizeAsReceived:7044; Count:44
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [fOp3RvJ9ONdYQLwqAV6RdQX4wxfZTxtt]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 44
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: a0c8e7ae-8493-443c-6320-08d8e23c20ac
-x-ms-traffictypediagnostic: DM6NAM04HT092:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: vr2QiRXVHGUdNj+IqboHFAFxraLkDk4+S4fE6W1O3WYMZyi6T+TscXvg+LSxqVf39EPjsXhP3Ya6SlMH9/4y9fkK3yFwKowmbVmglhxV98tsmJHg3AevlR+1VYrgHQ8494e50n7gVZLUO96cUe4D7/KKP2jnSUPXKpXJIima6zV3Cqjes0OWXrM3XoIC3f7kiBxkc3eMXQFLmuRn8iH+x9EWctMW+mAJbWqonXwPfvRoa6KtNVQmn5gU7buy8z15hPFkObpM0eqYnQsRn6qnnfrYammciEdsAQn3S5JoWvdVrLq9hsr9q5csQiDU73VcDZ2G/aFdpqDRgUrPANoXQhq213QO72Rx+FwcdNluqi8SLFyvQGoj+i5fyelrSBHGr4RoEIWsryohw84J3RA1tj4XCPqDTM8SMJgzF0Eh+my0fZFvsOy4vYCkdv43ST3W
-x-ms-exchange-antispam-messagedata: k9hkP79pFBhX5YsPsFZC4MHVVk1kpBO3S7XPJVmmpmzlBd2gcFAZVKapEc8ako30p32cfl9UO0BtCKEqGstLb7iXLA4Y9qmfX7bBcAU25FJMB0DK0bdxvqsvRsGzfu0lrwO2R/nw1m9/6XBKf6LKQw==
-x-ms-exchange-transport-forked: True
+	id 1lJKXH-0007ad-LQ; Mon, 08 Mar 2021 13:23:19 -0500
+Received: from mail-lf1-f43.google.com ([209.85.167.43]:33168)
+ by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.93) (envelope-from <marxwolfs@gmail.com>) id 1lJKXE-0007Xn-8O
+ for usrp-users@lists.ettus.com; Mon, 08 Mar 2021 13:23:16 -0500
+Received: by mail-lf1-f43.google.com with SMTP id u4so22592776lfs.0
+ for <usrp-users@lists.ettus.com>; Mon, 08 Mar 2021 10:22:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=4bs3fH+VbXEZanP8FZ6UNiUbirBxHo2sPGHlWmKPdJI=;
+ b=DzTOmRgzW3T+iWu6rZqWv3e4Yojpf3yhaFFEMGncHiZHFC0Gtjpu0UaEvVnjpN9Gqz
+ B2MToal5YKFJPNvlmpR3gT4GZyVVkyAORAMPvdnp3x21pHJvTdhhlLmfNlpipel6/5KJ
+ AkSThCC84WYK4lhdinAkYTg3rOWP9I7cvqq4DdY0PKM6EKL7uRJ6RXlSPVNb6TXlVr+b
+ O3BrvFQR5n68lxMlSMx71G7zfUWvhb/caNpAT3UFImCXLkWz7lglkXBBaRqeSeHPThov
+ aa41zdtuWxWvTbveTZ6Nc15IjGMGK2YEKrNOgy3HP6EgEX4o59zb6MHArEevZHMeDnYq
+ wnww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=4bs3fH+VbXEZanP8FZ6UNiUbirBxHo2sPGHlWmKPdJI=;
+ b=VooChAGwIm7JJdZLjGen6N1vhsUiHb16pqr+O0rpQzk73dgOm4v9S9gC/sjywiR/Zv
+ yb3+VoiyPhR8IO7c2GQmPg3UKC+L7JX3pRBdwzU0V2GEygrppiEOIkUreeBMn5Ii2wqh
+ 71KlAvJnwUBnfC0jMZ7npdlGvrDga8HSRFGl1bf+GGcpY4rF+BKN+BZSsKLFhH9gcqaA
+ 4p09nb6EzOnGd2KlNGI7BJLc8zTCVc2pbS5UiwrdGPg2rqjWrHUmc+x2WuXwaLO68CR8
+ eQAwiYHNjcnC9olEnFIQowEdbtKKlXVkm6Y4FRM7yA7zajfL47XmAoaXGZ8Bmgxgn5vW
+ 6/CQ==
+X-Gm-Message-State: AOAM533BfBK9s4pefp0neJGNIXnzHUUZHN/Mazp3OFE15/LF1+kCbmoD
+ P1CcuNHBzHNTImvEJJ6VwO/gG4ZC1RSMAVsGPeI=
+X-Google-Smtp-Source: ABdhPJxIZQFdemWk1UiNV4BkRCFUMmaS7+0NEaFZwCenPpvbBDc7BF8qPHR0N7A35JkT7/zO2Y887Eg+Mzb99+GaTxA=
+X-Received: by 2002:a19:f107:: with SMTP id p7mr14214513lfh.613.1615227754872; 
+ Mon, 08 Mar 2021 10:22:34 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM04FT029.eop-NAM04.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: a0c8e7ae-8493-443c-6320-08d8e23c20ac
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Mar 2021 14:11:54.6119 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6NAM04HT092
-Subject: Re: [USRP-users] Current Recommended UHD RFNoC Versions?
+References: <CACryqrEA9jJWATSCon3Drp-ngO0QraK7goABm0U0gTFqR_hCdg@mail.gmail.com>
+ <023DC74F-683D-4FEF-AAF3-D39619E4791F@gmail.com>
+ <CACryqrHMw6jKS4dAF25mhAbbdWH-tLiQ5EBJ1vjc72ac96X_7g@mail.gmail.com>
+ <602F3C2B.3040405@gmail.com>
+ <CACryqrHPxsMSiXmM3Er-WTJ+vxgroAdRY0A0btfpiBvr0F-JRg@mail.gmail.com>
+ <602F480C.9020200@gmail.com>
+In-Reply-To: <602F480C.9020200@gmail.com>
+Date: Mon, 8 Mar 2021 11:22:25 -0700
+Message-ID: <CACryqrGWPD=VOTisbEenTuYyF5myztJgCmgGjZ8rDFvSuma20w@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] x310 two UBX daughterboard receiver
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -92,9 +63,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Jeff S via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Jeff S <e070832@hotmail.com>
-Content-Type: multipart/mixed; boundary="===============0449169273706018145=="
+From: Xiang Ma via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Xiang Ma <marxwolfs@gmail.com>
+Content-Type: multipart/mixed; boundary="===============7659844336475854610=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -108,169 +79,535 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============0449169273706018145==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_SN6PR1901MB468802554777BDBA10E79AB3A4939SN6PR1901MB4688_"
+--===============7659844336475854610==
+Content-Type: multipart/alternative; boundary="0000000000008f817f05bd0a842c"
 
---_000_SN6PR1901MB468802554777BDBA10E79AB3A4939SN6PR1901MB4688_
-Content-Type: text/plain; charset="iso-8859-1"
+--0000000000008f817f05bd0a842c
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks much, Marcus and Jonathon!  I appreciate the direction and reference=
-s.
+I have tried to first use GNURadio to write a program in GRC. And
+implement my code referring to the generated top_block.py
+The following code works
 
-Jeff
+```
+from gnuradio import uhd
 
-________________________________
-Hi Jeff,
+  def u_source(self):
+    self.source =3D uhd.usrp_source(
+    device_addr=3Dself.usrp_address_source,
+    stream_args=3Duhd.stream_args(
+    cpu_format=3D"fc32",
+    channels=3Drange(1),
+    ),
+    )
+    self.source.set_samp_rate(self.adc_rate)
+    self.source.set_center_freq(self.freq, 0)
+    self.source.set_gain(self.rx_gain, 0)
+    self.source.set_antenna("RX2", 0)
+    self.source.set_auto_dc_offset(False, 0) # Uncomment this line for SBX
+daughterboard
 
-Here are links to the RFNoC 3 & 4 workshop videos that will help you get st=
-arted. Personally, I would suggest trying out RFNoC 4 first.
+    self.source.set_center_freq(self.freq, 1)
+    self.source.set_gain(self.rx_gain, 1)
+    self.source.set_antenna("RX2", 1)
+    self.source.set_auto_dc_offset(False, 1)
+```
 
-RFNoC 4: https://www.youtube.com/watch?v=3DM9ntwQie9vs
-RFNoC 3: https://www.youtube.com/watch?v=3DVbODcrmpLaU
+And when I change the channels=3Drange(2),
+Add a new line as the file sink of channel 2, it doesn't work. It doesn't
+crash, just stuck.
+self.connect((self.source, 1), self.file_sink_source)
 
-On Sat, Mar 6, 2021 at 2:12 PM Marcus M=FCller via USRP-users <usrp-users@l=
-ists.ettus.com<mailto:usrp-users@lists.ettus.com>> wrote:
-By the way, if RFNoC 4 is what you're interested in, the current master bra=
-nch of
-gr-ettus, GNU Radio 3.8 and UHD 4.x are what you're aiming for!
+I don't understand. I thought the two channels might be independent since
+they work on two daughterboards.
+
+I try to use gdb to debug the code. But the information is hard to
+understand. It shows multiple threads.
 
 
-On 04.03.21 22:08, Jeff S via USRP-users wrote:
 
-> I'm getting ready to help someone install code and I'm seeing conflicting=
- things
-> regarding GNURadio v3.7/v3.8 with respect to wanting to do RFNoC developm=
-ent.  They are
-> going to use an N310 and I've been using maint-3.7 for quite a while.
+
+On Thu, Feb 18, 2021 at 10:09 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 02/18/2021 11:47 PM, Xiang Ma wrote:
 >
-> Are we still using the rfnoc-devel branches of UHD and FPGA, maint-3.7 of=
- GNURadio, and
-> master for gr-ettus?  Or is there some later, stable recommendations?
+> If I want to use slot A as transmitter, slot B as receiver, can I do like
+> this:
+> self.source.set_antenna("RX2", 1)
+> self.sink.set_antenna("TX/RX", 0)
 >
-> Sorry if there was any recent related posts, but I didn't find any.
+> You'd need to set the antenna for the receive side in both slots to "RX2"=
+:
 >
-> Thanks,
-> Jeff
+> self.source.set_antenna("RX2", 0)
+> self.source.set_antenna("RX2", 1)
 >
-> _______________________________________________
-> USRP-users mailing list
-> USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> The default (and only, really) antenna for TX for the UBX is already
+> "TX/RX".
+>
+>
+> The Python API isn't that well documented at this point, so there's a lot
+> of "infer from the C++ API".
+>
+> But, to be honest, a lot of this "mucking about" can be more easily
+> accomplished using Gnu Radio as your experimental
+>   environment (at least initially), rather than just using the UHD API.
+> Things like "how do I create a multi-channel streamer and
+>   manage the data from it", are already handled in Gnu Radio.
+>
+>
+>
+> In this page, it said *The default subdev spec is "A:0 B:0", which means
+> slot A is mapped to channel 0, and slot B is mapped to channel 1.*
+>
+> http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2018-June/056=
+965.html
+>
+> On Thu, Feb 18, 2021 at 9:18 PM Marcus D. Leech <patchvonbraun@gmail.com>
+> wrote:
+>
+>> On 02/18/2021 10:16 PM, Xiang Ma wrote:
+>>
+>> Are there any python code for this? I am using the python interface.
+>>
+>> You'll have to kind of infer what to do from the C++ example--there is n=
+o
+>> Python version of that example.
+>>
+>>
+>>
+>> On Thu, Feb 18, 2021 at 7:44 PM Marcus D Leech <patchvonbraun@gmail.com>
+>> wrote:
+>>
+>>> Well there=E2=80=99s the rx_multi_samples example that is part of the U=
+HD source
+>>> tree.
+>>>
+>>> Sent from my iPhone
+>>>
+>>> On Feb 18, 2021, at 9:32 PM, Xiang Ma <marxwolfs@gmail.com> wrote:
+>>>
+>>> =EF=BB=BF
+>>>   Do you have any example code? I am still confused.
+>>>
+>>> Thank you.
+>>>
+>>> On Thu, Feb 18, 2021 at 5:50 PM Marcus D Leech <patchvonbraun@gmail.com=
+>
+>>> wrote:
+>>>
+>>>> Just create a 2-channel USRP source and specify a subdev of =E2=80=9CA=
+:0 B:0=E2=80=9D.
+>>>>
+>>>>
+>>>>
+>>>> Sent from my iPhone
+>>>>
+>>>> On Feb 18, 2021, at 7:38 PM, Xiang Ma via USRP-users <
+>>>> usrp-users@lists.ettus.com> wrote:
+>>>>
+>>>> =EF=BB=BF
+>>>> Hi,
+>>>>
+>>>>     I am using a x310 USRP with two UBX daughterboards. Now I can
+>>>> transmit and receive the signal in RF A daughterboard with command
+>>>>     self.source.set_antenna("RX2", 0)
+>>>>     self.sink.set_antenna("TX/RX", 0).
+>>>>
+>>>>     Now, I want to transmit the signal in RF A, and receive the signal
+>>>> in both RF A and RF B. It is actually 1 transmitter and 2 receivers. H=
+ow
+>>>> can I implement this? I checked the set_subdev_subdev("B", 1), but it
+>>>> doesn't work.
+>>>>
+>>>> Thank you,
+>>>>
+>>>>
+>>>>
+>>>>
+>>>> --
+>>>> *Xiang Ma, *Ph.D. Student
+>>>> College of Engineering
+>>>> Utah State University
+>>>> E-mail:marxwolfs@gmail.com
+>>>> _______________________________________________
+>>>> USRP-users mailing list
+>>>> USRP-users@lists.ettus.com
+>>>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+>>>>
+>>>>
+>>>
+>>> --
+>>> *Xiang Ma, *Ph.D. Student
+>>> College of Engineering
+>>> Utah State University
+>>> E-mail:marxwolfs@gmail.com
+>>>
+>>>
+>>
+>> --
+>> *Xiang Ma, *Ph.D. Student
+>> College of Engineering
+>> Utah State University
+>> E-mail:marxwolfs@gmail.com
+>>
+>>
+>>
+>
+> --
+> *Xiang Ma, *Ph.D. Student
+> College of Engineering
+> Utah State University
+> E-mail:marxwolfs@gmail.com
+>
+>
+>
 
-_______________________________________________
-USRP-users mailing list
-USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com>
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+--=20
+*Xiang Ma, *Ph.D. Student
+College of Engineering
+Utah State University
+E-mail:marxwolfs@gmail.com
 
---_000_SN6PR1901MB468802554777BDBA10E79AB3A4939SN6PR1901MB4688_
-Content-Type: text/html; charset="iso-8859-1"
+--0000000000008f817f05bd0a842c
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Thanks much, Marcus and Jonathon!&nbsp; I appreciate the direction and refe=
-rences.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
+<div dir=3D"ltr"><div>I have tried to first use GNURadio to write a program=
+ in GRC. And implement=C2=A0my code referring to the generated top_block.py=
+</div><div>The following code works</div><div><br></div>```<br><div>from gn=
+uradio import uhd<br></div><div><br></div><div>=C2=A0 def u_source(self):<b=
+r>=C2=A0 =C2=A0 self.source =3D uhd.usrp_source(<br>=C2=A0 =C2=A0 device_ad=
+dr=3Dself.usrp_address_source,<br>=C2=A0 =C2=A0 stream_args=3Duhd.stream_ar=
+gs(<br>=C2=A0 =C2=A0 cpu_format=3D&quot;fc32&quot;,<br>=C2=A0 =C2=A0 channe=
+ls=3Drange(1),<br>=C2=A0 =C2=A0 ),<br>=C2=A0 =C2=A0 )<br>=C2=A0 =C2=A0 self=
+.source.set_samp_rate(self.adc_rate)<br>=C2=A0 =C2=A0 self.source.set_cente=
+r_freq(self.freq, 0)<br>=C2=A0 =C2=A0 self.source.set_gain(self.rx_gain, 0)=
+<br>=C2=A0 =C2=A0 self.source.set_antenna(&quot;RX2&quot;, 0)<br>=C2=A0 =C2=
+=A0 self.source.set_auto_dc_offset(False, 0) # Uncomment this line for SBX =
+daughterboard<br><br>=C2=A0 =C2=A0 self.source.set_center_freq(self.freq, 1=
+)<br>=C2=A0 =C2=A0 self.source.set_gain(self.rx_gain, 1)<br>=C2=A0 =C2=A0 s=
+elf.source.set_antenna(&quot;RX2&quot;, 1)<br>=C2=A0 =C2=A0 self.source.set=
+_auto_dc_offset(False, 1)<br></div><div>```</div><div><br></div><div>And wh=
+en I change the channels=3Drange(2),</div><div>Add a new line as the file s=
+ink of channel 2, it doesn&#39;t work. It doesn&#39;t crash, just stuck.</d=
+iv><div>self.connect((self.source, 1), self.file_sink_source)<br></div><div=
+><br></div><div>I don&#39;t understand. I thought the two channels might be=
+ independent since they work on two daughterboards.</div><div><br></div><di=
+v>I try to use gdb to debug the code. But the information is hard to unders=
+tand. It shows multiple threads.</div><div><br></div><div><br></div><div><b=
+r></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Thu, Feb 18, 2021 at 10:09 PM Marcus D. Leech &lt;<a href=3D"mai=
+lto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 02/18/2021 11:47 PM, Xiang Ma wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">If I want to use slot A as transmitter, slot B as
+        receiver, can I do like this:
+        <div>
+          <div>self.source.set_antenna(&quot;RX2&quot;, 1)</div>
+          <div>self.sink.set_antenna(&quot;TX/RX&quot;, 0)</div>
+        </div>
+      </div>
+    </blockquote>
+    You&#39;d need to set the antenna for the receive side in both slots to
+    &quot;RX2&quot;:<br>
+    <br>
+    self.source.set_antenna(&quot;RX2&quot;, 0)<br>
+    self.source.set_antenna(&quot;RX2&quot;, 1)<br>
+    <br>
+    The default (and only, really) antenna for TX for the UBX is already
+    &quot;TX/RX&quot;.<br>
+    <br>
+    <br>
+    The Python API isn&#39;t that well documented at this point, so there&#=
+39;s
+    a lot of &quot;infer from the C++ API&quot;.<br>
+    <br>
+    But, to be honest, a lot of this &quot;mucking about&quot; can be more =
+easily
+    accomplished using Gnu Radio as your experimental<br>
+    =C2=A0 environment (at least initially), rather than just using the UHD
+    API.=C2=A0 Things like &quot;how do I create a multi-channel streamer a=
+nd<br>
+    =C2=A0 manage the data from it&quot;, are already handled in Gnu Radio.=
 <br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Jeff<br>
-</div>
-<div>
-<div id=3D"appendonsend"></div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div>
-<div dir=3D"ltr">Hi Jeff,
-<div><br>
-</div>
-<div>Here are links to the RFNoC 3 &amp; 4 workshop videos that will help y=
-ou get started. Personally, I would suggest trying out RFNoC 4 first.
-<div><br>
-</div>
-<div>RFNoC 4:&nbsp;<a href=3D"https://www.youtube.com/watch?v=3DM9ntwQie9vs=
-">https://www.youtube.com/watch?v=3DM9ntwQie9vs</a><br>
-</div>
-<div>RFNoC 3:&nbsp;<a href=3D"https://www.youtube.com/watch?v=3DVbODcrmpLaU=
-">https://www.youtube.com/watch?v=3DVbODcrmpLaU</a></div>
-<div></div>
-</div>
-</div>
-<br>
-<div class=3D"x_gmail_quote">
-<div dir=3D"ltr" class=3D"x_gmail_attr">On Sat, Mar 6, 2021 at 2:12 PM Marc=
-us M=FCller via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com=
-">usrp-users@lists.ettus.com</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bord=
-er-left:1px solid rgb(204,204,204); padding-left:1ex">
-By the way, if RFNoC 4 is what you're interested in, the current master bra=
-nch of<br>
-gr-ettus, GNU Radio 3.8 and UHD 4.x are what you're aiming for!<br>
-<br>
-<br>
-On 04.03.21 22:08, Jeff S via USRP-users wrote:<br>
-<br>
-&gt; I'm getting ready to help someone install code and I'm seeing conflict=
-ing things<br>
-&gt; regarding GNURadio v3.7/v3.8 with respect to wanting to do RFNoC devel=
-opment.&nbsp; They are<br>
-&gt; going to use an N310 and I've been using maint-3.7 for quite a while.<=
-br>
-&gt;<br>
-&gt; Are we still using the rfnoc-devel branches of UHD and FPGA, maint-3.7=
- of GNURadio, and<br>
-&gt; master for gr-ettus?&nbsp; Or is there some later, stable recommendati=
-ons?<br>
-&gt;<br>
-&gt; Sorry if there was any recent related posts, but I didn't find any.<br=
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div><br>
+        </div>
+        <div>In this page, it said <i>The default subdev spec is &quot;A:0
+            B:0&quot;, which means slot A is mapped to channel 0, and slot =
+B
+            is mapped to channel 1.</i></div>
+        <div><a href=3D"http://lists.ettus.com/pipermail/usrp-users_lists.e=
+ttus.com/2018-June/056965.html" target=3D"_blank">http://lists.ettus.com/pi=
+permail/usrp-users_lists.ettus.com/2018-June/056965.html</a><br>
+        </div>
+      </div>
+      <br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 18, 2021 at 9:18
+          PM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com"=
+ target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div bgcolor=3D"#FFFFFF">
+            <div>On 02/18/2021 10:16 PM, Xiang Ma wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">Are there any python code for this? I am
+                using the python interface.</div>
+            </blockquote>
+            You&#39;ll have to kind of infer what to do from the C++
+            example--there is no Python version of that example.<br>
+            <br>
+            <br>
+            <blockquote type=3D"cite"><br>
+              <div class=3D"gmail_quote">
+                <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 18, 2021
+                  at 7:44 PM Marcus D Leech &lt;<a href=3D"mailto:patchvonb=
+raun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+                  wrote:<br>
+                </div>
+                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                  <div dir=3D"auto">Well there=E2=80=99s the rx_multi_sampl=
+es
+                    example that is part of the UHD source tree.=C2=A0<br>
+                    <br>
+                    <div dir=3D"ltr">Sent from my iPhone</div>
+                    <div dir=3D"ltr"><br>
+                      <blockquote type=3D"cite">On Feb 18, 2021, at 9:32
+                        PM, Xiang Ma &lt;<a href=3D"mailto:marxwolfs@gmail.=
+com" target=3D"_blank">marxwolfs@gmail.com</a>&gt;
+                        wrote:<br>
+                        <br>
+                      </blockquote>
+                    </div>
+                    <blockquote type=3D"cite">
+                      <div dir=3D"ltr">=EF=BB=BF
+                        <div dir=3D"ltr">=C2=A0 Do you have any example cod=
+e? I
+                          am still confused.
+                          <div><br>
+                          </div>
+                          <div>Thank you.</div>
+                        </div>
+                        <br>
+                        <div class=3D"gmail_quote">
+                          <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb
+                            18, 2021 at 5:50 PM Marcus D Leech &lt;<a href=
+=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.c=
+om</a>&gt;
+
+                            wrote:<br>
+                          </div>
+                          <blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
 >
-&gt;<br>
-&gt; Thanks,<br>
-&gt; Jeff<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list<br>
-&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-u=
-sers@lists.ettus.com</a><br>
-&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">
-http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list<br>
-<a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@=
-lists.ettus.com</a><br>
-<a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.c=
-om" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com</a><br>
-</blockquote>
-</div>
-</div>
-</div>
-</body>
-</html>
+                            <div dir=3D"auto">Just create a 2-channel USRP
+                              source and specify a subdev of =E2=80=9CA:0 B=
+:0=E2=80=9D.=C2=A0
+                              <div><br>
+                              </div>
+                              <div><br>
+                                <br>
+                                <div dir=3D"ltr">Sent from my iPhone</div>
+                                <div dir=3D"ltr"><br>
+                                  <blockquote type=3D"cite">On Feb 18,
+                                    2021, at 7:38 PM, Xiang Ma via
+                                    USRP-users &lt;<a href=3D"mailto:usrp-u=
+sers@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;
 
---_000_SN6PR1901MB468802554777BDBA10E79AB3A4939SN6PR1901MB4688_--
+                                    wrote:<br>
+                                    <br>
+                                  </blockquote>
+                                </div>
+                                <blockquote type=3D"cite">
+                                  <div dir=3D"ltr">=EF=BB=BF
+                                    <div dir=3D"ltr">Hi,
+                                      <div><br>
+                                      </div>
+                                      <div>=C2=A0 =C2=A0 I am using a x310 =
+USRP
+                                        with two UBX daughterboards. Now
+                                        I can transmit and receive the
+                                        signal in RF A daughterboard
+                                        with command</div>
+                                      <div>=C2=A0
+                                        =C2=A0=C2=A0self.source.set_antenna=
+(&quot;RX2&quot;,
+                                        0)</div>
+                                      <div>=C2=A0 =C2=A0
+                                        self.sink.set_antenna(&quot;TX/RX&q=
+uot;,
+                                        0).</div>
+                                      <div><br>
+                                      </div>
+                                      <div>=C2=A0 =C2=A0 Now, I want to tra=
+nsmit
+                                        the signal in RF A, and receive
+                                        the signal in both RF A and RF
+                                        B. It is actually 1 transmitter
+                                        and 2 receivers. How can I
+                                        implement this? I checked the
+                                        set_subdev_subdev(&quot;B&quot;, 1)=
+, but
+                                        it doesn&#39;t work.</div>
+                                      <div><br>
+                                      </div>
+                                      <div>Thank you,</div>
+                                      <div><br>
+                                      </div>
+                                      <div><br>
+                                      </div>
+                                      <div><br clear=3D"all">
+                                        <div><br>
+                                        </div>
+                                        -- <br>
+                                        <div dir=3D"ltr">
+                                          <div dir=3D"ltr"><font style=3D"c=
+olor:rgb(136,136,136)" face=3D"times new roman,
+                                              serif" size=3D"4"><i><b>Xiang
+                                                  Ma,=C2=A0</b></i></font><=
+span style=3D"color:rgb(136,136,136)">Ph.D. Student</span>
+                                            <div>
+                                              <div style=3D"color:rgb(136,1=
+36,136)"><font color=3D"#444444">College
+                                                  of Engineering</font></di=
+v>
+                                              <div><font color=3D"#444444">=
+Utah
+
+                                                  State University</font></=
+div>
+                                              <div style=3D"color:rgb(136,1=
+36,136)"><font color=3D"#444444">E-mail:<a href=3D"mailto:marxwolfs@gmail.c=
+om" style=3D"color:rgb(17,85,204)" target=3D"_blank">marxwolfs@gmail.com</a=
+></font></div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <span>_________________________________=
+______________</span><br>
+                                    <span>USRP-users mailing list</span><br=
+>
+                                    <span><a href=3D"mailto:USRP-users@list=
+s.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a></span><br>
+                                    <span><a href=3D"http://lists.ettus.com=
+/mailman/listinfo/usrp-users_lists.ettus.com" target=3D"_blank">http://list=
+s.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a></span><br>
+                                  </div>
+                                </blockquote>
+                              </div>
+                            </div>
+                          </blockquote>
+                        </div>
+                        <br clear=3D"all">
+                        <div><br>
+                        </div>
+                        -- <br>
+                        <div dir=3D"ltr">
+                          <div dir=3D"ltr"><font style=3D"color:rgb(136,136=
+,136)" face=3D"times
+                              new roman, serif" size=3D"4"><i><b>Xiang
+                                  Ma,=C2=A0</b></i></font><span style=3D"co=
+lor:rgb(136,136,136)">Ph.D.
+                              Student</span>
+                            <div>
+                              <div style=3D"color:rgb(136,136,136)"><font c=
+olor=3D"#444444">College of Engineering</font></div>
+                              <div><font color=3D"#444444">Utah State
+                                  University</font></div>
+                              <div style=3D"color:rgb(136,136,136)"><font c=
+olor=3D"#444444">E-mail:<a href=3D"mailto:marxwolfs@gmail.com" style=3D"col=
+or:rgb(17,85,204)" target=3D"_blank">marxwolfs@gmail.com</a></font></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+                </blockquote>
+              </div>
+              <br clear=3D"all">
+              <div><br>
+              </div>
+              -- <br>
+              <div dir=3D"ltr">
+                <div dir=3D"ltr"><font style=3D"color:rgb(136,136,136)" fac=
+e=3D"times new roman, serif" size=3D"4"><i><b>Xiang
+                        Ma,=C2=A0</b></i></font><span style=3D"color:rgb(13=
+6,136,136)">Ph.D. Student</span>
+                  <div>
+                    <div style=3D"color:rgb(136,136,136)"><font color=3D"#4=
+44444">College of Engineering</font></div>
+                    <div><font color=3D"#444444">Utah State University</fon=
+t></div>
+                    <div style=3D"color:rgb(136,136,136)"><font color=3D"#4=
+44444">E-mail:<a href=3D"mailto:marxwolfs@gmail.com" style=3D"color:rgb(17,=
+85,204)" target=3D"_blank">marxwolfs@gmail.com</a></font></div>
+                  </div>
+                </div>
+              </div>
+            </blockquote>
+            <br>
+          </div>
+        </blockquote>
+      </div>
+      <br clear=3D"all">
+      <div><br>
+      </div>
+      -- <br>
+      <div dir=3D"ltr">
+        <div dir=3D"ltr"><font style=3D"color:rgb(136,136,136)" face=3D"tim=
+es
+            new roman, serif" size=3D"4"><i><b>Xiang Ma,=C2=A0</b></i></fon=
+t><span style=3D"color:rgb(136,136,136)">Ph.D. Student</span>
+          <div>
+            <div style=3D"color:rgb(136,136,136)"><font color=3D"#444444">C=
+ollege
+                of Engineering</font></div>
+            <div><font color=3D"#444444">Utah State University</font></div>
+            <div style=3D"color:rgb(136,136,136)"><font color=3D"#444444">E=
+-mail:<a href=3D"mailto:marxwolfs@gmail.com" style=3D"color:rgb(17,85,204)"=
+ target=3D"_blank">marxwolfs@gmail.com</a></font></div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </div>
+
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><font face=3D"times new roman, =
+serif" size=3D"4" style=3D"color:rgb(136,136,136)"><i><b>Xiang Ma,=C2=A0</b=
+></i></font><span style=3D"color:rgb(136,136,136)">Ph.D. Student</span><div=
+><div style=3D"color:rgb(136,136,136)"><font color=3D"#444444">College of E=
+ngineering</font></div><div><font color=3D"#444444">Utah State University</=
+font></div><div style=3D"color:rgb(136,136,136)"><font color=3D"#444444">E-=
+mail:<a href=3D"mailto:marxwolfs@gmail.com" style=3D"color:rgb(17,85,204)" =
+target=3D"_blank">marxwolfs@gmail.com</a></font></div></div></div></div>
+
+--0000000000008f817f05bd0a842c--
 
 
---===============0449169273706018145==
+--===============7659844336475854610==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -281,5 +618,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============0449169273706018145==--
+--===============7659844336475854610==--
 
