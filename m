@@ -2,48 +2,59 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B3D5333384
-	for <lists+usrp-users@lfdr.de>; Wed, 10 Mar 2021 04:04:04 +0100 (CET)
-Received: from [::1] (port=37200 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id F28743333C3
+	for <lists+usrp-users@lfdr.de>; Wed, 10 Mar 2021 04:21:07 +0100 (CET)
+Received: from [::1] (port=37300 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lJp8h-0005JD-AT; Tue, 09 Mar 2021 22:03:59 -0500
-Received: from mail-lj1-f177.google.com ([209.85.208.177]:35502)
+	id 1lJpPF-0006OE-MD; Tue, 09 Mar 2021 22:21:05 -0500
+Received: from mail-qv1-f54.google.com ([209.85.219.54]:40568)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <dougb95@gmail.com>) id 1lJp8d-0005Fy-RH
- for usrp-users@lists.ettus.com; Tue, 09 Mar 2021 22:03:55 -0500
-Received: by mail-lj1-f177.google.com with SMTP id a17so23627218ljq.2
- for <usrp-users@lists.ettus.com>; Tue, 09 Mar 2021 19:03:35 -0800 (PST)
+ (Exim 4.93) (envelope-from <patchvonbraun@gmail.com>)
+ id 1lJpPB-0006Hw-R6
+ for USRP-users@lists.ettus.com; Tue, 09 Mar 2021 22:21:01 -0500
+Received: by mail-qv1-f54.google.com with SMTP id a14so106184qvj.7
+ for <USRP-users@lists.ettus.com>; Tue, 09 Mar 2021 19:20:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=9rDpqugsJHc1yZPgZLSiadanDKU4KTg8fr0Xtmne16Q=;
- b=XL86VMX0jX+cVFzUU97QlJU6hEIyNLk3f2jHWeFBB6RaFatmUzX7AlrA+cVrhjjgLv
- QyjX5UAPUg87WZLkI1Xxh3UYQAiHuz2GBmrvoHVgbRRYxdczuoU8pf3/zdbApyoVBLXJ
- tphvITIvdH3TliY+B1CSLLrGh3q8+wX3nn20pQoeNFuClRJd0dVcE/TR52KlWSnOVWzQ
- +oeyoUX1athXcKILRoOiYpSzyEy7CRMyfS7YIUAmqauOrXrT+zKDGVK+wLZrXD6uVPwH
- FnnYvpHBUA1E3PLEGTtA/Duo8CDXikCw636JAZZNCsLDVACiYCG04a82lFg9LeMLYYK/
- Es/w==
+ h=content-transfer-encoding:from:mime-version:subject:date:message-id
+ :references:cc:in-reply-to:to;
+ bh=4Ck9Ttbhao/2M8zXyZEz+ycHCOz3i1DH63noavQ4mo8=;
+ b=iM/JuA+FMYM8IZe91iY+KlkM1g/5KvsTBbH3IQCyyGdgwMjQQc7Z+WMuwsnbBwOY13
+ AzwTftUm0Gs7m1C5ZJNI7fExeMRpiGjXksZzTtGAZ0amVjT3rQvyzPOeDfgIqPpxaCVm
+ CZ8ySVVAu3rIwjhrZDH6aO58niArGEiZVOemgYDeJJYeIsdO4b3ZAudY7sM6oVh5BI5f
+ 533PF6W2BDyDGDYonH3KbSSXfEQir/K0zRvhd5yjWc1lTC3oUm4OqpLq1UQEuW/foeg0
+ wwORB2pVh2mL5G219G5cKwA4HwsosRL5zPh4+dPPcinMVX6p9KpJXa19/blkrg1o9Cx2
+ 3eLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=9rDpqugsJHc1yZPgZLSiadanDKU4KTg8fr0Xtmne16Q=;
- b=LpaUAj5pVxl9vbchHyZ6X48AVkKLgGvtGCZVEDmluQqOgBlH4hjVIP0TEmKRcYAv8C
- dQDhLMqOyo3d+/LChC34XScjsnCSnEmYirxsGszBxu49l/coua98BZVdFdo7Nm7G4RO+
- yqEAnmb7CSmUX4qLMvgP9YAK42mvXzi2HgWh7f8f7AbCR21UlGWjw7aUUVRXJsX4h306
- WMFnucDsDCCX0a/9ZPvvHoZ6bGw99ZpkXsulSLmyzdPGFWAakoPCZ+7gMOK27PRus9Tx
- +41Vna5YSOY3L7FwUBwkxcuIBOcVxG/vHJ18rCSMD2A72KW40tVDaV5cw/ODEZlWUl/S
- 8FyQ==
-X-Gm-Message-State: AOAM532WjUZJG8nVLGT7eYcc/1F8EsdDTfhNhOZDsMaUPFyuspd0shEh
- hybPixg7m9wXZfhxwsAKiRn7JONU88xzBahAI/Nl93ahR+206A==
-X-Google-Smtp-Source: ABdhPJw0HgZBVtz3CuNXMJpzuc0Q5t9C8xYYjrVvxkljlX4QoNSF6isMl0IAR6FJKuf5mVjh3W5OEPl8Zp3Qo64W/Sc=
-X-Received: by 2002:a05:651c:1206:: with SMTP id
- i6mr478041lja.426.1615345394014; 
- Tue, 09 Mar 2021 19:03:14 -0800 (PST)
-MIME-Version: 1.0
-Date: Tue, 9 Mar 2021 22:03:03 -0500
-Message-ID: <CAKwz1Gf2Qw+Yc9E3e7CK0GLVaL14A6=fcvFQ_efpdyZX4p+Grw@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] x300 latency over 10GigE
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version
+ :subject:date:message-id:references:cc:in-reply-to:to;
+ bh=4Ck9Ttbhao/2M8zXyZEz+ycHCOz3i1DH63noavQ4mo8=;
+ b=T1yROOPJa4bKa8z5K+/oS9kuK7cYwWgoFEqwHlaPjKQJmriqavP1DkjNSQhmaZTxi7
+ hyePx0bzd59kB22oUebN7ir1YHMSdyY/UWdZINlkCQwzxk+Ebtvz5E3AIAAhMf81mKjr
+ O2LLHASGNStXVHUKtXAUSbFrj5wMw7nQUD6YtFceWk4i7G3qANiXIFjCJphm3V852u0S
+ UX5Cn3Mh8EUCsB72hX4hQ0g4KN2/lE4j5IVgNAOhLRi0ruV1++YY8dDOfSy0H0mB3ru3
+ Va3NK3QHfrINxewgs6q9lCAYRW7z80ubI4Z0bAkhAS+JzJ04I/eTxA+gSR0ywxPEq1/o
+ VJqg==
+X-Gm-Message-State: AOAM533zPkxqNaiE5rlyR8ZV1ZWUTjOOKboH0Ty50Qaye+RiIjQ3DLkR
+ U7FJ3L3bitbltj993IQ3ShkbNb0BwBg=
+X-Google-Smtp-Source: ABdhPJzAL6KEe+GmIU4/IfEn+M8XCw9PDV/wofoo3uhKAU/56tbtp12osGq/A4oXmhsJqAJSGMzQXA==
+X-Received: by 2002:ad4:5614:: with SMTP id ca20mr1152487qvb.37.1615346421075; 
+ Tue, 09 Mar 2021 19:20:21 -0800 (PST)
+Received: from [192.168.2.130]
+ (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+ by smtp.gmail.com with ESMTPSA id y19sm11748090qky.111.2021.03.09.19.20.20
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 09 Mar 2021 19:20:20 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+Date: Tue, 9 Mar 2021 22:20:19 -0500
+Message-Id: <3F3CE1FA-FF5B-462C-8193-C98EB328396A@gmail.com>
+References: <CAKwz1Gf2Qw+Yc9E3e7CK0GLVaL14A6=fcvFQ_efpdyZX4p+Grw@mail.gmail.com>
+Cc: USRP-users@lists.ettus.com
+In-Reply-To: <CAKwz1Gf2Qw+Yc9E3e7CK0GLVaL14A6=fcvFQ_efpdyZX4p+Grw@mail.gmail.com>
+To: Doug Blackburn <dougb95@gmail.com>
+X-Mailer: iPhone Mail (18D52)
+Subject: Re: [USRP-users] x300 latency over 10GigE
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -55,9 +66,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: Doug Blackburn via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Doug Blackburn <dougb95@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6121493090277778520=="
+From: Marcus D Leech via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Marcus D Leech <patchvonbraun@gmail.com>
+Content-Type: multipart/mixed; boundary="===============4470722173055925537=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -71,145 +82,175 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============6121493090277778520==
-Content-Type: multipart/alternative; boundary="000000000000665b7805bd25e803"
 
---000000000000665b7805bd25e803
-Content-Type: text/plain; charset="UTF-8"
+--===============4470722173055925537==
+Content-Type: multipart/alternative; boundary=Apple-Mail-891DE631-3CA9-4522-A023-6EFEB96215EB
+Content-Transfer-Encoding: 7bit
 
-Hello --
 
-I've got some questions re: latency with the x300 over the 10GigE
-interface.
-
-If I use the latency_test example operating at a rate of 50 MSPS, I have no
-issues with a latency of 1ms.  The latency test receives data, examines the
-time stamp, and transmits a single packet.
-
-I have an application where I'd like to run the transmitter continuously,
-and I got curious about the latency involved in that operation.  My
-application is similar to the benchmark_rate example.  I added the
-following lines to the benchmark_rate example at line 256 after the line.
-
-md.has_time_spec = false;
-
-====
-if ( (num_tx_samps % 50000000) < 4*max_samps_per_packet )
-{
-    uhd::time_spec_t expectedTime = startTime + (double) ( num_tx_samps  )
-                      / (double)usrp->get_tx_rate();
-    uhd::time_spec_t timeAtLog = usrp->get_time_now();
-    timeAtLog = usrp->get_time_now();
-    std::cerr << "==== Actual time ====" << std::endl;
-    std::cerr << "     " << timeAtLog.get_full_secs() << " / "
-                          << timeAtLog.get_frac_secs() << std::endl;
-    std::cerr << "==== Expected time ====" << std::endl;
-    std::cerr << "     " << expectedTime.get_full_secs() << " / "
-                          << expectedTime.get_frac_secs() << std::endl;
-}
-====
-
-The intent of this insertion is to log the time at which we return from
-tx_stream->send() and the time at which the first sample of that sent data
-should be transmitted -- at approximately once per second when running at
-50 MSPS.
-
-After the first second, I consistently saw the following results:
-
-==== Actual time ====
-     1 / 0.10517
-==== Expected time ====
-     1 / 0.27253
-
-==== Actual time ====
-     1 / 0.105419
-==== Expected time ====
-     1 / 0.27255
-
-Which indicates to me that there is a latency of approximately 167ms when
-transmitting data.  That is, the send() function is returning 167ms earlier
-than I expect the data to actually be transmitted.   If I halve the sample
-rate to 25 MSPS, the latency doubles.
-
-What is the source of the latency when running in a continuous mode?
-Initially, I had thought that this might be related to the
-send_buffer_size, but making changes to send_buffer_size seem to not have
-an effect.   FWIW, 167ms at 50 MSPS is suspiciously close to the value for
-wmem_max (33554432) suggested in the x300 system configuration ... but
-neither changing that value or send_buffer_size seems to make a difference.
-
-Is this latency tunable?
-
-Thank you for your help!
-
-Best Regards,
-Doug Blackburn
-
---000000000000665b7805bd25e803
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail-891DE631-3CA9-4522-A023-6EFEB96215EB
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hello --<div><br></div><div>I&#39;ve got =
-some questions re: latency with=C2=A0the x300 over the 10GigE interface.=C2=
-=A0=C2=A0</div><div><br></div><div>If I use the latency_test example operat=
-ing at a rate of 50 MSPS, I have no issues with a latency of 1ms.=C2=A0 The=
- latency test receives data, examines the time stamp, and transmits a singl=
-e packet.=C2=A0</div><div><br></div><div>I have an application where I&#39;=
-d like to run the transmitter continuously, and I got curious about the lat=
-ency involved in that operation.=C2=A0 My application is similar=C2=A0to th=
-e benchmark_rate example.=C2=A0 I added the following lines to the benchmar=
-k_rate example at line 256 after the line.</div><div><br></div><div><font f=
-ace=3D"monospace">md.has_time_spec =3D false;=C2=A0</font></div><div><br></=
-div><div>=3D=3D=3D=3D</div><div><span style=3D"font-family:monospace">if ( =
-(num_tx_samps % 50000000) &lt; 4*max_samps_per_packet )</span></div><div><f=
-ont face=3D"monospace">{<br>=C2=A0 =C2=A0 uhd::time_spec_t expectedTime =3D=
- startTime + (double) ( num_tx_samps =C2=A0)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 / (double)usrp-&gt;get_tx=
-_rate();<br>=C2=A0 =C2=A0 uhd::time_spec_t timeAtLog =3D usrp-&gt;get_time_=
-now();<br>=C2=A0 =C2=A0 timeAtLog =3D usrp-&gt;get_time_now();<br>=C2=A0 =
-=C2=A0 std::cerr &lt;&lt; &quot;=3D=3D=3D=3D Actual time =3D=3D=3D=3D&quot;=
- &lt;&lt; std::endl;<br>=C2=A0 =C2=A0 std::cerr &lt;&lt; &quot; =C2=A0 =C2=
-=A0 &quot; &lt;&lt; timeAtLog.get_full_secs() &lt;&lt; &quot; / &quot;<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 &lt;&lt; timeAtLog.get_frac_secs() &lt;&lt; std::endl;<br=
->=C2=A0 =C2=A0 std::cerr &lt;&lt; &quot;=3D=3D=3D=3D Expected time =3D=3D=
-=3D=3D&quot; &lt;&lt; std::endl;<br>=C2=A0 =C2=A0 std::cerr &lt;&lt; &quot;=
- =C2=A0 =C2=A0 &quot; &lt;&lt; expectedTime.get_full_secs() &lt;&lt; &quot;=
- / &quot;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;&lt; expectedTime.get_frac_secs() &lt;&lt;=
- std::endl;<br>}<br></font></div><div>=3D=3D=3D=3D</div><div><br></div><div=
->The intent of this insertion is to log the time at which we return from tx=
-_stream-&gt;send() and the time at which the first sample of that sent data=
- should be transmitted -- at approximately once per second when running at =
-50 MSPS.</div><div><br></div><div>After the first second, I consistently sa=
-w the following results:</div><div><br></div><div><div><font face=3D"monosp=
-ace">=3D=3D=3D=3D Actual time =3D=3D=3D=3D<br></font></div><div><div><font =
-face=3D"monospace">=C2=A0 =C2=A0 =C2=A01 / 0.10517</font></div><div><font f=
-ace=3D"monospace">=3D=3D=3D=3D Expected time =3D=3D=3D=3D</font></div><div>=
-<font face=3D"monospace">=C2=A0 =C2=A0 =C2=A01 / 0.27253</font></div><div><=
-font face=3D"monospace"><br></font></div><div><font face=3D"monospace">=3D=
-=3D=3D=3D Actual time =3D=3D=3D=3D</font></div><div><font face=3D"monospace=
-">=C2=A0 =C2=A0 =C2=A01 / 0.105419</font></div><div><font face=3D"monospace=
-">=3D=3D=3D=3D Expected time =3D=3D=3D=3D</font></div><div><font face=3D"mo=
-nospace">=C2=A0 =C2=A0 =C2=A01 / 0.27255</font></div></div></div><div><br><=
-/div><div>Which indicates to me that there is a latency of approximately 16=
-7ms when transmitting data.=C2=A0 That is, the send() function is returning=
- 167ms earlier than I expect=C2=A0the data to actually be transmitted.=C2=
-=A0 =C2=A0If I halve the sample rate to 25 MSPS, the latency doubles.</div>=
-<div><br></div><div>What is the source of the latency when running in a con=
-tinuous mode?=C2=A0 Initially, I had thought that this might be related to =
-the send_buffer_size, but making changes to send_buffer_size seem to not ha=
-ve an effect.=C2=A0 =C2=A0FWIW, 167ms at 50 MSPS is suspiciously close to t=
-he value for wmem_max (33554432) suggested in the x300 system configuration=
- ... but neither changing that value or send_buffer_size seems to make a di=
-fference.</div><div><br></div><div>Is this latency tunable?=C2=A0=C2=A0</di=
-v><div><br></div><div>Thank you for your help!</div><div><br></div><div>Bes=
-t Regards,</div><div>Doug Blackburn</div><div><br></div></div></div>
+Shouldn=E2=80=99t you be scaling your num_tx_samples by the time per sample w=
+hen calculating the expectedTime?
 
---000000000000665b7805bd25e803--
+Sent from my iPhone
+
+> On Mar 9, 2021, at 10:03 PM, Doug Blackburn via USRP-users <usrp-users@lis=
+ts.ettus.com> wrote:
+>=20
+> =EF=BB=BF
+> Hello --
+>=20
+> I've got some questions re: latency with the x300 over the 10GigE interfac=
+e. =20
+>=20
+> If I use the latency_test example operating at a rate of 50 MSPS, I have n=
+o issues with a latency of 1ms.  The latency test receives data, examines th=
+e time stamp, and transmits a single packet.=20
+>=20
+> I have an application where I'd like to run the transmitter continuously, a=
+nd I got curious about the latency involved in that operation.  My applicati=
+on is similar to the benchmark_rate example.  I added the following lines to=
+ the benchmark_rate example at line 256 after the line.
+>=20
+> md.has_time_spec =3D false;=20
+>=20
+> =3D=3D=3D=3D
+> if ( (num_tx_samps % 50000000) < 4*max_samps_per_packet )
+> {
+>     uhd::time_spec_t expectedTime =3D startTime + (double) ( num_tx_samps =
+ )
+>                       / (double)usrp->get_tx_rate();
+>     uhd::time_spec_t timeAtLog =3D usrp->get_time_now();
+>     timeAtLog =3D usrp->get_time_now();
+>     std::cerr << "=3D=3D=3D=3D Actual time =3D=3D=3D=3D" << std::endl;
+>     std::cerr << "     " << timeAtLog.get_full_secs() << " / "
+>                           << timeAtLog.get_frac_secs() << std::endl;
+>     std::cerr << "=3D=3D=3D=3D Expected time =3D=3D=3D=3D" << std::endl;
+>     std::cerr << "     " << expectedTime.get_full_secs() << " / "
+>                           << expectedTime.get_frac_secs() << std::endl;
+> }
+> =3D=3D=3D=3D
+>=20
+> The intent of this insertion is to log the time at which we return from tx=
+_stream->send() and the time at which the first sample of that sent data sho=
+uld be transmitted -- at approximately once per second when running at 50 MS=
+PS.
+>=20
+> After the first second, I consistently saw the following results:
+>=20
+> =3D=3D=3D=3D Actual time =3D=3D=3D=3D
+>      1 / 0.10517
+> =3D=3D=3D=3D Expected time =3D=3D=3D=3D
+>      1 / 0.27253
+>=20
+> =3D=3D=3D=3D Actual time =3D=3D=3D=3D
+>      1 / 0.105419
+> =3D=3D=3D=3D Expected time =3D=3D=3D=3D
+>      1 / 0.27255
+>=20
+> Which indicates to me that there is a latency of approximately 167ms when t=
+ransmitting data.  That is, the send() function is returning 167ms earlier t=
+han I expect the data to actually be transmitted.   If I halve the sample ra=
+te to 25 MSPS, the latency doubles.
+>=20
+> What is the source of the latency when running in a continuous mode?  Init=
+ially, I had thought that this might be related to the send_buffer_size, but=
+ making changes to send_buffer_size seem to not have an effect.   FWIW, 167m=
+s at 50 MSPS is suspiciously close to the value for wmem_max (33554432) sugg=
+ested in the x300 system configuration ... but neither changing that value o=
+r send_buffer_size seems to make a difference.
+>=20
+> Is this latency tunable? =20
+>=20
+> Thank you for your help!
+>=20
+> Best Regards,
+> Doug Blackburn
+>=20
+> _______________________________________________
+> USRP-users mailing list
+> USRP-users@lists.ettus.com
+> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--Apple-Mail-891DE631-3CA9-4522-A023-6EFEB96215EB
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Shouldn=E2=80=99t you be scaling your num_t=
+x_samples by the time per sample when calculating the expectedTime?<br><br><=
+div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote ty=
+pe=3D"cite">On Mar 9, 2021, at 10:03 PM, Doug Blackburn via USRP-users &lt;u=
+srp-users@lists.ettus.com&gt; wrote:<br><br></blockquote></div><blockquote t=
+ype=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div dir=3D"ltr">Hel=
+lo --<div><br></div><div>I've got some questions re: latency with&nbsp;the x=
+300 over the 10GigE interface.&nbsp;&nbsp;</div><div><br></div><div>If I use=
+ the latency_test example operating at a rate of 50 MSPS, I have no issues w=
+ith a latency of 1ms.&nbsp; The latency test receives data, examines the tim=
+e stamp, and transmits a single packet.&nbsp;</div><div><br></div><div>I hav=
+e an application where I'd like to run the transmitter continuously, and I g=
+ot curious about the latency involved in that operation.&nbsp; My applicatio=
+n is similar&nbsp;to the benchmark_rate example.&nbsp; I added the following=
+ lines to the benchmark_rate example at line 256 after the line.</div><div><=
+br></div><div><font face=3D"monospace">md.has_time_spec =3D false;&nbsp;</fo=
+nt></div><div><br></div><div>=3D=3D=3D=3D</div><div><span style=3D"font-fami=
+ly:monospace">if ( (num_tx_samps % 50000000) &lt; 4*max_samps_per_packet )</=
+span></div><div><font face=3D"monospace">{<br>&nbsp; &nbsp; uhd::time_spec_t=
+ expectedTime =3D startTime + (double) ( num_tx_samps &nbsp;)<br>&nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; / (double)=
+usrp-&gt;get_tx_rate();<br>&nbsp; &nbsp; uhd::time_spec_t timeAtLog =3D usrp=
+-&gt;get_time_now();<br>&nbsp; &nbsp; timeAtLog =3D usrp-&gt;get_time_now();=
+<br>&nbsp; &nbsp; std::cerr &lt;&lt; "=3D=3D=3D=3D Actual time =3D=3D=3D=3D"=
+ &lt;&lt; std::endl;<br>&nbsp; &nbsp; std::cerr &lt;&lt; " &nbsp; &nbsp; " &=
+lt;&lt; timeAtLog.get_full_secs() &lt;&lt; " / "<br>&nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;&lt; t=
+imeAtLog.get_frac_secs() &lt;&lt; std::endl;<br>&nbsp; &nbsp; std::cerr &lt;=
+&lt; "=3D=3D=3D=3D Expected time =3D=3D=3D=3D" &lt;&lt; std::endl;<br>&nbsp;=
+ &nbsp; std::cerr &lt;&lt; " &nbsp; &nbsp; " &lt;&lt; expectedTime.get_full_=
+secs() &lt;&lt; " / "<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;&lt; expectedTime.get_frac_secs(=
+) &lt;&lt; std::endl;<br>}<br></font></div><div>=3D=3D=3D=3D</div><div><br><=
+/div><div>The intent of this insertion is to log the time at which we return=
+ from tx_stream-&gt;send() and the time at which the first sample of that se=
+nt data should be transmitted -- at approximately once per second when runni=
+ng at 50 MSPS.</div><div><br></div><div>After the first second, I consistent=
+ly saw the following results:</div><div><br></div><div><div><font face=3D"mo=
+nospace">=3D=3D=3D=3D Actual time =3D=3D=3D=3D<br></font></div><div><div><fo=
+nt face=3D"monospace">&nbsp; &nbsp; &nbsp;1 / 0.10517</font></div><div><font=
+ face=3D"monospace">=3D=3D=3D=3D Expected time =3D=3D=3D=3D</font></div><div=
+><font face=3D"monospace">&nbsp; &nbsp; &nbsp;1 / 0.27253</font></div><div><=
+font face=3D"monospace"><br></font></div><div><font face=3D"monospace">=3D=3D=
+=3D=3D Actual time =3D=3D=3D=3D</font></div><div><font face=3D"monospace">&n=
+bsp; &nbsp; &nbsp;1 / 0.105419</font></div><div><font face=3D"monospace">=3D=
+=3D=3D=3D Expected time =3D=3D=3D=3D</font></div><div><font face=3D"monospac=
+e">&nbsp; &nbsp; &nbsp;1 / 0.27255</font></div></div></div><div><br></div><d=
+iv>Which indicates to me that there is a latency of approximately 167ms when=
+ transmitting data.&nbsp; That is, the send() function is returning 167ms ea=
+rlier than I expect&nbsp;the data to actually be transmitted.&nbsp; &nbsp;If=
+ I halve the sample rate to 25 MSPS, the latency doubles.</div><div><br></di=
+v><div>What is the source of the latency when running in a continuous mode?&=
+nbsp; Initially, I had thought that this might be related to the send_buffer=
+_size, but making changes to send_buffer_size seem to not have an effect.&nb=
+sp; &nbsp;FWIW, 167ms at 50 MSPS is suspiciously close to the value for wmem=
+_max (33554432) suggested in the x300 system configuration ... but neither c=
+hanging that value or send_buffer_size seems to make a difference.</div><div=
+><br></div><div>Is this latency tunable?&nbsp;&nbsp;</div><div><br></div><di=
+v>Thank you for your help!</div><div><br></div><div>Best Regards,</div><div>=
+Doug Blackburn</div><div><br></div></div></div>
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list</span><br><span>USRP-users@lists.ettus.com</span><br><span=
+>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</span><b=
+r></div></blockquote></body></html>=
+
+--Apple-Mail-891DE631-3CA9-4522-A023-6EFEB96215EB--
 
 
---===============6121493090277778520==
+--===============4470722173055925537==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -220,5 +261,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============6121493090277778520==--
+--===============4470722173055925537==--
 
