@@ -2,55 +2,52 @@ Return-Path: <usrp-users-bounces@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11D27333AF7
-	for <lists+usrp-users@lfdr.de>; Wed, 10 Mar 2021 12:04:07 +0100 (CET)
-Received: from [::1] (port=40532 helo=mm2.emwd.com)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49B8A334547
+	for <lists+usrp-users@lfdr.de>; Wed, 10 Mar 2021 18:40:09 +0100 (CET)
+Received: from [::1] (port=43594 helo=mm2.emwd.com)
 	by mm2.emwd.com with esmtp (Exim 4.93)
 	(envelope-from <usrp-users-bounces@lists.ettus.com>)
-	id 1lJwdB-00038e-Pd; Wed, 10 Mar 2021 06:03:57 -0500
-Received: from mail-ej1-f44.google.com ([209.85.218.44]:41246)
+	id 1lK2oU-000601-0W; Wed, 10 Mar 2021 12:40:02 -0500
+Received: from mail-lf1-f48.google.com ([209.85.167.48]:39535)
  by mm2.emwd.com with esmtps (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
- (Exim 4.93) (envelope-from <mamuki92@gmail.com>) id 1lJwd8-00034j-ED
- for usrp-users@lists.ettus.com; Wed, 10 Mar 2021 06:03:54 -0500
-Received: by mail-ej1-f44.google.com with SMTP id lr13so37854449ejb.8
- for <usrp-users@lists.ettus.com>; Wed, 10 Mar 2021 03:03:34 -0800 (PST)
+ (Exim 4.93) (envelope-from <dougb95@gmail.com>) id 1lK2oP-0005vX-NH
+ for usrp-users@lists.ettus.com; Wed, 10 Mar 2021 12:39:57 -0500
+Received: by mail-lf1-f48.google.com with SMTP id 18so34872067lff.6
+ for <usrp-users@lists.ettus.com>; Wed, 10 Mar 2021 09:39:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=mpmU8McWSvdiK0pstMAC8lKZZzfE0NkPDysAJF6ETCo=;
- b=R16arjECODVsX6YhU1wUxXZADMzL4o40jjITOproW614ZFRmB1nQIgz4dVOgkDTOyr
- RUEUjQIbHGKogVbPbjqfG/uqrdBl+2C5xZyL5GBsHEgjEsaBGsfcEBPUEEJ29/vDuHme
- 7r0638m/hJFwhvS3inj2XYprngV9wKfnPNZc2JCdz/issSddD/faUpX6wbfwpzAjyPNn
- 7rc1w/Zk/jCDn3Fpmu1BbeGjM/u5UIEfVrovlUR0V1qfPDPiRmGftZaaB2H9qqJU/dnk
- w9NkxM5a6dFRUFdDhwmp+k7W1NI+jGdDSDDBXPgVWJV7tIzsVfcnlQYvZE8x6pJ/5I3x
- lTKA==
+ :cc; bh=R9DrbfmS1DBV83ABokCcv9cUAhfpsL1rvOQw1uq3Jzs=;
+ b=TP98ZO9ETth4Gbvw7nV9FIQmWK17cCoz1Fvafq6Edv8rWcyFtJswOOHG3KF080lwcq
+ V39H81eECkg/eHcyqj5jQ9ABQZiIBPGOLy8cgTOmdIYTPdYdxLeJDFL3AEMJQIVmm/3w
+ huqGs4lveERksskASGGtdKK4MRu4gpXOt9d59ZOtaz1rwgffQvHbEYqUQcclqMPPNWxl
+ jKquMM+AoaNWn52QHys5o06XxR0N+AdXgWcHLUTxIndNwhUcMd9kTTkl4MOLe/wXVKS4
+ VtK9Ct3uZNS7hp/489xF5icloeX+jxBO7VWljqn7Wm1rA4ky2fHNA+Bs1T6iiP1wTrAb
+ DI1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=mpmU8McWSvdiK0pstMAC8lKZZzfE0NkPDysAJF6ETCo=;
- b=frrmG1pqghk+8mhEWEGuxno8rHiWegHO5DCKQGPnKM8V82Sux/iPS1KBEPConeMrSi
- MefY2GqeafWy8ieMmQWgn226Gd0H2lCwQtRKgpdtbRLik9fGkyyqUiSHyxVsqSPGct0l
- hq+IBRpLLKNER8goyGdVf6NotYlRL4pKv8eyDfWaauw+O1kciJk5RnvSt40+/XeKiVQ5
- V3RRIweiTCCP5J9MPHevSs8AnwrtyXoOHlOfubmJKR5uktOhggVun2JTF1thIP60itSh
- S4xh2Vnu4/ZvQpDF09bx+KiM3V37gWcKQsCrIawyy5tLi2bpptNb1xrF+DfifCNicXe1
- UWwg==
-X-Gm-Message-State: AOAM532ehQXP4OVqjK9639PAvGE9VMnLoh7AgfsnMDOBWehHJ0ZYX5a0
- FLyC1bAsCh4LbC4ShfatWOnih/KFXRuPmmulTuA=
-X-Google-Smtp-Source: ABdhPJx0f2U2XwDd60qO4AuHJiNIkfE5hqM4EkVYYmXx/f2PhbzajYBjcXICg7no5XAux1FXaN+jSwWCEVSd+6LCLBQ=
-X-Received: by 2002:a17:906:e16:: with SMTP id
- l22mr2962936eji.173.1615374193299; 
- Wed, 10 Mar 2021 03:03:13 -0800 (PST)
+ bh=R9DrbfmS1DBV83ABokCcv9cUAhfpsL1rvOQw1uq3Jzs=;
+ b=uTGRTYks/MOjSNhxwki9RLjL8NxK4IheVsZshEGnxDg7/L+usUPrAf/wBM2LmCnkCD
+ 9E6g/a1JP6aTXUxHV9ESMs3ayK2nWIW8axvK+Ge45+GKZYrkYv4fxp+Eyg5jgv8N3NEK
+ KiqD7TvmK9iFZCJluXNqWRs/l9ylmf09WHnIHif3+QFwbkZ/NaAzeUD1x3oqjsT+lW5s
+ YguFVT2ETA2ZU3WW8pMBo4+O5owyY+gUOu5/u8ClRVEDHaDthZwO2WFpK+IOMZ86bNy4
+ B3quRsBClKRXDRVmTqnJGuffn97DkLtGctki4/KEfmAr6+Gz+lsgAVYoS7bb+NPzhCCX
+ Qtww==
+X-Gm-Message-State: AOAM533nLzaHD7gGzji0xKQRVgORnBHzEGnIspbxLLGv9z5I7GRaD555
+ h/y0WEuKWqNjBsAzWWKwc8d/MKUAfi8Ww/MGRUA=
+X-Google-Smtp-Source: ABdhPJxGlSo9uFB6U+xNbN5Qn5a6hK7NCqe1f+/9aFzakQOU3LYSHxEwjPI9T9QeG/CU8zwSjVvEz+C8d2Wxe7lvgVw=
+X-Received: by 2002:a19:e85:: with SMTP id 127mr2829896lfo.77.1615397956157;
+ Wed, 10 Mar 2021 09:39:16 -0800 (PST)
 MIME-Version: 1.0
-References: <CAG16vQX3ubfTZ1sP6VU0-USdwt=H6g7OAH0x9aFBb9wwXWayOw@mail.gmail.com>
- <5e562eab-1997-b9be-0229-633c783c9e8a@elitecoding.org>
- <CAG16vQWRK7DRCT3_4s8V+1NyzTE2+hkdnLyKEEF9WwChvP0B4g@mail.gmail.com>
- <0d3c522a-e05d-7c3a-b0f5-8875b568a338@elitecoding.org>
-In-Reply-To: <0d3c522a-e05d-7c3a-b0f5-8875b568a338@elitecoding.org>
-Date: Wed, 10 Mar 2021 12:03:00 +0100
-Message-ID: <CAG16vQXYHtY3md71AxQVXYP+h-MyyY3ShbUV78JMmvnpAFQ0kQ@mail.gmail.com>
-To: Julian Arnold <julian@elitecoding.org>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Enable AGC in USRP E320 with RFNoC using GNURadio
+References: <CAKwz1Gf2Qw+Yc9E3e7CK0GLVaL14A6=fcvFQ_efpdyZX4p+Grw@mail.gmail.com>
+ <CAEXYVK5S+2i01HbaBpi08iot7NDno1RhJ+6tfdeXHLS2QPovNA@mail.gmail.com>
+In-Reply-To: <CAEXYVK5S+2i01HbaBpi08iot7NDno1RhJ+6tfdeXHLS2QPovNA@mail.gmail.com>
+Date: Wed, 10 Mar 2021 12:39:05 -0500
+Message-ID: <CAKwz1Gfgbox4P5UDooz1eJaTy6iPC2fUBqi12J70L_LxKz7mng@mail.gmail.com>
+To: Brian Padalino <bpadalino@gmail.com>
+Cc: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] x300 latency over 10GigE
 X-BeenThere: usrp-users@lists.ettus.com
 X-Mailman-Version: 2.1.33
 Precedence: list
@@ -62,9 +59,9 @@ List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Subscribe: <http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com>, 
  <mailto:usrp-users-request@lists.ettus.com?subject=subscribe>
-From: =?utf-8?q?Maria_Mu=C3=B1oz_via_USRP-users?= <usrp-users@lists.ettus.com>
-Reply-To: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
-Content-Type: multipart/mixed; boundary="===============4396053191786795658=="
+From: Doug Blackburn via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Doug Blackburn <dougb95@gmail.com>
+Content-Type: multipart/mixed; boundary="===============2423981586147676553=="
 Errors-To: usrp-users-bounces@lists.ettus.com
 Sender: "USRP-users" <usrp-users-bounces@lists.ettus.com>
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
@@ -78,351 +75,295 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 
---===============4396053191786795658==
-Content-Type: multipart/alternative; boundary="000000000000f8932605bd2c9ced"
+--===============2423981586147676553==
+Content-Type: multipart/alternative; boundary="00000000000059057a05bd3225e0"
 
---000000000000f8932605bd2c9ced
+--00000000000059057a05bd3225e0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Jules,
+Brian,
 
-Thank you, I will try it and let you know as soon as possible.
+I've seen this using UHD-3.14 and UHD-3.15.LTS.
 
-By the way, I have checked the python generated using the UHD USRP SOURCE
-block (instead of the RFNoC radio block) with AGC active and it generates
-the set of AGC fine. So, as you said, it is fixed in gr-uhd but it might
-still be a bug in gr-ettus.
+I have performed some follow-on testing that raises more questions,
+particularly about the usage of end_of_burst and start_of_burst.  I talk
+through my tests and observations below; the questions that these generated
+are at the end ...
 
-Thanks again for the help!
+I thought it would be interesting to modify benchmark_rate.cpp to attempt
+to place a timestamp on each buffer that was sent out to see if I could
+observe the same behavior.  I haven't seen thorough explanations of what
+exactly the start_of_burst and end_of_burst metadata fields do at a low
+level beyond this posting --
+http://lists.ettus.com/pipermail/usrp-users_lists.ettus.com/2016-November/050555.html
+and a note about start_of_burst resetting the CORDICs (I'd appreciate being
+pointed in the right direction if I've missed it, thank you!) --  so I
+wanted to test the effect on timing when has_time_spec is true and the SOB
+and EOB fields are either false or true.  I initially set my test up in the
+following way (I hope the pseudocode makes sense) to make observations
+easy.  I watched for the LO on a spectrum analyzer.  Per the code below, I
+would expect a burst every 2 seconds if the time_spec was followed ...
 
-Kind Regards,
+======
+max_samps_per_packet = 50e5; // 100ms at 50 MSPS
+start_of_burst = <true,false>
+end_of_burst = <true,false>
+has_time_spec = true;
+while( not burst_timer_elapsed)
+{
+    tx_stream->send();
+    start_of_burst = <true,false>
+    end_of_burst = <true, false>
+    time_spec = time_spec + 2.0;
+ }
 
-Maria
+My observations were as follows: if end_of_burst for the prior burst was
+set to true, my code adhered to the time_spec.  The value of start_of_burst
+had no effect on whether or not the expected timing was followed.  If
+end_of_burst was set to false, the time_spec for the following burst is
+ignored and the packet is transmitted as soon as possible.
 
-El mi=C3=A9, 10 mar 2021 a las 11:25, Julian Arnold (<julian@elitecoding.or=
-g>)
-escribi=C3=B3:
+I then followed this up with another test -- I replaced
+      time_spec = time_spec + 2.0;
+with the equivalent of
+      time_spec = time_spec + 0.100;
 
-> Maria,
+And set end_of_burst and start_of_burst to true.
+
+I figured if I can run this continuously by setting has_time_spec to
+'false' after the first burst and easily push data into the FIFO buffer,
+that doing this should not be a problem ... but I'm presented with a stream
+of lates and no actual transmission.
+
+I understand that 100ms is not an integer multiple of packet size returned
+by get_max_num_samps() -- so I tried an integer multiple of the packet
+size, too, with an appropriately updated time_spec. This also resulted with
+a lates through the entire transmit.
+
+So .... here are my additional questions:
+
+Is the only effect of "start_of_burst = true" to cause the CORDICs to
+reset?
+What is end_of_burst doing to enable a following time_spec to be used?
+What additional work is being performed when I set end_of_burst and
+has_time_spec to 'true' such that I get latest throughout the entire
+attempted transmission?
+
+Best Regards,
+Doug
+
+
+
+
+
+
+On Tue, Mar 9, 2021 at 11:51 PM Brian Padalino <bpadalino@gmail.com> wrote:
+
+> On Tue, Mar 9, 2021 at 10:03 PM Doug Blackburn via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
 >
-> >> So, if I understand correctly, I have to put there also something like
-> >> "self.ettus_rfnoc_rx_radio_0.set_rx_agc(enable,0)" isn't it?
+>> Hello --
+>>
+>> I've got some questions re: latency with the x300 over the 10GigE
+>> interface.
+>>
+>> If I use the latency_test example operating at a rate of 50 MSPS, I have
+>> no issues with a latency of 1ms.  The latency test receives data, examines
+>> the time stamp, and transmits a single packet.
+>>
+>> I have an application where I'd like to run the transmitter continuously,
+>> and I got curious about the latency involved in that operation.  My
+>> application is similar to the benchmark_rate example.  I added the
+>> following lines to the benchmark_rate example at line 256 after the line.
+>>
+>> md.has_time_spec = false;
+>>
+>> ====
+>> if ( (num_tx_samps % 50000000) < 4*max_samps_per_packet )
+>> {
+>>     uhd::time_spec_t expectedTime = startTime + (double) ( num_tx_samps  )
+>>                       / (double)usrp->get_tx_rate();
+>>     uhd::time_spec_t timeAtLog = usrp->get_time_now();
+>>     timeAtLog = usrp->get_time_now();
+>>     std::cerr << "==== Actual time ====" << std::endl;
+>>     std::cerr << "     " << timeAtLog.get_full_secs() << " / "
+>>                           << timeAtLog.get_frac_secs() << std::endl;
+>>     std::cerr << "==== Expected time ====" << std::endl;
+>>     std::cerr << "     " << expectedTime.get_full_secs() << " / "
+>>                           << expectedTime.get_frac_secs() << std::endl;
+>> }
+>> ====
+>>
+>> The intent of this insertion is to log the time at which we return from
+>> tx_stream->send() and the time at which the first sample of that sent data
+>> should be transmitted -- at approximately once per second when running at
+>> 50 MSPS.
+>>
+>> After the first second, I consistently saw the following results:
+>>
+>> ==== Actual time ====
+>>      1 / 0.10517
+>> ==== Expected time ====
+>>      1 / 0.27253
+>>
+>> ==== Actual time ====
+>>      1 / 0.105419
+>> ==== Expected time ====
+>>      1 / 0.27255
+>>
+>> Which indicates to me that there is a latency of approximately 167ms when
+>> transmitting data.  That is, the send() function is returning 167ms earlier
+>> than I expect the data to actually be transmitted.   If I halve the sample
+>> rate to 25 MSPS, the latency doubles.
+>>
+>> What is the source of the latency when running in a continuous mode?
+>> Initially, I had thought that this might be related to the
+>> send_buffer_size, but making changes to send_buffer_size seem to not have
+>> an effect.   FWIW, 167ms at 50 MSPS is suspiciously close to the value for
+>> wmem_max (33554432) suggested in the x300 system configuration ... but
+>> neither changing that value or send_buffer_size seems to make a difference.
+>>
+>> Is this latency tunable?
+>>
 >
-> Exactly! Take a look at [1] for the correct syntax.
+> I suspect it's the DMA FIFO which uses the DRAM in the X310 as a buffer.
+> The default buffer size is 32MB.
 >
-> [1]
+> Which version of UHD are you using?
 >
-> https://github.com/EttusResearch/gr-ettus/blob/1038c4ce5135a2803b53554fc4=
-971fe3de747d9a/include/ettus/rfnoc_rx_radio.h#L97
->
-> Let me know if that worked out for you.
->
-> Cheers,
-> Julian
->
->
-> On 3/10/21 9:59 AM, Maria Mu=C3=B1oz wrote:
-> > Hi Julian,
-> >
-> > Thanks for the quick answer.
-> >
-> > I think you might be right about the possible bug turning on the AGC
-> > from GRC. I have checked the flow graph generated and there's no
-> > set_rx_agc enable option (I checked the c++ definition block where this
-> > option did appear but I hadn't look at the python generated).
-> >
-> > The lines related to the radio in my flowgraph are these:
-> >
-> > /self.ettus_rfnoc_rx_radio_0 =3D ettus.rfnoc_rx_radio(
-> >              self.rfnoc_graph,
-> >              uhd.device_addr(''),
-> >              -1,
-> >              -1)
-> >          self.ettus_rfnoc_rx_radio_0.set_rate(samp_rate)
-> >          self.ettus_rfnoc_rx_radio_0.set_antenna('RX2', 0)
-> >          self.ettus_rfnoc_rx_radio_0.set_frequency(cf, 0)
-> >          self.ettus_rfnoc_rx_radio_0.set_gain(gain, 0)
-> >          self.ettus_rfnoc_rx_radio_0.set_bandwidth(samp_rate, 0)
-> >          self.ettus_rfnoc_rx_radio_0.set_dc_offset(True, 0)
-> >          self.ettus_rfnoc_rx_radio_0.set_iq_balance(True, 0)/
-> >
-> > So, if I understand correctly, I have to put there also something like
-> > "self.ettus_rfnoc_rx_radio_0.set_rx_agc(enable,0)" isn't it?
-> >
-> > Kind Regards,
-> >
-> > Maria
-> >
-> > El mi=C3=A9, 10 mar 2021 a las 9:16, Julian Arnold (<julian@elitecoding=
-.org
-> > <mailto:julian@elitecoding.org>>) escribi=C3=B3:
-> >
-> >     Maria,
-> >
-> >     I might not be the right person to answer this, as my experience wi=
-th
-> >     UHD 4.0 is relatively limited at the moment.
-> >
-> >     However, I cant tell you that the AGC on B2x0 devices is controlled
-> via
-> >     software (using set_rx_agc()). There is no need to directly modify
-> the
-> >     state of any pins of the FPGA.
-> >
-> >     I vaguely remember that there was a bug in an earlier version of
-> gr-uhd
-> >     (somewhere in 3.7) that made it difficult to turn on the AGC using
-> GRC.
-> >     That particular one is fixed in gr-uhd. Not sure about gr-ettus,
-> though.
-> >
-> >     Maybe try using set_rx_agc() manually in you flow-graph (*.py) and
-> see
-> >     if that helps.
-> >
-> >     Cheers,
-> >     Julian
-> >
-> >     On 3/9/21 5:11 PM, Maria Mu=C3=B1oz via USRP-users wrote:
-> >      > Hi all,
-> >      >
-> >      > I was wondering if it is possible to enable AGC from the RFNoC
-> radio
-> >      > block in GNURadio. I use UHD 4.0 version and GNURadio 3.8 with
-> >     gr-ettus.
-> >      >
-> >      > I see that the RFNoC Rx radio block has an enable/disable/defaul=
-t
-> >     AGC
-> >      > option in the GNURadio block which I assume calls the UHD functi=
-on
-> >      > "set_rx_agc"
-> >      >
-> >     (
-> https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#abdab=
-1f6c3775a9071b15c9805f866486
-> )
-> >      >
-> >      > I have also checked on the FPGA side that there is a pin from
-> >     FPGA to
-> >      > AD9361 called XCVR_ENA_AGC which is set always to 1 on the top
-> >     level of
-> >      > the FPGA image (see attached file "e320.v", line 872). This pin,
-> >      > according to
-> >      >
-> >
-> https://www.analog.com/media/en/technical-documentation/data-sheets/AD936=
-1.pdf
-> >
-> >      > is the "Manual Control Input for Automatic Gain Control (AGC)".
-> >      > Must be this pin set to 0 to have AGC working?
-> >      > If not, how can I get AGC working? I've made some tests
-> >      > enabling/disabling this option but I do not see any changes
-> >     between the
-> >      > waveforms received.
-> >      >
-> >      > Any help would be appreciated.
-> >      >
-> >      > Kind Regards,
-> >      >
-> >      > Maria
-> >      >
-> >      > _______________________________________________
-> >      > USRP-users mailing list
-> >      > USRP-users@lists.ettus.com <mailto:USRP-users@lists.ettus.com>
-> >      >
-> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
-> >      >
-> >
+> Brian
 >
 
---000000000000f8932605bd2c9ced
+--00000000000059057a05bd3225e0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Jules,<div><br><div>Thank you, I will try it and=C2=A0l=
-et you know as soon as possible.</div><div><br></div><div>By the way, I hav=
-e checked the python generated=C2=A0using the UHD USRP SOURCE block (instea=
-d of the RFNoC radio block) with AGC active and it generates the set of AGC=
- fine. So, as you said, it is fixed in gr-uhd but it might still be a bug i=
-n gr-ettus.</div><div><br></div><div>Thanks again for the help!</div><div><=
-br></div><div>Kind Regards,</div><div><br></div><div>Maria</div></div></div=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El mi=
-=C3=A9, 10 mar 2021 a las 11:25, Julian Arnold (&lt;<a href=3D"mailto:julia=
-n@elitecoding.org">julian@elitecoding.org</a>&gt;) escribi=C3=B3:<br></div>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex">Maria,<br>
-<br>
-&gt;&gt; So, if I understand correctly, I have to put there also something =
-like <br>
-&gt;&gt; &quot;self.ettus_rfnoc_rx_radio_0.set_rx_agc(enable,0)&quot; isn&#=
-39;t it?<br>
-<br>
-Exactly! Take a look at [1] for the correct syntax.<br>
-<br>
-[1] <br>
-<a href=3D"https://github.com/EttusResearch/gr-ettus/blob/1038c4ce5135a2803=
-b53554fc4971fe3de747d9a/include/ettus/rfnoc_rx_radio.h#L97" rel=3D"noreferr=
-er" target=3D"_blank">https://github.com/EttusResearch/gr-ettus/blob/1038c4=
-ce5135a2803b53554fc4971fe3de747d9a/include/ettus/rfnoc_rx_radio.h#L97</a><b=
-r>
-<br>
-Let me know if that worked out for you.<br>
-<br>
-Cheers,<br>
-Julian<br>
-<br>
-<br>
-On 3/10/21 9:59 AM, Maria Mu=C3=B1oz wrote:<br>
-&gt; Hi Julian,<br>
-&gt; <br>
-&gt; Thanks for the quick answer.<br>
-&gt; <br>
-&gt; I think you might be right about the possible bug turning on the AGC <=
-br>
-&gt; from GRC. I have checked the flow graph generated and there&#39;s no <=
-br>
-&gt; set_rx_agc enable option (I checked the c++ definition block where thi=
-s <br>
-&gt; option did appear but I hadn&#39;t look at the python generated).<br>
-&gt; <br>
-&gt; The lines related to the radio in my flowgraph are these:<br>
-&gt; <br>
-&gt; /self.ettus_rfnoc_rx_radio_0 =3D ettus.rfnoc_rx_radio(<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.rfnoc_graph,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd.device_addr(&#39;&=
-#39;),<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 -1,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 -1)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.ettus_rfnoc_rx_radio_0.set_rate=
-(samp_rate)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.ettus_rfnoc_rx_radio_0.set_ante=
-nna(&#39;RX2&#39;, 0)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.ettus_rfnoc_rx_radio_0.set_freq=
-uency(cf, 0)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.ettus_rfnoc_rx_radio_0.set_gain=
-(gain, 0)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.ettus_rfnoc_rx_radio_0.set_band=
-width(samp_rate, 0)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.ettus_rfnoc_rx_radio_0.set_dc_o=
-ffset(True, 0)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.ettus_rfnoc_rx_radio_0.set_iq_b=
-alance(True, 0)/<br>
-&gt; <br>
-&gt; So, if I understand correctly, I have to put there also something like=
- <br>
-&gt; &quot;self.ettus_rfnoc_rx_radio_0.set_rx_agc(enable,0)&quot; isn&#39;t=
- it?<br>
-&gt; <br>
-&gt; Kind Regards,<br>
-&gt; <br>
-&gt; Maria<br>
-&gt; <br>
-&gt; El mi=C3=A9, 10 mar 2021 a las 9:16, Julian Arnold (&lt;<a href=3D"mai=
-lto:julian@elitecoding.org" target=3D"_blank">julian@elitecoding.org</a> <b=
-r>
-&gt; &lt;mailto:<a href=3D"mailto:julian@elitecoding.org" target=3D"_blank"=
->julian@elitecoding.org</a>&gt;&gt;) escribi=C3=B3:<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Maria,<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0I might not be the right person to answer this, as =
-my experience with<br>
-&gt;=C2=A0 =C2=A0 =C2=A0UHD 4.0 is relatively limited at the moment.<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0However, I cant tell you that the AGC on B2x0 devic=
-es is controlled via<br>
-&gt;=C2=A0 =C2=A0 =C2=A0software (using set_rx_agc()). There is no need to =
-directly modify the<br>
-&gt;=C2=A0 =C2=A0 =C2=A0state of any pins of the FPGA.<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0I vaguely remember that there was a bug in an earli=
-er version of gr-uhd<br>
-&gt;=C2=A0 =C2=A0 =C2=A0(somewhere in 3.7) that made it difficult to turn o=
-n the AGC using GRC.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0That particular one is fixed in gr-uhd. Not sure ab=
-out gr-ettus, though.<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Maybe try using set_rx_agc() manually in you flow-g=
-raph (*.py) and see<br>
-&gt;=C2=A0 =C2=A0 =C2=A0if that helps.<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Cheers,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Julian<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0On 3/9/21 5:11 PM, Maria Mu=C3=B1oz via USRP-users =
-wrote:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Hi all,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; I was wondering if it is possible to enable A=
-GC from the RFNoC radio<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; block in GNURadio. I use UHD 4.0 version and =
-GNURadio 3.8 with<br>
-&gt;=C2=A0 =C2=A0 =C2=A0gr-ettus.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; I see that the RFNoC Rx radio block has an en=
-able/disable/default<br>
-&gt;=C2=A0 =C2=A0 =C2=A0AGC<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; option in the GNURadio block which I assume c=
-alls the UHD function<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; &quot;set_rx_agc&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0(<a href=3D"https://files.ettus.com/manual/classuhd=
-_1_1usrp_1_1multi__usrp.html#abdab1f6c3775a9071b15c9805f866486" rel=3D"nore=
-ferrer" target=3D"_blank">https://files.ettus.com/manual/classuhd_1_1usrp_1=
-_1multi__usrp.html#abdab1f6c3775a9071b15c9805f866486</a>)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; I have also checked on the FPGA side that the=
-re is a pin from<br>
-&gt;=C2=A0 =C2=A0 =C2=A0FPGA to<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; AD9361 called=C2=A0XCVR_ENA_AGC which is set =
-always to 1 on the top<br>
-&gt;=C2=A0 =C2=A0 =C2=A0level of<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; the FPGA image (see attached file &quot;e320.=
-v&quot;, line 872). This pin,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; according to<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"https://www.analog.com/media/en/technica=
-l-documentation/data-sheets/AD9361.pdf" rel=3D"noreferrer" target=3D"_blank=
-">https://www.analog.com/media/en/technical-documentation/data-sheets/AD936=
-1.pdf</a><br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; is the &quot;Manual Control Input for Automat=
-ic Gain Control (AGC)&quot;.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Must be this pin set to 0 to have AGC working=
-?<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; If=C2=A0not, how can I=C2=A0get AGC working? =
-I&#39;ve made some tests<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; enabling/disabling this option but I do not s=
-ee any changes<br>
-&gt;=C2=A0 =C2=A0 =C2=A0between the<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; waveforms received.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Any help would be appreciated.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Kind Regards,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Maria<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; _____________________________________________=
-__<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; USRP-users mailing list<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; <a href=3D"mailto:USRP-users@lists.ettus.com"=
- target=3D"_blank">USRP-users@lists.ettus.com</a> &lt;mailto:<a href=3D"mai=
-lto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.co=
-m</a>&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt; <a href=3D"http://lists.ettus.com/mailman/lis=
-tinfo/usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http=
-://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt; <br>
+<div dir=3D"ltr">Brian,<div><br></div><div>I&#39;ve seen this using UHD-3.1=
+4 and UHD-3.15.LTS.</div><div><br></div><div>I have performed some follow-o=
+n testing that raises more questions, particularly about the usage of end_o=
+f_burst and start_of_burst.=C2=A0 I talk through my tests and observations =
+below; the questions that these generated are at the end ...</div><div><br>=
+</div><div>I thought it would be interesting to modify benchmark_rate.cpp t=
+o attempt to place a timestamp on each buffer that was sent out to see if I=
+ could observe the same behavior.=C2=A0 I haven&#39;t seen thorough explana=
+tions of what exactly the start_of_burst and end_of_burst metadata fields d=
+o at a low level beyond this posting -- <a href=3D"http://lists.ettus.com/p=
+ipermail/usrp-users_lists.ettus.com/2016-November/050555.html">http://lists=
+.ettus.com/pipermail/usrp-users_lists.ettus.com/2016-November/050555.html</=
+a> and a note about start_of_burst resetting the CORDICs (I&#39;d appreciat=
+e being pointed in the right direction if I&#39;ve missed it, thank you!) -=
+-=C2=A0 so I wanted to test the effect on timing when has_time_spec is true=
+ and the SOB and EOB fields are either false or true.=C2=A0 I initially set=
+ my test up in the following way (I hope the pseudocode makes sense) to mak=
+e observations easy.=C2=A0 I watched=C2=A0for the LO on a spectrum analyzer=
+.=C2=A0 Per the code below, I would expect a burst every 2 seconds if the t=
+ime_spec was followed ...=C2=A0<br><br>=3D=3D=3D=3D=3D=3D</div><div>max_sam=
+ps_per_packet =3D 50e5; // 100ms at 50 MSPS<br>start_of_burst =3D &lt;true,=
+false&gt;</div><div>end_of_burst =3D &lt;true,false&gt;</div><div>has_time_=
+spec =3D true;</div><div></div><div>while( not burst_timer_elapsed)=C2=A0</=
+div><div>{=C2=A0</div><div>=C2=A0 =C2=A0 tx_stream-&gt;send();</div><div>=
+=C2=A0 =C2=A0 start_of_burst =3D &lt;true,false&gt;</div><div>=C2=A0 =C2=A0=
+ end_of_burst =3D &lt;true, false&gt;</div><div>=C2=A0 =C2=A0 time_spec =3D=
+ time_spec=C2=A0+ 2.0;=C2=A0</div><div>=C2=A0}</div><div><br></div><div>My =
+observations were as follows: if end_of_burst for the prior burst was set t=
+o true, my code adhered to the time_spec.=C2=A0 The value of start_of_burst=
+ had no effect on whether or not the expected timing was followed.=C2=A0 If=
+ end_of_burst was set to false, the time_spec for the following burst is ig=
+nored and the packet is transmitted as soon as possible.</div><div><br></di=
+v><div>I then followed this up with another test -- I replaced=C2=A0</div><=
+div>=C2=A0 =C2=A0 =C2=A0 time_spec =3D time_spec=C2=A0+ 2.0;</div><div>with=
+ the equivalent of=C2=A0</div><div>=C2=A0 =C2=A0 =C2=A0 time_spec =3D time_=
+spec=C2=A0+ 0.100;</div><div><br></div><div>And set end_of_burst and start_=
+of_burst to true.</div><div><br></div><div>I figured if I can run this cont=
+inuously by setting has_time_spec to &#39;false&#39; after the first burst =
+and easily push data into the FIFO buffer, that doing this should not be a =
+problem ... but I&#39;m presented with a stream of lates and no actual tran=
+smission.</div><div><br></div><div>I understand that 100ms is not an intege=
+r multiple of packet size returned by get_max_num_samps() -- so I tried an =
+integer multiple of the packet size, too, with an appropriately updated tim=
+e_spec. This also resulted with a lates through the entire transmit.</div><=
+div><br></div><div>So .... here are my additional questions:</div><div><br>=
+</div><div><div>Is the only effect of &quot;start_of_burst =3D true&quot; t=
+o cause the CORDICs to reset?=C2=A0=C2=A0</div><div>What is end_of_burst do=
+ing to enable a following time_spec to be used?</div><div>What additional w=
+ork is being performed when I set end_of_burst and has_time_spec to &#39;tr=
+ue&#39; such that I get latest throughout the entire attempted transmission=
+?</div><div><br></div><div>Best Regards,</div><div>Doug</div><div><br></div=
+><div></div></div><div><br></div><div><br></div><div><br></div><div><br></d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Tue, Mar 9, 2021 at 11:51 PM Brian Padalino &lt;<a href=3D"mailto:bpa=
+dalino@gmail.com" target=3D"_blank">bpadalino@gmail.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><di=
+v dir=3D"ltr">On Tue, Mar 9, 2021 at 10:03 PM Doug Blackburn via USRP-users=
+ &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
+sers@lists.ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D=
+"ltr">Hello --<div><br></div><div>I&#39;ve got some questions re: latency w=
+ith=C2=A0the x300 over the 10GigE interface.=C2=A0=C2=A0</div><div><br></di=
+v><div>If I use the latency_test example operating at a rate of 50 MSPS, I =
+have no issues with a latency of 1ms.=C2=A0 The latency test receives data,=
+ examines the time stamp, and transmits a single packet.=C2=A0</div><div><b=
+r></div><div>I have an application where I&#39;d like to run the transmitte=
+r continuously, and I got curious about the latency involved in that operat=
+ion.=C2=A0 My application is similar=C2=A0to the benchmark_rate example.=C2=
+=A0 I added the following lines to the benchmark_rate example at line 256 a=
+fter the line.</div><div><br></div><div><font face=3D"monospace">md.has_tim=
+e_spec =3D false;=C2=A0</font></div><div><br></div><div>=3D=3D=3D=3D</div><=
+div><span style=3D"font-family:monospace">if ( (num_tx_samps % 50000000) &l=
+t; 4*max_samps_per_packet )</span></div><div><font face=3D"monospace">{<br>=
+=C2=A0 =C2=A0 uhd::time_spec_t expectedTime =3D startTime + (double) ( num_=
+tx_samps =C2=A0)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 / (double)usrp-&gt;get_tx_rate();<br>=C2=A0 =C2=A0 uh=
+d::time_spec_t timeAtLog =3D usrp-&gt;get_time_now();<br>=C2=A0 =C2=A0 time=
+AtLog =3D usrp-&gt;get_time_now();<br>=C2=A0 =C2=A0 std::cerr &lt;&lt; &quo=
+t;=3D=3D=3D=3D Actual time =3D=3D=3D=3D&quot; &lt;&lt; std::endl;<br>=C2=A0=
+ =C2=A0 std::cerr &lt;&lt; &quot; =C2=A0 =C2=A0 &quot; &lt;&lt; timeAtLog.g=
+et_full_secs() &lt;&lt; &quot; / &quot;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;&lt; timeAt=
+Log.get_frac_secs() &lt;&lt; std::endl;<br>=C2=A0 =C2=A0 std::cerr &lt;&lt;=
+ &quot;=3D=3D=3D=3D Expected time =3D=3D=3D=3D&quot; &lt;&lt; std::endl;<br=
+>=C2=A0 =C2=A0 std::cerr &lt;&lt; &quot; =C2=A0 =C2=A0 &quot; &lt;&lt; expe=
+ctedTime.get_full_secs() &lt;&lt; &quot; / &quot;<br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;&=
+lt; expectedTime.get_frac_secs() &lt;&lt; std::endl;<br>}<br></font></div><=
+div>=3D=3D=3D=3D</div><div><br></div><div>The intent of this insertion is t=
+o log the time at which we return from tx_stream-&gt;send() and the time at=
+ which the first sample of that sent data should be transmitted -- at appro=
+ximately once per second when running at 50 MSPS.</div><div><br></div><div>=
+After the first second, I consistently saw the following results:</div><div=
+><br></div><div><div><font face=3D"monospace">=3D=3D=3D=3D Actual time =3D=
+=3D=3D=3D<br></font></div><div><div><font face=3D"monospace">=C2=A0 =C2=A0 =
+=C2=A01 / 0.10517</font></div><div><font face=3D"monospace">=3D=3D=3D=3D Ex=
+pected time =3D=3D=3D=3D</font></div><div><font face=3D"monospace">=C2=A0 =
+=C2=A0 =C2=A01 / 0.27253</font></div><div><font face=3D"monospace"><br></fo=
+nt></div><div><font face=3D"monospace">=3D=3D=3D=3D Actual time =3D=3D=3D=
+=3D</font></div><div><font face=3D"monospace">=C2=A0 =C2=A0 =C2=A01 / 0.105=
+419</font></div><div><font face=3D"monospace">=3D=3D=3D=3D Expected time =
+=3D=3D=3D=3D</font></div><div><font face=3D"monospace">=C2=A0 =C2=A0 =C2=A0=
+1 / 0.27255</font></div></div></div><div><br></div><div>Which indicates to =
+me that there is a latency of approximately 167ms when transmitting data.=
+=C2=A0 That is, the send() function is returning 167ms earlier than I expec=
+t=C2=A0the data to actually be transmitted.=C2=A0 =C2=A0If I halve the samp=
+le rate to 25 MSPS, the latency doubles.</div><div><br></div><div>What is t=
+he source of the latency when running in a continuous mode?=C2=A0 Initially=
+, I had thought that this might be related to the send_buffer_size, but mak=
+ing changes to send_buffer_size seem to not have an effect.=C2=A0 =C2=A0FWI=
+W, 167ms at 50 MSPS is suspiciously close to the value for wmem_max (335544=
+32) suggested in the x300 system configuration ... but neither changing tha=
+t value or send_buffer_size seems to make a difference.</div><div><br></div=
+><div>Is this latency tunable?=C2=A0=C2=A0</div></div></div></blockquote><d=
+iv><br></div><div>I suspect it&#39;s the DMA FIFO which uses the DRAM in th=
+e X310 as a buffer.=C2=A0 The default buffer size is 32MB.</div><div><br></=
+div><div>Which version of UHD are you using?</div><div><br></div><div>Brian=
+</div></div></div>
 </blockquote></div>
 
---000000000000f8932605bd2c9ced--
+--00000000000059057a05bd3225e0--
 
 
---===============4396053191786795658==
+--===============2423981586147676553==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -433,5 +374,5 @@ USRP-users mailing list
 USRP-users@lists.ettus.com
 http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---===============4396053191786795658==--
+--===============2423981586147676553==--
 
