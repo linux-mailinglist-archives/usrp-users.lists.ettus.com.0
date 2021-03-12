@@ -2,267 +2,314 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDFDE339821
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Mar 2021 21:21:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A5BC33988C
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Mar 2021 21:43:01 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 82F8F383C08
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Mar 2021 15:21:09 -0500 (EST)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2065.outbound.protection.outlook.com [40.107.243.65])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6780D383290
-	for <USRP-users@lists.ettus.com>; Fri, 12 Mar 2021 15:20:01 -0500 (EST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fPeP5vh1t9oKYjkhJH5MNE/P+PhrAFjTBjMxoPfEcOPuz6ZjnhsWw3sdJKPfNiGofmNw54JGuxakLjuuoVzP2Csq0J8dAGbtTJFuygsv/gTdBUgO6wg9ai0Ye/9TPQw6N+7r86la88s+7bY1IGJog8vEI5QUkKZ5yVVvGGTBb7zrOgL3vOUnfaQqFQkxWNp7D5XYwjh6cI+GuEBVqd94h/tGvQchDFY4WW2x1tz5rOSKDDXhPDINAWT1/oycLG3cdKN28HycoMfY03SVLQjd7nprRvGqcKeo+9iAywsq4OhdD5tCbZzhdqhe5THkFTxDYF8r3PDh75w8T04xOpKKKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PaheofMppL0o3oLK7yOsTsHGNpgOH2kXjNO31NxMwQs=;
- b=WINgT0PrzOOXq9vWw6dy/OeqRcDwvMekKCWWD16W+7fWaKDdAJUErJBqiSkhqRUP+M2Vgq3dnUZ4TeLStsRUHuzbby+Ohvl+nlof024MCjIoJkKTsS7ojC4svdpqvqEyrXKe9r0ZHLJzgQZ7rLvJdmzwpteaE0bTOESEDG2Rb8r3TDf8vtD7GuEKveismsaZrkfaj0FFyboY3fpgNROKou3gWh4brimNeEIx+eaG7U5S0RZmOXskOhiuqwhISnEkLGqIV3UbrhZflQQ65y65VvU/j8FgyhxRYYgkzaHsaPT394Xk/xuyzwxfbEIvRFA9N2sFfP2t2mZ3tlnQBcbIdw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=canyon-us.com; dmarc=pass action=none
- header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
+	by mm2.emwd.com (Postfix) with ESMTP id DA1183838FF
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Mar 2021 15:43:00 -0500 (EST)
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	by mm2.emwd.com (Postfix) with ESMTPS id AB2FC383919
+	for <USRP-users@lists.ettus.com>; Fri, 12 Mar 2021 15:41:42 -0500 (EST)
+Received: by mail-qk1-f178.google.com with SMTP id f124so25749430qkj.5
+        for <USRP-users@lists.ettus.com>; Fri, 12 Mar 2021 12:41:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=canyonconsulting.onmicrosoft.com;
- s=selector2-canyonconsulting-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PaheofMppL0o3oLK7yOsTsHGNpgOH2kXjNO31NxMwQs=;
- b=GQwtZ7yg6YAAEGCjsWQocK1ZsGb7XS4uPkUB4v9yl5AJSJ+bP9qV0b4EdrwFIx1hN4kHIgWSKkJXlvDqno7dZ3OgwfoZKP7qWqXLJE6GEltVg0c2IK/mdsKLSc31FzQXmnZAm0PG2LdMyLX03VIUsfcRSabA1L8n7NQLZewV5KM=
-Received: from CO6PR19MB4801.namprd19.prod.outlook.com (2603:10b6:5:341::23)
- by CO1PR19MB5191.namprd19.prod.outlook.com (2603:10b6:303:f3::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.31; Fri, 12 Mar
- 2021 20:19:59 +0000
-Received: from CO6PR19MB4801.namprd19.prod.outlook.com
- ([fe80::4c0c:538a:a172:921a]) by CO6PR19MB4801.namprd19.prod.outlook.com
- ([fe80::4c0c:538a:a172:921a%3]) with mapi id 15.20.3933.031; Fri, 12 Mar 2021
- 20:19:59 +0000
-From: Jerrid Plymale <jerrid.plymale@canyon-us.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] Where do I find this call to change it.
-Thread-Index: AdcXec3qWnr1rrk9Rh6qGzEkiPdC1wAAti+AAAADCUA=
-Date: Fri, 12 Mar 2021 20:19:59 +0000
-Message-ID: 
- <CO6PR19MB480178E1CD5E40A830C3F4EEC66F9@CO6PR19MB4801.namprd19.prod.outlook.com>
-References: 
- <CO6PR19MB4801F65B228A1958C8830B06C66F9@CO6PR19MB4801.namprd19.prod.outlook.com>
- <6B3005CB-BF82-4097-905A-E71B22439D31@gmail.com>
-In-Reply-To: <6B3005CB-BF82-4097-905A-E71B22439D31@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=canyon-us.com;
-x-originating-ip: [98.153.200.210]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 47870109-aee9-414f-2af3-08d8e59435bc
-x-ms-traffictypediagnostic: CO1PR19MB5191:
-x-microsoft-antispam-prvs: 
- <CO1PR19MB5191F6C28AA5C4C55CCA515AC66F9@CO1PR19MB5191.namprd19.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3513;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- yHmzvku/htvj57TSbSW8uZ6AW/clf48xvVMWwwf5xuSwydMN7RKskRkcTM2Riite9Kxas2VWZ67bFByXz+ry06GX7Xtf6YHd73+nLIWCWuqf9v74ojrhwHmDnNBlky829CI3ZWCvXqI6/lyklbW30pynOjVJlYmuMsdxaT9hT7SNAz6bjjJREYXUSBLXTFyHLDOCk2jKiOtcHV2jT/PQYZBXXgEKQNU510UEoi0b6LCX/bkv814/0iIPdsdWdZJgidB8neKLtn7IyjONdSDagq/g/v9jjuJsNxcFS2dM9Ctz9GZXrt19E2Ti1araVwdTVdx7UVEtjhWuBpW4qEaKwBY9A7dAtO4ClTcxcAlpJg83xSKJzXLBRL+mONQ3bIlUMvc/6S5W9r6m0AMMJpXA0gt6lXLHQQnGff9OubaeCc/DlDeFoWfixcwooI1bTf+nQJV/AIhsOiOqTPqvL2110bI7LjVP5heY2rKy8+z0ru1YGgkIjebKyQQcy3e1zo18pOhqtj9OTBxhLuSNWpDhYYBNLveaStakAEjB3QGrk1bs7kX1fvjzwix4kgBjAn1i
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR19MB4801.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39840400004)(346002)(136003)(376002)(366004)(66446008)(83380400001)(64756008)(26005)(9686003)(186003)(55016002)(7696005)(33656002)(86362001)(66556008)(2906002)(8936002)(5660300002)(6916009)(478600001)(9326002)(8676002)(76116006)(71200400001)(44832011)(316002)(52536014)(66946007)(6506007)(4326008)(66476007)(53546011);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 
- =?utf-8?B?WnR2REJTbGhXdGlwYzg1Q2VsQ2RYcXlBU09zYk1YdWVTOVAxNHkwd1BaVHlG?=
- =?utf-8?B?b0hnOGszU0hPbTFnYkRybUpBUVpROCt2R2YwVkFDd3l5cm5STjVWT1dESHAy?=
- =?utf-8?B?TUpqV0t2Nzl3Y3hUWWNIZmEzK3dhNHBaLzBSdElEbFdlaVRtSVFHN2F6Sit0?=
- =?utf-8?B?cmpaYy9yaG1pcm4vR1M4M0Z6MTVlQkpuaEdYRVRQNEQ4U0xLeTRMZ25MMGps?=
- =?utf-8?B?YXRENnN3Qm0va3VLTVVrUnBiQXRJSVBGUkNCVUZHTTNNSXdycGZqMWRBTWZ5?=
- =?utf-8?B?WldUMkZJZWdNSHpGM1ZZdVhSYmV2WFJPREk2YXJYUEl4MWNRYTIyb3YzOThL?=
- =?utf-8?B?VkJncHZ1bUJPNWtLY1VWWklFczE0cHhySEFtZ3FNUUMzTEJldWpnVk1VaGty?=
- =?utf-8?B?bEJPRitya094ejZsYnlDMXFaNjRESWp1Q00wLzRZc3VnYmxXbDYwSERsSnZh?=
- =?utf-8?B?WkVVTjVPZDFHZnYyQ0R0dlp6Q2ZXb3dQQ3dQdG0xb2xlQm04QXNGd3pYVkFs?=
- =?utf-8?B?Nkswem9RQ3hYRm8yN0tXM0R5K2NjNDJCWGtVV1hzaER4SjdGWUxkWTVkZ0Z3?=
- =?utf-8?B?eTY3c3pzOUhPRHViTStLTWZ0OUpHY2FZaXhWd1o1TW42ZjFrY3RnUGpQRkJi?=
- =?utf-8?B?RXZVRllKT1BQNlZENzh4TVhWUjRsOEg3RWwvV1hRWWFaa0I2MTRucW9lQ2Y2?=
- =?utf-8?B?aVo5aDRBL3RHVTJLOVl3YTZLdDBJcGFLU0lVd2U2dkF3RWlnMXZTL0FvclJG?=
- =?utf-8?B?WVF0NHF0QzNMcWV5cFdHbGtJM0l5SlpVNDRVQ0JOSnc4enoxRlQyYitvanpC?=
- =?utf-8?B?bDB2MmV0OWY5cEJsalZ0MjMrdGZBMjFwNXV1M3dnc2U2LzhhUkI1bkRSNkdt?=
- =?utf-8?B?cGpPRExCanRHUEU4QTdpZk52MkptT1I5RDc3bzMxNmNvUmdsY0R0OHpVbHJz?=
- =?utf-8?B?RndkR01iQnE5Q2FUSmRZM1djdjNHOERiUDdidWtucVdvd0swc2xSdmNzd3V3?=
- =?utf-8?B?UVhCd2o3eVlKZFZ2NEIxS1gweVpkZzRTN2ZyOFBwSTcyTWoxMVdOYUdpRVdi?=
- =?utf-8?B?Vmw3elVvVTQzZ0JQSkFaWFlhbGEwSG1YYTlJaTlRbmxXcGcvNEkyYVZKd0w4?=
- =?utf-8?B?KzFXNmxRbVdnYXFqYlpHRE9qMXZRN09TTmtzN0Q5UGp5dFV0Y1VLWFd2Z3Yr?=
- =?utf-8?B?dnA0eWJBVjNvUUFzNVZJWk80NHZKNTVUTnJSUkZEeUZXSDd4Q1B2MXFTVCtn?=
- =?utf-8?B?ZlhuUHlRazRndzJzRzNrNGNpM1R2RXR4ek5xaUg2bk93Q1hsa2tFMUJFS3Nj?=
- =?utf-8?B?VzVSazRVN0FDK2lQMkhHUENwUG9kV2puSHZqemIxUmNUbGxzdkdmMm05YUdq?=
- =?utf-8?B?WDRuZFNHc044SnhHOHQwYzRRbWVDNDFkWVJvMzRjQVo4ZVBsNUxObnVZTTZI?=
- =?utf-8?B?Q3FXYVNTNmVGd1ZEQXVVOGFtdEIyYitaMThhdEt0MG9RSnpOT2h2a2FlMVRv?=
- =?utf-8?B?OUxiUFlZSko5MHhMbStmMTZUWUFEeis0cjVReEluZFhFaUdLalp4UkVpV3JY?=
- =?utf-8?B?M1FHb3NvVENWWE5RMXJXRkxvNStqa1FuOGEyZCtkd01JUDBYeGF6Y0lFWmpu?=
- =?utf-8?B?MlR2RURRZmJKZ1RQVGx6a1NBc3NFOHVOdUt6VDVSN1hWeWpuL0JyQWVtdG1B?=
- =?utf-8?B?WXNQeUlkQTlheFFCOXpkRWNId3RXY2c1eDZlM09lQi9SdnZKTExWQVRtZTZa?=
- =?utf-8?Q?TfRGw6QiMu7PBxwTNNVlA7EoQLXlf/v+6SvulPH?=
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: canyon-us.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR19MB4801.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47870109-aee9-414f-2af3-08d8e59435bc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2021 20:19:59.0976
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZJj2uBFKDqZ71e76/p+jy/1MYSo+RACVCdjmCunNnXRdS1BS9uQ7qhXz2CZAy1E+Fm/dah4SR/c4oZlrv675bbU6xQzQCyhjkqPVPxZoUjg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR19MB5191
-Message-ID-Hash: EMYQB7HKAVLBB4BBUTDAII4UCSTGTKCI
-X-Message-ID-Hash: EMYQB7HKAVLBB4BBUTDAII4UCSTGTKCI
-X-MailFrom: jerrid.plymale@canyon-us.com
+        d=gmail.com; s=20161025;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=oSTL1ps9Ef7FdZQKovEALPj027QcAPYfvkJZ7jkErqo=;
+        b=rMGeyKH0tPj7fkHP6sHgXnD5tuPNPn8V3ijmQuqBn4XyURUq+rlNBepdFx7wDoTUcy
+         8YcaYQ/3HhWAjli0TNwAYUQZiySAX067mFwAPpBOIbAuEgS3G9jNoJFhhSiCSW9Ec6P9
+         ziQVCAoU1Gs8HQ9I2FU/moXNcQ9uissmTjn++WLb1HTzFBPaEQhUdxrbM3MQIAg2sbM+
+         XN5JCkEXRwcGIBSjb54sGbLvmrYxNZFWaNF7+CMLrXbqQ8PoADxxBcD8rAr+pHR4jXnz
+         fcabMcMebhxUAFr8XhEvTAMz50xb7cqz6x3vczD7xpYJl/7BtkcwqTZJowDcJieD0nNo
+         EzpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=oSTL1ps9Ef7FdZQKovEALPj027QcAPYfvkJZ7jkErqo=;
+        b=YgKtIGTZgoprLomcQ4V9+Azl/M19LE+2/FURny+oD0z+yLkBAnxm7kvLkB6fNGu/1a
+         jvK8VOuD09ZFmR+s1ZZqrTr88zmv3Cp8EJ710Wh8CDXKOkEfE0t5B+iH7+yEzPEJQucd
+         uKW6wozE24pmXwgJ/GGz4rSoHMyBt4pz3rbuQO75FFTcljcNa1Cl4M3Y2vvx6xX64yKt
+         FTeZxG3G+8OVCsnaj+Fb92uPHuYtphTRD2ltMW7TMUuJJLqnv/huyFziEpcOSstL9A+s
+         8l6RUJZa3lqpcw1sjzjSAR1FDm5DwqsR4A0+3A52ozveW9yJcvlCY53IanUE2uM1KAYL
+         IorA==
+X-Gm-Message-State: AOAM531CQAhGxqHP/atWwi6mE31H7RiReG7eTDb/frZyDsA/miCRt1Q9
+	NRHhpU+ya7FY3rlkMCDFYKMDM1aUqN8=
+X-Google-Smtp-Source: ABdhPJxtDi0yMVxeYUCE4ZKMFKufmSSn4SOrC/Mat2gsOFjnvDeGPASboSF9HpFtawxN+UwrFbTeew==
+X-Received: by 2002:a05:620a:10a6:: with SMTP id h6mr14550750qkk.366.1615581702180;
+        Fri, 12 Mar 2021 12:41:42 -0800 (PST)
+Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.gmail.com with ESMTPSA id g7sm4774993qti.20.2021.03.12.12.41.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Mar 2021 12:41:41 -0800 (PST)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Fri, 12 Mar 2021 15:41:41 -0500
+Message-Id: <EB7E7812-D2FC-4523-A64E-E645543F4006@gmail.com>
+References: <CO6PR19MB480178E1CD5E40A830C3F4EEC66F9@CO6PR19MB4801.namprd19.prod.outlook.com>
+In-Reply-To: <CO6PR19MB480178E1CD5E40A830C3F4EEC66F9@CO6PR19MB4801.namprd19.prod.outlook.com>
+To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+X-Mailer: iPhone Mail (18D52)
+Message-ID-Hash: WMBOEPETXEEASE7DC6I3BVH2ZVXCVUQP
+X-Message-ID-Hash: WMBOEPETXEEASE7DC6I3BVH2ZVXCVUQP
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Where do I find this call to change it.
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/F5NYSPJNVORUM7225OJFLV3CZV6BPPFD/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WMBOEPETXEEASE7DC6I3BVH2ZVXCVUQP/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6404508114901070961=="
+Content-Type: multipart/mixed; boundary="===============0473267573305992375=="
 
---===============6404508114901070961==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CO6PR19MB480178E1CD5E40A830C3F4EEC66F9CO6PR19MB4801namp_"
 
---_000_CO6PR19MB480178E1CD5E40A830C3F4EEC66F9CO6PR19MB4801namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--===============0473267573305992375==
+Content-Type: multipart/alternative; boundary=Apple-Mail-ED41E180-9093-48CE-BE92-56762E03C87F
+Content-Transfer-Encoding: 7bit
 
-SGVsbG8gTWFyY3VzLA0KDQpUaGlzIGlzIGNvbWluZyBmcm9tIGEgR251cmFkaW8gZmxvd2dyYXBo
-IHRoYXQgSSBjcmVhdGVkIG15c2VsZi4gSXTigJlzIGdvdCBVU1JQIFJ4IGFuZCBUeCBibG9ja3Ms
-IGEgYmxvY2sgdGhhdCB0YWtlcyBzYW1wbGVzIG9mIHRoZSBzaWduYWwgYW5kIHByZWZvcm1zIHNv
-bWUgRFNQLCBhbmQgYSBidW5jaCBvZiBHVUkgdmFyaWFibGUgY29udHJvbCBhbmQgdmFyaWFibGUg
-ZGlzcGxheSBibG9ja3MuDQoNCkJlc3QgUmVnYXJkcywNCg0KSmVycmlkDQoNCkZyb206IE1hcmN1
-cyBEIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4NClNlbnQ6IEZyaWRheSwgTWFyY2gg
-MTIsIDIwMjEgMTI6MTcgUE0NClRvOiBKZXJyaWQgUGx5bWFsZSA8amVycmlkLnBseW1hbGVAY2Fu
-eW9uLXVzLmNvbT4NCkNjOiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3ViamVjdDogUmU6
-IFtVU1JQLXVzZXJzXSBXaGVyZSBkbyBJIGZpbmQgdGhpcyBjYWxsIHRvIGNoYW5nZSBpdC4NCg0K
-SSB0aGluayB3ZSBuZWVkIG1vcmUgY29udGV4dC4NCg0KSXMgdGhpcyBmcm9tIGEgcHJvZ3JhbSB5
-b3Ugd3JpdGUgeW91cnNlbGY/DQoNClNvbWVvbmUgZWxzZeKAmXMgY29kZT8NCg0KQSBHbnVyYWRp
-byBmbG93IGdyYXBoPyBZb3VyIG93bj8gU29tZW9uZSBlbHNl4oCZcz8NCg0KDQoNClNlbnQgZnJv
-bSBteSBpUGhvbmUNCg0KDQpPbiBNYXIgMTIsIDIwMjEsIGF0IDM6MDIgUE0sIEplcnJpZCBQbHlt
-YWxlIDxqZXJyaWQucGx5bWFsZUBjYW55b24tdXMuY29tPG1haWx0bzpqZXJyaWQucGx5bWFsZUBj
-YW55b24tdXMuY29tPj4gd3JvdGU6DQrvu78NCkhlbGxvIEFsbCwNCg0KSGVyZSBpcyB0aGUgd2Fy
-bmluZyBtZXNzYWdlIEkgYW0gdHJ5aW5nIHRvIHNvbHZlOg0KDQpbV0FSTklOR10gW01VTFRJX1VT
-UlBdIENhbGxpbmcgbXVsdGlfdXNycDo6cmVjdl9hc3luY19tc2coKSBpcyBkZXByZWNhdGVkIGFu
-ZCBjYW4gbGVhZCB0byB1bmV4cGVjdGVkIGJlaGF2aW91ci4gUHJlZmVyIGNhbGxpbmcgdHhfc3Ry
-ZWFtOjpyZWN2X2FzeW5jX21zZygpLg0KDQpJIGFtIHRyeWluZyB0byBzb2x2ZSB0aGlzIHdhcm5p
-bmcgbWVzc2FnZSB3aGVuIEkgYW0gcnVubmluZyBteSBVU1JQIFgzMTAsIGJ1dCBJIGhhdmUgbm90
-IGhhZCBhbnkgbHVjayBmaW5kaW5nIHRoZSBmaWxlIEkgbmVlZCB0byBlZGl0LiBDYW4gYW55b25l
-IGRpcmVjdCBtZSBvbiBob3cgdG8gc29sdmUgdGhpcyBwcm9ibGVtPw0KDQpCZXN0IFJlZ2FyZHMs
-DQoNCkplcnJpZCBQbHltYWxlDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpUbyB1bnN1YnNj
-cmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPG1h
-aWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCg==
 
---_000_CO6PR19MB480178E1CD5E40A830C3F4EEC66F9CO6PR19MB4801namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+--Apple-Mail-ED41E180-9093-48CE-BE92-56762E03C87F
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
-Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0
-aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUyMA0KCXttc28tc3R5bGUtdHlwZTpwZXJz
-b25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3
-aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5
-Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4g
-MTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rp
-b24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDld
-Pjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0K
-PC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91
-dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpz
-aGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVT
-IiBsaW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiIgc3R5bGU9IndvcmQtd3JhcDpicmVhay13
-b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5I
-ZWxsbyBNYXJjdXMsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
-YnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoaXMgaXMgY29taW5nIGZyb20g
-YSBHbnVyYWRpbyBmbG93Z3JhcGggdGhhdCBJIGNyZWF0ZWQgbXlzZWxmLiBJdOKAmXMgZ290IFVT
-UlAgUnggYW5kIFR4IGJsb2NrcywgYSBibG9jayB0aGF0IHRha2VzIHNhbXBsZXMgb2YgdGhlIHNp
-Z25hbCBhbmQgcHJlZm9ybXMgc29tZSBEU1AsIGFuZCBhIGJ1bmNoIG9mIEdVSSB2YXJpYWJsZSBj
-b250cm9sIGFuZCB2YXJpYWJsZSBkaXNwbGF5IGJsb2Nrcy48bzpwPjwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+QmVzdCBSZWdhcmRzLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
-cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5KZXJyaWQgPG86cD48L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+
-DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7
-cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5Gcm9t
-OjwvYj4gTWFyY3VzIEQgTGVlY2ggJmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0OyA8YnI+
-DQo8Yj5TZW50OjwvYj4gRnJpZGF5LCBNYXJjaCAxMiwgMjAyMSAxMjoxNyBQTTxicj4NCjxiPlRv
-OjwvYj4gSmVycmlkIFBseW1hbGUgJmx0O2plcnJpZC5wbHltYWxlQGNhbnlvbi11cy5jb20mZ3Q7
-PGJyPg0KPGI+Q2M6PC9iPiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxicj4NCjxiPlN1Ympl
-Y3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIFdoZXJlIGRvIEkgZmluZCB0aGlzIGNhbGwgdG8gY2hh
-bmdlIGl0LjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSB0aGluayB3
-ZSBuZWVkIG1vcmUgY29udGV4dC4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPklzIHRoaXMgZnJvbSBhIHByb2dyYW0geW91IHdyaXRlIHlvdXJzZWxm
-PzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
-cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5T
-b21lb25lIGVsc2XigJlzIGNvZGU/PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPkEgR251cmFkaW8gZmxvdyBncmFwaD8gWW91ciBvd24/IFNvbWVv
-bmUgZWxzZeKAmXM/PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+U2VudCBmcm9tIG15IGlQaG9uZTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJyPg0KPGJyPg0KPG86cD48L286cD48L3A+DQo8YmxvY2tx
-dW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+T24gTWFyIDEyLCAy
-MDIxLCBhdCAzOjAyIFBNLCBKZXJyaWQgUGx5bWFsZSAmbHQ7PGEgaHJlZj0ibWFpbHRvOmplcnJp
-ZC5wbHltYWxlQGNhbnlvbi11cy5jb20iPmplcnJpZC5wbHltYWxlQGNhbnlvbi11cy5jb208L2E+
-Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPGJsb2Nr
-cXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+77u/IDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+SGVsbG8gQWxsLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IZXJlIGlzIHRoZSB3
-YXJuaW5nIG1lc3NhZ2UgSSBhbSB0cnlpbmcgdG8gc29sdmU6PG86cD48L286cD48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFs
-JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFBMUExQjtiYWNrZ3JvdW5kOndoaXRlIj5bV0FSTklO
-R10gW01VTFRJX1VTUlBdIENhbGxpbmcgbXVsdGlfdXNycDo6cmVjdl9hc3luY19tc2coKSBpcyBk
-ZXByZWNhdGVkIGFuZCBjYW4gbGVhZCB0byB1bmV4cGVjdGVkIGJlaGF2aW91ci4gUHJlZmVyIGNh
-bGxpbmcgdHhfc3RyZWFtOjpyZWN2X2FzeW5jX21zZygpLjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+SSBhbSB0cnlpbmcgdG8gc29sdmUgdGhpcyB3YXJuaW5nIG1lc3NhZ2Ugd2hlbiBJ
-IGFtIHJ1bm5pbmcgbXkgVVNSUCBYMzEwLCBidXQgSSBoYXZlIG5vdCBoYWQgYW55IGx1Y2sgZmlu
-ZGluZyB0aGUgZmlsZSBJIG5lZWQgdG8gZWRpdC4gQ2FuIGFueW9uZSBkaXJlY3QgbWUgb24gaG93
-IHRvIHNvbHZlIHRoaXMgcHJvYmxlbT88bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QmVzdCBSZWdh
-cmRzLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5KZXJyaWQgUGx5bWFsZTxvOnA+PC9vOnA+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xzxicj4NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0K
-VG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vy
-cy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iPg0KdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5j
-b208L2E+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9k
-aXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+ok so this is likely a case of your gr-UHD assuming an older API for recv_as=
+ync_msg.=20
 
---_000_CO6PR19MB480178E1CD5E40A830C3F4EEC66F9CO6PR19MB4801namp_--
+This is just a warning that eventually that older API will go away.=20
 
---===============6404508114901070961==
+Probably if you had totally up to date everything, or a UHD library that was=
+ of an earlier vintage that matched he-UHD, yiu wouldn=E2=80=99t get this me=
+ssage.=20
+
+Sent from my iPhone
+
+> On Mar 12, 2021, at 3:20 PM, Jerrid Plymale <jerrid.plymale@canyon-us.com>=
+ wrote:
+>=20
+> =EF=BB=BF
+> Hello Marcus,
+> =20
+> This is coming from a Gnuradio flowgraph that I created myself. It=E2=80=99=
+s got USRP Rx and Tx blocks, a block that takes samples of the signal and pr=
+eforms some DSP, and a bunch of GUI variable control and variable display bl=
+ocks.
+> =20
+> Best Regards,
+> =20
+> Jerrid
+> =20
+> From: Marcus D Leech <patchvonbraun@gmail.com>=20
+> Sent: Friday, March 12, 2021 12:17 PM
+> To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+> Cc: USRP-users@lists.ettus.com
+> Subject: Re: [USRP-users] Where do I find this call to change it.
+> =20
+> I think we need more context.=20
+> =20
+> Is this from a program you write yourself?
+> =20
+> Someone else=E2=80=99s code?
+> =20
+> A Gnuradio flow graph? Your own? Someone else=E2=80=99s?
+> =20
+> =20
+> =20
+> Sent from my iPhone
+>=20
+>=20
+> On Mar 12, 2021, at 3:02 PM, Jerrid Plymale <jerrid.plymale@canyon-us.com>=
+ wrote:
+>=20
+> =EF=BB=BF
+> Hello All,
+> =20
+> Here is the warning message I am trying to solve:
+> =20
+> [WARNING] [MULTI_USRP] Calling multi_usrp::recv_async_msg() is deprecated a=
+nd can lead to unexpected behaviour. Prefer calling tx_stream::recv_async_ms=
+g().
+> =20
+> I am trying to solve this warning message when I am running my USRP X310, b=
+ut I have not had any luck finding the file I need to edit. Can anyone direc=
+t me on how to solve this problem?
+> =20
+> Best Regards,
+> =20
+> Jerrid Plymale
+> =20
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--Apple-Mail-ED41E180-9093-48CE-BE92-56762E03C87F
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">ok so this is likely a case of your gr-UHD a=
+ssuming an older API for recv_async_msg.&nbsp;<div><br></div><div>This is ju=
+st a warning that eventually that older API will go away.&nbsp;</div><div><b=
+r></div><div>Probably if you had totally up to date everything, or a UHD lib=
+rary that was of an earlier vintage that matched he-UHD, yiu wouldn=E2=80=99=
+t get this message.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhone</div><=
+div dir=3D"ltr"><br><blockquote type=3D"cite">On Mar 12, 2021, at 3:20 PM, J=
+errid Plymale &lt;jerrid.plymale@canyon-us.com&gt; wrote:<br><br></blockquot=
+e></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+
+
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello Marcus,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">This is coming from a Gnuradio flowgraph that I creat=
+ed myself. It=E2=80=99s got USRP Rx and Tx blocks, a block that takes sample=
+s of the signal and preforms some DSP, and a bunch of GUI variable control a=
+nd variable display blocks.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Jerrid <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in 0=
+in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Marcus D Leech &lt;patchvonbraun@gmail.c=
+om&gt; <br>
+<b>Sent:</b> Friday, March 12, 2021 12:17 PM<br>
+<b>To:</b> Jerrid Plymale &lt;jerrid.plymale@canyon-us.com&gt;<br>
+<b>Cc:</b> USRP-users@lists.ettus.com<br>
+<b>Subject:</b> Re: [USRP-users] Where do I find this call to change it.<o:p=
+></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I think we need more context.&nbsp;<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Is this from a program you write yourself?<o:p></o:p>=
+</p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Someone else=E2=80=99s code?<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">A Gnuradio flow graph? Your own? Someone else=E2=80=99=
+s?<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">Sent from my iPhone<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><br>
+<br>
+<o:p></o:p></p>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">On Mar 12, 2021, at 3:=
+02 PM, Jerrid Plymale &lt;<a href=3D"mailto:jerrid.plymale@canyon-us.com">je=
+rrid.plymale@canyon-us.com</a>&gt; wrote:<o:p></o:p></p>
+</blockquote>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<div>
+<p class=3D"MsoNormal">=EF=BB=BF <o:p></o:p></p>
+<p class=3D"MsoNormal">Hello All,<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Here is the warning message I am trying to solve:<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#1A1A1B;background:white">[WARNING] [MULTI_USRP] C=
+alling multi_usrp::recv_async_msg() is deprecated and can lead to unexpected=
+ behaviour. Prefer calling tx_stream::recv_async_msg().</span><o:p></o:p></p=
+>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">I am trying to solve this warning message when I am r=
+unning my USRP X310, but I have not had any luck finding the file I need to e=
+dit. Can anyone direct me on how to solve this problem?<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Jerrid Plymale<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com">usr=
+p-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.ett=
+us.com">
+usrp-users-leave@lists.ettus.com</a><o:p></o:p></p>
+</div>
+</blockquote>
+</div>
+</div>
+
+
+</div></blockquote></div></body></html>=
+
+--Apple-Mail-ED41E180-9093-48CE-BE92-56762E03C87F--
+
+--===============0473267573305992375==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -272,4 +319,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6404508114901070961==--
+--===============0473267573305992375==--
