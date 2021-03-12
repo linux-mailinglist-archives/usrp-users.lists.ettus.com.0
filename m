@@ -2,335 +2,89 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTP id 8122F338FA9
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Mar 2021 15:19:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27C9D33903C
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Mar 2021 15:46:33 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3202E383D24
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Mar 2021 09:19:15 -0500 (EST)
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id EBC67383B00
-	for <usrp-users@lists.ettus.com>; Fri, 12 Mar 2021 09:18:10 -0500 (EST)
-Received: by mail-oi1-f181.google.com with SMTP id q130so8025246oif.13
-        for <usrp-users@lists.ettus.com>; Fri, 12 Mar 2021 06:18:10 -0800 (PST)
+	by mm2.emwd.com (Postfix) with ESMTP id 9E2AA383C0F
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Mar 2021 09:46:32 -0500 (EST)
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id DA9043830D6
+	for <usrp-users@lists.ettus.com>; Fri, 12 Mar 2021 09:46:21 -0500 (EST)
+Received: by mail-qk1-f180.google.com with SMTP id l4so24461986qkl.0
+        for <usrp-users@lists.ettus.com>; Fri, 12 Mar 2021 06:46:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yl6nDdnShoa/xLSdyXtj4Wq4DTNY6JSU+TjTxu4XSQk=;
-        b=GMuQjdToK02t1qO0hc616BHwZLufP6LFSA7x9+kagRYLNuwG1BkuH8aFG2P+Yr7v6u
-         mLMR81bkoCHWM3/egfT8pJysRXXDbLxk0oG9MhURDf7uFOnctGmLSONe4lGva3DmHXoZ
-         TwxhIb2jhJJdXKEjfihqMZ/6NWvdSkbLzdn7zr2iMySWK/DOma4994sj0AACOVqW/tGY
-         tInb1Tl6WWNrP41DUuWrVxt5JHsl7VSvh9jgbJjgVXzyh7WyUfCFt3AnGvrTG6xBVgTq
-         WZqpZ9+Cqb4PcCt4yhkjW5qiW/ZTH/rgptlDBVh1jew5FoVRVfBoAdJk5l8ymVdabQCS
-         SD5Q==
+        d=c3commsystems-com.20150623.gappssmtp.com; s=20150623;
+        h=from:content-transfer-encoding:mime-version:subject:message-id:date
+         :to;
+        bh=a9fIW8fVjm8KJ1Tom7M1WJ3WaiHroishlEqLGIbHx9Q=;
+        b=ABlNOmSizasxYNjMOMiopM0ACy2TIrjgD6UAwpy4TnBpJ9OF+Lz0TJaDoJ5xhI5WuL
+         MorLqQvbo96SP5wQtPaNoTbE+pvEGl3qEa5jwp/+Co1qruYuwu8BIPUCQQ9BWqAnE5ro
+         LnXtoBI8xKYFirWB/9zjsvviZSNN2vw9eTCBT60TORMZ3heOej58CusQBpRaCaVlKq5+
+         JtphM37cYzSMHJIzKkbhj2zShc2vIL92vPI6pfS6OuBBNDdwCdL4XXyWJcQ9IzGlavT/
+         6KC3mw7bpciOc68CJiT+OcavjtBF7oz6llqlYw6Sf0cp4gRjKxYjoehJr1uHv703bptQ
+         GeAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yl6nDdnShoa/xLSdyXtj4Wq4DTNY6JSU+TjTxu4XSQk=;
-        b=SZH0gNR1HrEOAp2Ge/kpIT3Di5GALGocEzwioiUssrOZSF2+dDmsDpPJvFc6JMhCgc
-         zBGisDCh9IMJ8lujQpuNUp+oyI21QNRN5pK2TMbbORMKkKaPGTo0mEwgL6U2SQTFNsAM
-         nYWK/urUZhxOlIlRiPE0Ppj253v5w2cGAKsL1fJDMJlywl/J452RZcD1wgc+Bgkfke4f
-         179K9zCTKk4weEnQJc8eqgI1dMsGkjFs2iM5rXkz0spEDwvkux3ES3pwiMfXiASOyapl
-         rcttnOjGVbbS/iEViET3eRFJ4ddGn8Yl/z8ahpaUtEJud8dge5h0lEGZK6U5PjwwPGfA
-         Mfyg==
-X-Gm-Message-State: AOAM533/fS7WT4XlKrUgFyQZ0w98S/BFx4FtoQ970jrHAbMXah6b0qeO
-	TwZ2t4AGH3DyvT/uLJ/oYfyK4jInaL09sUqt2zxu9ntzWKQ=
-X-Google-Smtp-Source: ABdhPJzSfh+o2SFNoegeDX4ZhfgHUTKsJ+CChWLEB67ezwrnhxoZ1R2PgD53hflacNEzpV0OP0ORerW03aW2lhnOsvE=
-X-Received: by 2002:aca:2104:: with SMTP id 4mr10213369oiz.124.1615558690207;
- Fri, 12 Mar 2021 06:18:10 -0800 (PST)
-MIME-Version: 1.0
-References: <6ef5d9a0ee0c47018174fec87644c38b@gmvnsl.com>
-In-Reply-To: <6ef5d9a0ee0c47018174fec87644c38b@gmvnsl.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Fri, 12 Mar 2021 09:17:59 -0500
-Message-ID: <CAB__hTTE0CpXfpKMYgoScWTfZUvgFPHZriEU1FzirHMeYGQ6fQ@mail.gmail.com>
-To: Oliver Towlson <oliver.towlson@gmvnsl.com>
-Message-ID-Hash: AJQJ4ZMHUIUN3ZXJBV4VMLMDHJ45PTN4
-X-Message-ID-Hash: AJQJ4ZMHUIUN3ZXJBV4VMLMDHJ45PTN4
-X-MailFrom: rkossler@nd.edu
+        h=x-gm-message-state:from:content-transfer-encoding:mime-version
+         :subject:message-id:date:to;
+        bh=a9fIW8fVjm8KJ1Tom7M1WJ3WaiHroishlEqLGIbHx9Q=;
+        b=ujmQqEfjqNLDVe0b0FpnxCk7Ea9ha4fBcSDjfFa6cUIpiv3kuez8xmijY982DNTyjJ
+         8D3q+SBJOqJlFwU/FdV9FKEL58xyp7QHeXIBAa0vgQFXL33rFKwHvT/eQe5+ZZ4viGIB
+         YsMGFS9pr0vAMBG5TBGgei4NWdv3+CL00eKf9TOPDvu0OUCtRyzR/CDCgX0ejwuYAhqo
+         z3oTBL/XgKId7m8cZON09fW6Blz5wyXJHlYL6ag3VU5Kb9Xijns4c/xUwGu6d3t89ZgE
+         0ev3xdf3pUJ5wThKsl18zWufPF9VkkDIcDre3DiGDdDihu62r/qWKBe8zv+9QXUmg/PO
+         1ODg==
+X-Gm-Message-State: AOAM530Xhjhs3c7cDj4MSQUcNLFETt3H0ujacJGkqToXqg26Bw9dzyPu
+	TMOy2JgLTUBkMODIegs5Cs7Rs4QZGLLZIA==
+X-Google-Smtp-Source: ABdhPJzYSNe7GgHC91vINMS1ZVrC9mcSU47ahOluEoZtwP1jMVxk+9NhBAOZYhTEN0xPGBMn+f0AGA==
+X-Received: by 2002:a05:620a:681:: with SMTP id f1mr12866111qkh.280.1615560381058;
+        Fri, 12 Mar 2021 06:46:21 -0800 (PST)
+Received: from [192.168.2.118] (pool-173-66-203-125.washdc.fios.verizon.net. [173.66.203.125])
+        by smtp.gmail.com with ESMTPSA id d24sm4481249qkl.49.2021.03.12.06.46.20
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 12 Mar 2021 06:46:20 -0800 (PST)
+From: "zcao@c3commsystems.com" <zcao@c3commsystems.com>
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.60.0.2.21\))
+Message-Id: <FD198C20-65B8-46CA-BFF9-A17552914FB2@c3commsystems.com>
+Date: Fri, 12 Mar 2021 09:46:19 -0500
+To: USRP-users <usrp-users@lists.ettus.com>
+X-Mailer: Apple Mail (2.3654.60.0.2.21)
+Message-ID-Hash: ZFKQNHWSEDMGM4O3WLDDE6ZAW4II2RZU
+X-Message-ID-Hash: ZFKQNHWSEDMGM4O3WLDDE6ZAW4II2RZU
+X-MailFrom: zcao@c3commsystems.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X310 with dual TwinRX set up
+Subject: [USRP-users] Why TRX port has 20+ dB more loss than RX port for received signals?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AJQJ4ZMHUIUN3ZXJBV4VMLMDHJ45PTN4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZFKQNHWSEDMGM4O3WLDDE6ZAW4II2RZU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6347989961240595479=="
-
---===============6347989961240595479==
-Content-Type: multipart/alternative; boundary="000000000000d84f6e05bd579135"
-
---000000000000d84f6e05bd579135
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Is there any chance that your code is attempting to set the master clock
-rate?  If so, perhaps see what happens if you don't set it in order to let
-it be set automatically.
-
-On Fri, Mar 12, 2021 at 8:55 AM Oliver Towlson <oliver.towlson@gmvnsl.com>
-wrote:
-
-> Hi everyone
->
->
->
-> Thanks so much for your quick responses. Seems like the thing we were
-> missing was that subdev spec =E2=80=93 once that was set it was straightf=
-orward to
-> generate the code.
->
->
->
-> We tried running it and got the following:
->
->
->
-> *[INFO] [UHD] linux; GNU C++ version 9.2.1 20200304; Boost_107100;
-> UHD_3.15.0.0-2build5*
->
-> *[INFO] [X300] X300 initialization sequence...*
->
-> *[INFO] [X300] Maximum frame size: 8000 bytes.*
->
-> *[INFO] [X300] Maximum frame size: 8000 bytes.*
->
-> *[INFO] [X300] Radio 1x clock: 200 MHz*
->
-> *[INFO] [X300] Radio 1x clock: 200 MHz*
->
-> *[INFO] [1/DmaFIFO_0] Initializing block control (NOC ID:
-> 0xF1F0D00000000000)*
->
-> *[INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1317 MB/s)*
->
-> *[INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1301 MB/s)*
->
-> *[INFO] [1/Radio_0] Initializing block control (NOC ID:
-> 0x12AD100000000001)*
->
-> *[INFO] [1/Radio_1] Initializing block control (NOC ID:
-> 0x12AD100000000001)*
->
-> *[INFO] [1/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)=
-*
->
-> *[INFO] [1/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)=
-*
->
-> *[INFO] [1/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)=
-*
->
-> *[INFO] [1/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)=
-*
->
-> *[WARNING] [X300] Cannot update master clock rate! X300 Series does not
-> allow changing the clock rate during runtime.*
->
-> *terminate called after throwing an instance of 'uhd::io_error'*
->
-> *  what():  EnvironmentError: IOError: Block ctrl (CE_00_Port_30) no
-> response packet - AssertionError: bool(buff)*
->
-> *  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double)
-> [with uhd::endianness_t _endianness =3D uhd::ENDIANNESS_BIG; uint64_t =3D=
- long
-> unsigned int]*
->
-> *  at /build/uhd-FRfZNJ/uhd-3.15.0.0/host/lib/rfnoc/ctrl_iface.cpp:151*
->
->
->
-> *Aborted (core dumped)*
->
->
->
-> Googling didn=E2=80=99t result in any answers beyond resetting the whole =
-device.
-> But it does seem like a common error. As you say, the 4xRF_in set-up is
-> fairly standard so I=E2=80=99m not sure what is causing the issue. The ex=
-ample
-> rx_samples_to_file script runs fine (although it doesn=E2=80=99t seem to =
-write
-> anything, but it does seems to stream data fine)
->
->
->
-> Let me know if you need any more information.
->
->
->
-> Thanks very much
->
->
->
-> Oliver
->
-> P Please consider the environment before printing this e-mail.
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---000000000000d84f6e05bd579135
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Is there any chance that your code is attempting to set th=
-e master clock rate?=C2=A0 If so, perhaps see what happens if you don&#39;t=
- set it in order to let it be set automatically.</div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Mar 12, 2021 at 8:5=
-5 AM Oliver Towlson &lt;<a href=3D"mailto:oliver.towlson@gmvnsl.com">oliver=
-.towlson@gmvnsl.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_2344106125915786502WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif">Hi everyone
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif">Thanks so much for your quick responses. Seems like the thing we =
-were missing was that subdev spec =E2=80=93 once that was set it was straig=
-htforward to generate the code.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif">We tried running it and got the following:<u></u><u></u></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [UHD] linux; GNU C++ version 9.2.1 20200304; Boost_1071=
-00; UHD_3.15.0.0-2build5<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [X300] X300 initialization sequence...<u></u><u></u></s=
-pan></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [X300] Maximum frame size: 8000 bytes.<u></u><u></u></s=
-pan></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [X300] Maximum frame size: 8000 bytes.<u></u><u></u></s=
-pan></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [X300] Radio 1x clock: 200 MHz<u></u><u></u></span></i>=
-</p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [X300] Radio 1x clock: 200 MHz<u></u><u></u></span></i>=
-</p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [1/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F=
-0D00000000000)<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1317 MB/s)<u></u=
-><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1301 MB/s)<u></u=
-><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [1/Radio_0] Initializing block control (NOC ID: 0x12AD1=
-00000000001)<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [1/Radio_1] Initializing block control (NOC ID: 0x12AD1=
-00000000001)<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [1/DDC_0] Initializing block control (NOC ID: 0xDDC0000=
-000000000)<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [1/DDC_1] Initializing block control (NOC ID: 0xDDC0000=
-000000000)<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [1/DUC_0] Initializing block control (NOC ID: 0xD0C0000=
-000000000)<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[INFO] [1/DUC_1] Initializing block control (NOC ID: 0xD0C0000=
-000000000)<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">[WARNING] [X300] Cannot update master clock rate! X300 Series =
-does not allow changing the clock rate during runtime.<u></u><u></u></span>=
-</i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">terminate called after throwing an instance of &#39;uhd::io_er=
-ror&#39;<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">=C2=A0 what():=C2=A0 EnvironmentError: IOError: Block ctrl (CE=
-_00_Port_30) no response packet - AssertionError: bool(buff)<u></u><u></u><=
-/span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">=C2=A0 in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_fo=
-r_ack(bool, double) [with uhd::endianness_t _endianness =3D uhd::ENDIANNESS=
-_BIG; uint64_t =3D long unsigned int]<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">=C2=A0 at /build/uhd-FRfZNJ/uhd-3.15.0.0/host/lib/rfnoc/ctrl_i=
-face.cpp:151<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif"><u></u>=C2=A0<u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif">Aborted (core dumped)<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif">Googling didn=E2=80=99t result in any answers beyond resetting th=
-e whole device. But it does seem like a common error. As you say, the 4xRF_=
-in set-up is fairly standard so I=E2=80=99m not
- sure what is causing the issue. The example rx_samples_to_file script runs=
- fine (although it doesn=E2=80=99t seem to write anything, but it does seem=
-s to stream data fine)</span><span style=3D"font-size:10pt;font-family:Verd=
-ana,sans-serif"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif">Let me know if you need any more information.<u></u><u></u></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif">Thanks very much<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif">Oliver</span><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif"><u></u><u></u></span></p>
-</div>
-<span><br>
-</span><span style=3D"font-size:18pt;line-height:125%;font-family:Webdings;=
-color:green">P<span></span>
-<span style=3D"font-size:7pt;line-height:125%;font-family:Arial,sans-serif;=
-color:green">
-Please consider the environment before printing this e-mail.</span></span><=
-span></span>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000d84f6e05bd579135--
-
---===============6347989961240595479==
 Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+
+Hi, 
+
+We are implementing a TDD system and using the TRX-A port in lab testing. To facilitate TX/RX switch, we built control logic to control the GPIO pin to flip SW1 on Page 7 of the published E310 daughter board schematics. 
+
+What we noticed are:
+1. The RX ports cannot be cut off, so we must disconnect antenna if we want to use TRX port only.
+2. The received signal power from TRX is about 22 dB less than that received from the RX port, given the same TX power and testing configuration.
+
+The above observations are consistent across multiple E310s between my company and our collaborators. So we have the following questions.
+
+(Q1) Is this by design, or we might have missed something in our setup?
+(Q2) If you think our design or setup may have problems, could you please offer some suggestions?
+
+Thanks,
+Arnold
+
 
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============6347989961240595479==--
