@@ -2,222 +2,269 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTP id 74042338F59
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Mar 2021 15:04:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D0A5338F64
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Mar 2021 15:06:25 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1E644383C13
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Mar 2021 09:04:09 -0500 (EST)
-Received: from resqmta-po-09v.sys.comcast.net (resqmta-po-09v.sys.comcast.net [96.114.154.168])
-	by mm2.emwd.com (Postfix) with ESMTPS id CFCAE383AFB
-	for <usrp-users@lists.ettus.com>; Fri, 12 Mar 2021 09:03:55 -0500 (EST)
-Received: from resomta-po-09v.sys.comcast.net ([96.114.154.233])
-	by resqmta-po-09v.sys.comcast.net with ESMTP
-	id KiHqlYDot6cSdKiOQldVHC; Fri, 12 Mar 2021 14:03:54 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
-	s=20190202a; t=1615557834;
-	bh=qhkxDaRuXwoOSGQ5GGuOtJemP3xJRZ6A6r22LOqvyX4=;
-	h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
-	 Content-Type;
-	b=CJ/t+4W7ASklwH4WSFpoz4MC8ecWGSIu0WnXmNudqKaN4kl82Q3AH/5kw/X1+8u30
-	 kFVC1jlcMWEKSYHDENy6Mew4GyaCtvlhTbYUKP8zyBzDLfPKIDOSniWeiaNqRJdSX6
-	 Ae/xAqBxdnklnFLVCnWFMTzIzZWTYlH0BF95Jbw1MA+TaG+Nf6bgQzHPtuFfMS3tQm
-	 eRJtRN0ytTvwf+s0Z1wN3Z+3WOb61bFZCJGPseyLGJ71HanN/citFiJ21HYAtbxuII
-	 7Zm7G5NLcHCmEnnqDszLIPJNcRZfrMhfnLbRwwah6VOLMblINA9nnlr6CdIy7UfXgB
-	 oHEOt9UL8sZPw==
-Received: from [IPv6:2601:647:4700:284:582a:eca:fa0e:e434]
- ([IPv6:2601:647:4700:284:582a:eca:fa0e:e434])
-	by resomta-po-09v.sys.comcast.net with ESMTPSA
-	id KiOPlLPJQDxZcKiOPlzjdm; Fri, 12 Mar 2021 14:03:54 +0000
-X-Xfinity-VMeta: sc=0.00;st=legit
-To: usrp-users@lists.ettus.com
-References: <4f926d9528d3498293db378bed26308f@external.thalesgroup.com>
-From: Ron Economos <w6rz@comcast.net>
-Message-ID: <566afcea-f9c3-5dfd-538d-ecbd16e6fb7c@comcast.net>
-Date: Fri, 12 Mar 2021 06:03:52 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <4f926d9528d3498293db378bed26308f@external.thalesgroup.com>
+	by mm2.emwd.com (Postfix) with ESMTP id 4FB21383DCB
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Mar 2021 09:06:24 -0500 (EST)
+Received: from mailserver2a.caci.com (mailserver2a.caci.com [204.194.77.94])
+	by mm2.emwd.com (Postfix) with ESMTPS id E74C5383CE7
+	for <usrp-users@lists.ettus.com>; Fri, 12 Mar 2021 09:04:56 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=caci.com; i=@caci.com; q=dns/txt; s=caci;
+  t=1615557897; x=1647093897;
+  h=from:to:subject:date:message-id:mime-version;
+  bh=ozJABFJy3PEJ1EWXpeQygnCBRiYS8y5NHa6CZ4c7WS4=;
+  b=rCQ+goH7Brb0ivOrL9m+WrV7ktlZPQJptlad9pCvfcjPwpKlyH7lyw6Z
+   RFj48DBFFc6YyokRGFqGQ0qSBRzU0f09XOgfllq7qOMvPKzP0ZXvVfgVZ
+   XbgCOTdWFAfjSixIV1wykALZEsQEL5TW5AvqLHjrQGkeSgNyU/LhEFIWO
+   QBa4RiosHJhbSLoPsVuYb/AiDEkgQF/S/M0SEL2lYjWQO/XKeGbGKiMMc
+   GRKfNjk/XyV6hBJBSWw17NvHo6IIAdauATHyeGWnitz1gFa8zfkAF7bkt
+   8R0ibHGPBf5jzjgzwDJGPDqCwcCFhc+Uwov3+bXUMB9sJWWAUrEAp0fyj
+   A==;
+IronPort-SDR: o15OCL1CckYXd/s/kHWHpdR3xqNto/AomYPLATcHgWLeriMbG6ehbOzOHxh9NNz22kqcG+oWYF
+ Mt68S/nYS6RgZJTbHOBAPrWf6ns2doQT0jsJgfGZYibX6ue6VD7FBq6BYDPtY7vhjC2Pv4PJbM
+ 8R7hpcA8N2WRY58GzT7+RoOYCvNcZOD6R52TQwc2ziO6hCfQHsJsSKLWe2/hV+sR8wkFIzt2U2
+ ArwPwehxOAswAwxd6QJ0YRLWwzvqaUfOGifMipBVfQPDzAlwANLgkJUwSI4MX+fJT8XHRlavCy
+ Sz8=
+X-IronPort-AV: E=Sophos;i="5.81,243,1610427600";
+   d="scan'208,217";a="13854379"
+Received: from cisexcasmb03-1a.caci.com ([10.201.50.155])
+  by mailserver2a.caci.com with ESMTP/TLS/ECDHE-RSA-AES128-SHA256; 12 Mar 2021 09:04:57 -0500
+Received: from CISEXCASMB03-2A.caci.com (10.201.50.156) by
+ CISEXCASMB03-1a.caci.com (10.201.50.155) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 12 Mar 2021 09:04:56 -0500
+Received: from USG02-CY1-obe.outbound.protection.office365.us (10.201.136.43)
+ by CISEXCASMB03-2A.caci.com (10.201.50.156) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.2 via Frontend Transport; Fri, 12 Mar 2021 09:04:56 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=RPaVq9ozgzLtX1L9HLpv27ThH8kxxAr+eZv0CgqcYOwx2St1DflMZQlWbtevOlcpublZ81LVLLEooXQ/QjRI8DUATFwAXcUt4A8WWYJhEIh2xRnb9VzohSyJLh4aA2sJAAr2YKNyDRzsdn+Apzs1HF19/3LGZoBs2ljFLC+15sLpgnlD84sdB85b/VFXCLxAyTpDvmKRGkaspvftbWaEY/0Tlofb7bPDodCsDUg/fkqb8bQkjJ/22N2D6eGLE9WbhuiYmup+zxZjWn5EufvsmvnRxSV7usYnXA/liQV2ZVPVjMVBmoGjHQumyMQxEJC2QMZgqTWTEolfdU5yChSOVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector5401;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ozJABFJy3PEJ1EWXpeQygnCBRiYS8y5NHa6CZ4c7WS4=;
+ b=mwh91FrviJpgxNxzRSutugLeyOriEu1gKfTRXrwgKwsh4VcW67MGo+PyA+/0ZNEVBVYqpAJ8U+FPNPOTQ0k/GK7Ty7APnPdTHo+esaQY8K6iL8kjX4IZL8H/UpnE40MN32Ir2kVaq1xizmk4cD/6+MbubN3+JjbwY6BltK1HrZ0hjmJWVOxeGgigvqCvH2YXMjYBNoZ7y9lAktc3mq0Ft5gMhYTvzpc5nbJ+tvG5Rms6oNtjAa5lukehJaRrbKyjlVkJA+Sd3zFz0GMgdB5zbaNrp6Wa61ICgH0Tf0LBrbFPoPvWWh0XXiT7oPTlfgtqCAcHmW1z+cAReXtguyT1aA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=caci.com; dmarc=pass action=none header.from=caci.com;
+ dkim=pass header.d=caci.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=caci.onmicrosoft.com;
+ s=selector1-caci-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ozJABFJy3PEJ1EWXpeQygnCBRiYS8y5NHa6CZ4c7WS4=;
+ b=I0PqIQK39fifES8tyxVgNm+TT5gHvgzeno9+RyD7d/4dco+n4ddaBg69CTAMQ7aowD+TdZUi50kuW69JYSyYNNCT8Y6Cagrj0xSt0cWJtWTe1rHSJ8AQjdD4OrbGn75EhaajqUWOk21xRxVg39bvisI9r5sFlPhcD710c/11FHQ=
+Received: from BN3P110MB0338.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:409::12)
+ by BN3P110MB0546.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:40c::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.48; Fri, 12 Mar
+ 2021 14:04:53 +0000
+Received: from BN3P110MB0338.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::d95a:f5a3:7b13:1412]) by BN3P110MB0338.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::d95a:f5a3:7b13:1412%5]) with mapi id 15.20.3912.031; Fri, 12 Mar 2021
+ 14:04:53 +0000
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Have these issues been resolved?
+Thread-Index: AQHXF0QdOZ9rWhSlhUqxRWd1sjC/vQ==
+Date: Fri, 12 Mar 2021 14:04:53 +0000
+Message-ID: <BN3P110MB033890AE4465CCA4C5A559CBF66F9@BN3P110MB0338.NAMP110.PROD.OUTLOOK.COM>
+Accept-Language: en-US
 Content-Language: en-US
-Message-ID-Hash: 5BLTFRZNSOKT2R3A4CPNWPTNZJC5OZIY
-X-Message-ID-Hash: 5BLTFRZNSOKT2R3A4CPNWPTNZJC5OZIY
-X-MailFrom: w6rz@comcast.net
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none header.from=caci.com;
+x-originating-ip: [63.149.110.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: adb1c833-e8b8-4f18-7371-08d8e55fcf87
+x-ms-traffictypediagnostic: BN3P110MB0546:
+x-microsoft-antispam-prvs: <BN3P110MB054699FE92606D3059D71C83F66F9@BN3P110MB0546.NAMP110.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: dks7sHnsm1LlVb5l4ph3mwFkpFKaP+Hb4tsbLTfMiWjGzbhkxqN+WY5JuDBl2Z1wpgsvGhiaoR/MukHqlWHxnU7JdN1PPbWIlmGVw36kFlchAz9+laPKunhXNp16rhE115vbHceVDzgJ3iJhW9JeIUqMNAhiNogES9AvqiKTQ7fQLJOV80pQmgjegDhZamv1PLiExWpTHBbKadu8Sp7VwNYhxd5Hk+zADNHcT89+/HiNzNYqkxefWZa0ONKBJA3/i7f72z3O1RTh80EAVLqZSufPHmpUiXmKyqVlJzTqpPNFFibJt4RJZ5hnlmP10xiGDa23hu5E+divU9ESnODj9rE39w6QSGLcabyADNPEVRQ5ld0Xkv5Yba6d6MYI0mxU2Qm9zPh6ZwHiVrmNAunEi+eLy9OSfjA8ncijxaZTfEyi1xrPnomc3SLgtJLv+iaW1duViD0uuki6QDKcVYCxfEqRqBaSLemgdG58xB6MH71lEINnqXuOKddLRHHJ49sLMGmP25C3THwgWBwWTcBrwCokCpcaWw1hhXmNcGy3nBkAoezD6s7EwjrrfFNrbvzUKluJuxkgnVrMYTjSBCCRoFuLvrlW/Llw/ARWZByr4jo=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN3P110MB0338.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(136003)(396003)(39860400002)(346002)(366004)(376002)(316002)(186003)(2906002)(66556008)(7696005)(9686003)(55016002)(478600001)(66476007)(71200400001)(966005)(66446008)(6916009)(64756008)(5660300002)(86362001)(19627405001)(8676002)(66946007)(8936002)(83380400001)(166002)(52536014)(76116006)(26005)(6506007)(33656002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: qXHdWPjQ8SO89NXhV2McbWwWqGsDmMjmX3h8zuM9LLBhtDqEeWrfvxZwPJvHIBsVAH4oZO14Wxo0XxtZb8uKB4K8nFh9yq/3O+BWFaaEe95ev2sfVwibwAH+HZtd7ycmq0ca+FfEXEn1ojcElyNjQ3yhqDW5jIOp8sZRnlk8PnuH4VAiq1kk7CChWJIb9yGc75i2Ym5Kep0Qfp83ems9R8fFrJHV55hLKyIttoyNRh5MMqDLOQVYmVZh8zcUC/S0ZS7As16/KIjYuUZE7efqGX89vWj8oVx1bBLPDa4oH9N3xVpzTsPB+wNVsPPd/0onoMKIu8TK0EAp7kDRQoWDl3wQErcgx0JfePGrE+2jTpyOLoR56ePnqfEgEMseI0epkA09Y1E+DPhEpPfPzwZnY6xQg0IuYODQTqNij62ooGyFD3Oxk21QhcMJMAx7aHG4Zhl0le+oE9pW1cd6aJYgdY5XAEzHPKfRy2egDZ5bwqZkFaV3xcf+ywvfiIjbIavTXBVBW0gS1YBP1jd33EUHtB/8hoVVXtyRb4I/eC5mYf88haz9X+lOpp8wNX9ZD02gFQKgeU+CIf8YDOX2gXznEehgLFsaJyF/YEiYtFBJ+7auJgbZIJz7uISpw9GZnzjMEwPN0KlNI96q20FHackMeWMQTgh1P3xNNTu7SGtR2Ygeg5Dp8xan6Yul/SpSZGn5M72UDOW0/wyLTWKQloLugg==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN3P110MB0338.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: adb1c833-e8b8-4f18-7371-08d8e55fcf87
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2021 14:04:53.8000
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 74cf14f4-38e0-460b-9d96-c0a51cb4a55c
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3P110MB0546
+X-OriginatorOrg: caci.com
+Message-ID-Hash: 4DFBYGW2HMFZIJJBGPZDTAEDZRQNW6BQ
+X-Message-ID-Hash: 4DFBYGW2HMFZIJJBGPZDTAEDZRQNW6BQ
+X-MailFrom: prvs=6980b7c0c=william.brophy@caci.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: import error gnuradio
+Subject: [USRP-users] Have these issues been resolved?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5BLTFRZNSOKT2R3A4CPNWPTNZJC5OZIY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4DFBYGW2HMFZIJJBGPZDTAEDZRQNW6BQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1536021878500446229=="
+From: "Brophy, William A. - US via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Brophy, William A. - US" <william.brophy@caci.com>
+Content-Type: multipart/mixed; boundary="===============8117505517756527359=="
 
-This is a multi-part message in MIME format.
---===============1536021878500446229==
-Content-Type: multipart/alternative;
- boundary="------------8BD81E99D90F9D318D06418C"
+--===============8117505517756527359==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN3P110MB033890AE4465CCA4C5A559CBF66F9BN3P110MB0338NAMP_"
 
-This is a multi-part message in MIME format.
---------------8BD81E99D90F9D318D06418C
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--_000_BN3P110MB033890AE4465CCA4C5A559CBF66F9BN3P110MB0338NAMP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-You're probably missing the libsndfile dependency.
+SGksDQoNCkkgd2FzIGxvb2tpbmcgYXQgcmVsZWFzZSA0LjAuMCBvZiBVSEQuIFdlIGFyZSB0cmFj
+a2luZyBhIGxpc3Qgb2Ygb3V0c3RhbmRpbmcgaXNzdWVzIHdpdGggVUhEL1VTUlAgcmFkaW9zIGFu
+ZCB3ZXJlIHdvbmRlcmluZyBpZiBhbnkgb2YgdGhlc2UgaXNzdWVzIGhhdmUgYmVlbiBhZGRyZXNz
+ZWQgaW4gcmVjZW50IHJlbGVhc2VzIG9mIHRoZSBzb2Z0d2FyZS4gSSBhdHRlbXB0ZWQgdG8gZmlu
+ZCB0aGUgb3JpZ2luYWwgbWFpbGluZyBsaXN0IHBvc3RzIGZvciBlYWNoIG9mIHRoZXNlIHRpY2tl
+dHMgYnV0IHRoZSBzZWFyY2ggZnVuY3Rpb24gb24gdGhlIG5ldyBhcmNoaXZlIHNlZW1zIHRvIGJl
+IGJyb2tlbiDwn5mBDQoNCiAgMS4gIFVucGx1Z2dpbmcgYSBVU1JQIGNhdXNlcyB0aGUgYXBwbGlj
+YXRpb24gdG8gY3Jhc2guIFRoaXMgd2FzIHJlcG9ydGVkIGluIDIwMTg6IGh0dHBzOi8vbGlzdHMu
+ZXR0dXMuY29tL2VtcGF0aHkvdGhyZWFkLzJBQVNFM1pNQ0xTWE1XV1ozM1RYSkxWWlpNVFZUQUZS
+DQogIDIuICBJZiAxNmJpdCBzdHJlYW1lcnMgYXJlIHNhdmVkIGFuZCB0aGUgYml0IHJlc29sdXRp
+b24gb2YgdGhlIHN0cmVhbXMgYXJlIHN3aXRjaGVkIGJldHdlZW4gOCBhbmQgMTYsIHNvb24gYWZ0
+ZXIgY2FsbHMgdG8gcmVjdiB3aWxsIGJsb2NrIGFuZCBuZXZlciByZXR1cm4uIFRoZSBvbmx5IHdv
+cmthcm91bmQgd2UgaGF2ZSBmb3VuZCBpcyBub3Qgc2F2aW5nIGFueSBzdHJlYW1lcnMNCiAgMy4g
+IFRoZSBOMjEwIHJlc2FtcGxpbmcgcmF0ZSBnZXRzIHJlc2V0IHRvIHRoZSBkZWZhdWx0IGFmdGVy
+IGEgY2FsbCB0byB1aGRfdXNycF9wcm9iZQ0KICA0LiAgVHdpbiBSWCBwaGFzZSBkcmlmdHMgYXJl
+IG11Y2ggbGFyZ2VyIHRoYW4gZXhwZWN0ZWQsIGRyaWZ0aW5nIGFzIG11Y2ggYXMgLjEgcmFkaWFu
+cyBvdmVyIDYwcy4gTm90ZSwgdGhpcyB3YXMgdGhlIHBoYXNlIGRyaWZ0IG1lYXN1cmVkIGFjcm9z
+cyB0d28gYW50ZW5uYXMgb24gdGhlIHNhbWUgVHdpblJYIERCLg0KICA1LiAgQ2FwdHVyaW5nIG11
+bHRpLWNoYW5uZWwgaGlnaC1yYXRlIGRhdGEgdXNpbmcgdGhlIHgzMDAgY2FuIHJlc3VsdCBpbiBh
+biBvdmVyZmxvdyBlcnJvciAocmVhc29uYWJsZSkuIEhvd2V2ZXIsIG9uY2UgdGhpcyBzdHJlYW1l
+ciBpcyBkZWxldGVkIGFuZCBhIG5ldyBvbmUgaXMgY3JlYXRlZCBhbGwgZnV0dXJlIHN0cmVhbXMg
+cmVzdWx0IGluIHRoZSBUSU1FT1VUIGVycm9yIHVudGlsIHRoZSBlbnRpcmUgdWhkIGhhbmRsZSBp
+cyBkZWxldGVkIGFuZCByZWNyZWF0ZWQuDQogIDYuICBUaGUgeDMwMCBjYXB0dXJlL3JhZGlvIHRp
+bWVzIGFyZSBjb25zaXN0ZW50bHkgaHVuZHJlZHMgb2YgTVMgb2ZmLiBUaGlzIGlzIHZlcmlmaWFi
+bGUgYnkgbG9va2luZyBhdCB0aGUgcmVwb3J0ZWQgdGltZXN0YW1wcyBvZiBHUFMgZGlzY2lwbGlu
+ZWQgc2lnbmFscy4NCiAgNy4gIHRoZSB1aGQ6OmRldmljZTo6ZmluZCgpIGZ1bmN0aW9uIChubyBh
+cmdzKSBmcmVxdWVudGx5IGRldGVjdHMgInBoYW50b20iIHgzMDAgZGV2aWNlcyAoYSBkZXZpY2Ug
+dGhhdCBpc24ndCByZWFsbHkgdGhlcmUpLg0KICA4LiAgVGhlIHRpbWVzdGFtcHMgcmVwb3J0ZWQg
+YnkgdGhlIEIyMTAgcmFkaW8gYXJlIG9mZiBieSBsYXJnZSBzdWItc2Vjb25kIGZyYWN0aW9ucyB3
+aGVuIHVzaW5nIEdQUyB0aW1lIGFuZCB1c2luZyBhICJoaWdoIiBtYXN0ZXIgY2xvY2sgcmF0ZSAo
+aS5lLiA2MS40NE1IeikNCiAgOS4gIENhbiBnZXQgZW52aXJvbm1lbnQgZXJyb3JzIHdoZW4gYXR0
+ZW1wdGluZyB0byB1c2UgdGhlIFgzMDAgcmFkaW9zIGxpa2U6IEVudmlyb25tZW50RXJyb3I6IElP
+RXJyb3I6IFswL1JhZGlvXzFdIHNyX3dyaXRlKCkgZmFpbGVkOiBFbnZpcm9ubWVudEVycm9yOiBJ
+T0Vycm9yOiBCbG9jayBjdHJsIChDRV8wMl9Qb3J0XzUwKSBwYWNrZXQgcGFyc2UgZXJyb3IgLSBF
+bnZpcm9ubWVudEVycm9yOiBJT0Vycm9yOiBFeHBlY3RlZCBwYWNrZXQgaW5kZXg6IDE0NTggUmVj
+ZWl2ZWQgaW5kZXg6IDE0NTcNCiAgMTAuIFRoZSBYMzAwIHNlZW1zIHRvIGhhdmUgYSBsaW1pdCBv
+ZiAyNTYgUlggc3RyZWFtZXJzIHRoYXQgY2FuIGJlIGNyZWF0ZWQgKG5vdCBhdCBvbmNlLCBldmVy
+KSBiZWZvcmUgaGF2aW5nIHRvIGRlbGV0ZSBhbmQgcmVjcmVhdGUgdGhlIHVoZCBoYW5kbGUNCiAg
+MTEuIFdlIG9jY2FzaW9uYWxseSBzZWUgdGhlIFgzMTAgcmFkaW9zIHcvIDIgVHdpblJYIERCcyBn
+ZXQgaW50byBhIHN0YXRlIHdoZXJlIGl0IGRvZXMgbm90IHJlc3BvbmQgdG8gYW55IGNvbW11bmlj
+YXRpb25zLiBUaGUgb25seSB3b3JrYXJvdW5kIGlzIHRvIHJlc3RhcnQgdGhlIHJhZGlvLiBUaGUg
+cmVzcG9uc2Ugd2UgZ2V0IGJhY2sgd2hlbiBhdHRlbXB0aW5nIHRvIHVzZSB0aGUgcmFkaW8gaW4g
+dGhpcyBzdGF0ZSBpczogVUhEIEVycm9yOg0KeDMwMCBmdyBjb21tdW5pY2F0aW9uIGZhaWx1cmUg
+IzENCkVudmlyb25tZW50RXJyb3I6IElPRXJyb3I6IHgzMDAgZncgcGVlazMyIC0gcmVwbHkgdGlt
+ZWQgb3V0DQoNCkFueSBmZWVkYmFjayBvbiBpZiBhbnkgb2YgdGhlc2UgaXNzdWVzIGhhdmUgYmVl
+biByZXNvbHZlZCB3b3VsZCBiZSBhcHByZWNpYXRlZC4gSWYgeW91IHdvdWxkIGxpa2UgYW55IGFk
+ZGl0aW9uYWwgZGV0YWlscyBvbiBhbnkgcGxlYXNlIGxldCBtZSBrbm93Lg0KV2lsbA0KDQoNCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQoNClRoaXMgZWxlY3Ryb25pYyBtZXNzYWdl
+IGNvbnRhaW5zIGluZm9ybWF0aW9uIGZyb20gQ0FDSSBJbnRlcm5hdGlvbmFsIEluYyBvciBzdWJz
+aWRpYXJ5IGNvbXBhbmllcywgd2hpY2ggbWF5IGJlIGNvbXBhbnkgc2Vuc2l0aXZlLCBwcm9wcmll
+dGFyeSwgcHJpdmlsZWdlZCBvciBvdGhlcndpc2UgcHJvdGVjdGVkIGZyb20gZGlzY2xvc3VyZS4g
+VGhlIGluZm9ybWF0aW9uIGlzIGludGVuZGVkIHRvIGJlIHVzZWQgc29sZWx5IGJ5IHRoZSByZWNp
+cGllbnQocykgbmFtZWQgYWJvdmUuIElmIHlvdSBhcmUgbm90IGFuIGludGVuZGVkIHJlY2lwaWVu
+dCwgYmUgYXdhcmUgdGhhdCBhbnkgcmV2aWV3LCBkaXNjbG9zdXJlLCBjb3B5aW5nLCBkaXN0cmli
+dXRpb24gb3IgdXNlIG9mIHRoaXMgdHJhbnNtaXNzaW9uIG9yIGl0cyBjb250ZW50cyBpcyBwcm9o
+aWJpdGVkLiBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIHRyYW5zbWlzc2lvbiBpbiBlcnJvciwg
+cGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5Lg0K
 
-sudo apt-get install libsndfile1-dev
+--_000_BN3P110MB033890AE4465CCA4C5A559CBF66F9BN3P110MB0338NAMP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-And then rebuild GNU Radio (and OOT's).
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
+YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
+bG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkhpLDwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6
+IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsg
+Y29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZh
+bWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
+MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpJIHdhcyBsb29raW5nIGF0IHJlbGVhc2UgNC4w
+LjAgb2YgVUhELiBXZSBhcmUgdHJhY2tpbmcgYSBsaXN0IG9mIG91dHN0YW5kaW5nIGlzc3VlcyB3
+aXRoIFVIRC9VU1JQIHJhZGlvcyBhbmQgd2VyZSB3b25kZXJpbmcgaWYgYW55IG9mIHRoZXNlIGlz
+c3VlcyBoYXZlIGJlZW4gYWRkcmVzc2VkIGluIHJlY2VudCByZWxlYXNlcyBvZiB0aGUgc29mdHdh
+cmUuIEkgYXR0ZW1wdGVkIHRvIGZpbmQgdGhlIG9yaWdpbmFsIG1haWxpbmcgbGlzdCBwb3N0cyBm
+b3INCiBlYWNoIG9mIHRoZXNlIHRpY2tldHMgYnV0IHRoZSBzZWFyY2ggZnVuY3Rpb24gb24gdGhl
+IG5ldyBhcmNoaXZlIHNlZW1zIHRvIGJlIGJyb2tlbg0KPHNwYW4gaWQ9IvCfmYEiPvCfmYE8L3Nw
+YW4+IDxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEFyaWFs
+LCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAw
+LCAwKTsiPg0KPG9sPg0KPGxpPjxzcGFuPlVucGx1Z2dpbmcgYSBVU1JQIGNhdXNlcyB0aGUgYXBw
+bGljYXRpb24gdG8gY3Jhc2guIFRoaXMgd2FzIHJlcG9ydGVkIGluIDIwMTg6DQo8YSBocmVmPSJo
+dHRwczovL2xpc3RzLmV0dHVzLmNvbS9lbXBhdGh5L3RocmVhZC8yQUFTRTNaTUNMU1hNV1daMzNU
+WEpMVlpaTVRWVEFGUiIgaWQ9IkxQbG5rNTk1MzA5Ij4NCmh0dHBzOi8vbGlzdHMuZXR0dXMuY29t
+L2VtcGF0aHkvdGhyZWFkLzJBQVNFM1pNQ0xTWE1XV1ozM1RYSkxWWlpNVFZUQUZSPC9hPjwvc3Bh
+bj48L2xpPjxsaT48c3Bhbj5JZiAxNmJpdCBzdHJlYW1lcnMgYXJlIHNhdmVkIGFuZCB0aGUgYml0
+IHJlc29sdXRpb24gb2YgdGhlIHN0cmVhbXMgYXJlIHN3aXRjaGVkIGJldHdlZW4gOCBhbmQgMTYs
+IHNvb24gYWZ0ZXIgY2FsbHMgdG8gcmVjdiB3aWxsIGJsb2NrIGFuZCBuZXZlciByZXR1cm4uIFRo
+ZSBvbmx5IHdvcmthcm91bmQgd2UgaGF2ZSBmb3VuZCBpcyBub3Qgc2F2aW5nIGFueSBzdHJlYW1l
+cnM8L3NwYW4+PC9saT48bGk+PHNwYW4+VGhlIE4yMTAgcmVzYW1wbGluZyByYXRlIGdldHMgcmVz
+ZXQgdG8gdGhlIGRlZmF1bHQgYWZ0ZXIgYSBjYWxsIHRvIHVoZF91c3JwX3Byb2JlPC9zcGFuPjwv
+bGk+PGxpPjxzcGFuPlR3aW4gUlggcGhhc2UgZHJpZnRzIGFyZSBtdWNoIGxhcmdlciB0aGFuIGV4
+cGVjdGVkLCBkcmlmdGluZyBhcyBtdWNoIGFzIC4xIHJhZGlhbnMgb3ZlciA2MHMuIE5vdGUsIHRo
+aXMgd2FzIHRoZSBwaGFzZSBkcmlmdCBtZWFzdXJlZCBhY3Jvc3MgdHdvIGFudGVubmFzIG9uIHRo
+ZSBzYW1lIFR3aW5SWCBEQi48L3NwYW4+PC9saT48bGk+PHNwYW4+Q2FwdHVyaW5nIG11bHRpLWNo
+YW5uZWwgaGlnaC1yYXRlIGRhdGEgdXNpbmcgdGhlIHgzMDAgY2FuIHJlc3VsdCBpbiBhbiBvdmVy
+ZmxvdyBlcnJvciAocmVhc29uYWJsZSkuIEhvd2V2ZXIsIG9uY2UgdGhpcyBzdHJlYW1lciBpcyBk
+ZWxldGVkIGFuZCBhIG5ldyBvbmUgaXMgY3JlYXRlZCBhbGwgZnV0dXJlIHN0cmVhbXMgcmVzdWx0
+IGluIHRoZSBUSU1FT1VUIGVycm9yIHVudGlsIHRoZSBlbnRpcmUgdWhkIGhhbmRsZSBpcyBkZWxl
+dGVkDQogYW5kIHJlY3JlYXRlZC48L3NwYW4+PC9saT48bGk+PHNwYW4+VGhlIHgzMDAgY2FwdHVy
+ZS9yYWRpbyB0aW1lcyBhcmUgY29uc2lzdGVudGx5IGh1bmRyZWRzIG9mIE1TIG9mZi4gVGhpcyBp
+cyB2ZXJpZmlhYmxlIGJ5IGxvb2tpbmcgYXQgdGhlIHJlcG9ydGVkIHRpbWVzdGFtcHMgb2YgR1BT
+IGRpc2NpcGxpbmVkIHNpZ25hbHMuJm5ic3A7PC9zcGFuPjwvbGk+PGxpPjxzcGFuPnRoZSB1aGQ6
+OmRldmljZTo6ZmluZCgpIGZ1bmN0aW9uIChubyBhcmdzKSBmcmVxdWVudGx5IGRldGVjdHMgJnF1
+b3Q7cGhhbnRvbSZxdW90OyB4MzAwIGRldmljZXMgKGEgZGV2aWNlIHRoYXQgaXNuJ3QgcmVhbGx5
+IHRoZXJlKS4NCjxicj4NCjwvc3Bhbj48L2xpPjxsaT48c3Bhbj5UaGUgdGltZXN0YW1wcyByZXBv
+cnRlZCBieSB0aGUgQjIxMCByYWRpbyBhcmUgb2ZmIGJ5IGxhcmdlIHN1Yi1zZWNvbmQgZnJhY3Rp
+b25zIHdoZW4gdXNpbmcgR1BTIHRpbWUgYW5kIHVzaW5nIGEgJnF1b3Q7aGlnaCZxdW90OyBtYXN0
+ZXIgY2xvY2sgcmF0ZSAoaS5lLiA2MS40NE1Ieik8L3NwYW4+PC9saT48bGk+PHNwYW4+Q2FuIGdl
+dCBlbnZpcm9ubWVudCBlcnJvcnMgd2hlbiBhdHRlbXB0aW5nIHRvIHVzZSB0aGUgWDMwMCByYWRp
+b3MgbGlrZTogRW52aXJvbm1lbnRFcnJvcjogSU9FcnJvcjogWzAvUmFkaW9fMV0gc3Jfd3JpdGUo
+KSBmYWlsZWQ6IEVudmlyb25tZW50RXJyb3I6IElPRXJyb3I6IEJsb2NrIGN0cmwgKENFXzAyX1Bv
+cnRfNTApIHBhY2tldCBwYXJzZSBlcnJvciAtIEVudmlyb25tZW50RXJyb3I6IElPRXJyb3I6IEV4
+cGVjdGVkIHBhY2tldA0KIGluZGV4OiAxNDU4IFJlY2VpdmVkIGluZGV4OiAxNDU3PC9zcGFuPjwv
+bGk+PGxpPjxzcGFuPlRoZSBYMzAwIHNlZW1zIHRvIGhhdmUgYSBsaW1pdCBvZiAyNTYgUlggc3Ry
+ZWFtZXJzIHRoYXQgY2FuIGJlIGNyZWF0ZWQgKG5vdCBhdCBvbmNlLCBldmVyKSBiZWZvcmUgaGF2
+aW5nIHRvIGRlbGV0ZSBhbmQgcmVjcmVhdGUgdGhlIHVoZCBoYW5kbGU8L3NwYW4+PC9saT48bGk+
+PHNwYW4+V2Ugb2NjYXNpb25hbGx5IHNlZSB0aGUgWDMxMCByYWRpb3Mgdy8gMiBUd2luUlggREJz
+IGdldCBpbnRvIGEgc3RhdGUgd2hlcmUgaXQgZG9lcyBub3QgcmVzcG9uZCB0byBhbnkgY29tbXVu
+aWNhdGlvbnMuIFRoZSBvbmx5IHdvcmthcm91bmQgaXMgdG8gcmVzdGFydCB0aGUgcmFkaW8uIFRo
+ZSByZXNwb25zZSB3ZSBnZXQgYmFjayB3aGVuIGF0dGVtcHRpbmcgdG8gdXNlIHRoZSByYWRpbyBp
+biB0aGlzIHN0YXRlIGlzOiBVSEQgRXJyb3I6PGJyPg0KeDMwMCBmdyBjb21tdW5pY2F0aW9uIGZh
+aWx1cmUgIzE8YnI+DQpFbnZpcm9ubWVudEVycm9yOiBJT0Vycm9yOiB4MzAwIGZ3IHBlZWszMiAt
+IHJlcGx5IHRpbWVkIG91dDwvc3Bhbj48L2xpPjwvb2w+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRp
+dj5BbnkgZmVlZGJhY2sgb24gaWYgYW55IG9mIHRoZXNlIGlzc3VlcyBoYXZlIGJlZW4gcmVzb2x2
+ZWQgd291bGQgYmUgYXBwcmVjaWF0ZWQuIElmIHlvdSB3b3VsZCBsaWtlIGFueSBhZGRpdGlvbmFs
+IGRldGFpbHMgb24gYW55IHBsZWFzZSBsZXQgbWUga25vdy48L2Rpdj4NCjxkaXY+V2lsbDwvZGl2
+Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPGJyPg0KPGhyPg0KPGZvbnQgZmFjZT0iQXJp
+YWwiIGNvbG9yPSJHcmF5IiBzaXplPSIxIj48YnI+DQpUaGlzIGVsZWN0cm9uaWMgbWVzc2FnZSBj
+b250YWlucyBpbmZvcm1hdGlvbiBmcm9tIENBQ0kgSW50ZXJuYXRpb25hbCBJbmMgb3Igc3Vic2lk
+aWFyeSBjb21wYW5pZXMsIHdoaWNoIG1heSBiZSBjb21wYW55IHNlbnNpdGl2ZSwgcHJvcHJpZXRh
+cnksIHByaXZpbGVnZWQgb3Igb3RoZXJ3aXNlIHByb3RlY3RlZCBmcm9tIGRpc2Nsb3N1cmUuIFRo
+ZSBpbmZvcm1hdGlvbiBpcyBpbnRlbmRlZCB0byBiZSB1c2VkIHNvbGVseSBieSB0aGUgcmVjaXBp
+ZW50KHMpDQogbmFtZWQgYWJvdmUuIElmIHlvdSBhcmUgbm90IGFuIGludGVuZGVkIHJlY2lwaWVu
+dCwgYmUgYXdhcmUgdGhhdCBhbnkgcmV2aWV3LCBkaXNjbG9zdXJlLCBjb3B5aW5nLCBkaXN0cmli
+dXRpb24gb3IgdXNlIG9mIHRoaXMgdHJhbnNtaXNzaW9uIG9yIGl0cyBjb250ZW50cyBpcyBwcm9o
+aWJpdGVkLiBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIHRyYW5zbWlzc2lvbiBpbiBlcnJvciwg
+cGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5Ljxicj4NCjwvZm9udD4NCjwvYm9k
+eT4NCjwvaHRtbD4NCg==
 
-Ron
+--_000_BN3P110MB033890AE4465CCA4C5A559CBF66F9BN3P110MB0338NAMP_--
 
-On 3/12/21 05:49, COURANT Frederique - Contractor via USRP-users wrote:
->
-> Hi Users,
->
-> When I try to run my flow graph I have this error :
->
-> from .blocks_python import *
->
-> ImportError: 
-> /usr/local/lib/python3/dist-packages/gnuradio/blocks/-blocks_python.cpython-38-x86_64-linux-gnu.so 
-> : undefined symbol: 
-> _/ZN2gr6blocks12wavfile/_sink4makeEPKcijNS0_16wavfile_format_tENS-0_19wavfile_subformat_tEb
->
-> Someone has solutions for resolve this problem please ?
->
-> I work with UHD4.0 and gnuradio3.9
->
-> Thanks.
->
-> Best regards.
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---------------8BD81E99D90F9D318D06418C
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html;
-      charset=3Dwindows-1252">
-  </head>
-  <body>
-    <p>You're probably missing the libsndfile dependency.</p>
-    <p>sudo apt-get install libsndfile1-dev</p>
-    <p>And then rebuild GNU Radio (and OOT's).</p>
-    <p>Ron<br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 3/12/21 05:49, COURANT Frederique -
-      Contractor via USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:4f926d9528d3498293db378bed26308f@external.thalesgroup.c=
-om">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html;
-        charset=3Dwindows-1252">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Hi Users,<o:p></o:p><=
-/span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
-</p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">When I try to run my
-            flow graph I have this error :<o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
-</p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">from .blocks_python
-            import *<o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">ImportError:
-/usr/local/lib/python3/dist-packages/gnuradio/blocks/-blocks_python.cpyth=
-on-38-x86_64-linux-gnu.so
-            : undefined symbol: _<i>ZN2gr6blocks12wavfile</i>_sink4makeEP=
-KcijNS0_16wavfile_format_tENS-0_19wavfile_subformat_tEb<o:p></o:p></span>=
-</p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
-</p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Someone has solutions
-            for resolve this problem please ?<o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">I work with UHD4.0 an=
-d
-            gnuradio3.9<o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
-</p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks.<o:p></o:p></s=
-pan></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
-</p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards.<o:p></o=
-:p></span></p>
-      </div>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------8BD81E99D90F9D318D06418C--
-
---===============1536021878500446229==
+--===============8117505517756527359==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -227,4 +274,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1536021878500446229==--
+--===============8117505517756527359==--
