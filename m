@@ -2,170 +2,120 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1A2433D512
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Mar 2021 14:43:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D160733D596
+	for <lists+usrp-users@lfdr.de>; Tue, 16 Mar 2021 15:15:14 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 39438383BA7
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Mar 2021 09:43:18 -0400 (EDT)
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id B8B9E383A2B
-	for <usrp-users@lists.ettus.com>; Tue, 16 Mar 2021 09:43:09 -0400 (EDT)
-Received: by mail-qk1-f172.google.com with SMTP id g185so35180979qkf.6
-        for <usrp-users@lists.ettus.com>; Tue, 16 Mar 2021 06:43:09 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CB63D38382F
+	for <lists+usrp-users@lfdr.de>; Tue, 16 Mar 2021 10:15:13 -0400 (EDT)
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id ACE0638381F
+	for <usrp-users@lists.ettus.com>; Tue, 16 Mar 2021 10:15:04 -0400 (EDT)
+Received: by mail-ed1-f52.google.com with SMTP id e7so21689944edu.10
+        for <usrp-users@lists.ettus.com>; Tue, 16 Mar 2021 07:15:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=message-id:date:from:user-agent:mime-version:to:subject:references
-         :in-reply-to;
-        bh=xmJtBMZwO1uqzVE1MtA3728oMFxe7IjfDLNueE88jnA=;
-        b=GL9ZGbJ03HxbfGlgROKs1PeAkaz/Ck1yEoP+sSOPCk8wKYnfAps1aBNWKo7bmtwCYL
-         H8mWdXRR8p+QvLfMwXZgZP+AYZaVFBOntSEogtZjEnTqHD+4MzyR4tI/itSQ5ShCayF1
-         /GYcsJTol1ak0HDEoapfRNdnmt1faUrbsSVHhoNNZsaX5CQuBN0wU7Ec67RQvgLmJLrv
-         orCXDIAStDEreGvLG9E1DXbAwJI1sQdZc+IgFiCbb7lxvQHl6jj9wl6GxKOrmOCVgqUF
-         0yrYllvUQglFiygm2uUeN94L2Rzsc7DJFCEY1OpDcZmM5v8NKztdn9b5oFaHdJbaOoy/
-         QvGg==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=+m/RDIaFV2UwPLi9oKistDzjiDl7chkKVJKNgJnfIXQ=;
+        b=H6OjbVp8VYkJtTjVaWI5YpxEfqJJO9cG2gs5CrKGcsnq8cgrSry/wePfCcYFmP/gLE
+         /h15w8uGOpmu/7dILY7zplhIkp1UU/RnDUniXmLU1i18JV9VLA8nOH/KGhek3GIa/TlT
+         2HubLC3d0ly611et3qFvi3oSrVBQjtsCXH9ySyrZjl3nZ2urR8OK97YD52J1ZJEsUfQ0
+         UfofVVO12PnilHZaLnoV1tN47Z8Ac+LmZ/vtX0mo3Uue9kmaBv4s2SPPqhf9clBo6F00
+         Uja2+FHjen/CXAAnn0Ypk4ICg2v7BWMofV2fsMgx2JUwGBbwSEvm4EMDw679BSUNIbJP
+         z4qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-         :subject:references:in-reply-to;
-        bh=xmJtBMZwO1uqzVE1MtA3728oMFxe7IjfDLNueE88jnA=;
-        b=JhVuocNxhDg0MtufgO8PIi4wvlZHVCxGhlWigkciekpH5JqmW/9iF4mZEVRVYO+mMb
-         ITfz+dYEi8jgYeaf45zv7opsypf2oo6O5/z6Y6daIxQLzvLVzFd9ZpOOObyICJoUBYMb
-         l3Nt9OulPy0dIbVD8lfEmcrPGsZkk3Ggqhlh7POu72QHYXKJrF1kR4BhTUSnYI58X6tK
-         9Nh3QpQlYgogdsBNCA+CpJ+2dP1qDBo4qYlOcZMP8/jamNjNIYyPlRTBMce208hhW7CU
-         zaf0f3IzbI0XSh9InozYKBh3GK9LKIWowsYoN4BLrmD/xIN+VKzhkKqz88OeDItF/ATZ
-         kS5A==
-X-Gm-Message-State: AOAM533F3nQRimTTom0XnvWujG/SN+j2Wc9D0gEtlps5nj3ityhJa4yH
-	2kT754NNDmh64Z1goRYQw2GkqtPE14g=
-X-Google-Smtp-Source: ABdhPJytiBucBmml68RFJ6yZGfUXwpKIMx8Y1ps6T/HYhwvtKmfkG12Zc+wybA4lmsBEvV3DmoES5A==
-X-Received: by 2002:a37:9c4d:: with SMTP id f74mr31595864qke.202.1615902189039;
-        Tue, 16 Mar 2021 06:43:09 -0700 (PDT)
-Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id z4sm15363816qkb.94.2021.03.16.06.43.08
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 16 Mar 2021 06:43:08 -0700 (PDT)
-Message-ID: <6050B5EC.90606@gmail.com>
-Date: Tue, 16 Mar 2021 09:43:08 -0400
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=+m/RDIaFV2UwPLi9oKistDzjiDl7chkKVJKNgJnfIXQ=;
+        b=HKRNCsHDaTTwGCGFLqA8w5GlZ/rKx3BqqHYre5debMkqGIOQJMyDsU0E4xKo01dimR
+         ghcrhLA/wnxUW5yN3I0ACDg+IBm9SuqqZjevxrGzARp/b2I/BdUgeQGNkJy7edipl8dG
+         vZNOEDzBO8xS+78lXtE/g7aiaO5AvQwfFBLsjX3+a+4qxbDTCBHzJsWFM82njRGWu4oe
+         tX5yrx9zdyxh6QTJWXDQ9RTUeyavyKR/sH22hzB3xDt7EGdpcygNeo4KECqrgFOSaqt9
+         ua8HrxHZoyUSM5yi57XkPQkNg60t9N2kThpm35peIgV1+QwoFfD34QaSFDZhHGmRjQe7
+         /4LA==
+X-Gm-Message-State: AOAM532jouPNjg9pVJLRyvE02ddu6FTlJIsyeYsWw2Nx0xkdWtdAFzsj
+	JZi1N7rey1sjHwGR3anJ9iWOfWY4+Fx127MrbrZlLXUt5gyX4w==
+X-Google-Smtp-Source: ABdhPJwX8/eRWxcsx2B/iolIPz1r8pPQV6WQYq19orUfc9K/KycISOQ4X0yNSSgdnXGgm64yRCjE9YIBeGs/TU7tmNg=
+X-Received: by 2002:a05:6402:31b7:: with SMTP id dj23mr36844706edb.245.1615904103282;
+ Tue, 16 Mar 2021 07:15:03 -0700 (PDT)
 MIME-Version: 1.0
+From: Julian Casallas <jcasallas2019@gmail.com>
+Date: Tue, 16 Mar 2021 10:14:52 -0400
+Message-ID: <CAFBYX1VosRU86TF-8fmLRkJmHEPC2M39-myO9KteXE=uDMQrsw@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <BMXPR01MB27601B8EBE3F518F4937565D8B6B9@BMXPR01MB2760.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <BMXPR01MB27601B8EBE3F518F4937565D8B6B9@BMXPR01MB2760.INDPRD01.PROD.OUTLOOK.COM>
-Message-ID-Hash: JLEDLVZ32BOWCKET6NXJITPS5RXMYJOX
-X-Message-ID-Hash: JLEDLVZ32BOWCKET6NXJITPS5RXMYJOX
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: BOZEKFODLYJPWZFETPP2GGZ652HKRDZS
+X-Message-ID-Hash: BOZEKFODLYJPWZFETPP2GGZ652HKRDZS
+X-MailFrom: jcasallas2019@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: How to create stream data from USRP (via PCI) using rfnoc block in c++
+Subject: [USRP-users] Using rfnoc_create_verilog.py creates verilog files different from rfsocmodtool.
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JLEDLVZ32BOWCKET6NXJITPS5RXMYJOX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BOZEKFODLYJPWZFETPP2GGZ652HKRDZS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3390212681784173582=="
+Content-Type: multipart/mixed; boundary="===============1626333386772671623=="
 
-This is a multi-part message in MIME format.
---===============3390212681784173582==
-Content-Type: multipart/alternative;
- boundary="------------090406050202000800080201"
+--===============1626333386772671623==
+Content-Type: multipart/alternative; boundary="000000000000113ca605bda7fe6f"
 
-This is a multi-part message in MIME format.
---------------090406050202000800080201
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000113ca605bda7fe6f
+Content-Type: text/plain; charset="UTF-8"
 
-On 03/16/2021 07:10 AM, Sourin Mondal (Vehere) wrote:
-> Hi,
-> I am trying to stream data from USRP where the data passed through 
-> RFNOC block (in order to create a lowpass filter) before coming to 
-> host machine and I am trying to implement it using C++ code. I know 
-> how to stream data normally. i.e. without rfnoc block in c++. Can 
-> anyone please help me how to implement or the syntax to stream data 
-> via RFNOC block to host machine.
->
-> Thanking you.
->
-> with regards,
->
-There is some getting-started information here:
+Hello,
 
-https://kb.ettus.com/Getting_Started_with_RFNoC_Development
+I went through  the  Getting Started with RFNoC UHD 4 guide and I followed
+the RfNoC 4 WorkShop - GRCon 2020 to design a RFNoC block, this is what I
+did:
 
-There are also a number of rfnoc-based examples in the source code tree, 
-in the "host/examples" directory.
+1. Created the gain block and it works fine following the RFNoC 4 video. I
+checked the HDL files, and I could see the interfaces payload and context
+were created between NoC Shell and the User Logic as expected.
 
+2. Then I went ahead and created my own block, *not* using the
+*rfnocmodtool *but in this case using the *rfnoc_create_verilog.py *tool
+following  the UHD 4 guide based on the same gain.yml file for testing
+purposes, however, the verilog files created in this case do not use
+payload/context approach.
 
+I was hoping that following the UHD 4 guide to design new blocks using the
+python script I could get the same verilog files used in the video.
 
+Therefore,  my question is, what is the process to add a block with
+multiple inputs and outputs  using RFNoC 4?
 
+Thanks
+J
 
---------------090406050202000800080201
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+--000000000000113ca605bda7fe6f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 03/16/2021 07:10 AM, Sourin Mondal
-      (Vehere) wrote:<br>
-    </div>
-    <blockquote
-cite="mid:BMXPR01MB27601B8EBE3F518F4937565D8B6B9@BMXPR01MB2760.INDPRD01.PROD.OUTLOOK.COM"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        Hi,</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        I am trying to stream data from USRP where the data passed
-        through RFNOC block (in order to create a lowpass filter) before
-        coming to host machine and I am trying to implement it using C++
-        code. I know how to stream data normally. i.e. without rfnoc
-        block in c++. Can anyone please help me how to implement or the
-        syntax to stream data via RFNOC block to host machine.</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        Thanking you.</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        with regards,<br>
-      </div>
-      <br>
-    </blockquote>
-    There is some getting-started information here:<br>
-    <br>
-    <a class="moz-txt-link-freetext" href="https://kb.ettus.com/Getting_Started_with_RFNoC_Development">https://kb.ettus.com/Getting_Started_with_RFNoC_Development</a><br>
-    <br>
-    There are also a number of rfnoc-based examples in the source code
-    tree, in the "host/examples" directory.<br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr">Hello,<div><br></div><div>I went through=C2=A0 the=C2=A0 G=
+etting Started with RFNoC UHD 4 guide and I followed the RfNoC 4 WorkShop -=
+ GRCon 2020 to design a RFNoC block, this is what I did:</div><div><br></di=
+v><div>1. Created the gain block and it works fine following the RFNoC 4 vi=
+deo. I checked the HDL files, and I could see the interfaces payload and co=
+ntext were created between NoC Shell and the User Logic as expected.</div><=
+div><br></div><div>2. Then I went ahead and created my own block,=C2=A0<b>n=
+ot</b>=C2=A0using the=C2=A0<b>rfnocmodtool=C2=A0</b>but in this case using =
+the=C2=A0<b>rfnoc_create_verilog.py=C2=A0</b>tool following=C2=A0 the UHD 4=
+ guide based on the same gain.yml file for testing purposes, however,=C2=A0=
+the verilog files created in this case do not use payload/context approach.=
+</div><div><br></div><div>I was hoping that following the UHD 4 guide to de=
+sign new blocks=C2=A0using the python script I could get the same verilog f=
+iles used in the video.</div><div><br></div><div>Therefore,=C2=A0 my questi=
+on is, what is the process to add a block with multiple inputs and outputs=
+=C2=A0 using RFNoC 4?</div><div><br></div><div>Thanks</div><font color=3D"#=
+888888"><font color=3D"#888888"><font color=3D"#888888"><font color=3D"#888=
+888"><div>J</div></font></font></font></font></div>
 
---------------090406050202000800080201--
+--000000000000113ca605bda7fe6f--
 
---===============3390212681784173582==
+--===============1626333386772671623==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -175,4 +125,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3390212681784173582==--
+--===============1626333386772671623==--
