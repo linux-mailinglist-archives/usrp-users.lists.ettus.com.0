@@ -2,536 +2,1063 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DD6433DC81
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Mar 2021 19:22:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E98E333DC93
+	for <lists+usrp-users@lfdr.de>; Tue, 16 Mar 2021 19:29:55 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9659F3837FC
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Mar 2021 14:22:53 -0400 (EDT)
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id EBCD83837FC
-	for <USRP-users@lists.ettus.com>; Tue, 16 Mar 2021 14:21:57 -0400 (EDT)
-Received: by mail-oi1-f172.google.com with SMTP id u62so23287178oib.6
-        for <USRP-users@lists.ettus.com>; Tue, 16 Mar 2021 11:21:57 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CB240383D1A
+	for <lists+usrp-users@lfdr.de>; Tue, 16 Mar 2021 14:29:54 -0400 (EDT)
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2EDE838382B
+	for <usrp-users@lists.ettus.com>; Tue, 16 Mar 2021 14:29:00 -0400 (EDT)
+Received: by mail-oi1-f177.google.com with SMTP id t83so29111419oih.12
+        for <usrp-users@lists.ettus.com>; Tue, 16 Mar 2021 11:29:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=nd.edu; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=qeebZ6w3DyWDsDSkRJ2JuvLiJtzs3zXTprn3uh4gxn4=;
-        b=NKzYGGWXs8f2ZZmkvS58Xo0T/jA/vkREMfAvAjCGwYC0bQA3w49JoUMhYttndNLZvF
-         92ukkuNt/psTminopYkQderPGgMfYixR8N27njRC5/7DO8LOPUS0iKa5t8V+2rSoaFIi
-         PMIVHtMQ3262n8fYdkEVOsvfKUtTgbQrXbWrTM3PkwtMeeSVEaz+hjDHTMPPZocZBr/F
-         +QDlEcq1EEsH2nhpeiFgsyD66jFKpaDdh5JlDdBRssuaoDWSI7GMchrz3WLzwH7GEHhH
-         JkhwRG6BJsUTdxYkxtZSUPiIxv98UvRcEXkSDLh/SFX0guDrNGHCWIfI0Yk16t5vXMY3
-         Qc4w==
+        bh=MEFv0ZW94kHEZ5vHVWDsWeLJTAF4CbMRddG4C7473p8=;
+        b=hKbA15WrTaElY8kTNpMIYk7Iks6xzfdqhsqbwuLEzDMCrCnFfkJ99bbs1ysf4MUtWK
+         82F1xYCJ0tH5oL4PKrexWCKOTWxg7RsAlDvCIz01w6/XUA90IwHAQ7sit5eehl73QSyR
+         S1tpzw1uzFkE+/RjXRsqXt1NziCKnWlsoKrQg2G0i8kv16ei5SIIFHEL/v+laZwwAofX
+         edC8V6rYoOOyAf7uOieYzG3Ztluf3A8BI5BA/8cRgrqvADw7ya722uetziQnMN2z1RzB
+         gXqDFh68kMTemkywOrRKsRXyxspk6VM54OoQJ/BF5lAz/hj9Q3q+4SIAPpfNbLD58Yjf
+         uI+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=qeebZ6w3DyWDsDSkRJ2JuvLiJtzs3zXTprn3uh4gxn4=;
-        b=fzNZUJkRYE5OfZ1grQvdGBqfNhN0QL0dWBDgjQrWFSlEQxjuQ+cRaIqA/o0Lm+kAQ3
-         ThaQ5Um1bAszg400KHWz3AOCXLMm5n9P47fAAJ+gBt4pyRIUMovtmMgZBsNO74wzASjb
-         8FuyJjrBun8L7jbO3dMlbiTokVj2UsjSQX1lvCotLCQtvDVZQWqOhUkGHa0CSB7yAZKh
-         daMeWyKGWB/rEnEJJsekevut/V7aY+rECidtlL2i/EoSlsFewHwybP/5pgED8g+KIaR/
-         kmfwe6oMXwfGFbQCqeYYG0iwRT3OZ4r3TIh531NYKVFeqDOCOWP4e1deI0jqOofjOtPs
-         NPDA==
-X-Gm-Message-State: AOAM531UYyqFstr1rOLO3e7+Ap91dRP88j/SHfzvyAIfAEDbTkPWRlzv
-	mKc5x2sGv4F6VS4EVPE9pXY9T2AAa5mecrJdnqXAdA==
-X-Google-Smtp-Source: ABdhPJzAblHNJoCkGh5EqyrEWM7gBER3+pjwqsSaJFTcvyyTREScEHaWojradbaVsLT68lBCz/HjV6Y7WzJjJUYXbII=
-X-Received: by 2002:aca:1a01:: with SMTP id a1mr1112oia.33.1615918917042; Tue,
- 16 Mar 2021 11:21:57 -0700 (PDT)
+        bh=MEFv0ZW94kHEZ5vHVWDsWeLJTAF4CbMRddG4C7473p8=;
+        b=pmpAtfJB7F31W6QhdbgncqZUaIJQljbMcXiUaLkIJbDtBGYHB2Px2ApESww5ob849z
+         j7nSRpgpcRNgLi8MfWGqZRVCVuXCM8IjeORCtsYkzoSDvNGD8SPZU/BbpekjD2HRH5DK
+         /3WRR53YD7vsQHKFsmHfni7/QRLpk6mMgKVQnIB6uUNNd5n/vKtvgmzsdFHVORN1GkTq
+         FdeeTSOw80gppbKvyoonz86LDh1HmIVYt/OGk9BqJkRZrMgxJ2E44zepsjM98RFifaJg
+         RKNYiz8YYUAbp3InVc12KS0re5+U6PWKDDA56OSJ1GZhQ0fcPTz5Baac9385aSZZySlu
+         HDxg==
+X-Gm-Message-State: AOAM533yWYPQiTsYUWJUf+WZeFYehi+rJHLEbedF/AHbHMCltQ5WoDqX
+	JdCG29wAEpq+XKW7cfwlSXYpbKE4zx7GpTlVglnCKqN0VOU=
+X-Google-Smtp-Source: ABdhPJzY+EiM7mw3Song66hStDg1tNbZOoxdbFwlpok85tZFdskTwtOkB+5G6q/01fqrPL3m3yJrapIfY7CnXoS19yI=
+X-Received: by 2002:aca:2104:: with SMTP id 4mr33194oiz.124.1615919339300;
+ Tue, 16 Mar 2021 11:28:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAB__hTTE0CpXfpKMYgoScWTfZUvgFPHZriEU1FzirHMeYGQ6fQ@mail.gmail.com>
- <528B62B7-C6D7-4B47-B3BC-EED2D45B448F@gmail.com> <15e8047cae194a888ec9ed175a13775a@gmvnsl.com>
-In-Reply-To: <15e8047cae194a888ec9ed175a13775a@gmvnsl.com>
+References: <01000178373f94cd-879cf46a-f300-4488-ae11-b774a80328f2-000000@email.amazonses.com>
+ <CAKJyDkKOMW+2+85Joby0U1W9c-qXHdcK52xmDg7f2bLXaJ-tuA@mail.gmail.com> <010001783a7bec48-40481c5c-2522-4e68-bb71-ce4366302424-000000@email.amazonses.com>
+In-Reply-To: <010001783a7bec48-40481c5c-2522-4e68-bb71-ce4366302424-000000@email.amazonses.com>
 From: Rob Kossler <rkossler@nd.edu>
-Date: Tue, 16 Mar 2021 14:21:46 -0400
-Message-ID: <CAB__hTTgTJJFXGgAxuberQeP9PbQ3eMWhNpbJuw7gPaSzVSQug@mail.gmail.com>
-To: Oliver Towlson <oliver.towlson@gmvnsl.com>
-Message-ID-Hash: DVASLWMOAYSAKAEQK7POWMIKFLSTAFRG
-X-Message-ID-Hash: DVASLWMOAYSAKAEQK7POWMIKFLSTAFRG
+Date: Tue, 16 Mar 2021 14:28:48 -0400
+Message-ID: <CAB__hTRjETCBN79-6HnEsZh+bTim9cXVv7OOJPgstm5wjRniLw@mail.gmail.com>
+To: Robert Clancy <rclancy@ltsnet.net>
+Message-ID-Hash: ZVLHRKGUZMQJTN2COUXR7SLQWJHLHIZ2
+X-Message-ID-Hash: ZVLHRKGUZMQJTN2COUXR7SLQWJHLHIZ2
 X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>, Tom Stacey <tom.stacey@gmvnsl.com>
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X310 with dual TwinRX set up
+Subject: [USRP-users] Re: WhiteRabbit switch with an N321
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DVASLWMOAYSAKAEQK7POWMIKFLSTAFRG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZVLHRKGUZMQJTN2COUXR7SLQWJHLHIZ2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0259646257536703775=="
+Content-Type: multipart/mixed; boundary="===============0264459710202750736=="
 
---===============0259646257536703775==
-Content-Type: multipart/alternative; boundary="000000000000099bf605bdab713b"
+--===============0264459710202750736==
+Content-Type: multipart/alternative; boundary="00000000000034ad9405bdab8a3e"
 
---000000000000099bf605bdab713b
+--00000000000034ad9405bdab8a3e
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Oliver,
-This is with a single X310 with 2 TwinRx?  I noticed in the python you have
-addr0 and addr1 both set.  This is the syntax used when there are multiple
-X310, not a single x310.  With a single X310, you should use addr=3Dxxx,
-second_addr=3Dyyy.  In fact, maybe just try it first without "second_addr" =
-as
-long as your data rates are at or below 50 MS/s on 4 channels.
+Robert,
+Perhaps try with the device args set to "time_source=sfp0" rather than just
+using the function call that you are using.
+
+BTW, I am also struggling a bit trying to get my WR Switch to work with my
+N310, but for different reasons.  Mine is starting OK, but then I get a
+warning "Board 0 may not be getting a PPS signal" and then later my program
+crashes.  Still debugging though, so problem might just be on my end.
 Rob
 
-On Tue, Mar 16, 2021 at 2:06 PM Oliver Towlson <oliver.towlson@gmvnsl.com>
-wrote:
+On Tue, Mar 16, 2021 at 6:02 AM Robert Clancy <rclancy@ltsnet.net> wrote:
 
-> Hi
->
->
->
-> Thanks so much for your responses. I tried not setting the master clock
-> rate, and reducing the sample rate to 500kS/s but still got the same erro=
-r
-> message. I had an external clock source connected so I disconnected that
-> and then also did not specify the clock or time source =E2=80=93 same err=
-or
-> message. I also tried only grabbing data off a single channel, but got th=
-e
-> same error.
->
->
->
-> I did have some success running the example Python script rx_to_file.py
-> though, and that seemed to run ok and produce a binary file without a
-> problem. That script isn=E2=80=99t much direct use though as it seems to =
-be calling
-> the uhd libraries directly so I=E2=80=99m not sure what I could edit
->
->
->
-> I=E2=80=99ve attached the Python script we have so far for our X310 data
-> collection for 4 channels. Any insight anyone has would be greatly
-> appreciated =E2=80=93 have we made an obvious mistake?
->
->
->
-> Thanks very much
->
-> Oliver
->
->
->
-> *From:* Marcus D Leech [mailto:patchvonbraun@gmail.com]
-> *Sent:* 12 March 2021 15:22
-> *To:* Rob Kossler <rkossler@nd.edu>
-> *Cc:* Oliver Towlson <oliver.towlson@gmvnsl.com>;
-> USRP-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Re: X310 with dual TwinRX set up
->
->
->
-> Also try running at a lower sample rate at first. Just to see that you
-> have the logic correct.
->
->
->
-> Sent from my iPhone
->
->
->
-> On Mar 12, 2021, at 9:18 AM, Rob Kossler <rkossler@nd.edu> wrote:
->
-> =EF=BB=BF
->
-> Is there any chance that your code is attempting to set the master clock
-> rate?  If so, perhaps see what happens if you don't set it in order to le=
-t
-> it be set automatically.
->
->
->
-> On Fri, Mar 12, 2021 at 8:55 AM Oliver Towlson <oliver.towlson@gmvnsl.com=
->
-> wrote:
->
-> Hi everyone
->
->
->
-> Thanks so much for your quick responses. Seems like the thing we were
-> missing was that subdev spec =E2=80=93 once that was set it was straightf=
-orward to
-> generate the code.
->
->
->
-> We tried running it and got the following:
->
->
->
-> *[INFO] [UHD] linux; GNU C++ version 9.2.1 20200304; Boost_107100;
-> UHD_3.15.0.0-2build5*
->
-> *[INFO] [X300] X300 initialization sequence...*
->
-> *[INFO] [X300] Maximum frame size: 8000 bytes.*
->
-> *[INFO] [X300] Maximum frame size: 8000 bytes.*
->
-> *[INFO] [X300] Radio 1x clock: 200 MHz*
->
-> *[INFO] [X300] Radio 1x clock: 200 MHz*
->
-> *[INFO] [1/DmaFIFO_0] Initializing block control (NOC ID:
-> 0xF1F0D00000000000)*
->
-> *[INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1317 MB/s)*
->
-> *[INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1301 MB/s)*
->
-> *[INFO] [1/Radio_0] Initializing block control (NOC ID:
-> 0x12AD100000000001)*
->
-> *[INFO] [1/Radio_1] Initializing block control (NOC ID:
-> 0x12AD100000000001)*
->
-> *[INFO] [1/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)=
-*
->
-> *[INFO] [1/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)=
-*
->
-> *[INFO] [1/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000000)=
-*
->
-> *[INFO] [1/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000000)=
-*
->
-> *[WARNING] [X300] Cannot update master clock rate! X300 Series does not
-> allow changing the clock rate during runtime.*
->
-> *terminate called after throwing an instance of 'uhd::io_error'*
->
-> *  what():  EnvironmentError: IOError: Block ctrl (CE_00_Port_30) no
-> response packet - AssertionError: bool(buff)*
->
-> *  in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double)
-> [with uhd::endianness_t _endianness =3D uhd::ENDIANNESS_BIG; uint64_t =3D=
- long
-> unsigned int]*
->
-> *  at /build/uhd-FRfZNJ/uhd-3.15.0.0/host/lib/rfnoc/ctrl_iface.cpp:151*
->
->
->
-> *Aborted (core dumped)*
->
->
->
-> Googling didn=E2=80=99t result in any answers beyond resetting the whole =
-device.
-> But it does seem like a common error. As you say, the 4xRF_in set-up is
-> fairly standard so I=E2=80=99m not sure what is causing the issue. The ex=
-ample
-> rx_samples_to_file script runs fine (although it doesn=E2=80=99t seem to =
-write
-> anything, but it does seems to stream data fine)
->
->
->
-> Let me know if you need any more information.
->
->
->
-> Thanks very much
->
->
->
-> Oliver
->
->
-> P Please consider the environment before printing this e-mail.
->
+> Hi Robin,
+>
+>
+> Thanks for thinking about this. I do set the time source- in the python
+> script there is a line:
+>
+>
+>  self.uhd_usrp_source_0.set_time_source("sfp0")
+>
+>
+> Robert
+>
+>
+>
+> ------------------------------
+> *From:* Robin Coxe <coxe@quanttux.com>
+> *Sent:* Monday, March 15, 2021 7:12:35 PM
+> *To:* Robert Clancy
+> *Cc:* usrp-users@lists.ettus.com
+> *Subject:* Re: [USRP-users] WhiteRabbit switch with an N321
+>
+> Hi Robert.  I think your issue may be that you need to set the time source
+> in UHD to sfp0:
+>
+>
+> https://kb.ettus.com/Using_Ethernet-Based_Synchronization_on_the_USRP%E2%84%A2_N3xx_Devices
+> (Scroll down to the "System Configuration" section).
+>
+> -Robin
+>
+>
+> On Mon, Mar 15, 2021 at 11:57 AM Robert Clancy <rclancy@ltsnet.net> wrote:
+>
+>> I am trying to test a White Rabbit switch with an N321 radio but am
+>> failing to be able to make a capture.
+>>
+>>
+>> I have Gnuradio 3.8.0 installed and the UHD version is reported as
+>> UHD_4.0.0.0-18-g83e878cf
+>>
+>>
+>> This is the response from a probe:
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> *[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
+>> UHD_4.0.0.0-18-g83e878cf [INFO] [MPMD] Initializing 1 device(s) in parallel
+>> with args:
+>> mgmt_addr=192.168.10.2,type=n3xx,product=n320,serial=31B36CF,claimed=False,addr=192.168.10.2
+>> [INFO] [MPM.main] Launching USRP/MPM, version: 4.0.0.0-g90ce6062 [INFO]
+>> [MPM.main] Spawning RPC process... [INFO] [MPM.PeriphManager] Device serial
+>> number: 31B36CF [INFO] [MPM.Rhodium-0] Enabling LO distribution board
+>> [INFO] [MPM.Rhodium-0] Successfully loaded all peripherals! [INFO]
+>> [MPM.Rhodium-1] Successfully loaded all peripherals! [INFO]
+>> [MPM.PeriphManager] Initialized 2 daughterboard(s). [INFO]
+>> [MPM.PeriphManager] No QSFP board detected: Assuming it is disabled in the
+>> device tree overlay (e.g., HG, XG images). [INFO] [MPM.PeriphManager]
+>> init() called with device args
+>> `clock_source=internal,time_source=internal'. [INFO] [MPM.Rhodium-0] init()
+>> called with args `clock_source=internal,time_source=internal' [INFO]
+>> [MPM.Rhodium-1] init() called with args
+>> `clock_source=internal,time_source=internal' [INFO]
+>> [MPM.Rhodium-0.init.LMK04828] LMK initialized and locked! [INFO]
+>> [MPM.Rhodium-1.init.LMK04828] LMK initialized and locked! [INFO]
+>> [MPM.Rhodium-1.DAC37J82] DAC PLL Locked! [INFO] [MPM.Rhodium-1.AD9695] ADC
+>> PLL Locked! [INFO] [MPM.Rhodium-1.init] JESD204B Link Initialization &
+>> Training Complete [INFO] [MPM.Rhodium-0.DAC37J82] DAC PLL Locked! [INFO]
+>> [MPM.Rhodium-0.AD9695] ADC PLL Locked! [INFO] [MPM.Rhodium-0.init] JESD204B
+>> Link Initialization & Training Complete [INFO] [MPM.RPCServer] RPC server
+>> ready! [INFO] [MPM.RPCServer] Spawning watchdog task... [INFO]
+>> [MPM.PeriphManager] init() called with device args
+>> `mgmt_addr=192.168.10.2,product=n320,clock_source=internal,time_source=internal'.
+>> [INFO] [MPM.Rhodium-0] init() called with args
+>> `mgmt_addr=192.168.10.2,product=n320,clock_source=internal,time_source=internal'
+>> [INFO] [MPM.Rhodium-1] init() called with args
+>> `mgmt_addr=192.168.10.2,product=n320,clock_source=internal,time_source=internal'
+>>   _____________________________________________________  / |       Device:
+>> N300-Series Device |
+>> _____________________________________________________ |    / |   |
+>> Mboard: ni-n3xx-31B36CF |   |   dboard_0_pid: 338 |   |   dboard_0_serial:
+>> 3192EC4 |   |   dboard_1_pid: 338 |   |   dboard_1_serial: 3192EB9 |   |
+>> eeprom_version: 3 |   |   fs_version: 20200914000806 |   |
+>> mender_artifact: v4.0.0.0_n3xx |   |   mpm_sw_version: 4.0.0.0-g90ce6062
+>> |   |   pid: 16962 |   |   product: n320 |   |   rev: 7 |   |
+>> rpc_connection: remote |   |   serial: 31B36CF |   |   type: n3xx |   |
+>> MPM Version: 3.0 |   |   FPGA Version: 8.0 |   |   FPGA git hash:
+>> be53058.clean |   |    |   |   Time sources:  internal, external, gpsdo,
+>> sfp0 |   |   Clock sources: external, internal, gpsdo |   |   Sensors:
+>> ref_locked, gps_locked, temp, fan, gps_gpgga, gps_sky, gps_time, gps_tpv
+>> |     _____________________________________________________ |    / |
+>> |       RFNoC blocks on this device: |   |    |   |   * 0/DDC#0 |   |   *
+>> 0/DDC#1 |   |   * 0/DUC#0 |   |   * 0/DUC#1 |   |   * 0/Radio#0 |   |   *
+>> 0/Radio#1 |   |   * 0/Replay#0 |
+>> _____________________________________________________ |    / |   |
+>> Static connections on this device: |   |    |   |   * 0/SEP#0:0==>0/DUC#0:0
+>> |   |   * 0/DUC#0:0==>0/Radio#0:0 |   |   * 0/Radio#0:0==>0/DDC#0:0 |   |
+>> * 0/DDC#0:0==>0/SEP#0:0 |   |   * 0/SEP#1:0==>0/DUC#1:0 |   |   *
+>> 0/DUC#1:0==>0/Radio#1:0 |   |   * 0/Radio#1:0==>0/DDC#1:0 |   |   *
+>> 0/DDC#1:0==>0/SEP#1:0 |   |   * 0/SEP#2:0==>0/Replay#0:0 |   |   *
+>> 0/Replay#0:0==>0/SEP#2:0 |   |   * 0/SEP#3:0==>0/Replay#0:1 |   |   *
+>> 0/Replay#0:1==>0/SEP#3:0 |
+>> _____________________________________________________ |    / |   |       TX
+>> Dboard: dboard |   |
+>> _____________________________________________________ |   |    / |   |
+>> |       TX Frontend: 0 |   |   |   Name: Rhodium |   |   |   Antennas:
+>> TX/RX, RX2, CAL, TERM |   |   |   Freq range: 1.000 to 6000.000 MHz |   |
+>> |   Gain range all: 0.0 to 60.0 step 1.0 dB |   |   |   Bandwidth range:
+>> 250000000.0 to 250000000.0 step 0.0 Hz |   |   |   Connection Type: |   |
+>> |   Uses LO offset: No |
+>> _____________________________________________________ |    / |   |       RX
+>> Dboard: dboard |   |
+>> _____________________________________________________ |   |    / |   |
+>> |       RX Frontend: 0 |   |   |   Name: Rhodium |   |   |   Antennas:
+>> TX/RX, CAL, TERM |   |   |   Freq range: 1.000 to 6000.000 MHz |   |   |
+>> Gain range all: 0.0 to 60.0 step 1.0 dB |   |   |   Bandwidth range:
+>> 250000000.0 to 250000000.0 step 0.0 Hz |   |   |   Connection Type: |   |
+>> |   Uses LO offset: No |
+>> _____________________________________________________ |    / |   |       TX
+>> Dboard: dboard |   |
+>> _____________________________________________________ |   |    / |   |
+>> |       TX Frontend: 0 |   |   |   Name: Rhodium |   |   |   Antennas:
+>> TX/RX, RX2, CAL, TERM |   |   |   Freq range: 1.000 to 6000.000 MHz |   |
+>> |   Gain range all: 0.0 to 60.0 step 1.0 dB |   |   |   Bandwidth range:
+>> 250000000.0 to 250000000.0 step 0.0 Hz |   |   |   Connection Type: |   |
+>> |   Uses LO offset: No |
+>> _____________________________________________________ |    / |   |       RX
+>> Dboard: dboard |   |
+>> _____________________________________________________ |   |    / |   |
+>> |       RX Frontend: 0 |   |   |   Name: Rhodium |   |   |   Antennas:
+>> TX/RX, CAL, TERM |   |   |   Freq range: 1.000 to 6000.000 MHz |   |   |
+>> Gain range all: 0.0 to 60.0 step 1.0 dB |   |   |   Bandwidth range:
+>> 250000000.0 to 250000000.0 step 0.0 Hz |   |   |   Connection Type: |   |
+>> |   Uses LO offset: No *
+>>
+>>
+>> I am using this firmware:
+>>
+>> *uhd_image_loader --args type=n3xx,addr=192.168.10.2
+>> --fpga-path="/opt/gnuradio/v3.8.0.0/share/uhd/images/usrp_n320_fpga_WX.bit"*
+>>
+>>
+>> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
+>> UHD_4.0.0.0-18-g83e878cf
+>> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+>> mgmt_addr=192.168.10.2,type=n3xx,product=n320,serial=31B36CF,claimed=False,skip_init=1
+>> [INFO] [MPMD] Claimed device without full initialization.
+>> [INFO] [MPMD IMAGE LOADER] Starting update. This may take a while.
+>> [INFO] [MPM.PeriphManager] Updating component `fpga'
+>> [INFO] [MPM.PeriphManager] Updating component `dts'
+>> [INFO] [MPM.RPCServer] Resetting peripheral manager.
+>> [INFO] [MPM.PeriphManager] Device serial number: 31B36CF
+>> [INFO] [MPM.Rhodium-0] Enabling LO distribution board
+>> [INFO] [MPM.Rhodium-0] Successfully loaded all peripherals!
+>> [INFO] [MPM.Rhodium-1] Successfully loaded all peripherals!
+>> [INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).
+>> [INFO] [MPM.PeriphManager] No QSFP board detected: Assuming it is
+>> disabled in the device tree overlay (e.g., HG, XG images).
+>> [INFO] [MPM.PeriphManager] init() called with device args
+>> `clock_source=internal,time_source=internal'.
+>> [INFO] [MPM.Rhodium-0] init() called with args
+>> `clock_source=internal,time_source=internal'
+>> [INFO] [MPM.Rhodium-1] init() called with args
+>> `clock_source=internal,time_source=internal'
+>> [INFO] [MPM.Rhodium-0.init.LMK04828] LMK initialized and locked!
+>> [INFO] [MPM.Rhodium-1.init.LMK04828] LMK initialized and locked!
+>> [INFO] [MPM.Rhodium-1.DAC37J82] DAC PLL Locked!
+>> [INFO] [MPM.Rhodium-1.AD9695] ADC PLL Locked!
+>> [INFO] [MPM.Rhodium-1.init] JESD204B Link Initialization & Training
+>> Complete
+>> [INFO] [MPM.Rhodium-0.DAC37J82] DAC PLL Locked!
+>> [INFO] [MPMD IMAGE LOADER] Update component function succeeded.
+>> [INFO] [MPM.Rhodium-0.AD9695] ADC PLL Locked!
+>> [INFO] [MPM.Rhodium-0.init] JESD204B Link Initialization & Training
+>> Complete
+>>
+>>
+>>
+>>
+>>
+>> What I think are the relevant parts from a simple script to make a
+>> capture:
+>>         ##################################################
+>>         # Variables
+>>         ##################################################
+>>         self.samp_rate = samp_rate = 12288000
+>>
+>>         ##################################################
+>>         # Blocks
+>>         ##################################################
+>>         self.uhd_usrp_source_0 = uhd.usrp_source(
+>>             ",".join(("", "")),
+>>             uhd.stream_args(
+>>                 cpu_format="fc32",
+>>                 args='addr=192.168.10.2',
+>>                 channels=list(range(0,1)),
+>>             ),
+>>         )
+>>         ## WhiteRabbit addition
+>>         #self.uhd_usrp_source_0.set_clock_rate(200000000)
+>>         self.uhd_usrp_source_0.set_antenna("TX/RX")
+>>         print("Master clock rate set to:
+>> ",self.uhd_usrp_source_0.get_clock_rate())
+>>         print("Times sources are
+>> ",self.uhd_usrp_source_0.get_time_sources(0))
+>>         print("Sample rates is
+>> ",self.uhd_usrp_source_0.get_samp_rates().stop())
+>>         print("Antenna is ",self.uhd_usrp_source_0.get_antenna())
+>>         self.uhd_usrp_source_0.set_clock_source("internal")
+>>         self.uhd_usrp_source_0.set_time_source("sfp0")
+>>         print("Time source is ",self.uhd_usrp_source_0.get_time_source(0))
+>>         ###
+>>
+>>         self.uhd_usrp_source_0.set_center_freq(75000100, 0)
+>>         print("Tuned to  ",self.uhd_usrp_source_0.get_center_freq(0))
+>>         self.uhd_usrp_source_0.set_gain(0, 0)
+>>         self.uhd_usrp_source_0.set_antenna('TX/RX', 0)
+>>         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
+>>
+>> And then the error:
+>>
+>> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
+>> UHD_4.0.0.0-18-g83e878cf
+>> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+>> mgmt_addr=192.168.10.2,type=n3xx,product=n320,serial=31B36CF,claimed=False,addr=192.168.10.2
+>> [INFO] [MPM.PeriphManager] init() called with device args
+>> `mgmt_addr=192.168.10.2,product=n320,clock_source=internal,time_source=internal'.
+>> [INFO] [MPM.Rhodium-0] init() called with args
+>> `mgmt_addr=192.168.10.2,product=n320,clock_source=internal,time_source=internal'
+>> [INFO] [MPM.Rhodium-1] init() called with args
+>> `mgmt_addr=192.168.10.2,product=n320,clock_source=internal,time_source=internal'
+>> Master clock rate set to:  245760000.0
+>> Times sources are  ('internal', 'external', 'gpsdo', 'sfp0')
+>> Sample rates is  245760000.0
+>> Antenna is  TX/RX
+>> [INFO] [MPM.Rhodium-0] Re-initializing daughter board. This may take some
+>> time.
+>> [INFO] [MPM.Rhodium-0] init() called with args
+>> `mgmt_addr=192.168.10.2,product=n320,clock_source=internal,time_source=sfp0,skip_rfic=None,master_clock_rate=245760000.0,ref_clk_freq=25000000.0'
+>> [ERROR] [RPC] TDC Failed to reset.
+>> Traceback (most recent call last):
+>>   File "./TimeDomainDisplay.py", line 212, in <module>
+>>     main()
+>>   File "./TimeDomainDisplay.py", line 188, in main
+>>     tb = top_block_cls()
+>>   File "./TimeDomainDisplay.py", line 95, in __init__
+>>     self.uhd_usrp_source_0.set_time_source("sfp0")
+>>   File
+>> "/opt/gnuradio/v3.8.0.0/lib/python3/dist-packages/gnuradio/uhd/uhd_swig.py",
+>> line 4577, in set_time_source
+>>     return _uhd_swig.usrp_source_sptr_set_time_source(self, source,
+>> mboard)
+>> RuntimeError: RuntimeError: Error during RPC call to `set_time_source'.
+>> Error message: TDC Failed to reset.
+>> [INFO] [MPM.Rhodium-0.init.LMK04828] LMK initialized and locked!
+>> [ERROR] [MPM.Sync-0] TDC Failed to Reset! Check your clocks! Status: 0x0
+>> [ERROR] [MPM.RPCServer] Uncaught exception in method set_time_source :TDC
+>> Failed to reset.
+>>  Traceback (most recent call last):
+>>   File "/usr/lib/python3.7/site-packages/usrp_mpm/rpc_server.py", line
+>> 186, in new_claimed_function
+>>     return function(*args)
+>>   File
+>> "/usr/lib/python3.7/site-packages/usrp_mpm/periph_manager/n3xx.py", line
+>> 596, in set_time_source
+>>     self.set_sync_source(source)
+>>   File
+>> "/usr/lib/python3.7/site-packages/usrp_mpm/periph_manager/n3xx.py", line
+>> 696, in set_sync_source
+>>     skip_rfic=args.get('skip_rfic', None)
+>>   File
+>> "/usr/lib/python3.7/site-packages/usrp_mpm/dboard_manager/rhodium.py", line
+>> 478, in update_ref_clock_freq
+>>     self._reinit(self.master_clock_rate)
+>>   File
+>> "/usr/lib/python3.7/site-packages/usrp_mpm/dboard_manager/rhodium.py", line
+>> 438, in _reinit
+>>     self.init(args)
+>>   File
+>> "/usr/lib/python3.7/site-packages/usrp_mpm/dboard_manager/rhodium.py", line
+>> 341, in init
+>>     init_result = RhodiumInitManager(self, self._spi_ifaces).init(args)
+>>   File
+>> "/usr/lib/python3.7/site-packages/usrp_mpm/dboard_manager/rh_init.py", line
+>> 344, in init
+>>     args)
+>>   File
+>> "/usr/lib/python3.7/site-packages/usrp_mpm/dboard_manager/rh_init.py", line
+>> 100, in _sync_db_clock
+>>     target_offset=trace_delay_offset))
+>>   File "/usr/lib/python3.7/site-packages/usrp_mpm/cores/tdc_sync.py",
+>> line 201, in run
+>>     self.configure(force=True)
+>>   File "/usr/lib/python3.7/site-packages/usrp_mpm/cores/tdc_sync.py",
+>> line 254, in configure
+>>     raise RuntimeError("TDC Failed to reset.")
+>> RuntimeError: TDC Failed to reset.
+>>
+>>
+>> Can anyone shed any light on what is going on?
+>>
+>> Has anyone actually got an Ettus radio working with the WX firmware and a
+>> White Rabbit switch?
+>>
+>> FWIW, the WR switch appears happy. I've walked its SNMP tree and all
+>> seems well. It is operating in Grandmaster mode with the one N321 hanging
+>> off its first port.
+>>
+>> Robert
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
-> P Please consider the environment before printing this e-mail.
->
 
---000000000000099bf605bdab713b
+--00000000000034ad9405bdab8a3e
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Oliver,<div>This is with a single X310=
- with 2 TwinRx?=C2=A0 I noticed in the python you have addr0 and addr1 both=
- set.=C2=A0 This is the syntax used when there are multiple X310, not a sin=
-gle x310.=C2=A0 With a single X310, you should use addr=3Dxxx, second_addr=
-=3Dyyy.=C2=A0 In fact, maybe just try it first without &quot;second_addr&qu=
-ot; as long as your data rates are at or below 50 MS/s on 4 channels.</div>=
-<div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Tue, Mar 16, 2021 at 2:06 PM Oliver Towlson &lt;<a href=
-=3D"mailto:oliver.towlson@gmvnsl.com">oliver.towlson@gmvnsl.com</a>&gt; wro=
-te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr">Robert,<div>Perhaps try with the device args set to &quot;=
+time_source=3Dsfp0&quot; rather than just using the function call that you =
+are using.=C2=A0</div><div><br></div><div>BTW, I am also struggling a bit t=
+rying to get my WR Switch to work with my N310, but for different reasons.=
+=C2=A0 Mine is starting OK, but then I get a warning &quot;Board 0 may not =
+be getting a PPS signal&quot; and then later my program crashes.=C2=A0 Stil=
+l debugging though, so problem might just be on my end.</div><div>Rob</div>=
+</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Tue, Mar 16, 2021 at 6:02 AM Robert Clancy &lt;<a href=3D"mailto:rclancy=
+@ltsnet.net">rclancy@ltsnet.net</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">
 
 
 
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_3616638507264446299WordSection1">
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">Hi</span><span style=3D"color:black"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">=C2=A0</span><span style=3D"color:black"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">Thanks so much for your responses. I tried not setting the master clock r=
-ate, and reducing the sample rate to 500kS/s but still got the same error m=
-essage. I had an external clock
- source connected so I disconnected that and then also did not specify the =
-clock or time source =E2=80=93 same error message. I also tried only grabbi=
-ng data off a single channel, but got the same error.
-<u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-"><u></u>=C2=A0<u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">I did have some success running the example Python script rx_to_file.py t=
-hough, and that seemed to run ok and produce a binary file without a proble=
-m. That script isn=E2=80=99t much direct
- use though as it seems to be calling the uhd libraries directly so I=E2=80=
-=99m not sure what I could edit</span><span style=3D"color:black"><u></u><u=
-></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">=C2=A0</span><span style=3D"color:black"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">I=E2=80=99ve attached the Python script we have so far for our X310 data =
-collection for 4 channels. Any insight anyone has would be greatly apprecia=
-ted =E2=80=93 have we made an obvious mistake?<u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-"><u></u>=C2=A0<u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">Thanks very much<u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">Oliver
-</span><span style=3D"color:black"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">=C2=A0</span><span style=3D"color:black"><u></u><u></u></span></p>
 <div>
-<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
-top:1pt solid rgb(225,225,225);padding:3pt 0cm 0cm">
-<p><b><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:bl=
-ack">From:</span></b><span style=3D"font-size:11pt;font-family:Calibri,sans=
--serif;color:black"> Marcus D Leech [mailto:<a href=3D"mailto:patchvonbraun=
-@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>]
-<br>
-<b>Sent:</b> 12 March 2021 15:22<br>
-<b>To:</b> Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_bl=
-ank">rkossler@nd.edu</a>&gt;<br>
-<b>Cc:</b> Oliver Towlson &lt;<a href=3D"mailto:oliver.towlson@gmvnsl.com" =
-target=3D"_blank">oliver.towlson@gmvnsl.com</a>&gt;; <a href=3D"mailto:USRP=
--users@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a><br=
+
+<div id=3D"gmail-m_-2701009752514349730divtagdefaultwrapper" style=3D"font-=
+size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D=
+"ltr">
+<p>Hi Robin,</p>
+<p><br>
+</p>
+<p>Thanks for thinking about this. I do set the time source- in the python =
+script there is a line:</p>
+<p><br>
+</p>
+<p><span style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFont;=
+font-size:16px">=C2=A0self.uhd_usrp_source_0.set_time_source(&quot;sfp0&quo=
+t;)</span><br>
+</p>
+<p><span style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFont;=
+font-size:16px"><br>
+</span></p>
+<p><span style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFont;=
+font-size:16px">Robert</span></p>
+<p><span style=3D"font-family:Calibri,Helvetica,sans-serif,serif,EmojiFont;=
+font-size:16px"><br>
+</span></p>
+<p><br>
+</p>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_-2701009752514349730divRplyFwdMsg" dir=3D"ltr"><font fac=
+e=3D"Calibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>Fro=
+m:</b> Robin Coxe &lt;<a href=3D"mailto:coxe@quanttux.com" target=3D"_blank=
+">coxe@quanttux.com</a>&gt;<br>
+<b>Sent:</b> Monday, March 15, 2021 7:12:35 PM<br>
+<b>To:</b> Robert Clancy<br>
+<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a><br>
+<b>Subject:</b> Re: [USRP-users] WhiteRabbit switch with an N321</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div dir=3D"ltr">Hi Robert.=C2=A0 I think your issue may be that you need t=
+o set the time source in UHD to sfp0:
+<div><br>
+</div>
+<div><a href=3D"https://kb.ettus.com/Using_Ethernet-Based_Synchronization_o=
+n_the_USRP%E2%84%A2_N3xx_Devices" target=3D"_blank">https://kb.ettus.com/Us=
+ing_Ethernet-Based_Synchronization_on_the_USRP%E2%84%A2_N3xx_Devices</a><br=
 >
-<b>Subject:</b> Re: [USRP-users] Re: X310 with dual TwinRX set up</span><sp=
-an style=3D"color:black"><u></u><u></u></span></p>
+</div>
+<div>(Scroll down to the &quot;System Configuration&quot; section).</div>
+<div><br>
+</div>
+<div>-Robin</div>
+<div><br>
 </div>
 </div>
-<p><span style=3D"color:black">=C2=A0<u></u><u></u></span></p>
-<p><span style=3D"color:black">Also try running at a lower sample rate at f=
-irst. Just to see that you have the logic correct.=C2=A0<u></u><u></u></spa=
-n></p>
+<br>
+<div class=3D"gmail_quote">
+<div dir=3D"ltr" class=3D"gmail_attr">On Mon, Mar 15, 2021 at 11:57 AM Robe=
+rt Clancy &lt;<a href=3D"mailto:rclancy@ltsnet.net" target=3D"_blank">rclan=
+cy@ltsnet.net</a>&gt; wrote:<br>
+</div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr">
+<div id=3D"gmail-m_-2701009752514349730gmail-m_-3345210666378511327divtagde=
+faultwrapper" style=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,=
+Helvetica,sans-serif" dir=3D"ltr">
+<p>I am trying to test a White Rabbit switch with an N321 radio but am fail=
+ing to be able to make a capture.</p>
+<p><br>
+</p>
+<p>I have Gnuradio 3.8.0 installed and the UHD version is reported as <span=
+>UHD_4.0.0.0-18-g83e878cf</span></p>
+<p><span><br>
+</span></p>
+<p><span>This is the response from a probe:</span></p>
+<p><span><br>
+</span></p>
+<p><span></span></p>
+<div><i>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.=
+0-18-g83e878cf<br>
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+92.168.10.2,type=3Dn3xx,product=3Dn320,serial=3D31B36CF,claimed=3DFalse,add=
+r=3D192.168.10.2<br>
+[INFO] [MPM.main] Launching USRP/MPM, version: 4.0.0.0-g90ce6062<br>
+[INFO] [MPM.main] Spawning RPC process...<br>
+[INFO] [MPM.PeriphManager] Device serial number: 31B36CF<br>
+[INFO] [MPM.Rhodium-0] Enabling LO distribution board<br>
+[INFO] [MPM.Rhodium-0] Successfully loaded all peripherals!<br>
+[INFO] [MPM.Rhodium-1] Successfully loaded all peripherals!<br>
+[INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).<br>
+[INFO] [MPM.PeriphManager] No QSFP board detected: Assuming it is disabled =
+in the device tree overlay (e.g., HG, XG images).<br>
+[INFO] [MPM.PeriphManager] init() called with device args `clock_source=3Di=
+nternal,time_source=3Dinternal&#39;.<br>
+[INFO] [MPM.Rhodium-0] init() called with args `clock_source=3Dinternal,tim=
+e_source=3Dinternal&#39;<br>
+[INFO] [MPM.Rhodium-1] init() called with args `clock_source=3Dinternal,tim=
+e_source=3Dinternal&#39;<br>
+[INFO] [MPM.Rhodium-0.init.LMK04828] LMK initialized and locked!<br>
+[INFO] [MPM.Rhodium-1.init.LMK04828] LMK initialized and locked!<br>
+[INFO] [MPM.Rhodium-1.DAC37J82] DAC PLL Locked!<br>
+[INFO] [MPM.Rhodium-1.AD9695] ADC PLL Locked!<br>
+[INFO] [MPM.Rhodium-1.init] JESD204B Link Initialization &amp; Training Com=
+plete<br>
+[INFO] [MPM.Rhodium-0.DAC37J82] DAC PLL Locked!<br>
+[INFO] [MPM.Rhodium-0.AD9695] ADC PLL Locked!<br>
+[INFO] [MPM.Rhodium-0.init] JESD204B Link Initialization &amp; Training Com=
+plete<br>
+[INFO] [MPM.RPCServer] RPC server ready!<br>
+[INFO] [MPM.RPCServer] Spawning watchdog task...<br>
+[INFO] [MPM.PeriphManager] init() called with device args `mgmt_addr=3D192.=
+168.10.2,product=3Dn320,clock_source=3Dinternal,time_source=3Dinternal&#39;=
+.<br>
+[INFO] [MPM.Rhodium-0] init() called with args `mgmt_addr=3D192.168.10.2,pr=
+oduct=3Dn320,clock_source=3Dinternal,time_source=3Dinternal&#39;<br>
+[INFO] [MPM.Rhodium-1] init() called with args `mgmt_addr=3D192.168.10.2,pr=
+oduct=3Dn320,clock_source=3Dinternal,time_source=3Dinternal&#39;<br>
+=C2=A0 _____________________________________________________<br>
+=C2=A0/<br>
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Device: N300-Series Device<br>
+|=C2=A0=C2=A0=C2=A0=C2=A0 _________________________________________________=
+____<br>
+|=C2=A0=C2=A0=C2=A0 /<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Mboard: ni-n3xx-31B36CF=
+<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 dboard_0_pid: 338<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 dboard_0_serial: 3192EC4<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 dboard_1_pid: 338<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 dboard_1_serial: 3192EB9<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 eeprom_version: 3<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 fs_version: 20200914000806<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 mender_artifact: v4.0.0.0_n3xx<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 mpm_sw_version: 4.0.0.0-g90ce6062<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 pid: 16962<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 product: n320<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 rev: 7<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 rpc_connection: remote<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 serial: 31B36CF<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 type: n3xx<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 MPM Version: 3.0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 FPGA Version: 8.0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 FPGA git hash: be53058.clean<br>
+|=C2=A0=C2=A0 |=C2=A0 =C2=A0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 Time sources:=C2=A0 internal, external, gpsdo, =
+sfp0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 Clock sources: external, internal, gpsdo<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 Sensors: ref_locked, gps_locked, temp, fan, gps=
+_gpgga, gps_sky, gps_time, gps_tpv<br>
+|=C2=A0=C2=A0=C2=A0=C2=A0 _________________________________________________=
+____<br>
+|=C2=A0=C2=A0=C2=A0 /<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RFNoC blocks on this de=
+vice:<br>
+|=C2=A0=C2=A0 |=C2=A0 =C2=A0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/DDC#0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/DDC#1<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/DUC#0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/DUC#1<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/Radio#0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/Radio#1<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/Replay#0<br>
+|=C2=A0=C2=A0=C2=A0=C2=A0 _________________________________________________=
+____<br>
+|=C2=A0=C2=A0=C2=A0 /<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Static connections on t=
+his device:<br>
+|=C2=A0=C2=A0 |=C2=A0 =C2=A0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/SEP#0:0=3D=3D&gt;0/DUC#0:0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/DUC#0:0=3D=3D&gt;0/Radio#0:0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/Radio#0:0=3D=3D&gt;0/DDC#0:0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/DDC#0:0=3D=3D&gt;0/SEP#0:0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/SEP#1:0=3D=3D&gt;0/DUC#1:0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/DUC#1:0=3D=3D&gt;0/Radio#1:0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/Radio#1:0=3D=3D&gt;0/DDC#1:0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/DDC#1:0=3D=3D&gt;0/SEP#1:0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/SEP#2:0=3D=3D&gt;0/Replay#0:0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/Replay#0:0=3D=3D&gt;0/SEP#2:0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/SEP#3:0=3D=3D&gt;0/Replay#0:1<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 * 0/Replay#0:1=3D=3D&gt;0/SEP#3:0<br>
+|=C2=A0=C2=A0=C2=A0=C2=A0 _________________________________________________=
+____<br>
+|=C2=A0=C2=A0=C2=A0 /<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX Dboard: dboard<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ___________________________________=
+__________________<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX Fronte=
+nd: 0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: Rhodium<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Antennas: TX/RX, RX2, CAL, TERM<b=
+r>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range: 1.000 to 6000.000 MHz=
+<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain range all: 0.0 to 60.0 step =
+1.0 dB<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Bandwidth range: 250000000.0 to 2=
+50000000.0 step 0.0 Hz<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Connection Type: <br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Uses LO offset: No<br>
+|=C2=A0=C2=A0=C2=A0=C2=A0 _________________________________________________=
+____<br>
+|=C2=A0=C2=A0=C2=A0 /<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX Dboard: dboard<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ___________________________________=
+__________________<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX Fronte=
+nd: 0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: Rhodium<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Antennas: TX/RX, CAL, TERM<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range: 1.000 to 6000.000 MHz=
+<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain range all: 0.0 to 60.0 step =
+1.0 dB<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Bandwidth range: 250000000.0 to 2=
+50000000.0 step 0.0 Hz<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Connection Type: <br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Uses LO offset: No<br>
+|=C2=A0=C2=A0=C2=A0=C2=A0 _________________________________________________=
+____<br>
+|=C2=A0=C2=A0=C2=A0 /<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX Dboard: dboard<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ___________________________________=
+__________________<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX Fronte=
+nd: 0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: Rhodium<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Antennas: TX/RX, RX2, CAL, TERM<b=
+r>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range: 1.000 to 6000.000 MHz=
+<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain range all: 0.0 to 60.0 step =
+1.0 dB<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Bandwidth range: 250000000.0 to 2=
+50000000.0 step 0.0 Hz<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Connection Type: <br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Uses LO offset: No<br>
+|=C2=A0=C2=A0=C2=A0=C2=A0 _________________________________________________=
+____<br>
+|=C2=A0=C2=A0=C2=A0 /<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX Dboard: dboard<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ___________________________________=
+__________________<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX Fronte=
+nd: 0<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Name: Rhodium<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Antennas: TX/RX, CAL, TERM<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Freq range: 1.000 to 6000.000 MHz=
+<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Gain range all: 0.0 to 60.0 step =
+1.0 dB<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Bandwidth range: 250000000.0 to 2=
+50000000.0 step 0.0 Hz<br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Connection Type: <br>
+|=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0 Uses LO offset: No<br>
+<br>
+</i></div>
+<br>
+<p></p>
+<p><br>
+</p>
+<p>I am using this firmware: <br>
+</p>
+<p><i><span>uhd_image_loader --args type=3Dn3xx,addr=3D192.168.10.2 --fpga-=
+path=3D&quot;/opt/gnuradio/v3.8.0.0/share/uhd/images/usrp_n320_fpga_WX.bit&=
+quot;</span></i></p>
+<p><i><span><br>
+</span></i></p>
+<p><i><span></span></i></p>
+<div>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-1=
+8-g83e878cf<br>
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+92.168.10.2,type=3Dn3xx,product=3Dn320,serial=3D31B36CF,claimed=3DFalse,ski=
+p_init=3D1<br>
+[INFO] [MPMD] Claimed device without full initialization.<br>
+[INFO] [MPMD IMAGE LOADER] Starting update. This may take a while.<br>
+[INFO] [MPM.PeriphManager] Updating component `fpga&#39;<br>
+[INFO] [MPM.PeriphManager] Updating component `dts&#39;<br>
+[INFO] [MPM.RPCServer] Resetting peripheral manager.<br>
+[INFO] [MPM.PeriphManager] Device serial number: 31B36CF<br>
+[INFO] [MPM.Rhodium-0] Enabling LO distribution board<br>
+[INFO] [MPM.Rhodium-0] Successfully loaded all peripherals!<br>
+[INFO] [MPM.Rhodium-1] Successfully loaded all peripherals!<br>
+[INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).<br>
+[INFO] [MPM.PeriphManager] No QSFP board detected: Assuming it is disabled =
+in the device tree overlay (e.g., HG, XG images).<br>
+[INFO] [MPM.PeriphManager] init() called with device args `clock_source=3Di=
+nternal,time_source=3Dinternal&#39;.<br>
+[INFO] [MPM.Rhodium-0] init() called with args `clock_source=3Dinternal,tim=
+e_source=3Dinternal&#39;<br>
+[INFO] [MPM.Rhodium-1] init() called with args `clock_source=3Dinternal,tim=
+e_source=3Dinternal&#39;<br>
+[INFO] [MPM.Rhodium-0.init.LMK04828] LMK initialized and locked!<br>
+[INFO] [MPM.Rhodium-1.init.LMK04828] LMK initialized and locked!<br>
+[INFO] [MPM.Rhodium-1.DAC37J82] DAC PLL Locked!<br>
+[INFO] [MPM.Rhodium-1.AD9695] ADC PLL Locked!<br>
+[INFO] [MPM.Rhodium-1.init] JESD204B Link Initialization &amp; Training Com=
+plete<br>
+[INFO] [MPM.Rhodium-0.DAC37J82] DAC PLL Locked!<br>
+[INFO] [MPMD IMAGE LOADER] Update component function succeeded.<br>
+[INFO] [MPM.Rhodium-0.AD9695] ADC PLL Locked!<br>
+[INFO] [MPM.Rhodium-0.init] JESD204B Link Initialization &amp; Training Com=
+plete</div>
+<p></p>
+<div><br>
+</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>What I think are the relevant parts from a simple script to make a cap=
+ture:</div>
 <div>
-<p><span style=3D"color:black">=C2=A0<u></u><u></u></span></p>
-<div>
-<p><span style=3D"color:black">Sent from my iPhone<u></u><u></u></span></p>
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ###########################=
+#######################<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Variables<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ################################=
+##################<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.samp_rate =3D samp_rate =3D=
+ 12288000<br>
+<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ################################=
+##################<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Blocks<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ################################=
+##################<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.uhd_usrp_source_0 =3D uhd.u=
+srp_source(<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &quot;,&=
+quot;.join((&quot;&quot;, &quot;&quot;)),<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uhd.stre=
+am_args(<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 cpu_format=3D&quot;fc32&quot;,<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 args=3D&#39;addr=3D192.168.10.2&#39;,<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 channels=3Dlist(range(0,1)),<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ),<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 )<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ## WhiteRabbit addition<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #self.uhd_usrp_source_0.set_cloc=
+k_rate(200000000)<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.uhd_usrp_source_0.set_anten=
+na(&quot;TX/RX&quot;)<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print(&quot;Master clock rate se=
+t to: &quot;,self.uhd_usrp_source_0.get_clock_rate())<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print(&quot;Times sources are &q=
+uot;,self.uhd_usrp_source_0.get_time_sources(0))<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print(&quot;Sample rates is &quo=
+t;,self.uhd_usrp_source_0.get_samp_rates().stop())<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print(&quot;Antenna is &quot;,se=
+lf.uhd_usrp_source_0.get_antenna())=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=
+=A0<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.uhd_usrp_source_0.set_clock=
+_source(&quot;internal&quot;)<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.uhd_usrp_source_0.set_time_=
+source(&quot;sfp0&quot;)<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print(&quot;Time source is &quot=
+;,self.uhd_usrp_source_0.get_time_source(0))<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ###<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.uhd_usrp_source_0.set_cente=
+r_freq(75000100, 0)<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print(&quot;Tuned to=C2=A0 &quot=
+;,self.uhd_usrp_source_0.get_center_freq(0))<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.uhd_usrp_source_0.set_gain(=
+0, 0)<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.uhd_usrp_source_0.set_anten=
+na(&#39;TX/RX&#39;, 0)<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.uhd_usrp_source_0.set_samp_=
+rate(samp_rate)<br>
+<br>
+</div>
+And then the error:</div>
+<div><br>
 </div>
 <div>
-<p style=3D"margin-bottom:12pt"><span style=3D"color:black"><u></u>=C2=A0<u=
-></u></span></p>
-<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-<p><span style=3D"color:black">On Mar 12, 2021, at 9:18 AM, Rob Kossler &lt=
-;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&g=
-t; wrote:<u></u><u></u></span></p>
-</blockquote>
+<div>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.0.0.0-1=
+8-g83e878cf<br>
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+92.168.10.2,type=3Dn3xx,product=3Dn320,serial=3D31B36CF,claimed=3DFalse,add=
+r=3D192.168.10.2<br>
+[INFO] [MPM.PeriphManager] init() called with device args `mgmt_addr=3D192.=
+168.10.2,product=3Dn320,clock_source=3Dinternal,time_source=3Dinternal&#39;=
+.<br>
+[INFO] [MPM.Rhodium-0] init() called with args `mgmt_addr=3D192.168.10.2,pr=
+oduct=3Dn320,clock_source=3Dinternal,time_source=3Dinternal&#39;<br>
+[INFO] [MPM.Rhodium-1] init() called with args `mgmt_addr=3D192.168.10.2,pr=
+oduct=3Dn320,clock_source=3Dinternal,time_source=3Dinternal&#39;<br>
+Master clock rate set to:=C2=A0 245760000.0<br>
+Times sources are=C2=A0 (&#39;internal&#39;, &#39;external&#39;, &#39;gpsdo=
+&#39;, &#39;sfp0&#39;)<br>
+Sample rates is=C2=A0 245760000.0<br>
+Antenna is=C2=A0 TX/RX<br>
+[INFO] [MPM.Rhodium-0] Re-initializing daughter board. This may take some t=
+ime.<br>
+[INFO] [MPM.Rhodium-0] init() called with args `mgmt_addr=3D192.168.10.2,pr=
+oduct=3Dn320,clock_source=3Dinternal,time_source=3Dsfp0,skip_rfic=3DNone,ma=
+ster_clock_rate=3D245760000.0,ref_clk_freq=3D25000000.0&#39;<br>
+[ERROR] [RPC] TDC Failed to reset.<br>
+Traceback (most recent call last):<br>
+=C2=A0 File &quot;./TimeDomainDisplay.py&quot;, line 212, in &lt;module&gt;=
+<br>
+=C2=A0=C2=A0=C2=A0 main()<br>
+=C2=A0 File &quot;./TimeDomainDisplay.py&quot;, line 188, in main<br>
+=C2=A0=C2=A0=C2=A0 tb =3D top_block_cls()<br>
+=C2=A0 File &quot;./TimeDomainDisplay.py&quot;, line 95, in __init__<br>
+=C2=A0=C2=A0=C2=A0 self.uhd_usrp_source_0.set_time_source(&quot;sfp0&quot;)=
+<br>
+=C2=A0 File &quot;/opt/gnuradio/v3.8.0.0/lib/python3/dist-packages/gnuradio=
+/uhd/uhd_swig.py&quot;, line 4577, in set_time_source<br>
+=C2=A0=C2=A0=C2=A0 return _uhd_swig.usrp_source_sptr_set_time_source(self, =
+source, mboard)<br>
+RuntimeError: RuntimeError: Error during RPC call to `set_time_source&#39;.=
+ Error message: TDC Failed to reset.<br>
+[INFO] [MPM.Rhodium-0.init.LMK04828] LMK initialized and locked!<br>
+[ERROR] [MPM.Sync-0] TDC Failed to Reset! Check your clocks! Status: 0x0<br=
+>
+[ERROR] [MPM.RPCServer] Uncaught exception in method set_time_source :TDC F=
+ailed to reset.
+<br>
+=C2=A0Traceback (most recent call last):<br>
+=C2=A0 File &quot;/usr/lib/python3.7/site-packages/usrp_mpm/rpc_server.py&q=
+uot;, line 186, in new_claimed_function<br>
+=C2=A0=C2=A0=C2=A0 return function(*args)<br>
+=C2=A0 File &quot;/usr/lib/python3.7/site-packages/usrp_mpm/periph_manager/=
+n3xx.py&quot;, line 596, in set_time_source<br>
+=C2=A0=C2=A0=C2=A0 self.set_sync_source(source)<br>
+=C2=A0 File &quot;/usr/lib/python3.7/site-packages/usrp_mpm/periph_manager/=
+n3xx.py&quot;, line 696, in set_sync_source<br>
+=C2=A0=C2=A0=C2=A0 skip_rfic=3Dargs.get(&#39;skip_rfic&#39;, None)<br>
+=C2=A0 File &quot;/usr/lib/python3.7/site-packages/usrp_mpm/dboard_manager/=
+rhodium.py&quot;, line 478, in update_ref_clock_freq<br>
+=C2=A0=C2=A0=C2=A0 self._reinit(self.master_clock_rate)<br>
+=C2=A0 File &quot;/usr/lib/python3.7/site-packages/usrp_mpm/dboard_manager/=
+rhodium.py&quot;, line 438, in _reinit<br>
+=C2=A0=C2=A0=C2=A0 self.init(args)<br>
+=C2=A0 File &quot;/usr/lib/python3.7/site-packages/usrp_mpm/dboard_manager/=
+rhodium.py&quot;, line 341, in init<br>
+=C2=A0=C2=A0=C2=A0 init_result =3D RhodiumInitManager(self, self._spi_iface=
+s).init(args)<br>
+=C2=A0 File &quot;/usr/lib/python3.7/site-packages/usrp_mpm/dboard_manager/=
+rh_init.py&quot;, line 344, in init<br>
+=C2=A0=C2=A0=C2=A0 args)<br>
+=C2=A0 File &quot;/usr/lib/python3.7/site-packages/usrp_mpm/dboard_manager/=
+rh_init.py&quot;, line 100, in _sync_db_clock<br>
+=C2=A0=C2=A0=C2=A0 target_offset=3Dtrace_delay_offset))<br>
+=C2=A0 File &quot;/usr/lib/python3.7/site-packages/usrp_mpm/cores/tdc_sync.=
+py&quot;, line 201, in run<br>
+=C2=A0=C2=A0=C2=A0 self.configure(force=3DTrue)<br>
+=C2=A0 File &quot;/usr/lib/python3.7/site-packages/usrp_mpm/cores/tdc_sync.=
+py&quot;, line 254, in configure<br>
+=C2=A0=C2=A0=C2=A0 raise RuntimeError(&quot;TDC Failed to reset.&quot;)<br>
+RuntimeError: TDC Failed to reset.<br>
+<br>
 </div>
-<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-<div>
-<p><span style=3D"font-family:Tahoma,sans-serif;color:black">=EF=BB=BF</spa=
-n><span style=3D"color:black"><u></u><u></u></span></p>
-<div>
-<p><span style=3D"color:black">Is there any chance that your code is attemp=
-ting to set the master clock rate?=C2=A0 If so, perhaps see what happens if=
- you don&#39;t set it in order to let it be set automatically.<u></u><u></u=
-></span></p>
 </div>
-<p><span style=3D"color:black">=C2=A0<u></u><u></u></span></p>
-<div>
-<div>
-<p><span style=3D"color:black">On Fri, Mar 12, 2021 at 8:55 AM Oliver Towls=
-on &lt;<a href=3D"mailto:oliver.towlson@gmvnsl.com" target=3D"_blank">olive=
-r.towlson@gmvnsl.com</a>&gt; wrote:<u></u><u></u></span></p>
+<div><br>
 </div>
-<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
-order-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin:5pt 0c=
-m 5pt 4.8pt">
-<div>
-<div>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">Hi everyone
-</span><span style=3D"color:black"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">=C2=A0</span><span style=3D"color:black"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">Thanks so much for your quick responses. Seems like the thing we were mis=
-sing was that subdev spec =E2=80=93 once that was set it was straightforwar=
-d to generate the code.</span><span style=3D"color:black"><u></u><u></u></s=
-pan></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">=C2=A0</span><span style=3D"color:black"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">We tried running it and got the following:</span><span style=3D"color:bla=
-ck"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">=C2=A0</span><span style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [UHD] linux; GNU C++ version 9.2.1 20200304; Boost_107100; UHD_=
-3.15.0.0-2build5</span></i><span style=3D"color:black"><u></u><u></u></span=
-></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [X300] X300 initialization sequence...</span></i><span style=3D=
-"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [X300] Maximum frame size: 8000 bytes.</span></i><span style=3D=
-"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [X300] Maximum frame size: 8000 bytes.</span></i><span style=3D=
-"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [X300] Radio 1x clock: 200 MHz</span></i><span style=3D"color:b=
-lack"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [X300] Radio 1x clock: 200 MHz</span></i><span style=3D"color:b=
-lack"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [1/DmaFIFO_0] Initializing block control (NOC ID: 0xF1F0D000000=
-00000)</span></i><span style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1317 MB/s)</span></i><sp=
-an style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1301 MB/s)</span></i><sp=
-an style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [1/Radio_0] Initializing block control (NOC ID: 0x12AD100000000=
-001)</span></i><span style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [1/Radio_1] Initializing block control (NOC ID: 0x12AD100000000=
-001)</span></i><span style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [1/DDC_0] Initializing block control (NOC ID: 0xDDC000000000000=
-0)</span></i><span style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [1/DDC_1] Initializing block control (NOC ID: 0xDDC000000000000=
-0)</span></i><span style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [1/DUC_0] Initializing block control (NOC ID: 0xD0C000000000000=
-0)</span></i><span style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[INFO] [1/DUC_1] Initializing block control (NOC ID: 0xD0C000000000000=
-0)</span></i><span style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">[WARNING] [X300] Cannot update master clock rate! X300 Series does not=
- allow changing the clock rate during runtime.</span></i><span style=3D"col=
-or:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">terminate called after throwing an instance of &#39;uhd::io_error&#39;=
-</span></i><span style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">=C2=A0 what():=C2=A0 EnvironmentError: IOError: Block ctrl (CE_00_Port=
-_30) no response packet - AssertionError: bool(buff)</span></i><span style=
-=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">=C2=A0 in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bo=
-ol, double) [with uhd::endianness_t _endianness =3D uhd::ENDIANNESS_BIG; ui=
-nt64_t =3D long unsigned int]</span></i><span style=3D"color:black"><u></u>=
-<u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">=C2=A0 at /build/uhd-FRfZNJ/uhd-3.15.0.0/host/lib/rfnoc/ctrl_iface.cpp=
-:151</span></i><span style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">=C2=A0</span></i><span style=3D"color:black"><u></u><u></u></span></p>
-<p><i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:bl=
-ack">Aborted (core dumped)</span></i><span style=3D"color:black"><u></u><u>=
-</u></span></p>
-<p><span style=3D"color:black">=C2=A0<u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">Googling didn=E2=80=99t result in any answers beyond resetting the whole =
-device. But it does seem like a common error. As you say, the 4xRF_in set-u=
-p is fairly standard so I=E2=80=99m not sure what
- is causing the issue. The example rx_samples_to_file script runs fine (alt=
-hough it doesn=E2=80=99t seem to write anything, but it does seems to strea=
-m data fine)</span><span style=3D"color:black"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">=C2=A0</span><span style=3D"color:black"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">Let me know if you need any more information.</span><span style=3D"color:=
-black"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">=C2=A0</span><span style=3D"color:black"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">Thanks very much</span><span style=3D"color:black"><u></u><u></u></span><=
-/p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">=C2=A0</span><span style=3D"color:black"><u></u><u></u></span></p>
-<p><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-">Oliver</span><span style=3D"color:black"><u></u><u></u></span></p>
+<div>Can anyone shed any light on what is going on? <br>
 </div>
-<p><span style=3D"color:black"><br>
-</span><span style=3D"font-size:18pt;font-family:Webdings;color:green">P </=
-span><span style=3D"font-size:7pt;font-family:Arial,sans-serif;color:green"=
->Please consider the environment before printing this e-mail.</span><span s=
-tyle=3D"color:black">
-<u></u><u></u></span></p>
+<div><br>
 </div>
-<p><span style=3D"color:black">____________________________________________=
-___<br>
+<div>Has anyone actually got an Ettus radio working with the WX firmware an=
+d a White Rabbit switch?</div>
+<div><br>
+</div>
+<div>FWIW, the WR switch appears happy. I&#39;ve walked its SNMP tree and a=
+ll seems well. It is operating in Grandmaster mode with the one N321 hangin=
+g off its first port.</div>
+<div><br>
+</div>
+<div>Robert<br>
+</div>
+<div><br>
+</div>
+</div>
+</div>
+_______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">
 usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">
-usrp-users-leave@lists.ettus.com</a><u></u><u></u></span></p>
+usrp-users-leave@lists.ettus.com</a><br>
 </blockquote>
 </div>
-<p><span style=3D"color:black">____________________________________________=
-___<br>
+</div>
+</div>
+
+_______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">
-usrp-users-leave@lists.ettus.com</a><u></u><u></u></span></p>
-</div>
-</blockquote>
-</div>
-</div>
-<span><br>
-</span><span style=3D"font-size:18pt;line-height:125%;font-family:Webdings;=
-color:green">P<span></span>
-<span style=3D"font-size:7pt;line-height:125%;font-family:Arial,sans-serif;=
-color:green">
-Please consider the environment before printing this e-mail.</span></span><=
-span></span>
-</div>
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
-</blockquote></div></div>
+--00000000000034ad9405bdab8a3e--
 
---000000000000099bf605bdab713b--
-
---===============0259646257536703775==
+--===============0264459710202750736==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -541,4 +1068,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0259646257536703775==--
+--===============0264459710202750736==--
