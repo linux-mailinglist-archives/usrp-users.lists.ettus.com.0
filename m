@@ -2,268 +2,208 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9E7B33F433
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Mar 2021 16:49:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19D2233F875
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Mar 2021 19:51:15 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D92003837E2
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Mar 2021 11:49:00 -0400 (EDT)
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0FF8838379E
-	for <usrp-users@lists.ettus.com>; Wed, 17 Mar 2021 11:47:57 -0400 (EDT)
-Received: by mail-ej1-f45.google.com with SMTP id mj10so3382055ejb.5
-        for <usrp-users@lists.ettus.com>; Wed, 17 Mar 2021 08:47:57 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B05B538375F
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Mar 2021 14:51:13 -0400 (EDT)
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2225B38374D
+	for <usrp-users@lists.ettus.com>; Wed, 17 Mar 2021 14:50:20 -0400 (EDT)
+Received: by mail-vk1-f176.google.com with SMTP id k27so721806vki.2
+        for <usrp-users@lists.ettus.com>; Wed, 17 Mar 2021 11:50:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=GGecvHavY/dab+yFBgPMLBwuTiiU9FFDJbC2+q5aa+0=;
-        b=d4/4Giypk8fn2Z/8meDFrcsWwBwfw0oeEwq00XReLsHpnz87kg8UAc5ztzYn7CtJiO
-         OTvt/zmWg0nv3Hw7JkG0Ifu7lg+LHxRn5ElUiOAtJPDV4HkD/u31Glo184VFhDVK84io
-         YJv1Ugio6ajwbxokwCVJV4rizqGAyX3vAHYRXxW806D3OZELhVHaS4Exj8VmcEDZvAC9
-         HbBXvzLH/HDeS/TtYGbJWQffWy0tNYCEV/F7cZswCZay0tpgcqXoql3Jw7IFYB/2VbiI
-         OILYNdKVJRP0FSJKZl+dqYrhJrq/hHik/puYRlLofeRh27YGGztCNu4Wjg67cfPU/IJg
-         D4Wg==
+        d=ettus-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=i6lWzPMmFZfGQSPpnDbwo7nU3do7cYkHRj/YesLqOno=;
+        b=tOAIMcPeGi0ws5LrcUTCquockNSH9lXuV4MbGv9Zwnec30/KsisD4WhWf/V0MaU4Lx
+         6wj7RQ/HBnH3mY6kh/Z8RS8JdwAD+RUwaHYboIUgiynO6jloc2+RJp5tCiCEkIAw5/vk
+         urSvbI33g6s4VAG4NIgI3TiNZq5iSP3Erb3X3YxtrQlPaOEJe4u8VMi/I2DT3WHe6G/7
+         CS4atUbKxB90EJ99M8h4rfsN7GB1PRkIp5bnWaTzqPx5RFUTeUnoKs6GyYlnj4MNCuQ8
+         vochh7hW5fq8VuZZ+nMgWL/fD1EHaODImbm0kjl61bLi4ot02yoIMrum/DSrdUKbH6E5
+         WM9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=GGecvHavY/dab+yFBgPMLBwuTiiU9FFDJbC2+q5aa+0=;
-        b=LxjHrRs9yv+FpndNmQLkctcOF6BraIe7ZcjJx8yxnHQylJUTo1nYoPG/TfncetlVzm
-         L7KHM4n/HVUfHZ6wk9KqIt8YVAaPbaptgsUTfsx43xs53misvAmCgCYhvLwqi88Kw5Se
-         8+ZmH5RfEKFi3MVBSZYXqK80dzsKvfHnnDccXbqis6OWhaE83FloFZ0JS7rNRWxtV/kV
-         9TsmftQjnc+0/KTk8UvoyDLRseMA/Q5SHbxp6Gmux6CZCswhL83uYsHLJIG45S/0Jn/3
-         ptJO7PcWjjaFSa4NPJTQxd6KGYYF5jUqqY3cgS5NP+56XQzgZ3QwGBzG8eEYWkOhgSkU
-         4fYw==
-X-Gm-Message-State: AOAM5327CeGt8idhM1vca+BMuGRuKgU54m/9y4cz7ffT/DDyZT0+tKmh
-	9i76NVMbZt1RKU1izayflo9+qKASD7PenKSy/I2OGJi93kL5kQ==
-X-Google-Smtp-Source: ABdhPJy3//IPGFB32WQ9E1JdxS+7tnYlHLhojU1a0dNq/rsqT4dvhut3Qm6TgzHeEwLgBFrOO1kPWDTAUXB9nU06QV8=
-X-Received: by 2002:a17:906:1a16:: with SMTP id i22mr36338154ejf.522.1615996076624;
- Wed, 17 Mar 2021 08:47:56 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i6lWzPMmFZfGQSPpnDbwo7nU3do7cYkHRj/YesLqOno=;
+        b=mJiFjvxagBYIxxvkiIpm4K6lzzTnctajezP8wAc2FxAbJfqbphKY7shgujahN0EBbx
+         tXevWdmlsSSbmlI8em5GBdTpn0dejo4Aaq2UR7HkCe9ZjNKy560FqANqPdSE/i3pLVoB
+         p7Vdy32gLd4Dg7MGIOgkI9PljAu3BGtau8OugM24+WUBN0x9pgWfqdZ3UEcxc7zfby+6
+         fdR7qVy93uyejkNh1sKhcXg6TTMGXvqniavfcsAa84Pawp8tKNd4GhcnKCNbqbKY71iK
+         Lcxj5KIT71J7KfoJEyarzk4PFC0zbo8vafzajs7lkLlYm5RE+9Xc+d533i0SDMf8uMCY
+         sdWg==
+X-Gm-Message-State: AOAM530e/XbtdIuPC+yqiAw+waISbHGLd3h6sMgax0AEljZOsy119bM1
+	H2+jpiv3jfDBaksAmF86EEXpWW80mrtsW0BxOLZO+uW/
+X-Google-Smtp-Source: ABdhPJzglJyMIJTwvDmHSh4AOJWRNh2gdJ53F50AvzUDvZT8PYLHxEiXPtLURWO0Z4n1WLpCHWV3DSaH9rJKSRqb3QY=
+X-Received: by 2002:a1f:b689:: with SMTP id g131mr4212706vkf.6.1616007020490;
+ Wed, 17 Mar 2021 11:50:20 -0700 (PDT)
 MIME-Version: 1.0
-From: Julian Casallas <jcasallas2019@gmail.com>
-Date: Wed, 17 Mar 2021 11:47:45 -0400
-Message-ID: <CAFBYX1W4Dw9axcLzP55a934Em3Zaj4ywXDc5F0GLJQ7kzQGgZQ@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: EOEMSAE4K5LKYCIWFG2P3LENGHKKY75B
-X-Message-ID-Hash: EOEMSAE4K5LKYCIWFG2P3LENGHKKY75B
-X-MailFrom: jcasallas2019@gmail.com
+References: <BMXPR01MB27601B8EBE3F518F4937565D8B6B9@BMXPR01MB2760.INDPRD01.PROD.OUTLOOK.COM>
+ <6050B5EC.90606@gmail.com>
+In-Reply-To: <6050B5EC.90606@gmail.com>
+From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Date: Wed, 17 Mar 2021 14:49:44 -0400
+Message-ID: <CAL7q81t+SYEZLZfFc+iYzkxGb4PNsLtuYDGS-wU6DEugO8CRxw@mail.gmail.com>
+To: "Sourin Mondal (Vehere)" <sourin.mondal@vehere.com>
+Message-ID-Hash: AWVYZAGYYKV2CRLD4HCB27UQLS5X6LIH
+X-Message-ID-Hash: AWVYZAGYYKV2CRLD4HCB27UQLS5X6LIH
+X-MailFrom: jonathon.pendlum@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] rfnoc_image_builder error.
+Subject: [USRP-users] Re: How to create stream data from USRP (via PCI) using rfnoc block in c++
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EOEMSAE4K5LKYCIWFG2P3LENGHKKY75B/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AWVYZAGYYKV2CRLD4HCB27UQLS5X6LIH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1837233547258587240=="
+Content-Type: multipart/mixed; boundary="===============7955116837905119029=="
 
---===============1837233547258587240==
-Content-Type: multipart/alternative; boundary="0000000000001b0bf805bdbd686e"
+--===============7955116837905119029==
+Content-Type: multipart/alternative; boundary="00000000000069469105bdbff420"
 
---0000000000001b0bf805bdbd686e
+--00000000000069469105bdbff420
 Content-Type: text/plain; charset="UTF-8"
 
-Hi all,
+Hi Sourin,
 
-I am currently following the Getting started UHD 4 guide and when building
-a fpga image running the following command:
+Here are a few more links for UHD 4.0 / RFNoC 4:
 
-* rfnoc_image_builder -F ~/uhd/fpga/ -I ~/rfnoc-ws/rfnoc-test/rfnoc/blocks
--y ~/rfnoc_ws/rfnoc-test/rfnoc/icores/demo_x310_rfnoc_image_core.yml -t
-X310_XG*
+Getting Started with RFNoC in UHD 4.0
+<https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0>
+RFNoC 4 Migration Guide <https://kb.ettus.com/RFNoC_4_Migration_Guide>
+RFNoC 4 Workshop (Youtube Video)
+<https://www.youtube.com/watch?v=M9ntwQie9vs>
+Exploring RFNoC 4 with the UHD Python API (Youtube Video)
+<https://youtu.be/fbcxm7f-Tj0>
 
-I get the following error message:
+Jonathon
 
-...
-[INF] Adding block description from fir_filter.yml
-(/usr/local/share/uhd/rfnoc/blocks).
-[INF] Adding block description from radio_1x64.yml
-(/usr/local/share/uhd/rfnoc/blocks).
-Traceback (most recent call last):
-  File "/usr/local/bin/rfnoc_image_builder", line 212, in <module>
-    sys.exit(main())
-  File "/usr/local/bin/rfnoc_image_builder", line 195, in main
-    image_builder.build_image(
-  File
-"/usr/local/lib/python3/dist-packages/uhd/imgbuilder/image_builder.py",
-line 864, in build_image
-    builder_conf = ImageBuilderConfig(config, blocks, device_conf)
-  File
-"/usr/local/lib/python3/dist-packages/uhd/imgbuilder/image_builder.py",
-line 180, in __init__
-    self._collect_noc_ports()
-  File
-"/usr/local/lib/python3/dist-packages/uhd/imgbuilder/image_builder.py",
-line 217, in _collect_noc_ports
-    desc = self.blocks[block["block_desc"]]
-KeyError: 'demo.yml'
+On Tue, Mar 16, 2021 at 9:43 AM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
 
-Basically what I did was to modify the *gain.yml *to be *demo.yml,*
-the *gain_x310_rfnoc_image_core.yml
-*to be  *demo_x310_rfnoc_image_core.yml, * I also modified both demo yaml
-files with different name, noc_id, I changed the static connections to
-reflect the demo0 device like this:
+> On 03/16/2021 07:10 AM, Sourin Mondal (Vehere) wrote:
+>
+> Hi,
+> I am trying to stream data from USRP where the data passed through RFNOC
+> block (in order to create a lowpass filter) before coming to host machine
+> and I am trying to implement it using C++ code. I know how to stream data
+> normally. i.e. without rfnoc block in c++. Can anyone please help me how to
+> implement or the syntax to stream data via RFNOC block to host machine.
+>
+> Thanking you.
+>
+> with regards,
+>
+> There is some getting-started information here:
+>
+> https://kb.ettus.com/Getting_Started_with_RFNoC_Development
+>
+> There are also a number of rfnoc-based examples in the source code tree,
+> in the "host/examples" directory.
+>
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-*  demo_x310_rfnoc_image_core.yml:*
-...
-  radio1:
-    block_desc: 'radio_2x64.yml'
-  demo0:
-    block_desc: '*demo.ym*l'
-...
- - { srcblk: ddc1,   srcport: out_1, dstblk: ep3,    dstport: in0  }
-  # Custom block connection: ep4 to demo0 and demo0 to ep4
-  - { srcblk: ep4, srcport: out0, dstblk: *demo0*, dstport: in }
-  - { srcblk: *demo0*, srcport: out, dstblk: ep4, dstport: in0 }
-...
-clk_domains:
-    - { srcblk: _device_, srcport: radio, dstblk: radio0, dstport: radio }
-    - { srcblk: _device_, srcport: ce,    dstblk: ddc0,   dstport: ce    }
-    - { srcblk: _device_, srcport: ce,    dstblk: duc0,   dstport: ce    }
-    - { srcblk: _device_, srcport: radio, dstblk: radio1, dstport: radio }
-    - { srcblk: _device_, srcport: ce,    dstblk: ddc1,   dstport: ce    }
-    - { srcblk: _device_, srcport: ce,    dstblk: duc1,   dstport: ce    }
-    - { srcblk: _device_, srcport: ce,    dstblk: *demo0*, dstport: ce }
-
-*demo.yml:*
-
- schema: rfnoc_modtool_args
-  3 module_name: *demo*
-  4 version: 1.0
-  5 rfnoc_version: 1.0
-  6 chdr_width: 64
-  7 noc_id: *0x1000DE31*
-  8 makefile_srcs: "/home/wisp/rfnoc_ws/rfnoc-test/rfnoc/fpga/rfnoc_block_
-*demo/*Makefile.srcs"
-  9
- 10 clocks:
- 11   - name: rfnoc_chdr
- 12     freq: "[]"
- 13   - name: rfnoc_ctrl
- 14     freq: "[]"
- 15   - name: ce
- 16     freq: "[]"
- 17
- 18 control:
- 19   sw_iface: nocscript
- 20   fpga_iface: ctrlport
- 21   interface_direction: slave
- 22   fifo_depth: 32
- 23   clk_domain: ce
- 24   ctrlport:
- 25     byte_mode: False
- 26     timed: False
- 27     has_status: False
- 28
- 29 data:
- 30   fpga_iface: axis_data
- 31   clk_domain: ce
- 32   inputs:
- 33     in:
- 34       item_width: 32
- 35       nipc: 1
- 36       info_fifo_depth: 32
- 37       payload_fifo_depth: 32
- 38       format: int32
- 39       mdata_sig: ~
- 40   outputs:
- 41     out:
- 42       item_width: 32
- 43       nipc: 1
- 44       info_fifo_depth: 32
- 45       payload_fifo_depth: 32
- 46       format: int32
- 47       mdata_sig: ~
-
-Could you please help me to find the issue? I followed the UHD 4 guide and
-started from scratch again to see I was missing something but I got the
-same error.
-
-Thanks
-J
-
---0000000000001b0bf805bdbd686e
+--00000000000069469105bdbff420
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi all,<div><br></div><div>I am currently following the Ge=
-tting started UHD 4 guide and when building a fpga image running the follow=
-ing=C2=A0command:</div><div><b><br></b></div><div><b>=C2=A0rfnoc_image_buil=
-der -F ~/uhd/fpga/ -I ~/rfnoc-ws/rfnoc-test/rfnoc/blocks -y ~/rfnoc_ws/rfno=
-c-test/rfnoc/icores/demo_x310_rfnoc_image_core.yml -t X310_XG</b><br></div>=
-<div><b><br></b></div><div>I get the following=C2=A0error message:</div><di=
-v><br></div><div>...</div><div>[INF] Adding block description from fir_filt=
-er.yml (/usr/local/share/uhd/rfnoc/blocks).<br>[INF] Adding block descripti=
-on from radio_1x64.yml (/usr/local/share/uhd/rfnoc/blocks).<br>Traceback (m=
-ost recent call last):<br>=C2=A0 File &quot;/usr/local/bin/rfnoc_image_buil=
-der&quot;, line 212, in &lt;module&gt;<br>=C2=A0 =C2=A0 sys.exit(main())<br=
->=C2=A0 File &quot;/usr/local/bin/rfnoc_image_builder&quot;, line 195, in m=
-ain<br>=C2=A0 =C2=A0 image_builder.build_image(<br>=C2=A0 File &quot;/usr/l=
-ocal/lib/python3/dist-packages/uhd/imgbuilder/image_builder.py&quot;, line =
-864, in build_image<br>=C2=A0 =C2=A0 builder_conf =3D ImageBuilderConfig(co=
-nfig, blocks, device_conf)<br>=C2=A0 File &quot;/usr/local/lib/python3/dist=
--packages/uhd/imgbuilder/image_builder.py&quot;, line 180, in __init__<br>=
-=C2=A0 =C2=A0 self._collect_noc_ports()<br>=C2=A0 File &quot;/usr/local/lib=
-/python3/dist-packages/uhd/imgbuilder/image_builder.py&quot;, line 217, in =
-_collect_noc_ports<br>=C2=A0 =C2=A0 desc =3D self.blocks[block[&quot;block_=
-desc&quot;]]<br>KeyError: &#39;demo.yml&#39;<br></div><div><br></div><div>B=
-asically=C2=A0what I did was to modify the <b>gain.yml </b>to be <b>demo.ym=
-l,</b>=C2=A0the=C2=A0<b>gain_x310_rfnoc_image_core.yml </b>to be=C2=A0 <b>d=
-emo_x310_rfnoc_image_core.yml,=C2=A0</b>=C2=A0I also modified both demo yam=
-l files with different name, noc_id, I changed the static connections to re=
-flect the demo0 device like this:</div><div><br></div><div><b>=C2=A0 demo_x=
-310_rfnoc_image_core.yml:</b>=C2=A0=C2=A0<br></div><div>...</div><div>=C2=
-=A0 radio1:<br>=C2=A0 =C2=A0 block_desc: &#39;radio_2x64.yml&#39;<br>=C2=A0=
- demo0:<br>=C2=A0 =C2=A0 block_desc: &#39;<b>demo.ym</b>l&#39;<br>...</div>=
-<div>=C2=A0- { srcblk: ddc1, =C2=A0 srcport: out_1, dstblk: ep3, =C2=A0 =C2=
-=A0dstport: in0 =C2=A0}<br>=C2=A0 # Custom block connection: ep4 to demo0 a=
-nd demo0 to ep4<br>=C2=A0 - { srcblk: ep4, srcport: out0, dstblk: <b>demo0<=
-/b>, dstport: in }<br>=C2=A0 - { srcblk: <b>demo0</b>, srcport: out, dstblk=
-: ep4, dstport: in0 }<br></div><div>...</div><div>clk_domains:<br>=C2=A0 =
-=C2=A0 - { srcblk: _device_, srcport: radio, dstblk: radio0, dstport: radio=
- }<br>=C2=A0 =C2=A0 - { srcblk: _device_, srcport: ce, =C2=A0 =C2=A0dstblk:=
- ddc0, =C2=A0 dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 =C2=A0 - { srcblk: _devi=
-ce_, srcport: ce, =C2=A0 =C2=A0dstblk: duc0, =C2=A0 dstport: ce =C2=A0 =C2=
-=A0}<br>=C2=A0 =C2=A0 - { srcblk: _device_, srcport: radio, dstblk: radio1,=
- dstport: radio }<br>=C2=A0 =C2=A0 - { srcblk: _device_, srcport: ce, =C2=
-=A0 =C2=A0dstblk: ddc1, =C2=A0 dstport: ce =C2=A0 =C2=A0}<br>=C2=A0 =C2=A0 =
-- { srcblk: _device_, srcport: ce, =C2=A0 =C2=A0dstblk: duc1, =C2=A0 dstpor=
-t: ce =C2=A0 =C2=A0}<br>=C2=A0 =C2=A0 - { srcblk: _device_, srcport: ce, =
-=C2=A0 =C2=A0dstblk: <b>demo0</b>, dstport: ce }<br></div><div><br></div><d=
-iv><b>demo.yml:</b></div><div><b><br></b></div><div>=C2=A0schema: rfnoc_mod=
-tool_args<br>=C2=A0 3 module_name: <b>demo</b><br>=C2=A0 4 version: 1.0<br>=
-=C2=A0 5 rfnoc_version: 1.0<br>=C2=A0 6 chdr_width: 64<br>=C2=A0 7 noc_id: =
-<b>0x1000DE31</b><br>=C2=A0 8 makefile_srcs: &quot;/home/wisp/rfnoc_ws/rfno=
-c-test/rfnoc/fpga/rfnoc_block_<b>demo/</b>Makefile.srcs&quot;<br>=C2=A0 9<b=
-r>=C2=A010 clocks:<br>=C2=A011 =C2=A0 - name: rfnoc_chdr<br>=C2=A012 =C2=A0=
- =C2=A0 freq: &quot;[]&quot;<br>=C2=A013 =C2=A0 - name: rfnoc_ctrl<br>=C2=
-=A014 =C2=A0 =C2=A0 freq: &quot;[]&quot;<br>=C2=A015 =C2=A0 - name: ce<br>=
-=C2=A016 =C2=A0 =C2=A0 freq: &quot;[]&quot;<br>=C2=A017<br>=C2=A018 control=
-:<br>=C2=A019 =C2=A0 sw_iface: nocscript<br>=C2=A020 =C2=A0 fpga_iface: ctr=
-lport<br>=C2=A021 =C2=A0 interface_direction: slave<br>=C2=A022 =C2=A0 fifo=
-_depth: 32<br>=C2=A023 =C2=A0 clk_domain: ce<br>=C2=A024 =C2=A0 ctrlport:<b=
-r>=C2=A025 =C2=A0 =C2=A0 byte_mode: False<br>=C2=A026 =C2=A0 =C2=A0 timed: =
-False<br>=C2=A027 =C2=A0 =C2=A0 has_status: False<br>=C2=A028<br>=C2=A029 d=
-ata:<br>=C2=A030 =C2=A0 fpga_iface: axis_data<br>=C2=A031 =C2=A0 clk_domain=
-: ce<br>=C2=A032 =C2=A0 inputs:<br>=C2=A033 =C2=A0 =C2=A0 in:<br>=C2=A034 =
-=C2=A0 =C2=A0 =C2=A0 item_width: 32<br>=C2=A035 =C2=A0 =C2=A0 =C2=A0 nipc: =
-1<br>=C2=A036 =C2=A0 =C2=A0 =C2=A0 info_fifo_depth: 32<br>=C2=A037 =C2=A0 =
-=C2=A0 =C2=A0 payload_fifo_depth: 32<br>=C2=A038 =C2=A0 =C2=A0 =C2=A0 forma=
-t: int32<br>=C2=A039 =C2=A0 =C2=A0 =C2=A0 mdata_sig: ~<br>=C2=A040 =C2=A0 o=
-utputs:<br>=C2=A041 =C2=A0 =C2=A0 out:<br>=C2=A042 =C2=A0 =C2=A0 =C2=A0 ite=
-m_width: 32<br>=C2=A043 =C2=A0 =C2=A0 =C2=A0 nipc: 1<br>=C2=A044 =C2=A0 =C2=
-=A0 =C2=A0 info_fifo_depth: 32<br>=C2=A045 =C2=A0 =C2=A0 =C2=A0 payload_fif=
-o_depth: 32<br>=C2=A046 =C2=A0 =C2=A0 =C2=A0 format: int32<br>=C2=A047 =C2=
-=A0 =C2=A0 =C2=A0 mdata_sig: ~<br></div><div><br></div><div>Could you pleas=
-e help me to find the issue? I followed the UHD 4 guide and started from sc=
-ratch again to see I was missing something but I got the same error.</div><=
-div><br></div><div>Thanks</div><div>J</div></div>
+<div dir=3D"ltr">Hi Sourin,<div><br></div><div>Here are a few more links fo=
+r UHD 4.0 / RFNoC 4:</div><div><br></div><div><div class=3D"gmail_default" =
+style=3D"font-family:verdana,sans-serif"><a href=3D"https://kb.ettus.com/Ge=
+tting_Started_with_RFNoC_in_UHD_4.0" target=3D"_blank">Getting Started with=
+=C2=A0<span class=3D"gmail-il">RFNoC</span>=C2=A0in UHD=C2=A0<span class=3D=
+"gmail-il">4</span>.0</a></div><div class=3D"gmail_default" style=3D"font-f=
+amily:verdana,sans-serif"><a href=3D"https://kb.ettus.com/RFNoC_4_Migration=
+_Guide">RFNoC 4 Migration Guide</a><br></div><div class=3D"gmail_default" s=
+tyle=3D"font-family:verdana,sans-serif"><a href=3D"https://www.youtube.com/=
+watch?v=3DM9ntwQie9vs" target=3D"_blank"><span class=3D"gmail-il">RFNoC</sp=
+an>=C2=A0<span class=3D"gmail-il">4</span>=C2=A0Workshop (Youtube Video)</a=
+></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif=
+"><a href=3D"https://youtu.be/fbcxm7f-Tj0" target=3D"_blank">Exploring=C2=
+=A0<span class=3D"gmail-il">RFNoC</span>=C2=A0<span class=3D"gmail-il">4</s=
+pan>=C2=A0with the UHD Python API (Youtube Video)</a></div></div><div class=
+=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><br></div><div =
+class=3D"gmail_default" style=3D"font-family:verdana,sans-serif">Jonathon</=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Tue, Mar 16, 2021 at 9:43 AM Marcus D. Leech &lt;<a href=3D"mailto:p=
+atchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <div>On 03/16/2021 07:10 AM, Sourin Mondal
+      (Vehere) wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+     =20
+      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
+e:12pt;color:rgb(0,0,0)">
+        Hi,</div>
+      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
+e:12pt;color:rgb(0,0,0)">
+        I am trying to stream data from USRP where the data passed
+        through RFNOC block (in order to create a lowpass filter) before
+        coming to host machine and I am trying to implement it using C++
+        code. I know how to stream data normally. i.e. without rfnoc
+        block in c++. Can anyone please help me how to implement or the
+        syntax to stream data via RFNOC block to host machine.</div>
+      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
+e:12pt;color:rgb(0,0,0)">
+        <br>
+      </div>
+      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
+e:12pt;color:rgb(0,0,0)">
+        Thanking you.</div>
+      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
+e:12pt;color:rgb(0,0,0)">
+        <br>
+      </div>
+      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
+e:12pt;color:rgb(0,0,0)">
+        with regards,<br>
+      </div>
+      <br>
+    </blockquote>
+    There is some getting-started information here:<br>
+    <br>
+    <a href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_Development"=
+ target=3D"_blank">https://kb.ettus.com/Getting_Started_with_RFNoC_Developm=
+ent</a><br>
+    <br>
+    There are also a number of rfnoc-based examples in the source code
+    tree, in the &quot;host/examples&quot; directory.<br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
 
---0000000000001b0bf805bdbd686e--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---===============1837233547258587240==
+--00000000000069469105bdbff420--
+
+--===============7955116837905119029==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -273,4 +213,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1837233547258587240==--
+--===============7955116837905119029==--
