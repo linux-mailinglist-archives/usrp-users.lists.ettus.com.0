@@ -2,32 +2,35 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F8BA341002
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Mar 2021 22:43:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51327341008
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Mar 2021 22:47:00 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 732FB383858
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Mar 2021 17:43:09 -0400 (EDT)
-Received: from outgoing-exchange-7.mit.edu (outgoing-exchange-7.mit.edu [18.9.28.58])
-	by mm2.emwd.com (Postfix) with ESMTPS id 674643832FA
-	for <usrp-users@lists.ettus.com>; Thu, 18 Mar 2021 17:42:59 -0400 (EDT)
-Received: from oc11exedge1.exchange.mit.edu (OC11EXEDGE1.EXCHANGE.MIT.EDU [18.9.3.17])
-	by outgoing-exchange-7.mit.edu (8.14.7/8.12.4) with ESMTP id 12ILgjdB028857
-	for <usrp-users@lists.ettus.com>; Thu, 18 Mar 2021 17:42:58 -0400
+	by mm2.emwd.com (Postfix) with ESMTP id 876C5383CFA
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Mar 2021 17:46:59 -0400 (EDT)
+Received: from outgoing-exchange-5.mit.edu (outgoing-exchange-5.mit.edu [18.9.28.59])
+	by mm2.emwd.com (Postfix) with ESMTPS id A91FF3832FA
+	for <USRP-users@lists.ettus.com>; Thu, 18 Mar 2021 17:46:07 -0400 (EDT)
+Received: from w92exedge4.exchange.mit.edu (W92EXEDGE4.EXCHANGE.MIT.EDU [18.7.73.16])
+	by outgoing-exchange-5.mit.edu (8.14.7/8.12.4) with ESMTP id 12ILk47o009327;
+	Thu, 18 Mar 2021 17:46:06 -0400
 Received: from w92expo22.exchange.mit.edu (18.7.74.76) by
- oc11exedge1.exchange.mit.edu (18.9.3.17) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 18 Mar 2021 17:42:25 -0400
+ w92exedge4.exchange.mit.edu (18.7.73.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 18 Mar 2021 17:45:31 -0400
 Received: from oc11expo22.exchange.mit.edu (18.9.4.84) by
  w92expo22.exchange.mit.edu (18.7.74.76) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 18 Mar 2021 17:42:38 -0400
+ 15.0.1497.2; Thu, 18 Mar 2021 17:45:44 -0400
 Received: from oc11expo22.exchange.mit.edu ([18.9.4.84]) by
  oc11expo22.exchange.mit.edu ([18.9.4.84]) with mapi id 15.00.1497.012; Thu,
- 18 Mar 2021 17:42:39 -0400
+ 18 Mar 2021 17:45:44 -0400
 From: "Richard J. Muri" <ri28856@mit.edu>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: UHD hanging after uhd::usrp::multi_usrp::make()
-Thread-Index: AdccPRMlimPj+dgCRG6D5Pp4YiZX9A==
-Date: Thu, 18 Mar 2021 21:42:38 +0000
-Message-ID: <2e9a7f6b9ef44d3884048125a94a02eb@oc11expo22.exchange.mit.edu>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] x310 PPS issues
+Thread-Index: AdccNlE+Cplbbb6qSCOSsh6BT3YwPgAJigmAAAcnChA=
+Date: Thu, 18 Mar 2021 21:45:44 +0000
+Message-ID: <9fe71dc5335646659d7650c10e6d2cb3@oc11expo22.exchange.mit.edu>
+References: <42410c3ff66e427aa6ef3655d8b9837b@oc11expo22.exchange.mit.edu>
+ <35024BFC-78E2-4CE2-8205-2320945C55F0@gmail.com>
+In-Reply-To: <35024BFC-78E2-4CE2-8205-2320945C55F0@gmail.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -35,199 +38,195 @@ X-MS-TNEF-Correlator:
 x-ms-exchange-transport-fromentityheader: Hosted
 x-originating-ip: [129.55.200.20]
 MIME-Version: 1.0
-Message-ID-Hash: 4PW4RGDUSX4XGX2ZFVBIAFP2YUTHCDOM
-X-Message-ID-Hash: 4PW4RGDUSX4XGX2ZFVBIAFP2YUTHCDOM
+Message-ID-Hash: IPESPF2YZS56ONFJTE6SKLKUJ2TSBF5J
+X-Message-ID-Hash: IPESPF2YZS56ONFJTE6SKLKUJ2TSBF5J
 X-MailFrom: ri28856@mit.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] UHD hanging after uhd::usrp::multi_usrp::make()
+Subject: [USRP-users] Re: x310 PPS issues
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4PW4RGDUSX4XGX2ZFVBIAFP2YUTHCDOM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IPESPF2YZS56ONFJTE6SKLKUJ2TSBF5J/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0310415925427982965=="
+Content-Type: multipart/mixed; boundary="===============8304048635872741700=="
 
---===============0310415925427982965==
+--===============8304048635872741700==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_2e9a7f6b9ef44d3884048125a94a02eboc11expo22exchangemited_"
+	boundary="_000_9fe71dc5335646659d7650c10e6d2cb3oc11expo22exchangemited_"
 
---_000_2e9a7f6b9ef44d3884048125a94a02eboc11expo22exchangemited_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--_000_9fe71dc5335646659d7650c10e6d2cb3oc11expo22exchangemited_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hello,
+VW5mb3J0dW5hdGVseSBJIGRvbuKAmXQgaGF2ZSBhbnkgc2NyZWVuc2hvdHMuIEl0IGNvdWxkIGJl
+IGF3aGlsZSBiZWZvcmUgSSBoYXZlIGFjY2VzcyB0byB0aGUgZXF1aXBtZW50IGFnYWluOyBJIGNh
+biB0cnkgdG8gcG9zdCBhIHRyYWNlIHNvbWV0aW1lIG5leHQgd2Vlay4NCg0KDQoNCkZyb206IE1h
+cmN1cyBEIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4NClNlbnQ6IFRodXJzZGF5LCBN
+YXJjaCAxOCwgMjAyMSA1OjA5IFBNDQpUbzogUmljaGFyZCBKLiBNdXJpIDxyaTI4ODU2QG1pdC5l
+ZHU+DQpDYzogVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFJlOiBbVVNSUC11
+c2Vyc10geDMxMCBQUFMgaXNzdWVzDQoNCg0KDQpDb3VsZCB5b3UgcG9zdCBzY29wZSB0cmFjZXM/
+ICBNeSBndWVzcyBpcyB0aGF0IHRoZSBlZGdlcyBhcmUgbm90IGNyaXNwIGVub3VnaCBmb3IgdGhl
+IDFQUFMgaW5wdXQgcHJvY2Vzc2luZy4NCg0KU2VudCBmcm9tIG15IGlQaG9uZQ0KDQoNCg0KDQoN
+CiAgIE9uIE1hciAxOCwgMjAyMSwgYXQgNTowMCBQTSwgUmljaGFyZCBKLiBNdXJpIDxyaTI4ODU2
+QG1pdC5lZHU8bWFpbHRvOnJpMjg4NTZAbWl0LmVkdT4+IHdyb3RlOg0KDQogICDvu78NCg0KICAg
+SGVsbG8sDQoNCg0KDQogICBJ4oCZbSB1c2luZyBhIHNlcmllcyBvZiB4MzEwIFVTUlBzIHN5bmNo
+cm9uaXplZCB0b2dldGhlciB1c2luZyBib3RoIGFuIGV4dGVybmFsIDEwIE1IeiByZWZlcmVuY2Ug
+YW5kIGEgUFBTLiBJIGhhdmUgdHdvIGNvbmZpZ3VyYXRpb25zOiBpbiBteSBsYWIgYW4gT2N0b2Ns
+b2NrIHByb3ZpZGVzIHRoZSBQUFMgc2lnbmFsLCBhbmQgaW4gdGhlIGZpZWxkIGNvbmZpZ3VyYXRp
+b24gSSB1c2UgYSBHUFMgcmVmZXJlbmNlZCBzdHJhdHVtIDEgTlRQIHNlcnZlcjxodHRwczovL3d3
+dy5taWNyb3NlbWkuY29tL3Byb2R1Y3QtZGlyZWN0b3J5L2dwcy1pbnN0cnVtZW50cy80MTM1LXN5
+bmNzZXJ2ZXItczY1MD4uDQoNCg0KDQogICBUaGUgbGFiIGNvbmZpZ3VyYXRpb24gVVNSUHMgYmxp
+bmsgYW4gTEVEIG9uIHRoZSBmcm9udCBwYW5lbCBpbiB0aW1lIHdpdGggdGhlIFBQUy4gVGhlIGZp
+ZWxkIGNvbmZpZ3VyYXRpb24gZG9lcyBub3QgYmxpbmsgdGhlIExFRHMgYXQgYWxsLiBCb3RoIGNv
+bmZpZ3VyYXRpb25zIGxpZ2h0IHRoZSAxMCBNSHogcmVmZXJlbmNlIExFRC4NCg0KDQoNCiAgIEkg
+YW0gbm90IGZ1bGx5IHN1cmUgaWYgdGhpcyBpcyBhIHByb2JsZW0uIE9jY2FzaW9uYWxseSB3aGVu
+IEkgcnVuIHRoZSBhcHBsaWNhdGlvbiBpbiB0aGUgZmllbGQgY29uZmlndXJhdGlvbiwgaXQgd29y
+a3MgZm9yIGFib3V0IGEgbWludXRlIGFuZCB0aGVuIGFwcGVhcnMgdG8gZHJpZnQgb3V0IG9mIHN5
+bmMsIGhvd2V2ZXIgbW9zdCBvZiB0aGUgdGltZSBldmVyeXRoaW5nIHNlZW1zIHRvIG9wZXJhdGUg
+YXMgaW50ZW5kZWQuIEl04oCZcyB2ZXJ5IHBvc3NpYmxlIG15IGZpZWxkIGNvbmZpZ3VyYXRpb24g
+aGFzIG90aGVyIGlzc3VlcywgYW5kIG15IHN5c3RlbSBoYXMgbm90IHF1aXRlIHJlYWNoZWQgdGhl
+IG1hdHVyaXR5IHRvIGJlIHJ1bm5pbmcgbXVsdGlwbGUgaG91ci9kYXkgbG9uZyB0ZXN0IHRvIG1l
+YXN1cmUgZHJpZnQgb24gdGhlIGFwcGxpY2F0aW9uIHN5bmNocm9uaXphdGlvbi4NCg0KDQoNCiAg
+IEkgZXhhbWluZWQgdGhlIFBQUyBjb25uZWN0aW9uIHdpdGggYSBUIGNhYmxlIGFuZCBhIHNjb3Bl
+LiBCb3RoIHByb2R1Y2UgYSBQUFMgcHVsc2Ugd2l0aCBhIHNoYXJwIHNwaWtlIHRvIGFuIGluaXRp
+YWwgdm9sdGFnZSwgZm9sbG93ZWQgYnkgYSBsb25nZXIgZXhwb25lbnRpYWwgY3VydmUgdXAgdG8g
+NVYuIFRoZSBvY3RvY2xvY2sgZHJpdmVzIHRvIDIuNVYgaW5pdGlhbGx5LCBhbmQgdGhlIHN5bmNz
+ZXJ2ZXIgZHJpdmVzIHRvIDRWIGluaXRpYWwuDQoNCg0KDQogICBJIGhhdmUgdHJpZWQgdXNpbmcg
+c2hvcnRlciBjYWJsZXMgYW5kIGEgNmRCIGF0dGVudWF0b3Igb24gdGhlIHN5bmNzZXJ2ZXIgY29u
+bmVjdGlvbiB0byBzZWUgaWYgSSBjb3VsZCBnZXQgdGhlIFBQUyB0byBsaWdodCwgYnV0IG5laXRo
+ZXIgc2VlbWVkIHRvIGhhdmUgYW55IGVmZmVjdC4NCg0KDQoNCiAgIERvZXMgYW55Ym9keSBoYXZl
+IGFueSBndWlkYW5jZSBvbiBob3cgdG8gbWFrZSBzdXJlIG15IHgzMTBzIGluIHRoZSBmaWVsZCBj
+b25maWd1cmF0aW9uIGFyZSBhY3R1YWxseSBiZW5lZml0dGluZyBmcm9tIHRoZSBQUFM/DQoNCg0K
+DQogICBUaGFuayB5b3UhDQoNCiAgIFJpY2hhcmQNCg0KICAgX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18NCiAgIFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0t
+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbT4NCiAgIFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2
+ZUBsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29t
+Pg0KDQo=
 
+--_000_9fe71dc5335646659d7650c10e6d2cb3oc11expo22exchangemited_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
+OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
+Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjoj
+OTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5tc29ub3JtYWwwLCBsaS5t
+c29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXttc28tc3R5bGUtbmFtZTptc29ub3JtYWw7DQoJ
+bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2lu
+LWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1zaXplOjEyLjBwdDsN
+Cglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUx
+OA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fu
+cy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4uRW1haWxTdHlsZTE5DQoJe21zby1z
+dHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
+cmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6
+ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7
+c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRp
+di5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lm
+IGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9
+IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxv
+OnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIx
+IiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkg
+bGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9
+IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6
+IzFGNDk3RCI+VW5mb3J0dW5hdGVseSBJIGRvbuKAmXQgaGF2ZSBhbnkgc2NyZWVuc2hvdHMuIEl0
+IGNvdWxkIGJlIGF3aGlsZSBiZWZvcmUgSSBoYXZlIGFjY2VzcyB0byB0aGUgZXF1aXBtZW50IGFn
+YWluOyBJIGNhbiB0cnkgdG8gcG9zdCBhIHRyYWNlIHNvbWV0aW1lIG5leHQgd2Vlay4NCjxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xv
+cjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHls
+ZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4w
+cHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IE1hcmN1
+cyBEIExlZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDsgPGJyPg0KPGI+U2VudDo8
+L2I+IFRodXJzZGF5LCBNYXJjaCAxOCwgMjAyMSA1OjA5IFBNPGJyPg0KPGI+VG86PC9iPiBSaWNo
+YXJkIEouIE11cmkgJmx0O3JpMjg4NTZAbWl0LmVkdSZndDs8YnI+DQo8Yj5DYzo8L2I+IFVTUlAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vy
+c10geDMxMCBQUFMgaXNzdWVzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPkNvdWxkIHlvdSBwb3N0IHNjb3BlIHRyYWNl
+cz8gJm5ic3A7TXkgZ3Vlc3MgaXMgdGhhdCB0aGUgZWRnZXMgYXJlIG5vdCBjcmlzcCBlbm91Z2gg
+Zm9yIHRoZSAxUFBTIGlucHV0IHByb2Nlc3NpbmcuJm5ic3A7PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMi4wcHQiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5TZW50IGZyb20gbXkgaVBob25lPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvcD4NCjxibG9ja3F1
+b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5PbiBNYXIgMTgsIDIw
+MjEsIGF0IDU6MDAgUE0sIFJpY2hhcmQgSi4gTXVyaSAmbHQ7PGEgaHJlZj0ibWFpbHRvOnJpMjg4
+NTZAbWl0LmVkdSI+cmkyODg1NkBtaXQuZWR1PC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+
+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUu
+MHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPu+7
+vyA8c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVvdDtUaW1lcyBO
+ZXcgUm9tYW4mcXVvdDssc2VyaWYiPg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+SGVsbG8sPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4m
+bmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPknigJltIHVzaW5nIGEg
+c2VyaWVzIG9mIHgzMTAgVVNSUHMgc3luY2hyb25pemVkIHRvZ2V0aGVyIHVzaW5nIGJvdGggYW4g
+ZXh0ZXJuYWwgMTAgTUh6IHJlZmVyZW5jZSBhbmQgYSBQUFMuIEkgaGF2ZSB0d28gY29uZmlndXJh
+dGlvbnM6IGluIG15IGxhYiBhbiBPY3RvY2xvY2sgcHJvdmlkZXMgdGhlIFBQUyBzaWduYWwsIGFu
+ZCBpbiB0aGUgZmllbGQgY29uZmlndXJhdGlvbiBJIHVzZSBhDQo8YSBocmVmPSJodHRwczovL3d3
+dy5taWNyb3NlbWkuY29tL3Byb2R1Y3QtZGlyZWN0b3J5L2dwcy1pbnN0cnVtZW50cy80MTM1LXN5
+bmNzZXJ2ZXItczY1MCI+DQpHUFMgcmVmZXJlbmNlZCBzdHJhdHVtIDEgTlRQIHNlcnZlcjwvYT4u
+ICZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGUgbGFiIGNvbmZpZ3VyYXRpb24gVVNS
+UHMgYmxpbmsgYW4gTEVEIG9uIHRoZSBmcm9udCBwYW5lbCBpbiB0aW1lIHdpdGggdGhlIFBQUy4g
+VGhlIGZpZWxkIGNvbmZpZ3VyYXRpb24gZG9lcyBub3QgYmxpbmsgdGhlIExFRHMgYXQgYWxsLiBC
+b3RoIGNvbmZpZ3VyYXRpb25zIGxpZ2h0IHRoZSAxMCBNSHogcmVmZXJlbmNlIExFRC4NCjxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGFtIG5vdCBmdWxseSBzdXJlIGlmIHRoaXMgaXMgYSBwcm9i
+bGVtLiBPY2Nhc2lvbmFsbHkgd2hlbiBJIHJ1biB0aGUgYXBwbGljYXRpb24gaW4gdGhlIGZpZWxk
+IGNvbmZpZ3VyYXRpb24sIGl0IHdvcmtzIGZvciBhYm91dCBhIG1pbnV0ZSBhbmQgdGhlbiBhcHBl
+YXJzIHRvIGRyaWZ0IG91dCBvZiBzeW5jLCBob3dldmVyIG1vc3Qgb2YgdGhlIHRpbWUgZXZlcnl0
+aGluZyBzZWVtcyB0byBvcGVyYXRlIGFzIGludGVuZGVkLg0KIEl04oCZcyB2ZXJ5IHBvc3NpYmxl
+IG15IGZpZWxkIGNvbmZpZ3VyYXRpb24gaGFzIG90aGVyIGlzc3VlcywgYW5kIG15IHN5c3RlbSBo
+YXMgbm90IHF1aXRlIHJlYWNoZWQgdGhlIG1hdHVyaXR5IHRvIGJlIHJ1bm5pbmcgbXVsdGlwbGUg
+aG91ci9kYXkgbG9uZyB0ZXN0IHRvIG1lYXN1cmUgZHJpZnQgb24gdGhlIGFwcGxpY2F0aW9uIHN5
+bmNocm9uaXphdGlvbi4NCjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5i
+c3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGV4YW1pbmVkIHRoZSBQ
+UFMgY29ubmVjdGlvbiB3aXRoIGEgVCBjYWJsZSBhbmQgYSBzY29wZS4gQm90aCBwcm9kdWNlIGEg
+UFBTIHB1bHNlIHdpdGggYSBzaGFycCBzcGlrZSB0byBhbiBpbml0aWFsIHZvbHRhZ2UsIGZvbGxv
+d2VkIGJ5IGEgbG9uZ2VyIGV4cG9uZW50aWFsIGN1cnZlIHVwIHRvIDVWLiBUaGUgb2N0b2Nsb2Nr
+IGRyaXZlcyB0byAyLjVWIGluaXRpYWxseSwgYW5kIHRoZSBzeW5jc2VydmVyIGRyaXZlcw0KIHRv
+IDRWIGluaXRpYWwuIDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGhhdmUgdHJpZWQgdXNpbmcg
+c2hvcnRlciBjYWJsZXMgYW5kIGEgNmRCIGF0dGVudWF0b3Igb24gdGhlIHN5bmNzZXJ2ZXIgY29u
+bmVjdGlvbiB0byBzZWUgaWYgSSBjb3VsZCBnZXQgdGhlIFBQUyB0byBsaWdodCwgYnV0IG5laXRo
+ZXIgc2VlbWVkIHRvIGhhdmUgYW55IGVmZmVjdC4NCjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5E
+b2VzIGFueWJvZHkgaGF2ZSBhbnkgZ3VpZGFuY2Ugb24gaG93IHRvIG1ha2Ugc3VyZSBteSB4MzEw
+cyBpbiB0aGUgZmllbGQgY29uZmlndXJhdGlvbiBhcmUgYWN0dWFsbHkgYmVuZWZpdHRpbmcgZnJv
+bSB0aGUgUFBTPzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86
+cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFuayB5b3UhPG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5SaWNoYXJkPG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTom
+cXVvdDtUaW1lcyBOZXcgUm9tYW4mcXVvdDssc2VyaWYiPl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0g
+PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbTwvYT48YnI+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxh
+IGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSI+DQp1c3JwLXVz
+ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-I encountered what appears to be a bug in UHD that I have not been able to =
-reproduce. I am using a USRP x310, UHD 3.13 on a RHEL 7 OS. The issue appea=
-rs to be an interaction with a bad network interface.
+--_000_9fe71dc5335646659d7650c10e6d2cb3oc11expo22exchangemited_--
 
-
-
-The hang:
-
-After I call multi_usrp::make(<my_ip_addr>), it triggers a series of print =
-statements in UHD. The output looks something like this:
-
-[INFO][UHD] linux; GNU C++ version 4.8.5 (Red Hat 4.8.5-39); Boost_105300; =
-UHD_3.13.0.3-0-unknown
-
-[INFO][X300] x300 initialization sequence...
-
-[INFO][X300] Maximum frame size: 8000 bytes.
-
-And at this point it hangs indefinitely. I tried pinging the USRP, and it r=
-esponds to pings. I tried running uhd_usrp_probe, and it hangs with the exa=
-ct same printout as my application. Eventually for an unrelated reason, I r=
-an dhclient, and the hanging uhd_usrp_probe in another program unfroze and =
-completed successfully.
-
-
-
-I have an x310 connected directly to a host PC's NIC (no switch in between)=
-. The application used a hard coded IP address to connect to the USRP. In t=
-heory my setup does not have a DNS server or DHCP client.  The reason I ran=
- dhclient was to bring up a bad network interface when I reconnected the fi=
-eld setup to my lab LAN.
-
-
-
-Is this a known behavior? It appears that UHD tried to scan through the ava=
-ilable network configs even though it should use the static IP to connect t=
-o the USRP.
-
-
-
-The kicker is that I haven't been able to replicate the problem. It persist=
-ed for two days with the field configuration (through reboot cycles), and t=
-hen appears to have been resolved by running dhclient. I tried forcing a ba=
-d network config in the same way, but can't repeat it.
-
-
-
-Thanks,
-
-Richard
-
-
-
-
---_000_2e9a7f6b9ef44d3884048125a94a02eboc11expo22exchangemited_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I encountered what appears to be a bug in UHD that I=
- have not been able to reproduce. I am using a USRP x310, UHD 3.13 on a RHE=
-L 7 OS. The issue appears to be an interaction with a bad network interface=
-.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The hang:<o:p></o:p></p>
-<p class=3D"MsoNormal">After I call multi_usrp::make(&lt;my_ip_addr&gt;), i=
-t triggers a series of print statements in UHD. The output looks something =
-like this:<o:p></o:p></p>
-<p class=3D"MsoNormal">[INFO][UHD] linux; GNU C&#43;&#43; version 4.8.5 (Re=
-d Hat 4.8.5-39); Boost_105300; UHD_3.13.0.3-0-unknown<o:p></o:p></p>
-<p class=3D"MsoNormal">[INFO][X300] x300 initialization sequence&#8230;<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">[INFO][X300] Maximum frame size: 8000 bytes.<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">And at this point it hangs indefinitely. I tried pin=
-ging the USRP, and it responds to pings. I tried running uhd_usrp_probe, an=
-d it hangs with the exact same printout as my application. Eventually for a=
-n unrelated reason, I ran dhclient,
- and the hanging uhd_usrp_probe in another program unfroze and completed su=
-ccessfully.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have an x310 connected directly to a host PC&#8217=
-;s NIC (no switch in between). The application used a hard coded IP address=
- to connect to the USRP. In theory my setup does not have a DNS server or D=
-HCP client. &nbsp;The reason I ran dhclient was
- to bring up a bad network interface when I reconnected the field setup to =
-my lab LAN.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is this a known behavior? It appears that UHD tried =
-to scan through the available network configs even though it should use the=
- static IP to connect to the USRP.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The kicker is that I haven&#8217;t been able to repl=
-icate the problem. It persisted for two days with the field configuration (=
-through reboot cycles), and then appears to have been resolved by running d=
-hclient. I tried forcing a bad network config
- in the same way, but can&#8217;t repeat it.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Richard<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_2e9a7f6b9ef44d3884048125a94a02eboc11expo22exchangemited_--
-
---===============0310415925427982965==
+--===============8304048635872741700==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -237,4 +236,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0310415925427982965==--
+--===============8304048635872741700==--
