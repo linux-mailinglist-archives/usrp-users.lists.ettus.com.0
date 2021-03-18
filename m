@@ -2,144 +2,134 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8D21340F8F
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Mar 2021 22:10:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F8BA341002
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Mar 2021 22:43:10 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F4186383728
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Mar 2021 17:10:06 -0400 (EDT)
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5BF1A3818C4
-	for <USRP-users@lists.ettus.com>; Thu, 18 Mar 2021 17:09:15 -0400 (EDT)
-Received: by mail-qt1-f174.google.com with SMTP id x9so5216142qto.8
-        for <USRP-users@lists.ettus.com>; Thu, 18 Mar 2021 14:09:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=hgg6NE0NIKhxxUhpVtNv3upI9MR/ubD9/AqTIfigQbQ=;
-        b=U+flM2xvS0it8inImprdSSdmp7TwVJfDYDAV5M461r5w5PxjHf5ab7yGg+0O6sQbHl
-         vWKPLhbj2BALwymKuDYFiIS5CWqMiQOt3xdCknXk5WncHHTO1XbzMeKq25ncdpUhxyPE
-         l0zJs8ZgsHNKywPBcsnQYewmv9/SqU4ITSScbY9oOr7MoB6pl9ket73vAXApPjWyG+Ag
-         M0TGyEd8Ig9xxWPyzhwjaUupGFouM7AsrrP6LM76Uj7ZFoooLMMSaN12SJa7wqB4sQK4
-         x9YrIiSoVEpcevTqJGLlo5ssj/SjMOdWqQ2rYEO+miPimYNUhkUqj0Tx1V6ctQv2ewE8
-         SXYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=hgg6NE0NIKhxxUhpVtNv3upI9MR/ubD9/AqTIfigQbQ=;
-        b=PwEbDY0jFHE6ssHfNf0OAnD5oF5SYoEE/CDbCcFW1z5R4kTTSiLVE2mcrpOYy31j8p
-         sIGo58cHo3GNaShz10rcJgP18/wX7sZ3teHa5AquPmM4uZQ6mV63jVVNqFvvJ1fP/1zP
-         DXVaZFv6Sv4zMFPO09UyqGCuV3TF4FrUd5GJoVn7c/kK6KVkWDegawhir/t92q493i6s
-         N36qX/ws+oz5IWg30SqKlK1ghNB+c5ug93CRBeW+IcD/Fa7CMood/mptUV0NckjgBckW
-         8U8gbe5HQeklhn3EaAmkOeeeloq+1GjNU4h+XS/XQtlXdaz4HdVC0zeNc6QnsHj9XuhH
-         oMFQ==
-X-Gm-Message-State: AOAM531ZM0xPwcqYZmoceYyZCs6jqrLpKbEpUgbI7yLMXG4+7dz6/EHf
-	iVe2zk0w94vNrq3Tzpa6JwsnAY3IsYo=
-X-Google-Smtp-Source: ABdhPJyQfaBkraATTnjMTfmVmZCiuiQj4KHtu4hQZq6olrSUXFXqLeqS+jrFpsh5e3x612f9UCrmjg==
-X-Received: by 2002:a05:622a:50c:: with SMTP id l12mr5458400qtx.44.1616101754601;
-        Thu, 18 Mar 2021 14:09:14 -0700 (PDT)
-Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id e15sm2325993qti.79.2021.03.18.14.09.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Mar 2021 14:09:14 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Thu, 18 Mar 2021 17:09:13 -0400
-Message-Id: <35024BFC-78E2-4CE2-8205-2320945C55F0@gmail.com>
-References: <42410c3ff66e427aa6ef3655d8b9837b@oc11expo22.exchange.mit.edu>
-In-Reply-To: <42410c3ff66e427aa6ef3655d8b9837b@oc11expo22.exchange.mit.edu>
-To: "Richard J. Muri" <ri28856@mit.edu>
-X-Mailer: iPhone Mail (18D52)
-Message-ID-Hash: EJ7SPQSRO6XSCEZFT2TTOENC7HPAN6IF
-X-Message-ID-Hash: EJ7SPQSRO6XSCEZFT2TTOENC7HPAN6IF
-X-MailFrom: patchvonbraun@gmail.com
+	by mm2.emwd.com (Postfix) with ESMTP id 732FB383858
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Mar 2021 17:43:09 -0400 (EDT)
+Received: from outgoing-exchange-7.mit.edu (outgoing-exchange-7.mit.edu [18.9.28.58])
+	by mm2.emwd.com (Postfix) with ESMTPS id 674643832FA
+	for <usrp-users@lists.ettus.com>; Thu, 18 Mar 2021 17:42:59 -0400 (EDT)
+Received: from oc11exedge1.exchange.mit.edu (OC11EXEDGE1.EXCHANGE.MIT.EDU [18.9.3.17])
+	by outgoing-exchange-7.mit.edu (8.14.7/8.12.4) with ESMTP id 12ILgjdB028857
+	for <usrp-users@lists.ettus.com>; Thu, 18 Mar 2021 17:42:58 -0400
+Received: from w92expo22.exchange.mit.edu (18.7.74.76) by
+ oc11exedge1.exchange.mit.edu (18.9.3.17) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 18 Mar 2021 17:42:25 -0400
+Received: from oc11expo22.exchange.mit.edu (18.9.4.84) by
+ w92expo22.exchange.mit.edu (18.7.74.76) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 18 Mar 2021 17:42:38 -0400
+Received: from oc11expo22.exchange.mit.edu ([18.9.4.84]) by
+ oc11expo22.exchange.mit.edu ([18.9.4.84]) with mapi id 15.00.1497.012; Thu,
+ 18 Mar 2021 17:42:39 -0400
+From: "Richard J. Muri" <ri28856@mit.edu>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: UHD hanging after uhd::usrp::multi_usrp::make()
+Thread-Index: AdccPRMlimPj+dgCRG6D5Pp4YiZX9A==
+Date: Thu, 18 Mar 2021 21:42:38 +0000
+Message-ID: <2e9a7f6b9ef44d3884048125a94a02eb@oc11expo22.exchange.mit.edu>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [129.55.200.20]
+MIME-Version: 1.0
+Message-ID-Hash: 4PW4RGDUSX4XGX2ZFVBIAFP2YUTHCDOM
+X-Message-ID-Hash: 4PW4RGDUSX4XGX2ZFVBIAFP2YUTHCDOM
+X-MailFrom: ri28856@mit.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: x310 PPS issues
+Subject: [USRP-users] UHD hanging after uhd::usrp::multi_usrp::make()
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EJ7SPQSRO6XSCEZFT2TTOENC7HPAN6IF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4PW4RGDUSX4XGX2ZFVBIAFP2YUTHCDOM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2283725540216487682=="
+Content-Type: multipart/mixed; boundary="===============0310415925427982965=="
 
+--===============0310415925427982965==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_2e9a7f6b9ef44d3884048125a94a02eboc11expo22exchangemited_"
 
---===============2283725540216487682==
-Content-Type: multipart/alternative; boundary=Apple-Mail-4033EA0F-9328-400E-A648-789F5642895E
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-4033EA0F-9328-400E-A648-789F5642895E
-Content-Type: text/plain;
-	charset=utf-8
+--_000_2e9a7f6b9ef44d3884048125a94a02eboc11expo22exchangemited_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Could you post scope traces?  My guess is that the edges are not crisp enoug=
-h for the 1PPS input processing.=20
+Hello,
 
-Sent from my iPhone
 
-> On Mar 18, 2021, at 5:00 PM, Richard J. Muri <ri28856@mit.edu> wrote:
->=20
-> =EF=BB=BF
-> Hello,
-> =20
-> I=E2=80=99m using a series of x310 USRPs synchronized together using both a=
-n external 10 MHz reference and a PPS. I have two configurations: in my lab a=
-n Octoclock provides the PPS signal, and in the field configuration I use a G=
-PS referenced stratum 1 NTP server. =20
-> =20
-> The lab configuration USRPs blink an LED on the front panel in time with t=
-he PPS. The field configuration does not blink the LEDs at all. Both configu=
-rations light the 10 MHz reference LED.
-> =20
-> I am not fully sure if this is a problem. Occasionally when I run the appl=
-ication in the field configuration, it works for about a minute and then app=
-ears to drift out of sync, however most of the time everything seems to oper=
-ate as intended. It=E2=80=99s very possible my field configuration has other=
- issues, and my system has not quite reached the maturity to be running mult=
-iple hour/day long test to measure drift on the application synchronization.=
 
-> =20
-> I examined the PPS connection with a T cable and a scope. Both produce a P=
-PS pulse with a sharp spike to an initial voltage, followed by a longer expo=
-nential curve up to 5V. The octoclock drives to 2.5V initially, and the sync=
-server drives to 4V initial.
-> =20
-> I have tried using shorter cables and a 6dB attenuator on the syncserver c=
-onnection to see if I could get the PPS to light, but neither seemed to have=
- any effect.
-> =20
-> Does anybody have any guidance on how to make sure my x310s in the field c=
-onfiguration are actually benefitting from the PPS?
-> =20
-> Thank you!
-> Richard
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+I encountered what appears to be a bug in UHD that I have not been able to =
+reproduce. I am using a USRP x310, UHD 3.13 on a RHEL 7 OS. The issue appea=
+rs to be an interaction with a bad network interface.
 
---Apple-Mail-4033EA0F-9328-400E-A648-789F5642895E
-Content-Type: text/html;
-	charset=utf-8
+
+
+The hang:
+
+After I call multi_usrp::make(<my_ip_addr>), it triggers a series of print =
+statements in UHD. The output looks something like this:
+
+[INFO][UHD] linux; GNU C++ version 4.8.5 (Red Hat 4.8.5-39); Boost_105300; =
+UHD_3.13.0.3-0-unknown
+
+[INFO][X300] x300 initialization sequence...
+
+[INFO][X300] Maximum frame size: 8000 bytes.
+
+And at this point it hangs indefinitely. I tried pinging the USRP, and it r=
+esponds to pings. I tried running uhd_usrp_probe, and it hangs with the exa=
+ct same printout as my application. Eventually for an unrelated reason, I r=
+an dhclient, and the hanging uhd_usrp_probe in another program unfroze and =
+completed successfully.
+
+
+
+I have an x310 connected directly to a host PC's NIC (no switch in between)=
+. The application used a hard coded IP address to connect to the USRP. In t=
+heory my setup does not have a DNS server or DHCP client.  The reason I ran=
+ dhclient was to bring up a bad network interface when I reconnected the fi=
+eld setup to my lab LAN.
+
+
+
+Is this a known behavior? It appears that UHD tried to scan through the ava=
+ilable network configs even though it should use the static IP to connect t=
+o the USRP.
+
+
+
+The kicker is that I haven't been able to replicate the problem. It persist=
+ed for two days with the field configuration (through reboot cycles), and t=
+hen appears to have been resolved by running dhclient. I tried forcing a ba=
+d network config in the same way, but can't repeat it.
+
+
+
+Thanks,
+
+Richard
+
+
+
+
+--_000_2e9a7f6b9ef44d3884048125a94a02eboc11expo22exchangemited_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">Could you post scope traces? &nbsp;My guess=
- is that the edges are not crisp enough for the 1PPS input processing.&nbsp;=
-<br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><bloc=
-kquote type=3D"cite">On Mar 18, 2021, at 5:00 PM, Richard J. Muri &lt;ri2885=
-6@mit.edu&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><di=
-v dir=3D"ltr">=EF=BB=BF
-
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
-
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
 <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
 <style><!--
 /* Font Definitions */
@@ -181,61 +171,63 @@ div.WordSection1
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-
-
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Hello,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I=E2=80=99m using a series of x310 USRPs synchronized=
- together using both an external 10 MHz reference and a PPS. I have two conf=
-igurations: in my lab an Octoclock provides the PPS signal, and in the field=
- configuration I use a
-<a href=3D"https://www.microsemi.com/product-directory/gps-instruments/4135-=
-syncserver-s650">
-GPS referenced stratum 1 NTP server</a>. &nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">I encountered what appears to be a bug in UHD that I=
+ have not been able to reproduce. I am using a USRP x310, UHD 3.13 on a RHE=
+L 7 OS. The issue appears to be an interaction with a bad network interface=
+.<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The lab configuration USRPs blink an LED on the front=
- panel in time with the PPS. The field configuration does not blink the LEDs=
- at all. Both configurations light the 10 MHz reference LED.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am not fully sure if this is a problem. Occasionall=
-y when I run the application in the field configuration, it works for about a=
- minute and then appears to drift out of sync, however most of the time ever=
-ything seems to operate as intended.
- It=E2=80=99s very possible my field configuration has other issues, and my s=
-ystem has not quite reached the maturity to be running multiple hour/day lon=
-g test to measure drift on the application synchronization.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I examined the PPS connection with a T cable and a sc=
-ope. Both produce a PPS pulse with a sharp spike to an initial voltage, foll=
-owed by a longer exponential curve up to 5V. The octoclock drives to 2.5V in=
-itially, and the syncserver drives
- to 4V initial. <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have tried using shorter cables and a 6dB attenuato=
-r on the syncserver connection to see if I could get the PPS to light, but n=
-either seemed to have any effect.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Does anybody have any guidance on how to make sure my=
- x310s in the field configuration are actually benefitting from the PPS?<o:p=
+<p class=3D"MsoNormal">The hang:<o:p></o:p></p>
+<p class=3D"MsoNormal">After I call multi_usrp::make(&lt;my_ip_addr&gt;), i=
+t triggers a series of print statements in UHD. The output looks something =
+like this:<o:p></o:p></p>
+<p class=3D"MsoNormal">[INFO][UHD] linux; GNU C&#43;&#43; version 4.8.5 (Re=
+d Hat 4.8.5-39); Boost_105300; UHD_3.13.0.3-0-unknown<o:p></o:p></p>
+<p class=3D"MsoNormal">[INFO][X300] x300 initialization sequence&#8230;<o:p=
 ></o:p></p>
+<p class=3D"MsoNormal">[INFO][X300] Maximum frame size: 8000 bytes.<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">And at this point it hangs indefinitely. I tried pin=
+ging the USRP, and it responds to pings. I tried running uhd_usrp_probe, an=
+d it hangs with the exact same printout as my application. Eventually for a=
+n unrelated reason, I ran dhclient,
+ and the hanging uhd_usrp_probe in another program unfroze and completed su=
+ccessfully.
+<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thank you!<o:p></o:p></p>
+<p class=3D"MsoNormal">I have an x310 connected directly to a host PC&#8217=
+;s NIC (no switch in between). The application used a hard coded IP address=
+ to connect to the USRP. In theory my setup does not have a DNS server or D=
+HCP client. &nbsp;The reason I ran dhclient was
+ to bring up a bad network interface when I reconnected the field setup to =
+my lab LAN.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is this a known behavior? It appears that UHD tried =
+to scan through the available network configs even though it should use the=
+ static IP to connect to the USRP.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The kicker is that I haven&#8217;t been able to repl=
+icate the problem. It persisted for two days with the field configuration (=
+through reboot cycles), and then appears to have been resolved by running d=
+hclient. I tried forcing a bad network config
+ in the same way, but can&#8217;t repeat it.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
 <p class=3D"MsoNormal">Richard<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
+</body>
+</html>
 
+--_000_2e9a7f6b9ef44d3884048125a94a02eboc11expo22exchangemited_--
 
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
-be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
-quote></body></html>=
-
---Apple-Mail-4033EA0F-9328-400E-A648-789F5642895E--
-
---===============2283725540216487682==
+--===============0310415925427982965==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -245,4 +237,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2283725540216487682==--
+--===============0310415925427982965==--
