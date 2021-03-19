@@ -2,231 +2,270 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51327341008
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Mar 2021 22:47:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB5F73419BB
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Mar 2021 11:17:32 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 876C5383CFA
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Mar 2021 17:46:59 -0400 (EDT)
-Received: from outgoing-exchange-5.mit.edu (outgoing-exchange-5.mit.edu [18.9.28.59])
-	by mm2.emwd.com (Postfix) with ESMTPS id A91FF3832FA
-	for <USRP-users@lists.ettus.com>; Thu, 18 Mar 2021 17:46:07 -0400 (EDT)
-Received: from w92exedge4.exchange.mit.edu (W92EXEDGE4.EXCHANGE.MIT.EDU [18.7.73.16])
-	by outgoing-exchange-5.mit.edu (8.14.7/8.12.4) with ESMTP id 12ILk47o009327;
-	Thu, 18 Mar 2021 17:46:06 -0400
-Received: from w92expo22.exchange.mit.edu (18.7.74.76) by
- w92exedge4.exchange.mit.edu (18.7.73.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 18 Mar 2021 17:45:31 -0400
-Received: from oc11expo22.exchange.mit.edu (18.9.4.84) by
- w92expo22.exchange.mit.edu (18.7.74.76) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 18 Mar 2021 17:45:44 -0400
-Received: from oc11expo22.exchange.mit.edu ([18.9.4.84]) by
- oc11expo22.exchange.mit.edu ([18.9.4.84]) with mapi id 15.00.1497.012; Thu,
- 18 Mar 2021 17:45:44 -0400
-From: "Richard J. Muri" <ri28856@mit.edu>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] x310 PPS issues
-Thread-Index: AdccNlE+Cplbbb6qSCOSsh6BT3YwPgAJigmAAAcnChA=
-Date: Thu, 18 Mar 2021 21:45:44 +0000
-Message-ID: <9fe71dc5335646659d7650c10e6d2cb3@oc11expo22.exchange.mit.edu>
-References: <42410c3ff66e427aa6ef3655d8b9837b@oc11expo22.exchange.mit.edu>
- <35024BFC-78E2-4CE2-8205-2320945C55F0@gmail.com>
-In-Reply-To: <35024BFC-78E2-4CE2-8205-2320945C55F0@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
+	by mm2.emwd.com (Postfix) with ESMTP id 3C93A383719
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Mar 2021 06:17:31 -0400 (EDT)
+Received: from exchange.tu-berlin.de (exchange.tu-berlin.de [130.149.7.70])
+	by mm2.emwd.com (Postfix) with ESMTPS id B8AF338184A
+	for <usrp-users@lists.ettus.com>; Fri, 19 Mar 2021 06:16:25 -0400 (EDT)
+Received: from SPMA-01.tubit.win.tu-berlin.de (localhost.localdomain [127.0.0.1])
+	by localhost (Email Security Appliance) with SMTP id 2E2457E07EC_5479F8B
+	for <usrp-users@lists.ettus.com>; Fri, 19 Mar 2021 10:16:24 +0000 (GMT)
+Received: from exchange.tu-berlin.de (exchange.tu-berlin.de [130.149.7.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(Client CN "exchange.tu-berlin.de", Issuer "DFN-Verein Global Issuing CA" (verified OK))
+	by SPMA-01.tubit.win.tu-berlin.de (Sophos Email Appliance) with ESMTPS id 9CDCE7E470D_5479F7F
+	for <usrp-users@lists.ettus.com>; Fri, 19 Mar 2021 10:16:23 +0000 (GMT)
+Received: from ex-03.tubit.win.tu-berlin.de (172.26.26.143) by
+ ex-04.tubit.win.tu-berlin.de (172.26.26.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Fri, 19 Mar 2021 11:16:23 +0100
+Received: from ex-03.tubit.win.tu-berlin.de ([172.26.26.143]) by
+ ex-03.tubit.win.tu-berlin.de ([172.26.26.143]) with mapi id 15.02.0792.010;
+ Fri, 19 Mar 2021 11:16:23 +0100
+From: "Chang, Kaixin" <k.chang@campus.tu-berlin.de>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: rfnoc error at building graph and setting sample rate
+Thread-Index: AQHXG+QaYh0cMdV5fUCtbn1DRBl+vKqJmko5gAF/VR0=
+Date: Fri, 19 Mar 2021 10:16:23 +0000
+Message-ID: <c92abad63ec64dc4a3777fa2a918c2f4@campus.tu-berlin.de>
+References: <e29bc7e556334d1f9b5af4128ab9a9cf@campus.tu-berlin.de>,<aefaa146fef24a4694d98132d439863b@campus.tu-berlin.de>
+In-Reply-To: <aefaa146fef24a4694d98132d439863b@campus.tu-berlin.de>
+Accept-Language: en-GB, zh-CN, de-DE, en-US
+Content-Language: en-GB
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [129.55.200.20]
+x-originating-ip: [193.174.67.20]
 MIME-Version: 1.0
-Message-ID-Hash: IPESPF2YZS56ONFJTE6SKLKUJ2TSBF5J
-X-Message-ID-Hash: IPESPF2YZS56ONFJTE6SKLKUJ2TSBF5J
-X-MailFrom: ri28856@mit.edu
+X-SASI-RCODE: 200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=campus.tu-berlin.de; h=from:to:subject:date:message-id:references:in-reply-to:content-type:mime-version; s=dkim-tub; bh=kVxfDi5eBwR9HG/Fmq0hMtdS/SsDyxCNIgVWFdy3V8s=; b=lqDRhreAI3G5qFk5fSNiTetJ09YKRThx8pYWfBfZl9yCOhC9lLC9EcQQldVJ8BCmIJB+zBh5tjH/im5wecECuUkETR6jtha1NNGh5D9KMyb5LJbeDh91BeeKABaBkJC1vFmYIek9xpcGZNETurgVUaKrUf6fHxgUXKRCG/3oJzA=
+Message-ID-Hash: AHPRXPAXGWLLLY2VIO73E6X7A7ILRNR6
+X-Message-ID-Hash: AHPRXPAXGWLLLY2VIO73E6X7A7ILRNR6
+X-MailFrom: k.chang@campus.tu-berlin.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: x310 PPS issues
+Subject: [USRP-users] Re: rfnoc error at building graph and setting sample rate
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IPESPF2YZS56ONFJTE6SKLKUJ2TSBF5J/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AHPRXPAXGWLLLY2VIO73E6X7A7ILRNR6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8304048635872741700=="
+Content-Type: multipart/mixed; boundary="===============8048460424264187750=="
 
---===============8304048635872741700==
-Content-Language: en-US
+--===============8048460424264187750==
+Content-Language: en-GB
 Content-Type: multipart/alternative;
-	boundary="_000_9fe71dc5335646659d7650c10e6d2cb3oc11expo22exchangemited_"
+	boundary="_000_c92abad63ec64dc4a3777fa2a918c2f4campustuberlinde_"
 
---_000_9fe71dc5335646659d7650c10e6d2cb3oc11expo22exchangemited_
-Content-Type: text/plain; charset="utf-8"
+--_000_c92abad63ec64dc4a3777fa2a918c2f4campustuberlinde_
+Content-Type: text/plain; charset="gb2312"
 Content-Transfer-Encoding: base64
 
-VW5mb3J0dW5hdGVseSBJIGRvbuKAmXQgaGF2ZSBhbnkgc2NyZWVuc2hvdHMuIEl0IGNvdWxkIGJl
-IGF3aGlsZSBiZWZvcmUgSSBoYXZlIGFjY2VzcyB0byB0aGUgZXF1aXBtZW50IGFnYWluOyBJIGNh
-biB0cnkgdG8gcG9zdCBhIHRyYWNlIHNvbWV0aW1lIG5leHQgd2Vlay4NCg0KDQoNCkZyb206IE1h
-cmN1cyBEIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4NClNlbnQ6IFRodXJzZGF5LCBN
-YXJjaCAxOCwgMjAyMSA1OjA5IFBNDQpUbzogUmljaGFyZCBKLiBNdXJpIDxyaTI4ODU2QG1pdC5l
-ZHU+DQpDYzogVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFJlOiBbVVNSUC11
-c2Vyc10geDMxMCBQUFMgaXNzdWVzDQoNCg0KDQpDb3VsZCB5b3UgcG9zdCBzY29wZSB0cmFjZXM/
-ICBNeSBndWVzcyBpcyB0aGF0IHRoZSBlZGdlcyBhcmUgbm90IGNyaXNwIGVub3VnaCBmb3IgdGhl
-IDFQUFMgaW5wdXQgcHJvY2Vzc2luZy4NCg0KU2VudCBmcm9tIG15IGlQaG9uZQ0KDQoNCg0KDQoN
-CiAgIE9uIE1hciAxOCwgMjAyMSwgYXQgNTowMCBQTSwgUmljaGFyZCBKLiBNdXJpIDxyaTI4ODU2
-QG1pdC5lZHU8bWFpbHRvOnJpMjg4NTZAbWl0LmVkdT4+IHdyb3RlOg0KDQogICDvu78NCg0KICAg
-SGVsbG8sDQoNCg0KDQogICBJ4oCZbSB1c2luZyBhIHNlcmllcyBvZiB4MzEwIFVTUlBzIHN5bmNo
-cm9uaXplZCB0b2dldGhlciB1c2luZyBib3RoIGFuIGV4dGVybmFsIDEwIE1IeiByZWZlcmVuY2Ug
-YW5kIGEgUFBTLiBJIGhhdmUgdHdvIGNvbmZpZ3VyYXRpb25zOiBpbiBteSBsYWIgYW4gT2N0b2Ns
-b2NrIHByb3ZpZGVzIHRoZSBQUFMgc2lnbmFsLCBhbmQgaW4gdGhlIGZpZWxkIGNvbmZpZ3VyYXRp
-b24gSSB1c2UgYSBHUFMgcmVmZXJlbmNlZCBzdHJhdHVtIDEgTlRQIHNlcnZlcjxodHRwczovL3d3
-dy5taWNyb3NlbWkuY29tL3Byb2R1Y3QtZGlyZWN0b3J5L2dwcy1pbnN0cnVtZW50cy80MTM1LXN5
-bmNzZXJ2ZXItczY1MD4uDQoNCg0KDQogICBUaGUgbGFiIGNvbmZpZ3VyYXRpb24gVVNSUHMgYmxp
-bmsgYW4gTEVEIG9uIHRoZSBmcm9udCBwYW5lbCBpbiB0aW1lIHdpdGggdGhlIFBQUy4gVGhlIGZp
-ZWxkIGNvbmZpZ3VyYXRpb24gZG9lcyBub3QgYmxpbmsgdGhlIExFRHMgYXQgYWxsLiBCb3RoIGNv
-bmZpZ3VyYXRpb25zIGxpZ2h0IHRoZSAxMCBNSHogcmVmZXJlbmNlIExFRC4NCg0KDQoNCiAgIEkg
-YW0gbm90IGZ1bGx5IHN1cmUgaWYgdGhpcyBpcyBhIHByb2JsZW0uIE9jY2FzaW9uYWxseSB3aGVu
-IEkgcnVuIHRoZSBhcHBsaWNhdGlvbiBpbiB0aGUgZmllbGQgY29uZmlndXJhdGlvbiwgaXQgd29y
-a3MgZm9yIGFib3V0IGEgbWludXRlIGFuZCB0aGVuIGFwcGVhcnMgdG8gZHJpZnQgb3V0IG9mIHN5
-bmMsIGhvd2V2ZXIgbW9zdCBvZiB0aGUgdGltZSBldmVyeXRoaW5nIHNlZW1zIHRvIG9wZXJhdGUg
-YXMgaW50ZW5kZWQuIEl04oCZcyB2ZXJ5IHBvc3NpYmxlIG15IGZpZWxkIGNvbmZpZ3VyYXRpb24g
-aGFzIG90aGVyIGlzc3VlcywgYW5kIG15IHN5c3RlbSBoYXMgbm90IHF1aXRlIHJlYWNoZWQgdGhl
-IG1hdHVyaXR5IHRvIGJlIHJ1bm5pbmcgbXVsdGlwbGUgaG91ci9kYXkgbG9uZyB0ZXN0IHRvIG1l
-YXN1cmUgZHJpZnQgb24gdGhlIGFwcGxpY2F0aW9uIHN5bmNocm9uaXphdGlvbi4NCg0KDQoNCiAg
-IEkgZXhhbWluZWQgdGhlIFBQUyBjb25uZWN0aW9uIHdpdGggYSBUIGNhYmxlIGFuZCBhIHNjb3Bl
-LiBCb3RoIHByb2R1Y2UgYSBQUFMgcHVsc2Ugd2l0aCBhIHNoYXJwIHNwaWtlIHRvIGFuIGluaXRp
-YWwgdm9sdGFnZSwgZm9sbG93ZWQgYnkgYSBsb25nZXIgZXhwb25lbnRpYWwgY3VydmUgdXAgdG8g
-NVYuIFRoZSBvY3RvY2xvY2sgZHJpdmVzIHRvIDIuNVYgaW5pdGlhbGx5LCBhbmQgdGhlIHN5bmNz
-ZXJ2ZXIgZHJpdmVzIHRvIDRWIGluaXRpYWwuDQoNCg0KDQogICBJIGhhdmUgdHJpZWQgdXNpbmcg
-c2hvcnRlciBjYWJsZXMgYW5kIGEgNmRCIGF0dGVudWF0b3Igb24gdGhlIHN5bmNzZXJ2ZXIgY29u
-bmVjdGlvbiB0byBzZWUgaWYgSSBjb3VsZCBnZXQgdGhlIFBQUyB0byBsaWdodCwgYnV0IG5laXRo
-ZXIgc2VlbWVkIHRvIGhhdmUgYW55IGVmZmVjdC4NCg0KDQoNCiAgIERvZXMgYW55Ym9keSBoYXZl
-IGFueSBndWlkYW5jZSBvbiBob3cgdG8gbWFrZSBzdXJlIG15IHgzMTBzIGluIHRoZSBmaWVsZCBj
-b25maWd1cmF0aW9uIGFyZSBhY3R1YWxseSBiZW5lZml0dGluZyBmcm9tIHRoZSBQUFM/DQoNCg0K
-DQogICBUaGFuayB5b3UhDQoNCiAgIFJpY2hhcmQNCg0KICAgX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18NCiAgIFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0t
-IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbT4NCiAgIFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2
-ZUBsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29t
-Pg0KDQo=
+d2hlbiBJIHVzZSByYWRpb19jdHJsLT5zZXRfcmF0ZSgpIG9mIHJmbm9jIGMrKyBhcGksIEkgZ2V0
+IHRoZSBlcnJvciwNCg0KDQpTZXR0aW5nIFJYIFJhdGU6IDEwLjAwMDAwMCBNc3BzLi4uDQpBY3R1
+YWwgUlggUmF0ZTogMjAwLjAwMDAwMCBNc3BzLi4uDQpbV0FSTklOR10gWzAvUmFkaW8jMV0gUmVx
+dWVzdGluZyBpbnZhbGlkIHNhbXBsaW5nIHJhdGUgZnJvbSBkZXZpY2U6IDEwIE1Iei4gQWN0dWFs
+IHJhdGUgaXM6IDIwMCBNSHouDQoNCg0KSSB1c2UgWDMxMCB3aXRoIDIgQ0JYMTIwIGRhdWdodGVy
+Ym9hcmRzIGFuZCBJIGNhbiBzZXQgdGhlIHJ4IHJhdGUgdG8gMTBNSHogd2hlbiBJIHVzZSB1aGQg
+NC4wIG11bHRpdXNycCBjbGFzcyBzZXRfcnhfcmF0ZSgpDQoNCg0KQ291bGQgeW91IGdpdmUgbWUg
+c29tZSBtb3JlIGFkdmljZSBwbGVhc2U/DQoNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXw0KRnJvbTogQ2hhbmcsIEthaXhpbg0KU2VudDogMTggTWFyY2ggMjAyMSAxMjoyMzo0
+Nw0KVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiC08Li0OiByZm5vYyBl
+cnJvciBhdCBidWlsZGluZyBncmFwaCBhbmQgc2V0dGluZyBzYW1wbGUgcmF0ZQ0KDQoNCkJ0dywg
+aXMgaXQgcG9zc2libGUgdG8gc2V0IHVwIHJ4X3JhdGUgYW5kIHR4X3JhdGUgc2VwYXJhdGVseSBh
+cyB3aXRoIHVoZCB3ZSBoYXZlIHVzcnAtPnNldF9yeF9yYXRlKCkgYW5kIHVzcnAtPnNldF90eF9y
+YXRlKCk/DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQq3orz+yMs6IENoYW5n
+LCBLYWl4aW4NCreiy83KsbzkOiAyMDIxxOoz1MIxOMjVIDExOjQ3OjM3DQrK1bz+yMs6IHVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tDQrW98ziOiByZm5vYyBlcnJvciBhdCBidWlsZGluZyBncmFw
+aCBhbmQgc2V0dGluZyBzYW1wbGUgcmF0ZQ0KDQoNCkRlYXIgbWFkYW0gYW5kIHNpciBmcm9tIEV0
+dHVzIHRlYW0sDQoNCg0KSSBhbSB1c2luZyBYMzEwIHdpdGggMiBDQlgxMjAgYW5kIFVIRCBtYWlu
+IGJyYW5jaCBmb3IgcmZub2Mgd2l0aCBmcGdhIGltYWdlIHVzcnBfeDMxMF9mcGdhX1hHLmJpdC4g
+TXkgZ29hbCBpcyB0byBidWlsZCBhIGxvb3BiYWNrIGZyb20gdHggcG9ydCB0byByeCBwb3J0LCBi
+dXQgSSBoYXZlIHNvbWUgcHJvYmxlbSB0byBidWlsZCBhIGdyYXBoLg0KDQoNCkZvciBleGFtcGxl
+IHRvIHNlbmQgZnJvbSBSRi1BIFR4L1J4IHBvcnQgdG8gUkYtQSBSeDIgcG9ydCwgSSB1c2VkIHBh
+cmFtZXRlcg0KDQogICAgLS10eC1ibG9ja2lkPScwL1JhZGlvIzAnIC0tdHgtY2hhbj0wIC0tcngt
+YmxvY2tpZD0nMC9SYWRpbyMxJyAtLXJ4LWNoYW49MCINCg0KDQpJIHRyaWVkIHRvIGNvbm5lY3Q6
+DQoNCiAgICB0eF9zdHJlYW0gPT0+IDAvRFVDIzA6MCA9PT4gMC9SYWRpbyMwOjANCg0KICAgIDAv
+UmFkaW8jMDoxID09PiAwL0REQyMwOjEgPT0+IHJ4X3N0cmVhbQ0KDQpUaGUgMC9TRVAgaXMgbm90
+IGEgYmxvY2sgc28gSSB1c2Ugc3RyZWFtZXIgb24gaXRzIHBvc2l0aW9uIGluIGNoYWluDQoNCkJ1
+dCBJIGdvdCBhbiBlcnJvcjoNCiAgICBbRVJST1JdIFtSRk5PQzo6R1JBUEg6OkRFVEFJTF0gTm9k
+ZSAwL1JhZGlvIzBjYW5ub3QgaGFuZGxlIGl0cyBjdXJyZW50IHRvcG9sb2d5ISAoMWlucHV0cywg
+MSBvdXRwdXRzKQ0KICAgIEVycm9yOiBSdW50aW1lRXJyb3I6IEdyYXBoIHRvcG9sb2d5IGlzIG5v
+dCB2YWxpZCENCg0KDQpJIHNlZSB0aGUgZGVmYXVsdCBwYXJhbWV0ZXJzDQoNCiAgICAtLXR4LWJs
+b2NraWQ9JzAvUmFkaW8jMCcgLS10eC1jaGFuPTAgLS1yeC1ibG9ja2lkPScwL1JhZGlvIzEnIC0t
+cngtY2hhbj0wIg0KDQoNCmluIHJmbm9jX3JhZGlvX2xvb3BiYWNrIHNlZW1zIHRvIGJ1aWxkIGEg
+Y2hhaW4gbGlrZSB0aGlzOg0KICAgIDAvUmFkaW8jMTowPT0+MC9EREMjMTowPT0+MC9TRVAjMjow
+DQogICAgMC9TRVAjMDowPT0+MC9EVUMjMDowPT0+MC9SYWRpbyMwOjANCiAgICAwL0REQyMxOjA9
+PT4wL0RVQyMwOjANCg0KSSBkb24ndCB1bmRlcnN0YW5kIHdoeSBhcmUgIDAvRERDIzE6MCBhbmQg
+MC9EVUMjMDowIGNvbm5lY3RlZC4NCg0KQWxzbyBJIGdldCBhbiBlcnJvciBhdCBzZXR0aW5nIHJh
+dGU6DQogICAgW1dBUk5JTkddIFswL1JhZGlvIzFdIFJlcXVlc3RpbmcgaW52YWxpZCBzYW1wbGlu
+ZyByYXRlIGZyb20gZGV2aWNlOiAxMCBNSHouIEFjdHVhbCByYXRlIGlzOiAyMDAgTUh6Lg0KDQoN
+CmJ5IHVzaW5nOg0KDQogICAgIHVoZDo6cmZub2M6OnJhZGlvX2NvbnRyb2w6OnNwdHIgcmFkaW9f
+Y3RybCA9IGdyYXBoLT5nZXRfYmxvY2s8dWhkOjpyZm5vYzo6cmFkaW9fY29udHJvbD4ocmFkaW9f
+Y3RybF9pZCkNCg0KICAgICByYWRpb19jdHJsLT5zZXRfcmF0ZShyeF9yYXRlKQ0KDQoNCkNvdWxk
+IHlvdSBwbGVhc2UgZ2l2ZSBtZSBzb21lIGFkdmljZT8NCg0KDQpUaGFua3MgaW4gYWR2YW5jZQ0K
+DQoNCkthc2ltDQo=
 
---_000_9fe71dc5335646659d7650c10e6d2cb3oc11expo22exchangemited_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_c92abad63ec64dc4a3777fa2a918c2f4campustuberlinde_
+Content-Type: text/html; charset="gb2312"
+Content-Transfer-Encoding: quoted-printable
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
-OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
-cjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjoj
-OTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5tc29ub3JtYWwwLCBsaS5t
-c29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXttc28tc3R5bGUtbmFtZTptc29ub3JtYWw7DQoJ
-bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2lu
-LWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1zaXplOjEyLjBwdDsN
-Cglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUx
-OA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fu
-cy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4uRW1haWxTdHlsZTE5DQoJe21zby1z
-dHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
-cmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6
-ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7
-c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRp
-di5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lm
-IGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9
-IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxv
-OnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIx
-IiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkg
-bGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9
-IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6
-IzFGNDk3RCI+VW5mb3J0dW5hdGVseSBJIGRvbuKAmXQgaGF2ZSBhbnkgc2NyZWVuc2hvdHMuIEl0
-IGNvdWxkIGJlIGF3aGlsZSBiZWZvcmUgSSBoYXZlIGFjY2VzcyB0byB0aGUgZXF1aXBtZW50IGFn
-YWluOyBJIGNhbiB0cnkgdG8gcG9zdCBhIHRyYWNlIHNvbWV0aW1lIG5leHQgd2Vlay4NCjxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xv
-cjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHls
-ZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4w
-cHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IE1hcmN1
-cyBEIExlZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDsgPGJyPg0KPGI+U2VudDo8
-L2I+IFRodXJzZGF5LCBNYXJjaCAxOCwgMjAyMSA1OjA5IFBNPGJyPg0KPGI+VG86PC9iPiBSaWNo
-YXJkIEouIE11cmkgJmx0O3JpMjg4NTZAbWl0LmVkdSZndDs8YnI+DQo8Yj5DYzo8L2I+IFVTUlAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vy
-c10geDMxMCBQUFMgaXNzdWVzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPkNvdWxkIHlvdSBwb3N0IHNjb3BlIHRyYWNl
-cz8gJm5ic3A7TXkgZ3Vlc3MgaXMgdGhhdCB0aGUgZWRnZXMgYXJlIG5vdCBjcmlzcCBlbm91Z2gg
-Zm9yIHRoZSAxUFBTIGlucHV0IHByb2Nlc3NpbmcuJm5ic3A7PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMi4wcHQiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5TZW50IGZyb20gbXkgaVBob25lPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvcD4NCjxibG9ja3F1
-b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5PbiBNYXIgMTgsIDIw
-MjEsIGF0IDU6MDAgUE0sIFJpY2hhcmQgSi4gTXVyaSAmbHQ7PGEgaHJlZj0ibWFpbHRvOnJpMjg4
-NTZAbWl0LmVkdSI+cmkyODg1NkBtaXQuZWR1PC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+
-DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUu
-MHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPu+7
-vyA8c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVvdDtUaW1lcyBO
-ZXcgUm9tYW4mcXVvdDssc2VyaWYiPg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+SGVsbG8sPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4m
-bmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPknigJltIHVzaW5nIGEg
-c2VyaWVzIG9mIHgzMTAgVVNSUHMgc3luY2hyb25pemVkIHRvZ2V0aGVyIHVzaW5nIGJvdGggYW4g
-ZXh0ZXJuYWwgMTAgTUh6IHJlZmVyZW5jZSBhbmQgYSBQUFMuIEkgaGF2ZSB0d28gY29uZmlndXJh
-dGlvbnM6IGluIG15IGxhYiBhbiBPY3RvY2xvY2sgcHJvdmlkZXMgdGhlIFBQUyBzaWduYWwsIGFu
-ZCBpbiB0aGUgZmllbGQgY29uZmlndXJhdGlvbiBJIHVzZSBhDQo8YSBocmVmPSJodHRwczovL3d3
-dy5taWNyb3NlbWkuY29tL3Byb2R1Y3QtZGlyZWN0b3J5L2dwcy1pbnN0cnVtZW50cy80MTM1LXN5
-bmNzZXJ2ZXItczY1MCI+DQpHUFMgcmVmZXJlbmNlZCBzdHJhdHVtIDEgTlRQIHNlcnZlcjwvYT4u
-ICZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGUgbGFiIGNvbmZpZ3VyYXRpb24gVVNS
-UHMgYmxpbmsgYW4gTEVEIG9uIHRoZSBmcm9udCBwYW5lbCBpbiB0aW1lIHdpdGggdGhlIFBQUy4g
-VGhlIGZpZWxkIGNvbmZpZ3VyYXRpb24gZG9lcyBub3QgYmxpbmsgdGhlIExFRHMgYXQgYWxsLiBC
-b3RoIGNvbmZpZ3VyYXRpb25zIGxpZ2h0IHRoZSAxMCBNSHogcmVmZXJlbmNlIExFRC4NCjxvOnA+
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGFtIG5vdCBmdWxseSBzdXJlIGlmIHRoaXMgaXMgYSBwcm9i
-bGVtLiBPY2Nhc2lvbmFsbHkgd2hlbiBJIHJ1biB0aGUgYXBwbGljYXRpb24gaW4gdGhlIGZpZWxk
-IGNvbmZpZ3VyYXRpb24sIGl0IHdvcmtzIGZvciBhYm91dCBhIG1pbnV0ZSBhbmQgdGhlbiBhcHBl
-YXJzIHRvIGRyaWZ0IG91dCBvZiBzeW5jLCBob3dldmVyIG1vc3Qgb2YgdGhlIHRpbWUgZXZlcnl0
-aGluZyBzZWVtcyB0byBvcGVyYXRlIGFzIGludGVuZGVkLg0KIEl04oCZcyB2ZXJ5IHBvc3NpYmxl
-IG15IGZpZWxkIGNvbmZpZ3VyYXRpb24gaGFzIG90aGVyIGlzc3VlcywgYW5kIG15IHN5c3RlbSBo
-YXMgbm90IHF1aXRlIHJlYWNoZWQgdGhlIG1hdHVyaXR5IHRvIGJlIHJ1bm5pbmcgbXVsdGlwbGUg
-aG91ci9kYXkgbG9uZyB0ZXN0IHRvIG1lYXN1cmUgZHJpZnQgb24gdGhlIGFwcGxpY2F0aW9uIHN5
-bmNocm9uaXphdGlvbi4NCjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5i
-c3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGV4YW1pbmVkIHRoZSBQ
-UFMgY29ubmVjdGlvbiB3aXRoIGEgVCBjYWJsZSBhbmQgYSBzY29wZS4gQm90aCBwcm9kdWNlIGEg
-UFBTIHB1bHNlIHdpdGggYSBzaGFycCBzcGlrZSB0byBhbiBpbml0aWFsIHZvbHRhZ2UsIGZvbGxv
-d2VkIGJ5IGEgbG9uZ2VyIGV4cG9uZW50aWFsIGN1cnZlIHVwIHRvIDVWLiBUaGUgb2N0b2Nsb2Nr
-IGRyaXZlcyB0byAyLjVWIGluaXRpYWxseSwgYW5kIHRoZSBzeW5jc2VydmVyIGRyaXZlcw0KIHRv
-IDRWIGluaXRpYWwuIDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7
-PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGhhdmUgdHJpZWQgdXNpbmcg
-c2hvcnRlciBjYWJsZXMgYW5kIGEgNmRCIGF0dGVudWF0b3Igb24gdGhlIHN5bmNzZXJ2ZXIgY29u
-bmVjdGlvbiB0byBzZWUgaWYgSSBjb3VsZCBnZXQgdGhlIFBQUyB0byBsaWdodCwgYnV0IG5laXRo
-ZXIgc2VlbWVkIHRvIGhhdmUgYW55IGVmZmVjdC4NCjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5E
-b2VzIGFueWJvZHkgaGF2ZSBhbnkgZ3VpZGFuY2Ugb24gaG93IHRvIG1ha2Ugc3VyZSBteSB4MzEw
-cyBpbiB0aGUgZmllbGQgY29uZmlndXJhdGlvbiBhcmUgYWN0dWFsbHkgYmVuZWZpdHRpbmcgZnJv
-bSB0aGUgUFBTPzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86
-cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFuayB5b3UhPG86cD48L286cD48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5SaWNoYXJkPG86cD48L286cD48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTom
-cXVvdDtUaW1lcyBOZXcgUm9tYW4mcXVvdDssc2VyaWYiPl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0g
-PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbTwvYT48YnI+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxh
-IGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSI+DQp1c3JwLXVz
-ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
-dj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dgb2312">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p></p>
+<div>
+<p>when I use radio_ctrl-&gt;set_rate() of rfnoc c&#43;&#43; api, I get the=
+ error,</p>
+<br>
+<p>Setting RX Rate: 10.000000 Msps...<br>
+Actual RX Rate: 200.000000 Msps...<br>
+[WARNING] [0/Radio#1] Requesting invalid sampling rate from device: 10 MHz.=
+ Actual rate is: 200 MHz.</p>
+<p style=3D"margin-bottom: 0in"><br>
+</p>
+<p>I use X310 with 2 CBX120 daughterboards and I can set the rx rate to 10M=
+Hz when I use uhd 4.0 multiusrp class set_rx_rate()</p>
+<p><br>
+</p>
+<p>Could you give me some more advice please?<br>
+</p>
+<p style=3D"margin-bottom: 0in; line-height: 100%"><br>
+</p>
+</div>
+<br>
+<p></p>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Chang, Kaixin<br>
+<b>Sent:</b> 18 March 2021 12:23:47<br>
+<b>To:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> =B4=F0=B8=B4: rfnoc error at building graph and setting sam=
+ple rate</font>
+<div>&nbsp;</div>
+</div>
+<div><style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;=
+margin-bottom:0;} --></style>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Btw, is it possible to set up rx_rate and tx_rate separately as with uhd=
+ we have usrp-&gt;set_rx_rate() and usrp-&gt;set_tx_rate()?<br>
+</p>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>=B7=A2=BC=FE=C8=CB:</b> Chang, =
+Kaixin<br>
+<b>=B7=A2=CB=CD=CA=B1=BC=E4:</b> 2021=C4=EA3=D4=C218=C8=D5 11:47:37<br>
+<b>=CA=D5=BC=FE=C8=CB:</b> usrp-users@lists.ettus.com<br>
+<b>=D6=F7=CC=E2:</b> rfnoc error at building graph and setting sample rate<=
+/font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Dear madam and sir from Ettus team,</p>
+<p><br>
+</p>
+<p>I am using X310 with 2 CBX120 and UHD main branch for rfnoc with<code> f=
+pga image usrp_x310_fpga_XG.bit</code>. My goal is to build a loopback from=
+ tx port to rx port, but I have some problem to build a graph.</p>
+<p><br>
+</p>
+<p>For example to send from RF-A Tx/Rx port to RF-A Rx2 port, I used parame=
+ter</p>
+<div>&nbsp;&nbsp;&nbsp; --tx-blockid=3D'0/Radio#0' --tx-chan=3D0 --rx-block=
+id=3D'0/Radio#1' --rx-chan=3D0&quot;</div>
+<div><br>
+</div>
+<p></p>
+<p><span style=3D"color: rgb(0, 0, 0);"></span>I tried to connect:<br>
+</p>
+<p>&nbsp;&nbsp;&nbsp; tx_stream =3D=3D&gt; 0/DUC#0:0 =3D=3D&gt; 0/Radio#0:0=
+</p>
+<p>&nbsp;&nbsp;&nbsp; <span>0/</span>Radio#0:1 =3D=3D&gt;&nbsp;<span>0/</sp=
+an>DDC#0:1 =3D=3D&gt; rx_stream</p>
+<p></p>
+<div>The 0/SEP is not a block so I use streamer on its position in chain</d=
+iv>
+<div><br>
+</div>
+<div>But I got an error:<br>
+</div>
+<div>&nbsp;&nbsp;&nbsp; [ERROR] [RFNOC::GRAPH::DETAIL] Node 0/Radio#0cannot=
+ handle its current topology! (1inputs, 1 outputs)<br>
+<div>&nbsp;&nbsp;&nbsp; Error: RuntimeError: Graph topology is not valid!</=
+div>
+</div>
+<br>
+<p></p>
+<p>I see the default parameters <br>
+</p>
+<p></p>
+<div>&nbsp;&nbsp;&nbsp; --tx-blockid=3D'0/Radio#0' --tx-chan=3D0 --rx-block=
+id=3D'0/Radio#1' --rx-chan=3D0&quot;</div>
+<br>
+<p></p>
+in rfnoc_radio_loopback seems to build a chain like this:
+<div>&nbsp;&nbsp;&nbsp; 0/Radio#1:0=3D=3D&gt;0/DDC#1:0<span>=3D=3D&gt;0/SEP=
+#2:0</span><br>
+&nbsp;&nbsp;&nbsp; <span>0/SEP#0:0=3D=3D&gt;</span>0/DUC#0:0=3D=3D&gt;0/Rad=
+io#0:0<br>
+&nbsp;&nbsp;&nbsp; 0/DDC#1:0=3D=3D&gt;0/DUC#0:0</div>
+<div><br>
+</div>
+<div>I don't understand why are&nbsp; <span>0/DDC#1:0 and 0/DUC#0:0 connect=
+ed.</span></div>
+<div><span><br>
+</span></div>
+<div><span>Also I get an error at setting rate:</span></div>
+<div><span>&nbsp;&nbsp;&nbsp; <span>[WARNING] [0/Radio#1] Requesting invali=
+d sampling rate from device: 10 MHz. Actual rate is: 200 MHz.</span></span>=
+<br>
+</div>
+<p></p>
+<p><br>
+</p>
+<p>by using:<br>
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; uhd::rfnoc::radio_control::sptr radio_ctrl =3D =
+graph-&gt;get_block&lt;uhd::rfnoc::radio_control&gt;(radio_ctrl_id)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; radio_ctrl-&gt;set_rate(rx_rate)</p>
+<p><br>
+</p>
+<p>Could you please give me some advice?</p>
+<p><br>
+</p>
+<p>Thanks in advance</p>
+<p><br>
+</p>
+<p>Kasim<br>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>
 
---_000_9fe71dc5335646659d7650c10e6d2cb3oc11expo22exchangemited_--
+--_000_c92abad63ec64dc4a3777fa2a918c2f4campustuberlinde_--
 
---===============8304048635872741700==
+--===============8048460424264187750==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -236,4 +275,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8304048635872741700==--
+--===============8048460424264187750==--
