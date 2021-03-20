@@ -2,166 +2,153 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C82E342720
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Mar 2021 21:48:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3AE5342F6B
+	for <lists+usrp-users@lfdr.de>; Sat, 20 Mar 2021 20:59:57 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3DA34383988
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Mar 2021 16:48:02 -0400 (EDT)
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 17E6B383843
-	for <usrp-users@lists.ettus.com>; Fri, 19 Mar 2021 16:47:52 -0400 (EDT)
-Date: Fri, 19 Mar 2021 20:47:52 +0000
+	by mm2.emwd.com (Postfix) with ESMTP id A138D38370B
+	for <lists+usrp-users@lfdr.de>; Sat, 20 Mar 2021 15:59:56 -0400 (EDT)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id 513293836C0
+	for <usrp-users@lists.ettus.com>; Sat, 20 Mar 2021 15:59:47 -0400 (EDT)
+Received: by mail-wr1-f46.google.com with SMTP id j18so12565009wra.2
+        for <usrp-users@lists.ettus.com>; Sat, 20 Mar 2021 12:59:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=psw4EmwwFJok6LcBsHcGf1bt/YXyQcQeFXvtUWo9Qi0=;
+        b=Qu+XB6WMty5Jz8HDAObbgMYTVLbpknT/D4miRqN9Z2ZjbvAkzZqrmpH/X+C5elOafm
+         ijtoGIvbNqLe9xCf/x9wMBEiPouPz98Gd01SWX82MHorSUAKpnbBZTWogdcdEB+UCfGo
+         wZY9ihwHei2KHlcSbXLOjKmyuI0Wy/wTkxQ0RpL+IoLusGdcaO/ucovg6x3SnVFaLBNW
+         UXT4CwsLBIOMLzkjWpvLvyOiUb6YIoHl5lfqxqe10h2k04XX3rPqsKgTHUn/crIS1BgS
+         dAkhPWMDda6EXhJeOl3tcGhqtCwkUL+8VpenbaGcLhbjr2TA6OVLu7EcWbh6mQRbBUlG
+         3qxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=psw4EmwwFJok6LcBsHcGf1bt/YXyQcQeFXvtUWo9Qi0=;
+        b=fQorvF7iyqLN/NT71oeURonAix+yMl1NqOvoOs/g4MdwnaUXC0ezFGccEVHVAqyrjQ
+         JTEpFYI6gR7Szlr3CyamleY7ZVsp9Nea2CRuqjbrJSKqHTxQR/J3jG1AyNjtf3BMjYLL
+         oF+73dggFPeSccnTZffgsaKP5UZsU8jmOhD/YR8tMbo14++buJhyej+SxoE64yDZNccd
+         acTO4c53scZbca2TYAV6RFcFiuhQqkJ4DVsSykqA1e8UlvvKwegAh0dVMeQjZpO0g4Db
+         vLyrFqHCqePb3cdGuWFJoVKuCsFhrB6STBxfhtrQ4Mzi4gdN7aA8pYviiCjU/6ZN22qH
+         N75g==
+X-Gm-Message-State: AOAM533uLSLgTzgihkKVU47R8TgFWW0wEV0Y65e7bU5kcLdIwsxIzZcd
+	9sa7zFR88FsImjz8qXH3vGpAZRJhhe87fx92
+X-Google-Smtp-Source: ABdhPJy6ZwgUC0PIs7Do6ZBlPqxX1Ts0mgjYsEGsYkFSD7NAVFtsdSiqpnE2vTfur423dnFR7tfgyQ==
+X-Received: by 2002:adf:dc4e:: with SMTP id m14mr11066427wrj.248.1616270386093;
+        Sat, 20 Mar 2021 12:59:46 -0700 (PDT)
+Received: from [192.168.128.8] (HSI-KBW-46-223-162-176.hsi.kabel-badenwuerttemberg.de. [46.223.162.176])
+        by smtp.gmail.com with ESMTPSA id e17sm17062864wra.65.2021.03.20.12.59.45
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 20 Mar 2021 12:59:45 -0700 (PDT)
 To: usrp-users@lists.ettus.com
-From: jcasallas2019@gmail.com
-Message-ID: <FUcaf1mlodlwRBWLsAbYL3Ch7jPE803adsIrofQPBA@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+References: <8b9169b13f17449cbd494459bf943fdb@kth.se>
+From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Message-ID: <db60037f-0a46-7553-086a-97338b0e8279@ettus.com>
+Date: Sat, 20 Mar 2021 20:59:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Message-ID-Hash: HHU4MA6D5RQRYL5HHOQX6USY7QSNOATC
-X-Message-ID-Hash: HHU4MA6D5RQRYL5HHOQX6USY7QSNOATC
-X-MailFrom: jcasallas2019@gmail.com
+In-Reply-To: <8b9169b13f17449cbd494459bf943fdb@kth.se>
+Content-Language: en-US
+Message-ID-Hash: YFEHF7XLHE6TZLPFZHUGFHMUWI44JE7J
+X-Message-ID-Hash: YFEHF7XLHE6TZLPFZHUGFHMUWI44JE7J
+X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Adding DmaFIFO block like FFT block in UHD 4 guide.
+Subject: [USRP-users] Re: USRP E320
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HHU4MA6D5RQRYL5HHOQX6USY7QSNOATC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YFEHF7XLHE6TZLPFZHUGFHMUWI44JE7J/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0439462653602417295=="
-
-This is a multi-part message in MIME format.
-
---===============0439462653602417295==
-Content-Type: multipart/alternative;
- boundary="b1_FUcaf1mlodlwRBWLsAbYL3Ch7jPE803adsIrofQPBA"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_FUcaf1mlodlwRBWLsAbYL3Ch7jPE803adsIrofQPBA
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-hi all,
+Hi Seyed,
 
-I am trying to add DmaFIFO block following UHD 4 Getting started guide in=
- the same way the FFT block was added, but when looking into gr-ettus/grc=
-/ folder, I did not find any ettus_rfnoc_dmaFIFO  yaml  file like the res=
-t of default blocks..
 
-This is what I found in /usr/local/share/=E2=80=A6 and did not see any rf=
-noc DmaFIFO block.=20
+the E320 is probably not the device you want: While you attach B210 and X31=
+0 to a powerful
+PC, which would then run OAI on the samples gotten from the USRP, the real =
+strength of the
+E320 is being an embedded system, especially for people who want to develop=
+ FPGA logic and
+embedded software to run on the Zynq *inside* the E320. As far as I can tel=
+l, OAI is far
+far *far* too CPU-hungry to run it on the 800 MHz dual-core ARM inside the =
+E320.
 
- `-rw-r--r-- 1 root root    166 Mar  2 14:58 ettus_fpga_clk.domain.yml`
+You can indeed also use the SFP+ to stream samples to a PC, but then just b=
+e buying a
+pretty expensive to the B210 with no added benefits.
 
-`-rw-r--r-- 1 root root    171 Mar  2 14:58 ettus_fpga_ctrl.domain.yml`
 
-`-rw-r--r-- 1 root root    168 Mar  2 14:58 ettus_fpga_data.domain.yml`
+Best regards,
 
-`-rw-r--r-- 1 root root    618 Mar  2 14:58 ettus_fpga_ddc.block.yml`
+Marcus
 
-`-rw-r--r-- 1 root root    617 Mar  2 14:58 ettus_fpga_duc.block.yml`
+DISCLAIMER: Any attached Code is provided As Is. It has not been tested or =
+validated as a product, for use in a deployed application or system, or for=
+ use in hazardous environments. You assume all risks for use of the Code. U=
+se of the Code is subject to terms of the licenses to the UHD or RFNoC code=
+ with which the Code is used. Standard licenses to UHD and RFNoC can be fou=
+nd at https://www.ettus.com/sdr-software/licenses/.
 
-`-rw-r--r-- 1 root root    131 Mar  2 14:58 ettus_fpga_fft.block.yml`
+NI will only perform services based on its understanding and condition that=
+ the goods or services (i) are not for the use in the production or develop=
+ment of any item produced, purchased, or ordered by any entity with a footn=
+ote 1 designation in the license requirement column of Supplement No. 4 to =
+Part 744, U.S. Export Administration Regulations and (ii) such a company is=
+ not a party to the transaction.  If our understanding is incorrect, please=
+ notify us immediately because a specific authorization may be required fro=
+m the U.S. Commerce Department before the transaction may proceed further.
 
-`-rw-r--r-- 1 root root    200 Mar  2 14:58 ettus_fpga_io_ctrl_port.domai=
-n.yml`
-
-`-rw-r--r-- 1 root root    181 Mar  2 14:58 ettus_fpga_io_radio.domain.ym=
-l`
-
-`-rw-r--r-- 1 root root    205 Mar  2 14:58 ettus_fpga_io_time_keeper.dom=
-ain.yml`
-
-`-rw-r--r-- 1 root root    820 Mar  2 14:58 ettus_fpga_radio.block.yml`
-
-`-rw-r--r-- 1 root root    811 Mar  2 14:58 ettus_fpga_sep.block.yml`
-
-`-rw-r--r-- 1 root root    663 Mar  2 14:58 ettus_fpga_x310.block.yml`
-
-`-rw-r--r-- 1 root root   1056 Mar  2 14:58 ettus_rfnoc_ddc.block.yml`
-
-`-rw-r--r-- 1 root root   1022 Mar  9 13:36 ettus_rfnoc_duc.block.yml`
-
-`-rw-r--r-- 1 root root   2174 Mar  2 14:58 ettus_rfnoc_fft.block.yml`
-
-`-rw-r--r-- 1 root root   3990 Mar  2 14:58 ettus_rfnoc_fosphor.block.yml=
-`
-
-`-rw-r--r-- 1 root root   4842 Mar  2 14:58 ettus_rfnoc_graph.block.yml`
-
-`-rw-r--r-- 1 root root   1950 Mar  2 14:58 ettus_rfnoc_rx_radio.block.ym=
-l`
-
-`-rw-r--r-- 1 root root   1266 Mar  2 14:58 ettus_rfnoc_rx_streamer.block=
-.yml`
-
-`-rw-r--r-- 1 root root   1580 Mar  2 14:58 ettus_rfnoc_tx_radio.block.ym=
-l`
-
-`-rw-r--r-- 1 root root   1187 Mar  2 14:58 ettus_rfnoc_tx_streamer.block=
-.yml`
-
-`-rw-r--r-- 1 root root    675 Mar  2 14:58 ettus.tree.yml`
-
-I wonder if I am missing a step to make the DmaFIFO works with gnuradio l=
-ike the FFT block example.
-
-Thanks
-
---b1_FUcaf1mlodlwRBWLsAbYL3Ch7jPE803adsIrofQPBA
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>hi all,</p><p>I am trying to add DmaFIFO block following UHD 4 Getting s=
-tarted guide in the same way the FFT block was added, but when looking into=
- gr-ettus/grc/ folder, I did not find any ettus_rfnoc_dmaFIFO  yaml  file l=
-ike the rest of default blocks..</p><p>This is what I found in /usr/local/s=
-hare/=E2=80=A6 and did not see any rfnoc DmaFIFO block. </p><p><br></p><p> =
-<code>-rw-r--r-- 1 root root    166 Mar  2 14:58 ettus_fpga_clk.domain.yml<=
-/code></p><p><code>-rw-r--r-- 1 root root    171 Mar  2 14:58 ettus_fpga_ct=
-rl.domain.yml</code></p><p><code>-rw-r--r-- 1 root root    168 Mar  2 14:58=
- ettus_fpga_data.domain.yml</code></p><p><code>-rw-r--r-- 1 root root    61=
-8 Mar  2 14:58 ettus_fpga_ddc.block.yml</code></p><p><code>-rw-r--r-- 1 roo=
-t root    617 Mar  2 14:58 ettus_fpga_duc.block.yml</code></p><p><code>-rw-=
-r--r-- 1 root root    131 Mar  2 14:58 ettus_fpga_fft.block.yml</code></p><=
-p><code>-rw-r--r-- 1 root root    200 Mar  2 14:58 ettus_fpga_io_ctrl_port.=
-domain.yml</code></p><p><code>-rw-r--r-- 1 root root    181 Mar  2 14:58 et=
-tus_fpga_io_radio.domain.yml</code></p><p><code>-rw-r--r-- 1 root root    2=
-05 Mar  2 14:58 ettus_fpga_io_time_keeper.domain.yml</code></p><p><code>-rw=
--r--r-- 1 root root    820 Mar  2 14:58 ettus_fpga_radio.block.yml</code></=
-p><p><code>-rw-r--r-- 1 root root    811 Mar  2 14:58 ettus_fpga_sep.block.=
-yml</code></p><p><code>-rw-r--r-- 1 root root    663 Mar  2 14:58 ettus_fpg=
-a_x310.block.yml</code></p><p><code>-rw-r--r-- 1 root root   1056 Mar  2 14=
-:58 ettus_rfnoc_ddc.block.yml</code></p><p><code>-rw-r--r-- 1 root root   1=
-022 Mar  9 13:36 ettus_rfnoc_duc.block.yml</code></p><p><code>-rw-r--r-- 1 =
-root root   2174 Mar  2 14:58 ettus_rfnoc_fft.block.yml</code></p><p><code>=
--rw-r--r-- 1 root root   3990 Mar  2 14:58 ettus_rfnoc_fosphor.block.yml</c=
-ode></p><p><code>-rw-r--r-- 1 root root   4842 Mar  2 14:58 ettus_rfnoc_gra=
-ph.block.yml</code></p><p><code>-rw-r--r-- 1 root root   1950 Mar  2 14:58 =
-ettus_rfnoc_rx_radio.block.yml</code></p><p><code>-rw-r--r-- 1 root root   =
-1266 Mar  2 14:58 ettus_rfnoc_rx_streamer.block.yml</code></p><p><code>-rw-=
-r--r-- 1 root root   1580 Mar  2 14:58 ettus_rfnoc_tx_radio.block.yml</code=
-></p><p><code>-rw-r--r-- 1 root root   1187 Mar  2 14:58 ettus_rfnoc_tx_str=
-eamer.block.yml</code></p><p><code>-rw-r--r-- 1 root root    675 Mar  2 14:=
-58 ettus.tree.yml</code></p><p><br></p><p>I wonder if I am missing a step t=
-o make the DmaFIFO works with gnuradio like the FFT block example.</p><p><b=
-r></p><p>Thanks</p>
-
---b1_FUcaf1mlodlwRBWLsAbYL3Ch7jPE803adsIrofQPBA--
-
---===============0439462653602417295==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+On 12.03.21 15:57, Seyed Samie Mostafavi wrote:
+> Hi everyone,
+>
+> We are starting a project and we want to buy a batch of E320s and our goa=
+l is to run
+> Openaireinterface 5G on them.
+> These=A0cellular communication=A0softwares like=A0Openaireinterface and s=
+rsLTE they recommend
+> USRP devices such as=A0B210 or X310 and not E320. I wanted to ask if anyo=
+ne has tried E320
+> with srsLTE or OAI or not.
+> I guess since OAI works with UHD driver and the RF chip is AD9361 like B2=
+10, there
+> should be no difference. However I am not sure.
+> Do you see any major difference in the drivers or capabilities of E320 an=
+d B210 or X310
+> such that it could=A0become a roadblock for us?
+>
+> Best,
+> Samie
+>
+> -------------------------------------------------------------------------=
+-----------------
+> Kth Logo
+> =A0
+> Seyed Samie Mostafavi
+> Doctoral Student
+> KTH
+> /School of electrical engineering and computer science (EECS)/
+> /Department of information systems and engineering (ISE)/
+> Malvinas v=E4g 10, 100 44 Stockholm
+> ssmos@kth.se
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============0439462653602417295==--
