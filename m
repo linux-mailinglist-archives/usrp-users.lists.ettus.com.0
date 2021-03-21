@@ -2,153 +2,139 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3AE5342F6B
-	for <lists+usrp-users@lfdr.de>; Sat, 20 Mar 2021 20:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C38AC3431A5
+	for <lists+usrp-users@lfdr.de>; Sun, 21 Mar 2021 09:17:15 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A138D38370B
-	for <lists+usrp-users@lfdr.de>; Sat, 20 Mar 2021 15:59:56 -0400 (EDT)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id 513293836C0
-	for <usrp-users@lists.ettus.com>; Sat, 20 Mar 2021 15:59:47 -0400 (EDT)
-Received: by mail-wr1-f46.google.com with SMTP id j18so12565009wra.2
-        for <usrp-users@lists.ettus.com>; Sat, 20 Mar 2021 12:59:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding:content-language;
-        bh=psw4EmwwFJok6LcBsHcGf1bt/YXyQcQeFXvtUWo9Qi0=;
-        b=Qu+XB6WMty5Jz8HDAObbgMYTVLbpknT/D4miRqN9Z2ZjbvAkzZqrmpH/X+C5elOafm
-         ijtoGIvbNqLe9xCf/x9wMBEiPouPz98Gd01SWX82MHorSUAKpnbBZTWogdcdEB+UCfGo
-         wZY9ihwHei2KHlcSbXLOjKmyuI0Wy/wTkxQ0RpL+IoLusGdcaO/ucovg6x3SnVFaLBNW
-         UXT4CwsLBIOMLzkjWpvLvyOiUb6YIoHl5lfqxqe10h2k04XX3rPqsKgTHUn/crIS1BgS
-         dAkhPWMDda6EXhJeOl3tcGhqtCwkUL+8VpenbaGcLhbjr2TA6OVLu7EcWbh6mQRbBUlG
-         3qxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=psw4EmwwFJok6LcBsHcGf1bt/YXyQcQeFXvtUWo9Qi0=;
-        b=fQorvF7iyqLN/NT71oeURonAix+yMl1NqOvoOs/g4MdwnaUXC0ezFGccEVHVAqyrjQ
-         JTEpFYI6gR7Szlr3CyamleY7ZVsp9Nea2CRuqjbrJSKqHTxQR/J3jG1AyNjtf3BMjYLL
-         oF+73dggFPeSccnTZffgsaKP5UZsU8jmOhD/YR8tMbo14++buJhyej+SxoE64yDZNccd
-         acTO4c53scZbca2TYAV6RFcFiuhQqkJ4DVsSykqA1e8UlvvKwegAh0dVMeQjZpO0g4Db
-         vLyrFqHCqePb3cdGuWFJoVKuCsFhrB6STBxfhtrQ4Mzi4gdN7aA8pYviiCjU/6ZN22qH
-         N75g==
-X-Gm-Message-State: AOAM533uLSLgTzgihkKVU47R8TgFWW0wEV0Y65e7bU5kcLdIwsxIzZcd
-	9sa7zFR88FsImjz8qXH3vGpAZRJhhe87fx92
-X-Google-Smtp-Source: ABdhPJy6ZwgUC0PIs7Do6ZBlPqxX1Ts0mgjYsEGsYkFSD7NAVFtsdSiqpnE2vTfur423dnFR7tfgyQ==
-X-Received: by 2002:adf:dc4e:: with SMTP id m14mr11066427wrj.248.1616270386093;
-        Sat, 20 Mar 2021 12:59:46 -0700 (PDT)
-Received: from [192.168.128.8] (HSI-KBW-46-223-162-176.hsi.kabel-badenwuerttemberg.de. [46.223.162.176])
-        by smtp.gmail.com with ESMTPSA id e17sm17062864wra.65.2021.03.20.12.59.45
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 20 Mar 2021 12:59:45 -0700 (PDT)
-To: usrp-users@lists.ettus.com
-References: <8b9169b13f17449cbd494459bf943fdb@kth.se>
-From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-Message-ID: <db60037f-0a46-7553-086a-97338b0e8279@ettus.com>
-Date: Sat, 20 Mar 2021 20:59:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
-MIME-Version: 1.0
-In-Reply-To: <8b9169b13f17449cbd494459bf943fdb@kth.se>
+	by mm2.emwd.com (Postfix) with ESMTP id 5C0B03838C5
+	for <lists+usrp-users@lfdr.de>; Sun, 21 Mar 2021 04:17:14 -0400 (EDT)
+Received: from APC01-PU1-obe.outbound.protection.outlook.com (mail-oln040092254064.outbound.protection.outlook.com [40.92.254.64])
+	by mm2.emwd.com (Postfix) with ESMTPS id E37903838B8
+	for <usrp-users@lists.ettus.com>; Sun, 21 Mar 2021 04:16:12 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YghVCwZDWEgBU3QTc8xUe0jhT+ve2H8S9vgftUaXndPlGacj6T/Sb+XPdYv9PK5spEvnwAn/QhEAmDnFlpjPAvX8sfhdzuzxMK16a4a5GVWdrGsmGBKFYTPHhSoRcdoSMcRxJrQzgzb4QXyKIvKYx3+jDU1eDT9SGFVqUjFMeg7sEb7eF1POIiroOohbEIp43VUAxNkhBEK4lgjVvuHwmaXOlDB4g1QdzXOTDZ28n8XGP6wsk88oEzwa8MziDiM/06UPQWxV/MzNpeQJ678nIrkmp1KmLWljCU+3nH59VLwoTbvrnBZqMvtVFDsRfdaqlcv71DqnUl5IVlFhJ0+LbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NTHcoQRJX9a8GzA+fdZIW4Nvel4TWCFELJscCLuao+g=;
+ b=GbzB9+lrxgXckAArhyL03e2gQInOKUBe/XmdtMHUH47PbebEjLl0LHQC7vmncAXjA/97iWqKoYF1kM8O5cWGrQw7gREH3T5RGmZHHFEhVLrS+xDpQ2rIItDhA2Ah8cJkBf2aXy5y+9unj/Hdh4cdfpv05QIciZTMT9L+BYArtvCwS8TWcgsSYuEXCki8G3nDCVx/sI3gHs+wkE1JYqRnqrBUaM6iT17Y9LLUca62Tp4VdWAIUw78tnbBZhfcwYUV4q0CmNRbLwLB2UQHpctZCS5r0QGws7Tgw+hGyrjFwjMFGXf9rVfS3TPJRkuriBxkpXFpuo5V5cVdxAajDZHrnQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NTHcoQRJX9a8GzA+fdZIW4Nvel4TWCFELJscCLuao+g=;
+ b=OVpgvW+IY9Uaf5NF56gICDGMLcbgR/qLHolJjm7RfH7D2V5d+cZ5EqAgvlJC+i6jatNXQuwRQqAl8qMp+UvB1lXbq83e1ZAmLhbn/gO6kbB6gkQcksyBlymTBNJah1/VrgCNabHA7tmE9xMcDAk7M/aJdni5UODrWj+kapvhO5g2PtdIb6yQs9WFsMe1vPlBvO8IilJ+Ld+2OAYaKOKzXFVYCX7NeD9OX0N+Wb3A2O9vNmINKxHLKLyOGTyN/StzOIzIzGeV7rAvgBaomSY1xf6hZGRX9fs/F1CHf74t1bgkhgmJtU4/WY+Lnyc+ptU0KU++j4dMEmU2J3RGq4LDqw==
+Received: from TY2PR04MB3517.apcprd04.prod.outlook.com (2603:1096:404:f7::14)
+ by TYZPR04MB4320.apcprd04.prod.outlook.com (2603:1096:400:2e::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Sun, 21 Mar
+ 2021 08:16:09 +0000
+Received: from TY2PR04MB3517.apcprd04.prod.outlook.com
+ ([fe80::dc7a:192a:ee1a:619f]) by TY2PR04MB3517.apcprd04.prod.outlook.com
+ ([fe80::dc7a:192a:ee1a:619f%6]) with mapi id 15.20.3955.025; Sun, 21 Mar 2021
+ 08:16:09 +0000
+From: Oscar Pablo <oscar_pabloo@outlook.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: question of X300 revision
+Thread-Index: AQHXHih2oy65dgYjbU2Lx35PeLsmsA==
+Date: Sun, 21 Mar 2021 08:16:09 +0000
+Message-ID: 
+ <TY2PR04MB3517EF7CB55B3601EB8C20BEF0669@TY2PR04MB3517.apcprd04.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-Message-ID-Hash: YFEHF7XLHE6TZLPFZHUGFHMUWI44JE7J
-X-Message-ID-Hash: YFEHF7XLHE6TZLPFZHUGFHMUWI44JE7J
-X-MailFrom: marcus.mueller@ettus.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-tmn: [b+lv6mSqpuQDiqIvFXke3jCWkbjd7StD]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e3e50282-5252-4346-c943-08d8ec41956f
+x-ms-traffictypediagnostic: TYZPR04MB4320:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ OlwklAJRkCgmpaJq/E9oQEpe/ObCUbcPziBV0YNOGrweUx6fB0FSbjBWJXj9YxdVI4GSgi1YTS/k/InfjWgBTIwUhVX/On+8nE1dAwtaPXKjZlHZTAzs1/ToNJ3rkPBdpmwfg9Yx5nlJJ+Awrm9Q/appqxW9a6DbZ1UyxUQRNIHgfdH2FmUmptsBvkornN6sh8icrgLtr5qVGsB0QRFwqrNsUFGuMzmmamQv+RPPLElk9hieT+g41DOh0MWxGzUHdH1Vbw7oi8Bi38YcEr1nZcjooj37dFdSGvy5+9HdIFke7zyJczmbrFVjDqqMkNsc9UznLiJFRnL3rd6LN67JinjByw8Eu1/Wr+TNC+IqJ09sAsOVUXDTxDtsUkDVR+Xn
+x-ms-exchange-antispam-messagedata: 
+ mHqkMXR1qrWvGJJP8vi7g84mDiD/2qHPYObjL1kxOa6QH3ZWBzhBP297LqN2om8kzoNkBekLlDkOOcAqK3UUVU1wwndDxEEsDNE1Crlyb7XYEo3FlIp5qAfnvOQrsd0zTLY0zwrSyQGbjY7fmlBqJA==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PR04MB3517.apcprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3e50282-5252-4346-c943-08d8ec41956f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Mar 2021 08:16:09.5946
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR04MB4320
+Message-ID-Hash: UMXQDFELZP5JBTRXOPX3C4JB7BY2KO56
+X-Message-ID-Hash: UMXQDFELZP5JBTRXOPX3C4JB7BY2KO56
+X-MailFrom: oscar_pabloo@outlook.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP E320
+Subject: [USRP-users] question of X300 revision
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YFEHF7XLHE6TZLPFZHUGFHMUWI44JE7J/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MMENWXNOME4DFOCVVQQOKIG5K37QHX2A/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="windows-1252"
+Content-Type: multipart/mixed; boundary="===============2485157297870011530=="
+
+--===============2485157297870011530==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_TY2PR04MB3517EF7CB55B3601EB8C20BEF0669TY2PR04MB3517apcp_"
+
+--_000_TY2PR04MB3517EF7CB55B3601EB8C20BEF0669TY2PR04MB3517apcp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Seyed,
+Hi,
+the public released X300 schematic is revision 1. i want to know if this re=
+vision is the revision in uhd source code. in uhd source code there is stra=
+nge words "x300_clock_ctrl is not compatible with revs <=3D 4 and may    le=
+ad to locking issues" so what is the correct source code for revision less =
+than 4?
 
+--_000_TY2PR04MB3517EF7CB55B3601EB8C20BEF0669TY2PR04MB3517apcp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-the E320 is probably not the device you want: While you attach B210 and X31=
-0 to a powerful
-PC, which would then run OAI on the samples gotten from the USRP, the real =
-strength of the
-E320 is being an embedded system, especially for people who want to develop=
- FPGA logic and
-embedded software to run on the Zynq *inside* the E320. As far as I can tel=
-l, OAI is far
-far *far* too CPU-hungry to run it on the 800 MHz dual-core ARM inside the =
-E320.
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hi,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+the public released X300 schematic is revision 1. i want to know if this re=
+vision is the revision in uhd source code. in uhd source code there is stra=
+nge words &quot;x300_clock_ctrl is not compatible with revs &lt;=3D 4 and m=
+ay&nbsp; &nbsp; lead to locking issues&quot; so what is the
+ correct source code for revision less than 4?<br>
+</div>
+</body>
+</html>
 
-You can indeed also use the SFP+ to stream samples to a PC, but then just b=
-e buying a
-pretty expensive to the B210 with no added benefits.
+--_000_TY2PR04MB3517EF7CB55B3601EB8C20BEF0669TY2PR04MB3517apcp_--
 
+--===============2485157297870011530==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Best regards,
-
-Marcus
-
-DISCLAIMER: Any attached Code is provided As Is. It has not been tested or =
-validated as a product, for use in a deployed application or system, or for=
- use in hazardous environments. You assume all risks for use of the Code. U=
-se of the Code is subject to terms of the licenses to the UHD or RFNoC code=
- with which the Code is used. Standard licenses to UHD and RFNoC can be fou=
-nd at https://www.ettus.com/sdr-software/licenses/.
-
-NI will only perform services based on its understanding and condition that=
- the goods or services (i) are not for the use in the production or develop=
-ment of any item produced, purchased, or ordered by any entity with a footn=
-ote 1 designation in the license requirement column of Supplement No. 4 to =
-Part 744, U.S. Export Administration Regulations and (ii) such a company is=
- not a party to the transaction.  If our understanding is incorrect, please=
- notify us immediately because a specific authorization may be required fro=
-m the U.S. Commerce Department before the transaction may proceed further.
-
-On 12.03.21 15:57, Seyed Samie Mostafavi wrote:
-> Hi everyone,
->
-> We are starting a project and we want to buy a batch of E320s and our goa=
-l is to run
-> Openaireinterface 5G on them.
-> These=A0cellular communication=A0softwares like=A0Openaireinterface and s=
-rsLTE they recommend
-> USRP devices such as=A0B210 or X310 and not E320. I wanted to ask if anyo=
-ne has tried E320
-> with srsLTE or OAI or not.
-> I guess since OAI works with UHD driver and the RF chip is AD9361 like B2=
-10, there
-> should be no difference. However I am not sure.
-> Do you see any major difference in the drivers or capabilities of E320 an=
-d B210 or X310
-> such that it could=A0become a roadblock for us?
->
-> Best,
-> Samie
->
-> -------------------------------------------------------------------------=
------------------
-> Kth Logo
-> =A0
-> Seyed Samie Mostafavi
-> Doctoral Student
-> KTH
-> /School of electrical engineering and computer science (EECS)/
-> /Department of information systems and engineering (ISE)/
-> Malvinas v=E4g 10, 100 44 Stockholm
-> ssmos@kth.se
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============2485157297870011530==--
