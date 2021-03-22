@@ -2,315 +2,452 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33398343E2B
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Mar 2021 11:43:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4433D343E7D
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Mar 2021 11:54:59 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6F8FB3839FB
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Mar 2021 06:43:03 -0400 (EDT)
-Received: from smtp-4.sys.kth.se (smtp-4.sys.kth.se [130.237.48.193])
-	by mm2.emwd.com (Postfix) with ESMTPS id E793E3837A5
-	for <usrp-users@lists.ettus.com>; Mon, 22 Mar 2021 06:42:09 -0400 (EDT)
-Received: from smtp-4.sys.kth.se (localhost.localdomain [127.0.0.1])
-	by smtp-4.sys.kth.se (Postfix) with ESMTP id 4694A2AA1;
-	Mon, 22 Mar 2021 11:42:08 +0100 (CET)
-X-Virus-Scanned: by amavisd-new at kth.se
-Received: from smtp-4.sys.kth.se ([127.0.0.1])
-	by smtp-4.sys.kth.se (smtp-4.sys.kth.se [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id N0tytbbK8-PA; Mon, 22 Mar 2021 11:42:07 +0100 (CET)
-Received: from exdb2.ug.kth.se (exdb2.ug.kth.se [192.168.32.57])
-	by smtp-4.sys.kth.se (Postfix) with ESMTPS id C270A2A89;
-	Mon, 22 Mar 2021 11:42:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kth.se; s=default;
-	t=1616409727; bh=iC6V8+62q5lyJl1kOp4m5plVcruCLSS0tC0m5Vy1ah4=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=QoL7Lsv4H19PVcqBoHb1I2dqXCx9O8J0eVvzrTS34YPz7+KsUNExY4Q2BZ7nJvsRH
-	 fEJymJQH5dssC2RrQSVXlYE04l4NnIBQOe/FJQxEJ79nyeX78bp6AuwGZi5EK+NUqq
-	 Dw4ffebsAuUb4kNnW0ueuQbFu3gq9zrYynbyGnVA=
-Received: from exdb4.ug.kth.se (192.168.32.59) by exdb2.ug.kth.se
- (192.168.32.57) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3; Mon, 22 Mar 2021
- 11:42:06 +0100
-Received: from exdb4.ug.kth.se ([192.168.32.59]) by exdb4.ug.kth.se
- ([192.168.32.59]) with mapi id 15.02.0792.010; Mon, 22 Mar 2021 11:42:06
- +0100
-From: Seyed Samie Mostafavi <ssmos@kth.se>
-To: Tuan Hoang Dinh <tuanmcx58@gmail.com>
-Thread-Topic: [USRP-users] Re: USRP E320
-Thread-Index: AQHXF1ACIqLSBOdn3k2/5dkvJ3E15qqNR8AAgAKN/JX///jLAIAAEUmC
-Date: Mon, 22 Mar 2021 10:42:06 +0000
-Message-ID: <a158d733b6ff4396af054615b93627f2@kth.se>
-References: <8b9169b13f17449cbd494459bf943fdb@kth.se>
- <db60037f-0a46-7553-086a-97338b0e8279@ettus.com>
- <bfd102e8d81e49298be0b47a29b8d52c@kth.se>,<CAJZBg9VHVu=qRGdV5VVCZaR9HeJBnNxy1ZbwZVLqYG8GEFkddA@mail.gmail.com>
-In-Reply-To: <CAJZBg9VHVu=qRGdV5VVCZaR9HeJBnNxy1ZbwZVLqYG8GEFkddA@mail.gmail.com>
-Accept-Language: en-US, sv-SE
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.32.250]
+	by mm2.emwd.com (Postfix) with ESMTP id 884D4383E81
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Mar 2021 06:54:58 -0400 (EDT)
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3F162383E66
+	for <usrp-users@lists.ettus.com>; Mon, 22 Mar 2021 06:54:06 -0400 (EDT)
+Received: by mail-pg1-f177.google.com with SMTP id k24so8354687pgl.6
+        for <usrp-users@lists.ettus.com>; Mon, 22 Mar 2021 03:54:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Hrny1AzG+Ql2+mhUAGO2yjCUkqVs226NOGldbRXuOQU=;
+        b=U+3Mlk319/tOIFHgXhDjzv7UtrKFBTXMZV0J6mS+iZ1997AgLicguLH7+Bkvbmygnr
+         vl2Wuy+zzaGqvGtQYFmWESyW3Y3zc/wGLIBCjJ8dA15GcCiKsRdwG0x6K1Loyr7R3bRn
+         0OktUqAvEL+m2GHvxkwWdng60ukk9g5AVLqV9mrQMK6yk3PyaB/CHvJ4pDY+ragB9dko
+         i6xzvbsCWCXFWyBV1jAxff7EdCK2AA7LfZfkAOxFAMBdHlCSdeCLlflfSXB7Kra5TyUh
+         9/+KGRSVDkYYqXvRL9QXPARmZ43OOjZt9RSUQ/GXZzMG/1H7+X3PC+Hd0j7BOZ9cqdbx
+         ZR/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Hrny1AzG+Ql2+mhUAGO2yjCUkqVs226NOGldbRXuOQU=;
+        b=RxBC8MOuBMJSdP9fVXFg8mXDZqh0oafLxSbRUKnB/wvwe5o+nhH3mrP1iYU6mMjVLl
+         /MUgcLIfaUnxuVQvBTmDR5GjClbEY+tHNccuoT7MuA6AEga7xUr+HQ2yUgbBS+OzcjAo
+         +cQYY1ENgPbb9Vzryhp9d4nDM2IcTY7Bs4yBYmdcwWUWWoU1fH1KQqAH8a5mWdcYs6HW
+         TClTb/01RKQ8jHSdG4jZ72Ey1DkY2MQeV389MBkto4pcqoYY2mA9Bc89tmizs1TjTX8U
+         9M1025JI5JxulvrSyxb3e4TrwjfaAIOkh0+CtP0Hx/zbC8BSQRg2IMsHn9oSFuTo7Pu5
+         g61w==
+X-Gm-Message-State: AOAM531pZMqnTjhkCPWRM7aU1KgdIeOLrXE6U0P1YemHgWV5fcn7OZF/
+	uwxPlSpDJYkfTG40Tuo+pCWDW/4XmSh8sf3j8YnIDj6P
+X-Google-Smtp-Source: ABdhPJxA/EjwAlxHLe8mUz3fkvAKaCMZiB4RoRaCvqmgl7t6NNWxOc8VEB1BPZTRDPzbZBCXDyr3E051hvpWurJjwxw=
+X-Received: by 2002:a63:504f:: with SMTP id q15mr22668735pgl.290.1616410445086;
+ Mon, 22 Mar 2021 03:54:05 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: 5FT26FUWLCY5L5BU45CLP2CFEEM75IUR
-X-Message-ID-Hash: 5FT26FUWLCY5L5BU45CLP2CFEEM75IUR
-X-MailFrom: ssmos@kth.se
+References: <8b9169b13f17449cbd494459bf943fdb@kth.se> <db60037f-0a46-7553-086a-97338b0e8279@ettus.com>
+ <bfd102e8d81e49298be0b47a29b8d52c@kth.se> <CAJZBg9VHVu=qRGdV5VVCZaR9HeJBnNxy1ZbwZVLqYG8GEFkddA@mail.gmail.com>
+ <a158d733b6ff4396af054615b93627f2@kth.se>
+In-Reply-To: <a158d733b6ff4396af054615b93627f2@kth.se>
+From: Tuan Hoang Dinh <tuanmcx58@gmail.com>
+Date: Mon, 22 Mar 2021 19:53:54 +0900
+Message-ID: <CAJZBg9WaMmdVzhEQFz7FhWwFn+BFNXarecet9LC-AuMnKNyiTQ@mail.gmail.com>
+To: Seyed Samie Mostafavi <ssmos@kth.se>
+Message-ID-Hash: ZKO3NBVEGCUR2XA5DJAQQRXJI6TQPCOU
+X-Message-ID-Hash: ZKO3NBVEGCUR2XA5DJAQQRXJI6TQPCOU
+X-MailFrom: tuanmcx58@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: USRP E320
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5FT26FUWLCY5L5BU45CLP2CFEEM75IUR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZKO3NBVEGCUR2XA5DJAQQRXJI6TQPCOU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8785849514395886163=="
+Content-Type: multipart/mixed; boundary="===============2348007953551431589=="
 
---===============8785849514395886163==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_a158d733b6ff4396af054615b93627f2kthse_"
+--===============2348007953551431589==
+Content-Type: multipart/alternative; boundary="00000000000064016405be1de2b6"
 
---_000_a158d733b6ff4396af054615b93627f2kthse_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--00000000000064016405be1de2b6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgVHVhbiwNCg0KDQpXZSB1c2UgT0FJIGZvciB0aGUgTFRFIGFuZCBpdCBoYXMgbm8gUEhZIGlt
-cGxlbWVudGF0aW9uIG9uIHRoZSBGUEdBLiBXaGljaCBtZWFucyB0aGF0IGFsbCB0aGUgcHJvY2Vz
-c2luZyBpcyBkb25lIG9uIHRoZSBwcm9jZXNzaW5nIGhvc3Qgd2l0aCBhIGdlbmVyYWwgcHVycG9z
-ZSBDUFUuIEluIHRoZSB3aWZpIGNhc2UgdGhlIHN0b3J5IGlzIGRpZmZlcmVudC4gU28gdGhlcmUg
-aXMgbm8gY29tbW9uIFBIWS9NQUMgbGF5ZXIuDQoNCg0KQmVzdCwNCg0KU2FtaWUNCg0KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IFR1YW4gSG9hbmcgRGluaCA8dHVhbm1j
-eDU4QGdtYWlsLmNvbT4NClNlbnQ6IE1vbmRheSwgTWFyY2ggMjIsIDIwMjEgMTE6MzQ6MzggQU0N
-ClRvOiBTZXllZCBTYW1pZSBNb3N0YWZhdmkNCkNjOiBNYXJjdXMgTcO8bGxlcjsgdXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gUmU6IFVTUlAgRTMy
-MA0KDQpEZWFyIFNhbWllLA0KDQpHb29kIHRvIGtub3cgeW91IGFyZSB3b3JraW5nIG9uIFBIWS9N
-QUMgbGF5ZXIgb2YgT0ZETSBzaWduYWwgbGlrZSBMVEUgYW5kIHdpZmkgb24gdGhlIFVTUlAuDQpJ
-J20gYWxzbyB3YW50IHRvIGRlcGxveSB0aGUgUEhZIGxheWVyIG9mIExURSBvbiBVU1JQIGJ1dCB0
-cnlpbmcgdG8gdXNlIFJGTm9DLiBJIGdvdCBhIGxpdHRsZSBiaXQgY29uZnVzZWQgYWJvdXQgdGhl
-IFBIWSBsYXllciBvZiBXQVJQIHByb2plY3QgdGFyZ2V0cyBvbiBXaWZpLCA4MDIuMTEgc3RhbmRh
-cmQgcmF0aGVyIHRoYW4gTFRFLiBDb3VsZCB5b3UgdGVsbCBtZSBjYW4gSSB1c2UgdGhlIHNhbWUg
-UEhZIGxheWVyIGZyb20gV0FSUCB0byBwcm9jZXNzIHRoZSBMVEUgc2lnbmFsPyBCZWNhdXNlIHNv
-bWUgZGlmZmVyZW50IHBvaW50cyBiZXR3ZWVuIE9GRE1BIGFuZCBPRkRNIGxpa2UgY3ljbGljIHBy
-ZWZpeCBsZW5ndGgsIEZGVCBsZW5ndGguLi4uDQpUaGFua3MgZm9yIHlvdXIgaGVscC4NCg0KUmVn
-YXJkcywNClR1YW4NCg0KVsOgbyBUaCAyLCAyMiB0aGcgMywgMjAyMSB2YcyAbyBsdcyBYyAxOToy
-NSBTZXllZCBTYW1pZSBNb3N0YWZhdmkgPHNzbW9zQGt0aC5zZTxtYWlsdG86c3Ntb3NAa3RoLnNl
-Pj4gxJHDoyB2aeG6v3Q6DQoNCkRlYXIgTWFyY3VzLA0KDQoNClRoYW5rcyBmb3IgeW91ciBhbnN3
-ZXIuIE9mIGNvdXJzZSBpdCBpcyBvdmVya2lsbCBidXQgd2UgYXJlIGF3YXJlIG9mIHRoYXQuIFdl
-IGNob3NlIEUzMjAgYmVjYXVzZSBNYW5nb0NvbW0gODAyLjExIE1BQy9QSFkgZGVzaWduIChzdWNj
-ZXNzb3Igb2YgV2FycCBwcm9qZWN0KSBzdXBwb3J0cyB0aGlzIGRldmljZSBhbmQgd2UgYWltIHRv
-IGJlIGFibGUgdG8gcnVuIDgwMi4xMSBhbmQgTFRFLzVHIHdpdGggdGhlIHNhbWUgU0RSLiBEb2Vz
-IHRoYXQgbWFrZSBzZW5zZT8NCg0KDQpCZXN0LA0KDQpTYW1pZQ0KDQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXw0KRnJvbTogTWFyY3VzIE3DvGxsZXIgPG1hcmN1cy5tdWVsbGVyQGV0
-dHVzLmNvbTxtYWlsdG86bWFyY3VzLm11ZWxsZXJAZXR0dXMuY29tPj4NClNlbnQ6IFNhdHVyZGF5
-LCBNYXJjaCAyMCwgMjAyMSA4OjU5OjQ0IFBNDQpUbzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KU3ViamVjdDogW1VTUlAtdXNl
-cnNdIFJlOiBVU1JQIEUzMjANCg0KSGkgU2V5ZWQsDQoNCg0KdGhlIEUzMjAgaXMgcHJvYmFibHkg
-bm90IHRoZSBkZXZpY2UgeW91IHdhbnQ6IFdoaWxlIHlvdSBhdHRhY2ggQjIxMCBhbmQgWDMxMCB0
-byBhIHBvd2VyZnVsDQpQQywgd2hpY2ggd291bGQgdGhlbiBydW4gT0FJIG9uIHRoZSBzYW1wbGVz
-IGdvdHRlbiBmcm9tIHRoZSBVU1JQLCB0aGUgcmVhbCBzdHJlbmd0aCBvZiB0aGUNCkUzMjAgaXMg
-YmVpbmcgYW4gZW1iZWRkZWQgc3lzdGVtLCBlc3BlY2lhbGx5IGZvciBwZW9wbGUgd2hvIHdhbnQg
-dG8gZGV2ZWxvcCBGUEdBIGxvZ2ljIGFuZA0KZW1iZWRkZWQgc29mdHdhcmUgdG8gcnVuIG9uIHRo
-ZSBaeW5xICppbnNpZGUqIHRoZSBFMzIwLiBBcyBmYXIgYXMgSSBjYW4gdGVsbCwgT0FJIGlzIGZh
-cg0KZmFyICpmYXIqIHRvbyBDUFUtaHVuZ3J5IHRvIHJ1biBpdCBvbiB0aGUgODAwIE1IeiBkdWFs
-LWNvcmUgQVJNIGluc2lkZSB0aGUgRTMyMC4NCg0KWW91IGNhbiBpbmRlZWQgYWxzbyB1c2UgdGhl
-IFNGUCsgdG8gc3RyZWFtIHNhbXBsZXMgdG8gYSBQQywgYnV0IHRoZW4ganVzdCBiZSBidXlpbmcg
-YQ0KcHJldHR5IGV4cGVuc2l2ZSB0byB0aGUgQjIxMCB3aXRoIG5vIGFkZGVkIGJlbmVmaXRzLg0K
-DQoNCkJlc3QgcmVnYXJkcywNCg0KTWFyY3VzDQoNCkRJU0NMQUlNRVI6IEFueSBhdHRhY2hlZCBD
-b2RlIGlzIHByb3ZpZGVkIEFzIElzLiBJdCBoYXMgbm90IGJlZW4gdGVzdGVkIG9yIHZhbGlkYXRl
-ZCBhcyBhIHByb2R1Y3QsIGZvciB1c2UgaW4gYSBkZXBsb3llZCBhcHBsaWNhdGlvbiBvciBzeXN0
-ZW0sIG9yIGZvciB1c2UgaW4gaGF6YXJkb3VzIGVudmlyb25tZW50cy4gWW91IGFzc3VtZSBhbGwg
-cmlza3MgZm9yIHVzZSBvZiB0aGUgQ29kZS4gVXNlIG9mIHRoZSBDb2RlIGlzIHN1YmplY3QgdG8g
-dGVybXMgb2YgdGhlIGxpY2Vuc2VzIHRvIHRoZSBVSEQgb3IgUkZOb0MgY29kZSB3aXRoIHdoaWNo
-IHRoZSBDb2RlIGlzIHVzZWQuIFN0YW5kYXJkIGxpY2Vuc2VzIHRvIFVIRCBhbmQgUkZOb0MgY2Fu
-IGJlIGZvdW5kIGF0IGh0dHBzOi8vd3d3LmV0dHVzLmNvbS9zZHItc29mdHdhcmUvbGljZW5zZXMv
-Lg0KDQpOSSB3aWxsIG9ubHkgcGVyZm9ybSBzZXJ2aWNlcyBiYXNlZCBvbiBpdHMgdW5kZXJzdGFu
-ZGluZyBhbmQgY29uZGl0aW9uIHRoYXQgdGhlIGdvb2RzIG9yIHNlcnZpY2VzIChpKSBhcmUgbm90
-IGZvciB0aGUgdXNlIGluIHRoZSBwcm9kdWN0aW9uIG9yIGRldmVsb3BtZW50IG9mIGFueSBpdGVt
-IHByb2R1Y2VkLCBwdXJjaGFzZWQsIG9yIG9yZGVyZWQgYnkgYW55IGVudGl0eSB3aXRoIGEgZm9v
-dG5vdGUgMSBkZXNpZ25hdGlvbiBpbiB0aGUgbGljZW5zZSByZXF1aXJlbWVudCBjb2x1bW4gb2Yg
-U3VwcGxlbWVudCBOby4gNCB0byBQYXJ0IDc0NCwgVS5TLiBFeHBvcnQgQWRtaW5pc3RyYXRpb24g
-UmVndWxhdGlvbnMgYW5kIChpaSkgc3VjaCBhIGNvbXBhbnkgaXMgbm90IGEgcGFydHkgdG8gdGhl
-IHRyYW5zYWN0aW9uLiAgSWYgb3VyIHVuZGVyc3RhbmRpbmcgaXMgaW5jb3JyZWN0LCBwbGVhc2Ug
-bm90aWZ5IHVzIGltbWVkaWF0ZWx5IGJlY2F1c2UgYSBzcGVjaWZpYyBhdXRob3JpemF0aW9uIG1h
-eSBiZSByZXF1aXJlZCBmcm9tIHRoZSBVLlMuIENvbW1lcmNlIERlcGFydG1lbnQgYmVmb3JlIHRo
-ZSB0cmFuc2FjdGlvbiBtYXkgcHJvY2VlZCBmdXJ0aGVyLg0KDQpPbiAxMi4wMy4yMSAxNTo1Nywg
-U2V5ZWQgU2FtaWUgTW9zdGFmYXZpIHdyb3RlOg0KPiBIaSBldmVyeW9uZSwNCj4NCj4gV2UgYXJl
-IHN0YXJ0aW5nIGEgcHJvamVjdCBhbmQgd2Ugd2FudCB0byBidXkgYSBiYXRjaCBvZiBFMzIwcyBh
-bmQgb3VyIGdvYWwgaXMgdG8gcnVuDQo+IE9wZW5haXJlaW50ZXJmYWNlIDVHIG9uIHRoZW0uDQo+
-IFRoZXNlIGNlbGx1bGFyIGNvbW11bmljYXRpb24gc29mdHdhcmVzIGxpa2UgT3BlbmFpcmVpbnRl
-cmZhY2UgYW5kIHNyc0xURSB0aGV5IHJlY29tbWVuZA0KPiBVU1JQIGRldmljZXMgc3VjaCBhcyBC
-MjEwIG9yIFgzMTAgYW5kIG5vdCBFMzIwLiBJIHdhbnRlZCB0byBhc2sgaWYgYW55b25lIGhhcyB0
-cmllZCBFMzIwDQo+IHdpdGggc3JzTFRFIG9yIE9BSSBvciBub3QuDQo+IEkgZ3Vlc3Mgc2luY2Ug
-T0FJIHdvcmtzIHdpdGggVUhEIGRyaXZlciBhbmQgdGhlIFJGIGNoaXAgaXMgQUQ5MzYxIGxpa2Ug
-QjIxMCwgdGhlcmUNCj4gc2hvdWxkIGJlIG5vIGRpZmZlcmVuY2UuIEhvd2V2ZXIgSSBhbSBub3Qg
-c3VyZS4NCj4gRG8geW91IHNlZSBhbnkgbWFqb3IgZGlmZmVyZW5jZSBpbiB0aGUgZHJpdmVycyBv
-ciBjYXBhYmlsaXRpZXMgb2YgRTMyMCBhbmQgQjIxMCBvciBYMzEwDQo+IHN1Y2ggdGhhdCBpdCBj
-b3VsZCBiZWNvbWUgYSByb2FkYmxvY2sgZm9yIHVzPw0KPg0KPiBCZXN0LA0KPiBTYW1pZQ0KPg0K
-PiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gS3RoIExvZ28NCj4NCj4gU2V5
-ZWQgU2FtaWUgTW9zdGFmYXZpDQo+IERvY3RvcmFsIFN0dWRlbnQNCj4gS1RIDQo+IC9TY2hvb2wg
-b2YgZWxlY3RyaWNhbCBlbmdpbmVlcmluZyBhbmQgY29tcHV0ZXIgc2NpZW5jZSAoRUVDUykvDQo+
-IC9EZXBhcnRtZW50IG9mIGluZm9ybWF0aW9uIHN5c3RlbXMgYW5kIGVuZ2luZWVyaW5nIChJU0Up
-Lw0KPiBNYWx2aW5hcyB2w6RnIDEwLCAxMDAgNDQgU3RvY2tob2xtDQo+IHNzbW9zQGt0aC5zZTxt
-YWlsdG86c3Ntb3NAa3RoLnNlPg0KPg0KPg0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQo+
-IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5l
-dHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFp
-bGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbT4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11
-c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMu
-ZXR0dXMuY29tPg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-PG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClRvIHVuc3Vic2NyaWJlIHNlbmQg
-YW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAt
-dXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0K
+Hi Samie,
 
---_000_a158d733b6ff4396af054615b93627f2kthse_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Thanks for your explanation.
+It seems I have to modify the OFDM PHY layer of WARP to use with LTE.
+Hope to talk with you more in the future.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPHN0eWxlIHR5cGU9
-InRleHQvY3NzIiBzdHlsZT0iZGlzcGxheTpub25lOyI+PCEtLSBQIHttYXJnaW4tdG9wOjA7bWFy
-Z2luLWJvdHRvbTowO30gLS0+PC9zdHlsZT4NCjxkaXYgaWQ9ImRpdnRhZ2RlZmF1bHR3cmFwcGVy
-IiBzdHlsZT0iZm9udC1zaXplOjEycHQ7Y29sb3I6IzAwMDAwMDtmb250LWZhbWlseTpDYWxpYnJp
-LEhlbHZldGljYSxzYW5zLXNlcmlmOyIgZGlyPSJsdHIiPg0KPHA+SGkgVHVhbiw8L3A+DQo8cD48
-YnI+DQo8L3A+DQo8cD5XZSZuYnNwO3VzZSBPQUkgZm9yIHRoZSBMVEUgYW5kIGl0IGhhcyBubyBQ
-SFkgaW1wbGVtZW50YXRpb24gb24gdGhlJm5ic3A7RlBHQS4gV2hpY2gmbmJzcDttZWFucyB0aGF0
-Jm5ic3A7YWxsIHRoZSBwcm9jZXNzaW5nIGlzIGRvbmUgb24gdGhlIHByb2Nlc3NpbmcmbmJzcDto
-b3N0IHdpdGggYSBnZW5lcmFsIHB1cnBvc2UgQ1BVLiBJbiB0aGUgd2lmaSBjYXNlIHRoZSBzdG9y
-eSBpcyBkaWZmZXJlbnQuIFNvIHRoZXJlIGlzIG5vIGNvbW1vbiBQSFkvTUFDIGxheWVyLjwvcD4N
-CjxwPjxicj4NCjwvcD4NCjxwPkJlc3QsPC9wPg0KPHA+U2FtaWU8L3A+DQo8L2Rpdj4NCjxociBz
-dHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7d2lkdGg6OTglIiB0YWJpbmRleD0iLTEiPg0KPGRp
-diBpZD0iZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IGZhY2U9IkNhbGlicmksIHNhbnMt
-c2VyaWYiIHN0eWxlPSJmb250LXNpemU6MTFwdCIgY29sb3I9IiMwMDAwMDAiPjxiPkZyb206PC9i
-PiBUdWFuIEhvYW5nIERpbmggJmx0O3R1YW5tY3g1OEBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+U2Vu
-dDo8L2I+IE1vbmRheSwgTWFyY2ggMjIsIDIwMjEgMTE6MzQ6MzggQU08YnI+DQo8Yj5Ubzo8L2I+
-IFNleWVkIFNhbWllIE1vc3RhZmF2aTxicj4NCjxiPkNjOjwvYj4gTWFyY3VzIE3DvGxsZXI7IHVz
-cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11
-c2Vyc10gUmU6IFVTUlAgRTMyMDwvZm9udD4NCjxkaXY+Jm5ic3A7PC9kaXY+DQo8L2Rpdj4NCjxk
-aXY+DQo8ZGl2IGRpcj0ibHRyIj5EZWFyIFNhbWllLA0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+
-R29vZCB0byBrbm93IHlvdSBhcmUgd29ya2luZyBvbiBQSFkvTUFDIGxheWVyIG9mIE9GRE0gc2ln
-bmFsIGxpa2UgTFRFIGFuZCB3aWZpIG9uIHRoZSBVU1JQLjwvZGl2Pg0KPGRpdj5JJ20gYWxzbyB3
-YW50IHRvIGRlcGxveSZuYnNwO3RoZSBQSFkgbGF5ZXIgb2YgTFRFIG9uIFVTUlAgYnV0IHRyeWlu
-ZyB0byB1c2UgUkZOb0MuIEkgZ290IGEgbGl0dGxlJm5ic3A7Yml0IGNvbmZ1c2VkIGFib3V0IHRo
-ZSBQSFkgbGF5ZXIgb2YgV0FSUCBwcm9qZWN0IHRhcmdldHMgb24gV2lmaSwgODAyLjExIHN0YW5k
-YXJkJm5ic3A7cmF0aGVyIHRoYW4gTFRFLiBDb3VsZCB5b3UgdGVsbCBtZSBjYW4gSSB1c2UgdGhl
-IHNhbWUgUEhZIGxheWVyIGZyb20gV0FSUCB0bw0KIHByb2Nlc3MgdGhlIExURSBzaWduYWw/IEJl
-Y2F1c2Ugc29tZSBkaWZmZXJlbnQgcG9pbnRzIGJldHdlZW4gT0ZETUEgYW5kIE9GRE0gbGlrZSBj
-eWNsaWMgcHJlZml4IGxlbmd0aCwgRkZUIGxlbmd0aC4uLi4mbmJzcDs8L2Rpdj4NCjxkaXY+VGhh
-bmtzIGZvciB5b3VyIGhlbHAuPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5SZWdhcmRz
-LDwvZGl2Pg0KPGRpdj5UdWFuPC9kaXY+DQo8L2Rpdj4NCjxicj4NCjxkaXYgY2xhc3M9ImdtYWls
-X3F1b3RlIj4NCjxkaXYgZGlyPSJsdHIiIGNsYXNzPSJnbWFpbF9hdHRyIj5Ww6BvIFRoIDIsIDIy
-IHRoZyAzLCAyMDIxIHZhzIBvIGx1zIFjIDE5OjI1IFNleWVkIFNhbWllIE1vc3RhZmF2aSAmbHQ7
-PGEgaHJlZj0ibWFpbHRvOnNzbW9zQGt0aC5zZSI+c3Ntb3NAa3RoLnNlPC9hPiZndDsgxJHDoyB2
-aeG6v3Q6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxl
-PSJtYXJnaW46MHB4IDBweCAwcHggMC44ZXg7Ym9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQs
-MjA0LDIwNCk7cGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2
-IGlkPSJnbWFpbC1tXy00MzM5Mjg3ODY5NDA0NTY3NTkxeF9kaXZ0YWdkZWZhdWx0d3JhcHBlciIg
-ZGlyPSJsdHIiIHN0eWxlPSJmb250LXNpemU6MTJwdDtjb2xvcjpyZ2IoMCwwLDApO2ZvbnQtZmFt
-aWx5OkNhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWYiPg0KPHA+RGVhciBNYXJjdXMsPC9wPg0K
-PHA+PGJyPg0KPC9wPg0KPHA+VGhhbmtzIGZvciB5b3VyIGFuc3dlci4gT2YgY291cnNlIGl0IGlz
-IG92ZXJraWxsIGJ1dCZuYnNwO3dlIGFyZSBhd2FyZSBvZiB0aGF0LiBXZSZuYnNwO2Nob3NlIEUz
-MjAmbmJzcDtiZWNhdXNlJm5ic3A7TWFuZ29Db21tDQo8c3Bhbj44MDIuMTEgTUFDL1BIWSBkZXNp
-Z248L3NwYW4+Jm5ic3A7KDxzcGFuPnN1Y2Nlc3NvciBvZiBXYXJwIHByb2plY3QpIHN1cHBvcnRz
-IHRoaXMgZGV2aWNlIGFuZCB3ZSBhaW0gdG8gYmUgYWJsZSB0byZuYnNwO3J1biZuYnNwOzgwMi4x
-MSBhbmQgTFRFLzVHIHdpdGggdGhlIHNhbWUgU0RSLiBEb2VzIHRoYXQgbWFrZSBzZW5zZT88L3Nw
-YW4+PC9wPg0KPHA+PHNwYW4+PGJyPg0KPC9zcGFuPjwvcD4NCjxwPjxzcGFuPkJlc3QsPC9zcGFu
-PjwvcD4NCjxwPjxzcGFuPlNhbWllPC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGhyIHN0eWxlPSJkaXNw
-bGF5OmlubGluZS1ibG9jazt3aWR0aDo5OCUiPg0KPGRpdiBpZD0iZ21haWwtbV8tNDMzOTI4Nzg2
-OTQwNDU2NzU5MXhfZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IGZhY2U9IkNhbGlicmks
-IHNhbnMtc2VyaWYiIGNvbG9yPSIjMDAwMDAwIiBzdHlsZT0iZm9udC1zaXplOjExcHQiPjxiPkZy
-b206PC9iPiBNYXJjdXMgTcO8bGxlciAmbHQ7PGEgaHJlZj0ibWFpbHRvOm1hcmN1cy5tdWVsbGVy
-QGV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPm1hcmN1cy5tdWVsbGVyQGV0dHVzLmNvbTwvYT4m
-Z3Q7PGJyPg0KPGI+U2VudDo8L2I+IFNhdHVyZGF5LCBNYXJjaCAyMCwgMjAyMSA4OjU5OjQ0IFBN
-PGJyPg0KPGI+VG86PC9iPiA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20iIHRhcmdldD0iX2JsYW5rIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8
-Yj5TdWJqZWN0OjwvYj4gW1VTUlAtdXNlcnNdIFJlOiBVU1JQIEUzMjA8L2ZvbnQ+DQo8ZGl2PiZu
-YnNwOzwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxmb250IHNpemU9IjIiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTBwdCI+DQo8ZGl2PkhpIFNleWVkLDxicj4NCjxicj4NCjxicj4NCnRoZSBFMzIw
-IGlzIHByb2JhYmx5IG5vdCB0aGUgZGV2aWNlIHlvdSB3YW50OiBXaGlsZSB5b3UgYXR0YWNoIEIy
-MTAgYW5kIFgzMTAgdG8gYSBwb3dlcmZ1bDxicj4NClBDLCB3aGljaCB3b3VsZCB0aGVuIHJ1biBP
-QUkgb24gdGhlIHNhbXBsZXMgZ290dGVuIGZyb20gdGhlIFVTUlAsIHRoZSByZWFsIHN0cmVuZ3Ro
-IG9mIHRoZTxicj4NCkUzMjAgaXMgYmVpbmcgYW4gZW1iZWRkZWQgc3lzdGVtLCBlc3BlY2lhbGx5
-IGZvciBwZW9wbGUgd2hvIHdhbnQgdG8gZGV2ZWxvcCBGUEdBIGxvZ2ljIGFuZDxicj4NCmVtYmVk
-ZGVkIHNvZnR3YXJlIHRvIHJ1biBvbiB0aGUgWnlucSAqaW5zaWRlKiB0aGUgRTMyMC4gQXMgZmFy
-IGFzIEkgY2FuIHRlbGwsIE9BSSBpcyBmYXI8YnI+DQpmYXIgKmZhciogdG9vIENQVS1odW5ncnkg
-dG8gcnVuIGl0IG9uIHRoZSA4MDAgTUh6IGR1YWwtY29yZSBBUk0gaW5zaWRlIHRoZSBFMzIwLjxi
-cj4NCjxicj4NCllvdSBjYW4gaW5kZWVkIGFsc28gdXNlIHRoZSBTRlAmIzQzOyB0byBzdHJlYW0g
-c2FtcGxlcyB0byBhIFBDLCBidXQgdGhlbiBqdXN0IGJlIGJ1eWluZyBhPGJyPg0KcHJldHR5IGV4
-cGVuc2l2ZSB0byB0aGUgQjIxMCB3aXRoIG5vIGFkZGVkIGJlbmVmaXRzLjxicj4NCjxicj4NCjxi
-cj4NCkJlc3QgcmVnYXJkcyw8YnI+DQo8YnI+DQpNYXJjdXM8YnI+DQo8YnI+DQpESVNDTEFJTUVS
-OiBBbnkgYXR0YWNoZWQgQ29kZSBpcyBwcm92aWRlZCBBcyBJcy4gSXQgaGFzIG5vdCBiZWVuIHRl
-c3RlZCBvciB2YWxpZGF0ZWQgYXMgYSBwcm9kdWN0LCBmb3IgdXNlIGluIGEgZGVwbG95ZWQgYXBw
-bGljYXRpb24gb3Igc3lzdGVtLCBvciBmb3IgdXNlIGluIGhhemFyZG91cyBlbnZpcm9ubWVudHMu
-IFlvdSBhc3N1bWUgYWxsIHJpc2tzIGZvciB1c2Ugb2YgdGhlIENvZGUuIFVzZSBvZiB0aGUgQ29k
-ZSBpcyBzdWJqZWN0IHRvIHRlcm1zDQogb2YgdGhlIGxpY2Vuc2VzIHRvIHRoZSBVSEQgb3IgUkZO
-b0MgY29kZSB3aXRoIHdoaWNoIHRoZSBDb2RlIGlzIHVzZWQuIFN0YW5kYXJkIGxpY2Vuc2VzIHRv
-IFVIRCBhbmQgUkZOb0MgY2FuIGJlIGZvdW5kIGF0DQo8YSBocmVmPSJodHRwczovL3d3dy5ldHR1
-cy5jb20vc2RyLXNvZnR3YXJlL2xpY2Vuc2VzLyIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8vd3d3
-LmV0dHVzLmNvbS9zZHItc29mdHdhcmUvbGljZW5zZXMvPC9hPi48YnI+DQo8YnI+DQpOSSB3aWxs
-IG9ubHkgcGVyZm9ybSBzZXJ2aWNlcyBiYXNlZCBvbiBpdHMgdW5kZXJzdGFuZGluZyBhbmQgY29u
-ZGl0aW9uIHRoYXQgdGhlIGdvb2RzIG9yIHNlcnZpY2VzIChpKSBhcmUgbm90IGZvciB0aGUgdXNl
-IGluIHRoZSBwcm9kdWN0aW9uIG9yIGRldmVsb3BtZW50IG9mIGFueSBpdGVtIHByb2R1Y2VkLCBw
-dXJjaGFzZWQsIG9yIG9yZGVyZWQgYnkgYW55IGVudGl0eSB3aXRoIGEgZm9vdG5vdGUgMSBkZXNp
-Z25hdGlvbiBpbiB0aGUgbGljZW5zZQ0KIHJlcXVpcmVtZW50IGNvbHVtbiBvZiBTdXBwbGVtZW50
-IE5vLiA0IHRvIFBhcnQgNzQ0LCBVLlMuIEV4cG9ydCBBZG1pbmlzdHJhdGlvbiBSZWd1bGF0aW9u
-cyBhbmQgKGlpKSBzdWNoIGEgY29tcGFueSBpcyBub3QgYSBwYXJ0eSB0byB0aGUgdHJhbnNhY3Rp
-b24uJm5ic3A7IElmIG91ciB1bmRlcnN0YW5kaW5nIGlzIGluY29ycmVjdCwgcGxlYXNlIG5vdGlm
-eSB1cyBpbW1lZGlhdGVseSBiZWNhdXNlIGEgc3BlY2lmaWMgYXV0aG9yaXphdGlvbiBtYXkgYmUg
-cmVxdWlyZWQNCiBmcm9tIHRoZSBVLlMuIENvbW1lcmNlIERlcGFydG1lbnQgYmVmb3JlIHRoZSB0
-cmFuc2FjdGlvbiBtYXkgcHJvY2VlZCBmdXJ0aGVyLjxicj4NCjxicj4NCk9uIDEyLjAzLjIxIDE1
-OjU3LCBTZXllZCBTYW1pZSBNb3N0YWZhdmkgd3JvdGU6PGJyPg0KJmd0OyBIaSBldmVyeW9uZSw8
-YnI+DQomZ3Q7PGJyPg0KJmd0OyBXZSBhcmUgc3RhcnRpbmcgYSBwcm9qZWN0IGFuZCB3ZSB3YW50
-IHRvIGJ1eSBhIGJhdGNoIG9mIEUzMjBzIGFuZCBvdXIgZ29hbCBpcyB0byBydW48YnI+DQomZ3Q7
-IE9wZW5haXJlaW50ZXJmYWNlIDVHIG9uIHRoZW0uPGJyPg0KJmd0OyBUaGVzZSZuYnNwO2NlbGx1
-bGFyIGNvbW11bmljYXRpb24mbmJzcDtzb2Z0d2FyZXMgbGlrZSZuYnNwO09wZW5haXJlaW50ZXJm
-YWNlIGFuZCBzcnNMVEUgdGhleSByZWNvbW1lbmQ8YnI+DQomZ3Q7IFVTUlAgZGV2aWNlcyBzdWNo
-IGFzJm5ic3A7QjIxMCBvciBYMzEwIGFuZCBub3QgRTMyMC4gSSB3YW50ZWQgdG8gYXNrIGlmIGFu
-eW9uZSBoYXMgdHJpZWQgRTMyMDxicj4NCiZndDsgd2l0aCBzcnNMVEUgb3IgT0FJIG9yIG5vdC48
-YnI+DQomZ3Q7IEkgZ3Vlc3Mgc2luY2UgT0FJIHdvcmtzIHdpdGggVUhEIGRyaXZlciBhbmQgdGhl
-IFJGIGNoaXAgaXMgQUQ5MzYxIGxpa2UgQjIxMCwgdGhlcmU8YnI+DQomZ3Q7IHNob3VsZCBiZSBu
-byBkaWZmZXJlbmNlLiBIb3dldmVyIEkgYW0gbm90IHN1cmUuPGJyPg0KJmd0OyBEbyB5b3Ugc2Vl
-IGFueSBtYWpvciBkaWZmZXJlbmNlIGluIHRoZSBkcml2ZXJzIG9yIGNhcGFiaWxpdGllcyBvZiBF
-MzIwIGFuZCBCMjEwIG9yIFgzMTA8YnI+DQomZ3Q7IHN1Y2ggdGhhdCBpdCBjb3VsZCZuYnNwO2Jl
-Y29tZSBhIHJvYWRibG9jayBmb3IgdXM/PGJyPg0KJmd0Ozxicj4NCiZndDsgQmVzdCw8YnI+DQom
-Z3Q7IFNhbWllPGJyPg0KJmd0Ozxicj4NCiZndDsgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tPGJyPg0KJmd0OyBLdGggTG9nbzxicj4NCiZndDsgJm5ic3A7PGJyPg0KJmd0OyBTZXll
-ZCBTYW1pZSBNb3N0YWZhdmk8YnI+DQomZ3Q7IERvY3RvcmFsIFN0dWRlbnQ8YnI+DQomZ3Q7IEtU
-SDxicj4NCiZndDsgL1NjaG9vbCBvZiBlbGVjdHJpY2FsIGVuZ2luZWVyaW5nIGFuZCBjb21wdXRl
-ciBzY2llbmNlIChFRUNTKS88YnI+DQomZ3Q7IC9EZXBhcnRtZW50IG9mIGluZm9ybWF0aW9uIHN5
-c3RlbXMgYW5kIGVuZ2luZWVyaW5nIChJU0UpLzxicj4NCiZndDsgTWFsdmluYXMgdsOkZyAxMCwg
-MTAwIDQ0IFN0b2NraG9sbTxicj4NCiZndDsgPGEgaHJlZj0ibWFpbHRvOnNzbW9zQGt0aC5zZSIg
-dGFyZ2V0PSJfYmxhbmsiPnNzbW9zQGt0aC5zZTwvYT48YnI+DQomZ3Q7PGJyPg0KJmd0Ozxicj4N
-CiZndDsgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+
-DQomZ3Q7IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPg0KdXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb208L2E+PGJyPg0KJmd0OyBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxh
-IGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJf
-YmxhbmsiPg0KdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQpVU1JQLXVzZXJz
-IG1haWxpbmcgbGlzdCAtLSA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4N
-ClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNl
-cnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJzLWxl
-YXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8L2Rpdj4NCjwvc3Bhbj48L2ZvbnQ+PC9kaXY+
-DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVT
-UlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPg0KdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
-L2E+PGJyPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVmPSJtYWlsdG86
-dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAt
-dXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2
-Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+Regards,
+Tuan
 
---_000_a158d733b6ff4396af054615b93627f2kthse_--
+V=C3=A0o Th 2, 22 thg 3, 2021 va=CC=80o lu=CC=81c 19:42 Seyed Samie Mostafa=
+vi <ssmos@kth.se>
+=C4=91=C3=A3 vi=E1=BA=BFt:
 
---===============8785849514395886163==
+> Hi Tuan,
+>
+>
+> We use OAI for the LTE and it has no PHY implementation on the FPGA.
+> Which means that all the processing is done on the processing host with a
+> general purpose CPU. In the wifi case the story is different. So there is
+> no common PHY/MAC layer.
+>
+>
+> Best,
+>
+> Samie
+> ------------------------------
+> *From:* Tuan Hoang Dinh <tuanmcx58@gmail.com>
+> *Sent:* Monday, March 22, 2021 11:34:38 AM
+> *To:* Seyed Samie Mostafavi
+> *Cc:* Marcus M=C3=BCller; usrp-users@lists.ettus.com
+> *Subject:* Re: [USRP-users] Re: USRP E320
+>
+> Dear Samie,
+>
+> Good to know you are working on PHY/MAC layer of OFDM signal like LTE and
+> wifi on the USRP.
+> I'm also want to deploy the PHY layer of LTE on USRP but trying to use
+> RFNoC. I got a little bit confused about the PHY layer of WARP project
+> targets on Wifi, 802.11 standard rather than LTE. Could you tell me can I
+> use the same PHY layer from WARP to process the LTE signal? Because some
+> different points between OFDMA and OFDM like cyclic prefix length, FFT
+> length....
+> Thanks for your help.
+>
+> Regards,
+> Tuan
+>
+> V=C3=A0o Th 2, 22 thg 3, 2021 va=CC=80o lu=CC=81c 19:25 Seyed Samie Mosta=
+favi <
+> ssmos@kth.se> =C4=91=C3=A3 vi=E1=BA=BFt:
+>
+>> Dear Marcus,
+>>
+>>
+>> Thanks for your answer. Of course it is overkill but we are aware of
+>> that. We chose E320 because MangoComm 802.11 MAC/PHY design (successor
+>> of Warp project) supports this device and we aim to be able to run 802.1=
+1
+>> and LTE/5G with the same SDR. Does that make sense?
+>>
+>>
+>> Best,
+>>
+>> Samie
+>> ------------------------------
+>> *From:* Marcus M=C3=BCller <marcus.mueller@ettus.com>
+>> *Sent:* Saturday, March 20, 2021 8:59:44 PM
+>> *To:* usrp-users@lists.ettus.com
+>> *Subject:* [USRP-users] Re: USRP E320
+>>
+>> Hi Seyed,
+>>
+>>
+>> the E320 is probably not the device you want: While you attach B210 and
+>> X310 to a powerful
+>> PC, which would then run OAI on the samples gotten from the USRP, the
+>> real strength of the
+>> E320 is being an embedded system, especially for people who want to
+>> develop FPGA logic and
+>> embedded software to run on the Zynq *inside* the E320. As far as I can
+>> tell, OAI is far
+>> far *far* too CPU-hungry to run it on the 800 MHz dual-core ARM inside
+>> the E320.
+>>
+>> You can indeed also use the SFP+ to stream samples to a PC, but then jus=
+t
+>> be buying a
+>> pretty expensive to the B210 with no added benefits.
+>>
+>>
+>> Best regards,
+>>
+>> Marcus
+>>
+>> DISCLAIMER: Any attached Code is provided As Is. It has not been tested
+>> or validated as a product, for use in a deployed application or system, =
+or
+>> for use in hazardous environments. You assume all risks for use of the
+>> Code. Use of the Code is subject to terms of the licenses to the UHD or
+>> RFNoC code with which the Code is used. Standard licenses to UHD and RFN=
+oC
+>> can be found at https://www.ettus.com/sdr-software/licenses/.
+>>
+>> NI will only perform services based on its understanding and condition
+>> that the goods or services (i) are not for the use in the production or
+>> development of any item produced, purchased, or ordered by any entity wi=
+th
+>> a footnote 1 designation in the license requirement column of Supplement
+>> No. 4 to Part 744, U.S. Export Administration Regulations and (ii) such =
+a
+>> company is not a party to the transaction.  If our understanding is
+>> incorrect, please notify us immediately because a specific authorization
+>> may be required from the U.S. Commerce Department before the transaction
+>> may proceed further.
+>>
+>> On 12.03.21 15:57, Seyed Samie Mostafavi wrote:
+>> > Hi everyone,
+>> >
+>> > We are starting a project and we want to buy a batch of E320s and our
+>> goal is to run
+>> > Openaireinterface 5G on them.
+>> > These cellular communication softwares like Openaireinterface and
+>> srsLTE they recommend
+>> > USRP devices such as B210 or X310 and not E320. I wanted to ask if
+>> anyone has tried E320
+>> > with srsLTE or OAI or not.
+>> > I guess since OAI works with UHD driver and the RF chip is AD9361 like
+>> B210, there
+>> > should be no difference. However I am not sure.
+>> > Do you see any major difference in the drivers or capabilities of E320
+>> and B210 or X310
+>> > such that it could become a roadblock for us?
+>> >
+>> > Best,
+>> > Samie
+>> >
+>> >
+>> ------------------------------------------------------------------------=
+------------------
+>> > Kth Logo
+>> >
+>> > Seyed Samie Mostafavi
+>> > Doctoral Student
+>> > KTH
+>> > /School of electrical engineering and computer science (EECS)/
+>> > /Department of information systems and engineering (ISE)/
+>> > Malvinas v=C3=A4g 10, 100 44 Stockholm
+>> > ssmos@kth.se
+>> >
+>> >
+>> > _______________________________________________
+>> > USRP-users mailing list -- usrp-users@lists.ettus.com
+>> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
+
+--00000000000064016405be1de2b6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Samie,<div><br></div><div>Thanks for your explanation.<=
+/div><div>It seems I have to modify the OFDM PHY layer of WARP to use with =
+LTE.</div><div>Hope to talk with you more in the=C2=A0future.</div><div><br=
+></div><div>Regards,</div><div>Tuan</div></div><br><div class=3D"gmail_quot=
+e"><div dir=3D"ltr" class=3D"gmail_attr">V=C3=A0o Th 2, 22 thg 3, 2021 va=
+=CC=80o lu=CC=81c 19:42 Seyed Samie Mostafavi &lt;<a href=3D"mailto:ssmos@k=
+th.se">ssmos@kth.se</a>&gt; =C4=91=C3=A3 vi=E1=BA=BFt:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex">
+
+
+
+<div>
+
+<div id=3D"gmail-m_-98022964466908432divtagdefaultwrapper" style=3D"font-si=
+ze:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D"l=
+tr">
+<p>Hi Tuan,</p>
+<p><br>
+</p>
+<p>We=C2=A0use OAI for the LTE and it has no PHY implementation on the=C2=
+=A0FPGA. Which=C2=A0means that=C2=A0all the processing is done on the proce=
+ssing=C2=A0host with a general purpose CPU. In the wifi case the story is d=
+ifferent. So there is no common PHY/MAC layer.</p>
+<p><br>
+</p>
+<p>Best,</p>
+<p>Samie</p>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_-98022964466908432divRplyFwdMsg" dir=3D"ltr"><font face=
+=3D"Calibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From=
+:</b> Tuan Hoang Dinh &lt;<a href=3D"mailto:tuanmcx58@gmail.com" target=3D"=
+_blank">tuanmcx58@gmail.com</a>&gt;<br>
+<b>Sent:</b> Monday, March 22, 2021 11:34:38 AM<br>
+<b>To:</b> Seyed Samie Mostafavi<br>
+<b>Cc:</b> Marcus M=C3=BCller; <a href=3D"mailto:usrp-users@lists.ettus.com=
+" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+<b>Subject:</b> Re: [USRP-users] Re: USRP E320</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div dir=3D"ltr">Dear Samie,
+<div><br>
+</div>
+<div>Good to know you are working on PHY/MAC layer of OFDM signal like LTE =
+and wifi on the USRP.</div>
+<div>I&#39;m also want to deploy=C2=A0the PHY layer of LTE on USRP but tryi=
+ng to use RFNoC. I got a little=C2=A0bit confused about the PHY layer of WA=
+RP project targets on Wifi, 802.11 standard=C2=A0rather than LTE. Could you=
+ tell me can I use the same PHY layer from WARP to
+ process the LTE signal? Because some different points between OFDMA and OF=
+DM like cyclic prefix length, FFT length....=C2=A0</div>
+<div>Thanks for your help.</div>
+<div><br>
+</div>
+<div>Regards,</div>
+<div>Tuan</div>
+</div>
+<br>
+<div class=3D"gmail_quote">
+<div dir=3D"ltr" class=3D"gmail_attr">V=C3=A0o Th 2, 22 thg 3, 2021 va=CC=
+=80o lu=CC=81c 19:25 Seyed Samie Mostafavi &lt;<a href=3D"mailto:ssmos@kth.=
+se" target=3D"_blank">ssmos@kth.se</a>&gt; =C4=91=C3=A3 vi=E1=BA=BFt:<br>
+</div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">
+<div>
+<div dir=3D"ltr">
+<div id=3D"gmail-m_-98022964466908432gmail-m_-4339287869404567591x_divtagde=
+faultwrapper" dir=3D"ltr" style=3D"font-size:12pt;color:rgb(0,0,0);font-fam=
+ily:Calibri,Helvetica,sans-serif">
+<p>Dear Marcus,</p>
+<p><br>
+</p>
+<p>Thanks for your answer. Of course it is overkill but=C2=A0we are aware o=
+f that. We=C2=A0chose E320=C2=A0because=C2=A0MangoComm
+<span>802.11 MAC/PHY design</span>=C2=A0(<span>successor of Warp project) s=
+upports this device and we aim to be able to=C2=A0run=C2=A0802.11 and LTE/5=
+G with the same SDR. Does that make sense?</span></p>
+<p><span><br>
+</span></p>
+<p><span>Best,</span></p>
+<p><span>Samie</span></p>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_-98022964466908432gmail-m_-4339287869404567591x_divRplyF=
+wdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" color=3D"#000000" sty=
+le=3D"font-size:11pt"><b>From:</b> Marcus M=C3=BCller &lt;<a href=3D"mailto=
+:marcus.mueller@ettus.com" target=3D"_blank">marcus.mueller@ettus.com</a>&g=
+t;<br>
+<b>Sent:</b> Saturday, March 20, 2021 8:59:44 PM<br>
+<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a><br>
+<b>Subject:</b> [USRP-users] Re: USRP E320</font>
+<div>=C2=A0</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt">
+<div>Hi Seyed,<br>
+<br>
+<br>
+the E320 is probably not the device you want: While you attach B210 and X31=
+0 to a powerful<br>
+PC, which would then run OAI on the samples gotten from the USRP, the real =
+strength of the<br>
+E320 is being an embedded system, especially for people who want to develop=
+ FPGA logic and<br>
+embedded software to run on the Zynq *inside* the E320. As far as I can tel=
+l, OAI is far<br>
+far *far* too CPU-hungry to run it on the 800 MHz dual-core ARM inside the =
+E320.<br>
+<br>
+You can indeed also use the SFP+ to stream samples to a PC, but then just b=
+e buying a<br>
+pretty expensive to the B210 with no added benefits.<br>
+<br>
+<br>
+Best regards,<br>
+<br>
+Marcus<br>
+<br>
+DISCLAIMER: Any attached Code is provided As Is. It has not been tested or =
+validated as a product, for use in a deployed application or system, or for=
+ use in hazardous environments. You assume all risks for use of the Code. U=
+se of the Code is subject to terms
+ of the licenses to the UHD or RFNoC code with which the Code is used. Stan=
+dard licenses to UHD and RFNoC can be found at
+<a href=3D"https://www.ettus.com/sdr-software/licenses/" target=3D"_blank">=
+https://www.ettus.com/sdr-software/licenses/</a>.<br>
+<br>
+NI will only perform services based on its understanding and condition that=
+ the goods or services (i) are not for the use in the production or develop=
+ment of any item produced, purchased, or ordered by any entity with a footn=
+ote 1 designation in the license
+ requirement column of Supplement No. 4 to Part 744, U.S. Export Administra=
+tion Regulations and (ii) such a company is not a party to the transaction.=
+=C2=A0 If our understanding is incorrect, please notify us immediately beca=
+use a specific authorization may be required
+ from the U.S. Commerce Department before the transaction may proceed furth=
+er.<br>
+<br>
+On 12.03.21 15:57, Seyed Samie Mostafavi wrote:<br>
+&gt; Hi everyone,<br>
+&gt;<br>
+&gt; We are starting a project and we want to buy a batch of E320s and our =
+goal is to run<br>
+&gt; Openaireinterface 5G on them.<br>
+&gt; These=C2=A0cellular communication=C2=A0softwares like=C2=A0Openaireint=
+erface and srsLTE they recommend<br>
+&gt; USRP devices such as=C2=A0B210 or X310 and not E320. I wanted to ask i=
+f anyone has tried E320<br>
+&gt; with srsLTE or OAI or not.<br>
+&gt; I guess since OAI works with UHD driver and the RF chip is AD9361 like=
+ B210, there<br>
+&gt; should be no difference. However I am not sure.<br>
+&gt; Do you see any major difference in the drivers or capabilities of E320=
+ and B210 or X310<br>
+&gt; such that it could=C2=A0become a roadblock for us?<br>
+&gt;<br>
+&gt; Best,<br>
+&gt; Samie<br>
+&gt;<br>
+&gt; ----------------------------------------------------------------------=
+--------------------<br>
+&gt; Kth Logo<br>
+&gt; =C2=A0<br>
+&gt; Seyed Samie Mostafavi<br>
+&gt; Doctoral Student<br>
+&gt; KTH<br>
+&gt; /School of electrical engineering and computer science (EECS)/<br>
+&gt; /Department of information systems and engineering (ISE)/<br>
+&gt; Malvinas v=C3=A4g 10, 100 44 Stockholm<br>
+&gt; <a href=3D"mailto:ssmos@kth.se" target=3D"_blank">ssmos@kth.se</a><br>
+&gt;<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
+&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><br>
+</div>
+</span></font></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><br>
+</blockquote>
+</div>
+</div>
+</div>
+
+</blockquote></div>
+
+--00000000000064016405be1de2b6--
+
+--===============2348007953551431589==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -320,4 +457,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8785849514395886163==--
+--===============2348007953551431589==--
