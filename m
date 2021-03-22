@@ -2,787 +2,217 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FC02344929
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Mar 2021 16:25:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C15203449A1
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Mar 2021 16:49:20 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6CB91383844
-	for <lists+usrp-users@lfdr.de>; Mon, 22 Mar 2021 11:25:19 -0400 (EDT)
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id B3E58383843
-	for <usrp-users@lists.ettus.com>; Mon, 22 Mar 2021 11:24:24 -0400 (EDT)
-Received: by mail-ed1-f45.google.com with SMTP id w18so19890754edc.0
-        for <usrp-users@lists.ettus.com>; Mon, 22 Mar 2021 08:24:24 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id ADAFE3838F1
+	for <lists+usrp-users@lfdr.de>; Mon, 22 Mar 2021 11:49:19 -0400 (EDT)
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7921A383773
+	for <USRP-users@lists.ettus.com>; Mon, 22 Mar 2021 11:48:25 -0400 (EDT)
+Received: by mail-qk1-f182.google.com with SMTP id v70so11009145qkb.8
+        for <USRP-users@lists.ettus.com>; Mon, 22 Mar 2021 08:48:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VCA/drU0yBZtujh45uC3le8/CBDsHbVfxJIsSQ/949s=;
-        b=FofQfsrDbsIASda2ca6WRTEqUwcwdIT9azjcNFbAoj+vmAWqept2hJLQ5P/O2Me5rY
-         t36NP68NqjxD9HP3AY2nMGavxQEgUmgn80TjCIL8XdZ4CZpLWUIFZFgCm0ad0foSm3aX
-         BsqLZk8g0Lsv61XZ4upvffVytJcd0/iJuUbIMsBZ/U8RT++gcDb8tUCoI3mZ1uRjSrgm
-         lm3Ua3NgK0v+B2TkZ866qyIU/gKpXPB5wmPt9hh6Dv89UTLjBbAq9yHU62HooAjnE6G/
-         7ItzfyyGLnRYUUXpXa7ZorQ+cPPbFGfUwtn1+AD8IxggU21tWSjdfrf9UyEAs25yXD6H
-         oVHQ==
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=CGdoq3C6mc52Jay6LmIRsdki/IdPw20TNxpqb2RlUB0=;
+        b=WRaz4S6slN3r85RIjT1DpGE3UijwcYfydceRQu/gBfpJCvGfUlYgh4LAiQ7kkyo/OG
+         ya/it7uM8vWeSf9Xb3PBxg3bbk4ECvhSTXyo3QuWwOv9Tq5osmt3Vm6OO/UsW2PUJBdq
+         b5wJLZC+2nKWRhigbbuh2f20eSqtlJX6CSuAb+L9nMdaSeVSyM8NAc26b4t86hX+A4AX
+         1mSC3Qb4XVi4Jj9Sg041T84XTmi/EPyP2Oayyfz/iNan9eNrKx96wDOVbSO451skoUtL
+         GnVFUvF8EgPTArkDbM1/s3BWjxkqMHRSfulWFD0XzNpl0BcvfkSy5t318kuJ1fgVJ2lB
+         SgBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VCA/drU0yBZtujh45uC3le8/CBDsHbVfxJIsSQ/949s=;
-        b=e20NQDFIkGtXz/q/tFLTxVNdqn0qMEySHaF/W/H/E4wy8oGTMdzwmRJBJgaW0cRaEO
-         UQvV7XDSdxfWx+lIA5UN4qRQJ0zkt0Qpk52RYGNKVnpZ/dh/s7oIgvM9kk609Ek2tgmj
-         uFX36YCTjhhOY9gu86/1wELERmMdICxsn43+ROu/SRsqFjYYauXNI7Fpaefb3rT/esvR
-         Z5KJo43ZBTL6scwl6fBT+OJTMuMnYe+3UY44nYwZz00oKG6LyimFI1BT1zC2lYLiGTEl
-         zdrikG+Kv0P5qVSyAmiHq0Sc3OzGTqYC1PC7kDtpj+R0TWUY+cJO1DTXC/3IMy/Ajq8o
-         QV9Q==
-X-Gm-Message-State: AOAM53303OM9FNuqJhjTwBuZDaqKCECvOVevO1hp21TfZle4mj0xE1ZX
-	JMc5tnAEEXrcCgdL6gP9e18ZzOFQfUgghk9w+jZdV/djmnNBYQ==
-X-Google-Smtp-Source: ABdhPJxzBJtRGd/JOsPfRHFjc+jub7TSAqkpqn5lfk95X8jZKWTB1lq/8gSYzG+estZYAPPvMditsdG5rVLsxPXoCzs=
-X-Received: by 2002:a05:6402:4244:: with SMTP id g4mr84969edb.204.1616426663817;
- Mon, 22 Mar 2021 08:24:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAG16vQX3ubfTZ1sP6VU0-USdwt=H6g7OAH0x9aFBb9wwXWayOw@mail.gmail.com>
- <5e562eab-1997-b9be-0229-633c783c9e8a@elitecoding.org> <CAG16vQWRK7DRCT3_4s8V+1NyzTE2+hkdnLyKEEF9WwChvP0B4g@mail.gmail.com>
- <0d3c522a-e05d-7c3a-b0f5-8875b568a338@elitecoding.org> <CAG16vQXYHtY3md71AxQVXYP+h-MyyY3ShbUV78JMmvnpAFQ0kQ@mail.gmail.com>
- <CAG16vQXT1Cqi_s_ZJtFwD6x8SCDVtfX6-6RqrQwUocMcwUcX6A@mail.gmail.com>
- <a37d166e-39cb-f742-14bc-5cb8dfbd1aeb@elitecoding.org> <CAG16vQV3g+2u_zsF_bhBFdcHGmMBrHh-iKjepummdLWTbmm_+A@mail.gmail.com>
-In-Reply-To: <CAG16vQV3g+2u_zsF_bhBFdcHGmMBrHh-iKjepummdLWTbmm_+A@mail.gmail.com>
-From: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
-Date: Mon, 22 Mar 2021 16:24:11 +0100
-Message-ID: <CAG16vQXTUpAt93YdLhTvSpZ-4FLpOn09Seu=kQTP5OK8DyHoTQ@mail.gmail.com>
-To: Julian Arnold <julian@elitecoding.org>
-Message-ID-Hash: NP3OUDQGX6K6I7KD67TBICUQU2OB3CEN
-X-Message-ID-Hash: NP3OUDQGX6K6I7KD67TBICUQU2OB3CEN
-X-MailFrom: mamuki92@gmail.com
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=CGdoq3C6mc52Jay6LmIRsdki/IdPw20TNxpqb2RlUB0=;
+        b=XKO6irf69CgygHYS8O9+408VmWnrMC3oAJq1jZmeR2/8/3vwfZC+AmOk2Fc7IXKJfN
+         SwHMa5vpL036em8fcfD4zDGjBAiFl90lDNYoqMXcNwdyCN0ygO2qgFFgoSKUtGx8YnWE
+         i5Y/C6UYzcmpPeJk6pg5Sxglud+8mtvtSCB6GtzerQWPDlyb1cDF0DAMDMHQVjW++QE3
+         UY5H7XwmqooOLroLFJg4xT1wl+JK/u3oizqV3BpBapl5TgBHCLxTTffk0Uma8XqBKPWZ
+         EPQMzpRgMV9Szy36VrMIFLERwE9wZpVDe5yEj6GmIiR9mZcQwWQQREKvQY0p+ETUaEuU
+         YEPA==
+X-Gm-Message-State: AOAM533oaXkZkEOuqkEY6AGru7MntvAz+2KZ1TsrdScXI4ILMR8qkHhT
+	3/ihXNdHgwEDHeD1CNLFLA4=
+X-Google-Smtp-Source: ABdhPJwJmsMmZeh7CTkW7IMwAVviXD81RzaXYOQna1vivS2KsfcAU4xYDBb81gaAyuUOBwmbg2ybAA==
+X-Received: by 2002:a37:a811:: with SMTP id r17mr701324qke.268.1616428104941;
+        Mon, 22 Mar 2021 08:48:24 -0700 (PDT)
+Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.gmail.com with ESMTPSA id l17sm4064945qtk.60.2021.03.22.08.48.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Mar 2021 08:48:24 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Mon, 22 Mar 2021 11:48:23 -0400
+Message-Id: <18AA3903-85BE-4C57-8F80-0F63E1E133FD@gmail.com>
+References: <SG2PR04MB35145981F34B7F7B86DE892EF0659@SG2PR04MB3514.apcprd04.prod.outlook.com>
+In-Reply-To: <SG2PR04MB35145981F34B7F7B86DE892EF0659@SG2PR04MB3514.apcprd04.prod.outlook.com>
+To: Oscar Pablo <oscar_pabloo@outlook.com>
+X-Mailer: iPhone Mail (18D61)
+Message-ID-Hash: 336E4W4CZSSWCVOKWNZUVOTDALQTFHL7
+X-Message-ID-Hash: 336E4W4CZSSWCVOKWNZUVOTDALQTFHL7
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Enable AGC in USRP E320 with RFNoC using GNURadio
+Subject: [USRP-users] Re: question of X300 revision
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NP3OUDQGX6K6I7KD67TBICUQU2OB3CEN/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/336E4W4CZSSWCVOKWNZUVOTDALQTFHL7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4314585034700294566=="
+Content-Type: multipart/mixed; boundary="===============7516952209343533012=="
 
---===============4314585034700294566==
-Content-Type: multipart/alternative; boundary="0000000000001a35c905be21a9b1"
 
---0000000000001a35c905be21a9b1
-Content-Type: text/plain; charset="UTF-8"
+--===============7516952209343533012==
+Content-Type: multipart/alternative; boundary=Apple-Mail-428035E2-908F-424F-8A5A-00365D2E3DA4
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-428035E2-908F-424F-8A5A-00365D2E3DA4
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Julian,
+Code sees like this, that support hardware must necessarily provide support f=
+or older equipment l=E2=80=94even models or revs that aren=E2=80=99t sold an=
+ymore. That=E2=80=99s just the nature of hardware drivers.=20
 
-I re-open this topic to ask a question about the configuration of the
-ad9361 registers in GNUradio/RFNoC
+The schematic update policy is a business thing that I=E2=80=99m not qualifi=
+ed to comment on.=20
 
-As I understand, when AGC is enabled in slow mode, there are 4 configurable
-thresholds (inner low, inner high, outer low, and outer high) and also 4
-configurable steps to reach the zone between the inner thresholds.
+Sent from my iPhone
 
-I have found the configuration of these registers in
-/uhd/host/lib/usrp/common/ad9361_driver/ad9361_device.cpp
-and changed their values there. Then, I have recompiled uhd (make & make
-install) but, when I re-run my graph I see no change in my waveform (it
-seem to stay in the same limits as the default configuration).
+> On Mar 21, 2021, at 9:57 PM, Oscar Pablo <oscar_pabloo@outlook.com> wrote:=
 
-Am I missing any other step that I have to done to configure these
-parameters?
+>=20
+> =EF=BB=BF
+> i don't understand why keep the the source code for the product that will n=
+ever show. and release a schematic for the product that will never show. if t=
+here is no source code to support the schematic then this schematic is no us=
+eful. i know x300 schematic hide the part of pcie. but if other part is ok t=
+hen it still have value for reference if someone want to use some part of it=
+.=20
+>=20
+>=20
+> From: Marcus D. Leech <patchvonbraun@gmail.com>
+> Sent: Sunday, March 21, 2021 3:13 PM
+> To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+> Subject: [USRP-users] Re: question of X300 revision
+> =20
+>> On 03/21/2021 04:16 AM, Oscar Pablo wrote:
+>> Hi,
+>> the public released X300 schematic is revision 1. i want to know if this r=
+evision is the revision in uhd source code. in uhd source code there is stra=
+nge words "x300_clock_ctrl is not compatible with revs <=3D 4 and may    lea=
+d to locking issues" so what is the correct source code for revision less th=
+an 4?
+>>=20
+>>=20
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> My recollection is that hardware rev <=3D 4 were pre-production and you'll=
+ never see them "in the wild".
+>=20
+>=20
 
-Kind Regards,
-
-Maria
-
-El vie, 12 mar 2021 a las 10:04, Maria Mu=C3=B1oz (<mamuki92@gmail.com>)
-escribi=C3=B3:
-
-> Ok Julian, I will check the tree node and try to modify the properties.
-> Thanks again for the help!
->
-> Kind Regards,
-> Maria
->
-> El jue, 11 mar 2021 a las 18:26, Julian Arnold (<julian@elitecoding.org>)
-> escribi=C3=B3:
->
->> Maria,
->>
->> >> /self.ettus_rfnoc_rx_radio_0.set_rx_agc(False, 0)/
->> >>
->> >> but I have received the following errorThat's why I gave the referenc=
-e
->> ([1]) showing the correct syntax ;)
->> Anyways, glad it worked out for you!
->> You might consider filing a bug issue against gr-ettus on github.
->>
->> >> By the way, I have read that there are several modes for AGC
->> >> (fast,slow,hybrid..) I was wondering which type is implemented by
->> >> default and if it is possible to change AGC mode in the flowgraph.
->> Those modes were mainly dictated by the AD9361. Default should be
->> "slow". The "hybrid" mode is not implemented as far as I know.
->> Which mode you want ("slow" / "fast") depends on the signal you want to
->> receive. For burst-mode digital signals you might want to switch to the
->> "fast" mode.
->> However, I think this is only possible by directly writing
->> to the corresponding property-tree node. Again, I'm not sure about
->> UHD-4.0/gr-ettus though.
->>
->> Cheers,
->> Julian
->>
->>
->> On 3/11/21 5:26 PM, Maria Mu=C3=B1oz wrote:
->> > Hi Julian,
->> >
->> > I have initially changed the python generated for my flowgraph with
->> this
->> > line:
->> >
->> > /self.ettus_rfnoc_rx_radio_0.set_rx_agc(False, 0)/
->> >
->> > but I have received the following error:
->> >
->> > T/raceback (most recent call last):
->> >    File "constellation_soft_decoder.py", line 301, in <module>
->> >      main()
->> >    File "constellation_soft_decoder.py", line 277, in main
->> >      tb =3D top_block_cls()
->> >    File "constellation_soft_decoder.py", line 166, in __init__
->> >      self.ettus_rfnoc_rx_radio_0.set_rx_agc(True, 0)
->> > AttributeError: 'rfnoc_rx_radio_sptr' object has no attribute
->> 'set_rx_agc'/
->> >
->> > But rfnoc_radio_impl.cc defines it:
->> >
->> > /void rfnoc_rx_radio_impl::set_agc(const bool enable, const size_t cha=
-n)
->> > {
->> >      return d_radio_ref->set_rx_agc(enable, chan);
->> > }/
->> >
->> > Searching the rfnoc_rx_radio_sptr with grep takes me to "swig" files. =
-I
->> > have looked at ettus_swig.py and seen that the command name is set_agc
->> > instead of set_rx_agc:
->> >
->> > /def set_agc(self, enable: "bool const", chan: "size_t const") ->
->> "void":
->> >          r"""
->> >          set_agc(rfnoc_rx_radio self, bool const enable, size_t const
->> chan)
->> >          Enable/disable the AGC for this RX radio (if available)
->> >          """
->> >          return _ettus_swig.rfnoc_rx_radio_set_agc(self, enable, chan)=
-/
->> > /
->> > /
->> > Changing this in the flowgraph.py seems to work!! Thanks for the help
->> on
->> > this! I put this information here just in case someone is stuck in the
->> > same point.
->> >
->> > By the way, I have read that there are several modes for AGC
->> > (fast,slow,hybrid..) I was wondering which type is implemented by
->> > default and if it is possible to change AGC mode in the flowgraph.
->> >
->> > Kind Regards,
->> >
->> > Maria
->> >
->> >
->> > El mi=C3=A9, 10 mar 2021 a las 12:03, Maria Mu=C3=B1oz (<mamuki92@gmai=
-l.com
->> > <mailto:mamuki92@gmail.com>>) escribi=C3=B3:
->> >
->> >     Hi Jules,
->> >
->> >     Thank you, I will try it and let you know as soon as possible.
->> >
->> >     By the way, I have checked the python generated using the UHD USRP
->> >     SOURCE block (instead of the RFNoC radio block) with AGC active an=
-d
->> >     it generates the set of AGC fine. So, as you said, it is fixed in
->> >     gr-uhd but it might still be a bug in gr-ettus.
->> >
->> >     Thanks again for the help!
->> >
->> >     Kind Regards,
->> >
->> >     Maria
->> >
->> >     El mi=C3=A9, 10 mar 2021 a las 11:25, Julian Arnold
->> >     (<julian@elitecoding.org <mailto:julian@elitecoding.org>>)
->> escribi=C3=B3:
->> >
->> >         Maria,
->> >
->> >          >> So, if I understand correctly, I have to put there also
->> >         something like
->> >          >> "self.ettus_rfnoc_rx_radio_0.set_rx_agc(enable,0)" isn't i=
-t?
->> >
->> >         Exactly! Take a look at [1] for the correct syntax.
->> >
->> >         [1]
->> >
->> https://github.com/EttusResearch/gr-ettus/blob/1038c4ce5135a2803b53554fc=
-4971fe3de747d9a/include/ettus/rfnoc_rx_radio.h#L97
->> >
->> >         Let me know if that worked out for you.
->> >
->> >         Cheers,
->> >         Julian
->> >
->> >
->> >         On 3/10/21 9:59 AM, Maria Mu=C3=B1oz wrote:
->> >          > Hi Julian,
->> >          >
->> >          > Thanks for the quick answer.
->> >          >
->> >          > I think you might be right about the possible bug turning o=
-n
->> >         the AGC
->> >          > from GRC. I have checked the flow graph generated and
->> there's no
->> >          > set_rx_agc enable option (I checked the c++ definition bloc=
-k
->> >         where this
->> >          > option did appear but I hadn't look at the python generated=
-).
->> >          >
->> >          > The lines related to the radio in my flowgraph are these:
->> >          >
->> >          > /self.ettus_rfnoc_rx_radio_0 =3D ettus.rfnoc_rx_radio(
->> >          >              self.rfnoc_graph,
->> >          >              uhd.device_addr(''),
->> >          >              -1,
->> >          >              -1)
->> >          >          self.ettus_rfnoc_rx_radio_0.set_rate(samp_rate)
->> >          >          self.ettus_rfnoc_rx_radio_0.set_antenna('RX2', 0)
->> >          >          self.ettus_rfnoc_rx_radio_0.set_frequency(cf, 0)
->> >          >          self.ettus_rfnoc_rx_radio_0.set_gain(gain, 0)
->> >          >
->> self.ettus_rfnoc_rx_radio_0.set_bandwidth(samp_rate, 0)
->> >          >          self.ettus_rfnoc_rx_radio_0.set_dc_offset(True, 0)
->> >          >          self.ettus_rfnoc_rx_radio_0.set_iq_balance(True, 0=
-)/
->> >          >
->> >          > So, if I understand correctly, I have to put there also
->> >         something like
->> >          > "self.ettus_rfnoc_rx_radio_0.set_rx_agc(enable,0)" isn't it=
-?
->> >          >
->> >          > Kind Regards,
->> >          >
->> >          > Maria
->> >          >
->> >          > El mi=C3=A9, 10 mar 2021 a las 9:16, Julian Arnold
->> >         (<julian@elitecoding.org <mailto:julian@elitecoding.org>
->> >          > <mailto:julian@elitecoding.org
->> >         <mailto:julian@elitecoding.org>>>) escribi=C3=B3:
->> >          >
->> >          >     Maria,
->> >          >
->> >          >     I might not be the right person to answer this, as my
->> >         experience with
->> >          >     UHD 4.0 is relatively limited at the moment.
->> >          >
->> >          >     However, I cant tell you that the AGC on B2x0 devices i=
-s
->> >         controlled via
->> >          >     software (using set_rx_agc()). There is no need to
->> >         directly modify the
->> >          >     state of any pins of the FPGA.
->> >          >
->> >          >     I vaguely remember that there was a bug in an earlier
->> >         version of gr-uhd
->> >          >     (somewhere in 3.7) that made it difficult to turn on th=
-e
->> >         AGC using GRC.
->> >          >     That particular one is fixed in gr-uhd. Not sure about
->> >         gr-ettus, though.
->> >          >
->> >          >     Maybe try using set_rx_agc() manually in you flow-graph
->> >         (*.py) and see
->> >          >     if that helps.
->> >          >
->> >          >     Cheers,
->> >          >     Julian
->> >          >
->> >          >     On 3/9/21 5:11 PM, Maria Mu=C3=B1oz via USRP-users wrot=
-e:
->> >          >      > Hi all,
->> >          >      >
->> >          >      > I was wondering if it is possible to enable AGC from
->> >         the RFNoC radio
->> >          >      > block in GNURadio. I use UHD 4.0 version and GNURadi=
-o
->> >         3.8 with
->> >          >     gr-ettus.
->> >          >      >
->> >          >      > I see that the RFNoC Rx radio block has an
->> >         enable/disable/default
->> >          >     AGC
->> >          >      > option in the GNURadio block which I assume calls th=
-e
->> >         UHD function
->> >          >      > "set_rx_agc"
->> >          >      >
->> >          >
->> >           (
->> https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#abda=
-b1f6c3775a9071b15c9805f866486
->> )
->> >          >      >
->> >          >      > I have also checked on the FPGA side that there is a
->> >         pin from
->> >          >     FPGA to
->> >          >      > AD9361 called XCVR_ENA_AGC which is set always to 1 =
-on
->> >         the top
->> >          >     level of
->> >          >      > the FPGA image (see attached file "e320.v", line 872=
-).
->> >         This pin,
->> >          >      > according to
->> >          >      >
->> >          >
->> >
->> https://www.analog.com/media/en/technical-documentation/data-sheets/AD93=
-61.pdf
->> >          >
->> >          >      > is the "Manual Control Input for Automatic Gain
->> >         Control (AGC)".
->> >          >      > Must be this pin set to 0 to have AGC working?
->> >          >      > If not, how can I get AGC working? I've made some
->> tests
->> >          >      > enabling/disabling this option but I do not see any
->> >         changes
->> >          >     between the
->> >          >      > waveforms received.
->> >          >      >
->> >          >      > Any help would be appreciated.
->> >          >      >
->> >          >      > Kind Regards,
->> >          >      >
->> >          >      > Maria
->> >          >      >
->> >          >      > _______________________________________________
->> >          >      > USRP-users mailing list
->> >          >      > USRP-users@lists.ettus.com
->> >         <mailto:USRP-users@lists.ettus.com>
->> >         <mailto:USRP-users@lists.ettus.com
->> >         <mailto:USRP-users@lists.ettus.com>>
->> >          >      >
->> >
->> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
->> >          >      >
->> >          >
->> >
->>
->
-
---0000000000001a35c905be21a9b1
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail-428035E2-908F-424F-8A5A-00365D2E3DA4
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Julian,<div><br></div><div>I re-open this topic to ask =
-a question about the configuration of the ad9361 registers in GNUradio/RFNo=
-C</div><div><br></div><div>As I understand, when AGC is enabled=C2=A0in slo=
-w mode, there are 4 configurable thresholds (inner low, inner high, outer=
-=C2=A0low, and outer=C2=A0high) and also 4 configurable steps to reach the =
-zone between=C2=A0the inner thresholds.</div><div><br></div><div>I have fou=
-nd the configuration of these registers in<font face=3D"arial, sans-serif" =
-color=3D"#000000">=C2=A0/uhd/host/lib/usrp/common/ad9361_driver/ad9361_devi=
-ce.cpp and</font><span style=3D"color:rgb(0,0,0);font-family:arial,sans-ser=
-if">=C2=A0changed their values there. Then, I have recompiled uhd (make &am=
-p; make install) but, when I re-run my graph I see no change in my waveform=
- (it seem to stay in the same limits as the default configuration).</span><=
-/div><div><font face=3D"arial, sans-serif" color=3D"#000000"><br></font></d=
-iv><div><font face=3D"arial, sans-serif" style=3D""><font color=3D"#000000"=
->Am I missing=C2=A0any=C2=A0other=C2=A0step that I have to done=C2=A0to con=
-figure these parameters?</font><font color=3D"#172b4d">=C2=A0</font></font>=
-</div><div><font face=3D"arial, sans-serif" style=3D""><font color=3D"#172b=
-4d"><br></font></font></div><div><font face=3D"arial, sans-serif" style=3D"=
-" color=3D"#000000">Kind Regards,</font></div><div><font face=3D"arial, san=
-s-serif" style=3D"" color=3D"#000000"><br></font></div><div><font face=3D"a=
-rial, sans-serif" style=3D"" color=3D"#000000">Maria</font></div></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El vie, 12=
- mar 2021 a las 10:04, Maria Mu=C3=B1oz (&lt;<a href=3D"mailto:mamuki92@gma=
-il.com">mamuki92@gmail.com</a>&gt;) escribi=C3=B3:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Ok Julian, I will check=
- the tree node and try to modify the properties. Thanks again for the help!=
-<div><br></div><div>Kind Regards,</div><div>Maria</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El jue, 11 mar 2021 =
-a las 18:26, Julian Arnold (&lt;<a href=3D"mailto:julian@elitecoding.org" t=
-arget=3D"_blank">julian@elitecoding.org</a>&gt;) escribi=C3=B3:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex">Maria,<br>
-<br>
-&gt;&gt; /self.ettus_rfnoc_rx_radio_0.set_rx_agc(False, 0)/<br>
-&gt;&gt; <br>
-&gt;&gt; but I have received the following errorThat&#39;s why I gave the r=
-eference ([1]) showing the correct syntax ;)<br>
-Anyways, glad it worked out for you!<br>
-You might consider filing a bug issue against gr-ettus on github.<br>
-<br>
-&gt;&gt; By the way, I have read that there are several modes for AGC <br>
-&gt;&gt; (fast,slow,hybrid..) I was wondering which type is implemented by =
-<br>
-&gt;&gt; default and if it is possible to change AGC mode in the flowgraph.=
-<br>
-Those modes were mainly dictated by the AD9361. Default should be <br>
-&quot;slow&quot;. The &quot;hybrid&quot; mode is not implemented as far as =
-I know.<br>
-Which mode you want (&quot;slow&quot; / &quot;fast&quot;) depends on the si=
-gnal you want to<br>
-receive. For burst-mode digital signals you might want to switch to the <br=
->
-&quot;fast&quot; mode.<br>
-However, I think this is only possible by directly writing<br>
-to the corresponding property-tree node. Again, I&#39;m not sure about <br>
-UHD-4.0/gr-ettus though.<br>
-<br>
-Cheers,<br>
-Julian<br>
-<br>
-<br>
-On 3/11/21 5:26 PM, Maria Mu=C3=B1oz wrote:<br>
-&gt; Hi Julian,<br>
-&gt; <br>
-&gt; I have initially changed the python generated for my flowgraph with th=
-is <br>
-&gt; line:<br>
-&gt; <br>
-&gt; /self.ettus_rfnoc_rx_radio_0.set_rx_agc(False, 0)/<br>
-&gt; <br>
-&gt; but I have received the following error:<br>
-&gt; <br>
-&gt; T/raceback (most recent call last):<br>
-&gt;=C2=A0 =C2=A0 File &quot;constellation_soft_decoder.py&quot;, line 301,=
- in &lt;module&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 main()<br>
-&gt;=C2=A0 =C2=A0 File &quot;constellation_soft_decoder.py&quot;, line 277,=
- in main<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 tb =3D top_block_cls()<br>
-&gt;=C2=A0 =C2=A0 File &quot;constellation_soft_decoder.py&quot;, line 166,=
- in __init__<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 self.ettus_rfnoc_rx_radio_0.set_rx_agc(True, 0)<br=
->
-&gt; AttributeError: &#39;rfnoc_rx_radio_sptr&#39; object has no attribute =
-&#39;set_rx_agc&#39;/<br>
-&gt; <br>
-&gt; But rfnoc_radio_impl.cc defines it:<br>
-&gt; <br>
-&gt; /void rfnoc_rx_radio_impl::set_agc(const bool enable, const size_t cha=
-n)<br>
-&gt; {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 return d_radio_ref-&gt;set_rx_agc(enable, chan);<b=
-r>
-&gt; }/<br>
-&gt; <br>
-&gt; Searching the rfnoc_rx_radio_sptr with grep takes me to &quot;swig&quo=
-t; files. I <br>
-&gt; have looked at ettus_swig.py and seen that the command name is set_agc=
- <br>
-&gt; instead of set_rx_agc:<br>
-&gt; <br>
-&gt; /def set_agc(self, enable: &quot;bool const&quot;, chan: &quot;size_t =
-const&quot;) -&gt; &quot;void&quot;:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 r&quot;&quot;&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 set_agc(rfnoc_rx_radio self, bool co=
-nst enable, size_t const chan)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Enable/disable the AGC for this RX r=
-adio (if available)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;&quot;&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return _ettus_swig.rfnoc_rx_radio_se=
-t_agc(self, enable, chan)/<br>
-&gt; /<br>
-&gt; /<br>
-&gt; Changing this in the flowgraph.py seems to work!! Thanks for the help =
-on <br>
-&gt; this! I put this information here just in case someone is stuck in the=
- <br>
-&gt; same point.<br>
-&gt; <br>
-&gt; By the way, I have read that there are several modes for AGC <br>
-&gt; (fast,slow,hybrid..) I was wondering which type is implemented by <br>
-&gt; default and if it is possible to change AGC mode in the flowgraph.<br>
-&gt; <br>
-&gt; Kind Regards,<br>
-&gt; <br>
-&gt; Maria<br>
-&gt; <br>
-&gt; <br>
-&gt; El mi=C3=A9, 10 mar 2021 a las 12:03, Maria Mu=C3=B1oz (&lt;<a href=3D=
-"mailto:mamuki92@gmail.com" target=3D"_blank">mamuki92@gmail.com</a> <br>
-&gt; &lt;mailto:<a href=3D"mailto:mamuki92@gmail.com" target=3D"_blank">mam=
-uki92@gmail.com</a>&gt;&gt;) escribi=C3=B3:<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Hi Jules,<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Thank you, I will try it and=C2=A0let you know as s=
-oon as possible.<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0By the way, I have checked the python generated=C2=
-=A0using the UHD USRP<br>
-&gt;=C2=A0 =C2=A0 =C2=A0SOURCE block (instead of the RFNoC radio block) wit=
-h AGC active and<br>
-&gt;=C2=A0 =C2=A0 =C2=A0it generates the set of AGC fine. So, as you said, =
-it is fixed in<br>
-&gt;=C2=A0 =C2=A0 =C2=A0gr-uhd but it might still be a bug in gr-ettus.<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Thanks again for the help!<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Kind Regards,<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Maria<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0El mi=C3=A9, 10 mar 2021 a las 11:25, Julian Arnold=
-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0(&lt;<a href=3D"mailto:julian@elitecoding.org" targ=
-et=3D"_blank">julian@elitecoding.org</a> &lt;mailto:<a href=3D"mailto:julia=
-n@elitecoding.org" target=3D"_blank">julian@elitecoding.org</a>&gt;&gt;) es=
-cribi=C3=B3:<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Maria,<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;&gt; So, if I understand correct=
-ly, I have to put there also<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0something like<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;&gt; &quot;self.ettus_rfnoc_rx_r=
-adio_0.set_rx_agc(enable,0)&quot; isn&#39;t it?<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Exactly! Take a look at [1] for the c=
-orrect syntax.<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0[1]<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"https://github.com/EttusRe=
-search/gr-ettus/blob/1038c4ce5135a2803b53554fc4971fe3de747d9a/include/ettus=
-/rfnoc_rx_radio.h#L97" rel=3D"noreferrer" target=3D"_blank">https://github.=
-com/EttusResearch/gr-ettus/blob/1038c4ce5135a2803b53554fc4971fe3de747d9a/in=
-clude/ettus/rfnoc_rx_radio.h#L97</a><br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Let me know if that worked out for yo=
-u.<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Cheers,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Julian<br>
-&gt; <br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0On 3/10/21 9:59 AM, Maria Mu=C3=B1oz =
-wrote:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; Hi Julian,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; Thanks for the quick answer.<br=
->
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; I think you might be right abou=
-t the possible bug turning on<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0the AGC<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; from GRC. I have checked the fl=
-ow graph generated and there&#39;s no<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; set_rx_agc enable option (I che=
-cked the c++ definition block<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0where this<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; option did appear but I hadn&#3=
-9;t look at the python generated).<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; The lines related to the radio =
-in my flowgraph are these:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; /self.ettus_rfnoc_rx_radio_0 =
-=3D ettus.rfnoc_rx_radio(<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 self.rfnoc_graph,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 uhd.device_addr(&#39;&#39;),<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 -1,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 -1)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 self.ettus_rfnoc_rx_radio_0.set_rate(samp_rate)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 self.ettus_rfnoc_rx_radio_0.set_antenna(&#39;RX2&#39;, 0)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 self.ettus_rfnoc_rx_radio_0.set_frequency(cf, 0)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 self.ettus_rfnoc_rx_radio_0.set_gain(gain, 0)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 self.ettus_rfnoc_rx_radio_0.set_bandwidth(samp_rate, 0)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 self.ettus_rfnoc_rx_radio_0.set_dc_offset(True, 0)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 self.ettus_rfnoc_rx_radio_0.set_iq_balance(True, 0)/<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; So, if I understand correctly, =
-I have to put there also<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0something like<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; &quot;self.ettus_rfnoc_rx_radio=
-_0.set_rx_agc(enable,0)&quot; isn&#39;t it?<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; Kind Regards,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; Maria<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; El mi=C3=A9, 10 mar 2021 a las =
-9:16, Julian Arnold<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(&lt;<a href=3D"mailto:julian@eliteco=
-ding.org" target=3D"_blank">julian@elitecoding.org</a> &lt;mailto:<a href=
-=3D"mailto:julian@elitecoding.org" target=3D"_blank">julian@elitecoding.org=
-</a>&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt; &lt;mailto:<a href=3D"mailto:ju=
-lian@elitecoding.org" target=3D"_blank">julian@elitecoding.org</a><br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:julian@e=
-litecoding.org" target=3D"_blank">julian@elitecoding.org</a>&gt;&gt;&gt;) e=
-scribi=C3=B3:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0Maria,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0I might not =
-be the right person to answer this, as my<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0experience with<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0UHD 4.0 is r=
-elatively limited at the moment.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0However, I c=
-ant tell you that the AGC on B2x0 devices is<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0controlled via<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0software (us=
-ing set_rx_agc()). There is no need to<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0directly modify the<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0state of any=
- pins of the FPGA.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0I vaguely re=
-member that there was a bug in an earlier<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0version of gr-uhd<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0(somewhere i=
-n 3.7) that made it difficult to turn on the<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0AGC using GRC.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0That particu=
-lar one is fixed in gr-uhd. Not sure about<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0gr-ettus, though.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0Maybe try us=
-ing set_rx_agc() manually in you flow-graph<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(*.py) and see<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0if that help=
-s.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0Cheers,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0Julian<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0On 3/9/21 5:=
-11 PM, Maria Mu=C3=B1oz via USRP-users wrote:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; Hi all=
-,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; I was =
-wondering if it is possible to enable AGC from<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0the RFNoC radio<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; block =
-in GNURadio. I use UHD 4.0 version and GNURadio<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A03.8 with<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0gr-ettus.<br=
->
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; I see =
-that the RFNoC Rx radio block has an<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0enable/disable/default<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0AGC<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; option=
- in the GNURadio block which I assume calls the<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0UHD function<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; &quot;=
-set_rx_agc&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(<a href=3D"https://files.ettu=
-s.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#abdab1f6c3775a9071b15c980=
-5f866486" rel=3D"noreferrer" target=3D"_blank">https://files.ettus.com/manu=
-al/classuhd_1_1usrp_1_1multi__usrp.html#abdab1f6c3775a9071b15c9805f866486</=
-a>)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; I have=
- also checked on the FPGA side that there is a<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pin from<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0FPGA to<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; AD9361=
- called=C2=A0XCVR_ENA_AGC which is set always to 1 on<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0the top<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0level of<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; the FP=
-GA image (see attached file &quot;e320.v&quot;, line 872).<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0This pin,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; accord=
-ing to<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"https://www.analog.com/med=
-ia/en/technical-documentation/data-sheets/AD9361.pdf" rel=3D"noreferrer" ta=
-rget=3D"_blank">https://www.analog.com/media/en/technical-documentation/dat=
-a-sheets/AD9361.pdf</a><br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; is the=
- &quot;Manual Control Input for Automatic Gain<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Control (AGC)&quot;.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; Must b=
-e this pin set to 0 to have AGC working?<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; If=C2=
-=A0not, how can I=C2=A0get AGC working? I&#39;ve made some tests<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; enabli=
-ng/disabling this option but I do not see any<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0changes<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0between the<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; wavefo=
-rms received.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; Any he=
-lp would be appreciated.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; Kind R=
-egards,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; Maria<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; ______=
-_________________________________________<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; USRP-u=
-sers mailing list<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt; <a hre=
-f=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-users@lists.=
-ettus.com</a><br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:USRP-use=
-rs@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>&gt;<br=
->
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:USRP-use=
-rs@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:USRP-use=
-rs@lists.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a>&gt;&gt=
-;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"http://lists.ettus.com/mai=
-lman/listinfo/usrp-users_lists.ettus.com" rel=3D"noreferrer" target=3D"_bla=
-nk">http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</a><=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &gt;<br>
-&gt; <br>
-</blockquote></div>
-</blockquote></div>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Code sees like this, that support hardware m=
+ust necessarily provide support for older equipment l=E2=80=94even models or=
+ revs that aren=E2=80=99t sold anymore. That=E2=80=99s just the nature of ha=
+rdware drivers.&nbsp;<div><br></div><div>The schematic update policy is a bu=
+siness thing that I=E2=80=99m not qualified to comment on.&nbsp;<br><div><br=
+><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote t=
+ype=3D"cite">On Mar 21, 2021, at 9:57 PM, Oscar Pablo &lt;oscar_pabloo@outlo=
+ok.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div d=
+ir=3D"ltr">=EF=BB=BF
 
---0000000000001a35c905be21a9b1--
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-1=
+">
 
---===============4314585034700294566==
+
+
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+i don't understand why keep the the source code for the product that will ne=
+ver show. and release a schematic for the product that will never show. if t=
+here is no source code to support the schematic then this schematic is no us=
+eful. i know x300 schematic hide
+ the part of pcie. but if other part is ok then it still have value for refe=
+rence if someone want to use some part of it.
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt=
+; color:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=3D=
+"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Marcus D. Leech &lt;pat=
+chvonbraun@gmail.com&gt;<br>
+<b>Sent:</b> Sunday, March 21, 2021 3:13 PM<br>
+<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br>=
+
+<b>Subject:</b> [USRP-users] Re: question of X300 revision</font>
+<div>&nbsp;</div>
+</div>
+<div style=3D"background-color:#FFFFFF">
+<div class=3D"x_moz-cite-prefix">On 03/21/2021 04:16 AM, Oscar Pablo wrote:<=
+br>
+</div>
+<blockquote type=3D"cite">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt=
+; color:rgb(0,0,0)">
+Hi,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt=
+; color:rgb(0,0,0)">
+the public released X300 schematic is revision 1. i want to know if this rev=
+ision is the revision in uhd source code. in uhd source code there is strang=
+e words "x300_clock_ctrl is not compatible with revs &lt;=3D 4 and may&nbsp;=
+ &nbsp; lead to locking issues" so what is the
+ correct source code for revision less than 4?<br>
+</div>
+<br>
+<fieldset class=3D"x_mimeAttachmentHeader"></fieldset> <br>
+<pre>_______________________________________________
+USRP-users mailing list -- <a class=3D"x_moz-txt-link-abbreviated" href=3D"m=
+ailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"x_moz-txt-link-abbreviated" href=
+=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettus.co=
+m</a>
+</pre>
+</blockquote>
+My recollection is that hardware rev &lt;=3D 4 were pre-production and you'l=
+l never see them "in the wild".<br>
+<br>
+<br>
+</div>
+</div>
+
+
+</div></blockquote></div></div></body></html>=
+
+--Apple-Mail-428035E2-908F-424F-8A5A-00365D2E3DA4--
+
+--===============7516952209343533012==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -792,4 +222,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4314585034700294566==--
+--===============7516952209343533012==--
