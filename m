@@ -2,395 +2,365 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D87534838A
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Mar 2021 22:24:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37E6334851A
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 00:14:35 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1D591383F98
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Mar 2021 17:24:00 -0400 (EDT)
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	by mm2.emwd.com (Postfix) with ESMTPS id CDFFB383F97
-	for <USRP-users@lists.ettus.com>; Wed, 24 Mar 2021 17:23:08 -0400 (EDT)
-Received: by mail-qk1-f175.google.com with SMTP id y5so18076923qkl.9
-        for <USRP-users@lists.ettus.com>; Wed, 24 Mar 2021 14:23:08 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3246A383F37
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Mar 2021 19:14:34 -0400 (EDT)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2040.outbound.protection.outlook.com [40.107.220.40])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9718538383B
+	for <USRP-users@lists.ettus.com>; Wed, 24 Mar 2021 19:13:42 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Anf4re3srLdvKbPkvXa9GLBrhiQF7LEQ5xLCWQH68OZxmS/3CZPz1/ukutwGon8kunoedX2rJ8hVH5gslNDKh3eOV+pBnoFGXb6GxES9FfN/l7mOTN5qcuwFazEkV14/X1EeLahRjsIT1jEje7QW188YNQV925jXtdIhcoVXB+kZXtH+n2wPwPQgld9JtgSdoF4D+NWp1f+qbxwKW9q+/qFB29nEO7rUheUqBPCEDGoHF29ZW7W8VUC1vd4R+/Ww6omE7Bk4wxEG7ah825HkaeEEaoyRb8NtPgx7FF3Z3j8Uxsy1KUq7Gd7Vmqj1EeAJn5lqBn0KwfeylSY/LPz++w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BOcS5gtrJzerMfKKhwQi+AyaZYOZll3CvP6dv08T9OE=;
+ b=EDlqy2hZnKr/BHIIKnfxQPv5Ar8Byg1bFqAZAOl8RidwvOgKLGmW0xQu9KY4KdfPpUwx0n6BvfZu4SymNjL0iKvpBHRO/lw9tiFmeMEW3qNL+yOU2M2v6n2JkoC77PIOuWUCt1HYA+4II4zYd8ZTgWkQjttKXeaSmMzEDj85OjJGXPXXm9rVBn37UMy776smi2SXE5gPbYrutLp3IBAdfQNlczpB6ZDtjUugP7126lC/OLz3MqF57lNDU3/olLw/uRr0DUHxJAnmYcu3y+Ep4wgjg3Tm2TSbFsHvhzpDTwElmci3Pc6lDCNevSYKePeSweFF1JtxMwLbEbeirNEIMw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=canyon-us.com; dmarc=pass action=none
+ header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=message-id:date:from:user-agent:mime-version:to:cc:subject
-         :references:in-reply-to;
-        bh=R88DN2Xpql3PmWRjMVJUWnn4o5DdCjf++u4AdcI2pfk=;
-        b=YDFigxZOQqhCHat6toyixrbByPjKVOMrzIZnWbn13Uup20O0cm5MaNXaXMRAs79Hft
-         i9oizTJmTWuiuVkcjNOmJHLJVP9rQs/kcZbdhkyVEECSlvd9Iz6tEzkZV3aQl1rnP+QQ
-         eVy4H0i99yr1BDA96VIdfDjZkqVtC3qVlxkaMqAG0E1g5ubusztT9JMYTBBbXeRxpwfw
-         thwIvGzEp6MCKoIofp8PgpGRqueVo1Oo4E5BuMQWWcEUbl9YbQPQiiP08OfcPS6gTabb
-         VtZsHX5al6Ncdtachhay0YuLUNvuYLv+2xwcDAY4u2fsTfjUDAn7DTNEgW6XH6tz8XuZ
-         UjsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-         :cc:subject:references:in-reply-to;
-        bh=R88DN2Xpql3PmWRjMVJUWnn4o5DdCjf++u4AdcI2pfk=;
-        b=RBrLK6h8/NwOfSQlgNP0mn1r7YCujztwC7Mo+EL6tQ+n4SWl2wLvZ3HD6bSxMrEO4A
-         cNH5NPAb3w9LjTXDbJ52GOgFH5uSr10Y9/Nld3U3B/fuYnIJpRU3SA1BOYjiWHY5OK6N
-         C8ZZOdISFlpFxUeCDp0yGpeSkbD+YoqM2DsSx1W4vfjF5cBLhzaCks6JdUA6dP2MvPoX
-         669O56USTuwcv19n6Cs2lAHVqubViq11GtGITt+GyZgZQewMGPgpVxqBfjW6QsbdLxj+
-         YfFsT9Qd6lEdmQwpMYzMM3Ag/CXVFcTo9Xgg4SfhaZo/iHxmeV9lDoRTYv4qOF5IYWJJ
-         vOAw==
-X-Gm-Message-State: AOAM532+np408OlZvOZOTe0+vIL7oYMSu2PwJ8Gd7GX3pvxsGdRYknO4
-	YJfGrqCTenpxMJqNRLao+pu1AkVGOTU=
-X-Google-Smtp-Source: ABdhPJzgloLRuU87BhqpynI0z9007BCEooawSUXQ6tUbJZyx0PV1oFPuOVW0jfYngHxW33Cc/P+ZBA==
-X-Received: by 2002:a37:a996:: with SMTP id s144mr5034329qke.407.1616620988175;
-        Wed, 24 Mar 2021 14:23:08 -0700 (PDT)
-Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id i14sm2294966qtq.81.2021.03.24.14.23.07
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 24 Mar 2021 14:23:07 -0700 (PDT)
-Message-ID: <605BADBA.7060702@gmail.com>
-Date: Wed, 24 Mar 2021 17:23:06 -0400
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+ d=canyonconsulting.onmicrosoft.com;
+ s=selector2-canyonconsulting-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BOcS5gtrJzerMfKKhwQi+AyaZYOZll3CvP6dv08T9OE=;
+ b=F21KSiMZ2jd/itZ29YqSKkClT28RtEarv8dBmy4ZZkCqRjlFbDFpuiqPyYpyrEjelnnYW1qYZPTmL1HVZu9/7vjJBIbVcudtcxQ8ZMjLYPNnpGUpIsNznedOrk6N1ixOwXyIPBnuq5f6BzB5/KGo9jA0UIssqSUpp7PaFeNBXkg=
+Received: from CO6PR19MB4801.namprd19.prod.outlook.com (2603:10b6:5:341::23)
+ by MW3PR19MB4219.namprd19.prod.outlook.com (2603:10b6:303:51::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.23; Wed, 24 Mar
+ 2021 23:13:41 +0000
+Received: from CO6PR19MB4801.namprd19.prod.outlook.com
+ ([fe80::4c0c:538a:a172:921a]) by CO6PR19MB4801.namprd19.prod.outlook.com
+ ([fe80::4c0c:538a:a172:921a%3]) with mapi id 15.20.3977.028; Wed, 24 Mar 2021
+ 23:13:41 +0000
+From: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] Strong noise added to signal transmitted by X310
+ with a UBX 40 daughterboard
+Thread-Index: AdcgyJLsD55rgs8HR2mww9MLp3UBHwAFwF2AAAGTFrAAA4AmAAADyFKg
+Date: Wed, 24 Mar 2021 23:13:40 +0000
+Message-ID: 
+ <CO6PR19MB4801B2400531AAD6CB445001C6639@CO6PR19MB4801.namprd19.prod.outlook.com>
+References: 
+ <CO6PR19MB480129D90FEE1BBDDE609C7BC6639@CO6PR19MB4801.namprd19.prod.outlook.com>
+ <05D2F2F3-1436-42F2-8E8E-7436B8FEC8CE@gmail.com>
+ <CO6PR19MB48014D759070FADD80A96706C6639@CO6PR19MB4801.namprd19.prod.outlook.com>
+ <605BADBA.7060702@gmail.com>
+In-Reply-To: <605BADBA.7060702@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=canyon-us.com;
+x-originating-ip: [98.153.200.210]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: feea561c-3f5a-49ea-8065-08d8ef1a7690
+x-ms-traffictypediagnostic: MW3PR19MB4219:
+x-microsoft-antispam-prvs: 
+ <MW3PR19MB42195DEF5C8E3A5F2FB252B2C6639@MW3PR19MB4219.namprd19.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ xF6sLQrjAbnDH85zNBSamtIhiGTB0BiBMRliKQOyuQrVzjvDPOOkWNu+N8Qu+gVcFw3w/snl02/CoRYHkgaLSugk9X09gwLXiGFFG80UtaDlyJHiYMYgUqRDy4JxxQyyyM98p3ea++FIgJ6SgxBVqOKlsvf3lg6WJfIlxZmNONQCESM99NKhqvcF7sqL1y+oFdjLmlPlFrWCB/IOFcvH8X+CcOv8332t+5HohLdkHbbW2CwtG8kJWZtIH8HhoSlI8AjLvns70YI+/JMg5KCg6pyrLbiF8LjCL2WFwiTiLZp8NzV9heYvhD54Es7fewZcQ8Fg6zP9xcgWZUNZb7necvu3hqR9B4lGG6LtMamN9yvDDZ1qBOPD8XyL4KUCvq2gmi3iuYC5XXZ5nR6u/h/OgkWHytsNVqlGvjr37RxBoWdhAGYyt6EqCeVwYCplnv6+gloZk+NfDq+Xz1KqMO8LsycBxJrVQN0EQeGOiza+0J6otq8IZfvHm4kzTwO4M/wT7yyme/rKhyVsmFSj8aHallg47sDV55N5f/ckZ8+RC27c09wDq50Sp7TQqnNqM3r5+Oy49GSnrnB2rBZ88rPdEs/j6tSiVagFOj9zsd+iTXjG09xHa96L9c2vuwFuIoJTCkRQXe1TvT+X4o/HWqJe8geKR8wZ6UYs5PckXBvrMyE=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR19MB4801.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(396003)(136003)(366004)(39830400003)(38100700001)(71200400001)(186003)(33656002)(64756008)(66476007)(66556008)(66446008)(4326008)(478600001)(55016002)(9686003)(26005)(44832011)(66946007)(6916009)(5660300002)(316002)(76116006)(8936002)(8676002)(7696005)(53546011)(6506007)(86362001)(83380400001)(2906002)(52536014);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 
+ =?utf-8?B?LzV3TWJlOUhCMUZlVlY1VDRpNHZ0aTU2K25iNDJ5ZkF2UTJhQU84SWZ0RTVY?=
+ =?utf-8?B?NS9qRDhLVWp3cHlvN2kzZ0sxNE9xN0MyTjlBamR1d2hxSTFjdDduaktiZWVi?=
+ =?utf-8?B?S2ZmUnVSN3YxK2ZGNGhkZ053WlZTeFBtc0NyQ1E2ZnMrQ1JUaStwZWlpWjRR?=
+ =?utf-8?B?bFVaYlc1b1ZVUCtQTGtKc2pHMzM3THl5ai9Rd3doQ0NkRjgySkNzNUgxNDd6?=
+ =?utf-8?B?cHhoWmx5Tk1ocnpPYXk5VDBoRjJmTDh3QXZycDMvdjc1eTQwWlNaRll1MHY4?=
+ =?utf-8?B?VVhrOXFjSFlhRWhsYnBBSWtOVkZlVFBmVWFneGRhMi9EN3FYd0dxT1lxY3Jp?=
+ =?utf-8?B?NHNXcTF4RTB1NmFsVG5MQ2FneWtsQzlabWtHcmV6WXRRRDNmYUNYb21SVlFM?=
+ =?utf-8?B?eFlWZXZNd2FKSmp6MzhQMFh5WlZFZWNway9kOTRPaldYWk1CQTNWb1E1UXQy?=
+ =?utf-8?B?OVpMZ3luencvMUdQd0gyd1NvbVd3THJaQnZRVlExMDRHZDUxNFBOR3dHamZX?=
+ =?utf-8?B?RFhaVlEweFp0WEFqQWtvVytvR3VDODBrR2VHSkVGVVBIdjVCamxQVm90dXU2?=
+ =?utf-8?B?QVVHR0d1bHl0OXlaMmViMDlhdHh3THRkQ20yWVpRTDBuUHZsRVg5MDRUK092?=
+ =?utf-8?B?K1NkcUpLcU1pQXJYYUc0bytudW1EaDY0LzR1TzBIZ1Y0aC9FU3l6c09sbEFi?=
+ =?utf-8?B?ZTdySHo5MXZwMDVBSUhqRllZUXVuNzRGbkJrblRGby9SSFArVk9UNzhqMC9C?=
+ =?utf-8?B?dUp3WFZzbFV0K0ZaT2ZudllzWndxRzZKYitubEtCZ2Y2ZTRVRFc3MTAreDB0?=
+ =?utf-8?B?aVcrOEppdUhxcis1bTdOa0xtL2lBQVZKeTFlTDZFbHVRd2hsbTJqOVZVZG5j?=
+ =?utf-8?B?dVlvOVJDb3F5UTdsN2hpQTRreDM1TjIwWnVvUkJGZkhiV2xCYmtjUEdBNDRM?=
+ =?utf-8?B?dTQ5QVl5c2d6NkNHOFEva0JzYmcxM0VKQXVMaUZqOTVqSXY4VS8vWjZVQ3NN?=
+ =?utf-8?B?V1ZuUWZqUmtndEo2dDlCOUFyWEVXZzZiK3g4bDVXWXBDN25maGFlb3NjZVpk?=
+ =?utf-8?B?UmY1Mm9TL1VyNlY5cktqSjcvTHM3Y3BWUDBLbmh2WVdrSCswSXNnMTBjSHJx?=
+ =?utf-8?B?V3MrNGpialBLaS9YKzVYK1BvZW02RGl1bDd5TkpqbUlaR2JzejZ1VklVR0VR?=
+ =?utf-8?B?d1JkMWh5c2IveFQraXFxQmI0Q1FpODZPT2t5RUZHUmxidzd2VjZDNkNxNmYz?=
+ =?utf-8?B?MjFVZTZpMnJ4bXRYbkF0NktMWUZrcjR4a0R4cFJIbVNuZ04rMHg2RmlDNjRQ?=
+ =?utf-8?B?Mk96T0E3RnpHQXppb01MOEs4cTFkRU5aS3ZuTjdYRWN2cHpnRDFnSVFKOEVR?=
+ =?utf-8?B?TmxpWHdSb3RuQXZSL1p2bHVPR2htbG9FSXR6MXRVUjRnSnRpSlJkMXU4bGlF?=
+ =?utf-8?B?SlpkdnBzV2tiQk1jdlBIM0ZDL3NOK3ZtdVJyNU5OTVhpNTlZM21Zcmp1YnNh?=
+ =?utf-8?B?YVdvN0Zab1hWczFQQ05mSlJPandOcHFmajF2ZGpqcTNGVHhWYlBKRjVEaS9Q?=
+ =?utf-8?B?a1ZNRmlTMGU1SXNrRjFFZnFVcW8xOW9SYnRCM1BtaFJJRm1JZFlhSkUvU3V5?=
+ =?utf-8?B?Z242TnRBb3NmY2R4K0MvTHQrS0JNeHRxc25qOG1iSGZpcFV2ZGJiZnBlMnYx?=
+ =?utf-8?B?NkhETkM2ekorLzd4aWdkWnVmL2NTUlhCR2Q0MjQ5QVRwV3JnNWxmd0l0R1lD?=
+ =?utf-8?Q?JMxsgO1Y6mPWZGbIDzulWy6ChK9wYb1QmIdQ/PC?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
-References: <CO6PR19MB480129D90FEE1BBDDE609C7BC6639@CO6PR19MB4801.namprd19.prod.outlook.com> <05D2F2F3-1436-42F2-8E8E-7436B8FEC8CE@gmail.com> <CO6PR19MB48014D759070FADD80A96706C6639@CO6PR19MB4801.namprd19.prod.outlook.com>
-In-Reply-To: <CO6PR19MB48014D759070FADD80A96706C6639@CO6PR19MB4801.namprd19.prod.outlook.com>
-Message-ID-Hash: S7FDODWFJGOG7PZYJXLMXFPYDTPPKDSG
-X-Message-ID-Hash: S7FDODWFJGOG7PZYJXLMXFPYDTPPKDSG
-X-MailFrom: patchvonbraun@gmail.com
+X-OriginatorOrg: canyon-us.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR19MB4801.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: feea561c-3f5a-49ea-8065-08d8ef1a7690
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2021 23:13:40.9966
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5gycGKZ33Fl3uMLOmjDeVzeetd7P3WW9rzgAJwDPHD8vm0gkf0+gxqzj+hRGCEb4ybZsNu0FmSiIL5pv1FopDuwCOKa/eUgz5lpupRxxlqA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR19MB4219
+Message-ID-Hash: VW4AWMU572JT7FBB54OQ52BWV7SJBY2R
+X-Message-ID-Hash: VW4AWMU572JT7FBB54OQ52BWV7SJBY2R
+X-MailFrom: jerrid.plymale@canyon-us.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Strong noise added to signal transmitted by X310 with a UBX 40 daughterboard
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/S7FDODWFJGOG7PZYJXLMXFPYDTPPKDSG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3OE33HKRVRP36LAJMPYBLKZX27BMQJ6B/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0301515912355161279=="
+Content-Type: multipart/mixed; boundary="===============7290234071214406370=="
 
-This is a multi-part message in MIME format.
---===============0301515912355161279==
+--===============7290234071214406370==
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="------------090205060900000509070608"
+	boundary="_000_CO6PR19MB4801B2400531AAD6CB445001C6639CO6PR19MB4801namp_"
 
-This is a multi-part message in MIME format.
---------------090205060900000509070608
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--_000_CO6PR19MB4801B2400531AAD6CB445001C6639CO6PR19MB4801namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 03/24/2021 05:10 PM, Jerrid Plymale wrote:
->
-> The devices are operating using direct connection via coax cables.
->
-You absolutely need to put a 30dB attenuator in-line to prevent RX=20
-destruction in the case of "ooops" moments from setting the TX
-   power output too high.
+T2ssIGlmIHRoYXTigJlzIHRoZSBjYXNlLCB3b3VsZCBpdCBoZWxwIHRvIGhhdmUgYm90aCBVU1JQ
+cyBjb25uZWN0ZWQgdG8gdGhlIHNhbWUgMTAgTUh6IHJlZmVyZW5jZSBzaWduYWwgYW5kIFBQUz8g
+SW4gdGhpcyBzaXR1YXRpb24sIHdvdWxkIEkgbmVlZCB0byBwcm92aWRlIGEgc2Vjb25kYXJ5IHNv
+dXJjZSBmb3IgdGhlIFBQUywgb3IgY2FuIHRoYXQgdXNlIHRoZSAxMCBNaHogcmVmZXJlbmNlIGFz
+IHdlbGw/DQoNCkJlc3QgUmVnYXJkcywNCg0KSmVycmlkDQoNCkZyb206IE1hcmN1cyBELiBMZWVj
+aCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBXZWRuZXNkYXksIE1hcmNoIDI0LCAy
+MDIxIDI6MjMgUE0NClRvOiBKZXJyaWQgUGx5bWFsZSA8amVycmlkLnBseW1hbGVAY2FueW9uLXVz
+LmNvbT4NCkNjOiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3ViamVjdDogUmU6IFtVU1JQ
+LXVzZXJzXSBTdHJvbmcgbm9pc2UgYWRkZWQgdG8gc2lnbmFsIHRyYW5zbWl0dGVkIGJ5IFgzMTAg
+d2l0aCBhIFVCWCA0MCBkYXVnaHRlcmJvYXJkDQoNCk9uIDAzLzI0LzIwMjEgMDU6MTAgUE0sIEpl
+cnJpZCBQbHltYWxlIHdyb3RlOg0KVGhlIGRldmljZXMgYXJlIG9wZXJhdGluZyB1c2luZyBkaXJl
+Y3QgY29ubmVjdGlvbiB2aWEgY29heCBjYWJsZXMuDQpZb3UgYWJzb2x1dGVseSBuZWVkIHRvIHB1
+dCBhIDMwZEIgYXR0ZW51YXRvciBpbi1saW5lIHRvIHByZXZlbnQgUlggZGVzdHJ1Y3Rpb24gaW4g
+dGhlIGNhc2Ugb2YgIm9vb3BzIiBtb21lbnRzIGZyb20gc2V0dGluZyB0aGUgVFgNCiAgcG93ZXIg
+b3V0cHV0IHRvbyBoaWdoLg0KDQoNCg0KVGhlIHRhcmdldCBmcmVxdWVuY3kgaXMgMS41NzU0MiBH
+SHosIGFuZCBvdXIgY3VycmVudCBiYW5kd2lkdGggaXMgNCBNSHouIFdlIHdpbGwgbmVlZCB0byBp
+bmNyZWFzZSB0aGUgYmFuZHdpZHRoIHRvIDIwIE1IeiBzb29uIGZvciBmdXJ0aGVyIHN5c3RlbSBk
+ZXZlbG9wbWVudC4NCg0KVGhlIFRYIGFuZCBSWCBnYWluIGFyZSBtYXhlZCBvbiB0aGUgcmVjZWl2
+aW5nIGhhcmR3YXJlLiBUaGUgVFggZ2FpbiBvZiB0aGUgdHJhbnNtaXR0aW5nIGhhcmR3YXJlIGlz
+IHNldCB0byAwLCBhcyBhdCBtYXggdGhlIG5vaXNlIHN0cmVuZ3RoIGluY3JlYXNlcyB0byB+IDIw
+IGRCLg0KDQpBdHRhY2hlZCBhcmUgaW1hZ2VzIG9mIHRoZSBGRlQgcHJvdmlkZWQgYnkgdGhlIEZy
+ZXF1ZW5jeSBTaW5rIGluIEdudXJhZGlvLiBIb3BlZnVsbHkgdGhlc2UgZ2l2ZSBhIHZpc3VhbCBh
+aWQgZm9yIHRoZSBwcm9ibGVtIGF0IGhhbmQuIFdoZW4gSSBoYXZlIHRoZSB0cmFuc21pdHRlciBV
+U1JQIHR1cm5lZCBvZmYgKGltYWdlIDEpLCBpdCB3b3VsZCBzZWVtIGxpa2UgdGhlIG5vaXNlIGZs
+b29yIGNvbWluZyBpbnRvIHRoZSBVU1JQIGlzIGFyb3VuZCAtOTQgZEIuIFdoZW4gdGhlIHRyYW5z
+bWl0dGVyIGlzIHR1cm5lZCBvbiBhbmQgdGhlIGZsb3dncmFwaCBpcyBzdGFydGVkIHdpdGggdGhl
+IHRyYW5zbWl0dGVkIHNpZ25hbCBtdXRlZCAoSSBhbSB1c2luZyBhIHB5dGhvbiBibG9jayB3aXRo
+IGNvZGUgdG8gY3JlYXRlIGN1c3RvbSBzaWduYWxzIHRoYXQgaXMgdGhlbiBjb25uZWN0ZWQgdG8g
+YSBtdXRlIGJsb2NrIHRoYXQgdGhlbiBjb25uZWN0cyB0byB0aGUgVUhEIFVTUlAgc2luayBibG9j
+ayB0byBiZSBhYmxlIHRvIG11dGUgdGhlIHNpZ25hbCBkdXJpbmcgcnVudGltZSksIHRoZSBub2lz
+ZSBmbG9vciBpbmNyZWFzZXMgdG8gYXJvdW5kIC03OCBkQi4NCg0KQmVzdCBSZWdhcmRzLA0KDQpK
+ZXJyaWQNCllvdSBhcmUgbGlrZWx5IGp1c3Qgc2VlaW5nIHRoZSBMTyBsZWFrYWdlLCBhbG9uZyB3
+aXRoIHRoZSBpbmV2aXRhYmxlIHBoYXNlLW5vaXNlIGN1cnZlIG9mIHRoZSBMTy4NCg0KDQoNCg0K
+RnJvbTogTWFyY3VzIEQgTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPjxtYWlsdG86cGF0
+Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBXZWRuZXNkYXksIE1hcmNoIDI0LCAyMDIxIDEx
+OjU4IEFNDQpUbzogSmVycmlkIFBseW1hbGUgPGplcnJpZC5wbHltYWxlQGNhbnlvbi11cy5jb20+
+PG1haWx0bzpqZXJyaWQucGx5bWFsZUBjYW55b24tdXMuY29tPg0KQ2M6IFVTUlAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClN1YmplY3Q6
+IFJlOiBbVVNSUC11c2Vyc10gU3Ryb25nIG5vaXNlIGFkZGVkIHRvIHNpZ25hbCB0cmFuc21pdHRl
+ZCBieSBYMzEwIHdpdGggYSBVQlggNDAgZGF1Z2h0ZXJib2FyZA0KDQpJcyB0aGUgaiBCIGlzIG92
+ZXItdGhlLWFpciBvciBkaXJlY3QgY29ubmVjdGlvbj8NCg0KV2hhdCBmcmVxdWVuY3k/IEJhbmR3
+aWR0aD8NCg0KRG8geW91IGhhdmUgVFggYW5kIFJYIGdhaW4gdHVybmVkIGFsbCB0aGUgd2F5IHVw
+Pw0KDQpDYW4geW91IHNoYXJlIHlvdXIgZmxvdy1ncmFwaHMsIG9yIG1pbmltdW0NCkdyYXBocyB0
+aGF0IHNob3cgdGhlIHByb2JsZW0/DQpTZW50IGZyb20gbXkgaVBob25lDQoNCg0KDQpPbiBNYXIg
+MjQsIDIwMjEsIGF0IDEyOjIwIFBNLCBKZXJyaWQgUGx5bWFsZSA8amVycmlkLnBseW1hbGVAY2Fu
+eW9uLXVzLmNvbTxtYWlsdG86amVycmlkLnBseW1hbGVAY2FueW9uLXVzLmNvbT4+IHdyb3RlOg0K
+77u/DQpIZWxsbyBBbGwsDQoNCkkgaGF2ZSBiZWVuIHJ1bm5pbmcgdGVzdHMgaW4gd2hpY2ggSSBh
+bSB0cmFuc21pdHRpbmcgYSBzaWduYWwgZnJvbSBvbmUgVVNSUCBYMzEwIHRoYXTigJlzIHVzaW5n
+IGEgVUJYIDQwIGRhdWdodGVyYm9hcmQsIGFuZCB0aGF0IHNpZ25hbCBpcyBiZWluZyByZWNlaXZl
+ZCBieSBhbm90aGVyIFVTUlAgWDMxMCB1c2luZyBhIFVCWCA0MCBkYXVnaHRlcmJvYXJkLiBJIGhh
+dmUgbm90aWNlZCB0aGF0IHdoZW4gSSBoYXZlIHRoZSByZWNlaXZpbmcgVVNSUCBydW5uaW5nIHdp
+dGggdGhlIEdudXJhZGlvIGZsb3dncmFwaCBhY3RpdmUsIGFzIHNvb24gYXMgSSBzdGFydCB0aGUg
+dHJhbnNtaXR0aW5nIFVTUlDigJlzIEdudXJhZGlvIGZsb3dncmFwaCwgdGhlcmUgaXMgYSBqdW1w
+IGluIHRoZSBub2lzZSBmbG9vciBhcyBpdCBpcyBzZWVuIGJ5IHRoZSByZWNlaXZpbmcgVVNSUCwg
+YW5kIGl0cyByb3VnaGx5IGEgMTQgZEIgaW5jcmVhc2UuIFRoaXMgb2NjdXJzIGV2ZW4gaWYgSSBo
+YXZlIHRoZSBzaWduYWwgYmVpbmcgdHJhbnNtaXR0ZWQgbXV0ZWQuIERvZXMgYW55b25lIGhhdmUg
+YW55IGlkZWEgd2hhdCB0aGUgc291cmNlIG9mIHRoaXMgYWRkZWQgbm9pc2UgY291bGQgYmU/IEl0
+IGlzIHNvbWV0aGluZyB0aGF0IEkgbmVlZCB0byBtaXRpZ2F0ZSBhcyBtdWNoIGFzIHBvc3NpYmxl
+IGZvciB0aGUgdGVzdHMgSSBhbSBydW5uaW5nIHVzaW5nIHRoZXNlIFVTUlBzLiBBbnkgZmVlZGJh
+Y2sgd2lsbCBiZSBncmVhdGx5IGFwcHJlY2lhdGVkLCB0aGFua3MhDQoNCkJlc3QgUmVnYXJkcywN
+Cg0KSmVycmlkDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Xw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
+bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBh
+biBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11
+c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQoNCg==
 
-> The target frequency is 1.57542 GHz, and our current bandwidth is 4=20
-> MHz. We will need to increase the bandwidth to 20 MHz soon for further=20
-> system development.
->
-> The TX and RX gain are maxed on the receiving hardware. The TX gain of=20
-> the transmitting hardware is set to 0, as at max the noise strength=20
-> increases to ~ 20 dB.
->
-> Attached are images of the FFT provided by the Frequency Sink in=20
-> Gnuradio. Hopefully these give a visual aid for the problem at hand.=20
-> When I have the transmitter USRP turned off (image 1), it would seem=20
-> like the noise floor coming into the USRP is around -94 dB. When the=20
-> transmitter is turned on and the flowgraph is started with the=20
-> transmitted signal muted (I am using a python block with code to=20
-> create custom signals that is then connected to a mute block that then=20
-> connects to the UHD USRP sink block to be able to mute the signal=20
-> during runtime), the noise floor increases to around -78 dB.
->
-> Best Regards,
->
-> Jerrid
->
-You are likely just seeing the LO leakage, along with the inevitable=20
-phase-noise curve of the LO.
+--_000_CO6PR19MB4801B2400531AAD6CB445001C6639CO6PR19MB4801namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOmJsYWNrO30NCmE6bGluaywgc3Bh
+bi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7
+DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOQ0KCXttc28t
+c3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1z
+ZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
+eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24x
+DQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9
+DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEt
+LVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlk
+bWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+
+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0
+YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxi
+b2R5IGJnY29sb3I9IndoaXRlIiBsYW5nPSJFTi1VUyIgbGluaz0iIzA1NjNDMSIgdmxpbms9InB1
+cnBsZSIgc3R5bGU9IndvcmQtd3JhcDpicmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0
+aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6d2luZG93dGV4
+dCI+T2ssIGlmIHRoYXTigJlzIHRoZSBjYXNlLCB3b3VsZCBpdCBoZWxwIHRvIGhhdmUgYm90aCBV
+U1JQcyBjb25uZWN0ZWQgdG8gdGhlIHNhbWUgMTAgTUh6IHJlZmVyZW5jZSBzaWduYWwgYW5kIFBQ
+Uz8gSW4gdGhpcyBzaXR1YXRpb24sIHdvdWxkIEkgbmVlZCB0byBwcm92aWRlIGEgc2Vjb25kYXJ5
+IHNvdXJjZSBmb3IgdGhlIFBQUywgb3IgY2FuIHRoYXQgdXNlIHRoZQ0KIDEwIE1oeiByZWZlcmVu
+Y2UgYXMgd2VsbD88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iY29sb3I6d2luZG93dGV4dCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOndpbmRvd3RleHQiPkJl
+c3QgUmVnYXJkcyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iY29sb3I6d2luZG93dGV4dCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOndpbmRvd3RleHQiPkpl
+cnJpZDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJjb2xvcjp3aW5kb3d0ZXh0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2
+Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0
+O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNw
+YW4gc3R5bGU9ImNvbG9yOndpbmRvd3RleHQiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0i
+Y29sb3I6d2luZG93dGV4dCI+IE1hcmN1cyBELiBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFp
+bC5jb20mZ3Q7DQo8YnI+DQo8Yj5TZW50OjwvYj4gV2VkbmVzZGF5LCBNYXJjaCAyNCwgMjAyMSAy
+OjIzIFBNPGJyPg0KPGI+VG86PC9iPiBKZXJyaWQgUGx5bWFsZSAmbHQ7amVycmlkLnBseW1hbGVA
+Y2FueW9uLXVzLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gU3Ryb25nIG5vaXNlIGFk
+ZGVkIHRvIHNpZ25hbCB0cmFuc21pdHRlZCBieSBYMzEwIHdpdGggYSBVQlggNDAgZGF1Z2h0ZXJi
+b2FyZDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5PbiAwMy8yNC8yMDIxIDA1OjEwIFBNLCBKZXJyaWQgUGx5bWFsZSB3cm90ZTo8bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2lu
+LWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGUgZGV2aWNlcyBhcmUgb3Bl
+cmF0aW5nIHVzaW5nIGRpcmVjdCBjb25uZWN0aW9uIHZpYSBjb2F4IGNhYmxlcy48bzpwPjwvbzpw
+PjwvcD4NCjwvYmxvY2txdW90ZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPllvdSBhYnNvbHV0ZWx5
+IG5lZWQgdG8gcHV0IGEgMzBkQiBhdHRlbnVhdG9yIGluLWxpbmUgdG8gcHJldmVudCBSWCBkZXN0
+cnVjdGlvbiBpbiB0aGUgY2FzZSBvZiAmcXVvdDtvb29wcyZxdW90OyBtb21lbnRzIGZyb20gc2V0
+dGluZyB0aGUgVFg8YnI+DQombmJzcDsgcG93ZXIgb3V0cHV0IHRvbyBoaWdoLjxicj4NCjxicj4N
+Cjxicj4NCjxvOnA+PC9vOnA+PC9wPg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4w
+cHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSB0YXJnZXQgZnJlcXVlbmN5IGlz
+IDEuNTc1NDIgR0h6LCBhbmQgb3VyIGN1cnJlbnQgYmFuZHdpZHRoIGlzIDQgTUh6LiBXZSB3aWxs
+IG5lZWQgdG8gaW5jcmVhc2UgdGhlIGJhbmR3aWR0aCB0byAyMCBNSHogc29vbiBmb3IgZnVydGhl
+ciBzeXN0ZW0gZGV2ZWxvcG1lbnQuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBUWCBhbmQg
+UlggZ2FpbiBhcmUgbWF4ZWQgb24gdGhlIHJlY2VpdmluZyBoYXJkd2FyZS4gVGhlIFRYIGdhaW4g
+b2YgdGhlIHRyYW5zbWl0dGluZyBoYXJkd2FyZSBpcyBzZXQgdG8gMCwgYXMgYXQgbWF4IHRoZSBu
+b2lzZSBzdHJlbmd0aCBpbmNyZWFzZXMgdG8gfiAyMCBkQi48bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+QXR0YWNoZWQgYXJlIGltYWdlcyBvZiB0aGUgRkZUIHByb3ZpZGVkIGJ5IHRoZSBGcmVxdWVu
+Y3kgU2luayBpbiBHbnVyYWRpby4gSG9wZWZ1bGx5IHRoZXNlIGdpdmUgYSB2aXN1YWwgYWlkIGZv
+ciB0aGUgcHJvYmxlbSBhdCBoYW5kLiBXaGVuIEkgaGF2ZSB0aGUgdHJhbnNtaXR0ZXIgVVNSUCB0
+dXJuZWQgb2ZmIChpbWFnZSAxKSwgaXQgd291bGQgc2VlbSBsaWtlIHRoZSBub2lzZSBmbG9vciBj
+b21pbmcgaW50bw0KIHRoZSBVU1JQIGlzIGFyb3VuZCAtOTQgZEIuIFdoZW4gdGhlIHRyYW5zbWl0
+dGVyIGlzIHR1cm5lZCBvbiBhbmQgdGhlIGZsb3dncmFwaCBpcyBzdGFydGVkIHdpdGggdGhlIHRy
+YW5zbWl0dGVkIHNpZ25hbCBtdXRlZCAoSSBhbSB1c2luZyBhIHB5dGhvbiBibG9jayB3aXRoIGNv
+ZGUgdG8gY3JlYXRlIGN1c3RvbSBzaWduYWxzIHRoYXQgaXMgdGhlbiBjb25uZWN0ZWQgdG8gYSBt
+dXRlIGJsb2NrIHRoYXQgdGhlbiBjb25uZWN0cyB0byB0aGUgVUhEIFVTUlANCiBzaW5rIGJsb2Nr
+IHRvIGJlIGFibGUgdG8gbXV0ZSB0aGUgc2lnbmFsIGR1cmluZyBydW50aW1lKSwgdGhlIG5vaXNl
+IGZsb29yIGluY3JlYXNlcyB0byBhcm91bmQgLTc4IGRCLg0KPG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPkJlc3QgUmVnYXJkcyw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZu
+YnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SmVycmlkJm5ic3A7IDxv
+OnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+WW91IGFy
+ZSBsaWtlbHkganVzdCBzZWVpbmcgdGhlIExPIGxlYWthZ2UsIGFsb25nIHdpdGggdGhlIGluZXZp
+dGFibGUgcGhhc2Utbm9pc2UgY3VydmUgb2YgdGhlIExPLjxicj4NCjxicj4NCjxicj4NCjxicj4N
+CjxvOnA+PC9vOnA+PC9wPg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFy
+Z2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpw
+PjwvcD4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNF
+MUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48Yj5Gcm9tOjwvYj4gTWFyY3VzIEQgTGVlY2ggPGEgaHJlZj0ibWFpbHRvOnBhdGNodm9u
+YnJhdW5AZ21haWwuY29tIj4NCiZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDs8L2E+IDxi
+cj4NCjxiPlNlbnQ6PC9iPiBXZWRuZXNkYXksIE1hcmNoIDI0LCAyMDIxIDExOjU4IEFNPGJyPg0K
+PGI+VG86PC9iPiBKZXJyaWQgUGx5bWFsZSA8YSBocmVmPSJtYWlsdG86amVycmlkLnBseW1hbGVA
+Y2FueW9uLXVzLmNvbSI+Jmx0O2plcnJpZC5wbHltYWxlQGNhbnlvbi11cy5jb20mZ3Q7PC9hPjxi
+cj4NCjxiPkNjOjwvYj4gPGEgaHJlZj0ibWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+Ij5VU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6
+IFtVU1JQLXVzZXJzXSBTdHJvbmcgbm9pc2UgYWRkZWQgdG8gc2lnbmFsIHRyYW5zbWl0dGVkIGJ5
+IFgzMTAgd2l0aCBhIFVCWCA0MCBkYXVnaHRlcmJvYXJkPG86cD48L286cD48L3A+DQo8L2Rpdj4N
+CjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5JcyB0aGUgaiBCIGlzIG92ZXItdGhlLWFpciBvciBkaXJlY3QgY29u
+bmVjdGlvbj88bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJz
+cDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPldo
+YXQgZnJlcXVlbmN5PyBCYW5kd2lkdGg/PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPkRvIHlvdSBoYXZlIFRYIGFuZCBSWCBnYWluIHR1cm5lZCBh
+bGwgdGhlIHdheSB1cD88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+Q2FuIHlvdSBzaGFyZSB5b3VyIGZsb3ctZ3JhcGhzLCBvciBtaW5pbXVtPG86
+cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
+bWFyZ2luLWJvdHRvbToxMi4wcHQiPkdyYXBocyB0aGF0IHNob3cgdGhlIHByb2JsZW0/PG86cD48
+L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+U2VudCBmcm9tIG15IGlQaG9u
+ZTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJy
+Pg0KPGJyPg0KPGJyPg0KPG86cD48L286cD48L3A+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2lu
+LXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
+eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+T24gTWFyIDI0LCAyMDIxLCBhdCAxMjoyMCBQTSwg
+SmVycmlkIFBseW1hbGUgJmx0OzxhIGhyZWY9Im1haWx0bzpqZXJyaWQucGx5bWFsZUBjYW55b24t
+dXMuY29tIj5qZXJyaWQucGx5bWFsZUBjYW55b24tdXMuY29tPC9hPiZndDsgd3JvdGU6PG86cD48
+L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJn
+aW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPu+7vyA8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhlbGxvIEFs
+bCw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBoYXZlIGJlZW4gcnVubmluZyB0ZXN0cyBpbiB3
+aGljaCBJIGFtIHRyYW5zbWl0dGluZyBhIHNpZ25hbCBmcm9tIG9uZSBVU1JQIFgzMTAgdGhhdOKA
+mXMgdXNpbmcgYSBVQlggNDAgZGF1Z2h0ZXJib2FyZCwgYW5kIHRoYXQgc2lnbmFsIGlzIGJlaW5n
+IHJlY2VpdmVkIGJ5IGFub3RoZXIgVVNSUCBYMzEwIHVzaW5nIGEgVUJYIDQwIGRhdWdodGVyYm9h
+cmQuIEkgaGF2ZSBub3RpY2VkIHRoYXQgd2hlbiBJIGhhdmUgdGhlDQogcmVjZWl2aW5nIFVTUlAg
+cnVubmluZyB3aXRoIHRoZSBHbnVyYWRpbyBmbG93Z3JhcGggYWN0aXZlLCBhcyBzb29uIGFzIEkg
+c3RhcnQgdGhlIHRyYW5zbWl0dGluZyBVU1JQ4oCZcyBHbnVyYWRpbyBmbG93Z3JhcGgsIHRoZXJl
+IGlzIGEganVtcCBpbiB0aGUgbm9pc2UgZmxvb3IgYXMgaXQgaXMgc2VlbiBieSB0aGUgcmVjZWl2
+aW5nIFVTUlAsIGFuZCBpdHMgcm91Z2hseSBhIDE0IGRCIGluY3JlYXNlLiBUaGlzIG9jY3VycyBl
+dmVuIGlmIEkgaGF2ZSB0aGUNCiBzaWduYWwgYmVpbmcgdHJhbnNtaXR0ZWQgbXV0ZWQuIERvZXMg
+YW55b25lIGhhdmUgYW55IGlkZWEgd2hhdCB0aGUgc291cmNlIG9mIHRoaXMgYWRkZWQgbm9pc2Ug
+Y291bGQgYmU/IEl0IGlzIHNvbWV0aGluZyB0aGF0IEkgbmVlZCB0byBtaXRpZ2F0ZSBhcyBtdWNo
+IGFzIHBvc3NpYmxlIGZvciB0aGUgdGVzdHMgSSBhbSBydW5uaW5nIHVzaW5nIHRoZXNlIFVTUlBz
+LiBBbnkgZmVlZGJhY2sgd2lsbCBiZSBncmVhdGx5IGFwcHJlY2lhdGVkLCB0aGFua3MhPG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPkJlc3QgUmVnYXJkcyw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+SmVycmlkPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFpbGlu
+ZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+dXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBl
+bWFpbCB0byA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20i
+Pg0KdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PG86cD48L286cD48L3A+DQo8
+L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4N
+Cg==
 
-> *From:* Marcus D Leech <patchvonbraun@gmail.com>
-> *Sent:* Wednesday, March 24, 2021 11:58 AM
-> *To:* Jerrid Plymale <jerrid.plymale@canyon-us.com>
-> *Cc:* USRP-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Strong noise added to signal transmitted=20
-> by X310 with a UBX 40 daughterboard
->
-> Is the j B is over-the-air or direct connection?
->
-> What frequency? Bandwidth?
->
-> Do you have TX and RX gain turned all the way up?
->
-> Can you share your flow-graphs, or minimum
->
-> Graphs that show the problem?
->
-> Sent from my iPhone
->
->
->
->     On Mar 24, 2021, at 12:20 PM, Jerrid Plymale
->     <jerrid.plymale@canyon-us.com
->     <mailto:jerrid.plymale@canyon-us.com>> wrote:
->
->     =EF=BB=BF
->
->     Hello All,
->
->     I have been running tests in which I am transmitting a signal from
->     one USRP X310 that=E2=80=99s using a UBX 40 daughterboard, and that=
- signal
->     is being received by another USRP X310 using a UBX 40
->     daughterboard. I have noticed that when I have the receiving USRP
->     running with the Gnuradio flowgraph active, as soon as I start the
->     transmitting USRP=E2=80=99s Gnuradio flowgraph, there is a jump in =
-the
->     noise floor as it is seen by the receiving USRP, and its roughly a
->     14 dB increase. This occurs even if I have the signal being
->     transmitted muted. Does anyone have any idea what the source of
->     this added noise could be? It is something that I need to mitigate
->     as much as possible for the tests I am running using these USRPs.
->     Any feedback will be greatly appreciated, thanks!
->
->     Best Regards,
->
->     Jerrid
->
->     _______________________________________________
->     USRP-users mailing list -- usrp-users@lists.ettus.com
->     <mailto:usrp-users@lists.ettus.com>
->     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->     <mailto:usrp-users-leave@lists.ettus.com>
->
+--_000_CO6PR19MB4801B2400531AAD6CB445001C6639CO6PR19MB4801namp_--
 
-
---------------090205060900000509070608
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta content=3D"text/html; charset=3Dutf-8" http-equiv=3D"Content-Ty=
-pe">
-  </head>
-  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
-    <div class=3D"moz-cite-prefix">On 03/24/2021 05:10 PM, Jerrid Plymale
-      wrote:<br>
-    </div>
-    <blockquote
-cite=3D"mid:CO6PR19MB48014D759070FADD80A96706C6639@CO6PR19MB4801.namprd19=
-.prod.outlook.com"
-      type=3D"cite">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Du=
-tf-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">The devices are operating using direct
-          connection via coax cables.</p>
-      </div>
-    </blockquote>
-    You absolutely need to put a 30dB attenuator in-line to prevent RX
-    destruction in the case of "ooops" moments from setting the TX<br>
-    =C2=A0 power output too high.<br>
-    <br>
-    <blockquote
-cite=3D"mid:CO6PR19MB48014D759070FADD80A96706C6639@CO6PR19MB4801.namprd19=
-.prod.outlook.com"
-      type=3D"cite">
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">The target frequency is 1.57542 GHz, and
-          our current bandwidth is 4 MHz. We will need to increase the
-          bandwidth to 20 MHz soon for further system development.<o:p></=
-o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">The TX and RX gain are maxed on the
-          receiving hardware. The TX gain of the transmitting hardware
-          is set to 0, as at max the noise strength increases to ~ 20
-          dB.<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Attached are images of the FFT provided by
-          the Frequency Sink in Gnuradio. Hopefully these give a visual
-          aid for the problem at hand. When I have the transmitter USRP
-          turned off (image 1), it would seem like the noise floor
-          coming into the USRP is around -94 dB. When the transmitter is
-          turned on and the flowgraph is started with the transmitted
-          signal muted (I am using a python block with code to create
-          custom signals that is then connected to a mute block that
-          then connects to the UHD USRP sink block to be able to mute
-          the signal during runtime), the noise floor increases to
-          around -78 dB.
-          <o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Jerrid=C2=A0 <br>
-        </p>
-      </div>
-    </blockquote>
-    You are likely just seeing the LO leakage, along with the inevitable
-    phase-noise curve of the LO.<br>
-    <br>
-    <br>
-    <blockquote
-cite=3D"mid:CO6PR19MB48014D759070FADD80A96706C6639@CO6PR19MB4801.namprd19=
-.prod.outlook.com"
-      type=3D"cite">
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <div style=3D"border:none;border-top:solid #E1E1E1
-            1.0pt;padding:3.0pt 0in 0in 0in">
-            <p class=3D"MsoNormal"><b>From:</b> Marcus D Leech
-              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvonb=
-raun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> <br>
-              <b>Sent:</b> Wednesday, March 24, 2021 11:58 AM<br>
-              <b>To:</b> Jerrid Plymale
-              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:jerrid.pl=
-ymale@canyon-us.com">&lt;jerrid.plymale@canyon-us.com&gt;</a><br>
-              <b>Cc:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"ma=
-ilto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
-              <b>Subject:</b> Re: [USRP-users] Strong noise added to
-              signal transmitted by X310 with a UBX 40 daughterboard<o:p>=
-</o:p></p>
-          </div>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Is the j B is over-the-air or direct
-          connection?<o:p></o:p></p>
-        <div>
-          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        </div>
-        <div>
-          <p class=3D"MsoNormal">What frequency? Bandwidth?<o:p></o:p></p=
->
-        </div>
-        <div>
-          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        </div>
-        <div>
-          <p class=3D"MsoNormal">Do you have TX and RX gain turned all th=
-e
-            way up?<o:p></o:p></p>
-        </div>
-        <div>
-          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        </div>
-        <div>
-          <p class=3D"MsoNormal">Can you share your flow-graphs, or
-            minimum<o:p></o:p></p>
-        </div>
-        <div>
-          <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Graphs th=
-at
-            show the problem?<o:p></o:p></p>
-          <div>
-            <p class=3D"MsoNormal">Sent from my iPhone<o:p></o:p></p>
-          </div>
-          <div>
-            <p class=3D"MsoNormal"><br>
-              <br>
-              <o:p></o:p></p>
-            <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-              <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">On Ma=
-r
-                24, 2021, at 12:20 PM, Jerrid Plymale &lt;<a
-                  moz-do-not-send=3D"true"
-                  href=3D"mailto:jerrid.plymale@canyon-us.com">jerrid.ply=
-male@canyon-us.com</a>&gt;
-                wrote:<o:p></o:p></p>
-            </blockquote>
-          </div>
-          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-            <div>
-              <p class=3D"MsoNormal">=EF=BB=BF <o:p></o:p></p>
-              <p class=3D"MsoNormal">Hello All,<o:p></o:p></p>
-              <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-              <p class=3D"MsoNormal">I have been running tests in which I
-                am transmitting a signal from one USRP X310 that=E2=80=99=
-s using
-                a UBX 40 daughterboard, and that signal is being
-                received by another USRP X310 using a UBX 40
-                daughterboard. I have noticed that when I have the
-                receiving USRP running with the Gnuradio flowgraph
-                active, as soon as I start the transmitting USRP=E2=80=99=
-s
-                Gnuradio flowgraph, there is a jump in the noise floor
-                as it is seen by the receiving USRP, and its roughly a
-                14 dB increase. This occurs even if I have the signal
-                being transmitted muted. Does anyone have any idea what
-                the source of this added noise could be? It is something
-                that I need to mitigate as much as possible for the
-                tests I am running using these USRPs. Any feedback will
-                be greatly appreciated, thanks!<o:p></o:p></p>
-              <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-              <p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
-              <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-              <p class=3D"MsoNormal">Jerrid<o:p></o:p></p>
-              <p class=3D"MsoNormal">____________________________________=
-___________<br>
-                USRP-users mailing list -- <a moz-do-not-send=3D"true"
-                  href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@l=
-ists.ettus.com</a><br>
-                To unsubscribe send an email to <a
-                  moz-do-not-send=3D"true"
-                  href=3D"mailto:usrp-users-leave@lists.ettus.com">
-                  usrp-users-leave@lists.ettus.com</a><o:p></o:p></p>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------090205060900000509070608--
-
---===============0301515912355161279==
+--===============7290234071214406370==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -400,4 +370,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0301515912355161279==--
+--===============7290234071214406370==--
