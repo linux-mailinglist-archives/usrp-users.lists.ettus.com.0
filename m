@@ -2,258 +2,113 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D6FC3479C9
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Mar 2021 14:43:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A30B347A1A
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Mar 2021 15:02:32 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E3C88383F96
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Mar 2021 09:43:12 -0400 (EDT)
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-oln040092253106.outbound.protection.outlook.com [40.92.253.106])
-	by mm2.emwd.com (Postfix) with ESMTPS id A4A663838A7
-	for <USRP-users@lists.ettus.com>; Wed, 24 Mar 2021 09:42:16 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gZkufVLZUBgCjw3iaio/E4L+SlgfCHNpbnipyanx6iWUIRyB1Cln3WHwzTaO/3C+rnEbw6i/PAsG/bA37NKn2OKGBthI6FwDB6bC9bglPFiwMhilkSAiXxJboGIiX/uCi2TmWzkL3M+NoXNB0024RLcVpyETweWoE/8Bz7aJDMGz1QGCZ5dnMacnT0YkP2ToFuI38qJ+o/tVFAZETodO9z488hityy7bdKNnSct6ZY4BaPG3FDnwAtop8zURHGhQEX4jWlHbyQpvE+5e1fzdv6If8N5p99EDh33MwzLIEc3m7xYfcM6Gsm3wsQvVqmhY6nQtMry1oyQHJmfuQR5qeg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6RuFswZtlju8gG6OxWATFHRCX1nixxo2OAG8MZUHZs8=;
- b=ASLoH4aQc7erAe3dERCfBQTtoOZP56oPUEfh0M7QrOYpQk5oRD8m/UGzIp//GFw8zZBkINROg3Ytqiar9vvRQA/q72/aV8viHVL0LB6P9w5E56xBdU7HLzqtODCDTxtCkUxaj/3LQ7mRZZCoLFLcRHTmCYGbJDmvGinpC4BVzFFoB3kz8nB0RngsDdiGSiaMzKuZsVzt/QCxOJsTsHS1A1sWYMw1Rz4kKs9tikeZj7XK4m/dzVihNTFYgPmrhxka3p1YtamwDetb9muhCauIMSkMvMkOmlAQDgmofzxGF/JKTRK14cVRXYgXhciaQyfdg5NWlDLBnQI/XjVqC+AYEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6RuFswZtlju8gG6OxWATFHRCX1nixxo2OAG8MZUHZs8=;
- b=OX8OB9iA3amJUTlhH4uq7bmPm4t/cHYlamPOC645fAcJHUEXUls49J3ra0iL6Lk/iODuc2BOcx/LI7JJK2VIYSaCyNgqGxk5UbfdtNfXpO4FDdrnmGY6KLThkOssiIsFqlJoF1MbbRfmDNvNziWR0Lf7qH84JNVCA2r7wFHAmqdk7sgQVcrqjjsYx5MRaT6c/Ms7BYiIz6CRnkHuvLaH0K/N2pJFNtWWHjsgaGvf1FnDCPdeimbfutR3m6OZ1ePXYWUMloDyUjAYLqvMNmFpspeaF1IZ+MBmsVxqAjy/6pU5J6nxH5E5bC9amwTLQ6dY35na4WmuMHFtx7RC5dV0HQ==
-Received: from TY2PR04MB3517.apcprd04.prod.outlook.com (2603:1096:404:f7::14)
- by TY2PR04MB3357.apcprd04.prod.outlook.com (2603:1096:404:94::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Wed, 24 Mar
- 2021 13:42:13 +0000
-Received: from TY2PR04MB3517.apcprd04.prod.outlook.com
- ([fe80::dc7a:192a:ee1a:619f]) by TY2PR04MB3517.apcprd04.prod.outlook.com
- ([fe80::dc7a:192a:ee1a:619f%6]) with mapi id 15.20.3955.027; Wed, 24 Mar 2021
- 13:42:13 +0000
-From: Oscar Pablo <oscar_pabloo@outlook.com>
-To: Wade Fife <wade.fife@ettus.com>, Marcus D Leech <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] Re: question of X300 revision
-Thread-Index: AQHXHih2oy65dgYjbU2Lx35PeLsmsKqOjU2AgACxgVWAAOp1gIACLYEAgADR9GY=
-Date: Wed, 24 Mar 2021 13:42:13 +0000
-Message-ID: 
- <TY2PR04MB3517E6F53FDD88BD35C74D9BF0639@TY2PR04MB3517.apcprd04.prod.outlook.com>
-References: 
- <SG2PR04MB35145981F34B7F7B86DE892EF0659@SG2PR04MB3514.apcprd04.prod.outlook.com>
- <18AA3903-85BE-4C57-8F80-0F63E1E133FD@gmail.com>,<CAFche=i+J5jQ+_jk2ba2_r9XZ8AUXK6APkSb9kbnCfqKzg8AAg@mail.gmail.com>
-In-Reply-To: 
- <CAFche=i+J5jQ+_jk2ba2_r9XZ8AUXK6APkSb9kbnCfqKzg8AAg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
+	by mm2.emwd.com (Postfix) with ESMTP id CBD9C383D75
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Mar 2021 10:02:30 -0400 (EDT)
+Received: from exchange.tu-berlin.de (exchange.tu-berlin.de [130.149.7.70])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7A9F8383D63
+	for <usrp-users@lists.ettus.com>; Wed, 24 Mar 2021 10:01:23 -0400 (EDT)
+Received: from SPMA-03.tubit.win.tu-berlin.de (localhost.localdomain [127.0.0.1])
+	by localhost (Email Security Appliance) with SMTP id 0C2B76E654_5B4632B
+	for <usrp-users@lists.ettus.com>; Wed, 24 Mar 2021 14:01:22 +0000 (GMT)
+Received: from exchange.tu-berlin.de (exchange.tu-berlin.de [130.149.7.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(Client CN "exchange.tu-berlin.de", Issuer "DFN-Verein Global Issuing CA" (verified OK))
+	by SPMA-03.tubit.win.tu-berlin.de (Sophos Email Appliance) with ESMTPS id AFA9E188B70_5B4631F
+	for <usrp-users@lists.ettus.com>; Wed, 24 Mar 2021 14:01:21 +0000 (GMT)
+Received: from ex-03.tubit.win.tu-berlin.de (130.149.6.143) by
+ ex-02.tubit.win.tu-berlin.de (130.149.6.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Wed, 24 Mar 2021 15:01:21 +0100
+Received: from ex-03.tubit.win.tu-berlin.de ([172.26.26.143]) by
+ ex-03.tubit.win.tu-berlin.de ([172.26.26.143]) with mapi id 15.02.0792.010;
+ Wed, 24 Mar 2021 15:01:21 +0100
+From: "Chang, Kaixin" <k.chang@campus.tu-berlin.de>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: rfnoc mimo example
+Thread-Index: AQHXILYRcw9TdIVBNkm9FnhQ6fG10g==
+Date: Wed, 24 Mar 2021 14:01:20 +0000
+Message-ID: <556efb26a53849f3aad87d96e8f4d76c@campus.tu-berlin.de>
+Accept-Language: en-GB, zh-CN, de-DE, en-US
+Content-Language: en-GB
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-tmn: [Pr2uJkRmdehHdGGUcqlY0Nmz5wozgnyU]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9ce998ec-e179-4336-13bb-08d8eecaa1a4
-x-ms-traffictypediagnostic: TY2PR04MB3357:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- fYcK8p5ywqbQbqgEBkE9vH6zZLnbNK2ny9fgLUYfg0CefAL7bJvZGE4lYSDJ0jsIjnCyPjAvqmT6csKo4SFfGN3+Mm3xM/aglmPBk5QG9uJklWGf6XfCO4t/mKaZ4V2YFzJcT1rhxaiUU9UNJeCe2a8yyGhfHCWwi35UAcFUTVBPTXOpEMNnsCDIQYss+lNg6eKE9n3+U2mIDF9U1O8XVt1SrX83d/8GvlOoLBAI4MRVF+FPDJPyitkITtDS1aqKixJuknA/vw3B3TawNCBQmTq4j0KO1xeuKKyj13VigIqrA24wpGRNf2j5gTz+uIu8rHRMcsJNhE/W0UmztDLgK4WwK59rcImqOTCpr/Keq6CmSFhjarnGWv+ofg9a5VIVo27bEGh7xPohER/BMaFRrg==
-x-ms-exchange-antispam-messagedata: 
- uDDoIQELibfL0L6FJaj/1NC0Bk6kgGjSpSm+voA7jtMkK3f90u1+o07qeFhRpJgHeARbrVKEIM2zEh+VjfTkMeSb1c16dwPLE36AZRExn8WbO61rZ96M08aGTqJsjWTdZbwHSosGYRyA1lNf3AVaYA==
-x-ms-exchange-transport-forked: True
+x-originating-ip: [193.174.67.20]
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR04MB3517.apcprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9ce998ec-e179-4336-13bb-08d8eecaa1a4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2021 13:42:13.5224
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR04MB3357
-Message-ID-Hash: 7SMJTWME5S4Y7L6EZGKMHU4PZN2GL7BV
-X-Message-ID-Hash: 7SMJTWME5S4Y7L6EZGKMHU4PZN2GL7BV
-X-MailFrom: oscar_pabloo@outlook.com
+X-SASI-RCODE: 200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=campus.tu-berlin.de; h=from:to:subject:date:message-id:content-type:mime-version; s=dkim-tub; bh=pt+mHQFSzO6pS5wRGQRzJFOS7FH2kybA6UkJtQBQy04=; b=hGql5AN0wxWjIVLsumK5nTFy/kjpZSiK0gBc+i+kVAQ2nboKjoiRfpATni4EzYHFoLs/6sWjO2FXgRfSP20qcllbXkIvubGpaeEdvfE2bCKz0uEZJGjRWRNXbZ08/vYvowMso7W3xDoWL9SqFRiP+xP4PUIhmkxKUaLFQkiQo4Q=
+Message-ID-Hash: PF7DV2EP63M5AORW7CXU6AYM7NIMDMCX
+X-Message-ID-Hash: PF7DV2EP63M5AORW7CXU6AYM7NIMDMCX
+X-MailFrom: k.chang@campus.tu-berlin.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: question of X300 revision
+Subject: [USRP-users] rfnoc mimo example
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ULWAPJ6HZQXZQOINIXIPQIANEH4EVBQT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PF7DV2EP63M5AORW7CXU6AYM7NIMDMCX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9029777721651140932=="
+Content-Type: multipart/mixed; boundary="===============5205509134466012451=="
 
---===============9029777721651140932==
-Content-Language: en-US
+--===============5205509134466012451==
+Content-Language: en-GB
 Content-Type: multipart/alternative;
-	boundary="_000_TY2PR04MB3517E6F53FDD88BD35C74D9BF0639TY2PR04MB3517apcp_"
+	boundary="_000_556efb26a53849f3aad87d96e8f4d76ccampustuberlinde_"
 
---_000_TY2PR04MB3517E6F53FDD88BD35C74D9BF0639TY2PR04MB3517apcp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_556efb26a53849f3aad87d96e8f4d76ccampustuberlinde_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgV2FkZSwNCnRoYW5rcyBmb3IgeW91ciBjbGFyaWZpY2F0aW9uLg0KDQpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXw0KRnJvbTogV2FkZSBGaWZlIDx3YWRlLmZpZmVAZXR0dXMuY29t
-Pg0KU2VudDogV2VkbmVzZGF5LCBNYXJjaCAyNCwgMjAyMSAxOjAzIEFNDQpUbzogTWFyY3VzIEQg
-TGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0KQ2M6IE9zY2FyIFBhYmxvIDxvc2Nhcl9w
-YWJsb29Ab3V0bG9vay5jb20+OyB1c3JwLXVzZXJzIDxVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bT4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gUmU6IHF1ZXN0aW9uIG9mIFgzMDAgcmV2aXNp
-b24NCg0KSGkgT3NjYXIsDQoNClRoZSBkcmF3aW5nIHJldmlzaW9uIGlzbid0IHRoZSBzYW1lIHRo
-aW5nIGFzIGEgaGFyZHdhcmUgcmV2aXNpb24uIEkgY2FuIGNvbmZpcm0gdGhhdCB0aGUgcG9zdGVk
-IHNjaGVtYXRpYyBpcyBjb21wYXRpYmxlIHdpdGggdGhlIGN1cnJlbnQgVUhEIHNvdXJjZSBjb2Rl
-Lg0KDQpUaGFua3MsDQoNCldhZGUNCg0KT24gTW9uLCBNYXIgMjIsIDIwMjEgYXQgMTA6NDggQU0g
-TWFyY3VzIEQgTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPG1haWx0bzpwYXRjaHZvbmJy
-YXVuQGdtYWlsLmNvbT4+IHdyb3RlOg0KQ29kZSBzZWVzIGxpa2UgdGhpcywgdGhhdCBzdXBwb3J0
-IGhhcmR3YXJlIG11c3QgbmVjZXNzYXJpbHkgcHJvdmlkZSBzdXBwb3J0IGZvciBvbGRlciBlcXVp
-cG1lbnQgbOKAlGV2ZW4gbW9kZWxzIG9yIHJldnMgdGhhdCBhcmVu4oCZdCBzb2xkIGFueW1vcmUu
-IFRoYXTigJlzIGp1c3QgdGhlIG5hdHVyZSBvZiBoYXJkd2FyZSBkcml2ZXJzLg0KDQpUaGUgc2No
-ZW1hdGljIHVwZGF0ZSBwb2xpY3kgaXMgYSBidXNpbmVzcyB0aGluZyB0aGF0IEnigJltIG5vdCBx
-dWFsaWZpZWQgdG8gY29tbWVudCBvbi4NCg0KU2VudCBmcm9tIG15IGlQaG9uZQ0KDQpPbiBNYXIg
-MjEsIDIwMjEsIGF0IDk6NTcgUE0sIE9zY2FyIFBhYmxvIDxvc2Nhcl9wYWJsb29Ab3V0bG9vay5j
-b208bWFpbHRvOm9zY2FyX3BhYmxvb0BvdXRsb29rLmNvbT4+IHdyb3RlOg0KDQrvu78NCmkgZG9u
-J3QgdW5kZXJzdGFuZCB3aHkga2VlcCB0aGUgdGhlIHNvdXJjZSBjb2RlIGZvciB0aGUgcHJvZHVj
-dCB0aGF0IHdpbGwgbmV2ZXIgc2hvdy4gYW5kIHJlbGVhc2UgYSBzY2hlbWF0aWMgZm9yIHRoZSBw
-cm9kdWN0IHRoYXQgd2lsbCBuZXZlciBzaG93LiBpZiB0aGVyZSBpcyBubyBzb3VyY2UgY29kZSB0
-byBzdXBwb3J0IHRoZSBzY2hlbWF0aWMgdGhlbiB0aGlzIHNjaGVtYXRpYyBpcyBubyB1c2VmdWwu
-IGkga25vdyB4MzAwIHNjaGVtYXRpYyBoaWRlIHRoZSBwYXJ0IG9mIHBjaWUuIGJ1dCBpZiBvdGhl
-ciBwYXJ0IGlzIG9rIHRoZW4gaXQgc3RpbGwgaGF2ZSB2YWx1ZSBmb3IgcmVmZXJlbmNlIGlmIHNv
-bWVvbmUgd2FudCB0byB1c2Ugc29tZSBwYXJ0IG9mIGl0Lg0KDQoNCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fDQpGcm9tOiBNYXJjdXMgRC4gTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21h
-aWwuY29tPG1haWx0bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4+DQpTZW50OiBTdW5kYXksIE1h
-cmNoIDIxLCAyMDIxIDM6MTMgUE0NClRvOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWls
-dG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pg0KU3ViamVjdDogW1VTUlAtdXNl
-cnNdIFJlOiBxdWVzdGlvbiBvZiBYMzAwIHJldmlzaW9uDQoNCk9uIDAzLzIxLzIwMjEgMDQ6MTYg
-QU0sIE9zY2FyIFBhYmxvIHdyb3RlOg0KSGksDQp0aGUgcHVibGljIHJlbGVhc2VkIFgzMDAgc2No
-ZW1hdGljIGlzIHJldmlzaW9uIDEuIGkgd2FudCB0byBrbm93IGlmIHRoaXMgcmV2aXNpb24gaXMg
-dGhlIHJldmlzaW9uIGluIHVoZCBzb3VyY2UgY29kZS4gaW4gdWhkIHNvdXJjZSBjb2RlIHRoZXJl
-IGlzIHN0cmFuZ2Ugd29yZHMgIngzMDBfY2xvY2tfY3RybCBpcyBub3QgY29tcGF0aWJsZSB3aXRo
-IHJldnMgPD0gNCBhbmQgbWF5ICAgIGxlYWQgdG8gbG9ja2luZyBpc3N1ZXMiIHNvIHdoYXQgaXMg
-dGhlIGNvcnJlY3Qgc291cmNlIGNvZGUgZm9yIHJldmlzaW9uIGxlc3MgdGhhbiA0Pw0KDQoNCg0K
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8g
-dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVA
-bGlzdHMuZXR0dXMuY29tPg0KDQoNCk15IHJlY29sbGVjdGlvbiBpcyB0aGF0IGhhcmR3YXJlIHJl
-diA8PSA0IHdlcmUgcHJlLXByb2R1Y3Rpb24gYW5kIHlvdSdsbCBuZXZlciBzZWUgdGhlbSAiaW4g
-dGhlIHdpbGQiLg0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpUbyB1bnN1YnNjcmliZSBz
-ZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1
-c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCg==
+Dear Ettus Team,
 
---_000_TY2PR04MB3517E6F53FDD88BD35C74D9BF0639TY2PR04MB3517apcp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
-YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
-bG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkhpIFdhZGUsPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZh
-bWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQp0aGFua3MgZm9yIHlvdXIgY2xhcmlmaWNhdGlv
-bi48YnI+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2IGlkPSJhcHBlbmRvbnNlbmQiPjwvZGl2Pg0KPGRp
-diBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsg
-Zm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPC9kaXY+DQo8aHIgdGFi
-aW5kZXg9Ii0xIiBzdHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7IHdpZHRoOjk4JSI+DQo8ZGl2
-IGlkPSJkaXZScGx5RndkTXNnIiBkaXI9Imx0ciI+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZToxMXB0
-IiBmYWNlPSJDYWxpYnJpLCBzYW5zLXNlcmlmIiBjb2xvcj0iIzAwMDAwMCI+PGI+RnJvbTo8L2I+
-IFdhZGUgRmlmZSAmbHQ7d2FkZS5maWZlQGV0dHVzLmNvbSZndDs8YnI+DQo8Yj5TZW50OjwvYj4g
-V2VkbmVzZGF5LCBNYXJjaCAyNCwgMjAyMSAxOjAzIEFNPGJyPg0KPGI+VG86PC9iPiBNYXJjdXMg
-RCBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiBP
-c2NhciBQYWJsbyAmbHQ7b3NjYXJfcGFibG9vQG91dGxvb2suY29tJmd0OzsgdXNycC11c2VycyAm
-bHQ7VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJl
-OiBbVVNSUC11c2Vyc10gUmU6IHF1ZXN0aW9uIG9mIFgzMDAgcmV2aXNpb248L2ZvbnQ+DQo8ZGl2
-PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2PkhpIE9z
-Y2FyLDwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+VGhlIGRyYXdpbmcgcmV2aXNpb24g
-aXNuJ3QgdGhlIHNhbWUgdGhpbmcgYXMgYSBoYXJkd2FyZSByZXZpc2lvbi4gSSBjYW4gY29uZmly
-bSB0aGF0IHRoZSBwb3N0ZWQgc2NoZW1hdGljIGlzIGNvbXBhdGlibGUgd2l0aCB0aGUgY3VycmVu
-dCBVSEQgc291cmNlIGNvZGUuPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5UaGFua3Ms
-PC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5XYWRlPGJyPg0KPC9kaXY+DQo8L2Rpdj4N
-Cjxicj4NCjxkaXYgY2xhc3M9InhfZ21haWxfcXVvdGUiPg0KPGRpdiBkaXI9Imx0ciIgY2xhc3M9
-InhfZ21haWxfYXR0ciI+T24gTW9uLCBNYXIgMjIsIDIwMjEgYXQgMTA6NDggQU0gTWFyY3VzIEQg
-TGVlY2ggJmx0OzxhIGhyZWY9Im1haWx0bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSI+cGF0Y2h2
-b25icmF1bkBnbWFpbC5jb208L2E+Jmd0OyB3cm90ZTo8YnI+DQo8L2Rpdj4NCjxibG9ja3F1b3Rl
-IGNsYXNzPSJ4X2dtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4OyBi
-b3JkZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTsgcGFkZGluZy1sZWZ0OjFleCI+
-DQo8ZGl2IGRpcj0iYXV0byI+Q29kZSBzZWVzIGxpa2UgdGhpcywgdGhhdCBzdXBwb3J0IGhhcmR3
-YXJlIG11c3QgbmVjZXNzYXJpbHkgcHJvdmlkZSBzdXBwb3J0IGZvciBvbGRlciBlcXVpcG1lbnQg
-bOKAlGV2ZW4gbW9kZWxzIG9yIHJldnMgdGhhdCBhcmVu4oCZdCBzb2xkIGFueW1vcmUuIFRoYXTi
-gJlzIGp1c3QgdGhlIG5hdHVyZSBvZiBoYXJkd2FyZSBkcml2ZXJzLiZuYnNwOw0KPGRpdj48YnI+
-DQo8L2Rpdj4NCjxkaXY+VGhlIHNjaGVtYXRpYyB1cGRhdGUgcG9saWN5IGlzIGEgYnVzaW5lc3Mg
-dGhpbmcgdGhhdCBJ4oCZbSBub3QgcXVhbGlmaWVkIHRvIGNvbW1lbnQgb24uJm5ic3A7PGJyPg0K
-PGRpdj48YnI+DQo8ZGl2IGRpcj0ibHRyIj5TZW50IGZyb20gbXkgaVBob25lPC9kaXY+DQo8ZGl2
-IGRpcj0ibHRyIj48YnI+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj5PbiBNYXIgMjEsIDIwMjEs
-IGF0IDk6NTcgUE0sIE9zY2FyIFBhYmxvICZsdDs8YSBocmVmPSJtYWlsdG86b3NjYXJfcGFibG9v
-QG91dGxvb2suY29tIiB0YXJnZXQ9Il9ibGFuayI+b3NjYXJfcGFibG9vQG91dGxvb2suY29tPC9h
-PiZndDsgd3JvdGU6PGJyPg0KPGJyPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8YmxvY2txdW90
-ZSB0eXBlPSJjaXRlIj4NCjxkaXYgZGlyPSJsdHIiPu+7vw0KPGRpdiBzdHlsZT0iZm9udC1mYW1p
-bHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNv
-bG9yOnJnYigwLDAsMCkiPg0KaSBkb24ndCB1bmRlcnN0YW5kIHdoeSBrZWVwIHRoZSB0aGUgc291
-cmNlIGNvZGUgZm9yIHRoZSBwcm9kdWN0IHRoYXQgd2lsbCBuZXZlciBzaG93LiBhbmQgcmVsZWFz
-ZSBhIHNjaGVtYXRpYyBmb3IgdGhlIHByb2R1Y3QgdGhhdCB3aWxsIG5ldmVyIHNob3cuIGlmIHRo
-ZXJlIGlzIG5vIHNvdXJjZSBjb2RlIHRvIHN1cHBvcnQgdGhlIHNjaGVtYXRpYyB0aGVuIHRoaXMg
-c2NoZW1hdGljIGlzIG5vIHVzZWZ1bC4gaSBrbm93IHgzMDAgc2NoZW1hdGljIGhpZGUNCiB0aGUg
-cGFydCBvZiBwY2llLiBidXQgaWYgb3RoZXIgcGFydCBpcyBvayB0aGVuIGl0IHN0aWxsIGhhdmUg
-dmFsdWUgZm9yIHJlZmVyZW5jZSBpZiBzb21lb25lIHdhbnQgdG8gdXNlIHNvbWUgcGFydCBvZiBp
-dC4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxI
-ZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0K
-PGJyPg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBpZD0ieF9nbWFpbC1tXzUwNzIyOTE1NjAwNTMzNjIw
-NzlhcHBlbmRvbnNlbmQiPjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxB
-cmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAs
-MCkiPg0KPGJyPg0KPC9kaXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrOyB3aWR0
-aDo5OCUiPg0KPGRpdiBpZD0ieF9nbWFpbC1tXzUwNzIyOTE1NjAwNTMzNjIwNzlkaXZScGx5Rndk
-TXNnIiBkaXI9Imx0ciI+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZToxMXB0IiBmYWNlPSJDYWxpYnJp
-LCBzYW5zLXNlcmlmIiBjb2xvcj0iIzAwMDAwMCI+PGI+RnJvbTo8L2I+IE1hcmN1cyBELiBMZWVj
-aCAmbHQ7PGEgaHJlZj0ibWFpbHRvOnBhdGNodm9uYnJhdW5AZ21haWwuY29tIiB0YXJnZXQ9Il9i
-bGFuayI+cGF0Y2h2b25icmF1bkBnbWFpbC5jb208L2E+Jmd0Ozxicj4NCjxiPlNlbnQ6PC9iPiBT
-dW5kYXksIE1hcmNoIDIxLCAyMDIxIDM6MTMgUE08YnI+DQo8Yj5Ubzo8L2I+IDxhIGhyZWY9Im1h
-aWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tPC9hPiAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
-L2E+Jmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBbVVNSUC11c2Vyc10gUmU6IHF1ZXN0aW9uIG9m
-IFgzMDAgcmV2aXNpb248L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2IHN0
-eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPg0KPGRpdj5PbiAwMy8yMS8y
-MDIxIDA0OjE2IEFNLCBPc2NhciBQYWJsbyB3cm90ZTo8YnI+DQo8L2Rpdj4NCjxibG9ja3F1b3Rl
-IHR5cGU9ImNpdGUiPg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2
-ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KSGks
-PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxz
-YW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQp0aGUgcHVibGlj
-IHJlbGVhc2VkIFgzMDAgc2NoZW1hdGljIGlzIHJldmlzaW9uIDEuIGkgd2FudCB0byBrbm93IGlm
-IHRoaXMgcmV2aXNpb24gaXMgdGhlIHJldmlzaW9uIGluIHVoZCBzb3VyY2UgY29kZS4gaW4gdWhk
-IHNvdXJjZSBjb2RlIHRoZXJlIGlzIHN0cmFuZ2Ugd29yZHMgJnF1b3Q7eDMwMF9jbG9ja19jdHJs
-IGlzIG5vdCBjb21wYXRpYmxlIHdpdGggcmV2cyAmbHQ7PSA0IGFuZCBtYXkmbmJzcDsgJm5ic3A7
-IGxlYWQgdG8gbG9ja2luZyBpc3N1ZXMmcXVvdDsgc28gd2hhdCBpcyB0aGUNCiBjb3JyZWN0IHNv
-dXJjZSBjb2RlIGZvciByZXZpc2lvbiBsZXNzIHRoYW4gND88YnI+DQo8L2Rpdj4NCjxicj4NCjxm
-aWVsZHNldD48L2ZpZWxkc2V0PiA8YnI+DQo8cHJlPl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9
-Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPgpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRv
-IDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0
-PSJfYmxhbmsiPnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9hPgo8L3ByZT4NCjwv
-YmxvY2txdW90ZT4NCk15IHJlY29sbGVjdGlvbiBpcyB0aGF0IGhhcmR3YXJlIHJldiAmbHQ7PSA0
-IHdlcmUgcHJlLXByb2R1Y3Rpb24gYW5kIHlvdSdsbCBuZXZlciBzZWUgdGhlbSAmcXVvdDtpbiB0
-aGUgd2lsZCZxdW90Oy48YnI+DQo8YnI+DQo8YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8
-L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
-IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJf
-YmxhbmsiPg0KdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KVG8gdW5zdWJzY3Jp
-YmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0
-cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0
-dXMuY29tPC9hPjxicj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwv
-Ym9keT4NCjwvaHRtbD4NCg==
+may I ask is there rfnoc mimo example code? How shall configure the channel=
+ if I want to make 2x2 MIMO on one single X310 with 2 daughter boards?
 
---_000_TY2PR04MB3517E6F53FDD88BD35C74D9BF0639TY2PR04MB3517apcp_--
+Thanks in advance
 
---===============9029777721651140932==
+
+Kasim
+
+--_000_556efb26a53849f3aad87d96e8f4d76ccampustuberlinde_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Dear Ettus Team,</p>
+<p><br>
+</p>
+<p>may I ask is there rfnoc mimo example code? How shall configure the chan=
+nel if I want to make 2x2 MIMO on one single X310 with 2 daughter boards?<b=
+r>
+<br>
+Thanks in advance</p>
+<p><br>
+</p>
+<p>Kasim<br>
+</p>
+</div>
+</body>
+</html>
+
+--_000_556efb26a53849f3aad87d96e8f4d76ccampustuberlinde_--
+
+--===============5205509134466012451==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -263,4 +118,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9029777721651140932==--
+--===============5205509134466012451==--
