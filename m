@@ -2,311 +2,261 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5825C349547
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 16:22:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4A2C34966C
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 17:08:50 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 07AD2383926
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 11:22:26 -0400 (EDT)
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 725E53838EB
-	for <usrp-users@lists.ettus.com>; Thu, 25 Mar 2021 11:21:34 -0400 (EDT)
-Received: by mail-ej1-f54.google.com with SMTP id l4so3515886ejc.10
-        for <usrp-users@lists.ettus.com>; Thu, 25 Mar 2021 08:21:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xZiB13ai3xlYTn9liEbAtUuqRKwowfaYK3BCJVmVcxw=;
-        b=ZlJ1uazGXa6nwJHTnLoVRIgOvsNC40K7mRnE7vR5siQiehG2kXYUjcTCZ+6nGViUv/
-         ggqJSOtgE0huL6sFvTJo8BOTVYkONWsNxhO2JxtcfgifLALNxsBdDmj9oLkgD77xT9aS
-         FZXGHe52hv10nFXlS54NklrRrIm7PXoZf62/9zPPG7R3/MQrhe9qJYAVCQ/DSuyIl5PO
-         WqBO7vFchyRiz11vx411tOIHpMAT6JfqwdZEQEwYLU+Jf6EHBwOThEKiEC3xaN+l0x1A
-         UlHX/DRMBhjZAdwVKwD4E4WEnnicnx/7xQxQY7aIKRarF0b1JTeE5zUvlsTsWEM6layu
-         1j5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xZiB13ai3xlYTn9liEbAtUuqRKwowfaYK3BCJVmVcxw=;
-        b=s111pNW3KSLMyH7UflK39aF88Ywe96YcYLDcbkHwY3b3qxUKWCWQGfyzUrVVu4BHmG
-         6Ya8zQ7kLQ2Kof+LjnDeKAZdbQMm+t/cz5P96txXDyWUQPQ6gw3UJ/aZjGY/1576U+f5
-         8TQP4D//5bSVSSw8EUMqjjVal7YIq+iSmu0IYqqjLPP9C+qF6oCDgrCkCgROFv+SfFa9
-         TMJqrSQCH9tLNmTSNh5D6CXtrdZrPmMqM9ryFBh8FXvhqp/jhFRW+TqBSxHEtIO1miwg
-         k977t/hC/WrPjjqYhDVwM4f8A3sAx2EJ9f/lbYhRUwASCt70rmnf6xgNJiKBc753fPAy
-         5iKg==
-X-Gm-Message-State: AOAM533bxhnNsj+mBpevkQaRGSp/B23y7WaIW+Tq7MmgXe0KoEpT0sbZ
-	3M3uAWGXHDSEcghOvU/zj1tnXgNsxY3JftR25IcXcQEIJL4=
-X-Google-Smtp-Source: ABdhPJxutMO6zXUZmVkYLaev0dURPvBtfwHnBG+7jlff38G0z/LET88cqqjdR936nPrU9j1YFArf2RpQ+B7iqkvNE2Q=
-X-Received: by 2002:a17:907:110c:: with SMTP id qu12mr10214012ejb.442.1616685692110;
- Thu, 25 Mar 2021 08:21:32 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 09122383F75
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 12:08:50 -0400 (EDT)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2062.outbound.protection.outlook.com [40.107.244.62])
+	by mm2.emwd.com (Postfix) with ESMTPS id 207B8383869
+	for <USRP-users@lists.ettus.com>; Thu, 25 Mar 2021 12:07:53 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mDM0zFnEHGv9GAR66aNkj9wtam+lFDKE6qPuaY+/M341ohAJopVZ8fJ4nSdFHlxovBneBy/Tj8CJ/S8jeHFlzyzsEvjGMKx7Kt6nGI6rxG0s5fsBl6oXOBq5T8nLTutOvsJLhNnsS4P4eyYY8LfwBwbQV2uPk2TtzYalyzaAEK1ClQmhkQTaYEgyKGHPoqeRzIie2BVAChcXABvhwPnD9MZ3Hqx11UD6KxwVt7TUZDisVaG11wGR/1MXLOsnzuPSpbRtY83ZQ0YPGzpjYBfavjv9CeJBgrW7IY0dfcNpKAN6zbp1YfPDOrk0yk3nfxvwit5ZJ6lbxC9aOBTEzVRdxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DMP9bPCL5nTTgoLUY3uo+aa1KRAJ1xvfzFtU1T/xhHw=;
+ b=V+XYpFCjumZ8Wx0+ieWQA3yXlJuBqdgQACofAj6Jpng5TfLLuNtRAcNVk/TUYs76ABe5ClLO7/05dUELY27iCqSRFW/sKob0UiBqS8P5rrl6Z1MeV7cqZ98E7KkdlVTAxxbZUenfoOWkthHBMdQBSfNJMssDIgIVp+2ckZGz89pmIXTbFFo792NMbnn7RhkpW1SqEBp+dS5EbkNGtXnAPF0VjVul25cBpIbBdsJ3hZDTXvMT3rEVbtlOyheiH6i7axAMBEEfyDoI2ukzqKjxDexGbF58VCtvDUU3S8G7fjKeyMNUVmFR7qIiJG/bI86F5TNwMUc3FOax9XOL/rH3KQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=caltech.edu; dmarc=pass action=none header.from=caltech.edu;
+ dkim=pass header.d=caltech.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=caltech.edu;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DMP9bPCL5nTTgoLUY3uo+aa1KRAJ1xvfzFtU1T/xhHw=;
+ b=3drNLyS+PaClfJyolstD0f6HC3T0S2vOFF+HS83YQs0MH4Dt5bDXrjpiACH17us4WJYiWMGpSH+28aooQCo8LZLInQySuNlkIPdLtayiRO2WPT+p07FdFRDlSJ/gDipxw8SFM3d3kazVrzyOzXR9Y+I3TW5AbwWjOSAPIZXODVhNufuBjwWGbvtRVCgyPLZ8H6TXxbon436PLgiRJkwpkTaSygNsWXk7w4KOM8MMOvDJ/B4evlZ2g8DkGHfjg9RVs6yiP5dvd5u+A3ecJrhM2WcsyIky8WB3odTgB5SKk5+sy8sb2StZmgokjKUBcpI65gf7DB7e1Sim8WJT/exh4g==
+Received: from BYAPR03MB4678.namprd03.prod.outlook.com (2603:10b6:a03:137::21)
+ by SJ0PR03MB5776.namprd03.prod.outlook.com (2603:10b6:a03:2dd::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25; Thu, 25 Mar
+ 2021 16:07:51 +0000
+Received: from BYAPR03MB4678.namprd03.prod.outlook.com
+ ([fe80::9566:7000:7fe9:81e7]) by BYAPR03MB4678.namprd03.prod.outlook.com
+ ([fe80::9566:7000:7fe9:81e7%3]) with mapi id 15.20.3955.027; Thu, 25 Mar 2021
+ 16:07:51 +0000
+From: "Minutolo, Lorenzo" <minutolo@caltech.edu>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] USRP N300 - Set RX bandwidth
+Thread-Index: AdcLkoPMyshVz7qTRM2zUvgiqmspogAEf1YABXsgI+U=
+Date: Thu, 25 Mar 2021 16:07:51 +0000
+Message-ID: <EC0B52AD-0BB9-4B72-99E7-4CC533B15A78@caltech.edu>
+References: 
+ <AM0P193MB0308B15687129D5E933F0135BD9E9@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM>,<6037ED20.4080902@gmail.com>
+In-Reply-To: <6037ED20.4080902@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=caltech.edu;
+x-originating-ip: [2600:6c50:407f:4985:e4bb:ccfc:69a5:46a7]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1f0548ff-d027-48bd-07df-08d8efa8244f
+x-ms-traffictypediagnostic: SJ0PR03MB5776:
+x-microsoft-antispam-prvs: 
+ <SJ0PR03MB577685133AC61696F38DF8BFD3629@SJ0PR03MB5776.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ JloAOhcpRGqmB0x7BI0cLgEaHKxHVaeCgMxC8BRJhjmacVRXBqc5jj8N/JRNNwWSjGOhLw/Fmdc9qPWgb7dTTazxRodNBaCXRLmnUMMyLvR7JbfrOZAQrgpqwwtUB+VybuP4TZ6kOImM6VcFSw4bnWspaH23k1MyicDkcDh563Hlg9ntCjwmP8VRDiIxwuriYXTJDnhRx0M7GaETJoQtYd6QS4C9OPxTzSpG8drGL2YOqYEvof1Ol9PdaUqoxiKEbSvl/k7RZ/1tMWmJlUUVxKfTtIF7nQTyF11K2tD/AvB46rJFJ9mudeYHSoeGK5nWLYcB7zrnqoAocDWHZ9MG6BmBdvMFZD7NhmJVGJ2S783xn1EUc9MhJCjLO8mf5w03kdNdMj3AjajCHfFz3nbDEIrm3QDWmMpPPxGerjfAQLSMFmmP2KbbRyfOTiRAuKP35j8QJEjFf1DUSU/FoSla4qDS8WaDOp4w/FCoZkLQsmmVUbvayjlgcb6fbzPc+8nngdqucgs5+YuDIctcdW5l7ehDS/fapOVhWfTCforz1rG/BQ37J3tpt2RzLwWF/YXEP9rZ3hejV3GpR0QKG4SKBbAyL0OwBMkMfTS/C6rBBC8BXNy+EoBpcmGKMwiyw9BrgRnyzTSJtCjoRDyCG5mLxkDcXVRRTkE4wARoxHEDv6gZlKx2Ob1abg7kjY+4vqFpBkSgztUv+lpqkzLm7fPUqaJA8bQuyqkdqs0IxVQou62iz5Nq0ujdHwhZKWw2CvTeThvRbO0XchSxqHaaP/OENA==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB4678.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(39860400002)(366004)(376002)(396003)(346002)(66946007)(2906002)(8676002)(6916009)(75432002)(5660300002)(76116006)(36756003)(53546011)(86362001)(8936002)(316002)(786003)(83380400001)(6506007)(19627235002)(66446008)(2616005)(38100700001)(478600001)(66476007)(66556008)(6512007)(6486002)(966005)(33656002)(71200400001)(64756008)(4326008)(186003)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 
+ =?utf-8?B?V3l6ZGdXUDcxKzBjRjh2TW45Y1J2a3V4ZWRqSXV2OVpqS1hXVEQrMlFmbGlS?=
+ =?utf-8?B?ZXlRdlBFZHIvb2tJTmcxZnhIdEwzU254TFRvY3YyeG9Tc1hjaXo5L0g3TnFV?=
+ =?utf-8?B?Zk5PZUwrMEhkMmtxOVVDMjNDeGUrMjErL256dExYbFJSNktCWUx3eU80QVZw?=
+ =?utf-8?B?d1BLZEEvYjdNdG00ZVBxY2I5MGlwYjJSN214Ti9EWVlVMlJMUGJYM3BaSHJP?=
+ =?utf-8?B?LytYS24rQjEyMVprZlRzU2VDM2YrUk01SFBQOUg4dHlXOU56TW95bFZFdXVE?=
+ =?utf-8?B?MnJrL1FqL3g4THNGQmljanY0SzNxOVMyaWRDTm5ZL0JCYUw5T3FzUEtDcEtU?=
+ =?utf-8?B?ZE5WK09SeTFmNUN2Rmh0QkxRb05UN0h2WnZUSm90aTBOUnVUV0ZYVzM2K05w?=
+ =?utf-8?B?ZFpWbGk3aXhaZ2YwT3cxVE5XY3p5K1dwcmxGTVFOdWt0c2QzMHJzNUNmUVpo?=
+ =?utf-8?B?NlpCQ2RFalpGcUxaOHdDdDQ1WkFjNzNhc3BUOUxVRjYvZ2o5TkRiWG5tYW1j?=
+ =?utf-8?B?R2c0dVBSR1VleVVUMEJNV2VEN1NwQmpQOVZOTXJ0UENpVitrV2FnSHJQa1No?=
+ =?utf-8?B?bVFUZjBYTHBnQ2VvMi9GS0xyZ1Q3WHIxUzBBTk9yUzA5ZWtrSHVoRUpGTXI2?=
+ =?utf-8?B?SE1IalZGUE8yQkNCaHd1MkJXSkZjdzZMMXhYNU10N2VBTmF3RXl1N3V6V25p?=
+ =?utf-8?B?WnEvNFA4NTNJU1EvbGdyN25wR2pnVmo2MmRNNE94eXlhQ2FheHhoNmdOeC9w?=
+ =?utf-8?B?T01yTGw0em5FRzBuTVNremJZellCS0l4aGJaVVpSRHA3S1RnNFVvNzdDYmd2?=
+ =?utf-8?B?Sk1XQVJPUzNGU09hUk9tT2NEemhpcnZ3cHplVkI3UTZFVDk2eWJmdFplT0lv?=
+ =?utf-8?B?UzNZMDkxY1ZZTytXVGp3L09ZMUpIVTNOVFNQQzZsNzlPSjlDdmpsTXZEYXNC?=
+ =?utf-8?B?QXo2VDYzR2pPYlpVNk9oUUQvbDN3NEQwbWF4aG9ac2ZjT2J2YytsRk1zbDVP?=
+ =?utf-8?B?TWJWWS9GcWFyMFgyTE1aSFlNZHh6N05FR0JQcHgwQ0ViWFhROVJ2VFdUVXJv?=
+ =?utf-8?B?NnpOc2VaOUN4c1BobHYxRndZeTdWSTZ2U2d0bkxEc01YUzR5OVlLUWY3WVFR?=
+ =?utf-8?B?d1p6dXY2T2UzdEVJSE92R3BuZ2l2cEZpOFUrc3JKeTlGR0dPQXhlQjdhakVk?=
+ =?utf-8?B?K3FXOWNiZDBLcExyc2hPMjh0dktJL095N2pZc2dCeWRWVzBac1J6dHJPU1hm?=
+ =?utf-8?B?Rm1tRytEM2p0U1dLUGNEckNwQVk1bXJBVHBvYjNhdUZaVFVVRjAvbzJtbGFk?=
+ =?utf-8?B?WWF3TnBKcWFlUE5rYVBSdnpHVkFkcFpMTUsydDB0elNSN3BtK2k5eFROU05n?=
+ =?utf-8?B?Q3M1bTEwTWtWUGZnTWVuVHI5K2RrVjc2aHhPeit1MFlFaEk3cXgzSG1XaTBZ?=
+ =?utf-8?B?WmkwZngvNXpSa2Q0aGJTUlNiTFFXemJBRlFVUzB6ck5MK01TZU5uWUI5bmhX?=
+ =?utf-8?B?dGlrT0hnRHZkekhUVGhob2VsNXdDVFZWSjBHbW5DK0tYTWZ3WEk3ZlhIeXZL?=
+ =?utf-8?B?ZlNScGVRbGM5MmxHQkdzeWhRZkZia1cwYWtMeWtuTVpZbVUvTW10djJJS0xK?=
+ =?utf-8?B?TnVEbnlSRjVMbFNudDNWeXJZajUvYkV0YU1ldTdHTnh3b0pSanpubXd5VHpL?=
+ =?utf-8?B?MU1xV29KRytTek14NWlNdFNhMHBqQkZ1REpLNnZ6dytLWjZURWJKTTF1OUJX?=
+ =?utf-8?B?SE90ZEo1aUdEaDhHRzdkTG8reHVOL3RpSFBQM3REcUlGSU9PUy84eS83Z2g3?=
+ =?utf-8?B?eFZTaTVTYTVqemg5SWZzQy9pVzFXdm9kbU4xbFJkOEhmcENYYTZwaTVVWlJs?=
+ =?utf-8?Q?fgRj3YsU5D9vw?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <FUcaf1mlodlwRBWLsAbYL3Ch7jPE803adsIrofQPBA@lists.ettus.com> <CAL7q81sMYF641DVQ36POZCgLx58DNOwY8UCSfWyug9X9qem6GA@mail.gmail.com>
-In-Reply-To: <CAL7q81sMYF641DVQ36POZCgLx58DNOwY8UCSfWyug9X9qem6GA@mail.gmail.com>
-From: Julian Casallas <jcasallas2019@gmail.com>
-Date: Thu, 25 Mar 2021 11:21:20 -0400
-Message-ID: <CAFBYX1UWqZAVbC7RC3x3zNJ8buBfsfCVK4pf+1Sj5g=RGFGAxw@mail.gmail.com>
-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Message-ID-Hash: 2HN6FZYKEDEROVR7R4HKPIJ2JKQQ3ZNS
-X-Message-ID-Hash: 2HN6FZYKEDEROVR7R4HKPIJ2JKQQ3ZNS
-X-MailFrom: jcasallas2019@gmail.com
+X-OriginatorOrg: caltech.edu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB4678.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f0548ff-d027-48bd-07df-08d8efa8244f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Mar 2021 16:07:51.5018
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: fd5be9d9-7b72-4df9-830e-b1f9cc5b44bd
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: rapeeT1mQOkNa2Fq5Zq6G3OHKbbxslwqNjuU6yJtOmC/u3RsqznEBq6v/e2RLnG2HxRxcQRXh2xEYKUBLqQWAg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR03MB5776
+Message-ID-Hash: FE3UYCXLSIIB2EIYA5QSPZF27XHQSCGH
+X-Message-ID-Hash: FE3UYCXLSIIB2EIYA5QSPZF27XHQSCGH
+X-MailFrom: minutolo@caltech.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
+CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Adding DmaFIFO block like FFT block in UHD 4 guide.
+Subject: [USRP-users] Re: USRP N300 - Set RX bandwidth
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2HN6FZYKEDEROVR7R4HKPIJ2JKQQ3ZNS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FE3UYCXLSIIB2EIYA5QSPZF27XHQSCGH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7215710920459417918=="
+Content-Type: multipart/mixed; boundary="===============3470808857633539628=="
 
---===============7215710920459417918==
-Content-Type: multipart/alternative; boundary="00000000000064494505be5df82c"
+--===============3470808857633539628==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_EC0B52AD0BB94B7299E74CC533B15A78caltechedu_"
 
---00000000000064494505be5df82c
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_EC0B52AD0BB94B7299E74CC533B15A78caltechedu_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Jonathon,
+VGhpcyBpcyB2ZXJ5IGludGVyZXN0aW5nLiBJIGFtIHRyeWluZyB0byBzZXQgdGhlIHJ4IGJhbmR3
+aWR0aCBvbiBhIE4zMjEgZm9yIGEgd2hpbGUgbm93Lg0KDQpJcyB0aGVyZSBhbnkgd29ya2Fyb3Vu
+ZD8gT3VyIGJhbmR3aWR0aCBzZWVtcyBzdHVjayBhdCA4TUh6IHdoaWxlIG91ciBhcHBsaWNhdGlv
+biBuZWVkcyBtdWNoIG1vcmUuDQoNClRoYW5rcw0KDQpMb3JlbnpvDQoNCk9uIEZlYiAyNSwgMjAy
+MSwgYXQgMTA6MzIgQU0sIE1hcmN1cyBELiBMZWVjaCB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOg0KDQrvu78NCk9uIDAyLzI1LzIwMjEgMTE6MzAgQU0s
+IFB1ZXJ0YXMgQmxhbmNvLCBSb2JlcnRvIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0KSGVsbG8sDQoN
+Ckkgbm90aWNlZCB0aGF0IFJYIGJhbmR3aWR0aCBpcyBmaXhlZCB0byAxMDBNSHosIGFsdGhvdWdo
+IHRoZSBBRDkzNzEgZGF0YXNoZWV0IHNwZWNpZmllcyBhbiBhZGp1c3RhYmxlIHJhbmdlIG9mIDgg
+dG8gMTAwTUh6LiBXaHkgaXMgdGhpcyBwYXJhbWV0ZXIgZml4ZWQ/DQoNCmRvdWJsZSBtYWduZXNp
+dW1fcmFkaW9fY29udHJvbF9pbXBsOjpzZXRfcnhfYmFuZHdpZHRoKA0KICAgIGNvbnN0IGRvdWJs
+ZSBiYW5kd2lkdGgsIGNvbnN0IHNpemVfdCBjaGFuKQ0Kew0KICAgIHN0ZDo6bG9ja19ndWFyZDxz
+dGQ6OnJlY3Vyc2l2ZV9tdXRleD4gbChfc2V0X2xvY2spOw0KICAgIF9hZDkzNzEtPnNldF9iYW5k
+d2lkdGgoYmFuZHdpZHRoLCBjaGFuLCBSWF9ESVJFQ1RJT04pOw0KICAgIC8vIEZJWE1FOiBzZXR0
+aW5nIGFuYWxvZyBiYW5kd2lkdGggb24gQUQ5MzcxIHRha2Ugbm8gZWZmZWN0Lg0KICAgIC8vIFJl
+bW92ZSB0aGlzIHdhcm5pbmcgd2hlbiBBREkgY2FuIGNvbmZpcm0gdGhhdCBpdCB3b3Jrcy4NCiAg
+ICBSRk5PQ19MT0dfV0FSTklORygic2V0X3J4X2JhbmR3aWR0aCB0YWtlIG5vIGVmZmVjdCBvbiBB
+RDkzNzEuICINCiAgICAgICAgICAgICAgICAgICAgICJEZWZhdWx0IGFuYWxvZyBiYW5kd2lkdGgg
+aXMgMTAwTUh6Iik7DQogICAgcmV0dXJuIEFEOTM3MV9SWF9NQVhfQkFORFdJRFRIOw0KfQ0KDQpC
+ZXN0IHJlZ2FyZHMsDQpSb2JlcnRvDQoNCkJlY2F1c2UgZGVzcGl0ZSB3aGF0IHRoZSAqZGF0YXNo
+ZWV0KiBmb3IgdGhlIEFEOTM3MSBzYXlzLCB0aGUgcHVibGlzaGVkIGludGVyZmFjZSB0byBjaGFu
+Z2UgdGhlIGFuYWxvZyBSWCBiYW5kd2lkdGggaGFzIG5vIGVmZmVjdC4NCg0KDQpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5n
+IGxpc3QNClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpodHRwOi8vbGlzdHMuZXR0dXMuY29t
+L21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20NCg==
 
-Thank you for replying back, I have watched both videos RFNoC 3 and 4 and
-based on them along with the UHD 4 guide, I noticed that the DmaFIFO was
-used in some cases.
+--_000_EC0B52AD0BB94B7299E74CC533B15A78caltechedu_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-For instance, based on the video RFNoC 3,  in the  fosphor demo with 100M
-Rate, DmaFIFO and RFNoC FIFO blocks were used, also in your gain example
-you used RFNoC: FIFO block.
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGRpcj0iYXV0byI+DQpU
+aGlzIGlzIHZlcnkgaW50ZXJlc3RpbmcuIEkgYW0gdHJ5aW5nIHRvIHNldCB0aGUgcnggYmFuZHdp
+ZHRoIG9uIGEgTjMyMSBmb3IgYSB3aGlsZSBub3cuDQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5J
+cyB0aGVyZSBhbnkgd29ya2Fyb3VuZD8gT3VyIGJhbmR3aWR0aCBzZWVtcyBzdHVjayBhdCA4TUh6
+IHdoaWxlIG91ciBhcHBsaWNhdGlvbiBuZWVkcyBtdWNoIG1vcmUuJm5ic3A7PC9kaXY+DQo8ZGl2
+Pjxicj4NCjwvZGl2Pg0KPGRpdj5UaGFua3M8YnI+DQo8YnI+DQo8ZGl2IGRpcj0ibHRyIj5Mb3Jl
+bnpvPC9kaXY+DQo8ZGl2IGRpcj0ibHRyIj48YnI+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj5P
+biBGZWIgMjUsIDIwMjEsIGF0IDEwOjMyIEFNLCBNYXJjdXMgRC4gTGVlY2ggdmlhIFVTUlAtdXNl
+cnMgJmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0OyB3cm90ZTo8YnI+DQo8YnI+DQo8
+L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdiBkaXI9
+Imx0ciI+77u/DQo8ZGl2IGNsYXNzPSJtb3otY2l0ZS1wcmVmaXgiPk9uIDAyLzI1LzIwMjEgMTE6
+MzAgQU0sIFB1ZXJ0YXMgQmxhbmNvLCBSb2JlcnRvIHZpYSBVU1JQLXVzZXJzIHdyb3RlOjxicj4N
+CjwvZGl2Pg0KPGJsb2NrcXVvdGUgY2l0ZT0ibWlkOkFNMFAxOTNNQjAzMDhCMTU2ODcxMjlENUU5
+MzNGMDEzNUJEOUU5QEFNMFAxOTNNQjAzMDguRVVSUDE5My5QUk9ELk9VVExPT0suQ09NIiB0eXBl
+PSJjaXRlIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQg
+MTUgKGZpbHRlcmVkDQogICAgICAgIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVm
+aW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJ
+cGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5
+OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVm
+aW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7
+bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsN
+Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgltc28tZmFyZWFzdC1sYW5ndWFn
+ZTpFTi1VUzt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0
+eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2
+aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5
+OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5F
+c3RpbG9Db3JyZW8xNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0No
+cERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNh
+bGlicmkiLHNhbnMtc2VyaWY7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2Ug
+V29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDMu
+MGNtIDcwLjg1cHQgMy4wY207fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
+MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
+cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
+aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
+YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
+aWZdLS0+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iRU4tVVMiPkhlbGxvLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+SSBub3RpY2VkIHRo
+YXQgUlggYmFuZHdpZHRoIGlzIGZpeGVkIHRvIDEwME1IeiwgYWx0aG91Z2ggdGhlIEFEOTM3MSBk
+YXRhc2hlZXQgc3BlY2lmaWVzIGFuIGFkanVzdGFibGUgcmFuZ2Ugb2YgOCB0byAxMDBNSHouIFdo
+eSBpcyB0aGlzIHBhcmFtZXRlciBmaXhlZD88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPmRvdWJsZSBtYWdu
+ZXNpdW1fcmFkaW9fY29udHJvbF9pbXBsOjpzZXRfcnhfYmFuZHdpZHRoKDxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsm
+bmJzcDsmbmJzcDsgY29uc3QgZG91YmxlIGJhbmR3aWR0aCwgY29uc3Qgc2l6ZV90IGNoYW4pPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
+VVMiPns8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBs
+YW5nPSJFTi1VUyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IHN0ZDo6bG9ja19ndWFyZCZsdDtzdGQ6OnJl
+Y3Vyc2l2ZV9tdXRleCZndDsgbChfc2V0X2xvY2spOzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsg
+X2FkOTM3MS0mZ3Q7c2V0X2JhbmR3aWR0aChiYW5kd2lkdGgsIGNoYW4sIFJYX0RJUkVDVElPTik7
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0i
+RU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNwOyA8c3BhbiBzdHlsZT0iYmFja2dyb3VuZDp5ZWxsb3c7
+bXNvLWhpZ2hsaWdodDp5ZWxsb3ciPg0KLy8gRklYTUU6IHNldHRpbmcgYW5hbG9nIGJhbmR3aWR0
+aCBvbiBBRDkzNzEgdGFrZSBubyBlZmZlY3QuPG86cD48L286cD48L3NwYW4+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kOnllbGxvdzttc28t
+aGlnaGxpZ2h0OnllbGxvdyIgbGFuZz0iRU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNwOyAvLyBSZW1v
+dmUgdGhpcyB3YXJuaW5nIHdoZW4gQURJIGNhbiBjb25maXJtIHRoYXQgaXQgd29ya3MuPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImJhY2tn
+cm91bmQ6eWVsbG93O21zby1oaWdobGlnaHQ6eWVsbG93IiBsYW5nPSJFTi1VUyI+Jm5ic3A7Jm5i
+c3A7Jm5ic3A7IFJGTk9DX0xPR19XQVJOSU5HKCZxdW90O3NldF9yeF9iYW5kd2lkdGggdGFrZSBu
+byBlZmZlY3Qgb24gQUQ5MzcxLiAmcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iYmFja2dyb3VuZDp5ZWxsb3c7bXNvLWhpZ2hsaWdo
+dDp5ZWxsb3ciIGxhbmc9IkVOLVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmcXVvdDtEZWZhdWx0IGFuYWxvZyBi
+YW5kd2lkdGggaXMgMTAwTUh6JnF1b3Q7KTs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
+Ij4mbmJzcDsmbmJzcDsmbmJzcDsgcmV0dXJuIEFEOTM3MV9SWF9NQVhfQkFORFdJRFRIOzxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
+Ij59PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
+Zz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5CZXN0IHJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlJvYmVydG88bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8YnI+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCkJlY2F1c2UgZGVz
+cGl0ZSB3aGF0IHRoZSAqZGF0YXNoZWV0KiBmb3IgdGhlIEFEOTM3MSBzYXlzLCB0aGUgcHVibGlz
+aGVkIGludGVyZmFjZSB0byBjaGFuZ2UgdGhlIGFuYWxvZyBSWCBiYW5kd2lkdGggaGFzIG5vIGVm
+ZmVjdC48YnI+DQo8YnI+DQo8YnI+DQo8c3Bhbj5fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXzwvc3Bhbj48YnI+DQo8c3Bhbj5VU1JQLXVzZXJzIG1haWxpbmcg
+bGlzdDwvc3Bhbj48YnI+DQo8c3Bhbj5VU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvc3Bhbj48
+YnI+DQo8c3Bhbj5odHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
+c2Vyc19saXN0cy5ldHR1cy5jb208L3NwYW4+PGJyPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8
+L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-In our case, using UHD 4 with ubuntu 20.04 when we run the benchmark, based
-on the FPGA default image (there is no DmaFIFO), we noticed that there are
-several U, D and Os. So I decided to tune the system following the USRP
-tips and tricks  guide, the system improved but still a handful of Us in 60
-seconds 100Msps both channels in x310.
+--_000_EC0B52AD0BB94B7299E74CC533B15A78caltechedu_--
 
-On the other hand, last year I used the same x310 for 5G base station
-with "*ubuntu
-16.04 [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800;
-UHD_3.15.0.HEAD-0-gaea0e2de*
-
-*[00:00:00.000002] Creating the usrp device ..*.."    and tuned based on
-the USRP tricks and tips guide. I could run the benchmark for 600 seconds
-100MSPS 2 channels with no issues using the default image which for that
-UHD version it had DmaFIFO.
-
-
-For our project we want to achieve 100Msps in a loopback mode with the host
-in the middle but we can not afford losing data.
-
-What do you think would be our best approach, going back to 16.04 OR keep
-using the 20.04 and add the DmaFIFO which might help when running the
-benchmark at 100MSPS loopback mode?
-
-
-We still need to add our own RFNoC block.
-
-
-Thanks again.
-
-JC
-
-On Thu, Mar 25, 2021 at 12:55 AM Jonathon Pendlum <
-jonathon.pendlum@ettus.com> wrote:
-
-> Hi Julian,
->
-> The DmaFIFO block, which I believe is now called axi_ram_fifo in RFNoC 4,
-> does not have GNU Radio support. There is an effort to add support for
-> several blocks missing from GNU Radio, but I'm not sure if axi_ram_fifo
-> will be included in that effort. If it were available, can you share how
-> you were going to use it?
->
-> Jonathon
->
-> On Fri, Mar 19, 2021 at 4:48 PM <jcasallas2019@gmail.com> wrote:
->
->> hi all,
->>
->> I am trying to add DmaFIFO block following UHD 4 Getting started guide i=
-n
->> the same way the FFT block was added, but when looking into gr-ettus/grc=
-/
->> folder, I did not find any ettus_rfnoc_dmaFIFO yaml file like the rest o=
-f
->> default blocks..
->>
->> This is what I found in /usr/local/share/=E2=80=A6 and did not see any r=
-fnoc
->> DmaFIFO block.
->>
->>
->> -rw-r--r-- 1 root root 166 Mar 2 14:58 ettus_fpga_clk.domain.yml
->>
->> -rw-r--r-- 1 root root 171 Mar 2 14:58 ettus_fpga_ctrl.domain.yml
->>
->> -rw-r--r-- 1 root root 168 Mar 2 14:58 ettus_fpga_data.domain.yml
->>
->> -rw-r--r-- 1 root root 618 Mar 2 14:58 ettus_fpga_ddc.block.yml
->>
->> -rw-r--r-- 1 root root 617 Mar 2 14:58 ettus_fpga_duc.block.yml
->>
->> -rw-r--r-- 1 root root 131 Mar 2 14:58 ettus_fpga_fft.block.yml
->>
->> -rw-r--r-- 1 root root 200 Mar 2 14:58 ettus_fpga_io_ctrl_port.domain.ym=
-l
->>
->> -rw-r--r-- 1 root root 181 Mar 2 14:58 ettus_fpga_io_radio.domain.yml
->>
->> -rw-r--r-- 1 root root 205 Mar 2 14:58
->> ettus_fpga_io_time_keeper.domain.yml
->>
->> -rw-r--r-- 1 root root 820 Mar 2 14:58 ettus_fpga_radio.block.yml
->>
->> -rw-r--r-- 1 root root 811 Mar 2 14:58 ettus_fpga_sep.block.yml
->>
->> -rw-r--r-- 1 root root 663 Mar 2 14:58 ettus_fpga_x310.block.yml
->>
->> -rw-r--r-- 1 root root 1056 Mar 2 14:58 ettus_rfnoc_ddc.block.yml
->>
->> -rw-r--r-- 1 root root 1022 Mar 9 13:36 ettus_rfnoc_duc.block.yml
->>
->> -rw-r--r-- 1 root root 2174 Mar 2 14:58 ettus_rfnoc_fft.block.yml
->>
->> -rw-r--r-- 1 root root 3990 Mar 2 14:58 ettus_rfnoc_fosphor.block.yml
->>
->> -rw-r--r-- 1 root root 4842 Mar 2 14:58 ettus_rfnoc_graph.block.yml
->>
->> -rw-r--r-- 1 root root 1950 Mar 2 14:58 ettus_rfnoc_rx_radio.block.yml
->>
->> -rw-r--r-- 1 root root 1266 Mar 2 14:58 ettus_rfnoc_rx_streamer.block.ym=
-l
->>
->> -rw-r--r-- 1 root root 1580 Mar 2 14:58 ettus_rfnoc_tx_radio.block.yml
->>
->> -rw-r--r-- 1 root root 1187 Mar 2 14:58 ettus_rfnoc_tx_streamer.block.ym=
-l
->>
->> -rw-r--r-- 1 root root 675 Mar 2 14:58 ettus.tree.yml
->>
->>
->> I wonder if I am missing a step to make the DmaFIFO works with gnuradio
->> like the FFT block example.
->>
->>
->> Thanks
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
->
-
---00000000000064494505be5df82c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi=C2=A0Jonathon,<div><br></div><div>Thank you for replyin=
-g back, I have watched both videos RFNoC 3 and 4 and based on them along wi=
-th the UHD 4 guide, I noticed that the DmaFIFO was used in some cases.=C2=
-=A0</div><div><br></div><div>For instance, based on the video RFNoC 3,=C2=
-=A0 in the=C2=A0 fosphor demo with 100M Rate, DmaFIFO and RFNoC FIFO blocks=
- were used, also in your gain example you used RFNoC: FIFO block.=C2=A0=C2=
-=A0</div><div><br></div><div>In our case, using UHD 4 with ubuntu 20.04 whe=
-n we run the benchmark, based on the FPGA default=C2=A0image (there is no D=
-maFIFO), we noticed that there are several U, D and Os. So I decided to tun=
-e the system following the USRP tips and tricks=C2=A0 guide, the system imp=
-roved but still a handful of Us in 60 seconds 100Msps both channels in x310=
-.=C2=A0</div><div><br></div><div>On the other hand, last year I used the sa=
-me x310 for 5G base station with &quot;<u><i>ubuntu 16.04=C2=A0<span style=
-=3D"font-family:Calibri;font-size:11pt">[INFO] [UHD] linux;
-GNU C++ version 5.4.0 20160609; Boost_105800; UHD_3.15.0.HEAD-0-gaea0e2de</=
-span></i></u></div>
-
-<p style=3D"margin:0in;font-size:11pt"><span style=3D"font-family:Calibri">=
-<u><i>[00:00:00.000002]
-Creating the usrp device ..</i></u>..&quot;=C2=A0 =C2=A0 </span><font face=
-=3D"arial, sans-serif">and tuned based on the USRP tricks and tips guide. I=
- could run the benchmark for 600 seconds 100MSPS 2 channels with no issues =
-using the default=C2=A0image which for that UHD version it had DmaFIFO.=C2=
-=A0</font></p><p style=3D"margin:0in;font-size:11pt"><font face=3D"arial, s=
-ans-serif"><br></font></p><p style=3D"margin:0in;font-size:11pt"><font face=
-=3D"arial, sans-serif">For our project we want to achieve 100Msps in a loop=
-back mode with the host in the middle but we can not afford losing data.=C2=
-=A0</font></p><p style=3D"margin:0in;font-size:11pt"><font face=3D"arial, s=
-ans-serif">What do you think would be our best approach, g</font><span styl=
-e=3D"font-family:arial,sans-serif;font-size:11pt">oing back to 16.04 OR kee=
-p using the 20.04 and add the DmaFIFO which might help when running the ben=
-chmark at 100MSPS loopback mode?</span></p><p style=3D"margin:0in;font-size=
-:11pt"><span style=3D"font-family:arial,sans-serif;font-size:11pt"><br></sp=
-an></p><p style=3D"margin:0in;font-size:11pt"><span style=3D"font-family:ar=
-ial,sans-serif;font-size:11pt">We still need to add our own RFNoC block.=C2=
-=A0</span></p><p style=3D"margin:0in;font-size:11pt"><span style=3D"font-fa=
-mily:arial,sans-serif;font-size:11pt"><br></span></p><p style=3D"margin:0in=
-;font-size:11pt"><span style=3D"font-family:arial,sans-serif;font-size:11pt=
-">Thanks again.</span></p><p style=3D"margin:0in;font-size:11pt"><span styl=
-e=3D"font-family:arial,sans-serif;font-size:11pt">JC</span></p></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Mar =
-25, 2021 at 12:55 AM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlu=
-m@ettus.com" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">H=
-i Julian,<div><br></div><div>The DmaFIFO block, which I believe is now call=
-ed axi_ram_fifo in RFNoC 4, does not have GNU Radio support. There is an ef=
-fort to add support for several blocks missing from GNU Radio, but I&#39;m =
-not sure if axi_ram_fifo will be included in that effort. If it were availa=
-ble, can you share how you were going to use it?</div><div><br></div><div>J=
-onathon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
-"gmail_attr">On Fri, Mar 19, 2021 at 4:48 PM &lt;<a href=3D"mailto:jcasalla=
-s2019@gmail.com" target=3D"_blank">jcasallas2019@gmail.com</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>hi all,</p><p>=
-I am trying to add DmaFIFO block following UHD 4 Getting started guide in t=
-he same way the FFT block was added, but when looking into gr-ettus/grc/ fo=
-lder, I did not find any ettus_rfnoc_dmaFIFO  yaml  file like the rest of d=
-efault blocks..</p><p>This is what I found in /usr/local/share/=E2=80=A6 an=
-d did not see any rfnoc DmaFIFO block. </p><p><br></p><p> <code>-rw-r--r-- =
-1 root root    166 Mar  2 14:58 ettus_fpga_clk.domain.yml</code></p><p><cod=
-e>-rw-r--r-- 1 root root    171 Mar  2 14:58 ettus_fpga_ctrl.domain.yml</co=
-de></p><p><code>-rw-r--r-- 1 root root    168 Mar  2 14:58 ettus_fpga_data.=
-domain.yml</code></p><p><code>-rw-r--r-- 1 root root    618 Mar  2 14:58 et=
-tus_fpga_ddc.block.yml</code></p><p><code>-rw-r--r-- 1 root root    617 Mar=
-  2 14:58 ettus_fpga_duc.block.yml</code></p><p><code>-rw-r--r-- 1 root roo=
-t    131 Mar  2 14:58 ettus_fpga_fft.block.yml</code></p><p><code>-rw-r--r-=
-- 1 root root    200 Mar  2 14:58 ettus_fpga_io_ctrl_port.domain.yml</code>=
-</p><p><code>-rw-r--r-- 1 root root    181 Mar  2 14:58 ettus_fpga_io_radio=
-.domain.yml</code></p><p><code>-rw-r--r-- 1 root root    205 Mar  2 14:58 e=
-ttus_fpga_io_time_keeper.domain.yml</code></p><p><code>-rw-r--r-- 1 root ro=
-ot    820 Mar  2 14:58 ettus_fpga_radio.block.yml</code></p><p><code>-rw-r-=
--r-- 1 root root    811 Mar  2 14:58 ettus_fpga_sep.block.yml</code></p><p>=
-<code>-rw-r--r-- 1 root root    663 Mar  2 14:58 ettus_fpga_x310.block.yml<=
-/code></p><p><code>-rw-r--r-- 1 root root   1056 Mar  2 14:58 ettus_rfnoc_d=
-dc.block.yml</code></p><p><code>-rw-r--r-- 1 root root   1022 Mar  9 13:36 =
-ettus_rfnoc_duc.block.yml</code></p><p><code>-rw-r--r-- 1 root root   2174 =
-Mar  2 14:58 ettus_rfnoc_fft.block.yml</code></p><p><code>-rw-r--r-- 1 root=
- root   3990 Mar  2 14:58 ettus_rfnoc_fosphor.block.yml</code></p><p><code>=
--rw-r--r-- 1 root root   4842 Mar  2 14:58 ettus_rfnoc_graph.block.yml</cod=
-e></p><p><code>-rw-r--r-- 1 root root   1950 Mar  2 14:58 ettus_rfnoc_rx_ra=
-dio.block.yml</code></p><p><code>-rw-r--r-- 1 root root   1266 Mar  2 14:58=
- ettus_rfnoc_rx_streamer.block.yml</code></p><p><code>-rw-r--r-- 1 root roo=
-t   1580 Mar  2 14:58 ettus_rfnoc_tx_radio.block.yml</code></p><p><code>-rw=
--r--r-- 1 root root   1187 Mar  2 14:58 ettus_rfnoc_tx_streamer.block.yml</=
-code></p><p><code>-rw-r--r-- 1 root root    675 Mar  2 14:58 ettus.tree.yml=
-</code></p><p><br></p><p>I wonder if I am missing a step to make the DmaFIF=
-O works with gnuradio like the FFT block example.</p><p><br></p><p>Thanks</=
-p>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-
---00000000000064494505be5df82c--
-
---===============7215710920459417918==
+--===============3470808857633539628==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -316,4 +266,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7215710920459417918==--
+--===============3470808857633539628==--
