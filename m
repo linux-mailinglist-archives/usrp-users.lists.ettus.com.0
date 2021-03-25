@@ -2,261 +2,287 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4A2C34966C
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 17:08:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB4D834967D
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 17:13:49 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 09122383F75
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 12:08:50 -0400 (EDT)
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2062.outbound.protection.outlook.com [40.107.244.62])
-	by mm2.emwd.com (Postfix) with ESMTPS id 207B8383869
-	for <USRP-users@lists.ettus.com>; Thu, 25 Mar 2021 12:07:53 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mDM0zFnEHGv9GAR66aNkj9wtam+lFDKE6qPuaY+/M341ohAJopVZ8fJ4nSdFHlxovBneBy/Tj8CJ/S8jeHFlzyzsEvjGMKx7Kt6nGI6rxG0s5fsBl6oXOBq5T8nLTutOvsJLhNnsS4P4eyYY8LfwBwbQV2uPk2TtzYalyzaAEK1ClQmhkQTaYEgyKGHPoqeRzIie2BVAChcXABvhwPnD9MZ3Hqx11UD6KxwVt7TUZDisVaG11wGR/1MXLOsnzuPSpbRtY83ZQ0YPGzpjYBfavjv9CeJBgrW7IY0dfcNpKAN6zbp1YfPDOrk0yk3nfxvwit5ZJ6lbxC9aOBTEzVRdxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DMP9bPCL5nTTgoLUY3uo+aa1KRAJ1xvfzFtU1T/xhHw=;
- b=V+XYpFCjumZ8Wx0+ieWQA3yXlJuBqdgQACofAj6Jpng5TfLLuNtRAcNVk/TUYs76ABe5ClLO7/05dUELY27iCqSRFW/sKob0UiBqS8P5rrl6Z1MeV7cqZ98E7KkdlVTAxxbZUenfoOWkthHBMdQBSfNJMssDIgIVp+2ckZGz89pmIXTbFFo792NMbnn7RhkpW1SqEBp+dS5EbkNGtXnAPF0VjVul25cBpIbBdsJ3hZDTXvMT3rEVbtlOyheiH6i7axAMBEEfyDoI2ukzqKjxDexGbF58VCtvDUU3S8G7fjKeyMNUVmFR7qIiJG/bI86F5TNwMUc3FOax9XOL/rH3KQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=caltech.edu; dmarc=pass action=none header.from=caltech.edu;
- dkim=pass header.d=caltech.edu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=caltech.edu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DMP9bPCL5nTTgoLUY3uo+aa1KRAJ1xvfzFtU1T/xhHw=;
- b=3drNLyS+PaClfJyolstD0f6HC3T0S2vOFF+HS83YQs0MH4Dt5bDXrjpiACH17us4WJYiWMGpSH+28aooQCo8LZLInQySuNlkIPdLtayiRO2WPT+p07FdFRDlSJ/gDipxw8SFM3d3kazVrzyOzXR9Y+I3TW5AbwWjOSAPIZXODVhNufuBjwWGbvtRVCgyPLZ8H6TXxbon436PLgiRJkwpkTaSygNsWXk7w4KOM8MMOvDJ/B4evlZ2g8DkGHfjg9RVs6yiP5dvd5u+A3ecJrhM2WcsyIky8WB3odTgB5SKk5+sy8sb2StZmgokjKUBcpI65gf7DB7e1Sim8WJT/exh4g==
-Received: from BYAPR03MB4678.namprd03.prod.outlook.com (2603:10b6:a03:137::21)
- by SJ0PR03MB5776.namprd03.prod.outlook.com (2603:10b6:a03:2dd::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25; Thu, 25 Mar
- 2021 16:07:51 +0000
-Received: from BYAPR03MB4678.namprd03.prod.outlook.com
- ([fe80::9566:7000:7fe9:81e7]) by BYAPR03MB4678.namprd03.prod.outlook.com
- ([fe80::9566:7000:7fe9:81e7%3]) with mapi id 15.20.3955.027; Thu, 25 Mar 2021
- 16:07:51 +0000
-From: "Minutolo, Lorenzo" <minutolo@caltech.edu>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] USRP N300 - Set RX bandwidth
-Thread-Index: AdcLkoPMyshVz7qTRM2zUvgiqmspogAEf1YABXsgI+U=
-Date: Thu, 25 Mar 2021 16:07:51 +0000
-Message-ID: <EC0B52AD-0BB9-4B72-99E7-4CC533B15A78@caltech.edu>
-References: 
- <AM0P193MB0308B15687129D5E933F0135BD9E9@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM>,<6037ED20.4080902@gmail.com>
-In-Reply-To: <6037ED20.4080902@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=caltech.edu;
-x-originating-ip: [2600:6c50:407f:4985:e4bb:ccfc:69a5:46a7]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1f0548ff-d027-48bd-07df-08d8efa8244f
-x-ms-traffictypediagnostic: SJ0PR03MB5776:
-x-microsoft-antispam-prvs: 
- <SJ0PR03MB577685133AC61696F38DF8BFD3629@SJ0PR03MB5776.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- JloAOhcpRGqmB0x7BI0cLgEaHKxHVaeCgMxC8BRJhjmacVRXBqc5jj8N/JRNNwWSjGOhLw/Fmdc9qPWgb7dTTazxRodNBaCXRLmnUMMyLvR7JbfrOZAQrgpqwwtUB+VybuP4TZ6kOImM6VcFSw4bnWspaH23k1MyicDkcDh563Hlg9ntCjwmP8VRDiIxwuriYXTJDnhRx0M7GaETJoQtYd6QS4C9OPxTzSpG8drGL2YOqYEvof1Ol9PdaUqoxiKEbSvl/k7RZ/1tMWmJlUUVxKfTtIF7nQTyF11K2tD/AvB46rJFJ9mudeYHSoeGK5nWLYcB7zrnqoAocDWHZ9MG6BmBdvMFZD7NhmJVGJ2S783xn1EUc9MhJCjLO8mf5w03kdNdMj3AjajCHfFz3nbDEIrm3QDWmMpPPxGerjfAQLSMFmmP2KbbRyfOTiRAuKP35j8QJEjFf1DUSU/FoSla4qDS8WaDOp4w/FCoZkLQsmmVUbvayjlgcb6fbzPc+8nngdqucgs5+YuDIctcdW5l7ehDS/fapOVhWfTCforz1rG/BQ37J3tpt2RzLwWF/YXEP9rZ3hejV3GpR0QKG4SKBbAyL0OwBMkMfTS/C6rBBC8BXNy+EoBpcmGKMwiyw9BrgRnyzTSJtCjoRDyCG5mLxkDcXVRRTkE4wARoxHEDv6gZlKx2Ob1abg7kjY+4vqFpBkSgztUv+lpqkzLm7fPUqaJA8bQuyqkdqs0IxVQou62iz5Nq0ujdHwhZKWw2CvTeThvRbO0XchSxqHaaP/OENA==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB4678.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(39860400002)(366004)(376002)(396003)(346002)(66946007)(2906002)(8676002)(6916009)(75432002)(5660300002)(76116006)(36756003)(53546011)(86362001)(8936002)(316002)(786003)(83380400001)(6506007)(19627235002)(66446008)(2616005)(38100700001)(478600001)(66476007)(66556008)(6512007)(6486002)(966005)(33656002)(71200400001)(64756008)(4326008)(186003)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 
- =?utf-8?B?V3l6ZGdXUDcxKzBjRjh2TW45Y1J2a3V4ZWRqSXV2OVpqS1hXVEQrMlFmbGlS?=
- =?utf-8?B?ZXlRdlBFZHIvb2tJTmcxZnhIdEwzU254TFRvY3YyeG9Tc1hjaXo5L0g3TnFV?=
- =?utf-8?B?Zk5PZUwrMEhkMmtxOVVDMjNDeGUrMjErL256dExYbFJSNktCWUx3eU80QVZw?=
- =?utf-8?B?d1BLZEEvYjdNdG00ZVBxY2I5MGlwYjJSN214Ti9EWVlVMlJMUGJYM3BaSHJP?=
- =?utf-8?B?LytYS24rQjEyMVprZlRzU2VDM2YrUk01SFBQOUg4dHlXOU56TW95bFZFdXVE?=
- =?utf-8?B?MnJrL1FqL3g4THNGQmljanY0SzNxOVMyaWRDTm5ZL0JCYUw5T3FzUEtDcEtU?=
- =?utf-8?B?ZE5WK09SeTFmNUN2Rmh0QkxRb05UN0h2WnZUSm90aTBOUnVUV0ZYVzM2K05w?=
- =?utf-8?B?ZFpWbGk3aXhaZ2YwT3cxVE5XY3p5K1dwcmxGTVFOdWt0c2QzMHJzNUNmUVpo?=
- =?utf-8?B?NlpCQ2RFalpGcUxaOHdDdDQ1WkFjNzNhc3BUOUxVRjYvZ2o5TkRiWG5tYW1j?=
- =?utf-8?B?R2c0dVBSR1VleVVUMEJNV2VEN1NwQmpQOVZOTXJ0UENpVitrV2FnSHJQa1No?=
- =?utf-8?B?bVFUZjBYTHBnQ2VvMi9GS0xyZ1Q3WHIxUzBBTk9yUzA5ZWtrSHVoRUpGTXI2?=
- =?utf-8?B?SE1IalZGUE8yQkNCaHd1MkJXSkZjdzZMMXhYNU10N2VBTmF3RXl1N3V6V25p?=
- =?utf-8?B?WnEvNFA4NTNJU1EvbGdyN25wR2pnVmo2MmRNNE94eXlhQ2FheHhoNmdOeC9w?=
- =?utf-8?B?T01yTGw0em5FRzBuTVNremJZellCS0l4aGJaVVpSRHA3S1RnNFVvNzdDYmd2?=
- =?utf-8?B?Sk1XQVJPUzNGU09hUk9tT2NEemhpcnZ3cHplVkI3UTZFVDk2eWJmdFplT0lv?=
- =?utf-8?B?UzNZMDkxY1ZZTytXVGp3L09ZMUpIVTNOVFNQQzZsNzlPSjlDdmpsTXZEYXNC?=
- =?utf-8?B?QXo2VDYzR2pPYlpVNk9oUUQvbDN3NEQwbWF4aG9ac2ZjT2J2YytsRk1zbDVP?=
- =?utf-8?B?TWJWWS9GcWFyMFgyTE1aSFlNZHh6N05FR0JQcHgwQ0ViWFhROVJ2VFdUVXJv?=
- =?utf-8?B?NnpOc2VaOUN4c1BobHYxRndZeTdWSTZ2U2d0bkxEc01YUzR5OVlLUWY3WVFR?=
- =?utf-8?B?d1p6dXY2T2UzdEVJSE92R3BuZ2l2cEZpOFUrc3JKeTlGR0dPQXhlQjdhakVk?=
- =?utf-8?B?K3FXOWNiZDBLcExyc2hPMjh0dktJL095N2pZc2dCeWRWVzBac1J6dHJPU1hm?=
- =?utf-8?B?Rm1tRytEM2p0U1dLUGNEckNwQVk1bXJBVHBvYjNhdUZaVFVVRjAvbzJtbGFk?=
- =?utf-8?B?WWF3TnBKcWFlUE5rYVBSdnpHVkFkcFpMTUsydDB0elNSN3BtK2k5eFROU05n?=
- =?utf-8?B?Q3M1bTEwTWtWUGZnTWVuVHI5K2RrVjc2aHhPeit1MFlFaEk3cXgzSG1XaTBZ?=
- =?utf-8?B?WmkwZngvNXpSa2Q0aGJTUlNiTFFXemJBRlFVUzB6ck5MK01TZU5uWUI5bmhX?=
- =?utf-8?B?dGlrT0hnRHZkekhUVGhob2VsNXdDVFZWSjBHbW5DK0tYTWZ3WEk3ZlhIeXZL?=
- =?utf-8?B?ZlNScGVRbGM5MmxHQkdzeWhRZkZia1cwYWtMeWtuTVpZbVUvTW10djJJS0xK?=
- =?utf-8?B?TnVEbnlSRjVMbFNudDNWeXJZajUvYkV0YU1ldTdHTnh3b0pSanpubXd5VHpL?=
- =?utf-8?B?MU1xV29KRytTek14NWlNdFNhMHBqQkZ1REpLNnZ6dytLWjZURWJKTTF1OUJX?=
- =?utf-8?B?SE90ZEo1aUdEaDhHRzdkTG8reHVOL3RpSFBQM3REcUlGSU9PUy84eS83Z2g3?=
- =?utf-8?B?eFZTaTVTYTVqemg5SWZzQy9pVzFXdm9kbU4xbFJkOEhmcENYYTZwaTVVWlJs?=
- =?utf-8?Q?fgRj3YsU5D9vw?=
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: caltech.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB4678.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f0548ff-d027-48bd-07df-08d8efa8244f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Mar 2021 16:07:51.5018
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: fd5be9d9-7b72-4df9-830e-b1f9cc5b44bd
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rapeeT1mQOkNa2Fq5Zq6G3OHKbbxslwqNjuU6yJtOmC/u3RsqznEBq6v/e2RLnG2HxRxcQRXh2xEYKUBLqQWAg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR03MB5776
-Message-ID-Hash: FE3UYCXLSIIB2EIYA5QSPZF27XHQSCGH
-X-Message-ID-Hash: FE3UYCXLSIIB2EIYA5QSPZF27XHQSCGH
-X-MailFrom: minutolo@caltech.edu
+	by mm2.emwd.com (Postfix) with ESMTP id 8DEC7384231
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 12:13:48 -0400 (EDT)
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id D8166384054
+	for <USRP-users@lists.ettus.com>; Thu, 25 Mar 2021 12:12:53 -0400 (EDT)
+Received: by mail-qv1-f41.google.com with SMTP id g8so1455539qvx.1
+        for <USRP-users@lists.ettus.com>; Thu, 25 Mar 2021 09:12:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=oA3ciwZJAm2aGgGMXzpZCub6PLHSCMTFXjQcTPi3vZQ=;
+        b=sy/KFGrzj+3g55Pj22F69GoCPVJFKB9gGheVkNceSuwIOudNm+nBbYW4z/sPsSoH8a
+         1vgAxPFNCor3qSxVOgWCpCuCKfFF1QLznHAFAlIViqxxf3IWUQXz16tyafyXamDYy0EC
+         +b0sJZijZq9SxwmqgvQXSpQym7R9c6aOdA9wMXppk0R7GUYfsR/6VABcNIYgn06IpYKC
+         Mpt/Ja6VWcbOYyuNdcW3TwZGhFXYoHNQOZgrimit58JvvoyHKfdwFHjj/ugXVpFEd75F
+         O12tMVxeu78ZOZ2tgrAGmOJuV6xk3kwuGANwXmnEaPh/kbeAWO2cLD7Av2vfkncfFctY
+         F5pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=oA3ciwZJAm2aGgGMXzpZCub6PLHSCMTFXjQcTPi3vZQ=;
+        b=kN+rxV7d7PWQ8FHzcfHE5QTQ7ElUYi4O/coGvDs3n9zsiq2u4FmlDOLNJ4L5lJMHKi
+         S6t5n9udU5loiHMbIyi/yxFM00jJJ6IZ//xJUhYFSZONYv4PG3EnZpB6b4vc6bqhhSAI
+         1w8jeVAVqudX1goMLbMxnAt68cAodSc73DuNDnyJ+0t6fxYZeVupQDxRTY528tmnA6op
+         iLyRW7yfbGIV4ZPKJqS3spegLwhJXGW1UUjTsHqGyqb8GTDFiPosWiazhq6m5AbnR8yY
+         dxv/WYJNaHF+5zlLmjoNhp71CrHjBSf7diDwVOUp9YKspjE4vSdlxjKRJ082IfuoL/SM
+         /OUQ==
+X-Gm-Message-State: AOAM533D05bJuklr6otcaCS4/EoNqU7smLtGcKc4hGniGGNztx3jeK+2
+	V30CjSLBFZfYZBz7bhz/1Z0tkJvL7aM=
+X-Google-Smtp-Source: ABdhPJyopQZN5Uy1VxG4VIdALkV2ToUekj4AeYZbV8tVJsRSlmTmL7zkea6hUb+1iPckJxYSU7sLZA==
+X-Received: by 2002:ad4:56e1:: with SMTP id cr1mr8986925qvb.25.1616688773212;
+        Thu, 25 Mar 2021 09:12:53 -0700 (PDT)
+Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.gmail.com with ESMTPSA id p7sm4477638qkc.75.2021.03.25.09.12.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Mar 2021 09:12:52 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Thu, 25 Mar 2021 12:12:51 -0400
+Message-Id: <330C91D5-8F0D-420D-944F-DDA4525C9FF3@gmail.com>
+References: <EC0B52AD-0BB9-4B72-99E7-4CC533B15A78@caltech.edu>
+In-Reply-To: <EC0B52AD-0BB9-4B72-99E7-4CC533B15A78@caltech.edu>
+To: "Minutolo, Lorenzo" <minutolo@caltech.edu>
+X-Mailer: iPhone Mail (18D61)
+Message-ID-Hash: 6EPHJG5YBG23K3QBFTGCM55GMVRC667D
+X-Message-ID-Hash: 6EPHJG5YBG23K3QBFTGCM55GMVRC667D
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: USRP N300 - Set RX bandwidth
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FE3UYCXLSIIB2EIYA5QSPZF27XHQSCGH/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6EPHJG5YBG23K3QBFTGCM55GMVRC667D/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3470808857633539628=="
+Content-Type: multipart/mixed; boundary="===============1578770619393209739=="
 
---===============3470808857633539628==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_EC0B52AD0BB94B7299E74CC533B15A78caltechedu_"
 
---_000_EC0B52AD0BB94B7299E74CC533B15A78caltechedu_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--===============1578770619393209739==
+Content-Type: multipart/alternative; boundary=Apple-Mail-0DA9EB2A-C227-4F7B-89E1-80AEC1CE7D30
+Content-Transfer-Encoding: 7bit
 
-VGhpcyBpcyB2ZXJ5IGludGVyZXN0aW5nLiBJIGFtIHRyeWluZyB0byBzZXQgdGhlIHJ4IGJhbmR3
-aWR0aCBvbiBhIE4zMjEgZm9yIGEgd2hpbGUgbm93Lg0KDQpJcyB0aGVyZSBhbnkgd29ya2Fyb3Vu
-ZD8gT3VyIGJhbmR3aWR0aCBzZWVtcyBzdHVjayBhdCA4TUh6IHdoaWxlIG91ciBhcHBsaWNhdGlv
-biBuZWVkcyBtdWNoIG1vcmUuDQoNClRoYW5rcw0KDQpMb3JlbnpvDQoNCk9uIEZlYiAyNSwgMjAy
-MSwgYXQgMTA6MzIgQU0sIE1hcmN1cyBELiBMZWVjaCB2aWEgVVNSUC11c2VycyA8dXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20+IHdyb3RlOg0KDQrvu78NCk9uIDAyLzI1LzIwMjEgMTE6MzAgQU0s
-IFB1ZXJ0YXMgQmxhbmNvLCBSb2JlcnRvIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0KSGVsbG8sDQoN
-Ckkgbm90aWNlZCB0aGF0IFJYIGJhbmR3aWR0aCBpcyBmaXhlZCB0byAxMDBNSHosIGFsdGhvdWdo
-IHRoZSBBRDkzNzEgZGF0YXNoZWV0IHNwZWNpZmllcyBhbiBhZGp1c3RhYmxlIHJhbmdlIG9mIDgg
-dG8gMTAwTUh6LiBXaHkgaXMgdGhpcyBwYXJhbWV0ZXIgZml4ZWQ/DQoNCmRvdWJsZSBtYWduZXNp
-dW1fcmFkaW9fY29udHJvbF9pbXBsOjpzZXRfcnhfYmFuZHdpZHRoKA0KICAgIGNvbnN0IGRvdWJs
-ZSBiYW5kd2lkdGgsIGNvbnN0IHNpemVfdCBjaGFuKQ0Kew0KICAgIHN0ZDo6bG9ja19ndWFyZDxz
-dGQ6OnJlY3Vyc2l2ZV9tdXRleD4gbChfc2V0X2xvY2spOw0KICAgIF9hZDkzNzEtPnNldF9iYW5k
-d2lkdGgoYmFuZHdpZHRoLCBjaGFuLCBSWF9ESVJFQ1RJT04pOw0KICAgIC8vIEZJWE1FOiBzZXR0
-aW5nIGFuYWxvZyBiYW5kd2lkdGggb24gQUQ5MzcxIHRha2Ugbm8gZWZmZWN0Lg0KICAgIC8vIFJl
-bW92ZSB0aGlzIHdhcm5pbmcgd2hlbiBBREkgY2FuIGNvbmZpcm0gdGhhdCBpdCB3b3Jrcy4NCiAg
-ICBSRk5PQ19MT0dfV0FSTklORygic2V0X3J4X2JhbmR3aWR0aCB0YWtlIG5vIGVmZmVjdCBvbiBB
-RDkzNzEuICINCiAgICAgICAgICAgICAgICAgICAgICJEZWZhdWx0IGFuYWxvZyBiYW5kd2lkdGgg
-aXMgMTAwTUh6Iik7DQogICAgcmV0dXJuIEFEOTM3MV9SWF9NQVhfQkFORFdJRFRIOw0KfQ0KDQpC
-ZXN0IHJlZ2FyZHMsDQpSb2JlcnRvDQoNCkJlY2F1c2UgZGVzcGl0ZSB3aGF0IHRoZSAqZGF0YXNo
-ZWV0KiBmb3IgdGhlIEFEOTM3MSBzYXlzLCB0aGUgcHVibGlzaGVkIGludGVyZmFjZSB0byBjaGFu
-Z2UgdGhlIGFuYWxvZyBSWCBiYW5kd2lkdGggaGFzIG5vIGVmZmVjdC4NCg0KDQpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5n
-IGxpc3QNClVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpodHRwOi8vbGlzdHMuZXR0dXMuY29t
-L21haWxtYW4vbGlzdGluZm8vdXNycC11c2Vyc19saXN0cy5ldHR1cy5jb20NCg==
 
---_000_EC0B52AD0BB94B7299E74CC533B15A78caltechedu_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+--Apple-Mail-0DA9EB2A-C227-4F7B-89E1-80AEC1CE7D30
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGRpcj0iYXV0byI+DQpU
-aGlzIGlzIHZlcnkgaW50ZXJlc3RpbmcuIEkgYW0gdHJ5aW5nIHRvIHNldCB0aGUgcnggYmFuZHdp
-ZHRoIG9uIGEgTjMyMSBmb3IgYSB3aGlsZSBub3cuDQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5J
-cyB0aGVyZSBhbnkgd29ya2Fyb3VuZD8gT3VyIGJhbmR3aWR0aCBzZWVtcyBzdHVjayBhdCA4TUh6
-IHdoaWxlIG91ciBhcHBsaWNhdGlvbiBuZWVkcyBtdWNoIG1vcmUuJm5ic3A7PC9kaXY+DQo8ZGl2
-Pjxicj4NCjwvZGl2Pg0KPGRpdj5UaGFua3M8YnI+DQo8YnI+DQo8ZGl2IGRpcj0ibHRyIj5Mb3Jl
-bnpvPC9kaXY+DQo8ZGl2IGRpcj0ibHRyIj48YnI+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj5P
-biBGZWIgMjUsIDIwMjEsIGF0IDEwOjMyIEFNLCBNYXJjdXMgRC4gTGVlY2ggdmlhIFVTUlAtdXNl
-cnMgJmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0OyB3cm90ZTo8YnI+DQo8YnI+DQo8
-L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdiBkaXI9
-Imx0ciI+77u/DQo8ZGl2IGNsYXNzPSJtb3otY2l0ZS1wcmVmaXgiPk9uIDAyLzI1LzIwMjEgMTE6
-MzAgQU0sIFB1ZXJ0YXMgQmxhbmNvLCBSb2JlcnRvIHZpYSBVU1JQLXVzZXJzIHdyb3RlOjxicj4N
-CjwvZGl2Pg0KPGJsb2NrcXVvdGUgY2l0ZT0ibWlkOkFNMFAxOTNNQjAzMDhCMTU2ODcxMjlENUU5
-MzNGMDEzNUJEOUU5QEFNMFAxOTNNQjAzMDguRVVSUDE5My5QUk9ELk9VVExPT0suQ09NIiB0eXBl
-PSJjaXRlIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQg
-MTUgKGZpbHRlcmVkDQogICAgICAgIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVm
-aW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJ
-cGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5
-OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVm
-aW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7
-bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsN
-Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgltc28tZmFyZWFzdC1sYW5ndWFn
-ZTpFTi1VUzt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0
-eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2
-aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5
-OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5F
-c3RpbG9Db3JyZW8xNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0No
-cERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNh
-bGlicmkiLHNhbnMtc2VyaWY7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2Ug
-V29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDMu
-MGNtIDcwLjg1cHQgMy4wY207fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
-MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
-cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
-YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
-aWZdLS0+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gbGFuZz0iRU4tVVMiPkhlbGxvLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+SSBub3RpY2VkIHRo
-YXQgUlggYmFuZHdpZHRoIGlzIGZpeGVkIHRvIDEwME1IeiwgYWx0aG91Z2ggdGhlIEFEOTM3MSBk
-YXRhc2hlZXQgc3BlY2lmaWVzIGFuIGFkanVzdGFibGUgcmFuZ2Ugb2YgOCB0byAxMDBNSHouIFdo
-eSBpcyB0aGlzIHBhcmFtZXRlciBmaXhlZD88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPmRvdWJsZSBtYWdu
-ZXNpdW1fcmFkaW9fY29udHJvbF9pbXBsOjpzZXRfcnhfYmFuZHdpZHRoKDxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsm
-bmJzcDsmbmJzcDsgY29uc3QgZG91YmxlIGJhbmR3aWR0aCwgY29uc3Qgc2l6ZV90IGNoYW4pPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
-VVMiPns8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBs
-YW5nPSJFTi1VUyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IHN0ZDo6bG9ja19ndWFyZCZsdDtzdGQ6OnJl
-Y3Vyc2l2ZV9tdXRleCZndDsgbChfc2V0X2xvY2spOzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsg
-X2FkOTM3MS0mZ3Q7c2V0X2JhbmR3aWR0aChiYW5kd2lkdGgsIGNoYW4sIFJYX0RJUkVDVElPTik7
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0i
-RU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNwOyA8c3BhbiBzdHlsZT0iYmFja2dyb3VuZDp5ZWxsb3c7
-bXNvLWhpZ2hsaWdodDp5ZWxsb3ciPg0KLy8gRklYTUU6IHNldHRpbmcgYW5hbG9nIGJhbmR3aWR0
-aCBvbiBBRDkzNzEgdGFrZSBubyBlZmZlY3QuPG86cD48L286cD48L3NwYW4+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kOnllbGxvdzttc28t
-aGlnaGxpZ2h0OnllbGxvdyIgbGFuZz0iRU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNwOyAvLyBSZW1v
-dmUgdGhpcyB3YXJuaW5nIHdoZW4gQURJIGNhbiBjb25maXJtIHRoYXQgaXQgd29ya3MuPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImJhY2tn
-cm91bmQ6eWVsbG93O21zby1oaWdobGlnaHQ6eWVsbG93IiBsYW5nPSJFTi1VUyI+Jm5ic3A7Jm5i
-c3A7Jm5ic3A7IFJGTk9DX0xPR19XQVJOSU5HKCZxdW90O3NldF9yeF9iYW5kd2lkdGggdGFrZSBu
-byBlZmZlY3Qgb24gQUQ5MzcxLiAmcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iYmFja2dyb3VuZDp5ZWxsb3c7bXNvLWhpZ2hsaWdo
-dDp5ZWxsb3ciIGxhbmc9IkVOLVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmcXVvdDtEZWZhdWx0IGFuYWxvZyBi
-YW5kd2lkdGggaXMgMTAwTUh6JnF1b3Q7KTs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
-Ij4mbmJzcDsmbmJzcDsmbmJzcDsgcmV0dXJuIEFEOTM3MV9SWF9NQVhfQkFORFdJRFRIOzxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
-Ij59PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
-Zz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5CZXN0IHJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlJvYmVydG88bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8YnI+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCkJlY2F1c2UgZGVz
-cGl0ZSB3aGF0IHRoZSAqZGF0YXNoZWV0KiBmb3IgdGhlIEFEOTM3MSBzYXlzLCB0aGUgcHVibGlz
-aGVkIGludGVyZmFjZSB0byBjaGFuZ2UgdGhlIGFuYWxvZyBSWCBiYW5kd2lkdGggaGFzIG5vIGVm
-ZmVjdC48YnI+DQo8YnI+DQo8YnI+DQo8c3Bhbj5fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXzwvc3Bhbj48YnI+DQo8c3Bhbj5VU1JQLXVzZXJzIG1haWxpbmcg
-bGlzdDwvc3Bhbj48YnI+DQo8c3Bhbj5VU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvc3Bhbj48
-YnI+DQo8c3Bhbj5odHRwOi8vbGlzdHMuZXR0dXMuY29tL21haWxtYW4vbGlzdGluZm8vdXNycC11
-c2Vyc19saXN0cy5ldHR1cy5jb208L3NwYW4+PGJyPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8
-L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+If you do t specify bandwidth at all, and rely on the automatic analog bandw=
+idth setting what happens?
 
---_000_EC0B52AD0BB94B7299E74CC533B15A78caltechedu_--
+Normally UHD will set an analog bandwidth that is appropriate for the select=
+ed sample rate.
 
---===============3470808857633539628==
+
+
+Sent from my iPhone
+
+> On Mar 25, 2021, at 12:07 PM, Minutolo, Lorenzo <minutolo@caltech.edu> wro=
+te:
+>=20
+> =EF=BB=BF This is very interesting. I am trying to set the rx bandwidth on=
+ a N321 for a while now.
+>=20
+> Is there any workaround? Our bandwidth seems stuck at 8MHz while our appli=
+cation needs much more.=20
+>=20
+> Thanks
+>=20
+> Lorenzo
+>=20
+>>> On Feb 25, 2021, at 10:32 AM, Marcus D. Leech via USRP-users <usrp-users=
+@lists.ettus.com> wrote:
+>>>=20
+>> =EF=BB=BF
+>>> On 02/25/2021 11:30 AM, Puertas Blanco, Roberto via USRP-users wrote:
+>>> Hello,
+>>> =20
+>>> I noticed that RX bandwidth is fixed to 100MHz, although the AD9371 data=
+sheet specifies an adjustable range of 8 to 100MHz. Why is this parameter fi=
+xed?
+>>> =20
+>>> double magnesium_radio_control_impl::set_rx_bandwidth(
+>>>     const double bandwidth, const size_t chan)
+>>> {
+>>>     std::lock_guard<std::recursive_mutex> l(_set_lock);
+>>>     _ad9371->set_bandwidth(bandwidth, chan, RX_DIRECTION);
+>>>     // FIXME: setting analog bandwidth on AD9371 take no effect.
+>>>     // Remove this warning when ADI can confirm that it works.
+>>>     RFNOC_LOG_WARNING("set_rx_bandwidth take no effect on AD9371. "
+>>>                      "Default analog bandwidth is 100MHz");
+>>>     return AD9371_RX_MAX_BANDWIDTH;
+>>> }
+>>> =20
+>>> Best regards,
+>>> Roberto
+>>>=20
+>> Because despite what the *datasheet* for the AD9371 says, the published i=
+nterface to change the analog RX bandwidth has no effect.
+>>=20
+>>=20
+>> _______________________________________________
+>> USRP-users mailing list
+>> USRP-users@lists.ettus.com
+>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+
+--Apple-Mail-0DA9EB2A-C227-4F7B-89E1-80AEC1CE7D30
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">If you do t specify bandwidth at all, and r=
+ely on the automatic analog bandwidth setting what happens?<div><br></div><d=
+iv>Normally UHD will set an analog bandwidth that is appropriate for the sel=
+ected sample rate.</div><div><br></div><div><br><br><div dir=3D"ltr">Sent fr=
+om my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Mar 25, 2=
+021, at 12:07 PM, Minutolo, Lorenzo &lt;minutolo@caltech.edu&gt; wrote:<br><=
+br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+
+
+This is very interesting. I am trying to set the rx bandwidth on a N321 for a=
+ while now.
+<div><br>
+</div>
+<div>Is there any workaround? Our bandwidth seems stuck at 8MHz while our ap=
+plication needs much more.&nbsp;</div>
+<div><br>
+</div>
+<div>Thanks<br>
+<br>
+<div dir=3D"ltr">Lorenzo</div>
+<div dir=3D"ltr"><br>
+<blockquote type=3D"cite">On Feb 25, 2021, at 10:32 AM, Marcus D. Leech via U=
+SRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:<br>
+<br>
+</blockquote>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">=EF=BB=BF
+<div class=3D"moz-cite-prefix">On 02/25/2021 11:30 AM, Puertas Blanco, Rober=
+to via USRP-users wrote:<br>
+</div>
+<blockquote cite=3D"mid:AM0P193MB0308B15687129D5E933F0135BD9E9@AM0P193MB0308=
+.EURP193.PROD.OUTLOOK.COM" type=3D"cite">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EstiloCorreo17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I noticed that RX bandwidth is f=
+ixed to 100MHz, although the AD9371 datasheet specifies an adjustable range o=
+f 8 to 100MHz. Why is this parameter fixed?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">double magnesium_radio_control_i=
+mpl::set_rx_bandwidth(<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; const double b=
+andwidth, const size_t chan)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">{<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; std::lock_gua=
+rd&lt;std::recursive_mutex&gt; l(_set_lock);<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; _ad9371-&gt;s=
+et_bandwidth(bandwidth, chan, RX_DIRECTION);<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; <span style=3D=
+"background:yellow;mso-highlight:yellow">
+// FIXME: setting analog bandwidth on AD9371 take no effect.<o:p></o:p></spa=
+n></span></p>
+<p class=3D"MsoNormal"><span style=3D"background:yellow;mso-highlight:yellow=
+" lang=3D"EN-US">&nbsp;&nbsp;&nbsp; // Remove this warning when ADI can conf=
+irm that it works.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"background:yellow;mso-highlight:yellow=
+" lang=3D"EN-US">&nbsp;&nbsp;&nbsp; RFNOC_LOG_WARNING("set_rx_bandwidth take=
+ no effect on AD9371. "<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"background:yellow;mso-highlight:yellow=
+" lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Default a=
+nalog bandwidth is 100MHz");</span><span lang=3D"EN-US"><o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; return AD9371=
+_RX_MAX_BANDWIDTH;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">}<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards,<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Roberto<o:p></o:p></span></p>
+<br>
+</div>
+</blockquote>
+Because despite what the *datasheet* for the AD9371 says, the published inte=
+rface to change the analog RX bandwidth has no effect.<br>
+<br>
+<br>
+<span>_______________________________________________</span><br>
+<span>USRP-users mailing list</span><br>
+<span>USRP-users@lists.ettus.com</span><br>
+<span>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</sp=
+an><br>
+</div>
+</blockquote>
+</div>
+
+
+</div></blockquote></div></body></html>=
+
+--Apple-Mail-0DA9EB2A-C227-4F7B-89E1-80AEC1CE7D30--
+
+--===============1578770619393209739==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -266,4 +292,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3470808857633539628==--
+--===============1578770619393209739==--
