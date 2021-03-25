@@ -2,95 +2,160 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 470263497D7
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 18:24:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAB1C349853
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 18:39:11 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3F0793838C7
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 13:24:01 -0400 (EDT)
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 72FC838382A
-	for <usrp-users@lists.ettus.com>; Thu, 25 Mar 2021 13:23:52 -0400 (EDT)
-Received: by mail-vs1-f52.google.com with SMTP id e5so1309275vse.4
-        for <usrp-users@lists.ettus.com>; Thu, 25 Mar 2021 10:23:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=SeYRPQh1hHkCv19aD6uN0+coX1cWhzAATB59UJad53o=;
-        b=m1yHCHht4XC2mpFIaWOCVaBopR6ipmFHl0zFwXOsooRTQkGDFgx4t8IYNtS9nI0iMt
-         HJp6W/sAmE5LbhiIq3cNOvRDFD/0ieA/G7Sv7gqlW8MKkMsBMoG+2xqN2tTr1oD6/bhT
-         Q+6ZjEv/7jLYWMPW8T5AX3FWm+XeuxUE4c4krYiIm7ZpJGZT34Rtowqqa0biANI1xIJn
-         +DiQhScvbY23pDOT8qR0TaT7QKtzfqNsyX7qf8hIXjXxblhkmZLgQm5iA7xjQTQqfUME
-         2svtknc0qzQDi7lDVsSmKIrdGYqtgq+c3Df+7dENdHtWyev3Iid/jfjhLYnxFVF0mE8H
-         bLig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=SeYRPQh1hHkCv19aD6uN0+coX1cWhzAATB59UJad53o=;
-        b=ToY8r9yi3xxDPj5C5HBtgclQGho4+EzIO2daX2l2AUxhs6sjbIW7GELu9zZlIpQymF
-         5vh8pRFTTt5Ajl52FlSkIwCdeft3z+ieMjbCCB3DAeHIVCLfFBbU9RYmnZWxbXnz8mLO
-         ccka0QmuULXtoSEovQa9ZigwUFSvZCHFoJMZYZUlI8Te/O4dpYXIlDLgQcsr4SSeLC9i
-         p/UzQSBE53a/uig4utSqwqUuO/GoEpqZymhPTolqzwfLiyUMuJQoPTrvWHoPj0rpG1tN
-         for0/nRzvOKkPqMB0Z6LmWBfnQTYE6tctGqcYkruAF2fuJWGe7laxU+FLOImSoKbUqaL
-         LSVQ==
-X-Gm-Message-State: AOAM530m7h7eEPTb9kgrBDb3Fs7prpmjv2GQVYkL9H/vADIkGbvRdkml
-	5G8pFkuLenftl0XeP8Up1YUohwl4CtzMewn/jCCv2i6E
-X-Google-Smtp-Source: ABdhPJy87AX0864V29QxQkThaDlN9fVBiOmeHKLCrmTPhrvsb11N+ETJqElnhZz8dAH1BGG8zPT+1qqNcGHyDsdHUPc=
-X-Received: by 2002:a67:ec87:: with SMTP id h7mr5969598vsp.34.1616693031511;
- Thu, 25 Mar 2021 10:23:51 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 1ED733839FE
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 13:39:00 -0400 (EDT)
+Received: from unifiededge.gtri.gatech.edu (unifiededge.gtri.gatech.edu [130.207.205.170])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7B20A3839DE
+	for <usrp-users@lists.ettus.com>; Thu, 25 Mar 2021 13:38:51 -0400 (EDT)
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=unifiededge;
+	c=simple/simple; t=1616693930; h=from:subject:to:date:message-id;
+	bh=2nGILLrXIFSyZIdWe2I7Us0bFIFh5ZJ8mz09nCspYuQ=;
+	b=m2nzqo/i1vzxfE8Vew53Ykio3v57dSdMHjW5zkxkQR92VlZAtqIFukQ4n7k0lni3zlCY6ILO9jN
+	zN8btGLV5O0thGVUwbH3jXwo2YE6fpxFoHHI5r/pQ2Dl971kyXsZNuRqb/LKR7fhMp/0dU/WuIW52
+	Rq0SgIH6Uv+aLcabMHRbOY3Rugri8gxAaI+5JEoyaxB0D4dUwGl2uECLR1Vwt10ZK2aUtQ92c71ZB
+	F4gFOYOhoi1R5MJg5P+ft6I28mGqKhy19SoSwViG8ANxWxkZFZ2KgGzWYDgV+n1pg1WX7AS2YyplL
+	hoehriiydTToMzm/b6TXfDbmDDd8xNm28obg==
+Received: from ocracoke.core.gtri.org (10.41.22.71) by exedge06.gtri.dmz
+ (10.41.104.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.2.721.2; Thu, 25 Mar 2021
+ 13:38:50 -0400
+Received: from ocracoke.core.gtri.org (2610:148:610:2916::71) by
+ ocracoke.core.gtri.org (2610:148:610:2916::71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2106.2; Thu, 25 Mar 2021 13:38:50 -0400
+Received: from ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf]) by
+ ocracoke.core.gtri.org ([fe80::59db:29b9:bcab:ddaf%13]) with mapi id
+ 15.01.2106.013; Thu, 25 Mar 2021 13:38:50 -0400
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: RFNOC dma_FIFO freezes
+Thread-Index: AQHXIZzxU6WMjHiohkiANdFjUetZXg==
+Date: Thu, 25 Mar 2021 17:38:50 +0000
+Message-ID: <fe2b7993932540aaaa122abdcb5e5265@gtri.gatech.edu>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.41.0.30]
 MIME-Version: 1.0
-From: Ben Magistro <koncept1@gmail.com>
-Date: Thu, 25 Mar 2021 13:23:40 -0400
-Message-ID: <CAKx8PBis-7ixP6A4Sqp=E2nN3N7ac0PQ5zUnWZ_O8-1aNg9dow@mail.gmail.com>
-To: USRP list <usrp-users@lists.ettus.com>
-Message-ID-Hash: EIQPBOXMZGZS3RXP6VE3CJ7UP5POKCLQ
-X-Message-ID-Hash: EIQPBOXMZGZS3RXP6VE3CJ7UP5POKCLQ
-X-MailFrom: koncept1@gmail.com
+Message-ID-Hash: P5EYJPX7V73T3VEDTZNTXFMZ7H63X2UM
+X-Message-ID-Hash: P5EYJPX7V73T3VEDTZNTXFMZ7H63X2UM
+X-MailFrom: Jeff.Hodges@gtri.gatech.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Shared UHD Access
+Subject: [USRP-users] RFNOC dma_FIFO freezes
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EIQPBOXMZGZS3RXP6VE3CJ7UP5POKCLQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/P5EYJPX7V73T3VEDTZNTXFMZ7H63X2UM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0506219673296463533=="
+From: "Hodges, Jeff via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
+Content-Type: multipart/mixed; boundary="===============9120910502167942624=="
 
---===============0506219673296463533==
-Content-Type: multipart/alternative; boundary="000000000000daa99a05be5fad63"
+--===============9120910502167942624==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_fe2b7993932540aaaa122abdcb5e5265gtrigatechedu_"
 
---000000000000daa99a05be5fad63
-Content-Type: text/plain; charset="UTF-8"
-
-This might be more of a GNURadio question, but is it possible to share a
-single USRP device (E310 in this case) with two flowgraphs?  What I mean is
-the E310 has a "A" and "B" channel, could you use channel "A" with one
-flowgraph and "B" with another or does everything have to be implemented in
-a single flowgraph with the UHD sink/source configured to have two
-channels?  I'm guessing the latter due to how UHD interacts with the
-hardware.
-
-Thanks!
-
---000000000000daa99a05be5fad63
-Content-Type: text/html; charset="UTF-8"
+--_000_fe2b7993932540aaaa122abdcb5e5265gtrigatechedu_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">This might be more of a GNURadio question, but is it possi=
-ble to share a single USRP device (E310 in this case) with two flowgraphs?=
-=C2=A0 What I mean is the E310 has a &quot;A&quot; and &quot;B&quot; channe=
-l, could you use channel &quot;A&quot; with one flowgraph and &quot;B&quot;=
- with another or does everything have to be implemented in a single flowgra=
-ph with the UHD sink/source configured to have two channels?=C2=A0 I&#39;m =
-guessing the latter due to how UHD interacts with the hardware.<div><br></d=
-iv><div>Thanks!</div></div>
+I am using the standard X310 HG image running  a simple flow graph with one=
+ dma_FIFO as follows, and the flowgraph freezes after approximately 800,000=
+ samples:
 
---000000000000daa99a05be5fad63--
 
---===============0506219673296463533==
+signal_source --> throttle --> dma_fifo --> timesink
+
+
+However, if I put an RFNOC block in, it works:
+
+
+signal_source --> throttle --> dma_fifo --> RFNOC_Block --> timesink
+
+
+Does the dma_fifo require a succeeding RFNOC block, or otherwise, why is it=
+ not working?
+
+
+Using UHD-3.15.LTS
+
+
+Could it be related to this error: https://github.com/EttusResearch/uhd/iss=
+ues/203
+
+
+Thanks,
+
+Jeff
+
+--_000_fe2b7993932540aaaa122abdcb5e5265gtrigatechedu_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>I am using the standard X310 HG image running&nbsp; <span>a simple flow =
+graph with one dma_FIFO as follows, and the flowgraph freezes after approxi=
+mately 800,000 samples:</span></p>
+<p><span><br>
+</span></p>
+<p><span>signal_source --&gt; throttle --&gt; dma_fifo --&gt; timesink<br>
+</span></p>
+<p><span><br>
+</span></p>
+<p><span>However, if I put an RFNOC block in, it works:</span></p>
+<p><span></p>
+<p><span><br>
+</span></p>
+<span>signal_source --&gt; throttle --&gt; dma_fifo --&gt; RFNOC_Block --&g=
+t; timesink</span><br>
+</span>
+<p></p>
+<p><span><br>
+</span></p>
+<p>Does the dma_fifo require a succeeding RFNOC block, or otherwise, why is=
+ it not working?</p>
+<p><br>
+</p>
+<p><span>Using UHD-3.15.LTS</span></p>
+<p><span><br>
+</span></p>
+<p><span>Could it be related to this error: <a href=3D"https://github.com/E=
+ttusResearch/uhd/issues/203" class=3D"OWAAutoLink" id=3D"LPlnk498330" previ=
+ewremoved=3D"true">
+https://github.com/EttusResearch/uhd/issues/203</a></span><br>
+</p>
+<p><br>
+</p>
+<p>Thanks,<br>
+</p>
+<p><br>
+Jeff<br>
+</p>
+</div>
+</body>
+</html>
+
+--_000_fe2b7993932540aaaa122abdcb5e5265gtrigatechedu_--
+
+--===============9120910502167942624==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -100,4 +165,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0506219673296463533==--
+--===============9120910502167942624==--
