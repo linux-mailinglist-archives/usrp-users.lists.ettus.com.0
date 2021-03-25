@@ -2,186 +2,213 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB4D834967D
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 17:13:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D04034969C
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 17:19:11 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8DEC7384231
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 12:13:48 -0400 (EDT)
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id D8166384054
-	for <USRP-users@lists.ettus.com>; Thu, 25 Mar 2021 12:12:53 -0400 (EDT)
-Received: by mail-qv1-f41.google.com with SMTP id g8so1455539qvx.1
-        for <USRP-users@lists.ettus.com>; Thu, 25 Mar 2021 09:12:53 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 84577383ED1
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Mar 2021 12:19:10 -0400 (EDT)
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7B0F93838C2
+	for <USRP-users@lists.ettus.com>; Thu, 25 Mar 2021 12:18:15 -0400 (EDT)
+Received: by mail-qt1-f180.google.com with SMTP id g24so2055097qts.6
+        for <USRP-users@lists.ettus.com>; Thu, 25 Mar 2021 09:18:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=oA3ciwZJAm2aGgGMXzpZCub6PLHSCMTFXjQcTPi3vZQ=;
-        b=sy/KFGrzj+3g55Pj22F69GoCPVJFKB9gGheVkNceSuwIOudNm+nBbYW4z/sPsSoH8a
-         1vgAxPFNCor3qSxVOgWCpCuCKfFF1QLznHAFAlIViqxxf3IWUQXz16tyafyXamDYy0EC
-         +b0sJZijZq9SxwmqgvQXSpQym7R9c6aOdA9wMXppk0R7GUYfsR/6VABcNIYgn06IpYKC
-         Mpt/Ja6VWcbOYyuNdcW3TwZGhFXYoHNQOZgrimit58JvvoyHKfdwFHjj/ugXVpFEd75F
-         O12tMVxeu78ZOZ2tgrAGmOJuV6xk3kwuGANwXmnEaPh/kbeAWO2cLD7Av2vfkncfFctY
-         F5pQ==
+        h=message-id:date:from:user-agent:mime-version:to:cc:subject
+         :references:in-reply-to;
+        bh=xjL0heo2rwM8CqVzqf/n9uXousHvAyjc2b2+/9xezho=;
+        b=l/vMz1ZakqPGPTrf70uKGUxY0VqPysYuA5LL2G/3NREcci5LMd/fY9AZ3vBRX1ou8G
+         0FjM6EoZQxD/jJ0jLz52M4WmKrr0X7+I20Xz+NjUBAfrK483DwJC6oG8de6uNUB+XRH5
+         Y7QWYgjbDYcjNLukcNQhA4yuss2jefuJ/0sZaq9dP+lw/ixf7rRuWzteFnlaEITd4pxU
+         z6w77igohJMg1Kg01/7e1Col1mmftzTsmLllTnTA7XkJtRwxgUoEGtDcBy+aCPQB751j
+         W/EywHLh9WIt8KaxoY1F3t+/qK8Tc7u/eAV9lelkByPV/mzLy/VQrbhA+mlj+AidP50K
+         nJpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=oA3ciwZJAm2aGgGMXzpZCub6PLHSCMTFXjQcTPi3vZQ=;
-        b=kN+rxV7d7PWQ8FHzcfHE5QTQ7ElUYi4O/coGvDs3n9zsiq2u4FmlDOLNJ4L5lJMHKi
-         S6t5n9udU5loiHMbIyi/yxFM00jJJ6IZ//xJUhYFSZONYv4PG3EnZpB6b4vc6bqhhSAI
-         1w8jeVAVqudX1goMLbMxnAt68cAodSc73DuNDnyJ+0t6fxYZeVupQDxRTY528tmnA6op
-         iLyRW7yfbGIV4ZPKJqS3spegLwhJXGW1UUjTsHqGyqb8GTDFiPosWiazhq6m5AbnR8yY
-         dxv/WYJNaHF+5zlLmjoNhp71CrHjBSf7diDwVOUp9YKspjE4vSdlxjKRJ082IfuoL/SM
-         /OUQ==
-X-Gm-Message-State: AOAM533D05bJuklr6otcaCS4/EoNqU7smLtGcKc4hGniGGNztx3jeK+2
-	V30CjSLBFZfYZBz7bhz/1Z0tkJvL7aM=
-X-Google-Smtp-Source: ABdhPJyopQZN5Uy1VxG4VIdALkV2ToUekj4AeYZbV8tVJsRSlmTmL7zkea6hUb+1iPckJxYSU7sLZA==
-X-Received: by 2002:ad4:56e1:: with SMTP id cr1mr8986925qvb.25.1616688773212;
-        Thu, 25 Mar 2021 09:12:53 -0700 (PDT)
-Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id p7sm4477638qkc.75.2021.03.25.09.12.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Mar 2021 09:12:52 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Thu, 25 Mar 2021 12:12:51 -0400
-Message-Id: <330C91D5-8F0D-420D-944F-DDA4525C9FF3@gmail.com>
-References: <EC0B52AD-0BB9-4B72-99E7-4CC533B15A78@caltech.edu>
-In-Reply-To: <EC0B52AD-0BB9-4B72-99E7-4CC533B15A78@caltech.edu>
+        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+         :cc:subject:references:in-reply-to;
+        bh=xjL0heo2rwM8CqVzqf/n9uXousHvAyjc2b2+/9xezho=;
+        b=G76WF5Lo74prxKJ8zAlnpnVpa5M3ivwLLzr94FuhE696+Vt060cS4HZZ3pY5cqhkel
+         Z8117cedwGpkcuEK68b4xdpF3x7OAqjFvnuaTu8EnjDblJrumkz6se8Toj5scymTfXV5
+         0G9w9Pq8izgDKfWh3XPQxidIAvxDoq5VrU5qPTMoINEaTOl+wsIvq2MQVgTY3I3QgIjL
+         RF9YU+/IHnQeKr3XDHbwOmLpO8+eOGdUxm8Uta6gFy7GrTe0kYl67Kfepj/5XfHiKvMU
+         Lf6DM4s5T6Ay3WaViiAM5e2XnaqC6GNs6VTuYgwGlX4SNzkTscC9a31UbgQ67GD1Gqxm
+         kvQw==
+X-Gm-Message-State: AOAM5304iuBOtO4uzvIlIrUc2yElluDcqKQGyxBa7KyOLw/BztNyNJmr
+	OXtOG05UpC+WhUxUU0hgEQocO2dIitk=
+X-Google-Smtp-Source: ABdhPJzXtFmScACRtIg5bwPiP37mPaJTClmCPjpcMKSGlqWhja78Sn5b+QL8ocN0HCkrMy8JP+iQRQ==
+X-Received: by 2002:a05:622a:1342:: with SMTP id w2mr8163785qtk.163.1616689094824;
+        Thu, 25 Mar 2021 09:18:14 -0700 (PDT)
+Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.googlemail.com with ESMTPSA id v35sm3865408qtd.56.2021.03.25.09.18.14
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 25 Mar 2021 09:18:14 -0700 (PDT)
+Message-ID: <605CB7C5.1010508@gmail.com>
+Date: Thu, 25 Mar 2021 12:18:13 -0400
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
 To: "Minutolo, Lorenzo" <minutolo@caltech.edu>
-X-Mailer: iPhone Mail (18D61)
-Message-ID-Hash: 6EPHJG5YBG23K3QBFTGCM55GMVRC667D
-X-Message-ID-Hash: 6EPHJG5YBG23K3QBFTGCM55GMVRC667D
+References: <AM0P193MB0308B15687129D5E933F0135BD9E9@AM0P193MB0308.EURP193.PROD.OUTLOOK.COM>,<6037ED20.4080902@gmail.com> <EC0B52AD-0BB9-4B72-99E7-4CC533B15A78@caltech.edu>
+In-Reply-To: <EC0B52AD-0BB9-4B72-99E7-4CC533B15A78@caltech.edu>
+Message-ID-Hash: B4QCVTERN54T2BFMI2DFXBIVZMP2VK4Y
+X-Message-ID-Hash: B4QCVTERN54T2BFMI2DFXBIVZMP2VK4Y
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
+CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: USRP N300 - Set RX bandwidth
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6EPHJG5YBG23K3QBFTGCM55GMVRC667D/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/B4QCVTERN54T2BFMI2DFXBIVZMP2VK4Y/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1578770619393209739=="
+Content-Type: multipart/mixed; boundary="===============8762850502839485844=="
 
+This is a multi-part message in MIME format.
+--===============8762850502839485844==
+Content-Type: multipart/alternative;
+ boundary="------------060006040406010900010206"
 
---===============1578770619393209739==
-Content-Type: multipart/alternative; boundary=Apple-Mail-0DA9EB2A-C227-4F7B-89E1-80AEC1CE7D30
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-0DA9EB2A-C227-4F7B-89E1-80AEC1CE7D30
-Content-Type: text/plain;
-	charset=utf-8
+This is a multi-part message in MIME format.
+--------------060006040406010900010206
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-If you do t specify bandwidth at all, and rely on the automatic analog bandw=
-idth setting what happens?
-
-Normally UHD will set an analog bandwidth that is appropriate for the select=
-ed sample rate.
-
-
-
-Sent from my iPhone
-
-> On Mar 25, 2021, at 12:07 PM, Minutolo, Lorenzo <minutolo@caltech.edu> wro=
-te:
->=20
-> =EF=BB=BF This is very interesting. I am trying to set the rx bandwidth on=
- a N321 for a while now.
->=20
-> Is there any workaround? Our bandwidth seems stuck at 8MHz while our appli=
-cation needs much more.=20
->=20
+On 03/25/2021 12:07 PM, Minutolo, Lorenzo wrote:
+> This is very interesting. I am trying to set the rx bandwidth on a=20
+> N321 for a while now.
+>
+> Is there any workaround? Our bandwidth seems stuck at 8MHz while our=20
+> application needs much more.
+>
 > Thanks
->=20
+>
 > Lorenzo
->=20
->>> On Feb 25, 2021, at 10:32 AM, Marcus D. Leech via USRP-users <usrp-users=
-@lists.ettus.com> wrote:
->>>=20
+>
+Sorry, on the N32x series, the analog bandwidth in front of the ADC is=20
+*fixed*, and bandwidth delivered to your application is controlled
+   strictly by the selected sample-rate.
+
+
+>> On Feb 25, 2021, at 10:32 AM, Marcus D. Leech via USRP-users=20
+>> <usrp-users@lists.ettus.com> wrote:
+>>
 >> =EF=BB=BF
->>> On 02/25/2021 11:30 AM, Puertas Blanco, Roberto via USRP-users wrote:
+>> On 02/25/2021 11:30 AM, Puertas Blanco, Roberto via USRP-users wrote:
+>>>
 >>> Hello,
->>> =20
->>> I noticed that RX bandwidth is fixed to 100MHz, although the AD9371 data=
-sheet specifies an adjustable range of 8 to 100MHz. Why is this parameter fi=
-xed?
->>> =20
+>>>
+>>> I noticed that RX bandwidth is fixed to 100MHz, although the AD9371=20
+>>> datasheet specifies an adjustable range of 8 to 100MHz. Why is this=20
+>>> parameter fixed?
+>>>
 >>> double magnesium_radio_control_impl::set_rx_bandwidth(
+>>>
 >>>     const double bandwidth, const size_t chan)
+>>>
 >>> {
->>>     std::lock_guard<std::recursive_mutex> l(_set_lock);
->>>     _ad9371->set_bandwidth(bandwidth, chan, RX_DIRECTION);
->>>     // FIXME: setting analog bandwidth on AD9371 take no effect.
+>>>
+>>> std::lock_guard<std::recursive_mutex> l(_set_lock);
+>>>
+>>> _ad9371->set_bandwidth(bandwidth, chan, RX_DIRECTION);
+>>>
+>>> // FIXME: setting analog bandwidth on AD9371 take no effect.
+>>>
 >>>     // Remove this warning when ADI can confirm that it works.
+>>>
 >>>     RFNOC_LOG_WARNING("set_rx_bandwidth take no effect on AD9371. "
+>>>
 >>>                      "Default analog bandwidth is 100MHz");
+>>>
 >>>     return AD9371_RX_MAX_BANDWIDTH;
+>>>
 >>> }
->>> =20
+>>>
 >>> Best regards,
+>>>
 >>> Roberto
->>>=20
->> Because despite what the *datasheet* for the AD9371 says, the published i=
-nterface to change the analog RX bandwidth has no effect.
->>=20
->>=20
+>>>
+>>>
+>> Because despite what the *datasheet* for the AD9371 says, the=20
+>> published interface to change the analog RX bandwidth has no effect.
+>>
+>>
 >> _______________________________________________
 >> USRP-users mailing list
 >> USRP-users@lists.ettus.com
 >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
 
---Apple-Mail-0DA9EB2A-C227-4F7B-89E1-80AEC1CE7D30
-Content-Type: text/html;
-	charset=utf-8
+
+--------------060006040406010900010206
+Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">If you do t specify bandwidth at all, and r=
-ely on the automatic analog bandwidth setting what happens?<div><br></div><d=
-iv>Normally UHD will set an analog bandwidth that is appropriate for the sel=
-ected sample rate.</div><div><br></div><div><br><br><div dir=3D"ltr">Sent fr=
-om my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Mar 25, 2=
-021, at 12:07 PM, Minutolo, Lorenzo &lt;minutolo@caltech.edu&gt; wrote:<br><=
-br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
-
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
-
-
-This is very interesting. I am trying to set the rx bandwidth on a N321 for a=
- while now.
-<div><br>
-</div>
-<div>Is there any workaround? Our bandwidth seems stuck at 8MHz while our ap=
-plication needs much more.&nbsp;</div>
-<div><br>
-</div>
-<div>Thanks<br>
-<br>
-<div dir=3D"ltr">Lorenzo</div>
-<div dir=3D"ltr"><br>
-<blockquote type=3D"cite">On Feb 25, 2021, at 10:32 AM, Marcus D. Leech via U=
-SRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:<br>
-<br>
-</blockquote>
-</div>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">=EF=BB=BF
-<div class=3D"moz-cite-prefix">On 02/25/2021 11:30 AM, Puertas Blanco, Rober=
-to via USRP-users wrote:<br>
-</div>
-<blockquote cite=3D"mid:AM0P193MB0308B15687129D5E933F0135BD9E9@AM0P193MB0308=
-.EURP193.PROD.OUTLOOK.COM" type=3D"cite">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-<style><!--
+<html>
+  <head>
+    <meta content=3D"text/html; charset=3Dutf-8" http-equiv=3D"Content-Ty=
+pe">
+  </head>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div class=3D"moz-cite-prefix">On 03/25/2021 12:07 PM, Minutolo,
+      Lorenzo wrote:<br>
+    </div>
+    <blockquote
+      cite=3D"mid:EC0B52AD-0BB9-4B72-99E7-4CC533B15A78@caltech.edu"
+      type=3D"cite">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Du=
+tf-8">
+      This is very interesting. I am trying to set the rx bandwidth on a
+      N321 for a while now.
+      <div><br>
+      </div>
+      <div>Is there any workaround? Our bandwidth seems stuck at 8MHz
+        while our application needs much more.=C2=A0</div>
+      <div><br>
+      </div>
+      <div>Thanks<br>
+        <br>
+        <div dir=3D"ltr">Lorenzo</div>
+        <div dir=3D"ltr"><br>
+        </div>
+      </div>
+    </blockquote>
+    Sorry, on the N32x series, the analog bandwidth in front of the ADC
+    is *fixed*, and bandwidth delivered to your application is
+    controlled<br>
+    =C2=A0 strictly by the selected sample-rate.<br>
+    <br>
+    <br>
+    <blockquote
+      cite=3D"mid:EC0B52AD-0BB9-4B72-99E7-4CC533B15A78@caltech.edu"
+      type=3D"cite">
+      <div>
+        <div dir=3D"ltr">
+          <blockquote type=3D"cite">On Feb 25, 2021, at 10:32 AM, Marcus
+            D. Leech via USRP-users <a class=3D"moz-txt-link-rfc2396E" hr=
+ef=3D"mailto:usrp-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&g=
+t;</a>
+            wrote:<br>
+            <br>
+          </blockquote>
+        </div>
+        <blockquote type=3D"cite">
+          <div dir=3D"ltr">=EF=BB=BF
+            <div class=3D"moz-cite-prefix">On 02/25/2021 11:30 AM, Puerta=
+s
+              Blanco, Roberto via USRP-users wrote:<br>
+            </div>
+            <blockquote
+cite=3D"mid:AM0P193MB0308B15687129D5E933F0135BD9E9@AM0P193MB0308.EURP193.=
+PROD.OUTLOOK.COM"
+              type=3D"cite">
+              <meta name=3D"Generator" content=3D"Microsoft Word 15
+                (filtered medium)">
+              <style><!--
 /* Font Definitions */
 @font-face
 	{font-family:"Cambria Math";
@@ -223,66 +250,95 @@ div.WordSection1
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I noticed that RX bandwidth is f=
-ixed to 100MHz, although the AD9371 datasheet specifies an adjustable range o=
-f 8 to 100MHz. Why is this parameter fixed?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">double magnesium_radio_control_i=
-mpl::set_rx_bandwidth(<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; const double b=
-andwidth, const size_t chan)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">{<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; std::lock_gua=
-rd&lt;std::recursive_mutex&gt; l(_set_lock);<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; _ad9371-&gt;s=
-et_bandwidth(bandwidth, chan, RX_DIRECTION);<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; <span style=3D=
-"background:yellow;mso-highlight:yellow">
-// FIXME: setting analog bandwidth on AD9371 take no effect.<o:p></o:p></spa=
-n></span></p>
-<p class=3D"MsoNormal"><span style=3D"background:yellow;mso-highlight:yellow=
-" lang=3D"EN-US">&nbsp;&nbsp;&nbsp; // Remove this warning when ADI can conf=
-irm that it works.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"background:yellow;mso-highlight:yellow=
-" lang=3D"EN-US">&nbsp;&nbsp;&nbsp; RFNOC_LOG_WARNING("set_rx_bandwidth take=
- no effect on AD9371. "<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"background:yellow;mso-highlight:yellow=
-" lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Default a=
-nalog bandwidth is 100MHz");</span><span lang=3D"EN-US"><o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; return AD9371=
-_RX_MAX_BANDWIDTH;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">}<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards,<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Roberto<o:p></o:p></span></p>
-<br>
-</div>
-</blockquote>
-Because despite what the *datasheet* for the AD9371 says, the published inte=
-rface to change the analog RX bandwidth has no effect.<br>
-<br>
-<br>
-<span>_______________________________________________</span><br>
-<span>USRP-users mailing list</span><br>
-<span>USRP-users@lists.ettus.com</span><br>
-<span>http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com</sp=
-an><br>
-</div>
-</blockquote>
-</div>
+              <div class=3D"WordSection1">
+                <p class=3D"MsoNormal"><span lang=3D"EN-US">Hello,<o:p></=
+o:p></span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=C2=A0</=
+o:p></span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US">I noticed tha=
+t
+                    RX bandwidth is fixed to 100MHz, although the AD9371
+                    datasheet specifies an adjustable range of 8 to
+                    100MHz. Why is this parameter fixed?<o:p></o:p></span=
+></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=C2=A0</=
+o:p></span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US">double
+                    magnesium_radio_control_impl::set_rx_bandwidth(<o:p><=
+/o:p></span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=A0=C2=
+=A0 const double
+                    bandwidth, const size_t chan)<o:p></o:p></span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US">{<o:p></o:p><=
+/span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=A0=C2=
+=A0
+                    std::lock_guard&lt;std::recursive_mutex&gt;
+                    l(_set_lock);<o:p></o:p></span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=A0=C2=
+=A0
+                    _ad9371-&gt;set_bandwidth(bandwidth, chan,
+                    RX_DIRECTION);<o:p></o:p></span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=A0=C2=
+=A0 <span
+                      style=3D"background:yellow;mso-highlight:yellow">
+                      // FIXME: setting analog bandwidth on AD9371 take
+                      no effect.<o:p></o:p></span></span></p>
+                <p class=3D"MsoNormal"><span
+                    style=3D"background:yellow;mso-highlight:yellow"
+                    lang=3D"EN-US">=C2=A0=C2=A0=C2=A0 // Remove this warn=
+ing when ADI can
+                    confirm that it works.<o:p></o:p></span></p>
+                <p class=3D"MsoNormal"><span
+                    style=3D"background:yellow;mso-highlight:yellow"
+                    lang=3D"EN-US">=C2=A0=C2=A0=C2=A0 RFNOC_LOG_WARNING("=
+set_rx_bandwidth
+                    take no effect on AD9371. "<o:p></o:p></span></p>
+                <p class=3D"MsoNormal"><span
+                    style=3D"background:yellow;mso-highlight:yellow"
+                    lang=3D"EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0"Default analog
+                    bandwidth is 100MHz");</span><span lang=3D"EN-US"><o:=
+p></o:p></span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=A0=C2=
+=A0 return
+                    AD9371_RX_MAX_BANDWIDTH;<o:p></o:p></span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US">}<o:p></o:p><=
+/span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=C2=A0</=
+o:p></span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards,=
+<o:p></o:p></span></p>
+                <p class=3D"MsoNormal"><span lang=3D"EN-US">Roberto<o:p><=
+/o:p></span></p>
+                <br>
+              </div>
+            </blockquote>
+            Because despite what the *datasheet* for the AD9371 says,
+            the published interface to change the analog RX bandwidth
+            has no effect.<br>
+            <br>
+            <br>
+            <span>_______________________________________________</span><=
+br>
+            <span>USRP-users mailing list</span><br>
+            <span><a class=3D"moz-txt-link-abbreviated" href=3D"mailto:US=
+RP-users@lists.ettus.com">USRP-users@lists.ettus.com</a></span><br>
+            <span><a class=3D"moz-txt-link-freetext" href=3D"http://lists=
+.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com">http://lists.ettu=
+s.com/mailman/listinfo/usrp-users_lists.ettus.com</a></span><br>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
+--------------060006040406010900010206--
 
-</div></blockquote></div></body></html>=
-
---Apple-Mail-0DA9EB2A-C227-4F7B-89E1-80AEC1CE7D30--
-
---===============1578770619393209739==
+--===============8762850502839485844==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -292,4 +348,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1578770619393209739==--
+--===============8762850502839485844==--
