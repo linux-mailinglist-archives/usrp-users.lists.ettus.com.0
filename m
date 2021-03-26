@@ -2,134 +2,288 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE61E34AD1A
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Mar 2021 18:09:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58C7934AD45
+	for <lists+usrp-users@lfdr.de>; Fri, 26 Mar 2021 18:26:21 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 96187383DB7
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Mar 2021 13:09:10 -0400 (EDT)
-Received: from EUR03-AM5-obe.outbound.protection.outlook.com (mail-eopbgr30114.outbound.protection.outlook.com [40.107.3.114])
-	by mm2.emwd.com (Postfix) with ESMTPS id A2ABF383D8B
-	for <usrp-users@lists.ettus.com>; Fri, 26 Mar 2021 13:09:01 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Rl15HYvqvr9lVa2yzB3DMe5n195801QJCZKMTpHTHhUTt+rfK/a1+mjw7ogZCham4pRR53K4uOGujTOh971XpiKWpiFlePJT8wuhqTaWp8yrPwKCg+OZ18cnIk7D/pzi4PGNcF2VAfhEE6X67eXYlWVB+ZtijxdQhQ5ZEzPmNW460PfJb8CcStiJVCJck5OGYEdEa91ibSNMG5VgWyUXIcW4PzlY8s1FtfhlPqNJ8elOeJpwnN3+/9WV69/FTaDmL/FwwUF6+gzhxhbF+0WBfuvUwce866PauFMt2cjE+ctz0gWzh3iaWovSJFnpKSj5aNyAqcktVy5HI+Eig9B7Bg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4bD/UYmzgqc2BCbB7d/BdTyaLmV4zuCBv1JARikDJCA=;
- b=lAQFxphpXklLqeAMq5f7YlXxM32umKp7OIUERUSNJxo+3rO4ZM4rp2WAbzhNjZiawdqioX19Q0OUx0GlxrkwgKebMGKQYxGC9/S8d7AWe2F/vWLXhdEn2NIeko7C5l67aus37h+2F94WYSQUc/7WV58RBHlIOdxrVSn+MntWHkDD8XpVJ8jzV8qaILB2IS0cPD0L1fUmTj+LoANm9uPspmd/sXpzgzdkmG8LRpc5Nawy1hlpBb8P3IINE+5YSTrevcCGPsMmlGAze0tGOy/VPQ6J8Yf+PGh920OHIvSWMcbtL0uBv2njtqqz9ElJ/rU0uT/iKlfg5XBvgPdA9+H7hQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4bD/UYmzgqc2BCbB7d/BdTyaLmV4zuCBv1JARikDJCA=;
- b=Ceb5KjPdY8HiWn7NPeqwgtxJ97f5Sxd3lh8AFzvpsHKNP/D79CXgY7gRUVnS0wGzgke454pEbTjT9HcNh5cKDW15Yl5PTp9iLnz5sR9MH25Qf7axYqd4YCyaH+tyCzhK38tUZk3Qf7IVqvPM0CTe57SobdQCXIyjm9dkH0EmGmg=
-Authentication-Results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none header.from=ulb.be;
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
- by AS8P190MB1205.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:2eb::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25; Fri, 26 Mar
- 2021 17:09:00 +0000
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::d401:36d3:1d0:a2e5]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::d401:36d3:1d0:a2e5%6]) with mapi id 15.20.3977.026; Fri, 26 Mar 2021
- 17:09:00 +0000
-Date: Fri, 26 Mar 2021 18:08:59 +0100
-To: usrp-users@lists.ettus.com
-Message-ID: <20210326170859.z7556qox4usoevrq@barbe>
-Mail-Followup-To: usrp-users@lists.ettus.com
-References: <icnEO10mb8djlxYxZkhSnFMe9f23G6665vICAtTJJ8@lists.ettus.com>
-Content-Disposition: inline
-In-Reply-To: <icnEO10mb8djlxYxZkhSnFMe9f23G6665vICAtTJJ8@lists.ettus.com>
-X-Originating-IP: [164.15.78.67]
-X-ClientProxiedBy: AM8P189CA0008.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:20b:218::13) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:11e::20)
+	by mm2.emwd.com (Postfix) with ESMTP id 4B1A8383DC6
+	for <lists+usrp-users@lfdr.de>; Fri, 26 Mar 2021 13:26:20 -0400 (EDT)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5B2F3383D3A
+	for <usrp-users@lists.ettus.com>; Fri, 26 Mar 2021 13:25:33 -0400 (EDT)
+Received: by mail-ua1-f42.google.com with SMTP id b7so1786277uam.10
+        for <usrp-users@lists.ettus.com>; Fri, 26 Mar 2021 10:25:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+Ss5F/Pi3a67Sq7WHO0wmBrab/2id18TZCSfAk1/bRI=;
+        b=g2U5zelUHaczIoKaZpc15QyuBtYyQFY803dGDt6lr1xMwE4xiynhwE6kSQQvaBrZFz
+         Q8qLDGfo6gmw+sFd0+dNA5m1qFa/4YjXrpdrrjDt+jL9PvYQ3RNeiXkZp/Kk4S4qj5Vr
+         nre4cdJZKfy4M1pO8VfpWgFl8QdggxkKPiNHY0IB+zWXqvIUOsFCLxoBpKA6yb3M6HO8
+         KEsJy05L2Hk1iss/fYWPGp9r/k7kzC0I9PoTrvErqwUZ2Ef+gQbPwpFNA1+5DBMHQTHJ
+         X6t+HBq2wF5FC88sGfM0sQSrBpIYwcIgzZmoSjZrF2N9k9NL3GY2Fz6Y2Kfr5AwRKpOM
+         OI0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+Ss5F/Pi3a67Sq7WHO0wmBrab/2id18TZCSfAk1/bRI=;
+        b=iA+AP10FR53G/FJCPIR/PxkjjEB6rYQD5H/hfV/lbb8QavkwkfsOhMfMkw3GUYRpt7
+         HIvyvXAduGh+O3c+/wp+zR9tM6LcclBWcaJ0cWeuyXPqrVK4K5/QdozSmRHSt2FP5uyT
+         FDJLgcjwff2Pt5IKRcOJnLwhar+QcSlQ9fNxWC1VwlIv7n4kYFIM/SBavfQgf9zrowC8
+         FkOoQST8Uddpl1L2LtglppK30tjmn/F679NrkR/7kgMwUcaa/OhH8NoNrfKS6+hTQSxe
+         ePj4ZJQdlFo89Zxgsb5hhRiDjLCgqZVtcSLjWs3G36lwZ+ARhtRhuf6nTqsCQ1VlK8Ya
+         afcQ==
+X-Gm-Message-State: AOAM532x3XOmWwZ0kopC1qOCFcGgGzej2yGLt9x3vsb4q1cLKeN8hGVi
+	KhFnbEl16kMzs9xWI8L2/joH4H/KDvcCfvrCCEhh+XoTwaCTdA==
+X-Google-Smtp-Source: ABdhPJxdukRWbhLisREs2y6us5KeF6pf01boR2PR/ZOk5zY3o6HCOYD2ovmNKMVwY9Q0MaOMIJkeA5K5By4DnMUbUtw=
+X-Received: by 2002:ab0:23c2:: with SMTP id c2mr9164458uan.49.1616779532672;
+ Fri, 26 Mar 2021 10:25:32 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost (164.15.78.67) by AM8P189CA0008.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:218::13) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.24 via Frontend Transport; Fri, 26 Mar 2021 17:08:59 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9a7dff3c-c96b-4f92-1125-08d8f079d944
-X-MS-TrafficTypeDiagnostic: AS8P190MB1205:
-X-Microsoft-Antispam-PRVS: 
-	<AS8P190MB120538E062DC95D367FDA911F0619@AS8P190MB1205.EURP190.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	SQhSPo2NbeKkcMNHDCk9i9bQquSNjg9XYF8UunDdsSZAEKk6sp8mBuMNrgdYv6Gqzb+m+CrdCjr9HDU0rif32Ei2ELw43u6HhgQbwauHosjHa2VjFyU0XsrtMZBQLzi3kaeWBeLls2IUM3QkMp2r3m6X3IK4+OZc9M4EHXFm0xZ1sJmMstPMmgjsTF8IKFbzT2JoHxUazANd6eRvS2e+oJjWhoeUjvZWYng6SiS8fhWSVPRMJ0+x0JFVZVV7WfLmIenTd+27JkDl9VWByDuHIhctv363S2SHyMEcrSVj0nV9lPrJD3uuIo/f9P8lj4/rPR21c6EeEmXCtUywx5pT/0Z/PGM7zHv6jtfi8lFzpoFRffA/kFUwB+2VUv3h/jo5kbzkDoxjbbXsWKdrbTvXC68kaadptHxtx3sB1OrwYzY++dwQ1TaZXBSq9cb7sxWXZKn+xTe7xztqWwaFWge5MOwSiBam6AaXnuJMUVv8zfTJdwkB5rzlyq4MxjJ1FDPbVV+ik7ad6tOBBCCGJBKtZvPDFiAMquBmzMFD14RQ2El2FEO8OU6a74VtfrIH5vHmvEeOSJofxPOPI5PD1ftNz7i3yWe2sV51pJkAQH8wFkfhkSk7xK8f7U3qXG8VG63BpBLwYfJRMy3u7aJ7bZwDr3bFGw1timwvEZyRVjH3yNQiNsGxZHiHmgrSg9D4UgBxXTK7DK0CK70sfnOm4IiLFSWCWDOI2xImgnqR0G0A0RU=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(7916004)(4636009)(346002)(366004)(136003)(396003)(376002)(39850400004)(53546011)(6916009)(2906002)(186003)(26005)(66946007)(66556008)(52116002)(66476007)(6496006)(86362001)(956004)(33716001)(38100700001)(6486002)(16526019)(5660300002)(478600001)(1076003)(4744005)(8936002)(966005)(8676002)(786003)(9686003)(316002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: 
-	=?iso-8859-1?Q?GD9mOeqktLFnL2o9q1OAbOmHtbvlzsSSu27Nuac+bOhHLxMwS3xXE+wCF7?=
- =?iso-8859-1?Q?tVn9suXny3K9sqQKxOgAQlFWoTok7NcSPVn62FSZzmoKOdoKInXmDfrCKk?=
- =?iso-8859-1?Q?ELMWSAnBRu6m/7AQjrGfCVeLskHfVfyjs+HPCFVtjrpcfvyO//z9mo7z0/?=
- =?iso-8859-1?Q?Emg0ns0jTo7AMVxRySzX9UrxShajJaIGWJbKiTOat607uJymCLMHurGRiK?=
- =?iso-8859-1?Q?fOm1F0j11viy4IwKZnbTFpMnGdsXC0ANTdfkqi0w3TN7+V0ZFEdihuBifo?=
- =?iso-8859-1?Q?MQ6KqrgVAvktvgmaX6/FsepgfR2Z1WUq29AdH9kUnRtFSPalbhVQ+LyPUD?=
- =?iso-8859-1?Q?CFJqOqgBAC+Bg0s8wYvhafXbi+9XM/9Yw/OW+Rhp2UMVZM3CgJH8M1m6F5?=
- =?iso-8859-1?Q?ykPMiKyU+A7mbezWefSB9ZwiVfEltwVW1WAQkO7S8s7TEGiJkUbq6eXQqg?=
- =?iso-8859-1?Q?Qio2B0p+gUSTelnC2v+ugL5g22Xha49Spji021NsMIOAEZt3rFzLygH2Z1?=
- =?iso-8859-1?Q?AiwWmfq7IF1hbO42eL7oKC2OLTK+2HD0IJdu4kQiN8nM9U+Qx1sf/pGkvG?=
- =?iso-8859-1?Q?rYtiXlTl/k3i/mLht2QHeScWVXrYrMLgIHB+r+Z+vP0j4sPCiWfP3iQwcD?=
- =?iso-8859-1?Q?1AtYJTP3Ec/pcYK7loEN8T6rgEq9bvRjKN/qRiG/NI0D4vierAgdx+0p0e?=
- =?iso-8859-1?Q?BX6FpvE39eUsofKeYHzCQltaYhNtpPecJYSACtRlq6pb70tAmm78uXM1TH?=
- =?iso-8859-1?Q?HBvoYRF8g07J4XvzefKkBAN83RwjubBbCT3tL/w+QFdFT4xnEFpyZL69jC?=
- =?iso-8859-1?Q?jh6jrgkjR/D458Oz2KSwDp3Y8gw87uqL1sxbGKZOkczBakPi+A90O8ghUV?=
- =?iso-8859-1?Q?vUQJpdjduAg7S02Gujj4gTeVL9a55LOVgNxAAZnm5x047b5gACdhIiVfTo?=
- =?iso-8859-1?Q?NzZvvEKudDwIScV/MfwODyArWv75UEs1uEsBPe0Mt+hOk5kf1xHyGHYPoB?=
- =?iso-8859-1?Q?WW8TN6zgMxSTBGoR2QVQTyF6g7G0I5ul6mSIR/kBiMt7DYpfkw3prwUFCn?=
- =?iso-8859-1?Q?+jQfbMiXnaGjOhSxSK8kQ/97oVIHJJCEGGV/G5pg3zdg/iPCTxlVBzSR7c?=
- =?iso-8859-1?Q?Jr0Xm4ruKxJpQDyYR39hoi5oMN6k8N4+JyYDjMSkaWFJAbQ5bW58YaLxKW?=
- =?iso-8859-1?Q?u+bSYf3qjLMvGF/1IMJfaMvXlvOSS9ftcu5+j2pLkmRU4GRiNAUs3G1g/0?=
- =?iso-8859-1?Q?6UfczEiIMJD1NRETPJLHSO0EmEzXwFjYBZW6RvlZQFtxyFOew3Cr4rDOSl?=
- =?iso-8859-1?Q?Eq6e0ya1/pIwok8NJBHU3QjqtBw8OhPkWOw7I+3jg1EtOSEilkrp12p/vL?=
- =?iso-8859-1?Q?hOMD1V2Kam?=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a7dff3c-c96b-4f92-1125-08d8f079d944
-X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2021 17:09:00.1095
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PgCOoF6ZOlBFkSEZ1KVxk2TmNmMV6dkJ/3imkUExde4+s/QLd49Xj1jLR4BGMcZVJ55ZqCLVCVhpD4qg7f6G6Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P190MB1205
-Message-ID-Hash: Z3UF2PEGMGYQAYMFCECZTIL5ZPF6XTOY
-X-Message-ID-Hash: Z3UF2PEGMGYQAYMFCECZTIL5ZPF6XTOY
-X-MailFrom: Cedric.Hannotier@ulb.be
+References: <60f5117b-0305-0ab6-1a25-edeedefb7dc9@dcsmail.net>
+In-Reply-To: <60f5117b-0305-0ab6-1a25-edeedefb7dc9@dcsmail.net>
+From: Ben Magistro <koncept1@gmail.com>
+Date: Fri, 26 Mar 2021 13:25:20 -0400
+Message-ID: <CAKx8PBhA1QVxwtOzGbbZNfQXus0Op7Prt8hqmW4GoQGnR_Csvg@mail.gmail.com>
+To: Barry Duggan <barry@dcsmail.net>
+Message-ID-Hash: O2RO3MKFYEVIYY4YV5SBY7GMNPHWLOST
+X-Message-ID-Hash: O2RO3MKFYEVIYY4YV5SBY7GMNPHWLOST
+X-MailFrom: koncept1@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: USRP list <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Cant search archive
+Subject: [USRP-users] Re: Shared UHD Access
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Z3UF2PEGMGYQAYMFCECZTIL5ZPF6XTOY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/O2RO3MKFYEVIYY4YV5SBY7GMNPHWLOST/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?= <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/mixed; boundary="===============7367225595937686418=="
+
+--===============7367225595937686418==
+Content-Type: multipart/alternative; boundary="000000000000b9a5c105be73d153"
+
+--000000000000b9a5c105be73d153
+Content-Type: text/plain; charset="UTF-8"
+
+Thanks for sharing.  I did have a full duplex single channel working.  This
+started from a question of "can you run the exact same for a second channel
+so we can compare performance of different antennas".  The simple approach
+I wanted for that was to just run two copies of the flowgraph.  Based on
+the comments here I bumped the sink/source blocks to have two channels, set
+the subdevs (A:0 A:1) on both, and stream channels ([0, 1]) and then copied
+all the blocks in the graph to create a parallel path (different UDP
+source/sinks mapping back to the different channels).  However when I try
+to run this, I get the below error.  I created a simplified graph with two
+signal sources and two null sinks just to see if the UHD blocks were setup
+correctly and that graph runs.  Any thoughts on what else to look at?
+
+[ERROR] [0/Radio#0] Invalid channel configuration: This device does not
+support 1 TX x 2 RX or 2 TX x 1 RX configurations!
+thread[thread-per-block[28]: <block usrp_sink(11)>]: RuntimeError: Invalid
+channel configuration: This device does not support 1 TX x 2 RX or 2 TX x 1
+RX configurations!
+
+Below are the sink/source blocks from the generated graph.
+
+ 66         self.uhd_usrp_source_0 = uhd.usrp_source(
+ 67             ",".join(("", "")),
+ 68             uhd.stream_args(
+ 69                 cpu_format="fc32",
+ 70                 args='',
+ 71                 channels=[0,1],
+ 72             ),
+ 73         )
+ 74         self.uhd_usrp_source_0.set_subdev_spec('A:0 A:1', 0)
+ 75         self.uhd_usrp_source_0.set_center_freq(center_freq, 0)
+ 76         self.uhd_usrp_source_0.set_gain(rx_gain, 0)
+ 77         self.uhd_usrp_source_0.set_antenna('RX2', 0)
+ 78         self.uhd_usrp_source_0.set_bandwidth(500000, 0)
+ 79         self.uhd_usrp_source_0.set_center_freq(center_freq, 1)
+ 80         self.uhd_usrp_source_0.set_gain(rx_gain, 1)
+ 81         self.uhd_usrp_source_0.set_antenna('RX2', 1)
+ 82         self.uhd_usrp_source_0.set_bandwidth(500000, 1)
+ 83         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
+ 84         self.uhd_usrp_source_0.set_time_unknown_pps(uhd.time_spec())
+ 85         self.uhd_usrp_sink_0 = uhd.usrp_sink(
+ 86             ",".join(("", "")),
+ 87             uhd.stream_args(
+ 88                 cpu_format="fc32",
+ 89                 args='',
+ 90                 channels=[0,1],
+ 91             ),
+ 92             '',
+ 93         )
+ 94         self.uhd_usrp_sink_0.set_subdev_spec('A:0 A:1', 0)
+ 95         self.uhd_usrp_sink_0.set_center_freq(center_freq, 0)
+ 96         self.uhd_usrp_sink_0.set_gain(tx_gain, 0)
+ 97         self.uhd_usrp_sink_0.set_antenna('TX/RX', 0)
+ 98         self.uhd_usrp_sink_0.set_bandwidth(500000, 0)
+ 99         self.uhd_usrp_sink_0.set_center_freq(center_freq, 1)
+100         self.uhd_usrp_sink_0.set_gain(tx_gain, 1)
+101         self.uhd_usrp_sink_0.set_antenna('TX/RX', 1)
+102         self.uhd_usrp_sink_0.set_bandwidth(500000, 1)
+103         self.uhd_usrp_sink_0.set_samp_rate(samp_rate)
+104         self.uhd_usrp_sink_0.set_time_unknown_pps(uhd.time_spec())
+
+Thanks!
+
+On Thu, Mar 25, 2021 at 2:07 PM Barry Duggan <barry@dcsmail.net> wrote:
+
+> Hi Ben,
+>
+> As I understand it, the UHD Source and Sink blocks must be in the same
+> flowgraph. Otherwise, after you start one flowgraph, the other will say
+> it can't find the device, or some similar error.
+>
+> For how I solved the problem, see
+>
+> https://raw.githubusercontent.com/duggabe/gr-control/main/xmt_rcv_switch.grc
+>
+> Feel free to ask questions.
+>
+> Good luck,
+> --
+> Barry Duggan KV4FV
+> https://github.com/duggabe
+>
+> On Thu, 25 Mar 2021 13:23:40 -0400, Ben Magistro <koncept1@gmail.com>
+> wrote:
+>
+> This might be more of a GNURadio question, but is it possible to share a
+> single USRP device (E310 in this case) with two flowgraphs?  What I mean is
+> the E310 has a "A" and "B" channel, could you use channel "A" with one
+> flowgraph and "B" with another or does everything have to be implemented in
+> a single flowgraph with the UHD sink/source configured to have two
+> channels?  I'm guessing the latter due to how UHD interacts with the
+> hardware.
+>
+> Thanks!
+>
+
+--000000000000b9a5c105be73d153
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Christopher,
+<div dir=3D"ltr"><div>Thanks for sharing.=C2=A0 I did have a full duplex si=
+ngle channel working.=C2=A0 This started from a question of &quot;can you r=
+un the exact same for a second channel so we can compare performance of dif=
+ferent antennas&quot;.=C2=A0 The simple approach I wanted for that was to j=
+ust run two copies of the flowgraph.=C2=A0 Based on the comments here I bum=
+ped the sink/source blocks to have two channels, set the subdevs (A:0 A:1) =
+on both, and stream channels ([0, 1]) and then copied all the blocks in the=
+ graph to create a parallel path (different UDP source/sinks mapping back t=
+o the different channels).=C2=A0 However when I try to run this, I get the =
+below error.=C2=A0 I created a simplified graph with two signal sources and=
+ two null sinks just to see if the UHD blocks were setup correctly and that=
+ graph runs.=C2=A0 Any thoughts on what else to look at?<br></div><div><br>=
+</div><div>[ERROR] [0/Radio#0] Invalid channel configuration: This device d=
+oes not support 1 TX x 2 RX or 2 TX x 1 RX configurations!<br>thread[thread=
+-per-block[28]: &lt;block usrp_sink(11)&gt;]: RuntimeError: Invalid channel=
+ configuration: This device does not support 1 TX x 2 RX or 2 TX x 1 RX con=
+figurations!</div><div><br></div><div>Below are the sink/source blocks from=
+ the generated graph.</div><div><br></div><div>=C2=A066 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 self.uhd_usrp_source_0 =3D uhd.usrp_source(<br>=C2=A067 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;,&quot;.join((&quot;&quot;, &quot;=
+&quot;)),<br>=C2=A068 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd.stream_=
+args(<br>=C2=A069 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 c=
+pu_format=3D&quot;fc32&quot;,<br>=C2=A070 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 args=3D&#39;&#39;,<br>=C2=A071 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 channels=3D[0,1],<br>=C2=A072 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ),<br>=C2=A073 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 )<br>=C2=A074 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_source_0.set_su=
+bdev_spec(&#39;A:0 A:1&#39;, 0)<br>=C2=A075 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sel=
+f.uhd_usrp_source_0.set_center_freq(center_freq, 0)<br>=C2=A076 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 self.uhd_usrp_source_0.set_gain(rx_gain, 0)<br>=C2=A077 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_source_0.set_antenna(&#39;RX2&#39=
+;, 0)<br>=C2=A078 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_source_0.set_ba=
+ndwidth(500000, 0)<br>=C2=A079 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_so=
+urce_0.set_center_freq(center_freq, 1)<br>=C2=A080 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 self.uhd_usrp_source_0.set_gain(rx_gain, 1)<br>=C2=A081 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 self.uhd_usrp_source_0.set_antenna(&#39;RX2&#39;, 1)<br>=C2=
+=A082 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_source_0.set_bandwidth(5000=
+00, 1)<br>=C2=A083 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_source_0.set_s=
+amp_rate(samp_rate)<br>=C2=A084 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_s=
+ource_0.set_time_unknown_pps(uhd.time_spec())<br>=C2=A085 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 self.uhd_usrp_sink_0 =3D uhd.usrp_sink(<br>=C2=A086 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;,&quot;.join((&quot;&quot;, &quot;&qu=
+ot;)),<br>=C2=A087 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd.stream_arg=
+s(<br>=C2=A088 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cpu_=
+format=3D&quot;fc32&quot;,<br>=C2=A089 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 args=3D&#39;&#39;,<br>=C2=A090 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 channels=3D[0,1],<br>=C2=A091 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ),<br>=C2=A092 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 &#39;&#39;,<br>=C2=A093 =C2=A0 =C2=A0 =C2=A0 =C2=A0 )<br>=C2=
+=A094 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_subdev_spec(&#39=
+;A:0 A:1&#39;, 0)<br>=C2=A095 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sin=
+k_0.set_center_freq(center_freq, 0)<br>=C2=A096 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ self.uhd_usrp_sink_0.set_gain(tx_gain, 0)<br>=C2=A097 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 self.uhd_usrp_sink_0.set_antenna(&#39;TX/RX&#39;, 0)<br>=C2=A098 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_bandwidth(500000, 0)<b=
+r>=C2=A099 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_center_freq=
+(center_freq, 1)<br>100 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.se=
+t_gain(tx_gain, 1)<br>101 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.=
+set_antenna(&#39;TX/RX&#39;, 1)<br>102 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd=
+_usrp_sink_0.set_bandwidth(500000, 1)<br>103 =C2=A0 =C2=A0 =C2=A0 =C2=A0 se=
+lf.uhd_usrp_sink_0.set_samp_rate(samp_rate)<br>104 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 self.uhd_usrp_sink_0.set_time_unknown_pps(uhd.time_spec())<br></div><di=
+v><br></div><div>Thanks!<br></div></div><br><div class=3D"gmail_quote"><div=
+ dir=3D"ltr" class=3D"gmail_attr">On Thu, Mar 25, 2021 at 2:07 PM Barry Dug=
+gan &lt;<a href=3D"mailto:barry@dcsmail.net">barry@dcsmail.net</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Ben,<br>
+<br>
+As I understand it, the UHD Source and Sink blocks must be in the same <br>
+flowgraph. Otherwise, after you start one flowgraph, the other will say <br=
+>
+it can&#39;t find the device, or some similar error.<br>
+<br>
+For how I solved the problem, see <br>
+<a href=3D"https://raw.githubusercontent.com/duggabe/gr-control/main/xmt_rc=
+v_switch.grc" rel=3D"noreferrer" target=3D"_blank">https://raw.githubuserco=
+ntent.com/duggabe/gr-control/main/xmt_rcv_switch.grc</a><br>
+<br>
+Feel free to ask questions.<br>
+<br>
+Good luck,<br>
+-- <br>
+Barry Duggan KV4FV<br>
+<a href=3D"https://github.com/duggabe" rel=3D"noreferrer" target=3D"_blank"=
+>https://github.com/duggabe</a><br>
+<br>
+On Thu, 25 Mar 2021 13:23:40 -0400, Ben Magistro &lt;<a href=3D"mailto:konc=
+ept1@gmail.com" target=3D"_blank">koncept1@gmail.com</a>&gt; wrote:<br>
+<br>
+This might be more of a GNURadio question, but is it possible to share a<br=
+>
+single USRP device (E310 in this case) with two flowgraphs?=C2=A0 What I me=
+an is<br>
+the E310 has a &quot;A&quot; and &quot;B&quot; channel, could you use chann=
+el &quot;A&quot; with one<br>
+flowgraph and &quot;B&quot; with another or does everything have to be impl=
+emented in<br>
+a single flowgraph with the UHD sink/source configured to have two<br>
+channels?=C2=A0 I&#39;m guessing the latter due to how UHD interacts with t=
+he<br>
+hardware.<br>
+<br>
+Thanks!<br>
+</blockquote></div>
 
-On 26/03/21 16:29, christopher_beaudoin@uml.edu wrote:
-> Is anyone else encountering errors from the website when searching throug=
-h the archives?
+--000000000000b9a5c105be73d153--
 
-If you mean mailing list archives, see this:
-https://lists.ettus.com/empathy/thread/MMLLWUGPGIX2XZDAJB7HRS5I6SO6UES3
+--===============7367225595937686418==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Regards
---=20
-
-C=E9dric Hannotier
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============7367225595937686418==--
