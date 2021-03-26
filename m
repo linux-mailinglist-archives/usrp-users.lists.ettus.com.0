@@ -2,399 +2,442 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1C1634B05B
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Mar 2021 21:39:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B519B34B0EB
+	for <lists+usrp-users@lfdr.de>; Fri, 26 Mar 2021 21:54:53 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A23DB3842E2
-	for <lists+usrp-users@lfdr.de>; Fri, 26 Mar 2021 16:39:18 -0400 (EDT)
-Received: from mx0b-00110702.pphosted.com (mx0b-00110702.pphosted.com [205.220.173.36])
-	by mm2.emwd.com (Postfix) with ESMTPS id 75C96383E82
-	for <USRP-users@lists.ettus.com>; Fri, 26 Mar 2021 16:38:29 -0400 (EDT)
-Received: from pps.filterd (m0185346.ppops.net [127.0.0.1])
-	by mx0b-00110702.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12QKX6Rm025826;
-	Fri, 26 Mar 2021 16:38:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uml.edu; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type :
- mime-version; s=dkim20180810;
- bh=DTayVYs9cPDNBD5bXr3LraiB5lEDCZT0A3RrUUfxSfs=;
- b=DwVZxRTwrEF9lp70xzL05sHa3b5+2tr6W5PWnlQOnlj3k1TqVyIiL3vWtMQ2Ic3wNe2n
- af0jdMlp/mMvlAj1nUcRZPOYgB3VRBm7KawEm0monRWQpam33bRQVkfVnzjp8iz6R1I4
- O9o4oOy7rw4NJdxEiBJXIb8Te+S0X623Rn+i8hfWWOe/dKXa3ru2x+MPmKArHCV8hQVi
- c4seKLJJZIQU/7905r5HB5IpyoVfa5E80CAPB5i433V77n16AK6RFpFtO7y62lwi2kLA
- wSWmj0MCeeSta6YsqFRuV4qbw0HkEvmUDRxML/MKM/QOKA0H4Go/BAwNdUYO5RyjRL5A gg==
-Received: from nam02-bl2-obe.outbound.protection.outlook.com (mail-bl2nam02lp2059.outbound.protection.outlook.com [104.47.38.59])
-	by mx0b-00110702.pphosted.com with ESMTP id 37h15msnwh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Mar 2021 16:38:17 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MIzoCofXvGTRAzcbvDoMgF776C9y6+oMpbFdswIc/2hbMGf93VYtBwBN/75mx+dbkRME4Cb/tSAqeEuw6anpS6qvf1ZSKFZOZPSs8xTveB3k19EFen/BLC/3Hb/qA4tDAxgCDFou6urRVW5sCSMAiMDkHOzdEso0KvnlApFI7CKj/0XnoBZVRt7zoTGt8nctSW6ztDeopGRJwlDq8vTWb5yUVUMdx73MCJeCussD8CpP1ZoLPvMNlYOT8bWpjogCiADPTt2KjDuEt1mto1D5XDj6B5El/0TSHYWqlf88DyNm5budyNdBcNHhkylPY0VvjvSxF1/vFgV078AGDUdTAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DTayVYs9cPDNBD5bXr3LraiB5lEDCZT0A3RrUUfxSfs=;
- b=VCbFboStxChD84fvQX9MYj0Y6Abgr2INHOVRNbclCsJv2pVmMQ1TnJmncPSFq0ImJHplinGBXC5SdTKR4tQxkg/p3ghOfLoUYQ1QZLNOvhVXXpKLdDoRHGf8i/H7Dp/dUtWyf2Q7ZJuj4V0GFEBamTLReTifXYvkhjV+uS/g+t38ek0A/qBRqCt1tYzZU3pCMKRdtJbVlL0rdCI5yAfBFJzwHSTOE3IEcrEFHY07OSO0mZ2+wFUdPeL8CwjUwN0ert7Fj0BX29GoDwiNUlcv65tYxzZLD3Uk/5NvXm/v3KIwfmpi7ROkWBikDAJNWVSnUyIIMj5/qhENoYd0/0K/aA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=uml.edu; dmarc=pass action=none header.from=uml.edu; dkim=pass
- header.d=uml.edu; arc=none
+	by mm2.emwd.com (Postfix) with ESMTP id AEADE383E8F
+	for <lists+usrp-users@lfdr.de>; Fri, 26 Mar 2021 16:54:52 -0400 (EDT)
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+	by mm2.emwd.com (Postfix) with ESMTPS id E21E6383E16
+	for <USRP-users@lists.ettus.com>; Fri, 26 Mar 2021 16:54:05 -0400 (EDT)
+Received: by mail-qt1-f175.google.com with SMTP id 1so4576066qtb.0
+        for <USRP-users@lists.ettus.com>; Fri, 26 Mar 2021 13:54:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=studentuml.onmicrosoft.com; s=selector2-studentuml-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DTayVYs9cPDNBD5bXr3LraiB5lEDCZT0A3RrUUfxSfs=;
- b=JhGHHtjxvmuqPA055++cb7Rr3Z/5UrFk6+PQQpfcMth/hLGx5bznYHytKebWTZJmffj1wC2V7JL30h2qMWOFodsxxgGafVqSpQTs6wpqJgEGjG1EPpV7xhEbXSS0Bxx2UEhijzHV+1fFVUnBaN3sctrzPn5tjHEa7sYFm006yxY=
-Received: from MN2PR02MB5984.namprd02.prod.outlook.com (2603:10b6:208:11b::17)
- by MN2PR02MB6639.namprd02.prod.outlook.com (2603:10b6:208:15f::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.24; Fri, 26 Mar
- 2021 20:38:16 +0000
-Received: from MN2PR02MB5984.namprd02.prod.outlook.com
- ([fe80::6893:3289:4353:6919]) by MN2PR02MB5984.namprd02.prod.outlook.com
- ([fe80::6893:3289:4353:6919%6]) with mapi id 15.20.3977.024; Fri, 26 Mar 2021
- 20:38:16 +0000
-From: "Beaudoin, Christopher J" <Christopher_Beaudoin@uml.edu>
-To: Marcus D Leech <patchvonbraun@gmail.com>,
-        Julian Arnold
-	<julian@elitecoding.org>
-Thread-Topic: [USRP-users] Re: B210 EVM
-Thread-Index: AQHXInBAGwEPrwVAkkCCwIfozhmvN6qWsXLx
-Date: Fri, 26 Mar 2021 20:38:16 +0000
-Message-ID: 
- <MN2PR02MB5984AB90949D61895C7BBA54E3619@MN2PR02MB5984.namprd02.prod.outlook.com>
-References: 
- <7E90B7FF-A717-4B01-94F8-B01A1299D9AD@elitecoding.org>,<CF024055-E524-49C0-B268-337DA8AE864A@gmail.com>
-In-Reply-To: <CF024055-E524-49C0-B268-337DA8AE864A@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=uml.edu;
-x-originating-ip: [129.63.7.6]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d83a732a-cb91-4a34-592a-08d8f09715a6
-x-ms-traffictypediagnostic: MN2PR02MB6639:
-x-microsoft-antispam-prvs: 
- <MN2PR02MB663973F6CA097D8FB47F67E9E3619@MN2PR02MB6639.namprd02.prod.outlook.com>
-x-uml: facstaff-to-external
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- t6hdfVtHEENfAQxfAv6E0t2wDAsIzK/QsCApFvsOcXq4opVkLpmhqaMQbnd0deMhdoDfTSh4Qb0iuFRPkdFw//sY7DZoPOaPcjTpcHuhsFuZ5I989x8dToIhQ1eHS6YOI3S8g5beoccL1BlNyf3vxF3TT89XPQrvAnaMVqTXmfgkcuNP437EGLF/C1UelaUpKV4nCTqIY4V5W9Pmkyrg32CyWqdcGfbZGDTrCvJW4IMZcRkpi4jPIQHSMa+K++g9fvSMsOICiIq76I0zffvtOYXRWAn28wvYQA9h/T+a4xtm5/Ep7Mj2KzXPjHy2PVzhsa6YO11CHcD9u5DNTwRcvw2Df8v6a0C7k0qgg7cIj6R3e6VeU+ppPMe/LhjnNes+8WubEaAk8a5nlwog3rKaAWjXVLoeAWeCj0lAEDgmn9+IhT/OzHQT36hXeCWQJslz5KCuzfnsqs4x4SmYo/2yO/Rg5zpV2sQxC1o68Lzby+G2w9eOxxyQAgGBy+rcSWe6B2eHPf5GFozEgMBQCQjOnJVyCRESU7srpZ7FRYR3SHZzhZiZDqRVbGbsT/CCN1VRmVzGlatAF4SUA6KZUGOY6xtqF9lvJX6aQUGfcqYM8e6qpDnYEz0pzKhM37+Todt4XnL0Z66wAXKzMrpWPu3tFaXTms+j0/hoX7TYiTOs0iI=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR02MB5984.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(376002)(346002)(136003)(396003)(39860400002)(64756008)(66946007)(66556008)(19627405001)(55016002)(2906002)(66476007)(186003)(5660300002)(86362001)(66446008)(76116006)(52536014)(26005)(71200400001)(33656002)(8936002)(316002)(4326008)(9686003)(8676002)(83380400001)(38100700001)(6506007)(75432002)(110136005)(7696005)(478600001)(53546011)(786003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 
- =?utf-8?B?anlXK1NsSHVUT1orZHM4WDgrcVBvTGNEeGVGMCtoeSt5UmJISnBHTjNNTU53?=
- =?utf-8?B?dzIwRkYwc3ZubTc3U3ZaNWZvbTJSUExQdzZKNm0xbDFjMkV1SWdrZE03bkxI?=
- =?utf-8?B?S1RZVjRMeXIySHVNRyszb3JZSmMxZ3g2MjY4bkxMMlhPdk5YU2ZnaU9qV3Vl?=
- =?utf-8?B?b21nYkhDM1d3WWtCTXFHTWlBNW9oakEyVzd1c1R2akN0SS8rM0VleExvOXBt?=
- =?utf-8?B?d0RSTnpwQzVobjFvay9TdG9sMmpIeDIxeFpnWDBldmh3SFRHdE9PaXkwM1No?=
- =?utf-8?B?V3F6QmhSemVKLzU5OTlHa1hxcHZiU05SVFpXbEs4U3o5Y2xINmhONGx5TWJM?=
- =?utf-8?B?S1NzR3NvVW8wRStBTjdQOFB1dEROV3ZSR2VCeHNDWXFMZU9kcm9ubHhDTFUw?=
- =?utf-8?B?RWpxQWg1MUJzNUNrc0VPcUJ6aTZLYnNWeS9FT1JKZVJvdm1SYUlWOUF4R1hQ?=
- =?utf-8?B?NjNGT21WUE90bUtXaUZpSEdFNkx2blFDcm5aeHdwUFg2NFoxRzQ4c3pYc3No?=
- =?utf-8?B?TVgraWJrdlJWS1VIYWhyMGZNeW1USGUrZThuaGJLNkF2UFplUCt6dGExVDZ2?=
- =?utf-8?B?NUlFTktWbVdTOVNFOEFodmFVcVk0M1BjRUZod21pSUNBNTU0cDJiMkkxRmxN?=
- =?utf-8?B?enhqY3lkY2VkekttRWpOM3gyd2prbDVkSDZyYkZoVnhOZnN4ZStzcitqNHFi?=
- =?utf-8?B?eEkwLzJyOVIyNDBXR0xDWHFVRnR4Yk8vSFBZVS9hcmtoRGhWZVZ2VnBuSXAx?=
- =?utf-8?B?U0tNVVoya3ZpbWMzYW9iU2dzRUNQMndRa040Z1ZkRnlYbVEzZGJ5a1lpRWZm?=
- =?utf-8?B?ZGZHTjFzTWIrdnBEKzV4dlI1U2tUQkx2ZGpWVVRKREM0cDZiNGxiVTdVMnpM?=
- =?utf-8?B?dnJ3c0hrSTdJVmk3d0NyODI3MlYvdml0Y0hrcEZ3TUJtWHNLVjVhTXRCdFZm?=
- =?utf-8?B?bVRmV0hmenRSQ1BBdi9YN3BBc21YOGo2bUJpOUtMWkVlSW5DUWVGNUJ0TkhO?=
- =?utf-8?B?VjRaU24zdDRTVDYzOTdQZG9LNGcxRXdPUTB5Z3N6VG8xT2ptUUIvRGo0QXhm?=
- =?utf-8?B?MHZUSTVzQk9wL3BkaFdMeGY3NDkrUHE3ZHkxUlNNbHRVclpQemlZNitKcytU?=
- =?utf-8?B?MDFGYzZUY3QvUzh1ZzhVVndZMDU1TmFEdmhHY1RjbmxGOE96Wk9Pb0R4elNn?=
- =?utf-8?B?TUZuZEtwTUlPTThOS1oydkVYUXdxbllvTjFFTHhYcjRoR1hqWlIxdFdKRHFy?=
- =?utf-8?B?cytSUnFtYlNIRlhrYXdFQjhsYysyeFVmVDY4Sk1lZ2RNM0diUVpaMy9jdXpq?=
- =?utf-8?B?V0pTNWc2UG5vODBTVmdkV2N2eG9PNHY2WVJFVkozeWcvUlVmMy9aNWVaZm8y?=
- =?utf-8?B?MlEvODllTFYrRHRidVlSOTdwelFKRWs1dlpURFd4cDdjNVpRQlNSc2QzSEo0?=
- =?utf-8?B?Tjg3QUgwaFhQZHhHcE5kTEVNdldFZ2R3UFNETEZFZ2ZYVHhucEx5OFdOLy9y?=
- =?utf-8?B?ckN6NE5DbFlxZHNSSXdPREZjajEycUJWbUJ3VXlDUVZGenNHRlFsRWhzRHZa?=
- =?utf-8?B?OXZsaVBCSGc5V2wzYzV0TzRZaklkbE1iK1hYeS9Ld2ZmY21GYXZsWWtCMEE2?=
- =?utf-8?B?UVFFeW5xRGlHa0lsRnJqSE5JRTNEdVdVeFA3cmRJeUpuRkdPRHZWR204YVRR?=
- =?utf-8?B?QWdhclNqbk5ud3pNdUhkZXoxSWowNjl2TndtNHhsS1prVHdzQzZPSk4vUGZI?=
- =?utf-8?Q?kaPjWOPP1Jk/vRC0kk=3D?=
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: uml.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR02MB5984.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d83a732a-cb91-4a34-592a-08d8f09715a6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Mar 2021 20:38:16.5077
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 4c25b8a6-17f7-46f9-83f0-54734ab81fb1
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0c/iwzmNZnM2DH3rMgz+pb2nUVI8C+u27dygeOBlJTPXnP8R4Xn+AKWN49JdUH7AvXJyx2qcE6CV0HBWlqRm//OCPl1naN8Djb3QnyE1C8Q=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB6639
-X-Proofpoint-GUID: 8HIancpZwW8u_hOZyFBYSrM-Lb20ITLe
-X-Proofpoint-ORIG-GUID: 8HIancpZwW8u_hOZyFBYSrM-Lb20ITLe
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-26_11:2021-03-26,2021-03-26 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- mlxlogscore=999 clxscore=1011 malwarescore=0 impostorscore=0
- lowpriorityscore=0 adultscore=0 spamscore=0 phishscore=0 mlxscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2103250000 definitions=main-2103260152
-Message-ID-Hash: BSO24MOQTXOSVRKHYYOJWTUEI3W4SR4T
-X-Message-ID-Hash: BSO24MOQTXOSVRKHYYOJWTUEI3W4SR4T
-X-MailFrom: Christopher_Beaudoin@uml.edu
+        d=gmail.com; s=20161025;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=J0InLWeabzxcxiO6psdXhVDL0j78iSRD1PZ5mj/1QWQ=;
+        b=O4X5LoCwR1feqU+debjjtH1GDAqfMXgK3/aiXWJkg83UKmH77HtFmePT0Mi8Vrk9Z2
+         mSV6+c4kcYYWY+IVfTkEGGTw/iqhYIa3ftFdVJJjK7S9jqNBoUvuLmffFxY3AMzFuqlX
+         ODX92AaeLZZNiPpDEhryDFXHCnQNkYzSGMPCXhxXWqeK86hW7DNMTeFasM3hGhPQQ2YH
+         U673F3eayG/j0RfHYGgafihOs6c6hzh8iGGnU5c6skXRhXuZZNf9q8ZpHuqJBSHYtwcg
+         cs3RXDkFSfX9/EJPy/4Br4EVHswft4Ta2nksK+rtBLdDFP2pFMrHCgYKNqFhBATpzD/G
+         RK9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=J0InLWeabzxcxiO6psdXhVDL0j78iSRD1PZ5mj/1QWQ=;
+        b=Tg7XtQ74gM4aHVF+9awWqQHmzpKoHNOKmDOveSIXYqFneleCUCJPX2El1LR+YMPxzk
+         R5BrZEf1evRf+kp1QYXBXWEd5+8O8ajknYOUIKK+YduGE8AFuqHHKFtOyvixLu0v0nZE
+         0wMf8ykAjivOduvponuaFPYvD8jht97PbDsnXKJOgRnWAsFvmn0yXYH//rE9+2FRr1g4
+         BI2LPV8IVe2C5LR4GHA/L13ZjA/sh+/TApCrCQs7Ui+lPBqolvw/FLM5/N54zyzfN2VG
+         ZIv3d0irXOs4bJkTkJMgACaSGIdzs389QVe8c7am2xR6vfnxDWEZPTU6GNrRD8X/713+
+         WUxA==
+X-Gm-Message-State: AOAM531yeXa3tdCo9M6YIkkXpi0m9ZUGgNwnz39gyiz3gLKg+CbV0aQC
+	2+1xJREQoirqv+dU/E2XYcOk6pFlM/Q=
+X-Google-Smtp-Source: ABdhPJyAPfjSFPew3c1MNumyRm2Q0tsB7ckmLP6sYKmB6zB1FJ3Yb1B5pzZ8PFxFElIFKaHJsNQ+dg==
+X-Received: by 2002:ac8:4718:: with SMTP id f24mr13990429qtp.270.1616792045281;
+        Fri, 26 Mar 2021 13:54:05 -0700 (PDT)
+Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.gmail.com with ESMTPSA id k28sm7652506qki.101.2021.03.26.13.54.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Mar 2021 13:54:05 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Fri, 26 Mar 2021 16:54:04 -0400
+Message-Id: <176D7790-E6DC-4235-938D-C11B2CF2C3D2@gmail.com>
+References: <MN2PR02MB5984AB90949D61895C7BBA54E3619@MN2PR02MB5984.namprd02.prod.outlook.com>
+In-Reply-To: <MN2PR02MB5984AB90949D61895C7BBA54E3619@MN2PR02MB5984.namprd02.prod.outlook.com>
+To: "Beaudoin, Christopher J" <Christopher_Beaudoin@uml.edu>
+X-Mailer: iPhone Mail (18D61)
+Message-ID-Hash: G2ICMEAXC75V4X6B766WLZIYCALBDSSJ
+X-Message-ID-Hash: G2ICMEAXC75V4X6B766WLZIYCALBDSSJ
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: B210 EVM
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WOMEKULMNL6ONDLI5QAPVC2Z7GFXSENA/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/G2ICMEAXC75V4X6B766WLZIYCALBDSSJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1250621335543677720=="
+Content-Type: multipart/mixed; boundary="===============4939948913351077321=="
 
---===============1250621335543677720==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR02MB5984AB90949D61895C7BBA54E3619MN2PR02MB5984namp_"
 
---_000_MN2PR02MB5984AB90949D61895C7BBA54E3619MN2PR02MB5984namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--===============4939948913351077321==
+Content-Type: multipart/alternative; boundary=Apple-Mail-01BB3083-C0F4-4431-B5B3-2B344D96350E
+Content-Transfer-Encoding: 7bit
 
-SGVsbG8gTWFyY3VzLA0KDQogICAgICAgICAgICAgICAgICAgIFNvcnJ5IGZvciB0aGUgdGVyc2Ug
-bmF0dXJlIG9mIG15IHByZXZpb3VzIG1lc3NhZ2UuIFRvIGJlIG1vcmUgc3BlY2lmaWMsIHRoZSBw
-cmVjaXNlIHN5bWJvbCByYXRlIGlzIDQuNjA4IE1IeiBzbyB0aGUgYWN0dWFsIHNhbXBsZSByYXRl
-IGlzIDI3LjY0OCBNSHo7IHRoZSBVU1JQIHNldHMgdGhlIG1hc3RlciBjbG9jayByYXRlIHRvIDI3
-LjY0OCBNSHogd2hlbiBJIGNvbW1hbmQgdGhlIHNhbXBsZSByYXRlLiBJJ20gbm90IHNlZWluZyBh
-bnkgb3ZlcnJ1bnMgYXQgdGhpcyByYXRlIGFuZCB3ZSBzcGVudCBhIGZhaXIgYml0IG9mIHRpbWUg
-ZmluZSB0dW5pbmcgdGhlIGhvc3QgbWFjaGluZSB0byBzdXN0YWluIHRoaXMgZGF0YSByYXRlLiBJ
-dCB3aWxsIHN1c3RhaW4gdGhpcyByYXRlIGZvciBhcyBsb25nIGF0IDEwIG1pbnV0ZXMgd2l0aG91
-dCByZXBvcnRpbmcgYW55ICJPIiBvciAiVSIgZXJyb3JzLiBJIGFsc28gZW1iZWQgdGhlIHRpbWUg
-c3RhbXBzIGludG8gdGhlIHJlY29yZGVkIGRhdGEgZmlsZSBhbmQgcG9zdCByZWNvcmRpbmcgYW5h
-bHlzaXMgZG9lcyBub3QgaW5kaWNhdGUgYW55IHRpbWUgZGlzcnVwdGlvbnMuDQoNCkknbSBjZXJ0
-YWluIHRoYXQgdGhlIG1vZCBzaWduYWwgKGZyb20gbXkgdmVjdG9yIHNpZ25hbCBhbmFseXplcikg
-aGFzIHZlcnkgbG93IEVWTSAofjElKSBhcyBjb25maXJtZWQgd2l0aCBteSBSaG9kZSBTY2h3YXJ0
-eiBzaWduYWwgYW5hbHl6ZXIuIEkndmUgYWxzbyBjb25zaWRlcmVkIHNhdHVyYXRpb24gb2YgYW1w
-bGlmaWVyIHN0YWdlcyB3aXRoaW4gdGhlIEFEOTM2MS4gV2l0aCA1NSBkQiBvZiBnYWluLCBJIG9i
-dGFpbiBhIHJtcyBBREMgMTYtYml0IHN0YXRlIGNvdW50IG9mIH4xNTAwMCBmb3IgYSAtNDAgZEJt
-IGlucHV0IGxldmVsLiBBcyBJIHVuZGVyc3RhbmQgdGhpcyBzaG91bGQgYmUgYSBzdWl0YWJsZSBs
-ZXZlbCBnaXZlbiB0aGUgQjIxMCdzIElJUDMgc3BlYyBpcyAtMjAgZEJtLiBJJ3ZlIGFsc28gcmVk
-dWNlZCB0aGUgaW5wdXQgbGV2ZWwgYXQgY29uc3RhbnQgZ2FpbiBhbmQgZGlkbnQgb2JzZXJ2ZSBh
-bnkgbmV0IGltcHJvdmVtZW50IGluIHRoZSBFVk0uDQoNCldoZW4gcHJvcGVybHkgY29uZmlndXJl
-ZCwgY2FuIEkgZXhwZWN0IHRoZSBCMjEwIHRvIHlpZWxkIGFuIEVWTSBiZXR0ZXIgdGhhbiBzYXkg
-NSU/DQoNCg0KQ2hyaXMNCg0KDQoNCkNyZWF0aW5nIHRoZSB1c3JwIGRldmljZSB3aXRoOiBudW1f
-cmVjdl9mcmFtZXM9MTAyNC4uLg0KDQpbSU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lv
-biA1LjQuMCAyMDE2MDYwOTsgQm9vc3RfMTA1ODAwOyBVSERfMy4xMS4xLjAtMC11bmtub3duDQpb
-SU5GT10gW0IyMDBdIERldGVjdGVkIERldmljZTogQjIxMA0KW0lORk9dIFtCMjAwXSBPcGVyYXRp
-bmcgb3ZlciBVU0IgMy4NCltJTkZPXSBbQjIwMF0gSW5pdGlhbGl6ZSBDT0RFQyBjb250cm9sLi4u
-DQpbSU5GT10gW0IyMDBdIEluaXRpYWxpemUgUmFkaW8gY29udHJvbC4uLg0KW0lORk9dIFtCMjAw
-XSBQZXJmb3JtaW5nIHJlZ2lzdGVyIGxvb3BiYWNrIHRlc3QuLi4NCltJTkZPXSBbQjIwMF0gUmVn
-aXN0ZXIgbG9vcGJhY2sgdGVzdCBwYXNzZWQNCltJTkZPXSBbQjIwMF0gUGVyZm9ybWluZyByZWdp
-c3RlciBsb29wYmFjayB0ZXN0Li4uDQpbSU5GT10gW0IyMDBdIFJlZ2lzdGVyIGxvb3BiYWNrIHRl
-c3QgcGFzc2VkDQpbSU5GT10gW0IyMDBdIFNldHRpbmcgbWFzdGVyIGNsb2NrIHJhdGUgc2VsZWN0
-aW9uIHRvICdhdXRvbWF0aWMnLg0KW0lORk9dIFtCMjAwXSBBc2tpbmcgZm9yIGNsb2NrIHJhdGUg
-MTYuMDAwMDAwIE1Iei4uLg0KW0lORk9dIFtCMjAwXSBBY3R1YWxseSBnb3QgY2xvY2sgcmF0ZSAx
-Ni4wMDAwMDAgTUh6Lg0KVXNpbmcgRGV2aWNlOiBTaW5nbGUgVVNSUDoNCiAgRGV2aWNlOiBCLVNl
-cmllcyBEZXZpY2UNCiAgTWJvYXJkIDA6IEIyMTANCiAgUlggQ2hhbm5lbDogMA0KICAgIFJYIERT
-UDogMA0KICAgIFJYIERib2FyZDogQQ0KICAgIFJYIFN1YmRldjogRkUtUlgyDQogIFJYIENoYW5u
-ZWw6IDENCiAgICBSWCBEU1A6IDENCiAgICBSWCBEYm9hcmQ6IEENCiAgICBSWCBTdWJkZXY6IEZF
-LVJYMQ0KICBUWCBDaGFubmVsOiAwDQogICAgVFggRFNQOiAwDQogICAgVFggRGJvYXJkOiBBDQog
-ICAgVFggU3ViZGV2OiBGRS1UWDINCiAgVFggQ2hhbm5lbDogMQ0KICAgIFRYIERTUDogMQ0KICAg
-IFRYIERib2FyZDogQQ0KICAgIFRYIFN1YmRldjogRkUtVFgxDQoNClNldHRpbmcgUlggRnJlcTog
-MzE5OTAwMDAwMC4wMDAgSHouLi4NCkFjdHVhbCBSWCBGcmVxOiAzMTk5MDAwMDAwLjAwMCBIei4u
-Lg0KDQpTZXR0aW5nIFJYIFJhdGU6ICAyNzY0ODAwMC4wMDAgU3BzLi4uDQpbSU5GT10gW0IyMDBd
-IEFza2luZyBmb3IgY2xvY2sgcmF0ZSAyNy42NDgwMDAgTUh6Li4uDQpbSU5GT10gW0IyMDBdIEFj
-dHVhbGx5IGdvdCBjbG9jayByYXRlIDI3LjY0ODAwMCBNSHouDQpBY3R1YWwgUlggUmF0ZTogIDI3
-NjQ4MDAwLjA4MSBTcHMuLi4NCg0KU2V0dGluZyBSWCBHYWluOiA1NS4wMDAwMDAgZEIuLi4NCkFj
-dHVhbCBSWCBHYWluOiA1NS4wMDAwMDAgZEIuLi4NCg0KV2FpdGluZyBmb3IgImxvX2xvY2tlZCI6
-ICsrKysrKysrKysgbG9ja2VkLg0KDQpQcmVzcyBDdHJsICsgQyB0byBzdG9wIHN0cmVhbWluZy4u
-Lg0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpGcm9tOiBNYXJjdXMgRCBM
-ZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBGcmlkYXksIE1hcmNoIDI2LCAy
-MDIxIDI6NDUgUE0NClRvOiBKdWxpYW4gQXJub2xkIDxqdWxpYW5AZWxpdGVjb2Rpbmcub3JnPg0K
-Q2M6IEJlYXVkb2luLCBDaHJpc3RvcGhlciBKIDxDaHJpc3RvcGhlcl9CZWF1ZG9pbkB1bWwuZWR1
-PjsgVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-Pg0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBSZTogQjIxMCBFVk0NCg0KVGhpcyBlLW1haWwg
-b3JpZ2luYXRlZCBmcm9tIG91dHNpZGUgdGhlIFVNYXNzIExvd2VsbCBuZXR3b3JrLg0KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18NCkF0IDMwTVNQUyBhcmUgeW91IHNlZWluZyBhbnkg
-b3ZlcnJ1bnM/IFdoYXQgaXMgeW91ciBtYXN0ZXIgY2xvY2sgcmF0ZT8NCg0KU2VudCBmcm9tIG15
-IGlQaG9uZQ0KDQpPbiBNYXIgMjYsIDIwMjEsIGF0IDI6NDEgUE0sIEp1bGlhbiBBcm5vbGQgPGp1
-bGlhbkBlbGl0ZWNvZGluZy5vcmc+IHdyb3RlOg0KDQrvu79DaHJpcywNCg0KSSB3b3VsZCBzYXkg
-dGhhdCB5b3VyIEVWTSBpcyBtYWlubHkgYWZmZWN0ZWQgYnkgeW91ciBTTlIgYW5kIHlvdXIgZGln
-aXRhbCByZWNlaXZlciBpbXBsZW1lbnRhdGlvbiAoQUdDIC8gZmlsdGVycyAvIGNsb2NrIHJlY292
-ZXJ5IC8gZXF1YWxpemVyIC8gLi4uKS4NClNvIHdpdGhvdXQgbW9yZSBkZXRhaWxzIGl04oCZcyBn
-b2luZyB0byBiZSBoYXJkIHRvIHNheSBpZiB3aGF0IHlvdSAgYXJlIHNlZWluZyBpcyB3aXRoaW4g
-bGltaXRzLg0KDQpDaGVlcnMsDQoNCkp1bGlhbiBBcm5vbGQsIE0uU2MNCg0KQW0gMjYuMDMuMjAy
-MSB1bSAxODoyOSBzY2hyaWViIGNocmlzdG9waGVyX2JlYXVkb2luQHVtbC5lZHU6DQoNCu+7vw0K
-DQpJJ20gY2FwdHVyaW5nIGEgMyBHSHogUVBTSyBzaWduYWwgd2l0aCA1IE1IeiBzeW1ib2wgcmF0
-ZSBieSBzYW1wbGluZyB0aGUgc2lnbmFsIGF0IDYgdGltZXMgdGhlIHN5bWJvbCByYXRlLiBUaGUg
-QjIxMCBpcyBleHRlcm5hbGx5IHJlZmVyZW5jZWQgdG8gYSB2ZXJ5IGNsZWFuIDEwIE1IeiByZWZl
-cmVuY2UuIE15IG1lYXN1cmVtZW50cyBvZiB0aGUgRVZNIHNhbXBsaW5nIHRoZSBzaWduYWwgZm9y
-IH4wLjUgc2Vjb25kcyBhcmUgcHJldHR5IHBvb3IgfjMwLTQwJS4gSSBjYW4gcHJvdmlkZSBtb3Jl
-IHNldHVwIGRldGFpbHMgYnV0IEknbSB3b25kZXJpbmcgaWYgb3RoZXJzIGNhbiBjb21tZW50IG9u
-IHdoYXQgRVZNIEkgY2FuIGV4cGVjdC4gSSdtIGhvcGluZyB0aGlzIGlzbid0IGEgZnVuZGFtZW50
-YWwgbGltaXRhdGlvbiBvZiB0aGlzIGhhcmR3YXJlIHN5c3RlbS4NCg0KDQpUaGFua3MsDQoNCkNo
-cmlzDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpV
-U1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KVG8g
-dW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
-LmNvbQ0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVT
-UlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpUbyB1
-bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMu
-Y29tDQo=
 
---_000_MN2PR02MB5984AB90949D61895C7BBA54E3619MN2PR02MB5984namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+--Apple-Mail-01BB3083-C0F4-4431-B5B3-2B344D96350E
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
-YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
-bG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkhlbGxvIE1hcmN1cyw8L2Rpdj4NCjxkaXYgc3R5bGU9ImZv
-bnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNp
-emU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHls
-ZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZv
-bnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KJm5ic3A7ICZuYnNwOyAmbmJz
-cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7IFNvcnJ5
-IGZvciB0aGUgdGVyc2UgbmF0dXJlIG9mIG15IHByZXZpb3VzIG1lc3NhZ2UuIFRvIGJlIG1vcmUg
-c3BlY2lmaWMsIHRoZSBwcmVjaXNlIHN5bWJvbCByYXRlIGlzIDQuNjA4IE1IeiBzbyB0aGUgYWN0
-dWFsIHNhbXBsZSByYXRlIGlzIDI3LjY0OCBNSHo7IHRoZSBVU1JQIHNldHMgdGhlIG1hc3RlciBj
-bG9jayByYXRlIHRvIDI3LjY0OCBNSHogd2hlbiBJIGNvbW1hbmQgdGhlIHNhbXBsZSByYXRlLiBJ
-J20gbm90DQogc2VlaW5nIGFueSBvdmVycnVucyBhdCB0aGlzIHJhdGUgYW5kIHdlIHNwZW50IGEg
-ZmFpciBiaXQgb2YgdGltZSBmaW5lIHR1bmluZyB0aGUgaG9zdCBtYWNoaW5lIHRvIHN1c3RhaW4g
-dGhpcyBkYXRhIHJhdGUuIEl0IHdpbGwgc3VzdGFpbiB0aGlzIHJhdGUgZm9yIGFzIGxvbmcgYXQg
-MTAgbWludXRlcyB3aXRob3V0IHJlcG9ydGluZyBhbnkgJnF1b3Q7TyZxdW90OyBvciAmcXVvdDtV
-JnF1b3Q7IGVycm9ycy4mbmJzcDs8c3BhbiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1
-LCAyNTUsIDI1NSk7ZGlzcGxheTppbmxpbmUgIWltcG9ydGFudCI+SQ0KIGFsc28gZW1iZWQgdGhl
-IHRpbWUgc3RhbXBzIGludG8gdGhlIHJlY29yZGVkIGRhdGEgZmlsZSBhbmQgcG9zdCByZWNvcmRp
-bmcgYW5hbHlzaXMgZG9lcyBub3QgaW5kaWNhdGUgYW55IHRpbWUgZGlzcnVwdGlvbnMuPC9zcGFu
-PjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRp
-Y2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0K
-PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgQXJpYWwsIEhl
-bHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDAp
-OyI+DQpJJ20gY2VydGFpbiB0aGF0IHRoZSBtb2Qgc2lnbmFsIChmcm9tIG15IHZlY3RvciBzaWdu
-YWwgYW5hbHl6ZXIpIGhhcyB2ZXJ5IGxvdyBFVk0gKH4xJSkgYXMgY29uZmlybWVkIHdpdGggbXkg
-UmhvZGUgU2Nod2FydHogc2lnbmFsIGFuYWx5emVyLiBJJ3ZlIGFsc28gY29uc2lkZXJlZCBzYXR1
-cmF0aW9uIG9mIGFtcGxpZmllciBzdGFnZXMgd2l0aGluIHRoZSBBRDkzNjEuIFdpdGggNTUgZEIg
-b2YgZ2FpbiwgSSBvYnRhaW4gYSBybXMgQURDIDE2LWJpdA0KIHN0YXRlIGNvdW50IG9mIH4xNTAw
-MCBmb3IgYSAtNDAgZEJtIGlucHV0IGxldmVsLiBBcyBJIHVuZGVyc3RhbmQgdGhpcyBzaG91bGQg
-YmUgYSBzdWl0YWJsZSBsZXZlbCBnaXZlbiB0aGUgQjIxMCdzIElJUDMgc3BlYyBpcyAtMjAgZEJt
-LiBJJ3ZlIGFsc28gcmVkdWNlZCB0aGUgaW5wdXQgbGV2ZWwgYXQgY29uc3RhbnQgZ2FpbiBhbmQg
-ZGlkbnQgb2JzZXJ2ZSBhbnkgbmV0IGltcHJvdmVtZW50IGluIHRoZSBFVk0uPC9kaXY+DQo8ZGl2
-IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJp
-ZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8YnI+DQo8L2Rpdj4N
-CjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5z
-LXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCldoZW4gcHJv
-cGVybHkgY29uZmlndXJlZCwgY2FuIEkgZXhwZWN0IHRoZSBCMjEwIHRvIHlpZWxkIGFuIEVWTSBi
-ZXR0ZXIgdGhhbiBzYXkgNSU/Jm5ic3A7PC9kaXY+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1m
-YW1pbHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTog
-MTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGlkPSJTaWdu
-YXR1cmUiPg0KPGRpdiBpZD0iZGl2dGFnZGVmYXVsdHdyYXBwZXIiIHN0eWxlPSJmb250LXNpemU6
-IDEycHQ7IGZvbnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlm
-OyI+DQo8cCBzdHlsZT0ibWFyZ2luLXRvcDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7IGZvbnQt
-ZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
-IDEycHQ7Ij4NCjxmb250IGNvbG9yPSIjMjEyMTIxIj5DaHJpczwvZm9udD48L3A+DQo8cCBzdHls
-ZT0ibWFyZ2luLXRvcDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7IGZvbnQtZmFtaWx5OiBDYWxp
-YnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7Ij4NCjxm
-b250IGNvbG9yPSIjMjEyMTIxIj48YnI+DQo8L2ZvbnQ+PC9wPg0KPHAgc3R5bGU9Im1hcmdpbi10
-b3A6IDBweDsgbWFyZ2luLWJvdHRvbTogMHB4OyBmb250LWZhbWlseTogQ2FsaWJyaSwgQXJpYWws
-IEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyI+DQo8Zm9udCBjb2xvcj0i
-IzIxMjEyMSI+PGJyPg0KPC9mb250PjwvcD4NCjxwIHN0eWxlPSJtYXJnaW4tdG9wOiAwcHg7IG1h
-cmdpbi1ib3R0b206IDBweDsgZm9udC1mYW1pbHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2Es
-IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsiPg0KPGZvbnQgY29sb3I9IiMyMTIxMjEiPkNy
-ZWF0aW5nIHRoZSB1c3JwIGRldmljZSB3aXRoOiBudW1fcmVjdl9mcmFtZXM9MTAyNC4uLjwvcD4N
-CjxkaXY+W0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gNS40LjAgMjAxNjA2MDk7
-IEJvb3N0XzEwNTgwMDsgVUhEXzMuMTEuMS4wLTAtdW5rbm93bjwvZGl2Pg0KPGRpdj5bSU5GT10g
-W0IyMDBdIERldGVjdGVkIERldmljZTogQjIxMDwvZGl2Pg0KPGRpdj5bSU5GT10gW0IyMDBdIE9w
-ZXJhdGluZyBvdmVyIFVTQiAzLjwvZGl2Pg0KPGRpdj5bSU5GT10gW0IyMDBdIEluaXRpYWxpemUg
-Q09ERUMgY29udHJvbC4uLjwvZGl2Pg0KPGRpdj5bSU5GT10gW0IyMDBdIEluaXRpYWxpemUgUmFk
-aW8gY29udHJvbC4uLjwvZGl2Pg0KPGRpdj5bSU5GT10gW0IyMDBdIFBlcmZvcm1pbmcgcmVnaXN0
-ZXIgbG9vcGJhY2sgdGVzdC4uLiA8L2Rpdj4NCjxkaXY+W0lORk9dIFtCMjAwXSBSZWdpc3RlciBs
-b29wYmFjayB0ZXN0IHBhc3NlZDwvZGl2Pg0KPGRpdj5bSU5GT10gW0IyMDBdIFBlcmZvcm1pbmcg
-cmVnaXN0ZXIgbG9vcGJhY2sgdGVzdC4uLiA8L2Rpdj4NCjxkaXY+W0lORk9dIFtCMjAwXSBSZWdp
-c3RlciBsb29wYmFjayB0ZXN0IHBhc3NlZDwvZGl2Pg0KPGRpdj5bSU5GT10gW0IyMDBdIFNldHRp
-bmcgbWFzdGVyIGNsb2NrIHJhdGUgc2VsZWN0aW9uIHRvICdhdXRvbWF0aWMnLjwvZGl2Pg0KPGRp
-dj5bSU5GT10gW0IyMDBdIEFza2luZyBmb3IgY2xvY2sgcmF0ZSAxNi4wMDAwMDAgTUh6Li4uIDwv
-ZGl2Pg0KPGRpdj5bSU5GT10gW0IyMDBdIEFjdHVhbGx5IGdvdCBjbG9jayByYXRlIDE2LjAwMDAw
-MCBNSHouPC9kaXY+DQo8ZGl2PlVzaW5nIERldmljZTogU2luZ2xlIFVTUlA6PC9kaXY+DQo8ZGl2
-PiZuYnNwOyBEZXZpY2U6IEItU2VyaWVzIERldmljZTwvZGl2Pg0KPGRpdj4mbmJzcDsgTWJvYXJk
-IDA6IEIyMTA8L2Rpdj4NCjxkaXY+Jm5ic3A7IFJYIENoYW5uZWw6IDA8L2Rpdj4NCjxkaXY+Jm5i
-c3A7ICZuYnNwOyBSWCBEU1A6IDA8L2Rpdj4NCjxkaXY+Jm5ic3A7ICZuYnNwOyBSWCBEYm9hcmQ6
-IEE8L2Rpdj4NCjxkaXY+Jm5ic3A7ICZuYnNwOyBSWCBTdWJkZXY6IEZFLVJYMjwvZGl2Pg0KPGRp
-dj4mbmJzcDsgUlggQ2hhbm5lbDogMTwvZGl2Pg0KPGRpdj4mbmJzcDsgJm5ic3A7IFJYIERTUDog
-MTwvZGl2Pg0KPGRpdj4mbmJzcDsgJm5ic3A7IFJYIERib2FyZDogQTwvZGl2Pg0KPGRpdj4mbmJz
-cDsgJm5ic3A7IFJYIFN1YmRldjogRkUtUlgxPC9kaXY+DQo8ZGl2PiZuYnNwOyBUWCBDaGFubmVs
-OiAwPC9kaXY+DQo8ZGl2PiZuYnNwOyAmbmJzcDsgVFggRFNQOiAwPC9kaXY+DQo8ZGl2PiZuYnNw
-OyAmbmJzcDsgVFggRGJvYXJkOiBBPC9kaXY+DQo8ZGl2PiZuYnNwOyAmbmJzcDsgVFggU3ViZGV2
-OiBGRS1UWDI8L2Rpdj4NCjxkaXY+Jm5ic3A7IFRYIENoYW5uZWw6IDE8L2Rpdj4NCjxkaXY+Jm5i
-c3A7ICZuYnNwOyBUWCBEU1A6IDE8L2Rpdj4NCjxkaXY+Jm5ic3A7ICZuYnNwOyBUWCBEYm9hcmQ6
-IEE8L2Rpdj4NCjxkaXY+Jm5ic3A7ICZuYnNwOyBUWCBTdWJkZXY6IEZFLVRYMTwvZGl2Pg0KPGRp
-dj48YnI+DQo8L2Rpdj4NCjxkaXY+U2V0dGluZyBSWCBGcmVxOiAzMTk5MDAwMDAwLjAwMCBIei4u
-LjwvZGl2Pg0KPGRpdj5BY3R1YWwgUlggRnJlcTogMzE5OTAwMDAwMC4wMDAgSHouLi48L2Rpdj4N
-CjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlNldHRpbmcgUlggUmF0ZTogJm5ic3A7Mjc2NDgwMDAu
-MDAwIFNwcy4uLjwvZGl2Pg0KPGRpdj5bSU5GT10gW0IyMDBdIEFza2luZyBmb3IgY2xvY2sgcmF0
-ZSAyNy42NDgwMDAgTUh6Li4uIDwvZGl2Pg0KPGRpdj5bSU5GT10gW0IyMDBdIEFjdHVhbGx5IGdv
-dCBjbG9jayByYXRlIDI3LjY0ODAwMCBNSHouPC9kaXY+DQo8ZGl2PkFjdHVhbCBSWCBSYXRlOiAm
-bmJzcDsyNzY0ODAwMC4wODEgU3BzLi4uPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5T
-ZXR0aW5nIFJYIEdhaW46IDU1LjAwMDAwMCBkQi4uLjwvZGl2Pg0KPGRpdj5BY3R1YWwgUlggR2Fp
-bjogNTUuMDAwMDAwIGRCLi4uPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5XYWl0aW5n
-IGZvciAmcXVvdDtsb19sb2NrZWQmcXVvdDs6ICsrKysrKysrKysgbG9ja2VkLjwvZGl2Pg0KPGRp
-dj48YnI+DQo8L2Rpdj4NClByZXNzIEN0cmwgKyBDIHRvIHN0b3Agc3RyZWFtaW5nLi4uPGJyPg0K
-PC9mb250Pg0KPHA+PC9wPg0KPGZvbnQgY29sb3I9IiMwMDAwMDAiPjxzcGFuIGlkPSJtcy1ydGVy
-YW5nZXBhc3RlLWVuZCI+PC9zcGFuPjwvZm9udD48YnI+DQo8cCBzdHlsZT0iY29sb3I6IHJnYigw
-LCAwLCAwKTsgbWFyZ2luLXRvcDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7Ij48L3A+DQo8L2Rp
-dj4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2IGlkPSJhcHBlbmRvbnNlbmQiPjwvZGl2Pg0KPGhyIHN0
-eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jazt3aWR0aDo5OCUiIHRhYmluZGV4PSItMSI+DQo8ZGl2
-IGlkPSJkaXZScGx5RndkTXNnIiBkaXI9Imx0ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwgc2Fucy1z
-ZXJpZiIgc3R5bGU9ImZvbnQtc2l6ZToxMXB0IiBjb2xvcj0iIzAwMDAwMCI+PGI+RnJvbTo8L2I+
-IE1hcmN1cyBEIExlZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDs8YnI+DQo8Yj5T
-ZW50OjwvYj4gRnJpZGF5LCBNYXJjaCAyNiwgMjAyMSAyOjQ1IFBNPGJyPg0KPGI+VG86PC9iPiBK
-dWxpYW4gQXJub2xkICZsdDtqdWxpYW5AZWxpdGVjb2Rpbmcub3JnJmd0Ozxicj4NCjxiPkNjOjwv
-Yj4gQmVhdWRvaW4sIENocmlzdG9waGVyIEogJmx0O0NocmlzdG9waGVyX0JlYXVkb2luQHVtbC5l
-ZHUmZ3Q7OyBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSAmbHQ7VVNSUC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gUmU6IEIy
-MTAgRVZNPC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8i
-Pjxmb250IGNvbG9yPSJyZWQiPjxiPlRoaXMgZS1tYWlsIG9yaWdpbmF0ZWQgZnJvbSBvdXRzaWRl
-IHRoZSBVTWFzcyBMb3dlbGwgbmV0d29yay48L2I+PC9mb250Pg0KPGhyPg0KQXQgMzBNU1BTIGFy
-ZSB5b3Ugc2VlaW5nIGFueSBvdmVycnVucz8gV2hhdCBpcyB5b3VyIG1hc3RlciBjbG9jayByYXRl
-Pzxicj4NCjxicj4NCjxkaXYgZGlyPSJsdHIiPlNlbnQgZnJvbSBteSBpUGhvbmU8L2Rpdj4NCjxk
-aXYgZGlyPSJsdHIiPjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPk9uIE1hciAyNiwgMjAy
-MSwgYXQgMjo0MSBQTSwgSnVsaWFuIEFybm9sZCAmbHQ7anVsaWFuQGVsaXRlY29kaW5nLm9yZyZn
-dDsgd3JvdGU6PGJyPg0KPGJyPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8YmxvY2txdW90ZSB0
-eXBlPSJjaXRlIj4NCjxkaXYgZGlyPSJsdHIiPu+7v0NocmlzLA0KPGRpdj48YnI+DQo8L2Rpdj4N
-CjxkaXY+SSB3b3VsZCBzYXkgdGhhdCB5b3VyIEVWTSBpcyBtYWlubHkgYWZmZWN0ZWQgYnkgeW91
-ciBTTlIgYW5kIHlvdXIgZGlnaXRhbCByZWNlaXZlciBpbXBsZW1lbnRhdGlvbiAoQUdDIC8gZmls
-dGVycyAvIGNsb2NrIHJlY292ZXJ5IC8gZXF1YWxpemVyIC8gLi4uKS4mbmJzcDs8L2Rpdj4NCjxk
-aXY+U28gd2l0aG91dCBtb3JlIGRldGFpbHMgaXTigJlzIGdvaW5nIHRvIGJlIGhhcmQgdG8gc2F5
-IGlmIHdoYXQgeW91ICZuYnNwO2FyZSBzZWVpbmcgaXMgd2l0aGluIGxpbWl0cy48L2Rpdj4NCjxk
-aXY+PGJyPg0KPC9kaXY+DQo8ZGl2PkNoZWVycyw8YnI+DQo8YnI+DQo8ZGl2IGRpcj0ibHRyIj5K
-dWxpYW4gQXJub2xkLCBNLlNjPC9kaXY+DQo8ZGl2IGRpcj0ibHRyIj48YnI+DQo8YmxvY2txdW90
-ZSB0eXBlPSJjaXRlIj5BbSAyNi4wMy4yMDIxIHVtIDE4OjI5IHNjaHJpZWIgY2hyaXN0b3BoZXJf
-YmVhdWRvaW5AdW1sLmVkdTo8YnI+DQo8YnI+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxibG9j
-a3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdiBkaXI9Imx0ciI+77u/DQo8cD5JJ20gY2FwdHVyaW5n
-IGEgMyBHSHogUVBTSyBzaWduYWwgd2l0aCA1IE1IeiBzeW1ib2wgcmF0ZSBieSBzYW1wbGluZyB0
-aGUgc2lnbmFsIGF0IDYgdGltZXMgdGhlIHN5bWJvbCByYXRlLiBUaGUgQjIxMCBpcyBleHRlcm5h
-bGx5IHJlZmVyZW5jZWQgdG8gYSB2ZXJ5IGNsZWFuIDEwIE1IeiByZWZlcmVuY2UuIE15IG1lYXN1
-cmVtZW50cyBvZiB0aGUgRVZNIHNhbXBsaW5nIHRoZSBzaWduYWwgZm9yIH4wLjUgc2Vjb25kcyBh
-cmUgcHJldHR5IHBvb3INCiB+MzAtNDAlLiBJIGNhbiBwcm92aWRlIG1vcmUgc2V0dXAgZGV0YWls
-cyBidXQgSSdtIHdvbmRlcmluZyBpZiBvdGhlcnMgY2FuIGNvbW1lbnQgb24gd2hhdCBFVk0gSSBj
-YW4gZXhwZWN0LiBJJ20gaG9waW5nIHRoaXMgaXNuJ3QgYSBmdW5kYW1lbnRhbCBsaW1pdGF0aW9u
-IG9mIHRoaXMgaGFyZHdhcmUgc3lzdGVtLjwvcD4NCjxwPjxicj4NCjwvcD4NCjxwPlRoYW5rcyw8
-L3A+DQo8cD5DaHJpczwvcD4NCjxzcGFuPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fPC9zcGFuPjxicj4NCjxzcGFuPlVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
-IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9zcGFuPjxicj4NCjxzcGFuPlRvIHVuc3Vi
-c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208
-L3NwYW4+PGJyPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxzcGFuPl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPC9zcGFuPjxicj4NCjxzcGFu
-PlVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9z
-cGFuPjxicj4NCjxzcGFuPlRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vy
-cy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L3NwYW4+PGJyPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+
-DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+I would suggest going back to basics. What does the RX spectrum look like co=
+mpared to the TX spectrum? Are you doing clock recovery on the RX side, or a=
+ssuming both sides are synchronized?
 
---_000_MN2PR02MB5984AB90949D61895C7BBA54E3619MN2PR02MB5984namp_--
 
---===============1250621335543677720==
+
+Sent from my iPhone
+
+> On Mar 26, 2021, at 4:38 PM, Beaudoin, Christopher J <Christopher_Beaudoin=
+@uml.edu> wrote:
+>=20
+> =EF=BB=BF
+> Hello Marcus,
+>=20
+>                     Sorry for the terse nature of my previous message. To b=
+e more specific, the precise symbol rate is 4.608 MHz so the actual sample r=
+ate is 27.648 MHz; the USRP sets the master clock rate to 27.648 MHz when I c=
+ommand the sample rate. I'm not seeing any overruns at this rate and we spen=
+t a fair bit of time fine tuning the host machine to sustain this data rate.=
+ It will sustain this rate for as long at 10 minutes without reporting any "=
+O" or "U" errors. I also embed the time stamps into the recorded data file a=
+nd post recording analysis does not indicate any time disruptions.
+>=20
+> I'm certain that the mod signal (from my vector signal analyzer) has very l=
+ow EVM (~1%) as confirmed with my Rhode Schwartz signal analyzer. I've also c=
+onsidered saturation of amplifier stages within the AD9361. With 55 dB of ga=
+in, I obtain a rms ADC 16-bit state count of ~15000 for a -40 dBm input leve=
+l. As I understand this should be a suitable level given the B210's IIP3 spe=
+c is -20 dBm. I've also reduced the input level at constant gain and didnt o=
+bserve any net improvement in the EVM.
+>=20
+> When properly configured, can I expect the B210 to yield an EVM better tha=
+n say 5%?=20
+>=20
+> Chris
+>=20
+>=20
+> Creating the usrp device with: num_recv_frames=3D1024...
+> [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800; UHD_3.11=
+.1.0-0-unknown
+> [INFO] [B200] Detected Device: B210
+> [INFO] [B200] Operating over USB 3.
+> [INFO] [B200] Initialize CODEC control...
+> [INFO] [B200] Initialize Radio control...
+> [INFO] [B200] Performing register loopback test...
+> [INFO] [B200] Register loopback test passed
+> [INFO] [B200] Performing register loopback test...
+> [INFO] [B200] Register loopback test passed
+> [INFO] [B200] Setting master clock rate selection to 'automatic'.
+> [INFO] [B200] Asking for clock rate 16.000000 MHz...
+> [INFO] [B200] Actually got clock rate 16.000000 MHz.
+> Using Device: Single USRP:
+>   Device: B-Series Device
+>   Mboard 0: B210
+>   RX Channel: 0
+>     RX DSP: 0
+>     RX Dboard: A
+>     RX Subdev: FE-RX2
+>   RX Channel: 1
+>     RX DSP: 1
+>     RX Dboard: A
+>     RX Subdev: FE-RX1
+>   TX Channel: 0
+>     TX DSP: 0
+>     TX Dboard: A
+>     TX Subdev: FE-TX2
+>   TX Channel: 1
+>     TX DSP: 1
+>     TX Dboard: A
+>     TX Subdev: FE-TX1
+>=20
+> Setting RX Freq: 3199000000.000 Hz...
+> Actual RX Freq: 3199000000.000 Hz...
+>=20
+> Setting RX Rate:  27648000.000 Sps...
+> [INFO] [B200] Asking for clock rate 27.648000 MHz...
+> [INFO] [B200] Actually got clock rate 27.648000 MHz.
+> Actual RX Rate:  27648000.081 Sps...
+>=20
+> Setting RX Gain: 55.000000 dB...
+> Actual RX Gain: 55.000000 dB...
+>=20
+> Waiting for "lo_locked": ++++++++++ locked.
+>=20
+> Press Ctrl + C to stop streaming...
+>=20
+> From: Marcus D Leech <patchvonbraun@gmail.com>
+> Sent: Friday, March 26, 2021 2:45 PM
+> To: Julian Arnold <julian@elitecoding.org>
+> Cc: Beaudoin, Christopher J <Christopher_Beaudoin@uml.edu>; USRP-users@lis=
+ts.ettus.com <USRP-users@lists.ettus.com>
+> Subject: Re: [USRP-users] Re: B210 EVM
+> =20
+> This e-mail originated from outside the UMass Lowell network.
+> At 30MSPS are you seeing any overruns? What is your master clock rate?
+>=20
+> Sent from my iPhone
+>=20
+>>> On Mar 26, 2021, at 2:41 PM, Julian Arnold <julian@elitecoding.org> wrot=
+e:
+>>>=20
+>> =EF=BB=BFChris,
+>>=20
+>> I would say that your EVM is mainly affected by your SNR and your digital=
+ receiver implementation (AGC / filters / clock recovery / equalizer / ...).=
+=20
+>> So without more details it=E2=80=99s going to be hard to say if what you =
+ are seeing is within limits.
+>>=20
+>> Cheers,
+>>=20
+>> Julian Arnold, M.Sc
+>>=20
+>>> Am 26.03.2021 um 18:29 schrieb christopher_beaudoin@uml.edu:
+>>>=20
+>>> =EF=BB=BF
+>>> I'm capturing a 3 GHz QPSK signal with 5 MHz symbol rate by sampling the=
+ signal at 6 times the symbol rate. The B210 is externally referenced to a v=
+ery clean 10 MHz reference. My measurements of the EVM sampling the signal f=
+or ~0.5 seconds are pretty poor ~30-40%. I can provide more setup details bu=
+t I'm wondering if others can comment on what EVM I can expect. I'm hoping t=
+his isn't a fundamental limitation of this hardware system.
+>>>=20
+>>>=20
+>>>=20
+>>> Thanks,
+>>>=20
+>>> Chris
+>>>=20
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--Apple-Mail-01BB3083-C0F4-4431-B5B3-2B344D96350E
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">I would suggest going back to basics. What d=
+oes the RX spectrum look like compared to the TX spectrum? Are you doing clo=
+ck recovery on the RX side, or assuming both sides are synchronized?<div><br=
+></div><div><br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"lt=
+r"><br><blockquote type=3D"cite">On Mar 26, 2021, at 4:38 PM, Beaudoin, Chri=
+stopher J &lt;Christopher_Beaudoin@uml.edu&gt; wrote:<br><br></blockquote></=
+div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+
+
+
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+Hello Marcus,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sorry f=
+or the terse nature of my previous message. To be more specific, the precise=
+ symbol rate is 4.608 MHz so the actual sample rate is 27.648 MHz; the USRP s=
+ets the master clock rate to 27.648 MHz when I command the sample rate. I'm n=
+ot
+ seeing any overruns at this rate and we spent a fair bit of time fine tunin=
+g the host machine to sustain this data rate. It will sustain this rate for a=
+s long at 10 minutes without reporting any "O" or "U" errors.&nbsp;<span sty=
+le=3D"background-color:rgb(255, 255, 255);display:inline !important">I
+ also embed the time stamps into the recorded data file and post recording a=
+nalysis does not indicate any time disruptions.</span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+I'm certain that the mod signal (from my vector signal analyzer) has very lo=
+w EVM (~1%) as confirmed with my Rhode Schwartz signal analyzer. I've also c=
+onsidered saturation of amplifier stages within the AD9361. With 55 dB of ga=
+in, I obtain a rms ADC 16-bit
+ state count of ~15000 for a -40 dBm input level. As I understand this shoul=
+d be a suitable level given the B210's IIP3 spec is -20 dBm. I've also reduc=
+ed the input level at constant gain and didnt observe any net improvement in=
+ the EVM.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+When properly configured, can I expect the B210 to yield an EVM better than s=
+ay 5%?&nbsp;</div>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size: 12pt; font-family: Cali=
+bri, Arial, Helvetica, sans-serif;">
+<p style=3D"margin-top: 0px; margin-bottom: 0px; font-family: Calibri, Arial=
+, Helvetica, sans-serif; font-size: 12pt;">
+<font color=3D"#212121">Chris</font></p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px; font-family: Calibri, Arial=
+, Helvetica, sans-serif; font-size: 12pt;">
+<font color=3D"#212121"><br>
+</font></p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px; font-family: Calibri, Arial=
+, Helvetica, sans-serif; font-size: 12pt;">
+<font color=3D"#212121"><br>
+</font></p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px; font-family: Calibri, Arial=
+, Helvetica, sans-serif; font-size: 12pt;">
+<font color=3D"#212121">Creating the usrp device with: num_recv_frames=3D102=
+4...</font></p><font color=3D"#212121">
+<div>[INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800; UHD_3=
+.11.1.0-0-unknown</div>
+<div>[INFO] [B200] Detected Device: B210</div>
+<div>[INFO] [B200] Operating over USB 3.</div>
+<div>[INFO] [B200] Initialize CODEC control...</div>
+<div>[INFO] [B200] Initialize Radio control...</div>
+<div>[INFO] [B200] Performing register loopback test... </div>
+<div>[INFO] [B200] Register loopback test passed</div>
+<div>[INFO] [B200] Performing register loopback test... </div>
+<div>[INFO] [B200] Register loopback test passed</div>
+<div>[INFO] [B200] Setting master clock rate selection to 'automatic'.</div>=
+
+<div>[INFO] [B200] Asking for clock rate 16.000000 MHz... </div>
+<div>[INFO] [B200] Actually got clock rate 16.000000 MHz.</div>
+<div>Using Device: Single USRP:</div>
+<div>&nbsp; Device: B-Series Device</div>
+<div>&nbsp; Mboard 0: B210</div>
+<div>&nbsp; RX Channel: 0</div>
+<div>&nbsp; &nbsp; RX DSP: 0</div>
+<div>&nbsp; &nbsp; RX Dboard: A</div>
+<div>&nbsp; &nbsp; RX Subdev: FE-RX2</div>
+<div>&nbsp; RX Channel: 1</div>
+<div>&nbsp; &nbsp; RX DSP: 1</div>
+<div>&nbsp; &nbsp; RX Dboard: A</div>
+<div>&nbsp; &nbsp; RX Subdev: FE-RX1</div>
+<div>&nbsp; TX Channel: 0</div>
+<div>&nbsp; &nbsp; TX DSP: 0</div>
+<div>&nbsp; &nbsp; TX Dboard: A</div>
+<div>&nbsp; &nbsp; TX Subdev: FE-TX2</div>
+<div>&nbsp; TX Channel: 1</div>
+<div>&nbsp; &nbsp; TX DSP: 1</div>
+<div>&nbsp; &nbsp; TX Dboard: A</div>
+<div>&nbsp; &nbsp; TX Subdev: FE-TX1</div>
+<div><br>
+</div>
+<div>Setting RX Freq: 3199000000.000 Hz...</div>
+<div>Actual RX Freq: 3199000000.000 Hz...</div>
+<div><br>
+</div>
+<div>Setting RX Rate: &nbsp;27648000.000 Sps...</div>
+<div>[INFO] [B200] Asking for clock rate 27.648000 MHz... </div>
+<div>[INFO] [B200] Actually got clock rate 27.648000 MHz.</div>
+<div>Actual RX Rate: &nbsp;27648000.081 Sps...</div>
+<div><br>
+</div>
+<div>Setting RX Gain: 55.000000 dB...</div>
+<div>Actual RX Gain: 55.000000 dB...</div>
+<div><br>
+</div>
+<div>Waiting for "lo_locked": ++++++++++ locked.</div>
+<div><br>
+</div>
+Press Ctrl + C to stop streaming...<br>
+</font>
+<p></p>
+<font color=3D"#000000"><span id=3D"ms-rterangepaste-end"></span></font><br>=
+
+<p style=3D"color: rgb(0, 0, 0); margin-top: 0px; margin-bottom: 0px;"></p>
+</div>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" sty=
+le=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Marcus D Leech &lt;patc=
+hvonbraun@gmail.com&gt;<br>
+<b>Sent:</b> Friday, March 26, 2021 2:45 PM<br>
+<b>To:</b> Julian Arnold &lt;julian@elitecoding.org&gt;<br>
+<b>Cc:</b> Beaudoin, Christopher J &lt;Christopher_Beaudoin@uml.edu&gt;; USR=
+P-users@lists.ettus.com &lt;USRP-users@lists.ettus.com&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Re: B210 EVM</font>
+<div>&nbsp;</div>
+</div>
+<div dir=3D"auto"><font color=3D"red"><b>This e-mail originated from outside=
+ the UMass Lowell network.</b></font>
+<hr>
+At 30MSPS are you seeing any overruns? What is your master clock rate?<br>
+<br>
+<div dir=3D"ltr">Sent from my iPhone</div>
+<div dir=3D"ltr"><br>
+<blockquote type=3D"cite">On Mar 26, 2021, at 2:41 PM, Julian Arnold &lt;jul=
+ian@elitecoding.org&gt; wrote:<br>
+<br>
+</blockquote>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">=EF=BB=BFChris,
+<div><br>
+</div>
+<div>I would say that your EVM is mainly affected by your SNR and your digit=
+al receiver implementation (AGC / filters / clock recovery / equalizer / ...=
+).&nbsp;</div>
+<div>So without more details it=E2=80=99s going to be hard to say if what yo=
+u &nbsp;are seeing is within limits.</div>
+<div><br>
+</div>
+<div>Cheers,<br>
+<br>
+<div dir=3D"ltr">Julian Arnold, M.Sc</div>
+<div dir=3D"ltr"><br>
+<blockquote type=3D"cite">Am 26.03.2021 um 18:29 schrieb christopher_beaudoi=
+n@uml.edu:<br>
+<br>
+</blockquote>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">=EF=BB=BF
+<p>I'm capturing a 3 GHz QPSK signal with 5 MHz symbol rate by sampling the s=
+ignal at 6 times the symbol rate. The B210 is externally referenced to a ver=
+y clean 10 MHz reference. My measurements of the EVM sampling the signal for=
+ ~0.5 seconds are pretty poor
+ ~30-40%. I can provide more setup details but I'm wondering if others can c=
+omment on what EVM I can expect. I'm hoping this isn't a fundamental limitat=
+ion of this hardware system.</p>
+<p><br>
+</p>
+<p>Thanks,</p>
+<p>Chris</p>
+<span>_______________________________________________</span><br>
+<span>USRP-users mailing list -- usrp-users@lists.ettus.com</span><br>
+<span>To unsubscribe send an email to usrp-users-leave@lists.ettus.com</span=
+><br>
+</div>
+</blockquote>
+</div>
+<span>_______________________________________________</span><br>
+<span>USRP-users mailing list -- usrp-users@lists.ettus.com</span><br>
+<span>To unsubscribe send an email to usrp-users-leave@lists.ettus.com</span=
+><br>
+</div>
+</blockquote>
+</div>
+
+
+</div></blockquote></div></body></html>=
+
+--Apple-Mail-01BB3083-C0F4-4431-B5B3-2B344D96350E--
+
+--===============4939948913351077321==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -404,4 +447,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1250621335543677720==--
+--===============4939948913351077321==--
