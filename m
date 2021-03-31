@@ -2,328 +2,398 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D0F434FE54
-	for <lists+usrp-users@lfdr.de>; Wed, 31 Mar 2021 12:51:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4263235007F
+	for <lists+usrp-users@lfdr.de>; Wed, 31 Mar 2021 14:39:56 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 71C1C38382B
-	for <lists+usrp-users@lfdr.de>; Wed, 31 Mar 2021 06:51:26 -0400 (EDT)
-Received: from postman.dtnt.info (postman.dtnt.info [62.219.91.51])
-	by mm2.emwd.com (Postfix) with ESMTP id F23753836FD
-	for <usrp-users@lists.ettus.com>; Wed, 31 Mar 2021 06:50:31 -0400 (EDT)
-Received: from o.dtnt.email (o.dtnt.email [62.219.91.154])
-	by postman.dtnt.info (Postfix) with ESMTPS id 60FBF43F6A
-	for <usrp-users@lists.ettus.com>; Wed, 31 Mar 2021 13:49:51 +0300 (IDT)
-Received: from o.dtnt.email (o.dtnt.email [127.0.0.1])
-	by o.dtnt.email (Postfix) with ESMTP id 1DA199FF4C
-	for <usrp-users@lists.ettus.com>; Wed, 31 Mar 2021 13:49:51 +0300 (IDT)
-X-Virus-Scanned: Debian amavisd-new at o.dtnt.email
-Received: from o.dtnt.email ([127.0.0.1])
-	by o.dtnt.email (o.dtnt.email [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id vXJFMxDWlRKO for <usrp-users@lists.ettus.com>;
-	Wed, 31 Mar 2021 13:49:49 +0300 (IDT)
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-	by o.dtnt.email (Postfix) with ESMTPSA id 51D289F9C5
-	for <usrp-users@lists.ettus.com>; Wed, 31 Mar 2021 13:49:49 +0300 (IDT)
-Received: by mail-oi1-f181.google.com with SMTP id k25so19588753oic.4
-        for <usrp-users@lists.ettus.com>; Wed, 31 Mar 2021 03:49:48 -0700 (PDT)
-X-Gm-Message-State: AOAM5322asNzqTKnFQl+DCY08PBLSoalTusKqQ8IoLHbVspSlM3626sv
-	hSayB4TDuhaIWIZt1FGAe08URaNqEnLqvQKhjrE=
-X-Google-Smtp-Source: ABdhPJwQTNygDDiwLY4x7Jhv09rIW8lObfcaoMQ6NgUiEKaBo0CvFIgZ68sr80CpmGw5UjOaKRGcfdSxvzd+MOrgidQ=
-X-Received: by 2002:aca:d514:: with SMTP id m20mr1851648oig.47.1617187787003;
- Wed, 31 Mar 2021 03:49:47 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 31762383533
+	for <lists+usrp-users@lfdr.de>; Wed, 31 Mar 2021 08:39:55 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ou.edu header.i=@ou.edu header.b="I6YHcycw";
+	dkim-atps=neutral
+Received: from mx0b-00272701.pphosted.com (mx0b-00272701.pphosted.com [208.86.201.61])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0B1C8383895
+	for <usrp-users@lists.ettus.com>; Wed, 31 Mar 2021 08:38:59 -0400 (EDT)
+Received: from pps.filterd (m0107987.ppops.net [127.0.0.1])
+	by mx0b-00272701.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12VCUjDR030746;
+	Wed, 31 Mar 2021 07:38:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ou.edu; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type :
+ mime-version; s=domainkey;
+ bh=hG73E69X/3cEeSjL1GzMNe2ZXpZTKOQaf36KiZ7917A=;
+ b=I6YHcycwX3uiwTEM799MHof2pQtUkUf9mnBt0R6dix0WbXHk4xjrneB1n9DzsB096pHt
+ wFoZrCMLR8os1Lv6L2PVXHM2iz89+IBwzm/36zw1SYTc2B7DnEvvLJNY9vKOXpYQIgNO
+ tP+iFA04U5GyFK04ofPuXAOUZpo8CZzpYf7jZdLJ+oDH43RiCFwkKKLxm6um3gYQBj+C
+ Ghf1QQ2PND2AxvnskFLyKc5DgfM15fgs4IY53yzjOnsWKYFXoMoOsvpFWfFCGMOzWVm5
+ J/l7ob6z3DTErGCl/Mz4G7fMx0NTIP8IAz4OM1JeekTyy3O7FHLPxOfDQ3kvIiZBG7on +Q==
+Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2102.outbound.protection.outlook.com [104.47.58.102])
+	by mx0b-00272701.pphosted.com with ESMTP id 37mav2ajfd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 31 Mar 2021 07:38:59 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k6wSkKH8DjnZmnU+QsQY95jbtpvluIZFKd4mLDJxyO0AyyqwvZnw/Qra6cwWZr+uxgw7wGNVBaGyB/gsnGDWgZY9aj861alTs83DcCH19v5Hq8IkvsUhxcibIWjG4HEDtw/YfWAVTO1jnt6ryqIDSW17DUUFShS7ZYYOxx43ojazUfH0cFvh5BgzTWWcO9xQBEaVt2qviKEfVrsixMgiTOzv0L1+Ij5JR5qh7hc6OWvTC0NyDEQ8YzgByHvKUrTabnyKkY7wVdCZNVWwTJcAAdwR1KVUQWaaLnOrJNzwwufM1RJsTHWvt+MCdebVPlOeqU4L0DXT25nM+JUt/STmQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hG73E69X/3cEeSjL1GzMNe2ZXpZTKOQaf36KiZ7917A=;
+ b=c1/Nk8zDwyS2nN6H9+G8fH3aXmj+2WqKWFk7Rxl1TGlxMPA4XgCq85ie8TuLCj27AArWW26WebMX/RoROXgUE0SFTMvRy42A4JRUegygtSnT/jo3INj34vxLgQW6SFO9sATFzQSUR3zY4AEPM/yeYDrZhK8e6cWJV/LRbzw1bnZpS4v38frVo1rka2lkjFE3uGLvi3J2cSOlamy9GI7BUqnB9a4f7m5MdF/ygHvE9a3sSND8yuV9cqM7Kxh2TLcYzMhPv4weazKa5gAlDC0P68HcbhOM6mYTYcM0OSHrG87X4kACAIAHu4hwmb9AzXKEGEWm0BG9iF8T9lBee6xbMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ou.edu; dmarc=pass action=none header.from=ou.edu; dkim=pass
+ header.d=ou.edu; arc=none
+Received: from SN6PR03MB4160.namprd03.prod.outlook.com (2603:10b6:805:bd::20)
+ by SN2PR03MB2269.namprd03.prod.outlook.com (2603:10b6:804:d::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.29; Wed, 31 Mar
+ 2021 12:38:57 +0000
+Received: from SN6PR03MB4160.namprd03.prod.outlook.com
+ ([fe80::39eb:ded4:5890:9e71]) by SN6PR03MB4160.namprd03.prod.outlook.com
+ ([fe80::39eb:ded4:5890:9e71%6]) with mapi id 15.20.3999.027; Wed, 31 Mar 2021
+ 12:38:57 +0000
+From: "Mattingly, Rylee" <rmattingly@ou.edu>
+To: Rob Kossler <rkossler@nd.edu>
+Thread-Topic: [USRP-users] Generating Packets in a 2-Port Block
+Thread-Index: AQHXJOzpZtYdLchw00yFfObLXs/E76qbnLQigAFpUICAAQVy0g==
+Date: Wed, 31 Mar 2021 12:38:57 +0000
+Message-ID: 
+ <SN6PR03MB4160E56638B48649EB467054B17C9@SN6PR03MB4160.namprd03.prod.outlook.com>
+References: 
+ <SN6PR03MB41609C51432203513A57A1EDB17E9@SN6PR03MB4160.namprd03.prod.outlook.com>
+ <SN6PR03MB4160534B2F9F6E3B8647CDA3B17E9@SN6PR03MB4160.namprd03.prod.outlook.com>,<CAB__hTTF5weM3_LtNRwTwgyuoy9TDe5OFdxOqgqenYChE-QfAw@mail.gmail.com>
+In-Reply-To: 
+ <CAB__hTTF5weM3_LtNRwTwgyuoy9TDe5OFdxOqgqenYChE-QfAw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nd.edu; dkim=none (message not signed)
+ header.d=none;nd.edu; dmarc=none action=none header.from=ou.edu;
+x-originating-ip: [216.106.138.88]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b47f0ad4-9ca6-4eba-336f-08d8f441f3cf
+x-ms-traffictypediagnostic: SN2PR03MB2269:
+x-microsoft-antispam-prvs: 
+ <SN2PR03MB2269BEBE48773A6ADFE8A829B17C9@SN2PR03MB2269.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ SSL9m5RFM7dKcQ+biuXUW6MAWL0EbaLeeT+1AeoJrRAGsoOyMbjjFh+8guEDujYtJujB2MxX+vWcH+3/OQf+x/f2hngQ97moi1gRKFYWRovM0c343ao+JLeTeNVaifiDmpwt2KIumY4I6plVwK4hLhaILcFuIu6mOVdZHcQLxIvuzknPQYXK0jTiSl1StE7UNPoer9UIoqNO29IwBe8IV1uVCn9Vj7SEcpdGmIo8IDwTpilDxtERacl35+RYfGEMMbJb2E0R20k3qm46FP1V7FyUGYYwaCNz2UHdwGURfzB8zEVB33zJprfx68QpKUk6hXvOrHPM/6gpvRNfh+Ebsq0Kqg3f5LPmszam/clpY7FXFQWeN5F0s+EmZ/TWvlTBJ7RAzn/otNVSNJmlpa4+OaaFNnTNyBylHhJnS+oajO9Kr91UsxV3LbWZ70xiRL6jCpcfG1MjJf3JpTW8fgMb1F0XT0t2Ja5VReyn01/p6C/L9TI/osoNHeh9CI5AFa/C7UPyDYj3Seh4hz9IwTRIETvbS+8pBGiEJy8K7RXDJi9fEi0AEzMD3zkUgzD+nluT0GstZnkZl/aNI9dzZjbMeJWuqh31QzaVjbwOG3C8EZ4wzr3MxqJ4myTaQN4g2WO6QZIuPm0v/+P6oDY5PZY89w==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR03MB4160.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(396003)(136003)(346002)(376002)(366004)(66446008)(316002)(7696005)(9686003)(66946007)(76116006)(86362001)(75432002)(83380400001)(66556008)(5660300002)(786003)(71200400001)(6916009)(478600001)(52536014)(4326008)(8676002)(2906002)(53546011)(6506007)(38100700001)(26005)(186003)(64756008)(33656002)(66476007)(55016002)(8936002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: 
+ =?Windows-1252?Q?5hRlusIhrl/Aft3AGI3g+buRKmK+OOq/jrhfDzr63QjZmLg0pXeS1MZt?=
+ =?Windows-1252?Q?NZCkxIcYem1b+Kusd8JiI8kpmiN7YR/D4sFA1w9Q5NjKIqYjkuNV5Z4a?=
+ =?Windows-1252?Q?+C2l6QHXU991zil42d3ydl3gem7uR4jtq+ZhRo0MYBAk+Y7Tp9rwN+qH?=
+ =?Windows-1252?Q?TkRYhwAVUsvUgP7nCcEhgcXzRnsJ9l+JBHsAGae/vwX+uIANK0yb4r89?=
+ =?Windows-1252?Q?K/ij7VGLW6RmslAW+f47Tfei6GCMuY2gBgg6Raa7yy9FbqYBAVpymzzp?=
+ =?Windows-1252?Q?Y9MxyFdnRthCwC/xooIwSLSnEiawWDb8oU8DJUK4rt3dEKpx86tjAizg?=
+ =?Windows-1252?Q?rlSVKyGgHLyb0lCyyzsBNeGdxPuB9akfI/g8YB2L9Wvy67rhNmd9WbeW?=
+ =?Windows-1252?Q?vEtOIeBByWbrH9GOJwujuWRJTrxTn8VVwXEJ5GGntSQWj0l1Q++YydYa?=
+ =?Windows-1252?Q?3nt9rUwL1Mbi79hKveOjuXllkTdS59OtS3aG9RetP8b+A3A5UHj8ePW7?=
+ =?Windows-1252?Q?MANF7EO9uSbWCsofTvdRmABqJotNZ3b0PZB7EAEIqwI+Ul/COLXdLqkz?=
+ =?Windows-1252?Q?rokdsj+/XVVWbVr+pyyZiOkvjz/1ib2Tx7XKOgok9Aos2pPDV8qki17J?=
+ =?Windows-1252?Q?WAT1QrDe4g6un0VzMcTucxoRyaYNO/ts/FebYdpyYJF+EJHfwmJqw2Oz?=
+ =?Windows-1252?Q?yedaXZy0LkgV2TtOOm1BnzBpLqqEDgvA7XEP3BEb2610xrY1ORgrmAfU?=
+ =?Windows-1252?Q?VDqyHOG/7lcvJjn5JQIh8/ZaH/8xdgK5ya7BcuYyeONrkF2CAD5g34Lo?=
+ =?Windows-1252?Q?69p2DUdJY2DrlKR1G1XVI2FVmZE+Wi8A9gZS64eFHaWMdVQZYm0CAKUd?=
+ =?Windows-1252?Q?6C32e5uTH4SkyA68jD2HV65VHWlQgsYlMA1Wl/dbs4TYB16/qlLP1TZz?=
+ =?Windows-1252?Q?xShKS9GKrfiGTo+hfIyyOmwt+xHe11dkRi5Dj3ZiN7C9u74TXpwtrmxk?=
+ =?Windows-1252?Q?svqCR+wom1Y0Tnrth62lY+PseaWIgJYpdSKRvxkBU2t7s6anLLwchnVb?=
+ =?Windows-1252?Q?FVZjeramPo9B27BMwrH5QVhtthVle9v0ggiUSNbKFg6exq0Op6uoqut4?=
+ =?Windows-1252?Q?bEgz1brTVhh68D/XCocRTnCC5DSDHwrbKvgdCJpV91eQe+38wxFBQdyE?=
+ =?Windows-1252?Q?xdvccWA9CAICfm3YBw9n1JhUxZwn+KTSHQs7Hwc4+uY/QwiyhOLjUi12?=
+ =?Windows-1252?Q?uoG9pTrToLocCXd6uN7cD0SgtW57/TJnXtgaDddB1TYFH8Wre657011R?=
+ =?Windows-1252?Q?CaRxOmZ/PSP0expkqvXYSoDH9Vh7f22xqppAiFZvCeb3GcAs26sRHEll?=
+ =?Windows-1252?Q?/T1n1U1DTxHTC2LIuFVOxPPX8EI0671u93gDU1J+4V5bvofp1aKH9UZ+?=
+ =?Windows-1252?Q?KZtL51jhtUvI00zjZsDfXw=3D=3D?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-From: Ofer Saferman <ofer@navigicom.com>
-Date: Wed, 31 Mar 2021 13:49:36 +0300
-X-Gmail-Original-Message-ID: <CACDReSyg26P8Cae3Lr5k1s0YJYJ6sSxiYcw4eU=bb2HWkfMQxA@mail.gmail.com>
-Message-ID: <CACDReSyg26P8Cae3Lr5k1s0YJYJ6sSxiYcw4eU=bb2HWkfMQxA@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-X-DTNT-MailScanner-Information: Please contact the ISP for more information
-X-DTNT-MailScanner-ID: 60FBF43F6A.A93E5
-X-DTNT-MailScanner: Found to be clean
-X-DTNT-MailScanner-From: ofer@navigicom.com
-X-Spam-Status: No
-Message-ID-Hash: X4BSRLI7CWB4XPFZADMOUHCMYUJCVIJX
-X-Message-ID-Hash: X4BSRLI7CWB4XPFZADMOUHCMYUJCVIJX
-X-MailFrom: ofer@navigicom.com
+X-OriginatorOrg: ou.edu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR03MB4160.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b47f0ad4-9ca6-4eba-336f-08d8f441f3cf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Mar 2021 12:38:57.2210
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 9c7de09d-9034-44c1-b462-c464fece204a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lBg3F8+OXiL3lvGDHA72HMRNx4K+VK6DPmMUhnDVn1FcAaF5Xcj2lnhs2BVqVhArHuOF4S4OjOHv8ATlqgEnXQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN2PR03MB2269
+X-Proofpoint-ORIG-GUID: RQt6DhIbPrkdG83tAHopcupz4H7QUbDt
+X-Proofpoint-GUID: RQt6DhIbPrkdG83tAHopcupz4H7QUbDt
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-31_03:2021-03-30,2021-03-31 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=999
+ suspectscore=0 clxscore=1015 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 mlxscore=0 phishscore=0 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2103300000 definitions=main-2103310092
+Message-ID-Hash: 3BZ3E3N3XFFOZAKION7FM6ICVBP5OAZD
+X-Message-ID-Hash: 3BZ3E3N3XFFOZAKION7FM6ICVBP5OAZD
+X-MailFrom: prvs=17245fa69f=rmattingly@ou.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Intermittent problem with GPS synchronization for multiple E310 units
+Subject: [USRP-users] Re: Generating Packets in a 2-Port Block
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/X4BSRLI7CWB4XPFZADMOUHCMYUJCVIJX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZZQB7TVSK2FHEP2C2572HIV4Y6TGZ5U7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4497808021641120330=="
+Content-Type: multipart/mixed; boundary="===============5146194374310373007=="
 
---===============4497808021641120330==
-Content-Type: multipart/alternative; boundary="000000000000945c1b05bed2dfbe"
+--===============5146194374310373007==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SN6PR03MB4160E56638B48649EB467054B17C9SN6PR03MB4160namp_"
 
---000000000000945c1b05bed2dfbe
-Content-Type: text/plain; charset="UTF-8"
-
-Hello,
-
-I have a system that uses 4 USRP E310 units.
-Each unit is connected to a GPS antenna.
-Time source is set to gpsdo.
-
-I run the same software remotely on all 4 units from a PC. Software runs on
-the units themselves.
-I print out messages to show if the reference is locked and the GPS is
-locked and also what is the GPS time that each unit was synchronized to.
-In some cases the units synchronize to the same GPS time and in other cases
-there is 1 second difference between GPS time of different units thus
-causing the units to be unsynchronized.
-
-I was wondering how this was possible.
-The synchronization process (documented by others in the past on the
-mailing list) is:
-* Wait for ref and GPS lock
-* Wait for a pps edge (get_time_last_pps)
-* Read gps_time value
-* Sync system clock to GPS clock on next PPS edge (set_time_next_pps + 1.0
-sec)
-
-Something similar is also implemented in the sync_to_gps example.
-
-In order to debug the problem I decided to time the reading of the gps_time
-sensor to see if there is a clue why different units miss the PPS edge and
-lock to a time of the next second.
-
-I was very surprised to find out that it takes between 0.9 to 1.2 seconds
-to read the gps_time sensor.
-This explains exactly why it is difficult to synchronize multiple units to
-the same time instance because if one unit takes 0.9 seconds to read the
-sensor and the other unit takes 1.2 seconds to read the sensor then each
-unit will lock on a different GPS time 1 second apart.
-
-Here is a short software I wrote to time the gps_time sensor reading:
----------------------------------------------------------
-#include <uhd/utils/safe_main.hpp>
-#include <uhd/device3.hpp>
-//#include <uhd/usrp/multi_usrp.hpp>
-#include <uhd/types/sensors.hpp>
-#include <boost/program_options.hpp>
-#include <boost/format.hpp>
-#include <chrono>
-#include <iostream>
-
-namespace po = boost::program_options;
-
-int UHD_SAFE_MAIN(int argc, char *argv[]){
-
-std::string args;
-
-    po::options_description desc("Allowed options");
-    desc.add_options()
-        ("help", "help message")
-("args", po::value<std::string>(&args)->default_value(""), "device address
-args")
-    ;
-
-    po::variables_map vm;
-    po::store(po::parse_command_line(argc, argv, desc), vm);
-    po::notify(vm);
-
-    //print the help message
-    if (vm.count("help")){
-        std::cout << boost::format("Timinig of gps_time: %s") % desc <<
-std::endl;
-        return ~0;
-    }
-
-uhd::device3::sptr usrp = uhd::device3::make(args);
-//uhd::usrp::multi_usrp::sptr usrp = uhd::usrp::multi_usrp::make(args);
-
-uhd::sensor_value_t gps_time =
-usrp->get_tree()->access<uhd::sensor_value_t>("/mboards/0/sensors/gps_time").get();
-//uhd::sensor_value_t gps_time = usrp->get_mboard_sensor("gps_time", 0);
-
-std::chrono::steady_clock::time_point start_time, end_time;
-std::chrono::duration<double> time_diff; // Default unit for duration is
-seconds.
-
-for(int ii=0 ; ii<20 ; ii++)
-{
-start_time = std::chrono::steady_clock::now();
-gps_time =
-usrp->get_tree()->access<uhd::sensor_value_t>("/mboards/0/sensors/gps_time").get();
-//gps_time = usrp->get_mboard_sensor("gps_time", 0);
-end_time = std::chrono::steady_clock::now();
-time_diff = end_time - start_time;
-
-std::cout << "gps_time[" << (boost::format("%02d") % ii) << "]: " <<
-int64_t(gps_time.to_int()) << ". Time to read \"gps_time\": " <<
-(boost::format("%0.9f") % time_diff.count()) << " seconds" << std::endl;
-}
-
-    return 0;
-}
---------------------------------------------------------------------------------
-Here are the results of one typical run:
-gps_time[00]: 1617183840. Time to read "gps_time": 0.884164380 seconds
-gps_time[01]: 1617183841. Time to read "gps_time": 0.877966469 seconds
-gps_time[02]: 1617183842. Time to read "gps_time": 1.170869661 seconds
-gps_time[03]: 1617183843. Time to read "gps_time": 0.882917987 seconds
-gps_time[04]: 1617183844. Time to read "gps_time": 1.172120154 seconds
-gps_time[05]: 1617183845. Time to read "gps_time": 0.879271985 seconds
-gps_time[06]: 1617183846. Time to read "gps_time": 0.878609099 seconds
-gps_time[07]: 1617183847. Time to read "gps_time": 1.115639282 seconds
-gps_time[08]: 1617183848. Time to read "gps_time": 1.125365551 seconds
-gps_time[09]: 1617183849. Time to read "gps_time": 0.843803231 seconds
-gps_time[10]: 1617183850. Time to read "gps_time": 1.125065740 seconds
-gps_time[11]: 1617183851. Time to read "gps_time": 0.847519817 seconds
-gps_time[12]: 1617183852. Time to read "gps_time": 1.121398945 seconds
-gps_time[13]: 1617183853. Time to read "gps_time": 0.844371533 seconds
-gps_time[14]: 1617183854. Time to read "gps_time": 1.124722726 seconds
-gps_time[15]: 1617183855. Time to read "gps_time": 0.845688380 seconds
-gps_time[16]: 1617183856. Time to read "gps_time": 1.129568096 seconds
-gps_time[17]: 1617183857. Time to read "gps_time": 0.882436229 seconds
-gps_time[18]: 1617183858. Time to read "gps_time": 1.168227593 seconds
-gps_time[19]: 1617183859. Time to read "gps_time": 0.881948247 seconds
------------------------------------------------------------------------------------
-In the code you can find commented out the usual way to access the sensor
-using multi_usrp and get_mboard_sensor. The results are quite similar.
-
-I wonder if anybody encountered this issue before or addressed it in any
-way.
-I wonder why it takes so much time to get the value of GPS time when it is
-a simple parsing of an NMEA message coming from the GPS receiver.
-
-I am trying now various tricks to make the software robust and immune to
-this phenomenon. I can report my findings further if I succeed to find a
-workaround if there is any interest.
-
-Can anyone comment on this? Can this be resolved so that the reading of
-gps_time will be much faster?
-Is there another way to get GPS time faster indirectly? Maybe from parsing
-NMEA messages ourselves?
-
-Regards,
-Ofer Saferman
-
--- 
-This message has been scanned for viruses and
-dangerous content by MailScanner, and is
-believed to be clean.
-
-
---000000000000945c1b05bed2dfbe
-Content-Type: text/html; charset="UTF-8"
+--_000_SN6PR03MB4160E56638B48649EB467054B17C9SN6PR03MB4160namp_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I have a system that =
-uses 4 USRP E310 units.</div><div>Each unit is connected to a GPS antenna.<=
-/div><div>Time source is set to gpsdo.</div><div><br></div><div>I run the s=
-ame software remotely on all 4 units from a PC. Software runs on the units =
-themselves.</div><div>I print out messages to show if the reference is lock=
-ed and the GPS is locked and also what is the GPS time that each unit was s=
-ynchronized to.</div><div>In some cases the units synchronize to the same G=
-PS time and in other cases there is 1 second difference between GPS time of=
- different units thus causing the units to be unsynchronized.</div><div><br=
-></div><div>I was wondering how this was possible.</div><div>The synchroniz=
-ation process (documented by others in the past on the mailing list) is:</d=
-iv><div>* Wait for ref and GPS lock</div><div>* Wait for a pps edge (get_ti=
-me_last_pps)</div><div>* Read gps_time value</div><div>* Sync system clock =
-to GPS clock on next PPS edge (set_time_next_pps + 1.0 sec)</div><div><br><=
-/div><div>Something similar is also implemented in the sync_to_gps example.=
-</div><div><br></div><div>In order to debug the problem I decided to time t=
-he reading of the gps_time sensor to see if there is a clue why different u=
-nits miss the PPS edge and lock to a time of the next second.</div><div><br=
-></div><div>I was very surprised to find out that it takes between 0.9 to 1=
-.2 seconds to read the gps_time sensor. <br></div><div>This explains exactl=
-y why it is difficult to synchronize multiple units to the same time instan=
-ce because if one unit takes 0.9 seconds to read the sensor and the other u=
-nit takes 1.2 seconds to read the sensor then each unit will lock on a diff=
-erent GPS time 1 second apart.</div><div><br></div><div>Here is a short sof=
-tware I wrote to time the gps_time sensor reading:</div><div>--------------=
--------------------------------------------</div><div>#include &lt;uhd/util=
-s/safe_main.hpp&gt;<br>#include &lt;uhd/device3.hpp&gt;<br>//#include &lt;u=
-hd/usrp/multi_usrp.hpp&gt;<br>#include &lt;uhd/types/sensors.hpp&gt;<br>#in=
-clude &lt;boost/program_options.hpp&gt;<br>#include &lt;boost/format.hpp&gt=
-;<br>#include &lt;chrono&gt;<br>#include &lt;iostream&gt;<br><br>namespace =
-po =3D boost::program_options;<br><br>int UHD_SAFE_MAIN(int argc, char *arg=
-v[]){<br><br>	std::string args;<br>	<br>=C2=A0 =C2=A0 po::options_descripti=
-on desc(&quot;Allowed options&quot;);<br>=C2=A0 =C2=A0 desc.add_options()<b=
-r>=C2=A0 =C2=A0 =C2=A0 =C2=A0 (&quot;help&quot;, &quot;help message&quot;)<=
-br>		(&quot;args&quot;, po::value&lt;std::string&gt;(&amp;args)-&gt;default=
-_value(&quot;&quot;), &quot;device address args&quot;)<br>=C2=A0 =C2=A0 ;<b=
-r><br>=C2=A0 =C2=A0 po::variables_map vm;<br>=C2=A0 =C2=A0 po::store(po::pa=
-rse_command_line(argc, argv, desc), vm);<br>=C2=A0 =C2=A0 po::notify(vm);<b=
-r><br>=C2=A0 =C2=A0 //print the help message<br>=C2=A0 =C2=A0 if (vm.count(=
-&quot;help&quot;)){<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 std::cout &lt;&lt; boost=
-::format(&quot;Timinig of gps_time: %s&quot;) % desc &lt;&lt; std::endl;<br=
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 return ~0;<br>=C2=A0 =C2=A0 }<br><br>	uhd::dev=
-ice3::sptr usrp =3D uhd::device3::make(args);<br>	//uhd::usrp::multi_usrp::=
-sptr usrp =3D uhd::usrp::multi_usrp::make(args);<br>	<br>	uhd::sensor_value=
-_t gps_time =3D usrp-&gt;get_tree()-&gt;access&lt;uhd::sensor_value_t&gt;(&=
-quot;/mboards/0/sensors/gps_time&quot;).get();<br>	//uhd::sensor_value_t gp=
-s_time =3D usrp-&gt;get_mboard_sensor(&quot;gps_time&quot;, 0);<br>	<br>	st=
-d::chrono::steady_clock::time_point start_time, end_time;<br>	std::chrono::=
-duration&lt;double&gt; time_diff; // Default unit for duration is seconds.<=
-br>=C2=A0 =C2=A0 <br>	for(int ii=3D0 ; ii&lt;20 ; ii++)<br>	{<br>		start_ti=
-me =3D std::chrono::steady_clock::now();<br>		gps_time =3D usrp-&gt;get_tre=
-e()-&gt;access&lt;uhd::sensor_value_t&gt;(&quot;/mboards/0/sensors/gps_time=
-&quot;).get();<br>		//gps_time =3D usrp-&gt;get_mboard_sensor(&quot;gps_tim=
-e&quot;, 0);<br>		end_time =3D std::chrono::steady_clock::now();<br>		time_=
-diff =3D end_time - start_time;<br>		<br>		std::cout &lt;&lt; &quot;gps_tim=
-e[&quot; &lt;&lt; (boost::format(&quot;%02d&quot;) % ii) &lt;&lt; &quot;]: =
-&quot; &lt;&lt; int64_t(gps_time.to_int()) &lt;&lt; &quot;. Time to read \&=
-quot;gps_time\&quot;: &quot; &lt;&lt; (boost::format(&quot;%0.9f&quot;) % t=
-ime_diff.count()) &lt;&lt; &quot; seconds&quot; &lt;&lt; std::endl;<br>	}<b=
-r><br>=C2=A0 =C2=A0 return 0;<br>}</div><div>------------------------------=
---------------------------------------------------</div><div>Here are the r=
-esults of one typical run:</div><div>gps_time[00]: 1617183840. Time to read=
- &quot;gps_time&quot;: 0.884164380 seconds<br>gps_time[01]: 1617183841. Tim=
-e to read &quot;gps_time&quot;: 0.877966469 seconds<br>gps_time[02]: 161718=
-3842. Time to read &quot;gps_time&quot;: 1.170869661 seconds<br>gps_time[03=
-]: 1617183843. Time to read &quot;gps_time&quot;: 0.882917987 seconds<br>gp=
-s_time[04]: 1617183844. Time to read &quot;gps_time&quot;: 1.172120154 seco=
-nds<br>gps_time[05]: 1617183845. Time to read &quot;gps_time&quot;: 0.87927=
-1985 seconds<br>gps_time[06]: 1617183846. Time to read &quot;gps_time&quot;=
-: 0.878609099 seconds<br>gps_time[07]: 1617183847. Time to read &quot;gps_t=
-ime&quot;: 1.115639282 seconds<br>gps_time[08]: 1617183848. Time to read &q=
-uot;gps_time&quot;: 1.125365551 seconds<br>gps_time[09]: 1617183849. Time t=
-o read &quot;gps_time&quot;: 0.843803231 seconds<br>gps_time[10]: 161718385=
-0. Time to read &quot;gps_time&quot;: 1.125065740 seconds<br>gps_time[11]: =
-1617183851. Time to read &quot;gps_time&quot;: 0.847519817 seconds<br>gps_t=
-ime[12]: 1617183852. Time to read &quot;gps_time&quot;: 1.121398945 seconds=
-<br>gps_time[13]: 1617183853. Time to read &quot;gps_time&quot;: 0.84437153=
-3 seconds<br>gps_time[14]: 1617183854. Time to read &quot;gps_time&quot;: 1=
-.124722726 seconds<br>gps_time[15]: 1617183855. Time to read &quot;gps_time=
-&quot;: 0.845688380 seconds<br>gps_time[16]: 1617183856. Time to read &quot=
-;gps_time&quot;: 1.129568096 seconds<br>gps_time[17]: 1617183857. Time to r=
-ead &quot;gps_time&quot;: 0.882436229 seconds<br>gps_time[18]: 1617183858. =
-Time to read &quot;gps_time&quot;: 1.168227593 seconds<br>gps_time[19]: 161=
-7183859. Time to read &quot;gps_time&quot;: 0.881948247 seconds</div><div>-=
----------------------------------------------------------------------------=
--------</div><div>In the code you can find commented out the usual way to a=
-ccess the sensor using multi_usrp and get_mboard_sensor. The results are qu=
-ite similar.</div><div></div><div><br></div><div>I wonder if anybody encoun=
-tered this issue before or addressed it in any way. <br></div><div>I wonder=
- why it takes so much time to get the value of GPS time when it is a simple=
- parsing of an NMEA message coming from the GPS receiver.</div><div><br></d=
-iv><div>I am trying now various tricks to make the software robust and immu=
-ne to this phenomenon. I can report my findings further if I succeed to fin=
-d a workaround if there is any interest.</div><div><br></div><div>Can anyon=
-e comment on this? Can this be resolved so that the reading of gps_time wil=
-l be much faster?</div><div>Is there another way to get GPS time faster ind=
-irectly? Maybe from parsing NMEA messages ourselves?<br></div><div><br></di=
-v><div>Regards,</div><div>Ofer Saferman<br></div></div>
-<br />--=20
-<br />This message has been scanned for viruses and
-<br />dangerous content by
-<a href=3D"http://www.mailscanner.info/"><b>MailScanner</b></a>, and is
-<br />believed to be clean.
+Rob,
+
+This did fix my problem and I can now generate deterministic packets!
+
+Thank you,
+
+Rylee Mattingly
+University of Oklahoma
+Graduate Research Assistant
+
+From: Rob Kossler <rkossler@nd.edu>
+Date: Tuesday, March 30, 2021 at 4:02 PM
+To: Mattingly, Rylee <rmattingly@ou.edu>
+Cc: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Generating Packets in a 2-Port Block
+Hi Rylee,
+I think the problem is that the "length" in the context header should be in=
+ bytes (not in samples).
+Rob
+
+On Mon, Mar 29, 2021 at 7:31 PM Mattingly, Rylee <rmattingly@ou.edu<mailto:=
+rmattingly@ou.edu>> wrote:
+Hi all,
 
 
---000000000000945c1b05bed2dfbe--
 
---===============4497808021641120330==
+I am currently working on a RFNoC block that has a =91passthrough=92 port a=
+nd =91results=92 port that outputs data based on the samples seen in the pa=
+ssthrough stream.
+
+
+
+I am currently using the AXI-stream payload context interface and I am havi=
+ng trouble deterministically generating packets. My current test block outp=
+uts the value of the counter as the payload, but the count seems to  be abo=
+ut a quarter of the length of the desired length.  For instance, my current=
+ test block is supposed to output 1024 samples from 0-1022 with a zero as t=
+he last payload element. But I am only getting 0-251.
+
+
+
+This is not an issue that I am having in my functional simulations of the s=
+tate machine and so I believe that I may be misunderstanding something crit=
+ical about the interface. Any suggestions are greatly appreciated.
+
+
+
+I am using UHD 4.0 with an x310 using Dual 10Gig ethernet. A test version o=
+f the block with only the transmit packet logic is attached.
+
+
+
+Thank you,
+
+
+
+Rylee Mattingly
+
+University of Oklahoma
+
+Graduate Research Assistant
+
+Email: rmattingly@ou.edu<mailto:rmattingly@ou.edu>
+
+
+
+Attachment
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com<mailto:usrp-users@lis=
+ts.ettus.com>
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com<mailto:usr=
+p-users-leave@lists.ettus.com>
+
+--_000_SN6PR03MB4160E56638B48649EB467054B17C9SN6PR03MB4160namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:brea=
+k-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Rob, <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">This did fix my problem and I can now generate deter=
+ministic packets!
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thank you,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"color:black">Rylee Mattingly<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:black">University of Oklahoma</=
+span><o:p></o:p></p>
+</div>
+<p class=3D"MsoNormal">Graduate Research Assistant<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><b><span style=3D"fon=
+t-size:12.0pt;color:black">From:
+</span></b><span style=3D"font-size:12.0pt;color:black">Rob Kossler &lt;rko=
+ssler@nd.edu&gt;<br>
+<b>Date: </b>Tuesday, March 30, 2021 at 4:02 PM<br>
+<b>To: </b>Mattingly, Rylee &lt;rmattingly@ou.edu&gt;<br>
+<b>Cc: </b>usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
+>
+<b>Subject: </b>Re: [USRP-users] Generating Packets in a 2-Port Block<o:p><=
+/o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Hi Rylee,<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">I think the problem is that the &quot;length&quot; i=
+n the context header should be in bytes (not in samples).<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Rob<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Mon, Mar 29, 2021 at 7:31 PM Mattingly, Rylee &lt=
+;<a href=3D"mailto:rmattingly@ou.edu">rmattingly@ou.edu</a>&gt; wrote:<o:p>=
+</o:p></p>
+</div>
+<blockquote style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0i=
+n 0in 0in 6.0pt;margin-left:4.8pt;margin-right:0in">
+<div>
+<p class=3D"MsoNormal">Hi all, <o:p></o:p></p>
+<div>
+<div>
+<div>
+<p style=3D"margin:0in">&nbsp;<span style=3D"font-size:12.0pt"><o:p></o:p><=
+/span></p>
+<p style=3D"margin:0in">I am currently working on a RFNoC block that has a =
+=91passthrough=92 port and =91results=92 port that outputs data based on th=
+e samples seen in the passthrough stream.<span style=3D"font-size:12.0pt"><=
+o:p></o:p></span></p>
+<p style=3D"margin:0in">&nbsp;<span style=3D"font-size:12.0pt"><o:p></o:p><=
+/span></p>
+<p style=3D"margin:0in">I am currently using the AXI-stream payload context=
+ interface and I am having trouble deterministically generating packets. My=
+ current test block outputs the value of the counter as the payload, but th=
+e count seems to &nbsp;be about a quarter
+ of the length of the desired length.&nbsp; For instance, my current test b=
+lock is supposed to output 1024 samples from 0-1022 with a zero as the last=
+ payload element. But I am only getting 0-251.&nbsp;
+<span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+<p style=3D"margin:0in">&nbsp;<span style=3D"font-size:12.0pt"><o:p></o:p><=
+/span></p>
+<p style=3D"margin:0in">This is not an issue that I am having in my functio=
+nal simulations of the state machine and so I believe that I may be misunde=
+rstanding something critical about the interface. Any suggestions are great=
+ly appreciated.<span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+<p style=3D"margin:0in"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p><=
+/span></p>
+<p style=3D"margin:0in">I am using UHD 4.0 with an x310 using Dual 10Gig et=
+hernet. A test version of the block with only the transmit packet logic is =
+attached.
+<span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+<p style=3D"margin:0in"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p><=
+/span></p>
+<p style=3D"margin:0in">Thank you,<span style=3D"font-size:12.0pt"><o:p></o=
+:p></span></p>
+<p style=3D"margin:0in">&nbsp;<span style=3D"font-size:12.0pt"><o:p></o:p><=
+/span></p>
+<p style=3D"margin:0in"><a name=3D"m_-4117190837905098919_x__MailAutoSig"><=
+span style=3D"font-size:12.0pt">Rylee Mattingly</span></a><span style=3D"fo=
+nt-size:12.0pt"><o:p></o:p></span></p>
+<p style=3D"margin:0in"><span style=3D"font-size:12.0pt">University of Okla=
+homa<o:p></o:p></span></p>
+<p style=3D"margin:0in"><span style=3D"font-size:12.0pt">Graduate Research =
+Assistant<o:p></o:p></span></p>
+<p style=3D"margin:0in"><span style=3D"font-size:12.0pt">Email: <a href=3D"=
+mailto:rmattingly@ou.edu" target=3D"_blank">
+<span style=3D"color:#0563C1">rmattingly@ou.edu</span></a><o:p></o:p></span=
+></p>
+<p style=3D"margin:0in"><span style=3D"font-size:12.0pt">&nbsp;<o:p></o:p><=
+/span></p>
+<p style=3D"margin:0in"><span style=3D"font-size:12.0pt">Attachment<o:p></o=
+:p></span></p>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal">_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><o:p></o:p></p>
+</blockquote>
+</div>
+</div>
+</body>
+</html>
+
+--_000_SN6PR03MB4160E56638B48649EB467054B17C9SN6PR03MB4160namp_--
+
+--===============5146194374310373007==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -333,4 +403,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4497808021641120330==--
+--===============5146194374310373007==--
