@@ -2,60 +2,60 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F6435153C
-	for <lists+usrp-users@lfdr.de>; Thu,  1 Apr 2021 15:35:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03D55351552
+	for <lists+usrp-users@lfdr.de>; Thu,  1 Apr 2021 15:43:44 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E9F7B383AAA
-	for <lists+usrp-users@lfdr.de>; Thu,  1 Apr 2021 09:35:17 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9D5FE383B57
+	for <lists+usrp-users@lfdr.de>; Thu,  1 Apr 2021 09:43:42 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q5b9Qxyo";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ooQm08ic";
 	dkim-atps=neutral
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id 90A2C3837F6
-	for <usrp-users@lists.ettus.com>; Thu,  1 Apr 2021 09:34:25 -0400 (EDT)
-Received: by mail-qk1-f170.google.com with SMTP id q26so2140136qkm.6
-        for <usrp-users@lists.ettus.com>; Thu, 01 Apr 2021 06:34:25 -0700 (PDT)
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id C611E383A27
+	for <usrp-users@lists.ettus.com>; Thu,  1 Apr 2021 09:42:50 -0400 (EDT)
+Received: by mail-qt1-f173.google.com with SMTP id l13so1443103qtu.9
+        for <usrp-users@lists.ettus.com>; Thu, 01 Apr 2021 06:42:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=message-id:date:from:user-agent:mime-version:to:cc:subject
          :references:in-reply-to;
-        bh=ArRVyBv+Rue/I/0h0zxwZSsT1gisRVZvrx0y5md/Vb4=;
-        b=Q5b9Qxyo2zNFDolqJUivhIfHBgKkp2Cnkr2HZRnDE+ofW1wSufH0uwoOJ0oogEly2h
-         4B3MSdRXZ0ox05KUOmfeWsQ8MCiE5AKYQ5Wmuxgyy/5eT7Pxi1oKOoDDtlcamCDSvPJo
-         v+//wMk/rkTdiZ/X6uKpixNhZI/Q6YTgW2XWF7bENA5PEzW3LJ+ezWpAjOXBHAlXsUyk
-         R8xCZpDgaPh4z1Nit3IuDY37dXo27sn9FaSwDOcOdxqZhlJtaLc/+eTuXpug2X4NJElO
-         c018MKaiQqLF+tvklIbXlqNqOOvEFAD3uZOhvJ2S7Qv1ZZn1KgpHld1ik8Mn6MEynH/R
-         H6Gg==
+        bh=isFgZ4An1k47i6pNSVTGeb3iuh2HGPe1ffJ98tdu0zE=;
+        b=ooQm08icNLQPwTq829sbA0o5hjVheyekeTb63fQBghwt/e/McKnKhMA7yn4sNy0O7B
+         CtKtBW8IyIeTqVbfuOiED5Y5npnkdFKjy7whQWd82fyRFr9l5PiP/D854jYRT3s6Gl6G
+         WejNVp8cXGAwG69Mo5MAbIvDDjYNZtRswVtZSfvOvn54FJQ1ZKFKF2K16p0stZ3MzLUL
+         Gx8N9yq6/86VMrArEgs43qLv6ELmDWONQOViDx9afUVcPZIgIEBF85J426CXb5ktNa2u
+         QaO5Cu2AtbygR0g7ZjpOcHU9JpqWG7BzWc79iGBK8fyoE1gHiNwbRNc0VBxWlPIIiOa5
+         ZBGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
          :cc:subject:references:in-reply-to;
-        bh=ArRVyBv+Rue/I/0h0zxwZSsT1gisRVZvrx0y5md/Vb4=;
-        b=JzQe5s2IbUu0nXtrepaeIQafdk9pIrS71fiHMJetxOJoHTIXrSGeVbD4B+K2QSR0xd
-         OCsa56CSwKGsiD3T5jJjqmZN3nbDkaR7fzel9UgoJ0rPoIqFuwDxm4+lDLFx2/WANQVk
-         Ass18zr8LceO0KGhGvvFT7AasJe6odKml+osiW4Fm+oY9/Qpfaq1Xn54IVSheLI2PaUc
-         KwZT1EQvHq/opwOw+IgwjIRTtG/6eFlbEL+k8/lcGDjEos8CMz6iOM8uGaKJJ9yizQ6o
-         d/OldMPkotWYr0y360AAwKKt0Efr1UpntkCSXFbroCtnt/m9hVH2/C75kuRf1tH/xzm3
-         WNCQ==
-X-Gm-Message-State: AOAM5324uLAqarcaksXERb59yzb9hI9/Uzkb1eIu4cG3BDneMadtNfJL
-	O8pKKFhDyXRFKZttmACKfcXvR2+Sb2E=
-X-Google-Smtp-Source: ABdhPJxVYMySrOUsx5GViCyboy/xD+VDMvEsOQF1cYJdVU6q7JHlNHuHwVOY/pvbUGnvzAxJdBvN/w==
-X-Received: by 2002:ae9:f444:: with SMTP id z4mr8430857qkl.226.1617284064659;
-        Thu, 01 Apr 2021 06:34:24 -0700 (PDT)
+        bh=isFgZ4An1k47i6pNSVTGeb3iuh2HGPe1ffJ98tdu0zE=;
+        b=ACZRHGz8sdpPJH2IudkMKndrL/uG1xXyNmOivzH4dotTetE0S+cQLKFCnnozFDFWpI
+         ILF+vVnjIq0C4TM+w5uwGqRYuZ89ir8zgbxLZnM4mepn6Oa7eOXJJ2ByRgf/C1D4b3OW
+         t2cmOr8QkprL9Z4EdpxBa+CD1ynZzHz2+CK5qxbYCDhqoFSET1NK3Asidp2JfmAryWOK
+         nU6X8Q8HrWAwY+Dp5odMPHHlwzGnbldxi6QeYY/GpY4hEbk10JuDewq33bLvBRLq2CU9
+         ACAFiUC88UCVsXEJ/kCr1fRlkTey5YCFYmawx2hAzP0QSQZqJ99j0n1Ic86H8NC8HGj2
+         3Azw==
+X-Gm-Message-State: AOAM533QbuuBmUL+dC6X2NGN8+LMUR+eknyArQR4lf2JOjGH2Y+O8iYO
+	Vm/tIEeZ8iGZRlgPb4pa/wjVnmHSBoI=
+X-Google-Smtp-Source: ABdhPJwaXKDSvi2LRXsy9hPYsKx+vARoZC+rG6ukGMN1edG+KxGDLsIFddCN0av7WaO52mBoLDOrGA==
+X-Received: by 2002:a05:622a:1394:: with SMTP id o20mr7346770qtk.92.1617284569837;
+        Thu, 01 Apr 2021 06:42:49 -0700 (PDT)
 Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id e2sm3429042qto.50.2021.04.01.06.34.23
+        by smtp.googlemail.com with ESMTPSA id u21sm3568102qtq.11.2021.04.01.06.42.49
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 01 Apr 2021 06:34:23 -0700 (PDT)
-Message-ID: <6065CBDF.4090603@gmail.com>
-Date: Thu, 01 Apr 2021 09:34:23 -0400
+        Thu, 01 Apr 2021 06:42:49 -0700 (PDT)
+Message-ID: <6065CDD8.5060604@gmail.com>
+Date: Thu, 01 Apr 2021 09:42:48 -0400
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
 To: Ofer Saferman <ofer@navigicom.com>
 References: <CACDReSxORSk+h2=1K1M0yCHdy0Fe2526M77+U896KUW6_zYj2Q@mail.gmail.com> <43ACF8A6-727F-4B81-8696-51BA770C9CC3@gmail.com> <CACDReSz8BcZU8=KDRw3v4y9GqNEDi8C-_YQXHydd3FcFJ7_JWg@mail.gmail.com>
 In-Reply-To: <CACDReSz8BcZU8=KDRw3v4y9GqNEDi8C-_YQXHydd3FcFJ7_JWg@mail.gmail.com>
-Message-ID-Hash: E23U2QV7OUAE7YKEQFFX5CQ647E5A2FQ
-X-Message-ID-Hash: E23U2QV7OUAE7YKEQFFX5CQ647E5A2FQ
+Message-ID-Hash: VLAFFPJBZB5VCNFCTW7S2LNIYAYIPQO3
+X-Message-ID-Hash: VLAFFPJBZB5VCNFCTW7S2LNIYAYIPQO3
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: Rob Kossler <rkossler@nd.edu>, usrp-users <usrp-users@lists.ettus.com>
@@ -63,22 +63,22 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Intermittent problem with GPS synchronization for multiple E310 units
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/E23U2QV7OUAE7YKEQFFX5CQ647E5A2FQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VLAFFPJBZB5VCNFCTW7S2LNIYAYIPQO3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6172839522001620223=="
+Content-Type: multipart/mixed; boundary="===============4418296449701004543=="
 
 This is a multi-part message in MIME format.
---===============6172839522001620223==
+--===============4418296449701004543==
 Content-Type: multipart/alternative;
- boundary="------------070109060409040509070507"
+ boundary="------------040606020008050406020803"
 
 This is a multi-part message in MIME format.
---------------070109060409040509070507
+--------------040606020008050406020803
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -92,13 +92,13 @@ On 04/01/2021 06:00 AM, Ofer Saferman wrote:
 >
 > Regards,
 > Ofer Saferman
-sudo opkg install ntpd
+According to an old thread:
 
-should work, but it has been a while since I installed any packages on=20
-my E310.
+http://ettus.80997.x6.nabble.com/USRP-users-Setting-E310-time-to-GPS-time=
+-td872.html
 
-The E310 is based on OpenEmbedded Linux, so all the info about=20
-installing and managing packages on OpenEmbedded apply.
+The standard system image should already be configured to use NTPD/GPSD=20
+to steer system time.
 
 
 >
@@ -484,7 +484,7 @@ is
 > believed to be clean.=20
 
 
---------------070109060409040509070507
+--------------040606020008050406020803
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -517,13 +517,15 @@ ail.com"
         </div>
       </div>
     </blockquote>
-    sudo opkg install ntpd<br>
+    According to an old thread:<br>
     <br>
-    should work, but it has been a while since I installed any packages
-    on my E310.<br>
+<a class=3D"moz-txt-link-freetext" href=3D"http://ettus.80997.x6.nabble.c=
+om/USRP-users-Setting-E310-time-to-GPS-time-td872.html">http://ettus.8099=
+7.x6.nabble.com/USRP-users-Setting-E310-time-to-GPS-time-td872.html</a><b=
+r>
     <br>
-    The E310 is based on OpenEmbedded Linux, so all the info about
-    installing and managing packages on OpenEmbedded apply.<br>
+    The standard system image should already be configured to use
+    NTPD/GPSD to steer system time.<br>
     <br>
     <br>
     <blockquote
@@ -1391,9 +1393,9 @@ b>MailScanner</b></a>,
   </body>
 </html>
 
---------------070109060409040509070507--
+--------------040606020008050406020803--
 
---===============6172839522001620223==
+--===============4418296449701004543==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1403,4 +1405,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6172839522001620223==--
+--===============4418296449701004543==--
