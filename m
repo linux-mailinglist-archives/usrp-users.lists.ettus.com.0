@@ -2,1400 +2,222 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D55351552
-	for <lists+usrp-users@lfdr.de>; Thu,  1 Apr 2021 15:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78CF235155A
+	for <lists+usrp-users@lfdr.de>; Thu,  1 Apr 2021 15:51:01 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9D5FE383B57
-	for <lists+usrp-users@lfdr.de>; Thu,  1 Apr 2021 09:43:42 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9DC95383E3D
+	for <lists+usrp-users@lfdr.de>; Thu,  1 Apr 2021 09:50:53 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ooQm08ic";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="V0TlLlKe";
 	dkim-atps=neutral
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-	by mm2.emwd.com (Postfix) with ESMTPS id C611E383A27
-	for <usrp-users@lists.ettus.com>; Thu,  1 Apr 2021 09:42:50 -0400 (EDT)
-Received: by mail-qt1-f173.google.com with SMTP id l13so1443103qtu.9
-        for <usrp-users@lists.ettus.com>; Thu, 01 Apr 2021 06:42:50 -0700 (PDT)
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0EC0F383E11
+	for <usrp-users@lists.ettus.com>; Thu,  1 Apr 2021 09:49:52 -0400 (EDT)
+Received: by mail-qk1-f173.google.com with SMTP id g20so2234071qkk.1
+        for <usrp-users@lists.ettus.com>; Thu, 01 Apr 2021 06:49:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=message-id:date:from:user-agent:mime-version:to:cc:subject
-         :references:in-reply-to;
-        bh=isFgZ4An1k47i6pNSVTGeb3iuh2HGPe1ffJ98tdu0zE=;
-        b=ooQm08icNLQPwTq829sbA0o5hjVheyekeTb63fQBghwt/e/McKnKhMA7yn4sNy0O7B
-         CtKtBW8IyIeTqVbfuOiED5Y5npnkdFKjy7whQWd82fyRFr9l5PiP/D854jYRT3s6Gl6G
-         WejNVp8cXGAwG69Mo5MAbIvDDjYNZtRswVtZSfvOvn54FJQ1ZKFKF2K16p0stZ3MzLUL
-         Gx8N9yq6/86VMrArEgs43qLv6ELmDWONQOViDx9afUVcPZIgIEBF85J426CXb5ktNa2u
-         QaO5Cu2AtbygR0g7ZjpOcHU9JpqWG7BzWc79iGBK8fyoE1gHiNwbRNc0VBxWlPIIiOa5
-         ZBGA==
+        h=message-id:date:from:user-agent:mime-version:to:subject:references
+         :in-reply-to;
+        bh=vXejba91KvmAencTgakt2ooA9KtJToRQ+ee5oZmQAI4=;
+        b=V0TlLlKempHg35xqK3JEnRYLFaF+XAT1C9vJoPwQL3FvdyeQaijadwtEEaYzoag7MG
+         8KgGpGwiXay+MWc2ji3GjklqEchUPXQjigMlHnHonLCkz+Sh9PPp5s/Zz/5FKoIfnI/s
+         y50++qRWXWWrH6Swqv0/X6C8rVKqQtsG1w/YC/4ouRlwZOo94pGY8ziwsPnixts9jffz
+         PiXoLHk+qY835Dw7U9H/1CCqqtidEwpW+0fAwfegYP+Wyw+Jg/oQ0mdGEEX5PhZbvtTT
+         3CmJDQ1rrpuHC3Ba6qqrZBFPa2O/7lRGYLf2+secHDvYucA3DXXSwt1C0sD8Mc3/M6Up
+         ihLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-         :cc:subject:references:in-reply-to;
-        bh=isFgZ4An1k47i6pNSVTGeb3iuh2HGPe1ffJ98tdu0zE=;
-        b=ACZRHGz8sdpPJH2IudkMKndrL/uG1xXyNmOivzH4dotTetE0S+cQLKFCnnozFDFWpI
-         ILF+vVnjIq0C4TM+w5uwGqRYuZ89ir8zgbxLZnM4mepn6Oa7eOXJJ2ByRgf/C1D4b3OW
-         t2cmOr8QkprL9Z4EdpxBa+CD1ynZzHz2+CK5qxbYCDhqoFSET1NK3Asidp2JfmAryWOK
-         nU6X8Q8HrWAwY+Dp5odMPHHlwzGnbldxi6QeYY/GpY4hEbk10JuDewq33bLvBRLq2CU9
-         ACAFiUC88UCVsXEJ/kCr1fRlkTey5YCFYmawx2hAzP0QSQZqJ99j0n1Ic86H8NC8HGj2
-         3Azw==
-X-Gm-Message-State: AOAM533QbuuBmUL+dC6X2NGN8+LMUR+eknyArQR4lf2JOjGH2Y+O8iYO
-	Vm/tIEeZ8iGZRlgPb4pa/wjVnmHSBoI=
-X-Google-Smtp-Source: ABdhPJwaXKDSvi2LRXsy9hPYsKx+vARoZC+rG6ukGMN1edG+KxGDLsIFddCN0av7WaO52mBoLDOrGA==
-X-Received: by 2002:a05:622a:1394:: with SMTP id o20mr7346770qtk.92.1617284569837;
-        Thu, 01 Apr 2021 06:42:49 -0700 (PDT)
+         :subject:references:in-reply-to;
+        bh=vXejba91KvmAencTgakt2ooA9KtJToRQ+ee5oZmQAI4=;
+        b=O02kvMKhlrlF1A2u74ufKT5fN4M0b1xn+yV/rpOfCfcgYW7tE0ooQFy1b5qtGseAo9
+         /oU8qwm8kkDqyuoyfD1N4ZaxGq5Qy3MRBFWVPFwDBe8QOQy9k94jUH6q9LZPuPamP2u6
+         rHA14dDuGBiHA2N4PEFijfQIw4PZ9hySe3wWianTLkx9v1zRBcXjWSL7yZ5oZtVlCE5L
+         GbRrtlZjuOo/YUqWZhZjnGAcvwFSUdEyiETxwxhZ+OyPDg7ab5lAHycCYNyeWPAqm4K+
+         yQvxosxWth5icWuRggbFBJ5QFjVhAfHiOb95brsiDQJERJE+F4xM4+z+9mtRIi/YCWQl
+         +Ljw==
+X-Gm-Message-State: AOAM531WzuirrHND5yBL7aFiKwwy/PEHCADuUnUPSthpRpswccU+gd5j
+	OcJ1SJXsg7Lqi424gkraLBWDDEvPcMM=
+X-Google-Smtp-Source: ABdhPJwPzcItIQkPdVPEk1bF1x3ldnsKMk3dNh5emMXZ25mlTRZtWFnzqRFjcFGeuk71+4ka/BDohg==
+X-Received: by 2002:a37:9d84:: with SMTP id g126mr8340692qke.183.1617284992325;
+        Thu, 01 Apr 2021 06:49:52 -0700 (PDT)
 Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id u21sm3568102qtq.11.2021.04.01.06.42.49
+        by smtp.googlemail.com with ESMTPSA id y1sm4111845qki.9.2021.04.01.06.49.51
+        for <usrp-users@lists.ettus.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 01 Apr 2021 06:42:49 -0700 (PDT)
-Message-ID: <6065CDD8.5060604@gmail.com>
-Date: Thu, 01 Apr 2021 09:42:48 -0400
+        Thu, 01 Apr 2021 06:49:51 -0700 (PDT)
+Message-ID: <6065CF7F.8050202@gmail.com>
+Date: Thu, 01 Apr 2021 09:49:51 -0400
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-To: Ofer Saferman <ofer@navigicom.com>
-References: <CACDReSxORSk+h2=1K1M0yCHdy0Fe2526M77+U896KUW6_zYj2Q@mail.gmail.com> <43ACF8A6-727F-4B81-8696-51BA770C9CC3@gmail.com> <CACDReSz8BcZU8=KDRw3v4y9GqNEDi8C-_YQXHydd3FcFJ7_JWg@mail.gmail.com>
-In-Reply-To: <CACDReSz8BcZU8=KDRw3v4y9GqNEDi8C-_YQXHydd3FcFJ7_JWg@mail.gmail.com>
-Message-ID-Hash: VLAFFPJBZB5VCNFCTW7S2LNIYAYIPQO3
-X-Message-ID-Hash: VLAFFPJBZB5VCNFCTW7S2LNIYAYIPQO3
+To: usrp-users@lists.ettus.com
+References: <BN6PR19MB3138C6844D0E07E5A0FCB46BA47C9@BN6PR19MB3138.namprd19.prod.outlook.com>
+In-Reply-To: <BN6PR19MB3138C6844D0E07E5A0FCB46BA47C9@BN6PR19MB3138.namprd19.prod.outlook.com>
+Message-ID-Hash: 4NKGWKHSEKFIEIHSXEGGOIN72WJQXVKH
+X-Message-ID-Hash: 4NKGWKHSEKFIEIHSXEGGOIN72WJQXVKH
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Rob Kossler <rkossler@nd.edu>, usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Intermittent problem with GPS synchronization for multiple E310 units
+Subject: [USRP-users] Re: Debugging with Visual Studio Code in v3.8
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VLAFFPJBZB5VCNFCTW7S2LNIYAYIPQO3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4NKGWKHSEKFIEIHSXEGGOIN72WJQXVKH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4418296449701004543=="
+Content-Type: multipart/mixed; boundary="===============5684708353760212724=="
 
 This is a multi-part message in MIME format.
---===============4418296449701004543==
+--===============5684708353760212724==
 Content-Type: multipart/alternative;
- boundary="------------040606020008050406020803"
+ boundary="------------080404030202070200020807"
 
 This is a multi-part message in MIME format.
---------------040606020008050406020803
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--------------080404030202070200020807
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 04/01/2021 06:00 AM, Ofer Saferman wrote:
-> Hello Marcus,
+On 03/31/2021 03:47 PM, Jeff S wrote:
+> While using GNURadio v3.7, I used to be able to perform source-level 
+> debugging with Visual Studio Code (probably more often than I'd like 
+> to admit) using the instructions located at:
 >
-> I am working on E310 with the latest UHD-3.15 SD card image.
-> It seems not to include ntpd that is required to synchronize system=20
-> time to GPS time.
-> Any idea how to install it on the E310?
->
-> Regards,
-> Ofer Saferman
-According to an old thread:
-
-http://ettus.80997.x6.nabble.com/USRP-users-Setting-E310-time-to-GPS-time=
--td872.html
-
-The standard system image should already be configured to use NTPD/GPSD=20
-to steer system time.
-
-
->
-> On Wed, Mar 31, 2021 at 11:40 PM Marcus D Leech=20
-> <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
->
->     Just use gettimeofday() or any of the myriad subtle variants
->     available in boost to get you the Linux system time, and use that
->     in a call to set_time_next_pps().
->
->     The fact that all your E310s will be running GPSD means they=E2=80=99=
-ll be
->     adjusting system time appropriately and they=E2=80=99ll all agree o=
-n what
->     time it is, depending on the level of precision you need.
->
->     Sent from my iPhone
->
->>     On Mar 31, 2021, at 3:50 PM, Ofer Saferman <ofer@navigicom.com
->>     <mailto:ofer@navigicom.com>> wrote:
->>
->>     =EF=BB=BF
->>     Thank you Rob. Your suggestions are always helpful. I will look
->>     into using gps_gpgga.
->>     Thank you Marcus. I am already adding one, per other examples
->>     posted here and sync_to_gps example. Can you please comment how I
->>     can benefit from the fact that E310 units use gpsd in Linux?
->>
->>     Regards,
->>     Ofer Saferman
->>
->>     On Wed, Mar 31, 2021 at 10:13 PM Marcus D Leech
->>     <patchvonbraun@gmail.com <mailto:patchvonbraun@gmail.com>> wrote:
->>
->>
->>
->>         Sent from my iPhone
->>
->>>         On Mar 31, 2021, at 2:22 PM, Rob Kossler <rkossler@nd.edu
->>>         <mailto:rkossler@nd.edu>> wrote:
->>>
->>>         =EF=BB=BF
->>>         Hi Ofer,
->>>         Take a look at the Ettus source code gps_ctrl.cpp.  In
->>>         particular, look at the get_sentence() usage which in the
->>>         case of "gps_time" waits for the next occurrence
->>>         (wait=3Dtrue),  but for the others does not wait.  But this
->>>         doesn't fully explain the behavior you are seeing.  If you
->>>         do the following:
->>>         1) wait for PPS time to change
->>>         2) read the "gps_time" sensor
->>>         3) set_time_next_pps (use the value you just read)
->>         Add 1 to the time you just read before calling
->>         set_time_next_pps.
->>
->>
->>>         It should still work because the "gps_time" command should
->>>         just wait until the next PPS.  I guess it depends upon how
->>>         "synchronized" are the received NMEA string with the PPS
->>>         edge. Step 1 above waits for the PPS edge, but maybe the
->>>         NMEA string arrives 0.1 secs before or after that.  I don't
->>>         really know. Perhaps you need to switch to using "gps_gpgga"
->>>         such that there is no additional wait added and also perhaps
->>>         you should add step 1B which would be just a fixed delay of
->>>         perhaps 0.4 secs so that you will read the NMEA string in
->>>         between the PPS edges.
->>>         Rob
->>>
->>>         On Wed, Mar 31, 2021 at 1:22 PM Rob Kossler <rkossler@nd.edu
->>>         <mailto:rkossler@nd.edu>> wrote:
->>>
->>>             Hi Ofer,
->>>             I don't know why the "gps_time" sensor takes long to
->>>             read. But, can you try the other sensors (perhaps there
->>>             is a "gps_gpgga" sensor?)?  The time is embedded in
->>>             these as well.
->>>             Rob
->>>
->>>
->>>             On Wed, Mar 31, 2021 at 12:21 PM Ofer Saferman
->>>             <ofer@navigicom.com <mailto:ofer@navigicom.com>> wrote:
->>>
->>>                 Marcus Hi,
->>>
->>>                 If the gps_time "sensor" returns a value only once
->>>                 per second how come I manage to read it sometimes in
->>>                 less than 1 second?
->>>                 In my code the situation is worse than the simple
->>>                 example below. It usually takes more than 1 sec. to
->>>                 read it and sometimes even 1.7 or 1.8 seconds. I
->>>                 don't understand how the size or complexity of the
->>>                 code affects the time it takes to read gps_time.
->>>
->>>                 How to treat your comment about the use of GPSD and
->>>                 good synchronization as it relates to code?
->>>                 Should I not change the time source in code and go
->>>                 through the whole process of synchronization using
->>>                 gps_time?
->>>                 Can I "assume" the systems are synced just by the
->>>                 effect they were connected enough time to a GPS
->>>                 antenna? and then just access their time -
->>>                 radio_ctrl->get_time_last_pps()?
->>>                 How to use this information programmatically?
->>>
->>>                 Regards,
->>>                 Ofer Saferman
->>>
->>>
->>>                     ---------- Forwarded message ----------
->>>                     From: "Marcus D. Leech" <patchvonbraun@gmail.com
->>>                     <mailto:patchvonbraun@gmail.com>>
->>>                     To: usrp-users@lists.ettus.com
->>>                     <mailto:usrp-users@lists.ettus.com>
->>>                     Cc:
->>>                     Bcc:
->>>                     Date: Wed, 31 Mar 2021 09:19:20 -0400
->>>                     Subject: [USRP-users] Re: Intermittent problem
->>>                     with GPS synchronization for multiple E310 units
->>>                     On 03/31/2021 06:49 AM, Ofer Saferman wrote:
->>>                     > Hello,
->>>                     >
->>>                     > I have a system that uses 4 USRP E310 units.
->>>                     > Each unit is connected to a GPS antenna.
->>>                     > Time source is set to gpsdo.
->>>                     >
->>>                     > I run the same software remotely on all 4
->>>                     units from a PC. Software
->>>                     > runs on the units themselves.
->>>                     > I print out messages to show if the reference
->>>                     is locked and the GPS is
->>>                     > locked and also what is the GPS time that each
->>>                     unit was synchronized to.
->>>                     > In some cases the units synchronize to the
->>>                     same GPS time and in other
->>>                     > cases there is 1 second difference between GPS
->>>                     time of different units
->>>                     > thus causing the units to be unsynchronized.
->>>                     >
->>>                     > I was wondering how this was possible.
->>>                     > The synchronization process (documented by
->>>                     others in the past on the
->>>                     > mailing list) is:
->>>                     > * Wait for ref and GPS lock
->>>                     > * Wait for a pps edge (get_time_last_pps)
->>>                     > * Read gps_time value
->>>                     > * Sync system clock to GPS clock on next PPS
->>>                     edge (set_time_next_pps +
->>>                     > 1.0 sec)
->>>                     >
->>>                     > Something similar is also implemented in the
->>>                     sync_to_gps example.
->>>                     >
->>>                     > In order to debug the problem I decided to
->>>                     time the reading of the
->>>                     > gps_time sensor to see if there is a clue why
->>>                     different units miss the
->>>                     > PPS edge and lock to a time of the next second.
->>>                     >
->>>                     > I was very surprised to find out that it takes
->>>                     between 0.9 to 1.2
->>>                     > seconds to read the gps_time sensor.
->>>                     > This explains exactly why it is difficult to
->>>                     synchronize multiple
->>>                     > units to the same time instance because if one
->>>                     unit takes 0.9 seconds
->>>                     > to read the sensor and the other unit takes
->>>                     1.2 seconds to read the
->>>                     > sensor then each unit will lock on a different
->>>                     GPS time 1 second apart.
->>>                     >
->>>                     > Here is a short software I wrote to time the
->>>                     gps_time sensor reading:
->>>                     >
->>>                     -------------------------------------------------=
---------
->>>                     > #include <uhd/utils/safe_main.hpp>
->>>                     > #include <uhd/device3.hpp>
->>>                     > //#include <uhd/usrp/multi_usrp.hpp>
->>>                     > #include <uhd/types/sensors.hpp>
->>>                     > #include <boost/program_options.hpp>
->>>                     > #include <boost/format.hpp>
->>>                     > #include <chrono>
->>>                     > #include <iostream>
->>>                     >
->>>                     > namespace po =3D boost::program_options;
->>>                     >
->>>                     > int UHD_SAFE_MAIN(int argc, char *argv[]){
->>>                     >
->>>                     > std::string args;
->>>                     >
->>>                     >  po::options_description desc("Allowed options"=
-);
->>>                     >  desc.add_options()
->>>                     >  ("help", "help message")
->>>                     > ("args",
->>>                     po::value<std::string>(&args)->default_value(""),=
- "device
->>>
->>>                     > address args")
->>>                     >     ;
->>>                     >
->>>                     >  po::variables_map vm;
->>>                     >  po::store(po::parse_command_line(argc, argv,
->>>                     desc), vm);
->>>                     >  po::notify(vm);
->>>                     >
->>>                     >     //print the help message
->>>                     >     if (vm.count("help")){
->>>                     >  std::cout << boost::format("Timinig of
->>>                     gps_time: %s") % desc
->>>                     > << std::endl;
->>>                     >         return ~0;
->>>                     >     }
->>>                     >
->>>                     > uhd::device3::sptr usrp =3D
->>>                     uhd::device3::make(args);
->>>                     > //uhd::usrp::multi_usrp::sptr usrp =3D
->>>                     uhd::usrp::multi_usrp::make(args);
->>>                     >
->>>                     > uhd::sensor_value_t gps_time =3D
->>>                     >
->>>                     usrp->get_tree()->access<uhd::sensor_value_t>("/m=
-boards/0/sensors/gps_time").get();
->>>                     > //uhd::sensor_value_t gps_time =3D
->>>                     usrp->get_mboard_sensor("gps_time", 0);
->>>                     >
->>>                     > std::chrono::steady_clock::time_point
->>>                     start_time, end_time;
->>>                     > std::chrono::duration<double> time_diff; //
->>>                     Default unit for duration
->>>                     > is seconds.
->>>                     >
->>>                     > for(int ii=3D0 ; ii<20 ; ii++)
->>>                     > {
->>>                     > start_time =3D std::chrono::steady_clock::now()=
-;
->>>                     > gps_time =3D
->>>                     >
->>>                     usrp->get_tree()->access<uhd::sensor_value_t>("/m=
-boards/0/sensors/gps_time").get();
->>>                     > //gps_time =3D
->>>                     usrp->get_mboard_sensor("gps_time", 0);
->>>                     > end_time =3D std::chrono::steady_clock::now();
->>>                     > time_diff =3D end_time - start_time;
->>>                     >
->>>                     > std::cout << "gps_time[" <<
->>>                     (boost::format("%02d") % ii) << "]: " <<
->>>                     > int64_t(gps_time.to_int()) << ". Time to read
->>>                     \"gps_time\": " <<
->>>                     > (boost::format("%0.9f") % time_diff.count())
->>>                     << " seconds" << std::endl;
->>>                     > }
->>>                     >
->>>                     >     return 0;
->>>                     > }
->>>                     >
->>>                     -------------------------------------------------=
--------------------------------
->>>                     > Here are the results of one typical run:
->>>                     > gps_time[00]: 1617183840. Time to read
->>>                     "gps_time": 0.884164380 seconds
->>>                     > gps_time[01]: 1617183841. Time to read
->>>                     "gps_time": 0.877966469 seconds
->>>                     > gps_time[02]: 1617183842. Time to read
->>>                     "gps_time": 1.170869661 seconds
->>>                     > gps_time[03]: 1617183843. Time to read
->>>                     "gps_time": 0.882917987 seconds
->>>                     > gps_time[04]: 1617183844. Time to read
->>>                     "gps_time": 1.172120154 seconds
->>>                     > gps_time[05]: 1617183845. Time to read
->>>                     "gps_time": 0.879271985 seconds
->>>                     > gps_time[06]: 1617183846. Time to read
->>>                     "gps_time": 0.878609099 seconds
->>>                     > gps_time[07]: 1617183847. Time to read
->>>                     "gps_time": 1.115639282 seconds
->>>                     > gps_time[08]: 1617183848. Time to read
->>>                     "gps_time": 1.125365551 seconds
->>>                     > gps_time[09]: 1617183849. Time to read
->>>                     "gps_time": 0.843803231 seconds
->>>                     > gps_time[10]: 1617183850. Time to read
->>>                     "gps_time": 1.125065740 seconds
->>>                     > gps_time[11]: 1617183851. Time to read
->>>                     "gps_time": 0.847519817 seconds
->>>                     > gps_time[12]: 1617183852. Time to read
->>>                     "gps_time": 1.121398945 seconds
->>>                     > gps_time[13]: 1617183853. Time to read
->>>                     "gps_time": 0.844371533 seconds
->>>                     > gps_time[14]: 1617183854. Time to read
->>>                     "gps_time": 1.124722726 seconds
->>>                     > gps_time[15]: 1617183855. Time to read
->>>                     "gps_time": 0.845688380 seconds
->>>                     > gps_time[16]: 1617183856. Time to read
->>>                     "gps_time": 1.129568096 seconds
->>>                     > gps_time[17]: 1617183857. Time to read
->>>                     "gps_time": 0.882436229 seconds
->>>                     > gps_time[18]: 1617183858. Time to read
->>>                     "gps_time": 1.168227593 seconds
->>>                     > gps_time[19]: 1617183859. Time to read
->>>                     "gps_time": 0.881948247 seconds
->>>                     >
->>>                     -------------------------------------------------=
-----------------------------------
->>>                     > In the code you can find commented out the
->>>                     usual way to access the
->>>                     > sensor using multi_usrp and get_mboard_sensor.
->>>                     The results are quite
->>>                     > similar.
->>>                     >
->>>                     > I wonder if anybody encountered this issue
->>>                     before or addressed it in
->>>                     > any way.
->>>                     > I wonder why it takes so much time to get the
->>>                     value of GPS time when
->>>                     > it is a simple parsing of an NMEA message
->>>                     coming from the GPS receiver.
->>>                     >
->>>                     > I am trying now various tricks to make the
->>>                     software robust and immune
->>>                     > to this phenomenon. I can report my findings
->>>                     further if I succeed to
->>>                     > find a workaround if there is any interest.
->>>                     >
->>>                     > Can anyone comment on this? Can this be
->>>                     resolved so that the reading
->>>                     > of gps_time will be much faster?
->>>                     > Is there another way to get GPS time faster
->>>                     indirectly? Maybe from
->>>                     > parsing NMEA messages ourselves?
->>>                     >
->>>                     > Regards,
->>>                     > Ofer Saferman
->>>                     >
->>>                     This probably has to do with the way that
->>>                     particular "sensor" works--the
->>>                     NMEA time value is only emitted once per second,
->>>                     and the
->>>                        code for that sensor has some heuristic for
->>>                     determining "freshness"
->>>                     of the value.
->>>
->>>                     I'll point out that on E310, the system is
->>>                     configured to use GPSD, so
->>>                     that the Linux system time across several
->>>                     systems that have all been
->>>                        "listening" to GPS for a while will all be
->>>                     synchronized quite well.
->>>
->>>
->>>
->>>
->>>                 --=20
->>>                 This message has been scanned for viruses and
->>>                 dangerous content by *MailScanner*
->>>                 <http://www.mailscanner.info/>, and is
->>>                 believed to be clean.
->>>                 _______________________________________________
->>>                 USRP-users mailing list --
->>>                 usrp-users@lists.ettus.com
->>>                 <mailto:usrp-users@lists.ettus.com>
->>>                 To unsubscribe send an email to
->>>                 usrp-users-leave@lists.ettus.com
->>>                 <mailto:usrp-users-leave@lists.ettus.com>
->>>
->>>         _______________________________________________
->>>         USRP-users mailing list -- usrp-users@lists.ettus.com
->>>         <mailto:usrp-users@lists.ettus.com>
->>>         To unsubscribe send an email to
->>>         usrp-users-leave@lists.ettus.com
->>>         <mailto:usrp-users-leave@lists.ettus.com>
->>
->>
->>     --=20
->>     This message has been scanned for viruses and
->>     dangerous content by *MailScanner*
->>     <http://www.mailscanner.info/>, and is
->>     believed to be clean.
+>     https://wiki.gnuradio.org/index.php/UsingVSCode
 >
 >
-> --=20
-> This message has been scanned for viruses and
-> dangerous content by *MailScanner* <http://www.mailscanner.info/>, and =
-is
-> believed to be clean.=20
+> I have now upgraded to use v3.8 and just tried to do the same thing.  
+> But now with v3.8, I get "Unknown Source" for my code within the 
+> debugger.  I can start up and run just fine, but can't get to my 
+> source or breakpoints.  I built using:
+>
+>     cmake ../ -DCMAKE_BUILD_TYPE=Debug
+>     -DCMAKE_EXPORT_COMPILE_COMMANDS=true
+>
+>
+> so I could see that I get the "-g" in the compile commands is actually 
+> set.  Just curious if anyone else is using it or having troubles.  
+> Hopefully it's one of those obvious things I have done wrong.
+>
+> Thanks,
+> Jeff
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+This is definitely a question for the discuss-gnuradio mailing list, not 
+usrp-users.
 
 
---------------040606020008050406020803
-Content-Type: text/html; charset=utf-8
+
+--------------080404030202070200020807
+Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
 <html>
   <head>
-    <meta content=3D"text/html; charset=3Dutf-8" http-equiv=3D"Content-Ty=
-pe">
+    <meta content=3D"text/html; charset=3Dwindows-1252"
+      http-equiv=3D"Content-Type">
   </head>
   <body bgcolor=3D"#FFFFFF" text=3D"#000000">
-    <div class=3D"moz-cite-prefix">On 04/01/2021 06:00 AM, Ofer Saferman
-      wrote:<br>
+    <div class=3D"moz-cite-prefix">On 03/31/2021 03:47 PM, Jeff S wrote:<=
+br>
     </div>
     <blockquote
-cite=3D"mid:CACDReSz8BcZU8=3DKDRw3v4y9GqNEDi8C-_YQXHydd3FcFJ7_JWg@mail.gm=
-ail.com"
+cite=3D"mid:BN6PR19MB3138C6844D0E07E5A0FCB46BA47C9@BN6PR19MB3138.namprd19=
+.prod.outlook.com"
       type=3D"cite">
-      <div dir=3D"ltr">
-        <div>Hello Marcus,</div>
-        <div><br>
-        </div>
-        <div>I am working on E310 with the latest UHD-3.15 SD card
-          image.</div>
-        <div>It seems not to include ntpd that is required to
-          synchronize system time to GPS time.</div>
-        <div>Any idea how to install it on the E310?</div>
-        <div><br>
-        </div>
-        <div>Regards,</div>
-        <div>Ofer Saferman<br>
-        </div>
+      <meta http-equiv=3D"Content-Type" content=3D"text/html;
+        charset=3Dwindows-1252">
+      <style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;m=
+argin-bottom:0;} </style>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        While using GNURadio v3.7, I used to be able to perform
+        source-level debugging with Visual Studio Code (probably more
+        often than I'd like to admit) using the instructions located at:<=
+/div>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
       </div>
-    </blockquote>
-    According to an old thread:<br>
-    <br>
-<a class=3D"moz-txt-link-freetext" href=3D"http://ettus.80997.x6.nabble.c=
-om/USRP-users-Setting-E310-time-to-GPS-time-td872.html">http://ettus.8099=
-7.x6.nabble.com/USRP-users-Setting-E310-time-to-GPS-time-td872.html</a><b=
-r>
-    <br>
-    The standard system image should already be configured to use
-    NTPD/GPSD to steer system time.<br>
-    <br>
-    <br>
-    <blockquote
-cite=3D"mid:CACDReSz8BcZU8=3DKDRw3v4y9GqNEDi8C-_YQXHydd3FcFJ7_JWg@mail.gm=
-ail.com"
-      type=3D"cite">
-      <div dir=3D"ltr"><br>
-        <div class=3D"gmail_quote">
-          <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Mar 31, 2021 at
-            11:40 PM Marcus D Leech &lt;<a moz-do-not-send=3D"true"
-              href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail=
-.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">
-            <div dir=3D"auto">Just use gettimeofday() or any of the myria=
-d
-              subtle variants available in boost to get you the Linux
-              system time, and use that in a call to
-              set_time_next_pps().=C2=A0
-              <div><br>
-              </div>
-              <div>The fact that all your E310s will be running GPSD
-                means they=E2=80=99ll be adjusting system time appropriat=
-ely and
-                they=E2=80=99ll all agree on what time it is, depending o=
-n the
-                level of precision you need.=C2=A0<br>
-                <br>
-                <div dir=3D"ltr">Sent from my iPhone</div>
-                <div dir=3D"ltr"><br>
-                  <blockquote type=3D"cite">On Mar 31, 2021, at 3:50 PM,
-                    Ofer Saferman &lt;<a moz-do-not-send=3D"true"
-                      href=3D"mailto:ofer@navigicom.com" target=3D"_blank=
-">ofer@navigicom.com</a>&gt;
-                    wrote:<br>
-                    <br>
-                  </blockquote>
-                </div>
-                <blockquote type=3D"cite">
-                  <div dir=3D"ltr">=EF=BB=BF
-                    <div dir=3D"ltr">
-                      <div>Thank you Rob. Your suggestions are always
-                        helpful. I will look into using gps_gpgga.</div>
-                      <div>Thank you Marcus. I am already adding one,
-                        per other examples posted here and sync_to_gps
-                        example. Can you please comment how I can
-                        benefit from the fact that E310 units use gpsd
-                        in Linux?</div>
-                      <div><br>
-                      </div>
-                      <div>Regards,</div>
-                      <div>Ofer Saferman<br>
-                      </div>
-                      <br>
-                      <div class=3D"gmail_quote">
-                        <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Mar
-                          31, 2021 at 10:13 PM Marcus D Leech &lt;<a
-                            moz-do-not-send=3D"true"
-                            href=3D"mailto:patchvonbraun@gmail.com"
-                            target=3D"_blank">patchvonbraun@gmail.com</a>=
-&gt;
-                          wrote:<br>
-                        </div>
-                        <blockquote class=3D"gmail_quote"
-                          style=3D"margin:0px 0px 0px
-                          0.8ex;border-left:1px solid
-                          rgb(204,204,204);padding-left:1ex">
-                          <div dir=3D"auto"><br>
-                            <br>
-                            <div dir=3D"ltr">Sent from my iPhone</div>
-                            <div dir=3D"ltr"><br>
-                              <blockquote type=3D"cite">On Mar 31, 2021,
-                                at 2:22 PM, Rob Kossler &lt;<a
-                                  moz-do-not-send=3D"true"
-                                  href=3D"mailto:rkossler@nd.edu"
-                                  target=3D"_blank">rkossler@nd.edu</a>&g=
-t;
-                                wrote:<br>
-                                <br>
-                              </blockquote>
-                            </div>
-                            <blockquote type=3D"cite">
-                              <div dir=3D"ltr">=EF=BB=BF
-                                <div dir=3D"ltr">
-                                  <div dir=3D"ltr">Hi Ofer,</div>
-                                  <div dir=3D"ltr">Take a look at the
-                                    Ettus source code gps_ctrl.cpp.=C2=A0=
- In
-                                    particular, look at the
-                                    get_sentence() usage which in the
-                                    case of "gps_time" waits for the
-                                    next occurrence (wait=3Dtrue), =C2=A0=
-but
-                                    for the others does not wait.=C2=A0 B=
-ut
-                                    this doesn't fully explain the
-                                    behavior you are seeing.=C2=A0 If you=
- do
-                                    the following:<br>
-                                    1) wait for PPS time to change<br>
-                                    2) read the "gps_time" sensor<br>
-                                    3) set_time_next_pps (use the value
-                                    you just read)<br>
-                                  </div>
-                                </div>
-                              </div>
-                            </blockquote>
-                            Add 1 to the time you just read before
-                            calling set_time_next_pps.=C2=A0
-                            <div><br>
-                            </div>
-                            <div><br>
-                              <blockquote type=3D"cite">
-                                <div dir=3D"ltr">
-                                  <div dir=3D"ltr">
-                                    <div dir=3D"ltr">It should still work
-                                      because the "gps_time" command
-                                      should just wait until the next
-                                      PPS.=C2=A0 I guess it depends upon =
-how
-                                      "synchronized" are the received
-                                      NMEA string with the PPS edge.=C2=A0
-                                      Step 1 above waits for the PPS
-                                      edge, but maybe the NMEA string
-                                      arrives 0.1 secs before or after
-                                      that.=C2=A0 I don't really know.=C2=
-=A0
-                                      Perhaps you need to switch to
-                                      using "gps_gpgga" such that there
-                                      is no additional wait added and
-                                      also perhaps you should add step
-                                      1B which would be just a fixed
-                                      delay of perhaps 0.4 secs so that
-                                      you will read the NMEA string in
-                                      between the PPS edges.<br>
-                                      Rob<br>
-                                    </div>
-                                    <br>
-                                    <div class=3D"gmail_quote">
-                                      <div dir=3D"ltr" class=3D"gmail_att=
-r">On
-                                        Wed, Mar 31, 2021 at 1:22 PM Rob
-                                        Kossler &lt;<a
-                                          moz-do-not-send=3D"true"
-                                          href=3D"mailto:rkossler@nd.edu"
-                                          target=3D"_blank">rkossler@nd.e=
-du</a>&gt;
-                                        wrote:<br>
-                                      </div>
-                                      <blockquote class=3D"gmail_quote"
-                                        style=3D"margin:0px 0px 0px
-                                        0.8ex;border-left:1px solid
-                                        rgb(204,204,204);padding-left:1ex=
-">
-                                        <div dir=3D"ltr">
-                                          <div>Hi Ofer,</div>
-                                          <div>I don't know why the
-                                            "gps_time" sensor takes long
-                                            to read. But, can you try
-                                            the other sensors (perhaps
-                                            there is a "gps_gpgga"
-                                            sensor?)?=C2=A0 The time is
-                                            embedded in these as well.=C2=
-=A0=C2=A0</div>
-                                          <div>Rob</div>
-                                          <div><br>
-                                          </div>
-                                          <br>
-                                          <div class=3D"gmail_quote">
-                                            <div dir=3D"ltr"
-                                              class=3D"gmail_attr">On Wed=
-,
-                                              Mar 31, 2021 at 12:21 PM
-                                              Ofer Saferman &lt;<a
-                                                moz-do-not-send=3D"true"
-                                                href=3D"mailto:ofer@navig=
-icom.com"
-                                                target=3D"_blank">ofer@na=
-vigicom.com</a>&gt;
-                                              wrote:<br>
-                                            </div>
-                                            <blockquote
-                                              class=3D"gmail_quote"
-                                              style=3D"margin:0px 0px 0px
-                                              0.8ex;border-left:1px
-                                              solid
-                                              rgb(204,204,204);padding-le=
-ft:1ex">
-                                              <div dir=3D"ltr">
-                                                <div dir=3D"ltr">Marcus
-                                                  Hi,</div>
-                                                <div dir=3D"ltr"><br>
-                                                </div>
-                                                <div>If the gps_time
-                                                  "sensor" returns a
-                                                  value only once per
-                                                  second how come I
-                                                  manage to read it
-                                                  sometimes in less than
-                                                  1 second?</div>
-                                                <div>In my code the
-                                                  situation is worse
-                                                  than the simple
-                                                  example below. It
-                                                  usually takes more
-                                                  than 1 sec. to read it
-                                                  and sometimes even 1.7
-                                                  or 1.8 seconds. I
-                                                  don't understand how
-                                                  the size or complexity
-                                                  of the code affects
-                                                  the time it takes to
-                                                  read gps_time.<br>
-                                                </div>
-                                                <div dir=3D"ltr"><br>
-                                                </div>
-                                                <div>How to treat your
-                                                  comment about the use
-                                                  of GPSD and good
-                                                  synchronization as it
-                                                  relates to code?</div>
-                                                <div>Should I not change
-                                                  the time source in
-                                                  code and go through
-                                                  the whole process of
-                                                  synchronization using
-                                                  gps_time?</div>
-                                                <div>Can I "assume" the
-                                                  systems are synced
-                                                  just by the effect
-                                                  they were connected
-                                                  enough time to a GPS
-                                                  antenna? and then just
-                                                  access their time -
-                                                  radio_ctrl-&gt;get_time=
-_last_pps()?</div>
-                                                <div>How to use this
-                                                  information
-                                                  programmatically?<br>
-                                                </div>
-                                                <div><br>
-                                                </div>
-                                                <div>Regards,</div>
-                                                <div>Ofer Saferman<br>
-                                                </div>
-                                                <br>
-                                                <div class=3D"gmail_quote=
-"><br>
-                                                  <blockquote
-                                                    class=3D"gmail_quote"
-                                                    style=3D"margin:0px
-                                                    0px 0px
-                                                    0.8ex;border-left:1px
-                                                    solid
-                                                    rgb(204,204,204);padd=
-ing-left:1ex">----------
-                                                    Forwarded message
-                                                    ----------<br>
-                                                    From:=C2=A0"Marcus D.
-                                                    Leech" &lt;<a
-                                                      moz-do-not-send=3D"=
-true"
-href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@g=
-mail.com</a>&gt;<br>
-                                                    To:=C2=A0<a
-                                                      moz-do-not-send=3D"=
-true"
-href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@l=
-ists.ettus.com</a><br>
-                                                    Cc:=C2=A0<br>
-                                                    Bcc:=C2=A0<br>
-                                                    Date:=C2=A0Wed, 31 Ma=
-r
-                                                    2021 09:19:20 -0400<b=
-r>
-                                                    Subject:=C2=A0[USRP-u=
-sers]
-                                                    Re: Intermittent
-                                                    problem with GPS
-                                                    synchronization for
-                                                    multiple E310 units<b=
-r>
-                                                    On 03/31/2021 06:49
-                                                    AM, Ofer Saferman
-                                                    wrote:<br>
-                                                    &gt; Hello,<br>
-                                                    &gt;<br>
-                                                    &gt; I have a system
-                                                    that uses 4 USRP
-                                                    E310 units.<br>
-                                                    &gt; Each unit is
-                                                    connected to a GPS
-                                                    antenna.<br>
-                                                    &gt; Time source is
-                                                    set to gpsdo.<br>
-                                                    &gt;<br>
-                                                    &gt; I run the same
-                                                    software remotely on
-                                                    all 4 units from a
-                                                    PC. Software <br>
-                                                    &gt; runs on the
-                                                    units themselves.<br>
-                                                    &gt; I print out
-                                                    messages to show if
-                                                    the reference is
-                                                    locked and the GPS
-                                                    is <br>
-                                                    &gt; locked and also
-                                                    what is the GPS time
-                                                    that each unit was
-                                                    synchronized to.<br>
-                                                    &gt; In some cases
-                                                    the units
-                                                    synchronize to the
-                                                    same GPS time and in
-                                                    other <br>
-                                                    &gt; cases there is
-                                                    1 second difference
-                                                    between GPS time of
-                                                    different units <br>
-                                                    &gt; thus causing
-                                                    the units to be
-                                                    unsynchronized.<br>
-                                                    &gt;<br>
-                                                    &gt; I was wondering
-                                                    how this was
-                                                    possible.<br>
-                                                    &gt; The
-                                                    synchronization
-                                                    process (documented
-                                                    by others in the
-                                                    past on the <br>
-                                                    &gt; mailing list)
-                                                    is:<br>
-                                                    &gt; * Wait for ref
-                                                    and GPS lock<br>
-                                                    &gt; * Wait for a
-                                                    pps edge
-                                                    (get_time_last_pps)<b=
-r>
-                                                    &gt; * Read gps_time
-                                                    value<br>
-                                                    &gt; * Sync system
-                                                    clock to GPS clock
-                                                    on next PPS edge
-                                                    (set_time_next_pps +
-                                                    <br>
-                                                    &gt; 1.0 sec)<br>
-                                                    &gt;<br>
-                                                    &gt; Something
-                                                    similar is also
-                                                    implemented in the
-                                                    sync_to_gps example.<=
-br>
-                                                    &gt;<br>
-                                                    &gt; In order to
-                                                    debug the problem I
-                                                    decided to time the
-                                                    reading of the <br>
-                                                    &gt; gps_time sensor
-                                                    to see if there is a
-                                                    clue why different
-                                                    units miss the <br>
-                                                    &gt; PPS edge and
-                                                    lock to a time of
-                                                    the next second.<br>
-                                                    &gt;<br>
-                                                    &gt; I was very
-                                                    surprised to find
-                                                    out that it takes
-                                                    between 0.9 to 1.2 <b=
-r>
-                                                    &gt; seconds to read
-                                                    the gps_time sensor.<=
-br>
-                                                    &gt; This explains
-                                                    exactly why it is
-                                                    difficult to
-                                                    synchronize multiple
-                                                    <br>
-                                                    &gt; units to the
-                                                    same time instance
-                                                    because if one unit
-                                                    takes 0.9 seconds <br=
->
-                                                    &gt; to read the
-                                                    sensor and the other
-                                                    unit takes 1.2
-                                                    seconds to read the
-                                                    <br>
-                                                    &gt; sensor then
-                                                    each unit will lock
-                                                    on a different GPS
-                                                    time 1 second apart.<=
-br>
-                                                    &gt;<br>
-                                                    &gt; Here is a short
-                                                    software I wrote to
-                                                    time the gps_time
-                                                    sensor reading:<br>
-                                                    &gt;
-                                                    ---------------------=
-------------------------------------<br>
-                                                    &gt; #include
-                                                    &lt;uhd/utils/safe_ma=
-in.hpp&gt;<br>
-                                                    &gt; #include
-                                                    &lt;uhd/device3.hpp&g=
-t;<br>
-                                                    &gt; //#include
-                                                    &lt;uhd/usrp/multi_us=
-rp.hpp&gt;<br>
-                                                    &gt; #include
-                                                    &lt;uhd/types/sensors=
-.hpp&gt;<br>
-                                                    &gt; #include
-                                                    &lt;boost/program_opt=
-ions.hpp&gt;<br>
-                                                    &gt; #include
-                                                    &lt;boost/format.hpp&=
-gt;<br>
-                                                    &gt; #include
-                                                    &lt;chrono&gt;<br>
-                                                    &gt; #include
-                                                    &lt;iostream&gt;<br>
-                                                    &gt;<br>
-                                                    &gt; namespace po =3D
-boost::program_options;<br>
-                                                    &gt;<br>
-                                                    &gt; int
-                                                    UHD_SAFE_MAIN(int
-                                                    argc, char *argv[]){<=
-br>
-                                                    &gt;<br>
-                                                    &gt; std::string
-                                                    args;<br>
-                                                    &gt;<br>
-                                                    &gt;=C2=A0 =C2=A0
-                                                    =C2=A0po::options_des=
-cription
-                                                    desc("Allowed
-                                                    options");<br>
-                                                    &gt;=C2=A0 =C2=A0
-                                                    =C2=A0desc.add_option=
-s()<br>
-                                                    &gt;=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0
-                                                    =C2=A0("help", "help
-                                                    message")<br>
-                                                    &gt; ("args",
-                                                    po::value&lt;std::str=
-ing&gt;(&amp;args)-&gt;default_value(""),
-                                                    "device <br>
-                                                    &gt; address args")<b=
-r>
-                                                    &gt;=C2=A0 =C2=A0 =C2=
-=A0;<br>
-                                                    &gt;<br>
-                                                    &gt;=C2=A0 =C2=A0
-                                                    =C2=A0po::variables_m=
-ap
-                                                    vm;<br>
-                                                    &gt;=C2=A0 =C2=A0
-                                                    =C2=A0po::store(po::p=
-arse_command_line(argc,
-                                                    argv, desc), vm);<br>
-                                                    &gt;=C2=A0 =C2=A0
-                                                    =C2=A0po::notify(vm);=
-<br>
-                                                    &gt;<br>
-                                                    &gt;=C2=A0 =C2=A0 =C2=
-=A0//print the
-                                                    help message<br>
-                                                    &gt;=C2=A0 =C2=A0 =C2=
-=A0if
-                                                    (vm.count("help")){<b=
-r>
-                                                    &gt;=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0
-                                                    =C2=A0std::cout &lt;&=
-lt;
-                                                    boost::format("Timini=
+      <blockquote style=3D"margin-top:0;margin-bottom:0">
+        <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+          font-size: 12pt; color: rgb(0, 0, 0);">
+          <a moz-do-not-send=3D"true"
+            href=3D"https://wiki.gnuradio.org/index.php/UsingVSCode"
+            id=3D"LPlnk">https://wiki.gnuradio.org/index.php/UsingVSCode<=
+/a></div>
+      </blockquote>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        I have now upgraded to use v3.8 and just tried to do the same
+        thing.=A0 But now with v3.8, I get "Unknown Source" for my code
+        within the debugger.=A0 I can start up and run just fine, but
+        can't get to my source or breakpoints.=A0 I built using:<br>
+      </div>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <blockquote style=3D"margin-top:0;margin-bottom:0">
+        <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+          font-size: 12pt; color: rgb(0, 0, 0);">
+          cmake ../ -DCMAKE_BUILD_TYPE=3DDebug
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=3Dtrue</div>
+      </blockquote>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        so I could see that I get the "-g" in the compile commands is
+        actually set.=A0 Just curious if anyone else is using it or havin=
 g
-                                                    of gps_time: %s") %
-                                                    desc <br>
-                                                    &gt; &lt;&lt;
-                                                    std::endl;<br>
-                                                    &gt;=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0return
-                                                    ~0;<br>
-                                                    &gt;=C2=A0 =C2=A0 =C2=
-=A0}<br>
-                                                    &gt;<br>
-                                                    &gt;
-                                                    uhd::device3::sptr
-                                                    usrp =3D
-                                                    uhd::device3::make(ar=
-gs);<br>
-                                                    &gt;
-                                                    //uhd::usrp::multi_us=
-rp::sptr
-                                                    usrp =3D
-                                                    uhd::usrp::multi_usrp=
-::make(args);<br>
-                                                    &gt;<br>
-                                                    &gt;
-                                                    uhd::sensor_value_t
-                                                    gps_time =3D <br>
-                                                    &gt;
-usrp-&gt;get_tree()-&gt;access&lt;uhd::sensor_value_t&gt;("/mboards/0/sen=
-sors/gps_time").get();<br>
-                                                    &gt;
-                                                    //uhd::sensor_value_t
-                                                    gps_time =3D
-                                                    usrp-&gt;get_mboard_s=
-ensor("gps_time",
-                                                    0);<br>
-                                                    &gt;<br>
-                                                    &gt;
-                                                    std::chrono::steady_c=
-lock::time_point
-                                                    start_time,
-                                                    end_time;<br>
-                                                    &gt;
-                                                    std::chrono::duration=
-&lt;double&gt;
-                                                    time_diff; //
-                                                    Default unit for
-                                                    duration <br>
-                                                    &gt; is seconds.<br>
-                                                    &gt;<br>
-                                                    &gt; for(int ii=3D0 ;
-                                                    ii&lt;20 ; ii++)<br>
-                                                    &gt; {<br>
-                                                    &gt; start_time =3D
-                                                    std::chrono::steady_c=
-lock::now();<br>
-                                                    &gt; gps_time =3D <br=
->
-                                                    &gt;
-usrp-&gt;get_tree()-&gt;access&lt;uhd::sensor_value_t&gt;("/mboards/0/sen=
-sors/gps_time").get();<br>
-                                                    &gt; //gps_time =3D
-                                                    usrp-&gt;get_mboard_s=
-ensor("gps_time",
-                                                    0);<br>
-                                                    &gt; end_time =3D
-                                                    std::chrono::steady_c=
-lock::now();<br>
-                                                    &gt; time_diff =3D
-                                                    end_time -
-                                                    start_time;<br>
-                                                    &gt;<br>
-                                                    &gt; std::cout
-                                                    &lt;&lt; "gps_time["
-                                                    &lt;&lt;
-                                                    (boost::format("%02d"=
-)
-                                                    % ii) &lt;&lt; "]: "
-                                                    &lt;&lt; <br>
-                                                    &gt;
-                                                    int64_t(gps_time.to_i=
-nt())
-                                                    &lt;&lt; ". Time to
-                                                    read \"gps_time\": "
-                                                    &lt;&lt; <br>
-                                                    &gt;
-                                                    (boost::format("%0.9f=
-")
-                                                    % time_diff.count())
-                                                    &lt;&lt; " seconds"
-                                                    &lt;&lt; std::endl;<b=
-r>
-                                                    &gt; }<br>
-                                                    &gt;<br>
-                                                    &gt;=C2=A0 =C2=A0 =C2=
-=A0return 0;<br>
-                                                    &gt; }<br>
-                                                    &gt;
--------------------------------------------------------------------------=
--------<br>
-                                                    &gt; Here are the
-                                                    results of one
-                                                    typical run:<br>
-                                                    &gt; gps_time[00]:
-                                                    1617183840. Time to
-                                                    read "gps_time":
-                                                    0.884164380 seconds<b=
-r>
-                                                    &gt; gps_time[01]:
-                                                    1617183841. Time to
-                                                    read "gps_time":
-                                                    0.877966469 seconds<b=
-r>
-                                                    &gt; gps_time[02]:
-                                                    1617183842. Time to
-                                                    read "gps_time":
-                                                    1.170869661 seconds<b=
-r>
-                                                    &gt; gps_time[03]:
-                                                    1617183843. Time to
-                                                    read "gps_time":
-                                                    0.882917987 seconds<b=
-r>
-                                                    &gt; gps_time[04]:
-                                                    1617183844. Time to
-                                                    read "gps_time":
-                                                    1.172120154 seconds<b=
-r>
-                                                    &gt; gps_time[05]:
-                                                    1617183845. Time to
-                                                    read "gps_time":
-                                                    0.879271985 seconds<b=
-r>
-                                                    &gt; gps_time[06]:
-                                                    1617183846. Time to
-                                                    read "gps_time":
-                                                    0.878609099 seconds<b=
-r>
-                                                    &gt; gps_time[07]:
-                                                    1617183847. Time to
-                                                    read "gps_time":
-                                                    1.115639282 seconds<b=
-r>
-                                                    &gt; gps_time[08]:
-                                                    1617183848. Time to
-                                                    read "gps_time":
-                                                    1.125365551 seconds<b=
-r>
-                                                    &gt; gps_time[09]:
-                                                    1617183849. Time to
-                                                    read "gps_time":
-                                                    0.843803231 seconds<b=
-r>
-                                                    &gt; gps_time[10]:
-                                                    1617183850. Time to
-                                                    read "gps_time":
-                                                    1.125065740 seconds<b=
-r>
-                                                    &gt; gps_time[11]:
-                                                    1617183851. Time to
-                                                    read "gps_time":
-                                                    0.847519817 seconds<b=
-r>
-                                                    &gt; gps_time[12]:
-                                                    1617183852. Time to
-                                                    read "gps_time":
-                                                    1.121398945 seconds<b=
-r>
-                                                    &gt; gps_time[13]:
-                                                    1617183853. Time to
-                                                    read "gps_time":
-                                                    0.844371533 seconds<b=
-r>
-                                                    &gt; gps_time[14]:
-                                                    1617183854. Time to
-                                                    read "gps_time":
-                                                    1.124722726 seconds<b=
-r>
-                                                    &gt; gps_time[15]:
-                                                    1617183855. Time to
-                                                    read "gps_time":
-                                                    0.845688380 seconds<b=
-r>
-                                                    &gt; gps_time[16]:
-                                                    1617183856. Time to
-                                                    read "gps_time":
-                                                    1.129568096 seconds<b=
-r>
-                                                    &gt; gps_time[17]:
-                                                    1617183857. Time to
-                                                    read "gps_time":
-                                                    0.882436229 seconds<b=
-r>
-                                                    &gt; gps_time[18]:
-                                                    1617183858. Time to
-                                                    read "gps_time":
-                                                    1.168227593 seconds<b=
-r>
-                                                    &gt; gps_time[19]:
-                                                    1617183859. Time to
-                                                    read "gps_time":
-                                                    0.881948247 seconds<b=
-r>
-                                                    &gt;
--------------------------------------------------------------------------=
-----------<br>
-                                                    &gt; In the code you
-                                                    can find commented
-                                                    out the usual way to
-                                                    access the <br>
-                                                    &gt; sensor using
-                                                    multi_usrp and
-                                                    get_mboard_sensor.
-                                                    The results are
-                                                    quite <br>
-                                                    &gt; similar.<br>
-                                                    &gt;<br>
-                                                    &gt; I wonder if
-                                                    anybody encountered
-                                                    this issue before or
-                                                    addressed it in <br>
-                                                    &gt; any way.<br>
-                                                    &gt; I wonder why it
-                                                    takes so much time
-                                                    to get the value of
-                                                    GPS time when <br>
-                                                    &gt; it is a simple
-                                                    parsing of an NMEA
-                                                    message coming from
-                                                    the GPS receiver.<br>
-                                                    &gt;<br>
-                                                    &gt; I am trying now
-                                                    various tricks to
-                                                    make the software
-                                                    robust and immune <br=
->
-                                                    &gt; to this
-                                                    phenomenon. I can
-                                                    report my findings
-                                                    further if I succeed
-                                                    to <br>
-                                                    &gt; find a
-                                                    workaround if there
-                                                    is any interest.<br>
-                                                    &gt;<br>
-                                                    &gt; Can anyone
-                                                    comment on this? Can
-                                                    this be resolved so
-                                                    that the reading <br>
-                                                    &gt; of gps_time
-                                                    will be much faster?<=
-br>
-                                                    &gt; Is there
-                                                    another way to get
-                                                    GPS time faster
-                                                    indirectly? Maybe
-                                                    from <br>
-                                                    &gt; parsing NMEA
-                                                    messages ourselves?<b=
-r>
-                                                    &gt;<br>
-                                                    &gt; Regards,<br>
-                                                    &gt; Ofer Saferman<br=
->
-                                                    &gt;<br>
-                                                    This probably has to
-                                                    do with the way that
-                                                    particular "sensor"
-                                                    works--the <br>
-                                                    NMEA time value is
-                                                    only emitted once
-                                                    per second, and the<b=
-r>
-                                                    =C2=A0 =C2=A0code for=
- that
-                                                    sensor has some
-                                                    heuristic for
-                                                    determining
-                                                    "freshness" <br>
-                                                    of the value.<br>
-                                                    <br>
-                                                    I'll point out that
-                                                    on E310, the system
-                                                    is configured to use
-                                                    GPSD, so <br>
-                                                    that the Linux
-                                                    system time across
-                                                    several systems that
-                                                    have all been<br>
-                                                    =C2=A0 =C2=A0"listeni=
-ng" to
-                                                    GPS for a while will
-                                                    all be synchronized
-                                                    quite well.<br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                  </blockquote>
-                                                </div>
-                                              </div>
-                                              <br>
-                                              -- <br>
-                                              This message has been
-                                              scanned for viruses and
-                                              <br>
-                                              dangerous content by
-                                              <a moz-do-not-send=3D"true"
-href=3D"http://www.mailscanner.info/" target=3D"_blank"><b>MailScanner</b=
-></a>,
-                                              and is
-                                              <br>
-                                              believed to be clean.
-_______________________________________________<br>
-                                              USRP-users mailing list --
-                                              <a moz-do-not-send=3D"true"
-href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@l=
-ists.ettus.com</a><br>
-                                              To unsubscribe send an
-                                              email to <a
-                                                moz-do-not-send=3D"true"
-                                                href=3D"mailto:usrp-users=
--leave@lists.ettus.com"
-                                                target=3D"_blank">usrp-us=
-ers-leave@lists.ettus.com</a><br>
-                                            </blockquote>
-                                          </div>
-                                        </div>
-                                      </blockquote>
-                                    </div>
-                                  </div>
-                                  <span>_________________________________=
-______________</span><br>
-                                  <span>USRP-users mailing list -- <a
-                                      moz-do-not-send=3D"true"
-                                      href=3D"mailto:usrp-users@lists.ett=
-us.com"
-                                      target=3D"_blank">usrp-users@lists.=
-ettus.com</a></span><br>
-                                  <span>To unsubscribe send an email to
-                                    <a moz-do-not-send=3D"true"
-                                      href=3D"mailto:usrp-users-leave@lis=
-ts.ettus.com"
-                                      target=3D"_blank">usrp-users-leave@=
-lists.ettus.com</a></span><br>
-                                </div>
-                              </blockquote>
-                            </div>
-                          </div>
-                        </blockquote>
-                      </div>
-                    </div>
-                    <br>
-                    -- <br>
-                    This message has been scanned for viruses and
-                    <br>
-                    dangerous content by
-                    <a moz-do-not-send=3D"true"
-                      href=3D"http://www.mailscanner.info/"
-                      target=3D"_blank"><b>MailScanner</b></a>, and is
-                    <br>
-                    believed to be clean.
-                  </div>
-                </blockquote>
-              </div>
-            </div>
-          </blockquote>
-        </div>
+        troubles.=A0 Hopefully it's one of those obvious things I have
+        done wrong.</div>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
+      <div style=3D"font-family: Calibri, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        Thanks,<br>
+        Jeff<br>
       </div>
       <br>
-      -- <br>
-      This message has been scanned for viruses and
       <br>
-      dangerous content by
-      <a moz-do-not-send=3D"true" href=3D"http://www.mailscanner.info/"><=
-b>MailScanner</b></a>,
-      and is
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
       <br>
-      believed to be clean.
+      <pre wrap=3D"">_______________________________________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
     </blockquote>
+    This is definitely a question for the discuss-gnuradio mailing list,
+    not usrp-users.<br>
+    <br>
     <br>
   </body>
 </html>
 
---------------040606020008050406020803--
+--------------080404030202070200020807--
 
---===============4418296449701004543==
+--===============5684708353760212724==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1405,4 +227,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4418296449701004543==--
+--===============5684708353760212724==--
