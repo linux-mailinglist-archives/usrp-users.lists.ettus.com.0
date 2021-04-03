@@ -2,313 +2,300 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43A55352B3F
-	for <lists+usrp-users@lfdr.de>; Fri,  2 Apr 2021 16:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A101A35338C
+	for <lists+usrp-users@lfdr.de>; Sat,  3 Apr 2021 13:08:56 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 47EDE3840FC
-	for <lists+usrp-users@lfdr.de>; Fri,  2 Apr 2021 10:10:39 -0400 (EDT)
-Received: from smtp4.emailarray.com (smtp4.emailarray.com [65.39.216.22])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3A809383E1E
-	for <usrp-users@lists.ettus.com>; Fri,  2 Apr 2021 10:09:45 -0400 (EDT)
-Received: (qmail 20048 invoked by uid 89); 2 Apr 2021 14:09:43 -0000
-Received: from unknown (HELO ?192.168.11.139?) (cGhpbGlwQG9wZW5zZHIuY29tQDczLjI1MS4xMC4xNDM=) (POLARISLOCAL)  
-  by smtp4.emailarray.com with SMTP; 2 Apr 2021 14:09:43 -0000
-To: Ofer Saferman <ofer@navigicom.com>,
- "Marcus D. Leech" <patchvonbraun@gmail.com>
-References: <CACDReSxORSk+h2=1K1M0yCHdy0Fe2526M77+U896KUW6_zYj2Q@mail.gmail.com>
- <43ACF8A6-727F-4B81-8696-51BA770C9CC3@gmail.com>
- <CACDReSz8BcZU8=KDRw3v4y9GqNEDi8C-_YQXHydd3FcFJ7_JWg@mail.gmail.com>
- <6065CBDF.4090603@gmail.com>
- <CACDReSw+=bZJhNwcaSHRb25vgVo1zWGhaOFyJ62UvanmATmHgw@mail.gmail.com>
-From: Philip Balister <philip@balister.org>
-Message-ID: <542d655a-613b-6cf7-4876-eddf78c22a4b@balister.org>
-Date: Fri, 2 Apr 2021 10:09:43 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+	by mm2.emwd.com (Postfix) with ESMTP id 77B0A383B57
+	for <lists+usrp-users@lfdr.de>; Sat,  3 Apr 2021 07:08:55 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=vectalabs-com.20150623.gappssmtp.com header.i=@vectalabs-com.20150623.gappssmtp.com header.b="q52+X/Z4";
+	dkim-atps=neutral
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	by mm2.emwd.com (Postfix) with ESMTPS id 93B83383A8B
+	for <USRP-users@lists.ettus.com>; Sat,  3 Apr 2021 07:08:11 -0400 (EDT)
+Received: by mail-lj1-f169.google.com with SMTP id z8so7880024ljm.12
+        for <USRP-users@lists.ettus.com>; Sat, 03 Apr 2021 04:08:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vectalabs-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bKPxihozGiEXihnxcvtNZ3sdTkwLhuR6faljOYAwzxI=;
+        b=q52+X/Z4EFER5V65aNKNwMRKYuHsT/OSZAGklDLyInP3Z5lCwCiCFJOKQ2MXuyYvY9
+         MLK1lBK0hjCMlAt9qMqttsgd06YSIpbO8rS7+jnu9gcfGvhq2jMN+GoNq6PSV07AN2V7
+         wECTg5rZesueSWfu/1un5FjQHEXtabLYTiAcOyGtWlxlhNwFc9Ik8DkD07eFkQvDJwR5
+         H782TfpYRXfXjLZtl5qWUU0859N6txLUIvuWDg2JY+vXN+Y8P0X9KgcVkL+BNLqzWsHd
+         yn1Jfej+Mdg9+5bIIlNh444arfRBQDnZgxlJ4lHmsszAUy8N+SQuiB3D6e3Xo7HsWcGd
+         YRBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bKPxihozGiEXihnxcvtNZ3sdTkwLhuR6faljOYAwzxI=;
+        b=hgMOU8EIH4stTcv1Y2H8iIGUjqLGevj50e5k4pPfPZ+IHQDAMRgNBN7RuOwP7u6CJu
+         HTX0GJyS0R0uq1Q61wqjahR6xoXEkhPBrijTnMApdQYFtpDkUFNBKfM1dUn8ot154zoI
+         aFmZkUYpyElTUADGtsz517m+rJb+yw8/IO4ustTbHzQPM/XP9Kbfj1aMvMRpCsVcADKK
+         0LMWSjqvmDXXQA3tLw/gYmV18QFWZfkHGht/5s8afEOpBq25DGMO9bM1GbNa4b1C5SvZ
+         ANnzSoAwpjCGWNFI2blT9cYS3jNHLcts2SdVY9f0esVfbBSHaZty8IcfTnmxmhpJ53eO
+         F7Cw==
+X-Gm-Message-State: AOAM532dw7esWrIT07rGgaTKgcVG168Ywo6Ut9xrPQhY3FqdCs/HcotP
+	jc2WrRmIM+iIy7IUetMpDp7YfXzFRR/mrVtUZO8enw==
+X-Google-Smtp-Source: ABdhPJwn7+chHpy9rKgxrLmVbhV1ePF11vvcSgZ3lKsjbdktwzWRCOEamRuxwyhs0vw99UK4ae+bkxrV+NJ8KctxRJI=
+X-Received: by 2002:a2e:9811:: with SMTP id a17mr10853225ljj.52.1617448090216;
+ Sat, 03 Apr 2021 04:08:10 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CACDReSw+=bZJhNwcaSHRb25vgVo1zWGhaOFyJ62UvanmATmHgw@mail.gmail.com>
-Content-Language: en-US
-Message-ID-Hash: 3THZDMBA3U5ZTXNDTLFSUOPHZ65EHJYF
-X-Message-ID-Hash: 3THZDMBA3U5ZTXNDTLFSUOPHZ65EHJYF
-X-MailFrom: philip@balister.org
+References: <CALNMZ8W__YmMuZzNEwSRKE6WhdYr5b0c0-XdAM-39i=YFrOO4A@mail.gmail.com>
+ <4C788C8B-7A43-4838-90A5-590E404AAF67@gmail.com>
+In-Reply-To: <4C788C8B-7A43-4838-90A5-590E404AAF67@gmail.com>
+From: Brendan Horsfield <brendan.horsfield@vectalabs.com>
+Date: Sat, 3 Apr 2021 21:07:59 +1000
+Message-ID: <CALNMZ8Wg3gQnkAomrhhCBPAGtTfUbm3fkMzJhCWhUAgHrLuzyA@mail.gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Message-ID-Hash: C3FOZFNBRHY4MBUL5ZBEW5P7FUW3KKBF
+X-Message-ID-Hash: C3FOZFNBRHY4MBUL5ZBEW5P7FUW3KKBF
+X-MailFrom: brendan.horsfield@vectalabs.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Rob Kossler <rkossler@nd.edu>, usrp-users <usrp-users@lists.ettus.com>
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Intermittent problem with GPS synchronization for multiple E310 units
+Subject: [USRP-users] Re: Problem with interfacing Raspberry Pi 4 to USRP B210 with Python API
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3THZDMBA3U5ZTXNDTLFSUOPHZ65EHJYF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/C3FOZFNBRHY4MBUL5ZBEW5P7FUW3KKBF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============4247734585860431568=="
 
-T24gNC8yLzIxIDc6MTcgQU0sIE9mZXIgU2FmZXJtYW4gd3JvdGU6DQo+IE1hcmN1cyBIaSwNCj4g
-DQo+IFlvdXIgc3VnZ2VzdGlvbiBiZWxvdyB0byBpbnN0YWxsIG50cGQgZG9lcyBub3Qgd29yay4N
-Cj4gVGhlIGltYWdlIGRvZXMgbm90IGluY2x1ZGUgaXQuIEFsdGhvdWdoIHRoZSBvbGQgdGhyZWFk
-IHNheXMgb3RoZXJ3aXNlIEkNCj4gdGhpbmsgaXQgcmVmZXJzIHRvIGFuIG9sZGVyIFVIRCByZWxl
-YXNlIHRoYXQgZGlkIGluY2x1ZGUgbnRwZC4NCj4gQW55IGFjY3VyYXRlIGluc3RydWN0aW9ucyBv
-biBob3cgdG8gaW5zdGFsbCBpdCBhbnl3YXk/DQo+IE1heWJlIG9wa2cgc2hvdWxkIGJlIGNvbmZp
-Z3VyZWQgdG8gYWNjZXNzIGFub3RoZXIgcmVwb3NpdG9yeT8NCj4gRG9pbmc6IG9wa2cgbGlzdCB8
-IGdyZXAgbnRwZCwgZG9lcyBub3QgeWllbGQgYW55dGhpbmcgdXNlZnVsIHNvIGl0IGlzIG5vdA0K
-PiBqdXN0IGEgcXVlc3Rpb24gb2YgdHlwaW5nIGl0IGNvcnJlY3RseS4NCg0KQXMgZmFyIGFzIEkg
-a25vdywgbm8gaW1hZ2UgaGFzIGJlZW4gc2V0dXAgdG8gdXNlIHBhY2thZ2UgZmVlZHMuDQoNCkkg
-a25vdyBudHBkIHdvcmtlZCBpbiByZWxlYXNlNCBpbWFnZXMsIHByZXR0eSBzdXJlIHRoZSBuZXdl
-ciBpbWFnZSB3YXMNCnJlZG9uZSBhbmQgdGhpbmdzIGhhdmUgYmVlbiBsZWZ0IG91dCB0aGF0IHVz
-ZWQgdG8gYmUgdGhlcmUuDQoNClBoaWxpcA0KDQo+IA0KPiBSZWdhcmRzLA0KPiBPZmVyIFNhZmVy
-bWFuDQo+IA0KPiBPbiBUaHUsIEFwciAxLCAyMDIxIGF0IDQ6MzQgUE0gTWFyY3VzIEQuIExlZWNo
-IDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4NCj4gd3JvdGU6DQo+IA0KPj4gT24gMDQvMDEvMjAy
-MSAwNjowMCBBTSwgT2ZlciBTYWZlcm1hbiB3cm90ZToNCj4+DQo+PiBIZWxsbyBNYXJjdXMsDQo+
-Pg0KPj4gSSBhbSB3b3JraW5nIG9uIEUzMTAgd2l0aCB0aGUgbGF0ZXN0IFVIRC0zLjE1IFNEIGNh
-cmQgaW1hZ2UuDQo+PiBJdCBzZWVtcyBub3QgdG8gaW5jbHVkZSBudHBkIHRoYXQgaXMgcmVxdWly
-ZWQgdG8gc3luY2hyb25pemUgc3lzdGVtIHRpbWUNCj4+IHRvIEdQUyB0aW1lLg0KPj4gQW55IGlk
-ZWEgaG93IHRvIGluc3RhbGwgaXQgb24gdGhlIEUzMTA/DQo+Pg0KPj4gUmVnYXJkcywNCj4+IE9m
-ZXIgU2FmZXJtYW4NCj4+DQo+PiBzdWRvIG9wa2cgaW5zdGFsbCBudHBkDQo+Pg0KPj4gc2hvdWxk
-IHdvcmssIGJ1dCBpdCBoYXMgYmVlbiBhIHdoaWxlIHNpbmNlIEkgaW5zdGFsbGVkIGFueSBwYWNr
-YWdlcyBvbiBteQ0KPj4gRTMxMC4NCj4+DQo+PiBUaGUgRTMxMCBpcyBiYXNlZCBvbiBPcGVuRW1i
-ZWRkZWQgTGludXgsIHNvIGFsbCB0aGUgaW5mbyBhYm91dCBpbnN0YWxsaW5nDQo+PiBhbmQgbWFu
-YWdpbmcgcGFja2FnZXMgb24gT3BlbkVtYmVkZGVkIGFwcGx5Lg0KPj4NCj4+DQo+Pg0KPj4gT24g
-V2VkLCBNYXIgMzEsIDIwMjEgYXQgMTE6NDAgUE0gTWFyY3VzIEQgTGVlY2ggPHBhdGNodm9uYnJh
-dW5AZ21haWwuY29tPg0KPj4gd3JvdGU6DQo+Pg0KPj4+IEp1c3QgdXNlIGdldHRpbWVvZmRheSgp
-IG9yIGFueSBvZiB0aGUgbXlyaWFkIHN1YnRsZSB2YXJpYW50cyBhdmFpbGFibGUgaW4NCj4+PiBi
-b29zdCB0byBnZXQgeW91IHRoZSBMaW51eCBzeXN0ZW0gdGltZSwgYW5kIHVzZSB0aGF0IGluIGEg
-Y2FsbCB0bw0KPj4+IHNldF90aW1lX25leHRfcHBzKCkuDQo+Pj4NCj4+PiBUaGUgZmFjdCB0aGF0
-IGFsbCB5b3VyIEUzMTBzIHdpbGwgYmUgcnVubmluZyBHUFNEIG1lYW5zIHRoZXnigJlsbCBiZQ0K
-Pj4+IGFkanVzdGluZyBzeXN0ZW0gdGltZSBhcHByb3ByaWF0ZWx5IGFuZCB0aGV54oCZbGwgYWxs
-IGFncmVlIG9uIHdoYXQgdGltZSBpdA0KPj4+IGlzLCBkZXBlbmRpbmcgb24gdGhlIGxldmVsIG9m
-IHByZWNpc2lvbiB5b3UgbmVlZC4NCj4+Pg0KPj4+IFNlbnQgZnJvbSBteSBpUGhvbmUNCj4+Pg0K
-Pj4+IE9uIE1hciAzMSwgMjAyMSwgYXQgMzo1MCBQTSwgT2ZlciBTYWZlcm1hbiA8b2ZlckBuYXZp
-Z2ljb20uY29tPiB3cm90ZToNCj4+Pg0KPj4+IO+7vw0KPj4+IFRoYW5rIHlvdSBSb2IuIFlvdXIg
-c3VnZ2VzdGlvbnMgYXJlIGFsd2F5cyBoZWxwZnVsLiBJIHdpbGwgbG9vayBpbnRvDQo+Pj4gdXNp
-bmcgZ3BzX2dwZ2dhLg0KPj4+IFRoYW5rIHlvdSBNYXJjdXMuIEkgYW0gYWxyZWFkeSBhZGRpbmcg
-b25lLCBwZXIgb3RoZXIgZXhhbXBsZXMgcG9zdGVkIGhlcmUNCj4+PiBhbmQgc3luY190b19ncHMg
-ZXhhbXBsZS4gQ2FuIHlvdSBwbGVhc2UgY29tbWVudCBob3cgSSBjYW4gYmVuZWZpdCBmcm9tIHRo
-ZQ0KPj4+IGZhY3QgdGhhdCBFMzEwIHVuaXRzIHVzZSBncHNkIGluIExpbnV4Pw0KPj4+DQo+Pj4g
-UmVnYXJkcywNCj4+PiBPZmVyIFNhZmVybWFuDQo+Pj4NCj4+PiBPbiBXZWQsIE1hciAzMSwgMjAy
-MSBhdCAxMDoxMyBQTSBNYXJjdXMgRCBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQo+
-Pj4gd3JvdGU6DQo+Pj4NCj4+Pj4NCj4+Pj4NCj4+Pj4gU2VudCBmcm9tIG15IGlQaG9uZQ0KPj4+
-Pg0KPj4+PiBPbiBNYXIgMzEsIDIwMjEsIGF0IDI6MjIgUE0sIFJvYiBLb3NzbGVyIDxya29zc2xl
-ckBuZC5lZHU+IHdyb3RlOg0KPj4+Pg0KPj4+PiDvu78NCj4+Pj4gSGkgT2ZlciwNCj4+Pj4gVGFr
-ZSBhIGxvb2sgYXQgdGhlIEV0dHVzIHNvdXJjZSBjb2RlIGdwc19jdHJsLmNwcC4gIEluIHBhcnRp
-Y3VsYXIsIGxvb2sNCj4+Pj4gYXQgdGhlIGdldF9zZW50ZW5jZSgpIHVzYWdlIHdoaWNoIGluIHRo
-ZSBjYXNlIG9mICJncHNfdGltZSIgd2FpdHMgZm9yIHRoZQ0KPj4+PiBuZXh0IG9jY3VycmVuY2Ug
-KHdhaXQ9dHJ1ZSksICBidXQgZm9yIHRoZSBvdGhlcnMgZG9lcyBub3Qgd2FpdC4gIEJ1dCB0aGlz
-DQo+Pj4+IGRvZXNuJ3QgZnVsbHkgZXhwbGFpbiB0aGUgYmVoYXZpb3IgeW91IGFyZSBzZWVpbmcu
-ICBJZiB5b3UgZG8gdGhlIGZvbGxvd2luZzoNCj4+Pj4gMSkgd2FpdCBmb3IgUFBTIHRpbWUgdG8g
-Y2hhbmdlDQo+Pj4+IDIpIHJlYWQgdGhlICJncHNfdGltZSIgc2Vuc29yDQo+Pj4+IDMpIHNldF90
-aW1lX25leHRfcHBzICh1c2UgdGhlIHZhbHVlIHlvdSBqdXN0IHJlYWQpDQo+Pj4+DQo+Pj4+IEFk
-ZCAxIHRvIHRoZSB0aW1lIHlvdSBqdXN0IHJlYWQgYmVmb3JlIGNhbGxpbmcgc2V0X3RpbWVfbmV4
-dF9wcHMuDQo+Pj4+DQo+Pj4+DQo+Pj4+IEl0IHNob3VsZCBzdGlsbCB3b3JrIGJlY2F1c2UgdGhl
-ICJncHNfdGltZSIgY29tbWFuZCBzaG91bGQganVzdCB3YWl0DQo+Pj4+IHVudGlsIHRoZSBuZXh0
-IFBQUy4gIEkgZ3Vlc3MgaXQgZGVwZW5kcyB1cG9uIGhvdyAic3luY2hyb25pemVkIiBhcmUgdGhl
-DQo+Pj4+IHJlY2VpdmVkIE5NRUEgc3RyaW5nIHdpdGggdGhlIFBQUyBlZGdlLiAgU3RlcCAxIGFi
-b3ZlIHdhaXRzIGZvciB0aGUgUFBTDQo+Pj4+IGVkZ2UsIGJ1dCBtYXliZSB0aGUgTk1FQSBzdHJp
-bmcgYXJyaXZlcyAwLjEgc2VjcyBiZWZvcmUgb3IgYWZ0ZXIgdGhhdC4gIEkNCj4+Pj4gZG9uJ3Qg
-cmVhbGx5IGtub3cuICBQZXJoYXBzIHlvdSBuZWVkIHRvIHN3aXRjaCB0byB1c2luZyAiZ3BzX2dw
-Z2dhIiBzdWNoDQo+Pj4+IHRoYXQgdGhlcmUgaXMgbm8gYWRkaXRpb25hbCB3YWl0IGFkZGVkIGFu
-ZCBhbHNvIHBlcmhhcHMgeW91IHNob3VsZCBhZGQgc3RlcA0KPj4+PiAxQiB3aGljaCB3b3VsZCBi
-ZSBqdXN0IGEgZml4ZWQgZGVsYXkgb2YgcGVyaGFwcyAwLjQgc2VjcyBzbyB0aGF0IHlvdSB3aWxs
-DQo+Pj4+IHJlYWQgdGhlIE5NRUEgc3RyaW5nIGluIGJldHdlZW4gdGhlIFBQUyBlZGdlcy4NCj4+
-Pj4gUm9iDQo+Pj4+DQo+Pj4+IE9uIFdlZCwgTWFyIDMxLCAyMDIxIGF0IDE6MjIgUE0gUm9iIEtv
-c3NsZXIgPHJrb3NzbGVyQG5kLmVkdT4gd3JvdGU6DQo+Pj4+DQo+Pj4+PiBIaSBPZmVyLA0KPj4+
-Pj4gSSBkb24ndCBrbm93IHdoeSB0aGUgImdwc190aW1lIiBzZW5zb3IgdGFrZXMgbG9uZyB0byBy
-ZWFkLiBCdXQsIGNhbiB5b3UNCj4+Pj4+IHRyeSB0aGUgb3RoZXIgc2Vuc29ycyAocGVyaGFwcyB0
-aGVyZSBpcyBhICJncHNfZ3BnZ2EiIHNlbnNvcj8pPyAgVGhlIHRpbWUNCj4+Pj4+IGlzIGVtYmVk
-ZGVkIGluIHRoZXNlIGFzIHdlbGwuDQo+Pj4+PiBSb2INCj4+Pj4+DQo+Pj4+Pg0KPj4+Pj4gT24g
-V2VkLCBNYXIgMzEsIDIwMjEgYXQgMTI6MjEgUE0gT2ZlciBTYWZlcm1hbiA8b2ZlckBuYXZpZ2lj
-b20uY29tPg0KPj4+Pj4gd3JvdGU6DQo+Pj4+Pg0KPj4+Pj4+IE1hcmN1cyBIaSwNCj4+Pj4+Pg0K
-Pj4+Pj4+IElmIHRoZSBncHNfdGltZSAic2Vuc29yIiByZXR1cm5zIGEgdmFsdWUgb25seSBvbmNl
-IHBlciBzZWNvbmQgaG93IGNvbWUNCj4+Pj4+PiBJIG1hbmFnZSB0byByZWFkIGl0IHNvbWV0aW1l
-cyBpbiBsZXNzIHRoYW4gMSBzZWNvbmQ/DQo+Pj4+Pj4gSW4gbXkgY29kZSB0aGUgc2l0dWF0aW9u
-IGlzIHdvcnNlIHRoYW4gdGhlIHNpbXBsZSBleGFtcGxlIGJlbG93LiBJdA0KPj4+Pj4+IHVzdWFs
-bHkgdGFrZXMgbW9yZSB0aGFuIDEgc2VjLiB0byByZWFkIGl0IGFuZCBzb21ldGltZXMgZXZlbiAx
-Ljcgb3IgMS44DQo+Pj4+Pj4gc2Vjb25kcy4gSSBkb24ndCB1bmRlcnN0YW5kIGhvdyB0aGUgc2l6
-ZSBvciBjb21wbGV4aXR5IG9mIHRoZSBjb2RlIGFmZmVjdHMNCj4+Pj4+PiB0aGUgdGltZSBpdCB0
-YWtlcyB0byByZWFkIGdwc190aW1lLg0KPj4+Pj4+DQo+Pj4+Pj4gSG93IHRvIHRyZWF0IHlvdXIg
-Y29tbWVudCBhYm91dCB0aGUgdXNlIG9mIEdQU0QgYW5kIGdvb2QNCj4+Pj4+PiBzeW5jaHJvbml6
-YXRpb24gYXMgaXQgcmVsYXRlcyB0byBjb2RlPw0KPj4+Pj4+IFNob3VsZCBJIG5vdCBjaGFuZ2Ug
-dGhlIHRpbWUgc291cmNlIGluIGNvZGUgYW5kIGdvIHRocm91Z2ggdGhlIHdob2xlDQo+Pj4+Pj4g
-cHJvY2VzcyBvZiBzeW5jaHJvbml6YXRpb24gdXNpbmcgZ3BzX3RpbWU/DQo+Pj4+Pj4gQ2FuIEkg
-ImFzc3VtZSIgdGhlIHN5c3RlbXMgYXJlIHN5bmNlZCBqdXN0IGJ5IHRoZSBlZmZlY3QgdGhleSB3
-ZXJlDQo+Pj4+Pj4gY29ubmVjdGVkIGVub3VnaCB0aW1lIHRvIGEgR1BTIGFudGVubmE/IGFuZCB0
-aGVuIGp1c3QgYWNjZXNzIHRoZWlyIHRpbWUgLQ0KPj4+Pj4+IHJhZGlvX2N0cmwtPmdldF90aW1l
-X2xhc3RfcHBzKCk/DQo+Pj4+Pj4gSG93IHRvIHVzZSB0aGlzIGluZm9ybWF0aW9uIHByb2dyYW1t
-YXRpY2FsbHk/DQo+Pj4+Pj4NCj4+Pj4+PiBSZWdhcmRzLA0KPj4+Pj4+IE9mZXIgU2FmZXJtYW4N
-Cj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4gLS0tLS0tLS0tLSBGb3J3YXJkZWQgbWVzc2FnZSAtLS0t
-LS0tLS0tDQo+Pj4+Pj4+IEZyb206ICJNYXJjdXMgRC4gTGVlY2giIDxwYXRjaHZvbmJyYXVuQGdt
-YWlsLmNvbT4NCj4+Pj4+Pj4gVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+Pj4+Pj4+
-IENjOg0KPj4+Pj4+PiBCY2M6DQo+Pj4+Pj4+IERhdGU6IFdlZCwgMzEgTWFyIDIwMjEgMDk6MTk6
-MjAgLTA0MDANCj4+Pj4+Pj4gU3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBJbnRlcm1pdHRlbnQg
-cHJvYmxlbSB3aXRoIEdQUw0KPj4+Pj4+PiBzeW5jaHJvbml6YXRpb24gZm9yIG11bHRpcGxlIEUz
-MTAgdW5pdHMNCj4+Pj4+Pj4gT24gMDMvMzEvMjAyMSAwNjo0OSBBTSwgT2ZlciBTYWZlcm1hbiB3
-cm90ZToNCj4+Pj4+Pj4+IEhlbGxvLA0KPj4+Pj4+Pj4NCj4+Pj4+Pj4+IEkgaGF2ZSBhIHN5c3Rl
-bSB0aGF0IHVzZXMgNCBVU1JQIEUzMTAgdW5pdHMuDQo+Pj4+Pj4+PiBFYWNoIHVuaXQgaXMgY29u
-bmVjdGVkIHRvIGEgR1BTIGFudGVubmEuDQo+Pj4+Pj4+PiBUaW1lIHNvdXJjZSBpcyBzZXQgdG8g
-Z3BzZG8uDQo+Pj4+Pj4+Pg0KPj4+Pj4+Pj4gSSBydW4gdGhlIHNhbWUgc29mdHdhcmUgcmVtb3Rl
-bHkgb24gYWxsIDQgdW5pdHMgZnJvbSBhIFBDLiBTb2Z0d2FyZQ0KPj4+Pj4+Pj4gcnVucyBvbiB0
-aGUgdW5pdHMgdGhlbXNlbHZlcy4NCj4+Pj4+Pj4+IEkgcHJpbnQgb3V0IG1lc3NhZ2VzIHRvIHNo
-b3cgaWYgdGhlIHJlZmVyZW5jZSBpcyBsb2NrZWQgYW5kIHRoZSBHUFMNCj4+Pj4+Pj4gaXMNCj4+
-Pj4+Pj4+IGxvY2tlZCBhbmQgYWxzbyB3aGF0IGlzIHRoZSBHUFMgdGltZSB0aGF0IGVhY2ggdW5p
-dCB3YXMNCj4+Pj4+Pj4gc3luY2hyb25pemVkIHRvLg0KPj4+Pj4+Pj4gSW4gc29tZSBjYXNlcyB0
-aGUgdW5pdHMgc3luY2hyb25pemUgdG8gdGhlIHNhbWUgR1BTIHRpbWUgYW5kIGluDQo+Pj4+Pj4+
-IG90aGVyDQo+Pj4+Pj4+PiBjYXNlcyB0aGVyZSBpcyAxIHNlY29uZCBkaWZmZXJlbmNlIGJldHdl
-ZW4gR1BTIHRpbWUgb2YgZGlmZmVyZW50DQo+Pj4+Pj4+IHVuaXRzDQo+Pj4+Pj4+PiB0aHVzIGNh
-dXNpbmcgdGhlIHVuaXRzIHRvIGJlIHVuc3luY2hyb25pemVkLg0KPj4+Pj4+Pj4NCj4+Pj4+Pj4+
-IEkgd2FzIHdvbmRlcmluZyBob3cgdGhpcyB3YXMgcG9zc2libGUuDQo+Pj4+Pj4+PiBUaGUgc3lu
-Y2hyb25pemF0aW9uIHByb2Nlc3MgKGRvY3VtZW50ZWQgYnkgb3RoZXJzIGluIHRoZSBwYXN0IG9u
-DQo+Pj4+Pj4+IHRoZQ0KPj4+Pj4+Pj4gbWFpbGluZyBsaXN0KSBpczoNCj4+Pj4+Pj4+ICogV2Fp
-dCBmb3IgcmVmIGFuZCBHUFMgbG9jaw0KPj4+Pj4+Pj4gKiBXYWl0IGZvciBhIHBwcyBlZGdlIChn
-ZXRfdGltZV9sYXN0X3BwcykNCj4+Pj4+Pj4+ICogUmVhZCBncHNfdGltZSB2YWx1ZQ0KPj4+Pj4+
-Pj4gKiBTeW5jIHN5c3RlbSBjbG9jayB0byBHUFMgY2xvY2sgb24gbmV4dCBQUFMgZWRnZQ0KPj4+
-Pj4+PiAoc2V0X3RpbWVfbmV4dF9wcHMgKw0KPj4+Pj4+Pj4gMS4wIHNlYykNCj4+Pj4+Pj4+DQo+
-Pj4+Pj4+PiBTb21ldGhpbmcgc2ltaWxhciBpcyBhbHNvIGltcGxlbWVudGVkIGluIHRoZSBzeW5j
-X3RvX2dwcyBleGFtcGxlLg0KPj4+Pj4+Pj4NCj4+Pj4+Pj4+IEluIG9yZGVyIHRvIGRlYnVnIHRo
-ZSBwcm9ibGVtIEkgZGVjaWRlZCB0byB0aW1lIHRoZSByZWFkaW5nIG9mIHRoZQ0KPj4+Pj4+Pj4g
-Z3BzX3RpbWUgc2Vuc29yIHRvIHNlZSBpZiB0aGVyZSBpcyBhIGNsdWUgd2h5IGRpZmZlcmVudCB1
-bml0cyBtaXNzDQo+Pj4+Pj4+IHRoZQ0KPj4+Pj4+Pj4gUFBTIGVkZ2UgYW5kIGxvY2sgdG8gYSB0
-aW1lIG9mIHRoZSBuZXh0IHNlY29uZC4NCj4+Pj4+Pj4+DQo+Pj4+Pj4+PiBJIHdhcyB2ZXJ5IHN1
-cnByaXNlZCB0byBmaW5kIG91dCB0aGF0IGl0IHRha2VzIGJldHdlZW4gMC45IHRvIDEuMg0KPj4+
-Pj4+Pj4gc2Vjb25kcyB0byByZWFkIHRoZSBncHNfdGltZSBzZW5zb3IuDQo+Pj4+Pj4+PiBUaGlz
-IGV4cGxhaW5zIGV4YWN0bHkgd2h5IGl0IGlzIGRpZmZpY3VsdCB0byBzeW5jaHJvbml6ZSBtdWx0
-aXBsZQ0KPj4+Pj4+Pj4gdW5pdHMgdG8gdGhlIHNhbWUgdGltZSBpbnN0YW5jZSBiZWNhdXNlIGlm
-IG9uZSB1bml0IHRha2VzIDAuOQ0KPj4+Pj4+PiBzZWNvbmRzDQo+Pj4+Pj4+PiB0byByZWFkIHRo
-ZSBzZW5zb3IgYW5kIHRoZSBvdGhlciB1bml0IHRha2VzIDEuMiBzZWNvbmRzIHRvIHJlYWQgdGhl
-DQo+Pj4+Pj4+PiBzZW5zb3IgdGhlbiBlYWNoIHVuaXQgd2lsbCBsb2NrIG9uIGEgZGlmZmVyZW50
-IEdQUyB0aW1lIDEgc2Vjb25kDQo+Pj4+Pj4+IGFwYXJ0Lg0KPj4+Pj4+Pj4NCj4+Pj4+Pj4+IEhl
-cmUgaXMgYSBzaG9ydCBzb2Z0d2FyZSBJIHdyb3RlIHRvIHRpbWUgdGhlIGdwc190aW1lIHNlbnNv
-cg0KPj4+Pj4+PiByZWFkaW5nOg0KPj4+Pj4+Pj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+Pj4+Pj4+PiAjaW5jbHVkZSA8dWhkL3V0
-aWxzL3NhZmVfbWFpbi5ocHA+DQo+Pj4+Pj4+PiAjaW5jbHVkZSA8dWhkL2RldmljZTMuaHBwPg0K
-Pj4+Pj4+Pj4gLy8jaW5jbHVkZSA8dWhkL3VzcnAvbXVsdGlfdXNycC5ocHA+DQo+Pj4+Pj4+PiAj
-aW5jbHVkZSA8dWhkL3R5cGVzL3NlbnNvcnMuaHBwPg0KPj4+Pj4+Pj4gI2luY2x1ZGUgPGJvb3N0
-L3Byb2dyYW1fb3B0aW9ucy5ocHA+DQo+Pj4+Pj4+PiAjaW5jbHVkZSA8Ym9vc3QvZm9ybWF0Lmhw
-cD4NCj4+Pj4+Pj4+ICNpbmNsdWRlIDxjaHJvbm8+DQo+Pj4+Pj4+PiAjaW5jbHVkZSA8aW9zdHJl
-YW0+DQo+Pj4+Pj4+Pg0KPj4+Pj4+Pj4gbmFtZXNwYWNlIHBvID0gYm9vc3Q6OnByb2dyYW1fb3B0
-aW9uczsNCj4+Pj4+Pj4+DQo+Pj4+Pj4+PiBpbnQgVUhEX1NBRkVfTUFJTihpbnQgYXJnYywgY2hh
-ciAqYXJndltdKXsNCj4+Pj4+Pj4+DQo+Pj4+Pj4+PiBzdGQ6OnN0cmluZyBhcmdzOw0KPj4+Pj4+
-Pj4NCj4+Pj4+Pj4+ICAgICBwbzo6b3B0aW9uc19kZXNjcmlwdGlvbiBkZXNjKCJBbGxvd2VkIG9w
-dGlvbnMiKTsNCj4+Pj4+Pj4+ICAgICBkZXNjLmFkZF9vcHRpb25zKCkNCj4+Pj4+Pj4+ICAgICAg
-ICAgKCJoZWxwIiwgImhlbHAgbWVzc2FnZSIpDQo+Pj4+Pj4+PiAoImFyZ3MiLCBwbzo6dmFsdWU8
-c3RkOjpzdHJpbmc+KCZhcmdzKS0+ZGVmYXVsdF92YWx1ZSgiIiksICJkZXZpY2UNCj4+Pj4+Pj4+
-IGFkZHJlc3MgYXJncyIpDQo+Pj4+Pj4+PiAgICAgOw0KPj4+Pj4+Pj4NCj4+Pj4+Pj4+ICAgICBw
-bzo6dmFyaWFibGVzX21hcCB2bTsNCj4+Pj4+Pj4+ICAgICBwbzo6c3RvcmUocG86OnBhcnNlX2Nv
-bW1hbmRfbGluZShhcmdjLCBhcmd2LCBkZXNjKSwgdm0pOw0KPj4+Pj4+Pj4gICAgIHBvOjpub3Rp
-Znkodm0pOw0KPj4+Pj4+Pj4NCj4+Pj4+Pj4+ICAgICAvL3ByaW50IHRoZSBoZWxwIG1lc3NhZ2UN
-Cj4+Pj4+Pj4+ICAgICBpZiAodm0uY291bnQoImhlbHAiKSl7DQo+Pj4+Pj4+PiAgICAgICAgIHN0
-ZDo6Y291dCA8PCBib29zdDo6Zm9ybWF0KCJUaW1pbmlnIG9mIGdwc190aW1lOiAlcyIpICUNCj4+
-Pj4+Pj4gZGVzYw0KPj4+Pj4+Pj4gPDwgc3RkOjplbmRsOw0KPj4+Pj4+Pj4gICAgICAgICByZXR1
-cm4gfjA7DQo+Pj4+Pj4+PiAgICAgfQ0KPj4+Pj4+Pj4NCj4+Pj4+Pj4+IHVoZDo6ZGV2aWNlMzo6
-c3B0ciB1c3JwID0gdWhkOjpkZXZpY2UzOjptYWtlKGFyZ3MpOw0KPj4+Pj4+Pj4gLy91aGQ6OnVz
-cnA6Om11bHRpX3VzcnA6OnNwdHIgdXNycCA9DQo+Pj4+Pj4+IHVoZDo6dXNycDo6bXVsdGlfdXNy
-cDo6bWFrZShhcmdzKTsNCj4+Pj4+Pj4+DQo+Pj4+Pj4+PiB1aGQ6OnNlbnNvcl92YWx1ZV90IGdw
-c190aW1lID0NCj4+Pj4+Pj4+DQo+Pj4+Pj4+IHVzcnAtPmdldF90cmVlKCktPmFjY2Vzczx1aGQ6
-OnNlbnNvcl92YWx1ZV90PigiL21ib2FyZHMvMC9zZW5zb3JzL2dwc190aW1lIikuZ2V0KCk7DQo+
-Pj4+Pj4+PiAvL3VoZDo6c2Vuc29yX3ZhbHVlX3QgZ3BzX3RpbWUgPQ0KPj4+Pj4+PiB1c3JwLT5n
-ZXRfbWJvYXJkX3NlbnNvcigiZ3BzX3RpbWUiLCAwKTsNCj4+Pj4+Pj4+DQo+Pj4+Pj4+PiBzdGQ6
-OmNocm9ubzo6c3RlYWR5X2Nsb2NrOjp0aW1lX3BvaW50IHN0YXJ0X3RpbWUsIGVuZF90aW1lOw0K
-Pj4+Pj4+Pj4gc3RkOjpjaHJvbm86OmR1cmF0aW9uPGRvdWJsZT4gdGltZV9kaWZmOyAvLyBEZWZh
-dWx0IHVuaXQgZm9yDQo+Pj4+Pj4+IGR1cmF0aW9uDQo+Pj4+Pj4+PiBpcyBzZWNvbmRzLg0KPj4+
-Pj4+Pj4NCj4+Pj4+Pj4+IGZvcihpbnQgaWk9MCA7IGlpPDIwIDsgaWkrKykNCj4+Pj4+Pj4+IHsN
-Cj4+Pj4+Pj4+IHN0YXJ0X3RpbWUgPSBzdGQ6OmNocm9ubzo6c3RlYWR5X2Nsb2NrOjpub3coKTsN
-Cj4+Pj4+Pj4+IGdwc190aW1lID0NCj4+Pj4+Pj4+DQo+Pj4+Pj4+IHVzcnAtPmdldF90cmVlKCkt
-PmFjY2Vzczx1aGQ6OnNlbnNvcl92YWx1ZV90PigiL21ib2FyZHMvMC9zZW5zb3JzL2dwc190aW1l
-IikuZ2V0KCk7DQo+Pj4+Pj4+PiAvL2dwc190aW1lID0gdXNycC0+Z2V0X21ib2FyZF9zZW5zb3Io
-Imdwc190aW1lIiwgMCk7DQo+Pj4+Pj4+PiBlbmRfdGltZSA9IHN0ZDo6Y2hyb25vOjpzdGVhZHlf
-Y2xvY2s6Om5vdygpOw0KPj4+Pj4+Pj4gdGltZV9kaWZmID0gZW5kX3RpbWUgLSBzdGFydF90aW1l
-Ow0KPj4+Pj4+Pj4NCj4+Pj4+Pj4+IHN0ZDo6Y291dCA8PCAiZ3BzX3RpbWVbIiA8PCAoYm9vc3Q6
-OmZvcm1hdCgiJTAyZCIpICUgaWkpIDw8ICJdOiAiDQo+Pj4+Pj4+IDw8DQo+Pj4+Pj4+PiBpbnQ2
-NF90KGdwc190aW1lLnRvX2ludCgpKSA8PCAiLiBUaW1lIHRvIHJlYWQgXCJncHNfdGltZVwiOiAi
-IDw8DQo+Pj4+Pj4+PiAoYm9vc3Q6OmZvcm1hdCgiJTAuOWYiKSAlIHRpbWVfZGlmZi5jb3VudCgp
-KSA8PCAiIHNlY29uZHMiIDw8DQo+Pj4+Pj4+IHN0ZDo6ZW5kbDsNCj4+Pj4+Pj4+IH0NCj4+Pj4+
-Pj4+DQo+Pj4+Pj4+PiAgICAgcmV0dXJuIDA7DQo+Pj4+Pj4+PiB9DQo+Pj4+Pj4+Pg0KPj4+Pj4+
-PiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4+Pj4+Pj4gSGVyZSBhcmUgdGhlIHJlc3VsdHMg
-b2Ygb25lIHR5cGljYWwgcnVuOg0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMDBdOiAxNjE3MTgzODQwLiBU
-aW1lIHRvIHJlYWQgImdwc190aW1lIjogMC44ODQxNjQzODANCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+
-Pj4+Pj4gZ3BzX3RpbWVbMDFdOiAxNjE3MTgzODQxLiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjog
-MC44Nzc5NjY0NjkNCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMDJdOiAxNjE3
-MTgzODQyLiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjogMS4xNzA4Njk2NjENCj4+Pj4+Pj4gc2Vj
-b25kcw0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMDNdOiAxNjE3MTgzODQzLiBUaW1lIHRvIHJlYWQgImdw
-c190aW1lIjogMC44ODI5MTc5ODcNCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4gZ3BzX3RpbWVb
-MDRdOiAxNjE3MTgzODQ0LiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjogMS4xNzIxMjAxNTQNCj4+
-Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMDVdOiAxNjE3MTgzODQ1LiBUaW1lIHRv
-IHJlYWQgImdwc190aW1lIjogMC44NzkyNzE5ODUNCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4g
-Z3BzX3RpbWVbMDZdOiAxNjE3MTgzODQ2LiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjogMC44Nzg2
-MDkwOTkNCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMDddOiAxNjE3MTgzODQ3
-LiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjogMS4xMTU2MzkyODINCj4+Pj4+Pj4gc2Vjb25kcw0K
-Pj4+Pj4+Pj4gZ3BzX3RpbWVbMDhdOiAxNjE3MTgzODQ4LiBUaW1lIHRvIHJlYWQgImdwc190aW1l
-IjogMS4xMjUzNjU1NTENCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMDldOiAx
-NjE3MTgzODQ5LiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjogMC44NDM4MDMyMzENCj4+Pj4+Pj4g
-c2Vjb25kcw0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMTBdOiAxNjE3MTgzODUwLiBUaW1lIHRvIHJlYWQg
-Imdwc190aW1lIjogMS4xMjUwNjU3NDANCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4gZ3BzX3Rp
-bWVbMTFdOiAxNjE3MTgzODUxLiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjogMC44NDc1MTk4MTcN
-Cj4+Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMTJdOiAxNjE3MTgzODUyLiBUaW1l
-IHRvIHJlYWQgImdwc190aW1lIjogMS4xMjEzOTg5NDUNCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+
-Pj4gZ3BzX3RpbWVbMTNdOiAxNjE3MTgzODUzLiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjogMC44
-NDQzNzE1MzMNCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMTRdOiAxNjE3MTgz
-ODU0LiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjogMS4xMjQ3MjI3MjYNCj4+Pj4+Pj4gc2Vjb25k
-cw0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMTVdOiAxNjE3MTgzODU1LiBUaW1lIHRvIHJlYWQgImdwc190
-aW1lIjogMC44NDU2ODgzODANCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMTZd
-OiAxNjE3MTgzODU2LiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjogMS4xMjk1NjgwOTYNCj4+Pj4+
-Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMTddOiAxNjE3MTgzODU3LiBUaW1lIHRvIHJl
-YWQgImdwc190aW1lIjogMC44ODI0MzYyMjkNCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4gZ3Bz
-X3RpbWVbMThdOiAxNjE3MTgzODU4LiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjogMS4xNjgyMjc1
-OTMNCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+Pj4+Pj4gZ3BzX3RpbWVbMTldOiAxNjE3MTgzODU5LiBU
-aW1lIHRvIHJlYWQgImdwc190aW1lIjogMC44ODE5NDgyNDcNCj4+Pj4+Pj4gc2Vjb25kcw0KPj4+
-Pj4+Pj4NCj4+Pj4+Pj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4+Pj4+Pj4+IEluIHRo
-ZSBjb2RlIHlvdSBjYW4gZmluZCBjb21tZW50ZWQgb3V0IHRoZSB1c3VhbCB3YXkgdG8gYWNjZXNz
-IHRoZQ0KPj4+Pj4+Pj4gc2Vuc29yIHVzaW5nIG11bHRpX3VzcnAgYW5kIGdldF9tYm9hcmRfc2Vu
-c29yLiBUaGUgcmVzdWx0cyBhcmUNCj4+Pj4+Pj4gcXVpdGUNCj4+Pj4+Pj4+IHNpbWlsYXIuDQo+
-Pj4+Pj4+Pg0KPj4+Pj4+Pj4gSSB3b25kZXIgaWYgYW55Ym9keSBlbmNvdW50ZXJlZCB0aGlzIGlz
-c3VlIGJlZm9yZSBvciBhZGRyZXNzZWQgaXQNCj4+Pj4+Pj4gaW4NCj4+Pj4+Pj4+IGFueSB3YXku
-DQo+Pj4+Pj4+PiBJIHdvbmRlciB3aHkgaXQgdGFrZXMgc28gbXVjaCB0aW1lIHRvIGdldCB0aGUg
-dmFsdWUgb2YgR1BTIHRpbWUNCj4+Pj4+Pj4gd2hlbg0KPj4+Pj4+Pj4gaXQgaXMgYSBzaW1wbGUg
-cGFyc2luZyBvZiBhbiBOTUVBIG1lc3NhZ2UgY29taW5nIGZyb20gdGhlIEdQUw0KPj4+Pj4+PiBy
-ZWNlaXZlci4NCj4+Pj4+Pj4+DQo+Pj4+Pj4+PiBJIGFtIHRyeWluZyBub3cgdmFyaW91cyB0cmlj
-a3MgdG8gbWFrZSB0aGUgc29mdHdhcmUgcm9idXN0IGFuZA0KPj4+Pj4+PiBpbW11bmUNCj4+Pj4+
-Pj4+IHRvIHRoaXMgcGhlbm9tZW5vbi4gSSBjYW4gcmVwb3J0IG15IGZpbmRpbmdzIGZ1cnRoZXIg
-aWYgSSBzdWNjZWVkDQo+Pj4+Pj4+IHRvDQo+Pj4+Pj4+PiBmaW5kIGEgd29ya2Fyb3VuZCBpZiB0
-aGVyZSBpcyBhbnkgaW50ZXJlc3QuDQo+Pj4+Pj4+Pg0KPj4+Pj4+Pj4gQ2FuIGFueW9uZSBjb21t
-ZW50IG9uIHRoaXM/IENhbiB0aGlzIGJlIHJlc29sdmVkIHNvIHRoYXQgdGhlDQo+Pj4+Pj4+IHJl
-YWRpbmcNCj4+Pj4+Pj4+IG9mIGdwc190aW1lIHdpbGwgYmUgbXVjaCBmYXN0ZXI/DQo+Pj4+Pj4+
-PiBJcyB0aGVyZSBhbm90aGVyIHdheSB0byBnZXQgR1BTIHRpbWUgZmFzdGVyIGluZGlyZWN0bHk/
-IE1heWJlIGZyb20NCj4+Pj4+Pj4+IHBhcnNpbmcgTk1FQSBtZXNzYWdlcyBvdXJzZWx2ZXM/DQo+
-Pj4+Pj4+Pg0KPj4+Pj4+Pj4gUmVnYXJkcywNCj4+Pj4+Pj4+IE9mZXIgU2FmZXJtYW4NCj4+Pj4+
-Pj4+DQo+Pj4+Pj4+IFRoaXMgcHJvYmFibHkgaGFzIHRvIGRvIHdpdGggdGhlIHdheSB0aGF0IHBh
-cnRpY3VsYXIgInNlbnNvciINCj4+Pj4+Pj4gd29ya3MtLXRoZQ0KPj4+Pj4+PiBOTUVBIHRpbWUg
-dmFsdWUgaXMgb25seSBlbWl0dGVkIG9uY2UgcGVyIHNlY29uZCwgYW5kIHRoZQ0KPj4+Pj4+PiAg
-ICBjb2RlIGZvciB0aGF0IHNlbnNvciBoYXMgc29tZSBoZXVyaXN0aWMgZm9yIGRldGVybWluaW5n
-DQo+Pj4+Pj4+ICJmcmVzaG5lc3MiDQo+Pj4+Pj4+IG9mIHRoZSB2YWx1ZS4NCj4+Pj4+Pj4NCj4+
-Pj4+Pj4gSSdsbCBwb2ludCBvdXQgdGhhdCBvbiBFMzEwLCB0aGUgc3lzdGVtIGlzIGNvbmZpZ3Vy
-ZWQgdG8gdXNlIEdQU0QsIHNvDQo+Pj4+Pj4+IHRoYXQgdGhlIExpbnV4IHN5c3RlbSB0aW1lIGFj
-cm9zcyBzZXZlcmFsIHN5c3RlbXMgdGhhdCBoYXZlIGFsbCBiZWVuDQo+Pj4+Pj4+ICAgICJsaXN0
-ZW5pbmciIHRvIEdQUyBmb3IgYSB3aGlsZSB3aWxsIGFsbCBiZSBzeW5jaHJvbml6ZWQgcXVpdGUg
-d2VsbC4NCj4+Pj4+Pj4NCj4+Pj4+Pj4NCj4+Pj4+Pj4NCj4+Pj4+Pj4NCj4+Pj4+PiAtLQ0KPj4+
-Pj4+IFRoaXMgbWVzc2FnZSBoYXMgYmVlbiBzY2FubmVkIGZvciB2aXJ1c2VzIGFuZA0KPj4+Pj4+
-IGRhbmdlcm91cyBjb250ZW50IGJ5ICpNYWlsU2Nhbm5lciogPGh0dHA6Ly93d3cubWFpbHNjYW5u
-ZXIuaW5mby8+LA0KPj4+Pj4+IGFuZCBpcw0KPj4+Pj4+IGJlbGlldmVkIHRvIGJlIGNsZWFuLiBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4+Pj4+IFVT
-UlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+Pj4+
-Pj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3Rz
-LmV0dHVzLmNvbQ0KPj4+Pj4+DQo+Pj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXw0KPj4+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPj4+PiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRv
-IHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+Pj4+DQo+Pj4+DQo+Pj4gLS0NCj4+
-PiBUaGlzIG1lc3NhZ2UgaGFzIGJlZW4gc2Nhbm5lZCBmb3IgdmlydXNlcyBhbmQNCj4+PiBkYW5n
-ZXJvdXMgY29udGVudCBieSAqTWFpbFNjYW5uZXIqIDxodHRwOi8vd3d3Lm1haWxzY2FubmVyLmlu
-Zm8vPiwgYW5kDQo+Pj4gaXMNCj4+PiBiZWxpZXZlZCB0byBiZSBjbGVhbi4NCj4+Pg0KPj4+DQo+
-PiAtLQ0KPj4gVGhpcyBtZXNzYWdlIGhhcyBiZWVuIHNjYW5uZWQgZm9yIHZpcnVzZXMgYW5kDQo+
-PiBkYW5nZXJvdXMgY29udGVudCBieSAqTWFpbFNjYW5uZXIqIDxodHRwOi8vd3d3Lm1haWxzY2Fu
-bmVyLmluZm8vPiwgYW5kIGlzDQo+PiBiZWxpZXZlZCB0byBiZSBjbGVhbi4NCj4+DQo+Pg0KPj4N
-Cj4gDQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlz
-dHMuZXR0dXMuY29tDQo+IApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlz
-dHMuZXR0dXMuY29tCg==
+--===============4247734585860431568==
+Content-Type: multipart/alternative; boundary="000000000000dc3aeb05bf0f7ace"
+
+--000000000000dc3aeb05bf0f7ace
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Marcus,
+
+I have tried your suggestion, but unfortunately without success:
+
+Per your advice, I have edited the file "cmake.lwt" in the folder
+/usr/local/lib/python3.7/dist-packages/pybombs/templates to include the
+option "-DENABLE_PYTHON_API=3DON" in the calls to cmake.  The modified
+commands are as follows:
+
+configure: cmake .. -DENABLE_PYTHON_API=3DON
+-DCMAKE_BUILD_TYPE=3D$cmakebuildtype -DCMAKE_INSTALL_PREFIX=3D$prefix
+$config_opt -Wno-dev
+configure_static: cmake .. -DENABLE_PYTHON_API=3DON
+-DCMAKE_BUILD_TYPE=3D$cmakebuildtype -DCMAKE_INSTALL_PREFIX=3D$prefix
+-DENABLE_STATIC_LIBS=3DTrue $config_opt
+
+I removed the previous UHD installation and re-ran "pybombs install uhd",
+but the end result was much the same:  the installation process completed
+without errors, but the Python API was not included in the installation.
+
+QUESTION 1:  Can you tell me if PyBOMBS actually builds the UHD driver from
+source, or does it simply copy a pre-compiled binary onto my system?  The
+reason I ask is that PyBOMBS is quite quick to install the UHD driver,
+whereas the non-PyBOMBS approach is VERY slow (i.e. around 60 minutes to
+get to 53%, at which point it crashes out with an error).
+
+QUESTION 2:  This whole process feels more difficult than it should be.
+Why isn't the Python API installed with the UHD driver by default?  Would I
+be better off using another language (like C++) to control the USRP?
+
+Thanks,
+Brendan.
+
+
+
+On Fri, Apr 2, 2021 at 11:25 PM Marcus D Leech <patchvonbraun@gmail.com>
+wrote:
+
+> Perhaps look at the PyBombs recipe for your platform=E2=80=94there=E2=80=
+=99s probably a
+> compiler flag that needs to be set that you=E2=80=99re missing, but I don=
+=E2=80=99t know
+> what that is.
+>
+> Also, in general, you don=E2=80=99t need to become root to compile and bu=
+ild
+> code=E2=80=94only needed during the =E2=80=9Cmake install=E2=80=9D
+>
+>
+>
+> Sent from my iPhone
+>
+> On Apr 2, 2021, at 7:19 AM, Brendan Horsfield <
+> brendan.horsfield@vectalabs.com> wrote:
+>
+> =EF=BB=BF
+> Hi Folks,
+>
+> I would like to interface my Raspberry Pi 4 to a USRP B210 via the Python
+> API.  This requires the UHD driver to be built from source.  Unfortunatel=
+y,
+> whenever I try this I encounter some errors that stop the build process i=
+n
+> its tracks.
+>
+> Details of the error are as follows:
+>
+> [ 53%] Linking CXX executable test_clock_synch
+> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
+> `__atomic_compare_exchange_8'
+> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
+> `__atomic_load_8'
+> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
+> `__atomic_store_8'
+> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
+> `__atomic_fetch_add_8'
+> collect2: error: ld returned 1 exit status
+> make[2]: *** [examples/CMakeFiles/test_clock_synch.dir/build.make:95:
+> examples/test_clock_synch] Error 1
+> make[1]: *** [CMakeFiles/Makefile2:1039:
+> examples/CMakeFiles/test_clock_synch.dir/all] Error 2
+> make: *** [Makefile:163: all] Error 2
+>
+> The process I have been using is as follows:
+>
+> STEP 1:  INSTALL DEPENDENCIES
+> sudo apt-get install libboost-all-dev libusb-1.0-0-dev doxygen
+> python3-docutils python3-mako python3-numpy python3-requests
+> python3-ruamel.yaml python3-setuptools cmake build-essential
+>
+> STEP 2:  BUILD UHD DRIVER FROM SOURCE
+> cd /home/pi
+> mkdir workarea-uhd
+> cd workarea-uhd
+> git clone https://github.com/EttusResearch/uhd
+> cd uhd
+> git checkout v4.0.0.0
+> cd host
+> mkdir build
+> cd build
+> sudo cmake -DNEON_SIMD_ENABLE=3DOFF -DENABLE_PYTHON_API=3DON ../
+> sudo make  --->  (ERRORS OCCUR DURING "MAKE" PROCESS)
+>
+> My system configuration is as follows:
+> Hardware: Raspberry Pi 4 Model B Rev 1.4
+> OS: Raspbian GNU/Linux 10 (buster) (32-bit, armv7l)
+> Ettus USRP B210
+>
+> Does anyone know what the problem could be, and how I can resolve it?
+>
+> One final note:  Using PyBOMBS, I was able to successfully build & instal=
+l
+> the UHD driver and connect to the USRP.  Unfortunately the PyBOMBS build
+> does not include the Python API, which is what I really want.  Is there a
+> different version of the PyBOMBS build that includes the Python API?
+>
+> Thanks & Regards,
+> Brendan.
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
+
+--000000000000dc3aeb05bf0f7ace
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Marcus,<div><br></div><div>I have tried your suggestion=
+, but unfortunately without success:</div><div><br></div><div>Per your advi=
+ce, I have edited the file &quot;cmake.lwt&quot; in the folder /usr/local/l=
+ib/python3.7/dist-packages/pybombs/templates to include the option &quot;-D=
+ENABLE_PYTHON_API=3DON&quot; in the calls to cmake.=C2=A0 The modified comm=
+ands are as follows:</div><div><br></div><div>configure: cmake .. -DENABLE_=
+PYTHON_API=3DON -DCMAKE_BUILD_TYPE=3D$cmakebuildtype -DCMAKE_INSTALL_PREFIX=
+=3D$prefix $config_opt -Wno-dev<br></div><div>configure_static: cmake .. -D=
+ENABLE_PYTHON_API=3DON -DCMAKE_BUILD_TYPE=3D$cmakebuildtype -DCMAKE_INSTALL=
+_PREFIX=3D$prefix -DENABLE_STATIC_LIBS=3DTrue $config_opt<br></div><div><br=
+></div><div>I removed the previous UHD installation and re-ran &quot;pybomb=
+s install uhd&quot;, but the end result was much the same:=C2=A0 the instal=
+lation process completed without errors, but the Python API was not include=
+d in the installation.</div><div><br></div><div>QUESTION 1:=C2=A0 Can you t=
+ell me if PyBOMBS actually builds the UHD driver from source, or does it si=
+mply copy a pre-compiled binary onto my system?=C2=A0 The reason I ask is t=
+hat PyBOMBS is quite quick to install the UHD driver, whereas the non-PyBOM=
+BS approach is VERY slow (i.e. around 60 minutes to get to 53%, at which po=
+int it crashes out with an error).</div><div><br></div><div>QUESTION 2:=C2=
+=A0 This whole process feels more difficult than it should be.=C2=A0 Why is=
+n&#39;t the Python API installed with the UHD driver by default?=C2=A0 Woul=
+d I be better off using another language (like C++) to control the USRP?</d=
+iv><div><br></div><div>Thanks,</div><div>Brendan.</div><div><br></div><div>=
+<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
+ail_attr">On Fri, Apr 2, 2021 at 11:25 PM Marcus D Leech &lt;<a href=3D"mai=
+lto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Perha=
+ps look at the PyBombs recipe for your platform=E2=80=94there=E2=80=99s pro=
+bably a compiler flag that needs to be set that you=E2=80=99re missing, but=
+ I don=E2=80=99t know what that is.=C2=A0<div><br></div><div>Also, in gener=
+al, you don=E2=80=99t need to become root to compile and build code=E2=80=
+=94only needed during the =E2=80=9Cmake install=E2=80=9D</div><div><br></di=
+v><div><br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><=
+br><blockquote type=3D"cite">On Apr 2, 2021, at 7:19 AM, Brendan Horsfield =
+&lt;<a href=3D"mailto:brendan.horsfield@vectalabs.com" target=3D"_blank">br=
+endan.horsfield@vectalabs.com</a>&gt; wrote:<br><br></blockquote></div><blo=
+ckquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr">Hi Folks,<=
+div><br></div><div>I would like to interface my Raspberry Pi 4 to a USRP B2=
+10 via the Python API.=C2=A0 This requires the UHD driver to be built from =
+source.=C2=A0 Unfortunately, whenever I try this I encounter some errors th=
+at stop the build process in its tracks.</div><div><br></div><div>Details o=
+f the error are as follows:</div><div><br></div><div>[ 53%] Linking CXX exe=
+cutable test_clock_synch<br>/usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined =
+reference to `__atomic_compare_exchange_8&#39;<br>/usr/bin/ld: ../lib/libuh=
+d.so.4.0.0: undefined reference to `__atomic_load_8&#39;<br>/usr/bin/ld: ..=
+/lib/libuhd.so.4.0.0: undefined reference to `__atomic_store_8&#39;<br>/usr=
+/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `__atomic_fetch_add=
+_8&#39;<br>collect2: error: ld returned 1 exit status<br>make[2]: *** [exam=
+ples/CMakeFiles/test_clock_synch.dir/build.make:95: examples/test_clock_syn=
+ch] Error 1<br>make[1]: *** [CMakeFiles/Makefile2:1039: examples/CMakeFiles=
+/test_clock_synch.dir/all] Error 2<br>make: *** [Makefile:163: all] Error 2=
+<br></div><div><br></div><div>The process I have been using is as follows:<=
+/div><div><br></div><div>STEP 1:=C2=A0 INSTALL DEPENDENCIES<br>sudo apt-get=
+ install libboost-all-dev libusb-1.0-0-dev doxygen python3-docutils python3=
+-mako python3-numpy python3-requests python3-ruamel.yaml python3-setuptools=
+ cmake build-essential<br><br>STEP 2:=C2=A0 BUILD UHD DRIVER FROM SOURCE</d=
+iv><div>cd /home/pi<br>mkdir workarea-uhd<br>cd workarea-uhd<br>git clone <=
+a href=3D"https://github.com/EttusResearch/uhd" target=3D"_blank">https://g=
+ithub.com/EttusResearch/uhd</a><br>cd uhd<br>git checkout v4.0.0.0<br>cd ho=
+st<br>mkdir build<br>cd build<br>sudo cmake -DNEON_SIMD_ENABLE=3DOFF -DENAB=
+LE_PYTHON_API=3DON ../<br>sudo make=C2=A0 ---&gt;=C2=A0=C2=A0(ERRORS OCCUR =
+DURING &quot;MAKE&quot; PROCESS)<br><br>My system configuration is as follo=
+ws:<br>Hardware: Raspberry Pi 4 Model B Rev 1.4<br>OS: Raspbian GNU/Linux 1=
+0 (buster) (32-bit, armv7l)<br>Ettus USRP B210<br></div><div><br></div><div=
+>Does anyone know what the problem could be, and how I can resolve it?<br><=
+/div><div><br></div><div>One final note:=C2=A0 Using PyBOMBS, I was able to=
+ successfully build &amp; install the UHD driver and connect to the USRP.=
+=C2=A0 Unfortunately the PyBOMBS build does not include the Python API, whi=
+ch is what I really=C2=A0want.=C2=A0 Is there a different version of the Py=
+BOMBS build that includes the Python API?</div><div><br></div><div>Thanks &=
+amp; Regards,</div><div>Brendan.</div><div><br></div><div><br></div><div>=
+=C2=A0=C2=A0</div></div>
+<span>_______________________________________________</span><br><span>USRP-=
+users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" target=
+=3D"_blank">usrp-users@lists.ettus.com</a></span><br><span>To unsubscribe s=
+end an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" target=
+=3D"_blank">usrp-users-leave@lists.ettus.com</a></span><br></div></blockquo=
+te></div></div></blockquote></div>
+
+--000000000000dc3aeb05bf0f7ace--
+
+--===============4247734585860431568==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============4247734585860431568==--
