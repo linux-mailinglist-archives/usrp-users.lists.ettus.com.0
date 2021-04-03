@@ -2,1175 +2,525 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAFE53533AC
-	for <lists+usrp-users@lfdr.de>; Sat,  3 Apr 2021 13:14:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D6DE353402
+	for <lists+usrp-users@lfdr.de>; Sat,  3 Apr 2021 14:30:33 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 153A3383BEC
-	for <lists+usrp-users@lfdr.de>; Sat,  3 Apr 2021 07:14:18 -0400 (EDT)
-Received: from postman.dtnt.info (postman.dtnt.info [62.219.91.51])
-	by mm2.emwd.com (Postfix) with ESMTP id EE063383F10
-	for <usrp-users@lists.ettus.com>; Sat,  3 Apr 2021 07:13:22 -0400 (EDT)
-Received: from o.dtnt.email (o.dtnt.email [62.219.91.154])
-	by postman.dtnt.info (Postfix) with ESMTPS id 6718643301
-	for <usrp-users@lists.ettus.com>; Sat,  3 Apr 2021 14:12:53 +0300 (IDT)
-Received: from o.dtnt.email (o.dtnt.email [127.0.0.1])
-	by o.dtnt.email (Postfix) with ESMTP id 25BBD9FB80
-	for <usrp-users@lists.ettus.com>; Sat,  3 Apr 2021 14:12:53 +0300 (IDT)
-X-Virus-Scanned: Debian amavisd-new at o.dtnt.email
-Received: from o.dtnt.email ([127.0.0.1])
-	by o.dtnt.email (o.dtnt.email [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id t80x4xevYKOW for <usrp-users@lists.ettus.com>;
-	Sat,  3 Apr 2021 14:12:50 +0300 (IDT)
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	by o.dtnt.email (Postfix) with ESMTPSA id 675449F9C5
-	for <usrp-users@lists.ettus.com>; Sat,  3 Apr 2021 14:12:49 +0300 (IDT)
-Received: by mail-ot1-f51.google.com with SMTP id l12-20020a9d6a8c0000b0290238e0f9f0d8so7056254otq.8
-        for <usrp-users@lists.ettus.com>; Sat, 03 Apr 2021 04:12:49 -0700 (PDT)
-X-Gm-Message-State: AOAM532GDYfuPtCcmyyUm8zS0kSEV3fu/P9pF0B0MomKnawtW2VkgI+p
-	oot2WeBHsAiMEiAdfIshcbZQgL/9wXuMBlti1gs=
-X-Google-Smtp-Source: ABdhPJyGgTmdffYdHvm4DURDPZfEfrjuhjklYC9SArcTQzPYAwDK12dR1djPdzos5X5tSZXvra3bLP4qXQjuYUrgMlw=
-X-Received: by 2002:a05:6830:144e:: with SMTP id w14mr14757732otp.0.1617448366663;
- Sat, 03 Apr 2021 04:12:46 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 19BC93836C2
+	for <lists+usrp-users@lfdr.de>; Sat,  3 Apr 2021 08:30:32 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=boeing.com header.i=@boeing.com header.b="LX2e0M1P";
+	dkim-atps=neutral
+Received: from clt-mbsout-01.mbs.boeing.net (clt-mbsout-01.mbs.boeing.net [130.76.144.162])
+	by mm2.emwd.com (Postfix) with ESMTPS id C4C13383306
+	for <usrp-users@lists.ettus.com>; Sat,  3 Apr 2021 08:29:45 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by clt-mbsout-01.mbs.boeing.net (8.15.2/8.15.2/DOWNSTREAM_MBSOUT) with SMTP id 133CThep007829;
+	Sat, 3 Apr 2021 08:29:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=boeing.com;
+	s=boeing-s1912; t=1617452984;
+	bh=P67eMPR4OnVSgcnUOPXBn514Xyvpa7mF1mCrFet+gjI=;
+	h=From:To:CC:Subject:Date:From;
+	b=LX2e0M1PdSMKl0Z8c5Ai0t//qgWoqgFrO04llm/7zMT58+jHT2cW8DutrUmkOKfC1
+	 XMXSbfePAPfFtLj17NqoghxkjFgpaP7eldUVyitBqIyX5whg2LkK3gQlChp4KCl8I5
+	 rIOQGgUS4O65Db2nZzhZX1ca/SohOLaUkZbxtrEd0DTHZP55CoF4L8lsUcr31uc4b3
+	 tK3u+EzseWiMFl309Lfw6JaIrPXKbKsD97GElg0Zh95UrMxkcoZUT4Z0gOn5L/9iSA
+	 vHTMbjaDv/2wHFXMp4rJ9cvq3+Yk5rg1WdrflI2whsDXA/735yv/6rMm8UKarEQijN
+	 CjmDpgnKn2Bbg==
+Received: from XCH16-05-09.nos.boeing.com (xch16-05-09.nos.boeing.com [144.115.66.93])
+	by clt-mbsout-01.mbs.boeing.net (8.15.2/8.15.2/8.15.2/UPSTREAM_MBSOUT) with ESMTPS id 133CTb49007793
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=OK);
+	Sat, 3 Apr 2021 08:29:38 -0400
+Received: from XCH16-05-12.nos.boeing.com (144.115.66.96) by
+ XCH16-05-09.nos.boeing.com (144.115.66.93) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.1.2176.2; Sat, 3 Apr 2021 05:29:36 -0700
+Received: from XCH16-05-12.nos.boeing.com ([fe80::2853:a628:2b4e:d669]) by
+ XCH16-05-12.nos.boeing.com ([fe80::2853:a628:2b4e:d669%11]) with mapi id
+ 15.01.2176.009; Sat, 3 Apr 2021 05:29:36 -0700
+From: "Clark (US), Kenneth C" <kenneth.c.clark2@boeing.com>
+To: "brendan.horsfield@vectalabs.com" <brendan.horsfield@vectalabs.com>
+Thread-Topic: [USRP-users] Re: Problem with interfacing Raspberry Pi 4 to USRP
+ B210 with Python API
+Thread-Index: AdcohMi0sBx+25JvQ4qveshDT6GY7g==
+Date: Sat, 3 Apr 2021 12:29:36 +0000
+Message-ID: <88b0297dc16541e896eb4bac4878105c@boeing.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [144.115.204.6]
+x-tm-snts-smtp: 3D922D9AD5CFB7FAAD98D197D080DD10BABF2C4472A8DFAB99D42C45A090CAB32000:8
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <161743501505.11274.15312224976631995437@mm2.emwd.com>
-In-Reply-To: <161743501505.11274.15312224976631995437@mm2.emwd.com>
-From: Ofer Saferman <ofer@navigicom.com>
-Date: Sat, 3 Apr 2021 14:12:35 +0300
-X-Gmail-Original-Message-ID: <CACDReSwXUvJ8_LimfVOn4StHQEGhNntY-nCSv0aYdBsX=AtV_w@mail.gmail.com>
-Message-ID: <CACDReSwXUvJ8_LimfVOn4StHQEGhNntY-nCSv0aYdBsX=AtV_w@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-X-DTNT-MailScanner-Information: Please contact the ISP for more information
-X-DTNT-MailScanner-ID: 6718643301.A2C42
-X-DTNT-MailScanner: Found to be clean
-X-DTNT-MailScanner-From: ofer@navigicom.com
-X-Spam-Status: No
-Message-ID-Hash: IFP3DJLOSF4DURPRR237JU5XSQCAL42P
-X-Message-ID-Hash: IFP3DJLOSF4DURPRR237JU5XSQCAL42P
-X-MailFrom: ofer@navigicom.com
+X-TM-AS-GCONF: 00
+Message-ID-Hash: GREO563OHLYYITOPGIY6MJ4ZEJGBAQDU
+X-Message-ID-Hash: GREO563OHLYYITOPGIY6MJ4ZEJGBAQDU
+X-MailFrom: kenneth.c.clark2@boeing.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Intermittent problem with GPS synchronization for multiple E310 units
+Subject: [USRP-users] Re: Problem with interfacing Raspberry Pi 4 to USRP B210 with Python API
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IFP3DJLOSF4DURPRR237JU5XSQCAL42P/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GREO563OHLYYITOPGIY6MJ4ZEJGBAQDU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3037941604981614258=="
+Content-Transfer-Encoding: base64
 
---===============3037941604981614258==
-Content-Type: multipart/alternative; boundary="000000000000566d1705bf0f8b0e"
-
---000000000000566d1705bf0f8b0e
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello Philip,
-
-Thank you for the explanation.
-What would you suggest?
-opkg exists. There must be a way to install ntpd without needing to rebuild
-the image.
-Maybe use pybombs or other methods?
-git also works. Maybe download a different package manager and compile it?
-
-It seems that Marcus pointed out a great benefit of E310 units running
-gpsd, but without ntpd system clock can't sync and it seems that this
-feature can vastly simplify gps synchronization among E310 units.
-
-I would be very grateful if anybody can suggest a solution to install ntpd
-on E310 units running UHD 3.15 SD-card image.
-
-Regards,
-Ofer Saferman.
-
-On Sat, Apr 3, 2021 at 10:30 AM <usrp-users-request@lists.ettus.com> wrote:
-
-> Send USRP-users mailing list submissions to
->         usrp-users@lists.ettus.com
->
-> To subscribe or unsubscribe via email, send a message with subject or
-> body 'help' to
->         usrp-users-request@lists.ettus.com
->
-> You can reach the person managing the list at
->         usrp-users-owner@lists.ettus.com
->
-> When replying, please edit your Subject line so it is more specific
-> than "Re: Contents of USRP-users digest..."Today's Topics:
->
->    1. Re: Intermittent problem with GPS synchronization for multiple E310
-> units
->       (Philip Balister)
->
->
->
-> ---------- Forwarded message ----------
-> From: Philip Balister <philip@balister.org>
-> To: Ofer Saferman <ofer@navigicom.com>, "Marcus D. Leech" <
-> patchvonbraun@gmail.com>
-> Cc: Rob Kossler <rkossler@nd.edu>, usrp-users <usrp-users@lists.ettus.com>
-> Bcc:
-> Date: Fri, 2 Apr 2021 10:09:43 -0400
-> Subject: [USRP-users] Re: Intermittent problem with GPS synchronization
-> for multiple E310 units
-> On 4/2/21 7:17 AM, Ofer Saferman wrote:
-> > Marcus Hi,
-> >
-> > Your suggestion below to install ntpd does not work.
-> > The image does not include it. Although the old thread says otherwise I
-> > think it refers to an older UHD release that did include ntpd.
-> > Any accurate instructions on how to install it anyway?
-> > Maybe opkg should be configured to access another repository?
-> > Doing: opkg list | grep ntpd, does not yield anything useful so it is n=
-ot
-> > just a question of typing it correctly.
->
-> As far as I know, no image has been setup to use package feeds.
->
-> I know ntpd worked in release4 images, pretty sure the newer image was
-> redone and things have been left out that used to be there.
->
-> Philip
->
-> >
-> > Regards,
-> > Ofer Saferman
-> >
-> > On Thu, Apr 1, 2021 at 4:34 PM Marcus D. Leech <patchvonbraun@gmail.com>
-> > wrote:
-> >
-> >> On 04/01/2021 06:00 AM, Ofer Saferman wrote:
-> >>
-> >> Hello Marcus,
-> >>
-> >> I am working on E310 with the latest UHD-3.15 SD card image.
-> >> It seems not to include ntpd that is required to synchronize system ti=
-me
-> >> to GPS time.
-> >> Any idea how to install it on the E310?
-> >>
-> >> Regards,
-> >> Ofer Saferman
-> >>
-> >> sudo opkg install ntpd
-> >>
-> >> should work, but it has been a while since I installed any packages on
-> my
-> >> E310.
-> >>
-> >> The E310 is based on OpenEmbedded Linux, so all the info about
-> installing
-> >> and managing packages on OpenEmbedded apply.
-> >>
-> >>
-> >>
-> >> On Wed, Mar 31, 2021 at 11:40 PM Marcus D Leech <
-> patchvonbraun@gmail.com>
-> >> wrote:
-> >>
-> >>> Just use gettimeofday() or any of the myriad subtle variants available
-> in
-> >>> boost to get you the Linux system time, and use that in a call to
-> >>> set_time_next_pps().
-> >>>
-> >>> The fact that all your E310s will be running GPSD means they=E2=80=99=
-ll be
-> >>> adjusting system time appropriately and they=E2=80=99ll all agree on =
-what time
-> it
-> >>> is, depending on the level of precision you need.
-> >>>
-> >>> Sent from my iPhone
-> >>>
-> >>> On Mar 31, 2021, at 3:50 PM, Ofer Saferman <ofer@navigicom.com> wrote:
-> >>>
-> >>> =EF=BB=BF
-> >>> Thank you Rob. Your suggestions are always helpful. I will look into
-> >>> using gps_gpgga.
-> >>> Thank you Marcus. I am already adding one, per other examples posted
-> here
-> >>> and sync_to_gps example. Can you please comment how I can benefit from
-> the
-> >>> fact that E310 units use gpsd in Linux?
-> >>>
-> >>> Regards,
-> >>> Ofer Saferman
-> >>>
-> >>> On Wed, Mar 31, 2021 at 10:13 PM Marcus D Leech <
-> patchvonbraun@gmail.com>
-> >>> wrote:
-> >>>
-> >>>>
-> >>>>
-> >>>> Sent from my iPhone
-> >>>>
-> >>>> On Mar 31, 2021, at 2:22 PM, Rob Kossler <rkossler@nd.edu> wrote:
-> >>>>
-> >>>> =EF=BB=BF
-> >>>> Hi Ofer,
-> >>>> Take a look at the Ettus source code gps_ctrl.cpp.  In particular,
-> look
-> >>>> at the get_sentence() usage which in the case of "gps_time" waits for
-> the
-> >>>> next occurrence (wait=3Dtrue),  but for the others does not wait.  B=
-ut
-> this
-> >>>> doesn't fully explain the behavior you are seeing.  If you do the
-> following:
-> >>>> 1) wait for PPS time to change
-> >>>> 2) read the "gps_time" sensor
-> >>>> 3) set_time_next_pps (use the value you just read)
-> >>>>
-> >>>> Add 1 to the time you just read before calling set_time_next_pps.
-> >>>>
-> >>>>
-> >>>> It should still work because the "gps_time" command should just wait
-> >>>> until the next PPS.  I guess it depends upon how "synchronized" are
-> the
-> >>>> received NMEA string with the PPS edge.  Step 1 above waits for the
-> PPS
-> >>>> edge, but maybe the NMEA string arrives 0.1 secs before or after
-> that.  I
-> >>>> don't really know.  Perhaps you need to switch to using "gps_gpgga"
-> such
-> >>>> that there is no additional wait added and also perhaps you should
-> add step
-> >>>> 1B which would be just a fixed delay of perhaps 0.4 secs so that you
-> will
-> >>>> read the NMEA string in between the PPS edges.
-> >>>> Rob
-> >>>>
-> >>>> On Wed, Mar 31, 2021 at 1:22 PM Rob Kossler <rkossler@nd.edu> wrote:
-> >>>>
-> >>>>> Hi Ofer,
-> >>>>> I don't know why the "gps_time" sensor takes long to read. But, can
-> you
-> >>>>> try the other sensors (perhaps there is a "gps_gpgga" sensor?)?  The
-> time
-> >>>>> is embedded in these as well.
-> >>>>> Rob
-> >>>>>
-> >>>>>
-> >>>>> On Wed, Mar 31, 2021 at 12:21 PM Ofer Saferman <ofer@navigicom.com>
-> >>>>> wrote:
-> >>>>>
-> >>>>>> Marcus Hi,
-> >>>>>>
-> >>>>>> If the gps_time "sensor" returns a value only once per second how
-> come
-> >>>>>> I manage to read it sometimes in less than 1 second?
-> >>>>>> In my code the situation is worse than the simple example below. It
-> >>>>>> usually takes more than 1 sec. to read it and sometimes even 1.7 or
-> 1.8
-> >>>>>> seconds. I don't understand how the size or complexity of the code
-> affects
-> >>>>>> the time it takes to read gps_time.
-> >>>>>>
-> >>>>>> How to treat your comment about the use of GPSD and good
-> >>>>>> synchronization as it relates to code?
-> >>>>>> Should I not change the time source in code and go through the who=
-le
-> >>>>>> process of synchronization using gps_time?
-> >>>>>> Can I "assume" the systems are synced just by the effect they were
-> >>>>>> connected enough time to a GPS antenna? and then just access their
-> time -
-> >>>>>> radio_ctrl->get_time_last_pps()?
-> >>>>>> How to use this information programmatically?
-> >>>>>>
-> >>>>>> Regards,
-> >>>>>> Ofer Saferman
-> >>>>>>
-> >>>>>>
-> >>>>>> ---------- Forwarded message ----------
-> >>>>>>> From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-> >>>>>>> To: usrp-users@lists.ettus.com
-> >>>>>>> Cc:
-> >>>>>>> Bcc:
-> >>>>>>> Date: Wed, 31 Mar 2021 09:19:20 -0400
-> >>>>>>> Subject: [USRP-users] Re: Intermittent problem with GPS
-> >>>>>>> synchronization for multiple E310 units
-> >>>>>>> On 03/31/2021 06:49 AM, Ofer Saferman wrote:
-> >>>>>>>> Hello,
-> >>>>>>>>
-> >>>>>>>> I have a system that uses 4 USRP E310 units.
-> >>>>>>>> Each unit is connected to a GPS antenna.
-> >>>>>>>> Time source is set to gpsdo.
-> >>>>>>>>
-> >>>>>>>> I run the same software remotely on all 4 units from a PC.
-> Software
-> >>>>>>>> runs on the units themselves.
-> >>>>>>>> I print out messages to show if the reference is locked and the
-> GPS
-> >>>>>>> is
-> >>>>>>>> locked and also what is the GPS time that each unit was
-> >>>>>>> synchronized to.
-> >>>>>>>> In some cases the units synchronize to the same GPS time and in
-> >>>>>>> other
-> >>>>>>>> cases there is 1 second difference between GPS time of different
-> >>>>>>> units
-> >>>>>>>> thus causing the units to be unsynchronized.
-> >>>>>>>>
-> >>>>>>>> I was wondering how this was possible.
-> >>>>>>>> The synchronization process (documented by others in the past on
-> >>>>>>> the
-> >>>>>>>> mailing list) is:
-> >>>>>>>> * Wait for ref and GPS lock
-> >>>>>>>> * Wait for a pps edge (get_time_last_pps)
-> >>>>>>>> * Read gps_time value
-> >>>>>>>> * Sync system clock to GPS clock on next PPS edge
-> >>>>>>> (set_time_next_pps +
-> >>>>>>>> 1.0 sec)
-> >>>>>>>>
-> >>>>>>>> Something similar is also implemented in the sync_to_gps example.
-> >>>>>>>>
-> >>>>>>>> In order to debug the problem I decided to time the reading of t=
-he
-> >>>>>>>> gps_time sensor to see if there is a clue why different units mi=
-ss
-> >>>>>>> the
-> >>>>>>>> PPS edge and lock to a time of the next second.
-> >>>>>>>>
-> >>>>>>>> I was very surprised to find out that it takes between 0.9 to 1.2
-> >>>>>>>> seconds to read the gps_time sensor.
-> >>>>>>>> This explains exactly why it is difficult to synchronize multiple
-> >>>>>>>> units to the same time instance because if one unit takes 0.9
-> >>>>>>> seconds
-> >>>>>>>> to read the sensor and the other unit takes 1.2 seconds to read
-> the
-> >>>>>>>> sensor then each unit will lock on a different GPS time 1 second
-> >>>>>>> apart.
-> >>>>>>>>
-> >>>>>>>> Here is a short software I wrote to time the gps_time sensor
-> >>>>>>> reading:
-> >>>>>>>> ---------------------------------------------------------
-> >>>>>>>> #include <uhd/utils/safe_main.hpp>
-> >>>>>>>> #include <uhd/device3.hpp>
-> >>>>>>>> //#include <uhd/usrp/multi_usrp.hpp>
-> >>>>>>>> #include <uhd/types/sensors.hpp>
-> >>>>>>>> #include <boost/program_options.hpp>
-> >>>>>>>> #include <boost/format.hpp>
-> >>>>>>>> #include <chrono>
-> >>>>>>>> #include <iostream>
-> >>>>>>>>
-> >>>>>>>> namespace po =3D boost::program_options;
-> >>>>>>>>
-> >>>>>>>> int UHD_SAFE_MAIN(int argc, char *argv[]){
-> >>>>>>>>
-> >>>>>>>> std::string args;
-> >>>>>>>>
-> >>>>>>>>     po::options_description desc("Allowed options");
-> >>>>>>>>     desc.add_options()
-> >>>>>>>>         ("help", "help message")
-> >>>>>>>> ("args", po::value<std::string>(&args)->default_value(""), "devi=
-ce
-> >>>>>>>> address args")
-> >>>>>>>>     ;
-> >>>>>>>>
-> >>>>>>>>     po::variables_map vm;
-> >>>>>>>>     po::store(po::parse_command_line(argc, argv, desc), vm);
-> >>>>>>>>     po::notify(vm);
-> >>>>>>>>
-> >>>>>>>>     //print the help message
-> >>>>>>>>     if (vm.count("help")){
-> >>>>>>>>         std::cout << boost::format("Timinig of gps_time: %s") %
-> >>>>>>> desc
-> >>>>>>>> << std::endl;
-> >>>>>>>>         return ~0;
-> >>>>>>>>     }
-> >>>>>>>>
-> >>>>>>>> uhd::device3::sptr usrp =3D uhd::device3::make(args);
-> >>>>>>>> //uhd::usrp::multi_usrp::sptr usrp =3D
-> >>>>>>> uhd::usrp::multi_usrp::make(args);
-> >>>>>>>>
-> >>>>>>>> uhd::sensor_value_t gps_time =3D
-> >>>>>>>>
-> >>>>>>>
-> usrp->get_tree()->access<uhd::sensor_value_t>("/mboards/0/sensors/gps_tim=
-e").get();
-> >>>>>>>> //uhd::sensor_value_t gps_time =3D
-> >>>>>>> usrp->get_mboard_sensor("gps_time", 0);
-> >>>>>>>>
-> >>>>>>>> std::chrono::steady_clock::time_point start_time, end_time;
-> >>>>>>>> std::chrono::duration<double> time_diff; // Default unit for
-> >>>>>>> duration
-> >>>>>>>> is seconds.
-> >>>>>>>>
-> >>>>>>>> for(int ii=3D0 ; ii<20 ; ii++)
-> >>>>>>>> {
-> >>>>>>>> start_time =3D std::chrono::steady_clock::now();
-> >>>>>>>> gps_time =3D
-> >>>>>>>>
-> >>>>>>>
-> usrp->get_tree()->access<uhd::sensor_value_t>("/mboards/0/sensors/gps_tim=
-e").get();
-> >>>>>>>> //gps_time =3D usrp->get_mboard_sensor("gps_time", 0);
-> >>>>>>>> end_time =3D std::chrono::steady_clock::now();
-> >>>>>>>> time_diff =3D end_time - start_time;
-> >>>>>>>>
-> >>>>>>>> std::cout << "gps_time[" << (boost::format("%02d") % ii) << "]: "
-> >>>>>>> <<
-> >>>>>>>> int64_t(gps_time.to_int()) << ". Time to read \"gps_time\": " <<
-> >>>>>>>> (boost::format("%0.9f") % time_diff.count()) << " seconds" <<
-> >>>>>>> std::endl;
-> >>>>>>>> }
-> >>>>>>>>
-> >>>>>>>>     return 0;
-> >>>>>>>> }
-> >>>>>>>>
-> >>>>>>>
-> -------------------------------------------------------------------------=
--------
-> >>>>>>>> Here are the results of one typical run:
-> >>>>>>>> gps_time[00]: 1617183840. Time to read "gps_time": 0.884164380
-> >>>>>>> seconds
-> >>>>>>>> gps_time[01]: 1617183841. Time to read "gps_time": 0.877966469
-> >>>>>>> seconds
-> >>>>>>>> gps_time[02]: 1617183842. Time to read "gps_time": 1.170869661
-> >>>>>>> seconds
-> >>>>>>>> gps_time[03]: 1617183843. Time to read "gps_time": 0.882917987
-> >>>>>>> seconds
-> >>>>>>>> gps_time[04]: 1617183844. Time to read "gps_time": 1.172120154
-> >>>>>>> seconds
-> >>>>>>>> gps_time[05]: 1617183845. Time to read "gps_time": 0.879271985
-> >>>>>>> seconds
-> >>>>>>>> gps_time[06]: 1617183846. Time to read "gps_time": 0.878609099
-> >>>>>>> seconds
-> >>>>>>>> gps_time[07]: 1617183847. Time to read "gps_time": 1.115639282
-> >>>>>>> seconds
-> >>>>>>>> gps_time[08]: 1617183848. Time to read "gps_time": 1.125365551
-> >>>>>>> seconds
-> >>>>>>>> gps_time[09]: 1617183849. Time to read "gps_time": 0.843803231
-> >>>>>>> seconds
-> >>>>>>>> gps_time[10]: 1617183850. Time to read "gps_time": 1.125065740
-> >>>>>>> seconds
-> >>>>>>>> gps_time[11]: 1617183851. Time to read "gps_time": 0.847519817
-> >>>>>>> seconds
-> >>>>>>>> gps_time[12]: 1617183852. Time to read "gps_time": 1.121398945
-> >>>>>>> seconds
-> >>>>>>>> gps_time[13]: 1617183853. Time to read "gps_time": 0.844371533
-> >>>>>>> seconds
-> >>>>>>>> gps_time[14]: 1617183854. Time to read "gps_time": 1.124722726
-> >>>>>>> seconds
-> >>>>>>>> gps_time[15]: 1617183855. Time to read "gps_time": 0.845688380
-> >>>>>>> seconds
-> >>>>>>>> gps_time[16]: 1617183856. Time to read "gps_time": 1.129568096
-> >>>>>>> seconds
-> >>>>>>>> gps_time[17]: 1617183857. Time to read "gps_time": 0.882436229
-> >>>>>>> seconds
-> >>>>>>>> gps_time[18]: 1617183858. Time to read "gps_time": 1.168227593
-> >>>>>>> seconds
-> >>>>>>>> gps_time[19]: 1617183859. Time to read "gps_time": 0.881948247
-> >>>>>>> seconds
-> >>>>>>>>
-> >>>>>>>
-> -------------------------------------------------------------------------=
-----------
-> >>>>>>>> In the code you can find commented out the usual way to access t=
-he
-> >>>>>>>> sensor using multi_usrp and get_mboard_sensor. The results are
-> >>>>>>> quite
-> >>>>>>>> similar.
-> >>>>>>>>
-> >>>>>>>> I wonder if anybody encountered this issue before or addressed it
-> >>>>>>> in
-> >>>>>>>> any way.
-> >>>>>>>> I wonder why it takes so much time to get the value of GPS time
-> >>>>>>> when
-> >>>>>>>> it is a simple parsing of an NMEA message coming from the GPS
-> >>>>>>> receiver.
-> >>>>>>>>
-> >>>>>>>> I am trying now various tricks to make the software robust and
-> >>>>>>> immune
-> >>>>>>>> to this phenomenon. I can report my findings further if I succeed
-> >>>>>>> to
-> >>>>>>>> find a workaround if there is any interest.
-> >>>>>>>>
-> >>>>>>>> Can anyone comment on this? Can this be resolved so that the
-> >>>>>>> reading
-> >>>>>>>> of gps_time will be much faster?
-> >>>>>>>> Is there another way to get GPS time faster indirectly? Maybe fr=
-om
-> >>>>>>>> parsing NMEA messages ourselves?
-> >>>>>>>>
-> >>>>>>>> Regards,
-> >>>>>>>> Ofer Saferman
-> >>>>>>>>
-> >>>>>>> This probably has to do with the way that particular "sensor"
-> >>>>>>> works--the
-> >>>>>>> NMEA time value is only emitted once per second, and the
-> >>>>>>>    code for that sensor has some heuristic for determining
-> >>>>>>> "freshness"
-> >>>>>>> of the value.
-> >>>>>>>
-> >>>>>>> I'll point out that on E310, the system is configured to use GPSD,
-> so
-> >>>>>>> that the Linux system time across several systems that have all
-> been
-> >>>>>>>    "listening" to GPS for a while will all be synchronized quite
-> well.
-> >>>>>>>
-> >>>>>>>
-> >>>>>>>
-> >>>>>>>
-> >>>>>> --
-> >>>>>> This message has been scanned for viruses and
-> >>>>>> dangerous content by *MailScanner* <http://www.mailscanner.info/>,
-> >>>>>> and is
-> >>>>>> believed to be clean.
-> _______________________________________________
-> >>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
-> >>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> >>>>>>
-> >>>>> _______________________________________________
-> >>>> USRP-users mailing list -- usrp-users@lists.ettus.com
-> >>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> >>>>
-> >>>>
-> >>> --
-> >>> This message has been scanned for viruses and
-> >>> dangerous content by *MailScanner* <http://www.mailscanner.info/>, and
-> >>> is
-> >>> believed to be clean.
-> >>>
-> >>>
-> >> --
-> >> This message has been scanned for viruses and
-> >> dangerous content by *MailScanner* <http://www.mailscanner.info/>, and
-> is
-> >> believed to be clean.
-> >>
-> >>
-> >>
-> >
-> >
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
-> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> > _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---=20
-This message has been scanned for viruses and
-dangerous content by MailScanner, and is
-believed to be clean.
-
-
---000000000000566d1705bf0f8b0e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Hello Philip,</div><div dir=3D"ltr"><br><=
-/div><div>Thank you for the explanation.</div><div>What would you suggest?<=
-/div><div>opkg exists. There must be a way to install ntpd without needing =
-to rebuild the image.</div><div>Maybe use pybombs or other methods?</div><d=
-iv>git also works. Maybe download a different package manager and compile i=
-t?</div><div><br></div><div>It seems that Marcus pointed out a great benefi=
-t of E310 units running gpsd, but without ntpd system clock can&#39;t sync =
-and it seems that this feature can vastly simplify gps synchronization amon=
-g E310 units.</div><div><br></div><div>I would be very grateful if anybody =
-can suggest a solution to install ntpd on E310 units running UHD 3.15 SD-ca=
-rd image.</div><div><br></div><div>Regards,</div><div>Ofer Saferman.<br></d=
-iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Sat, Apr 3, 2021 at 10:30 AM &lt;<a href=3D"mailto:usrp-users-request@lists=
-.ettus.com">usrp-users-request@lists.ettus.com</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex">Send USRP-users mailing list =
-submissions to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users@lists.ettus.com" t=
-arget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-<br>
-To subscribe or unsubscribe via email, send a message with subject or<br>
-body &#39;help&#39; to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users-request@lists.ettu=
-s.com" target=3D"_blank">usrp-users-request@lists.ettus.com</a><br>
-<br>
-You can reach the person managing the list at<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users-owner@lists.ettus.=
-com" target=3D"_blank">usrp-users-owner@lists.ettus.com</a><br>
-<br>
-When replying, please edit your Subject line so it is more specific<br>
-than &quot;Re: Contents of USRP-users digest...&quot;Today&#39;s Topics:<br>
-<br>
-=C2=A0 =C2=A01. Re: Intermittent problem with GPS synchronization for multi=
-ple E310 units<br>
-=C2=A0 =C2=A0 =C2=A0 (Philip Balister)<br>
-<br><br><br>---------- Forwarded message ----------<br>From:=C2=A0Philip Ba=
-lister &lt;<a href=3D"mailto:philip@balister.org" target=3D"_blank">philip@=
-balister.org</a>&gt;<br>To:=C2=A0Ofer Saferman &lt;<a href=3D"mailto:ofer@n=
-avigicom.com" target=3D"_blank">ofer@navigicom.com</a>&gt;, &quot;Marcus D.=
- Leech&quot; &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blan=
-k">patchvonbraun@gmail.com</a>&gt;<br>Cc:=C2=A0Rob Kossler &lt;<a href=3D"m=
-ailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt;, usrp-user=
-s &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-=
-users@lists.ettus.com</a>&gt;<br>Bcc:=C2=A0<br>Date:=C2=A0Fri, 2 Apr 2021 1=
-0:09:43 -0400<br>Subject:=C2=A0[USRP-users] Re: Intermittent problem with G=
-PS synchronization for multiple E310 units<br>On 4/2/21 7:17 AM, Ofer Safer=
-man wrote:<br>
-&gt; Marcus Hi,<br>
-&gt; <br>
-&gt; Your suggestion below to install ntpd does not work.<br>
-&gt; The image does not include it. Although the old thread says otherwise =
-I<br>
-&gt; think it refers to an older UHD release that did include ntpd.<br>
-&gt; Any accurate instructions on how to install it anyway?<br>
-&gt; Maybe opkg should be configured to access another repository?<br>
-&gt; Doing: opkg list | grep ntpd, does not yield anything useful so it is =
-not<br>
-&gt; just a question of typing it correctly.<br>
-<br>
-As far as I know, no image has been setup to use package feeds.<br>
-<br>
-I know ntpd worked in release4 images, pretty sure the newer image was<br>
-redone and things have been left out that used to be there.<br>
-<br>
-Philip<br>
-<br>
-&gt; <br>
-&gt; Regards,<br>
-&gt; Ofer Saferman<br>
-&gt; <br>
-&gt; On Thu, Apr 1, 2021 at 4:34 PM Marcus D. Leech &lt;<a href=3D"mailto:p=
-atchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;<b=
-r>
-&gt; wrote:<br>
-&gt; <br>
-&gt;&gt; On 04/01/2021 06:00 AM, Ofer Saferman wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; Hello Marcus,<br>
-&gt;&gt;<br>
-&gt;&gt; I am working on E310 with the latest UHD-3.15 SD card image.<br>
-&gt;&gt; It seems not to include ntpd that is required to synchronize syste=
-m time<br>
-&gt;&gt; to GPS time.<br>
-&gt;&gt; Any idea how to install it on the E310?<br>
-&gt;&gt;<br>
-&gt;&gt; Regards,<br>
-&gt;&gt; Ofer Saferman<br>
-&gt;&gt;<br>
-&gt;&gt; sudo opkg install ntpd<br>
-&gt;&gt;<br>
-&gt;&gt; should work, but it has been a while since I installed any package=
-s on my<br>
-&gt;&gt; E310.<br>
-&gt;&gt;<br>
-&gt;&gt; The E310 is based on OpenEmbedded Linux, so all the info about ins=
-talling<br>
-&gt;&gt; and managing packages on OpenEmbedded apply.<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; On Wed, Mar 31, 2021 at 11:40 PM Marcus D Leech &lt;<a href=3D"mai=
-lto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&=
-gt;<br>
-&gt;&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt;&gt; Just use gettimeofday() or any of the myriad subtle variants a=
-vailable in<br>
-&gt;&gt;&gt; boost to get you the Linux system time, and use that in a call=
- to<br>
-&gt;&gt;&gt; set_time_next_pps().<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; The fact that all your E310s will be running GPSD means they=
-=E2=80=99ll be<br>
-&gt;&gt;&gt; adjusting system time appropriately and they=E2=80=99ll all ag=
-ree on what time it<br>
-&gt;&gt;&gt; is, depending on the level of precision you need.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Sent from my iPhone<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; On Mar 31, 2021, at 3:50 PM, Ofer Saferman &lt;<a href=3D"mail=
-to:ofer@navigicom.com" target=3D"_blank">ofer@navigicom.com</a>&gt; wrote:<=
-br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; =EF=BB=BF<br>
-&gt;&gt;&gt; Thank you Rob. Your suggestions are always helpful. I will loo=
-k into<br>
-&gt;&gt;&gt; using gps_gpgga.<br>
-&gt;&gt;&gt; Thank you Marcus. I am already adding one, per other examples =
-posted here<br>
-&gt;&gt;&gt; and sync_to_gps example. Can you please comment how I can bene=
-fit from the<br>
-&gt;&gt;&gt; fact that E310 units use gpsd in Linux?<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Regards,<br>
-&gt;&gt;&gt; Ofer Saferman<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; On Wed, Mar 31, 2021 at 10:13 PM Marcus D Leech &lt;<a href=3D=
-"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com<=
-/a>&gt;<br>
-&gt;&gt;&gt; wrote:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Sent from my iPhone<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; On Mar 31, 2021, at 2:22 PM, Rob Kossler &lt;<a href=3D"ma=
-ilto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; =EF=BB=BF<br>
-&gt;&gt;&gt;&gt; Hi Ofer,<br>
-&gt;&gt;&gt;&gt; Take a look at the Ettus source code gps_ctrl.cpp.=C2=A0 I=
-n particular, look<br>
-&gt;&gt;&gt;&gt; at the get_sentence() usage which in the case of &quot;gps=
-_time&quot; waits for the<br>
-&gt;&gt;&gt;&gt; next occurrence (wait=3Dtrue),=C2=A0 but for the others do=
-es not wait.=C2=A0 But this<br>
-&gt;&gt;&gt;&gt; doesn&#39;t fully explain the behavior you are seeing.=C2=
-=A0 If you do the following:<br>
-&gt;&gt;&gt;&gt; 1) wait for PPS time to change<br>
-&gt;&gt;&gt;&gt; 2) read the &quot;gps_time&quot; sensor<br>
-&gt;&gt;&gt;&gt; 3) set_time_next_pps (use the value you just read)<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Add 1 to the time you just read before calling set_time_ne=
-xt_pps.<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; It should still work because the &quot;gps_time&quot; comm=
-and should just wait<br>
-&gt;&gt;&gt;&gt; until the next PPS.=C2=A0 I guess it depends upon how &quo=
-t;synchronized&quot; are the<br>
-&gt;&gt;&gt;&gt; received NMEA string with the PPS edge.=C2=A0 Step 1 above=
- waits for the PPS<br>
-&gt;&gt;&gt;&gt; edge, but maybe the NMEA string arrives 0.1 secs before or=
- after that.=C2=A0 I<br>
-&gt;&gt;&gt;&gt; don&#39;t really know.=C2=A0 Perhaps you need to switch to=
- using &quot;gps_gpgga&quot; such<br>
-&gt;&gt;&gt;&gt; that there is no additional wait added and also perhaps yo=
-u should add step<br>
-&gt;&gt;&gt;&gt; 1B which would be just a fixed delay of perhaps 0.4 secs s=
-o that you will<br>
-&gt;&gt;&gt;&gt; read the NMEA string in between the PPS edges.<br>
-&gt;&gt;&gt;&gt; Rob<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; On Wed, Mar 31, 2021 at 1:22 PM Rob Kossler &lt;<a href=3D=
-"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<b=
-r>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; Hi Ofer,<br>
-&gt;&gt;&gt;&gt;&gt; I don&#39;t know why the &quot;gps_time&quot; sensor t=
-akes long to read. But, can you<br>
-&gt;&gt;&gt;&gt;&gt; try the other sensors (perhaps there is a &quot;gps_gp=
-gga&quot; sensor?)?=C2=A0 The time<br>
-&gt;&gt;&gt;&gt;&gt; is embedded in these as well.<br>
-&gt;&gt;&gt;&gt;&gt; Rob<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; On Wed, Mar 31, 2021 at 12:21 PM Ofer Saferman &lt;<a =
-href=3D"mailto:ofer@navigicom.com" target=3D"_blank">ofer@navigicom.com</a>=
-&gt;<br>
-&gt;&gt;&gt;&gt;&gt; wrote:<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Marcus Hi,<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; If the gps_time &quot;sensor&quot; returns a value=
- only once per second how come<br>
-&gt;&gt;&gt;&gt;&gt;&gt; I manage to read it sometimes in less than 1 secon=
-d?<br>
-&gt;&gt;&gt;&gt;&gt;&gt; In my code the situation is worse than the simple =
-example below. It<br>
-&gt;&gt;&gt;&gt;&gt;&gt; usually takes more than 1 sec. to read it and some=
-times even 1.7 or 1.8<br>
-&gt;&gt;&gt;&gt;&gt;&gt; seconds. I don&#39;t understand how the size or co=
-mplexity of the code affects<br>
-&gt;&gt;&gt;&gt;&gt;&gt; the time it takes to read gps_time.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; How to treat your comment about the use of GPSD an=
-d good<br>
-&gt;&gt;&gt;&gt;&gt;&gt; synchronization as it relates to code?<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Should I not change the time source in code and go=
- through the whole<br>
-&gt;&gt;&gt;&gt;&gt;&gt; process of synchronization using gps_time?<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Can I &quot;assume&quot; the systems are synced ju=
-st by the effect they were<br>
-&gt;&gt;&gt;&gt;&gt;&gt; connected enough time to a GPS antenna? and then j=
-ust access their time -<br>
-&gt;&gt;&gt;&gt;&gt;&gt; radio_ctrl-&gt;get_time_last_pps()?<br>
-&gt;&gt;&gt;&gt;&gt;&gt; How to use this information programmatically?<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Regards,<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Ofer Saferman<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; ---------- Forwarded message ----------<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; From: &quot;Marcus D. Leech&quot; &lt;<a href=
-=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.c=
-om</a>&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; To: <a href=3D"mailto:usrp-users@lists.ettus.c=
-om" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; Cc:<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; Bcc:<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; Date: Wed, 31 Mar 2021 09:19:20 -0400<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; Subject: [USRP-users] Re: Intermittent problem=
- with GPS<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; synchronization for multiple E310 units<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; On 03/31/2021 06:49 AM, Ofer Saferman wrote:<b=
-r>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Hello,<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I have a system that uses 4 USRP E310 unit=
-s.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Each unit is connected to a GPS antenna.<b=
-r>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time source is set to gpsdo.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I run the same software remotely on all 4 =
-units from a PC. Software<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; runs on the units themselves.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I print out messages to show if the refere=
-nce is locked and the GPS<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; is<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; locked and also what is the GPS time that =
-each unit was<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; synchronized to.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; In some cases the units synchronize to the=
- same GPS time and in<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; other<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; cases there is 1 second difference between=
- GPS time of different<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; units<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; thus causing the units to be unsynchronize=
-d.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I was wondering how this was possible.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; The synchronization process (documented by=
- others in the past on<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; the<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; mailing list) is:<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; * Wait for ref and GPS lock<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; * Wait for a pps edge (get_time_last_pps)<=
-br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; * Read gps_time value<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; * Sync system clock to GPS clock on next P=
-PS edge<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; (set_time_next_pps +<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.0 sec)<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Something similar is also implemented in t=
-he sync_to_gps example.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; In order to debug the problem I decided to=
- time the reading of the<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time sensor to see if there is a clue =
-why different units miss<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; the<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; PPS edge and lock to a time of the next se=
-cond.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I was very surprised to find out that it t=
-akes between 0.9 to 1.2<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds to read the gps_time sensor.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; This explains exactly why it is difficult =
-to synchronize multiple<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; units to the same time instance because if=
- one unit takes 0.9<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; to read the sensor and the other unit take=
-s 1.2 seconds to read the<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; sensor then each unit will lock on a diffe=
-rent GPS time 1 second<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; apart.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Here is a short software I wrote to time t=
-he gps_time sensor<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; reading:<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ------------------------------------------=
----------------<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; #include &lt;uhd/utils/safe_main.hpp&gt;<b=
-r>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; #include &lt;uhd/device3.hpp&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; //#include &lt;uhd/usrp/multi_usrp.hpp&gt;=
-<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; #include &lt;uhd/types/sensors.hpp&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; #include &lt;boost/program_options.hpp&gt;=
-<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; #include &lt;boost/format.hpp&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; #include &lt;chrono&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; #include &lt;iostream&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; namespace po =3D boost::program_options;<b=
-r>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; int UHD_SAFE_MAIN(int argc, char *argv[]){=
-<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::string args;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0po::options_description=
- desc(&quot;Allowed options&quot;);<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0desc.add_options()<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(&quot;he=
-lp&quot;, &quot;help message&quot;)<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; (&quot;args&quot;, po::value&lt;std::strin=
-g&gt;(&amp;args)-&gt;default_value(&quot;&quot;), &quot;device<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; address args&quot;)<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0po::variables_map vm;<b=
-r>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0po::store(po::parse_com=
-mand_line(argc, argv, desc), vm);<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0po::notify(vm);<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0//print the help messag=
-e<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0if (vm.count(&quot;help=
-&quot;)){<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0std::cout=
- &lt;&lt; boost::format(&quot;Timinig of gps_time: %s&quot;) %<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; desc<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;&lt; std::endl;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return ~0=
-;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; uhd::device3::sptr usrp =3D uhd::device3::=
-make(args);<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; //uhd::usrp::multi_usrp::sptr usrp =3D<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; uhd::usrp::multi_usrp::make(args);<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; uhd::sensor_value_t gps_time =3D<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; usrp-&gt;get_tree()-&gt;access&lt;uhd::sensor_=
-value_t&gt;(&quot;/mboards/0/sensors/gps_time&quot;).get();<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; //uhd::sensor_value_t gps_time =3D<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; usrp-&gt;get_mboard_sensor(&quot;gps_time&quot=
-;, 0);<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::chrono::steady_clock::time_point star=
-t_time, end_time;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::chrono::duration&lt;double&gt; time_d=
-iff; // Default unit for<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; duration<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; is seconds.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; for(int ii=3D0 ; ii&lt;20 ; ii++)<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; {<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; start_time =3D std::chrono::steady_clock::=
-now();<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time =3D<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; usrp-&gt;get_tree()-&gt;access&lt;uhd::sensor_=
-value_t&gt;(&quot;/mboards/0/sensors/gps_time&quot;).get();<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; //gps_time =3D usrp-&gt;get_mboard_sensor(=
-&quot;gps_time&quot;, 0);<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; end_time =3D std::chrono::steady_clock::no=
-w();<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; time_diff =3D end_time - start_time;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::cout &lt;&lt; &quot;gps_time[&quot; &=
-lt;&lt; (boost::format(&quot;%02d&quot;) % ii) &lt;&lt; &quot;]: &quot;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;&lt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; int64_t(gps_time.to_int()) &lt;&lt; &quot;=
-. Time to read \&quot;gps_time\&quot;: &quot; &lt;&lt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; (boost::format(&quot;%0.9f&quot;) % time_d=
-iff.count()) &lt;&lt; &quot; seconds&quot; &lt;&lt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::endl;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; }<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0return 0;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; }<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; ----------------------------------------------=
-----------------------------------<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Here are the results of one typical run:<b=
-r>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[00]: 1617183840. Time to read &qu=
-ot;gps_time&quot;: 0.884164380<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[01]: 1617183841. Time to read &qu=
-ot;gps_time&quot;: 0.877966469<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[02]: 1617183842. Time to read &qu=
-ot;gps_time&quot;: 1.170869661<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[03]: 1617183843. Time to read &qu=
-ot;gps_time&quot;: 0.882917987<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[04]: 1617183844. Time to read &qu=
-ot;gps_time&quot;: 1.172120154<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[05]: 1617183845. Time to read &qu=
-ot;gps_time&quot;: 0.879271985<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[06]: 1617183846. Time to read &qu=
-ot;gps_time&quot;: 0.878609099<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[07]: 1617183847. Time to read &qu=
-ot;gps_time&quot;: 1.115639282<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[08]: 1617183848. Time to read &qu=
-ot;gps_time&quot;: 1.125365551<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[09]: 1617183849. Time to read &qu=
-ot;gps_time&quot;: 0.843803231<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[10]: 1617183850. Time to read &qu=
-ot;gps_time&quot;: 1.125065740<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[11]: 1617183851. Time to read &qu=
-ot;gps_time&quot;: 0.847519817<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[12]: 1617183852. Time to read &qu=
-ot;gps_time&quot;: 1.121398945<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[13]: 1617183853. Time to read &qu=
-ot;gps_time&quot;: 0.844371533<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[14]: 1617183854. Time to read &qu=
-ot;gps_time&quot;: 1.124722726<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[15]: 1617183855. Time to read &qu=
-ot;gps_time&quot;: 0.845688380<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[16]: 1617183856. Time to read &qu=
-ot;gps_time&quot;: 1.129568096<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[17]: 1617183857. Time to read &qu=
-ot;gps_time&quot;: 0.882436229<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[18]: 1617183858. Time to read &qu=
-ot;gps_time&quot;: 1.168227593<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[19]: 1617183859. Time to read &qu=
-ot;gps_time&quot;: 0.881948247<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; ----------------------------------------------=
--------------------------------------<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; In the code you can find commented out the=
- usual way to access the<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; sensor using multi_usrp and get_mboard_sen=
-sor. The results are<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; quite<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; similar.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I wonder if anybody encountered this issue=
- before or addressed it<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; in<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; any way.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I wonder why it takes so much time to get =
-the value of GPS time<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; when<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; it is a simple parsing of an NMEA message =
-coming from the GPS<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; receiver.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I am trying now various tricks to make the=
- software robust and<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; immune<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; to this phenomenon. I can report my findin=
-gs further if I succeed<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; to<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; find a workaround if there is any interest=
-.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Can anyone comment on this? Can this be re=
-solved so that the<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; reading<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; of gps_time will be much faster?<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Is there another way to get GPS time faste=
-r indirectly? Maybe from<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; parsing NMEA messages ourselves?<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Regards,<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Ofer Saferman<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; This probably has to do with the way that part=
-icular &quot;sensor&quot;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; works--the<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; NMEA time value is only emitted once per secon=
-d, and the<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 code for that sensor has some heu=
-ristic for determining<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; &quot;freshness&quot;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; of the value.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; I&#39;ll point out that on E310, the system is=
- configured to use GPSD, so<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; that the Linux system time across several syst=
-ems that have all been<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 &quot;listening&quot; to GPS for =
-a while will all be synchronized quite well.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; --<br>
-&gt;&gt;&gt;&gt;&gt;&gt; This message has been scanned for viruses and<br>
-&gt;&gt;&gt;&gt;&gt;&gt; dangerous content by *MailScanner* &lt;<a href=3D"=
-http://www.mailscanner.info/" rel=3D"noreferrer" target=3D"_blank">http://w=
-ww.mailscanner.info/</a>&gt;,<br>
-&gt;&gt;&gt;&gt;&gt;&gt; and is<br>
-&gt;&gt;&gt;&gt;&gt;&gt; believed to be clean. ____________________________=
-___________________<br>
-&gt;&gt;&gt;&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-=
-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt;&gt;&gt;&gt;&gt;&gt; To unsubscribe send an email to <a href=3D"mailto:=
-usrp-users-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.=
-ettus.com</a><br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; _______________________________________________<br>
-&gt;&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@li=
-sts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt;&gt;&gt;&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-use=
-rs-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.co=
-m</a><br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt; --<br>
-&gt;&gt;&gt; This message has been scanned for viruses and<br>
-&gt;&gt;&gt; dangerous content by *MailScanner* &lt;<a href=3D"http://www.m=
-ailscanner.info/" rel=3D"noreferrer" target=3D"_blank">http://www.mailscann=
-er.info/</a>&gt;, and<br>
-&gt;&gt;&gt; is<br>
-&gt;&gt;&gt; believed to be clean.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt; --<br>
-&gt;&gt; This message has been scanned for viruses and<br>
-&gt;&gt; dangerous content by *MailScanner* &lt;<a href=3D"http://www.mails=
-canner.info/" rel=3D"noreferrer" target=3D"_blank">http://www.mailscanner.i=
-nfo/</a>&gt;, and is<br>
-&gt;&gt; believed to be clean.<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt; <br>
-&gt; <br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
-ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-&gt; _______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
-<br />--=20
-<br />This message has been scanned for viruses and
-<br />dangerous content by
-<a href=3D"http://www.mailscanner.info/"><b>MailScanner</b></a>, and is
-<br />believed to be clean.
-
-
---000000000000566d1705bf0f8b0e--
-
---===============3037941604981614258==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============3037941604981614258==--
+DQpJIGhhZCB0aGUgc2FtZSBwcm9ibGVtIGJ1aWxkIFVIRCBvbiBSUGk0DQoNCkFuc3dlciBoZXJl
+Og0KaHR0cHM6Ly9naXRsYWIua2l0d2FyZS5jb20vY21ha2UvY21ha2UvLS9pc3N1ZXMvMjExNzQN
+Cg0KQWRkIHRvIENNYWtlIGNhbGw6DQotRENNQUtFX0VYRV9MSU5LRVJfRkxBR1M9Ii1sYXRvbWlj
+Ig0KDQpSZWdhcmRzLA0KDQpLZW4NCg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJv
+bTogdXNycC11c2Vycy1yZXF1ZXN0QGxpc3RzLmV0dHVzLmNvbSBbbWFpbHRvOnVzcnAtdXNlcnMt
+cmVxdWVzdEBsaXN0cy5ldHR1cy5jb21dDQpTZW50OiBTYXR1cmRheSwgQXByaWwgMywgMjAyMSAx
+MToxMw0KVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBbRVhURVJOQUxd
+IFVTUlAtdXNlcnMgRGlnZXN0LCBWb2wgMTI4LCBJc3N1ZSA3DQoNCkVYVCBlbWFpbDogYmUgbWlu
+ZGZ1bCBvZiBsaW5rcy9hdHRhY2htZW50cy4NCg0KDQoNClNlbmQgVVNSUC11c2VycyBtYWlsaW5n
+IGxpc3Qgc3VibWlzc2lvbnMgdG8NCiAgICAgICAgdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20N
+Cg0KVG8gc3Vic2NyaWJlIG9yIHVuc3Vic2NyaWJlIHZpYSBlbWFpbCwgc2VuZCBhIG1lc3NhZ2Ug
+d2l0aCBzdWJqZWN0IG9yIGJvZHkgJ2hlbHAnIHRvDQogICAgICAgIHVzcnAtdXNlcnMtcmVxdWVz
+dEBsaXN0cy5ldHR1cy5jb20NCg0KWW91IGNhbiByZWFjaCB0aGUgcGVyc29uIG1hbmFnaW5nIHRo
+ZSBsaXN0IGF0DQogICAgICAgIHVzcnAtdXNlcnMtb3duZXJAbGlzdHMuZXR0dXMuY29tDQoNCldo
+ZW4gcmVwbHlpbmcsIHBsZWFzZSBlZGl0IHlvdXIgU3ViamVjdCBsaW5lIHNvIGl0IGlzIG1vcmUg
+c3BlY2lmaWMgdGhhbiAiUmU6IENvbnRlbnRzIG9mIFVTUlAtdXNlcnMgZGlnZXN0Li4uIg0KDQpU
+b2RheSdzIFRvcGljczoNCg0KICAgMS4gUmU6IFByb2JsZW0gd2l0aCBpbnRlcmZhY2luZyBSYXNw
+YmVycnkgUGkgNCB0byBVU1JQIEIyMTAgd2l0aCBQeXRob24gQVBJDQogICAgICAoQnJlbmRhbiBI
+b3JzZmllbGQpDQogICAyLiBSZTogSW50ZXJtaXR0ZW50IHByb2JsZW0gd2l0aCBHUFMgc3luY2hy
+b25pemF0aW9uIGZvciBtdWx0aXBsZSBFMzEwIHVuaXRzDQogICAgICAoT2ZlciBTYWZlcm1hbikN
+Cg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tDQoNCk1lc3NhZ2U6IDENCkRhdGU6IFNhdCwgMyBBcHIgMjAyMSAy
+MTowNzo1OSArMTAwMA0KRnJvbTogQnJlbmRhbiBIb3JzZmllbGQgPGJyZW5kYW4uaG9yc2ZpZWxk
+QHZlY3RhbGFicy5jb20+DQpTdWJqZWN0OiBbVVNSUC11c2Vyc10gUmU6IFByb2JsZW0gd2l0aCBp
+bnRlcmZhY2luZyBSYXNwYmVycnkgUGkgNCB0bw0KICAgICAgICBVU1JQIEIyMTAgd2l0aCBQeXRo
+b24gQVBJDQpUbzogTWFyY3VzIEQgTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0KQ2M6
+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpNZXNzYWdlLUlEOg0KICAgICAgICA8Q0FMTk1a
+OFdnM2dRbmtBb21yaGhDQlBBR3RUZlVibTNma016SmhDV2hVQWdIckx1enlBQG1haWwuZ21haWwu
+Y29tPg0KQ29udGVudC1UeXBlOiBtdWx0aXBhcnQvYWx0ZXJuYXRpdmU7DQogICAgICAgIGJvdW5k
+YXJ5PSIwMDAwMDAwMDAwMDBkYzNhZWIwNWJmMGY3YWNlIg0KDQpIaSBNYXJjdXMsDQoNCkkgaGF2
+ZSB0cmllZCB5b3VyIHN1Z2dlc3Rpb24sIGJ1dCB1bmZvcnR1bmF0ZWx5IHdpdGhvdXQgc3VjY2Vz
+czoNCg0KUGVyIHlvdXIgYWR2aWNlLCBJIGhhdmUgZWRpdGVkIHRoZSBmaWxlICJjbWFrZS5sd3Qi
+IGluIHRoZSBmb2xkZXIgL3Vzci9sb2NhbC9saWIvcHl0aG9uMy43L2Rpc3QtcGFja2FnZXMvcHli
+b21icy90ZW1wbGF0ZXMgdG8gaW5jbHVkZSB0aGUgb3B0aW9uICItREVOQUJMRV9QWVRIT05fQVBJ
+PU9OIiBpbiB0aGUgY2FsbHMgdG8gY21ha2UuICBUaGUgbW9kaWZpZWQgY29tbWFuZHMgYXJlIGFz
+IGZvbGxvd3M6DQoNCmNvbmZpZ3VyZTogY21ha2UgLi4gLURFTkFCTEVfUFlUSE9OX0FQST1PTiAt
+RENNQUtFX0JVSUxEX1RZUEU9JGNtYWtlYnVpbGR0eXBlIC1EQ01BS0VfSU5TVEFMTF9QUkVGSVg9
+JHByZWZpeCAkY29uZmlnX29wdCAtV25vLWRldg0KY29uZmlndXJlX3N0YXRpYzogY21ha2UgLi4g
+LURFTkFCTEVfUFlUSE9OX0FQST1PTiAtRENNQUtFX0JVSUxEX1RZUEU9JGNtYWtlYnVpbGR0eXBl
+IC1EQ01BS0VfSU5TVEFMTF9QUkVGSVg9JHByZWZpeCAtREVOQUJMRV9TVEFUSUNfTElCUz1UcnVl
+ICRjb25maWdfb3B0DQoNCkkgcmVtb3ZlZCB0aGUgcHJldmlvdXMgVUhEIGluc3RhbGxhdGlvbiBh
+bmQgcmUtcmFuICJweWJvbWJzIGluc3RhbGwgdWhkIiwgYnV0IHRoZSBlbmQgcmVzdWx0IHdhcyBt
+dWNoIHRoZSBzYW1lOiAgdGhlIGluc3RhbGxhdGlvbiBwcm9jZXNzIGNvbXBsZXRlZCB3aXRob3V0
+IGVycm9ycywgYnV0IHRoZSBQeXRob24gQVBJIHdhcyBub3QgaW5jbHVkZWQgaW4gdGhlIGluc3Rh
+bGxhdGlvbi4NCg0KUVVFU1RJT04gMTogIENhbiB5b3UgdGVsbCBtZSBpZiBQeUJPTUJTIGFjdHVh
+bGx5IGJ1aWxkcyB0aGUgVUhEIGRyaXZlciBmcm9tIHNvdXJjZSwgb3IgZG9lcyBpdCBzaW1wbHkg
+Y29weSBhIHByZS1jb21waWxlZCBiaW5hcnkgb250byBteSBzeXN0ZW0/ICBUaGUgcmVhc29uIEkg
+YXNrIGlzIHRoYXQgUHlCT01CUyBpcyBxdWl0ZSBxdWljayB0byBpbnN0YWxsIHRoZSBVSEQgZHJp
+dmVyLCB3aGVyZWFzIHRoZSBub24tUHlCT01CUyBhcHByb2FjaCBpcyBWRVJZIHNsb3cgKGkuZS4g
+YXJvdW5kIDYwIG1pbnV0ZXMgdG8gZ2V0IHRvIDUzJSwgYXQgd2hpY2ggcG9pbnQgaXQgY3Jhc2hl
+cyBvdXQgd2l0aCBhbiBlcnJvcikuDQoNClFVRVNUSU9OIDI6ICBUaGlzIHdob2xlIHByb2Nlc3Mg
+ZmVlbHMgbW9yZSBkaWZmaWN1bHQgdGhhbiBpdCBzaG91bGQgYmUuDQpXaHkgaXNuJ3QgdGhlIFB5
+dGhvbiBBUEkgaW5zdGFsbGVkIHdpdGggdGhlIFVIRCBkcml2ZXIgYnkgZGVmYXVsdD8gIFdvdWxk
+IEkgYmUgYmV0dGVyIG9mZiB1c2luZyBhbm90aGVyIGxhbmd1YWdlIChsaWtlIEMrKykgdG8gY29u
+dHJvbCB0aGUgVVNSUD8NCg0KVGhhbmtzLA0KQnJlbmRhbi4NCg0KDQoNCk9uIEZyaSwgQXByIDIs
+IDIwMjEgYXQgMTE6MjUgUE0gTWFyY3VzIEQgTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29t
+Pg0Kd3JvdGU6DQoNCj4gUGVyaGFwcyBsb29rIGF0IHRoZSBQeUJvbWJzIHJlY2lwZSBmb3IgeW91
+ciBwbGF0Zm9ybeKAlHRoZXJl4oCZcyBwcm9iYWJseQ0KPiBhIGNvbXBpbGVyIGZsYWcgdGhhdCBu
+ZWVkcyB0byBiZSBzZXQgdGhhdCB5b3XigJlyZSBtaXNzaW5nLCBidXQgSSBkb27igJl0DQo+IGtu
+b3cgd2hhdCB0aGF0IGlzLg0KPg0KPiBBbHNvLCBpbiBnZW5lcmFsLCB5b3UgZG9u4oCZdCBuZWVk
+IHRvIGJlY29tZSByb290IHRvIGNvbXBpbGUgYW5kIGJ1aWxkDQo+IGNvZGXigJRvbmx5IG5lZWRl
+ZCBkdXJpbmcgdGhlIOKAnG1ha2UgaW5zdGFsbOKAnQ0KPg0KPg0KPg0KPiBTZW50IGZyb20gbXkg
+aVBob25lDQo+DQo+IE9uIEFwciAyLCAyMDIxLCBhdCA3OjE5IEFNLCBCcmVuZGFuIEhvcnNmaWVs
+ZCA8DQo+IGJyZW5kYW4uaG9yc2ZpZWxkQHZlY3RhbGFicy5jb20+IHdyb3RlOg0KPg0KPiDvu78N
+Cj4gSGkgRm9sa3MsDQo+DQo+IEkgd291bGQgbGlrZSB0byBpbnRlcmZhY2UgbXkgUmFzcGJlcnJ5
+IFBpIDQgdG8gYSBVU1JQIEIyMTAgdmlhIHRoZQ0KPiBQeXRob24gQVBJLiAgVGhpcyByZXF1aXJl
+cyB0aGUgVUhEIGRyaXZlciB0byBiZSBidWlsdCBmcm9tIHNvdXJjZS4NCj4gVW5mb3J0dW5hdGVs
+eSwgd2hlbmV2ZXIgSSB0cnkgdGhpcyBJIGVuY291bnRlciBzb21lIGVycm9ycyB0aGF0IHN0b3AN
+Cj4gdGhlIGJ1aWxkIHByb2Nlc3MgaW4gaXRzIHRyYWNrcy4NCj4NCj4gRGV0YWlscyBvZiB0aGUg
+ZXJyb3IgYXJlIGFzIGZvbGxvd3M6DQo+DQo+IFsgNTMlXSBMaW5raW5nIENYWCBleGVjdXRhYmxl
+IHRlc3RfY2xvY2tfc3luY2gNCj4gL3Vzci9iaW4vbGQ6IC4uL2xpYi9saWJ1aGQuc28uNC4wLjA6
+IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8NCj4gYF9fYXRvbWljX2NvbXBhcmVfZXhjaGFuZ2VfOCcN
+Cj4gL3Vzci9iaW4vbGQ6IC4uL2xpYi9saWJ1aGQuc28uNC4wLjA6IHVuZGVmaW5lZCByZWZlcmVu
+Y2UgdG8NCj4gYF9fYXRvbWljX2xvYWRfOCcNCj4gL3Vzci9iaW4vbGQ6IC4uL2xpYi9saWJ1aGQu
+c28uNC4wLjA6IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8NCj4gYF9fYXRvbWljX3N0b3JlXzgnDQo+
+IC91c3IvYmluL2xkOiAuLi9saWIvbGlidWhkLnNvLjQuMC4wOiB1bmRlZmluZWQgcmVmZXJlbmNl
+IHRvDQo+IGBfX2F0b21pY19mZXRjaF9hZGRfOCcNCj4gY29sbGVjdDI6IGVycm9yOiBsZCByZXR1
+cm5lZCAxIGV4aXQgc3RhdHVzDQo+IG1ha2VbMl06ICoqKiBbZXhhbXBsZXMvQ01ha2VGaWxlcy90
+ZXN0X2Nsb2NrX3N5bmNoLmRpci9idWlsZC5tYWtlOjk1Og0KPiBleGFtcGxlcy90ZXN0X2Nsb2Nr
+X3N5bmNoXSBFcnJvciAxDQo+IG1ha2VbMV06ICoqKiBbQ01ha2VGaWxlcy9NYWtlZmlsZTI6MTAz
+OToNCj4gZXhhbXBsZXMvQ01ha2VGaWxlcy90ZXN0X2Nsb2NrX3N5bmNoLmRpci9hbGxdIEVycm9y
+IDINCj4gbWFrZTogKioqIFtNYWtlZmlsZToxNjM6IGFsbF0gRXJyb3IgMg0KPg0KPiBUaGUgcHJv
+Y2VzcyBJIGhhdmUgYmVlbiB1c2luZyBpcyBhcyBmb2xsb3dzOg0KPg0KPiBTVEVQIDE6ICBJTlNU
+QUxMIERFUEVOREVOQ0lFUw0KPiBzdWRvIGFwdC1nZXQgaW5zdGFsbCBsaWJib29zdC1hbGwtZGV2
+IGxpYnVzYi0xLjAtMC1kZXYgZG94eWdlbg0KPiBweXRob24zLWRvY3V0aWxzIHB5dGhvbjMtbWFr
+byBweXRob24zLW51bXB5IHB5dGhvbjMtcmVxdWVzdHMNCj4gcHl0aG9uMy1ydWFtZWwueWFtbCBw
+eXRob24zLXNldHVwdG9vbHMgY21ha2UgYnVpbGQtZXNzZW50aWFsDQo+DQo+IFNURVAgMjogIEJV
+SUxEIFVIRCBEUklWRVIgRlJPTSBTT1VSQ0UNCj4gY2QgL2hvbWUvcGkNCj4gbWtkaXIgd29ya2Fy
+ZWEtdWhkDQo+IGNkIHdvcmthcmVhLXVoZA0KPiBnaXQgY2xvbmUgaHR0cHM6Ly9naXRodWIuY29t
+L0V0dHVzUmVzZWFyY2gvdWhkDQo+IGNkIHVoZA0KPiBnaXQgY2hlY2tvdXQgdjQuMC4wLjANCj4g
+Y2QgaG9zdA0KPiBta2RpciBidWlsZA0KPiBjZCBidWlsZA0KPiBzdWRvIGNtYWtlIC1ETkVPTl9T
+SU1EX0VOQUJMRT1PRkYgLURFTkFCTEVfUFlUSE9OX0FQST1PTiAuLi8gc3VkbyBtYWtlDQo+IC0t
+LT4gIChFUlJPUlMgT0NDVVIgRFVSSU5HICJNQUtFIiBQUk9DRVNTKQ0KPg0KPiBNeSBzeXN0ZW0g
+Y29uZmlndXJhdGlvbiBpcyBhcyBmb2xsb3dzOg0KPiBIYXJkd2FyZTogUmFzcGJlcnJ5IFBpIDQg
+TW9kZWwgQiBSZXYgMS40DQo+IE9TOiBSYXNwYmlhbiBHTlUvTGludXggMTAgKGJ1c3RlcikgKDMy
+LWJpdCwgYXJtdjdsKSBFdHR1cyBVU1JQIEIyMTANCj4NCj4gRG9lcyBhbnlvbmUga25vdyB3aGF0
+IHRoZSBwcm9ibGVtIGNvdWxkIGJlLCBhbmQgaG93IEkgY2FuIHJlc29sdmUgaXQ/DQo+DQo+IE9u
+ZSBmaW5hbCBub3RlOiAgVXNpbmcgUHlCT01CUywgSSB3YXMgYWJsZSB0byBzdWNjZXNzZnVsbHkg
+YnVpbGQgJg0KPiBpbnN0YWxsIHRoZSBVSEQgZHJpdmVyIGFuZCBjb25uZWN0IHRvIHRoZSBVU1JQ
+LiAgVW5mb3J0dW5hdGVseSB0aGUNCj4gUHlCT01CUyBidWlsZCBkb2VzIG5vdCBpbmNsdWRlIHRo
+ZSBQeXRob24gQVBJLCB3aGljaCBpcyB3aGF0IEkgcmVhbGx5DQo+IHdhbnQuICBJcyB0aGVyZSBh
+IGRpZmZlcmVudCB2ZXJzaW9uIG9mIHRoZSBQeUJPTUJTIGJ1aWxkIHRoYXQgaW5jbHVkZXMgdGhl
+IFB5dGhvbiBBUEk/DQo+DQo+IFRoYW5rcyAmIFJlZ2FyZHMsDQo+IEJyZW5kYW4uDQo+DQo+DQo+
+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVT
+UlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIFRvIHVu
+c3Vic2NyaWJlDQo+IHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
+cy5jb20NCj4NCj4NCi0tLS0tLS0tLS0tLS0tIG5leHQgcGFydCAtLS0tLS0tLS0tLS0tLQ0KQSBt
+ZXNzYWdlIHBhcnQgaW5jb21wYXRpYmxlIHdpdGggcGxhaW4gdGV4dCBkaWdlc3RzIGhhcyBiZWVu
+IHJlbW92ZWQgLi4uDQpOYW1lOiBub3QgYXZhaWxhYmxlDQpUeXBlOiB0ZXh0L2h0bWwNClNpemU6
+IDU2MjQgYnl0ZXMNCkRlc2M6IG5vdCBhdmFpbGFibGUNCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tDQoNCk1lc3NhZ2U6IDINCkRhdGU6IFNhdCwgMyBBcHIgMjAyMSAxNDoxMjozNSAr
+MDMwMA0KRnJvbTogT2ZlciBTYWZlcm1hbiA8b2ZlckBuYXZpZ2ljb20uY29tPg0KU3ViamVjdDog
+W1VTUlAtdXNlcnNdIFJlOiBJbnRlcm1pdHRlbnQgcHJvYmxlbSB3aXRoIEdQUw0KICAgICAgICBz
+eW5jaHJvbml6YXRpb24gZm9yIG11bHRpcGxlIEUzMTAgdW5pdHMNClRvOiB1c3JwLXVzZXJzIDx1
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCk1lc3NhZ2UtSUQ6DQogICAgICAgIDxDQUNEUmVT
+d1hVdko4X0xpbWZWT240U3RIUUVHaE5udFktbkNTdjBhWWRCc1g9QXRWX3dAbWFpbC5nbWFpbC5j
+b20+DQpDb250ZW50LVR5cGU6IG11bHRpcGFydC9hbHRlcm5hdGl2ZTsNCiAgICAgICAgYm91bmRh
+cnk9IjAwMDAwMDAwMDAwMDU2NmQxNzA1YmYwZjhiMGUiDQoNCkhlbGxvIFBoaWxpcCwNCg0KVGhh
+bmsgeW91IGZvciB0aGUgZXhwbGFuYXRpb24uDQpXaGF0IHdvdWxkIHlvdSBzdWdnZXN0Pw0Kb3Br
+ZyBleGlzdHMuIFRoZXJlIG11c3QgYmUgYSB3YXkgdG8gaW5zdGFsbCBudHBkIHdpdGhvdXQgbmVl
+ZGluZyB0byByZWJ1aWxkIHRoZSBpbWFnZS4NCk1heWJlIHVzZSBweWJvbWJzIG9yIG90aGVyIG1l
+dGhvZHM/DQpnaXQgYWxzbyB3b3Jrcy4gTWF5YmUgZG93bmxvYWQgYSBkaWZmZXJlbnQgcGFja2Fn
+ZSBtYW5hZ2VyIGFuZCBjb21waWxlIGl0Pw0KDQpJdCBzZWVtcyB0aGF0IE1hcmN1cyBwb2ludGVk
+IG91dCBhIGdyZWF0IGJlbmVmaXQgb2YgRTMxMCB1bml0cyBydW5uaW5nIGdwc2QsIGJ1dCB3aXRo
+b3V0IG50cGQgc3lzdGVtIGNsb2NrIGNhbid0IHN5bmMgYW5kIGl0IHNlZW1zIHRoYXQgdGhpcyBm
+ZWF0dXJlIGNhbiB2YXN0bHkgc2ltcGxpZnkgZ3BzIHN5bmNocm9uaXphdGlvbiBhbW9uZyBFMzEw
+IHVuaXRzLg0KDQpJIHdvdWxkIGJlIHZlcnkgZ3JhdGVmdWwgaWYgYW55Ym9keSBjYW4gc3VnZ2Vz
+dCBhIHNvbHV0aW9uIHRvIGluc3RhbGwgbnRwZCBvbiBFMzEwIHVuaXRzIHJ1bm5pbmcgVUhEIDMu
+MTUgU0QtY2FyZCBpbWFnZS4NCg0KUmVnYXJkcywNCk9mZXIgU2FmZXJtYW4uDQoNCk9uIFNhdCwg
+QXByIDMsIDIwMjEgYXQgMTA6MzAgQU0gPHVzcnAtdXNlcnMtcmVxdWVzdEBsaXN0cy5ldHR1cy5j
+b20+IHdyb3RlOg0KDQo+IFNlbmQgVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qgc3VibWlzc2lvbnMg
+dG8NCj4gICAgICAgICB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPg0KPiBUbyBzdWJzY3Jp
+YmUgb3IgdW5zdWJzY3JpYmUgdmlhIGVtYWlsLCBzZW5kIGEgbWVzc2FnZSB3aXRoIHN1YmplY3Qg
+b3INCj4gYm9keSAnaGVscCcgdG8NCj4gICAgICAgICB1c3JwLXVzZXJzLXJlcXVlc3RAbGlzdHMu
+ZXR0dXMuY29tDQo+DQo+IFlvdSBjYW4gcmVhY2ggdGhlIHBlcnNvbiBtYW5hZ2luZyB0aGUgbGlz
+dCBhdA0KPiAgICAgICAgIHVzcnAtdXNlcnMtb3duZXJAbGlzdHMuZXR0dXMuY29tDQo+DQo+IFdo
+ZW4gcmVwbHlpbmcsIHBsZWFzZSBlZGl0IHlvdXIgU3ViamVjdCBsaW5lIHNvIGl0IGlzIG1vcmUg
+c3BlY2lmaWMNCj4gdGhhbiAiUmU6IENvbnRlbnRzIG9mIFVTUlAtdXNlcnMgZGlnZXN0Li4uIlRv
+ZGF5J3MgVG9waWNzOg0KPg0KPiAgICAxLiBSZTogSW50ZXJtaXR0ZW50IHByb2JsZW0gd2l0aCBH
+UFMgc3luY2hyb25pemF0aW9uIGZvciBtdWx0aXBsZQ0KPiBFMzEwIHVuaXRzDQo+ICAgICAgIChQ
+aGlsaXAgQmFsaXN0ZXIpDQo+DQo+DQo+DQo+IC0tLS0tLS0tLS0gRm9yd2FyZGVkIG1lc3NhZ2Ug
+LS0tLS0tLS0tLQ0KPiBGcm9tOiBQaGlsaXAgQmFsaXN0ZXIgPHBoaWxpcEBiYWxpc3Rlci5vcmc+
+DQo+IFRvOiBPZmVyIFNhZmVybWFuIDxvZmVyQG5hdmlnaWNvbS5jb20+LCAiTWFyY3VzIEQuIExl
+ZWNoIiA8DQo+IHBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0KPiBDYzogUm9iIEtvc3NsZXIgPHJr
+b3NzbGVyQG5kLmVkdT4sIHVzcnAtdXNlcnMNCj4gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+Pg0KPiBCY2M6DQo+IERhdGU6IEZyaSwgMiBBcHIgMjAyMSAxMDowOTo0MyAtMDQwMA0KPiBTdWJq
+ZWN0OiBbVVNSUC11c2Vyc10gUmU6IEludGVybWl0dGVudCBwcm9ibGVtIHdpdGggR1BTDQo+IHN5
+bmNocm9uaXphdGlvbiBmb3IgbXVsdGlwbGUgRTMxMCB1bml0cyBPbiA0LzIvMjEgNzoxNyBBTSwg
+T2Zlcg0KPiBTYWZlcm1hbiB3cm90ZToNCj4gPiBNYXJjdXMgSGksDQo+ID4NCj4gPiBZb3VyIHN1
+Z2dlc3Rpb24gYmVsb3cgdG8gaW5zdGFsbCBudHBkIGRvZXMgbm90IHdvcmsuDQo+ID4gVGhlIGlt
+YWdlIGRvZXMgbm90IGluY2x1ZGUgaXQuIEFsdGhvdWdoIHRoZSBvbGQgdGhyZWFkIHNheXMNCj4g
+PiBvdGhlcndpc2UgSSB0aGluayBpdCByZWZlcnMgdG8gYW4gb2xkZXIgVUhEIHJlbGVhc2UgdGhh
+dCBkaWQgaW5jbHVkZSBudHBkLg0KPiA+IEFueSBhY2N1cmF0ZSBpbnN0cnVjdGlvbnMgb24gaG93
+IHRvIGluc3RhbGwgaXQgYW55d2F5Pw0KPiA+IE1heWJlIG9wa2cgc2hvdWxkIGJlIGNvbmZpZ3Vy
+ZWQgdG8gYWNjZXNzIGFub3RoZXIgcmVwb3NpdG9yeT8NCj4gPiBEb2luZzogb3BrZyBsaXN0IHwg
+Z3JlcCBudHBkLCBkb2VzIG5vdCB5aWVsZCBhbnl0aGluZyB1c2VmdWwgc28gaXQNCj4gPiBpcyBu
+b3QganVzdCBhIHF1ZXN0aW9uIG9mIHR5cGluZyBpdCBjb3JyZWN0bHkuDQo+DQo+IEFzIGZhciBh
+cyBJIGtub3csIG5vIGltYWdlIGhhcyBiZWVuIHNldHVwIHRvIHVzZSBwYWNrYWdlIGZlZWRzLg0K
+Pg0KPiBJIGtub3cgbnRwZCB3b3JrZWQgaW4gcmVsZWFzZTQgaW1hZ2VzLCBwcmV0dHkgc3VyZSB0
+aGUgbmV3ZXIgaW1hZ2Ugd2FzDQo+IHJlZG9uZSBhbmQgdGhpbmdzIGhhdmUgYmVlbiBsZWZ0IG91
+dCB0aGF0IHVzZWQgdG8gYmUgdGhlcmUuDQo+DQo+IFBoaWxpcA0KPg0KPiA+DQo+ID4gUmVnYXJk
+cywNCj4gPiBPZmVyIFNhZmVybWFuDQo+ID4NCj4gPiBPbiBUaHUsIEFwciAxLCAyMDIxIGF0IDQ6
+MzQgUE0gTWFyY3VzIEQuIExlZWNoDQo+ID4gPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0KPiA+
+IHdyb3RlOg0KPiA+DQo+ID4+IE9uIDA0LzAxLzIwMjEgMDY6MDAgQU0sIE9mZXIgU2FmZXJtYW4g
+d3JvdGU6DQo+ID4+DQo+ID4+IEhlbGxvIE1hcmN1cywNCj4gPj4NCj4gPj4gSSBhbSB3b3JraW5n
+IG9uIEUzMTAgd2l0aCB0aGUgbGF0ZXN0IFVIRC0zLjE1IFNEIGNhcmQgaW1hZ2UuDQo+ID4+IEl0
+IHNlZW1zIG5vdCB0byBpbmNsdWRlIG50cGQgdGhhdCBpcyByZXF1aXJlZCB0byBzeW5jaHJvbml6
+ZSBzeXN0ZW0NCj4gPj4gdGltZSB0byBHUFMgdGltZS4NCj4gPj4gQW55IGlkZWEgaG93IHRvIGlu
+c3RhbGwgaXQgb24gdGhlIEUzMTA/DQo+ID4+DQo+ID4+IFJlZ2FyZHMsDQo+ID4+IE9mZXIgU2Fm
+ZXJtYW4NCj4gPj4NCj4gPj4gc3VkbyBvcGtnIGluc3RhbGwgbnRwZA0KPiA+Pg0KPiA+PiBzaG91
+bGQgd29yaywgYnV0IGl0IGhhcyBiZWVuIGEgd2hpbGUgc2luY2UgSSBpbnN0YWxsZWQgYW55IHBh
+Y2thZ2VzDQo+ID4+IG9uDQo+IG15DQo+ID4+IEUzMTAuDQo+ID4+DQo+ID4+IFRoZSBFMzEwIGlz
+IGJhc2VkIG9uIE9wZW5FbWJlZGRlZCBMaW51eCwgc28gYWxsIHRoZSBpbmZvIGFib3V0DQo+IGlu
+c3RhbGxpbmcNCj4gPj4gYW5kIG1hbmFnaW5nIHBhY2thZ2VzIG9uIE9wZW5FbWJlZGRlZCBhcHBs
+eS4NCj4gPj4NCj4gPj4NCj4gPj4NCj4gPj4gT24gV2VkLCBNYXIgMzEsIDIwMjEgYXQgMTE6NDAg
+UE0gTWFyY3VzIEQgTGVlY2ggPA0KPiBwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4NCj4gPj4gd3Jv
+dGU6DQo+ID4+DQo+ID4+PiBKdXN0IHVzZSBnZXR0aW1lb2ZkYXkoKSBvciBhbnkgb2YgdGhlIG15
+cmlhZCBzdWJ0bGUgdmFyaWFudHMNCj4gPj4+IGF2YWlsYWJsZQ0KPiBpbg0KPiA+Pj4gYm9vc3Qg
+dG8gZ2V0IHlvdSB0aGUgTGludXggc3lzdGVtIHRpbWUsIGFuZCB1c2UgdGhhdCBpbiBhIGNhbGwg
+dG8NCj4gPj4+IHNldF90aW1lX25leHRfcHBzKCkuDQo+ID4+Pg0KPiA+Pj4gVGhlIGZhY3QgdGhh
+dCBhbGwgeW91ciBFMzEwcyB3aWxsIGJlIHJ1bm5pbmcgR1BTRCBtZWFucyB0aGV54oCZbGwgYmUN
+Cj4gPj4+IGFkanVzdGluZyBzeXN0ZW0gdGltZSBhcHByb3ByaWF0ZWx5IGFuZCB0aGV54oCZbGwg
+YWxsIGFncmVlIG9uIHdoYXQNCj4gPj4+IHRpbWUNCj4gaXQNCj4gPj4+IGlzLCBkZXBlbmRpbmcg
+b24gdGhlIGxldmVsIG9mIHByZWNpc2lvbiB5b3UgbmVlZC4NCj4gPj4+DQo+ID4+PiBTZW50IGZy
+b20gbXkgaVBob25lDQo+ID4+Pg0KPiA+Pj4gT24gTWFyIDMxLCAyMDIxLCBhdCAzOjUwIFBNLCBP
+ZmVyIFNhZmVybWFuIDxvZmVyQG5hdmlnaWNvbS5jb20+IHdyb3RlOg0KPiA+Pj4NCj4gPj4+IO+7
+vw0KPiA+Pj4gVGhhbmsgeW91IFJvYi4gWW91ciBzdWdnZXN0aW9ucyBhcmUgYWx3YXlzIGhlbHBm
+dWwuIEkgd2lsbCBsb29rDQo+ID4+PiBpbnRvIHVzaW5nIGdwc19ncGdnYS4NCj4gPj4+IFRoYW5r
+IHlvdSBNYXJjdXMuIEkgYW0gYWxyZWFkeSBhZGRpbmcgb25lLCBwZXIgb3RoZXIgZXhhbXBsZXMN
+Cj4gPj4+IHBvc3RlZA0KPiBoZXJlDQo+ID4+PiBhbmQgc3luY190b19ncHMgZXhhbXBsZS4gQ2Fu
+IHlvdSBwbGVhc2UgY29tbWVudCBob3cgSSBjYW4gYmVuZWZpdA0KPiA+Pj4gZnJvbQ0KPiB0aGUN
+Cj4gPj4+IGZhY3QgdGhhdCBFMzEwIHVuaXRzIHVzZSBncHNkIGluIExpbnV4Pw0KPiA+Pj4NCj4g
+Pj4+IFJlZ2FyZHMsDQo+ID4+PiBPZmVyIFNhZmVybWFuDQo+ID4+Pg0KPiA+Pj4gT24gV2VkLCBN
+YXIgMzEsIDIwMjEgYXQgMTA6MTMgUE0gTWFyY3VzIEQgTGVlY2ggPA0KPiBwYXRjaHZvbmJyYXVu
+QGdtYWlsLmNvbT4NCj4gPj4+IHdyb3RlOg0KPiA+Pj4NCj4gPj4+Pg0KPiA+Pj4+DQo+ID4+Pj4g
+U2VudCBmcm9tIG15IGlQaG9uZQ0KPiA+Pj4+DQo+ID4+Pj4gT24gTWFyIDMxLCAyMDIxLCBhdCAy
+OjIyIFBNLCBSb2IgS29zc2xlciA8cmtvc3NsZXJAbmQuZWR1PiB3cm90ZToNCj4gPj4+Pg0KPiA+
+Pj4+IO+7vw0KPiA+Pj4+IEhpIE9mZXIsDQo+ID4+Pj4gVGFrZSBhIGxvb2sgYXQgdGhlIEV0dHVz
+IHNvdXJjZSBjb2RlIGdwc19jdHJsLmNwcC4gIEluDQo+ID4+Pj4gcGFydGljdWxhciwNCj4gbG9v
+aw0KPiA+Pj4+IGF0IHRoZSBnZXRfc2VudGVuY2UoKSB1c2FnZSB3aGljaCBpbiB0aGUgY2FzZSBv
+ZiAiZ3BzX3RpbWUiIHdhaXRzDQo+ID4+Pj4gZm9yDQo+IHRoZQ0KPiA+Pj4+IG5leHQgb2NjdXJy
+ZW5jZSAod2FpdD10cnVlKSwgIGJ1dCBmb3IgdGhlIG90aGVycyBkb2VzIG5vdCB3YWl0Lg0KPiA+
+Pj4+IEJ1dA0KPiB0aGlzDQo+ID4+Pj4gZG9lc24ndCBmdWxseSBleHBsYWluIHRoZSBiZWhhdmlv
+ciB5b3UgYXJlIHNlZWluZy4gIElmIHlvdSBkbyB0aGUNCj4gZm9sbG93aW5nOg0KPiA+Pj4+IDEp
+IHdhaXQgZm9yIFBQUyB0aW1lIHRvIGNoYW5nZQ0KPiA+Pj4+IDIpIHJlYWQgdGhlICJncHNfdGlt
+ZSIgc2Vuc29yDQo+ID4+Pj4gMykgc2V0X3RpbWVfbmV4dF9wcHMgKHVzZSB0aGUgdmFsdWUgeW91
+IGp1c3QgcmVhZCkNCj4gPj4+Pg0KPiA+Pj4+IEFkZCAxIHRvIHRoZSB0aW1lIHlvdSBqdXN0IHJl
+YWQgYmVmb3JlIGNhbGxpbmcgc2V0X3RpbWVfbmV4dF9wcHMuDQo+ID4+Pj4NCj4gPj4+Pg0KPiA+
+Pj4+IEl0IHNob3VsZCBzdGlsbCB3b3JrIGJlY2F1c2UgdGhlICJncHNfdGltZSIgY29tbWFuZCBz
+aG91bGQganVzdA0KPiA+Pj4+IHdhaXQgdW50aWwgdGhlIG5leHQgUFBTLiAgSSBndWVzcyBpdCBk
+ZXBlbmRzIHVwb24gaG93DQo+ID4+Pj4gInN5bmNocm9uaXplZCIgYXJlDQo+IHRoZQ0KPiA+Pj4+
+IHJlY2VpdmVkIE5NRUEgc3RyaW5nIHdpdGggdGhlIFBQUyBlZGdlLiAgU3RlcCAxIGFib3ZlIHdh
+aXRzIGZvcg0KPiA+Pj4+IHRoZQ0KPiBQUFMNCj4gPj4+PiBlZGdlLCBidXQgbWF5YmUgdGhlIE5N
+RUEgc3RyaW5nIGFycml2ZXMgMC4xIHNlY3MgYmVmb3JlIG9yIGFmdGVyDQo+IHRoYXQuICBJDQo+
+ID4+Pj4gZG9uJ3QgcmVhbGx5IGtub3cuICBQZXJoYXBzIHlvdSBuZWVkIHRvIHN3aXRjaCB0byB1
+c2luZyAiZ3BzX2dwZ2dhIg0KPiBzdWNoDQo+ID4+Pj4gdGhhdCB0aGVyZSBpcyBubyBhZGRpdGlv
+bmFsIHdhaXQgYWRkZWQgYW5kIGFsc28gcGVyaGFwcyB5b3UNCj4gPj4+PiBzaG91bGQNCj4gYWRk
+IHN0ZXANCj4gPj4+PiAxQiB3aGljaCB3b3VsZCBiZSBqdXN0IGEgZml4ZWQgZGVsYXkgb2YgcGVy
+aGFwcyAwLjQgc2VjcyBzbyB0aGF0DQo+ID4+Pj4geW91DQo+IHdpbGwNCj4gPj4+PiByZWFkIHRo
+ZSBOTUVBIHN0cmluZyBpbiBiZXR3ZWVuIHRoZSBQUFMgZWRnZXMuDQo+ID4+Pj4gUm9iDQo+ID4+
+Pj4NCj4gPj4+PiBPbiBXZWQsIE1hciAzMSwgMjAyMSBhdCAxOjIyIFBNIFJvYiBLb3NzbGVyIDxy
+a29zc2xlckBuZC5lZHU+IHdyb3RlOg0KPiA+Pj4+DQo+ID4+Pj4+IEhpIE9mZXIsDQo+ID4+Pj4+
+IEkgZG9uJ3Qga25vdyB3aHkgdGhlICJncHNfdGltZSIgc2Vuc29yIHRha2VzIGxvbmcgdG8gcmVh
+ZC4gQnV0LA0KPiA+Pj4+PiBjYW4NCj4geW91DQo+ID4+Pj4+IHRyeSB0aGUgb3RoZXIgc2Vuc29y
+cyAocGVyaGFwcyB0aGVyZSBpcyBhICJncHNfZ3BnZ2EiIHNlbnNvcj8pPw0KPiA+Pj4+PiBUaGUN
+Cj4gdGltZQ0KPiA+Pj4+PiBpcyBlbWJlZGRlZCBpbiB0aGVzZSBhcyB3ZWxsLg0KPiA+Pj4+PiBS
+b2INCj4gPj4+Pj4NCj4gPj4+Pj4NCj4gPj4+Pj4gT24gV2VkLCBNYXIgMzEsIDIwMjEgYXQgMTI6
+MjEgUE0gT2ZlciBTYWZlcm1hbg0KPiA+Pj4+PiA8b2ZlckBuYXZpZ2ljb20uY29tPg0KPiA+Pj4+
+PiB3cm90ZToNCj4gPj4+Pj4NCj4gPj4+Pj4+IE1hcmN1cyBIaSwNCj4gPj4+Pj4+DQo+ID4+Pj4+
+PiBJZiB0aGUgZ3BzX3RpbWUgInNlbnNvciIgcmV0dXJucyBhIHZhbHVlIG9ubHkgb25jZSBwZXIg
+c2Vjb25kDQo+ID4+Pj4+PiBob3cNCj4gY29tZQ0KPiA+Pj4+Pj4gSSBtYW5hZ2UgdG8gcmVhZCBp
+dCBzb21ldGltZXMgaW4gbGVzcyB0aGFuIDEgc2Vjb25kPw0KPiA+Pj4+Pj4gSW4gbXkgY29kZSB0
+aGUgc2l0dWF0aW9uIGlzIHdvcnNlIHRoYW4gdGhlIHNpbXBsZSBleGFtcGxlDQo+ID4+Pj4+PiBi
+ZWxvdy4gSXQgdXN1YWxseSB0YWtlcyBtb3JlIHRoYW4gMSBzZWMuIHRvIHJlYWQgaXQgYW5kDQo+
+ID4+Pj4+PiBzb21ldGltZXMgZXZlbiAxLjcgb3INCj4gMS44DQo+ID4+Pj4+PiBzZWNvbmRzLiBJ
+IGRvbid0IHVuZGVyc3RhbmQgaG93IHRoZSBzaXplIG9yIGNvbXBsZXhpdHkgb2YgdGhlDQo+ID4+
+Pj4+PiBjb2RlDQo+IGFmZmVjdHMNCj4gPj4+Pj4+IHRoZSB0aW1lIGl0IHRha2VzIHRvIHJlYWQg
+Z3BzX3RpbWUuDQo+ID4+Pj4+Pg0KPiA+Pj4+Pj4gSG93IHRvIHRyZWF0IHlvdXIgY29tbWVudCBh
+Ym91dCB0aGUgdXNlIG9mIEdQU0QgYW5kIGdvb2QNCj4gPj4+Pj4+IHN5bmNocm9uaXphdGlvbiBh
+cyBpdCByZWxhdGVzIHRvIGNvZGU/DQo+ID4+Pj4+PiBTaG91bGQgSSBub3QgY2hhbmdlIHRoZSB0
+aW1lIHNvdXJjZSBpbiBjb2RlIGFuZCBnbyB0aHJvdWdoIHRoZQ0KPiA+Pj4+Pj4gd2hvbGUgcHJv
+Y2VzcyBvZiBzeW5jaHJvbml6YXRpb24gdXNpbmcgZ3BzX3RpbWU/DQo+ID4+Pj4+PiBDYW4gSSAi
+YXNzdW1lIiB0aGUgc3lzdGVtcyBhcmUgc3luY2VkIGp1c3QgYnkgdGhlIGVmZmVjdCB0aGV5DQo+
+ID4+Pj4+PiB3ZXJlIGNvbm5lY3RlZCBlbm91Z2ggdGltZSB0byBhIEdQUyBhbnRlbm5hPyBhbmQg
+dGhlbiBqdXN0DQo+ID4+Pj4+PiBhY2Nlc3MgdGhlaXINCj4gdGltZSAtDQo+ID4+Pj4+PiByYWRp
+b19jdHJsLT5nZXRfdGltZV9sYXN0X3BwcygpPw0KPiA+Pj4+Pj4gSG93IHRvIHVzZSB0aGlzIGlu
+Zm9ybWF0aW9uIHByb2dyYW1tYXRpY2FsbHk/DQo+ID4+Pj4+Pg0KPiA+Pj4+Pj4gUmVnYXJkcywN
+Cj4gPj4+Pj4+IE9mZXIgU2FmZXJtYW4NCj4gPj4+Pj4+DQo+ID4+Pj4+Pg0KPiA+Pj4+Pj4gLS0t
+LS0tLS0tLSBGb3J3YXJkZWQgbWVzc2FnZSAtLS0tLS0tLS0tDQo+ID4+Pj4+Pj4gRnJvbTogIk1h
+cmN1cyBELiBMZWVjaCIgPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0KPiA+Pj4+Pj4+IFRvOiB1
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiA+Pj4+Pj4+IENjOg0KPiA+Pj4+Pj4+IEJjYzoN
+Cj4gPj4+Pj4+PiBEYXRlOiBXZWQsIDMxIE1hciAyMDIxIDA5OjE5OjIwIC0wNDAwDQo+ID4+Pj4+
+Pj4gU3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBJbnRlcm1pdHRlbnQgcHJvYmxlbSB3aXRoIEdQ
+Uw0KPiA+Pj4+Pj4+IHN5bmNocm9uaXphdGlvbiBmb3IgbXVsdGlwbGUgRTMxMCB1bml0cyBPbiAw
+My8zMS8yMDIxIDA2OjQ5DQo+ID4+Pj4+Pj4gQU0sIE9mZXIgU2FmZXJtYW4gd3JvdGU6DQo+ID4+
+Pj4+Pj4+IEhlbGxvLA0KPiA+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+PiBJIGhhdmUgYSBzeXN0ZW0gdGhh
+dCB1c2VzIDQgVVNSUCBFMzEwIHVuaXRzLg0KPiA+Pj4+Pj4+PiBFYWNoIHVuaXQgaXMgY29ubmVj
+dGVkIHRvIGEgR1BTIGFudGVubmEuDQo+ID4+Pj4+Pj4+IFRpbWUgc291cmNlIGlzIHNldCB0byBn
+cHNkby4NCj4gPj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4gSSBydW4gdGhlIHNhbWUgc29mdHdhcmUgcmVt
+b3RlbHkgb24gYWxsIDQgdW5pdHMgZnJvbSBhIFBDLg0KPiBTb2Z0d2FyZQ0KPiA+Pj4+Pj4+PiBy
+dW5zIG9uIHRoZSB1bml0cyB0aGVtc2VsdmVzLg0KPiA+Pj4+Pj4+PiBJIHByaW50IG91dCBtZXNz
+YWdlcyB0byBzaG93IGlmIHRoZSByZWZlcmVuY2UgaXMgbG9ja2VkIGFuZA0KPiA+Pj4+Pj4+PiB0
+aGUNCj4gR1BTDQo+ID4+Pj4+Pj4gaXMNCj4gPj4+Pj4+Pj4gbG9ja2VkIGFuZCBhbHNvIHdoYXQg
+aXMgdGhlIEdQUyB0aW1lIHRoYXQgZWFjaCB1bml0IHdhcw0KPiA+Pj4+Pj4+IHN5bmNocm9uaXpl
+ZCB0by4NCj4gPj4+Pj4+Pj4gSW4gc29tZSBjYXNlcyB0aGUgdW5pdHMgc3luY2hyb25pemUgdG8g
+dGhlIHNhbWUgR1BTIHRpbWUgYW5kDQo+ID4+Pj4+Pj4+IGluDQo+ID4+Pj4+Pj4gb3RoZXINCj4g
+Pj4+Pj4+Pj4gY2FzZXMgdGhlcmUgaXMgMSBzZWNvbmQgZGlmZmVyZW5jZSBiZXR3ZWVuIEdQUyB0
+aW1lIG9mDQo+ID4+Pj4+Pj4+IGRpZmZlcmVudA0KPiA+Pj4+Pj4+IHVuaXRzDQo+ID4+Pj4+Pj4+
+IHRodXMgY2F1c2luZyB0aGUgdW5pdHMgdG8gYmUgdW5zeW5jaHJvbml6ZWQuDQo+ID4+Pj4+Pj4+
+DQo+ID4+Pj4+Pj4+IEkgd2FzIHdvbmRlcmluZyBob3cgdGhpcyB3YXMgcG9zc2libGUuDQo+ID4+
+Pj4+Pj4+IFRoZSBzeW5jaHJvbml6YXRpb24gcHJvY2VzcyAoZG9jdW1lbnRlZCBieSBvdGhlcnMg
+aW4gdGhlIHBhc3QNCj4gPj4+Pj4+Pj4gb24NCj4gPj4+Pj4+PiB0aGUNCj4gPj4+Pj4+Pj4gbWFp
+bGluZyBsaXN0KSBpczoNCj4gPj4+Pj4+Pj4gKiBXYWl0IGZvciByZWYgYW5kIEdQUyBsb2NrDQo+
+ID4+Pj4+Pj4+ICogV2FpdCBmb3IgYSBwcHMgZWRnZSAoZ2V0X3RpbWVfbGFzdF9wcHMpDQo+ID4+
+Pj4+Pj4+ICogUmVhZCBncHNfdGltZSB2YWx1ZQ0KPiA+Pj4+Pj4+PiAqIFN5bmMgc3lzdGVtIGNs
+b2NrIHRvIEdQUyBjbG9jayBvbiBuZXh0IFBQUyBlZGdlDQo+ID4+Pj4+Pj4gKHNldF90aW1lX25l
+eHRfcHBzICsNCj4gPj4+Pj4+Pj4gMS4wIHNlYykNCj4gPj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4gU29t
+ZXRoaW5nIHNpbWlsYXIgaXMgYWxzbyBpbXBsZW1lbnRlZCBpbiB0aGUgc3luY190b19ncHMgZXhh
+bXBsZS4NCj4gPj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4gSW4gb3JkZXIgdG8gZGVidWcgdGhlIHByb2Js
+ZW0gSSBkZWNpZGVkIHRvIHRpbWUgdGhlIHJlYWRpbmcNCj4gPj4+Pj4+Pj4gb2YgdGhlIGdwc190
+aW1lIHNlbnNvciB0byBzZWUgaWYgdGhlcmUgaXMgYSBjbHVlIHdoeQ0KPiA+Pj4+Pj4+PiBkaWZm
+ZXJlbnQgdW5pdHMgbWlzcw0KPiA+Pj4+Pj4+IHRoZQ0KPiA+Pj4+Pj4+PiBQUFMgZWRnZSBhbmQg
+bG9jayB0byBhIHRpbWUgb2YgdGhlIG5leHQgc2Vjb25kLg0KPiA+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+
+PiBJIHdhcyB2ZXJ5IHN1cnByaXNlZCB0byBmaW5kIG91dCB0aGF0IGl0IHRha2VzIGJldHdlZW4g
+MC45IHRvDQo+ID4+Pj4+Pj4+IDEuMiBzZWNvbmRzIHRvIHJlYWQgdGhlIGdwc190aW1lIHNlbnNv
+ci4NCj4gPj4+Pj4+Pj4gVGhpcyBleHBsYWlucyBleGFjdGx5IHdoeSBpdCBpcyBkaWZmaWN1bHQg
+dG8gc3luY2hyb25pemUNCj4gPj4+Pj4+Pj4gbXVsdGlwbGUgdW5pdHMgdG8gdGhlIHNhbWUgdGlt
+ZSBpbnN0YW5jZSBiZWNhdXNlIGlmIG9uZSB1bml0DQo+ID4+Pj4+Pj4+IHRha2VzIDAuOQ0KPiA+
+Pj4+Pj4+IHNlY29uZHMNCj4gPj4+Pj4+Pj4gdG8gcmVhZCB0aGUgc2Vuc29yIGFuZCB0aGUgb3Ro
+ZXIgdW5pdCB0YWtlcyAxLjIgc2Vjb25kcyB0bw0KPiA+Pj4+Pj4+PiByZWFkDQo+IHRoZQ0KPiA+
+Pj4+Pj4+PiBzZW5zb3IgdGhlbiBlYWNoIHVuaXQgd2lsbCBsb2NrIG9uIGEgZGlmZmVyZW50IEdQ
+UyB0aW1lIDENCj4gPj4+Pj4+Pj4gc2Vjb25kDQo+ID4+Pj4+Pj4gYXBhcnQuDQo+ID4+Pj4+Pj4+
+DQo+ID4+Pj4+Pj4+IEhlcmUgaXMgYSBzaG9ydCBzb2Z0d2FyZSBJIHdyb3RlIHRvIHRpbWUgdGhl
+IGdwc190aW1lIHNlbnNvcg0KPiA+Pj4+Pj4+IHJlYWRpbmc6DQo+ID4+Pj4+Pj4+IC0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiA+Pj4+
+Pj4+PiAjaW5jbHVkZSA8dWhkL3V0aWxzL3NhZmVfbWFpbi5ocHA+ICNpbmNsdWRlIDx1aGQvZGV2
+aWNlMy5ocHA+DQo+ID4+Pj4+Pj4+IC8vI2luY2x1ZGUgPHVoZC91c3JwL211bHRpX3VzcnAuaHBw
+PiAjaW5jbHVkZQ0KPiA+Pj4+Pj4+PiA8dWhkL3R5cGVzL3NlbnNvcnMuaHBwPiAjaW5jbHVkZSA8
+Ym9vc3QvcHJvZ3JhbV9vcHRpb25zLmhwcD4NCj4gPj4+Pj4+Pj4gI2luY2x1ZGUgPGJvb3N0L2Zv
+cm1hdC5ocHA+ICNpbmNsdWRlIDxjaHJvbm8+ICNpbmNsdWRlDQo+ID4+Pj4+Pj4+IDxpb3N0cmVh
+bT4NCj4gPj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4gbmFtZXNwYWNlIHBvID0gYm9vc3Q6OnByb2dyYW1f
+b3B0aW9uczsNCj4gPj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4gaW50IFVIRF9TQUZFX01BSU4oaW50IGFy
+Z2MsIGNoYXIgKmFyZ3ZbXSl7DQo+ID4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+IHN0ZDo6c3RyaW5nIGFy
+Z3M7DQo+ID4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+ICAgICBwbzo6b3B0aW9uc19kZXNjcmlwdGlvbiBk
+ZXNjKCJBbGxvd2VkIG9wdGlvbnMiKTsNCj4gPj4+Pj4+Pj4gICAgIGRlc2MuYWRkX29wdGlvbnMo
+KQ0KPiA+Pj4+Pj4+PiAgICAgICAgICgiaGVscCIsICJoZWxwIG1lc3NhZ2UiKSAoImFyZ3MiLA0K
+PiA+Pj4+Pj4+PiBwbzo6dmFsdWU8c3RkOjpzdHJpbmc+KCZhcmdzKS0+ZGVmYXVsdF92YWx1ZSgi
+IiksICJkZXZpY2UNCj4gPj4+Pj4+Pj4gYWRkcmVzcyBhcmdzIikNCj4gPj4+Pj4+Pj4gICAgIDsN
+Cj4gPj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4gICAgIHBvOjp2YXJpYWJsZXNfbWFwIHZtOw0KPiA+Pj4+
+Pj4+PiAgICAgcG86OnN0b3JlKHBvOjpwYXJzZV9jb21tYW5kX2xpbmUoYXJnYywgYXJndiwgZGVz
+YyksIHZtKTsNCj4gPj4+Pj4+Pj4gICAgIHBvOjpub3RpZnkodm0pOw0KPiA+Pj4+Pj4+Pg0KPiA+
+Pj4+Pj4+PiAgICAgLy9wcmludCB0aGUgaGVscCBtZXNzYWdlDQo+ID4+Pj4+Pj4+ICAgICBpZiAo
+dm0uY291bnQoImhlbHAiKSl7DQo+ID4+Pj4+Pj4+ICAgICAgICAgc3RkOjpjb3V0IDw8IGJvb3N0
+Ojpmb3JtYXQoIlRpbWluaWcgb2YgZ3BzX3RpbWU6ICVzIikNCj4gPj4+Pj4+Pj4gJQ0KPiA+Pj4+
+Pj4+IGRlc2MNCj4gPj4+Pj4+Pj4gPDwgc3RkOjplbmRsOw0KPiA+Pj4+Pj4+PiAgICAgICAgIHJl
+dHVybiB+MDsNCj4gPj4+Pj4+Pj4gICAgIH0NCj4gPj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4gdWhkOjpk
+ZXZpY2UzOjpzcHRyIHVzcnAgPSB1aGQ6OmRldmljZTM6Om1ha2UoYXJncyk7DQo+ID4+Pj4+Pj4+
+IC8vdWhkOjp1c3JwOjptdWx0aV91c3JwOjpzcHRyIHVzcnAgPQ0KPiA+Pj4+Pj4+IHVoZDo6dXNy
+cDo6bXVsdGlfdXNycDo6bWFrZShhcmdzKTsNCj4gPj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4gdWhkOjpz
+ZW5zb3JfdmFsdWVfdCBncHNfdGltZSA9DQo+ID4+Pj4+Pj4+DQo+ID4+Pj4+Pj4NCj4gdXNycC0+
+Z2V0X3RyZWUoKS0+YWNjZXNzPHVoZDo6c2Vuc29yX3ZhbHVlX3Q+KCIvbWJvYXJkcy8wL3NlbnNv
+cnMvZ3BzXw0KPiB1c3JwLT50aW1lIikuZ2V0KCk7DQo+ID4+Pj4+Pj4+IC8vdWhkOjpzZW5zb3Jf
+dmFsdWVfdCBncHNfdGltZSA9DQo+ID4+Pj4+Pj4gdXNycC0+Z2V0X21ib2FyZF9zZW5zb3IoImdw
+c190aW1lIiwgMCk7DQo+ID4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+IHN0ZDo6Y2hyb25vOjpzdGVhZHlf
+Y2xvY2s6OnRpbWVfcG9pbnQgc3RhcnRfdGltZSwgZW5kX3RpbWU7DQo+ID4+Pj4+Pj4+IHN0ZDo6
+Y2hyb25vOjpkdXJhdGlvbjxkb3VibGU+IHRpbWVfZGlmZjsgLy8gRGVmYXVsdCB1bml0IGZvcg0K
+PiA+Pj4+Pj4+IGR1cmF0aW9uDQo+ID4+Pj4+Pj4+IGlzIHNlY29uZHMuDQo+ID4+Pj4+Pj4+DQo+
+ID4+Pj4+Pj4+IGZvcihpbnQgaWk9MCA7IGlpPDIwIDsgaWkrKykNCj4gPj4+Pj4+Pj4gew0KPiA+
+Pj4+Pj4+PiBzdGFydF90aW1lID0gc3RkOjpjaHJvbm86OnN0ZWFkeV9jbG9jazo6bm93KCk7IGdw
+c190aW1lID0NCj4gPj4+Pj4+Pj4NCj4gPj4+Pj4+Pg0KPiB1c3JwLT5nZXRfdHJlZSgpLT5hY2Nl
+c3M8dWhkOjpzZW5zb3JfdmFsdWVfdD4oIi9tYm9hcmRzLzAvc2Vuc29ycy9ncHNfDQo+IHVzcnAt
+PnRpbWUiKS5nZXQoKTsNCj4gPj4+Pj4+Pj4gLy9ncHNfdGltZSA9IHVzcnAtPmdldF9tYm9hcmRf
+c2Vuc29yKCJncHNfdGltZSIsIDApOyBlbmRfdGltZQ0KPiA+Pj4+Pj4+PiA9IHN0ZDo6Y2hyb25v
+OjpzdGVhZHlfY2xvY2s6Om5vdygpOyB0aW1lX2RpZmYgPSBlbmRfdGltZSAtDQo+ID4+Pj4+Pj4+
+IHN0YXJ0X3RpbWU7DQo+ID4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+IHN0ZDo6Y291dCA8PCAiZ3BzX3Rp
+bWVbIiA8PCAoYm9vc3Q6OmZvcm1hdCgiJTAyZCIpICUgaWkpIDw8ICJdOiAiDQo+ID4+Pj4+Pj4g
+PDwNCj4gPj4+Pj4+Pj4gaW50NjRfdChncHNfdGltZS50b19pbnQoKSkgPDwgIi4gVGltZSB0byBy
+ZWFkIFwiZ3BzX3RpbWVcIjogIg0KPiA+Pj4+Pj4+PiA8PA0KPiA+Pj4+Pj4+PiAoYm9vc3Q6OmZv
+cm1hdCgiJTAuOWYiKSAlIHRpbWVfZGlmZi5jb3VudCgpKSA8PCAiIHNlY29uZHMiIDw8DQo+ID4+
+Pj4+Pj4gc3RkOjplbmRsOw0KPiA+Pj4+Pj4+PiB9DQo+ID4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+ICAg
+ICByZXR1cm4gMDsNCj4gPj4+Pj4+Pj4gfQ0KPiA+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+DQo+IC0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0NCj4gLS0tLS0tLS0tLQ0KPiA+Pj4+Pj4+PiBIZXJlIGFyZSB0aGUgcmVzdWx0cyBv
+ZiBvbmUgdHlwaWNhbCBydW46DQo+ID4+Pj4+Pj4+IGdwc190aW1lWzAwXTogMTYxNzE4Mzg0MC4g
+VGltZSB0byByZWFkICJncHNfdGltZSI6DQo+ID4+Pj4+Pj4+IDAuODg0MTY0MzgwDQo+ID4+Pj4+
+Pj4gc2Vjb25kcw0KPiA+Pj4+Pj4+PiBncHNfdGltZVswMV06IDE2MTcxODM4NDEuIFRpbWUgdG8g
+cmVhZCAiZ3BzX3RpbWUiOg0KPiA+Pj4+Pj4+PiAwLjg3Nzk2NjQ2OQ0KPiA+Pj4+Pj4+IHNlY29u
+ZHMNCj4gPj4+Pj4+Pj4gZ3BzX3RpbWVbMDJdOiAxNjE3MTgzODQyLiBUaW1lIHRvIHJlYWQgImdw
+c190aW1lIjoNCj4gPj4+Pj4+Pj4gMS4xNzA4Njk2NjENCj4gPj4+Pj4+PiBzZWNvbmRzDQo+ID4+
+Pj4+Pj4+IGdwc190aW1lWzAzXTogMTYxNzE4Mzg0My4gVGltZSB0byByZWFkICJncHNfdGltZSI6
+DQo+ID4+Pj4+Pj4+IDAuODgyOTE3OTg3DQo+ID4+Pj4+Pj4gc2Vjb25kcw0KPiA+Pj4+Pj4+PiBn
+cHNfdGltZVswNF06IDE2MTcxODM4NDQuIFRpbWUgdG8gcmVhZCAiZ3BzX3RpbWUiOg0KPiA+Pj4+
+Pj4+PiAxLjE3MjEyMDE1NA0KPiA+Pj4+Pj4+IHNlY29uZHMNCj4gPj4+Pj4+Pj4gZ3BzX3RpbWVb
+MDVdOiAxNjE3MTgzODQ1LiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjoNCj4gPj4+Pj4+Pj4gMC44
+NzkyNzE5ODUNCj4gPj4+Pj4+PiBzZWNvbmRzDQo+ID4+Pj4+Pj4+IGdwc190aW1lWzA2XTogMTYx
+NzE4Mzg0Ni4gVGltZSB0byByZWFkICJncHNfdGltZSI6DQo+ID4+Pj4+Pj4+IDAuODc4NjA5MDk5
+DQo+ID4+Pj4+Pj4gc2Vjb25kcw0KPiA+Pj4+Pj4+PiBncHNfdGltZVswN106IDE2MTcxODM4NDcu
+IFRpbWUgdG8gcmVhZCAiZ3BzX3RpbWUiOg0KPiA+Pj4+Pj4+PiAxLjExNTYzOTI4Mg0KPiA+Pj4+
+Pj4+IHNlY29uZHMNCj4gPj4+Pj4+Pj4gZ3BzX3RpbWVbMDhdOiAxNjE3MTgzODQ4LiBUaW1lIHRv
+IHJlYWQgImdwc190aW1lIjoNCj4gPj4+Pj4+Pj4gMS4xMjUzNjU1NTENCj4gPj4+Pj4+PiBzZWNv
+bmRzDQo+ID4+Pj4+Pj4+IGdwc190aW1lWzA5XTogMTYxNzE4Mzg0OS4gVGltZSB0byByZWFkICJn
+cHNfdGltZSI6DQo+ID4+Pj4+Pj4+IDAuODQzODAzMjMxDQo+ID4+Pj4+Pj4gc2Vjb25kcw0KPiA+
+Pj4+Pj4+PiBncHNfdGltZVsxMF06IDE2MTcxODM4NTAuIFRpbWUgdG8gcmVhZCAiZ3BzX3RpbWUi
+Og0KPiA+Pj4+Pj4+PiAxLjEyNTA2NTc0MA0KPiA+Pj4+Pj4+IHNlY29uZHMNCj4gPj4+Pj4+Pj4g
+Z3BzX3RpbWVbMTFdOiAxNjE3MTgzODUxLiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjoNCj4gPj4+
+Pj4+Pj4gMC44NDc1MTk4MTcNCj4gPj4+Pj4+PiBzZWNvbmRzDQo+ID4+Pj4+Pj4+IGdwc190aW1l
+WzEyXTogMTYxNzE4Mzg1Mi4gVGltZSB0byByZWFkICJncHNfdGltZSI6DQo+ID4+Pj4+Pj4+IDEu
+MTIxMzk4OTQ1DQo+ID4+Pj4+Pj4gc2Vjb25kcw0KPiA+Pj4+Pj4+PiBncHNfdGltZVsxM106IDE2
+MTcxODM4NTMuIFRpbWUgdG8gcmVhZCAiZ3BzX3RpbWUiOg0KPiA+Pj4+Pj4+PiAwLjg0NDM3MTUz
+Mw0KPiA+Pj4+Pj4+IHNlY29uZHMNCj4gPj4+Pj4+Pj4gZ3BzX3RpbWVbMTRdOiAxNjE3MTgzODU0
+LiBUaW1lIHRvIHJlYWQgImdwc190aW1lIjoNCj4gPj4+Pj4+Pj4gMS4xMjQ3MjI3MjYNCj4gPj4+
+Pj4+PiBzZWNvbmRzDQo+ID4+Pj4+Pj4+IGdwc190aW1lWzE1XTogMTYxNzE4Mzg1NS4gVGltZSB0
+byByZWFkICJncHNfdGltZSI6DQo+ID4+Pj4+Pj4+IDAuODQ1Njg4MzgwDQo+ID4+Pj4+Pj4gc2Vj
+b25kcw0KPiA+Pj4+Pj4+PiBncHNfdGltZVsxNl06IDE2MTcxODM4NTYuIFRpbWUgdG8gcmVhZCAi
+Z3BzX3RpbWUiOg0KPiA+Pj4+Pj4+PiAxLjEyOTU2ODA5Ng0KPiA+Pj4+Pj4+IHNlY29uZHMNCj4g
+Pj4+Pj4+Pj4gZ3BzX3RpbWVbMTddOiAxNjE3MTgzODU3LiBUaW1lIHRvIHJlYWQgImdwc190aW1l
+IjoNCj4gPj4+Pj4+Pj4gMC44ODI0MzYyMjkNCj4gPj4+Pj4+PiBzZWNvbmRzDQo+ID4+Pj4+Pj4+
+IGdwc190aW1lWzE4XTogMTYxNzE4Mzg1OC4gVGltZSB0byByZWFkICJncHNfdGltZSI6DQo+ID4+
+Pj4+Pj4+IDEuMTY4MjI3NTkzDQo+ID4+Pj4+Pj4gc2Vjb25kcw0KPiA+Pj4+Pj4+PiBncHNfdGlt
+ZVsxOV06IDE2MTcxODM4NTkuIFRpbWUgdG8gcmVhZCAiZ3BzX3RpbWUiOg0KPiA+Pj4+Pj4+PiAw
+Ljg4MTk0ODI0Nw0KPiA+Pj4+Pj4+IHNlY29uZHMNCj4gPj4+Pj4+Pj4NCj4gPj4+Pj4+Pg0KPiAt
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tDQo+IC0tLS0tLS0tLS0tLS0NCj4gPj4+Pj4+Pj4gSW4gdGhlIGNvZGUgeW91
+IGNhbiBmaW5kIGNvbW1lbnRlZCBvdXQgdGhlIHVzdWFsIHdheSB0bw0KPiA+Pj4+Pj4+PiBhY2Nl
+c3MgdGhlIHNlbnNvciB1c2luZyBtdWx0aV91c3JwIGFuZCBnZXRfbWJvYXJkX3NlbnNvci4gVGhl
+DQo+ID4+Pj4+Pj4+IHJlc3VsdHMgYXJlDQo+ID4+Pj4+Pj4gcXVpdGUNCj4gPj4+Pj4+Pj4gc2lt
+aWxhci4NCj4gPj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4gSSB3b25kZXIgaWYgYW55Ym9keSBlbmNvdW50
+ZXJlZCB0aGlzIGlzc3VlIGJlZm9yZSBvcg0KPiA+Pj4+Pj4+PiBhZGRyZXNzZWQgaXQNCj4gPj4+
+Pj4+PiBpbg0KPiA+Pj4+Pj4+PiBhbnkgd2F5Lg0KPiA+Pj4+Pj4+PiBJIHdvbmRlciB3aHkgaXQg
+dGFrZXMgc28gbXVjaCB0aW1lIHRvIGdldCB0aGUgdmFsdWUgb2YgR1BTDQo+ID4+Pj4+Pj4+IHRp
+bWUNCj4gPj4+Pj4+PiB3aGVuDQo+ID4+Pj4+Pj4+IGl0IGlzIGEgc2ltcGxlIHBhcnNpbmcgb2Yg
+YW4gTk1FQSBtZXNzYWdlIGNvbWluZyBmcm9tIHRoZSBHUFMNCj4gPj4+Pj4+PiByZWNlaXZlci4N
+Cj4gPj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4gSSBhbSB0cnlpbmcgbm93IHZhcmlvdXMgdHJpY2tzIHRv
+IG1ha2UgdGhlIHNvZnR3YXJlIHJvYnVzdA0KPiA+Pj4+Pj4+PiBhbmQNCj4gPj4+Pj4+PiBpbW11
+bmUNCj4gPj4+Pj4+Pj4gdG8gdGhpcyBwaGVub21lbm9uLiBJIGNhbiByZXBvcnQgbXkgZmluZGlu
+Z3MgZnVydGhlciBpZiBJDQo+ID4+Pj4+Pj4+IHN1Y2NlZWQNCj4gPj4+Pj4+PiB0bw0KPiA+Pj4+
+Pj4+PiBmaW5kIGEgd29ya2Fyb3VuZCBpZiB0aGVyZSBpcyBhbnkgaW50ZXJlc3QuDQo+ID4+Pj4+
+Pj4+DQo+ID4+Pj4+Pj4+IENhbiBhbnlvbmUgY29tbWVudCBvbiB0aGlzPyBDYW4gdGhpcyBiZSBy
+ZXNvbHZlZCBzbyB0aGF0IHRoZQ0KPiA+Pj4+Pj4+IHJlYWRpbmcNCj4gPj4+Pj4+Pj4gb2YgZ3Bz
+X3RpbWUgd2lsbCBiZSBtdWNoIGZhc3Rlcj8NCj4gPj4+Pj4+Pj4gSXMgdGhlcmUgYW5vdGhlciB3
+YXkgdG8gZ2V0IEdQUyB0aW1lIGZhc3RlciBpbmRpcmVjdGx5PyBNYXliZQ0KPiA+Pj4+Pj4+PiBm
+cm9tIHBhcnNpbmcgTk1FQSBtZXNzYWdlcyBvdXJzZWx2ZXM/DQo+ID4+Pj4+Pj4+DQo+ID4+Pj4+
+Pj4+IFJlZ2FyZHMsDQo+ID4+Pj4+Pj4+IE9mZXIgU2FmZXJtYW4NCj4gPj4+Pj4+Pj4NCj4gPj4+
+Pj4+PiBUaGlzIHByb2JhYmx5IGhhcyB0byBkbyB3aXRoIHRoZSB3YXkgdGhhdCBwYXJ0aWN1bGFy
+ICJzZW5zb3IiDQo+ID4+Pj4+Pj4gd29ya3MtLXRoZQ0KPiA+Pj4+Pj4+IE5NRUEgdGltZSB2YWx1
+ZSBpcyBvbmx5IGVtaXR0ZWQgb25jZSBwZXIgc2Vjb25kLCBhbmQgdGhlDQo+ID4+Pj4+Pj4gICAg
+Y29kZSBmb3IgdGhhdCBzZW5zb3IgaGFzIHNvbWUgaGV1cmlzdGljIGZvciBkZXRlcm1pbmluZw0K
+PiA+Pj4+Pj4+ICJmcmVzaG5lc3MiDQo+ID4+Pj4+Pj4gb2YgdGhlIHZhbHVlLg0KPiA+Pj4+Pj4+
+DQo+ID4+Pj4+Pj4gSSdsbCBwb2ludCBvdXQgdGhhdCBvbiBFMzEwLCB0aGUgc3lzdGVtIGlzIGNv
+bmZpZ3VyZWQgdG8gdXNlDQo+ID4+Pj4+Pj4gR1BTRCwNCj4gc28NCj4gPj4+Pj4+PiB0aGF0IHRo
+ZSBMaW51eCBzeXN0ZW0gdGltZSBhY3Jvc3Mgc2V2ZXJhbCBzeXN0ZW1zIHRoYXQgaGF2ZQ0KPiA+
+Pj4+Pj4+IGFsbA0KPiBiZWVuDQo+ID4+Pj4+Pj4gICAgImxpc3RlbmluZyIgdG8gR1BTIGZvciBh
+IHdoaWxlIHdpbGwgYWxsIGJlIHN5bmNocm9uaXplZA0KPiA+Pj4+Pj4+IHF1aXRlDQo+IHdlbGwu
+DQo+ID4+Pj4+Pj4NCj4gPj4+Pj4+Pg0KPiA+Pj4+Pj4+DQo+ID4+Pj4+Pj4NCj4gPj4+Pj4+IC0t
+DQo+ID4+Pj4+PiBUaGlzIG1lc3NhZ2UgaGFzIGJlZW4gc2Nhbm5lZCBmb3IgdmlydXNlcyBhbmQg
+ZGFuZ2Vyb3VzIGNvbnRlbnQNCj4gPj4+Pj4+IGJ5ICpNYWlsU2Nhbm5lciogPGh0dHA6Ly93d3cu
+bWFpbHNjYW5uZXIuaW5mby8+LCBhbmQgaXMNCj4gPj4+Pj4+IGJlbGlldmVkIHRvIGJlIGNsZWFu
+Lg0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiA+
+Pj4+Pj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20gVG8NCj4gPj4+Pj4+IHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1s
+ZWF2ZUBsaXN0cy5ldHR1cy5jb20NCj4gPj4+Pj4+DQo+ID4+Pj4+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+ID4+Pj4gVVNSUC11c2VycyBtYWlsaW5n
+IGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gVG8NCj4gPj4+PiB1bnN1YnNjcmli
+ZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+ID4+
+Pj4NCj4gPj4+Pg0KPiA+Pj4gLS0NCj4gPj4+IFRoaXMgbWVzc2FnZSBoYXMgYmVlbiBzY2FubmVk
+IGZvciB2aXJ1c2VzIGFuZCBkYW5nZXJvdXMgY29udGVudCBieQ0KPiA+Pj4gKk1haWxTY2FubmVy
+KiA8aHR0cDovL3d3dy5tYWlsc2Nhbm5lci5pbmZvLz4sIGFuZCBpcyBiZWxpZXZlZCB0bw0KPiA+
+Pj4gYmUgY2xlYW4uDQo+ID4+Pg0KPiA+Pj4NCj4gPj4gLS0NCj4gPj4gVGhpcyBtZXNzYWdlIGhh
+cyBiZWVuIHNjYW5uZWQgZm9yIHZpcnVzZXMgYW5kIGRhbmdlcm91cyBjb250ZW50IGJ5DQo+ID4+
+ICpNYWlsU2Nhbm5lciogPGh0dHA6Ly93d3cubWFpbHNjYW5uZXIuaW5mby8+LCBhbmQNCj4gaXMN
+Cj4gPj4gYmVsaWV2ZWQgdG8gYmUgY2xlYW4uDQo+ID4+DQo+ID4+DQo+ID4+DQo+ID4NCj4gPg0K
+PiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+ID4g
+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gVG8g
+dW5zdWJzY3JpYmUNCj4gPiBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMu
+ZXR0dXMuY29tDQo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20gVG8gdW5zdWJzY3JpYmUNCj4gc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZl
+QGxpc3RzLmV0dHVzLmNvbQ0KPg0KDQotLQ0KVGhpcyBtZXNzYWdlIGhhcyBiZWVuIHNjYW5uZWQg
+Zm9yIHZpcnVzZXMgYW5kIGRhbmdlcm91cyBjb250ZW50IGJ5IE1haWxTY2FubmVyLCBhbmQgaXMg
+YmVsaWV2ZWQgdG8gYmUgY2xlYW4uDQoNCi0tLS0tLS0tLS0tLS0tIG5leHQgcGFydCAtLS0tLS0t
+LS0tLS0tLQ0KQSBtZXNzYWdlIHBhcnQgaW5jb21wYXRpYmxlIHdpdGggcGxhaW4gdGV4dCBkaWdl
+c3RzIGhhcyBiZWVuIHJlbW92ZWQgLi4uDQpOYW1lOiBub3QgYXZhaWxhYmxlDQpUeXBlOiB0ZXh0
+L2h0bWwNClNpemU6IDI3ODM0IGJ5dGVzDQpEZXNjOiBub3QgYXZhaWxhYmxlDQoNCi0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQpTdWJqZWN0OiBEaWdlc3QgRm9vdGVyDQoNCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1h
+aWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSBUbyB1bnN1YnNjcmliZSBz
+ZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQoNCg0KLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCkVuZCBvZiBVU1JQLXVzZXJzIERpZ2VzdCwg
+Vm9sIDEyOCwgSXNzdWUgNw0KKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQ
+LXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1
+YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29t
+Cg==
