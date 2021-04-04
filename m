@@ -2,334 +2,1920 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEA78353613
-	for <lists+usrp-users@lfdr.de>; Sun,  4 Apr 2021 03:04:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE10353619
+	for <lists+usrp-users@lfdr.de>; Sun,  4 Apr 2021 03:35:46 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D01F9383DF6
-	for <lists+usrp-users@lfdr.de>; Sat,  3 Apr 2021 21:04:06 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E089B383C1F
+	for <lists+usrp-users@lfdr.de>; Sat,  3 Apr 2021 21:35:44 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XEqtN7ux";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=vectalabs-com.20150623.gappssmtp.com header.i=@vectalabs-com.20150623.gappssmtp.com header.b="VVhSjsup";
 	dkim-atps=neutral
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id 903E1383DE5
-	for <USRP-users@lists.ettus.com>; Sat,  3 Apr 2021 21:03:22 -0400 (EDT)
-Received: by mail-qt1-f180.google.com with SMTP id l13so6173380qtu.9
-        for <USRP-users@lists.ettus.com>; Sat, 03 Apr 2021 18:03:22 -0700 (PDT)
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id DE253383BFE
+	for <usrp-users@lists.ettus.com>; Sat,  3 Apr 2021 21:34:57 -0400 (EDT)
+Received: by mail-ua1-f50.google.com with SMTP id h5so2566073uaw.0
+        for <usrp-users@lists.ettus.com>; Sat, 03 Apr 2021 18:34:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=gJqZqIhE3UOLc1PsUXP96qbllF9nTrU4y/T1jeRoLXU=;
-        b=XEqtN7ux/b3bFOdIp2GneqxEGHAyu/B3zR+Xu3381qge1FmARjnAtJB10VucWF8Kyv
-         Hj79E9Wc5HTTVVWd1GlmFFkVZAQduM+ei4d19cybtcLS/AICNb14u47dHfYPTpIfzR9t
-         q5REdeHVQGKpV+rQEPzHsfAHcgOd3o6EHxpjT6wukC94+SBnQvPQgGl8rOjsCBPV/J2C
-         M8xkfpB6di/j3QadnVX+tWuCVHmf9/MA8mNLNZayqNqDct1YhC0vOLoUtPoARbcdAvAY
-         VWgvawTxrO01QyUCDJF8q/seWTn26icEPhIJd2OIdLMCrmLdhfLsk+HN1NZwc7e0ufZ7
-         j5oA==
+        d=vectalabs-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dXeTf3GPApc2oyq8A5ii2E10Oc/TsX4VK3mp2QpPoVo=;
+        b=VVhSjsupgU+ctlnSwAPz8sDMt5e9Mx6EQeH0sTERpxQOp83fr1kq1MrKfmisGBUMYV
+         ZLWtk3zAg9RuKdDIFgrcTxY9Edz5Cs96o4Wp4D3MPdFoV4ZYlsO/N1qsfs+ppsR41v4S
+         XumS7zaqngwdSmC2R7COMe9YEzUC4XdrWtZ2FunaDOvanbskZ+qamMuoOzliBtAeM0T3
+         +inFHvmAAQKVqhhULnasKBaSaX0uu2Ya6XBPpnVrkO09U0L69zCv9TOGbuot0e6KatAa
+         nZ4+PJ6YhS7GULdvfZFcT1MhBeiVBkFrzZQnkm0AWQxG4iAnjAf6Lh9V9QDoeYfW/4fy
+         Ig3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=gJqZqIhE3UOLc1PsUXP96qbllF9nTrU4y/T1jeRoLXU=;
-        b=t+7wrgD1fg2U0CmPikuX1emddU37RVCavs7j7MoAoea6zX4FnxPHUml5/kNQunruhE
-         SCHCaQWgVnXhmaJB9m/GB1dDVI1wKZf/m/SCX9wsPumtBVOTkMJavCTnxgF7ioW2piuP
-         sIYTC/q65fuKq5JDROcz3BO7PM9zn20LNymAP0nLg6cRfxBmr1wYFXlR18FnpA1wHn73
-         efYi8o1xNLe+KkQV8HE7Rugl8YDg5oiS/8Xq78iNK+Va9xTSiyNdUjrRcisPps02XJ/B
-         Wslx68o0agzt8ZrgbczT93Agc1GqkV7jWeogQBxw/x+riaUz82/IYH/jkAu5Q2yMpjbV
-         6+tg==
-X-Gm-Message-State: AOAM531W9M6EjBH850xI46UeQGJ+dJFb4dyfWhfZ31tE2VPpzqVazNAk
-	GKDts+fuvr13Il47np6sv68oOinzvYc=
-X-Google-Smtp-Source: ABdhPJyLBqbpfoJOfMBZpvWuAyjlUqDD6StOoqMY36j7Ry6cWkY3FUaJ710tjcn64Frmx0Hjm77aKg==
-X-Received: by 2002:ac8:6684:: with SMTP id d4mr16788749qtp.34.1617498201783;
-        Sat, 03 Apr 2021 18:03:21 -0700 (PDT)
-Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id s28sm10640595qkj.73.2021.04.03.18.03.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 03 Apr 2021 18:03:21 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Sat, 3 Apr 2021 21:03:20 -0400
-Message-Id: <09494F90-D4DB-401F-8CAE-FF766FAA689E@gmail.com>
-References: <CALNMZ8X7gRZH=MN+iCW1LQzGgsAUJrU91s8atfrTQ9LnL91oHQ@mail.gmail.com>
-In-Reply-To: <CALNMZ8X7gRZH=MN+iCW1LQzGgsAUJrU91s8atfrTQ9LnL91oHQ@mail.gmail.com>
-To: Brendan Horsfield <brendan.horsfield@vectalabs.com>
-X-Mailer: iPhone Mail (18D61)
-Message-ID-Hash: ZZSSNL3MGBIBYOMBMXYM2ZLSSRAXCBP7
-X-Message-ID-Hash: ZZSSNL3MGBIBYOMBMXYM2ZLSSRAXCBP7
-X-MailFrom: patchvonbraun@gmail.com
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dXeTf3GPApc2oyq8A5ii2E10Oc/TsX4VK3mp2QpPoVo=;
+        b=aZFRXUyGfy6pTPfA64UZ5yFPpVkAG83pLjmsVFhqRI0J85W6Svpp5C9gcZ7A/eaD5y
+         sUwIsCpLzYbZ2PQJHppoicjIYHA0w6yOeLjD7XtjgTcsVW1haJ24pvyQuJzx2BlKo1Tx
+         jvpc7hqosZTAGEsAobn1+NEzIh26kVYgxQ5W2tG/90+I1h6tHGkzI073R65rbgJVvln6
+         D1bVQhGqrE5KZ1ynjZzCsc/0N45I1EhN4hp0R0pChWOgugt3veC7AZt1G67jX1ebXzFb
+         33kxi6VgGmvH5BmDM2+GbfYvfmmYxy0U0T6NlWwKptdwm16WUFKu0rUH5akBnTxIeHki
+         aXDQ==
+X-Gm-Message-State: AOAM531YgW08cP+kl0TyHJbdF3rc2Db4RE9m8ii0oP8Fxu9v/dn2e1ni
+	YbbAp/IrBfOcctpGYuwcNOQTMGdyWN8rxRzfFKinLA==
+X-Google-Smtp-Source: ABdhPJyDhkqOXbQpJu8mzh5Tdva9bROdGmgAaneWTIrROPTGroaBf4/032k8LD/kH3PkX3CO0urdpFxNnvysdSqs+gM=
+X-Received: by 2002:a9f:3f09:: with SMTP id h9mr11085636uaj.139.1617500096850;
+ Sat, 03 Apr 2021 18:34:56 -0700 (PDT)
+MIME-Version: 1.0
+References: <88b0297dc16541e896eb4bac4878105c@boeing.com>
+In-Reply-To: <88b0297dc16541e896eb4bac4878105c@boeing.com>
+From: Brendan Horsfield <brendan.horsfield@vectalabs.com>
+Date: Sun, 4 Apr 2021 11:34:45 +1000
+Message-ID: <CALNMZ8X3u9wXQu-_u-Cz9x6vrwGw7R8Vnj4xfo89FOeRxfX3Sw@mail.gmail.com>
+To: "Clark (US), Kenneth C" <kenneth.c.clark2@boeing.com>
+Message-ID-Hash: SIRTHXBHAWAEVG5GUPG7A3DLSLDJZ555
+X-Message-ID-Hash: SIRTHXBHAWAEVG5GUPG7A3DLSLDJZ555
+X-MailFrom: brendan.horsfield@vectalabs.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Problem with interfacing Raspberry Pi 4 to USRP B210 with Python API
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZZSSNL3MGBIBYOMBMXYM2ZLSSRAXCBP7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SIRTHXBHAWAEVG5GUPG7A3DLSLDJZ555/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5072894287090170349=="
+Content-Type: multipart/mixed; boundary="===============2234107348612639399=="
 
+--===============2234107348612639399==
+Content-Type: multipart/alternative; boundary="000000000000b2885d05bf1b9632"
 
---===============5072894287090170349==
-Content-Type: multipart/alternative; boundary=Apple-Mail-3C16B057-8228-4A8B-B880-88FB12F5BB80
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-3C16B057-8228-4A8B-B880-88FB12F5BB80
-Content-Type: text/plain;
-	charset=utf-8
+--000000000000b2885d05bf1b9632
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-The C++ API is the standard API for UHD follows by the legacy C API and then=
- the Python API.  The Python API is still considered experimental, and it wi=
-ll necessarily have performance issues=E2=80=94that=E2=80=99s just the natur=
-e of an interpreted language trying to do high performance real-time signal p=
-rocessing=E2=80=94even when you use things like numpy.=20
+Thanks Ken.  As you suggested, I added -DCMAKE_EXE_LINKER_FLAGS=3D"-latomic=
+"
+to the CMake call.
 
-Sent from my iPhone
+The good news is that the UHD build & installation process completed
+successfully.
 
-> On Apr 3, 2021, at 7:37 PM, Brendan Horsfield <brendan.horsfield@vectalabs=
-.com> wrote:
->=20
-> =EF=BB=BF
-> Your point is well taken, although I confess I am still a bit surprised th=
-at Python support is not the norm, given the popularity of this language in t=
-he scientific & engineering community. =20
->=20
-> Getting back to my problem:  Am I correct in assuming that the C++ API is i=
-ncluded as standard with every UHD build?  If so, rather than spending days/=
-weeks trying to add Python support to UHD on the Raspberry Pi, would it be f=
-aster for me to just create a C++ function to communicate with the USRP, and=
- put a Python wrapper around it?
->=20
->> On Sun, Apr 4, 2021 at 1:15 AM Marcus D Leech <patchvonbraun@gmail.com> w=
-rote:
->>=20
->>=20
->> Sent from my iPhone
->>=20
->>> On Apr 3, 2021, at 7:08 AM, Brendan Horsfield <b
->>> QUESTION 2:  This whole process feels more difficult than it should be. =
- Why isn't the Python API installed with the UHD driver by default?  Would I=
- be better off using another language (like C++) to control the USRP?
->>>=20
->>> Thanks,
->>> Brendan.
->>>=20
->> Well, NI/Ettus have zero control over how various distros choose to packa=
-ge and build UHD, similarly for PyBombs=E2=80=94PyBombs isn=E2=80=99t mainta=
-ined by NI/Ettus.=20
->>=20
->> So if you =E2=80=9Cland=E2=80=9D on a distro where the packaged UHD doesn=
-=E2=80=99t include Python support, then you end up building UHD yourself. Wh=
-ich may entail the pain you encountered due to missing compiler flags.=20
->>=20
->> Because the Linux world is so incredibly diverse, it=E2=80=99s rare that t=
-he developer of a given code base is also responsible for packaging for a gi=
-ven distro/platform. That=E2=80=99s why there are =E2=80=9Cpackage maintaine=
-rs=E2=80=9D for each distro, and they=E2=80=99re the ones who end up making d=
-ecisions like enabling support for various options, turning on =E2=80=9Cweir=
-d=E2=80=9D compiler flags, etc.=20
->>=20
->> UHD is no different in this regard.=20
->>=20
->>>=20
->>>=20
->>>> On Fri, Apr 2, 2021 at 11:25 PM Marcus D Leech <patchvonbraun@gmail.com=
+The bad news is that when I try to import the uhd module in Python3, I
+get the following error:
+
+pi@raspberrypi:~ $ python3
+Python 3.7.3 (default, Jan 22 2021, 20:04:44)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import uhd
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/local/lib/python3/dist-packages/uhd/__init__.py", line 10, in
+<module>
+    from . import types
+  File "/usr/local/lib/python3/dist-packages/uhd/types.py", line 10, in
+<module>
+    from . import libpyuhd as lib
+ImportError: /usr/local/lib/libuhd.so.4.0.0: undefined symbol:
+__atomic_fetch_add_8
+>>>
+
+Did you encounter this problem too?
+
+I guess the next step is to hack the "CMakeLists.txt" files as per the link
+you sent me.  Just to clarify one point first:  If I modify the
+CMakeLists.txt files, do I still need to include
+-DCMAKE_EXE_LINKER_FLAGS=3D"-latomic" in the CMake call?
+
+Thanks,
+Brendan.
+
+
+
+On Sat, Apr 3, 2021 at 10:29 PM Clark (US), Kenneth C <
+kenneth.c.clark2@boeing.com> wrote:
+
+>
+> I had the same problem build UHD on RPi4
+>
+> Answer here:
+> https://gitlab.kitware.com/cmake/cmake/-/issues/21174
+>
+> Add to CMake call:
+> -DCMAKE_EXE_LINKER_FLAGS=3D"-latomic"
+>
+> Regards,
+>
+> Ken
+>
+>
+> -----Original Message-----
+> From: usrp-users-request@lists.ettus.com [mailto:
+> usrp-users-request@lists.ettus.com]
+> Sent: Saturday, April 3, 2021 11:13
+> To: usrp-users@lists.ettus.com
+> Subject: [EXTERNAL] USRP-users Digest, Vol 128, Issue 7
+>
+> EXT email: be mindful of links/attachments.
+>
+>
+>
+> Send USRP-users mailing list submissions to
+>         usrp-users@lists.ettus.com
+>
+> To subscribe or unsubscribe via email, send a message with subject or bod=
+y
+> 'help' to
+>         usrp-users-request@lists.ettus.com
+>
+> You can reach the person managing the list at
+>         usrp-users-owner@lists.ettus.com
+>
+> When replying, please edit your Subject line so it is more specific than
+> "Re: Contents of USRP-users digest..."
+>
+> Today's Topics:
+>
+>    1. Re: Problem with interfacing Raspberry Pi 4 to USRP B210 with Pytho=
+n
+> API
+>       (Brendan Horsfield)
+>    2. Re: Intermittent problem with GPS synchronization for multiple E310
+> units
+>       (Ofer Saferman)
+>
+>
+> ----------------------------------------------------------------------
+>
+> Message: 1
+> Date: Sat, 3 Apr 2021 21:07:59 +1000
+> From: Brendan Horsfield <brendan.horsfield@vectalabs.com>
+> Subject: [USRP-users] Re: Problem with interfacing Raspberry Pi 4 to
+>         USRP B210 with Python API
+> To: Marcus D Leech <patchvonbraun@gmail.com>
+> Cc: USRP-users@lists.ettus.com
+> Message-ID:
+>         <
+> CALNMZ8Wg3gQnkAomrhhCBPAGtTfUbm3fkMzJhCWhUAgHrLuzyA@mail.gmail.com>
+> Content-Type: multipart/alternative;
+>         boundary=3D"000000000000dc3aeb05bf0f7ace"
+>
+> Hi Marcus,
+>
+> I have tried your suggestion, but unfortunately without success:
+>
+> Per your advice, I have edited the file "cmake.lwt" in the folder
+> /usr/local/lib/python3.7/dist-packages/pybombs/templates to include the
+> option "-DENABLE_PYTHON_API=3DON" in the calls to cmake.  The modified
+> commands are as follows:
+>
+> configure: cmake .. -DENABLE_PYTHON_API=3DON
+> -DCMAKE_BUILD_TYPE=3D$cmakebuildtype -DCMAKE_INSTALL_PREFIX=3D$prefix
+> $config_opt -Wno-dev
+> configure_static: cmake .. -DENABLE_PYTHON_API=3DON
+> -DCMAKE_BUILD_TYPE=3D$cmakebuildtype -DCMAKE_INSTALL_PREFIX=3D$prefix
+> -DENABLE_STATIC_LIBS=3DTrue $config_opt
+>
+> I removed the previous UHD installation and re-ran "pybombs install uhd",
+> but the end result was much the same:  the installation process completed
+> without errors, but the Python API was not included in the installation.
+>
+> QUESTION 1:  Can you tell me if PyBOMBS actually builds the UHD driver
+> from source, or does it simply copy a pre-compiled binary onto my system?
+> The reason I ask is that PyBOMBS is quite quick to install the UHD driver=
+,
+> whereas the non-PyBOMBS approach is VERY slow (i.e. around 60 minutes to
+> get to 53%, at which point it crashes out with an error).
+>
+> QUESTION 2:  This whole process feels more difficult than it should be.
+> Why isn't the Python API installed with the UHD driver by default?  Would
+> I be better off using another language (like C++) to control the USRP?
+>
+> Thanks,
+> Brendan.
+>
+>
+>
+> On Fri, Apr 2, 2021 at 11:25 PM Marcus D Leech <patchvonbraun@gmail.com>
 > wrote:
->>>> Perhaps look at the PyBombs recipe for your platform=E2=80=94there=E2=80=
-=99s probably a compiler flag that needs to be set that you=E2=80=99re missi=
-ng, but I don=E2=80=99t know what that is.=20
->>>>=20
->>>> Also, in general, you don=E2=80=99t need to become root to compile and b=
-uild code=E2=80=94only needed during the =E2=80=9Cmake install=E2=80=9D
->>>>=20
->>>>=20
->>>>=20
->>>> Sent from my iPhone
->>>>=20
->>>>>> On Apr 2, 2021, at 7:19 AM, Brendan Horsfield <brendan.horsfield@vect=
-alabs.com> wrote:
->>>>>>=20
->>>>> =EF=BB=BF
->>>>> Hi Folks,
->>>>>=20
->>>>> I would like to interface my Raspberry Pi 4 to a USRP B210 via the Pyt=
-hon API.  This requires the UHD driver to be built from source.  Unfortunate=
-ly, whenever I try this I encounter some errors that stop the build process i=
-n its tracks.
->>>>>=20
->>>>> Details of the error are as follows:
->>>>>=20
->>>>> [ 53%] Linking CXX executable test_clock_synch
->>>>> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `__atomic_=
-compare_exchange_8'
->>>>> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `__atomic_=
-load_8'
->>>>> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `__atomic_=
-store_8'
->>>>> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `__atomic_=
-fetch_add_8'
->>>>> collect2: error: ld returned 1 exit status
->>>>> make[2]: *** [examples/CMakeFiles/test_clock_synch.dir/build.make:95: e=
-xamples/test_clock_synch] Error 1
->>>>> make[1]: *** [CMakeFiles/Makefile2:1039: examples/CMakeFiles/test_cloc=
-k_synch.dir/all] Error 2
->>>>> make: *** [Makefile:163: all] Error 2
->>>>>=20
->>>>> The process I have been using is as follows:
->>>>>=20
->>>>> STEP 1:  INSTALL DEPENDENCIES
->>>>> sudo apt-get install libboost-all-dev libusb-1.0-0-dev doxygen python3=
--docutils python3-mako python3-numpy python3-requests python3-ruamel.yaml py=
-thon3-setuptools cmake build-essential
->>>>>=20
->>>>> STEP 2:  BUILD UHD DRIVER FROM SOURCE
->>>>> cd /home/pi
->>>>> mkdir workarea-uhd
->>>>> cd workarea-uhd
->>>>> git clone https://github.com/EttusResearch/uhd
->>>>> cd uhd
->>>>> git checkout v4.0.0.0
->>>>> cd host
->>>>> mkdir build
->>>>> cd build
->>>>> sudo cmake -DNEON_SIMD_ENABLE=3DOFF -DENABLE_PYTHON_API=3DON ../
->>>>> sudo make  --->  (ERRORS OCCUR DURING "MAKE" PROCESS)
->>>>>=20
->>>>> My system configuration is as follows:
->>>>> Hardware: Raspberry Pi 4 Model B Rev 1.4
->>>>> OS: Raspbian GNU/Linux 10 (buster) (32-bit, armv7l)
->>>>> Ettus USRP B210
->>>>>=20
->>>>> Does anyone know what the problem could be, and how I can resolve it?
->>>>>=20
->>>>> One final note:  Using PyBOMBS, I was able to successfully build & ins=
-tall the UHD driver and connect to the USRP.  Unfortunately the PyBOMBS buil=
-d does not include the Python API, which is what I really want.  Is there a d=
-ifferent version of the PyBOMBS build that includes the Python API?
->>>>>=20
->>>>> Thanks & Regards,
->>>>> Brendan.
->>>>>=20
->>>>>=20
->>>>>  =20
->>>>> _______________________________________________
->>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+> > Perhaps look at the PyBombs recipe for your platform=E2=80=94there=E2=
+=80=99s probably
+> > a compiler flag that needs to be set that you=E2=80=99re missing, but I=
+ don=E2=80=99t
+> > know what that is.
+> >
+> > Also, in general, you don=E2=80=99t need to become root to compile and =
+build
+> > code=E2=80=94only needed during the =E2=80=9Cmake install=E2=80=9D
+> >
+> >
+> >
+> > Sent from my iPhone
+> >
+> > On Apr 2, 2021, at 7:19 AM, Brendan Horsfield <
+> > brendan.horsfield@vectalabs.com> wrote:
+> >
+> > =EF=BB=BF
+> > Hi Folks,
+> >
+> > I would like to interface my Raspberry Pi 4 to a USRP B210 via the
+> > Python API.  This requires the UHD driver to be built from source.
+> > Unfortunately, whenever I try this I encounter some errors that stop
+> > the build process in its tracks.
+> >
+> > Details of the error are as follows:
+> >
+> > [ 53%] Linking CXX executable test_clock_synch
+> > /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
+> > `__atomic_compare_exchange_8'
+> > /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
+> > `__atomic_load_8'
+> > /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
+> > `__atomic_store_8'
+> > /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
+> > `__atomic_fetch_add_8'
+> > collect2: error: ld returned 1 exit status
+> > make[2]: *** [examples/CMakeFiles/test_clock_synch.dir/build.make:95:
+> > examples/test_clock_synch] Error 1
+> > make[1]: *** [CMakeFiles/Makefile2:1039:
+> > examples/CMakeFiles/test_clock_synch.dir/all] Error 2
+> > make: *** [Makefile:163: all] Error 2
+> >
+> > The process I have been using is as follows:
+> >
+> > STEP 1:  INSTALL DEPENDENCIES
+> > sudo apt-get install libboost-all-dev libusb-1.0-0-dev doxygen
+> > python3-docutils python3-mako python3-numpy python3-requests
+> > python3-ruamel.yaml python3-setuptools cmake build-essential
+> >
+> > STEP 2:  BUILD UHD DRIVER FROM SOURCE
+> > cd /home/pi
+> > mkdir workarea-uhd
+> > cd workarea-uhd
+> > git clone https://github.com/EttusResearch/uhd
+> > cd uhd
+> > git checkout v4.0.0.0
+> > cd host
+> > mkdir build
+> > cd build
+> > sudo cmake -DNEON_SIMD_ENABLE=3DOFF -DENABLE_PYTHON_API=3DON ../ sudo m=
+ake
+> > --->  (ERRORS OCCUR DURING "MAKE" PROCESS)
+> >
+> > My system configuration is as follows:
+> > Hardware: Raspberry Pi 4 Model B Rev 1.4
+> > OS: Raspbian GNU/Linux 10 (buster) (32-bit, armv7l) Ettus USRP B210
+> >
+> > Does anyone know what the problem could be, and how I can resolve it?
+> >
+> > One final note:  Using PyBOMBS, I was able to successfully build &
+> > install the UHD driver and connect to the USRP.  Unfortunately the
+> > PyBOMBS build does not include the Python API, which is what I really
+> > want.  Is there a different version of the PyBOMBS build that includes
+> the Python API?
+> >
+> > Thanks & Regards,
+> > Brendan.
+> >
+> >
+> >
+> > _______________________________________________
+> > USRP-users mailing list -- usrp-users@lists.ettus.com To unsubscribe
+> > send an email to usrp-users-leave@lists.ettus.com
+> >
+> >
+> -------------- next part --------------
+> A message part incompatible with plain text digests has been removed ...
+> Name: not available
+> Type: text/html
+> Size: 5624 bytes
+> Desc: not available
+>
+> ------------------------------
+>
+> Message: 2
+> Date: Sat, 3 Apr 2021 14:12:35 +0300
+> From: Ofer Saferman <ofer@navigicom.com>
+> Subject: [USRP-users] Re: Intermittent problem with GPS
+>         synchronization for multiple E310 units
+> To: usrp-users <usrp-users@lists.ettus.com>
+> Message-ID:
+>         <CACDReSwXUvJ8_LimfVOn4StHQEGhNntY-nCSv0aYdBsX=3D
+> AtV_w@mail.gmail.com>
+> Content-Type: multipart/alternative;
+>         boundary=3D"000000000000566d1705bf0f8b0e"
+>
+> Hello Philip,
+>
+> Thank you for the explanation.
+> What would you suggest?
+> opkg exists. There must be a way to install ntpd without needing to
+> rebuild the image.
+> Maybe use pybombs or other methods?
+> git also works. Maybe download a different package manager and compile it=
+?
+>
+> It seems that Marcus pointed out a great benefit of E310 units running
+> gpsd, but without ntpd system clock can't sync and it seems that this
+> feature can vastly simplify gps synchronization among E310 units.
+>
+> I would be very grateful if anybody can suggest a solution to install ntp=
+d
+> on E310 units running UHD 3.15 SD-card image.
+>
+> Regards,
+> Ofer Saferman.
+>
+> On Sat, Apr 3, 2021 at 10:30 AM <usrp-users-request@lists.ettus.com>
+> wrote:
+>
+> > Send USRP-users mailing list submissions to
+> >         usrp-users@lists.ettus.com
+> >
+> > To subscribe or unsubscribe via email, send a message with subject or
+> > body 'help' to
+> >         usrp-users-request@lists.ettus.com
+> >
+> > You can reach the person managing the list at
+> >         usrp-users-owner@lists.ettus.com
+> >
+> > When replying, please edit your Subject line so it is more specific
+> > than "Re: Contents of USRP-users digest..."Today's Topics:
+> >
+> >    1. Re: Intermittent problem with GPS synchronization for multiple
+> > E310 units
+> >       (Philip Balister)
+> >
+> >
+> >
+> > ---------- Forwarded message ----------
+> > From: Philip Balister <philip@balister.org>
+> > To: Ofer Saferman <ofer@navigicom.com>, "Marcus D. Leech" <
+> > patchvonbraun@gmail.com>
+> > Cc: Rob Kossler <rkossler@nd.edu>, usrp-users
+> > <usrp-users@lists.ettus.com>
+> > Bcc:
+> > Date: Fri, 2 Apr 2021 10:09:43 -0400
+> > Subject: [USRP-users] Re: Intermittent problem with GPS
+> > synchronization for multiple E310 units On 4/2/21 7:17 AM, Ofer
+> > Saferman wrote:
+> > > Marcus Hi,
+> > >
+> > > Your suggestion below to install ntpd does not work.
+> > > The image does not include it. Although the old thread says
+> > > otherwise I think it refers to an older UHD release that did include
+> ntpd.
+> > > Any accurate instructions on how to install it anyway?
+> > > Maybe opkg should be configured to access another repository?
+> > > Doing: opkg list | grep ntpd, does not yield anything useful so it
+> > > is not just a question of typing it correctly.
+> >
+> > As far as I know, no image has been setup to use package feeds.
+> >
+> > I know ntpd worked in release4 images, pretty sure the newer image was
+> > redone and things have been left out that used to be there.
+> >
+> > Philip
+> >
+> > >
+> > > Regards,
+> > > Ofer Saferman
+> > >
+> > > On Thu, Apr 1, 2021 at 4:34 PM Marcus D. Leech
+> > > <patchvonbraun@gmail.com>
+> > > wrote:
+> > >
+> > >> On 04/01/2021 06:00 AM, Ofer Saferman wrote:
+> > >>
+> > >> Hello Marcus,
+> > >>
+> > >> I am working on E310 with the latest UHD-3.15 SD card image.
+> > >> It seems not to include ntpd that is required to synchronize system
+> > >> time to GPS time.
+> > >> Any idea how to install it on the E310?
+> > >>
+> > >> Regards,
+> > >> Ofer Saferman
+> > >>
+> > >> sudo opkg install ntpd
+> > >>
+> > >> should work, but it has been a while since I installed any packages
+> > >> on
+> > my
+> > >> E310.
+> > >>
+> > >> The E310 is based on OpenEmbedded Linux, so all the info about
+> > installing
+> > >> and managing packages on OpenEmbedded apply.
+> > >>
+> > >>
+> > >>
+> > >> On Wed, Mar 31, 2021 at 11:40 PM Marcus D Leech <
+> > patchvonbraun@gmail.com>
+> > >> wrote:
+> > >>
+> > >>> Just use gettimeofday() or any of the myriad subtle variants
+> > >>> available
+> > in
+> > >>> boost to get you the Linux system time, and use that in a call to
+> > >>> set_time_next_pps().
+> > >>>
+> > >>> The fact that all your E310s will be running GPSD means they=E2=80=
+=99ll be
+> > >>> adjusting system time appropriately and they=E2=80=99ll all agree o=
+n what
+> > >>> time
+> > it
+> > >>> is, depending on the level of precision you need.
+> > >>>
+> > >>> Sent from my iPhone
+> > >>>
+> > >>> On Mar 31, 2021, at 3:50 PM, Ofer Saferman <ofer@navigicom.com>
+> wrote:
+> > >>>
+> > >>> =EF=BB=BF
+> > >>> Thank you Rob. Your suggestions are always helpful. I will look
+> > >>> into using gps_gpgga.
+> > >>> Thank you Marcus. I am already adding one, per other examples
+> > >>> posted
+> > here
+> > >>> and sync_to_gps example. Can you please comment how I can benefit
+> > >>> from
+> > the
+> > >>> fact that E310 units use gpsd in Linux?
+> > >>>
+> > >>> Regards,
+> > >>> Ofer Saferman
+> > >>>
+> > >>> On Wed, Mar 31, 2021 at 10:13 PM Marcus D Leech <
+> > patchvonbraun@gmail.com>
+> > >>> wrote:
+> > >>>
+> > >>>>
+> > >>>>
+> > >>>> Sent from my iPhone
+> > >>>>
+> > >>>> On Mar 31, 2021, at 2:22 PM, Rob Kossler <rkossler@nd.edu> wrote:
+> > >>>>
+> > >>>> =EF=BB=BF
+> > >>>> Hi Ofer,
+> > >>>> Take a look at the Ettus source code gps_ctrl.cpp.  In
+> > >>>> particular,
+> > look
+> > >>>> at the get_sentence() usage which in the case of "gps_time" waits
+> > >>>> for
+> > the
+> > >>>> next occurrence (wait=3Dtrue),  but for the others does not wait.
+> > >>>> But
+> > this
+> > >>>> doesn't fully explain the behavior you are seeing.  If you do the
+> > following:
+> > >>>> 1) wait for PPS time to change
+> > >>>> 2) read the "gps_time" sensor
+> > >>>> 3) set_time_next_pps (use the value you just read)
+> > >>>>
+> > >>>> Add 1 to the time you just read before calling set_time_next_pps.
+> > >>>>
+> > >>>>
+> > >>>> It should still work because the "gps_time" command should just
+> > >>>> wait until the next PPS.  I guess it depends upon how
+> > >>>> "synchronized" are
+> > the
+> > >>>> received NMEA string with the PPS edge.  Step 1 above waits for
+> > >>>> the
+> > PPS
+> > >>>> edge, but maybe the NMEA string arrives 0.1 secs before or after
+> > that.  I
+> > >>>> don't really know.  Perhaps you need to switch to using "gps_gpgga=
+"
+> > such
+> > >>>> that there is no additional wait added and also perhaps you
+> > >>>> should
+> > add step
+> > >>>> 1B which would be just a fixed delay of perhaps 0.4 secs so that
+> > >>>> you
+> > will
+> > >>>> read the NMEA string in between the PPS edges.
+> > >>>> Rob
+> > >>>>
+> > >>>> On Wed, Mar 31, 2021 at 1:22 PM Rob Kossler <rkossler@nd.edu>
+> wrote:
+> > >>>>
+> > >>>>> Hi Ofer,
+> > >>>>> I don't know why the "gps_time" sensor takes long to read. But,
+> > >>>>> can
+> > you
+> > >>>>> try the other sensors (perhaps there is a "gps_gpgga" sensor?)?
+> > >>>>> The
+> > time
+> > >>>>> is embedded in these as well.
+> > >>>>> Rob
+> > >>>>>
+> > >>>>>
+> > >>>>> On Wed, Mar 31, 2021 at 12:21 PM Ofer Saferman
+> > >>>>> <ofer@navigicom.com>
+> > >>>>> wrote:
+> > >>>>>
+> > >>>>>> Marcus Hi,
+> > >>>>>>
+> > >>>>>> If the gps_time "sensor" returns a value only once per second
+> > >>>>>> how
+> > come
+> > >>>>>> I manage to read it sometimes in less than 1 second?
+> > >>>>>> In my code the situation is worse than the simple example
+> > >>>>>> below. It usually takes more than 1 sec. to read it and
+> > >>>>>> sometimes even 1.7 or
+> > 1.8
+> > >>>>>> seconds. I don't understand how the size or complexity of the
+> > >>>>>> code
+> > affects
+> > >>>>>> the time it takes to read gps_time.
+> > >>>>>>
+> > >>>>>> How to treat your comment about the use of GPSD and good
+> > >>>>>> synchronization as it relates to code?
+> > >>>>>> Should I not change the time source in code and go through the
+> > >>>>>> whole process of synchronization using gps_time?
+> > >>>>>> Can I "assume" the systems are synced just by the effect they
+> > >>>>>> were connected enough time to a GPS antenna? and then just
+> > >>>>>> access their
+> > time -
+> > >>>>>> radio_ctrl->get_time_last_pps()?
+> > >>>>>> How to use this information programmatically?
+> > >>>>>>
+> > >>>>>> Regards,
+> > >>>>>> Ofer Saferman
+> > >>>>>>
+> > >>>>>>
+> > >>>>>> ---------- Forwarded message ----------
+> > >>>>>>> From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+> > >>>>>>> To: usrp-users@lists.ettus.com
+> > >>>>>>> Cc:
+> > >>>>>>> Bcc:
+> > >>>>>>> Date: Wed, 31 Mar 2021 09:19:20 -0400
+> > >>>>>>> Subject: [USRP-users] Re: Intermittent problem with GPS
+> > >>>>>>> synchronization for multiple E310 units On 03/31/2021 06:49
+> > >>>>>>> AM, Ofer Saferman wrote:
+> > >>>>>>>> Hello,
+> > >>>>>>>>
+> > >>>>>>>> I have a system that uses 4 USRP E310 units.
+> > >>>>>>>> Each unit is connected to a GPS antenna.
+> > >>>>>>>> Time source is set to gpsdo.
+> > >>>>>>>>
+> > >>>>>>>> I run the same software remotely on all 4 units from a PC.
+> > Software
+> > >>>>>>>> runs on the units themselves.
+> > >>>>>>>> I print out messages to show if the reference is locked and
+> > >>>>>>>> the
+> > GPS
+> > >>>>>>> is
+> > >>>>>>>> locked and also what is the GPS time that each unit was
+> > >>>>>>> synchronized to.
+> > >>>>>>>> In some cases the units synchronize to the same GPS time and
+> > >>>>>>>> in
+> > >>>>>>> other
+> > >>>>>>>> cases there is 1 second difference between GPS time of
+> > >>>>>>>> different
+> > >>>>>>> units
+> > >>>>>>>> thus causing the units to be unsynchronized.
+> > >>>>>>>>
+> > >>>>>>>> I was wondering how this was possible.
+> > >>>>>>>> The synchronization process (documented by others in the past
+> > >>>>>>>> on
+> > >>>>>>> the
+> > >>>>>>>> mailing list) is:
+> > >>>>>>>> * Wait for ref and GPS lock
+> > >>>>>>>> * Wait for a pps edge (get_time_last_pps)
+> > >>>>>>>> * Read gps_time value
+> > >>>>>>>> * Sync system clock to GPS clock on next PPS edge
+> > >>>>>>> (set_time_next_pps +
+> > >>>>>>>> 1.0 sec)
+> > >>>>>>>>
+> > >>>>>>>> Something similar is also implemented in the sync_to_gps
+> example.
+> > >>>>>>>>
+> > >>>>>>>> In order to debug the problem I decided to time the reading
+> > >>>>>>>> of the gps_time sensor to see if there is a clue why
+> > >>>>>>>> different units miss
+> > >>>>>>> the
+> > >>>>>>>> PPS edge and lock to a time of the next second.
+> > >>>>>>>>
+> > >>>>>>>> I was very surprised to find out that it takes between 0.9 to
+> > >>>>>>>> 1.2 seconds to read the gps_time sensor.
+> > >>>>>>>> This explains exactly why it is difficult to synchronize
+> > >>>>>>>> multiple units to the same time instance because if one unit
+> > >>>>>>>> takes 0.9
+> > >>>>>>> seconds
+> > >>>>>>>> to read the sensor and the other unit takes 1.2 seconds to
+> > >>>>>>>> read
+> > the
+> > >>>>>>>> sensor then each unit will lock on a different GPS time 1
+> > >>>>>>>> second
+> > >>>>>>> apart.
+> > >>>>>>>>
+> > >>>>>>>> Here is a short software I wrote to time the gps_time sensor
+> > >>>>>>> reading:
+> > >>>>>>>> ---------------------------------------------------------
+> > >>>>>>>> #include <uhd/utils/safe_main.hpp> #include <uhd/device3.hpp>
+> > >>>>>>>> //#include <uhd/usrp/multi_usrp.hpp> #include
+> > >>>>>>>> <uhd/types/sensors.hpp> #include <boost/program_options.hpp>
+> > >>>>>>>> #include <boost/format.hpp> #include <chrono> #include
+> > >>>>>>>> <iostream>
+> > >>>>>>>>
+> > >>>>>>>> namespace po =3D boost::program_options;
+> > >>>>>>>>
+> > >>>>>>>> int UHD_SAFE_MAIN(int argc, char *argv[]){
+> > >>>>>>>>
+> > >>>>>>>> std::string args;
+> > >>>>>>>>
+> > >>>>>>>>     po::options_description desc("Allowed options");
+> > >>>>>>>>     desc.add_options()
+> > >>>>>>>>         ("help", "help message") ("args",
+> > >>>>>>>> po::value<std::string>(&args)->default_value(""), "device
+> > >>>>>>>> address args")
+> > >>>>>>>>     ;
+> > >>>>>>>>
+> > >>>>>>>>     po::variables_map vm;
+> > >>>>>>>>     po::store(po::parse_command_line(argc, argv, desc), vm);
+> > >>>>>>>>     po::notify(vm);
+> > >>>>>>>>
+> > >>>>>>>>     //print the help message
+> > >>>>>>>>     if (vm.count("help")){
+> > >>>>>>>>         std::cout << boost::format("Timinig of gps_time: %s")
+> > >>>>>>>> %
+> > >>>>>>> desc
+> > >>>>>>>> << std::endl;
+> > >>>>>>>>         return ~0;
+> > >>>>>>>>     }
+> > >>>>>>>>
+> > >>>>>>>> uhd::device3::sptr usrp =3D uhd::device3::make(args);
+> > >>>>>>>> //uhd::usrp::multi_usrp::sptr usrp =3D
+> > >>>>>>> uhd::usrp::multi_usrp::make(args);
+> > >>>>>>>>
+> > >>>>>>>> uhd::sensor_value_t gps_time =3D
+> > >>>>>>>>
+> > >>>>>>>
+> > usrp->get_tree()->access<uhd::sensor_value_t>("/mboards/0/sensors/gps_
+> > usrp->time").get();
+> > >>>>>>>> //uhd::sensor_value_t gps_time =3D
+> > >>>>>>> usrp->get_mboard_sensor("gps_time", 0);
+> > >>>>>>>>
+> > >>>>>>>> std::chrono::steady_clock::time_point start_time, end_time;
+> > >>>>>>>> std::chrono::duration<double> time_diff; // Default unit for
+> > >>>>>>> duration
+> > >>>>>>>> is seconds.
+> > >>>>>>>>
+> > >>>>>>>> for(int ii=3D0 ; ii<20 ; ii++)
+> > >>>>>>>> {
+> > >>>>>>>> start_time =3D std::chrono::steady_clock::now(); gps_time =3D
+> > >>>>>>>>
+> > >>>>>>>
+> > usrp->get_tree()->access<uhd::sensor_value_t>("/mboards/0/sensors/gps_
+> > usrp->time").get();
+> > >>>>>>>> //gps_time =3D usrp->get_mboard_sensor("gps_time", 0); end_tim=
+e
+> > >>>>>>>> =3D std::chrono::steady_clock::now(); time_diff =3D end_time -
+> > >>>>>>>> start_time;
+> > >>>>>>>>
+> > >>>>>>>> std::cout << "gps_time[" << (boost::format("%02d") % ii) << "]=
+:
+> "
+> > >>>>>>> <<
+> > >>>>>>>> int64_t(gps_time.to_int()) << ". Time to read \"gps_time\": "
+> > >>>>>>>> <<
+> > >>>>>>>> (boost::format("%0.9f") % time_diff.count()) << " seconds" <<
+> > >>>>>>> std::endl;
+> > >>>>>>>> }
+> > >>>>>>>>
+> > >>>>>>>>     return 0;
+> > >>>>>>>> }
+> > >>>>>>>>
+> > >>>>>>>
+> > ----------------------------------------------------------------------
+> > ----------
+> > >>>>>>>> Here are the results of one typical run:
+> > >>>>>>>> gps_time[00]: 1617183840. Time to read "gps_time":
+> > >>>>>>>> 0.884164380
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[01]: 1617183841. Time to read "gps_time":
+> > >>>>>>>> 0.877966469
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[02]: 1617183842. Time to read "gps_time":
+> > >>>>>>>> 1.170869661
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[03]: 1617183843. Time to read "gps_time":
+> > >>>>>>>> 0.882917987
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[04]: 1617183844. Time to read "gps_time":
+> > >>>>>>>> 1.172120154
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[05]: 1617183845. Time to read "gps_time":
+> > >>>>>>>> 0.879271985
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[06]: 1617183846. Time to read "gps_time":
+> > >>>>>>>> 0.878609099
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[07]: 1617183847. Time to read "gps_time":
+> > >>>>>>>> 1.115639282
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[08]: 1617183848. Time to read "gps_time":
+> > >>>>>>>> 1.125365551
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[09]: 1617183849. Time to read "gps_time":
+> > >>>>>>>> 0.843803231
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[10]: 1617183850. Time to read "gps_time":
+> > >>>>>>>> 1.125065740
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[11]: 1617183851. Time to read "gps_time":
+> > >>>>>>>> 0.847519817
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[12]: 1617183852. Time to read "gps_time":
+> > >>>>>>>> 1.121398945
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[13]: 1617183853. Time to read "gps_time":
+> > >>>>>>>> 0.844371533
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[14]: 1617183854. Time to read "gps_time":
+> > >>>>>>>> 1.124722726
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[15]: 1617183855. Time to read "gps_time":
+> > >>>>>>>> 0.845688380
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[16]: 1617183856. Time to read "gps_time":
+> > >>>>>>>> 1.129568096
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[17]: 1617183857. Time to read "gps_time":
+> > >>>>>>>> 0.882436229
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[18]: 1617183858. Time to read "gps_time":
+> > >>>>>>>> 1.168227593
+> > >>>>>>> seconds
+> > >>>>>>>> gps_time[19]: 1617183859. Time to read "gps_time":
+> > >>>>>>>> 0.881948247
+> > >>>>>>> seconds
+> > >>>>>>>>
+> > >>>>>>>
+> > ----------------------------------------------------------------------
+> > -------------
+> > >>>>>>>> In the code you can find commented out the usual way to
+> > >>>>>>>> access the sensor using multi_usrp and get_mboard_sensor. The
+> > >>>>>>>> results are
+> > >>>>>>> quite
+> > >>>>>>>> similar.
+> > >>>>>>>>
+> > >>>>>>>> I wonder if anybody encountered this issue before or
+> > >>>>>>>> addressed it
+> > >>>>>>> in
+> > >>>>>>>> any way.
+> > >>>>>>>> I wonder why it takes so much time to get the value of GPS
+> > >>>>>>>> time
+> > >>>>>>> when
+> > >>>>>>>> it is a simple parsing of an NMEA message coming from the GPS
+> > >>>>>>> receiver.
+> > >>>>>>>>
+> > >>>>>>>> I am trying now various tricks to make the software robust
+> > >>>>>>>> and
+> > >>>>>>> immune
+> > >>>>>>>> to this phenomenon. I can report my findings further if I
+> > >>>>>>>> succeed
+> > >>>>>>> to
+> > >>>>>>>> find a workaround if there is any interest.
+> > >>>>>>>>
+> > >>>>>>>> Can anyone comment on this? Can this be resolved so that the
+> > >>>>>>> reading
+> > >>>>>>>> of gps_time will be much faster?
+> > >>>>>>>> Is there another way to get GPS time faster indirectly? Maybe
+> > >>>>>>>> from parsing NMEA messages ourselves?
+> > >>>>>>>>
+> > >>>>>>>> Regards,
+> > >>>>>>>> Ofer Saferman
+> > >>>>>>>>
+> > >>>>>>> This probably has to do with the way that particular "sensor"
+> > >>>>>>> works--the
+> > >>>>>>> NMEA time value is only emitted once per second, and the
+> > >>>>>>>    code for that sensor has some heuristic for determining
+> > >>>>>>> "freshness"
+> > >>>>>>> of the value.
+> > >>>>>>>
+> > >>>>>>> I'll point out that on E310, the system is configured to use
+> > >>>>>>> GPSD,
+> > so
+> > >>>>>>> that the Linux system time across several systems that have
+> > >>>>>>> all
+> > been
+> > >>>>>>>    "listening" to GPS for a while will all be synchronized
+> > >>>>>>> quite
+> > well.
+> > >>>>>>>
+> > >>>>>>>
+> > >>>>>>>
+> > >>>>>>>
+> > >>>>>> --
+> > >>>>>> This message has been scanned for viruses and dangerous content
+> > >>>>>> by *MailScanner* <http://www.mailscanner.info/>, and is
+> > >>>>>> believed to be clean.
+> > _______________________________________________
+> > >>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com To
+> > >>>>>> unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> > >>>>>>
+> > >>>>> _______________________________________________
+> > >>>> USRP-users mailing list -- usrp-users@lists.ettus.com To
+> > >>>> unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> > >>>>
+> > >>>>
+> > >>> --
+> > >>> This message has been scanned for viruses and dangerous content by
+> > >>> *MailScanner* <http://www.mailscanner.info/>, and is believed to
+> > >>> be clean.
+> > >>>
+> > >>>
+> > >> --
+> > >> This message has been scanned for viruses and dangerous content by
+> > >> *MailScanner* <http://www.mailscanner.info/>, and
+> > is
+> > >> believed to be clean.
+> > >>
+> > >>
+> > >>
+> > >
+> > >
+> > > _______________________________________________
+> > > USRP-users mailing list -- usrp-users@lists.ettus.com To unsubscribe
+> > > send an email to usrp-users-leave@lists.ettus.com
+> > > _______________________________________________
+> > USRP-users mailing list -- usrp-users@lists.ettus.com To unsubscribe
+> > send an email to usrp-users-leave@lists.ettus.com
+> >
+>
+> --
+> This message has been scanned for viruses and dangerous content by
+> MailScanner, and is believed to be clean.
+>
+> -------------- next part --------------
+> A message part incompatible with plain text digests has been removed ...
+> Name: not available
+> Type: text/html
+> Size: 27834 bytes
+> Desc: not available
+>
+> ------------------------------
+>
+> Subject: Digest Footer
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com To unsubscribe send
+> an email to usrp-users-leave@lists.ettus.com
+>
+>
+> ------------------------------
+>
+> End of USRP-users Digest, Vol 128, Issue 7
+> ******************************************
+>
 
---Apple-Mail-3C16B057-8228-4A8B-B880-88FB12F5BB80
-Content-Type: text/html;
-	charset=utf-8
+--000000000000b2885d05bf1b9632
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">The C++ API is the standard API for UHD fol=
-lows by the legacy C API and then the Python API. &nbsp;The Python API is st=
-ill considered experimental, and it will necessarily have performance issues=
-=E2=80=94that=E2=80=99s just the nature of an interpreted language trying to=
- do high performance real-time signal processing=E2=80=94even when you use t=
-hings like numpy.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhone</div><di=
-v dir=3D"ltr"><br><blockquote type=3D"cite">On Apr 3, 2021, at 7:37 PM, Bren=
-dan Horsfield &lt;brendan.horsfield@vectalabs.com&gt; wrote:<br><br></blockq=
-uote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"l=
-tr">Your point is well taken, although I confess I am still a bit surprised t=
-hat Python support is not the norm, given the popularity of this language in=
- the scientific &amp; engineering community.&nbsp;&nbsp;<div><br></div><div>=
-Getting back to my problem:&nbsp; Am I correct in assuming that the C++ API i=
-s included as standard with every UHD build?&nbsp; If so, rather than spendi=
-ng days/weeks trying to add Python support to UHD on the Raspberry Pi, would=
- it be faster for me to just create a C++ function to communicate with the U=
-SRP, and put a Python wrapper around it?</div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr 4, 2021 at 1:15 AM M=
-arcus D Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@g=
-mail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex"><div dir=3D"auto"><br><br><div dir=3D"ltr">Sent from my iPhone</div><d=
-iv dir=3D"ltr"><br><blockquote type=3D"cite">On Apr 3, 2021, at 7:08 AM, Bre=
-ndan Horsfield &lt;b</blockquote></div><blockquote type=3D"cite"><div dir=3D=
-"ltr"><div dir=3D"ltr"><div>QUESTION 2:&nbsp; This whole process feels more d=
-ifficult than it should be.&nbsp; Why isn't the Python API installed with th=
-e UHD driver by default?&nbsp; Would I be better off using another language (=
-like C++) to control the USRP?</div><div><br></div><div>Thanks,</div><div>Br=
-endan.</div><div><br></div></div></div></blockquote>Well, NI/Ettus have zero=
- control over how various distros choose to package and build UHD, similarly=
- for PyBombs=E2=80=94PyBombs isn=E2=80=99t maintained by NI/Ettus.&nbsp;<div=
-><br></div><div>So if you =E2=80=9Cland=E2=80=9D on a distro where the packa=
-ged UHD doesn=E2=80=99t include Python support, then you end up building UHD=
- yourself. Which may entail the pain you encountered due to missing compiler=
- flags.&nbsp;<br><br>Because the Linux world is so incredibly diverse, it=E2=
-=80=99s rare that the developer of a given code base is also responsible for=
- packaging for a given distro/platform. That=E2=80=99s why there are =E2=80=9C=
-package maintainers=E2=80=9D for each distro, and they=E2=80=99re the ones w=
-ho end up making decisions like enabling support for various options, turnin=
-g on =E2=80=9Cweird=E2=80=9D compiler flags, etc.&nbsp;</div><div><br></div>=
-<div>UHD is no different in this regard.&nbsp;</div><div><br><blockquote typ=
-e=3D"cite"><div dir=3D"ltr"><div dir=3D"ltr"><div><br></div></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Apr 2, 20=
-21 at 11:25 PM Marcus D Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com"=
- target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Perhaps look at th=
-e PyBombs recipe for your platform=E2=80=94there=E2=80=99s probably a compil=
-er flag that needs to be set that you=E2=80=99re missing, but I don=E2=80=99=
-t know what that is.&nbsp;<div><br></div><div>Also, in general, you don=E2=80=
-=99t need to become root to compile and build code=E2=80=94only needed durin=
-g the =E2=80=9Cmake install=E2=80=9D</div><div><br></div><div><br><br><div d=
-ir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D=
-"cite">On Apr 2, 2021, at 7:19 AM, Brendan Horsfield &lt;<a href=3D"mailto:b=
-rendan.horsfield@vectalabs.com" target=3D"_blank">brendan.horsfield@vectalab=
-s.com</a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><di=
-v dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr">Hi Folks,<div><br></div><div>I would=
- like to interface my Raspberry Pi 4 to a USRP B210 via the Python API.&nbsp=
-; This requires the UHD driver to be built from source.&nbsp; Unfortunately,=
- whenever I try this I encounter some errors that stop the build process in i=
-ts tracks.</div><div><br></div><div>Details of the error are as follows:</di=
-v><div><br></div><div>[ 53%] Linking CXX executable test_clock_synch<br>/usr=
-/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `__atomic_compare_ex=
-change_8'<br>/usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `__=
-atomic_load_8'<br>/usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference t=
-o `__atomic_store_8'<br>/usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined refer=
-ence to `__atomic_fetch_add_8'<br>collect2: error: ld returned 1 exit status=
-<br>make[2]: *** [examples/CMakeFiles/test_clock_synch.dir/build.make:95: ex=
-amples/test_clock_synch] Error 1<br>make[1]: *** [CMakeFiles/Makefile2:1039:=
- examples/CMakeFiles/test_clock_synch.dir/all] Error 2<br>make: *** [Makefil=
-e:163: all] Error 2<br></div><div><br></div><div>The process I have been usi=
-ng is as follows:</div><div><br></div><div>STEP 1:&nbsp; INSTALL DEPENDENCIE=
-S<br>sudo apt-get install libboost-all-dev libusb-1.0-0-dev doxygen python3-=
-docutils python3-mako python3-numpy python3-requests python3-ruamel.yaml pyt=
-hon3-setuptools cmake build-essential<br><br>STEP 2:&nbsp; BUILD UHD DRIVER =
-FROM SOURCE</div><div>cd /home/pi<br>mkdir workarea-uhd<br>cd workarea-uhd<b=
-r>git clone <a href=3D"https://github.com/EttusResearch/uhd" target=3D"_blan=
-k">https://github.com/EttusResearch/uhd</a><br>cd uhd<br>git checkout v4.0.0=
-.0<br>cd host<br>mkdir build<br>cd build<br>sudo cmake -DNEON_SIMD_ENABLE=3D=
-OFF -DENABLE_PYTHON_API=3DON ../<br>sudo make&nbsp; ---&gt;&nbsp;&nbsp;(ERRO=
-RS OCCUR DURING "MAKE" PROCESS)<br><br>My system configuration is as follows=
-:<br>Hardware: Raspberry Pi 4 Model B Rev 1.4<br>OS: Raspbian GNU/Linux 10 (=
-buster) (32-bit, armv7l)<br>Ettus USRP B210<br></div><div><br></div><div>Doe=
-s anyone know what the problem could be, and how I can resolve it?<br></div>=
-<div><br></div><div>One final note:&nbsp; Using PyBOMBS, I was able to succe=
-ssfully build &amp; install the UHD driver and connect to the USRP.&nbsp; Un=
-fortunately the PyBOMBS build does not include the Python API, which is what=
- I really&nbsp;want.&nbsp; Is there a different version of the PyBOMBS build=
- that includes the Python API?</div><div><br></div><div>Thanks &amp; Regards=
-,</div><div>Brendan.</div><div><br></div><div><br></div><div>&nbsp;&nbsp;</d=
-iv></div>
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D=
-"_blank">usrp-users@lists.ettus.com</a></span><br><span>To unsubscribe send a=
-n email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" target=3D"_bl=
-ank">usrp-users-leave@lists.ettus.com</a></span><br></div></blockquote></div=
-></div></blockquote></div>
-</div></blockquote></div></div></blockquote></div>
-</div></blockquote></body></html>=
+<div dir=3D"ltr">Thanks Ken.=C2=A0 As you suggested, I added -DCMAKE_EXE_LI=
+NKER_FLAGS=3D&quot;-latomic&quot; to the CMake call.=C2=A0=C2=A0<div><br></=
+div><div>The good news is that the UHD build &amp; installation process com=
+pleted successfully.<div><div><br></div><div>The bad news is that when I tr=
+y to import the uhd module in Python3, I get=C2=A0the following error:</div=
+><div><br></div><div>pi@raspberrypi:~ $ python3<br>Python 3.7.3 (default, J=
+an 22 2021, 20:04:44) <br>[GCC 8.3.0] on linux<br>Type &quot;help&quot;, &q=
+uot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more in=
+formation.<br>&gt;&gt;&gt; import uhd<br>Traceback (most recent call last):=
+<br>=C2=A0 File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;<br>=C2=
+=A0 File &quot;/usr/local/lib/python3/dist-packages/uhd/__init__.py&quot;, =
+line 10, in &lt;module&gt;<br>=C2=A0 =C2=A0 from . import types<br>=C2=A0 F=
+ile &quot;/usr/local/lib/python3/dist-packages/uhd/types.py&quot;, line 10,=
+ in &lt;module&gt;<br>=C2=A0 =C2=A0 from . import libpyuhd as lib<br>Import=
+Error: /usr/local/lib/libuhd.so.4.0.0: undefined symbol: __atomic_fetch_add=
+_8<br>&gt;&gt;&gt;=C2=A0<br></div><div><br></div><div>Did you encounter thi=
+s problem too?</div><div><br></div><div>I guess the next step is to hack th=
+e &quot;CMakeLists.txt&quot; files as per the link you sent me.=C2=A0 Just =
+to clarify one point first:=C2=A0 If I modify the CMakeLists.txt files, do =
+I still need to include -DCMAKE_EXE_LINKER_FLAGS=3D&quot;-latomic&quot; in =
+the CMake call?</div><div><br></div><div>Thanks,</div><div>Brendan.</div><d=
+iv>=C2=A0=C2=A0</div><div><br></div></div></div></div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Apr 3, 2021 at 10:2=
+9 PM Clark (US), Kenneth C &lt;<a href=3D"mailto:kenneth.c.clark2@boeing.co=
+m">kenneth.c.clark2@boeing.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex"><br>
+I had the same problem build UHD on RPi4<br>
+<br>
+Answer here:<br>
+<a href=3D"https://gitlab.kitware.com/cmake/cmake/-/issues/21174" rel=3D"no=
+referrer" target=3D"_blank">https://gitlab.kitware.com/cmake/cmake/-/issues=
+/21174</a><br>
+<br>
+Add to CMake call:<br>
+-DCMAKE_EXE_LINKER_FLAGS=3D&quot;-latomic&quot;<br>
+<br>
+Regards,<br>
+<br>
+Ken<br>
+<br>
+<br>
+-----Original Message-----<br>
+From: <a href=3D"mailto:usrp-users-request@lists.ettus.com" target=3D"_blan=
+k">usrp-users-request@lists.ettus.com</a> [mailto:<a href=3D"mailto:usrp-us=
+ers-request@lists.ettus.com" target=3D"_blank">usrp-users-request@lists.ett=
+us.com</a>]<br>
+Sent: Saturday, April 3, 2021 11:13<br>
+To: <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
+ers@lists.ettus.com</a><br>
+Subject: [EXTERNAL] USRP-users Digest, Vol 128, Issue 7<br>
+<br>
+EXT email: be mindful of links/attachments.<br>
+<br>
+<br>
+<br>
+Send USRP-users mailing list submissions to<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users@lists.ettus.com" t=
+arget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+<br>
+To subscribe or unsubscribe via email, send a message with subject or body =
+&#39;help&#39; to<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users-request@lists.ettu=
+s.com" target=3D"_blank">usrp-users-request@lists.ettus.com</a><br>
+<br>
+You can reach the person managing the list at<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users-owner@lists.ettus.=
+com" target=3D"_blank">usrp-users-owner@lists.ettus.com</a><br>
+<br>
+When replying, please edit your Subject line so it is more specific than &q=
+uot;Re: Contents of USRP-users digest...&quot;<br>
+<br>
+Today&#39;s Topics:<br>
+<br>
+=C2=A0 =C2=A01. Re: Problem with interfacing Raspberry Pi 4 to USRP B210 wi=
+th Python API<br>
+=C2=A0 =C2=A0 =C2=A0 (Brendan Horsfield)<br>
+=C2=A0 =C2=A02. Re: Intermittent problem with GPS synchronization for multi=
+ple E310 units<br>
+=C2=A0 =C2=A0 =C2=A0 (Ofer Saferman)<br>
+<br>
+<br>
+----------------------------------------------------------------------<br>
+<br>
+Message: 1<br>
+Date: Sat, 3 Apr 2021 21:07:59 +1000<br>
+From: Brendan Horsfield &lt;<a href=3D"mailto:brendan.horsfield@vectalabs.c=
+om" target=3D"_blank">brendan.horsfield@vectalabs.com</a>&gt;<br>
+Subject: [USRP-users] Re: Problem with interfacing Raspberry Pi 4 to<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 USRP B210 with Python API<br>
+To: Marcus D Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D=
+"_blank">patchvonbraun@gmail.com</a>&gt;<br>
+Cc: <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-us=
+ers@lists.ettus.com</a><br>
+Message-ID:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;<a href=3D"mailto:CALNMZ8Wg3gQnkAomrhhCBPAG=
+tTfUbm3fkMzJhCWhUAgHrLuzyA@mail.gmail.com" target=3D"_blank">CALNMZ8Wg3gQnk=
+AomrhhCBPAGtTfUbm3fkMzJhCWhUAgHrLuzyA@mail.gmail.com</a>&gt;<br>
+Content-Type: multipart/alternative;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 boundary=3D&quot;000000000000dc3aeb05bf0f7ace&q=
+uot;<br>
+<br>
+Hi Marcus,<br>
+<br>
+I have tried your suggestion, but unfortunately without success:<br>
+<br>
+Per your advice, I have edited the file &quot;cmake.lwt&quot; in the folder=
+ /usr/local/lib/python3.7/dist-packages/pybombs/templates to include the op=
+tion &quot;-DENABLE_PYTHON_API=3DON&quot; in the calls to cmake.=C2=A0 The =
+modified commands are as follows:<br>
+<br>
+configure: cmake .. -DENABLE_PYTHON_API=3DON -DCMAKE_BUILD_TYPE=3D$cmakebui=
+ldtype -DCMAKE_INSTALL_PREFIX=3D$prefix $config_opt -Wno-dev<br>
+configure_static: cmake .. -DENABLE_PYTHON_API=3DON -DCMAKE_BUILD_TYPE=3D$c=
+makebuildtype -DCMAKE_INSTALL_PREFIX=3D$prefix -DENABLE_STATIC_LIBS=3DTrue =
+$config_opt<br>
+<br>
+I removed the previous UHD installation and re-ran &quot;pybombs install uh=
+d&quot;, but the end result was much the same:=C2=A0 the installation proce=
+ss completed without errors, but the Python API was not included in the ins=
+tallation.<br>
+<br>
+QUESTION 1:=C2=A0 Can you tell me if PyBOMBS actually builds the UHD driver=
+ from source, or does it simply copy a pre-compiled binary onto my system?=
+=C2=A0 The reason I ask is that PyBOMBS is quite quick to install the UHD d=
+river, whereas the non-PyBOMBS approach is VERY slow (i.e. around 60 minute=
+s to get to 53%, at which point it crashes out with an error).<br>
+<br>
+QUESTION 2:=C2=A0 This whole process feels more difficult than it should be=
+.<br>
+Why isn&#39;t the Python API installed with the UHD driver by default?=C2=
+=A0 Would I be better off using another language (like C++) to control the =
+USRP?<br>
+<br>
+Thanks,<br>
+Brendan.<br>
+<br>
+<br>
+<br>
+On Fri, Apr 2, 2021 at 11:25 PM Marcus D Leech &lt;<a href=3D"mailto:patchv=
+onbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;<br>
+wrote:<br>
+<br>
+&gt; Perhaps look at the PyBombs recipe for your platform=E2=80=94there=E2=
+=80=99s probably<br>
+&gt; a compiler flag that needs to be set that you=E2=80=99re missing, but =
+I don=E2=80=99t<br>
+&gt; know what that is.<br>
+&gt;<br>
+&gt; Also, in general, you don=E2=80=99t need to become root to compile and=
+ build<br>
+&gt; code=E2=80=94only needed during the =E2=80=9Cmake install=E2=80=9D<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; Sent from my iPhone<br>
+&gt;<br>
+&gt; On Apr 2, 2021, at 7:19 AM, Brendan Horsfield &lt;<br>
+&gt; <a href=3D"mailto:brendan.horsfield@vectalabs.com" target=3D"_blank">b=
+rendan.horsfield@vectalabs.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; =EF=BB=BF<br>
+&gt; Hi Folks,<br>
+&gt;<br>
+&gt; I would like to interface my Raspberry Pi 4 to a USRP B210 via the<br>
+&gt; Python API.=C2=A0 This requires the UHD driver to be built from source=
+.<br>
+&gt; Unfortunately, whenever I try this I encounter some errors that stop<b=
+r>
+&gt; the build process in its tracks.<br>
+&gt;<br>
+&gt; Details of the error are as follows:<br>
+&gt;<br>
+&gt; [ 53%] Linking CXX executable test_clock_synch<br>
+&gt; /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to<br>
+&gt; `__atomic_compare_exchange_8&#39;<br>
+&gt; /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to<br>
+&gt; `__atomic_load_8&#39;<br>
+&gt; /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to<br>
+&gt; `__atomic_store_8&#39;<br>
+&gt; /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to<br>
+&gt; `__atomic_fetch_add_8&#39;<br>
+&gt; collect2: error: ld returned 1 exit status<br>
+&gt; make[2]: *** [examples/CMakeFiles/test_clock_synch.dir/build.make:95:<=
+br>
+&gt; examples/test_clock_synch] Error 1<br>
+&gt; make[1]: *** [CMakeFiles/Makefile2:1039:<br>
+&gt; examples/CMakeFiles/test_clock_synch.dir/all] Error 2<br>
+&gt; make: *** [Makefile:163: all] Error 2<br>
+&gt;<br>
+&gt; The process I have been using is as follows:<br>
+&gt;<br>
+&gt; STEP 1:=C2=A0 INSTALL DEPENDENCIES<br>
+&gt; sudo apt-get install libboost-all-dev libusb-1.0-0-dev doxygen<br>
+&gt; python3-docutils python3-mako python3-numpy python3-requests<br>
+&gt; python3-ruamel.yaml python3-setuptools cmake build-essential<br>
+&gt;<br>
+&gt; STEP 2:=C2=A0 BUILD UHD DRIVER FROM SOURCE<br>
+&gt; cd /home/pi<br>
+&gt; mkdir workarea-uhd<br>
+&gt; cd workarea-uhd<br>
+&gt; git clone <a href=3D"https://github.com/EttusResearch/uhd" rel=3D"nore=
+ferrer" target=3D"_blank">https://github.com/EttusResearch/uhd</a><br>
+&gt; cd uhd<br>
+&gt; git checkout v4.0.0.0<br>
+&gt; cd host<br>
+&gt; mkdir build<br>
+&gt; cd build<br>
+&gt; sudo cmake -DNEON_SIMD_ENABLE=3DOFF -DENABLE_PYTHON_API=3DON ../ sudo =
+make<br>
+&gt; ---&gt;=C2=A0 (ERRORS OCCUR DURING &quot;MAKE&quot; PROCESS)<br>
+&gt;<br>
+&gt; My system configuration is as follows:<br>
+&gt; Hardware: Raspberry Pi 4 Model B Rev 1.4<br>
+&gt; OS: Raspbian GNU/Linux 10 (buster) (32-bit, armv7l) Ettus USRP B210<br=
+>
+&gt;<br>
+&gt; Does anyone know what the problem could be, and how I can resolve it?<=
+br>
+&gt;<br>
+&gt; One final note:=C2=A0 Using PyBOMBS, I was able to successfully build =
+&amp;<br>
+&gt; install the UHD driver and connect to the USRP.=C2=A0 Unfortunately th=
+e<br>
+&gt; PyBOMBS build does not include the Python API, which is what I really<=
+br>
+&gt; want.=C2=A0 Is there a different version of the PyBOMBS build that inc=
+ludes the Python API?<br>
+&gt;<br>
+&gt; Thanks &amp; Regards,<br>
+&gt; Brendan.<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">usrp-users@lists.ettus.com</a> To unsubscribe<br>
+&gt; send an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" t=
+arget=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+&gt;<br>
+&gt;<br>
+-------------- next part --------------<br>
+A message part incompatible with plain text digests has been removed ...<br=
+>
+Name: not available<br>
+Type: text/html<br>
+Size: 5624 bytes<br>
+Desc: not available<br>
+<br>
+------------------------------<br>
+<br>
+Message: 2<br>
+Date: Sat, 3 Apr 2021 14:12:35 +0300<br>
+From: Ofer Saferman &lt;<a href=3D"mailto:ofer@navigicom.com" target=3D"_bl=
+ank">ofer@navigicom.com</a>&gt;<br>
+Subject: [USRP-users] Re: Intermittent problem with GPS<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 synchronization for multiple E310 units<br>
+To: usrp-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"=
+_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+Message-ID:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;CACDReSwXUvJ8_LimfVOn4StHQEGhNntY-nCSv0aYdB=
+sX=3D<a href=3D"mailto:AtV_w@mail.gmail.com" target=3D"_blank">AtV_w@mail.g=
+mail.com</a>&gt;<br>
+Content-Type: multipart/alternative;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 boundary=3D&quot;000000000000566d1705bf0f8b0e&q=
+uot;<br>
+<br>
+Hello Philip,<br>
+<br>
+Thank you for the explanation.<br>
+What would you suggest?<br>
+opkg exists. There must be a way to install ntpd without needing to rebuild=
+ the image.<br>
+Maybe use pybombs or other methods?<br>
+git also works. Maybe download a different package manager and compile it?<=
+br>
+<br>
+It seems that Marcus pointed out a great benefit of E310 units running gpsd=
+, but without ntpd system clock can&#39;t sync and it seems that this featu=
+re can vastly simplify gps synchronization among E310 units.<br>
+<br>
+I would be very grateful if anybody can suggest a solution to install ntpd =
+on E310 units running UHD 3.15 SD-card image.<br>
+<br>
+Regards,<br>
+Ofer Saferman.<br>
+<br>
+On Sat, Apr 3, 2021 at 10:30 AM &lt;<a href=3D"mailto:usrp-users-request@li=
+sts.ettus.com" target=3D"_blank">usrp-users-request@lists.ettus.com</a>&gt;=
+ wrote:<br>
+<br>
+&gt; Send USRP-users mailing list submissions to<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:usrp-users@lists.et=
+tus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt;<br>
+&gt; To subscribe or unsubscribe via email, send a message with subject or<=
+br>
+&gt; body &#39;help&#39; to<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:usrp-users-request@=
+lists.ettus.com" target=3D"_blank">usrp-users-request@lists.ettus.com</a><b=
+r>
+&gt;<br>
+&gt; You can reach the person managing the list at<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:usrp-users-owner@li=
+sts.ettus.com" target=3D"_blank">usrp-users-owner@lists.ettus.com</a><br>
+&gt;<br>
+&gt; When replying, please edit your Subject line so it is more specific<br=
+>
+&gt; than &quot;Re: Contents of USRP-users digest...&quot;Today&#39;s Topic=
+s:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 1. Re: Intermittent problem with GPS synchronization for =
+multiple<br>
+&gt; E310 units<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0(Philip Balister)<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; ---------- Forwarded message ----------<br>
+&gt; From: Philip Balister &lt;<a href=3D"mailto:philip@balister.org" targe=
+t=3D"_blank">philip@balister.org</a>&gt;<br>
+&gt; To: Ofer Saferman &lt;<a href=3D"mailto:ofer@navigicom.com" target=3D"=
+_blank">ofer@navigicom.com</a>&gt;, &quot;Marcus D. Leech&quot; &lt;<br>
+&gt; <a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonb=
+raun@gmail.com</a>&gt;<br>
+&gt; Cc: Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blan=
+k">rkossler@nd.edu</a>&gt;, usrp-users<br>
+&gt; &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">us=
+rp-users@lists.ettus.com</a>&gt;<br>
+&gt; Bcc:<br>
+&gt; Date: Fri, 2 Apr 2021 10:09:43 -0400<br>
+&gt; Subject: [USRP-users] Re: Intermittent problem with GPS<br>
+&gt; synchronization for multiple E310 units On 4/2/21 7:17 AM, Ofer<br>
+&gt; Saferman wrote:<br>
+&gt; &gt; Marcus Hi,<br>
+&gt; &gt;<br>
+&gt; &gt; Your suggestion below to install ntpd does not work.<br>
+&gt; &gt; The image does not include it. Although the old thread says<br>
+&gt; &gt; otherwise I think it refers to an older UHD release that did incl=
+ude ntpd.<br>
+&gt; &gt; Any accurate instructions on how to install it anyway?<br>
+&gt; &gt; Maybe opkg should be configured to access another repository?<br>
+&gt; &gt; Doing: opkg list | grep ntpd, does not yield anything useful so i=
+t<br>
+&gt; &gt; is not just a question of typing it correctly.<br>
+&gt;<br>
+&gt; As far as I know, no image has been setup to use package feeds.<br>
+&gt;<br>
+&gt; I know ntpd worked in release4 images, pretty sure the newer image was=
+<br>
+&gt; redone and things have been left out that used to be there.<br>
+&gt;<br>
+&gt; Philip<br>
+&gt;<br>
+&gt; &gt;<br>
+&gt; &gt; Regards,<br>
+&gt; &gt; Ofer Saferman<br>
+&gt; &gt;<br>
+&gt; &gt; On Thu, Apr 1, 2021 at 4:34 PM Marcus D. Leech<br>
+&gt; &gt; &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">=
+patchvonbraun@gmail.com</a>&gt;<br>
+&gt; &gt; wrote:<br>
+&gt; &gt;<br>
+&gt; &gt;&gt; On 04/01/2021 06:00 AM, Ofer Saferman wrote:<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; Hello Marcus,<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; I am working on E310 with the latest UHD-3.15 SD card image.<=
+br>
+&gt; &gt;&gt; It seems not to include ntpd that is required to synchronize =
+system<br>
+&gt; &gt;&gt; time to GPS time.<br>
+&gt; &gt;&gt; Any idea how to install it on the E310?<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; Regards,<br>
+&gt; &gt;&gt; Ofer Saferman<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; sudo opkg install ntpd<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; should work, but it has been a while since I installed any pa=
+ckages<br>
+&gt; &gt;&gt; on<br>
+&gt; my<br>
+&gt; &gt;&gt; E310.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; The E310 is based on OpenEmbedded Linux, so all the info abou=
+t<br>
+&gt; installing<br>
+&gt; &gt;&gt; and managing packages on OpenEmbedded apply.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; On Wed, Mar 31, 2021 at 11:40 PM Marcus D Leech &lt;<br>
+&gt; <a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonb=
+raun@gmail.com</a>&gt;<br>
+&gt; &gt;&gt; wrote:<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt;&gt; Just use gettimeofday() or any of the myriad subtle varia=
+nts<br>
+&gt; &gt;&gt;&gt; available<br>
+&gt; in<br>
+&gt; &gt;&gt;&gt; boost to get you the Linux system time, and use that in a=
+ call to<br>
+&gt; &gt;&gt;&gt; set_time_next_pps().<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; The fact that all your E310s will be running GPSD means t=
+hey=E2=80=99ll be<br>
+&gt; &gt;&gt;&gt; adjusting system time appropriately and they=E2=80=99ll a=
+ll agree on what<br>
+&gt; &gt;&gt;&gt; time<br>
+&gt; it<br>
+&gt; &gt;&gt;&gt; is, depending on the level of precision you need.<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; Sent from my iPhone<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; On Mar 31, 2021, at 3:50 PM, Ofer Saferman &lt;<a href=3D=
+"mailto:ofer@navigicom.com" target=3D"_blank">ofer@navigicom.com</a>&gt; wr=
+ote:<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; =EF=BB=BF<br>
+&gt; &gt;&gt;&gt; Thank you Rob. Your suggestions are always helpful. I wil=
+l look<br>
+&gt; &gt;&gt;&gt; into using gps_gpgga.<br>
+&gt; &gt;&gt;&gt; Thank you Marcus. I am already adding one, per other exam=
+ples<br>
+&gt; &gt;&gt;&gt; posted<br>
+&gt; here<br>
+&gt; &gt;&gt;&gt; and sync_to_gps example. Can you please comment how I can=
+ benefit<br>
+&gt; &gt;&gt;&gt; from<br>
+&gt; the<br>
+&gt; &gt;&gt;&gt; fact that E310 units use gpsd in Linux?<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; Regards,<br>
+&gt; &gt;&gt;&gt; Ofer Saferman<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; On Wed, Mar 31, 2021 at 10:13 PM Marcus D Leech &lt;<br>
+&gt; <a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonb=
+raun@gmail.com</a>&gt;<br>
+&gt; &gt;&gt;&gt; wrote:<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt; Sent from my iPhone<br>
+&gt; &gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt; On Mar 31, 2021, at 2:22 PM, Rob Kossler &lt;<a href=
+=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote=
+:<br>
+&gt; &gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt; =EF=BB=BF<br>
+&gt; &gt;&gt;&gt;&gt; Hi Ofer,<br>
+&gt; &gt;&gt;&gt;&gt; Take a look at the Ettus source code gps_ctrl.cpp.=C2=
+=A0 In<br>
+&gt; &gt;&gt;&gt;&gt; particular,<br>
+&gt; look<br>
+&gt; &gt;&gt;&gt;&gt; at the get_sentence() usage which in the case of &quo=
+t;gps_time&quot; waits<br>
+&gt; &gt;&gt;&gt;&gt; for<br>
+&gt; the<br>
+&gt; &gt;&gt;&gt;&gt; next occurrence (wait=3Dtrue),=C2=A0 but for the othe=
+rs does not wait.<br>
+&gt; &gt;&gt;&gt;&gt; But<br>
+&gt; this<br>
+&gt; &gt;&gt;&gt;&gt; doesn&#39;t fully explain the behavior you are seeing=
+.=C2=A0 If you do the<br>
+&gt; following:<br>
+&gt; &gt;&gt;&gt;&gt; 1) wait for PPS time to change<br>
+&gt; &gt;&gt;&gt;&gt; 2) read the &quot;gps_time&quot; sensor<br>
+&gt; &gt;&gt;&gt;&gt; 3) set_time_next_pps (use the value you just read)<br=
+>
+&gt; &gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt; Add 1 to the time you just read before calling set_ti=
+me_next_pps.<br>
+&gt; &gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt; It should still work because the &quot;gps_time&quot;=
+ command should just<br>
+&gt; &gt;&gt;&gt;&gt; wait until the next PPS.=C2=A0 I guess it depends upo=
+n how<br>
+&gt; &gt;&gt;&gt;&gt; &quot;synchronized&quot; are<br>
+&gt; the<br>
+&gt; &gt;&gt;&gt;&gt; received NMEA string with the PPS edge.=C2=A0 Step 1 =
+above waits for<br>
+&gt; &gt;&gt;&gt;&gt; the<br>
+&gt; PPS<br>
+&gt; &gt;&gt;&gt;&gt; edge, but maybe the NMEA string arrives 0.1 secs befo=
+re or after<br>
+&gt; that.=C2=A0 I<br>
+&gt; &gt;&gt;&gt;&gt; don&#39;t really know.=C2=A0 Perhaps you need to swit=
+ch to using &quot;gps_gpgga&quot;<br>
+&gt; such<br>
+&gt; &gt;&gt;&gt;&gt; that there is no additional wait added and also perha=
+ps you<br>
+&gt; &gt;&gt;&gt;&gt; should<br>
+&gt; add step<br>
+&gt; &gt;&gt;&gt;&gt; 1B which would be just a fixed delay of perhaps 0.4 s=
+ecs so that<br>
+&gt; &gt;&gt;&gt;&gt; you<br>
+&gt; will<br>
+&gt; &gt;&gt;&gt;&gt; read the NMEA string in between the PPS edges.<br>
+&gt; &gt;&gt;&gt;&gt; Rob<br>
+&gt; &gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt; On Wed, Mar 31, 2021 at 1:22 PM Rob Kossler &lt;<a hr=
+ef=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wro=
+te:<br>
+&gt; &gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt; Hi Ofer,<br>
+&gt; &gt;&gt;&gt;&gt;&gt; I don&#39;t know why the &quot;gps_time&quot; sen=
+sor takes long to read. But,<br>
+&gt; &gt;&gt;&gt;&gt;&gt; can<br>
+&gt; you<br>
+&gt; &gt;&gt;&gt;&gt;&gt; try the other sensors (perhaps there is a &quot;g=
+ps_gpgga&quot; sensor?)?<br>
+&gt; &gt;&gt;&gt;&gt;&gt; The<br>
+&gt; time<br>
+&gt; &gt;&gt;&gt;&gt;&gt; is embedded in these as well.<br>
+&gt; &gt;&gt;&gt;&gt;&gt; Rob<br>
+&gt; &gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt; On Wed, Mar 31, 2021 at 12:21 PM Ofer Saferman<br=
+>
+&gt; &gt;&gt;&gt;&gt;&gt; &lt;<a href=3D"mailto:ofer@navigicom.com" target=
+=3D"_blank">ofer@navigicom.com</a>&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt; wrote:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; Marcus Hi,<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; If the gps_time &quot;sensor&quot; returns a =
+value only once per second<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; how<br>
+&gt; come<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; I manage to read it sometimes in less than 1 =
+second?<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; In my code the situation is worse than the si=
+mple example<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; below. It usually takes more than 1 sec. to r=
+ead it and<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; sometimes even 1.7 or<br>
+&gt; 1.8<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; seconds. I don&#39;t understand how the size =
+or complexity of the<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; code<br>
+&gt; affects<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; the time it takes to read gps_time.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; How to treat your comment about the use of GP=
+SD and good<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; synchronization as it relates to code?<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; Should I not change the time source in code a=
+nd go through the<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; whole process of synchronization using gps_ti=
+me?<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; Can I &quot;assume&quot; the systems are sync=
+ed just by the effect they<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; were connected enough time to a GPS antenna? =
+and then just<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; access their<br>
+&gt; time -<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; radio_ctrl-&gt;get_time_last_pps()?<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; How to use this information programmatically?=
+<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; Regards,<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; Ofer Saferman<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; ---------- Forwarded message ----------<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; From: &quot;Marcus D. Leech&quot; &lt;<a =
+href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gma=
+il.com</a>&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; To: <a href=3D"mailto:usrp-users@lists.et=
+tus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; Cc:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; Bcc:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; Date: Wed, 31 Mar 2021 09:19:20 -0400<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; Subject: [USRP-users] Re: Intermittent pr=
+oblem with GPS<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; synchronization for multiple E310 units O=
+n 03/31/2021 06:49<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; AM, Ofer Saferman wrote:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Hello,<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I have a system that uses 4 USRP E310=
+ units.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Each unit is connected to a GPS anten=
+na.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time source is set to gpsdo.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I run the same software remotely on a=
+ll 4 units from a PC.<br>
+&gt; Software<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; runs on the units themselves.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I print out messages to show if the r=
+eference is locked and<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; the<br>
+&gt; GPS<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; is<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; locked and also what is the GPS time =
+that each unit was<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; synchronized to.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; In some cases the units synchronize t=
+o the same GPS time and<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; in<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; other<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; cases there is 1 second difference be=
+tween GPS time of<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; different<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; units<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; thus causing the units to be unsynchr=
+onized.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I was wondering how this was possible=
+.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; The synchronization process (document=
+ed by others in the past<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; on<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; the<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; mailing list) is:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; * Wait for ref and GPS lock<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; * Wait for a pps edge (get_time_last_=
+pps)<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; * Read gps_time value<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; * Sync system clock to GPS clock on n=
+ext PPS edge<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; (set_time_next_pps +<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.0 sec)<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Something similar is also implemented=
+ in the sync_to_gps example.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; In order to debug the problem I decid=
+ed to time the reading<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; of the gps_time sensor to see if ther=
+e is a clue why<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; different units miss<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; the<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; PPS edge and lock to a time of the ne=
+xt second.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I was very surprised to find out that=
+ it takes between 0.9 to<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.2 seconds to read the gps_time sens=
+or.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; This explains exactly why it is diffi=
+cult to synchronize<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; multiple units to the same time insta=
+nce because if one unit<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; takes 0.9<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; to read the sensor and the other unit=
+ takes 1.2 seconds to<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; read<br>
+&gt; the<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; sensor then each unit will lock on a =
+different GPS time 1<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; second<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; apart.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Here is a short software I wrote to t=
+ime the gps_time sensor<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; reading:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; -------------------------------------=
+--------------------<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; #include &lt;uhd/utils/safe_main.hpp&=
+gt; #include &lt;uhd/device3.hpp&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; //#include &lt;uhd/usrp/multi_usrp.hp=
+p&gt; #include<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;uhd/types/sensors.hpp&gt; #includ=
+e &lt;boost/program_options.hpp&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; #include &lt;boost/format.hpp&gt; #in=
+clude &lt;chrono&gt; #include<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;iostream&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; namespace po =3D boost::program_optio=
+ns;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; int UHD_SAFE_MAIN(int argc, char *arg=
+v[]){<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::string args;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0po::options_descri=
+ption desc(&quot;Allowed options&quot;);<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0desc.add_options()=
+<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(&qu=
+ot;help&quot;, &quot;help message&quot;) (&quot;args&quot;,<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; po::value&lt;std::string&gt;(&amp;arg=
+s)-&gt;default_value(&quot;&quot;), &quot;device<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; address args&quot;)<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0po::variables_map =
+vm;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0po::store(po::pars=
+e_command_line(argc, argv, desc), vm);<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0po::notify(vm);<br=
+>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0//print the help m=
+essage<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0if (vm.count(&quot=
+;help&quot;)){<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0std:=
+:cout &lt;&lt; boost::format(&quot;Timinig of gps_time: %s&quot;)<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; %<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; desc<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;&lt; std::endl;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0retu=
+rn ~0;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0}<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; uhd::device3::sptr usrp =3D uhd::devi=
+ce3::make(args);<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; //uhd::usrp::multi_usrp::sptr usrp =
+=3D<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; uhd::usrp::multi_usrp::make(args);<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; uhd::sensor_value_t gps_time =3D<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; usrp-&gt;get_tree()-&gt;access&lt;uhd::sensor_value_t&gt;(&quot;/mboar=
+ds/0/sensors/gps_<br>
+&gt; usrp-&gt;time&quot;).get();<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; //uhd::sensor_value_t gps_time =3D<br=
+>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; usrp-&gt;get_mboard_sensor(&quot;gps_time=
+&quot;, 0);<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::chrono::steady_clock::time_point=
+ start_time, end_time;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::chrono::duration&lt;double&gt; t=
+ime_diff; // Default unit for<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; duration<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; is seconds.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; for(int ii=3D0 ; ii&lt;20 ; ii++)<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; {<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; start_time =3D std::chrono::steady_cl=
+ock::now(); gps_time =3D<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; usrp-&gt;get_tree()-&gt;access&lt;uhd::sensor_value_t&gt;(&quot;/mboar=
+ds/0/sensors/gps_<br>
+&gt; usrp-&gt;time&quot;).get();<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; //gps_time =3D usrp-&gt;get_mboard_se=
+nsor(&quot;gps_time&quot;, 0); end_time<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; =3D std::chrono::steady_clock::now();=
+ time_diff =3D end_time -<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; start_time;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::cout &lt;&lt; &quot;gps_time[&qu=
+ot; &lt;&lt; (boost::format(&quot;%02d&quot;) % ii) &lt;&lt; &quot;]: &quot=
+;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;&lt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; int64_t(gps_time.to_int()) &lt;&lt; &=
+quot;. Time to read \&quot;gps_time\&quot;: &quot;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;&lt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; (boost::format(&quot;%0.9f&quot;) % t=
+ime_diff.count()) &lt;&lt; &quot; seconds&quot; &lt;&lt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; std::endl;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; }<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0return 0;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; }<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; ----------------------------------------------------------------------=
+<br>
+&gt; ----------<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Here are the results of one typical r=
+un:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[00]: 1617183840. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.884164380<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[01]: 1617183841. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.877966469<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[02]: 1617183842. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.170869661<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[03]: 1617183843. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.882917987<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[04]: 1617183844. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.172120154<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[05]: 1617183845. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.879271985<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[06]: 1617183846. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.878609099<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[07]: 1617183847. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.115639282<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[08]: 1617183848. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.125365551<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[09]: 1617183849. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.843803231<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[10]: 1617183850. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.125065740<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[11]: 1617183851. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.847519817<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[12]: 1617183852. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.121398945<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[13]: 1617183853. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.844371533<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[14]: 1617183854. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.124722726<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[15]: 1617183855. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.845688380<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[16]: 1617183856. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.129568096<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[17]: 1617183857. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.882436229<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[18]: 1617183858. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.168227593<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[19]: 1617183859. Time to rea=
+d &quot;gps_time&quot;:<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.881948247<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; ----------------------------------------------------------------------=
+<br>
+&gt; -------------<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; In the code you can find commented ou=
+t the usual way to<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; access the sensor using multi_usrp an=
+d get_mboard_sensor. The<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; results are<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; quite<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; similar.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I wonder if anybody encountered this =
+issue before or<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; addressed it<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; in<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; any way.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I wonder why it takes so much time to=
+ get the value of GPS<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; time<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; when<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; it is a simple parsing of an NMEA mes=
+sage coming from the GPS<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; receiver.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I am trying now various tricks to mak=
+e the software robust<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; and<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; immune<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; to this phenomenon. I can report my f=
+indings further if I<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; succeed<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; to<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; find a workaround if there is any int=
+erest.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Can anyone comment on this? Can this =
+be resolved so that the<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; reading<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; of gps_time will be much faster?<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Is there another way to get GPS time =
+faster indirectly? Maybe<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; from parsing NMEA messages ourselves?=
+<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Regards,<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Ofer Saferman<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; This probably has to do with the way that=
+ particular &quot;sensor&quot;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; works--the<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; NMEA time value is only emitted once per =
+second, and the<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 code for that sensor has som=
+e heuristic for determining<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; &quot;freshness&quot;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; of the value.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; I&#39;ll point out that on E310, the syst=
+em is configured to use<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; GPSD,<br>
+&gt; so<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; that the Linux system time across several=
+ systems that have<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; all<br>
+&gt; been<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 &quot;listening&quot; to GPS=
+ for a while will all be synchronized<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; quite<br>
+&gt; well.<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; --<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; This message has been scanned for viruses and=
+ dangerous content<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; by *MailScanner* &lt;<a href=3D"http://www.ma=
+ilscanner.info/" rel=3D"noreferrer" target=3D"_blank">http://www.mailscanne=
+r.info/</a>&gt;, and is<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; believed to be clean.<br>
+&gt; _______________________________________________<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:=
+usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a=
+> To<br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt; unsubscribe send an email to <a href=3D"mailt=
+o:usrp-users-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave@list=
+s.ettus.com</a><br>
+&gt; &gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;&gt; _______________________________________________<b=
+r>
+&gt; &gt;&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-use=
+rs@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a> To<br>
+&gt; &gt;&gt;&gt;&gt; unsubscribe send an email to <a href=3D"mailto:usrp-u=
+sers-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.=
+com</a><br>
+&gt; &gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; --<br>
+&gt; &gt;&gt;&gt; This message has been scanned for viruses and dangerous c=
+ontent by<br>
+&gt; &gt;&gt;&gt; *MailScanner* &lt;<a href=3D"http://www.mailscanner.info/=
+" rel=3D"noreferrer" target=3D"_blank">http://www.mailscanner.info/</a>&gt;=
+, and is believed to<br>
+&gt; &gt;&gt;&gt; be clean.<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt; --<br>
+&gt; &gt;&gt; This message has been scanned for viruses and dangerous conte=
+nt by<br>
+&gt; &gt;&gt; *MailScanner* &lt;<a href=3D"http://www.mailscanner.info/" re=
+l=3D"noreferrer" target=3D"_blank">http://www.mailscanner.info/</a>&gt;, an=
+d<br>
+&gt; is<br>
+&gt; &gt;&gt; believed to be clean.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt; _______________________________________________<br>
+&gt; &gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ett=
+us.com" target=3D"_blank">usrp-users@lists.ettus.com</a> To unsubscribe<br>
+&gt; &gt; send an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.c=
+om" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+&gt; &gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">usrp-users@lists.ettus.com</a> To unsubscribe<br>
+&gt; send an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" t=
+arget=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+&gt;<br>
+<br>
+--<br>
+This message has been scanned for viruses and dangerous content by MailScan=
+ner, and is believed to be clean.<br>
+<br>
+-------------- next part --------------<br>
+A message part incompatible with plain text digests has been removed ...<br=
+>
+Name: not available<br>
+Type: text/html<br>
+Size: 27834 bytes<br>
+Desc: not available<br>
+<br>
+------------------------------<br>
+<br>
+Subject: Digest Footer<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a> To unsubscribe send an email=
+ to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" target=3D"_blank">u=
+srp-users-leave@lists.ettus.com</a><br>
+<br>
+<br>
+------------------------------<br>
+<br>
+End of USRP-users Digest, Vol 128, Issue 7<br>
+******************************************<br>
+</blockquote></div>
 
---Apple-Mail-3C16B057-8228-4A8B-B880-88FB12F5BB80--
+--000000000000b2885d05bf1b9632--
 
---===============5072894287090170349==
+--===============2234107348612639399==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -339,4 +1925,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5072894287090170349==--
+--===============2234107348612639399==--
