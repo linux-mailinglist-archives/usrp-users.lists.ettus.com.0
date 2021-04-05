@@ -2,403 +2,163 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41B61353BCD
-	for <lists+usrp-users@lfdr.de>; Mon,  5 Apr 2021 07:40:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A639E35420F
+	for <lists+usrp-users@lfdr.de>; Mon,  5 Apr 2021 14:40:42 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1C56F38405A
-	for <lists+usrp-users@lfdr.de>; Mon,  5 Apr 2021 01:39:59 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 79B6A383D7D
+	for <lists+usrp-users@lfdr.de>; Mon,  5 Apr 2021 08:40:36 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=vectalabs-com.20150623.gappssmtp.com header.i=@vectalabs-com.20150623.gappssmtp.com header.b="0QZ+jqRX";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=live.com header.i=@live.com header.b="GH66mPXV";
 	dkim-atps=neutral
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id B430D383CCF
-	for <USRP-users@lists.ettus.com>; Mon,  5 Apr 2021 01:39:13 -0400 (EDT)
-Received: by mail-vs1-f41.google.com with SMTP id t12so5535558vsj.11
-        for <USRP-users@lists.ettus.com>; Sun, 04 Apr 2021 22:39:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vectalabs-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hJ3ht7u/NjY92C43tfLHVOAlW2T7/vji6wcLgupWWd8=;
-        b=0QZ+jqRXb/0dnveepa/p62CuR4blnObkZxovUZ32eLwIL7aD7zxTCIiW3+mqGZGQvE
-         /ERjt+IKX7UkNPi1cP/SohROjopN6++A99o/LIhQFJ0RkCPULZQa/8KXpUTzD1QKwDBB
-         A9WWavXw2oAnLFvRhuTcBPh6I9ncEZlAit4gdfWlEITJatB0ugJbrsOOxBc/wUzYEsSn
-         GTh1VfLcxWipHe3ShX+UQ71gKoqHSxK3ghCdKtefk5VaEcKGLyr/HBxkCcTgb/V7wIdA
-         8OXihsYZd+f0es6D6vPn4DY9emj7WA1HPiU+6kgTWlkYgzm6556fH9uuSgR0gJEY/qFd
-         CAPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hJ3ht7u/NjY92C43tfLHVOAlW2T7/vji6wcLgupWWd8=;
-        b=ZEIfd7aTtcbKUu8BX/Ub2uC3rzYoKdWG3NXsxISC8+J0GntZaTwcQPdqFMTnHDnhkn
-         4GjxeZTniLy26/hx00Krt8eL9QV4O4Rc391nttg/SJz3iT0Q4koKQeJ+Ty39Xu/TcUKL
-         fbzeXQiiGn56ln0IR06ahxbDG64yXgavoNr8r0ue5I4mdGitflhqeKGYZ1F5DoAT8Qnv
-         GifvG8O0cVvRDRGKjzfIPx7lMeaO5FbjkA7QfxXeT4ItCjsTSKqz+nxTdTXHkU/BFBae
-         6oiOG19wUhjUt8bl/C7pOWW2hIib8T51hgCK9kZYeop7JAmdY4/yzwG9vTEbovAdLsMX
-         MAvA==
-X-Gm-Message-State: AOAM533DotwPGimBUumeO4E4Qa1PgR6fAA7JnzHqSwrrWHZvSFeJHEOR
-	01jedN/oT2KQMTLh6qeluQPVz4FdFU90elP8oB4xOg==
-X-Google-Smtp-Source: ABdhPJzCo7laJREiLfVnA69RjejUwO4JrOcMcXdWYCLMgf2IsOzFLq8IfKm+2zJqLDSH65OA36/Yqyjc4974qHiX7rg=
-X-Received: by 2002:a67:8007:: with SMTP id b7mr1048147vsd.29.1617601152750;
- Sun, 04 Apr 2021 22:39:12 -0700 (PDT)
+Received: from APC01-PU1-obe.outbound.protection.outlook.com (mail-oln040092254072.outbound.protection.outlook.com [40.92.254.72])
+	by mm2.emwd.com (Postfix) with ESMTPS id 77F2C383D07
+	for <usrp-users@lists.ettus.com>; Mon,  5 Apr 2021 08:39:42 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jJ6lPl762hKlU/1nAdthN39ramaNUSxXBfjN8Yhq/fUkeNKgg3h3kuci9xXYpOINt5yVD7ci8qUCAIOREyHpIPjCOrQ/5VCHid6enxC2vbIKXP0jiAx0Q91GN4+RJSuID8o0L3neFAmMO90irTXNNZp/WA9My0sp2iL7Pr9yJMj5ig6ElhptFU6727b6dwncfxoPPALsz+2WUMsECCM2825OZDc5aXqMSZUVK8mdcMwvBaKs1goeFcUJYxq5Uj8p/qq17lYBCWkCAsXL2x5Nc9Gozuy6Ucpu10BOFaOxscQo9kMc1D+ELc4qQ1wSaBuXpzPaCXu3sBgd36h8JQjOhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j8OywZHftUp1koBXp6fpXNsrrAmszWpf0KT/8Paxa+Q=;
+ b=OMSjIOjirOGYOe72azfgunJw4GE533xXwANRYiMlq1F1NPCqG7u8jlls2wirYCvjV9ZQNinXjh4knT09/Wo4Qow0dG8yBvrJ+De9QO9zxoEkMs0kEXGvDMORt9CEE5aJzqr8sraTd3fYWpNbuyWW6wWKWTz71Yo98g6hbo9FjxhhaTZXdvk1tX/2ofWXMRVJDEeKd7un1S6i5hjznHU7nEHl3KBFimJKD5zZ5HtSMcT0zWnM2GluoMHb5zObyeaHx+xriL77Zaimu1UYHFhxxdeuidBz1K5lnhwGOglFN41T+F9L2ohVihPFxnlDQDs8CCmpkil3OEQgdXlfyVpyEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j8OywZHftUp1koBXp6fpXNsrrAmszWpf0KT/8Paxa+Q=;
+ b=GH66mPXVcJGaBLFVkhKv3n3puGyh1UY4lOsfBCPTFRxsNwFzspkIDoZ1fnJG7221kaHYkk02hKen047GhhVs1IphG+X3I6B8H8rHSA6ptFF9aDk4roFROlLScWL1qdB02QUoGlT+apGT7lWnfmURGHCp0t43EGA6GAQaLXLiQvIq0RA9lSe8iEzCnkSlrHpzR6UJIAA9VytxBK1+v+v45QvmA4XPR6SSPe8vTvWGXDVQ61vAo0MG1u2q1hke/sZ//y+AMIpUswqc0t4Q6cag1TM6GsAAdxExSijopxG3x1aSChsivOmRTCSMQVUsJ5lGvmPnyuYsb+rILuKDbsT8Qw==
+Received: from SG2APC01FT033.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebd::46) by
+ SG2APC01HT019.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebd::314)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.28; Mon, 5 Apr
+ 2021 12:39:39 +0000
+Received: from BMXPR01MB2469.INDPRD01.PROD.OUTLOOK.COM (10.152.250.55) by
+ SG2APC01FT033.mail.protection.outlook.com (10.152.250.119) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3999.28 via Frontend Transport; Mon, 5 Apr 2021 12:39:39 +0000
+Received: from BMXPR01MB2469.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::1de6:5d4d:36ac:2b7a]) by BMXPR01MB2469.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::1de6:5d4d:36ac:2b7a%6]) with mapi id 15.20.3999.032; Mon, 5 Apr 2021
+ 12:39:38 +0000
+From: Snehasish Kar <snehasish.cse@LIVE.COM>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: troubleshooting  pcie link card
+Thread-Index: AQHXKhhm39HytzrBgUyTFcVgPeL4cQ==
+Date: Mon, 5 Apr 2021 12:39:38 +0000
+Message-ID: 
+ <BMXPR01MB2469029ADD6C27D6096B9D5988779@BMXPR01MB2469.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: 
+ OriginalChecksum:23B2CE5A1B5FB6F93EFEF52DED8CF4F768403957F522AAB792DC362E9C680C46;UpperCasedChecksum:6A3B3E00608B0DCFEC8B00700C7CF02415A5EE5914EC6317BF7C892D3A6A3C74;SizeAsReceived:6615;Count:41
+x-tmn: [zB4UH3pFWmglcpNlmQwoiUSSNs9rUhI6]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 41
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 0fd32256-d17e-4907-06a0-08d8f82fe083
+x-ms-traffictypediagnostic: SG2APC01HT019:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ CAyxsh9dedGTHhi+8NtcNgKagE0BGJMCVFs5XASJUSL3HTj/qZ8MFyNaKMYBybkPKnfO5wLjvWs2A5nUdUQiPNddAupGZc7zdEibFGDlrU3HBRdCMwUpagaLPK6icjyWtrZ6x7oMT4OyNOx46rSJaUdzrnsPBeZrtA4UqQ4PAH8FTfs2SgPWW5rr4+oHtLZ+SLHfEDOBuLrJeuB6ozxWZHfHTTor0Cu2DoPVw68+7dU2qh1fsOztocxZMIsNIwDCX7zF2xD86Z6sPuYwf2lbR+jL/ULmFFLfzrPoHG/3iv8JHzgT6SMGH2z//WxXDcEyniS+tKLHA3seZi7es8zpW8/kYtIplpNEvljUH7JUfMrd8kmOG8stCsnozjSaEYupQxwZ3bYtFYFoLmGn0ZOCIA==
+x-ms-exchange-antispam-messagedata: 
+ nw0qCRCRXyrQSbDAG48/aVBNpUWehm81cp8XV42whU82X6dNcF6LkngxivGf1DPQvrvFH1x34iTVxbP223s4WRK2YoiZyOz4hH5CYRmjKvgMMUN0oe49J/JIbkJ7jHXd6EuERRjQg3Bwnz0d2s8Hvw==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CALNMZ8X7gRZH=MN+iCW1LQzGgsAUJrU91s8atfrTQ9LnL91oHQ@mail.gmail.com>
- <09494F90-D4DB-401F-8CAE-FF766FAA689E@gmail.com>
-In-Reply-To: <09494F90-D4DB-401F-8CAE-FF766FAA689E@gmail.com>
-From: Brendan Horsfield <brendan.horsfield@vectalabs.com>
-Date: Mon, 5 Apr 2021 15:39:01 +1000
-Message-ID: <CALNMZ8XbFrbS-ef5MP=Pd4fmzHJu5+dMsRdG4o4-Krt+AjeiJQ@mail.gmail.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Message-ID-Hash: FV6XT5ES724OUXOZXG4QC62LBK7BVQ7I
-X-Message-ID-Hash: FV6XT5ES724OUXOZXG4QC62LBK7BVQ7I
-X-MailFrom: brendan.horsfield@vectalabs.com
+X-OriginatorOrg: live.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: SG2APC01FT033.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0fd32256-d17e-4907-06a0-08d8f82fe083
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Apr 2021 12:39:38.6270
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2APC01HT019
+Message-ID-Hash: OVAVYKSIEBZVXDQMNW3EQYYFAI6WTBHN
+X-Message-ID-Hash: OVAVYKSIEBZVXDQMNW3EQYYFAI6WTBHN
+X-MailFrom: snehasish.cse@LIVE.COM
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Problem with interfacing Raspberry Pi 4 to USRP B210 with Python API
+Subject: [USRP-users] troubleshooting  pcie link card
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FV6XT5ES724OUXOZXG4QC62LBK7BVQ7I/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JGR3G6OVZYXVYBRPTFF4VNYVVOE4EV77/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8132028121609626630=="
+Content-Type: multipart/mixed; boundary="===============4038827122025993499=="
 
---===============8132028121609626630==
-Content-Type: multipart/alternative; boundary="00000000000019287005bf331e67"
+--===============4038827122025993499==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BMXPR01MB2469029ADD6C27D6096B9D5988779BMXPR01MB2469INDP_"
 
---00000000000019287005bf331e67
-Content-Type: text/plain; charset="UTF-8"
+--_000_BMXPR01MB2469029ADD6C27D6096B9D5988779BMXPR01MB2469INDP_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-A quick update for benefit of those following this thread:
+Hello
 
-As a sanity check, I have tried to compile & build one of the C++ examples
-on the Ettus homepage, only to get exactly the same error messages that I
-got with the Python API:
+I need some help in troubleshooting pcie link card. I can see orange LED gl=
+owing in the card and even on giving the command lspci, I am not able to se=
+e the card in the list. Please help me with the troubleshooting.
 
-pi@raspberrypi:~/cpp-dev/init_usrp/build $ sudo make
-[ 50%] Linking CXX executable init_usrp
-/usr/bin/ld: /usr/local/lib/libuhd.so: undefined reference to
-`__atomic_compare_exchange_8'
-/usr/bin/ld: /usr/local/lib/libuhd.so: undefined reference to
-`__atomic_load_8'
-/usr/bin/ld: /usr/local/lib/libuhd.so: undefined reference to
-`__atomic_store_8'
-/usr/bin/ld: /usr/local/lib/libuhd.so: undefined reference to
-`__atomic_fetch_add_8'
-collect2: error: ld returned 1 exit status
-make[2]: *** [CMakeFiles/init_usrp.dir/build.make:88: init_usrp] Error 1
-make[1]: *** [CMakeFiles/Makefile2:76: CMakeFiles/init_usrp.dir/all] Error =
-2
-make: *** [Makefile:84: all] Error 2
+Regards
 
-Clearly the sticking point is the -latomic linking failure.  I have still
-got some suggestions to work through over the next week or so.  I'll post
-another update if I find a working solution.
+Snehasish
 
-Brendan.
-
-
-
-On Sun, Apr 4, 2021 at 11:03 AM Marcus D Leech <patchvonbraun@gmail.com>
-wrote:
-
-> The C++ API is the standard API for UHD follows by the legacy C API and
-> then the Python API.  The Python API is still considered experimental, an=
-d
-> it will necessarily have performance issues=E2=80=94that=E2=80=99s just t=
-he nature of an
-> interpreted language trying to do high performance real-time signal
-> processing=E2=80=94even when you use things like numpy.
->
-> Sent from my iPhone
->
-> On Apr 3, 2021, at 7:37 PM, Brendan Horsfield <
-> brendan.horsfield@vectalabs.com> wrote:
->
-> =EF=BB=BF
-> Your point is well taken, although I confess I am still a bit surprised
-> that Python support is not the norm, given the popularity of this languag=
-e
-> in the scientific & engineering community.
->
-> Getting back to my problem:  Am I correct in assuming that the C++ API is
-> included as standard with every UHD build?  If so, rather than spending
-> days/weeks trying to add Python support to UHD on the Raspberry Pi, would
-> it be faster for me to just create a C++ function to communicate with the
-> USRP, and put a Python wrapper around it?
->
-> On Sun, Apr 4, 2021 at 1:15 AM Marcus D Leech <patchvonbraun@gmail.com>
-> wrote:
->
->>
->>
->> Sent from my iPhone
->>
->> On Apr 3, 2021, at 7:08 AM, Brendan Horsfield <b
->>
->> QUESTION 2:  This whole process feels more difficult than it should be.
->> Why isn't the Python API installed with the UHD driver by default?  Woul=
-d I
->> be better off using another language (like C++) to control the USRP?
->>
->> Thanks,
->> Brendan.
->>
->> Well, NI/Ettus have zero control over how various distros choose to
->> package and build UHD, similarly for PyBombs=E2=80=94PyBombs isn=E2=80=
-=99t maintained by
->> NI/Ettus.
->>
->> So if you =E2=80=9Cland=E2=80=9D on a distro where the packaged UHD does=
-n=E2=80=99t include
->> Python support, then you end up building UHD yourself. Which may entail =
-the
->> pain you encountered due to missing compiler flags.
->>
->> Because the Linux world is so incredibly diverse, it=E2=80=99s rare that=
- the
->> developer of a given code base is also responsible for packaging for a
->> given distro/platform. That=E2=80=99s why there are =E2=80=9Cpackage mai=
-ntainers=E2=80=9D for each
->> distro, and they=E2=80=99re the ones who end up making decisions like en=
-abling
->> support for various options, turning on =E2=80=9Cweird=E2=80=9D compiler=
- flags, etc.
->>
->> UHD is no different in this regard.
->>
->>
->>
->> On Fri, Apr 2, 2021 at 11:25 PM Marcus D Leech <patchvonbraun@gmail.com>
->> wrote:
->>
->>> Perhaps look at the PyBombs recipe for your platform=E2=80=94there=E2=
-=80=99s probably a
->>> compiler flag that needs to be set that you=E2=80=99re missing, but I d=
-on=E2=80=99t know
->>> what that is.
->>>
->>> Also, in general, you don=E2=80=99t need to become root to compile and =
-build
->>> code=E2=80=94only needed during the =E2=80=9Cmake install=E2=80=9D
->>>
->>>
->>>
->>> Sent from my iPhone
->>>
->>> On Apr 2, 2021, at 7:19 AM, Brendan Horsfield <
->>> brendan.horsfield@vectalabs.com> wrote:
->>>
->>> =EF=BB=BF
->>> Hi Folks,
->>>
->>> I would like to interface my Raspberry Pi 4 to a USRP B210 via the
->>> Python API.  This requires the UHD driver to be built from source.
->>> Unfortunately, whenever I try this I encounter some errors that stop th=
-e
->>> build process in its tracks.
->>>
->>> Details of the error are as follows:
->>>
->>> [ 53%] Linking CXX executable test_clock_synch
->>> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
->>> `__atomic_compare_exchange_8'
->>> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
->>> `__atomic_load_8'
->>> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
->>> `__atomic_store_8'
->>> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
->>> `__atomic_fetch_add_8'
->>> collect2: error: ld returned 1 exit status
->>> make[2]: *** [examples/CMakeFiles/test_clock_synch.dir/build.make:95:
->>> examples/test_clock_synch] Error 1
->>> make[1]: *** [CMakeFiles/Makefile2:1039:
->>> examples/CMakeFiles/test_clock_synch.dir/all] Error 2
->>> make: *** [Makefile:163: all] Error 2
->>>
->>> The process I have been using is as follows:
->>>
->>> STEP 1:  INSTALL DEPENDENCIES
->>> sudo apt-get install libboost-all-dev libusb-1.0-0-dev doxygen
->>> python3-docutils python3-mako python3-numpy python3-requests
->>> python3-ruamel.yaml python3-setuptools cmake build-essential
->>>
->>> STEP 2:  BUILD UHD DRIVER FROM SOURCE
->>> cd /home/pi
->>> mkdir workarea-uhd
->>> cd workarea-uhd
->>> git clone https://github.com/EttusResearch/uhd
->>> cd uhd
->>> git checkout v4.0.0.0
->>> cd host
->>> mkdir build
->>> cd build
->>> sudo cmake -DNEON_SIMD_ENABLE=3DOFF -DENABLE_PYTHON_API=3DON ../
->>> sudo make  --->  (ERRORS OCCUR DURING "MAKE" PROCESS)
->>>
->>> My system configuration is as follows:
->>> Hardware: Raspberry Pi 4 Model B Rev 1.4
->>> OS: Raspbian GNU/Linux 10 (buster) (32-bit, armv7l)
->>> Ettus USRP B210
->>>
->>> Does anyone know what the problem could be, and how I can resolve it?
->>>
->>> One final note:  Using PyBOMBS, I was able to successfully build &
->>> install the UHD driver and connect to the USRP.  Unfortunately the PyBO=
-MBS
->>> build does not include the Python API, which is what I really want.  Is
->>> there a different version of the PyBOMBS build that includes the Python=
- API?
->>>
->>> Thanks & Regards,
->>> Brendan.
->>>
->>>
->>>
->>> _______________________________________________
->>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>
->>>
-
---00000000000019287005bf331e67
-Content-Type: text/html; charset="UTF-8"
+--_000_BMXPR01MB2469029ADD6C27D6096B9D5988779BMXPR01MB2469INDP_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>A quick update for benefit of those following this th=
-read:=C2=A0=C2=A0</div><div><br></div><div>As a sanity check, I have tried =
-to compile &amp; build one of the C++ examples on the Ettus homepage, only =
-to get exactly the same error messages that I got with the Python API:=C2=
-=A0</div><div><br></div><div>pi@raspberrypi:~/cpp-dev/init_usrp/build $ sud=
-o make<br>[ 50%] Linking CXX executable init_usrp<br>/usr/bin/ld: /usr/loca=
-l/lib/libuhd.so: undefined reference to `__atomic_compare_exchange_8&#39;<b=
-r>/usr/bin/ld: /usr/local/lib/libuhd.so: undefined reference to `__atomic_l=
-oad_8&#39;<br>/usr/bin/ld: /usr/local/lib/libuhd.so: undefined reference to=
- `__atomic_store_8&#39;<br>/usr/bin/ld: /usr/local/lib/libuhd.so: undefined=
- reference to `__atomic_fetch_add_8&#39;<br>collect2: error: ld returned 1 =
-exit status<br>make[2]: *** [CMakeFiles/init_usrp.dir/build.make:88: init_u=
-srp] Error 1<br>make[1]: *** [CMakeFiles/Makefile2:76: CMakeFiles/init_usrp=
-.dir/all] Error 2<br>make: *** [Makefile:84: all] Error 2<br></div><div><br=
-></div><div><div>Clearly the sticking point is the -latomic linking failure=
-.=C2=A0 I have still got some suggestions to work through over the next wee=
-k or so.=C2=A0 I&#39;ll post another update if I find a working solution.</=
-div><div><br></div><div>Brendan.</div><div><br></div><div><br></div><div></=
-div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Sun, Apr 4, 2021 at 11:03 AM Marcus D Leech &lt;<a href=3D"mai=
-lto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">The C=
-++ API is the standard API for UHD follows by the legacy C API and then the=
- Python API.=C2=A0 The Python API is still considered experimental, and it =
-will necessarily have performance issues=E2=80=94that=E2=80=99s just the na=
-ture of an interpreted language trying to do high performance real-time sig=
-nal processing=E2=80=94even when you use things like numpy.=C2=A0<br><br><d=
-iv dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote ty=
-pe=3D"cite">On Apr 3, 2021, at 7:37 PM, Brendan Horsfield &lt;<a href=3D"ma=
-ilto:brendan.horsfield@vectalabs.com" target=3D"_blank">brendan.horsfield@v=
-ectalabs.com</a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"c=
-ite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr">Your point is well taken, a=
-lthough I confess I am still a bit surprised that Python support is not the=
- norm, given the popularity of this language in the scientific &amp; engine=
-ering community.=C2=A0=C2=A0<div><br></div><div>Getting back to my problem:=
-=C2=A0 Am I correct in assuming that the C++ API is included as standard wi=
-th every UHD build?=C2=A0 If so, rather than spending days/weeks trying to =
-add Python support to UHD on the Raspberry Pi, would it be faster for me to=
- just create a C++ function to communicate with the USRP, and put a Python =
-wrapper around it?</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Sun, Apr 4, 2021 at 1:15 AM Marcus D Leech &lt;<=
-a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@g=
-mail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div dir=3D"auto"><br><br><div dir=3D"ltr">Sent from my iPhone</div=
-><div dir=3D"ltr"><br><blockquote type=3D"cite">On Apr 3, 2021, at 7:08 AM,=
- Brendan Horsfield &lt;b</blockquote></div><blockquote type=3D"cite"><div d=
-ir=3D"ltr"><div dir=3D"ltr"><div>QUESTION 2:=C2=A0 This whole process feels=
- more difficult than it should be.=C2=A0 Why isn&#39;t the Python API insta=
-lled with the UHD driver by default?=C2=A0 Would I be better off using anot=
-her language (like C++) to control the USRP?</div><div><br></div><div>Thank=
-s,</div><div>Brendan.</div><div><br></div></div></div></blockquote>Well, NI=
-/Ettus have zero control over how various distros choose to package and bui=
-ld UHD, similarly for PyBombs=E2=80=94PyBombs isn=E2=80=99t maintained by N=
-I/Ettus.=C2=A0<div><br></div><div>So if you =E2=80=9Cland=E2=80=9D on a dis=
-tro where the packaged UHD doesn=E2=80=99t include Python support, then you=
- end up building UHD yourself. Which may entail the pain you encountered du=
-e to missing compiler flags.=C2=A0<br><br>Because the Linux world is so inc=
-redibly diverse, it=E2=80=99s rare that the developer of a given code base =
-is also responsible for packaging for a given distro/platform. That=E2=80=
-=99s why there are =E2=80=9Cpackage maintainers=E2=80=9D for each distro, a=
-nd they=E2=80=99re the ones who end up making decisions like enabling suppo=
-rt for various options, turning on =E2=80=9Cweird=E2=80=9D compiler flags, =
-etc.=C2=A0</div><div><br></div><div>UHD is no different in this regard.=C2=
-=A0</div><div><br><blockquote type=3D"cite"><div dir=3D"ltr"><div dir=3D"lt=
-r"><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Fri, Apr 2, 2021 at 11:25 PM Marcus D Leech &lt;<a hre=
-f=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.=
-com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x"><div dir=3D"auto">Perhaps look at the PyBombs recipe for your platform=
-=E2=80=94there=E2=80=99s probably a compiler flag that needs to be set that=
- you=E2=80=99re missing, but I don=E2=80=99t know what that is.=C2=A0<div><=
-br></div><div>Also, in general, you don=E2=80=99t need to become root to co=
-mpile and build code=E2=80=94only needed during the =E2=80=9Cmake install=
-=E2=80=9D</div><div><br></div><div><br><br><div dir=3D"ltr">Sent from my iP=
-hone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Apr 2, 2021, at=
- 7:19 AM, Brendan Horsfield &lt;<a href=3D"mailto:brendan.horsfield@vectala=
-bs.com" target=3D"_blank">brendan.horsfield@vectalabs.com</a>&gt; wrote:<br=
-><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=
-=BF<div dir=3D"ltr">Hi Folks,<div><br></div><div>I would like to interface =
-my Raspberry Pi 4 to a USRP B210 via the Python API.=C2=A0 This requires th=
-e UHD driver to be built from source.=C2=A0 Unfortunately, whenever I try t=
-his I encounter some errors that stop the build process in its tracks.</div=
-><div><br></div><div>Details of the error are as follows:</div><div><br></d=
-iv><div>[ 53%] Linking CXX executable test_clock_synch<br>/usr/bin/ld: ../l=
-ib/libuhd.so.4.0.0: undefined reference to `__atomic_compare_exchange_8&#39=
-;<br>/usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `__atomic_=
-load_8&#39;<br>/usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to =
-`__atomic_store_8&#39;<br>/usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined re=
-ference to `__atomic_fetch_add_8&#39;<br>collect2: error: ld returned 1 exi=
-t status<br>make[2]: *** [examples/CMakeFiles/test_clock_synch.dir/build.ma=
-ke:95: examples/test_clock_synch] Error 1<br>make[1]: *** [CMakeFiles/Makef=
-ile2:1039: examples/CMakeFiles/test_clock_synch.dir/all] Error 2<br>make: *=
-** [Makefile:163: all] Error 2<br></div><div><br></div><div>The process I h=
-ave been using is as follows:</div><div><br></div><div>STEP 1:=C2=A0 INSTAL=
-L DEPENDENCIES<br>sudo apt-get install libboost-all-dev libusb-1.0-0-dev do=
-xygen python3-docutils python3-mako python3-numpy python3-requests python3-=
-ruamel.yaml python3-setuptools cmake build-essential<br><br>STEP 2:=C2=A0 B=
-UILD UHD DRIVER FROM SOURCE</div><div>cd /home/pi<br>mkdir workarea-uhd<br>=
-cd workarea-uhd<br>git clone <a href=3D"https://github.com/EttusResearch/uh=
-d" target=3D"_blank">https://github.com/EttusResearch/uhd</a><br>cd uhd<br>=
-git checkout v4.0.0.0<br>cd host<br>mkdir build<br>cd build<br>sudo cmake -=
-DNEON_SIMD_ENABLE=3DOFF -DENABLE_PYTHON_API=3DON ../<br>sudo make=C2=A0 ---=
-&gt;=C2=A0=C2=A0(ERRORS OCCUR DURING &quot;MAKE&quot; PROCESS)<br><br>My sy=
-stem configuration is as follows:<br>Hardware: Raspberry Pi 4 Model B Rev 1=
-.4<br>OS: Raspbian GNU/Linux 10 (buster) (32-bit, armv7l)<br>Ettus USRP B21=
-0<br></div><div><br></div><div>Does anyone know what the problem could be, =
-and how I can resolve it?<br></div><div><br></div><div>One final note:=C2=
-=A0 Using PyBOMBS, I was able to successfully build &amp; install the UHD d=
-river and connect to the USRP.=C2=A0 Unfortunately the PyBOMBS build does n=
-ot include the Python API, which is what I really=C2=A0want.=C2=A0 Is there=
- a different version of the PyBOMBS build that includes the Python API?</di=
-v><div><br></div><div>Thanks &amp; Regards,</div><div>Brendan.</div><div><b=
-r></div><div><br></div><div>=C2=A0=C2=A0</div></div>
-<span>_______________________________________________</span><br><span>USRP-=
-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" target=
-=3D"_blank">usrp-users@lists.ettus.com</a></span><br><span>To unsubscribe s=
-end an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" target=
-=3D"_blank">usrp-users-leave@lists.ettus.com</a></span><br></div></blockquo=
-te></div></div></blockquote></div>
-</div></blockquote></div></div></blockquote></div>
-</div></blockquote></div></blockquote></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Hello <br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+I need some help in troubleshooting pcie link card. I can see orange LED gl=
+owing in the card and even on giving the command lspci, I am not able to se=
+e the card in the list. Please help me with the troubleshooting.</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Regards</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Snehasish<br>
+</div>
+</body>
+</html>
 
---00000000000019287005bf331e67--
+--_000_BMXPR01MB2469029ADD6C27D6096B9D5988779BMXPR01MB2469INDP_--
 
---===============8132028121609626630==
+--===============4038827122025993499==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -408,4 +168,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8132028121609626630==--
+--===============4038827122025993499==--
